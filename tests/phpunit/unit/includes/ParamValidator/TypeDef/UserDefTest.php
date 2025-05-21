@@ -75,7 +75,7 @@ class UserDefTest extends TypeDefUnitTestCase {
 		);
 	}
 
-	public function provideValidate() {
+	public static function provideValidate() {
 		// General tests of string inputs
 		$data = [
 			'Basic' => [ 'name', 'Adam Smith', 'Adam Smith' ],
@@ -201,7 +201,7 @@ class UserDefTest extends TypeDefUnitTestCase {
 		];
 	}
 
-	public function provideNormalizeSettings() {
+	public static function provideNormalizeSettings() {
 		return [
 			'Basic test' => [
 				[ 'param-foo' => 'bar' ],
@@ -223,7 +223,7 @@ class UserDefTest extends TypeDefUnitTestCase {
 		];
 	}
 
-	public function provideCheckSettings() {
+	public static function provideCheckSettings() {
 		$keys = [ 'Y', UserDef::PARAM_ALLOWED_USER_TYPES, UserDef::PARAM_RETURN_OBJECT ];
 		$ismultiIssue = 'Multi-valued user-type parameters with PARAM_RETURN_OBJECT or allowing IDs '
 			. 'should set low values (<= 10) for PARAM_ISMULTI_LIMIT1 and PARAM_ISMULTI_LIMIT2.'
@@ -377,7 +377,7 @@ class UserDefTest extends TypeDefUnitTestCase {
 		];
 	}
 
-	public function provideGetInfo() {
+	public static function provideGetInfo() {
 		return [
 			'Basic test' => [
 				[],

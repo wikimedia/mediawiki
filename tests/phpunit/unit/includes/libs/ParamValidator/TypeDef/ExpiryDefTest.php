@@ -26,7 +26,7 @@ class ExpiryDefTest extends TypeDefTestCase {
 	 * @param array $settings
 	 * @return array
 	 */
-	private function getValidationAssertion( string $value, string $msg, array $settings = [] ) {
+	private static function getValidationAssertion( string $value, string $msg, array $settings = [] ) {
 		return [
 			$value,
 			new ValidationException(
@@ -49,7 +49,7 @@ class ExpiryDefTest extends TypeDefTestCase {
 		parent::testValidate( $value, $expect, $settings, $options, $expectConds );
 	}
 
-	public function provideValidate() {
+	public static function provideValidate() {
 		$settings = [
 			ExpiryDef::PARAM_MAX => '6 months',
 			ExpiryDef::PARAM_USE_MAX => true,
@@ -57,13 +57,13 @@ class ExpiryDefTest extends TypeDefTestCase {
 
 		return [
 			'Valid infinity' => [ 'indefinite', 'infinity' ],
-			'Invalid expiry' => $this->getValidationAssertion( 'foobar', 'badexpiry' ),
-			'Expiry in past' => $this->getValidationAssertion( '20150123T12:34:56Z', 'badexpiry-past' ),
-			'Expiry in past with unix 0' => $this->getValidationAssertion(
+			'Invalid expiry' => self::getValidationAssertion( 'foobar', 'badexpiry' ),
+			'Expiry in past' => self::getValidationAssertion( '20150123T12:34:56Z', 'badexpiry-past' ),
+			'Expiry in past with unix 0' => self::getValidationAssertion(
 				'1970-01-01T00:00:00Z',
 				'badexpiry-past'
 			),
-			'Expiry in past with negative unix time' => $this->getValidationAssertion(
+			'Expiry in past with negative unix time' => self::getValidationAssertion(
 				'1969-12-31T23:59:59Z',
 				'badexpiry-past',
 				$settings
@@ -103,14 +103,14 @@ class ExpiryDefTest extends TypeDefTestCase {
 					]
 				],
 			],
-			'Expiry exceeds max, fatal' => $this->getValidationAssertion(
+			'Expiry exceeds max, fatal' => self::getValidationAssertion(
 				'9999-01-23T12:34:56Z',
 				'paramvalidator-badexpiry-duration',
 				[
 					ExpiryDef::PARAM_MAX => '6 months',
 				]
 			),
-			'Expiry exceeds Y10K' => $this->getValidationAssertion(
+			'Expiry exceeds Y10K' => self::getValidationAssertion(
 				'50000 years',
 				'badexpiry'
 			),
@@ -143,7 +143,7 @@ class ExpiryDefTest extends TypeDefTestCase {
 		ExpiryDef::normalizeExpiry( 0, TS_ISO_8601 );
 	}
 
-	public function provideGetInfo() {
+	public static function provideGetInfo() {
 		return [
 			'Basic' => [
 				[],
@@ -155,7 +155,7 @@ class ExpiryDefTest extends TypeDefTestCase {
 		];
 	}
 
-	public function provideCheckSettings() {
+	public static function provideCheckSettings() {
 		$keys = [ 'Y', ExpiryDef::PARAM_USE_MAX, ExpiryDef::PARAM_MAX ];
 		return [
 			'Basic test' => [

@@ -35,7 +35,7 @@ class IntegerDefTest extends TypeDefTestCase {
 		return '1' . $v;
 	}
 
-	public function provideValidate() {
+	public static function provideValidate() {
 		$badinteger = new ValidationException(
 			DataMessageValue::new( 'XXX', [], 'badinteger' ),
 			'test', '...', []
@@ -142,7 +142,7 @@ class IntegerDefTest extends TypeDefTestCase {
 		];
 	}
 
-	public function provideNormalizeSettings() {
+	public static function provideNormalizeSettings() {
 		return [
 			[ [], [] ],
 			[
@@ -164,7 +164,7 @@ class IntegerDefTest extends TypeDefTestCase {
 		];
 	}
 
-	public function provideCheckSettings() {
+	public static function provideCheckSettings() {
 		$keys = [
 			'Y', IntegerDef::PARAM_IGNORE_RANGE,
 			IntegerDef::PARAM_MIN, IntegerDef::PARAM_MAX, IntegerDef::PARAM_MAX2
@@ -285,7 +285,7 @@ class IntegerDefTest extends TypeDefTestCase {
 		];
 	}
 
-	public function provideGetInfo() {
+	public static function provideGetInfo() {
 		return [
 			'Basic' => [
 				[],

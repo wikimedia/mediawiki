@@ -18,7 +18,7 @@ class FloatDefTest extends TypeDefTestCase {
 		return new FloatDef( $callbacks, $options );
 	}
 
-	public function provideValidate() {
+	public static function provideValidate() {
 		$enforceType = [ TypeDef::OPT_ENFORCE_JSON_TYPES => true ];
 
 		return [
@@ -108,7 +108,7 @@ class FloatDefTest extends TypeDefTestCase {
 		];
 	}
 
-	public function provideCheckSettings() {
+	public static function provideCheckSettings() {
 		$keys = [
 			'Y', FloatDef::PARAM_IGNORE_RANGE,
 			FloatDef::PARAM_MIN, FloatDef::PARAM_MAX, FloatDef::PARAM_MAX2
@@ -161,7 +161,7 @@ class FloatDefTest extends TypeDefTestCase {
 		];
 	}
 
-	public function provideStringifyValue() {
+	public static function provideStringifyValue() {
 		$digits = defined( 'PHP_FLOAT_DIG' ) ? PHP_FLOAT_DIG : 15;
 
 		return [
@@ -172,7 +172,7 @@ class FloatDefTest extends TypeDefTestCase {
 		];
 	}
 
-	public function provideGetInfo() {
+	public static function provideGetInfo() {
 		return [
 			'Basic test' => [
 				[],

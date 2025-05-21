@@ -16,7 +16,7 @@ class ArrayDefTest extends TypeDefUnitTestCase {
 		return new ArrayDef( $callbacks );
 	}
 
-	private function makeValidationException( $schemaSettings, $property, $pointer, $message, $constraint ) {
+	private static function makeValidationException( $schemaSettings, $property, $pointer, $message, $constraint ) {
 		return new ValidationException(
 			DataMessageValue::new(
 				'schema-validation-failed',
@@ -36,7 +36,7 @@ class ArrayDefTest extends TypeDefUnitTestCase {
 		);
 	}
 
-	public function provideValidate() {
+	public static function provideValidate() {
 		yield 'assoc array' => [ [ 'x' => 1 ], [ 'x' => 1 ], ];
 		yield 'indexed array' => [ [ 'x' ], [ 'x' ], ];
 		yield 'array' => [ [], [], ];
@@ -85,7 +85,7 @@ class ArrayDefTest extends TypeDefUnitTestCase {
 			[ ArrayDef::PARAM_SCHEMA => [ 'type' => [ 'object' ], 'required' => [ 'key1' ] ] ]
 		];
 		$missingSchemaSettings = [ ArrayDef::PARAM_SCHEMA => [ 'type' => [ 'object' ], 'required' => [ 'required' ] ] ];
-		$schemaValidationFailed = $this->makeValidationException(
+		$schemaValidationFailed = self::makeValidationException(
 			$missingSchemaSettings, 'required', '/required', 'The property required is required', 'required'
 		);
 

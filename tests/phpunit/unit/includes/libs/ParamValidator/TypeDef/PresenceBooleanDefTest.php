@@ -15,7 +15,7 @@ class PresenceBooleanDefTest extends TypeDefTestCase {
 		return new PresenceBooleanDef( $callbacks, $options );
 	}
 
-	public function provideValidate() {
+	public static function provideValidate() {
 		return [
 			[ null, false ],
 			[ '', true ],
@@ -25,7 +25,7 @@ class PresenceBooleanDefTest extends TypeDefTestCase {
 		];
 	}
 
-	public function provideNormalizeSettings() {
+	public static function provideNormalizeSettings() {
 		return [
 			[
 				[],
@@ -42,7 +42,7 @@ class PresenceBooleanDefTest extends TypeDefTestCase {
 		];
 	}
 
-	public function provideCheckSettings() {
+	public static function provideCheckSettings() {
 		return [
 			'Basic test' => [
 				[],
@@ -130,7 +130,7 @@ class PresenceBooleanDefTest extends TypeDefTestCase {
 		];
 	}
 
-	public function provideGetInfo() {
+	public static function provideGetInfo() {
 		return [
 			'Basic test' => [
 				[],

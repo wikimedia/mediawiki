@@ -38,7 +38,7 @@ class TitleDefTest extends TypeDefIntegrationTestCase {
 		parent::testValidate( $value, $expect, $settings, $options, $expectConds );
 	}
 
-	public function provideValidate() {
+	public static function provideValidate() {
 		return [
 			'plain' => [
 				'value' => 'Foo',
@@ -52,7 +52,7 @@ class TitleDefTest extends TypeDefIntegrationTestCase {
 			],
 			'bad title' => [
 				'value' => '<script>',
-				'expect' => $this->getValidationException( 'badtitle', '<script>' ),
+				'expect' => self::getValidationException( 'badtitle', '<script>' ),
 				'settings' => [],
 			],
 			'as object' => [
@@ -77,7 +77,7 @@ class TitleDefTest extends TypeDefIntegrationTestCase {
 			],
 			'must exist (failure)' => [
 				'value' => 'does not exist',
-				'expect' => $this->getValidationException( 'missingtitle', 'does not exist',
+				'expect' => self::getValidationException( 'missingtitle', 'does not exist',
 					[ TitleDef::PARAM_MUST_EXIST => true ] ),
 				'settings' => [ TitleDef::PARAM_MUST_EXIST => true ],
 			],
@@ -91,7 +91,7 @@ class TitleDefTest extends TypeDefIntegrationTestCase {
 		];
 	}
 
-	public function provideStringifyValue() {
+	public static function provideStringifyValue() {
 		return [
 			// Underscore-to-space conversion not happening here but later in validate().
 			'String' => [ 'User:John_Doe', 'User:John_Doe' ],
@@ -100,7 +100,7 @@ class TitleDefTest extends TypeDefIntegrationTestCase {
 		];
 	}
 
-	public function provideCheckSettings() {
+	public static function provideCheckSettings() {
 		// checkSettings() is itself used in tests. Testing it is a waste of time,
 		// just provide the minimum required.
 		return [
@@ -110,7 +110,7 @@ class TitleDefTest extends TypeDefIntegrationTestCase {
 		];
 	}
 
-	public function provideGetInfo() {
+	public static function provideGetInfo() {
 		return [
 			'no mustExist' => [
 				'settings' => [],
