@@ -474,7 +474,10 @@ class LinkRenderer {
 		$redirectToText = wfMessage( 'redirectto' )->inLanguage( $lang )->escaped();
 		$linkTag = '';
 		if ( $addLinkTag ) {
-			$linkTag = Html::rawElement( 'link', [ 'rel' => 'mw:PageProp/redirect' ] );
+			$linkTag = Html::rawElement( 'link', [
+				'rel' => 'mw:PageProp/redirect',
+				'href' => $this->getLinkURL( $this->normalizeTarget( $target ) ),
+			] );
 		}
 
 		return Html::rawElement(
