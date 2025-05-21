@@ -149,10 +149,6 @@ class RestrictionStore {
 	 *     - expiry: 14-digit timestamp or 'infinity'
 	 *     - permission: string (pt_create_perm)
 	 *     - reason: string
-	 * @internal Only to be called by Title::getTitleProtection. When that is discontinued, this
-	 * will be too, in favor of getRestrictions( $page, 'create' ). If someone wants to know who
-	 * protected it or the reason, there should be a method that exposes that for all restriction
-	 * types.
 	 */
 	public function getCreateProtection( PageIdentity $page ): ?array {
 		$page->assertWiki( PageIdentity::LOCAL );

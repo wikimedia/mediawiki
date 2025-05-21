@@ -1837,24 +1837,6 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Title\Title::getTitleProtection
-	 */
-	public function testGetTitleProtection() {
-		$title = $this->getNonexistingTestPage( 'UTest1' )->getTitle();
-		$this->hideDeprecated( Title::class . '::getTitleProtection' );
-		$this->assertFalse( $title->getTitleProtection() );
-	}
-
-	/**
-	 * @covers \MediaWiki\Title\Title::deleteTitleProtection
-	 */
-	public function testDeleteTitleProtection() {
-		$title = $this->getExistingTestPage( 'UTest1' )->getTitle();
-		$this->hideDeprecated( Title::class . '::getTitleProtection' );
-		$this->assertFalse( $title->getTitleProtection() );
-	}
-
-	/**
 	 * @covers \MediaWiki\Page\PageStore::getSubpages
 	 */
 	public function testGetSubpages() {

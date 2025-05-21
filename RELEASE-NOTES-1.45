@@ -253,6 +253,8 @@ because of Phabricator reports.
 * Subclasses of UploadBase must call the parent constructor if they override it
 * User::isBlockedGlobally and User::getGlobalBlock, both deprecated in 1.40,
   have been removed. Use User::getBlock instead.
+* Title::getTitleProtection() and ::deleteTitleProtection() methods, deprecated
+  in 1.37, have been removed.
 * …
 
 === Deprecations in 1.45 ===

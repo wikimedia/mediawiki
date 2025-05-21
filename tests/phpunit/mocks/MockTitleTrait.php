@@ -78,7 +78,6 @@ trait MockTitleTrait {
 		$title->method( 'getContentModel' )->willReturn( $contentModel );
 		$title->method( 'hasContentModel' )->willReturnCallback(
 			static fn ( $id ) => $id === $contentModel );
-		$title->method( 'getTitleProtection' )->willReturn( false );
 		$title->method( 'canExist' )
 			->willReturn( $ns >= 0 && empty( $props['interwiki'] ) && $text !== '' );
 		$title->method( 'getWikiId' )->willReturn( Title::LOCAL );

@@ -183,8 +183,8 @@ class MovePage {
 			$status->fatal( 'spamprotectiontext' );
 		}
 
-		$tp = $this->restrictionStore->getCreateProtection( $this->newTitle ) ?: false;
-		if ( $tp !== false && !$performer->isAllowed( $tp['permission'] ) ) {
+		$tp = $this->restrictionStore->getCreateProtection( $this->newTitle );
+		if ( $tp && !$performer->isAllowed( $tp['permission'] ) ) {
 			$status->fatal( 'cantmove-titleprotected' );
 		}
 
