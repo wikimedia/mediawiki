@@ -212,7 +212,7 @@ class UserLinkRenderer {
 			$classes[] = $attributes['class'];
 		}
 
-		$attributes['class'] = implode( ' ', $classes );
+		$attributes['class'] = $classes;
 
 		if ( $page !== null ) {
 			return $this->linkRenderer->makeLink( $page, new HtmlArmor( $linkText ), $attributes );

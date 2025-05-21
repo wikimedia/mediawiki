@@ -310,7 +310,7 @@ class UserLinkRendererTest extends MediaWikiLangTestCase {
 			],
 			'Named user with nonexistent user page' => [
 				'expected' => '<a href="/index.php?title=User:UserLinkRendererTestUserNoPage&amp;action=edit&amp;redlink=1" '
-				. 'class="new mw-userlink" '
+				. 'class="mw-userlink new" '
 				. 'title="User:UserLinkRendererTestUserNoPage (page does not exist)">'
 				. '<bdi>UserLinkRendererTestUserNoPage</bdi></a>',
 				'userIdentity' => new UserIdentityValue( 4, 'UserLinkRendererTestUserNoPage' ),

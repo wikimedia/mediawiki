@@ -613,6 +613,8 @@ class Sanitizer {
 	 * will be combined (if they're both strings).
 	 *
 	 * @todo implement merging for other attributes such as style
+	 * @deprecated since 1.44, use array_merge() for attribute arrays and
+	 *   Html::addClass() / Html::expandClassList() for class lists
 	 */
 	public static function mergeAttributes( array $a, array $b ): array {
 		$out = array_merge( $a, $b );

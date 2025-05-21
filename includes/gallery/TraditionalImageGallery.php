@@ -9,7 +9,6 @@ use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\Parser;
-use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Title\Title;
 use Wikimedia\Assert\Assert;
 
@@ -61,18 +60,18 @@ class TraditionalImageGallery extends ImageGalleryBase {
 			$badFileLookup = $services->getBadFileLookup();
 		}
 
+		Html::addClass( $this->mAttribs['class'], 'gallery' );
+		Html::addClass( $this->mAttribs['class'], 'mw-gallery-' . $this->mMode );
+
 		if ( $this->mPerRow > 0 ) {
 			$maxwidth = $this->mPerRow * ( $this->mWidths + $this->getAllPadding() );
 			$oldStyle = $this->mAttribs['style'] ?? '';
 			$this->mAttribs['style'] = "max-width: {$maxwidth}px;" . $oldStyle;
 		}
 
-		$attribs = Sanitizer::mergeAttributes(
-			[ 'class' => 'gallery mw-gallery-' . $this->mMode ], $this->mAttribs );
-
 		$parserOutput->addModules( $this->getModules() );
 		$parserOutput->addModuleStyles( [ 'mediawiki.page.gallery.styles' ] );
-		$output = Html::openElement( 'ul', $attribs );
+		$output = Html::openElement( 'ul', $this->mAttribs );
 		if ( $this->mCaption ) {
 			$output .= "\n\t" . Html::rawElement( 'li', [ 'class' => 'gallerycaption' ], $this->mCaption );
 		}

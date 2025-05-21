@@ -55,6 +55,7 @@ class TextboxBuilder {
 	 * @param string[] $classes
 	 * @param mixed[] $attribs
 	 * @return mixed[]
+	 * @deprecated since 1.44, use Html::addClass() instead
 	 */
 	public function mergeClassesIntoAttributes( array $classes, array $attribs ) {
 		if ( $classes === [] ) {
