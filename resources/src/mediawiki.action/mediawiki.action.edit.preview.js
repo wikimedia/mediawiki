@@ -14,7 +14,7 @@
 		const promise = require( 'mediawiki.page.preview' ).doPreview( {
 			showDiff: e.target.name === 'wpDiff',
 			isLivePreview: true,
-			previewHeader: mw.msg( 'preview' ),
+			previewHeader: mw.message( 'preview' ).escaped(),
 			previewNote: parsedMessages.previewnote,
 			createSpinner: true
 		} );
