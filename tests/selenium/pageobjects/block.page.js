@@ -42,15 +42,10 @@ class BlockPage extends Page {
 
 	async block( target, expiry, reason ) {
 		await this.open( expiry );
-		await browser.waitUntil(
-			async () => ( await this.target.isDisplayed() ),
-			{ timeout: 5000 }
-		);
+		await this.target.waitForDisplayed();
 		await this.target.setValue( target );
-		await browser.waitUntil(
-			async () => ( await this.userLookupItem.isClickable() ),
-			{ timeout: 5000 }
-		);
+		await this.userLookupItem.waitForClickable();
+
 		// Remove focus from input. Temporary workaround until T382093 is resolved.
 		await $( 'body' ).click();
 		await this.otherReasonInput.setValue( reason );

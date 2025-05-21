@@ -19,7 +19,7 @@ See [BlankPage](./BlankPage.js) and [specs/BlankPage](./specs/BlankPage.js) for 
 
 Utilities to interact with the MediaWiki API. Uses the [mwbot](https://github.com/gesinn-it-pub/mwbot) library.
 
-Actions are performed logged-in using `browser.config.mwUser` and `browser.config.mwPwd`,
+Actions are performed logged-in using `browser.options.capabilities[ 'mw:user' ]` and `browser.options.capabilities[ 'mw:pwd' ]`,
 which typically come from `MEDIAWIKI_USER` and `MEDIAWIKI_PASSWORD` environment variables.
 
 * `bot([string username [, string password [, string baseUrl ] ] ])`

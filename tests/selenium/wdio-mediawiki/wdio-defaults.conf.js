@@ -44,15 +44,6 @@ process.on( 'unhandledRejection', ( reason, promise ) => {
  * - https://webdriver.io/docs/configuration
  */
 exports.config = {
-	// ======
-	// Custom conf keys for MediaWiki
-	//
-	// Access via `browser.config.<key>`.
-	// Defaults are for MediaWiki-Docker
-	// ======
-	mwUser: process.env.MEDIAWIKI_USER,
-	mwPwd: process.env.MEDIAWIKI_PASSWORD,
-
 	// ==================
 	// Runner Configuration
 	// ==================
@@ -64,7 +55,9 @@ exports.config = {
 	specs: [
 		'./tests/selenium/specs/**/*.js'
 	],
-
+	// Set the waitForTimeout for all wait for commands
+	// https://v8.webdriver.io/docs/timeouts/#waitfor-timeout
+	waitforTimeout: 10000,
 	// ============
 	// Capabilities
 	// Define the different browser configurations to use ("capabilities") here.
@@ -72,6 +65,19 @@ exports.config = {
 
 	maxInstances: 1,
 	capabilities: [ {
+		// ======
+		// Custom conf keys for MediaWiki
+		//
+		// Access via `browser.options.<key>`.
+		// Defaults are for MediaWiki-Docker
+		// ======
+		'mw:user': process.env.MEDIAWIKI_USER,
+		'mw:pwd': process.env.MEDIAWIKI_PASSWORD,
+
+		// Setting this enables automatic screenshots for when a browser command fails
+		// It is also used by afterTest for capturing screenshots.
+		'mw:screenshotPath': logPath,
+
 		// For Chrome/Chromium https://www.w3.org/TR/webdriver
 		browserName: 'chrome',
 		'goog:chromeOptions': {
@@ -82,7 +88,7 @@ exports.config = {
 				'--enable-automation',
 				...( process.env.DISPLAY ? [] : [ '--headless' ] ),
 				// Chrome sandbox does not work in Docker. Disable GPU to prevent crashes (T389536#10677201)
-				...( fs.existsSync( '/.dockerenv' ) ? [ '--no-sandbox', '--disable-gpu' ] : [] ),
+				...( fs.existsSync( '/.dockerenv' ) ? [ '--no-sandbox', '--disable-gpu', '--disable-dev-shm-usage' ] : [] ),
 				// Workaround inputs not working consistently post-navigation on Chrome 90
 				// https://issuetracker.google.com/issues/42322798
 				'--allow-pre-commit-input'
@@ -97,9 +103,6 @@ exports.config = {
 
 	// Level of logging verbosity: trace | debug | info | warn | error | silent
 	logLevel: 'error',
-	// Setting this enables automatic screenshots for when a browser command fails
-	// It is also used by afterTest for capturing screenshots.
-	screenshotPath: logPath,
 	// Stop after this many failures, or 0 to run all tests before reporting failures.
 	bail: 0,
 	// Base for browser.url() and wdio-mediawiki/Page#openTitle()

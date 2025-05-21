@@ -14,9 +14,9 @@ module.exports = {
 	 * @return {Promise<MWBot>}
 	 */
 	async bot(
-		username = browser.config.mwUser,
-		password = browser.config.mwPwd,
-		baseUrl = browser.config.baseUrl
+		username = browser.options.capabilities[ 'mw:user' ],
+		password = browser.options.capabilities[ 'mw:pwd' ],
+		baseUrl = browser.options.baseUrl
 	) {
 		const bot = new MWBot();
 
@@ -44,7 +44,7 @@ module.exports = {
 		// Create the new account
 		return await adminBot.request( {
 			action: 'createaccount',
-			createreturnurl: browser.config.baseUrl,
+			createreturnurl: browser.options.baseUrl,
 			createtoken: adminBot.createaccountToken,
 			username: username,
 			password: password,
@@ -65,7 +65,7 @@ module.exports = {
 	async blockUser( adminBot, username, expiry ) {
 		return await adminBot.request( {
 			action: 'block',
-			user: username || browser.config.mwUser,
+			user: username || browser.options.capabilities[ 'mw:user' ],
 			reason: 'browser test',
 			token: adminBot.editToken,
 			expiry
@@ -84,7 +84,7 @@ module.exports = {
 	async unblockUser( adminBot, username ) {
 		return await adminBot.request( {
 			action: 'unblock',
-			user: username || browser.config.mwUser,
+			user: username || browser.options.capabilities[ 'mw:user' ],
 			reason: 'browser test done',
 			token: adminBot.editToken
 		} );

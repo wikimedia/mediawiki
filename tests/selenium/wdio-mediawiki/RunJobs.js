@@ -6,7 +6,7 @@ const MAINPAGE_REQUESTS_MAX_RUNS = 10; // (arbitrary) safe-guard against endless
 
 function getJobCount() {
 	const bot = new MWBot( {
-		apiUrl: `${ browser.config.baseUrl }/api.php`
+		apiUrl: `${ browser.options.baseUrl }/api.php`
 	} );
 	return bot.request( {
 		action: 'query',
