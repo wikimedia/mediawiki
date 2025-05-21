@@ -1537,7 +1537,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		$user = User::newFromName( 'A user for ' . __METHOD__ );
 		$user->addToDatabase();
 
-		$title = $this->getDummyTitle( __METHOD__ . '-' . $this->getName() );
+		$title = $this->getDummyTitle( __METHOD__ );
 		$this->insertPage( $title );
 
 		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );

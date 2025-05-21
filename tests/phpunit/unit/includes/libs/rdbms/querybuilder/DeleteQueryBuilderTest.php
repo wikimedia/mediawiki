@@ -17,11 +17,6 @@ class DeleteQueryBuilderTest extends TestCase {
 	private DatabaseTestHelper $db;
 	private DeleteQueryBuilder $dqb;
 
-	protected function setUp(): void {
-		$this->db = new DatabaseTestHelper( __CLASS__ . '::' . $this->getName() );
-		$this->dqb = $this->db->newDeleteQueryBuilder();
-	}
-
 	private function assertSQL( $expected, $fname ) {
 		$this->dqb->caller( $fname )->execute();
 		$actual = $this->db->getLastSqls();
@@ -31,6 +26,8 @@ class DeleteQueryBuilderTest extends TestCase {
 	}
 
 	public function testCondsEtc() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->dqb = $this->db->newDeleteQueryBuilder();
 		$this->dqb
 			->table( 'a' )
 			->where( '1' )
@@ -40,6 +37,8 @@ class DeleteQueryBuilderTest extends TestCase {
 	}
 
 	public function testConflictingConds() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->dqb = $this->db->newDeleteQueryBuilder();
 		$this->dqb
 			->deleteFrom( '1' )
 			->where( [ 'k' => 'v1' ] )
@@ -48,6 +47,8 @@ class DeleteQueryBuilderTest extends TestCase {
 	}
 
 	public function testCondsAllRows() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->dqb = $this->db->newDeleteQueryBuilder();
 		$this->dqb
 			->table( 'a' )
 			->where( ISQLPlatform::ALL_ROWS );
@@ -55,12 +56,16 @@ class DeleteQueryBuilderTest extends TestCase {
 	}
 
 	public function testExecute() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->dqb = $this->db->newDeleteQueryBuilder();
 		$this->dqb->deleteFrom( 't' )->where( 'c' )->caller( __METHOD__ );
 		$this->dqb->execute();
 		$this->assertEquals( 'DELETE FROM t WHERE (c)', $this->db->getLastSqls() );
 	}
 
 	public function testGetQueryInfo() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->dqb = $this->db->newDeleteQueryBuilder();
 		$this->dqb
 			->deleteFrom( 't' )
 			->where( [ 'a' => 'b' ] )
@@ -75,6 +80,8 @@ class DeleteQueryBuilderTest extends TestCase {
 	}
 
 	public function testQueryInfo() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->dqb = $this->db->newDeleteQueryBuilder();
 		$this->dqb->queryInfo(
 			[
 				'table' => 't',

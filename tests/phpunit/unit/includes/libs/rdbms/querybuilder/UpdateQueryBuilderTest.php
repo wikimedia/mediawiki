@@ -17,11 +17,6 @@ class UpdateQueryBuilderTest extends TestCase {
 	private DatabaseTestHelper $db;
 	private UpdateQueryBuilder $uqb;
 
-	protected function setUp(): void {
-		$this->db = new DatabaseTestHelper( __CLASS__ . '::' . $this->getName() );
-		$this->uqb = $this->db->newUpdateQueryBuilder();
-	}
-
 	private function assertSQL( $expected, $fname ) {
 		$this->uqb->caller( $fname )->execute();
 		$actual = $this->db->getLastSqls();
@@ -31,6 +26,8 @@ class UpdateQueryBuilderTest extends TestCase {
 	}
 
 	public function testSet() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->uqb = $this->db->newUpdateQueryBuilder();
 		$this->uqb
 			->table( 'a' )
 			->set( [ 'f' => 'g' ] )
@@ -42,6 +39,8 @@ class UpdateQueryBuilderTest extends TestCase {
 	}
 
 	public function testConflictingSet() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->uqb = $this->db->newUpdateQueryBuilder();
 		// T288882: the empty set is the right answer
 		$this->uqb
 			->update( 't' )
@@ -52,6 +51,8 @@ class UpdateQueryBuilderTest extends TestCase {
 	}
 
 	public function testCondsEtc() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->uqb = $this->db->newUpdateQueryBuilder();
 		$this->uqb
 			->table( 'a' )
 			->set( 'f' )
@@ -62,6 +63,8 @@ class UpdateQueryBuilderTest extends TestCase {
 	}
 
 	public function testConflictingConds() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->uqb = $this->db->newUpdateQueryBuilder();
 		// T288882: the empty set is the right answer
 		$this->uqb
 			->update( '1' )
@@ -72,6 +75,8 @@ class UpdateQueryBuilderTest extends TestCase {
 	}
 
 	public function testCondsAllRows() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->uqb = $this->db->newUpdateQueryBuilder();
 		$this->uqb
 			->update( '1' )
 			->set( 'a' )
@@ -80,6 +85,8 @@ class UpdateQueryBuilderTest extends TestCase {
 	}
 
 	public function testIgnore() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->uqb = $this->db->newUpdateQueryBuilder();
 		$this->uqb
 			->update( 'f' )
 			->set( 't' )
@@ -89,6 +96,8 @@ class UpdateQueryBuilderTest extends TestCase {
 	}
 
 	public function testOption() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->uqb = $this->db->newUpdateQueryBuilder();
 		$this->uqb
 			->update( 't' )
 			->set( 'f' )
@@ -98,6 +107,8 @@ class UpdateQueryBuilderTest extends TestCase {
 	}
 
 	public function testOptions() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->uqb = $this->db->newUpdateQueryBuilder();
 		$this->uqb
 			->update( 't' )
 			->set( 'f' )
@@ -107,12 +118,16 @@ class UpdateQueryBuilderTest extends TestCase {
 	}
 
 	public function testExecute() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->uqb = $this->db->newUpdateQueryBuilder();
 		$this->uqb->update( 't' )->set( 'f' )->where( 'c' )->caller( __METHOD__ );
 		$this->uqb->execute();
 		$this->assertEquals( 'UPDATE t SET f WHERE (c)', $this->db->getLastSqls() );
 	}
 
 	public function testGetQueryInfo() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->uqb = $this->db->newUpdateQueryBuilder();
 		$this->uqb
 			->update( 't' )
 			->ignore()
@@ -132,6 +147,8 @@ class UpdateQueryBuilderTest extends TestCase {
 	}
 
 	public function testQueryInfo() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->uqb = $this->db->newUpdateQueryBuilder();
 		$this->uqb->queryInfo(
 			[
 				'table' => 't',

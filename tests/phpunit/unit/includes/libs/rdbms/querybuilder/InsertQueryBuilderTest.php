@@ -16,11 +16,6 @@ class InsertQueryBuilderTest extends TestCase {
 	private DatabaseTestHelper $db;
 	private InsertQueryBuilder $iqb;
 
-	protected function setUp(): void {
-		$this->db = new DatabaseTestHelper( __CLASS__ . '::' . $this->getName() );
-		$this->iqb = $this->db->newInsertQueryBuilder();
-	}
-
 	private function assertSQL( $expected, $fname ) {
 		$this->iqb->caller( $fname )->execute();
 		$actual = $this->db->getLastSqls();
@@ -30,6 +25,8 @@ class InsertQueryBuilderTest extends TestCase {
 	}
 
 	public function testSimpleInsert() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->iqb = $this->db->newInsertQueryBuilder();
 		$this->iqb
 			->insertInto( 'a' )
 			->row( [ 'f' => 'g', 'd' => 'l' ] );
@@ -37,6 +34,8 @@ class InsertQueryBuilderTest extends TestCase {
 	}
 
 	public function testIgnore() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->iqb = $this->db->newInsertQueryBuilder();
 		$this->iqb
 			->insertInto( 'a' )
 			->ignore()
@@ -45,6 +44,8 @@ class InsertQueryBuilderTest extends TestCase {
 	}
 
 	public function testUpsert() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->iqb = $this->db->newInsertQueryBuilder();
 		$this->iqb
 			->insertInto( 'a' )
 			->row( [ 'f' => 'g', 'd' => 'l' ] )
@@ -58,6 +59,8 @@ class InsertQueryBuilderTest extends TestCase {
 	}
 
 	public function testUpsertWithStringKey() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->iqb = $this->db->newInsertQueryBuilder();
 		$this->iqb
 			->insertInto( 'a' )
 			->row( [ 'f' => 'g', 'd' => 'l' ] )
@@ -71,6 +74,8 @@ class InsertQueryBuilderTest extends TestCase {
 	}
 
 	public function testOption() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->iqb = $this->db->newInsertQueryBuilder();
 		$this->iqb
 			->insertInto( 't' )
 			->row( [ 'f' => 'g' ] )
@@ -79,6 +84,8 @@ class InsertQueryBuilderTest extends TestCase {
 	}
 
 	public function testOptions() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->iqb = $this->db->newInsertQueryBuilder();
 		$this->iqb
 			->insertInto( 't' )
 			->row( [ 'f' => 'g' ] )
@@ -87,12 +94,16 @@ class InsertQueryBuilderTest extends TestCase {
 	}
 
 	public function testExecute() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->iqb = $this->db->newInsertQueryBuilder();
 		$this->iqb->insertInto( 't' )->rows( [ 'a' => 'b' ] )->caller( __METHOD__ );
 		$this->iqb->execute();
 		$this->assertEquals( "INSERT INTO t (a) VALUES ('b')", $this->db->getLastSqls() );
 	}
 
 	public function testGetQueryInfo() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->iqb = $this->db->newInsertQueryBuilder();
 		$this->iqb
 			->insertInto( 't' )
 			->ignore()
@@ -112,6 +123,8 @@ class InsertQueryBuilderTest extends TestCase {
 	}
 
 	public function testGetQueryInfoUpsert() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->iqb = $this->db->newInsertQueryBuilder();
 		$this->iqb
 			->insertInto( 't' )
 			->row( [ 'f' => 'g', 'd' => 'l' ] )
@@ -133,6 +146,8 @@ class InsertQueryBuilderTest extends TestCase {
 	}
 
 	public function testQueryInfo() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->iqb = $this->db->newInsertQueryBuilder();
 		$this->iqb->queryInfo(
 			[
 				'table' => 't',
@@ -144,6 +159,8 @@ class InsertQueryBuilderTest extends TestCase {
 	}
 
 	public function testQueryInfoUpsert() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->iqb = $this->db->newInsertQueryBuilder();
 		$this->iqb->queryInfo(
 			[
 				'table' => 't',
