@@ -36,7 +36,8 @@
 			"Сербијана",
 			"לערי ריינהארט",
 			"아라",
-			"Aca"
+			"Aca",
+			"FriedrickMILBarbarossa"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Kategorija|Kategorije}}",
@@ -2880,6 +2881,7 @@
 	"tag-mw-changed-redirect-target": "izmijenjena odredišna stranica preusmjerenja",
 	"tag-mw-blank": "pražnjenje",
 	"tag-mw-replace": "zamijenjeno",
+	"tag-mw-recreated": "Ponovo napravljeno",
 	"tag-mw-rollback": "vraćanje",
 	"tag-mw-undo": "poništenje",
 	"tag-mw-manual-revert": "ručno vraćanje",

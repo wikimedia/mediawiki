@@ -191,7 +191,7 @@
 	"editfont-sansserif": "サンセリフ体のフォント",
 	"editfont-serif": "セリフ体のフォント",
 	"tog-minordefault": "すべての編集を既定で細部の編集とする",
-	"tog-forceeditsummary": "要約欄が空欄 (または取り消し時の要約が既定) の場合に確認を促す",
+	"tog-forceeditsummary": "要約欄が空欄 (または取り消し時の要約が既定) の場合に確認する",
 	"tog-editrecovery": "[[Special:EditRecovery|{{int:editrecovery}}]]機能を有効にする",
 	"tog-editrecovery-help": "[$1 プロジェクトの会話ページ]でフィードバックを送信できます。",
 	"tog-useeditwarning": "変更を保存せずに編集画面から離れようとしたら警告",

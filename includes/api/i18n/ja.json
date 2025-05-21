@@ -28,7 +28,8 @@
 			"Yusuke1109",
 			"Yuukin0248",
 			"もなー(偽物)",
-			"ネイ"
+			"ネイ",
+			"Shulmj"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|ドキュメンテーション]]\n* [[mw:Special:MyLanguage/API:Etiquette|エチケットと使用ガイドライン]]\n* [[mw:Special:MyLanguage/API:FAQ|よくある質問]]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api.lists.wikimedia.org/ メーリングリスト]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/ API 告知]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R バグと要望]\n</div>\n<strong>状態:</strong> MediaWiki APIは、サポートおよび更新が恒常的に続けられている、安定した多機能インターフェースです。時折大きな仕様変更が適用されることもありますが、[https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ the mediawiki-api-announce メーリングリスト]を購読すると適時にアップデート通知を受け取ることができます。\n\n<strong>リクエストエラー:</strong> 非適合形式でAPIにリクエストに送られた場合、\"MediaWiki-API-Error\"のキーを含むHTTPヘッダーが返され、レスポンスのヘッダー値とエラーコード値が同値になります。詳細は、[[mw:Special:MyLanguage/API:Errors_and_warnings|API:エラーと警告]]をご覧ください。\n\n<p class=\"mw-apisandbox-link\"><strong>テスト:</strong> [[Special:ApiSandbox|APIサンドボックス]]を使用すると、容易にAPIリクエストのテストが可能です。</p>",
@@ -1065,6 +1066,7 @@
 	"apihelp-undelete-param-timestamps": "復元する版のタイムスタンプ。<var>$1timestamps</var> と <var>$1fileids</var> の両方が空の場合、すべての版が復元されます。",
 	"apihelp-undelete-example-page": "[[{{MediaWiki:Mainpage}}]] を復元する。",
 	"apihelp-undelete-example-revisions": "[[{{MediaWiki:Mainpage}}]] の改版2版を復元する。",
+	"apihelp-upload-summary": "ファイルをアップロードするか、保留中のアップロードの状態を取得します。",
 	"apihelp-upload-param-filename": "対象のファイル名。",
 	"apihelp-upload-param-comment": "アップロードのコメント。新規ファイルのアップロードで <var>$1text</var> が指定されていない場合、初期ページテキストとしても使用されます。",
 	"apihelp-upload-param-text": "新しいファイルの初期ページテキスト。",

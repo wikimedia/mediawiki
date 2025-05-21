@@ -503,7 +503,7 @@
 	"showpreview": "Amosar previsualización",
 	"showdiff": "Amosar cambeos",
 	"blankarticle": "<strong>Atención:</strong> La páxina que tas a piques de crear ta balera.\nSi vuelves a facer click en «$1», crearáse la páxina ensin conteníu dengún.",
-	"anoneditwarning": "<strong>Avisu:</strong> Nun aniciasti sesión. La direición IP sedrá visible en público si faes dalguna edición. Si <strong>[$1 anicies sesión]</strong> o <strong>[$2 crees una cuenta]</strong>, les ediciones atribuiránse al to nome d'usuariu, xunto con otros beneficios.",
+	"anoneditwarning": "<strong>Avisu:</strong> Nun aniciasti sesión. La direición IP va ser visible en públicu si faes dalguna edición. Si <strong>[$1 anicies sesión]</strong> o <strong>[$2 crees una cuenta]</strong>, les ediciones atribuiránse al to nome d'usuariu, xunto con otros beneficios.",
 	"anonpreviewwarning": "''Nun aniciasti sesión. Al guardar quedará rexistrada la to direición IP nel historial d'edición d'esta páxina.''",
 	"missingsummary": "<strong>Recordatoriu:</strong> Nun conseñasti un resume d'edición.\nSi pulsies nuevamente «$1», la to edición guardaráse ensin resume.",
 	"selfredirect": "<strong>Atención:</strong> Tas redirixendo esta páxina a ella mesma.\nEscurque conseñasti un destín enquivocáu pa la redireición, o que teas editando una páxina enquivocada. Si vuelves a pulsiar en «$1», crearáse la redireición de toles maneres.",

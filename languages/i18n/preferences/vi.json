@@ -89,7 +89,7 @@
 	"badsig": "Chữ ký không hợp lệ; hãy kiểm tra thẻ HTML.",
 	"badsiglength": "Chữ ký của bạn quá dài.\nNó không được dài quá $1 ký tự.",
 	"badsigsubst": "Chữ ký của bạn nhúng bản mẫu lồng (ví dụ, <code>thế:</code>, <code>subst:</code>, hoặc <code><nowiki>~~~~</nowiki></code>).",
-	"badsightml": "Chữ ký của bạn có cú pháp HTML không hợp lệ hoặc lỗi thời:",
+	"badsightml": "Chữ ký của bạn chứa cú pháp HTML không hợp lệ hoặc không còn dùng:",
 	"badsiglinks": "Chữ ký của bạn phải có liên kết đến trang cá nhân, trang thảo luận cá nhân, hoặc danh sách đóng góp của bạn. Xin hãy đặt liên kết này, ví dụ: <code>$1</code>.",
 	"badsiglinebreak": "Chữ ký của bạn phải là một dòng mã wiki.",
 	"prefs-email": "Tùy chọn thư điện tử",

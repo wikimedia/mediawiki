@@ -6,12 +6,12 @@
 			"Polda18"
 		]
 	},
-	"pagecategories": "{{PLURAL:$1|Kategorija|Kategorije}}",
+	"pagecategories": "{{PLURAL:$1|Kategorija|Kategorije|Kategorij}}",
 	"category_header": "Stranice v kategoriji «$1»",
 	"subcategories": "Podkategorije",
 	"category-media-header": "Fajly v kategoriji «$1»",
 	"category-empty": "<em>Tuta kategorija tutčas ne sodrživaje ni stranice ni fajly.</em>",
-	"hidden-categories": "{{PLURAL:$1|Skryta kategorija|Skryte kategorije}}",
+	"hidden-categories": "{{PLURAL:$1|Skryta kategorija|Skryte kategorije|Skrytyh kategorij}}",
 	"hidden-category-category": "Skryte kategorije",
 	"category-subcat-count": "V tutoj kategoriji {{PLURAL:$2|nahodi se samo jedna podkategorija:|{{PLURAL:$1|nahodi se slědujuča podkategorija|nahodet se slědujuče $1 podkategorije|nahodi se slědujučih $1 podkategorij}} srěd totalnoj kolikosti $2.}}",
 	"category-subcat-count-limited": "Tuta kategorija sodrživaje {{PLURAL:$1|slědujuču podkategoriju|$1 slědujuče podkategorije|$1 slědujučih podkategorij}}.",

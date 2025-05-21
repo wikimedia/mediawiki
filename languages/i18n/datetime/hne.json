@@ -1,0 +1,21 @@
+{
+	"@metadata": {
+		"authors": [
+			"Zaza3939"
+		]
+	},
+	"january": "जनवरी",
+	"february": "फरवरी",
+	"march": "मार्च",
+	"april": "अप्रैल",
+	"may_long": "मई",
+	"june": "जून",
+	"july": "जुलाई",
+	"monday": "सोमवार",
+	"tuesday": "मंगलवार",
+	"wednesday": "बुधवार",
+	"thursday": "गुरुवार",
+	"friday": "शुक्रवार",
+	"saturday": "शनिवार",
+	"sunday": "इतवार"
+}

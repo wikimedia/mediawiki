@@ -9,7 +9,8 @@
 			"Mmistmurt",
 			"Salem333",
 			"Sayem AtVkm",
-			"SlimaneAmiri"
+			"SlimaneAmiri",
+			"ButterflyOfFire"
 		]
 	},
 	"preferences": "Ismenyifen",
@@ -50,6 +51,7 @@
 	"yournick": "Azmul amaynut :",
 	"tog-fancysig": "Eǧǧ azmul am yettili (war azday awurman)",
 	"prefs-help-signature": "Iwenniten ɣef isebtar n umeslay ilaq ad illin zmelen s « <nowiki>~~~~</nowiki> », sakin ad i sɛu aselkat ɣer azmul inek/inem dɣa azmez d usrag.",
+	"prefs-signature-error-details": "Issin ugar",
 	"badsig": "Azmul mačči d ṣaḥiḥ; Ssenqed tags n HTML.",
 	"badsiglength": "Azmul inek/inem, teɣwzi-s tameqqṛant aṭas.\nUr ilaq ara ad i sɛu ugar n $1 {{PLURAL:$1|asekkil|isekkilen}}.",
 	"prefs-email": "Tixtiṛiyin n tira",
@@ -124,6 +126,7 @@
 	"tog-previewonfirst": "Ssken pre-timeẓriwt akk d ubeddel amezwaru",
 	"tog-previewontop": "Ssken pre-timeẓriwt uqbel tankult ubeddel",
 	"tog-uselivepreview": "Sken tiskanin s war asmiren n usebter",
+	"prefs-developertools": "Ifecka n uneflay",
 	"prefs-rc": "Ibeddilen imaynuten",
 	"prefs-displayrc": "Tixtiṛiyin n ubeqqeḍ",
 	"recentchangesdays": "Amḍan n ussan an beqqeḍ deg ibeddilen ineggura.",
