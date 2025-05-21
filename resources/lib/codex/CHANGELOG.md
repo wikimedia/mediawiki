@@ -1,3 +1,39 @@
+# 2.0.0-rc.2 / 2025-05-21
+
+Codex 2.0 RC2 is a minor update to RC1 that includes a new design token
+`line-height-content` to ensure that ([user-provided content is styled
+appropriately](https://phabricator.wikimedia.org/T394722)),
+as well as a few other minor changes.
+
+## Styles
+- styles: Unify on `-mixin` prefix for Less mixins (Volker E.)
+- tokens: introduce `line-height-content` token (Eric Gardner)
+- typography: Update type mixins (Derek Torsani)
+
+## New design tokens
+- `line-height-content`
+
+## Icons
+- icons: Add 'logo-Codex' icon (Volker E.)
+- icons: Add UserTemporaryLocation icon (Thalia)
+- icons: remove unnecessary `clip-rule` in 'logoCodex' (Volker E.)
+- icons: remove unnecessary `fill-rule` and `clip-rule` in 'userTemporaryLocation' (Volker E.)
+
+## Code
+- Checkbox, Radio, styles: Fix selector for applying `cursor: pointer` (Ed Sanders)
+- build: Add `lint:clear-cache` command (Volker E.)
+- build: Enable eslint and stylelint caching (Umherirrender)
+- build: Use common Wikimedia linting command names (Volker E.)
+- Fix bug where clicking on the svg of an action button closes the Accordion instead of firing the action button click event (Daphne Smit)
+- Update TAHS to work with empty search recommendations through new showEmptyQueryResults prop (bernardwang)
+- docs, ProgressBar: Fix `aria-label` controlsConfig prop name (Volker E.)
+
+
+## Documentation
+- docs: Sync VitePress's `isDark` ref with color mode switcher (Anne Tomasevich)
+- docs: fix headings in component pages (Lauralyn Watson)
+- docs: improve tokens guidelines to clarify on component tokens (bmartinezcalvo)
+
 # 2.0.0-rc.1 / 2025-04-29
 
 ## Breaking changes

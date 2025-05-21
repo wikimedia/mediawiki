@@ -30,7 +30,6 @@ exports[`App renders a typeahead search component 1`] = `
             placeholder="Search MediaWiki"
             role="combobox"
             search-results-label="searchresults"
-            show-empty-query-results="false"
             size="1"
             title="search"
             type="search"
