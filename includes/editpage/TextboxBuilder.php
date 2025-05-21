@@ -109,9 +109,6 @@ class TextboxBuilder {
 			'id' => $name,
 			'cols' => 80,
 			'rows' => 25,
-			// Avoid PHP notices when appending preferences
-			// (appending allows customAttribs['style'] to still work).
-			'style' => ''
 		];
 
 		// The following classes can be used here:
