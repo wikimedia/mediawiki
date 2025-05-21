@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Language;
 
+use LogicException;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\Languages\LanguageFactory;
@@ -12,6 +13,7 @@ use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\ParserFactory;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
+use MediaWiki\StubObject\StubObject;
 use MediaWiki\StubObject\StubUserLang;
 use Psr\Log\LoggerInterface;
 
@@ -29,11 +31,10 @@ class MessageParser {
 	private LanguageFactory $langFactory;
 	private LoggerInterface $logger;
 
-	/** @var ParserOptions|null Lazy-initialised */
-	private ?ParserOptions $parserOptions = null;
-
 	/** @var Parser[] Cached Parser objects */
 	private array $parsers = [];
+	/** @var ParserOptions[] Parser options associated with each Parser */
+	private array $parserOptions = [];
 	/** @var int Index into $this->parsers for the active Parser */
 	private int $curParser = -1;
 
@@ -56,36 +57,13 @@ class MessageParser {
 		$this->logger = $logger;
 	}
 
-	private function getParserOptions(): ParserOptions {
-		if ( !$this->parserOptions ) {
-			$context = RequestContext::getMain();
-			$user = $context->getUser();
-			if ( !$user->isSafeToLoad() ) {
-				// It isn't safe to use the context user yet, so don't try to get a
-				// ParserOptions for it. And don't cache this ParserOptions
-				// either.
-				$po = ParserOptions::newFromAnon();
-				$po->setAllowUnsafeRawHtml( false );
-				return $po;
-			}
-
-			$this->parserOptions = ParserOptions::newFromContext( $context );
-			$this->parserOptions->setIsMessage( true );
-			// Messages may take parameters that could come
-			// from malicious sources. As a precaution, disable
-			// the <html> parser tag when parsing messages.
-			$this->parserOptions->setAllowUnsafeRawHtml( false );
-		}
-
-		return $this->parserOptions;
-	}
-
 	/**
 	 * Run message text through the preprocessor, expanding parser functions
 	 *
 	 * @param string $message
 	 * @param bool $interface
-	 * @param Language|string|null $language
+	 * @param Language|string|null $language Language for {{PLURAL:}} etc., or
+	 *   null for the user or content language depending on $interface
 	 * @param PageReference|null $page
 	 * @return string
 	 */
@@ -99,32 +77,19 @@ class MessageParser {
 		if ( !str_contains( $message, '{{' ) ) {
 			return $message;
 		}
-		if ( is_string( $language ) ) {
-			$language = $this->langFactory->getLanguage( $language );
-		}
-
-		$popts = $this->getParserOptions();
-		$popts->setInterfaceMessage( $interface );
-		$popts->setTargetLanguage( $language );
-
-		if ( $language ) {
-			$oldUserLang = $popts->setUserLang( $language );
-		} else {
-			$oldUserLang = null;
-		}
-		$page ??= $this->getPlaceholderTitle();
 
 		$parser = $this->acquireParser();
 		if ( !$parser ) {
 			return self::DEPTH_EXCEEDED_MESSAGE;
 		}
+
+		$popts = $this->getOptions( $interface, $language );
+		$page ??= $this->getPlaceholderTitle();
+
 		try {
 			return $parser->transformMsg( $message, $popts, $page );
 		} finally {
 			$this->releaseParser( $parser );
-			if ( $oldUserLang ) {
-				$popts->setUserLang( $oldUserLang );
-			}
 		}
 	}
 
@@ -133,7 +98,8 @@ class MessageParser {
 	 * @param ?PageReference $contextPage The context page, or null to use a placeholder
 	 * @param bool $lineStart Whether this should be parsed in start-of-line context
 	 * @param bool $interface Whether this is an interface message
-	 * @param Language|StubUserLang|string|null $language Language code
+	 * @param Language|StubUserLang|string|null $language Language for {{PLURAL:}} etc., or
+	 *   null for the user or content language depending on $interface
 	 * @return ParserOutput
 	 */
 	public function parse(
@@ -153,10 +119,20 @@ class MessageParser {
 			'unwrap' => true,
 			'userLang' => $language,
 		];
-		// Parse $text to yield a ParserOutput
-		$po = $this->parseWithoutPostprocessing( $text, $contextPage, $lineStart, $interface, $language );
-		// Run the post-processing pipeline
-		return $this->outputPipeline->run( $po, $this->getParserOptions(), $options );
+		$parser = $this->acquireParser();
+		if ( !$parser ) {
+			return new ParserOutput( self::DEPTH_EXCEEDED_MESSAGE );
+		}
+		$popts = $this->getOptions( $interface, $language );
+		$contextPage ??= $this->getPlaceholderTitle();
+
+		try {
+			$po = $parser->parse( $text, $contextPage, $popts, $lineStart );
+			// Run the post-processing pipeline
+			return $this->outputPipeline->run( $po, $popts, $options );
+		} finally {
+			$this->releaseParser( $parser );
+		}
 	}
 
 	/**
@@ -164,7 +140,7 @@ class MessageParser {
 	 * @param ?PageReference $page The context title, or null to use a placeholder
 	 * @param bool $lineStart Whether this is at the start of a line
 	 * @param bool $interface Whether this is an interface message
-	 * @param Language|StubUserLang|string|null $language Language code
+	 * @param Language|StubUserLang|string|null $language Target language
 	 * @return ParserOutput
 	 */
 	public function parseWithoutPostprocessing(
@@ -174,25 +150,79 @@ class MessageParser {
 		$interface = false,
 		$language = null
 	): ParserOutput {
-		$popts = $this->getParserOptions();
-		$popts->setInterfaceMessage( $interface );
-
-		if ( is_string( $language ) ) {
-			$language = $this->langFactory->getLanguage( $language );
-		}
-		$popts->setTargetLanguage( $language );
-
-		$page ??= $this->getPlaceholderTitle();
-
 		$parser = $this->acquireParser();
 		if ( !$parser ) {
 			return new ParserOutput( self::DEPTH_EXCEEDED_MESSAGE );
 		}
+		$popts = $this->getOptions( $interface, $language );
+		$page ??= $this->getPlaceholderTitle();
+
 		try {
 			return $parser->parse( $text, $page, $popts, $lineStart );
 		} finally {
 			$this->releaseParser( $parser );
 		}
+	}
+
+	/**
+	 * Configure parser options
+	 *
+	 * @param bool $interface
+	 * @param Language|StubUserLang|string|null $targetLanguage
+	 * @return ParserOptions
+	 */
+	private function getOptions( $interface, $targetLanguage ): ParserOptions {
+		if ( $this->curParser < 0 ) {
+			throw new LogicException( 'getOptions must be called after acquireParser' );
+		}
+		if ( isset( $this->parserOptions[$this->curParser] ) ) {
+			return $this->parserOptions[$this->curParser];
+		}
+		$popts = $this->createOptions( $this->curParser );
+		$popts->setInterfaceMessage( $interface );
+		$popts->setTargetLanguage( $this->normalizeTargetLanguage( $targetLanguage ) );
+		return $popts;
+	}
+
+	/**
+	 * Create and maybe cache a ParserOptions object
+	 *
+	 * @param int $cacheIndex
+	 * @return ParserOptions
+	 */
+	private function createOptions( $cacheIndex ): ParserOptions {
+		$context = RequestContext::getMain();
+		$user = $context->getUser();
+		if ( !$user->isSafeToLoad() ) {
+			// It isn't safe to use the context user yet, so don't try to get a
+			// ParserOptions for it. And don't cache this ParserOptions
+			// either.
+			$po = ParserOptions::newFromAnon();
+			$po->setAllowUnsafeRawHtml( false );
+			return $po;
+		}
+
+		$po = ParserOptions::newFromContext( $context );
+		$po->setIsMessage( true );
+		// Messages may take parameters that could come
+		// from malicious sources. As a precaution, disable
+		// the <html> parser tag when parsing messages.
+		$po->setAllowUnsafeRawHtml( false );
+		$this->parserOptions[$cacheIndex] = $po;
+		return $po;
+	}
+
+	/**
+	 * @param Language|string|null $lang
+	 * @return Language|null
+	 */
+	private function normalizeTargetLanguage( $lang ): ?Language {
+		if ( is_string( $lang ) ) {
+			return $this->langFactory->getLanguage( $lang );
+		} elseif ( $lang !== null ) {
+			StubObject::unstub( $lang );
+		}
+		return $lang;
 	}
 
 	private function getPlaceholderTitle(): PageReference {
@@ -234,7 +264,7 @@ class MessageParser {
 	 */
 	private function releaseParser( Parser $parser ) {
 		if ( $this->parsers[$this->curParser] !== $parser ) {
-			throw new \LogicException( 'releaseParser called with the wrong ' .
+			throw new LogicException( 'releaseParser called with the wrong ' .
 				"parser instance: #{$this->curParser} = " .
 				gettype( $this->parsers[$this->curParser] ) );
 		}

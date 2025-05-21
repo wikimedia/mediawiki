@@ -10,19 +10,18 @@ use MediaWikiIntegrationTestCase;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * This file is intended to test magic variables in the parser
- * It was inspired by Raymond & Matěj Grabovský commenting about r66200
- *
- * As of february 2011, it only tests some revisions and date related
- * magic variables.
- *
  * @author Antoine Musso
  * @group Database
  * @covers \MediaWiki\Parser\Parser
  * @covers \MediaWiki\Parser\CoreMagicVariables
  */
-class MagicVariableTest extends MediaWikiIntegrationTestCase {
-	private Parser $testParser;
+class CoreMagicVariablesTest extends MediaWikiIntegrationTestCase {
+	/** @var ParserOptions|null */
+	private $parserOptions;
+	/** @var string|null */
+	private $parserTimestamp;
+	/** @var Parser|null */
+	private $testParser;
 
 	/** setup a basic parser object */
 	protected function setUp(): void {
@@ -38,20 +37,6 @@ class MagicVariableTest extends MediaWikiIntegrationTestCase {
 			MainConfigNames::MiserMode => false,
 			MainConfigNames::ParserCacheExpireTime => 86400 * 7,
 		] );
-
-		$this->testParser = $services->getParserFactory()->create();
-		$this->testParser->setOptions( ParserOptions::newFromUserAndLang( new User, $contLang ) );
-
-		# initialize parser output
-		$this->testParser->clearState();
-
-		# Needs a title to do magic word stuff
-		$title = Title::makeTitle( NS_MAIN, 'Tests' );
-		# Else it needs a db connection just to check if it's a redirect
-		# (when deciding the page language).
-		$title->mRedirect = false;
-
-		$this->testParser->setTitle( $title );
 	}
 
 	/**
@@ -247,7 +232,54 @@ class MagicVariableTest extends MediaWikiIntegrationTestCase {
 		$this->setParserTimestamp( $ts );
 
 		$this->assertMagic( $expOutput, $word );
-		$this->assertSame( $expTTL, $this->testParser->getOutput()->getCacheExpiry() );
+		$this->assertSame( $expTTL, $this->getParser()->getOutput()->getCacheExpiry() );
+	}
+
+	public static function provideUserLanguage() {
+		return [
+			'disabled' => [ false, false, 'x-target' ],
+			'enabled' => [ true, false, 'x-user' ],
+			'message' => [ false, true, 'x-user' ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideUserLanguage
+	 * @param bool $enabled
+	 * @param bool $isMessage
+	 * @param string $expected
+	 */
+	public function testUserLanguage( $enabled, $isMessage, $expected ) {
+		$this->overrideConfigValue( MainConfigNames::ParserEnableUserLanguage, $enabled );
+		$lf = $this->getServiceContainer()->getLanguageFactory();
+		$this->parserOptions = new ParserOptions( new User, $lf->getLanguage( 'x-user' ) );
+		$this->parserOptions->setTargetLanguage( $lf->getLanguage( 'x-target' ) );
+		$this->parserOptions->setIsMessage( $isMessage );
+		$this->assertMagic( $expected, 'userlanguage' );
+	}
+
+	/**
+	 * Confirm that ParserEnableUserLanguage is respected when expanding {{int:}}
+	 */
+	public function testUserLanguageViaInt() {
+		$this->overrideConfigValue( MainConfigNames::ParserEnableUserLanguage, false );
+
+		$messageCache = $this->createMock( \MessageCache::class );
+		$messageCache->method( 'get' )
+			->with( 'ulmsg' )
+			->willReturn( '{{USERLANGUAGE}}' );
+		$this->setService( 'MessageCache', $messageCache );
+
+		$lf = $this->getServiceContainer()->getLanguageFactory();
+		$this->parserOptions = new ParserOptions( new User, $lf->getLanguage( 'x-user' ) );
+		$this->parserOptions->setTargetLanguage( $lf->getLanguage( 'x-target' ) );
+		$parser = $this->getParser();
+		$res = $parser->preprocess(
+			'{{int:ulmsg}}',
+			Title::makeTitle( NS_MAIN, 'Tests' ),
+			$this->parserOptions
+		);
+		$this->assertSame( 'x-target', $res );
 	}
 
 	# ############## HELPERS ############################################
@@ -297,8 +329,7 @@ class MagicVariableTest extends MediaWikiIntegrationTestCase {
 	 * @param string $ts
 	 */
 	private function setParserTimestamp( $ts ) {
-		$this->testParser->getOptions()->setTimestamp( $ts );
-		TestingAccessWrapper::newFromObject( $this->testParser )->mRevisionTimestamp = $ts;
+		$this->parserTimestamp = $ts;
 	}
 
 	/**
@@ -316,8 +347,44 @@ class MagicVariableTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertSame(
 			$expected,
-			TestingAccessWrapper::newFromObject( $this->testParser )->expandMagicVariable( $magic ),
+			TestingAccessWrapper::newFromObject( $this->getParser() )->expandMagicVariable( $magic ),
 			$msg
 		);
+	}
+
+	private function getParserOptions() {
+		if ( $this->parserOptions ) {
+			return $this->parserOptions;
+		}
+		return ParserOptions::newFromUserAndLang(
+			new User,
+			$this->getServiceContainer()->getLanguageFactory()->getLanguage( 'en' )
+		);
+	}
+
+	private function getParser() {
+		if ( $this->testParser === null ) {
+			$services = $this->getServiceContainer();
+			$parser = $services->getParserFactory()->create();
+			$options = $this->getParserOptions();
+			if ( $this->parserTimestamp ) {
+				$options->setTimestamp( $this->parserTimestamp );
+				TestingAccessWrapper::newFromObject( $parser )->mRevisionTimestamp = $this->parserTimestamp;
+			}
+			$parser->setOptions( $options );
+
+			# initialize parser output
+			$parser->clearState();
+
+			# Needs a title to do magic word stuff
+			$title = Title::makeTitle( NS_MAIN, 'Tests' );
+			# Else it needs a db connection just to check if it's a redirect
+			# (when deciding the page language).
+			$title->mRedirect = false;
+
+			$parser->setPage( $title );
+			$this->testParser = $parser;
+		}
+		return $this->testParser;
 	}
 }
