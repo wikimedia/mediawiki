@@ -5,9 +5,9 @@ use MediaWiki\Password\PasswordError;
 use MediaWiki\Password\Pbkdf2PasswordUsingHashExtension;
 
 /**
- * @covers \Mediawiki\Password\EncryptedPassword
- * @covers \Mediawiki\Password\ParameterizedPassword
- * @covers \Mediawiki\Password\Password
+ * @covers \MediaWiki\Password\EncryptedPassword
+ * @covers \MediaWiki\Password\ParameterizedPassword
+ * @covers \MediaWiki\Password\Password
  */
 class EncryptedPasswordTest extends PasswordTestCase {
 	protected function getTypeConfigs() {
