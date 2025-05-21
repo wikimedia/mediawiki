@@ -346,8 +346,6 @@ return [
 			'EnotifUserTalk' => false,
 			'EnotifRevealEditorAddress' => false,
 			'EnotifMinorEdits' => true,
-			'EnotifImpersonal' => false,
-			'EnotifMaxRecips' => 500,
 			'EnotifUseRealName' => false,
 			'UsersNotifiedOnAllChanges' => [
 			],

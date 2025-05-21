@@ -57,8 +57,5 @@ class RecentChangeNotificationHandler implements NotificationHandler {
 				$composer->compose( $recipient, $source );
 			}
 		}
-		// TODO - sendEmails is deprecated, remove it in 1.45. need to keep it in parity in case
-		// EnotifImpersonal is set - then the previous compose doesn't actually send email
-		$composer->sendMails();
 	}
 }

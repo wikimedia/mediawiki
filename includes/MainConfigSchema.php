@@ -2773,29 +2773,6 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * Send a generic mail instead of a personalised mail for each user.  This
-	 * always uses UTC as the time zone, and doesn't include the username.
-	 *
-	 * For pages with many users watching, this can significantly reduce mail load.
-	 * Has no effect when using sendmail rather than SMTP.
-	 *
-	 * @deprecated since 1.44
-	 */
-	public const EnotifImpersonal = [
-		'default' => false,
-	];
-
-	/**
-	 * Maximum number of users to mail at once when using impersonal mail. Should
-	 * match the limit on your mail server.
-	 *
-	 * @deprecated since 1.44
-	 */
-	public const EnotifMaxRecips = [
-		'default' => 500,
-	];
-
-	/**
 	 * Use real name instead of username in e-mail "from" field.
 	 */
 	public const EnotifUseRealName = [

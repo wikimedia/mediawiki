@@ -212,7 +212,6 @@ class UserMailer {
 		$services = MediaWikiServices::getInstance();
 		$mainConfig = $services->getMainConfig();
 		$smtp = $mainConfig->get( MainConfigNames::SMTP );
-		$enotifMaxRecips = $mainConfig->get( MainConfigNames::EnotifMaxRecips );
 		$additionalMailParams = $mainConfig->get( MainConfigNames::AdditionalMailParams );
 
 		$replyto = $options['replyTo'] ?? null;
@@ -350,7 +349,14 @@ class UserMailer {
 		}
 
 		if ( is_array( $smtp ) ) {
-			$recips = array_map( 'strval', $to );
+			$receips = array_map( 'strval', $to );
+
+			if ( count( $receips ) !== 1 ) {
+				throw new RuntimeException(
+					__METHOD__ . 'somehow called for multiple recipients, no longer supported.'
+				);
+			}
+			$recipient = $receips[0];
 
 			// Create the mail object using the Mail::factory method
 			$mail_object = Mail::factory( 'smtp', $smtp );
@@ -364,20 +370,12 @@ class UserMailer {
 
 			$headers['Subject'] = self::quotedPrintable( $subject );
 
-			// When sending only to one recipient, shows it its email using To:
-			if ( count( $recips ) == 1 ) {
-				$headers['To'] = $recips[0];
-			}
+			// Shows recipient its email using To:
+			$headers['To'] = $recipient;
 
-			// Split jobs since SMTP servers tends to limit the maximum
-			// number of possible recipients.
-			$chunks = array_chunk( $recips, $enotifMaxRecips );
-			foreach ( $chunks as $chunk ) {
-				$status = self::sendWithPear( $mail_object, $chunk, $headers, $body );
-				// FIXME : some chunks might be sent while others are not!
-				if ( !$status->isOK() ) {
-					return $status;
-				}
+			$status = self::sendWithPear( $mail_object, $recipient, $headers, $body );
+			if ( !$status->isOK() ) {
+				return $status;
 			}
 			return Status::newGood();
 		} else {

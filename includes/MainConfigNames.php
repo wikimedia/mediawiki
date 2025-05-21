@@ -1038,18 +1038,6 @@ class MainConfigNames {
 	public const EnotifMinorEdits = 'EnotifMinorEdits';
 
 	/**
-	 * Name constant for the EnotifImpersonal setting, for use with Config::get()
-	 * @see MainConfigSchema::EnotifImpersonal
-	 */
-	public const EnotifImpersonal = 'EnotifImpersonal';
-
-	/**
-	 * Name constant for the EnotifMaxRecips setting, for use with Config::get()
-	 * @see MainConfigSchema::EnotifMaxRecips
-	 */
-	public const EnotifMaxRecips = 'EnotifMaxRecips';
-
-	/**
 	 * Name constant for the EnotifUseRealName setting, for use with Config::get()
 	 * @see MainConfigSchema::EnotifUseRealName
 	 */
