@@ -13442,10 +13442,12 @@ parsoid=wt2html,wt2wt
 
 !! test
 Empty LI and TR nodes should not be stripped from top-level content
+!! options
+parsoid=wt2html,html2wt
 !! wikitext
-*a
+* a
 *
-*b
+* b
 
 {|
 |-
