@@ -141,13 +141,13 @@ class ApiSetPageLanguage extends ApiBase {
 				ParamValidator::PARAM_TYPE => 'integer'
 			],
 			'lang' => [
-				ParamValidator::PARAM_TYPE => array_merge(
-					[ 'default' ],
-					array_keys( $this->languageNameUtils->getLanguageNames(
+				ParamValidator::PARAM_TYPE => [
+					'default',
+					...array_keys( $this->languageNameUtils->getLanguageNames(
 						LanguageNameUtils::AUTONYMS,
 						LanguageNameUtils::SUPPORTED
 					) )
-				),
+				],
 				ParamValidator::PARAM_REQUIRED => true,
 			],
 			'reason' => null,

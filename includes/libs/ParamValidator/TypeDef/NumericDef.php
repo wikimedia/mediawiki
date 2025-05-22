@@ -131,9 +131,10 @@ abstract class NumericDef extends TypeDef {
 	public function checkSettings( string $name, $settings, array $options, array $ret ): array {
 		$ret = parent::checkSettings( $name, $settings, $options, $ret );
 
-		$ret['allowedKeys'] = array_merge( $ret['allowedKeys'], [
-			self::PARAM_IGNORE_RANGE, self::PARAM_MIN, self::PARAM_MAX, self::PARAM_MAX2,
-		] );
+		$ret['allowedKeys'][] = self::PARAM_IGNORE_RANGE;
+		$ret['allowedKeys'][] = self::PARAM_MIN;
+		$ret['allowedKeys'][] = self::PARAM_MAX;
+		$ret['allowedKeys'][] = self::PARAM_MAX2;
 
 		if ( !is_bool( $settings[self::PARAM_IGNORE_RANGE] ?? false ) ) {
 			$ret['issues'][self::PARAM_IGNORE_RANGE] = 'PARAM_IGNORE_RANGE must be boolean, got '

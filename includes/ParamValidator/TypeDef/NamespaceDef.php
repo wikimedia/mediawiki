@@ -66,9 +66,7 @@ class NamespaceDef extends EnumDef {
 	public function checkSettings( string $name, $settings, array $options, array $ret ): array {
 		$ret = parent::checkSettings( $name, $settings, $options, $ret );
 
-		$ret['allowedKeys'] = array_merge( $ret['allowedKeys'], [
-			self::PARAM_EXTRA_NAMESPACES,
-		] );
+		$ret['allowedKeys'][] = self::PARAM_EXTRA_NAMESPACES;
 
 		if ( !empty( $settings[ParamValidator::PARAM_ISMULTI] ) &&
 			( $settings[ParamValidator::PARAM_ALL] ?? true ) !== true &&

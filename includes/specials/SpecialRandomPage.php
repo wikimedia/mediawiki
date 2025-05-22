@@ -203,11 +203,12 @@ class SpecialRandomPage extends SpecialPage {
 		$dbr = $this->dbProvider->getReplicaDatabase();
 		$redirect = $this->isRedirect() ? 1 : 0;
 		$tables = [ 'page' ];
-		$conds = array_merge( [
+		$conds = [
 			'page_namespace' => $this->namespaces,
 			'page_is_redirect' => $redirect,
 			$dbr->expr( 'page_random', '>=', $randstr ),
-		], $this->extra );
+			...$this->extra,
+		];
 		$joinConds = [];
 
 		// Allow extensions to modify the query

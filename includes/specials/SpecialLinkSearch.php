@@ -213,16 +213,15 @@ class SpecialLinkSearch extends QueryPage {
 
 		$retval = [
 			'tables' => [ 'page', 'externallinks' ],
-			'fields' => array_merge( [
+			'fields' => [
 				'namespace' => 'page_namespace',
 				'title' => 'page_title',
-			], $extraFields ),
-			'conds' => array_merge(
-				[
-					'page_id = el_from',
-				],
-				$this->mungedQuery
-			),
+				...$extraFields,
+			],
+			'conds' => [
+				'page_id = el_from',
+				...$this->mungedQuery,
+			],
 			'options' => [ 'ORDER BY' => $orderBy ]
 		];
 

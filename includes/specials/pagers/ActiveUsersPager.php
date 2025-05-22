@@ -191,7 +191,7 @@ class ActiveUsersPager extends UsersPager {
 	protected function buildQueryInfo( $offset, $limit, $order ) {
 		$fname = __METHOD__ . ' (' . $this->getSqlComment() . ')';
 
-		$sortColumns = array_merge( [ $this->mIndexField ], $this->mExtraSortFields );
+		$sortColumns = [ $this->mIndexField, ...$this->mExtraSortFields ];
 		if ( $order === self::QUERY_ASCENDING ) {
 			$dir = 'ASC';
 			$orderBy = $sortColumns;

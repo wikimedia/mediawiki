@@ -46,7 +46,7 @@ class StatsdFormatter implements FormatterInterface {
 
 		foreach ( $metric->getSamples() as $sample ) {
 			// dot-separate prefix, component, name, and label values `prefix.component.name.value1.value2`
-			$stat = implode( '.', array_merge( [ $prefix, $metric->getName() ], $sample->getLabelValues() ) );
+			$stat = implode( '.', [ $prefix, $metric->getName(), ...$sample->getLabelValues() ] );
 
 			// merge value with separator `:42`
 			$value = ':' . $sample->getValue();

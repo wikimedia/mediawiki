@@ -95,21 +95,18 @@ class OOUIFileModule extends FileModule {
 	 */
 	private function extendSkinSpecific( array $skinSpecific, array $themeSpecific ): array {
 		// If the module or skin already set skinStyles/skinScripts, prepend ours
-		foreach ( $skinSpecific as $skin => $files ) {
-			if ( !is_array( $files ) ) {
-				$files = [ $files ];
-			}
-			if ( isset( $themeSpecific[$skin] ) ) {
-				$skinSpecific[$skin] = array_merge( [ $themeSpecific[$skin] ], $files );
-			} elseif ( isset( $themeSpecific['default'] ) ) {
-				$skinSpecific[$skin] = array_merge( [ $themeSpecific['default'] ], $files );
+		foreach ( $skinSpecific as $skin => &$files ) {
+			$prepend = $themeSpecific[$skin] ?? $themeSpecific['default'] ?? null;
+			if ( $prepend !== null ) {
+				if ( !is_array( $files ) ) {
+					$files = [ $files ];
+				}
+				array_unshift( $files, $prepend );
 			}
 		}
 		// If the module has no skinStyles/skinScripts for a skin, then set ours
 		foreach ( $themeSpecific as $skin => $file ) {
-			if ( !isset( $skinSpecific[$skin] ) ) {
-				$skinSpecific[$skin] = [ $file ];
-			}
+			$skinSpecific[$skin] ??= [ $file ];
 		}
 		return $skinSpecific;
 	}

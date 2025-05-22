@@ -435,10 +435,9 @@ class LocalFileMoveBatch {
 	 * @return array[]
 	 */
 	protected function getMoveTriplets() {
-		$moves = array_merge( [ $this->cur ], $this->olds );
 		$triplets = []; // The format is: (srcUrl, destZone, destUrl)
 
-		foreach ( $moves as $move ) {
+		foreach ( [ $this->cur, ...$this->olds ] as $move ) {
 			// $move: (oldRelativePath, newRelativePath)
 			$srcUrl = $this->file->repo->getVirtualUrl() . '/public/' . rawurlencode( $move[0] );
 			$triplets[] = [ $srcUrl, 'public', $move[1] ];

@@ -71,11 +71,11 @@ class LoadBalancerSingle extends LoadBalancer {
 	 * @since 1.28
 	 */
 	public static function newFromConnection( IDatabase $db, array $params = [] ): static {
-		return new static( array_merge(
-			[ 'localDomain' => $db->getDomainID() ],
-			$params,
-			[ 'connection' => $db ]
-		) );
+		return new static( [
+			'localDomain' => $db->getDomainID(),
+			...$params,
+			'connection' => $db,
+		] );
 	}
 
 	/** @inheritDoc */

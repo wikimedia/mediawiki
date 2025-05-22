@@ -260,10 +260,7 @@ class ResponseFactory {
 			} else {
 				$response = $this->createHttpError(
 					$exception->getCode(),
-					array_merge(
-						[ 'message' => $exception->getMessage() ],
-						$exception->getErrorData()
-					)
+					$exception->getErrorData() + [ 'message' => $exception->getMessage() ]
 				);
 			}
 		} elseif ( $this->showExceptionDetails ) {

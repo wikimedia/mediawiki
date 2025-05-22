@@ -479,14 +479,11 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 	 * @return array
 	 */
 	protected function getLogContext( array $extras = [] ) {
-		return array_merge(
-			[
-				'db_server' => $this->getServerName(),
-				'db_name' => $this->getDBname(),
-				'db_user' => $this->connectionParams[self::CONN_USER] ?? null,
-			],
-			$extras
-		);
+		return $extras + [
+			'db_server' => $this->getServerName(),
+			'db_name' => $this->getDBname(),
+			'db_user' => $this->connectionParams[self::CONN_USER] ?? null,
+		];
 	}
 
 	/** @inheritDoc */

@@ -341,9 +341,7 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 			'prop' => [
 				ParamValidator::PARAM_ISMULTI => true,
 				ParamValidator::PARAM_DEFAULT => 'title',
-				ParamValidator::PARAM_TYPE => array_merge(
-					[ 'ids', 'title' ], array_keys( $this->props )
-				),
+				ParamValidator::PARAM_TYPE => [ 'ids', 'title', ...array_keys( $this->props ) ],
 				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
 			],
 			'namespace' => [

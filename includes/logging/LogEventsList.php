@@ -416,10 +416,7 @@ class LogEventsList extends ContextSource {
 				$this->getContext()
 			)
 		);
-		$classes = array_merge(
-			[ 'mw-logline-' . $entry->getType() ],
-			$newClasses
-		);
+		$classes = [ 'mw-logline-' . $entry->getType(), ...$newClasses ];
 		$attribs = [
 			'data-mw-logid' => $entry->getId(),
 			'data-mw-logaction' => $entry->getFullType(),

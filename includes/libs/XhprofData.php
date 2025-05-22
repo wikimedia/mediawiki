@@ -61,10 +61,10 @@ class XhprofData {
 	 * @param array $config
 	 */
 	public function __construct( array $data, array $config = [] ) {
-		$this->config = array_merge( [
+		$this->config = $config + [
 			'include' => null,
 			'sort' => 'wt',
-		], $config );
+		];
 
 		$this->hieraData = $this->pruneData( $data );
 	}

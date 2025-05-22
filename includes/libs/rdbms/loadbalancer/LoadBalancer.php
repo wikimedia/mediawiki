@@ -2050,13 +2050,10 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	 * @return array
 	 */
 	protected function getConnLogContext( IDatabase $conn, array $extras = [] ) {
-		return array_merge(
-			[
-				'db_server' => $conn->getServerName(),
-				'db_domain' => $conn->getDomainID()
-			],
-			$extras
-		);
+		return $extras + [
+			'db_server' => $conn->getServerName(),
+			'db_domain' => $conn->getDomainID(),
+		];
 	}
 
 	/**

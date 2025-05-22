@@ -439,10 +439,10 @@ class ParamValidator {
 		}
 
 		if ( !empty( $settings[self::PARAM_ISMULTI] ) ) {
-			$allowedKeys = array_merge( $allowedKeys, [
-				self::PARAM_ISMULTI_LIMIT1, self::PARAM_ISMULTI_LIMIT2,
-				self::PARAM_ALL, self::PARAM_ALLOW_DUPLICATES
-			] );
+			$allowedKeys[] = self::PARAM_ISMULTI_LIMIT1;
+			$allowedKeys[] = self::PARAM_ISMULTI_LIMIT2;
+			$allowedKeys[] = self::PARAM_ALL;
+			$allowedKeys[] = self::PARAM_ALLOW_DUPLICATES;
 
 			$limit1 = $settings[self::PARAM_ISMULTI_LIMIT1] ?? $this->ismultiLimit1;
 			$limit2 = $settings[self::PARAM_ISMULTI_LIMIT2] ?? $this->ismultiLimit2;

@@ -59,14 +59,12 @@ class DatabaseLogEntry extends LogEntryBase {
 	public static function getSelectQueryData() {
 		$commentQuery = MediaWikiServices::getInstance()->getCommentStore()->getJoin( 'log_comment' );
 
-		$tables = array_merge(
-			[
-				'logging',
-				'logging_actor' => 'actor',
-				'user'
-			],
-			$commentQuery['tables']
-		);
+		$tables = [
+			'logging',
+			'logging_actor' => 'actor',
+			'user',
+			...$commentQuery['tables'],
+		];
 		$fields = [
 			'log_id', 'log_type', 'log_action', 'log_timestamp',
 			'log_namespace', 'log_title', // unused log_page

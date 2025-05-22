@@ -45,7 +45,7 @@ class LimitBatch {
 		}
 		$this->queueOp(
 			$condName,
-			new LocalEntityKey( array_merge( [ $condName ], $components ) ),
+			new LocalEntityKey( [ $condName, ...$components ] ),
 			$amount
 		);
 		return $this;
@@ -66,7 +66,7 @@ class LimitBatch {
 		}
 		$this->queueOp(
 			$condName,
-			new GlobalEntityKey( array_merge( [ $condName ], $components ) ),
+			new GlobalEntityKey( [ $condName, ...$components ] ),
 			$amount
 		);
 		return $this;

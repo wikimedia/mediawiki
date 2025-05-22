@@ -469,14 +469,12 @@ class BlockListPager extends TablePager {
 		$db = $this->getDatabase();
 		$commentQuery = $this->commentStore->getJoin( 'bl_reason' );
 		$info = [
-			'tables' => array_merge(
-				[
-					'block',
-					'block_by_actor' => 'actor',
-					'block_target',
-				],
-				$commentQuery['tables']
-			),
+			'tables' => [
+				'block',
+				'block_by_actor' => 'actor',
+				'block_target',
+				...$commentQuery['tables'],
+			],
 			'fields' => [
 				// The target fields should be those accepted by BlockTargetFactory::newFromRowRedacted()
 				'bt_address',

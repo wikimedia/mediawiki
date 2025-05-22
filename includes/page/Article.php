@@ -1165,10 +1165,7 @@ class Article implements Page {
 		if ( $title->canUseNoindex() && $pOutput && $pOutput->getIndexPolicy() ) {
 			# __INDEX__ and __NOINDEX__ magic words, if allowed. Incorporates
 			# a final check that we have really got the parser output.
-			$policy = array_merge(
-				$policy,
-				[ 'index' => $pOutput->getIndexPolicy() ]
-			);
+			$policy['index'] = $pOutput->getIndexPolicy();
 		}
 
 		if ( isset( $articleRobotPolicies[$title->getPrefixedText()] ) ) {

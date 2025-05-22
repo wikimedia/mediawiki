@@ -358,10 +358,7 @@ class HookContainer implements SalvageableService {
 			$obj = $handler[0];
 			if ( !$obj instanceof Closure ) {
 				$method = $handler[1];
-				$handler = array_merge(
-					[ [ $obj, $method ] ],
-					array_slice( $handler, 2 )
-				);
+				$handler = [ [ $obj, $method ], ...array_slice( $handler, 2 ) ];
 				$msg = self::callableToString( $handler[1] );
 				wfDeprecatedMsg( "Deprecated handler style for hook '$hook': callable array with extra data ($msg)" );
 			}

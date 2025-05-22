@@ -38,7 +38,7 @@ class InterwikiLookupAdapter implements InterwikiLookup {
 	private $siteLookup;
 
 	/**
-	 * @var Interwiki[]|null associative array mapping interwiki prefixes to Interwiki objects
+	 * @var array<string,Interwiki>|null associative array mapping interwiki prefixes to Interwiki objects
 	 */
 	private $interwikiMap;
 
@@ -119,7 +119,7 @@ class InterwikiLookupAdapter implements InterwikiLookup {
 		// Reload the interwiki
 		$site = $this->siteLookup->getSites()->getSite( $globalId );
 		$interwikis = $this->getSiteInterwikis( $site );
-		$this->interwikiMap = array_merge( $this->interwikiMap, [ $interwikis[$prefix] ] );
+		$this->interwikiMap[$prefix] = $interwikis[$prefix];
 	}
 
 	/**
@@ -138,9 +138,9 @@ class InterwikiLookupAdapter implements InterwikiLookup {
 	/**
 	 * Get interwikiMap attribute, load if needed.
 	 *
-	 * @return Interwiki[]
+	 * @return array<string,Interwiki>
 	 */
-	private function getInterwikiMap() {
+	private function getInterwikiMap(): array {
 		if ( $this->interwikiMap === null ) {
 			$this->loadInterwikiMap();
 		}
@@ -151,9 +151,9 @@ class InterwikiLookupAdapter implements InterwikiLookup {
 	 * Load interwikis for the given site
 	 *
 	 * @param Site $site
-	 * @return Interwiki[]
+	 * @return array<string,Interwiki>
 	 */
-	private function getSiteInterwikis( Site $site ) {
+	private function getSiteInterwikis( Site $site ): array {
 		$url = $site->getPageUrl();
 		if ( $site instanceof MediaWikiSite ) {
 			$path = $site->getFileUrl( 'api.php' );

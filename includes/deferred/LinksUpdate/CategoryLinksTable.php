@@ -301,12 +301,12 @@ class CategoryLinksTable extends TitleLinksTable {
 			$targetFields['cl_collation'] = $this->collationName;
 		}
 
-		$this->insertRow( array_merge( [
+		$this->insertRow( $targetFields + [
 			'cl_sortkey' => $sortKey,
 			'cl_timestamp' => $timestamp,
 			'cl_sortkey_prefix' => $prefix,
 			'cl_type' => $this->categoryType,
-		], $targetFields ) );
+		] );
 	}
 
 	/** @inheritDoc */

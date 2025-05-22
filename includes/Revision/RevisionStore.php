@@ -2467,9 +2467,7 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 
 		if ( in_array( 'user', $options, true ) ) {
 			$ret['tables'][] = 'user';
-			$ret['fields'] = array_merge( $ret['fields'], [
-				'user_name',
-			] );
+			$ret['fields'][] = 'user_name';
 			$ret['joins']['user'] = [
 				'LEFT JOIN',
 				[ 'actor_rev_user.actor_user != 0', 'user_id = actor_rev_user.actor_user' ]
@@ -3363,13 +3361,11 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 		}
 
 		$dbr = $this->getReplicaConnection();
-		$conds = array_merge(
-			[
-				'rev_page' => $pageId,
-				$dbr->bitAnd( 'rev_deleted', RevisionRecord::DELETED_TEXT ) . " = 0"
-			],
-			$this->getRevisionLimitConditions( $dbr, $old, $new, $options )
-		);
+		$conds = [
+			'rev_page' => $pageId,
+			$dbr->bitAnd( 'rev_deleted', RevisionRecord::DELETED_TEXT ) . ' = 0',
+			...$this->getRevisionLimitConditions( $dbr, $old, $new, $options ),
+		];
 		if ( $max !== null ) {
 			return $dbr->newSelectQueryBuilder()
 				->select( '1' )

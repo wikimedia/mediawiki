@@ -1673,13 +1673,13 @@ abstract class Skin extends ContextSource {
 		}
 
 		$id = strtr( $text, ' ', '-' );
-		return array_merge( [
+		return $extraAttribs + [
 			'text' => $parsedText,
 			'href' => $href,
 			'icon' => $this->getSidebarIcon( $id ),
 			'id' => Sanitizer::escapeIdForAttribute( 'n-' . $id ),
 			'active' => false,
-		], $extraAttribs );
+		];
 	}
 
 	/**

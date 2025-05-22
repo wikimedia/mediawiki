@@ -193,13 +193,10 @@ class ReplicationReporter {
 	 * @return array
 	 */
 	protected function getLogContext( IDatabase $conn, array $extras = [] ) {
-		return array_merge(
-			[
-				'db_server' => $conn->getServerName(),
-				'db_name' => $conn->getDBname(),
-				// TODO: Add db_user
-			],
-			$extras
-		);
+		return $extras + [
+			'db_server' => $conn->getServerName(),
+			'db_name' => $conn->getDBname(),
+			// TODO: Add db_user
+		];
 	}
 }

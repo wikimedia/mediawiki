@@ -202,7 +202,7 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 		if ( isset( $this->linksMigration::$mapping[$settings['linktable']] ) ) {
 			// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
 			$queryInfo = $this->linksMigration->getQueryInfo( $settings['linktable'] );
-			$this->addTables( array_merge( [ 'page' ], $queryInfo['tables'] ) );
+			$this->addTables( [ 'page', ...$queryInfo['tables'] ] );
 			$this->addJoinConds( $queryInfo['joins'] );
 			// TODO: Move to links migration
 			if ( in_array( 'linktarget', $queryInfo['tables'] ) ) {

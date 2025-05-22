@@ -198,10 +198,7 @@ class ContentSecurityPolicy {
 		if ( isset( $policyConfig['default-src'] )
 			&& $policyConfig['default-src'] !== false
 		) {
-			$defaultSrc = array_merge(
-				[ "'self'", 'data:', 'blob:' ],
-				$additionalSelfUrls
-			);
+			$defaultSrc = [ "'self'", 'data:', 'blob:', ...$additionalSelfUrls ];
 			if ( is_array( $policyConfig['default-src'] ) ) {
 				foreach ( $policyConfig['default-src'] as $src ) {
 					$defaultSrc[] = $this->escapeUrlForCSP( $src );

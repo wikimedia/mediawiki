@@ -258,16 +258,12 @@ class SignatureValidator {
 		// This has to use Parsoid because PHP Parser doesn't produce this information,
 		// it just fixes up the result quietly.
 
-		$disabled = array_merge(
-			[
-				// Always appears with 'missing-end-tag', we can ignore it to
-				// simplify the error message
-				'multiple-unclosed-formatting-tags',
-			],
-			$this->serviceOptions->get(
-				MainConfigNames::SignatureAllowedLintErrors
-			)
-		);
+		$disabled = [
+			// Always appears with 'missing-end-tag', we can ignore it to
+			// simplify the error message
+			'multiple-unclosed-formatting-tags',
+			...$this->serviceOptions->get( MainConfigNames::SignatureAllowedLintErrors ),
+		];
 		return $this->lintErrorChecker->checkSome( $signature, $disabled );
 	}
 

@@ -1990,22 +1990,18 @@ return [
 		$rl->register( 'mediawiki.messagePoster', [
 			'localBasePath' => MW_INSTALL_PATH,
 			'debugRaw' => false,
-			'scripts' => array_merge(
-				[
-					"resources/src/mediawiki.messagePoster/factory.js",
-					"resources/src/mediawiki.messagePoster/MessagePoster.js",
-					"resources/src/mediawiki.messagePoster/WikitextMessagePoster.js",
-				],
-				$msgPosterAttrib['scripts'] ?? []
-			),
-			'dependencies' => array_merge(
-				[
-					'oojs',
-					'mediawiki.api',
-					'mediawiki.ForeignApi',
-				],
-				$msgPosterAttrib['dependencies'] ?? []
-			),
+			'scripts' => [
+				'resources/src/mediawiki.messagePoster/factory.js',
+				'resources/src/mediawiki.messagePoster/MessagePoster.js',
+				'resources/src/mediawiki.messagePoster/WikitextMessagePoster.js',
+				...$msgPosterAttrib['scripts'] ?? [],
+			],
+			'dependencies' => [
+				'oojs',
+				'mediawiki.api',
+				'mediawiki.ForeignApi',
+				...$msgPosterAttrib['dependencies'] ?? [],
+			],
 		] );
 
 		if ( $config->get( MainConfigNames::EnableJavaScriptTest ) === true ) {

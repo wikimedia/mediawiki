@@ -57,23 +57,21 @@ class LocalSettingsGenerator {
 
 		$db = $installer->getDBInstaller( $installer->getVar( 'wgDBtype' ) );
 
-		$confItems = array_merge(
-			[
-				'wgServer', 'wgScriptPath',
-				'wgPasswordSender', 'wgImageMagickConvertCommand',
-				'wgLanguageCode', 'wgLocaltimezone', 'wgEnableEmail', 'wgEnableUserEmail',
-				'wgDiff3', 'wgEnotifUserTalk', 'wgEnotifWatchlist', 'wgEmailAuthentication',
-				'wgDBtype', 'wgSecretKey', 'wgRightsUrl', 'wgSitename', 'wgRightsIcon',
-				'wgRightsText', '_MainCacheType', 'wgEnableUploads',
-				'_MemCachedServers', 'wgDBserver', 'wgDBuser',
-				'wgDBpassword', 'wgUseInstantCommons', 'wgUpgradeKey', 'wgDefaultSkin',
-				'wgMetaNamespace', 'wgAuthenticationTokenVersion', 'wgPingback',
-				'_Logo1x', '_LogoTagline', '_LogoWordmark', '_LogoIcon',
-				'_LogoWordmarkWidth', '_LogoWordmarkHeight',
-				'_LogoTaglineWidth', '_LogoTaglineHeight', '_WithDevelopmentSettings'
-			],
-			$db->getGlobalNames()
-		);
+		$confItems = [
+			'wgServer', 'wgScriptPath',
+			'wgPasswordSender', 'wgImageMagickConvertCommand',
+			'wgLanguageCode', 'wgLocaltimezone', 'wgEnableEmail', 'wgEnableUserEmail',
+			'wgDiff3', 'wgEnotifUserTalk', 'wgEnotifWatchlist', 'wgEmailAuthentication',
+			'wgDBtype', 'wgSecretKey', 'wgRightsUrl', 'wgSitename', 'wgRightsIcon',
+			'wgRightsText', '_MainCacheType', 'wgEnableUploads',
+			'_MemCachedServers', 'wgDBserver', 'wgDBuser',
+			'wgDBpassword', 'wgUseInstantCommons', 'wgUpgradeKey', 'wgDefaultSkin',
+			'wgMetaNamespace', 'wgAuthenticationTokenVersion', 'wgPingback',
+			'_Logo1x', '_LogoTagline', '_LogoWordmark', '_LogoIcon',
+			'_LogoWordmarkWidth', '_LogoWordmarkHeight',
+			'_LogoTaglineWidth', '_LogoTaglineHeight', '_WithDevelopmentSettings',
+			...$db->getGlobalNames(),
+		];
 
 		// The WebInstaller form field for "Logo" contains a literal "$wgResourceBasePath",
 		// and site admins are told in the help text that they can use $wgStylePath and $wgScriptPath

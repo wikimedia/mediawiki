@@ -116,9 +116,8 @@ class UserDef extends TypeDef {
 	public function checkSettings( string $name, $settings, array $options, array $ret ): array {
 		$ret = parent::checkSettings( $name, $settings, $options, $ret );
 
-		$ret['allowedKeys'] = array_merge( $ret['allowedKeys'], [
-			self::PARAM_ALLOWED_USER_TYPES, self::PARAM_RETURN_OBJECT,
-		] );
+		$ret['allowedKeys'][] = self::PARAM_ALLOWED_USER_TYPES;
+		$ret['allowedKeys'][] = self::PARAM_RETURN_OBJECT;
 
 		if ( !is_bool( $settings[self::PARAM_RETURN_OBJECT] ?? false ) ) {
 			$ret['issues'][self::PARAM_RETURN_OBJECT] = 'PARAM_RETURN_OBJECT must be boolean, got '

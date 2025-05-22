@@ -50,12 +50,7 @@ class HTMLExpiryField extends HTMLFormField {
 	 * @inheritDoc
 	 */
 	protected function getOOUIModules() {
-		return array_merge(
-			[
-				'mediawiki.widgets.expiry',
-			],
-			$this->relativeField->getOOUIModules()
-		);
+		return [ 'mediawiki.widgets.expiry', ...$this->relativeField->getOOUIModules() ];
 	}
 
 	/**

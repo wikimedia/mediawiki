@@ -207,11 +207,7 @@ class SitemapGenerator {
 		if ( $this->skipRedirects ) {
 			$sqb->where( [ 'page_is_redirect' => 0 ] );
 		}
-		if ( $this->variants ) {
-			$variants = array_merge( [ null ], $this->variants );
-		} else {
-			$variants = [ null ];
-		}
+		$variants = [ null, ...$this->variants ];
 		if ( $this->limit ) {
 			$pageLimit = (int)( $this->limit / count( $variants ) );
 			$sqb->limit( $pageLimit + 1 );

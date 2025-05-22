@@ -678,7 +678,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			// Non-images: check templatelinks
 			$lb = $this->linkBatchFactory->newLinkBatch( $others );
 			$this->resetQueryParams();
-			$this->addTables( array_merge( [ 'page_restrictions', 'page' ], $queryInfo['tables'] ) );
+			$this->addTables( [ 'page_restrictions', 'page', ...$queryInfo['tables'] ] );
 			// templatelinks must use PRIMARY index and not the tl_target_id.
 			$this->addOption( 'USE INDEX', [ 'templatelinks' => 'PRIMARY' ] );
 			$this->addFields( [ 'pr_type', 'pr_level', 'pr_expiry',

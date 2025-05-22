@@ -504,10 +504,9 @@ class NamespaceInfo {
 			return [ NS_MAIN ];
 		} elseif ( !in_array( NS_MAIN, $contentNamespaces ) ) {
 			// always force NS_MAIN to be part of array (to match the algorithm used by isContent)
-			return array_merge( [ NS_MAIN ], $contentNamespaces );
-		} else {
-			return $contentNamespaces;
+			array_unshift( $contentNamespaces, NS_MAIN );
 		}
+		return $contentNamespaces;
 	}
 
 	/**

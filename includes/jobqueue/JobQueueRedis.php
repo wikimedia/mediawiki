@@ -309,17 +309,15 @@ class JobQueueRedis extends JobQueue {
 		return pushed
 LUA;
 		return $conn->luaEval( $script,
-			array_merge(
-				[
-					$this->getQueueKey( 'l-unclaimed' ), # KEYS[1]
-					$this->getQueueKey( 'h-sha1ById' ), # KEYS[2]
-					$this->getQueueKey( 'h-idBySha1' ), # KEYS[3]
-					$this->getQueueKey( 'z-delayed' ), # KEYS[4]
-					$this->getQueueKey( 'h-data' ), # KEYS[5]
-					$this->getGlobalKey( 's-queuesWithJobs' ), # KEYS[6]
-				],
-				$args
-			),
+			[
+				$this->getQueueKey( 'l-unclaimed' ), # KEYS[1]
+				$this->getQueueKey( 'h-sha1ById' ), # KEYS[2]
+				$this->getQueueKey( 'h-idBySha1' ), # KEYS[3]
+				$this->getQueueKey( 'z-delayed' ), # KEYS[4]
+				$this->getQueueKey( 'h-data' ), # KEYS[5]
+				$this->getGlobalKey( 's-queuesWithJobs' ), # KEYS[6]
+				...$args
+			],
 			6 # number of first argument(s) that are keys
 		);
 	}

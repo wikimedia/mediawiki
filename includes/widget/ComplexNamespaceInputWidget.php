@@ -66,31 +66,23 @@ class ComplexNamespaceInputWidget extends Widget {
 
 		$this->namespace = new NamespaceInputWidget( $config['namespace'] );
 		if ( $config['associated'] !== null ) {
-			$this->associated = new CheckboxInputWidget( array_merge(
-				[ 'value' => '1' ],
-				$config['associated']
-			) );
+			$this->associated = new CheckboxInputWidget(
+				$config['associated'] + [ 'value' => '1' ]
+			);
 			// TODO Should use a LabelWidget? But they don't work like HTML <label>s yet
 			$this->associatedLabel = new FieldLayout(
 				$this->associated,
-				array_merge(
-					[ 'align' => 'inline' ],
-					$config['associatedLabel']
-				)
+				$config['associatedLabel'] + [ 'align' => 'inline' ]
 			);
 		}
 		if ( $config['invert'] !== null ) {
-			$this->invert = new CheckboxInputWidget( array_merge(
-				[ 'value' => '1' ],
-				$config['invert']
-			) );
+			$this->invert = new CheckboxInputWidget(
+				$config['invert'] + [ 'value' => '1' ]
+			);
 			// TODO Should use a LabelWidget? But they don't work like HTML <label>s yet
 			$this->invertLabel = new FieldLayout(
 				$this->invert,
-				array_merge(
-					[ 'align' => 'inline' ],
-					$config['invertLabel']
-				)
+				$config['invertLabel'] + [ 'align' => 'inline' ]
 			);
 		}
 
