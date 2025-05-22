@@ -1,7 +1,5 @@
 <?php
 /**
- * Tools for dealing with other locally-hosted wikis.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -24,11 +22,13 @@ namespace MediaWiki\WikiMap;
 
 /**
  * Reference to a locally-hosted wiki
+ *
+ * @ingroup Site
  */
 class WikiReference {
-	/** @var string wgCanonicalServer, e.g. 'https://www.mediawiki.org' */
+	/** @var string wgCanonicalServer, e.g. 'https://en.example.org' */
 	private string $mCanonicalServer;
-	/** @var string wgServer, may be protocol-relative, e.g. '//www.mediawiki.org' */
+	/** @var string wgServer, may be protocol-relative, e.g. '//en.example.org' */
 	private string $mServer;
 	/** @var string wgArticlepath, e.g. '/wiki/$1' */
 	private string $mPath;
@@ -45,20 +45,60 @@ class WikiReference {
 	}
 
 	/**
-	 * Get the URL in a way to be displayed to the user
-	 * More or less Wikimedia specific
+	 * Get the canonical server (i.e. $wgCanonicalServer)
 	 *
-	 * @return string
+	 * @return string E.g. "https://en.example.org".
+	 */
+	public function getCanonicalServer() {
+		return $this->mCanonicalServer;
+	}
+
+	/**
+	 * Extract the server name from wgCanonicalServer.
+	 *
+	 * @return string Hostname, e.g. "en.example.org".
 	 */
 	public function getDisplayName() {
-		$host = parse_url( $this->mCanonicalServer, PHP_URL_HOST );
-		if ( $host ) {
-			return $host;
-		} else {
-			// Invalid server spec.
-			// There's no sensible thing to do here, so just return the canonical server name in full.
-			return $this->mCanonicalServer;
-		}
+		// If the server spec is invalid, there's no sensible thing to do here,
+		// so just return the canonical server as-is.
+		return parse_url( $this->mCanonicalServer, PHP_URL_HOST ) ?: $this->mCanonicalServer;
+	}
+
+	/**
+	 * Create a full canonical URL to a page on the given wiki
+	 *
+	 * @param string $page Page name (must be normalised before calling this function!)
+	 * @param string|null $fragmentId
+	 * @return string URL E.g. "https://en.example.org/wiki/Foo#Bar".
+	 */
+	public function getCanonicalUrl( $page, $fragmentId = null ) {
+		return $this->mCanonicalServer . $this->getLocalUrl( $page, $fragmentId );
+	}
+
+	/**
+	 * Alias for getCanonicalUrl(), for backwards compatibility.
+	 *
+	 * @param string $page
+	 * @param string|null $fragmentId
+	 * @return string E.g. "https://en.example.org/wiki/Foo#Bar".
+	 */
+	public function getUrl( $page, $fragmentId = null ) {
+		return $this->getCanonicalUrl( $page, $fragmentId );
+	}
+
+	/**
+	 * Create a full URL like Title::getFullURL() to a page, based on $wgServer.
+	 *
+	 * This is similar to what Title::getFullURL() would produce when called locally on the wiki,
+	 * and may differ from the canonical URL, depending on site configuration, as it uses
+	 * $wgServer instead of $wgCanonicalServer.
+	 *
+	 * @param string $page Page name (must be normalized before calling this function!)
+	 * @param string|null $fragmentId
+	 * @return string URL E.g. "//en.example.org/wiki/Foo#Bar".
+	 */
+	public function getFullUrl( $page, $fragmentId = null ) {
+		return $this->mServer . $this->getLocalUrl( $page, $fragmentId );
 	}
 
 	/**
@@ -67,10 +107,9 @@ class WikiReference {
 	 * @todo FIXME: This may be generalized...
 	 *
 	 * @param string $page Page name (must be normalised before calling this function!
-	 *  May contain a section part.)
+	 *  May contain a hash frament already.)
 	 * @param string|null $fragmentId
-	 *
-	 * @return string relative URL, without the server part.
+	 * @return string Relative URL, e.g. "/wiki/Foo#Bar".
 	 */
 	private function getLocalUrl( $page, $fragmentId = null ) {
 		$page = wfUrlencode( str_replace( ' ', '_', $page ) );
@@ -80,49 +119,5 @@ class WikiReference {
 		}
 
 		return str_replace( '$1', $page, $this->mPath );
-	}
-
-	/**
-	 * Get a canonical (i.e. based on $wgCanonicalServer) URL to a page on this foreign wiki
-	 *
-	 * @param string $page Page name (must be normalised before calling this function!)
-	 * @param string|null $fragmentId
-	 *
-	 * @return string Url
-	 */
-	public function getCanonicalUrl( $page, $fragmentId = null ) {
-		return $this->mCanonicalServer . $this->getLocalUrl( $page, $fragmentId );
-	}
-
-	/**
-	 * Get a canonical server URL
-	 * @return string
-	 */
-	public function getCanonicalServer() {
-		return $this->mCanonicalServer;
-	}
-
-	/**
-	 * Alias for getCanonicalUrl(), for backwards compatibility.
-	 * @param string $page
-	 * @param string|null $fragmentId
-	 *
-	 * @return string
-	 */
-	public function getUrl( $page, $fragmentId = null ) {
-		return $this->getCanonicalUrl( $page, $fragmentId );
-	}
-
-	/**
-	 * Get a URL based on $wgServer, like Title::getFullURL() would produce
-	 * when called locally on the wiki.
-	 *
-	 * @param string $page Page name (must be normalized before calling this function!)
-	 * @param string|null $fragmentId
-	 *
-	 * @return string URL
-	 */
-	public function getFullUrl( $page, $fragmentId = null ) {
-		return $this->mServer . $this->getLocalUrl( $page, $fragmentId );
 	}
 }
