@@ -196,7 +196,10 @@
 		],
 		"phpunit:prepare-parallel:split-file": "MediaWiki\\Composer\\PhpUnitSplitter\\PhpUnitXmlManager::splitTestsCustom",
 		"phpunit:parallel:custom-groups": "MediaWiki\\Composer\\ComposerLaunchParallel::launchTestsCustomGroups",
-		"phpunit:parallel:database": "MediaWiki\\Composer\\ComposerLaunchParallel::launchTestsDatabase",
+		"phpunit:parallel:database": [
+			"MediaWiki\\Composer\\ComposerLaunchParallel::launchTestsDatabase",
+			"MediaWiki\\Composer\\PhpUnitSplitter\\PhpUnitXmlManager::notifyResultsServer"
+		],
 		"phpunit:parallel:databaseless": "MediaWiki\\Composer\\ComposerLaunchParallel::launchTestsDatabaseless",
 		"maintenance": "@php maintenance/run.php"
 	},

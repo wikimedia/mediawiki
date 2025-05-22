@@ -197,6 +197,13 @@ class PhpUnitXmlManager {
 		return $serverUrlBase . '/' . $matches[0];
 	}
 
+	private static function createGuzzleClient(): Client {
+		return new Client( [
+			'timeout' => 5,
+			'headers' => [ 'User-Agent' => 'MediaWiki Composer' ]
+		] );
+	}
+
 	/**
 	 * We don't have access to Mediawiki's HTTPRequestFactory here since we are in a minimal
 	 * bootstrap and Mediawiki Services are not loaded. Use Guzzle to make a simple
@@ -206,10 +213,7 @@ class PhpUnitXmlManager {
 	 * @throws GuzzleException
 	 */
 	private static function downloadResultsCacheFile( string $resultsCacheUrl ): ?string {
-		$client = new Client( [
-			'timeout' => 5,
-			'headers' => [ 'User-Agent' => 'MediaWiki Composer' ]
-		] );
+		$client = self::createGuzzleClient();
 		$content = $client->get( $resultsCacheUrl )->getBody()->getContents();
 		if ( !$content ) {
 			return null;
@@ -257,6 +261,58 @@ class PhpUnitXmlManager {
 					'GuzzleException when fetching results cache file: ' . $ge->getMessage()
 				);
 			}
+		}
+		$event->getIO()->write( '' );
+	}
+
+	/**
+	 * We don't have access to Mediawiki's HTTPRequestFactory here since we are in a minimal
+	 * bootstrap and Mediawiki Services are not loaded. Use Guzzle to make a simple
+	 * unauthenticated POST to the results server, to let it know that new results are available
+	 * for this job.
+	 *
+	 * @throws GuzzleException
+	 */
+	private static function notifyJobComplete( string $resultsCacheUrl ): bool {
+		$client = self::createGuzzleClient();
+		$response = $client->post( $resultsCacheUrl );
+		if ( $response->getStatusCode() < 400 ) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Called after a parallel run, to let the results server know that new results will be available
+	 * soon to be fetched. We assume LOG_PATH is set (or if not, that a warning about that has already
+	 * been emitted).
+	 */
+	public static function notifyResultsServer( Event $event ): void {
+		$resultsCacheServerBaseUrl = getenv( 'MW_RESULTS_CACHE_SERVER_BASE_URL' );
+		if ( !is_string( $resultsCacheServerBaseUrl ) ) {
+			return;
+		}
+		$resultsCacheUrl = self::generateResultsCacheUrl( $resultsCacheServerBaseUrl, getenv( 'LOG_PATH' ) );
+		if ( $resultsCacheUrl === null ) {
+			return;
+		}
+		$event->getIO()->write( '' );
+		try {
+			if ( self::notifyJobComplete( $resultsCacheUrl ) ) {
+				$event->getIO()->write(
+					'Notified results server at ' . $resultsCacheUrl .
+					' that new results will soon be available'
+				);
+			} else {
+				$event->getIO()->warning(
+					'Unable to notify the results server at ' . $resultsCacheUrl .
+					' that new results will soon be available'
+				);
+			}
+		} catch ( GuzzleException $ge ) {
+			$event->getIO()->warning(
+				'GuzzleException when notifying results server: ' . $ge->getMessage()
+			);
 		}
 		$event->getIO()->write( '' );
 	}
