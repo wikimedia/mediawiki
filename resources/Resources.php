@@ -1150,7 +1150,6 @@ return [
 			'mediawiki.widgets.DateInputWidget',
 			'mediawiki.jqueryMsg',
 			'mediawiki.api',
-			'moment',
 			'mediawiki.libs.jpegmeta',
 		],
 		'messages' => [
