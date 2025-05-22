@@ -2435,8 +2435,6 @@ class ParserTestRunner {
 			$this->resetTitleServices();
 			$mwServices->resetServiceForTesting( 'MagicWordFactory' );
 			$mwServices->resetServiceForTesting( 'ParserFactory' );
-			// Depends on $wgParserEnableLegacyMediaDOM
-			$mwServices->resetServiceForTesting( 'Tidy' );
 			// The SiteConfig depends on various services that reset above,
 			// so reset it as well.
 			// T310283: be more selective about resetting SiteConfig if

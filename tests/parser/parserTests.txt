@@ -2383,8 +2383,6 @@ Dummy article to suppress redlinks in tests
 ## FIXME: Title part of filename is interpreted in php
 !! test
 Link with double quotes in title part (literal) and alternate part (interpreted)
-!! config
-wgParserEnableLegacyMediaDOM=false
 !! wikitext
 [[File:Denys_Savchenko_''Pentecoste''.jpg]]
 
@@ -8231,8 +8229,6 @@ Media link to nonexistent file (T3702)
 
 !! test
 Media link with nested wikilinks
-!! config
-wgParserEnableLegacyMediaDOM=false
 !! wikitext
 [[Media:Foobar.jpg|[[Test]]]]
 [[Media:Foobar.jpg|[[File:Foobar.jpg]]]]
@@ -12556,8 +12552,6 @@ Strip reserved data attributes
 
 !! test
 percent-encoding and + signs in internal links (T28410)
-!! config
-wgParserEnableLegacyMediaDOM=false
 !! wikitext
 [[User:+%]] [[Page+title%]]
 [[%+]] [[%+|%20]] [[%+ ]] [[%+r]]

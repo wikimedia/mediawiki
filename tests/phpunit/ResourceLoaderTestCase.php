@@ -77,7 +77,6 @@ abstract class ResourceLoaderTestCase extends MediaWikiIntegrationTestCase {
 			MainConfigNames::Logos => false,
 			MainConfigNames::Logo => '/logo.png',
 			MainConfigNames::ResourceBasePath => '/w',
-			MainConfigNames::ParserEnableLegacyMediaDOM => true,
 
 			// For ResourceLoader::getSiteConfigSettings and StartUpModule
 			MainConfigNames::Server => 'https://example.org',

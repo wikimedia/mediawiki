@@ -6652,38 +6652,9 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * Enable legacy media HTML structure in the output from the Parser.  The
-	 * alternative modern HTML structure that replaces it is described at
-	 * https://www.mediawiki.org/wiki/Parsing/Media_structure
-	 *
-	 * @deprecated since 1.41
-	 * @since 1.36
-	 */
-	public const ParserEnableLegacyMediaDOM = [
-		'default' => false,
-		'deprecated' => 'since 1.41',
-	];
-
-	/**
-	 * Enable shipping the styles for the media HTML structure that replaces
-	 * legacy, when $wgParserEnableLegacyMediaDOM is `false`.  This is configured
-	 * separately so that it can continue to be served after the latter is disabled
-	 * but still in the cache.
-	 *
-	 * @deprecated since 1.41
-	 * @internal Temporary flag, T51097.
-	 * @since 1.38
-	 */
-	public const UseContentMediaStyles = [
-		'default' => false,
-		'deprecated' => 'since 1.41',
-	];
-
-	/**
-	 * Disable shipping the styles for the legacy media HTML structure
-	 * that has been replaced when $wgParserEnableLegacyMediaDOM is `false`.  This is
-	 * configured separately to give time for templates and extensions that mimic the
-	 * parser output to be migrated away.
+	 * Disable shipping the styles for the legacy media HTML structure.
+	 * This is to give time for templates and extensions that mimic the
+	 * legacy output to be migrated away.
 	 *
 	 * @internal Temporary feature flag for T318433.
 	 * @since 1.41

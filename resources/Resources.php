@@ -109,7 +109,6 @@ return [
 				'resources/src/mediawiki.skinning/content.parsoid.less',
 				'resources/src/mediawiki.skinning/content.media-common.less',
 				'resources/src/mediawiki.skinning/content.media-screen.less',
-				'resources/src/mediawiki.page.gallery.styles/content.media.less',
 			],
 		],
 	],
@@ -1683,8 +1682,7 @@ return [
 		'styles' => [
 			'resources/src/mediawiki.page.gallery.styles/gallery.less',
 			'resources/src/mediawiki.page.gallery.styles/print.less' => [ 'media' => 'print' ],
-		] + ( !$GLOBALS['wgParserEnableLegacyMediaDOM'] || $GLOBALS['wgUseContentMediaStyles'] ?
-			[ 'resources/src/mediawiki.page.gallery.styles/content.media.less' => [ 'media' => 'all' ] ] : [] ),
+		],
 	],
 	'mediawiki.page.gallery.slideshow' => [
 		'scripts' => 'resources/src/mediawiki.page.gallery.slideshow.js',

@@ -793,8 +793,6 @@ return [
 				'useSelser' => true,
 			],
 			'ParsoidExperimentalParserFunctionOutput' => false,
-			'ParserEnableLegacyMediaDOM' => false,
-			'UseContentMediaStyles' => false,
 			'UseLegacyMediaStyles' => false,
 			'RawHtml' => false,
 			'ExternalLinkTarget' => false,
@@ -3430,12 +3428,6 @@ return [
 		],
 		'LegalTitleChars' => [
 			'deprecated' => 'since 1.41; use Extension:TitleBlacklist to customize',
-		],
-		'ParserEnableLegacyMediaDOM' => [
-			'deprecated' => 'since 1.41',
-		],
-		'UseContentMediaStyles' => [
-			'deprecated' => 'since 1.41',
 		],
 		'ReauthenticateTime' => [
 			'additionalProperties' => [

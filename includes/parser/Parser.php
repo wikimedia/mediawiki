@@ -430,7 +430,6 @@ class Parser {
 		MainConfigNames::StylePath,
 		MainConfigNames::TranscludeCacheExpiry,
 		MainConfigNames::PreprocessorCacheThreshold,
-		MainConfigNames::ParserEnableLegacyMediaDOM,
 		MainConfigNames::EnableParserLimitReporting,
 		MainConfigNames::ParserEnableUserLanguage,
 	];
@@ -5246,8 +5245,6 @@ class Parser {
 		}
 		$ig->setAdditionalOptions( $params );
 
-		$enableLegacyMediaDOM = $this->svcOptions->get( MainConfigNames::ParserEnableLegacyMediaDOM );
-
 		$lines = StringUtils::explode( "\n", $text );
 		foreach ( $lines as $line ) {
 			# match lines like these:
@@ -5360,12 +5357,8 @@ class Parser {
 			}
 
 			// Match makeImage when !$hasVisibleCaption
-			if ( !$hasAlt ) {
-				if ( $label !== '' ) {
-					$alt = $this->stripAltText( $label, false );
-				} elseif ( $enableLegacyMediaDOM ) {
-					$alt = $title->getText();
-				}
+			if ( !$hasAlt && $label !== '' ) {
+				$alt = $this->stripAltText( $label, false );
 			}
 			$imageOptions['title'] = $this->stripAltText( $label, false );
 
@@ -5595,8 +5588,6 @@ class Parser {
 
 		$params['frame']['caption'] = $caption;
 
-		$enableLegacyMediaDOM = $this->svcOptions->get( MainConfigNames::ParserEnableLegacyMediaDOM );
-
 		# Will the image be presented in a frame, with the caption below?
 		// @phan-suppress-next-line PhanImpossibleCondition
 		$hasVisibleCaption = isset( $params['frame']['framed'] )
@@ -5619,29 +5610,12 @@ class Parser {
 		# named parameter entirely for images without a caption; adding an ex-
 		# plicit caption= parameter and preserving the old magic unnamed para-
 		# meter for BC; ...
-		if ( $hasVisibleCaption ) {
-			if (
-				// @phan-suppress-next-line PhanImpossibleCondition
-				$caption === '' && !isset( $params['frame']['alt'] ) &&
-				$enableLegacyMediaDOM
-			) {
-				# No caption or alt text, add the filename as the alt text so
-				# that screen readers at least get some description of the image
-				$params['frame']['alt'] = $link->getText();
-			}
-			# Do not set $params['frame']['title'] because tooltips are unnecessary
-			# for framed images, the caption is visible
-		} else {
+
+		if ( !$hasVisibleCaption ) {
 			// @phan-suppress-next-line PhanImpossibleCondition
-			if ( !isset( $params['frame']['alt'] ) ) {
+			if ( !isset( $params['frame']['alt'] ) && $caption !== '' ) {
 				# No alt text, use the "caption" for the alt text
-				if ( $caption !== '' ) {
-					$params['frame']['alt'] = $this->stripAltText( $caption, $holders );
-				} elseif ( $enableLegacyMediaDOM ) {
-					# No caption, fall back to using the filename for the
-					# alt text
-					$params['frame']['alt'] = $link->getText();
-				}
+				$params['frame']['alt'] = $this->stripAltText( $caption, $holders );
 			}
 			# Use the "caption" for the tooltip text
 			$params['frame']['title'] = $this->stripAltText( $caption, $holders );
@@ -5654,7 +5628,6 @@ class Parser {
 
 		# Linker does the rest
 		$time = $options['time'] ?? false;
-		// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset
 		$ret = Linker::makeImageLink( $this, $link, $file, $params['frame'], $params['handler'],
 			$time, $descQuery, $this->mOptions->getThumbSize() );
 

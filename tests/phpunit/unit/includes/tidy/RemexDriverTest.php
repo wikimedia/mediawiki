@@ -356,7 +356,6 @@ MathML;
 				MediaWiki\Tidy\RemexDriver::CONSTRUCTOR_OPTIONS,
 				new HashConfig( [
 					MainConfigNames::TidyConfig => [],
-					MainConfigNames::ParserEnableLegacyMediaDOM => false,
 				] )
 			)
 		);
@@ -388,7 +387,6 @@ MathML;
 				MediaWiki\Tidy\RemexDriver::CONSTRUCTOR_OPTIONS,
 				new HashConfig( [
 					MainConfigNames::TidyConfig => [],
-					MainConfigNames::ParserEnableLegacyMediaDOM => false,
 				] )
 			)
 		);

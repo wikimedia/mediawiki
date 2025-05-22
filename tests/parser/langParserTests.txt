@@ -216,8 +216,6 @@ all additional text is vanished
 Language converter glossary rules inside attributes (T119158)
 !! options
 language=sr htmlVariantLanguage=sr-Latn
-!! config
-wgParserEnableLegacyMediaDOM=false
 !! wikitext
 -{H|foAjrjvi=>sr-el:" onload="alert(1)" data-foo="}-
 

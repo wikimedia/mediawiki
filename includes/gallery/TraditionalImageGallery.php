@@ -6,7 +6,6 @@ use MediaWiki\Html\Html;
 use MediaWiki\Language\Language;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;
-use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\Parser;
 use MediaWiki\Title\Title;
@@ -88,8 +87,6 @@ class TraditionalImageGallery extends ImageGalleryBase {
 		}
 
 		$lang = $this->getRenderLang();
-		$enableLegacyMediaDOM =
-			$this->getConfig()->get( MainConfigNames::ParserEnableLegacyMediaDOM );
 		$hookRunner = new HookRunner( MediaWikiServices::getInstance()->getHookContainer() );
 
 		# Output each image...
@@ -123,33 +120,25 @@ class TraditionalImageGallery extends ImageGalleryBase {
 			$isBadFile = $img && $thumb && $this->mHideBadImages &&
 				$badFileLookup->isBadFile( $nt->getDBkey(), $this->getContextTitle() );
 
-			if ( !$img || !$thumb || ( !$enableLegacyMediaDOM && $thumb->isError() ) || $isBadFile ) {
+			if ( !$img || !$thumb || $thumb->isError() || $isBadFile ) {
 				$rdfaType = 'mw:Error ' . $rdfaType;
 
-				if ( $enableLegacyMediaDOM ) {
-					if ( $isBadFile ) {
-						$thumbhtml = $linkRenderer->makeKnownLink( $nt, $nt->getText() );
-					} else {
-						$thumbhtml = htmlspecialchars( $img ? $img->getLastError() : $nt->getText() );
-					}
-				} else {
-					$currentExists = $img && $img->exists();
-					if ( $currentExists && !$thumb ) {
-						$label = wfMessage( 'thumbnail_error', '' )->text();
-					} elseif ( $thumb && $thumb->isError() ) {
-						Assert::invariant(
-							$thumb instanceof MediaTransformError,
-							'Unknown MediaTransformOutput: ' . get_class( $thumb )
-						);
-						$label = $thumb->toText();
-					} else {
-						$label = $alt ?? '';
-					}
-					$thumbhtml = Linker::makeBrokenImageLinkObj(
-						$nt, $label, '', '', '', false, $transformOptions, $currentExists
+				$currentExists = $img && $img->exists();
+				if ( $currentExists && !$thumb ) {
+					$label = wfMessage( 'thumbnail_error', '' )->text();
+				} elseif ( $thumb && $thumb->isError() ) {
+					Assert::invariant(
+						$thumb instanceof MediaTransformError,
+						'Unknown MediaTransformOutput: ' . get_class( $thumb )
 					);
-					$thumbhtml = Html::rawElement( 'span', [ 'typeof' => $rdfaType ], $thumbhtml );
+					$label = $thumb->toText();
+				} else {
+					$label = $alt ?? '';
 				}
+				$thumbhtml = Linker::makeBrokenImageLinkObj(
+					$nt, $label, '', '', '', false, $transformOptions, $currentExists
+				);
+				$thumbhtml = Html::rawElement( 'span', [ 'typeof' => $rdfaType ], $thumbhtml );
 
 				$thumbhtml = "\n\t\t\t" . Html::rawElement(
 					'div',
@@ -185,9 +174,7 @@ class TraditionalImageGallery extends ImageGalleryBase {
 						$params['alt'] = $alt;
 					}
 					$params['title'] = $imageOptions['title'];
-					if ( !$enableLegacyMediaDOM ) {
-						$params['img-class'] = 'mw-file-element';
-					}
+					$params['img-class'] = 'mw-file-element';
 					$imageParameters = Linker::getImageLinkMTOParams(
 						$imageOptions, $descQuery, $this->mParser
 					) + $params;
@@ -202,20 +189,9 @@ class TraditionalImageGallery extends ImageGalleryBase {
 				Linker::processResponsiveImages( $img, $thumb, $transformOptions );
 
 				$thumbhtml = $thumb->toHtml( $imageParameters );
-
-				if ( !$enableLegacyMediaDOM ) {
-					$thumbhtml = Html::rawElement(
-						'span', [ 'typeof' => $rdfaType ], $thumbhtml
-					);
-				} else {
-					$thumbhtml = Html::rawElement( 'div', [
-						# Auto-margin centering for block-level elements. Needed
-						# now that we have video handlers since they may emit block-
-						# level elements as opposed to simple <img> tags. ref
-						# http://css-discuss.incutio.com/?page=CenteringBlockElement
-						'style' => "margin:{$vpad}px auto;",
-					], $thumbhtml );
-				}
+				$thumbhtml = Html::rawElement(
+					'span', [ 'typeof' => $rdfaType ], $thumbhtml
+				);
 
 				# Set both fixed width and min-height.
 				$width = $this->getThumbDivWidth( $thumb->getWidth() );
@@ -223,8 +199,7 @@ class TraditionalImageGallery extends ImageGalleryBase {
 				$thumbhtml = "\n\t\t\t" . Html::rawElement( 'div', [
 					'class' => 'thumb',
 					'style' => "width: {$width}px;" .
-						( !$enableLegacyMediaDOM && $this->mMode === 'traditional' ?
-							" height: {$height}px;" : '' ),
+						( $this->mMode === 'traditional' ? " height: {$height}px;" : '' ),
 				], $thumbhtml );
 
 				// Call parser transform hook
@@ -268,11 +243,9 @@ class TraditionalImageGallery extends ImageGalleryBase {
 			Html::rawElement(
 				'li',
 				[ 'class' => 'gallerybox', 'style' => 'width: ' . $gbWidth ],
-				( $enableLegacyMediaDOM ? Html::openElement( 'div', [ 'style' => 'width: ' . $gbWidth ] ) : '' )
-					. $thumbhtml
+				$thumbhtml
 					. $galleryText
 					. "\n\t\t"
-					. ( $enableLegacyMediaDOM ? Html::closeElement( 'div' ) : '' )
 			);
 		}
 		$output .= "\n" . Html::closeElement( 'ul' );

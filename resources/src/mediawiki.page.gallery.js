@@ -154,8 +154,6 @@
 					const newWidth = preferredHeight * curRow[ j ].aspect;
 					const padding = curRow[ j ].width - curRow[ j ].imgWidth;
 					const $gallerybox = curRow[ j ].$elm;
-					// This wrapper is only present if ParserEnableLegacyMediaDOM is true
-					const $outerDiv = $gallerybox.children( 'div:not( [class] )' ).first();
 					const $imageDiv = $gallerybox.find( 'div.thumb' ).first();
 					const $imageElm = $imageDiv.find( 'img, video' ).first();
 					const $caption = $gallerybox.find( 'div.gallerytextwrapper' );
@@ -167,14 +165,12 @@
 					if ( newWidth < 60 || !isFinite( newWidth ) ) {
 						// Making something skinnier than this will mess up captions,
 						if ( newWidth < 1 || !isFinite( newWidth ) ) {
-							$outerDiv.height( preferredHeight );
 							// Don't even try and touch the image size if it could mean
 							// making it disappear.
 							continue;
 						}
 					} else {
 						$gallerybox.width( newWidth + padding );
-						$outerDiv.width( newWidth + padding );
 						$imageDiv.width( newWidth );
 						$caption.width( curRow[ j ].captionWidth + ( newWidth - curRow[ j ].imgWidth ) );
 					}
@@ -209,13 +205,10 @@
 				imgHeight = $( this ).data( 'imgHeight' ),
 				width = $( this ).data( 'width' ),
 				captionWidth = $( this ).data( 'captionWidth' ),
-				// This wrapper is only present if ParserEnableLegacyMediaDOM is true
-				$outerDiv = $( this ).children( 'div:not( [class] )' ).first(),
 				$imageDiv = $( this ).find( 'div.thumb' ).first();
 
 			// Restore original sizes so we can arrange the elements as on freshly loaded page
 			$( this ).width( width );
-			$outerDiv.width( width );
 			$imageDiv.width( imgWidth );
 			$( this ).find( 'div.gallerytextwrapper' ).width( captionWidth );
 
