@@ -1,4 +1,3 @@
-/* global moment */
 ( function () {
 
 	/**
@@ -112,7 +111,6 @@
 	 *
 	 * @event mw.Upload.BookletLayout.fileUploadProgress
 	 * @param {number} progress In percentage
-	 * @param {Object} duration Duration object from `moment.duration()`
 	 */
 
 	/**
@@ -245,7 +243,6 @@
 	 */
 	mw.Upload.BookletLayout.prototype.uploadFile = function () {
 		const deferred = $.Deferred(),
-			startTime = mw.now(),
 			file = this.getFile();
 
 		this.setPage( 'info' );
@@ -279,10 +276,7 @@
 				deferred.reject( errorMessage );
 			} );
 		}, ( progress ) => {
-			const elapsedTime = mw.now() - startTime,
-				estimatedTotalTime = ( 1 / progress ) * elapsedTime,
-				estimatedRemainingTime = moment.duration( estimatedTotalTime - elapsedTime );
-			this.emit( 'fileUploadProgress', progress, estimatedRemainingTime );
+			this.emit( 'fileUploadProgress', progress );
 		} );
 
 		// If there is an error in uploading, come back to the upload page
