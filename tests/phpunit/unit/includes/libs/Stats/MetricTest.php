@@ -8,6 +8,7 @@ use Wikimedia\Stats\IBufferingStatsdDataFactory;
 use Wikimedia\Stats\Metrics\BaseMetric;
 use Wikimedia\Stats\Metrics\CounterMetric;
 use Wikimedia\Stats\Metrics\NullMetric;
+use Wikimedia\Stats\NullStatsdDataFactory;
 use Wikimedia\Stats\OutputFormats;
 use Wikimedia\Stats\StatsCache;
 use Wikimedia\Stats\StatsFactory;
@@ -295,8 +296,8 @@ class MetricTest extends MediaWikiUnitTestCase {
 	public function testCopyToStatsdAtEmptyArrayResetsValue() {
 		$baseMetric = new BaseMetric( '', 'testMetric' );
 		$metric = new CounterMetric(
-			$baseMetric->withStatsdDataFactory( $this->createMock( IBufferingStatsdDataFactory::class ) ),
-			new NullLogger
+			$baseMetric->withStatsdDataFactory( new NullStatsdDataFactory() ),
+			new NullLogger()
 		);
 		$metric->copyToStatsdAt( 'test' );
 		$this->assertEquals( [ 'test' ], $baseMetric->getStatsdNamespaces() );
@@ -324,7 +325,7 @@ class MetricTest extends MediaWikiUnitTestCase {
 
 	public function testHandleInvalidStatsdNamespace() {
 		$m = StatsFactory::newNull();
-		$m = $m->withStatsdDataFactory( $this->createMock( IBufferingStatsdDataFactory::class ) );
+		$m = $m->withStatsdDataFactory( new NullStatsdDataFactory() );
 		$this->expectPHPWarning(
 			'Stats: (testMetricCounter) StatsD namespace must be a string.',
 			function () use ( $m ) {
@@ -337,7 +338,7 @@ class MetricTest extends MediaWikiUnitTestCase {
 
 	public function testHandleEmptyStatsdNamespace() {
 		$m = StatsFactory::newNull();
-		$m = $m->withStatsdDataFactory( $this->createMock( IBufferingStatsdDataFactory::class ) );
+		$m = $m->withStatsdDataFactory( new NullStatsdDataFactory() );
 		$this->expectPHPWarning(
 			'Stats: (testMetricCounter) StatsD namespace cannot be empty.',
 			function () use ( $m ) {
@@ -350,7 +351,7 @@ class MetricTest extends MediaWikiUnitTestCase {
 
 	public function testHandleNonStringStatsdNamespaceInArray() {
 		$m = StatsFactory::newNull();
-		$m = $m->withStatsdDataFactory( $this->createMock( IBufferingStatsdDataFactory::class ) );
+		$m = $m->withStatsdDataFactory( new NullStatsdDataFactory() );
 		$this->expectPHPWarning(
 			'Stats: (testMetricCounter) StatsD namespace must be a string.',
 			function () use ( $m ) {
@@ -408,7 +409,7 @@ class MetricTest extends MediaWikiUnitTestCase {
 		$this->assertNull( $noStatsd->statsdDataFactory );
 
 		// call withStatsdDataFactory
-		$statsFactory = $statsFactory->withStatsdDataFactory( $this->createMock( IBufferingStatsdDataFactory::class ) );
+		$statsFactory = $statsFactory->withStatsdDataFactory( new NullStatsdDataFactory() );
 
 		// statsdDataFactory should be an instance of IBufferingStatsdDataFactory
 		$yesStatsd = TestingAccessWrapper::newFromObject( $statsFactory->withComponent( 'foo' ) );
