@@ -100,6 +100,32 @@ export const config = {
 				...( process.env.DISPLAY ? [] : [ '--headless' ] ),
 				// Chrome sandbox does not work in Docker. Disable GPU to prevent crashes (T389536#10677201)
 				...( fs.existsSync( '/.dockerenv' ) ? [ '--no-sandbox', '--disable-gpu', '--disable-dev-shm-usage' ] : [] ),
+				// Disable as much as possible to make Chrome clean
+				// https://github.com/GoogleChrome/chrome-launcher/blob/main/docs/chrome-flags-for-tools.md
+				'--ash-no-nudges',
+				'--disable-background-networking',
+				'--disable-background-timer-throttling',
+				'--disable-backgrounding-occluded-windows',
+				'--disable-breakpad',
+				'--disable-client-side-phishing-detection',
+				'--disable-component-extensions-with-background-page',
+				'--disable-component-update',
+				'--disable-default-apps',
+				'--disable-domain-reliability',
+				'--disable-features=InterestFeedContentSuggestions',
+				'--disable-features=Translate',
+				'--disable-fetching-hints-at-navigation-start',
+				'--disable-hang-monitor',
+				'--disable-ipc-flooding-protection',
+				'--disable-prompt-on-repost',
+				'--disable-renderer-backgrounding',
+				'--disable-sync',
+				'--disable-search-engine-choice-screen',
+				'--disable-site-isolation-trials',
+				'--mute-audio',
+				'--no-default-browser-check',
+				'--no-first-run',
+				'--propagate-iph-for-testing',
 				// Workaround inputs not working consistently post-navigation on Chrome 90
 				// https://issuetracker.google.com/issues/42322798
 				'--allow-pre-commit-input'
