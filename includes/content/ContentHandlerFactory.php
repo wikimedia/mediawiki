@@ -55,7 +55,7 @@ final class ContentHandlerFactory implements IContentHandlerFactory {
 
 	/**
 	 * @since 1.35
-	 * @internal Use @see MediaWikiServices::getContentHandlerFactory
+	 * @internal Please use MediaWikiServices::getContentHandlerFactory instead
 	 *
 	 * @param string[]|callable[] $handlerSpecs An associative array mapping each known
 	 *   content model to the ObjectFactory spec used to construct its ContentHandler.

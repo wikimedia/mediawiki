@@ -32,8 +32,8 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  * By default, this does not need to be run. The default parser cache
  * backend is CACHE_DB (SqlBagOStuff), and by default that automatically
  * performs incremental purges in the background of write requests.
+ * Check your wiki's $wgParserCacheType setting to determine if you need to run this script.
  *
- * @see {@link MediaWiki\MainConfigSchema::ParserCacheType}
  * @ingroup Maintenance
  */
 class PurgeParserCache extends Maintenance {

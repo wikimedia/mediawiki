@@ -270,7 +270,6 @@ class GlobalTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * test @see wfShorthandToInteger()
 	 * @dataProvider provideShorthand
 	 * @covers ::wfShorthandToInteger
 	 */

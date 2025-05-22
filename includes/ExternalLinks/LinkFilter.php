@@ -427,7 +427,7 @@ class LinkFilter {
 	 * of adding wildcards
 	 *
 	 * @note You probably want self::getQueryConditions() instead
-	 * @param string $filterEntry Filter entry, @see self::getQueryConditions()
+	 * @param string $filterEntry Filter entry, see {@link getQueryConditions}
 	 * @param string $protocol Protocol (default http://)
 	 * @return array|false Array to be passed to Database::buildLike() or false on error
 	 */

@@ -1849,7 +1849,7 @@ class AuthManager implements LoggerAwareInterface {
 	/**
 	 * @param Status $status
 	 * @param User $targetUser
-	 * @param string $source What caused the auto-creation @see ::autoCreateUser
+	 * @param string $source What caused the auto-creation, see {@link autoCreateUser}
 	 * @param bool $login Whether to also log the user in
 	 * @return void
 	 * @todo Inject both identityUtils and logger

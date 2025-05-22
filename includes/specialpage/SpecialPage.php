@@ -736,7 +736,7 @@ class SpecialPage implements MessageLocalizer {
 	}
 
 	/**
-	 * Gets called before SpecialPage::execute.
+	 * Gets called before {@link execute}.
 	 * Return false to prevent calling execute() (since 1.27+).
 	 *
 	 * @stable to override
@@ -750,7 +750,7 @@ class SpecialPage implements MessageLocalizer {
 	}
 
 	/**
-	 * Gets called after SpecialPage::execute.
+	 * Gets called after {@link execute}.
 	 *
 	 * @stable to override
 	 * @since 1.20
