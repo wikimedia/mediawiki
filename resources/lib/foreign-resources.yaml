@@ -125,11 +125,11 @@ codex:
   license: GPL-2.0+
   homepage: https://doc.wikimedia.org/codex/
   authors: Design System team, Wikimedia Foundation
-  version: 2.0.0-rc.1
-  purl: pkg:npm/@wikimedia/codex@2.0.0-rc.1
+  version: 2.0.0-rc.2
+  purl: pkg:npm/@wikimedia/codex@2.0.0-rc.2
   type: tar
-  src: https://registry.npmjs.org/@wikimedia/codex/-/codex-2.0.0-rc.1.tgz
-  integrity: sha384-qNRHN+GPp4CcTmeaJa1HM3qIelRRJgErBjt+P8z+BT2jBIMAauhr3Wv4Icn6ogWz
+  src: https://registry.npmjs.org/@wikimedia/codex/-/codex-2.0.0-rc.2.tgz
+  integrity: sha384-ZqvLskK9Kju6LQuhG2l7EKgH84LrAmC7e7zgrcHc5cvNZIEYNj3Ey+81EVnflHyY
   dest:
     package/dist/codex.cjs:
     package/dist/codex.js:
@@ -146,11 +146,11 @@ codex-design-tokens:
   license: GPL-2.0+
   homepage: https://doc.wikimedia.org/codex/
   authors: Design System team, Wikimedia Foundation
-  version: 2.0.0-rc.1
-  purl: pkg:npm/@wikimedia/codex-design-tokens@2.0.0-rc.1
+  version: 2.0.0-rc.2
+  purl: pkg:npm/@wikimedia/codex-design-tokens@2.0.0-rc.2
   type: tar
-  src: https://registry.npmjs.org/@wikimedia/codex-design-tokens/-/codex-design-tokens-2.0.0-rc.1.tgz
-  integrity: sha384-7RmBOPiteCEj/aJ3o56pMY8zY/KhAw4x/sR+z0P+l/ME7LEPFRxWC4gQBYL82/sW
+  src: https://registry.npmjs.org/@wikimedia/codex-design-tokens/-/codex-design-tokens-2.0.0-rc.2.tgz
+  integrity: sha384-VZU8KqnK0DW/ShFvDvJ08fgnsuc6TjRLS85KsU+Z3vT0iNQpGvX7xFdsDoJ62Z8U
   dest:
     package/dist/theme-*.less:
     package/dist/theme-wikimedia-ui-root.css:
@@ -162,11 +162,11 @@ codex-icons:
   license: MIT
   homepage: https://doc.wikimedia.org/codex/
   authors: Design System team, Wikimedia Foundation
-  version: 2.0.0-rc.1
-  purl: pkg:npm/@wikimedia/codex-icons@2.0.0-rc.1
+  version: 2.0.0-rc.2
+  purl: pkg:npm/@wikimedia/codex-icons@2.0.0-rc.2
   type: tar
-  src: https://registry.npmjs.org/@wikimedia/codex-icons/-/codex-icons-2.0.0-rc.1.tgz
-  integrity: sha384-tklayNvwGCHtW0INw+1cpCGKk2msIxCS4dGXydPJExDk1gIRXCzwVpsLm8E7qYA3
+  src: https://registry.npmjs.org/@wikimedia/codex-icons/-/codex-icons-2.0.0-rc.2.tgz
+  integrity: sha384-58uo6kRdOwDdSuf0OL1syG/i0u0RuhLOzYCVtN/cxxU5B9LHVHpaWV1Ny/D6Uben
   dest:
     package/dist/codex-icons.json:
     package/dist/codex-icon-paths.less:
