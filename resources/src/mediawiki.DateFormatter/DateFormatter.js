@@ -394,6 +394,34 @@ class DateFormatter {
 	}
 
 	/**
+	 * Format a Date as relative time such as "40 seconds ago", "3 months ago", or "in 40 seconds". (static variant)
+	 *
+	 * If the browser does not support Intl.RelativeTimeFormat (Safari 11.1, iOS Safari 11.3-11.4),
+	 * it uses `DateFormatter.formatTimeAndDate()` as fallback.
+	 *
+	 * @param {Date} date
+	 * @param {Date} [now]
+	 * @return {string}
+	 */
+	static formatRelativeTimeOrDate( date, now = new Date() ) {
+		if ( typeof Intl === 'undefined' || typeof Intl.RelativeTimeFormat !== 'function' ) {
+			// Intl.RelativeTimeFormat() is not supported in Safari 11.1, iOS Safari 11.3-11.4
+			return DateFormatter.formatTimeAndDate( date );
+		}
+		// from mediawiki/extensions/MobileFrontend/src/mobile.startup/time.js
+		const seconds = ( date.getTime() - now.getTime() ) / 1000;
+		const units = [ 'seconds', 'minutes', 'hours', 'days', 'months', 'years' ];
+		const limits = [ 1, 60, 3600, 86400, 2592000, 31536000 ];
+		let i = 0;
+		while ( i < limits.length && Math.abs( seconds ) > limits[ i + 1 ] ) {
+			++i;
+		}
+		const value = Math.round( seconds / limits[ i ] );
+		// eslint-disable-next-line compat/compat
+		return new Intl.RelativeTimeFormat( config.locales ).format( value, units[ i ] );
+	}
+
+	/**
 	 * @internal
 	 * @hideconstructor
 	 *

@@ -142,6 +142,47 @@ QUnit.module( 'mediawiki.DateFormatter static functions', ( hooks ) => {
 		);
 	} );
 
+	QUnit.test( 'formatRelativeTimeOrDate', ( assert ) => {
+		// from mediawiki/extensions/MobileFrontend/tests/node-qunit/mobile.startup/time.test.js
+		const { formatRelativeTimeOrDate } = DateFormatter;
+		assert.strictEqual(
+			formatRelativeTimeOrDate( new Date( 40e3 ), new Date( 0 ) ),
+			'in 40 seconds'
+		);
+		assert.strictEqual(
+			formatRelativeTimeOrDate( new Date( -40e3 ), new Date( 0 ) ),
+			'40 seconds ago'
+		);
+		assert.strictEqual(
+			formatRelativeTimeOrDate( new Date( -149e3 ), new Date( 0 ) ),
+			'2 minutes ago'
+		);
+		assert.strictEqual(
+			formatRelativeTimeOrDate( new Date( -151e3 ), new Date( 0 ) ),
+			'3 minutes ago'
+		);
+		assert.strictEqual(
+			formatRelativeTimeOrDate( new Date( -7500e3 ), new Date( 0 ) ),
+			'2 hours ago'
+		);
+		assert.strictEqual(
+			formatRelativeTimeOrDate( new Date( -90000e3 ), new Date( 0 ) ),
+			'1 day ago'
+		);
+		assert.strictEqual(
+			formatRelativeTimeOrDate( new Date( -9000000e3 ), new Date( 0 ) ),
+			'3 months ago'
+		);
+		assert.strictEqual(
+			formatRelativeTimeOrDate( new Date( -32000000e3 ), new Date( 0 ) ),
+			'1 year ago'
+		);
+		assert.strictEqual(
+			formatRelativeTimeOrDate( new Date( -102000000e3 ), new Date( 0 ) ),
+			'3 years ago'
+		);
+	} );
+
 	const normalizeZoneCases = {
 		'Known zone': {
 			supportsOffset: true,
