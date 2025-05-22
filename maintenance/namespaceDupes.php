@@ -33,6 +33,8 @@ use MediaWiki\Deferred\LinksUpdate\LinksDeletionUpdate;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Maintenance\Maintenance;
+use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
 use Wikimedia\Rdbms\IDBAccessObject;
@@ -251,6 +253,31 @@ class NamespaceDupes extends Maintenance {
 		return array_column( $result, 'iw_prefix' );
 	}
 
+	private function isSingleRevRedirectTo( Title $oldTitle, Title $newTitle ): bool {
+		if ( !$oldTitle->isSingleRevRedirect() ) {
+			return false;
+		}
+		$revStore = $this->getServiceContainer()->getRevisionStore();
+		$rev = $revStore->getRevisionByTitle( $oldTitle, 0, IDBAccessObject::READ_LATEST );
+		if ( !$rev ) {
+			return false;
+		}
+		$content = $rev->getContent( SlotRecord::MAIN );
+		if ( !$content ) {
+			return false;
+		}
+		$target = $content->getRedirectTarget();
+		return $target && $target->equals( $newTitle );
+	}
+
+	private function deletePage( Title $pageToDelete, string $reason ): Status {
+		$services = $this->getServiceContainer();
+		$page = $services->getWikiPageFactory()->newFromTitle( $pageToDelete );
+		$user = User::newSystemUser( "Maintenance script" );
+		$deletePage = $services->getDeletePageFactory()->newDeletePage( $page, $user );
+		return $deletePage->deleteUnsafe( $reason );
+	}
+
 	/**
 	 * Check a given prefix and try to move it into the given destination namespace
 	 *
@@ -276,6 +303,9 @@ class NamespaceDupes extends Maintenance {
 			$newTitle = $this->getDestinationTitle(
 				$ns, $name, $row->page_namespace, $row->page_title );
 			$logStatus = false;
+			// $oldTitle is not a valid title by definition but the methods I use here
+			// shouldn't care
+			$oldTitle = Title::makeTitle( $row->page_namespace, $row->page_title );
 			if ( !$newTitle ) {
 				if ( $options['add-prefix'] == '' && $options['add-suffix'] == '' ) {
 					$logStatus = 'invalid title and --add-prefix not specified';
@@ -284,7 +314,12 @@ class NamespaceDupes extends Maintenance {
 					$action = 'alternate';
 				}
 			} elseif ( $newTitle->exists( IDBAccessObject::READ_LATEST ) ) {
-				if ( $options['merge'] ) {
+				if ( $this->isSingleRevRedirectTo( $newTitle, $newTitle ) ) {
+					// Conceptually this is the new title redirecting to the old title
+					// except that the redirect target is parsed as wikitext so is actually
+					// appears to redirect to itself
+					$action = 'delete-new';
+				} elseif ( $options['merge'] ) {
 					if ( $this->canMerge( $row->page_id, $newTitle, $logStatus ) ) {
 						$action = 'merge';
 					} else {
@@ -303,16 +338,20 @@ class NamespaceDupes extends Maintenance {
 			if ( $action === 'alternate' ) {
 				[ $ns, $dbk ] = $this->getDestination( $ns, $name, $row->page_namespace,
 					$row->page_title );
-				$newTitle = $this->getAlternateTitle( $ns, $dbk, $options );
-				if ( !$newTitle ) {
+				$altTitle = $this->getAlternateTitle( $ns, $dbk, $options );
+				if ( !$altTitle ) {
 					$action = 'abort';
 					$logStatus = 'alternate title is invalid';
-				} elseif ( $newTitle->exists() ) {
+				} elseif ( $altTitle->exists() ) {
 					$action = 'abort';
 					$logStatus = 'alternate title conflicts';
+				} elseif ( $this->isSingleRevRedirectTo( $oldTitle, $newTitle ) ) {
+					$action = 'delete-old';
+					$newTitle = $altTitle;
 				} else {
 					$action = 'move';
 					$logStatus = 'alternate';
+					$newTitle = $altTitle;
 				}
 			}
 
@@ -322,6 +361,37 @@ class NamespaceDupes extends Maintenance {
 			$pageOK = true;
 
 			switch ( $action ) {
+				case 'delete-old':
+					$this->output( "$logTitle move to " . $newTitle->getPrefixedDBKey() .
+						" then delete as single-revision redirect to new home$dryRunNote\n" );
+					if ( $options['fix'] ) {
+						// First move the page so the delete command gets a valid title
+						$pageOK = $this->movePage( $row->page_id, $newTitle );
+						if ( $pageOK ) {
+							$status = $this->deletePage(
+								$newTitle,
+								"Non-normalized title already redirects to new form"
+							);
+							if ( !$status->isOK() ) {
+								$this->error( $status );
+								$pageOK = false;
+							}
+						}
+					}
+					break;
+				case "delete-new":
+					$this->output( "$logTitle -> " .
+					$newTitle->getPrefixedDBkey() . " delete existing page $dryRunNote\n" );
+					if ( $options['fix'] ) {
+						$status = $this->deletePage( $newTitle, "Delete circular redirect to make way for move" );
+						$pageOK = $status->isOK();
+						if ( $pageOK ) {
+							$pageOK = $this->movePage( $row->page_id, $newTitle );
+						} else {
+							$this->error( $status );
+						}
+					}
+					break;
 				case 'abort':
 					$this->output( "$logTitle *** $logStatus\n" );
 					$pageOK = false;
