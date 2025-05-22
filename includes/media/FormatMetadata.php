@@ -1416,6 +1416,7 @@ class FormatMetadata extends ContextSource {
 	 */
 	private function formatFraction( $num ) {
 		$m = [];
+		$num ??= '';
 		if ( preg_match( '/^(-?\d+)\/(\d+)$/', $num, $m ) ) {
 			$numerator = intval( $m[1] );
 			$denominator = intval( $m[2] );
