@@ -605,11 +605,11 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 				'title' => new TitleValue( NS_USER, 'Test' ),
 				'expectedFullText' => 'User:Test'
 			],
-			'PageIdentity object' => [
+			'PageIdentityValue object' => [
 				'title' => new PageIdentityValue( 0, NS_MAIN, 'Test', PageIdentityValue::LOCAL ),
 				'expectedFullText' => 'Test'
 			],
-			'PageIdentity object with namespace' => [
+			'PageIdentityValue object with namespace' => [
 				'title' => new PageIdentityValue( 0, NS_USER, 'Test', PageIdentityValue::LOCAL ),
 				'expectedFullText' => 'User:Test'
 			],
@@ -627,5 +627,10 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 			$this->assertSame( $expectedFullText, $array[ 'title' ]->getFullText(),
 				$testName . ': should return the correct full text' );
 		}
+	}
+
+	public function testInsertPageException() {
+		$this->expectException( InvalidArgumentException::class );
+		$this->insertPage( new stdClass() );
 	}
 }
