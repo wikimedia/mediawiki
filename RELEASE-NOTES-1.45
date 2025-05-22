@@ -119,6 +119,8 @@ because of Phabricator reports.
   'copyright-footer-history', and the hook 'SkinCopyrightFooterMessage'.
 * The SiteConfiguration::extractGlobalSetting method, not used outside of
   SiteConfiguration class, is now private.
+* RL\Module::getDeprecationInformation() deprecated in 1.41, now unused, has
+  been removed.
 * AuthManager::forcePrimaryAuthenticationProviders(), deprecated in 1.43 has
   been removed.
 * The following LogPager methods are deprecated without replacement:
