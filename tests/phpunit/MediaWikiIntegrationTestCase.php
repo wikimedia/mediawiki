@@ -2444,42 +2444,39 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 *
 	 * @return int The ID of the wikitext Namespace
 	 */
-	protected function getDefaultWikitextNS() {
-		global $wgNamespaceContentModels;
-
+	protected function getDefaultWikitextNS(): int {
 		static $wikitextNS = null; // this is not going to change
 		if ( $wikitextNS !== null ) {
 			return $wikitextNS;
 		}
 
 		// quickly short out on the most common case:
-		if ( !isset( $wgNamespaceContentModels[NS_MAIN] ) ) {
-			return NS_MAIN;
+		if ( $this->isWikitextNS( NS_MAIN ) ) {
+			$wikitextNS = NS_MAIN;
+			return $wikitextNS;
 		}
 
 		// NOTE: prefer content namespaces
 		$nsInfo = MediaWikiServices::getInstance()->getNamespaceInfo();
-		$namespaces = array_unique( array_merge(
-			$nsInfo->getContentNamespaces(),
-			[ NS_MAIN, NS_HELP, NS_PROJECT ], // prefer these
-			$nsInfo->getValidNamespaces()
-		) );
-
-		$namespaces = array_diff( $namespaces, [
-			NS_FILE, NS_CATEGORY, NS_MEDIAWIKI, NS_USER // don't mess with magic namespaces
+		$namespaces = array_unique( [
+			...$nsInfo->getContentNamespaces(),
+			// prefer these
+			NS_HELP,
+			NS_PROJECT,
+			// prefer non-talk pages
+			...array_filter( $nsInfo->getValidNamespaces(), static fn ( $i ) => !$nsInfo->isTalk( $i ) ),
+			...$nsInfo->getValidNamespaces(),
 		] );
-
-		$talk = array_filter( $namespaces, static function ( $ns ) use ( $nsInfo ) {
-			return $nsInfo->isTalk( $ns );
-		} );
-
-		// prefer non-talk pages
-		$namespaces = array_diff( $namespaces, $talk );
-		$namespaces = array_merge( $namespaces, $talk );
 
 		// check the default content model of each namespace
 		foreach ( $namespaces as $ns ) {
-			if ( $this->isWikitextNS( $ns ) ) {
+			// don't mess with magic namespaces
+			if ( $ns !== NS_USER &&
+				$ns !== NS_FILE &&
+				$ns !== NS_MEDIAWIKI &&
+				$ns !== NS_CATEGORY &&
+				$this->isWikitextNS( $ns )
+			) {
 				$wikitextNS = $ns;
 				return $wikitextNS;
 			}
