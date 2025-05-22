@@ -123,6 +123,7 @@ final class SessionBackend {
 
 	/** @var int */
 	private $delaySave = 0;
+	private bool $hasDelayedSave = false;
 
 	/** @var bool */
 	private $usePhpSessionHandling;
@@ -663,7 +664,10 @@ final class SessionBackend {
 		return new \Wikimedia\ScopedCallback( function () {
 			if ( --$this->delaySave <= 0 ) {
 				$this->delaySave = 0;
-				$this->save();
+				if ( $this->hasDelayedSave ) {
+					$this->hasDelayedSave = false;
+					$this->save();
+				}
 			}
 		} );
 	}
@@ -675,6 +679,8 @@ final class SessionBackend {
 	private function autosave() {
 		if ( $this->delaySave <= 0 ) {
 			$this->save();
+		} else {
+			$this->hasDelayedSave = true;
 		}
 	}
 

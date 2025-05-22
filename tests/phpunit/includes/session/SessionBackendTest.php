@@ -498,13 +498,13 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 
 		$delay = $backend->delaySave();
 
-		// Autosave doesn't happen when no delay is in effect
+		// Autosave doesn't happen when delay is in effect
 		$this->onSessionMetadataCalled = false;
 		$priv->metaDirty = true;
 		$priv->autosave();
 		$this->assertFalse( $this->onSessionMetadataCalled );
 
-		// Save still does happen when no delay is in effect
+		// Save still does happen when delay is in effect
 		$priv->save();
 		$this->assertTrue( $this->onSessionMetadataCalled );
 
@@ -513,6 +513,14 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		$priv->metaDirty = true;
 		ScopedCallback::consume( $delay );
 		$this->assertTrue( $this->onSessionMetadataCalled );
+
+		// No save happens when there was no autosave during the delay
+		$delay = $backend->delaySave();
+		$this->onSessionMetadataCalled = false;
+		$priv->metaDirty = true;
+		ScopedCallback::consume( $delay );
+		$this->assertFalse( $this->onSessionMetadataCalled );
+		$priv->metaDirty = false;
 
 		// Test multiple delays
 		$delay1 = $backend->delaySave();
