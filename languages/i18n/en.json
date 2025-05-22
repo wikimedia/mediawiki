@@ -600,6 +600,7 @@
 	"selfredirect": "<strong>Warning:</strong> You are redirecting this page to itself.\nYou may have specified the wrong target for the redirect, or you may be editing the wrong page.\nIf you click \"$1\" again, the redirect will be created anyway.",
 	"edit-constraint-brokenredirect": "<strong>Warning:</strong> You are redirecting this page to a page which does not exist.\nYou may have specified the wrong target for the redirect.\nIf you click \"$1\" again, the redirect will be created anyway.",
 	"edit-constraint-doubleredirect": "<strong>Warning:</strong> You are trying to redirect this page to a second redirect page, creating a double redirect.\nYour target page currently redirects to [[$2]].\n\nPlease consider revising the content of this redirect as follows:\n$3\n\nNote: If you click \"$1\" again, the double redirect will be created anyway.",
+	"edit-constraint-doubleredirect-loop": "<strong>Warning:</strong> You are trying to redirect this page to a redirect back to itself, thus creating a non-functioning redirect loop. Please reconsider what you are doing. If you click \"$1\" again, the redirect will be created anyway.",
 	"missingcommenttext": "Please enter a comment.",
 	"missingcommentheader": "<strong>Reminder:</strong> You have not provided a subject for this comment.\nIf you click \"$1\" again, your edit will be published without one.",
 	"summary-preview": "Preview of edit summary:",

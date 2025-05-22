@@ -41,6 +41,8 @@ class DoubleRedirectConstraint implements IEditConstraint {
 	private Content $originalContent;
 	private LinkTarget $title;
 	private string $result;
+	public bool $willCreateSelfRedirect;
+	private ?LinkTarget $doubleRedirectTarget;
 	private RedirectLookup $redirectLookup;
 
 	/**
@@ -48,6 +50,7 @@ class DoubleRedirectConstraint implements IEditConstraint {
 	 * @param Content $newContent
 	 * @param Content $originalContent
 	 * @param LinkTarget $title
+	 * @param RedirectLookup $redirectLookup
 	 */
 	public function __construct(
 		bool $allowDoubleRedirects,
@@ -75,6 +78,11 @@ class DoubleRedirectConstraint implements IEditConstraint {
 				// fail if there was no previous content or the previous content already contained a double redirect
 				if ( !$currentTarget || !$currentTarget->isRedirect() ) {
 					$this->result = self::CONSTRAINT_FAILED;
+					$this->doubleRedirectTarget =
+						$this->redirectLookup->getRedirectTarget( $this->newContent->getRedirectTarget() );
+					$this->willCreateSelfRedirect =
+						$this->doubleRedirectTarget != null &&
+						$this->doubleRedirectTarget->isSameLinkAs( $this->title );
 
 					return self::CONSTRAINT_FAILED;
 				}
