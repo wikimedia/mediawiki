@@ -39,7 +39,6 @@ use MediaWiki\Exception\PermissionsError;
 use MediaWiki\Exception\ReadOnlyError;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
-use MediaWiki\Language\RawMessage;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
@@ -526,7 +525,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	 * Show the success page.
 	 *
 	 * @param string $type Condition of return to; see `executeReturnTo`
-	 * @param string|Message $title Page's title
+	 * @param Message $title Page's title
 	 * @param string $msgname
 	 * @param string $injected_html
 	 * @param StatusValue|null $extraMessages
@@ -535,10 +534,6 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		$type, $title, $msgname, $injected_html, $extraMessages
 	) {
 		$out = $this->getOutput();
-		if ( is_string( $title ) ) {
-			wfDeprecated( __METHOD__ . ' with string title', '1.41' ); // T343849
-			$title = ( new RawMessage( '$1' ) )->rawParams( $title );
-		}
 		$out->setPageTitleMsg( $title );
 		if ( $msgname ) {
 			$out->addWikiMsg( $msgname, wfEscapeWikiText( $this->getUser()->getName() ) );

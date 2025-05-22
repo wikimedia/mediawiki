@@ -894,11 +894,10 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		// HTML escaped before becoming the <title> element.
 		$this->assertSame( $this->getMsgText( $op, 'pagetitle', 'nope:<span></span> yes:!' ), $op->getHTMLTitle() );
 
-		// deprecated ::setPageTitle(Message), doesn't escape either
-		// the localized message or the plaintext parameters
-		$this->filterDeprecated( '/OutputPage::setPageTitle with Message argument/' );
+		// disallowed ::setPageTitle(Message)
+		$this->expectException( Wikimedia\Assert\ParameterTypeException::class );
+		$this->expectExceptionMessage( '$name' );
 		$op->setPageTitle( $msg );
-		$this->assertSame( "nope:<span></span> yes:<span>!</span>", $op->getPageTitle() );
 	}
 
 	public function testSetTitle() {

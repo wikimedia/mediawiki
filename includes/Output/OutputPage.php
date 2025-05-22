@@ -1164,19 +1164,15 @@ class OutputPage extends ContextSource {
 	 * tags that were escaped in \<h1\> will still be escaped in \<title\>, and
 	 * good tags like \<i\> will be dropped entirely.
 	 *
-	 * @param string|Message $name The page title, either as HTML string or
-	 *   as a message which will be formatted with FORMAT_TEXT to yield HTML.
-	 *   Passing a Message is deprecated, since 1.41; please use
-	 *   ::setPageTitleMsg() for that case instead.
-	 * @param-taint $name tainted
-	 * Phan-taint-check gets very confused by $name being either a string or a Message
+	 * Since 1.45, passing a Message to this method is no longer allowed.
+	 *
+	 * @param string $name The page title, as HTML string.
+	 *   To set the page title from a localisation message, use ::setPageTitleMsg().
 	 */
 	public function setPageTitle( $name ) {
-		if ( $name instanceof Message ) {
-			// T343994: use ::setPageTitleMsg() instead (which uses ::escaped())
-			wfDeprecated( __METHOD__ . ' with Message argument', '1.41' );
-			$name = $name->setContext( $this->getContext() )->text();
-		}
+		// This is a stronger check than a `string $name` type hint, which automatically stringifies
+		// stringable objects such as Message when not using strict_types, and we don't want that.
+		Assert::parameterType( 'string', $name, '$name' );
 		$this->setPageTitleInternal( $name );
 	}
 
