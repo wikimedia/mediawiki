@@ -1,25 +1,102 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`App renders a typeahead search component 1`] = `
-<cdx-typeahead-search-stub
-  accesskey="f"
-  aria-label="Search MediaWiki"
-  autoexpandwidth="false"
-  buttonlabel="searchbutton"
-  class="vector-typeahead-search"
-  debounceinterval="120"
-  formaction=""
-  highlightquery="true"
-  id="searchform"
-  initialinputvalue=""
-  placeholder="Search MediaWiki"
-  search-results-label="searchresults"
-  searchfooterurl=""
-  searchresults=""
-  show-empty-query-results="false"
-  showthumbnail="true"
-  title="search"
-  usebutton="true"
-  visibleitemlimit="7"
-/>
+<div
+  class="cdx-typeahead-search cdx-typeahead-search--show-thumbnail vector-typeahead-search"
+>
+  <form
+    action=""
+    class="cdx-typeahead-search__form"
+    id="searchform"
+  >
+    <div
+      class="cdx-search-input cdx-search-input--has-end-button cdx-typeahead-search__input"
+    >
+      <div
+        class="cdx-search-input__input-wrapper"
+      >
+        <div
+          class="cdx-text-input cdx-text-input--has-start-icon cdx-text-input--status-default cdx-search-input__text-input"
+        >
+          <input
+            accesskey="f"
+            aria-autocomplete="list"
+            aria-controls="v-0"
+            aria-expanded="false"
+            aria-label="Search MediaWiki"
+            autocomplete="off"
+            class="cdx-text-input__input"
+            name="search"
+            placeholder="Search MediaWiki"
+            role="combobox"
+            search-results-label="searchresults"
+            show-empty-query-results="false"
+            size="1"
+            title="search"
+            type="search"
+          />
+          <span
+            class="cdx-icon cdx-icon--medium cdx-text-input__icon-vue cdx-text-input__start-icon"
+          >
+            <svg
+              aria-hidden="true"
+              height="20"
+              viewBox="0 0 20 20"
+              width="20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <!--v-if-->
+              <g>
+                <path
+                  d="M12.2 13.6a7 7 0 111.4-1.4l5.4 5.4-1.4 1.4zM3 8a5 5 0 1010 0A5 5 0 003 8"
+                />
+              </g>
+            </svg>
+          </span>
+          <!--v-if-->
+          <!--v-if-->
+        </div>
+        
+        <div
+          class="cdx-menu cdx-typeahead-search__menu"
+          style="display: none;"
+        >
+          <ul
+            aria-label="Search results"
+            class="cdx-menu__listbox"
+            id="v-0"
+            role="listbox"
+            tabindex="-1"
+          >
+            <!--v-if-->
+            <!--v-if-->
+            
+            
+            <!--v-if-->
+          </ul>
+        </div>
+        
+      </div>
+      <button
+        class="cdx-button cdx-button--action-default cdx-button--weight-normal cdx-button--size-medium cdx-button--framed cdx-search-input__end-button"
+      >
+        
+        searchbutton
+        
+      </button>
+    </div>
+    
+    <input
+      name="title"
+      type="hidden"
+      value="Special:Search"
+    />
+    <input
+      name="wprov"
+      type="hidden"
+      value="acrw1_-1"
+    />
+    
+  </form>
+</div>
 `;

@@ -21,7 +21,7 @@ const defaultProps = {
 	searchQuery: ''
 };
 
-const mount = ( /** @type {Object} */ customProps ) => VueTestUtils.shallowMount( App, {
+const mount = ( /** @type {Object} */ customProps ) => VueTestUtils.mount( App, {
 	props: Object.assign( {}, defaultProps, customProps ),
 	global: {
 		mocks: {
