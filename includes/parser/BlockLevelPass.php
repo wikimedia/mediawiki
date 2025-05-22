@@ -27,7 +27,7 @@
 namespace MediaWiki\Parser;
 
 use LogicException;
-use Wikimedia\Parsoid\Utils\Utils;
+use Wikimedia\RemexHtml\HTMLData;
 use Wikimedia\StringUtils\StringUtils;
 
 class BlockLevelPass {
@@ -540,7 +540,7 @@ class BlockLevelPass {
 							$captureName = false;
 							break;
 						case ">":
-							if ( !Utils::isVoidElement( strtolower( $tagName ) ) ) {
+							if ( !isset( HTMLData::TAGS['void'][strtolower( $tagName )] ) ) {
 								$ltLevel++;
 							}
 							$state = self::COLON_STATE_TEXT;
