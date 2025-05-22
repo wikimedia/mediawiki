@@ -28,7 +28,7 @@
 	"rest-property-desc-revision-id": "Versiouns-ID",
 	"rest-property-desc-page-language-code": "Sproochcode",
 	"rest-property-desc-page-timestamp-html": "Zäitstempel vun der leschter Versioun am ISO-8601-Format",
-	"rest-schema-desc-revision-metadata": "Revisiounsmetadonnéeën",
+	"rest-schema-desc-revision-metadata": "Metadonnéeë vun der Versioun",
 	"rest-schema-desc-bare-page": "Säit ouni Inhalt",
 	"rest-schema-desc-media-file": "Informatiounen iwwer de Fichier",
 	"rest-schema-desc-search-results": "Sichresultater"
