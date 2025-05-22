@@ -32,7 +32,6 @@ use MediaWiki\Exception\UserNotLoggedIn;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Language\Language;
-use MediaWiki\Language\RawMessage;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
@@ -701,13 +700,7 @@ class SpecialPage implements MessageLocalizer {
 		$out = $this->getOutput();
 		$out->setArticleRelated( false );
 		$out->setRobotPolicy( $this->getRobotPolicy() );
-		$title = $this->getDescription();
-		// T343849
-		if ( is_string( $title ) ) {
-			wfDeprecated( "string return from {$this->getName()}::getDescription()", '1.41' );
-			$title = ( new RawMessage( '$1' ) )->rawParams( $title );
-		}
-		$out->setPageTitleMsg( $title );
+		$out->setPageTitleMsg( $this->getDescription() );
 	}
 
 	/**
@@ -810,11 +803,11 @@ class SpecialPage implements MessageLocalizer {
 	 * Derived classes can override this, but usually it is easier to keep the
 	 * default behavior.
 	 *
-	 * Returning a string from this method has been deprecated since 1.41.
+	 * Since 1.45, returning a string from this method is no longer allowed.
 	 *
 	 * @stable to override
 	 *
-	 * @return string|Message
+	 * @return Message
 	 */
 	public function getDescription() {
 		return $this->msg( strtolower( $this->mName ) );

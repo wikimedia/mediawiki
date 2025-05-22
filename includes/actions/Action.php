@@ -420,13 +420,7 @@ abstract class Action implements MessageLocalizer {
 	protected function setHeaders() {
 		$out = $this->getOutput();
 		$out->setRobotPolicy( 'noindex,nofollow' );
-		$title = $this->getPageTitle();
-		if ( is_string( $title ) ) {
-			// T343849: deprecated
-			wfDeprecated( 'string return from Action::getPageTitle()', '1.41' );
-			$title = ( new RawMessage( '$1' ) )->rawParams( $title );
-		}
-		$out->setPageTitleMsg( $title );
+		$out->setPageTitleMsg( $this->getPageTitle() );
 		$out->setSubtitle( $this->getDescription() );
 		$out->setArticleRelated( true );
 	}
@@ -434,10 +428,10 @@ abstract class Action implements MessageLocalizer {
 	/**
 	 * Returns the name that goes in the `<h1>` page title.
 	 *
-	 * Since 1.41, returning a string from this method has been deprecated.
+	 * Since 1.45, returning a string from this method is no longer allowed.
 	 *
 	 * @stable to override
-	 * @return string|Message
+	 * @return Message
 	 */
 	protected function getPageTitle() {
 		return ( new RawMessage( '$1' ) )->plaintextParams( $this->getTitle()->getPrefixedText() );

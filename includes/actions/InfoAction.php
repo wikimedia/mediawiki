@@ -997,7 +997,7 @@ class InfoAction extends FormlessAction {
 	/**
 	 * Returns the name that goes in the "<h1>" page title.
 	 *
-	 * @return string
+	 * @return Message
 	 */
 	protected function getPageTitle() {
 		return $this->msg( 'pageinfo-title' )->plaintextParams( $this->getTitle()->getPrefixedText() );

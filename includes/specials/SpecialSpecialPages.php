@@ -21,7 +21,6 @@
 namespace MediaWiki\Specials;
 
 use MediaWiki\Html\Html;
-use MediaWiki\Language\RawMessage;
 use MediaWiki\SpecialPage\UnlistedSpecialPage;
 use MediaWiki\Title\Title;
 use OOUI\FieldLayout;
@@ -69,11 +68,6 @@ class SpecialSpecialPages extends UnlistedSpecialPage {
 		foreach ( $pages as $page ) {
 			$group = $page->getFinalGroupName();
 			$desc = $page->getDescription();
-			// T343849
-			if ( is_string( $desc ) ) {
-				wfDeprecated( "string return from {$page->getName()}::getDescription()", '1.41' );
-				$desc = ( new RawMessage( '$1' ) )->rawParams( $desc );
-			}
 			// (T360723) Only show an entry if the message isn't blanked, to allow on-wiki unlisting
 			if ( !$desc->isDisabled() ) {
 				$specialPages[$desc->text()] = [

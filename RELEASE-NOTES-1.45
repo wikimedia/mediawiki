@@ -137,6 +137,8 @@ because of Phabricator reports.
   'SkinCopyrightFooter', and the config option $wgAllowRawHtmlCopyrightMessages
   have all been removed. Instead use the messages 'copyright-footer' and
   'copyright-footer-history', and the hook 'SkinCopyrightFooterMessage'.
+* (T343849) Subclasses that override SpecialPage::getDescription() or
+  Action::getPageTitle() must return a Message object rather than a string.
 * The SiteConfiguration::extractGlobalSetting method, not used outside of
   SiteConfiguration class, is now private.
 * RL\Module::getDeprecationInformation() deprecated in 1.41, now unused, has
