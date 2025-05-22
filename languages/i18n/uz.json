@@ -21,7 +21,8 @@
 			"Zafar Shamsiddinov",
 			"Таржимон",
 			"Шоҳидахоним",
-			"ديفيد"
+			"ديفيد",
+			"Mainculprit"
 		]
 	},
 	"tog-underline": "Havolaning tagiga chizish:",
@@ -297,6 +298,7 @@
 	"nospecialpagetext": "<strong>Siz yaroqsiz maxsus sahifani so‘radingiz.</strong> \n\nYaroqli maxsus sahifalar roʻyxatini [[Special:SpecialPages|{{int:specialpages}}]] sahifasida topish mumkin.",
 	"error": "Xato",
 	"databaseerror": "Maʼlumotlar bazasida xatolik",
+	"databaseerror-textcl": "Ma'lumotlar bazasi so'rovida xatolik yuz berdi.",
 	"databaseerror-query": "So‘rov: $1",
 	"databaseerror-function": "Funktsiya: $1",
 	"databaseerror-error": "Xato: $1",

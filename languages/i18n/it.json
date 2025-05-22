@@ -404,6 +404,7 @@
 	"hidetoc": "nascondi",
 	"collapsible-collapse": "Comprimi",
 	"collapsible-collapse-all-text": "Comprimi tutto",
+	"collapsible-collapse-all-tooltip": "Comprimi tutti gli elementi comprimibili nella pagina corrente",
 	"collapsible-expand": "Espandi",
 	"collapsible-expand-all-text": "Espandi tutto",
 	"collapsible-expand-all-tooltip": "Espandi tutti gli elementi comprimibili nella pagina corrente",
