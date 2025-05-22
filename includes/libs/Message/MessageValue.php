@@ -21,10 +21,10 @@ use Wikimedia\JsonCodec\JsonCodecableTrait;
 class MessageValue implements MessageSpecifier, JsonCodecable {
 	use JsonCodecableTrait;
 
-	private string $key;
+	private readonly string $key;
 
 	/** @var list<MessageParam> */
-	private array $params;
+	private array $params = [];
 
 	/**
 	 * @stable to call
@@ -35,9 +35,7 @@ class MessageValue implements MessageSpecifier, JsonCodecable {
 	 */
 	public function __construct( string $key, array $params = [] ) {
 		$this->key = $key;
-		$this->params = [];
 		$this->params( ...$params );
-		// @phan-suppress-next-line PhanRedundantCondition phan doesn't see side-effects on $this->params
 		Assert::invariant( array_is_list( $this->params ), "should be list" );
 	}
 
