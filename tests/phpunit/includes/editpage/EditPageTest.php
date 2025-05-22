@@ -13,10 +13,12 @@ use MediaWiki\Page\Article;
 use MediaWiki\Page\WikiPage;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Status\Status;
 use MediaWiki\Storage\EditResult;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\Title;
+use MediaWiki\User\StaticUserOptionsLookup;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\Utils\MWTimestamp;
@@ -964,71 +966,190 @@ hello
 	/**
 	 * The watchlist expiry field should select the entered value on preview, rather than the
 	 * calculated number of days till the expiry (as it shows on edit).
+	 *
+	 * @param bool $pageExists
+	 * @param string $userPrefExpiry User-preferred default expiry.
+	 * @param string $existingExpiry Existing expiry value to set on the page before page load.
+	 * @param string $postedExpiry Expiry posted on preview submission.
+	 * @param string $expectedSelection Expiry that should be selected by default after preview.
+	 * @param array $expectedOptions List of values that should be in the expiry dropdown.
 	 * @covers \MediaWiki\EditPage\EditPage::getCheckboxesDefinition()
+	 * @covers WatchAction::getExpiryOptions()
 	 * @dataProvider provideWatchlistExpiry
 	 */
-	public function testWatchlistExpiry( $existingExpiry, $postVal, $selected, $options ) {
+	public function testWatchlistExpiry(
+		bool $pageExists, string $userPrefExpiry, string $existingExpiry,
+		string $postedExpiry, string $expectedSelection, array $expectedOptions
+	): void {
 		// Set up config and fake current time.
 		$this->overrideConfigValue( MainConfigNames::WatchlistExpiry, true );
 		MWTimestamp::setFakeTime( '20200505120000' );
 		$user = $this->getTestUser()->getUser();
 		$this->assertTrue( $user->isRegistered() );
 
+		$mockUserOptionsLookup = new StaticUserOptionsLookup( [
+			$user->getName() => [
+				( $pageExists ? 'watchdefault-expiry' : 'watchcreations-expiry' ) => $userPrefExpiry,
+			],
+		] );
+		$this->setService( 'UserOptionsLookup', $mockUserOptionsLookup );
+
+		// If the page is to exist, create it and set existing watch settings.
+		$title = Title::newFromText( __METHOD__ . ( $pageExists ? '.existing' : '.new' ) );
+		if ( $pageExists ) {
+			$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
+			$updater = $page->newPageUpdater( $this->getTestUser()->getUser() );
+			$updater->setContent( SlotRecord::MAIN, new WikitextContent( 'inserting content' ) );
+			$updater->saveRevision( CommentStoreComment::newUnsavedComment( '' ) );
+			$this->getServiceContainer()->getWatchlistManager()
+				->setWatch( (bool)$existingExpiry, $user, $title, $existingExpiry );
+		}
+
 		// Create the EditPage.
-		$title = Title::newFromText( __METHOD__ );
 		$context = new RequestContext();
 		$context->setUser( $user );
 		$context->setTitle( $title );
 		$article = new Article( $title );
 		$article->setContext( $context );
 		$ep = new EditPage( $article );
-		$this->getServiceContainer()->getWatchlistManager()
-			->setWatch( (bool)$existingExpiry, $user, $title, $existingExpiry );
 
 		// Send the request.
 		$req = new FauxRequest( [], true );
 		$context->setRequest( $req );
 		$req->getSession()->setUser( $user );
 		$ep->importFormData( $req );
-		$def = $ep->getCheckboxesDefinition( [ 'watch' => true, 'wpWatchlistExpiry' => $postVal ] )['wpWatchlistExpiry'];
+		$def = $ep->getCheckboxesDefinition( [
+			'watch' => true,
+			'wpWatchlistExpiry' => $postedExpiry,
+			'minor' => false,
+		] )['wpWatchlistExpiry'];
 
 		// Test selected and available options.
-		$this->assertSame( $selected, $def['default'] );
+		$this->assertSame( $expectedSelection, $def['default'] );
 		$dropdownOptions = [];
 		foreach ( $def['options'] as $option ) {
 			// Reformat dropdown options for easier test comparison.
 			$dropdownOptions[] = $option['data'];
 		}
-		$this->assertSame( $options, $dropdownOptions );
+		$this->assertSame( $expectedOptions, $dropdownOptions );
 	}
 
-	public static function provideWatchlistExpiry() {
+	public function provideWatchlistExpiry(): array {
 		$standardOptions = [ 'infinite', '1 week', '1 month', '3 months', '6 months', '1 year' ];
 		return [
-			'not watched, request nothing' => [
+			'preference infinite, nonexistent page, request nothing' => [
+				'pageExists' => false,
+				'userPrefExpiry' => 'infinite',
 				'existingExpiry' => '',
-				'postVal' => '',
-				'selected' => 'infinite',
-				'options' => $standardOptions,
+				'postedExpiry' => '',
+				'expectedSelection' => 'infinite',
+				'expectedOptions' => $standardOptions,
 			],
-			'not watched' => [
+			'preference infinite, nonexistent page, request 1 month' => [
+				'pageExists' => false,
+				'userPrefExpiry' => 'infinite',
 				'existingExpiry' => '',
-				'postVal' => '1 month',
-				'result' => '1 month',
-				'options' => $standardOptions,
+				'postedExpiry' => '1 month',
+				'expectedSelection' => '1 month',
+				'expectedOptions' => $standardOptions,
+			],
+			'preference infinite, not watched, request nothing' => [
+				'pageExists' => true,
+				'userPrefExpiry' => 'infinite',
+				'existingExpiry' => '',
+				'postedExpiry' => '',
+				'expectedSelection' => 'infinite',
+				'expectedOptions' => $standardOptions,
+			],
+			'preference infinite, not watched, request 1 month' => [
+				'pageExists' => true,
+				'userPrefExpiry' => 'infinite',
+				'existingExpiry' => '',
+				'postedExpiry' => '1 month',
+				'expectedSelection' => '1 month',
+				'expectedOptions' => $standardOptions,
+			],
+			'preference 1 week, nonexistent page, request nothing' => [
+				'pageExists' => false,
+				'userPrefExpiry' => '1 week',
+				'existingExpiry' => '',
+				'postedExpiry' => '',
+				'expectedSelection' => '1 week',
+				'expectedOptions' => $standardOptions,
+			],
+			'preference 1 week, nonexistent page, request 1 month' => [
+				'pageExists' => false,
+				'userPrefExpiry' => '1 week',
+				'existingExpiry' => '',
+				'postedExpiry' => '1 month',
+				'expectedSelection' => '1 month',
+				'expectedOptions' => $standardOptions,
+			],
+			'preference 1 week, not watched, request nothing' => [
+				'pageExists' => true,
+				'userPrefExpiry' => '1 week',
+				'existingExpiry' => '',
+				'postedExpiry' => '',
+				'expectedSelection' => '1 week',
+				'expectedOptions' => $standardOptions,
+			],
+			'preference 1 week, not watched, request 1 month' => [
+				'pageExists' => true,
+				'userPrefExpiry' => '1 week',
+				'existingExpiry' => '',
+				'postedExpiry' => '1 month',
+				'expectedSelection' => '1 month',
+				'expectedOptions' => $standardOptions,
 			],
 			'watched with current selected' => [
-				'existingExpiry' => '2020-05-05T12:00:01Z',
-				'postVal' => '2020-05-05T12:00:01Z',
-				'result' => '2020-05-05T12:00:01Z',
-				'options' => array_merge( [ '2020-05-05T12:00:01Z' ], $standardOptions ),
+				'pageExists' => true,
+				'userPrefExpiry' => '1 week',
+				'existingExpiry' => '2020-06-05T12:00:01Z',
+				'postedExpiry' => '2020-06-05T12:00:01Z',
+				'expectedSelection' => '2020-06-05T12:00:01Z',
+				'expectedOptions' => [ '2020-06-05T12:00:01Z', ...$standardOptions ],
 			],
 			'watched with 1 week selected' => [
-				'existingExpiry' => '2020-05-05T12:00:02Z',
-				'postVal' => '1 week',
-				'result' => '1 week',
-				'options' => array_merge( [ '2020-05-05T12:00:02Z' ], $standardOptions ),
+				'pageExists' => true,
+				'userPrefExpiry' => '1 week',
+				'existingExpiry' => '2020-06-05T12:00:02Z',
+				'postedExpiry' => '1 week',
+				'expectedSelection' => '1 week',
+				'expectedOptions' => [ '2020-06-05T12:00:02Z', ...$standardOptions ],
 			],
+			'watched with nothing selected' => [
+				'pageExists' => true,
+				'userPrefExpiry' => '1 week',
+				'existingExpiry' => '2020-06-05T12:00:03Z',
+				'postedExpiry' => '',
+				'expectedSelection' => '2020-06-05T12:00:03Z',
+				'expectedOptions' => [ '2020-06-05T12:00:03Z', ...$standardOptions ],
+			],
+			// Only non-infinite expiry prefs should have precedence over the existing expiry.
+			'watched with preference infinite, nothing selected' => [
+				'pageExists' => true,
+				'userPrefExpiry' => 'infinite',
+				'existingExpiry' => '2020-05-05T12:00:04Z',
+				'postedExpiry' => '',
+				'expectedSelection' => '2020-05-05T12:00:04Z',
+				'expectedOptions' => [ '2020-05-05T12:00:04Z', ...$standardOptions ],
+			],
+			'watched with preference longer than existing expiry, nothing selected' => [
+				'pageExists' => true,
+				'userPrefExpiry' => '1 year',
+				'existingExpiry' => '2020-05-05T12:00:05Z',
+				'postedExpiry' => '',
+				'expectedSelection' => '2020-05-05T12:00:05Z',
+				'expectedOptions' => [ '2020-05-05T12:00:05Z', ...$standardOptions ],
+			],
+			'watched with preference longer than existing expiry, with current selected' => [
+				'pageExists' => true,
+				'userPrefExpiry' => '1 week',
+				'existingExpiry' => '2020-05-05T12:00:06Z',
+				'postedExpiry' => '2020-05-05T12:00:06Z',
+				'expectedSelection' => '2020-05-05T12:00:06Z',
+				'expectedOptions' => [ '2020-05-05T12:00:06Z', ...$standardOptions ],
+			]
 		];
 	}
 

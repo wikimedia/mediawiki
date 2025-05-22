@@ -109,7 +109,7 @@ class ApiRollback extends ApiBase {
 		}
 
 		$watch = $params['watchlist'] ?? 'preferences';
-		$watchlistExpiry = $this->getExpiryFromParams( $params );
+		$watchlistExpiry = $this->getExpiryFromParams( $params, $user, 'watchrollback-expiry' );
 
 		// Watch pages
 		$this->setWatch( $watch, $titleObj, $user, 'watchrollback', $watchlistExpiry );

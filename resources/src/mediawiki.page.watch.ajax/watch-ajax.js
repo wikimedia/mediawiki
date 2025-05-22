@@ -105,7 +105,7 @@
 	 * callback, and automatically kept in sync if a watchstar with the same
 	 * title is changed.
 	 *
-	 * This hook should by used by other interfaces that care if the watch
+	 * This hook should be used by other interfaces that care if the watch
 	 * status of the page has changed, e.g. an edit form which wants to
 	 * update a 'watch this page' checkbox.
 	 *
@@ -173,7 +173,7 @@
 	 * @param {mw.Title|jQuery} titleOrLink Title of watchlinks to update (when state is idle), or an individual watchlink
 	 * @param {string} action One of 'watch', 'unwatch'
 	 * @param {string} [state="idle"] 'idle' or 'loading'. Default is 'idle'
-	 * @param {string} [expiry='infinity'] The expiry date if a page is being watched temporarily.
+	 * @param {string} [expiry] The expiry date if a page is being watched temporarily.
 	 * @param {string} [expirySelected='infinite'] The expiry length that was just selected from a dropdown, e.g. '1 week'
 	 * @fires Hooks~'wikipage.watchlistChange'
 	 * @stable
@@ -299,6 +299,7 @@
 		// This is set outside the click handler so that it's already present when the user clicks.
 		const notificationId = 'mw-watchlink-notification';
 		const mwTitle = mw.Title.newFromText( title );
+		const preferredExpiry = mw.user.options.get( 'watchstar-expiry', 'infinity' );
 
 		if ( !mwTitle ) {
 			return;
@@ -346,7 +347,7 @@
 			mw.loader.load( modulesToLoad );
 
 			const api = new mw.Api();
-			api[ action ]( title )
+			api[ action ]( title, preferredExpiry )
 				.done( ( watchResponse ) => {
 					const isWatched = watchResponse.watched === true;
 
@@ -360,8 +361,13 @@
 					// @since 1.35 - pop up notification will be loaded with OOUI
 					// only if Watchlist Expiry is enabled
 					if ( isWatchlistExpiryEnabled ) {
-						if ( isWatched ) { // The message should include `infinite` watch period
-							message = mwTitle.isTalkPage() ? 'addedwatchindefinitelytext-talk' : 'addedwatchindefinitelytext';
+						if ( isWatched ) {
+							if ( !preferredExpiry || mw.util.isInfinity( preferredExpiry ) ) {
+								// The message should include `infinite` watch period
+								message = mwTitle.isTalkPage() ? 'addedwatchindefinitelytext-talk' : 'addedwatchindefinitelytext';
+							} else {
+								message = mwTitle.isTalkPage() ? 'addedwatchexpirytext-talk' : 'addedwatchexpirytext';
+							}
 						}
 
 						notifyPromise = mw.loader.using( 'mediawiki.watchstar.widgets' ).then( ( require ) => {
@@ -371,6 +377,7 @@
 								watchlistPopup = new WatchlistExpiryWidget(
 									action,
 									title,
+									watchResponse.expiry,
 									updateWatchLink,
 									{
 										// The following messages can be used here:
@@ -378,7 +385,7 @@
 										// * addedwatchindefinitelytext
 										// * removedwatchtext-talk
 										// * removedwatchtext
-										message: mw.message( message, mwTitle.getPrefixedText() ).parseDom(),
+										message: mw.message( message, mwTitle.getPrefixedText(), preferredExpiry ).parseDom(),
 										$link: $link
 									} );
 							}
@@ -415,7 +422,7 @@
 
 						// For the current page, also trigger the hook
 						if ( normalizedTitle === pageTitle ) {
-							notifyPageWatchStatus( isWatched );
+							notifyPageWatchStatus( isWatched, watchResponse.expiry );
 						}
 					} );
 				} )

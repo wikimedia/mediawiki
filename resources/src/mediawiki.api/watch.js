@@ -42,8 +42,7 @@
 		 * Convenience method for `action=watch`.
 		 *
 		 * @method
-		 * @since 1.35 - expiry parameter can be passed when
-		 * Watchlist Expiry is enabled
+		 * @since 1.35 - expiry parameter can be passed when Watchlist Expiry is enabled
 		 * @param {string|mw.Title|string[]|mw.Title[]} pages Full page name or instance of mw.Title, or an
 		 *  array thereof. If an array is passed, the return value passed to the promise will also be an
 		 *  array of appropriate objects.

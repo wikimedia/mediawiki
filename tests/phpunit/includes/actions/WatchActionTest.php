@@ -30,25 +30,15 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  * @covers \MediaWiki\Actions\WatchAction
  *
  * @group Action
+ * @group Database
  */
 class WatchActionTest extends MediaWikiIntegrationTestCase {
 	use DummyServicesTrait;
 	use MockAuthorityTrait;
 
-	/**
-	 * @var WatchAction
-	 */
-	private $watchAction;
-
-	/**
-	 * @var WikiPage
-	 */
-	private $testWikiPage;
-
-	/**
-	 * @var IContextSource
-	 */
-	private $context;
+	private WatchAction $watchAction;
+	private WikiPage $testWikiPage;
+	private IContextSource $context;
 
 	protected function setUp(): void {
 		parent::setUp();
@@ -74,7 +64,8 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 			$article,
 			$context,
 			$mwServices->getWatchlistManager(),
-			$mwServices->getWatchedItemStore()
+			$mwServices->getWatchedItemStore(),
+			$mwServices->getUserOptionsLookup()
 		);
 	}
 
@@ -332,80 +323,75 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * @dataProvider provideGetExpiryOptions
 	 * @covers \MediaWiki\Actions\WatchAction::getExpiryOptions()
 	 */
-	public function testGetExpiryOptions() {
+	public function testGetExpiryOptions(
+		?string $expiry,
+		string $defaultExpiry,
+		array $expectedOptions,
+		string $expectedDefault,
+		bool $createWatchedItem = true
+	): void {
 		// Fake current time to be 2020-06-10T00:00:00Z
 		ConvertibleTimestamp::setFakeTime( '20200610000000' );
 		$userIdentity = new UserIdentityValue( 100, 'User Name' );
 		$target = new TitleValue( 0, 'SomeDbKey' );
+		$watchedItem = $createWatchedItem
+			? new WatchedItem( $userIdentity, $target, null, $expiry )
+			: false;
+		$res = WatchAction::getExpiryOptions( $this->context, $watchedItem, $defaultExpiry );
+		$this->assertSame( [
+			'options' => $expectedOptions,
+			'default' => $expectedDefault,
+		], $res );
+	}
 
-		$optionsNoExpiry = WatchAction::getExpiryOptions( $this->context, false );
-		$expectedNoExpiry = [
-			'options' => [
-				'Permanent' => 'infinite',
-				'1 week' => '1 week',
-				'1 month' => '1 month',
-				'3 months' => '3 months',
-				'6 months' => '6 months',
-				'1 year' => '1 year',
-			],
-			'default' => 'infinite'
+	/**
+	 * @return Generator
+	 */
+	public static function provideGetExpiryOptions(): Generator {
+		$originalOptions = [
+			'Permanent' => 'infinite',
+			'1 week' => '1 week',
+			'1 month' => '1 month',
+			'3 months' => '3 months',
+			'6 months' => '6 months',
+			'1 year' => '1 year',
 		];
-
-		$this->assertSame( $expectedNoExpiry, $optionsNoExpiry );
-
-		// Adding a watched item with an expiry a month from the frozen time
-		$watchedItemMonth = new WatchedItem( $userIdentity, $target, null, '20200710000000' );
-		$optionsExpiryOneMonth = WatchAction::getExpiryOptions( $this->context, $watchedItemMonth );
-		$expectedExpiryOneMonth = [
-			'options' => [
-				'30 days left' => '2020-07-10T00:00:00Z',
-				'Permanent' => 'infinite',
-				'1 week' => '1 week',
-				'1 month' => '1 month',
-				'3 months' => '3 months',
-				'6 months' => '6 months',
-				'1 year' => '1 year',
-			],
-			'default' => '2020-07-10T00:00:00Z'
+		$originalDefaultExpiry = 'infinite';
+		$expectedDefault = 'infinite';
+		yield 'Page is not currently watched at all' => [
+			'expiry' => null,
+			'defaultExpiry' => $originalDefaultExpiry,
+			'expectedOptions' => $originalOptions,
+			'expectedDefault' => $expectedDefault,
+			'watchedItem' => false,
 		];
-
-		$this->assertSame( $expectedExpiryOneMonth, $optionsExpiryOneMonth );
-
-		// Adding a watched item with an expiry 7 days from the frozen time
-		$watchedItemWeek = new WatchedItem( $userIdentity, $target, null, '20200617000000' );
-		$optionsExpiryOneWeek = WatchAction::getExpiryOptions( $this->context, $watchedItemWeek );
-		$expectedOneWeek = [
-			'options' => [
-				'7 days left' => '2020-06-17T00:00:00Z',
-				'Permanent' => 'infinite',
-				'1 week' => '1 week',
-				'1 month' => '1 month',
-				'3 months' => '3 months',
-				'6 months' => '6 months',
-				'1 year' => '1 year',
-			],
-			'default' => '2020-06-17T00:00:00Z'
+		yield 'No expiry' => [
+			'expiry' => null,
+			'defaultExpiry' => $originalDefaultExpiry,
+			'expectedOptions' => $originalOptions,
+			'expectedDefault' => $expectedDefault,
 		];
-
-		$this->assertSame( $expectedOneWeek, $optionsExpiryOneWeek );
-
-		// Case for when WatchedItem is true
-		$optionsNoExpiryWIFalse = WatchAction::getExpiryOptions( $this->context, true );
-		$expectedNoExpiryWIFalse = [
-			'options' => [
-				'Permanent' => 'infinite',
-				'1 week' => '1 week',
-				'1 month' => '1 month',
-				'3 months' => '3 months',
-				'6 months' => '6 months',
-				'1 year' => '1 year',
-			],
-			'default' => 'infinite'
+		yield 'Adding a watched item with an expiry a month from the frozen time' => [
+			'expiry' => '20200710000000',
+			'defaultExpiry' => $originalDefaultExpiry,
+			'expectedOptions' => array_merge( [ '30 days left' => '2020-07-10T00:00:00Z' ], $originalOptions ),
+			'expectedDefault' => '2020-07-10T00:00:00Z',
 		];
-
-		$this->assertSame( $expectedNoExpiryWIFalse, $optionsNoExpiryWIFalse );
+		yield 'Adding a watched item with an expiry 7 days from the frozen time' => [
+			'expiry' => '20200617000000',
+			'defaultExpiry' => $originalDefaultExpiry,
+			'expectedOptions' => array_merge( [ '7 days left' => '2020-06-17T00:00:00Z' ], $originalOptions ),
+			'expectedDefault' => '2020-06-17T00:00:00Z',
+		];
+		yield 'Adding a watched item with an expiry 7 days from the frozen time, but default of 1 month.' => [
+			'expiry' => '20200617000000',
+			'defaultExpiry' => '1 month',
+			'expectedOptions' => array_merge( [ '7 days left' => '2020-06-17T00:00:00Z' ], $originalOptions ),
+			'expectedDefault' => '2020-06-17T00:00:00Z',
+		];
 	}
 
 	/**
@@ -442,10 +428,11 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 
 		$expected = [
 			'options' => [
+				'infinite' => 'infinite',
 				'1 week' => '1 week',
 				'3 days' => '3 days',
 			],
-			'default' => '1 week'
+			'default' => 'infinite'
 		];
 		$expiryOptions = WatchAction::getExpiryOptions( $mockMessageLocalizer, false );
 		$this->assertSame( $expected, $expiryOptions );

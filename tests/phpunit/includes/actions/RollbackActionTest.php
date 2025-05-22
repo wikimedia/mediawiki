@@ -6,10 +6,12 @@ use MediaWiki\Actions\RollbackAction;
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Exception\ErrorPageError;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Page\Article;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Title\Title;
+use MediaWiki\User\StaticUserOptionsLookup;
 use MediaWiki\User\User;
 use MediaWikiIntegrationTestCase;
 
@@ -19,14 +21,9 @@ use MediaWikiIntegrationTestCase;
  */
 class RollbackActionTest extends MediaWikiIntegrationTestCase {
 
-	/** @var User */
-	private $vandal;
-
-	/** @var User */
-	private $sysop;
-
-	/** @var Title */
-	private $testPage;
+	private User $vandal;
+	private User $sysop;
+	private Title $testPage;
 
 	protected function setUp(): void {
 		parent::setUp();
@@ -95,6 +92,20 @@ class RollbackActionTest extends MediaWikiIntegrationTestCase {
 		$editTracker = $this->getServiceContainer()->getUserEditTracker();
 		$editCount = $editTracker->getUserEditCount( $this->sysop );
 
+		// Setup preferences to auto-watch the page temporarily.
+		$this->overrideConfigValue( MainConfigNames::WatchlistExpiry, true );
+		$mockUserOptionsLookup = new StaticUserOptionsLookup( [
+			$this->sysop->getName() => [
+				'watchrollback' => '1',
+				'watchrollback-expiry' => '1 week'
+			],
+		] );
+		$this->setService( 'UserOptionsLookup', $mockUserOptionsLookup );
+		// Assert the page isn't already watched.
+		$this->assertFalse( $this->getServiceContainer()->getWatchlistManager()
+			->isTempWatchedIgnoringRights( $this->sysop, $this->testPage ) );
+
+		// Create the mock request and do the rollback.
 		$request = new FauxRequest( [
 			'from' => $this->vandal->getName(),
 			'token' => $this->sysop->getEditToken( 'rollback' ),
@@ -118,6 +129,10 @@ class RollbackActionTest extends MediaWikiIntegrationTestCase {
 		$editTracker->clearUserEditCache( $this->sysop );
 		$this->runDeferredUpdates();
 		$this->assertSame( $editCount + 1, $editTracker->getUserEditCount( $this->sysop ) );
+
+		// Assert the auto-watch preference feature is working.
+		$this->assertTrue( $this->getServiceContainer()->getWatchlistManager()
+			->isTempWatchedIgnoringRights( $this->sysop, $this->testPage ) );
 	}
 
 	public function testRollbackMarkBot() {
