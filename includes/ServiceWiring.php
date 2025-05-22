@@ -2846,7 +2846,6 @@ return [
 			$services->getNamespaceInfo(),
 			$services->getRevisionLookup(),
 			$services->getLinkBatchFactory(),
-			$services->getStatsFactory(),
 			$services->getWatchlistLabelStore()
 		);
 

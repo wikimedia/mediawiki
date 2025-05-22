@@ -1592,9 +1592,6 @@ class Linker {
 		if ( $services->getUserOptionsLookup()
 			->getBoolOption( $context->getUser(), 'showrollbackconfirmation' )
 		) {
-			$services->getStatsFactory()
-				->getCounter( 'rollbackconfirmation_event_load_total' )
-				->increment();
 			$context->getOutput()->addModules( 'mediawiki.misc-authed-curate' );
 		}
 

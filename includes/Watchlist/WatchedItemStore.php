@@ -28,7 +28,6 @@ use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\ReadOnlyMode;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 use Wikimedia\ScopedCallback;
-use Wikimedia\Stats\StatsFactory;
 
 /**
  * Storage layer class for WatchedItems.
@@ -122,9 +121,6 @@ class WatchedItemStore implements WatchedItemStoreInterface {
 	 */
 	private $linkBatchFactory;
 
-	/** @var StatsFactory */
-	private $statsFactory;
-
 	/** @var WatchlistLabelStore */
 	private $labelStore;
 
@@ -146,7 +142,6 @@ class WatchedItemStore implements WatchedItemStoreInterface {
 		NamespaceInfo $nsInfo,
 		RevisionLookup $revisionLookup,
 		LinkBatchFactory $linkBatchFactory,
-		StatsFactory $statsFactory,
 		WatchlistLabelStore $labelStore,
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
@@ -167,7 +162,6 @@ class WatchedItemStore implements WatchedItemStoreInterface {
 		$this->nsInfo = $nsInfo;
 		$this->revisionLookup = $revisionLookup;
 		$this->linkBatchFactory = $linkBatchFactory;
-		$this->statsFactory = $statsFactory;
 
 		$this->latestUpdateCache = new HashBagOStuff( [ 'maxKeys' => 3 ] );
 	}
@@ -214,42 +208,27 @@ class WatchedItemStore implements WatchedItemStoreInterface {
 		$key = $this->getCacheKey( $user, $target );
 		$this->cache->set( $key, $item );
 		$this->cacheIndex[$target->getNamespace()][$target->getDBkey()][$user->getId()] = $key;
-		$this->statsFactory->getCounter( 'WatchedItemStore_cache_total' )
-			->increment();
 	}
 
 	private function uncache( UserIdentity $user, PageReference $target ) {
 		$this->cache->delete( $this->getCacheKey( $user, $target ) );
 		unset( $this->cacheIndex[$target->getNamespace()][$target->getDBkey()][$user->getId()] );
-		$this->statsFactory->getCounter( 'WatchedItemStore_uncache_total' )
-			->increment();
 	}
 
 	private function uncacheTitle( PageReference $target ) {
-		$this->statsFactory->getCounter( 'WatchedItemStore_uncacheLinkTarget_total' )
-			->increment();
 		if ( !isset( $this->cacheIndex[$target->getNamespace()][$target->getDBkey()] ) ) {
 			return;
 		}
 
-		$uncacheLinkTargetItemsTotal = $this->statsFactory
-			->getCounter( 'WatchedItemStore_uncacheLinkTarget_items_total' );
-
 		foreach ( $this->cacheIndex[$target->getNamespace()][$target->getDBkey()] as $key ) {
-			$uncacheLinkTargetItemsTotal->increment();
 			$this->cache->delete( $key );
 		}
 	}
 
 	private function uncacheUser( UserIdentity $user ) {
-		$this->statsFactory->getCounter( 'WatchedItemStore_uncacheUser_total' )
-			->increment();
-		$uncacheUserItemsTotal = $this->statsFactory->getCounter( 'WatchedItemStore_uncacheUser_items_total' );
-
 		foreach ( $this->cacheIndex as $dbKeyArray ) {
 			foreach ( $dbKeyArray as $userArray ) {
 				if ( isset( $userArray[$user->getId()] ) ) {
-					$uncacheUserItemsTotal->increment();
 					$this->cache->delete( $userArray[$user->getId()] );
 				}
 			}
@@ -675,14 +654,8 @@ class WatchedItemStore implements WatchedItemStoreInterface {
 
 		$cached = $this->getCached( $user, $target );
 		if ( $cached && !$cached->isExpired() ) {
-			$this->statsFactory->getCounter( 'WatchedItemStore_getWatchedItem_accesses_total' )
-				->setLabel( 'status', 'hit' )
-				->increment();
 			return $cached;
 		}
-		$this->statsFactory->getCounter( 'WatchedItemStore_getWatchedItem_accesses_total' )
-			->setLabel( 'status', 'miss' )
-			->increment();
 		return $this->loadWatchedItem( $user, $target );
 	}
 

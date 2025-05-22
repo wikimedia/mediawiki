@@ -39,7 +39,6 @@ use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\Rdbms\ReplaceQueryBuilder;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 use Wikimedia\Rdbms\UpdateQueryBuilder;
-use Wikimedia\Stats\StatsFactory;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -51,13 +50,6 @@ use Wikimedia\TestingAccessWrapper;
 class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 	use DummyServicesTrait;
 	use MockTitleTrait;
-
-	private StatsFactory $statsFactory;
-
-	protected function setUp(): void {
-		parent::setUp();
-		$this->statsFactory = StatsFactory::newNull();
-	}
 
 	/**
 	 * @return MockObject&IDatabase
@@ -212,7 +204,6 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 			$nsInfo,
 			$mocks['revisionLookup'] ?? $this->getMockRevisionLookup(),
 			$this->getMockLinkBatchFactory( $db ),
-			$this->statsFactory,
 			$this->createNoOpMock( WatchlistLabelStore::class )
 		);
 	}
@@ -1121,15 +1112,6 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 			new UserIdentityValue( 1, 'MockUser' ),
 			$testPageFactory( 100, 0, 'Some_Page', $this )
 		);
-
-		$this->assertSame(
-			1,
-			$this->statsFactory->getCounter( 'WatchedItemStore_uncache_total' )->getSampleCount()
-		);
-		$this->assertSame(
-			0,
-			$this->statsFactory->getCounter( 'WatchedItemStore_cache_total' )->getSampleCount()
-		);
 	}
 
 	/**
@@ -1147,14 +1129,6 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 		$store->addWatch(
 			new UserIdentityValue( 0, 'AnonUser' ),
 			$testPageFactory( 100, 0, 'Some_Page', $this )
-		);
-		$this->assertSame(
-			0,
-			$this->statsFactory->getCounter( 'WatchedItemStore_uncache_total' )->getSampleCount()
-		);
-		$this->assertSame(
-			0,
-			$this->statsFactory->getCounter( 'WatchedItemStore_cache_total' )->getSampleCount()
 		);
 	}
 
@@ -1222,10 +1196,6 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 				[ $testPageFactory( 100, 0, 'Some_Page', $this ), $testPageFactory( 101, 1, 'Some_Page', $this ) ]
 			)
 		);
-		$this->assertSame(
-			2,
-			$this->statsFactory->getCounter( 'WatchedItemStore_uncache_total' )->getSampleCount()
-		);
 	}
 
 	/**
@@ -1246,10 +1216,6 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 				[ $testPageFactory( 100, 0, 'Other_Page', $this ) ]
 			)
 		);
-		$this->assertSame(
-			0,
-			$this->statsFactory->getCounter( 'WatchedItemStore_uncache_total' )->getSampleCount()
-		);
 	}
 
 	public function testAddWatchBatchReturnsTrue_whenGivenEmptyList() {
@@ -1264,10 +1230,6 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 
 		$this->assertTrue(
 			$store->addWatchBatchForUser( $user, [] )
-		);
-		$this->assertSame(
-			0,
-			$this->statsFactory->getCounter( 'WatchedItemStore_uncache_total' )->getSampleCount()
 		);
 	}
 
@@ -1330,11 +1292,6 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 		$this->assertEquals( 'SomeDbKey', $watchedItem->getTarget()->getDBkey() );
 		$this->assertSame( '20300101000000', $watchedItem->getExpiry() );
 		$this->assertSame( 0, $watchedItem->getTarget()->getNamespace() );
-
-		$this->assertSame(
-			1,
-			$this->statsFactory->getCounter( 'WatchedItemStore_cache_total' )->getSampleCount()
-		);
 	}
 
 	/**
@@ -1359,10 +1316,6 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 				$testPageFactory( 100, 0, 'SomeDbKey', $this )
 			)
 		);
-		$this->assertSame(
-			0,
-			$this->statsFactory->getCounter( 'WatchedItemStore_cache_total' )->getSampleCount()
-		);
 	}
 
 	/**
@@ -1382,10 +1335,6 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 				new UserIdentityValue( 0, 'AnonUser' ),
 				$testPageFactory( 100, 0, 'SomeDbKey', $this )
 			)
-		);
-		$this->assertSame(
-			0,
-			$this->statsFactory->getCounter( 'WatchedItemStore_cache_total' )->getSampleCount()
 		);
 	}
 
@@ -1431,10 +1380,6 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 				$testPageFactory( 100, 0, 'SomeDbKey', $this )
 			)
 		);
-		$this->assertSame(
-			1,
-			$this->statsFactory->getCounter( 'WatchedItemStore_uncache_total' )->getSampleCount()
-		);
 	}
 
 	/**
@@ -1463,10 +1408,6 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 				$testPageFactory( 100, 0, 'SomeDbKey', $this )
 			)
 		);
-		$this->assertSame(
-			1,
-			$this->statsFactory->getCounter( 'WatchedItemStore_uncache_total' )->getSampleCount()
-		);
 	}
 
 	/**
@@ -1486,10 +1427,6 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 				new UserIdentityValue( 0, 'AnonUser' ),
 				$testPageFactory( 100, 0, 'SomeDbKey', $this )
 			)
-		);
-		$this->assertSame(
-			0,
-			$this->statsFactory->getCounter( 'WatchedItemStore_uncache_total' )->getSampleCount()
 		);
 	}
 
@@ -1589,11 +1526,6 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 				$linkTarget
 			)
 		);
-		$this->assertSame(
-			1,
-			$this->statsFactory->getCounter( 'WatchedItemStore_getWatchedItem_accesses_total' )
-				->getSampleCount()
-		);
 	}
 
 	/**
@@ -1644,12 +1576,6 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 				$testPageFactory( 100, 0, 'SomeDbKey', $this )
 			)
 		);
-
-		$this->assertSame(
-			1,
-			$this->statsFactory->getCounter( 'WatchedItemStore_getWatchedItem_accesses_total' )
-				->getSampleCount()
-		);
 	}
 
 	/**
@@ -1669,11 +1595,6 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 				new UserIdentityValue( 0, 'AnonUser' ),
 				$testPageFactory( 100, 0, 'SomeDbKey', $this )
 			)
-		);
-		$this->assertSame(
-			0,
-			$this->statsFactory->getCounter( 'WatchedItemStore_getWatchedItem_accesses_total' )
-				->getSampleCount()
 		);
 	}
 
