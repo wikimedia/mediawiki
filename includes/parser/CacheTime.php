@@ -286,33 +286,6 @@ class CacheTime implements ParserCacheMetadata, JsonCodecable {
 		$this->mCacheTime = $jsonData['CacheTime'];
 		$this->mCacheRevisionId = $jsonData['CacheRevisionId'];
 	}
-
-	public function __get( $name ) {
-		if ( property_exists( get_called_class(), $name ) ) {
-			// Direct access to a public property, deprecated.
-			wfDeprecatedMsg( "CacheTime::{$name} public read access deprecated", '1.38' );
-			return $this->$name;
-		} elseif ( property_exists( $this, $name ) ) {
-			// Dynamic property access, deprecated.
-			wfDeprecatedMsg( "CacheTime::{$name} dynamic property read access deprecated", '1.38' );
-			return $this->$name;
-		} else {
-			trigger_error( "Inaccessible property via __set(): $name" );
-			return null;
-		}
-	}
-
-	public function __set( $name, $value ) {
-		if ( property_exists( get_called_class(), $name ) ) {
-			// Direct access to a public property, deprecated.
-			wfDeprecatedMsg( "CacheTime::$name public write access deprecated", '1.38' );
-			$this->$name = $value;
-		} else {
-			// Dynamic property access, deprecated.
-			wfDeprecatedMsg( "CacheTime::$name dynamic property write access deprecated", '1.38' );
-			$this->$name = $value;
-		}
-	}
 }
 
 /** @deprecated class alias since 1.43 */
