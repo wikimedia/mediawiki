@@ -1085,6 +1085,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * @deprecated since 1.42, use ::addLanguageLink() instead.
 	 */
 	public function setLanguageLinks( $ll ) {
+		wfDeprecated( __METHOD__, '1.42' );
 		$old = $this->getLanguageLinks();
 		$this->mLanguageLinkMap = [];
 		if ( $ll === null ) { // T376323
@@ -1094,6 +1095,11 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			$this->addLanguageLink( $l );
 		}
 		return $old;
+	}
+
+	/** @internal For use by OutputPage only. */
+	public function clearLanguageLinks(): void {
+		$this->mLanguageLinkMap = [];
 	}
 
 	public function setTitleText( $t ) {

@@ -177,6 +177,10 @@ because of Phabricator reports.
 * Calling ApiOptions::__construct() without $userOptionsManager and
   $preferencesFactory has been deprecated and emits deprecation warnings.
   Code that extends ApiOptions should instead extend ApiOptionsBase.
+* ParserOutput::setLanguageLinks(), deprecated in 1.42, now emits deprecation
+  warnings.
+* OutputPage::setLanguageLinks(), deprecated in 1.43, now emits deprecation
+  warnings.
 * Calling RevisionStore methods with a LinkTarget emits deprecation warnings
   now. It was already documented as deprecated since 1.36.
   - RevisionStore::getFirstRevision

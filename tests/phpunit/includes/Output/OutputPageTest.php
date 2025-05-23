@@ -1191,6 +1191,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		] );
 		$this->assertSame( [ 'fr:A#x', 'it:B', 'de:C', 'es:D' ], $op->getLanguageLinks() );
 
+		$this->filterDeprecated( '/OutputPage::setLanguageLinks was deprecated/' );
 		$op->setLanguageLinks( [ TitleValue::tryNew( NS_MAIN, 'E', '', 'pt' ) ] );
 		$this->assertSame( [ 'pt:E' ], $op->getLanguageLinks() );
 
