@@ -300,7 +300,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	private $mCacheMessage = '';
 
 	/**
-	 * @var array Timestamps for getTimeSinceStart().
+	 * @var array Timestamps for getTimeProfile().
 	 */
 	private $mParseStartTime = [];
 
@@ -2242,7 +2242,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	}
 
 	/**
-	 * Resets the parse start timestamps for future calls to getTimeSinceStart()
+	 * Resets the parse start timestamps for future calls to getTimeProfile()
 	 * and recordTimeProfile().
 	 *
 	 * @since 1.22
@@ -2312,29 +2312,6 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 */
 	public function getTimeProfile( string $clock ) {
 		return $this->mTimeProfile[ $clock ] ?? null;
-	}
-
-	/**
-	 * Returns the time since resetParseStartTime() was last called
-	 *
-	 * Clocks available are:
-	 *  - wall: Wall clock time
-	 *  - cpu: CPU time (requires getrusage)
-	 *
-	 * @since 1.22
-	 * @deprecated since 1.42, use getTimeProfile() instead.
-	 * @param string $clock
-	 * @return float|null
-	 */
-	public function getTimeSinceStart( $clock ) {
-		wfDeprecated( __METHOD__, '1.42' );
-
-		if ( !isset( $this->mParseStartTime[$clock] ) ) {
-			return null;
-		}
-
-		$end = self::getTimes( $clock );
-		return $end[$clock] - $this->mParseStartTime[$clock];
 	}
 
 	/**
