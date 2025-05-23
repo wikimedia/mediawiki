@@ -379,7 +379,7 @@ class MaintenanceTest extends MaintenanceBaseTestCase {
 		$this->maintenance->output( "foo" );
 		$m2->output( "bar" );
 
-		$this->assertEquals( "foobar", $this->getActualOutput(),
+		$this->assertEquals( "foobar", $this->getActualOutputForAssertion(),
 			"Output before shutdown simulation (m2)" );
 		$m2->cleanupChanneled();
 		$this->assertOutputPrePostShutdown( "foobar", false );
@@ -391,7 +391,7 @@ class MaintenanceTest extends MaintenanceBaseTestCase {
 		$this->maintenance->output( "foo", null );
 		$m2->output( "bar", null );
 
-		$this->assertEquals( "foobar", $this->getActualOutput(),
+		$this->assertEquals( "foobar", $this->getActualOutputForAssertion(),
 			"Output before shutdown simulation (m2)" );
 		$m2->cleanupChanneled();
 		$this->assertOutputPrePostShutdown( "foobar", false );
@@ -403,7 +403,7 @@ class MaintenanceTest extends MaintenanceBaseTestCase {
 		$this->maintenance->output( "foo", "bazChannel" );
 		$m2->output( "bar", "bazChannel" );
 
-		$this->assertEquals( "foobar", $this->getActualOutput(),
+		$this->assertEquals( "foobar", $this->getActualOutputForAssertion(),
 			"Output before shutdown simulation (m2)" );
 		$m2->cleanupChanneled();
 		$this->assertOutputPrePostShutdown( "foobar\n", true );
@@ -415,7 +415,7 @@ class MaintenanceTest extends MaintenanceBaseTestCase {
 		$this->maintenance->output( "foo\n", null );
 		$m2->output( "bar\n", null );
 
-		$this->assertEquals( "foo\nbar\n", $this->getActualOutput(),
+		$this->assertEquals( "foo\nbar\n", $this->getActualOutputForAssertion(),
 			"Output before shutdown simulation (m2)" );
 		$m2->cleanupChanneled();
 		$this->assertOutputPrePostShutdown( "foo\nbar\n", false );
@@ -427,7 +427,7 @@ class MaintenanceTest extends MaintenanceBaseTestCase {
 		$this->maintenance->output( "foo\n", "bazChannel" );
 		$m2->output( "bar\n", "bazChannel" );
 
-		$this->assertEquals( "foobar", $this->getActualOutput(),
+		$this->assertEquals( "foobar", $this->getActualOutputForAssertion(),
 			"Output before shutdown simulation (m2)" );
 		$m2->cleanupChanneled();
 		$this->assertOutputPrePostShutdown( "foobar\n", true );
@@ -439,7 +439,7 @@ class MaintenanceTest extends MaintenanceBaseTestCase {
 		$this->maintenance->outputChanneled( "foo" );
 		$m2->outputChanneled( "bar" );
 
-		$this->assertEquals( "foo\nbar\n", $this->getActualOutput(),
+		$this->assertEquals( "foo\nbar\n", $this->getActualOutputForAssertion(),
 			"Output before shutdown simulation (m2)" );
 		$m2->cleanupChanneled();
 		$this->assertOutputPrePostShutdown( "foo\nbar\n", false );
@@ -451,7 +451,7 @@ class MaintenanceTest extends MaintenanceBaseTestCase {
 		$this->maintenance->outputChanneled( "foo", null );
 		$m2->outputChanneled( "bar", null );
 
-		$this->assertEquals( "foo\nbar\n", $this->getActualOutput(),
+		$this->assertEquals( "foo\nbar\n", $this->getActualOutputForAssertion(),
 			"Output before shutdown simulation (m2)" );
 		$m2->cleanupChanneled();
 		$this->assertOutputPrePostShutdown( "foo\nbar\n", false );
@@ -463,7 +463,7 @@ class MaintenanceTest extends MaintenanceBaseTestCase {
 		$this->maintenance->outputChanneled( "foo", "bazChannel" );
 		$m2->outputChanneled( "bar", "bazChannel" );
 
-		$this->assertEquals( "foobar", $this->getActualOutput(),
+		$this->assertEquals( "foobar", $this->getActualOutputForAssertion(),
 			"Output before shutdown simulation (m2)" );
 		$m2->cleanupChanneled();
 		$this->assertOutputPrePostShutdown( "foobar\n", true );
@@ -475,13 +475,13 @@ class MaintenanceTest extends MaintenanceBaseTestCase {
 		$this->maintenance->outputChanneled( "foo", "bazChannel" );
 		$m2->outputChanneled( "bar", "bazChannel" );
 
-		$this->assertEquals( "foobar", $this->getActualOutput(),
+		$this->assertEquals( "foobar", $this->getActualOutputForAssertion(),
 			"Output before first cleanup" );
 		$this->maintenance->cleanupChanneled();
-		$this->assertEquals( "foobar\n", $this->getActualOutput(),
+		$this->assertEquals( "foobar\n", $this->getActualOutputForAssertion(),
 			"Output after first cleanup" );
 		$m2->cleanupChanneled();
-		$this->assertEquals( "foobar\n\n", $this->getActualOutput(),
+		$this->assertEquals( "foobar\n\n", $this->getActualOutputForAssertion(),
 			"Output after second cleanup" );
 
 		$m2->cleanupChanneled();

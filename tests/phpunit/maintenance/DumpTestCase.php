@@ -241,7 +241,7 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 		$this->expectOutputRegex( '//' );
 
 		// 2. Do the real output checking on our own.
-		$lines = explode( "\n", $this->getActualOutput() );
+		$lines = explode( "\n", $this->getActualOutputForAssertion() );
 		$this->assertGreaterThan( 1, count( $lines ), "Minimal lines of produced output" );
 		$this->assertSame( '', array_pop( $lines ), "Output ends in LF" );
 		$timestamp_re = "[0-9]{4}-[01][0-9]-[0-3][0-9] [0-2][0-9]:[0-5][0-9]:[0-6][0-9]";
