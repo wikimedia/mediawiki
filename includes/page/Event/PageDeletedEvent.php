@@ -127,6 +127,9 @@ class PageDeletedEvent extends PageStateEvent {
 	/**
 	 * Whether the deleted revisions and log have been suppressed, so they
 	 * are not visible in the regular deletion log.
+	 *
+	 * @note Listeners should use this information to protect information from
+	 * suppressed deletions from access by unauthorized users.
 	 */
 	public function isSuppressed(): bool {
 		return $this->hasFlag( self::FLAG_SUPPRESSED );

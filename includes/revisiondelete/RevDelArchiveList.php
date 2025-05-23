@@ -21,6 +21,7 @@
 
 use MediaWiki\Cache\HTMLCacheUpdater;
 use MediaWiki\Context\IContextSource;
+use MediaWiki\DomainEvent\DomainEventDispatcher;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
@@ -38,15 +39,6 @@ class RevDelArchiveList extends RevDelRevisionList {
 	/** @var RevisionStore */
 	private $revisionStore;
 
-	/**
-	 * @param IContextSource $context
-	 * @param PageIdentity $page
-	 * @param array $ids
-	 * @param LBFactory $lbFactory
-	 * @param HookContainer $hookContainer
-	 * @param HTMLCacheUpdater $htmlCacheUpdater
-	 * @param RevisionStore $revisionStore
-	 */
 	public function __construct(
 		IContextSource $context,
 		PageIdentity $page,
@@ -54,7 +46,8 @@ class RevDelArchiveList extends RevDelRevisionList {
 		LBFactory $lbFactory,
 		HookContainer $hookContainer,
 		HTMLCacheUpdater $htmlCacheUpdater,
-		RevisionStore $revisionStore
+		RevisionStore $revisionStore,
+		DomainEventDispatcher $eventDispatcher
 	) {
 		parent::__construct(
 			$context,
@@ -63,7 +56,8 @@ class RevDelArchiveList extends RevDelRevisionList {
 			$lbFactory,
 			$hookContainer,
 			$htmlCacheUpdater,
-			$revisionStore
+			$revisionStore,
+			$eventDispatcher
 		);
 		$this->revisionStore = $revisionStore;
 	}
@@ -111,4 +105,25 @@ class RevDelArchiveList extends RevDelRevisionList {
 	public function doPostCommitUpdates( array $visibilityChangeMap ) {
 		return Status::newGood();
 	}
+
+	/**
+	 * @param array $bitPars See RevisionDeleter::extractBitfield
+	 * @param array $visibilityChangeMap [id => ['oldBits' => $oldBits, 'newBits' => $newBits], ... ]
+	 * @param array $tags
+	 * @param LogEntry $logEntry
+	 * @param bool $suppressed
+	 */
+	protected function emitEvents(
+		array $bitPars,
+		array $visibilityChangeMap,
+		array $tags,
+		LogEntry $logEntry,
+		bool $suppressed
+	) {
+		// Do not emit PageHistoryVisibilityChangedEvent for archived revisions.
+		// We could emit a ArchiveVisibilityChangedEvent in the future.
+		// PageHistoryVisibilityChangedEvent and ArchiveVisibilityChangedEvent
+		// should then share a base class, RevisionVisibilityChangedEvent.
+	}
+
 }
