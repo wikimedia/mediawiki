@@ -1753,6 +1753,7 @@
 	"rcfilters-liveupdates-button-title-on": "Tooltip for the button to disable live updates on [[Special:RecentChanges]].",
 	"rcfilters-liveupdates-button-title-off": "Tooltip for the button to enable live updates on [[Special:RecentChanges]].",
 	"rcfilters-watchlist-markseen-button": "Label for the button to mark all changes as seen on [[Special:Watchlist]] when using the structured filters interface.",
+	"rcfilters-watchlist-edit-watchlist-preferences-button": "Label for the button to navigate to [[Special:Preferences#mw-prefsection-watchlist]] when using the structured filters interface.",
 	"rcfilters-watchlist-edit-watchlist-button": "Label for the button to edit the watched pages on [[Special:Watchlist]] when using the structured filters interface.\n\nCf. {{msg-mw|watchlisttools-edit}}.",
 	"rcfilters-watchlist-showupdated": "Message at the top of [[Special:Watchlist]] when the Structured filters are enabled that describes what unseen changes look like.\n\nCf. {{msg-mw|wlheader-showupdated}}",
 	"rcfilters-filter-showlinkedfrom-label": "Label that indicates that the page is showing changes that link FROM the target page. Used on [[Special:Recentchangeslinked]] when structured filters are enabled.",

@@ -19,14 +19,23 @@ const WatchlistTopSectionWidget = function MwRcfiltersUiWatchlistTopSectionWidge
 
 	// Parent
 	WatchlistTopSectionWidget.super.call( this, config );
+	const $editWatchListButtonIcon = $( '<span>' ).append(
+		new OO.ui.IconWidget( { icon: 'edit', classes: [ 'mw-rcfilters-ui-watchlistTopSectionWidget-editWatchlistButtonIcon' ] } ).$element,
+		mw.msg( 'rcfilters-watchlist-edit-watchlist-button' )
+	);
+	const $editSettingsIcon = $( '<span>' ).append(
+		new OO.ui.IconWidget( { icon: 'settings', classes: [ 'mw-rcfilters-ui-watchlistTopSectionWidget-editWatchlistButtonIcon' ] } ).$element,
+		mw.msg( 'rcfilters-watchlist-edit-watchlist-preferences-button' )
+	);
+	const $editWatchlistButtonLink = $( '<a>' ).attr( 'href',
+		require( '../config.json' ).StructuredChangeFiltersEditWatchlistUrl )
+		.attr( 'class', 'cdx-docs-link' ).html( $editWatchListButtonIcon );
 
-	const editWatchlistButton = new OO.ui.ButtonWidget( {
-		label: mw.msg( 'rcfilters-watchlist-edit-watchlist-button' ),
-		icon: 'edit',
-		href: require( '../config.json' ).StructuredChangeFiltersEditWatchlistUrl
-	} );
+	const $editWatchlistSettingsButtonLink = $( '<a>' ).attr( 'href',
+		mw.util.getUrl( 'Special:Preferences#mw-prefsection-watchlist' ) )
+		.attr( 'class', 'cdx-docs-link' ).html( $editSettingsIcon );
+
 	const markSeenButton = new MarkSeenButtonWidget( controller, changesListModel );
-
 	const $topTable = $( '<div>' )
 		.addClass( 'mw-rcfilters-ui-table' )
 		.append(
@@ -42,7 +51,13 @@ const WatchlistTopSectionWidget = function MwRcfiltersUiWatchlistTopSectionWidge
 					$( '<div>' )
 						.addClass( 'mw-rcfilters-ui-cell' )
 						.addClass( 'mw-rcfilters-ui-watchlistTopSectionWidget-editWatchlistButton' )
-						.append( editWatchlistButton.$element )
+						.append( $editWatchlistButtonLink )
+				)
+				.append(
+					$( '<div>' )
+						.addClass( 'mw-rcfilters-ui-cell' )
+						.addClass( 'mw-rcfilters-ui-watchlistTopSectionWidget-editWatchlistButton' )
+						.append( $editWatchlistSettingsButtonLink )
 				)
 		);
 
