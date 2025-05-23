@@ -2945,6 +2945,12 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 					$metadata->addTemplate( TitleValue::tryNew( $ns, (string)$dbk ), $page_id, $rev_id );
 				}
 			}
+			foreach (
+				$this->getLinkList( ParserOutputLinkTypes::EXISTENCE )
+				as [ 'link' => $link ]
+			) {
+				$metadata->addExistenceDependency( $link );
+			}
 		}
 	}
 
