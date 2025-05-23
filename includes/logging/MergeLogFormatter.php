@@ -60,12 +60,33 @@ class MergeLogFormatter extends LogFormatter {
 	/** @inheritDoc */
 	protected function getMessageParameters() {
 		$params = parent::getMessageParameters();
-		$oldname = $this->makePageLink( $this->entry->getTarget(), [ 'redirect' => 'no' ] );
-		$newname = $this->makePageLink( Title::newFromText( $params[3] ) );
-		$params[2] = Message::rawParam( $oldname );
-		$params[3] = Message::rawParam( $newname );
+
+		$isMergeInto = $this->entry->getSubtype() === 'merge-into';
+
+		$srcTitle = $isMergeInto
+			? Title::newFromText( $params[3] )
+			: $this->entry->getTarget();
+
+		$destTitle = $isMergeInto
+			? $this->entry->getTarget()
+			: Title::newFromText( $params[3] );
+
+		$srcLink = Message::rawParam(
+			$this->makePageLink( $srcTitle, [ 'redirect' => 'no' ] )
+		);
+		$destLink = Message::rawParam( $this->makePageLink( $destTitle ) );
+
+		if ( $isMergeInto ) {
+			$params[2] = $destLink;
+			$params[3] = $srcLink;
+		} else {
+			$params[2] = $srcLink;
+			$params[3] = $destLink;
+		}
+
 		$params[4] = $this->context->getLanguage()
 			->userTimeAndDate( $params[4], $this->context->getUser() );
+
 		return $params;
 	}
 

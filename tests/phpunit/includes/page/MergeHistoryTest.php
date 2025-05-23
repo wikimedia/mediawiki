@@ -1,7 +1,9 @@
 <?php
 
 use MediaWiki\CommentStore\CommentStoreComment;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Logging\LogEntry;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
 use MediaWiki\Message\Message;
@@ -18,6 +20,7 @@ use MediaWiki\Tests\Search\SearchUpdateSpyTrait;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\Utils\MWTimestamp;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group Database
@@ -232,6 +235,22 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertNotNull( $dstLog );
 		$this->assertSame( 'merge/merge-into', $dstLog->getFullType() );
+
+		$ctx = RequestContext::newExtraneousContext( $title );
+		$srcFmt = $this->getServiceContainer()->getLogFormatterFactory()->newFromEntry( $srcLog );
+		$srcFmt->setContext( $ctx );
+		$dstFmt = $this->getServiceContainer()->getLogFormatterFactory()->newFromEntry( $dstLog );
+		$dstFmt->setContext( $ctx );
+		$srcParams = TestingAccessWrapper::newFromObject( $srcFmt )->getMessageParameters();
+		$dstParams = TestingAccessWrapper::newFromObject( $dstFmt )->getMessageParameters();
+		$srcLink = $srcParams[2]->dump();
+		$dstLink = $srcParams[3]->dump();
+		$intoSrcLink = $dstParams[3]->dump();
+		$intoDstLink = $dstParams[2]->dump();
+		$this->assertStringContainsString( 'redirect=no', $srcLink );
+		$this->assertStringNotContainsString( 'redirect=no', $dstLink );
+		$this->assertStringContainsString( 'redirect=no', $intoSrcLink );
+		$this->assertStringNotContainsString( 'redirect=no', $intoDstLink );
 	}
 
 	/**
@@ -278,6 +297,22 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertNotNull( $dstLog );
 		$this->assertSame( 'merge/merge-into', $dstLog->getFullType() );
+
+		$ctx = RequestContext::newExtraneousContext( $title );
+		$srcFmt = $this->getServiceContainer()->getLogFormatterFactory()->newFromEntry( $srcLog );
+		$srcFmt->setContext( $ctx );
+		$dstFmt = $this->getServiceContainer()->getLogFormatterFactory()->newFromEntry( $dstLog );
+		$dstFmt->setContext( $ctx );
+		$srcParams = TestingAccessWrapper::newFromObject( $srcFmt )->getMessageParameters();
+		$dstParams = TestingAccessWrapper::newFromObject( $dstFmt )->getMessageParameters();
+		$srcLink = $srcParams[2]->dump();
+		$dstLink = $srcParams[3]->dump();
+		$intoSrcLink = $dstParams[3]->dump();
+		$intoDstLink = $dstParams[2]->dump();
+		$this->assertStringContainsString( 'redirect=no', $srcLink );
+		$this->assertStringNotContainsString( 'redirect=no', $dstLink );
+		$this->assertStringContainsString( 'redirect=no', $intoSrcLink );
+		$this->assertStringNotContainsString( 'redirect=no', $intoDstLink );
 	}
 
 	private function getLatestLogEntry( PageIdentity $page ): ?LogEntry {
