@@ -2970,6 +2970,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\User\\Options\\DefaultOptionsLookup' => __DIR__ . '/includes/user/Options/DefaultOptionsLookup.php',
 	'MediaWiki\\User\\Options\\Hook\\ConditionalDefaultOptionsAddConditionHook' => __DIR__ . '/includes/user/Options/Hook/ConditionalDefaultOptionsAddConditionHook.php',
 	'MediaWiki\\User\\Options\\Hook\\LoadUserOptionsHook' => __DIR__ . '/includes/user/Options/Hook/LoadUserOptionsHook.php',
+	'MediaWiki\\User\\Options\\Hook\\LocalUserOptionsStoreSaveHook' => __DIR__ . '/includes/user/Options/Hook/LocalUserOptionsStoreSaveHook.php',
 	'MediaWiki\\User\\Options\\Hook\\SaveUserOptionsHook' => __DIR__ . '/includes/user/Options/Hook/SaveUserOptionsHook.php',
 	'MediaWiki\\User\\Options\\LocalUserOptionsStore' => __DIR__ . '/includes/user/Options/LocalUserOptionsStore.php',
 	'MediaWiki\\User\\Options\\StaticUserOptionsLookup' => __DIR__ . '/includes/user/Options/StaticUserOptionsLookup.php',

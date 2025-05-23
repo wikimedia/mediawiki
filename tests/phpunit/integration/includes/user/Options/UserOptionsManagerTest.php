@@ -21,6 +21,7 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
 /**
  * @group Database
  * @covers \MediaWiki\User\Options\UserOptionsManager
+ * @covers \MediaWiki\User\Options\LocalUserOptionsStore
  */
 class UserOptionsManagerTest extends UserOptionsLookupTestBase {
 
@@ -161,18 +162,39 @@ class UserOptionsManagerTest extends UserOptionsLookupTestBase {
 	 */
 	public function testGetSetSave() {
 		$user = $this->getTestUser()->getUser();
+
+		$hookCalled = false;
+		$this->setTemporaryHook(
+			'LocalUserOptionsStoreSave',
+			function ( $actualUser, $oldOptions, $newOptions ) use ( &$hookCalled, $user ) {
+				$hookCalled = true;
+
+				$this->assertTrue( $user->equals( $actualUser ) );
+				$this->assertSame( [], $oldOptions );
+				$this->assertArrayEquals(
+					[ 'string_option' => 'user_value', 'int_option' => 42, 'bool_option' => true ],
+					$newOptions,
+					false, true
+				);
+			}
+		);
+
 		$manager = $this->getManager();
 		$this->assertSame( [], $manager->getOptions( $user, UserOptionsManager::EXCLUDE_DEFAULTS ) );
+
 		$manager->setOption( $user, 'string_option', 'user_value' );
 		$manager->setOption( $user, 'int_option', 42 );
 		$manager->setOption( $user, 'bool_option', true );
 		$this->assertSame( 'user_value', $manager->getOption( $user, 'string_option' ) );
 		$this->assertSame( 42, $manager->getIntOption( $user, 'int_option' ) );
 		$this->assertSame( true, $manager->getBoolOption( $user, 'bool_option' ) );
+
 		$manager->saveOptions( $user );
 		$this->assertSame( 'user_value', $manager->getOption( $user, 'string_option' ) );
 		$this->assertSame( 42, $manager->getIntOption( $user, 'int_option' ) );
 		$this->assertSame( true, $manager->getBoolOption( $user, 'bool_option' ) );
+		$this->assertTrue( $hookCalled );
+
 		$manager = $this->getManager();
 		$this->assertSame( 'user_value', $manager->getOption( $user, 'string_option' ) );
 		$this->assertSame( 42, $manager->getIntOption( $user, 'int_option' ) );
