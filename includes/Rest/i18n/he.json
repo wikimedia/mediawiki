@@ -230,5 +230,8 @@
 	"rest-endpoint-desc-get-page-title-html": "מחזירה את התוכן העדכני ביותר של דף ויקי ב־HTML. נקודת הקצה הזאת מחזירה תוכן מסוג text/html.",
 	"rest-endpoint-desc-get-page-title-with-html": "מחזירה מידע על דף ויקי, כולל הרישיון, הגרסה האחרונה והתוכן העדכני ביותר ב־HTML.",
 	"rest-endpoint-desc-get-page-title-bare": "מחזירה את עצם הדף התקני עבור דף ויקי, כולל נתיב ה־API לאחזור התוכן העדכני ביותר ב־HTML, הרישיון ומידע על הגרסה האחרונה.",
-	"rest-endpoint-desc-get-revision-id-html": "מחזירה את התוכן של הגרסה ב־HTML. נקודת הקצה הזאת מחזירה תוכן מסוג text/html."
+	"rest-endpoint-desc-get-revision-id": "מחזירה מטא־נתונים עבור גרסה, כולל מקור",
+	"rest-endpoint-desc-get-revision-id-html": "מחזירה את התוכן של הגרסה ב־HTML. נקודת הקצה הזאת מחזירה תוכן מסוג text/html.",
+	"rest-endpoint-desc-get-revision-id-with-html": "מחזירה מטא־נתונים עבור גרסה, כולל התוכן ב־HTML",
+	"rest-endpoint-desc-get-revision-id-bare": "מחזירה פרטים עבור גרסה בודדת."
 }

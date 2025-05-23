@@ -3534,7 +3534,7 @@
 	"specialpages-header-access": "Accès",
 	"specialpages-access-public": "Public",
 	"specialpages-access-restricted": "Restreint",
-	"specialpages-access-restricted-note": "Les pages « {{int:specialpages-access-restricted}} » ne sont pas accessibles publiquement, mais elles vous sont accessibles.",
+	"specialpages-access-restricted-note": "Les pages restreintes ne sont pas accessibles au public, mais elles le sont pour vous.",
 	"specialpages-group-maintenance": "Rapports de maintenance",
 	"specialpages-group-other": "Autres pages spéciales",
 	"specialpages-group-login": "Gestion des comptes",

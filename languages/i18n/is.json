@@ -2179,7 +2179,7 @@
 	"blanknamespace": "(Aðalnafnrými)",
 	"contributions": "Breytingar notanda",
 	"tool-link-contributions": "Framlög {{GENDER:$1|notanda}}",
-	"contributions-title": "Framlög notanda $1",
+	"contributions-title": "Framlög frá {{GENDER:$2|notanda}} fyrir $1",
 	"contribute-title": "Framlög notanda",
 	"mycontris": "Framlög",
 	"anoncontribs": "Framlög",

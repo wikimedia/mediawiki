@@ -3925,7 +3925,7 @@
 	"specialpages-header-access": "Table header for access level of special pages in Special:SpecialPages.",
 	"specialpages-access-public": "This is shown if the special page is public in the table in Special:SpecialPages.",
 	"specialpages-access-restricted": "This is shown if the special page is restricted to certain groups in the table in Special:SpecialPages.",
-	"specialpages-access-restricted-note": "Note in the legend explaining what restricted means",
+	"specialpages-access-restricted-note": "Note in the legend explaining what restricted means\n\nThe word ‘restricted’ should be translated as in {{msg-mw|specialpages-access-restricted}}",
 	"specialpages-group-maintenance": "{{doc-special-group|like=[[Special:DoubleRedirects]], [[Special:LonelyPages]] and [[Special:WantedPages]]}}",
 	"specialpages-group-other": "{{doc-special-group|like=[[Special:AdminLinks]] and [[Special:BookSources]]}}",
 	"specialpages-group-login": "{{doc-special-group|like=[[Special:UserLogin]]}}",

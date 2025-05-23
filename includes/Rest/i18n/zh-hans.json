@@ -16,6 +16,7 @@
 			"SomeyaMako",
 			"Tr jason",
 			"VulpesVulpes825",
+			"WaitSpring",
 			"沈澄心",
 			"铁桶"
 		]
@@ -134,6 +135,7 @@
 	"rest-param-desc-compare-from-slotrole": "被比较的插槽的角色（当前始终为“主要”）",
 	"rest-param-desc-compare-from-sections": "修订版的预处理器部分，没有模板扩展",
 	"rest-param-desc-compare-from-section-level": "部分级别",
+	"rest-param-desc-compare-from-section-heading": "章节标题，例如 1 对应<h1>",
 	"rest-param-desc-compare-to-section-level": "部分级别",
 	"rest-param-desc-compare-to-section-heading": "章节标题，例如 1<h1>",
 	"rest-param-desc-compare-to-section-offset": "wikitext 中该部分开始的字节偏移量",

@@ -3409,7 +3409,7 @@
 	"specialpages-header-access": "存取權",
 	"specialpages-access-public": "公開",
 	"specialpages-access-restricted": "受限",
-	"specialpages-access-restricted-note": "標記為「{{int:specialpages-access-restricted}}」的頁面是公眾沒有存取權，而您擁有存取權的頁面。",
+	"specialpages-access-restricted-note": "標記為「受限」的頁面是公眾沒有存取權，而您擁有存取權的頁面。",
 	"specialpages-group-maintenance": "維護報表",
 	"specialpages-group-other": "其它特殊頁面",
 	"specialpages-group-login": "帳號管理",

@@ -3258,7 +3258,7 @@
 	"specialpages-header-access": "Accesso",
 	"specialpages-access-public": "Public",
 	"specialpages-access-restricted": "Restringite",
-	"specialpages-access-restricted-note": "Le paginas ‘{{int:specialpages-access-restricted}}’ non es accessibile publicamente, ma es accessibile pro te.",
+	"specialpages-access-restricted-note": "Paginas restringite non es accessibile al publico, ma es accessibile pro te.",
 	"specialpages-group-maintenance": "Reportos de mantenentia",
 	"specialpages-group-other": "Altere paginas special",
 	"specialpages-group-login": "Gestion de contos",
