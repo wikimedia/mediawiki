@@ -70,19 +70,22 @@ class DefaultOutputPipelineFactory {
 				'ContentLanguage',
 			],
 		],
-		'HandleSectionLinks' => [
-			'class' => HandleSectionLinks::class,
-			'services' => [
-				'TitleFactory',
-			],
-		],
 		// HandleParsoidSectionLinks and ParsoidLocalization are currently the only two DOM passes; we keep them
 		// adjacent to each other to be able to skip the DOM->text->DOM transformations
-		'HandleParsoidSectionLinks' => [
-			'class' => HandleParsoidSectionLinks::class,
-			'services' => [
-				'TitleFactory',
+		'HandleSectionLinks' => [
+			'textStage' => [
+				'class' => HandleSectionLinks::class,
+				'services' => [
+					'TitleFactory',
+				],
 			],
+			'domStage' => [
+				'class' => HandleParsoidSectionLinks::class,
+				'services' => [
+					'TitleFactory',
+				],
+			],
+			'exclusive' => true
 		],
 		// This should be before DeduplicateStyles because some system messages may use TemplateStyles (so we
 		// want to expand them before deduplication).
@@ -141,16 +144,40 @@ class DefaultOutputPipelineFactory {
 
 		$otp = new OutputTransformPipeline();
 		foreach ( $list as $spec ) {
+			if ( is_array( $spec ) &&
+				array_key_exists( 'domStage', $spec ) && array_key_exists( 'textStage', $spec )
+			) {
+				$svcOptions = new ServiceOptions( ContentHolderTransformStage::CONSTRUCTOR_OPTIONS, $this->config );
+				$extraArgs = [ 'extraArgs' => [ $svcOptions, $this->logger ] ];
+				$args = [
+					$this->objectFactory->createObject( $spec['textStage'],
+					[
+						'assertClass' => ContentTextTransformStage::class,
+					] + $extraArgs ),
+					$this->objectFactory->createObject( $spec['domStage'],
+						[
+							'assertClass' => ContentDOMTransformStage::class,
+						] + $extraArgs ),
+					$spec['exclusive'] ?? false
+				];
+				$spec = [
+					'class' => ContentHolderTransformStage::class,
+					'args' => $args
+				];
+			}
+
 			$class = $spec['class'];
 			$svcOptions = new ServiceOptions(
 				$class::CONSTRUCTOR_OPTIONS, $this->config
 			);
+			$extraArgs = [ 'extraArgs' => [ $svcOptions, $this->logger ] ];
+			// ObjectFactory::createObject accepts an array, not just a callable (phan bug)
+			// @phan-suppress-next-line PhanTypeInvalidCallableArrayKey
 			$transform = $this->objectFactory->createObject(
 				$spec,
 				[
-					'assertClass' => OutputTransformStage::class,
-					'extraArgs' => [ $svcOptions, $this->logger ],
-				]
+					'assertClass' => OutputTransformStage::class
+				] + $extraArgs
 			);
 			$otp->addStage( $transform );
 		}

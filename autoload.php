@@ -2091,6 +2091,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Notification\\Types\\WikiNotification' => __DIR__ . '/includes/Notification/Types/WikiNotification.php',
 	'MediaWiki\\OutputHandler' => __DIR__ . '/includes/Output/OutputHandler.php',
 	'MediaWiki\\OutputTransform\\ContentDOMTransformStage' => __DIR__ . '/includes/OutputTransform/ContentDOMTransformStage.php',
+	'MediaWiki\\OutputTransform\\ContentHolderTransformStage' => __DIR__ . '/includes/OutputTransform/ContentHolderTransformStage.php',
 	'MediaWiki\\OutputTransform\\ContentTextTransformStage' => __DIR__ . '/includes/OutputTransform/ContentTextTransformStage.php',
 	'MediaWiki\\OutputTransform\\DefaultOutputPipelineFactory' => __DIR__ . '/includes/OutputTransform/DefaultOutputPipelineFactory.php',
 	'MediaWiki\\OutputTransform\\OutputTransformPipeline' => __DIR__ . '/includes/OutputTransform/OutputTransformPipeline.php',

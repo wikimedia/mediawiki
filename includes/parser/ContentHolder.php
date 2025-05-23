@@ -321,4 +321,14 @@ class ContentHolder {
 	public function ignoreForObjectEquality(): array {
 		return [ "ownerDocument" ];
 	}
+
+	/**
+	 * Given a ContentHolderTransformStage that has two valid transform options, returns true if the state of the
+	 * ContentHolder calls for a DOM transform, false if it calls for a text transform.
+	 * Right now, this is strictly directed by whether the ContentHolder is in DOM format or in HTML format;
+	 * this might change in the future if we maintain both formats in some cases.
+	 */
+	public function preferDom(): bool {
+		return $this->domFormat;
+	}
 }
