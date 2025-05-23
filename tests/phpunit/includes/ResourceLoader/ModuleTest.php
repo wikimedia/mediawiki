@@ -155,8 +155,7 @@ class ModuleTest extends ResourceLoaderTestCase {
 		];
 
 		yield 'valid ES2017 async-await' => [
-			"var foo = async function(x) { return await x.fetch(); }",
-			'Parse error: Unexpected: function on line 1 in input.js'
+			"var foo = async function(x) { return await x.fetch(); }"
 		];
 
 		yield 'valid ES2018 spread in object literal' => [
