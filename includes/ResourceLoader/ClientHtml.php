@@ -496,12 +496,13 @@ RLPAGEMODULES = {$pageModulesJson};
 						if ( $only === Module::TYPE_STYLES ) {
 							$chunk = Html::linkedStyle( $url );
 						} elseif ( $context->getRaw() ) {
+							$useDefer = $mainContext->getResourceLoader()->getConfig()->get('ResourceLoaderUseDefer', false);
 							// This request is asking for the module to be delivered standalone,
 							// (aka "raw") without communicating to any mw.loader client.
 							// For:
 							// - startup (naturally because this is what will define mw.loader)
 							$chunk = Html::element( 'script', [
-								'defer' => true,
+								$useDefer ? 'defer' : 'async' => true,
 								'src' => $url,
 							] );
 						} else {
