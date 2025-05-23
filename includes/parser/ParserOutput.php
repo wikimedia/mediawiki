@@ -39,7 +39,6 @@ use Wikimedia\Parsoid\Core\ContentMetadataCollector;
 use Wikimedia\Parsoid\Core\ContentMetadataCollectorCompat;
 use Wikimedia\Parsoid\Core\LinkTarget as ParsoidLinkTarget;
 use Wikimedia\Parsoid\Core\TOCData;
-use Wikimedia\Reflection\GhostFieldAccessTrait;
 
 /**
  * ParserOutput is a rendering of a Content object or a message.
@@ -91,7 +90,6 @@ use Wikimedia\Reflection\GhostFieldAccessTrait;
  * @ingroup Parser
  */
 class ParserOutput extends CacheTime implements ContentMetadataCollector {
-	use GhostFieldAccessTrait;
 	use JsonDeserializableTrait;
 	// This is used to break cyclic dependencies and allow a measure
 	// of compatibility when new methods are added to ContentMetadataCollector
@@ -2552,19 +2550,6 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		}
 	}
 
-	public function __sleep() {
-		return array_filter( array_keys( get_object_vars( $this ) ),
-			static function ( $field ) {
-				if ( $field === 'mParseStartTime' || $field === 'mWarningMsgs' ) {
-					return false;
-				}
-				// Unserializing unknown private fields in HHVM causes
-				// member variables with nulls in their names (T229366)
-				return strpos( $field, "\0" ) === false;
-			}
-		);
-	}
-
 	/**
 	 * Merges internal metadata such as flags, accessed options, and profiling info
 	 * from $source into this ParserOutput. This should be used whenever the state of $source
@@ -3263,102 +3248,6 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		}
 
 		return $properties;
-	}
-
-	public function __wakeup() {
-		$oldAliases = [
-			// This was the pre-namespace name of the class, which is still
-			// used in pre-1.42 serialized objects.
-			'ParserOutput',
-		];
-		// Backwards compatibility, pre 1.36
-		$priorAccessedOptions = $this->getGhostFieldValue( 'mAccessedOptions', ...$oldAliases );
-		if ( $priorAccessedOptions ) {
-			$this->mParseUsedOptions = $priorAccessedOptions;
-		}
-		// Backwards compatibility, pre 1.39
-		$priorIndexPolicy = $this->getGhostFieldValue( 'mIndexPolicy', ...$oldAliases );
-		if ( $priorIndexPolicy ) {
-			$this->setIndexPolicy( $priorIndexPolicy );
-		}
-		// Backwards compatibility, pre 1.40
-		$mSections = $this->getGhostFieldValue( 'mSections', ...$oldAliases );
-		if ( $mSections !== null && $mSections !== [] ) {
-			$this->setSections( $mSections );
-		}
-		// Backwards compatibility, pre 1.42
-		$mModules = $this->getGhostFieldValue( 'mModules', ...$oldAliases );
-		if ( $mModules !== null && $mModules !== [] ) {
-			$this->addModules( $mModules );
-		}
-		// Backwards compatibility, pre 1.42
-		$mModuleStyles = $this->getGhostFieldValue( 'mModuleStyles', ...$oldAliases );
-		if ( $mModuleStyles !== null && $mModuleStyles !== [] ) {
-			$this->addModuleStyles( $mModuleStyles );
-		}
-		// Backwards compatibility, pre 1.42
-		$mText = $this->getGhostFieldValue( 'mText', ...$oldAliases );
-		if ( $mText !== null ) {
-			$this->setRawText( $mText );
-		}
-		// Backwards compatibility, pre 1.42
-		$ll = $this->getGhostFieldValue( 'mLanguageLinks', ...$oldAliases );
-		if ( $ll !== null && $ll !== [] ) {
-			foreach ( $ll as $l ) {
-				$this->addLanguageLink( $l );
-			}
-		}
-		// Backward compatibility with private fields, pre 1.42
-		$oldPrivateFields = [
-			'mRawText',
-			'mCategories',
-			'mIndicators',
-			'mTitleText',
-			'mLinks',
-			'mLinksSpecial',
-			'mTemplates',
-			'mTemplateIds',
-			'mImages',
-			'mFileSearchOptions',
-			'mExternalLinks',
-			'mInterwikiLinks',
-			'mNewSection',
-			'mHideNewSection',
-			'mNoGallery',
-			'mHeadItems',
-			'mModuleSet',
-			'mModuleStyleSet',
-			'mJsConfigVars',
-			'mWarnings',
-			'mWarningMsgs',
-			'mTOCData',
-			'mProperties',
-			'mTimestamp',
-			'mEnableOOUI',
-			'mIndexSet',
-			'mNoIndexSet',
-			'mExtensionData',
-			'mLimitReportData',
-			'mLimitReportJSData',
-			'mCacheMessage',
-			'mParseStartTime',
-			'mTimeProfile',
-			'mPreventClickjacking',
-			'mExtraScriptSrcs',
-			'mExtraDefaultSrcs',
-			'mExtraStyleSrcs',
-			'mFlags',
-			'mSpeculativeRevId',
-			'speculativePageIdUsed',
-			'revisionTimestampUsed',
-			'revisionUsedSha1Base36',
-			'mWrapperDivClasses',
-			'mMaxAdaptiveExpiry',
-		];
-		foreach ( $oldPrivateFields as $f ) {
-			$this->restoreAliasedGhostField( $f, ...$oldAliases );
-		}
-		$this->clearParseStartTime();
 	}
 
 	public function __clone() {

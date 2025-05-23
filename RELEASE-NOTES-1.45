@@ -140,6 +140,17 @@ because of Phabricator reports.
 
 === Other changes in 1.45 ===
 
+* Reading parser cache content using native PHP serialization has been
+  removed in this release.  JSON serialization was been the default
+  since 1.36, and the option to use native serialization was removed
+  in 1.39.  Upgrades from revision 1.38 and earlier with
+  $wgParserCacheUseJson=false should either clear the parser cache, or
+  upgrade to revision 1.36-1.44 with $wgParserCacheUseJson=true and
+  wait until the parser cache expiration time
+  ($wgParserCacheExpireTime) elapses before upgrading to this release.
+
+  <https://www.mediawiki.org/wiki/Manual:Parser_cache/Serialization_compatibility>
+
 * …
 
 == Compatibility ==

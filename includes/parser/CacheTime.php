@@ -29,7 +29,6 @@ use MediaWiki\Json\JsonDeserializer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Utils\MWTimestamp;
-use Wikimedia\Reflection\GhostFieldAccessTrait;
 
 /**
  * Parser cache specific expiry check.
@@ -37,7 +36,6 @@ use Wikimedia\Reflection\GhostFieldAccessTrait;
  * @ingroup Parser
  */
 class CacheTime implements ParserCacheMetadata, JsonDeserializable {
-	use GhostFieldAccessTrait;
 	use JsonDeserializableTrait;
 
 	/**
@@ -289,14 +287,6 @@ class CacheTime implements ParserCacheMetadata, JsonDeserializable {
 		$this->mCacheExpiry = $jsonData['CacheExpiry'];
 		$this->mCacheTime = $jsonData['CacheTime'];
 		$this->mCacheRevisionId = $jsonData['CacheRevisionId'];
-	}
-
-	public function __wakeup() {
-		// Backwards compatibility, pre 1.36
-		$priorOptions = $this->getGhostFieldValue( 'mUsedOptions' );
-		if ( $priorOptions ) {
-			$this->recordOptions( $priorOptions );
-		}
 	}
 
 	public function __get( $name ) {
