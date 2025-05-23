@@ -13,6 +13,7 @@ use MediaWiki\Title\TitleValue;
 use MediaWiki\Utils\MWTimestamp;
 use MediaWikiIntegrationTestCase;
 use stdClass;
+use Wikimedia\Message\MessageValue;
 use Wikimedia\TestingAccessWrapper;
 use Wikimedia\Tests\SerializationTestUtils;
 
@@ -218,6 +219,7 @@ abstract class ParserCacheSerializationTestCases {
 	public static function getParserOutputTestCases() {
 		MWDebug::filterDeprecationForTest( '/::setPageProperty with (non-scalar|non-string|null) value/' );
 		MWDebug::filterDeprecationForTest( '/::addLanguageLink without prefix/' );
+		MWDebug::filterDeprecationForTest( '/::getWarnings/' );
 		$parserOutputWithCacheTimeProps = new ParserOutput( 'CacheTime' );
 		$parserOutputWithCacheTimeProps->setCacheTime( self::CACHE_TIME );
 		$parserOutputWithCacheTimeProps->updateCacheExpiry( 10 );
@@ -303,12 +305,13 @@ abstract class ParserCacheSerializationTestCases {
 		$parserOutputWithMetadata->setNewSection( true );
 		$parserOutputWithMetadata->setOutputFlag( 'test' );
 
+		$parserOutputWithMetadataPre1_45 = clone $parserOutputWithMetadata;
 		// For compatibility with older serialized objects, clear out the
-		// $mWarningMsgs array, which is not currently stored.
+		// $mWarningMsgs array, which was not stored before MW 1.45.
 		// See T343050 for the steps required to remove this workaround in
 		// the future.
 		TestingAccessWrapper::newFromObject(
-			$parserOutputWithMetadata
+			$parserOutputWithMetadataPre1_45
 		)->mWarningMsgs = [];
 
 		$parserOutputWithSections = new ParserOutput( '' );
@@ -335,6 +338,7 @@ abstract class ParserCacheSerializationTestCases {
 			'empty' => [
 				'instance' => new ParserOutput( '' ),
 				'assertions' => static function ( MediaWikiIntegrationTestCase $testCase, ParserOutput $object ) {
+					MWDebug::filterDeprecationForTest( '/::getWarnings was deprecated/' );
 					// Empty CacheTime assertions
 					self::getCacheTimeTestCases()['empty']['assertions']( $testCase, $object );
 					// Empty string text is counted as having text.
@@ -366,6 +370,7 @@ abstract class ParserCacheSerializationTestCases {
 					$testCase->assertArrayEquals( [], $object->getModuleStyles() );
 					$testCase->assertArrayEquals( [], $object->getJsConfigVars() );
 					$testCase->assertArrayEquals( [], $object->getWarnings() );
+					$testCase->assertArrayEquals( [], $object->getWarningMsgs() );
 					$testCase->assertSame( '', $object->getIndexPolicy() );
 					$testCase->assertNull( $object->getRevisionTimestamp() );
 					$testCase->assertArrayEquals( [], $object->getLimitReportData() );
@@ -468,8 +473,9 @@ abstract class ParserCacheSerializationTestCases {
 				}
 			],
 			'withMetadata' => [
-				'instance' => $parserOutputWithMetadata,
+				'instance' => $parserOutputWithMetadataPre1_45,
 				'assertions' => static function ( MediaWikiIntegrationTestCase $testCase, ParserOutput $object ) {
+					MWDebug::filterDeprecationForTest( '/::getWarnings was deprecated/' );
 					$testCase->assertSame( 42, $object->getSpeculativeRevIdUsed() );
 					$testCase->assertArrayEquals( [ 'link1', 'link2' ], $object->getLanguageLinks() );
 					$testCase->assertArrayEquals( [ 'enwiki' => [
@@ -547,6 +553,60 @@ abstract class ParserCacheSerializationTestCases {
 					$testCase->assertArrayEquals( [ 'script1' ], $object->getExtraCSPScriptSrcs() );
 					$testCase->assertArrayEquals( [ 'style1' ], $object->getExtraCSPStyleSrcs() );
 					$testCase->assertArrayEquals( [ 'Link3' => 1 ], $object->getLinksSpecial() );
+				}
+			],
+			'withMetadataPost1_44' => [
+				'instance' => $parserOutputWithMetadata,
+				'assertions' => static function ( MediaWikiIntegrationTestCase $testCase, ParserOutput $object ) {
+					$testCase->assertSame( 42, $object->getSpeculativeRevIdUsed() );
+					$testCase->assertArrayEquals( [ 'link1', 'link2' ], $object->getLanguageLinks() );
+					$testCase->assertArrayEquals( [ 'enwiki' => [
+						'interwiki1' => 1,
+						'interwiki2' => 1
+					] ], $object->getInterwikiLinks() );
+					$testCase->assertArrayEquals( [ 'category1', 'category2' ], $object->getCategoryNames() );
+					$testCase->assertArrayEquals( [
+						'category1' => '2',
+						'category2' => '1'
+					], $object->getCategoryMap() );
+					$testCase->assertArrayEquals( [ 'indicator1' => 'indicator1_value' ], $object->getIndicators() );
+					$testCase->assertSame( 'title_text1', $object->getTitleText() );
+					$testCase->assertArrayEquals( self::SECTIONS, $object->getSections() );
+					$testCase->assertArrayEquals( [
+						NS_MAIN => [ 'Link1' => 42 ],
+						NS_USER => [ 'Link2' => 43 ]
+					], $object->getLinks() );
+					$testCase->assertArrayEquals( [
+						NS_SPECIAL => [ 'Template1' => 42 ]
+					], $object->getTemplates() );
+					$testCase->assertArrayEquals( [
+						NS_SPECIAL => [ 'Template1' => 4242 ]
+					], $object->getTemplateIds() );
+					$testCase->assertArrayEquals( [ 'Image1' => 1 ], $object->getImages() );
+					$testCase->assertArrayEquals( [ 'Image1' => [
+						'time' => MWTimestamp::convert( TS_MW, 123456789 ), 'sha1' => 'test_sha1'
+					] ], $object->getFileSearchOptions() );
+					$testCase->assertArrayEquals( [ 'https://test.com' => 1 ], $object->getExternalLinks() );
+					$testCase->assertArrayEquals( [ 'tag1' => 'head_item1' ], $object->getHeadItems() );
+					$testCase->assertArrayEquals( [ 'module1' ], $object->getModules() );
+					$testCase->assertArrayEquals( [ 'module_style1' ], $object->getModuleStyles() );
+					$testCase->assertArrayEquals( [ 'key1' => 'value1' ], $object->getJsConfigVars() );
+					$testCase->assertArrayEquals( [ MessageValue::new( 'rawmessage', [ 'warning1' ] ) ], $object->getWarningMsgs() );
+					$testCase->assertSame( 'noindex', $object->getIndexPolicy() );
+					$testCase->assertSame( MWTimestamp::convert( TS_MW, 987654321 ), $object->getRevisionTimestamp() );
+					$testCase->assertArrayEquals(
+						[ 'limit_report_key1' => 'value1' ],
+						$object->getLimitReportData()
+					);
+					$testCase->assertArrayEquals(
+						[ 'limit_report_key1' => 'value1' ],
+						$object->getLimitReportJSData()
+					);
+					$testCase->assertTrue( $object->getEnableOOUI() );
+					$testCase->assertTrue( $object->getHideNewSection() );
+					$testCase->assertTrue( $object->getNewSection() );
+					$testCase->assertTrue( $object->getOutputFlag( 'test' ) );
+					$testCase->assertArrayEquals( [ 'test' ], $object->getAllFlags() );
 				}
 			],
 			'withFalsyProperties' => [

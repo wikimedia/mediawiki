@@ -341,8 +341,8 @@ class McrUndoAction extends FormAction {
 			] )->getContentHolderText();
 
 			$out->addParserOutputMetadata( $parserOutput );
-			if ( count( $parserOutput->getWarnings() ) ) {
-				$note .= "\n\n" . implode( "\n\n", $parserOutput->getWarnings() );
+			foreach ( $parserOutput->getWarningMsgs() as $mv ) {
+				$note .= "\n\n" . $this->context->msg( $mv )->text();
 			}
 		} catch ( MWContentSerializationException $ex ) {
 			$m = $this->context->msg(

@@ -30,12 +30,14 @@ use MediaWiki\Json\JsonDeserializableTrait;
 use MediaWiki\Json\JsonDeserializer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Message\Message;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWiki\Title\TitleValue;
 use UnexpectedValueException;
 use Wikimedia\Bcp47Code\Bcp47Code;
 use Wikimedia\Bcp47Code\Bcp47CodeValue;
+use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Parsoid\Core\ContentMetadataCollector;
 use Wikimedia\Parsoid\Core\ContentMetadataCollectorCompat;
@@ -243,13 +245,13 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	/**
 	 * @var array<string,int> Warning text to be returned to the user.
 	 *  Wikitext formatted, in the key only.
+	 * @deprecated since 1.45; use ::$mWarningMsgs instead
 	 */
 	private $mWarnings = [];
 
 	/**
-	 * @var array<string,array> *Unformatted* warning messages and
-	 * arguments to be returned to the user.  This is for internal use
-	 * when merging ParserOutputs and are not serialized/deserialized.
+	 * @var array<string,MessageValue> *Unformatted* warning messages and
+	 * arguments to be returned to the user.
 	 */
 	private $mWarningMsgs = [];
 
@@ -985,8 +987,16 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		return $result;
 	}
 
+	/** @deprecated since 1.45; use ::getWarningMsgs. */
 	public function getWarnings(): array {
+		// T343048: Don't emit deprecation warnings here until the
+		// compatibility fallback in ApiParse is removed.
 		return array_keys( $this->mWarnings );
+	}
+
+	/** @return list<MessageValue> */
+	public function getWarningMsgs(): array {
+		return array_values( $this->mWarningMsgs );
 	}
 
 	public function getIndexPolicy(): string {
@@ -1242,12 +1252,28 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 
 	/**
 	 * Add a warning to the output for this page.
-	 * @param MessageValue $mv
+	 * @param MessageSpecifier $mv
+	 * @param ?string $key An optional deduplication key, used to prevent
+	 *  duplicate messages.  If omitted or null, the MessageValue key will
+	 *  be used for deduplication.
 	 * @since 1.43
 	 */
-	public function addWarningMsgVal( MessageValue $mv ) {
-		// These can eventually be stored as MessageValue directly.
-		$this->addWarningMsg( $mv->getKey(), ...$mv->getParams() );
+	public function addWarningMsgVal( MessageSpecifier $mv, ?string $key = null ) {
+		$mv = MessageValue::newFromSpecifier( $mv );
+		$key ??= $mv->getKey();
+		$this->mWarningMsgs[$key] = $mv;
+		// Ensure callers aren't passing nonserializable arguments: T343048.
+		$jsonCodec = MediaWikiServices::getInstance()->getJsonCodec();
+		$path = $jsonCodec->detectNonSerializableData( $mv, true );
+		if ( $path !== null ) {
+			throw new InvalidArgumentException( __METHOD__ . ": nonserializable" );
+		}
+		// For backward compatibility with callers of ::getWarnings()
+		$s = Message::newFromSpecifier( $mv )
+			// some callers set the title here?
+			->inContentLanguage() // because this ends up in cache
+			->text();
+		$this->mWarnings[$s] = 1;
 	}
 
 	/**
@@ -1259,29 +1285,10 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * @since 1.38
 	 */
 	public function addWarningMsg( string $msg, ...$args ): void {
-		// MessageValue objects are defined in core and thus not visible
-		// to Parsoid or to its ContentMetadataCollector interface.
-		// Eventually this method (defined in ContentMetadataCollector) should
-		// call ::addWarningMsgVal() instead of the other way around.
-
-		// preserve original arguments in $mWarningMsgs to allow merge
-		// @todo: these aren't serialized/deserialized yet -- before we
-		// turn on serialization of $this->mWarningMsgs we need to ensure
-		// callers aren't passing nonserializable arguments: T343048.
-		$jsonCodec = MediaWikiServices::getInstance()->getJsonCodec();
-		$path = $jsonCodec->detectNonSerializableData( $args, true );
-		if ( $path !== null ) {
-			wfDeprecatedMsg(
-				"ParserOutput::addWarningMsg() called with nonserializable arguments: $path",
-				'1.41'
-			);
-		}
-		$this->mWarningMsgs[$msg] = $args;
-		$s = wfMessage( $msg, ...$args )
-			// some callers set the title here?
-			->inContentLanguage() // because this ends up in cache
-			->text();
-		$this->mWarnings[$s] = 1;
+		// T227447: Once MessageSpecifier is moved to a library, Parsoid would
+		// be able to use ::addWarningMsgVal() directly and this method
+		// could be deprecated and removed.
+		$this->addWarningMsgVal( MessageValue::new( $msg, $args ) );
 	}
 
 	public function setNewSection( $value ): void {
@@ -2529,6 +2536,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 */
 	public function mergeInternalMetaDataFrom( ParserOutput $source ): void {
 		$this->mWarnings = self::mergeMap( $this->mWarnings, $source->mWarnings ); // don't use getter
+		$this->mWarningMsgs = self::mergeMap( $this->mWarningMsgs, $source->mWarningMsgs );
 		$this->mTimestamp = $this->useMaxValue( $this->mTimestamp, $source->getRevisionTimestamp() );
 		if ( $source->hasCacheTime() ) {
 			$sourceCacheTime = $source->getCacheTime();
@@ -2865,8 +2873,8 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 				wfDeprecated( __METHOD__ . ' with unusual page property', '1.45' );
 			}
 		}
-		foreach ( $this->mWarningMsgs as $msg => $args ) {
-			$metadata->addWarningMsg( $msg, ...$args );
+		foreach ( $this->mWarningMsgs as $key => $msg ) {
+			$metadata->addWarningMsgVal( $msg, $key );
 		}
 		foreach ( $this->mLimitReportData as $key => $value ) {
 			$metadata->setLimitReportData( $key, $value );
@@ -3051,6 +3059,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			'ModuleStyles' => array_keys( $this->mModuleStyleSet ),
 			'JsConfigVars' => $this->mJsConfigVars,
 			'Warnings' => $this->mWarnings,
+			'WarningMsgs' => $this->mWarningMsgs,
 			'Sections' => $this->getSections(),
 			'Properties' => self::detectAndEncodeBinary( $this->mProperties ),
 			'Timestamp' => $this->mTimestamp,
@@ -3143,7 +3152,8 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		$this->mModuleSet = array_fill_keys( $jsonData['Modules'], true );
 		$this->mModuleStyleSet = array_fill_keys( $jsonData['ModuleStyles'], true );
 		$this->mJsConfigVars = $jsonData['JsConfigVars'];
-		$this->mWarnings = $jsonData['Warnings'];
+		$this->mWarnings = $jsonData['Warnings'] ?? [];
+		$this->mWarningMsgs = $jsonData['WarningMsgs'] ?? [];
 		$this->mFlags = $jsonData['Flags'];
 		if (
 			$jsonData['Sections'] !== [] ||
