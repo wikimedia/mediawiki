@@ -32,6 +32,7 @@ namespace Wikimedia\Reflection;
  *
  * @see https://www.php.net/manual/en/language.types.array.php#language.types.array.casting
  * @since 1.36
+ * @deprecated since 1.44
  */
 trait GhostFieldAccessTrait {
 
