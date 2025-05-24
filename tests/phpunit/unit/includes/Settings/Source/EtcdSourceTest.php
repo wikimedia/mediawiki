@@ -239,7 +239,7 @@ class EtcdSourceTest extends TestCase {
 	 */
 	private function mockCallable() {
 		return $this
-			->getMockBuilder( __CLASS__ )
+			->getMockBuilder( \stdClass::class )
 			->addMethods( [ '__invoke' ] )
 			->getMock();
 	}
