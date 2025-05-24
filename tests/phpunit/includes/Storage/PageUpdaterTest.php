@@ -1176,7 +1176,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		$this->assertStatusError( 'content-not-allowed-here', $status );
 	}
 
-	public static function provideSetRcPatrolStatus( $patrolled ) {
+	public static function provideSetRcPatrolStatus() {
 		yield [ RecentChange::PRC_UNPATROLLED ];
 		yield [ RecentChange::PRC_AUTOPATROLLED ];
 	}
