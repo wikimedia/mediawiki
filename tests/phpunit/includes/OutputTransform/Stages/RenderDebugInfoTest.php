@@ -22,13 +22,13 @@ class RenderDebugInfoTest extends OutputTransformStageTestBase {
 		);
 	}
 
-	public function provideShouldRun(): array {
+	public static function provideShouldRun(): array {
 		return [
 			[ new ParserOutput(), null, [ 'includeDebugInfo' => true ] ],
 		];
 	}
 
-	public function provideShouldNotRun(): array {
+	public static function provideShouldNotRun(): array {
 		return [
 			[ new ParserOutput(), null, [] ],
 			[ new ParserOutput(), null, [ 'includeDebugInfo' => false ] ],
@@ -39,7 +39,7 @@ class RenderDebugInfoTest extends OutputTransformStageTestBase {
 	 * TODO this only covers the addition of the report, not the content of the report itself. Expanding this
 	 * test may be a good idea.
 	 */
-	public function provideTransform(): array {
+	public static function provideTransform(): array {
 		$text = <<<EOF
 <!DOCTYPE html>
 <html><head><title>Main Page</title></head><body data-parsoid='{"dsr":[0,6,0,0]}' lang="en"><p data-parsoid='{"dsr":[0,5,0,0]}'>hello</p>

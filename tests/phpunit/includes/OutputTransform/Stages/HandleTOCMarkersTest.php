@@ -25,7 +25,7 @@ class HandleTOCMarkersTest extends OutputTransformStageTestBase {
 		);
 	}
 
-	public function provideShouldRun(): array {
+	public static function provideShouldRun(): array {
 		return [
 			[ new ParserOutput(), null, [] ],
 			[ new ParserOutput(), null, [ 'allowTOC' => false, 'injectTOC' => false ] ],
@@ -36,25 +36,34 @@ class HandleTOCMarkersTest extends OutputTransformStageTestBase {
 		];
 	}
 
-	public function provideShouldNotRun(): array {
+	public static function provideShouldNotRun(): array {
 		return [
 			[ new ParserOutput(), null, [ 'allowTOC' => true, 'injectTOC' => false ] ]
 		];
 	}
 
-	public function provideTransform(): iterable {
-		$lang = $this->createNoOpMock(
-			Language::class, [ 'getCode', 'getHtmlCode', 'getDir' ]
-		);
-		$lang->method( 'getCode' )->willReturn( 'en' );
-		$lang->method( 'getHtmlCode' )->willReturn( 'en' );
-		$lang->method( 'getDir' )->willReturn( 'ltr' );
+	/** @dataProvider provideTransform */
+	public function testTransform( $parserOutput, $parserOptions, $options, $expected, $message = '' ) {
+		if ( array_key_exists( 'userLang', $options ) ) {
+			$lang = $this->createNoOpMock(
+				Language::class, [ 'getCode', 'getHtmlCode', 'getDir' ]
+			);
+			$lang->method( 'getCode' )->willReturn( 'en' );
+			$lang->method( 'getHtmlCode' )->willReturn( 'en' );
+			$lang->method( 'getDir' )->willReturn( 'ltr' );
+			$options['userLang'] = $lang;
+		}
+		if ( array_key_exists( 'skin', $options ) ) {
+			$skin = $this->createNoOpMock(
+				Skin::class, [ 'getLanguage' ]
+			);
+			$skin->method( 'getLanguage' )->willReturn( $options['userLang'] );
+			$options['skin'] = $skin;
+		}
+		parent::testTransform( $parserOutput, $parserOptions, $options, $expected, $message = '' );
+	}
 
-		$skin = $this->createNoOpMock(
-			Skin::class, [ 'getLanguage' ]
-		);
-		$skin->method( 'getLanguage' )->willReturn( $lang );
-
+	public static function provideTransform(): iterable {
 		$withToc = <<<EOF
 <p>Test document.
 </p>
@@ -106,8 +115,8 @@ EOF;
 		$expectedWith = new ParserOutput( $withToc );
 		TestUtils::initSections( $expectedWith );
 		yield [ $poTest1, null, [
-			'userLang' => $lang,
-			'skin' => $skin,
+			'userLang' => null,
+			'skin' => null,
 			'allowTOC' => true,
 			'injectTOC' => true
 		], $expectedWith, 'should insert TOC' ];
@@ -123,8 +132,8 @@ EOF;
 		$expectedWith = new ParserOutput( $withToc );
 		TestUtils::initSections( $expectedWith );
 		yield [ $poTest3, null, [
-			'userLang' => $lang,
-			'skin' => $skin,
+			'userLang' => null,
+			'skin' => null,
 			'allowTOC' => true,
 			'injectTOC' => true
 		], $expectedWith, 'should insert TOC only once' ];

@@ -20,20 +20,20 @@ class ExtractBodyTest extends OutputTransformStageTestBase {
 		return new ExtractBody( new ServiceOptions( [] ), new NullLogger(), $urlUtils, null );
 	}
 
-	public function provideShouldRun(): array {
+	public static function provideShouldRun(): array {
 		return [
 			[ new ParserOutput(), null, [ 'isParsoidContent' => true ] ],
 		];
 	}
 
-	public function provideShouldNotRun(): array {
+	public static function provideShouldNotRun(): array {
 		return [
 			[ new ParserOutput(), null, [ 'isParsoidContent' => false ] ],
 			[ new ParserOutput(), null, [] ],
 		];
 	}
 
-	public function provideTransform(): array {
+	public static function provideTransform(): array {
 		$pageTemplate = <<<EOF
 <!DOCTYPE html>
 <html><head><base href="https://www.example.com/w/"/></head><body>__BODY__

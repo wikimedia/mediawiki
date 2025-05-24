@@ -26,11 +26,11 @@ class HandleParsoidSectionLinksTest extends OutputTransformStageTestBase {
 		);
 	}
 
-	public function provideShouldRun(): iterable {
+	public static function provideShouldRun(): iterable {
 		yield [ new ParserOutput(), null, [ 'isParsoidContent' => true ] ];
 	}
 
-	public function provideShouldNotRun(): iterable {
+	public static function provideShouldNotRun(): iterable {
 		yield [ new ParserOutput(), null, [ 'isParsoidContent' => false ] ];
 	}
 
@@ -58,20 +58,28 @@ class HandleParsoidSectionLinksTest extends OutputTransformStageTestBase {
 		return $po;
 	}
 
-	public function provideTransform(): iterable {
-		$skin = $this->createNoOpMock(
-			Skin::class, [ 'getLanguage', 'doEditSectionLink' ]
-		);
-		$skin->method( 'getLanguage' )->willReturn(
-			$this->createNoOpMock( Language::class )
-		);
-		$skin->method( 'doEditSectionLink' )->willReturn(
-			'!<a id="c">edit</a>!'
-		);
+	/** @dataProvider provideTransform */
+	public function testTransform( $parserOutput, $parserOptions, $options, $expected, $message = '' ) {
+		if ( array_key_exists( 'skin', $options ) ) {
+			$skin = $this->createNoOpMock(
+				Skin::class, [ 'getLanguage', 'doEditSectionLink' ]
+			);
+			$skin->method( 'getLanguage' )->willReturn(
+				$this->createNoOpMock( Language::class )
+			);
+			$skin->method( 'doEditSectionLink' )->willReturn(
+				'!<a id="c">edit</a>!'
+			);
+			$options['skin'] = $skin;
+		}
+		parent::testTransform( $parserOutput, $parserOptions, $options, $expected, $message = '' );
+	}
+
+	public static function provideTransform(): iterable {
 		$options = [
 			'isParsoidContent' => true,
 			'enableSectionEditLinks' => true,
-			'skin' => $skin,
+			'skin' => null,
 		];
 		$toc = TOCData::fromLegacy( [
 			[
