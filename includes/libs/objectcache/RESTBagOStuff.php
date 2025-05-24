@@ -193,7 +193,7 @@ class RESTBagOStuff extends MediumSpecificBagOStuff {
 
 		$value = false;
 		$valueSize = false;
-		[ $rcode, , $rhdrs, $rbody, $rerr ] = $this->client->run( $req );
+		[ $rcode, , , $rbody, $rerr ] = $this->client->run( $req );
 		if ( $rcode === 200 && is_string( $rbody ) ) {
 			$value = $this->decodeBody( $rbody );
 			$valueSize = strlen( $rbody );
@@ -202,7 +202,7 @@ class RESTBagOStuff extends MediumSpecificBagOStuff {
 				$casToken = $rbody;
 			}
 		} elseif ( $rcode === 0 || ( $rcode >= 400 && $rcode != 404 ) ) {
-			$this->handleError( 'Failed to fetch {cacheKey}', $rcode, $rerr, $rhdrs, $rbody,
+			$this->handleError( 'Failed to fetch {cacheKey}', $rcode, $rerr, $rbody,
 				[ 'cacheKey' => $key ] );
 		}
 
@@ -219,10 +219,10 @@ class RESTBagOStuff extends MediumSpecificBagOStuff {
 			'headers' => $this->httpParams['writeHeaders'],
 		];
 
-		[ $rcode, , $rhdrs, $rbody, $rerr ] = $this->client->run( $req );
+		[ $rcode, , , $rbody, $rerr ] = $this->client->run( $req );
 		$res = ( $rcode === 200 || $rcode === 201 || $rcode === 204 );
 		if ( !$res ) {
-			$this->handleError( 'Failed to store {cacheKey}', $rcode, $rerr, $rhdrs, $rbody,
+			$this->handleError( 'Failed to store {cacheKey}', $rcode, $rerr, $rbody,
 				[ 'cacheKey' => $key ] );
 		}
 
@@ -248,10 +248,10 @@ class RESTBagOStuff extends MediumSpecificBagOStuff {
 			'headers' => $this->httpParams['deleteHeaders'],
 		];
 
-		[ $rcode, , $rhdrs, $rbody, $rerr ] = $this->client->run( $req );
+		[ $rcode, , , $rbody, $rerr ] = $this->client->run( $req );
 		$res = in_array( $rcode, [ 200, 204, 205, 404, 410 ] );
 		if ( !$res ) {
-			$this->handleError( 'Failed to delete {cacheKey}', $rcode, $rerr, $rhdrs, $rbody,
+			$this->handleError( 'Failed to delete {cacheKey}', $rcode, $rerr, $rbody,
 				[ 'cacheKey' => $key ] );
 		}
 
@@ -352,11 +352,10 @@ class RESTBagOStuff extends MediumSpecificBagOStuff {
 	 * @param string $msg Error message
 	 * @param int $rcode Error code from client
 	 * @param string $rerr Error message from client
-	 * @param array $rhdrs Response headers
 	 * @param string $rbody Error body from client (if any)
 	 * @param array $context Error context for PSR-3 logging
 	 */
-	protected function handleError( $msg, $rcode, $rerr, $rhdrs, $rbody, $context = [] ) {
+	private function handleError( $msg, $rcode, $rerr, $rbody, $context = [] ): void {
 		$message = "$msg : ({code}) {error}";
 		$context = [
 			'code' => $rcode,
