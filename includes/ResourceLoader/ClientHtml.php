@@ -496,7 +496,8 @@ RLPAGEMODULES = {$pageModulesJson};
 						if ( $only === Module::TYPE_STYLES ) {
 							$chunk = Html::linkedStyle( $url );
 						} elseif ( $context->getRaw() ) {
-							$useDefer = $mainContext->getResourceLoader()->getConfig()->get('ResourceLoaderUseDefer', false);
+							$config = $mainContext->getResourceLoader()->getConfig();
+							$useDefer = $config->has('ResourceLoaderUseDefer') ? $config->get('ResourceLoaderUseDefer', false) : false;
 							// This request is asking for the module to be delivered standalone,
 							// (aka "raw") without communicating to any mw.loader client.
 							// For:
