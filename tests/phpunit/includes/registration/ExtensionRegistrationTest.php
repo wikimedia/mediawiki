@@ -98,22 +98,14 @@ class ExtensionRegistrationTest extends MediaWikiIntegrationTestCase {
 		$class->setStaticPropertyValue( 'instance', $registry );
 	}
 
-	public static function onAnEvent() {
-		// no-op
-	}
-
-	public static function onBooEvent() {
-		// no-op
-	}
-
 	public function testExportHooks() {
 		$manifest = [
 			'Hooks' => [
-				'AnEvent' => self::class . '::onAnEvent',
+				'AnEvent' => ExtensionRegistrationHookHandler::class . '::onAnEvent',
 				'BooEvent' => 'main',
 			],
 			'HookHandlers' => [
-				'main' => [ 'class' => self::class ]
+				'main' => [ 'class' => ExtensionRegistrationHookHandler::class ]
 			],
 		];
 
@@ -134,7 +126,6 @@ class ExtensionRegistrationTest extends MediaWikiIntegrationTestCase {
 	public function testRegisterDomainEventListeners() {
 		$subscriber = [
 			'events' => [ 'AnEvent', 'BooEvent' ],
-			'factory' => [ self::class, 'newSubscriber' ]
 		];
 
 		$manifest = [
@@ -711,6 +702,18 @@ class ExtensionRegistrationTest extends MediaWikiIntegrationTestCase {
 			class_exists( 'Test\\MediaWiki\\AutoLoader\\TestFooBar' ),
 			"Registry initializes Autoloader from AutoloadNamespaces"
 		);
+	}
+
+}
+
+class ExtensionRegistrationHookHandler {
+
+	public static function onAnEvent() {
+		// no-op
+	}
+
+	public static function onBooEvent() {
+		// no-op
 	}
 
 }
