@@ -68,12 +68,6 @@ use Wikimedia\Stats\StatsUtils;
  */
 class SiteConfig extends ISiteConfig {
 
-	/**
-	 * Regular expression fragment for matching wikitext comments.
-	 * Meant for inclusion in other regular expressions.
-	 */
-	protected const COMMENT_REGEXP_FRAGMENT = '<!--(?>[\s\S]*?-->)';
-
 	public const CONSTRUCTOR_OPTIONS = [
 		MainConfigNames::GalleryOptions,
 		MainConfigNames::AllowExternalImages,
