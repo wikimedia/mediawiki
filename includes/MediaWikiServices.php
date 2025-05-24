@@ -514,7 +514,7 @@ class MediaWikiServices extends ServiceContainer {
 	 * storage layer will result in an error.
 	 *
 	 * @since 1.28
-	 * @deprecated since 1.40, use disableStorage() instead.
+	 * @deprecated since 1.40, use disableStorage() instead. Hard deprecated in 1.45.
 	 *
 	 * @warning This is intended for extreme situations, see the documentation of disableStorage() for details.
 	 *
@@ -522,6 +522,7 @@ class MediaWikiServices extends ServiceContainer {
 	 * @see resetChildProcessServices()
 	 */
 	public static function disableStorageBackend() {
+		wfDeprecated( __METHOD__, '1.40' );
 		$services = self::getInstance();
 		$services->disableStorage();
 	}
@@ -972,9 +973,14 @@ class MediaWikiServices extends ServiceContainer {
 
 	/**
 	 * @since 1.29
-	 * @deprecated since 1.41 use ::getReadOnlyMode() instead
+	 * @deprecated since 1.41, use ::getReadOnlyMode() service together
+	 *   with ::getConfiguredReason() and ::isConfiguredReadOnly() to
+	 *   check when a site is set to read-only mode.
+	 *
+	 *   Hard deprecated in 1.45.
 	 */
 	public function getConfiguredReadOnlyMode(): ConfiguredReadOnlyMode {
+		wfDeprecated( __METHOD__, '1.41' );
 		return $this->getService( 'ConfiguredReadOnlyMode' );
 	}
 

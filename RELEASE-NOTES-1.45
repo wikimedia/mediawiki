@@ -133,6 +133,12 @@ because of Phabricator reports.
 
 * UserNameUtils::getTempPlaceholder() has been deprecated and now emits
   deprecation warnings. Use TempUserConfig::getPlaceholderName() instead.
+* MediaWikiServices::disableStorageBackend(), deprecated in 1.40 now
+  emits deprecation warnings. Use ::disableStorage() instead.
+* MediaWikiServices::getConfiguredReadOnlyMode(), deprecated in 1.41 now
+  emits deprecation warnings. Use ::getReadOnlyMode() service together
+  with ::getConfiguredReason() and ::isConfiguredReadOnly() to check
+  when a site is set to read-only mode.
 * Calling ApiOptions::__construct() without $userOptionsManager and
   $preferencesFactory has been deprecated and emits deprecation warnings.
   Code that extends ApiOptions should instead extend ApiOptionsBase.
