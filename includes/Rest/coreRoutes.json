@@ -10,7 +10,10 @@
 			"PageStore",
 			"TitleFormatter",
 			"PageRestHelperFactory"
-		]
+		],
+		"openApiSpec": {
+			"x-i18n-description": "rest-endpoint-desc-get-page-history"
+		}
 	},
 	{
 		"path": "/v1/page/{title}/history/counts/{type}",
@@ -24,7 +27,10 @@
 			"PageStore",
 			"PageRestHelperFactory",
 			"TempUserConfig"
-		]
+		],
+		"openApiSpec": {
+			"x-i18n-description": "rest-endpoint-desc-get-page-history-counts"
+		}
 	},
 	{
 		"path": "/v1/revision/{from}/compare/{to}",
@@ -32,7 +38,10 @@
 		"services": [
 			"RevisionLookup",
 			"ParserFactory"
-		]
+		],
+		"openApiSpec": {
+			"x-i18n-description": "rest-endpoint-desc-get-revision-compare"
+		}
 	},
 	{
 		"path": "/v1/revision/{id}",
@@ -84,7 +93,10 @@
 		"services": [
 			"MainConfig",
 			"UrlUtils"
-		]
+		],
+		"openApiSpec": {
+			"x-i18n-description": "rest-endpoint-desc-get-search"
+		}
 	},
 	{
 		"path": "/v1/search/page",
@@ -99,7 +111,10 @@
 			"PageStore",
 			"TitleFormatter"
 		],
-		"mode": "fulltext"
+		"mode": "fulltext",
+		"openApiSpec": {
+			"x-i18n-description": "rest-endpoint-desc-get-search-page"
+		}
 	},
 	{
 		"path": "/v1/search/title",
@@ -114,7 +129,10 @@
 			"PageStore",
 			"TitleFormatter"
 		],
-		"mode": "completion"
+		"mode": "completion",
+		"openApiSpec": {
+			"x-i18n-description": "rest-endpoint-desc-get-search-title"
+		}
 	},
 	{
 		"path": "/v1/page/{title}/links/language",
@@ -126,7 +144,10 @@
 			"TitleParser",
 			"PageStore",
 			"PageRestHelperFactory"
-		]
+		],
+		"openApiSpec": {
+			"x-i18n-description": "rest-endpoint-desc-get-page-title-language"
+		}
 	},
 	{
 		"path": "/v1/page/{title}",
@@ -181,7 +202,10 @@
 			"DBLoadBalancerFactory",
 			"RepoGroup",
 			"PageStore"
-		]
+		],
+		"openApiSpec": {
+			"x-i18n-description": "rest-endpoint-desc-get-page-title-media"
+		}
 	},
 	{
 		"path": "/v1/file/{title}",
@@ -189,7 +213,10 @@
 		"services": [
 			"RepoGroup",
 			"PageStore"
-		]
+		],
+		"openApiSpec": {
+			"x-i18n-description": "rest-endpoint-desc-get-file-title"
+		}
 	},
 	{
 		"method": "PUT",
@@ -235,6 +262,9 @@
 			"html": [
 				"wikitext"
 			]
+		},
+		"openApiSpec": {
+			"x-i18n-description": "rest-endpoint-desc-post-transform-to-html-revision"
 		}
 	},
 	{
@@ -251,6 +281,9 @@
 			"html": [
 				"wikitext"
 			]
+		},
+		"openApiSpec": {
+			"x-i18n-description": "rest-endpoint-desc-post-transform-to-wikitext-revision"
 		}
 	},
 	{
@@ -267,6 +300,9 @@
 			"html": [
 				"wikitext"
 			]
+		},
+		"openApiSpec": {
+			"x-i18n-description": "rest-endpoint-desc-post-transform-to-html"
 		}
 	},
 	{
@@ -283,6 +319,9 @@
 			"html": [
 				"wikitext"
 			]
+		},
+		"openApiSpec": {
+			"x-i18n-description": "rest-endpoint-desc-post-transform-to-wikitext"
 		}
 	},
 	{
@@ -299,6 +338,9 @@
 			"html": [
 				"wikitext"
 			]
+		},
+		"openApiSpec": {
+			"x-i18n-description": "rest-endpoint-desc-post-transform-to-html-title"
 		}
 	},
 	{
@@ -315,6 +357,9 @@
 			"html": [
 				"wikitext"
 			]
+		},
+		"openApiSpec": {
+			"x-i18n-description": "rest-endpoint-desc-post-transform-to-wikitext-title"
 		}
 	}
 ]

@@ -71,6 +71,8 @@ class ExtraRoutesModule extends MatcherBasedModule {
 	 */
 	private array $extraRoutes;
 
+	private JsonLocalizer $jsonLocalizer;
+
 	/**
 	 * @var array<int,array>|null A list of route definitions loaded from
 	 * the files specified by $routeFiles
@@ -113,6 +115,7 @@ class ExtraRoutesModule extends MatcherBasedModule {
 		);
 		$this->routeFiles = $routeFiles;
 		$this->extraRoutes = $extraRoutes;
+		$this->jsonLocalizer = new JsonLocalizer( $responseFactory );
 	}
 
 	/**
@@ -239,9 +242,8 @@ class ExtraRoutesModule extends MatcherBasedModule {
 				'config' => array_diff_key( $route, array_flip( $objectSpecKeys ) ),
 			];
 		}
-
 		if ( isset( $route['openApiSpec'] ) ) {
-			$info['openApiSpec'] = $route['openApiSpec'];
+			$info['openApiSpec'] = $this->jsonLocalizer->localizeJson( $route['openApiSpec'] );
 		}
 
 		$info['path'] = $route['path'];
@@ -251,12 +253,10 @@ class ExtraRoutesModule extends MatcherBasedModule {
 	public function getOpenApiInfo() {
 		// Note that mwapi-1.0 is based on OAS 3.0, so it doesn't support the
 		// "summary" property introduced in 3.1.
-		$localizer = new JsonLocalizer( $this->responseFactory );
 		return [
-			'title' => $localizer->getFormattedMessage( 'rest-module-extra-routes-title' ),
-			'description' => $localizer->getFormattedMessage( 'rest-module-extra-routes-desc' ),
+			'title' => $this->jsonLocalizer->getFormattedMessage( 'rest-module-extra-routes-title' ),
+			'description' => $this->jsonLocalizer->getFormattedMessage( 'rest-module-extra-routes-desc' ),
 			'version' => 'undefined',
 		];
 	}
-
 }

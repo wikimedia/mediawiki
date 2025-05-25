@@ -236,5 +236,20 @@
 	"rest-endpoint-desc-get-revision-id": "{{Experimental}} REST API endpoint description, for the endpoint to get revision information, including source",
 	"rest-endpoint-desc-get-revision-id-html": "{{Experimental}} REST API endpoint description, for the endpoint to get revision html",
 	"rest-endpoint-desc-get-revision-id-with-html": "{{Experimental}} REST API endpoint description, for the endpoint to get revision information including html",
-	"rest-endpoint-desc-get-revision-id-bare": "{{Experimental}} REST API endpoint description, for the endpoint to get revision information"
+	"rest-endpoint-desc-get-revision-id-bare": "{{Experimental}} REST API endpoint description, for the endpoint to get revision information",
+	"rest-endpoint-desc-get-page-history": "{{Experimental}} REST API endpoint description, for the endpoint to get information about the latest revisions to a wiki page",
+	"rest-endpoint-desc-get-page-history-counts": "{{Experimental}} REST API endpoint description, for the endpoint to get data about a page's history.",
+	"rest-endpoint-desc-get-revision-compare": "{{Experimental}} REST API endpoint description, for the endpoint to compare revisions",
+	"rest-endpoint-desc-get-search": "{{Experimental}} REST API endpoint description, for the search endpoint",
+	"rest-endpoint-desc-get-search-page": "{{Experimental}} REST API endpoint description, for the endpoint to get search page",
+	"rest-endpoint-desc-get-search-title": "{{Experimental}} REST API endpoint description, for the endpoint to get search title",
+	"rest-endpoint-desc-get-page-title-language": "{{Experimental}} REST API endpoint description, for the endpoint to get pages with the same topic in different languages",
+	"rest-endpoint-desc-get-page-title-media": "{{Experimental}} REST API endpoint description, for the endpoint to get information about media files",
+	"rest-endpoint-desc-get-file-title": "{{Experimental}} REST API endpoint description, for the endpoint to get information about a file",
+	"rest-endpoint-desc-post-transform-to-html-revision": "{{Experimental}} REST API endpoint description, for the endpoint to tranform to html revision",
+	"rest-endpoint-desc-post-transform-to-wikitext-revision": "{{Experimental}} REST API endpoint description, for the endpoint to tranform to wikitext revision",
+	"rest-endpoint-desc-post-transform-to-html": "{{Experimental}} REST API endpoint description, for the endpoint to tranform to html",
+	"rest-endpoint-desc-post-transform-to-wikitext": "{{Experimental}} REST API endpoint description, for the endpoint to tranform to wikitext",
+	"rest-endpoint-desc-post-transform-to-html-title": "{{Experimental}} REST API endpoint description, for the endpoint to tranform to html title",
+	"rest-endpoint-desc-post-transform-to-wikitext-title": "{{Experimental}} REST API endpoint description, for the endpoint to tranform to wikitext title"
 }
