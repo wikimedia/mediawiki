@@ -24,12 +24,12 @@ use Wikimedia\Http\MultiHttpClient;
  *
  *   There is not currently an agreed protocol for sending this to a
  *   server. This class is written for use with MediaWiki\Session\SessionManager
- *   and Kask/Cassanda at WMF, which does not expose a customizable expiry.
+ *   and Kask/Cassandra at WMF, which does not expose a customizable expiry.
  *
  *   As such, it is not recommended to use RESTBagOStuff to back a general
  *   purpose cache type (such as MediaWiki's main cache, or main stash).
- *   Instead, it is only supported toMediaWiki features where a cache type can
- *   be pointed for a narrow set of keys that naturally share the same TTL
+ *   Instead, it is only supported for MediaWiki features where a cache type
+ *   can be pointed to a narrow set of keys that naturally share the same TTL
  *   anyway, or where the feature behaves correctly even if the logical expiry
  *   is longer than specified (e.g. immutable keys, or value verification)
  *
