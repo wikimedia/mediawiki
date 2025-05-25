@@ -2297,32 +2297,6 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 		);
 	}
 
-	public function testHash256() {
-		[ $cache ] = $this->newWanCache( [ 'epoch' => 5 ] );
-		$this->assertEquals(
-			'f402bce76bfa1136adc705d8d5719911ce1fe61f0ad82ddf79a15f3c4de6ec4c',
-			$cache->hash256( 'x' )
-		);
-
-		[ $cache ] = $this->newWanCache( [ 'epoch' => 50 ] );
-		$this->assertSame(
-			'f79a126722f0a682c4c500509f1b61e836e56c4803f92edc89fc281da5caa54e',
-			$cache->hash256( 'x' )
-		);
-
-		[ $cache ] = $this->newWanCache( [ 'secret' => 'garden' ] );
-		$this->assertSame(
-			'48cd57016ffe29981a1114c45e5daef327d30fc6206cb73edc3cb94b4d8fe093',
-			$cache->hash256( 'x' )
-		);
-
-		[ $cache ] = $this->newWanCache( [ 'secret' => 'garden', 'epoch' => 3 ] );
-		$this->assertSame(
-			'48cd57016ffe29981a1114c45e5daef327d30fc6206cb73edc3cb94b4d8fe093',
-			$cache->hash256( 'x' )
-		);
-	}
-
 	/**
 	 * @dataProvider provideCoalesceAndMcrouterSettings
 	 * @param array $params

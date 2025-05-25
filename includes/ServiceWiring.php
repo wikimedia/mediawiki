@@ -1299,7 +1299,6 @@ return [
 			'cache' => $store,
 			'logger' => $logger,
 			'tracer' => $services->getTracer(),
-			'secret' => $mainConfig->get( MainConfigNames::SecretKey ),
 		];
 		if ( MW_ENTRY_POINT !== 'cli' ) {
 			// Send the statsd data post-send on HTTP requests; avoid in CLI mode (T181385)

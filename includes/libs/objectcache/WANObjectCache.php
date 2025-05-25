@@ -188,8 +188,6 @@ class WANObjectCache implements
 	protected $useInterimHoldOffCaching = true;
 	/** @var float Unix timestamp of the oldest possible valid values */
 	protected $epoch;
-	/** @var string Stable secret used for hashing long strings into key components */
-	protected $secret;
 	/** @var int Scheme to use for key coalescing (Hash Tags or Hash Stops) */
 	protected $coalesceScheme;
 
@@ -358,7 +356,6 @@ class WANObjectCache implements
 	 *       See also <https://github.com/facebook/mcrouter/wiki/Multi-cluster-broadcast-setup>.
 	 *       This is required when using mcrouter as a multi-region backing store proxy. [optional]
 	 *   - epoch: lowest UNIX timestamp a value/tombstone must have to be valid. [optional]
-	 *   - secret: stable secret used for hashing long strings into key components. [optional]
 	 *   - coalesceScheme: which key scheme to use in order to encourage the backend to place any
 	 *       "helper" keys for a "value" key within the same cache server. This reduces network
 	 *       overhead and reduces the chance the single downed cache server causes disruption.
@@ -369,7 +366,6 @@ class WANObjectCache implements
 		$this->cache = $params['cache'];
 		$this->broadcastRoute = $params['broadcastRoutingPrefix'] ?? null;
 		$this->epoch = $params['epoch'] ?? 0;
-		$this->secret = $params['secret'] ?? (string)$this->epoch;
 		if ( ( $params['coalesceScheme'] ?? '' ) === 'hash_tag' ) {
 			// https://redis.io/topics/cluster-spec
 			// https://github.com/twitter/twemproxy/blob/v0.4.1/notes/recommendation.md#hash-tags
@@ -2292,17 +2288,6 @@ class WANObjectCache implements
 	 */
 	public function makeKey( $keygroup, ...$components ) {
 		return $this->cache->makeKey( $keygroup, ...$components );
-	}
-
-	/**
-	 * Hash a possibly long string into a suitable component for makeKey()/makeGlobalKey()
-	 *
-	 * @param string $component A raw component used in building a cache key
-	 * @return string 64 character HMAC using a stable secret for public collision resistance
-	 * @since 1.34
-	 */
-	public function hash256( $component ) {
-		return hash_hmac( 'sha256', $component, $this->secret );
 	}
 
 	/**
