@@ -1431,14 +1431,6 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		}
 	}
 
-	/**
-	 * @deprecated since 1.41, use deleteObjectsExpiringBefore() instead
-	 */
-	public function expireAll() {
-		wfDeprecated( __METHOD__, '1.41' );
-		$this->deleteObjectsExpiringBefore( (int)$this->getCurrentTime() );
-	}
-
 	public function deleteObjectsExpiringBefore(
 		$timestamp,
 		?callable $progress = null,
@@ -1599,35 +1591,6 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 				}
 			} while ( $res->numRows() && $keysDeletedCount < $limit );
 		}
-	}
-
-	/**
-	 * Delete content of shard tables in every server.
-	 * Return true if the operation is successful, false otherwise.
-	 *
-	 * @deprecated since 1.41, unused.
-	 *
-	 * @return bool
-	 */
-	public function deleteAll() {
-		wfDeprecated( __METHOD__, '1.41' );
-		/** @noinspection PhpUnusedLocalVariableInspection */
-		$silenceScope = $this->silenceTransactionProfiler();
-		foreach ( $this->getShardServerIndexes() as $shardIndex ) {
-			try {
-				$db = $this->getConnection( $shardIndex );
-				for ( $i = 0; $i < $this->numTableShards; $i++ ) {
-					$db->newDeleteQueryBuilder()
-						->deleteFrom( $this->getTableNameByShard( $i ) )
-						->where( $db::ALL_ROWS )
-						->caller( __METHOD__ )->execute();
-				}
-			} catch ( DBError $e ) {
-				$this->handleDBError( $e, $shardIndex );
-				return false;
-			}
-		}
-		return true;
 	}
 
 	public function doLock( $key, $timeout = 6, $exptime = 6 ) {
@@ -1868,19 +1831,21 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	}
 
 	/**
-	 * Create the shard tables on all databases
+	 * Create the shard tables on all databases.
 	 *
-	 * This is typically called manually by a sysadmin via eval.php, e.g. for ParserCache:
+	 * @note This method is typically called manually by a sysadmin via eval.php,
+	 * e.g. for ParserCache:
 	 *
 	 * @code
-	 *     ObjectCache::getInstance( 'myparsercache' )->createTables();
+	 *     $objectCacheFactory = MW::srv()->getObjectCacheFactory();
+	 *     $objectCacheFactory->getInstance( 'myparsercache' )->createTables();
 	 * @endcode
 	 *
 	 * This is different from `$services->getParserCache()->getCacheStorage()->createTables()`,
 	 * which would use the backend set via $wgParserCacheType, which shouldn't be
 	 * set yet for the backend you are creating shard tables on. The expectation
-	 * is to first add the new backend to $wgObjectCaches, run the above, and then enable
-	 * it for live ParserCache traffic by setting $wgParserCacheType.
+	 * is to first add the new backend to $wgObjectCaches, run the above, and then
+	 * enable it for live ParserCache traffic by setting $wgParserCacheType.
 	 */
 	public function createTables() {
 		foreach ( $this->getShardServerIndexes() as $shardIndex ) {
