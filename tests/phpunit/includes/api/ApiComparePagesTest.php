@@ -138,8 +138,6 @@ class ApiComparePagesTest extends ApiTestCase {
 			],
 			'comment' => 'Test for ApiComparePages',
 		] );
-
-		Title::clearCaches(); // Otherwise it has the wrong latest revision for some reason
 	}
 
 	protected function doReplacements( &$value ) {
