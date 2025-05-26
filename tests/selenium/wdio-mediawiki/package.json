@@ -1,6 +1,6 @@
 {
 	"name": "wdio-mediawiki",
-	"version": "2.7.1",
+	"version": "3.0.0",
 	"description": "WebdriverIO plugin for testing a MediaWiki site.",
 	"homepage": "https://gerrit.wikimedia.org/g/mediawiki/core/+/master/tests/selenium/wdio-mediawiki",
 	"license": "MIT",

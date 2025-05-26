@@ -1,14 +1,22 @@
 # Changelog
 
+## 3.0.0 / 2025-05-26
+
+* Pin browser version in CI. (T391320)
+* Upgrade WebdriverIO to v8. (T324766)
+
 ## 2.7.1 / 2025-03-27
+
 * Set `--disable-gpu` Chromium arg when running in Docker. (T389536)
 * Exit the process early from global `uncaughtException`. (T389562)
 * Skip video recording if ffmpeg is unavailable. (T381727)
 
 ## 2.7.0 / 2025-01-22
+
 * Api: Add `api.addUserToGroup()` to add user to a user group.
 
 ## 2.6.0 / 2025-01-09
+
 * Skip wikitext-specific tests if NS_MAIN isn't wikitext. (T358530)
 * Add LoginPage.getActualUsername().
 * Wait for form submission in `LoginPage.login()`.
