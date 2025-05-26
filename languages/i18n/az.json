@@ -3850,7 +3850,7 @@
 	"log-action-filter-all": "Hamısı",
 	"log-action-filter-block-block": "Bloklama",
 	"log-action-filter-block-reblock": "Blok modifikasiyası",
-	"log-action-filter-block-unblock": "Bloku aç",
+	"log-action-filter-block-unblock": "Blokun açılması",
 	"log-action-filter-contentmodel-change": "Məzmun modeli dəyişikliyi",
 	"log-action-filter-contentmodel-new": "Defolt olmayan məzmun modeliylə səhifə yaradılması",
 	"log-action-filter-delete-delete": "Səhifə silinməsi",

@@ -223,7 +223,7 @@
 	"dec": "ديسمبر",
 	"period-am": "صباحًا",
 	"period-pm": "مساءً",
-	"pagecategories": "{{PLURAL:$1|تصنيف|تصنيفات}}:",
+	"pagecategories": "{{PLURAL:$1|تصنيف|تصنيفات}}",
 	"category_header": "صفحات تصنيف «$1»",
 	"subcategories": "تصنيفات فرعية",
 	"category-media-header": "ملفات وسائط في تصنيف «$1»",
