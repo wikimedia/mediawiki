@@ -5,6 +5,7 @@
  */
 ( function () {
 	let userInfoPromise, tempUserNamePromise, pageviewRandomId, sessionId;
+	// Keep in sync with ResourceLoader's ClientHtml.php class constant.
 	const CLIENTPREF_COOKIE_NAME = 'mwclientpreferences';
 	const CLIENTPREF_SUFFIX = '-clientpref-';
 	const CLIENTPREF_DELIMITER = ',';

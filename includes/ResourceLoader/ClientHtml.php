@@ -31,6 +31,18 @@ use Wikimedia\WrappedStringList;
  * @since 1.28
  */
 class ClientHtml {
+	/**
+	 * Used by extensions to apply anonymous user preferences
+	 * across domains during the authentication flow. This name
+	 * doesn't include the cookie prefix which can be the ID of
+	 * the domain we're on. See $wgCookiePrefix for that.
+	 *
+	 * @see https://www.mediawiki.org/wiki/Reading/Web/Preference_Persistence_For_Anonymous_Users
+	 *
+	 * @note Keep in sync with resources/src/mediawiki.user.js
+	 */
+	public const CLIENT_PREFS_COOKIE_NAME = 'mwclientpreferences';
+
 	/** @var Context */
 	private $context;
 
