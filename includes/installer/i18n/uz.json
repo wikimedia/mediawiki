@@ -1,9 +1,31 @@
 {
 	"@metadata": {
 		"authors": [
-			"Sociologist"
+			"Sociologist",
+			"Mainculprit"
 		]
 	},
+	"config-desc": "MediaWiki uchun oʻrnatuvchi",
+	"config-title": "MediaWiki $1 oʻrnatish",
+	"config-information": "Maʻlumot",
+	"config-your-language": "Sizni tilingiz:",
+	"config-wiki-language": "Viki tili:",
+	"config-wiki-language-help": "Viki uchun asosiy tilni tanlang.",
+	"config-back": "← Orqaga",
+	"config-continue": "Davom etish →",
+	"config-page-language": "Til",
+	"config-page-welcome": "MediaWiki'ga xush kelibsiz!",
+	"config-page-dbconnect": "Maʼlumotlar bazasiga ulanish",
+	"config-page-dbsettings": "Maʻlumotlar bazasi sozlamalari",
+	"config-page-name": "Nomi",
+	"config-page-install": "Oʻrnating",
+	"config-page-complete": "Bajarildi!",
+	"config-page-restart": "Oʻrnatishni qayta boshlash",
+	"config-restart": "Ha, qayta ishga tushirish",
+	"config-env-php": "PHP $1 oʻrnatilgan.",
+	"config-db-type": "Maʻlumotlar bazasi turi:",
+	"config-db-name": "Maʻlumotlar bazasi nomi (defislarsiz):",
+	"config-header-sqlite": "SQLite sozlamalari",
 	"config-admin-password-blank": "Administrator hisob yozuvi uchun maxfiy soʻz kiriting.",
 	"mainpagetext": "'''MediaWiki muvaffaqiyatli o'rnatildi.'''",
 	"mainpagedocfooter": "Wiki dasturini ishlatish haqida ma'lumot olish uchun  [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Foydalanuvchi qo'llanmasi] sahifasiga murojaat qiling.\n\n== Dastlabki qadamlar ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Moslamalar ro'yxati]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki haqida ko'p so'raladigan savollar]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ MediaWiki yangi versiyasi chiqqanda xabar berish ro'yxati]"
