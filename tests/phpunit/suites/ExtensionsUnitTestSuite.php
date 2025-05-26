@@ -19,14 +19,13 @@ class ExtensionsUnitTestSuite extends TestSuite {
 			// default location
 			// Standardize directory separators for Windows compatibility.
 			if ( str_contains( strtr( $path, '\\', '/' ), '/extensions/' ) ) {
-				$paths[] = "$path/tests/phpunit/unit";
+				$paths["$path/tests/phpunit/unit"] = true;
 			}
 		}
-		foreach ( array_unique( $paths ) as $path ) {
-			$suffixes = [ 'Test.php' ];
-			$fileIterator = new Facade();
-			$matchingFiles = $fileIterator->getFilesAsArray( $path, $suffixes );
-			$this->addTestFiles( $matchingFiles );
+		$suffixes = [ 'Test.php' ];
+		$fileIterator = new Facade();
+		foreach ( $paths as $path => $_ ) {
+			$this->addTestFiles( $fileIterator->getFilesAsArray( $path, $suffixes ) );
 		}
 	}
 

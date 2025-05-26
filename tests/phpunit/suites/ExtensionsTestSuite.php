@@ -29,14 +29,13 @@ class ExtensionsTestSuite extends TestSuite {
 			( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )->onUnitTestsList( $paths );
 		}
 
+		$suffixes = [ 'Test.php' ];
+		$fileIterator = new Facade();
 		foreach ( array_unique( $paths ) as $path ) {
 			if ( is_dir( $path ) ) {
 				// If the path is a directory, search for test cases.
 				// @since 1.24
-				$suffixes = [ 'Test.php' ];
-				$fileIterator = new Facade();
-				$matchingFiles = $fileIterator->getFilesAsArray( $path, $suffixes );
-				$this->addTestFiles( $matchingFiles );
+				$this->addTestFiles( $fileIterator->getFilesAsArray( $path, $suffixes ) );
 			} elseif ( is_file( $path ) ) {
 				// Add a single test case or suite class
 				$this->addTestFile( $path );
