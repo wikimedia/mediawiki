@@ -698,6 +698,7 @@
 	"selfredirect": "<strong>警告：</strong> 您正建立連結至自己的重新導向。\n您可能指定錯要重新導向的目標頁面或者編輯錯頁面。\n若您再點選 \"$1\" 一次，將會繼續建立重新導向。",
 	"edit-constraint-brokenredirect": "<strong>警告：</strong>您正在將此頁面重新導向至不存在的頁面。您可能指定了錯誤的重新導向目標。若您再點選「$1」一次，重新導向還是會建立。",
 	"edit-constraint-doubleredirect": "<strong>警告：</strong>您正在嘗試將此頁面重新導向至另一個重新導向頁面，從而建立雙重重新導向。您的目標頁面目前重新導向至[[$2]]。\n\n請考慮將此重新導向的內容修改如下：\n$3 \n\n注意：如果您再次點擊「$1」，雙重重新導向還是會建立。",
+	"edit-constraint-doubleredirect-loop": "<strong>警告：</strong>您正在嘗試將此頁面重新導向回其自身，從而建立不起作用的重新導向迴圈。請重新考慮您的操作。如果您再次點選「$1」，則無論如何都會建立重新導向。",
 	"missingcommenttext": "請輸入一段評論。",
 	"missingcommentheader": "<strong>提醒：</strong>您未填寫此評論的主旨。\n若您再點選 \"$1\" 一次，將略過主旨/標題直接發布您的評論。",
 	"summary-preview": "編輯摘要預覽：",

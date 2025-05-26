@@ -31,5 +31,6 @@
 	"rest-schema-desc-revision-metadata": "Metadonnéeë vun der Versioun",
 	"rest-schema-desc-bare-page": "Säit ouni Inhalt",
 	"rest-schema-desc-media-file": "Informatiounen iwwer de Fichier",
-	"rest-schema-desc-search-results": "Sichresultater"
+	"rest-schema-desc-search-results": "Sichresultater",
+	"rest-endpoint-desc-post-page": "Leet eng Wiki-Säit un."
 }

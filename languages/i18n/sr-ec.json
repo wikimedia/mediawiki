@@ -1429,6 +1429,7 @@
 	"rcfilters-liveupdates-button-title-off": "Приказује нове измене чим се објаве",
 	"rcfilters-watchlist-markseen-button": "Означи све измене као погледане",
 	"rcfilters-watchlist-edit-watchlist-button": "Уреди списак надгледања",
+	"rcfilters-watchlist-edit-watchlist-preferences-button": "Подешавања",
 	"rcfilters-watchlist-showupdated": "Нове измене страница које надгледате истакнуте су <strong>подебљаним словима</strong> и попуњеним кружићима.",
 	"rcfilters-filter-showlinkedfrom-label": "Прикажи измене на страницама с којих долазе везе",
 	"rcfilters-filter-showlinkedfrom-option-label": "<strong>Странице с којих долазе везе до</strong> изабране странице",

@@ -108,7 +108,7 @@
 	"config-uploads-not-safe": "<strong>警告:</strong> アップロードの既定ディレクトリ <code>$1</code> に、任意のスクリプト実行に関する脆弱性があります。\nMediaWiki はアップロードされたファイルのセキュリティ上の脅威を確認しますが、アップロードを有効化する前に、[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security#Upload_security このセキュリティ上の脆弱性を解決する]ことを強く推奨します。",
 	"config-uploads-security-headers": "<strong>警告：</strong>ブラウザを安全性が欠ける可能性のあるファイルから保護するため、アップロードディレクトリ内の画像に対するリクエストの応答は<code>$1</code>というHTTPヘッダーを含むべきです。\nアップロードを有効にする前は、[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security#Upload_security ご利用のWebサーバーの応答ヘッダーを正しく構成する]ことを強くおすすめします。",
 	"config-uploads-security-requesterror": "<strong>警告：</strong>接続エラーが発生したため、アップロードディレクトリ内の画像に対するリクエストへの応答は、ブラウザを安全性が欠ける可能性のあるファイルから保護するよう、<code>$1</code>というHTTPヘッダーを含んだことを確認できませんでした。\nアップロードを有効にする前は、[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security#Upload_security ご利用のWebサーバーの応答ヘッダーを正しく構成する]ことを強くおすすめします。",
-	"config-no-cli-uploads-check": "<strong>警告:</strong> アップロード用のデフォルトディレクトリ (<code>$1</code>) が、CLIでのインストール中に任意のスクリプト実行の脆弱性チェックを受けていません。",
+	"config-no-cli-uploads-check": "<strong>警告:</strong> アップロードの既定ディレクトリ (<code>$1</code>) は、CLI インストール時に任意のスクリプト実行に対する脆弱性の検査を受けていません。",
 	"config-using-32bit": "<strong>警告:</strong>システムが32ビットで動作しているようです。 これは[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:32-bit 非推奨]です。",
 	"config-db-type": "データベースの種類:",
 	"config-db-host": "データベースのホスト:",

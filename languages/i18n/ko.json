@@ -3354,6 +3354,7 @@
 	"specialpages-header-category": "분류",
 	"specialpages-header-access": "접근",
 	"specialpages-access-public": "공개",
+	"specialpages-access-restricted": "제한됨",
 	"specialpages-access-restricted-note": "제한된 문서는 일반적으로 공개되지 않지만, 사용할 수 있습니다.",
 	"specialpages-group-maintenance": "관리용 목록",
 	"specialpages-group-other": "다른 특수 문서",
