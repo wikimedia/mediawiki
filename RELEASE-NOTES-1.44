@@ -630,6 +630,8 @@ because of Phabricator reports.
     - StringUtils
   - Wikimedia\Timing:
     - Timing
+* (T353570) The trait Wikimedia\Reflection\GhostFieldAccessTrait is deprecated.
+  It is planned to be removed in 1.45. No replacement is provided.
 * WikiPage::doEditUpdates(), deprecated since 1.32, is now emitting warnings.
   Use DerivedPageDataUpdater::doUpdates() instead.
 * IDatabase::setTransactionListener() is now deprecated without replacement.
