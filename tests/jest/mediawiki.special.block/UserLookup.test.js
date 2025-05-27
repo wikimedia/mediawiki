@@ -110,10 +110,13 @@ describe( 'UserLookup', () => {
 	} );
 
 	it( 'should sanitize IPv6 or Range after target is selected', async () => {
+		mockMwConfigGet();
 		const target = '2001:0db8:85a3:0000:0000:8a2e:0370:7334';
 		const expected = '2001:DB8:85A3:0:0:8A2E:370:7334';
 
 		mw.util.isIPAddress = jest.fn().mockReturnValue( true );
+		mw.util.isIPv4Address = jest.fn().mockReturnValue( false );
+		mw.util.isIPv6Address = jest.fn().mockReturnValue( true );
 		mw.util.sanitizeIP = jest.fn().mockReturnValue( expected );
 
 		const wrapper = getWrapper( { modelValue: target }, [ {
@@ -131,5 +134,15 @@ describe( 'UserLookup', () => {
 
 		await wrapper.vm.onChange();
 		expect( store.targetUser ).toBe( expected );
+	} );
+
+	it( 'should show an error for invalid IP Range', async () => {
+		const wrapper = getSpecialBlock( {
+			blockTargetUser: '127.0.0.0/11',
+			blockTargetExists: false
+		} );
+		await flushPromises();
+		expect( wrapper.find( '.cdx-message__content' ).text() )
+			.toStrictEqual( 'ip_range_toolarge' );
 	} );
 } );

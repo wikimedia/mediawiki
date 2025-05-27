@@ -46,6 +46,10 @@ function mockMwConfigGet( config = {} ) {
 	const mockConfig = Object.assign( {
 		blockEnableMultiblocks: true,
 		blockId: null,
+		blockCIDRLimit: {
+			IPv4: 16,
+			IPv6: 19
+		},
 		wgNamespaceIds: {
 			'': '(Main)',
 			talk: 'Talk',

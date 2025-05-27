@@ -2459,6 +2459,7 @@ return [
 			'ipbenableautoblock',
 			'ipbhidename',
 			'ipbwatchuser',
+			'ip_range_toolarge',
 			'log-action-filter-block-block',
 			'log-action-filter-block-reblock',
 			'log-action-filter-block-unblock',

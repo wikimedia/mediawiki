@@ -71,6 +71,7 @@ module.exports = exports = defineComponent( {
 	setup( props ) {
 		const store = useBlockStore();
 		const { targetExists, targetUser } = storeToRefs( store );
+		const blockCIDRLimit = mw.config.get( 'blockCIDRLimit' );
 		/**
 		 * Custom components to be added to the bottom of the field.
 		 *
@@ -240,13 +241,28 @@ module.exports = exports = defineComponent( {
 		function validate() {
 			const inResults = menuItems.value.some( ( item ) => item.value === currentSearchTerm.value );
 			let error = null;
+			const isIpAddress = mw.util.isIPAddress( currentSearchTerm.value, true );
 
 			if ( !htmlInput.checkValidity() ) {
 				// Validation constraints on the HTMLInputElement failed.
 				error = htmlInput.validationMessage;
-			} else if ( !inResults && !mw.util.isIPAddress( currentSearchTerm.value, true ) ) {
+			} else if ( !inResults && isIpAddress ) {
+				// Valid IP, we need to check if there's a valid range
+				const range = currentSearchTerm.value.split( '/', 2 );
+				const minLength = mw.util.isIPv4Address( currentSearchTerm.value, true ) ? blockCIDRLimit.IPv4 : blockCIDRLimit.IPv6;
+
+				if ( range[ 1 ] < minLength ) {
+					// Not a valid IP range.
+					error = mw.message( 'ip_range_toolarge', minLength ).text();
+				}
+			} else if ( !inResults && !isIpAddress ) {
 				// Not a valid username or IP.
 				error = mw.message( 'nosuchusershort', currentSearchTerm.value ).text();
+			}
+
+			if ( error ) {
+				status.value = 'error';
+				messages.value = { error };
 				targetExists.value = false;
 
 				// If there is a previously set targetUser then we need to clear all store data
@@ -255,15 +271,9 @@ module.exports = exports = defineComponent( {
 					store.resetForm( true );
 				}
 			} else {
-				targetExists.value = true;
-			}
-
-			if ( error ) {
-				status.value = 'error';
-				messages.value = { error };
-			} else {
 				status.value = 'default';
 				messages.value = {};
+				targetExists.value = true;
 			}
 
 			return !error;
