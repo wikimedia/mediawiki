@@ -66,6 +66,13 @@ abstract class ExtensionJsonTestBase extends MediaWikiIntegrationTestCase {
 	protected ?string $serviceNamePrefix = null;
 
 	/**
+	 * @var bool If true, require all hooks to be implemented as hook handlers
+	 * (i.e. references to a named "HookHandlers" entry),
+	 * rather than direct callable references to a static hook handler method.
+	 */
+	protected static bool $requireHookHandlers = false;
+
+	/**
 	 * @var array[] Cache for extension.json, shared between all tests.
 	 * Maps {@link $extensionJsonPath} values to parsed extension.json contents.
 	 */
@@ -105,6 +112,39 @@ abstract class ExtensionJsonTestBase extends MediaWikiIntegrationTestCase {
 	public static function provideHookHandlerNames(): iterable {
 		foreach ( self::getExtensionJson()['HookHandlers'] ?? [] as $hookHandlerName => $specification ) {
 			yield [ $hookHandlerName ];
+		}
+	}
+
+	/** @dataProvider provideHookNamesForUsesHookHandler */
+	public function testHookUsesHookHandler( string $hookName ) {
+		$extensionJson = self::getExtensionJson();
+		$handlers = (array)$extensionJson['Hooks'][$hookName];
+
+		if ( isset( $handlers['handler'] ) ) {
+			$handlers = [ $handlers ];
+		}
+
+		foreach ( $handlers as $handler ) {
+			if ( isset( $handler['handler' ] ) ) {
+				$handler = $handler['handler'];
+			}
+
+			$this->assertIsNotCallable( $handler, 'Hook handler must not be callable.' );
+			$this->assertArrayHasKey( $handler, $extensionJson['HookHandlers'] ?? [],
+				'Hook handler must be registered in "HookHandlers".' );
+		}
+	}
+
+	protected static function provideHookNamesForUsesHookHandler(): iterable {
+		if ( !static::$requireHookHandlers ) {
+			self::markTestSkipped( 'self::$requireHookHandlers is not enabled' );
+		}
+		yield from self::provideHookNames();
+	}
+
+	protected static function provideHookNames(): iterable {
+		foreach ( self::getExtensionJson()['Hooks'] ?? [] as $hookName => $handler ) {
+			yield $hookName => [ $hookName ];
 		}
 	}
 
