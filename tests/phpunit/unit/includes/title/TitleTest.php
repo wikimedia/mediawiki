@@ -161,7 +161,7 @@ class TitleTest extends MediaWikiUnitTestCase {
 		$this->assertEquals( $unicodeClass, Title::convertByteClassToUnicodeClass( $byteClass ) );
 	}
 
-	public static function provideNewFromTitleValue() {
+	public static function provideTitleValues() {
 		return [
 			[ new TitleValue( NS_MAIN, 'Foo' ) ],
 			[ new TitleValue( NS_MAIN, 'Foo', 'bar' ) ],
@@ -171,7 +171,7 @@ class TitleTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @covers \MediaWiki\Title\Title::newFromLinkTarget
-	 * @dataProvider provideNewFromTitleValue
+	 * @dataProvider provideTitleValues
 	 */
 	public function testNewFromLinkTarget( LinkTarget $value ) {
 		$title = Title::newFromLinkTarget( $value );
@@ -196,7 +196,7 @@ class TitleTest extends MediaWikiUnitTestCase {
 	}
 
 	public static function provideCastFromLinkTarget() {
-		return array_merge( [ [ null ] ], self::provideNewFromTitleValue() );
+		return [ [ null ], ...self::provideTitleValues() ];
 	}
 
 	/**

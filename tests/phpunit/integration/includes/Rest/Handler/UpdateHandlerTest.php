@@ -682,7 +682,7 @@ class UpdateHandlerTest extends MediaWikiLangTestCase {
 			],
 			'remote' => [
 				'from' => 'Content of revision 17',
-				'to' => 'Current content of 0:Foo',
+				'to' => 'Current content of Foo',
 			],
 			'base' => 17,
 			'current' => 1234

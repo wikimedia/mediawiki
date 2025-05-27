@@ -146,6 +146,11 @@ because of Phabricator reports.
 * Calling ApiOptions::__construct() without $userOptionsManager and
   $preferencesFactory has been deprecated and emits deprecation warnings.
   Code that extends ApiOptions should instead extend ApiOptionsBase.
+* Calling RevisionStore methods with a LinkTarget emits deprecation warnings
+  now. It was already documented as deprecated since 1.36.
+  - RevisionStore::getFirstRevision
+  - RevisionStore::getRevisionByTimestamp
+  - RevisionStore::getRevisionByTitle
 * …
 
 === Other changes in 1.45 ===
