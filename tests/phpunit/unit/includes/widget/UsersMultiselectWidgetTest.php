@@ -23,7 +23,7 @@ namespace MediaWiki\Tests\Widget;
 
 use MediaWiki\Widget\UsersMultiselectWidget;
 use MediaWikiUnitTestCase;
-use ReflectionClass;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers \MediaWiki\Widget\UsersMultiselectWidget
@@ -49,25 +49,17 @@ class UsersMultiselectWidgetTest extends MediaWikiUnitTestCase {
 		];
 
 		// Create the UsersMultiselectWidget object with the above configuration
-		$widget = new UsersMultiselectWidget( $config );
-
-		// Use reflection to access the protected properties for testing
-		$reflectionClass = new ReflectionClass( UsersMultiselectWidget::class );
+		/** @var UsersMultiselectWidget $widget */
+		$widget = TestingAccessWrapper::newFromObject( new UsersMultiselectWidget( $config ) );
 
 		// Assert that ipAllowed is set correctly
-		$ipAllowedProperty = $reflectionClass->getProperty( 'ipAllowed' );
-		$ipAllowedProperty->setAccessible( true );
-		$this->assertTrue( $ipAllowedProperty->getValue( $widget ), 'ipAllowed was not set correctly.' );
+		$this->assertTrue( $widget->ipAllowed, 'ipAllowed was not set correctly.' );
 
 		// Assert that ipRangeAllowed is set correctly
-		$ipRangeAllowedProperty = $reflectionClass->getProperty( 'ipRangeAllowed' );
-		$ipRangeAllowedProperty->setAccessible( true );
-		$this->assertTrue( $ipRangeAllowedProperty->getValue( $widget ), 'ipRangeAllowed was not set correctly.' );
+		$this->assertTrue( $widget->ipRangeAllowed, 'ipRangeAllowed was not set correctly.' );
 
 		// Assert that ipRangeLimits is set correctly
-		$ipRangeLimitsProperty = $reflectionClass->getProperty( 'ipRangeLimits' );
-		$ipRangeLimitsProperty->setAccessible( true );
-		$this->assertSame( $config['ipRangeLimits'], $ipRangeLimitsProperty->getValue( $widget ),
+		$this->assertSame( $config['ipRangeLimits'], $widget->ipRangeLimits,
 			'ipRangeLimits was not set correctly.' );
 	}
 
@@ -80,15 +72,11 @@ class UsersMultiselectWidgetTest extends MediaWikiUnitTestCase {
 		];
 
 		// Create the UsersMultiselectWidget object with the above configuration
-		$widget = new UsersMultiselectWidget( $config );
-
-		// Use reflection to access the protected properties for testing
-		$reflectionClass = new ReflectionClass( UsersMultiselectWidget::class );
+		/** @var UsersMultiselectWidget $widget */
+		$widget = TestingAccessWrapper::newFromObject( new UsersMultiselectWidget( $config ) );
 
 		// Assert that ipAllowed is set correctly
-		$getJavaScriptClassNameMethod = $reflectionClass->getMethod( 'getJavaScriptClassName' );
-		$getJavaScriptClassNameMethod->setAccessible( true );
-		$this->assertSame( 'mw.widgets.UsersMultiselectWidget', $getJavaScriptClassNameMethod->invoke( $widget ),
+		$this->assertSame( 'mw.widgets.UsersMultiselectWidget', $widget->getJavaScriptClassName(),
 			'getJavaScriptClassName did not return the expected value.' );
 	}
 
@@ -141,7 +129,8 @@ class UsersMultiselectWidgetTest extends MediaWikiUnitTestCase {
 	 */
 	public function testGetConfig( array $inputConfig, array $expected ) {
 		// Create the UsersMultiselectWidget object with the input configuration
-		$widget = new UsersMultiselectWidget( $inputConfig );
+		/** @var UsersMultiselectWidget $widget */
+		$widget = TestingAccessWrapper::newFromObject( new UsersMultiselectWidget( $inputConfig ) );
 
 		$actualConfig = [
 			'ipAllowed' => false,
@@ -152,13 +141,8 @@ class UsersMultiselectWidgetTest extends MediaWikiUnitTestCase {
 			],
 		];
 
-		// Use reflection to make the getConfig method accessible
-		$reflectionClass = new ReflectionClass( UsersMultiselectWidget::class );
-		$getConfigMethod = $reflectionClass->getMethod( 'getConfig' );
-		$getConfigMethod->setAccessible( true );
-
-		// Invoke getConfig, passing the actualConfig by reference
-		$getConfigMethod->invokeArgs( $widget, [ &$actualConfig ] );
+		// TestingAccessWrapper cannot pass-by-ref directly - T287318
+		call_user_func_array( [ $widget, 'getConfig' ], [ &$actualConfig ] );
 
 		// Assert that the actualConfig matches the expected configuration
 		foreach ( $expected as $key => $value ) {
