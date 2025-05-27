@@ -105,6 +105,6 @@ describe( 'User', () => {
 		const reason = Util.getTestString();
 		await BlockPage.block( username, expiry, reason );
 
-		await expect( BlockPage.messages ).toHaveTextContaining( 'Block added' );
+		await expect( BlockPage.messages ).toHaveText( expect.stringContaining( 'Block added' ) );
 	} );
 } );
