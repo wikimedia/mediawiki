@@ -60,7 +60,8 @@
 			"Краснорядцева Елена",
 			"Лилиә",
 			"Марио",
-			"Yurina Tatiana"
+			"Yurina Tatiana",
+			"MidnightLG"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Документация]]\n* [[mw:Special:MyLanguage/API:Etiquette|Этикет и руководство по использованию]]\n* [[mw:Special:MyLanguage/API:FAQ|ЧЗВ]]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api.lists.wikimedia.org/ Почтовая рассылка]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/ Новости API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Ошибки и запросы]\n</div>\n<strong>Статус:</strong> MediaWiki API — зрелый и стабильный интерфейс, активно поддерживаемый и улучшаемый. Мы стараемся избегать ломающих изменений, однако изредка они могут быть необходимы. Подпишитесь на [https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ почтовую рассылку mediawiki-api-announce], чтобы быть в курсе обновлений.\n\n<strong>Ошибочные запросы:</strong> Если API получает запрос с ошибкой, вернётся заголовок HTTP с ключом «MediaWiki-API-Error», после чего значение заголовка и код ошибки будут отправлены обратно и установлены в то же значение. Более подробную информацию см. [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Ошибки и предупреждения]].\n\n<p class=\"mw-apisandbox-link\"><strong>Тестирование:</strong> для удобства тестирования API-запросов, см. [[Special:ApiSandbox]].</p>",
@@ -673,6 +674,8 @@
 	"apihelp-query+allusers-summary": "Перечисление всех зарегистрированных участников.",
 	"apihelp-query+allusers-param-from": "Ник, с которого начать перечисление.",
 	"apihelp-query+allusers-param-to": "Ник, на котором закончить перечисление.",
+	"apihelp-query+allusers-param-excludenamed": "Исключить пользователей именованных учетных записей.",
+	"apihelp-query+allusers-param-excludetemp": "Исключить пользователей временных аккаунтов.",
 	"apihelp-query+allusers-param-prefix": "Найти все ники, начинающиеся с этого значения.",
 	"apihelp-query+allusers-param-dir": "Порядок сортировки.",
 	"apihelp-query+allusers-param-group": "Включать только участников из данных групп. Неявные или автоматически присваиваемые группы, вроде *, user или autoconfirmed, не считаются.",
@@ -1005,6 +1008,7 @@
 	"apihelp-query+langlinks-example-simple": "Получить межъязыковые ссылки со страницы [[{{MediaWiki:Mainpage}}]].",
 	"apihelp-query+languageinfo-summary": "Возвращает информацию о доступных языках.",
 	"apihelp-query+languageinfo-param-prop": "Какую информацию получить для каждого языка.",
+	"apihelp-query+languageinfo-paramvalue-prop-bcp47": "Код языка в формате BCP-47.",
 	"apihelp-query+languageinfo-paramvalue-prop-dir": "Направление написания языка (<code>ltr</code> или <code>rtl</ code>).",
 	"apihelp-query+languageinfo-example-simple": "Получить языковые коды всех поддерживаемых языков.",
 	"apihelp-query+languageinfo-example-autonym-name-de": "Получить автонимы и немецкие названия всех поддерживаемых языков.",

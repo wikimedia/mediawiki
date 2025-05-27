@@ -45,11 +45,13 @@
 			"VegaDark",
 			"Vivaelcelta",
 			"Whovian Biologist",
-			"ZealousBlaze"
+			"ZealousBlaze",
+			"JaimeDes"
 		]
 	},
 	"preferences": "Preferencias",
 	"prefsnologintext2": "Es necesario acceder para cambiar las preferencias del usuario.",
+	"prefsnologintext2-for-temp-user": "Crea una cuenta para cambiar las preferencias.",
 	"searchprefs": "Buscar en tus preferencias",
 	"searchprefs-noresults": "No hay resultados",
 	"searchprefs-results": "$1 {{PLURAL:$1|resultado|resultados}}",
@@ -126,6 +128,7 @@
 	"emailauthenticated": "Tu dirección de correo electrónico fue confirmada el $2 a las $3.",
 	"allowemail": "Permitir que otros usuarios me envíen mensajes de correo",
 	"email-allow-new-users-label": "Permitir mensajes de correo de usuarios nuevos",
+	"prefs-help-email-allow-new-users": "Habilitar esta opción para recibir correos electrónicos de usuarios no [[{{MediaWiki:grouppage-autoconfirmed}}|autoconfirmados]].",
 	"tog-ccmeonemails": "Recibir copias de los mensajes de correo que envíe a otros usuarios",
 	"email-mutelist-label": "Prohibir a estos usuarios enviarme mensajes de correo:",
 	"tog-enotifwatchlistpages": "Enviarme un mensaje de correo cuando se modifique una página o un archivo de mi lista de seguimiento",

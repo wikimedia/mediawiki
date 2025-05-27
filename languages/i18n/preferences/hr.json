@@ -96,6 +96,7 @@
 	"emailauthenticated": "Vaša adresa e-pošte potvrđena je $2 u $3.",
 	"allowemail": "Dopusti drugim suradnicima da mi šalju e-poštu",
 	"email-allow-new-users-label": "Dopusti e-poruke od sasvim novih suradnika",
+	"prefs-help-email-allow-new-users": "Omogućavanjem ove opcije dopustit ćete slanje e-pošte suradnicima koji nisu [[{{MediaWiki:grouppage-autoconfirmed}}|automatski potvrđeni]].",
 	"tog-ccmeonemails": "Pošalji mi kopije e-poruka poslanih drugim suradnicima",
 	"email-mutelist-label": "Zabrani sljedećim suradnicima da mi šalju e-poruke:",
 	"tog-enotifwatchlistpages": "Pošalji mi e-poruku pri izmjeni stranice s popisa praćenja",

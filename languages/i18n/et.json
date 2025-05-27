@@ -2528,7 +2528,7 @@
 	"ipb-blockingself": "Sa blokeerid iseenda! Kas tahad tõesti seda teha?",
 	"ipb-confirmhideuser": "Avaldasid soovi kasutaja blokeerida ja peita. Kasutaja nimi peidetakse kõigist loenditest ja logisissekannetest. Kas oled kindel, et soovid seda teha?",
 	"ipb-confirmaction": "Kui oled tõesti kindel, et tahad seda teha, siis vali palun allpool \"{{int:ipb-confirm}}\".",
-	"ipb-edit-dropdown": "Muuda blokeeringu põhjuseid",
+	"ipb-edit-dropdown": "Muuda blokeerimise põhjuseid",
 	"ipb-unblock-addr": "Tühista kasutaja $1 blokeering",
 	"ipb-unblock": "Kasutaja või IP-aadressi vabastamine blokeerimisest",
 	"ipb-blocklist": "Vaata kehtivaid blokeeringuid",

@@ -3069,7 +3069,7 @@
 	"pageinfo-robot-index": "Dozwolone",
 	"pageinfo-robot-noindex": "Niedozwolone",
 	"pageinfo-watchers": "Liczba obserwujących",
-	"pageinfo-visiting-watchers": "Liczba obserwujących stronę, którzy odwiedzili ją w ciągu {{PLURAL:$1|ostatniego dnia|ostatnich $1 dni}}.",
+	"pageinfo-visiting-watchers": "Liczba obserwujących stronę, którzy odwiedzili ją w ciągu {{PLURAL:$1|ostatniego dnia|ostatnich $1 dni}}",
 	"pageinfo-few-watchers": "Mniej niż $1 {{PLURAL:$1|obserwujący|obserwujących}}",
 	"pageinfo-few-visiting-watchers": "Może być lub nie użytkownik, który odwiedza ostatnie edycje",
 	"pageinfo-redirects-name": "Liczba przekierowań do tej strony",

@@ -212,7 +212,9 @@
 			"ZhaoFJx",
 			"阿南之人",
 			"七八年再来一次",
-			"Emojiwiki"
+			"Emojiwiki",
+			"WaitSpring",
+			"Zorua Fox"
 		]
 	},
 	"sunday": "星期日",
@@ -1778,7 +1780,7 @@
 	"uploadwarning-text": "请修改下面的文件描述并重试。",
 	"uploadwarning-text-nostash": "请重新上传文件，在下方修改描述并重试。",
 	"savefile": "保存文件",
-	"uploaddisabled": "上传己停用。",
+	"uploaddisabled": "上传已停用。",
 	"copyuploaddisabled": "URL上传已停用。",
 	"uploaddisabledtext": "文件上传已停用。",
 	"php-uploaddisabledtext": "PHP文件上传停用。请检查file_uploads设置。",
