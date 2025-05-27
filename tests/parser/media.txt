@@ -2266,7 +2266,7 @@ File:File:Foobar.jpg
 		</li>
 </ul>
 !! html/parsoid
-<ul class="foo gallery mw-gallery-traditional" type="123" typeof="mw:Extension/gallery" about="#mwt3" data-mw='{"name":"gallery","attrs":{"type":"123","summary":"345"},"body":{}}'>
+<ul class="gallery mw-gallery-traditional foo" type="123" typeof="mw:Extension/gallery" about="#mwt3" data-mw='{"name":"gallery","attrs":{"type":"123","summary":"345","class":"foo"},"body":{}}'>
 <li class="gallerybox" style="width: 155px;"><div class="thumb" style="height: 150px;"><span typeof="mw:Error mw:File" data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./Special:FilePath/File:Foobar.jpg"><span class="mw-file-element mw-broken-media" resource="./File:File:Foobar.jpg" data-width="120" data-height="120">File:File:Foobar.jpg</span></a></span></div><div class="gallerytext"></div></li>
 </ul>
 !! end
