@@ -11115,7 +11115,7 @@ parsoid={ "modes": ["wt2html","html2html"], "normalizePhp": true }
 <dt>This is an okay multi-codepoint HTML5 entity</dt>
 <dd>&#8766;&#819;</dd>
 <dt>This are valid wikitext-specific entities</dt>
-<dd>&#8207; &#8207;</dd>
+<dd>&rlm; &rlm;</dd>
 <dt>Highest valid characters</dt>
 <dd>&#x10fffd; &#x10fffe; &#x10ffff;</dd></dl>
 !! end

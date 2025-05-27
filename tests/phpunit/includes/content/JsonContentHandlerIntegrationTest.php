@@ -54,7 +54,7 @@ class JsonContentHandlerIntegrationTest extends MediaWikiLangTestCase {
 			[
 				(object)[ '<script>alert("evil!")</script>' ],
 				'<div class="noresize"><table class="mw-json"><tbody><tr><th><span>0</span></th><td class="mw-json-value">"' .
-				'&lt;script&gt;alert("evil!")&lt;/script&gt;"' .
+				'&lt;script>alert("evil!")&lt;/script>"' .
 				'</td></tr></tbody></table></div>',
 			],
 			[

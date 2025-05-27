@@ -2294,7 +2294,7 @@ wgFragmentMode=[ "html5", "legacy" ]
 !! wikitext
 == &nbsp; A &nbsp; B &nbsp; ==
 !! html/php
-<div class="mw-heading mw-heading2"><h2 id="_A_B">&#160; A &#160; B &#160;</h2><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: &#160; A &#160; B &#160;">edit</a><span class="mw-editsection-bracket">]</span></span></div>
+<div class="mw-heading mw-heading2"><h2 id="_A_B">&#160; A &#160; B &#160;</h2><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section:   A   B  ">edit</a><span class="mw-editsection-bracket">]</span></span></div>
 !! html/parsoid
 <h2 id="_A_B"><span typeof="mw:Entity"> </span> A <span typeof="mw:Entity"> </span> B <span typeof="mw:Entity"> </span></h2>
 !! end
@@ -2648,7 +2648,7 @@ wgFragmentMode=[ "html5", "legacy" ]
 [[#Foo&nbsp;bar]]
 
 !! html/php
-<div class="mw-heading mw-heading2"><h2 id="Foo_bar">Foo&#160;bar</h2><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Foo&#160;bar">edit</a><span class="mw-editsection-bracket">]</span></span></div>
+<div class="mw-heading mw-heading2"><h2 id="Foo_bar">Foo&#160;bar</h2><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Foo bar">edit</a><span class="mw-editsection-bracket">]</span></span></div>
 <p><a href="#Foo_bar">#Foo&#160;bar</a>
 </p>
 !! html/parsoid

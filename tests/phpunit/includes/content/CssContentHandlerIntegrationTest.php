@@ -12,7 +12,7 @@ class CssContentHandlerIntegrationTest extends TextContentHandlerIntegrationTest
 			'title' => 'MediaWiki:Test.css',
 			'model' => null,
 			'text' => "hello <world>x\n",
-			'expectedHtml' => "<pre class=\"mw-code mw-css\" dir=\"ltr\">hello &lt;world&gt;x\n\n</pre>",
+			'expectedHtml' => "<pre class=\"mw-code mw-css\" dir=\"ltr\">\nhello &lt;world>x\n\n</pre>",
 			'expectedFields' => [
 				'Links' => [
 				],
@@ -24,7 +24,7 @@ class CssContentHandlerIntegrationTest extends TextContentHandlerIntegrationTest
 			'title' => 'MediaWiki:Test.css',
 			'model' => null,
 			'text' => "/* hello [[world]] */\n",
-			'expectedHtml' => "<pre class=\"mw-code mw-css\" dir=\"ltr\">/* hello [[world]] */\n\n</pre>",
+			'expectedHtml' => "<pre class=\"mw-code mw-css\" dir=\"ltr\">\n/* hello [[world]] */\n\n</pre>",
 			'expectedFields' => [
 				'Links' => [
 					[ 'World' => 0, ],
@@ -37,7 +37,7 @@ class CssContentHandlerIntegrationTest extends TextContentHandlerIntegrationTest
 			'title' => 'MediaWiki:Test.css',
 			'model' => null,
 			'text' => "==One==\n<h2>Two</h2>",
-			'expectedHtml' => "<pre class=\"mw-code mw-css\" dir=\"ltr\">==One==\n&lt;h2&gt;Two&lt;/h2&gt;\n</pre>",
+			'expectedHtml' => "<pre class=\"mw-code mw-css\" dir=\"ltr\">\n==One==\n&lt;h2>Two&lt;/h2>\n</pre>",
 			'expectedFields' => [
 				'Links' => [
 				],

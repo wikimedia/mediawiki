@@ -942,12 +942,12 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 			[
 				CONTENT_MODEL_JAVASCRIPT,
 				"var test='<h2>not really a heading</h2>';",
-				"<pre class=\"mw-code mw-js\" dir=\"ltr\">var test='&lt;h2&gt;not really a heading&lt;/h2&gt;';\n</pre>",
+				"<pre class=\"mw-code mw-js\" dir=\"ltr\">\nvar test='&lt;h2>not really a heading&lt;/h2>';\n</pre>",
 			],
 			[
 				CONTENT_MODEL_CSS,
 				"/* Not ''wikitext'' */",
-				"<pre class=\"mw-code mw-css\" dir=\"ltr\">/* Not ''wikitext'' */\n</pre>",
+				"<pre class=\"mw-code mw-css\" dir=\"ltr\">\n/* Not ''wikitext'' */\n</pre>",
 			],
 			// @todo more...?
 		];
