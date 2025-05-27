@@ -83,6 +83,7 @@ For notes on 1.44.x and older releases, see HISTORY.
 
 ===== Changed development-only external libraries =====
 
+* Updated eslint-config-wikimedia from 0.29.1 to 0.30.0.
 * …
 
 ==== Removed external libraries ====
