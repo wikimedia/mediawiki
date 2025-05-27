@@ -21,7 +21,8 @@
 			"렌즈",
 			"아라",
 			"코코아",
-			"Tensama0415"
+			"Tensama0415",
+			"YeBoy371"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|설명문서]]\n* [[mw:Special:MyLanguage/API:Etiquette|에티켓 & 활용 가이드라인]]\n* [[mw:Special:MyLanguage/API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api.lists.wikimedia.org/ 메일링 리스트]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/ API 알림 사항]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R 버그 및 요청]\n</div>\n<strong>상태:</strong> 이 페이지에 보이는 모든 기능은 정상적으로 작동하지만, API는 여전히 활발하게 개발되고 있으며, 언제든지 변경될 수 있습니다. 업데이트 공지를 받아보려면 [https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ mediawiki-api-announce 메일링 리스트]를 구독하십시오.\n\n<strong>잘못된 요청:</strong> API에 잘못된 요청이 전송되면 \"MediaWiki-API-Error\" 키가 포함된 HTTP 헤더가 전송되며 반환되는 헤더와 오류 코드의 값은 모두 동일한 값으로 설정됩니다. 자세한 정보에 대해서는 [[mw:Special:MyLanguage/API:Errors_and_warnings|API:오류와 경고]]를 참조하십시오.\n\n<strong>테스트하기:</strong> API 요청 테스트를 용이하게 하려면, [[Special:ApiSandbox]]를 보십시오.",
@@ -223,6 +224,7 @@
 	"apihelp-feedrecentchanges-param-hidemyself": "현재 사용자의 변경사항을 숨깁니다.",
 	"apihelp-feedrecentchanges-param-hidecategorization": "카테고리 멤버 변경 숨기기",
 	"apihelp-feedrecentchanges-param-tagfilter": "태그로 분류",
+	"apihelp-feedrecentchanges-param-target": "이 문서에서 링크된 문서의 변경 사항만 표시합니다.",
 	"apihelp-feedrecentchanges-example-simple": "최근 바뀜을 봅니다.",
 	"apihelp-feedrecentchanges-example-30days": "30일간의 최근 바뀜을 봅니다.",
 	"apihelp-feedwatchlist-summary": "주시문서 목록 피드를 반환합니다.",

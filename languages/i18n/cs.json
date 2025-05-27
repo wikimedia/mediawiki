@@ -2593,7 +2593,7 @@
 	"block-user-label": "Kterého uživatele chcete zablokovat?",
 	"block-user-active-blocks": "Aktivní blokování",
 	"block-user-previous-blocks": "Kniha blokování",
-	"block-user-no-previous-blocks": "Nebyly nalezeny žádné předchozí blokování",
+	"block-user-no-previous-blocks": "Nebyla nalezena žádná předchozí blokování",
 	"block-user-no-reason-given": "Důvod nebyl uveden",
 	"block-user-no-reason-given-aria-details": "Pro tuto položku protokolu nebyl uveden žádný důvod",
 	"block-user-description": "Uživatelem může být uživatelské jméno, IP adresa nebo rozsah IP adres.",
