@@ -3,6 +3,7 @@
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\ImagePage;
 use MediaWiki\Title\Title;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * For doing Image Page tests that rely on 404 thumb handling
@@ -42,12 +43,10 @@ class ImagePage404Test extends MediaWikiMediaTestCase {
 	 * @param int $expectedNumberThumbs How many thumbnails to show
 	 */
 	public function testGetThumbSizes( $filename, $expectedNumberThumbs ) {
-		$iPage = $this->getImagePage( $filename );
-		$reflection = new ReflectionClass( $iPage );
-		$reflMethod = $reflection->getMethod( 'getThumbSizes' );
-		$reflMethod->setAccessible( true );
+		/** @var ImagePage $iPage */
+		$iPage = TestingAccessWrapper::newFromObject( $this->getImagePage( $filename ) );
 
-		$actual = $reflMethod->invoke( $iPage, 545, 700 );
+		$actual = $iPage->getThumbSizes( 545, 700 );
 		$this->assertCount( $expectedNumberThumbs, $actual );
 	}
 

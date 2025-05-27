@@ -23,7 +23,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
 use MediaWikiUnitTestCase;
 use MockTitleTrait;
-use ReflectionClass;
+use Wikimedia\TestingAccessWrapper;
 use Wikimedia\UUID\GlobalIdGenerator;
 
 /**
@@ -208,12 +208,6 @@ class WikitextContentHandlerTest extends MediaWikiUnitTestCase {
 
 		$cpoParams = new ContentParseParams( $title, 42, $parserOptions );
 
-		// The method we'd like to test, fillParserOutput, is protected;
-		// make it public
-		$class = new ReflectionClass( WikitextContentHandler::class );
-		$method = $class->getMethod( 'fillParserOutput' );
-		$method->setAccessible( true );
-
 		$handler = $this->newWikitextContentHandler( [
 			TitleFactory::class => $titleFactory,
 			LinkRenderer::class => $linkRenderer,
@@ -228,9 +222,12 @@ class WikitextContentHandlerTest extends MediaWikiUnitTestCase {
 			$content = new WikitextContent( '* Hello, world!' );
 		}
 
+		/** @var WikitextContentHandler $handler */
+		$handler = TestingAccessWrapper::newFromObject( $handler );
 		// Okay, invoke fillParserOutput() and verify that the assertions
 		// above about the parse() invocations are correct.
-		$method->invokeArgs( $handler, [ $content, $cpoParams, &$parserOutput ] );
+		// TestingAccessWrapper cannot pass-by-ref directly - T287318
+		call_user_func_array( [ $handler, 'fillParserOutput' ], [ $content, $cpoParams, &$parserOutput ] );
 	}
 
 	public static function provideFillParserOutput() {

@@ -47,11 +47,9 @@ class FormatMetadataTest extends MediaWikiMediaTestCase {
 	 * @dataProvider provideResolveMultivalueValue
 	 */
 	public function testResolveMultivalueValue( $input, $output ) {
-		$formatMetadata = new FormatMetadata();
-		$class = new ReflectionClass( FormatMetadata::class );
-		$method = $class->getMethod( 'resolveMultivalueValue' );
-		$method->setAccessible( true );
-		$actualInput = $method->invoke( $formatMetadata, $input );
+		/** @var FormatMetadata $formatMetadata */
+		$formatMetadata = TestingAccessWrapper::newFromObject( new FormatMetadata() );
+		$actualInput = $formatMetadata->resolveMultivalueValue( $input );
 		$this->assertEquals( $output, $actualInput );
 	}
 

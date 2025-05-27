@@ -22,7 +22,6 @@ use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Parser\ParserOutputLinkTypes;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
-use MediaWiki\Request\ContentSecurityPolicy;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\ResourceLoader as RL;
@@ -2597,15 +2596,12 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			MainConfigNames::LoadScript => 'http://127.0.0.1:8080/w/load.php',
 			MainConfigNames::CSPReportOnlyHeader => true,
 		] );
-		$class = new ReflectionClass( OutputPage::class );
-		$method = $class->getMethod( 'makeResourceLoaderLink' );
-		$method->setAccessible( true );
 		$ctx = new RequestContext();
 		$skinFactory = $this->getServiceContainer()->getSkinFactory();
 		$ctx->setSkin( $skinFactory->makeSkin( 'fallback' ) );
 		$ctx->setLanguage( 'en' );
-		$out = new OutputPage( $ctx );
-		$reflectCSP = new ReflectionClass( ContentSecurityPolicy::class );
+		/** @var OutputPage $out */
+		$out = TestingAccessWrapper::newFromObject( new OutputPage( $ctx ) );
 		$rl = $out->getResourceLoader();
 		$rl->setMessageBlobStore( $this->createMock( RL\MessageBlobStore::class ) );
 		$rl->setDependencyStore( $this->createMock( DependencyStore::class ) );
@@ -2647,7 +2643,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 				'group' => 'bar',
 			],
 		] );
-		$links = $method->invokeArgs( $out, $args );
+		$links = $out->makeResourceLoaderLink( ...$args );
 		$actualHtml = strval( $links );
 		$this->assertEquals( $expectedHtml, $actualHtml );
 	}

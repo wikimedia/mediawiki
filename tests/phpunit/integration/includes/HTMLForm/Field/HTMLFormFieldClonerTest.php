@@ -4,7 +4,7 @@ namespace MediaWiki\Tests\Integration\HTMLForm\Field;
 use MediaWiki\HTMLForm\Field\HTMLFormFieldCloner;
 use MediaWiki\Tests\Integration\HTMLForm\HTMLFormFieldTestCase;
 use OOUI\Tag;
-use ReflectionClass;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers \MediaWiki\HTMLForm\Field\HTMLFormFieldCloner
@@ -17,8 +17,7 @@ class HTMLFormFieldClonerTest extends HTMLFormFieldTestCase {
 		parent::setUp();
 
 		// Reset unique ID counter for cloner-type fields and OOUI fields between tests.
-		$ref = new ReflectionClass( HTMLFormFieldCloner::class );
-		$ref->setStaticPropertyValue( 'counter', 0 );
+		TestingAccessWrapper::newFromClass( HTMLFormFieldCloner::class )->counter = 0;
 
 		Tag::resetElementId();
 	}
