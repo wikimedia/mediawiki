@@ -34,7 +34,7 @@ use Wikimedia\Rdbms\IDatabase;
  *
  * @since 1.35 (also backported to 1.33.3 and 1.34.1)
  */
-define( 'MW_VERSION', '1.45.0-alpha' );
+define( 'MW_VERSION', '1.45.0-wmf.3' );
 
 /** @{
  * Obsolete IDatabase::makeList() constants
