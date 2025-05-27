@@ -786,7 +786,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		$this->store = new TestBagOStuff();
 		$testData = [ 'foo' => 'foo!', 'bar', [ 'baz', null ] ];
 
-		// Not persistent
+		// Not persistent, expiring
 		$this->provider = $this->getMockBuilder( DummySessionProvider::class )
 			->onlyMethods( [ 'persistSession' ] )->getMock();
 		$this->provider->expects( $this->never() )->method( 'persistSession' );
@@ -812,7 +812,29 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( '!!!', $metadata['???'] );
 		$this->assertNotEquals( 0, $wrap->expires );
 
-		// Persistent
+		// Persistent, not expiring
+		$this->provider = $this->getMockBuilder( DummySessionProvider::class )
+			->onlyMethods( [ 'persistSession' ] )->getMock();
+		$this->provider->expects( $this->never() )->method( 'persistSession' );
+		$this->onSessionMetadataCalled = false;
+		$this->mergeMwGlobalArrayValue( 'wgHooks', [ 'SessionMetadata' => [ $this ] ] );
+		$this->store->setSessionData( self::SESSIONID, $testData );
+		$backend = $this->getBackend( $user );
+		$this->store->deleteSession( self::SESSIONID );
+		$wrap = TestingAccessWrapper::newFromObject( $backend );
+		$wrap->persist = true;
+		$this->assertTrue( $backend->isPersistent() );
+		$wrap->metaDirty = false;
+		$wrap->dataDirty = false;
+		$wrap->forcePersist = false;
+		$expires = time() + $wrap->lifetime + 100;
+		$wrap->expires = $expires;
+		$backend->renew();
+		$this->assertFalse( $this->onSessionMetadataCalled );
+		$this->assertFalse( $this->store->getSession( self::SESSIONID ), 'making sure it didn\'t save' );
+		$this->assertEquals( $expires, $wrap->expires );
+
+		// Persistent, expiring
 		$this->provider = $this->getMockBuilder( DummySessionProvider::class )
 			->onlyMethods( [ 'persistSession' ] )->getMock();
 		$this->provider->expects( $this->atLeastOnce() )->method( 'persistSession' );

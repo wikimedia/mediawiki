@@ -652,8 +652,8 @@ final class SessionBackend {
 						'callers' => wfGetAllCallers( 5 ),
 					] );
 			}
+			$this->autosave();
 		}
-		$this->autosave();
 	}
 
 	/**
