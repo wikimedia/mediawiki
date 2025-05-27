@@ -53,7 +53,7 @@ exports.config = {
 	// Test Files
 	// ==================
 	specs: [
-		'./tests/selenium/specs/**/*.js'
+		'./specs/**/*.js'
 	],
 	// Set the waitForTimeout for all wait for commands
 	// https://v8.webdriver.io/docs/timeouts/#waitfor-timeout
