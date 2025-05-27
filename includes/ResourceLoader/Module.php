@@ -1001,7 +1001,7 @@ abstract class Module implements LoggerAwareInterface {
 			$cache::TTL_WEEK,
 			static function () use ( $contents ) {
 				try {
-					Peast::ES2016( $contents )->parse();
+					Peast::ES2017( $contents )->parse();
 				} catch ( PeastSyntaxException $e ) {
 					return $e->getMessage() . " on line " . $e->getPosition()->getLine();
 				}

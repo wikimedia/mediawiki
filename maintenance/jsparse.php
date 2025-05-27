@@ -58,7 +58,7 @@ class JSParseHelper extends Maintenance {
 			}
 
 			try {
-				Peast\Peast::ES2016( $js )->parse();
+				Peast\Peast::ES2017( $js )->parse();
 			} catch ( Exception $e ) {
 				$this->errs++;
 				$this->output( "$filename ERROR: " . get_class( $e ) . ": " . $e->getMessage() . "\n" );
