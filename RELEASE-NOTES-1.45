@@ -79,6 +79,7 @@ For notes on 1.44.x and older releases, see HISTORY.
 
 * Updated codex, codex-design-tokens and codex-icons
   from v1.23.0 to v2.0.0-rc.2.
+* Updated wikimedia/shellbox from 4.2.0 to 4.3.0.
 * …
 
 ===== Changed development-only external libraries =====
