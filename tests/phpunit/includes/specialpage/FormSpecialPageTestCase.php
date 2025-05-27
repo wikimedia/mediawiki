@@ -10,9 +10,9 @@ use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\SpecialPage\FormSpecialPage;
 use MediaWiki\User\User;
 use MediaWiki\Utils\MWTimestamp;
-use ReflectionMethod;
 use SpecialPageTestBase;
 use Wikimedia\Rdbms\ReadOnlyMode;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * Factory for handling the special page list and generating SpecialPage objects.
@@ -54,8 +54,8 @@ abstract class FormSpecialPageTestCase extends SpecialPageTestBase {
 		$permissionManager->method( 'userHasRight' )->willReturn( true );
 		$this->setService( 'PermissionManager', $permissionManager );
 
-		$special = $this->newSpecialPage();
-		$checkExecutePermissions = $this->getMethod( $special, 'checkExecutePermissions' );
+		/** @var FormSpecialPage $special */
+		$special = TestingAccessWrapper::newFromObject( $this->newSpecialPage() );
 
 		$user = $this->getMockBuilder( User::class )
 			->onlyMethods( [ 'getBlock', 'getWikiId' ] )
@@ -68,7 +68,7 @@ abstract class FormSpecialPageTestCase extends SpecialPageTestBase {
 		$user->method( 'getBlock' )->willReturn( $block );
 
 		$this->expectException( UserBlockedError::class );
-		$checkExecutePermissions( $user );
+		$special->checkExecutePermissions( $user );
 	}
 
 	/**
@@ -89,8 +89,8 @@ abstract class FormSpecialPageTestCase extends SpecialPageTestBase {
 		$permissionManager->method( 'userHasRight' )->willReturn( true );
 		$this->setService( 'PermissionManager', $permissionManager );
 
-		$special = $this->newSpecialPage();
-		$checkExecutePermissions = $this->getMethod( $special, 'checkExecutePermissions' );
+		/** @var FormSpecialPage $special */
+		$special = TestingAccessWrapper::newFromObject( $this->newSpecialPage() );
 
 		$user = $this->getMockBuilder( User::class )
 			->onlyMethods( [ 'getBlock', 'getWikiId' ] )
@@ -102,19 +102,6 @@ abstract class FormSpecialPageTestCase extends SpecialPageTestBase {
 		$block->method( 'getExpiry' )->willReturn( MWTimestamp::convert( TS_MW, 10 ) );
 		$user->method( 'getBlock' )->willReturn( $block );
 
-		$this->assertNull( $checkExecutePermissions( $user ) );
-	}
-
-	/**
-	 * Get a protected/private method.
-	 *
-	 * @param FormSpecialPage $obj
-	 * @param string $name
-	 * @return callable
-	 */
-	protected function getMethod( FormSpecialPage $obj, $name ) {
-		$method = new ReflectionMethod( $obj, $name );
-		$method->setAccessible( true );
-		return $method->getClosure( $obj );
+		$this->assertNull( $special->checkExecutePermissions( $user ) );
 	}
 }

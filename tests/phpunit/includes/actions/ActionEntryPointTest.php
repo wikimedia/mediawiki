@@ -20,7 +20,6 @@ use MediaWiki\Title\MalformedTitleException;
 use MediaWiki\Title\Title;
 use MediaWikiIntegrationTestCase;
 use PHPUnit\Framework\Assert;
-use ReflectionMethod;
 use Wikimedia\TestingAccessWrapper;
 
 // phpcs:disable MediaWiki.Usage.SuperGlobalsUsage.SuperGlobals
@@ -211,11 +210,10 @@ class ActionEntryPointTest extends MediaWikiIntegrationTestCase {
 		$context = $environment->makeFauxContext();
 		$context->setTitle( $titleObj );
 
-		$mw = $this->getEntryPoint( $environment, $context );
+		/** @var ActionEntryPoint $mw */
+		$mw = TestingAccessWrapper::newFromObject( $this->getEntryPoint( $environment, $context ) );
 
-		$method = new ReflectionMethod( $mw, 'tryNormaliseRedirect' );
-		$method->setAccessible( true );
-		$ret = $method->invoke( $mw, $titleObj );
+		$ret = $mw->tryNormaliseRedirect( $titleObj );
 
 		$this->assertEquals(
 			$expectedRedirect !== false,
@@ -312,11 +310,10 @@ class ActionEntryPointTest extends MediaWikiIntegrationTestCase {
 		}
 
 		$req = new FauxRequest( $query );
-		$mw = $this->getEntryPoint( $req );
+		/** @var ActionEntryPoint $mw */
+		$mw = TestingAccessWrapper::newFromObject( $this->getEntryPoint( $req ) );
 
-		$method = new ReflectionMethod( $mw, 'parseTitle' );
-		$method->setAccessible( true );
-		$ret = $method->invoke( $mw, $req );
+		$ret = $mw->parseTitle( $req );
 
 		$this->assertEquals(
 			$expected,
