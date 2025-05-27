@@ -315,9 +315,4 @@ class LinkRendererTest extends MediaWikiLangTestCase {
 			$linkRenderer->getLinkClasses( $redirectTitle )
 		);
 	}
-
-	protected function tearDown(): void {
-		Title::clearCaches();
-		parent::tearDown();
-	}
 }
