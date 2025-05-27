@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Derugon",
 			"Gomoko",
 			"Hecatonchire",
 			"JLTRY",
@@ -228,5 +229,16 @@
 	"rest-schema-desc-page-history-count": "Nombre de modifications de l'historique des pages",
 	"rest-schema-desc-page-language-links": "Liens interlinguistiques pour la page",
 	"rest-schema-desc-search-results": "Résultats de la recherche",
-	"rest-schema-desc-revision-compare": "Comparaison des révisions"
+	"rest-schema-desc-revision-compare": "Comparaison des révisions",
+	"rest-endpoint-desc-mock-desc": "Description fictive.",
+	"rest-endpoint-desc-post-page": "Crée une page du wiki.",
+	"rest-endpoint-desc-get-page-title": "Renvoie le contenu d'une page du wiki au format spécifié par la propriété content_model, la licence et les informations sur la dernière révision.",
+	"rest-endpoint-desc-put-page-title": "Modifie une page en fonction de son dernier ID de révision ou la crée si aucun ID de révision n'est fourni.",
+	"rest-endpoint-desc-get-page-title-html": "Renvoie le contenu le plus récent d'une page du wiki au format HTML. Ce point d'entrée renvoie le type de contenu text/html.",
+	"rest-endpoint-desc-get-page-title-with-html": "Renvoie des informations sur une page du wiki dont la licence, la dernière révision et le contenu le plus récent au format HTML.",
+	"rest-endpoint-desc-get-page-title-bare": "Renvoie l'objet de page standard pour une page du wiki, comprenant la route d'API pour récupérer le contenu le plus récent en HTML, la licence et les informations sur la dernière révision.",
+	"rest-endpoint-desc-get-revision-id": "Renvoie les métadonnées d'une révision, dont le texte source",
+	"rest-endpoint-desc-get-revision-id-html": "Renvoie le contenu d'une révision au format HTML. Ce point d'entrée renvoie un contenu de type text/html.",
+	"rest-endpoint-desc-get-revision-id-with-html": "Renvoie les métadonnées d'une révision, dont le contenu en HTML",
+	"rest-endpoint-desc-get-revision-id-bare": "Renvoie des détails sur une révision individuelle."
 }

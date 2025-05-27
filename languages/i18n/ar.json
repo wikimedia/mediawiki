@@ -1520,6 +1520,7 @@
 	"rcfilters-liveupdates-button-title-off": "عرض التغييرات الجديدة فور حدوثها",
 	"rcfilters-watchlist-markseen-button": "اعتبر كل التغييرات منظورة",
 	"rcfilters-watchlist-edit-watchlist-button": "عدل قائمة الصفحات المراقبة",
+	"rcfilters-watchlist-edit-watchlist-preferences-button": "التفضيلات",
 	"rcfilters-watchlist-showupdated": "التغييرات للصفحات التي لم تزرها منذ حدوث التغييرات تكون <strong>بالخط الغليظ</strong>.",
 	"rcfilters-filter-showlinkedfrom-label": "عرض التغييرات في الصفحات الموصولة من",
 	"rcfilters-filter-showlinkedfrom-option-label": "<strong>الصفحات الموصولة من</strong> الصفحة المختارة",

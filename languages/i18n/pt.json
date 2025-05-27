@@ -2537,6 +2537,8 @@
 	"ipb-blocklist": "Ver bloqueios em vigência",
 	"ipb-blocklist-contribs": "Contribuições de {{GENDER:$1|$1}}",
 	"ipb-blocklist-duration-left": "resta $1",
+	"block-added-message": "Bloqueio adicionado",
+	"block-updated-message": "Bloqueio atualizado",
 	"block-actions": "Tipo de bloqueio",
 	"block-details": "Detalhes do bloqueio",
 	"block-details-description": "Que operações quer bloquear?",

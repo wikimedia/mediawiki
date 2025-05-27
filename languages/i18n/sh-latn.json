@@ -2354,7 +2354,7 @@
 	"ipb-namespaces-label": "Imenski prostori:",
 	"badipaddress": "Neispravna IP adresa",
 	"blockipsuccesssub": "Uspešno blokiranje",
-	"blockipsuccesstext": "{{GENDER:$1|Korisnik|Korisnica|Korisnik/-ca}} [[Special:Contributions/$1|$1]] je {{GENDER:$1|blokiran|blokirana|blokiran/-a}}.<br />\nZa pregled svih blokiranja pogledajte [[Special:BlockList|listu blokada]].",
+	"blockipsuccesstext": "Uspješno ste blokirali {{GENDER:$1|korisnika|korisnicu|korisnika/korisnicu}} <strong>[[Special:Contributions/$1|$1]]</strong>.<br />\nPogledajte [[Special:BlockList|listu blokada]] za pregled aktivnih blokada.",
 	"ipb-empty-block": "U podnetoj blokadi nema nikakvih ograničenja.",
 	"ipb-blockingself": "Blokirat ćete sebe! Jeste li sigurni da to želite?",
 	"ipb-confirmhideuser": "Upravo ćete blokirati korisnika sa uključenom opcijom ''sakrij korisnika''. Ovim će korisničko ime biti sakriveno u svim spiskovima i stavkama zapisnika. Da li ste sigurni da to želite?",

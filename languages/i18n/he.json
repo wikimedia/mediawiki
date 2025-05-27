@@ -3627,7 +3627,7 @@
 	"revdelete-restricted": "נוספו הגבלות למפעילי מערכת",
 	"revdelete-unrestricted": "הוסרו הגבלות ממפעילי מערכת",
 	"logentry-block-block": "$1 {{GENDER:$2|חסם|חסמה}} את {{GENDER:$4|$3}} עם זמן פקיעה של $5 $6",
-	"logentry-block-block-multi": "$1 {{GENDER:$2|הוסיף|הוסיפה}} חסימה של {{GENDER:$4 $3}} עם זמן פקיעה של $5 $6",
+	"logentry-block-block-multi": "$1 {{GENDER:$2|הוסיף|הוסיפה}} חסימה של {{GENDER:$4|$3}} עם זמן פקיעה של $5 $6",
 	"logentry-block-unblock": "$1 {{GENDER:$2|שחרר|שחררה}} את החסימה של {{GENDER:$4|$3}}",
 	"logentry-block-reblock": "$1 {{GENDER:$2|שינה|שינתה}} את הגדרות החסימה של {{GENDER:$4|$3}} עם זמן פקיעה של $5 $6",
 	"logentry-partialblock-block-page": "{{PLURAL:$1|הדף|הדפים}} $2",
