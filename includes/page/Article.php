@@ -810,25 +810,26 @@ class Article implements Page {
 		# Run the parse, protected by a pool counter
 		wfDebug( __METHOD__ . ": doing uncached parse" );
 
-		$opt = 0;
+		$opt = [];
 
 		// we already checked the cache in case 2, don't check again.
-		$opt |= ParserOutputAccess::OPT_NO_CHECK_CACHE;
+		$opt[ ParserOutputAccess::OPT_NO_CHECK_CACHE ] = true;
 
 		// we already checked in fetchRevisionRecord()
-		$opt |= ParserOutputAccess::OPT_NO_AUDIENCE_CHECK;
+		$opt[ ParserOutputAccess::OPT_NO_AUDIENCE_CHECK ] = true;
 
 		// enable stampede protection and allow stale content
-		$opt |= ParserOutputAccess::OPT_FOR_ARTICLE_VIEW;
+		$opt[ ParserOutputAccess::OPT_POOL_COUNTER ]
+			= ParserOutputAccess::POOL_COUNTER_ARTICLE_VIEW;
 
 		// Attempt to trigger WikiPage::triggerOpportunisticLinksUpdate
 		// Ideally this should not be the responsibility of the ParserCache to control this.
 		// See https://phabricator.wikimedia.org/T329842#8816557 for more context.
-		$opt |= ParserOutputAccess::OPT_LINKS_UPDATE;
+		$opt[ ParserOutputAccess::OPT_LINKS_UPDATE ] = true;
 
 		if ( !$rev->getId() || !$useParserCache ) {
 			// fake revision or uncacheable options
-			$opt |= ParserOutputAccess::OPT_NO_CACHE;
+			$opt[ ParserOutputAccess::OPT_NO_CACHE ] = true;
 		}
 
 		$renderStatus = $parserOutputAccess->getParserOutput(
