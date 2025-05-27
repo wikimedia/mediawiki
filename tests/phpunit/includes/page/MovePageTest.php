@@ -354,10 +354,6 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 				$status
 			);
 		} else {
-			// Create Title objects from text, so they will end up in the instance
-			// cache. In assertMoved() we'll check that we are not
-			// getting this stale object from Title::newFromText().
-			Title::clearCaches();
 			$oldFromText = Title::newFromText( $old->getPrefixedText() );
 			$newFromText = Title::newFromText( $new->getPrefixedText() );
 			$oldFromText->getId();
