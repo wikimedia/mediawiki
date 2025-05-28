@@ -5,6 +5,7 @@ use MediaWiki\MainConfigNames;
 /**
  * Try to make sure that extensions register all rights in $wgAvailableRights
  * or via the 'UserGetAllRights' hook.
+ * Note: this test can also fail for bad declarations in LocalSettings. Long-term fix is T277470.
  *
  * @author Marius Hoch < hoo@online.de >
  * @coversNothing

@@ -150,7 +150,12 @@ trait LanguageNameUtilsTestTrait {
 	 */
 	public function testGetLanguageNames( $expected, $code, ...$otherArgs ) {
 		$this->clearLanguageHook( 'LanguageGetTranslatedLanguageNames' );
-		$this->assertGetLanguageNames( [], $expected, $code, ...$otherArgs );
+		$this->assertGetLanguageNames(
+			[ MainConfigNames::ExtraLanguageNames => [] ],
+			$expected,
+			$code,
+			...$otherArgs
+		);
 	}
 
 	public static function provideGetLanguageNames() {
