@@ -513,10 +513,7 @@ describe( '/transform/ endpoint', () => {
 
 	describe( 'wt2lint', () => {
 
-		it( 'should lint the given wikitext', function ( done ) {
-			if ( skipForNow ) {
-				return this.skip();
-			} // Enable linting config
+		it( 'should lint the given wikitext', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/v1/transform/wikitext/to/lint/' )
 				.send( {
@@ -532,14 +529,12 @@ describe( '/transform/ endpoint', () => {
 					res.body.should.be.instanceof( Array );
 					res.body.length.should.equal( 1 );
 					res.body[ 0 ].type.should.equal( 'fostered' );
+					validateSpec( res );
 				} )
 				.end( done );
 		} );
 
-		it( 'should lint the given revision, transform', function ( done ) {
-			if ( skipForNow ) {
-				return this.skip();
-			} // Enable linting config
+		it.skip( 'should lint the given revision, transform', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/v1/transform/wikitext/to/lint/Lint_Page/102' )
 				.send( {} )
@@ -553,10 +548,7 @@ describe( '/transform/ endpoint', () => {
 				.end( done );
 		} );
 
-		it( 'should lint the given page, transform', function ( done ) {
-			if ( skipForNow ) {
-				return this.skip();
-			} // Enable linting config
+		it.skip( 'should lint the given page, transform', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/v1/transform/wikitext/to/lint/Lint_Page' )
 				.send( {} )
@@ -570,10 +562,7 @@ describe( '/transform/ endpoint', () => {
 				.end( done );
 		} );
 
-		it( 'should lint multibyte wikitext', function ( done ) {
-			if ( skipForNow ) {
-				return this.skip();
-			} // Enable linting config
+		it( 'should lint multibyte wikitext', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/v1/transform/wikitext/to/lint/' )
 				.send( {
