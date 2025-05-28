@@ -1101,6 +1101,8 @@ class MessageCache implements LoggerAwareInterface {
 		if ( is_object( $lang ) ) {
 			StubObject::unstub( $lang );
 			if ( $lang instanceof Language ) {
+				wfDeprecatedMsg( 'Calling MessageCache::get with a Language object ' .
+					'was deprecated in MediaWiki 1.44', '1.44' );
 				return $lang->getCode();
 			} else {
 				throw new InvalidArgumentException( 'Invalid language object of class ' .
