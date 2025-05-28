@@ -437,8 +437,8 @@ abstract class Skin extends ContextSource {
 	 */
 	public function getDefaultModules() {
 		$out = $this->getOutput();
-		$user = $this->getUser();
 
+		$options = $this->getOptions();
 		// Modules declared in the $modules literal are loaded
 		// for ALL users, on ALL pages, in ALL skins.
 		// Keep this list as small as possible!
@@ -447,7 +447,7 @@ abstract class Skin extends ContextSource {
 			// Unlike other keys in $modules, this is an associative array
 			// where each key is its own group pointing to a list of modules
 			'styles' => [
-				'skin' => $this->getOptions()['styles'],
+				'skin' => $options['styles'],
 				'core' => [],
 				'content' => [],
 				'syndicate' => [],
@@ -462,7 +462,7 @@ abstract class Skin extends ContextSource {
 			// modules relating to search functionality
 			'search' => [],
 			// Skins can register their own scripts
-			'skin' => $this->getOptions()['scripts'],
+			'skin' => $options['scripts'],
 			// modules relating to functionality relating to watching an article
 			'watch' => [],
 			// modules which relate to the current users preferences
@@ -471,14 +471,15 @@ abstract class Skin extends ContextSource {
 			'syndicate' => [],
 		];
 
+		$bodyHtml = $out->getHTML();
 		// Preload jquery.tablesorter for mediawiki.page.ready
-		if ( strpos( $out->getHTML(), 'sortable' ) !== false ) {
+		if ( strpos( $bodyHtml, 'sortable' ) !== false ) {
 			$modules['content'][] = 'jquery.tablesorter';
 			$modules['styles']['content'][] = 'jquery.tablesorter.styles';
 		}
 
 		// Preload jquery.makeCollapsible for mediawiki.page.ready
-		if ( strpos( $out->getHTML(), 'mw-collapsible' ) !== false ) {
+		if ( strpos( $bodyHtml, 'mw-collapsible' ) !== false ) {
 			$modules['content'][] = 'jquery.makeCollapsible';
 			$modules['styles']['content'][] = 'jquery.makeCollapsible.styles';
 		}
@@ -486,18 +487,17 @@ abstract class Skin extends ContextSource {
 		// Load relevant styles on wiki pages that use mw-ui-button.
 		// Since 1.26, this no longer loads unconditionally. Special pages
 		// and extensions should load this via addModuleStyles() instead.
-		if ( strpos( $out->getHTML(), 'mw-ui-button' ) !== false ) {
+		if ( strpos( $bodyHtml, 'mw-ui-button' ) !== false ) {
 			$modules['styles']['content'][] = 'mediawiki.ui.button';
 		}
 		// Since 1.41, styling for mw-message-box is only required for
 		// messages that appear in article content.
 		// This should only be removed when a suitable alternative exists
 		// e.g. https://phabricator.wikimedia.org/T363607 is resolved.
-		if ( strpos( $out->getHTML(), 'mw-message-box' ) !== false ) {
+		if ( strpos( $bodyHtml, 'mw-message-box' ) !== false ) {
 			$modules['styles']['content'][] = 'mediawiki.legacy.messageBox';
 		}
 
-		$action = $this->getRequest()->getRawVal( 'action' ) ?? 'view';
 		$title = $this->getTitle();
 		$namespace = $title ? $title->getNamespace() : 0;
 		// If the page is using Codex message box markup load Codex styles.
@@ -505,8 +505,8 @@ abstract class Skin extends ContextSource {
 		// means.
 		// For content, this should not be considered stable, and will likely
 		// be removed when https://phabricator.wikimedia.org/T363607 is resolved.
-		$containsUserGeneratedContent = strpos( $out->getHTML(), 'mw-parser-output' ) !== false;
-		$containsCodexMessageBox = strpos( $out->getHTML(), 'cdx-message' ) !== false;
+		$containsUserGeneratedContent = strpos( $bodyHtml, 'mw-parser-output' ) !== false;
+		$containsCodexMessageBox = strpos( $bodyHtml, 'cdx-message' ) !== false;
 		if ( $containsCodexMessageBox && $containsUserGeneratedContent && $namespace !== NS_SPECIAL ) {
 			$modules['styles']['content'][] = 'mediawiki.codex.messagebox.styles';
 		}
@@ -517,7 +517,7 @@ abstract class Skin extends ContextSource {
 
 		$authority = $this->getAuthority();
 		$relevantTitle = $this->getRelevantTitle();
-		if ( $authority->getUser()->isRegistered()
+		if ( $authority->isRegistered()
 			&& $authority->isAllowedAll( 'viewmywatchlist', 'editmywatchlist' )
 			&& $relevantTitle && $relevantTitle->canExist()
 		) {
@@ -525,8 +525,9 @@ abstract class Skin extends ContextSource {
 		}
 
 		$userOptionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
-		if ( $userOptionsLookup->getBoolOption( $user, 'editsectiononrightclick' )
-			|| ( $out->isArticle() && $userOptionsLookup->getOption( $user, 'editondblclick' ) )
+		$userIdentity = $authority->getUser();
+		if ( $userOptionsLookup->getBoolOption( $userIdentity, 'editsectiononrightclick' )
+			|| ( $out->isArticle() && $userOptionsLookup->getOption( $userIdentity, 'editondblclick' ) )
 		) {
 			$modules['user'][] = 'mediawiki.misc-authed-pref';
 		}
@@ -535,7 +536,7 @@ abstract class Skin extends ContextSource {
 			$modules['styles']['syndicate'][] = 'mediawiki.feedlink';
 		}
 
-		if ( $user->isTemp() ) {
+		if ( $authority->isTemp() ) {
 			$modules['user'][] = 'mediawiki.tempUserBanner';
 			$modules['styles']['user'][] = 'mediawiki.tempUserBanner.styles';
 		}
