@@ -13,7 +13,6 @@ use MediaWiki\User\TalkPageNotificationManager;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\Utils\MWTimestamp;
-use PHPUnit\Framework\AssertionFailedError;
 
 /**
  * @covers \MediaWiki\User\TalkPageNotificationManager
@@ -148,7 +147,7 @@ class TalkPageNotificationManagerTest extends MediaWikiIntegrationTestCase {
 				if ( $rev === $thirdRev ) {
 					return $mockOldRev;
 				}
-				throw new AssertionFailedError(
+				self::fail(
 					'RevisionLookup::getPreviousRevision called with wrong rev ' . $rev->getId()
 				);
 			} );

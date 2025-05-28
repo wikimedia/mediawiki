@@ -5,7 +5,6 @@ namespace Wikimedia\Tests\ParamValidator\Util;
 require_once __DIR__ . '/UploadedFileTestBase.php';
 
 use Error;
-use PHPUnit\Framework\AssertionFailedError;
 use RuntimeException;
 use TypeError;
 use Wikimedia\ParamValidator\Util\UploadedFileStream;
@@ -105,8 +104,6 @@ class UploadedFileStreamTest extends UploadedFileTestBase {
 		// Stream operations now fail.
 		try {
 			$stream->seek( 0 );
-		} catch ( AssertionFailedError $ex ) {
-			throw $ex;
 		} catch ( RuntimeException $ex ) {
 		}
 
@@ -163,14 +160,10 @@ class UploadedFileStreamTest extends UploadedFileTestBase {
 		$stream->close();
 		try {
 			$stream->seek( 0 );
-		} catch ( AssertionFailedError $ex ) {
-			throw $ex;
 		} catch ( RuntimeException $ex ) {
 		}
 		try {
 			$stream->tell();
-		} catch ( AssertionFailedError $ex ) {
-			throw $ex;
 		} catch ( RuntimeException $ex ) {
 		}
 	}
@@ -221,8 +214,6 @@ class UploadedFileStreamTest extends UploadedFileTestBase {
 		$stream->close();
 		try {
 			$stream->rewind();
-		} catch ( AssertionFailedError $ex ) {
-			throw $ex;
 		} catch ( RuntimeException $ex ) {
 		}
 	}
@@ -233,8 +224,6 @@ class UploadedFileStreamTest extends UploadedFileTestBase {
 
 		try {
 			$stream->write( 'foo' );
-		} catch ( AssertionFailedError $ex ) {
-			throw $ex;
 		} catch ( RuntimeException $ex ) {
 		}
 	}
@@ -252,8 +241,6 @@ class UploadedFileStreamTest extends UploadedFileTestBase {
 		$stream->close();
 		try {
 			$stream->read( 1 );
-		} catch ( AssertionFailedError $ex ) {
-			throw $ex;
 		} catch ( RuntimeException $ex ) {
 		}
 	}
@@ -270,8 +257,6 @@ class UploadedFileStreamTest extends UploadedFileTestBase {
 		$stream->close();
 		try {
 			$stream->getContents();
-		} catch ( AssertionFailedError $ex ) {
-			throw $ex;
 		} catch ( RuntimeException $ex ) {
 		}
 	}
@@ -293,8 +278,6 @@ class UploadedFileStreamTest extends UploadedFileTestBase {
 		$stream->close();
 		try {
 			$stream->getMetadata();
-		} catch ( AssertionFailedError $ex ) {
-			throw $ex;
 		} catch ( RuntimeException $ex ) {
 		}
 	}
