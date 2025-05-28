@@ -14,9 +14,13 @@ figure[ typeof~='mw:File/Frame' ] {
 	color: @color-base;
 
 	> :not( figcaption ) .mw-file-element {
-		background-color: @background-color-base-fixed;
-		color: @color-base-fixed;
+		background-color: @background-color-base;
 		border: @border-subtle;
+
+		&:not( .mw-broken-media ) {
+			background-color: @background-color-base-fixed;
+			color: @color-base-fixed;
+		}
 	}
 
 	> figcaption {
