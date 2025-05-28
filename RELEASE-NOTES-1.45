@@ -64,6 +64,9 @@ For notes on 1.44.x and older releases, see HISTORY.
 * The SpecialUserRightsChangeableGroupsHook hook was added.
 * The UserLinkRendererUserPostRenderLink hook was added.
 * The LocalUserOptionsStoreSave hook was added.
+* The User::getConfirmationToken(), User::getConfirmationTokenUrl() and
+  User::getInvalidationTokenUrl() methods were added.
+* The User::getTokenUrl() method was made public.
 * …
 
 === External library changes in 1.45 ===

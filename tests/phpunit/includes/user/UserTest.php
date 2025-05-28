@@ -19,6 +19,7 @@ use MediaWiki\Utils\MWTimestamp;
 use Wikimedia\Assert\PreconditionException;
 use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\TestingAccessWrapper;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * @coversDefaultClass \MediaWiki\User\User
@@ -1793,5 +1794,170 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$this->user->scheduleSpreadBlock();
 		$this->runDeferredUpdates();
 		$this->assertNotNull( $this->getServiceContainer()->getBlockManager()->getIpBlock( '1.2.3.4', true ) );
+	}
+
+	/**
+	 * @dataProvider provideGetConfirmationToken
+	 * @covers ::getConfirmationToken
+	 *
+	 * @param string|null $curValue The currently stored confirmation token value
+	 * @param string|null $curExpiry The currently stored confirmation token expiry timestamp
+	 * @param int|null $tokenLifeTime The desired lifetime of the new token in seconds, or null for default
+	 * @param string $expectedExpiry The expected expiry timestamp of the new token
+	 * @return void
+	 */
+	public function testGetConfirmationToken(
+		?string $curValue,
+		?string $curExpiry,
+		?int $tokenLifeTime,
+		string $expectedExpiry
+	): void {
+		$this->overrideConfigValue(
+			MainConfigNames::UserEmailConfirmationTokenExpiry,
+			// 7 days
+			7 * 24 * 60 * 60
+		);
+		ConvertibleTimestamp::setFakeTime( '20250503000000' );
+
+		$user = $this->getMutableTestUser()->getUser();
+
+		$this->getDb()->newUpdateQueryBuilder()
+			->update( 'user' )
+			->set( [
+				'user_email_token' => $curValue,
+				'user_email_token_expires' => $this->getDb()->timestampOrNull( $curExpiry ),
+			] )
+			->where( [ 'user_id' => $user->getId() ] )
+			->caller( __METHOD__ )
+			->execute();
+
+		$user->clearInstanceCache( 'id' );
+
+		$expiration = null;
+		$token = $user->getConfirmationToken( $expiration, $tokenLifeTime );
+
+		$this->assertNotEquals( $curValue, $token, 'A new token should have been generated' );
+		$this->assertMatchesRegularExpression(
+			'/^[a-f0-9]{32}$/',
+			$token,
+			'Token should be an MD5 checksum'
+		);
+		$this->assertSame(
+			$expectedExpiry,
+			$expiration,
+			'Expiration should match the configured expiry time'
+		);
+	}
+
+	public static function provideGetConfirmationToken(): iterable {
+		yield 'no current token' => [
+			'curValue' => null,
+			'curExpiry' => null,
+			'tokenLifeTime' => null,
+			'expectedExpiry' => '20250510000000',
+		];
+
+		yield 'no current token, custom lifetime' => [
+			'curValue' => null,
+			'curExpiry' => null,
+			// 14 days
+			'tokenLifeTime' => 14 * 24 * 60 * 60,
+			'expectedExpiry' => '20250517000000',
+		];
+
+		yield 'expired current token' => [
+			'curValue' => md5( 'foo' ),
+			'curExpiry' => '20250427000000',
+			'tokenLifeTime' => null,
+			'expectedExpiry' => '20250510000000',
+		];
+
+		yield 'expired current token, custom lifetime' => [
+			'curValue' => md5( 'foo' ),
+			'curExpiry' => '20250427000000',
+			// 14 days
+			'tokenLifeTime' => 14 * 24 * 60 * 60,
+			'expectedExpiry' => '20250517000000',
+		];
+
+		yield 'unexpired current token' => [
+			'curValue' => md5( 'foo' ),
+			'curExpiry' => '20250504000000',
+			'tokenLifeTime' => null,
+			'expectedExpiry' => '20250510000000',
+		];
+
+		yield 'unexpired current token, custom lifetime' => [
+			'curValue' => md5( 'foo' ),
+			'curExpiry' => '20250504000000',
+			// 14 days
+			'tokenLifeTime' => 14 * 24 * 60 * 60,
+			'expectedExpiry' => '20250517000000',
+		];
+	}
+
+	/**
+	 * @covers ::getConfirmationTokenUrl
+	 * @dataProvider provideTokenUrlLanguageOptions
+	 */
+	public function testGetEmailConfirmationTokenUrl(
+		string $contentLanguageCode
+	): void {
+		$this->runTokenUrlTest( 'ConfirmEmail', $contentLanguageCode );
+	}
+
+	/**
+	 * @covers ::getInvalidationTokenUrl
+	 * @dataProvider provideTokenUrlLanguageOptions
+	 */
+	public function testGetInvalidationTokenUrl(
+		string $contentLanguageCode
+	): void {
+		$this->runTokenUrlTest( 'InvalidateEmail', $contentLanguageCode );
+	}
+
+	public static function provideTokenUrlLanguageOptions(): iterable {
+		yield 'English wiki' => [ 'en' ];
+		yield 'non-English wiki' => [ 'de' ];
+	}
+
+	/**
+	 * @covers ::getTokenUrl
+	 * @dataProvider provideGetTokenUrl
+	 */
+	public function testGetTokenUrl(
+		string $specialPageName,
+		string $contentLanguageCode
+	): void {
+		$this->runTokenUrlTest( $specialPageName, $contentLanguageCode );
+	}
+
+	public static function provideGetTokenUrl(): iterable {
+		yield 'Special:ConfirmEmail, English wiki' => [ 'ConfirmEmail', 'en' ];
+		yield 'Special:InvalidateEmail, non-English wiki' => [ 'InvalidateEmail', 'de' ];
+	}
+
+	/**
+	 * Run a test for verifying token URL construction for a special page.
+	 * @param string $specialPageName The canonical (English) name of the special page.
+	 * @param string $contentLanguageCode The content language code of the current wiki.
+	 * @return void
+	 */
+	private function runTokenUrlTest( string $specialPageName, string $contentLanguageCode ): void {
+		$this->overrideConfigValues( [
+			MainConfigNames::LanguageCode => $contentLanguageCode,
+			MainConfigNames::CanonicalServer => 'https://test.example.org',
+			MainConfigNames::ArticlePath => '/wiki/$1',
+		] );
+
+		$user = $this->getTestUser()->getUser();
+		$url = $user->getTokenUrl( $specialPageName, 'test-token' );
+
+		$this->assertSame(
+			"https://test.example.org/wiki/Special:$specialPageName/test-token",
+			$url,
+			"URL should be constructed using the canonical name of Special:$specialPageName" .
+			' and the provided token as a path parameter'
+		);
 	}
 }
