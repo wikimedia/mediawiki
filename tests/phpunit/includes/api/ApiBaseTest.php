@@ -106,11 +106,12 @@ class ApiBaseTest extends ApiTestCase {
 	}
 
 	public function testRequireOnlyOneParameterMissing() {
-		$this->expectApiErrorCode( 'missingparam' );
-		$mock = new MockApi();
-		$mock->requireOnlyOneParameter(
-			[ "filename" => "foo.txt", "enablechunks" => false ],
-			"foo", "bar" );
+		$this->expectApiErrorCodeFromCallback( 'missingparam', static function () {
+			$mock = new MockApi();
+			$mock->requireOnlyOneParameter(
+				[ "filename" => "foo.txt", "enablechunks" => false ],
+				"foo", "bar" );
+		} );
 	}
 
 	public function testRequireMaxOneParameterZero() {
@@ -130,19 +131,21 @@ class ApiBaseTest extends ApiTestCase {
 	}
 
 	public function testRequireMaxOneParameterTwo() {
-		$this->expectApiErrorCode( 'invalidparammix' );
-		$mock = new MockApi();
-		$mock->requireMaxOneParameter(
-			[ 'foo' => 'bar', 'baz' => 'quz' ],
-			'foo', 'baz' );
+		$this->expectApiErrorCodeFromCallback( 'invalidparammix', static function () {
+			$mock = new MockApi();
+			$mock->requireMaxOneParameter(
+				[ 'foo' => 'bar', 'baz' => 'quz' ],
+				'foo', 'baz' );
+		} );
 	}
 
 	public function testRequireAtLeastOneParameterZero() {
-		$this->expectApiErrorCode( 'missingparam' );
-		$mock = new MockApi();
-		$mock->requireAtLeastOneParameter(
-			[ 'a' => 'b', 'c' => 'd' ],
-			'foo', 'bar' );
+		$this->expectApiErrorCodeFromCallback( 'missingparam', static function () {
+			$mock = new MockApi();
+			$mock->requireAtLeastOneParameter(
+				[ 'a' => 'b', 'c' => 'd' ],
+				'foo', 'bar' );
+		} );
 	}
 
 	public function testRequireAtLeastOneParameterOne() {
@@ -162,9 +165,10 @@ class ApiBaseTest extends ApiTestCase {
 	}
 
 	public function testGetTitleOrPageIdBadParams() {
-		$this->expectApiErrorCode( 'invalidparammix' );
-		$mock = new MockApi();
-		$mock->getTitleOrPageId( [ 'title' => 'a', 'pageid' => 7 ] );
+		$this->expectApiErrorCodeFromCallback( 'invalidparammix', static function () {
+			$mock = new MockApi();
+			$mock->getTitleOrPageId( [ 'title' => 'a', 'pageid' => 7 ] );
+		} );
 	}
 
 	public function testGetTitleOrPageIdTitle() {
@@ -175,15 +179,17 @@ class ApiBaseTest extends ApiTestCase {
 	}
 
 	public function testGetTitleOrPageIdInvalidTitle() {
-		$this->expectApiErrorCode( 'invalidtitle' );
-		$mock = new MockApi();
-		$mock->getTitleOrPageId( [ 'title' => '|' ] );
+		$this->expectApiErrorCodeFromCallback( 'invalidtitle', static function () {
+			$mock = new MockApi();
+			$mock->getTitleOrPageId( [ 'title' => '|' ] );
+		} );
 	}
 
 	public function testGetTitleOrPageIdSpecialTitle() {
-		$this->expectApiErrorCode( 'pagecannotexist' );
-		$mock = new MockApi();
-		$mock->getTitleOrPageId( [ 'title' => 'Special:RandomPage' ] );
+		$this->expectApiErrorCodeFromCallback( 'pagecannotexist', static function () {
+			$mock = new MockApi();
+			$mock->getTitleOrPageId( [ 'title' => 'Special:RandomPage' ] );
+		} );
 	}
 
 	public function testGetTitleOrPageIdPageId() {
@@ -198,15 +204,17 @@ class ApiBaseTest extends ApiTestCase {
 	}
 
 	public function testGetTitleOrPageIdInvalidPageId() {
-		$this->expectApiErrorCode( 'nosuchpageid' );
-		$mock = new MockApi();
-		$mock->getTitleOrPageId( [ 'pageid' => 2147483648 ] );
+		$this->expectApiErrorCodeFromCallback( 'nosuchpageid', static function () {
+			$mock = new MockApi();
+			$mock->getTitleOrPageId( [ 'pageid' => 2147483648 ] );
+		} );
 	}
 
 	public function testGetTitleFromTitleOrPageIdBadParams() {
-		$this->expectApiErrorCode( 'invalidparammix' );
-		$mock = new MockApi();
-		$mock->getTitleFromTitleOrPageId( [ 'title' => 'a', 'pageid' => 7 ] );
+		$this->expectApiErrorCodeFromCallback( 'invalidparammix', static function () {
+			$mock = new MockApi();
+			$mock->getTitleFromTitleOrPageId( [ 'title' => 'a', 'pageid' => 7 ] );
+		} );
 	}
 
 	public function testGetTitleFromTitleOrPageIdTitle() {
@@ -217,9 +225,10 @@ class ApiBaseTest extends ApiTestCase {
 	}
 
 	public function testGetTitleFromTitleOrPageIdInvalidTitle() {
-		$this->expectApiErrorCode( 'invalidtitle' );
-		$mock = new MockApi();
-		$mock->getTitleFromTitleOrPageId( [ 'title' => '|' ] );
+		$this->expectApiErrorCodeFromCallback( 'invalidtitle', static function () {
+			$mock = new MockApi();
+			$mock->getTitleFromTitleOrPageId( [ 'title' => '|' ] );
+		} );
 	}
 
 	public function testGetTitleFromTitleOrPageIdPageId() {
@@ -231,9 +240,10 @@ class ApiBaseTest extends ApiTestCase {
 	}
 
 	public function testGetTitleFromTitleOrPageIdInvalidPageId() {
-		$this->expectApiErrorCode( 'nosuchpageid' );
-		$mock = new MockApi();
-		$mock->getTitleFromTitleOrPageId( [ 'pageid' => 298401643 ] );
+		$this->expectApiErrorCodeFromCallback( 'nosuchpageid', static function () {
+			$mock = new MockApi();
+			$mock->getTitleFromTitleOrPageId( [ 'pageid' => 298401643 ] );
+		} );
 	}
 
 	public function testGetParameter() {
