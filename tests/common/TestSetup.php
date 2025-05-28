@@ -5,6 +5,8 @@ use MediaWiki\Auth\TemporaryPasswordPrimaryAuthenticationProvider;
 use MediaWiki\JobQueue\JobQueueMemory;
 use MediaWiki\Logger\LegacySpi;
 use MediaWiki\Maintenance\MaintenanceFatalError;
+use MediaWiki\MediaWikiServices;
+use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Session\CookieSessionProvider;
 
 /**
@@ -201,7 +203,8 @@ class TestSetup {
 		}
 
 		// Setup.php creates this variable, but we cannot wait for the below code to make it global,
-		// because Setup.php needs this to be a global during its execution (not just after).
+		// because Setup.php (and MW_SETUP_CALLBACK -> TestsAutoLoader.php) needs this to be a
+		// global during its execution (not just after).
 		// phpcs:ignore MediaWiki.VariableAnalysis.UnusedGlobalVariables
 		global $wgAutoloadClasses;
 
@@ -235,8 +238,6 @@ class TestSetup {
 	public static function loadSettingsFiles(): void {
 		// phpcs:ignore MediaWiki.Usage.ForbiddenFunctions.define
 		define( 'MW_SETUP_CALLBACK', [ self::class, 'setupCallback' ] );
-		define( 'MW_AUTOLOAD_TEST_CLASSES', true );
-		define( 'MW_FINAL_SETUP_CALLBACK', [ self::class, 'applyInitialConfig' ] );
 		self::requireOnceInGlobalScope( MW_INSTALL_PATH . "/includes/Setup.php" );
 	}
 
@@ -268,6 +269,16 @@ class TestSetup {
 				$wgLBFactoryConf['serverTemplate']['user'] = $wgDBuser;
 				$wgLBFactoryConf['serverTemplate']['password'] = $wgDBpassword;
 			}
+			$service = MediaWikiServices::getInstance()->peekService( 'DBLoadBalancerFactory' );
+			if ( $service ) {
+				$service->destroy();
+			}
 		}
+
+		self::requireOnceInGlobalScope( __DIR__ . '/TestsAutoLoader.php' );
+
+		self::applyInitialConfig();
+
+		ExtensionRegistry::getInstance()->setLoadTestClassesAndNamespaces( true );
 	}
 }
