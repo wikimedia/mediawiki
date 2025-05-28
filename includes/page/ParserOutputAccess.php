@@ -35,10 +35,8 @@ use MediaWiki\PoolCounter\PoolCounterWorkViaCallback;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionRenderer;
-use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\TitleFormatter;
-use MediaWiki\Utils\MWTimestamp;
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\Assert\Assert;
 use Wikimedia\MapCacheLRU\MapCacheLRU;
@@ -301,26 +299,20 @@ class ParserOutputAccess {
 		}
 
 		if ( $fast ) {
-			/* Check if the stale response is from before the last write to the
-			 * DB by this user. Declining to return a stale response in this
-			 * case ensures that the user will see their own edit after page
-			 * save.
-			 *
-			 * Note that the CP touch time is the timestamp of the shutdown of
-			 * the save request, so there is a bias towards avoiding fast stale
-			 * responses of potentially several seconds.
-			 */
-			$lastWriteTime = $this->chronologyProtector->getTouched();
-			$cacheTime = MWTimestamp::convert( TS_UNIX, $parserOutput->getCacheTime() );
-			if ( $lastWriteTime && $cacheTime <= $lastWriteTime ) {
+			// If this user recently made DB changes, then don't eagerly serve stale output,
+			// so that users generally see their own edits after page save.
+			//
+			// If PoolCounter is overloaded, we may end up here a second time (with fast=false),
+			// in which case we will serve a stale fallback then.
+			//
+			// Note that CP reports anything in the last 10 seconds from the same client,
+			// including to other pages and other databases, so we bias towards avoiding
+			// fast-stale responses for several seconds after saving an edit.
+			if ( $this->chronologyProtector->getTouched() ) {
 				$logger->info(
-					'declining to send dirty output since cache time ' .
-					'{cacheTime} is before last write time {lastWriteTime}',
-					[
-						'workKey' => $workKey,
-						'cacheTime' => $cacheTime,
-						'lastWriteTime' => $lastWriteTime,
-					]
+					'declining fast-fallback to stale output since ChronologyProtector ' .
+					'reports the client recently made changes',
+					[ 'workKey' => $workKey ]
 				);
 				// Forget this ParserOutput -- we will request it again if
 				// necessary in slow mode. There might be a newer entry
@@ -480,6 +472,7 @@ class ParserOutputAccess {
 	): Status {
 		$span = $this->startOperationSpan( __FUNCTION__, $page, $revision );
 
+		$isCurrent = $revision->getId() === $page->getLatest();
 		$useCache = $this->shouldUseCache( $page, $revision );
 
 		// T371713: Temporary statistics collection code to determine
@@ -513,7 +506,6 @@ class ParserOutputAccess {
 		$output = $renderedRev->getRevisionParserOutput();
 
 		if ( $doSample ) {
-			$content = $revision->getContent( SlotRecord::MAIN );
 			$labels = [
 				'source' => 'ParserOutputAccess',
 				'type' => $previousOutput === null ? 'full' : 'selective',
@@ -521,7 +513,7 @@ class ParserOutputAccess {
 				'parser' => $parserOptions->getUseParsoid() ? 'parsoid' : 'legacy',
 				'opportunistic' => 'false',
 				'wiki' => WikiMap::getCurrentWikiId(),
-				'model' => $content ? $content->getModel() : 'unknown',
+				'model' => $revision->getMainContentModel(),
 			];
 			$this->statsFactory
 				->getCounter( 'ParserCache_selective_total' )
@@ -543,7 +535,7 @@ class ParserOutputAccess {
 			}
 		}
 
-		if ( $options & self::OPT_LINKS_UPDATE ) {
+		if ( $isCurrent && ( $options & self::OPT_LINKS_UPDATE ) ) {
 			$this->wikiPageFactory->newFromTitle( $page )
 				->triggerOpportunisticLinksUpdate( $output );
 		}
@@ -595,20 +587,12 @@ class ParserOutputAccess {
 		return null;
 	}
 
-	/**
-	 * @param PageRecord $page
-	 * @param ParserOptions $parserOptions
-	 * @param RevisionRecord $revision
-	 * @param int $options
-	 *
-	 * @return ?PoolCounterWork
-	 */
 	protected function newPoolWork(
 		PageRecord $page,
 		ParserOptions $parserOptions,
 		RevisionRecord $revision,
 		int $options
-	): ?PoolCounterWork {
+	): PoolCounterWork {
 		// Default behavior (no caching)
 		$callbacks = [
 			'doWork' => function () use ( $page, $parserOptions, $revision, $options ) {
@@ -666,7 +650,7 @@ class ParserOutputAccess {
 					};
 
 				$callbacks['fallback'] =
-					function ( $fast ) use ( $page, $parserOptions, $workKey, $options ) {
+					function ( $fast ) use ( $page, $parserOptions, $workKey ) {
 						return $this->getFallbackOutputForLatest(
 							$page, $parserOptions, $workKey, $fast
 						);
