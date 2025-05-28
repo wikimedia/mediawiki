@@ -429,11 +429,13 @@ class Xml {
 	 * @param array $attribs Other attributes
 	 * @return string HTML
 	 *
-	 * @deprecated since 1.42, use {@see Html::input} and {@see Html::label} instead
+	 * @deprecated since 1.42, use {@see Html::input} and {@see Html::label} instead; emitting warnings since 1.44
 	 */
 	public static function inputLabel( $label, $name, $id, $size = false,
 		$value = false, $attribs = []
 	) {
+		wfDeprecated( __METHOD__, '1.42' );
+
 		[ $label, $input ] = self::inputLabelSep( $label, $name, $id, $size, $value, $attribs );
 		return $label . "\u{00A0}" . $input;
 	}
@@ -449,11 +451,13 @@ class Xml {
 	 * @param array $attribs
 	 * @return array
 	 *
-	 * @deprecated since 1.42, use {@see Html::input} and {@see Html::label} instead
+	 * @deprecated since 1.42, use {@see Html::input} and {@see Html::label} instead; emitting warnings since 1.44
 	 */
 	public static function inputLabelSep( $label, $name, $id, $size = false,
 		$value = false, $attribs = []
 	) {
+		wfDeprecated( __METHOD__, '1.42' );
+
 		return [
 			self::label( $label, $id, $attribs ),
 			self::input( $name, $size, $value, [ 'id' => $id ] + $attribs )
@@ -470,9 +474,11 @@ class Xml {
 	 * @param array $attribs
 	 * @return string HTML
 	 *
-	 * @deprecated since 1.42, use {@see Html::check} and {@see Html::label} instead
+	 * @deprecated since 1.42, use {@see Html::check} and {@see Html::label} instead; emitting warnings since 1.44
 	 */
 	public static function checkLabel( $label, $name, $id, $checked = false, $attribs = [] ) {
+		wfDeprecated( __METHOD__, '1.42' );
+
 		return self::check( $name, $checked, [ 'id' => $id ] + $attribs ) .
 			"\u{00A0}" .
 			self::label( $label, $id, $attribs );
@@ -489,11 +495,13 @@ class Xml {
 	 * @param array $attribs
 	 * @return string HTML
 	 *
-	 * @deprecated since 1.42, use {@see Html::radio} and {@see Html::label} instead
+	 * @deprecated since 1.42, use {@see Html::radio} and {@see Html::label} instead; emitting warnings since 1.44
 	 */
 	public static function radioLabel( $label, $name, $value, $id,
 		$checked = false, $attribs = []
 	) {
+		wfDeprecated( __METHOD__, '1.42' );
+
 		return self::radio( $name, $value, $checked, [ 'id' => $id ] + $attribs ) .
 			"\u{00A0}" .
 			self::label( $label, $id, $attribs );
