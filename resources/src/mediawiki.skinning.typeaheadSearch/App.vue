@@ -1,57 +1,64 @@
 <template>
-	<cdx-typeahead-search
-		:id="id"
-		ref="searchForm"
-		:class="rootClasses"
-		:search-results-label="$i18n( 'searchresults' ).text()"
-		:accesskey="searchAccessKey"
-		:autocapitalize="autocapitalizeValue"
-		:title="searchTitle"
-		:placeholder="searchPlaceholder"
-		:aria-label="searchPlaceholder"
-		:initial-input-value="searchQuery"
-		:button-label="searchButtonLabel"
-		:form-action="action"
-		:show-thumbnail="showThumbnail"
-		:highlight-query="highlightQuery"
-		:auto-expand-width="autoExpandWidth"
-		:search-results="suggestions"
-		:search-footer-url="searchFooterUrl"
-		:visible-item-limit="visibleItemLimit"
-		:use-button="!!searchButtonLabel"
-		:show-empty-query-results="showEmptySearchRecommendations"
-		@load-more="onLoadMore"
-		@input="onInput"
-		@search-result-click="instrumentation.onSuggestionClick"
-		@submit="onSubmit"
-		@focus="onFocus"
-		@blur="onBlur"
+	<typeahead-search-wrapper
+		:class="containerClasses"
+		:mobile-experience="useMobileExperience"
+		@exit="onExit"
 	>
-		<template #default>
-			<input
-				type="hidden"
-				name="title"
-				:value="searchPageTitle"
-			>
-			<input
-				type="hidden"
-				name="wprov"
-				:value="wprov"
-			>
-		</template>
-		<template #search-results-pending>
-			{{ $i18n( 'search-loader' ).text() }}
-		</template>
-		<!-- eslint-disable-next-line vue/no-template-shadow -->
-		<template #search-footer-text="{ searchQuery }">
-			<span v-i18n-html:searchsuggest-containing-html="[ searchQuery ]"></span>
-		</template>
-	</cdx-typeahead-search>
+		<cdx-typeahead-search
+			:id="id"
+			ref="searchForm"
+			:class="rootClasses"
+			:search-results-label="$i18n( 'searchresults' ).text()"
+			:accesskey="searchAccessKey"
+			:autocapitalize="autocapitalizeValue"
+			:title="searchTitle"
+			:placeholder="searchPlaceholder"
+			:aria-label="searchPlaceholder"
+			:initial-input-value="searchQuery"
+			:button-label="searchButtonLabel"
+			:form-action="action"
+			:show-thumbnail="showThumbnail"
+			:highlight-query="highlightQuery"
+			:auto-expand-width="autoExpandWidth"
+			:search-results="suggestions"
+			:search-footer-url="searchFooterUrl"
+			:visible-item-limit="visibleItemLimit"
+			:use-button="!!searchButtonLabel"
+			:show-empty-query-results="showEmptySearchRecommendations"
+			@load-more="onLoadMore"
+			@input="onInput"
+			@search-result-click="instrumentation.onSuggestionClick"
+			@submit="onSubmit"
+			@focus="onFocus"
+			@blur="onBlur"
+		>
+			<template #default>
+				<input
+					type="hidden"
+					name="title"
+					:value="searchPageTitle"
+				>
+				<input
+					type="hidden"
+					name="wprov"
+					:value="wprov"
+				>
+			</template>
+			<template #search-results-pending>
+				{{ $i18n( 'search-loader' ).text() }}
+			</template>
+			<!-- eslint-disable-next-line vue/no-template-shadow -->
+			<template #search-footer-text="{ searchQuery }">
+				<span v-i18n-html:searchsuggest-containing-html="[ searchQuery ]"></span>
+			</template>
+		</cdx-typeahead-search>
+	</typeahead-search-wrapper>
 </template>
 
 <script>
+const TypeaheadSearchWrapper = require( './TypeaheadSearchWrapper.vue' );
 const { CdxTypeaheadSearch } = require( 'mediawiki.codex.typeaheadSearch' ),
-	{ defineComponent, nextTick } = require( 'vue' ),
+	{ defineComponent, nextTick, ref } = require( 'vue' ),
 	instrumentation = require( './instrumentation.js' );
 
 // @vue/component
@@ -60,8 +67,18 @@ module.exports = exports = defineComponent( {
 	compilerOptions: {
 		whitespace: 'condense'
 	},
-	components: { CdxTypeaheadSearch },
+	components: {
+		TypeaheadSearchWrapper,
+		CdxTypeaheadSearch
+	},
 	props: {
+		router: {
+			type: Object
+		},
+		searchRoute: {
+			type: RegExp,
+			default: new RegExp( /\/search/ )
+		},
 		urlGenerator: {
 			type: Object,
 			required: true
@@ -113,6 +130,10 @@ module.exports = exports = defineComponent( {
 			type: String,
 			default: undefined
 		},
+		supportsMobileExperience: {
+			type: Boolean,
+			default: false
+		},
 		/**
 		 * The search query string taken from the server-side rendered input immediately before
 		 * client render.
@@ -143,6 +164,55 @@ module.exports = exports = defineComponent( {
 			default: false
 		}
 	},
+	setup( props ) {
+		// max-width-breakpoint-mobile
+		const mobileMedia = window.matchMedia ?
+			window.matchMedia( '(max-width: 639px)' ) : {
+				matches: false
+			};
+		const { clearAddressBar } = require( 'mediawiki.page.ready' );
+		const useMobileExperience = ref( props.supportsMobileExperience && mobileMedia.matches );
+		const router = props.router;
+		const searchRoute = props.searchRoute;
+		// Whether to apply a CSS class that disables the CSS transitions on the text input
+		const disableTransitions = ref( props.autofocusInput );
+
+		const exitSearchDialog = () => {
+			useMobileExperience.value = false;
+		};
+		const onExit = () => {
+			exitSearchDialog();
+			if ( router ) {
+				clearAddressBar( router, searchRoute );
+			}
+		};
+
+		if ( props.supportsMobileExperience && router ) {
+			router.addRoute( /.*$/, () => {
+				exitSearchDialog();
+			} );
+
+			// replace existing route with one that toggles the dialog on.
+			router.addRoute( searchRoute, () => {
+				useMobileExperience.value = true;
+				disableTransitions.value = true;
+			} );
+
+			// Only support on mobile resolutions
+			mobileMedia.onchange = () => {
+				if ( !mobileMedia.matches ) {
+					exitSearchDialog();
+					clearAddressBar( router, searchRoute );
+				}
+			};
+		}
+
+		return {
+			useMobileExperience,
+			disableTransitions,
+			onExit
+		};
+	},
 	data() {
 		return {
 			// -1 here is the default "active suggestion index".
@@ -157,15 +227,18 @@ module.exports = exports = defineComponent( {
 			// The current search query. Used to detect whether a fetch response is stale.
 			currentSearchQuery: '',
 
-			// Whether to apply a CSS class that disables the CSS transitions on the text input
-			disableTransitions: this.autofocusInput,
-
 			instrumentation: instrumentation.listeners,
 
 			isFocused: false
 		};
 	},
 	computed: {
+		containerClasses() {
+			const prefix = this.prefixClass;
+			return {
+				[ `${ prefix }typeahead-search-wrapper` ]: true
+			};
+		},
 		rootClasses() {
 			const prefix = this.prefixClass;
 			return {
@@ -289,15 +362,83 @@ module.exports = exports = defineComponent( {
 
 		onBlur() {
 			this.isFocused = false;
-		}
-	},
-	mounted() {
-		if ( this.autofocusInput ) {
+		},
+
+		focus() {
 			this.$refs.searchForm.focus();
 			nextTick( () => {
 				this.disableTransitions = false;
 			} );
 		}
+	},
+	updated() {
+		if ( this.autofocusInput ) {
+			nextTick( () => {
+				this.focus();
+			} );
+		}
+	},
+	mounted() {
+		if ( this.autofocusInput ) {
+			nextTick( () => {
+				this.focus();
+			} );
+		}
 	}
 } );
 </script>
+
+<style lang="less">
+@import 'mediawiki.skin.variables.less';
+
+@media screen {
+	/* stylelint-disable-next-line selector-class-pattern */
+	.cdx-dialog.skin-dialog-search {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		box-sizing: border-box;
+		width: 100%;
+		max-width: none;
+		max-height: none;
+		background: transparent;
+
+		@media ( max-width: @max-width-breakpoint-mobile ) {
+			background-color: @background-color-base;
+		}
+
+		.cdx-dialog__header {
+			padding: 0;
+			background-color: @background-color-interactive;
+			display: flex;
+			justify-content: center;
+			flex-direction: column;
+		}
+
+		.cdx-dialog__header > div {
+			display: flex;
+			box-sizing: border-box;
+			padding: 0 8px;
+			align-items: center;
+			height: 55px;
+
+			.cdx-typeahead-search {
+				flex-grow: 1;
+			}
+		}
+
+		@media ( max-width: @max-width-breakpoint-mobile ) {
+			.cdx-menu {
+				top: 55px;
+				left: 0;
+				right: 0;
+				position: fixed;
+				bottom: 0;
+				margin-top: -1px;
+			}
+		}
+	}
+}
+</style>

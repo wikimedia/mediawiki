@@ -105,6 +105,31 @@ describe( 'restApiSearchClient', () => {
 		}
 	} );
 
+	test( 'no recommendations service', async () => {
+		const client = await restSearchClient( searchApiUrl, urlGenerator );
+		expect( client.fetchRecommendationByTitle ).toBe( undefined );
+	} );
+
+	test( 'recommendations service', async () => {
+		fetchMock.mockOnce( JSON.stringify( {
+			pages: [
+				{
+					id: 1,
+					title: 'R'
+				}
+			]
+		} ) );
+		const searchResult = await restSearchClient( searchApiUrl, urlGenerator, recommendationApiUrl )
+			.fetchRecommendationByTitle(
+				'recommendMe'
+			).fetch;
+		expect( searchResult.query ).toStrictEqual( '' );
+		expect( searchResult.results ).toBeTruthy();
+		expect( searchResult.results.length ).toBe( 1 );
+		expect( searchResult.results[ 0 ].title ).toBe( 'R' );
+
+	} );
+
 	if ( mockedRequests ) {
 		test( 'network error', async () => {
 			fetchMock.mockRejectOnce( new Error( 'failed' ) );

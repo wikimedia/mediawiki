@@ -89,7 +89,8 @@ module.exports = {
 	// A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
 	moduleNameMapper: {
 		'icons.json$': '@wikimedia/codex-icons',
-		'mediawiki.codex.typeaheadSearch': '@wikimedia/codex'
+		'mediawiki.codex.typeaheadSearch': '@wikimedia/codex',
+		'mediawiki.page.ready$': '<rootDir>/resources/src/mediawiki.page.ready/ready.js'
 	},
 
 	// An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
