@@ -125,14 +125,6 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 	private bool $lenientRevHandling = false;
 
 	/**
-	 * Flags to be passed as $options to ParserOutputAccess::getParserOutput,
-	 * to control parser cache access.
-	 *
-	 * @var int Use ParserOutputAccess::OPT_*
-	 */
-	private $parserOutputAccessOptions = 0;
-
-	/**
 	 * @see the $options parameter on Parsoid::wikitext2html
 	 * @var array
 	 */
@@ -863,11 +855,13 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 			$this->isCacheable = false;
 		}
 
-		// TODO: Decide whether we want to allow stale content for speed for the
-		// 'view' flavor. In that case, we would want to use PoolCounterWork,
-		// either directly or through ParserOutputAccess.
-
-		$flags = $this->parserOutputAccessOptions;
+		$parserOutputAccessOptions = [
+			// Use pool counter (T387478).
+			// Use it even if the output is not cacheable, to protect against
+			// load spikes.
+			ParserOutputAccess::OPT_POOL_COUNTER =>
+				ParserOutputAccess::POOL_COUNTER_REST_API
+		];
 
 		// Find page
 		$pageRecord = $this->getPageRecord();
@@ -914,7 +908,7 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 						);
 					}
 					// Don't cache this!
-					$flags |= ParserOutputAccess::OPT_NO_UPDATE_CACHE;
+					$parserOutputAccessOptions[ ParserOutputAccess::OPT_NO_UPDATE_CACHE ] = true;
 				} else {
 					throw new RevisionAccessException(
 						'Revision {revId} does not belong to page {name}',
@@ -934,7 +928,7 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 			'@phan-var PageRecord $pageRecord';
 			try {
 				$status = $this->parserOutputAccess->getParserOutput(
-					$pageRecord, $this->parserOptions, $revision, $flags
+					$pageRecord, $this->parserOptions, $revision, $parserOutputAccessOptions
 				);
 			} catch ( ClientError $e ) {
 				$status = Status::newFatal( 'parsoid-client-error', $e->getMessage() );

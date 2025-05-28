@@ -3681,6 +3681,16 @@ class MainConfigSchema {
 	 * The remaining elements are passed through to the class as constructor
 	 * parameters.
 	 *
+	 * **Processing pools used in MediaWiki core:**
+	 * - ArticleView: parsing caused by users viewing a wiki page (per page and revision)
+	 * - HtmlRestApi: parsing caused by requests to the REST API (per page and revision)
+	 * - ApiParser: parsing caused by action=parse (per requesting user)
+	 * - FileRender: thumbnail generation (per file name)
+	 * - FileRenderExpensive: expensive thumbnail generation (per file name)
+	 * - GetLocalFileCopy: expensive thumbnail generation (per file name)
+	 * - diff: revision diff (per content hash)
+	 * - SpecialContributions: list user contributions (per requesting user)
+	 *
 	 * **Example using local redis instance:**
 	 *
 	 * ```

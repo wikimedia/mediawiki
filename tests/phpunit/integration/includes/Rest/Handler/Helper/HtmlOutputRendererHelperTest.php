@@ -104,7 +104,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 				PageRecord $page,
 				ParserOptions $parserOpts,
 				?RevisionRecord $rev = null,
-				int $options = 0
+				$options = []
 			) use ( $expectedHtml ) {
 				// Note that HtmlOutputRendererHelper only passes
 				// non-null RevisionRecords here, so getMockHtml() will
@@ -866,19 +866,26 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		} else {
 			$parserCache = $this->createNoOpMock(
 				ParserCache::class,
-				[ 'get', 'save', 'makeParserOutputKey', ]
+				[ 'get', 'save', 'makeParserOutputKey', 'getMetadata' ]
 			);
 			$parserCache->method( 'get' )->willReturn( false );
 			$parserCache->method( 'save' )->willReturn( null );
-			$parserCache->method( 'makeParserOutputKey' )->willReturn( 'test-key' );
+			$parserCache->method( 'getMetadata' )->willReturn( null );
+			$parserCache->method( 'makeParserOutputKey' )
+				->willReturn( 'test-key' );
 		}
 
 		if ( isset( $overrides['revisionCache'] ) ) {
 			$revisionCache = $overrides['revisionCache'];
 		} else {
-			$revisionCache = $this->createNoOpMock( RevisionOutputCache::class, [ 'get', 'save' ] );
+			$revisionCache = $this->createNoOpMock(
+				RevisionOutputCache::class,
+				[ 'get', 'save', 'makeParserOutputKeyOptionalRevId', ]
+			);
 			$revisionCache->method( 'get' )->willReturn( false );
 			$revisionCache->method( 'save' )->willReturn( null );
+			$revisionCache->method( 'makeParserOutputKeyOptionalRevId' )
+				->willReturn( 'test-key' );
 		}
 
 		$parserCacheFactory = $this->createNoOpMock(
@@ -916,9 +923,13 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		$parsoid->method( 'wikitext2html' )
 			->willThrowException( $parsoidException );
 
-		$parserCache = $this->createNoOpMock( ParserCache::class, [ 'get', 'getDirty', 'makeParserOutputKey' ] );
+		$parserCache = $this->createNoOpMock(
+			ParserCache::class,
+			[ 'get', 'getDirty', 'makeParserOutputKey', 'getMetadata', ]
+		);
 		$parserCache->method( 'get' )->willReturn( false );
 		$parserCache->method( 'getDirty' )->willReturn( false );
+		$parserCache->method( 'getMetadata' )->willReturn( null );
 		$parserCache->expects( $this->atLeastOnce() )->method( 'makeParserOutputKey' );
 
 		$this->resetServicesWithMockedParsoid( $parsoid );
@@ -1002,9 +1013,13 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		$page = PageIdentityValue::localIdentity( $page->getId(), $page->getNamespace(), $page->getDBkey() );
 
 		// This is the key assertion in this test case: get() and save() are both called.
-		$parserCache = $this->createNoOpMock( ParserCache::class, [ 'get', 'getDirty', 'save', 'makeParserOutputKey' ] );
+		$parserCache = $this->createNoOpMock(
+			ParserCache::class,
+			[ 'get', 'getDirty', 'save', 'makeParserOutputKey', 'getMetadata' ]
+		);
 		$parserCache->expects( $this->once() )->method( 'get' )->willReturn( false );
 		$parserCache->method( 'getDirty' )->willReturn( false );
+		$parserCache->method( 'getMetadata' )->willReturn( null );
 		$parserCache->expects( $this->once() )->method( 'save' );
 		$parserCache->expects( $this->atLeastOnce() )->method( 'makeParserOutputKey' );
 
@@ -1056,7 +1071,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 				PageIdentity $page,
 				ParserOptions $parserOpts,
 				$revision = null,
-				int $options = 0
+				$options = []
 			) {
 				$usedOptions = [ 'targetLanguage' ];
 				self::assertNull( $parserOpts->getTargetLanguage(), 'No target language should be set in ParserOptions' );
