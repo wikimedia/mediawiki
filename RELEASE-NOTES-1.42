@@ -11,6 +11,8 @@ THIS IS NOT A RELEASE YET
 
 === Changes since MediaWiki 1.42.6 ===
 * Localisation updates.
+* Remove hyphens from legal search characters for MySQL-based database searches.
+  (T221560)
 
 == MediaWiki 1.42.6 ==
 
