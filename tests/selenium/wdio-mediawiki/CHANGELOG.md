@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.0.1 / 2025-05-28
+
+* Fix specs in configuration file. (T395322)
+
 ## 3.0.0 / 2025-05-26
 
 * Pin browser version in CI. (T391320)
