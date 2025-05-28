@@ -669,6 +669,7 @@
 	"undo-summary-import2": "Desfacer la revisión importada [[Special:Diff/$1|$1]] del usuariu $2",
 	"undo-summary-username-hidden": "Desfacer la revisión [[Special:Diff/$1|$1]] d’un usuariu anubríu",
 	"viewpagelogs": "Ver los rexistros d'esta páxina",
+	"viewpagelogs-lowercase": "ver los rexistros d'esta páxina",
 	"nohistory": "Nun hay historial d'ediciones pa esta páxina.",
 	"currentrev": "Revisión actual",
 	"currentrev-asof": "Revisión actual a fecha de $1",

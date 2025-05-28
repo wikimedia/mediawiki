@@ -687,7 +687,7 @@
 	"search-relatedarticle": "Звязаный",
 	"searchrelated": "звязаный",
 	"searchall": "вшыткы",
-	"showingresultsinrange": "!FUZZY!!Ниже {{PLURAL:$1|є зображеный|суть зображене|є зображено}} максімум <strong>$1</strong> {{PLURAL:$1|выслїдок|выслїдкы|выслідків}} в діапазонї #<strong>$2</strong> – #<strong>$3</strong>.",
+	"showingresultsinrange": "Ниже {{PLURAL:$1|є зображеный|суть зображене|є зображено}} максімум <strong>$1</strong> {{PLURAL:$1|выслїдок|выслїдкы|выслідків}} в діапазонї #<strong>$2</strong> – #<strong>$3</strong>.",
 	"search-nonefound": "На вашу пожадавку не были найджены жадны резултаты.",
 	"powersearch-legend": "Розшырене гляданя",
 	"powersearch-ns": "Глядати у просторах назв:",

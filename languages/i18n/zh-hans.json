@@ -212,7 +212,9 @@
 			"飞小RAN",
 			"飞舞回堂前",
 			"魔琴",
-			"아라"
+			"아라",
+			"WaitSpring",
+			"Zorua Fox"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|分类}}",
@@ -766,6 +768,7 @@
 	"selfredirect": "<strong>警告：</strong>您正在将此页面重定向至它自己。\n您可能指定了错误的重定向目标，或者您正在编辑错误的页面。\n如果您再次点击“$1”，重定向仍将被创建。",
 	"edit-constraint-brokenredirect": "<strong>警告：</strong>您正在将此页面重定向至不存在的页面。您可能指定了错误的重定向目标。若确实要创建重定向，请再次单击“$1”。",
 	"edit-constraint-doubleredirect": "<strong>警告：</strong>您正在尝试将此页面重定向到另一个重定向页面，从而产生双重重定向。您当前指定的目标页面的重定向目标是[[$2]]。\n\n请考虑将此重定向的内容修改如下：\n$3\n\n注意：如果您再次点击“$1”，则会强制创建双重重定向。",
+	"edit-constraint-doubleredirect-loop": "<strong>警告：</strong>您正在尝试将此页面重定向回其自身，从而导致无效的重定向循环。请重新考虑您的操作。如果您再次点击“$1”，则无论如何都会创建重定向。",
 	"missingcommenttext": "请输入一段评论。",
 	"missingcommentheader": "<strong>提示：</strong>您还没有为此评论提供一个标题。\n如果您再次点击“$1”，您的编辑将不带标题发布。",
 	"summary-preview": "编辑摘要的预览：",
@@ -1735,7 +1738,7 @@
 	"uploadwarning-text": "请修改下面的文件描述并重试。",
 	"uploadwarning-text-nostash": "请重新上传文件，在下方修改描述并重试。",
 	"savefile": "保存文件",
-	"uploaddisabled": "上传己停用。",
+	"uploaddisabled": "上传已停用。",
 	"copyuploaddisabled": "URL上传已停用。",
 	"uploaddisabledtext": "文件上传已停用。",
 	"php-uploaddisabledtext": "PHP文件上传停用。请检查file_uploads设置。",

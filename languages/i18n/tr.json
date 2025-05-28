@@ -679,6 +679,7 @@
 	"selfredirect": "<strong>Uyarı:</strong> Bu sayfanın kendisine yönlendirme vardır.\nYönlendirme için yanlış hedef belirtmiş olabilirsiniz, veya yanlış sayfa düzenlemeye çalışmış olabilirsiniz.\n\nTekrar \"$1\" tuşuna tıklarsanız, yönlendirme yine de oluşturulur.",
 	"edit-constraint-brokenredirect": "<strong>Uyarı:</strong> Bu sayfayı varolmayan bir sayfaya yönlendiriyorsunuz.\nYönlendirme için yanlış hedef belirtmiş olabilirsiniz.\n\"$1\" düğmesine yine tıklarsanız, yönlendirme yine de oluşturulacaktır.",
 	"edit-constraint-doubleredirect": "<strong>Uyarı:</strong> Bu sayfayı ikinci bir yönlendirme sayfasına yönlendirmeye çalışıyorsunuz ve bu da bir çift yönlendirme oluşturuyor.\nHedef sayfanız şu anda [[$2]] sayfasına yönlendiriyor.\n\nLütfen bu yönlendirmenin içeriğini şu şekilde düzeltmeyi düşünün:\n$3 \n\nNot: \"$1\" düğmesine yeniden tıklarsanız, çift yönlendirme yine de oluşturulacaktır.",
+	"edit-constraint-doubleredirect-loop": "<strong>Uyarı:</strong> Bu sayfayı kendisine geri döndüren bir yönlendirmeye yönlendirmeye çalışıyorsunuz, bu da işlevsiz bir yönlendirme döngüsü oluşturuyor. Lütfen ne yaptığınızı yeniden gözden geçirin. \"$1\" düğmesine yeniden tıklarsanız, yönlendirme yine de oluşturulacaktır.",
 	"missingcommenttext": "Lütfen bir yorum yazın.",
 	"missingcommentheader": "<strong>Uyarı:</strong> Bu yorum için bir konu girmediniz.\nEğer \"$1\" seçeneğine tekrar tıklarsanız, düzenlemeniz konu olmadan kaydedilecektir.",
 	"summary-preview": "Değişiklik özetinin önizlemesi:",

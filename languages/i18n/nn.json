@@ -2216,6 +2216,7 @@
 	"block-target": "Brukarnamn eller IP-adresse:",
 	"unblockip": "Opphev blokkering",
 	"unblockiptext": "Bruk skjemaet nedanfor for å oppheve blokkeringa av ein tidlegare blokkert brukar.",
+	"unblock-target-label": "Skriv inn eit brukarnamn, ei IP-adresse eller ein blokkerings-ID:",
 	"ipusubmit": "Opphev blokkering",
 	"unblocked": "Blokkeringa av [[User:$1|$1]] er oppheva",
 	"unblocked-range": "$1 vart avblokkert",

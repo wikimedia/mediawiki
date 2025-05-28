@@ -54,7 +54,8 @@
 			"Tinss",
 			"Translationista",
 			"Vivaelcelta",
-			"아라"
+			"아라",
+			"JaimeDes"
 		]
 	},
 	"config-desc": "El instalador de MediaWiki",
@@ -195,6 +196,7 @@
 	"config-mysql-engine": "Motor de almacenamiento:",
 	"config-mysql-innodb": "InnoDB",
 	"config-mysql-engine-help": "<strong>InnoDB</strong> es casi siempre la mejor opción, dado que soporta bien los accesos simultáneos.\n\n<strong>MyISAM</strong> puede ser más rápido en instalaciones con usuario único o de sólo lectura.\nLas bases de datos MyISAM tienden a corromperse más a menudo que las bases de datos InnoDB.",
+	"config-server": "Nombre del host de la URL:",
 	"config-site-name": "Nombre de la wiki:",
 	"config-site-name-help": "Esto aparecerá en la barra de título del navegador y en varios otros lugares.",
 	"config-site-name-blank": "Escribe un nombre de sitio.",

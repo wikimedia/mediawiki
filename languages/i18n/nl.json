@@ -161,6 +161,7 @@
 	"search-ignored-headings": " #<!-- leave this line exactly as it is --> <pre>\n# Koppen die worden genegeerd tijdens het zoeken.\n# Wijzigingen worden van kracht als een kop wordt geïndexeerd.\n# U kunt opnieuw indexeren afdwingen door het uitvoeren van een nullbewerking.\n# De syntaxis is als volgt:\n#   * Alle tekst vanaf het teken \"#\" tot het einde van de regel wordt gezien als een opmerking;\n#   * Iedere niet-lege regel is de precieze te negeren kop, inclusief hoofdlettergebruik en degelijke.\nReferenties\nExterne koppelingen\nZie ook\n #</pre> <!-- leave this line exactly as it is -->",
 	"searchbutton": "Zoeken",
 	"searchsuggest-containing-html": "Zoek naar pagina's die <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> bevatten",
+	"search-loader": "Zoeksuggesties worden geladen",
 	"go": "OK",
 	"searcharticle": "OK",
 	"skin-view-history": "Geschiedenis weergeven",

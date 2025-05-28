@@ -683,6 +683,7 @@
 	"selfredirect": "<strong>Warnung:</strong> Du leitest auf diese Seite selbst weiter.\nDu hast vermutlich das falsche Weiterleitungsziel angegeben oder du bearbeitest die falsche Seite.\nWenn du erneut auf „$1“ klickst, wird die Weiterleitung dennoch erstellt.",
 	"edit-constraint-brokenredirect": "<strong>Achtung:</strong> Du leitest diese Seite auf eine Seite weiter, die nicht existiert.\nMöglicherweise hast du das falsche Ziel für die Weiterleitung angegeben.\nWenn du erneut auf „$1“ klickst, wird die Weiterleitung dennoch erstellt.",
 	"edit-constraint-doubleredirect": "<strong>Warnung:</strong> Du versuchst, diese Seite auf eine zweite Weiterleitungsseite umzuleiten, und erstellst so eine doppelte Weiterleitung.\nDeine Zielseite leitet derzeit auf [[$2]] weiter.\n\nÜberarbeite den Inhalt dieser Weiterleitung bitte wie folgt: $3 \n\nHinweis: Wenn du erneut auf „$1“ klickst, wird die doppelte Weiterleitung dennoch erstellt.",
+	"edit-constraint-doubleredirect-loop": "<strong>Warnung:</strong> Du versuchst, diese Seite auf eine Weiterleitung zurück zu sich selbst umzuleiten, wodurch eine nicht funktionierende Weiterleitungsschleife entsteht. Bitte überdenke dein Vorgehen. Wenn du erneut auf „$1“ klickst, wird die Weiterleitung trotzdem erstellt.",
 	"missingcommenttext": "Bitte gib einen Kommentar ein.",
 	"missingcommentheader": "<strong>Achtung:</strong> Du hast keinen Betreff eingegeben. Wenn du erneut auf „$1“ klickst, wird deine Bearbeitung ohne Überschrift veröffentlicht.",
 	"summary-preview": "Vorschau der Zusammenfassungszeile:",

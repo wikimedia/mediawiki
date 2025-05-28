@@ -641,6 +641,7 @@
 	"selfredirect": "<strong>Varoitus:</strong> Olet luomassa uudelleenohjausta, joka johtaa tästä sivusta tähän samaan sivuun.\nOlet ehkä määrittänyt ohjauksen kohteen väärin tai kenties muokkaat parhaillaan väärää sivua.\nJos painat ”$1” uudelleen, tämä ohjaussivu luodaan joka tapauksessa.",
 	"edit-constraint-brokenredirect": "<strong>Varoitus:</strong> Olet ohjaamassa tämän sivun sivulle, jota ei ole olemassa.\nOlet ehkä antanut väärän kohteen ohjaukselle.\nJos napsautat ”$1” -painiketta uudelleen, ohjaus luodaan joka tapauksessa.",
 	"edit-constraint-doubleredirect": "<strong>Varoitus:</strong> Yrität uudelleenohjata tämän sivun toiselle ohjaussivulle, mikä loisi kaksoisohjauksen.\nKohdesivusi uudelleenohjaa tällä hetkellä sivulle [[$2]].\n\nTarkistathan ohjaussivun sisällön seuraavasti:\n$3 \n\nHuom. jos napsautat ”$1” uudelleen, kaksoisohjaus luodaan joka tapauksessa.",
+	"edit-constraint-doubleredirect-loop": "<strong>Varoitus:</strong> Yrität ohjata tämän sivun takaisin itseensä, mikä luo toimimattoman ohjaussilmukan. Varmista, mitä olet tekemässä. Jos napsautat ”$1” uudelleen, ohjaus luodaan joka tapauksessa.",
 	"missingcommenttext": "Kirjoita kommentti.",
 	"missingcommentheader": "<strong>Muistutus:</strong> Et ole antanut aiheotsikkoa tälle kommentille. Napsauta ”$1”, jos haluat julkaista kommenttisi ilman sellaista.",
 	"summary-preview": "Yhteenvedon esikatselu:",

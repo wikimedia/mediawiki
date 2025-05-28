@@ -31,7 +31,8 @@
 			"張詠涵",
 			"捍粵者",
 			"星海",
-			"烈羽"
+			"烈羽",
+			"Key0121"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|說明文件]]\n* [[mw:Special:MyLanguage/API:Etiquette|Etiquette 與使用指南]]\n* [[mw:Special:MyLanguage/API:FAQ|常見問題]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api 郵寄清單]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API公告]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R 報告錯誤及請求功能]\n</div>\n<strong>狀態資訊：</strong>MediaWiki API 已是成熟、穩定，並積極支援以改善的介面。儘管我們儘可能避免，但仍偶有需要重大變更的情況，請訂閱[https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ mediawiki-api-announce 郵寄清單]以便獲得更新通知。\n\n<strong>錯誤的請求：</strong>當 API 收到錯誤的請求，會發出以「MediaWiki-API-Error」為鍵的 HTTP 標頭欄位，隨後標頭欄位的值，以及傳回的錯誤碼會設為相同值。詳細資訊請參閱 [[mw:Special:MyLanguage/API:Errors_and_warnings|API: 錯誤與警告]]。\n\n<p class=\"mw-apisandbox-link\"><strong>測試：</strong>要簡化 API 請求的測試過程，請見 [[Special:ApiSandbox]]。</p>",
@@ -1353,7 +1354,7 @@
 	"apihelp-query+userinfo-paramvalue-prop-options": "列出目前使用者已設定過的所有偏好設定。",
 	"apihelp-query+userinfo-paramvalue-prop-editcount": "添加目前使用者的編輯數。",
 	"apihelp-query+userinfo-paramvalue-prop-ratelimits": "列出所有套用到目前使用者的速率限制。",
-	"apihelp-query+userinfo-paramvalue-prop-theoreticalratelimits": "若根據使用者權限或 IP，他們並非不受所有速率限制的約束，列出所有套用在目前使用者的速率限制",
+	"apihelp-query+userinfo-paramvalue-prop-theoreticalratelimits": "若根據使用者權限或 IP，他們並非不受所有速率限制的約束，列出所有套用在目前使用者的速率限制。",
 	"apihelp-query+userinfo-paramvalue-prop-realname": "添加使用者的真實姓名。",
 	"apihelp-query+userinfo-paramvalue-prop-email": "添加使用者的電子郵件地址與電子郵件驗證日期。",
 	"apihelp-query+userinfo-paramvalue-prop-acceptlang": "回響由在架構化格式客戶端所發送的 <code>Accept-Language</code> 標頭。",

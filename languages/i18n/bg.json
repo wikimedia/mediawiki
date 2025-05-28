@@ -992,6 +992,7 @@
 	"default": "по подразбиране",
 	"linterror-bogus-image-options": "Неправилен параметър на файл",
 	"linterror-deletable-table-tag": "Таг на таблица, който трябва да се изтрие",
+	"linterror-empty-heading": "Празни заглавия",
 	"linterror-html5-misnesting": "Грешно влагане (вече неработещо)",
 	"linterror-inline-media-caption": "Невидим текст",
 	"linterror-misc-tidy-replacement-issues": "Разни грешки в кода",
