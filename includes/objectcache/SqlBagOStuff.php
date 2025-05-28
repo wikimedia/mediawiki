@@ -1673,33 +1673,18 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	}
 
 	protected function makeKeyInternal( $keyspace, $components ) {
-		// SQL schema for 'objectcache' specifies keys as varchar(255). From that,
-		// subtract the number of characters we need for the keyspace and for
-		// the separator character needed for each argument. To handle some
-		// custom prefixes used by things like WANObjectCache, limit to 205.
-		$keyspace = strtr( $keyspace, ' ', '_' );
-		$charsLeft = 205 - strlen( $keyspace ) - count( $components );
-		foreach ( $components as &$component ) {
-			$component = strtr(
-				$component ?? '',
-				[
-					' ' => '_', // Avoid unnecessary misses from pre-1.35 code
-					':' => '%3A',
-				]
-			);
-
-			// 33 = 32 characters for the MD5 + 1 for the '#' prefix.
-			if ( $charsLeft > 33 && strlen( $component ) > $charsLeft ) {
-				$component = '#' . md5( $component );
-			}
-			$charsLeft -= strlen( $component );
+		$key = strtr( $keyspace, ' ', '_' );
+		foreach ( $components as $component ) {
+			$component = strtr( $component ?? '', [
+				' ' => '_', // Avoid unnecessary misses from pre-1.35 code
+				':' => '%3A',
+			] );
+			$key .= ':' . $component;
 		}
-		unset( $component );
 
-		if ( $charsLeft < 0 ) {
-			return $keyspace . ':BagOStuff-long-key:##' . md5( implode( ':', $components ) );
-		}
-		return $keyspace . ':' . implode( ':', $components );
+		// SQL schema for 'objectcache' specifies keys as varchar(255).
+		// * Reserve 45 chars for prefixes used by wrappers like WANObjectCache.
+		return $this->makeFallbackKey( $key, 205 );
 	}
 
 	protected function requireConvertGenericKey(): bool {

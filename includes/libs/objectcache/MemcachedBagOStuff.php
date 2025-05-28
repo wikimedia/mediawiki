@@ -65,13 +65,8 @@ abstract class MemcachedBagOStuff extends MediumSpecificBagOStuff {
 	 * @return string
 	 */
 	protected function makeKeyInternal( $keyspace, $components ) {
-		// Memcached keys have a maximum length of 255 characters. From that,
-		// subtract the number of characters we need for the keyspace and for
-		// the separator character needed for each argument. To handle some
-		// custom prefixes used by thing like WANObjectCache, limit to 205.
-		$charsLeft = 205 - strlen( $keyspace ) - count( $components );
-
-		foreach ( $components as &$component ) {
+		$key = $keyspace;
+		foreach ( $components as $component ) {
 			$component = strtr( $component ?? '', ' ', '_' );
 
 			// Make sure %, #, and non-ASCII chars are escaped
@@ -83,20 +78,12 @@ abstract class MemcachedBagOStuff extends MediumSpecificBagOStuff {
 				$component
 			);
 
-			// 33 = 32 characters for the MD5 + 1 for the '#' prefix.
-			if ( $charsLeft > 33 && strlen( $component ) > $charsLeft ) {
-				$component = '#' . md5( $component );
-			}
-
-			$charsLeft -= strlen( $component );
-		}
-		unset( $component );
-
-		if ( $charsLeft < 0 ) {
-			return $keyspace . ':BagOStuff-long-key:##' . md5( implode( ':', $components ) );
+			$key .= ':' . $component;
 		}
 
-		return $keyspace . ':' . implode( ':', $components );
+		// Memcached keys have a maximum length of 250 characters.
+		// * Reserve 45 chars for prefixes used by wrappers like WANObjectCache.
+		return $this->makeFallbackKey( $key, 205 );
 	}
 
 	protected function requireConvertGenericKey(): bool {

@@ -39,13 +39,19 @@ class MemcachedBagOStuffTest extends \MediaWikiUnitTestCase {
 		);
 
 		$this->assertEquals(
-			'test:this:key:contains:#c118f92685a635cb843039de50014c9c',
+			'test:this:#457c1ec5348b0320a2e073a73d26bda354aaa367c371c8ca0f5d116ac033b5b8',
 			$this->cache->makeKey( 'this', 'key', 'contains', '𝕥𝕠𝕠 𝕞𝕒𝕟𝕪 𝕞𝕦𝕝𝕥𝕚𝕓𝕪𝕥𝕖 𝕔𝕙𝕒𝕣𝕒𝕔𝕥𝕖𝕣𝕤' )
 		);
 
 		$this->assertEquals(
-			'test:BagOStuff-long-key:##dc89dcb43b28614da27660240af478b5',
-			$this->cache->makeKey( '𝕖𝕧𝕖𝕟', '𝕚𝕗', '𝕨𝕖', '𝕄𝔻𝟝', '𝕖𝕒𝕔𝕙',
+			'test:doublestruck:#913632ba0d544f1df98b75e541a66bc703db65a0cb4457079ea3592ffc7eacef',
+			$this->cache->makeKey( 'doublestruck', '𝕖𝕧𝕖𝕟', '𝕚𝕗', '𝕨𝕖', '𝕙𝕒𝕤𝕙', '𝕖𝕒𝕔𝕙',
+				'𝕒𝕣𝕘𝕦𝕞𝕖𝕟𝕥', '𝕥𝕙𝕚𝕤', '𝕜𝕖𝕪', '𝕨𝕠𝕦𝕝𝕕', '𝕤𝕥𝕚𝕝𝕝', '𝕓𝕖', '𝕥𝕠𝕠', '𝕝𝕠𝕟𝕘' )
+		);
+
+		$this->assertEquals(
+			'test:BagOStuff-long-key:##d00de278a2c85e9768c150e8c7f004e0f8dd136a061a84fd541e7c4cfc83514f',
+			$this->cache->makeKey( '𝕖𝕧𝕖𝕟 𝕚𝕗 𝕨𝕖 𝕙𝕒𝕤𝕙', '𝕖𝕒𝕔𝕙',
 				'𝕒𝕣𝕘𝕦𝕞𝕖𝕟𝕥', '𝕥𝕙𝕚𝕤', '𝕜𝕖𝕪', '𝕨𝕠𝕦𝕝𝕕', '𝕤𝕥𝕚𝕝𝕝', '𝕓𝕖', '𝕥𝕠𝕠', '𝕝𝕠𝕟𝕘' )
 		);
 
@@ -65,7 +71,7 @@ class MemcachedBagOStuffTest extends \MediaWikiUnitTestCase {
 		);
 
 		$this->assertEquals(
-			'test:long_key_part_hashed:#0244f7b1811d982dd932dd7de01465ac',
+			'test:long_key_part_hashed:#1da89b61428deef9340719031384f9a915ac5a57599183fdfa319f6ab79911bd',
 			$this->cache->makeKey( 'long_key_part_hashed', str_repeat( 'y', 500 ) )
 		);
 	}

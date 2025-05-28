@@ -6,17 +6,17 @@
  */
 class SqlBagOStuffTest extends MediaWikiUnitTestCase {
 	public static function provideMakeKey() {
-		yield [ 'local', 'first', [ 'second', 'third' ],
+		yield 'simple' => [ 'local', 'first', [ 'second', 'third' ],
 			'local:first:second:third' ];
-		yield [ 'local with spaces', 'first:first', [ 'second:second' ],
+		yield 'keyspace with spaces' => [ 'local with spaces', 'first:first', [ 'second:second' ],
 			'local_with_spaces:first%3Afirst:second%3Asecond' ];
 		$longA = str_repeat( 'a', 128 );
 		$longB = str_repeat( 'b', 128 );
 		$longC = str_repeat( 'c', 128 );
-		yield [ 'global fairly long', 'first', [ $longA, $longB ],
-			'global_fairly_long:first:' . $longA . ':#73045f89f89b1604b62a6ae1ab4d4133' ];
-		yield [ 'global really long', 'first', [ $longA, $longB, $longC ],
-			'global_really_long:BagOStuff-long-key:##99f6adc828cfb6c892501f20153bd028' ];
+		yield 'long components' => [ 'long example', 'first', [ $longA, $longB ],
+			'long_example:first:#c0045d80095a957b82531b50d813ff4549c9029cafe455ff4fb9c56750eeec62' ];
+		yield 'long first component (keygroup)' => [ 'long example', $longA, [ $longB, $longC ],
+			'long_example:BagOStuff-long-key:##8b1678c21d099b6a7e0587f4ff13fc2c0d562a2095158acb997f66903610a419' ];
 	}
 
 	/**

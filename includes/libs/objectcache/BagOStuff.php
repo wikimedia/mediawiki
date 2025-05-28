@@ -578,10 +578,8 @@ abstract class BagOStuff implements
 	 *
 	 * @see BagOStuff::makeKeyInternal
 	 * @since 1.27
-	 *
 	 * @param string $keygroup Key group component, should be under 48 characters.
 	 * @param string|int ...$components Additional, ordered, key components for entity IDs
-	 *
 	 * @return string Colon-separated, keyspace-prepended, ordered list of encoded components
 	 */
 	public function makeGlobalKey( $keygroup, ...$components ) {
@@ -609,10 +607,8 @@ abstract class BagOStuff implements
 	 *
 	 * @see BagOStuff::makeKeyInternal
 	 * @since 1.27
-	 *
 	 * @param string $keygroup Key group component, should be under 48 characters.
 	 * @param string|int ...$components Additional, ordered, key components for entity IDs
-	 *
 	 * @return string Colon-separated, keyspace-prepended, ordered list of encoded components
 	 */
 	public function makeKey( $keygroup, ...$components ) {
@@ -623,7 +619,6 @@ abstract class BagOStuff implements
 	 * Check whether a cache key is in the global keyspace
 	 *
 	 * @param string $key
-	 *
 	 * @return bool
 	 * @since 1.35
 	 */
@@ -724,6 +719,38 @@ abstract class BagOStuff implements
 		foreach ( $components as $component ) {
 			// Escape delimiter (":") and escape ("%") characters
 			$key .= ':' . strtr( $component ?? '', [ '%' => '%25', ':' => '%3A' ] );
+		}
+
+		return $key;
+	}
+
+	/**
+	 * Re-format a cache key that is too long.
+	 *
+	 * @since 1.45
+	 * @see BagOStuff::makeKeyInternal
+	 * @param string $key
+	 * @param int $maxLength
+	 * @return string
+	 */
+	protected function makeFallbackKey( string $key, int $maxLength ) {
+		if ( strlen( $key ) > $maxLength ) {
+			// Components are "<0=keyspace>:<1=keygroup>:<others...>"
+			$components = str_replace( [ '%3A', '%25' ], [ ':', '%' ], explode( ':', $key ) );
+			if ( count( $components ) < 2 ) {
+				throw new InvalidArgumentException( 'Key lacks keyspace' );
+			}
+
+			// Prefer to preserve the keygroup for statistics.
+			// Try "mywiki:mykeygroup:#<64-char hash>"
+			// This gives 138 chars (205-64-3) for the keyspace and keygroup.
+			$hash = hash( 'sha256', $key );
+			$key = $components[0] . ':' . $components[1] . ':#' . $hash;
+			if ( strlen( $key ) > $maxLength ) {
+				// Try "mywiki:BagOStuff-long-key:##<64-char hash>"
+				// Might be legacy code that passes a long string as the key without a keygroup.
+				$key = $components[0] . ':BagOStuff-long-key:##' . $hash;
+			}
 		}
 
 		return $key;
