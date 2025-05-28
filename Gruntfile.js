@@ -61,6 +61,7 @@ module.exports = function ( grunt ) {
 				disallowBlankTranslations: false
 			},
 			core: 'languages/i18n/',
+			botpasswords: 'languages/i18n/botpasswords/',
 			codex: 'languages/i18n/codex/',
 			datetime: 'languages/i18n/datetime/',
 			exif: 'languages/i18n/exif/',
