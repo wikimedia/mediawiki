@@ -141,6 +141,8 @@ because of Phabricator reports.
   Action::getPageTitle() must return a Message object rather than a string.
 * (T343994) OutputPage::setPageTitle() no longer accepts Message objects.
   Use OutputPage::setPageTitleMsg() to set the title from a message.
+* OutputPage::prepareErrorPage() no longer accepts parameters.
+  Use setPageTitle()/setPageTitleMsg() or setHTMLTitle() directly.
 * The SiteConfiguration::extractGlobalSetting method, not used outside of
   SiteConfiguration class, is now private.
 * RL\Module::getDeprecationInformation() deprecated in 1.41, now unused, has

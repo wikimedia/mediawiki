@@ -3315,26 +3315,11 @@ class OutputPage extends ContextSource {
 
 	/**
 	 * Prepare this object to display an error page; disable caching and
-	 * indexing, clear the current text and redirect, set the page's title
-	 * and optionally a custom HTML title (content of the "<title>" tag).
+	 * indexing, clear the current text and redirect.
 	 *
-	 * @param string|Message|null $pageTitle Will be passed directly to setPageTitle()
-	 * @param string|Message|false $htmlTitle Will be passed directly to setHTMLTitle();
-	 *                   optional, if not passed the "<title>" attribute will be
-	 *                   based on $pageTitle
-	 * @note Explicitly passing $pageTitle or $htmlTitle has been deprecated
-	 *   since 1.41; use ::setPageTitleMsg() and ::setHTMLTitle() instead.
+	 * You should usually call setPageTitleMsg() with the error message after this method.
 	 */
-	public function prepareErrorPage( $pageTitle = null, $htmlTitle = false ) {
-		if ( $pageTitle !== null || $htmlTitle !== false ) {
-			wfDeprecated( __METHOD__ . ' with explicit arguments', '1.41' );
-			if ( $pageTitle !== null ) {
-				$this->setPageTitle( $pageTitle );
-			}
-			if ( $htmlTitle !== false ) {
-				$this->setHTMLTitle( $htmlTitle );
-			}
-		}
+	public function prepareErrorPage() {
 		$this->setRobotPolicy( 'noindex,nofollow' );
 		$this->setArticleRelated( false );
 		$this->disableClientCache();
