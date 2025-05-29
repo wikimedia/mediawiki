@@ -3,11 +3,11 @@
 namespace MediaWiki\Tests\Maintenance;
 
 use FindMissingActors;
+use LogicException;
 use MediaWiki\Exception\CannotCreateActorException;
 use MediaWiki\Logging\ManualLogEntry;
 use MediaWiki\User\ActorNormalization;
 use MediaWiki\User\UserIdentity;
-use PHPUnit\Framework\AssertionFailedError;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -39,11 +39,11 @@ class FindMissingActorsTest extends MaintenanceBaseTestCase {
 			/** @inheritDoc */
 			public static function readconsole( $prompt = '> ' ) {
 				if ( static::$readConsoleReturnValue === null ) {
-					throw new AssertionFailedError( 'Did not expect a call to ::readconsole.' );
+					throw new LogicException( 'Did not expect a call to ::readconsole.' );
 				}
 
 				if ( $prompt !== 'Type "yes" to continue: ' ) {
-					throw new AssertionFailedError( 'Provided prompt was not as expected.' );
+					throw new LogicException( 'Provided prompt was not as expected.' );
 				}
 
 				return static::$readConsoleReturnValue;

@@ -4,7 +4,6 @@ namespace Wikimedia\Tests\ParamValidator\Util;
 
 require_once __DIR__ . '/UploadedFileTestBase.php';
 
-use PHPUnit\Framework\AssertionFailedError;
 use Psr\Http\Message\StreamInterface;
 use RuntimeException;
 use Wikimedia\ParamValidator\Util\UploadedFile;
@@ -34,8 +33,6 @@ class UploadedFileTest extends UploadedFileTestBase {
 			try {
 				$file2->getStream();
 				$this->fail( 'Expected exception not thrown' );
-			} catch ( AssertionFailedError $ex ) {
-				throw $ex;
 			} catch ( RuntimeException $ex ) {
 			}
 		}
@@ -55,8 +52,6 @@ class UploadedFileTest extends UploadedFileTestBase {
 			try {
 				$file->getStream();
 				$this->fail( 'Expected exception not thrown' );
-			} catch ( AssertionFailedError $ex ) {
-				throw $ex;
 			} catch ( RuntimeException $ex ) {
 				$this->assertSame( 'File has already been moved', $ex->getMessage() );
 			}
@@ -64,8 +59,6 @@ class UploadedFileTest extends UploadedFileTestBase {
 				$stream->seek( 0 );
 				$stream->getContents();
 				$this->fail( 'Expected exception not thrown' );
-			} catch ( AssertionFailedError $ex ) {
-				throw $ex;
 			} catch ( RuntimeException $ex ) {
 			}
 		} finally {
@@ -77,8 +70,6 @@ class UploadedFileTest extends UploadedFileTestBase {
 		try {
 			$file->getStream();
 			$this->fail( 'Expected exception not thrown' );
-		} catch ( AssertionFailedError $ex ) {
-			throw $ex;
 		} catch ( RuntimeException $ex ) {
 			$this->assertSame( 'Uploaded file is missing', $ex->getMessage() );
 		}
@@ -99,8 +90,6 @@ class UploadedFileTest extends UploadedFileTestBase {
 		try {
 			$file->moveTo( $filename . '.yyy' );
 			$this->fail( 'Expected exception not thrown' );
-		} catch ( AssertionFailedError $ex ) {
-			throw $ex;
 		} catch ( RuntimeException $ex ) {
 			$this->assertSame( 'File has already been moved', $ex->getMessage() );
 		}
@@ -115,8 +104,6 @@ class UploadedFileTest extends UploadedFileTestBase {
 		try {
 			$file->moveTo( $filename . '.bbb' );
 			$this->fail( 'Expected exception not thrown' );
-		} catch ( AssertionFailedError $ex ) {
-			throw $ex;
 		} catch ( RuntimeException $ex ) {
 			$this->assertSame( 'Uploaded file is missing', $ex->getMessage() );
 		}
@@ -131,8 +118,6 @@ class UploadedFileTest extends UploadedFileTestBase {
 		try {
 			$file->moveTo( $filename . '.xxx' );
 			$this->fail( 'Expected exception not thrown' );
-		} catch ( AssertionFailedError $ex ) {
-			throw $ex;
 		} catch ( RuntimeException $ex ) {
 			$this->assertSame( 'Specified file is not an uploaded file', $ex->getMessage() );
 		}
@@ -157,8 +142,6 @@ class UploadedFileTest extends UploadedFileTestBase {
 			try {
 				$file->moveTo( $filename . '.xxx' );
 				$this->fail( 'Expected exception not thrown' );
-			} catch ( AssertionFailedError $ex ) {
-				throw $ex;
 			} catch ( RuntimeException $ex ) {
 			}
 			$this->assertFileExists( $filename );
@@ -173,8 +156,6 @@ class UploadedFileTest extends UploadedFileTestBase {
 		try {
 			$file->moveTo( $filename2 . DIRECTORY_SEPARATOR . 'foobar' );
 			$this->fail( 'Expected exception not thrown' );
-		} catch ( AssertionFailedError $ex ) {
-			throw $ex;
 		} catch ( RuntimeException $ex ) {
 		}
 		$this->assertFileExists( $filename );

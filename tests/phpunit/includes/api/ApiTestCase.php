@@ -20,7 +20,6 @@ use MediaWiki\Session\Session;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWikiLangTestCase;
-use PHPUnit\Framework\AssertionFailedError;
 use PHPUnit\Framework\Constraint\Constraint;
 use ReturnTypeWillChange;
 
@@ -374,7 +373,7 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 			return $testResult;
 		}
 
-		throw new AssertionFailedError(
+		self::fail(
 			sprintf(
 				'Failed asserting that exception with API error code "%s" is thrown',
 				$this->expectedApiErrorCode
