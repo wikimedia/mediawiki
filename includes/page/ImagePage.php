@@ -216,10 +216,11 @@ class ImagePage extends Article {
 					$context->msg( 'metadata' )->text()
 				) . "\n"
 			);
-			$out->wrapWikiTextAsInterface(
-				'mw-imagepage-section-metadata',
+			$out->addHTML( Html::openElement( 'div', [ 'class' => 'mw-imagepage-section-metadata' ] ) );
+			$out->addWikiTextAsInterface(
 				$this->makeMetadataTable( $formattedMetadata )
 			);
+			$out->addHTML( Html::closeElement( 'div' ) );
 			$out->addModules( [ 'mediawiki.action.view.metadata' ] );
 		}
 
@@ -651,12 +652,13 @@ class ImagePage extends Article {
 				// additionally have a specific message for
 				// file-no-thumb-animation-gif
 				$ext = $this->displayImg->getExtension();
-				$noAnimMesg = wfMessageFallback(
-					'file-no-thumb-animation-' . $ext,
-					'file-no-thumb-animation'
-				)->setContext( $context )->plain();
-
-				$out->wrapWikiTextAsInterface( 'mw-noanimatethumb', $noAnimMesg );
+				$out->wrapWikiMsg(
+					Html::element( 'div', [ 'class' => 'mw-noanimatethumb' ], '$1' ),
+					wfMessageFallback(
+						'file-no-thumb-animation-' . $ext,
+						'file-no-thumb-animation'
+					)
+				);
 			}
 
 			if ( !$this->displayImg->isLocal() ) {

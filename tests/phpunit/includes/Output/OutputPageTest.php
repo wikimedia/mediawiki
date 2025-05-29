@@ -1830,6 +1830,10 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			$args[2] = $op->getTitle();
 		}
 
+		if ( $method === 'wrapWikiTextAsInterface' ) {
+			$this->expectDeprecationAndContinue( '/wrapWikiTextAsInterface/' );
+		}
+
 		$op->$method( ...$args );
 		$this->assertSame( $expected, $op->getHTML() );
 	}

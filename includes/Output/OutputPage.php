@@ -2203,11 +2203,13 @@ class OutputPage extends ContextSource {
 	 *   the <div> wrapper in the output HTML, should not be empty
 	 * @param string $text Wikitext in the user interface language
 	 * @since 1.32
+	 * @deprecated since 1.45 Use wrapWikiMsg() or addWikiTextAsInterface() instead
 	 * @phan-param non-empty-string $wrapperClass
 	 */
 	public function wrapWikiTextAsInterface(
 		$wrapperClass, $text
 	) {
+		wfDeprecated( __METHOD__, '1.45' );
 		if ( $wrapperClass === '' ) {
 			// I don't think anyone actually uses this corner case,
 			// but if you call wrapWikiTextAsInterface with
