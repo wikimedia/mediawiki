@@ -3059,7 +3059,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			'JsConfigVars' => $this->mJsConfigVars,
 			'Warnings' => $this->mWarnings,
 			'WarningMsgs' => $this->mWarningMsgs,
-			'Sections' => $this->getSections(),
+			'TOCData' => $this->mTOCData,
 			'Properties' => self::detectAndEncodeBinary( $this->mProperties ),
 			'Timestamp' => $this->mTimestamp,
 			'EnableOOUI' => $this->mEnableOOUI,
@@ -3075,11 +3075,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			'ExtraScriptSrcs' => $this->mExtraScriptSrcs,
 			'ExtraDefaultSrcs' => $this->mExtraDefaultSrcs,
 			'ExtraStyleSrcs' => $this->mExtraStyleSrcs,
-			'Flags' => $this->mFlags + (
-				// backward-compatibility: distinguish "no sections" from
-				// "sections not set" (Will be unnecessary after T327439.)
-				$this->mTOCData === null ? [] : [ 'mw:toc-set' => true ]
-			),
+			'Flags' => $this->mFlags,
 			'SpeculativeRevId' => $this->mSpeculativeRevId,
 			'SpeculativePageIdUsed' => $this->speculativePageIdUsed,
 			'RevisionTimestampUsed' => $this->revisionTimestampUsed,
@@ -3095,16 +3091,6 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		if ( $this->mMaxAdaptiveExpiry !== INF ) {
 			// NOTE: JSON can't encode infinity!
 			$data['MaxAdaptiveExpiry'] = $this->mMaxAdaptiveExpiry;
-		}
-
-		if ( $this->mTOCData ) {
-			// Temporarily add information from TOCData extension data
-			// T327439: We should eventually make the entire mTOCData
-			// serializable
-			$toc = $this->mTOCData->jsonSerialize();
-			if ( isset( $toc['extensionData'] ) ) {
-				$data['TOCExtensionData'] = $toc['extensionData'];
-			}
 		}
 
 		return $data;
