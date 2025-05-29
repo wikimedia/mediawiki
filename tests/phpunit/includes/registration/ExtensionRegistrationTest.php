@@ -89,13 +89,13 @@ class ExtensionRegistrationTest extends MediaWikiIntegrationTestCase {
 	}
 
 	private function setExtensionRegistry( ExtensionRegistry $registry ) {
-		$class = new \ReflectionClass( ExtensionRegistry::class );
+		$staticExtReg = TestingAccessWrapper::newFromClass( ExtensionRegistry::class );
 
 		if ( !$this->originalExtensionRegistry ) {
-			$this->originalExtensionRegistry = $class->getStaticPropertyValue( 'instance' );
+			$this->originalExtensionRegistry = $staticExtReg->instance;
 		}
 
-		$class->setStaticPropertyValue( 'instance', $registry );
+		$staticExtReg->instance = $registry;
 	}
 
 	public function testExportHooks() {

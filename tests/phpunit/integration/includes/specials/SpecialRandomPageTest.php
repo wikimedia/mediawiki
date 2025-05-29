@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Specials\SpecialRandomPage;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers \MediaWiki\Specials\SpecialRandomPage
@@ -25,11 +26,9 @@ class SpecialRandomPageTest extends MediaWikiIntegrationTestCase {
 	 * @param array $expectedNS Array of integer namespace ids
 	 */
 	public function testParsePar( $par, $expectedNS ) {
-		$reflectionClass = new ReflectionClass( $this->page );
-		$reflectionMethod = $reflectionClass->getMethod( 'parsePar' );
-		$reflectionMethod->setAccessible( true );
-
-		$reflectionMethod->invoke( $this->page, $par );
+		/** @var SpecialRandomPage $page */
+		$page = TestingAccessWrapper::newFromObject( $this->page );
+		$page->parsePar( $par );
 		$this->assertEquals( $expectedNS, $this->page->getNamespaces() );
 	}
 

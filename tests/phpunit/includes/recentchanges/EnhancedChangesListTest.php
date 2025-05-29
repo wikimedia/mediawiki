@@ -7,6 +7,7 @@ use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWiki\Utils\MWTimestamp;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers \MediaWiki\RecentChanges\EnhancedChangesList
@@ -244,14 +245,11 @@ class EnhancedChangesListTest extends MediaWikiLangTestCase {
 	}
 
 	private function createCategorizationLine( $recentChange ) {
-		$enhancedChangesList = $this->newEnhancedChangesList();
+		/** @var EnhancedChangesList $enhancedChangesList */
+		$enhancedChangesList = TestingAccessWrapper::newFromObject( $this->newEnhancedChangesList() );
 		$cacheEntry = $this->testRecentChangesHelper->getCacheEntry( $recentChange );
 
-		$reflection = new \ReflectionClass( get_class( $enhancedChangesList ) );
-		$method = $reflection->getMethod( 'recentChangesBlockLine' );
-		$method->setAccessible( true );
-
-		return $method->invokeArgs( $enhancedChangesList, [ $cacheEntry ] );
+		return $enhancedChangesList->recentChangesBlockLine( $cacheEntry );
 	}
 
 	public function testExpiringWatchlistItem(): void {
