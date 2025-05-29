@@ -15,8 +15,6 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Tests\Api\ApiTestContext;
 use MediaWikiIntegrationTestCase;
-use ReflectionMethod;
-use ReflectionProperty;
 use Wikimedia\Http\MultiHttpClient;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -52,7 +50,7 @@ abstract class ExtensionJsonTestBase extends MediaWikiIntegrationTestCase {
 	 * @var string The path to the extension.json file.
 	 * Should be specified as `__DIR__ . '/.../extension.json'`.
 	 */
-	// protected string $extensionJsonPath;
+	protected static string $extensionJsonPath;
 
 	/**
 	 * @var string|null The prefix of the extension's own services in the service container.
@@ -73,8 +71,6 @@ abstract class ExtensionJsonTestBase extends MediaWikiIntegrationTestCase {
 	 */
 	private static array $extensionJsonCache = [];
 
-	private static array $cacheExtensionJsonPath = [];
-
 	protected function setUp(): void {
 		parent::setUp();
 
@@ -85,30 +81,18 @@ abstract class ExtensionJsonTestBase extends MediaWikiIntegrationTestCase {
 	}
 
 	final protected static function getExtensionJson(): array {
-		// Temporary get the path depending of the property state - T393065
-		if ( !isset( self::$cacheExtensionJsonPath[static::class] ) ) {
-			$reflectionProperty = new ReflectionProperty( static::class, 'extensionJsonPath' );
-			$reflectionProperty->setAccessible( true );
-			$invokeObject = null;
-			if ( !$reflectionProperty->isStatic() ) {
-				$invokeObject = new static();
-			}
-			self::$cacheExtensionJsonPath[static::class] = $reflectionProperty->getValue( $invokeObject );
-		}
-		$extensionJsonPath = self::$cacheExtensionJsonPath[static::class];
-
-		if ( !array_key_exists( $extensionJsonPath, self::$extensionJsonCache ) ) {
-			self::$extensionJsonCache[$extensionJsonPath] = json_decode(
-				file_get_contents( $extensionJsonPath ),
+		if ( !array_key_exists( static::$extensionJsonPath, self::$extensionJsonCache ) ) {
+			self::$extensionJsonCache[static::$extensionJsonPath] = json_decode(
+				file_get_contents( static::$extensionJsonPath ),
 				true,
 				512,
 				JSON_THROW_ON_ERROR
 			);
 		}
-		return self::$extensionJsonCache[$extensionJsonPath];
+		return self::$extensionJsonCache[static::$extensionJsonPath];
 	}
 
-	/** @dataProvider provideHookHandlerNamesStatically */
+	/** @dataProvider provideHookHandlerNames */
 	public function testHookHandler( string $hookHandlerName ): void {
 		$specification = self::getExtensionJson()['HookHandlers'][$hookHandlerName];
 		$objectFactory = MediaWikiServices::getInstance()->getObjectFactory();
@@ -118,47 +102,10 @@ abstract class ExtensionJsonTestBase extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( true );
 	}
 
-	// public static function provideHookHandlerNames(): iterable
-
-	private static function provideHookHandlerNamesBase(): iterable {
+	public static function provideHookHandlerNames(): iterable {
 		foreach ( self::getExtensionJson()['HookHandlers'] ?? [] as $hookHandlerName => $specification ) {
 			yield [ $hookHandlerName ];
 		}
-	}
-
-	/**
-	 * Temporary override to make provideHookHandlerNames static.
-	 * See T393065.
-	 */
-	final public static function provideHookHandlerNamesStatically(): iterable {
-		if ( method_exists( static::class, 'provideHookHandlerNames' ) ) {
-			// override exists, check if changed to static or non-static
-			$reflectionMethod = new ReflectionMethod( static::class, 'provideHookHandlerNames' );
-			$invokeObject = null;
-			if ( !$reflectionMethod->isStatic() ) {
-				// Non-static data provider are soft-deprecated
-				$invokeObject = new static();
-			}
-			return $reflectionMethod->invoke( $invokeObject );
-		}
-		// The base implementation temporary has own name to avoid php fatal for non-static functions
-		return self::provideHookHandlerNamesBase();
-	}
-
-	public function __call( $name, $args ) {
-		// Called as parent::provideHookHandlerNames()
-		if ( $name === 'provideHookHandlerNames' ) {
-			return self::provideHookHandlerNamesBase();
-		}
-		throw new \RuntimeException( "Call to undefined method $name()" );
-	}
-
-	public static function __callStatic( $name, $args ) {
-		// Called as parent::provideHookHandlerNames()
-		if ( $name === 'provideHookHandlerNames' ) {
-			return self::provideHookHandlerNamesBase();
-		}
-		throw new \RuntimeException( "Call to undefined method $name()" );
 	}
 
 	/** @dataProvider provideContentModelIDs */
@@ -308,7 +255,7 @@ abstract class ExtensionJsonTestBase extends MediaWikiIntegrationTestCase {
 
 	public static function provideSpecifications(): iterable {
 		$extensionJson = self::getExtensionJson();
-		foreach ( self::provideHookHandlerNamesStatically() as [ $hookHandlerName ] ) {
+		foreach ( self::provideHookHandlerNames() as [ $hookHandlerName ] ) {
 			yield "HookHandlers/$hookHandlerName" => $extensionJson['HookHandlers'][$hookHandlerName];
 		}
 

@@ -132,6 +132,8 @@ because of Phabricator reports.
   now static and has to be declared as static function when implemented.
 * Abstract function HookRunnerTestBase::provideHookRunners is
   now static and has to be declared as static function when implemented.
+* ExtensionJsonTestBase::$extensionJsonPath and ::provideHookHandlerNames()
+  now static and have to be declared as static property or function when used.
 * The following LogPager methods are deprecated without replacement:
   getType, getPage, getPattern, getYear, getMonth, getDay, getTagFilter,
   getTagInvert, getAction.
