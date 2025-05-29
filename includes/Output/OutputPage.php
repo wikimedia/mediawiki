@@ -5086,7 +5086,17 @@ class OutputPage extends ContextSource {
 			}
 			$s = str_replace( '$' . ( $n + 1 ), $this->msg( $name, $args )->plain(), $s );
 		}
-		$this->addWikiTextAsInterface( $s );
+
+		$title = $this->getTitle();
+		if ( $title === null ) {
+			throw new RuntimeException( 'No title in ' . __METHOD__ );
+		}
+		$popts = $this->internalParserOptions( true );
+		// We are *mostly* parsing a message. Other code wants to rely on that. (T395196)
+		// It would be cleaner if the wrappers were added outside of wikitext parsing, so we could
+		// really just parse the message, but it seems scary to change that now.
+		$popts->setIsMessage( true );
+		$this->addWikiTextTitleInternal( $s, $title, /*linestart*/ true, $popts );
 	}
 
 	/**
