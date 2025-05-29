@@ -235,36 +235,36 @@ class ApiMainTest extends ApiTestCase {
 	}
 
 	public function testSetupModuleUnknown() {
-		$this->expectApiErrorCode( 'badvalue' );
-
-		$req = new FauxRequest( [ 'action' => 'unknownaction' ] );
-		$api = new ApiMain( $req );
-		$api->execute();
+		$this->expectApiErrorCodeFromCallback( 'badvalue', static function () {
+			$req = new FauxRequest( [ 'action' => 'unknownaction' ] );
+			$api = new ApiMain( $req );
+			$api->execute();
+		} );
 	}
 
 	public function testSetupModuleNoTokenProvided() {
-		$this->expectApiErrorCode( 'missingparam' );
-
-		$req = new FauxRequest( [
-			'action' => 'edit',
-			'title' => 'New page',
-			'text' => 'Some text',
-		] );
-		$api = new ApiMain( $req );
-		$api->execute();
+		$this->expectApiErrorCodeFromCallback( 'missingparam', static function () {
+			$req = new FauxRequest( [
+				'action' => 'edit',
+				'title' => 'New page',
+				'text' => 'Some text',
+			] );
+			$api = new ApiMain( $req );
+			$api->execute();
+		} );
 	}
 
 	public function testSetupModuleInvalidTokenProvided() {
-		$this->expectApiErrorCode( 'badtoken' );
-
-		$req = new FauxRequest( [
-			'action' => 'edit',
-			'title' => 'New page',
-			'text' => 'Some text',
-			'token' => "This isn't a real token!",
-		] );
-		$api = new ApiMain( $req );
-		$api->execute();
+		$this->expectApiErrorCodeFromCallback( 'badtoken', static function () {
+			$req = new FauxRequest( [
+				'action' => 'edit',
+				'title' => 'New page',
+				'text' => 'Some text',
+				'token' => "This isn't a real token!",
+			] );
+			$api = new ApiMain( $req );
+			$api->execute();
+		} );
 	}
 
 	public function testSetupModuleNeedsTokenTrue() {
@@ -395,19 +395,19 @@ class ApiMainTest extends ApiTestCase {
 	}
 
 	public function testCheckMaxLagExceeded() {
-		$this->expectApiErrorCode( 'maxlag' );
-
 		$this->overrideConfigValue( MainConfigNames::ShowHostnames, false );
 
-		$this->doTestCheckMaxLag( 4 );
+		$this->expectApiErrorCodeFromCallback( 'maxlag', function () {
+			$this->doTestCheckMaxLag( 4 );
+		} );
 	}
 
 	public function testCheckMaxLagExceededWithHostNames() {
-		$this->expectApiErrorCode( 'maxlag' );
-
 		$this->overrideConfigValue( MainConfigNames::ShowHostnames, true );
 
-		$this->doTestCheckMaxLag( 4 );
+		$this->expectApiErrorCodeFromCallback( 'maxlag', function () {
+			$this->doTestCheckMaxLag( 4 );
+		} );
 	}
 
 	public static function provideAssert() {
@@ -731,54 +731,55 @@ class ApiMainTest extends ApiTestCase {
 	}
 
 	public function testCheckExecutePermissionsReadProhibited() {
-		$this->expectApiErrorCode( 'readapidenied' );
-
 		$this->setGroupPermissions( '*', 'read', false );
 
-		$main = new ApiMain( new FauxRequest( [ 'action' => 'query', 'meta' => 'siteinfo' ] ) );
-		$main->execute();
+		$this->expectApiErrorCodeFromCallback( 'readapidenied', static function () {
+			$main = new ApiMain( new FauxRequest( [ 'action' => 'query', 'meta' => 'siteinfo' ] ) );
+			$main->execute();
+		} );
 	}
 
 	public function testCheckExecutePermissionWriteDisabled() {
-		$this->expectApiErrorCode( 'noapiwrite' );
-		$main = new ApiMain( new FauxRequest( [
-			'action' => 'edit',
-			'title' => 'Some page',
-			'text' => 'Some text',
-			'token' => '+\\',
-		] ) );
-		$main->execute();
+		$this->expectApiErrorCodeFromCallback( 'noapiwrite', static function () {
+			$main = new ApiMain( new FauxRequest( [
+				'action' => 'edit',
+				'title' => 'Some page',
+				'text' => 'Some text',
+				'token' => '+\\',
+			] ) );
+			$main->execute();
+		} );
 	}
 
 	public function testCheckExecutePermissionPromiseNonWrite() {
-		$this->expectApiErrorCode( 'promised-nonwrite-api' );
-
-		$req = new FauxRequest( [
-			'action' => 'edit',
-			'title' => 'Some page',
-			'text' => 'Some text',
-			'token' => '+\\',
-		] );
-		$req->setHeaders( [ 'Promise-Non-Write-API-Action' => '1' ] );
-		$main = new ApiMain( $req, /* enableWrite = */ true );
-		$main->execute();
+		$this->expectApiErrorCodeFromCallback( 'promised-nonwrite-api', static function () {
+			$req = new FauxRequest( [
+				'action' => 'edit',
+				'title' => 'Some page',
+				'text' => 'Some text',
+				'token' => '+\\',
+			] );
+			$req->setHeaders( [ 'Promise-Non-Write-API-Action' => '1' ] );
+			$main = new ApiMain( $req, /* enableWrite = */ true );
+			$main->execute();
+		} );
 	}
 
 	public function testCheckExecutePermissionHookAbort() {
-		$this->expectApiErrorCode( 'mainpage' );
-
 		$this->setTemporaryHook( 'ApiCheckCanExecute', static function ( $unused1, $unused2, &$message ) {
 			$message = 'mainpage';
 			return false;
 		} );
 
-		$main = new ApiMain( new FauxRequest( [
-			'action' => 'edit',
-			'title' => 'Some page',
-			'text' => 'Some text',
-			'token' => '+\\',
-		] ), /* enableWrite = */ true );
-		$main->execute();
+		$this->expectApiErrorCodeFromCallback( 'mainpage', static function () {
+			$main = new ApiMain( new FauxRequest( [
+				'action' => 'edit',
+				'title' => 'Some page',
+				'text' => 'Some text',
+				'token' => '+\\',
+			] ), /* enableWrite = */ true );
+			$main->execute();
+		} );
 	}
 
 	public function testGetValUnsupportedArray() {
