@@ -43,7 +43,9 @@ use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\TitleFactory;
 use MediaWiki\Title\TitleFormatter;
 use MediaWiki\User\Options\UserOptionsLookup;
+use MediaWiki\Watchlist\WatchedItemStore;
 use MediaWiki\Watchlist\WatchlistManager;
+use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\ReadOnlyMode;
@@ -70,6 +72,7 @@ class DeleteAction extends FormAction {
 	protected const MSG_EDIT_REASONS_SUPPRESS = 'edit-reasons-suppress';
 
 	protected WatchlistManager $watchlistManager;
+	private WatchedItemStore $watchedItemStore;
 	protected LinkRenderer $linkRenderer;
 	private BacklinkCacheFactory $backlinkCacheFactory;
 	protected ReadOnlyMode $readOnlyMode;
@@ -89,6 +92,7 @@ class DeleteAction extends FormAction {
 		parent::__construct( $article, $context );
 		$services = MediaWikiServices::getInstance();
 		$this->watchlistManager = $services->getWatchlistManager();
+		$this->watchedItemStore = $services->getWatchedItemStore();
 		$this->linkRenderer = $services->getLinkRenderer();
 		$this->backlinkCacheFactory = $services->getBacklinkCacheFactory();
 		$this->readOnlyMode = $services->getReadOnlyMode();
@@ -204,7 +208,6 @@ class DeleteAction extends FormAction {
 		$suppress = $request->getCheck( 'wpSuppress' ) &&
 			$context->getAuthority()->isAllowed( 'suppressrevision' );
 
-		$context = $this->getContext();
 		$deletePage = $this->deletePageFactory->newDeletePage(
 			$this->getWikiPage(),
 			$context->getAuthority()
@@ -255,7 +258,14 @@ class DeleteAction extends FormAction {
 			$this->showLogEntries();
 		}
 
-		$this->watchlistManager->setWatch( $request->getCheck( 'wpWatch' ), $context->getAuthority(), $title );
+		$expiry = $this->getRequest()->getText( 'wpWatchlistExpiry' );
+
+		if ( $context->getConfig()->get( MainConfigNames::WatchlistExpiry ) && $expiry !== '' ) {
+			$expiry = ExpiryDef::normalizeExpiry( $expiry, TS_ISO_8601 );
+		} else {
+			$expiry = null;
+		}
+		$this->watchlistManager->setWatch( $request->getCheck( 'wpWatch' ), $context->getAuthority(), $title, $expiry );
 	}
 
 	/**
@@ -509,16 +519,37 @@ class DeleteAction extends FormAction {
 			$fields['Watch'] = [
 				'type' => 'check',
 				'id' => 'wpWatch',
+				'infusable' => true,
 				'tabindex' => 4,
 				'default' => $checkWatch,
 				'label-message' => 'watchthis',
 			];
 		}
+
+		$context = $this->getContext();
+		# Add a dropdown for watchlist expiry times in the form, T261229
+		if ( $context->getConfig()->get( MainConfigNames::WatchlistExpiry ) ) {
+			$expiryOptions = WatchAction::getExpiryOptions(
+				$context,
+				$this->watchedItemStore->getWatchedItem( $user, $title )
+			);
+
+			$fields['WatchlistExpiry'] = [
+					'type' => 'select',
+					'name' => 'wpWatchlistExpiry',
+					'id' => 'wpWatchlistExpiry',
+					'tabindex' => 5,
+					'infusable' => true,
+					'label-message' => 'confirm-watch-label',
+					'options' => $expiryOptions['options'],
+			];
+		}
+
 		if ( $this->isSuppressionAllowed() ) {
 			$fields['Suppress'] = [
 				'type' => 'check',
 				'id' => 'wpSuppress',
-				'tabindex' => 5,
+				'tabindex' => 6,
 				'default' => false,
 				'label-message' => 'revdelete-suppress',
 			];
@@ -527,7 +558,7 @@ class DeleteAction extends FormAction {
 		$fields['ConfirmB'] = [
 			'type' => 'submit',
 			'id' => 'wpConfirmB',
-			'tabindex' => 6,
+			'tabindex' => 7,
 			'buttonlabel' => $this->getFormMsg( self::MSG_SUBMIT )->text(),
 			'flags' => [ 'primary', 'destructive' ],
 		];
