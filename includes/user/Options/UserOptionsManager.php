@@ -626,7 +626,7 @@ class UserOptionsManager extends UserOptionsLookup {
 	private function getStores() {
 		if ( !$this->stores ) {
 			$stores = [
-				self::LOCAL_STORE_KEY => new LocalUserOptionsStore( $this->dbProvider )
+				self::LOCAL_STORE_KEY => new LocalUserOptionsStore( $this->dbProvider, $this->hookRunner )
 			];
 			foreach ( $this->storeProviders as $name => $spec ) {
 				$store = $this->objectFactory->createObject( $spec );

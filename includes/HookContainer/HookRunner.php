@@ -584,6 +584,7 @@ class HookRunner implements
 	\MediaWiki\User\Hook\UserSetEmailHook,
 	\MediaWiki\User\Hook\User__mailPasswordInternalHook,
 	\MediaWiki\User\Options\Hook\LoadUserOptionsHook,
+	\MediaWiki\User\Options\Hook\LocalUserOptionsStoreSaveHook,
 	\MediaWiki\User\Options\Hook\SaveUserOptionsHook,
 	\MediaWiki\User\Options\Hook\ConditionalDefaultOptionsAddConditionHook
 {
@@ -4524,6 +4525,14 @@ class HookRunner implements
 		return $this->container->run(
 			'SaveUserOptions',
 			[ $user, &$modifiedOptions, $originalOptions ]
+		);
+	}
+
+	public function onLocalUserOptionsStoreSave( UserIdentity $user, array $oldOptions, array $newOptions ): void {
+		$this->container->run(
+			'LocalUserOptionsStoreSave',
+			[ $user, $oldOptions, $newOptions ],
+			[ 'abortable' => false ]
 		);
 	}
 

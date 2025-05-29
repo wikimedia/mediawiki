@@ -2,6 +2,7 @@
 
 namespace MediaWiki\User\Options;
 
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Rdbms\DBAccessObjectUtils;
 use Wikimedia\Rdbms\IConnectionProvider;
@@ -9,12 +10,14 @@ use Wikimedia\Rdbms\IDBAccessObject;
 
 class LocalUserOptionsStore implements UserOptionsStore {
 	private IConnectionProvider $dbProvider;
+	private HookRunner $hookRunner;
 
 	/** @var array[] Cached options for each user, by user ID */
-	private $optionsFromDb;
+	private array $optionsFromDb;
 
-	public function __construct( IConnectionProvider $dbProvider ) {
+	public function __construct( IConnectionProvider $dbProvider, HookRunner $hookRunner ) {
 		$this->dbProvider = $dbProvider;
+		$this->hookRunner = $hookRunner;
 	}
 
 	public function fetch(
@@ -123,6 +126,8 @@ class LocalUserOptionsStore implements UserOptionsStore {
 
 		// Update cache
 		$this->optionsFromDb[$user->getId()] = $newOptions;
+
+		$this->hookRunner->onLocalUserOptionsStoreSave( $user, $oldOptions, $newOptions );
 
 		return true;
 	}
