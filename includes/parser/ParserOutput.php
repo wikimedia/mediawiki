@@ -2530,7 +2530,33 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		$this->mJsConfigVars = $jsonData['JsConfigVars'];
 		$this->mOutputHooks = $jsonData['OutputHooks'] ?? [];
 		$this->mWarnings = $jsonData['Warnings'];
-		$this->mSections = $jsonData['Sections'];
+		$this->mFlags = $jsonData['Flags'];
+		if ( isset( $jsonData['TOCData'] ) ) {
+			// Forward-compatibility with new TOCData encoding emitted in
+			// MW >= 1.45
+			$jsonSections = $jsonData['TOCData']['sections'] ?? [];
+			for ( $i = 0; isset( $jsonSections[$i] ); $i++ ) {
+				$s = $jsonSections[$i];
+				$this->mSections[$i] = [
+					'toclevel' => $s['tocLevel'] ?? 0,
+					'level' => (string)( $s['hLevel'] ?? -1 ),
+					'line' => $s['line'] ?? '',
+					'number' => $s['number'] ?? '',
+					'index' => $s['index'] ?? '',
+					'fromtitle' => $s['fromTitle'] ?? false,
+					'byteoffset' => $s['codepointOffset'] ?? null,
+					'anchor' => $s['anchor'] ?? '',
+					'linkAnchor' => $s['linkAnchor'] ?? $s['anchor'] ?? '',
+				];
+			}
+		} elseif (
+			( $jsonData['Sections'] ?? [] ) !== [] ||
+			// distinguish "no sections" from "sections not set"
+			$this->getOutputFlag( 'mw:toc-set' )
+		) {
+			$this->setSections( $jsonData['Sections'] ?? [] );
+			unset( $this->mFlags['mw:toc-set'] );
+		}
 		$this->mProperties = self::detectAndDecodeBinary( $jsonData['Properties'] );
 		$this->mTOCHTML = $jsonData['TOCHTML'] ?? '';
 		$this->mTimestamp = $jsonData['Timestamp'];
@@ -2545,14 +2571,12 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		$this->mExtraScriptSrcs = $jsonData['ExtraScriptSrcs'];
 		$this->mExtraDefaultSrcs = $jsonData['ExtraDefaultSrcs'];
 		$this->mExtraStyleSrcs = $jsonData['ExtraStyleSrcs'];
-		$this->mFlags = $jsonData['Flags'];
 		$this->mSpeculativeRevId = $jsonData['SpeculativeRevId'];
 		$this->speculativePageIdUsed = $jsonData['SpeculativePageIdUsed'];
 		$this->revisionTimestampUsed = $jsonData['RevisionTimestampUsed'];
 		$this->revisionUsedSha1Base36 = $jsonData['RevisionUsedSha1Base36'];
 		$this->mWrapperDivClasses = $jsonData['WrapperDivClasses'];
 		$this->mMaxAdaptiveExpiry = $jsonData['MaxAdaptiveExpiry'] ?? INF;
-		unset( $this->mFlags['mw:toc-set'] );
 	}
 
 	/**
