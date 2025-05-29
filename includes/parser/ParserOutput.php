@@ -58,11 +58,12 @@ use Wikimedia\Parsoid\Core\TOCData;
  * wikitext rendered to create special pages and other UX elements are
  * rendered to `ParserOutput` objects.  In these cases the metadata
  * from the `ParserOutput` is generally discarded and the
- * `ParserOutput` is not cached.  These bits of wikitext are generally
- * rendered with `ParserOptions::setInterfaceMessage(true)` when
- * content is intended to be in the user interface language, but
- * sometimes rendered to the content language and displayed in the
- * content area instead.
+ * `ParserOutput` is not cached.  `ParserOptions::setIsMessage(true)`
+ * is usually used when rendering system messages.
+ * `ParserOptions::setInterfaceMessage(true)` is usually used when
+ * rendering system messages in the user interface language,
+ * and occasionally for the other odd bits of wikitext as well.
+ * These options are not used as consistently as one would hope.
  *
  * A `ParserOutput` object corresponding to a given revision may be a
  * combination of the renderings of multiple "slots":
