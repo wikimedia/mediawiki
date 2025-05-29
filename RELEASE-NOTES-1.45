@@ -136,6 +136,7 @@ because of Phabricator reports.
   getType, getPage, getPattern, getYear, getMonth, getDay, getTagFilter,
   getTagInvert, getAction.
 * The LogEventsListShowLogExtract $page parameter is now an array.
+* Command::whitelistPaths, deprecated in 1.36, has been removed.
 * …
 
 === Deprecations in 1.45 ===

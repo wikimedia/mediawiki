@@ -182,23 +182,6 @@ class Command extends UnboxedCommand implements Stringable {
 	}
 
 	/**
-	 * If called, only the files/directories that are
-	 * whitelisted will be available to the shell command.
-	 *
-	 * limit.sh will always be whitelisted
-	 *
-	 * @deprecated since 1.36 Use allowPath/disallowPath. Hard
-	 *   deprecated in 1.40 and to be removed in 1.41
-	 * @param string[] $paths
-	 * @return $this
-	 */
-	public function whitelistPaths( array $paths ): Command {
-		wfDeprecated( __METHOD__, '1.36' );
-		$this->allowedPaths( array_merge( $this->getAllowedPaths(), $paths ) );
-		return $this;
-	}
-
-	/**
 	 * Executes command. Afterwards, getExitCode() and getOutput() can be used to access execution
 	 * results.
 	 *
