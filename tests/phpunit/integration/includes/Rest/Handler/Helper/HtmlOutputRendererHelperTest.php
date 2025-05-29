@@ -10,7 +10,6 @@ use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Edit\ParsoidRenderID;
 use MediaWiki\Edit\SimpleParsoidOutputStash;
 use MediaWiki\Hook\ParserLogLinterDataHook;
-use MediaWiki\Logger\Spi as LoggerSpi;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
@@ -42,7 +41,6 @@ use MediaWiki\Utils\MWTimestamp;
 use MediaWikiIntegrationTestCase;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\MockObject\Rule\InvocationOrder;
-use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use Wikimedia\Bcp47Code\Bcp47Code;
 use Wikimedia\Bcp47Code\Bcp47CodeValue;
@@ -84,17 +82,6 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 
 	private function exactlyOrAny( ?int $count ): InvocationOrder {
 		return $count === null ? $this->any() : $this->exactly( $count );
-	}
-
-	/**
-	 * @param LoggerInterface|null $logger
-	 *
-	 * @return LoggerSpi
-	 */
-	private function getLoggerSpi( $logger = null ) {
-		$spi = $this->createNoOpMock( LoggerSpi::class, [ 'getLogger' ] );
-		$spi->method( 'getLogger' )->willReturn( $logger ?? new NullLogger() );
-		return $spi;
 	}
 
 	private function setFakeTime( string $time, ?BagOStuff $cache = null ): void {
@@ -907,7 +894,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 			$services->getRevisionRenderer(),
 			StatsFactory::newNull(),
 			$services->getChronologyProtector(),
-			$this->getLoggerSpi(),
+			new NullLogger(),
 			$services->getWikiPageFactory(),
 			$services->getTitleFormatter(),
 			$services->getTracer(),
