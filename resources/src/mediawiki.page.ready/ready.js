@@ -248,7 +248,13 @@ function isSearchInput( element ) {
  */
 function loadSearchModule( moduleName ) {
 	function requestSearchModule() {
-		mw.loader.using( moduleName );
+		mw.loader.using( moduleName ).then( () => {
+			const { init } = require( moduleName );
+			// If it exports an init function execute that immediately.
+			if ( init ) {
+				init();
+			}
+		} );
 	}
 
 	// Load the module once a search input is focussed.

@@ -10,7 +10,13 @@ function addRoutes( router ) {
 	clearAddressBar( router, searchRoute );
 	router.addRoute( searchRoute, () => {
 		const searchModuleName = config.searchModule;
-		mw.loader.using( searchModuleName );
+		mw.loader.using( searchModuleName ).then( () => {
+			const { init } = require( searchModuleName );
+			// If it exports an init function execute that immediately.
+			if ( init ) {
+				init();
+			}
+		} );
 	} );
 }
 
