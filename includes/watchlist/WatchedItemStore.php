@@ -988,24 +988,29 @@ class WatchedItemStore implements WatchedItemStoreInterface {
 	public function addWatch( UserIdentity $user, $target, ?string $expiry = null ) {
 		$this->addWatchBatchForUser( $user, [ $target ], $expiry );
 
-		if ( $this->expiryEnabled && !$expiry ) {
+		if ( $this->expiryEnabled ) {
 			// When re-watching a page with a null $expiry, any existing expiry is left unchanged.
 			// However we must re-fetch the preexisting expiry or else the cached WatchedItem will
 			// incorrectly have a null expiry. Note that loadWatchedItem() does the caching.
 			// See T259379
-			$this->loadWatchedItem( $user, $target );
-		} else {
-			// Create a new WatchedItem and add it to the process cache.
-			// In this case we don't need to re-fetch the expiry.
+			if ( !$expiry ) {
+				$this->loadWatchedItem( $user, $target );
+				return;
+			}
+
 			$expiry = ExpiryDef::normalizeUsingMaxExpiry( $expiry, $this->maxExpiryDuration, TS_ISO_8601 );
-			$item = new WatchedItem(
-				$user,
-				$target,
-				null,
-				$expiry
-			);
-			$this->cache( $item );
+		} else {
+			$expiry = null;
 		}
+
+		// Create a new WatchedItem and add it to the process cache.
+		$item = new WatchedItem(
+			$user,
+			$target,
+			null,
+			$expiry
+		);
+		$this->cache( $item );
 	}
 
 	/**

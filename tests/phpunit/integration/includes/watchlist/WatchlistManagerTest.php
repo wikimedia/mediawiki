@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\User\UserIdentityValue;
@@ -34,6 +35,7 @@ class WatchlistManagerTest extends MediaWikiIntegrationTestCase {
 		);
 		$title = new PageIdentityValue( 100, NS_MAIN, 'Page_db_Key_goesHere', PageIdentityValue::LOCAL );
 
+		$this->overrideConfigValue( MainConfigNames::WatchlistExpiry, true );
 		$services = $this->getServiceContainer();
 		$watchedItemStore = $services->getWatchedItemStore();
 		$watchlistManager = $services->getWatchlistManager();
@@ -66,7 +68,7 @@ class WatchlistManagerTest extends MediaWikiIntegrationTestCase {
 		$watchlistManager->addWatch( $authority, $title, '2 weeks' );
 		$this->assertTrue( $watchlistManager->isWatched( $authority, $title ), 'The article has been watched' );
 		$this->assertTrue(
-			$watchlistManager->isTempWatched( $authority, $title ), 'The article has been tempoarily watched'
+			$watchlistManager->isTempWatched( $authority, $title ), 'The article has been temporarily watched'
 		);
 
 		$watchlistManager->removeWatch( $authority, $title );
@@ -102,6 +104,7 @@ class WatchlistManagerTest extends MediaWikiIntegrationTestCase {
 		$authority = $this->mockUserAuthorityWithPermissions( $userIdentity, [] );
 		$title = new PageIdentityValue( 100, NS_MAIN, 'Page_db_Key_goesHere', PageIdentityValue::LOCAL );
 
+		$this->overrideConfigValue( MainConfigNames::WatchlistExpiry, true );
 		$services = $this->getServiceContainer();
 		$watchedItemStore = $services->getWatchedItemStore();
 		$watchlistManager = $services->getWatchlistManager();
