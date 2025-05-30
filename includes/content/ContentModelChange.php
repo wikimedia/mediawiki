@@ -168,21 +168,6 @@ class ContentModelChange {
 	}
 
 	/**
-	 * Check user can edit and editcontentmodel before and after
-	 *
-	 * @deprecated since 1.36. Use ::probablyCanChange or ::authorizeChange instead.
-	 * @return array Errors in legacy error array format
-	 */
-	public function checkPermissions() {
-		wfDeprecated( __METHOD__, '1.36' );
-		$status = $this->authorizeInternal(
-			function ( string $action, PageIdentity $target, PermissionStatus $status ) {
-				return $this->performer->definitelyCan( $action, $target, $status );
-			} );
-		return $status->toLegacyErrorArray();
-	}
-
-	/**
 	 * Specify the tags the user wants to add, and check permissions
 	 *
 	 * @param string[] $tags

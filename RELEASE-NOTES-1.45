@@ -140,6 +140,15 @@ because of Phabricator reports.
 
 === Breaking changes in 1.45 ===
 
+* PermissionStatus::toLegacyErrorArray() has been removed.
+* Methods that returned errors in the legacy array format have been removed:
+  - ContentModelChange::checkPermissions
+  - DifferenceEngine::getPermissionErrors
+  - RecentChange::doMarkPatrolled
+  - UploadBase::verifyPermissions
+  - UploadBase::verifyTitlePermissions
+* The PermissionsError::$errors public property has been removed.
+* The PermissionErrorAudit hook has been removed.
 * SessionProvider::setLogger(), setConfig(), setManager(), setHookContainer()
   methods deprecated in 1.37, have been removed.
 * SqlBagOStuff::expireAll() and ::deleteAll(), deprecated in 1.41 have been

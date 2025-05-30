@@ -644,43 +644,6 @@ abstract class UploadBase {
 	}
 
 	/**
-	 * Alias for verifyTitlePermissions. The function was originally
-	 * 'verifyPermissions', but that suggests it's checking the user, when it's
-	 * really checking the title + user combination.
-	 *
-	 * @deprecated since 1.44 Use authorizeUpload() instead
-	 * @param Authority $performer to verify the permissions against
-	 * @return array|bool An array as returned by getPermissionErrors or true
-	 *   in case the user has proper permissions.
-	 */
-	public function verifyPermissions( Authority $performer ) {
-		wfDeprecated( __METHOD__, '1.44' );
-		return $this->verifyTitlePermissions( $performer );
-	}
-
-	/**
-	 * Check whether the user can upload the image. This method checks against the current title.
-	 * Use verifyUpload() or validateName() first to check that the title is valid.
-	 *
-	 * @deprecated since 1.44 Use authorizeUpload() instead
-	 * @param Authority $performer to verify the permissions against
-	 * @return array|bool An array as returned by getPermissionErrors or true
-	 *   in case the user has proper permissions.
-	 */
-	public function verifyTitlePermissions( Authority $performer ) {
-		wfDeprecated( __METHOD__, '1.44' );
-
-		if ( $this->getTitle() === null ) {
-			return true;
-		}
-		$status = $this->authorizeUpload( $performer );
-		if ( !$status->isGood() ) {
-			return $status->toLegacyErrorArray();
-		}
-		return true;
-	}
-
-	/**
 	 * Check whether the user can upload the image. This method checks against the current title.
 	 * Use verifyUpload() or validateName() first to check that the title is valid.
 	 */

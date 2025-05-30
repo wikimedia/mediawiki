@@ -91,19 +91,6 @@ class PermissionStatus extends StatusValue {
 	}
 
 	/**
-	 * Returns this permission status in legacy error array format.
-	 *
-	 * @deprecated since 1.43
-	 * @see PermissionManager::getPermissionErrors()
-	 *
-	 * @return array[]
-	 */
-	public function toLegacyErrorArray(): array {
-		wfDeprecated( __METHOD__, '1.43' );
-		return $this->getStatusArray();
-	}
-
-	/**
 	 * Call this to indicate that the user is over the rate limit for some action.
 	 * @since 1.41
 	 * @internal

@@ -2338,7 +2338,6 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Permissions\\GroupPermissionsLookup' => __DIR__ . '/includes/Permissions/GroupPermissionsLookup.php',
 	'MediaWiki\\Permissions\\Hook\\GetUserPermissionsErrorsExpensiveHook' => __DIR__ . '/includes/Permissions/Hook/GetUserPermissionsErrorsExpensiveHook.php',
 	'MediaWiki\\Permissions\\Hook\\GetUserPermissionsErrorsHook' => __DIR__ . '/includes/Permissions/Hook/GetUserPermissionsErrorsHook.php',
-	'MediaWiki\\Permissions\\Hook\\PermissionErrorAuditHook' => __DIR__ . '/includes/Permissions/Hook/PermissionErrorAuditHook.php',
 	'MediaWiki\\Permissions\\Hook\\PermissionStatusAuditHook' => __DIR__ . '/includes/Permissions/Hook/PermissionStatusAuditHook.php',
 	'MediaWiki\\Permissions\\Hook\\TitleQuickPermissionsHook' => __DIR__ . '/includes/Permissions/Hook/TitleQuickPermissionsHook.php',
 	'MediaWiki\\Permissions\\Hook\\TitleReadWhitelistHook' => __DIR__ . '/includes/Permissions/Hook/TitleReadWhitelistHook.php',

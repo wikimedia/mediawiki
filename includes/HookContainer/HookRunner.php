@@ -493,7 +493,6 @@ class HookRunner implements
 	\MediaWiki\Page\Hook\ShowMissingArticleHook,
 	\MediaWiki\Page\Hook\WikiPageDeletionUpdatesHook,
 	\MediaWiki\Page\Hook\WikiPageFactoryHook,
-	\MediaWiki\Permissions\Hook\PermissionErrorAuditHook,
 	\MediaWiki\Permissions\Hook\PermissionStatusAuditHook,
 	\MediaWiki\Permissions\Hook\GetUserPermissionsErrorsExpensiveHook,
 	\MediaWiki\Permissions\Hook\GetUserPermissionsErrorsHook,
@@ -2026,20 +2025,6 @@ class HookRunner implements
 		return $this->container->run(
 			'GetUserBlock',
 			[ $user, $ip, &$block ]
-		);
-	}
-
-	public function onPermissionErrorAudit(
-		LinkTarget $title,
-		UserIdentity $user,
-		string $action,
-		string $rigor,
-		array $errors
-	): void {
-		$this->container->run(
-			'PermissionErrorAudit',
-			[ $title, $user, $action, $rigor, $errors ],
-			[ 'abortable' => false ]
 		);
 	}
 

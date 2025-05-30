@@ -535,13 +535,6 @@ class PermissionManager {
 		// Clone the status to prevent users of this hook from modifying the original
 		$this->hookRunner->onPermissionStatusAudit( $page, $user, $action, $rigor, clone $status );
 
-		if ( !$status->isGood() ) {
-			// Deprecated method used only for a deprecated hook
-			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
-			$errors = @$status->toLegacyErrorArray();
-			$this->hookRunner->onPermissionErrorAudit( $page, $user, $action, $rigor, $errors );
-		}
-
 		return $status;
 	}
 

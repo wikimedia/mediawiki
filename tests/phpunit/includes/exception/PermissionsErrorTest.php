@@ -40,14 +40,6 @@ class PermissionsErrorTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $permission, $e->permission );
 
 		$this->assertStatusMessagesExactly( $expected, $et->status );
-
-		$this->expectDeprecationAndContinue( '/PermissionsError::\\$errors/' );
-		$this->expectDeprecationAndContinue( '/toLegacyErrorArray/' );
-		$this->assertArrayEquals( $expected->toLegacyErrorArray(), $e->errors );
-
-		// Test the deprecated public property setter
-		$e->errors = $e->errors;
-		$this->assertStatusMessagesExactly( $expected, $et->status );
 	}
 
 	public static function provideInvalidConstruction() {

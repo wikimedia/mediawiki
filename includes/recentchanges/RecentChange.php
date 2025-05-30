@@ -604,29 +604,6 @@ class RecentChange implements Taggable {
 	 * NOTE: Can also return 'rcpatroldisabled', 'hookaborted' and
 	 * 'markedaspatrollederror-noautopatrol' as errors
 	 *
-	 * @deprecated since 1.43 Use markPatrolled() instead
-	 *
-	 * @param Authority $performer User performing the action
-	 * @param bool|null $auto Unused. Passing true logs a warning.
-	 * @param string|string[]|null $tags Change tags to add to the patrol log entry
-	 *   ($user should be able to add the specified tags before this is called)
-	 * @return array[] Array of permissions errors, see PermissionManager::getPermissionErrors()
-	 */
-	public function doMarkPatrolled( Authority $performer, $auto = null, $tags = null ) {
-		wfDeprecated( __METHOD__, '1.43' );
-		if ( $auto ) {
-			wfWarn( __METHOD__ . ' with $auto = true' );
-			return [];
-		}
-		return $this->markPatrolled( $performer, $tags )->toLegacyErrorArray();
-	}
-
-	/**
-	 * Mark this RecentChange as patrolled
-	 *
-	 * NOTE: Can also return 'rcpatroldisabled', 'hookaborted' and
-	 * 'markedaspatrollederror-noautopatrol' as errors
-	 *
 	 * @param Authority $performer User performing the action
 	 * @param string|string[]|null $tags Change tags to add to the patrol log entry
 	 *   ($user should be able to add the specified tags before this is called)
