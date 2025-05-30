@@ -498,7 +498,7 @@ RLPAGEMODULES = {$pageModulesJson};
 						} elseif ( $context->getRaw() ) {
 							/** Fandom change - start **/
 							$config = $mainContext->getResourceLoader()->getConfig();
-							$useDefer = $config->has('ResourceLoaderUseDeferScripts') ? $config->get('ResourceLoaderUseDeferScripts') : false;
+							$useDefer = $config->get( 'ResourceLoaderUseDeferScripts' );
 							// This request is asking for the module to be delivered standalone,
 							// (aka "raw") without communicating to any mw.loader client.
 							// For:
