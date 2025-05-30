@@ -2035,6 +2035,9 @@ class OutputPage extends ContextSource {
 
 	/**
 	 * Get/set the ParserOptions object to use for wikitext parsing
+	 * @param bool $interface Use interface language (instead of content language) while parsing
+	 *   language sensitive magic words like GRAMMAR and PLURAL.  This also disables
+	 *   LanguageConverter.
 	 */
 	private function internalParserOptions( bool $interface ): ParserOptions {
 		if ( !$this->getUser()->isSafeToLoad() ) {
@@ -2184,7 +2187,8 @@ class OutputPage extends ContextSource {
 		if ( $title === null ) {
 			throw new RuntimeException( 'No title in ' . __METHOD__ );
 		}
-		$this->addWikiTextTitleInternal( $text, $title, $linestart, true );
+		$this->addWikiTextTitleInternal( $text, $title, $linestart,
+			$this->internalParserOptions( true ) );
 	}
 
 	/**
@@ -2223,7 +2227,7 @@ class OutputPage extends ContextSource {
 			$text,
 			$title,
 			true,
-			true,
+			$this->internalParserOptions( true ),
 			$wrapperClass
 		);
 	}
@@ -2248,7 +2252,8 @@ class OutputPage extends ContextSource {
 		if ( !$title ) {
 			throw new RuntimeException( 'No title in ' . __METHOD__ );
 		}
-		$this->addWikiTextTitleInternal( $text, $title, $linestart, false );
+		$this->addWikiTextTitleInternal( $text, $title, $linestart,
+			$this->internalParserOptions( false ) );
 	}
 
 	/**
@@ -2257,19 +2262,18 @@ class OutputPage extends ContextSource {
 	 *
 	 * @param string $text Wikitext
 	 * @param PageReference $title
-	 * @param bool $linestart Is this the start of a line?@param
-	 * @param bool $interface Whether it is an interface message
-	 *   (for example disables conversion)
+	 * @param bool $linestart Is this the start of a line?
+	 * @param ParserOptions $popts
 	 * @param string|null $wrapperClass if not null, wraps the output in
 	 *   a `<div class="$wrapperClass">`
 	 */
 	private function addWikiTextTitleInternal(
-		string $text, PageReference $title, bool $linestart, bool $interface,
+		string $text, PageReference $title, bool $linestart, ParserOptions $popts,
 		?string $wrapperClass = null
 	) {
 		[ $parserOutput, $parserOptions ] = $this->parseInternal(
-			$text, $title, $linestart, $interface, true, /*allowTOC*/
-			$wrapperClass, false/*postprocess*/
+			$text, $title, $linestart, $popts,
+			/*allowTOC*/ true, $wrapperClass, /*postprocess*/ false
 		);
 
 		$this->addParserOutput( $parserOutput, $parserOptions, [
@@ -2675,8 +2679,8 @@ class OutputPage extends ContextSource {
 		}
 		[ $po, ] = $this->parseInternal(
 			$text, $title, $linestart,
-			/*interface*/false, /*allowTOC*/false, /*wrapperDivClass*/null,
-			/*postprocess*/true
+			$this->internalParserOptions( false ),
+			/*allowTOC*/ false, /*wrapperDivClass*/ null, /*postprocess*/ true
 		);
 		return $po->getContentHolderText();
 	}
@@ -2699,8 +2703,8 @@ class OutputPage extends ContextSource {
 		}
 		[ $po, ] = $this->parseInternal(
 			$text, $title, $linestart,
-			/*interface*/true, false/*allowTOC*/, /*wrapperDivClass*/null,
-			/*postprocess*/true
+			$this->internalParserOptions( true ),
+			/*allowTOC*/ false, /*wrapperDivClass*/ null, /*postprocess*/ true
 		);
 		return $po->getContentHolderText();
 	}
@@ -2730,9 +2734,7 @@ class OutputPage extends ContextSource {
 	 * @param string $text
 	 * @param PageReference $title The title to use
 	 * @param bool $linestart Is this the start of a line?
-	 * @param bool $interface Use interface language (instead of content language) while parsing
-	 *   language sensitive magic words like GRAMMAR and PLURAL.  This also disables
-	 *   LanguageConverter.
+	 * @param ParserOptions $popts
 	 * @param bool $allowTOC Whether to allow a TOC to be generated
 	 * @param ?string $wrapperClass Wrapper class to use, or `null` for
 	 *   unwrapped output.
@@ -2740,11 +2742,9 @@ class OutputPage extends ContextSource {
 	 */
 	private function parseInternal(
 		string $text, PageReference $title,
-		bool $linestart, bool $interface, bool $allowTOC, ?string $wrapperClass,
+		bool $linestart, ParserOptions $popts, bool $allowTOC, ?string $wrapperClass,
 		bool $postprocess
 	) {
-		$popts = $this->internalParserOptions( $interface );
-
 		$parserOutput = MediaWikiServices::getInstance()->getParserFactory()->getInstance()
 			->parse(
 				$text, $title, $popts,
