@@ -3377,40 +3377,8 @@ class OutputPage extends ContextSource {
 	public function showPermissionStatus( PermissionStatus $status, $action = null ) {
 		Assert::precondition( !$status->isGood(), 'Status must have errors' );
 
-		$this->showPermissionInternal(
-			array_map( fn ( $msg ) => $this->msg( $msg ), $status->getMessages() ),
-			$action
-		);
-	}
+		$messages = $status->getMessages();
 
-	/**
-	 * Output a standard permission error page
-	 *
-	 * @deprecated since 1.43. Use ::showPermissionStatus instead
-	 * @param array $errors Error message keys or [key, param...] arrays
-	 * @param string|null $action Action that was denied or null if unknown
-	 */
-	public function showPermissionsErrorPage( array $errors, $action = null ) {
-		wfDeprecated( __METHOD__, '1.43' );
-		foreach ( $errors as $key => $error ) {
-			$errors[$key] = (array)$error;
-		}
-
-		$this->showPermissionInternal(
-			// @phan-suppress-next-line PhanParamTooFewUnpack Elements of $errors already annotated as non-empty
-			array_map( fn ( $err ) => $this->msg( ...$err ), $errors ),
-			$action
-		);
-	}
-
-	/**
-	 * Helper for showPermissionStatus() and deprecated showPermissionsErrorMessage(),
-	 * should be inlined when the deprecated method is removed.
-	 *
-	 * @param Message[] $messages
-	 * @param string|null $action
-	 */
-	public function showPermissionInternal( array $messages, $action = null ) {
 		$services = MediaWikiServices::getInstance();
 		$groupPermissionsLookup = $services->getGroupPermissionsLookup();
 
@@ -3483,7 +3451,7 @@ class OutputPage extends ContextSource {
 		} else {
 			$this->prepareErrorPage();
 			$this->setPageTitleMsg( $this->msg( 'permissionserrors' ) );
-			$this->addWikiTextAsInterface( $this->formatPermissionInternal( $messages, $action ) );
+			$this->addWikiTextAsInterface( $this->formatPermissionStatus( $status, $action ) );
 		}
 	}
 
@@ -3511,31 +3479,16 @@ class OutputPage extends ContextSource {
 	 * @param string|null $action that was denied or null if unknown
 	 * @return string
 	 * @return-taint tainted
+	 *
+	 * @suppress SecurityCheck-DoubleEscaped Working with plain text, not HTML
 	 */
 	public function formatPermissionStatus( PermissionStatus $status, ?string $action = null ): string {
 		if ( $status->isGood() ) {
 			return '';
 		}
 
-		return $this->formatPermissionInternal(
-			array_map( fn ( $msg ) => $this->msg( $msg ), $status->getMessages() ),
-			$action
-		);
-	}
+		$messages = array_map( fn ( $msg ) => $this->msg( $msg ), $status->getMessages() );
 
-	/**
-	 * Helper for formatPermissionStatus() that was meant to be inlined when formatPermissionsErrorMessage()
-	 * was removed, but is also being called from showPermissionInternal() too.
-	 *
-	 * @param Message[] $messages
-	 * @param-taint $messages none
-	 * @param string|null $action
-	 * @return string
-	 * @return-taint tainted
-	 *
-	 * @suppress SecurityCheck-DoubleEscaped Working with plain text, not HTML
-	 */
-	private function formatPermissionInternal( array $messages, $action = null ) {
 		if ( $action == null ) {
 			$text = $this->msg( 'permissionserrorstext', count( $messages ) )->plain() . "\n\n";
 		} else {

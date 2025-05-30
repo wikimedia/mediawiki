@@ -150,6 +150,7 @@ because of Phabricator reports.
 * The PermissionsError::$errors public property has been removed.
 * The PermissionErrorAudit hook has been removed.
 * OutputPage::showFatalError() has been removed.
+* OutputPage::showPermissionsErrorPage() has been removed.
 * SessionProvider::setLogger(), setConfig(), setManager(), setHookContainer()
   methods deprecated in 1.37, have been removed.
 * SqlBagOStuff::expireAll() and ::deleteAll(), deprecated in 1.41 have been
