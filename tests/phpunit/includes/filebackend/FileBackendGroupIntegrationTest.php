@@ -37,7 +37,6 @@ class FileBackendGroupIntegrationTest extends MediaWikiIntegrationTestCase {
 		$serviceMembers = [
 			'readOnlyMode' => 'ReadOnlyMode',
 			'srvCache' => 'LocalServerObjectCache',
-			'wanCache' => 'MainWANObjectCache',
 			'mimeAnalyzer' => 'MimeAnalyzer',
 			'lmgFactory' => 'LockManagerGroupFactory',
 			'tmpFileFactory' => 'TempFSFileFactory',

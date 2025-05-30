@@ -39,13 +39,6 @@ class FileBackendGroupTest extends MediaWikiUnitTestCase {
 		return $this->srvCache;
 	}
 
-	private function getWANObjectCache(): WANObjectCache {
-		if ( !$this->wanCache ) {
-			$this->wanCache = $this->createNoOpMock( WANObjectCache::class );
-		}
-		return $this->wanCache;
-	}
-
 	/**
 	 * @param string $domain Expected argument that LockManagerGroupFactory::getLockManagerGroup
 	 *   will receive
@@ -86,7 +79,7 @@ class FileBackendGroupTest extends MediaWikiUnitTestCase {
 				FileBackendGroup::CONSTRUCTOR_OPTIONS, $options, self::getDefaultOptions() ),
 			$this->getDummyReadOnlyMode( $options['readOnlyMode'] ?? false ),
 			$this->getLocalServerCache(),
-			$this->getWANObjectCache(),
+			WANObjectCache::newEmpty(),
 			$options['mimeAnalyzer'] ?? $this->createNoOpMock( MimeAnalyzer::class ),
 			$options['lmgFactory'] ?? $this->getLockManagerGroupFactory(),
 			$options['tmpFileFactory'] ?? $this->getTempFSFileFactory(),
