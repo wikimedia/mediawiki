@@ -17,6 +17,11 @@ use MediaWiki\User\User;
  */
 class PerformanceBudgetTest extends MediaWikiIntegrationTestCase {
 	/**
+	 * @var array
+	 */
+	private $dependencyOf = [];
+
+	/**
 	 * Calculates the size of a module
 	 *
 	 * @param array $moduleNames
@@ -161,14 +166,80 @@ class PerformanceBudgetTest extends MediaWikiIntegrationTestCase {
 				$undefinedModules[] = $moduleName;
 			}
 		}
+
+		// Check undefined modules for known exceptions.
+		// This allows known offenders to fail but prevents against new offenders.
+		// This block can be removed when https://phabricator.wikimedia.org/T395698 is resolved.
+		$unexpectedModules = [];
+		foreach ( $undefinedModules as $moduleName ) {
+			$loadedByModules = $this->dependencyOf[ $moduleName ];
+			$unknownDependencies = array_filter(
+				$loadedByModules,
+				static function ( $moduleName ) use ( $undefinedModules ) {
+					return !in_array(
+						$moduleName,
+						[
+							// https://phabricator.wikimedia.org/T395698
+							'wikibase.client.data-bridge.init'
+						]
+					) && !in_array( $moduleName, $undefinedModules );
+				}
+			);
+			$isUnknown = count( $loadedByModules ) === 0 || count( $unknownDependencies ) > 0;
+			if ( $isUnknown ) {
+				$unexpectedModules[] = $moduleName;
+			}
+		}
+		$dependencyGraph = $this->dependencyOf;
+		$undefinedModuleMessage = implode( "\n",
+			array_map(
+				static function ( $moduleName ) use ( $dependencyGraph ) {
+					$loadedBy = implode( ",", $dependencyGraph[ $moduleName ] );
+					return "$moduleName (loaded by $loadedBy )";
+				},
+				$unexpectedModules
+			)
+		);
 		$debugInformation = "⚠️ PLEASE DO NOT SKIP THIS TEST ⚠️\n\n" .
 			"If this is blocking a merge this might signal a potential performance regression with the desktop site.\n\n" .
 			"All extensions/skins adding code to page load for an article must monitor their ResourceLoader modules.\n\n" .
 			"Read https://www.mediawiki.org/wiki/Performance_budgeting for guidance on how to suppress this error message.\n\n" .
 			"The following modules have not declared budgets:\n\n" .
-			implode( "\n", $undefinedModules ) .
+			$undefinedModuleMessage .
 			"\n";
-		$this->assertCount( 0, $undefinedModules, $debugInformation );
+		$this->assertCount( 0, $unexpectedModules, $debugInformation );
+	}
+
+	/**
+	 * Expand a list of modules based on what modules they depend on.
+	 *
+	 * @param array $modules
+	 * @param array $ignore a list of module names to not expand due to known issues.
+	 * @return array
+	 */
+	private function expandWithModuleDependencies( $modules, $ignore = [] ) {
+		$expandedModules = [];
+		$resourceLoader = $this->getServiceContainer()->getResourceLoader();
+		foreach ( $modules as $moduleName ) {
+			// Do not expand the module if it has a known issue!
+			if ( in_array( $moduleName, $ignore ) ) {
+				continue;
+			}
+			$expandedModules[] = $moduleName;
+			$module = $resourceLoader->getModule( $moduleName );
+			$dependencies = $module->getDependencies();
+			$dependenciesExpanded = $this->expandWithModuleDependencies( $dependencies, $ignore );
+			foreach ( $dependenciesExpanded as $dependencyName ) {
+				if ( !isset( $this->dependencyOf[ $dependencyName ] ) ) {
+					$this->dependencyOf[ $dependencyName ] = [];
+				}
+				$this->dependencyOf[ $dependencyName ][] = $moduleName;
+				if ( !in_array( $dependencyName, $expandedModules ) ) {
+					$expandedModules[] = $dependencyName;
+				}
+			}
+		}
+		return $expandedModules;
 	}
 
 	/**
@@ -184,7 +255,12 @@ class PerformanceBudgetTest extends MediaWikiIntegrationTestCase {
 		$skinName = 'vector-2022';
 		$skin = $this->prepareSkin( $skinName );
 		$moduleStyles = $skin->getOutput()->getModuleStyles();
-		$moduleScripts = $skin->getOutput()->getModules();
+		$moduleScripts = $this->expandWithModuleDependencies(
+			$skin->getOutput()->getModules(),
+			// This list should be empty. If exceptions are needed they should have
+			// an associated Phabricator ticket.
+			[]
+		);
 		$this->testForUnexpectedModules( $moduleStyles );
 		$this->testForUnexpectedModules( $moduleScripts );
 		$this->testModuleSizes( $skinName, $moduleStyles );
