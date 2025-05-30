@@ -44,6 +44,7 @@
 	"help": "Pomoč",
 	"help-mediawiki": "Pomoč za MediaWiki",
 	"search": "Iskanje",
+	"search-close": "Zatvoriti okno poiska",
 	"search-ignored-headings": " #<!-- ostavite tutoj redok točno takym, kaky jest tutčas --> <pre>\n# Zaglavja, ktore budut ignorovane pri iskanju.\n# Vvedene izměny budut priměnjene poslě indeksovanja stranice s zaglavjem.\n# Vy možete forsovati ponovno indeksovanje stranice, ako sdělajete pravku bez nijednoj izměny.\n# Sintaksa jest slědujuča:\n# * Vse od znaka \"#\" do konca redka jest komentar.\n# * Vsaky neprazdny redok jest točno zaglavje do ignorovanja, vključno s velikostju bukv i vsim.\nReferencije\nVněšnje linky\nGledite takože\n #</pre> <!-- ostavite tutoj redok točno takym, kaky jest tutčas -->",
 	"searchbutton": "Iskati",
 	"searchsuggest-containing-html": "Iskati stranice sodrživajuče <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>",

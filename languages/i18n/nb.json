@@ -1462,6 +1462,7 @@
 	"rcfilters-liveupdates-button-title-off": "Vis nye endringer når de skjer",
 	"rcfilters-watchlist-markseen-button": "Merk alle endringer som sett",
 	"rcfilters-watchlist-edit-watchlist-button": "Rediger listen over sider du overvåker",
+	"rcfilters-watchlist-edit-watchlist-preferences-button": "Innstillinger",
 	"rcfilters-watchlist-showupdated": "Endringer til sider du ikke har besøkt siden endringene ble gjort vises med <strong>fet</strong> skrift.",
 	"rcfilters-filter-showlinkedfrom-label": "Vis endringer på sider som lenkes fra",
 	"rcfilters-filter-showlinkedfrom-option-label": "<strong>Sider som lenkes fra</strong> den valgte siden",

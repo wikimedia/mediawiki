@@ -63,6 +63,7 @@
 	"apihelp-block-param-hidename": "차단 기록에서 사용자 이름을 숨깁니다. (<code>hideuser</code> 권한 필요)",
 	"apihelp-block-param-allowusertalk": "사용자가 자신의 토론 문서를 편집할 수 있도록 허용합니다 (<var>[[mw:Special:MyLanguage/Manual:$wgBlockAllowsUTEdit|$wgBlockAllowsUTEdit]]</var>에 따라 다름)",
 	"apihelp-block-param-reblock": "사용자가 이미 차단된 경우, 기존 차단 설정을 바꿉니다.",
+	"apihelp-block-param-newblock": "사용자가 이미 차단된 경우에도 다른 차단을 추가합니다.",
 	"apihelp-block-param-watchuser": "해당 사용자 또는 IP 주소의 사용자 문서 및 토론 문서를 주시합니다.",
 	"apihelp-block-param-watchlistexpiry": "만료 기한 타임스탬프를 주시하세요. 현재 만료 기한이 수정하지 않으려면 이 파라미터 전체를 무시하세요.",
 	"apihelp-block-param-tags": "차단 기록의 항목에 적용할 태그를 변경합니다.",

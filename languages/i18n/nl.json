@@ -3739,6 +3739,7 @@
 	"limitreport-ppvisitednodes": "Aantal nodes bekeken tijdens de voorverwerking",
 	"limitreport-postexpandincludesize": "Inclusiegrootte na uitbreiden",
 	"limitreport-postexpandincludesize-value": "$1/$2 {{PLURAL:$2|byte|bytes}}",
+	"limitreport-revisionsize": "Versiegrootte",
 	"limitreport-revisionsize-value": "$1/$2 {{PLURAL:$2|byte|bytes}}",
 	"limitreport-templateargumentsize": "Grootte sjabloonparameters",
 	"limitreport-templateargumentsize-value": "$1 / $2 {{PLURAL:$2|byte|bytes}}",

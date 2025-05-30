@@ -88,6 +88,7 @@
 	"help": "Kömək",
 	"help-mediawiki": "MediaWiki haqqında kömək",
 	"search": "Axtar",
+	"search-close": "Axtarış pəncərəsini bağla",
 	"search-ignored-headings": "#<!-- bu xəttə əl vurmayın --> <pre>\n# Axtarışa görə başlıqlara məhəl qoyulmayacaq.\n# Bununla bağlı dəyişiklik başlıqlı səhifənin indeksli olduğu anda qüvvəyə minir.\n# Boş redaktə edərək səhifəni yenidən indeksləşdirə bilərsiniz.\n# Sintaksis belədir:\n# *Hər şey \"#\" simvolundan xəttin sonuna qədər bir şərhdir.\n# *Hər bir boş olmayan sətir, işin və hər şeyin dəqiq başlığıdır.\nİstinadlar\nXarici keçidlər\nHəmçinin bax\n#</pre> <!-- bu xəttə əl vurmayın -->",
 	"searchbutton": "Axtar",
 	"searchsuggest-containing-html": "<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> ehtiva edən səhifələri axtar",

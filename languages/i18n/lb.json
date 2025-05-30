@@ -64,6 +64,7 @@
 	"help": "Hëllef",
 	"help-mediawiki": "Hëllef fir MediaWiki",
 	"search": "Sichen",
+	"search-close": "Sichdialog zoumaachen",
 	"search-ignored-headings": " #<!-- dës Zeil net änneren --> <pre>\n# Iwwerschrëften, déi vun der Sich ignoréiert ginn.\n# Dës Ännerunge gi wirksam, soubal déi Säit mat der Iwwerschrëft indexéiert gouf.\n# Dir kënnt déi Säitenindexéierung erzwéngen, andeem dir eng Nullännerung maacht.\n# Syntax:\n# * Alles, wat no enger Raut („#“) bis zum Ënn vun der Zeil steet, ass eng Bemierkung.\n# * All net-eidel Zeil ass de geneeën Titel fir z'ignoréieren.\nReferenzen\nWeblinken\nKuckt och\n #</pre> <!-- dës Zeil net änneren -->",
 	"searchbutton": "Volltext-Sich",
 	"go": "Lass",
