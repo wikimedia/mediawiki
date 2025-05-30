@@ -167,6 +167,12 @@ class ParsoidLocalizationTest extends MediaWikiIntegrationTestCase {
 				[],
 				'<p><span typeof="mw:I18n" data-mw-i18n=\'{"/":{"lang":"x-user","key":"testpagename","params":[]}}\'>Test page</span></p>',
 				'{{PAGENAME}} should resolve'
+			],
+			[
+				'testblank',
+				[],
+				'<p><span typeof="mw:I18n" data-mw-i18n=\'{"/":{"lang":"x-user","key":"testblank","params":[]}}\'></span></p>',
+				'blank message should resolve'
 			]
 		];
 	}
@@ -202,6 +208,12 @@ class ParsoidLocalizationTest extends MediaWikiIntegrationTestCase {
 				[ new MessageValue( 'testparam', [ new ScalarParam( ParamType::TEXT, new MessageValue( 'testparam', [ new ScalarParam( ParamType::TEXT, 'hello' ) ] ) ) ] ) ],
 				'<a typeof="mw:LocalizedAttrs" title="english english english hello" data-mw-i18n=\'{"title":{"lang":"x-user","key":"testparam","params":{"0":{"key":"testparam","params":{"0":{"text":{"key":"testparam","params":{"0":{"text":"hello","_type_":"Wikimedia\\\\Message\\\\ScalarParam"},"_type_":"array"},"_type_":"Wikimedia\\\\Message\\\\MessageValue"},"_type_":"Wikimedia\\\\Message\\\\ScalarParam"},"_type_":"array"},"_type_":"Wikimedia\\\\Message\\\\MessageValue"},"_type_":"array"}}}\'></a>',
 				'Attr with nested message'
+			],
+			[
+				'testblank',
+				[],
+				'<a typeof="mw:LocalizedAttrs" title="" data-mw-i18n=\'{"title":{"lang":"x-user","key":"testblank","params":[]}}\'></a>',
+				'blank attribute should resolve'
 			]
 		];
 	}

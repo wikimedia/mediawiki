@@ -103,7 +103,9 @@ class ParsoidLocalization extends ContentDOMTransformStage {
 			$i18n = DOMDataUtils::getDataNodeI18n( $node );
 			if ( $i18n !== null ) {
 				$frag = $this->localizeI18n( $i18n, $lang, $doc, $node->tagName === 'span', $pageRef );
-				$node->appendChild( $frag );
+				if ( $frag->hasChildNodes() ) {
+					$node->appendChild( $frag );
+				}
 			} else {
 				$this->logger->warning( 'element with mw:I18n typeof does not contain i18n data', [
 					'pass' => 'Localization',
