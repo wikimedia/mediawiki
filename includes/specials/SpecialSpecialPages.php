@@ -155,13 +155,14 @@ class SpecialSpecialPages extends UnlistedSpecialPage {
 			Html::openElement( 'tbody' )
 		);
 		// Format contents
+		$language = $this->getLanguage();
 		foreach ( $specialPages as $desc => [ $title, $restricted, $cached, $group ] ) {
-			$indexAttr = [ 'data-search-index-0' => strtolower( $title->getText() ) ];
+			$indexAttr = [ 'data-search-index-0' => $language->lc( $title->getText() ) ];
 			$c = 1;
 			foreach ( $aliases as $alias => $target ) {
 				/** @var Title $title */
-				if ( $target == $title->getText() && strtolower( $alias ) !== strtolower( $title->getText() ) ) {
-					$indexAttr['data-search-index-' . $c ] = strtolower( $alias );
+				if ( $target == $title->getText() && $language->lc( $alias ) !== $language->lc( $title->getText() ) ) {
+					$indexAttr['data-search-index-' . $c ] = $language->lc( $alias );
 					++$c;
 				}
 			}
