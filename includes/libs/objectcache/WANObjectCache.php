@@ -2310,17 +2310,18 @@ class WANObjectCache implements
 	 *
 	 * The $callback argument expects a function that returns the key for an entity ID via
 	 * makeKey()/makeGlobalKey(). There should be no network nor filesystem I/O used in the
-	 * callback. The entity ID/key mapping must be 1:1 or an exception will be thrown. Use
-	 * the hash256() method for any hashing. The callback takes the following arguments:
+	 * callback. The entity ID/key mapping must be 1:1 or an exception will be thrown.
+	 *
+	 * The callback takes the following arguments:
 	 *   - $id: An entity ID
 	 *   - $cache: This WANObjectCache instance
 	 *
 	 * Example usage for the default keyspace:
 	 * @code
 	 *     $keyedIds = $cache->makeMultiKeys(
-	 *         $modules,
-	 *         function ( $module, $cache ) {
-	 *             return $cache->makeKey( 'example-module', $module );
+	 *         $urls,
+	 *         function ( $url, $cache ) {
+	 *             return $cache->makeKey( 'example-url', $url );
 	 *         }
 	 *     );
 	 * @endcode
@@ -2337,19 +2338,8 @@ class WANObjectCache implements
 	 *     );
 	 * @endcode
 	 *
-	 * Example usage with hashing:
-	 * @code
-	 *     $keyedIds = $cache->makeMultiKeys(
-	 *         $urls,
-	 *         function ( $url, $cache ) {
-	 *             return $cache->makeKey( 'example-url', $cache->hash256( $url ) );
-	 *         }
-	 *     );
-	 * @endcode
-	 *
 	 * @see WANObjectCache::makeKey()
 	 * @see WANObjectCache::makeGlobalKey()
-	 * @see WANObjectCache::hash256()
 	 *
 	 * @param string[]|int[] $ids List of entity IDs
 	 * @param callable $keyCallback Function returning makeKey()/makeGlobalKey() on the input ID
@@ -2359,10 +2349,6 @@ class WANObjectCache implements
 	final public function makeMultiKeys( array $ids, $keyCallback ) {
 		$idByKey = [];
 		foreach ( $ids as $id ) {
-			// Discourage triggering of automatic makeKey() hashing in some backends
-			if ( strlen( $id ) > 64 ) {
-				$this->logger->warning( __METHOD__ . ": long ID '$id'; use hash256()" );
-			}
 			$key = $keyCallback( $id, $this );
 			// Edge case: ignore key collisions due to duplicate $ids like "42" and 42
 			if ( !isset( $idByKey[$key] ) ) {
