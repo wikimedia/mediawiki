@@ -1769,7 +1769,8 @@ supported.
   - ContentHandler::getContentText(), deprecated since 1.37
 * Passing a Message argument to OutputPage::setPageTitle(), which was
   deprecated in 1.41, now emits warnings.
-* OutputPage::showFatalError() is deprecated, use showErrorPage() instead.
+* OutputPage::showFatalError() is deprecated, use showErrorPage() with
+  'internalerror' as title instead, or throw MediaWiki\Exception\FatalError.
 * OutputPage::showPermissionsErrorPage() is deprecated,
   use showPermissionStatus() instead.
 * OutputPage::formatPermissionsErrorMessage(), deprecated since 1.36,

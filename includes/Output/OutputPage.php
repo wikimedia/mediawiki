@@ -3594,21 +3594,6 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Output an error page
-	 *
-	 * @deprecated since 1.43 Use showErrorPage() instead
-	 * @param string $message Error to output. Must be escaped for HTML.
-	 */
-	public function showFatalError( $message ) {
-		wfDeprecated( __METHOD__, '1.43' );
-
-		$this->prepareErrorPage();
-		$this->setPageTitleMsg( $this->msg( 'internalerror' ) );
-
-		$this->addHTML( $message );
-	}
-
-	/**
 	 * Add a "return to" link pointing to a specified title
 	 *
 	 * @param LinkTarget $title Title to link
