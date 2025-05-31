@@ -1138,6 +1138,7 @@ class SkinTemplate extends Skin {
 					$content_navigation['views']['view']['text'] = $this->getSkinNavOverrideableLabel(
 						'view-view'
 					);
+					$content_navigation['views']['view']['icon'] = 'eye';
 					// signal to hide this from simple content_actions
 					$content_navigation['views']['view']['redundant'] = true;
 				}
@@ -1152,6 +1153,7 @@ class SkinTemplate extends Skin {
 						'text' => $this->getSkinNavOverrideableLabel(
 							'view-foreign', $page->getWikiDisplayName()
 						),
+						'icon' => 'eye',
 						'href' => $page->getSourceURL(),
 						'primary' => false,
 					];
@@ -1188,6 +1190,7 @@ class SkinTemplate extends Skin {
 							? 'selected'
 							: null
 						) . $isTalkClass,
+						'icon' => 'edit',
 						'text' => $this->getSkinNavOverrideableLabel(
 							"view-$msgKey"
 						),
@@ -1205,6 +1208,7 @@ class SkinTemplate extends Skin {
 							'text' => $this->getSkinNavOverrideableLabel(
 								"action-addsection"
 							),
+							'icon' => 'speechBubbleAdd',
 							'href' => $title->getLocalURL( 'action=edit&section=new' )
 						];
 					}
@@ -1216,6 +1220,7 @@ class SkinTemplate extends Skin {
 						'text' => $this->getSkinNavOverrideableLabel(
 							"action-viewsource"
 						),
+						'icon' => 'editLock',
 						'href' => $title->getLocalURL( $this->editUrlOptions() ),
 						'primary' => true, // don't collapse this in vector
 					];
@@ -1229,6 +1234,7 @@ class SkinTemplate extends Skin {
 						'text' => $this->getSkinNavOverrideableLabel(
 							'view-history'
 						),
+						'icon' => 'history',
 						'href' => $title->getLocalURL( 'action=history' ),
 					];
 
