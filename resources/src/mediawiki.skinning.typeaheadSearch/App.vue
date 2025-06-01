@@ -162,12 +162,16 @@ module.exports = exports = defineComponent( {
 		showEmptySearchRecommendations: {
 			type: Boolean,
 			default: false
+		},
+		dialogBreakpoint: {
+			type: Number,
+			// max-width-breakpoint-mobile
+			default: 639
 		}
 	},
 	setup( props ) {
-		// max-width-breakpoint-mobile
 		const mobileMedia = window.matchMedia ?
-			window.matchMedia( '(max-width: 639px)' ) : {
+			window.matchMedia( `(max-width: ${ props.dialogBreakpoint }px)` ) : {
 				matches: false
 			};
 		const { clearAddressBar } = require( 'mediawiki.page.ready' );
