@@ -815,10 +815,16 @@ abstract class MediaHandler {
 	/**
 	 * Short description. Shown on Special:Search results.
 	 *
+	 * Until MediaWiki 1.45, the return value was poorly documented, and some subclasses returned HTML
+	 * while others returned plain text. When overriding this method, you should return safe HTML,
+	 * e.g. using `Message::escaped()`. When calling this method, you should treat it as returning
+	 * unsafe HTML, and call `Sanitizer::removeSomeTags()` on the result.
+	 *
 	 * @stable to override
 	 *
 	 * @param File $file
-	 * @return string HTML
+	 * @return string HTML (possibly unsafe, call `Sanitizer::removeSomeTags()` on the result)
+	 * @return-taint tainted
 	 */
 	public function getShortDesc( $file ) {
 		return self::getGeneralShortDesc( $file );
@@ -827,10 +833,16 @@ abstract class MediaHandler {
 	/**
 	 * Long description. Shown under image on image description page surrounded by ().
 	 *
+	 * Until MediaWiki 1.45, the return value was poorly documented, and some subclasses returned HTML
+	 * while others returned plain text. When overriding this method, you should return safe HTML,
+	 * e.g. using `Message::escaped()`. When calling this method, you should treat it as returning
+	 * unsafe HTML, and call `Sanitizer::removeSomeTags()` on the result.
+	 *
 	 * @stable to override
 	 *
 	 * @param File $file
-	 * @return string HTML
+	 * @return string HTML (possibly unsafe, call `Sanitizer::removeSomeTags()` on the result)
+	 * @return-taint tainted
 	 */
 	public function getLongDesc( $file ) {
 		return self::getGeneralLongDesc( $file );
@@ -845,7 +857,7 @@ abstract class MediaHandler {
 	public static function getGeneralShortDesc( $file ) {
 		global $wgLang;
 
-		return htmlspecialchars( $wgLang->formatSize( $file->getSize() ) );
+		return htmlspecialchars( $wgLang->formatSize( $file->getSize() ), ENT_QUOTES );
 	}
 
 	/**
@@ -855,8 +867,10 @@ abstract class MediaHandler {
 	 * @return string HTML
 	 */
 	public static function getGeneralLongDesc( $file ) {
-		return wfMessage( 'file-info' )->sizeParams( $file->getSize() )
-			->params( '<span class="mime-type">' . $file->getMimeType() . '</span>' )->parse();
+		return wfMessage( 'file-info' )
+			->sizeParams( $file->getSize() )
+			->params( '<span class="mime-type">' . $file->getMimeType() . '</span>' )
+			->parse();
 	}
 
 	/**

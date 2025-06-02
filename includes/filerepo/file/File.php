@@ -2465,7 +2465,14 @@ abstract class File implements MediaHandlerState {
 	}
 
 	/**
-	 * @return string HTML
+	 * Long description. Shown under image on image description page surrounded by ().
+	 *
+	 * Until MediaWiki 1.45, the return value was poorly documented, and some handlers returned HTML
+	 * while others returned plain text. When calling this method, you should treat it as returning
+	 * unsafe HTML, and call `Sanitizer::removeSomeTags()` on the result.
+	 *
+	 * @return string HTML (possibly unsafe, call `Sanitizer::removeSomeTags()` on the result)
+	 * @return-taint tainted
 	 */
 	public function getLongDesc() {
 		$handler = $this->getHandler();
@@ -2477,7 +2484,14 @@ abstract class File implements MediaHandlerState {
 	}
 
 	/**
-	 * @return string HTML
+	 * Short description. Shown on Special:Search results.
+	 *
+	 * Until MediaWiki 1.45, the return value was poorly documented, and some handlers returned HTML
+	 * while others returned plain text. When calling this method, you should treat it as returning
+	 * unsafe HTML, and call `Sanitizer::removeSomeTags()` on the result.
+	 *
+	 * @return string HTML (possibly unsafe, call `Sanitizer::removeSomeTags()` on the result)
+	 * @return-taint tainted
 	 */
 	public function getShortDesc() {
 		$handler = $this->getHandler();

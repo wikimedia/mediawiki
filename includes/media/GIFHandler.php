@@ -185,7 +185,7 @@ class GIFHandler extends BitmapHandler {
 		}
 
 		if ( $metadata['duration'] ) {
-			$info[] = $wgLang->formatTimePeriod( $metadata['duration'] );
+			$info[] = htmlspecialchars( $wgLang->formatTimePeriod( $metadata['duration'] ), ENT_QUOTES );
 		}
 
 		return $wgLang->commaList( $info );
