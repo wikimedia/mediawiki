@@ -1,0 +1,21 @@
+{
+	"@metadata": {
+		"authors": [
+			"Cenzontle25",
+			"ROJOVIVO"
+		]
+	},
+	"cdx-chip-input-chip-added": "Chip $1 ts'o'ok u ts'áabal.",
+	"cdx-chip-input-chip-removed": "Se quitó la pieza $1.",
+	"cdx-input-chip-aria-description": "pets' enter uti'al a editar wáa tselik wáa luk'ik",
+	"cdx-dialog-close-button-label": "K'aal",
+	"cdx-label-optional-flag": "(chen wa a k'áat)",
+	"cdx-message-dismiss-button-label": "K'aal",
+	"cdx-popover-close-button-label": "K'aal",
+	"cdx-search-input-search-button-label": "Kaxan",
+	"cdx-table-select-all-label": "Yéey tuláakal le filas",
+	"cdx-table-select-row-label": "Yéey u tsol $1 ti' $2",
+	"cdx-table-sort-caption": "$1 (u cabeceras le columna yéetel botones ku ordenables).",
+	"cdx-typeahead-search-search-results-label": "U núukil ba'ax kaxanta'abij",
+	"cdx-table-pager-button-first-page": "yáax linki abas kaambal"
+}

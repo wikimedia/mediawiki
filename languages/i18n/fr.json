@@ -261,6 +261,7 @@
 	"help": "Aide",
 	"help-mediawiki": "Aide concernant MediaWiki",
 	"search": "Rechercher",
+	"search-close": "Fermer la recherche",
 	"search-ignored-headings": " #<!-- ne pas modifier cette ligne --><pre>\n# Titres des sections qui seront ignorés par la recherche.\n# Les changements effectués ici prennent effet dès lors que la page avec le titre est indexée.\n# Vous pouvez forcer la réindexation de la page en effectuant une modification vide.\n# La syntaxe est la suivante :\n#   * Tout ce qui suit un « # » jusqu’à la fin de la ligne est un commentaire.\n#   * Toute ligne non vide est le titre exact à ignorer, casse comprise.\nRéférences\nLiens externes\nVoir aussi\n #</pre><!-- ne pas modifier cette ligne -->",
 	"searchbutton": "Rechercher",
 	"searchsuggest-containing-html": "Rechercher les pages contenant <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>",

@@ -769,7 +769,7 @@
 	"double-px-category": "Şəklin ölçü vahidində əlavə px olan səhifələr",
 	"double-px-category-desc": "Səhifədə ölçüsündə <code>100pxpx</code> kimi əlavə <code>px</code> vahidi olan şəkil var.",
 	"converter-manual-rule-error": "Dilin manual çevrilməsi qaydasında xəta aşkarlandı",
-	"undo-success": "Bu dəyişiklik geri qaytarıla bilər. \nLütfən aşağıdakı müqayisəni yoxlayın və bu dəyişikliyi həqiqətən də etmək istədiyinizə əmin olduqdan sonra \"Səhifəni qeyd et\" düyməsini basaraq dəyişikliyi geri qaytarın.",
+	"undo-success": "Bu dəyişiklik geri qaytarıla bilər. \nLütfən aşağıdakı müqayisəni yoxlayın və bu dəyişikliyi həqiqətən də etmək istədiyinizə əmin olduqdan sonra \"Dəyişiklikləri yayımla\" düyməsinə basaraq dəyişikliyi geri qaytarın.",
 	"undo-failure": "Dəyişikliklərin toqquşması nəticəsində geriyə qaytarma əməliyyatı uğursuz oldu.",
 	"undo-main-slot-only": "Redaktəni geri qaytarmaq mümkün olmadı, çünki o, əsas yuvadan kənar məzmunu əhatə edir.",
 	"undo-norev": "Düzəlişlər geri qaytarıla bilinmir, çünki onlar ya mövcud deyil, ya da silinib.",

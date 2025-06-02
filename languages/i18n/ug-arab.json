@@ -1036,6 +1036,8 @@
 	"recentchangeslinked-summary": "ئۇلىنىپ كىرگەن (ئۇلىنىپ چىققان) مۇناسىۋەتلىك بەتنى كۆرۈش ئۈچۈن بەت ئىسمىنى كىرگۈزۈڭ. (ئەگەر تۈرگە ئايرىلغان ئەزاسىنى كۆرمەكچى بولسىڭىز، {{ns:category}}:تۈرگە ئايرىلغان ئىسىم)  نى كىرگۈزۈڭ. [[Special:Watchlist|كۆزىتىش تىزىملىكىڭىز]] دىكى بەتلەرنىڭ ئۆزگىرىشى <strong>توم</strong> كۆرسىتىلىدۇ.",
 	"recentchangeslinked-page": "بەت نامى:",
 	"recentchangeslinked-to": "بېرىلگەن بەتكە ئۇلانغان ئۆزگەرتىشنى كۆرسەت",
+	"recentchanges-page-added-to-category": "سەھىپىگە [[:$1]] قوشۇلدى",
+	"recentchanges-page-removed-from-category": "سەھىپىدىن [[:$1]] چىقىرىۋېتىلدى",
 	"upload": "ھۆججەت يۈكلەش",
 	"uploadbtn": "ھۆججەت يۈكلەش",
 	"reuploaddesc": "يۈكلەشتىن ۋاز كېچىپ، يۈكلەش كۆزنىكىگە قايت",

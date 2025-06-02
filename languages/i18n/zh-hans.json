@@ -1616,7 +1616,7 @@
 	"rcfilters-liveupdates-button-title-off": "实时显示新更改",
 	"rcfilters-watchlist-markseen-button": "标记所有更改为已查看",
 	"rcfilters-watchlist-edit-watchlist-button": "编辑您的监视页面列表",
-	"rcfilters-watchlist-edit-watchlist-preferences-button": "参数设置",
+	"rcfilters-watchlist-edit-watchlist-preferences-button": "偏好设定",
 	"rcfilters-watchlist-showupdated": "更改发生后您未访问过的页面的更改以<strong>粗体</strong>显示，并带有实心标记。",
 	"rcfilters-filter-showlinkedfrom-label": "显示链接自该页面的页面上的更改",
 	"rcfilters-filter-showlinkedfrom-option-label": "<strong>链接自</strong>选定页面的页面",
