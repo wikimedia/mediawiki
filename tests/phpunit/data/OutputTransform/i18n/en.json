@@ -3,5 +3,6 @@
 	"testblock": "english <div>stuff</div>",
 	"testlink": "english [[link]]",
 	"testpagename": "{{PAGENAME}}",
-	"testblank": ""
+	"testblank": "",
+	"testdisabled": "-"
 }

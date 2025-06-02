@@ -130,7 +130,11 @@ class ParsoidLocalization extends ContentDOMTransformStage {
 		} else {
 			$msg = $msg->inLanguage( new Bcp47CodeValue( $i18n->lang ) );
 		}
-		$txt = $inline ? $msg->parse() : $msg->parseAsBlock();
+		if ( $msg->isDisabled() ) {
+			$txt = '';
+		} else {
+			$txt = $inline ? $msg->parse() : $msg->parseAsBlock();
+		}
 
 		return ContentUtils::createAndLoadDocumentFragment( $doc, $txt );
 	}
