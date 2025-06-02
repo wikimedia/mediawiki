@@ -1,3 +1,12 @@
+# 2.0.0 / 2025-06-02
+
+## Code
+- tests: Update tests in docs package (Anne Tomasevich)
+- tests: Update tests for composables (Anne Tomasevich)
+
+## Documentation
+- docs: Update linting command descriptions (Volker E.)
+
 # 2.0.0-rc.2 / 2025-05-21
 
 Codex 2.0 RC2 is a minor update to RC1 that includes a new design token
@@ -27,7 +36,6 @@ as well as a few other minor changes.
 - Fix bug where clicking on the svg of an action button closes the Accordion instead of firing the action button click event (Daphne Smit)
 - Update TAHS to work with empty search recommendations through new showEmptyQueryResults prop (bernardwang)
 - docs, ProgressBar: Fix `aria-label` controlsConfig prop name (Volker E.)
-
 
 ## Documentation
 - docs: Sync VitePress's `isDark` ref with color mode switcher (Anne Tomasevich)
