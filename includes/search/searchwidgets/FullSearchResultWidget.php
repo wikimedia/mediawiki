@@ -10,6 +10,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Search\Entity\SearchResultThumbnail;
 use MediaWiki\Search\SearchResultThumbnailProvider;
 use MediaWiki\Specials\SpecialSearch;
@@ -319,9 +320,14 @@ class FullSearchResultWidget implements SearchResultWidget {
 			return [ $html, null, $this->generateThumbnailHtml( $result ) ];
 		}
 
+		// File::getShortDesc() is documented to return HTML, but many handlers used to incorrectly
+		// return plain text (T395834), so sanitize it in case the same bug is present in extensions.
+		$unsafeShortDesc = $img->getShortDesc();
+		$shortDesc = Sanitizer::removeSomeTags( $unsafeShortDesc );
+
 		return [
 			$html,
-			$this->specialPage->msg( 'parentheses' )->rawParams( $img->getShortDesc() )->escaped(),
+			$this->specialPage->msg( 'parentheses' )->rawParams( $shortDesc )->escaped(),
 			$this->generateThumbnailHtml( $result, $thumbnail )
 		];
 	}
