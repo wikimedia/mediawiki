@@ -1270,7 +1270,7 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 			[
 				LogLevel::WARNING,
 				'Session "{session}": the session store entry is for an anonymous user, ' .
-					'but the session metadata indicates a non-anonynmous user',
+					'but the session metadata indicates a non-anonymous user',
 			],
 		], $logger->getBuffer() );
 		$logger->clearBuffer();
