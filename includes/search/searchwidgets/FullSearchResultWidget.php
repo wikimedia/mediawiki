@@ -9,6 +9,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
+use Sanitizer;
 use SearchResult;
 use SpecialSearch;
 use Title;
@@ -275,8 +276,13 @@ class FullSearchResultWidget implements SearchResultWidget {
 		if ( $img ) {
 			$thumb = $img->transform( [ 'width' => 120, 'height' => 120 ] );
 			if ( $thumb ) {
+				// File::getShortDesc() is documented to return HTML, but many handlers used to incorrectly
+				// return plain text (T395834), so sanitize it in case the same bug is present in extensions.
+				$unsafeShortDesc = $img->getShortDesc();
+				$shortDesc = Sanitizer::removeSomeTags( $unsafeShortDesc );
+
 				$descHtml = $this->specialPage->msg( 'parentheses' )
-					->rawParams( $img->getShortDesc() )
+					->rawParams( $shortDesc )
 					->escaped();
 				$thumbHtml = $thumb->toHtml( [ 'desc-link' => true ] );
 			}
