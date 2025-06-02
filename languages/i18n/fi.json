@@ -3891,7 +3891,7 @@
 	"mw-widgets-mediasearch-noresults": "Tuloksia ei löytynyt.",
 	"mw-widgets-mediasearch-results-aria-label": "Mediahaun tulokset",
 	"mw-widgets-table-row-delete": "Poista rivi",
-	"mw-widgets-titleinput-description-new-page": "sivua ei ole olemassa vielä",
+	"mw-widgets-titleinput-description-new-page": "sivua ei ole vielä olemassa",
 	"mw-widgets-titleinput-description-redirect": "ohjaus kohteeseen $1",
 	"mw-widgets-categoryselector-add-category-placeholder": "Lisää luokka...",
 	"mw-widgets-usersmultiselect-placeholder": "Lisää useampia...",

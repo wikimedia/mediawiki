@@ -2314,7 +2314,7 @@
 	"notvisiblerev": "Başqa istifadıçinin son dəyişikliyi silinib",
 	"watchlist-details": "Sizin izləmə siyahınızda {{PLURAL:$1|$1 səhifə}} var (müzakirə səhifələri ilə birlikdə).",
 	"watchlist-expiry-days-left": "{{PLURAL:$1|$1 gün}} qalıb",
-	"watchlist-expiring-days-full-text": "İzləmə siyahınızda {{PLURAL:$1|1 gün|$1 gün}} qalıb",
+	"watchlist-expiring-days-full-text": "{{PLURAL:$1|$1 gün}} sonra izləmə siyahınızdan çıxarılacaq",
 	"watchlist-expiry-hours-left": "Bir neçə saat qalıb",
 	"watchlist-expiring-hours-full-text": "İzləmə siyahınızda bir neçə saat qalıb",
 	"wlheader-enotif": "E-poçt bildirişi aktivdir.",

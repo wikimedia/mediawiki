@@ -3731,7 +3731,7 @@
 	"revdelete-uname-unhid": "kullanıcı adı gösterildi",
 	"revdelete-restricted": "hizmetliler için uygulanmış kısıtlamalar",
 	"revdelete-unrestricted": "hizmetliler için kaldırılmış kısıtlamalar",
-	"logentry-block-block": "$1, {{GENDER:$4|$3}} kullanıcısını $5 {{GENDER:$2|engelledi}} $6",
+	"logentry-block-block": "$1, {{GENDER:$4|$3}} adlı kullanıcıyı $5 {{GENDER:$2|engelledi}} $6",
 	"logentry-block-unblock": "$1 adlı kullanıcı {{GENDER:$4|$3}} adlı kullanıcının {{GENDER:$2|engelini kaldırdı}}",
 	"logentry-block-reblock": "$1 adlı kullanıcı {{GENDER:$4|$3}} adlı kullanıcının engel ayarlarını {{GENDER:$2|değiştirdi}}ː $5 $6",
 	"logentry-partialblock-block-page": "$2 {{PLURAL:$1|sayfası}}",

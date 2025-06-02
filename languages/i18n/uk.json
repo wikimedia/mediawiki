@@ -2617,7 +2617,7 @@
 	"sp-contributions-uploads": "завантаження",
 	"sp-contributions-logs": "журнали",
 	"sp-contributions-talk": "обговорення",
-	"sp-contributions-userrights": "управління правами {{GENDER:$1|користувача|користувачки}}",
+	"sp-contributions-userrights": "керування правами {{GENDER:$1|користувача|користувачки}}",
 	"sp-contributions-blocked-notice": "{{GENDER:$1|Цей користувач наразі заблокований|Ця користувачка наразі заблокована}}. Нижче наведено останній запис у журналі блокувань:",
 	"sp-contributions-blocked-notice-partial": "Цей користувач наразі частково заблокований. Нижче наведено останній запис у журналі блокувань:",
 	"sp-contributions-blocked-notice-anon": "Доступ з цієї IP-адреси зараз заблокований.\nДалі наведено останній запис з журналу блокувань:",

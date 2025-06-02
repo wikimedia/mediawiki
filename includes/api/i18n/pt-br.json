@@ -343,6 +343,7 @@
 	"apihelp-opensearch-param-namespace": "Espaços nominais a pesquisar. Ignorados se <var>$1search</var> começar com um prefixo de espaço nominal válido.",
 	"apihelp-opensearch-param-suggest": "Não mais usado.",
 	"apihelp-opensearch-param-redirects": "Como lidar com os redirecionamentos:\n;return: Retornar o redirecionamento em si.\n;resolve: Retornar a página de destino. Pode retornar menos de $1 resultados.\nPor razões históricas, o padrão é \"return\" para $1format=json e \"resolve\" para outros formatos.",
+	"apihelp-opensearch-paramvalue-redirects-return": "Retorna o próprio redirecionamento.",
 	"apihelp-opensearch-param-format": "O formato da saída.",
 	"apihelp-opensearch-param-warningsaserror": "Se os avisos forem gerados com <kbd>format=json</kbd>, devolva um erro de API em vez de ignorá-los.",
 	"apihelp-opensearch-example-te": "Encontra páginas começando com <kbd>Te</kbd>.",

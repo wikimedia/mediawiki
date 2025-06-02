@@ -110,7 +110,7 @@
 	"config-using-server": "サーバー名「<nowiki>$1</nowiki>」を使用しています。",
 	"config-using-uri": "サーバー URL「<nowiki>$1$2</nowiki>」を使用しています。",
 	"config-uploads-not-safe": "<strong>警告:</strong> アップロードの既定ディレクトリ <code>$1</code> に、任意のスクリプト実行に関する脆弱性があります。\nMediaWiki はアップロードされたファイルのセキュリティ上の脅威を確認しますが、アップロードを有効化する前に、[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security#Upload_security このセキュリティ上の脆弱性を解決する]ことを強く推奨します。",
-	"config-no-cli-uploads-check": "<strong>警告:</strong> アップロード用のデフォルトディレクトリ (<code>$1</code>) が、CLIでのインストール中に任意のスクリプト実行の脆弱性チェックを受けていません。",
+	"config-no-cli-uploads-check": "<strong>警告:</strong> アップロードの既定ディレクトリ (<code>$1</code>) は、CLI インストール時に任意のスクリプト実行に対する脆弱性の検査を受けていません。",
 	"config-suhosin-max-value-length": "Suhosin がインストールされており、GET パラメーターの <code>length</code> を $1 バイトに制限しています。(訳注：\nMediaWiki の ResourceLoader コンポーネントはこの制限を回避しますが、パフォーマンスは低下します。)\n可能な限り、 <code>suhosin.get.max_value_length</code> を $2 以上に設定します。これを無効に変更するか、<code>php.ini</code> で $3 に増加してください。",
 	"config-using-32bit": "<strong>警告:</strong>システムが32ビットで動作しているようです。 これは[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:32-bit 非推奨]です。",
 	"config-db-type": "データベースの種類:",
