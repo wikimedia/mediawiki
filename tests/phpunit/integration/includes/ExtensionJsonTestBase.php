@@ -135,14 +135,14 @@ abstract class ExtensionJsonTestBase extends MediaWikiIntegrationTestCase {
 		}
 	}
 
-	protected static function provideHookNamesForUsesHookHandler(): iterable {
+	public static function provideHookNamesForUsesHookHandler(): iterable {
 		if ( !static::$requireHookHandlers ) {
 			self::markTestSkipped( 'self::$requireHookHandlers is not enabled' );
 		}
 		yield from self::provideHookNames();
 	}
 
-	protected static function provideHookNames(): iterable {
+	public static function provideHookNames(): iterable {
 		foreach ( self::getExtensionJson()['Hooks'] ?? [] as $hookName => $handler ) {
 			yield $hookName => [ $hookName ];
 		}
