@@ -36,6 +36,7 @@ class SpecialDeletePage extends SpecialRedirectWithAction {
 		SearchEngineFactory $searchEngineFactory
 	) {
 		parent::__construct( 'DeletePage', 'delete', 'deletepage', $searchEngineFactory );
+		$this->mRestriction = 'delete';
 	}
 
 	// Messages, for grep:
