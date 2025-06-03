@@ -63,7 +63,7 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 	}
 
 	/**
-	 * Internal helper to avoid code deuplication across two methods
+	 * Internal helper to avoid code deduplication across two methods
 	 *
 	 * @param PageConfig $pageConfig
 	 * @param ParserOptions $options
@@ -109,7 +109,8 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 			// 3. Additionally, Parsoid's callers will have to set targetLanguage in ParserOptions
 			//    to mimic the logic in Parser.php (missing right now).
 			$langCode = $pageConfig->getPageLanguageBcp47();
-			if ( $options->getRenderReason() === 'page-view' ) { // TEMPORARY HACK
+			// TEMPORARY HACK
+			if ( $options->getRenderReason() === 'page_view' || $options->getRenderReason() === 'page_view_old' ) {
 				$langFactory = MediaWikiServices::getInstance()->getLanguageFactory();
 				$lang = $langFactory->getLanguage( $langCode );
 				$langConv = $this->languageConverterFactory->getLanguageConverter( $lang );

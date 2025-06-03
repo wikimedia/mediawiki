@@ -2052,7 +2052,7 @@ class Article implements Page {
 			$parserOptions = $this->getParserOptions();
 		} else {
 			$parserOptions = $this->mPage->makeParserOptions( $user );
-			$parserOptions->setRenderReason( 'page-view' );
+			$parserOptions->setRenderReason( $this->getOldID() ? 'page_view_oldid' : 'page_view' );
 		}
 
 		return $this->mPage->getParserOutput( $parserOptions, $oldid );
@@ -2064,7 +2064,7 @@ class Article implements Page {
 	 */
 	public function getParserOptions() {
 		$parserOptions = $this->mPage->makeParserOptions( $this->getContext() );
-		$parserOptions->setRenderReason( 'page-view' );
+		$parserOptions->setRenderReason( $this->getOldID() ? 'page_view_oldid' : 'page_view' );
 		return $parserOptions;
 	}
 

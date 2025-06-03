@@ -193,7 +193,7 @@ class ArticleTest extends \MediaWikiIntegrationTestCase {
 			->with(
 				$this->anything(),
 				$this->callback( function ( ParserOptions $parserOptions ) use ( &$beforePreWarm ) {
-					$expectedReason = $beforePreWarm ? 'page-view' : 'view';
+					$expectedReason = $beforePreWarm ? 'page_view' : 'view';
 					$this->assertSame( $expectedReason, $parserOptions->getRenderReason() );
 					return true;
 				} ),
