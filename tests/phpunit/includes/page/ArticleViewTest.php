@@ -24,7 +24,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers \MediaWiki\Page\Article::view()
+ * @covers \MediaWiki\Page\Article
  * @group Database
  */
 class ArticleViewTest extends MediaWikiIntegrationTestCase {
@@ -81,10 +81,6 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 		return $page;
 	}
 
-	/**
-	 * @covers \MediaWiki\Page\Article::getOldId()
-	 * @covers \MediaWiki\Page\Article::getRevIdFetched()
-	 */
 	public function testGetOldId() {
 		$revisions = [];
 		$page = $this->getPage( __METHOD__, [ 1 => 'Test A', 2 => 'Test B' ], $revisions );
@@ -156,9 +152,8 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Page\Article::getPage
 	 * @covers \MediaWiki\Page\WikiPage::getRedirectTarget
-	 * @covers \MediaWiki\Page\RedirectLookup::getRedirectTarget
+	 * @covers \MediaWiki\Page\RedirectStore
 	 */
 	public function testViewRedirect() {
 		$target = Title::makeTitle( $this->getDefaultWikitextNS(), 'Test_Target' );
@@ -330,7 +325,18 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 		$this->assertStringContainsString( 'id="mw-revision-nav"', $output->getSubtitle() );
 	}
 
+	/**
+	 * Make sure that when we fallback to known-stale content from ParserCache
+	 * (by page ID), that any other metadata and interface text on the page
+	 * refers to the same almost-latest revision ID, and not the "latest" rev ID
+	 * from the replica DB that we tried first.
+	 *
+	 * @covers MediaWiki\Output\OutputPage
+	 * @see T339164
+	 * @see T341013
+	 */
 	public function testViewOfCurrentRevisionDirty() {
+		// Simulate full PoolCounter queue, to trigger stale fallback in ParserOutputAccess
 		$this->overrideConfigValue(
 			MainConfigNames::PoolCounterConf,
 			[
@@ -340,23 +346,24 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 			]
 		);
 
+		// Revision A, warm up ParserCache.
 		$revisions = [];
 		$page = $this->getPage( __METHOD__, [ 1 => 'Test A' ], $revisions );
 		$idA = $revisions[1]->getId();
 
-		// Do the next edit without ParserCache produce an outdated cache entry
+		// Revision B, without ParserCache, to simulate a race with a stale cache
 		$parserCacheFactory = $this->getServiceContainer()->getParserCacheFactory();
 		$this->overrideConfigValue( MainConfigNames::ParserCacheType, CACHE_NONE );
 		$latestEditStatus = $this->editPage( $page, 'Test B' );
-		// Restore the old cache instance with the now outdated cache entry
+		// Restore the previous cache with the now-stale cache entry
 		$this->setService( 'ParserCacheFactory', $parserCacheFactory );
 
-		// Request the article for the latest
+		// View the article, calling ParserOutputAccess
 		$article = new Article( $page->getTitle() );
 		$article->getContext()->getOutput()->setTitle( $page->getTitle() );
 		$article->view();
 
-		// Expected the old values to return
+		// Expect previous HTML, with consistent previous-revision metadata
 		$output = $article->getContext()->getOutput();
 		$this->assertStringContainsString( 'Test A', $this->getHtml( $output ) );
 		$this->assertSame( $idA, $output->getRevisionId() );
@@ -676,9 +683,6 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 		$this->assertStringContainsString( 'Hook Text', $this->getHtml( $output ) );
 	}
 
-	/**
-	 * @covers \MediaWiki\Page\Article::showViewError()
-	 */
 	public function testViewLatestError() {
 		$page = $this->getPage( __METHOD__, [ 1 => 'Test A' ] );
 
@@ -708,9 +712,6 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	/**
-	 * @covers \MediaWiki\Page\Article::showViewError()
-	 */
 	public function testViewOldError() {
 		$revisions = [];
 		$page = $this->getPage( __METHOD__, [ 1 => 'Test A', 2 => 'Test B' ], $revisions );
