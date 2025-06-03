@@ -9,6 +9,8 @@ use MediaWiki\ResourceLoader\Context;
 use MediaWiki\ResourceLoader\DerivativeContext;
 use MediaWiki\ResourceLoader\Module;
 use MediaWikiIntegrationTestCase;
+use PHPUnit\Framework\Assert;
+use RuntimeException;
 use Wikimedia\DependencyStore\DependencyStore;
 use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\Rdbms\IDatabase;
@@ -39,7 +41,12 @@ abstract class BundleSizeTestBase extends MediaWikiIntegrationTestCase {
 	];
 
 	public static function provideBundleSize() {
-		$content = json_decode( file_get_contents( static::getBundleSizeConfigData() ), true );
+		$file = static::getBundleSizeConfigData();
+		$content = json_decode( file_get_contents( $file ), true );
+
+		if ( !is_array( $content ) ) {
+			throw new RuntimeException( "Failed to load JSON from $file" );
+		}
 
 		foreach ( $content as $testCase ) {
 			yield $testCase['resourceModule'] => [ $testCase ];
@@ -52,8 +59,31 @@ abstract class BundleSizeTestBase extends MediaWikiIntegrationTestCase {
 			$maxSize = $maxSize * 1024;
 		} elseif ( str_contains( $maxSize, 'B' ) ) {
 			$maxSize = (float)str_replace( [ ' B', 'B' ], '', $maxSize );
+		} else {
+			$maxSize = (float)$maxSize;
 		}
+
 		return $maxSize;
+	}
+
+	private static function normalizeSize( $maxSize ): ?float {
+		if ( $maxSize === null ) {
+			return null;
+		}
+
+		if ( is_string( $maxSize ) ) {
+			$floatSize = self::stringToFloat( $maxSize );
+		} else {
+			$floatSize = (float)$maxSize;
+		}
+
+		Assert::assertGreaterThan(
+			0,
+			$floatSize,
+			'Expected "' . $maxSize . '" to convert to a number grater than 0'
+		);
+
+		return $floatSize;
 	}
 
 	/**
@@ -61,24 +91,29 @@ abstract class BundleSizeTestBase extends MediaWikiIntegrationTestCase {
 	 * @coversNothing
 	 */
 	public function testBundleSize( $testCase ) {
+		$projectName = $testCase['projectName'] ?? '';
+
+		$this->assertArrayHasKey( 'resourceModule', $testCase );
+		$moduleName = $testCase['resourceModule'];
+
+		$this->assertTrue(
+			array_key_exists( 'maxSizeUncompressed', $testCase )
+				|| array_key_exists( 'maxSize', $testCase ),
+			'At least one of "maxSize" or "maxSizeUncompressed" should be defined for module ' .
+				$moduleName . '.'
+		);
+
 		$maxSizeUncompressed = $testCase['maxSizeUncompressed'] ?? null;
 		$maxSize = $testCase['maxSize'] ?? null;
-		$projectName = $testCase['projectName'] ?? '';
-		$moduleName = $testCase['resourceModule'];
+
 		if ( $maxSize === null && $maxSizeUncompressed === null ) {
 			$this->markTestSkipped( "The module $moduleName has opted out of bundle size testing." );
 			return;
 		}
-		$this->assertFalse(
-			$maxSize !== null && $maxSizeUncompressed !== null,
-			'Only maxSize or maxSizeCompressed should be defined for module ' . $moduleName . '. Only defined maxSizeCompressed.'
-		);
-		if ( is_string( $maxSize ) ) {
-			$maxSize = self::stringToFloat( $maxSize );
-		}
-		if ( is_string( $maxSizeUncompressed ) ) {
-			$maxSizeUncompressed = self::stringToFloat( $maxSizeUncompressed );
-		}
+
+		$maxSize = self::normalizeSize( $maxSize );
+		$maxSizeUncompressed = self::normalizeSize( $maxSizeUncompressed );
+
 		$resourceLoader = MediaWikiServices::getInstance()->getResourceLoader();
 		$resourceLoader->setDependencyStore( new DependencyStore( new HashBagOStuff() ) );
 		$request = new FauxRequest(
@@ -101,16 +136,16 @@ abstract class BundleSizeTestBase extends MediaWikiIntegrationTestCase {
 		$contentTransferSizeUncompressed = strlen( $content );
 		$contentTransferSize = strlen( gzencode( $content, 9 ) );
 		$contentTransferSize -= array_sum( self::CORE_SIZE_ADJUSTMENTS );
-		if ( $maxSize ) {
+		if ( $maxSize !== null ) {
 			$message = $projectName ?
-				"$projectName: $moduleName is less than $maxSize" :
-				"$moduleName is less than $maxSize";
+				"$projectName: $moduleName should be less than $maxSize bytes (compressed)" :
+				"$moduleName should be less than $maxSize bytes (compressed)";
 			$this->assertLessThan( $maxSize, $contentTransferSize, $message );
 		}
-		if ( $maxSizeUncompressed ) {
+		if ( $maxSizeUncompressed !== null ) {
 			$messageUncompressed = $projectName ?
-				"$projectName: $moduleName is less than $maxSize (uncompressed)" :
-				"$moduleName is less than $maxSizeUncompressed";
+				"$projectName: $moduleName should be less than $maxSizeUncompressed bytes (uncompressed)" :
+				"$moduleName should be less than $maxSizeUncompressed (uncompressed) bytes";
 			$this->assertLessThan( $maxSizeUncompressed, $contentTransferSizeUncompressed, $messageUncompressed );
 		}
 	}
