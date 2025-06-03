@@ -239,8 +239,6 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 	 */
 	/** @var string|null */
 	protected $mDatePreference;
-	/** @var string|false|null */
-	protected $mHash;
 	/** @var AbstractBlock|false|null Null when uninitialized, false when there is no block */
 	protected $mGlobalBlock;
 	/** @var bool|null */
@@ -1365,7 +1363,6 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 		global $wgFullyInitialised;
 
 		$this->mDatePreference = null;
-		$this->mHash = false;
 		$this->mThisAsAuthority = null;
 
 		if ( $wgFullyInitialised && $this->mFrom ) {
