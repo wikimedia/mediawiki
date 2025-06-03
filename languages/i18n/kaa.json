@@ -660,6 +660,7 @@
 	"diff-empty": "(Parıq joq)",
 	"diff-multi-sameuser": "({{PLURAL:$1|Bir aralıq ózgertiw|$1 aralıq ózgertiwler}} birdey {{GENDER:$3|paydalanıwshı}} tárepinen kórsetilmegen)",
 	"diff-multi-otherusers": "({{PLURAL:$2|Basqa bir paydalanıwshı|$2 paydalanıwshılar}} tárepinen {{PLURAL:$1|bir aralıq dúzetiw|$1 aralıq dúzetiwler}} kórsetilmegen)",
+	"difference-missing-revision": "Bul ayırmashılıqtıń {{PLURAL:$2|bir nusqası|$2 nusqası}} ($1) {{PLURAL:$2|tabılmadı}}.\n\nÁdette, bul másele óshirilgen betke baǵdarlaytuǵın eskirgen ayırmashılıq siltemesi arqalı ótiwden payda boladı.\nKóbirek maǵlıwmattı [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} óshiriw jurnalınan] tabıwǵa boladı.",
 	"searchresults": "Izlew nátiyjeleri",
 	"searchresults-title": "«$1» sorawı boyınsha tabılǵan nátiyjeler",
 	"titlematches": "Bet ataması sáykes keledi",

@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"123Rkhader",
 			";Hiba;1",
 			"AA800",
 			"AHmed Khaled",
@@ -158,7 +159,7 @@
 	"help": "مساعدة",
 	"help-mediawiki": "مساعدة حول ميدياويكي",
 	"search": "بحث",
-	"search-close": "إغلاق مربع حوار البحث",
+	"search-close": "إغلاق حوار البحث",
 	"search-ignored-headings": "# <!-- اترك هذا السطر كما هو --> <pre>\n# سيتم تجاهل الترويسات خلال عملية البحث\n#التغييرات ستأخذ مجراها ما أن يتم فهرسة الصفحة التي تحتوي على ترويسات\n# يمكنك فرض عملية فهرسة الصفحة من خلال تعديل فارغ\n# الصيغة هي كالأتي:\n# * كل ما يكتب بعد \"#\" إلى آخر السطر يعتبر تعليق\n# * كل سطر غير فارغ سيكون العنوان الذي سيتم تجاهله (سيأخذ العنوان كما هو بالضبط بالتشكيل وخلافه)\nالمراجع\nالوصلات الخارجية\nانظر أيضا\n#</pre><!--أترك هذا السطر كما هو -->",
 	"searchbutton": "بحث",
 	"searchsuggest-containing-html": "البحث عن الصفحات المحتوية على <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>",
@@ -1520,7 +1521,7 @@
 	"rcfilters-liveupdates-button-title-on": "إيقاف التحديثات الحية",
 	"rcfilters-liveupdates-button-title-off": "عرض التغييرات الجديدة فور حدوثها",
 	"rcfilters-watchlist-markseen-button": "اعتبر كل التغييرات منظورة",
-	"rcfilters-watchlist-edit-watchlist-button": "عدل قائمة المراقبة",
+	"rcfilters-watchlist-edit-watchlist-button": "تعديل قائمة المراقبة",
 	"rcfilters-watchlist-edit-watchlist-preferences-button": "التفضيلات",
 	"rcfilters-watchlist-showupdated": "التغييرات للصفحات التي لم تزرها منذ حدوث التغييرات تكون <strong>بالخط الغليظ</strong>.",
 	"rcfilters-filter-showlinkedfrom-label": "عرض التغييرات في الصفحات الموصولة من",
@@ -2950,7 +2951,7 @@
 	"tooltip-pt-mytalk": "صفحة {{GENDER:|نقاشك}}",
 	"tooltip-pt-anontalk": "نقاش حول التعديلات من عنوان الأيبي هذا",
 	"tooltip-pt-preferences": "{{GENDER:|تفضيلاتك}}",
-	"tooltip-pt-watchlist": "قائمة مراقبتك",
+	"tooltip-pt-watchlist": "قائمة الصفحات التي  في مراقبتك في حال أي تغيرات",
 	"tooltip-pt-mycontris": "قائمة مساهمات{{GENDER:|ك}}",
 	"tooltip-pt-anoncontribs": "قائمة بتعديلات قام بها عنوان الآي بي",
 	"tooltip-pt-login": "يفضل أن تسجل الدخول، لكنه ليس إلزاميا.",
