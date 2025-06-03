@@ -733,7 +733,7 @@ class SessionManager implements SessionManagerInterface {
 					// user logged out but unsetting the cookies failed?
 					$this->logger->warning(
 						'Session "{session}": the session store entry is for an anonymous user, '
-							. 'but the session metadata indicates a non-anonynmous user',
+							. 'but the session metadata indicates a non-anonymous user',
 						[
 							'session' => $info->__toString(),
 						] );
