@@ -108,7 +108,6 @@ abstract class BundleSizeTestBase extends MediaWikiIntegrationTestCase {
 
 		if ( $maxSize === null && $maxSizeUncompressed === null ) {
 			$this->markTestSkipped( "The module $moduleName has opted out of bundle size testing." );
-			return;
 		}
 
 		$maxSize = self::normalizeSize( $maxSize );
