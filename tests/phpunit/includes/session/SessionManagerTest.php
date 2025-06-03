@@ -1400,7 +1400,7 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( [
 			[
 				LogLevel::WARNING,
-				'Session "{session}": Metadata merge failed: {exception}',
+				'Session "{session}": Metadata merge failed: no merge!',
 			],
 		], $logger->getBuffer() );
 		$logger->clearBuffer();

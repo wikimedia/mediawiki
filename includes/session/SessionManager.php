@@ -653,7 +653,7 @@ class SessionManager implements SessionManagerInterface {
 						}
 					} catch ( MetadataMergeException $ex ) {
 						$this->logger->warning(
-							'Session "{session}": Metadata merge failed: {exception}',
+							'Session "{session}": Metadata merge failed: ' . $ex->getMessage(),
 							[
 								'session' => $info->__toString(),
 								'exception' => $ex,
