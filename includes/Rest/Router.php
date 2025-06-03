@@ -28,7 +28,7 @@ use Wikimedia\Stats\StatsFactory;
  * and executing the relevant module for a request.
  */
 class Router {
-	private const PREFIX_PATTERN = '!^/([-_.\w]+(?:/v\d+)?)(/.*)$!';
+	private const PREFIX_PATTERN = '!^/([-_.\w]+(?:/v[-_.\w]+)?)(/.*)$!';
 
 	/** @var string[] */
 	private $routeFiles;
