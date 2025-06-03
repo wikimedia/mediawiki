@@ -6,7 +6,7 @@
  */
 
 /**
- * Tests for Serbocroatian (srpskohrvatski / српскохрватски)
+ * Tests for Serbo-Croatian (srpskohrvatski / српскохрватски)
  *
  * @group Language
  */
