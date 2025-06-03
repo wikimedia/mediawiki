@@ -239,11 +239,11 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 	 */
 	/** @var string|null */
 	protected $mDatePreference;
-	/** @var string|false */
+	/** @var string|false|null */
 	protected $mHash;
-	/** @var AbstractBlock */
+	/** @var AbstractBlock|false|null Null when uninitialized, false when there is no block */
 	protected $mGlobalBlock;
-	/** @var bool */
+	/** @var bool|null */
 	protected $mLocked;
 
 	/** @var WebRequest|null */
