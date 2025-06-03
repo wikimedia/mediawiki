@@ -1,6 +1,12 @@
 <?php
 /** Kashmiri (Devanagari script) (कॉशुर)
  *
+ * Deprecated, preserved for backwards compatibility
+ * and for possible future reinstatement if
+ * the usage of this script becomes active.
+ * Since T314476, the primary script for
+ * Kasmiri is Perso-Arabic.
+ *
  * @file
  * @ingroup Languages
  *

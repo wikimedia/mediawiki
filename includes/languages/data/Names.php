@@ -313,8 +313,10 @@ class Names {
 		'kri' => 'Krio', # Krio
 		'krj' => 'Kinaray-a', # Kinaray-a
 		'krl' => 'karjal', # Karelian
-		'ks' => 'कॉशुर / کٲشُر', # Kashmiri (multiple scripts - defaults to Perso-Arabic)
+		'ks' => 'کٲشُر', # Kashmiri (defaults to Perso-Arabic script)
+		# Backwards compatibility
 		'ks-arab' => 'کٲشُر', # Kashmiri (Perso-Arabic script)
+		# Backwards compatibility, deprecated, to be removed
 		'ks-deva' => 'कॉशुर', # Kashmiri (Devanagari script)
 		'ksh' => 'Ripoarisch', # Ripuarian
 		'ksw' => 'စှီၤ', # S'gaw Karen
