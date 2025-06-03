@@ -999,6 +999,15 @@ class ApiMain extends ApiBase {
 	 * @param Throwable $e
 	 */
 	protected function handleException( Throwable $e ) {
+		$statsModuleName = $this->mModule ? $this->mModule->getModuleName() : 'main';
+
+		// Collect stats on errors (T396613).
+		// NOTE: We only count fatal errors, a mere call to addError() or
+		// addWarning() does not count towards these states. That could
+		// be added in the future, but should use a different stats key.
+		$stats = $this->statsFactory->getCounter( 'api_errors' )
+			->setLabel( 'module', $statsModuleName );
+
 		// T65145: Rollback any open database transactions
 		if ( !$e instanceof ApiUsageException ) {
 			// ApiUsageExceptions are intentional, so don't rollback if that's the case
@@ -1006,6 +1015,9 @@ class ApiMain extends ApiBase {
 				$e,
 				MWExceptionHandler::CAUGHT_BY_ENTRYPOINT
 			);
+			$stats->setLabel( 'exception_cause', 'server-error' );
+		} else {
+			$stats->setLabel( 'exception_cause', 'client-error' );
 		}
 
 		// Allow extra cleanup and logging
@@ -1016,6 +1028,7 @@ class ApiMain extends ApiBase {
 		// handler will process and log it.
 
 		$errCodes = $this->substituteResultWithError( $e );
+		sort( $errCodes );
 
 		// Error results should not be cached
 		$this->setCacheMode( 'private' );
@@ -1029,6 +1042,9 @@ class ApiMain extends ApiBase {
 
 		// Printer may not be initialized if the extractRequestParams() fails for the main module
 		$this->createErrorPrinter();
+
+		$stats->setLabel( 'error_code', implode( '_', $errCodes ) );
+		$stats->increment();
 
 		// Get desired HTTP code from an ApiUsageException. Don't use codes from other
 		// exception types, as they are unlikely to be intended as an HTTP code.

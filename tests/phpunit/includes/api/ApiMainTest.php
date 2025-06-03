@@ -20,6 +20,9 @@ use MediaWiki\Exception\MWExceptionHandler;
 use MediaWiki\Exception\ShellDisabledError;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\Language\RawMessage;
+use MediaWiki\Logger\LogCapturingSpi;
+use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\Logger\NullSpi;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Request\FauxResponse;
@@ -27,11 +30,14 @@ use MediaWiki\Request\WebRequest;
 use MediaWiki\StubObject\StubGlobalUser;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\User\User;
+use RuntimeException;
 use StatusValue;
 use UnexpectedValueException;
 use Wikimedia\Rdbms\DBQueryError;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\ScopedCallback;
+use Wikimedia\Stats\UnitTestingHelper;
 use Wikimedia\TestingAccessWrapper;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
@@ -267,6 +273,41 @@ class ApiMainTest extends ApiTestCase {
 		} );
 	}
 
+	private function newApiMain(
+		string $moduleName = 'testmodule',
+		array $return = [],
+		$asInternal = true
+	) {
+		$req = new FauxRequest( [ 'action' => $moduleName, 'format' => 'json' ] );
+		$req->setRequestURL( 'https://dummy.test/api.php' );
+
+		$api = new ApiMain( $req, true, $asInternal );
+
+		$return += [
+			'getModuleName' => $moduleName,
+			'execute' => null,
+		];
+
+		$mock = $this->createMock( ApiBase::class );
+
+		foreach ( $return as $mth => $ret ) {
+			if ( is_callable( $ret ) ) {
+				$mock->method( $mth )->willReturnCallback( $ret );
+			} else {
+				$mock->method( $mth )->willReturn( $ret );
+			}
+		}
+
+		$api->getModuleManager()->addModule( $moduleName, 'action', [
+			'class' => get_class( $mock ),
+			'factory' => static function () use ( $mock ) {
+				return $mock;
+			}
+		] );
+
+		return $api;
+	}
+
 	public function testSetupModuleNeedsTokenTrue() {
 		$this->expectException( LogicException::class );
 		$this->expectExceptionMessage(
@@ -274,17 +315,7 @@ class ApiMainTest extends ApiTestCase {
 				"See documentation for ApiBase::needsToken for details."
 		);
 
-		$mock = $this->createMock( ApiBase::class );
-		$mock->method( 'getModuleName' )->willReturn( 'testmodule' );
-		$mock->method( 'needsToken' )->willReturn( true );
-
-		$api = new ApiMain( new FauxRequest( [ 'action' => 'testmodule' ] ) );
-		$api->getModuleManager()->addModule( 'testmodule', 'action', [
-			'class' => get_class( $mock ),
-			'factory' => static function () use ( $mock ) {
-				return $mock;
-			}
-		] );
+		$api = $this->newApiMain( 'testmodule', [ 'needsToken' => true ] );
 		$api->execute();
 	}
 
@@ -1288,4 +1319,159 @@ class ApiMainTest extends ApiTestCase {
 		// This will test that ::isWriteMode will not be called if $isError is true.
 		$this->commonTestCacheHeaders( $api, $req, true, $cacheMode, $expectedVary, $expectedCacheControl );
 	}
+
+	public function testTimingStats() {
+		$helper = new UnitTestingHelper();
+		$this->setService( 'StatsFactory', $helper->getStatsFactory() );
+
+		$api = $this->newApiMain( 'test', [], false );
+
+		// Since we are calling execute() with internal mode turned off,
+		// we need to capture and discard the HTML that will be written to
+		// the output buffer.
+		ob_start();
+		$scope = new ScopedCallback( 'ob_end_clean' );
+
+		$api->execute();
+
+		$stats = $helper->consumeAllFormatted();
+		$this->assertArrayContainsSubstring( 'api_executeTiming_seconds', $stats );
+		$this->assertArrayContainsSubstring( 'module:test', $stats );
+	}
+
+	public function provideErrorReporting() {
+		yield 'RuntimeException: server_error' => [
+			static function ( ApiBase $base ) {
+				throw new RuntimeException();
+			},
+			[
+				'error' => [ 'code' => 'internal_api_error_RuntimeException' ]
+			],
+			[
+				'mediawiki.api_errors',
+				'exception_cause:server_error',
+				'error_code:internal_api_error_RuntimeException',
+				'module:test',
+			],
+			[
+				'RuntimeException'
+			]
+		];
+		yield 'ApiUsageException: client_error' => [
+			static function ( ApiBase $base ) {
+				$ex = new ApiUsageException(
+					$base,
+					StatusValue::newFatal( new ApiRawMessage( 'An error', 'error1' ) )
+				);
+
+				$ex->getStatusValue()->fatal( new ApiRawMessage( 'Another error', 'error2' ) );
+				throw $ex;
+			},
+			[
+				'error' => [ 'code' => 'error1' ]
+			],
+			[
+				'mediawiki.api_errors',
+				'exception_cause:client_error',
+				'error_code:error1_error2',
+				'module:test',
+			],
+			[]
+		];
+	}
+
+	/**
+	 * @dataProvider provideErrorReporting
+	 */
+	public function testErrorReporting(
+		callable $execute,
+		array $expectedResponse,
+		array $expectedStats,
+		array $expectedLogs
+	) {
+		$helper = new UnitTestingHelper();
+		$this->setService( 'StatsFactory', $helper->getStatsFactory() );
+
+		// inject the ApiMain instance into the callback
+		$api = null;
+		$curriedExec = static function () use ( $execute, &$api ) {
+			$execute( $api );
+		};
+
+		$api = $this->newApiMain( 'test', [ 'execute' => $curriedExec ], false );
+
+		// Since we are calling execute() with internal mode turned off,
+		// we need to capture and discard the HTML that will be written to
+		// the output buffer. We also need to disable error logging
+		// and the restore it for later.
+		$oldLoggerSpi = LoggerFactory::getProvider();
+		$scope = new ScopedCallback( static function () use ( $oldLoggerSpi ) {
+			ob_end_clean();
+			LoggerFactory::registerProvider( $oldLoggerSpi );
+		} );
+
+		$logCapture = new LogCapturingSpi( new NullSpi() );
+		LoggerFactory::registerProvider( $logCapture );
+
+		// Since we turned off "internal" mode, we have to capture stdout.
+		ob_start();
+
+		// Now execute the API module that will fail
+		$api->execute();
+
+		$errorJson = json_decode( ob_get_clean(), true );
+		$this->assertNotFalse( $errorJson, 'Response should be valid JSON' );
+
+		foreach ( $expectedResponse as $key => $expected ) {
+			$this->assertArrayHasKey( $key, $errorJson, 'Response should contain key' );
+			$actual = $errorJson[$key];
+			$actual = array_intersect_key( $actual, $expected );
+
+			$this->assertSame(
+				$expected,
+				$actual,
+				"Response key: $key"
+			);
+		}
+
+		$stats = $helper->consumeAllFormatted();
+
+		foreach ( $expectedStats as $substring ) {
+			$this->assertArrayContainsSubstring( $substring, $stats );
+		}
+
+		$logs = array_map(
+			static fn ( $logEntry ) => $logEntry['message'],
+			array_filter(
+				$logCapture->getLogs(),
+				static fn ( $logEntry ) => $logEntry['level'] === 'error'
+			)
+		);
+
+		foreach ( $expectedLogs as $substring ) {
+			$this->assertArrayContainsSubstring( $substring, $logs );
+		}
+	}
+
+	private function assertArrayContainsSubstring( string $substring, array $array, $message = '' ): void {
+		if ( $message ) {
+			$message = "$message\n";
+		}
+
+		$this->assertTrue(
+			self::arrayContainsSubstring( $substring, $array ),
+			"{$message}Array should contain $substring:\n\t" . implode( "\n\t", $array )
+		);
+	}
+
+	private static function arrayContainsSubstring( string $substring, array $array ): bool {
+		foreach ( $array as $value ) {
+			if ( strpos( $value, $substring ) !== false ) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 }
