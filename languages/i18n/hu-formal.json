@@ -7,7 +7,8 @@
 			"Misibacsi",
 			"Máté",
 			"R-Joe",
-			"Tacsipacsi"
+			"Tacsipacsi",
+			"Torontál-vármegye"
 		]
 	},
 	"sunday": "vasárnap",
@@ -80,6 +81,8 @@
 	"article": "Szócikk",
 	"newwindow": "(új ablakban nyílik meg)",
 	"cancel": "Mégse",
+	"moredotdotdot": "Bővebben...",
+	"morenotlisted": "Lehet, hogy ez a lista nem teljes.",
 	"mypage": "‎Lapom",
 	"mytalk": "Vitalap",
 	"anontalk": "Vitalap",
@@ -181,6 +184,8 @@
 	"nstab-main": "Lap",
 	"nosuchactiontext": "Az URL-ben megadott műveletet érvénytelen.\nValószínűleg elgépelte, hibás hivatkozásra kattintott, vagy a\na(z) {{SITENAME}} által használt szoftver hibája is lehet.",
 	"nospecialpagetext": "<strong>Érvénytelen speciális lapot akart megtekinteni.</strong>\n\nAz érvényes speciális lapok listáját a [[Special:SpecialPages|Speciális lapok]] oldalon találja meg.",
+	"error": "Hiba",
+	"databaseerror": "Adatbázishiba",
 	"enterlockreason": "Adja meg a lezárás okát, valamint egy becslést, hogy mikor kerül a lezárás feloldásra",
 	"exception-nologin-text": "Ezen lap vagy művelet eléréséhez, kérjük, [[Special:Userlogin|jelentkezzen be]].",
 	"login-security": "Személyazonosságának igazolása",

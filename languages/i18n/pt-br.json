@@ -158,7 +158,8 @@
 			"Ninawauwau",
 			"Vanished 345490135",
 			"EGobi",
-			"Jessicamss93"
+			"Jessicamss93",
+			"BraunOBruno"
 		]
 	},
 	"sunday": "domingo",
@@ -229,6 +230,8 @@
 	"index-category": "Páginas indexadas",
 	"noindex-category": "Páginas não indexadas",
 	"broken-file-category": "Páginas com ligações inválidas para arquivos",
+	"categoryviewer-pagedlinks": "($1) ($2)",
+	"category-header-numerals": "$1–$2",
 	"about": "Sobre",
 	"article": "Página de conteúdo",
 	"newwindow": "(abre numa nova janela)",

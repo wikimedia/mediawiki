@@ -434,7 +434,7 @@
 	"perfcached": "以下為快取資料，可能不是最新的。 快取資料最多可儲存 {{PLURAL:$1|1 筆結果|$1 筆結果}}。",
 	"perfcachedts": "以下為快取資料，最後更新時間為 $1。快取資料最多可儲存 {{PLURAL:$4|1 筆結果|$4 筆結果}}。",
 	"querypage-no-updates": "目前已停用此頁面的更新功能。\n在此頁面的資料不會被立即更新。",
-	"querypage-updates-periodical": "此頁面的更新為定期運作。",
+	"querypage-updates-periodical": "此頁面定期更新。",
 	"viewsource": "檢視原始碼",
 	"protection-indicator-title-infinity": "此頁面已設為保護，僅具有「$1」權限的使用者可以編輯。",
 	"protection-indicator-title": "此頁面已設為保護，直到$2，僅具有「$1」權限的使用者可以編輯。",

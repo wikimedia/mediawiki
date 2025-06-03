@@ -96,6 +96,7 @@
 	"exif-gpsaltitude": "Локхалла",
 	"exif-gpstimestamp": "UTC-ца нийса хан",
 	"exif-gpssatellites": "Лелиначу спутникех лаьцна",
+	"exif-gpsstatus": "Аппаратан статус",
 	"exif-gpsdestlatitude": "Объектан дохалла",
 	"exif-gpsdestbearing": "Объектан пеленг",
 	"exif-gpsdestdistance": "Йукъ",
