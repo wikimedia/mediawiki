@@ -82,30 +82,37 @@ class RollbackAction extends FormAction {
 		$this->commentFormatter = $commentFormatter;
 	}
 
+	/** @inheritDoc */
 	public function getName() {
 		return 'rollback';
 	}
 
+	/** @inheritDoc */
 	public function getRestriction() {
 		return 'rollback';
 	}
 
+	/** @inheritDoc */
 	protected function usesOOUI() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	protected function getDescription() {
 		return '';
 	}
 
+	/** @inheritDoc */
 	public function doesWrites() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function onSuccess() {
 		return false;
 	}
 
+	/** @inheritDoc */
 	public function onSubmit( $data ) {
 		return false;
 	}
@@ -315,6 +322,7 @@ class RollbackAction extends FormAction {
 		}
 	}
 
+	/** @inheritDoc */
 	protected function getFormFields() {
 		return [
 			'intro' => [

@@ -91,19 +91,23 @@ class McrUndoAction extends FormAction {
 		$this->useRCPatrol = $config->get( MainConfigNames::UseRCPatrol );
 	}
 
+	/** @inheritDoc */
 	public function getName() {
 		return 'mcrundo';
 	}
 
+	/** @inheritDoc */
 	public function getDescription() {
 		return '';
 	}
 
+	/** @inheritDoc */
 	public function getRestriction() {
 		// Require 'edit' permission to even see this action (T297322)
 		return 'edit';
 	}
 
+	/** @inheritDoc */
 	public function show() {
 		// Send a cookie so anons get talk message notifications
 		// (copied from SubmitAction)
@@ -171,6 +175,7 @@ class McrUndoAction extends FormAction {
 		$this->cur = $this->getRequest()->getInt( 'cur', $this->curRev->getId() );
 	}
 
+	/** @inheritDoc */
 	protected function checkCanExecute( User $user ) {
 		parent::checkCanExecute( $user );
 
@@ -362,6 +367,7 @@ class McrUndoAction extends FormAction {
 		$out->addHTML( $previewhead . $previewHTML );
 	}
 
+	/** @inheritDoc */
 	public function onSubmit( $data ) {
 		if ( !$this->getRequest()->getCheck( 'wpSave' ) ) {
 			// Diff or preview
@@ -447,10 +453,12 @@ class McrUndoAction extends FormAction {
 		return Status::newGood();
 	}
 
+	/** @inheritDoc */
 	protected function usesOOUI() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	protected function getFormFields() {
 		$request = $this->getRequest();
 		$ret = [
@@ -529,10 +537,12 @@ class McrUndoAction extends FormAction {
 		$form->addHiddenField( 'cur', $this->curRev->getId() );
 	}
 
+	/** @inheritDoc */
 	public function onSuccess() {
 		$this->getOutput()->redirect( $this->getTitle()->getFullURL() );
 	}
 
+	/** @inheritDoc */
 	protected function preText() {
 		return '<div style="clear:both"></div>';
 	}

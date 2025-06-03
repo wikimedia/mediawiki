@@ -89,10 +89,12 @@ class RawAction extends FormlessAction {
 		return 'raw';
 	}
 
+	/** @inheritDoc */
 	public function requiresWrite() {
 		return false;
 	}
 
+	/** @inheritDoc */
 	public function requiresUnblock() {
 		return false;
 	}

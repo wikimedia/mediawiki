@@ -76,15 +76,18 @@ class RevertAction extends FormAction {
 	 */
 	protected $oldFile;
 
+	/** @inheritDoc */
 	public function getName() {
 		return 'revert';
 	}
 
+	/** @inheritDoc */
 	public function getRestriction() {
 		// Required permissions of revert are complicated, will be checked below.
 		return 'upload';
 	}
 
+	/** @inheritDoc */
 	protected function checkCanExecute( User $user ) {
 		if ( $this->getTitle()->getNamespace() !== NS_FILE ) {
 			throw new ErrorPageError( $this->msg( 'nosuchaction' ), $this->msg( 'nosuchactiontext' ) );
@@ -117,6 +120,7 @@ class RevertAction extends FormAction {
 		}
 	}
 
+	/** @inheritDoc */
 	protected function usesOOUI() {
 		return true;
 	}
@@ -128,6 +132,7 @@ class RevertAction extends FormAction {
 		$form->setTokenSalt( [ 'revert', $this->getTitle()->getPrefixedDBkey() ] );
 	}
 
+	/** @inheritDoc */
 	protected function getFormFields() {
 		$timestamp = $this->oldFile->getTimestamp();
 
@@ -165,6 +170,7 @@ class RevertAction extends FormAction {
 		];
 	}
 
+	/** @inheritDoc */
 	public function onSubmit( $data ) {
 		$this->useTransactionalTimeLimit();
 
@@ -196,6 +202,7 @@ class RevertAction extends FormAction {
 		);
 	}
 
+	/** @inheritDoc */
 	public function onSuccess() {
 		$timestamp = $this->oldFile->getTimestamp();
 		$user = $this->getUser();
@@ -215,14 +222,17 @@ class RevertAction extends FormAction {
 		$this->getOutput()->returnToMain( false, $this->getTitle() );
 	}
 
+	/** @inheritDoc */
 	protected function getPageTitle() {
 		return $this->msg( 'filerevert' )->plaintextParams( $this->getTitle()->getText() );
 	}
 
+	/** @inheritDoc */
 	protected function getDescription() {
 		return OutputPage::buildBacklinkSubtitle( $this->getTitle() )->escaped();
 	}
 
+	/** @inheritDoc */
 	public function doesWrites() {
 		return true;
 	}

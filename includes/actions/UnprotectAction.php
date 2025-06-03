@@ -29,6 +29,7 @@ namespace MediaWiki\Actions;
  */
 class UnprotectAction extends ProtectAction {
 
+	/** @inheritDoc */
 	public function getName() {
 		return 'unprotect';
 	}
@@ -37,6 +38,7 @@ class UnprotectAction extends ProtectAction {
 		$this->getArticle()->unprotect();
 	}
 
+	/** @inheritDoc */
 	public function doesWrites() {
 		return true;
 	}

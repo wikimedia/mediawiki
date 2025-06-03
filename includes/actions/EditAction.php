@@ -69,6 +69,7 @@ class EditAction extends FormlessAction {
 		}
 	}
 
+	/** @inheritDoc */
 	public function doesWrites() {
 		return true;
 	}

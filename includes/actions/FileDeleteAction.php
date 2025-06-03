@@ -64,6 +64,7 @@ class FileDeleteAction extends DeleteAction {
 		}
 	}
 
+	/** @inheritDoc */
 	protected function getPageTitle() {
 		$title = $this->getTitle();
 		return $this->msg( 'filedelete' )->plaintextParams( $title->getText() );

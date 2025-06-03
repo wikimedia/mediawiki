@@ -36,14 +36,17 @@ class PurgeAction extends FormAction {
 	/** @var string */
 	private $redirectParams;
 
+	/** @inheritDoc */
 	public function getName() {
 		return 'purge';
 	}
 
+	/** @inheritDoc */
 	public function getDescription() {
 		return '';
 	}
 
+	/** @inheritDoc */
 	public function onSubmit( $data ) {
 		$authority = $this->getAuthority();
 		$page = $this->getWikiPage();
@@ -56,6 +59,7 @@ class PurgeAction extends FormAction {
 		return $page->doPurge();
 	}
 
+	/** @inheritDoc */
 	public function show() {
 		$this->setHeaders();
 
@@ -87,10 +91,12 @@ class PurgeAction extends FormAction {
 		}
 	}
 
+	/** @inheritDoc */
 	protected function usesOOUI() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	protected function getFormFields() {
 		return [
 			'intro' => [
@@ -106,6 +112,7 @@ class PurgeAction extends FormAction {
 		$form->setSubmitTextMsg( 'confirm_purge_button' );
 	}
 
+	/** @inheritDoc */
 	protected function postText() {
 		return $this->msg( 'confirm-purge-bottom' )->parse();
 	}
@@ -114,6 +121,7 @@ class PurgeAction extends FormAction {
 		$this->getOutput()->redirect( $this->getTitle()->getFullURL( $this->redirectParams ) );
 	}
 
+	/** @inheritDoc */
 	public function doesWrites() {
 		return true;
 	}

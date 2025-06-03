@@ -60,10 +60,12 @@ class CreditsAction extends FormlessAction {
 		$this->userFactory = $userFactory;
 	}
 
+	/** @inheritDoc */
 	public function getName() {
 		return 'credits';
 	}
 
+	/** @inheritDoc */
 	protected function getDescription() {
 		return $this->msg( 'creditspage' )->escaped();
 	}

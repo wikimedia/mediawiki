@@ -21,10 +21,12 @@ use MediaWiki\HTMLForm\HTMLForm;
  */
 class McrRestoreAction extends McrUndoAction {
 
+	/** @inheritDoc */
 	public function getName() {
 		return 'mcrrestore';
 	}
 
+	/** @inheritDoc */
 	public function getDescription() {
 		return '';
 	}
