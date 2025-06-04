@@ -132,6 +132,7 @@ because of Phabricator reports.
   been removed.
 * AuthManager::forcePrimaryAuthenticationProviders(), deprecated in 1.43 has
   been removed.
+* User::whoIs() and ::whoIsReal(), deprecated since 1.43, have been removed.
 * Abstract function AuthenticationRequestTestCase::provideLoadFromSubmission is
   now static and has to be declared as static function when implemented.
 * Abstract function HookRunnerTestBase::provideHookRunners is
