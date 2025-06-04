@@ -71,6 +71,7 @@ class LogCapturingSpi implements Spi {
 				$this->parent = $parent;
 			}
 
+			/** @inheritDoc */
 			public function log( $level, $message, array $context = [] ): void {
 				$this->parent->capture( [
 					'channel' => $this->channel,

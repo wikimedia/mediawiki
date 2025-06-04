@@ -39,6 +39,7 @@ use SearchIndexField;
  */
 class TextContentHandler extends ContentHandler {
 
+	/** @inheritDoc */
 	public function __construct( $modelId = CONTENT_MODEL_TEXT, $formats = [ CONTENT_FORMAT_TEXT ] ) {
 		parent::__construct( $modelId, $formats );
 	}
@@ -159,6 +160,7 @@ class TextContentHandler extends ContentHandler {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function getFieldsForSearchIndex( SearchEngine $engine ) {
 		$fields = parent::getFieldsForSearchIndex( $engine );
 		$fields['language'] =
@@ -167,6 +169,7 @@ class TextContentHandler extends ContentHandler {
 		return $fields;
 	}
 
+	/** @inheritDoc */
 	public function getDataForSearchIndex(
 		WikiPage $page,
 		ParserOutput $output,

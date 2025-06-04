@@ -34,6 +34,7 @@ use Wikimedia\Rdbms\SelectQueryBuilder;
  * @ingroup ChangeTags
  */
 class ChangeTagsLogList extends ChangeTagsList {
+	/** @inheritDoc */
 	public function getType() {
 		return 'logentry';
 	}
@@ -52,6 +53,7 @@ class ChangeTagsLogList extends ChangeTagsList {
 		return $queryBuilder->caller( __METHOD__ )->fetchResultSet();
 	}
 
+	/** @inheritDoc */
 	public function newItem( $row ) {
 		return new ChangeTagsLogItem( $this, $row );
 	}

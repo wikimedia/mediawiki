@@ -40,22 +40,27 @@ use MediaWiki\User\User;
  */
 class ResetPasswordSecondaryAuthenticationProvider extends AbstractSecondaryAuthenticationProvider {
 
+	/** @inheritDoc */
 	public function getAuthenticationRequests( $action, array $options ) {
 		return [];
 	}
 
+	/** @inheritDoc */
 	public function beginSecondaryAuthentication( $user, array $reqs ) {
 		return $this->tryReset( $user, $reqs );
 	}
 
+	/** @inheritDoc */
 	public function continueSecondaryAuthentication( $user, array $reqs ) {
 		return $this->tryReset( $user, $reqs );
 	}
 
+	/** @inheritDoc */
 	public function beginSecondaryAccountCreation( $user, $creator, array $reqs ) {
 		return $this->tryReset( $user, $reqs );
 	}
 
+	/** @inheritDoc */
 	public function continueSecondaryAccountCreation( $user, $creator, array $reqs ) {
 		return $this->tryReset( $user, $reqs );
 	}

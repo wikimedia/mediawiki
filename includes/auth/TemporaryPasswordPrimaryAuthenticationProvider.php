@@ -41,6 +41,7 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 	extends AbstractTemporaryPasswordPrimaryAuthenticationProvider
 {
 
+	/** @inheritDoc */
 	public function testUserExists( $username, $flags = IDBAccessObject::READ_NORMAL ) {
 		$username = $this->userNameUtils->getCanonical( $username, UserRigorOptions::RIGOR_USABLE );
 		if ( $username === false ) {
@@ -54,6 +55,7 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 			->caller( __METHOD__ )->fetchField();
 	}
 
+	/** @inheritDoc */
 	protected function getTemporaryPassword( string $username, $flags = IDBAccessObject::READ_NORMAL ): array {
 		$db = DBAccessObjectUtils::getDBFromRecency( $this->dbProvider, $flags );
 		$row = $db->newSelectQueryBuilder()
@@ -71,6 +73,7 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 		];
 	}
 
+	/** @inheritDoc */
 	protected function setTemporaryPassword( string $username, Password $tempPassHash, $tempPassTime ): void {
 		$db = $this->dbProvider->getPrimaryDatabase();
 		$db->newUpdateQueryBuilder()

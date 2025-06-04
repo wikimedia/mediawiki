@@ -34,10 +34,12 @@ class UppercaseCollation extends Collation {
 		$this->lang = $languageFactory->getLanguage( 'en' );
 	}
 
+	/** @inheritDoc */
 	public function getSortKey( $string ) {
 		return $this->lang->uc( $string );
 	}
 
+	/** @inheritDoc */
 	public function getFirstLetter( $string ) {
 		if ( $string[0] == "\0" ) {
 			$string = substr( $string, 1 );

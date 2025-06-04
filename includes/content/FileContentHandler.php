@@ -20,6 +20,7 @@ use SearchIndexField;
  */
 class FileContentHandler extends WikitextContentHandler {
 
+	/** @inheritDoc */
 	public function getFieldsForSearchIndex( SearchEngine $engine ) {
 		$fields = [];
 		$fields['file_media_type'] =
@@ -43,6 +44,7 @@ class FileContentHandler extends WikitextContentHandler {
 		return $fields;
 	}
 
+	/** @inheritDoc */
 	public function getDataForSearchIndex(
 		WikiPage $page,
 		ParserOutput $parserOutput,

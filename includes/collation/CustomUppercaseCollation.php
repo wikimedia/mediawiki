@@ -96,10 +96,12 @@ class CustomUppercaseCollation extends NumericUppercaseCollation {
 		return str_replace( $this->alphabet, $this->puaSubset, $string );
 	}
 
+	/** @inheritDoc */
 	public function getSortKey( $string ) {
 		return $this->convertToPua( parent::getSortKey( $string ) );
 	}
 
+	/** @inheritDoc */
 	public function getFirstLetter( $string ) {
 		$sortkey = $this->getSortKey( $string );
 

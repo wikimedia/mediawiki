@@ -54,6 +54,7 @@ class JavaScriptContentHandler extends CodeContentHandler {
 		return JavaScriptContent::class;
 	}
 
+	/** @inheritDoc */
 	public function supportsRedirects() {
 		return true;
 	}

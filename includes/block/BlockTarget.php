@@ -29,6 +29,7 @@ abstract class BlockTarget implements WikiAwareEntity, Stringable {
 		$this->wikiId = $wikiId;
 	}
 
+	/** @inheritDoc */
 	public function getWikiId() {
 		return $this->wikiId;
 	}

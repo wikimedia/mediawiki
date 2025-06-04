@@ -33,6 +33,7 @@ use Wikimedia\Rdbms\SelectQueryBuilder;
  * @ingroup ChangeTags
  */
 class ChangeTagsRevisionList extends ChangeTagsList {
+	/** @inheritDoc */
 	public function getType() {
 		return 'revision';
 	}
@@ -53,6 +54,7 @@ class ChangeTagsRevisionList extends ChangeTagsList {
 		return $queryBuilder->caller( __METHOD__ )->fetchResultSet();
 	}
 
+	/** @inheritDoc */
 	public function newItem( $row ) {
 		return new ChangeTagsRevisionItem( $this, $row );
 	}

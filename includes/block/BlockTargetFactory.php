@@ -61,6 +61,7 @@ class BlockTargetFactory implements WikiAwareEntity {
 		$this->wikiId = $wikiId;
 	}
 
+	/** @inheritDoc */
 	public function getWikiId() {
 		return $this->wikiId;
 	}

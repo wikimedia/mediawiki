@@ -58,6 +58,7 @@ class NumericUppercaseCollation extends UppercaseCollation {
 		parent::__construct( $languageFactory );
 	}
 
+	/** @inheritDoc */
 	public function getSortKey( $string ) {
 		$sortkey = parent::getSortKey( $string );
 		$sortkey = $this->convertDigits( $sortkey );
@@ -99,6 +100,7 @@ class NumericUppercaseCollation extends UppercaseCollation {
 		return $string;
 	}
 
+	/** @inheritDoc */
 	public function getFirstLetter( $string ) {
 		$convertedString = $this->convertDigits( $string );
 

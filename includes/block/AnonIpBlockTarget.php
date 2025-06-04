@@ -35,6 +35,7 @@ class AnonIpBlockTarget extends BlockTarget implements BlockTargetWithUserPage, 
 		return Block::TYPE_IP;
 	}
 
+	/** @inheritDoc */
 	public function getSpecificity() {
 		return 2;
 	}
@@ -74,6 +75,7 @@ class AnonIpBlockTarget extends BlockTarget implements BlockTargetWithUserPage, 
 		return [ $hex, $hex ];
 	}
 
+	/** @inheritDoc */
 	protected function getLegacyUnion() {
 		return $this->getUserIdentity();
 	}

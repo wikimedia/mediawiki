@@ -28,6 +28,7 @@ class UserBlockTarget extends BlockTarget implements BlockTargetWithUserPage {
 		return Block::TYPE_USER;
 	}
 
+	/** @inheritDoc */
 	public function getSpecificity() {
 		return 1;
 	}
@@ -54,6 +55,7 @@ class UserBlockTarget extends BlockTarget implements BlockTargetWithUserPage {
 		return StatusValue::newGood();
 	}
 
+	/** @inheritDoc */
 	protected function getLegacyUnion() {
 		return $this->getUserIdentity();
 	}

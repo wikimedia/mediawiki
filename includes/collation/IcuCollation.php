@@ -277,10 +277,12 @@ class IcuCollation extends Collation {
 		}
 	}
 
+	/** @inheritDoc */
 	public function getSortKey( $string ) {
 		return $this->mainCollator->getSortKey( $string );
 	}
 
+	/** @inheritDoc */
 	public function getFirstLetter( $string ) {
 		$string = strval( $string );
 		if ( $string === '' ) {

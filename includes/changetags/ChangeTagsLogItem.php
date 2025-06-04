@@ -39,32 +39,39 @@ use MediaWiki\Title\Title;
  * @ingroup ChangeTags
  */
 class ChangeTagsLogItem extends RevisionItemBase {
+	/** @inheritDoc */
 	public function getIdField() {
 		return 'log_id';
 	}
 
+	/** @inheritDoc */
 	public function getTimestampField() {
 		return 'log_timestamp';
 	}
 
+	/** @inheritDoc */
 	public function getAuthorIdField() {
 		return 'log_user';
 	}
 
+	/** @inheritDoc */
 	public function getAuthorNameField() {
 		return 'log_user_text';
 	}
 
+	/** @inheritDoc */
 	public function getAuthorActorField() {
 		return 'log_actor';
 	}
 
+	/** @inheritDoc */
 	public function canView() {
 		return LogEventsList::userCan(
 			$this->row, LogPage::DELETED_RESTRICTED, $this->list->getAuthority()
 		);
 	}
 
+	/** @inheritDoc */
 	public function canViewContent() {
 		return true; // none
 	}

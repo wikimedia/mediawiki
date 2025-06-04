@@ -135,6 +135,7 @@ class FallbackContent extends AbstractContent {
 		return false;
 	}
 
+	/** @inheritDoc */
 	protected function equalsInternal( Content $that ) {
 		if ( !$that instanceof FallbackContent ) {
 			return false;

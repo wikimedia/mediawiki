@@ -134,12 +134,14 @@ class EtcdConfig implements Config, LoggerAwareInterface {
 		trigger_error( __METHOD__ . ' is deprecated since 1.41', E_USER_DEPRECATED );
 	}
 
+	/** @inheritDoc */
 	public function has( $name ) {
 		$this->load();
 
 		return array_key_exists( $name, $this->procCache['config'] );
 	}
 
+	/** @inheritDoc */
 	public function get( $name ) {
 		$this->load();
 

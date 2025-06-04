@@ -18,6 +18,7 @@ class RemoteIcuCollation extends Collation {
 		$this->locale = $locale;
 	}
 
+	/** @inheritDoc */
 	public function getSortKey( $string ) {
 		return $this->getSortKeys( [ $string ] )[0];
 	}
@@ -54,6 +55,7 @@ class RemoteIcuCollation extends Collation {
 		return $ret;
 	}
 
+	/** @inheritDoc */
 	public function getSortKeys( $strings ) {
 		if ( !count( $strings ) ) {
 			return [];
@@ -76,6 +78,7 @@ class RemoteIcuCollation extends Collation {
 		);
 	}
 
+	/** @inheritDoc */
 	public function getFirstLetter( $string ) {
 		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
 		throw new RuntimeException( __METHOD__ . ': not implemented' );

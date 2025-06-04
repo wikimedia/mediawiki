@@ -37,14 +37,17 @@ class EmailNotificationSecondaryAuthenticationProvider
 				&& $this->config->get( MainConfigNames::EmailAuthentication );
 	}
 
+	/** @inheritDoc */
 	public function getAuthenticationRequests( $action, array $options ) {
 		return [];
 	}
 
+	/** @inheritDoc */
 	public function beginSecondaryAuthentication( $user, array $reqs ) {
 		return AuthenticationResponse::newAbstain();
 	}
 
+	/** @inheritDoc */
 	public function beginSecondaryAccountCreation( $user, $creator, array $reqs ) {
 		if (
 			$this->sendConfirmationEmail

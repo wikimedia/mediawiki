@@ -90,6 +90,7 @@ class LocalPasswordPrimaryAuthenticationProvider
 		return (object)$data;
 	}
 
+	/** @inheritDoc */
 	public function beginPrimaryAuthentication( array $reqs ) {
 		$req = AuthenticationRequest::getRequestByClass( $reqs, PasswordAuthenticationRequest::class );
 		if ( !$req || $req->username === null || $req->password === null ) {
@@ -163,6 +164,7 @@ class LocalPasswordPrimaryAuthenticationProvider
 		return AuthenticationResponse::newPass( $username );
 	}
 
+	/** @inheritDoc */
 	public function testUserCanAuthenticate( $username ) {
 		$username = $this->userNameUtils->getCanonical(
 			$username,
@@ -190,6 +192,7 @@ class LocalPasswordPrimaryAuthenticationProvider
 		return !$this->getPassword( $row->user_password ) instanceof InvalidPassword;
 	}
 
+	/** @inheritDoc */
 	public function testUserExists( $username, $flags = IDBAccessObject::READ_NORMAL ) {
 		$username = $this->userNameUtils->getCanonical(
 			$username,
@@ -207,6 +210,7 @@ class LocalPasswordPrimaryAuthenticationProvider
 			->caller( __METHOD__ )->fetchField();
 	}
 
+	/** @inheritDoc */
 	public function providerAllowsAuthenticationDataChange(
 		AuthenticationRequest $req, $checkData = true
 	) {
@@ -280,10 +284,12 @@ class LocalPasswordPrimaryAuthenticationProvider
 		}
 	}
 
+	/** @inheritDoc */
 	public function accountCreationType() {
 		return $this->loginOnly ? self::TYPE_NONE : self::TYPE_CREATE;
 	}
 
+	/** @inheritDoc */
 	public function testForAccountCreation( $user, $creator, array $reqs ) {
 		$req = AuthenticationRequest::getRequestByClass( $reqs, PasswordAuthenticationRequest::class );
 
@@ -300,6 +306,7 @@ class LocalPasswordPrimaryAuthenticationProvider
 		return $ret;
 	}
 
+	/** @inheritDoc */
 	public function beginPrimaryAccountCreation( $user, $creator, array $reqs ) {
 		if ( $this->accountCreationType() === self::TYPE_NONE ) {
 			throw new BadMethodCallException( 'Shouldn\'t call this when accountCreationType() is NONE' );
@@ -320,6 +327,7 @@ class LocalPasswordPrimaryAuthenticationProvider
 		return AuthenticationResponse::newAbstain();
 	}
 
+	/** @inheritDoc */
 	public function finishAccountCreation( $user, $creator, AuthenticationResponse $res ) {
 		if ( $this->accountCreationType() === self::TYPE_NONE ) {
 			throw new BadMethodCallException( 'Shouldn\'t call this when accountCreationType() is NONE' );

@@ -96,6 +96,7 @@ abstract class AbstractTemporaryPasswordPrimaryAuthenticationProvider
 			$this->config->get( MainConfigNames::PasswordReminderResendTime );
 	}
 
+	/** @inheritDoc */
 	protected function getPasswordResetData( $username, $data ) {
 		// Always reset
 		return (object)[
@@ -104,6 +105,7 @@ abstract class AbstractTemporaryPasswordPrimaryAuthenticationProvider
 		];
 	}
 
+	/** @inheritDoc */
 	public function getAuthenticationRequests( $action, array $options ) {
 		switch ( $action ) {
 			case AuthManager::ACTION_LOGIN:
@@ -135,6 +137,7 @@ abstract class AbstractTemporaryPasswordPrimaryAuthenticationProvider
 		}
 	}
 
+	/** @inheritDoc */
 	public function beginPrimaryAuthentication( array $reqs ) {
 		$req = AuthenticationRequest::getRequestByClass( $reqs, PasswordAuthenticationRequest::class );
 		if ( !$req || $req->username === null || $req->password === null ) {
@@ -179,6 +182,7 @@ abstract class AbstractTemporaryPasswordPrimaryAuthenticationProvider
 		return AuthenticationResponse::newPass( $username );
 	}
 
+	/** @inheritDoc */
 	public function testUserCanAuthenticate( $username ) {
 		$username = $this->userNameUtils->getCanonical( $username, UserRigorOptions::RIGOR_USABLE );
 		if ( $username === false ) {
@@ -191,6 +195,7 @@ abstract class AbstractTemporaryPasswordPrimaryAuthenticationProvider
 			$this->isTimestampValid( $tempPassTime );
 	}
 
+	/** @inheritDoc */
 	public function providerAllowsAuthenticationDataChange(
 		AuthenticationRequest $req, $checkData = true
 	) {
@@ -283,10 +288,12 @@ abstract class AbstractTemporaryPasswordPrimaryAuthenticationProvider
 		}
 	}
 
+	/** @inheritDoc */
 	public function accountCreationType() {
 		return self::TYPE_CREATE;
 	}
 
+	/** @inheritDoc */
 	public function testForAccountCreation( $user, $creator, array $reqs ) {
 		/** @var TemporaryPasswordAuthenticationRequest $req */
 		$req = AuthenticationRequest::getRequestByClass(
@@ -310,6 +317,7 @@ abstract class AbstractTemporaryPasswordPrimaryAuthenticationProvider
 		return $ret;
 	}
 
+	/** @inheritDoc */
 	public function beginPrimaryAccountCreation( $user, $creator, array $reqs ) {
 		/** @var TemporaryPasswordAuthenticationRequest $req */
 		$req = AuthenticationRequest::getRequestByClass(
@@ -334,6 +342,7 @@ abstract class AbstractTemporaryPasswordPrimaryAuthenticationProvider
 		return AuthenticationResponse::newAbstain();
 	}
 
+	/** @inheritDoc */
 	public function finishAccountCreation( $user, $creator, AuthenticationResponse $res ) {
 		/** @var TemporaryPasswordAuthenticationRequest $req */
 		$req = $res->createRequest;

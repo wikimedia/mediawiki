@@ -53,6 +53,7 @@ class CssContentHandler extends CodeContentHandler {
 		return CssContent::class;
 	}
 
+	/** @inheritDoc */
 	public function supportsRedirects() {
 		return true;
 	}

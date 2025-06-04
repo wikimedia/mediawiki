@@ -48,11 +48,13 @@ class DeprecatablePropertyArray implements ArrayAccess {
 		$this->component = $component;
 	}
 
+	/** @inheritDoc */
 	public function offsetExists( $offset ): bool {
 		$this->checkDeprecatedAccess( $offset, 'exists' );
 		return isset( $this->container[$offset] );
 	}
 
+	/** @inheritDoc */
 	#[\ReturnTypeWillChange]
 	public function offsetGet( $offset ) {
 		if ( $this->checkDeprecatedAccess( $offset, 'get' ) ) {
@@ -63,6 +65,7 @@ class DeprecatablePropertyArray implements ArrayAccess {
 		return $this->container[$offset] ?? null;
 	}
 
+	/** @inheritDoc */
 	public function offsetSet( $offset, $value ): void {
 		if ( $offset === null ) {
 			$this->container[] = $value;
@@ -71,6 +74,7 @@ class DeprecatablePropertyArray implements ArrayAccess {
 		}
 	}
 
+	/** @inheritDoc */
 	public function offsetUnset( $offset ): void {
 		$this->checkDeprecatedAccess( $offset, 'unset' );
 		unset( $this->container[$offset] );

@@ -17,22 +17,27 @@ use MediaWiki\User\User;
  */
 class ConfirmLinkSecondaryAuthenticationProvider extends AbstractSecondaryAuthenticationProvider {
 
+	/** @inheritDoc */
 	public function getAuthenticationRequests( $action, array $options ) {
 		return [];
 	}
 
+	/** @inheritDoc */
 	public function beginSecondaryAuthentication( $user, array $reqs ) {
 		return $this->beginLinkAttempt( $user, AuthManager::AUTHN_STATE );
 	}
 
+	/** @inheritDoc */
 	public function continueSecondaryAuthentication( $user, array $reqs ) {
 		return $this->continueLinkAttempt( $user, AuthManager::AUTHN_STATE, $reqs );
 	}
 
+	/** @inheritDoc */
 	public function beginSecondaryAccountCreation( $user, $creator, array $reqs ) {
 		return $this->beginLinkAttempt( $user, AuthManager::ACCOUNT_CREATION_STATE );
 	}
 
+	/** @inheritDoc */
 	public function continueSecondaryAccountCreation( $user, $creator, array $reqs ) {
 		return $this->continueLinkAttempt( $user, AuthManager::ACCOUNT_CREATION_STATE, $reqs );
 	}

@@ -44,6 +44,7 @@ class RangeBlockTarget extends BlockTarget implements BlockTargetWithIp {
 		return new PageReferenceValue( NS_USER, $this->cidr, $this->wikiId );
 	}
 
+	/** @inheritDoc */
 	public function getSpecificity() {
 		// This is the number of bits that are allowed to vary in the block, give
 		// or take some floating point errors
@@ -83,6 +84,7 @@ class RangeBlockTarget extends BlockTarget implements BlockTargetWithIp {
 		return $status;
 	}
 
+	/** @inheritDoc */
 	public function toHexRange() {
 		$range = IPUtils::parseRange( $this->cidr );
 		if ( count( $range ) !== 2 || !is_string( $range[0] ) || !is_string( $range[1] ) ) {
@@ -110,6 +112,7 @@ class RangeBlockTarget extends BlockTarget implements BlockTargetWithIp {
 		return $this->toHexRange()[1];
 	}
 
+	/** @inheritDoc */
 	protected function getLegacyUnion() {
 		return $this->cidr;
 	}

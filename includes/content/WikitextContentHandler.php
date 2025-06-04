@@ -178,6 +178,7 @@ class WikitextContentHandler extends TextContentHandler {
 		);
 	}
 
+	/** @inheritDoc */
 	public function getFieldsForSearchIndex( SearchEngine $engine ) {
 		$fields = parent::getFieldsForSearchIndex( $engine );
 
@@ -198,6 +199,7 @@ class WikitextContentHandler extends TextContentHandler {
 		return array_merge( $fields, $this->getFileHandler()->getFieldsForSearchIndex( $engine ) );
 	}
 
+	/** @inheritDoc */
 	public function getDataForSearchIndex(
 		WikiPage $page,
 		ParserOutput $parserOutput,

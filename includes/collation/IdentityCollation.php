@@ -37,10 +37,12 @@ class IdentityCollation extends Collation {
 		$this->contentLanguage = $contentLanguage;
 	}
 
+	/** @inheritDoc */
 	public function getSortKey( $string ) {
 		return $string;
 	}
 
+	/** @inheritDoc */
 	public function getFirstLetter( $string ) {
 		// Copied from UppercaseCollation.
 		// I'm kind of unclear on when this could happen...
