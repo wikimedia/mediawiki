@@ -437,6 +437,14 @@ class SpecialBotPasswords extends FormSpecialPage {
 	protected function getDisplayFormat() {
 		return 'ooui';
 	}
+
+	/**
+	 * @codeCoverageIgnore Merely declarative
+	 * @inheritDoc
+	 */
+	public function doesWrites() {
+		return true;
+	}
 }
 
 /** @deprecated class alias since 1.41 */
