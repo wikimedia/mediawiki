@@ -24,10 +24,12 @@ use MediaWiki\FileRepo\File\File;
 use MediaWiki\FileRepo\FileRepo;
 use MediaWiki\Html\Html;
 use MediaWiki\Language\LanguageCode;
+use MediaWiki\Language\RawMessage;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Logging\LogEventsList;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
@@ -591,8 +593,6 @@ class ImagePage extends Article {
 				);
 			}
 
-			$longDesc = $context->msg( 'parentheses', $this->displayImg->getLongDesc() )->text();
-
 			$handler = $this->displayImg->getHandler();
 
 			// If this is a filetype with potential issues, warn the user.
@@ -609,24 +609,32 @@ class ImagePage extends Article {
 				}
 			}
 
-			$medialink = "[[Media:$filename|$linktext]]";
+			$medialink = $context->msg( new RawMessage( "[[Media:$filename|$linktext]]" ) )->parse();
+			if ( !$this->displayImg->isSafeFile() ) {
+				$medialink = Html::rawElement( 'span', [ 'class' => 'dangerousLink' ], $medialink );
+			}
+
+			// File::getLongDesc() is documented to return HTML, but many handlers used to incorrectly
+			// return plain text (T395834), so sanitize it in case the same bug is present in extensions.
+			$unsafeLongDesc = $this->displayImg->getLongDesc();
+			$longDesc = Sanitizer::removeSomeTags( $unsafeLongDesc );
+			$longDesc = $context->msg( 'parentheses' )->rawParams( $longDesc )->escaped();
+
+			$out->addHTML(
+				Html::rawElement( 'div', [ 'class' => 'fullMedia' ],
+					// <bdi> is needed here to separate the file name, which
+					// most likely ends in Latin characters, from the description,
+					// which may begin with the file type. In RTL environment
+					// this will get messy.
+					Html::rawElement( 'bdi', [ 'dir' => $sitedir ], $medialink ) .
+					' ' .
+					Html::rawElement( 'span', [ 'class' => 'fileInfo' ], $longDesc )
+				)
+			);
 
 			if ( !$this->displayImg->isSafeFile() ) {
-				$warning = $context->msg( 'mediawarning' )->plain();
-				// <bdi> is needed here to separate the file name, which
-				// most likely ends in Latin characters, from the description,
-				// which may begin with the file type. In RTL environment
-				// this will get messy.
-				$out->wrapWikiTextAsInterface( 'fullMedia', <<<EOT
-<bdi dir="$sitedir"><span class="dangerousLink">$medialink</span></bdi> <span class="fileInfo">$longDesc</span>
-EOT
-				);
-				// phpcs:enable
-				$out->wrapWikiTextAsInterface( 'mediaWarning', $warning );
-			} else {
-				$out->wrapWikiTextAsInterface( 'fullMedia', <<<EOT
-<bdi dir="$sitedir">$medialink</bdi> <span class="fileInfo">$longDesc</span>
-EOT
+				$out->addHTML(
+					Html::rawElement( 'div', [ 'class' => 'mediaWarning' ], $context->msg( 'mediawarning' )->parse() )
 				);
 			}
 
