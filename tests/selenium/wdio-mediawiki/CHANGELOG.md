@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.0.0 / 2025-06-04
+
+* Upgrade WebdriverIO to v9. (T372633)
+
 ## 3.0.1 / 2025-05-28
 
 * Fix specs in configuration file. (T395322)
