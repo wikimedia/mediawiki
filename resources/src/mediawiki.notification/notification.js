@@ -10,6 +10,12 @@
 	const preReadyNotifQueue = [];
 
 	/**
+	* @typedef {Object} mw.notification~Notification
+	* @property {mw.Message|jQuery|HTMLElement|string} message
+	* @property {mw.notification.NotificationOptions} options
+	*/
+
+	/**
 	 * @classdesc Describes a notification. See [mw.notification module]{@link mw.notification}. A Notification object for 1 message.
 	 *
 	 * The constructor is not publicly accessible; use [mw.notification.notify]{@link mw.notification} instead.
@@ -19,8 +25,7 @@
 	 * @class Notification
 	 * @global
 	 * @hideconstructor
-	 * @param {mw.Message|jQuery|HTMLElement|string} message
-	 * @param {mw.notification.NotificationOptions} options
+	 * @param {mw.notification~Notification} Notification object
 	 */
 	function Notification( message, options ) {
 
@@ -378,7 +383,6 @@
 		 * Pause auto-hide timers for all notifications.
 		 * Notifications will not auto-hide until resume is called.
 		 *
-		 * @see Notification#pause
 		 * @memberof mw.notification
 		 */
 		pause: function () {
@@ -413,7 +417,7 @@
 		 * @param {mw.notification.NotificationOptions} [options] The options to use
 		 *  for the notification. Options not specified default to the values in
 		 *  [#defaults]{@link mw.notification.defaults}.
-		 * @return {Notification} Notification object
+		 * @return {mw.notification~Notification} Notification object
 		 */
 		notify: function ( message, options ) {
 			options = Object.assign( {}, notification.defaults, options );
