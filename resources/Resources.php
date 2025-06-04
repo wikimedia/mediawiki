@@ -3349,7 +3349,8 @@ return [
 		],
 		'styles' => 'WatchlistExpiryWidget.css',
 		'dependencies' => [
-			'oojs-ui'
+			'oojs-ui',
+			'mediawiki.api'
 		],
 		'messages' => [
 			'accesskey-ca-watch',

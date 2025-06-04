@@ -196,6 +196,8 @@
 	"rcfilters-watchlist-preference-label": "Use non-JavaScript interface",
 	"rcfilters-watchlist-preference-help": "Loads [[{{#special:Watchlist}}|watchlist]] without filters search or highlighting functionality.",
 	"prefs-changeswatchlist": "Changes shown",
+	"tog-watchstar-expiry": "Default time period in watchlist for manually added pages:",
+	"tog-watch-expiry": "Default time period:",
 	"tog-watchlisthideminor": "Hide minor edits from the watchlist",
 	"tog-watchlisthidebots": "Hide bot edits from the watchlist",
 	"tog-watchlisthideown": "Hide my edits from the watchlist",

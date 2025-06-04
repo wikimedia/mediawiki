@@ -7,10 +7,11 @@
  * @extends OO.ui.Widget
  * @param {string} action One of 'watch', 'unwatch'
  * @param {string} pageTitle Title of page that this widget will watch or unwatch
+ * @param {string|null} expiry ISO 8601 timestamp of the expiry to be pre-selected, or 'infinity'
  * @param {Function} updateWatchLink
  * @param {Object} config Configuration object
  */
-function WatchlistExpiryWidget( action, pageTitle, updateWatchLink, config ) {
+function WatchlistExpiryWidget( action, pageTitle, expiry, updateWatchLink, config ) {
 	const dataExpiryOptions = require( './data.json' ).options,
 		expiryOptions = [];
 	let expiryDropdown;
@@ -72,12 +73,14 @@ function WatchlistExpiryWidget( action, pageTitle, updateWatchLink, config ) {
 			options: expiryOptions,
 			classes: [ 'mw-watchexpiry' ]
 		} );
+
+		expiryDropdown.setValue( mw.user.options.get( 'watchstar-expiry', 'infinite' ) );
 		const onDropdownChange = function ( value ) {
 			const notif = mw.notification,
 				optionSelectedLabel = expiryDropdown.dropdownWidget.label;
 
 			if ( typeof $link !== 'undefined' ) {
-				updateWatchLink( $link, 'watch', 'loading' );
+				updateWatchLink( $link, 'watch', 'loading', expiry );
 			}
 
 			// Pause the mw.notify so that we can wait for watch request to finish

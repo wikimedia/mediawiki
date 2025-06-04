@@ -20,6 +20,7 @@
 
 namespace MediaWiki\Preferences;
 
+use MediaWiki\Actions\WatchAction;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Auth\PasswordAuthenticationRequest;
 use MediaWiki\Config\ServiceOptions;
@@ -157,6 +158,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		MainConfigNames::SkinsPreferred,
 		MainConfigNames::ThumbLimits,
 		MainConfigNames::ThumbnailNamespaces,
+		MainConfigNames::WatchlistExpiry,
 	];
 
 	/**
@@ -1476,6 +1478,15 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			];
 		}
 
+		if ( $this->options->get( 'WatchlistExpiry' ) ) {
+			$defaultPreferences["watchstar-expiry"] = [
+				'type' => 'select',
+				'options' => WatchAction::getExpiryOptionsFromMessage( $context ),
+				'label-message' => "tog-watchstar-expiry",
+				'section' => 'watchlist/pageswatchlist',
+			];
+		}
+
 		$watchTypes = [
 			'edit' => 'watchdefault',
 			'move' => 'watchmoves',
@@ -1496,13 +1507,26 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		foreach ( $watchTypes as $action => $pref ) {
 			if ( $user->isAllowed( $action ) ) {
 				// Messages:
-				// tog-watchdefault, tog-watchmoves, tog-watchdeletion, tog-watchcreations, tog-watchuploads
-				// tog-watchrollback
+				// tog-watchdefault, tog-watchmoves, tog-watchdeletion,
+				// tog-watchcreations, tog-watchuploads, tog-watchrollback
 				$defaultPreferences[$pref] = [
 					'type' => 'toggle',
 					'section' => 'watchlist/pageswatchlist',
 					'label-message' => "tog-$pref",
 				];
+
+				if ( in_array( $action, [ 'edit', 'read', 'rollback' ] ) &&
+					$this->options->get( 'WatchlistExpiry' )
+				) {
+					$defaultPreferences["$pref-expiry"] = [
+						'type' => 'select',
+						'options' => WatchAction::getExpiryOptionsFromMessage( $context ),
+						'label-message' => "tog-watch-expiry",
+						'section' => 'watchlist/pageswatchlist',
+						'hide-if' => [ '!==', $pref, '1' ],
+						'cssclass' => 'mw-prefs-indent',
+					];
+				}
 			}
 		}
 
@@ -1605,7 +1629,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		}
 	}
 
-	/*
+	/**
 	 * Custom skin string comparison function that takes into account current and preferred skins.
 	 *
 	 * @param string $a

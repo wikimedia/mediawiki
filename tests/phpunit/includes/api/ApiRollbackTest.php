@@ -5,6 +5,8 @@ namespace MediaWiki\Tests\Api;
 use MediaWiki\Api\ApiUsageException;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
+use MediaWiki\User\Options\StaticUserOptionsLookup;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * Tests for Rollback API.
@@ -24,11 +26,23 @@ class ApiRollbackTest extends ApiTestCase {
 	}
 
 	public function testProtectWithWatch(): void {
+		ConvertibleTimestamp::setFakeTime( '20240201000000' );
 		$title = Title::makeTitle( NS_MAIN, 'TestProtectWithWatch' );
 		$revisionStore = $this->getServiceContainer()->getRevisionStore();
+		$watchedItemStore = $this->getServiceContainer()->getWatchedItemStore();
 
 		$user = $this->getTestUser()->getUser();
 		$sysop = $this->getTestSysop()->getUser();
+
+		$mockUserOptionsLookup = new StaticUserOptionsLookup( [
+			$sysop->getName() => [
+				'watchdefault' => '1',
+				'watchdefault-expiry' => '1 week',
+				'watchrollback' => '1',
+				'watchrollback-expiry' => '1 day'
+			],
+		] );
+		$this->setService( 'UserOptionsLookup', $mockUserOptionsLookup );
 
 		// Create page as sysop.
 		$this->editPage( $title, 'Some text', '', NS_MAIN, $sysop );
@@ -42,7 +56,6 @@ class ApiRollbackTest extends ApiTestCase {
 			'title' => $title->getPrefixedText(),
 			'user' => $user->getName(),
 			'watchlist' => 'watch',
-			'watchlistexpiry' => '99990123000000',
 		] )[0];
 
 		// Content of latest revision should match the initial.
@@ -56,8 +69,8 @@ class ApiRollbackTest extends ApiTestCase {
 		$this->assertArrayHasKey( 'rollback', $apiResult );
 		$this->assertSame( $title->getPrefixedText(), $apiResult['rollback']['title'] );
 
-		// And that the page was temporarily watched.
-		$this->assertTrue( $this->getServiceContainer()->getWatchlistManager()->isTempWatched( $sysop, $title ) );
+		// And that the watchlist expiry matches user preferences (1 day after mocked time).
+		$this->assertSame( '20240202000000', $watchedItemStore->getWatchedItem( $sysop, $title )->getExpiry() );
 
 		$recentChange = $revisionStore->getRecentChange( $latestRev );
 		$this->assertSame( '0', $recentChange->getAttribute( 'rc_bot' ) );

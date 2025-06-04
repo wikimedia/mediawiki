@@ -107,6 +107,7 @@ use MediaWiki\User\User;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNameUtils;
+use MediaWiki\Watchlist\WatchedItem;
 use MediaWiki\Watchlist\WatchedItemStoreInterface;
 use MediaWiki\Watchlist\WatchlistManager;
 use MessageLocalizer;
@@ -1330,15 +1331,15 @@ class EditPage implements IEditObject {
 
 		$this->minoredit = $request->getCheck( 'wpMinoredit' );
 		$this->watchthis = $request->getCheck( 'wpWatchthis' );
-		$expiry = $request->getText( 'wpWatchlistExpiry' );
-		if ( $this->watchlistExpiryEnabled && $expiry !== '' ) {
+		$submittedExpiry = $request->getText( 'wpWatchlistExpiry' );
+		if ( $this->watchlistExpiryEnabled && $submittedExpiry !== '' ) {
 			// This parsing of the user-posted expiry is done for both preview and saving. This
 			// is necessary because ApiEditPage uses preview when it saves (yuck!). Note that it
 			// only works because the unnormalized value is retrieved again below in
 			// getCheckboxesDefinitionForWatchlist().
-			$expiry = ExpiryDef::normalizeExpiry( $expiry, TS_ISO_8601 );
-			if ( $expiry !== false ) {
-				$this->watchlistExpiry = $expiry;
+			$submittedExpiry = ExpiryDef::normalizeExpiry( $submittedExpiry, TS_ISO_8601 );
+			if ( $submittedExpiry !== false ) {
+				$this->watchlistExpiry = $submittedExpiry;
 			}
 		}
 
@@ -3938,7 +3939,7 @@ class EditPage implements IEditObject {
 
 		// When previewing, override the selected dropdown option to select whatever was posted
 		// (if it's a valid option) rather than the current value for watchlistExpiry.
-		// See also above in $this->importFormData().
+		// See also above in $this->importFormDataPosted().
 		$expiryFromRequest = null;
 		if ( $this->preview || $this->diff || $this->isConflict ) {
 			$expiryFromRequest = $this->getContext()->getRequest()->getText( 'wpWatchlistExpiry' );
@@ -4440,15 +4441,43 @@ class EditPage implements IEditObject {
 		];
 		if ( $this->watchlistExpiryEnabled ) {
 			$watchedItem = $this->watchedItemStore->getWatchedItem( $this->getContext()->getUser(), $this->getTitle() );
-			$expiryOptions = WatchAction::getExpiryOptions( $this->getContext(), $watchedItem );
+			if ( $watchedItem instanceof WatchedItem && $watchedItem->getExpiry() === null ) {
+				// Not temporarily watched, so we always default to infinite.
+				$userPreferredExpiry = 'infinite';
+			} else {
+				$userPreferredExpiryOption = !$this->getTitle()->exists()
+					? 'watchcreations-expiry'
+					: 'watchdefault-expiry';
+				$userPreferredExpiry = $this->userOptionsLookup->getOption(
+					$this->getContext()->getUser(),
+					$userPreferredExpiryOption,
+					'infinite'
+				);
+			}
+
+			$expiryOptions = WatchAction::getExpiryOptions(
+				$this->getContext(),
+				$watchedItem,
+				$userPreferredExpiry
+			);
+
 			if ( $watchexpiry && in_array( $watchexpiry, $expiryOptions['options'] ) ) {
 				$expiryOptions['default'] = $watchexpiry;
 			}
+			// When previewing, override the selected dropdown option to select whatever was posted
+			// (if it's a valid option) rather than the current value for watchlistExpiry.
+			// See also above in $this->importFormDataPosted().
+			$expiryFromRequest = $this->getContext()->getRequest()->getText( 'wpWatchlistExpiry' );
+			if ( ( $this->preview || $this->diff ) && in_array( $expiryFromRequest, $expiryOptions['options'] ) ) {
+				$expiryOptions['default'] = $expiryFromRequest;
+			}
+
 			// Reformat the options to match what DropdownInputWidget wants.
 			$options = [];
 			foreach ( $expiryOptions['options'] as $label => $value ) {
 				$options[] = [ 'data' => $value, 'label' => $label ];
 			}
+
 			$fieldDefs['wpWatchlistExpiry'] = [
 				'id' => 'wpWatchlistExpiry',
 				'label-message' => 'confirm-watch-label',

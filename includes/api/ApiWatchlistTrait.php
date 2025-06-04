@@ -148,17 +148,34 @@ trait ApiWatchlistTrait {
 	}
 
 	/**
-	 * Get formatted expiry from the given parameters, or null if no expiry was provided.
+	 * Get formatted expiry from the given parameters. If no expiry was provided,
+	 * check against user-preferred expiry for this action.
+	 * Null is returned if there is no preference, or no user was given.
+	 *
 	 * @param array $params Request parameters passed to the API.
+	 * @param UserIdentity|null $user Leave `null` if this action does not have a watchlist expiry preference.
+	 * @param string $userOption The name of the watchlist preference for this action.
 	 * @return string|null
 	 */
-	protected function getExpiryFromParams( array $params ): ?string {
+	protected function getExpiryFromParams(
+		array $params,
+		?UserIdentity $user = null,
+		string $userOption = 'watchdefault-expiry'
+	): ?string {
 		$watchlistExpiry = null;
-		if ( $this->watchlistExpiryEnabled && isset( $params['watchlistexpiry'] ) ) {
-			$watchlistExpiry = ApiResult::formatExpiry( $params['watchlistexpiry'] );
+		if ( $this->watchlistExpiryEnabled ) {
+			// At this point, the ParamValidator has already normalized $params['watchlistexpiry'].
+			$watchlistExpiry = $params['watchlistexpiry'] ?? null;
+			if ( $user && $watchlistExpiry === null ) {
+				$watchlistExpiry = ExpiryDef::normalizeExpiry(
+					$this->userOptionsLookup->getOption( $user, $userOption )
+				);
+			} elseif ( $watchlistExpiry === null ) {
+				return null;
+			}
 		}
 
-		return $watchlistExpiry;
+		return ApiResult::formatExpiry( $watchlistExpiry );
 	}
 
 	/**

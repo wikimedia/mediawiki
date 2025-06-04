@@ -459,6 +459,8 @@
 	"rcfilters-watchlist-preference-label": "Option in Watchlist tab of [[Special:Preferences]].",
 	"rcfilters-watchlist-preference-help": "Explanation for the option in the Watchlist tab of [[Special:Preferences]].",
 	"prefs-changeswatchlist": "Section heading in [[Special:Preferences]], tab \"Watchlist\". Describes the types of changes/edits that will be shown on Special:Watchlist (the heading is followed by a list of checkboxes).",
+	"tog-watchstar-expiry": "[[Special:Preferences]], tab 'Watchlist'. Offers user to set a default expiry when manually watching a page.\n\n{{Gender}}",
+	"tog-watch-expiry": "Used in [[Special:Preferences]], tab Watchlist.",
 	"tog-watchlisthideminor": "[[Special:Preferences]], tab 'Watchlist'. Offers user to hide minor edits from watchlist.\n\n{{Gender}}\n\n{{Related|Preferences-watchlistrc-toggle}}",
 	"tog-watchlisthidebots": "[[Special:Preferences]], tab 'Watchlist'. Offers user to hide bot edits from watchlist. {{Gender}}\n\n{{Related|Preferences-watchlistrc-toggle}}",
 	"tog-watchlisthideown": "[[Special:Preferences]], tab 'Watchlist'. Offers user to hide own edits from watchlist.\n\n{{Gender}}\n\n{{Related|Preferences-watchlistrc-toggle}}",
