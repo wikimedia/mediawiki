@@ -89,18 +89,22 @@ class WatchAction extends FormAction {
 		$this->userOptionsLookup = $userOptionsLookup;
 	}
 
+	/** @inheritDoc */
 	public function getName() {
 		return 'watch';
 	}
 
+	/** @inheritDoc */
 	public function requiresUnblock() {
 		return false;
 	}
 
+	/** @inheritDoc */
 	protected function getDescription() {
 		return '';
 	}
 
+	/** @inheritDoc */
 	public function onSubmit( $data ) {
 		// Even though we're never unwatching here, use WatchlistManager::setWatch()
 		// because it also checks for changed expiry.
@@ -130,14 +134,17 @@ class WatchAction extends FormAction {
 		parent::checkCanExecute( $user );
 	}
 
+	/** @inheritDoc */
 	public function getRestriction() {
 		return 'editmywatchlist';
 	}
 
+	/** @inheritDoc */
 	protected function usesOOUI() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	protected function getFormFields() {
 		// If watchlist expiry is not enabled, return a simple confirmation message.
 		if ( !$this->watchlistExpiry ) {
@@ -293,6 +300,7 @@ class WatchAction extends FormAction {
 		return MessageValue::new( $msgKey )->params( $this->getTitle()->getPrefixedText(), ...$params );
 	}
 
+	/** @inheritDoc */
 	public function doesWrites() {
 		return true;
 	}

@@ -35,6 +35,7 @@ use MediaWiki\Html\ListToggle;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\Article;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\RecentChanges\ChangesList;
 use MediaWiki\Revision\RevisionRecord;
@@ -151,11 +152,15 @@ class HistoryPager extends ReverseChronologicalPager {
 		$this->changeTagsStore = $changeTagsStore ?? $services->getChangeTagsStore();
 	}
 
-	// For hook compatibility…
+	/**
+	 * For hook compatibility…
+	 * @return Article
+	 */
 	public function getArticle() {
 		return $this->historyPage->getArticle();
 	}
 
+	/** @inheritDoc */
 	protected function getSqlComment() {
 		if ( $this->conds ) {
 			return 'history page filtered'; // potentially slow, see CR r58153
@@ -164,6 +169,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		}
 	}
 
+	/** @inheritDoc */
 	public function getQueryInfo() {
 		$queryBuilder = $this->revisionStore->newSelectQueryBuilder( $this->mDb )
 			->joinComment()
@@ -188,6 +194,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		return $queryInfo;
 	}
 
+	/** @inheritDoc */
 	public function getIndexField() {
 		return [ [ 'rev_timestamp', 'rev_id' ] ];
 	}
@@ -324,6 +331,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		return $element;
 	}
 
+	/** @inheritDoc */
 	protected function getEndBody() {
 		if ( $this->getNumRows() == 0 ) {
 			return '';

@@ -32,20 +32,24 @@ use MediaWiki\MediaWikiServices;
  */
 class ViewAction extends FormlessAction {
 
+	/** @inheritDoc */
 	public function getName() {
 		return 'view';
 	}
 
+	/** @inheritDoc */
 	public function onView() {
 		return null;
 	}
 
+	/** @inheritDoc */
 	public function needsReadRights() {
 		// Pages in $wgWhitelistRead can be viewed without having the 'read'
 		// right. We rely on Article::view() to properly check read access.
 		return false;
 	}
 
+	/** @inheritDoc */
 	public function show() {
 		$config = $this->context->getConfig();
 

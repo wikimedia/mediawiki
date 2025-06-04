@@ -56,10 +56,12 @@ class UnwatchAction extends WatchAction {
 		$this->watchlistManager = $watchlistManager;
 	}
 
+	/** @inheritDoc */
 	public function getName() {
 		return 'unwatch';
 	}
 
+	/** @inheritDoc */
 	public function onSubmit( $data ) {
 		$this->watchlistManager->removeWatch(
 			$this->getAuthority(),
@@ -69,6 +71,7 @@ class UnwatchAction extends WatchAction {
 		return true;
 	}
 
+	/** @inheritDoc */
 	protected function getFormFields() {
 		return [
 			'intro' => [
@@ -85,11 +88,13 @@ class UnwatchAction extends WatchAction {
 		$form->setSubmitTextMsg( 'confirm-unwatch-button' );
 	}
 
+	/** @inheritDoc */
 	public function onSuccess() {
 		$msgKey = $this->getTitle()->isTalkPage() ? 'removedwatchtext-talk' : 'removedwatchtext';
 		$this->getOutput()->addWikiMsg( $msgKey, $this->getTitle()->getPrefixedText() );
 	}
 
+	/** @inheritDoc */
 	public function doesWrites() {
 		return true;
 	}

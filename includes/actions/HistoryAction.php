@@ -57,22 +57,27 @@ class HistoryAction extends FormlessAction {
 	/** @var array Array of message keys and strings */
 	public $message;
 
+	/** @inheritDoc */
 	public function getName() {
 		return 'history';
 	}
 
+	/** @inheritDoc */
 	public function requiresWrite() {
 		return false;
 	}
 
+	/** @inheritDoc */
 	public function requiresUnblock() {
 		return false;
 	}
 
+	/** @inheritDoc */
 	protected function getPageTitle() {
 		return $this->msg( 'history-title' )->plaintextParams( $this->getTitle()->getPrefixedText() );
 	}
 
+	/** @inheritDoc */
 	protected function getDescription() {
 		// Creation of a subtitle link pointing to [[Special:Log]]
 		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();

@@ -56,23 +56,31 @@ class MarkpatrolledAction extends FormAction {
 		$this->linkRenderer = $linkRenderer;
 	}
 
+	/** @inheritDoc */
 	public function getName() {
 		return 'markpatrolled';
 	}
 
+	/** @inheritDoc */
 	protected function getDescription() {
 		// Disable default header "subtitle"
 		return '';
 	}
 
+	/** @inheritDoc */
 	public function getRestriction() {
 		return 'patrol';
 	}
 
+	/** @inheritDoc */
 	protected function usesOOUI() {
 		return true;
 	}
 
+	/**
+	 * @param array|null $data
+	 * @return RecentChange
+	 */
 	protected function getRecentChange( $data = null ) {
 		$rc = null;
 		// Note: This works both on initial GET url and after submitting the form
@@ -86,6 +94,7 @@ class MarkpatrolledAction extends FormAction {
 		return $rc;
 	}
 
+	/** @inheritDoc */
 	protected function preText() {
 		$rc = $this->getRecentChange();
 		$title = $rc->getTitle();
@@ -158,10 +167,12 @@ class MarkpatrolledAction extends FormAction {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function onSuccess() {
 		// Required by parent class. Redundant as our onSubmit handles output already.
 	}
 
+	/** @inheritDoc */
 	public function doesWrites() {
 		return true;
 	}

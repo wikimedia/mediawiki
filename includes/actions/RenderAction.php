@@ -29,14 +29,17 @@ namespace MediaWiki\Actions;
  */
 class RenderAction extends FormlessAction {
 
+	/** @inheritDoc */
 	public function getName() {
 		return 'render';
 	}
 
+	/** @inheritDoc */
 	public function onView() {
 		return null;
 	}
 
+	/** @inheritDoc */
 	public function show() {
 		$this->getArticle()->render();
 	}

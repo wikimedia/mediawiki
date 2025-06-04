@@ -101,27 +101,33 @@ class DeleteAction extends FormAction {
 		$this->dbProvider = $services->getConnectionProvider();
 	}
 
+	/** @inheritDoc */
 	public function getName() {
 		return 'delete';
 	}
 
+	/** @inheritDoc */
 	public function onSubmit( $data ) {
 		return false;
 	}
 
+	/** @inheritDoc */
 	public function onSuccess() {
 		return false;
 	}
 
+	/** @inheritDoc */
 	protected function usesOOUI() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	protected function getPageTitle() {
 		$title = $this->getTitle();
 		return $this->msg( 'delete-confirm' )->plaintextParams( $title->getPrefixedText() );
 	}
 
+	/** @inheritDoc */
 	public function getRestriction() {
 		return 'delete';
 	}

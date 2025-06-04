@@ -29,18 +29,22 @@ namespace MediaWiki\Actions;
  */
 class ProtectAction extends FormlessAction {
 
+	/** @inheritDoc */
 	public function getName() {
 		return 'protect';
 	}
 
+	/** @inheritDoc */
 	public function onView() {
 		return null;
 	}
 
+	/** @inheritDoc */
 	public function show() {
 		$this->getArticle()->protect();
 	}
 
+	/** @inheritDoc */
 	public function doesWrites() {
 		return true;
 	}

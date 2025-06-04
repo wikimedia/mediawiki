@@ -29,10 +29,12 @@ namespace MediaWiki\Actions;
  */
 class SubmitAction extends EditAction {
 
+	/** @inheritDoc */
 	public function getName() {
 		return 'submit';
 	}
 
+	/** @inheritDoc */
 	public function show() {
 		// Send a cookie so anons get talk message notifications
 		\MediaWiki\Session\SessionManager::getGlobalSession()->persist();
