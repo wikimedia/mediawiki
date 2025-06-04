@@ -26,6 +26,7 @@ use MediaWiki\Page\RedirectLookup;
 use MediaWiki\Skin\Skin;
 use MediaWiki\SpecialPage\QueryPage;
 use MediaWiki\Title\Title;
+use stdClass;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
@@ -139,23 +140,51 @@ class SpecialBrokenRedirects extends QueryPage {
 	}
 
 	/**
+	 * Preload LinkRenderer for source and destination
+	 *
+	 * @param IDatabase $db
+	 * @param IResultWrapper $res
+	 */
+	public function preprocessResults( $db, $res ) {
+		$this->executeLBFromResultWrapper( $res );
+
+		// Preload LinkRenderer data for destination links
+		$batch = $this->getLinkBatchFactory()->newLinkBatch()->setCaller( __METHOD__ );
+		foreach ( $res as $result ) {
+			// TODO: Batch RedirectLookup calls
+			$toObj = $this->getRedirectTarget( $result );
+			if ( $toObj ) {
+				$batch->addObj( $toObj );
+			}
+		}
+		$batch->execute();
+		// Rewind for display
+		$res->seek( 0 );
+	}
+
+	protected function getRedirectTarget( stdClass $result ): ?Title {
+		if ( isset( $result->rd_title ) ) {
+			return Title::makeTitle(
+				$result->rd_namespace,
+				$result->rd_title,
+				$result->rd_fragment
+			);
+		} else {
+			$fromObj = Title::makeTitle( $result->namespace, $result->title );
+			return Title::castFromLinkTarget(
+				$this->redirectLookup->getRedirectTarget( $fromObj )
+			);
+		}
+	}
+
+	/**
 	 * @param Skin $skin
 	 * @param \stdClass $result Result row
 	 * @return string
 	 */
 	public function formatResult( $skin, $result ) {
 		$fromObj = Title::makeTitle( $result->namespace, $result->title );
-		if ( isset( $result->rd_title ) ) {
-			$toObj = Title::makeTitle(
-				$result->rd_namespace,
-				$result->rd_title,
-				$result->rd_fragment
-			);
-		} else {
-			$toObj = Title::castFromLinkTarget(
-				$this->redirectLookup->getRedirectTarget( $fromObj )
-			);
-		}
+		$toObj = $this->getRedirectTarget( $result );
 
 		$linkRenderer = $this->getLinkRenderer();
 
@@ -216,36 +245,6 @@ class SpecialBrokenRedirects extends QueryPage {
 	public function execute( $par ) {
 		$this->addHelpLink( 'Help:Redirects' );
 		parent::execute( $par );
-	}
-
-	/**
-	 * Preload LinkRenderer for source and destination
-	 *
-	 * @param IDatabase $db
-	 * @param IResultWrapper $res
-	 */
-	public function preprocessResults( $db, $res ) {
-		$this->executeLBFromResultWrapper( $res );
-
-		// Preload LinkRenderer data for destination links
-		$batch = $this->getLinkBatchFactory()->newLinkBatch()->setCaller( __METHOD__ );
-		foreach ( $res as $result ) {
-			if ( isset( $result->rd_title ) ) {
-				$batch->add( $result->rd_namespace, $result->rd_title );
-			} else {
-				$fromObj = Title::makeTitle( $result->namespace, $result->title );
-				// TODO: Batch redirect lookups
-				$toObj = Title::castFromLinkTarget(
-					$this->redirectLookup->getRedirectTarget( $fromObj )
-				);
-				if ( $toObj ) {
-					$batch->addObj( $toObj );
-				}
-			}
-		}
-		$batch->execute();
-		// Rewind for display
-		$res->seek( 0 );
 	}
 
 	protected function getGroupName() {
