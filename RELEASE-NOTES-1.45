@@ -152,6 +152,8 @@ because of Phabricator reports.
   interwiki link is provided; this was deprecated in 1.42.
 * The following methods in ParserOutput have been removed:
   - ::getTimeSinceStart(), deprecated in 1.42
+  - ::__get()/::__set(), deprecated in 1.38
+    Dynamic properties continue to emit warnings in PHP >= 8.2.
 * …
 
 === Deprecations in 1.45 ===

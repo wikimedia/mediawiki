@@ -3271,33 +3271,6 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	public function setContentHolderText( string $s ): void {
 		$this->setRawText( $s );
 	}
-
-	public function __get( $name ) {
-		if ( property_exists( get_called_class(), $name ) ) {
-			// Direct access to a public property, deprecated.
-			wfDeprecatedMsg( "ParserOutput::{$name} public read access deprecated", '1.38' );
-			return $this->$name;
-		} elseif ( property_exists( $this, $name ) ) {
-			// Dynamic property access, deprecated.
-			wfDeprecatedMsg( "ParserOutput::{$name} dynamic property read access deprecated", '1.38' );
-			return $this->$name;
-		} else {
-			trigger_error( "Inaccessible property via __get(): $name" );
-			return null;
-		}
-	}
-
-	public function __set( $name, $value ) {
-		if ( property_exists( get_called_class(), $name ) ) {
-			// Direct access to a public property, deprecated.
-			wfDeprecatedMsg( "ParserOutput::$name public write access deprecated", '1.38' );
-			$this->$name = $value;
-		} else {
-			// Dynamic property access, deprecated.
-			wfDeprecatedMsg( "ParserOutput::$name dynamic property write access deprecated", '1.38' );
-			$this->$name = $value;
-		}
-	}
 }
 
 /** @deprecated class alias since 1.42 */
