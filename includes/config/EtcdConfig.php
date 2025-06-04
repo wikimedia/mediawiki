@@ -150,9 +150,9 @@ class EtcdConfig implements Config, LoggerAwareInterface {
 		return $this->procCache['config'][$name];
 	}
 
-	public function getModifiedIndex() {
+	public function getModifiedIndex(): int {
 		$this->load();
-		return $this->procCache['modifiedIndex'];
+		return (int)$this->procCache['modifiedIndex'];
 	}
 
 	/**

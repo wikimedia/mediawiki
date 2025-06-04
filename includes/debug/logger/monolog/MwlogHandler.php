@@ -79,7 +79,7 @@ class MwlogHandler extends SyslogUdpHandler {
 		$this->hostname = php_uname( 'n' );
 	}
 
-	protected function syslogHeader( $severity, $app ) {
+	protected function syslogHeader( int $severity, string $app ): string {
 		$pri = $severity + $this->facility;
 
 		// Goofy date format courtesy of RFC 3164 :(

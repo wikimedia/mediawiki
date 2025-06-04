@@ -248,7 +248,7 @@ class ComposerLaunchParallel extends ForkController {
 		}
 
 		if ( $splitGroupCount < 2 ) {
-			throw new InvalidSplitGroupCountException( $splitGroupCount );
+			throw new InvalidSplitGroupCountException( (string)$splitGroupCount );
 		}
 
 		return $splitGroupCount;

@@ -323,7 +323,9 @@ class PhpUnitXmlManager {
 		$event->getIO()->write( '' );
 	}
 
-	public static function newSplitGroupExecutor( IOInterface $io, ComposerSystemInterface $system ) {
+	public static function newSplitGroupExecutor(
+		IOInterface $io, ComposerSystemInterface $system
+	): SplitGroupExecutor {
 		return new SplitGroupExecutor(
 			self::getPhpUnitXmlDist( $system->getcwd() ),
 			Shellbox::createUnboxedExecutor(),
