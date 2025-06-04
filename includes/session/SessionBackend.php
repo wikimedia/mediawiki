@@ -27,6 +27,7 @@ use InvalidArgumentException;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\FauxRequest;
@@ -885,7 +886,7 @@ final class SessionBackend {
 		if ( $request === false && defined( 'MW_PHPUNIT_TEST' ) ) {
 			$request = new FauxRequest();
 		}
-		$this->logger->info( 'Session store: {action} for {reason}', $data + [
+		LoggerFactory::getInstance( 'session-sampled' )->info( 'Session store: {action} for {reason}', $data + [
 				'id' => $id,
 				'provider' => get_class( $this->getProvider() ),
 				'user' => $user,

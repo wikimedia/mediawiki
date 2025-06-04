@@ -158,7 +158,6 @@ class PHPSessionHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( [
 			[ LogLevel::DEBUG, 'SessionManager using store MediaWiki\Tests\Session\TestBagOStuff' ],
 			[ LogLevel::WARNING, 'Something wrote to $_SESSION!' ],
-			[ LogLevel::INFO, 'Session store: {action} for {reason}' ],
 		], $logger->getBuffer() );
 
 		// Screw up $_SESSION so we can tell the difference between "this
