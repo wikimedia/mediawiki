@@ -1,4 +1,6 @@
 <?php
+declare( strict_types = 1 );
+
 /**
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -378,16 +380,13 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * @param bool $unused
 	 * @param string $titletext
 	 */
-	public function __construct( $text = null, $languageLinks = [], $categoryLinks = [],
+	public function __construct( ?string $text = null, array $languageLinks = [], array $categoryLinks = [],
 		$unused = false, $titletext = ''
 	) {
 		$this->mRawText = $text;
 		$this->mCategories = $categoryLinks;
 		$this->mTitleText = $titletext;
-		if ( $languageLinks === null ) { // T376323
-			wfDeprecated( __METHOD__ . ' with null $languageLinks', '1.43' );
-		}
-		foreach ( ( $languageLinks ?? [] ) as $ll ) {
+		foreach ( $languageLinks as $ll ) {
 			$this->addLanguageLink( $ll );
 		}
 		// If the content handler does not specify an alternative (by
@@ -1395,8 +1394,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	public function addTemplate( $link, $page_id, $rev_id ): void {
 		if ( $link->isExternal() ) {
 			// Will throw an InvalidArgumentException in a future release.
-			wfDeprecated( __METHOD__ . " with interwiki link", '1.42' );
-			return;
+			throw new InvalidArgumentException( __METHOD__ . " with interwiki link" );
 		}
 		$ns = $link->getNamespace();
 		$dbk = $link->getDBkey();

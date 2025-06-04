@@ -146,6 +146,10 @@ because of Phabricator reports.
 * Command::whitelistPaths, deprecated in 1.36, has been removed.
 * Some undocumented behaviors of ParserOptions::setInterfaceMessage() have
   been moved to a new method ParserOptions::setIsMessage(). (T393601, T395589)
+* The ParserOutput constructor now enforces strict type hints on its arguments.
+  Passing null as the $languageLinks parameter was deprecated in 1.43.
+* ParserOutput::addTemplate() now throws an InvalidArgumentException if an
+  interwiki link is provided; this was deprecated in 1.42.
 * …
 
 === Deprecations in 1.45 ===
