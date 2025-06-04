@@ -150,6 +150,8 @@ because of Phabricator reports.
   Passing null as the $languageLinks parameter was deprecated in 1.43.
 * ParserOutput::addTemplate() now throws an InvalidArgumentException if an
   interwiki link is provided; this was deprecated in 1.42.
+* The following methods in ParserOutput have been removed:
+  - ::getTimeSinceStart(), deprecated in 1.42
 * …
 
 === Deprecations in 1.45 ===
