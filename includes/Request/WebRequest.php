@@ -25,8 +25,10 @@
 
 namespace MediaWiki\Request;
 
+use HashBagOStuff;
 use MediaWiki\Exception\FatalError;
 use MediaWiki\Exception\MWException;
+use MediaWiki\Hook\GetSecurityLogContextHook;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Http\Telemetry;
 use MediaWiki\MainConfigNames;
@@ -116,6 +118,9 @@ class WebRequest {
 
 	/** @var bool Whether this HTTP request is "safe" (even if it is an HTTP post) */
 	protected $markedAsSafe = false;
+
+	/** Cache variable for getSecurityLogContext(). */
+	private ?HashBagOStuff $securityLogContext;
 
 	/**
 	 * @codeCoverageIgnore
@@ -1509,6 +1514,66 @@ class WebRequest {
 			}
 		}
 		return false;
+	}
+
+	/**
+	 * Returns an array suitable for addition to a PSR-3 log context that will contain information
+	 * about the request that is useful when investigating security or abuse issues (IP, user agent
+	 * etc).
+	 *
+	 * @param ?UserIdentity $user The user whose action is being logged. Optional; passing it will
+	 *   result in more context information. The user is not required to exist locally. It must
+	 *   have a name though (ie. it should not have the IP address as its name; temp users are
+	 *   allowed).
+	 * @return array By default it will have the following keys:
+	 *   - clientIp: the IP address (as in WebRequest::getIP())
+	 *   - ua: the User-Agent header (or the Api-User-Agent header when using the action API)
+	 *   - originalUserAgent: the User-Agent header (only when Api-User-Agent is also present)
+	 *   Furthermore, when $user has been provided:
+	 *   - user: the username
+	 *   - user_exists_locally: whether the user account exists on the current wiki
+	 *   More fields can be added via the GetSecurityLogContext hook.
+	 *
+	 * @since 1.45
+	 * @see GetSecurityLogContextHook
+	 */
+	public function getSecurityLogContext( ?UserIdentity $user = null ): array {
+		$this->securityLogContext ??= new HashBagOStuff( [ 'maxKeys' => 5 ] );
+		$cacheKey = $user
+			? $this->securityLogContext->makeKey( 'user', $user->getName() )
+			: $this->securityLogContext->makeKey( 'anon', '-' );
+		if ( $this->securityLogContext->hasKey( $cacheKey ) ) {
+			return $this->securityLogContext->get( $cacheKey );
+		}
+
+		$context = [
+			'clientIp' => $this->getIP(),
+		];
+
+		$userAgent = $this->getHeader( 'User-Agent' );
+		$apiUserAgent = null;
+		if ( defined( 'MW_API' ) ) {
+			// matches ApiMain::getUserAgent()
+			$apiUserAgent = $this->getHeader( 'Api-User-Agent' );
+		}
+		$context['ua'] = $apiUserAgent ?: $userAgent;
+		if ( $apiUserAgent ) {
+			$context['originalUserAgent'] = $userAgent;
+		}
+
+		if ( $user ) {
+			$context += [
+				'user' => $user->getName(),
+				'user_exists_locally' => $user->isRegistered(),
+			];
+		}
+
+		$info = [ 'request' => $this, 'user' => $user ];
+		$hookRunner = new HookRunner( MediaWikiServices::getInstance()->getHookContainer() );
+		$hookRunner->onGetSecurityLogContext( $info, $context );
+
+		$this->securityLogContext->set( $cacheKey, $context );
+		return $context;
 	}
 }
 

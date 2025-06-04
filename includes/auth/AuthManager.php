@@ -849,10 +849,8 @@ class AuthManager implements LoggerAwareInterface {
 					] );
 				return $response;
 			}
-			$this->logger->info( 'Login for {user} succeeded from {clientip}', [
-				'user' => $user->getName(),
-				'clientip' => $this->request->getIP(),
-			] );
+			$this->logger->info( 'Login for {user} succeeded from {clientIp}',
+				$this->request->getSecurityLogContext( $user ) );
 			$rememberMeConfig = $this->config->get( MainConfigNames::RememberMe );
 			if ( $rememberMeConfig === RememberMeAuthenticationRequest::ALWAYS_REMEMBER ) {
 				$rememberMe = true;
@@ -961,11 +959,11 @@ class AuthManager implements LoggerAwareInterface {
 			$status = self::SEC_FAIL;
 		}
 
-		$this->logger->info( __METHOD__ . ": $operation is $status for '{user}'",
+		$this->logger->info( __METHOD__ . ": {operation} is {status} for '{user}'",
 			[
-				'user' => $session->getUser()->getName(),
-				'clientip' => $this->getRequest()->getIP(),
-			]
+				'operation' => $operation,
+				'status' => $status,
+			] + $this->getRequest()->getSecurityLogContext( $session->getUser() )
 		);
 
 		return $status;
@@ -2926,14 +2924,13 @@ class AuthManager implements LoggerAwareInterface {
 		}
 		if ( !$proceed ) {
 			$this->logger->info(
-				$action . ' action for {user} from {clientip} prevented by '
+				$action . ' action for {user} from {clientIp} prevented by '
 					. 'AuthManagerVerifyAuthentication hook: {reason}',
 				[
 					'user' => $user ? $user->getName() : '<null>',
-					'clientip' => $this->request->getIP(),
 					'reason' => $response->message->getKey(),
 					'primaryId' => $primaryId,
-				]
+				] + $this->request->getSecurityLogContext( $user )
 			);
 		}
 		return $proceed;
