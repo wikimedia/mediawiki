@@ -496,14 +496,18 @@ RLPAGEMODULES = {$pageModulesJson};
 						if ( $only === Module::TYPE_STYLES ) {
 							$chunk = Html::linkedStyle( $url );
 						} elseif ( $context->getRaw() ) {
+							/** Fandom change - start **/
+							$config = $mainContext->getResourceLoader()->getConfig();
+							$useDefer = $config->get( 'ResourceLoaderUseDeferScripts' );
 							// This request is asking for the module to be delivered standalone,
 							// (aka "raw") without communicating to any mw.loader client.
 							// For:
 							// - startup (naturally because this is what will define mw.loader)
 							$chunk = Html::element( 'script', [
-								'async' => true,
+								$useDefer ? 'defer' : 'async' => true,
 								'src' => $url,
 							] );
+							/** Fandom change - end **/
 						} else {
 							$chunk = ResourceLoader::makeInlineScript(
 								'mw.loader.load(' . $mainContext->encodeJson( $url ) . ');'
