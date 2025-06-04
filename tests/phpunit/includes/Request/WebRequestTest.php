@@ -4,6 +4,8 @@ use MediaWiki\Exception\MWException;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\ProxyLookup;
 use MediaWiki\Request\WebRequest;
+use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserIdentityValue;
 
 /**
  * @covers \MediaWiki\Request\WebRequest
@@ -754,6 +756,51 @@ class WebRequestTest extends MediaWikiIntegrationTestCase {
 			'/wiki/',
 			'/w/index.php/Hello?x=y',
 			false
+		];
+	}
+
+	/**
+	 * @dataProvider provideGetSecurityLogContext
+	 */
+	public function testGetSecurityLogContext( ?UserIdentity $user ) {
+		$request = new WebRequest();
+		$this->setServerVars( [ 'REMOTE_ADDR' => '127.0.0.1' ] );
+		$this->setTemporaryHook(
+			'GetSecurityLogContext',
+			function ( array $info, array &$context ) use ( $request, $user ) {
+				$this->assertSame( $request, $info['request'] );
+				$this->assertSame( $user, $info['user'] );
+				$context['foo'] = 'bar';
+			}
+		);
+
+		$context = $request->getSecurityLogContext( $user );
+		$this->assertSame( '127.0.0.1', $context['clientIp'] );
+		if ( $user ) {
+			$this->assertSame( $user->getName(), $context['user'] );
+		} else {
+			$this->assertArrayNotHasKey( 'user', $context );
+		}
+		$this->assertSame( 'bar', $context['foo'] );
+
+		$this->setTemporaryHook( 'GetSecurityLogContext', fn () => $this->fail( 'should be cached' ) );
+		$request->getSecurityLogContext( $user );
+
+		$this->setTemporaryHook(
+			'GetSecurityLogContext',
+			static function ( array $info, array &$context ) use ( $request, $user ) {
+				$context['foo'] = 'bar2';
+			}
+		);
+		$context2 = $request->getSecurityLogContext( new UserIdentityValue( 0, 'DifferentTestUser' ) );
+		// different cache entry for different user
+		$this->assertSame( 'DifferentTestUser', $context2['user'] );
+	}
+
+	public static function provideGetSecurityLogContext() {
+		return [
+			[ null ],
+			[ new UserIdentityValue( 0, 'TestUser' ) ],
 		];
 	}
 }
