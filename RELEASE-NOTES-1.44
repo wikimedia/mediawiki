@@ -239,8 +239,6 @@ because of Phabricator reports.
 * (T384245) Added language support for Lampung Api (ljp).
 * (T389916) Added language support for Buginese (bug-bugi).
 * (T393086) Added language support for Ho (Latin script) (hoc-latn).
-* (T395223) Added language support for Yucatec Maya (yua).
-
 * …
 
 === Breaking changes in 1.44 ===

@@ -112,6 +112,7 @@ because of Phabricator reports.
 * (T314476) Make Perso-Arabic the primary writing system for Kashmiri,
   under the language code "ks". "ks-arab" and "ks-deva" are preserved for
   backwards compatibility. "ks-deva" may be removed in a future release.
+* (T395223) Added language support for Yucatec Maya (yua).
 * …
 
 === Breaking changes in 1.45 ===
