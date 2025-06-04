@@ -91,20 +91,19 @@ abstract class BundleSizeTestBase extends MediaWikiIntegrationTestCase {
 	 * @coversNothing
 	 */
 	public function testBundleSize( $testCase ) {
-		$projectName = $testCase['projectName'] ?? '';
-
 		$this->assertArrayHasKey( 'resourceModule', $testCase );
 		$moduleName = $testCase['resourceModule'];
 
 		$this->assertTrue(
 			array_key_exists( 'maxSizeUncompressed', $testCase )
-				|| array_key_exists( 'maxSize', $testCase ),
-			'At least one of "maxSize" or "maxSizeUncompressed" should be defined for module ' .
+				xor array_key_exists( 'maxSize', $testCase ),
+			'Exactly one of "maxSize" or "maxSizeUncompressed" must be defined for module ' .
 				$moduleName . '.'
 		);
 
 		$maxSizeUncompressed = $testCase['maxSizeUncompressed'] ?? null;
 		$maxSize = $testCase['maxSize'] ?? null;
+		$projectName = $testCase['projectName'] ?? '';
 
 		if ( $maxSize === null && $maxSizeUncompressed === null ) {
 			$this->markTestSkipped( "The module $moduleName has opted out of bundle size testing." );
