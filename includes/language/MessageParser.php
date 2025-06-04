@@ -176,9 +176,10 @@ class MessageParser {
 			throw new LogicException( 'getOptions must be called after acquireParser' );
 		}
 		if ( isset( $this->parserOptions[$this->curParser] ) ) {
-			return $this->parserOptions[$this->curParser];
+			$popts = $this->parserOptions[$this->curParser];
+		} else {
+			$popts = $this->createOptions( $this->curParser );
 		}
-		$popts = $this->createOptions( $this->curParser );
 		$popts->setInterfaceMessage( $interface );
 		$popts->setTargetLanguage( $this->normalizeTargetLanguage( $targetLanguage ) );
 		return $popts;
