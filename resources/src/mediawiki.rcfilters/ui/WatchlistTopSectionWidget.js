@@ -50,14 +50,17 @@ const WatchlistTopSectionWidget = function MwRcfiltersUiWatchlistTopSectionWidge
 				.append(
 					$( '<div>' )
 						.addClass( 'mw-rcfilters-ui-cell' )
-						.addClass( 'mw-rcfilters-ui-watchlistTopSectionWidget-editWatchlistButton' )
-						.append( $editWatchlistButtonLink )
-				)
-				.append(
-					$( '<div>' )
-						.addClass( 'mw-rcfilters-ui-cell' )
-						.addClass( 'mw-rcfilters-ui-watchlistTopSectionWidget-editWatchlistButton' )
-						.append( $editWatchlistSettingsButtonLink )
+						.addClass( 'mw-rcfilters-ui-watchlistTopSectionWidget-buttonsSection' )
+						.append(
+							$( '<div>' )
+								.addClass( 'mw-rcfilters-ui-watchlistTopSectionWidget-editWatchlistButton' )
+								.append( $editWatchlistButtonLink )
+						)
+						.append(
+							$( '<div>' )
+								.addClass( 'mw-rcfilters-ui-watchlistTopSectionWidget-editWatchlistButton' )
+								.append( $editWatchlistSettingsButtonLink )
+						)
 				)
 		);
 
