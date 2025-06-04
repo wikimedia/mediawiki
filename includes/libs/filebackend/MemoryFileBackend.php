@@ -93,6 +93,19 @@ class MemoryFileBackend extends FileBackendStore {
 	}
 
 	protected function doCopyInternal( array $params ) {
+		return $this->copyInMemory( $params, 'copy' );
+	}
+
+	protected function doMoveInternal( array $params ) {
+		return $this->copyInMemory( $params, 'move' );
+	}
+
+	/**
+	 * @param array $params
+	 * @param string $action whether it's 'copy' or 'move'
+	 * @return \StatusValue
+	 */
+	private function copyInMemory( array $params, string $action ) {
 		$status = $this->newStatus();
 
 		$src = $this->resolveHashKey( $params['src'] );
@@ -111,7 +124,8 @@ class MemoryFileBackend extends FileBackendStore {
 
 		if ( !isset( $this->files[$src] ) ) {
 			if ( empty( $params['ignoreMissingSource'] ) ) {
-				$status->fatal( 'backend-fail-copy', $params['src'], $params['dst'] );
+				// Error codes: backend-fail-copy, backend-fail-move
+				$status->fatal( 'backend-fail-' . $action, $params['src'], $params['dst'] );
 			}
 
 			return $status;
@@ -122,38 +136,9 @@ class MemoryFileBackend extends FileBackendStore {
 			'mtime' => ConvertibleTimestamp::convert( TS_MW, time() )
 		];
 
-		return $status;
-	}
-
-	protected function doMoveInternal( array $params ) {
-		$status = $this->newStatus();
-
-		$src = $this->resolveHashKey( $params['src'] );
-		if ( $src === null ) {
-			$status->fatal( 'backend-fail-invalidpath', $params['src'] );
-
-			return $status;
+		if ( $action === 'move' ) {
+			unset( $this->files[$src] );
 		}
-
-		$dst = $this->resolveHashKey( $params['dst'] );
-		if ( $dst === null ) {
-			$status->fatal( 'backend-fail-invalidpath', $params['dst'] );
-
-			return $status;
-		}
-
-		if ( !isset( $this->files[$src] ) ) {
-			if ( empty( $params['ignoreMissingSource'] ) ) {
-				$status->fatal( 'backend-fail-move', $params['src'], $params['dst'] );
-			}
-
-			return $status;
-		}
-
-		$this->files[$dst] = $this->files[$src];
-		unset( $this->files[$src] );
-		$this->files[$dst]['mtime'] = ConvertibleTimestamp::convert( TS_MW, time() );
-
 		return $status;
 	}
 
