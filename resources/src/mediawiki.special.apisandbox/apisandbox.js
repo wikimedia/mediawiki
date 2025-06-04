@@ -1000,6 +1000,19 @@
 					return;
 				}
 
+				if ( params.format === undefined ) {
+					// While not required by the API, the sandbox UI makes the 'format' parameter required.
+					// If we reach this point without any value for it, that's a bug, so stop here
+					// (it would result in incorrect formatting on the results panel).
+					throw new Error( "'format' parameter is required" );
+				}
+				if ( params.action === undefined ) {
+					// While not required by the API, the sandbox UI makes the 'action' parameter required.
+					// If we reach this point without any value for it, that's a bug, so stop here
+					// (it would result in dumping the entire HTML help output on the results panel).
+					throw new Error( "'action' parameter is required" );
+				}
+
 				var query = $.param( displayParams );
 
 				var formatItems = Util.formatRequest( displayParams, params, method, ajaxOptions );
@@ -1129,7 +1142,7 @@
 								.append( Util.parseMsg( 'apisandbox-results-login-suppressed' ) )
 								.appendTo( $result );
 						}
-						var loadTime, match;
+						var loadTime;
 						if ( /^text\/mediawiki-api-prettyprint-wrapped(?:;|$)/.test( ct ) ) {
 							try {
 								data = JSON.parse( data );
@@ -1148,11 +1161,6 @@
 							}
 							$result.append( Util.parseHTML( data.html ) );
 							loadTime = data.time;
-						} else if ( ( match = data.match( /<pre[ >][\s\S]*<\/pre>/ ) ) ) {
-							$result.append( Util.parseHTML( match[ 0 ] ) );
-							if ( ( match = data.match( /"wgBackendResponseTime":\s*(\d+)/ ) ) ) {
-								loadTime = parseInt( match[ 1 ], 10 );
-							}
 						} else {
 							$( '<pre>' )
 								.addClass( 'api-pretty-content' )
