@@ -118,6 +118,25 @@ class WatchedItemStoreIntegrationTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
+	public function testWatchItemWithExpiryWhenDisabled(): void {
+		// Disable watchlist expiry.
+		$this->overrideConfigValues( [ MainConfigNames::WatchlistExpiry => false ] );
+
+		$user = $this->getUser();
+		$title = Title::makeTitle( NS_MAIN, 'WatchedItemStoreIntegrationTestPage' );
+		$store = $this->getServiceContainer()->getWatchedItemStore();
+
+		// Attempt to add a watch with an expiry.
+		$store->addWatch( $user, $title, '1 week' );
+		// Fetch from the process cache.
+		$watchedItem = $store->getWatchedItem( $user, $title );
+		// The expiry should be null since the feature is disabled.
+		$this->assertNull( $watchedItem->getExpiry() );
+		// The item should still be watched.
+		$this->assertTrue( $store->isWatched( $user, $title ) );
+		$this->assertFalse( $store->isTempWatched( $user, $title ) );
+	}
+
 	public function testWatchAndUnWatchItemWithExpiry(): void {
 		$user = $this->getUser();
 		$title = Title::makeTitle( NS_MAIN, 'WatchedItemStoreIntegrationTestPage' );
