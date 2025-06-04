@@ -58,7 +58,7 @@
 <script>
 const TypeaheadSearchWrapper = require( './TypeaheadSearchWrapper.vue' );
 const { CdxTypeaheadSearch } = require( 'mediawiki.codex.typeaheadSearch' ),
-	{ defineComponent, nextTick, ref } = require( 'vue' ),
+	{ defineComponent, nextTick, ref, computed, onMounted, onUpdated } = require( 'vue' ),
 	instrumentation = require( './instrumentation.js' );
 
 // @vue/component
@@ -176,16 +176,172 @@ module.exports = exports = defineComponent( {
 		const searchRoute = props.searchRoute;
 		// Whether to apply a CSS class that disables the CSS transitions on the text input
 		const disableTransitions = ref( props.autofocusInput );
+		const searchForm = ref( null );
+		const isFocused = ref( false );
+		// -1 here is the default "active suggestion index".
+		const wprov = ref( instrumentation.getWprovFromResultIndex( -1 ) );
+		// Suggestions to be shown in the TypeaheadSearch menu.
+		const suggestions = ref( [] );
+		// Link to the search page for the current search query.
+		const searchFooterUrl = ref( '' );
+		// The current search query. Used to detect whether a fetch response is stale.
+		const currentSearchQuery = ref( '' );
+
+		const containerClasses = computed( () => ( {
+			[ `${ props.prefixClass }typeahead-search-wrapper` ]: true
+		} ) );
+
+		const rootClasses = computed( () => ( {
+			[ `${ props.prefixClass }typeahead-search` ]: true,
+			[ `${ props.prefixClass }search-box-disable-transitions` ]: disableTransitions.value,
+			[ `${ props.prefixClass }typeahead-search--active` ]: isFocused.value
+		} ) );
+
+		// if the search client supports loading more results,
+		// show 7 out of 10 results at first (arbitrary number),
+		// so that scroll events are fired and trigger onLoadMore()
+		const visibleItemLimit = computed( () => props.restClient.loadMore ? 7 : null );
 
 		const exitSearchDialog = () => {
 			useMobileExperience.value = false;
+			suggestions.value = [];
+			currentSearchQuery.value = '';
 		};
+
+		// Fired when the user exits the search dialog
 		const onExit = () => {
 			exitSearchDialog();
 			if ( router ) {
 				clearAddressBar( router, searchRoute );
 			}
 		};
+
+		/**
+		 * @param {AbortableSearchFetch} search
+		 * @param {boolean} replaceResults
+		 */
+		const updateUIWithSearchClientResult = ( search, replaceResults ) => {
+			const query = currentSearchQuery.value;
+			search.fetch
+				.then( ( data ) => {
+					if ( currentSearchQuery.value === query ) {
+						if ( replaceResults ) {
+							suggestions.value = [];
+						}
+						suggestions.value.push(
+							...instrumentation.addWprovToSearchResultUrls(
+								data.results, suggestions.value.length
+							)
+						);
+						searchFooterUrl.value = props.urlGenerator.generateUrl( query );
+					}
+
+					const event = {
+						numberOfResults: data.results.length,
+						query: query
+					};
+					instrumentation.listeners.onFetchEnd( event );
+				} )
+				.catch( () => {
+					// TODO: error handling
+				} );
+		};
+
+		const loadEmptySearchRecommendations = () => {
+			const fetchRecommendations = props.restClient.fetchRecommendationByTitle;
+			if ( props.showEmptySearchRecommendations && fetchRecommendations ) {
+				const currentTitle = mw.config.get( 'wgPageName' );
+				updateUIWithSearchClientResult(
+					props.restClient.fetchRecommendationByTitle( currentTitle, props.showDescription ),
+					true
+				);
+			}
+		};
+
+		/**
+		 * Fetch suggestions when new input is received.
+		 *
+		 * @param {string} value
+		 */
+		const onInput = ( value ) => {
+			const query = value.trim();
+			currentSearchQuery.value = query;
+
+			if ( query === '' ) {
+				loadEmptySearchRecommendations();
+			} else {
+				updateUIWithSearchClientResult(
+					props.restClient.fetchByTitle( query, 10, props.showDescription ),
+					true
+				);
+			}
+		};
+
+		/**
+		 * Fetch additional suggestions.
+		 *
+		 * This should only be called if visibleItemLimit is non-null,
+		 * i.e. if the search client supports loading more results.
+		 */
+		const onLoadMore = () => {
+			if ( !props.restClient.loadMore ) {
+				mw.log.warn( 'onLoadMore() should not have been called for this search client' );
+				return;
+			}
+
+			updateUIWithSearchClientResult(
+				props.restClient.loadMore(
+					currentSearchQuery.value,
+					suggestions.value.length,
+					10,
+					props.showDescription
+				),
+				false
+			);
+		};
+
+		/**
+		 * @param {SearchSubmitEvent} event
+		 */
+		const onSubmit = ( event ) => {
+			wprov.value = instrumentation.getWprovFromResultIndex( event.index );
+			instrumentation.listeners.onSubmit( event );
+		};
+
+		const onFocus = ( event ) => {
+			isFocused.value = true;
+			currentSearchQuery.value = event.target.value;
+			if ( currentSearchQuery.value === '' ) {
+				loadEmptySearchRecommendations();
+			}
+		};
+
+		const onBlur = () => {
+			isFocused.value = false;
+		};
+
+		const focus = () => {
+			searchForm.value.focus();
+			nextTick( () => {
+				disableTransitions.value = false;
+			} );
+		};
+
+		onMounted( () => {
+			if ( props.autofocusInput ) {
+				nextTick( () => {
+					focus();
+				} );
+			}
+		} );
+
+		onUpdated( () => {
+			if ( props.autofocusInput ) {
+				nextTick( () => {
+					focus();
+				} );
+			}
+		} );
 
 		if ( props.supportsMobileExperience && router ) {
 			router.addRoute( /.*$/, () => {
@@ -208,182 +364,22 @@ module.exports = exports = defineComponent( {
 		}
 
 		return {
+			searchForm,
 			useMobileExperience,
-			disableTransitions,
-			onExit
+			wprov,
+			suggestions,
+			searchFooterUrl,
+			containerClasses,
+			rootClasses,
+			visibleItemLimit,
+			onExit,
+			onInput,
+			onLoadMore,
+			onSubmit,
+			onFocus,
+			onBlur,
+			instrumentation: instrumentation.listeners
 		};
-	},
-	data() {
-		return {
-			// -1 here is the default "active suggestion index".
-			wprov: instrumentation.getWprovFromResultIndex( -1 ),
-
-			// Suggestions to be shown in the TypeaheadSearch menu.
-			suggestions: [],
-
-			// Link to the search page for the current search query.
-			searchFooterUrl: '',
-
-			// The current search query. Used to detect whether a fetch response is stale.
-			currentSearchQuery: '',
-
-			instrumentation: instrumentation.listeners,
-
-			isFocused: false
-		};
-	},
-	computed: {
-		containerClasses() {
-			const prefix = this.prefixClass;
-			return {
-				[ `${ prefix }typeahead-search-wrapper` ]: true
-			};
-		},
-		rootClasses() {
-			const prefix = this.prefixClass;
-			return {
-				[ `${ prefix }typeahead-search` ]: true,
-				[ `${ prefix }search-box-disable-transitions` ]: this.disableTransitions,
-				[ `${ prefix }typeahead-search--active` ]: this.isFocused
-			};
-		},
-		visibleItemLimit() {
-			// if the search client supports loading more results,
-			// show 7 out of 10 results at first (arbitrary number),
-			// so that scroll events are fired and trigger onLoadMore()
-			return this.restClient.loadMore ? 7 : null;
-		}
-	},
-	methods: {
-		/**
-		 * Fetch suggestions when new input is received.
-		 *
-		 * @param {string} value
-		 */
-		onInput: function ( value ) {
-			const query = value.trim();
-
-			this.currentSearchQuery = query;
-
-			if ( query === '' ) {
-				this.loadEmptySearchRecommendations();
-			} else {
-				this.updateUIWithSearchClientResult(
-					this.restClient.fetchByTitle( query, 10, this.showDescription ),
-					true
-				);
-			}
-		},
-
-		/**
-		 * Fetch additional suggestions.
-		 *
-		 * This should only be called if visibleItemLimit is non-null,
-		 * i.e. if the search client supports loading more results.
-		 */
-		onLoadMore() {
-			if ( !this.restClient.loadMore ) {
-				mw.log.warn( 'onLoadMore() should not have been called for this search client' );
-				return;
-			}
-
-			this.updateUIWithSearchClientResult(
-				this.restClient.loadMore(
-					this.currentSearchQuery,
-					this.suggestions.length,
-					10,
-					this.showDescription
-				),
-				false
-			);
-		},
-
-		/**
-		 * @param {AbortableSearchFetch} search
-		 * @param {boolean} replaceResults
-		 */
-		updateUIWithSearchClientResult( search, replaceResults ) {
-			const query = this.currentSearchQuery;
-			search.fetch
-				.then( ( data ) => {
-					// Only use these results if they're still relevant
-					// If currentSearchQuery !== query, these results are for a previous search
-					// and we shouldn't show them.
-					if ( this.currentSearchQuery === query ) {
-						if ( replaceResults ) {
-							this.suggestions = [];
-						}
-						this.suggestions.push(
-							...instrumentation.addWprovToSearchResultUrls(
-								data.results, this.suggestions.length
-							)
-						);
-						this.searchFooterUrl = this.urlGenerator.generateUrl( query );
-					}
-
-					const event = {
-						numberOfResults: data.results.length,
-						query: query
-					};
-					instrumentation.listeners.onFetchEnd( event );
-				} )
-				.catch( () => {
-					// TODO: error handling
-				} );
-		},
-
-		loadEmptySearchRecommendations() {
-			const fetchRecommendations = this.restClient.fetchRecommendationByTitle;
-			// Check empty search recommendations is enabled and the API supports recommendations
-			if ( this.showEmptySearchRecommendations && fetchRecommendations ) {
-				const currentTitle = mw.config.get( 'wgPageName' );
-				this.updateUIWithSearchClientResult(
-					this.restClient.fetchRecommendationByTitle( currentTitle, this.showDescription ),
-					true
-				);
-			}
-		},
-
-		/**
-		 * @param {SearchSubmitEvent} event
-		 */
-		onSubmit( event ) {
-			this.wprov = instrumentation.getWprovFromResultIndex( event.index );
-
-			instrumentation.listeners.onSubmit( event );
-		},
-
-		onFocus() {
-			this.isFocused = true;
-			if ( this.currentSearchQuery === '' ) {
-				this.loadEmptySearchRecommendations();
-			}
-		},
-
-		onBlur() {
-			this.isFocused = false;
-		},
-
-		focus() {
-			this.$refs.searchForm.focus();
-			nextTick( () => {
-				this.disableTransitions = false;
-			} );
-		}
-	},
-	updated() {
-		if ( this.autofocusInput ) {
-			nextTick( () => {
-				this.focus();
-			} );
-		}
-	},
-	mounted() {
-		if ( this.autofocusInput ) {
-			nextTick( () => {
-				this.focus();
-			} );
-		}
 	}
 } );
 </script>
