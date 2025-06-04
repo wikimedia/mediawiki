@@ -86,6 +86,9 @@ exports.config = {
 				binary: '/usr/bin/chromedriver'
 			}
 		} ),
+		// Can be changed when we update to newer browser versions
+		// Bidi is still under development in Chrome/Firefox
+		'wdio:enforceWebDriverClassic': true,
 		'goog:chromeOptions': {
 			...( process.env.CI && {
 				binary: '/usr/bin/chromium'
