@@ -20,7 +20,6 @@
 namespace MediaWiki\Page;
 
 use InvalidArgumentException;
-use MediaWiki\Logger\Spi as LoggerSpi;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\ParserCache;
@@ -38,6 +37,7 @@ use MediaWiki\Revision\RevisionRenderer;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\TitleFormatter;
 use MediaWiki\WikiMap\WikiMap;
+use Psr\Log\LoggerInterface;
 use Wikimedia\Assert\Assert;
 use Wikimedia\MapCacheLRU\MapCacheLRU;
 use Wikimedia\Parsoid\Parsoid;
@@ -136,7 +136,7 @@ class ParserOutputAccess {
 	private RevisionRenderer $revisionRenderer;
 	private StatsFactory $statsFactory;
 	private ChronologyProtector $chronologyProtector;
-	private LoggerSpi $loggerSpi;
+	private LoggerInterface $logger;
 	private WikiPageFactory $wikiPageFactory;
 	private TitleFormatter $titleFormatter;
 	private TracerInterface $tracer;
@@ -148,7 +148,7 @@ class ParserOutputAccess {
 		RevisionRenderer $revisionRenderer,
 		StatsFactory $statsFactory,
 		ChronologyProtector $chronologyProtector,
-		LoggerSpi $loggerSpi,
+		LoggerInterface $logger,
 		WikiPageFactory $wikiPageFactory,
 		TitleFormatter $titleFormatter,
 		TracerInterface $tracer,
@@ -159,7 +159,7 @@ class ParserOutputAccess {
 		$this->revisionRenderer = $revisionRenderer;
 		$this->statsFactory = $statsFactory;
 		$this->chronologyProtector = $chronologyProtector;
-		$this->loggerSpi = $loggerSpi;
+		$this->logger = $logger;
 		$this->wikiPageFactory = $wikiPageFactory;
 		$this->titleFormatter = $titleFormatter;
 		$this->tracer = $tracer;
@@ -291,10 +291,8 @@ class ParserOutputAccess {
 		$parserOutput = $this->getPrimaryCache( $parserOptions )
 			->getDirty( $page, $parserOptions );
 
-		$logger = $this->loggerSpi->getLogger( 'dirty' );
-
 		if ( !$parserOutput ) {
-			$logger->info( 'dirty missing' );
+			$this->logger->info( 'dirty missing' );
 			return false;
 		}
 
@@ -309,7 +307,7 @@ class ParserOutputAccess {
 			// including to other pages and other databases, so we bias towards avoiding
 			// fast-stale responses for several seconds after saving an edit.
 			if ( $this->chronologyProtector->getTouched() ) {
-				$logger->info(
+				$this->logger->info(
 					'declining fast-fallback to stale output since ChronologyProtector ' .
 					'reports the client recently made changes',
 					[ 'workKey' => $workKey ]
@@ -321,7 +319,7 @@ class ParserOutputAccess {
 			}
 		}
 
-		$logger->info( $fast ? 'fast dirty output' : 'dirty output', [ 'workKey' => $workKey ] );
+		$this->logger->info( $fast ? 'fast dirty output' : 'dirty output', [ 'workKey' => $workKey ] );
 
 		$status = Status::newGood( $parserOutput );
 		$status->warning( 'view-pool-dirty-output' );
@@ -643,8 +641,9 @@ class ParserOutputAccess {
 					function () use ( $primaryCache, $page, $parserOptions ) {
 						$parserOutput = $primaryCache->get( $page, $parserOptions );
 
-						$logger = $this->loggerSpi->getLogger( 'PoolWorkArticleView' );
-						$logger->debug( $parserOutput ? 'parser cache hit' : 'parser cache miss' );
+						$poolType = 'ArticleView';
+						$status = ( $parserOutput ? 'hit' : 'miss' );
+						$this->logger->debug( "Render for pool $poolType got a $status from ParserCache" );
 
 						return $parserOutput ? Status::newGood( $parserOutput ) : false;
 					};

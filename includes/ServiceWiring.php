@@ -1679,7 +1679,7 @@ return [
 			$services->getRevisionRenderer(),
 			$services->getStatsFactory(),
 			$services->getChronologyProtector(),
-			LoggerFactory::getProvider(),
+			LoggerFactory::getInstance( 'ParserOutputAccess' ),
 			$services->getWikiPageFactory(),
 			$services->getTitleFormatter(),
 			$services->getTracer(),
