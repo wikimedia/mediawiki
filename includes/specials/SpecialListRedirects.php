@@ -117,11 +117,7 @@ class SpecialListRedirects extends QueryPage {
 		$res->seek( 0 );
 	}
 
-	/**
-	 * @param stdClass $row
-	 * @return Title|null
-	 */
-	protected function getRedirectTarget( $row ) {
+	protected function getRedirectTarget( stdClass $row ): ?Title {
 		if ( isset( $row->rd_title ) ) {
 			return Title::makeTitle(
 				$row->rd_namespace,
