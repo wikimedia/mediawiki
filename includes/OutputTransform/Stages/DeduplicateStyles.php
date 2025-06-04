@@ -2,10 +2,12 @@
 
 namespace MediaWiki\OutputTransform\Stages;
 
-use MediaWiki\Html\Html;
+use MediaWiki\Html\HtmlHelper;
 use MediaWiki\OutputTransform\ContentTextTransformStage;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
+use Wikimedia\RemexHtml\Serializer\SerializerNode;
+use Wikimedia\RemexHtml\Tokenizer\PlainAttributes;
 
 /**
  * Generates a list of unique style links
