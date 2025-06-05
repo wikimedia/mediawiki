@@ -749,9 +749,8 @@
 
 	Object.keys( grammarTests ).forEach( ( langCode ) => {
 		QUnit.test( `Language data for lang=${ langCode }`, ( assert ) => {
-			assert.strictEqual(
+			assert.true(
 				Object.prototype.hasOwnProperty.call( languageTestData, langCode ),
-				true,
 				`Missing test data for lang=${ langCode }.` +
 				'Update the definition of the "mediawiki.language.testdata" module.'
 			);

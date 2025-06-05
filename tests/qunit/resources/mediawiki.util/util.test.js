@@ -203,7 +203,7 @@ QUnit.module( 'mediawiki.util', QUnit.newMwEnvironment( {
 		const $el = $( '<div>' ).attr( 'id', 'mw-addcsstest' ).appendTo( '#qunit-fixture' );
 		const style = util.addCSS( '#mw-addcsstest { visibility: hidden; }' );
 		assert.strictEqual( typeof style, 'object', 'addCSS returned an object' );
-		assert.strictEqual( style.disabled, false, 'property "disabled" is available and set to false' );
+		assert.false( style.disabled, 'property "disabled" is available and set to false' );
 
 		assert.strictEqual( $el.css( 'visibility' ), 'hidden', 'Added style properties are in effect' );
 
@@ -429,15 +429,15 @@ QUnit.module( 'mediawiki.util', QUnit.newMwEnvironment( {
 
 	QUnit.test( 'validateEmail', ( assert ) => {
 		assert.strictEqual( util.validateEmail( '' ), null, 'Should return null for empty string ' );
-		assert.strictEqual( util.validateEmail( 'user@localhost' ), true, 'Return true for a valid e-mail address' );
+		assert.true( util.validateEmail( 'user@localhost' ), 'Return true for a valid e-mail address' );
 
 		// testEmailWithCommasAreInvalids
-		assert.strictEqual( util.validateEmail( 'user,foo@example.org' ), false, 'Emails with commas are invalid' );
-		assert.strictEqual( util.validateEmail( 'userfoo@ex,ample.org' ), false, 'Emails with commas are invalid' );
+		assert.false( util.validateEmail( 'user,foo@example.org' ), 'Emails with commas are invalid' );
+		assert.false( util.validateEmail( 'userfoo@ex,ample.org' ), 'Emails with commas are invalid' );
 
 		// testEmailWithHyphens
-		assert.strictEqual( util.validateEmail( 'user-foo@example.org' ), true, 'Emails may contain a hyphen' );
-		assert.strictEqual( util.validateEmail( 'userfoo@ex-ample.org' ), true, 'Emails may contain a hyphen' );
+		assert.true( util.validateEmail( 'user-foo@example.org' ), 'Emails may contain a hyphen' );
+		assert.true( util.validateEmail( 'userfoo@ex-ample.org' ), 'Emails may contain a hyphen' );
 	} );
 
 	// Based on mediawiki/libs/IPUtils: provideInvalidIPv4Addresses

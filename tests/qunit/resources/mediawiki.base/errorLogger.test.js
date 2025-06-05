@@ -13,7 +13,7 @@ QUnit.module( 'mediawiki.base/errorLogger', () => {
 		mw.errorLogger.installGlobalHandler( w );
 
 		assert.strictEqual( typeof w.onerror, 'function', 'install global handler' );
-		assert.strictEqual(
+		assert.false(
 			w.onerror(
 				errorMessage,
 				url,
@@ -21,7 +21,6 @@ QUnit.module( 'mediawiki.base/errorLogger', () => {
 				columnNumber,
 				errorObject
 			),
-			false,
 			'return value when there is no previous handler'
 		);
 		assert.deepEqual( track.getCall( 0 ).args, [

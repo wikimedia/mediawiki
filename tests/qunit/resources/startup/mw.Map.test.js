@@ -124,7 +124,7 @@
 		);
 		assert.strictEqual( conf.get( 'example' ), 'Foo', 'Use original hasOwnProperty method (negative)' );
 
-		assert.strictEqual( conf.set( 'constructor', 42 ), true, 'Set "constructor"' );
+		assert.true( conf.set( 'constructor', 42 ), 'Set "constructor"' );
 		assert.strictEqual( conf.get( 'constructor' ), 42, 'Get "constructor"' );
 	} );
 }() );

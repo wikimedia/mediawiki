@@ -426,10 +426,9 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 		const $cell = $table.find( 'tr > th' ).eq( 0 );
 		$table.find( 'tr > th' ).eq( 1 ).trigger( 'click' );
 
-		assert.strictEqual(
+		assert.false(
 			// eslint-disable-next-line no-jquery/no-class-state
 			$cell.hasClass( 'headerSortUp' ) || $cell.hasClass( 'headerSortDown' ),
-			false,
 			'after sort: no class headerSortUp or headerSortDown'
 		);
 

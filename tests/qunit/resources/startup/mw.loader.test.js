@@ -756,7 +756,7 @@
 				throw new Error( 'Success fired despite missing dependency' );
 			},
 			( e, dependencies ) => {
-				assert.strictEqual( Array.isArray( dependencies ), true, 'Expected array of dependencies' );
+				assert.true( Array.isArray( dependencies ), 'Expected array of dependencies' );
 				assert.deepEqual(
 					dependencies,
 					[ 'jquery', 'mediawiki.base', 'test.module7' ],
@@ -768,7 +768,7 @@
 				throw new Error( 'Success fired despite missing dependency' );
 			},
 			( e, dependencies ) => {
-				assert.strictEqual( Array.isArray( dependencies ), true, 'Expected array of dependencies' );
+				assert.true( Array.isArray( dependencies ), 'Expected array of dependencies' );
 				dependencies.sort();
 				assert.deepEqual(
 					dependencies,
@@ -940,7 +940,7 @@
 		} );
 
 		return mw.loader.using( '', () => {
-			assert.strictEqual( done, true, 'script ran' );
+			assert.true( done, 'script ran' );
 			assert.strictEqual( mw.loader.moduleRegistry[ '' ].state, 'ready', 'State after' );
 		} );
 	} );
@@ -965,7 +965,7 @@
 
 		mw.loader.load( [ 'testRaceRedHerring', 'testRaceLoadMe' ] );
 		return mw.loader.using( 'testRaceLoadMe', () => {
-			assert.strictEqual( done, true, 'script ran' );
+			assert.true( done, 'script ran' );
 			assert.strictEqual( mw.loader.getState( 'testRaceLoadMe' ), 'ready', 'state' );
 		} );
 	} );
@@ -982,7 +982,7 @@
 		} );
 
 		mw.loader.register( 'test.stale', 'v2' );
-		assert.strictEqual( mw.loader.store.get( 'test.stale' ), false, 'Not in store' );
+		assert.false( mw.loader.store.get( 'test.stale' ), 'Not in store' );
 
 		mw.loader.impl( () => [
 			'test.stale@v1',
@@ -1007,7 +1007,7 @@
 
 				// Module was stored correctly as v1
 				// On future navigations, it will be ignored until evicted
-				assert.strictEqual( mw.loader.store.get( 'test.stale' ), false, 'Not in store' );
+				assert.false( mw.loader.store.get( 'test.stale' ), 'Not in store' );
 			} );
 	} );
 
@@ -1025,12 +1025,12 @@
 
 		// See ResourceLoader\StartUpModule::$groupIds
 		mw.loader.register( name, 'x', [], 1 );
-		assert.strictEqual( mw.loader.store.get( name ), false, 'Not in store' );
+		assert.false( mw.loader.store.get( name ), 'Not in store' );
 
 		mw.loader.implement( name, () => {} );
 		return mw.loader.using( name ).then( () => {
 			assert.strictEqual( mw.loader.getState( name ), 'ready' );
-			assert.strictEqual( mw.loader.store.get( name ), false, 'Still not in store' );
+			assert.false( mw.loader.store.get( name ), 'Still not in store' );
 		} );
 	} );
 
@@ -1048,12 +1048,12 @@
 
 		// See ResourceLoader\StartUpModule::$groupIds
 		mw.loader.register( name, 'y', [], 0 );
-		assert.strictEqual( mw.loader.store.get( name ), false, 'Not in store' );
+		assert.false( mw.loader.store.get( name ), 'Not in store' );
 
 		mw.loader.implement( name, () => {} );
 		return mw.loader.using( name ).then( () => {
 			assert.strictEqual( mw.loader.getState( name ), 'ready' );
-			assert.strictEqual( mw.loader.store.get( name ), false, 'Still not in store' );
+			assert.false( mw.loader.store.get( name ), 'Still not in store' );
 		} );
 	} );
 
@@ -1220,7 +1220,7 @@
 
 		return mw.loader.getScript( scriptUrl ).then(
 			() => {
-				assert.strictEqual( mw.getScriptExampleScriptLoaded, true, 'Data attached to a global object is available' );
+				assert.true( mw.getScriptExampleScriptLoaded, 'Data attached to a global object is available' );
 			}
 		);
 	} );

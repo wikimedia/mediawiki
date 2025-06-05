@@ -27,7 +27,7 @@ QUnit.module( 'mediawiki.api.category', ( hooks ) => {
 			'{"batchcomplete":true}'
 		] );
 		const response = await new mw.Api().isCategory( '' );
-		assert.strictEqual( response, false );
+		assert.false( response );
 	} );
 
 	QUnit.test( '.isCategory("#")', async ( assert ) => {
@@ -37,7 +37,7 @@ QUnit.module( 'mediawiki.api.category', ( hooks ) => {
 			'{"batchcomplete":true,"query":{"normalized":[{"fromencoded":false,"from":"#","to":""}]}}'
 		] );
 		const response = await new mw.Api().isCategory( '#' );
-		assert.strictEqual( response, false );
+		assert.false( response );
 	} );
 
 	QUnit.test( '.isCategory("mw:")', async ( assert ) => {
@@ -47,7 +47,7 @@ QUnit.module( 'mediawiki.api.category', ( hooks ) => {
 			'{"batchcomplete":true,"query":{"interwiki":[{"title":"mw:","iw":"mw"}]}}'
 		] );
 		const response = await new mw.Api().isCategory( 'mw:' );
-		assert.strictEqual( response, false );
+		assert.false( response );
 	} );
 
 	QUnit.test( '.isCategory("|")', async ( assert ) => {
@@ -57,7 +57,7 @@ QUnit.module( 'mediawiki.api.category', ( hooks ) => {
 			'{"batchcomplete":true,"query":{"pages":[{"title":"|","invalidreason":"The requested page title contains invalid characters: \\"|\\".","invalid":true}]}}'
 		] );
 		const response = await new mw.Api().isCategory( '|' );
-		assert.strictEqual( response, false );
+		assert.false( response );
 	} );
 
 	QUnit.test( '.getCategories("")', async ( assert ) => {
@@ -67,7 +67,7 @@ QUnit.module( 'mediawiki.api.category', ( hooks ) => {
 			'{"batchcomplete":true}'
 		] );
 		const response = await new mw.Api().getCategories( '' );
-		assert.strictEqual( response, false );
+		assert.false( response );
 	} );
 
 	QUnit.test( '.getCategories("#")', async ( assert ) => {
@@ -77,7 +77,7 @@ QUnit.module( 'mediawiki.api.category', ( hooks ) => {
 			'{"batchcomplete":true,"query":{"normalized":[{"fromencoded":false,"from":"#","to":""}]}}'
 		] );
 		const response = await new mw.Api().getCategories( '#' );
-		assert.strictEqual( response, false );
+		assert.false( response );
 	} );
 
 	QUnit.test( '.getCategories("mw:")', async ( assert ) => {
@@ -87,7 +87,7 @@ QUnit.module( 'mediawiki.api.category', ( hooks ) => {
 			'{"batchcomplete":true,"query":{"interwiki":[{"title":"mw:","iw":"mw"}]}}'
 		] );
 		const response = await new mw.Api().getCategories( 'mw:' );
-		assert.strictEqual( response, false );
+		assert.false( response );
 	} );
 
 	QUnit.test( '.getCategories("|")', async ( assert ) => {
@@ -97,6 +97,6 @@ QUnit.module( 'mediawiki.api.category', ( hooks ) => {
 			'{"batchcomplete":true,"query":{"pages":[{"title":"|","invalidreason":"The requested page title contains invalid characters: \\"|\\".","invalid":true}]}}'
 		] );
 		const response = await new mw.Api().getCategories( '|' );
-		assert.strictEqual( response, false );
+		assert.false( response );
 	} );
 } );
