@@ -2279,6 +2279,7 @@
 	"logeventslist-submit": "Vis",
 	"logeventslist-more-filters": "Vis flere logs:",
 	"logeventslist-patrol-log": "Patruljeringslog",
+	"logeventslist-tag-log": "Taglog",
 	"logeventslist-newusers-log": "Brugeroprettelseslog",
 	"all-logs-page": "Alle offentlige logger",
 	"alllogstext": "Samlet visning af alle loggene på {{SITENAME}}.\nDu kan afgrænse visningen ved at vælge en logtype, brugernavn eller påvirket side. Der skelnes mellem små og store bogstaver for både bruger- og sidenavne.",
