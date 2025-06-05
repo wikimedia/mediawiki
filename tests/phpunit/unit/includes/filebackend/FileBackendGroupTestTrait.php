@@ -12,7 +12,6 @@ use Wikimedia\FileBackend\FSFileBackend;
 use Wikimedia\Mime\MimeAnalyzer;
 use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\ObjectCache\HashBagOStuff;
-use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -50,9 +49,6 @@ trait FileBackendGroupTestTrait {
 	 * @var BagOStuff|null
 	 */
 	private $srvCache;
-
-	/** @var WANObjectCache */
-	private $wanCache;
 
 	/** @var LockManagerGroupFactory */
 	private $lmgFactory;
@@ -238,7 +234,9 @@ trait FileBackendGroupTestTrait {
 			'streamMimeFunc' => [ StreamFile::class, 'contentTypeFromPath' ],
 			'tmpFileFactory' => $this->tmpFileFactory,
 			'statusWrapper' => [ Status::class, 'wrap' ],
-			'wanCache' => $this->wanCache,
+			// Ignore actual value, normal service is fine, because it wraps
+			// $wgMainCacheType (HashBagOStuff) which we already clear between tests.
+			'wanCache' => $config['wanCache'],
 			// If $this->srvCache is null, we don't know what it should be, so just fill in the
 			// actual value. Equality to a new HashBagOStuff doesn't work because of the token.
 			'srvCache' => $this->srvCache ?? $config['srvCache'],
@@ -269,7 +267,6 @@ trait FileBackendGroupTestTrait {
 		// For config values that are objects, check object identity.
 		$this->assertSame( [ $obj, 'guessMimeInternal' ], $config['mimeCallback'] );
 		$this->assertSame( $this->tmpFileFactory, $config['tmpFileFactory'] );
-		$this->assertSame( $this->wanCache, $config['wanCache'] );
 		if ( $this->srvCache === null ) {
 			$this->assertInstanceOf( HashBagOStuff::class, $config['srvCache'] );
 			$this->assertSame(
