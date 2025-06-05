@@ -56,7 +56,7 @@ class RedirectStore implements RedirectLookup {
 		$this->titleParser = $titleParser;
 		$this->repoGroup = $repoGroup;
 		$this->logger = $logger;
-		// Must be 500+ for QueryPage and Pager uses to be effective·(e.g. SpecialBrokenRedirects)
+		// Must be 500+ for QueryPage and Pager uses to be effective
 		$this->procCache = new MapCacheLRU( 1_000 );
 	}
 
