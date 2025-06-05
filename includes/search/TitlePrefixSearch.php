@@ -45,9 +45,9 @@ class TitlePrefixSearch extends PrefixSearch {
 	protected function strings( array $strings ) {
 		$titles = array_map( [ Title::class, 'newFromText' ], $strings );
 		$linkBatchFactory = MediaWikiServices::getInstance()->getLinkBatchFactory();
-		$lb = $linkBatchFactory->newLinkBatch( $titles );
-		$lb->setCaller( __METHOD__ );
-		$lb->execute();
+		$linkBatchFactory->newLinkBatch( $titles )
+			->setCaller( __METHOD__ )
+			->execute();
 		return $titles;
 	}
 }

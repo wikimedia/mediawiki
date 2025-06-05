@@ -231,7 +231,7 @@ class SpecialDoubleRedirects extends QueryPage {
 			return;
 		}
 
-		$batch = $this->linkBatchFactory->newLinkBatch();
+		$batch = $this->linkBatchFactory->newLinkBatch()->setCaller( __METHOD__ );
 		foreach ( $res as $row ) {
 			$batch->add( $row->namespace, $row->title );
 			if ( isset( $row->b_namespace ) ) {

@@ -141,14 +141,14 @@ class LinkBatch {
 	}
 
 	/**
-	 * Use ->setCaller( __METHOD__ ) to indicate which code is using this
-	 * class. Only used in debugging output.
-	 * @since 1.17
+	 * Set the function name to attribute database queries to, in debug logs.
 	 *
+	 * @see Wikimedia\Rdbms\SelectQueryBuilder::caller
+	 * @since 1.17
 	 * @param string $caller
 	 * @return self (since 1.32)
 	 */
-	public function setCaller( $caller ) {
+	public function setCaller( $caller ): self {
 		$this->caller = $caller;
 
 		return $this;
@@ -160,9 +160,6 @@ class LinkBatch {
 	 * added this way, which is needed for the efficient rendering of user links via UserLinkRenderer.
 	 *
 	 * @since 1.44
-	 *
-	 * @param UserIdentity $user
-	 * @return void
 	 */
 	public function addUser( UserIdentity $user ): void {
 		$this->users[$user->getName()] = $user;
@@ -362,19 +359,19 @@ class LinkBatch {
 			return false;
 		}
 
-		// This is similar to LinkHolderArray::replaceInternal
-		$dbr = $this->dbProvider->getReplicaDatabase();
-		$queryBuilder = $dbr->newSelectQueryBuilder()
-			->select( LinkCache::getSelectFields() )
-			->from( 'page' )
-			->where( $this->constructSet( 'page', $dbr ) );
-
 		$caller = __METHOD__;
 		if ( strval( $this->caller ) !== '' ) {
 			$caller .= " (for {$this->caller})";
 		}
 
-		return $queryBuilder->caller( $caller )->fetchResultSet();
+		// This is similar to LinkHolderArray::replaceInternal
+		$dbr = $this->dbProvider->getReplicaDatabase();
+		return $dbr->newSelectQueryBuilder()
+			->select( LinkCache::getSelectFields() )
+			->from( 'page' )
+			->where( $this->constructSet( 'page', $dbr ) )
+			->caller( $caller )
+			->fetchResultSet();
 	}
 
 	/**

@@ -71,7 +71,7 @@ class SpecialTrackingCategories extends SpecialPage {
 
 		$categoryList = $this->trackingCategories->getTrackingCategories();
 
-		$batch = $this->linkBatchFactory->newLinkBatch();
+		$batch = $this->linkBatchFactory->newLinkBatch()->setCaller( __METHOD__ );
 		foreach ( $categoryList as $data ) {
 			$batch->addObj( $data['msg'] );
 			foreach ( $data['cats'] as $catTitle ) {
