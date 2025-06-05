@@ -1821,30 +1821,20 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 *    $output->getExtensionData( 'my_ext_foo' );
 	 * @endcode
 	 *
-	 * @note The use of `null` as a value is deprecated since 1.42; use
+	 * @note The use of `null` as a value was deprecated in 1.42; use
 	 * the empty string instead if you need a placeholder value, or
 	 * ::unsetPageProperty() if you mean to remove a page property.
 	 *
-	 * @note The use of non-string values is deprecated since 1.42; if you
+	 * @note The use of non-string values was deprecated in 1.42; if you
 	 * need an page property value with a sort index
 	 * use ::setNumericPageProperty().
 	 *
 	 * @param string $name
-	 * @param ?scalar $value
+	 * @param string $value
 	 * @since 1.38
 	 */
-	public function setPageProperty( string $name, $value ): void {
-		if ( $value === null ) {
-			// Use an empty string instead.
-			wfDeprecated( __METHOD__ . " with null value for $name", '1.42' );
-		} elseif ( !is_scalar( $value ) ) {
-			// Use ::setExtensionData() instead.
-			wfDeprecated( __METHOD__ . " with non-scalar value for $name", '1.42' );
-		} elseif ( !is_string( $value ) ) {
-			// Use ::setNumericPageProperty() instead.
-			wfDeprecated( __METHOD__ . " with non-string value for $name", '1.42' );
-		}
-		$this->mProperties[$name] = $value;
+	public function setPageProperty( string $name, string $value ): void {
+		$this->setUnsortedPageProperty( $name, $value );
 	}
 
 	/**
@@ -2866,7 +2856,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			} else {
 				// Deprecated, but there are still sites which call
 				// ::setPageProperty() with "unusual" values (T374046)
-				$metadata->setPageProperty( $prop, $value );
+				wfDeprecated( __METHOD__ . ' with unusual page property', '1.45' );
 			}
 		}
 		foreach ( $this->mWarningMsgs as $msg => $args ) {
@@ -3164,7 +3154,26 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 				}
 			}
 		}
-		$this->mProperties = self::detectAndDecodeBinary( $jsonData['Properties'] );
+		// backward-compatibility: convert page properties to their
+		// 'database representation'.  We haven't permitted non-string
+		// non-numeric values since 1.45.
+		$this->mProperties = [];
+		foreach (
+			self::detectAndDecodeBinary( $jsonData['Properties'] )
+			as $k => $v
+		) {
+			if ( is_int( $v ) || is_float( $v ) || is_string( $v ) ) {
+				$this->mProperties[$k] = $v;
+			} elseif ( is_bool( $v ) ) {
+				$this->mProperties[$k] = (int)$v;
+			} elseif ( $v === null ) {
+				$this->mProperties[$k] = '';
+			} elseif ( is_array( $v ) ) {
+				$this->mProperties[$k] = 'Array';
+			} else {
+				$this->mProperties[$k] = strval( $v );
+			}
+		}
 		$this->mTimestamp = $jsonData['Timestamp'];
 		$this->mEnableOOUI = $jsonData['EnableOOUI'];
 		$this->setIndexPolicy( $jsonData['IndexPolicy'] );

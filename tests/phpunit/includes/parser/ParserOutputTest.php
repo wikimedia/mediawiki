@@ -3,7 +3,6 @@
 namespace MediaWiki\Tests\Parser;
 
 use LogicException;
-use MediaWiki\Debug\MWDebug;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\ParserOptions;
@@ -168,12 +167,8 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 	 * @covers \MediaWiki\Parser\ParserOutput::getPageProperties
 	 * @dataProvider providePageProperties
 	 */
-	public function testPageProperties( string $setPageProperty, $value1, $value2, bool $expectDeprecation = false ) {
+	public function testPageProperties( string $setPageProperty, $value1, $value2 ) {
 		$po = new ParserOutput();
-		if ( $expectDeprecation ) {
-			MWDebug::filterDeprecationForTest( '/::setPageProperty with non-string value/' );
-		}
-
 		$po->$setPageProperty( 'foo', $value1 );
 
 		$properties = $po->getPageProperties();
@@ -197,7 +192,6 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 		yield 'Unsorted' => [ 'setUnsortedPageProperty', 'val', 'second val' ];
 		yield 'Numeric' => [ 'setNumericPageProperty', 42, 3.14 ];
 		yield 'Unsorted (old style)' => [ 'setPageProperty', 'val', 'second val' ];
-		yield 'Numeric (old style)' => [ 'setPageProperty', 123, 456, true ];
 	}
 
 	/**

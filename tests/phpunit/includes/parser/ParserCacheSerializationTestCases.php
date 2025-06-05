@@ -174,6 +174,43 @@ abstract class ParserCacheSerializationTestCases {
 	}
 
 	/**
+	 * This matches PagePropsTable::encodeValue() and represents how
+	 * page properties are actually stored in the database.
+	 * @param mixed $v
+	 * @return int|float|string
+	 */
+	public static function pagePropEncode( $v ) {
+		if ( is_int( $v ) || is_float( $v ) || is_string( $v ) ) {
+			return $v;
+		}
+		if ( is_bool( $v ) ) {
+			return (int)$v;
+		}
+		if ( $v === null ) {
+			return '';
+		}
+		if ( is_array( $v ) ) {
+			// strval on an array yield 'Array' plus a warning.
+			return 'Array';
+		}
+		return strval( $v );
+	}
+
+	/**
+	 * Assert equality in terms of semantically equivalent page property
+	 * values.
+	 * @param MediaWikiIntegrationTestCase $testCase
+	 * @param mixed $expected
+	 * @param mixed $actual
+	 */
+	public static function assertPagePropSame( MediaWikiIntegrationTestCase $testCase, $expected, $actual ): void {
+		$testCase->assertSame(
+			self::pagePropEncode( $expected ),
+			self::pagePropEncode( $actual )
+		);
+	}
+
+	/**
 	 * Get acceptance test cases for ParserOutput class.
 	 * @see SerializationTestTrait::getTestInstancesAndAssertions()
 	 * @return array[]
@@ -206,17 +243,27 @@ abstract class ParserCacheSerializationTestCases {
 
 		$parserOutputWithProperties = new ParserOutput( '' );
 		foreach ( self::MOCK_EXT_DATA as $key => $value ) {
-			$parserOutputWithProperties->setPageProperty( $key, $value );
+			$value = self::pagePropEncode( $value );
+			if ( is_int( $value ) || is_float( $value ) ) {
+				$parserOutputWithProperties->setNumericPageProperty( $key, $value );
+			} else {
+				$parserOutputWithProperties->setUnsortedPageProperty( $key, $value );
+			}
 		}
 
 		$parserOutputWithFalsyProperties = new ParserOutput( '' );
 		foreach ( self::MOCK_FALSY_PROPERTIES as $key => $value ) {
-			$parserOutputWithFalsyProperties->setPageProperty( $key, $value );
+			$value = self::pagePropEncode( $value );
+			if ( is_int( $value ) || is_float( $value ) ) {
+				$parserOutputWithFalsyProperties->setNumericPageProperty( $key, $value );
+			} else {
+				$parserOutputWithFalsyProperties->setUnsortedPageProperty( $key, $value );
+			}
 		}
 
 		$parserOutputWithBinaryProperties = new ParserOutput( '' );
 		foreach ( self::MOCK_BINARY_PROPERTIES as $key => $value ) {
-			$parserOutputWithBinaryProperties->setPageProperty( $key, $value );
+			$parserOutputWithBinaryProperties->setUnsortedPageProperty( $key, $value );
 		}
 
 		$parserOutputWithMetadata = new ParserOutput( '' );
@@ -399,21 +446,24 @@ abstract class ParserCacheSerializationTestCases {
 			'pageProperties' => [
 				'instance' => $parserOutputWithProperties,
 				'assertions' => static function ( MediaWikiIntegrationTestCase $testCase, ParserOutput $object ) {
-					$testCase->assertSame( self::MOCK_EXT_DATA['boolean'], $object->getPageProperty( 'boolean' ) );
-					$testCase->assertSame( self::MOCK_EXT_DATA['null'], $object->getPageProperty( 'null' ) );
-					$testCase->assertSame( self::MOCK_EXT_DATA['number'], $object->getPageProperty( 'number' ) );
-					$testCase->assertSame( self::MOCK_EXT_DATA['string'], $object->getPageProperty( 'string' ) );
-					$testCase->assertArrayEquals( self::MOCK_EXT_DATA['array'], $object->getPageProperty( 'array' ) );
-					$testCase->assertSame( self::MOCK_EXT_DATA['map'], $object->getPageProperty( 'map' ) );
-					$testCase->assertArrayEquals( self::MOCK_EXT_DATA, $object->getPageProperties() );
+					self::assertPagePropSame( $testCase, self::MOCK_EXT_DATA['boolean'], $object->getPageProperty( 'boolean' ) );
+					self::assertPagePropSame( $testCase, self::MOCK_EXT_DATA['null'], $object->getPageProperty( 'null' ) );
+					self::assertPagePropSame( $testCase, self::MOCK_EXT_DATA['number'], $object->getPageProperty( 'number' ) );
+					self::assertPagePropSame( $testCase, self::MOCK_EXT_DATA['string'], $object->getPageProperty( 'string' ) );
+					self::assertPagePropSame( $testCase, self::MOCK_EXT_DATA['array'], $object->getPageProperty( 'array' ) );
+					self::assertPagePropSame( $testCase, self::MOCK_EXT_DATA['map'], $object->getPageProperty( 'map' ) );
+					$testCase->assertArrayEquals(
+						array_map( fn ( $v )=>self::pagePropEncode( $v ), self::MOCK_EXT_DATA ),
+						array_map( fn ( $v )=>self::pagePropEncode( $v ), $object->getPageProperties() )
+					);
 				}
 			],
 			'binaryPageProperties' => [
 				'instance' => $parserOutputWithBinaryProperties,
 				'assertions' => static function ( MediaWikiIntegrationTestCase $testCase, ParserOutput $object ) {
-					$testCase->assertSame( self::MOCK_BINARY_PROPERTIES['empty'], $object->getPageProperty( 'empty' ) );
-					$testCase->assertSame( self::MOCK_BINARY_PROPERTIES['\x00'], $object->getPageProperty( '\x00' ) );
-					$testCase->assertSame( self::MOCK_BINARY_PROPERTIES['gzip'], $object->getPageProperty( 'gzip' ) );
+					self::assertPagePropSame( $testCase, self::MOCK_BINARY_PROPERTIES['empty'], $object->getPageProperty( 'empty' ) );
+					self::assertPagePropSame( $testCase, self::MOCK_BINARY_PROPERTIES['\x00'], $object->getPageProperty( '\x00' ) );
+					self::assertPagePropSame( $testCase, self::MOCK_BINARY_PROPERTIES['gzip'], $object->getPageProperty( 'gzip' ) );
 					$testCase->assertArrayEquals( self::MOCK_BINARY_PROPERTIES, $object->getPageProperties() );
 				}
 			],
@@ -502,27 +552,27 @@ abstract class ParserCacheSerializationTestCases {
 			'withFalsyProperties' => [
 				'instance' => $parserOutputWithFalsyProperties,
 				'assertions' => static function ( MediaWikiIntegrationTestCase $testCase, ParserOutput $object ) {
-					$testCase->assertSame(
+					self::assertPagePropSame( $testCase,
 						self::MOCK_FALSY_PROPERTIES['boolean'],
 						$object->getPageProperty( 'boolean' )
 					);
-					$testCase->assertSame(
+					self::assertPagePropSame( $testCase,
 						self::MOCK_FALSY_PROPERTIES['null'],
 						$object->getPageProperty( 'null' )
 					);
-					$testCase->assertSame(
+					self::assertPagePropSame( $testCase,
 						self::MOCK_FALSY_PROPERTIES['number'],
 						$object->getPageProperty( 'number' )
 					);
-					$testCase->assertSame(
+					self::assertPagePropSame( $testCase,
 						self::MOCK_FALSY_PROPERTIES['string'],
 						$object->getPageProperty( 'string' )
 					);
-					$testCase->assertSame(
+					self::assertPagePropSame( $testCase,
 						self::MOCK_FALSY_PROPERTIES['numstring'],
 						$object->getPageProperty( 'numstring' )
 					);
-					$testCase->assertArrayEquals(
+					self::assertPagePropSame( $testCase,
 						self::MOCK_FALSY_PROPERTIES['array'],
 						$object->getPageProperty( 'array' )
 					);
