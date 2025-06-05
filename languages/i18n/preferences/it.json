@@ -225,6 +225,7 @@
 	"rcfilters-watchlist-preference-label": "Utilizza l'interfaccia senza JavaScript",
 	"rcfilters-watchlist-preference-help": "Carica gli [[{{#special:Watchlist}}|osservati speciali]] senza filtri di ricerca o funzionalità di evidenziazione.",
 	"prefs-changeswatchlist": "Modifiche mostrate",
+	"tog-watch-expiry": "Periodo di tempo predefinito:",
 	"tog-watchlisthideminor": "Nascondi le modifiche minori negli osservati speciali",
 	"tog-watchlisthidebots": "Nascondi le modifiche dei bot negli osservati speciali",
 	"tog-watchlisthideown": "Nascondi le mie modifiche negli osservati speciali",

@@ -2469,7 +2469,7 @@
 	"ipb-blocklist": "Прикажи постојеће блокаде",
 	"ipb-blocklist-contribs": "Доприноси за {{GENDER:$1|$1}}",
 	"ipb-blocklist-duration-left": "преостало: $1",
-	"block-added-message": "Додат блок",
+	"block-added-message": "Додата блокада",
 	"block-updated-message": "Блокада ажурирана",
 	"block-actions": "Тип блокаде",
 	"block-change-visibility": "Промени видљивост",

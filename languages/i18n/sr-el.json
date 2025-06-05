@@ -2455,7 +2455,7 @@
 	"ipb-blocklist": "Prikaži postojeće blokade",
 	"ipb-blocklist-contribs": "Doprinosi za {{GENDER:$1|$1}}",
 	"ipb-blocklist-duration-left": "preostalo: $1",
-	"block-added-message": "Dodat blok",
+	"block-added-message": "Dodata blokada",
 	"block-updated-message": "Blokada ažurirana",
 	"block-actions": "Tip blokade",
 	"block-change-visibility": "Promeni vidljivost",

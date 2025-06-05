@@ -2650,7 +2650,7 @@
 	"whatlinkshere-submit": "Lister",
 	"autoblockid": "Blocage automatique nº $1",
 	"block": "Bloquer l’utilisateur",
-	"block-manage-blocks": "Gérer les blocs",
+	"block-manage-blocks": "Gérer les blocages",
 	"unblock": "Débloquer l’utilisateur",
 	"unblock-error-multiblocks": "Veuillez utiliser [[Special:Block/$1]] pour gérer plusieurs blocs.",
 	"changeblockip": "Modifier le blocage",

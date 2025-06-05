@@ -202,6 +202,7 @@
 	"help": "Ajuda",
 	"help-mediawiki": "Ajuda do MediaWiki",
 	"search": "Pesquisa",
+	"search-close": "Fechar caixa de diálogo de pesquisa",
 	"search-ignored-headings": " #<!-- deixe esta linha exatamente como está --> <pre>\n# Cabeçalhos que serão ignorados pela busca.\n# Mudanças feitas aqui têm efeito quando a página com o cabeçalho é indexada.\n# Você pode forçar a reindexação realizando uma edição nula.\n# A sintaxe é a seguinte:\n#   * Tudo a partir do caractere \"#\" até o final da linha é um comentário.\n#   * Cada linha não vazia é o título exato a ser ignorado, inclusive no uso de maiúsculas.\nReferências\nLigações externas\nVer também\n #</pre> <!-- deixe esta linha exatamente como está -->",
 	"searchbutton": "Pesquisar",
 	"searchsuggest-containing-html": "Procurar pelas páginas contendo <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>",

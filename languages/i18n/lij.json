@@ -65,6 +65,7 @@
 	"help": "Agiùtto",
 	"help-mediawiki": "Agiùtto in sce MediaWiki",
 	"search": "Riçèrca",
+	"search-close": "Særa o barcón de diàlogo de riçèrca",
 	"search-ignored-headings": " #<!-- làscia quésta rîga ezataménte comm'a l'é --> <pre>\n# Lìsta de intestaçioìn che saiàn ignoræ da-a riçèrca.\n# E modìfiche a quésta pàgina saiàn efetîve cómme a pàgina a saiâ indicizâ.\n# Ti pêu forsâ a re-indicizaçión de 'na pàgina efetoàndo 'na modìfica nùlla.\n# A scintàsci a l'é quélla chi de sótta:\n#   * Tùtto da-o caràtere \"#\" a-a fìn da rîga o l'é 'n coménto\n#   * Tùtto e rîghe no vêue són e intestaçioìn ezàtte da ignorâ, maióscolo/minóscolo e tùtto\nNòtte\nVôxe corelæ\nConligaménti estèrni\n #</pre> <!-- làscia quésta rîga ezataménte comm'a l'é -->",
 	"searchbutton": "Riçèrca",
 	"searchsuggest-containing-html": "Çèrca inte pàgine che contêgnan <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>",
