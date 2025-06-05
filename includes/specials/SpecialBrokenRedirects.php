@@ -22,7 +22,6 @@ namespace MediaWiki\Specials;
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Content\IContentHandlerFactory;
-use MediaWiki\Page\RedirectLookup;
 use MediaWiki\Skin\Skin;
 use MediaWiki\SpecialPage\QueryPage;
 use MediaWiki\Title\Title;
@@ -45,16 +44,13 @@ use Wikimedia\Rdbms\IResultWrapper;
  * 2. Render source links,
  *    in formatResult(). Pages may change between cache and now, and
  *    LinkRenderer doesn't know anyway, so we batch preload page info
- *    for all source pages in executeLBFromResultWrapper(),
+ *    for all source pages in preprocessResults(),
  *    consumed by LinkRenderer calls in formatResult().
  *
  * 3. Identify redirect destination.
  *    For uncached, this happens in doQuery() by adding extra fields.
- *    For MiserMode, these extra fields don't fit in the cache.
- *
- *    TODO: As of T351055, this is enabled even in MiserMode but,
- *    there is no batch feature in RedirectStore yet. Instead,
- *    we do 500 separate redirect lookups at runtime.
+ *    For MiserMode, the redirect target is loaded from database
+ *    and added to the batch as well.
  *
  * 4. Render destination links,
  *    in formatResult(). Pages may change between cache and now.
@@ -66,19 +62,18 @@ use Wikimedia\Rdbms\IResultWrapper;
 class SpecialBrokenRedirects extends QueryPage {
 
 	private IContentHandlerFactory $contentHandlerFactory;
-	private RedirectLookup $redirectLookup;
+	/** @var array<int,array<string,Title>> namespace and title map to redirect targets */
+	private array $redirectTargets = [];
 
 	public function __construct(
 		IContentHandlerFactory $contentHandlerFactory,
 		IConnectionProvider $dbProvider,
-		LinkBatchFactory $linkBatchFactory,
-		RedirectLookup $redirectLookup
+		LinkBatchFactory $linkBatchFactory
 	) {
 		parent::__construct( 'BrokenRedirects' );
 		$this->contentHandlerFactory = $contentHandlerFactory;
 		$this->setDatabaseProvider( $dbProvider );
 		$this->setLinkBatchFactory( $linkBatchFactory );
-		$this->redirectLookup = $redirectLookup;
 	}
 
 	public function isExpensive() {
@@ -146,15 +141,34 @@ class SpecialBrokenRedirects extends QueryPage {
 	 * @param IResultWrapper $res
 	 */
 	public function preprocessResults( $db, $res ) {
-		$this->executeLBFromResultWrapper( $res );
+		if ( !$res->numRows() ) {
+			return;
+		}
 
-		// Preload LinkRenderer data for destination links
 		$batch = $this->getLinkBatchFactory()->newLinkBatch()->setCaller( __METHOD__ );
-		foreach ( $res as $result ) {
-			// TODO: Batch RedirectLookup calls
-			$toObj = $this->getRedirectTarget( $result );
-			if ( $toObj ) {
-				$batch->addObj( $toObj );
+		$cached = $this->isCached();
+		foreach ( $res as $row ) {
+			// Preload LinkRenderer data for source links
+			$batch->add( $row->namespace, $row->title );
+			if ( !$cached ) {
+				// Preload LinkRenderer data for destination links
+				$batch->add( $row->rd_namespace, $row->rd_title );
+			}
+		}
+		if ( $cached ) {
+			// Preload redirect targets and LinkRenderer data for destination links
+			$rdRes = $db->newSelectQueryBuilder()
+				->select( [ 'page_namespace', 'page_title', 'rd_namespace', 'rd_title', 'rd_fragment' ] )
+				->from( 'page' )
+				->join( 'redirect', null, 'page_id = rd_from' )
+				->where( $batch->constructSet( 'page', $db ) )
+				->caller( __METHOD__ )
+				->fetchResultSet();
+
+			foreach ( $rdRes as $rdRow ) {
+				$batch->add( $rdRow->rd_namespace, $rdRow->rd_title );
+				$this->redirectTargets[$rdRow->page_namespace][$rdRow->page_title] =
+					Title::makeTitle( $rdRow->rd_namespace, $rdRow->rd_title, $rdRow->rd_fragment );
 			}
 		}
 		$batch->execute();
@@ -170,10 +184,7 @@ class SpecialBrokenRedirects extends QueryPage {
 				$result->rd_fragment
 			);
 		} else {
-			$fromObj = Title::makeTitle( $result->namespace, $result->title );
-			return Title::castFromLinkTarget(
-				$this->redirectLookup->getRedirectTarget( $fromObj )
-			);
+			return $this->redirectTargets[$result->namespace][$result->title] ?? null;
 		}
 	}
 
