@@ -18,11 +18,10 @@
  * @file
  */
 
-// Suppress UnusedPluginSuppression because Phan on PHP 7.4 and PHP 8.1 need different suppressions
-// @phan-file-suppress UnusedPluginSuppression,UnusedPluginFileSuppression
-
 namespace Wikimedia\Rdbms;
 
+use PgSql\Connection;
+use PgSql\Result;
 use RuntimeException;
 use Wikimedia\Rdbms\Platform\PostgresPlatform;
 use Wikimedia\Rdbms\Replication\ReplicationReporter;
@@ -41,7 +40,7 @@ class DatabasePostgres extends Database {
 	/** @var float|string|null */
 	private $numericVersion;
 
-	/** @var resource|null */
+	/** @var Result|null */
 	private $lastResultHandle;
 
 	/** @var PostgresPlatform */
@@ -173,6 +172,10 @@ class DatabasePostgres extends Database {
 		return true;
 	}
 
+	protected function getBindingHandle(): Connection {
+		return parent::getBindingHandle();
+	}
+
 	/**
 	 * @param string[] $vars
 	 * @return string
@@ -204,16 +207,11 @@ class DatabasePostgres extends Database {
 			throw new DBUnexpectedError( $this, "Unable to post new query to PostgreSQL\n" );
 		}
 
-		// Newer PHP versions use PgSql\Result instead of resource variables
-		// https://www.php.net/manual/en/function.pg-get-result.php
 		$pgRes = pg_get_result( $conn );
-		// Phan on PHP 7.4 and PHP 8.1 need different suppressions
-		// @phan-suppress-next-line PhanTypeMismatchProperty,PhanTypeMismatchPropertyProbablyReal
 		$this->lastResultHandle = $pgRes;
 		$res = pg_result_error( $pgRes ) ? false : $pgRes;
 
 		return new QueryStatus(
-			// @phan-suppress-next-line PhanTypeMismatchArgument
 			is_bool( $res ) ? $res : new PostgresResultWrapper( $this, $conn, $res ),
 			$pgRes ? pg_affected_rows( $pgRes ) : 0,
 			$this->lastError(),
@@ -238,7 +236,6 @@ class DatabasePostgres extends Database {
 		];
 		foreach ( $diags as $d ) {
 			$this->logger->debug( sprintf( "PgSQL ERROR(%d): %s",
-				// @phan-suppress-next-line PhanTypeMismatchArgumentInternal
 				$d, pg_result_error_field( $this->lastResultHandle, $d ) ) );
 		}
 	}
@@ -256,7 +253,6 @@ class DatabasePostgres extends Database {
 	public function lastError() {
 		if ( $this->conn ) {
 			if ( $this->lastResultHandle ) {
-				// @phan-suppress-next-line PhanTypeMismatchArgumentInternal
 				return pg_result_error( $this->lastResultHandle );
 			} else {
 				return pg_last_error() ?: $this->lastConnectError;
@@ -268,7 +264,6 @@ class DatabasePostgres extends Database {
 
 	public function lastErrno() {
 		if ( $this->lastResultHandle ) {
-			// @phan-suppress-next-line PhanTypeMismatchArgumentInternal
 			$lastErrno = pg_result_error_field( $this->lastResultHandle, PGSQL_DIAG_SQLSTATE );
 			if ( $lastErrno !== false ) {
 				return $lastErrno;
