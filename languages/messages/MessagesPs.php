@@ -178,6 +178,7 @@ $magicWords = [
 	'pagesize'                  => [ '1', 'مخکچه', 'PAGESIZE' ],
 	'plural'                    => [ '0', 'جمع:', 'PLURAL:' ],
 	'protectionlevel'           => [ '1', 'ژغورکچه', 'PROTECTIONLEVEL' ],
+	'redirect'                  => [ '0', '#مخګرځ', '#REDIRECT' ],
 	'server'                    => [ '0', 'پالنګر', 'SERVER' ],
 	'servername'                => [ '0', 'دپالنګر_نوم', 'SERVERNAME' ],
 	'sitename'                  => [ '1', 'دوېبځي_نوم', 'SITENAME' ],
