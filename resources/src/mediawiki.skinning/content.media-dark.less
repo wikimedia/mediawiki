@@ -10,16 +10,15 @@
 	section,
 	/* e.g. https://en.wikipedia.org/wiki/Pullback_(category_theory)#Universal_property */
 	dd,
-	/* For targeting p span.mw-default-size */
 	p {
 		> span.mw-default-size,
-		> figure[ typeof='mw:File' ],
-		> figure[ typeof='mw:File/Thumb' ],
-		> figure[ typeof='mw:File/Frameless' ] {
-			img {
-				background-color: @background-color-base-fixed;
-				color: @color-base-fixed;
-				filter: brightness( 0.8 );
+		> figure[ typeof^='mw:File' ] {
+			&:not( .skin-invert-image ) {
+				img {
+					background-color: @background-color-base-fixed;
+					color: @color-base-fixed;
+					filter: brightness( 0.8 );
+				}
 			}
 		}
 	}
