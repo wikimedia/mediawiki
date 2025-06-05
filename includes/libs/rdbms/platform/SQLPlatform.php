@@ -1332,9 +1332,14 @@ class SQLPlatform implements ISQLPlatform {
 			$sql .= ' GROUP BY ' . $gb;
 		}
 		if ( isset( $options['HAVING'] ) ) {
-			$having = is_array( $options['HAVING'] )
-				? $this->makeList( $options['HAVING'], self::LIST_AND )
-				: $options['HAVING'];
+			if ( $options['HAVING'] instanceof IExpression ) {
+				$having = $options['HAVING']->toSql( $this->quoter );
+			} elseif ( is_array( $options['HAVING'] ) ) {
+				$having = $this->makeList( $options['HAVING'], self::LIST_AND );
+			} else {
+				$having = $options['HAVING'];
+			}
+
 			$sql .= ' HAVING ' . $having;
 		}
 

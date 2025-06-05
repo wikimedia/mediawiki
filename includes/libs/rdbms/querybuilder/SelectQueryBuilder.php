@@ -504,14 +504,14 @@ class SelectQueryBuilder extends JoinGroupBase {
 	}
 
 	/**
-	 * Add a HAVING clause. May be either a string containing a HAVING clause
-	 * or an array of conditions building the HAVING clause. If an array is
-	 * given, the conditions constructed from each element are combined with
+	 * Add a HAVING clause. May be either a string containing a HAVING clause,
+	 * an IExpression instance, or an array of conditions building the HAVING clause.
+	 * If an array is given, the conditions constructed from each element are combined with
 	 * AND.
 	 *
 	 * If there is an existing HAVING clause, the new one will be appended.
 	 *
-	 * @param string|string[] $having
+	 * @param string|string[]|IExpression|IExpression[] $having
 	 * @param-taint $having exec_sql_numkey
 	 * @return $this
 	 */

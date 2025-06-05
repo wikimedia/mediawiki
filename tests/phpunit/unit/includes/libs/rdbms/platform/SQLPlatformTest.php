@@ -450,6 +450,36 @@ class SQLPlatformTest extends TestCase {
 				],
 				"SELECT  field"
 			],
+			[
+				[
+					'tables' => [ 'table' ],
+					'fields' => [ 'field1', 'alias' => 'MAX(field2)' ],
+					'options' => [
+						'GROUP BY' => 'field1',
+						'HAVING' => ( new Expression( 'field1', '>', 'text' ) )
+							->and( 'alias', '>', 'text2' ),
+					]
+				],
+				"SELECT  field1,MAX(field2) AS alias  " .
+				"FROM table     " .
+				"GROUP BY field1 HAVING (field1 > 'text' AND alias > 'text2')"
+			],
+			[
+				[
+					'tables' => [ 'table' ],
+					'fields' => [ 'field1', 'alias' => 'MAX(field2)' ],
+					'options' => [
+						'GROUP BY' => 'field1',
+						'HAVING' => [
+							new Expression( 'field1', '>', 'text' ),
+							new Expression( 'alias', '>', 'text2' )
+						]
+					]
+				],
+				"SELECT  field1,MAX(field2) AS alias  " .
+				"FROM table     " .
+				"GROUP BY field1 HAVING (field1 > 'text') AND (alias > 'text2')"
+			],
 		];
 	}
 

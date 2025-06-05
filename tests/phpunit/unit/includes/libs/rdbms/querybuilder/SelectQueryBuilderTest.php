@@ -483,6 +483,29 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 		$this->assertSQL( 'SELECT f FROM t HAVING a = 1' );
 	}
 
+	public function testHavingWithSingleExpression() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
+		$this->sqb
+			->select( 'f' )
+			->from( 't' )
+			->having( $this->db->expr( 'a', '=', 1 ) );
+		$this->assertSQL( 'SELECT f FROM t HAVING (a = 1)' );
+	}
+
+	public function testHavingWithArrayOfExpressions() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
+		$this->sqb
+			->select( 'f' )
+			->from( 't' )
+			->having( [
+				$this->db->expr( 'a', '=', 1 ),
+				$this->db->expr( 'b', '>', 2 )
+			] );
+		$this->assertSQL( 'SELECT f FROM t HAVING (a = 1) AND (b > 2)' );
+	}
+
 	public function testOrderBy1() {
 		$this->db = new DatabaseTestHelper( __METHOD__ );
 		$this->sqb = $this->db->newSelectQueryBuilder();
