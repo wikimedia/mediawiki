@@ -19,7 +19,7 @@
 			:form-action="action"
 			:show-thumbnail="showThumbnail"
 			:highlight-query="highlightQuery"
-			:auto-expand-width="autoExpandWidth"
+			:auto-expand-width="useMobileExperience ? false : autoExpandWidth"
 			:search-results="suggestions"
 			:search-footer-url="searchFooterUrl"
 			:visible-item-limit="visibleItemLimit"
