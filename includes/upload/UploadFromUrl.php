@@ -163,9 +163,10 @@ class UploadFromUrl extends UploadBase {
 	}
 
 	/**
+	 * @since 1.45 public
 	 * @return string[]
 	 */
-	private static function getAllowedHosts(): array {
+	public static function getAllowedHosts(): array {
 		$config = MediaWikiServices::getInstance()->getMainConfig();
 		$domains = $config->get( MainConfigNames::CopyUploadsDomains );
 

@@ -97,7 +97,8 @@ For notes on 1.44.x and older releases, see HISTORY.
 * …
 
 === Action API changes in 1.45 ===
-
+* (T396049) The list of domains supported by the upload-by-URL feature is now
+  exposed via meta=siteinfo.
 * …
 
 === Action API internal changes in 1.45 ===

@@ -52,6 +52,7 @@ use MediaWiki\Utils\GitInfo;
 use MediaWiki\Utils\UrlUtils;
 use MediaWiki\WikiMap\WikiMap;
 use UploadBase;
+use UploadFromUrl;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\ReadOnlyMode;
@@ -213,6 +214,9 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 					break;
 				case 'autopromoteonce':
 					$fit = $this->appendAutoPromoteOnce( $p );
+					break;
+				case 'copyuploaddomains':
+					$fit = $this->appendCopyUploadDomains( $p );
 					break;
 				default:
 					ApiBase::dieDebug( __METHOD__, "Unknown prop=$p" ); // @codeCoverageIgnore
@@ -992,6 +996,14 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		return $this->getResult()->addValue( 'query', $property, $data );
 	}
 
+	private function appendCopyUploadDomains( string $property ): bool {
+		return $this->getResult()->addValue(
+			'query',
+			$property,
+			UploadFromUrl::getAllowedHosts()
+		);
+	}
+
 	/**
 	 * @param array|int|string $cond
 	 * @param array $allowedConditions
@@ -1109,6 +1121,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 					'uploaddialog',
 					'autopromote',
 					'autopromoteonce',
+					'copyuploaddomains',
 				],
 				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
 			],
