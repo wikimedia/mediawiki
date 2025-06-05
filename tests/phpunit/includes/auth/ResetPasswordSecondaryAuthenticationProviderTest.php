@@ -10,6 +10,7 @@ use MediaWiki\Auth\ButtonAuthenticationRequest;
 use MediaWiki\Auth\PasswordAuthenticationRequest;
 use MediaWiki\Auth\ResetPasswordSecondaryAuthenticationProvider;
 use MediaWiki\Config\HashConfig;
+use MediaWiki\Language\RawMessage;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Tests\Unit\Auth\AuthenticationProviderTestTrait;
@@ -159,71 +160,6 @@ class ResetPasswordSecondaryAuthenticationProviderTest extends MediaWikiIntegrat
 		DynamicPropertyTestHelper::setDynamicProperty( $passReq3, 'allow', StatusValue::newGood() );
 		DynamicPropertyTestHelper::setDynamicProperty( $passReq3, 'done', false );
 
-		$this->assertEquals(
-			AuthenticationResponse::newAbstain(),
-			$provider->tryReset( $user, [] )
-		);
-
-		$manager->setAuthenticationSessionData( 'reset-pass', 'foo' );
-		try {
-			$provider->tryReset( $user, [] );
-			$this->fail( 'Expected exception not thrown' );
-		} catch ( UnexpectedValueException $ex ) {
-			$this->assertSame( 'reset-pass is not valid', $ex->getMessage() );
-		}
-
-		$manager->setAuthenticationSessionData( 'reset-pass', (object)[] );
-		try {
-			$provider->tryReset( $user, [] );
-			$this->fail( 'Expected exception not thrown' );
-		} catch ( UnexpectedValueException $ex ) {
-			$this->assertSame( 'reset-pass msg is missing', $ex->getMessage() );
-		}
-
-		$manager->setAuthenticationSessionData( 'reset-pass', [
-			'msg' => 'foo',
-		] );
-		try {
-			$provider->tryReset( $user, [] );
-			$this->fail( 'Expected exception not thrown' );
-		} catch ( UnexpectedValueException $ex ) {
-			$this->assertSame( 'reset-pass msg is not valid', $ex->getMessage() );
-		}
-
-		$manager->setAuthenticationSessionData( 'reset-pass', [
-			'msg' => $msg,
-		] );
-		try {
-			$provider->tryReset( $user, [] );
-			$this->fail( 'Expected exception not thrown' );
-		} catch ( UnexpectedValueException $ex ) {
-			$this->assertSame( 'reset-pass hard is missing', $ex->getMessage() );
-		}
-
-		$manager->setAuthenticationSessionData( 'reset-pass', [
-			'msg' => $msg,
-			'hard' => true,
-			'req' => 'foo',
-		] );
-		try {
-			$provider->tryReset( $user, [] );
-			$this->fail( 'Expected exception not thrown' );
-		} catch ( UnexpectedValueException $ex ) {
-			$this->assertSame( 'reset-pass req is not valid', $ex->getMessage() );
-		}
-
-		$manager->setAuthenticationSessionData( 'reset-pass', [
-			'msg' => $msg,
-			'hard' => false,
-			'req' => $passReq3,
-		] );
-		try {
-			$provider->tryReset( $user, [ $passReq ] );
-			$this->fail( 'Expected exception not thrown' );
-		} catch ( UnexpectedValueException $ex ) {
-			$this->assertSame( 'reset-pass req is not valid', $ex->getMessage() );
-		}
-
 		$manager->setAuthenticationSessionData( 'reset-pass', [
 			'msg' => $msg,
 			'hard' => true,
@@ -347,5 +283,114 @@ class ResetPasswordSecondaryAuthenticationProviderTest extends MediaWikiIntegrat
 		$this->assertNotNull( $manager->getAuthenticationSessionData( 'reset-pass' ) );
 		$this->assertFalse( DynamicPropertyTestHelper::getDynamicProperty( $passReq, 'done' ) );
 		$this->assertFalse( DynamicPropertyTestHelper::getDynamicProperty( $passReq2, 'done' ) );
+	}
+
+	public function testTryResetShouldAbstainIfNoSessionData(): void {
+		$user = $this->createNoOpMock( User::class );
+
+		$authManager = $this->createMock( AuthManager::class );
+		$authManager->method( 'getAuthenticationSessionData' )
+			->with( 'reset-pass' )
+			->willReturn( null );
+
+		$authManager->expects( $this->never() )
+			->method( $this->logicalNot( $this->equalTo( 'getAuthenticationSessionData' ) ) );
+
+		$provider = new ResetPasswordSecondaryAuthenticationProvider();
+		$this->initProvider( $provider, null, null, $authManager );
+
+		$provider = TestingAccessWrapper::newFromObject( $provider );
+
+		$res = $provider->tryReset( $user, [] );
+
+		$this->assertEquals( AuthenticationResponse::newAbstain(), $res );
+	}
+
+	/**
+	 * @dataProvider provideInvalidResetSessionData
+	 */
+	public function testTryResetShouldThrowOnInvalidSessionData(
+		array|stdClass|string $sessionData,
+		string $expectedExceptionMessage
+	): void {
+		$this->expectException( UnexpectedValueException::class );
+		$this->expectExceptionMessage( $expectedExceptionMessage );
+
+		$user = $this->createNoOpMock( User::class );
+
+		$authManager = $this->createMock( AuthManager::class );
+		$authManager->method( 'getAuthenticationSessionData' )
+			->with( 'reset-pass' )
+			->willReturn( $sessionData );
+
+		$authManager->expects( $this->never() )
+			->method( $this->logicalNot( $this->equalTo( 'getAuthenticationSessionData' ) ) );
+
+		$provider = new ResetPasswordSecondaryAuthenticationProvider();
+		$this->initProvider( $provider, null, null, $authManager );
+
+		$provider = TestingAccessWrapper::newFromObject( $provider );
+
+		$provider->tryReset( $user, [] );
+	}
+
+	public static function provideInvalidResetSessionData(): iterable {
+		yield 'malformed string' => [
+			'foo',
+			'reset-pass is not valid'
+		];
+
+		yield 'empty object' => [
+			(object)[],
+			'reset-pass msg is missing'
+		];
+
+		yield 'missing msg' => [
+			[
+				'hard' => true,
+				'req' => new PasswordAuthenticationRequest(),
+			],
+			'reset-pass msg is missing'
+		];
+
+		yield 'invalid msg type' => [
+			[
+				'msg' => 'foo',
+				'hard' => true,
+				'req' => new PasswordAuthenticationRequest(),
+			],
+			'reset-pass msg is not valid'
+		];
+
+		yield 'missing hard flag' => [
+			[
+				'msg' => new RawMessage( 'foo' ),
+				'req' => new PasswordAuthenticationRequest(),
+			],
+			'reset-pass hard is missing'
+		];
+
+		yield 'invalid req type' => [
+			[
+				'msg' => new RawMessage( 'foo' ),
+				'hard' => true,
+				'req' => 'foo',
+			],
+			'reset-pass req is not valid'
+		];
+
+		$loginReq = new PasswordAuthenticationRequest();
+		$loginReq->action = AuthManager::ACTION_LOGIN;
+		$loginReq->password = 'Foo';
+		$loginReq->retype = 'Foo';
+
+		yield 'invalid request action' => [
+			[
+				'msg' => new RawMessage( 'foo' ),
+				'hard' => false,
+				'req' => $loginReq,
+			],
+			'reset-pass req is not valid'
+		];
 	}
 }
