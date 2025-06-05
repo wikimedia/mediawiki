@@ -36,6 +36,30 @@ use Wikimedia\Rdbms\IResultWrapper;
  * Editors are encouraged to fix these by editing them to redirect to
  * an existing page instead.
  *
+ * How it works, from a performance perspective:
+ *
+ * 1. Identify source pages,
+ *    in doQuery (cached for MiserMode wikis).
+ *
+ * 2. Render source links,
+ *    in formatResult(). Pages may change between cache and now, and
+ *    LinkRenderer doesn't know anyway, so we batch preload page info
+ *    for all source pages in executeLBFromResultWrapper(),
+ *    consumed by LinkRenderer calls in formatResult().
+ *
+ * 3. Identify redirect destination.
+ *    For uncached, this happens in doQuery() by adding extra fields.
+ *    For MiserMode, these extra fields don't fit in the cache.
+ *
+ *    TODO: As of T351055, this is enabled even in MiserMode but,
+ *    there is no batch feature in RedirectStore yet. Instead,
+ *    we do 500 separate redirect lookups at runtime.
+ *
+ * 4. Render destination links,
+ *    in formatResult(). Pages may change between cache and now.
+ *    So we batch preload page for all destination pages in
+ *    preprocessResults(), consumed by LinkRenderer in formatResult().
+ *
  * @ingroup SpecialPage
  */
 class SpecialBrokenRedirects extends QueryPage {
@@ -135,7 +159,7 @@ class SpecialBrokenRedirects extends QueryPage {
 
 		$linkRenderer = $this->getLinkRenderer();
 
-		if ( !is_object( $toObj ) || $toObj->exists() ) {
+		if ( $toObj === null || $toObj->exists() ) {
 			return '<del>' . $linkRenderer->makeLink( $fromObj ) . '</del>';
 		}
 
@@ -195,13 +219,33 @@ class SpecialBrokenRedirects extends QueryPage {
 	}
 
 	/**
-	 * Cache page content model for performance
+	 * Preload LinkRenderer for source and destination
 	 *
 	 * @param IDatabase $db
 	 * @param IResultWrapper $res
 	 */
 	public function preprocessResults( $db, $res ) {
 		$this->executeLBFromResultWrapper( $res );
+
+		// Preload LinkRenderer data for destination links
+		$batch = $this->getLinkBatchFactory()->newLinkBatch()->setCaller( __METHOD__ );
+		foreach ( $res as $result ) {
+			if ( isset( $result->rd_title ) ) {
+				$batch->add( $result->rd_namespace, $result->rd_title );
+			} else {
+				$fromObj = Title::makeTitle( $result->namespace, $result->title );
+				// TODO: Batch redirect lookups
+				$toObj = Title::castFromLinkTarget(
+					$this->redirectLookup->getRedirectTarget( $fromObj )
+				);
+				if ( $toObj ) {
+					$batch->addObj( $toObj );
+				}
+			}
+		}
+		$batch->execute();
+		// Rewind for display
+		$res->seek( 0 );
 	}
 
 	protected function getGroupName() {
