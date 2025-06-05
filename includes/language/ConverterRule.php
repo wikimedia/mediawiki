@@ -110,8 +110,7 @@ class ConverterRule {
 					$flags[$validFlags[$ff]] = true;
 				}
 			}
-			// @phan-suppress-next-line PhanRedundantCondition
-			$text = strval( substr( $text, $sepPos + 1 ) );
+			$text = substr( $text, $sepPos + 1 );
 		}
 
 		if ( !$flags ) {

@@ -224,10 +224,7 @@ class MemoryFileBackend extends FileBackendStore {
 		foreach ( $this->files as $path => $data ) {
 			if ( strpos( $path, $prefix ) === 0 ) {
 				$relPath = substr( $path, $prefixLen );
-				// @phan-suppress-next-line PhanImpossibleTypeComparisonInLoop
-				if ( $relPath === false ) {
-					continue;
-				} elseif ( strpos( $relPath, '/' ) === false ) {
+				if ( strpos( $relPath, '/' ) === false ) {
 					continue; // just a file
 				}
 				$parts = array_slice( explode( '/', $relPath ), 0, -1 ); // last part is file name
@@ -254,10 +251,10 @@ class MemoryFileBackend extends FileBackendStore {
 		foreach ( $this->files as $path => $data ) {
 			if ( strpos( $path, $prefix ) === 0 ) {
 				$relPath = substr( $path, $prefixLen );
-				// @phan-suppress-next-line PhanImpossibleTypeComparisonInLoop
-				if ( $relPath === false ) {
-					continue;
-				} elseif ( !empty( $params['topOnly'] ) && strpos( $relPath, '/' ) !== false ) {
+				if (
+					$relPath === '' ||
+					( !empty( $params['topOnly'] ) && strpos( $relPath, '/' ) !== false )
+				) {
 					continue;
 				}
 				$files[] = $relPath;
