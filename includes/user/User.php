@@ -2834,6 +2834,7 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 	/**
 	 * Generate a new e-mail confirmation token and send a confirmation/invalidation
 	 * mail to the user's given address.
+	 * Any preexisting e-mail confirmation token will be invalidated.
 	 *
 	 * @param string $type Message to send, either "created", "changed" or "set"
 	 * @return Status
@@ -2841,9 +2842,9 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 	public function sendConfirmationMail( $type = 'created' ) {
 		global $wgLang;
 		$expiration = null; // gets passed-by-ref and defined in next line.
-		$token = $this->confirmationToken( $expiration );
-		$url = $this->confirmationTokenUrl( $token );
-		$invalidateURL = $this->invalidationTokenUrl( $token );
+		$token = $this->getConfirmationToken( $expiration );
+		$url = $this->getConfirmationTokenUrl( $token );
+		$invalidateURL = $this->getInvalidationTokenUrl( $token );
 		$this->saveSettings();
 
 		if ( $type == 'created' || $type === false ) {
@@ -2927,18 +2928,27 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 	/**
 	 * Generate, store, and return a new e-mail confirmation code.
 	 * A hash (unsalted, since it's used as a key) is stored.
+	 * Any preexisting e-mail confirmation token will be invalidated.
 	 *
 	 * @note Call saveSettings() after calling this function to commit
 	 * this change to the database.
 	 *
-	 * @param string &$expiration Accepts the expiration time @phan-output-reference
+	 * @since 1.45
+	 *
+	 * @param null|string &$expiration Timestamp at which the generated token expires @phan-output-reference
+	 * @param int|null $tokenLifeTimeSeconds Optional lifetime of the token in seconds.
+	 * Defaults to the value of $wgUserEmailConfirmationTokenExpiry if not set.
 	 * @return string New token
 	 */
-	protected function confirmationToken( &$expiration ) {
-		$userEmailConfirmationTokenExpiry = MediaWikiServices::getInstance()
+	public function getConfirmationToken(
+		?string &$expiration,
+		?int $tokenLifeTimeSeconds = null
+	): string {
+		$tokenLifeTimeSeconds ??= MediaWikiServices::getInstance()
 			->getMainConfig()->get( MainConfigNames::UserEmailConfirmationTokenExpiry );
-		$now = time();
-		$expires = $now + $userEmailConfirmationTokenExpiry;
+		$now = ConvertibleTimestamp::time();
+
+		$expires = $now + $tokenLifeTimeSeconds;
 		$expiration = wfTimestamp( TS_MW, $expires );
 		$this->load();
 		$token = MWCryptRand::generateHex( 32 );
@@ -2946,6 +2956,16 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 		$this->mEmailToken = $hash;
 		$this->mEmailTokenExpires = $expiration;
 		return $token;
+	}
+
+	/**
+	 * Deprecated alias for getConfirmationToken() for CentralAuth.
+	 * @deprecated Use getConfirmationToken() instead.
+	 * @param string|null &$expiration @phan-output-reference
+	 * @return string
+	 */
+	protected function confirmationToken( &$expiration ) {
+		return $this->getConfirmationToken( $expiration );
 	}
 
 	/**
@@ -2960,15 +2980,30 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 
 	/**
 	 * Return a URL the user can use to confirm their email address.
+	 *
+	 * @since 1.45
 	 * @param string $token Accepts the email confirmation token
 	 * @return string New token URL
 	 */
-	protected function confirmationTokenUrl( $token ) {
+	public function getConfirmationTokenUrl( string $token ): string {
 		return $this->getTokenUrl( 'ConfirmEmail', $token );
 	}
 
 	/**
 	 * Return a URL the user can use to invalidate their email address.
+	 *
+	 * @since 1.45
+	 * @param string $token Accepts the email confirmation token
+	 * @return string New token URL
+	 */
+	public function getInvalidationTokenUrl( string $token ): string {
+		return $this->getTokenUrl( 'InvalidateEmail', $token );
+	}
+
+	/**
+	 * Deprecated alias for getInvalidationTokenUrl() for CentralAuth.
+	 *
+	 * @deprecated Use getInvalidationTokenUrl() instead.
 	 * @param string $token Accepts the email confirmation token
 	 * @return string New token URL
 	 */
@@ -2977,7 +3012,7 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 	}
 
 	/**
-	 * Internal function to format the e-mail validation/invalidation URLs.
+	 * Function to create a special page URL with a token path parameter.
 	 * This uses a quickie hack to use the
 	 * hardcoded English names of the Special: pages, for ASCII safety.
 	 *
@@ -2986,11 +3021,12 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 	 * also sometimes can get corrupted in some browsers/mailers
 	 * (T8957 with Gmail and Internet Explorer).
 	 *
+	 * @since 1.45
 	 * @param string $page Special page
 	 * @param string $token
 	 * @return string Formatted URL
 	 */
-	protected function getTokenUrl( $page, $token ) {
+	public function getTokenUrl( string $page, string $token ): string {
 		// Hack to bypass localization of 'Special:'
 		$title = Title::makeTitle( NS_MAIN, "Special:$page/$token" );
 		return $title->getCanonicalURL();
