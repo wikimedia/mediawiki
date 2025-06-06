@@ -25,7 +25,6 @@ $cfg['minimum_target_php_version'] = '8.1.0';
 
 $cfg['file_list'] = array_merge(
 	$cfg['file_list'],
-	class_exists( Socket::class ) ? [] : [ '.phan/stubs/Socket.php' ],
 	class_exists( AllowDynamicProperties::class ) ? [] : [ '.phan/stubs/AllowDynamicProperties.php' ],
 	class_exists( WeakMap::class ) ? [] : [ '.phan/stubs/WeakMap.php' ],
 	[
