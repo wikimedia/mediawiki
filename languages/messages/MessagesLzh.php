@@ -12,12 +12,18 @@
  * @author Simon Shek
  * @author StephDC
  * @author Super Wang
+ * @author WAN233
  * @author Winston Sung
  * @author Xiaomingyan
  * @author Yanteng3
  */
 
 $fallback = 'zh-hant, zh, zh-hans'; // T125373, T278639, T286291
+
+$namespaceNames = [
+	NS_USER             => '用戶',
+	NS_USER_TALK        => '用戶討論',
+];
 
 /** @phpcs-require-sorted-array */
 $specialPageAliases = [
