@@ -2,23 +2,17 @@
 
 namespace MediaWiki\Tests\Auth;
 
-use DynamicPropertyTestHelper;
 use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Auth\ButtonAuthenticationRequest;
 use MediaWiki\Auth\PasswordAuthenticationRequest;
 use MediaWiki\Auth\ResetPasswordSecondaryAuthenticationProvider;
-use MediaWiki\Config\HashConfig;
 use MediaWiki\Language\RawMessage;
-use MediaWiki\MainConfigNames;
 use MediaWiki\Message\Message;
-use MediaWiki\Request\FauxRequest;
+use MediaWiki\Status\Status;
 use MediaWiki\Tests\Unit\Auth\AuthenticationProviderTestTrait;
-use MediaWiki\Tests\Unit\DummyServicesTrait;
-use MediaWiki\User\BotPasswordStore;
 use MediaWiki\User\User;
-use MediaWiki\User\UserNameUtils;
 use MediaWikiIntegrationTestCase;
 use StatusValue;
 use stdClass;
@@ -31,7 +25,6 @@ use Wikimedia\TestingAccessWrapper;
  */
 class ResetPasswordSecondaryAuthenticationProviderTest extends MediaWikiIntegrationTestCase {
 	use AuthenticationProviderTestTrait;
-	use DummyServicesTrait;
 
 	/**
 	 * @dataProvider provideGetAuthenticationRequests
@@ -76,112 +69,6 @@ class ResetPasswordSecondaryAuthenticationProviderTest extends MediaWikiIntegrat
 				->willReturn( $obj );
 			$this->assertSame( $obj, $mock->$method( ...$args ) );
 		}
-	}
-
-	public function testTryReset() {
-		$username = 'TestTryReset';
-		$user = User::newFromName( $username );
-
-		$provider = $this->getMockBuilder(
-			ResetPasswordSecondaryAuthenticationProvider::class
-		)
-			->onlyMethods( [
-				'providerAllowsAuthenticationDataChange', 'providerChangeAuthenticationData'
-			] )
-			->getMock();
-		$provider->method( 'providerAllowsAuthenticationDataChange' )
-			->willReturnCallback( function ( $req ) use ( $username ) {
-				$this->assertSame( $username, $req->username );
-				return DynamicPropertyTestHelper::getDynamicProperty( $req, 'allow' );
-			} );
-		$provider->method( 'providerChangeAuthenticationData' )
-			->willReturnCallback( function ( $req ) use ( $username ) {
-				$this->assertSame( $username, $req->username );
-				DynamicPropertyTestHelper::setDynamicProperty( $req, 'done', true );
-			} );
-		$config = new HashConfig( [
-			MainConfigNames::AuthManagerConfig => [
-				'preauth' => [],
-				'primaryauth' => [],
-				'secondaryauth' => [
-					[ 'factory' => static function () use ( $provider ) {
-						return $provider;
-					} ],
-				],
-			],
-		] );
-		$mwServices = $this->getServiceContainer();
-		$manager = new AuthManager(
-			new FauxRequest,
-			$config,
-			$this->getDummyObjectFactory(),
-			$this->createHookContainer(),
-			$mwServices->getReadOnlyMode(),
-			$this->createNoOpMock( UserNameUtils::class ),
-			$mwServices->getBlockManager(),
-			$mwServices->getWatchlistManager(),
-			$mwServices->getDBLoadBalancer(),
-			$mwServices->getContentLanguage(),
-			$mwServices->getLanguageConverterFactory(),
-			$this->createMock( BotPasswordStore::class ),
-			$mwServices->getUserFactory(),
-			$mwServices->getUserIdentityLookup(),
-			$mwServices->getUserOptionsManager(),
-			$mwServices->getNotificationService()
-		);
-		$this->initProvider( $provider, null, null, $manager );
-		$provider = TestingAccessWrapper::newFromObject( $provider );
-
-		$msg = wfMessage( 'foo' );
-		$skipReq = new ButtonAuthenticationRequest(
-			'skipReset',
-			wfMessage( 'authprovider-resetpass-skip-label' ),
-			wfMessage( 'authprovider-resetpass-skip-help' )
-		);
-		$passReq = new PasswordAuthenticationRequest();
-		$passReq->action = AuthManager::ACTION_CHANGE;
-		$passReq->password = 'Foo';
-		$passReq->retype = 'Bar';
-		DynamicPropertyTestHelper::setDynamicProperty( $passReq, 'allow', StatusValue::newGood() );
-		DynamicPropertyTestHelper::setDynamicProperty( $passReq, 'done', false );
-
-		$passReq2 = $this->getMockBuilder( PasswordAuthenticationRequest::class )
-			->enableProxyingToOriginalMethods()
-			->getMock();
-		$passReq2->action = AuthManager::ACTION_CHANGE;
-		$passReq2->password = 'Foo';
-		$passReq2->retype = 'Foo';
-		DynamicPropertyTestHelper::setDynamicProperty( $passReq2, 'allow', StatusValue::newGood() );
-		DynamicPropertyTestHelper::setDynamicProperty( $passReq2, 'done', false );
-
-		$passReq->retype = 'Bad';
-		$manager->setAuthenticationSessionData( 'reset-pass', [
-			'msg' => $msg,
-			'hard' => false,
-			'req' => $passReq,
-		] );
-		$res = $provider->tryReset( $user, [ $skipReq, $passReq ] );
-		$this->assertEquals( AuthenticationResponse::newPass(), $res );
-		$this->assertNull( $manager->getAuthenticationSessionData( 'reset-pass' ) );
-		$this->assertFalse( DynamicPropertyTestHelper::getDynamicProperty( $passReq, 'done' ) );
-
-		$manager->setAuthenticationSessionData( 'reset-pass', [
-			'msg' => $msg,
-			'hard' => true,
-		] );
-
-		$passReq->retype = $passReq->password;
-		DynamicPropertyTestHelper::setDynamicProperty( $passReq, 'allow', StatusValue::newFatal( 'arbitrary-fail' ) );
-		$res = $provider->tryReset( $user, [ $skipReq, $passReq ] );
-		$this->assertSame( AuthenticationResponse::UI, $res->status );
-		$this->assertSame( 'arbitrary-fail', $res->message->getKey() );
-		$this->assertCount( 1, $res->neededRequests );
-		$this->assertInstanceOf(
-			PasswordAuthenticationRequest::class,
-			$res->neededRequests[0]
-		);
-		$this->assertNotNull( $manager->getAuthenticationSessionData( 'reset-pass' ) );
-		$this->assertFalse( DynamicPropertyTestHelper::getDynamicProperty( $passReq, 'done' ) );
 	}
 
 	public function testTryResetShouldAbstainIfNoSessionData(): void {
@@ -485,6 +372,99 @@ class ResetPasswordSecondaryAuthenticationProviderTest extends MediaWikiIntegrat
 			[ $passReq ],
 			$passReq
 		];
+	}
+
+	public function testTryResetShouldPassWithBadRetypeWhenNotInHardMode(): void {
+		$user = $this->createNoOpMock( User::class );
+
+		$skipReq = new ButtonAuthenticationRequest(
+			'skipReset',
+			wfMessage( 'authprovider-resetpass-skip-label' ),
+			wfMessage( 'authprovider-resetpass-skip-help' )
+		);
+
+		$badRetypeReq = new PasswordAuthenticationRequest();
+		$badRetypeReq->action = AuthManager::ACTION_CHANGE;
+		$badRetypeReq->password = 'Foo';
+		$badRetypeReq->retype = 'Bar';
+
+		$authManager = $this->createMock( AuthManager::class );
+		$authManager->method( 'getAuthenticationSessionData' )
+			->with( 'reset-pass' )
+			->willReturn( [
+				'msg' => wfMessage( 'foo' ),
+				'hard' => false,
+				'req' => $badRetypeReq,
+			] );
+
+		$authManager->expects( $this->once() )
+			->method( 'removeAuthenticationSessionData' )
+			->with( 'reset-pass' );
+
+		$authManager->expects( $this->never() )
+			->method( $this->logicalNot(
+				$this->logicalOr(
+					$this->equalTo( 'getAuthenticationSessionData' ),
+					$this->equalTo( 'removeAuthenticationSessionData' )
+				)
+			) );
+
+		$provider = new ResetPasswordSecondaryAuthenticationProvider();
+		$this->initProvider( $provider, null, null, $authManager );
+
+		$provider = TestingAccessWrapper::newFromObject( $provider );
+
+		$res = $provider->tryReset( $user, [ $skipReq, $badRetypeReq ] );
+
+		$this->assertEquals( AuthenticationResponse::newPass(), $res );
+	}
+
+	public function testTryResetShouldFailIfRejectedByAuthManager(): void {
+		$user = $this->createMock( User::class );
+		$user->method( 'getName' )
+			->willReturn( 'TestUser' );
+
+		$skipReq = new ButtonAuthenticationRequest(
+			'skipReset',
+			wfMessage( 'authprovider-resetpass-skip-label' ),
+			wfMessage( 'authprovider-resetpass-skip-help' )
+		);
+		$passReq = new PasswordAuthenticationRequest();
+		$passReq->action = AuthManager::ACTION_CHANGE;
+		$passReq->password = 'Foo';
+		$passReq->retype = 'Foo';
+
+		$authManager = $this->createMock( AuthManager::class );
+		$authManager->method( 'getAuthenticationSessionData' )
+			->with( 'reset-pass' )
+			->willReturn( [
+				'msg' => wfMessage( 'foo' ),
+				'hard' => true,
+			] );
+
+		$authManager->method( 'allowsAuthenticationDataChange' )
+			->with( $passReq )
+			->willReturn( Status::newFatal( 'arbitrary-fail' ) );
+
+		$authManager->expects( $this->never() )
+			->method( $this->logicalOr(
+				$this->equalTo( 'changeAuthenticationData' ),
+				$this->equalTo( 'removeAuthenticationSessionData' )
+			) );
+
+		$provider = new ResetPasswordSecondaryAuthenticationProvider();
+		$this->initProvider( $provider, null, null, $authManager );
+
+		$provider = TestingAccessWrapper::newFromObject( $provider );
+
+		$res = $provider->tryReset( $user, [ $skipReq, $passReq ] );
+
+		$expectedAuthReq = new PasswordAuthenticationRequest();
+		$expectedAuthReq->action = AuthManager::ACTION_CHANGE;
+
+		$this->assertSame( AuthenticationResponse::UI, $res->status );
+		$this->assertEquals( [ $expectedAuthReq ], $res->neededRequests );
+		$this->assertSame( 'arbitrary-fail', $res->message->getKey() );
 	}
 
 }
