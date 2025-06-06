@@ -12,6 +12,7 @@ use MediaWiki\Auth\ResetPasswordSecondaryAuthenticationProvider;
 use MediaWiki\Config\HashConfig;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Message\Message;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Tests\Unit\Auth\AuthenticationProviderTestTrait;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
@@ -153,46 +154,6 @@ class ResetPasswordSecondaryAuthenticationProviderTest extends MediaWikiIntegrat
 		DynamicPropertyTestHelper::setDynamicProperty( $passReq2, 'allow', StatusValue::newGood() );
 		DynamicPropertyTestHelper::setDynamicProperty( $passReq2, 'done', false );
 
-		$passReq3 = new PasswordAuthenticationRequest();
-		$passReq3->action = AuthManager::ACTION_LOGIN;
-		$passReq3->password = 'Foo';
-		$passReq3->retype = 'Foo';
-		DynamicPropertyTestHelper::setDynamicProperty( $passReq3, 'allow', StatusValue::newGood() );
-		DynamicPropertyTestHelper::setDynamicProperty( $passReq3, 'done', false );
-
-		$manager->setAuthenticationSessionData( 'reset-pass', [
-			'msg' => $msg,
-			'hard' => true,
-		] );
-		$res = $provider->tryReset( $user, [] );
-		$this->assertInstanceOf( AuthenticationResponse::class, $res );
-		$this->assertSame( AuthenticationResponse::UI, $res->status );
-		$this->assertEquals( $msg, $res->message );
-		$this->assertCount( 1, $res->neededRequests );
-		$this->assertInstanceOf(
-			PasswordAuthenticationRequest::class,
-			$res->neededRequests[0]
-		);
-		$this->assertNotNull( $manager->getAuthenticationSessionData( 'reset-pass' ) );
-		$this->assertFalse( DynamicPropertyTestHelper::getDynamicProperty( $passReq, 'done' ) );
-
-		$manager->setAuthenticationSessionData( 'reset-pass', [
-			'msg' => $msg,
-			'hard' => false,
-			'req' => $passReq,
-		] );
-		$res = $provider->tryReset( $user, [] );
-		$this->assertInstanceOf( AuthenticationResponse::class, $res );
-		$this->assertSame( AuthenticationResponse::UI, $res->status );
-		$this->assertEquals( $msg, $res->message );
-		$this->assertCount( 2, $res->neededRequests );
-		$expectedPassReq = clone $passReq;
-		$expectedPassReq->required = AuthenticationRequest::OPTIONAL;
-		$this->assertEquals( $expectedPassReq, $res->neededRequests[0] );
-		$this->assertEquals( $skipReq, $res->neededRequests[1] );
-		$this->assertNotNull( $manager->getAuthenticationSessionData( 'reset-pass' ) );
-		$this->assertFalse( DynamicPropertyTestHelper::getDynamicProperty( $passReq, 'done' ) );
-
 		$passReq->retype = 'Bad';
 		$manager->setAuthenticationSessionData( 'reset-pass', [
 			'msg' => $msg,
@@ -204,36 +165,10 @@ class ResetPasswordSecondaryAuthenticationProviderTest extends MediaWikiIntegrat
 		$this->assertNull( $manager->getAuthenticationSessionData( 'reset-pass' ) );
 		$this->assertFalse( DynamicPropertyTestHelper::getDynamicProperty( $passReq, 'done' ) );
 
-		$passReq->retype = 'Bad';
 		$manager->setAuthenticationSessionData( 'reset-pass', [
 			'msg' => $msg,
 			'hard' => true,
 		] );
-		$res = $provider->tryReset( $user, [ $skipReq, $passReq ] );
-		$this->assertSame( AuthenticationResponse::UI, $res->status );
-		$this->assertSame( 'badretype', $res->message->getKey() );
-		$this->assertCount( 1, $res->neededRequests );
-		$this->assertInstanceOf(
-			PasswordAuthenticationRequest::class,
-			$res->neededRequests[0]
-		);
-		$this->assertNotNull( $manager->getAuthenticationSessionData( 'reset-pass' ) );
-		$this->assertFalse( DynamicPropertyTestHelper::getDynamicProperty( $passReq, 'done' ) );
-
-		$manager->setAuthenticationSessionData( 'reset-pass', [
-			'msg' => $msg,
-			'hard' => true,
-		] );
-		$res = $provider->tryReset( $user, [ $skipReq, $passReq3 ] );
-		$this->assertSame( AuthenticationResponse::UI, $res->status );
-		$this->assertEquals( $msg, $res->message );
-		$this->assertCount( 1, $res->neededRequests );
-		$this->assertInstanceOf(
-			PasswordAuthenticationRequest::class,
-			$res->neededRequests[0]
-		);
-		$this->assertNotNull( $manager->getAuthenticationSessionData( 'reset-pass' ) );
-		$this->assertFalse( DynamicPropertyTestHelper::getDynamicProperty( $passReq, 'done' ) );
 
 		$passReq->retype = $passReq->password;
 		DynamicPropertyTestHelper::setDynamicProperty( $passReq, 'allow', StatusValue::newFatal( 'arbitrary-fail' ) );
@@ -263,26 +198,6 @@ class ResetPasswordSecondaryAuthenticationProviderTest extends MediaWikiIntegrat
 		$this->assertEquals( AuthenticationResponse::newPass(), $res );
 		$this->assertNull( $manager->getAuthenticationSessionData( 'reset-pass' ) );
 		$this->assertTrue( DynamicPropertyTestHelper::getDynamicProperty( $passReq2, 'done' ) );
-
-		DynamicPropertyTestHelper::setDynamicProperty( $passReq, 'done', false );
-		DynamicPropertyTestHelper::setDynamicProperty( $passReq2, 'done', false );
-		$manager->setAuthenticationSessionData( 'reset-pass', [
-			'msg' => $msg,
-			'hard' => false,
-			'req' => $passReq2,
-		] );
-		$res = $provider->tryReset( $user, [ $passReq ] );
-		$this->assertInstanceOf( AuthenticationResponse::class, $res );
-		$this->assertSame( AuthenticationResponse::UI, $res->status );
-		$this->assertEquals( $msg, $res->message );
-		$this->assertCount( 2, $res->neededRequests );
-		$expectedPassReq = clone $passReq2;
-		$expectedPassReq->required = AuthenticationRequest::OPTIONAL;
-		$this->assertEquals( $expectedPassReq, $res->neededRequests[0] );
-		$this->assertEquals( $skipReq, $res->neededRequests[1] );
-		$this->assertNotNull( $manager->getAuthenticationSessionData( 'reset-pass' ) );
-		$this->assertFalse( DynamicPropertyTestHelper::getDynamicProperty( $passReq, 'done' ) );
-		$this->assertFalse( DynamicPropertyTestHelper::getDynamicProperty( $passReq2, 'done' ) );
 	}
 
 	public function testTryResetShouldAbstainIfNoSessionData(): void {
@@ -391,6 +306,121 @@ class ResetPasswordSecondaryAuthenticationProviderTest extends MediaWikiIntegrat
 				'req' => $loginReq,
 			],
 			'reset-pass req is not valid'
+		];
+	}
+
+	/**
+	 * @dataProvider provideTryResetUnmetRequirements
+	 */
+	public function testTryResetShouldNotChangeDataIfRequirementsNotMet(
+		array $sessionData,
+		array $authReqs,
+		AuthenticationResponse $expectedResponse
+	): void {
+		$user = $this->createNoOpMock( User::class );
+
+		$authManager = $this->createMock( AuthManager::class );
+		$authManager->method( 'getAuthenticationSessionData' )
+			->with( 'reset-pass' )
+			->willReturn( $sessionData );
+
+		$authManager->expects( $this->never() )
+			->method( $this->logicalNot( $this->equalTo( 'getAuthenticationSessionData' ) ) );
+
+		$provider = new ResetPasswordSecondaryAuthenticationProvider();
+		$this->initProvider( $provider, null, null, $authManager );
+
+		$provider = TestingAccessWrapper::newFromObject( $provider );
+
+		$res = $provider->tryReset( $user, $authReqs );
+
+		$this->assertEquals( $expectedResponse, $res );
+	}
+
+	public static function provideTryResetUnmetRequirements(): iterable {
+		$msg = new RawMessage( 'foo' );
+
+		$requiredPassReq = new PasswordAuthenticationRequest();
+		$requiredPassReq->action = AuthManager::ACTION_CHANGE;
+
+		yield 'missing required request with hard flag' => [
+			[
+				'msg' => $msg,
+				'hard' => true,
+			],
+			[],
+			AuthenticationResponse::newUI( [ $requiredPassReq ], $msg )
+		];
+
+		$skipReq = new ButtonAuthenticationRequest(
+			'skipReset',
+			wfMessage( 'authprovider-resetpass-skip-label' ),
+			wfMessage( 'authprovider-resetpass-skip-help' )
+		);
+
+		$wrongActionReq = new PasswordAuthenticationRequest();
+		$wrongActionReq->action = AuthManager::ACTION_LOGIN;
+		$wrongActionReq->password = 'Foo';
+		$wrongActionReq->retype = 'Foo';
+
+		yield 'wrong action type' => [
+			[
+				'msg' => $msg,
+				'hard' => true,
+			],
+			[ $skipReq, $wrongActionReq ],
+			AuthenticationResponse::newUI( [ $requiredPassReq ], $msg )
+		];
+
+		$badRetypeReq = new PasswordAuthenticationRequest();
+		$badRetypeReq->action = AuthManager::ACTION_CHANGE;
+		$badRetypeReq->password = 'Foo';
+		$badRetypeReq->retype = 'Bar';
+
+		yield 'bad retype value' => [
+			[
+				'msg' => $msg,
+				'hard' => true,
+			],
+			[ $skipReq, $badRetypeReq ],
+			AuthenticationResponse::newUI( [ $requiredPassReq ], new Message( 'badretype' ), 'error' )
+		];
+
+		$passReq = new PasswordAuthenticationRequest();
+		$passReq->action = AuthManager::ACTION_CHANGE;
+		$passReq->password = 'Foo';
+		$passReq->retype = 'Foo';
+
+		$optionalPassReq = clone $passReq;
+		$optionalPassReq->required = AuthenticationRequest::OPTIONAL;
+
+		yield 'missing required request without hard flag' => [
+			[
+				'msg' => $msg,
+				'hard' => false,
+				'req' => $passReq,
+			],
+			[],
+			AuthenticationResponse::newUI( [ $optionalPassReq, $skipReq ], $msg )
+		];
+
+		$needReq = new class extends PasswordAuthenticationRequest {
+		};
+		$needReq->action = AuthManager::ACTION_CHANGE;
+		$needReq->password = 'Foo';
+		$needReq->retype = 'Foo';
+
+		$optionalPassReq = clone $needReq;
+		$optionalPassReq->required = AuthenticationRequest::OPTIONAL;
+
+		yield 'mismatched request type' => [
+			[
+				'msg' => $msg,
+				'hard' => false,
+				'req' => $needReq,
+			],
+			[ $passReq ],
+			AuthenticationResponse::newUI( [ $optionalPassReq, $skipReq ], $msg )
 		];
 	}
 }
