@@ -22,7 +22,7 @@
 
 namespace MediaWiki\Json;
 
-use InvalidArgumentException;
+use JsonException;
 
 /**
  * Deserializes things from JSON.
@@ -44,7 +44,7 @@ interface JsonDeserializer {
 	 * @param array|string|object $json
 	 * @param string|null $expectedClass What class to expect in deserialization.
 	 *   If null, no expectation. Must be a descendant of JsonDeserializable.
-	 * @throws InvalidArgumentException if the passed $json can't be deserialized.
+	 * @throws JsonException if the passed $json can't be deserialized.
 	 * @return mixed
 	 */
 	public function deserialize( $json, ?string $expectedClass = null );

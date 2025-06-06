@@ -1859,7 +1859,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 */
 	public function setNumericPageProperty( string $propName, $numericValue ): void {
 		if ( !is_numeric( $numericValue ) ) {
-			throw new \TypeError( __METHOD__ . " with non-numeric value" );
+			throw new InvalidArgumentException( __METHOD__ . " with non-numeric value" );
 		}
 		// Coerce numeric sort key to a number.
 		$this->mProperties[$propName] = 0 + $numericValue;

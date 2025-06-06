@@ -2,11 +2,11 @@
 
 namespace MediaWiki\Rest\PathTemplateMatcher;
 
-use Exception;
+use RuntimeException;
 
 /**
  * Exception indicating incorrect REST module configuration.
  * @since 1.43
  */
-class ModuleConfigurationException extends Exception {
+class ModuleConfigurationException extends RuntimeException {
 }

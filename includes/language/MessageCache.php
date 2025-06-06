@@ -997,7 +997,7 @@ class MessageCache implements LoggerAwareInterface {
 			// Fix numerical strings that somehow become ints on their way here
 			$key = (string)$key;
 		} elseif ( !is_string( $key ) ) {
-			throw new TypeError( 'Message key must be a string' );
+			throw new InvalidArgumentException( 'Message key must be a string' );
 		} elseif ( $key === '' ) {
 			// Shortcut: the empty key is always missing
 			return false;
