@@ -754,7 +754,7 @@
 	"postedit-confirmation-created": "पृष्ठ [[Special:Diff/$2|निर्मित]] किया गया है।",
 	"postedit-confirmation-restored": "पृष्ठ [[Special:Diff/$2|पुरानी स्थिति]] पर लाया गया है।",
 	"postedit-confirmation-saved": "[[Special:Diff/$2|आपका संपादन]] सहेजा गया है।",
-	"postedit-confirmation-published": "[[Special:Diff/$2|आपका संपादन]]] प्रकाशित कर दिया गया था।",
+	"postedit-confirmation-published": "[[Special:Diff/$2|आपका सम्पादन]] प्रकाशित कर दिया गया है।",
 	"postedit-temp-created-label": "अस्थायी खाता",
 	"edit-already-exists": "नया पृष्ठ बनाया नहीं जा सका।\nयह पहले से मौजूद है।",
 	"defaultmessagetext": "संदेश का डिफ़ॉल्ट पाठ",

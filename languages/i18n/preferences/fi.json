@@ -224,6 +224,8 @@
 	"rcfilters-watchlist-preference-label": "Käytä käyttöliittymää ilman JavaScriptiä",
 	"rcfilters-watchlist-preference-help": "Lataa [[{{#special:Watchlist}}|tarkkailulistan]] ilman suodattimien haku- tai korostustoimintoja.",
 	"prefs-changeswatchlist": "Näytettävät muutokset",
+	"tog-watchstar-expiry": "Tarkkailulistan oletusarvoinen ajanjakso manuaalisesti lisätyille sivuille:",
+	"tog-watch-expiry": "Oletusajanjakso:",
 	"tog-watchlisthideminor": "Piilota pienet muokkaukset tarkkailulistalta",
 	"tog-watchlisthidebots": "Piilota bottien muokkaukset tarkkailulistalta",
 	"tog-watchlisthideown": "Piilota omat muokkaukset tarkkailulistalta",

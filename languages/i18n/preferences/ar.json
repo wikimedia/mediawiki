@@ -225,6 +225,7 @@
 	"rcfilters-watchlist-preference-label": "استخدم واجهة غير جافا سكريبت",
 	"rcfilters-watchlist-preference-help": "يحمل [[{{#special:Watchlist}}|قائمة المراقبة]] دون وظيفة مرشحات البحث أو تسليط الضوء.",
 	"prefs-changeswatchlist": "التغييرات المعروضة",
+	"tog-watch-expiry": "الفترة الزمنية الافتراضية:",
 	"tog-watchlisthideminor": "أخف التعديلات الطفيفة من قائمة المراقبة",
 	"tog-watchlisthidebots": "أخف تعديلات البوتات من قائمة المراقبة",
 	"tog-watchlisthideown": "أخف تعديلاتي من قائمة المراقبة",

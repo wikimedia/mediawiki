@@ -5,6 +5,7 @@
 			"Eduardoaddad",
 			"Felipe L. Ewald",
 			"Jhonnatanricardo",
+			"Mitternachtvega",
 			"Ninawauwau",
 			"Re demz"
 		]
@@ -53,5 +54,7 @@
 	"rest-requires-safe-against-csrf": "Esse endpoint requer um provedor de sessão seguro para CSRF.",
 	"rest-badtoken": "O token CSRF fornecido é inválido.",
 	"rest-badtoken-missing": "O parâmetro <var>token</var> é obrigatório, a não ser que um método de autentificação seguro contra ataques CSRF seja usado.",
-	"rest-badtoken-nosession": "Erro CSRF - nenhuma sessão."
+	"rest-badtoken-nosession": "Erro CSRF - nenhuma sessão.",
+	"rest-module": "Módulo",
+	"rest-module-content.v1-title": "Conteúdo da página"
 }

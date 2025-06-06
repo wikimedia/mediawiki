@@ -195,6 +195,8 @@
 	"rcfilters-watchlist-preference-label": "Usar le interfacie non JavaScript",
 	"rcfilters-watchlist-preference-help": "Carga le [[{{#special:Watchlist}}|observatorio]] sin functionalitate de recerca filtrate o de coloration.",
 	"prefs-changeswatchlist": "Modificationes a monstrar",
+	"tog-watchstar-expiry": "Periodo de tempore predefinite in observatorio pro paginas addite manualmente:",
+	"tog-watch-expiry": "Periodo de tempore predefinite:",
 	"tog-watchlisthideminor": "Celar modificationes minor in le observatorio",
 	"tog-watchlisthidebots": "Celar le modificationes de robots in le observatorio",
 	"tog-watchlisthideown": "Celar mi proprie modificationes in le observatorio",

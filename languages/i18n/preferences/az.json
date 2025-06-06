@@ -210,6 +210,8 @@
 	"rcfilters-watchlist-preference-label": "JavaScript olmayan interfeys istifadə edin",
 	"rcfilters-watchlist-preference-help": "[[{{#special:Watchlist}}|İzləmə siyahısını]] filtr üzrə axtarış və ya vurğulama funksionallığı olmadan yükləyir.",
 	"prefs-changeswatchlist": "Dəyişikliklərin göstərişi",
+	"tog-watchstar-expiry": "Manual əlavə edilmiş səhifələr üçün izləmə siyahısında defolt müddət:",
+	"tog-watch-expiry": "Defolt müddət:",
 	"tog-watchlisthideminor": "İzləmə səhifəmdə kiçik redaktələri gizlət",
 	"tog-watchlisthidebots": "Bot redaktələrini izləmə siyahısında gizlət",
 	"tog-watchlisthideown": "Mənim redaktələrimi izləmə siyahısında gizlət",

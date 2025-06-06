@@ -220,6 +220,8 @@
 	"rcfilters-watchlist-preference-label": "Beobachtungsliste frei von JavaScript nutzen",
 	"rcfilters-watchlist-preference-help": "Lädt die [[{{#special:Watchlist}}|Beobachtungsliste]] ohne Filtersuche oder Hervorhebungsfunktion.",
 	"prefs-changeswatchlist": "Angezeigte Änderungen",
+	"tog-watchstar-expiry": "Standarmäßiger Zeitraum auf der Beobachtungsliste für manuell hinzugefügte Seiten:",
+	"tog-watch-expiry": "Standarmäßiger Zeitraum",
 	"tog-watchlisthideminor": "Kleine Bearbeitungen in der Beobachtungsliste ausblenden",
 	"tog-watchlisthidebots": "Bearbeitungen durch Bots in der Beobachtungsliste ausblenden",
 	"tog-watchlisthideown": "Eigene Bearbeitungen in der Beobachtungsliste ausblenden",

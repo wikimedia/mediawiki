@@ -198,6 +198,8 @@
 	"rcfilters-watchlist-preference-label": "Лелайе интерфейс JavaScript йоцуш",
 	"rcfilters-watchlist-preference-help": "Чуйоккху [[{{#special:Watchlist}}|тергаман исписка]] литтаршца лехар доцу йа таро йоцу серла даккха маьӀна",
 	"prefs-changeswatchlist": "Гайтина хийцамаш",
+	"tog-watchstar-expiry": "Куьйга тӀетоьхначу агӀонашна тӀехь терго латторан могӀамехь стандартан хенан мур:",
+	"tog-watch-expiry": "Ӏад йитаран кепаца хан:",
 	"tog-watchlisthideminor": "Къайладаха кегийра нисдарш тергаме могӀам чуьра",
 	"tog-watchlisthidebots": "Къайладаха тергаме могӀам чуьра ботан нисдинарш",
 	"tog-watchlisthideown": "Къайлайаха ас нисйинарш тергаме могӀам чуьра",

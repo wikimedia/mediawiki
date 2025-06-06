@@ -198,6 +198,8 @@
 	"rcfilters-watchlist-preference-label": "Adêuvia l'interfàccia sénsa JavaScript",
 	"rcfilters-watchlist-preference-help": "Càrega i [[{{#special:Watchlist}}|òservæ speciâli]]\nsénsa fìltri de riçèrca ò fonçionalitæ de evidençiaçión.",
 	"prefs-changeswatchlist": "Modìfiche mostræ",
+	"tog-watchstar-expiry": "Perîodo de ténpo predefinîo d'azónta inta lìsta di òservæ speciâli pe-e pàgine azónte a màn:",
+	"tog-watch-expiry": "Perîodo de ténpo predefinîo:",
 	"tog-watchlisthideminor": "Ascóndi e modìfiche minôi da-a lìsta di òservæ speciâli",
 	"tog-watchlisthidebots": "Ascóndi e modìfiche di bot da-a lìsta di òservæ speciâli",
 	"tog-watchlisthideown": "Ascóndi e mæ modìfiche da-a lìsta di òservæ speciâli",

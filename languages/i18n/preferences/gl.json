@@ -201,6 +201,8 @@
 	"rcfilters-watchlist-preference-label": "Usar a interface sen JavaScript",
 	"rcfilters-watchlist-preference-help": "Cargar a [[{{#special:Watchlist}}|lista de vixilancia]] sen a funcionalidade de procura filtrada nin a de resaltado.",
 	"prefs-changeswatchlist": "Cambios mostrados",
+	"tog-watchstar-expiry": "Período de tempo predeterminado na lista de vixilancia para as páxinas engadidas manualmente:",
+	"tog-watch-expiry": "Período de tempo predeterminado:",
 	"tog-watchlisthideminor": "Agochar na lista de vixilancia as edicións de pouca importancia",
 	"tog-watchlisthidebots": "Agochar na lista de vixilancia as edicións feitas polos bots",
 	"tog-watchlisthideown": "Agochar na lista de vixilancia as edicións propias",

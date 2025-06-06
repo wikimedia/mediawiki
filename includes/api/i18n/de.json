@@ -1405,6 +1405,7 @@
 	"apihelp-undelete-param-tags": "Auf den Lösch-Logbuch-Eintrag anzuwendende Änderungsmarkierungen.",
 	"apihelp-undelete-param-undeletetalk": "Stellt alle Versionen der zugehörigen Diskussionsseite wieder her, falls vorhanden.",
 	"apihelp-undelete-example-page": "Seite [[{{MediaWiki:Mainpage}}]] wiederherstellen.",
+	"apihelp-upload-extended-description": "Es stehen mehrere Methoden zur Verfügung:\n* Direktes Hochladen der Dateiinhalte, indem der Parameter <var>$1file</var> verwendet wird.\n* Hochladen der Datei in Teilen, indem die Parameter <var>$1filesize</var>, <var>$1chunk</var> und <var>$1offset</var> verwendet werden.\n* Der MediaWiki-Server kann eine Datei von einer URL abrufen, indem der Parameter <var>$1url</var> verwendet wird.\n* Abschließen eines früheren Hochladevorgangs, der aufgrund von Warnungen fehlgeschlagen ist, in Teilen hochgeladen oder auf andere Weise im Upload-Stash gespeichert wurde, indem der Paramter <var>$1filekey</var> verwendet wird.\nBeachte, dass der HTTP POST als Datei-Upload erfolgen muss (d. h. unter Verwendung von <code>multipart/form-data</code>), wenn <var>$1file</var> oder <var>$1chunk</var> gesenden werden.",
 	"apihelp-upload-param-filename": "Ziel-Dateiname.",
 	"apihelp-upload-param-tags": "Auf den Datei-Logbuch-Eintrag und die Dateiseitenversion anzuwendende Änderungsmarkierungen.",
 	"apihelp-upload-param-text": "Erster Seitentext für neue Dateien.",
