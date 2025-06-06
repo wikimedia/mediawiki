@@ -26,7 +26,7 @@ class RangeBlockTarget extends BlockTarget implements BlockTargetWithIp {
 	 * @param array $limits The minimum prefix lengths indexed by protocol (IPv4 or IPv6)
 	 * @param string|false $wikiId The wiki ID
 	 */
-	public function __construct( string $cidr, array $limits, $wikiId = WikiAwareEntity::LOCAL ) {
+	public function __construct( string $cidr, array $limits, string|false $wikiId = WikiAwareEntity::LOCAL ) {
 		parent::__construct( $wikiId );
 		$this->cidr = $cidr;
 		$this->limits = $limits;

@@ -38,11 +38,7 @@ class BlockRestrictionStoreFactory {
 		$this->loadBalancerFactory = $loadBalancerFactory;
 	}
 
-	/**
-	 * @param string|false $wikiId
-	 * @return BlockRestrictionStore
-	 */
-	public function getBlockRestrictionStore( $wikiId = WikiAwareEntity::LOCAL ): BlockRestrictionStore {
+	public function getBlockRestrictionStore( string|false $wikiId = WikiAwareEntity::LOCAL ): BlockRestrictionStore {
 		if ( is_string( $wikiId ) && $this->loadBalancerFactory->getLocalDomainID() === $wikiId ) {
 			$wikiId = WikiAwareEntity::LOCAL;
 		}

@@ -35,14 +35,11 @@ class BlockRestrictionStore {
 
 	private IConnectionProvider $dbProvider;
 
-	/**
-	 * @var string|false
-	 */
-	private $wikiId;
+	private string|false $wikiId;
 
 	public function __construct(
 		IConnectionProvider $dbProvider,
-		/* string|false */ $wikiId = WikiAwareEntity::LOCAL
+		string|false $wikiId = WikiAwareEntity::LOCAL
 	) {
 		$this->dbProvider = $dbProvider;
 		$this->wikiId = $wikiId;

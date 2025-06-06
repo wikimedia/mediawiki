@@ -17,15 +17,14 @@ use Stringable;
 abstract class BlockTarget implements WikiAwareEntity, Stringable {
 	use WikiAwareEntityTrait;
 
-	/** @var string|false */
-	protected $wikiId;
+	protected string|false $wikiId;
 
 	/**
 	 * @param string|false $wikiId UserIdentity and Block extend WikiAwareEntity
 	 *   and so we must ask for a wiki ID as well, to forward it through, even
 	 *   though we don't use it.
 	 */
-	protected function __construct( $wikiId ) {
+	protected function __construct( string|false $wikiId ) {
 		$this->wikiId = $wikiId;
 	}
 

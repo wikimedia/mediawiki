@@ -18,11 +18,7 @@ use Wikimedia\IPUtils;
 class AnonIpBlockTarget extends BlockTarget implements BlockTargetWithUserPage, BlockTargetWithIp {
 	private string $addr;
 
-	/**
-	 * @param string $addr
-	 * @param string|false $wikiId
-	 */
-	public function __construct( string $addr, $wikiId = WikiAwareEntity::LOCAL ) {
+	public function __construct( string $addr, string|false $wikiId = WikiAwareEntity::LOCAL ) {
 		parent::__construct( $wikiId );
 		$this->addr = $addr;
 	}

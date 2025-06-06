@@ -20,7 +20,7 @@ class AutoBlockTarget extends BlockTarget {
 	 * @param int $id The block ID
 	 * @param string|false $wikiId
 	 */
-	public function __construct( int $id, $wikiId = WikiAwareEntity::LOCAL ) {
+	public function __construct( int $id, string|false $wikiId = WikiAwareEntity::LOCAL ) {
 		parent::__construct( $wikiId );
 		$this->id = $id;
 	}

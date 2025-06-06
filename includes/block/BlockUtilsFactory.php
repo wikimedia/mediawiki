@@ -39,11 +39,7 @@ class BlockUtilsFactory {
 		$this->crossWikiBlockTargetFactory = $crossWikiBlockTargetFactory;
 	}
 
-	/**
-	 * @param string|false $wikiId
-	 * @return BlockUtils
-	 */
-	public function getBlockUtils( $wikiId = Block::LOCAL ): BlockUtils {
+	public function getBlockUtils( string|false $wikiId = Block::LOCAL ): BlockUtils {
 		if ( is_string( $wikiId ) && WikiMap::getCurrentWikiId() === $wikiId ) {
 			$wikiId = Block::LOCAL;
 		}

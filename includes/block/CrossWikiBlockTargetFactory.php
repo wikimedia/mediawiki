@@ -37,11 +37,7 @@ class CrossWikiBlockTargetFactory {
 		$this->userNameUtils = $userNameUtils;
 	}
 
-	/**
-	 * @param string|false $wikiId
-	 * @return BlockTargetFactory
-	 */
-	public function getFactory( $wikiId = WikiAwareEntity::LOCAL ) {
+	public function getFactory( string|false $wikiId = WikiAwareEntity::LOCAL ) {
 		if ( is_string( $wikiId ) && WikiMap::getCurrentWikiId() === $wikiId ) {
 			$wikiId = WikiAwareEntity::LOCAL;
 		}

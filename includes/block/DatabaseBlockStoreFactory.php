@@ -87,11 +87,7 @@ class DatabaseBlockStoreFactory {
 		$this->autoblockExemptionList = $autoblockExemptionList;
 	}
 
-	/**
-	 * @param string|false $wikiId
-	 * @return DatabaseBlockStore
-	 */
-	public function getDatabaseBlockStore( $wikiId = DatabaseBlock::LOCAL ): DatabaseBlockStore {
+	public function getDatabaseBlockStore( string|false $wikiId = DatabaseBlock::LOCAL ): DatabaseBlockStore {
 		if ( is_string( $wikiId ) && $this->loadBalancerFactory->getLocalDomainID() === $wikiId ) {
 			$wikiId = DatabaseBlock::LOCAL;
 		}

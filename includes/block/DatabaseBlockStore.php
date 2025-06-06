@@ -75,8 +75,7 @@ class DatabaseBlockStore {
 		MainConfigNames::UpdateRowsPerQuery,
 	];
 
-	/** @var string|false */
-	private $wikiId;
+	private string|false $wikiId;
 
 	private ServiceOptions $options;
 	private LoggerInterface $logger;
@@ -104,7 +103,7 @@ class DatabaseBlockStore {
 		TempUserConfig $tempUserConfig,
 		BlockTargetFactory $blockTargetFactory,
 		AutoblockExemptionList $autoblockExemptionList,
-		/* string|false */ $wikiId = DatabaseBlock::LOCAL
+		string|false $wikiId = DatabaseBlock::LOCAL
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 

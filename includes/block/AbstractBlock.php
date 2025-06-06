@@ -68,8 +68,7 @@ abstract class AbstractBlock implements Block {
 	/** @var bool */
 	protected $isSitewide = true;
 
-	/** @var string|false */
-	protected $wikiId;
+	protected string|false $wikiId;
 
 	/**
 	 * Create a new block with specified parameters on a user, IP or IP range.

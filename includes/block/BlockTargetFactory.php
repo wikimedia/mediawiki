@@ -27,8 +27,7 @@ class BlockTargetFactory implements WikiAwareEntity {
 	private UserIdentityLookup $userIdentityLookup;
 	private UserNameUtils $userNameUtils;
 
-	/** @var string|false */
-	private $wikiId;
+	private string|false $wikiId;
 
 	/**
 	 * @var array The range block minimum prefix lengths indexed by protocol (IPv4 or IPv6)
@@ -42,17 +41,11 @@ class BlockTargetFactory implements WikiAwareEntity {
 		MainConfigNames::BlockCIDRLimit,
 	];
 
-	/**
-	 * @param ServiceOptions $options
-	 * @param UserIdentityLookup $userIdentityLookup
-	 * @param UserNameUtils $userNameUtils
-	 * @param string|false $wikiId
-	 */
 	public function __construct(
 		ServiceOptions $options,
 		UserIdentityLookup $userIdentityLookup,
 		UserNameUtils $userNameUtils,
-		/* string|false */ $wikiId = Block::LOCAL
+		string|false $wikiId = Block::LOCAL
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->rangePrefixLimits = $options->get( MainConfigNames::BlockCIDRLimit );
