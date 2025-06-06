@@ -173,6 +173,12 @@ class ParsoidLocalizationTest extends MediaWikiIntegrationTestCase {
 				[],
 				'<p><span typeof="mw:I18n" data-mw-i18n=\'{"/":{"lang":"x-user","key":"testblank","params":[]}}\'></span></p>',
 				'blank message should resolve'
+			],
+			[
+				'testdisabled',
+				[],
+				'<p><span typeof="mw:I18n" data-mw-i18n=\'{"/":{"lang":"x-user","key":"testdisabled","params":[]}}\'></span></p>',
+				'disabled message should resolve to empty'
 			]
 		];
 	}
@@ -214,6 +220,12 @@ class ParsoidLocalizationTest extends MediaWikiIntegrationTestCase {
 				[],
 				'<a typeof="mw:LocalizedAttrs" title="" data-mw-i18n=\'{"title":{"lang":"x-user","key":"testblank","params":[]}}\'></a>',
 				'blank attribute should resolve'
+			],
+			[
+				'testdisabled',
+				[],
+				'<a typeof="mw:LocalizedAttrs" title="" data-mw-i18n=\'{"title":{"lang":"x-user","key":"testdisabled","params":[]}}\'></a>',
+				'disabled attribute should resolve to empty'
 			]
 		];
 	}
