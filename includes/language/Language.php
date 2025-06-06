@@ -3697,7 +3697,7 @@ class Language implements Bcp47Code {
 	 * @param-taint $list tainted
 	 * @return string
 	 */
-	public function commaList( array $list ) {
+	public function commaList( array $list ): string {
 		return implode(
 			$this->msg( 'comma-separator' )->escaped(),
 			$list
@@ -3711,7 +3711,7 @@ class Language implements Bcp47Code {
 	 * @param-taint $list tainted
 	 * @return string
 	 */
-	public function semicolonList( array $list ) {
+	public function semicolonList( array $list ): string {
 		return implode(
 			$this->msg( 'semicolon-separator' )->escaped(),
 			$list
@@ -3724,7 +3724,7 @@ class Language implements Bcp47Code {
 	 * @param-taint $list tainted
 	 * @return string
 	 */
-	public function pipeList( array $list ) {
+	public function pipeList( array $list ): string {
 		return implode(
 			$this->msg( 'pipe-separator' )->escaped(),
 			$list
