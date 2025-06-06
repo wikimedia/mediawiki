@@ -182,22 +182,6 @@ class ResetPasswordSecondaryAuthenticationProviderTest extends MediaWikiIntegrat
 		);
 		$this->assertNotNull( $manager->getAuthenticationSessionData( 'reset-pass' ) );
 		$this->assertFalse( DynamicPropertyTestHelper::getDynamicProperty( $passReq, 'done' ) );
-
-		DynamicPropertyTestHelper::setDynamicProperty( $passReq, 'allow', StatusValue::newGood() );
-		$res = $provider->tryReset( $user, [ $skipReq, $passReq ] );
-		$this->assertEquals( AuthenticationResponse::newPass(), $res );
-		$this->assertNull( $manager->getAuthenticationSessionData( 'reset-pass' ) );
-		$this->assertTrue( DynamicPropertyTestHelper::getDynamicProperty( $passReq, 'done' ) );
-
-		$manager->setAuthenticationSessionData( 'reset-pass', [
-			'msg' => $msg,
-			'hard' => false,
-			'req' => $passReq2,
-		] );
-		$res = $provider->tryReset( $user, [ $passReq2 ] );
-		$this->assertEquals( AuthenticationResponse::newPass(), $res );
-		$this->assertNull( $manager->getAuthenticationSessionData( 'reset-pass' ) );
-		$this->assertTrue( DynamicPropertyTestHelper::getDynamicProperty( $passReq2, 'done' ) );
 	}
 
 	public function testTryResetShouldAbstainIfNoSessionData(): void {
@@ -404,23 +388,103 @@ class ResetPasswordSecondaryAuthenticationProviderTest extends MediaWikiIntegrat
 			AuthenticationResponse::newUI( [ $optionalPassReq, $skipReq ], $msg )
 		];
 
-		$needReq = new class extends PasswordAuthenticationRequest {
+		$customPassReq = new class extends PasswordAuthenticationRequest {
 		};
-		$needReq->action = AuthManager::ACTION_CHANGE;
-		$needReq->password = 'Foo';
-		$needReq->retype = 'Foo';
+		$customPassReq->action = AuthManager::ACTION_CHANGE;
+		$customPassReq->password = 'Foo';
+		$customPassReq->retype = 'Foo';
 
-		$optionalPassReq = clone $needReq;
+		$optionalPassReq = clone $customPassReq;
 		$optionalPassReq->required = AuthenticationRequest::OPTIONAL;
 
 		yield 'mismatched request type' => [
 			[
 				'msg' => $msg,
 				'hard' => false,
-				'req' => $needReq,
+				'req' => $customPassReq,
 			],
 			[ $passReq ],
 			AuthenticationResponse::newUI( [ $optionalPassReq, $skipReq ], $msg )
 		];
 	}
+
+	/**
+	 * @dataProvider provideTryResetShouldSucceedOnValidInput
+	 *
+	 * @param array $sessionData
+	 * @param array $authReqs
+	 * @param AuthenticationRequest $expectedAuthManagerReq
+	 * @return void
+	 */
+	public function testTryResetShouldSucceedOnValidInputIfAuthManagerAllows(
+		array $sessionData,
+		array $authReqs,
+		AuthenticationRequest $expectedAuthManagerReq
+	): void {
+		$user = $this->createMock( User::class );
+		$user->method( 'getName' )
+			->willReturn( 'TestUser' );
+
+		$expectedAuthManagerReq->username = $user->getName();
+
+		$authManager = $this->createMock( AuthManager::class );
+		$authManager->method( 'getAuthenticationSessionData' )
+			->with( 'reset-pass' )
+			->willReturn( $sessionData );
+
+		$authManager->method( 'allowsAuthenticationDataChange' )
+			->with( $expectedAuthManagerReq )
+			->willReturn( StatusValue::newGood() );
+
+		$authManager->expects( $this->once() )
+			->method( 'changeAuthenticationData' );
+
+		$authManager->expects( $this->once() )
+			->method( 'removeAuthenticationSessionData' )
+			->with( 'reset-pass' );
+
+		$provider = new ResetPasswordSecondaryAuthenticationProvider();
+		$this->initProvider( $provider, null, null, $authManager );
+
+		$provider = TestingAccessWrapper::newFromObject( $provider );
+
+		$res = $provider->tryReset( $user, $authReqs );
+
+		$this->assertEquals( AuthenticationResponse::newPass(), $res );
+	}
+
+	public static function provideTryResetShouldSucceedOnValidInput(): iterable {
+		$msg = new RawMessage( 'foo' );
+
+		$skipReq = new ButtonAuthenticationRequest(
+			'skipReset',
+			wfMessage( 'authprovider-resetpass-skip-label' ),
+			wfMessage( 'authprovider-resetpass-skip-help' )
+		);
+
+		$passReq = new PasswordAuthenticationRequest();
+		$passReq->action = AuthManager::ACTION_CHANGE;
+		$passReq->password = 'Foo';
+		$passReq->retype = 'Foo';
+
+		yield 'valid input with hard flag' => [
+			[
+				'msg' => $msg,
+				'hard' => true,
+			],
+			[ $skipReq, $passReq ],
+			$passReq
+		];
+
+		yield 'valid input without hard flag' => [
+			[
+				'msg' => $msg,
+				'hard' => false,
+				'req' => $passReq,
+			],
+			[ $passReq ],
+			$passReq
+		];
+	}
+
 }
