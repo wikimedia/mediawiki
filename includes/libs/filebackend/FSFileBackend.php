@@ -41,6 +41,10 @@
  * @ingroup FileBackend
  */
 
+// Suppress UnusedPluginSuppression because Phan on PHP 8.1 needs more
+// suppressions than PHP 7.x
+// @phan-file-suppress UnusedPluginSuppression,UnusedPluginFileSuppression
+
 namespace Wikimedia\FileBackend;
 
 use Shellbox\Command\BoxedCommand;
@@ -1053,6 +1057,7 @@ class FSFileBackend extends FileBackendStore {
 			if ( function_exists( 'pcntl_strerror' ) ) {
 				$alternatives[] = preg_quote( ': ' . pcntl_strerror( 2 ), '/' );
 			} elseif ( function_exists( 'socket_strerror' ) && defined( 'SOCKET_ENOENT' ) ) {
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullableInternal False positive
 				$alternatives[] = preg_quote( ': ' . socket_strerror( SOCKET_ENOENT ), '/' );
 			}
 			$regex = '/(' . implode( '|', $alternatives ) . ')$/';
