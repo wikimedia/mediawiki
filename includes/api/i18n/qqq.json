@@ -1267,6 +1267,7 @@
 	"apihelp-query+siteinfo-paramvalue-prop-uploaddialog": "{{doc-apihelp-paramvalue|query+siteinfo|prop|uploaddialog}}",
 	"apihelp-query+siteinfo-paramvalue-prop-autopromote": "{{doc-apihelp-paramvalue|query+siteinfo|prop|autopromote}}",
 	"apihelp-query+siteinfo-paramvalue-prop-autopromoteonce": "{{doc-apihelp-paramvalue|query+siteinfo|prop|autopromoteonce}}",
+	"apihelp-query+siteinfo-paramvalue-prop-copyuploaddomains": "{{doc-apihelp-paramvalue|query+siteinfo|prop|copyuploaddomains}}",
 	"apihelp-query+siteinfo-param-filteriw": "{{doc-apihelp-param|query+siteinfo|filteriw}}",
 	"apihelp-query+siteinfo-param-showalldb": "{{doc-apihelp-param|query+siteinfo|showalldb}}",
 	"apihelp-query+siteinfo-param-numberingroup": "{{doc-apihelp-param|query+siteinfo|numberingroup}}",

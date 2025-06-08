@@ -1334,6 +1334,7 @@
 	"apihelp-query+siteinfo-paramvalue-prop-uploaddialog": "Returns the upload dialog configuration.",
 	"apihelp-query+siteinfo-paramvalue-prop-autopromote": "Returns the automatic promotion configuration.",
 	"apihelp-query+siteinfo-paramvalue-prop-autopromoteonce": "Returns the automatic promotion configuration that are only done once.",
+	"apihelp-query+siteinfo-paramvalue-prop-copyuploaddomains": "Returns the list of allowed copy upload domains",
 	"apihelp-query+siteinfo-param-filteriw": "Return only local or only nonlocal entries of the interwiki map.",
 	"apihelp-query+siteinfo-param-showalldb": "List all database servers, not just the one lagging the most.",
 	"apihelp-query+siteinfo-param-numberingroup": "Lists the number of users in user groups.",
