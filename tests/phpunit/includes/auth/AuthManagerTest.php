@@ -5,7 +5,6 @@ namespace MediaWiki\Tests\Auth;
 use Closure;
 use DomainException;
 use DummySessionProvider;
-use DynamicPropertyTestHelper;
 use Exception;
 use InvalidArgumentException;
 use LogicException;
@@ -1062,18 +1061,29 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 				return is_callable( [ $p, 'expects' ] );
 			}
 		);
+		$shouldInvokePostCalled = (bool)array_filter(
+			$managerResponses,
+			static function ( $r ) {
+				return $r instanceof AuthenticationResponse &&
+					( $r->status === AuthenticationResponse::PASS ||
+						$r->status === AuthenticationResponse::FAIL );
+			}
+		);
 		foreach ( $providers as $p ) {
-			DynamicPropertyTestHelper::setDynamicProperty( $p, 'postCalled', false );
-			$p->expects( $this->atMost( 1 ) )->method( 'postAuthentication' )
-				->willReturnCallback( function ( $userArg, $response ) use ( $user, $constraint, $p ) {
-					if ( $userArg !== null ) {
-						$this->assertInstanceOf( User::class, $userArg );
-						$this->assertSame( $user->getName(), $userArg->getName() );
-					}
-					$this->assertInstanceOf( AuthenticationResponse::class, $response );
-					$this->assertThat( $response->status, $constraint );
-					DynamicPropertyTestHelper::setDynamicProperty( $p, 'postCalled', $response->status );
-				} );
+			if ( $shouldInvokePostCalled ) {
+				$p->expects( $this->once() )->method( 'postAuthentication' )
+					->willReturnCallback( function ( $userArg, $response ) use ( $user, $constraint, $p ) {
+						if ( $userArg !== null ) {
+							$this->assertInstanceOf( User::class, $userArg );
+							$this->assertSame( $user->getName(), $userArg->getName() );
+						}
+						$this->assertInstanceOf( AuthenticationResponse::class, $response );
+						$this->assertThat( $response->status, $constraint );
+					} );
+			} else {
+				$p->expects( $this->never() )
+					->method( 'postAuthentication' );
+			}
 		}
 
 		$session = $this->request->getSession();
@@ -1142,10 +1152,6 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 			if ( $success || $response->status === AuthenticationResponse::FAIL ) {
 				$this->assertNull( $session->getSecret( AuthManager::AUTHN_STATE ),
 					"Response $i, session state" );
-				foreach ( $providers as $p ) {
-					$this->assertSame( $response->status, DynamicPropertyTestHelper::getDynamicProperty( $p, 'postCalled' ),
-						"Response $i, post-auth callback called" );
-				}
 			} else {
 				$this->assertNotNull( $session->getSecret( AuthManager::AUTHN_STATE ),
 					"Response $i, session state" );
@@ -1158,9 +1164,6 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 					$this->manager->getAuthenticationRequests( AuthManager::ACTION_LOGIN_CONTINUE ),
 					"Response $i, continuation check"
 				);
-				foreach ( $providers as $p ) {
-					$this->assertFalse( DynamicPropertyTestHelper::getDynamicProperty( $p, 'postCalled' ), "Response $i, post-auth callback not called" );
-				}
 			}
 
 			$state = $session->getSecret( AuthManager::AUTHN_STATE );
@@ -2347,19 +2350,30 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		$providers = array_merge(
 			$this->preauthMocks, $this->primaryauthMocks, $this->secondaryauthMocks
 		);
+		$shouldInvokePostCalled = (bool)array_filter(
+			$managerResponses,
+			static function ( $r ) {
+				return $r instanceof AuthenticationResponse &&
+					( $r->status === AuthenticationResponse::PASS ||
+						$r->status === AuthenticationResponse::FAIL );
+			}
+		);
 		foreach ( $providers as $p ) {
-			DynamicPropertyTestHelper::setDynamicProperty( $p, 'postCalled', false );
-			$p->expects( $this->atMost( 1 ) )->method( 'postAccountCreation' )
-				->willReturnCallback( function ( $user, $creatorArg, $response )
-					use ( $creator, $constraint, $p, $username )
-				{
-					$this->assertInstanceOf( User::class, $user );
-					$this->assertSame( $username, $user->getName() );
-					$this->assertSame( $creator->getName(), $creatorArg->getName() );
-					$this->assertInstanceOf( AuthenticationResponse::class, $response );
-					$this->assertThat( $response->status, $constraint );
-					DynamicPropertyTestHelper::setDynamicProperty( $p, 'postCalled', $response->status );
-				} );
+			if ( $shouldInvokePostCalled ) {
+				$p->expects( $this->once() )->method( 'postAccountCreation' )
+					->willReturnCallback( function ( $user, $creatorArg, $response )
+						use ( $creator, $constraint, $p, $username )
+					{
+						$this->assertInstanceOf( User::class, $user );
+						$this->assertSame( $username, $user->getName() );
+						$this->assertSame( $creator->getName(), $creatorArg->getName() );
+						$this->assertInstanceOf( AuthenticationResponse::class, $response );
+						$this->assertThat( $response->status, $constraint );
+					} );
+			} else {
+				$p->expects( $this->never() )
+					->method( 'postAccountCreation' );
+			}
 		}
 
 		// We're testing with $wgNewUserLog = false, so assert that it worked
@@ -2447,10 +2461,6 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 					$this->request->getSession()->getSecret( AuthManager::ACCOUNT_CREATION_STATE ),
 					"Response $i, session state"
 				);
-				foreach ( $providers as $p ) {
-					$this->assertSame( $response->status, DynamicPropertyTestHelper::getDynamicProperty( $p, 'postCalled' ),
-						"Response $i, post-auth callback called" );
-				}
 			} else {
 				$this->assertNotNull(
 					$this->request->getSession()->getSecret( AuthManager::ACCOUNT_CREATION_STATE ),
@@ -2465,9 +2475,6 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 					$this->manager->getAuthenticationRequests( AuthManager::ACTION_CREATE_CONTINUE ),
 					"Response $i, continuation check"
 				);
-				foreach ( $providers as $p ) {
-					$this->assertFalse( DynamicPropertyTestHelper::getDynamicProperty( $p, 'postCalled' ), "Response $i, post-auth callback not called" );
-				}
 			}
 
 			$userIdentity = $this->userIdentityLookup->getUserIdentityByName( $username );
@@ -4030,16 +4037,28 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 			$this->equalTo( AuthenticationResponse::FAIL )
 		);
 		$providers = array_merge( $this->preauthMocks, $this->primaryauthMocks );
+		$shouldInvokePostCalled = (bool)array_filter(
+			$managerResponses,
+			static function ( $r ) {
+				return $r instanceof AuthenticationResponse &&
+					( $r->status === AuthenticationResponse::PASS ||
+						$r->status === AuthenticationResponse::FAIL );
+			}
+		);
 		foreach ( $providers as $p ) {
-			DynamicPropertyTestHelper::setDynamicProperty( $p, 'postCalled', false );
-			$p->expects( $this->atMost( 1 ) )->method( 'postAccountLink' )
-				->willReturnCallback( function ( $userArg, $response ) use ( $user, $constraint, $p ) {
-					$this->assertInstanceOf( User::class, $userArg );
-					$this->assertSame( $user->getName(), $userArg->getName() );
-					$this->assertInstanceOf( AuthenticationResponse::class, $response );
-					$this->assertThat( $response->status, $constraint );
-					DynamicPropertyTestHelper::setDynamicProperty( $p, 'postCalled', $response->status );
-				} );
+			if ( $shouldInvokePostCalled ) {
+				$p->expects( $this->once() )
+					->method( 'postAccountLink' )
+					->willReturnCallback( function ( $userArg, $response ) use ( $user, $constraint, $p ) {
+						$this->assertInstanceOf( User::class, $userArg );
+						$this->assertSame( $user->getName(), $userArg->getName() );
+						$this->assertInstanceOf( AuthenticationResponse::class, $response );
+						$this->assertThat( $response->status, $constraint );
+					} );
+			} else {
+				$p->expects( $this->never() )
+					->method( 'postAccountLink' );
+			}
 		}
 
 		$first = true;
@@ -4079,10 +4098,6 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 			) {
 				$this->assertNull( $this->request->getSession()->getSecret( AuthManager::ACCOUNT_LINK_STATE ),
 					"Response $i, session state" );
-				foreach ( $providers as $p ) {
-					$this->assertSame( $response->status, DynamicPropertyTestHelper::getDynamicProperty( $p, 'postCalled' ),
-						"Response $i, post-auth callback called" );
-				}
 			} else {
 				$this->assertNotNull(
 					$this->request->getSession()->getSecret( AuthManager::ACCOUNT_LINK_STATE ),
@@ -4097,9 +4112,6 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 					$this->manager->getAuthenticationRequests( AuthManager::ACTION_LINK_CONTINUE ),
 					"Response $i, continuation check"
 				);
-				foreach ( $providers as $p ) {
-					$this->assertFalse( DynamicPropertyTestHelper::getDynamicProperty( $p, 'postCalled' ), "Response $i, post-auth callback not called" );
-				}
 			}
 
 			$first = false;
