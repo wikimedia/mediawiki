@@ -740,7 +740,7 @@ config-schema:
         default: null
     UpdateCompatibleMetadata:
         default: false
-        description: 'Shortcut for the ''updateCompatibleMetadata'' setting of $wgLocalFileRepo.'
+        description: "Shortcut for the 'updateCompatibleMetadata' setting of $wgLocalFileRepo."
     AllowCopyUploads:
         default: false
         description: |-
@@ -1105,7 +1105,7 @@ config-schema:
         description: 'If not in the executable PATH, specify the SVG converter path.'
     SVGMaxSize:
         default: 5120
-        description: 'Don''t scale a SVG larger than this'
+        description: "Don't scale a SVG larger than this"
     SVGMetadataCutoff:
         default: 5242880
         description: |-
@@ -1734,7 +1734,7 @@ config-schema:
         description: 'Database username'
     DBpassword:
         default: ''
-        description: 'Database user''s password'
+        description: "Database user's password"
     DBtype:
         default: mysql
         description: 'Database type'
@@ -2244,7 +2244,7 @@ config-schema:
         description: 'Disable all query pages if miser mode is on, not just some'
     QueryCacheLimit:
         default: 1000
-        description: 'Number of rows to cache in ''querycache'' table when miser mode is on'
+        description: "Number of rows to cache in 'querycache' table when miser mode is on"
     WantedPagesThreshold:
         default: 1
         description: 'Number of links to a page required before it is deemed "wanted"'
@@ -5158,7 +5158,7 @@ config-schema:
             - user
             - autoconfirmed
         type: array
-        description: 'Implicit groups, aren''t shown on Special:Listusers or somewhere else'
+        description: "Implicit groups, aren't shown on Special:Listusers or somewhere else"
     GroupsAddToSelf:
         default: {  }
         type: object
@@ -5840,10 +5840,10 @@ config-schema:
             are available to users.
     UseSiteJs:
         default: true
-        description: 'Use the site''s Javascript page?'
+        description: "Use the site's Javascript page?"
     UseSiteCss:
         default: true
-        description: 'Use the site''s Cascading Style Sheets (CSS)?'
+        description: "Use the site's Cascading Style Sheets (CSS)?"
     BreakFrames:
         default: false
         description: |-

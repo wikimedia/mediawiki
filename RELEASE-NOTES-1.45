@@ -85,6 +85,7 @@ For notes on 1.44.x and older releases, see HISTORY.
   from v1.23.0 to v2.0.0.
 * Updated psr/container from 1.1.2 to 2.0.2.
 * Updated wikimedia/shellbox from 4.2.0 to 4.3.0.
+* Updated symfony/yaml from 5.4.45 to 6.4.21.
 * …
 
 ===== Changed development-only external libraries =====
