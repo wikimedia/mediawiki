@@ -997,10 +997,12 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	}
 
 	private function appendCopyUploadDomains( string $property ): bool {
+		$allowedHosts = UploadFromUrl::getAllowedHosts();
+		ApiResult::setIndexedTagName( $allowedHosts, 'domain' );
 		return $this->getResult()->addValue(
 			'query',
 			$property,
-			UploadFromUrl::getAllowedHosts()
+			$allowedHosts
 		);
 	}
 
