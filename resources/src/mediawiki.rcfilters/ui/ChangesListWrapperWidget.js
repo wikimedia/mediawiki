@@ -97,6 +97,7 @@ ChangesListWrapperWidget.prototype.onModelInvalidate = function () {
 ChangesListWrapperWidget.prototype.onModelUpdate = function (
 	$changesListContent, $fieldset, noResultsDetails, isInitialDOM, from
 ) {
+	mw.hook( 'rcfilters.changeslistwrapperwidget.updated' ).fire( this );
 	const $message = $( '<div>' )
 			.addClass( 'mw-rcfilters-ui-changesListWrapperWidget-results' ),
 		isEmpty = $changesListContent === 'NO_RESULTS',

@@ -1,4 +1,5 @@
 const FilterTagMultiselectWidget = require( './FilterTagMultiselectWidget.js' ),
+	GroupByToggleWidget = require( './GroupByToggleWidget.js' ),
 	LiveUpdateButtonWidget = require( './LiveUpdateButtonWidget.js' ),
 	ChangesLimitAndDateButtonWidget = require( './ChangesLimitAndDateButtonWidget.js' );
 
@@ -49,6 +50,10 @@ const FilterWrapperWidget = function MwRcfiltersUiFilterWrapperWidget(
 			isMobile: OO.ui.isMobile()
 		}
 	);
+	this.groupByToggleWidget = new GroupByToggleWidget(
+		this.controller,
+		this.model
+	);
 
 	this.liveUpdateButton = new LiveUpdateButtonWidget(
 		this.controller,
@@ -70,6 +75,9 @@ const FilterWrapperWidget = function MwRcfiltersUiFilterWrapperWidget(
 		flags: [ 'progressive' ],
 		classes: [ 'mw-rcfilters-ui-filterWrapperWidget-showNewChanges' ]
 	} );
+	this.numChangesAndDateWidget.$element.prepend(
+		this.groupByToggleWidget.$element
+	);
 
 	// Events
 	this.filterTagWidget.menu.connect( this, { toggle: [ 'emit', 'menuToggle' ] } );
