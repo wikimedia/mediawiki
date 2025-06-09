@@ -13,6 +13,7 @@
 let ffmpeg;
 const fs = require( 'fs' );
 const path = require( 'path' );
+const { PrometheusFileReporter, writeAllProjectMetrics } = require( './PrometheusFileReporter.js' );
 const logPath = process.env.LOG_DIR || path.join( process.cwd(), 'tests/selenium/log' );
 const { makeFilenameDate, saveScreenshot, startVideo, stopVideo } = require( 'wdio-mediawiki' );
 // T355556: remove when T324766 is resolved
@@ -144,6 +145,16 @@ exports.config = {
 				const random = Math.random().toString( 16 ).slice( 2, 10 );
 				return `WDIO.xunit-${ makeFilenameDate() }-${ random }.xml`;
 			}
+		} ],
+		[ PrometheusFileReporter, {
+			outputDir: logPath,
+			outputFileName: function () {
+				const random = Math.random().toString( 16 ).slice( 2, 10 );
+				return `WDIO.prometheus-${ makeFilenameDate() }-${ random }.prom`;
+			},
+			tags: {
+				project: process.env.ZUUL_PROJECT || 'test'
+			}
 		} ]
 	],
 
@@ -187,5 +198,14 @@ exports.config = {
 		} finally {
 			stopVideo( ffmpeg );
 		}
+	},
+
+	/**
+	 * Executed after all runners are done.
+	 */
+	onComplete() {
+		const random = Math.random().toString( 16 ).slice( 2, 10 );
+		const fileName = `project-metrics-${ makeFilenameDate() }-${ random }`;
+		writeAllProjectMetrics( logPath, fileName );
 	}
 };
