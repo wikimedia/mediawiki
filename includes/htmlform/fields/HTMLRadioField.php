@@ -242,6 +242,11 @@ class HTMLRadioField extends HTMLFormField {
 	protected function needsLabel() {
 		return false;
 	}
+
+	protected function shouldInfuseOOUI() {
+		// Avoid accessibility issues when the widget is infused (e.g. by hide-if) but the layout isn't (T396261)
+		return true;
+	}
 }
 
 /** @deprecated class alias since 1.42 */
