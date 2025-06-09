@@ -311,7 +311,7 @@ class DatabasePostgres extends Database {
 		foreach ( $schemas as $schema ) {
 			$encSchema = $this->addQuotes( $schema );
 			$encTable = $this->addQuotes( $tableComponent );
-			$encIndex = $this->addQuotes( $this->platform->indexName( $index ) );
+			$encIndex = $this->addQuotes( $index );
 			$query = new Query(
 				"SELECT indexname,indexdef FROM pg_indexes " .
 				"WHERE schemaname=$encSchema AND tablename=$encTable AND indexname=$encIndex",

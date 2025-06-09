@@ -477,52 +477,6 @@ class DatabaseMySQLTest extends TestCase {
 
 	/**
 	 * @covers \Wikimedia\Rdbms\Database
-	 * @covers \Wikimedia\Rdbms\DatabaseMySQL
-	 * @covers \Wikimedia\Rdbms\Platform\MySQLPlatform
-	 */
-	public function testIndexAliases() {
-		$db = $this->getMockBuilder( DatabaseMySQL::class )
-			->disableOriginalConstructor()
-			->onlyMethods( [ 'strencode', 'dbSchema', 'tablePrefix' ] )
-			->getMock();
-		$db->method( 'strencode' )->willReturnCallback(
-			static function ( $s ) {
-				return str_replace( "'", "\\'", $s );
-			}
-		);
-		$wdb = TestingAccessWrapper::newFromObject( $db );
-		$wdb->platform = new MySQLPlatform( new AddQuoterMock() );
-
-		/** @var IDatabase $db */
-		$db->setIndexAliases( [ 'a_b_idx' => 'a_c_idx' ] );
-		$sql = $db->newSelectQueryBuilder()
-			->select( 'field' )
-			->from( 'zend' )
-			->where( [ 'a' => 'x' ] )
-			->useIndex( 'a_b_idx' )
-			->caller( __METHOD__ )->getSQL();
-
-		$this->assertSameSql(
-			"SELECT  field  FROM `zend` FORCE INDEX (a_c_idx)    WHERE a = 'x'  ",
-			$sql
-		);
-
-		$db->setIndexAliases( [] );
-		$sql = $db->newSelectQueryBuilder()
-			->select( 'field' )
-			->from( 'zend' )
-			->where( [ 'a' => 'x' ] )
-			->useIndex( 'a_b_idx' )
-			->caller( __METHOD__ )->getSQL();
-
-		$this->assertSameSql(
-			"SELECT  field  FROM `zend` FORCE INDEX (a_b_idx)    WHERE a = 'x'",
-			$sql
-		);
-	}
-
-	/**
-	 * @covers \Wikimedia\Rdbms\Database
 	 * @covers \Wikimedia\Rdbms\Platform\SQLPlatform
 	 * @covers \Wikimedia\Rdbms\Platform\MySQLPlatform
 	 */

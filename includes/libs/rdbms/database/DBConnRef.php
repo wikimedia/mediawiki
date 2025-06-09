@@ -767,10 +767,6 @@ class DBConnRef implements Stringable, IMaintainableDatabase, IDatabaseForOwner 
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function setIndexAliases( array $aliases ) {
-		return $this->__call( __FUNCTION__, func_get_args() );
-	}
-
 	public function tableName( $name, $format = 'quoted' ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}

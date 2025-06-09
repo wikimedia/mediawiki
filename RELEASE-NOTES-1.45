@@ -150,6 +150,13 @@ because of Phabricator reports.
   getTagInvert, getAction.
 * The LogEventsListShowLogExtract $page parameter is now an array.
 * Command::whitelistPaths, deprecated in 1.36, has been removed.
+* ::setIndexAliases() method in the following classes and interfaces have been
+  removed without deprecation as it was completely unused:
+ - Database
+ - ILBFactory and LBFactory
+ - ILoadBalancerForOwner
+ - LoadBalancer
+ - ISQLPlatform
 * Some undocumented behaviors of ParserOptions::setInterfaceMessage() have
   been moved to a new method ParserOptions::setIsMessage(). (T393601, T395589)
 * The ParserOutput constructor now enforces strict type hints on its arguments.

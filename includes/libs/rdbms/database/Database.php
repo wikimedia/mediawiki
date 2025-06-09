@@ -3451,10 +3451,6 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		return $this->platform->getTableAliases();
 	}
 
-	public function setIndexAliases( array $aliases ) {
-		$this->platform->setIndexAliases( $aliases );
-	}
-
 	public function buildGroupConcatField(
 		$delim, $tables, $field, $conds = '', $join_conds = []
 	) {

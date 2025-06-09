@@ -47,8 +47,6 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
 class SQLPlatform implements ISQLPlatform {
 	/** @var array[] Current map of (table => (dbname, schema, prefix) map) */
 	protected $tableAliases = [];
-	/** @var string[] Current map of (index alias => index) */
-	protected $indexAliases = [];
 	protected DatabaseDomain $currentDomain;
 	/** @var array|null Current variables use for schema element placeholders */
 	protected $schemaVars;
@@ -598,24 +596,8 @@ class SQLPlatform implements ISQLPlatform {
 		return true;
 	}
 
-	/**
-	 * Allows for index remapping in queries where this is not consistent across DBMS
-	 *
-	 * TODO: Make it protected once all the code is moved over.
-	 *
-	 * @param string $index
-	 * @return string
-	 */
-	public function indexName( $index ) {
-		return $this->indexAliases[$index] ?? $index;
-	}
-
 	public function setTableAliases( array $aliases ) {
 		$this->tableAliases = $aliases;
-	}
-
-	public function setIndexAliases( array $aliases ) {
-		$this->indexAliases = $aliases;
 	}
 
 	/**
@@ -2018,7 +2000,7 @@ class SQLPlatform implements ISQLPlatform {
 				// check for both nonexistent keys *and* the empty string.
 				if ( isset( $m[1] ) && $m[1] !== '' ) {
 					if ( $m[1] === 'i' ) {
-						return $this->indexName( $m[2] );
+						return $m[2];
 					} else {
 						return $this->tableName( $m[2] );
 					}

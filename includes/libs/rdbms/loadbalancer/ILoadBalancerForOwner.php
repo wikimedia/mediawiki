@@ -234,20 +234,6 @@ interface ILoadBalancerForOwner extends ILoadBalancer {
 	public function hasPrimaryConnection();
 
 	/**
-	 * Convert certain index names to alternative names before querying the DB
-	 *
-	 * Note that this applies to indexes regardless of the table they belong to.
-	 *
-	 * This can be employed when an index was renamed X => Y in code, but the new Y-named
-	 * indexes were not yet built on all DBs. After all the Y-named ones are added by the DBA,
-	 * the aliases can be removed, and then the old X-named indexes dropped.
-	 *
-	 * @param string[] $aliases
-	 * @since 1.31
-	 */
-	public function setIndexAliases( array $aliases );
-
-	/**
 	 * Get the last time that a tracked connection was used to commit a write
 	 *
 	 * @internal Should only be called from the rdbms library.

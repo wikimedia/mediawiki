@@ -463,20 +463,6 @@ interface ILBFactory extends IConnectionProvider {
 	public function setTableAliases( array $aliases );
 
 	/**
-	 * Convert certain index names to alternative names before querying the DB
-	 *
-	 * Note that this applies to indexes regardless of the table they belong to.
-	 *
-	 * This can be employed when an index was renamed X => Y in code, but the new Y-named
-	 * indexes were not yet built on all DBs. After all the Y-named ones are added by the DBA,
-	 * the aliases can be removed, and then the old X-named indexes dropped.
-	 *
-	 * @param string[] $aliases Map of (index alias => index name)
-	 * @since 1.31
-	 */
-	public function setIndexAliases( array $aliases );
-
-	/**
 	 * Convert certain database domains to alternative ones
 	 *
 	 * This can be used for backwards compatibility logic.
