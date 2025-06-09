@@ -41,6 +41,7 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 
 	private HashConfig $config;
 	private TestLogger $logger;
+	private TestLogger $sampledLogger;
 	private TestBagOStuff $store;
 
 	protected function getManager() {
@@ -58,12 +59,13 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		$this->logger = new TestLogger( false, static function ( $m ) {
 			return ( str_starts_with( $m, 'SessionBackend ' )
 				|| str_starts_with( $m, 'SessionManager using store ' )
-				|| str_starts_with( $m, 'Session store: ' )
 				// These were added for T264793 and behave somewhat erratically, not worth testing
 				|| str_starts_with( $m, 'Failed to load session, unpersisting' )
 				|| preg_match( '/^(Persisting|Unpersisting) session (for|due to)/', $m )
 			) ? null : $m;
 		} );
+		$this->sampledLogger = new TestLogger( true );
+		$this->setLogger( 'session-sampled', $this->sampledLogger );
 
 		return new SessionManager( [
 			'config' => $this->config,
@@ -1092,37 +1094,42 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		$this->assertFalse( $loadSessionInfoFromStore( $info ) );
 		$this->assertSame( [
 			[ LogLevel::WARNING, 'Session store: {action} for {reason}' ],
-		], $logger->getBuffer() );
+		], $this->sampledLogger->getBuffer() );
 		$logger->clearBuffer();
+		$this->sampledLogger->clearBuffer();
 
 		$this->store->setRawSession( $id, [ 'data' => [] ] );
 		$this->assertFalse( $loadSessionInfoFromStore( $info ) );
 		$this->assertSame( [
 			[ LogLevel::WARNING, 'Session store: {action} for {reason}' ],
-		], $logger->getBuffer() );
+		], $this->sampledLogger->getBuffer() );
 		$logger->clearBuffer();
+		$this->sampledLogger->clearBuffer();
 
 		$this->store->deleteSession( $id );
 		$this->store->setRawSession( $id, [ 'metadata' => $metadata ] );
 		$this->assertFalse( $loadSessionInfoFromStore( $info ) );
 		$this->assertSame( [
 			[ LogLevel::WARNING, 'Session store: {action} for {reason}' ],
-		], $logger->getBuffer() );
+		], $this->sampledLogger->getBuffer() );
 		$logger->clearBuffer();
+		$this->sampledLogger->clearBuffer();
 
 		$this->store->setRawSession( $id, [ 'metadata' => $metadata, 'data' => true ] );
 		$this->assertFalse( $loadSessionInfoFromStore( $info ) );
 		$this->assertSame( [
 			[ LogLevel::WARNING, 'Session store: {action} for {reason}' ],
-		], $logger->getBuffer() );
+		], $this->sampledLogger->getBuffer() );
 		$logger->clearBuffer();
+		$this->sampledLogger->clearBuffer();
 
 		$this->store->setRawSession( $id, [ 'metadata' => true, 'data' => [] ] );
 		$this->assertFalse( $loadSessionInfoFromStore( $info ) );
 		$this->assertSame( [
 			[ LogLevel::WARNING, 'Session store: {action} for {reason}' ],
-		], $logger->getBuffer() );
+		], $this->sampledLogger->getBuffer() );
 		$logger->clearBuffer();
+		$this->sampledLogger->clearBuffer();
 
 		foreach ( $metadata as $key => $dummy ) {
 			$tmp = $metadata;
@@ -1131,8 +1138,9 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 			$this->assertFalse( $loadSessionInfoFromStore( $info ) );
 			$this->assertSame( [
 				[ LogLevel::WARNING, 'Session store: {action} for {reason}' ],
-			], $logger->getBuffer() );
+			], $this->sampledLogger->getBuffer() );
 			$logger->clearBuffer();
+			$this->sampledLogger->clearBuffer();
 		}
 
 		// Basic usage with metadata
@@ -1169,8 +1177,9 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		$this->assertFalse( $loadSessionInfoFromStore( $info ) );
 		$this->assertSame( [
 			[ LogLevel::WARNING, 'Session store: {action} for {reason}' ],
-		], $logger->getBuffer() );
+		], $this->sampledLogger->getBuffer() );
 		$logger->clearBuffer();
+		$this->sampledLogger->clearBuffer();
 
 		// Fill in provider
 		$this->store->setSessionMeta( $id, $metadata );
@@ -1274,6 +1283,7 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 			],
 		], $logger->getBuffer() );
 		$logger->clearBuffer();
+		$this->sampledLogger->clearBuffer();
 
 		// Lookup user by ID
 		$this->store->setSessionMeta( $id, [ 'userToken' => null ] + $metadata );
@@ -1548,9 +1558,12 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		$this->assertFalse( $this->store->getSession( $id ) );
 		$this->assertSame( [
 			[ LogLevel::WARNING, 'Session "{session}": User token mismatch' ],
-			[ LogLevel::INFO, 'Session store: {action} for {reason}' ],
 		], $logger->getBuffer() );
+		$this->assertSame( [
+			[ LogLevel::INFO, 'Session store: {action} for {reason}' ],
+		], $this->sampledLogger->getBuffer() );
 		$logger->clearBuffer();
+		$this->sampledLogger->clearBuffer();
 	}
 
 	/**
