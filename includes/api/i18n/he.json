@@ -1265,6 +1265,7 @@
 	"apihelp-query+siteinfo-paramvalue-prop-uploaddialog": "החזרת הגדרות תיבת ההעלאה.",
 	"apihelp-query+siteinfo-paramvalue-prop-autopromote": "מחזירה את תצורת הקידום האוטומטי.",
 	"apihelp-query+siteinfo-paramvalue-prop-autopromoteonce": "מחזירה את תצורת הקידום האוטומטי שמתבצע פעם אחת בלבד.",
+	"apihelp-query+siteinfo-paramvalue-prop-copyuploaddomains": "מחזירה את רשימת התחומים המותרים להעלאת בהעתקה",
 	"apihelp-query+siteinfo-param-filteriw": "להחזיר רק רשומות מקומיות או רק רשומות לא מקומיות ממפת הבינוויקי.",
 	"apihelp-query+siteinfo-param-showalldb": "רשימת כל שרתי מסד הנתונים, לא רק אלה שהכי מתעכבים.",
 	"apihelp-query+siteinfo-param-numberingroup": "רשימת מספרי משתמשים בקבוצות משתמשים.",

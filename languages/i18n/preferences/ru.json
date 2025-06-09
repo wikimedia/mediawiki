@@ -228,6 +228,8 @@
 	"rcfilters-watchlist-preference-label": "Использовать интерфейс без JavaScript",
 	"rcfilters-watchlist-preference-help": "Загружает [[{{#special:Watchlist}}|список наблюдения]] без поиска по фильтрам или возможности подсветки результатов",
 	"prefs-changeswatchlist": "Показанные изменения",
+	"tog-watchstar-expiry": "Период по умолчанию для нахождения страниц, добавленных вручную, в списке наблюдения:",
+	"tog-watch-expiry": "Период нахождения в списке по умолчанию:",
 	"tog-watchlisthideminor": "Скрывать малые правки из списка наблюдения",
 	"tog-watchlisthidebots": "Скрывать правки ботов из списка наблюдения",
 	"tog-watchlisthideown": "Скрывать мои правки из списка наблюдения",

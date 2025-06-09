@@ -207,6 +207,7 @@
 	"rcfilters-watchlist-preference-label": "জাভাস্ক্রিপ্টহীন ইন্টারফেস ব্যবহার করুন",
 	"rcfilters-watchlist-preference-help": "অনুসন্ধান ছাঁকনি বা আলোকপাতকরণ বৈশিষ্ট্য ছাড়াই [[{{#special:Watchlist}}|নজরতালিকা]] লোড করে।",
 	"prefs-changeswatchlist": "পরিবর্তন প্রদর্শন",
+	"tog-watch-expiry": "পূর্বনির্ধারিত সময়কাল:",
 	"tog-watchlisthideminor": "অনুল্লেখ্য সম্পাদনাগুলো নজরতালিকায় লুকিয়ে রাখা হোক",
 	"tog-watchlisthidebots": "বটের করা সম্পাদনাগুলি নজরতালিকায় লুকিয়ে রাখা হোক",
 	"tog-watchlisthideown": "আমার সম্পাদনাগুলি আমার নজরতালিকায় লুকিয়ে রাখা হোক",

@@ -200,6 +200,8 @@
 	"rcfilters-watchlist-preference-label": "Користи посредник без JavaScript",
 	"rcfilters-watchlist-preference-help": "Ги вчитува [[{{#special:Watchlist}}|набљудуваните]] без филтерско пребарување или можност за истакнување.",
 	"prefs-changeswatchlist": "Прикажани промени",
+	"tog-watchstar-expiry": "Стандарден временски период во набљудуваните за рачно додадени страници:",
+	"tog-watch-expiry": "Стандарден временски период:",
 	"tog-watchlisthideminor": "Скриј ги ситните уредувања во набљудуваните",
 	"tog-watchlisthidebots": "Скриј ботовски уредувања од набљудуваните",
 	"tog-watchlisthideown": "Скриј мои уредувања од набљудуваните",

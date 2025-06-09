@@ -1244,6 +1244,7 @@
 	"apihelp-query+siteinfo-paramvalue-prop-uploaddialog": "Restitue le configuration del dialogo de incargamento.",
 	"apihelp-query+siteinfo-paramvalue-prop-autopromote": "Restitue le configuration del promotion automatic.",
 	"apihelp-query+siteinfo-paramvalue-prop-autopromoteonce": "Restitue le configuration del promotion automatic que es facite solmente un vice.",
+	"apihelp-query+siteinfo-paramvalue-prop-copyuploaddomains": "Restitue le lista de dominios desde le quales es permittite incargar files directemente",
 	"apihelp-query+siteinfo-param-filteriw": "Restituer solmente le entratas local o solmente les non local del mappa interwiki.",
 	"apihelp-query+siteinfo-param-showalldb": "Listar tote le servitores de base de datos, non solmente illo con le plus grande latentia.",
 	"apihelp-query+siteinfo-param-numberingroup": "Lista le numero de usatores in gruppos de usatores.",

@@ -28,6 +28,8 @@
 	"config-page-upgradedoc": "نومهالېدنه",
 	"config-page-existingwiki": "شته ويکي",
 	"config-restart": "هو، سر له نوي يې پيل کړه",
+	"config-sidebar-relnotes": "خپاره شوي يادښتونه",
+	"config-sidebar-license": "لمېسنه",
 	"config-env-php": "د $1 PHP نصب شو.",
 	"config-apc": "[https://www.php.net/apc APC] نصب شو",
 	"config-diff3-bad": "جي‌اېن‌يو ډيف۳ و نه موندل شو.\nاوسمهال يې تاسو له پامه غورځولی شئ، خو شايد ډېر ځله د سمون شخړو سره مخ شئ.",

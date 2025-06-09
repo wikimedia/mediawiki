@@ -1471,7 +1471,7 @@
 	"apihelp-unlinkaccount-summary": "إزالة حساب جهة خارجية مرتبط من المستخدم الحالي.",
 	"apihelp-unlinkaccount-example-simple": "محاولة إزالة رابط المستخدم الحالي للموفر المقترن بـ<kbd>FooAuthenticationRequest</kbd>.",
 	"apihelp-upload-summary": "رفع ملف أو الحصول على حالة المرفوعات المعلقة.",
-	"apihelp-upload-extended-description": "تتوفر عدة طرق: \n* ارفع محتويات الملف مباشرة، باستخدام الوسيط <var>$1file</var>.\n* ارفع الملف على أجزاء باستخدام الوسائط <var>$1filesize</var> و<var>$1chunk</var> و<var>$1offset</var>.\n* اجعل خادم ميدياويكي يقوم بجلب ملف من مسار، باستخدام الوسيط <var>$1url</var>.\n* أكمل عملية رفع سابقة فشلت بسبب التحذيرات، باستخدام الوسيط <var>$1filekey</var>.\nلاحظ أنه يجب إجراء HTTP POST كرفع ملف (أي استخدام <code>multipart/form-data</code>) عند إرسال <var>$1file</var>.",
+	"apihelp-upload-extended-description": "هناك عدة طرق متاحة:\n* تحميل محتويات الملف مباشرة، باستخدام معلمة <var>$1file</var>.\n* تحميل الملف على أجزاء، باستخدام معلمات  <var>$1filesize</var>, <var>$1chunk</var> و <var>$1offset</var>.\n* جعل خادم ميدياويكي يقوم بجلب ملف من عنوان URL، باستخدام معلمة عنوان <var>$1url</var>.\n* إكمال تحميل سابق، فشل بسبب التحذيرات، أو تم تحميله على أجزاء أو تخزينه بطريقة أخرى في مخزن التحميل، باستخدام معلمة <var>$1filekey</var>.\nلاحظ أنه يجب إجراء HTTP POST كتحميل ملف (أي باستخدام <code>multipart/form-data</code>) عند إرسال <var>$1file</var> أو <var>$1chunk</var>.",
 	"apihelp-upload-param-filename": "اسم الملف المستهدف.",
 	"apihelp-upload-param-comment": "تحميل تعليق الرفع، يُستخدَم أيضا كنص الصفحة الأولي للملفات الجديدة إذا لم يتم تحديد <var>$1text</var>.",
 	"apihelp-upload-param-tags": "غتيير الوسوم لتطبيقها على إدخال سجل الرفع ومراجعة صفحة الملف.",
