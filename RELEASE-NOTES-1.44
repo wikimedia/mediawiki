@@ -634,6 +634,7 @@ because of Phabricator reports.
 * WikiPage::doEditUpdates(), deprecated since 1.32, is now emitting warnings.
   Use DerivedPageDataUpdater::doUpdates() instead.
 * IDatabase::setTransactionListener() is now deprecated without replacement.
+* ILoadBalancer::setTransactionListener() is now deprecated without replacement.
 * ILBFactory::setWaitForReplicationListener() is now deprecated without
   replacement.
 * Maintenance::beginTransaction(), Maintenance::commitTransaction(),
