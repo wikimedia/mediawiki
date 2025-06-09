@@ -248,7 +248,7 @@
 	"print": "Tulosta",
 	"view": "Näytä",
 	"skin-view-view": "Lue",
-	"skin-view-foreign": "Näytä palvelussa $1",
+	"skin-view-foreign": "Näytä {{GRAMMAR:inessive|$1}}",
 	"edit": "Muokkaa",
 	"skin-view-edit": "Muokkaa",
 	"edit-local": "Muokkaa paikallista kuvausta",

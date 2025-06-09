@@ -1,0 +1,33 @@
+{
+	"@metadata": {
+		"authors": [
+			"Epiphanus Jidechukwu"
+		]
+	},
+	"rest-wrong-method": "Usoro ịrịrịọ ($1) abụghị {{PLURAL:$3|usoro ekwenyere maka ụzọ a|otu n'ime ụzọ ekwenyere maka ụzọ a}} ($2)",
+	"rest-no-match": "Ụzọ ikwu nke a rịọrọ ($1) amakọghị na onye nlekọta a maara",
+	"rest-nonexistent-title-revision": "Ndozigharị akọwapụtara ($1) adịghị maka ibe akọwapụtara ($2)",
+	"rest-nonexistent-revision": "Ntụgharị ahụ akọwapụtara ($1) adịghị",
+	"rest-nonexistent-user": "Onye ọrụ akọwapụtara ($1) adịghị",
+	"rest-invalid-user": "Aha njirimara akọwapụtara ($1) ekwesịghị ekwesị",
+	"rest-permission-denied-anon": "Onye ọrụ a na-amaghị aha ya enweghị ike ịnweta ya",
+	"rest-permission-denied-title": "Onye ọrụ enweghị ikike ịgụ isiokwu ($1)",
+	"rest-permission-denied-revision": "Onye ọrụ enweghị ike ịnweta nyocha a rịọrọ ($1).",
+	"rest-resource-limit-exceeded": "Agafere oke akụrụngwa na nhazi arịrịọ a.",
+	"rest-pagehistory-incompatible-params": "Enweghị ike ịkọwapụta oke \"kachasị_okenye\" na \"kachasị_ọhụrụ\".",
+	"rest-pagehistory-param-range-error": "Id ntụgharị ga-adịrịrị ukwuu karịa 0",
+	"rest-pagehistory-timestamp-error": "Enweghị ike iweghachite akara oge maka mmezigharị akọwapụtara ($1)",
+	"rest-pagehistorycount-type-unrecognized": "Ụdị ọnụ ọgụgụ akọwapụtara ($1) adịghị ire",
+	"rest-pagehistorycount-parameters-invalid": "A kwadoghị nchikọta akọwapụtara.",
+	"rest-compare-page-mismatch": "Ndozigharị ndị akọwapụtara bụ nke ibe dị iche iche nwe; na-ajụ ịtụlee ha.",
+	"rest-compare-permission-denied": "Onye ọrụ enweghị ikike ịnweta nyocha a rịọrọ.",
+	"rest-compare-nonexistent": "Ndozigharị akọwapụtara site na oke $1 adịghị.",
+	"rest-compare-inaccessible": "Ndozigharị nke $1 kọwapụtara adịghị na nweta ọhaneze.",
+	"rest-compare-wrong-content": "Oghere $1 nke mmezigharị ahụ akọwapụtara site na paramita $2 nwere ụdị ọdịnaya nke enweghị ike ịtụgharị ka ọbụrụ ederede.",
+	"rest-compare-wikidiff2": "Ebe njedebe a chọrọ wikidiff2 1.9.0 ma ọ bụ karịa.",
+	"rest-search-error": "Njehie mgbe a na-eweghachi nsonaazụ ihe ịchọrọ: $1",
+	"rest-page-source-type-error": "Ụdị ọdịnaya nke isi iyi ibe a achọrọ akwadoghị ya",
+	"rest-no-revision": "Enweghị ike iweghachite mmezigharị maka isiokwu $1",
+	"rest-media-too-many-links": "Ahụrụ otụtụ njikọ mgbasa ozi na isiokwu $1 ($2 kwere)",
+	"rest-bad-json-body": "Òtù arịrịọ ọjọọ, ga-abụrịrị ihe JSON."
+}

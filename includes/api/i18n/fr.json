@@ -48,7 +48,8 @@
 			"Mahabarata",
 			"Rigoluce",
 			"JLTRY",
-			"Escargot bleu"
+			"Escargot bleu",
+			"EmDashUser002"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Documentation]]\n* [[mw:Special:MyLanguage/API:Etiquette|Étiquette et consignes d’utilisation]]\n* [[mw:Special:MyLanguage/API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api.lists.wikimedia.org/ Liste de diffusion]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/ Annonces de l’API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Suivi des anomalies et demandes d’amélioration]\n</div>\n<strong>État :</strong> l’API de MediaWiki est une interface stable et mature qui est prise en charge et améliorée de façon active. Bien que nous essayions de l’éviter, nous avons parfois besoin de faire des modifications non rétrocompatibles ; inscrivez-vous à [https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ la liste de diffusion ''mediawiki-api-announce''] pour être informé des mises à jour.\n\n<strong>Requêtes erronées :</strong> si des requêtes erronées sont envoyées à l’API, un entête HTTP sera renvoyé avec la clé « MediaWiki-API-Error ». La valeur de cet entête et le code d’erreur renvoyé prendront la même valeur. Pour plus d’informations, voyez [[mw:Special:MyLanguage/API:Errors_and_warnings|API:Erreurs et avertissements]].\n\n<p class=\"mw-apisandbox-link\"><strong>Test :</strong> pour faciliter le test des requêtes à l’API, utilisez le [[Special:ApiSandbox|bac à sable de l’API]].</p>",

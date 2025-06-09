@@ -2119,7 +2119,7 @@
 	"nopagetitle": "Nu există pagina destinație",
 	"nopagetext": "Pagina destinație specificată nu există.",
 	"pager-newer-n": "{{PLURAL:$1|1 mai nou|$1 mai noi}}",
-	"pager-older-n": "{{PLURAL:$1|1|$1}} mai vechi",
+	"pager-older-n": "{{PLURAL:$1|1 mai veche|$1 mai vechi}}",
 	"suppress": "Suprimare",
 	"querypage-disabled": "Această pagină specială este dezactivată din motive de performanță.",
 	"apihelp": "Ajutor API",
