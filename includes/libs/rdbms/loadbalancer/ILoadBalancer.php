@@ -471,6 +471,7 @@ interface ILoadBalancer {
 	 *
 	 * @param string $name Callback name
 	 * @param callable|null $callback
+	 * @deprecated Since 1.44
 	 */
 	public function setTransactionListener( $name, ?callable $callback = null );
 
