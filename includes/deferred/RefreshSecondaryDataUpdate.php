@@ -86,6 +86,7 @@ class RefreshSecondaryDataUpdate extends DataUpdate
 		$this->freshness = $options['freshness'] ?? false;
 	}
 
+	/** @inheritDoc */
 	public function getTransactionRoundRequirement() {
 		return self::TRX_ROUND_ABSENT;
 	}
@@ -121,6 +122,7 @@ class RefreshSecondaryDataUpdate extends DataUpdate
 		}
 	}
 
+	/** @inheritDoc */
 	public function getAsJobSpecification() {
 		return [
 			'domain' => $this->lbFactory->getLocalDomainID(),

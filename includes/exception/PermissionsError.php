@@ -103,6 +103,7 @@ class PermissionsError extends ErrorPageError {
 		parent::__construct( 'permissionserrors', $status->getMessages()[0] );
 	}
 
+	/** @inheritDoc */
 	public function report( $action = self::SEND_OUTPUT ) {
 		global $wgOut;
 

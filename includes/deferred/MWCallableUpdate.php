@@ -67,6 +67,7 @@ class MWCallableUpdate
 		}
 	}
 
+	/** @inheritDoc */
 	public function getOrigin() {
 		return $this->fname;
 	}
@@ -78,6 +79,7 @@ class MWCallableUpdate
 		$this->trxRoundRequirement = $mode;
 	}
 
+	/** @inheritDoc */
 	public function getTransactionRoundRequirement() {
 		return $this->trxRoundRequirement;
 	}

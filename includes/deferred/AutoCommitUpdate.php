@@ -62,6 +62,7 @@ class AutoCommitUpdate implements DeferrableUpdate, DeferrableCallback {
 		}
 	}
 
+	/** @inheritDoc */
 	public function getOrigin() {
 		return $this->fname;
 	}

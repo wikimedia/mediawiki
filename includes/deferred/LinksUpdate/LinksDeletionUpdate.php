@@ -126,6 +126,7 @@ class LinksDeletionUpdate extends LinksUpdate implements EnqueueableDataUpdate {
 		}
 	}
 
+	/** @inheritDoc */
 	public function getAsJobSpecification() {
 		return [
 			'domain' => $this->getDB()->getDomainID(),

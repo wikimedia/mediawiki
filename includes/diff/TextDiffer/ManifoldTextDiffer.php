@@ -87,6 +87,7 @@ class ManifoldTextDiffer implements TextDiffer {
 		return $result;
 	}
 
+	/** @inheritDoc */
 	public function getFormatContext( string $format ) {
 		return $this->getDifferForFormat( $format )->getFormatContext( $format );
 	}

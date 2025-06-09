@@ -58,6 +58,7 @@ class LocalizedException extends Exception implements ILocalizedException {
 		parent::__construct( $msg, $code, $previous );
 	}
 
+	/** @inheritDoc */
 	public function getMessageObject() {
 		return Message::newFromSpecifier( $this->messageSpec );
 	}

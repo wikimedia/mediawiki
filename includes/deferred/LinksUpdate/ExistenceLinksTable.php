@@ -25,26 +25,32 @@ class ExistenceLinksTable extends GenericPageLinksTable {
 		}
 	}
 
+	/** @inheritDoc */
 	protected function getTableName() {
 		return 'existencelinks';
 	}
 
+	/** @inheritDoc */
 	protected function getFromField() {
 		return 'exl_from';
 	}
 
+	/** @inheritDoc */
 	protected function getNamespaceField() {
 		throw new \LogicException( 'This table has no namespace field' );
 	}
 
+	/** @inheritDoc */
 	protected function getTitleField() {
 		throw new \LogicException( 'This table has no title field' );
 	}
 
+	/** @inheritDoc */
 	protected function getFromNamespaceField() {
 		return null;
 	}
 
+	/** @inheritDoc */
 	protected function getTargetIdField() {
 		return 'exl_target_id';
 	}

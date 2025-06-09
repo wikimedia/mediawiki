@@ -26,6 +26,7 @@ class PhpTextDiffer extends BaseTextDiffer {
 		return [ 'table', 'unified' ];
 	}
 
+	/** @inheritDoc */
 	public function getFormatContext( string $format ) {
 		return $format === 'table' ? self::CONTEXT_ROW : self::CONTEXT_PRE;
 	}

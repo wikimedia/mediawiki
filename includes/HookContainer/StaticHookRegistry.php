@@ -34,10 +34,12 @@ class StaticHookRegistry implements HookRegistry {
 		$this->deprecatedHooks = new DeprecatedHooks( $deprecatedHooksArray );
 	}
 
+	/** @inheritDoc */
 	public function getGlobalHooks() {
 		return $this->globalHooks;
 	}
 
+	/** @inheritDoc */
 	public function getExtensionHooks() {
 		return $this->extensionHooks;
 	}

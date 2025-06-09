@@ -23,28 +23,34 @@ class TemplateLinksTable extends GenericPageLinksTable {
 		}
 	}
 
+	/** @inheritDoc */
 	protected function getTableName() {
 		return 'templatelinks';
 	}
 
+	/** @inheritDoc */
 	protected function getFromField() {
 		return 'tl_from';
 	}
 
+	/** @inheritDoc */
 	protected function getNamespaceField() {
 		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
 		throw new LogicException( 'not supported' );
 	}
 
+	/** @inheritDoc */
 	protected function getTitleField() {
 		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
 		throw new LogicException( 'not supported' );
 	}
 
+	/** @inheritDoc */
 	protected function getFromNamespaceField() {
 		return 'tl_from_namespace';
 	}
 
+	/** @inheritDoc */
 	protected function getTargetIdField() {
 		return 'tl_target_id';
 	}

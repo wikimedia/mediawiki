@@ -35,6 +35,7 @@ class ExternalStoreMemory extends ExternalStoreMedium {
 	/** @var int */
 	private static $nextId = 0;
 
+	/** @inheritDoc */
 	public function fetchFromURL( $url ) {
 		[ $location, $id ] = self::getURLComponents( $url );
 		if ( $id === null ) {
@@ -44,6 +45,7 @@ class ExternalStoreMemory extends ExternalStoreMedium {
 		return self::$data[$location][$this->dbDomain][$id] ?? false;
 	}
 
+	/** @inheritDoc */
 	public function batchFetchFromURLs( array $urls ) {
 		$blobs = [];
 		foreach ( $urls as $url ) {
@@ -56,6 +58,7 @@ class ExternalStoreMemory extends ExternalStoreMedium {
 		return $blobs;
 	}
 
+	/** @inheritDoc */
 	public function store( $location, $data ) {
 		$index = ++self::$nextId;
 		self::$data[$location][$this->dbDomain][$index] = $data;

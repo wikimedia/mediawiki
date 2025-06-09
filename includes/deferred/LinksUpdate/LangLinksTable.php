@@ -38,18 +38,22 @@ class LangLinksTable extends LinksTable {
 		}
 	}
 
+	/** @inheritDoc */
 	protected function getTableName() {
 		return 'langlinks';
 	}
 
+	/** @inheritDoc */
 	protected function getFromField() {
 		return 'll_from';
 	}
 
+	/** @inheritDoc */
 	protected function getExistingFields() {
 		return [ 'll_lang', 'll_title' ];
 	}
 
+	/** @inheritDoc */
 	protected function getNewLinkIDs() {
 		foreach ( $this->newLinks as $key => $title ) {
 			yield [ (string)$key, $title ];
@@ -72,12 +76,14 @@ class LangLinksTable extends LinksTable {
 		return $this->existingLinks;
 	}
 
+	/** @inheritDoc */
 	protected function getExistingLinkIDs() {
 		foreach ( $this->getExistingLinks() as $lang => $title ) {
 			yield [ (string)$lang, $title ];
 		}
 	}
 
+	/** @inheritDoc */
 	protected function isExisting( $linkId ) {
 		$links = $this->getExistingLinks();
 		[ $lang, $title ] = $linkId;
@@ -85,12 +91,14 @@ class LangLinksTable extends LinksTable {
 			&& $links[$lang] === $title;
 	}
 
+	/** @inheritDoc */
 	protected function isInNewSet( $linkId ) {
 		[ $lang, $title ] = $linkId;
 		return \array_key_exists( $lang, $this->newLinks )
 			&& $this->newLinks[$lang] === $title;
 	}
 
+	/** @inheritDoc */
 	protected function insertLink( $linkId ) {
 		[ $lang, $title ] = $linkId;
 		$this->insertRow( [
@@ -99,6 +107,7 @@ class LangLinksTable extends LinksTable {
 		] );
 	}
 
+	/** @inheritDoc */
 	protected function deleteLink( $linkId ) {
 		$this->deleteRow( [
 			'll_lang' => $linkId[0]
