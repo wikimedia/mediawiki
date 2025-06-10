@@ -689,6 +689,10 @@ because of Phabricator reports.
    - Xml::check() – use Html::check() instead
    - Xml::radio() – use Html::radio() instead
    - Xml::input() – use Html::input() instead
+   - Xml::inputLabel() – use Html::label() and Html::input() instead
+   - Xml::inputLabelSep() – use Html::label() and Html::input() instead
+   - Xml::checkLabel() – use Html::label() and Html::check() instead
+   - Xml::radioLabel() – use Html::label() and Html::radio() instead
 * BlockUtils and BlockUtilsFactory is now deprecated. Use BlockTargetFactory
   and CrossWikiBlockTargetFactory.
 * RenameuserSQL::rename has been deprecated and should be replaced with
