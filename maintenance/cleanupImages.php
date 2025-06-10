@@ -242,7 +242,7 @@ class CleanupImages extends TableCleanup {
 	private function buildSafeTitle( string $name ) {
 		$x = preg_replace_callback(
 			'/([^' . Title::legalChars() . ']|~)/',
-			[ $this, 'hexChar' ],
+			$this->hexChar( ... ),
 			$name );
 
 		$test = Title::makeTitleSafe( NS_FILE, $x );

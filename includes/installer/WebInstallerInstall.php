@@ -46,8 +46,8 @@ class WebInstallerInstall extends WebInstallerPage {
 			$this->startForm();
 			$this->addHTML( "<ul>" );
 			$status = $this->parent->performInstallation(
-				[ $this, 'startStage' ],
-				[ $this, 'endStage' ]
+				$this->startStage( ... ),
+				$this->endStage( ... )
 			);
 			$this->addHTML( "</ul>" );
 			$continue = $status->isOK() ? 'continue' : false;

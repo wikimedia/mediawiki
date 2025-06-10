@@ -1454,7 +1454,7 @@ class ParserOptions {
 		} elseif ( $value instanceof Language ) {
 			return $value->getCode();
 		} elseif ( is_array( $value ) ) {
-			return '[' . implode( ',', array_map( [ $this, 'optionToString' ], $value ) ) . ']';
+			return '[' . implode( ',', array_map( $this->optionToString( ... ), $value ) ) . ']';
 		} else {
 			return (string)$value;
 		}

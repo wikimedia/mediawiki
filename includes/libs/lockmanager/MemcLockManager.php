@@ -98,7 +98,7 @@ class MemcLockManager extends QuorumLockManager {
 		$paths = array_merge( ...array_values( $pathsByType ) );
 		$paths = array_unique( $paths );
 		// List of affected lock record keys
-		$keys = array_map( [ $this, 'recordKeyForPath' ], $paths );
+		$keys = array_map( $this->recordKeyForPath( ... ), $paths );
 
 		// Lock all of the active lock record keys...
 		if ( !$this->acquireMutexes( $memc, $keys ) ) {
@@ -170,7 +170,7 @@ class MemcLockManager extends QuorumLockManager {
 		$paths = array_merge( ...array_values( $pathsByType ) );
 		$paths = array_unique( $paths );
 		// List of affected lock record keys
-		$keys = array_map( [ $this, 'recordKeyForPath' ], $paths );
+		$keys = array_map( $this->recordKeyForPath( ... ), $paths );
 
 		// Lock all of the active lock record keys...
 		if ( !$this->acquireMutexes( $memc, $keys ) ) {

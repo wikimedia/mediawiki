@@ -1564,7 +1564,7 @@ abstract class UploadBase {
 		$this->mSVGNSError = false;
 		$check = new XmlTypeCheck(
 			$filename,
-			[ $this, 'checkSvgScriptCallback' ],
+			$this->checkSvgScriptCallback( ... ),
 			true,
 			[
 				'processing_instruction_handler' => [ self::class, 'checkSvgPICallback' ],

@@ -75,7 +75,7 @@ class ApiOptionsTest extends ApiTestCase {
 			[ 'getFormDescriptor', 'listResetKinds', 'getResetKinds', 'getOptionNamesForReset' ]
 		);
 		$preferencesFactory->method( 'getFormDescriptor' )
-			->willReturnCallback( [ $this, 'getPreferencesFormDescription' ] );
+			->willReturnCallback( $this->getPreferencesFormDescription( ... ) );
 		$preferencesFactory->method( 'listResetKinds' )->willReturn(
 			[
 				'registered',
@@ -87,7 +87,7 @@ class ApiOptionsTest extends ApiTestCase {
 			]
 		);
 		$preferencesFactory->method( 'getResetKinds' )
-			->willReturnCallback( [ $this, 'getResetKinds' ] );
+			->willReturnCallback( $this->getResetKinds( ... ) );
 		$preferencesFactory->method( 'getOptionNamesForReset' )
 			->willReturn( [] );
 

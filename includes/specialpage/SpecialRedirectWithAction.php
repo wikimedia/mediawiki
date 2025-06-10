@@ -104,7 +104,7 @@ abstract class SpecialRedirectWithAction extends RedirectSpecialPage {
 			],
 		], $this->getContext(), $this->msgPrefix );
 		$form->setSubmitTextMsg( 'special' . $this->msgPrefix . '-submit' );
-		$form->setSubmitCallback( [ $this, 'onFormSubmit' ] );
+		$form->setSubmitCallback( $this->onFormSubmit( ... ) );
 		$form->show();
 	}
 

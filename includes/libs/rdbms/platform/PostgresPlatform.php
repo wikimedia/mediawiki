@@ -136,7 +136,7 @@ class PostgresPlatform extends SQLPlatform {
 		if ( isset( $options['FOR UPDATE'] ) ) {
 			$postLimitTail .= ' FOR UPDATE OF ' . implode(
 				', ',
-				array_map( [ $this, 'addIdentifierQuotes' ], $options['FOR UPDATE'] )
+				array_map( $this->addIdentifierQuotes( ... ), $options['FOR UPDATE'] )
 			);
 		} elseif ( isset( $noKeyOptions['FOR UPDATE'] ) ) {
 			$postLimitTail .= ' FOR UPDATE';

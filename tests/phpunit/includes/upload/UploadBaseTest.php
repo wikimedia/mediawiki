@@ -663,7 +663,7 @@ class UploadTestHandler extends UploadBase {
 	public function checkSvgString( $svg ) {
 		$check = new XmlTypeCheck(
 			$svg,
-			[ $this, 'checkSvgScriptCallback' ],
+			$this->checkSvgScriptCallback( ... ),
 			false,
 			[
 				'processing_instruction_handler' => [ UploadBase::class, 'checkSvgPICallback' ],

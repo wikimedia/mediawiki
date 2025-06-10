@@ -106,7 +106,7 @@ abstract class FormSpecialPage extends SpecialPage {
 	 */
 	protected function getForm() {
 		$context = $this->getContext();
-		$onSubmit = [ $this, 'onSubmit' ];
+		$onSubmit = $this->onSubmit( ... );
 
 		if ( $this->reauthPostData ) {
 			// Restore POST data

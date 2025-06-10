@@ -42,7 +42,7 @@ class MWCallableUpdate
 		$dependeeDbws = is_array( $dependeeDbws ) ? $dependeeDbws : [ $dependeeDbws ];
 		foreach ( $dependeeDbws as $dbw ) {
 			if ( $dbw->trxLevel() ) {
-				$dbw->onTransactionResolution( [ $this, 'cancelOnRollback' ], $fname );
+				$dbw->onTransactionResolution( $this->cancelOnRollback( ... ), $fname );
 			}
 		}
 	}

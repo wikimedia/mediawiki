@@ -115,7 +115,7 @@ class SpecialTags extends SpecialPage {
 				->setAction( $this->getPageTitle( 'create' )->getLocalURL() )
 				->setWrapperLegendMsg( 'tags-create-heading' )
 				->setHeaderHtml( $this->msg( 'tags-create-explanation' )->parseAsBlock() )
-				->setSubmitCallback( [ $this, 'processCreateTagForm' ] )
+				->setSubmitCallback( $this->processCreateTagForm( ... ) )
 				->setSubmitTextMsg( 'tags-create-submit' )
 				->show();
 
@@ -305,7 +305,7 @@ class SpecialTags extends SpecialPage {
 		return Html::rawElement( 'tr', [], $newRow ) . "\n";
 	}
 
-	public function processCreateTagForm( array $data, HTMLForm $form ) {
+	private function processCreateTagForm( array $data, HTMLForm $form ): bool {
 		$context = $form->getContext();
 		$out = $context->getOutput();
 

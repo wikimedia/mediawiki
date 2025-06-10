@@ -421,7 +421,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 	protected function installErrorHandler() {
 		$this->lastPhpError = false;
 		$this->htmlErrors = ini_set( 'html_errors', '0' );
-		set_error_handler( [ $this, 'connectionErrorLogger' ] );
+		set_error_handler( $this->connectionErrorLogger( ... ) );
 	}
 
 	/**

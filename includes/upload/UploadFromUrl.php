@@ -382,7 +382,7 @@ class UploadFromUrl extends UploadBase {
 		$requestFactory = MediaWikiServices::getInstance()->getHttpRequestFactory();
 		while ( $attemptsLeft > 0 ) {
 			$req = $requestFactory->create( $targetUrl, $options, __METHOD__ );
-			$req->setCallback( [ $this, 'saveTempFileChunk' ] );
+			$req->setCallback( $this->saveTempFileChunk( ... ) );
 			$status = $req->execute();
 			if ( !$req->isRedirect() ) {
 				break;

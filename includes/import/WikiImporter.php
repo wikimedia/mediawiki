@@ -172,11 +172,11 @@ class WikiImporter {
 		$this->openReader();
 
 		// Default callbacks
-		$this->setPageCallback( [ $this, 'beforeImportPage' ] );
-		$this->setRevisionCallback( [ $this, "importRevision" ] );
-		$this->setUploadCallback( [ $this, 'importUpload' ] );
-		$this->setLogItemCallback( [ $this, 'importLogItem' ] );
-		$this->setPageOutCallback( [ $this, 'finishImportPage' ] );
+		$this->setPageCallback( $this->beforeImportPage( ... ) );
+		$this->setRevisionCallback( $this->importRevision( ... ) );
+		$this->setUploadCallback( $this->importUpload( ... ) );
+		$this->setLogItemCallback( $this->importLogItem( ... ) );
+		$this->setPageOutCallback( $this->finishImportPage( ... ) );
 
 		$this->importTitleFactory = new NaiveImportTitleFactory(
 			$this->contentLanguage,

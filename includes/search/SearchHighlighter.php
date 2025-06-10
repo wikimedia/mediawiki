@@ -165,7 +165,7 @@ class SearchHighlighter {
 			if ( preg_match( '/[\x80-\xff]/', $term ) ) {
 				$terms[$index] = preg_replace_callback(
 					'/./us',
-					[ $this, 'caseCallback' ],
+					$this->caseCallback( ... ),
 					$terms[$index]
 				);
 			} else {
@@ -483,7 +483,7 @@ class SearchHighlighter {
 		$text = preg_replace( "/\\[\\[([^|]+?)\\]\\]/", "\\1", $text );
 		$text = preg_replace_callback(
 			"/\\[\\[([^|]+\\|)(.*?)\\]\\]/",
-			[ $this, 'linkReplace' ],
+			$this->linkReplace( ... ),
 			$text
 		);
 		$text = preg_replace( "/<\/?[^>]+>/", "", $text );

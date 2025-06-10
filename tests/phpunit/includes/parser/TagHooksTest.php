@@ -55,7 +55,7 @@ class TagHooksTest extends MediaWikiIntegrationTestCase {
 	public function testTagHooks( $tag ) {
 		$parser = $this->getServiceContainer()->getParserFactory()->create();
 
-		$parser->setHook( $tag, [ $this, 'tagCallback' ] );
+		$parser->setHook( $tag, $this->tagCallback( ... ) );
 		$parserOutput = $parser->parse(
 			"Foo<$tag>Bar</$tag>Baz",
 			Title::makeTitle( NS_MAIN, 'Test' ),
@@ -71,7 +71,7 @@ class TagHooksTest extends MediaWikiIntegrationTestCase {
 		$parser = $this->getServiceContainer()->getParserFactory()->create();
 
 		$this->expectException( InvalidArgumentException::class );
-		$parser->setHook( $tag, [ $this, 'tagCallback' ] );
+		$parser->setHook( $tag, $this->tagCallback( ... ) );
 	}
 
 	public function tagCallback( $text, $params, $parser ) {

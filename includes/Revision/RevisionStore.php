@@ -2021,8 +2021,8 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 
 		// which method to use for creating RevisionRecords
 		$newRevisionRecord = $archiveMode
-			? [ $this, 'newRevisionFromArchiveRowAndSlots' ]
-			: [ $this, 'newRevisionFromRowAndSlots' ];
+			? $this->newRevisionFromArchiveRowAndSlots( ... )
+			: $this->newRevisionFromRowAndSlots( ... );
 
 		if ( !isset( $options['slots'] ) ) {
 			$result->setResult(

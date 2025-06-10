@@ -178,8 +178,11 @@ class ImageBuilder extends Maintenance {
 	}
 
 	private function buildImage() {
-		$callback = [ $this, 'imageCallback' ];
-		$this->buildTable( 'image', FileSelectQueryBuilder::newForFile( $this->getReplicaDB() ), $callback );
+		$this->buildTable(
+			'image',
+			FileSelectQueryBuilder::newForFile( $this->getReplicaDB() ),
+			$this->imageCallback( ... )
+		);
 	}
 
 	private function imageCallback( \stdClass $row ): bool {
@@ -191,8 +194,11 @@ class ImageBuilder extends Maintenance {
 	}
 
 	private function buildOldImage() {
-		$this->buildTable( 'oldimage', FileSelectQueryBuilder::newForOldFile( $this->getReplicaDB() ),
-			[ $this, 'oldimageCallback' ] );
+		$this->buildTable(
+			'oldimage',
+			FileSelectQueryBuilder::newForOldFile( $this->getReplicaDB() ),
+			$this->oldimageCallback( ... )
+		);
 	}
 
 	private function oldimageCallback( \stdClass $row ): bool {
@@ -209,10 +215,10 @@ class ImageBuilder extends Maintenance {
 	}
 
 	private function crawlMissing() {
-		$this->getRepo()->enumFiles( [ $this, 'checkMissingImage' ] );
+		$this->getRepo()->enumFiles( $this->checkMissingImage( ... ) );
 	}
 
-	public function checkMissingImage( string $fullpath ) {
+	private function checkMissingImage( string $fullpath ) {
 		$filename = wfBaseName( $fullpath );
 		$row = $this->dbw->newSelectQueryBuilder()
 			->select( [ 'img_name' ] )

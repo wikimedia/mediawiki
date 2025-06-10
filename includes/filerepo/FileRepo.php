@@ -1459,7 +1459,7 @@ class FileRepo {
 	 *   or null in case of I/O errors
 	 */
 	public function fileExistsBatch( array $files ) {
-		$paths = array_map( [ $this, 'resolveToStoragePathIfVirtual' ], $files );
+		$paths = array_map( $this->resolveToStoragePathIfVirtual( ... ), $files );
 		$this->backend->preloadFileStat( [ 'srcs' => $paths ] );
 
 		$result = [];
@@ -1784,10 +1784,10 @@ class FileRepo {
 		switch ( $this->pathDisclosureProtection ) {
 			case 'none':
 			case 'simple': // b/c
-				$callback = [ $this, 'passThrough' ];
+				$callback = $this->passThrough( ... );
 				break;
 			default: // 'paranoid'
-				$callback = [ $this, 'paranoidClean' ];
+				$callback = $this->paranoidClean( ... );
 		}
 		return $callback;
 	}

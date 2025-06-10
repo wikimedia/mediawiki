@@ -118,7 +118,7 @@ class SpecialPagesWithProp extends QueryPage {
 		$form = HTMLForm::factory( 'ooui', $fields, $this->getContext() )
 			->setMethod( 'get' )
 			->setTitle( $this->getPageTitle() ) // Remove subpage
-			->setSubmitCallback( [ $this, 'onSubmit' ] )
+			->setSubmitCallback( $this->onSubmit( ... ) )
 			->setWrapperLegendMsg( 'pageswithprop-legend' )
 			->addHeaderHtml( $this->msg( 'pageswithprop-text' )->parseAsBlock() )
 			->setSubmitTextMsg( 'pageswithprop-submit' )
@@ -129,7 +129,11 @@ class SpecialPagesWithProp extends QueryPage {
 		}
 	}
 
-	public function onSubmit( $data, $form ) {
+	/**
+	 * @param array $data
+	 * @param HTMLForm $form
+	 */
+	private function onSubmit( $data, $form ) {
 		$this->propName = $data['propname'];
 		parent::execute( $data['propname'] );
 	}

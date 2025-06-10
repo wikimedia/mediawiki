@@ -75,11 +75,14 @@ class SpecialNewSection extends RedirectSpecialPage {
 			],
 		], $this->getContext(), 'newsection' );
 		$form->setSubmitTextMsg( 'newsection-submit' );
-		$form->setSubmitCallback( [ $this, 'onFormSubmit' ] );
+		$form->setSubmitCallback( $this->onFormSubmit( ... ) );
 		$form->show();
 	}
 
-	public function onFormSubmit( $formData ) {
+	/**
+	 * @param array $formData
+	 */
+	private function onFormSubmit( $formData ) {
 		$title = $formData['page'];
 		$page = Title::newFromTextThrow( $title );
 		$query = [ 'action' => 'edit', 'section' => 'new' ];

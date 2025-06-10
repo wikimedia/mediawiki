@@ -519,7 +519,7 @@ class NamespaceInfo {
 	public function getSubjectNamespaces() {
 		return array_filter(
 			$this->getValidNamespaces(),
-			[ $this, 'isSubject' ]
+			$this->isSubject( ... )
 		);
 	}
 
@@ -532,7 +532,7 @@ class NamespaceInfo {
 	public function getTalkNamespaces() {
 		return array_filter(
 			$this->getValidNamespaces(),
-			[ $this, 'isTalk' ]
+			$this->isTalk( ... )
 		);
 	}
 

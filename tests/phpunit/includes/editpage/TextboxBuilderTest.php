@@ -89,7 +89,7 @@ class TextboxBuilderTest extends MediaWikiIntegrationTestCase {
 		$pageIdValue = PageIdentityValue::localIdentity( 1, NS_MAIN, 'test' );
 
 		$mockRestrictionStore->method(
-			$this->logicalOr( ...array_map( [ $this, 'identicalTo' ], $protectionModes ) )
+			$this->logicalOr( ...array_map( $this->identicalTo( ... ), $protectionModes ) )
 		)->willReturn( true );
 
 		$this->setService( 'RestrictionStore', $mockRestrictionStore );

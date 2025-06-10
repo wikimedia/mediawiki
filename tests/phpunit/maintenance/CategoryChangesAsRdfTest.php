@@ -222,7 +222,7 @@ class CategoryChangesAsRdfTest extends MediaWikiLangTestCase {
 				->getMock();
 
 		$dumpScript->method( 'getCategoryLinksIterator' )
-			->willReturnCallback( [ $this, 'getCategoryLinksIterator' ] );
+			->willReturnCallback( $this->getCategoryLinksIterator( ... ) );
 
 		$dumpScript->expects( $this->once() )
 			->method( $iterator )

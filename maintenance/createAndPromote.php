@@ -105,7 +105,7 @@ class CreateAndPromote extends Maintenance {
 			$inGroups = $services->getUserGroupManager()->getUserGroups( $user );
 		}
 
-		$groups = array_filter( self::PERMIT_ROLES, [ $this, 'hasOption' ] );
+		$groups = array_filter( self::PERMIT_ROLES, $this->hasOption( ... ) );
 		if ( $this->hasOption( 'custom-groups' ) ) {
 			$allGroups = array_fill_keys( $services->getUserGroupManager()->listAllGroups(), true );
 			$customGroupsText = $this->getOption( 'custom-groups' );

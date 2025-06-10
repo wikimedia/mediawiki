@@ -1292,7 +1292,7 @@ abstract class FileBackendStore extends FileBackend {
 		$status = $this->newStatus();
 
 		// Fix up custom header name/value pairs
-		$ops = array_map( [ $this, 'sanitizeOpHeaders' ], $ops );
+		$ops = array_map( $this->sanitizeOpHeaders( ... ), $ops );
 		// Build up a list of FileOps and involved paths
 		$fileOps = $this->getOperationsInternal( $ops );
 		$pathsUsed = [];
@@ -1355,7 +1355,7 @@ abstract class FileBackendStore extends FileBackend {
 		$status = $this->newStatus();
 
 		// Fix up custom header name/value pairs
-		$ops = array_map( [ $this, 'sanitizeOpHeaders' ], $ops );
+		$ops = array_map( $this->sanitizeOpHeaders( ... ), $ops );
 		// Build up a list of FileOps and involved paths
 		$fileOps = $this->getOperationsInternal( $ops );
 		$pathsUsed = [];

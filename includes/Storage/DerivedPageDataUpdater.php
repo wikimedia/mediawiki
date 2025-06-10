@@ -1383,7 +1383,7 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 		$preparedEdit = new PreparedEdit();
 
 		$preparedEdit->popts = $this->getCanonicalParserOptions();
-		$preparedEdit->parserOutputCallback = [ $this, 'getCanonicalParserOutput' ];
+		$preparedEdit->parserOutputCallback = $this->getCanonicalParserOutput( ... );
 		$preparedEdit->pstContent = $this->revision->getContent( SlotRecord::MAIN );
 		$preparedEdit->newContent =
 			$slotsUpdate->isModifiedSlot( SlotRecord::MAIN )

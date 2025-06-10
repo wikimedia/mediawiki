@@ -125,7 +125,7 @@ class SpecialConfirmEmail extends UnlistedSpecialPage {
 			$form
 				->setAction( $this->getPageTitle()->getLocalURL() )
 				->setSubmitTextMsg( 'confirmemail_send' )
-				->setSubmitCallback( [ $this, 'submitSend' ] );
+				->setSubmitCallback( $this->submitSend( ... ) );
 
 			$retval = $form->show();
 
@@ -153,7 +153,7 @@ class SpecialConfirmEmail extends UnlistedSpecialPage {
 	 *
 	 * @return Status Status object with the result
 	 */
-	public function submitSend() {
+	private function submitSend() {
 		$status = $this->getUser()->sendConfirmationMail();
 		if ( $status->isGood() ) {
 			return Status::newGood( $this->msg( 'confirmemail_sent' )->text() );

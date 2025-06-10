@@ -127,7 +127,7 @@ class Category {
 
 				# If the page exists, call refreshCounts to add a row for it.
 				if ( $mode === self::LAZY_INIT_ROW && $this->mPage->exists() ) {
-					DeferredUpdates::addCallableUpdate( [ $this, 'refreshCounts' ] );
+					DeferredUpdates::addCallableUpdate( $this->refreshCounts( ... ) );
 				}
 
 				return true;
@@ -161,7 +161,7 @@ class Category {
 			$this->mPages = max( $this->mPages, $this->mSubcats + $this->mFiles );
 
 			if ( $mode === self::LAZY_INIT_ROW ) {
-				DeferredUpdates::addCallableUpdate( [ $this, 'refreshCounts' ] );
+				DeferredUpdates::addCallableUpdate( $this->refreshCounts( ... ) );
 			}
 		}
 

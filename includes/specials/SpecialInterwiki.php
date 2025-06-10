@@ -247,7 +247,7 @@ class SpecialInterwiki extends SpecialPage {
 		$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() );
 		$htmlForm
 			->addHiddenFields( $hiddenFields )
-			->setSubmitCallback( [ $this, 'onSubmit' ] );
+			->setSubmitCallback( $this->onSubmit( ... ) );
 
 		if ( $status->isOK() ) {
 			if ( $action === 'delete' ) {
@@ -267,7 +267,11 @@ class SpecialInterwiki extends SpecialPage {
 		$this->getOutput()->addBacklinkSubtitle( $this->getPageTitle() );
 	}
 
-	public function onSubmit( array $data ) {
+	/**
+	 * @param array $data
+	 * @return Status
+	 */
+	private function onSubmit( array $data ) {
 		$status = Status::newGood();
 		$request = $this->getRequest();
 		$config = $this->getConfig();

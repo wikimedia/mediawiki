@@ -1798,7 +1798,7 @@ class Parser {
 					[0-9Xx]                  #  check digit
 				)\b
 			)!xu",
-			[ $this, 'magicLinkCallback' ],
+			$this->magicLinkCallback( ... ),
 			$text
 		);
 		return $text;

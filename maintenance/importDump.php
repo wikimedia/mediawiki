@@ -156,7 +156,7 @@ TEXT
 
 			return;
 		}
-		$this->nsFilter = array_unique( array_map( [ $this, 'getNsIndex' ], $namespaces ) );
+		$this->nsFilter = array_unique( array_map( $this->getNsIndex( ... ), $namespaces ) );
 	}
 
 	private function getNsIndex( string $namespace ): int {
@@ -343,16 +343,16 @@ TEXT
 			$importer->setPageOffset( $nthPage );
 			$this->pageCount = $nthPage - 1;
 		}
-		$importer->setPageCallback( [ $this, 'reportPage' ] );
+		$importer->setPageCallback( $this->reportPage( ... ) );
 		$importer->setNoticeCallback( static function ( $msg, $params ) {
 			echo wfMessage( $msg, $params )->text() . "\n";
 		} );
 		$this->importCallback = $importer->setRevisionCallback(
-			[ $this, 'handleRevision' ] );
+			$this->handleRevision( ... ) );
 		$this->uploadCallback = $importer->setUploadCallback(
-			[ $this, 'handleUpload' ] );
+			$this->handleUpload( ... ) );
 		$this->logItemCallback = $importer->setLogItemCallback(
-			[ $this, 'handleLogItem' ] );
+			$this->handleLogItem( ... ) );
 		if ( $this->uploads ) {
 			$importer->setImportUploads( true );
 		}

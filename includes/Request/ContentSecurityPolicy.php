@@ -264,7 +264,7 @@ class ContentSecurityPolicy {
 		} else {
 			$objectSrc = (array)( $policyConfig['object-src'] ?: [] );
 		}
-		$objectSrc = array_map( [ $this, 'escapeUrlForCSP' ], $objectSrc );
+		$objectSrc = array_map( $this->escapeUrlForCSP( ... ), $objectSrc );
 
 		$directives = [];
 		if ( $scriptSrc ) {

@@ -116,7 +116,11 @@ class SpecialChangeContentModel extends FormSpecialPage {
 		}
 	}
 
-	public function validateTitle( $title ) {
+	/**
+	 * @param string $title
+	 * @return string|bool
+	 */
+	private function validateTitle( $title ) {
 		// Already validated by HTMLForm, but if not, throw
 		// an exception instead of a fatal
 		$titleObj = Title::newFromTextThrow( $title );
@@ -143,7 +147,7 @@ class SpecialChangeContentModel extends FormSpecialPage {
 				'name' => 'pagetitle',
 				'default' => $this->par,
 				'label-message' => 'changecontentmodel-title-label',
-				'validation-callback' => [ $this, 'validateTitle' ],
+				'validation-callback' => $this->validateTitle( ... ),
 			],
 		];
 		if ( $this->title ) {

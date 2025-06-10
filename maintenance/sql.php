@@ -105,7 +105,7 @@ class MwSql extends Maintenance {
 				$this->fatalError( "Unable to open input file" );
 			}
 
-			$error = $db->sourceStream( $file, null, [ $this, 'sqlPrintResult' ], __METHOD__ );
+			$error = $db->sourceStream( $file, null, $this->sqlPrintResult( ... ), __METHOD__ );
 			if ( $error !== true ) {
 				$this->fatalError( $error );
 			}
@@ -202,7 +202,7 @@ class MwSql extends Maintenance {
 	 * @param IDatabase $db
 	 * @return int|null Number of rows selected or updated, or null if the query was unsuccessful.
 	 */
-	public function sqlPrintResult( $res, $db ) {
+	private function sqlPrintResult( $res, $db ) {
 		if ( !$res ) {
 			// Do nothing
 			return null;
