@@ -51,7 +51,6 @@ $wgAutoloadClasses += [
 	'TestRecorder' => "$testDir/parser/TestRecorder.php",
 
 	# tests/phpunit
-	'DynamicPropertyTestHelper' => "$testDir/phpunit/DynamicPropertyTestHelper.php",
 	'EmptyResourceLoader' => "$testDir/phpunit/ResourceLoaderTestCase.php",
 	'JsonSchemaAssertionTrait' => "$testDir/phpunit/JsonSchemaAssertionTrait.php",
 	'MediaWiki\\Tests\\ResourceLoader\\EmptyResourceLoader' => "$testDir/phpunit/ResourceLoaderTestCase.php",
