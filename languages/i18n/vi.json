@@ -72,7 +72,8 @@
 			"아라",
 			"沈澄心",
 			"FunnyYellowDog",
-			"Yummie1207"
+			"Yummie1207",
+			"Quangquy322"
 		]
 	},
 	"sunday": "Chủ nhật",
@@ -675,7 +676,7 @@
 	"missingcommentheader": "<strong>Nhắc nhở:</strong> Bạn chưa ghi chủ đề/tiêu đề cho bàn luận này.\nNếu bạn nhấn nút “$1” lần nữa, sửa đổi của bạn sẽ được xuất bản mà không có đề mục.",
 	"summary-preview": "Xem trước dòng tóm lược sửa đổi:",
 	"previewerrortext": "Có lỗi xảy ra khi xem trước những thay đổi của bạn.",
-	"blockedtitle": "Thành viên bị cấm",
+	"blockedtitle": "Người dùng là bị chặn",
 	"blockedtext": "<strong>Tài khoản hoặc địa chỉ IP của bạn đã bị cấm.</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nBạn có thể sử dụng chức năng “{{int:emailuser}}” nếu bạn đã nhập địa chỉ thư điện tử hợp lệ trong [[Special:Preferences|tùy chọn của bạn]] và chức năng đó không bị khóa.\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",
 	"blockedtext-partial": "<strong>Tên người dùng hoặc địa chỉ IP của bạn bị cấm thực hiện việc này. Bạn vẫn có thể làm những việc khác trên trang web này, chẳng hạn như sửa đổi một số trang nhất định.</strong> \n\nBạn có thể xem toàn bộ chi tiết vụ cấm tại [[Special:MyContributions|đóng góp của tài khoản]].\n\n{{int:blockedtext-made-by|$1}}\n\n{{int:blockedtext-reason-comment|$2}}\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n*{{int:blockedtext-block-id|$5}}",
 	"autoblockedtext": "Địa chỉ IP của bạn đã bị tự động cấm vì một người nào đó đã sử dụng nó và đã bị cấm bởi $1.\nLý do là:\n\n:<em>$2</em>\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}} \n\nBạn có thể sử dụng chức năng “{{int:emailuser}}” nếu bạn đã đăng ký một địa chỉ thư điện tử hợp lệ trong [[Special:Preferences|tùy chọn]] và bạn không bị cấm dùng chức năng đó.\n\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",

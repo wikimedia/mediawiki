@@ -2322,7 +2322,7 @@
 	"actioncomplete": "Operação executada",
 	"actionfailed": "Operação falhou",
 	"deletedtext": "\"$1\" foi eliminada.\nConsulte $2 para um registo de eliminações recentes.",
-	"deleted-page-and-talkpage": "\"$1\" e \"$2 \" foram eliminadas.\nConsulte \"$3\" para obter um registo das eliminações recentes.",
+	"deleted-page-and-talkpage": "\"$1\" e \"$2\" foram eliminadas.\nConsulte \"$3\" para obter um registo das eliminações recentes.",
 	"dellogpage": "Registo de eliminações",
 	"dellogpagetext": "Encontra abaixo uma lista das eliminações mais recentes.",
 	"deletionlog": "registo de eliminações",

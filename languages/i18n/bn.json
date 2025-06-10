@@ -3665,7 +3665,7 @@
 	"logentry-import-upload-details": "$1 ফাইল আপলোডের দ্বারা $3 {{GENDER:$2|আমদানি করেছেন}} ($4টি {{PLURAL:$4|সংস্করণ}})",
 	"logentry-import-interwiki": "$1 অন্য একটি উইকিতে থেকে $3 {{GENDER:$2|আমদানি করেছে}}",
 	"logentry-import-interwiki-details": "$1 $5 থেকে $3 {{GENDER:$2|আমদানি করেছেন}} ($4টি {{PLURAL:$4|সংস্করণ}})",
-	"logentry-merge-merge": "$1 $4-এ $3 {{GENDER:$2|একত্রীকরণ করেছেন}} ($5 তারিখের সংশোধন পর্যন্ত)",
+	"logentry-merge-merge": "$1 $4-এ $3 {{GENDER:$2|একত্রীকরণ করেছেন}} ($5 তারিখের সংস্করণ পর্যন্ত)",
 	"logentry-move-move": "$1 $3 কে $4 শিরোনামে {{GENDER:$2|স্থানান্তর}} করেছেন",
 	"logentry-move-move-noredirect": "$1 $3 পাতাটিকে $4 শিরোনামে কোনো পুনর্নির্দেশনা ছাড়াই {{GENDER:$2|স্থানান্তর}} করেছেন",
 	"logentry-move-move_redir": "$1 $3 পাতাটিকে $4 শিরোনামে পুনর্নির্দেশনার মাধ্যমে {{GENDER:$2|স্থানান্তর}} করেছেন",

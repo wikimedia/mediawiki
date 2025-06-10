@@ -79,7 +79,8 @@
 			"아라",
 			"PeachyOne",
 			"Fotis A.",
-			"Jimkats"
+			"Jimkats",
+			"Marios Zindilis"
 		]
 	},
 	"sunday": "Κυριακή",
@@ -2856,7 +2857,7 @@
 	"import-revision-count": "$1 {{PLURAL:$1|αναθεώρηση|αναθεωρήσεις}}",
 	"importnopages": "Δεν υπάρχουν σελίδες για εισαγωγή.",
 	"imported-log-entries": "{{PLURAL:$1|Καταχωρήθηκε 1 αρχείο καταγραφής|Καταχωρήθηκαν $1 αρχεία καταγραφής}}.",
-	"importfailed": "Η εισαγωγή απέτυχε: $1",
+	"importfailed": "{{PLURAL:$2| Η εισαγωγή απέτυχε}}:\n $1",
 	"importunknownsource": "Άγνωστος τύπος πηγής για την εισαγωγή",
 	"importnoprefix": "Δεν δόθηκε πρόθεμα interwiki",
 	"importcantopen": "Το αρχείο εισαγωγής δεν ήταν δυνατόν να ανοιχθεί",
@@ -3346,7 +3347,7 @@
 	"tag-hidden": "$1 (κρυφή ετικέτα)",
 	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Ετικέτα|Ετικέτες}}]]: $2",
 	"tag-mw-contentmodelchange": "αλλαγή μοντέλου περιεχομένου",
-	"tag-mw-contentmodelchange-description": "Επεξεργασίες που [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel αλλάζουν το μοντέλο περιεχομένου] μιας σελίδας",
+	"tag-mw-contentmodelchange-description": "Επεξεργασίες που αλλάζουν το μοντέλο περιεχομένου μιας σελίδας",
 	"tag-mw-new-redirect": "Νέα ανακατεύθυνση",
 	"tag-mw-new-redirect-description": "Επεξεργασίες που δημιουργούν μια νέα ανακατεύθυνση ή αλλάζουν μια σελίδα σε ανακατεύθυνση",
 	"tag-mw-removed-redirect": "Αφαιρέθηκε ανακατεύθυνση",

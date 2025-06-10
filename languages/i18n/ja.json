@@ -801,7 +801,7 @@
 	"sitecsspreview": "<strong>ここでは、CSSをプレビューしているだけに過ぎません。</strong>\n<strong>まだ公開されていません！</strong>",
 	"sitejsonpreview": "<strong>ここでは、JSONをプレビューしているだけに過ぎません。</strong>\n<strong>まだ公開されていません！</strong>",
 	"sitejspreview": "<strong>ここでは、JavaScriptをプレビューしているだけに過ぎません。</strong>\n<strong>まだ公開されていません！</strong>",
-	"userinvalidconfigtitle": "<strong>警告:</strong>「$1」というスキンはありません。\nカスタム .css/.js ページではページ名を小文字にしてください。例: {{ns:user}}:Hoge/Vector.css ではなく {{ns:user}}:Hoge/vector.css",
+	"userinvalidconfigtitle": "<strong>警告:</strong>「$1」という外装はありません。\nカスタムの .css/.js ページでは、ページ名を小文字にしてください。例: {{ns:user}}:Hoge/Vector.css ではなく {{ns:user}}:Hoge/vector.css",
 	"updated": "(更新)",
 	"note": "<strong>お知らせ:</strong>",
 	"previewnote": "<strong>これはプレビューです。</strong>\n変更内容はまだ公開されていません！",
