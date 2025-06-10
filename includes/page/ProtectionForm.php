@@ -209,7 +209,7 @@ class ProtectionForm {
 		}
 		try {
 			return ExpiryDef::normalizeExpiry( $value, TS_MW );
-		} catch ( InvalidArgumentException $e ) {
+		} catch ( InvalidArgumentException ) {
 			return false;
 		}
 	}

@@ -209,7 +209,7 @@ class LanguageVariantConverter {
 			if ( $sourceVariant ) {
 				$this->pageConfig->setVariantBcp47( $sourceVariant );
 			}
-		} catch ( RevisionAccessException $exception ) {
+		} catch ( RevisionAccessException ) {
 			// TODO: Throw a different exception, this class should not know
 			//       about HTTP status codes.
 			throw new LocalizedHttpException( new MessageValue( "rest-specified-revision-unavailable" ), 404 );

@@ -394,7 +394,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 		if ( $this->fld_size ) {
 			try {
 				$vals['size'] = (int)$revision->getSize();
-			} catch ( RevisionAccessException $e ) {
+			} catch ( RevisionAccessException ) {
 				// Back compat: If there's no size, return 0.
 				// @todo: Gergő says to mention T198099 as a "todo" here.
 				$vals['size'] = 0;
@@ -410,7 +410,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 			if ( !( $revDel & self::CANNOT_VIEW ) ) {
 				try {
 					$vals['sha1'] = \Wikimedia\base_convert( $revision->getSha1(), 36, 16, 40 );
-				} catch ( RevisionAccessException $e ) {
+				} catch ( RevisionAccessException ) {
 					// Back compat: If there's no sha1, return empty string.
 					// @todo: Gergő says to mention T198099 as a "todo" here.
 					$vals['sha1'] = '';
@@ -495,7 +495,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 		if ( $this->slotRoles === null ) {
 			try {
 				$slot = $revision->getSlot( SlotRecord::MAIN, RevisionRecord::RAW );
-			} catch ( RevisionAccessException $e ) {
+			} catch ( RevisionAccessException ) {
 				// Back compat: If there's no slot, there's no content, so set 'textmissing'
 				// @todo: Gergő says to mention T198099 as a "todo" here.
 				$vals['textmissing'] = true;
@@ -527,7 +527,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 			foreach ( $roles as $role ) {
 				try {
 					$slot = $revision->getSlot( $role, RevisionRecord::RAW );
-				} catch ( RevisionAccessException $e ) {
+				} catch ( RevisionAccessException ) {
 					// Don't error out here so the client can still process other slots/revisions.
 					// @todo: Gergő says to mention T198099 as a "todo" here.
 					$vals['slots'][$role]['missing'] = true;
@@ -608,7 +608,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 			if ( !( $revDel & self::CANNOT_VIEW ) ) {
 				try {
 					$content = $slot->getContent();
-				} catch ( RevisionAccessException $e ) {
+				} catch ( RevisionAccessException ) {
 					// @todo: Gergő says to mention T198099 as a "todo" here.
 					$vals['textmissing'] = true;
 				}

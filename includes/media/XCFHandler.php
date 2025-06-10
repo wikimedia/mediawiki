@@ -104,7 +104,7 @@ class XCFHandler extends BitmapHandler {
 					"/Nbase_type", # /
 				$binaryHeader
 			);
-		} catch ( UnpackFailedException $_ ) {
+		} catch ( UnpackFailedException ) {
 			return null;
 		}
 

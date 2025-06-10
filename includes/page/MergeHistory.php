@@ -622,7 +622,7 @@ class MergeHistory {
 					[ 'rev_timestamp' => $dbLimit ]
 				);
 			}
-		} catch ( TimestampException $ex ) {
+		} catch ( TimestampException ) {
 			// The timestamp we got is screwed up and merge cannot continue
 			// This should be detected by $this->isValidMerge()
 			$this->timestampLimit = null;

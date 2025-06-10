@@ -79,7 +79,7 @@ abstract class RangeChronologicalPager extends ReverseChronologicalPager {
 				$this->mMonth = (int)$endTimestamp->format( 'm' );
 				$this->mDay = (int)$endTimestamp->format( 'd' );
 			}
-		} catch ( TimestampException $ex ) {
+		} catch ( TimestampException ) {
 			return null;
 		}
 

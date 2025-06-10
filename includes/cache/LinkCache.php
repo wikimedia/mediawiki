@@ -494,7 +494,7 @@ class LinkCache implements LoggerAwareInterface {
 			if ( $shouldAddGoodLink ) {
 				try {
 					$this->addGoodLinkObjFromRow( $link, $row, $queryFlags );
-				} catch ( InvalidArgumentException $e ) {
+				} catch ( InvalidArgumentException ) {
 					// a field is missing from $row; maybe we used a cache?; invalidate it and try again
 					$this->invalidateTitle( $link );
 					[ , $row ] = $this->getGoodLinkRowInternal(

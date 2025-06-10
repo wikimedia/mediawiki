@@ -488,7 +488,7 @@ class WikiImporter {
 
 		try {
 			return $revision->importOldRevision();
-		} catch ( MWContentSerializationException $ex ) {
+		} catch ( MWContentSerializationException ) {
 			$this->notice( 'import-error-unserialize',
 				$revision->getTitle()->getPrefixedText(),
 				$revision->getID(),

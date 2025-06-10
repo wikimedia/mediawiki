@@ -50,7 +50,7 @@ class WordLevelDiff extends Diff {
 
 		try {
 			parent::__construct( $wordsBeforeStripped, $wordsAfterStripped );
-		} catch ( ComplexityException $ex ) {
+		} catch ( ComplexityException ) {
 			// Too hard to diff, just show whole paragraph(s) as changed
 			$this->edits = [ new DiffOpChange( $linesBefore, $linesAfter ) ];
 		}

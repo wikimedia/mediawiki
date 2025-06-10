@@ -146,7 +146,7 @@ class HttpStatus {
 
 		try {
 			header( self::getHeader( $code ) );
-		} catch ( InvalidArgumentException $ex ) {
+		} catch ( InvalidArgumentException ) {
 			trigger_error( "Unknown HTTP status code $code", E_USER_WARNING );
 		}
 	}

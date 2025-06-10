@@ -778,7 +778,7 @@ class LocalFile extends File {
 					} else {
 						$this->reserializeMetadata();
 					}
-				} catch ( LocalFileLockError $e ) {
+				} catch ( LocalFileLockError ) {
 					// let the other process handle it (or do it next time)
 				}
 			} );
@@ -1460,7 +1460,7 @@ class LocalFile extends File {
 					$files[] = $file;
 				}
 			}
-		} catch ( FileBackendError $e ) {
+		} catch ( FileBackendError ) {
 		} // suppress (T56674)
 
 		return $files;

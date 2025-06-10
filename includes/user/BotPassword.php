@@ -239,7 +239,7 @@ class BotPassword {
 		$passwordFactory = MediaWikiServices::getInstance()->getPasswordFactory();
 		try {
 			return $passwordFactory->newFromCiphertext( $password );
-		} catch ( PasswordError $ex ) {
+		} catch ( PasswordError ) {
 			return PasswordFactory::newInvalidPassword();
 		}
 	}

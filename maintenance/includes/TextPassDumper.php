@@ -725,7 +725,7 @@ TEXT
 				->normalize( $stripped );
 
 			return $normalized;
-		} catch ( BlobAccessException $ex ) {
+		} catch ( BlobAccessException ) {
 			// XXX: log a warning?
 			return false;
 		}

@@ -410,7 +410,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		try {
 			$page = $this->newPage( $title );
 			$page->doUserEditContent( $content, $user1, "[[testing]] 1", EDIT_NEW );
-		} catch ( Exception $ex ) {
+		} catch ( Exception ) {
 			// Throwing is an acceptable way to react to an invalid title,
 			// as long as no garbage is written to the database.
 		}

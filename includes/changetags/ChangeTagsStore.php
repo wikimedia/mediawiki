@@ -840,7 +840,7 @@ class ChangeTagsStore {
 			foreach ( (array)$filter_tag as $filterTagName ) {
 				try {
 					$filterTagIds[] = $this->changeTagDefStore->getId( $filterTagName );
-				} catch ( NameTableAccessException $exception ) {
+				} catch ( NameTableAccessException ) {
 				}
 			}
 
@@ -931,7 +931,7 @@ class ChangeTagsStore {
 			foreach ( (array)$filter_tag as $filterTagName ) {
 				try {
 					$filterTagIds[] = $this->changeTagDefStore->getId( $filterTagName );
-				} catch ( NameTableAccessException $exception ) {
+				} catch ( NameTableAccessException ) {
 				}
 			}
 

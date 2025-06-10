@@ -33,7 +33,7 @@ class UploadedFileTest extends UploadedFileTestBase {
 			try {
 				$file2->getStream();
 				$this->fail( 'Expected exception not thrown' );
-			} catch ( RuntimeException $ex ) {
+			} catch ( RuntimeException ) {
 			}
 		}
 
@@ -59,7 +59,7 @@ class UploadedFileTest extends UploadedFileTestBase {
 				$stream->seek( 0 );
 				$stream->getContents();
 				$this->fail( 'Expected exception not thrown' );
-			} catch ( RuntimeException $ex ) {
+			} catch ( RuntimeException ) {
 			}
 		} finally {
 			unlink( $filename . '.xxx' ); // Clean up
@@ -142,7 +142,7 @@ class UploadedFileTest extends UploadedFileTestBase {
 			try {
 				$file->moveTo( $filename . '.xxx' );
 				$this->fail( 'Expected exception not thrown' );
-			} catch ( RuntimeException $ex ) {
+			} catch ( RuntimeException ) {
 			}
 			$this->assertFileExists( $filename );
 			$this->assertFileDoesNotExist( "$filename.xxx" );
@@ -156,7 +156,7 @@ class UploadedFileTest extends UploadedFileTestBase {
 		try {
 			$file->moveTo( $filename2 . DIRECTORY_SEPARATOR . 'foobar' );
 			$this->fail( 'Expected exception not thrown' );
-		} catch ( RuntimeException $ex ) {
+		} catch ( RuntimeException ) {
 		}
 		$this->assertFileExists( $filename );
 	}

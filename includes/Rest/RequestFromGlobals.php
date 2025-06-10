@@ -44,7 +44,7 @@ class RequestFromGlobals extends RequestBase {
 
 			try {
 				$uriInstance = new Uri( $requestUrl );
-			} catch ( InvalidArgumentException $e ) {
+			} catch ( InvalidArgumentException ) {
 				// Uri constructor will throw exception if the URL is
 				// relative and contains colon-number pattern that
 				// looks like a port.

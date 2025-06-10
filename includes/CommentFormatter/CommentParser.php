@@ -424,7 +424,7 @@ class CommentParser {
 								$selfLinkTarget ?? $wgTitle ?? SpecialPage::getTitleFor( 'Badtitle' )
 							);
 							$linkMarker .= $trail;
-						} catch ( MalformedTitleException $e ) {
+						} catch ( MalformedTitleException ) {
 							// Fall through
 						}
 					}

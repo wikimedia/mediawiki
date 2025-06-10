@@ -648,7 +648,7 @@ class SpecialUndelete extends SpecialPage {
 				RevisionRecord::FOR_THIS_USER,
 				$user
 			);
-		} catch ( RevisionAccessException $e ) {
+		} catch ( RevisionAccessException ) {
 			$content = null;
 		}
 
@@ -714,7 +714,7 @@ class SpecialUndelete extends SpecialPage {
 				$out->addParserOutput( $pout, $popts, [
 					'enableSectionEditLinks' => false,
 				] );
-			} catch ( RevisionAccessException $e ) {
+			} catch ( RevisionAccessException ) {
 			}
 		}
 
@@ -864,7 +864,7 @@ class SpecialUndelete extends SpecialPage {
 		foreach ( $tagIds as $tagId ) {
 			try {
 				$tags[] = $this->changeTagDefStore->getName( (int)$tagId );
-			} catch ( NameTableAccessException $exception ) {
+			} catch ( NameTableAccessException ) {
 				continue;
 			}
 		}

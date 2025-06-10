@@ -51,7 +51,7 @@ class MergeLogFormatter extends LogFormatter {
 
 		try {
 			return [ $this->titleParser->parseTitle( $params[3] ) ];
-		} catch ( MalformedTitleException $_ ) {
+		} catch ( MalformedTitleException ) {
 		}
 		return [];
 	}

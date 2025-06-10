@@ -167,7 +167,7 @@ class WatchedItemStoreIntegrationTest extends MediaWikiIntegrationTestCase {
 		$exceptionThrown = false;
 		try {
 			$store->addWatch( $user, $title, 'invalid expiry' );
-		} catch ( InvalidArgumentException $exception ) {
+		} catch ( InvalidArgumentException ) {
 			$exceptionThrown = true;
 			// Asserting watchedItem getExpiry stays unchanged
 			$this->assertSame(

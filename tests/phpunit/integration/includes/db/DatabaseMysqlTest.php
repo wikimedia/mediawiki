@@ -207,7 +207,7 @@ class DatabaseMysqlTest extends \MediaWikiIntegrationTestCase {
 		try {
 			$this->conn->query( 'SELECT 1', __METHOD__ );
 			$this->fail( "Error thrown due to connection loss with locks" );
-		} catch ( DBError $e ) {
+		} catch ( DBError ) {
 			$this->assertSame( TransactionManager::STATUS_TRX_ERROR, $this->conn->trxStatus() );
 		}
 

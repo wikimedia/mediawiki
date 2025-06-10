@@ -147,7 +147,7 @@ class HTMLDateTimeField extends HTMLTextField {
 			return $date->getTimestamp();
 		} catch ( TimeoutException $e ) {
 			throw $e;
-		} catch ( Exception $ex ) {
+		} catch ( Exception ) {
 			return false;
 		}
 	}

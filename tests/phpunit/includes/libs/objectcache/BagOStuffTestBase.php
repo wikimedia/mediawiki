@@ -25,7 +25,7 @@ abstract class BagOStuffTestBase extends MediaWikiIntegrationTestCase {
 
 		try {
 			$this->cache = $this->newCacheInstance();
-		} catch ( InvalidArgumentException $e ) {
+		} catch ( InvalidArgumentException ) {
 			$this->markTestSkipped( "Cannot create cache instance for " . static::class .
 				': the configuration is presumably missing from $wgObjectCaches' );
 		}

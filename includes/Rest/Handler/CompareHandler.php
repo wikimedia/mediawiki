@@ -133,10 +133,10 @@ class CompareHandler extends Handler {
 						),
 						400 );
 				}
-			} catch ( SuppressedDataException $e ) {
+			} catch ( SuppressedDataException ) {
 				throw new LocalizedHttpException(
 					new MessageValue( 'rest-compare-inaccessible', [ $paramName ] ), 403 );
-			} catch ( RevisionAccessException $e ) {
+			} catch ( RevisionAccessException ) {
 				throw new LocalizedHttpException(
 					new MessageValue( 'rest-compare-nonexistent', [ $paramName ] ), 404 );
 			}

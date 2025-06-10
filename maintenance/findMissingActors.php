@@ -121,7 +121,7 @@ class FindMissingActors extends Maintenance {
 
 		try {
 			$actorId = $this->actorNormalization->acquireActorId( $user, $dbw );
-		} catch ( CannotCreateActorException $e ) {
+		} catch ( CannotCreateActorException ) {
 			$this->fatalError( "Failed to acquire an actor ID for user '$user'" );
 		}
 

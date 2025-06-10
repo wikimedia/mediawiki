@@ -122,7 +122,7 @@ class ApiProtect extends ApiBase {
 
 			try {
 				$expiries[$p[0]] = ExpiryDef::normalizeExpiry( $expiry[$i], TS_MW );
-			} catch ( InvalidArgumentException $e ) {
+			} catch ( InvalidArgumentException ) {
 				$this->dieWithError( [ 'apierror-invalidexpiry', wfEscapeWikiText( $expiry[$i] ) ] );
 			}
 			if ( $expiries[$p[0]] < MWTimestamp::now( TS_MW ) ) {

@@ -70,7 +70,7 @@ class UploadedFileStream implements Stringable, StreamInterface {
 		try {
 			$this->seek( 0 );
 			return $this->getContents();
-		} catch ( Throwable $ex ) {
+		} catch ( Throwable ) {
 			// Not allowed to throw
 			return '';
 		}
@@ -82,7 +82,7 @@ class UploadedFileStream implements Stringable, StreamInterface {
 			try {
 				// PHP 7 emits warnings, suppress
 				AtEase::quietCall( 'fclose', $this->fp );
-			} catch ( \TypeError $unused ) {
+			} catch ( \TypeError ) {
 				// While PHP 8 throws exceptions, ignore
 			}
 			$this->fp = null;
@@ -103,7 +103,7 @@ class UploadedFileStream implements Stringable, StreamInterface {
 				// Spec doesn't care about errors here.
 				try {
 					$stat = AtEase::quietCall( 'fstat', $this->fp );
-				} catch ( \TypeError $unused ) {
+				} catch ( \TypeError ) {
 				}
 				$this->size = $stat['size'] ?? null;
 			}
@@ -121,7 +121,7 @@ class UploadedFileStream implements Stringable, StreamInterface {
 		// Spec doesn't care about errors here.
 		try {
 			return !$this->fp || AtEase::quietCall( 'feof', $this->fp );
-		} catch ( \TypeError $unused ) {
+		} catch ( \TypeError ) {
 			return true;
 		}
 	}

@@ -475,7 +475,7 @@ abstract class FileOp {
 			);
 		} catch ( TimeoutException $e ) {
 			throw $e;
-		} catch ( Exception $e ) {
+		} catch ( Exception ) {
 			// bad config? debug log error?
 		}
 	}

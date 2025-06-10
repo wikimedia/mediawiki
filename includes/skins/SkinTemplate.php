@@ -1372,7 +1372,7 @@ class SkinTemplate extends Skin {
 			// If it's not content, and a request URL is set it's got to be a special page
 			try {
 				$url = $request->getRequestURL();
-			} catch ( MWException $e ) {
+			} catch ( MWException ) {
 				$url = false;
 			}
 			$namespaces['special'] = [

@@ -71,7 +71,7 @@ class MysqlMaintenance extends Maintenance {
 		if ( $this->hasOption( 'cluster' ) ) {
 			try {
 				$lb = $lbf->getExternalLB( $this->getOption( 'cluster' ) );
-			} catch ( InvalidArgumentException $e ) {
+			} catch ( InvalidArgumentException ) {
 				$this->fatalError( 'Error: invalid cluster' );
 			}
 		} else {

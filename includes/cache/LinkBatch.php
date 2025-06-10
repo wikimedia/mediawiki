@@ -315,7 +315,7 @@ class LinkBatch {
 
 				$key = CacheKeyHelper::getKeyForPage( $pageIdentity );
 				$this->pageIdentities[$key] = $pageIdentity;
-			} catch ( InvalidArgumentException $ex ) {
+			} catch ( InvalidArgumentException ) {
 				$this->logger->warning(
 					'Encountered invalid title',
 					[ 'title_namespace' => $row->page_namespace, 'title_dbkey' => $row->page_title ]
@@ -338,7 +338,7 @@ class LinkBatch {
 					$pageIdentity = new PageIdentityValue( 0, (int)$ns, $dbkey, ProperPageIdentity::LOCAL );
 					$key = CacheKeyHelper::getKeyForPage( $pageIdentity );
 					$this->pageIdentities[$key] = $pageIdentity;
-				} catch ( InvalidArgumentException $ex ) {
+				} catch ( InvalidArgumentException ) {
 					$this->logger->warning(
 						'Encountered invalid title',
 						[ 'title_namespace' => $ns, 'title_dbkey' => $dbkey ]

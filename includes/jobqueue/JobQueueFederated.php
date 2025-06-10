@@ -188,7 +188,7 @@ class JobQueueFederated extends JobQueue {
 		for ( $i = $this->maxPartitionsTry; $i > 0 && count( $jobsLeft ); --$i ) {
 			try {
 				$partitionRing->getLiveLocationWeights();
-			} catch ( UnexpectedValueException $e ) {
+			} catch ( UnexpectedValueException ) {
 				break; // all servers down; nothing to insert to
 			}
 			$jobsLeft = $this->tryJobInsertions( $jobsLeft, $partitionRing, $flags );
@@ -318,7 +318,7 @@ class JobQueueFederated extends JobQueue {
 		$partition = $this->partitionRing->getLiveLocation( $signature );
 		try {
 			return $this->partitionQueues[$partition]->doIsRootJobOldDuplicate( $job );
-		} catch ( JobQueueError $e ) {
+		} catch ( JobQueueError ) {
 			if ( $this->partitionRing->ejectFromLiveRing( $partition, 5 ) ) {
 				$partition = $this->partitionRing->getLiveLocation( $signature );
 				return $this->partitionQueues[$partition]->doIsRootJobOldDuplicate( $job );
@@ -333,7 +333,7 @@ class JobQueueFederated extends JobQueue {
 		$partition = $this->partitionRing->getLiveLocation( $signature );
 		try {
 			return $this->partitionQueues[$partition]->doDeduplicateRootJob( $job );
-		} catch ( JobQueueError $e ) {
+		} catch ( JobQueueError ) {
 			if ( $this->partitionRing->ejectFromLiveRing( $partition, 5 ) ) {
 				$partition = $this->partitionRing->getLiveLocation( $signature );
 				return $this->partitionQueues[$partition]->doDeduplicateRootJob( $job );

@@ -128,7 +128,7 @@ class ThrottlePreAuthenticationProvider extends AbstractPreAuthenticationProvide
 		$ip = $this->manager->getRequest()->getIP();
 		try {
 			$username = AuthenticationRequest::getUsernameFromRequests( $reqs );
-		} catch ( \UnexpectedValueException $e ) {
+		} catch ( \UnexpectedValueException ) {
 			$username = null;
 		}
 

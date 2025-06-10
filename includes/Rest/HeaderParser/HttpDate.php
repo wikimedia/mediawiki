@@ -117,21 +117,21 @@ class HttpDate extends HeaderParserBase {
 			$this->consumeFixdate();
 			$this->assertEnd();
 			return true;
-		} catch ( HeaderParserError $e ) {
+		} catch ( HeaderParserError ) {
 		}
 		$this->pos = 0;
 		try {
 			$this->consumeRfc850Date();
 			$this->assertEnd();
 			return true;
-		} catch ( HeaderParserError $e ) {
+		} catch ( HeaderParserError ) {
 		}
 		$this->pos = 0;
 		try {
 			$this->consumeAsctimeDate();
 			$this->assertEnd();
 			return true;
-		} catch ( HeaderParserError $e ) {
+		} catch ( HeaderParserError ) {
 		}
 		return false;
 	}

@@ -1059,7 +1059,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		try {
 			$conn->initConnection();
 			++$this->connectionCounter;
-		} catch ( DBConnectionError $e ) {
+		} catch ( DBConnectionError ) {
 			$this->lastErrorConn = $conn;
 			// ignore; let the DB handle the logging
 		}
@@ -1782,7 +1782,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 				if ( $conn ) {
 					try {
 						$value = (int)$conn->serverIsReadOnly();
-					} catch ( DBError $e ) {
+					} catch ( DBError ) {
 						$value = is_int( $oldValue ) ? $oldValue : 0;
 					}
 				} else {

@@ -49,7 +49,7 @@ class SpecialPageFatalTest extends MediaWikiIntegrationTestCase {
 
 		try {
 			$executor->executeSpecialPage( $page, '', null, 'qqx', $authority );
-		} catch ( ErrorPageError $_ ) {
+		} catch ( ErrorPageError ) {
 			// Only checked exceptions are allowed
 		}
 

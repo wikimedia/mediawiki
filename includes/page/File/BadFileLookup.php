@@ -115,7 +115,7 @@ class BadFileLookup {
 			foreach ( $m[1] as $i => $titleText ) {
 				try {
 					$title = $this->titleParser->parseTitle( $titleText );
-				} catch ( MalformedTitleException $e ) {
+				} catch ( MalformedTitleException ) {
 					continue;
 				}
 				if ( $i == 0 ) {

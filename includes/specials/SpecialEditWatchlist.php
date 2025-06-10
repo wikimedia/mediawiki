@@ -624,7 +624,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			if ( !$target instanceof LinkTarget ) {
 				try {
 					$target = $this->titleParser->parseTitle( $target, NS_MAIN );
-				} catch ( MalformedTitleException $e ) {
+				} catch ( MalformedTitleException ) {
 					continue;
 				}
 			}

@@ -37,7 +37,7 @@ class PostgresCreateSchemaTask extends Task {
 		if ( !$conn->schemaExists( $schema ) ) {
 			try {
 				$conn->query( "CREATE SCHEMA $safeschema AUTHORIZATION $safeuser", __METHOD__ );
-			} catch ( DBQueryError $e ) {
+			} catch ( DBQueryError ) {
 				return Status::newFatal( 'config-install-pg-schema-failed',
 					$this->getOption( 'InstallUser' ), $schema );
 			}

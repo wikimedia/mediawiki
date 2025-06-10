@@ -424,7 +424,7 @@ class RedisConnectionPool implements LoggerAwareInterface {
 					/** @var Redis $conn */
 					$conn = $connection['conn'];
 					$conn->close();
-				} catch ( RedisException $e ) {
+				} catch ( RedisException ) {
 					// The destructor can be called on shutdown when random parts of the system
 					// have been destructed already, causing weird errors. Ignore them.
 				}

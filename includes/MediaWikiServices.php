@@ -473,7 +473,7 @@ class MediaWikiServices extends ServiceContainer {
 			// the other instance. Skip this service in this case. See T143974
 			try {
 				$oldService = $other->peekService( $name );
-			} catch ( NoSuchServiceException $e ) {
+			} catch ( NoSuchServiceException ) {
 				continue;
 			}
 

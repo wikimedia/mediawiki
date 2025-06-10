@@ -295,7 +295,7 @@ class DatabaseTest extends TestCase {
 				throw new RuntimeException( 'test' );
 			} );
 			$this->fail( "Exception not thrown" );
-		} catch ( RuntimeException $e ) {
+		} catch ( RuntimeException ) {
 			$this->assertTrue( $db->getFlag( DBO_TRX ) );
 		}
 
@@ -541,7 +541,7 @@ class DatabaseTest extends TestCase {
 		try {
 			$lock = $db->getScopedLockAndFlush( 'meow', __METHOD__, 1 );
 			$this->fail( "Exception not reached" );
-		} catch ( DBUnexpectedError $e ) {
+		} catch ( DBUnexpectedError ) {
 			$this->assertSame( 1, $db->trxLevel(), "Transaction not committed." );
 			$this->assertTrue( $db->lockIsFree( 'meow', __METHOD__ ), 'Lock not acquired' );
 		}
@@ -555,7 +555,7 @@ class DatabaseTest extends TestCase {
 		try {
 			$lock = $db->getScopedLockAndFlush( 'meow2', __METHOD__, 1 );
 			$this->fail( "Exception not reached" );
-		} catch ( DBUnexpectedError $e ) {
+		} catch ( DBUnexpectedError ) {
 			$this->assertSame( 1, $db->trxLevel(), "Transaction not committed." );
 			$this->assertTrue( $db->lockIsFree( 'meow2', __METHOD__ ), 'Lock not acquired' );
 		}
@@ -578,7 +578,7 @@ class DatabaseTest extends TestCase {
 		try {
 			$lock = $db->getScopedLockAndFlush( 'wuff2', __METHOD__, 1 );
 			$this->fail( "Exception not reached" );
-		} catch ( DBUnexpectedError $e ) {
+		} catch ( DBUnexpectedError ) {
 			$this->assertSame( 1, $db->trxLevel(), "Transaction not committed." );
 			$this->assertFalse( $db->lockIsFree( 'wuff2', __METHOD__ ), 'Lock not acquired' );
 		}

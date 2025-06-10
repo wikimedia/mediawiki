@@ -218,7 +218,7 @@ abstract class ReverseChronologicalPager extends IndexPager {
 			$this->mDay = (int)$selectedDate->format( 'd' );
 			// Don't mess with mOffset which IndexPager uses
 			$this->endOffset = $this->mDb->timestamp( $timestamp->getTimestamp() );
-		} catch ( TimestampException $e ) {
+		} catch ( TimestampException ) {
 			// Invalid user provided timestamp (T149257)
 			return null;
 		}

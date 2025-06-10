@@ -88,7 +88,7 @@ class TitleFormatter {
 		if ( $namespace != 0 ) {
 			try {
 				$nsName = $this->getNamespaceName( $namespace, $text );
-			} catch ( InvalidArgumentException $e ) {
+			} catch ( InvalidArgumentException ) {
 				// See T165149. Awkward, but better than erroneously linking to the main namespace.
 				$nsName = $this->language->getNsText( NS_SPECIAL ) . ":Badtitle/NS{$namespace}";
 			}

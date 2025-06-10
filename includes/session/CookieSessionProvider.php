@@ -122,7 +122,7 @@ class CookieSessionProvider extends SessionProvider {
 		if ( $userId !== null ) {
 			try {
 				$userInfo = UserInfo::newFromId( $userId );
-			} catch ( InvalidArgumentException $ex ) {
+			} catch ( InvalidArgumentException ) {
 				return null;
 			}
 

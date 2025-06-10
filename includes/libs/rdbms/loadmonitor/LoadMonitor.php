@@ -246,7 +246,7 @@ class LoadMonitor implements ILoadMonitor {
 		if ( $conn ) {
 			try {
 				$connCount = $this->getConnCountForDb( $conn );
-			} catch ( DBError $e ) {
+			} catch ( DBError ) {
 				$connCount = false;
 			}
 		} else {

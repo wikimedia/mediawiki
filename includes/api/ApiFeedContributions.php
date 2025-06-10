@@ -238,7 +238,7 @@ class ApiFeedContributions extends ApiBase {
 		$msg = $this->msg( 'colon-separator' )->inContentLanguage()->text();
 		try {
 			$content = $revision->getContent( SlotRecord::MAIN );
-		} catch ( RevisionAccessException $e ) {
+		} catch ( RevisionAccessException ) {
 			$content = null;
 		}
 

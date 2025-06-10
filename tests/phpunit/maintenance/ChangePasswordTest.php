@@ -40,7 +40,7 @@ class ChangePasswordTest extends MaintenanceBaseTestCase {
 		$threwFatalError = false;
 		try {
 			$this->maintenance->execute();
-		} catch ( MaintenanceFatalError $e ) {
+		} catch ( MaintenanceFatalError ) {
 			$threwFatalError = true;
 		}
 		$this->assertTrue( $threwFatalError );

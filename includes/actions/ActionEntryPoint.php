@@ -325,7 +325,7 @@ class ActionEntryPoint extends MediaWikiEntryPoint {
 		if ( !$context->hasTitle() ) {
 			try {
 				$context->setTitle( $this->parseTitle( $context->getRequest() ) );
-			} catch ( MalformedTitleException $ex ) {
+			} catch ( MalformedTitleException ) {
 				$context->setTitle( SpecialPage::getTitleFor( 'Badtitle' ) );
 			}
 		}

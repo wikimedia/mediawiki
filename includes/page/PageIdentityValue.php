@@ -63,7 +63,7 @@ class PageIdentityValue extends PageReferenceValue implements ProperPageIdentity
 	public static function tryNew( int $pageId, int $namespace, string $dbKey, $wikiId ) {
 		try {
 			return new static( $pageId, $namespace, $dbKey, $wikiId );
-		} catch ( InvalidArgumentException $ex ) {
+		} catch ( InvalidArgumentException ) {
 			return null;
 		}
 	}

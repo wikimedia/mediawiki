@@ -137,7 +137,7 @@ class ApiQueryDeletedRevisions extends ApiQueryRevisionsBase {
 			);
 			try {
 				$this->addWhereFld( 'ct_tag_id', $this->changeTagDefStore->getId( $params['tag'] ) );
-			} catch ( NameTableAccessException $exception ) {
+			} catch ( NameTableAccessException ) {
 				// Return nothing.
 				$this->addWhere( '1=0' );
 			}

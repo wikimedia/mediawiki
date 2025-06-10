@@ -52,7 +52,7 @@ class MoveLogFormatter extends LogFormatter {
 
 		try {
 			return [ $this->titleParser->parseTitle( $params[3] ) ];
-		} catch ( MalformedTitleException $_ ) {
+		} catch ( MalformedTitleException ) {
 			// namespace configuration may have changed to make $params[3] invalid (T370396);
 			// nothing to preload in this case
 			return [];

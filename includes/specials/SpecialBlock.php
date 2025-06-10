@@ -1147,7 +1147,7 @@ class SpecialBlock extends FormSpecialPage {
 
 		try {
 			$status = $blockUser->placeBlock( $doReblock );
-		} catch ( MultiblocksException $e ) {
+		} catch ( MultiblocksException ) {
 			$status = Status::newFatal( 'block-reblock-multi-legacy' );
 		}
 

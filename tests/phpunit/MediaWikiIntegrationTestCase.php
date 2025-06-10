@@ -1112,7 +1112,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 				} else {
 					try {
 						$this->mwGlobals[$globalKey] = unserialize( serialize( $GLOBALS[$globalKey] ) );
-					} catch ( Exception $e ) {
+					} catch ( Exception ) {
 						$this->mwGlobals[$globalKey] = $GLOBALS[$globalKey];
 					}
 				}

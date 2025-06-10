@@ -1181,7 +1181,7 @@ abstract class ContentHandler {
 				// doing that will be confusing.
 				$this->checkModelID( $undoAfterContent->getModel() );
 			}
-		} catch ( MWException $e ) {
+		} catch ( MWException ) {
 			// If the revisions have different content models
 			// just return false
 			return false;

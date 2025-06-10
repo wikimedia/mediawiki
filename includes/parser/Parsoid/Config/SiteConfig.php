@@ -871,7 +871,7 @@ class SiteConfig extends ISiteConfig {
 			if ( $handler->getDefaultFormat() === CONTENT_FORMAT_WIKITEXT ) {
 				return true;
 			}
-		} catch ( MWUnknownContentModelException $ex ) {
+		} catch ( MWUnknownContentModelException ) {
 			// If the content model is not known, it can't be supported.
 			return false;
 		}

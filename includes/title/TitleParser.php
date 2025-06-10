@@ -151,7 +151,7 @@ class TitleParser {
 
 		try {
 			$parts = $this->splitTitleString( $fullText );
-		} catch ( MalformedTitleException $e ) {
+		} catch ( MalformedTitleException ) {
 			return null;
 		}
 

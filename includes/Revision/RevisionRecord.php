@@ -184,7 +184,7 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	public function getContent( $role, $audience = self::FOR_PUBLIC, ?Authority $performer = null ): ?Content {
 		try {
 			$content = $this->getSlot( $role, $audience, $performer )->getContent();
-		} catch ( BadRevisionException | SuppressedDataException $e ) {
+		} catch ( BadRevisionException | SuppressedDataException ) {
 			return null;
 		}
 		return $content->copy();

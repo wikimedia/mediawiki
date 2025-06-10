@@ -526,7 +526,7 @@ class ApiQueryUserContribs extends ApiQueryBase {
 			);
 			try {
 				$this->addWhereFld( 'ct_tag_id', $this->changeTagDefStore->getId( $this->params['tag'] ) );
-			} catch ( NameTableAccessException $exception ) {
+			} catch ( NameTableAccessException ) {
 				// Return nothing.
 				$this->addWhere( '1=0' );
 			}

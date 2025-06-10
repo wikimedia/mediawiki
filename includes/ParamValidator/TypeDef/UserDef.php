@@ -232,13 +232,13 @@ class UserDef extends TypeDef {
 
 		try {
 			$t = $this->titleParser->parseTitle( $value );
-		} catch ( MalformedTitleException $_ ) {
+		} catch ( MalformedTitleException ) {
 			$t = null;
 		}
 		if ( !$t || $t->getNamespace() !== NS_USER || $t->isExternal() ) { // likely
 			try {
 				$t = $this->titleParser->parseTitle( "User:$value" );
-			} catch ( MalformedTitleException $_ ) {
+			} catch ( MalformedTitleException ) {
 				$t = null;
 			}
 		}

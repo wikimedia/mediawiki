@@ -269,7 +269,7 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 		try {
 			$t->secureAndSplit( $key );
 			return $t;
-		} catch ( MalformedTitleException $ex ) {
+		} catch ( MalformedTitleException ) {
 			return null;
 		}
 	}
@@ -405,7 +405,7 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 
 		try {
 			return self::newFromTextThrow( (string)$text, (int)$defaultNamespace );
-		} catch ( MalformedTitleException $ex ) {
+		} catch ( MalformedTitleException ) {
 			return null;
 		}
 	}
@@ -506,7 +506,7 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 		try {
 			$t->secureAndSplit( $dbKeyForm );
 			return $t;
-		} catch ( MalformedTitleException $ex ) {
+		} catch ( MalformedTitleException ) {
 			return null;
 		}
 	}
@@ -660,7 +660,7 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 		try {
 			$t->secureAndSplit( $dbKeyForm );
 			return $t;
-		} catch ( MalformedTitleException $ex ) {
+		} catch ( MalformedTitleException ) {
 			return null;
 		}
 	}
@@ -911,7 +911,7 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 				$this->mIsValid = false;
 				return $this->mIsValid;
 			}
-		} catch ( MalformedTitleException $ex ) {
+		} catch ( MalformedTitleException ) {
 			$this->mIsValid = false;
 			return $this->mIsValid;
 		}

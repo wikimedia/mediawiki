@@ -1033,7 +1033,7 @@ class SessionManager implements SessionManagerInterface {
 		}
 		try {
 			$ip = $session->getRequest()->getIP();
-		} catch ( MWException $e ) {
+		} catch ( MWException ) {
 			return;
 		}
 		if ( $ip === '127.0.0.1' || $proxyLookup->isConfiguredProxy( $ip ) ) {

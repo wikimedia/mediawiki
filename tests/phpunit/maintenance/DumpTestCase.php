@@ -91,7 +91,7 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 	protected function getSlotText( SlotRecord $slot ) {
 		try {
 			return $slot->getContent()->serialize();
-		} catch ( RevisionAccessException $ex ) {
+		} catch ( RevisionAccessException ) {
 			return null;
 		}
 	}

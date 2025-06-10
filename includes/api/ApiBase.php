@@ -1720,7 +1720,7 @@ abstract class ApiBase extends ContextSource {
 				case 'timestamp':
 					try {
 						$dbTs = $this->getDB()->timestamp( $value );
-					} catch ( TimestampException $ex ) {
+					} catch ( TimestampException ) {
 						$dbTs = false;
 					}
 					$this->dieContinueUsageIf( $value !== $dbTs );
@@ -1979,7 +1979,7 @@ abstract class ApiBase extends ContextSource {
 							$isDeprecated = $submod->isDeprecated();
 							$isInternal = $submod->isInternal();
 						}
-					} catch ( ApiUsageException $ex ) {
+					} catch ( ApiUsageException ) {
 						// Ignore
 					}
 					if ( $summary ) {

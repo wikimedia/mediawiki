@@ -185,12 +185,12 @@ class PageContentHelper {
 			if ( !( $content instanceof TextContent ) ) {
 				throw new LocalizedHttpException( MessageValue::new( 'rest-page-source-type-error' ), 400 );
 			}
-		} catch ( SuppressedDataException $e ) {
+		} catch ( SuppressedDataException ) {
 			throw new LocalizedHttpException(
 				MessageValue::new( 'rest-permission-denied-revision' )->numParams( $revision->getId() ),
 				403
 			);
-		} catch ( RevisionAccessException $e ) {
+		} catch ( RevisionAccessException ) {
 			throw new LocalizedHttpException(
 				MessageValue::new( 'rest-nonexistent-revision' )->numParams( $revision->getId() ),
 				404

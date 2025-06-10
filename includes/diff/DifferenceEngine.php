@@ -408,7 +408,7 @@ class DifferenceEngine extends ContextSource {
 		}
 		try {
 			return $slot->getContent();
-		} catch ( BadRevisionException $e ) {
+		} catch ( BadRevisionException ) {
 			$this->addRevisionLoadError( $which );
 			return null;
 		}
@@ -1854,7 +1854,7 @@ class DifferenceEngine extends ContextSource {
 				if ( $numUsers == 1 && $users[0]->getName() == $newRevUserText ) {
 					$numUsers = 0; // special case to say "by the same user" instead of "by one other user"
 				}
-			} catch ( InvalidArgumentException $e ) {
+			} catch ( InvalidArgumentException ) {
 				$numUsers = 0;
 			}
 
@@ -2264,7 +2264,7 @@ class DifferenceEngine extends ContextSource {
 			foreach ( $tagIds as $tagId ) {
 				try {
 					$tags[] = $changeTagDefStore->getName( (int)$tagId );
-				} catch ( NameTableAccessException $exception ) {
+				} catch ( NameTableAccessException ) {
 					continue;
 				}
 			}
@@ -2282,7 +2282,7 @@ class DifferenceEngine extends ContextSource {
 		foreach ( $tagIds as $tagId ) {
 			try {
 				$tags[] = $changeTagDefStore->getName( (int)$tagId );
-			} catch ( NameTableAccessException $exception ) {
+			} catch ( NameTableAccessException ) {
 				continue;
 			}
 		}

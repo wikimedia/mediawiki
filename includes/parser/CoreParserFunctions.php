@@ -1075,7 +1075,7 @@ class CoreParserFunctions {
 			}
 			try {
 				$lang = $languageFactory->getLanguage( $code );
-			} catch ( InvalidArgumentException $ex ) {
+			} catch ( InvalidArgumentException ) {
 				$parser->addTrackingCategory( 'bad-language-code-category' );
 				return 'ltr';
 			}
@@ -1397,7 +1397,7 @@ class CoreParserFunctions {
 			if ( $vary === ParserOutputFlags::VARY_REVISION_SHA1 && $revisionRecord ) {
 				try {
 					$sha1 = $revisionRecord->getSha1();
-				} catch ( RevisionAccessException $e ) {
+				} catch ( RevisionAccessException ) {
 					$sha1 = null;
 				}
 				$parserOutput->setRevisionUsedSha1Base36( $sha1 );
