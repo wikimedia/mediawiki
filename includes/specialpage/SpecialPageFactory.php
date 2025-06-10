@@ -1151,6 +1151,7 @@ class SpecialPageFactory {
 				'WikiPageFactory',
 				'SearchEngineFactory',
 				'WatchlistManager',
+				'WatchedItemStore',
 				'RestrictionStore',
 				'TitleFactory',
 				'DeletePageFactory',
