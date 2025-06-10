@@ -27,7 +27,6 @@ use MediaWiki\Block\BlockTarget;
 use MediaWiki\Block\BlockTargetFactory;
 use MediaWiki\Block\BlockTargetWithIp;
 use MediaWiki\Block\BlockTargetWithUserPage;
-use MediaWiki\Block\BlockUser;
 use MediaWiki\Block\BlockUserFactory;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\DatabaseBlockStore;
@@ -38,16 +37,12 @@ use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\UserBlockTarget;
 use MediaWiki\CommentStore\CommentStore;
-use MediaWiki\Context\IContextSource;
 use MediaWiki\Exception\ErrorPageError;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
-use MediaWiki\Language\Language;
 use MediaWiki\Logging\LogEventsList;
 use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
-use MediaWiki\Permissions\Authority;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\SpecialPage\FormSpecialPage;
 use MediaWiki\SpecialPage\SpecialPage;
@@ -57,9 +52,9 @@ use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFormatter;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\User;
-use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
+use MediaWiki\Watchlist\WatchlistManager;
 use OOUI\FieldLayout;
 use OOUI\HtmlSnippet;
 use OOUI\LabelWidget;
@@ -85,6 +80,7 @@ class SpecialBlock extends FormSpecialPage {
 	private TitleFormatter $titleFormatter;
 	private NamespaceInfo $namespaceInfo;
 	private UserOptionsLookup $userOptionsLookup;
+	private WatchlistManager $watchlistManager;
 
 	/** @var BlockTarget|null User to be blocked, as passed either by parameter
 	 * (url?wpTarget=Foo) or as subpage (Special:Block/Foo)
@@ -123,7 +119,8 @@ class SpecialBlock extends FormSpecialPage {
 		BlockActionInfo $blockActionInfo,
 		TitleFormatter $titleFormatter,
 		NamespaceInfo $namespaceInfo,
-		UserOptionsLookup $userOptionsLookup
+		UserOptionsLookup $userOptionsLookup,
+		WatchlistManager $watchlistManager
 	) {
 		parent::__construct( 'Block', 'block' );
 
@@ -137,6 +134,7 @@ class SpecialBlock extends FormSpecialPage {
 		$this->titleFormatter = $titleFormatter;
 		$this->namespaceInfo = $namespaceInfo;
 		$this->userOptionsLookup = $userOptionsLookup;
+		$this->watchlistManager = $watchlistManager;
 		$this->useCodex = $this->getConfig()->get( MainConfigNames::UseCodexSpecialBlock ) ||
 			$this->getRequest()->getBool( 'usecodex' );
 		$this->useMultiblocks = $this->getConfig()->get( MainConfigNames::EnableMultiBlocks ) ||
@@ -999,44 +997,20 @@ class SpecialBlock extends FormSpecialPage {
 	}
 
 	/**
-	 * Given the form data, actually implement a block.
-	 *
-	 * @deprecated since 1.36, use BlockUserFactory service instead,
-	 *     hard-deprecated since 1.43
+	 * Process the form on POST submission.
 	 * @param array $data
-	 * @param IContextSource $context
-	 * @return bool|string|array|Status
+	 * @param HTMLForm|null $form
+	 * @return bool|string|array|Status As documented for HTMLForm::trySubmit.
 	 */
-	public static function processForm( array $data, IContextSource $context ) {
-		wfDeprecated( __METHOD__, '1.36' );
-		$services = MediaWikiServices::getInstance();
-		return self::processFormInternal(
-			$data,
-			$context->getAuthority(),
-			$services->getBlockUserFactory(),
-			$services->getBlockTargetFactory()
-		);
-	}
-
-	/**
-	 * Implementation details for processForm
-	 * Own function to allow sharing the deprecated code with non-deprecated and service code
-	 *
-	 * @param array $data
-	 * @param Authority $performer
-	 * @param BlockUserFactory $blockUserFactory
-	 * @param BlockTargetFactory $blockTargetFactory
-	 * @return bool|string|array|Status
-	 */
-	private static function processFormInternal(
-		array $data,
-		Authority $performer,
-		BlockUserFactory $blockUserFactory,
-		BlockTargetFactory $blockTargetFactory
-	) {
+	public function onSubmit( array $data, ?HTMLForm $form = null ) {
+		if ( $this->useCodex ) {
+			// Treat as no submission for the JS-only Codex form.
+			// This happens if the form is submitted before any JS is loaded.
+			return false;
+		}
 		// Temporarily access service container until the feature flag is removed: T280532
-		$enablePartialActionBlocks = MediaWikiServices::getInstance()
-			->getMainConfig()->get( MainConfigNames::EnablePartialActionBlocks );
+		$enablePartialActionBlocks = $this->getConfig()
+			->get( MainConfigNames::EnablePartialActionBlocks );
 
 		$isPartialBlock = isset( $data['EditingRestriction'] ) &&
 			$data['EditingRestriction'] === 'partial';
@@ -1052,7 +1026,7 @@ class SpecialBlock extends FormSpecialPage {
 		}
 
 		/** @var User $target */
-		$target = $blockTargetFactory->newFromString( $data['Target'] );
+		$target = $this->blockTargetFactory->newFromString( $data['Target'] );
 		if ( $target instanceof UserBlockTarget ) {
 			// Give admins a heads-up before they go and block themselves.  Much messier
 			// to do this for IPs, but it's pretty unlikely they'd ever get the 'block'
@@ -1061,7 +1035,7 @@ class SpecialBlock extends FormSpecialPage {
 			// since both $data['PreviousTarget'] and $target are normalized
 			// but $data['Target'] gets overridden by (non-normalized) request variable
 			// from previous request.
-			if ( $target->toString() === $performer->getUser()->getName() &&
+			if ( $target->toString() === $this->getUser()->getName() &&
 				( $data['PreviousTarget'] !== $target->toString() || !$data['Confirm'] )
 			) {
 				return [ 'ipb-blockingself', 'ipb-confirmaction' ];
@@ -1125,9 +1099,9 @@ class SpecialBlock extends FormSpecialPage {
 			$blockOptions['isEmailBlocked'] = $data['DisableEmail'];
 		}
 
-		$blockUser = $blockUserFactory->newBlockUser(
+		$blockUser = $this->blockUserFactory->newBlockUser(
 			$target,
-			$performer,
+			$this->getAuthority(),
 			$data['Expiry'],
 			$blockReason,
 			$blockOptions,
@@ -1165,82 +1139,13 @@ class SpecialBlock extends FormSpecialPage {
 			&& array_key_exists( 'Watch', $data )
 			&& $data['Watch']
 		) {
-			MediaWikiServices::getInstance()->getWatchlistManager()->addWatchIgnoringRights(
-				$performer->getUser(),
+			$this->watchlistManager->addWatchIgnoringRights(
+				$this->getUser(),
 				Title::newFromPageReference( $target->getUserPage() )
 			);
 		}
 
 		return true;
-	}
-
-	/**
-	 * Get an array of suggested block durations from MediaWiki:Ipboptions
-	 * @todo FIXME: This uses a rather odd syntax for the options, should it be converted
-	 *     to the standard "**<duration>|<displayname>" format?
-	 * @deprecated since 1.42, use Language::getBlockDurations() instead,
-	 *     hard-deprecated since 1.43
-	 * @param Language|null $lang The language to get the durations in, or null to use
-	 *     the wiki's content language
-	 * @param bool $includeOther Whether to include the 'other' option in the list of
-	 *     suggestions
-	 * @return string[]
-	 */
-	public static function getSuggestedDurations( ?Language $lang = null, $includeOther = true ) {
-		wfDeprecated( __METHOD__, '1.42' );
-		$lang ??= MediaWikiServices::getInstance()->getContentLanguage();
-		return $lang->getBlockDurations( $includeOther );
-	}
-
-	/**
-	 * Convert a submitted expiry time, which may be relative ("2 weeks", etc) or absolute
-	 * ("24 May 2034", etc), into an absolute timestamp we can put into the database.
-	 *
-	 * @deprecated since 1.36, use BlockUser::parseExpiryInput instead,
-	 *     hard-deprecated since 1.43
-	 *
-	 * @param string $expiry Whatever was typed into the form
-	 * @return string|bool Timestamp or 'infinity' or false on error.
-	 */
-	public static function parseExpiryInput( $expiry ) {
-		wfDeprecated( __METHOD__, '1.36' );
-		return BlockUser::parseExpiryInput( $expiry );
-	}
-
-	/**
-	 * Can we do an email block?
-	 *
-	 * @deprecated since 1.36, use BlockPermissionChecker service instead,
-	 *     hard-deprecated since 1.43
-	 * @param UserIdentity $user The sysop wanting to make a block
-	 * @return bool
-	 */
-	public static function canBlockEmail( UserIdentity $user ) {
-		wfDeprecated( __METHOD__, '1.36' );
-		return MediaWikiServices::getInstance()
-			->getBlockPermissionCheckerFactory()
-			->newChecker( User::newFromIdentity( $user ) )
-			->checkEmailPermissions();
-	}
-
-	/**
-	 * Process the form on POST submission.
-	 * @param array $data
-	 * @param HTMLForm|null $form
-	 * @return bool|string|array|Status As documented for HTMLForm::trySubmit.
-	 */
-	public function onSubmit( array $data, ?HTMLForm $form = null ) {
-		if ( $this->useCodex ) {
-			// Treat as no submission for the JS-only Codex form.
-			// This happens if the form is submitted before any JS is loaded.
-			return false;
-		}
-		return self::processFormInternal(
-			$data,
-			$this->getAuthority(),
-			$this->blockUserFactory,
-			$this->blockTargetFactory
-		);
 	}
 
 	/**
