@@ -639,6 +639,7 @@ because of Phabricator reports.
 * Title::deleteTitleProtection(), deprecated in 1.37, now emits warnings.
   Use RestrictionStore::deleteCreateProtection() instead.
 * IDatabase::setTransactionListener() is now deprecated without replacement.
+* ILoadBalancer::setTransactionListener() is now deprecated without replacement.
 * ILBFactory::setWaitForReplicationListener() is now deprecated without
   replacement.
 * Maintenance::beginTransaction(), Maintenance::commitTransaction(),
