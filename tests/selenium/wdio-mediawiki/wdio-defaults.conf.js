@@ -74,11 +74,11 @@ export const config = {
 		// For Chrome/Chromium https://www.w3.org/TR/webdriver
 		browserName: 'chrome',
 		// Use correct browser and driver in CI
-		...( process.env.CI && {
-			'wdio:chromedriverOptions': {
+		'wdio:chromedriverOptions': {
+			'disable-build-check': true,
+			...( process.env.CI && {
 				binary: '/usr/bin/chromedriver'
-			}
-		} ),
+			} ) },
 		// Can be changed when we update to newer browser versions
 		// Bidi is still under development in Chrome/Firefox
 		'wdio:enforceWebDriverClassic': true,
