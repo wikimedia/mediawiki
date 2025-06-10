@@ -68,7 +68,7 @@ class JsonSchemaReferenceResolver {
 		[ $className, $fieldName ] = self::unpackRef( $schema );
 		try {
 			$value = constant( "$className::$fieldName" );
-		} catch ( Error $e ) {
+		} catch ( Error ) {
 			throw new RefNotFoundException(
 				"Failed resolving reference $fieldName in $className. Root schema location: $rootClass"
 			);

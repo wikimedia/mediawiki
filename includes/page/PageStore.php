@@ -215,7 +215,7 @@ class PageStore implements PageLookup {
 
 				// We were able to use the row we got from link cache.
 				$this->incrementLinkCacheHitOrMiss( $hitOrMiss, 'good' );
-			} catch ( InvalidArgumentException $e ) {
+			} catch ( InvalidArgumentException ) {
 				// The cached row was incomplete or corrupt,
 				// just keep going and load from the database.
 				$page = $this->loadPageFromConditions( $conds, $queryFlags );
@@ -257,7 +257,7 @@ class PageStore implements PageLookup {
 		try {
 			$title = $this->titleParser->parseTitle( $text, $defaultNamespace );
 			return $this->getPageForLink( $title, $queryFlags );
-		} catch ( MalformedTitleException | InvalidArgumentException $e ) {
+		} catch ( MalformedTitleException | InvalidArgumentException ) {
 			// Note that even some well-formed links are still invalid parameters
 			// for getPageForLink(), e.g. interwiki links or special pages.
 			return null;

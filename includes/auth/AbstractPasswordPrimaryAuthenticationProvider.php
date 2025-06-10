@@ -78,7 +78,7 @@ abstract class AbstractPasswordPrimaryAuthenticationProvider
 		$passwordFactory = $this->getPasswordFactory();
 		try {
 			return $passwordFactory->newFromCiphertext( $hash );
-		} catch ( PasswordError $e ) {
+		} catch ( PasswordError ) {
 			$class = static::class;
 			$this->logger->debug( "Invalid password hash in {$class}::getPassword()" );
 			return $passwordFactory->newFromCiphertext( null );

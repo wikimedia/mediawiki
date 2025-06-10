@@ -815,7 +815,7 @@ class DeletePage {
 			$countable = $pageBeforeDelete->isCountable();
 		} catch ( TimeoutException $e ) {
 			throw $e;
-		} catch ( Exception $ex ) {
+		} catch ( Exception ) {
 			// fallback for deleting broken pages for which we cannot load the content for
 			// some reason. Note that doDeleteArticleReal() already logged this problem.
 			$countable = false;

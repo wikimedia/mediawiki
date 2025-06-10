@@ -366,7 +366,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			$this->addJoinConds( [ 'change_tag' => [ 'JOIN', [ 'rc_id=ct_rc_id' ] ] ] );
 			try {
 				$this->addWhereFld( 'ct_tag_id', $this->changeTagDefStore->getId( $params['tag'] ) );
-			} catch ( NameTableAccessException $exception ) {
+			} catch ( NameTableAccessException ) {
 				// Return nothing.
 				$this->addWhere( '1=0' );
 			}
@@ -412,7 +412,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		if ( $params['slot'] !== null ) {
 			try {
 				$slotId = $this->slotRoleStore->getId( $params['slot'] );
-			} catch ( Exception $e ) {
+			} catch ( Exception ) {
 				$slotId = null;
 			}
 

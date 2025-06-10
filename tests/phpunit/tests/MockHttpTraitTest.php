@@ -17,7 +17,7 @@ class MockHttpTraitTest extends MediaWikiIntegrationTestCase {
 			$this->getServiceContainer()->getHttpRequestFactory()
 				->create( 'http://example.com' );
 			$pass = false;
-		} catch ( AssertionFailedError $ex ) {
+		} catch ( AssertionFailedError ) {
 			$pass = true;
 		}
 
@@ -28,7 +28,7 @@ class MockHttpTraitTest extends MediaWikiIntegrationTestCase {
 		try {
 			$this->makeMockHttpRequestFactory()->create( 'http://example.com' );
 			$pass = false;
-		} catch ( AssertionFailedError $ex ) {
+		} catch ( AssertionFailedError ) {
 			$pass = true;
 		}
 

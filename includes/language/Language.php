@@ -4793,7 +4793,7 @@ class Language implements Bcp47Code {
 			}
 			// @suppress PhanParamTooFew Phan thinks this always requires 3 parameters, that's wrong
 			return new NumberFormatter( $code, NumberFormatter::DECIMAL );
-		} catch ( \ValueError $_ ) {
+		} catch ( \ValueError ) {
 			// Value Errors are thrown since php8.4 for invalid locales
 			return null;
 		}

@@ -123,7 +123,7 @@ class MoveToExternal extends Maintenance {
 		$undo = $this->getOption( 'undo' );
 		try {
 			$this->undoLog = new UndoLog( $undo, $dbw );
-		} catch ( RuntimeException $e ) {
+		} catch ( RuntimeException ) {
 			$this->fatalError( "Unable to open undo log" );
 		}
 		$this->resolveStubs->setUndoLog( $this->undoLog );

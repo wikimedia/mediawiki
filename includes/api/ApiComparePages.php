@@ -570,7 +570,7 @@ class ApiComparePages extends ApiBase {
 					$content = $oldContent->replaceSection( $section, $content, '' );
 				} catch ( TimeoutException $e ) {
 					throw $e;
-				} catch ( Exception $ex ) {
+				} catch ( Exception ) {
 					// Probably a content model mismatch.
 					$content = null;
 				}

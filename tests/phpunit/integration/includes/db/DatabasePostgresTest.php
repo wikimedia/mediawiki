@@ -92,7 +92,7 @@ class DatabasePostgresTest extends MediaWikiIntegrationTestCase {
 			);
 			$this->getDb()->endAtomic( __METHOD__ );
 			$this->fail( 'Expected exception not thrown' );
-		} catch ( DBQueryError $e ) {
+		} catch ( DBQueryError ) {
 			$this->assertSame( 0, $this->getDb()->affectedRows() );
 			$this->getDb()->cancelAtomic( __METHOD__ );
 		}
@@ -151,7 +151,7 @@ class DatabasePostgresTest extends MediaWikiIntegrationTestCase {
 			$this->getDb()->insertSelect( 'bar', 'foo', [ 'i' => 'i' ], [], __METHOD__, [ 'IGNORE' ] );
 			$this->getDb()->endAtomic( __METHOD__ );
 			$this->fail( 'Expected exception not thrown' );
-		} catch ( DBQueryError $e ) {
+		} catch ( DBQueryError ) {
 			$this->assertSame( 0, $this->getDb()->affectedRows() );
 			$this->getDb()->cancelAtomic( __METHOD__ );
 		}

@@ -129,7 +129,7 @@ class UserNameUtils implements UserRigorOptions {
 		// such as with extra namespace keys at the start.
 		try {
 			$title = $this->titleParser->parseTitle( $name );
-		} catch ( MalformedTitleException $_ ) {
+		} catch ( MalformedTitleException ) {
 			$title = null;
 		}
 
@@ -292,7 +292,7 @@ class UserNameUtils implements UserRigorOptions {
 		// but only when validation is requested (T14654)
 		try {
 			$title = $this->titleParser->parseTitle( $name, NS_USER );
-		} catch ( MalformedTitleException $_ ) {
+		} catch ( MalformedTitleException ) {
 			$title = null;
 		}
 

@@ -1303,7 +1303,7 @@ class AuthManager implements LoggerAwareInterface {
 
 		try {
 			$username = AuthenticationRequest::getUsernameFromRequests( $reqs );
-		} catch ( \UnexpectedValueException $ex ) {
+		} catch ( \UnexpectedValueException ) {
 			$username = null;
 		}
 		if ( $username === null ) {

@@ -1039,7 +1039,7 @@ class ApiMain extends ApiBase {
 			foreach ( $ex->getStatusValue()->getMessages() as $error ) {
 				try {
 					$this->mPrinter->addWarning( $error );
-				} catch ( Throwable $ex2 ) {
+				} catch ( Throwable ) {
 					// WTF?
 					$this->addWarning( $error );
 				}
@@ -1074,7 +1074,7 @@ class ApiMain extends ApiBase {
 			$main = new self( RequestContext::getMain(), false );
 			$main->handleException( $e );
 			$main->logRequest( 0, $e );
-		} catch ( Throwable $e2 ) {
+		} catch ( Throwable ) {
 			// Nope, even that didn't work. Punt.
 			throw $e;
 		}
@@ -1777,7 +1777,7 @@ class ApiMain extends ApiBase {
 							$return304 = wfTimestamp( TS_MW, $lastMod ) <= $ts->getTimestamp( TS_MW );
 						}
 					}
-				} catch ( TimestampException $e ) {
+				} catch ( TimestampException ) {
 					// Invalid timestamp, ignore it
 				}
 			}

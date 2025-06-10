@@ -191,7 +191,7 @@ class BlockLogFormatter extends LogFormatter {
 			foreach ( $params[6]['pages'] as $page ) {
 				try {
 					$preload[] = $this->titleParser->parseTitle( $page );
-				} catch ( MalformedTitleException $_ ) {
+				} catch ( MalformedTitleException ) {
 				}
 			}
 		}

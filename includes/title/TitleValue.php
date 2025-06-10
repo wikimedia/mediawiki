@@ -91,7 +91,7 @@ class TitleValue implements Stringable, LinkTarget {
 
 		try {
 			return new static( $namespace, $title, $fragment, $interwiki );
-		} catch ( ParameterAssertionException $ex ) {
+		} catch ( ParameterAssertionException ) {
 			return null;
 		}
 	}

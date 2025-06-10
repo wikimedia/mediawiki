@@ -30,13 +30,13 @@ class AbstractPrimaryAuthenticationProviderTest extends MediaWikiIntegrationTest
 		try {
 			$provider->continuePrimaryAuthentication( [] );
 			$this->fail( 'Expected exception not thrown' );
-		} catch ( BadMethodCallException $ex ) {
+		} catch ( BadMethodCallException ) {
 		}
 
 		try {
 			$provider->continuePrimaryAccountCreation( $user, $user, [] );
 			$this->fail( 'Expected exception not thrown' );
-		} catch ( BadMethodCallException $ex ) {
+		} catch ( BadMethodCallException ) {
 		}
 
 		$this->assertTrue( $provider->providerAllowsPropertyChange( 'foo' ) );

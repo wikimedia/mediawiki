@@ -37,7 +37,7 @@ class ExpiryDef extends TypeDef {
 
 		try {
 			$expiry = self::normalizeExpiry( $value, TS_ISO_8601 );
-		} catch ( InvalidArgumentException $e ) {
+		} catch ( InvalidArgumentException ) {
 			$this->failure( 'badexpiry', $name, $value, $settings, $options );
 		}
 

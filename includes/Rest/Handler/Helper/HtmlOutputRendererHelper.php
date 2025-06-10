@@ -375,7 +375,7 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 			$handler = $this->contentHandlerFactory->getContentHandler( $model );
 			$content = $handler->unserializeContent( $source );
 			$this->setContent( $content );
-		} catch ( MWUnknownContentModelException $ex ) {
+		} catch ( MWUnknownContentModelException ) {
 			throw new LocalizedHttpException( new MessageValue( "rest-bad-content-model", [ $model ] ), 400 );
 		}
 	}

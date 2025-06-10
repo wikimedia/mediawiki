@@ -1007,7 +1007,7 @@ class DatabaseSQLTest extends TestCase {
 		try {
 			$this->database->delete( 'x', [ 'field' => 1 ], __METHOD__ );
 			$this->fail( 'Expected exception not thrown' );
-		} catch ( DBTransactionStateError $e ) {
+		} catch ( DBTransactionStateError ) {
 		}
 		$this->database->rollback( __METHOD__, Database::FLUSHING_INTERNAL );
 		// phpcs:ignore

@@ -26,7 +26,7 @@ class PostgresPlTask extends Task {
 		$conn = $status->getDB();
 		try {
 			$conn->query( 'CREATE EXTENSION IF NOT EXISTS plpgsql', __METHOD__ );
-		} catch ( DBQueryError $e ) {
+		} catch ( DBQueryError ) {
 			return Status::newFatal( 'config-pg-no-plpgsql', $this->getConfigVar( MainConfigNames::DBname ) );
 		}
 		return Status::newGood();

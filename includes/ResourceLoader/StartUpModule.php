@@ -142,7 +142,7 @@ class StartUpModule extends Module {
 					$implicitDependencies = self::getImplicitDependencies( $registryData, $dependency, $depCheck );
 					$dependencies = array_diff( $dependencies, $implicitDependencies );
 				}
-			} catch ( CircularDependencyError $err ) {
+			} catch ( CircularDependencyError ) {
 				// Leave unchanged
 				$dependencies = $data['dependencies'];
 			}

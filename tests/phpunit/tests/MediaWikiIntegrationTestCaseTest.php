@@ -487,7 +487,7 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 		try {
 			$httpRequestFactory->get( 'http://0.0.0.0/' );
 			$prevented = false;
-		} catch ( AssertionFailedError $e ) {
+		} catch ( AssertionFailedError ) {
 			// pass
 		}
 
@@ -496,7 +496,7 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 		try {
 			$httpRequestFactory->post( 'http://0.0.0.0/' );
 			$prevented = false;
-		} catch ( AssertionFailedError $e ) {
+		} catch ( AssertionFailedError ) {
 			// pass
 		}
 
@@ -505,7 +505,7 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 		try {
 			$httpRequestFactory->request( 'HEAD', 'http://0.0.0.0/' );
 			$prevented = false;
-		} catch ( AssertionFailedError $e ) {
+		} catch ( AssertionFailedError ) {
 			// pass
 		}
 
@@ -514,7 +514,7 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 		try {
 			$httpRequestFactory->create( 'http://0.0.0.0/' );
 			$prevented = false;
-		} catch ( AssertionFailedError $e ) {
+		} catch ( AssertionFailedError ) {
 			// pass
 		}
 
@@ -524,7 +524,7 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 			$client = $httpRequestFactory->createGuzzleClient();
 			$client->get( 'http://0.0.0.0/' );
 			$prevented = false;
-		} catch ( AssertionFailedError $e ) {
+		} catch ( AssertionFailedError ) {
 			// pass
 		}
 
@@ -536,7 +536,7 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 		try {
 			$multiClient->run( $req );
 			$prevented = false;
-		} catch ( AssertionFailedError $e ) {
+		} catch ( AssertionFailedError ) {
 			// pass
 		}
 
@@ -545,7 +545,7 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 		try {
 			$multiClient->runMulti( [ $req ] );
 			$prevented = false;
-		} catch ( AssertionFailedError $e ) {
+		} catch ( AssertionFailedError ) {
 			// pass
 		}
 

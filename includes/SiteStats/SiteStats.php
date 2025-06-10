@@ -185,7 +185,7 @@ class SiteStats {
 			static function ( $oldValue, &$ttl, array &$setOpts ) {
 				try {
 					$jobs = array_sum( MediaWikiServices::getInstance()->getJobQueueGroup()->getQueueSizes() );
-				} catch ( JobQueueError $e ) {
+				} catch ( JobQueueError ) {
 					$jobs = 0;
 				}
 				return $jobs;

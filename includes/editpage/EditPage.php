@@ -1034,7 +1034,7 @@ class EditPage implements IEditObject {
 		} else {
 			try {
 				$text = $this->toEditText( $content );
-			} catch ( MWException $e ) {
+			} catch ( MWException ) {
 				# Serialize using the default format if the content model is not supported
 				# (e.g. for an old revision with a different model)
 				$text = $content->serialize();
@@ -1188,7 +1188,7 @@ class EditPage implements IEditObject {
 
 		try {
 			$handler = $this->contentHandlerFactory->getContentHandler( $this->contentModel );
-		} catch ( MWUnknownContentModelException $e ) {
+		} catch ( MWUnknownContentModelException ) {
 			throw new ErrorPageError(
 				'editpage-invalidcontentmodel-title',
 				'editpage-invalidcontentmodel-text',

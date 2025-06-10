@@ -421,7 +421,7 @@ abstract class JobQueue {
 			}
 		} catch ( TimeoutException $e ) {
 			throw $e;
-		} catch ( Exception $e ) {
+		} catch ( Exception ) {
 			// don't lose jobs over this
 		}
 

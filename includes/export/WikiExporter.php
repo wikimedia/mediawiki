@@ -242,7 +242,7 @@ class WikiExporter {
 			$this->dumpFrom(
 				'page_namespace=' . $link->getNamespace() .
 				' AND page_title=' . $this->db->addQuotes( $link->getDBkey() ) );
-		} catch ( MalformedTitleException $ex ) {
+		} catch ( MalformedTitleException ) {
 			throw new RuntimeException( "Can't export invalid title" );
 		}
 	}

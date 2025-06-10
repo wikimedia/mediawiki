@@ -89,7 +89,7 @@ class ReplicationReporter {
 			// Avoid exceptions as this is used internally in critical sections
 			try {
 				$lag = $this->getLag( $conn );
-			} catch ( DBError $e ) {
+			} catch ( DBError ) {
 				$lag = false;
 			}
 		} else {

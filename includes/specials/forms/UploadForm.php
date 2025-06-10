@@ -302,7 +302,7 @@ class UploadForm extends HTMLForm {
 				$file = $stash->getFile( $this->mSessionKey );
 			} catch ( TimeoutException $e ) {
 				throw $e;
-			} catch ( Exception $e ) {
+			} catch ( Exception ) {
 				$file = null;
 			}
 			if ( $file ) {

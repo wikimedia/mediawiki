@@ -78,7 +78,7 @@ class TestSuiteBuilder {
 			$this->buildSuitesWithDurationInformationWithoutLeadingEmptyTests(
 				$testDescriptorsWithoutLeadingZeros, $suites, $groups, $chunkSize
 			);
-		} catch ( SuiteSplittingException $se ) {
+		} catch ( SuiteSplittingException ) {
 			return $this->buildSuitesNoDurationInformation( $testDescriptors, $groups );
 		}
 

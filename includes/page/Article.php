@@ -549,7 +549,7 @@ class Article implements Page {
 		try {
 			$continue =
 				$this->generateContentOutput( $authority, $parserOptions, $oldid, $outputPage, $poOptions );
-		} catch ( BadRevisionException $e ) {
+		} catch ( BadRevisionException ) {
 			$continue = false;
 			$this->showViewError( wfMessage( 'badrevision' )->text() );
 		}

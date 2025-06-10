@@ -322,7 +322,7 @@ class BlockUser {
 	public static function parseExpiryInput( string $expiry ) {
 		try {
 			return ExpiryDef::normalizeExpiry( $expiry, TS_MW );
-		} catch ( InvalidArgumentException $e ) {
+		} catch ( InvalidArgumentException ) {
 			return false;
 		}
 	}

@@ -47,7 +47,7 @@ class UploadedFileStreamTest extends UploadedFileTestBase {
 		try {
 			// PHP 7 raises warnings
 			$this->assertFalse( @fread( $fp, 1 ) );
-		} catch ( TypeError $ex ) {
+		} catch ( TypeError ) {
 			// PHP 8 throws
 		}
 	}
@@ -104,7 +104,7 @@ class UploadedFileStreamTest extends UploadedFileTestBase {
 		// Stream operations now fail.
 		try {
 			$stream->seek( 0 );
-		} catch ( RuntimeException $ex ) {
+		} catch ( RuntimeException ) {
 		}
 
 		// Stream close doesn't affect the file descriptor
@@ -160,11 +160,11 @@ class UploadedFileStreamTest extends UploadedFileTestBase {
 		$stream->close();
 		try {
 			$stream->seek( 0 );
-		} catch ( RuntimeException $ex ) {
+		} catch ( RuntimeException ) {
 		}
 		try {
 			$stream->tell();
-		} catch ( RuntimeException $ex ) {
+		} catch ( RuntimeException ) {
 		}
 	}
 
@@ -214,7 +214,7 @@ class UploadedFileStreamTest extends UploadedFileTestBase {
 		$stream->close();
 		try {
 			$stream->rewind();
-		} catch ( RuntimeException $ex ) {
+		} catch ( RuntimeException ) {
 		}
 	}
 
@@ -224,7 +224,7 @@ class UploadedFileStreamTest extends UploadedFileTestBase {
 
 		try {
 			$stream->write( 'foo' );
-		} catch ( RuntimeException $ex ) {
+		} catch ( RuntimeException ) {
 		}
 	}
 
@@ -241,7 +241,7 @@ class UploadedFileStreamTest extends UploadedFileTestBase {
 		$stream->close();
 		try {
 			$stream->read( 1 );
-		} catch ( RuntimeException $ex ) {
+		} catch ( RuntimeException ) {
 		}
 	}
 
@@ -257,7 +257,7 @@ class UploadedFileStreamTest extends UploadedFileTestBase {
 		$stream->close();
 		try {
 			$stream->getContents();
-		} catch ( RuntimeException $ex ) {
+		} catch ( RuntimeException ) {
 		}
 	}
 
@@ -278,7 +278,7 @@ class UploadedFileStreamTest extends UploadedFileTestBase {
 		$stream->close();
 		try {
 			$stream->getMetadata();
-		} catch ( RuntimeException $ex ) {
+		} catch ( RuntimeException ) {
 		}
 	}
 

@@ -248,7 +248,7 @@ class GuzzleHttpRequest extends MWHttpRequest {
 					$this->status->fatal( 'http-request-error' );
 				}
 			}
-		} catch ( GuzzleHttp\Exception\GuzzleException $e ) {
+		} catch ( GuzzleHttp\Exception\GuzzleException ) {
 			$this->status->fatal( 'http-internal-error' );
 		}
 

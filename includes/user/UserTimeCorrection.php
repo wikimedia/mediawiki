@@ -176,7 +176,7 @@ class UserTimeCorrection implements Stringable {
 				return;
 			} catch ( TimeoutException $e ) {
 				throw $e;
-			} catch ( Exception $e ) {
+			} catch ( Exception ) {
 				// Not a valid/known timezone.
 				// Fall back to any specified offset
 			}

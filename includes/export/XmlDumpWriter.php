@@ -335,7 +335,7 @@ class XmlDumpWriter {
 	private function invokeLenient( $callback, $warning ) {
 		try {
 			return $callback();
-		} catch ( SuppressedDataException $ex ) {
+		} catch ( SuppressedDataException ) {
 			return null;
 		} catch ( MWException | RuntimeException | InvalidArgumentException | ErrorException $ex ) {
 			MWDebug::warning( $warning . ': ' . $ex->getMessage() );

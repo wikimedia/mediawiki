@@ -61,14 +61,14 @@ class ApiMessageTest extends MediaWikiIntegrationTestCase {
 		try {
 			$msg->setApiCode( $code );
 			$this->fail( 'Expected exception not thrown' );
-		} catch ( InvalidArgumentException $ex ) {
+		} catch ( InvalidArgumentException ) {
 			$this->assertTrue( true );
 		}
 
 		try {
 			new ApiMessage( 'foo', $code );
 			$this->fail( 'Expected exception not thrown' );
-		} catch ( InvalidArgumentException $ex ) {
+		} catch ( InvalidArgumentException ) {
 			$this->assertTrue( true );
 		}
 	}

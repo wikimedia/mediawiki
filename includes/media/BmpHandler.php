@@ -75,7 +75,7 @@ class BmpHandler extends BitmapHandler {
 		try {
 			$w = StringUtils::unpack( 'V', $w, 4 );
 			$h = StringUtils::unpack( 'V', $h, 4 );
-		} catch ( UnpackFailedException $e ) {
+		} catch ( UnpackFailedException ) {
 			return [];
 		}
 

@@ -221,7 +221,7 @@ class SpecialBotPasswords extends FormSpecialPage {
 					$password = $this->passwordFactory->newFromCiphertext( $row->bp_password );
 					$passwordInvalid = $password instanceof InvalidPassword;
 					unset( $password );
-				} catch ( PasswordError $ex ) {
+				} catch ( PasswordError ) {
 					$passwordInvalid = true;
 				}
 

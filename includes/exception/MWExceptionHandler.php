@@ -734,7 +734,7 @@ TXT;
 
 			( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )
 				->onLogException( $e, $suppressed );
-		} catch ( RecursiveServiceDependencyException $e ) {
+		} catch ( RecursiveServiceDependencyException ) {
 			// An error from the HookContainer wiring will lead here (T379125)
 		}
 	}

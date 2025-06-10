@@ -599,7 +599,7 @@ class MessageCache implements LoggerAwareInterface {
 				$text = $this->getMessageTextFromContent( $content );
 			} catch ( TimeoutException $e ) {
 				throw $e;
-			} catch ( Exception $ex ) {
+			} catch ( Exception ) {
 				$text = false;
 			}
 

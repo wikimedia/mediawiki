@@ -547,7 +547,7 @@ abstract class ApiQueryBase extends ApiBase {
 		try {
 			$titleParser = MediaWikiServices::getInstance()->getTitleParser();
 			$t = $titleParser->parseTitle( $titlePart . 'X', $defaultNamespace );
-		} catch ( MalformedTitleException $e ) {
+		} catch ( MalformedTitleException ) {
 			$t = null;
 		}
 

@@ -113,7 +113,7 @@ class SpecialLog extends SpecialPage {
 		if ( $dateString ) {
 			try {
 				$dateStamp = MWTimestamp::getInstance( $dateString . ' 00:00:00' );
-			} catch ( TimestampException $e ) {
+			} catch ( TimestampException ) {
 				// If users provide an invalid date, silently ignore it
 				// instead of letting an exception bubble up (T201411)
 				$dateStamp = false;

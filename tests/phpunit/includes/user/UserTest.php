@@ -848,19 +848,19 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		try {
 			User::newFromAnyId( null, null, null );
 			$this->fail( 'Expected exception not thrown' );
-		} catch ( InvalidArgumentException $ex ) {
+		} catch ( InvalidArgumentException ) {
 		}
 		try {
 			User::newFromAnyId( 0, null, 0 );
 			$this->fail( 'Expected exception not thrown' );
-		} catch ( InvalidArgumentException $ex ) {
+		} catch ( InvalidArgumentException ) {
 		}
 
 		// Loading remote user by id from remote wiki should fail
 		try {
 			User::newFromAnyId( 123456, null, 654321, 'foo' );
 			$this->fail( 'Expected exception not thrown' );
-		} catch ( InvalidArgumentException $ex ) {
+		} catch ( InvalidArgumentException ) {
 		}
 	}
 

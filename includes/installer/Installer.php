@@ -776,7 +776,7 @@ abstract class Installer {
 				'unwrap' => true,
 			] )->getContentHolderText();
 			$html = Parser::stripOuterParagraph( $html );
-		} catch ( ServiceDisabledException $e ) {
+		} catch ( ServiceDisabledException ) {
 			$html = '<!--DB access attempted during parse-->  ' . htmlspecialchars( $text );
 		}
 
@@ -1052,7 +1052,7 @@ abstract class Installer {
 		);
 		try {
 			$status = $req->execute();
-		} catch ( Exception $e ) {
+		} catch ( Exception ) {
 			// HttpRequestFactory::get can throw with allow_url_fopen = false and no curl
 			// extension.
 		}
@@ -1136,7 +1136,7 @@ abstract class Installer {
 						[ 'timeout' => 3 ],
 						__METHOD__
 					);
-				} catch ( Exception $e ) {
+				} catch ( Exception ) {
 					// HttpRequestFactory::get can throw with allow_url_fopen = false and no curl
 					// extension.
 					$text = null;

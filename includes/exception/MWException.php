@@ -82,7 +82,7 @@ class MWException extends Exception {
 		if ( $this->useMessageCache() ) {
 			try {
 				$res = wfMessage( $key, ...$params )->text();
-			} catch ( Exception $e ) {
+			} catch ( Exception ) {
 			}
 		}
 		if ( $res === false ) {

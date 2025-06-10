@@ -66,7 +66,7 @@ abstract class CentralIdLookup {
 			return MediaWikiServices::getInstance()
 				->getCentralIdLookupFactory()
 				->getLookup( $providerId );
-		} catch ( Throwable $unused ) {
+		} catch ( Throwable ) {
 			return null;
 		}
 	}

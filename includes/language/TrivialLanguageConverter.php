@@ -88,7 +88,7 @@ class TrivialLanguageConverter implements ILanguageConverter {
 		$index = $title->getNamespace();
 		try {
 			$nsWithUnderscores = $this->titleFormatter->getNamespaceName( $index, $mainText );
-		} catch ( InvalidArgumentException $e ) {
+		} catch ( InvalidArgumentException ) {
 			// T165149: see TitleFormatter::formatTitle()
 			$nsWithUnderscores = $this->language->getNsText( NS_SPECIAL );
 			$mainText = "Badtitle/NS$index:$mainText";

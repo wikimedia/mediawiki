@@ -38,7 +38,7 @@ class ExternalStore {
 			return MediaWikiServices::getInstance()
 				->getExternalStoreFactory()
 				->getStore( $proto, $params );
-		} catch ( ExternalStoreException $e ) {
+		} catch ( ExternalStoreException ) {
 			return false;
 		}
 	}
@@ -56,7 +56,7 @@ class ExternalStore {
 			return MediaWikiServices::getInstance()
 				->getExternalStoreAccess()
 				->fetchFromURL( $url, $params );
-		} catch ( ExternalStoreException $e ) {
+		} catch ( ExternalStoreException ) {
 			return false;
 		}
 	}
@@ -78,7 +78,7 @@ class ExternalStore {
 			$location = $esFactory->getStoreLocationFromUrl( $url );
 
 			return $esFactory->getStoreForUrl( $url, $params )->store( $location, $data );
-		} catch ( ExternalStoreException $e ) {
+		} catch ( ExternalStoreException ) {
 			return false;
 		}
 	}

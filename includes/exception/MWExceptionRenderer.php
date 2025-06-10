@@ -279,7 +279,7 @@ class MWExceptionRenderer {
 		// NOTE: Keep logic in sync with MWException::msg.
 		try {
 			$res = wfMessage( $key, ...$params );
-		} catch ( Exception $e ) {
+		} catch ( Exception ) {
 			// Fallback to static message text and generic sitename.
 			// Avoid live config as this must work before Setup/MediaWikiServices finish.
 			$res = new RawMessage( $fallback, $params );
@@ -351,7 +351,7 @@ class MWExceptionRenderer {
 				return null;
 			}
 			$text = $msg->text();
-		} catch ( Exception $e2 ) {
+		} catch ( Exception ) {
 			return null;
 		}
 		return $text;

@@ -123,7 +123,7 @@ class PageHistoryHandler extends SimpleHandler {
 			foreach ( ChangeTags::REVERT_TAGS as $tagName ) {
 				try {
 					$tagIds[] = $this->changeTagDefStore->getId( $tagName );
-				} catch ( NameTableAccessException $exception ) {
+				} catch ( NameTableAccessException ) {
 					// If no revisions are tagged with a name, no tag id will be present
 				}
 			}

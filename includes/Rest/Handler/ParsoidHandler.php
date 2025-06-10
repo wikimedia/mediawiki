@@ -1099,7 +1099,7 @@ abstract class ParsoidHandler extends Handler {
 		$title = $page->getLinkTarget();
 		try {
 			$page = $services->getPageStore()->getPageForLink( $title );
-		} catch ( MalformedTitleException | InvalidArgumentException $e ) {
+		} catch ( MalformedTitleException | InvalidArgumentException ) {
 			// Note that even some well-formed links are still invalid
 			// parameters for getPageForLink(), e.g. interwiki links or special pages.
 			throw new HttpException(

@@ -372,7 +372,7 @@ class HtmlInputTransformHelper {
 			} else {
 				try {
 					$originalRendering = ParsoidRenderID::newFromKey( $key );
-				} catch ( InvalidArgumentException $e ) {
+				} catch ( InvalidArgumentException ) {
 					throw new LocalizedHttpException(
 						new MessageValue( 'rest-parsoid-bad-render-id', [ $key ] ),
 						400
@@ -632,7 +632,7 @@ class HtmlInputTransformHelper {
 				$content->getModel(),
 				$this->envOptions['outputContentVersion']
 			);
-		} catch ( InvalidArgumentException $e ) {
+		} catch ( InvalidArgumentException ) {
 			// If Parsoid doesn't know the content type,
 			// ask the ContentHandler!
 			$contentType = $content->getDefaultFormat();
@@ -768,7 +768,7 @@ class HtmlInputTransformHelper {
 
 				$pb = PageBundleParserOutputConverter::pageBundleFromParserOutput( $parserOutput );
 				return new SelserContext( $pb, $renderID->getRevisionID() );
-			} catch ( HttpException $e ) {
+			} catch ( HttpException ) {
 				$labels[ 'status' ] = 'failed-fallback_not_found';
 				$counter->setLabels( $labels )
 					->copyToStatsdAt(

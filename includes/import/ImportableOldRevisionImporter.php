@@ -133,7 +133,7 @@ class ImportableOldRevisionImporter implements OldRevisionImporter {
 
 		try {
 			$revUser = $this->userFactory->newFromAnyId( $userId, $userText );
-		} catch ( InvalidArgumentException $ex ) {
+		} catch ( InvalidArgumentException ) {
 			$revUser = RequestContext::getMain()->getUser();
 		}
 		$revisionRecord->setUser( $revUser );

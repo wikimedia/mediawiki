@@ -240,7 +240,7 @@ class ContentModelChange {
 				$newContent = $newHandler->unserializeContent(
 					$latestContent->serialize()
 				);
-			} catch ( MWException $e ) {
+			} catch ( MWException ) {
 				// Messages: changecontentmodel-cannot-convert,
 				// apierror-changecontentmodel-cannot-convert
 				return Status::newFatal(

@@ -433,7 +433,7 @@ class ThumbnailEntryPoint extends MediaWikiEntryPoint {
 			} elseif ( is_string( $result ) ) { // error
 				$errorHtml = $result;
 			}
-		} catch ( Exception $e ) {
+		} catch ( Exception ) {
 			// Tried to select a page on a non-paged file?
 		}
 

@@ -24,13 +24,13 @@ class AbstractSecondaryAuthenticationProviderTest extends MediaWikiUnitTestCase 
 		try {
 			$provider->continueSecondaryAuthentication( $user, [] );
 			$this->fail( 'Expected exception not thrown' );
-		} catch ( BadMethodCallException $ex ) {
+		} catch ( BadMethodCallException ) {
 		}
 
 		try {
 			$provider->continueSecondaryAccountCreation( $user, $user, [] );
 			$this->fail( 'Expected exception not thrown' );
-		} catch ( BadMethodCallException $ex ) {
+		} catch ( BadMethodCallException ) {
 		}
 
 		$req = $this->getMockForAbstractClass( AuthenticationRequest::class );

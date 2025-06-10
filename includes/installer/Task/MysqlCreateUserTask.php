@@ -55,7 +55,7 @@ class MysqlCreateUserTask extends Task {
 				] );
 				$grantableNames[] = $this->buildFullUserName( $conn, $dbUser, $server );
 				$tryToCreate = false;
-			} catch ( DBConnectionError $e ) {
+			} catch ( DBConnectionError ) {
 				$tryToCreate = true;
 			}
 		} else {
@@ -148,7 +148,7 @@ class MysqlCreateUserTask extends Task {
 				->caller( __METHOD__ )->fetchRow();
 
 			return (bool)$res;
-		} catch ( DBQueryError $dqe ) {
+		} catch ( DBQueryError ) {
 			return false;
 		}
 	}

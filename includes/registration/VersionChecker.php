@@ -112,7 +112,7 @@ class VersionChecker {
 				$this->versionParser->normalize( $coreVersion )
 			);
 			$this->coreVersion->setPrettyString( $coreVersion );
-		} catch ( UnexpectedValueException $e ) {
+		} catch ( UnexpectedValueException ) {
 			// Non-parsable version, don't fatal.
 		}
 	}
@@ -333,7 +333,7 @@ class VersionChecker {
 					'==',
 					$this->versionParser->normalize( $this->loaded[$dependencyName]['version'] )
 				);
-			} catch ( UnexpectedValueException $e ) {
+			} catch ( UnexpectedValueException ) {
 				// Non-parsable version, output an error message that the version
 				// string is invalid
 				return [

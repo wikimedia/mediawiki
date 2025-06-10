@@ -195,7 +195,7 @@ class ImageHistoryPseudoPager extends ReverseChronologicalPager {
 		if ( $this->mOffset !== null ) {
 			try {
 				$this->mDb->timestamp( $this->mOffset );
-			} catch ( TimestampException $e ) {
+			} catch ( TimestampException ) {
 				$this->mOffset = null;
 			}
 		}

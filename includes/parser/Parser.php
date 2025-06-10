@@ -3692,7 +3692,7 @@ class Parser {
 				// Self-transclusion; final result may change based on the new page version
 				try {
 					$sha1 = $revRecord->getSha1();
-				} catch ( RevisionAccessException $e ) {
+				} catch ( RevisionAccessException ) {
 					$sha1 = null;
 				}
 				$this->setOutputFlag( ParserOutputFlags::VARY_REVISION_SHA1, 'Self transclusion' );
@@ -5221,7 +5221,7 @@ class Parser {
 
 		try {
 			$ig = ImageGalleryBase::factory( $mode );
-		} catch ( ImageGalleryClassNotFoundException $e ) {
+		} catch ( ImageGalleryClassNotFoundException ) {
 			// If invalid type set, fallback to default.
 			$ig = ImageGalleryBase::factory();
 		}
@@ -6311,7 +6311,7 @@ class Parser {
 		$titleParser = MediaWikiServices::getInstance()->getTitleParser();
 		try {
 			$parts = $titleParser->splitTitleString( "#$text" );
-		} catch ( MalformedTitleException $ex ) {
+		} catch ( MalformedTitleException ) {
 			return $text;
 		}
 		return $parts['fragment'];

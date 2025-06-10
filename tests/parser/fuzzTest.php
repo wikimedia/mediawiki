@@ -169,7 +169,7 @@ class ParserFuzzTest extends Maintenance {
 		$length = 0;
 		try {
 			$length = strlen( @serialize( $var ) );
-		} catch ( Exception $e ) {
+		} catch ( Exception ) {
 		}
 		return $length;
 	}

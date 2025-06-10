@@ -51,7 +51,7 @@ class ProtectLogFormatter extends LogFormatter {
 			$params = $this->extractParameters();
 			try {
 				return [ $this->titleParser->parseTitle( $params[3] ) ];
-			} catch ( MalformedTitleException $_ ) {
+			} catch ( MalformedTitleException ) {
 			}
 		}
 		return [];

@@ -139,7 +139,7 @@ class LanguageLinksHandler extends SimpleHandler {
 					'key' => $this->titleFormatter->getPrefixedDBkey( $targetTitle ),
 					'title' => $this->titleFormatter->getPrefixedText( $targetTitle )
 				];
-			} catch ( MalformedTitleException $e ) {
+			} catch ( MalformedTitleException ) {
 				// skip malformed titles
 			}
 		}

@@ -222,7 +222,7 @@ class InstallPreConfigured extends Maintenance {
 			if ( !$status->isGood() ) {
 				try {
 					$this->error( $status );
-				} catch ( InvalidArgumentException $e ) {
+				} catch ( InvalidArgumentException ) {
 					$this->error( (string)$status );
 				}
 			}

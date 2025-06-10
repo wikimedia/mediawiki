@@ -173,7 +173,7 @@ class ApiParamValidator {
 			$ret['messages'][] = MessageValue::newFromSpecifier( $msg );
 		} catch ( TimeoutException $e ) {
 			throw $e;
-		} catch ( Exception $e ) {
+		} catch ( Exception ) {
 			$ret['issues'][] = "Message specification for $key is not valid";
 		}
 	}

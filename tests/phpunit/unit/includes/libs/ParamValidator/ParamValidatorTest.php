@@ -41,7 +41,7 @@ class ParamValidatorTest extends TestCase {
 		try {
 			$validator->addTypeDef( 'baz', [] );
 			$this->fail( 'Expected exception not thrown' );
-		} catch ( InvalidArgumentException $ex ) {
+		} catch ( InvalidArgumentException ) {
 		}
 		$validator->overrideTypeDef( 'bar', null );
 		$validator->overrideTypeDef( 'baz', [] );

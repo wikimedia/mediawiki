@@ -218,7 +218,7 @@ class MediaWikiServicesTest extends MediaWikiIntegrationTestCase {
 
 		try {
 			$newServices->getDBLoadBalancer()->getConnection( DB_REPLICA );
-		} catch ( RuntimeException $ex ) {
+		} catch ( RuntimeException ) {
 			// ok, as expected
 		}
 

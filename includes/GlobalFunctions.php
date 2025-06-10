@@ -1570,7 +1570,7 @@ function wfShellExec( $cmd, &$retval = null, $environ = [],
 			// For b/c
 			->restrict( Shell::RESTRICT_NONE )
 			->execute();
-	} catch ( ProcOpenError $ex ) {
+	} catch ( ProcOpenError ) {
 		$retval = -1;
 		return '';
 	}

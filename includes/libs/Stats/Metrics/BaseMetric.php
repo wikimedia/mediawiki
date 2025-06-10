@@ -104,7 +104,7 @@ class BaseMetric implements BaseMetricInterface {
 		if ( !array_key_exists( $key, $this->workingLabels ) ) {
 			try {
 				StatsUtils::validateLabelKey( $key );
-			} catch ( InvalidConfigurationException $e ) {
+			} catch ( InvalidConfigurationException ) {
 				trigger_error(
 					"Stats: ($this->name) Non-normalized label keys are deprecated, found '$key'",
 					E_USER_WARNING );

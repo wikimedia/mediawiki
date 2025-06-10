@@ -2171,7 +2171,7 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 			foreach ( $options['slots'] as $slot ) {
 				try {
 					$slotIds[] = $this->slotRoleStore->getId( $slot );
-				} catch ( NameTableAccessException $exception ) {
+				} catch ( NameTableAccessException ) {
 					// Do not fail when slot has no id (unused slot)
 					// This also means for this slot are never data in the database
 				}
