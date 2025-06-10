@@ -4,7 +4,7 @@
 
 THIS IS NOT A RELEASE YET
 
-MediaWiki 1.44 is an alpha-quality development branch, and is not recommended
+MediaWiki 1.44 is a pre-release testing branch, and is not recommended
 for use in production.
 
 == Upgrading notes for 1.44 ==
@@ -45,7 +45,6 @@ For notes on 1.43.x and older releases, see HISTORY.
   You can confirm the email address by logging in as the user and using
   "Confirm your email address" in user preferences, or by running a maintenance
   script: resetUserEmail.php --no-reset-password <username> <new-email>
-* …
 
 ==== New configuration ====
 
@@ -57,7 +56,6 @@ For notes on 1.43.x and older releases, see HISTORY.
 * (T240542) $wgAutoblockExemptions - IP addresses and CIDR ranges listed here
   will not be affected by autoblocks, similar to
   MediaWiki:Block-autoblock-exemptionlist. Defaults to an empty list.
-* …
 
 ==== Changed configuration ====
 
@@ -87,7 +85,6 @@ For notes on 1.43.x and older releases, see HISTORY.
   It is now always enabled (T343492).
 * wgBaseDirectory, unused, has been removed in favour of MW_INSTALL_PATH.
   If a variable value is needed, inject an optional parameter instead.
-* …
 
 === New user-facing features in 1.44 ===
 
@@ -118,7 +115,6 @@ For notes on 1.43.x and older releases, see HISTORY.
   protected with cascading protection will no longer restrict edits to the
   file description page, only file uploads. Transcluding a file description
   page (e.g., {{:File:MediaWiki.png}}) will now restrict edits to the page.
-* …
 
 === New features for sysadmins in 1.44 ===
 
@@ -129,7 +125,6 @@ For notes on 1.43.x and older releases, see HISTORY.
   A renameuser-global right is added and required when renaming global users.
   No groups have this right by default.
 * (T310051) uppercase-ckb collation added. uca-xx-ckb collation deprecated
-* …
 
 === New developer features in 1.44 ===
 
@@ -148,13 +143,8 @@ For notes on 1.43.x and older releases, see HISTORY.
 * New helper methods Html::addClass() and Html::expandClassList().
 * The new FeatureShutdown service can be used to provide controlled outages for
   deprecated interfaces.
-* …
 
 === External library changes in 1.44 ===
-
-==== New external libraries ====
-
-* …
 
 ===== New development-only external libraries =====
 
@@ -199,11 +189,6 @@ For notes on 1.43.x and older releases, see HISTORY.
 * Updated seld/jsonlint from 1.10.2 to 1.11.0.
 * Updated stylelint-config-wikimedia from v0.17.2 to v0.18.0.
 * Updated wikimedia/langconv from 0.4.2 to 0.5.0.
-* …
-
-==== Removed external libraries ====
-
-* …
 
 === Bug fixes in 1.44 ===
 
@@ -211,7 +196,6 @@ For notes on 1.43.x and older releases, see HISTORY.
 * File reverts now check for cascading edit protection. (T140010)
 * Remove hyphens from legal search characters for MySQL-based database searches.
   (T221560)
-* …
 
 === Action API changes in 1.44 ===
 
@@ -219,11 +203,6 @@ For notes on 1.43.x and older releases, see HISTORY.
   reason as parsed HTML.
 * (T357846) siteinfo now lists all user groups and granted permissions,
   including those from $wgGroupInheritsPermissions.
-* …
-
-=== Action API internal changes in 1.44 ===
-
-* …
 
 === Languages updated in 1.44 ===
 MediaWiki supports over 350 languages. Many localisations are updated regularly.
@@ -241,8 +220,6 @@ because of Phabricator reports.
 * (T384245) Added language support for Lampung Api (ljp).
 * (T389916) Added language support for Buginese (bug-bugi).
 * (T393086) Added language support for Ho (Latin script) (hoc-latn).
-
-* …
 
 === Breaking changes in 1.44 ===
 
@@ -415,7 +392,6 @@ because of Phabricator reports.
 * SpecialBlock::processForm(), SpecialBlock::parseExpiryInput() and
   SpecialBlock::canBlockEmail(), deprecated in 1.36, and
   SpecialBlock::getSuggestedDurations(), deprecated in 1.42, has been removed.
-* …
 
 === Deprecations in 1.44 ===
 
@@ -777,7 +753,6 @@ because of Phabricator reports.
   OutputTransform pipeline with ParserOutput::runOutputPipeline (unstable,
   see T371004) or by invoking the pipeline directly (to be worked on in
   T371008).
-* …
 
 === Other changes in 1.44 ===
 * The ArticleProtect and ArticleProtectComplete hooks are now called when
@@ -791,7 +766,6 @@ because of Phabricator reports.
   ?debug=true now maps to debug=2. Unlike debug mode v1, this doesn't load each
   file from disk, and your code looks the same as it is in production with
   closures that prevent global variable leakage.
-* …
 
 == Compatibility ==
 
