@@ -209,6 +209,8 @@ For notes on 1.43.x and older releases, see HISTORY.
 
 * File reverts now check for 'reupload' or 'reupload-own' rights. (T304474)
 * File reverts now check for cascading edit protection. (T140010)
+* Remove hyphens from legal search characters for MySQL-based database searches.
+  (T221560)
 * …
 
 === Action API changes in 1.44 ===
