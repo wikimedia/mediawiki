@@ -10,7 +10,7 @@ See the [icons overview documentation](https://doc.wikimedia.org/codex/latest/ic
 
 ## Usage
 
-See the [installation](https://doc.wikimedia.org/codex/main/using-codex/usage.html#installation) and [using icons](https://doc.wikimedia.org/codex/main/using-codex/usage.html#using-icons) documentation for information about how to use Codex icons in your application.
+See the [installation](https://doc.wikimedia.org/codex/latest/using-codex/developing.html#installation) and [using icons](https://doc.wikimedia.org/codex/latest/using-codex/developing.html#using-icons) documentation for information about how to use Codex icons in your application.
 
 ## License to adapt and remix
 

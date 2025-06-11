@@ -11,4 +11,4 @@ See the [components overview documentation](https://doc.wikimedia.org/codex/late
 
 ## Usage
 
-See the [installation](https://doc.wikimedia.org/codex/main/using-codex/usage.html#installation) and [using components](https://doc.wikimedia.org/codex/main/using-codex/usage.html#using-components) documentation for information about how to use Codex components in your application.
+See the [installation](https://doc.wikimedia.org/codex/latest/using-codex/developing.html#installation) and [using components](https://doc.wikimedia.org/codex/latest/using-codex/developing.html#using-components) documentation for information about how to use Codex components in your application.

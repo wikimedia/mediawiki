@@ -154,9 +154,11 @@
     "src": "src/components/chip-input/ChipInput.vue",
     "isEntry": true,
     "imports": [
+      "_useSlotContents.js",
       "src/components/button/Button.vue",
       "_Icon.js",
       "src/composables/useI18n.ts",
+      "src/components/tooltip/Tooltip.ts",
       "__plugin-vue_export-helper.js",
       "_constants.js",
       "src/composables/useSplitAttributes.ts",
@@ -239,6 +241,8 @@
     "imports": [
       "_constants.js",
       "_Icon.js",
+      "_useSlotContents.js",
+      "src/components/tooltip/Tooltip.ts",
       "__plugin-vue_export-helper.js"
     ],
     "css": [
