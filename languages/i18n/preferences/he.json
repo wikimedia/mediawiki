@@ -203,6 +203,8 @@
 	"rcfilters-watchlist-preference-label": "שימוש בממשק ללא JavaScript",
 	"rcfilters-watchlist-preference-help": "טעינת [[{{#special:Watchlist}}|רשימת המעקב]] בלי חיפוש מסונן ובלי הבלטות.",
 	"prefs-changeswatchlist": "שינויים שמוצגים",
+	"tog-watchstar-expiry": "לכמה זמן לשמור ברשימת המעקב דפים שאוסיף אליה ידנית, כברירת מחדל:",
+	"tog-watch-expiry": "לכמה זמן לעקוב כברירת מחדל:",
 	"tog-watchlisthideminor": "הסתרת עריכות משניות ברשימת המעקב",
 	"tog-watchlisthidebots": "הסתרת עריכות של בוטים ברשימת המעקב",
 	"tog-watchlisthideown": "הסתרת עריכות שלי ברשימת המעקב",
