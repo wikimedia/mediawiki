@@ -213,6 +213,8 @@
 	"rcfilters-watchlist-preference-label": "Bruk grensesnitt uten JavaScript",
 	"rcfilters-watchlist-preference-help": "Laster inn [[{{#special:Watchlist}}|overvåkningslisten]] uten filtersøk eller markeringsfunksjonalitet.",
 	"prefs-changeswatchlist": "Endringer vist",
+	"tog-watchstar-expiry": "Standard tidsperiode i overvåkningsliste for manuelt tilføyde sider:",
+	"tog-watch-expiry": "Standard tidsperiode:",
 	"tog-watchlisthideminor": "Skjul mindre endringer fra overvåkningslisten",
 	"tog-watchlisthidebots": "Skjul robotendringer fra overvåkningslisten",
 	"tog-watchlisthideown": "Skjul mine endringer fra overvåkningslisten",
