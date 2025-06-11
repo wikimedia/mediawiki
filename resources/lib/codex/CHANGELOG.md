@@ -1,3 +1,39 @@
+# 2.1.0 / 2025-06-10
+
+## Features
+- TypeaheadSearch: Add support for mobile view TypeaheadSearch (bernardwang)
+- InfoChip, InputChip: add tooltip to display entire label (theprotonade)
+
+## Styles
+- Image, styles: update component based on design review (Lauralyn Watson)
+- Popover: adjust min-width and minClipWidth for small devices (Sergio Gimeno)
+
+## New design tokens
+- `@size-1200`
+
+## Icons
+- icons: Fix typo "anonynmous" → "anonymous" in "userAnonymous.svg" (Bartosz Dziewoński)
+
+## Code
+- TypeaheadSearch: Add mobile view TAHS sandbox demo (bernardwang)
+- TypeaheadSearch: fix box shadow showing when theres no empty search recommendations (bernardwang)
+- tests: Reorganize tests and remove unneeded ones (Anne Tomasevich)
+- Menu: Don't close when scrollbar is clicked (Roan Kattouw)
+- TypeaheadSearch: Ensure keyboard navigation works for empty search results (bernardwang)
+
+## Documentation
+- docs: make the home hero full width (theprotonade)
+- docs: update design contribution guidelines (bmartinezcalvo)
+- docs: update contribution guidelines (bmartinezcalvo)
+- docs: Re-architect usage and contributing sections (Anne Tomasevich)
+- docs: Update various docs pages part 2 (Derek Torsani)
+- docs: Update and simplify developer contribution docs (Anne Tomasevich)
+- docs: Update and improve icon documentation (Anne Tomasevich)
+- docs: Update various docs pages part 1 (Derek Torsani)
+- docs: Minor followup patch to I3a584dee62c96bfe05bf5b94cb2cf00659af16b7 to add details to AUTHORS.txt (theprotonade)
+- docs: remove unused files (Lauralyn Watson)
+- docs: Clean up recent changes (Anne Tomasevich)
+
 # 2.0.0 / 2025-06-02
 
 ## Code

@@ -8,7 +8,7 @@ See the [design tokens overview documentation](https://doc.wikimedia.org/codex/l
 
 ## Usage
 
-See the [installation](https://doc.wikimedia.org/codex/main/using-codex/usage.html#installation) and [using design tokens](https://doc.wikimedia.org/codex/main/using-codex/usage.html#using-design-tokens) documentation for information about how to use Codex design tokens in your application.
+See the [installation](https://doc.wikimedia.org/codex/latest/using-codex/developing.html#installation) and [using design tokens](https://doc.wikimedia.org/codex/latest/using-codex/developing.html#using-design-tokens) documentation for information about how to use Codex design tokens in your application.
 
 ### Available Files
 
