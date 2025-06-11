@@ -60,7 +60,7 @@
 	"apihelp-block-param-partial": "قطع دسترسی کاربر از صفحه‌ها یا فضاهای نام خاص به‌جای قطع دسترسی کلی از وبگاه.",
 	"apihelp-block-param-pagerestrictions": "فهرست عنوان‌ها برای قطع دسترسی ویرایشی کاربر در آن‌ها. تنها زمانی قابل اعمال است که <var>partial</var> روی true تنظیم شده باشد.",
 	"apihelp-block-param-namespacerestrictions": "فهرست فضاهای نام برای قطع دسترسی ویرایشی کاربر در آن‌ها. تنها زمانی قابل اعمال است که <var>partial</var> روی true تنظیم شده باشد.",
-	"apihelp-block-param-actionrestrictions": "فهرست عمل‌ها برای قطع دسترسی کاربر از انجام آن‌ها. تنها در صورتی قابل اعمال است که <var>partial</var> روی true تنظیم شده باشد.",
+	"apihelp-block-param-actionrestrictions": "فهرست کنش‌ها برای قطع دسترسی کاربر از انجام آن‌ها. تنها در صورتی قابل اعمال است که <var>partial</var> روی true تنظیم شده باشد.",
 	"apihelp-block-example-ip-simple": "قطع دسترسی آی‌پی <kbd>۱۹۲٫۰٫۲٫۵</kbd> برای سه روز به‌همراه دلیل.",
 	"apihelp-block-example-user-complex": "بستن کاربر <kbd>خرابکار</kbd> به شکل نامحدود به‌همراه دلیل، همچنين جلوگيری از ايجاد حساب جديد و ارسال ايميل.",
 	"apihelp-changeauthenticationdata-summary": "تغییر دادۀ اصالت‌سنجی برای کاربر کنونی",

@@ -3,7 +3,8 @@
 		"authors": [
 			"Salifu Ramatu",
 			"Yaw-kan",
-			"JOSEPH"
+			"JOSEPH",
+			"Nachim"
 		]
 	},
 	"january": "Jomana",
@@ -55,5 +56,6 @@
 	"thu": "Wohue",
 	"fri": "Ya",
 	"sat": "Foe",
-	"sun": "Wiɛ"
+	"sun": "Wiɛ",
+	"duration-days": "$1 {{PLURAL:$1|cɛɛn|cɛɛnm}}"
 }

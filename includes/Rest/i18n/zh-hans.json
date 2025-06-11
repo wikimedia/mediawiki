@@ -18,7 +18,8 @@
 			"铁桶",
 			"Administrator66",
 			"Lily9814",
-			"WaitSpring"
+			"WaitSpring",
+			"Kcx36"
 		]
 	},
 	"rest-prefix-mismatch": "请求的路径（$1）不在REST API基本路径（$2）中",
@@ -136,6 +137,9 @@
 	"rest-param-desc-compare-from-sections": "修订版的预处理器部分，没有模板扩展",
 	"rest-param-desc-compare-from-section-level": "部分级别",
 	"rest-param-desc-compare-from-section-heading": "章节标题，例如 1 对应<h1>",
+	"rest-param-desc-compare-from-section-offset": "wikitext中该章节起始的字节偏移量",
+	"rest-param-desc-compare-to": "与基础版本进行比较的修订标识符",
+	"rest-param-desc-compare-to-id": "目标版本的修订标识符",
 	"rest-param-desc-compare-to-section-level": "部分级别",
 	"rest-param-desc-compare-to-section-heading": "章节标题，例如 1<h1>",
 	"rest-param-desc-compare-to-section-offset": "wikitext 中该部分开始的字节偏移量",
@@ -160,7 +164,12 @@
 	"rest-param-desc-module-spec-version": "模块规范版本",
 	"rest-param-desc-opensearch-ctype": "打开搜索描述ctype",
 	"rest-param-desc-pagehistory-count-title": "Wiki页面标题",
+	"rest-param-desc-pagehistory-count-type": "计数类型（匿名用户、机器人、编者、编辑数、小修改、回退）",
+	"rest-param-desc-pagehistory-count-from": "限定统计范围为两个指定修订版本ID之间。必须与“to”参数配合使用。",
+	"rest-param-desc-pagehistory-count-to": "限定统计范围为两个指定修订版本ID之间。必须与“from”参数配合使用。",
 	"rest-param-desc-pagehistory-title": "Wiki页面标题",
+	"rest-param-desc-pagehistory-older-than": "接受修订ID。返回指定修订ID更早的20个修订版本。",
+	"rest-param-desc-pagehistory-newer-than": "接受修订ID。返回指定修订ID更新的20个修订版本。",
 	"rest-param-desc-search-q": "搜索词",
 	"rest-property-desc-revision-id": "修订版本ID",
 	"rest-property-desc-page-title": "页面标题",

@@ -106,7 +106,8 @@
 			"아라",
 			"양념파닭",
 			"이강철",
-			"콩가루"
+			"콩가루",
+			"Whatback11"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|분류}}",
@@ -1206,7 +1207,7 @@
 	"right-viewmywatchlist": "자신의 주시문서 목록 보기",
 	"right-editmywatchlist": "자신의 주시문서 목록을 편집합니다. (이 권한이 없어도 문서를 추가할 수 있는 권한이 이외에도 있음을 참고하세요)",
 	"right-viewmyprivateinfo": "자신의 개인정보 보기 (이메일 주소, 실명 등)",
-	"right-editmyprivateinfo": "자신의 개인정보 데이터(이메일 주소, 실명 등)를 편집하고 비밀번호 초기화 메일을 요청하세요",
+	"right-editmyprivateinfo": "자신의 개인정보 데이터 (이메일 주소, 실명 등)를 편집하고 비밀번호 초기화 메일을 요청",
 	"right-editmyoptions": "자신의 환경 설정 편집",
 	"right-rollback": "특정 문서를 편집한 마지막 사용자의 편집을 신속하게 되돌리기",
 	"right-markbotedits": "되돌리기를 봇의 편집으로 취급 가능",
@@ -1902,6 +1903,7 @@
 	"statistics-header-users": "사용자 통계",
 	"statistics-header-hooks": "기타 통계",
 	"statistics-articles": "본문",
+	"statistics-articles-desc": "상세 내용은 [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgArticleCountMethod 문서 계수 설명문서]를 참고하십시오",
 	"statistics-pages": "전체 문서",
 	"statistics-pages-desc": "토론 문서, 넘겨주기 문서 등을 포함하는 위키에 있는 모든 문서입니다",
 	"statistics-files": "올려져 있는 파일",

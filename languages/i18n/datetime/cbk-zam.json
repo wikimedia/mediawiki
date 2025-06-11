@@ -78,7 +78,7 @@
 	"duration-hours": "$1 {{PLURAL:$1|hora|maga horas}}",
 	"duration-minutes": "$1 {{PLURAL:$1|minuto|maga minutos}}",
 	"duration-seconds": "$1 {{PLURAL:$1|segundo|maga segundos}}",
-	"monday-at": "Lunes, del %1",
+	"monday-at": "Lunes, del $1",
 	"tuesday-at": "Martes, del $1",
 	"wednesday-at": "Miercoles, del $1",
 	"thursday-at": "Jueves, del $1",

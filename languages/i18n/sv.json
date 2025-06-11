@@ -101,7 +101,8 @@
 			"Zache",
 			"לערי ריינהארט",
 			"아라",
-			"Teaparty"
+			"Teaparty",
+			"Gkyziridis"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Kategori|Kategorier}}",
@@ -652,6 +653,7 @@
 	"selfredirect": "<strong>Varning:</strong> Du omdirigerar denna sida till sig själv.\nDu kanske angav fel mål för din omdirigering, eller redigerar fel sida.\nOm du klickar på ”$1” igen kommer omdirigeringen att skapas trots detta.",
 	"edit-constraint-brokenredirect": "<strong>Varning:</strong> Du omdirigerar den här sidan till en sida som inte finns.\nDu kan ha angivit fel omdirigeringsmål.\nOm du klickar på \"$1\" igen kommer omdirigeringen att skapas ändå.",
 	"edit-constraint-doubleredirect": "<strong>Varning:</strong> Du försöker omdirigera denna sida till en annan omdirigeringssida, vilket skapar en dubbel omdirigering.\nDin målsida omdirigerar för närvarande till [[$2]].\n\nÖverväg att granska följande innehåll i denna omdirigering:\n$3 \n\nOBS: Om du klickar på \"$1\" igen kommer den dubbla omdirigeringen att skapas ändå.",
+	"edit-constraint-doubleredirect-loop": "<strong>Varning:</strong> Du försöker omdirigera den här sidan till en omdirigering tillbaka till sig själv, och kommer därmed skapa en icke-fungerande omdirigeringloop. Tänk igenom en gång till vad du håller på att göra. Klickar du på \"$1\" igen kommer omdirigeringen ändå att skapas.",
 	"missingcommenttext": "Var god och skriv en kommentar.",
 	"missingcommentheader": "<strong>Påminnelse:</strong> Du har inte skrivit något ämne för den här kommentaren.\nOm du trycker på ”$1” igen kommer din redigering publiceras utan rubrik.",
 	"summary-preview": "Förhandsgranskning av redigeringssammanfattning:",

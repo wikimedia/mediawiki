@@ -617,6 +617,7 @@
 	"selfredirect": "<strong>Advarsel:</strong> Du omdirigerer denne siden til seg selv. Du kan ha oppgitt feil mål for omdirigeringen, eller kanskje du redigerer feil side. Om du klikker «$1» igjen vil omdirigeringen bli opprettet uansett.",
 	"edit-constraint-brokenredirect": "<strong>Advarsel:</strong> Du omdirigerer denne siden til en side som ikke finnes.\nDu kan ha skrevet inn galt mål for omdirigeringen.\nDu kan trykke på «$1» hvis du likevel ønsker å opprette denne omdirigeringen.",
 	"edit-constraint-doubleredirect": "<strong>Advarsel:</strong> Du prøver å omdirigere denne siden til en annen omdirigeringsside, noe som vil skape en dobbel omdirigering.\nMålsiden er for tiden en omdirigering til [[$2]].\n\nVurder å endre innholdet i denne omdirigeringen til følgende:\n$3\n\nMerk: Hvis du trykker på «$1» igjen blir den doble omdirigeringen opprettet likevel.",
+	"edit-constraint-doubleredirect-loop": "<strong>Advarsel:</strong> Du prøver å omdirigere denne siden til en omdirigering tilbake til seg selv, noe som vil lage en ikke-fungerende omdirigeringsløkke. Sjekk hva du gjør. Hvis du klikker på «$1», vil omdirigeringen bli opprettet allikevel",
 	"missingcommenttext": "Skriv inn en kommentar.",
 	"missingcommentheader": "<strong>Husk:</strong> Du har ikke angitt et emne for denne kommentaren.\nHvis du trykker «$1» igjen blir redigeringen din publisert uten forklaring.",
 	"summary-preview": "Forhåndsvisning av redigeringsforklaring:",

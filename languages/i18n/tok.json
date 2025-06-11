@@ -25,7 +25,8 @@
 			"http://tokipona.wikia.com sysops",
 			"janTepo",
 			"שוקו מוקה",
-			"物灵"
+			"物灵",
+			"Waldyrious"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|kulupu}}",
@@ -1005,7 +1006,7 @@
 	"blanknamespace": "(lipu)",
 	"contributions": "ante tan jan",
 	"tool-link-contributions": "{{GENDER:$1|jan}} li ante e lipu seme",
-	"contributions-title": "jan $1 la ante",
+	"contributions-title": "{{GENDER:$2|jan}} $1 la ante",
 	"mycontris": "ante mi",
 	"anoncontribs": "ante mi",
 	"nocontribs": "ante ala li sama ni.",

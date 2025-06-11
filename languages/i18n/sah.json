@@ -23,7 +23,8 @@
 			"Мария Олесова",
 			"София",
 			"Туллук",
-			"아라"
+			"아라",
+			"Sauit"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Категория|Категориялар}}",
@@ -2290,7 +2291,7 @@
 	"blanknamespace": "(Сүрүн)",
 	"contributions": "Кытааччы киллэрбитэ",
 	"tool-link-contributions": "{{GENDER:$1|Кыттааччы}} суруйуута (кылаата)",
-	"contributions-title": "$1 кыттааччы киллэрбит уларытыылара",
+	"contributions-title": "$2 кыттааччы киллэрбит уларытыылара $1",
 	"contribute-title": "Кытааччы киллэрбитэ",
 	"mycontris": "Суруйуу тиһилигэ",
 	"anoncontribs": "Суруйуу тиһилигэ",

@@ -62,9 +62,6 @@
 			"Noooote"
 		]
 	},
-	"pagecategories": "{{PLURAL:$1|Category|Categories}}",
-	"category_header": "Pages in category \"$1\"",
-	"subcategories": "Subcategories",
 	"lastmodifiedat": "This page was last modified on $1, at $2.",
 	"botpasswords-no-central-id": "To use bot passwords, you must be logged in to a centralised account.",
 	"search-invalid-sort-order": "Sort order of $1 is unrecognised, default sorting will be applied. Valid sort orders are: $2",

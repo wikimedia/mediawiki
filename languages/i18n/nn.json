@@ -2106,6 +2106,7 @@
 	"undeletecomment": "Årsak:",
 	"undeletecommentotherlist": "Anna årsak",
 	"undelete-comment-dropdown": "* Vanlege attopprettingsårsaker\n** På førespurnad frå forfattaren",
+	"undelete-edit-commentlist": "Endra attopprettingsårsaker",
 	"undeletedpage": "'''$1 er attoppretta'''\n\nSjå [[Special:Log/delete|sletteloggen]] for eit oversyn over sider som nyleg er sletta eller attoppretta.",
 	"undelete-header": "Sjå [[Special:Log/delete|sletteloggen]] for dei sist sletta sidene.",
 	"undelete-search-title": "Søk i sletta sider",
