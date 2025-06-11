@@ -21,6 +21,7 @@
  * @property {string} title
  * @property {string} [description]
  * @property {RestThumbnail | null} [thumbnail]
+ * @property {string} [anchor]
  */
 
 /**
@@ -37,6 +38,7 @@
  * @property {string} title
  * @property {string} [description]
  * @property {SearchResultThumbnail} [thumbnail]
+ * @property {string} [anchor]
  */
 
 /**

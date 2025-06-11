@@ -37,7 +37,7 @@ function urlGenerator( articlePath ) {
 			}
 		) {
 			if ( typeof suggestion !== 'string' ) {
-				suggestion = suggestion.title;
+				suggestion = suggestion.title + ( suggestion.anchor ? `#${ suggestion.anchor }` : '' );
 			} else {
 				// Add `fulltext` query param to search within pages and for navigation
 				// to the search results page (prevents being redirected to a certain
