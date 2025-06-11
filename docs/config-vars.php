@@ -4435,6 +4435,12 @@ $wgSkinsPreferred = null;
 $wgSpecialContributeSkinsEnabled = null;
 
 /**
+ * Config variable stub for the SpecialContributeNewPageTarget setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::SpecialContributeNewPageTarget
+ */
+$wgSpecialContributeNewPageTarget = null;
+
+/**
  * Config variable stub for the EnableEditRecovery setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::EnableEditRecovery
  */

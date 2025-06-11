@@ -4450,6 +4450,12 @@ class MainConfigNames {
 	public const SpecialContributeSkinsEnabled = 'SpecialContributeSkinsEnabled';
 
 	/**
+	 * Name constant for the SpecialContributeNewPageTarget setting, for use with Config::get()
+	 * @see MainConfigSchema::SpecialContributeNewPageTarget
+	 */
+	public const SpecialContributeNewPageTarget = 'SpecialContributeNewPageTarget';
+
+	/**
 	 * Name constant for the EnableEditRecovery setting, for use with Config::get()
 	 * @see MainConfigSchema::EnableEditRecovery
 	 */

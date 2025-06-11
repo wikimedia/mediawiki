@@ -2651,6 +2651,7 @@ return [
 			],
 			'SpecialContributeSkinsEnabled' => [
 			],
+			'SpecialContributeNewPageTarget' => null,
 			'EnableEditRecovery' => false,
 			'EditRecoveryExpiry' => 2592000,
 			'UseCodexSpecialBlock' => false,
@@ -3153,6 +3154,10 @@ return [
 			'FeaturePolicyReportOnly' => 'array',
 			'SkinsPreferred' => 'array',
 			'SpecialContributeSkinsEnabled' => 'array',
+			'SpecialContributeNewPageTarget' => [
+				'string',
+				'null',
+			],
 			'EnableEditRecovery' => 'boolean',
 			'EditRecoveryExpiry' => 'integer',
 			'UseCodexSpecialBlock' => 'boolean',

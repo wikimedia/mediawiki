@@ -13078,6 +13078,15 @@ class MainConfigSchema {
 	];
 
 	/**
+	 * Allow redirection to another page when a user selects New Page on Special:Contribute page
+	 *
+	 */
+	public const SpecialContributeNewPageTarget = [
+		'default' => null,
+		'type' => '?string',
+	];
+
+	/**
 	 * Whether to enable the client-side edit recovery feature.
 	 *
 	 * @unstable Temporary feature flag, T341844

@@ -8131,6 +8131,13 @@ config-schema:
         description: |-
             List of skins that show a link to the Special:Contribute page
             @since 1.40
+    SpecialContributeNewPageTarget:
+        default: null
+        type:
+            - string
+            - 'null'
+        description: |
+            Allow redirection to another page when a user selects New Page on Special:Contribute page
     EnableEditRecovery:
         default: false
         type: boolean

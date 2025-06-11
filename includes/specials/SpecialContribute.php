@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Specials;
 
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Html\TemplateParser;
 use MediaWiki\MainConfigNames;
 use MediaWiki\SpecialPage\IncludableSpecialPage;
@@ -50,7 +51,11 @@ class SpecialContribute extends IncludableSpecialPage {
 	private function getContributePage() {
 		$contributeFactory = new ContributeFactory(
 			$this->getContext(),
-			$this->getHookRunner()
+			$this->getHookRunner(),
+			new ServiceOptions(
+				ContributeFactory::CONSTRUCTOR_OPTIONS,
+				$this->getConfig()
+			)
 		);
 		$cards = $contributeFactory->getCards();
 		$user = $this->getContext()->getUser();
