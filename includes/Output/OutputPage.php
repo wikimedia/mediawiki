@@ -2213,6 +2213,7 @@ class OutputPage extends ContextSource {
 	public function wrapWikiTextAsInterface(
 		$wrapperClass, $text
 	) {
+		wfDeprecated( __METHOD__, '1.45' );
 		if ( $wrapperClass === '' ) {
 			// I don't think anyone actually uses this corner case,
 			// but if you call wrapWikiTextAsInterface with
