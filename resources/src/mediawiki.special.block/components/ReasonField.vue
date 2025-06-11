@@ -15,6 +15,7 @@
 		<cdx-select
 			v-model:selected="selected"
 			:menu-items="reasonOptions"
+			:menu-config="reasonOptionsConfig"
 			name="wpReason"
 		></cdx-select>
 
@@ -49,6 +50,8 @@ module.exports = exports = defineComponent( {
 		const other = ref( String );
 
 		const reasonOptions = mw.config.get( 'blockReasonOptions' );
+		const reasonOptionsConfig = { visibleItemLimit: 10 };
+		const reasonMaxLength = mw.config.get( 'blockReasonMaxLength' );
 		const reasonEditUrl = mw.util.getUrl( 'MediaWiki:Ipbreason-dropdown', { action: 'edit' } );
 		const canEditInterface = mw.config.get( 'blockCanEditInterface' ) || false;
 
@@ -115,7 +118,8 @@ module.exports = exports = defineComponent( {
 		return {
 			canEditInterface,
 			reasonOptions,
-			reasonMaxLength: mw.config.get( 'blockReasonMaxLength' ),
+			reasonOptionsConfig,
+			reasonMaxLength,
 			selected,
 			other,
 			reasonEditUrl
