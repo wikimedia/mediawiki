@@ -38,10 +38,6 @@ describe( 'Special:RecentChanges', () => {
 		await RecentChangesPage.open();
 		await RecentChangesPage.liveUpdates.waitForDisplayed();
 		await RecentChangesPage.liveUpdates.click();
-		await browser.waitUntil(
-			async () => ( await RecentChangesPage.titles[ 0 ].getText() ) === name,
-			{ timeout: 10000 }
-		);
 		await expect( RecentChangesPage.titles[ 0 ] ).toHaveText( name );
 	} );
 
