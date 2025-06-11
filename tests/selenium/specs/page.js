@@ -40,10 +40,6 @@ describe( 'Page', () => {
 		await expect( EditPage.content ).toBeDisplayed( { message: 'editor is still present' } );
 		await expect( EditPage.conflictingContent ).not.toBeDisplayed( { message: 'no edit conflict happened' } );
 
-		// T269566: Popup with text
-		// 'Leave site? Changes that you made may not be saved. Cancel/Leave'
-		// appears after the browser tries to leave the page with the preview.
-		await browser.reloadSession();
 	} );
 
 	it( 'should be creatable', async () => {
