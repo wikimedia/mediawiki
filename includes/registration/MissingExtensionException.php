@@ -98,8 +98,8 @@ class MissingExtensionException extends Exception {
 			$this->renderHtml();
 		}
 		// Make sure that the error gets into logs.
-		// This will also stop execution.
-		trigger_error( $this->getMessage(), E_USER_ERROR );
+		error_log( $this->getMessage() );
+		exit( 1 );
 	}
 
 	/**
