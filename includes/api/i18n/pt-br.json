@@ -29,7 +29,8 @@
 			"McDutchie",
 			"Ninawauwau",
 			"EGobi",
-			"Jessicamss93"
+			"Jessicamss93",
+			"Mitternachtvega"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Documentação]]\n* [[mw:Special:MyLanguage/API:Etiquette|Etiqueta & diretrizes de uso]]\n* [[mw:Special:MyLanguage/API:FAQ|Perguntas frequentes]]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api.lists.wikimedia.org/ Lista de discussão]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/ Anúncios da API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Falhas e solicitações]\n</div>\n<strong>Estado:</strong> A API do MediaWiki é uma interface madura e estável ativamente compatibilizada e aprimorada. Por mais que tentemos evitar, ocasionalmente talvez precisemos fazer mudanças estruturais; inscreva-se na [https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ lista de discussão mediawiki-api-announce] para avisos sobre atualizações.\n\n<strong>Requisições incorretas:</strong> Quando são enviadas requisições incorretas à API, será devolvido um cabeçalho HTTP com a chave “MediaWiki-API-Error” e tanto o valor desse cabeçalho como o código de erro devolvido serão definidos com o mesmo valor. Para mais informações, consulte [[mw:Special:MyLanguage/API:Errors_and_warnings|API:Erros e avisos]].\n\n<p class=\"mw-apisandbox-link\"><strong>Testes:</strong> Para testar facilmente requisições à API, visite a [[Special:ApiSandbox|caixa de areia da API]].</p>",
@@ -1563,6 +1564,7 @@
 	"api-help-license-unknown": "Licensa: <span class=\"apihelp-unknown\">desconhecida</span>",
 	"api-help-parameters": "{{PLURAL:$1|Parâmetro|Parâmetros}}:",
 	"api-help-param-deprecated": "Obsoleto.",
+	"api-help-param-deprecated-label": "obsoleto",
 	"api-help-param-internal": "Interno.",
 	"api-help-param-internal-label": "interno",
 	"api-help-param-templated": "Este parâmetro é um [[Special:ApiHelp/main#main/templatedparams|parâmetro de predefinição]]. Ao fazer o pedido, $2.",

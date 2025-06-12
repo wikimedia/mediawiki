@@ -666,7 +666,7 @@
 	"autocreate-edit-warning": "<strong>Ịdọ aka ná ntị:</strong> Ị banyeghị. Ozugbo ịmere ndezi, a ga-emepụta akaụntụ nwa oge maka gị. [[{{MediaWiki:tempuser-helppage}}|Mụtakwuo]]. <strong>[ $1 Banye]</strong> ma ọ bụ <strong>[ $2 mepụta akaụntụ]</strong> ka ịga n'ihu na-anata amamọkwa mgbe akaụntụ a kwụsịrị, yana ịnweta atụmatụ ndị ọzọ.",
 	"anonpreviewwarning": "<em>Ị banyeghị. Mbipụta ga-edekọ adreesị IP gị na akụkọ ndezi ibe a.</em>",
 	"autocreate-preview-warning": "<em>Ị banyeghị. Ozugbo ịmere ndezi, a ga-emepụta akaụntụ nwa oge maka gị. [[{{MediaWiki:tempuser-helppage}}|Mụtakwuo]].</em>",
-	"missingsummary": "!<uke ike>Ihe ncheta:</strong> Ị nyebeghị nchịkọta ndezi.\nỌ bụrụ na ị pịa \"$1\" ọzọ, ndezi gị a ga-ebipụta na-enweghị otu.",
+	"missingsummary": "!<strong>Ihe ncheta:</strong> Ị nyebeghị nchịkọta ndezi.\nỌ bụrụ na ị pịa \"$1\" ọzọ, ndezi gị a ga-ebipụta na-enweghị otu.",
 	"selfredirect": "<strong>Ịdọ aka ná ntị:</strong> Ị na-ezigharị ibe a n'onwe ya. Ị nwere ike ịkọwapụta ebumnuche na-ezighi ezi maka ebe ozo, ma ọ bụ na ị na-edezi ibe na-ezighi ezi. Ọ bụrụ na ị pịa \"$1\" ọzọ, a ga-emepụta ụzọ ozo ọ bụla.",
 	"missingcommenttext": "Biko depụta okwu ntunye",
 	"missingcommentheader": "!<strong>Ihe ncheta:</strong> Ị Ị nyebeghị isiokwu maka ikwu okwu a.\nỌ bụrụ na ị pịa \"$1\" ọzọ, a ga-ebipụta ndezi gị na-enweghị",

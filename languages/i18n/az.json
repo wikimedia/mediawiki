@@ -3788,7 +3788,7 @@
 	"logentry-newusers-newusers": "$1 istifadəçi hesabı yaradıldı",
 	"logentry-newusers-create": "$1 istifadəçi hesabı yaradıldı",
 	"logentry-newusers-create2": "$3 istifadəçi hesabı $1 tərəfindən yaradıldı",
-	"logentry-newusers-byemail": "$1 tərəfindən $3 istifadəçi hesabı {{GENDER:$2|yaradıldı}} və şifrə email vasitəsilə göndərildi",
+	"logentry-newusers-byemail": "$1 tərəfindən $3 istifadəçi hesabı {{GENDER:$2|yaradıldı}} və şifrə e-poçt vasitəsilə göndərildi",
 	"logentry-newusers-autocreate": "$1 istifadəçi hesabı avtomatik yaradıldı",
 	"logentry-protect-move_prot": "$1 $4 səhifəsinin mühafizə parametrlərini $3 səhifəsinə {{GENDER:$2|daşıdı}}.",
 	"logentry-protect-unprotect": "$1 $3 səhifəsinin mühafizəsini {{GENDER:$2|kənarlaşdırdı}}",

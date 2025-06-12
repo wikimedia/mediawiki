@@ -1073,7 +1073,7 @@
 	"nextn-title": "{{PLURAL:$1|अगला|अगले}} $1 परिणाम",
 	"shown-title": "हर पृष्ठ पर $1 {{PLURAL:$1|परिणाम}} दिखाएँ",
 	"viewprevnext": "देखें ($1 {{int:pipe-separator}} $2) ($3)",
-	"searchmenu-exists": "{{SITENAME}} पर \"[[:$1]]\" नामक एक पृष्ठ मौजूद है| {{PLURAL:$2|0=|अन्य खोज परिणाम भी देखें|}}",
+	"searchmenu-exists": "{{SITENAME}} पर \"[[:$1]]\" नामक एक पृष्ठ मौजूद है। {{PLURAL:$2|0=|अन्य खोज परिणाम भी देखें।}}",
 	"searchmenu-new": "इस विकि पर \"[[:$1]]\" नाम का पृष्ठ बनाएँ! {{PLURAL:$2|0=|आपकी खोज से मिला पृष्ठ भी देखें।|खोज परिणाम भी देखें।}}",
 	"searchprofile-articles": "सामग्री पृष्ठ",
 	"searchprofile-images": "मल्टीमीडिया",

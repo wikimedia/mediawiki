@@ -106,7 +106,8 @@
 			"Jay17",
 			"리듬",
 			"Tensama0415",
-			"YeBoy371"
+			"YeBoy371",
+			"Whatback11"
 		]
 	},
 	"tog-underline": "링크에 밑줄 긋기:",
@@ -1441,7 +1442,7 @@
 	"right-viewmywatchlist": "자신의 주시문서 목록 보기",
 	"right-editmywatchlist": "자신의 주시문서 목록을 편집합니다. (이 권한이 없어도 문서를 추가할 수 있는 권한이 이외에도 있음을 참고하세요)",
 	"right-viewmyprivateinfo": "자신의 개인정보 보기 (이메일 주소, 실명 등)",
-	"right-editmyprivateinfo": "자신의 개인정보 데이터(이메일 주소, 실명 등)를 편집하고 비밀번호 초기화 메일을 요청하세요",
+	"right-editmyprivateinfo": "자신의 개인정보 데이터 (이메일 주소, 실명 등)를 편집하고 비밀번호 초기화 메일을 요청",
 	"right-editmyoptions": "자신의 환경 설정 편집",
 	"right-rollback": "특정 문서를 편집한 마지막 사용자의 편집을 신속하게 되돌리기",
 	"right-markbotedits": "되돌리기를 봇의 편집으로 취급 가능",

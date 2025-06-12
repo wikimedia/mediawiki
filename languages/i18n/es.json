@@ -1413,7 +1413,7 @@
 	"badsiglinebreak": "Tu firma no puede exceder de una única línea de wikitexto.",
 	"linterror-bogus-image-options": "Opción de archivo inútil",
 	"linterror-deletable-table-tag": "Etiqueta de tabla que se debería borrar",
-	"linterror-fostered": "Contenido fomentado",
+	"linterror-fostered": "Contenido fuera de lugar",
 	"linterror-html5-misnesting": "Anidación errónea (ahora rota)",
 	"linterror-inline-media-caption": "Título invisible",
 	"linterror-large-tables": "Tablas grandes que rompen la visualización en dispositivos móviles",

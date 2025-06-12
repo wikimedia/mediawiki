@@ -2159,6 +2159,7 @@
 	"mycontris": "Kontributet",
 	"anoncontribs": "Kontribute",
 	"contribsub2": "Për {{GENDER:$3|$1}} ($2)",
+	"contributions-account-creation-date": "Llogaria krijuar më $1.",
 	"contributions-userdoesnotexist": "Llogaria e përdoruesit \"$1\" nuk është e regjistruar.",
 	"nocontribs": "S’u gjetën ndryshime që përputhet me këto kritere.",
 	"uctop": "aktual",

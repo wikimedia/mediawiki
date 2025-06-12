@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Jon Harald Søby"
+			"Jon Harald Søby",
+			"EdoAug"
 		]
 	},
 	"rest-prefix-mismatch": "Den forespurte stien ($1) var ikke i REST-API-ets rotsti ($2)",

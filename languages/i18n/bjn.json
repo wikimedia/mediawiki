@@ -567,6 +567,7 @@
 	"showdiff": "Tampaiakan paubahan",
 	"temp-user-banner-description": "Pian mamakai akun samantara",
 	"temp-user-banner-tooltip-title": "Akun samantara",
+	"blankarticle": "<strong>Paringatan:</strong> Laman nang pacangan Pian ulah kadada isinya.\nAmun Pian manikin \"$1\" sakali lagi, laman ini pacangan diulah kada pakai isian.",
 	"anoneditwarning": "<strong>Paringatan:</strong> Pian kada masuk log. Alamat IP Pian pacangan talihat wan urang lain amun Pian handak maubah sasuatu. Amun Pian <strong>[$1 babuat log]</strong> atawa <strong>[$2 maulah akun]</strong>, babakan Pian pacangan diatribusiakan ka ngaran pamakai Pian, taumpat lawan babagai kauntungan lainnya.",
 	"anonpreviewwarning": "''Pian baluman babuat log. Amun manyimpan, alamat IP Pian akan tacatat pada riwayat bahari laman ngini.''",
 	"missingsummary": "<strong>Paringatan:</strong> Pian kada mamasukakan ringkasan pambabakan. Amun Pian babulik manikin tumbul \"$1\", babakan Pian pacangan dinaikakan kada mamakai ringkasan pambabakan.",
