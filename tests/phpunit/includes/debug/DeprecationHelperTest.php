@@ -24,11 +24,20 @@ class DeprecationHelperTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider provideGet
 	 */
-	public function testGet( $propName, $expectedLevel, $expectedMessage ) {
-		if ( $expectedLevel ) {
+	public function testGet( $propName, $expectError, string $expectedMessage ) {
+		if ( $expectError === true ) {
+			try {
+				$this->testClass->$propName;
+			} catch ( Throwable $e ) {
+				$this->assertInstanceOf( Error::class, $e );
+				$this->assertSame( $expectedMessage, $e->getMessage() );
+				return;
+			}
+			$this->fail( 'Expected an error' );
+		} elseif ( $expectError ) {
 			$this->assertErrorTriggered( function () use ( $propName ) {
 				$this->assertSame( null, $this->testClass->$propName );
-			}, $expectedLevel, $expectedMessage );
+			}, $expectError, $expectedMessage );
 		} else {
 			$this->assertDeprecationWarningIssued( function () use ( $propName ) {
 				$expectedValue = $propName === 'fallbackDeprecatedMethodName' ? 'FOO' : 1;
@@ -54,9 +63,9 @@ class DeprecationHelperTest extends MediaWikiIntegrationTestCase {
 			[ 'fallbackGetterOnly', null,
 				'Use of TestDeprecatedClass::$fallbackGetterOnly was deprecated in MediaWiki 1.25. ' .
 					'[Called from DeprecationHelperTest::{closure' ],
-			[ 'protectedNonDeprecated', E_USER_ERROR,
+			[ 'protectedNonDeprecated', true,
 				'Cannot access non-public property TestDeprecatedClass::$protectedNonDeprecated' ],
-			[ 'privateNonDeprecated', E_USER_ERROR,
+			[ 'privateNonDeprecated', true,
 				'Cannot access non-public property TestDeprecatedClass::$privateNonDeprecated' ],
 			[ 'nonExistent', E_USER_NOTICE, 'Undefined property: TestDeprecatedClass::$nonExistent' ],
 		];
@@ -110,13 +119,19 @@ class DeprecationHelperTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider provideSet
 	 */
-	public function testSet( $propName, $expectedLevel, $expectedMessage, $expectedValue = 0 ) {
+	public function testSet( $propName, $expectedError, $expectedMessage, $expectedValue = 0 ) {
 		$this->assertPropertySame( 1, $this->testClass, $propName );
-		if ( $expectedLevel ) {
-			$this->assertErrorTriggered( function () use ( $propName ) {
+		if ( $expectedError === true ) {
+			// Test the hard error, not the deprecation warning in front of it, tested elsewhere
+			$this->hideDeprecated( 'TestDeprecatedClass::$fallbackGetterOnly' );
+			try {
 				$this->testClass->$propName = 0;
-				$this->assertPropertySame( 1, $this->testClass, $propName );
-			}, $expectedLevel, $expectedMessage );
+			} catch ( Throwable $e ) {
+				$this->assertSame( $expectedMessage, $e->getMessage() );
+				$this->assertInstanceOf( Error::class, $e );
+				return;
+			}
+			$this->fail( 'Expected an error' );
 		} else {
 			if ( $propName === 'nonExistent' ) {
 				$this->testClass->$propName = 0;
@@ -145,11 +160,11 @@ class DeprecationHelperTest extends MediaWikiIntegrationTestCase {
 			[ 'fallbackDeprecatedMethodName', null,
 				'Use of TestDeprecatedClass::$fallbackDeprecatedMethodName was deprecated in MediaWiki 1.26. ' .
 					'[Called from DeprecationHelperTest::{closure' ],
-			[ 'fallbackGetterOnly', E_USER_ERROR,
+			[ 'fallbackGetterOnly', true,
 				'Cannot access non-public property TestDeprecatedClass::$fallbackGetterOnly' ],
-			[ 'protectedNonDeprecated', E_USER_ERROR,
+			[ 'protectedNonDeprecated', true,
 				'Cannot access non-public property TestDeprecatedClass::$protectedNonDeprecated', 1 ],
-			[ 'privateNonDeprecated', E_USER_ERROR,
+			[ 'privateNonDeprecated', true,
 				'Cannot access non-public property TestDeprecatedClass::$privateNonDeprecated', 1 ],
 			[ 'nonExistent', null,
 				'Use of TestDeprecatedClass::$nonExistent was deprecated in MediaWiki 1.23. ' .
@@ -177,24 +192,36 @@ class DeprecationHelperTest extends MediaWikiIntegrationTestCase {
 
 	public function testSubclassGetSet() {
 		$fullName = 'TestDeprecatedClass::$privateNonDeprecated';
-		$this->assertErrorTriggered( function () {
+		$this->assertErrorCaught( function () {
 			$this->assertSame( null, $this->testSubclass->getNondeprecatedPrivateParentProperty() );
-		}, E_USER_ERROR, "Cannot access non-public property $fullName" );
-		$this->assertErrorTriggered( function () {
+		}, Error::class, "Cannot access non-public property $fullName" );
+		$this->assertErrorCaught( function () {
 			$this->testSubclass->setNondeprecatedPrivateParentProperty( 0 );
 			$wrapper = TestingAccessWrapper::newFromObject( $this->testSubclass );
 			$this->assertSame( 1, $wrapper->privateNonDeprecated );
-		}, E_USER_ERROR, "Cannot access non-public property $fullName" );
+		}, Error::class, "Cannot access non-public property $fullName" );
 
 		$fullName = 'TestDeprecatedSubclass::$subclassPrivateNondeprecated';
-		$this->assertErrorTriggered( function () {
+		$this->assertErrorCaught( function () {
 			$this->assertSame( null, $this->testSubclass->subclassPrivateNondeprecated );
-		}, E_USER_ERROR, "Cannot access non-public property $fullName" );
-		$this->assertErrorTriggered( function () {
+		}, Error::class, "Cannot access non-public property $fullName" );
+		$this->assertErrorCaught( function () {
 			$this->testSubclass->subclassPrivateNondeprecated = 0;
 			$wrapper = TestingAccessWrapper::newFromObject( $this->testSubclass );
 			$this->assertSame( 1, $wrapper->subclassPrivateNondeprecated );
-		}, E_USER_ERROR, "Cannot access non-public property $fullName" );
+		}, Error::class, "Cannot access non-public property $fullName" );
+	}
+
+	protected function assertErrorCaught( callable $callback, $name, $message ) {
+		$actualClass = $actualMessage = null;
+		try {
+			$callback();
+		} catch ( Throwable $e ) {
+			$actualClass = get_class( $e );
+			$actualMessage = $e->getMessage();
+		}
+		$this->assertSame( $name, $actualClass );
+		$this->assertSame( $message, $actualMessage );
 	}
 
 	protected function assertErrorTriggered( callable $callback, $level, $message ) {
