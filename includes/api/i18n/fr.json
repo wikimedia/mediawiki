@@ -1291,6 +1291,7 @@
 	"apihelp-query+siteinfo-paramvalue-prop-uploaddialog": "Renvoie la configuration du dialogue de téléversement.",
 	"apihelp-query+siteinfo-paramvalue-prop-autopromote": "Renvoie la configuration de la promotion automatique.",
 	"apihelp-query+siteinfo-paramvalue-prop-autopromoteonce": "Retourne la configuration automatique de promotion qui est effectuée une seule fois.",
+	"apihelp-query+siteinfo-paramvalue-prop-copyuploaddomains": "Retourne la liste des domaines de téléversement par URL autorisés.",
 	"apihelp-query+siteinfo-param-filteriw": "Renvoyer uniquement les entrées locales ou uniquement les non locales de la correspondance interwiki.",
 	"apihelp-query+siteinfo-param-showalldb": "Lister tous les serveurs de base de données, pas seulement celui avec la plus grande latence.",
 	"apihelp-query+siteinfo-param-numberingroup": "Liste le nombre d’utilisateurs dans les groupes.",
