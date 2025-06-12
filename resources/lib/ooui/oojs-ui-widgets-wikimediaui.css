@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.51.7
+ * OOUI v0.52.0
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2025 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2025-03-11T00:03:34Z
+ * Date: 2025-06-12T12:46:39Z
  */
 .oo-ui-draggableElement-handle:not( .oo-ui-draggableElement-undraggable ),
 .oo-ui-draggableElement-handle:not( .oo-ui-draggableElement-undraggable ).oo-ui-widget {
@@ -350,7 +350,6 @@
   height: 2.2857143em;
   width: 2.2857143em;
   margin: 0 !important;
-  /* stylelint-disable-line declaration-no-important */
 }
 
 .oo-ui-tabSelectWidget {
@@ -377,10 +376,10 @@
   pointer-events: none;
 }
 .oo-ui-tabSelectWidget-mobile.oo-ui-tabSelectWidget-framed::after {
-  background-image: linear-gradient(to right, rgba(234, 236, 240, 0), var(--background-color-interactive, #eaecf0));
+  background-image: linear-gradient(to right, transparent, var(--background-color-interactive, #eaecf0));
 }
 .oo-ui-tabSelectWidget-mobile.oo-ui-tabSelectWidget-frameless::after {
-  background-image: linear-gradient(to right, rgba(255, 255, 255, 0), #fff);
+  background-image: linear-gradient(to right, transparent, var(--background-color-base, #fff));
 }
 .oo-ui-tabSelectWidget.oo-ui-widget-enabled:focus {
   outline: 0;

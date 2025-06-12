@@ -41,6 +41,12 @@
 				"rtl": "../wikimediaui/images/icons/userTemporary-rtl.svg"
 			}
 		},
+		"userTemporaryLocation": {
+			"file": {
+				"ltr": "../wikimediaui/images/icons/userTemporaryLocation-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/userTemporaryLocation-rtl.svg"
+			}
+		},
 		"watchlist": {
 			"file": {
 				"ltr": "../wikimediaui/images/icons/watchlist-ltr.svg",

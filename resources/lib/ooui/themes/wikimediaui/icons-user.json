@@ -70,6 +70,12 @@
 				"rtl": "images/icons/userTemporary-rtl.svg"
 			}
 		},
+		"userTemporaryLocation": {
+			"file": {
+				"ltr": "images/icons/userTemporaryLocation-ltr.svg",
+				"rtl": "images/icons/userTemporaryLocation-rtl.svg"
+			}
+		},
 		"watchlist": {
 			"file": {
 				"ltr": "images/icons/watchlist-ltr.svg",

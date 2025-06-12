@@ -12,6 +12,9 @@
 		"logoCC": {
 			"file": "images/icons/logo-CC.svg"
 		},
+		"logoCodex": {
+			"file": "images/icons/logo-Codex.svg"
+		},
 		"logoMediaWiki": {
 			"file": "images/icons/logo-MediaWiki.svg"
 		},

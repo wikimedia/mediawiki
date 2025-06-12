@@ -119,7 +119,7 @@ class HTMLSelectNamespaceTest extends HTMLFormFieldTestCase {
 		yield 'Basic list' => [
 			[],
 			'',
-			"<div id='mw-input-testfield' class='oo-ui-widget oo-ui-widget-enabled oo-ui-inputWidget oo-ui-dropdownInputWidget oo-ui-dropdownInputWidget-php mw-widget-namespaceInputWidget'><select tabindex='0' name='testfield' class='oo-ui-inputWidget-input oo-ui-indicator-down'><option value='all' selected='selected'>all</option>" . $expectedOptions . "</select></div>"
+			"<div id='mw-input-testfield' class='oo-ui-widget oo-ui-widget-enabled oo-ui-inputWidget oo-ui-dropdownInputWidget oo-ui-dropdownInputWidget-php mw-widget-namespaceInputWidget'><select tabindex='0' name='testfield' class='oo-ui-inputWidget-input'><option value='all' selected='selected'>all</option>" . $expectedOptions . "</select><span class='oo-ui-widget oo-ui-widget-enabled oo-ui-indicatorElement-indicator oo-ui-indicator-down oo-ui-indicatorElement oo-ui-labelElement-invisible oo-ui-indicatorWidget'></span></div>"
 		];
 
 		yield 'Basic list, explicitly in userlang' => [
@@ -127,7 +127,7 @@ class HTMLSelectNamespaceTest extends HTMLFormFieldTestCase {
 				'in-user-lang' => false
 			],
 			'',
-			"<div id='mw-input-testfield' class='oo-ui-widget oo-ui-widget-enabled oo-ui-inputWidget oo-ui-dropdownInputWidget oo-ui-dropdownInputWidget-php mw-widget-namespaceInputWidget'><select tabindex='0' name='testfield' class='oo-ui-inputWidget-input oo-ui-indicator-down'><option value='all' selected='selected'>all</option>" . $expectedOptions . "</select></div>"
+			"<div id='mw-input-testfield' class='oo-ui-widget oo-ui-widget-enabled oo-ui-inputWidget oo-ui-dropdownInputWidget oo-ui-dropdownInputWidget-php mw-widget-namespaceInputWidget'><select tabindex='0' name='testfield' class='oo-ui-inputWidget-input'><option value='all' selected='selected'>all</option>" . $expectedOptions . "</select><span class='oo-ui-widget oo-ui-widget-enabled oo-ui-indicatorElement-indicator oo-ui-indicator-down oo-ui-indicatorElement oo-ui-labelElement-invisible oo-ui-indicatorWidget'></span></div>"
 
 		];
 
@@ -136,7 +136,7 @@ class HTMLSelectNamespaceTest extends HTMLFormFieldTestCase {
 				'all' => '',
 			],
 			'',
-			"<div id='mw-input-testfield' class='oo-ui-widget oo-ui-widget-enabled oo-ui-inputWidget oo-ui-dropdownInputWidget oo-ui-dropdownInputWidget-php mw-widget-namespaceInputWidget'><select tabindex='0' name='testfield' class='oo-ui-inputWidget-input oo-ui-indicator-down'><option value='' selected='selected'>all</option>" . $expectedOptions . "</select></div>"
+			"<div id='mw-input-testfield' class='oo-ui-widget oo-ui-widget-enabled oo-ui-inputWidget oo-ui-dropdownInputWidget oo-ui-dropdownInputWidget-php mw-widget-namespaceInputWidget'><select tabindex='0' name='testfield' class='oo-ui-inputWidget-input'><option value='' selected='selected'>all</option>" . $expectedOptions . "</select><span class='oo-ui-widget oo-ui-widget-enabled oo-ui-indicatorElement-indicator oo-ui-indicator-down oo-ui-indicatorElement oo-ui-labelElement-invisible oo-ui-indicatorWidget'></span></div>"
 
 		];
 
@@ -145,7 +145,7 @@ class HTMLSelectNamespaceTest extends HTMLFormFieldTestCase {
 				'include' => [],
 			],
 			'',
-			"<div id='mw-input-testfield' class='oo-ui-widget oo-ui-widget-enabled oo-ui-inputWidget oo-ui-dropdownInputWidget oo-ui-dropdownInputWidget-php mw-widget-namespaceInputWidget'><select tabindex='0' name='testfield' class='oo-ui-inputWidget-input oo-ui-indicator-down'><option value='all' selected='selected'>all</option></select></div>"
+			"<div id='mw-input-testfield' class='oo-ui-widget oo-ui-widget-enabled oo-ui-inputWidget oo-ui-dropdownInputWidget oo-ui-dropdownInputWidget-php mw-widget-namespaceInputWidget'><select tabindex='0' name='testfield' class='oo-ui-inputWidget-input'><option value='all' selected='selected'>all</option></select><span class='oo-ui-widget oo-ui-widget-enabled oo-ui-indicatorElement-indicator oo-ui-indicator-down oo-ui-indicatorElement oo-ui-labelElement-invisible oo-ui-indicatorWidget'></span></div>"
 		];
 
 		yield 'Basic list, use include (show all and main only)' => [
@@ -153,7 +153,7 @@ class HTMLSelectNamespaceTest extends HTMLFormFieldTestCase {
 				'include' => [ NS_MAIN ],
 			],
 			'',
-			"<div id='mw-input-testfield' class='oo-ui-widget oo-ui-widget-enabled oo-ui-inputWidget oo-ui-dropdownInputWidget oo-ui-dropdownInputWidget-php mw-widget-namespaceInputWidget'><select tabindex='0' name='testfield' class='oo-ui-inputWidget-input oo-ui-indicator-down'><option value='all' selected='selected'>all</option><option value='0'>(Main)</option></select></div>"
+			"<div id='mw-input-testfield' class='oo-ui-widget oo-ui-widget-enabled oo-ui-inputWidget oo-ui-dropdownInputWidget oo-ui-dropdownInputWidget-php mw-widget-namespaceInputWidget'><select tabindex='0' name='testfield' class='oo-ui-inputWidget-input'><option value='all' selected='selected'>all</option><option value='0'>(Main)</option></select><span class='oo-ui-widget oo-ui-widget-enabled oo-ui-indicatorElement-indicator oo-ui-indicator-down oo-ui-indicatorElement oo-ui-labelElement-invisible oo-ui-indicatorWidget'></span></div>"
 		];
 	}
 }

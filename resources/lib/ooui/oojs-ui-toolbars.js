@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.51.7
+ * OOUI v0.52.0
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2025 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2025-03-11T00:03:30Z
+ * Date: 2025-06-12T12:46:36Z
  */
 ( function ( OO ) {
 
@@ -99,7 +99,7 @@
  *     // This is a PopupTool. Rather than having a custom 'onSelect' action, it will display a
  *     // little popup window (a PopupWidget).
  *     function HelpTool( toolGroup, config ) {
- *         OO.ui.PopupTool.call( this, toolGroup, $.extend( { popup: {
+ *         OO.ui.PopupTool.call( this, toolGroup, Object.assign( { popup: {
  *             padded: true,
  *             label: 'Help',
  *             head: true
@@ -227,7 +227,7 @@
  *     // This is a PopupTool. Rather than having a custom 'onSelect' action, it will display a
  *     // little popup window (a PopupWidget). 'onUpdateState' is also already implemented.
  *     function HelpTool( toolGroup, config ) {
- *         OO.ui.PopupTool.call( this, toolGroup, $.extend( { popup: {
+ *         OO.ui.PopupTool.call( this, toolGroup, Object.assign( { popup: {
  *             padded: true,
  *             label: 'Help',
  *             head: true
@@ -1290,6 +1290,10 @@ OO.ui.ToolGroup.prototype.onMouseKeyDown = function ( e ) {
  * @param {MouseEvent|KeyboardEvent} e Mouse up or key up event
  */
 OO.ui.ToolGroup.prototype.onDocumentMouseKeyUp = function ( e ) {
+	if ( e.target === document.documentElement ) {
+		// This means that the scrollbar was the target of the click
+		return;
+	}
 	this.getElementDocument().removeEventListener(
 		'mouseup',
 		this.onDocumentMouseKeyUpHandler,
@@ -1671,7 +1675,7 @@ OO.ui.ToolGroupFactory.static.getDefaultClasses = function () {
  *     // Example of a popup tool. When selected, a popup tool displays
  *     // a popup window.
  *     function HelpTool( toolGroup, config ) {
- *        OO.ui.PopupTool.call( this, toolGroup, $.extend( { popup: {
+ *        OO.ui.PopupTool.call( this, toolGroup, Object.assign( { popup: {
  *            padded: true,
  *            label: 'Help',
  *            head: true
@@ -1944,7 +1948,7 @@ OO.ui.ToolGroupTool.prototype.createGroup = function ( group ) {
  *     // This is a PopupTool. Rather than having a custom 'onSelect' action, it will display a
  *     // little popup window (a PopupWidget).
  *     function HelpTool( toolGroup, config ) {
- *         OO.ui.PopupTool.call( this, toolGroup, $.extend( { popup: {
+ *         OO.ui.PopupTool.call( this, toolGroup, Object.assign( { popup: {
  *             padded: true,
  *             label: 'Help',
  *             head: true
@@ -2211,6 +2215,10 @@ OO.ui.PopupToolGroup.prototype.onToolbarResize = function () {
  * @param {MouseEvent|KeyboardEvent} e Mouse up or key up event
  */
 OO.ui.PopupToolGroup.prototype.onPopupDocumentMouseKeyUp = function ( e ) {
+	if ( e.target === document.documentElement ) {
+		// This means that the scrollbar was the target of the click
+		return;
+	}
 	const $target = $( e.target );
 	// Only deactivate when clicking outside the dropdown element
 	if ( $target.closest( '.oo-ui-popupToolGroup' )[ 0 ] === this.$element[ 0 ] ) {
