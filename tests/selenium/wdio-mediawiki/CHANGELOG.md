@@ -1,5 +1,8 @@
 # Changelog
 
+## 4.1.0 / 2025-06-12
+* Add Prometheus support for CI usage. (T391078)
+
 ## 4.0.0 / 2025-06-04
 
 * Upgrade WebdriverIO to v9. (T372633)
