@@ -153,7 +153,7 @@ exports.config = {
 				return `WDIO.prometheus-${ makeFilenameDate() }-${ random }.prom`;
 			},
 			tags: {
-				project: process.env.ZUUL_PROJECT || 'test'
+				project: process.env.npm_package_name || process.env.ZUUL_PROJECT || 'test'
 			}
 		} ]
 	],
