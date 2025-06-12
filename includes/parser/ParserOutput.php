@@ -2756,6 +2756,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			$this->mFlags + array_flip( ParserOutputFlags::cases() )
 		);
 		foreach ( $flags as $name ) {
+			$name = (string)$name;
 			if ( $this->getOutputFlag( $name ) ) {
 				$metadata->setOutputFlag( $name );
 			}
@@ -2795,7 +2796,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 
 		foreach ( $this->mLinksSpecial as $dbk => $ignore ) {
 			// Numeric titles are going to come out of the
-			// `mLinks` array as ints; cast back to string.
+			// `mLinksSpecial` array as ints; cast back to string.
 			$lt = TitleValue::tryNew( NS_SPECIAL, (string)$dbk );
 			$metadata->addLink( $lt );
 		}
@@ -2818,9 +2819,13 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		}
 
 		foreach ( $this->mJsConfigVars as $key => $value ) {
+			// Numeric keys and items are going to come out of the
+			// `mJsConfigVars` array as ints; cast back to string.
+			$key = (string)$key;
 			if ( is_array( $value ) && isset( $value[self::MW_MERGE_STRATEGY_KEY] ) ) {
 				$strategy = $value[self::MW_MERGE_STRATEGY_KEY];
 				foreach ( $value as $item => $ignore ) {
+					$item = (string)$item;
 					if ( $item !== self::MW_MERGE_STRATEGY_KEY ) {
 						$metadata->appendJsConfigVar( $key, $item, $strategy );
 					}
@@ -2839,9 +2844,13 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			}
 		}
 		foreach ( $this->mExtensionData as $key => $value ) {
+			// Numeric keys and items are going to come out of the array as
+			// ints, cast back to string.
+			$key = (string)$key;
 			if ( is_array( $value ) && isset( $value[self::MW_MERGE_STRATEGY_KEY] ) ) {
 				$strategy = $value[self::MW_MERGE_STRATEGY_KEY];
 				foreach ( $value as $item => $ignore ) {
+					$item = (string)$item;
 					if ( $item !== self::MW_MERGE_STRATEGY_KEY ) {
 						$metadata->appendExtensionData( $key, $item, $strategy );
 					}
@@ -2860,9 +2869,11 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			}
 		}
 		foreach ( $this->mExternalLinks as $url => $ignore ) {
-			$metadata->addExternalLink( $url );
+			$metadata->addExternalLink( (string)$url );
 		}
 		foreach ( $this->mProperties as $prop => $value ) {
+			// Numeric properties are going to come out of the array as ints
+			$prop = (string)$prop;
 			if ( is_numeric( $value ) ) {
 				$metadata->setNumericPageProperty( $prop, $value );
 			} elseif ( is_string( $value ) ) {
@@ -2874,13 +2885,13 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			}
 		}
 		foreach ( $this->mWarningMsgs as $key => $msg ) {
-			$metadata->addWarningMsgVal( $msg, $key );
+			$metadata->addWarningMsgVal( $msg, (string)$key );
 		}
 		foreach ( $this->mLimitReportData as $key => $value ) {
-			$metadata->setLimitReportData( $key, $value );
+			$metadata->setLimitReportData( (string)$key, $value );
 		}
 		foreach ( $this->mIndicators as $id => $content ) {
-			$metadata->setIndicator( $id, $content );
+			$metadata->setIndicator( (string)$id, $content );
 		}
 
 		// ParserOutput-only fields; maintained "behind the curtain"
@@ -3166,7 +3177,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			if ( isset( $jsonData['TOCExtensionData'] ) ) {
 				$tocData = $this->getTOCData(); // created by setSections() above
 				foreach ( $jsonData['TOCExtensionData'] as $key => $value ) {
-					$tocData->setExtensionData( $key, $value );
+					$tocData->setExtensionData( (string)$key, $value );
 				}
 			}
 		}
