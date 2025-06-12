@@ -3,7 +3,6 @@
 namespace MediaWiki\Widget;
 
 use OOUI\CheckboxInputWidget;
-use OOUI\Exception;
 use OOUI\FieldLayout;
 use OOUI\Widget;
 
@@ -45,8 +44,6 @@ class ComplexNamespaceInputWidget extends Widget {
 	 *   - array $config['associatedLabel'] Configuration for the FieldLayout with label
 	 *     wrapping the "include associated namespace" checkbox
 	 *   - string $config['associatedLabel']['label'] Label text for the label
-	 *
-	 * @throws Exception
 	 */
 	public function __construct( array $config = [] ) {
 		// Configuration initialization
