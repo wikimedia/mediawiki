@@ -69,7 +69,7 @@
 			fetchingPromise = this.queryProviders( howMany + this.threshold )
 				.then( ( items ) => {
 					// Add to the queue
-					this.queue = this.queue.concat.apply( this.queue, items );
+					this.queue = this.queue.concat( ...items );
 				} );
 		}
 
