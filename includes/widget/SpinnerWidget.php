@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Widget;
 
-use Exception;
 use MediaWiki\Html\Html;
 use Stringable;
 
@@ -64,10 +63,6 @@ class SpinnerWidget implements Stringable {
 	 * @return string
 	 */
 	public function __toString() {
-		try {
-			return $this->toString();
-		} catch ( Exception $ex ) {
-			trigger_error( (string)$ex, E_USER_ERROR );
-		}
+		return $this->toString();
 	}
 }
