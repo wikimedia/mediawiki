@@ -127,6 +127,10 @@ class ResourceLoader implements LoggerAwareInterface {
 	/** @var int */
 	private $maxageUnversioned;
 
+	/* Fandom change */
+	/** @var int */
+	private $maxageStaleIfError;
+
 	/** @var Module[] Map of (module name => Module) */
 	private $modules = [];
 	/** @var array[] Map of (module name => associative info array) */
@@ -178,6 +182,9 @@ class ResourceLoader implements LoggerAwareInterface {
 	) {
 		$this->maxageVersioned = $params['maxageVersioned'] ?? 30 * 24 * 60 * 60;
 		$this->maxageUnversioned = $params['maxageUnversioned'] ?? 5 * 60;
+
+		/* Fandom change */
+		$this->maxageStaleIfError = $params['maxageStaleIfError'] ?? -1;
 
 		$this->config = $config;
 		$this->logger = $logger ?: new NullLogger();
@@ -940,6 +947,11 @@ class ResourceLoader implements LoggerAwareInterface {
 				? ", stale-while-revalidate=" . min( 60, intval( $maxage / 2 ) )
 				: ''
 			);
+			/* Fandom change - start */
+			if ( $this->maxageStaleIfError >= 0 ) {
+				$staleDirective .= ", stale-if-error=" . $this->maxageStaleIfError;
+			}
+			/* Fandom change - end */
 			header( "Cache-Control: public, max-age=$maxage, s-maxage=$maxage" . $staleDirective );
 			header( 'Expires: ' . ConvertibleTimestamp::convert( TS_RFC2822, time() + $maxage ) );
 		}
