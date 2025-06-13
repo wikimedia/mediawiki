@@ -1,5 +1,8 @@
 # Changelog
 
+## 4.1.1 / 2025-06-13
+* Use package name as project name for Prometheus (T396710)
+
 ## 4.1.0 / 2025-06-12
 * Add Prometheus support for CI usage. (T391078)
 
