@@ -1,7 +1,5 @@
 <?php
 /**
- * Factory for handling the special page list and generating SpecialPage objects.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -1616,23 +1614,6 @@ class SpecialPageFactory {
 				) {
 					$pages[$name] = $page;
 				}
-			}
-		}
-
-		return $pages;
-	}
-
-	/**
-	 * Get listed special pages available to everyone by default.
-	 *
-	 * @return array<string,SpecialPage>
-	 */
-	public function getRegularPages(): array {
-		$pages = [];
-		foreach ( $this->getPageList() as $name => $rec ) {
-			$page = $this->getPage( $name );
-			if ( $page && $page->isListed() && !$page->isRestricted() ) {
-				$pages[$name] = $page;
 			}
 		}
 
