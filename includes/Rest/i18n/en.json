@@ -231,5 +231,20 @@
 	"rest-endpoint-desc-get-revision-id": "Returns metadata for a revision, including source",
 	"rest-endpoint-desc-get-revision-id-html": "Returns the content of a revision in HTML. This endpoint returns content type text/html.",
 	"rest-endpoint-desc-get-revision-id-with-html": "Returns metadata for a revision, including the content in HTML",
-	"rest-endpoint-desc-get-revision-id-bare": "Returns details for an individual revision."
+	"rest-endpoint-desc-get-revision-id-bare": "Returns details for an individual revision.",
+	"rest-endpoint-desc-get-page-history": "Returns information about the latest revisions to a wiki page",
+	"rest-endpoint-desc-get-page-history-counts": "Returns data about a page's history.",
+	"rest-endpoint-desc-get-revision-compare": "Returns data that lets you display a line-by-line comparison of two revisions. Only text-based wiki pages can be compared.",
+	"rest-endpoint-desc-get-search": "Returns a generated OpenSearch description document.",
+	"rest-endpoint-desc-get-search-page": "Searches wiki pages for the given search terms, and returns matching pages.",
+	"rest-endpoint-desc-get-search-title": "Searches wiki page titles, and returns pages with titles that begin with the provided search terms. You can use this endpoint as an autocomplete search that automatically suggests relevant pages by title.",
+	"rest-endpoint-desc-get-page-title-language": "Searches for pages with the same topic in different languages. Returns an array of language objects that include the name of the language, the language code, and the translated page title.",
+	"rest-endpoint-desc-get-page-title-media": "Returns information about media files used on a wiki page, up to 100 files.",
+	"rest-endpoint-desc-get-file-title": "Returns information about a file, including links to download the file in thumbnail, preview, and original formats.",
+	"rest-endpoint-desc-post-transform-to-html-revision": "Returns transformation of the specified content, to html",
+	"rest-endpoint-desc-post-transform-to-wikitext-revision": "Returns transformation of the specified content, to wikitext",
+	"rest-endpoint-desc-post-transform-to-html": "Returns transformation of the specified content, to html",
+	"rest-endpoint-desc-post-transform-to-wikitext": "Returns transformation of the specified content, to wikitext",
+	"rest-endpoint-desc-post-transform-to-html-title": "Returns transformation of the specified content, to html",
+	"rest-endpoint-desc-post-transform-to-wikitext-title": "Returns transformation of the specified content, to wikitext"
 }
