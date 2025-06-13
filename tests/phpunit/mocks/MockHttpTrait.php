@@ -188,7 +188,7 @@ trait MockHttpTrait {
 			MWHttpRequest::class,
 			[ 'execute', 'setCallback', 'isRedirect', 'getFinalUrl',
 				'getResponseHeaders', 'getResponseHeader', 'setHeader',
-				'getStatus', 'getContent'
+				'getStatus', 'getContent', 'setOriginalRequest',
 			]
 		);
 
