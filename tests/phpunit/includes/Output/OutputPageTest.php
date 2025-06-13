@@ -1832,7 +1832,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		}
 
 		if ( $method === 'wrapWikiTextAsInterface' ) {
-			$this->filterDeprecated( '/wrapWikiTextAsInterface/' );
+			$this->expectDeprecationAndContinue( '/wrapWikiTextAsInterface/' );
 		}
 
 		$op->$method( ...$args );
