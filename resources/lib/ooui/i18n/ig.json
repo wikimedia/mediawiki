@@ -2,17 +2,19 @@
 	"@metadata": {
 		"authors": [
 			"Karen",
+			"Nachi kim",
 			"Oby Ezeilo",
 			"Ukabia",
 			"Zenyth1234"
 		]
 	},
+	"ooui-copytextlayout-copy": "kopi",
 	"ooui-outline-control-move-down": "Wetuo ihe a ala",
 	"ooui-outline-control-move-up": "Wegoo ihe a elu",
 	"ooui-outline-control-remove": "Wepụ ihe a",
-	"ooui-toolbar-more": "ọzọ kwa",
-	"ooui-toolgroup-expand": "ọzọkwa",
-	"ooui-toolgroup-collapse": "ole na ole",
+	"ooui-toolbar-more": "Ọzọkwa",
+	"ooui-toolgroup-expand": "Ọzọkwa",
+	"ooui-toolgroup-collapse": "Ole na ole",
 	"ooui-item-remove": "Wepụ",
 	"ooui-dialog-message-accept": "ọdimma",
 	"ooui-dialog-message-reject": "Hapụ̀",

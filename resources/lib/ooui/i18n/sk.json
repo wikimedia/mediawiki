@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Kusavica",
+			"Luky001",
 			"Mimarik",
 			"Teslaton",
 			"TomášPolonec"
@@ -23,6 +24,7 @@
 	"ooui-dialog-process-continue": "Pokračovať",
 	"ooui-selectfile-button-select": "Vybrať súbor",
 	"ooui-selectfile-placeholder": "Nie je vybraný žiadny súbor",
-	"ooui-selectfile-dragdrop-placeholder": "Sem umiestni súbor",
+	"ooui-selectfile-dragdrop-placeholder": "Potiahni súbor sem",
+	"ooui-selectfile-dragdrop-placeholder-multiple": "Potiahnite súbory sem",
 	"ooui-field-help": "Pomoc"
 }

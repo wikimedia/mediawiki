@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.51.7
+ * OOUI v0.52.0
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2025 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2025-03-11T00:03:30Z
+ * Date: 2025-06-12T12:46:36Z
  */
 ( function ( OO ) {
 
@@ -2706,16 +2706,6 @@ OO.ui.Dialog.static.title = '';
  */
 OO.ui.Dialog.static.actions = [];
 
-/**
- * Close the dialog when the Escape key is pressed.
- *
- * @deprecated Have #getEscapeAction return `null` instead
- * @static
- * @abstract
- * @property {boolean}
- */
-OO.ui.Dialog.static.escapable = true;
-
 /* Methods */
 
 /**
@@ -2737,7 +2727,7 @@ OO.ui.Dialog.prototype.getEscapeAction = function () {
  * @param {jQuery.Event} e Key down event
  */
 OO.ui.Dialog.prototype.onDialogKeyDown = function ( e ) {
-	if ( e.which === OO.ui.Keys.ESCAPE && this.constructor.static.escapable ) {
+	if ( e.which === OO.ui.Keys.ESCAPE ) {
 		const action = this.getEscapeAction();
 		if ( action !== null ) {
 			this.executeAction( action );
@@ -3600,7 +3590,7 @@ OO.ui.ProcessDialog.prototype.showErrors = function ( errors ) {
 			warning = true;
 		}
 		items.push( new OO.ui.MessageWidget( {
-			type: 'error',
+			type: errors[ i ].isWarning() ? 'warning' : 'error',
 			label: errors[ i ].getMessage()
 		} ).$element[ 0 ] );
 	}

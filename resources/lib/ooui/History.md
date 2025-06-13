@@ -1,5 +1,46 @@
 # OOUI Release History
 
+## v0.52.0 / 2025-06-11
+
+### Breaking changes
+* [BREAKING CHANGE] Drop support for PHP < 8.1 (James D. Forrester)
+* [BREAKING CHANGE] Remove custom OOUI\Exception class entirely (Volker E.)
+* [BREAKING CHANGE] Remove Dialog.static.escapable (Ed Sanders)
+* [BREAKING CHANGE] SelectFileInputWidget: remove alias for SelectFileWidget (Volker E.)
+
+### Styles
+* DropdownInputWidget: Fix native `<select>` colors in dark mode (Bartosz Dziewoński)
+* Apex theme: Workaround for ButtonWidget inside DecoratedOptionWidget (Bartosz Dziewoński)
+* Use codex token for TabSelectWidget overflow gradient color (SomeRandomDeveloper)
+* WikimediaUI theme: Fix dark mode background for dialog errors (Bartosz Dziewoński)
+
+### Icons
+* icons: Add 'logo-Codex' icon (Volker E.)
+* icons: Add UserTemporaryLocation icon (Thalia Chan)
+* icons: Fix typo "anonynmous" → "anonymous" in "userAnonymous.svg" (Bartosz Dziewoński)
+* icons: remove unnecessary `fill-rule` and `clip-rule` in 'userTemporaryLocation' (lwatson)
+
+### Code
+* DropdownInputWidget: Fix missing accessibility labels on mobile (Bartosz Dziewoński)
+* DropdownInputWidget: Redo dropdown arrow for compat with MediaWiki dark mode (Bartosz Dziewoński)
+* Don't close a PopupToolGroup if the scrollbar is used (David Lynch)
+* Ignore clicks on the scrollbar in all document mouseup/down handlers (David Lynch)
+* phpunit.xml.dist: Let's make this slightly readable (James D. Forrester)
+* Replace $.extend with Object.assign in examples (Bartosz Dziewoński)
+* SelectFileInputWidget: Check droppable item is a file (Ed Sanders)
+* SelectFileWidget: Use shorter transition for hover backgrounds (Ed Sanders)
+* TabSelectWidget: Remove workaround for a gradient color blending bug in Safari<15 (Bartosz Dziewoński)
+* build: Updating @babel/helpers to 7.26.10 ([BOT] libraryupgrader)
+* build: Updating eslint-config-wikimedia to 0.30.0 ([BOT] libraryupgrader)
+* build: Updating mediawiki/mediawiki-codesniffer to 47.0.0 ([BOT] libraryupgrader)
+* build: Updating prismjs to 1.30.0 ([BOT] libraryupgrader)
+* build: Upgrade phpunit from 9.6.21 to 10.5.46 (James D. Forrester)
+* build: Use stylelint-disable-next-line instead of stylelint-disable-line (Bartosz Dziewoński)
+* demo: Restore button's width-setting ellipsis (Ed Sanders)
+* tests: Make PHPUnit data provider static (Umherirrender)
+* Update PHPUnit config for version 10 (Daimona Eaytoy)
+* Use MessageWidget 'warning' for ProcessDialog warnings (Sam Wilson)
+
 ## v0.51.7 / 2025-03-10
 
 ### Styles

@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.51.7
+ * OOUI v0.52.0
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2025 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2025-03-11T00:03:34Z
+ * Date: 2025-06-12T12:46:39Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -669,6 +669,10 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   top: 0;
   height: 100%;
 }
+.oo-ui-decoratedOptionWidget .oo-ui-buttonWidget .oo-ui-iconElement-icon,
+.oo-ui-decoratedOptionWidget .oo-ui-buttonWidget .oo-ui-indicatorElement-indicator {
+  position: static;
+}
 .oo-ui-decoratedOptionWidget .oo-ui-iconElement-icon {
   left: 0.5em;
   margin: 0;
@@ -1107,25 +1111,38 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   width: 100%;
   max-width: 50em;
 }
-.oo-ui-dropdownInputWidget .oo-ui-dropdownWidget,
-.oo-ui-dropdownInputWidget.oo-ui-dropdownInputWidget-php select,
-.oo-ui-dropdownInputWidget.oo-ui-isMobile select {
+.oo-ui-dropdownInputWidget .oo-ui-dropdownWidget {
   display: block;
 }
-.oo-ui-dropdownInputWidget.oo-ui-isMobile .oo-ui-dropdownWidget {
+.oo-ui-dropdownInputWidget select,
+.oo-ui-dropdownInputWidget > .oo-ui-indicatorWidget {
   display: none;
 }
-.oo-ui-dropdownInputWidget select {
+.oo-ui-dropdownInputWidget.oo-ui-isMobile .oo-ui-dropdownWidget,
+.oo-ui-dropdownInputWidget.oo-ui-dropdownInputWidget-php .oo-ui-dropdownWidget {
   display: none;
-  background-position: -9999em 0;
-  background-repeat: no-repeat;
+}
+.oo-ui-dropdownInputWidget.oo-ui-isMobile select,
+.oo-ui-dropdownInputWidget.oo-ui-dropdownInputWidget-php select,
+.oo-ui-dropdownInputWidget.oo-ui-isMobile > .oo-ui-indicatorWidget,
+.oo-ui-dropdownInputWidget.oo-ui-dropdownInputWidget-php > .oo-ui-indicatorWidget {
+  display: block;
+}
+.oo-ui-dropdownInputWidget select {
   width: 100%;
   box-sizing: border-box;
+}
+.oo-ui-dropdownInputWidget > .oo-ui-indicatorWidget {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  pointer-events: none;
 }
 .oo-ui-dropdownInputWidget.oo-ui-widget-enabled select {
   cursor: pointer;
 }
 .oo-ui-dropdownInputWidget select {
+  color: #333;
   background-color: #fff;
   height: 2.5em;
   padding: 0.5em;
@@ -1133,6 +1150,11 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   font-family: inherit;
   border: 1px solid #ccc;
   border-radius: 3px;
+}
+.oo-ui-dropdownInputWidget > .oo-ui-indicatorWidget {
+  /* stylelint-disable declaration-no-important */
+  display: none !important;
+  /* stylelint-enable declaration-no-important */
 }
 .oo-ui-dropdownInputWidget option {
   font-size: inherit;

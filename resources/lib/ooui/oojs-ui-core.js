@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.51.7
+ * OOUI v0.52.0
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2025 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2025-03-11T00:03:30Z
+ * Date: 2025-06-12T12:46:36Z
  */
 ( function ( OO ) {
 
@@ -2356,6 +2356,10 @@ OO.ui.mixin.ButtonElement.prototype.onMouseDown = function ( e ) {
  * @param {MouseEvent} e Mouse up event
  */
 OO.ui.mixin.ButtonElement.prototype.onDocumentMouseUp = function ( e ) {
+	if ( e.target === document.documentElement ) {
+		// This means that the scrollbar was the target of the click
+		return;
+	}
 	if ( this.isDisabled() || e.which !== OO.ui.MouseButtons.LEFT ) {
 		return;
 	}
@@ -6046,6 +6050,10 @@ OO.mixinClass( OO.ui.PopupWidget, OO.ui.mixin.FloatableElement );
  * @param {MouseEvent} e Mouse down event
  */
 OO.ui.PopupWidget.prototype.onDocumentMouseDown = function ( e ) {
+	if ( e.target === document.documentElement ) {
+		// This means that the scrollbar was the target of the click
+		return;
+	}
 	if (
 		this.isVisible() &&
 		!OO.ui.contains( this.$element.add( this.$autoCloseIgnore ).get(), e.target, true )
@@ -7335,6 +7343,10 @@ OO.ui.SelectWidget.prototype.onMouseDown = function ( e ) {
  * @return {undefined|boolean} False to prevent default if event is handled
  */
 OO.ui.SelectWidget.prototype.onDocumentMouseUp = function ( e ) {
+	if ( e.target === document.documentElement ) {
+		// This means that the scrollbar was the target of the click
+		return;
+	}
 	this.togglePressed( false );
 	if ( !this.selecting ) {
 		const item = this.findTargetItem( e );
@@ -8481,6 +8493,10 @@ OO.ui.MenuSelectWidget.static.flippedPositions = {
  * @param {MouseEvent} e Mouse down event
  */
 OO.ui.MenuSelectWidget.prototype.onDocumentMouseDown = function ( e ) {
+	if ( e.target === document.documentElement ) {
+		// This means that the scrollbar was the target of the click
+		return;
+	}
 	if (
 		this.isVisible() &&
 		!OO.ui.contains(
@@ -10611,13 +10627,19 @@ OO.ui.DropdownInputWidget = function OoUiDropdownInputWidget( config ) {
 	} );
 
 	// Initialization
+	const downIndicator = new OO.ui.IndicatorWidget( {
+		indicator: 'down'
+	} );
 	this.$element
 		.addClass( 'oo-ui-dropdownInputWidget' )
-		.append( this.dropdownWidget.$element );
+		.append( this.dropdownWidget.$element, downIndicator.$element );
 	if ( OO.ui.isMobile() ) {
 		this.$element.addClass( 'oo-ui-isMobile' );
+	} else {
+		// On mobile, keep this.$input as the tab-indexed element.
+		// This also allows FieldLayout to use <label for> to point to it. (T396261)
+		this.setTabIndexedElement( this.dropdownWidget.$tabIndexed );
 	}
-	this.setTabIndexedElement( this.dropdownWidget.$tabIndexed );
 	this.setTitledElement( this.dropdownWidget.$handle );
 };
 
@@ -10633,7 +10655,7 @@ OO.mixinClass( OO.ui.DropdownInputWidget, OO.ui.mixin.RequiredElement );
  * @protected
  */
 OO.ui.DropdownInputWidget.prototype.getInputElement = function () {
-	return $( '<select>' ).addClass( 'oo-ui-indicator-down' );
+	return $( '<select>' );
 };
 
 /**
@@ -14579,13 +14601,16 @@ OO.ui.SelectFileInputWidget.prototype.onDragEnterOrOver = function ( e ) {
 	// DataTransferItem and File both have a type property, but in Chrome files
 	// have no information at this point.
 	const itemsOrFiles = dt.items || dt.files;
-	const hasFiles = !!( itemsOrFiles && itemsOrFiles.length );
+	const hasFiles = !!itemsOrFiles &&
+		// Check some of the items are files (e.g. not just dragged text)
+		Array.prototype.some.call( itemsOrFiles, ( item ) => item.kind === 'file' );
+
 	if ( hasFiles ) {
 		if ( this.filterFiles( itemsOrFiles ).length ) {
 			hasDroppableFile = true;
 		}
 	// dt.types is Array-like, but not an Array
-	} else if ( Array.prototype.indexOf.call( OO.getProp( dt, 'types' ) || [], 'Files' ) !== -1 ) {
+	} else if ( Array.prototype.includes.call( OO.getProp( dt, 'types' ) || [], 'Files' ) ) {
 		// File information is not available at this point for security so just assume
 		// it is acceptable for now.
 		// https://bugzilla.mozilla.org/show_bug.cgi?id=640534
@@ -14642,14 +14667,6 @@ OO.ui.SelectFileInputWidget.prototype.onDrop = function ( e ) {
 
 	return false;
 };
-
-// Deprecated alias
-OO.ui.SelectFileWidget = function OoUiSelectFileWidget() {
-	OO.ui.warnDeprecation( 'SelectFileWidget: Deprecated alias, use SelectFileInputWidget instead.' );
-	OO.ui.SelectFileWidget.super.apply( this, arguments );
-};
-
-OO.inheritClass( OO.ui.SelectFileWidget, OO.ui.SelectFileInputWidget );
 
 }( OO ) );
 

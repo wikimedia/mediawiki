@@ -5,6 +5,9 @@
 		"logoCC": {
 			"file": "../wikimediaui/images/icons/logo-CC.svg"
 		},
+		"logoCodex": {
+			"file": "../wikimediaui/images/icons/logo-Codex.svg"
+		},
 		"logoMediaWiki": {
 			"file": "../wikimediaui/images/icons/logo-MediaWiki.svg"
 		},
