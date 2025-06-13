@@ -2557,7 +2557,7 @@
 	"block-reason-other": "Annen eller ytterligere årsak",
 	"block-confirm-yes": "Ja",
 	"block-confirm-no": "Nei",
-	"block-submit": "Send",
+	"block-submit": "Blokker",
 	"block-success": "[[Special:Contributions/$1|{{GENDER:$1|$1}}]] ([[{{ns:user_talk}}:$1|diskusjon]]) har blitt blokkert. Se [[Special:BlockList|blokkeringslista]] for å gå gjennom blokkeringer.",
 	"block-user-active-blocks": "Aktive blokkeringer",
 	"block-user-no-active-blocks": "Ingen aktive blokkeringer funnet",

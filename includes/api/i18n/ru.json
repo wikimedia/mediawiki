@@ -61,7 +61,8 @@
 			"Дмитрий",
 			"Краснорядцева Елена",
 			"Лилиә",
-			"Марио"
+			"Марио",
+			"Умар"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Документация]]\n* [[mw:Special:MyLanguage/API:Etiquette|Этикет и руководство по использованию]]\n* [[mw:Special:MyLanguage/API:FAQ|ЧЗВ]]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api.lists.wikimedia.org/ Почтовая рассылка]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/ Новости API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Ошибки и запросы]\n</div>\n<strong>Статус:</strong> MediaWiki API — зрелый и стабильный интерфейс, активно поддерживаемый и улучшаемый. Мы стараемся избегать ломающих изменений, однако изредка они могут быть необходимы. Подпишитесь на [https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ почтовую рассылку mediawiki-api-announce], чтобы быть в курсе обновлений.\n\n<strong>Ошибочные запросы:</strong> Если API получает запрос с ошибкой, вернётся заголовок HTTP с ключом «MediaWiki-API-Error», после чего значение заголовка и код ошибки будут отправлены обратно и установлены в то же значение. Более подробную информацию см. [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Ошибки и предупреждения]].\n\n<p class=\"mw-apisandbox-link\"><strong>Тестирование:</strong> для удобства тестирования API-запросов, см. [[Special:ApiSandbox]].</p>",
@@ -176,7 +177,7 @@
 	"apihelp-compare-param-slots": "Возвращать отдельные различия для этих ячеек, а не одно общее различие для всех ячеек.",
 	"apihelp-compare-example-1": "Создать разницу между версиями 1 и 2.",
 	"apihelp-createaccount-summary": "Создание новой учётной записи.",
-	"apihelp-createaccount-param-preservestate": "Если запрос <kbd>[[Special:ApiHelp/query+authmanagerinfo|action=query&meta=authmanagerinfo]]</kbd> возвращает true для <samp>hasprimarypreservedstate</samp>, то запросы, отмеченные как <samp>primary-required</samp>, должны быть пропущены. Если запрос возвращает непустое значение поля <samp>preservedusername</samp>, то это значение должно быть использовано в параметре <samp>username</var>.",
+	"apihelp-createaccount-param-preservestate": "Если запрос <kbd>[[Special:ApiHelp/query+authmanagerinfo|action=query&meta=authmanagerinfo]]</kbd> возвращает true для <samp>hasprimarypreservedstate</samp>, то запросы, отмеченные как <samp>primary-required</samp>, должны быть пропущены. Если запрос возвращает непустое значение поля <samp>preservedusername</samp>, то это значение должно быть использовано в параметре <var>username</var>.",
 	"apihelp-createaccount-example-create": "Начать создание участника <kbd>Example</kbd> с паролем <kbd>ExamplePassword</kbd>.",
 	"apihelp-cspreport-summary": "Используется браузерами, чтобы сообщать о нарушениях политики безопасности (CSP). Этот модуль никогда не должен использоваться, за исключением случаев автоматического использования совместимыми с CSP браузерами.",
 	"apihelp-cspreport-param-reportonly": "Отметить как доклад от политики мониторинга, не от принудительной политики",
@@ -204,7 +205,7 @@
 	"apihelp-edit-param-summary": "Описание изменений. \n\nКогда этот параметр не указан или незаполнен, [[mw:Special:MyLanguage/Autosummary|описание изменений может быть создано автоматически]].\n\nТакже является заголовком раздела, когда используется <var>$1section=new</var>, а <var>$1sectiontitle</var> не задано.\n\nЕсли оно не указано при использовании <var>$1section=new</var> и <var>$1sectiontitle</var>, вместо этого параметра используется значение заголовка раздела, тогда описание изменений генерируется автоматически.",
 	"apihelp-edit-param-tags": "Метки правки, которые будут добавлены в истории изменений.",
 	"apihelp-edit-param-minor": "Пометить эту правку как малое изменение.",
-	"apihelp-edit-param-notminor": "Не помечать эту правку как малое изменение даже есть установлена пользовательская настройка «{{int:tog-minordefault}}».",
+	"apihelp-edit-param-notminor": "Не помечать эту правку как малое изменение даже если установлена пользовательская настройка «{{int:tog-minordefault}}».",
 	"apihelp-edit-param-bot": "Пометить правку как сделанную ботом.",
 	"apihelp-edit-param-baserevid": "Идентификатор предыдущей версии, используемый для обнаружения конфликтов редактирования. Может быть получено через [[Special:ApiHelp/query+revisions|action=query&prop=revisions]]. Самостоятельные конфликты приводят к сбою редактирования, если не задана базовая отметка времени.",
 	"apihelp-edit-param-basetimestamp": "Метка времени редактируемой версии, используется для обнаружения конфликтов редактирования. Может быть получена посредством [[Special:ApiHelp/query+revisions|action=query&prop=revisions&rvprop=timestamp]]. Конфликты с самими собой игнорируются.",
