@@ -3,6 +3,7 @@
 use MediaWiki\Content\ContentHandler;
 use MediaWiki\Exception\MWContentSerializationException;
 use MediaWiki\Exception\MWUnknownContentModelException;
+use MediaWiki\Page\Event\PageCreatedEvent;
 use MediaWiki\Page\Event\PageRevisionUpdatedEvent;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
@@ -105,7 +106,7 @@ class ImportableOldRevisionImporterTest extends MediaWikiIntegrationTestCase {
 		$this->testImport( $expectedTags );
 	}
 
-	private function makeDomainEventSourceListener( $new ) {
+	private function makePageRevisionUpdatedListener( $new ) {
 		return static function ( PageRevisionUpdatedEvent $event ) use ( $new ) {
 			Assert::assertFalse( $event->isReconciliationRequest(), 'isReconciliationRequest' );
 			Assert::assertSame( $new, $event->isCreation(), 'isCreation' );
@@ -125,7 +126,18 @@ class ImportableOldRevisionImporterTest extends MediaWikiIntegrationTestCase {
 
 		$this->expectDomainEvent(
 			PageRevisionUpdatedEvent::TYPE, 1,
-			$this->makeDomainEventSourceListener( true )
+			$this->makePageRevisionUpdatedListener( true )
+		);
+
+		$this->expectDomainEvent(
+			PageCreatedEvent::TYPE, 1,
+			static function ( PageCreatedEvent $event ) {
+				Assert::assertSame(
+					PageRevisionUpdatedEvent::CAUSE_IMPORT,
+					$event->getCause(),
+					'getCause'
+				);
+			}
 		);
 
 		// Perform an import
@@ -144,6 +156,7 @@ class ImportableOldRevisionImporterTest extends MediaWikiIntegrationTestCase {
 		$title = $page->getTitle();
 
 		$this->expectDomainEvent( PageRevisionUpdatedEvent::TYPE, 0 );
+		$this->expectDomainEvent( PageCreatedEvent::TYPE, 0 );
 
 		// Import an old revision
 		$importer = $this->getImporter();
@@ -164,8 +177,10 @@ class ImportableOldRevisionImporterTest extends MediaWikiIntegrationTestCase {
 
 		$this->expectDomainEvent(
 			PageRevisionUpdatedEvent::TYPE, 1,
-			$this->makeDomainEventSourceListener( false )
+			$this->makePageRevisionUpdatedListener( false )
 		);
+
+		$this->expectDomainEvent( PageCreatedEvent::TYPE, 0 );
 
 		// Import latest revision
 		$importer = $this->getImporter();

@@ -7,6 +7,7 @@ use MediaWiki\Content\WikitextContent;
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\Event\PageCreatedEvent;
 use MediaWiki\Page\Event\PageMovedEvent;
 use MediaWiki\Page\Event\PageRevisionUpdatedEvent;
 use MediaWiki\Page\MovePage;
@@ -697,6 +698,15 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 		);
 
 		$this->expectDomainEvent(
+			PageCreatedEvent::TYPE, 1,
+			static function ( PageCreatedEvent $event ) use ( $old, $oldPageId ) {
+				// for the redirect page
+				Assert::assertTrue( $event->getPageRecordAfter()->isSamePageAs( $old ) );
+				Assert::assertNotSame( $oldPageId, $event->getPageRecordAfter()->getId() );
+			}
+		);
+
+		$this->expectDomainEvent(
 			PageMovedEvent::TYPE, 1,
 			static function ( PageMovedEvent $event )
 				use ( $old, $oldPageId, $new, $mover, $reason )
@@ -705,6 +715,8 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 				Assert::assertTrue( $event->getPageRecordBefore()->isSamePageAs( $old ) );
 
 				Assert::assertSame( $oldPageId, $event->getPageId() );
+				Assert::assertSame( $oldPageId, $event->getPageRecordBefore()->getId() );
+				Assert::assertSame( $oldPageId, $event->getPageRecordAfter()->getId() );
 
 				Assert::assertSame( $reason, $event->getReason(), 'getReason()' );
 

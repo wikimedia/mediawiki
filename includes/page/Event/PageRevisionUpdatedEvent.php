@@ -30,30 +30,42 @@ use MediaWiki\User\UserIdentity;
 use Wikimedia\Assert\Assert;
 
 /**
- * Domain event representing a page update. A PageRevisionUpdatedEvent is triggered
- * when a page's latest revision changes, even if the content did not change
- * (for a dummy revision). A reconciliation version of this event may be
- * triggered even when the page's latest version did not change (on null edits),
- * to provide an opportunity to listeners to recover from data loss and
- * corruption by re-generating any derived data.
+ * Domain event representing a change to the page's content.
  *
- * PageRevisionUpdatedEvent is emitted by DerivedPageDataUpdater, typically triggered by
- * PageUpdater. User activities that trigger a PageRevisionUpdated event include:
+ * PageRevisionUpdated events emitted for the same page ID represent a
+ * continuous chain of changes to pages' latest revision, even if the content
+ * did not change (for a dummy revision). This change is observable as the
+ * difference between getPageRecordBefore()->getLatest() and
+ * getPageRecordAfter()->getLatest(), resp. between getLatestRevisionBefore()
+ * and getLatestRevisionAfter().
+ *
+ * For two consecutive PageRevisionUpdatedEvents for the same page ID, the
+ * return value of getLatestRevisionAfter() on the first event will match
+ * the return value of getLatestRevisionBefore() on the second event.
+ * Other aspects of the page, such as the title, may change independently.
+ *
+ * A reconciliation version of this event may be triggered even when the page's
+ * latest version did not change (on null edits), to provide an opportunity to
+ * listeners to recover from data loss and corruption by re-generating any derived
+ * data. In that case, getPageRecordBefore() and getPageRecordAfter() return the
+ * same value.
+ *
+ * PageRevisionUpdatedEvents are emitted by DerivedPageDataUpdater, typically
+ * triggered by PageUpdater.
+ *
+ * User activities that trigger PageRevisionUpdateds event include:
  * - editing, including page creation and null-edits
  * - moving pages
  * - undeleting pages
  * - importing revisions
+ * - uploading media files
  * - Any activity that creates a dummy revision, such as changing the page's
  *   protection level.
  *
- * Extensions that want to subscribe to this event should list
- * "PageRevisionUpdated" as a subscribed event type.
- * Subscribers based on DomainEventIngress should implement the
- * handlePageRevisionUpdatedEvent() listener method to be informed when
- * a page update has been committed to the database.
- *
- * See the documentation of DomainEventIngress and DomainEventSource for
- * more options and details.
+ * @note Events may be delivered out of order! The continuity semantics apply
+ * to the sequence in which the events were emitted. The event dispatcher tries to
+ * deliver events in the order they were emitted, but this cannot be guaranteed
+ * under all circumstances.
  *
  * @unstable until 1.45
  */
