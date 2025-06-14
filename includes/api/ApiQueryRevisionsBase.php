@@ -219,7 +219,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 			if ( $params['diffto'] == 'cur' ) {
 				$params['diffto'] = 0;
 			}
-			if ( ( !ctype_digit( $params['diffto'] ) || $params['diffto'] < 0 )
+			if ( ( !ctype_digit( (string)$params['diffto'] ) || $params['diffto'] < 0 )
 				&& $params['diffto'] != 'prev' && $params['diffto'] != 'next'
 			) {
 				$p = $this->getModulePrefix();
