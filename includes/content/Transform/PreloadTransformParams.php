@@ -10,18 +10,9 @@ use MediaWiki\Parser\ParserOptions;
  */
 interface PreloadTransformParams {
 
-	/**
-	 * @return PageReference
-	 */
 	public function getPage(): PageReference;
 
-	/**
-	 * @return array
-	 */
 	public function getParams(): array;
 
-	/**
-	 * @return ParserOptions
-	 */
 	public function getParserOptions(): ParserOptions;
 }

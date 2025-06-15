@@ -10,20 +10,11 @@ use MediaWiki\Parser\ParserOutput;
  * An object to hold parser params.
  */
 class ContentParseParams {
-	/** @var PageReference */
-	private $page;
-
-	/** @var int|null */
-	private $revId;
-
-	/** @var ParserOptions */
-	private $parserOptions;
-
-	/** @var bool */
-	private $generateHtml;
-
-	/** @var ?ParserOutput */
-	private $previousOutput;
+	private PageReference $page;
+	private ?int $revId;
+	private ParserOptions $parserOptions;
+	private bool $generateHtml;
+	private ?ParserOutput $previousOutput;
 
 	public function __construct(
 		PageReference $page,

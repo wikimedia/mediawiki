@@ -15,9 +15,7 @@ use Wikimedia\UUID\GlobalIdGenerator;
  * @since 1.38
  */
 class ContentRenderer {
-	/** @var IContentHandlerFactory */
-	private $contentHandlerFactory;
-
+	private IContentHandlerFactory $contentHandlerFactory;
 	private GlobalIdGenerator $globalIdGenerator;
 
 	public function __construct(

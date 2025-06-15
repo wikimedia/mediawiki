@@ -8,14 +8,9 @@ use MediaWiki\Page\PageIdentity;
  * An object to hold validation params.
  */
 class ValidationParams {
-	/** @var PageIdentity */
-	private $pageIdentity;
-
-	/** @var int */
-	private $flags;
-
-	/** @var int */
-	private $parentRevId;
+	private PageIdentity $pageIdentity;
+	private int $flags;
+	private int $parentRevId;
 
 	public function __construct( PageIdentity $pageIdentity, int $flags, int $parentRevId = -1 ) {
 		$this->pageIdentity = $pageIdentity;
@@ -34,8 +29,6 @@ class ValidationParams {
 	/**
 	 * @deprecated since 1.38. Born soft-deprecated as we will move usage of it
 	 * to MultiContentSaveHook in ProofreadPage (only one place of usage).
-	 *
-	 * @return int
 	 */
 	public function getParentRevisionId(): int {
 		return $this->parentRevId;

@@ -43,15 +43,9 @@ final class ContentHandlerFactory implements IContentHandlerFactory {
 	 * @var ContentHandler[] Registry of ContentHandler instances by model id
 	 */
 	private $handlersByModel = [];
-
-	/** @var ObjectFactory */
-	private $objectFactory;
-
-	/** @var HookRunner */
-	private $hookRunner;
-
-	/** @var LoggerInterface */
-	private $logger;
+	private ObjectFactory $objectFactory;
+	private HookRunner $hookRunner;
+	private LoggerInterface $logger;
 
 	/**
 	 * @since 1.35

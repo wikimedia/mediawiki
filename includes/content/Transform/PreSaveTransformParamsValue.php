@@ -10,14 +10,9 @@ use MediaWiki\User\UserIdentity;
  * An object to hold pre-save transform params.
  */
 class PreSaveTransformParamsValue implements PreSaveTransformParams {
-	/** @var PageReference */
-	private $page;
-
-	/** @var UserIdentity */
-	private $user;
-
-	/** @var ParserOptions */
-	private $parserOptions;
+	private PageReference $page;
+	private UserIdentity $user;
+	private ParserOptions $parserOptions;
 
 	public function __construct( PageReference $page, UserIdentity $user, ParserOptions $parserOptions ) {
 		$this->page = $page;

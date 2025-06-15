@@ -11,18 +11,9 @@ use MediaWiki\User\UserIdentity;
  */
 interface PreSaveTransformParams {
 
-	/**
-	 * @return PageReference
-	 */
 	public function getPage(): PageReference;
 
-	/**
-	 * @return UserIdentity
-	 */
 	public function getUser(): UserIdentity;
 
-	/**
-	 * @return ParserOptions
-	 */
 	public function getParserOptions(): ParserOptions;
 }

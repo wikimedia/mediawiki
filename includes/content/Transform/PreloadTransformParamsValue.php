@@ -9,14 +9,9 @@ use MediaWiki\Parser\ParserOptions;
  * An object to hold preload transform params.
  */
 class PreloadTransformParamsValue implements PreloadTransformParams {
-	/** @var PageReference */
-	private $page;
-
-	/** @var array */
-	private $params;
-
-	/** @var ParserOptions */
-	private $parserOptions;
+	private PageReference $page;
+	private array $params;
+	private ParserOptions $parserOptions;
 
 	public function __construct( PageReference $page, ParserOptions $parserOptions, array $params = [] ) {
 		$this->page = $page;

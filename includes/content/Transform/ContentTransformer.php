@@ -13,8 +13,7 @@ use MediaWiki\User\UserIdentity;
  * @since 1.37
  */
 class ContentTransformer {
-	/** @var IContentHandlerFactory */
-	private $contentHandlerFactory;
+	private IContentHandlerFactory $contentHandlerFactory;
 
 	public function __construct( IContentHandlerFactory $contentHandlerFactory ) {
 		$this->contentHandlerFactory = $contentHandlerFactory;
@@ -23,13 +22,6 @@ class ContentTransformer {
 	/**
 	 * Returns a Content object with pre-save transformations applied (or $content
 	 * if no transformations apply).
-	 *
-	 * @param Content $content
-	 * @param PageReference $page
-	 * @param UserIdentity $user
-	 * @param ParserOptions $parserOptions
-	 *
-	 * @return Content
 	 */
 	public function preSaveTransform(
 		Content $content,
@@ -46,13 +38,6 @@ class ContentTransformer {
 	/**
 	 * Returns a Content object with preload transformations applied (or $content
 	 * if no transformations apply).
-	 *
-	 * @param Content $content
-	 * @param PageReference $page
-	 * @param ParserOptions $parserOptions
-	 * @param array $params
-	 *
-	 * @return Content
 	 */
 	public function preloadTransform(
 		Content $content,
