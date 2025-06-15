@@ -1248,12 +1248,6 @@ class MainConfigNames {
 	public const VirtualDomainsMapping = 'VirtualDomainsMapping';
 
 	/**
-	 * Name constant for the PageLinksSchemaMigrationStage setting, for use with Config::get()
-	 * @see MainConfigSchema::PageLinksSchemaMigrationStage
-	 */
-	public const PageLinksSchemaMigrationStage = 'PageLinksSchemaMigrationStage';
-
-	/**
 	 * Name constant for the FileSchemaMigrationStage setting, for use with Config::get()
 	 * @see MainConfigSchema::FileSchemaMigrationStage
 	 */

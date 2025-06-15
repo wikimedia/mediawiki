@@ -58,9 +58,6 @@ class LinksTableGroup {
 		],
 		'pagelinks' => [
 			'class' => PageLinksTable::class,
-			'services' => [
-				'MainConfig'
-			],
 		],
 		'page_props' => [
 			'class' => PagePropsTable::class,

@@ -2,9 +2,6 @@
 
 namespace MediaWiki\Deferred\LinksUpdate;
 
-use MediaWiki\Config\Config;
-use MediaWiki\Config\ServiceOptions;
-use MediaWiki\MainConfigNames;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\ParserOutputLinkTypes;
 
@@ -12,19 +9,6 @@ use MediaWiki\Parser\ParserOutputLinkTypes;
  * pagelinks
  */
 class PageLinksTable extends GenericPageLinksTable {
-	private const CONSTRUCTOR_OPTIONS = [
-		MainConfigNames::PageLinksSchemaMigrationStage,
-	];
-
-	/** @var int */
-	private $migrationStage;
-
-	public function __construct( Config $config ) {
-		$options = new ServiceOptions( self::CONSTRUCTOR_OPTIONS, $config );
-		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
-
-		$this->migrationStage = $options->get( MainConfigNames::PageLinksSchemaMigrationStage );
-	}
 
 	public function setParserOutput( ParserOutput $parserOutput ) {
 		// Convert the format of the local links
@@ -65,6 +49,6 @@ class PageLinksTable extends GenericPageLinksTable {
 	 * Normalization stage of the links table (see T222224)
 	 */
 	protected function linksTargetNormalizationStage(): int {
-		return $this->migrationStage;
+		return SCHEMA_COMPAT_NEW;
 	}
 }
