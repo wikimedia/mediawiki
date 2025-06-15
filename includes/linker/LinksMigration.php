@@ -50,15 +50,12 @@ class LinksMigration {
 			'deprecated_configs' => [],
 		],
 		'pagelinks' => [
-			'config' => MainConfigNames::PageLinksSchemaMigrationStage,
+			'config' => -1,
 			'page_id' => 'pl_from',
 			'ns' => 'pl_namespace',
 			'title' => 'pl_title',
 			'target_id' => 'pl_target_id',
-			'deprecated_configs' => [
-				SCHEMA_COMPAT_WRITE_OLD,
-				SCHEMA_COMPAT_READ_OLD
-			],
+			'deprecated_configs' => [],
 		],
 		'categorylinks' => [
 			'config' => MainConfigNames::CategoryLinksSchemaMigrationStage,

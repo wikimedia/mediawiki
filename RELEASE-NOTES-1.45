@@ -42,6 +42,7 @@ For notes on 1.44.x and older releases, see HISTORY.
 * (T394054) $wgParserEnableLegacyMediaDOM and $wgUseContentMediaStyles
   were removed.  New media markup is now always enabled.  More information:
   https://www.mediawiki.org/wiki/Parsoid/Parser_Unification/Media_structure/FAQ
+* $wgPageLinksSchemaMigrationStage has been removed.
 * …
 
 === New user-facing features in 1.45 ===

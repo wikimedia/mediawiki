@@ -21,7 +21,7 @@ class LinksMigrationTest extends MediaWikiUnitTestCase {
 	 * @covers \MediaWiki\Linker\LinksMigration::getLinksConditions
 	 */
 	public function testGetLinksConditionsReadNew( $configValue ) {
-		$title = new TitleValue( NS_USER, 'Someuser' );
+		$title = new TitleValue( NS_CATEGORY, 'Somecategory' );
 		$linkTargetStore = $this->createMock( LinkTargetLookup::class );
 		$linkTargetStore->method( 'getLinkTargetId' )
 			->with( $title )
@@ -30,13 +30,13 @@ class LinksMigrationTest extends MediaWikiUnitTestCase {
 
 		$config = new HashConfig(
 			[
-				MainConfigNames::PageLinksSchemaMigrationStage => $configValue
+				MainConfigNames::CategoryLinksSchemaMigrationStage => $configValue
 			]
 		);
 		$linksMigration = new LinksMigration( $config, $linkTargetStore );
 		$this->assertSame(
-			[ 'pl_target_id' => 1 ],
-			$linksMigration->getLinksConditions( 'pagelinks', $title )
+			[ 'cl_target_id' => 1 ],
+			$linksMigration->getLinksConditions( 'categorylinks', $title )
 		);
 	}
 
@@ -49,21 +49,20 @@ class LinksMigrationTest extends MediaWikiUnitTestCase {
 	 * @covers \MediaWiki\Linker\LinksMigration::getLinksConditions
 	 */
 	public function testGetLinksConditionsReadOld( $configValue ) {
-		$this->markTestSkipped( 'No table currently with support for read old' );
-		$title = new TitleValue( NS_USER, 'Someuser' );
+		$title = new TitleValue( NS_CATEGORY, 'Somecategory' );
 		$linkTargetStore = $this->createMock( LinkTargetLookup::class );
 		$linkTargetStore->expects( $this->never() )->method( 'getLinkTargetId' );
 		$linkTargetStore->expects( $this->never() )->method( 'acquireLinkTargetId' );
 
 		$config = new HashConfig(
 			[
-				MainConfigNames::PageLinksSchemaMigrationStage => $configValue
+				MainConfigNames::CategoryLinksSchemaMigrationStage => $configValue
 			]
 		);
 		$linksMigration = new LinksMigration( $config, $linkTargetStore );
 		$this->assertSame(
-			[ 'pl_namespace' => 2, 'pl_title' => 'Someuser' ],
-			$linksMigration->getLinksConditions( 'pagelinks', $title )
+			[ 14 => NS_CATEGORY, 'cl_to' => 'Somecategory' ],
+			$linksMigration->getLinksConditions( 'categorylinks', $title )
 		);
 	}
 

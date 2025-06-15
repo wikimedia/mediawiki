@@ -715,13 +715,9 @@ class NamespaceDupes extends Maintenance {
 		// Update *_from_namespace in links tables
 		$fromNamespaceTables = [
 			[ 'templatelinks', 'tl', [ 'tl_target_id' ] ],
-			[ 'imagelinks', 'il', [ 'il_to' ] ]
+			[ 'imagelinks', 'il', [ 'il_to' ] ],
+			[ 'pagelinks', 'pl', [ 'pl_target_id' ] ],
 		];
-		if ( $this->getConfig()->get( MainConfigNames::PageLinksSchemaMigrationStage ) & SCHEMA_COMPAT_WRITE_OLD ) {
-			$fromNamespaceTables[] = [ 'pagelinks', 'pl', [ 'pl_namespace', 'pl_title' ] ];
-		} else {
-			$fromNamespaceTables[] = [ 'pagelinks', 'pl', [ 'pl_target_id' ] ];
-		}
 		$updateRowsPerQuery = $this->getConfig()->get( MainConfigNames::UpdateRowsPerQuery );
 		foreach ( $fromNamespaceTables as [ $table, $fieldPrefix, $additionalPrimaryKeyFields ] ) {
 			$fromField = "{$fieldPrefix}_from";

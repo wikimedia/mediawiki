@@ -2003,16 +2003,6 @@ config-schema:
             If you want to get another db in the main cluster, just omit 'cluster'. For example:
              [ 'centralauth' => [ 'db' => 'centralauth' ] ]
             @since 1.41
-    PageLinksSchemaMigrationStage:
-        default: 768
-        type: integer
-        description: |-
-            Pagelinks table schema migration stage, for normalizing pl_namespace and pl_title fields.
-            Use the SCHEMA_COMPAT_XXX flags. Supported values:
-              - SCHEMA_COMPAT_WRITE_NEW | SCHEMA_COMPAT_READ_NEW (SCHEMA_COMPAT_NEW)
-            History:
-              - 1.41: Added
-              - 1.43: Default has changed to SCHEMA_COMPAT_NEW.
     FileSchemaMigrationStage:
         default: 3
         type: integer
