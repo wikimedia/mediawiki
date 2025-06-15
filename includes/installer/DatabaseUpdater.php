@@ -439,15 +439,6 @@ abstract class DatabaseUpdater {
 	}
 
 	/**
-	 * Get the list of extension-defined updates
-	 *
-	 * @return array
-	 */
-	protected function getExtensionUpdates() {
-		return $this->extensionUpdates;
-	}
-
-	/**
 	 * @since 1.17
 	 *
 	 * @return string[]
@@ -508,7 +499,7 @@ abstract class DatabaseUpdater {
 		}
 		if ( isset( $what['extensions'] ) ) {
 			$this->loadExtensionSchemaUpdates();
-			$this->runUpdates( $this->getExtensionUpdates(), true );
+			$this->runUpdates( $this->extensionUpdates, true );
 			$this->runUpdates( $this->extensionUpdatesWithVirtualDomains, true, true );
 		}
 
