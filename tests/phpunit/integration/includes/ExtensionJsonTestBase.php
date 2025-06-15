@@ -10,10 +10,12 @@ use MediaWiki\Auth\PreAuthenticationProvider;
 use MediaWiki\Auth\PrimaryAuthenticationProvider;
 use MediaWiki\Auth\SecondaryAuthenticationProvider;
 use MediaWiki\Content\ContentHandler;
+use MediaWiki\DomainEvent\DomainEventIngress;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\JobQueue\Job;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\FauxRequest;
+use MediaWiki\Rest\Handler;
 use MediaWiki\Tests\Api\ApiTestContext;
 use MediaWikiIntegrationTestCase;
 use Wikimedia\Http\MultiHttpClient;
@@ -79,6 +81,12 @@ abstract class ExtensionJsonTestBase extends MediaWikiIntegrationTestCase {
 	 * @see self::getJobParams()
 	 */
 	protected static bool $testJobClasses = false;
+
+	/**
+	 * @var bool If true, tests that RestRoutes can be constructed.
+	 * @todo Remove this once no extension needs it.
+	 */
+	protected static bool $testRestRoutes = true;
 
 	/**
 	 * @var array[] Cache for extension.json, shared between all tests.
@@ -309,6 +317,40 @@ abstract class ExtensionJsonTestBase extends MediaWikiIntegrationTestCase {
 		yield from self::doProvideJobClassesNames();
 	}
 
+	/** @dataProvider provideDomainEventIngresses */
+	public function testDomainEventIngresses( array $eventIngressSpecification ) {
+		$objectFactory = MediaWikiServices::getInstance()->getObjectFactory();
+		$domainEventIngress = $objectFactory->createObject( $eventIngressSpecification );
+		$this->assertInstanceOf( DomainEventIngress::class, $domainEventIngress );
+	}
+
+	public static function provideDomainEventIngresses() {
+		foreach ( self::getExtensionJson()['DomainEventIngresses'] ?? [] as $specification ) {
+			yield [ $specification ];
+		}
+	}
+
+	/** @dataProvider provideRestRoutes */
+	public function testRestRoutes( array $restRouteSpecification ) {
+		$objectFactory = MediaWikiServices::getInstance()->getObjectFactory();
+		$restHandler = $objectFactory->createObject( $restRouteSpecification );
+		$this->assertInstanceOf( Handler::class, $restHandler );
+	}
+
+	private static function doProvideRestRoutes() {
+		foreach ( self::getExtensionJson()['RestRoutes'] ?? [] as $specification ) {
+			yield [ $specification ];
+		}
+	}
+
+	public static function provideRestRoutes() {
+		if ( !static::$testRestRoutes ) {
+			return [];
+		}
+
+		yield from self::doProvideRestRoutes();
+	}
+
 	/** @dataProvider provideServicesLists */
 	public function testServicesSorted( array $services ): void {
 		if ( $this->serviceNamePrefix === null ) {
@@ -374,6 +416,14 @@ abstract class ExtensionJsonTestBase extends MediaWikiIntegrationTestCase {
 
 		foreach ( self::doProvideJobClassesNames() as [ $jobName ] ) {
 			yield "JobClasses/$jobName" => $extensionJson['JobClasses'][$jobName];
+		}
+
+		foreach ( self::provideDomainEventIngresses() as $index => $domainEventIngressSpecification ) {
+			yield "DomainEventIngresses/$index" => $domainEventIngressSpecification;
+		}
+
+		foreach ( self::doProvideRestRoutes() as $index => $restRoute ) {
+			yield "RestRoutes/$index" => $restRoute;
 		}
 	}
 
