@@ -180,6 +180,15 @@ class AuthManager implements LoggerAwareInterface {
 	/** @var Config */
 	private $config;
 
+	/**
+	 * @internal To be used by primary authentication providers only.
+	 * @var string Primary providers can set this to false after login to prevent the
+	 *   login from being considered user interaction. This is important for some security
+	 *   features which generally interpret a recent login as proof of account ownership
+	 *   (vs. a stolen session).
+	 */
+	public const LOGIN_WAS_INTERACTIVE = 'loginWasInteractive';
+
 	/** @var ObjectFactory */
 	private $objectFactory;
 
@@ -832,7 +841,8 @@ class AuthManager implements LoggerAwareInterface {
 				);
 				$rememberMe = $req && $req->rememberMe;
 			}
-			$this->setSessionDataForUser( $user, $rememberMe );
+			$loginWasInteractive = $this->getAuthenticationSessionData( self::LOGIN_WAS_INTERACTIVE, true );
+			$this->setSessionDataForUser( $user, $rememberMe, $loginWasInteractive );
 			$ret = AuthenticationResponse::newPass( $user->getName() );
 			$this->callMethodOnProviders( 7, 'postAuthentication', [ $user, $ret ] );
 			$performer = $session->getUser();
