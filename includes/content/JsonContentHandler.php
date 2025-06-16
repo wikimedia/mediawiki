@@ -24,6 +24,8 @@ use MediaWiki\Content\Renderer\ContentParseParams;
 use MediaWiki\Content\Transform\PreSaveTransformParams;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\ParserOutput;
+use MediaWiki\Parser\Parsoid\ParsoidParserFactory;
+use MediaWiki\Title\TitleFactory;
 use StatusValue;
 
 /**
@@ -39,12 +41,22 @@ use StatusValue;
  */
 class JsonContentHandler extends CodeContentHandler {
 
+	private ParsoidParserFactory $parsoidParserFactory;
+	private TitleFactory $titleFactory;
+
 	/**
-	 * @param string $modelId
 	 * @stable to call
 	 */
-	public function __construct( $modelId = CONTENT_MODEL_JSON ) {
+	public function __construct(
+		string $modelId = CONTENT_MODEL_JSON,
+		?ParsoidParserFactory $parsoidParserFactory = null,
+		?TitleFactory $titleFactory = null
+	) {
 		parent::__construct( $modelId, [ CONTENT_FORMAT_JSON ] );
+		$this->parsoidParserFactory = $parsoidParserFactory ??
+			MediaWikiServices::getInstance()->getParsoidParserFactory();
+		$this->titleFactory = $titleFactory ??
+			MediaWikiServices::getInstance()->getTitleFactory();
 	}
 
 	/**
@@ -125,10 +137,8 @@ class JsonContentHandler extends CodeContentHandler {
 			if ( $content->isValid() ) {
 				$parserOptions = $cpoParams->getParserOptions();
 				if ( $cpoParams->getParserOptions()->getUseParsoid() ) {
-					$title = MediaWikiServices::getInstance()->getTitleFactory()
-						->newFromPageReference( $cpoParams->getPage() );
-					$parser = MediaWikiServices::getInstance()->getParsoidParserFactory()
-						->create();
+					$title = $this->titleFactory->newFromPageReference( $cpoParams->getPage() );
+					$parser = $this->parsoidParserFactory->create();
 					$parserOutput = $parser->parse(
 						// It is necessary to pass a Content rather than a
 						// string in order for Parsoid to handle the

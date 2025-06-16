@@ -60,9 +60,29 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 						'ParsoidParserFactory',
 					],
 				],
-				CONTENT_MODEL_JAVASCRIPT => JavaScriptContentHandler::class,
-				CONTENT_MODEL_JSON => JsonContentHandler::class,
-				CONTENT_MODEL_CSS => CssContentHandler::class,
+				CONTENT_MODEL_JAVASCRIPT => [
+					'class' => JavaScriptContentHandler::class,
+					'services' => [
+						'MainConfig',
+						'ParserFactory',
+						'UserOptionsLookup',
+					],
+				],
+				CONTENT_MODEL_JSON => [
+					'class' => JsonContentHandler::class,
+					'services' => [
+						'ParsoidParserFactory',
+						'TitleFactory',
+					],
+				],
+				CONTENT_MODEL_CSS => [
+					'class' => CssContentHandler::class,
+					'services' => [
+						'MainConfig',
+						'ParserFactory',
+						'UserOptionsLookup',
+					],
+				],
 				CONTENT_MODEL_TEXT => TextContentHandler::class,
 				'testing' => DummyContentHandlerForTesting::class,
 				'testing-callbacks' => static function ( $modelId ) {

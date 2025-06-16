@@ -14,12 +14,14 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\PageStore;
+use MediaWiki\Parser\ParserFactory;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\ResourceLoader\Context;
 use MediaWiki\ResourceLoader\DerivativeContext;
 use MediaWiki\ResourceLoader\WikiModule;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
+use MediaWiki\User\Options\UserOptionsLookup;
 use ReflectionMethod;
 use RuntimeException;
 use Wikimedia\ObjectCache\HashBagOStuff;
@@ -519,9 +521,14 @@ class WikiModuleTest extends ResourceLoaderTestCase {
 				'MediaWiki:Redirect.js' => [ 'type' => 'script' ]
 			] );
 		$module->setConfig( $context->getResourceLoader()->getConfig() );
-		$context->setContentOverrideCallback( static function ( PageIdentity $title ) {
+		$context->setContentOverrideCallback( function ( PageIdentity $title ) {
 			if ( $title->getDBkey() === 'Redirect.js' ) {
-				$handler = new JavaScriptContentHandler();
+				$handler = new JavaScriptContentHandler(
+					CONTENT_MODEL_JAVASCRIPT,
+					$this->createMock( Config::class ),
+					$this->createMock( ParserFactory::class ),
+					$this->createMock( UserOptionsLookup::class )
+				);
 				return $handler->makeRedirectContent(
 					Title::makeTitle( NS_MEDIAWIKI, 'Target.js' )
 				);

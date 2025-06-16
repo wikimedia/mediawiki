@@ -407,9 +407,29 @@ return [
 						'ParsoidParserFactory',
 					],
 				],
-				'javascript' => 'MediaWiki\\Content\\JavaScriptContentHandler',
-				'json' => 'MediaWiki\\Content\\JsonContentHandler',
-				'css' => 'MediaWiki\\Content\\CssContentHandler',
+				'javascript' => [
+					'class' => 'MediaWiki\\Content\\JavaScriptContentHandler',
+					'services' => [
+						'MainConfig',
+						'ParserFactory',
+						'UserOptionsLookup',
+					],
+				],
+				'json' => [
+					'class' => 'MediaWiki\\Content\\JsonContentHandler',
+					'services' => [
+						'ParsoidParserFactory',
+						'TitleFactory',
+					],
+				],
+				'css' => [
+					'class' => 'MediaWiki\\Content\\CssContentHandler',
+					'services' => [
+						'MainConfig',
+						'ParserFactory',
+						'UserOptionsLookup',
+					],
+				],
 				'text' => 'MediaWiki\\Content\\TextContentHandler',
 				'unknown' => 'MediaWiki\\Content\\FallbackContentHandler',
 			],

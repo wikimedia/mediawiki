@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\Content\JavaScriptContent;
-use MediaWiki\Content\JavaScriptContentHandler;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
 
@@ -18,7 +17,8 @@ class JavaScriptContentHandlerTest extends MediaWikiLangTestCase {
 			MainConfigNames::Server => '//example.org',
 			MainConfigNames::Script => '/w/index.php',
 		] );
-		$ch = new JavaScriptContentHandler();
+		$ch = $this->getServiceContainer()->getContentHandlerFactory()
+			->getContentHandler( CONTENT_MODEL_JAVASCRIPT );
 		$content = $ch->makeRedirectContent( Title::newFromText( $title ) );
 		$this->assertInstanceOf( JavaScriptContent::class, $content );
 		$this->assertEquals( $expected, $content->serialize( CONTENT_FORMAT_JAVASCRIPT ) );

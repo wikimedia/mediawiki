@@ -20,15 +20,17 @@
 
 namespace MediaWiki\Content;
 
+use MediaWiki\Config\Config;
 use MediaWiki\Content\Renderer\ContentParseParams;
 use MediaWiki\Content\Transform\PreSaveTransformParams;
 use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\WikiPage;
+use MediaWiki\Parser\ParserFactory;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Title\Title;
+use MediaWiki\User\Options\UserOptionsLookup;
 
 /**
  * Content handler for JavaScript pages.
@@ -40,11 +42,20 @@ use MediaWiki\Title\Title;
  */
 class JavaScriptContentHandler extends CodeContentHandler {
 
-	/**
-	 * @param string $modelId
-	 */
-	public function __construct( $modelId = CONTENT_MODEL_JAVASCRIPT ) {
+	private array $textModelsToParse;
+	private ParserFactory $parserFactory;
+	private UserOptionsLookup $userOptionsLookup;
+
+	public function __construct(
+		string $modelId,
+		Config $config,
+		ParserFactory $parserFactory,
+		UserOptionsLookup $userOptionsLookup
+	) {
 		parent::__construct( $modelId, [ CONTENT_FORMAT_JAVASCRIPT ] );
+		$this->textModelsToParse = $config->get( MainConfigNames::TextModelsToParse ) ?? [];
+		$this->parserFactory = $parserFactory;
+		$this->userOptionsLookup = $userOptionsLookup;
 	}
 
 	/**
@@ -87,15 +98,14 @@ class JavaScriptContentHandler extends CodeContentHandler {
 
 		$parserOptions = $pstParams->getParserOptions();
 		// @todo Make pre-save transformation optional for script pages (T34858)
-		$services = MediaWikiServices::getInstance();
-		if ( !$services->getUserOptionsLookup()->getBoolOption( $pstParams->getUser(), 'pst-cssjs' ) ) {
+		if ( !$this->userOptionsLookup->getBoolOption( $pstParams->getUser(), 'pst-cssjs' ) ) {
 			// Allow bot users to disable the pre-save transform for CSS/JS (T236828).
 			$parserOptions = clone $parserOptions;
 			$parserOptions->setPreSaveTransform( false );
 		}
 
 		$text = $content->getText();
-		$pst = $services->getParserFactory()->getInstance()->preSaveTransform(
+		$pst = $this->parserFactory->getInstance()->preSaveTransform(
 			$text,
 			$pstParams->getPage(),
 			$pstParams->getUser(),
@@ -127,12 +137,10 @@ class JavaScriptContentHandler extends CodeContentHandler {
 		ContentParseParams $cpoParams,
 		ParserOutput &$output
 	) {
-		$textModelsToParse = MediaWikiServices::getInstance()->getMainConfig()->get(
-			MainConfigNames::TextModelsToParse );
 		'@phan-var JavaScriptContent $content';
-		if ( in_array( $content->getModel(), $textModelsToParse ) ) {
+		if ( in_array( $content->getModel(), $this->textModelsToParse ) ) {
 			// parse just to get links etc into the database, HTML is replaced below.
-			$output = MediaWikiServices::getInstance()->getParserFactory()->getInstance()
+			$output = $this->parserFactory->getInstance()
 				->parse(
 					$content->getText(),
 					$cpoParams->getPage(),

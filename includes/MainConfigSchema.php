@@ -3371,11 +3371,31 @@ class MainConfigSchema {
 					],
 				],
 				// dumb version, no syntax highlighting
-				CONTENT_MODEL_JAVASCRIPT => JavaScriptContentHandler::class,
+				CONTENT_MODEL_JAVASCRIPT => [
+					'class' => JavaScriptContentHandler::class,
+					'services' => [
+						'MainConfig',
+						'ParserFactory',
+						'UserOptionsLookup',
+					],
+				],
 				// simple implementation, for use by extensions, etc.
-				CONTENT_MODEL_JSON => JsonContentHandler::class,
+				CONTENT_MODEL_JSON => [
+					'class' => JsonContentHandler::class,
+					'services' => [
+						'ParsoidParserFactory',
+						'TitleFactory',
+					],
+				],
 				// dumb version, no syntax highlighting
-				CONTENT_MODEL_CSS => CssContentHandler::class,
+				CONTENT_MODEL_CSS => [
+					'class' => CssContentHandler::class,
+					'services' => [
+						'MainConfig',
+						'ParserFactory',
+						'UserOptionsLookup',
+					],
+				],
 				// plain text, for use by extensions, etc.
 				CONTENT_MODEL_TEXT => TextContentHandler::class,
 				// fallback for unknown models, from imports or extensions that were removed
