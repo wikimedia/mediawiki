@@ -1404,20 +1404,13 @@ abstract class File implements MediaHandlerState {
 			$this->generateBucketsIfNeeded( $normalisedParams, $flags );
 		}
 
-		# T367110
-		# Calls to doTransform() can recur back on $this->transform()
-		# depending on implementation. One such example is PagedTiffHandler.
-		# TimingMetric->start() and stop() cannot be used in this situation
-		# so we will track the time manually.
-		$starttime = microtime( true );
+		$timer = $statsFactory->getTiming( 'media_thumbnail_generate_transform_seconds' )->start();
 
 		// Actually render the thumbnail...
 		$thumb = $handler->doTransform( $this, $tmpThumbPath, $thumbUrl, $transformParams );
 		$tmpFile->bind( $thumb ); // keep alive with $thumb
 
-		$statsFactory->getTiming( 'media_thumbnail_generate_transform_seconds' )
-			->copyToStatsdAt( 'media.thumbnail.generate.transform' )
-			->observe( ( microtime( true ) - $starttime ) * 1000 );
+		$timer->stop();
 
 		if ( !$thumb ) { // bad params?
 			$thumb = false;
