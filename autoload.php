@@ -1557,6 +1557,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Hook\\GetMetadataVersionHook' => __DIR__ . '/includes/media/Hook/GetMetadataVersionHook.php',
 	'MediaWiki\\Hook\\GetNewMessagesAlertHook' => __DIR__ . '/includes/skins/Hook/GetNewMessagesAlertHook.php',
 	'MediaWiki\\Hook\\GetRelativeTimestampHook' => __DIR__ . '/includes/Hook/GetRelativeTimestampHook.php',
+	'MediaWiki\\Hook\\GetSecurityLogContextHook' => __DIR__ . '/includes/Hook/GetSecurityLogContextHook.php',
 	'MediaWiki\\Hook\\GitViewersHook' => __DIR__ . '/includes/Hook/GitViewersHook.php',
 	'MediaWiki\\Hook\\HistoryPageToolLinksHook' => __DIR__ . '/includes/actions/Hook/HistoryPageToolLinksHook.php',
 	'MediaWiki\\Hook\\HistoryToolsHook' => __DIR__ . '/includes/actions/Hook/HistoryToolsHook.php',
