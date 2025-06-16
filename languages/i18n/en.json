@@ -105,6 +105,7 @@
 	"redirectto": "Redirect to:",
 	"talkpageheader": "-",
 	"lastmodifiedat": "This page was last edited on $1, at $2.",
+	"lastmodifiedat-parsoid": "This page was last edited on $1, at $2 and was rendered in [[mw:Special:MyLanguage/Parsoid|Parsoid]].",
 	"viewcount": "This page has been accessed {{PLURAL:$1|once|$1 times}}.",
 	"protectedpage": "Protected page",
 	"jumpto": "Jump to:",

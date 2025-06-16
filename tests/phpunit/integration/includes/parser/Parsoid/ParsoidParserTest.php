@@ -50,6 +50,7 @@ class ParsoidParserTest extends MediaWikiIntegrationTestCase {
 			'isMessage',
 			'isPreview',
 			'suppressSectionEditLinks',
+			'useParsoid',
 			'wrapclass',
 		];
 		$this->assertEqualsCanonicalizing( $usedOptions, $output->getUsedOptions() );
@@ -99,6 +100,7 @@ class ParsoidParserTest extends MediaWikiIntegrationTestCase {
 			'isMessage',
 			'isPreview',
 			'suppressSectionEditLinks',
+			'useParsoid',
 			'wrapclass',
 		];
 		$this->assertArrayEquals( $usedOptions, $output->getUsedOptions() );

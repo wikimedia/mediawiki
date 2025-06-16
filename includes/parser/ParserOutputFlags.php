@@ -198,6 +198,14 @@ enum ParserOutputFlags: string {
 	case IS_PREVIEW = 'is-preview';
 
 	/**
+	 * Set when the parse was done with parsoid; clear if the
+	 * parse was done with the legacy parser (or unknown).
+	 *
+	 * @see ParserOptions::getUseParsoid()
+	 */
+	case USE_PARSOID = 'use-parsoid';
+
+	/**
 	 * Set if this page contains content which could be
 	 * asynchronous, even if the content was "ready" at the time of
 	 * the parse.

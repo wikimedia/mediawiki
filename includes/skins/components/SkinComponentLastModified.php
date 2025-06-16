@@ -12,17 +12,19 @@ class SkinComponentLastModified implements SkinComponent {
 	private $language;
 	/** @var MessageLocalizer */
 	private $localizer;
-	/** @var string|null|false */
-	private $revisionTimestamp;
 	/** @var User */
 	private $user;
 
 	/**
 	 * @param SkinComponentRegistryContext $skinContext
 	 * @param string|null|false $revisionTimestamp
+	 * @param bool $useParsoid whether Parsoid was used to render this page
 	 */
-	public function __construct( SkinComponentRegistryContext $skinContext, $revisionTimestamp = null ) {
-		$this->revisionTimestamp = $revisionTimestamp;
+	public function __construct(
+		SkinComponentRegistryContext $skinContext,
+		private $revisionTimestamp = null,
+		private bool $useParsoid = false,
+	) {
 		$this->localizer = $skinContext->getMessageLocalizer();
 		$this->user = $skinContext->getUser();
 		$this->language = $skinContext->getLanguage();
@@ -38,11 +40,15 @@ class SkinComponentLastModified implements SkinComponent {
 		$user = $this->user;
 		$language = $this->language;
 		$timestamp = $this->revisionTimestamp;
+		$useParsoid = $this->useParsoid;
 
 		if ( $timestamp ) {
 			$d = $language->userDate( $timestamp, $user );
 			$t = $language->userTime( $timestamp, $user );
-			$s = ' ' . $localizer->msg( 'lastmodifiedat', $d, $t )->parse();
+			$msg = $useParsoid ?
+				 $localizer->msg( 'lastmodifiedat-parsoid', $d, $t ) :
+				 $localizer->msg( 'lastmodifiedat', $d, $t );
+			$s = ' ' . $msg->parse();
 		} else {
 			$s = '';
 			$d = null;
