@@ -663,7 +663,7 @@
 	"showpreview": "Zobraziť náhľad",
 	"showdiff": "Zobraziť rozdiely",
 	"blankarticle": "<strong>Upozornenie:</strong> Stránka, ktorú sa chystáte založiť, je prázdna.\nPokiaľ ešte raz kliknete na „$1“, bude založená úplne bez obsahu.",
-	"anoneditwarning": "<strong>Upozornenie:</strong> Nie ste prihlásený.\nAk uložíte akúkoľvek úpravu vaša IP adresa bude zverejnená v histórii tejto stránky. Ak sa <strong>[$1 prihlásite]</strong> alebo si <strong>[$2 vytvoríte účet]</strong>, budú vaše úpravy priradené k vášmu používateľskému menu a získate i ďalšie výhody.",
+	"anoneditwarning": "<strong>Upozornenie:</strong> Nie ste prihlásený.\nAk uložíte akúkoľvek úpravu, vaša IP adresa bude zverejnená v histórii tejto stránky. Ak sa <strong>[$1 prihlásite]</strong> alebo si <strong>[$2 vytvoríte účet]</strong>, budú vaše úpravy priradené k vášmu používateľskému menu a získate i ďalšie výhody.",
 	"anonpreviewwarning": "<em>Nie ste prihlásený/á. Zverejnenie zaregistruje Vašu IP adresu do histórie úprav stránky.</em>",
 	"missingsummary": "<strong>Pripomienka:</strong>Neuviedli ste zhrnutie úpravy. Ak znovu kliknete na $1, Vaše zmeny budú zverejnené bez neho.",
 	"selfredirect": "<strong>Upozornenie:</strong> Snažíte sa túto stránku presmerovať samú na seba.\nMožno ste zadali chybný cieľ presmerovania, alebo editujete nesprávnu stránku.\nAk znova kliknete na „$1“, bude presmerovanie aj napriek tomu vytvorené.",

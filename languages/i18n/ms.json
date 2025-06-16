@@ -3245,7 +3245,7 @@
 	"size-pixel": "$1 {{PLURAL:$1|piksel}}",
 	"lag-warn-normal": "Sebarang perubahan baru yang melebihi $1 saat mungkin tidak ditunjukkan dalam senarai ini.",
 	"lag-warn-high": "Disebabkan oleh kelambatan pelayan pangkalan data, sebarang perubahan baru yang melebihi $1 saat mungkin tidak ditunjukkan dalam senarai ini.",
-	"watchlistedit-normal-title": "Sunting senarai pantau",
+	"watchlistedit-normal-title": "Sunting pantauan",
 	"watchlistedit-normal-legend": "Buang tajuk-tajuk ini dari senarai pantau",
 	"watchlistedit-normal-explain": "Tajuk-tajuk dalam senarai pantau anda ditunjukkan di bawah.\nUntuk membuang mana-mana tajuk, tanda kotak yang terletak di sebelahnya, dan klik \"Buang Tajuk\". Anda juga boleh [[Special:EditWatchlist/raw|menyunting senarai mentah]].",
 	"watchlistedit-normal-submit": "Gugurkan tajuk-tajuk",

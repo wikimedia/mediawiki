@@ -72,7 +72,8 @@
 			"Băng Tỏa",
 			"沈澄心",
 			"FunnyYellowDog",
-			"Yummie1207"
+			"Yummie1207",
+			"Quangquy322"
 		]
 	},
 	"tog-underline": "Gạch chân liên kết:",
@@ -695,7 +696,7 @@
 	"missingcommentheader": "<strong>Nhắc nhở:</strong> Bạn chưa ghi chủ đề/tiêu đề cho bàn luận này.\nNếu bạn nhấn nút “$1” lần nữa, sửa đổi của bạn sẽ được xuất bản mà không có đề mục.",
 	"summary-preview": "Xem trước dòng tóm lược sửa đổi:",
 	"previewerrortext": "Có lỗi xảy ra khi xem trước những thay đổi của bạn.",
-	"blockedtitle": "Thành viên bị cấm",
+	"blockedtitle": "Người dùng là bị chặn",
 	"blockedtext-partial": "<strong>Tài khoản hoặc IP của bạn đã bị cấm không được phép thực hiện tác vụ này. Có lẽ bạn vẫn có thể thực hiện những tác vụ khác tại wiki này, chẳng hạn như sửa đổi các trang cụ thể.</strong> Bạn có thể xem chi tiết đầy đủ về việc cấm tại [[Special:MyContributions|các đóng góp của tài khoản]].\n\nViệc cấm được thực hiện bởi $1.\n\nLý do được đưa ra là <em>$2</em>.\n\n* Ngày bắt đầu cấm: $8\n* Ngày hết hạn cấm: $6\n* Người bị cấm: $7\n* Mã số cấm #$5",
 	"blockedtext": "<strong>Tài khoản hoặc địa chỉ IP của bạn đã bị cấm.</strong>\n\nNgười thực hiện cấm là $1.\nLý do được cung cấp là <em>$2</em>.\n\n* Bắt đầu cấm: $8\n* Kết thúc cấm: $6\n* Mục tiêu cấm: $7\n\nBạn có thể liên hệ với $1 hoặc [[{{MediaWiki:Grouppage-sysop}}|bảo quản viên]] khác để thảo luận về vụ cấm.\nBạn có thể sử dụng chức năng “{{int:emailuser}}” nếu bạn đã nhập địa chỉ thư điện tử hợp lệ trong [[Special:Preferences|tùy chọn của bạn]] và chức năng đó không bị khóa.\nĐịa chỉ IP hiện tại của bạn là $3, và mã số cấm là #$5.\nXin hãy cung cấp tất cả các thông tin trên vào thư yêu cầu của bạn.",
 	"autoblockedtext": "Địa chỉ IP của bạn đã bị tự động cấm vì một người nào đó đã sử dụng nó, $1 là thành viên đã thực hiện cấm.\nLý do được cung cấp là:\n\n:<em>$2</em>\n\n* Bắt đầu cấm: $8\n* Kết thúc cấm: $6\n* Mục tiêu cấm: $7\n\nBạn có thể liên hệ với $1 hoặc một trong số các\n[[{{MediaWiki:Grouppage-sysop}}|bảo quản viên]] khác để thảo luận về việc cấm.\n\nBạn có thể sử dụng chức năng “{{int:emailuser}}” nếu một địa chỉ thư điện tử hợp lệ được chỉ định trong [[Special:Preferences|tùy chọn]] và bạn không bị cấm dùng chức năng đó.\n\nĐịa chỉ IP hiện tại của bạn là $3, mã số cấm là $5.\nXin hãy ghi kèm tất cả các chi tiết trên vào thư yêu cầu của bạn.",
