@@ -1299,12 +1299,6 @@ $wgDefaultExternalStore = null;
 $wgRevisionCacheExpiry = null;
 
 /**
- * Config variable stub for the RevisionSlotsCacheExpiry setting, for use by phpdoc and IDEs.
- * @see MediaWiki\MainConfigSchema::RevisionSlotsCacheExpiry
- */
-$wgRevisionSlotsCacheExpiry = null;
-
-/**
  * Config variable stub for the PageLanguageUseDB setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::PageLanguageUseDB
  */

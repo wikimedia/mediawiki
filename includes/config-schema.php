@@ -427,10 +427,6 @@ return [
 			],
 			'DefaultExternalStore' => false,
 			'RevisionCacheExpiry' => 604800,
-			'RevisionSlotsCacheExpiry' => [
-				'local' => 3600,
-				'WAN' => 86400,
-			],
 			'PageLanguageUseDB' => false,
 			'DiffEngine' => null,
 			'ExternalDiffEngine' => false,
@@ -2808,7 +2804,6 @@ return [
 				'boolean',
 			],
 			'RevisionCacheExpiry' => 'integer',
-			'RevisionSlotsCacheExpiry' => 'object',
 			'PageLanguageUseDB' => 'boolean',
 			'DiffEngine' => [
 				'string',
