@@ -116,7 +116,7 @@ abstract class Module implements LoggerAwareInterface {
 	public const ORIGIN_ALL = 10;
 
 	/** @var int Cache version for user-script JS validation errors from validateScriptFile(). */
-	private const USERJSPARSE_CACHE_VERSION = 3;
+	private const USERJSPARSE_CACHE_VERSION = 4;
 
 	/**
 	 * Get this module's name. This is set when the module is registered
