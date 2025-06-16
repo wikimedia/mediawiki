@@ -1214,9 +1214,9 @@
  </testCaseClass>
  <testCaseClass name="CirrusSearch\UtilTest">
  </testCaseClass>
- <testCaseClass name="CirrusSearch\Wikimedia\WeightedTagsFieldTest">
+ <testCaseClass name="CirrusSearch\WeightedTagsFieldTest">
  </testCaseClass>
- <testCaseClass name="CirrusSearch\Wikimedia\WeightedTagsHooksTest">
+ <testCaseClass name="CirrusSearch\WeightedTagsHooksTest">
  </testCaseClass>
  <testCaseClass name="Cite\Tests\CiteCSSFileModuleTest">
  </testCaseClass>
