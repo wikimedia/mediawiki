@@ -1686,7 +1686,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	 * Second argument is an array of parser flags for which ::getOutputFlag()
 	 * should return 'TRUE'.
 	 * @param array $retVals
-	 * @param array $flags
+	 * @param array<ParserOutputFlags> $flags
 	 * @return ParserOutput
 	 */
 	private function createParserOutputStubWithFlags( array $retVals, array $flags ): ParserOutput {
@@ -1728,6 +1728,9 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		}
 
 		$pOut->method( 'getOutputFlag' )->willReturnCallback( static function ( $name ) use ( $flags ) {
+			if ( is_string( $name ) ) {
+				$name = ParserOutputFlags::from( $name );
+			}
 			return in_array( $name, $flags, true );
 		} );
 

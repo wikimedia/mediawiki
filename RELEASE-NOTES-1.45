@@ -164,6 +164,9 @@ because of Phabricator reports.
   - ::getTimeSinceStart(), deprecated in 1.42
   - ::__get()/::__set(), deprecated in 1.38
     Dynamic properties continue to emit warnings in PHP >= 8.2.
+* The ParserOutputFlags class has been converted to an enumeration.  Any calls
+  to ParserOutputFlags::cases() should be converted to
+  ParserOutputFlags::values() if you wish to still obtain a list of strings.
 * …
 
 === Deprecations in 1.45 ===

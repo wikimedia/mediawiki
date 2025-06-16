@@ -1340,7 +1340,7 @@ class CoreParserFunctions {
 	 *
 	 * @param Parser $parser
 	 * @param Title $title
-	 * @param string $vary ParserOutput vary-* flag
+	 * @param ParserOutputFlags $vary ParserOutput vary-* flag
 	 * @return RevisionRecord|null
 	 * @since 1.23
 	 */
@@ -1391,7 +1391,7 @@ class CoreParserFunctions {
 		}
 
 		if ( $isSelfReferential ) {
-			wfDebug( __METHOD__ . ": used current revision, setting $vary" );
+			wfDebug( __METHOD__ . ": used current revision, setting {$vary->value}" );
 			// Upon page save, the result of the parser function using this might change
 			$parserOutput->setOutputFlag( $vary );
 			if ( $vary === ParserOutputFlags::VARY_REVISION_SHA1 && $revisionRecord ) {

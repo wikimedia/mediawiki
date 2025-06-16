@@ -1709,7 +1709,7 @@ class ParserTestRunner {
 			$actualFlags = [];
 			foreach ( ParserOutputFlags::cases() as $name ) {
 				if ( $output->getOutputFlag( $name ) ) {
-					$actualFlags[] = $name;
+					$actualFlags[] = $name->value;
 				}
 			}
 			sort( $actualFlags );
@@ -1719,7 +1719,7 @@ class ParserTestRunner {
 			# still doing that complain about it.
 			$oldFlags = array_diff_key(
 				TestingAccessWrapper::newFromObject( $output )->mFlags,
-				array_fill_keys( ParserOutputFlags::cases(), true )
+				array_fill_keys( ParserOutputFlags::values(), true )
 			);
 			if ( $oldFlags ) {
 				wfDeprecated( 'Arbitrary flags in ParserOutput', '1.39' );

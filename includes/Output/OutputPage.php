@@ -388,7 +388,7 @@ class OutputPage extends ContextSource {
 	private $mEnableTOC = false;
 
 	/**
-	 * @var array<string,bool> Flags set in the ParserOutput
+	 * @var array<string,true> Flags set in the ParserOutput
 	 */
 	private $mOutputFlags = [];
 
@@ -2307,11 +2307,14 @@ class OutputPage extends ContextSource {
 	/**
 	 * @internal Will be replaced by direct access to
 	 *  ParserOutput::getOutputFlag()
-	 * @param string $name A flag name from ParserOutputFlags
+	 * @param ParserOutputFlags|string $name A flag name from ParserOutputFlags
 	 * @return bool
 	 */
-	public function getOutputFlag( string $name ): bool {
-		return isset( $this->mOutputFlags[$name] );
+	public function getOutputFlag( ParserOutputFlags|string $name ): bool {
+		if ( $name instanceof ParserOutputFlags ) {
+			$name = $name->value;
+		}
+		return $this->mOutputFlags[$name] ?? false;
 	}
 
 	/**
@@ -2547,7 +2550,7 @@ class OutputPage extends ContextSource {
 		// (See ParserOutput::collectMetadata())
 		$flags =
 			array_flip( $parserOutput->getAllFlags() ) +
-			array_flip( ParserOutputFlags::cases() );
+			array_flip( ParserOutputFlags::values() );
 		foreach ( $flags as $name => $ignore ) {
 			if ( $parserOutput->getOutputFlag( $name ) ) {
 				$this->mOutputFlags[$name] = true;

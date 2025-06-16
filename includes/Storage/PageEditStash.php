@@ -336,7 +336,7 @@ class PageEditStash {
 			foreach ( $flagsMaybeReparse as $flag ) {
 				if ( $editInfo->output->getOutputFlag( $flag ) ) {
 					$logger->debug(
-						"Cache for key '{key}' has $flag; post-insertion parse possible.",
+						"Cache for key '{key}' has {$flag->value}; post-insertion parse possible.",
 						$logContext
 					);
 				}
