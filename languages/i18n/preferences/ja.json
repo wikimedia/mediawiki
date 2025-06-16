@@ -237,6 +237,8 @@
 	"rcfilters-watchlist-preference-label": "非JavaScript版インターフェイスを使用",
 	"rcfilters-watchlist-preference-help": "[[{{#special:Watchlist}}|ウォッチリスト]]に検索絞り込み機能や構文強調表示機能をかけずに読み込みます。",
 	"prefs-changeswatchlist": "表示する編集",
+	"tog-watchstar-expiry": "手動でウォッチリストに入れるときの既定の期間:",
+	"tog-watch-expiry": "既定の期間:",
 	"tog-watchlisthideminor": "細部の編集をウォッチリストに表示しない",
 	"tog-watchlisthidebots": "ボットによる編集をウォッチリストに表示しない",
 	"tog-watchlisthideown": "自分の編集をウォッチリストに表示しない",

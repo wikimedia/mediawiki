@@ -230,5 +230,20 @@
 	"rest-endpoint-desc-get-revision-id": "Restitue metadatos pro un version, includente le codice fonte.",
 	"rest-endpoint-desc-get-revision-id-html": "Restitue le contento de un version in HTML. Iste puncto final restitue contento del typo text/html.",
 	"rest-endpoint-desc-get-revision-id-with-html": "Restitue metadatos pro un version, includente le contento in HTML.",
-	"rest-endpoint-desc-get-revision-id-bare": "Restitue detalios pro un version individual."
+	"rest-endpoint-desc-get-revision-id-bare": "Restitue detalios pro un version individual.",
+	"rest-endpoint-desc-get-page-history": "Restitue information sur le ultime versiones de un pagina wiki",
+	"rest-endpoint-desc-get-page-history-counts": "Restitue datos sur le historia de un pagina.",
+	"rest-endpoint-desc-get-revision-compare": "Restitue datos que permitte monstrar un comparation linea per linea inter duo versiones. Solmente paginas textual del wiki pote esser comparate.",
+	"rest-endpoint-desc-get-search": "Restitue un documento generate de description OpenSearch.",
+	"rest-endpoint-desc-get-search-page": "Cerca le terminos de recerca date in paginas wiki, e restitue le paginas correspondente.",
+	"rest-endpoint-desc-get-search-title": "Cerca in titulos de pagina wiki, e restitue paginas con titulos que comencia per le terminos de recerca fornite. Tu pote usar iste puncto terminal como recerca con autocompletamento que suggere automaticamente le paginas relevante per titulo.",
+	"rest-endpoint-desc-get-page-title-language": "Cerca paginas del mesme topico in altere linguas. Restitue un matrice de objectos de lingua que include le nomine del lingua, le codice del lingua, e le titulo traducite del pagina.",
+	"rest-endpoint-desc-get-page-title-media": "Restitue information sur files multimedial usate sur un pagina wiki, usque a 100 files.",
+	"rest-endpoint-desc-get-file-title": "Restitue information sur un file, includente ligamines pro discargar le file in formato de miniatura, previsualisation e original.",
+	"rest-endpoint-desc-post-transform-to-html-revision": "Restitue le transformation del contento specificate in HTML.",
+	"rest-endpoint-desc-post-transform-to-wikitext-revision": "Restitue le transformation del contento specificate in wikitexto.",
+	"rest-endpoint-desc-post-transform-to-html": "Restitue le transformation del contento specificate in HTML.",
+	"rest-endpoint-desc-post-transform-to-wikitext": "Restitue le transformation del contento specificate in wikitexto.",
+	"rest-endpoint-desc-post-transform-to-html-title": "Restitue le transformation del contento specificate in HTML.",
+	"rest-endpoint-desc-post-transform-to-wikitext-title": "Restitue le transformation del contento specificate in wikitexto."
 }

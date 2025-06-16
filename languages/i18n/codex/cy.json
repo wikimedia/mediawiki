@@ -5,8 +5,23 @@
 			"Ceirios"
 		]
 	},
+	"cdx-chip-input-chip-added": "Ychwanegwyd chip $1.",
+	"cdx-chip-input-chip-removed": "Cafodd chip $1 ei dynnu.",
+	"cdx-input-chip-aria-description": "Gwasgwch Enter i olygu neu Delete i ddileu.",
 	"cdx-dialog-close-button-label": "Cau",
 	"cdx-label-optional-flag": "(dewisol)",
 	"cdx-message-dismiss-button-label": "Cau",
-	"cdx-search-input-search-button-label": "Chwilio"
+	"cdx-popover-close-button-label": "Cau",
+	"cdx-search-input-search-button-label": "Chwilio",
+	"cdx-table-select-all-label": "Dewis pob rhes",
+	"cdx-table-select-row-label": "Dewis rhes $1 o $2",
+	"cdx-typeahead-search-search-results-label": "Canlyniadau chwilio",
+	"cdx-table-pager-button-first-page": "Tudalen gyntaf",
+	"cdx-table-pager-button-last-page": "Tudalen olaf",
+	"cdx-table-pager-button-next-page": "Tudalen nesaf",
+	"cdx-table-pager-button-prev-page": "Tudalen flaenorol",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 rhes|$1 rhes|$1 res|$1 rhes}}",
+	"cdx-table-pager-items-per-page-default": "Canlyniadau fesul tudalen",
+	"cdx-table-pagination-status-message-determinate-long": "Yn dangos canlyniadau $1–$2 o $3",
+	"cdx-table-pagination-status-message-determinate-short": "$1–$2 o $3"
 }
