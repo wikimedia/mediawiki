@@ -1868,6 +1868,21 @@ parsoid=wt2html,wt2wt,html2html
 !! end
 
 !! test
+Custom class in gallery
+!! wikitext
+<gallery>
+File:Foobar.jpg|class=b|a
+</gallery>
+!! html/php
+<ul class="gallery mw-gallery-traditional">
+		<li class="gallerybox" style="width: 155px">
+			<div class="thumb" style="width: 150px; height: 150px;"><span class="b" typeof="mw:File"><a href="/wiki/File:Foobar.jpg" class="mw-file-description" title="a"><img alt="a" src="http://example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" decoding="async" width="120" height="14" class="mw-file-element" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/240px-Foobar.jpg 2x" /></a></span></div>
+			<div class="gallerytext">a</div>
+		</li>
+</ul>
+!! end
+
+!! test
 Localized image handling (1).
 !! options
 parsoid=wt2html,wt2wt,html2html

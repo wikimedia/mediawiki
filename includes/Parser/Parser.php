@@ -5243,6 +5243,7 @@ class Parser {
 
 			$paramMap = [
 				'img_alt' => 'gallery-internal-alt',
+				'img_class' => 'gallery-internal-class',
 				'img_link' => 'gallery-internal-link',
 			];
 			if ( $handler ) {
@@ -5289,6 +5290,9 @@ class Parser {
 						case 'gallery-internal-alt':
 							$hasAlt = true;
 							$alt = $this->stripAltText( $match );
+							break;
+						case 'gallery-internal-class':
+							$imageOptions['class'] = $this->stripAltText( $match );
 							break;
 						case 'gallery-internal-link':
 							$linkValue = $this->stripAltText( $match );
