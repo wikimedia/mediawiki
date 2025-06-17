@@ -35,57 +35,55 @@ namespace MediaWiki\Parser;
  *
  * @package MediaWiki\Parser
  */
-class ParserOutputStringSets {
+enum ParserOutputStringSets: string {
 
 	// These flags are currently stored as ParserOutput properties
 
 	/**
-	 * @var string ResourceLoader modules to load.
+	 * ResourceLoader modules to load.
 	 * @see \MediaWiki\Output\OutputPage::addModules
 	 * @see ParserOutput::addModules
 	 * @see ParserOutput::getModules
 	 */
-	public const MODULE = 'mw-Module';
+	case MODULE = 'mw-Module';
 
 	/**
-	 * @var string Style-only ResourceLoader modules to load.
+	 * Style-only ResourceLoader modules to load.
 	 * @see \MediaWiki\Output\OutputPage::addModuleStyles
 	 * @see ParserOutput::addModuleStyles
 	 * @see ParserOutput::getModuleStyles
 	 */
-	public const MODULE_STYLE = 'mw-ModuleStyle';
+	case MODULE_STYLE = 'mw-ModuleStyle';
 
 	/**
-	 * @var string Extra values for the Content-Security-Policy default-src
-	 *  directive.
+	 * Extra values for the Content-Security-Policy default-src
+	 * directive.
 	 * @see ParserOutput::addExtraCSPDefaultSrc
 	 * @see ParserOutput::getExtraCSPDefaultSrcs
 	 */
-	public const EXTRA_CSP_DEFAULT_SRC = 'mw-ExtraCSPDefaultSrc';
+	case EXTRA_CSP_DEFAULT_SRC = 'mw-ExtraCSPDefaultSrc';
 
 	/**
-	 * @var string Extra values for the Content-Security-Policy script-src
-	 *  directive.
+	 * Extra values for the Content-Security-Policy script-src
+	 * directive.
 	 * @see ParserOutput::addExtraCSPScriptSrc
 	 * @see ParserOutput::getExtraCSPScriptSrcs
 	 */
-	public const EXTRA_CSP_SCRIPT_SRC = 'mw-ExtraCspScriptSrc';
+	case EXTRA_CSP_SCRIPT_SRC = 'mw-ExtraCspScriptSrc';
 
 	/**
-	 * @var string Extra values for the Content-Security-Policy style-src
-	 *  directive.
+	 * Extra values for the Content-Security-Policy style-src
+	 * directive.
 	 * @see ParserOutput::addExtraCSPStyleSrc
 	 * @see ParserOutput::getExtraCSPStyleSrcs
 	 */
-	public const EXTRA_CSP_STYLE_SRC = 'mw-ExtraCspStyleSrc';
+	case EXTRA_CSP_STYLE_SRC = 'mw-ExtraCspStyleSrc';
 
-	public static function cases(): array {
-		return [
-			self::MODULE,
-			self::MODULE_STYLE,
-			self::EXTRA_CSP_DEFAULT_SRC,
-			self::EXTRA_CSP_SCRIPT_SRC,
-			self::EXTRA_CSP_STYLE_SRC,
-		];
+	/**
+	 * Return the ParserOutputStringSets, as an array of string flag values.
+	 * @return list<string>
+	 */
+	public static function values(): array {
+		return array_column( self::cases(), 'value' );
 	}
 }

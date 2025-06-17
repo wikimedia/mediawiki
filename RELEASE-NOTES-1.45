@@ -167,6 +167,10 @@ because of Phabricator reports.
 * The ParserOutputFlags class has been converted to an enumeration.  Any calls
   to ParserOutputFlags::cases() should be converted to
   ParserOutputFlags::values() if you wish to still obtain a list of strings.
+* The ParserOutputStringSets class has been converted to an
+  enumeration.  Any calls to ParserOutputStringSets::cases() should be
+  converted to ParserOutputStringSets::values() if you wish to still
+  obtain a list of strings.
 * …
 
 === Deprecations in 1.45 ===
