@@ -199,8 +199,6 @@
 	"pt-userlogout": "Lokkaa ulos",
 	"oldpassword": "Vanha salasana:",
 	"resetpass_submit": "Aseta salasana ja lokkaa sisäle",
-	"botpasswords-label-cancel": "Lopeta",
-	"botpasswords-label-delete": "Ota poies",
 	"resetpass-submit-loggedin": "Muuta salasana",
 	"resetpass-submit-cancel": "Lopeta",
 	"passwordreset-username": "Käyttäjänimi:",

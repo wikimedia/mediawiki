@@ -342,7 +342,6 @@
 	"resetpass_submit": "設定密碼同到登入",
 	"changepassword-success": "汝嗰密碼改正哩！",
 	"changepassword-throttled": "汝做了太多次登錄動作。\n請等下$1之後在試試。",
-	"botpasswords": "機器人嗰密碼",
 	"resetpass_forbidden": "到{{SITENAME}}上改伓正密碼",
 	"resetpass-submit-loggedin": "設過帳戶密碼",
 	"resetpass-submit-cancel": "取消",

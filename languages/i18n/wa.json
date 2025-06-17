@@ -291,8 +291,6 @@
 	"retypenew": "Ritapez l' noû scret:",
 	"resetpass_submit": "Defini on scret et s' elodjî",
 	"changepassword-success": "Vosse sicret a stî candjî comifåt!",
-	"botpasswords-label-update": "Mete a djoû",
-	"botpasswords-label-delete": "Disfacer",
 	"resetpass_forbidden": "Les screts n' polèt nén esse candjîs",
 	"resetpass-submit-loggedin": "Candjî l’&nbsp;sicret",
 	"resetpass-submit-cancel": "Rinoncî",

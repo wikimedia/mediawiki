@@ -272,7 +272,6 @@
 	"oldpassword": "Dépassé mot de passe:",
 	"resetpass_submit": "Créer le mot de passe et connecter",
 	"changepassword-success": "Vous avez bien changé votre mot de passe!  On est après vous connecter...",
-	"botpasswords-label-create": "Créer",
 	"resetpass_forbidden": "Vous pouvez pas changer votre mot de passe sus ce wiki ici.",
 	"resetpass-submit-loggedin": "Changer de mot de passe",
 	"resetpass-submit-cancel": "Annuler",
