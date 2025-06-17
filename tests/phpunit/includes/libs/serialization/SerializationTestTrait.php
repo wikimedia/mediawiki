@@ -18,9 +18,6 @@ trait SerializationTestTrait {
 	 * @return Generator for [ callable $deserializer, object $expectedObject, string $dataToDeserialize ]
 	 */
 	public static function provideTestDeserialization(): Generator {
-		// Creation of dynamic property is deprecated, can happen as backward-compatibility check
-		self::markTestSkippedIfPhp( '>=', '8.2' );
-
 		$className = self::getClassToTest();
 		foreach ( self::getSupportedSerializationFormats() as $serializationFormat ) {
 			$serializationUtils = new SerializationTestUtils(
@@ -63,9 +60,6 @@ trait SerializationTestTrait {
 	 * @return Generator for [ callable $serializer, string $expectedSerialization, object $testInstanceToSerialize ]
 	 */
 	public static function provideSerialization(): Generator {
-		// Creation of dynamic property is deprecated, can happen as backward-compatibility check
-		self::markTestSkippedIfPhp( '>=', '8.2' );
-
 		$className = self::getClassToTest();
 		foreach ( self::getSupportedSerializationFormats() as $serializationFormat ) {
 			$serializationUtils = new SerializationTestUtils(
@@ -241,9 +235,6 @@ trait SerializationTestTrait {
 	 * @return Generator for [ $instance which to run assertions on, $assertionsCallback ]
 	 */
 	public static function provideDeserializedTestObjects(): Generator {
-		// Creation of dynamic property is deprecated, can happen as backward-compatibility check
-		self::markTestSkippedIfPhp( '>=', '8.2' );
-
 		$className = self::getClassToTest();
 		$testCases = self::getTestInstancesAndAssertions();
 		$testObjects = self::getTestInstances( $testCases );
