@@ -79,6 +79,8 @@ class PHPVersionCheck {
 	 * Displays an error, if the installed PHP version does not meet the minimum requirement.
 	 */
 	function checkRequiredPHPVersion() {
+		// This value should match the PHP version specified in composer.json,
+		// .phan/config.php, and ScopeStructureTest.php
 		$minimumVersion = '8.1.0';
 
 		/**

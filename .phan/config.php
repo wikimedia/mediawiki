@@ -20,7 +20,8 @@
 
 $cfg = require __DIR__ . '/../vendor/mediawiki/mediawiki-phan-config/src/config.php';
 
-// This value should match the PHP version specified in composer.json and PHPVersionCheck.php.
+// This value should match the PHP version specified in composer.json,
+// PHPVersionCheck.php, and ScopeStructureTest.php
 $cfg['minimum_target_php_version'] = '8.1.0';
 
 $cfg['file_list'] = array_merge(
