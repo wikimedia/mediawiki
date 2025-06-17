@@ -2136,15 +2136,6 @@ config-schema:
             Revision text may be cached in the main WAN cache to reduce load on external
             storage servers and object extraction overhead for frequently-loaded revisions.
             Set to 0 to disable, or number of seconds before cache expiry.
-    RevisionSlotsCacheExpiry:
-        default:
-            local: 3600
-            WAN: 86400
-        type: object
-        description: |-
-            Revision slots may be cached in the main WAN cache and/or the local server cache
-            to reduce load on the database.
-            Set to 0 to disable, or number of seconds before cache expiry.
     PageLanguageUseDB:
         default: false
         type: boolean

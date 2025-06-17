@@ -1314,12 +1314,6 @@ class MainConfigNames {
 	public const RevisionCacheExpiry = 'RevisionCacheExpiry';
 
 	/**
-	 * Name constant for the RevisionSlotsCacheExpiry setting, for use with Config::get()
-	 * @see MainConfigSchema::RevisionSlotsCacheExpiry
-	 */
-	public const RevisionSlotsCacheExpiry = 'RevisionSlotsCacheExpiry';
-
-	/**
 	 * Name constant for the PageLanguageUseDB setting, for use with Config::get()
 	 * @see MainConfigSchema::PageLanguageUseDB
 	 */

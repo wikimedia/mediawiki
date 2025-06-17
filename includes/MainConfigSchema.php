@@ -95,7 +95,6 @@ use UserGroupExpiryJob;
 use UserOptionsUpdateJob;
 use Wikimedia\EventRelayer\EventRelayerNull;
 use Wikimedia\ObjectCache\APCUBagOStuff;
-use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\ObjectCache\EmptyBagOStuff;
 use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\ObjectCache\MemcachedPeclBagOStuff;
@@ -3496,20 +3495,6 @@ class MainConfigSchema {
 	public const RevisionCacheExpiry = [
 		'default' => SqlBlobStore::DEFAULT_TTL,
 		'type' => 'integer',
-	];
-
-	/**
-	 * Revision slots may be cached in the main WAN cache and/or the local server cache
-	 * to reduce load on the database.
-	 *
-	 * Set to 0 to disable, or number of seconds before cache expiry.
-	 */
-	public const RevisionSlotsCacheExpiry = [
-		'default' => [
-			'local' => BagOStuff::TTL_HOUR,
-			'WAN' => BagOStuff::TTL_DAY,
-		],
-		'type' => 'map',
 	];
 
 	/**
