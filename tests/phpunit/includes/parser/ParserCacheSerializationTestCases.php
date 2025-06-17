@@ -322,6 +322,9 @@ abstract class ParserCacheSerializationTestCases {
 		$parserOutputWithMetadataPost1_34->addExtraCSPScriptSrc( 'script1' );
 		$parserOutputWithMetadataPost1_34->addLink( Title::makeTitle( NS_SPECIAL, 'Link3' ) );
 
+		$parserOutputWithEmptyToC = new ParserOutput( '' );
+		$parserOutputWithEmptyToC->setSections( [] );
+
 		return [
 			'empty' => [
 				'instance' => new ParserOutput( '' ),
@@ -643,6 +646,12 @@ abstract class ParserCacheSerializationTestCases {
 						$object->getPageProperty( 'array' )
 					);
 				}
+			],
+			'withEmptyToC' => [
+				'instance' => $parserOutputWithEmptyToC,
+				'assertions' => static function ( MediaWikiIntegrationTestCase $testCase, ParserOutput $object ) {
+					$testCase->assertArrayEquals( [], $object->getSections() );
+				},
 			],
 		];
 	}
