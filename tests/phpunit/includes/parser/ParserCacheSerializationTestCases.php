@@ -218,7 +218,6 @@ abstract class ParserCacheSerializationTestCases {
 	 */
 	public static function getParserOutputTestCases() {
 		MWDebug::filterDeprecationForTest( '/::setPageProperty with (non-scalar|non-string|null) value/' );
-		MWDebug::filterDeprecationForTest( '/::addLanguageLink without prefix/' );
 		MWDebug::filterDeprecationForTest( '/::getWarnings/' );
 		$parserOutputWithCacheTimeProps = new ParserOutput( 'CacheTime' );
 		$parserOutputWithCacheTimeProps->setCacheTime( self::CACHE_TIME );
@@ -270,8 +269,8 @@ abstract class ParserCacheSerializationTestCases {
 
 		$parserOutputWithMetadata = new ParserOutput( '' );
 		$parserOutputWithMetadata->setSpeculativeRevIdUsed( 42 );
-		$parserOutputWithMetadata->addLanguageLink( Title::makeTitle( NS_MAIN, 'link1' ) );
-		$parserOutputWithMetadata->addLanguageLink( Title::makeTItle( NS_MAIN, 'link2' ) );
+		$parserOutputWithMetadata->addLanguageLink( Title::makeTitle( NS_MAIN, 'link1', '', 'm' ) );
+		$parserOutputWithMetadata->addLanguageLink( Title::makeTitle( NS_MAIN, 'link2', '', 'mw' ) );
 		$parserOutputWithMetadata->addInterwikiLink( Title::makeTitle( NS_MAIN, 'interwiki1', '', 'enwiki' ) );
 		$parserOutputWithMetadata->addInterwikiLink( Title::makeTitle( NS_MAIN, 'interwiki2', '', 'enwiki' ) );
 		$parserOutputWithMetadata->addCategory( Title::makeTitle( NS_CATEGORY, 'category2' ), '1' );
@@ -477,7 +476,7 @@ abstract class ParserCacheSerializationTestCases {
 				'assertions' => static function ( MediaWikiIntegrationTestCase $testCase, ParserOutput $object ) {
 					MWDebug::filterDeprecationForTest( '/::getWarnings was deprecated/' );
 					$testCase->assertSame( 42, $object->getSpeculativeRevIdUsed() );
-					$testCase->assertArrayEquals( [ 'link1', 'link2' ], $object->getLanguageLinks() );
+					$testCase->assertArrayEquals( [ 'm:link1', 'mw:link2' ], $object->getLanguageLinks() );
 					$testCase->assertArrayEquals( [ 'enwiki' => [
 						'interwiki1' => 1,
 						'interwiki2' => 1
@@ -559,7 +558,7 @@ abstract class ParserCacheSerializationTestCases {
 				'instance' => $parserOutputWithMetadata,
 				'assertions' => static function ( MediaWikiIntegrationTestCase $testCase, ParserOutput $object ) {
 					$testCase->assertSame( 42, $object->getSpeculativeRevIdUsed() );
-					$testCase->assertArrayEquals( [ 'link1', 'link2' ], $object->getLanguageLinks() );
+					$testCase->assertArrayEquals( [ 'm:link1', 'mw:link2' ], $object->getLanguageLinks() );
 					$testCase->assertArrayEquals( [ 'enwiki' => [
 						'interwiki1' => 1,
 						'interwiki2' => 1
@@ -673,14 +672,6 @@ abstract class ParserCacheSerializationTestCases {
 					return $jsonCodec->deserialize( $data );
 				}
 			];
-		}
-		// T374736: hack for old test cases
-		foreach ( $serializationFormats as [ 'deserializer' => &$d ] ) {
-			$oldDeserializer = $d;
-			$d = static function ( $data ) use ( $oldDeserializer ) {
-				MWDebug::filterDeprecationForTest( '/::addLanguageLink without prefix/' );
-				return $oldDeserializer( $data );
-			};
 		}
 		return $serializationFormats;
 	}
