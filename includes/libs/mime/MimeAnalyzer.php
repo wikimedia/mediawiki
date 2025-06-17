@@ -241,7 +241,7 @@ class MimeAnalyzer implements LoggerAwareInterface {
 		}
 	}
 
-	public function setLogger( LoggerInterface $logger ) {
+	public function setLogger( LoggerInterface $logger ): void {
 		$this->logger = $logger;
 	}
 

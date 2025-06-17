@@ -216,7 +216,7 @@ class MessageCache implements LoggerAwareInterface {
 		$this->rawHtmlMessages = $options->get( MainConfigNames::RawHtmlMessages );
 	}
 
-	public function setLogger( LoggerInterface $logger ) {
+	public function setLogger( LoggerInterface $logger ): void {
 		$this->logger = $logger;
 	}
 

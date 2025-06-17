@@ -60,7 +60,7 @@ class Timing implements LoggerAwareInterface {
 	/**
 	 * Sets a logger instance on the object.
 	 */
-	public function setLogger( LoggerInterface $logger ) {
+	public function setLogger( LoggerInterface $logger ): void {
 		$this->logger = $logger;
 	}
 

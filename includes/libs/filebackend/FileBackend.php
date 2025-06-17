@@ -279,7 +279,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 		( $this->obResetFunc )();
 	}
 
-	public function setLogger( LoggerInterface $logger ) {
+	public function setLogger( LoggerInterface $logger ): void {
 		$this->logger = $logger;
 	}
 

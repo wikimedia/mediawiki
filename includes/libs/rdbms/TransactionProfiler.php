@@ -116,7 +116,7 @@ class TransactionProfiler implements LoggerAwareInterface {
 		$this->statsFactory = StatsFactory::newNull();
 	}
 
-	public function setLogger( LoggerInterface $logger ) {
+	public function setLogger( LoggerInterface $logger ): void {
 		$this->logger = $logger;
 	}
 

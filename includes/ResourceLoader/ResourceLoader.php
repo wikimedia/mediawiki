@@ -202,7 +202,7 @@ class ResourceLoader implements LoggerAwareInterface {
 	 * @since 1.26
 	 * @param LoggerInterface $logger
 	 */
-	public function setLogger( LoggerInterface $logger ) {
+	public function setLogger( LoggerInterface $logger ): void {
 		$this->logger = $logger;
 	}
 
