@@ -897,7 +897,7 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 				[ 'duplicate-args-warning', 'A', 'B', 'C' ],
 				[ 'template-loop-warning', 'D' ],
 			],
-			'outputFlag' => [ 'foo', 'bar' ],
+			'outputFlag' => [ ParserOutputFlags::USER_SIGNATURE, ParserOutputFlags::IS_PREVIEW ],
 			'recordOption' => [ 'Foo', 'Bar' ],
 		];
 
@@ -906,7 +906,7 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 				[ 'template-equals-warning' ],
 				[ 'template-loop-warning', 'D' ],
 			],
-			'outputFlag' => [ 'zoo', 'bar' ],
+			'outputFlag' => [ ParserOutputFlags::SHOW_TOC, ParserOutputFlags::IS_PREVIEW ],
 			'recordOption' => [ 'Zoo', 'Bar' ],
 		];
 
@@ -921,7 +921,7 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 				MessageValue::new( 'template-loop-warning', [ 'D' ] ),
 				MessageValue::new( 'template-equals-warning' ),
 			],
-			'$mFlags' => [ 'foo' => true, 'bar' => true, 'zoo' => true ],
+			'$mFlags' => [ 'user-signature' => true, 'is-preview' => true, 'show-toc' => true ],
 			'getUsedOptions' => [ 'Foo', 'Bar', 'Zoo' ],
 		] ];
 

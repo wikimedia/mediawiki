@@ -1924,13 +1924,20 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * expected that NO_INDEX_POLICY "wins" in that case. (T16899)
 	 * (This resolution is implemented in ::getIndexPolicy().)
 	 *
-	 * @param ParserOutputFlags|string $name A flag name
+	 * @param ParserOutputFlags|string $name A flag name.
+	 *   The use of flags which are not present in ParserOutputFlags has
+	 *   been discouraged since 1.38 and was officially deprecated in 1.45.
 	 * @param bool $val
 	 * @since 1.38
 	 */
 	public function setOutputFlag( ParserOutputFlags|string $name, bool $val = true ): void {
 		if ( is_string( $name ) ) {
 			$flag = ParserOutputFlags::tryFrom( $name );
+			if ( $flag === null ) {
+				wfDeprecated(
+					__METHOD__ . ' with non-standard flag', '1.45'
+				);
+			}
 		} else {
 			$flag = $name;
 			$name = $flag->value;

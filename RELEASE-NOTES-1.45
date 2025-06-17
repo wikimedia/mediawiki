@@ -347,6 +347,8 @@ because of Phabricator reports.
   WebRequest::getSession() instead.
 * PageConfigFactory::create() is now deprecated and emits warnings; use
   ::createFromParserOptions() instead.
+* ParserOutput::setOutputFlag() emits deprecation warnings if the flag name
+  is not present in the ParserOutputFlags enumeration.
 * Calling MessageCache::get with a Language object is now deprecated and emits
   a deprecation warning.
 * MetricInterface::copyToStatsdAt() and StatsFactory::withStatsdDataFactory()
