@@ -74,8 +74,6 @@ class LoadBalancer implements ILoadBalancerForOwner {
 
 	/** @var array[] $aliases Map of (table => (dbname, schema, prefix) map) */
 	private $tableAliases = [];
-	/** @var string[] Map of (index alias => index) */
-	private $indexAliases = [];
 	/** @var DatabaseDomain[]|string[] Map of (domain alias => DB domain) */
 	private $domainAliases = [];
 	/** @var callable[] Map of (name => callable) */
@@ -1044,9 +1042,8 @@ class LoadBalancer implements ILoadBalancerForOwner {
 			] ),
 			Database::NEW_UNCONNECTED
 		);
-		// Set alternative table/index names before any queries can be issued
+		// Set alternative table names before any queries can be issued
 		$conn->setTableAliases( $this->tableAliases );
-		$conn->setIndexAliases( $this->indexAliases );
 		// Account for any active transaction round and listeners
 		$this->syncConnectionRoundState( $conn );
 		if ( $i === ServerInfo::WRITER_INDEX ) {
@@ -1943,10 +1940,6 @@ class LoadBalancer implements ILoadBalancerForOwner {
 
 	public function setTableAliases( array $aliases ) {
 		$this->tableAliases = $aliases;
-	}
-
-	public function setIndexAliases( array $aliases ) {
-		$this->indexAliases = $aliases;
 	}
 
 	public function setDomainAliases( array $aliases ) {

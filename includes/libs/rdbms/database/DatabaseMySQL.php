@@ -352,7 +352,6 @@ class DatabaseMySQL extends Database {
 
 	public function indexInfo( $table, $index, $fname = __METHOD__ ) {
 		# https://dev.mysql.com/doc/mysql/en/SHOW_INDEX.html
-		$index = $this->platform->indexName( $index );
 		$query = new Query(
 			'SHOW INDEX FROM ' . $this->tableName( $table ),
 			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE,

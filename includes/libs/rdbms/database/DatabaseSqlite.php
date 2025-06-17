@@ -486,7 +486,6 @@ class DatabaseSqlite extends Database {
 	}
 
 	public function indexInfo( $table, $index, $fname = __METHOD__ ) {
-		$indexName = $this->platform->indexName( $index );
 		$components = $this->platform->qualifiedTableComponents( $table );
 		$tableRaw = end( $components );
 		$query = new Query(
@@ -497,7 +496,7 @@ class DatabaseSqlite extends Database {
 		$res = $this->query( $query, $fname );
 
 		foreach ( $res as $row ) {
-			if ( $row->name === $indexName ) {
+			if ( $row->name === $index ) {
 				return [ 'unique' => (bool)$row->unique ];
 			}
 		}

@@ -75,8 +75,6 @@ abstract class LBFactory implements ILBFactory {
 
 	/** @var array[] $aliases Map of (table => (dbname, schema, prefix) map) */
 	private $tableAliases = [];
-	/** @var string[] Map of (index alias => index) */
-	private $indexAliases = [];
 	/** @var DatabaseDomain[]|string[] Map of (domain alias => DB domain) */
 	protected $domainAliases = [];
 	/** @var array[] Map of virtual domain to array of cluster and domain */
@@ -710,16 +708,11 @@ abstract class LBFactory implements ILBFactory {
 		}
 
 		$lb->setTableAliases( $this->tableAliases );
-		$lb->setIndexAliases( $this->indexAliases );
 		$lb->setDomainAliases( $this->domainAliases );
 	}
 
 	public function setTableAliases( array $aliases ) {
 		$this->tableAliases = $aliases;
-	}
-
-	public function setIndexAliases( array $aliases ) {
-		$this->indexAliases = $aliases;
 	}
 
 	public function setDomainAliases( array $aliases ) {

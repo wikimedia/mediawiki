@@ -59,7 +59,7 @@ class MySQLPlatform extends SQLPlatform {
 	 * @return string
 	 */
 	public function useIndexClause( $index ) {
-		return "FORCE INDEX (" . $this->indexName( $index ) . ")";
+		return "FORCE INDEX (" . $index . ")";
 	}
 
 	/**
@@ -67,7 +67,7 @@ class MySQLPlatform extends SQLPlatform {
 	 * @return string
 	 */
 	public function ignoreIndexClause( $index ) {
-		return "IGNORE INDEX (" . $this->indexName( $index ) . ")";
+		return "IGNORE INDEX (" . $index . ")";
 	}
 
 	public function deleteJoinSqlText( $delTable, $joinTable, $delVar, $joinVar, $conds ) {

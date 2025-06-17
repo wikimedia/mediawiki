@@ -45,11 +45,11 @@ class SQLPlatformTestHelper extends SQLPlatform {
 	}
 
 	public function useIndexClause( $index ) {
-		return "FORCE INDEX (" . $this->indexName( $index ) . ")";
+		return "FORCE INDEX (" . $index . ")";
 	}
 
 	public function ignoreIndexClause( $index ) {
-		return "IGNORE INDEX (" . $this->indexName( $index ) . ")";
+		return "IGNORE INDEX (" . $index . ")";
 	}
 
 	public function unionSupportsOrderAndLimit() {
