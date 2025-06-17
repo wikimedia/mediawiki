@@ -701,13 +701,12 @@ abstract class MediaWikiEntryPoint {
 	 * following heuristics:
 	 *
 	 * - Long-running scripts that involve database writes often use transactions
-	 *   to commit chunks of work. We flush from IDatabase::setTransactionListener,
-	 *   as wired up by MWLBFactory::applyGlobalState.
+	 *   to commit chunks of work. We flush from Maintenance::commitTransaction and
+	 *   Maintenance::commitTransactionRound().
 	 *
 	 * - Long-running scripts that involve database writes but don't need any
 	 *   transactions will still periodically wait for replication to be
-	 *   graceful to the databases. We flush from ILBFactory::setWaitForReplicationListener
-	 *   as wired up by MWLBFactory::applyGlobalState.
+	 *   graceful to the databases. We flush from Maintenance::waitForReplication().
 	 *
 	 * - Any other long-running scripts will probably report progress to stdout
 	 *   in some way. We also flush from Maintenance::output().
