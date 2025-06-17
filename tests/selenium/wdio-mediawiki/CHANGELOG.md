@@ -1,5 +1,8 @@
 # Changelog
 
+## 4.1.2 / 2025-06-17
+* Fix skipping tests for PrometheusReporter (T397030)
+
 ## 4.1.1 / 2025-06-13
 * Use package name as project name for Prometheus (T396710)
 
