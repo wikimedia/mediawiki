@@ -35,7 +35,7 @@ class ImportSites extends Maintenance {
 
 		$siteStore = $this->getServiceContainer()->getSiteStore();
 		$importer = new SiteImporter( $siteStore );
-		$importer->setExceptionCallback( [ $this, 'reportException' ] );
+		$importer->setExceptionCallback( $this->reportException( ... ) );
 
 		$importer->importFromFile( $file );
 
@@ -45,7 +45,7 @@ class ImportSites extends Maintenance {
 	/**
 	 * Outputs a message via the output() method.
 	 */
-	public function reportException( Exception $ex ) {
+	private function reportException( Exception $ex ) {
 		$msg = $ex->getMessage();
 		$this->output( "$msg\n" );
 	}

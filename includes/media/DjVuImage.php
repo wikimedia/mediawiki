@@ -380,7 +380,7 @@ class DjVuImage {
 EOR;
 			$matches = [];
 			preg_match_all( $reg, $txt, $matches );
-			$json['text'] = array_map( [ $this, 'pageTextCallback' ], $matches[1] );
+			$json['text'] = array_map( $this->pageTextCallback( ... ), $matches[1] );
 		} else {
 			$json['text'] = [];
 		}

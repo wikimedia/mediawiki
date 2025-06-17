@@ -233,12 +233,12 @@ class FileBackendGroup {
 		return array_merge(
 			// Default backend parameters
 			[
-				'mimeCallback' => [ $this, 'guessMimeInternal' ],
+				'mimeCallback' => $this->guessMimeInternal( ... ),
 				'obResetFunc' => 'wfResetOutputBuffers',
-				'asyncHandler' => [ DeferredUpdates::class, 'addCallableUpdate' ],
-				'streamMimeFunc' => [ StreamFile::class, 'contentTypeFromPath' ],
+				'asyncHandler' => DeferredUpdates::addCallableUpdate( ... ),
+				'streamMimeFunc' => StreamFile::contentTypeFromPath( ... ),
 				'tmpFileFactory' => $this->tmpFileFactory,
-				'statusWrapper' => [ Status::class, 'wrap' ],
+				'statusWrapper' => Status::wrap( ... ),
 				'wanCache' => $this->wanCache,
 				'srvCache' => $this->srvCache,
 				'logger' => LoggerFactory::getInstance( 'FileOperation' ),

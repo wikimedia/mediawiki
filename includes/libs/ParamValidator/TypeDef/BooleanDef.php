@@ -46,10 +46,10 @@ class BooleanDef extends TypeDef {
 
 		$this->fatal(
 			$this->failureMessage( 'badbool' )
-				->textListParams( array_map( [ $this, 'quoteVal' ], self::TRUEVALS ) )
+				->textListParams( array_map( $this->quoteVal( ... ), self::TRUEVALS ) )
 				->numParams( count( self::TRUEVALS ) )
 				->textListParams( array_merge(
-					array_map( [ $this, 'quoteVal' ], self::FALSEVALS ),
+					array_map( $this->quoteVal( ... ), self::FALSEVALS ),
 					[ MessageValue::new( 'paramvalidator-emptystring' ) ]
 				) )
 				->numParams( count( self::FALSEVALS ) + 1 ),

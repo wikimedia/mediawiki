@@ -382,7 +382,7 @@ class LinkCache implements LoggerAwareInterface {
 		$row = $this->getGoodLinkRow(
 			$page->getNamespace(),
 			$page->getDBkey(),
-			[ $this, 'fetchPageRow' ],
+			$this->fetchPageRow( ... ),
 			$queryFlags
 		);
 

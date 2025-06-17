@@ -102,11 +102,14 @@ class SpecialDiff extends RedirectSpecialPage {
 			],
 		], $this->getContext(), 'diff-form' );
 		$form->setSubmitTextMsg( 'diff-form-submit' );
-		$form->setSubmitCallback( [ $this, 'onFormSubmit' ] );
+		$form->setSubmitCallback( $this->onFormSubmit( ... ) );
 		$form->show();
 	}
 
-	public function onFormSubmit( $formData ) {
+	/**
+	 * @param array $formData
+	 */
+	private function onFormSubmit( $formData ) {
 		$params = [];
 		if ( $formData['oldid'] ) {
 			$params[] = $formData['oldid'];

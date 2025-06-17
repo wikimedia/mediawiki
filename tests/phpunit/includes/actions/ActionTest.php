@@ -44,7 +44,7 @@ class ActionTest extends MediaWikiIntegrationTestCase {
 				'unblock' => 'RequiresUnblockDummyAction',
 				'string' => 'NamedDummyAction',
 				'declared' => 'NonExistingClassName',
-				'callable' => [ $this, 'dummyActionCallback' ],
+				'callable' => $this->dummyActionCallback( ... ),
 				'object' => new InstantiatedDummyAction(
 					$this->getArticle(),
 					$context

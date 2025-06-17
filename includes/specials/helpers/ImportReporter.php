@@ -67,10 +67,10 @@ class ImportReporter extends ContextSource {
 			wfDeprecated( __METHOD__ . ' without $context', '1.42' );
 		}
 		$this->mOriginalPageOutCallback =
-			$importer->setPageOutCallback( [ $this, 'reportPage' ] );
+			$importer->setPageOutCallback( $this->reportPage( ... ) );
 		$this->mOriginalLogCallback =
-			$importer->setLogItemCallback( [ $this, 'reportLogItem' ] );
-		$importer->setNoticeCallback( [ $this, 'reportNotice' ] );
+			$importer->setLogItemCallback( $this->reportLogItem( ... ) );
+		$importer->setNoticeCallback( $this->reportNotice( ... ) );
 		$this->mIsUpload = $upload;
 		$this->mInterwiki = $interwiki;
 		$this->reason = is_string( $reason ) ? $reason : "";

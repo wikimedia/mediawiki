@@ -102,7 +102,7 @@ class ForkController {
 	 */
 	public function start() {
 		// Trap SIGTERM
-		pcntl_signal( SIGTERM, [ $this, 'handleTermSignal' ], false );
+		pcntl_signal( SIGTERM, $this->handleTermSignal( ... ), false );
 
 		do {
 			// Start child processes

@@ -1045,7 +1045,7 @@ class SpecialVersion extends SpecialPage {
 		if ( $creditsGroup ) {
 			$out .= $this->openExtType( $text, 'credits-' . $type );
 
-			usort( $creditsGroup, [ $this, 'compare' ] );
+			usort( $creditsGroup, $this->compare( ... ) );
 
 			foreach ( $creditsGroup as $extension ) {
 				$out .= $this->getCreditsForExtension( $type, $extension );
@@ -1063,7 +1063,7 @@ class SpecialVersion extends SpecialPage {
 	 * @param array $b
 	 * @return int
 	 */
-	public function compare( $a, $b ) {
+	private function compare( $a, $b ) {
 		return $this->getLanguage()->lc( $a['name'] ) <=> $this->getLanguage()->lc( $b['name'] );
 	}
 

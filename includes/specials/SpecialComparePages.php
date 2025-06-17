@@ -80,7 +80,7 @@ class SpecialComparePages extends SpecialPage {
 				'label-message' => 'compare-rev1',
 				'size' => '8',
 				'section' => 'page1',
-				'validation-callback' => [ $this, 'checkExistingRevision' ],
+				'validation-callback' => $this->checkExistingRevision( ... ),
 			],
 			'Page2' => [
 				'type' => 'title',
@@ -97,7 +97,7 @@ class SpecialComparePages extends SpecialPage {
 				'label-message' => 'compare-rev2',
 				'size' => '8',
 				'section' => 'page2',
-				'validation-callback' => [ $this, 'checkExistingRevision' ],
+				'validation-callback' => $this->checkExistingRevision( ... ),
 			],
 			'Action' => [
 				'type' => 'hidden',
@@ -111,7 +111,7 @@ class SpecialComparePages extends SpecialPage {
 
 		$form->setMethod( 'get' )
 			->setSubmitTextMsg( 'compare-submit' )
-			->setSubmitCallback( [ $this, 'showDiff' ] )
+			->setSubmitCallback( $this->showDiff( ... ) )
 			->show();
 
 		if ( $this->differenceEngine ) {
@@ -120,11 +120,10 @@ class SpecialComparePages extends SpecialPage {
 	}
 
 	/**
-	 * @internal Callback for HTMLForm
 	 * @param array $data
 	 * @param HTMLForm $form
 	 */
-	public function showDiff( $data, HTMLForm $form ) {
+	private function showDiff( $data, HTMLForm $form ) {
 		$rev1 = $this->revOrTitle( $data['Revision1'], $data['Page1'] );
 		$rev2 = $this->revOrTitle( $data['Revision2'], $data['Page2'] );
 
@@ -157,12 +156,11 @@ class SpecialComparePages extends SpecialPage {
 	}
 
 	/**
-	 * @internal Callback for HTMLForm
 	 * @param string|null $value
 	 * @param array $alldata
 	 * @return string|bool
 	 */
-	public function checkExistingRevision( $value, $alldata ) {
+	private function checkExistingRevision( $value, $alldata ) {
 		if ( $value === '' || $value === null ) {
 			return true;
 		}

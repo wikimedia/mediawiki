@@ -65,11 +65,14 @@ class SpecialPermanentLink extends RedirectSpecialPage {
 			],
 		], $this->getContext(), 'permanentlink' )
 			->setSubmitTextMsg( 'permanentlink-submit' )
-			->setSubmitCallback( [ $this, 'onFormSubmit' ] )
+			->setSubmitCallback( $this->onFormSubmit( ... ) )
 			->show();
 	}
 
-	public function onFormSubmit( $formData ) {
+	/**
+	 * @param array $formData
+	 */
+	private function onFormSubmit( $formData ) {
 		$revid = $formData['revid'];
 		$title = $this->getPageTitle( $revid ?: null );
 		$url = $title->getFullUrlForRedirect();

@@ -404,7 +404,7 @@ class LinkCacheTest extends MediaWikiIntegrationTestCase {
 		$missing = new TitleValue( NS_MAIN, 'Missing' );
 
 		$linkCache = $this->newLinkCache();
-		$callback = [ $this, 'getRowIfExisting' ];
+		$callback = $this->getRowIfExisting( ... );
 
 		$linkCache->getGoodLinkRow( $existing->getNamespace(), $existing->getDBkey(), $callback );
 		$linkCache->getGoodLinkRow( $missing->getNamespace(), $missing->getDBkey(), $callback );
@@ -425,7 +425,7 @@ class LinkCacheTest extends MediaWikiIntegrationTestCase {
 	public function testGetGoodLinkRowUsesCachedInfo() {
 		$existing = new TitleValue( NS_MAIN, 'Existing' );
 		$missing = new TitleValue( NS_MAIN, 'Missing' );
-		$callback = [ $this, 'getRowIfExisting' ];
+		$callback = $this->getRowIfExisting( ... );
 
 		$existingRow = $this->getPageRow( 0 );
 		$fakeRow = $this->getPageRow( 3 );

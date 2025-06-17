@@ -179,7 +179,7 @@ class SessionManager implements SessionManagerInterface {
 
 		$this->userNameUtils = $services->getUserNameUtils();
 
-		register_shutdown_function( [ $this, 'shutdown' ] );
+		register_shutdown_function( $this->shutdown( ... ) );
 	}
 
 	public function setLogger( LoggerInterface $logger ) {
@@ -465,9 +465,8 @@ class SessionManager implements SessionManagerInterface {
 
 	/**
 	 * Save all active sessions on shutdown
-	 * @internal For internal use with register_shutdown_function()
 	 */
-	public function shutdown() {
+	private function shutdown() {
 		if ( $this->allSessionBackends ) {
 			$this->logger->debug( 'Saving all sessions on shutdown' );
 			if ( session_id() !== '' ) {

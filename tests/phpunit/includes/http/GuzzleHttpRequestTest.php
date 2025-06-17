@@ -70,7 +70,7 @@ class GuzzleHttpRequestTest extends MediaWikiIntegrationTestCase {
 			'status' => 200,
 		], $this->exampleBodyText ) ] ) );
 		$r = new GuzzleHttpRequest( $this->exampleUrl, [
-			'callback' => [ $this, 'processHttpDataChunk' ],
+			'callback' => $this->processHttpDataChunk( ... ),
 			'handler' => $handler,
 		] + $this->timeoutOptions );
 		$r->execute();
@@ -87,7 +87,7 @@ class GuzzleHttpRequestTest extends MediaWikiIntegrationTestCase {
 		$r = new GuzzleHttpRequest( $this->exampleUrl, [
 			'handler' => $handler,
 		] + $this->timeoutOptions );
-		$r->setCallback( [ $this, 'processHttpDataChunk' ] );
+		$r->setCallback( $this->processHttpDataChunk( ... ) );
 		$r->execute();
 
 		$this->assertEquals( 200, $r->getStatus() );
@@ -104,7 +104,7 @@ class GuzzleHttpRequestTest extends MediaWikiIntegrationTestCase {
 		], $this->exampleBodyText ) ] ) );
 		$r = new GuzzleHttpRequest( $this->exampleUrl, [
 			'handler' => $handler,
-			'sink' => new MWCallbackStream( [ $this, 'processHttpDataChunk' ] ),
+			'sink' => new MWCallbackStream( $this->processHttpDataChunk( ... ) ),
 		] + $this->timeoutOptions );
 		$r->execute();
 

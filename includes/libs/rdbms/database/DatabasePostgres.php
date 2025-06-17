@@ -542,7 +542,7 @@ __INDEXATTR__;
 	 * @suppress SecurityCheck-SQLInjection array_map not recognized T204911
 	 */
 	public function listTables( $prefix = '', $fname = __METHOD__ ) {
-		$eschemas = implode( ',', array_map( [ $this, 'addQuotes' ], $this->getCoreSchemas() ) );
+		$eschemas = implode( ',', array_map( $this->addQuotes( ... ), $this->getCoreSchemas() ) );
 		$query = new Query(
 			"SELECT DISTINCT tablename FROM pg_tables WHERE schemaname IN ($eschemas)",
 			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE,

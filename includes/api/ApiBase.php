@@ -974,8 +974,10 @@ abstract class ApiBase extends ContextSource {
 	 * @param string ...$required Names of parameters of which exactly one must be set
 	 */
 	public function requireOnlyOneParameter( $params, ...$required ) {
-		$intersection = array_intersect( array_keys( array_filter( $params,
-			[ $this, 'parameterNotEmpty' ] ) ), $required );
+		$intersection = array_intersect(
+			array_keys( array_filter( $params, $this->parameterNotEmpty( ... ) ) ),
+			$required
+		);
 
 		if ( count( $intersection ) > 1 ) {
 			$this->dieWithError( [
@@ -1009,8 +1011,10 @@ abstract class ApiBase extends ContextSource {
 	 * @param string ...$required Parameter names that cannot have more than one set
 	 */
 	public function requireMaxOneParameter( $params, ...$required ) {
-		$intersection = array_intersect( array_keys( array_filter( $params,
-			[ $this, 'parameterNotEmpty' ] ) ), $required );
+		$intersection = array_intersect(
+			array_keys( array_filter( $params, $this->parameterNotEmpty( ... ) ) ),
+			$required
+		);
 
 		if ( count( $intersection ) > 1 ) {
 			$this->dieWithError( [
@@ -1035,7 +1039,7 @@ abstract class ApiBase extends ContextSource {
 	 */
 	public function requireAtLeastOneParameter( $params, ...$required ) {
 		$intersection = array_intersect(
-			array_keys( array_filter( $params, [ $this, 'parameterNotEmpty' ] ) ),
+			array_keys( array_filter( $params, $this->parameterNotEmpty( ... ) ) ),
 			$required
 		);
 
@@ -1070,7 +1074,7 @@ abstract class ApiBase extends ContextSource {
 			return;
 		}
 		$intersection = array_intersect(
-			array_keys( array_filter( $params, [ $this, 'parameterNotEmpty' ] ) ),
+			array_keys( array_filter( $params, $this->parameterNotEmpty( ... ) ) ),
 			(array)$conflicts
 		);
 		if ( count( $intersection ) ) {

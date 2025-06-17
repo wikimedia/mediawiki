@@ -112,7 +112,7 @@ class HTTPFileStreamer {
 			? static function ( $header ) {
 				// no-op
 			}
-			: [ $this, 'header' ];
+			: $this->header( ... );
 
 		AtEase::suppressWarnings();
 		$info = stat( $this->path );

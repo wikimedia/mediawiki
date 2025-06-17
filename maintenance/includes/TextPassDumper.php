@@ -432,10 +432,10 @@ TEXT
 
 		xml_set_element_handler(
 			$parser,
-			[ $this, 'startElement' ],
-			[ $this, 'endElement' ]
+			$this->startElement( ... ),
+			$this->endElement( ... )
 		);
-		xml_set_character_data_handler( $parser, [ $this, 'characterData' ] );
+		xml_set_character_data_handler( $parser, $this->characterData( ... ) );
 
 		$offset = 0; // for context extraction on error reporting
 		do {

@@ -98,7 +98,7 @@ abstract class FormAction extends Action {
 		} else {
 			$form = new HTMLForm( $this->fields, $this->getContext(), $this->getName() );
 		}
-		$form->setSubmitCallback( [ $this, 'onSubmit' ] );
+		$form->setSubmitCallback( $this->onSubmit( ... ) );
 
 		$title = $this->getTitle();
 		$form->setAction( $title->getLocalURL( [ 'action' => $this->getName() ] ) );

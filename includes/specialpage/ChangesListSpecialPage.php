@@ -234,7 +234,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 					]
 				],
 				'default' => ChangesListStringOptionsFilterGroup::NONE,
-				'queryCallable' => [ $this, 'filterOnUserExperienceLevel' ],
+				'queryCallable' => $this->filterOnUserExperienceLevel( ... ),
 			],
 
 			[

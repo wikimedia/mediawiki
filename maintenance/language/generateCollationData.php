@@ -116,7 +116,7 @@ class GenerateCollationData extends Maintenance {
 
 	private function loadUcd() {
 		$uxr = new UcdXmlReader( "{$this->dataDir}/ucd.all.grouped.xml" );
-		$uxr->readChars( [ $this, 'charCallback' ] );
+		$uxr->readChars( $this->charCallback( ... ) );
 	}
 
 	private function charCallback( array $data ) {

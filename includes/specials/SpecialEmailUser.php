@@ -232,7 +232,7 @@ class SpecialEmailUser extends SpecialPage {
 		$htmlForm
 			->setMethod( 'GET' )
 			->setTitle( $this->getPageTitle() ) // Remove subpage
-			->setSubmitCallback( [ $this, 'sendEmailForm' ] )
+			->setSubmitCallback( $this->sendEmailForm( ... ) )
 			->setId( 'askusername' )
 			->setWrapperLegendMsg( 'emailtarget' )
 			->setSubmitTextMsg( 'emailusernamesubmit' )
@@ -243,7 +243,7 @@ class SpecialEmailUser extends SpecialPage {
 	 * @param array $data
 	 * @return bool
 	 */
-	public function sendEmailForm( array $data ) {
+	private function sendEmailForm( array $data ) {
 		$out = $this->getOutput();
 
 		// HTMLForm checked that this is a valid user name, the return value can never be null.
@@ -254,7 +254,7 @@ class SpecialEmailUser extends SpecialPage {
 			->setTitle( $this->getPageTitle() ) // Remove subpage
 			->addPreHtml( $this->msg( 'emailpagetext', $target->getName() )->parse() )
 			->setSubmitTextMsg( 'emailsend' )
-			->setSubmitCallback( [ $this, 'onFormSubmit' ] )
+			->setSubmitCallback( $this->onFormSubmit( ... ) )
 			->setWrapperLegendMsg( 'email-legend' )
 			->prepareForm();
 
@@ -277,9 +277,8 @@ class SpecialEmailUser extends SpecialPage {
 	/**
 	 * @param array $data
 	 * @return StatusValue|false
-	 * @internal Only public because it's used as an HTMLForm callback.
 	 */
-	public function onFormSubmit( array $data ) {
+	private function onFormSubmit( array $data ) {
 		// HTMLForm checked that this is a valid user name, the return value can never be null.
 		$target = $this->userFactory->newFromName( $data['Target'] );
 

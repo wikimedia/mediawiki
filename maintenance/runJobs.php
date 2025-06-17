@@ -95,7 +95,7 @@ class RunJobs extends Maintenance {
 
 		$runner = $this->getServiceContainer()->getJobRunner();
 		if ( !$outputJSON ) {
-			$runner->setDebugHandler( [ $this, 'debugInternal' ] );
+			$runner->setDebugHandler( $this->debugInternal( ... ) );
 		}
 
 		$type = $this->getOption( 'type', false );
@@ -140,7 +140,7 @@ class RunJobs extends Maintenance {
 	/**
 	 * @param string $s
 	 */
-	public function debugInternal( $s ) {
+	private function debugInternal( $s ) {
 		$this->output( $s );
 	}
 }

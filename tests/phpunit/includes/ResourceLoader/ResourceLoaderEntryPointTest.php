@@ -20,7 +20,7 @@ class ResourceLoaderEntryPointTest extends MediaWikiIntegrationTestCase {
 		parent::setUp();
 
 		$this->overrideConfigValue( MainConfigNames::ShowExceptionDetails, true );
-		$this->setService( 'ResourceLoader', [ $this, 'newResourceLoader' ] );
+		$this->setService( 'ResourceLoader', $this->newResourceLoader( ... ) );
 	}
 
 	public function newResourceLoader() {

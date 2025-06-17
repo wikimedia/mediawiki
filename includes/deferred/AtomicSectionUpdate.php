@@ -31,7 +31,7 @@ class AtomicSectionUpdate implements DeferrableUpdate, DeferrableCallback {
 		$conns[] = $dbw;
 		foreach ( $conns as $conn ) {
 			if ( $conn->trxLevel() ) {
-				$conn->onTransactionResolution( [ $this, 'cancelOnRollback' ], $fname );
+				$conn->onTransactionResolution( $this->cancelOnRollback( ... ), $fname );
 			}
 		}
 	}

@@ -525,7 +525,7 @@ class CheckStorage extends Maintenance {
 		$importer = $this->getServiceContainer()
 			->getWikiImporterFactory()
 			->getWikiImporter( $source, new UltimateAuthority( $user ) );
-		$importer->setRevisionCallback( [ $this, 'importRevision' ] );
+		$importer->setRevisionCallback( $this->importRevision( ... ) );
 		$importer->setNoticeCallback( static function ( $msg, $params ) {
 			echo wfMessage( $msg, $params )->text() . "\n";
 		} );
@@ -535,7 +535,7 @@ class CheckStorage extends Maintenance {
 	/**
 	 * @param WikiRevision $revision
 	 */
-	public function importRevision( $revision ) {
+	private function importRevision( $revision ) {
 		$id = $revision->getID();
 		$content = $revision->getContent();
 		$id = $id ?: '';

@@ -214,7 +214,7 @@ class MaintenanceRunner {
 		}
 
 		// make sure we clean up after ourselves.
-		register_shutdown_function( [ $this, 'cleanup' ] );
+		register_shutdown_function( $this->cleanup( ... ) );
 
 		// Turn off output buffering if it's on
 		while ( ob_get_level() > 0 ) {
@@ -769,7 +769,7 @@ class MaintenanceRunner {
 	 * @internal
 	 * @return void
 	 */
-	public function cleanup() {
+	protected function cleanup() {
 		if ( $this->scriptObject ) {
 			$this->scriptObject->cleanupChanneled();
 		}

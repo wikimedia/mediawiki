@@ -211,7 +211,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		$mtime = $this->getCurrentTime();
 
 		return $this->modifyBlobs(
-			[ $this, 'modifyTableSpecificBlobsForSet' ],
+			$this->modifyTableSpecificBlobsForSet( ... ),
 			$mtime,
 			[ $key => [ $value, $exptime ] ]
 		);
@@ -221,7 +221,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		$mtime = $this->getCurrentTime();
 
 		return $this->modifyBlobs(
-			[ $this, 'modifyTableSpecificBlobsForDelete' ],
+			$this->modifyTableSpecificBlobsForDelete( ... ),
 			$mtime,
 			[ $key => [] ]
 		);
@@ -235,7 +235,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		}
 
 		return $this->modifyBlobs(
-			[ $this, 'modifyTableSpecificBlobsForAdd' ],
+			$this->modifyTableSpecificBlobsForAdd( ... ),
 			$mtime,
 			[ $key => [ $value, $exptime ] ]
 		);
@@ -249,7 +249,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		}
 
 		return $this->modifyBlobs(
-			[ $this, 'modifyTableSpecificBlobsForCas' ],
+			$this->modifyTableSpecificBlobsForCas( ... ),
 			$mtime,
 			[ $key => [ $value, $exptime, $casToken ] ]
 		);
@@ -259,7 +259,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		$mtime = $this->getCurrentTime();
 
 		return $this->modifyBlobs(
-			[ $this, 'modifyTableSpecificBlobsForChangeTTL' ],
+			$this->modifyTableSpecificBlobsForChangeTTL( ... ),
 			$mtime,
 			[ $key => [ $exptime ] ]
 		);
@@ -269,9 +269,9 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		$mtime = $this->getCurrentTime();
 
 		if ( $flags & self::WRITE_BACKGROUND ) {
-			$callback = [ $this, 'modifyTableSpecificBlobsForIncrInitAsync' ];
+			$callback = $this->modifyTableSpecificBlobsForIncrInitAsync( ... );
 		} else {
-			$callback = [ $this, 'modifyTableSpecificBlobsForIncrInit' ];
+			$callback = $this->modifyTableSpecificBlobsForIncrInit( ... );
 		}
 
 		$result = $this->modifyBlobs(
@@ -313,7 +313,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		$mtime = $this->getCurrentTime();
 
 		return $this->modifyBlobs(
-			[ $this, 'modifyTableSpecificBlobsForSet' ],
+			$this->modifyTableSpecificBlobsForSet( ... ),
 			$mtime,
 			array_map(
 				static function ( $value ) use ( $exptime ) {
@@ -328,7 +328,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		$mtime = $this->getCurrentTime();
 
 		return $this->modifyBlobs(
-			[ $this, 'modifyTableSpecificBlobsForDelete' ],
+			$this->modifyTableSpecificBlobsForDelete( ... ),
 			$mtime,
 			array_fill_keys( $keys, [] )
 		);
@@ -338,7 +338,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		$mtime = $this->getCurrentTime();
 
 		return $this->modifyBlobs(
-			[ $this, 'modifyTableSpecificBlobsForChangeTTL' ],
+			$this->modifyTableSpecificBlobsForChangeTTL( ... ),
 			$mtime,
 			array_fill_keys( $keys, [ $exptime ] )
 		);

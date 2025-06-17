@@ -9,7 +9,7 @@ use MediaWiki\Title\Title;
 class FauxSearchResultSetTest extends MediaWikiUnitTestCase {
 
 	public function testConstruct() {
-		$titles = array_map( [ $this, 'getTitleMock' ], [ 'Foo', 'Bar', 'Baz' ] );
+		$titles = array_map( $this->getTitleMock( ... ), [ 'Foo', 'Bar', 'Baz' ] );
 		$rs = new FauxSearchResultSet( $titles );
 		$titleTexts = [];
 		foreach ( $rs as $result ) {
@@ -21,7 +21,7 @@ class FauxSearchResultSetTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testGetTotalHits() {
-		$titles = array_map( [ $this, 'getTitleMock' ], [ 'Foo', 'Bar', 'Baz' ] );
+		$titles = array_map( $this->getTitleMock( ... ), [ 'Foo', 'Bar', 'Baz' ] );
 		$rs = new FauxSearchResultSet( $titles );
 		$this->assertSame( 3, $rs->getTotalHits() );
 		$this->assertFalse( $rs->hasMoreResults() );

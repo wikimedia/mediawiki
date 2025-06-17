@@ -165,7 +165,7 @@ class SpecialPreferences extends SpecialPage {
 			->setTitle( $this->getPageTitle( 'reset' ) ) // Reset subpage
 			->setSubmitTextMsg( 'restoreprefs' )
 			->setSubmitDestructive()
-			->setSubmitCallback( [ $this, 'submitReset' ] )
+			->setSubmitCallback( $this->submitReset( ... ) )
 			->showCancel()
 			->setCancelTarget( $this->getPageTitle() )
 			->show();

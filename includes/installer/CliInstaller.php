@@ -224,8 +224,8 @@ class CliInstaller extends Installer {
 		}
 
 		$status = $this->performInstallation(
-			[ $this, 'startStage' ],
-			[ $this, 'endStage' ]
+			$this->startStage( ... ),
+			$this->endStage( ... )
 		);
 		if ( $status->isOK() ) {
 			return Status::newGood();

@@ -356,7 +356,7 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 		$this->markTestSkippedIfDbType( 'sqlite' );
 
 		$this->search->setHookContainer(
-			$this->createHookContainer( [ 'SearchResultsAugment' => [ $this, 'addAugmentors' ] ] )
+			$this->createHookContainer( [ 'SearchResultsAugment' => $this->addAugmentors( ... ) ] )
 		);
 
 		$this->search->setNamespaces( [ 0, 1, 4 ] );

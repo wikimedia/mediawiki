@@ -958,7 +958,7 @@ class ImagePage extends Article {
 				[ 'class' => 'mw-imagepage-linkstoimage' ] ) . "\n"
 		);
 		// Sort the list by namespace:title
-		usort( $rows, [ $this, 'compare' ] );
+		usort( $rows, $this->compare( ... ) );
 
 		// Create links for every element
 		$currentCount = 0;

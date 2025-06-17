@@ -125,12 +125,12 @@ class ApiErrorFormatterTest extends MediaWikiLangTestCase {
 		$this->assertSame( $expect3, $result->getResultData(), 'Status test' );
 
 		$this->assertSame(
-			array_map( [ $this, 'removeModuleTag' ], $expect3['errors'] ),
+			array_map( $this->removeModuleTag( ... ), $expect3['errors'] ),
 			$formatter->arrayFromStatus( $status, 'error' ),
 			'arrayFromStatus test for error'
 		);
 		$this->assertSame(
-			array_map( [ $this, 'removeModuleTag' ], $expect3['warnings'] ),
+			array_map( $this->removeModuleTag( ... ), $expect3['warnings'] ),
 			$formatter->arrayFromStatus( $status, 'warning' ),
 			'arrayFromStatus test for warning'
 		);

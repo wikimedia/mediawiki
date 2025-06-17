@@ -71,17 +71,17 @@ class RandomImageGenerator {
 	private function getImageWriteMethod( string $format ): callable {
 		global $wgUseImageMagick, $wgImageMagickConvertCommand;
 		if ( $format === 'svg' ) {
-			return [ $this, 'writeSvg' ];
+			return $this->writeSvg( ... );
 		} else {
 			// figure out how to write images
 			global $wgExiv2Command;
 			if ( class_exists( Imagick::class ) && $wgExiv2Command && is_executable( $wgExiv2Command ) ) {
-				return [ $this, 'writeImageWithApi' ];
+				return $this->writeImageWithApi( ... );
 			} elseif ( $wgUseImageMagick
 				&& $wgImageMagickConvertCommand
 				&& is_executable( $wgImageMagickConvertCommand )
 			) {
-				return [ $this, 'writeImageWithCommandLine' ];
+				return $this->writeImageWithCommandLine( ... );
 			}
 		}
 		throw new Exception( "RandomImageGenerator: could not find a suitable "

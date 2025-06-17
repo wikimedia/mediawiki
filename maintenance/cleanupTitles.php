@@ -123,7 +123,7 @@ class TitleCleanup extends TableCleanup {
 	protected function moveIllegalPage( $row ) {
 		$legalChars = Title::legalChars();
 		$legalizedUnprefixed = preg_replace_callback( "/([^$legalChars])/",
-			[ $this, 'hexChar' ],
+			$this->hexChar( ... ),
 			$row->page_title );
 		if ( $legalizedUnprefixed == '.' ) {
 			$legalizedUnprefixed = '(dot)';
@@ -167,7 +167,7 @@ class TitleCleanup extends TableCleanup {
 			// characters, but if we don't do this the result will be
 			// falling back to the Broken/id:foo failsafe below which is worse
 			$legalizedUnprefixed = preg_replace_callback( '!([^A-Za-z0-9_:\\-])!',
-				[ $this, 'hexChar' ],
+				$this->hexChar( ... ),
 				$legalizedUnprefixed
 			);
 			$title = Title::newFromText( $this->prefix . $legalizedUnprefixed );

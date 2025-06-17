@@ -82,7 +82,7 @@ class DumpRenderer extends Maintenance {
 			->getWikiImporter( $source, new UltimateAuthority( $user ) );
 
 		$importer->setRevisionCallback(
-			[ $this, 'handleRevision' ] );
+			$this->handleRevision( ... ) );
 		$importer->setNoticeCallback( static function ( $msg, $params ) {
 			echo wfMessage( $msg, $params )->text() . "\n";
 		} );

@@ -122,7 +122,7 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 		$title = Title::makeTitle( NS_MAIN, 'Foo' );
 		$parser = $this->getServiceContainer()->getParser();
 		$po = ParserOptions::newFromAnon();
-		$parser->setHook( 'recursivecallparser', [ $this, 'helperParserFunc' ] );
+		$parser->setHook( 'recursivecallparser', $this->helperParserFunc( ... ) );
 		$this->expectException( LogicException::class );
 		$this->expectExceptionMessage(
 			"Parser state cleared while parsing. Did you call Parser::parse recursively?"
@@ -130,7 +130,7 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 		$parser->parse( '<recursivecallparser>baz</recursivecallparser>', $title, $po );
 	}
 
-	public function helperParserFunc( $input, $args, $parser ) {
+	private function helperParserFunc( $input, $args, $parser ) {
 		$title = Title::makeTitle( NS_MAIN, 'Foo' );
 		$po = ParserOptions::newFromAnon();
 		$parser->parse( $input, $title, $po );

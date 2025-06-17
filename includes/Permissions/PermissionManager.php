@@ -460,17 +460,12 @@ class PermissionManager {
 			$user = $this->userFactory->newTempPlaceholder();
 		}
 
-		// Use [ $this, 'methodName' ] for dynamic callbacks instead of just
-		// $methodName. Doing so lets code analyzers immediately infer that
-		// the value is used as a callable. Note: This can be changed to use
-		// first-class callable syntax when we require PHP 8.1.
-
 		# Read has special handling
 		if ( $action === 'read' ) {
 			$checks = [
-				[ $this, 'checkPermissionHooks' ],
-				[ $this, 'checkReadPermissions' ],
-				[ $this, 'checkUserBlock' ], // for wgBlockDisablesLogin
+				$this->checkPermissionHooks( ... ),
+				$this->checkReadPermissions( ... ),
+				$this->checkUserBlock( ... ), // for wgBlockDisablesLogin
 			];
 		} elseif ( $action === 'create' ) {
 			# Don't call checkSpecialsAndNSPermissions, checkSiteConfigPermissions
@@ -478,12 +473,12 @@ class PermissionManager {
 			# error messages. This is okay to do since anywhere that checks for
 			# create will also check for edit, and those checks are called for edit.
 			$checks = [
-				[ $this, 'checkQuickPermissions' ],
-				[ $this, 'checkPermissionHooks' ],
-				[ $this, 'checkPageRestrictions' ],
-				[ $this, 'checkCascadingSourcesRestrictions' ],
-				[ $this, 'checkActionPermissions' ],
-				[ $this, 'checkUserBlock' ],
+				$this->checkQuickPermissions( ... ),
+				$this->checkPermissionHooks( ... ),
+				$this->checkPageRestrictions( ... ),
+				$this->checkCascadingSourcesRestrictions( ... ),
+				$this->checkActionPermissions( ... ),
+				$this->checkUserBlock( ... ),
 			];
 		} else {
 			// Exclude checkUserConfigPermissions on actions that cannot change the
@@ -511,20 +506,20 @@ class PermissionManager {
 			];
 
 			$checks = [
-				[ $this, 'checkQuickPermissions' ],
-				[ $this, 'checkPermissionHooks' ],
-				[ $this, 'checkSpecialsAndNSPermissions' ],
-				[ $this, 'checkSiteConfigPermissions' ],
+				$this->checkQuickPermissions( ... ),
+				$this->checkPermissionHooks( ... ),
+				$this->checkSpecialsAndNSPermissions( ... ),
+				$this->checkSiteConfigPermissions( ... ),
 			];
 			if ( !in_array( $action, $skipUserConfigActions, true ) ) {
-				$checks[] = [ $this, 'checkUserConfigPermissions' ];
+				$checks[] = $this->checkUserConfigPermissions( ... );
 			}
 			$checks = [
 				...$checks,
-				[ $this, 'checkPageRestrictions' ],
-				[ $this, 'checkCascadingSourcesRestrictions' ],
-				[ $this, 'checkActionPermissions' ],
-				[ $this, 'checkUserBlock' ]
+				$this->checkPageRestrictions( ... ),
+				$this->checkCascadingSourcesRestrictions( ... ),
+				$this->checkActionPermissions( ... ),
+				$this->checkUserBlock( ... )
 			];
 		}
 

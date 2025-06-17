@@ -229,11 +229,11 @@ trait FileBackendGroupTestTrait {
 		$config['profiler'] = null;
 
 		$this->assertEquals( [
-			'mimeCallback' => [ $obj, 'guessMimeInternal' ],
+			'mimeCallback' => $obj->guessMimeInternal( ... ),
 			'obResetFunc' => 'wfResetOutputBuffers',
-			'streamMimeFunc' => [ StreamFile::class, 'contentTypeFromPath' ],
+			'streamMimeFunc' => StreamFile::contentTypeFromPath( ... ),
 			'tmpFileFactory' => $this->tmpFileFactory,
-			'statusWrapper' => [ Status::class, 'wrap' ],
+			'statusWrapper' => Status::wrap( ... ),
 			// Ignore actual value, normal service is fine, because it wraps
 			// $wgMainCacheType (HashBagOStuff) which we already clear between tests.
 			'wanCache' => $config['wanCache'],
@@ -258,14 +258,14 @@ trait FileBackendGroupTestTrait {
 			'class' => FSFileBackend::class,
 			'lockManager' =>
 				$this->lmgFactory->getLockManagerGroup( self::getWikiID() )->get( 'fsLockManager' ),
-			'asyncHandler' => [
-				MediaWiki\Deferred\DeferredUpdates::class,
-				'addCallableUpdate'
-			]
+			'asyncHandler' => DeferredUpdates::addCallableUpdate( ... )
 		], $config );
 
+		// Compare closures with ==
+		// https://github.com/sebastianbergmann/comparator/issues/127
+		$this->assertTrue( $obj->guessMimeInternal( ... ) == $config['mimeCallback'] );
+
 		// For config values that are objects, check object identity.
-		$this->assertSame( [ $obj, 'guessMimeInternal' ], $config['mimeCallback'] );
 		$this->assertSame( $this->tmpFileFactory, $config['tmpFileFactory'] );
 		if ( $this->srvCache === null ) {
 			$this->assertInstanceOf( HashBagOStuff::class, $config['srvCache'] );

@@ -669,7 +669,7 @@ class UpdateHandlerTest extends MediaWikiLangTestCase {
 
 		$apiUsageException = new ApiUsageException( null, Status::newFatal( 'apierror-editconflict' ) );
 		$handler = $this->newHandler( [], $apiUsageException );
-		$handler->setJsonDiffFunction( [ $this, 'fakeJsonDiff' ] );
+		$handler->setJsonDiffFunction( $this->fakeJsonDiff( ... ) );
 
 		$exception = $this->executeHandlerAndGetHttpException( $handler, $request );
 

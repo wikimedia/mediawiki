@@ -389,7 +389,7 @@ class SearchMySQL extends SearchDatabase {
 		// need to fold cases and convert to hex
 		$out = preg_replace_callback(
 			"/([\\xc0-\\xff][\\x80-\\xbf]*)/",
-			[ $this, 'stripForSearchCallback' ],
+			$this->stripForSearchCallback( ... ),
 			MediaWikiServices::getInstance()->getContentLanguage()->lc( $out ) );
 
 		// And to add insult to injury, the default indexing

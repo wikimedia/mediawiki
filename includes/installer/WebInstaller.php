@@ -323,7 +323,7 @@ class WebInstaller extends Installer {
 		}
 
 		$this->phpErrors = [];
-		set_error_handler( [ $this, 'errorHandler' ] );
+		set_error_handler( $this->errorHandler( ... ) );
 		try {
 			session_name( 'mw_installer_session' );
 			session_start( $options );
@@ -1247,7 +1247,7 @@ class WebInstaller extends Installer {
 		$taskFactory->registerWebUpgradeTasks( $taskList );
 		$taskRunner = new TaskRunner( $taskList, $taskFactory, TaskFactory::PROFILE_WEB_UPGRADE );
 
-		ob_start( [ $this, 'outputHandler' ] );
+		ob_start( $this->outputHandler( ... ) );
 		try {
 			$status = $taskRunner->execute();
 			$ret = $status->isOK();
