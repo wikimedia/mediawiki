@@ -1,5 +1,5 @@
 # This file declares MediaWiki scenarios for Fresnel, a web page performance
-# monitoring tool. See <https://wikitech.wikimedia.org/wiki/Performance/Fresnel>.
+# monitoring tool. See <https://wikitech.wikimedia.org/wiki/Fresnel>.
 
 warmup: true
 runs: 7
