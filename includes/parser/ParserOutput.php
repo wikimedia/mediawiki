@@ -1948,12 +1948,18 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * expected that NO_INDEX_POLICY "wins" in that case. (T16899)
 	 * (This resolution is implemented in ::getIndexPolicy().)
 	 *
-	 * @param string $name A flag name
+	 * @param ParserOutputFlags|string $name A flag name
 	 * @param bool $val
 	 * @since 1.38
 	 */
-	public function setOutputFlag( string $name, bool $val = true ): void {
-		switch ( $name ) {
+	public function setOutputFlag( ParserOutputFlags|string $name, bool $val = true ): void {
+		if ( is_string( $name ) ) {
+			$flag = ParserOutputFlags::tryFrom( $name );
+		} else {
+			$flag = $name;
+			$name = $flag->value;
+		}
+		switch ( $flag ) {
 			case ParserOutputFlags::NO_GALLERY:
 				$this->setNoGallery( $val );
 				break;
@@ -2000,12 +2006,18 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * ParserOutputFlags in core; they should use ::getExtensionData()
 	 * to define their own flags.
 	 *
-	 * @param string $name A flag name
+	 * @param ParserOutputFlags|string $name A flag name
 	 * @return bool The flag value
 	 * @since 1.38
 	 */
-	public function getOutputFlag( string $name ): bool {
-		switch ( $name ) {
+	public function getOutputFlag( ParserOutputFlags|string $name ): bool {
+		if ( is_string( $name ) ) {
+			$flag = ParserOutputFlags::tryFrom( $name );
+		} else {
+			$flag = $name;
+			$name = $flag->value;
+		}
+		switch ( $flag ) {
 			case ParserOutputFlags::NO_GALLERY:
 				return $this->getNoGallery();
 
@@ -2028,7 +2040,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 				return $this->getPreventClickjacking();
 
 			default:
-				return isset( $this->mFlags[$name] );
+				return $this->mFlags[$name] ?? false;
 
 		}
 	}
@@ -2753,7 +2765,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	public function collectMetadata( ContentMetadataCollector $metadata ): void {
 		// Uniform handling of all boolean flags: they are OR'ed together.
 		$flags = array_keys(
-			$this->mFlags + array_flip( ParserOutputFlags::cases() )
+			$this->mFlags + array_flip( ParserOutputFlags::values() )
 		);
 		foreach ( $flags as $name ) {
 			$name = (string)$name;

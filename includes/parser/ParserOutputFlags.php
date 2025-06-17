@@ -38,12 +38,12 @@ namespace MediaWiki\Parser;
  *
  * @package MediaWiki\Parser
  */
-class ParserOutputFlags {
+enum ParserOutputFlags: string {
 
 	// These flags are currently stored as ParserOutput properties
 
 	/**
-	 * @var string Disable magic gallery on category page (__NOGALLERY__).
+	 * Disable magic gallery on category page (__NOGALLERY__).
 	 *
 	 * This is used to selectively disable the auto-magic thumbnail
 	 * gallery on thumbnail pages.
@@ -52,188 +52,176 @@ class ParserOutputFlags {
 	 * @see ParserOutput::getNoGallery()
 	 * @see ParserOutput::setNoGallery()
 	 */
-	public const NO_GALLERY = 'mw-NoGallery';
+	case NO_GALLERY = 'mw-NoGallery';
 
 	/**
-	 * @var string Whether OOUI should be enabled.
+	 * Whether OOUI should be enabled.
 	 * @see ParserOutput::getEnableOOUI()
 	 * @see ParserOutput::setEnableOOUI()
 	 */
-	public const ENABLE_OOUI = 'mw-EnableOOUI';
+	case ENABLE_OOUI = 'mw-EnableOOUI';
 
 	/**
-	 * @var string Force index policy to be 'index'
+	 * Force index policy to be 'index'.
 	 * @see ParserOutput::getIndexPolicy()
 	 * @see ParserOutput::setIndexPolicy()
 	 */
-	public const INDEX_POLICY = 'mw-IndexPolicy';
+	case INDEX_POLICY = 'mw-IndexPolicy';
 
 	/**
-	 * @var string Force index policy to be 'noindex'
+	 * Force index policy to be 'noindex'.
 	 * @see ParserOutput::getIndexPolicy()
 	 * @see ParserOutput::setIndexPolicy()
 	 */
-	public const NO_INDEX_POLICY = 'mw-NoIndexPolicy';
+	case NO_INDEX_POLICY = 'mw-NoIndexPolicy';
 
 	/**
-	 * @var string Show a new section link?
+	 * Show a new section link?
 	 * @see ParserOutput::getNewSection()
 	 * @see ParserOutput::setNewSection()
 	 */
-	public const NEW_SECTION = 'mw-NewSection';
+	case NEW_SECTION = 'mw-NewSection';
 
 	/**
-	 * @var string Hide the new section link?
+	 * Hide the new section link?
 	 * @see ParserOutput::getHideNewSection()
 	 * @see ParserOutput::setHideNewSection()
 	 */
-	public const HIDE_NEW_SECTION = 'mw-HideNewSection';
+	case HIDE_NEW_SECTION = 'mw-HideNewSection';
 
 	/**
-	 * @var string The prevent-clickjacking flag
+	 * The prevent-clickjacking flag
 	 * @see ParserOutput::getPreventClickjacking()
 	 * @see ParserOutput::setPreventClickjacking()
 	 */
-	public const PREVENT_CLICKJACKING = 'mw-PreventClickjacking';
+	case PREVENT_CLICKJACKING = 'mw-PreventClickjacking';
 
 	// These flags are stored in the ParserOutput::$mFlags array
 
 	/**
-	 * @var string Show the table of contents in the skin?  This is
-	 *  a /suggestion/ based on whether the TOC is "large enough"
-	 *  and other factors, and is intended mostly for skins which
-	 *  want to match the behavior of the traditional inline ToC.
+	 * Show the table of contents in the skin?
+	 *
+	 * This is a /suggestion/ based on whether the TOC is "large
+	 * enough" and other factors, and is intended mostly for skins
+	 * which want to match the behavior of the traditional inline ToC.
 	 */
-	public const SHOW_TOC = 'show-toc';
+	case SHOW_TOC = 'show-toc';
 
 	/**
-	 * @var string Suppress the table of contents in the skin?
-	 *  This reflects the use of the __NOTOC__ magic word in the
-	 *  article (possibly modified by __TOC__ or __FORCETOC__),
-	 *  and represents an explicit request from the author to
-	 *  hide the TOC.
+	 * Suppress the table of contents in the skin?
+	 *
+	 * This reflects the use of the `__NOTOC__` magic word in the
+	 * article (possibly modified by `__TOC__` or `__FORCETOC__`), and
+	 * represents an explicit request from the author to hide the TOC.
 	 */
-	public const NO_TOC = 'no-toc';
+	case NO_TOC = 'no-toc';
 
 	/**
-	 * @var string Suppress the section edit links?
-	 *  This reflects the ParserOptions::getSuppressSectionEditLinks()
-	 *  flag and affects the default value of `enableSectionEditLinks`
-	 *  in ParserOutput::getText().
+	 * Suppress the section edit links?
+	 *
+	 * This reflects the `ParserOptions::getSuppressSectionEditLinks()`
+	 * flag and affects the default value of `enableSectionEditLinks`
+	 * in `ParserOutput::getText()`.
 	 */
-	public const NO_SECTION_EDIT_LINKS = 'no-section-edit-links';
+	case NO_SECTION_EDIT_LINKS = 'no-section-edit-links';
 
 	/**
-	 * @var string Wrap section contents to allow collapsing them?
+	 * Wrap section contents to allow collapsing them?
+	 *
 	 * This reflects the ParserOptions::getCollapsibleSections()
 	 * flag.
 	 */
-	public const COLLAPSIBLE_SECTIONS = 'collapsible-sections';
+	case COLLAPSIBLE_SECTIONS = 'collapsible-sections';
 
 	/**
-	 * @var string
+	 * Informs the edit saving system that...
 	 */
-	public const VARY_REVISION = 'vary-revision';
+	case VARY_REVISION = 'vary-revision';
 
 	/**
-	 * @var string Similar to VARY_REVISION, but used if we didn't
+	 * Similar to VARY_REVISION, but used if we didn't
 	 * guess the ID correctly. Informs the edit saving system that
 	 * getting the canonical output after revision insertion requires
 	 * a parse that used that exact revision ID.
 	 */
-	public const VARY_REVISION_ID = 'vary-revision-id';
+	case VARY_REVISION_ID = 'vary-revision-id';
 
 	/**
-	 * @var string Similar to VARY_REVISION, but used if we didn't
+	 * Similar to VARY_REVISION, but used if we didn't
 	 * guess the timestamp correctly. Informs the edit saving system
 	 * that getting the canonical output after revision insertion
 	 * requires a parse that used an actual revision timestamp.
 	 */
-	public const VARY_REVISION_TIMESTAMP = 'vary-revision-timestamp';
+	case VARY_REVISION_TIMESTAMP = 'vary-revision-timestamp';
 
 	/**
-	 * @var string Similar to VARY_REVISION, but used if we didn't guess the
+	 * Similar to VARY_REVISION, but used if we didn't guess the
 	 * content correctly.
 	 */
-	public const VARY_REVISION_SHA1 = 'vary-revision-sha1';
+	case VARY_REVISION_SHA1 = 'vary-revision-sha1';
 
 	/**
-	 * @var string Similar to VARY_REVISION
+	 * Similar to VARY_REVISION
 	 */
-	public const VARY_REVISION_EXISTS = 'vary-revision-exists';
+	case VARY_REVISION_EXISTS = 'vary-revision-exists';
 
 	/**
-	 * @var string Similar to VARY_REVISION, but used if we didn't guess the
+	 * Similar to VARY_REVISION, but used if we didn't guess the
 	 * page id correctly.  Informs the edit saving system that getting the
 	 * canonical output after page insertion requires a parse that used that
 	 * exact page id.
 	 */
-	public const VARY_PAGE_ID = 'vary-page-id';
+	case VARY_PAGE_ID = 'vary-page-id';
 
 	/**
-	 * @var string Similar to VARY_REVISION. Informs the edit saving
+	 * Similar to VARY_REVISION. Informs the edit saving
 	 * system that getting the canonical output after revision
 	 * insertion requires a parse that used the actual user ID.
 	 */
-	public const VARY_USER = 'vary-user';
+	case VARY_USER = 'vary-user';
 
 	/**
-	 * @var string Used to avoid extremely stale user signature timestamps
+	 * Used to avoid extremely stale user signature timestamps
 	 * (T84843). Set if the signature wikitext contains another '~~~~' or
 	 * similar (T230652).
 	 */
-	public const USER_SIGNATURE = 'user-signature';
+	case USER_SIGNATURE = 'user-signature';
 
 	/**
-	 * @var string Set when the parse is done in "preview mode", in which
-	 * case various shortcuts are taken to work around the fact that the
-	 * parsed text does not yet have an actual revision ID, revision time,
-	 * etc.
+	 * Set when the parse is done in "preview mode".
+	 *
+	 * When the parse is done in "previous mode" various shortcuts are
+	 * taken to work around the fact that the parsed text does not yet
+	 * have an actual revision ID, revision time, etc.
 	 * @see ParserOptions::getIsPreview()
 	 */
-	public const IS_PREVIEW = 'is-preview';
+	case IS_PREVIEW = 'is-preview';
 
 	/**
-	 * @var string Set if this page contains content which could be
+	 * Set if this page contains content which could be
 	 * asynchronous, even if the content was "ready" at the time of
-	 * the parse. This ensures that when the page expires from the
+	 * the parse.
+	 *
+	 * This ensures that when the page expires from the
 	 * cache and the page is reparsed, RefreshLinksJob will also be
 	 * re-run since the content could be different from the last
 	 * parse. (T373256)
 	 */
-	public const HAS_ASYNC_CONTENT = 'has-async-content';
+	case HAS_ASYNC_CONTENT = 'has-async-content';
 
 	/**
-	 * @var string Set if this page contains asynchronous content which
-	 * was not ready by the time the output was generated.  At present
-	 * this reduces the cache TTL. (T373256)
+	 * Set if this page contains asynchronous content which
+	 * was not ready by the time the output was generated.
+	 *
+	 * At present this reduces the cache TTL. (T373256)
 	 */
-	public const ASYNC_NOT_READY = 'async-not-ready';
+	case ASYNC_NOT_READY = 'async-not-ready';
 
-	public static function cases(): array {
-		return [
-			self::NO_GALLERY,
-			self::ENABLE_OOUI,
-			self::INDEX_POLICY,
-			self::NO_INDEX_POLICY,
-			self::NEW_SECTION,
-			self::HIDE_NEW_SECTION,
-			self::SHOW_TOC,
-			self::NO_TOC,
-			self::NO_SECTION_EDIT_LINKS,
-			self::COLLAPSIBLE_SECTIONS,
-			self::PREVENT_CLICKJACKING,
-			self::VARY_REVISION,
-			self::VARY_REVISION_ID,
-			self::VARY_REVISION_TIMESTAMP,
-			self::VARY_REVISION_SHA1,
-			self::VARY_REVISION_EXISTS,
-			self::VARY_PAGE_ID,
-			self::VARY_USER,
-			self::USER_SIGNATURE,
-			self::IS_PREVIEW,
-			self::HAS_ASYNC_CONTENT,
-			self::ASYNC_NOT_READY,
-		];
+	/**
+	 * Return the ParserOutputFlags, as an array of string flag values.
+	 * @return list<string>
+	 */
+	public static function values(): array {
+		return array_column( self::cases(), 'value' );
 	}
 }

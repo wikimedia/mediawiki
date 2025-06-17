@@ -6552,11 +6552,15 @@ class Parser {
 	/**
 	 * Sets the flag on the parser output but also does some debug logging.
 	 * Note that there is a copy of this method in CoreMagicVariables as well.
-	 * @param string $flag
+	 * @param ParserOutputFlags|string $flag
 	 * @param string $reason
 	 */
-	private function setOutputFlag( string $flag, string $reason ): void {
+	private function setOutputFlag( ParserOutputFlags|string $flag, string $reason ): void {
 		$this->mOutput->setOutputFlag( $flag );
+		if ( $flag instanceof ParserOutputFlags ) {
+			// Convert enumeration to string for logging.
+			$flag = $flag->value;
+		}
 		$name = $this->getTitle()->getPrefixedText();
 		$this->logger->debug( __METHOD__ . ": set $flag flag on '$name'; $reason" );
 	}
