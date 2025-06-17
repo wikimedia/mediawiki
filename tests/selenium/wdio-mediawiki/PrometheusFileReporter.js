@@ -124,7 +124,17 @@ class PrometheusFileReporter extends WDIOReporter {
 	}
 
 	onTestSkip( test ) {
-		this.testMetrics[ test.uid ].skipped++;
+		if ( !this.testMetrics[ test.uid ] ) {
+			this.testMetrics[ test.uid ] = {
+				name: getValidPrometheusTagName( test.title ),
+				suite: test.parent ? getValidPrometheusTagName( test.parent ) : 'unknown',
+				passed: 0,
+				failed: 0,
+				skipped: 1,
+				retries: 0,
+				maxDuration: 0
+			};
+		}
 		this.spec.skipped++;
 		this.spec.totalTests++;
 	}
