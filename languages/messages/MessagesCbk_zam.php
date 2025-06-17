@@ -29,9 +29,9 @@ $namespaceNames = [
 $namespaceAliases = [
 	'Imagen'              => NS_FILE,
 	'Imagen_discusión'    => NS_FILE_TALK,
-  'Usuaria'             => NS_USER,
-  'Usuario_discusión'   => NS_USER_TALK,
-  'Usuaria_discusión'   => NS_USER_TALK,
+	'Usuaria'             => NS_USER,
+	'Usuario_discusión'   => NS_USER_TALK,
+	'Usuaria_discusión'   => NS_USER_TALK,
 	'Archivo'             => NS_FILE,
 	'Archivo_discusión'   => NS_FILE_TALK,
 	'MediaWiki_discusión' => NS_MEDIAWIKI_TALK,
@@ -41,5 +41,6 @@ $namespaceAliases = [
 ];
 
 $namespaceGenderAliases = [];
+$separatorTransformTable = [ ',' => ',', '.' => '.' ]; // T395724
 
 $linkTrail = '/^([a-záéíóúñ]+)(.*)$/sDu';
