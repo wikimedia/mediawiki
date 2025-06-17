@@ -72,7 +72,7 @@
 		"wikimedia/purtle": "2.0.0",
 		"wikimedia/relpath": "4.0.2",
 		"wikimedia/remex-html": "4.1.2",
-		"wikimedia/request-timeout": "2.0.2",
+		"wikimedia/request-timeout": "3.0.0",
 		"wikimedia/running-stat": "2.1.0",
 		"wikimedia/scoped-callback": "5.0.0",
 		"wikimedia/services": "4.0.0",
