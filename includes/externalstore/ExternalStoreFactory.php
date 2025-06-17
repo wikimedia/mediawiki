@@ -41,7 +41,7 @@ class ExternalStoreFactory implements LoggerAwareInterface {
 		$this->logger = $logger ?: new NullLogger();
 	}
 
-	public function setLogger( LoggerInterface $logger ) {
+	public function setLogger( LoggerInterface $logger ): void {
 		$this->logger = $logger;
 	}
 

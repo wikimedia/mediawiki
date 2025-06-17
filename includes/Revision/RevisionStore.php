@@ -224,7 +224,7 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 		$this->hookRunner = new HookRunner( $hookContainer );
 	}
 
-	public function setLogger( LoggerInterface $logger ) {
+	public function setLogger( LoggerInterface $logger ): void {
 		$this->logger = $logger;
 	}
 

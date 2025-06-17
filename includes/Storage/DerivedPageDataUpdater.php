@@ -358,7 +358,7 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 			->get( MainConfigNames::UseRCPatrol );
 	}
 
-	public function setLogger( LoggerInterface $logger ) {
+	public function setLogger( LoggerInterface $logger ): void {
 		$this->logger = $logger;
 	}
 

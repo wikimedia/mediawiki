@@ -60,7 +60,7 @@ abstract class EventRelayer implements LoggerAwareInterface {
 		return $this->doNotify( $channel, $events );
 	}
 
-	public function setLogger( LoggerInterface $logger ) {
+	public function setLogger( LoggerInterface $logger ): void {
 		$this->logger = $logger;
 	}
 

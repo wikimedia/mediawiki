@@ -130,7 +130,7 @@ class EtcdConfig implements Config, LoggerAwareInterface {
 	/**
 	 * @deprecated since 1.41 No longer used and did not work in practice
 	 */
-	public function setLogger( LoggerInterface $logger ) {
+	public function setLogger( LoggerInterface $logger ): void {
 		trigger_error( __METHOD__ . ' is deprecated since 1.41', E_USER_DEPRECATED );
 	}
 
