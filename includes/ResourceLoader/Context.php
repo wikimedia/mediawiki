@@ -192,7 +192,7 @@ class Context implements MessageLocalizer {
 	 * @since 1.27
 	 * @return LoggerInterface
 	 */
-	public function getLogger() {
+	public function getLogger(): LoggerInterface {
 		return $this->logger;
 	}
 
