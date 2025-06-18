@@ -28,6 +28,7 @@ use MediaWiki\Html\Html;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Permissions\Authority;
+use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -42,7 +43,7 @@ use Wikimedia\Rdbms\ILoadBalancer;
  *
  * @since 1.32
  */
-class RevisionRenderer {
+class RevisionRenderer implements LoggerAwareInterface {
 
 	/** @var LoggerInterface */
 	private $saveParseLogger;
@@ -78,7 +79,8 @@ class RevisionRenderer {
 		$this->saveParseLogger = new NullLogger();
 	}
 
-	public function setLogger( LoggerInterface $saveParseLogger ) {
+	/** @inheritDoc */
+	public function setLogger( LoggerInterface $saveParseLogger ): void {
 		$this->saveParseLogger = $saveParseLogger;
 	}
 
