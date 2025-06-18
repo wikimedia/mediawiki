@@ -301,7 +301,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 	/**
 	 * Set the PSR-3 logger interface to use.
 	 */
-	public function setLogger( LoggerInterface $logger ) {
+	public function setLogger( LoggerInterface $logger ): void {
 		$this->logger = $logger;
 	}
 

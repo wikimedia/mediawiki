@@ -192,7 +192,7 @@ class SwiftFileBackend extends FileBackendStore {
 		$this->maxFileSize = 5 * 1024 * 1024 * 1024;
 	}
 
-	public function setLogger( LoggerInterface $logger ) {
+	public function setLogger( LoggerInterface $logger ): void {
 		parent::setLogger( $logger );
 		$this->http->setLogger( $logger );
 	}

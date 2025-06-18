@@ -182,7 +182,7 @@ class SessionManager implements SessionManagerInterface {
 		register_shutdown_function( $this->shutdown( ... ) );
 	}
 
-	public function setLogger( LoggerInterface $logger ) {
+	public function setLogger( LoggerInterface $logger ): void {
 		$this->logger = $logger;
 	}
 

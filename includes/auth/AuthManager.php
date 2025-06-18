@@ -275,7 +275,7 @@ class AuthManager implements LoggerAwareInterface {
 		$this->notificationService = $notificationService;
 	}
 
-	public function setLogger( LoggerInterface $logger ) {
+	public function setLogger( LoggerInterface $logger ): void {
 		$this->logger = $logger;
 	}
 

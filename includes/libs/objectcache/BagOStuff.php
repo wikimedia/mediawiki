@@ -233,7 +233,7 @@ abstract class BagOStuff implements
 	 *
 	 * @return void
 	 */
-	public function setLogger( LoggerInterface $logger ) {
+	public function setLogger( LoggerInterface $logger ): void {
 		$this->logger = $logger;
 	}
 

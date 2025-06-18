@@ -115,7 +115,7 @@ class RedisConnectionPool implements LoggerAwareInterface {
 		$this->id = $id;
 	}
 
-	public function setLogger( LoggerInterface $logger ) {
+	public function setLogger( LoggerInterface $logger ): void {
 		$this->logger = $logger;
 	}
 
