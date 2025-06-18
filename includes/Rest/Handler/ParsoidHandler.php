@@ -31,6 +31,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\ProperPageIdentity;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\Parsoid\Config\SiteConfig;
 use MediaWiki\Registration\ExtensionRegistry;
@@ -546,8 +547,11 @@ abstract class ParsoidHandler extends Handler {
 			// User here, it only currently affects the output in obscure
 			// corner cases; see PageConfigFactory::create() for more.
 			// @phan-suppress-next-line PhanUndeclaredMethod method defined in subtype
-			$pageConfig = $this->pageConfigFactory->create(
-				$title, $user, $revisionRecord ?? $revId, null, $pagelanguageOverride,
+			$pageConfig = $this->pageConfigFactory->createFromParserOptions(
+				ParserOptions::newFromUser( $user ),
+				$title,
+				$revisionRecord ?? $revId,
+				$pagelanguageOverride,
 				$ensureAccessibleContent
 			);
 		} catch ( SuppressedDataException $e ) {

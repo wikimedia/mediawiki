@@ -11,6 +11,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Parser\ParserCache;
 use MediaWiki\Parser\ParserCacheFactory;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\Parsoid\Config\PageConfigFactory;
 use MediaWiki\Parser\Parsoid\HtmlToContentTransform;
 use MediaWiki\Parser\Parsoid\HtmlTransformFactory;
@@ -308,13 +309,16 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 			$rev = $revIdOrText;
 		}
 
-		return $this->getServiceContainer()->getParsoidPageConfigFactory()->create( $page, null, $rev );
+		return $this->getServiceContainer()->getParsoidPageConfigFactory()
+			->createFromParserOptions(
+				ParserOptions::newFromAnon(), $page, $rev
+			);
 	}
 
 	private function getPageConfigFactory( PageIdentity $page ): PageConfigFactory {
 		/** @var PageConfigFactory|MockObject $pageConfigFactory */
-		$pageConfigFactory = $this->createNoOpMock( PageConfigFactory::class, [ 'create' ] );
-		$pageConfigFactory->method( 'create' )->willReturn( $this->getPageConfig( $page ) );
+		$pageConfigFactory = $this->createNoOpMock( PageConfigFactory::class, [ 'createFromParserOptions' ] );
+		$pageConfigFactory->method( 'createFromParserOptions' )->willReturn( $this->getPageConfig( $page ) );
 		return $pageConfigFactory;
 	}
 

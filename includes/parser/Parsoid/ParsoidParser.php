@@ -129,12 +129,11 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 		if ( $doSample && $previousOutput !== null && $previousOutput->getCacheRevisionId() ) {
 			// Allow fetching the old wikitext corresponding to the
 			// $previousOutput
-			$oldPageConfig = $this->pageConfigFactory->create(
+			$oldPageConfig = $this->pageConfigFactory->createFromParserOptions(
+				$options,
 				Title::newFromLinkTarget( $pageConfig->getLinkTarget() ),
-				$options->getUserIdentity(),
 				$previousOutput->getCacheRevisionId(),
-				null,
-				$previousOutput->getLanguage(),
+				$previousOutput->getLanguage()
 			);
 			$oldPageBundle =
 				PageBundleParserOutputConverter::pageBundleFromParserOutput(
@@ -257,11 +256,10 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 		if ( $lang === null && $options->getInterfaceMessage() ) {
 			$lang = $options->getUserLangObj();
 		}
-		$pageConfig = $revId === null || $revId === 0 ? null : $this->pageConfigFactory->create(
+		$pageConfig = $revId === null || $revId === 0 ? null : $this->pageConfigFactory->createFromParserOptions(
+			$options, // T392113: transfers current revision record callback
 			$title,
-			$options->getUserIdentity(),
 			$revId,
-			null, // unused
 			$lang // defaults to title page language if null
 		);
 		$content = null;
@@ -284,11 +282,10 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 					$content ?? new WikitextContent( $text )
 				)
 			);
-			$pageConfig = $this->pageConfigFactory->create(
+			$pageConfig = $this->pageConfigFactory->createFromParserOptions(
+				$options,
 				$title,
-				$options->getUserIdentity(),
 				$revisionRecord,
-				null, // unused
 				$lang // defaults to title page language if null
 			);
 		}
@@ -317,11 +314,10 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 		if ( $lang === null && $options->getInterfaceMessage() ) {
 			$lang = $options->getUserLangObj();
 		}
-		$pageConfig = $this->pageConfigFactory->create(
+		$pageConfig = $this->pageConfigFactory->createFromParserOptions(
+			$options,
 			$title,
-			$options->getUserIdentity(),
 			$fakeRev,
-			null, // unused
 			$lang // defaults to title page language if null
 		);
 

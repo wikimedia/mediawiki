@@ -1409,10 +1409,13 @@ class ParserOptions {
 	 * Registers a callback for tracking which ParserOptions which are used.
 	 *
 	 * @since 1.16
-	 * @param callable|null $callback
+	 * @param callable|null $callback New callback
+	 * @return callable|null The old callback, if any
 	 */
 	public function registerWatcher( $callback ) {
+		$oldCallback = $this->onAccessCallback;
 		$this->onAccessCallback = $callback;
+		return $oldCallback;
 	}
 
 	/**

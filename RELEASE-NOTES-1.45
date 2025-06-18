@@ -209,6 +209,8 @@ because of Phabricator reports.
   - RevisionStore::getRevisionByTitle
 * The MagicWordwgVariableIDsHook, deprecated in 1.35, now emits warnings in the
   hook runner. Migrate to the GetMagicVariableIDsHook instead.
+* PageConfigFactory::create() is now deprecated; use
+  ::createFromParserOptions() instead.
 * …
 
 === Other changes in 1.45 ===

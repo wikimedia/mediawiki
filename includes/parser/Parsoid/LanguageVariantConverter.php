@@ -6,6 +6,7 @@ use MediaWiki\Language\LanguageCode;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\Parsoid\Config\PageConfigFactory;
 use MediaWiki\Rest\HttpException;
@@ -42,6 +43,9 @@ class LanguageVariantConverter {
 	 */
 	private ?Bcp47Code $pageLanguageOverride = null;
 	private bool $isFallbackLanguageConverterEnabled = true;
+
+	/** Hook for unit testing to supply mock for ParserOptions. */
+	private ?ParserOptions $parserOptionsForTest = null;
 
 	public function __construct(
 		PageIdentity $pageIdentity,
@@ -198,10 +202,10 @@ class LanguageVariantConverter {
 		}
 
 		try {
-			$this->pageConfig = $this->pageConfigFactory->create(
+			$this->pageConfig = $this->pageConfigFactory->createFromParserOptions(
+				// Hook for unit testing: can supply a mock for parser options
+				$this->parserOptionsForTest ?? ParserOptions::newFromAnon(),
 				$this->pageIdentity,
-				null,
-				null,
 				null,
 				$pageLanguage
 			);
