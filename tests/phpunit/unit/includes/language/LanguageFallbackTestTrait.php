@@ -1,13 +1,8 @@
 <?php
 
-// phpcs:disable MediaWiki.Commenting.FunctionComment.ObjectTypeHintParam
-// phpcs:disable MediaWiki.Commenting.FunctionComment.ObjectTypeHintReturn
+use MediaWiki\Languages\LanguageFallback;
 
 /**
- * Code to test the getFallbackFor, getFallbacksFor, and getFallbacksIncludingSiteLanguage methods
- * that have historically been static methods of the Language class. It can be used to test any
- * class or object that implements those three methods.
- *
  * @internal For LanguageFallbackTest and LanguageFallbackIntegrationTest
  */
 trait LanguageFallbackTestTrait {
@@ -17,21 +12,9 @@ trait LanguageFallbackTestTrait {
 	 *   ignored in integration tests -- it's enough to test in unit tests.)
 	 *   * fallbackMap: A map of language codes to fallback sequences to use.
 	 *   * siteLangCode
-	 * @return string|object Name of class or object with the three methods getFirst, getAll, and
-	 *   getAllIncludingSiteLanguage (or getFallbackFor, getFallbacksFor, and
-	 *   getFallbacksIncludingSiteLanguage if callMethod() is suitably overridden).
+	 * @return LanguageFallback
 	 */
-	abstract protected function getCallee( array $options = [] );
-
-	/**
-	 * @return int Value from LanguageFallback:MESSAGES
-	 */
-	abstract protected function getMessagesKey();
-
-	/**
-	 * @return int Value from LanguageFallback::STRICT
-	 */
-	abstract protected function getStrictKey();
+	abstract protected function getCallee( array $options = [] ): LanguageFallback;
 
 	/**
 	 * @param int $expectedGets How many times it's expected that 'getItem' will be called
@@ -57,18 +40,6 @@ trait LanguageFallbackTestTrait {
 	}
 
 	/**
-	 * Convenience/readability wrapper to call a method on a class or object.
-	 *
-	 * @param string|object $callee As in return value of getCallee()
-	 * @param string $method Name of method to call
-	 * @param mixed ...$params To pass to method
-	 * @return mixed Return value of method
-	 */
-	public function callMethod( $callee, $method, ...$params ) {
-		return [ $callee, $method ]( ...$params );
-	}
-
-	/**
 	 * @param string $code
 	 * @param array $expected
 	 * @param array $options
@@ -77,7 +48,8 @@ trait LanguageFallbackTestTrait {
 	public function testGetFirst( $code, array $expected, array $options = [] ) {
 		$callee = $this->getCallee( $options );
 		$this->assertSame( $expected[0] ?? null,
-			$this->callMethod( $callee, 'getFirst', $code ) );
+			$callee->getFirst( $code )
+		);
 	}
 
 	/**
@@ -88,7 +60,8 @@ trait LanguageFallbackTestTrait {
 	 */
 	public function testGetAll( $code, array $expected, array $options = [] ) {
 		$this->assertSame( $expected,
-			$this->callMethod( $this->getCallee( $options ), 'getAll', $code ) );
+			$this->getCallee( $options )->getAll( $code )
+		);
 	}
 
 	/**
@@ -99,8 +72,8 @@ trait LanguageFallbackTestTrait {
 	 */
 	public function testGetAll_messages( $code, array $expected, array $options = [] ) {
 		$this->assertSame( $expected,
-			$this->callMethod( $this->getCallee( $options ), 'getAll',
-				$code, $this->getMessagesKey() ) );
+			$this->getCallee( $options )->getAll( $code, LanguageFallback::MESSAGES )
+		);
 	}
 
 	public static function provideGetAll() {
@@ -122,8 +95,8 @@ trait LanguageFallbackTestTrait {
 	 */
 	public function testGetAll_strict( $code, array $expected, array $options = [] ) {
 		$this->assertSame( $expected,
-			$this->callMethod( $this->getCallee( $options ), 'getAll',
-				$code, $this->getStrictKey() ) );
+			$this->getCallee( $options )->getAll( $code, LanguageFallback::STRICT )
+		);
 	}
 
 	public static function provideGetAll_strict() {
@@ -145,11 +118,11 @@ trait LanguageFallbackTestTrait {
 
 		// These should not throw, because of short-circuiting. If they do, it will fail the test,
 		// because we pass 5 and 6 instead of 7.
-		$this->callMethod( $callee, 'getAll', 'en', 5 );
-		$this->callMethod( $callee, 'getAll', '!!!', 6 );
+		$callee->getAll( 'en', 5 );
+		$callee->getAll( '!!!', 6 );
 
 		// This is the one that should throw.
-		$this->callMethod( $callee, 'getAll', 'fr', 7 );
+		$callee->getAll( 'fr', 7 );
 	}
 
 	/**
@@ -165,10 +138,11 @@ trait LanguageFallbackTestTrait {
 		$callee = $this->getCallee(
 			[ 'siteLangCode' => $siteLangCode, 'expectedGets' => $expectedGets ] );
 		$this->assertSame( $expected,
-			$this->callMethod( $callee, 'getAllIncludingSiteLanguage', $code ) );
+			$callee->getAllIncludingSiteLanguage( $code )
+		);
 
 		// Call again to make sure we don't call LocalisationCache again
-		$this->callMethod( $callee, 'getAllIncludingSiteLanguage', $code );
+		$callee->getAllIncludingSiteLanguage( $code );
 	}
 
 	public static function provideGetAllIncludingSiteLanguage() {

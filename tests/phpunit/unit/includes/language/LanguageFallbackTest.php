@@ -31,11 +31,4 @@ class LanguageFallbackTest extends MediaWikiUnitTestCase {
 		);
 	}
 
-	private function getMessagesKey() {
-		return LanguageFallback::MESSAGES;
-	}
-
-	private function getStrictKey() {
-		return LanguageFallback::STRICT;
-	}
 }
