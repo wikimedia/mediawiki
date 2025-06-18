@@ -1987,7 +1987,7 @@ class Article implements Page {
 				return true;
 			} else {
 				wfDebug( "Article::tryFileCache(): starting buffer" );
-				ob_start( [ &$cache, 'saveToFileCache' ] );
+				ob_start( [ $cache, 'saveToFileCache' ] );
 			}
 		} else {
 			wfDebug( "Article::tryFileCache(): not cacheable" );
