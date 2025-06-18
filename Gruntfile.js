@@ -47,7 +47,8 @@ module.exports = function ( grunt ) {
 		},
 		stylelint: {
 			options: {
-				reportNeedlessDisables: true
+				reportNeedlessDisables: true,
+				cache: true
 			},
 			src: '{resources/src,mw-config}/**/*.{css,less,vue}'
 		},
