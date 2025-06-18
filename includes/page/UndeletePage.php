@@ -31,7 +31,7 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\JobQueue\JobQueueGroup;
 use MediaWiki\JobQueue\Jobs\HTMLCacheUpdateJob;
 use MediaWiki\Logging\ManualLogEntry;
-use MediaWiki\Page\Event\PageRevisionUpdatedEvent;
+use MediaWiki\Page\Event\PageLatestRevisionChangedEvent;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Revision\ArchivedRevisionLookup;
@@ -644,8 +644,8 @@ class UndeletePage {
 			if ( $created || $wasnew ) {
 				// Update site stats, link tables, etc
 				$options = [
-					PageRevisionUpdatedEvent::FLAG_SILENT => true,
-					PageRevisionUpdatedEvent::FLAG_IMPLICIT => true,
+					PageLatestRevisionChangedEvent::FLAG_SILENT => true,
+					PageLatestRevisionChangedEvent::FLAG_IMPLICIT => true,
 					'created' => $created,
 					'oldcountable' => $oldcountable,
 					'reason' => $comment

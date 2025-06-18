@@ -5,8 +5,8 @@ namespace MediaWiki\Languages;
 use MediaWiki\DomainEvent\DomainEventIngress;
 use MediaWiki\Page\Event\PageDeletedEvent;
 use MediaWiki\Page\Event\PageDeletedListener;
-use MediaWiki\Page\Event\PageRevisionUpdatedEvent;
-use MediaWiki\Page\Event\PageRevisionUpdatedListener;
+use MediaWiki\Page\Event\PageLatestRevisionChangedEvent;
+use MediaWiki\Page\Event\PageLatestRevisionChangedListener;
 use MediaWiki\Revision\SlotRecord;
 use MessageCache;
 
@@ -18,7 +18,7 @@ use MessageCache;
  */
 class LanguageEventIngress
 	extends DomainEventIngress
-	implements PageDeletedListener, PageRevisionUpdatedListener
+	implements PageDeletedListener, PageLatestRevisionChangedListener
 {
 
 	private MessageCache $messageCache;
@@ -30,7 +30,7 @@ class LanguageEventIngress
 			'MessageCache'
 		],
 		'events' => [
-			PageRevisionUpdatedEvent::TYPE,
+			PageLatestRevisionChangedEvent::TYPE,
 			PageDeletedEvent::TYPE
 		],
 	];
@@ -40,14 +40,14 @@ class LanguageEventIngress
 	}
 
 	/**
-	 * Listener method for PageRevisionUpdatedEvent, to be registered with a DomainEventSource.
+	 * Listener method for PageLatestRevisionChangedEvent, to be registered with a DomainEventSource.
 	 *
 	 * @noinspection PhpUnused
 	 */
-	public function handlePageRevisionUpdatedEvent( PageRevisionUpdatedEvent $event	) {
+	public function handlePageLatestRevisionChangedEvent( PageLatestRevisionChangedEvent $event	) {
 		if ( $event->getPage()->getNamespace() === NS_MEDIAWIKI	&&
 			( $event->isModifiedSlot( SlotRecord::MAIN )
-				|| $event->hasCause( PageRevisionUpdatedEvent::CAUSE_MOVE )
+				|| $event->hasCause( PageLatestRevisionChangedEvent::CAUSE_MOVE )
 				|| $event->isReconciliationRequest()
 			)
 		) {

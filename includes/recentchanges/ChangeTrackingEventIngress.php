@@ -13,8 +13,8 @@ use MediaWiki\JobQueue\JobQueueGroup;
 use MediaWiki\JobQueue\Jobs\CategoryMembershipChangeJob;
 use MediaWiki\JobQueue\Jobs\RevertedTagUpdateJob;
 use MediaWiki\MainConfigNames;
-use MediaWiki\Page\Event\PageRevisionUpdatedEvent;
-use MediaWiki\Page\Event\PageRevisionUpdatedListener;
+use MediaWiki\Page\Event\PageLatestRevisionChangedEvent;
+use MediaWiki\Page\Event\PageLatestRevisionChangedListener;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\RevisionRecord;
@@ -33,7 +33,7 @@ use MediaWiki\User\UserNameUtils;
  */
 class ChangeTrackingEventIngress
 	extends DomainEventIngress
-	implements PageRevisionUpdatedListener
+	implements PageLatestRevisionChangedListener
 {
 
 	/**
@@ -41,7 +41,7 @@ class ChangeTrackingEventIngress
 	 * @see registerListeners()
 	 */
 	public const EVENTS = [
-		PageRevisionUpdatedEvent::TYPE
+		PageLatestRevisionChangedEvent::TYPE
 	];
 
 	/**
@@ -66,7 +66,7 @@ class ChangeTrackingEventIngress
 			'ContentHandlerFactory',
 		],
 		'events' => [ // see registerListeners()
-			PageRevisionUpdatedEvent::TYPE
+			PageLatestRevisionChangedEvent::TYPE
 		],
 	];
 
@@ -139,7 +139,7 @@ class ChangeTrackingEventIngress
 		return $ingress;
 	}
 
-	private static function getEditFlags( PageRevisionUpdatedEvent $event ): int {
+	private static function getEditFlags( PageLatestRevisionChangedEvent $event ): int {
 		$flags = $event->isCreation() ? EDIT_NEW : EDIT_UPDATE;
 
 		$flags |= (int)$event->isBotUpdate() * EDIT_FORCE_BOT;
@@ -151,12 +151,12 @@ class ChangeTrackingEventIngress
 	}
 
 	/**
-	 * Listener method for PageRevisionUpdatedEvent, to be registered with an
+	 * Listener method for PageLatestRevisionChangedEvent, to be registered with an
 	 * DomainEventSource.
 	 *
 	 * @noinspection PhpUnused
 	 */
-	public function handlePageRevisionUpdatedEvent( PageRevisionUpdatedEvent $event ) {
+	public function handlePageLatestRevisionChangedEvent( PageLatestRevisionChangedEvent $event ) {
 		if ( $event->changedLatestRevisionId()
 			&& !$event->isSilent()
 		) {
@@ -197,11 +197,11 @@ class ChangeTrackingEventIngress
 	 * if the relevant config is enabled.
 	 * This should only be triggered for actual edits, not reconciliation events (T390636).
 	 *
-	 * @param PageRevisionUpdatedEvent $event
+	 * @param PageLatestRevisionChangedEvent $event
 	 */
-	private function generateCategoryMembershipChanges( PageRevisionUpdatedEvent $event ): void {
+	private function generateCategoryMembershipChanges( PageLatestRevisionChangedEvent $event ): void {
 		if ( $this->rcWatchCategoryMembership
-			&& !$event->hasCause( PageRevisionUpdatedEvent::CAUSE_UNDELETE )
+			&& !$event->hasCause( PageLatestRevisionChangedEvent::CAUSE_UNDELETE )
 			&& $this->anyChangedSlotSupportsCategories( $event )
 		) {
 			// Note: jobs are pushed after deferred updates, so the job should be able to see
@@ -211,7 +211,7 @@ class ChangeTrackingEventIngress
 				CategoryMembershipChangeJob::newSpec(
 					$event->getPage(),
 					$event->getLatestRevisionAfter()->getTimestamp(),
-					$event->hasCause( PageRevisionUpdatedEvent::CAUSE_IMPORT )
+					$event->hasCause( PageLatestRevisionChangedEvent::CAUSE_IMPORT )
 				)
 			);
 		}
@@ -219,10 +219,12 @@ class ChangeTrackingEventIngress
 
 	/**
 	 * Determine whether any slots changed in this update supports categories.
-	 * @param PageRevisionUpdatedEvent $event
+	 *
+	 * @param PageLatestRevisionChangedEvent $event
+	 *
 	 * @return bool
 	 */
-	private function anyChangedSlotSupportsCategories( PageRevisionUpdatedEvent $event ): bool {
+	private function anyChangedSlotSupportsCategories( PageLatestRevisionChangedEvent $event ): bool {
 		$slotsUpdate = $event->getSlotsUpdate();
 		foreach ( $slotsUpdate->getModifiedRoles() as $role ) {
 			$model = $slotsUpdate->getModifiedSlot( $role )->getModel();
@@ -289,11 +291,11 @@ class ChangeTrackingEventIngress
 	}
 
 	/**
-	 * Listener method for PageRevisionUpdatedEvent, to be registered with a DomainEventSource.
+	 * Listener method for PageLatestRevisionChangedEvent, to be registered with a DomainEventSource.
 	 *
 	 * @noinspection PhpUnused
 	 */
-	private function updateNewTalkAfterPageUpdated( PageRevisionUpdatedEvent $event ) {
+	private function updateNewTalkAfterPageUpdated( PageLatestRevisionChangedEvent $event ) {
 		// If this is another user's talk page, update newtalk.
 		// Don't do this if $options['changed'] = false (null-edits) nor if
 		// it's a minor edit and the user making the edit doesn't generate notifications for those.
@@ -332,7 +334,7 @@ class ChangeTrackingEventIngress
 		}
 	}
 
-	private function updateRevertTagAfterPageUpdated( PageRevisionUpdatedEvent $event ) {
+	private function updateRevertTagAfterPageUpdated( PageLatestRevisionChangedEvent $event ) {
 		$patrolStatus = $event->getPatrolStatus();
 		$wikiPage = $this->wikiPageFactory->newFromTitle( $event->getPage() );
 

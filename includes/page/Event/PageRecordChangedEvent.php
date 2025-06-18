@@ -33,7 +33,7 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  * changes to the page's revision history (except for changes to the latest
  * revision).
  *
- * Listeners registered for the "PageState" event type will receive a
+ * A sequence of PageRecordChanged events for the same page represent a
  * complete history of changes to pages' PageRecord. However, some subtypes
  * may represent changes that do not affect the PageRecord. Also, state
  * changes may overlap, so the PageRecord returned by getPageRecordBefore()
@@ -43,9 +43,9 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  *
  * @unstable until 1.45
  */
-abstract class PageStateEvent extends PageEvent {
+abstract class PageRecordChangedEvent extends PageEvent {
 
-	public const TYPE = 'PageState';
+	public const TYPE = 'PageRecordChanged';
 	private ?ExistingPageRecord $pageRecordBefore;
 	private ?ExistingPageRecord $pageRecordAfter;
 
@@ -113,3 +113,6 @@ abstract class PageStateEvent extends PageEvent {
 	}
 
 }
+
+// @deprecated temporary alias, remove before 1.45 release
+class_alias( PageRecordChangedEvent::class, 'MediaWiki\Page\Event\PageStateEvent' );

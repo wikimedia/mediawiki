@@ -10,7 +10,7 @@ use MediaWiki\Context\RequestContext;
 use MediaWiki\EditPage\EditPage;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Page\Article;
-use MediaWiki\Page\Event\PageRevisionUpdatedEvent;
+use MediaWiki\Page\Event\PageLatestRevisionChangedEvent;
 use MediaWiki\Page\WikiPage;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Revision\RevisionRecord;
@@ -192,7 +192,7 @@ class UndoIntegrationTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	private function expectPageRevisionUpdatedEvent(
+	private function expectPageLatestChangedEvent(
 		string $newContent,
 		array $revisionIds,
 		bool $isExactRevert,
@@ -202,8 +202,8 @@ class UndoIntegrationTest extends MediaWikiIntegrationTestCase {
 	) {
 		// set up a temporary hook with asserts
 		$this->expectDomainEvent(
-			PageRevisionUpdatedEvent::TYPE, 1,
-			function ( PageRevisionUpdatedEvent $event ) use (
+			PageLatestRevisionChangedEvent::TYPE, 1,
+			function ( PageLatestRevisionChangedEvent $event ) use (
 				$newContent,
 				$revisionIds,
 				$isExactRevert,
@@ -213,7 +213,7 @@ class UndoIntegrationTest extends MediaWikiIntegrationTestCase {
 			) {
 				$this->assertTrue( $event->isRevert(), 'isRevert()' );
 				$this->assertTrue(
-					$event->hasCause( PageRevisionUpdatedEvent::CAUSE_UNDO ),
+					$event->hasCause( PageLatestRevisionChangedEvent::CAUSE_UNDO ),
 					'CAUSE_UNDO'
 				);
 
@@ -381,7 +381,7 @@ class UndoIntegrationTest extends MediaWikiIntegrationTestCase {
 			$newestRevertedRevIndex,
 			$originalRevIndex
 		);
-		$this->expectPageRevisionUpdatedEvent(
+		$this->expectPageLatestChangedEvent(
 			$newContent,
 			$revisionIds,
 			$isExactRevert,
@@ -429,7 +429,7 @@ class UndoIntegrationTest extends MediaWikiIntegrationTestCase {
 			$newestRevertedRevIndex,
 			$originalRevIndex
 		);
-		$this->expectPageRevisionUpdatedEvent(
+		$this->expectPageLatestChangedEvent(
 			$newContent,
 			$revisionIds,
 			$isExactRevert,
@@ -492,7 +492,7 @@ class UndoIntegrationTest extends MediaWikiIntegrationTestCase {
 			$newestRevertedRevIndex,
 			$originalRevIndex
 		);
-		$this->expectPageRevisionUpdatedEvent(
+		$this->expectPageLatestChangedEvent(
 			$newContent,
 			$revisionIds,
 			$isExactRevert,

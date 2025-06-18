@@ -21,7 +21,7 @@ use MediaWiki\Logging\LogPage;
 use MediaWiki\Logging\ManualLogEntry;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Message\Message;
-use MediaWiki\Page\Event\PageRevisionUpdatedEvent;
+use MediaWiki\Page\Event\PageLatestRevisionChangedEvent;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\ParserOutputAccess;
@@ -482,8 +482,8 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		$this->assertFalse( $updater1->isChange() );
 
 		$this->expectDomainEvent(
-			PageRevisionUpdatedEvent::TYPE, 1,
-			static function ( PageRevisionUpdatedEvent $event ) use ( $rev1, $editResult ) {
+			PageLatestRevisionChangedEvent::TYPE, 1,
+			static function ( PageLatestRevisionChangedEvent $event ) use ( $rev1, $editResult ) {
 				Assert::assertSame( $rev1, $event->getLatestRevisionAfter() );
 				Assert::assertSame( $rev1->getId(), $event->getLatestRevisionBefore()->getId() );
 				Assert::assertSame( $editResult, $event->getEditResult() );
@@ -1178,8 +1178,8 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 
 		$listenerCalled = 0;
 		$this->getServiceContainer()->getDomainEventSource()->registerListener(
-			PageRevisionUpdatedEvent::TYPE,
-			static function ( PageRevisionUpdatedEvent $event ) use ( &$listenerCalled, $page ) {
+			PageLatestRevisionChangedEvent::TYPE,
+			static function ( PageLatestRevisionChangedEvent $event ) use ( &$listenerCalled, $page ) {
 				$listenerCalled++;
 
 				Assert::assertTrue( $page->isSamePageAs( $event->getPage() ) );
@@ -1253,7 +1253,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		}
 
 		$this->runDeferredUpdates();
-		$this->assertSame( 1, $listenerCalled, 'PageRevisionUpdatedEvent listener' );
+		$this->assertSame( 1, $listenerCalled, 'PageLatestRevisionChangedEvent listener' );
 
 		// TODO: MCR: test data updates for additional slots!
 		// TODO: test update for edit without page creation
@@ -1294,15 +1294,15 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::emitEvents()
 	 */
-	public function testDispatchPageRevisionUpdatedEvent() {
+	public function testDispatchPageLatestChangedEvent() {
 		$page = $this->getPage( __METHOD__ );
 		$content = [ SlotRecord::MAIN => new WikitextContent( 'first [[main]]' ) ];
 		$rev = $this->createRevision( $page, 'first', $content );
 
 		$listenerCalled = 0;
 		$this->getServiceContainer()->getDomainEventSource()->registerListener(
-			PageRevisionUpdatedEvent::TYPE,
-			static function ( PageRevisionUpdatedEvent $event ) use ( &$listenerCalled, $page ) {
+			PageLatestRevisionChangedEvent::TYPE,
+			static function ( PageLatestRevisionChangedEvent $event ) use ( &$listenerCalled, $page ) {
 				$listenerCalled++;
 
 				Assert::assertTrue( $page->isSamePageAs( $event->getPage() ) );
@@ -1312,14 +1312,14 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		$updater = $this->getDerivedPageDataUpdater( $page, $rev );
 		$updater->prepareUpdate( $rev );
 
-		// Dispatch PageRevisionUpdatedEvent explicitly, then assert that doUpdates()
+		// Dispatch PageLatestRevisionChangedEvent explicitly, then assert that doUpdates()
 		// doesn't dispatch it again.
 		$updater->emitEvents();
 
 		$updater->doUpdates();
 
 		$this->runDeferredUpdates();
-		$this->assertSame( 1, $listenerCalled, 'PageRevisionUpdatedEvent listener' );
+		$this->assertSame( 1, $listenerCalled, 'PageLatestRevisionChangedEvent listener' );
 	}
 
 	/**

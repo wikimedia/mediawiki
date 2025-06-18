@@ -27,9 +27,9 @@ namespace MediaWiki\Storage;
  *
  * This is modeled as an interface to provide easy access to these constants to
  * both the emitter and the subscriber of events, without creating unnecessary
- * dependencies: Since PageUpdater and PageRevisionUpdatedEvent both implement this
- * interface, callers of PageUpdater do not need to know about PageRevisionUpdatedEvent,
- * and subscribers of PageRevisionUpdatedEvent do not need to know about PageUpdater.
+ * dependencies: Since PageUpdater and PageLatestRevisionChangedEvent both implement this
+ * interface, callers of PageUpdater do not need to know about PageLatestRevisionChangedEvent,
+ * and subscribers of PageLatestRevisionChangedEvent do not need to know about PageUpdater.
  *
  * @unstable until 1.45
  */

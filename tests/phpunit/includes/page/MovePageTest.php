@@ -8,8 +8,8 @@ use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\Event\PageCreatedEvent;
+use MediaWiki\Page\Event\PageLatestRevisionChangedEvent;
 use MediaWiki\Page\Event\PageMovedEvent;
-use MediaWiki\Page\Event\PageRevisionUpdatedEvent;
 use MediaWiki\Page\MovePage;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
@@ -629,8 +629,8 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 		$this->runJobs();
 
 		$this->expectDomainEvent(
-			PageRevisionUpdatedEvent::TYPE, 2,
-			static function ( PageRevisionUpdatedEvent $event ) use ( $old, $oldPageId, $new, $oldRev, $mover ) {
+			PageLatestRevisionChangedEvent::TYPE, 2,
+			static function ( PageLatestRevisionChangedEvent $event ) use ( $old, $oldPageId, $new, $oldRev, $mover ) {
 				// for the existing page under the new title
 				if ( $event->getPage()->isSamePageAs( $new ) ) {
 					Assert::assertFalse( $event->isCreation(), 'isCreation' );
@@ -660,8 +660,8 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 					);
 
 					Assert::assertTrue(
-						$event->hasCause( PageRevisionUpdatedEvent::CAUSE_MOVE ),
-						PageRevisionUpdatedEvent::CAUSE_MOVE
+						$event->hasCause( PageLatestRevisionChangedEvent::CAUSE_MOVE ),
+						PageLatestRevisionChangedEvent::CAUSE_MOVE
 					);
 
 					Assert::assertTrue( $event->isSilent(), 'isSilent' );

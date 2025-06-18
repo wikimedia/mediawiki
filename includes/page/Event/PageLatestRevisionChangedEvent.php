@@ -30,16 +30,16 @@ use MediaWiki\User\UserIdentity;
 use Wikimedia\Assert\Assert;
 
 /**
- * Domain event representing a change to the page's content.
+ * Domain event representing a change to the page's latest revision.
  *
- * PageRevisionUpdated events emitted for the same page ID represent a
+ * PageLatestRevisionChanged events emitted for the same page ID represent a
  * continuous chain of changes to pages' latest revision, even if the content
  * did not change (for a dummy revision). This change is observable as the
  * difference between getPageRecordBefore()->getLatest() and
  * getPageRecordAfter()->getLatest(), resp. between getLatestRevisionBefore()
  * and getLatestRevisionAfter().
  *
- * For two consecutive PageRevisionUpdatedEvents for the same page ID, the
+ * For two consecutive PageLatestRevisionChangedEvents for the same page ID, the
  * return value of getLatestRevisionAfter() on the first event will match
  * the return value of getLatestRevisionBefore() on the second event.
  * Other aspects of the page, such as the title, may change independently.
@@ -50,10 +50,10 @@ use Wikimedia\Assert\Assert;
  * data. In that case, getPageRecordBefore() and getPageRecordAfter() return the
  * same value.
  *
- * PageRevisionUpdatedEvents are emitted by DerivedPageDataUpdater, typically
+ * PageLatestRevisionChangedEvents are emitted by DerivedPageDataUpdater, typically
  * triggered by PageUpdater.
  *
- * User activities that trigger PageRevisionUpdateds event include:
+ * User activities that trigger PageLatestRevisionChangeds event include:
  * - editing, including page creation and null-edits
  * - moving pages
  * - undeleting pages
@@ -69,9 +69,9 @@ use Wikimedia\Assert\Assert;
  *
  * @unstable until 1.45
  */
-class PageRevisionUpdatedEvent extends PageStateEvent implements PageUpdateCauses {
+class PageLatestRevisionChangedEvent extends PageRecordChangedEvent implements PageUpdateCauses {
 
-	public const TYPE = 'PageRevisionUpdated';
+	public const TYPE = 'PageLatestRevisionChanged';
 
 	/**
 	 * @var string Do not notify other users (e.g. via RecentChanges or
@@ -149,8 +149,8 @@ class PageRevisionUpdatedEvent extends PageStateEvent implements PageUpdateCause
 		);
 		$this->declareEventType( self::TYPE );
 
-		// Legacy event type name, deprecated (T388588).
-		$this->declareEventType( 'PageUpdated' );
+		// Legacy event type name, deprecated.
+		$this->declareEventType( 'PageRevisionUpdated' );
 
 		Assert::parameter(
 			$pageRecordAfter->isSamePageAs( $latestRevisionAfter->getPage() ),
@@ -384,3 +384,6 @@ class PageRevisionUpdatedEvent extends PageStateEvent implements PageUpdateCause
 	}
 
 }
+
+// @deprecated temporary alias, remove before 1.45 release
+class_alias( PageLatestRevisionChangedEvent::class, 'MediaWiki\Page\Event\PageRevisionUpdatedEvent' );

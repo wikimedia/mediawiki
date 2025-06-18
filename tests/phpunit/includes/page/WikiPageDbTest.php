@@ -12,8 +12,8 @@ use MediaWiki\Deferred\SiteStatsUpdate;
 use MediaWiki\Edit\PreparedEdit;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\Event\PageLatestRevisionChangedEvent;
 use MediaWiki\Page\Event\PageProtectionChangedEvent;
-use MediaWiki\Page\Event\PageRevisionUpdatedEvent;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\WikiPage;
@@ -1862,16 +1862,16 @@ more stuff
 		$this->runDeferredUpdates();
 
 		$this->expectDomainEvent(
-			PageRevisionUpdatedEvent::TYPE, 1,
-			static function ( PageRevisionUpdatedEvent $event ) use ( &$calls, $page ) {
+			PageLatestRevisionChangedEvent::TYPE, 1,
+			static function ( PageLatestRevisionChangedEvent $event ) use ( &$calls, $page ) {
 				Assert::assertFalse( $event->isCreation(), 'isCreation' );
 				Assert::assertTrue( $event->changedLatestRevisionId(), 'changedLatestRevisionId' );
 				Assert::assertFalse( $event->isEffectiveContentChange(), 'isEffectiveContentChange' );
 				Assert::assertSame( $page->getId(), $event->getPage()->getId() );
 
 				Assert::assertTrue(
-					$event->hasCause( PageRevisionUpdatedEvent::CAUSE_PROTECTION_CHANGE ),
-					PageRevisionUpdatedEvent::CAUSE_PROTECTION_CHANGE
+					$event->hasCause( PageLatestRevisionChangedEvent::CAUSE_PROTECTION_CHANGE ),
+					PageLatestRevisionChangedEvent::CAUSE_PROTECTION_CHANGE
 				);
 
 				Assert::assertTrue( $event->isSilent(), 'isSilent' );

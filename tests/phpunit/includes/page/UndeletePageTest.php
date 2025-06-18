@@ -5,7 +5,7 @@ use MediaWiki\Content\Content;
 use MediaWiki\Content\JavaScriptContent;
 use MediaWiki\Content\WikitextContent;
 use MediaWiki\Page\Event\PageCreatedEvent;
-use MediaWiki\Page\Event\PageRevisionUpdatedEvent;
+use MediaWiki\Page\Event\PageLatestRevisionChangedEvent;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\ProperPageIdentity;
 use MediaWiki\Page\UndeletePage;
@@ -168,11 +168,11 @@ class UndeletePageTest extends MediaWikiIntegrationTestCase {
 		$this->runJobs();
 
 		$this->expectDomainEvent(
-			PageRevisionUpdatedEvent::TYPE, 1,
-			static function ( PageRevisionUpdatedEvent $event ) use ( $sysop ) {
+			PageLatestRevisionChangedEvent::TYPE, 1,
+			static function ( PageLatestRevisionChangedEvent $event ) use ( $sysop ) {
 				Assert::assertTrue(
-					$event->hasCause( PageRevisionUpdatedEvent::CAUSE_UNDELETE ),
-					PageRevisionUpdatedEvent::CAUSE_UNDELETE
+					$event->hasCause( PageLatestRevisionChangedEvent::CAUSE_UNDELETE ),
+					PageLatestRevisionChangedEvent::CAUSE_UNDELETE
 				);
 
 				Assert::assertTrue( $event->isSilent(), 'isSilent' );
@@ -278,11 +278,11 @@ class UndeletePageTest extends MediaWikiIntegrationTestCase {
 		$sysop = $this->getTestSysop()->getUser();
 
 		$this->expectDomainEvent(
-			PageRevisionUpdatedEvent::TYPE, $expectEvent ? 1 : 0,
-			static function ( PageRevisionUpdatedEvent $event ) use ( $expectCreation, $revId ) {
+			PageLatestRevisionChangedEvent::TYPE, $expectEvent ? 1 : 0,
+			static function ( PageLatestRevisionChangedEvent $event ) use ( $expectCreation, $revId ) {
 				Assert::assertTrue(
-					$event->hasCause( PageRevisionUpdatedEvent::CAUSE_UNDELETE ),
-					PageRevisionUpdatedEvent::CAUSE_UNDELETE
+					$event->hasCause( PageLatestRevisionChangedEvent::CAUSE_UNDELETE ),
+					PageLatestRevisionChangedEvent::CAUSE_UNDELETE
 				);
 
 				Assert::assertTrue( $event->isSilent(), 'isSilent' );
