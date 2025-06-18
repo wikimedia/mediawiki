@@ -13,6 +13,6 @@ namespace MediaWiki\Page\Event;
  */
 interface PageMovedListener {
 
-	public function handlePageMovedEvent( PageMovedEvent $event );
+	public function handlePageMovedEvent( PageMovedEvent $event ): void;
 
 }

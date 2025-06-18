@@ -36,7 +36,7 @@ class SearchEventIngress
 	 *
 	 * @noinspection PhpUnused
 	 */
-	public function handlePageLatestRevisionChangedEvent( PageLatestRevisionChangedEvent $event ) {
+	public function handlePageLatestRevisionChangedEvent( PageLatestRevisionChangedEvent $event ): void {
 		$newRevision = $event->getLatestRevisionAfter();
 		$mainSlot = $newRevision->isDeleted( RevisionRecord::DELETED_TEXT )
 			? null : $newRevision->getSlot( SlotRecord::MAIN );
@@ -61,7 +61,7 @@ class SearchEventIngress
 	 *
 	 * @noinspection PhpUnused
 	 */
-	public function handlePageDeletedEvent( PageDeletedEvent $event ) {
+	public function handlePageDeletedEvent( PageDeletedEvent $event ): void {
 		$update = new SearchUpdate(
 			$event->getPageId(),
 			$event->getDeletedPage(),

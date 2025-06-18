@@ -13,6 +13,6 @@ namespace MediaWiki\Page\Event;
  */
 interface PageDeletedListener {
 
-	public function handlePageDeletedEvent( PageDeletedEvent $event );
+	public function handlePageDeletedEvent( PageDeletedEvent $event ): void;
 
 }

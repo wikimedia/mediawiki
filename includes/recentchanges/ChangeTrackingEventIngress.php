@@ -156,7 +156,7 @@ class ChangeTrackingEventIngress
 	 *
 	 * @noinspection PhpUnused
 	 */
-	public function handlePageLatestRevisionChangedEvent( PageLatestRevisionChangedEvent $event ) {
+	public function handlePageLatestRevisionChangedEvent( PageLatestRevisionChangedEvent $event ): void {
 		if ( $event->changedLatestRevisionId()
 			&& !$event->isSilent()
 		) {

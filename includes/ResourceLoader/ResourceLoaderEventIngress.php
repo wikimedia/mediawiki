@@ -45,7 +45,7 @@ class ResourceLoaderEventIngress
 	 *
 	 * @noinspection PhpUnused
 	 */
-	public function handlePageLatestRevisionChangedEvent( PageLatestRevisionChangedEvent $event ) {
+	public function handlePageLatestRevisionChangedEvent( PageLatestRevisionChangedEvent $event ): void {
 		if (
 			$event->isNominalContentChange()
 			|| $event->hasCause( PageUpdateCauses::CAUSE_MOVE )
@@ -64,7 +64,7 @@ class ResourceLoaderEventIngress
 	 *
 	 * @noinspection PhpUnused
 	 */
-	public function handlePageDeletedEvent( PageDeletedEvent $event ) {
+	public function handlePageDeletedEvent( PageDeletedEvent $event ): void {
 		WikiModule::invalidateModuleCache(
 			$event->getDeletedPage(),
 			$event->getLatestRevisionBefore(),

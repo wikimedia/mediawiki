@@ -14,6 +14,6 @@ namespace MediaWiki\Page\Event;
  */
 interface PageHistoryVisibilityChangedListener {
 
-	public function handlePageHistoryVisibilityChangedEvent( PageHistoryVisibilityChangedEvent $event );
+	public function handlePageHistoryVisibilityChangedEvent( PageHistoryVisibilityChangedEvent $event ): void;
 
 }

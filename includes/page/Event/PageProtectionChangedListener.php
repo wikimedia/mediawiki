@@ -13,6 +13,6 @@ namespace MediaWiki\Page\Event;
  */
 interface PageProtectionChangedListener {
 
-	public function handlePageProtectionChangedEvent( PageProtectionChangedEvent $event );
+	public function handlePageProtectionChangedEvent( PageProtectionChangedEvent $event ): void;
 
 }

@@ -13,7 +13,7 @@ namespace MediaWiki\Page\Event;
  */
 interface PageRecordChangedListener {
 
-	public function handlePageRecordChangedEvent( PageRecordChangedEvent $event );
+	public function handlePageRecordChangedEvent( PageRecordChangedEvent $event ): void;
 
 }
 

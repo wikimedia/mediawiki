@@ -7,6 +7,6 @@ namespace MediaWiki\Page\Event;
  */
 interface PageRevisionUpdatedListener {
 
-	public function handlePageRevisionUpdatedEvent( PageRevisionUpdatedEvent $event );
+	public function handlePageRevisionUpdatedEvent( PageRevisionUpdatedEvent $event ): void;
 
 }

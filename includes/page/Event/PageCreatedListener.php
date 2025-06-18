@@ -13,6 +13,6 @@ namespace MediaWiki\Page\Event;
  */
 interface PageCreatedListener {
 
-	public function handlePageCreatedEvent( PageCreatedEvent $event );
+	public function handlePageCreatedEvent( PageCreatedEvent $event ): void;
 
 }

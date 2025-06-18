@@ -44,7 +44,7 @@ class LanguageEventIngress
 	 *
 	 * @noinspection PhpUnused
 	 */
-	public function handlePageLatestRevisionChangedEvent( PageLatestRevisionChangedEvent $event	) {
+	public function handlePageLatestRevisionChangedEvent( PageLatestRevisionChangedEvent $event ): void {
 		if ( $event->getPage()->getNamespace() === NS_MEDIAWIKI	&&
 			( $event->isModifiedSlot( SlotRecord::MAIN )
 				|| $event->hasCause( PageLatestRevisionChangedEvent::CAUSE_MOVE )
@@ -61,7 +61,7 @@ class LanguageEventIngress
 	 *
 	 * @noinspection PhpUnused
 	 */
-	public function handlePageDeletedEvent( PageDeletedEvent $event ) {
+	public function handlePageDeletedEvent( PageDeletedEvent $event ): void {
 		if ( $event->getDeletedPage()->getNamespace() === NS_MEDIAWIKI ) {
 			$this->messageCache->updateMessageOverride( $event->getDeletedPage(), null );
 		}
