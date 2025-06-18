@@ -1701,12 +1701,12 @@ abstract class Skin extends ContextSource {
 		$urlUtils = $services->getUrlUtils();
 
 		foreach ( $lines as $line ) {
-			if ( strpos( $line, '*' ) !== 0 ) {
+			if ( !str_starts_with( $line, '*' ) ) {
 				continue;
 			}
 			$line = rtrim( $line, "\r" ); // for Windows compat
 
-			if ( strpos( $line, '**' ) !== 0 ) {
+			if ( !str_starts_with( $line, '**' ) ) {
 				$heading = trim( $line, '* ' );
 				if ( !array_key_exists( $heading, $bar ) ) {
 					$bar[$heading] = [];

@@ -103,7 +103,7 @@ class SkinComponentMenu implements SkinComponent {
 			$name = 'personal';
 		}
 
-		if ( strpos( $name, 'footer' ) === 0 ) {
+		if ( str_starts_with( $name, 'footer' ) ) {
 			// Retain footer IDs.
 			$id = $name;
 		} else {

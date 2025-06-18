@@ -81,7 +81,7 @@ class CommentStoreComment {
 
 		if ( $data !== null ) {
 			foreach ( $data as $k => $v ) {
-				if ( substr( $k, 0, 1 ) === '_' ) {
+				if ( str_starts_with( $k, '_' ) ) {
 					throw new InvalidArgumentException( 'Keys in $data beginning with "_" are reserved' );
 				}
 			}

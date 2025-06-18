@@ -277,7 +277,7 @@ class SwiftFileBackend extends FileBackendStore {
 		$metadataHeaders = [];
 		foreach ( $headers as $name => $value ) {
 			$name = strtolower( $name );
-			if ( strpos( $name, 'x-object-meta-' ) === 0 ) {
+			if ( str_starts_with( $name, 'x-object-meta-' ) ) {
 				$metadataHeaders[$name] = $value;
 			}
 		}

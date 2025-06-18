@@ -193,7 +193,7 @@ class CommentStore {
 					$data = null;
 				} else {
 					foreach ( $data as $k => $v ) {
-						if ( substr( $k, 0, 1 ) === '_' ) {
+						if ( str_starts_with( $k, '_' ) ) {
 							unset( $data[$k] );
 						}
 					}

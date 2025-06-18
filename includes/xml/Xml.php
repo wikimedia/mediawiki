@@ -608,7 +608,7 @@ class Xml {
 			if ( $value == '' ) {
 				continue;
 			}
-			if ( substr( $value, 0, 1 ) == '*' && substr( $value, 1, 1 ) != '*' ) {
+			if ( str_starts_with( $value, '*' ) && substr( $value, 1, 1 ) != '*' ) {
 				# A new group is starting...
 				$value = trim( substr( $value, 1 ) );
 				if ( $value !== '' &&
@@ -619,7 +619,7 @@ class Xml {
 				} else {
 					$optgroup = false;
 				}
-			} elseif ( substr( $value, 0, 2 ) == '**' ) {
+			} elseif ( str_starts_with( $value, '**' ) ) {
 				# groupmember
 				$opt = trim( substr( $value, 2 ) );
 				if ( $optgroup === false ) {

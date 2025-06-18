@@ -322,7 +322,7 @@ class DatabasePostgres extends Database {
 			$row = $res->fetchObject();
 
 			if ( $row ) {
-				return [ 'unique' => ( strpos( $row->indexdef, 'CREATE UNIQUE ' ) === 0 ) ];
+				return [ 'unique' => str_starts_with( $row->indexdef, 'CREATE UNIQUE ' ) ];
 			}
 		}
 

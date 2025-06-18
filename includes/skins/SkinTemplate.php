@@ -1496,7 +1496,7 @@ class SkinTemplate extends Skin {
 				// so the xmlID based id is much closer to the actual $key that we want
 				// for that reason we'll just strip out the ca- if present and use
 				// the latter potion of the "id" as the $key
-				if ( isset( $value['id'] ) && substr( $value['id'], 0, 3 ) == 'ca-' ) {
+				if ( isset( $value['id'] ) && str_starts_with( $value['id'], 'ca-' ) ) {
 					$key = substr( $value['id'], 3 );
 				}
 

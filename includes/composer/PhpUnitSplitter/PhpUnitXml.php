@@ -33,7 +33,7 @@ class PhpUnitXml {
 		}
 		foreach ( $this->xml->testsuites->testsuite as $child ) {
 			if ( isset( $child->attributes()["name"] ) &&
-				strpos( (string)$child->attributes()["name"], "split_group_" ) === 0 ) {
+				str_starts_with( (string)$child->attributes()["name"], "split_group_" ) ) {
 				return true;
 			}
 		}

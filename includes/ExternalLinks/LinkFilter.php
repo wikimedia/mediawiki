@@ -75,7 +75,7 @@ class LinkFilter {
 	 */
 	private static function makeRegex( $filterEntry, $protocol ) {
 		$regex = '!' . preg_quote( $protocol, '!' );
-		if ( substr( $filterEntry, 0, 2 ) == '*.' ) {
+		if ( str_starts_with( $filterEntry, '*.' ) ) {
 			$regex .= '(?:[A-Za-z0-9.-]+\.|)';
 			$filterEntry = substr( $filterEntry, 2 );
 		}
@@ -288,12 +288,12 @@ class LinkFilter {
 	}
 
 	private static function reverseDomain( string $domain ): string {
-		if ( substr( $domain, 0, 3 ) === 'V6.' ) {
+		if ( str_starts_with( $domain, 'V6.' ) ) {
 			$ipv6 = str_replace( '.', ':', trim( substr( $domain, 3 ), '.' ) );
 			if ( IPUtils::isValid( $ipv6 ) ) {
 				return '[' . $ipv6 . ']';
 			}
-		} elseif ( substr( $domain, 0, 3 ) === 'V4.' ) {
+		} elseif ( str_starts_with( $domain, 'V4.' ) ) {
 			$ipv4 = trim( substr( $domain, 3 ), '.' );
 			if ( IPUtils::isValid( $ipv4 ) ) {
 				return $ipv4;

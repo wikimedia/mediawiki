@@ -59,7 +59,7 @@ class BlockLogFormatter extends LogFormatter {
 		$params = parent::getMessageParameters();
 
 		$title = $this->entry->getTarget();
-		if ( substr( $title->getText(), 0, 1 ) === '#' ) {
+		if ( str_starts_with( $title->getText(), '#' ) ) {
 			// autoblock - no user link possible
 			$params[2] = $title->getText();
 			$params[3] = ''; // no user name for gender use

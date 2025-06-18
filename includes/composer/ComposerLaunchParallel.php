@@ -143,7 +143,7 @@ class ComposerLaunchParallel extends ForkController {
 			if ( $groupIndex > 0 ) {
 				if ( count( $_SERVER['argv'] ) > $groupIndex + 1 ) {
 					$nextArg = $_SERVER['argv'][$groupIndex + 1];
-					if ( strpos( $nextArg, "--" ) === 0 ) {
+					if ( str_starts_with( $nextArg, "--" ) ) {
 						throw new \InvalidArgumentException(
 							"parameter " . $argument . " takes a variable - none supplied"
 						);

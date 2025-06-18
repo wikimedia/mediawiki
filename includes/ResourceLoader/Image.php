@@ -425,7 +425,7 @@ class Image {
 		$svg = $this->massageSvgPathdata( $svg );
 
 		// Sometimes this might be 'rsvg-secure'. Long as it's rsvg.
-		if ( strpos( $svgConverter, 'rsvg' ) === 0 ) {
+		if ( str_starts_with( $svgConverter, 'rsvg' ) ) {
 			$command = 'rsvg-convert';
 			if ( $svgConverterPath ) {
 				$command = Shell::escape( "{$svgConverterPath}/" ) . $command;

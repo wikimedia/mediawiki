@@ -41,7 +41,7 @@ class Thumbnail404EntryPoint extends ThumbnailEntryPoint {
 			// Determine the request path relative to the thumbnail zone base
 			$repo = $this->getServiceContainer()->getRepoGroup()->getLocalRepo();
 			$baseUrl = $repo->getZoneUrl( 'thumb' );
-			if ( substr( $baseUrl, 0, 1 ) === '/' ) {
+			if ( str_starts_with( $baseUrl, '/' ) ) {
 				$basePath = $baseUrl;
 			} else {
 				$basePath = parse_url( $baseUrl, PHP_URL_PATH );

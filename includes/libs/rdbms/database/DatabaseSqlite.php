@@ -745,7 +745,7 @@ class DatabaseSqlite extends Database {
 		// Take over indexes
 		$indexList = $this->query( $query, $fname );
 		foreach ( $indexList as $index ) {
-			if ( strpos( $index->name, 'sqlite_autoindex' ) === 0 ) {
+			if ( str_starts_with( $index->name, 'sqlite_autoindex' ) ) {
 				continue;
 			}
 
@@ -807,7 +807,7 @@ class DatabaseSqlite extends Database {
 			$table = array_pop( $vars );
 
 			if ( !$prefix || strpos( $table, $prefix ) === 0 ) {
-				if ( strpos( $table, 'sqlite_' ) !== 0 ) {
+				if ( !str_starts_with( $table, 'sqlite_' ) ) {
 					$endArray[] = $table;
 				}
 			}

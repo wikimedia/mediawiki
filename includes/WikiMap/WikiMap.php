@@ -235,7 +235,7 @@ class WikiMap {
 	public static function getWikiFromUrl( $url ) {
 		global $wgCanonicalServer;
 
-		if ( strpos( $url, "$wgCanonicalServer/" ) === 0 ) {
+		if ( str_starts_with( $url, "$wgCanonicalServer/" ) ) {
 			// Optimisation: Handle the common case.
 			// (Duplicates self::getCanonicalServerInfoForAllWikis)
 			return self::getCurrentWikiId();

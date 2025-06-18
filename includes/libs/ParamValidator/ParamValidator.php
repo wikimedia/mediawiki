@@ -592,7 +592,7 @@ class ParamValidator {
 
 		// Non-multi
 		if ( empty( $settings[self::PARAM_ISMULTI] ) ) {
-			if ( is_string( $value ) && substr( $value, 0, 1 ) === "\x1f" ) {
+			if ( is_string( $value ) && str_starts_with( $value, "\x1f" ) ) {
 				throw new ValidationException(
 					DataMessageValue::new( 'paramvalidator-notmulti', [], 'badvalue' )
 						->plaintextParams( $name, $value ),
@@ -863,7 +863,7 @@ class ParamValidator {
 			return [];
 		}
 
-		if ( substr( $value, 0, 1 ) === "\x1f" ) {
+		if ( str_starts_with( $value, "\x1f" ) ) {
 			$sep = "\x1f";
 			$value = substr( $value, 1 );
 		} else {

@@ -1573,7 +1573,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 * @return bool
 	 */
 	final public static function isStoragePath( $path ) {
-		return ( strpos( $path ?? '', 'mwstore://' ) === 0 );
+		return ( str_starts_with( $path ?? '', 'mwstore://' ) );
 	}
 
 	/**
