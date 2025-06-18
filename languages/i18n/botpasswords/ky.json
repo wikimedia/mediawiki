@@ -1,0 +1,21 @@
+{
+	"@metadata": {
+		"authors": [
+			"Bosogo"
+		]
+	},
+	"botpasswords": "Боттун сырсөздөрү",
+	"botpasswords-disabled": "Боттун сырсөздөрү өчүрүлгөн.",
+	"botpasswords-createnew": "Боттун жаңы сырсөзүн түзүү",
+	"botpasswords-label-appid": "Бот аталышы:",
+	"botpasswords-label-create": "Түзүү",
+	"botpasswords-label-update": "Жаңыртуу",
+	"botpasswords-label-cancel": "Жокко чыгаруу",
+	"botpasswords-label-delete": "Өчүрүү",
+	"botpasswords-label-resetpassword": "Сыр сөздү алмаштыруу",
+	"botpasswords-label-grants": "Жеткиликтүү уруксаттар:",
+	"botpasswords-label-grants-column": "Уруксат берилгендиги",
+	"botpasswords-bad-appid": "Ботту «$1» деп атаса болбойт.",
+	"botpasswords-created-title": "Боттун сыр сөзү түзүлдү",
+	"botpasswords-updated-title": "Боттун сыр сөзү жаңыланды"
+}

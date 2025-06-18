@@ -1,0 +1,43 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ukhant Erdemt",
+			"Алия"
+		]
+	},
+	"botpasswords": "Ботмудын нууц үг",
+	"botpasswords-summary": "<em>Бот нууц үг</em> нь кергләчин бүртклд невтрх үндсн медәллиг ашглл угаһар API-һар дамҗулн невтрх болмҗ олһдг. Бот нууц үгәр невтрсн кергләчин эркиг кизәрлҗ чадна. \n\nКемр та үүг кедгиг яһад күсч бәәсән медлго бәәхлә, үүг кех йосн уга. Кен чигн танас эднә аль негиг үүскҗ, теднд өгхиг кезә чигн шаардх йосн уга.",
+	"botpasswords-disabled": "Ботын нууц үгиг унтрасн бәәнә.",
+	"botpasswords-no-central-id": "Ботын нууц үг ашглхин төлә та төвлрсн бүртклд невтрҗ орх йостат.",
+	"botpasswords-existing": "Ода бәәһә ботын нууц үг",
+	"botpasswords-createnew": "Шин ботын нууц үг үүсктн",
+	"botpasswords-editexisting": "Ода бәәһә ботын нууц үг ясх",
+	"botpasswords-label-needsreset": "(нууц үгиг дәкн тохрулх кергтә)",
+	"botpasswords-label-appid": "Ботын нерн:",
+	"botpasswords-label-create": "Үүскх",
+	"botpasswords-label-update": "Шинрүлх",
+	"botpasswords-label-cancel": "Цуцлх",
+	"botpasswords-label-delete": "Уга кех",
+	"botpasswords-label-resetpassword": "Нууц үгән дәкн тохрулх",
+	"botpasswords-label-grants": "Керглгдх зөвшәрл:",
+	"botpasswords-help-grants": "Зөвшәрлнь тана кергләчин бүртклд аль эрт эзмшсн эркд хандх болмҗ олһдг. Эн буцлт угаһар туслмҗд күч өгсәр тана кергләчин бүртклд уга бәәх эркд хандх болмҗ уга. Делгрңгү медәллиг [[Special:ListGrants|буцлт уга туслмҗин көснгт]]-әс үзтн.",
+	"botpasswords-label-grants-column": "Зөвшәргдв",
+	"botpasswords-bad-appid": "\"$1\" ботын нерн буру бәәнә.",
+	"botpasswords-toolong-restrictions": "Дегәд олн IP хайг эс гиҗ хайгин күрә орулвт.",
+	"botpasswords-toolong-grants": "Дегәд олн зөвшәрл суңһвт.",
+	"botpasswords-insert-failed": "\"$1\" ботын нериг немҗ чадсн уга. Эннь аль эрт немгдвү?",
+	"botpasswords-update-failed": "\"$1\" ботын нериг шинрүлҗ чадсн уга. Эннь уга кегдвү?",
+	"botpasswords-created-title": "Ботын нууц үг үүскгдв",
+	"botpasswords-created-body": "{{GENDER:$2|кергләч }} \"$2\"-ын \"$1\" ботын нернә ботын нууц үг үүскгдв.",
+	"botpasswords-updated-title": "Ботын нууц үг шинрүлгдв",
+	"botpasswords-updated-body": "{{GENDER:$2|кергләч }} \"$2\"-ын \"$1\" ботын нернә ботын нууц үг шинрүлгдв.",
+	"botpasswords-deleted-title": "Ботын нууц үгиг уга болһв",
+	"botpasswords-deleted-body": "{{GENDER:$2|кергләч}} \"$2\"-ин \"$1\" ботын нернә ботын нууц үг уга болһв.",
+	"botpasswords-newpassword": "<strong>$1</strong>-ар невтрх шин нууц үгнь <strong>$2</strong> бәәнә. <em>Үүг цааран лавлх зөрлһәр темдглтн.</em> <br> (Невтрх нернь эцсин кергләчин нернлә әдл бәәдгиг шаарддг хуучн роботмудын хүвд та <strong>$3</strong>-г кергләчин нер болад ашглҗ болна. <strong>$4</strong>-г нууц үгәр орулна.)",
+	"botpasswords-no-provider": "BotPasswordsSessionProvider болмҗ уга бәәнә.",
+	"botpasswords-restriction-failed": "Ботын нууц үгин кизәрллтин учрар невтрсн уга орҗ чадсн уга.",
+	"botpasswords-invalid-name": "Заасн кергләчин нернь ботын нууц үг салһгчиг (\"$1\") аһулад уга бәәнә.",
+	"botpasswords-not-exist": "\"$1\" кергләч \"$2\" нертә ботын нууц үг уга бәәнә.",
+	"botpasswords-needs-reset": "{{GENDER:$1|кергләч}} \"$1\"-нә \"$2\" ботын нернә ботын нууц үг шинрүлх шаардлһта.",
+	"botpasswords-locked": "Тана бүрткл түгжгдсн төлә та ботын нууц үгәр невтрх болмҗ угат."
+}

@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Rachitrali",
+			"Saraiki"
+		]
+	},
+	"botpasswords": "روبہ پاس ورڈ",
+	"botpasswords-disabled": "روبوٹو پاس ورڈ غیر فعال شینی۔",
+	"botpasswords-existing": "روبوٹو موجودہ پاس ورڈ",
+	"botpasswords-createnew": "روبوٹو نوغ پاس ورڈ ساوزاوے",
+	"botpasswords-label-appid": "روبوٹو نام:",
+	"botpasswords-label-create": "ساوزاوے",
+	"botpasswords-label-update": "اپڈیٹ کورے",
+	"botpasswords-label-cancel": "کھینسل",
+	"botpasswords-label-delete": "بوغاوے",
+	"botpasswords-label-resetpassword": "پاسورڈو ری سیٹ کورے",
+	"botpasswords-label-grants-column": "دیونو ہوئے",
+	"botpasswords-bad-appid": "روبہ نام \"$1\" درست نو۔"
+}

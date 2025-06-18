@@ -1,0 +1,23 @@
+{
+	"@metadata": {
+		"authors": [
+			"F Samaritani",
+			"Jun Misugi"
+		]
+	},
+	"botpasswords": "Còdizi di bot",
+	"botpasswords-createnew": "Crià 'na noba paràura d'órdhini di bot",
+	"botpasswords-label-appid": "Nommu di lu bot:",
+	"botpasswords-label-create": "Crià",
+	"botpasswords-label-update": "Attuarizà",
+	"botpasswords-label-cancel": "Annullà",
+	"botpasswords-label-delete": "Canzillà",
+	"botpasswords-label-resetpassword": "Invià una noba paràura d'órdhini pa postha erettrònica",
+	"botpasswords-created-title": "La paràura d'órdhini di bot è isthadda criadda.",
+	"botpasswords-created-body": "La paràura d'órdhini di bot paj l'innommu di bot \"$1\" {{GENDER:$2|di l'utenti}} \"$2\" è isthadda attuarizadda.",
+	"botpasswords-updated-title": "Paràura d'órdhini di bot attuarizadda",
+	"botpasswords-updated-body": "La paràura d'órdhini di bot paj l'innommu di bot \"$1\" {{GENDER:$2|di l'utenti}} \"$2\" è isthadda attuarizadda.",
+	"botpasswords-deleted-title": "La paràura d'órdhini di bot è isthadda isthudadda.",
+	"botpasswords-deleted-body": "La paràura d'órdhini di bot paj l'innommu di bot \"$1\" {{GENDER:$2|di l'utenti}} \"$2\" è isthadda attuarizadda.",
+	"botpasswords-needs-reset": "La paràura d'órdhini di bot paj l'innommu di bot \"$1\" {{GENDER:$2|di l'utenti}} \"$2\" è isthadda attuarizadda."
+}

@@ -1,0 +1,31 @@
+{
+	"@metadata": {
+		"authors": [
+			"Gitartha.bordoloi",
+			"Mohsin Ali",
+			"Simbu123",
+			"ৰাজীৱ গোস্বামী"
+		]
+	},
+	"botpasswords": "বট গুপ্তশব্দ",
+	"botpasswords-disabled": "Bot গুপ্তশব্দ নিষ্ক্ৰিয়",
+	"botpasswords-existing": "মজুত থকা ব'ট পাছৱৰ্ডসমূহ",
+	"botpasswords-createnew": "এটা নতুন ব'ট পাছৱৰ্ড সৃষ্টি কৰক",
+	"botpasswords-editexisting": "মজুত থকা ব'ট পাছৱৰ্ড সম্পাদনা কৰক",
+	"botpasswords-label-needsreset": "(পাছৱৰ্ড ৰিছেট কৰাৰ প্ৰয়োজন)",
+	"botpasswords-label-appid": "বটৰ নাম:",
+	"botpasswords-label-create": "সৃষ্টি কৰক",
+	"botpasswords-label-update": "আপডেট কৰক",
+	"botpasswords-label-cancel": "বাতিল কৰক",
+	"botpasswords-label-delete": "বিলোপ কৰক",
+	"botpasswords-label-resetpassword": "গুপ্তশব্দ ন-কৈ বহুৱাওক",
+	"botpasswords-label-grants": "প্ৰয়োগযোগ্য অনুমোদন:",
+	"botpasswords-label-grants-column": "অনুমোদিত",
+	"botpasswords-bad-appid": "\"$1\" ব'ট নামটো বৈধ নহয়।",
+	"botpasswords-insert-failed": "\"$1\" ব'ট নাম যোগ কৰাত বিফল। ইতিমধ্যে যোগ কৰা হৈছিল নেকি?",
+	"botpasswords-update-failed": "\"$1\" ব'ট নাম আপডেট কৰাত বিফল। মচা হৈছিল নেকি?",
+	"botpasswords-created-title": "ব'ট পাছৱৰ্ড সৃষ্টি কৰা হ'ল",
+	"botpasswords-updated-title": "ব'ট পাছৱৰ্ড আপডেট কৰা হ'ল",
+	"botpasswords-deleted-title": "ব'ট পাছৱৰ্ড মচা হ'ল",
+	"botpasswords-no-provider": "BotPasswordsSessionProvider উপলব্ধ নহয়।"
+}

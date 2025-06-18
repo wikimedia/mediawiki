@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Chrisportelli",
+			"ToniSant"
+		]
+	},
+	"botpasswords-label-appid": "Isem tal-bot:",
+	"botpasswords-label-create": "Oħloq",
+	"botpasswords-label-update": "Aġġorna",
+	"botpasswords-label-cancel": "Annulla",
+	"botpasswords-label-delete": "Ħassar",
+	"botpasswords-label-grants": "Assenjazzjoni applikabbli:",
+	"botpasswords-help-grants": "L-assenjazzjoni jagħtu aċċess għad-drittijiet li għandek diġà bil-kont tiegħek bħala utent. L-attivar ta' assenjazzjoni hawn ma jagħtix aċċess għal drittijiet oħra li mhux diġà marbuta mal-kont tiegħek bħala utent. Għal aktar tagħrif ara t- [[Special:ListGrants|tabella ta' assenjazzjonijiet]].",
+	"botpasswords-label-grants-column": "Assenjat",
+	"botpasswords-bad-appid": "L-isem $1 mhux validu għal bot.",
+	"botpasswords-insert-failed": "Mhux possibli jiżdied l-bot bl-isem $1. Dan diġà ġie miżjud?",
+	"botpasswords-update-failed": "L-isem tal-bot $1 ma jistax jiġi aġġornat. Dan tħassar diġà?",
+	"botpasswords-created-title": "Il-password tal-bot ġiet maħluqa"
+}

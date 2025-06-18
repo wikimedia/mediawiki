@@ -1,0 +1,42 @@
+{
+	"@metadata": {
+		"authors": [
+			"Winston Sung"
+		]
+	},
+	"botpasswords": "機器人密碼",
+	"botpasswords-summary": "<em>機器人密碼</em>允許拉弗使用帳戶个主要登入憑據个情況下，透過API存取用戶帳戶。透過機器人密碼登入時可用个用戶權限可以被限制。\n\n拉弗曉得為啥要箇樣做个情況下，儂弗應該使用此功能。任何人儕弗應該讓儂生成箇些密碼並向渠提供。",
+	"botpasswords-disabled": "機器人密碼已禁用。",
+	"botpasswords-no-central-id": "要使用機器人密碼，儂必須登入到已集中个帳戶。",
+	"botpasswords-existing": "現有機器人密碼",
+	"botpasswords-createnew": "建立新个機器人密碼",
+	"botpasswords-editexisting": "編輯現有个機器人密碼",
+	"botpasswords-label-needsreset": "（密碼需要重gk4）",
+	"botpasswords-label-appid": "機器人名字：",
+	"botpasswords-label-create": "建立",
+	"botpasswords-label-update": "更新",
+	"botpasswords-label-cancel": "取消",
+	"botpasswords-label-delete": "刪除",
+	"botpasswords-label-resetpassword": "重設密碼",
+	"botpasswords-label-grants": "應用授權：",
+	"botpasswords-help-grants": "授權允許存取儂个用戶帳戶已持有个權限。拉此啟用授權並弗會提供儂根本弗會擁有个權限个存取權。參見[[Special:ListGrants|授權表]]以獲取更多資訊。",
+	"botpasswords-label-grants-column": "已授權",
+	"botpasswords-bad-appid": "機器人名「$1」無效。",
+	"botpasswords-toolong-restrictions": "輸入仔太多个IP位址或者範圍。",
+	"botpasswords-toolong-grants": "選擇个授權忒多。",
+	"botpasswords-insert-failed": "無法添加機器人名「$1」。渠是否已添加？",
+	"botpasswords-update-failed": "無法更新機器人名「$1」。渠是否已刪除？",
+	"botpasswords-created-title": "機器人密碼已建立",
+	"botpasswords-created-body": "用拉{{GENDER:$2|用戶}}「$2」个機器人名稱「$1」个機器人密碼已建立。",
+	"botpasswords-updated-title": "機器人密碼已更新",
+	"botpasswords-updated-body": "用拉{{GENDER:$2|用戶}}「$2」个機器人名稱「$1」个機器人密碼已更新。",
+	"botpasswords-deleted-title": "機器人密碼已刪除",
+	"botpasswords-deleted-body": "用拉{{GENDER:$2|用戶}}「$2」个機器人名稱「$1」个機器人密碼已刪除。",
+	"botpasswords-newpassword": "用拉登入<strong>$1</strong>个新密碼是<strong>$2</strong>。<em>請記牢渠以備今後參考。</em><br>（對於需要登入名搭最終用戶名相同个舊機器人，儂也可以使用<strong>$3</strong>作為用戶名，<strong>$4</strong>作為密碼。）",
+	"botpasswords-no-provider": "BotPasswordsSessionProvider弗可用。",
+	"botpasswords-restriction-failed": "機器人密碼限制阻止此次登入。",
+	"botpasswords-invalid-name": "指定个用戶名弗包含機器人密碼分隔符（「$1」）。",
+	"botpasswords-not-exist": "用戶「$1」沒名叫「$2」个機器人密碼。",
+	"botpasswords-needs-reset": "用拉{{GENDER:$1|用戶}}「$1」个機器人名稱「$2」个機器人密碼必須重設。",
+	"botpasswords-locked": "由於儂个帳戶已被鎖定，儂弗可以使用機器人密碼進行登入。"
+}

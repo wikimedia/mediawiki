@@ -1,0 +1,30 @@
+{
+	"@metadata": {
+		"authors": [
+			"Belkacem77",
+			"K Messaoudi"
+		]
+	},
+	"botpasswords": "Iwalen uffiren n iṛubuten",
+	"botpasswords-disabled": "Awalen uffiren n iṛubuten nsan.",
+	"botpasswords-no-central-id": "Akken ad tesqedceḍ awalen uffiren n  iṛubuten, yessefk ad teqqneḍ amiḍan yettwaslemsen.",
+	"botpasswords-existing": "Awalen uffiren n uṛubuten yellan",
+	"botpasswords-createnew": "Rnu awal uffir n iṛubuten amaynut",
+	"botpasswords-editexisting": "Ẓreg awal uffir n iṛubuten yellan",
+	"botpasswords-label-needsreset": "(awal n uɛeddi yesra aɛawed n uwennez)",
+	"botpasswords-label-appid": "Isem n uṛubut:",
+	"botpasswords-label-create": "Rnu",
+	"botpasswords-label-update": "Leqqem",
+	"botpasswords-label-cancel": "Sefsex",
+	"botpasswords-label-delete": "Kkes",
+	"botpasswords-label-resetpassword": "Wennez awal uffir",
+	"botpasswords-label-grants": "Izerfan yettwasnasen:",
+	"botpasswords-label-grants-column": "Ttunefken izerfan",
+	"botpasswords-bad-appid": "Isem n uṛubut \"$1\" mačči d ameɣtu.",
+	"botpasswords-insert-failed": "Ur isaweḍ ara ad yernu isem n uṛubut \"$1\". Yettwarna yakan?",
+	"botpasswords-created-title": "Awal uffir n iṛubuten yettwarna",
+	"botpasswords-updated-title": "Awal uffir n iṛbuten ibeddel",
+	"botpasswords-deleted-title": "Awal uffir n iṛubuten yettwakkes",
+	"botpasswords-deleted-body": "Awal uffir n uṛubut \"$1\" n useqdac \"$2\" yettwakkes.",
+	"botpasswords-no-provider": "Asaǧǧaw n tɣimit n wawal uffir n iṛubuten ulac-it."
+}

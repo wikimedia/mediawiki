@@ -1,0 +1,42 @@
+{
+	"@metadata": {
+		"authors": [
+			"Misbahu umar"
+		]
+	},
+	"botpasswords": "Giyeko bot",
+	"botpasswords-summary": "<em>giyeko boys</em>jin yeda ya gingandan eza loci eko API Bo babu dida eko gboro.dama nyan gingandan danbo'a wo'e ga gandan be giyeko bot, ka gan wo'e kpe nyana la wo'e chi'e wa jin aniga na, wo'e lugwa wo. Zandondo ga gbin wo'e gan wo'e tswa nyana zhi chi'o la'o ya wun man.",
+	"botpasswords-disabled": "Giyeko bot zhi lotun be'a",
+	"botpasswords-no-central-id": "Kafi wo'e de giyeko lo na,dole sai wo'e ga gandan gbami tacin'o.",
+	"botpasswords-existing": "Giyeko nan danbo shibo nan",
+	"botpasswords-createnew": "Tswa giyeko bot woro",
+	"botpasswords-editexisting": "Ye giyeko bot nan danbo le'ani nan jin",
+	"botpasswords-label-needsreset": "(Giyeko wa yiyejin)",
+	"botpasswords-label-appid": "Sunna bot:",
+	"botpasswords-label-create": "Tswa",
+	"botpasswords-label-update": "La zhe woro",
+	"botpasswords-label-cancel": "Kpeya",
+	"botpasswords-label-delete": "Nuya",
+	"botpasswords-label-resetpassword": "Zhe giyeko ban",
+	"botpasswords-label-grants": "Ele nan zhi danbo wo'e nan",
+	"botpasswords-help-grants": "Ele zhi jin yeda ya gbami wo'e.yeda jin ya ele babo wun wugwa gan gbami ezaloci wo'a de ndoci'a nyan.cinle [[specials:ListGrants|table of grants]] ebo egan yekpe'o.ele dede zhi de eli. Ele nan zhi de eli'a nan zo nyin go gwata zana de niyan wangi'a nan.\nEle be biban wo'e (<span class=\"mw-grantriskgroup-vandalism\">{{int:grantriskgroup-vandalism}}</span>)de lulo wo ya damuwa wun man zo yin nuya.ele be egbzhe tswitswa'e (<span class=\"mw-grantriskgroup-security\">)wun la egwatso nan lokpa nan be wo(ke yigbe nyan etun suso chi nan).ele nyan nin zhi(<span class=\"mw-grantriskgroup-internal\">{{int:grantriskgroup-internal}}</span>)kpata'e de lulo gwata eza loci'o. Jin ankuri ga li ele egbazhe zhi man sai de wun ga zhe dole nan wo'a wa'u nan.",
+	"botpasswords-label-grants-column": "Ele a de lila ya",
+	"botpasswords-bad-appid": "Sunna boy \"$1\" lo'a.",
+	"botpasswords-toolong-restrictions": "IP address koma range kaman danbo",
+	"botpasswords-toolong-grants": "Ele zhi'a gangan nan ah li nan",
+	"botpasswords-insert-failed": "sunna bot \"$1\" ye la danbo'a. Wun danbo le'a ni?",
+	"botpasswords-update-failed": "Sunna bot \"$1\"  ye la zhe woro'a. Wun nunu ya?",
+	"botpasswords-created-title": "Ganmin giyeko bot'a de tswitswa",
+	"botpasswords-created-body": "Ganmin giyeko bot \"$1\" nyan {{GENDER:$2|ezaloci}} \"$2\" wun'a de tswitswa.",
+	"botpasswords-updated-title": "Giyeko bot'a de woro la zhe",
+	"botpasswords-updated-body": "Giyeko bot \"$1\" {{GENDER:$2|ezaloci}} \"$2\" wun'a de woro lazhe.",
+	"botpasswords-deleted-title": "Giyeko bot'a de nunu ya",
+	"botpasswords-deleted-body": "Giyeko bot ya sunna \"$1\" nyan{{GENDER:$2|ezaloci}} \"$2\" wun'a de nunu ya.",
+	"botpasswords-newpassword": "Ganmin giyeko woro nan wo'a la gandan be <strong>$1</strong> yi <strong>$2</strong>. <em>ah nana ka ebo santatun efo.</em> <br>(bots nyan payin nan zhi wa gan sunna gingandan ah yi dozhi sunna loci nan, wo'e lo <strong>$3</strong> ke sunna loci nan wo'e be <strong>$4</strong> ke giyeko.)",
+	"botpasswords-no-provider": "Eka nan ganmin giyeko be nan danbo'a.",
+	"botpasswords-restriction-failed": "Egwakan giyeko Bot lugwa gingandan nana lotun'a",
+	"botpasswords-invalid-name": "Sunna ezaloci nan dan dana de giganfi ganmin (\"$1\").",
+	"botpasswords-not-exist": "Eza loci \"$1\" de giyeko nan de sunna \"$2\".",
+	"botpasswords-needs-reset": "Giyeko bot ya sunna \"$2\" nyan {{EBAYIWO:$1|ezaloci}} \"$1\" ga zhe ebanzhe dole.",
+	"botpasswords-locked": "Wo'a de gandan be giyeko bot nyan ebo gbami'a wo'a stu."
+}

@@ -1,0 +1,13 @@
+{
+	"@metadata": {
+		"authors": [
+			"Rdwnnr"
+		]
+	},
+	"botpasswords": "ᨒᨗᨓᨛᨕᨉ bot",
+	"botpasswords-label-create": "ᨕᨙᨅᨘ",
+	"botpasswords-label-update": "ᨄᨅᨑᨘ",
+	"botpasswords-label-cancel": "ᨉᨙᨍᨍᨗ",
+	"botpasswords-label-delete": "ᨕᨅᨗᨐ",
+	"botpasswords-label-resetpassword": "ᨄᨑᨔᨗ ᨒᨗᨓᨛᨂᨉᨕᨙ"
+}

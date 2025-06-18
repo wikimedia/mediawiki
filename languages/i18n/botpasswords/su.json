@@ -1,0 +1,35 @@
+{
+	"@metadata": {
+		"authors": [
+			"Uchup19"
+		]
+	},
+	"botpasswords": "Kecap sandi bot",
+	"botpasswords-summary": "<em>Kecap sandi bot</em> ngamumkinkeun aksés kana akun pamaké ngagunakeun API tanpa maké krédensial asup log utama éta akun. Hak pamaké nu nyangkaruk nalika asup log kalawn kecap sandi bot meureun bakal diwatesan.\n\nUpama anjeun teu apal kunaon anjeun mikahayang ieu lalampahan, alusna mah ulah dilakonan. Saenyana euweuh jalma lian nu digaékeun pikeun nyieun sarta nyumerahkeun kecap sandi ieu bot ka manéhna.",
+	"botpasswords-disabled": "Kecap sandi bot dipareuman.",
+	"botpasswords-no-central-id": "Pikeun migunakeun kecap sandi bot, anjeun kudu asup log ka akun museur heula.",
+	"botpasswords-existing": "Kecap sandi bot sayaga",
+	"botpasswords-createnew": "Jieun kecap sandi bot anyar",
+	"botpasswords-editexisting": "Édit kecap sandi bot nu sayaga",
+	"botpasswords-label-appid": "Ngaran bot:",
+	"botpasswords-label-create": "Jieun",
+	"botpasswords-label-update": "Anyarkeun",
+	"botpasswords-label-cancel": "Bolay",
+	"botpasswords-label-delete": "Pupus",
+	"botpasswords-label-resetpassword": "Balikeun deui kecap sandi",
+	"botpasswords-label-grants": "Aksés nu dibikeun:",
+	"botpasswords-label-grants-column": "Diwidian",
+	"botpasswords-bad-appid": "Ngaran bot \"$1\" teu sah.",
+	"botpasswords-insert-failed": "Gagal nambahkeun ngaran bot \"$1\". Éta geus pernah ditambahkeun sugah?",
+	"botpasswords-update-failed": "Gagal nganyarkeun ngaran bot \"$1\". Baheula pernah dipupus kitu?",
+	"botpasswords-created-title": "Kecap sandi bot dijieun",
+	"botpasswords-created-body": "Kecap sandi pikeun ngaran bot \"$1\" ti pamaké \"$2\" geus dijieun.",
+	"botpasswords-updated-title": "Kecap sandi bot dianyarkeun",
+	"botpasswords-updated-body": "Kecap sandi pikeun ngaran bot \"$1\" ti pamaké \"$2\" geus dianyarkeun.",
+	"botpasswords-deleted-title": "Kecap sandi bot dihapus",
+	"botpasswords-deleted-body": "Kecap sandi pikeun ngaran bot \"$1\" ti pamaké \"$2\" geus dipupus.",
+	"botpasswords-no-provider": "BotPasswordsSessionProvider teu sayaga.",
+	"botpasswords-restriction-failed": "Wates kecap sandi ngahalangan ieu asup log.",
+	"botpasswords-invalid-name": "Ngaran pamaké nu dibikeun teu ngandung pamisah kecap sandi bot (\"$1\").",
+	"botpasswords-not-exist": "Pamaké \"$1\" teu miboga kecap sandi bot nu ngaranna \"$2\"."
+}

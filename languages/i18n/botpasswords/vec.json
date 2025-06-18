@@ -1,0 +1,42 @@
+{
+	"@metadata": {
+		"authors": [
+			"Conky77",
+			"Cusolotto",
+			"Fierodelveneto"
+		]
+	},
+	"botpasswords": "Ciave bot",
+	"botpasswords-summary": "<em>Ciavebot</em> ła consente de ndar drento a on utensa co API sensa doparare łe credensiałi de entrada. I deriti utente i xé disponibiłi co se xé ndai drento co na ciave bot i połe èsare limitai.\n\nSe no te sè el parché te garisi da farlo, ełora xé probabiłe che no te gapia da farlo. Nisuni garia mai da domandarte de xenerare na ciave bot par dopo dargheła.",
+	"botpasswords-disabled": "Le ciave bot łe xé stae disabiłitae",
+	"botpasswords-no-central-id": "Par doparar na ciave bot, cade ndar drento a na utensa çentrałixada",
+	"botpasswords-existing": "ciave bot existenti",
+	"botpasswords-createnew": "Crea na nova ciave bot",
+	"botpasswords-editexisting": "Modifega ciave bot existenti",
+	"botpasswords-label-needsreset": "(Core restabiłire ła ciave)",
+	"botpasswords-label-appid": "Nome bot:",
+	"botpasswords-label-create": "Crea",
+	"botpasswords-label-update": "Agiorna",
+	"botpasswords-label-cancel": "Descançełare",
+	"botpasswords-label-delete": "Scanseła",
+	"botpasswords-label-resetpassword": "Rinposta ła ciave",
+	"botpasswords-label-grants": "Asegnasioni aplicabili:",
+	"botpasswords-help-grants": "Łe insegnasion łe consente l'entrada a diriti che ła to utensa xa ła ga. Ativar na insegnasion cuà no ła dà ła entrada a nisun derito che ła utensa trimenti no ła garia. Varda ła [[Special:ListGrants|tabeła de łe insegnasion]] par piasè informasion.",
+	"botpasswords-label-grants-column": "Asegnasioni",
+	"botpasswords-bad-appid": "El nome bot \"$1\" no el xé mìja bon!",
+	"botpasswords-insert-failed": "No xé pusibiłe xontare el nome bot \"$1\". Xeło xà sta xontà?",
+	"botpasswords-update-failed": "Inpusibiłe ajornare el bot \"$1\". Xeło sta descançełà?",
+	"botpasswords-created-title": "ciave bot creada",
+	"botpasswords-created-body": "La ciave par el bot de nome \"$1\" {{GENDER:$2|de l'utente}} \"$2\" ła xé stada creada.",
+	"botpasswords-updated-title": "ciave bot ajornada",
+	"botpasswords-updated-body": "La ciave par el bot de nome \"$1\" {{GENDER:$2|de l'utente}} \"$2\" ła xé stada ajornada.",
+	"botpasswords-deleted-title": "Ciave bot creada scansełà",
+	"botpasswords-deleted-body": "La ciave par el bot de nome \"$1\" {{GENDER:$2|de l'utente}} \"$2\" ła xé stada scanselà.",
+	"botpasswords-newpassword": "Ła nova ciave par ndar drento co <strong>$1</strong> ła xé <strong>$2</strong>. <em>Rejistrateło in tel caxo de consultamenti futuri.</em> <br> (Par i veci bot che i domanda che el nome par ndar drento el sipia el steso nome del utente, te połi doparare <strong>$3</strong> cofà nome utente e <strong>$4</strong> cofà ciave.)",
+	"botpasswords-no-provider": "BotPasswordsSessionProvider no ła xe disponìbiłe.",
+	"botpasswords-restriction-failed": "Łe restrision de ciave bot łe inpedise sta entrada.",
+	"botpasswords-invalid-name": "El nome utensa scrivesto no ła detien el separador par ciave bot (\"$1\").",
+	"botpasswords-not-exist": "Ła utensa \"$1\" no ła ga na ciave bot ciamada \"$2\".",
+	"botpasswords-needs-reset": "La ciave par el bot de nome \"$2\" {{GENDER:$1|de l'utente}} \"$1\" ła ga da vegner ajornada.",
+	"botpasswords-locked": "No te połi nar drento co na ciave bot parché ła to utensa ła xe blocada"
+}

@@ -1,0 +1,43 @@
+{
+	"@metadata": {
+		"authors": [
+			"Soul Train",
+			"Батыр Комдошев"
+		]
+	},
+	"botpasswords": "Боттыҥ јажыт сӧзи",
+	"botpasswords-summary": "<em>Боттыҥ јажыт сӧзи</em> API ажыра аккаунтка кирерге арга берет, туружаачыныҥ адын ла јажыт сӧзин кийдирбей. Туружаачыныҥ аргалары боттыҥ јажыт сӧзин эдинип кирзе астап калардаҥ айабас.\n\nБу бӱкти эдинбегер аайы-бажы слерге јарт эмес болзо. Кем де, качан да слерди сурабас учурлу эдип береле ле айдып ийзин ого деп.",
+	"botpasswords-disabled": "Боттыҥ јажыт сӧстӧри токтодылган.",
+	"botpasswords-no-central-id": "Боттыҥ јажыт сӧстӧрин эдинерге, слерге центролизованный аккаунтка кирер керек.",
+	"botpasswords-existing": "Боттыҥ эмдиги јажыт сӧстӧри",
+	"botpasswords-createnew": "Ботко јаҥы јажы сӧс эдери",
+	"botpasswords-editexisting": "Боттыҥ эмдиги јажыт сӧзин ӧскӧртӧри",
+	"botpasswords-label-needsreset": "(јажыт сӧзин чачар керек)",
+	"botpasswords-label-appid": "Боттыҥ ады:",
+	"botpasswords-label-create": "Эдери",
+	"botpasswords-label-update": "Јаҥыртар",
+	"botpasswords-label-cancel": "Токтодыш",
+	"botpasswords-label-delete": "Јоголтор",
+	"botpasswords-label-resetpassword": "Јажыт сӧсти чачар",
+	"botpasswords-label-grants": "Эдингедий јарадылдар:",
+	"botpasswords-help-grants": "Кажы ла јарадыш туружаачыныҥ тоолоп салган аргаларга једерге берет туружаачыныҥ аккаунтына. [[Special:ListGrants|Јарадыштардыҥ тизимин]] кӧрӧр чокым јартамал аларга.",
+	"botpasswords-label-grants-column": "Јараткан",
+	"botpasswords-bad-appid": "\"$1\" ат ботко јарадылбаган.",
+	"botpasswords-toolong-restrictions": "Ӧткӱре кӧп IP адрестер эмезе адсрестердиҥ диапазоны бичилген.",
+	"botpasswords-toolong-grants": "Ӧткӱре кӧп аргаалар талдалган.",
+	"botpasswords-insert-failed": "\"$1\" атту бот кожылбады. Ондый аттузы бар болор бо?",
+	"botpasswords-update-failed": "\"$1\" атту боттыҥ ады јаҥыртылбады . Оны јоголтып салган болор бо?",
+	"botpasswords-created-title": "Ботко јажыт сӧзи эдилди",
+	"botpasswords-created-body": "$2 атту {{GENDER:$2|туружаачыныҥ}} $1 атту боттыҥ јажыт сӧзи эдилди",
+	"botpasswords-updated-title": "Боттыҥ јажыт сӧзи јаҥыртылды",
+	"botpasswords-updated-body": "$2 атту {{GENDER:$2|туружаачыныҥ}} $1 атту боттыҥ јажыт сӧзи јаҥыртылды",
+	"botpasswords-deleted-title": "Боттыҥ јажыт сӧзи јаҥыртылды",
+	"botpasswords-deleted-body": "$2 атту {{GENDER:$2|туружачыныҥ}} $1 атту боттыҥ јажыт сӧзи кырылды",
+	"botpasswords-newpassword": "Кирерге јаҥы јажы сӧс <strong>$1</strong> - <strong>$2</strong>. <em>Мынаҥ ары эдинерге бичип салар.</em> <br> (Эски ботторго аккаунтыныҥ ады андый ла болор керек деп некеледет болотон туружаачыныҥ адыла <strong>$3</strong> ады этире ле <strong>$4</strong> јажыт сӧс этире.)",
+	"botpasswords-no-provider": "BotPasswordsSessionProvider јок.",
+	"botpasswords-restriction-failed": "Боттыҥ јажыт сӧзине салынган кирелиштер учун, системага кирбегенер.",
+	"botpasswords-invalid-name": "Боттыҥ јажыт сӧзинде, бичилген туружаачыныҥ адында (\"$1\") бӧличи јок.",
+	"botpasswords-not-exist": "\"$1\" туружачыда \"$2\" атту боттыҥ јажыт сӧзи јок.",
+	"botpasswords-needs-reset": "$2 атту {{GENDER:$2|туружачыныҥ}} $1 атту боттыҥ јажыт сӧзи тӱжӱре чачылар керек.",
+	"botpasswords-locked": "Слердиҥ аккаунт туйукталган учун, слер системага боттыҥ јажыт сӧзин эдинип кирип болбозор."
+}

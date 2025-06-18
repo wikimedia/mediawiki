@@ -1,0 +1,43 @@
+{
+	"@metadata": {
+		"authors": [
+			"Exec8",
+			"Pare Mo"
+		]
+	},
+	"botpasswords": "Mga password sang bot",
+	"botpasswords-summary": "<em>Ang mga password sang bot</em> nagapahanugot sang pag-access sa isa ka account sang user paagi sa API nga wala nagagamit sang panguna nga mga kredensyal sa pag-login sang account. Ang mga kinamatarong sang user nga magamit kon naka-log in gamit ang password sang bot mahimo nga limitado.\n\nKon wala ka makahibalo kon ngaa mahimo mo ini himuon, mahimo nga indi mo ini paghimuon. Wala sing isa nga dapat magpangabay sa imo nga maghimo sang isa sini kag ihatag ini sa ila.",
+	"botpasswords-disabled": "Ang mga password sang bot wala ginagamit.",
+	"botpasswords-no-central-id": "Para magamit ang mga password sang bot, dapat ka naka-log in sa isa ka sentralisado nga account.",
+	"botpasswords-existing": "Nagaluntad nga mga password sang bot",
+	"botpasswords-createnew": "Maghimo sang bag-o nga password sang bot",
+	"botpasswords-editexisting": "I-edit ang nagaluntad nga password sang bot",
+	"botpasswords-label-needsreset": "(kinahanglan i-reset ang password)",
+	"botpasswords-label-appid": "Ngalan sang bot:",
+	"botpasswords-label-create": "Naghimo",
+	"botpasswords-label-update": "Paathag",
+	"botpasswords-label-cancel": "Kanselaron",
+	"botpasswords-label-delete": "Ginpanas",
+	"botpasswords-label-resetpassword": "I-reset ang password",
+	"botpasswords-label-grants": "Ang mga naaplikar nga mga bulig:",
+	"botpasswords-help-grants": "Ang mga grants nagahatag sang access sa mga kinamatarong nga ginahuptan na sang imo user account. Ang pag-enable sang grant diri wala nagahatag sang access sa bisan ano nga mga kinamatarong nga indi matigayon sang imo user account. Tan-awa ang [[Special:ListGrants|table of grants]] para sa dugang nga impormasyon.\n\nAng mga risgo nga mga grant ginamarkahan. Ang mga wala sing marka nga mga grant sa masami mabudlay abusuhan kon ang bot gina-hijack sang isa ka tawo nga may malain nga tuyo. Ang mga grant nga may risgo sa vandalism ( <span class=\"mw-grantriskgroup-vandalism\">{{int:grantriskgroup-vandalism}}</span> ) mahimo gamiton sa pagtuga sang pagkatublag nga nagakinahanglan sang madamo nga panikasog sa pagtinlo. Ang mga grants nga may risgo sa seguridad ( <span class=\"mw-grantriskgroup-security\">{{int:grantriskgroup-security}}</span> ) mahimo makatuga sang malawig nga halit (subong sang pagpangawat sang pribado nga datos). Ang mga internal grants ( <span class=\"mw-grantriskgroup-internal\">{{int:grantriskgroup-internal}}</span> ) kinaandan nga ginagamit lamang sang site operator. Palihog indi magpangayo sang risgo nga mga bulig luwas kon kinahanglan mo gid ini.",
+	"botpasswords-label-grants-column": "Nahatagan",
+	"botpasswords-bad-appid": "Ang ngalan sang bot nga \" $1 \" indi balido.",
+	"botpasswords-toolong-restrictions": "Madamo gid sing mga IP address ukon mga range nga ginsulod.",
+	"botpasswords-toolong-grants": "Madamo gid sing napili nga mga grant.",
+	"botpasswords-insert-failed": "Napaslawan sa pagdugang sang ngalan sang bot nga \" $1 \". Gindugang na bala ini?",
+	"botpasswords-update-failed": "Napaslawan sa pag-update sang ngalan sang bot nga \" $1 \". Ginpanas bala ini?",
+	"botpasswords-created-title": "Ginhimo ang password sang bot",
+	"botpasswords-created-body": "Ang password sang bot para sa ngalan sang bot \" $1 \" sang {{GENDER:$2| user}} \" $2 \" ang ginhimo.",
+	"botpasswords-updated-title": "Gin-update ang password sang bot",
+	"botpasswords-updated-body": "Ang password sang bot para sa ngalan sang bot \" $1 \" sang {{GENDER:$2| user}} \" $2 \" gin-update.",
+	"botpasswords-deleted-title": "Ang password sang bot ginpanas",
+	"botpasswords-deleted-body": "Ang password sang bot para sa ngalan sang bot \" $1 \" sang {{GENDER:$2| user}} \" $2 \" ang gindula.",
+	"botpasswords-newpassword": "Ang bag-o nga password sa pag-log in gamit ang <strong>$1</strong> amo ang <strong>$2</strong> . <em>Palihog irekord ini para sa palaabuton nga reperensya.</em><br> (Para sa mga daan nga bot nga nagakinahanglan sang login name nga pareho sa ulihi nga username, mahimo ka man maggamit <strong>$3</strong> bilang username kag <strong>$4</strong> bilang password.)",
+	"botpasswords-no-provider": "Ang BotPasswordsSessionProvider indi magamit.",
+	"botpasswords-restriction-failed": "Ang mga pagdumili sa password sang bot nagapugong sini nga pag-login.",
+	"botpasswords-invalid-name": "Ang gintalana nga ngalan sang user wala nagaunod sang bot password separator (\" $1 \").",
+	"botpasswords-not-exist": "Ang user nga \" $1 \" wala sing password sang bot nga ginahingalanan \" $2 \".",
+	"botpasswords-needs-reset": "Ang password sang bot para sa ngalan sang bot \" $2 \" sang {{GENDER:$1| user}} \" $1 \" dapat i-reset.",
+	"botpasswords-locked": "Indi ka maka-login gamit ang password sang bot bangud naka-lock ang imo account."
+}

@@ -1,0 +1,29 @@
+{
+	"@metadata": {
+		"authors": [
+			"Aursani",
+			"Indus Asia",
+			"Kaleem Bhatti",
+			"Mehtab ahmed"
+		]
+	},
+	"botpasswords": "بوٽ جا ڳجهالفظ",
+	"botpasswords-disabled": "بوٽ ڳجھالفظ ناقابلِڪار ڪيل آھن.",
+	"botpasswords-existing": "بوٽ جا موجودہ ڳجھالفظ",
+	"botpasswords-createnew": "بوٽ جو نئون ڳجهولفظ ٺاهيو",
+	"botpasswords-editexisting": "بوٽ جو موجودہ گجھولفظ سنواريو",
+	"botpasswords-label-needsreset": "(ڳجهولفظ ٻيھر مرتب ڪرڻ جي ضرورت آهي)",
+	"botpasswords-label-appid": "باٽ جو نالو:",
+	"botpasswords-label-create": "سرجيو",
+	"botpasswords-label-update": "تجديد",
+	"botpasswords-label-cancel": "رد",
+	"botpasswords-label-delete": "ڊاھيو",
+	"botpasswords-label-resetpassword": "ڳجهولفظ ٻيھر مقرر ڪريو",
+	"botpasswords-label-grants": "لاڳو ٿيندڙ اجازتون:",
+	"botpasswords-label-grants-column": "منظور",
+	"botpasswords-bad-appid": "بوٽ نانءُ \"$1\" قابلِڪار ناھي.",
+	"botpasswords-created-title": "بوٽ گجھولفظ ٺاھيو ويو",
+	"botpasswords-updated-title": "بوٽ گجهي-لفظ جي تجديد ڪئي وئي",
+	"botpasswords-deleted-title": "بوٽ ڳجهولفظ ڊاٿو ويو",
+	"botpasswords-not-exist": "واپرائيندڙ \" $1 \" وٽ \" $2 \" نالي ڪو بوٽ پاسورڊ نه آهي."
+}

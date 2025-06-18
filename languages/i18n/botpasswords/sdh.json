@@ -1,0 +1,15 @@
+{
+	"@metadata": {
+		"authors": [
+			"TerranBoy"
+		]
+	},
+	"botpasswords": "وێەروشەێ بۆت",
+	"botpasswords-label-appid": "ناو بۆت:",
+	"botpasswords-label-create": "درسکردن",
+	"botpasswords-label-update": "وەڕووژکردن",
+	"botpasswords-label-cancel": "هەڵوەشاننەوە",
+	"botpasswords-label-delete": "سڕینەوە",
+	"botpasswords-label-resetpassword": "ڕیکخستنەوەێ وێەروشە",
+	"botpasswords-updated-title": "وێەروشەێ بۆتەگە وەڕووژکریا"
+}

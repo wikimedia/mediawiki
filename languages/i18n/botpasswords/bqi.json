@@ -1,0 +1,39 @@
+{
+	"@metadata": {
+		"authors": [
+			"Kikumoron",
+			"Mogoeilor"
+		]
+	},
+	"botpasswords": "رازیناْیٱل گوڌٱشتن بوتٱل",
+	"botpasswords-summary": "<em>زازیناْ گوڌٱشتن روباتی</em> سلا دٱرسی ب یٱ هساو کاریاری ڤا اْی آی پی ناْ بی یو کاْ رازیناْ گوڌٱشتن ٱسلی هساو کاریاری ناْ بزنین اْڌاْ.\nدٱسرسی کاریاری مۉجۊڌ گاتی کاْ ڤا رازیناْ گوڌٱشتن روباتیک اٛرین ڤامیٛن گاشا دٱسگر بۊ.\nار نڌونین کاْ گاشا ڤاس چ کونین، اٛئتمالٱ نٱڤا هیژ کاری کونین، هیژ کٱسی نٱڤا زیسا بخا کاْ یکی ز یونونی کاْ راسد کردیناْ بڌین ڤورس.",
+	"botpasswords-disabled": "نٱترین سی بوتٱل رازیناْ گوڌٱشتن باْنین",
+	"botpasswords-no-central-id": "سی ڤاکار ڤٱندن رازیناْیٱل گوڌٱشتن بوت، ایسا ڤا بیائین ڤامیٛن سی یو کاْ هساو کاریاریتو یٱکاگر ڤابۊ.",
+	"botpasswords-existing": "رازیناْ گوڌٱشتن سی بوتٱل",
+	"botpasswords-createnew": "یٱ زاریناْ گوڌٱشتن تازاْ سی بوت راسد کونین.",
+	"botpasswords-editexisting": "رازیناْ گوڌٱشتن یٱ بوت ناْ کاْ هڌس آلشدکاری کو.",
+	"botpasswords-label-needsreset": "(ڤا ز نۉ رازیناْ گوڌٱشتن باْنین)",
+	"botpasswords-label-appid": "نوم بوت:",
+	"botpasswords-label-create": "راس كردن",
+	"botpasswords-label-update": "ب هنگوم سازی",
+	"botpasswords-label-cancel": "ٱنجومشیڤ کردن",
+	"botpasswords-label-delete": "پاکسا کردن",
+	"botpasswords-label-resetpassword": "ز نۉ داڌن رازیناْ گوڌٱشتن",
+	"botpasswords-label-grants": "هوقۊق کونشتگٱر ڤابیڌنی:",
+	"botpasswords-label-grants-column": "داڌاْ ڤابی",
+	"botpasswords-bad-appid": "نوم\"$1\" سی بوت خۊ نی.",
+	"botpasswords-insert-failed": "اْزاف کردن نوم \"$1\" سی بوت ناخوش سرٱنجوم بی. آیا هاْنی اْزاف نٱڤابیڌاْ?",
+	"botpasswords-update-failed": "ب هنگوم سازی نوم \"$1\" سی بوت ناخوش سرٱنجوم بی. آیا هاْنی پاکسا نٱڤٱبیڌاْ?",
+	"botpasswords-created-title": "رازیناْ گوڌٱشتن سی بوت راسد ڤابی",
+	"botpasswords-created-body": "رازیناْ گوڌٱشتن سی \"$1\" {{GENDER:$2|کاریار}} \"$2\" راسد ڤابی.",
+	"botpasswords-updated-title": "رازیناْ گوڌٱشتن بوت ب هنگوم سازی ڤابی",
+	"botpasswords-updated-body": "رازیناْ گوڌٱشتن سی \"$1\" {{GENDER:$2|کاریار}} \"$2\" ب هنگوم ساز ڤابی.",
+	"botpasswords-deleted-title": "رازیناْ گوڌٱشتن سی بوت پاکسا ڤابی",
+	"botpasswords-deleted-body": "رازیناْ گوڌٱشتن سی \"$1\" {{GENDER:$2|کاریار}} \"$2\" پاکسا ڤابی.",
+	"botpasswords-no-provider": "BotPasswordsSessionProvider نیڌس.",
+	"botpasswords-restriction-failed": "دٱسگریٱل رازیناْ گوڌٱشتن روبات نیا ای ڤامیٛن ٱڤوڌن ناْ اْگراْ.",
+	"botpasswords-invalid-name": "نوم کاریاری تیار ڤابیڌاْ سٱڤاگٱر رازیناْ گوڌٱشتن روباتی ناراْ(\"$1\").",
+	"botpasswords-not-exist": "کاریار\"$1\" رازیناْ گوڌٱشتن روباتی کاْ نومس\"$2\" بۊ ناراْ.",
+	"botpasswords-needs-reset": "رازیناْ گوڌٱشتن روباتی \"$2\" سی {{GENDER:$1|کاریار}}\"$1\" ڤا ز نۉ میزونکاری ڤابۊ.",
+	"botpasswords-locked": "ایسا نٱترین ڤا یٱ رازیناْ گوڌٱشتن بوت بیائین ڤامیٛن سی یو کاْ هساوتون قولف ڤابیڌاْ."
+}

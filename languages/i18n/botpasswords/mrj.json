@@ -1,0 +1,43 @@
+{
+	"@metadata": {
+		"authors": [
+			"Angelika",
+			"Nadezhda"
+		]
+	},
+	"botpasswords": "Ботвлӓн парольвлӓштӹ",
+	"botpasswords-summary": "<em>Ботвлӓн парольвлӓштӹ</em>, тӹнг аккаунтын логин дон парольым кычылтде, пользовательӹн аккаунтышкыжы API гач пыраш йӧным пуат. Ботын парольжы доно пырымы годым пользовательӹн праважы ограничениӓн лин кердеш.\n\nТидӹм малын ӹштӓш келеш ат пӓлӹ гӹнь,тӹлӓт, векӓт, тидӹм ӹштӓш ак кел. Тидӹм ӹштӓш дӓ нӹнӹлӓн ӹштӹмӹм пуаш иктӓт нигынамат тӹньӹм ядшашлык агыл.",
+	"botpasswords-disabled": "Ботвлӓн парольвлӓштӹм йӧртӹмӹ.",
+	"botpasswords-no-central-id": "Кок парольымат кычылташ манын, тӹнь ӹрдӹ аккаунтыш пырышашлык ылат.",
+	"botpasswords-existing": "Ботвлӓн ылшы парольвлӓштӹ",
+	"botpasswords-createnew": "Ботын у парольжым ӹштӓш",
+	"botpasswords-editexisting": "Ботын ылшы парольжым тӧрлӓтӓш",
+	"botpasswords-label-needsreset": "(парольым карангдаш келеш)",
+	"botpasswords-label-appid": "Ботын лӹмжӹ:",
+	"botpasswords-label-create": "Ӹштӓш",
+	"botpasswords-label-update": "Уэмдӓш",
+	"botpasswords-label-cancel": "Цӓрӓш",
+	"botpasswords-label-delete": "Карангдаш",
+	"botpasswords-label-resetpassword": "Парольым карангдаш",
+	"botpasswords-label-grants": "Кычылташ лишӹ грантвлӓ:",
+	"botpasswords-help-grants": "Разрешенивлӓ тӹньӹн пользовательский аккаунтетӹн уже ылшы прававлӓм кычылташ ирӹкӹм пуат. Тиштӹ разрешеним чӱктӹмӓш махань-гӹнят прававлӓм кычылташ ирӹкӹм ак пу, кыдывлӓ, уке гӹнь, тӹньӹн пользовательский аккаунтетӹн уке лит ыльы. \nШукырак информацим [[Special:ListGrants|разрешенин таблицӹштӹжӹ]] анжы.\n\nЛӱдӹкшӹ разрешенивлӓ пӓлемдӓлтӹт. Ботым тӓгӱ шӹдӹ шанымаш дон пыдыртен гӹнь, пӓлемдӹдӹмӹ разрешеним тӹргач кычылташ ясы. Вандализман разрешенивлӓ (<span class=\"mw-grantriskgroup-vandalism\">{{int:grantriskgroup-vandalism}}</span>) пӓшӓм пыдырташ кычылталт кердӹт, кыдым тӧрлӓш шукы ви келеш. Безопасностьым пыдыртен кердшӹ разрешенивлӓ (<span class=\"mw-grantriskgroup-security\">{{int:grantriskgroup-security}}</span>) кужы жеплӓн эксӹкӹм канден кердӹт (шамак толшеш, личный данныйвлӓм шолыштмаш). Кӧргӹштӹшӹ разрешенивлӓм (<span class=\"mw-grantriskgroup-internal\">{{int:grantriskgroup-internal}}</span>) шукыжы годым сайтын операторжы веле кычылтеш. Тӹлӓт лӱдӹкшӹ разрешенивлӓ лачок керӓл агылеп гӹнь, пожалуйста, нӹнӹм ит яд.",
+	"botpasswords-label-grants-column": "Кычылташ лишӹ",
+	"botpasswords-bad-appid": "Ботын \"$1\" лӹмжӹ лин кертдӹмӹ.",
+	"botpasswords-toolong-restrictions": "Утыдон шукы IP адресӹм ӓли диапазоным пыртымы.",
+	"botpasswords-toolong-grants": "Утыдон шукы правам айырымы.",
+	"botpasswords-insert-failed": "Ботын \"$1\" лӹмжӹм уштараш ӹш ли. Тӹдӹм ирӹрӓк уштарымы?",
+	"botpasswords-update-failed": "Ботын \"$1\" лӹмжӹм уэмдӓш ӹш ли. Тӹдӹм карангдымы?",
+	"botpasswords-created-title": "Ботын парольжым ӹштӹмӹ.",
+	"botpasswords-created-body": "\"$2\" {{GENDER:$2|пользовательлӓн}} дӓ \"$1\" лӹмӓн ботлан парольым ӹштӹмӹ.",
+	"botpasswords-updated-title": "Ботын парольжым уэмдӹмӹ",
+	"botpasswords-updated-body": "\"$2\" {{GENDER:$2|пользовательлӓн}} дӓ \"$1\" лӹмӓн ботлан парольым уэмдӹмӹ.",
+	"botpasswords-deleted-title": "Ботын парольжым карангдымы",
+	"botpasswords-deleted-body": "\"$2\" {{GENDER:$2|пользовательӹн}} дӓ \"$1\" лӹмӓн ботын парольым карангдымы.",
+	"botpasswords-newpassword": "<strong>$1</strong> доно пыраш <strong>$2</strong> — у пароль. <em>Тӹдӹм пакыла кычылташ манын, пожалуйста, переген коды.</em> <br> (Тошты ботвлӓлӓн пользовательӹн лӹмжӹ пӹтӓртӹш лӹм доно икань ылмышты келеш. Тӹнь тенгеок <strong>$3</strong> пользовательӹн лӹмжӹ семӹнь дӓ <strong>$4</strong> пароль семӹнь кычылт кердӓт.)",
+	"botpasswords-no-provider": "BotPasswordsSessionProvider кычылташ лидӹмӹ.",
+	"botpasswords-restriction-failed": "Ботын парольжы доно ограниченивлӓ системӹш тенге пырымылан тореш шалгат.",
+	"botpasswords-invalid-name": "Анжыктымы пользовательӹн лӹмӹштӹжӹ парольвлӓм айырышы (\"$1\") бот уке.",
+	"botpasswords-not-exist": "\"$1\" пользовательӹн \"$2\" лӹмӓн ботлан парольжы уке.",
+	"botpasswords-needs-reset": "«$2» {{GENDER:$2|пользовательӹн}} «$1» ботшылан парольым карангдаш келеш.",
+	"botpasswords-locked": "Аккаунтетӹм блокируйымы гишӓн, тӹнь ботын парольжы доно системӹш пырен ат керд."
+}

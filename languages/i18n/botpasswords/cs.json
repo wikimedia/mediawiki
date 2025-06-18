@@ -1,0 +1,43 @@
+{
+	"@metadata": {
+		"authors": [
+			"LordMsz",
+			"Mormegil"
+		]
+	},
+	"botpasswords": "Hesla pro boty",
+	"botpasswords-summary": "<em>Hesla pro boty</em> umožňují přistupovat k uživatelskému účtu prostřednictví API bez použití hlavních přihlašovacích údajů účtu. Uživatelská oprávnění dostupná po přihlášení pomocí hesla pro boty mohou být omezena.\n\nPokud nevíte, k čemu byste to {{GENDER:|chtěl|chtěla|chtěli}} použít, pravděpodobně byste to používat {{GENDER:|neměl|neměla|neměli}}. Nikdo by vás nikdy neměl žádat, abyste si zde {{GENDER:|vygeneroval heslo a dal|vygenerovala heslo a dala|vygenerovali heslo a dali}} mu ho.",
+	"botpasswords-disabled": "Hesla pro boty jsou zakázána.",
+	"botpasswords-no-central-id": "Abyste {{GENDER:|mohl|mohla|mohl(a)}} použít hesla pro boty, musíte být {{GENDER:|přihlášen|přihlášena|přihlášen(a)}} k centrálnímu účtu.",
+	"botpasswords-existing": "Stávající hesla pro boty",
+	"botpasswords-createnew": "Vytvořit nové heslo pro boty",
+	"botpasswords-editexisting": "Editovat existující heslo pro boty",
+	"botpasswords-label-needsreset": "(heslo se musí resetovat)",
+	"botpasswords-label-appid": "Název bota:",
+	"botpasswords-label-create": "Vytvořit",
+	"botpasswords-label-update": "Aktualizovat",
+	"botpasswords-label-cancel": "Storno",
+	"botpasswords-label-delete": "Smazat",
+	"botpasswords-label-resetpassword": "Resetovat heslo",
+	"botpasswords-label-grants": "Použitelná oprávnění:",
+	"botpasswords-help-grants": "Přidělení dávají přístup k oprávněním, která váš uživatelský účet již má. Zaškrtnutím přidělení zde nezíská váš účet jakákoli práva, která by jinak neměl. Více informací najdete v [[Special:ListGrants|tabulce oprávnění]].\n\nRiziková přidělení jsou označena. Neoznačená přidělení se typicky těžko zneužívají, když bota ukradne někdo se zlomyslnými úmysly. Přidělení s rizikem vandalismu (<span class=\"mw-grantriskgroup-vandalism\">{{int:grantriskgroup-vandalism}}</span>) mohou být použita ke způsobení nepořádku, který k úklidu vyžaduje mnoho úsilí. Přidělení s bezpečnostním rizikem (<span class=\"mw-grantriskgroup-security\">{{int:grantriskgroup-security}}</span>) mohou způsobit trvalou škodu (např. krádež soukromých údajů). Interní přidělení (<span class=\"mw-grantriskgroup-internal\">{{int:grantriskgroup-internal}}</span>) typicky používají jen provozovatelé tohoto serveru. Prosím nevyžadujte riziková přidělení, pokud je opravdu nepotřebujete.",
+	"botpasswords-label-grants-column": "Přiděleno",
+	"botpasswords-bad-appid": "Název bota „$1“ není platný.",
+	"botpasswords-toolong-restrictions": "Bylo zadáno příliš mnoho IP adres nebo rozsahů.",
+	"botpasswords-toolong-grants": "Bylo vybráno příliš mnoho oprávnění.",
+	"botpasswords-insert-failed": "Nepodařilo se přidat název bota „$1“. Nebyl už přidán?",
+	"botpasswords-update-failed": "Nepodařilo se aktualizovat název bota „$1“. Nebyl smazán?",
+	"botpasswords-created-title": "Heslo pro bota vytvořeno",
+	"botpasswords-created-body": "Heslo pro bota jménem „$1“ {{GENDER:$2|uživatele|uživatelky}} „$2“ bylo vytvořeno.",
+	"botpasswords-updated-title": "Heslo pro bota aktualizováno",
+	"botpasswords-updated-body": "Heslo pro bota jménem „$1“ {{GENDER:$2|uživatele|uživatelky}} „$2“ bylo aktualizováno.",
+	"botpasswords-deleted-title": "Heslo pro bota smazáno",
+	"botpasswords-deleted-body": "Heslo pro bota jménem „$1“ {{GENDER:$2|uživatele|uživatelky}} „$2“ bylo smazáno.",
+	"botpasswords-newpassword": "Nové přihlašovací heslo pro bota <strong>$1</strong> je <strong>$2</strong>. <em>Zaznamenejte si je pro budoucí použití.</em> <br> (Pro staré boty, vyžadující, aby přihlašovací jméno bylo stejné jako následné uživatelské jméno, můžete také jako uživatelské jméno použít <strong>$3</strong> a jako heslo <strong>$4</strong>.)",
+	"botpasswords-no-provider": "BotPasswordsSessionProvider není dostupný.",
+	"botpasswords-restriction-failed": "Toto přihlášení bylo zamítnuto omezením hesel pro boty.",
+	"botpasswords-invalid-name": "Uvedené uživatelské jméno neobsahuje oddělovač hesel pro boty („$1“).",
+	"botpasswords-not-exist": "Uživatel „$1“ nemá heslo pro bota nazvaného „$2“.",
+	"botpasswords-needs-reset": "Heslo pro bota jménem „$2“ {{GENDER:$2|uživatele|uživatelky}} „$1“ se musí resetovat.",
+	"botpasswords-locked": "Nemůžete se přihlásit s heslem pro bota, protože váš účet je zamčen."
+}

@@ -1,0 +1,42 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ardzun",
+			"Iwan Novirion",
+			"S Kartika"
+		]
+	},
+	"botpasswords": "Kato sandi bot",
+	"botpasswords-summary": "<em>Kato sandi bot</em> mamungkinkan akses ka akun pangguno manggunokan API jo indak manggunokan kredensial masuak log utamo akun tasabuik. Hak pangguno nan tasadio katiko masuak log jo kato sandi bot mungkin ka dibatasi.\n\nKok Sanak indak tau dek a Sanak ka malakukan hal ko, sarancaknyo jan lakukan. Samustinyo indak ado urang lain nan buliah mamintak Sanak untuak mambuek jo manyarahan kato sandi bot ko kapadonyo.",
+	"botpasswords-disabled": "Kato sandi bot indak diaktifan.",
+	"botpasswords-no-central-id": "Untuak manggunoan kato sandi bot, Sanak harus masuak log ka akun nan alah disentralisasi.",
+	"botpasswords-existing": "Kato sandi bot tasadio",
+	"botpasswords-createnew": "Buek kato sandi bot nan baru",
+	"botpasswords-editexisting": "Ubah kato sandi bot nan alah ado",
+	"botpasswords-label-needsreset": "(kato sandi paralu di atua ulang)",
+	"botpasswords-label-appid": "Namo bot:",
+	"botpasswords-label-create": "Buek",
+	"botpasswords-label-update": "Pabarui",
+	"botpasswords-label-cancel": "Batalan",
+	"botpasswords-label-delete": "Hapuih",
+	"botpasswords-label-resetpassword": "Setel ulang kato sandi",
+	"botpasswords-label-grants": "Akses nan dapek diagiah:",
+	"botpasswords-help-grants": "Izin ka akses tatantu alah dipunyoi akun pangguno Sanak. Maaktifkan sabuah hak di siko indak maagiah akses ka akses lain nan indak dimiliki dek akun pangguno Sanak. Caliak [[Special:ListGrants|daftar hak akses]] untuak informasi salangkoknyo.",
+	"botpasswords-label-grants-column": "Izin diagiah",
+	"botpasswords-bad-appid": "Namo bot \"$1\" indak sah.",
+	"botpasswords-insert-failed": "Gagal manambah namo bot \"$1\". Alah ditambahan sabalun iko?",
+	"botpasswords-update-failed": "Gagal mampabarui namo bot \"$1\". Pernah dihapuih sabalunnyo?",
+	"botpasswords-created-title": "Kato sandi bot alah dibuek",
+	"botpasswords-created-body": "Kato sandi untuak bot \"$1\" dari {{GENDER:$2|user}} \"$2\" berhasil dibuek.",
+	"botpasswords-updated-title": "Kato sandi bot alah dipabarui",
+	"botpasswords-updated-body": "Kato sandi untuak bot \"$1\" dari {{GENDER:$2|user}} \"$2\" alah dipabarui.",
+	"botpasswords-deleted-title": "Kato sandi bot dihapuih",
+	"botpasswords-deleted-body": "Kato sandi untuak bot \"$1\" dari {{GENDER:$2|user}} \"$2\" berhasil dihapuih.",
+	"botpasswords-newpassword": "Kato sandi baru untuak masuak log jo <strong>$1</strong> adolah <strong>$2</strong>. <em>Cataiklah kato sandi ko untuak rujuakan ka muko.</em> <br> (Untuak bot lamo nan mamaralukan namo masuak log nan samo jo namo pangguno, dapek manggunokan <strong>$3</strong> sabagai namo pangguno jo <strong>$4</strong> sabagai kato sandi.)",
+	"botpasswords-no-provider": "BotPasswordsSessionProvider indak tasadio.",
+	"botpasswords-restriction-failed": "Bateh dalam kato sandi mangahalangi masuak log ko.",
+	"botpasswords-invalid-name": "Namo pangguno nan diagiah indak manganduang pamisah kato sandi bot (\"$1\").",
+	"botpasswords-not-exist": "Pangguno \"$1\" indak mampunyoi kato sandi bot banamo \"$2\".",
+	"botpasswords-needs-reset": "Kato sandi untuak bot \"$2\" dari {{GENDER:$1|user}} \"$1\" harus di atua ulang.",
+	"botpasswords-locked": "Sanak indak dapek masuak log jo kato sando bot karano akun Sanak dikunci."
+}

@@ -1,0 +1,15 @@
+{
+	"@metadata": {
+		"authors": [
+			"Robertjamal12"
+		]
+	},
+	"botpasswords-createnew": "Te bot kukuwa mu ahyɛnsode foforo",
+	"botpasswords-label-needsreset": "(kukuwa mu ahyɛnsode np hia nsesae)",
+	"botpasswords-label-create": "Bɔ",
+	"botpasswords-label-update": "Nkaebɔ",
+	"botpasswords-label-cancel": "Twa mu",
+	"botpasswords-label-delete": "Pepa",
+	"botpasswords-label-resetpassword": "Sesa wo kukuwa mu ahyɛnsode",
+	"botpasswords-label-grants-column": "Yɛ de ama wo"
+}

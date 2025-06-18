@@ -1,0 +1,23 @@
+{
+	"@metadata": {
+		"authors": [
+			"Yupik"
+		]
+	},
+	"botpasswords": "Bottpeittsääʹn",
+	"botpasswords-createnew": "Raaj ođđ bottpeittsääʹn",
+	"botpasswords-label-appid": "Boott nõmm:",
+	"botpasswords-label-create": "Raaj",
+	"botpasswords-label-update": "Peiʹvved",
+	"botpasswords-label-cancel": "Jõõsk",
+	"botpasswords-label-delete": "Jaukkâd",
+	"botpasswords-update-failed": "Boott nõõm \"$1\" peiʹvveem ij oʹnnstam. Leežž-a tõt jaukkuum?",
+	"botpasswords-created-title": "Bottpeittsääʹn raʹjješ",
+	"botpasswords-created-body": "Bottpeittsääʹn {{GENDER:$2|õõʹnni}} boʹtte \"$1\" raʹjješ.",
+	"botpasswords-updated-title": "Bottpeittsääʹn peiʹvveeš",
+	"botpasswords-updated-body": "Bottpeittsääʹn {{GENDER:$2|õõʹnni}} boʹtte \"$1\" peiʹvveeš.",
+	"botpasswords-deleted-title": "Bottpeittsääʹn jaukkeeš",
+	"botpasswords-deleted-body": "Bottpeittsääʹn {{GENDER:$2|õõʹnni}} boʹtte \"$1\" jaukkeeš.",
+	"botpasswords-not-exist": "Õõʹnnʼjest \"$1\" ij leäkku bottpeittsääʼnn boʹtte \"$2\".",
+	"botpasswords-needs-reset": "Bottpeittsääʹn {{GENDER:$1|õõʹnni}} \"$1\" boʹtte \"$2\" âlgg vaajted."
+}

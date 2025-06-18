@@ -1,0 +1,31 @@
+{
+	"@metadata": {
+		"authors": [
+			"N219",
+			"NoiX180",
+			"Sumbukompor"
+		]
+	},
+	"botpasswords": "Tembung sandi bot",
+	"botpasswords-disabled": "Tembung sandiné bot dipatèni.",
+	"botpasswords-no-central-id": "Saperlu nganggo tembung sandiné bot, kowé kudu mlebu log akun séntral.",
+	"botpasswords-existing": "Tembung sandiné bot kang cumepak",
+	"botpasswords-createnew": "Gawé anyar tembung sandiné bot",
+	"botpasswords-editexisting": "Besut tembung sandiné bot kang anyar",
+	"botpasswords-label-needsreset": "(tembung sandi kudu kasetèl ulang)",
+	"botpasswords-label-appid": "Jeneng bot:",
+	"botpasswords-label-create": "Gawé",
+	"botpasswords-label-update": "Anyari",
+	"botpasswords-label-cancel": "Wurung",
+	"botpasswords-label-delete": "Busak",
+	"botpasswords-label-resetpassword": "Ambali nyetèl tembung sandi",
+	"botpasswords-bad-appid": "Jeneng bot \"$1\" ora trep.",
+	"botpasswords-insert-failed": "Wurung nambah jeneng bot \"$1\". Apa wis tinambahaké sadurungé?",
+	"botpasswords-created-title": "Tembung sandi bot digawé",
+	"botpasswords-created-body": "Tembung sandi bot kanggo jeneng bot \"$1\" saka {{GENDER:$2|naraguna}} \"$2\" digawé.",
+	"botpasswords-updated-title": "Tembung sandi bot dianyari",
+	"botpasswords-updated-body": "Tembung sandi bot kanggo jeneng bot \"$1\" saka {{GENDER:$2|naraguna}} \"$2\" dianyari.",
+	"botpasswords-deleted-title": "Tembung sandi bot dibusak",
+	"botpasswords-deleted-body": "Tembung sandi bot kanggo jeneng bot \"$1\" saka {{GENDER:$2|naraguna}} \"$2\" dibusak.",
+	"botpasswords-no-provider": "BotPasswordsSessionProvider ora cumawis."
+}

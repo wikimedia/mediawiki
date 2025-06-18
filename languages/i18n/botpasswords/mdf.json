@@ -1,0 +1,42 @@
+{
+	"@metadata": {
+		"authors": [
+			"Валгриш"
+		]
+	},
+	"botpasswords": "Ботонь сувама валхт",
+	"botpasswords-summary": "<em>ботонь сувама валхне</em> максыхть учётонь сёрматфксненди нолдама API пачк пряфксонь учётонь сёрматфксти лемфтема и сувама валфтома. Ботонь сувама валть вельде сувамста тонь праватне улема аф ламода кирьфтавихть.\n\nКда тон аф содасак мезенди тя эряви, эста тяк нолда тевс тя лопать. Кивок мзярдовок аф кармай эняльдема тееть тиемс тя сувама валть и  корхтамс колганза.",
+	"botpasswords-disabled": "Ботонь сувама валхне ульсть лоткафтфт.",
+	"botpasswords-no-central-id": "Ботонь сувама валть тевс нолдаманкса тееть эряви сувамс марстонь учётонь сёрматфксти.",
+	"botpasswords-existing": "Ботть уликс сувама валонза",
+	"botpasswords-createnew": "Тиемс-ладямс од сувама вал ботти",
+	"botpasswords-editexisting": "Петемс ботонь сувама валть",
+	"botpasswords-label-needsreset": "(сувама валсь веши одукс путома)",
+	"botpasswords-label-appid": "Ботть лемоц:",
+	"botpasswords-label-create": "Тиемс-ладямс",
+	"botpasswords-label-update": "Одкстоптомс",
+	"botpasswords-label-cancel": "Валхтомс/Сявомс меки",
+	"botpasswords-label-delete": "Нардамс",
+	"botpasswords-label-resetpassword": "Нардамс сувама валть",
+	"botpasswords-label-grants": "Тевс нолдаманди мярьгомат:",
+	"botpasswords-help-grants": "Эрь мярьгомась максы нолдама сувайть няфтьф праванзонды, конат улихть сувайть учётонь сёрматфкссонза. Башка мялень сявоманкса  ванк [[Special:ListGrants|мярьгомань таблицать]].",
+	"botpasswords-label-grants-column": "Мярькф",
+	"botpasswords-bad-appid": "«$1» ботонь лемоц аф мярьгови нолдамс.",
+	"botpasswords-toolong-restrictions": "Сёрматф-сувафтф пяк лама IP-тяштькст или ащема вастонь ёткт.",
+	"botpasswords-toolong-grants": "Кочкаф  пяк лама прават.",
+	"botpasswords-insert-failed": "Изь лисе путомс «$1» лем мархта ботть. Улема, сон ни путфоль?",
+	"botpasswords-update-failed": "Изь лисе одкстоптомс «$1» лем мархта ботть. Улема, сон нардафоль?",
+	"botpasswords-created-title": "Ботонь сувама валсь тиф-ладяф",
+	"botpasswords-created-body": "Ботонь сувама валсь «$1» ботонди {{GENDER:$2|сувайти}} «$2» ульсь тиф-ладяф.",
+	"botpasswords-updated-title": "Ботонь сувама валсь одкстоптф",
+	"botpasswords-updated-body": "Ботонь сувама валсь «$1» ботонди {{GENDER:$2|сувайти}} «$2» ульсь одкстоптф.",
+	"botpasswords-deleted-title": "Ботть сувама валоц нардаф",
+	"botpasswords-deleted-body": "Ботонь сувама валсь «$1» ботти {{GENDER:$2|сувайть|сувайти}} «$2» ульсь нардаф.",
+	"botpasswords-newpassword": "Суваманди од сувама вал <strong>$1</strong> — <strong>$2</strong>. <em> сёрматк сонь  сяда тов тевс нолдаманди.</em> <br /> (Ташта боттненди, конат вешихть сувайть кода и сай пингонь сувайть кядьста улемс фкя лем ала, тееть ули кода нолдамс тевс <strong>$3</strong> сувайть лемоц <strong>$4</strong> и сувама валське.)",
+	"botpasswords-no-provider": "BotPasswordsSessionProvider аш кода сувамс.",
+	"botpasswords-restriction-failed": "Ботонь сувама валть мархта кардаматнень инкса сувамась изь лисе.",
+	"botpasswords-invalid-name": "Сувайть няфтьф лемонц эса аш явфтома ботонь сувама валти (\"$1\").",
+	"botpasswords-not-exist": "«$1» сувайть аш сувама валоц «$2» лем мархта ботонди.",
+	"botpasswords-needs-reset": "«$1» ботонди сувама валсь {{GENDER:$2|сувайть|сувайти}} «$2» эрявсь нардамс.",
+	"botpasswords-locked": "Тон аф сувават ботть сувама валонц мархта системати, сяс мес тонь учётонь сёрматфксце пякстаф."
+}

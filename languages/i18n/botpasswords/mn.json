@@ -1,0 +1,13 @@
+{
+	"@metadata": {
+		"authors": [
+			"Enkhsaihan2005"
+		]
+	},
+	"botpasswords-label-create": "Үүсгэх",
+	"botpasswords-label-update": "Шинэчлэх",
+	"botpasswords-label-cancel": "Цуцлах",
+	"botpasswords-label-delete": "Устгах",
+	"botpasswords-label-resetpassword": "Нууц үгийг сэргээх",
+	"botpasswords-label-grants-column": "Зөвшөөрөгдсөн"
+}

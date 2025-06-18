@@ -1,0 +1,41 @@
+{
+	"@metadata": {
+		"authors": [
+			"Jagwar"
+		]
+	},
+	"botpasswords": "Tenimiafin-drôbô",
+	"botpasswords-summary": "Ny <em>Tenimiafina rôbô</em> dia manome alalana ny mampiasa ny kaontim-pikambana iray amin'ny alalana API ka tsy mila mampiasa ny tenimiafin'ny mpikambana. Ny zom-pikambana ananana rehefa tafiditra amin'ny alalana tenimiafina rôbô dia mety ho voafetra.\n\nRaha tsy fantatrao ny antony hanaovanao izany dia tsy tokony hanao izany ianao. Tsy tokony hisy ny olona hangataka anao hamoaka iray amin'itony ary hanome azy.",
+	"botpasswords-disabled": "Tsy ampiasaina ny tenimiafin-drôbô.",
+	"botpasswords-no-central-id": "Raha hampiasa tenimiafina rôbô dia tsy maintsy tafiditra anaty kaonty iombonan-tsehatra ianao.",
+	"botpasswords-existing": "Tenimiafin-drôbô efa misy",
+	"botpasswords-createnew": "Hamorona tenimiafina rôbô vaovao",
+	"botpasswords-editexisting": "Hanova tenimiafina rôbô efa misy",
+	"botpasswords-label-needsreset": "(mila famerenana ny tenimiafina)",
+	"botpasswords-label-appid": "Anarana rôbô:",
+	"botpasswords-label-create": "Foronina",
+	"botpasswords-label-update": "Vaozina",
+	"botpasswords-label-cancel": "Avela",
+	"botpasswords-label-delete": "Fafàna",
+	"botpasswords-label-resetpassword": "Hamerina ny tenimiafina",
+	"botpasswords-label-grants": "Zo mihatra:",
+	"botpasswords-label-grants-column": "Nomena",
+	"botpasswords-bad-appid": "Tsy azo raisina ny anarana rôbô \"$1\".",
+	"botpasswords-toolong-restrictions": "Be loatra ny adiresy na ny plage-n'adiresy IP nampidirina.",
+	"botpasswords-toolong-grants": "Betsaka loatra ny fanomezana voafantina.",
+	"botpasswords-insert-failed": "Tsy afaka nanampy ny anarana rôbô \"$1\". Tsy efa nampiana ve ilay izy?",
+	"botpasswords-update-failed": "Tsy afaka nanavao ny anarana rôbô \"$1\". Nofafàna ve ilay izy?",
+	"botpasswords-created-title": "Noforonina ilay tenimiafina rôbô",
+	"botpasswords-created-body": "Noforonina ny tenimiafina rôbô \"$1\"{{GENDER:$2|}} an'ny mpikambana \"$2\".",
+	"botpasswords-updated-title": "Nohavaozina ny tenimiafina rôbô",
+	"botpasswords-updated-body": "Nohavaozina ny tenimiafina rôbô \"$1\" an'ny mpikambana \"$2\"{{GENDER:$2|}}.",
+	"botpasswords-deleted-title": "Nofafàna ny tenimiafina rôbô",
+	"botpasswords-deleted-body": "Nofafàna ny tenimiafina rôbô \"$1\" an'ny {{GENDER:$2|mpikambana}} \"$2\".",
+	"botpasswords-newpassword": "Ny tenimiafina hidirana amin'i <strong>$1</strong> dia <strong>$2</strong>. <em>Raiketo izany ho fampatsiahivana ho an'ny ho avy</em><br>(Ho an'ny rôbô taloha izay mila ny anaram-pidirana mitovy amin'ny anaram-pikambana dia azonao ampiasaina ho anaram-pikambana i <strong>$3</strong> ary niy tenimiafina <strong>$4</strong>.)",
+	"botpasswords-no-provider": "Tsy afaka antsoina ny BotPasswordsSessionProvider.",
+	"botpasswords-restriction-failed": "Manakana ity fidirana ity ny fepetra mifehy ny tenimiafina rôbô.",
+	"botpasswords-invalid-name": "Ny solonanarana voatondro dia tsy ahitana ny mpizara tenimiafina rôbô (\"$1\").",
+	"botpasswords-not-exist": "Tsy manana tenimiafina rôbô \"$2\" ny mpikambana \"$1\".",
+	"botpasswords-needs-reset": "Ny tenimiafina rôbô ho an'ny anarana rôbô \"$2\" an'ny {{GENDER:$1|mpikambana}} \"$1\" dia tsy maintsy averina.",
+	"botpasswords-locked": "Tsy afaka miditra amin'ny tenimiafina rôbô ianao satria voasakana ny kaontinao."
+}

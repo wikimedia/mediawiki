@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ezagren"
+		]
+	},
+	"botpasswords": "Katasunduk bot",
+	"botpasswords-label-create": "Ulah",
+	"botpasswords-label-update": "Hanyari",
+	"botpasswords-label-cancel": "Pasahakan",
+	"botpasswords-label-delete": "Hapus",
+	"botpasswords-label-resetpassword": "Pasang ulang kata sandi",
+	"botpasswords-label-grants-column": "Ijin dibariakan"
+}

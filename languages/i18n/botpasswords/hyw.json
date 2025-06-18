@@ -1,0 +1,23 @@
+{
+	"@metadata": {
+		"authors": [
+			"Armeniki",
+			"Azniv Stepanian",
+			"Kareyac",
+			"Շահէն"
+		]
+	},
+	"botpasswords": "Մեքենայիկների անցաբառեր",
+	"botpasswords-createnew": "Ստեղծել նոր պոթի գաղտնաբառ",
+	"botpasswords-editexisting": "Փոխել եղած պոթի գաղտնաբառը",
+	"botpasswords-label-appid": "Մեքենայիկի անուն՝",
+	"botpasswords-label-create": "Ստեղծել",
+	"botpasswords-label-update": "Թարմացնել",
+	"botpasswords-label-cancel": "Չեղարկել",
+	"botpasswords-label-delete": "Ջնջել",
+	"botpasswords-label-resetpassword": "Վերականգնել գաղտնաբառը",
+	"botpasswords-label-grants-column": "Արտօնութիւնը տրուած է",
+	"botpasswords-bad-appid": "\"$1\" մեքենայիկին անունը չէ վաւերացուած:",
+	"botpasswords-created-title": "Մեքենայիկին անցաբառը ստեղծուեցաւ",
+	"botpasswords-deleted-title": "Մեքենայիկին անցաբառը ջնջուեցաւ"
+}

@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ajeje Brazorf"
+		]
+	},
+	"botpasswords": "Password bot",
+	"botpasswords-createnew": "Crea na password bot nova",
+	"botpasswords-label-appid": "Nomu bot:",
+	"botpasswords-label-create": "Crea",
+	"botpasswords-label-update": "Aggiorna",
+	"botpasswords-label-cancel": "Annulla",
+	"botpasswords-label-delete": "Cancella",
+	"botpasswords-bad-appid": "Lu nomu dû bot \"$1\" nun è vàlidu.",
+	"botpasswords-created-title": "Password bot criata",
+	"botpasswords-updated-title": "Password bot aggiurnata",
+	"botpasswords-deleted-title": "Password bot cancillata"
+}

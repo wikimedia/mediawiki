@@ -1,0 +1,41 @@
+{
+	"@metadata": {
+		"authors": [
+			"Danniel07",
+			"LoveIceLang",
+			"Maxí",
+			"Stefán Örvar Sigmundsson",
+			"Sveinn í Felli"
+		]
+	},
+	"botpasswords": "Vélmennisaðgangsorð",
+	"botpasswords-disabled": "Vélmennisaðgangsorð eru óvirkjuð.",
+	"botpasswords-no-central-id": "Til að nota aðgangsorð fyrir vélmenni verður þú að vera skráður inn í miðlægan aðgang.",
+	"botpasswords-existing": "Fyrirliggjandi vélmennisaðgangsorð",
+	"botpasswords-createnew": "Búa til nýtt vélmennisaðgangsorð",
+	"botpasswords-editexisting": "Breyta fyrirliggjandi vélmennisaðgangsorði",
+	"botpasswords-label-needsreset": "(endurstilla þarf aðgangsorð)",
+	"botpasswords-label-appid": "Heiti vélmennis:",
+	"botpasswords-label-create": "Búa til",
+	"botpasswords-label-update": "Uppfæra",
+	"botpasswords-label-cancel": "Hætta við",
+	"botpasswords-label-delete": "Eyða",
+	"botpasswords-label-resetpassword": "Endurstilla aðgangsorðið",
+	"botpasswords-label-grants": "Tiltækar heimildir:",
+	"botpasswords-label-grants-column": "Veitt",
+	"botpasswords-bad-appid": "Vélmennanafnið „$1“ er ógilt.",
+	"botpasswords-toolong-restrictions": "Það eru of mörg IP-staðföng eða svið rituð.",
+	"botpasswords-toolong-grants": "Of margir styrkir eru valdir.",
+	"botpasswords-insert-failed": "Mistókst að bæta við vélmenna heiti „$1“. Var því þegar bætt við?",
+	"botpasswords-update-failed": "Mistókst að uppfæra vélmenna heiti „$1“. Var því eytt?",
+	"botpasswords-created-title": "Vélmennisaðgangsorð búið til",
+	"botpasswords-created-body": "Vélmennisaðgangsorðið fyrir vélmenni að nafni „$1 sem tilheyrir {{GENDER:$2|notandanum}} „$2“ var búið til.",
+	"botpasswords-updated-title": "Vélmennisaðgangsorð uppfært",
+	"botpasswords-updated-body": "Vélmennisaðgangsorðið fyrir vélmenni að nafni „$1 sem tilheyrir {{GENDER:$2|notandanum}} „$2“ var uppfært.",
+	"botpasswords-deleted-title": "Vélmennisaðgangsorði eytt",
+	"botpasswords-deleted-body": "Vélmennisaðgangsorðið fyrir vélmenni að nafni „$1 sem tilheyrir {{GENDER:$2|notandanum}} „$2“ var eytt.",
+	"botpasswords-newpassword": "Nýja aðgangsorðið til að skrá sig inn með <strong>$1</strong> er <strong>$2</strong>. <em>Vinsamlegast skráðu þetta til síðari viðmiðunar.</em><br>(Fyrir gömul vélmenni sem krefjast þess að innskráningarnafnið sé það sama og endanlegt notandanafn, geturðu líka notað <strong>$3</strong> sem notandanafn og <strong>$4</strong> sem aðgangsorð.)",
+	"botpasswords-no-provider": "BotPasswordsSessionProvider er ekki í boði.",
+	"botpasswords-restriction-failed": "Takmarkanir á vélmennisaðgangsorði koma í veg fyrir þessa innskráningu.",
+	"botpasswords-invalid-name": "Notandanafnið sem tilgreint var inniheldur ekki aðgangsorðsaðgreininn („$1“)."
+}

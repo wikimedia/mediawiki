@@ -1,0 +1,33 @@
+{
+	"@metadata": {
+		"authors": [
+			"Brazal.dang",
+			"Daramlagon",
+			"Kunokuno"
+		]
+	},
+	"botpasswords": "Mga sekretong panlaog kan bot",
+	"botpasswords-summary": "Tinutugutan kan <em>Bot passwords</em> an paglaog sa sarong user account sa paagi nin API na dai ginagamit an main login credentials kan account.  Posibleng ma-restrict an available user rights kun naka-log in gamit an sarong bot password.\n\nKun dai mo aram kun tano mo ini gustong gibuhon, maray pang dai mo ini gibuhon. Mayong dawa sisay an magsugo saimo na mag-generate kan mga ini asin itao sainda.",
+	"botpasswords-disabled": "An mga Bot paswords pinugulan.",
+	"botpasswords-no-central-id": "Tangani na makagamit nin sekretong tataramon kan mga bot, kaipuhan na nakalaog ka sa sarong sentralisadong account.",
+	"botpasswords-existing": "Mga sekretong panlaog kan bot",
+	"botpasswords-createnew": "Magibo nin bagong sekretong panlaog kan bot",
+	"botpasswords-editexisting": "Baguhon an dati nang sekretong panlaog kan bot",
+	"botpasswords-label-needsreset": "(an sekretong panlaog kaipuhan baguhon)",
+	"botpasswords-label-appid": "Ngaran kan bot:",
+	"botpasswords-label-create": "Muknaon",
+	"botpasswords-label-update": "Panumpay",
+	"botpasswords-label-cancel": "Kanselaron",
+	"botpasswords-label-delete": "Puraon",
+	"botpasswords-label-resetpassword": "Pakibago kan sekretong panlaog",
+	"botpasswords-label-grants": "An mga aplikableng hahagadon:",
+	"botpasswords-label-grants-column": "Tinugutan",
+	"botpasswords-bad-appid": "An ngaran kan bot \"$1\" dae tugma.",
+	"botpasswords-toolong-restrictions": "Dakulon na maray IP addresses saka ranges an nailaog.",
+	"botpasswords-toolong-grants": "Dakulon na maray mga grant an napili.",
+	"botpasswords-insert-failed": "Dai maidugang an bot name na \"$1\". Naidugang na baya ini?",
+	"botpasswords-update-failed": "Dai ma-update an bot name \"$1\". Napura baya ini?",
+	"botpasswords-created-title": "Gibo na an sekretong panlaog kan bot",
+	"botpasswords-deleted-title": "An sekretong panlaog kan bot pinura na",
+	"botpasswords-no-provider": "Dai available an BotPasswordsSessionProvider."
+}

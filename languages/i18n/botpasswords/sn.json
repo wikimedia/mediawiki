@@ -1,0 +1,25 @@
+{
+	"@metadata": {
+		"authors": [
+			"Masiziva"
+		]
+	},
+	"botpasswords": "Zvizaruriso zvemarhobho",
+	"botpasswords-existing": "Zvizaruriso zviripo zverhobho",
+	"botpasswords-createnew": "Gadzira chizaruriso chitsva cherhobho",
+	"botpasswords-editexisting": "Chinjirudza chizaruriso chiripo cherhobho",
+	"botpasswords-label-needsreset": "(chizaruriso chinodinga kugadzirwa zve)",
+	"botpasswords-label-appid": "Zita rerhobho:",
+	"botpasswords-label-create": "Sika",
+	"botpasswords-label-update": "Vandutso",
+	"botpasswords-label-cancel": "Dzimura",
+	"botpasswords-label-delete": "Bharanura",
+	"botpasswords-label-resetpassword": "Gadzira chizarusiso pekare",
+	"botpasswords-label-grants-column": "Mvumirwo",
+	"botpasswords-bad-appid": "Zita rerhobho \"$1\" hariziro.",
+	"botpasswords-insert-failed": "Tatadza kuwedzera zita rerhobho \"$1\". Ranga rakawedzerwa kudhara here?",
+	"botpasswords-update-failed": "Kuvandutsa zita rerhobho “$1” kwakoneka. Rakabharanurwa here?",
+	"botpasswords-created-title": "Chizaruriso cherhobho chasikwa",
+	"botpasswords-updated-title": "Chizaruriso cherhobho chavandutswa",
+	"botpasswords-deleted-title": "Chizaruriso cherhobho chabharanurwa"
+}

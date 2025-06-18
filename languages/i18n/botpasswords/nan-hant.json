@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"Winston Sung"
+		]
+	},
+	"botpasswords": "機器人密碼",
+	"botpasswords-disabled": "機器人密碼功能無開。",
+	"botpasswords-createnew": "新增機器人密碼",
+	"botpasswords-label-appid": "機器人名：",
+	"botpasswords-label-create": "新增",
+	"botpasswords-label-cancel": "取消",
+	"botpasswords-label-delete": "刣",
+	"botpasswords-label-resetpassword": "重設密碼",
+	"botpasswords-created-title": "已經新增機器人密碼"
+}

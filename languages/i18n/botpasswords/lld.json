@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Asenoner",
+			"Starladin"
+		]
+	},
+	"botpasswords": "Parora tle bot",
+	"botpasswords-label-appid": "Inuem dl bot:",
+	"botpasswords-label-create": "Mët adum",
+	"botpasswords-label-update": "Agiornea",
+	"botpasswords-label-cancel": "Scancelea",
+	"botpasswords-label-delete": "Straihëia",
+	"botpasswords-label-resetpassword": "Imposté danü la password",
+	"botpasswords-label-grants-column": "Cunsentì",
+	"botpasswords-bad-appid": "L inuem dl bot \"$1\" ne vel nia.",
+	"botpasswords-created-title": "Password dl bot crieda",
+	"botpasswords-updated-title": "Password dl bot agiorneda",
+	"botpasswords-deleted-title": "Password dl bot scanceleda"
+}

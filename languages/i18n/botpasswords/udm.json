@@ -1,0 +1,43 @@
+{
+	"@metadata": {
+		"authors": [
+			"Kotwys",
+			"Света Поторочина"
+		]
+	},
+	"botpasswords": "Ботъёслэн лушкем кылъёссы",
+	"botpasswords-summary": "<em>ботлэн лушкем кылъёсыз</em> луонлык сёто пыриськем муртлэн пырон нимаз (учётной записяз) пырыны API пыр, главной учётной записьлэсь ужан нимзэ но лушкем кылзэ гожтытэк. Ботлэн лушкем кылыныз пырем муртлэн правоосыз сюбегомытэмын луыны быгатозы.\nУд ке тодӥське, малы со кулэ, та бамез эн кутылэ. Нокин но, ноку но уг быгыты курыны тӥледыз кылыдтыны но шараяны сое.",
+	"botpasswords-disabled": "Ботлэн лушкем кылъёсыз дугдытэмын",
+	"botpasswords-no-central-id": "Ботъёслэсь лушкем кылъёссэс кутон понна, тӥ централизованной учётной записе пырыны кулэ.",
+	"botpasswords-existing": "Ботъёслэн кылдытэм лушкем кылъёссы",
+	"botpasswords-createnew": "Ботлы выль лушкем кыл кылдытоно",
+	"botpasswords-editexisting": "Тупатоно ботлэсь лушкем кылзэ",
+	"botpasswords-label-needsreset": "(Лушкем кылэз куштыны кулэ)",
+	"botpasswords-label-appid": "Ботлэн нимыз:",
+	"botpasswords-label-create": "Кылдытоно",
+	"botpasswords-label-update": "Выльдоно",
+	"botpasswords-label-cancel": "Берланьтон",
+	"botpasswords-label-delete": "Ӵушоно",
+	"botpasswords-label-resetpassword": "Лушкемкылэз куштон",
+	"botpasswords-label-grants": "Кутоно лэзетъёс",
+	"botpasswords-help-grants": "Котькуд лэзет юзчилэн эрикрадъёсаз сюрыны луонлык сётэ. Ватсам ивортодэт басьтон понна учке   [[Special:ListGrants|лэзетъёсын таблицаез]]. Кышкытлыко лэзетъёс пусъемын луо. Пусйымтэ лэзетъёсты кутыны шуг, бот ужез тӥян понна лэземын ке.\nВандализмо лэзетъёсты (<span class=\"mw-grantriskgroup-vandalism\">{{int:grantriskgroup-vandalism}}</span>) кутыны луэ, ужез сӧрон понна.   Кышкыттэм лэзетъёс (<span class=\"mw-grantriskgroup-security\">{{int:grantriskgroup-security}}</span>) кема дыр ӵожелы изъян вайыны быгато (кылсярысь, асмурт тодэтъёсты лушкан). Пуш лэзетъёсты (<span class=\"mw-grantriskgroup-internal\">{{int:grantriskgroup-internal}}</span>) котьку сямен сайтлэн операторез гинэ кутыны быгатэ. Эн курелэ кышкытлыко лэзетъёсты, тӥледлы соос зэмзэ но кулэ ӧвӧл ке.",
+	"botpasswords-label-grants-column": "Лэземын",
+	"botpasswords-bad-appid": "Ботлэн  нимыз «$1» тупасьтэм луэ",
+	"botpasswords-toolong-restrictions": "Укыр трос IP-адресъёс яке диапазонъёс пыртэмын",
+	"botpasswords-toolong-grants": "Укыр трос лэзетъёс быръемын",
+	"botpasswords-insert-failed": "«$1» нимо ботэз ватсаны ӧз луы. Иське, со ватсамын ини вал?",
+	"botpasswords-update-failed": "«$1» ботлэсь нимзэ выльдыны ӧз луы. Со ӵушемын, лэся, вал?",
+	"botpasswords-created-title": "Ботлэн лушкемкылыз кылдытэмын",
+	"botpasswords-created-body": "Ботлэн лушкем кылыз «$1» ботлы {{GENDER:$2|участника|участницы}} «$2» кылдытэмын вал",
+	"botpasswords-updated-title": "Ботлэн лушкемкылыз выльдэмын",
+	"botpasswords-updated-body": "Ботлэн лушкем кылыз «$1» ботлы {{GENDER:$2|участника|участницы}} «$2» выльдэмын вал",
+	"botpasswords-deleted-title": "Ботлэн лушкемкылыз ӵушемын",
+	"botpasswords-deleted-body": "Ботлэн лушкем кылыз «$1» ботлы {{GENDER:$2|участника|участницы}} «$2» ӵушемын вал",
+	"botpasswords-newpassword": "<strong>$1</strong>: <strong>$2</strong> амалэн пырон понна выль лушкем кыл. <em> Азьланяз кутон понна, гожтэ сое, тауна. </em> <br> (вуж ботъёс понна, кудъёсыз куро, ужан ним (логин) одно ик пыриськем муртлэн нимыныз мед тупалоз шуыса, тӥ быгатӥськоды кутыны <strong>$3</strong> пыриськем муртлэн нимыз но <strong>$4</strong> лушкем ним карыса)",
+	"botpasswords-no-provider": "BotPasswordsSessionProvider кутыны луонтэм",
+	"botpasswords-restriction-failed": "Ботлэн лушкем кылызлэн возетъёсыныз сэрен пырыны ӧз луы.",
+	"botpasswords-invalid-name": "Пыриськем муртлэн сётэм нимаз ӧвӧл ботлэн лушкем кылызлы висъетэз («$1»).",
+	"botpasswords-not-exist": "«$1» пыриськем муртлэн «$2» нимо ботлы лушкем кылыз ӧвӧл",
+	"botpasswords-needs-reset": "«$1» ботлы  {{GENDER:$2|участника|участницы}} лушкем кыл куштэмын луыны кулэ.",
+	"botpasswords-locked": "Тӥ уд быгатӥське пырыны системае ботлэн лушкем кылыныз, малы ке шуоно, тӥляд пырон нимды ворсамын."
+}

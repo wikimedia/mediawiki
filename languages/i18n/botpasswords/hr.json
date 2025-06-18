@@ -1,0 +1,39 @@
+{
+	"@metadata": {
+		"authors": [
+			"Bugoslav",
+			"Ex13",
+			"Ivi104",
+			"MaGa",
+			"Ponor",
+			"Vrhnje"
+		]
+	},
+	"botpasswords": "Zaporke botova",
+	"botpasswords-summary": "<em>Zaporke botova</em> omogućuju pristup suradničkom računu preko API-ja bez da se koriste podatci o prijavi glavnoga računa. Dostupna suradnička prava mogla bi biti ograničena kada se prijavite na ovaj način.\n\nAko ne znate kako bi Vam ovo poslužilo, vjerojatno to ne biste trebali raditi. Nitko nikada ne treba od Vas tražiti da napravite ovakve zaporke i da mu ih date.",
+	"botpasswords-disabled": "Zaporke botova su onemogućene.",
+	"botpasswords-no-central-id": "Za uporabu zaporki botova, morate biti prijavljeni na središnji račun.",
+	"botpasswords-existing": "Postojeće zaporke botova",
+	"botpasswords-createnew": "Stvorite novu zaporku bota",
+	"botpasswords-editexisting": "Uredite postojeću zaporku bota",
+	"botpasswords-label-needsreset": "(zaporku treba ponovo postaviti)",
+	"botpasswords-label-appid": "Ime bota:",
+	"botpasswords-label-create": "Stvori",
+	"botpasswords-label-update": "Ažuriraj",
+	"botpasswords-label-cancel": "Odustani",
+	"botpasswords-label-delete": "Izbriši",
+	"botpasswords-label-resetpassword": "Ponovno postavljanje lozinke",
+	"botpasswords-label-grants": "Primjenjive dozvole:",
+	"botpasswords-help-grants": "Dozvole omogućavaju pristup suradničkim pravima koja su već dodijeljena suradničkom računu. Omogućavanjem dozvola ovdje ne daje se pristup svim pravima koja Vaš suradnički račun inače ne bi imao. Za više informacija vidite [[Special:ListGrants|popis dozvola]].",
+	"botpasswords-label-grants-column": "Odobreno",
+	"botpasswords-bad-appid": "Ime bota \"$1\" nije valjano.",
+	"botpasswords-insert-failed": "Nije moguće dodavanje imena bota \"$1\". Možda je već dodano?",
+	"botpasswords-update-failed": "Nije moguće ažurirati bot s imenom \"$1\". Možda je izbrisan?",
+	"botpasswords-created-title": "Stvorena bot zaporka",
+	"botpasswords-created-body": "Zaporka za bota imena »$1« {{GENDER:$2|suradnika|suradnice}} »$2« stvorena je.",
+	"botpasswords-updated-title": "Zaporka za Vašeg bota obnovljena je",
+	"botpasswords-updated-body": "Zaporka za bota imena »$1« {{GENDER:$2|suradnika|suradnice}} »$2« obnovljena je.",
+	"botpasswords-deleted-title": "Zaporka je za Vašeg bota uklonjena",
+	"botpasswords-deleted-body": "Zaporka za bota imena »$1« {{GENDER:$2|suradnika|suradnice}} »$2« izbrisana je.",
+	"botpasswords-locked": "Ne možete se prijaviti zaporkom za bota jer je Vaš račun zaključan."
+}

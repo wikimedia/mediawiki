@@ -1,0 +1,43 @@
+{
+	"@metadata": {
+		"authors": [
+			"Jon Harald Søby",
+			"Stigmj"
+		]
+	},
+	"botpasswords": "Botpassord",
+	"botpasswords-summary": "<em>Robotpassord</em> gir tilgang til en brukerkonto via API uten å bruke hovedpassordet til kontoen. Brukerrettighetene kan bli begrenset ved bruk av dette passordet.\n\nHvis du ikke vet om du vil benytte dette, er det sannsynlig at du ikke bør fylle det ut. Det skal ikke være nødvendig for andre personer å be deg om å fylle ut dette for å gi det til dem.",
+	"botpasswords-disabled": "Botpassord er slått av.",
+	"botpasswords-no-central-id": "For å bruke botpassord må du være logget inn med en sentralisert konto.",
+	"botpasswords-existing": "Eksisterende botpassord",
+	"botpasswords-createnew": "Opprett et nytt botpassord",
+	"botpasswords-editexisting": "Rediger et eksisterende botpassord",
+	"botpasswords-label-needsreset": "(passordet må settes på nytt)",
+	"botpasswords-label-appid": "Botnavn:",
+	"botpasswords-label-create": "Opprett",
+	"botpasswords-label-update": "Oppdater",
+	"botpasswords-label-cancel": "Avbryt",
+	"botpasswords-label-delete": "Slett",
+	"botpasswords-label-resetpassword": "Tilbakestill passordet",
+	"botpasswords-label-grants": "Tilgjengelige tildelinger:",
+	"botpasswords-help-grants": "Tildelinger gir tilgang til rettighetene som allerede innehas av brukerkontoen din. Å slå på en tildeling her gir ikke tilgang til rettigheter brukerkontoen din ikke ellers ville hatt. Se [[Special:ListGrants|tildelingstabellen]] for mer informasjon.\n\nRisikable tildelinger er markert. Umerkede tildelinger er generelt vanskelige å misbruke dersom botten overtas av noen med onde hensikter. Tildelinger med vandalismerisiko (<span class=\"mw-grantriskgroup-vandalism\">{{int:grantriskgroup-vandalism}}</span>) kan brukes for til å forårsake forstyrrelser som er krevende å rydde opp i. Tildelinger med sikkerhetsrisiko (<span class=\"mw-grantriskgroup-security\">{{int:grantriskgroup-security}}</span>) kan gjøre uopprettelig skade (som tyveri av private data). Interne tildelinger (<span class=\"mw-grantriskgroup-internal\">{{int:grantriskgroup-internal}}</span>) brukes som regel kun av nettstedets utviklere. Ikke be om risikable tildelinger med mindre du virkelig har behov for dem.",
+	"botpasswords-label-grants-column": "Bevilget",
+	"botpasswords-bad-appid": "Botnavnet «$1» er ikke gyldig.",
+	"botpasswords-toolong-restrictions": "For mange IP-adresser eller -intervaller angitt.",
+	"botpasswords-toolong-grants": "For mange tildelinger valgt.",
+	"botpasswords-insert-failed": "Kunne ikke legge til botnavnet «$1». Har det allerede blitt lagt til?",
+	"botpasswords-update-failed": "Kunne ikke oppdatere botnavnet «$1». Er det slettet?",
+	"botpasswords-created-title": "Botpassord opprettet",
+	"botpasswords-created-body": "Robotpassordet for boten «$1» til {{GENDER:$2|brukeren}} «$2» ble opprettet.",
+	"botpasswords-updated-title": "Botpassord oppdatert",
+	"botpasswords-updated-body": "Robotpassordet for boten «$1» til {{GENDER:$2|brukeren}} «$2» ble oppdatert.",
+	"botpasswords-deleted-title": "Botpassord slettet",
+	"botpasswords-deleted-body": "Robotpassordet for boten «$1» til {{GENDER:$2|brukeren}} «$2» ble slettet.",
+	"botpasswords-newpassword": "Det nye passordet for å logge inn med <strong>$1</strong> er <strong>$2</strong>. <em>Vennligst lagre dette for fremtidig referanse.</em> <br /> (For gamle roboter som trenger samme innloggingsnavn og brukernavn kan du også bruke <strong>$3</strong> som brukernavn og <strong>$4</strong> som passord.)",
+	"botpasswords-no-provider": "BotPasswordsSessionProvider er ikke tilgjengelig.",
+	"botpasswords-restriction-failed": "Begrensninger for botpassord tillater ikke denne innloggingen.",
+	"botpasswords-invalid-name": "Det angitte brukernavnet inneholder ikke skilletegnet for robotpassord («$1»).",
+	"botpasswords-not-exist": "Brukeren «$1» har ikke noe botpassord med navn «$2».",
+	"botpasswords-needs-reset": "Botpassordet for botnavnet «$2» for {{GENDER:$1|brukeren}} «$1» må settes på nytt.",
+	"botpasswords-locked": "Du kan ikke logge inn med et botpassord ettersom kontoen din er låst."
+}

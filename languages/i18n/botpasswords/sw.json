@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"Raychep",
+			"Yasen igra"
+		]
+	},
+	"botpasswords-label-needsreset": "(nenosiri linahitaji kuwekwa upya)",
+	"botpasswords-label-create": "Anzisha",
+	"botpasswords-label-update": "Sasisha",
+	"botpasswords-label-cancel": "Ghairisha",
+	"botpasswords-label-delete": "Futa",
+	"botpasswords-label-resetpassword": "Weka upya nenosiri",
+	"botpasswords-label-grants-column": "Imekubaliwa",
+	"botpasswords-toolong-restrictions": "Kuna anwani nyingi za IP au safu zilizoingizwa."
+}

@@ -1,0 +1,22 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ameisenigel"
+		]
+	},
+	"botpasswords": "Botpasswöör",
+	"botpasswords-summary": "<em>Botpasswöör</em> verlööft den Togang to en Brukerkonto över de API, ahn de Hööftanmellen Informatschonen vun dat Brukerkonto to bruken. De verföögboren Brukerrechte bi dat Anmellen mit en Botpasswoort könnt beschränkt ween.\n\nWenn du nich weetst, worüm du en Passwoort opstellen schüllst, denn maak dat nich. Du schusst dat nich en Passwoort för en ännern maken un dat an em övergeven.",
+	"botpasswords-disabled": "Botpasswöör sünd nich aktiv.",
+	"botpasswords-no-central-id": "Üm Botpasswöör to bruken, musst du bi en zentraliseert Brukerkonto anmeldt wesen.",
+	"botpasswords-existing": "Vörhannen Botpasswöör",
+	"botpasswords-createnew": "En nee’et Botpasswoort opstellen",
+	"botpasswords-editexisting": "En vörhannen Botpasswoort bearbeiden",
+	"botpasswords-label-needsreset": "(Passwoort mutt trüggsett warrn)",
+	"botpasswords-label-appid": "Naam vun Bot:",
+	"botpasswords-label-create": "Opstellen",
+	"botpasswords-label-update": "Ännern",
+	"botpasswords-label-cancel": "Afbreken",
+	"botpasswords-label-delete": "Wegdoon",
+	"botpasswords-label-resetpassword": "Passwoord trüchsetten",
+	"botpasswords-label-grants": "Anwennbore Rechten:"
+}

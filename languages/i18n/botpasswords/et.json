@@ -1,0 +1,42 @@
+{
+	"@metadata": {
+		"authors": [
+			"Pikne"
+		]
+	},
+	"botpasswords": "Robotiparoolid",
+	"botpasswords-summary": "<em>Robotiparoolid</em> võimaldavad API-põhist juurdepääsu kasutajakontole, ilma kasutamata konto peamisi autentimisandmeid. Kui konto on sisse logitud robotiparooliga, võivad saadaolevad kasutajaõigused olla piiratud.\n\nKui sa ei tea, miks sul on vaja robotiparooli, siis on parem seda mitte kasutada. Mitte keegi ei peaks paluma sul robotiparooli genereerida ja seda talle edasi anda.",
+	"botpasswords-disabled": "Robotiparoolid on keelatud.",
+	"botpasswords-no-central-id": "Et robotiparoole kasutada, pead olema ühendkontoga sisse logitud.",
+	"botpasswords-existing": "Olemasolevad robotiparoolid",
+	"botpasswords-createnew": "Uue robotiparooli loomine",
+	"botpasswords-editexisting": "Olemasoleva robotiparooli muutmine",
+	"botpasswords-label-needsreset": "(parool vajab lähtestamist)",
+	"botpasswords-label-appid": "Robotinimi:",
+	"botpasswords-label-create": "Loo",
+	"botpasswords-label-update": "Uuenda",
+	"botpasswords-label-cancel": "Loobu",
+	"botpasswords-label-delete": "Kustuta",
+	"botpasswords-label-resetpassword": "Lähtesta parool",
+	"botpasswords-label-grants": "Rakendatavad volitused:",
+	"botpasswords-help-grants": "Volitused võimaldavad juurdepääsu õigustele, mis su kontol juba on. Siin volituse lubamine ei võimalda juurdepääsu õigustele, mida su kontol muidu pole. Lisateavet leiad [[Special:ListGrants|volituste loetelust]].\n\nRiskantsed volitused on ära märgitud. Märkimata volitusi on üldjuhul keeruline kuritarvitada, kui konto kaaperdab keegi, kellel on halvad kavatsused. Vandalismiriskiga volitustega (<span class=\"mw-grantriskgroup-vandalism\">{{int:grantriskgroup-vandalism}}</span>) saab rikkuda sisu nii, et selle hilisem kordategemine on suur töö. Turvariskiga volitustega (<span class=\"mw-grantriskgroup-security\">{{int:grantriskgroup-security}}</span>) saab põhjustada pöördumatut kahju (näiteks isiklike andmete vargus). Sisevolitusi (<span class=\"mw-grantriskgroup-internal\">{{int:grantriskgroup-internal}}</span>) kasutavad harilikult ainult saidi süsteemioperaatorid. Palun taotle riskantseid volitusi ainult siis, kui sul on neid tõesti vaja.",
+	"botpasswords-label-grants-column": "Volitatud",
+	"botpasswords-bad-appid": "Robotinimi \"$1\" ei sobi.",
+	"botpasswords-toolong-restrictions": "Sisestatud liiga palju IP-aadresse või -vahemikke.",
+	"botpasswords-toolong-grants": "Valitud liiga palju volitusi.",
+	"botpasswords-insert-failed": "Ei õnnestunud lisada robotinime \"$1\". Kas see on juba lisatud?",
+	"botpasswords-update-failed": "Ei õnnestunud uuendada robotinime \"$1\". Kas see on kustutatud?",
+	"botpasswords-created-title": "Robotiparool loodud",
+	"botpasswords-created-body": "Robotiparool kasutaja \"$2\" robotinimele \"$1\" on loodud.",
+	"botpasswords-updated-title": "Robotiparool uuendatud",
+	"botpasswords-updated-body": "Robotiparool kasutaja \"$2\" robotinimele \"$1\" on uuendatud.",
+	"botpasswords-deleted-title": "Robotiparool kustutatud",
+	"botpasswords-deleted-body": "Robotiparool kasutaja \"$2\" robotinimele \"$1\" on kustutatud.",
+	"botpasswords-newpassword": "Uus parool, millega kontole <strong>$1</strong> sisse logida, on <strong>$2</strong>. <em>Palun kirjuta see edaspidiseks üles.</em> <br> (Mõni vana robot nõuab, et sisselogimisnimi langeb kokku edaspidise kasutajanimega. Sellisel juhul saad kasutada nime <strong>$3</strong> ja parooli <strong>$4</strong>.)",
+	"botpasswords-no-provider": "BotPasswordsSessionProvider pole saadaval.",
+	"botpasswords-restriction-failed": "Robotiparooli piirangud takistavad sisselogimist.",
+	"botpasswords-invalid-name": "Määratud kasutajanimi ei sisalda robotiparooli eraldajat (\"$1\").",
+	"botpasswords-not-exist": "Kasutaja \"$1\" robotinimele \"$2\" vastav robotiparool puudub.",
+	"botpasswords-needs-reset": "Kasutaja \"$1\" robotinime \"$2\" robotiparool tuleb lähtestada.",
+	"botpasswords-locked": "Sa ei saa robotiparooliga sisse logida, kuna sinu konto on lukustatud."
+}

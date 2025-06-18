@@ -1,0 +1,23 @@
+{
+	"@metadata": {
+		"authors": [
+			"Mainculprit",
+			"Malikxan"
+		]
+	},
+	"botpasswords": "Bot maxfiy soʻzlari",
+	"botpasswords-disabled": "Bot parollari oʻchirilgan.",
+	"botpasswords-createnew": "Yangi bot parolini yaratish",
+	"botpasswords-editexisting": "Mavjud boʻlgan bot parolini tahrirlash",
+	"botpasswords-label-appid": "Bot nomi:",
+	"botpasswords-label-create": "Yaratish",
+	"botpasswords-label-update": "Yangilash",
+	"botpasswords-label-cancel": "Bekor qilish",
+	"botpasswords-label-delete": "Oʻchirish",
+	"botpasswords-label-resetpassword": "Maxfiy soʻzni tiklash",
+	"botpasswords-label-grants-column": "Izin berildi",
+	"botpasswords-bad-appid": "Bot nomi \"$1\" yaroqsiz.",
+	"botpasswords-created-title": "Bot paroli yaratildi",
+	"botpasswords-updated-title": "Bot maxfiy soʻzi yangilandi",
+	"botpasswords-deleted-title": "Bot maxfiy soʻzi oʻchirildi"
+}

@@ -1,0 +1,37 @@
+{
+	"@metadata": {
+		"authors": [
+			"Murma174"
+		]
+	},
+	"botpasswords": "Bot-paaswurden",
+	"botpasswords-summary": "Mä <em>bot-paaswurden</em> koon üüb en brükerkonto auer't API tugreben wurd. A brükerrochten bi uunmeldang mä en bot-paaswurd san kört.\n\nWan dü ei witjst, huaram dü det du wel, skulst dü det uk ei du. Näämen fraaget di, en paaswurd iinturachten, an det do widjertudun.",
+	"botpasswords-disabled": "Bot-paaswurden san deaktiwiaret wurden.",
+	"botpasswords-no-central-id": "Am bot-paaswurden tu brüken, skel dü bi en sentralisiaret brükerkonto uunmeldet wees.",
+	"botpasswords-existing": "Bot-paaswurden",
+	"botpasswords-createnew": "En nei bot-paaswurd maage",
+	"botpasswords-editexisting": "En bot-paaswurd feranre",
+	"botpasswords-label-appid": "Bot-nööm:",
+	"botpasswords-label-create": "Maage",
+	"botpasswords-label-update": "Aktualisiare",
+	"botpasswords-label-cancel": "Ufbreeg",
+	"botpasswords-label-delete": "Strik",
+	"botpasswords-label-resetpassword": "Paaswurd turagsaat",
+	"botpasswords-label-grants": "Mögelk brükerrochten:",
+	"botpasswords-help-grants": "Mä arke brükerrocht könst dü üüb ööder brükerrochten faan en brükerkonto tugrip. Luke iin uun det [[Special:ListGrants|tabel]] am muar informatsioon.",
+	"botpasswords-label-grants-column": "Tugestenen",
+	"botpasswords-bad-appid": "Di bot-nööm \"$1\" gongt ei.",
+	"botpasswords-insert-failed": "Di bot-nööm \"$1\" küd ei apnimen wurd. Ferlicht as hi al diar?",
+	"botpasswords-update-failed": "Di bot-nööm \"$1\" küd ei apnimen wurd. As hi stregen wurden?",
+	"botpasswords-created-title": "Bot-paaswurd as iinracht wurden.",
+	"botpasswords-created-body": "Det bot-paaswurd för di bot \"$1\" faan di brüker \"$2\" as iinracht wurden.",
+	"botpasswords-updated-title": "Bot-paaswurd as aktualisiaret wurden.",
+	"botpasswords-updated-body": "Det bot-paaswurd för di bot \"$1\" faan di brüker \"$2\" as aktualisiaret wurden.",
+	"botpasswords-deleted-title": "Bot-paaswurd as stregen wurden.",
+	"botpasswords-deleted-body": "Det bot-paaswurd för di bot \"$1\" faan di brüker \"$2\" as stregen wurden.",
+	"botpasswords-newpassword": "Det nei paaswurd tu uunmeldin mä <strong>$1</strong> as <strong>$2</strong>. <em>Mark di det gud.</em><br>För ääler bots, huar di uunmeldenööm an di leeder brükernööm josalwen san, könst dü uk <strong>$3</strong> üs brükernööm an <strong>$4</strong> üs paaswurd brük.",
+	"botpasswords-no-provider": "BotPasswordsSessionProvider as ei diar.",
+	"botpasswords-restriction-failed": "Mä detdiar bot-paaswurd könst dü di ei uunmelde.",
+	"botpasswords-invalid-name": "Didiar brükernööm hää nään bot-paaswurd-dialer („$1“).",
+	"botpasswords-not-exist": "Di brüker „$1“ hää nian bot-paaswurd mä di nööm „$2“."
+}

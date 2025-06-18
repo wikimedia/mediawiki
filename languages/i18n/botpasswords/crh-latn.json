@@ -1,0 +1,13 @@
+{
+	"@metadata": {
+		"authors": [
+			"Don Alessandro",
+			"Zolgoyo"
+		]
+	},
+	"botpasswords-label-appid": "Bot adı:",
+	"botpasswords-label-create": "Yarat",
+	"botpasswords-label-update": "Yañart",
+	"botpasswords-label-cancel": "Lâğu",
+	"botpasswords-label-delete": "Yoq et"
+}

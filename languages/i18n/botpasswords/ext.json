@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"HackerPunki"
+		]
+	},
+	"botpasswords": "Contrasseñas de robots",
+	"botpasswords-label-create": "Crial",
+	"botpasswords-label-cancel": "Suspendel",
+	"botpasswords-label-delete": "Aborral",
+	"botpasswords-deleted-title": "Contrasseña de bot aborrá"
+}

@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"Gothicspeaker"
+		]
+	},
+	"botpasswords": "𐌱𐌰𐌿𐍄𐌹𐍃 𐌲𐌰𐌼𐍉𐍄𐌰𐍅𐌰𐌿𐍂𐌳𐌰",
+	"botpasswords-existing": "𐍅𐌹𐍃𐌰𐌽𐌳𐍉𐌽𐌳𐌰 𐌲𐌰𐌼𐍉𐍄𐌰𐍅𐌰𐌿𐍂𐌳𐌰 𐌱𐌰𐌿𐍄𐌹𐍃",
+	"botpasswords-label-appid": "𐌽𐌰𐌼𐍉 𐌱𐌰𐌿𐍄𐌹𐍃:",
+	"botpasswords-label-create": "𐍃𐌺𐌰𐍀𐌴𐌹",
+	"botpasswords-label-update": "𐌰𐌽𐌰𐌽𐌹𐌿𐌴𐌹",
+	"botpasswords-label-cancel": "𐍃𐍅𐌴𐌹𐌱",
+	"botpasswords-label-delete": "𐍆𐍂𐌰𐌵𐌹𐍃𐍄𐌴𐌹",
+	"botpasswords-label-resetpassword": "𐌰𐍆𐍄𐍂𐌰 𐍃𐌰𐍄𐌴𐌹 𐌲𐌰𐌼𐍉𐍄𐌰𐍅𐌰𐌿𐍂𐌳 𐌸𐌴𐌹𐌽",
+	"botpasswords-label-grants-column": "𐌲𐌹𐌱𐌰𐌽"
+}

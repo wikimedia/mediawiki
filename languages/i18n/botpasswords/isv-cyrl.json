@@ -1,0 +1,43 @@
+{
+	"@metadata": {
+		"authors": [
+			"Fitik",
+			"IJzeren Jan"
+		]
+	},
+	"botpasswords": "Паролы ботов",
+	"botpasswords-summary": "<em>Паролы ботов</em> уможњајут доступ до користничского конта прєз API без употрєбјења јего главных даных (логина и паролы). Права користника, кторы пријавил се с помочју паролы бота, могут быти ограничене.\n\nАко не знајете, зачто хтєли бысте то сдєлати, лєпје, же не сдєлајете. Никто никогда не повинен јест од вас просити, же створите и подате му таку паролу.",
+	"botpasswords-disabled": "Паролы ботов сут изкључене.",
+	"botpasswords-no-central-id": "За употрєбјење парол ботов трєба, же јесте пријавјени централизованым контом.",
+	"botpasswords-existing": "Јествујуче паролы ботов",
+	"botpasswords-createnew": "Створити нову паролу бота",
+	"botpasswords-editexisting": "Измєнити јествујучу паролу бота",
+	"botpasswords-label-needsreset": "(паролу трєба ресетовати)",
+	"botpasswords-label-appid": "Назва бота:",
+	"botpasswords-label-create": "Створити",
+	"botpasswords-label-update": "Актуализовати",
+	"botpasswords-label-cancel": "Ануловати",
+	"botpasswords-label-delete": "Одстранити",
+	"botpasswords-label-resetpassword": "Ресетовати паролу",
+	"botpasswords-label-grants": "Примєнливе дозвољења:",
+	"botpasswords-help-grants": "Дозвољења давајут доступ к правам, кторе ваше користничско конто уже посєдаје. Уможњење дозвољења не даваје права то какыхколи додаточных прав. Гледите [[Special:ListGrants|табелу дозвољениј]] за вече информациј.\n\nРизичне дозвољења сут означане. Неозначене дозвољења обычно сут тежке до злоупотрєбјења в случају, когда бот јест прєјеты чловєком с злыми намєрами. Дозвољена с ризиком вандализма (<span class=\"mw-grantriskgroup-vandalism\">{{int:grantriskgroup-vandalism}}</span>) могут довести к врєдным послєдствам, кторых направјење буде измагати много усилиј. Дозвољења с ризиком безпечности (<span class=\"mw-grantriskgroup-security\">{{int:grantriskgroup-security}}</span>) могут причинити трајне шкоды (напр. крадеж приватных даных). Внутришње дозвољења (<span class=\"mw-grantriskgroup-internal\">{{int:grantriskgroup-internal}}</span>) обычно употрєбјаје само оператор сајта. Просимо, же не попросите ризичне дозвољења ако оне не сут вам заисто потрєбне.",
+	"botpasswords-label-grants-column": "Дозвољено",
+	"botpasswords-bad-appid": "Назва бота «$1» јест неправилна.",
+	"botpasswords-toolong-restrictions": "Введено было прємного IP-адресов или обсегов.",
+	"botpasswords-toolong-grants": "Избрано было прємного дозвољениј.",
+	"botpasswords-insert-failed": "Додање бота с назвоју «$1» не удало се. Може ли быти, же он уже јест доданы?",
+	"botpasswords-update-failed": "Измєна бота с назвоју «$1» не удала се. Може ли быти, же он был удаљены?",
+	"botpasswords-created-title": "Парола бота јест створјена",
+	"botpasswords-created-body": "Парола бота за бот «$1» {{GENDER:$2|користника|користнице}} «$2» јест створјена.",
+	"botpasswords-updated-title": "Парола бота јест актуализована",
+	"botpasswords-updated-body": "Парола бота за бот «$1» {{GENDER:$2|користника|користнице}} «$2» јест актуализована.",
+	"botpasswords-deleted-title": "Парола бота јест удаљена",
+	"botpasswords-deleted-body": "Парола бота за бот «$1» {{GENDER:$2|користника|користнице}} «$2» јест удаљена.",
+	"botpasswords-newpassword": "Нова парола за пријавјење <strong>$1</strong> јест <strong>$2</strong>. <em>Просимо, запишите ју за будучу употрєбу.</em> <br> (В случају старых ботов, у кторых логин имаје быти идентичны к евентуалному користничскому имени, вы можете такоже употрєбјати <strong>$3</strong> како користничско име и <strong>$4></strong> како паролу.)",
+	"botpasswords-no-provider": "BotPasswordsSessionProvider јест недоступны.",
+	"botpasswords-restriction-failed": "Пријавјење јест неможно из причины ограничениј паролы бота.",
+	"botpasswords-invalid-name": "Указано користничско име не содрживаје раздєлитељ за паролу бота («$1»).",
+	"botpasswords-not-exist": "Користник «$1» не имаје паролы за бот с назвоју «$2».",
+	"botpasswords-needs-reset": "Паролу бота за бот «$2» {{GENDER:$2|користника|користнице}} «$1» трєба ресетовати.",
+	"botpasswords-locked": "Вы не можете пријавити се с паролоју бота, затоже ваше конто јест заблоковано."
+}

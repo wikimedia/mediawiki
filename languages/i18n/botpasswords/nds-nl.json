@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"Servien"
+		]
+	},
+	"botpasswords-label-appid": "Botname:",
+	"botpasswords-label-create": "Upstellen",
+	"botpasswords-label-update": "Bywarken",
+	"botpasswords-label-cancel": "Afbreaken",
+	"botpasswords-label-delete": "Vordsmyten",
+	"botpasswords-label-resetpassword": "Wachtwoord upny instellen",
+	"botpasswords-label-grants-column": "Toweasen"
+}

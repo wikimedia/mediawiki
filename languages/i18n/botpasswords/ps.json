@@ -1,0 +1,40 @@
+{
+	"@metadata": {
+		"authors": [
+			"Af420",
+			"Ahmed-Najib-Biabani-Ibrahimkhel",
+			"شاه زمان پټان"
+		]
+	},
+	"botpasswords": "روباټ پټنومونه",
+	"botpasswords-summary": "<em>د بوټ پټنومونه</em> د اصلي پټنوم کارولو څخه پرته د ای پی ادرس سره ګڼون ته لاسرسي نه ورکول کيږی. د کاروونکي موجوده لاسرسی ممکن محدود وي کله چې د روباټ پاسورډ داخل شي.\nکه تاسو نه پوهیږئ چې څه شی کولی شئ له دې سره وکړئ، تاسو ممکن هیڅکله هم ونه کړئ. هیڅوک باید له تاسو څخه د دې د ورکولو لپاره نه وپوښتل شي.",
+	"botpasswords-disabled": "د بوټ پټنوم ناممکنه دي.",
+	"botpasswords-no-central-id": "د بوټ د پټنوم کارولو لپاره، تاسو باید په مرکزي حساب کې ننوتلي ياست.",
+	"botpasswords-existing": "د بوټ موجود پټ نومونه",
+	"botpasswords-createnew": "نوی پټنوم (پاسورډ) جوړ کړي",
+	"botpasswords-editexisting": "د بوټ موجود پاسورډ جوړ کړئ",
+	"botpasswords-label-needsreset": "(د پټنوم بيارغونې ته اړتيا ده)",
+	"botpasswords-label-appid": "روباټ نوم:",
+	"botpasswords-label-create": "جوړول",
+	"botpasswords-label-update": "اوسمهالول",
+	"botpasswords-label-cancel": "ناگارل",
+	"botpasswords-label-delete": "ړنگول",
+	"botpasswords-label-resetpassword": "پټوم بدل کړي",
+	"botpasswords-label-grants": "تطبیق وړ ګرانټ:",
+	"botpasswords-help-grants": "هر پرېښولی روباټ ته اجازه ورکوي چې هغه واک ته لاسرسی ومومي کوم چې ستاسو گڼون ساتي. د پرېښوونې چارنول دلته، نوی لاسرسی نشته چې ستاسو گڼون يې اوس مهال نه لري. د نورو مالوماتو لپاره [[Special:ListGrants|واک‌نوملړ]] وگورئ.\n\nگواښوونکې پرېښوونې په نښه شوي.کله چې روباټ د ناوړه ارادې لرونکي شخص لخوا تښتول کېږي؛ نو په نښه شوي مرستو څخه ناوړه گټه اخیستل عموما گران وي. هغه مرستې چې د ورانکارۍ گواښ لري (<span class=\"mw-grantriskgroup-vandalism\">{{int:grantriskgroup-vandalism}}</span>) د گډوډۍ رامنځته کولو لپاره کارېدای شي چې پاکول يې ډېره هڅه غواړي. هغه پرېښوونې چې د خونديتوب گواښ لري (<span class=\"mw-grantriskgroup-security\">{{int:grantriskgroup-security}}</span>) کولی شي د تلپاتې زيان لامل شي harm (د بېلگې په توگه د ځاني مالوماتو غلا کول).\nدنننۍ پرېښوونې (<span class=\"mw-grantriskgroup-internal\">{{int:grantriskgroup-internal}}</span>) يوازې د وېبپاڼې چلوونکو له خوا کارول کېږي. مهرباني وکړئ، د گواښونکو واگ‌غوښتنې مه کوئ، پرته له دې چې تاسو ورته واقعاً اړتيا ولرئ.",
+	"botpasswords-label-grants-column": "ورکړل شو",
+	"botpasswords-bad-appid": "د بوټ نوم \"$1\" وجود نلري.",
+	"botpasswords-insert-failed": "د بوټ \"$1\" نوم په ورګډولو کي پاتې راغلې دا نوم د پخوا څخه ورګډ سوي وو?",
+	"botpasswords-update-failed": "د بوټ نوم په نوي کولو کې ناکام شوې \"$1\".ایا دا ړنګ شوی دی؟",
+	"botpasswords-created-title": "د بوټ پټنوم جوړ شو",
+	"botpasswords-created-body": "د بوټ پټنوم د بوټ \"$1\" د کارن \"$2\" لپاره جوړ شو.",
+	"botpasswords-updated-title": "د بوټ پټنوم آپډيټ سو",
+	"botpasswords-updated-body": "د بوټ پټنوم د بوټ \"$1\" د کارن \"$2\" لپاره آپډيټ شو.",
+	"botpasswords-deleted-title": "د بوټ پټنوم ړنګ شو",
+	"botpasswords-deleted-body": "د بوټ پټنوم د بوټ \"$1\" د کارن \"$2\" لپاره ړنګ شو.",
+	"botpasswords-newpassword": "د <strong>$1</strong> کارن‌نوم لپاره په غونډال کې د ننوتلو يو نوی پټنوم <strong>$2</strong> دی. <em> مهرباني وکړئ دا د راتلونکي لپاره وساتئ.</em> <br> (د زړو روباټونو لپاره چې یو ننوتلو‌نوم ته اړتیا لري چې یو کارن‌نوم ته ورته وي، تاسې کولای شی چې د کارن‌نوم په توگه <strong>$3</strong> لاندې يو کارن‌نوم او د پټنوم په توگه <strong>$4</strong> وکاروئ.)",
+	"botpasswords-no-provider": "د بوټ شفر د غونډو وړاندې کول شتون نلري.",
+	"botpasswords-restriction-failed": "د بوټ پاسورډ محدودیتونه د دې ننوتنې مخه نیسي",
+	"botpasswords-invalid-name": "په کارنۍ نومول شوی کې د بوټو د پاسورډ جلا کول شامل نه دی (\"$1\").",
+	"botpasswords-not-exist": "کارن \"$1\"  يو روباټ پټنوم نه لري نوم \"$2\"."
+}

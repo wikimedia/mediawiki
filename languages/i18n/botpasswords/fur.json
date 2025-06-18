@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Klenje"
+		]
+	},
+	"botpasswords-label-create": "Cree",
+	"botpasswords-label-update": "Inzorne",
+	"botpasswords-label-cancel": "Scancele",
+	"botpasswords-label-delete": "Elimine",
+	"botpasswords-label-resetpassword": "Azere la password"
+}

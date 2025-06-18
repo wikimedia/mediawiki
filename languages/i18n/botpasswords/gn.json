@@ -1,0 +1,15 @@
+{
+	"@metadata": {
+		"authors": [
+			"P. S. F. Freitas"
+		]
+	},
+	"botpasswords": "Bot ñe'ẽñemi",
+	"botpasswords-label-appid": "Bot réra:",
+	"botpasswords-label-create": "Emoñepyrũ",
+	"botpasswords-label-update": "Embopyahu",
+	"botpasswords-label-cancel": "Eheja",
+	"botpasswords-label-delete": "Embogue",
+	"botpasswords-label-resetpassword": "Emohenda jey ne ñe'ẽñemi",
+	"botpasswords-newpassword": "La contraseña nueva para acceder con <strong>$1</strong> es <strong>$2</strong>. <em>Guarda esta información para su consulta futura.</em> <br> (En caso de robots antiguos que requieren que el nombre de acceso coincida con el de usuario, también puedes utilizar <strong>$3</strong> como nombre de usuario y <strong>$4</strong> como contraseña.)"
+}

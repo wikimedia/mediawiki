@@ -1,0 +1,42 @@
+{
+	"@metadata": {
+		"authors": [
+			"Oxianboal"
+		]
+	},
+	"botpasswords": "Боттарның чазыт сӧстері",
+	"botpasswords-summary": "<em>Боттың чазыт сӧстері</em> API хоостыра ӧӧн аккаунттың логин паза чазыт сӧзі чох системаа кірерге оңдай пирчелер. Боттың чазыт сӧзi пастыра кірчетсе, араласчының правозы хызырылча. \nПу ниме сiрерге кирек полбаза, страницаа кiрбеңер. Пірдеезіне сiрерге чазыт сӧсті иттірерге паза аны искірерге чарадылбинча.",
+	"botpasswords-disabled": "Боттарның чазыт сӧстері ӱзірілген.",
+	"botpasswords-no-central-id": "Боттың чазыт сӧстерінең тузаланар ӱчӱн, централизованнай аккаунтха кiрерге кирек.",
+	"botpasswords-existing": "Боттың пар чазыт сӧстері",
+	"botpasswords-createnew": "Боттың наа чазыт сӧзін идерге",
+	"botpasswords-editexisting": "Боттың амғы чазыт сӧзін алыстырарға",
+	"botpasswords-label-needsreset": "(чазыт сӧстi тастирға кирек)",
+	"botpasswords-label-appid": "Бот ады:",
+	"botpasswords-label-create": "Идерге",
+	"botpasswords-label-update": "Нааҷылирға",
+	"botpasswords-label-cancel": "Тохтадары",
+	"botpasswords-label-delete": "Чох идерге",
+	"botpasswords-label-resetpassword": "Чазыт сӧстi чох идiп, нааҷылирға",
+	"botpasswords-label-grants": "Иділер чарадығлар:",
+	"botpasswords-help-grants": "Полған на чарадығ араласчының аккаунтының правозынаң тузаланарға пирче. Хоза информацияны алар ӱчӱн, [[Special:ListGrants|чарадығ таблицазын]] кӧріңер.",
+	"botpasswords-label-grants-column": "Чарадылча",
+	"botpasswords-bad-appid": "«$1» бот адына чарабинча.",
+	"botpasswords-toolong-restrictions": "Иртiре кӧп IP - адрес алай адрестер диапазоны кирiлген.",
+	"botpasswords-toolong-grants": "Иртiре кӧп право таллалған.",
+	"botpasswords-insert-failed": "\"$1\" аттығ ботты хозарға киліспеді. Арса, ол хозылған полған.",
+	"botpasswords-update-failed": "\"$1\" аттығ ботты нааҷылирға киліспеді. Арса, ол чох идiлген?",
+	"botpasswords-created-title": "Боттың чазыт сӧзі иділ парған",
+	"botpasswords-created-body": "$2 аттығ {{GENDER:$2|араласчының}} $1 бодының чазыт сӧзi идiлдi.",
+	"botpasswords-updated-title": "Боттың чазыт сӧзі нааҷылалған",
+	"botpasswords-updated-body": "$2 аттығ {{GENDER:$2|араласчы}} $1 бодының чазыт сӧзi нааҷылалған.",
+	"botpasswords-deleted-title": "Боттың чазыт сӧзі чох идiлген",
+	"botpasswords-deleted-body": "$2 аттығ {{GENDER:$2|араласчы}} $1 бодының чазыт сӧзi чох идiлдi.",
+	"botpasswords-newpassword": "<strong>$1</strong> атнаң кiрер <strong>$2</strong> наа чазыт сӧзі. <em>Соонаң тузаланар ӱчӱн, аны пас салыңар.</em> <br /> (Иргі боттар араласчының аккаунт ады пос адына тӧӧй ползын тіп сурапчатсалар, сірерге  <strong>$3</strong> араласчы ады чіли паза <strong>$4</strong> чазыт сӧс чіли тузаланарға чарир.)",
+	"botpasswords-no-provider": "BotPasswordsSessionProvider чоғыл.",
+	"botpasswords-restriction-failed": "Боттың чазыт сӧзіне салылған кирексініс хоостыра системаа кiрер оңдай чоғыл.",
+	"botpasswords-invalid-name": "Таныхталған араласчы адының чазыт сӧзінде (\"$1\") танығ чоғыл.",
+	"botpasswords-not-exist": "\"$1\" араласчының \"$2\" аттығ ботха чазыт сӧс чоғыл.",
+	"botpasswords-needs-reset": "$1 {{GENDER:$1|араласчының}} $2 аттығ бот адына чазыт сӧс тасталарға кирек.",
+	"botpasswords-locked": "Аккаунтыңар пиктел парған ӱчӱн, сірер боттың чазыт сӧзінең системаа кір полбассар."
+}

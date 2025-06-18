@@ -1,0 +1,17 @@
+{
+	"@metadata": {
+		"authors": [
+			"Augustus A C",
+			"Omarov M."
+		]
+	},
+	"botpasswords-label-appid": "Боталъул цӀар:",
+	"botpasswords-label-create": "Гьабизе",
+	"botpasswords-label-update": "ЦӀигьабизе",
+	"botpasswords-label-cancel": "НахъчӀвазе",
+	"botpasswords-label-delete": "Гилдизабизе",
+	"botpasswords-label-resetpassword": "Парол реххизе",
+	"botpasswords-label-grants-column": "Бегьула",
+	"botpasswords-bad-appid": "Боталъул \"$1\" буго бегьулареб.",
+	"botpasswords-created-title": "Боталъул парол гьабуна"
+}

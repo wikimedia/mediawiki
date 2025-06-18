@@ -1,0 +1,31 @@
+{
+	"@metadata": {
+		"authors": [
+			"Drjpoudel",
+			"Nirajan pant",
+			"पर्वत सुबेदी",
+			"बडा काजी",
+			"राम प्रसाद जोशी"
+		]
+	},
+	"botpasswords": "बोट प्रवेश शब्द",
+	"botpasswords-disabled": "बोट पासवर्डहरू असक्षम गरिएका छन्।",
+	"botpasswords-createnew": "नयाँ बोटको लागि प्रवेश शब्द बनाउने",
+	"botpasswords-editexisting": "उपलब्ध बोट प्रवेश शब्द सम्पादन गर्नुहोस्",
+	"botpasswords-label-needsreset": "(प्रवेश शब्द फेर्न आवश्यक छ)",
+	"botpasswords-label-appid": "बोट नाम",
+	"botpasswords-label-create": "बनाउनुहोस्",
+	"botpasswords-label-update": "अद्यतन गर्नुहोस्",
+	"botpasswords-label-cancel": "रद्द गर्नुहोस्",
+	"botpasswords-label-delete": "मेटाउनुहाेस्",
+	"botpasswords-label-resetpassword": "प्रवेशशब्द पुनः तय गर्नुहोस्",
+	"botpasswords-label-grants": "लागू अनुदानहरू:",
+	"botpasswords-label-grants-column": "प्रमाणित गरियो",
+	"botpasswords-bad-appid": "बोट नाम \"$1\" मान्य छैन।",
+	"botpasswords-insert-failed": "\"$1\" बोट नाम थप्न असफल भयो। के यो पहिले नै थपिएको थियो?",
+	"botpasswords-update-failed": "\"$1\" बोट नाम अद्यावधिक गर्न असफल भयो। के यो हटाइयो हो?",
+	"botpasswords-created-title": "बोट प्रवेश शब्द सिर्जना गरियो",
+	"botpasswords-updated-title": "बोट प्रवेश शब्द परिवर्तन गरियो",
+	"botpasswords-deleted-title": "बोट प्रवेश शब्द मेटाइयो",
+	"botpasswords-locked": "तपाईंको खाता लक भएकोले तपाईले बोट पासवर्डको साथ लगइन गर्न सक्नुहुन्न।"
+}

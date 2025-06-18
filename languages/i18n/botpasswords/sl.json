@@ -1,0 +1,43 @@
+{
+	"@metadata": {
+		"authors": [
+			"Dbc334",
+			"Eleassar"
+		]
+	},
+	"botpasswords": "Gesla botov",
+	"botpasswords-summary": "<em>Gesla botov</em> omogočajo dostop do uporabniškega računa z API-jem brez uporabe glavnih poverilnic računa za prijavo. Omejite lahko uporabniške pravice, ki so na voljo pri prijavi z geslom bota.\n\nČe ne veste, zakaj bi to morda želeli uporabljati, tega najverjetneje ne potrebujete. Nihče vas ne sme prositi, da mu zgenerirate in daste geslo bota.",
+	"botpasswords-disabled": "Gesla botov so onemogočena.",
+	"botpasswords-no-central-id": "Za uporabo gesel botov morate biti prijavljeni v centraliziran račun.",
+	"botpasswords-existing": "Obstoječa gesla botov",
+	"botpasswords-createnew": "Ustvari novo geslo bota",
+	"botpasswords-editexisting": "Uredi obstoječe geslo bota",
+	"botpasswords-label-needsreset": "(geslo je treba ponastaviti)",
+	"botpasswords-label-appid": "Ime bota:",
+	"botpasswords-label-create": "Ustvari",
+	"botpasswords-label-update": "Posodobi",
+	"botpasswords-label-cancel": "Prekliči",
+	"botpasswords-label-delete": "Izbriši",
+	"botpasswords-label-resetpassword": "Ponastavi geslo",
+	"botpasswords-label-grants": "Podeljena pooblastila:",
+	"botpasswords-help-grants": "Pooblastila omogočajo dostop do pravic, ki jih vaš uporabniški račun že ima. Omogočenje pooblastila tukaj ne zagotovi dostopa do nobene pravice, ki je vaš uporabniški račun ne bi imel že sicer. Za več informacij glejte [[Special:ListGrants|tabelo pooblastil]].\n\nTvegana pooblastila so označena. Neoznačena pooblastila je na splošno težko zlorabiti, če bota ugrabi oseba z zlonamernim namenom. Pooblastila s tveganjem za vandalizem (<span class=\"mw-grantriskgroup-vandalism\">{{int:grantriskgroup-vandalism}}</span>) se lahko uporabijo za povzročanje motenj, ki jih ni preprosto počistiti. Pooblastila z varnostnim tveganjem (<span class=\"mw-grantriskgroup-security\">{{int:grantriskgroup-security}}</span>) lahko povzročijo dolgotrajno škodo (npr. odtujitev osebnih podatkov). Interna pooblastila (<span class=\"mw-grantriskgroup-internal\">{{int:grantriskgroup-internal}}</span>) običajno uporablja samo upravljavec spletnega mesta. Ne zaprosite za tvegana pooblastila, razen če jih res potrebujete.",
+	"botpasswords-label-grants-column": "Odobreno",
+	"botpasswords-bad-appid": "Ime bota »$1« ni veljavno.",
+	"botpasswords-toolong-restrictions": "Vnesenih je preveč IP-naslovov ali razponov.",
+	"botpasswords-toolong-grants": "Izbranih je preveč podelitev.",
+	"botpasswords-insert-failed": "Dodajanje imena bota »$1« ni uspelo. Ste ga že dodali?",
+	"botpasswords-update-failed": "Posodobitev imena bota »$1« je spodletelo. Ste ga izbrisali?",
+	"botpasswords-created-title": "Geslo bota ustvarjeno",
+	"botpasswords-created-body": "Ustvarili smo geslo bota »$1« {{GENDER:$2|uporabnika|uporabnice|uporabnika_ice}} »$2«.",
+	"botpasswords-updated-title": "Geslo bota posodobljeno",
+	"botpasswords-updated-body": "Geslo bota »$1« {{GENDER:$2|uporabnika|uporabnice|uporabnika_ice}} »$2« je posodobljeno.",
+	"botpasswords-deleted-title": "Geslo bota izbrisano",
+	"botpasswords-deleted-body": "Geslo bota »$1« {{GENDER:$2|uporabnika|uporabnice|uporabnika_ice}} »$2« je izbrisano.",
+	"botpasswords-newpassword": "Novo geslo za prijavo z imenom <strong>$1</strong> je <strong>$2</strong>. <em>Prosimo, zabeležite si to za uporabo v prihodnje.</em> <br> (Za starejše bote, pri katerih mora biti prijavno ime enako uporabniškemu imenu, lahko uporabite <strong>$3</strong> kot uporabniško ime in <strong>$4</strong> kot geslo.)",
+	"botpasswords-no-provider": "BotPasswordsSessionProvider ni na voljo.",
+	"botpasswords-restriction-failed": "To prijavo preprečujejo omejitve gesla bota.",
+	"botpasswords-invalid-name": "Navedeno uporabniško ime ne vsebuje ločila za geslo bota (»$1«).",
+	"botpasswords-not-exist": "Uporabnik »$1« nima gesla bota z imenom »$2«.",
+	"botpasswords-needs-reset": "Geslo bota »$2« {{GENDER:$1|uporabnika|uporabnice|uporabnika_ce}} »$1« je treba ponastaviti.",
+	"botpasswords-locked": "Ne morete se prijaviti z geslom bota, ker je vaš račun zaklenjen."
+}

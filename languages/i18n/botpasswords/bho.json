@@ -1,0 +1,40 @@
+{
+	"@metadata": {
+		"authors": [
+			"SatyamMishra"
+		]
+	},
+	"botpasswords": "बॉट पासवर्ड",
+	"botpasswords-summary": "<em>बॉट पासवर्ड</em> खाता के मुख्य प्रवेश-पहिचान-जानकारी के बिना, सीधे एपीआई के माध्यम से खाता ले पहुँच देवे लें। बॉट पासवर्ड दे के खाता में प्रवेश के बाद खाता के प्रयोगकर्ता अधिकार कुछ सीमित हो सकेला।\n\nअगर आपके ई नइखे मालूम कि ई करे के आपके का जरूरत बा, साइद आपके ई ना करे के चाहीं। केहू भी रउवाँ से कबो ई पासवर्ड जनरेट करे के ना कही न आपसे ई पासवर्ड माँगी।",
+	"botpasswords-disabled": "बॉट पासवर्ड अक्षम कइल गइल बा।",
+	"botpasswords-no-central-id": "बॉट पासवर्ड के प्रयोग करे खातिर आपके सेंट्रलाइज्ड खाता से लॉगिन होखल जरूरी बा।",
+	"botpasswords-existing": "मौजूद बॉट पासवर्ड",
+	"botpasswords-createnew": "नया बॉट पासवर्ड बनाईं",
+	"botpasswords-editexisting": "मौजूद बॉट पासवर्ड के संपादित करीं",
+	"botpasswords-label-needsreset": "(पासवर्ड रीसेट कइल चाहत बा)",
+	"botpasswords-label-appid": "बॉट नाँव:",
+	"botpasswords-label-create": "बनाईं",
+	"botpasswords-label-update": "अपडेट",
+	"botpasswords-label-cancel": "कैंसिल",
+	"botpasswords-label-delete": "मिटाईं",
+	"botpasswords-label-resetpassword": "पासवर्ड रिसेट करीं",
+	"botpasswords-label-grants": "लागू हो सके वाला अनुमोदन:",
+	"botpasswords-help-grants": "एह ग्रांट सभ से जवना काम ले पहुँच हो सके ला ऊ अधिकार राउर सदस्य खाता लगे पहिलहीं से बा। इहाँ कौनों ग्रांट के चालू करे से आपके खाता के कौनों अइसन अधिकार ना मिली जे पहिलहीं से न होखे। ढेर जानकारी खातिर [[Special:ListGrants|ग्रांट लिस्ट]] देखीं।",
+	"botpasswords-label-grants-column": "मंजूर भइल",
+	"botpasswords-bad-appid": "बॉट नाँव \"$1\" वैध नइखे।",
+	"botpasswords-insert-failed": "बॉट नाँव $1 जोड़ल फेल हो गइल। का ई पहिलहीं जोड़ल जा चुकल बा?",
+	"botpasswords-update-failed": "बॉट नाँव \"$1\" अपडेट कइल फेल हो गइल। का ई मिटा दिहल बा?",
+	"botpasswords-created-title": "बॉट पासवर्ड बनावल गइल",
+	"botpasswords-created-body": "{{GENDER:$2|प्रयोगकर्ता}} \"$2\" के बॉट नाँव \"$1\" खाती बॉट पासवर्ड बना दिहल गइल।",
+	"botpasswords-updated-title": "बॉट पासवर्ड अपडेट भइल",
+	"botpasswords-updated-body": "{{GENDER:$2|प्रयोगकर्ता}} \"$2\" के बॉट नाँव \"$1\" खातिर बॉट पासवर्ड अपडेट भइल।",
+	"botpasswords-deleted-title": "बॉट पासवर्ड मिटावल गइल",
+	"botpasswords-deleted-body": "{{GENDER:$2|प्रयोगकर्ता}} \"$2\" के बॉट नाँव \"$1\" खातिर बॉट पासवर्ड मिटावल गइल।",
+	"botpasswords-newpassword": "<strong>$1</strong> के संघे खाता में प्रवेश करे खातिर नया गुप्तशब्द <strong>$2</strong> बाटे। <em>भाबिस्य में हवाला देवे खातिर एकरा के रिकार्ड में दर्ज क लेईं।</em> <br> (पुरान बॉट सभ जिनहन में खाता में प्रवेश खातिर उहे लॉग इन नाँव इस्तमाल होला जे सदस्यनाँव होखे, आप सदस्यनाँव के रूप में <strong>$3</strong> आ गुप्तशब्द के रूप में <strong>$4</strong> के इस्तमाल क सकत बानी।)",
+	"botpasswords-no-provider": "BotPasswordsSessionProvider उपलब्ध नइखे।",
+	"botpasswords-restriction-failed": "बॉट गुप्तशब्द रोकथाम एह लॉगिन के नइखे होखे देत।",
+	"botpasswords-invalid-name": "दिहल गइल सदस्यनाँव में बॉट गुप्तशब्द सेपरेटर ($1) नइखे।",
+	"botpasswords-not-exist": "प्रयोगकर्ता \"$1\" के लगे \"$2\" नाँव के बॉटगुप्तशब्द नइखे।",
+	"botpasswords-needs-reset": "{{GENDER:$1|प्रयोगकर्ता}} \"$1\" के बॉट नाँव \"$2\" खातिर पासवर्ड रीसेट कइल जरूरी बा",
+	"botpasswords-locked": "आप बॉट पासवर्ड की संघे लॉग इन ना क सकत बानी काहें कि राउर खाता लाक बा।"
+}

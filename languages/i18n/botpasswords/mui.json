@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"Jawadywn"
+		]
+	},
+	"botpasswords": "Kato pengonci bot",
+	"botpasswords-disabled": "Kato pengonci bot dimatike.",
+	"botpasswords-label-create": "Ngawék",
+	"botpasswords-label-update": "Anyari",
+	"botpasswords-label-cancel": "Urung",
+	"botpasswords-label-delete": "Apus",
+	"botpasswords-label-resetpassword": "Gawé' balén kato pengoncinyo",
+	"botpasswords-label-grants-column": "Ijin dienju'ke",
+	"botpasswords-updated-title": "Kato pengonci bot diroba"
+}

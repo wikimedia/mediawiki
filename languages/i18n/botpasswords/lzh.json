@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"Bowleerin"
+		]
+	},
+	"botpasswords": "僕之符節",
+	"botpasswords-label-appid": "僕名：",
+	"botpasswords-label-create": "立",
+	"botpasswords-label-update": "更",
+	"botpasswords-label-cancel": "棄",
+	"botpasswords-label-delete": "刪",
+	"botpasswords-label-resetpassword": "重設符節",
+	"botpasswords-deleted-title": "僕之符節已刪",
+	"botpasswords-deleted-body": "\"$2\"所執之僕\"$1\"之符節已刪也。"
+}

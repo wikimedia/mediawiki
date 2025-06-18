@@ -1,0 +1,29 @@
+{
+	"@metadata": {
+		"authors": [
+			"Akerbeltz"
+		]
+	},
+	"botpasswords": "Faclan-faire bots",
+	"botpasswords-summary": "Bheir <em>faclan-faire bots</em> cothrom air cunntas cleachdaiche slighe an API gun a bhith a’ cleachdadh prìomh theisteas a’ chunntais. Dh’fhaoidte gum bi na còraichean cleachdaiche cuingichte nuair a thathar clàraichte a-staigh air facal-faire bot.\n\nMur eil fhios agad carson a dhèanadh tu seo, ’s mathaid nach bu chòir dhut sin a dhèanamh. Cha bu chòir do dhuine sam bith iarraidh ort fear dhiubh seo a chruthachadh is a thoirt dhaibh uair sam bith.",
+	"botpasswords-disabled": "Tha faclan-faire bots à comas.",
+	"botpasswords-no-central-id": "Feumaidh tu a bhith clàraichte a-staigh air cunntas meadhanaichte mus urrainn dhut faclan-faire bots a chleachdadh.",
+	"botpasswords-existing": "Faclan-faire bots làithreach",
+	"botpasswords-createnew": "Cruthaich facal-faire bot ùr",
+	"botpasswords-editexisting": "Deasaich facal-faire bot làithreach",
+	"botpasswords-label-appid": "Ainm a’ bhot:",
+	"botpasswords-label-create": "Cruthaich",
+	"botpasswords-label-update": "Ùraich",
+	"botpasswords-label-cancel": "Sguir dheth",
+	"botpasswords-label-delete": "Sguab às",
+	"botpasswords-label-resetpassword": "Ath-shuidhich am facal-faire",
+	"botpasswords-label-grants": "Buileachaidhean iomchaidh:",
+	"botpasswords-help-grants": "Ma nì thu buileachadh, is urrainn dhut còraichean a tha aig a’ chunntas agad a thoirt seachad. Ma nì thu buileachadh an-seo, cha doir seo cothrom air còraichean sam bith nach biodh aig a’ chunntas agad co-dhiù. Seall [[Special:ListGrants|clàr a’ bhuileachaidh]] airson barrachd fiosrachaidh.",
+	"botpasswords-label-grants-column": "Air a bhuileachadh",
+	"botpasswords-bad-appid": "Chan e ainm bot dligheach a tha ann an “$1”.",
+	"botpasswords-insert-failed": "Cha b’ urrainn dhuinn an t-ainm bot “$1” a chur ris. An deach a chur ris mu thràth?",
+	"botpasswords-update-failed": "Dh’fhàillig ùrachadh an ainm bot “$1”. An deach a sguabadh às?",
+	"botpasswords-created-title": "Chaidh am facal-faire bot a chruthachadh",
+	"botpasswords-created-body": "Chaidh am facal-faire bot airson a’ bhot air a bheil “$1” aig a’ chleachdaiche “$2” a chruthachadh.",
+	"botpasswords-updated-title": "Chaidh am facal-faire bot ùrachadh"
+}

@@ -1,0 +1,21 @@
+{
+	"@metadata": {
+		"authors": [
+			"Moshtank",
+			"Sultanselim baloch"
+		]
+	},
+	"botpasswords": "رباتء گالگوَزاں",
+	"botpasswords-createnew": "نۏکݔن رباتی گالگۏزے جۏڈ کن",
+	"botpasswords-editexisting": "رباتی گالگۏزے ٹگلݔنگ",
+	"botpasswords-label-needsreset": "(گالگۏز باید ٹگلݔنگ بہ بیت)",
+	"botpasswords-label-appid": "رباتء نام:",
+	"botpasswords-label-create": "بنݔنگ",
+	"botpasswords-label-update": "پہ رۏچ",
+	"botpasswords-label-cancel": "بجَگ",
+	"botpasswords-label-delete": "گار",
+	"botpasswords-label-resetpassword": "گالگوَزءِ پاک کنگ",
+	"botpasswords-created-title": "رباتی گالگۏز جۏڈݔنگ بیت",
+	"botpasswords-updated-title": "رباتی گالگۏز پہ رۏچ بیت",
+	"botpasswords-deleted-title": "رباتی گالگۏز پاک کنگ بیت"
+}

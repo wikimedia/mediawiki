@@ -1,0 +1,37 @@
+{
+	"@metadata": {
+		"authors": [
+			"Kambai Akau"
+		]
+	},
+	"botpasswords": "Swáng-nwuai tswambishyi",
+	"botpasswords-disabled": "Á̱ hyaai swáng-nwuai tswámbishyi.",
+	"botpasswords-no-central-id": "Ka̱ a cat nyia̱ ta̱m ma̱ng swáng-nwuai tswambishyi, ta hwa a nwuo ma̱ng a̱la̱n ka̱ shyia̱ a̱ka̱wa̱tyia̱ ka a̱ni.",
+	"botpasswords-existing": "Swáng-nwuai tswámbishyi ji̱ shyia̱ a̱ni",
+	"botpasswords-createnew": "Khwuk swang-nwuai tswambishyi swai",
+	"botpasswords-editexisting": "Ghwut neet swang-nwuai tswambishyi ji̱ shyia̱ a̱ni",
+	"botpasswords-label-needsreset": "(swang-nwuai cat a bu nyia̱ seti)",
+	"botpasswords-label-appid": "A̱lyoot tswambishyi:",
+	"botpasswords-label-create": "Khwuk",
+	"botpasswords-label-update": "Tyia̱ fai",
+	"botpasswords-label-cancel": "Lyang",
+	"botpasswords-label-delete": "Ti̱n",
+	"botpasswords-label-resetpassword": "Bu nyia̱ seti swang-nwuai",
+	"botpasswords-label-grants": "Nneap nang á̱ nyian ta̱m ma̱ng á̱na a̱ni:",
+	"botpasswords-label-grants-column": "Á̱ shim",
+	"botpasswords-bad-appid": "A̱lyoot tswambishyi \"$1\" ka yet a̱kace kya.",
+	"botpasswords-toolong-restrictions": "A nwuo ma̱ng a̱ka̱vwuonswat IP ke a̱gi̱gak ma̱ a̱di̱di̱t si̱ la̱u.",
+	"botpasswords-toolong-grants": "A khai nneap ma̱ a̱di̱di̱t si̱ la̱u.",
+	"botpasswords-insert-failed": "Á̱ fwan di̱ mbeang a̱lyoot tswambishyi \"$1\" ka. Á̱ wa ka̱n mbeang wa kee?",
+	"botpasswords-update-failed": "Á̱ fwan di̱ tyei a̱lyoot tswambishyi \"$1\" ka a̱fai. Á̱ ti̱n wa  kee?",
+	"botpasswords-created-title": "A khwuk swang-nwuai a̱tyu komiti á̱nietfa̱kda̱",
+	"botpasswords-created-body": "Á̱ khwuk swang-nwuai tswambishyi ji mat a̱lyoot tswambishyi ka \"$1\" a̱si̱ {{GENDER:$2|a̱tyunta̱m}} \"$2\".",
+	"botpasswords-updated-title": "Á̱ tyia̱ swang-nwuai a̱tyu komiti á̱nietfa̱kda̱ swai",
+	"botpasswords-updated-body": "Á̱ tyia̱ swang-nwuai tswambishyi mat a̱lyoot tswambishyi \"$1\" ka a̱si̱ {{GENDER:$2|a̱tyunta̱m}} \"$2\" a̱fai.",
+	"botpasswords-deleted-title": "Á̱ ti̱n swang-nwuai tswambishyi",
+	"botpasswords-deleted-body": "Á̱ ti̱n swang-nwuai a̱lyoot tswambishyi \"$1\" ka a̱si̱ {{GENDER:$2|a̱tyunta̱m}} \"$2\".",
+	"botpasswords-no-provider": "BotPasswordsSessionProvider nshyia̱ bah.",
+	"botpasswords-not-exist": "A̱tyunta̱m \"$1\" byia̱ swang-nwuai tswambishyi nang á̱ ngyei \"$2\" baa.",
+	"botpasswords-needs-reset": "Ta hwa á̱ bu-nyia̱-seti swang-a̱lyiat tswambishyi mat a̱lyoot tswambishyi \"$2\" ka ka̱ yet ma {{GENDER:$1|a̱tyunta̱m}} \"$1\" kya.",
+	"botpasswords-locked": "A si̱ mi̱n nwuo ma̱ng swang-a̱lyiat tswambishyi bah ma̱nang a̱la̱n ang ka shyia̱ di̱ nyim a̱ni."
+}

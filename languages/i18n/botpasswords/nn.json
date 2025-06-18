@@ -1,0 +1,32 @@
+{
+	"@metadata": {
+		"authors": [
+			"Jon Harald Søby",
+			"Maddy from Celeste"
+		]
+	},
+	"botpasswords": "Botpassord",
+	"botpasswords-summary": "<em>Robotpassord</em> gjev tilgjenge til ein brukarkonto utan å bruke det eigenlege passordet. Brukarretane som er tilgjengelege når dette passordet vert brukt, kan avgrensast.\n\nDersom du ikkje veit korfor du ville gjort dette, bør du truleg ikkje gjere det. Ingen skal beda deg om å laga eit robotpassord og giva det bort.",
+	"botpasswords-disabled": "Robotpassord er slått av.",
+	"botpasswords-no-central-id": "For å bruke robotpassord, må du vera logga inn med ein sentralisert konto.",
+	"botpasswords-existing": "Noverande robotpassord",
+	"botpasswords-createnew": "Opprett eit nytt robotpassord",
+	"botpasswords-editexisting": "Endra eit robotpassord",
+	"botpasswords-label-needsreset": "(du må nullstille passordet)",
+	"botpasswords-label-appid": "Botnamn:",
+	"botpasswords-label-create": "Opprett",
+	"botpasswords-label-update": "Oppdater",
+	"botpasswords-label-cancel": "Bryt av",
+	"botpasswords-label-delete": "Slett",
+	"botpasswords-label-resetpassword": "Nullstill passordet",
+	"botpasswords-label-grants": "Tilgjengelege tildelingar:",
+	"botpasswords-help-grants": "Tildelingar gjev tilgjenge til rettar som brukarkontoen din alt eig. Å slå på ei tildeling her gjev ikkje tilgjenge til rettar som kontoen din elles ikkje har. Sjå [[Special:ListGrants|tildelingstabellen]] for meir informasjon.",
+	"botpasswords-label-grants-column": "Løyvd",
+	"botpasswords-bad-appid": "Robotnamnet «$1» er ikkje gyldig.",
+	"botpasswords-toolong-restrictions": "For mange IP-adresser eller -intervall er oppgjevne.",
+	"botpasswords-toolong-grants": "Du har vald for mange løyvingar.",
+	"botpasswords-insert-failed": "Robotnamnet «$1» kunne ikkje bli lagt til. Har det alt blitt lagt til?",
+	"botpasswords-update-failed": "Robotnamnet «$1» kunne ikkje bli oppdatert. Er det sletta?",
+	"botpasswords-created-title": "Robotpassord opprett",
+	"botpasswords-not-exist": "Brukaren «$1» har ikkje eit botpassord kalla «$2»."
+}

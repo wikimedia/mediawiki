@@ -1,0 +1,42 @@
+{
+	"@metadata": {
+		"authors": [
+			"Winston Sung"
+		]
+	},
+	"botpasswords": "机器人密码",
+	"botpasswords-summary": "<em>机器人密码</em>允许拉弗使用账户个主要登录凭据个情况下，通过API访问用户账户。通过机器人密码登录时可用个用户权限可以被限制。\n\n拉弗晓得为啥要箇样做个情况下，侬弗应该使用此功能。任何人侪弗应该让侬生成箇些密码并向渠提供。",
+	"botpasswords-disabled": "机器人密码已禁用。",
+	"botpasswords-no-central-id": "要使用机器人密码，侬必须登录到已集中个账户。",
+	"botpasswords-existing": "现有机器人密码",
+	"botpasswords-createnew": "创建新个机器人密码",
+	"botpasswords-editexisting": "编辑现有个机器人密码",
+	"botpasswords-label-needsreset": "（密码需要重置）",
+	"botpasswords-label-appid": "机器人名字：",
+	"botpasswords-label-create": "建立",
+	"botpasswords-label-update": "更新",
+	"botpasswords-label-cancel": "取消",
+	"botpasswords-label-delete": "删除",
+	"botpasswords-label-resetpassword": "重置密码",
+	"botpasswords-label-grants": "应用授权：",
+	"botpasswords-help-grants": "授权允许对侬个用户账户已持有个权限进行访问。拉此启用授权并弗会提供侬根本弗会拥有个权限个访问权。参见[[Special:ListGrants|授权表]]以获取更多信息。",
+	"botpasswords-label-grants-column": "已授权",
+	"botpasswords-bad-appid": "机器人名“$1”无效。",
+	"botpasswords-toolong-restrictions": "输入仔太多个IP地址或者范围。",
+	"botpasswords-toolong-grants": "选择个授权忒多。",
+	"botpasswords-insert-failed": "无法添加机器人名“$1”。渠是否已添加？",
+	"botpasswords-update-failed": "无法更新机器人名“$1”。渠是否已删除？",
+	"botpasswords-created-title": "机器人密码已创建",
+	"botpasswords-created-body": "用拉{{GENDER:$2|用户}}“$2”个机器人名称“$1”个机器人密码已创建。",
+	"botpasswords-updated-title": "机器人密码已更新",
+	"botpasswords-updated-body": "用拉{{GENDER:$2|用户}}“$2”个机器人名称“$1”个机器人密码已更新。",
+	"botpasswords-deleted-title": "机器人密码已删除",
+	"botpasswords-deleted-body": "用拉{{GENDER:$2|用户}}“$2”个机器人名称“$1”个机器人密码已删除。",
+	"botpasswords-newpassword": "用拉登录<strong>$1</strong>个新密码是<strong>$2</strong>。<em>请记牢渠以备今后参考。</em><br>（对于需要登录名搭最终用户名相同个旧机器人，侬也可以使用<strong>$3</strong>作为用户名，<strong>$4</strong>作为密码。）",
+	"botpasswords-no-provider": "BotPasswordsSessionProvider弗可用。",
+	"botpasswords-restriction-failed": "机器人密码限制阻止此次登录。",
+	"botpasswords-invalid-name": "指定个用户名弗包含机器人密码分隔符（“$1”）。",
+	"botpasswords-not-exist": "用户“$1”没名叫“$2”个机器人密码。",
+	"botpasswords-needs-reset": "用拉{{GENDER:$1|用户}}“$1”个机器人名称“$2”个机器人密码必须重置。",
+	"botpasswords-locked": "由于侬个账户已被锁定，侬弗可以使用机器人密码进行登录。"
+}

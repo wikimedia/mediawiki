@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"Teitei Para"
+		]
+	},
+	"botpasswords-label-appid": "Bot moh:",
+	"botpasswords-label-create": "Tao",
+	"botpasswords-label-update": "Thâtih pathei",
+	"botpasswords-label-cancel": "Châvei",
+	"botpasswords-label-delete": "Parao",
+	"botpasswords-label-resetpassword": "Bieruchâ sohpathi",
+	"botpasswords-bad-appid": "Bot moh \"$1\" cha ado vei."
+}

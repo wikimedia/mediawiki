@@ -1,0 +1,13 @@
+{
+	"@metadata": {
+		"authors": [
+			"Terfili"
+		]
+	},
+	"botpasswords-label-appid": "Name vum Bot:",
+	"botpasswords-label-create": "Aalege",
+	"botpasswords-label-update": "Aktualisiere",
+	"botpasswords-label-cancel": "Abbräche",
+	"botpasswords-label-delete": "Lösche",
+	"botpasswords-label-resetpassword": "Passwort zruggsetze"
+}

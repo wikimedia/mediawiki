@@ -1,0 +1,34 @@
+{
+	"@metadata": {
+		"authors": [
+			"Anzx",
+			"Gopala Krishna A",
+			"Rmurthy",
+			"Shushruth",
+			"ಮಲ್ನಾಡಾಚ್ ಕೊಂಕ್ಣೊ"
+		]
+	},
+	"botpasswords": "ಬಾಟ್ ಪ್ರವೇಶ ಪದಗಳು",
+	"botpasswords-summary": "<em>ಬಾಟ್ ಪಾಸ್‌ವರ್ಡ್‌ಗಳು</em> ಖಾತೆಯ ಮುಖ್ಯ ಲಾಗಿನ್ ರುಜುವಾತುಗಳನ್ನು ಬಳಸದೆ API ಮೂಲಕ ಬಳಕೆದಾರ ಖಾತೆಗೆ ಪ್ರವೇಶವನ್ನು ಅನುಮತಿಸುತ್ತದೆ. ಬಾಟ್ ಪಾಸ್‌ವರ್ಡ್‌ನೊಂದಿಗೆ ಲಾಗ್ ಇನ್ ಮಾಡಿದಾಗ ಲಭ್ಯವಿರುವ ಬಳಕೆದಾರರ ಹಕ್ಕುಗಳನ್ನು ನಿರ್ಬಂಧಿಸಬಹುದು.\n\nನೀವು ಇದನ್ನು ಏಕೆ ಮಾಡಲು ಬಯಸುತ್ತೀರಿ ಎಂದು ನಿಮಗೆ ತಿಳಿದಿಲ್ಲದಿದ್ದರೆ, ನೀವು ಬಹುಶಃ ಇದನ್ನು ಮಾಡಬಾರದು. ಇವುಗಳಲ್ಲಿ ಒಂದನ್ನು ಉತ್ಪಾದಿಸಿ ಮತ್ತು ಅವರಿಗೆ ನೀಡುವಂತೆ ಯಾರೂ ನಿಮ್ಮನ್ನು ಕೇಳಬಾರದು.",
+	"botpasswords-disabled": "ಬಾಟ್ ಪ್ರವೇಶಪದ ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ.",
+	"botpasswords-no-central-id": "ಬಾಟ್ ಪ್ರವೇಶಪದ ಬಳಸಲು, ನೀವು ಕೇಂದ್ರೀಕೃತ ಖಾತೆಗೆ ಲಾಗ್ ಇನ್ ಆಗಿರಬೇಕು.",
+	"botpasswords-existing": "ಆಸ್ಥಿತ್ವದಲ್ಲಿರುವ ಬಾಟ್ ಪ್ರವೇಶಪದ",
+	"botpasswords-createnew": "ಹೊಸ ಬಾಟ್ ಪ್ರವೇಶಪದ ರಚಿಸಿ",
+	"botpasswords-editexisting": "ಆಸ್ಥಿತ್ವದಲ್ಲಿರುವ ಬಾಟ್ ಪ್ರವೇಶಪದ ಸ೦ಪಾದಿಸಿ",
+	"botpasswords-label-needsreset": "(ಗುಪ್ತಪದವನ್ನು ಮರುಹೊಂದಿಸಬೇಕಾಗಿದೆ)",
+	"botpasswords-label-appid": "ಬಾಟ್ ಹೆಸರು:",
+	"botpasswords-label-create": "ಸೃಷ್ಟಿಸು",
+	"botpasswords-label-update": "ನವೀಕರಿಸಿ",
+	"botpasswords-label-cancel": "ರದ್ದುಗೊಳಿಸಿ",
+	"botpasswords-label-delete": "ಅಳಿಸು",
+	"botpasswords-label-resetpassword": "ಗುಪ್ತಪದವನ್ನು ಮರುಹೊಂದಿಸಿ",
+	"botpasswords-label-grants": "ಅನ್ವಯವಾಗುವ ಅನುದಾನಗಳು:",
+	"botpasswords-label-grants-column": "ಮಂಜೂರು ಮಾಡಿದೆ",
+	"botpasswords-bad-appid": "ಬಾಟ್ ಹೆಸರು \"$1\" ಮಾನ್ಯವಾಗಿಲ್ಲ.",
+	"botpasswords-toolong-restrictions": "ಹಲವಾರು IP ವಿಳಾಸಗಳು ಅಥವಾ ಶ್ರೇಣಿಗಳನ್ನು ನಮೂದಿಸಲಾಗಿದೆ.",
+	"botpasswords-toolong-grants": "ಹಲವಾರು ಅನುದಾನಗಳನ್ನು ಆಯ್ಕೆ ಮಾಡಲಾಗಿದೆ.",
+	"botpasswords-insert-failed": "ಬಾಟ್ ಹೆಸರು \"$1\" ಸೇರಿಸಲು ವಿಫಲವಾಗಿದೆ. ಇದನ್ನು ಈಗಾಗಲೇ ಸೇರಿಸಲಾಗಿದೆಯೇ?",
+	"botpasswords-update-failed": "ಬಾಟ್ \"$1\" ಹೆಸರನ್ನು ನವೀಕರಿಸಲು ವಿಫಲವಾಗಿದೆ. ಅದನ್ನು ಅಳಿಸಲಾಗಿದೆಯೇ?",
+	"botpasswords-created-title": "ಬಾಟ್ ಪ್ರವೇಶಪದವನ್ನು ರಚಿಸಲಾಯಿತು",
+	"botpasswords-deleted-title": "ಬಾಟ್ ಪ್ರವೇಶಪದವನ್ನು ಅಳಿಸಲಾಯಿತು"
+}

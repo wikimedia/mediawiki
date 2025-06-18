@@ -1,0 +1,41 @@
+{
+	"@metadata": {
+		"authors": [
+			"BRUTE",
+			"Mehman97",
+			"Tokoko"
+		]
+	},
+	"botpasswords": "ბოტის პაროლები",
+	"botpasswords-summary": "<em>ბოტების კოდები</em> საშუალებას იძლევა მომხმარებლის ანგარიშთან დაკავშირების API-ის გამოყენებით ანგარიშის ძირითადი შესვლის მონაცემების გამოყენების გარეშე. მომხმარებლის უფლებები ასეთი შესვლისას შესაძლოა შეზღუდული იყოს.\n\nთუ არ იცით ეს რატომ უნდა გააკეთოთ, ალბათ არც უნდა გააკეთოთ. ასეთი კოდის წამოქმნა და სხვისთვის გადაცემა არაა რეკომენდირებული.",
+	"botpasswords-disabled": "ბოტის პაროლები გათიშულია.",
+	"botpasswords-no-central-id": "ბოტის პაროლების გამოსაყენებლად, საჭიროა ცენტრალიზებული ანგარიშით შესვლა.",
+	"botpasswords-existing": "არსებული ბოტის პაროლები",
+	"botpasswords-createnew": "ახალი ბოტის პაროლის შექმნა",
+	"botpasswords-editexisting": "არსებული ბოტის პაროლის შეცვლა",
+	"botpasswords-label-needsreset": "(პაროლი საჭიროებს განახლებას)",
+	"botpasswords-label-appid": "ბოტის სახელი:",
+	"botpasswords-label-create": "შექმნა",
+	"botpasswords-label-update": "განახლება",
+	"botpasswords-label-cancel": "გაუქმება",
+	"botpasswords-label-delete": "წაშლა",
+	"botpasswords-label-resetpassword": "პაროლის აღდგენა",
+	"botpasswords-label-grants": "გამოყენებადი ნებართვები:",
+	"botpasswords-help-grants": "ყოველი ნებართვა იძლევა წვდომას ჩამოთვლილ მომხმარებელთა უფლებებზე, რომელიც მომხმარებელს აქვს. იხილეთ [[Special:ListGrants|ნებართვების ცხრილი]] მეტი ინფორმაციისთვის.",
+	"botpasswords-label-grants-column": "მინიჭებულია",
+	"botpasswords-bad-appid": "ბოტის სახელი \"$1\" არ არის მართებული.",
+	"botpasswords-toolong-restrictions": "აქ შეყვანილია ძალიან ბევრი IP მისამართი ან დიაპაზონი.",
+	"botpasswords-insert-failed": "ბოტის სახელის $1\" დამატება შეუძლებელია. უკვე დამატებულია?",
+	"botpasswords-update-failed": "ბოტის სახელის \"$1\" განახლება შეუძლებელია. წაშლილია?",
+	"botpasswords-created-title": "ბოტის პაროლი შექმნილია",
+	"botpasswords-created-body": "ბოტის პაროლი მომხმარებელ \"$2\"-ის \"$1\" სახელისთვის შეიქმნა.",
+	"botpasswords-updated-title": "ბოტის პაროლი განახლდა",
+	"botpasswords-updated-body": "ბოტის პაროლი \"$2\" მომხმარებლის \"$1\"-ის სახელისთვის განახლდა.",
+	"botpasswords-deleted-title": "ბოტის პაროლი წაშლილია",
+	"botpasswords-deleted-body": "ბოტის პაროლი \"$2\" მომხმარებლის \"$1\"-ის სახელისთვის წაიშალა.",
+	"botpasswords-newpassword": "ახალი პაროლი <strong>$1</strong>-ით შესასვლელად არის <strong>$2</strong>. <em>გთხოვთ დაიმახსოვრეთ ან ჩაიწერეთ.</em> (ძველი ბოტებისათვის, რომლებიც მოითხოვენ რომ შესასვლელი სახელი ემთხვეოდეს შესაძლო მომხმარებლის სახელს, შეგიძლიათ გამოიყენოთ <strong>$3</strong>, როგორც მომხმარებლის სახელი და <strong>$4</strong>, როგორც პაროლი.)",
+	"botpasswords-no-provider": "BotPasswordsSessionProvider არ არის ხელმისაწვდომი.",
+	"botpasswords-restriction-failed": "ბოტის პაროლის შეზღუდვები არ უშვებს ამ ავტორიზაციას.",
+	"botpasswords-invalid-name": "მითითებული მომხმარებელი ბოტის პაროლის გამყოფს (\"$1\").",
+	"botpasswords-not-exist": "მომხმარებელ \"$1\"-ს არ აქვს ბოტის პაროლი, სახელად \"$2\"."
+}

@@ -1,0 +1,13 @@
+{
+	"@metadata": {
+		"authors": [
+			"Samatics"
+		]
+	},
+	"botpasswords-label-appid": "Bot nem:",
+	"botpasswords-label-create": "Mek-am",
+	"botpasswords-label-update": "Update-am",
+	"botpasswords-label-cancel": "Kansu-am",
+	"botpasswords-label-delete": "Komot-am",
+	"botpasswords-label-resetpassword": "Riset di paswod"
+}

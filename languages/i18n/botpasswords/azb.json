@@ -1,0 +1,32 @@
+{
+	"@metadata": {
+		"authors": [
+			"Alp Er Tunqa",
+			"Bir morty",
+			"Ilğım",
+			"SajjadHKH"
+		]
+	},
+	"botpasswords": "روبات رمزی",
+	"botpasswords-disabled": "روْبات رمزلری ایشدن دۆشوبلر.",
+	"botpasswords-existing": "وار اولان \"بات\" گیریش کدلاری",
+	"botpasswords-createnew": "یئنی روْبات رمزی یارات",
+	"botpasswords-editexisting": "واراوْلان بیر روْبات رمزی‌نی دییشدیر",
+	"botpasswords-label-needsreset": "(گیریش رمزی دییشدیریلمه‌لیدیر)",
+	"botpasswords-label-appid": "روْبات آدی:",
+	"botpasswords-label-create": "یارات",
+	"botpasswords-label-update": "آپدئیت ائت",
+	"botpasswords-label-cancel": "وازگئچ",
+	"botpasswords-label-delete": "سیل",
+	"botpasswords-label-resetpassword": "رمزی یئنی‌له",
+	"botpasswords-label-grants": "ایجرا اوْلونابیلر ایجازه‌لر:",
+	"botpasswords-label-grants-column": "وئریلدی",
+	"botpasswords-bad-appid": "\"$1\" روْبات آدی اعتیبارلی دئییلدیر.",
+	"botpasswords-created-title": "روْبات پسووْردو یارادیلدی.",
+	"botpasswords-updated-title": "روْبات پسووْردو آپدئیت اوْلوندو.",
+	"botpasswords-deleted-title": "روْبات پسووْردو سیلیندی",
+	"botpasswords-restriction-failed": "روْبات رمزی محدودیتلری بو گیریشین قاباغینی آلدی.",
+	"botpasswords-not-exist": "ایشلدن \"$1\"، \"$2\" آدیندا بیر روْبات رمزی یوْخودور.",
+	"botpasswords-needs-reset": "{{GENDER:$1|ایشلدن}} \"$1\"-یه عایید \"$2\" آدیندا روْباتین رمزی یئنیلنمه‌لیدیر.",
+	"botpasswords-locked": "حسابینیز باغلانیبدیر و روْبات رمزی ایله گیره‌بیلمزسینیز."
+}

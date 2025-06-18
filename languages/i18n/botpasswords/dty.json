@@ -1,0 +1,26 @@
+{
+	"@metadata": {
+		"authors": [
+			"Nirajan pant",
+			"जनक राज भट्ट"
+		]
+	},
+	"botpasswords": "बोट पासवर्ड",
+	"botpasswords-createnew": "नौलो बोट पासवर्ड बनाऽ",
+	"botpasswords-editexisting": "भयाऽ बोट पासवर्ड सम्पादन अरऽ",
+	"botpasswords-label-appid": "बोट नाम:",
+	"botpasswords-label-create": "सृजना गर",
+	"botpasswords-label-update": "नयाँ बनाउनु",
+	"botpasswords-label-cancel": "रद्द",
+	"botpasswords-label-delete": "मेट्न्या",
+	"botpasswords-label-resetpassword": "पासवर्ड पूर्वनिर्धारित गर",
+	"botpasswords-label-grants": "अनुदान आवेदन:",
+	"botpasswords-label-grants-column": "प्रदान भयो",
+	"botpasswords-bad-appid": "बोट नाउँ \"$1\" नाइमाणीनो।",
+	"botpasswords-insert-failed": "बोट नाउँ \"$1\" थप्दाइ असफल। कि यो पैली थपीसकीरैछ?",
+	"botpasswords-update-failed": "बोट नाउँ \"$1\" अपडेट अद्दाइ असफल। कि यो मेट्याऽ हो?",
+	"botpasswords-created-title": "बोट को पासवर्ड बन्यो",
+	"botpasswords-created-body": "प्रयोगकर्ता \"$2\" को बोट नाउँ \"$1\" खिलाइ बोट पासवर्ड बनायियो।",
+	"botpasswords-updated-title": "बोट को पासवर्ड अपडेट भयो",
+	"botpasswords-deleted-title": "बोट को पासवर्ड मेटियो"
+}

@@ -1,0 +1,37 @@
+{
+	"@metadata": {
+		"authors": [
+			"Papuass",
+			"Peridot Nation",
+			"Silraks"
+		]
+	},
+	"botpasswords": "Botu paroles",
+	"botpasswords-disabled": "Botu paroles ir atspējotas.",
+	"botpasswords-no-central-id": "Lai izmantotu botu paroles, tev jāpieslēdzas centralizētajam kontam.",
+	"botpasswords-existing": "Esošās botu paroles",
+	"botpasswords-createnew": "Izveidot jaunu bota paroli",
+	"botpasswords-editexisting": "Rediģētu esošu bota paroli",
+	"botpasswords-label-needsreset": "(paroli nepieciešams atiestatīt)",
+	"botpasswords-label-appid": "Bota nosaukums:",
+	"botpasswords-label-create": "Izveidot",
+	"botpasswords-label-update": "Atjaunināt",
+	"botpasswords-label-cancel": "Atcelt",
+	"botpasswords-label-delete": "Dzēst",
+	"botpasswords-label-resetpassword": "Atiestatīt paroli",
+	"botpasswords-label-grants-column": "Piešķirts",
+	"botpasswords-bad-appid": "Bota nosaukums \"$1\" nav derīgs.",
+	"botpasswords-toolong-restrictions": "Ievadītas pārāk daudz IP adreses vai diapazoni.",
+	"botpasswords-insert-failed": "Neizdevās pievienot bota nosaukumu \"$1\". Vai tas jau ir pievienots?",
+	"botpasswords-update-failed": "Neizdevās izmainīt bota nosaukumu \"$1\". Vai tas ticis dzēsts?",
+	"botpasswords-created-title": "Bota parole izveidota",
+	"botpasswords-created-body": "Bota parole {{GENDER:$2|dalībnieka|dalībnieces}} \"$2\" botam \"$1\" tika izveidota.",
+	"botpasswords-updated-title": "Bota parole atjaunināta",
+	"botpasswords-updated-body": "Bota parole {{GENDER:$2|dalībnieka|dalībnieces}} \"$2\" botam \"$1\" tika atjaunināta.",
+	"botpasswords-deleted-title": "Bota parole dzēsta",
+	"botpasswords-deleted-body": "Bota parole {{GENDER:$2|dalībnieka|dalībnieces}} \"$2\" botam \"$1\" tika dzēsta.",
+	"botpasswords-no-provider": "BotPasswordsSessionProvider nav pieejams.",
+	"botpasswords-restriction-failed": "Botu paroles ierobežojumi liedz šo pieslēgšanos.",
+	"botpasswords-not-exist": "Lietotājam \"$1\" nav bota paroles ar nosaukumu \"$2\".",
+	"botpasswords-locked": "Jūs nevarat pieslēgties ar bota paroli, jo Jūsu konts ir bloķēts."
+}

@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"EileenSanda"
+		]
+	},
+	"botpasswords-label-create": "Upprætta",
+	"botpasswords-label-update": "Dagfør",
+	"botpasswords-label-cancel": "Avbrót",
+	"botpasswords-label-delete": "Strika",
+	"botpasswords-label-resetpassword": "Nullstilla loyniorðið"
+}

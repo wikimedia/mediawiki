@@ -1,0 +1,40 @@
+{
+	"@metadata": {
+		"authors": [
+			"Delim"
+		]
+	},
+	"botpasswords": "로보트 통행암호",
+	"botpasswords-summary": "'''로보트 통행암호'''는 사용자의 기본 가입 정보를 리용하지 않고 API를 통한 사용자 계산자리로의 접근을 허용합니다. 로보트 통행암호를 리용하여 가입할 때 리용 가능한 사용자 권한은 제한될수 있습니다.\n\n이 기능을 리용할 리유가 없다면 아마 리용하지 말아야 할것입니다. 누구도 이 통행암호의 생성을 사용자에게 요청할수 없으며, 이를 수락하여 전달하지 말아주십시오.",
+	"botpasswords-disabled": "로보트 통행암호가 금지되였습니다.",
+	"botpasswords-no-central-id": "로보트 통행암호를 사용하려면 통합 계산자리로 가입해야 합니다.",
+	"botpasswords-existing": "기존의 로보트 통행암호",
+	"botpasswords-createnew": "새로운 로보트 통행암호 만들기",
+	"botpasswords-editexisting": "기존의 로보트 통행암호 편집하기",
+	"botpasswords-label-needsreset": "(통행암호 다시설정 필요)",
+	"botpasswords-label-appid": "로보트 이름:",
+	"botpasswords-label-create": "만들기",
+	"botpasswords-label-update": "갱신",
+	"botpasswords-label-cancel": "취소",
+	"botpasswords-label-delete": "삭제",
+	"botpasswords-label-resetpassword": "통행암호 재설정",
+	"botpasswords-label-grants": "적용할수 있는 부여:",
+	"botpasswords-help-grants": "사용자 계산자리에서 사용할수 있는 권한을 부여합니다. 이 권한을 부여한다고 해서 원래 가지고있지 않던 권한이 부여되는것은 아닙니다. 자세한 정보는 [[Special:ListGrants|부여표]]를 보세요.",
+	"botpasswords-label-grants-column": "승인됨",
+	"botpasswords-bad-appid": "《$1》이라는 로보트 이름은 유효하지 않습니다.",
+	"botpasswords-insert-failed": "《$1》 로보트 이름을 추가하는데 실패했습니다. 이미 등록되지 않았는지 확인하기 바랍니다.",
+	"botpasswords-update-failed": "《$1》 로보트 이름을 갱신하는데 실패했습니다. 이미 삭제되지 않았는지 확인하기 바랍니다.",
+	"botpasswords-created-title": "로보트 통행암호 생성",
+	"botpasswords-created-body": "사용자 《$2》의 로보트이름《$1》의 로보트 통행암호가 만들어졌습니다.",
+	"botpasswords-updated-title": "로보트 통행암호 갱신",
+	"botpasswords-updated-body": "사용자 《$2》의 로보트이름 《$1》의 로보트 통행암호가 갱신되였습니다.",
+	"botpasswords-deleted-title": "로보트 통행암호 제거",
+	"botpasswords-deleted-body": "사용자 《$2》의 로보트이름 《$1》의 로보트 통행암호가 삭제되였습니다.",
+	"botpasswords-newpassword": "<strong>$1</strong>님으로 가입하기 위한 새 통행암호는 <strong>$2</strong>입니다. <em>추후 참조를 위해 이것을 기록해두시기 바랍니다.</em> <br> (가입 이름이 최종 사용자 이름과 동일해야 하는 오래된 로보트의 경우, 사용자 이름으로 <strong>$3</strong>을(를), 통행암호로 <strong>$4</strong>을(를) 사용할수도 있습니다)",
+	"botpasswords-no-provider": "'BotPasswordsSessionProvider'는 이용할수 없습니다.",
+	"botpasswords-restriction-failed": "로보트 통행암호 제한으로 인해 가입할수 없습니다.",
+	"botpasswords-invalid-name": "지정된 사용자 이름은 로보트 통행암호 분리기호(《$1》)를 포함하고있지 않습니다.",
+	"botpasswords-not-exist": "《$1》 사용자는 이름이 《$2》인 로보트의 통행암호를 가지고있지 않습니다.",
+	"botpasswords-needs-reset": "{{GENDER:$1|사용자}} 《$1》의 로보트이름 《$2》의 로보트 통행암호를 재설정해야 합니다.",
+	"botpasswords-locked": "계산자리가 봉쇄되였기때문에 로보트 통행암호로 가입할수 없습니다."
+}

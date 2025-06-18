@@ -1,0 +1,13 @@
+{
+	"@metadata": {
+		"authors": [
+			"Musaddam Idriss"
+		]
+	},
+	"botpasswords": "Lammba ta asir ma Bot",
+	"botpasswords-label-appid": "Sim mà Bot:",
+	"botpasswords-label-create": "Dàgoorìimà",
+	"botpasswords-label-cancel": "Daanam",
+	"botpasswords-label-delete": "Fàɗu",
+	"botpasswords-label-resetpassword": "Nguzaa lammba ta asir"
+}

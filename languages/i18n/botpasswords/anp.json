@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"Proabscorp!"
+		]
+	},
+	"botpasswords": "बॉट पासवर्ड सिनी",
+	"botpasswords-label-appid": "बॉट नाँव:",
+	"botpasswords-label-create": "बनाबौ",
+	"botpasswords-label-update": "अद्यतन",
+	"botpasswords-label-cancel": "रद्द करौ",
+	"botpasswords-label-delete": "हटाबौ",
+	"botpasswords-label-resetpassword": "कूटशब्द रीसेट करौ",
+	"botpasswords-label-grants": "अनुदान आवेदन:",
+	"botpasswords-label-grants-column": "प्रदान होलौं",
+	"botpasswords-created-title": "बॉट पासवर्ड निर्मित होलै",
+	"botpasswords-updated-title": "बॉट पासवर्ड अद्यतन होलै",
+	"botpasswords-deleted-title": "बॉट पासवर्ड हटैलौ गेलै"
+}

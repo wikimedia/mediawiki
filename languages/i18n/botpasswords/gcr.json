@@ -1,0 +1,40 @@
+{
+	"@metadata": {
+		"authors": [
+			"LeGuyanaisPure",
+			"Léon973"
+		]
+	},
+	"botpasswords": "Kodsigré pou robo",
+	"botpasswords-summary": "<em>Kodsigré-ya pou robo</em> ka pèrmèt di ganyen lagsè roun kont itilizatò vya API san itilizé idantifyan-yan di konnègsyon prensipal. Drwè itilizatò-ya ki disponnib lò ou konnègté ké roun kodsigré pou robo pouvé fika rédjwi.\n\nSi ou pa ka wè poukisa ou téké lé fè sa, a ki ou pa benzwen fè sa. Pésonn divèt janmen doumandé ou di jénéré roun pou bay li.",
+	"botpasswords-disabled": "Kodsigré-ya pou robo dézagtivé.",
+	"botpasswords-no-central-id": "Pou itilizé kodsigré-ya di robo, ou divèt fika konnègté ké roun kont ki santralizé.",
+	"botpasswords-existing": "Kodsigré di robo ki ka ègzisté",
+	"botpasswords-createnew": "Kréyé roun kosigré nòv pou robo",
+	"botpasswords-editexisting": "Modifyé roun kodsigré di robo ki ka ègzisté",
+	"botpasswords-label-needsreset": "(Kodsigré divèt fika réynisyalizé)",
+	"botpasswords-label-appid": "Non di robo :",
+	"botpasswords-label-create": "Kréyé",
+	"botpasswords-label-update": "Fè roun mizajou",
+	"botpasswords-label-cancel": "Annilé",
+	"botpasswords-label-delete": "Siprimen",
+	"botpasswords-label-resetpassword": "Fè roun kodsigré nòv",
+	"botpasswords-label-grants": "Drwè aplikab :",
+	"botpasswords-help-grants": "Lotorizasyon-yan ka pèrmèt di agsédé ké drwè-ya ki akòrdé kaba ké ou kont itilizatò. Agtivé roun lotorizasyon isi ka fourni lagsè ké pyès drwè ki ou kont itilizatò pa ké ganyen dayò. Wè [[Special:ListGrants|tablo di lotorizasyon-yan]] pou plis lenfòrmasyon.",
+	"botpasswords-label-grants-column": "Akòrdé",
+	"botpasswords-bad-appid": "Non-an di robo « $1 » pa valid.",
+	"botpasswords-insert-failed": "Léchèk di ajou-a di non di robo « $1 ». Ès i té ajouté kaba ?",
+	"botpasswords-update-failed": "Léchèk di mizajou di non di robo « $1 ». Ès i té siprimen kaba ?",
+	"botpasswords-created-title": "Kodsigré pou robo kréyé",
+	"botpasswords-created-body": "Kodsigré-a pou robo-a « $1 » di {{GENDER:$2|itilizatò|itilizatris}}-a « $2 » sa kréyé.",
+	"botpasswords-updated-title": "Kodsigré pou robo mizajou",
+	"botpasswords-updated-body": "Kodsigré-a pou robo-a « $1 » di {{GENDER:$2|itilizatò|itilizatris}}-a « $2 » sa mizajou.",
+	"botpasswords-deleted-title": "Kodsigré pou robo siprimen",
+	"botpasswords-deleted-body": "Kodsigré-a pou robo-a « $1 » di {{GENDER:$2|itilizatò|itilizatris}}-a « $2 » té siprimen.",
+	"botpasswords-newpassword": "Kodsigré nòv-a pou konnègté sokò asou<strong>$1</strong> sa <strong>$2</strong>. <em>Souplé, anréjistré li pou itilizé li kou référans apré.</em><br> (Pou ansyen robo-ya ki ka benzwen ki non-an ki fourni pou konnègsyon-an fika menm-an ki non itilizatò évantchwèl, ou pouvé osi itilizé <strong>$3</strong> kou non itilizatò ké <strong>$4</strong> kou kodsigré).",
+	"botpasswords-no-provider": "BotPasswordsSessionProvider pa disponnib.",
+	"botpasswords-restriction-failed": "Rèstrigsyon-yan di kodsigré di robo ka anpéché sa konnègsyon.",
+	"botpasswords-invalid-name": "Non-an di itilizatò ki èspésifyé pa ka kontni di séparatò pou kodsigré di robo (« $1 »).",
+	"botpasswords-not-exist": "{{GENDER:$1|Itilizatò|Itilizatris}}-a « $1 » pa gen kodsigré pou robo ki nonmen « $2 ».",
+	"botpasswords-needs-reset": "Kodsigré-a di robo ki nonmen « $2 » di itilizat{{GENDER:$1|ò|ris}} « $1 » divèt fika réynisyalizé."
+}

@@ -1,0 +1,15 @@
+{
+	"@metadata": {
+		"authors": [
+			"Winston Sung"
+		]
+	},
+	"botpasswords": "Ke-khì-lâng bi̍t-bé",
+	"botpasswords-createnew": "Kiàn-li̍p sin ê ke-khì-lâng bi̍t-bé",
+	"botpasswords-label-appid": "Bot miâ-hō:",
+	"botpasswords-label-update": "Kái-sin",
+	"botpasswords-label-cancel": "Chhú-siau",
+	"botpasswords-label-delete": "Thâi-tiāu",
+	"botpasswords-bad-appid": "Miâ hō chò \"$1\" ê ke-khì-lâng bē-ēng-tit.",
+	"botpasswords-created-title": "Ke-khì-lâng bi̍t-bé í-keng kiàn-li̍p"
+}

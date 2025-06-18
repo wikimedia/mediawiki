@@ -1,0 +1,15 @@
+{
+	"@metadata": {
+		"authors": [
+			"Afimaame"
+		]
+	},
+	"botpasswords": "Bot passwords",
+	"botpasswords-disabled": "Bot passwords be disabled.",
+	"botpasswords-bad-appid": "De bot name \"$1\" no be valid.",
+	"botpasswords-toolong-grants": "De grants wey be selected be chaw.",
+	"botpasswords-insert-failed": "De bot name \"$1\" no dey add. You add am already?",
+	"botpasswords-update-failed": "De bot name \"$1\" no dey update. You delete am?",
+	"botpasswords-created-title": "Bot password created",
+	"botpasswords-locked": "You no go fi login with a bot password if dem lock your account."
+}

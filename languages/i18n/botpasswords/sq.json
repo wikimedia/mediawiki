@@ -1,0 +1,43 @@
+{
+	"@metadata": {
+		"authors": [
+			"Arianit",
+			"Besnik b",
+			"Denisa",
+			"Klein Muçi",
+			"Kosovastar",
+			"Liridon"
+		]
+	},
+	"botpasswords": "Bot fjalëkalimet",
+	"botpasswords-summary": "<em>Fjalëkalimi Botit</em> mundëson hyrjen në një llogari përdoruesi nëpërmjet API pa përdorur kredencialet kryesore të identifikimit. Të drejtat e përdoruesit janë të kufizuara kur identifikoheni me një fjalëkalim boti.\n\nNëse nuk e dini përse doni ta bëni këtë, më mirë mos e bëni. Asnjë nuk duhet t'iu kërkoj të gjeneroni një nga këto dhe tua dërgoni atyre.",
+	"botpasswords-disabled": "Fjalëkalimet e botit janë të padisponueshme.",
+	"botpasswords-no-central-id": "Për të përdorur fjalëkalimet e botit, duhet të identifikoheni në një llogari të centralizuar.",
+	"botpasswords-existing": "Fjalëkalimet ekzistuese të boteve.",
+	"botpasswords-createnew": "Krijo një fjalëkalim të ri boti",
+	"botpasswords-editexisting": "Redakto një fjalëkalim ekzistues boti",
+	"botpasswords-label-needsreset": "(fjalëkalimi duhet rivendosur)",
+	"botpasswords-label-appid": "Emri botit:",
+	"botpasswords-label-create": "Krijo",
+	"botpasswords-label-update": "Përditëso",
+	"botpasswords-label-cancel": "Anulo",
+	"botpasswords-label-delete": "Fshi",
+	"botpasswords-label-resetpassword": "Rivendos fjalëkalimin",
+	"botpasswords-label-grants": "Bursa të aplikueshme:",
+	"botpasswords-help-grants": "Bursat lejojnë hyrje në të drejtat e zotëruara nga llogaria juaj e përdoruesit.Mundësimi i një burse këtu nuk mundëson hyrje në asnjë të drejtë që llogaria juaj e përdoruesit nuk mund t'i ketë. Shikoni  [[Special:ListGrants|tabela e bursave]] për më tepër informacion.",
+	"botpasswords-label-grants-column": "Lejuar",
+	"botpasswords-bad-appid": "Emri i botit \"$1\" nuk është i vlefshëm.",
+	"botpasswords-insert-failed": "Dështoi për të shtuar emrin e botit \"$1\". është shtuar tashmë?",
+	"botpasswords-update-failed": "Dështoi për të përditësuar emrin e bot \"$1\". Ishte fshirë?",
+	"botpasswords-created-title": "Fjalëkalimi botit u krijua",
+	"botpasswords-created-body": "Fjalëkalimi i botit për botin me emër \"$1\" të {{GENDER:$2|user}} \"$2\" u krijua.",
+	"botpasswords-updated-title": "Fjalëkalimi i botit u freskua",
+	"botpasswords-updated-body": "Fjalëkalimi i botit për botin me emër \"$1\" {{GENDER:$2|të përdoruesit}} \"$2\" u përditëdsua.",
+	"botpasswords-deleted-title": "Fjalëkalimi i botit u fshih",
+	"botpasswords-deleted-body": "Fjalëkalimi i botit për botin me emër \"$1\"  {{GENDER:$2|të përdoruesit}} \"$2\" u fshi.",
+	"botpasswords-no-provider": "BotPasswordsSessionProvider nuk është në dispozicion.",
+	"botpasswords-restriction-failed": "Kufizimet e fjalëkalimit të botit pengojnë këtë kyçje.",
+	"botpasswords-not-exist": "Përdoruesi \"$1\" s’ka fjalëkalim roboti të quajtur \"$2\".",
+	"botpasswords-needs-reset": "Fjalëkalimi i botit për botin me emër \"$1\" {{GENDER:$2|të përdoruesit}} \"$2\" duhet të rivendoset.",
+	"botpasswords-locked": "Ju nuk mund të identifikoheni me një fjalëkalim bot pasi llogaria juaj është e mbyllur."
+}

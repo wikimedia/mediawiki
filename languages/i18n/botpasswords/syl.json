@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"ꠢꠣꠍꠘ ꠞꠣꠎꠣ"
+		]
+	},
+	"botpasswords": "ꠀꠙꠌꠣꠞ ꠙꠣꠍꠅꠣꠒ",
+	"botpasswords-label-needsreset": "(ꠙꠣꠍꠅꠣꠒ ꠛꠖꠟꠣꠁꠟ ꠟꠣꠉꠛꠅ)",
+	"botpasswords-label-appid": "ꠀꠙꠌꠣꠞ ꠘꠣꠝ ꠪",
+	"botpasswords-label-create": "ꠛꠣꠘꠣꠁꠘ",
+	"botpasswords-label-update": "ꠢꠦꠡꠤꠝꠦꠡꠤ",
+	"botpasswords-label-cancel": "ꠛꠣꠖ ꠖꠦꠁꠘ",
+	"botpasswords-label-delete": "ꠙꠣꠟꠣꠃꠇ꠆ꠇꠣ",
+	"botpasswords-label-resetpassword": "ꠙꠣꠍꠅꠣꠞ꠆ꠒ ꠛꠖ꠆ꠟꠣꠃꠇ꠆ꠇꠣ",
+	"botpasswords-label-grants-column": "ꠝꠣꠘꠣ ꠅꠁꠍꠦ",
+	"botpasswords-created-title": "ꠀꠙꠌꠣꠞ ꠙꠣꠍꠅꠣꠒ ꠛꠣꠘꠣꠁꠟ ꠅꠁꠍꠦ",
+	"botpasswords-updated-title": "ꠀꠙꠌꠣꠞ ꠙꠣꠍꠅꠣꠒ ꠢꠦꠡꠤꠝꠦꠡꠤꠇꠞꠣ ꠅꠁꠍꠦ",
+	"botpasswords-deleted-title": "ꠀꠙꠌꠣꠞ ꠙꠣꠍꠅꠣꠒ ꠙꠣꠟꠣꠁꠖꠦꠅꠀ ꠅꠁꠍꠦ"
+}

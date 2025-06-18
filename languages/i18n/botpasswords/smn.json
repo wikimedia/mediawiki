@@ -1,0 +1,22 @@
+{
+	"@metadata": {
+		"authors": [
+			"Seipinne",
+			"Yupik"
+		]
+	},
+	"botpasswords": "Bottisyelisäänih",
+	"botpasswords-disabled": "Bottisyelisäänih láá časkâdum.",
+	"botpasswords-createnew": "Räähti uđđâ bottisyelisääni",
+	"botpasswords-label-appid": "Booti nommâ:",
+	"botpasswords-label-create": "Räähti",
+	"botpasswords-label-update": "Peivid",
+	"botpasswords-label-cancel": "Jooskâ",
+	"botpasswords-label-delete": "Siho",
+	"botpasswords-label-resetpassword": "Uđâsmit syelisääni",
+	"botpasswords-label-grants-column": "Mieđettuvvoo",
+	"botpasswords-bad-appid": "Booti nommâ ”$1” ij tuhhii.",
+	"botpasswords-toolong-grants": "Liijkás maŋgâ toimâvuoigâdvuođâ väljejum.",
+	"botpasswords-created-title": "Bottisyelisääni rahtum",
+	"botpasswords-updated-title": "Bottisyelisääni peividum"
+}

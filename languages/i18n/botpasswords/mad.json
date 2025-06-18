@@ -1,0 +1,23 @@
+{
+	"@metadata": {
+		"authors": [
+			"Boesenbergia",
+			"Munajad.MH"
+		]
+	},
+	"botpasswords": "Oca' sanḍhi bot",
+	"botpasswords-disabled": "Oca' sanḍhi bot èpamatè.",
+	"botpasswords-existing": "Oca' sanḍhi bot tasaḍiyâ",
+	"botpasswords-createnew": "Ghâbây oca' sanḍhi bot anyar",
+	"botpasswords-editexisting": "Obâ oca' sanḍhi bot sè bâḍâ",
+	"botpasswords-label-needsreset": "(oca' sanḍhi parlo èyator polè)",
+	"botpasswords-label-appid": "Nyama bot:",
+	"botpasswords-label-create": "Ghâbây",
+	"botpasswords-label-update": "Pa'anyar",
+	"botpasswords-label-cancel": "Paburung",
+	"botpasswords-label-delete": "Kosot",
+	"botpasswords-label-grants": "Aksès sè èberri':",
+	"botpasswords-created-title": "Oca' sanḍhi bot èkaghâbây",
+	"botpasswords-updated-title": "Oca' sanḍhi bot èpa'anyar",
+	"botpasswords-deleted-title": "Oca' sanḍhi bot èkosot"
+}

@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": []
+	},
+	"botpasswords": "باٹ پاسوٲرڈ",
+	"botpasswords-existing": "موجوٗدٕ باٹ پاسوٲڈ",
+	"botpasswords-createnew": "نٔو باٹ پاسوٲڈ بَنٲیو",
+	"botpasswords-label-appid": "باٹ ناو:",
+	"botpasswords-label-create": "تَخلیٖق",
+	"botpasswords-label-update": "اَپڈیٹ",
+	"botpasswords-label-cancel": "مَنسوٗخ",
+	"botpasswords-label-delete": "مِٹٲیو",
+	"botpasswords-bad-appid": "باٹ ناو \"$1\" چھُ نہٕ ٹھیٖک۔",
+	"botpasswords-created-title": "باٹ پاسوٲڈ آو تَخلیٖق کَرنہٕ",
+	"botpasswords-created-body": "{{GENDER:$2|رُکُن}} \"$2\" سُنٛد  \"$1\" بآٹُک پاسوٲڈ چھُ تَخلیٖق کَرنہٕ آمُت.",
+	"botpasswords-updated-title": "باٹ پاسوٲڈ آو ٹھیک کَرنہٕ",
+	"botpasswords-deleted-title": "باٹ پاسوٲڈ آو مِٹاونہٕ"
+}

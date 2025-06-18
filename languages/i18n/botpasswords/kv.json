@@ -1,0 +1,42 @@
+{
+	"@metadata": {
+		"authors": [
+			"СерМар"
+		]
+	},
+	"botpasswords": "Бот гусякывъяс",
+	"botpasswords-summary": "<em>Бот гусякывъяс</em> сетӧны позянлун пырны пырӧдчысьлӧн аккаунтӧ API пыр тайӧ аккаунтлӧн логинтӧг да гусякывтӧг. Бот гусякыв отсӧгӧн пыригӧн пырӧдчысьлӧн иӧдъяс вермасны лоны дзескӧдӧмаӧсь.\n\nТі кӧ стӧча онӧ тӧдӧй, мыйла тайӧс колӧ вӧчны, оз ков тайӧс вӧчны. Некод некор оз вермы корны тіянӧс вӧчны тайӧс да юӧртны та йылысь.",
+	"botpasswords-disabled": "Бот гусякывъяс тупкӧмаӧсь.",
+	"botpasswords-no-central-id": "Медым вӧдитчыны бот гусякывъясӧн, колӧ пырны ӧтувтӧм аккаунтӧ.",
+	"botpasswords-existing": "Ӧнія бот гусякывъяс",
+	"botpasswords-createnew": "Лӧсьӧдны выль бот гусякыв",
+	"botpasswords-editexisting": "Вежны ӧнія бот гусякыв",
+	"botpasswords-label-needsreset": "(гусякывсӧ колӧ чӧвтны)",
+	"botpasswords-label-appid": "Бот ним:",
+	"botpasswords-label-create": "Лӧсьӧдны",
+	"botpasswords-label-update": "Выльмӧдны",
+	"botpasswords-label-cancel": "Дугӧдны",
+	"botpasswords-label-delete": "Бырӧдны",
+	"botpasswords-label-resetpassword": "Чӧвтны гусякыв",
+	"botpasswords-label-grants": "Позянлун сетӧм:",
+	"botpasswords-help-grants": "Тіян аккаунтлӧн инӧдъяс дорӧ судзанлун инӧд сетӧм. Тайӧ оз сет мукӧд инӧдъяс дорӧ судзанлун, кодъяс эськӧ эз вӧвны тіян аккаунтлӧн. Содтӧд юӧр видзӧдӧй татысь [[Special:ListGrants|инӧд таблича]].",
+	"botpasswords-label-grants-column": "Сетӧма позянлун",
+	"botpasswords-bad-appid": "\"$1\" бот нимыс лоӧ позьтӧмӧн.",
+	"botpasswords-toolong-restrictions": "Пыртӧма вывті уна IP адрес либӧ диапазон.",
+	"botpasswords-toolong-grants": "Бӧрйӧма вывті уна инӧд.",
+	"botpasswords-insert-failed": "Эз артмы содтыны \"$1\" нима бот. Гашкӧ, сійӧ вӧлі нин содтӧма?",
+	"botpasswords-update-failed": "Эз артмы выльмӧдны \"$1\" нима ботсӧ. Гашкӧ, сійӧ вӧлі бырӧдӧма?",
+	"botpasswords-created-title": "Бот гусякывйыс лӧсьӧдӧма",
+	"botpasswords-created-body": "\"$1\" {{GENDER:$2|пырӧдчысь}} \"$2\" нима ботлы гусякывйыс вӧлі лӧсьӧдӧма.",
+	"botpasswords-updated-title": "Бот гусякывйыс выльмӧдӧма",
+	"botpasswords-updated-body": "\"$1\" {{GENDER:$2|пырӧдчысь}} \"$2\" нима ботлы гусякывйыс вӧлі выльмӧдӧма.",
+	"botpasswords-deleted-title": "Бот гусякывйыс бырӧдӧма",
+	"botpasswords-deleted-body": "\"$1\" {{GENDER:$2|пырӧдчысь}} \"$2\" нима ботлы гусякывйыс вӧлі бырӧдӧма.",
+	"botpasswords-newpassword": "Выль гусякыв <strong>$1</strong> - <strong>$2</strong> ним улын пырӧм могысь. <em>Пӧжалуйста, гижӧй сійӧс водзӧ вылӧ пырӧм могысь.</em> <br> (Важ ботъяслы, кодъяслы колӧ, медым логин нимыс вӧлі ӧткодьӧн пырӧдчысьлӧн нимкӧд, позьӧ вӧдитчыны <strong>$3</strong> пырӧдчысьлӧн ним и <strong>$4</strong> кыдз гусякыв.)",
+	"botpasswords-no-provider": "BotPasswordsSessionProvider абу судзана.",
+	"botpasswords-restriction-failed": "Бот гусякывлӧн дзескӧдӧм понда оз позь пырны системаӧ.",
+	"botpasswords-invalid-name": "Индӧм пасйӧдчан нимын абу бот гусякыв юкысь (\"$1\").",
+	"botpasswords-not-exist": "\"$1\" пырӧдчысьлӧн абу \"$2\" ботлы гусякыв.",
+	"botpasswords-needs-reset": "\"$1\" {{GENDER:$1|пырӧдчысь}} \"$2\" нима ботлысь гусякывсӧ колӧ чӧвтны.",
+	"botpasswords-locked": "Ті онӧ вермӧй пырны бот гусякыв отсӧгӧн, сы вӧсна мый тіянлӧн аккаунт блокируйтӧма."
+}

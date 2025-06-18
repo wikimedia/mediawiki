@@ -1,0 +1,30 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ajiniyaz Nurniyazov"
+		]
+	},
+	"botpasswords": "Bot parolleri",
+	"botpasswords-disabled": "Bot parollar óshirilgen.",
+	"botpasswords-createnew": "Jańa bot parolin jaratıń",
+	"botpasswords-editexisting": "Ámeldegi bot parolin ózgertiń",
+	"botpasswords-label-needsreset": "(paroldi qayta tiklew kerek)",
+	"botpasswords-label-appid": "Bot atı:",
+	"botpasswords-label-create": "Jaratıw",
+	"botpasswords-label-update": "Jańalaw",
+	"botpasswords-label-cancel": "Biykar etiw",
+	"botpasswords-label-delete": "Óshiriw",
+	"botpasswords-label-resetpassword": "Jasırın sózdi qayta tiklew",
+	"botpasswords-label-grants-column": "Ruqsat berilgen",
+	"botpasswords-bad-appid": "\"$1\" bot atı jaramsız.",
+	"botpasswords-toolong-restrictions": "Júdá kóp IP mánziller yamasa diapazonlar kirgizilgen.",
+	"botpasswords-toolong-grants": "Saylanǵan ruxsatlar júdá kóp.",
+	"botpasswords-insert-failed": "\"$1\" bot atın qosıw ilajsız. Ol aldın qosılǵanba?",
+	"botpasswords-update-failed": "\"$1\" bot atın jańalap bolmadı. Ol óshirildime?",
+	"botpasswords-created-title": "Bot paroli jaratıldı",
+	"botpasswords-created-body": "\"$2\" {{GENDER:$2|paydalanıwshınıń}} \"$1\" bot atı ushın bot paroli jaratıldı.",
+	"botpasswords-updated-title": "Bot paroli jańalandı",
+	"botpasswords-updated-body": "\"$2\" {{GENDER:$2|paydalanıwshı}}nıń \"$1\" bot atı ushın bot paroli jańalandı.",
+	"botpasswords-deleted-title": "Bot paroli óshirildi",
+	"botpasswords-deleted-body": "\"$2\" {{GENDER:$2|paydalanıwshı}}nıń \"$1\" bot atı ushın bot paroli óshirildi."
+}

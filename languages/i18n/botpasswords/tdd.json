@@ -1,0 +1,41 @@
+{
+	"@metadata": {
+		"authors": [
+			"Dai Meng Mao Long",
+			"咽頭べさ"
+		]
+	},
+	"botpasswords": "ᥑᥨᥝᥲ ᥘᥙᥳ ᥙᥩᥖᥳ",
+	"botpasswords-summary": "<em>ᥑᥨᥝᥲ ᥘᥙᥳ ᥙᥩᥖᥳ</em> ᥘᥭᥳ ᥑᥣᥒᥰ ᥙᥢ ᥟᥣ ᥑᥩᥒᥳ ᥚᥧᥱ ᥓᥬᥳ ᥖᥪᥰ ᥐᥣ ᥖᥤ API ᥟᥛᥱ ᥖᥣᥙ ᥘᥨᥝᥱ ᥓᥬᥳ ᥘᥐᥴ ᥗᥣᥢᥴ ᥘᥩᥐᥳ ᥟᥤᥢᥴ ᥒᥝᥲ ᥒᥣᥱ ᥞᥒᥰ ᥟᥣ ᥑᥩᥒᥳ ᥘᥢᥳ. ᥔᥒᥴ ᥓᥫᥳ ᥝᥣ ᥟᥝ ᥑᥩᥲ ᥘᥙᥳ ᥙᥩᥖᥳ ᥔᥥᥴ ᥑᥝᥲ ᥘᥩᥐᥳ ᥟᥤᥢᥱ ᥘᥭᥴ ᥓᥪᥒᥴᥭ ᥓᥫᥰ ᥙᥥᥢ ᥔᥧᥢᥱ ᥚᥧᥱ ᥓᥬᥳ ᥖᥪᥰ ᥓᥫᥰ ᥘᥢᥳ ᥖᥤᥴ ᥗᥧᥐᥴ ᥞᥥᥳ ᥞᥣᥛᥲ ᥝᥭᥳ ᥕᥝᥳ.",
+	"botpasswords-disabled": "ᥑᥨᥝᥲ ᥘᥙᥳ ᥙᥩᥖᥳ ᥘᥢᥳ ᥟᥛᥱ ᥓᥬᥳ ᥘᥭᥲ ᥕᥝᥳ ᥝᥣ.",
+	"botpasswords-no-central-id": "ᥖᥣᥱ ᥖᥤᥴ ᥓᥬᥳ ᥑᥨᥝᥲ ᥘᥙᥳ ᥙᥩᥖᥳ ᥘᥢᥳ ᥓᥝᥲ ᥐᥝᥱ ᥖᥤᥴ ᥘᥭᥲ ᥑᥝᥲ ᥘᥩᥐᥳ ᥟᥤᥢᥱ ᥟᥢ ᥙᥥᥢ  ᥟᥣ ᥑᥩᥒᥳ ᥚᥧᥒᥱ ᥘᥢᥳ ᥟᥩᥲ.",
+	"botpasswords-existing": "ᥑᥨᥝᥲ ᥘᥙᥳ ᥙᥩᥖᥳ ᥟᥢ ᥛᥤᥰ ᥕᥧᥱ ᥕᥣᥛᥰ ᥘᥥᥝ",
+	"botpasswords-createnew": "ᥐᥨᥝᥱ ᥔᥣᥒᥲ ᥑᥨᥝᥲ ᥘᥙᥳ ᥙᥩᥖᥳ ᥟᥢ ᥛᥬᥱ",
+	"botpasswords-editexisting": "ᥛᥥᥰ ᥗᥖᥴ ᥑᥨᥝᥲ ᥘᥙᥳ ᥙᥩᥖᥳ ᥟᥢ ᥖᥪᥐ ᥛᥤᥰ ᥕᥧᥱ ᥕᥣᥛᥰ ᥘᥥᥝ",
+	"botpasswords-label-needsreset": "(ᥑᥨᥝᥱ ᥘᥙᥳ ᥘᥨᥝᥱ ᥘᥭᥲ ᥖᥒᥲ ᥑᥪᥢᥰ)",
+	"botpasswords-label-appid": "ᥓᥪ ᥙᥩᥖᥳ:",
+	"botpasswords-label-create": "ᥔᥣᥒᥲ",
+	"botpasswords-label-update": "ᥟᥣᥙᥳ ᥖᥤᥖᥳ",
+	"botpasswords-label-cancel": "ᥟᥛᥱ ᥞᥥᥖᥱ",
+	"botpasswords-label-delete": "ᥛᥩᥖᥱ ᥙᥦᥖ",
+	"botpasswords-label-resetpassword": "ᥑᥪᥢᥰ ᥛᥥᥰ ᥖᥒᥲ ᥑᥨᥝᥲ ᥘᥙᥳ",
+	"botpasswords-label-grants": "ᥓᥫᥰ ᥐᥥᥝᥱ ᥘᥨᥭ ᥘᥢᥳ ᥑᥣᥒᥰ ᥙᥢ ᥝᥭᥳ:",
+	"botpasswords-help-grants": "ᥘᥩᥒ ᥑᥣᥒᥰ ᥙᥢ ᥓᥫᥰ ᥘᥢᥳ ᥛᥢᥰ ᥙᥢ ᥔᥧᥢᥱ ᥖᥦᥛᥲ ᥚᥖᥴ ᥓᥧᥰ ᥔᥧᥢᥱ ᥟᥢ ᥛᥤᥰ ᥝᥭᥳ ᥖᥤ ᥟᥣ ᥑᥩᥒᥳ ᥚᥧᥱ ᥓᥬᥳ ᥖᥪᥰ ᥓᥝᥲ ᥐᥝᥱ ᥘᥢᥳ ᥕᥝᥳ. ᥙᥪᥖᥱ ᥙᥢ ᥘᥩᥒ ᥑᥣᥒᥰ ᥙᥢ ᥐᥣ ᥖᥤ ᥘᥭᥲ ᥘᥭᥳ ᥟᥛᥱ ᥖᥤᥴ ᥟᥛᥱ ᥐᥛᥳ ᥗᥦᥛᥴ ᥖᥣᥱ ᥖᥦᥛᥲ ᥚᥖᥴ ᥓᥧᥰ ᥔᥧᥢᥱ ᥐᥣ ᥖᥤ ᥟᥣ ᥑᥩᥒᥳ ᥚᥧᥱ ᥓᥬᥳ ᥖᥪᥰ ᥓᥝᥲ ᥐᥝᥱ ᥟᥛᥱ ᥛᥤᥰ ᥝᥭᥳ ᥘᥢᥳ. ᥖᥩᥢᥲ ᥖᥣᥱ ᥘᥩᥢᥳ ᥑᥣᥝᥱ ᥖᥣᥒᥱ ᥓᥫᥰ ᥖᥨᥭᥰ ᥖᥤ [[Special:ListGrants|table of grants]] ᥘᥦᥰ.",
+	"botpasswords-label-grants-column": "ᥑᥣᥒᥰ ᥙᥢ ᥕᥝᥳ",
+	"botpasswords-bad-appid": "ᥓᥪ ᥙᥩᥖᥳ \"$1\" ᥘᥭᥳ ᥟᥛᥱ ᥓᥬᥳ ᥘᥭᥲ.",
+	"botpasswords-insert-failed": "ᥖᥣᥱ ᥗᥦᥛᥴ ᥔᥬᥱ ᥓᥬᥳ ᥙᥩᥖᥳ \"$1\" ᥘᥭᥳ ᥟᥛᥱ ᥑᥦᥛᥳ ᥘᥦᥙ. ᥔᥬᥱ  ᥝᥭᥳ ᥕᥝᥳ ᥘᥭᥴ ᥝᥣ ᥘᥣᥰ?",
+	"botpasswords-update-failed": "ᥖᥣᥱ ᥞᥥᥖᥱ ᥟᥣᥙᥳ ᥖᥤᥖᥳ ᥓᥪ ᥙᥩᥖᥳ \"$1\" ᥘᥭᥳ ᥟᥛᥱ ᥑᥦᥛᥳ ᥘᥦᥙ. ᥛᥩᥖᥱ ᥙᥦᥖ ᥛᥢᥰ ᥕᥝᥳ ᥘᥭᥴ ᥝᥣ ᥘᥣᥰ?",
+	"botpasswords-created-title": "ᥑᥨᥝᥲ ᥘᥙᥳ ᥙᥩᥖᥳ ᥐᥨᥝᥱ ᥔᥣᥒᥲ ᥕᥝᥳ ᥕᥝᥳ",
+	"botpasswords-created-body": "ᥑᥨᥝᥲ ᥘᥙᥳ ᥙᥩᥖᥳ ᥖᥩᥢᥲ ᥖᥣᥱ ᥓᥪ ᥙᥩᥖᥳ \"$1\" ᥟᥢ ᥙᥥᥢ ᥑᥩᥒᥴ ᥚᥧᥱ ᥓᥬᥳ ᥖᥪᥰ \"$2\" ᥘᥢᥳ ᥗᥧᥐᥴ ᥐᥨᥝᥱ ᥔᥣᥒᥲ ᥕᥝᥳ ᥕᥝᥳ.",
+	"botpasswords-updated-title": "​ᥑᥨᥝᥲ ᥘᥙᥳ ᥙᥩᥖᥳ ᥙᥥᥢ ᥟᥣᥙᥳ ᥖᥤᥖᥳ ᥕᥝᥳ",
+	"botpasswords-updated-body": "ᥑᥨᥝᥲ ᥘᥙᥳ ᥙᥩᥖᥳ ᥖᥩᥢᥲ ᥖᥣᥱ ᥓᥪ ᥙᥩᥖᥳ \"$1\" ᥟᥢ ᥙᥥᥢ ᥑᥩᥒᥴ ᥚᥧᥱ ᥓᥬᥳ ᥖᥪᥰ \"$2\" ᥘᥢᥳ ᥙᥥᥢ ᥟᥣᥙᥳ ᥖᥤᥖᥳ ᥕᥝᥳ.",
+	"botpasswords-deleted-title": "ᥑᥨᥝᥲ ᥘᥙᥳ ᥙᥩᥖᥳ ᥘᥢᥳ ᥛᥩᥖᥱ ᥙᥦᥖ ᥕᥝᥳ ᥕᥝᥳ",
+	"botpasswords-deleted-body": "{{GENDER:$2|ᥑᥨᥝᥲ ᥘᥙᥳ ᥙᥩᥖᥳ}} ᥖᥩᥢᥲ ᥖᥣᥱ ᥓᥪ ᥙᥩᥖᥳ \"$1\" ᥟᥢ ᥙᥥᥢ ᥑᥩᥒᥴ ᥚᥧᥱ ᥓᥬᥳ ᥖᥪᥰ \"$2\" ᥘᥢᥳ ᥛᥩᥖᥱ ᥙᥦᥖ ᥕᥝᥳ ᥕᥝᥳ.",
+	"botpasswords-newpassword": "ᥑᥨᥝᥲ ᥘᥙᥳ ᥟᥢ ᥛᥬᥱ ᥖᥣᥱ ᥖᥤᥴ ᥑᥝᥲ ᥘᥩᥐᥳ ᥟᥤᥢᥱ ᥓᥩᥛᥰ  <strong>$1</strong> ᥙᥥᥢ <strong>$2</strong>. <em>ᥑᥦᥢᥰ ᥖᥩ ᥛᥣᥭᥴ ᥖᥩᥒᥰ ᥘᥭᥳ ᥝᥭᥳ ᥖᥩᥢᥲ ᥖᥣᥱ ᥙᥥᥢᥴᥭ ᥚᥪᥢᥴ ᥟᥤᥒ ᥛᥫᥰ ᥘᥣᥲ</em><br>(ᥖᥩᥢᥲ ᥖᥣᥱ ᥙᥩᥖᥳ ᥓᥫᥰ ᥟᥢ ᥐᥝᥱ ᥟᥢ ᥘᥨᥝᥱ ᥓᥪ ᥘᥩᥐᥳ ᥟᥤᥢᥱ ᥟᥢ ᥖᥤᥴ ᥘᥭᥲ ᥛᥫᥢᥳ ᥐᥢ ᥖᥒᥰ ᥓᥪ ᥚᥧᥱ ᥓᥬᥳ ᥖᥪᥰ, ᥓᥝᥲ ᥐᥝᥱ. ᥓᥣᥒ ᥓᥬᥳ <strong>$3</strong> ᥘᥒᥱ ᥓᥪ ᥚᥧᥱ ᥓᥬᥳ ᥖᥪᥰ ᥘᥦᥰ <strong>$4</strong>ᥘᥒᥱ ᥑᥩᥲ ᥘᥙᥳ.)",
+	"botpasswords-no-provider": "ᥐᥢ ᥖᥨᥝ ᥐᥛᥳ ᥗᥦᥛᥴ ᥑᥨᥝᥲ ᥘᥙᥳ ᥙᥩᥖᥳ ᥘᥭᥴ ᥛᥢᥰ ᥟᥛᥱ ᥓᥬᥳ ᥘᥭᥲ.",
+	"botpasswords-restriction-failed": "ᥐᥢ ᥐᥦᥖᥱ ᥑᥨᥝᥲ ᥘᥙᥳ ᥙᥩᥖᥳ ᥘᥭᥳ ᥞᥥᥳ ᥐᥒᥲ ᥘᥩᥒ ᥘᥩᥐᥳ ᥟᥤᥢᥱ ᥟᥢ ᥘᥭᥳ.",
+	"botpasswords-invalid-name": "ᥓᥪ ᥚᥧᥱ ᥓᥬᥳ ᥖᥪ ᥟᥢ ᥛᥐᥴ ᥛᥢᥲ ᥝᥭᥳ ᥘᥭᥳ ᥛᥢᥰ ᥟᥛᥱ ᥑᥝᥲ ᥙᥣᥰ ᥝᥭᥳ ᥖᥨᥝ ᥓᥦᥐᥱ ᥑᥨᥝᥲ ᥘᥙᥳ ᥙᥩᥖᥳ (\"$1\").",
+	"botpasswords-not-exist": "ᥚᥧᥱ ᥓᥬᥳ ᥖᥪᥰ \"$1\" ᥘᥭᥳ ᥛᥢᥰ ᥟᥛᥱ ᥛᥤᥰ ᥑᥨᥝᥲ ᥘᥙᥳ ᥙᥩᥖᥳ ᥟᥢ ᥘᥭᥲ ᥓᥪ ᥝᥣ \"$2\".",
+	"botpasswords-needs-reset": "ᥑᥨᥝᥲ ᥘᥙᥳ ᥙᥩᥖᥳ ᥖᥩᥢᥲ ᥖᥣᥱ ᥓᥪ ᥙᥩᥖᥳ \"$2\" ᥟᥢ ᥙᥥᥢ ᥞᥒᥰ {{GENDER:$1|ᥚᥧᥱ ᥓᥬᥳ ᥖᥪᥰ}} \"$1\" ᥘᥭᥳ ᥘᥨᥝᥱ ᥘᥭᥲ ᥖᥒᥲ ᥑᥪᥢᥰ.",
+	"botpasswords-locked": "ᥐᥩᥙ ᥙᥫ ᥟᥣ ᥑᥩᥒᥳ ᥓᥝᥲ ᥐᥝᥱ ᥗᥧᥐᥴ ᥑᥖᥴ ᥝᥭᥳ ᥘᥦᥰ ᥓᥝᥲ ᥐᥝᥱ ᥖᥥᥴ ᥟᥛᥱ ᥓᥣᥒ ᥑᥝᥲ ᥘᥩᥐᥳ ᥟᥤᥢᥱ ᥖᥒᥰ ᥑᥨᥝᥲ ᥘᥙᥳ ᥙᥩᥖᥳ ᥖᥣᥱ."
+}

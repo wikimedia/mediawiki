@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"L2212"
+		]
+	},
+	"botpasswords-label-create": "Crea",
+	"botpasswords-label-update": "Agiorna",
+	"botpasswords-label-cancel": "Annulla",
+	"botpasswords-label-delete": "Iscantzella",
+	"botpasswords-label-resetpassword": "Torra a impostare sa crae de intrada"
+}

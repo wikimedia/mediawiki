@@ -1,0 +1,22 @@
+{
+	"@metadata": {
+		"authors": [
+			"Jilorisa",
+			"Rumandawi"
+		]
+	},
+	"botpasswords": "Boros papalapus bot",
+	"botpasswords-existing": "Boros papalapus i haro mantad",
+	"botpasswords-createnew": "Momonsoi boros papalapus bot i wagu",
+	"botpasswords-editexisting": "Simbanai boros papalapus bot di haro mantad",
+	"botpasswords-label-needsreset": "(nuru patatapon kawagu o boros papalapus)",
+	"botpasswords-label-appid": "Ngaran do bot:",
+	"botpasswords-label-create": "Pomonsoi",
+	"botpasswords-label-update": "Inwoguai",
+	"botpasswords-label-cancel": "Kinsilo",
+	"botpasswords-label-delete": "Pugaso",
+	"botpasswords-label-resetpassword": "Pudolio kawagu o hogot wawayaan",
+	"botpasswords-created-title": "Nowonsoi o boros papalapus bot",
+	"botpasswords-updated-title": "Noinwoguan o boros papalapus bot",
+	"botpasswords-deleted-title": "Nopugas o boros papalapus bot"
+}

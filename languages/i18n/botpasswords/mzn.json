@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"محک"
+		]
+	},
+	"botpasswords-label-appid": "رؤبؤت نوم:",
+	"botpasswords-label-create": "بساتن",
+	"botpasswords-label-update": "آپدیت",
+	"botpasswords-label-cancel": "ول هاکن",
+	"botpasswords-label-delete": "حذف",
+	"botpasswords-label-resetpassword": "پسورد ِتغییر",
+	"botpasswords-label-grants-column": "هدا بوه",
+	"botpasswords-bad-appid": "«$1» نوم ره رؤبؤت وسّه پیدا-کَر نیمی.",
+	"botpasswords-created-title": "رؤبؤت پسورد ره بساته"
+}

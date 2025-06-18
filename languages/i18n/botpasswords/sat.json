@@ -1,0 +1,29 @@
+{
+	"@metadata": {
+		"authors": [
+			"Fagunkoyel Hansdah",
+			"Manik Soren",
+			"Ramjit Tudu",
+			"ᱥᱟᱹᱜᱩᱱ ᱗"
+		]
+	},
+	"botpasswords": "ᱵᱚᱴ ᱫᱟᱱᱟᱝ ᱥᱟᱵᱟᱫᱽ",
+	"botpasswords-disabled": "ᱵᱚᱴ ᱯᱟᱥᱣᱟᱨᱰ ᱫᱚ ᱵᱮᱼᱠᱟᱹᱢᱤ ᱜᱮᱭᱟ᱾",
+	"botpasswords-no-central-id": "ᱵᱚᱴ ᱫᱟᱱᱟᱝ ᱥᱟᱵᱟᱫ ᱵᱮᱵᱷᱟᱨ ᱞᱟᱹᱜᱤᱫ, ᱟᱢ ᱫᱚ ᱢᱤᱫ ᱛᱟᱞᱢᱟᱣᱟᱱ ᱮᱠᱟᱣᱩᱱᱴ ᱨᱮ ᱞᱚᱜᱽ ᱤᱱ ᱦᱩᱭᱩᱜ ᱛᱟᱢᱟ᱾",
+	"botpasswords-existing": "ᱢᱮᱱᱟᱜ ᱵᱚᱴ ᱫᱟᱱᱟᱝ ᱥᱟᱵᱟᱫ ᱠᱚ",
+	"botpasswords-createnew": "ᱱᱟᱶᱟ ᱵᱚᱴ ᱫᱟᱱᱟᱝ ᱥᱟᱵᱟᱫᱽ ᱛᱮᱭᱟᱨᱢᱮ",
+	"botpasswords-editexisting": "ᱢᱮᱱᱟᱜ ᱵᱚᱴ ᱫᱟᱱᱟᱝ ᱥᱟᱵᱟᱫ ᱟᱹᱨᱩᱭ ᱢᱮ",
+	"botpasswords-label-needsreset": "(ᱯᱟᱥᱣᱟᱨᱰ ᱨᱤᱥᱮᱴ ᱞᱟᱹᱠᱛᱤ ᱠᱟᱱᱟ)",
+	"botpasswords-label-appid": "ᱵᱚᱴ ᱧᱩᱛᱩᱢ:",
+	"botpasswords-label-create": "ᱛᱮᱭᱟᱨ",
+	"botpasswords-label-update": "ᱟᱹᱨᱩ ᱯᱷᱮᱨᱟᱣ",
+	"botpasswords-label-cancel": "ᱵᱟᱫᱽ",
+	"botpasswords-label-delete": "ᱜᱮᱫ ᱜᱤᱰᱤ",
+	"botpasswords-label-resetpassword": "ᱱᱟᱣᱟᱛᱮ ᱫᱟᱱᱟᱝᱥᱟᱵᱟᱫᱽ ᱮᱢ",
+	"botpasswords-label-grants": "ᱵᱮᱵᱷᱟᱨ ᱜᱟᱱ ᱜᱚᱲᱚ:",
+	"botpasswords-label-grants-column": "ᱦᱩᱭᱠᱟᱱ",
+	"botpasswords-bad-appid": "ᱵᱚᱴ ᱧᱤᱛᱩᱢ \"$1\" ᱵᱟᱝ ᱴᱷᱤᱠᱟ᱾",
+	"botpasswords-created-title": "ᱵᱚᱴ ᱫᱟᱱᱟᱝ ᱥᱟᱵᱟᱫᱽ ᱛᱮᱭᱟᱨᱮᱱᱟ",
+	"botpasswords-updated-title": "ᱵᱚᱴ ᱫᱟᱱᱟᱝ ᱥᱟᱵᱟᱫᱽ ᱩᱛᱷᱱᱟᱹᱣ",
+	"botpasswords-deleted-title": "ᱵᱚᱴ ᱫᱟᱱᱟᱝ ᱥᱟᱵᱟᱫᱽ ᱢᱩᱪᱷᱟᱹᱣᱱᱟ"
+}

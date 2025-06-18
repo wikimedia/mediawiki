@@ -1,0 +1,24 @@
+{
+	"@metadata": {
+		"authors": [
+			"Naudefj",
+			"Rooiratel"
+		]
+	},
+	"botpasswords": "Bot wagwoorde",
+	"botpasswords-disabled": "Botwagwoorde is gedeaktiveer.",
+	"botpasswords-existing": "Bestaande botwagwoorde",
+	"botpasswords-createnew": "Skep 'n nuwe bot-wagwoord",
+	"botpasswords-editexisting": "Wysig 'n bestaande botwagwoord",
+	"botpasswords-label-needsreset": "(wagwoord moet teruggestel word)",
+	"botpasswords-label-appid": "Bot naam:",
+	"botpasswords-label-create": "Skep",
+	"botpasswords-label-update": "Opdateer",
+	"botpasswords-label-cancel": "Kanselleer",
+	"botpasswords-label-delete": "Skrap",
+	"botpasswords-label-resetpassword": "Herstel wagwoord",
+	"botpasswords-label-grants": "Toepaslike regte:",
+	"botpasswords-label-grants-column": "Toegewys",
+	"botpasswords-bad-appid": "Die botnaam \"$1\" is nie geldig nie.",
+	"botpasswords-toolong-restrictions": "Daar is te veel IP-adresse of reekse ingevoer."
+}

@@ -1,0 +1,31 @@
+{
+	"@metadata": {
+		"authors": [
+			"Sahran",
+			"Uzdil",
+			"چۈشكۈن"
+		]
+	},
+	"botpasswords": "ماشىنا ئادەم پارولى",
+	"botpasswords-summary": "<em> ماشىنا ئادەم مەخپىي نومۇرى </em> يول ئىشلەتكەن ھېساب ئاساسلىق تىزىملاش ئىسپاتى بولمىغان ئەھۋال ئاستىدا ، API ئارقىلىق زىيارەت قىلىنىدىغان ئابونت سچوتى . مەخپى نۇمۇرنى تىزىمغا ئالدۇرغان ۋاقىتتا ئىشلەتكىلى بولىدىغان ماشىنا ئارقىلىق ئابونت ھوقۇق دائىرىسى چەكلەنگەن بولىدۇ . \n\nبىلمەيمەن نېمىشقا بۇنداق ئەھۋال ئاستىدا ، سىز بۇ ئىقتىدارنى ئىشلەتكەن . ھەرقانداق ئادەم بۇ مەخپىي نومۇر ھاسىل قىلىش ھەمدە ئۇلار سىزگە كېرەك ئىدى .",
+	"botpasswords-disabled": "ماشىنا ئادەم پارولى چەكلەنگەن.",
+	"botpasswords-no-central-id": "ماشىنا ئادەم مەخپىي نومۇر ئىشلىتىش كېرەك ، سىز چوقۇم ئابونت كىرىش ئاللىقاچان مەركەزلەشكەن .",
+	"botpasswords-existing": "نۆۋەتتە بار ماشىنا ئادەم پارولى",
+	"botpasswords-createnew": "يېڭى ماشىنا ئادەم پارولى قۇرۇش",
+	"botpasswords-editexisting": "تەھرىرلەش ھازىرقى ماشىنا ئادەم مەخپىي نومۇرى",
+	"botpasswords-label-needsreset": "(ئىم ئەسلىگە قايتۇرۇش كېرەك)",
+	"botpasswords-label-appid": "ماشىنا ئادەم نامى:",
+	"botpasswords-label-create": "قۇر",
+	"botpasswords-label-update": "يېڭىلا",
+	"botpasswords-label-cancel": "ۋاز كەچ",
+	"botpasswords-label-delete": "ئۆچۈر",
+	"botpasswords-label-resetpassword": "پارولنى ئەسلىگە قايتۇرىدۇ",
+	"botpasswords-label-grants": "قوللىنىش ئىجازىتى:",
+	"botpasswords-label-grants-column": "ھوقۇقلۇق",
+	"botpasswords-bad-appid": "ماشىنا ئادەم نامى \"$1\" ئىناۋەتسىز.",
+	"botpasswords-toolong-restrictions": "بەك كۆپ IP ئادرېس ياكى دائىرە كىرگۈزۈلدى.",
+	"botpasswords-toolong-grants": "بەك كۆپ ئىجازەت تاللاندى.",
+	"botpasswords-created-title": "ماشىنا ئادەم پارولى قۇرۇلدى",
+	"botpasswords-updated-title": "ماشىنا ئادەم پارولى يېڭىلاندى",
+	"botpasswords-deleted-title": "ماشىنا ئادەم پارولى ئۆچۈرۈلدى"
+}

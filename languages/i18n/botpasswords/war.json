@@ -1,0 +1,35 @@
+{
+	"@metadata": {
+		"authors": [
+			"Harvzsf",
+			"JinJian"
+		]
+	},
+	"botpasswords": "Mga bot password",
+	"botpasswords-disabled": "Ginparong an mga bot password.",
+	"botpasswords-no-central-id": "Para han paggamit hin mga bot password, kinahanglan ka maglog-in ha centralized account.",
+	"botpasswords-existing": "Aada nga mga bot password.",
+	"botpasswords-createnew": "Pahimo hin bag-o nga bot password",
+	"botpasswords-editexisting": "Igliwat an aada nga bot password",
+	"botpasswords-label-appid": "Ngaran han bot:",
+	"botpasswords-label-create": "Paghimo",
+	"botpasswords-label-update": "Ig-update",
+	"botpasswords-label-cancel": "Pasagda",
+	"botpasswords-label-delete": "Paraa",
+	"botpasswords-label-resetpassword": "Igreset an password",
+	"botpasswords-label-grants": "Mga applicable grant",
+	"botpasswords-label-grants-column": "Ginhatag",
+	"botpasswords-bad-appid": "An ngaran han bot nga \"$1\" in diri puydi gamiton.",
+	"botpasswords-insert-failed": "Pakyas han pagdugang han ngaran han bot nga \"$1\". Naidugang na ini?",
+	"botpasswords-update-failed": "Pakyas han pag-update han bot nga ngaran nga \"$1\". Ginpara na ini?",
+	"botpasswords-created-title": "Nahimo an bot password",
+	"botpasswords-created-body": "An bot nga tigaman-pansulod para han bot nga ngaran nga \"$1\" ni {{GENDER:$2|gumaramit}} \"$2\" in  nahimo.",
+	"botpasswords-updated-title": "Gin-update an bot password",
+	"botpasswords-updated-body": "An bot nga tigaman-pansulod para han ngaran han bot nga \"$1\" ni {{GENDER:$2|gumaramit}} \"$2\" in na-update.",
+	"botpasswords-deleted-title": "Ginpara an bot password",
+	"botpasswords-deleted-body": "An bot nga tigaman-pansulod para han bot nga ngaran nga \"$1\" ni {{GENDER:$2|gumaramit}} \"$2\" in ginpara.",
+	"botpasswords-newpassword": "An bag-o nga password para han pag log-in han <strong>$1</strong> in <strong>$2</strong>. <em>Alayon igrecord ini para han future reference.</em><br>(Para hin daan nga bot nga nakinahanglan nga an login nga ngaran angay magparehos han magigin username, puyde ka gumamit hin <strong>$3</strong> nga username ngan <strong>$4</strong> nga tigaman-pansulod)",
+	"botpasswords-no-provider": "BotPasswordsSessionProvider in waray dinhi.",
+	"botpasswords-restriction-failed": "An mga restriction han bot password in nagpupugong han pag-login hinin.",
+	"botpasswords-not-exist": "An gumaramit nga \"$1\" in waray bot password nga nakangaran hin \"$2\"."
+}

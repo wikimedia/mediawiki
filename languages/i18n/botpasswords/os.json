@@ -1,0 +1,15 @@
+{
+	"@metadata": {
+		"authors": [
+			"Amikeco"
+		]
+	},
+	"botpasswords": "Ботты парольтæ",
+	"botpasswords-label-appid": "Боты ном:",
+	"botpasswords-label-create": "Скæн",
+	"botpasswords-label-update": "Сног кæн",
+	"botpasswords-label-cancel": "Нæ хъæуы",
+	"botpasswords-label-delete": "Сыхал",
+	"botpasswords-label-resetpassword": "Баив пароль",
+	"botpasswords-bad-appid": "Боты ном «$1» нæ бæззы."
+}

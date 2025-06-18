@@ -1,0 +1,34 @@
+{
+	"@metadata": {
+		"authors": [
+			"Dr Lotus Black",
+			"Ninjastrikers"
+		]
+	},
+	"botpasswords": "ဘော့ စကားဝှက်များ",
+	"botpasswords-disabled": "ဘော့ စကားဝှက်များကို ပိတ်ထားပါသည်။",
+	"botpasswords-existing": "ရှိနှင့်ပြီးသော ဘော့စကားဝှက်များ",
+	"botpasswords-createnew": "ဘော့စကားဝှက်အသစ်တစ်ခု ဖန်တီးရန်",
+	"botpasswords-editexisting": "ရှိနှင့်ပြီးသော ဘော့စကားဝှက်ကို ပြင်ဆင်ရန်",
+	"botpasswords-label-needsreset": "(စကားဝှက် ပြန်ချိန်ညှိရန်လိုအပ်သည်)",
+	"botpasswords-label-appid": "ဘော့အမည်-",
+	"botpasswords-label-create": "ဖန်တီး",
+	"botpasswords-label-update": "မွမ်းမံ",
+	"botpasswords-label-cancel": "မလုပ်တော့ပါ",
+	"botpasswords-label-delete": "ဖျက်",
+	"botpasswords-label-resetpassword": "စကားဝှက်ကို ပြန်ချိန်ရန်",
+	"botpasswords-label-grants-column": "အပ်နှင်းပြီး",
+	"botpasswords-bad-appid": "ဘော့အမည် \"$1\" သည် မရေရာပါ။",
+	"botpasswords-insert-failed": "ဘော့အမည် \"$1\" ကို ထည့်သွင်းရန် မဖြစ်ပါ။ ထည့်ပြီးသားလား?",
+	"botpasswords-created-title": "ဘော့စကားဝှက် ဖန်တီးပြီးပါပြီ",
+	"botpasswords-created-body": "{{GENDER:$2|အသုံးပြုသူ}} \"$2\" ၏ ဘော့အမည် \"$1\" အတွက် ဘော့စကားဝှက် ဖန်တီးပြီးပါပြီ။",
+	"botpasswords-updated-title": "ဘော့စကားဝှက် မွမ်းမံပြီးပါပြီ",
+	"botpasswords-updated-body": "{{GENDER:$2|အသုံးပြုသူ}}\"$2\" ၏ ဘော့အမည် \"$1\" အတွက် ဘော့စကားဝှက်ကို မွမ်းမံပြီးပါပြီ။",
+	"botpasswords-deleted-title": "ဘော့စကားဝှက် ဖျက်ပြီးပါပြီ",
+	"botpasswords-deleted-body": "{{GENDER:$2|အသုံးပြုသူ}} \"$2\" ၏ ဘော့အမည် \"$1\" အတွက် ဘော့စကားဝှက်ကို ဖျက်ပြီးပါပြီ။",
+	"botpasswords-restriction-failed": "ဘော့စကားဝှက် ကန့်သတ်ချက်များက ဤအကောင့်ဝင်ခြင်းကို တားမြစ်ထားသည်။",
+	"botpasswords-invalid-name": "အသုံးပြုသူအမည်တွင် ဘော့စကားဝှက် ခွဲခြားချက် (\"$1\") မပါဝင်နေပါ။",
+	"botpasswords-not-exist": "အသုံးပြုသူ \"$1\"တွင် \"$2\" အမည်ရှိ ဘော့စကားဝှက် ရှိမနေပါ။",
+	"botpasswords-needs-reset": "{{GENDER:$1|အသုံးပြုသူ}} \"$1\" ၏ ဘော့အမည် \"$2\" အတွက် ဘော့စကားဝှက်အား ပြန်လည်ချိန်ညှိရမည် ဖြစ်သည်။",
+	"botpasswords-locked": "သင့်အကောင့်မှာ သော့ပိတ်ထားသောကြောင့် ဘော့စကားဝှက်ဖြင့် ဝင်ရောက်၍ မရနိုင်ပါ။"
+}

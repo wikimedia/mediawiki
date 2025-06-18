@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"J budissin"
+		]
+	},
+	"botpasswords": "Botowe hesła",
+	"botpasswords-label-needsreset": "(hesło dyrbi so cofnyć)",
+	"botpasswords-label-appid": "Mjeno robota:",
+	"botpasswords-label-create": "Wutworić",
+	"botpasswords-label-update": "Aktualizować",
+	"botpasswords-label-cancel": "Přetorhnyć",
+	"botpasswords-label-delete": "Wušmórnyć",
+	"botpasswords-label-resetpassword": "Hesło wróćo stajić",
+	"botpasswords-label-grants-column": "Dowolene"
+}

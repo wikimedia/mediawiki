@@ -1,0 +1,28 @@
+{
+	"@metadata": {
+		"authors": [
+			"Afingba Mangang",
+			"Awangba Mangang",
+			"꯴꯰꯴"
+		]
+	},
+	"botpasswords": "ꯕꯣꯠ ꯄꯥꯁꯋ꯭ꯔꯠꯁꯤꯡ",
+	"botpasswords-disabled": "ꯕꯣꯠ ꯄꯥꯁꯋ꯭ꯔꯠꯁꯤꯡ ꯌꯥꯍꯟꯗꯕꯥ",
+	"botpasswords-existing": "ꯍꯥꯟꯅ ꯂꯩꯖꯕ ꯕꯣꯠꯀꯤ ꯄꯥꯁꯋꯥꯔꯗꯁ",
+	"botpasswords-createnew": "ꯑꯅꯧꯕ ꯕꯣꯠꯀꯤ ꯄꯥꯁꯋ꯭ꯔꯠ ꯁꯦꯝꯃꯨ",
+	"botpasswords-editexisting": "ꯍꯥꯟꯅꯗꯒꯤ ꯂꯩꯔꯕ ꯕꯣꯠꯀꯤ ꯄꯥꯁꯋ꯭ꯔꯠ ꯑꯗꯨ ꯁꯦꯝꯒꯠꯂꯨ",
+	"botpasswords-label-needsreset": "(ꯄꯥꯁꯋ꯭ꯔꯠ ꯅꯧꯅꯥ ꯁꯦꯝꯇꯣꯛꯇꯕ ꯌꯥꯗꯔꯦ)",
+	"botpasswords-label-appid": "ꯕꯣꯠ ꯃꯃꯤꯡ:",
+	"botpasswords-label-create": "ꯁꯥꯕꯥ",
+	"botpasswords-label-update": "ꯅꯧꯊꯣꯛꯍꯟꯕꯥ",
+	"botpasswords-label-cancel": "ꯇꯣꯛꯄ",
+	"botpasswords-label-delete": "ꯀꯛꯊꯠꯄ",
+	"botpasswords-label-resetpassword": "ꯄꯥꯁꯋ꯭ꯔꯠ ꯑꯃꯨꯛ ꯍꯟꯅꯥ ꯁꯦꯝꯗꯣꯛꯄꯥ",
+	"botpasswords-label-grants": "ꯆꯥꯟꯅꯕꯥ ꯌꯥꯕꯥ ꯑꯌꯥꯕꯁꯤꯡ:",
+	"botpasswords-label-grants-column": "ꯑꯌꯥꯕ ꯄꯤꯔꯦ",
+	"botpasswords-bad-appid": "\"$1\" ꯀꯧꯕꯥ ꯕꯣꯠ ꯂꯩꯇꯦ ꯫",
+	"botpasswords-insert-failed": "\"$1\" ꯕꯣꯠ ꯃꯃꯤꯡꯁꯤ ꯍꯥꯞꯆꯤꯟꯕ ꯀꯥꯎꯔꯦ ꯫ ꯍꯥꯟꯅꯥ ꯍꯥꯞꯆꯤꯟꯈꯔꯕ?",
+	"botpasswords-created-title": "ꯕꯣꯠ ꯄꯥꯁꯋ꯭ꯔꯠ ꯁꯥꯈꯔꯦ",
+	"botpasswords-updated-title": "ꯕꯣꯠ ꯄꯥꯁꯋ꯭ꯔꯗ ꯅꯧꯊꯣꯛꯍꯟꯂꯦ",
+	"botpasswords-deleted-title": "ꯕꯣꯠ ꯄꯥꯁꯋ꯭ꯔꯠ ꯀꯛꯊꯠꯈꯔꯦ"
+}

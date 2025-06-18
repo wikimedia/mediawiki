@@ -1,0 +1,37 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ooswesthoesbes"
+		]
+	},
+	"botpasswords": "Botwachwäörd",
+	"botpasswords-summary": "<em>Botwachwäörd</em> zörge veur tougank tot de API via 'ne gebroeker zónger gebroek te make van aanmeljgegaeves van daen gebroeker. De gebroekersrechte die besjikbaar zint kónne aafwieke wen me is aangemeldj mit e botwachwaord.\n\nWen se neet wèts waat hie de gevölge van zeen den is 't henjiger dit neet te doon. Nemes huuert dich te vraoge e botwachwaord aan te make en dem aan hem door te gaeve.",
+	"botpasswords-disabled": "Botwachwäörd zint oetgezatj.",
+	"botpasswords-no-central-id": "Veur botwachwäörd te gebroeke mós se aangemeldj zeen mit 'ne gecentraliseerdje gebroeker.",
+	"botpasswords-existing": "Bestaonde botwachwäörd",
+	"botpasswords-createnew": "Maak e nuuj botwachwaord aan",
+	"botpasswords-editexisting": "Bewirk e bestaond botwachwaord",
+	"botpasswords-label-appid": "Botnaam:",
+	"botpasswords-label-create": "Maak aan",
+	"botpasswords-label-update": "Wirk bie",
+	"botpasswords-label-cancel": "Braek aaf",
+	"botpasswords-label-delete": "Sjaf eweg",
+	"botpasswords-label-resetpassword": "Stèl wachwaord oppernuuj in",
+	"botpasswords-label-grants": "Van toupassing zeende rechte:",
+	"botpasswords-help-grants": "Toestumminge gaeve tougank toet gebroekersrechte die se al höbs. 't Gaeve van 'n toustumming op dees plaats geuf dich geinen tougank toet gebroekersrechte die se anges neet zóds höbbe. Zuuch 't [[Special:ListGrants|euverzich van toestumminge]] veur mieë info.",
+	"botpasswords-label-grants-column": "Tougeweze",
+	"botpasswords-bad-appid": "De botnaam \"$1\" is neet geljig.",
+	"botpasswords-insert-failed": "'t Touveuge vanne botnaam \"$1\" is mislök. Is dae mesjiens al tougeveug?",
+	"botpasswords-update-failed": "'t Biewirke vanne botnaam \"$1\" is mislök. Is dae mesjiens eweggesjaf?",
+	"botpasswords-created-title": "Botwachwaord aangemaak",
+	"botpasswords-created-body": "'t Botwachwaord veure botnaam \"$1\" van {{GENDER:$2|gebroeker}} \"$2\" is gemaak.",
+	"botpasswords-updated-title": "Botwachwaord biegewirk",
+	"botpasswords-updated-body": "'t Botwachwaord veur de botnaam \"$1\" van {{GENDER:$2|gebroeker}} \"$2\" is biegewirk.",
+	"botpasswords-deleted-title": "Botwachwaord eweggesjaf",
+	"botpasswords-deleted-body": "'t Botwachwaord veure botnaam \"$1\" vanne {{GENDER:$2|gebroeker}} \"$2\" is eweggesjaf.",
+	"botpasswords-newpassword": "'t Nuuj wachwaord veur aan te melje mit <strong>$1</strong> is <strong>$2</strong>. <em>Bewaar dit goed voor toekomstig gebruik.</em> <br> (Veur aaj bots die vereisje det de aameljnaam 'tzelfde is es d'n eventuele gebroekersnaam, kan ouch <strong>$3</strong> es gebroekersnaam en <strong>$4</strong> es wachwaord waere gebroek.)",
+	"botpasswords-no-provider": "BotPasswordsSessionProvider is neet besjikbaar.",
+	"botpasswords-restriction-failed": "Botwachwaordbepirkinge verkómme aanmelje.",
+	"botpasswords-invalid-name": "De gebroekersnaam bevatj neet 't sjeijingsteike van 't botwachwaord (\"$1\").",
+	"botpasswords-not-exist": "Gebroekers \"$1\" haet gei botwachwaord genaamp \"$2\"."
+}

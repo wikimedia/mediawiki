@@ -1,0 +1,21 @@
+{
+	"@metadata": {
+		"authors": [
+			"Song GK"
+		]
+	},
+	"botpasswords": "Jaku pansa bot",
+	"botpasswords-existing": "Jaku pansa bot ke udah bisi",
+	"botpasswords-createnew": "Gaga jaku pansa bot baru",
+	"botpasswords-label-needsreset": "(jaku pansa patut diadu baru)",
+	"botpasswords-label-appid": "Nama bot:",
+	"botpasswords-label-create": "Gaga",
+	"botpasswords-label-update": "Kemas baru",
+	"botpasswords-label-cancel": "Kinsil",
+	"botpasswords-label-delete": "Buai",
+	"botpasswords-label-resetpassword": "Set baru jaku tama",
+	"botpasswords-label-grants": "Geran ti diberi:",
+	"botpasswords-label-grants-column": "Dielakka",
+	"botpasswords-created-title": "Jaku pansa bot udah digaga",
+	"botpasswords-deleted-title": "Jaku pansa bot dibuai"
+}

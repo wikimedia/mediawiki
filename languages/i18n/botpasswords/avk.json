@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Axel xadolik"
+		]
+	},
+	"botpasswords-label-appid": "Stiernaf yolt",
+	"botpasswords-label-create": "Redura",
+	"botpasswords-label-update": "Nuskera",
+	"botpasswords-label-cancel": "Measkira",
+	"botpasswords-label-delete": "Sulara",
+	"botpasswords-label-resetpassword": "Va remravlem gire bazel",
+	"botpasswords-label-grants": "Rorewan rictaks :",
+	"botpasswords-label-grants-column": "Rictan",
+	"botpasswords-bad-appid": "$1 stiernaf yolt me tir enaf.",
+	"botpasswords-created-title": "Remravlem ke stiernik tir reduyun",
+	"botpasswords-updated-title": "Remravlem ke stiernik tir nuskeyen",
+	"botpasswords-deleted-title": "Remravlem ke stiernik tir sulayan",
+	"botpasswords-not-exist": "\"$1\" webesik va stiernik yoltkiraf gu \"$2\" me dadir."
+}

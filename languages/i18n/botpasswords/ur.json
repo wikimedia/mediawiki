@@ -1,0 +1,40 @@
+{
+	"@metadata": {
+		"authors": [
+			"BukhariSaeed",
+			"Muhammad Shuaib"
+		]
+	},
+	"botpasswords": "روبہ پاس ورڈ",
+	"botpasswords-summary": "<em>روبہ کے پاس ورڈ</em> کے ذریعہ اصل کھاتے کی لاگ ان معلومات کے بغیر اے پی آئی کی مدد سے صارف کھاتے میں رسائی حاصل ہوتی ہے۔\n\nاگر آپ اس سے واقف نہیں ہیں تو بہتر ہوگا کہ آپ اسے نہ چھیڑیں۔ کوئی دوسرا صارف کبھی اس پاس ورڈ کے بنانے اور اسے سپرد کرنے کا آپ سے مطالبہ نہیں کرے گا۔",
+	"botpasswords-disabled": "روبہ کے پاس ورڈ غیر فعال ہیں۔",
+	"botpasswords-no-central-id": "روبہ کے پاس ورڈ کو استعمال کرنے کے لیے آپ کا مرکزی کھاتے میں داخل رہنا ضروری ہے۔",
+	"botpasswords-existing": "روبہ کے موجودہ پاس ورڈ",
+	"botpasswords-createnew": "روبہ کا نیا پاس ورڈ بنائیں",
+	"botpasswords-editexisting": "روبہ کے موجودہ پاس ورڈ میں ترمیم کریں",
+	"botpasswords-label-needsreset": "(پاسورڈ کی ترتیب نو درکار ہے)",
+	"botpasswords-label-appid": "روبہ کا نام:",
+	"botpasswords-label-create": "تخلیق کریں",
+	"botpasswords-label-update": "تجدید کریں",
+	"botpasswords-label-cancel": "منسوخ کریں",
+	"botpasswords-label-delete": "حذف کریں",
+	"botpasswords-label-resetpassword": "پاس ورڈ تبدیل کریں",
+	"botpasswords-label-grants": "قابل تطبیق عطیے:",
+	"botpasswords-help-grants": "عطیہ آپ کو حقوق تک پہنچنے دیتا ہے، جو آپ کے کھاتے کے پاس پہلے سے ہے۔ عطیہ کو فعال کرنے سے کوئی حق فائز نہیں ہوگا، جو آپ کے کھاتے ميں نہ ہو۔ مزید معلومات کے لیے [[Special:ListGrants|فہرست عطیات]] دیکھیں۔",
+	"botpasswords-label-grants-column": "دے دیا گیا",
+	"botpasswords-bad-appid": "روبہ نام \"$1\" درست نہیں۔",
+	"botpasswords-insert-failed": "روبہ نام \"$1\" کو شامل کرنے میں ناکامی۔ کیا اسے پہلے شامل کیا جا چکا ہے؟",
+	"botpasswords-update-failed": "روبہ نام \"$1\" کی تجدید میں ناکامی۔ کیا اسے حذف کر دیا گیا ہے؟",
+	"botpasswords-created-title": "روبہ کا پاس ورڈ تخلیق ہو چکا ہے",
+	"botpasswords-created-body": "{{GENDER:$2|صارف}} \"$2\" کے روبہ نام \"$1\" کا پاس ورڈ تخلیق ہو چکا ہے۔",
+	"botpasswords-updated-title": "روبہ کا پاس ورڈ تازہ کر دیا گیا",
+	"botpasswords-updated-body": "{{GENDER:$2|صارف}} \"$2\" کے روبہ نام \"$1\" کا پاس ورڈ تازہ کر دیا گیا۔",
+	"botpasswords-deleted-title": "روبہ کا پاس ورڈ حذف ہو چکا ہے",
+	"botpasswords-deleted-body": "{{GENDER:$2|صارف}} \"$2\" کے روبہ نام \"$1\" کا پاس ورڈ حذف کیا جا چکا ہے۔",
+	"botpasswords-newpassword": "<strong>$1</strong> کے کھاتے میں داخل ہونے کے لیے نیا پاس ورڈ <strong>$2</strong> ہے۔ <em>براہ کرم اسے آئندہ کے لیے محفوظ کر لیں۔</em> <br> (وہ قدیم روبہ جات جنہیں یکساں لاگ ان نام اور آخری نام درکار ہوتا ہے، ان کے لیے آپ <strong>$3</strong> کو صارف نام اور <strong>$4</strong> کو پاس ورڈ کے طور پر استعمال کر سکتے ہیں۔)",
+	"botpasswords-no-provider": "BotPasswordsSessionProvider دستیاب نہیں۔",
+	"botpasswords-restriction-failed": "روبہ کے پاس ورڈ کی پابندیاں اس لاگ ان سے مانع ہیں۔",
+	"botpasswords-invalid-name": "درج کردہ صارف نام میں روبہ کے پاس ورڈ کا فاصل لفظ موجود نہیں ہے (\"$1\")۔",
+	"botpasswords-not-exist": "صارف \"$1\" کے پاس \"$2\" کے نام سے روبہ کا پاس ورڈ نہیں ہے۔",
+	"botpasswords-locked": "آپ بوٹ پاس ورڈ سے داخل نہیں ہو سکتے کیونکہ آپ کا کھاتا بند کر دیا گیا ہے۔"
+}

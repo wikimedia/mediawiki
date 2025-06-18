@@ -1,0 +1,42 @@
+{
+	"@metadata": {
+		"authors": [
+			"Keresturec"
+		]
+	},
+	"botpasswords": "Ботово лозинки",
+	"botpasswords-summary": "<em>Лозинки ботох</em> оможлївюю приступ ґу хасновательскому налогу з API-а без хаснованя акредитивох за прияву главного налогу. Кед  же ше приявице на тот способ хасновательски права би могли буц огранїчени.\n\nКед же нє знаце як би вам тото могло послужиц вец лєпше кед то анї хасновац нє будзеце. Нїхто и нїґда нє треба же би од вас вимагал же бисце му ґенеровли и дали лозинки на таки способ.",
+	"botpasswords-disabled": "Ботово лозинки онєможлївени.",
+	"botpasswords-no-central-id": "Же бисце хасновали ботово лозинки, мушице буц приявени на централизовани налог.",
+	"botpasswords-existing": "Иснуюца ботова лозинка",
+	"botpasswords-createnew": "Направце нову ботову лозинку",
+	"botpasswords-editexisting": "Ушорце иснуюцу ботову лозинку",
+	"botpasswords-label-needsreset": "(лозинку треба ресетовац)",
+	"botpasswords-label-appid": "Ботово мено:",
+	"botpasswords-label-create": "Витвориц",
+	"botpasswords-label-update": "Ажуруй",
+	"botpasswords-label-cancel": "Одкаж",
+	"botpasswords-label-delete": "Посцерай",
+	"botpasswords-label-resetpassword": "Ресетуй лозинку",
+	"botpasswords-label-grants": "Применююци дозволи:",
+	"botpasswords-help-grants": "Дозвли вам даваю приступ ґу правом хтори ваш налог уж ма. З оможлївйованьом дозволох нє достанєце анї єдно право хторе ваш налог нє ма. Вецей информациї можеце найсц у [[Special:ListGrants|таблїчки дозволох]].",
+	"botpasswords-label-grants-column": "Одобрене",
+	"botpasswords-bad-appid": "Ботово мено \"$1\" нє валидне.",
+	"botpasswords-toolong-restrictions": "Унєшени барз вельо IP адреси або обсяги.",
+	"botpasswords-toolong-grants": "Селектовани барз вельо дозволи.",
+	"botpasswords-insert-failed": "Нє удало ше додац ботови мено „$1”. Можебуц воно уж додате?",
+	"botpasswords-update-failed": "Нє удало ше ажуририванє ботового мена „$1”. Можебуц є посцеране?",
+	"botpasswords-created-title": "Направена ботова лозинка",
+	"botpasswords-created-body": "Ботова лозинка за бота ”$1” {{GENDER:$2|хаснователя|хасновательки}} \"$2\" направена.",
+	"botpasswords-updated-title": "Ботова лозинка обновена",
+	"botpasswords-updated-body": "Лозинка за бота з меном \"$1\" {{GENDER:$2|хаснователя|хасновательки}} \"$2\" обновена.",
+	"botpasswords-deleted-title": "Ботова лозинка висцерана",
+	"botpasswords-deleted-body": "Ботова лозинка за бота ”$1” {{GENDER:$2|хаснователя|хасновательки}} \"$2\" посцерана.",
+	"botpasswords-newpassword": "Нова лозинка за приявйованє <strong>$1</strong> то <strong>$2</strong>. <em>Запишце лозинку пре єй будуце хаснованє.</em> <br> (За старих ботох хтори вимагаю же би  мено за прияву було исте як и евентуалне хасновательске мено, тиж можеце хасновац <strong>$3</strong> як хасновательске мено <strong>$4</strong> и як лозинку.)",
+	"botpasswords-no-provider": "BotPasswordsSessionProvider нє на розполаганю.",
+	"botpasswords-restriction-failed": "Нє можеце ше приявиц пре огранїченє лозинки за бота.",
+	"botpasswords-invalid-name": "Наведзене хасновательске мено нє ма у себе знак за раздвойованє ботовей лозинки („$1”)",
+	"botpasswords-not-exist": "Хаснователь „$1” нє ма ботову лозинку под меном „$2”.",
+	"botpasswords-needs-reset": "Нєобходне ресетовац лозинку за бота под меном „$2” {{GENDER:$1|хаснователя|хасновательки}} „$1”.",
+	"botpasswords-locked": "Нє можеце ше приявиц зоз ботову лозинку бо ваш налог замкнути."
+}

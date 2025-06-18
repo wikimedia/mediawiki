@@ -1,0 +1,28 @@
+{
+	"@metadata": {
+		"authors": [
+			"ToJack"
+		]
+	},
+	"botpasswords": "Гузарвожаҳои бот",
+	"botpasswords-disabled": "Вожакалидҳои бот ғайрифаъоланд.",
+	"botpasswords-no-central-id": "Барои истифодаи рамзи бот, шумо бояд ба ҳисоби марказонидашудаатон ворид шуда бошед.",
+	"botpasswords-existing": "Рамзҳои вуҷуддоштаи ботҳо",
+	"botpasswords-createnew": "Эҷоди гузарвожаи нави бот",
+	"botpasswords-editexisting": "Вироиши рамзи вуҷуддоштаи бот",
+	"botpasswords-label-needsreset": "(рамз бояд партофта шавад)",
+	"botpasswords-label-appid": "Номи бот:",
+	"botpasswords-label-create": "Эҷод",
+	"botpasswords-label-update": "Азнав бор кардан",
+	"botpasswords-label-cancel": "Пӯшидан",
+	"botpasswords-label-delete": "Ҳазф намудан",
+	"botpasswords-label-resetpassword": "Партофтани рамз",
+	"botpasswords-label-grants-column": "Иҷоза дода шудааст",
+	"botpasswords-bad-appid": "Ботии \"$1\" ёфта нашуд.",
+	"botpasswords-created-title": "Рамзи бот эҷод шуд",
+	"botpasswords-created-body": "Рамзи бот барои боти \"$1\" ё {{GENDER:$2|корбар}} \"$2\" эҷод шуд.",
+	"botpasswords-updated-title": "Рамзи бот азнавсозӣ шуд.",
+	"botpasswords-updated-body": "Рамзи бот барои боти \"$1\" ё {{GENDER:$2|корбар}} \"$2\" азнавсозӣ шуд.",
+	"botpasswords-deleted-title": "Гузарвожаи бот ҳазф шуда аст",
+	"botpasswords-deleted-body": "Рамзи бот барои боти \"$1\" ё {{GENDER:$2|корбар}} \"$2\" ҳазф шуд."
+}

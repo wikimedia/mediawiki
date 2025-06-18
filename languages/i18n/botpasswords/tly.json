@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"Patriot Kor",
+			"Гусейн"
+		]
+	},
+	"botpasswords": "Boton parolon",
+	"botpasswords-createnew": "Boti nujə parol soxte",
+	"botpasswords-label-appid": "Boti nom:",
+	"botpasswords-label-create": "Soxtej",
+	"botpasswords-label-update": "Nujə kardej",
+	"botpasswords-label-cancel": "Ləğv karde",
+	"botpasswords-label-delete": "Mole",
+	"botpasswords-label-resetpassword": "Paroli šodoj",
+	"botpasswords-label-grants-column": "Haštə byə",
+	"botpasswords-created-title": "Boti parol soxtə byə"
+}

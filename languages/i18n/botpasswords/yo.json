@@ -1,0 +1,15 @@
+{
+	"@metadata": {
+		"authors": [
+			"Demmy",
+			"TheSymbyat"
+		]
+	},
+	"botpasswords": "Àwọn àmììwọlé bot",
+	"botpasswords-label-appid": "Orúkọ bot:",
+	"botpasswords-label-create": "Dáálẹ̀",
+	"botpasswords-label-update": "Àtúnṣe",
+	"botpasswords-label-cancel": "Fagilé",
+	"botpasswords-label-delete": "Ìparẹ́",
+	"botpasswords-label-resetpassword": "Ìtúntò ọ̀rọ̀ìpamọ́"
+}

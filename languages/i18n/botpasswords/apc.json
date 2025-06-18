@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"CamelCaseCo",
+			"FunLater"
+		]
+	},
+	"botpasswords": "الپاسووردات تبع الروبوتات",
+	"botpasswords-label-appid": "اسم البوت:",
+	"botpasswords-label-create": "عمول",
+	"botpasswords-label-cancel": "لغي",
+	"botpasswords-label-delete": "حذف",
+	"botpasswords-created-title": "باسوورد البوت انعمل"
+}

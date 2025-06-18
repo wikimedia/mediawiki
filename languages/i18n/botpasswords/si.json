@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"1100100"
+		]
+	},
+	"botpasswords-label-appid": "රොබෝ නාමය:",
+	"botpasswords-label-create": "තනන්න",
+	"botpasswords-label-update": "යාවත්කාලීන කරන්න",
+	"botpasswords-label-cancel": "අවලංගු කරන්න",
+	"botpasswords-label-delete": "මකන්න",
+	"botpasswords-label-resetpassword": "මුරපදය යළි පිහිටුවන්න",
+	"botpasswords-label-grants-column": "අවසර දෙන ලදී"
+}

@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"Tumbuka Arch"
+		]
+	},
+	"botpasswords": "Mapasiwedi gha loboto",
+	"botpasswords-createnew": "Pangani pasiwedi yiphya ya kadoli",
+	"botpasswords-label-needsreset": "(Pasiwedi yikwenera kusintha)",
+	"botpasswords-label-appid": "Zina la loboti:",
+	"botpasswords-label-create": "Yata",
+	"botpasswords-label-update": "Zomelezga",
+	"botpasswords-label-cancel": "Kuleka",
+	"botpasswords-label-delete": "Fufuta",
+	"botpasswords-label-resetpassword": "Masula pasiwedi"
+}

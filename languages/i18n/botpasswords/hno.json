@@ -1,0 +1,13 @@
+{
+	"@metadata": {
+		"authors": [
+			"Bgo eiu"
+		]
+	},
+	"botpasswords": "باٹے دے پاس ورڈ",
+	"botpasswords-label-appid": "باٹے دا ناں –",
+	"botpasswords-label-create": "بنڑاؤ",
+	"botpasswords-label-update": "نواں کرو",
+	"botpasswords-label-cancel": "رد کرو",
+	"botpasswords-label-delete": "ہٹاؤ"
+}

@@ -1,0 +1,42 @@
+{
+	"@metadata": {
+		"authors": [
+			"Soumaya"
+		]
+	},
+	"botpasswords": "Bot wã wagsd-rãmb",
+	"botpasswords-summary": "Bõn-bãngrã sẽn yaa b sẽn dat n paam n kẽed ne sõssã, b tõe n kẽe sõssã pʋgẽ n tũnug ne API wã, n pa tũ ne sõss-bãngr ning b sẽn kõ-dã ye. Sõng-y n bãng y sẽn tõe n maan bũmb ning sẽn pa tõe n sõng-y tɩ y tõog n maan bũmb nins sẽn pa tõe. \n\n Y sã n pa mi bũmb ning sẽn kɩt tɩ y rat n maan woto wã, y pa segd n maan-a ye. Ned pa segd n kos-y tɩ y tall-b-la a yembr n kõ-ba ye.",
+	"botpasswords-disabled": "B sẽn pa na n maan bũmb tɩ kɩt tɩ b pa tõe n maan bũmb a to wã, b pa na n tõog n maan bũmb ning sẽn yaa tɩlae ye.",
+	"botpasswords-no-central-id": "Sẽn na yɩl n tall botã wagsdã, y segd n kẽe logtoɛɛg zug n kẽ logtoɛɛga.",
+	"botpasswords-existing": "Bot sẽn tar loogr sõor sẽn be",
+	"botpasswords-createnew": "Yãk-y bot-yẽ-paalg paalga",
+	"botpasswords-editexisting": "Modifẽ bot sẽn be zĩigã loogr sõor",
+	"botpasswords-label-needsreset": "(Wõog-rɩtlem segd n paama leegr)",
+	"botpasswords-label-appid": "Bot yʋʋr:",
+	"botpasswords-label-create": "Naane",
+	"botpasswords-label-update": "D sẽn na n toeemd bũmb ninsã",
+	"botpasswords-label-cancel": "Base",
+	"botpasswords-label-delete": "Yẽese",
+	"botpasswords-label-resetpassword": "Yãk- y y sõorã",
+	"botpasswords-label-grants": "A Zeova Kaset rãmbã sẽn na n deeg b lisgã",
+	"botpasswords-help-grants": "B sẽn kõt ligdã kõt-y sor n paam y sõsdbã pʋga. Y sã n dat n deeg ligd n kõ-yã, y pa na n paam n paam zu-soab nins y sẽn na n paam tɩ y sõsd ne-bã ye. Ges-y lisã sẽn yaa \"Special:Grants in Table of grants\" wã n paam n bãng n paase[[Special:ListGrants|table of grants]]",
+	"botpasswords-label-grants-column": "A Zeova kõo-b-la",
+	"botpasswords-bad-appid": "Bot yʋʋr sẽn boond tɩ \"$1\" pa zems ye.",
+	"botpasswords-toolong-restrictions": "Adresã la a pʋga yaa wʋsgo.",
+	"botpasswords-toolong-grants": "B yãkda ligd wʋsg wʋsg n kõ-b ligd.",
+	"botpasswords-insert-failed": "B pa tõog n paas bot yʋʋr \"$1\" ye. B zoe n paasame bɩ?",
+	"botpasswords-update-failed": "Bõn-dãmb yʋʋr \"$1\" pa le wa paam n le paas ye. B sẽn yiis-a wã bɩ?",
+	"botpasswords-created-title": "Bot password sẽn naanã",
+	"botpasswords-created-body": "B segd n toeema bot yʋʋr sẽn boond tɩ \"$2\" wã wagsg tɩ \"$1\" yaa {{GENDER:$1ning sẽn tũnugd ne-a wã wagsg ye}}",
+	"botpasswords-updated-title": "Bot password yaa yam-yãk",
+	"botpasswords-updated-body": "B segd n toeema bot yʋʋr sẽn boond tɩ \"$2\" wã wagsg tɩ \"$1\" yaa {{GENDER:$2|ning sẽn tũnugd ne-a wã wagsg ye}}",
+	"botpasswords-deleted-title": "Bot sõor sẽn yiis",
+	"botpasswords-deleted-body": "B segd n toeema bot yʋʋr sẽn boond tɩ \"$2\" wã wagsg tɩ \"$1\" yaa {{GENDER:$1ning sẽn tũnugd ne-a wã wagsg ye}}",
+	"botpasswords-newpassword": "Sõng-rɩll ning sẽn na yɩl n kẽ ne <strong>$1</strong> wã yaa <strong>$2</strong>. <em>Bɩ y gʋls-y-yã rẽ tɩ b na n wilg-y-la rẽ beoog-daare.</em>  (Bos-kʋdse, sẽn dat tɩ logt yʋʋr yɩ wa logt yʋʋr sẽn na n yɩ to-to wã yĩnga, y tõe n leb n dɩka <strong>$3</strong> n yɩ logt yʋʋr la <strong>$4</strong> n yɩ logtoog).<br/>",
+	"botpasswords-no-provider": "BotPasswords SessionProvider pa be ye.",
+	"botpasswords-restriction-failed": "Botsã sẽn pa tar loogr tɩ b tõog n tũ b sẽn datã, kɩtdame tɩ b pa tõog n kẽ ye.",
+	"botpasswords-invalid-name": "Sõngr ning b sẽn wilgã pa tar botã loogrã pʋga (\"$1\").",
+	"botpasswords-not-exist": "Sõngd \"$1\" pa tar bot sõdg sẽn boond tɩ \"$2\" ye.",
+	"botpasswords-needs-reset": "B segd n toeema bot yʋʋr sẽn boond tɩ \"$2\" wã wagsg tɩ \"$1\" yaa {{GENDER:$1ning sẽn tũnugd ne-a wã wagsg ye}}",
+	"botpasswords-locked": "Fo pa tõe n logg n tũ botã wagsg ye, bala y sõorã yaa sẽn pa tõe n paam-a ye."
+}

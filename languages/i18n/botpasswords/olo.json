@@ -1,0 +1,43 @@
+{
+	"@metadata": {
+		"authors": [
+			"Misosoof",
+			"Ruppijeva"
+		]
+	},
+	"botpasswords": "Bouttien peittosanat",
+	"botpasswords-summary": "<em>Boutan peittosanat</em> annetah mahton piästä käyttäjäntunnuksele API:n kauti käyttämättäh piäkäyttäjännuksen nimie da peittosanua. Käyttäjän oigevukset voijah olla rajoitettu, konzu piäzet sistiemah boutan peittosananke. \n\nKu et tiedäne, mih niškoi tämä pidäy, ole parembi tädä sivuu käyttämättäh. Nikel nikonzu ei pie kyzyö sinuu luadimah boutan peittosanua da andamah sen hänele.",
+	"botpasswords-disabled": "Boutan peittosanat on otettu iäre käytöspäi.",
+	"botpasswords-no-central-id": "Ku voizit käyttiä boutan peittosanoi, sinul pidäy piästä sistiemah käyttäjen keskuskäyttäjäntunnustu.",
+	"botpasswords-existing": "Boutan olemas olijat peittosanat",
+	"botpasswords-createnew": "Luajii boutan uuzi peittosana",
+	"botpasswords-editexisting": "Kohenda olemas olii boutan peittosana",
+	"botpasswords-label-needsreset": "(peittosanat pidäy kumata)",
+	"botpasswords-label-appid": "Boutan nimi:",
+	"botpasswords-label-create": "Luaji",
+	"botpasswords-label-update": "Uvvista",
+	"botpasswords-label-cancel": "Hylgiä",
+	"botpasswords-label-delete": "Ota iäre",
+	"botpasswords-label-resetpassword": "Kumua peittosana",
+	"botpasswords-label-grants": "Toimijat toiminduoigevukset:",
+	"botpasswords-help-grants": "Joga toiminduoigevus andau mahton piästä oigevuksih, kudamii käyttäjäntunnuksen hantuzis jo on. Toiminduoigevuksen käyttöhotandu täs ei ližiä käyttäjäntunnuksen hantuzis oigevuksii, kudamii sie ei ole. Ližätieduo löydyy [[Special:ListGrants|toiminduoigevuksien taulukko]]",
+	"botpasswords-label-grants-column": "Luba annettu",
+	"botpasswords-bad-appid": "Boutan nimi $1 ei ole pättävy.",
+	"botpasswords-toolong-restrictions": "On kirjutettu liijan äijy IP-adressii libo adressiloin diapazonua.",
+	"botpasswords-toolong-grants": "Liijan äijy toiminduoigevuttu on vallittu.",
+	"botpasswords-insert-failed": "Ei suannuh ližätä boutan nimie $1. Toinah se on jo ližätty?",
+	"botpasswords-update-failed": "Boutan nimie $1 ei suannuh uvvistua. Toinah se on otettu iäre?",
+	"botpasswords-created-title": "Boutan peittosana on luajittu",
+	"botpasswords-created-body": "Boutan peittosana {{GENDER:$2|käyttäjän}} $2 boutan nimeh $1 niškoi oli luajittu.",
+	"botpasswords-updated-title": "Boutan peittosana on uvvistettu",
+	"botpasswords-updated-body": "Boutan peittosana {{GENDER:$2|käyttäjän}} $2 boutan nimeh $1 niškoi oli uvvistettu.",
+	"botpasswords-deleted-title": "Boutan peittosana oli otettu iäre.",
+	"botpasswords-deleted-body": "Boutan peittosana {{GENDER:$2|käyttäjän}} $2 boutan nimeh $1 niškoi oli otettu iäre.",
+	"botpasswords-newpassword": "Uuzi peittosana sistiemah piäzemizekse käyttäjäl <strong>$1</strong> on <strong>$2</strong>. Pane se taldeh, ku voizit käyttiä tuliel aigua.</em> <br> (Vahnoih bouttih niškoi, kudamat tarvitah, ku käyttäjännimi olis sama kui lopulline käyttäjännimi, voit sežo käyttiä nimie <strong>$3</strong> da peittosanua <strong>$4</strong>.)",
+	"botpasswords-no-provider": "BotPasswordsSessionProvider ei ole suadavis.",
+	"botpasswords-restriction-failed": "Boutan peittosanan rajoituksien täh ei sua piästä sistiemah.",
+	"botpasswords-invalid-name": "Annetus käyttäjännimes ei ole boutan peittosanan eroittajua ($1).",
+	"botpasswords-not-exist": "Käyttäjäl \"$1\" ei ole boutan peittosanua nimel \"$2\".",
+	"botpasswords-needs-reset": "Boutan peittosana {{GENDER:$1|käyttäjän}} ”$1” boutan nimeh ”$2” niškoi pidäy kumata.",
+	"botpasswords-locked": "Et voi piästä sistiemah boutan peittonimel, sendäh ku sinun käyttäjäntunnus on lukittu."
+}

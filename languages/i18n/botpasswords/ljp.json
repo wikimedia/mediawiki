@@ -1,0 +1,42 @@
+{
+	"@metadata": {
+		"authors": [
+			"DedeKurnn"
+		]
+	},
+	"botpasswords": "Kata sandi bot",
+	"botpasswords-summary": "<em>Kata sandi bot</em> ngemungkinko aksés mit akun pumakay makay API kipak mak makay kerédénsiyal kughuk log utama akun sina. Hak pumakay say wat pas kughuk log jama kata sandi bot halok bakal tibatasi.\n\nKik Niku panday ulih api niku haga ngegawikoni, hunjak helawni dang tigawiko. Semustini mak ngedok hulun baghih say dapok ngilu Niku guway nyani ghik ngeniko kata sandi bot hinji mit tiyan.",
+	"botpasswords-disabled": "Kata sandi bot tipatiko.",
+	"botpasswords-no-central-id": "Guway makay kata sandi bot, Niku musti kughuk log mit akun say ghadu titengahko.",
+	"botpasswords-existing": "Kata sandi bot wat",
+	"botpasswords-createnew": "Guway kata sandi bot ampay",
+	"botpasswords-editexisting": "Dandan kata sandi bot say ghadu wat",
+	"botpasswords-label-needsreset": "(kata sandi musti tiatogh luwot)",
+	"botpasswords-label-appid": "Gelagh bot:",
+	"botpasswords-label-create": "Guway",
+	"botpasswords-label-update": "Baruko",
+	"botpasswords-label-cancel": "Ughung",
+	"botpasswords-label-delete": "Hapus",
+	"botpasswords-label-resetpassword": "Setél ulang kata sandi",
+	"botpasswords-label-grants": "Aksés say dapok tikeni:",
+	"botpasswords-help-grants": "Ijin mit aksés tetantu ghadu tikedaw jama akun pumakaymu. Ngehughikko say hak dija mak ngeni aksés mit aksés baghih say mak tikedaw jama akun pumakaymu. Liyak [[Special:ListGrants|daptar hak aksés]] guway inpormasi selengkapni.\n\nIjin say wat résiko ghadu tikeni tanda. Ijin say mak ngedok tanda biyasani payah haga tisalahgunako pas bot tibajak jama hulun say buniyat bughak. Ijin say wat résiko nyadang (<span class=\"mw-grantriskgroup-vandalism\">{{int:grantriskgroup-vandalism}}</span>) dapok tipakay guway nyebabko gangguwan say ngilu keghja keghas guway ngecahkoni. Ijin jama résiko keamanan (<span class=\"mw-grantriskgroup-security\">{{int:grantriskgroup-security}}</span>) dapok nyebabko cadang say hunjak benini (gegoh kemalingan data tenggalan). Ijin internal (<span class=\"mw-grantriskgroup-internal\">{{int:grantriskgroup-internal}}</span>) biyasani angkah tipakay jama operator situs. Tulung dang ngilu ijin say burésiko kecuwali Niku temon do peghlu.",
+	"botpasswords-label-grants-column": "Ijin tikeni",
+	"botpasswords-bad-appid": "Gelagh bot \"$1\" mak buyun.",
+	"botpasswords-toolong-restrictions": "Kelamonan ga jenganan atawa jangkawan IP say tikughukko",
+	"botpasswords-toolong-grants": "Kelamonan ga aksés say tipilih.",
+	"botpasswords-insert-failed": "Ughung nambah gelagh bot \"$1\". Apiya ghadu titambahko semangkungni?",
+	"botpasswords-update-failed": "Ughung ngebaruko gelagh bot \"$1\". Apiya semangkungni ghadu jak tihapus?",
+	"botpasswords-created-title": "Kata sandi bot tiguway",
+	"botpasswords-created-body": "Kata sandi bot \"$1\" jak {{GENDER:$2|user}} \"$2\" buhasil tisani.",
+	"botpasswords-updated-title": "Kata sandi bot tiampayko",
+	"botpasswords-updated-body": "Kata sandi bot \"$1\" jak  {{GENDER:$2|user}} \"$2\" buhasil tiampayko.",
+	"botpasswords-deleted-title": "Kata sandi bot tihapus",
+	"botpasswords-deleted-body": "Kata sandi bot \"$1\" jak  {{GENDER:$2|user}} \"$2\" ghadu tihapus.",
+	"botpasswords-newpassword": "kata sandi ampay guway kughuk log jama <strong>$1</strong> yakdolah <strong>$2</strong>. <em>Catatlah kata sandi hinji guway réperénsi beno.</em> <br> (Guway bot saka say merluko gelagh kughuk log say gegoh jama gelagh pumakay, dapok makay <strong>$3</strong> sebagay gelagh pumakay ghik <strong>$4</strong> sebagay kata sandi.)",
+	"botpasswords-no-provider": "BotPasswordsSessionProvider mak ngedok.",
+	"botpasswords-restriction-failed": "Batosan kata sandi ngehalangi kughuk log sa.",
+	"botpasswords-invalid-name": "Gelagh pumakay say tikeni mak ngandung pemisah kata sandi bot (\"$1\").",
+	"botpasswords-not-exist": "Pumakay \"$1\" mak ngedok kata sandi bot bugelagh \"$2\".",
+	"botpasswords-needs-reset": "Kata sandi bot guway gelagh bot \"$2\" jak {{GENDER:$1|pumakay}} \"$1\" musti tiatogh luwot.",
+	"botpasswords-locked": "Niku mak dapok kughuk log jama kata sandi bot ulih akunmu tikunci."
+}

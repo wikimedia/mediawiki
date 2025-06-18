@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"Winston Sung"
+		]
+	},
+	"botpasswords": "機器儂密碼",
+	"botpasswords-label-appid": "機器儂名：",
+	"botpasswords-label-create": "建立",
+	"botpasswords-label-update": "更新",
+	"botpasswords-label-cancel": "取消",
+	"botpasswords-label-delete": "刪除",
+	"botpasswords-label-resetpassword": "重設密碼"
+}
