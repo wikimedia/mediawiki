@@ -63,7 +63,6 @@
 		]
 	},
 	"lastmodifiedat": "This page was last modified on $1, at $2.",
-	"botpasswords-no-central-id": "To use bot passwords, you must be logged in to a centralised account.",
 	"search-invalid-sort-order": "Sort order of $1 is unrecognised, default sorting will be applied. Valid sort orders are: $2",
 	"search-unknown-profile": "Search profile of $1 is unrecognised, default search profile will be applied.",
 	"prefs-description-misc": "Customise the table of contents.",

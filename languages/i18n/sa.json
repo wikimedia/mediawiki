@@ -388,7 +388,6 @@
 	"resetpass_submit": "कूटशब्दः योज्यतां, प्रविश्यतां च",
 	"changepassword-success": "भवतः/भवत्याः कूटशब्दः सफलतया परिवर्तितः ।",
 	"changepassword-throttled": "भवता/भवत्या अत्यधिकाः प्रवेशप्रयासाः कृताः । \nकृपया $1 कालं यावत् प्रतीक्ष्यताम् ।",
-	"botpasswords-label-create": "सृज्यताम्",
 	"resetpass_forbidden": "कूटशब्दाः परिवर्तयितुं न शक्यन्ते",
 	"resetpass-submit-loggedin": "कूटशब्दः परिवर्त्यताम्",
 	"resetpass-submit-cancel": "निरस्यताम्",

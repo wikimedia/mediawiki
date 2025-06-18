@@ -1,0 +1,25 @@
+{
+	"@metadata": {
+		"authors": [
+			"Das Schäfchen",
+			"Doc Taxon",
+			"JorgeElias2302",
+			"Kghbln"
+		]
+	},
+	"nstab-special": "Sonderseite",
+	"nosuchactiontext": "Die angegebene Aktion für die URL ist ungültig. Vielleicht hast du die URL falsch eingegeben oder einem falschen Link gefolgt. Das könnte auch auf einen Fehler in der Software von {{SITENAME}} hinweisen.",
+	"nosuchspecialpage": "Keine derartige Sonderseite",
+	"nospecialpagetext": "<strong>Du hast eine ungültige Sonderseite angefordert.</strong>\nEine Liste der gültigen Sonderseiten findest du unter [[Special:SpecialPages|{{int:specialpages}}]].",
+	"error": "Fehler",
+	"badtitle": "Schlechter Titel",
+	"badtitletext": "Der angeforderte Seiten Titel war ungültig, leer oder ein fehlerhaft verlinkter intersprachlicher oder interwiki Titel. Er könnte ein oder mehrere Zeichen enthalten, die in Titeln nicht verwendet werden dürfen.",
+	"viewsource": "Quelltext anzeigen",
+	"protection-indicator-title-infinity": "Diese Seite ist geschützt, sodass nur Benutzer mit der Berechtigung \"$1\" sie bearbeiten können.",
+	"exception-nologin": "Nicht eingeloggt",
+	"exception-nologin-text": "Bitte logge dich ein, um auf diese Seite oder Aktion zugreifen zu können.",
+	"welcomeuser": "Willkommen, $1!",
+	"uploadtext": "Benutze dieses Formular, um neue Dateien hochzuladen.\n\nGehe zur [[Special:FileList|Liste hochgeladener Dateien]], um vorhandene Dateien zu suchen und anzuzeigen. Siehe auch das [[Special:Log/upload|Datei-]] und [[Special:Log/delete|Lösch-Logbuch]].\n\nUm eine '''Datei''' in einer Seite zu verwenden, nutze einen Link in der folgenden Form:\n* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Datei.jpg]]</nowiki></code>''' – für ein Vollbild\n* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Datei.png|200px|thumb|left|Alternativer Text]]</nowiki></code>''' – für ein 200px breites Bild innerhalb einer Box, mit „Alternativer Text“ als Bildbeschreibung\n* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Datei.pdf]]</nowiki></code>''' – für einen direkten Link auf die Datei, ohne Darstellung der Datei",
+	"linksearch-text": "Diese Spezialseite ermöglicht die Suche nach Seiten, in denen bestimmte Weblinks enthalten sind. Dabei können Platzhalter, wie beispielsweise <code>*.beispiel.at</code>, benutzt werden. Es muss mindestens eine Top-Level-Domain, z. B. „*.org“, angegeben werden. <br />{{PLURAL:$2|Unterstütztes Protokoll|Unterstützte Protokolle}}: $1 (Standard ist http, falls kein Protokoll angegeben ist.)",
+	"specialmute-email-footer": "Um Deine E-Mail Einstellungen für {{BIDI:$2}} zu verwalten, besuche bitte <$1>."
+}

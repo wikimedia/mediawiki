@@ -261,8 +261,6 @@
 	"pt-createaccount": "Paghimo og akawnt",
 	"pt-userlogout": "Biya",
 	"changepassword": "Usba ang pasword",
-	"botpasswords-help-grants": "Gitugotan sa mga grant ang pag-access sa mga katungod nga gihuptan na sa imong user account. Ang pagpagana sa usa ka grant dinhi wala maghatag ug access sa bisan unsang mga katungod nga dili maangkon sa imong user account. Tan-awa ang [[Special:ListGrants|talaan sa mga grant]] para sa dugang nga impormasyon.\n\nRisky grants gimarkahan. Ang wala'y marka nga mga hatag kasagaran lisud abusuhon kung ang aplikasyon gi-hijack sa usa ka tawo nga adunay daotan nga katuyoan. Mga grant nga adunay peligro sa bandalismo (<span class=\"mw-grantriskgroup-vandalism\"></span> ) mahimong gamiton sa pagpahinabog pagkabalda nga nagkinahanglan ug dakong paningkamot sa paglimpyo. Mga grant nga adunay peligro sa seguridad (<span class=\"mw-grantriskgroup-security\"></span> ) mahimong hinungdan sa malungtarong kadaot (sama sa pagpangawat sa pribadong datos). Internal nga grants (<span class=\"mw-grantriskgroup-internal\"></span> ) kasagarang gigamit lamang sa operator sa site, ug ang mga hangyo alang kanila halos dili gayud maaprobahan. Palihug ayaw pagpangayo ug peligroso nga mga hatag gawas kung kinahanglan nimo kini.",
-	"botpasswords-label-grants-column": "Gitugotan",
 	"passwordreset": "Usba ang password",
 	"edit-recovery-loaded-message-different-rev": "Timan-i nga ang panid mahimong nausab sukad nagsugod ka sa pag-edit Palihug ribyuha ang imong mga pagbag-o sa dili pa i-save",
 	"summary": "Mubong sugid:",
