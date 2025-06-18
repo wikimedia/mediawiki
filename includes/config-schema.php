@@ -774,6 +774,7 @@ return [
 				'tel:',
 				'telnet://',
 				'urn:',
+				'wikipedia://',
 				'worldwind://',
 				'xmpp:',
 				'//',
