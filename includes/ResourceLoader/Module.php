@@ -728,7 +728,9 @@ abstract class Module implements LoggerAwareInterface {
 	 */
 	final protected function buildContent( Context $context ) {
 		$statsFactory = MediaWikiServices::getInstance()->getStatsFactory();
-		$statStart = hrtime( true );
+		$timer = $statsFactory->getTiming( 'resourceloader_build_seconds' )
+			->setLabel( 'name', strtr( $this->getName(), '.', '_' ) )
+			->start();
 
 		// This MUST build both scripts and styles, regardless of whether $context->getOnly()
 		// is 'scripts' or 'styles' because the result is used by getVersionHash which
@@ -804,14 +806,7 @@ abstract class Module implements LoggerAwareInterface {
 			$content['deprecationWarning'] = $deprecationWarning;
 		}
 
-		$statName = strtr( $this->getName(), '.', '_' );
-		$statsFactory->getTiming( 'resourceloader_build_seconds' )
-			->setLabel( 'name', $statName )
-			->copyToStatsdAt( [
-				'resourceloader_build.all',
-				"resourceloader_build.$statName",
-			] )
-			->observeNanoseconds( hrtime( true ) - $statStart );
+		$timer->stop();
 
 		return $content;
 	}
