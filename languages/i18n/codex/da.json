@@ -1,15 +1,21 @@
 {
 	"@metadata": {
 		"authors": [
-			"JorgeElias2302"
+			"JorgeElias2302",
+			"Steenth"
 		]
 	},
+	"cdx-chip-input-chip-added": "Chip $1 blev tilføjet.",
+	"cdx-chip-input-chip-removed": "Chip $1 blev fjernet.",
 	"cdx-input-chip-aria-description": "Tryk på Enter for at redigere eller Slet for at fjerne.",
-	"cdx-dialog-close-button-label": "Tæt",
-	"cdx-message-dismiss-button-label": "Tæt",
-	"cdx-popover-close-button-label": "Tæt",
-	"cdx-search-input-search-button-label": "Søge",
+	"cdx-dialog-close-button-label": "Luk",
+	"cdx-label-optional-flag": "(valgfri)",
+	"cdx-message-dismiss-button-label": "Luk",
+	"cdx-popover-close-button-label": "Luk",
+	"cdx-search-input-search-button-label": "Søg",
 	"cdx-table-select-all-label": "Vælg alle rækker",
+	"cdx-table-select-row-label": "Vælg række $1 af $2",
+	"cdx-table-sort-caption": "$1 (kolonneoverskrifter med knapper kan sorteres).",
 	"cdx-typeahead-search-search-results-label": "Søgeresultater",
 	"cdx-table-pager-button-first-page": "Første side",
 	"cdx-table-pager-button-last-page": "Sidste side",
@@ -17,9 +23,9 @@
 	"cdx-table-pager-button-prev-page": "Forrige side",
 	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 række|$1 rækker}}",
 	"cdx-table-pager-items-per-page-default": "Resultater pr. side",
-	"cdx-table-pagination-status-message-determinate-long": "Viser resultater $1-$2 af $3",
+	"cdx-table-pagination-status-message-determinate-long": "Viser resultat $1–$2 af $3",
 	"cdx-table-pagination-status-message-determinate-short": "$1-$2 af $3",
-	"cdx-table-pagination-status-message-indeterminate-long": "Viser resultater $1-$2 af mange",
+	"cdx-table-pagination-status-message-indeterminate-long": "Viser resultat $1–$2 af mange",
 	"cdx-table-pagination-status-message-indeterminate-short": "$1-$2 af mange",
 	"cdx-table-pagination-status-message-indeterminate-final": "Viser {{PLURAL:$1|det sidste $1 resultat|de sidste $1 resultater}}",
 	"cdx-table-pagination-status-message-pending": "Indlæser resultater...",
