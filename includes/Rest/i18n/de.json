@@ -96,6 +96,7 @@
 	"rest-module-extra-routes-title": "MediaWiki REST API",
 	"rest-module-extra-routes-desc": "REST-Endpunkte, die keinem Modul zugeordnet sind",
 	"rest-module-specs.v0-title": "Spezifikationen",
+	"rest-module-specs.v0-desc": "Selbstdokumentationsmodul, das Entdeckung, Spezifikationen und Schemata für alle verfügbaren Module bereitstellt.",
 	"rest-module-content.v1-title": "Seiteninhalt",
 	"rest-param-desc-revision-id": "Versionskennung",
 	"rest-param-desc-html-input-contentmodel": "Seiteninhaltsformat: Wikitext (Standard), CSS, JavaScript, JSON oder Text.",

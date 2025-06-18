@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Jon Harald Søby"
+			"Jon Harald Søby",
+			"EdoAug"
 		]
 	},
 	"rest-prefix-mismatch": "Den forespurte stien ($1) var ikke i REST-API-ets grunnsti ($2)",
@@ -65,5 +66,11 @@
 	"rest-parsoid-error": "Parsoid-feil.",
 	"rest-bad-stash-key": "Ugyldig stash-nøkkel.",
 	"rest-html-key-expected": "Uventet <var>html</var>-nøkkel i brødteksten",
-	"rest-invalid-transform": "Ugyldig transformasjon: $1 til $2"
+	"rest-invalid-transform": "Ugyldig transformasjon: $1 til $2",
+	"rest-param-desc-compare-from-section-level": "Avsnittsnivå",
+	"rest-param-desc-compare-from-section-heading": "Avsnittsoverskrift, f.eks. 1 for <h1>",
+	"rest-param-desc-media-links-title": "Filtittel",
+	"rest-param-desc-media-file-title": "Filtittel",
+	"rest-param-desc-media-mediatype": "Filtypen",
+	"rest-param-desc-pagehistory-title": "Wikisidetittel"
 }

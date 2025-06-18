@@ -27,7 +27,9 @@
 			"ديفيد",
 			"علاء",
 			"محمد أحمد عبد الفتاح",
-			"Lolekek"
+			"Lolekek",
+			"JorgeElias2302",
+			"Mohammed Qays"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|التوثيق]]\n* [[mw:Special:MyLanguage/API:Etiquette|الآداب وإرشادات الاستخدام]]\n* [[mw:Special:MyLanguage/API:FAQ|الأسئلة الأكثر تكرارا]]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api.lists.wikimedia.org/ القائمة البريدية]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/ إعلانات API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R الأخطاء والطلبات]\n</div>\n<strong>الحالة:</strong> API ميدياويكي هي واجهة ناضجة ومستقرة يتم دعمها وتحسينها بشكل نشط، في حين أننا نحاول تجنب ذلك، قد نحتاج في بعض الأحيان إلى إجراء تغييرات في التكسير، اشترك في [https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ القائمة البريدية لإعلان API ميدياويكي] لإشعارات التحديثات.\n\n<strong>الطلبات الخاطئة:</strong>عندما يتم إرسال طلبات خاطئة إلى API، سيتم إرسال رأس HTTP مع مفتاح \"خطأ-API-ميدياويكي\"، وبعد ذلك سترجع قيمة الرأس ورمز الخطأ المرتجع إلى يتم تعيينه على نفس القيمة، لمزيد من المعلومات; راجع [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Errors and warnings]].\n\n<p class=\"mw-apisandbox-link\"><strong>الاختبار:</strong>لسهولة اختبار طلبات API ; انظر [[Special:ApiSandbox]].</p>",
@@ -43,6 +45,7 @@
 	"apihelp-main-param-curtimestamp": "تشمل الطابع الزمني الحالي في النتيجة.",
 	"apihelp-main-param-responselanginfo": "تشمل اللغات المستخدمة لأجل <var>uselang</var> and <var>errorlang</var> في النتيجة.",
 	"apihelp-main-param-origin": "عند الوصول إلى API باستخدام طلب AJAX عبر النطاقات (CORS)، اضبطها على النطاق الأصلي، يجب تضمين هذا في أي طلب ما قبل الطيران، وبالتالي يجب أن يكون جزءا من طلب URI (وليس جسم POST). \n\nبالنسبة للطلبات المصادقة، يجب أن يتطابق هذا مع أحد المصادر الموجودة في الرأس<code>Origin</code> بالضبط; لذا يجب تعيينه على شيء مثل<kbd>https://en.wikipedia.org</kbd> أو <kbd>https://meta.wikimedia.org</kbd>، إذا لم يتطابق هذا الوسيط مع الرأس<code>Origin</code>، فسيتم إرجاع استجابة 403، إذا كانت هذه المعلمة تتطابق مع رأس <code>Origin</code> وكان الأصل مسموحًا به، ستتم إضافة الأصل إلى القائمة البيضاء، سيتم تعيين الرؤوس <code>Access-Control-Allow-Origin</code> و<code>Access-Control-Allow-Credentials</code>.\n\nبالنسبة للطلبات غير المصادقة، حدد القيمة <kbd>*</kbd>، سيؤدي ذلك إلى تعيين الرأس <code>Access-Control-Allow-Origin</code>، ولكن <code>Access-Control-Allow-Credentials</code> سيكون <code>false</code> وسيتم تقييد كل البيانات الخاصة بالمستخدم.",
+	"apihelp-main-param-crossorigin": "عند الوصول إلى واجهة برمجة التطبيقات (API) باستخدام طلب AJAX عبر النطاقات (CORS) واستخدام موفر جلسة آمن ضد هجمات تزوير طلبات المواقع المتعددة (CSRF) (مثل OAuth)، استخدم هذا بدلاً من <code>origin=*</code> لجعل الطلب مُصادقًا عليه (أي بدون تسجيل خروج). يجب تضمين هذا في أي طلب تمهيدي، وبالتالي يجب أن يكون جزءًا من مُعرّف الموارد المنتظم (URI) للطلب (وليس نص POST).\n\nيُرجى ملاحظة أن معظم موفري الجلسات، بما في ذلك الجلسات القياسية القائمة على ملفات تعريف الارتباط، لا يدعمون CORS المُصادق عليه، ولا يمكن استخدامه مع هذه المعلمة.",
 	"apihelp-main-param-uselang": "اللغة المستخدمة لترجمة الرسائل. <kbd>[[Special:ApiHelp/query+siteinfo|action=query&meta=siteinfo&siprop=languages]]</kbd> تعيد قائمة برموز اللغة. يمكنك تحديد <kbd>المستخدم</kbd> الذي سيستخدم لغة المستخدم الحالي أو <kbd>المحتوى</kbd> الذي سيستخدم لغة محتوى هذه الويكي.",
 	"apihelp-main-param-variant": "متغير اللغة. يعمل فقط إذا كانت اللغة الأساسية تدعم التحويل المتغير.",
 	"apihelp-main-param-errorformat": "تنسيق لاستخدامه في التحذير وإخراج نص الخطأ",
@@ -138,6 +141,7 @@
 	"apihelp-compare-paramvalue-prop-parsedcomment": "التعليق المحلل على المراجعات 'من' و'إلى'. لو أن التعليق قد تم إخفاؤه، فخاصية <samp>fromcommenthidden</samp> أو <samp>tocommenthidden</samp> سيتم إرجاعها.",
 	"apihelp-compare-paramvalue-prop-size": "حجم المراجعات 'من' و'إلى'.",
 	"apihelp-compare-paramvalue-prop-timestamp": "حجم المراجعات 'من' و'إلى'.",
+	"apihelp-compare-param-difftype": "إرجاع المقارنة بتنسيق HTML المضمن.",
 	"apihelp-compare-param-slots": "إرجاع فرق فردي لهذه الفتحات، بدلا من فرق واحد مشترك لجميع فتحات.",
 	"apihelp-compare-example-1": "إنشاء فرق بين المراجعة 1 و2.",
 	"apihelp-createaccount-summary": "إنشاء حساب مستخدم جديد",
@@ -189,6 +193,7 @@
 	"apihelp-edit-param-redirect": "حل التحويلات تلقائيا.",
 	"apihelp-edit-param-contentformat": "نسق المحتوى التسلسلي المستخدم لنص المدخلات.",
 	"apihelp-edit-param-contentmodel": "نموذج المحتوى للمحتوى الجديد.",
+	"apihelp-edit-param-returnto": "عنوان الصفحة. إذا أدى حفظ التعديل إلى إنشاء حساب مؤقت، فقد تستجيب واجهة برمجة التطبيقات (API) برابط URL يجب على العميل زيارته لإكمال تسجيل الدخول. عند توفير هذه المعلمة، سيتم إعادة توجيه الرابط إلى الصفحة المحددة، بدلاً من الصفحة التي تم تعديلها.",
 	"apihelp-edit-param-token": "ينبغي دائما أن يُرسَل الرمز كوسيط أخير، أو على الأقل بعد الوسيط $1text.",
 	"apihelp-edit-example-edit": "عدل صفحة.",
 	"apihelp-edit-example-prepend": "إضافة البادئة <kbd>_&#95;NOTOC_&#95;</kbd> إلى الصفحة.",

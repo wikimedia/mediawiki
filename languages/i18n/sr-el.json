@@ -2557,7 +2557,7 @@
 	"blocklink": "blokiraj",
 	"unblocklink": "deblokiraj",
 	"change-blocklink": "promeni blokadu",
-	"remove-blocklink": "ukloni blok",
+	"remove-blocklink": "ukloni blokadu",
 	"manage-blocklink": "upravljanje blokadama",
 	"empty-username": "(korisničko ime nije dostupno)",
 	"blocklist-hidden-placeholder": "(korisničko ime je sakriveno)",
