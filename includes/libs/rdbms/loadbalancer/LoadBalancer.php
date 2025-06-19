@@ -1198,7 +1198,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		}
 
 		/** @var IDatabaseForOwner|null $conn */
-		$conn = $this->getConnectionInternal( ServerInfo::WRITER_INDEX, self::CONN_SILENCE_ERRORS );
+		$conn = $this->getConnectionInternal( ServerInfo::WRITER_INDEX, [], false, self::CONN_SILENCE_ERRORS );
 		// @phan-suppress-next-line PhanRedundantCondition
 		if ( !$conn ) {
 			$this->reportConnectionError();
