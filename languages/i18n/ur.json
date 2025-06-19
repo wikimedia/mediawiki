@@ -65,6 +65,8 @@
 	"index-category": "فہرست شدہ صفحات",
 	"noindex-category": "غیر فہرست شدہ صفحات",
 	"broken-file-category": "فائلوں کے شکستہ روابط پر مشتمل صفحات",
+	"categoryviewer-pagedlinks": "($1) ($2)",
+	"category-header-numerals": "$1–$2",
 	"about": "تعارف",
 	"article": "صفحہ مواد",
 	"newwindow": "(نئی ونڈو میں کھولیں)",

@@ -628,7 +628,7 @@
 	"edit-textarea-aria-label": "Vikimətn redaktoru",
 	"creating": "Yaradılır: $1",
 	"editingsection": "Redaktə edilir: $1 (bölmə)",
-	"editingcomment": "Redaktə et $1 (yeni bölmə)",
+	"editingcomment": "Redaktə edilir: $1 (yeni bölmə)",
 	"editconflict": "Eyni vaxtda redaktə: $1",
 	"explainconflict": "Siz məqaləni redaktə etməyə başlamazdan əvvəl başqa bir istifadəçi onu redaktə etmişdir. Yuxarıdakı mətn bölməsində hazırda mövcud olan səhifə mətni göstərilmişdir. Sizin düzəlişləriniz aşağıdakı mətn bölməsində göstərilmişdir. Siz dəyişiklikləri mövcud mətn ilə birləşdirməli olacaqsınız. \"$1\" düyməsini sıxdıqda <strong>yalnız</strong> yuxarıdakı mətn yayımlanacaq.",
 	"yourtext": "Mətniniz",

@@ -66,6 +66,7 @@
 	"prefs-signature-error-details": "نور څه زده کول",
 	"badsig": "ناسم ناتيار لاسليک.\nاېچ‌ټي‌اېم‌اېل نښانونه وگورئ.",
 	"badsiglength": "ستاسو لاسليک ډېر اوږد دی.\nبايد چې لاسليک مو له $1 {{PLURAL:$1|توري|تورو}} نه لږ وي.",
+	"badsigsubst": "ستاسې لاسليک ځړول شوی ځايناستی لري (بېلگې په توگه <code>subst:</code> يا<code><nowiki>~~~~</nowiki></code>).",
 	"prefs-email": "د برېښليک خوښنې",
 	"youremail": "برېښليک *",
 	"prefs-setemail": "يوه برېښليک‌پته ورکړئ",

@@ -2374,7 +2374,7 @@
 	"delete-talk-summary-prefix": "已因下列理由与关联页面一并删除：$1",
 	"historywarning": "<strong>警告：</strong>您将要删除的页面有$1次{{PLURAL:$1|修订}}历史：",
 	"historyaction-submit": "显示版本",
-	"confirmdeletetext": "您即将删除一个页面或图像以及其历史。\n请确定您要进行此项操作，并且了解其后果，同时您的行为符合[[{{MediaWiki:Policy-url}}|方针]]。",
+	"confirmdeletetext": "您即将删除一个页面或图像以及其历史。\n\n请确定您要进行此项操作，并且了解其后果，同时您的行为符合[[{{MediaWiki:Policy-url}}|方针]]。",
 	"actioncomplete": "操作完成",
 	"actionfailed": "操作失败",
 	"deletedtext": "“$1”已删除。最近的删除操作记录请见$2。",

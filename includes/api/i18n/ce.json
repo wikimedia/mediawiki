@@ -479,6 +479,8 @@
 	"apihelp-query+alldeletedrevisions-param-tag": "Йеллачу билгалонашца болу хийцамаш бен.",
 	"apihelp-query+alldeletedrevisions-param-user": "ХӀокху декъашхочун хийцамаш бен.",
 	"apihelp-query+alldeletedrevisions-param-excludeuser": "ХӀокху декъашхочун хийцамаш дагар ма бе.",
+	"apihelp-query+alldeletedrevisions-param-namespace": "ХӀокху цӀерийн меттиган агӀонаш бен дагар ма йе.",
+	"apihelp-query+alldeletedrevisions-param-miser-user-namespace": "<strong>Билгалдаккхар:</strong> [[mw:Special:MyLanguage/Manual:$wgMiserMode|Сутара раж]] бахьанехь, <var>$1user</var> а, <var>$1namespace</var> а лелорца кхин дӀа а дӀадахале <var>$1limit</var> кӀезиг жамӀаш дерзо тарло; инзаречу хьолашкахь нулан жамӀаш йухадерзо тарло.",
 	"apihelp-query+allfileusages-paramvalue-prop-title": "ТӀетуху файлан цӀе.",
 	"apihelp-query+allfileusages-param-limit": "Маса элемент йухайерзо.",
 	"apihelp-query+alllinks-paramvalue-prop-title": "ТӀетуху хзьажорган цӀе.",

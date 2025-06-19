@@ -24,6 +24,8 @@
 	"botpasswords-help-grants": "هر پرېښولی روباټ ته اجازه ورکوي چې هغه واک ته لاسرسی ومومي کوم چې ستاسو گڼون ساتي. د پرېښوونې چارنول دلته، نوی لاسرسی نشته چې ستاسو گڼون يې اوس مهال نه لري. د نورو مالوماتو لپاره [[Special:ListGrants|واک‌نوملړ]] وگورئ.\n\nگواښوونکې پرېښوونې په نښه شوي.کله چې روباټ د ناوړه ارادې لرونکي شخص لخوا تښتول کېږي؛ نو په نښه شوي مرستو څخه ناوړه گټه اخیستل عموما گران وي. هغه مرستې چې د ورانکارۍ گواښ لري (<span class=\"mw-grantriskgroup-vandalism\">{{int:grantriskgroup-vandalism}}</span>) د گډوډۍ رامنځته کولو لپاره کارېدای شي چې پاکول يې ډېره هڅه غواړي. هغه پرېښوونې چې د خونديتوب گواښ لري (<span class=\"mw-grantriskgroup-security\">{{int:grantriskgroup-security}}</span>) کولی شي د تلپاتې زيان لامل شي harm (د بېلگې په توگه د ځاني مالوماتو غلا کول).\nدنننۍ پرېښوونې (<span class=\"mw-grantriskgroup-internal\">{{int:grantriskgroup-internal}}</span>) يوازې د وېبپاڼې چلوونکو له خوا کارول کېږي. مهرباني وکړئ، د گواښونکو واگ‌غوښتنې مه کوئ، پرته له دې چې تاسو ورته واقعاً اړتيا ولرئ.",
 	"botpasswords-label-grants-column": "ورکړل شو",
 	"botpasswords-bad-appid": "د بوټ نوم \"$1\" وجود نلري.",
+	"botpasswords-toolong-restrictions": "دلته ډېرې زياتې وېبپتې يا بريدونه ننوتی دي.",
+	"botpasswords-toolong-grants": "ټاکلې واگې ډېرې زياتې دي.",
 	"botpasswords-insert-failed": "د بوټ \"$1\" نوم په ورګډولو کي پاتې راغلې دا نوم د پخوا څخه ورګډ سوي وو?",
 	"botpasswords-update-failed": "د بوټ نوم په نوي کولو کې ناکام شوې \"$1\".ایا دا ړنګ شوی دی؟",
 	"botpasswords-created-title": "د بوټ پټنوم جوړ شو",
@@ -36,5 +38,7 @@
 	"botpasswords-no-provider": "د بوټ شفر د غونډو وړاندې کول شتون نلري.",
 	"botpasswords-restriction-failed": "د بوټ پاسورډ محدودیتونه د دې ننوتنې مخه نیسي",
 	"botpasswords-invalid-name": "په کارنۍ نومول شوی کې د بوټو د پاسورډ جلا کول شامل نه دی (\"$1\").",
-	"botpasswords-not-exist": "کارن \"$1\"  يو روباټ پټنوم نه لري نوم \"$2\"."
+	"botpasswords-not-exist": "کارن \"$1\"  يو روباټ پټنوم نه لري نوم \"$2\".",
+	"botpasswords-needs-reset": "د {{GENDER:$1|کارن}} \"$1\" لپاره د روباټ نوم \"$2\" پټنوم بايد له سره و اوڼل شي.",
+	"botpasswords-locked": "روباټي پټنوم سره نشئ ننوتلای ځکه چې ستاسې په گڼون بنديز لگېدلی."
 }

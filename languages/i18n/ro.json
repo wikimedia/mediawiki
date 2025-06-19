@@ -2392,6 +2392,7 @@
 	"sp-contributions-outofrange": "Nu pot afișa niciun rezultat. Intervalul de IPuri solicitat este mai mare decât limita CIDR de /$1.",
 	"sp-contributions-concurrency-user": "Ne pare rău, există prea multe solicitări din partea contului dumneavoastră. Vă rugăm să încercați din nou mai târziu.",
 	"sp-contributions-concurrency-ip": "Ne pare rău, există prea multe solicitări din partea adresei dumneavoastră IP. Vă rugăm să încercați din nou mai târziu.",
+	"sp-contributions-newcontribution": "Contribuție nouă",
 	"whatlinkshere": "Ce trimite aici",
 	"whatlinkshere-count": "Se afișează $1 {{PLURAL:$1|element|elemente|de elemente}}.",
 	"whatlinkshere-title": "Pagini care conțin legături spre „$1”",

@@ -1147,7 +1147,7 @@
 	"linterror-unclosed-quotes-in-heading": "Незакрытая кавычка, выходящая за содержание",
 	"linterror-wikilink-in-extlink": "Ссылки в ссылках",
 	"email": "Электронная почта",
-	"userrights": "Права участни{{GENDER:$1|ка|цы}}",
+	"userrights": "Права участника",
 	"userrights-lookup-user": "Выбор участника",
 	"userrights-user-editname": "Введите имя учётной записи:",
 	"editusergroup": "Загрузить группы участника",
