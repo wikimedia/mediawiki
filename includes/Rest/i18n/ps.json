@@ -1,0 +1,15 @@
+{
+	"@metadata": {
+		"authors": [
+			"شاه زمان پټان"
+		]
+	},
+	"rest-mock-error": "خيالي تېروتنه.",
+	"rest-specified-revision-unavailable": "ځانگړې‌شوې بیاکتنه ړنگه‌شوې يا ځپل‌شوې ده.",
+	"rest-previous-revision-unavailable": "پخوانۍ بیاکتنه ونهٔ موندل شوه. ايا مخ تاله‌شوی يا ړنگ‌شوی دی؟",
+	"rest-transform-missing-html": "هېڅ اېچ‌ټي‌اېم‌اېل نه دی ورکړل‌شوی.",
+	"rest-transform-missing-title": "هېڅ سرليک يا ويکي‌ليک نه دی ورکړل‌شوی.",
+	"rest-unsupported-target-format": "غوښتل‌شوې موخې بڼه نه ملاتړ کېږي.",
+	"rest-parsoid-resource-exceeded": "سرچينې حد زيات شوی",
+	"rest-parsoid-error": "پارسويډ تېروتنه"
+}
