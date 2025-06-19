@@ -377,6 +377,7 @@ class SpecialPageFactory {
 				'ConnectionProvider',
 				'LinkBatchFactory',
 				'LanguageConverterFactory',
+				'LinksMigration',
 			]
 		],
 		'Wantedfiles' => [

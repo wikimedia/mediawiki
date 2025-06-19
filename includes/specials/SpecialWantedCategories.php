@@ -25,6 +25,7 @@ namespace MediaWiki\Specials;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Language\ILanguageConverter;
 use MediaWiki\Languages\LanguageConverterFactory;
+use MediaWiki\Linker\LinksMigration;
 use MediaWiki\Skin\Skin;
 use MediaWiki\SpecialPage\WantedQueryPage;
 use MediaWiki\Title\Title;
@@ -42,31 +43,38 @@ class SpecialWantedCategories extends WantedQueryPage {
 	private $currentCategoryCounts;
 
 	private ILanguageConverter $languageConverter;
+	private LinksMigration $linksMigration;
 
 	public function __construct(
 		IConnectionProvider $dbProvider,
 		LinkBatchFactory $linkBatchFactory,
-		LanguageConverterFactory $languageConverterFactory
+		LanguageConverterFactory $languageConverterFactory,
+		LinksMigration $linksMigration
 	) {
 		parent::__construct( 'Wantedcategories' );
 		$this->setDatabaseProvider( $dbProvider );
 		$this->setLinkBatchFactory( $linkBatchFactory );
 		$this->languageConverter = $languageConverterFactory->getLanguageConverter( $this->getContentLanguage() );
+		$this->linksMigration = $linksMigration;
 	}
 
 	public function getQueryInfo() {
+		$queryInfo = $this->linksMigration->getQueryInfo( 'categorylinks' );
+		$titleField = $this->linksMigration->getTitleFields( 'categorylinks' )[1];
+
 		return [
-			'tables' => [ 'categorylinks', 'page' ],
+			'tables' => array_merge( $queryInfo['tables'], [ 'page' ] ),
 			'fields' => [
 				'namespace' => NS_CATEGORY,
-				'title' => 'cl_to',
+				'title' => $titleField,
 				'value' => 'COUNT(*)'
 			],
 			'conds' => [ 'page_title' => null ],
-			'options' => [ 'GROUP BY' => 'cl_to' ],
-			'join_conds' => [ 'page' => [ 'LEFT JOIN',
-				[ 'page_title = cl_to',
-					'page_namespace' => NS_CATEGORY ] ] ]
+			'options' => [ 'GROUP BY' => $titleField ],
+			'join_conds' => array_merge( $queryInfo['joins'],
+				[ 'page' => [ 'LEFT JOIN',
+					[ 'page_title = ' . $titleField,
+						'page_namespace' => NS_CATEGORY ] ] ] )
 		];
 	}
 
