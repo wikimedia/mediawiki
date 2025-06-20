@@ -1375,6 +1375,17 @@
 	"apihelp-query+tokens-example-simple": "Retrieve a csrf token (the default).",
 	"apihelp-query+tokens-example-types": "Retrieve a watch token and a patrol token.",
 
+	"apihelp-query+trackingcategories-summary": "Enumerate all existing tracking categories defined in [[Special:TrackingCategories]]. A tracking category exists if it contains pages or if its category page exists.",
+	"apihelp-query+trackingcategories-param-trackingcatname": "Search for all existing tracking category titles that match the provided tracking category name (as defined by \"message name\" on [[Special:TrackingCategories]].)",
+	"apihelp-query+trackingcategories-param-min": "Only return existing tracking categories with at least this many members.",
+	"apihelp-query+trackingcategories-param-max": "Only return existing tracking categories with at most this many members.",
+	"apihelp-query+trackingcategories-param-limit": "How many tracking categories to return.",
+	"apihelp-query+trackingcategories-param-prop": "Which properties to get:",
+	"apihelp-query+trackingcategories-paramvalue-prop-size": "Adds number of pages in the tracking category.",
+	"apihelp-query+trackingcategories-paramvalue-prop-hidden": "Tags tracking categories that are hidden with <code>_&#95;HIDDENCAT_&#95;</code>.",
+	"apihelp-query+trackingcategories-example-size": "List tracking categories with information on the number of pages in each.",
+	"apihelp-query+trackingcategories-example-generator": "Retrieve info about the tracking category pages representing the broken-file-category themselves, if they exist",
+
 	"apihelp-query+transcludedin-summary": "Find all pages that transclude the given pages.",
 	"apihelp-query+transcludedin-param-prop": "Which properties to get:",
 	"apihelp-query+transcludedin-paramvalue-prop-pageid": "Page ID of each page.",
