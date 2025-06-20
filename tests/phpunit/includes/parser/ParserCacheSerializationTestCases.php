@@ -217,7 +217,6 @@ abstract class ParserCacheSerializationTestCases {
 	 * @return array[]
 	 */
 	public static function getParserOutputTestCases() {
-		MWDebug::filterDeprecationForTest( '/::setPageProperty with (non-scalar|non-string|null) value/' );
 		MWDebug::filterDeprecationForTest( '/::getWarnings/' );
 		$parserOutputWithCacheTimeProps = new ParserOutput( 'CacheTime' );
 		$parserOutputWithCacheTimeProps->setCacheTime( self::CACHE_TIME );
