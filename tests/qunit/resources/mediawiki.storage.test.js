@@ -32,17 +32,17 @@
 
 		this.sandbox.stub( mw.storage, 'store', stub );
 
-		assert.strictEqual( mw.storage.set( 'foo', 'test' ), true, 'set returns true' );
+		assert.true( mw.storage.set( 'foo', 'test' ), 'set returns true' );
 		assert.strictEqual( mw.storage.get( 'foo' ), 'test', 'Check value gets stored' );
 		assert.strictEqual( mw.storage.get( 'bar' ), null, 'Unset values are null' );
-		assert.strictEqual( mw.storage.remove( 'foo' ), true, 'remove returns true' );
+		assert.true( mw.storage.remove( 'foo' ), 'remove returns true' );
 		assert.strictEqual( mw.storage.get( 'foo' ), null, 'Removed item is null' );
 
-		assert.strictEqual( mw.storage.setObject( 'baz', object ), true, 'setObject returns true' );
+		assert.true( mw.storage.setObject( 'baz', object ), 'setObject returns true' );
 		assert.deepEqual( mw.storage.getObject( 'baz' ), object, 'Check value gets stored' );
 		assert.notStrictEqual( mw.storage.getObject( 'baz' ), object, 'Retrieved value is a new object' );
 		assert.strictEqual( mw.storage.getObject( 'quux' ), null, 'Unset values are null' );
-		assert.strictEqual( mw.storage.remove( 'baz' ), true, 'remove returns true' );
+		assert.true( mw.storage.remove( 'baz' ), 'remove returns true' );
 		assert.strictEqual( mw.storage.getObject( 'baz' ), null, 'Removed item is null' );
 
 		mw.storage.set( 'baz', 'Non-JSON' );
@@ -93,13 +93,13 @@
 		stub.removeItem.throws();
 		this.sandbox.stub( mw.storage, 'store', stub );
 
-		assert.strictEqual( mw.storage.get( 'foo' ), false );
-		assert.strictEqual( mw.storage.set( 'foo', 'test' ), false );
-		assert.strictEqual( mw.storage.remove( 'foo' ), false );
+		assert.false( mw.storage.get( 'foo' ) );
+		assert.false( mw.storage.set( 'foo', 'test' ) );
+		assert.false( mw.storage.remove( 'foo' ) );
 
-		assert.strictEqual( mw.storage.getObject( 'bar' ), false );
-		assert.strictEqual( mw.storage.setObject( 'bar', { test: 'value' } ), false );
-		assert.strictEqual( mw.storage.remove( 'bar' ), false );
+		assert.false( mw.storage.getObject( 'bar' ) );
+		assert.false( mw.storage.setObject( 'bar', { test: 'value' } ) );
+		assert.false( mw.storage.remove( 'bar' ) );
 	} );
 
 	QUnit.test( 'set/get(Object) with storage object disabled', ( assert ) => {
@@ -111,13 +111,13 @@
 		const old = mw.storage.store;
 		mw.storage.store = undefined;
 
-		assert.strictEqual( mw.storage.get( 'foo' ), false );
-		assert.strictEqual( mw.storage.set( 'foo', 'test' ), false );
-		assert.strictEqual( mw.storage.remove( 'foo', 'test' ), false );
+		assert.false( mw.storage.get( 'foo' ) );
+		assert.false( mw.storage.set( 'foo', 'test' ) );
+		assert.false( mw.storage.remove( 'foo', 'test' ) );
 
-		assert.strictEqual( mw.storage.getObject( 'bar' ), false );
-		assert.strictEqual( mw.storage.setObject( 'bar', { test: 'value' } ), false );
-		assert.strictEqual( mw.storage.remove( 'bar' ), false );
+		assert.false( mw.storage.getObject( 'bar' ) );
+		assert.false( mw.storage.setObject( 'bar', { test: 'value' } ) );
+		assert.false( mw.storage.remove( 'bar' ) );
 
 		mw.storage.store = old;
 	} );
@@ -147,8 +147,8 @@
 
 		// Test the failure behavior when setting expiry
 		mw.storage.set( 'foo', 'test', 99 );
-		assert.strictEqual( stub.setItem.withArgs( EXPIRY_PREFIX + 'foo' ).calledOnce, true );
-		assert.strictEqual( stub.setItem.withArgs( 'foo' ).notCalled, true );
+		assert.true( stub.setItem.withArgs( EXPIRY_PREFIX + 'foo' ).calledOnce );
+		assert.true( stub.setItem.withArgs( 'foo' ).notCalled );
 		assert.strictEqual( mw.storage.get( 'foo' ), null, 'Item was not set when setting expiry failed' );
 
 	} );

@@ -203,7 +203,7 @@ QUnit.module( 'jquery.makeCollapsible', () => {
 			'<div>' + loremIpsum + '</div>'
 		);
 
-		assert.strictEqual( $collapsible.data( 'mw-made-collapsible' ), true, 'mw-made-collapsible data present' );
+		assert.true( $collapsible.data( 'mw-made-collapsible' ), 'mw-made-collapsible data present' );
 	} );
 
 	QUnit.test( 'mw-collapsible added when missing', ( assert ) => {

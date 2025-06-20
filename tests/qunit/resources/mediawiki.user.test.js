@@ -28,7 +28,7 @@ QUnit.module( 'mediawiki.user', QUnit.newMwEnvironment(), ( hooks ) => {
 		mw.config.set( 'wgUserId', null );
 
 		assert.strictEqual( mw.user.getName(), null, 'getName()' );
-		assert.strictEqual( mw.user.isAnon(), true, 'isAnon()' );
+		assert.true( mw.user.isAnon(), 'isAnon()' );
 		assert.strictEqual( mw.user.getId(), 0, 'getId()' );
 	} );
 
@@ -38,10 +38,10 @@ QUnit.module( 'mediawiki.user', QUnit.newMwEnvironment(), ( hooks ) => {
 		mw.config.set( 'wgUserId', 123 );
 
 		assert.strictEqual( mw.user.getName(), 'John', 'getName()' );
-		assert.strictEqual( mw.user.isAnon(), false, 'isAnon()' );
+		assert.false( mw.user.isAnon(), 'isAnon()' );
 		assert.strictEqual( mw.user.getId(), 123, 'getId()' );
-		assert.strictEqual( mw.user.isNamed(), true, 'isNamed()' );
-		assert.strictEqual( mw.user.isTemp(), false, 'isTemp()' );
+		assert.true( mw.user.isNamed(), 'isNamed()' );
+		assert.false( mw.user.isTemp(), 'isTemp()' );
 
 		assert.strictEqual( mw.user.id(), 'John', 'user.id()' );
 	} );
@@ -122,7 +122,7 @@ QUnit.module( 'mediawiki.user', QUnit.newMwEnvironment(), ( hooks ) => {
 		const result = mw.user.getPageviewToken(),
 			result2 = mw.user.getPageviewToken();
 		assert.strictEqual( typeof result, 'string', 'type' );
-		assert.strictEqual( /^[a-f0-9]{20}$/.test( result ), true, '20 HEX symbols string' );
+		assert.true( /^[a-f0-9]{20}$/.test( result ), '20 HEX symbols string' );
 		assert.strictEqual( result2, result, 'sticky' );
 	} );
 
@@ -157,8 +157,8 @@ QUnit.module( 'mediawiki.user', QUnit.newMwEnvironment(), ( hooks ) => {
 			const badValue = mw.user.clientPrefs.get( 'invalid' );
 			const ambiguousValue = mw.user.clientPrefs.get( 'ambiguous' );
 			assert.strictEqual( result, '1', 'client preferences are read from HTML element' );
-			assert.strictEqual( badValue, false, 'classes in the wrong format are ignored.' );
-			assert.strictEqual( ambiguousValue, false, 'ambiguous values are resolved to false' );
+			assert.false( badValue, 'classes in the wrong format are ignored.' );
+			assert.false( ambiguousValue, 'ambiguous values are resolved to false' );
 		} );
 
 		QUnit.test( 'get() [never read from cookie]', ( assert ) => {

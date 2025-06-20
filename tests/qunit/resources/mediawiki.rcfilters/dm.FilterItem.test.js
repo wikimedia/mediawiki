@@ -45,15 +45,13 @@
 				selected: true
 			}
 		);
-		assert.strictEqual(
+		assert.true(
 			item.isSelected(),
-			true,
 			'Item can be selected in the config.'
 		);
 		item.toggleSelected( true );
-		assert.strictEqual(
+		assert.true(
 			item.isSelected(),
-			true,
 			'Item can toggle its selected state.'
 		);
 
@@ -70,26 +68,22 @@
 			[ 'sub1', 'sub2', 'sub3' ],
 			'Subset information is retained.'
 		);
-		assert.strictEqual(
+		assert.true(
 			item.existsInSubset( 'sub1' ),
-			true,
 			'Specific item exists in subset.'
 		);
-		assert.strictEqual(
+		assert.false(
 			item.existsInSubset( 'sub10' ),
-			false,
 			'Specific item does not exists in subset.'
 		);
-		assert.strictEqual(
+		assert.false(
 			item.isIncluded(),
-			false,
 			'Initial state of "included" is false.'
 		);
 
 		item.toggleIncluded( true );
-		assert.strictEqual(
+		assert.true(
 			item.isIncluded(),
-			true,
 			'Item toggles its included state.'
 		);
 
@@ -124,30 +118,26 @@
 			false,
 			'Specific item does not exists in conflicts.'
 		);
-		assert.strictEqual(
+		assert.false(
 			item.isConflicted(),
-			false,
 			'Initial state of "conflicted" is false.'
 		);
 
 		item.toggleConflicted( true );
-		assert.strictEqual(
+		assert.true(
 			item.isConflicted(),
-			true,
 			'Item toggles its conflicted state.'
 		);
 
 		// Fully covered
 		item = new rcfilters.dm.FilterItem( 'filter1', group1 );
-		assert.strictEqual(
+		assert.false(
 			item.isFullyCovered(),
-			false,
 			'Initial state of "full coverage" is false.'
 		);
 		item.toggleFullyCovered( true );
-		assert.strictEqual(
+		assert.true(
 			item.isFullyCovered(),
-			true,
 			'Item toggles its fully coverage state.'
 		);
 
@@ -191,7 +181,7 @@
 
 		item.setValue( '1' );
 
-		assert.strictEqual( item.getValue(), true, 'Value is coerced to boolean' );
+		assert.true( item.getValue(), 'Value is coerced to boolean' );
 	} );
 
 	QUnit.test( 'get/set any value', ( assert ) => {
