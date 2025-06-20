@@ -1309,7 +1309,6 @@ return [
 			'stash.js',
 			'watchlistExpiry.js',
 		],
-		'styles' => 'edit.css',
 		'dependencies' => [
 			'mediawiki.action.edit.styles',
 			'mediawiki.editfont.styles',
