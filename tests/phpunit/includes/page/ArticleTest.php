@@ -200,9 +200,9 @@ class ArticleTest extends \MediaWikiIntegrationTestCase {
 				$this->anything(),
 				$this->callback( function ( $options ) use ( &$beforePreWarm ) {
 					if ( $beforePreWarm ) {
-						$this->assertTrue( (bool)( $options & ParserOutputAccess::OPT_NO_CHECK_CACHE ),
+						$this->assertTrue( $options[ ParserOutputAccess::OPT_NO_CHECK_CACHE ] ?? false,
 							"The cache is not checked again" );
-						$this->assertTrue( (bool)( $options & ParserOutputAccess::OPT_LINKS_UPDATE ),
+						$this->assertTrue( $options[ ParserOutputAccess::OPT_LINKS_UPDATE ] ?? false,
 							"WikiPage::triggerOpportunisticLinksUpdate is attempted" );
 					}
 					return true;
