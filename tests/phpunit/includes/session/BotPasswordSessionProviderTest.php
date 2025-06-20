@@ -45,30 +45,38 @@ class BotPasswordSessionProviderTest extends MediaWikiIntegrationTestCase {
 			$params['sessionCookieOptions']['prefix'] = $prefix;
 		}
 
+		$sessionProviders = array_merge( $wgSessionProviders, [
+			BotPasswordSessionProvider::class => [
+				'class' => BotPasswordSessionProvider::class,
+				'args' => [ $params ],
+				'services' => [ 'GrantsInfo' ],
+			]
+		] );
+
 		$configHash = json_encode( [ $name, $prefix, $isApiRequest ] );
 		if ( !$this->config || $this->configHash !== $configHash ) {
 			$this->config = new HashConfig( [
 				MainConfigNames::CookiePrefix => 'wgCookiePrefix',
 				MainConfigNames::EnableBotPasswords => true,
-				MainConfigNames::SessionProviders => $wgSessionProviders + [
-					BotPasswordSessionProvider::class => [
-						'class' => BotPasswordSessionProvider::class,
-						'args' => [ $params ],
-						'services' => [ 'GrantsInfo' ],
-					]
-				],
+				MainConfigNames::SessionProviders => $sessionProviders,
 			] );
 			$this->configHash = $configHash;
 		}
 
+		$this->overrideConfigValues( [
+			MainConfigNames::CookiePrefix => 'wgCookiePrefix',
+			MainConfigNames::EnableBotPasswords => true,
+			MainConfigNames::SessionProviders => $sessionProviders,
+		] );
+
 		$manager = new SessionManager(
 			new MultiConfig( [ $this->config, $this->getServiceContainer()->getMainConfig() ] ),
 			new NullLogger,
-			new TestBagOStuff,
 			$this->getServiceContainer()->getHookContainer(),
 			$this->getServiceContainer()->getObjectFactory(),
 			$this->getServiceContainer()->getProxyLookup(),
-			$this->getServiceContainer()->getUserNameUtils()
+			$this->getServiceContainer()->getUserNameUtils(),
+			$this->getServiceContainer()->getSessionStore()
 		);
 
 		return $manager->getProvider( BotPasswordSessionProvider::class );

@@ -77,7 +77,6 @@ use TestLogger;
 use TestUser;
 use UnexpectedValueException;
 use Wikimedia\Message\MessageSpecifier;
-use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\ReadOnlyMode;
@@ -340,11 +339,11 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		$manager = new SessionManager(
 			$this->config,
 			new NullLogger(),
-			new HashBagOStuff(),
 			$this->getServiceContainer()->getHookContainer(),
 			$this->getServiceContainer()->getObjectFactory(),
 			$this->getServiceContainer()->getProxyLookup(),
-			$this->getServiceContainer()->getUserNameUtils()
+			$this->getServiceContainer()->getUserNameUtils(),
+			$this->getServiceContainer()->getSessionStore()
 		);
 		TestingAccessWrapper::newFromObject( $manager )->getProvider( (string)$provider );
 

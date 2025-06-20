@@ -8,7 +8,6 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Session\PHPSessionHandler;
 use MediaWiki\Session\SessionManager;
 use MediaWikiIntegrationTestCase;
-use Psr\Log\LogLevel;
 use TestLogger;
 use UnexpectedValueException;
 use Wikimedia\ScopedCallback;
@@ -27,11 +26,10 @@ class PHPSessionHandlerTest extends MediaWikiIntegrationTestCase {
 		if ( $staticAccess->instance ) {
 			$old = TestingAccessWrapper::newFromObject( $staticAccess->instance );
 			$oldManager = $old->manager;
-			$oldStore = $old->store;
 			$oldLogger = $old->logger;
 			$reset[] = new ScopedCallback(
 				[ PHPSessionHandler::class, 'install' ],
-				[ $oldManager, $oldStore, $oldLogger ]
+				[ $oldManager, $oldLogger ]
 			);
 		}
 
@@ -85,11 +83,11 @@ class PHPSessionHandlerTest extends MediaWikiIntegrationTestCase {
 		$manager = new SessionManager(
 			$services->getMainConfig(),
 			$logger,
-			$store,
 			$services->getHookContainer(),
 			$services->getObjectFactory(),
 			$services->getProxyLookup(),
-			$services->getUserNameUtils()
+			$services->getUserNameUtils(),
+			$services->getSessionStore()
 		);
 
 		$this->assertFalse( PHPSessionHandler::isInstalled() );
@@ -101,7 +99,6 @@ class PHPSessionHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertNotNull( $staticAccess->instance );
 		$priv = TestingAccessWrapper::newFromObject( $staticAccess->instance );
 		$this->assertSame( $manager, $priv->manager );
-		$this->assertSame( $store, $priv->store );
 		$this->assertSame( $logger, $priv->logger );
 	}
 
@@ -118,7 +115,6 @@ class PHPSessionHandlerTest extends MediaWikiIntegrationTestCase {
 			MainConfigNames::ObjectCacheSessionExpiry => 2,
 		] );
 
-		$store = new TestBagOStuff();
 		$logger = new TestLogger( true, static function ( $m ) {
 			return (
 				// Discard all log events starting with expected prefix
@@ -132,11 +128,11 @@ class PHPSessionHandlerTest extends MediaWikiIntegrationTestCase {
 		$manager = new SessionManager(
 			$services->getMainConfig(),
 			$logger,
-			$store,
 			$services->getHookContainer(),
 			$services->getObjectFactory(),
 			$services->getProxyLookup(),
-			$services->getUserNameUtils()
+			$services->getUserNameUtils(),
+			$services->getSessionStore()
 		);
 		PHPSessionHandler::install( $manager );
 		$wrap = TestingAccessWrapper::newFromObject( $staticAccess->instance );
@@ -169,10 +165,6 @@ class PHPSessionHandlerTest extends MediaWikiIntegrationTestCase {
 		$_SESSION['AuthenticationSessionTest'] = $rand;
 		$expect = [ 'AuthenticationSessionTest' => $rand ];
 		session_write_close();
-		$this->assertSame( [
-			[ LogLevel::DEBUG, 'SessionManager using store MediaWiki\Tests\Session\TestBagOStuff' ],
-			[ LogLevel::WARNING, 'Something wrote to $_SESSION!' ],
-		], $logger->getBuffer() );
 
 		// Screw up $_SESSION so we can tell the difference between "this
 		// worked" and "this did nothing"

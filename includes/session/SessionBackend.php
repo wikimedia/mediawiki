@@ -93,7 +93,7 @@ final class SessionBackend {
 	/** @var string Used to detect subarray modifications */
 	private $dataHash = null;
 
-	private CachedBagOStuff $store;
+	private SessionStore $sessionStore;
 	private LoggerInterface $logger;
 	private HookRunner $hookRunner;
 
@@ -129,17 +129,23 @@ final class SessionBackend {
 	/** @var bool */
 	private $checkPHPSessionRecursionGuard = false;
 
+	private int $priority;
+
 	/**
 	 * @param SessionId $id
 	 * @param SessionInfo $info Session info to populate from
-	 * @param CachedBagOStuff $store Backend data store
+	 * @param SessionStore $sessionStore
 	 * @param LoggerInterface $logger
 	 * @param HookContainer $hookContainer
 	 * @param int $lifetime Session data lifetime in seconds
 	 */
 	public function __construct(
-		SessionId $id, SessionInfo $info, CachedBagOStuff $store, LoggerInterface $logger,
-		HookContainer $hookContainer, $lifetime
+		SessionId $id,
+		SessionInfo $info,
+		SessionStore $sessionStore,
+		LoggerInterface $logger,
+		HookContainer $hookContainer,
+		$lifetime
 	) {
 		$phpSessionHandling = MediaWikiServices::getInstance()->getMainConfig()
 			->get( MainConfigNames::PHPSessionHandling );
@@ -158,10 +164,11 @@ final class SessionBackend {
 		}
 
 		$this->id = $id;
+		$this->priority = $info->getPriority();
 		$this->user = $info->getUserInfo()
 			? $info->getUserInfo()->getUser()
 			: MediaWikiServices::getInstance()->getUserFactory()->newAnonymous();
-		$this->store = $store;
+		$this->sessionStore = $sessionStore;
 		$this->logger = $logger;
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->lifetime = $lifetime;
@@ -171,7 +178,7 @@ final class SessionBackend {
 		$this->forceHTTPS = $info->forceHTTPS();
 		$this->providerMetadata = $info->getProviderMetadata();
 
-		$blob = $store->get( $store->makeKey( 'MWSession', (string)$this->id ) );
+		$blob = $sessionStore->get( $info );
 		if ( !is_array( $blob ) ||
 			!isset( $blob['metadata'] ) || !is_array( $blob['metadata'] ) ||
 			!isset( $blob['data'] ) || !is_array( $blob['data'] )
@@ -203,6 +210,31 @@ final class SessionBackend {
 			}
 		}
 		$this->dataHash = md5( serialize( $this->data ) );
+	}
+
+	/**
+	 * Provide a utility to construct session info on demand
+	 * as the session backend changes the SessionInfo state.
+	 *
+	 * @return SessionInfo
+	 */
+	private function getSessionInfo(): SessionInfo {
+		$userInfo = IPUtils::isValid( $this->user->getName() )
+			? UserInfo::newAnonymous()
+			: UserInfo::newFromUser( $this->user );
+
+		return new SessionInfo(
+			$this->priority,
+			[
+				'id' => (string)$this->id,
+				'provider' => $this->provider,
+				'persisted' => $this->persist,
+				'userInfo' => $userInfo,
+				'remembered' => $this->remember,
+				'forceHTTPS' => $this->forceHTTPS,
+				'metadata' => $this->providerMetadata,
+			]
+		);
 	}
 
 	/**
@@ -297,8 +329,14 @@ final class SessionBackend {
 				'action' => 'delete',
 				'reason' => 'ID reset',
 			] );
+
+			// Get session info object of the old session ID
+			$oldSessionInfo = new SessionInfo(
+				SessionInfo::MIN_PRIORITY, [ 'id' => $oldId, 'idIsSafe' => true ]
+			);
+
 			// Delete the data for the old session ID now
-			$this->store->delete( $this->store->makeKey( 'MWSession', $oldId ) );
+			$this->sessionStore->delete( $oldSessionInfo );
 		}
 
 		return (string)$this->id;
@@ -372,7 +410,8 @@ final class SessionBackend {
 			] );
 			// Delete the session data, so the local cache-only write in
 			// self::save() doesn't get things out of sync with the backend.
-			$this->store->delete( $this->store->makeKey( 'MWSession', (string)$this->id ) );
+			$info = $this->getSessionInfo();
+			$this->sessionStore->delete( $info );
 
 			$this->autosave();
 		}
@@ -829,8 +868,9 @@ final class SessionBackend {
 		}
 
 		$flags = $this->persist ? 0 : CachedBagOStuff::WRITE_CACHE_ONLY;
-		$this->store->set(
-			$this->store->makeKey( 'MWSession', (string)$this->id ),
+		$info = $this->getSessionInfo();
+		$this->sessionStore->set(
+			$info,
 			[
 				'data' => $this->data,
 				'metadata' => $metadata,

@@ -212,6 +212,8 @@ use MediaWiki\Search\SearchResultThumbnailProvider;
 use MediaWiki\Search\TitleMatcher;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\Session\SessionManagerInterface;
+use MediaWiki\Session\SessionStore;
+use MediaWiki\Session\SingleBackendSessionStore;
 use MediaWiki\Settings\Config\ConfigSchema;
 use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\Shell\CommandFactory;
@@ -2126,17 +2128,23 @@ return [
 	},
 
 	'SessionManager' => static function ( MediaWikiServices $services ): SessionManagerInterface {
-		$objectCacheFactory = $services->getObjectCacheFactory();
-		$mainConfig = $services->getMainConfig();
-
 		return new SessionManager(
-			$mainConfig,
+			$services->getMainConfig(),
 			LoggerFactory::getInstance( 'session' ),
-			$objectCacheFactory->getInstance( $mainConfig->get( MainConfigNames::SessionCacheType ) ),
 			$services->getHookContainer(),
 			$services->getObjectFactory(),
 			$services->getProxyLookup(),
-			$services->getUserNameUtils()
+			$services->getUserNameUtils(),
+			$services->getSessionStore()
+		);
+	},
+
+	'SessionStore' => static function ( MediaWikiServices $services ): SessionStore {
+		$objectCacheFactory = $services->getObjectCacheFactory();
+		$mainConfig = $services->getMainConfig();
+
+		return new SingleBackendSessionStore(
+			$objectCacheFactory->getInstance( $mainConfig->get( MainConfigNames::SessionCacheType ) )
 		);
 	},
 

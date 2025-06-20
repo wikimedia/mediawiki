@@ -225,7 +225,7 @@ class ImmutableSessionProviderWithCookieTest extends MediaWikiIntegrationTestCas
 				'userInfo' => UserInfo::newFromUser( $user, true ),
 				'idIsSafe' => true,
 			] ),
-			new TestBagOStuff(),
+			$this->getServiceContainer()->getSessionStore(),
 			new NullLogger(),
 			$this->createHookContainer(),
 			10

@@ -26,7 +26,6 @@ use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use SessionHandlerInterface;
 use Wikimedia\AtEase\AtEase;
-use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\PhpSessionSerializer;
 
 /**
@@ -46,7 +45,6 @@ class PHPSessionHandler implements SessionHandlerInterface {
 	protected $warn = true;
 
 	protected ?SessionManagerInterface $manager = null;
-	protected ?BagOStuff $store = null;
 	protected LoggerInterface $logger;
 
 	/** @var array Track original session fields for later modification check */
@@ -150,14 +148,12 @@ class PHPSessionHandler implements SessionHandlerInterface {
 	}
 
 	/**
-	 * Set the manager, store, and logger
 	 * @internal Use self::install().
 	 * @param SessionManagerInterface $manager
-	 * @param BagOStuff $store
 	 * @param LoggerInterface $logger
 	 */
 	public function setManager(
-		SessionManagerInterface $manager, BagOStuff $store, LoggerInterface $logger
+		SessionManagerInterface $manager, LoggerInterface $logger
 	) {
 		if ( $this->manager !== $manager ) {
 			// Close any existing session before we change stores
@@ -165,7 +161,6 @@ class PHPSessionHandler implements SessionHandlerInterface {
 				session_write_close();
 			}
 			$this->manager = $manager;
-			$this->store = $store;
 			$this->logger = $logger;
 			PhpSessionSerializer::setLogger( $this->logger );
 		}
@@ -372,7 +367,6 @@ class PHPSessionHandler implements SessionHandlerInterface {
 		if ( self::$instance !== $this ) {
 			throw new \UnexpectedValueException( __METHOD__ . ': Wrong instance called!' );
 		}
-		$this->store->deleteObjectsExpiringBefore( wfTimestampNow() );
 		return true;
 	}
 }

@@ -9,6 +9,8 @@ use MediaWiki\Config\Config;
 use MediaWiki\Config\HashConfig;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Session\PHPSessionHandler;
 use MediaWiki\Session\Session;
@@ -17,12 +19,13 @@ use MediaWiki\Session\SessionId;
 use MediaWiki\Session\SessionInfo;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\Session\SessionProvider;
+use MediaWiki\Session\SessionStore;
+use MediaWiki\Session\SingleBackendSessionStore;
 use MediaWiki\Session\UserInfo;
 use MediaWiki\User\User;
 use MediaWikiIntegrationTestCase;
 use Psr\Log\NullLogger;
 use UnexpectedValueException;
-use Wikimedia\ObjectCache\CachedBagOStuff;
 use Wikimedia\ScopedCallback;
 use Wikimedia\TestingAccessWrapper;
 
@@ -45,8 +48,8 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 	/** @var SessionProvider */
 	protected $provider;
 
-	/** @var TestBagOStuff */
-	protected $store;
+	/** @var SessionStore */
+	private $store;
 
 	/**
 	 * @return HookContainer
@@ -66,9 +69,9 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 			$this->config = new HashConfig();
 			$this->manager = null;
 		}
+
 		if ( !$this->store ) {
-			$this->store = new TestBagOStuff();
-			$this->manager = null;
+			$this->store = $this->getServiceContainer()->getSessionStore();
 		}
 
 		$logger = new NullLogger();
@@ -78,11 +81,11 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 			$this->manager = new SessionManager(
 				$this->config,
 				$logger,
-				$this->store,
 				$hookContainer,
 				$this->getServiceContainer()->getObjectFactory(),
 				$this->getServiceContainer()->getProxyLookup(),
-				$this->getServiceContainer()->getUserNameUtils()
+				$this->getServiceContainer()->getUserNameUtils(),
+				$this->store
 			);
 		}
 
@@ -189,7 +192,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $info->forceHTTPS(), $backend->shouldForceHTTPS() );
 
 		$expire = time() + 100;
-		$this->store->setSessionMeta( self::SESSIONID, [ 'expires' => $expire ] );
+		$this->setSessionBlob( [ 'metadata' => [ 'expires' => $expire ] ], $info );
 
 		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, [
 			'provider' => $this->provider,
@@ -211,6 +214,29 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $info->forceHTTPS(), $backend->shouldForceHTTPS() );
 		$this->assertSame( $expire, TestingAccessWrapper::newFromObject( $backend )->expires );
 		$this->assertSame( [ 'foo' ], $backend->getProviderMetadata() );
+	}
+
+	private function setSessionBlob( array $blob, $info = null ) {
+		$info ??= new SessionInfo( SessionInfo::MIN_PRIORITY, [
+			'provider' => $this->provider,
+			'id' => self::SESSIONID,
+			'persisted' => true,
+			'idIsSafe' => true,
+		] );
+
+		$blob += [
+			'data' => [],
+			'metadata' => [],
+		];
+		$blob['metadata'] += [
+			'userId' => 0,
+			'userName' => null,
+			'userToken' => null,
+			'provider' => 'DummySessionProvider',
+		];
+
+		$expiry = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::ObjectCacheSessionExpiry );
+		$this->store->set( $info, $blob, $expiry );
 	}
 
 	public function testSessionStuff() {
@@ -276,21 +302,21 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 			$this->assertSame( '$metadata must be an array or null', $ex->getMessage() );
 		}
 
-		$this->assertFalse( $this->store->getSession( self::SESSIONID ) );
+		$this->assertFalse( $this->store->get( $priv->getSessionInfo() ) );
 		$backend->setProviderMetadata( [ 'dummy' ] );
-		$this->assertFalse( $this->store->getSession( self::SESSIONID ) );
+		$this->assertFalse( $this->store->get( $priv->getSessionInfo() ) );
 
-		$this->assertFalse( $this->store->getSession( self::SESSIONID ) );
+		$this->assertFalse( $this->store->get( $priv->getSessionInfo() ) );
 		$backend->setProviderMetadata( [ 'test' ] );
-		$this->assertNotFalse( $this->store->getSession( self::SESSIONID ) );
+		$this->assertNotFalse( $this->store->get( $priv->getSessionInfo() ) );
 		$this->assertSame( [ 'test' ], $backend->getProviderMetadata() );
-		$this->store->deleteSession( self::SESSIONID );
+		$this->store->delete( $priv->getSessionInfo() );
 
-		$this->assertFalse( $this->store->getSession( self::SESSIONID ) );
+		$this->assertFalse( $this->store->get( $priv->getSessionInfo() ) );
 		$backend->setProviderMetadata( null );
-		$this->assertNotFalse( $this->store->getSession( self::SESSIONID ) );
+		$this->assertNotFalse( $this->store->get( $priv->getSessionInfo() ) );
 		$this->assertSame( null, $backend->getProviderMetadata() );
-		$this->store->deleteSession( self::SESSIONID );
+		$this->deleteSession( self::SESSIONID );
 	}
 
 	public function testResetId() {
@@ -323,8 +349,9 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		$backend->resetId();
 		$this->assertNotEquals( self::SESSIONID, $backend->getId() );
 		$this->assertSame( $backend->getId(), $sessionId->getId() );
-		$this->assertIsArray( $this->store->getSession( $backend->getId() ) );
-		$this->assertFalse( $this->store->getSession( self::SESSIONID ) );
+		$store = TestingAccessWrapper::newFromObject( $this->store )->store;
+		$this->assertIsArray( $store->get( $store->makeKey( 'MWSession', $backend->getId() ) ) );
+		$this->assertFalse( $this->getSession( self::SESSIONID ) );
 		$this->assertSame( $id, session_id() );
 		$this->assertArrayNotHasKey( self::SESSIONID, $manager->allSessionBackends );
 		$this->assertArrayHasKey( $backend->getId(), $manager->allSessionBackends );
@@ -357,20 +384,18 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		$this->provider->expects( $this->once() )->method( 'unpersistSession' );
 		$backend = $this->getBackend();
 		$wrap = TestingAccessWrapper::newFromObject( $backend );
-		$wrap->store = new CachedBagOStuff( $this->store );
 		$wrap->persist = true;
 		$wrap->dataDirty = true;
+		$sessionStore = TestingAccessWrapper::newFromObject( $wrap->sessionStore );
 
 		$backend->save(); // This one shouldn't call $provider->persistSession(), but should save
 		$this->assertTrue( $backend->isPersistent() );
-		$this->assertNotFalse( $this->store->getSession( self::SESSIONID ) );
+		$this->assertNotFalse( $sessionStore->get( $wrap->getSessionInfo() ) );
 
 		$backend->unpersist();
 		$this->assertFalse( $backend->isPersistent() );
-		$this->assertFalse( $this->store->getSession( self::SESSIONID ) );
-		$this->assertNotFalse(
-			$wrap->store->get( $wrap->store->makeKey( 'MWSession', self::SESSIONID ) )
-		);
+
+		$this->assertNotFalse( $sessionStore->get( $wrap->getSessionInfo() ) );
 	}
 
 	public function testRememberUser() {
@@ -447,7 +472,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( [ '???' => '!!!' ], $data );
 
 		$testData = [ 'foo' => 'foo!', 'bar', [ 'baz', null ] ];
-		$this->store->setSessionData( self::SESSIONID, $testData );
+		$this->setSessionBlob( [ 'data' => $testData ] );
 		$backend = $this->getBackend();
 		$this->assertSame( $testData, $backend->getData() );
 		$this->assertFalse( TestingAccessWrapper::newFromObject( $backend )->dataDirty );
@@ -541,9 +566,26 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $sessionMetadataCalled );
 	}
 
+	private function deleteSession( $id ) {
+		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, [
+			'provider' => $this->provider,
+			'id' => $id,
+			'persisted' => true,
+			'idIsSafe' => true,
+		] );
+
+		$this->store->delete( $info );
+	}
+
+	private function getSession( $id ) {
+		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, [ 'id' => $id ] );
+
+		return $this->store->get( $info );
+	}
+
 	public function testSave() {
 		$user = static::getTestSysop()->getUser();
-		$this->store = new TestBagOStuff();
+		$this->store = new SingleBackendSessionStore( new TestBagOStuff() );
 		$testData = [ 'foo' => 'foo!', 'bar', [ 'baz', null ] ];
 
 		$builder = $this->getMockBuilder( DummySessionProvider::class )
@@ -560,14 +602,14 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 				self::fail( 'Unexpected call to hook SessionMetadata' );
 			}
 		);
-		$this->store->setSessionData( self::SESSIONID, $testData );
+		$this->setSessionBlob( [ 'data' => $testData ] );
 		$backend = $this->getBackend( $user );
-		$this->store->deleteSession( self::SESSIONID );
+		$this->deleteSession( self::SESSIONID );
 		$this->assertFalse( $backend->isPersistent() );
 		TestingAccessWrapper::newFromObject( $backend )->metaDirty = false;
 		TestingAccessWrapper::newFromObject( $backend )->dataDirty = false;
 		$backend->save();
-		$this->assertFalse( $this->store->getSession( self::SESSIONID ), 'making sure it didn\'t save' );
+		$this->assertFalse( $this->getSession( self::SESSIONID ), 'making sure it didn\'t save' );
 
 		// (but does unpersist if forced)
 		$this->provider = $builder->getMock();
@@ -578,16 +620,16 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 				self::fail( 'Unexpected call to hook SessionMetadata' );
 			}
 		);
-		$this->store->setSessionData( self::SESSIONID, $testData );
+		$this->setSessionBlob( [ 'data' => $testData ] );
 		$backend = $this->getBackend( $user );
-		$this->store->deleteSession( self::SESSIONID );
+		$this->deleteSession( self::SESSIONID );
 		TestingAccessWrapper::newFromObject( $backend )->persist = false;
 		TestingAccessWrapper::newFromObject( $backend )->forcePersist = true;
 		$this->assertFalse( $backend->isPersistent() );
 		TestingAccessWrapper::newFromObject( $backend )->metaDirty = false;
 		TestingAccessWrapper::newFromObject( $backend )->dataDirty = false;
 		$backend->save();
-		$this->assertFalse( $this->store->getSession( self::SESSIONID ), 'making sure it didn\'t save' );
+		$this->assertFalse( $this->getSession( self::SESSIONID ), 'making sure it didn\'t save' );
 
 		// (but not to a WebRequest associated with a different session)
 		$this->provider = $neverProvider;
@@ -596,18 +638,18 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 				self::fail( 'Unexpected call to hook SessionMetadata' );
 			}
 		);
-		$this->store->setSessionData( self::SESSIONID, $testData );
+		$this->setSessionBlob( [ 'data' => $testData ] );
 		$backend = $this->getBackend( $user );
 		TestingAccessWrapper::newFromObject( $backend )->requests[100]
 			->setSessionId( new SessionId( 'x' ) );
-		$this->store->deleteSession( self::SESSIONID );
+		$this->deleteSession( self::SESSIONID );
 		TestingAccessWrapper::newFromObject( $backend )->persist = false;
 		TestingAccessWrapper::newFromObject( $backend )->forcePersist = true;
 		$this->assertFalse( $backend->isPersistent() );
 		TestingAccessWrapper::newFromObject( $backend )->metaDirty = false;
 		TestingAccessWrapper::newFromObject( $backend )->dataDirty = false;
 		$backend->save();
-		$this->assertFalse( $this->store->getSession( self::SESSIONID ), 'making sure it didn\'t save' );
+		$this->assertFalse( $this->getSession( self::SESSIONID ), 'making sure it didn\'t save' );
 
 		// Not persistent, but dirty
 		$this->provider = $neverProvider;
@@ -618,23 +660,27 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 				$metadata['???'] = '!!!';
 			}
 		);
-		$this->store->setSessionData( self::SESSIONID, $testData );
+		$this->setSessionBlob( [ 'data' => $testData ] );
 		$backend = $this->getBackend( $user );
-		$this->store->deleteSession( self::SESSIONID );
+		$this->deleteSession( self::SESSIONID );
 		$this->assertFalse( $backend->isPersistent() );
 		TestingAccessWrapper::newFromObject( $backend )->metaDirty = false;
 		TestingAccessWrapper::newFromObject( $backend )->dataDirty = true;
 		$backend->save();
 		$this->assertTrue( $sessionMetadataCalled );
-		$blob = $this->store->getSession( self::SESSIONID );
+		$blob = $this->getSession( self::SESSIONID );
 		$this->assertIsArray( $blob );
 		$this->assertArrayHasKey( 'metadata', $blob );
 		$metadata = $blob['metadata'];
 		$this->assertIsArray( $metadata );
 		$this->assertArrayHasKey( '???', $metadata );
 		$this->assertSame( '!!!', $metadata['???'] );
-		$this->assertFalse( $this->store->getSessionFromBackend( self::SESSIONID ),
-			'making sure it didn\'t save to backend' );
+
+		$timeNow = time() + 100;
+		$store = TestingAccessWrapper::newFromObject( $this->store )->store;
+		// Ensure that we expire items so we don't find them when we look up
+		$store->setMockTime( $timeNow );
+		$this->assertFalse( $this->getSession( self::SESSIONID ), 'making sure it didn\'t save to backend' );
 
 		// Persistent, not dirty
 		$this->provider = $neverProvider;
@@ -643,15 +689,15 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 				self::fail( 'Unexpected call to hook SessionMetadata' );
 			}
 		);
-		$this->store->setSessionData( self::SESSIONID, $testData );
+		$this->setSessionBlob( [ 'data' => $testData ] );
 		$backend = $this->getBackend( $user );
-		$this->store->deleteSession( self::SESSIONID );
+		$this->deleteSession( self::SESSIONID );
 		TestingAccessWrapper::newFromObject( $backend )->persist = true;
 		$this->assertTrue( $backend->isPersistent() );
 		TestingAccessWrapper::newFromObject( $backend )->metaDirty = false;
 		TestingAccessWrapper::newFromObject( $backend )->dataDirty = false;
 		$backend->save();
-		$this->assertFalse( $this->store->getSession( self::SESSIONID ), 'making sure it didn\'t save' );
+		$this->assertFalse( $this->getSession( self::SESSIONID ), 'making sure it didn\'t save' );
 
 		// (but will persist if forced)
 		$this->provider = $builder->getMock();
@@ -662,16 +708,16 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 				self::fail( 'Unexpected call to hook SessionMetadata' );
 			}
 		);
-		$this->store->setSessionData( self::SESSIONID, $testData );
+		$this->setSessionBlob( [ 'data' => $testData ] );
 		$backend = $this->getBackend( $user );
-		$this->store->deleteSession( self::SESSIONID );
+		$this->deleteSession( self::SESSIONID );
 		TestingAccessWrapper::newFromObject( $backend )->persist = true;
 		TestingAccessWrapper::newFromObject( $backend )->forcePersist = true;
 		$this->assertTrue( $backend->isPersistent() );
 		TestingAccessWrapper::newFromObject( $backend )->metaDirty = false;
 		TestingAccessWrapper::newFromObject( $backend )->dataDirty = false;
 		$backend->save();
-		$this->assertFalse( $this->store->getSession( self::SESSIONID ), 'making sure it didn\'t save' );
+		$this->assertFalse( $this->getSession( self::SESSIONID ), 'making sure it didn\'t save' );
 
 		// Persistent and dirty
 		$this->provider = $neverProvider;
@@ -682,24 +728,30 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 				$metadata['???'] = '!!!';
 			}
 		);
-		$this->store->setSessionData( self::SESSIONID, $testData );
+		$this->setSessionBlob( [ 'data' => $testData ] );
 		$backend = $this->getBackend( $user );
-		$this->store->deleteSession( self::SESSIONID );
+		$this->deleteSession( self::SESSIONID );
 		TestingAccessWrapper::newFromObject( $backend )->persist = true;
 		$this->assertTrue( $backend->isPersistent() );
 		TestingAccessWrapper::newFromObject( $backend )->metaDirty = false;
 		TestingAccessWrapper::newFromObject( $backend )->dataDirty = true;
 		$backend->save();
 		$this->assertTrue( $sessionMetadataCalled );
-		$blob = $this->store->getSession( self::SESSIONID );
+
+		$timeNow = time() - 100;
+		$store = TestingAccessWrapper::newFromObject( $this->store )->store;
+		// Ensure that we don't expire items, so we find them when we look up
+		$store->setMockTime( $timeNow );
+
+		$blob = $this->getSession( self::SESSIONID );
 		$this->assertIsArray( $blob );
 		$this->assertArrayHasKey( 'metadata', $blob );
 		$metadata = $blob['metadata'];
 		$this->assertIsArray( $metadata );
 		$this->assertArrayHasKey( '???', $metadata );
 		$this->assertSame( '!!!', $metadata['???'] );
-		$this->assertIsArray( $this->store->getSessionFromBackend( self::SESSIONID ),
-			'making sure it did save to backend' );
+		$blob = $this->getSession( self::SESSIONID );
+		$this->assertIsArray( $blob, 'making sure it did save to backend' );
 
 		// (also persists if forced)
 		$this->provider = $builder->getMock();
@@ -712,9 +764,9 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 				$metadata['???'] = '!!!';
 			}
 		);
-		$this->store->setSessionData( self::SESSIONID, $testData );
+		$this->setSessionBlob( [ 'data' => $testData ] );
 		$backend = $this->getBackend( $user );
-		$this->store->deleteSession( self::SESSIONID );
+		$this->deleteSession( self::SESSIONID );
 		TestingAccessWrapper::newFromObject( $backend )->persist = true;
 		TestingAccessWrapper::newFromObject( $backend )->forcePersist = true;
 		$this->assertTrue( $backend->isPersistent() );
@@ -722,15 +774,15 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		TestingAccessWrapper::newFromObject( $backend )->dataDirty = true;
 		$backend->save();
 		$this->assertTrue( $sessionMetadataCalled );
-		$blob = $this->store->getSession( self::SESSIONID );
+		$blob = $this->getSession( self::SESSIONID );
 		$this->assertIsArray( $blob );
 		$this->assertArrayHasKey( 'metadata', $blob );
 		$metadata = $blob['metadata'];
 		$this->assertIsArray( $metadata );
 		$this->assertArrayHasKey( '???', $metadata );
 		$this->assertSame( '!!!', $metadata['???'] );
-		$this->assertIsArray( $this->store->getSessionFromBackend( self::SESSIONID ),
-			'making sure it did save to backend' );
+		$blob = $this->getSession( self::SESSIONID );
+		$this->assertIsArray( $blob, 'making sure it did save to backend' );
 
 		// (also persists if metadata dirty)
 		$this->provider = $builder->getMock();
@@ -743,24 +795,24 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 				$metadata['???'] = '!!!';
 			}
 		);
-		$this->store->setSessionData( self::SESSIONID, $testData );
+		$this->setSessionBlob( [ 'data' => $testData ] );
 		$backend = $this->getBackend( $user );
-		$this->store->deleteSession( self::SESSIONID );
+		$this->deleteSession( self::SESSIONID );
 		TestingAccessWrapper::newFromObject( $backend )->persist = true;
 		$this->assertTrue( $backend->isPersistent() );
 		TestingAccessWrapper::newFromObject( $backend )->metaDirty = true;
 		TestingAccessWrapper::newFromObject( $backend )->dataDirty = false;
 		$backend->save();
 		$this->assertTrue( $sessionMetadataCalled );
-		$blob = $this->store->getSession( self::SESSIONID );
+		$blob = $this->getSession( self::SESSIONID );
 		$this->assertIsArray( $blob );
 		$this->assertArrayHasKey( 'metadata', $blob );
 		$metadata = $blob['metadata'];
 		$this->assertIsArray( $metadata );
 		$this->assertArrayHasKey( '???', $metadata );
 		$this->assertSame( '!!!', $metadata['???'] );
-		$this->assertIsArray( $this->store->getSessionFromBackend( self::SESSIONID ),
-			'making sure it did save to backend' );
+		$blob = $this->getSession( self::SESSIONID );
+		$this->assertIsArray( $blob, 'making sure it did save to backend' );
 
 		// Not marked dirty, but dirty data
 		// (e.g. indirect modification from ArrayAccess::offsetGet)
@@ -772,9 +824,9 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 				$metadata['???'] = '!!!';
 			}
 		);
-		$this->store->setSessionData( self::SESSIONID, $testData );
+		$this->setSessionBlob( [ 'data' => $testData ] );
 		$backend = $this->getBackend( $user );
-		$this->store->deleteSession( self::SESSIONID );
+		$this->deleteSession( self::SESSIONID );
 		TestingAccessWrapper::newFromObject( $backend )->persist = true;
 		$this->assertTrue( $backend->isPersistent() );
 		TestingAccessWrapper::newFromObject( $backend )->metaDirty = false;
@@ -782,15 +834,15 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		TestingAccessWrapper::newFromObject( $backend )->dataHash = 'Doesn\'t match';
 		$backend->save();
 		$this->assertTrue( $sessionMetadataCalled );
-		$blob = $this->store->getSession( self::SESSIONID );
+		$blob = $this->getSession( self::SESSIONID );
 		$this->assertIsArray( $blob );
 		$this->assertArrayHasKey( 'metadata', $blob );
 		$metadata = $blob['metadata'];
 		$this->assertIsArray( $metadata );
 		$this->assertArrayHasKey( '???', $metadata );
 		$this->assertSame( '!!!', $metadata['???'] );
-		$this->assertIsArray( $this->store->getSessionFromBackend( self::SESSIONID ),
-			'making sure it did save to backend' );
+		$blob = $this->getSession( self::SESSIONID );
+		$this->assertIsArray( $blob, 'making sure it did save to backend' );
 
 		// Bad hook
 		$this->provider = null;
@@ -799,7 +851,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 				$metadata['userId']++;
 			}
 		);
-		$this->store->setSessionData( self::SESSIONID, $testData );
+		$this->setSessionBlob( [ 'data' => $testData ] );
 		$backend = $this->getBackend( $user );
 		$backend->dirty();
 		try {
@@ -822,20 +874,20 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 				self::fail( 'Unexpected call to hook SessionMetadata' );
 			}
 		);
-		$this->store->setSessionData( self::SESSIONID, $testData );
+		$this->setSessionBlob( [ 'data' => $testData ] );
 		$backend = $this->getBackend( $user );
-		$this->store->deleteSession( self::SESSIONID );
+		$this->deleteSession( self::SESSIONID );
 		TestingAccessWrapper::newFromObject( $backend )->persist = true;
 		$this->assertTrue( $backend->isPersistent() );
 		TestingAccessWrapper::newFromObject( $backend )->metaDirty = true;
 		TestingAccessWrapper::newFromObject( $backend )->dataDirty = true;
 		$backend->save();
-		$this->assertFalse( $this->store->getSession( self::SESSIONID ), 'making sure it didn\'t save' );
+		$this->assertFalse( $this->getSession( self::SESSIONID ), 'making sure it didn\'t save' );
 	}
 
 	public function testRenew() {
 		$user = static::getTestSysop()->getUser();
-		$this->store = new TestBagOStuff();
+		$this->store = new SingleBackendSessionStore( new TestBagOStuff() );
 		$testData = [ 'foo' => 'foo!', 'bar', [ 'baz', null ] ];
 
 		// Not persistent, expiring
@@ -849,10 +901,11 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 				$metadata['???'] = '!!!';
 			}
 		);
-		$this->store->setSessionData( self::SESSIONID, $testData );
+		$this->setSessionBlob( [ 'data' => $testData ] );
 		$backend = $this->getBackend( $user );
-		$this->store->deleteSession( self::SESSIONID );
+		$this->deleteSession( self::SESSIONID );
 		$wrap = TestingAccessWrapper::newFromObject( $backend );
+		$sessionStore = TestingAccessWrapper::newFromObject( $wrap->sessionStore );
 		$this->assertFalse( $backend->isPersistent() );
 		$wrap->metaDirty = false;
 		$wrap->dataDirty = false;
@@ -860,7 +913,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		$wrap->expires = 0;
 		$backend->renew();
 		$this->assertTrue( $sessionMetadataCalled );
-		$blob = $this->store->getSession( self::SESSIONID );
+		$blob = $sessionStore->get( $wrap->getSessionInfo(), self::SESSIONID );
 		$this->assertIsArray( $blob );
 		$this->assertArrayHasKey( 'metadata', $blob );
 		$metadata = $blob['metadata'];
@@ -880,9 +933,9 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 				$metadata['???'] = '!!!';
 			}
 		);
-		$this->store->setSessionData( self::SESSIONID, $testData );
+		$this->setSessionBlob( [ 'data' => $testData ] );
 		$backend = $this->getBackend( $user );
-		$this->store->deleteSession( self::SESSIONID );
+		$this->deleteSession( self::SESSIONID );
 		$wrap = TestingAccessWrapper::newFromObject( $backend );
 		$wrap->persist = true;
 		$this->assertTrue( $backend->isPersistent() );
@@ -893,7 +946,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		$wrap->expires = $expires;
 		$backend->renew();
 		$this->assertFalse( $sessionMetadataCalled );
-		$this->assertFalse( $this->store->getSession( self::SESSIONID ), 'making sure it didn\'t save' );
+		$this->assertFalse( $this->getSession( self::SESSIONID ), 'making sure it didn\'t save' );
 		$this->assertEquals( $expires, $wrap->expires );
 
 		// Persistent, expiring
@@ -907,9 +960,9 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 				$metadata['???'] = '!!!';
 			}
 		);
-		$this->store->setSessionData( self::SESSIONID, $testData );
+		$this->setSessionBlob( [ 'data' => $testData ] );
 		$backend = $this->getBackend( $user );
-		$this->store->deleteSession( self::SESSIONID );
+		$this->deleteSession( self::SESSIONID );
 		$wrap = TestingAccessWrapper::newFromObject( $backend );
 		$wrap->persist = true;
 		$this->assertTrue( $backend->isPersistent() );
@@ -919,7 +972,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		$wrap->expires = 0;
 		$backend->renew();
 		$this->assertTrue( $sessionMetadataCalled );
-		$blob = $this->store->getSession( self::SESSIONID );
+		$blob = $sessionStore->get( $wrap->getSessionInfo(), self::SESSIONID );
 		$this->assertIsArray( $blob );
 		$this->assertArrayHasKey( 'metadata', $blob );
 		$metadata = $blob['metadata'];
@@ -939,9 +992,9 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 				$metadata['???'] = '!!!';
 			}
 		);
-		$this->store->setSessionData( self::SESSIONID, $testData );
+		$this->setSessionBlob( [ 'data' => $testData ] );
 		$backend = $this->getBackend( $user );
-		$this->store->deleteSession( self::SESSIONID );
+		$this->deleteSession( self::SESSIONID );
 		$wrap = TestingAccessWrapper::newFromObject( $backend );
 		$this->assertFalse( $backend->isPersistent() );
 		$wrap->metaDirty = false;
@@ -951,7 +1004,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		$wrap->expires = $expires;
 		$backend->renew();
 		$this->assertFalse( $sessionMetadataCalled );
-		$this->assertFalse( $this->store->getSession( self::SESSIONID ), 'making sure it didn\'t save' );
+		$this->assertFalse( $this->getSession( self::SESSIONID ), 'making sure it didn\'t save' );
 		$this->assertEquals( $expires, $wrap->expires );
 	}
 

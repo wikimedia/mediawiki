@@ -17,6 +17,7 @@ use MediaWiki\Session\SessionInfo;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\Session\SessionOverflowException;
 use MediaWiki\Session\SessionProvider;
+use MediaWiki\Session\SingleBackendSessionStore;
 use MediaWiki\Session\UserInfo;
 use MediaWiki\Utils\MWTimestamp;
 use MediaWikiIntegrationTestCase;
@@ -69,11 +70,11 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		return new SessionManager(
 			$this->config,
 			$this->logger,
-			$this->store,
 			$this->getServiceContainer()->getHookContainer(),
 			$this->getServiceContainer()->getObjectFactory(),
 			$this->getServiceContainer()->getProxyLookup(),
-			$this->getServiceContainer()->getUserNameUtils()
+			$this->getServiceContainer()->getUserNameUtils(),
+			new SingleBackendSessionStore( $this->store )
 		);
 	}
 
@@ -134,21 +135,9 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		$manager = TestingAccessWrapper::newFromObject( $this->createManager() );
 		$this->assertSame( $this->config, $manager->config );
 		$this->assertSame( $this->logger, $manager->logger );
-		$this->assertSame( $this->store, $manager->store );
 
 		$manager = TestingAccessWrapper::newFromObject( $this->getServiceContainer()->getSessionManager() );
 		$this->assertSame( $this->getServiceContainer()->getMainConfig(), $manager->config );
-
-		$manager = TestingAccessWrapper::newFromObject( new SessionManager(
-			$this->config,
-			$this->logger,
-			$this->store,
-			$this->getServiceContainer()->getHookContainer(),
-			$this->getServiceContainer()->getObjectFactory(),
-			$this->getServiceContainer()->getProxyLookup(),
-			$this->getServiceContainer()->getUserNameUtils()
-		) );
-		$this->assertSame( $this->store, $manager->store );
 	}
 
 	public function testGetSessionForRequest() {
@@ -653,6 +642,33 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 
 		// Session already exists
 		$expectId = 'expected-----------------------3';
+		$sessionStore = $pmanager->sessionStore;
+		$blob = [ 'metadata' => [
+				'provider' => 'MockProvider2',
+				'userId' => 0,
+				'userName' => null,
+				'userToken' => null,
+			]
+		];
+		$blob += [
+			'data' => [],
+			'metadata' => [],
+		];
+		$blob['metadata'] += [
+			'userId' => 0,
+			'userName' => null,
+			'userToken' => null,
+			'provider' => 'DummySessionProvider',
+		];
+		$expiry = $this->getServiceContainer()->getMainConfig()->get( MainConfigNames::ObjectCacheSessionExpiry );
+		$info3 = new SessionInfo( SessionInfo::MIN_PRIORITY, [
+			'provider' => $provider2,
+			'id' => 'empty3--------------------------',
+			'persisted' => true,
+			'userInfo' => UserInfo::newAnonymous(),
+			'idIsSafe' => true,
+		] );
+		$sessionStore->set( $info3, $expectId, $blob, $expiry );
 		$this->store->setSessionMeta( $expectId, [
 			'provider' => 'MockProvider2',
 			'userId' => 0,
@@ -1053,7 +1069,9 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		$logger->clearBuffer();
 
 		// Incomplete/bad metadata
-		$this->store->setRawSession( $id, true );
+		$ss = TestingAccessWrapper::newFromObject( $manager )->sessionStore;
+		$activeStore = TestingAccessWrapper::newFromObject( $ss )->store;
+		$activeStore->setRawSession( $id, true );
 		$this->assertFalse( $loadSessionInfoFromStore( $info ) );
 		$this->assertSame( [
 			[ LogLevel::WARNING, 'Session store: {action} for {reason}' ],

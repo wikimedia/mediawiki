@@ -445,7 +445,7 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 				'persisted' => true,
 				'idIsSafe' => true,
 			] ),
-			$store,
+			$this->getServiceContainer()->getSessionStore(),
 			new NullLogger(),
 			$hookContainer,
 			10
@@ -543,7 +543,7 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 				'persisted' => true,
 				'idIsSafe' => true,
 			] ),
-			new TestBagOStuff(),
+			$this->getServiceContainer()->getSessionStore(),
 			new NullLogger(),
 			$hookContainer,
 			10

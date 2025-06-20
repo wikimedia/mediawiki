@@ -37,7 +37,6 @@ use MediaWiki\User\UserNameUtils;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
 use Wikimedia\ObjectCache\BagOStuff;
-use Wikimedia\ObjectCache\CachedBagOStuff;
 use Wikimedia\ObjectFactory\ObjectFactory;
 
 /**
@@ -84,7 +83,7 @@ class SessionManager implements SessionManagerInterface {
 	private HookRunner $hookRunner;
 	private Config $config;
 	private UserNameUtils $userNameUtils;
-	private CachedBagOStuff $store;
+	private SessionStore $sessionStore;
 	private ObjectFactory $objectFactory;
 	private ProxyLookup $proxyLookup;
 
@@ -123,20 +122,18 @@ class SessionManager implements SessionManagerInterface {
 	public function __construct(
 		Config $config,
 		LoggerInterface $logger,
-		BagOStuff $store,
 		HookContainer $hookContainer,
 		ObjectFactory $objectFactory,
 		ProxyLookup $proxyLookup,
-		UserNameUtils $userNameUtils
+		UserNameUtils $userNameUtils,
+		SessionStore $sessionStore
 	) {
 		$this->config = $config;
 		$this->setLogger( $logger );
 		$this->setHookContainer( $hookContainer );
-
-		$logger->debug( 'SessionManager using store ' . get_class( $store ) );
-		$this->store = $store instanceof CachedBagOStuff ? $store : new CachedBagOStuff( $store );
-
 		$this->objectFactory = $objectFactory;
+		$this->sessionStore = $sessionStore;
+
 		$this->proxyLookup = $proxyLookup;
 		$this->userNameUtils = $userNameUtils;
 	}
@@ -184,8 +181,7 @@ class SessionManager implements SessionManagerInterface {
 		}
 
 		// Test if the session is in storage, and if so try to load it.
-		$key = $this->store->makeKey( 'MWSession', $id );
-		if ( is_array( $this->store->get( $key ) ) ) {
+		if ( is_array( $this->sessionStore->get( $info ) ) ) {
 			$create = false; // If loading fails, don't bother creating because it probably will fail too.
 			if ( $this->loadSessionInfoFromStore( $info, $request ) ) {
 				$session = $this->getSessionFromInfo( $info, $request );
@@ -225,8 +221,15 @@ class SessionManager implements SessionManagerInterface {
 				throw new InvalidArgumentException( 'Invalid session ID' );
 			}
 
-			$key = $this->store->makeKey( 'MWSession', $id );
-			if ( is_array( $this->store->get( $key ) ) ) {
+			$info = new SessionInfo(
+				SessionInfo::MIN_PRIORITY,
+				[
+					'id' => $id,
+					'idIsSafe' => true,
+					'userInfo' => UserInfo::newAnonymous(),
+				]
+			);
+			if ( is_array( $this->sessionStore->get( $info ) ) ) {
 				throw new InvalidArgumentException( 'Session ID already exists' );
 			}
 		}
@@ -442,6 +445,15 @@ class SessionManager implements SessionManagerInterface {
 				$backend->shutdown();
 			}
 		}
+
+		// https://www.php.net/manual/en/session.configuration.php#ini.session.gc-divisor
+		// Doing this here because of how Session::gc() works in PHP session handler. The
+		// only difference here is that this is done at the end of the request rather than
+		// the beginning. But we want to preserve behavior for 1 in every 100 requests.
+		if ( random_int( 1, 100 ) === 1 ) {
+			// Do any garbage collection if we have expired entries
+			$this->sessionStore->shutdown();
+		}
 	}
 
 	/**
@@ -517,19 +529,19 @@ class SessionManager implements SessionManagerInterface {
 	 * @return bool Whether the session info matches the stored data (if any)
 	 */
 	private function loadSessionInfoFromStore( SessionInfo &$info, WebRequest $request ) {
-		$key = $this->store->makeKey( 'MWSession', $info->getId() );
-		$blob = $this->store->get( $key );
+		$blob = $this->sessionStore->get( $info );
+		$oldInfo = $info;
 
 		// If we got data from the store and the SessionInfo says to force use,
 		// "fail" means to delete the data from the store and retry. Otherwise,
 		// "fail" is just return false.
 		if ( $info->forceUse() && $blob !== false ) {
-			$failHandler = function () use ( $key, &$info, $request ) {
+			$failHandler = function () use ( $oldInfo, &$info, $request ) {
 				$this->logSessionWrite( $request, $info, [
 					'type' => 'delete',
 					'reason' => 'loadSessionInfo fail',
 				] );
-				$this->store->delete( $key );
+				$this->sessionStore->delete( $oldInfo );
 				return $this->loadSessionInfoFromStore( $info, $request );
 			};
 		} else {
@@ -547,7 +559,7 @@ class SessionManager implements SessionManagerInterface {
 					'type' => 'delete',
 					'reason' => 'bad data',
 				], LogLevel::WARNING );
-				$this->store->delete( $key );
+				$this->sessionStore->delete( $info );
 				return $failHandler();
 			}
 
@@ -559,7 +571,7 @@ class SessionManager implements SessionManagerInterface {
 					'type' => 'delete',
 					'reason' => 'bad data structure',
 				], LogLevel::WARNING );
-				$this->store->delete( $key );
+				$this->sessionStore->delete( $info );
 				return $failHandler();
 			}
 
@@ -577,7 +589,7 @@ class SessionManager implements SessionManagerInterface {
 					'type' => 'delete',
 					'reason' => 'bad metadata',
 				], LogLevel::WARNING );
-				$this->store->delete( $key );
+				$this->sessionStore->delete( $info );
 				return $failHandler();
 			}
 
@@ -591,7 +603,7 @@ class SessionManager implements SessionManagerInterface {
 						'reason' => 'unknown provider',
 						'provider' => $metadata['provider'],
 					], LogLevel::WARNING );
-					$this->store->delete( $key );
+					$this->sessionStore->delete( $info );
 					return $failHandler();
 				}
 			} elseif ( $metadata['provider'] !== (string)$provider ) {
@@ -845,7 +857,7 @@ class SessionManager implements SessionManagerInterface {
 			$backend = new SessionBackend(
 				new SessionId( $id ),
 				$info,
-				$this->store,
+				$this->sessionStore,
 				$this->logger,
 				$this->hookContainer,
 				$this->config->get( MainConfigNames::ObjectCacheSessionExpiry )
@@ -904,8 +916,8 @@ class SessionManager implements SessionManagerInterface {
 	public function generateSessionId() {
 		$id = \Wikimedia\base_convert( \MWCryptRand::generateHex( 40 ), 16, 32, 32 );
 		// Cache non-existence to avoid a later fetch
-		$key = $this->store->makeKey( 'MWSession', $id );
-		$this->store->set( $key, false, 0, BagOStuff::WRITE_CACHE_ONLY );
+		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, [ 'id' => $id, 'idIsSafe' => true ] );
+		$this->sessionStore->set( $info, false, 0, BagOStuff::WRITE_CACHE_ONLY );
 		return $id;
 	}
 
@@ -916,7 +928,10 @@ class SessionManager implements SessionManagerInterface {
 	 * @param PHPSessionHandler $handler
 	 */
 	public function setupPHPSessionHandler( PHPSessionHandler $handler ) {
-		$handler->setManager( $this, $this->store, $this->logger );
+		$handler->setManager(
+			$this,
+			$this->logger
+		);
 	}
 
 	private function logUnpersist( SessionInfo $info, WebRequest $request ) {

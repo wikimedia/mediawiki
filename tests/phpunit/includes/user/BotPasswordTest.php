@@ -10,7 +10,6 @@ use MediaWiki\Session\SessionManager;
 use MediaWiki\Status\Status;
 use MediaWiki\User\BotPassword;
 use MediaWiki\User\CentralId\CentralIdLookup;
-use Wikimedia\ObjectCache\EmptyBagOStuff;
 use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\TestingAccessWrapper;
 
@@ -271,11 +270,11 @@ class BotPasswordTest extends MediaWikiIntegrationTestCase {
 		$manager = new SessionManager(
 			$mainConfig,
 			new Psr\Log\NullLogger,
-			new EmptyBagOStuff,
 			$this->getServiceContainer()->getHookContainer(),
 			$this->getServiceContainer()->getObjectFactory(),
 			$this->getServiceContainer()->getProxyLookup(),
-			$this->getServiceContainer()->getUserNameUtils()
+			$this->getServiceContainer()->getUserNameUtils(),
+			$this->getServiceContainer()->getSessionStore()
 		);
 		$this->setService( 'SessionManager', $manager );
 		$this->assertNull(
@@ -300,11 +299,11 @@ class BotPasswordTest extends MediaWikiIntegrationTestCase {
 		$manager = new SessionManager(
 			new MultiConfig( [ $config, $mainConfig ] ),
 			new Psr\Log\NullLogger,
-			new EmptyBagOStuff,
 			$this->getServiceContainer()->getHookContainer(),
 			$this->getServiceContainer()->getObjectFactory(),
 			$this->getServiceContainer()->getProxyLookup(),
-			$this->getServiceContainer()->getUserNameUtils()
+			$this->getServiceContainer()->getUserNameUtils(),
+			$this->getServiceContainer()->getSessionStore()
 		);
 		$this->setService( 'SessionManager', $manager );
 
