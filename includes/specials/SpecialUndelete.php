@@ -1316,8 +1316,6 @@ class SpecialUndelete extends SpecialPage {
 		} else {
 			$out->addHTML( $history );
 		}
-
-		return true;
 	}
 
 	protected function formatRevisionRow( $row, $earliestLiveTime, $remaining ) {
