@@ -122,8 +122,6 @@ class ResourceLoaderTestModule extends Module {
 	/** @var string|null */
 	protected $skipFunction = null;
 	/** @var bool */
-	protected $isRaw = false;
-	/** @var bool */
 	protected $isKnownEmpty = false;
 	/** @var string */
 	protected $type = Module::LOAD_GENERAL;
@@ -182,10 +180,6 @@ class ResourceLoaderTestModule extends Module {
 
 	public function requiresES6() {
 		return true;
-	}
-
-	public function isRaw() {
-		return $this->isRaw;
 	}
 
 	public function isKnownEmpty( Context $context ) {
