@@ -1,4 +1,7 @@
 <?php
+
+// phpcs:disable PSR2.Methods.MethodDeclaration.Underscore
+
 /**
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,7 +38,6 @@ class StubUserLang extends StubObject {
 	/**
 	 * @return Language
 	 */
-	// phpcs:ignore PSR2.Methods.MethodDeclaration.Underscore
 	public function _newObject() {
 		return RequestContext::getMain()->getLanguage();
 	}

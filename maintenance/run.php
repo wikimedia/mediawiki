@@ -35,8 +35,10 @@ $runner->defineSettings();
 // Custom setup for Maintenance entry point
 if ( !defined( 'MW_FINAL_SETUP_CALLBACK' ) ) {
 
-	// Define a function, since we can't put a closure or object
-	// reference into MW_FINAL_SETUP_CALLBACK.
+	/**
+	 * Define a function, since we can't put a closure or object
+	 * reference into MW_FINAL_SETUP_CALLBACK.
+	 */
 	function wfMaintenanceRunSetup( SettingsBuilder $settingsBuilder ) {
 		global $runner;
 		$runner->setup( $settingsBuilder );

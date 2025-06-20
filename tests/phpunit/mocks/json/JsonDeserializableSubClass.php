@@ -14,11 +14,18 @@ class JsonDeserializableSubClass extends JsonDeserializableSuperClass {
 	/** @var mixed */
 	private $subClassField;
 
+	/**
+	 * @param mixed $superClassFieldValue
+	 * @param mixed $subClassFieldValue
+	 */
 	public function __construct( $superClassFieldValue, $subClassFieldValue ) {
 		parent::__construct( $superClassFieldValue );
 		$this->subClassField = $subClassFieldValue;
 	}
 
+	/**
+	 * @return mixed
+	 */
 	public function getSubClassField() {
 		return $this->subClassField;
 	}

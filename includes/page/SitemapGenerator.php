@@ -32,6 +32,7 @@ class SitemapGenerator {
 	 */
 	private ?GenderCache $genderCache;
 
+	/** @return array */
 	public static function getVariants(
 		Language $contLang,
 		LanguageConverterFactory $languageConverterFactory,

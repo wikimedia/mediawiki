@@ -48,8 +48,9 @@ class SpecialRandomRootPage extends SpecialRandomPage {
 		);
 	}
 
-	// Don't select redirects
+	/** @inheritDoc */
 	public function isRedirect() {
+		// Don't select redirects
 		return false;
 	}
 }

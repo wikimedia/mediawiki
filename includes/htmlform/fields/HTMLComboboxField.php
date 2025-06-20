@@ -21,8 +21,9 @@ use MediaWiki\Xml\XmlSelect;
  * @stable to extend
  */
 class HTMLComboboxField extends HTMLTextField {
-	// FIXME Ewww, this shouldn't be adding any attributes not requested in $list :(
+	/** @inheritDoc */
 	public function getAttributes( array $list ) {
+		// FIXME Ewww, this shouldn't be adding any attributes not requested in $list :(
 		$attribs = [
 			'type' => 'text',
 			'list' => $this->mName . '-datalist',

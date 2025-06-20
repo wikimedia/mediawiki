@@ -378,8 +378,9 @@ class AllMessagesTablePager extends TablePager {
 		return $attr;
 	}
 
-	// This is not actually used, as getStartBody is overridden above
+	/** @inheritDoc */
 	protected function getFieldNames() {
+		// This is not actually used, as getStartBody is overridden above
 		return [
 			'am_title' => $this->msg( 'allmessagesname' )->text(),
 			'am_default' => $this->msg( 'allmessagesdefault' )->text()

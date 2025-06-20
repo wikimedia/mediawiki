@@ -53,8 +53,9 @@ class ApiSetPageLanguage extends ApiBase {
 		$this->languageNameUtils = $languageNameUtils;
 	}
 
-	// Check if change language feature is enabled
+	/** @inheritDoc */
 	protected function getExtendedDescription() {
+		// Check if change language feature is enabled
 		if ( !$this->getConfig()->get( MainConfigNames::PageLanguageUseDB ) ) {
 			return 'apihelp-setpagelanguage-extended-description-disabled';
 		}

@@ -2,6 +2,7 @@
 
 // phpcs:disable MediaWiki.Commenting.PhpunitAnnotations.NotClass
 // phpcs:disable MediaWiki.Commenting.FunctionComment.MissingParamTag -- Traits are not excluded
+// phpcs:disable MediaWiki.Commenting.FunctionComment.MissingDocumentationPublic -- Test traits are not excluded
 
 namespace MediaWiki\Tests\Unit\Revision;
 

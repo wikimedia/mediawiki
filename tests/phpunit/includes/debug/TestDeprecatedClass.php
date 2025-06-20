@@ -44,6 +44,12 @@ class TestDeprecatedClass {
 		);
 	}
 
+	/**
+	 * @param mixed $prod
+	 * @param mixed $prond
+	 * @param mixed $prid
+	 * @param mixed $prind
+	 */
 	public function setThings( $prod, $prond, $prid, $prind ) {
 		$this->protectedDeprecated = $prod;
 		$this->protectedNonDeprecated = $prond;
@@ -51,6 +57,9 @@ class TestDeprecatedClass {
 		$this->privateNonDeprecated = $prind;
 	}
 
+	/**
+	 * @return array
+	 */
 	public function getThings() {
 		return [
 			'prod' => $this->protectedDeprecated,
@@ -60,10 +69,16 @@ class TestDeprecatedClass {
 		];
 	}
 
+	/**
+	 * @return mixed
+	 */
 	public function getFoo() {
 		return $this->foo;
 	}
 
+	/**
+	 * @param mixed $foo
+	 */
 	public function setFoo( $foo ) {
 		$this->foo = $foo;
 	}

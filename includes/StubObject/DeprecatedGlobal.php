@@ -1,4 +1,8 @@
 <?php
+
+// phpcs:disable MediaWiki.Commenting.FunctionComment.ObjectTypeHintReturn
+// phpcs:disable PSR2.Methods.MethodDeclaration.Underscore
+
 /**
  * Delayed loading of deprecated global objects.
  *
@@ -40,7 +44,9 @@ class DeprecatedGlobal extends StubObject {
 		$this->version = $version;
 	}
 
-	// phpcs:ignore PSR2.Methods.MethodDeclaration.Underscore
+	/**
+	 * @return object
+	 */
 	public function _newObject() {
 		/*
 		 * Put the caller offset for wfDeprecated as 6, as

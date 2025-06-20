@@ -310,6 +310,10 @@ abstract class BackupDumper extends Maintenance {
 		}
 	}
 
+	/**
+	 * @param int $history
+	 * @param int $text
+	 */
 	public function dump( $history, $text = WikiExporter::TEXT ) {
 		# Notice messages will foul up your XML output even if they're
 		# relatively harmless.

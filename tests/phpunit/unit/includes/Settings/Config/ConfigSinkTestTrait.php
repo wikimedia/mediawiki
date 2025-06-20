@@ -1,5 +1,7 @@
 <?php
 
+// phpcs:disable MediaWiki.Commenting.FunctionComment.MissingDocumentationPublic -- Test traits are not excluded
+
 namespace MediaWiki\Tests\Unit\Settings\Config;
 
 use MediaWiki\Settings\Config\ConfigBuilder;

@@ -145,6 +145,9 @@ class DatabaseLogEntry extends LogEntryBase {
 	/** @var bool Whether the parameters for this log entry are stored in new or old format. */
 	protected $legacy;
 
+	/**
+	 * @param stdClass $row
+	 */
 	protected function __construct( $row ) {
 		$this->row = $row;
 	}

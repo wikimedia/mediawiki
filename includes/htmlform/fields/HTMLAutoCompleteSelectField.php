@@ -117,8 +117,9 @@ class HTMLAutoCompleteSelectField extends HTMLTextField {
 		return true;
 	}
 
-	// FIXME Ewww, this shouldn't be adding any attributes not requested in $list :(
+	/** @inheritDoc */
 	public function getAttributes( array $list ) {
+		// FIXME Ewww, this shouldn't be adding any attributes not requested in $list :(
 		$attribs = [
 			'type' => 'text',
 			'data-autocomplete' => FormatJson::encode( array_keys( $this->autocompleteData ) ),

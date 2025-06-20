@@ -36,6 +36,11 @@ abstract class SitemapHandlerBase extends Handler {
 		$this->expiry = $apiConf['expiry'] ?? 3600;
 	}
 
+	/**
+	 * @param int $indexId
+	 * @param int $fileId
+	 * @return int
+	 */
 	protected function getOffset( $indexId, $fileId ) {
 		return $this->sitemapSize * ( $indexId * $this->indexSize + $fileId );
 	}
@@ -63,5 +68,8 @@ abstract class SitemapHandlerBase extends Handler {
 		return $response;
 	}
 
+	/**
+	 * @return string
+	 */
 	abstract protected function getXml();
 }

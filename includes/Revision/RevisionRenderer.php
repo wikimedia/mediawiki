@@ -84,12 +84,12 @@ class RevisionRenderer implements LoggerAwareInterface {
 		$this->saveParseLogger = $saveParseLogger;
 	}
 
-	// phpcs:disable Generic.Files.LineLength.TooLong
 	/**
 	 * @param RevisionRecord $rev
 	 * @param ParserOptions|null $options
 	 * @param Authority|null $forPerformer User for privileged access. Default is unprivileged
 	 *        (public) access, unless the 'audience' hint is set to something else RevisionRecord::RAW.
+	 * @phpcs:ignore Generic.Files.LineLength.TooLong
 	 * @param array{use-master?:bool,audience?:int,known-revision-output?:ParserOutput,causeAction?:?string,previous-output?:?ParserOutput} $hints
 	 *   Hints given as an associative array. Known keys:
 	 *      - 'use-master' Use primary DB when rendering for the parser cache during save.
@@ -111,7 +111,6 @@ class RevisionRenderer implements LoggerAwareInterface {
 	 * @throws BadRevisionException
 	 * @throws RevisionAccessException
 	 */
-	// phpcs:enable Generic.Files.LineLength.TooLong
 	public function getRenderedRevision(
 		RevisionRecord $rev,
 		?ParserOptions $options = null,

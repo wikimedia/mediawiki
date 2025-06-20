@@ -53,7 +53,10 @@ class FakeQqxMessageLocalizer implements MessageLocalizer {
 						return 'qqx';
 					}
 
-					// Support using Message::numParam()
+					/**
+					 * Support using Message::numParam()
+					 * @inheritDoc
+					 */
 					public function formatNum( $number ): string {
 						return (string)$number;
 					}

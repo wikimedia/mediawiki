@@ -15,10 +15,16 @@ class JsonDeserializableSuperClass implements JsonDeserializable {
 	/** @var mixed */
 	private $superClassField;
 
+	/**
+	 * @param mixed $superClassFieldValue
+	 */
 	public function __construct( $superClassFieldValue ) {
 		$this->superClassField = $superClassFieldValue;
 	}
 
+	/**
+	 * @return mixed
+	 */
 	public function getSuperClassField() {
 		return $this->superClassField;
 	}

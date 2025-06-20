@@ -412,6 +412,10 @@ class ParserEditTests extends Maintenance {
 		return false;
 	}
 
+	/**
+	 * @param resource $file
+	 * @param ParserTest $testInfo
+	 */
 	protected function findTest( $file, ParserTest $testInfo ): array|false {
 		$initialPart = '';
 		for ( $i = 1; $i < $testInfo->lineNumStart; $i++ ) {

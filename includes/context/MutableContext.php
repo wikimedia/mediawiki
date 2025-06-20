@@ -37,12 +37,16 @@ use MediaWiki\User\User;
  */
 interface MutableContext {
 
+	/** @return void */
 	public function setConfig( Config $config );
 
+	/** @return void */
 	public function setRequest( WebRequest $request );
 
+	/** @return void */
 	public function setTitle( Title $title );
 
+	/** @return void */
 	public function setWikiPage( WikiPage $wikiPage );
 
 	/**
@@ -51,8 +55,10 @@ interface MutableContext {
 	 */
 	public function setActionName( string $action ): void;
 
+	/** @return void */
 	public function setOutput( OutputPage $output );
 
+	/** @return void */
 	public function setUser( User $user );
 
 	/**
@@ -66,6 +72,7 @@ interface MutableContext {
 	 */
 	public function setLanguage( $language );
 
+	/** @return void */
 	public function setSkin( Skin $skin );
 
 }

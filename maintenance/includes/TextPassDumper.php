@@ -50,6 +50,7 @@ use RuntimeException;
 use WikiExporter;
 use Wikimedia\AtEase\AtEase;
 use XmlDumpWriter;
+use XMLParser;
 
 /**
  * @ingroup Maintenance
@@ -890,6 +891,11 @@ TEXT
 		return $normalized;
 	}
 
+	/**
+	 * @param XMLParser $parser
+	 * @param string $name
+	 * @param array $attribs
+	 */
 	protected function startElement( $parser, string $name, array $attribs ) {
 		$this->checkpointJustWritten = false;
 
@@ -944,6 +950,10 @@ TEXT
 		}
 	}
 
+	/**
+	 * @param XMLParser $parser
+	 * @param string $name
+	 */
 	protected function endElement( $parser, string $name ) {
 		$this->checkpointJustWritten = false;
 
@@ -1005,6 +1015,10 @@ TEXT
 		}
 	}
 
+	/**
+	 * @param XMLParser $parser
+	 * @param string $data
+	 */
 	protected function characterData( $parser, string $data ) {
 		$this->clearOpenElement( null );
 		if ( $this->lastName == "id" ) {

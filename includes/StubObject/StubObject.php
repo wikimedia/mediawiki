@@ -2,6 +2,7 @@
 
 // phpcs:disable MediaWiki.Commenting.FunctionComment.ObjectTypeHintReturn
 // phpcs:disable MediaWiki.Commenting.FunctionComment.ObjectTypeHintParam
+// phpcs:disable PSR2.Methods.MethodDeclaration.Underscore
 
 /**
  * Delayed loading of global objects.
@@ -119,7 +120,6 @@ class StubObject {
 	 * @param array $args Arguments
 	 * @return mixed
 	 */
-	// phpcs:ignore PSR2.Methods.MethodDeclaration.Underscore
 	public function _call( $name, $args ) {
 		$this->_unstub( $name, 5 );
 		return $GLOBALS[$this->global]->$name( ...$args );
@@ -129,7 +129,6 @@ class StubObject {
 	 * Create a new object to replace this stub object.
 	 * @return object
 	 */
-	// phpcs:ignore PSR2.Methods.MethodDeclaration.Underscore
 	public function _newObject() {
 		$params = $this->factory
 			? [ 'factory' => $this->factory ]
@@ -161,7 +160,6 @@ class StubObject {
 	 * @param string $name Name of the property to get
 	 * @return mixed
 	 */
-	// phpcs:ignore PSR2.Methods.MethodDeclaration.Underscore
 	public function _get( $name ) {
 		$this->_unstub( "__get($name)", 5 );
 		return $GLOBALS[$this->global]->$name;
@@ -184,7 +182,6 @@ class StubObject {
 	 * @param string $name Name of the property to set
 	 * @param mixed $value New property value
 	 */
-	// phpcs:ignore PSR2.Methods.MethodDeclaration.Underscore
 	public function _set( $name, $value ) {
 		$this->_unstub( "__set($name)", 5 );
 		$GLOBALS[$this->global]->$name = $value;
@@ -212,7 +209,6 @@ class StubObject {
 	 *   who called this function.
 	 * @return object The unstubbed version of itself
 	 */
-	// phpcs:ignore PSR2.Methods.MethodDeclaration.Underscore
 	public function _unstub( $name = '_unstub', $level = 2 ) {
 		static $recursionLevel = 0;
 
