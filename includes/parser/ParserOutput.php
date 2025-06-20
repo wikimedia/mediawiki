@@ -674,8 +674,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	public function getLanguageLinks() {
 		$result = [];
 		foreach ( $this->mLanguageLinkMap as $lang => $title ) {
-			// T374736: Back-compat with empty prefix; see ::addLanguageLink()
-			$result[] = $title === '|' ? "$lang" : "$lang:$title";
+			$result[] = "$lang:$title";
 		}
 		return $result;
 	}
@@ -824,9 +823,6 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 
 			case ParserOutputLinkTypes::LANGUAGE:
 				foreach ( $this->mLanguageLinkMap as $lang => $title ) {
-					if ( $title === '|' ) {
-						continue; // T374736
-					}
 					# language links can have fragments!
 					[ $title, $frag ] = array_pad( explode( '#', $title, 2 ), 2, '' );
 					$result[]  = [
@@ -1243,9 +1239,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			[ $lang, $title ] = array_pad( explode( ':', $t, 2 ), -2, '' );
 		}
 		if ( $lang === '' ) {
-			// T374736: For backward compatibility with test cases only!
-			wfDeprecated( __METHOD__ . ' without prefix', '1.43' );
-			[ $lang, $title ] = [ $title, '|' ]; // | can not occur in valid title
+			throw new InvalidArgumentException( __METHOD__ . ' without prefix' );
 		}
 		$this->mLanguageLinkMap[$lang] ??= $title;
 	}
@@ -2818,9 +2812,6 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		}
 
 		foreach ( $this->mLanguageLinkMap as $lang => $title ) {
-			if ( $title === '|' ) {
-				continue; // T374736: not a valid language link
-			}
 			# language links can have fragments!
 			[ $title, $frag ] = array_pad( explode( '#', $title, 2 ), 2, '' );
 			$lt = TitleValue::tryNew( NS_MAIN, $title, $frag, (string)$lang );
@@ -3151,7 +3142,12 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		$this->mRawText = $jsonData['Text'];
 		$this->mLanguageLinkMap = [];
 		foreach ( ( $jsonData['LanguageLinks'] ?? [] ) as $l ) {
-			$this->addLanguageLink( $l );
+			// T374736: old serialized parser cache entries may
+			// contain invalid language links; drop them quietly.
+			// (This code can be removed two LTS releases past 1.45.)
+			if ( str_contains( $l, ':' ) ) {
+				$this->addLanguageLink( $l );
+			}
 		}
 		$this->mCategories = $jsonData['Categories'];
 		$this->mIndicators = $jsonData['Indicators'];
