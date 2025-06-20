@@ -8,6 +8,10 @@
 			"Zolgoyo"
 		]
 	},
+	"config-desc": "MediaWiki ئورناتقۇچ",
+	"config-title": "MediaWiki $1 ئورنىتىش",
+	"config-information": "ئۇچۇر",
+	"config-localsettings-upgrade": "<code>LocalSettings.php</code> ھۆججەت بايقالدى.\nبۇ ئورنىتىشنى يۈكسەلتىشتە، تۆۋەندىكى قۇتىغا <code>$wgUpgradeKey</code> نىڭ قىممىتىنى كىرگۈزۈڭ.\nسىز ئۇنى <code>LocalSettings.php</code> دىن تاپالايسىز.",
 	"config-install-tables": "جەدۋەل قۇرۇش ، بىرىنچى قەدەم",
 	"config-install-tables-manual": "جەدۋەل قۇرۇش ، ئىككىنچى قەدەم",
 	"config-install-manual-tables-exist": "</strong> ئاگاھلاندۇرۇش: <strong> \nMediaWiki جەدۋەل ئاللىقاچان مەۋجۇت بولۇشى مۇمكىن\nئىجادىيەتتىن ئاتلاش.",

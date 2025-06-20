@@ -28,7 +28,8 @@
 			"Mohanad",
 			"Cigaryno",
 			"Lolekek",
-			"Mohammed Qays"
+			"Mohammed Qays",
+			"JorgeElias2302"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|التوثيق]]\n* [[mw:Special:MyLanguage/API:Etiquette|الآداب وإرشادات الاستخدام]]\n* [[mw:Special:MyLanguage/API:FAQ|الأسئلة الأكثر تكرارا]]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api.lists.wikimedia.org/ القائمة البريدية]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/ إعلانات API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R الأخطاء والطلبات]\n</div>\n<strong>الحالة:</strong> API ميدياويكي هي واجهة ناضجة ومستقرة يتم دعمها وتحسينها بشكل نشط، في حين أننا نحاول تجنب ذلك، قد نحتاج في بعض الأحيان إلى إجراء تغييرات في التكسير، اشترك في [https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ القائمة البريدية لإعلان API ميدياويكي] لإشعارات التحديثات.\n\n<strong>الطلبات الخاطئة:</strong>عندما يتم إرسال طلبات خاطئة إلى API، سيتم إرسال رأس HTTP مع مفتاح \"خطأ-API-ميدياويكي\"، وبعد ذلك سترجع قيمة الرأس ورمز الخطأ المرتجع إلى يتم تعيينه على نفس القيمة، لمزيد من المعلومات; راجع [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Errors and warnings]].\n\n<p class=\"mw-apisandbox-link\"><strong>الاختبار:</strong>لسهولة اختبار طلبات API ; انظر [[Special:ApiSandbox]].</p>",
@@ -137,6 +138,7 @@
 	"apihelp-compare-paramvalue-prop-parsedcomment": "التعليق المحلل على المراجعات 'من' و'إلى'. لو أن التعليق قد تم إخفاؤه، فخاصية <samp>fromcommenthidden</samp> أو <samp>tocommenthidden</samp> سيتم إرجاعها.",
 	"apihelp-compare-paramvalue-prop-size": "حجم المراجعات 'من' و'إلى'.",
 	"apihelp-compare-paramvalue-prop-timestamp": "حجم المراجعات 'من' و'إلى'.",
+	"apihelp-compare-param-difftype": "إرجاع المقارنة بتنسيق HTML المضمن.",
 	"apihelp-compare-param-slots": "إرجاع فرق فردي لهذه الفتحات، بدلا من فرق واحد مشترك لجميع فتحات.",
 	"apihelp-compare-example-1": "إنشاء فرق بين المراجعة 1 و2.",
 	"apihelp-createaccount-summary": "إنشاء حساب مستخدم جديد",
@@ -188,6 +190,7 @@
 	"apihelp-edit-param-redirect": "حل التحويلات تلقائيا.",
 	"apihelp-edit-param-contentformat": "نسق المحتوى التسلسلي المستخدم لنص المدخلات.",
 	"apihelp-edit-param-contentmodel": "نموذج المحتوى للمحتوى الجديد.",
+	"apihelp-edit-param-returnto": "عنوان الصفحة. إذا أدى حفظ التعديل إلى إنشاء حساب مؤقت، فقد تستجيب واجهة برمجة التطبيقات (API) برابط URL يجب على العميل زيارته لإكمال تسجيل الدخول. عند توفير هذه المعلمة، سيتم إعادة توجيه الرابط إلى الصفحة المحددة، بدلاً من الصفحة التي تم تعديلها.",
 	"apihelp-edit-param-token": "ينبغي دائما أن يُرسَل الرمز كوسيط أخير، أو على الأقل بعد الوسيط $1text.",
 	"apihelp-edit-example-edit": "عدل صفحة.",
 	"apihelp-edit-example-prepend": "إضافة البادئة <kbd>_&#95;NOTOC_&#95;</kbd> إلى الصفحة.",
