@@ -3964,14 +3964,26 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * The cache backend for storing session data.
+	 * The cache backend for storing authenticated session data when $wgAnonSessionCacheType
+	 * is set. Otherwise, when $wgAnonSessionCacheType is unset, this will be used for all types
+	 * of sessions.
 	 *
-	 * Used by MediaWiki\Session\SessionManager. See $wgMainCacheType for available types.
+	 * Used by MediaWiki\Session\SessionStore. See $wgMainCacheType for available types.
 	 *
-	 * See [SessionManager Storage expectations](@ref SessionManager-storage-expectations).
+	 * See [SessionStore Storage expectations](@ref SessionStore-storage-expectations).
 	 */
 	public const SessionCacheType = [
 		'default' => CACHE_ANYTHING,
+	];
+
+	/**
+	 * The cache backend for storing anonymous session data. When false, $wgSessionCacheType
+	 * will be used.
+	 *
+	 * Used by MediaWiki\Session\SessionCache. See $wgSessionCacheType for available types.
+	 */
+	public const AnonSessionCacheType = [
+		'default' => false
 	];
 
 	/**

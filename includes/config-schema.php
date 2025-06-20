@@ -503,6 +503,7 @@ return [
 			'MessageCacheType' => -1,
 			'ParserCacheType' => -1,
 			'SessionCacheType' => -1,
+			'AnonSessionCacheType' => false,
 			'LanguageConverterCacheType' => -1,
 			'ObjectCaches' => [
 				0 => [

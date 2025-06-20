@@ -1488,6 +1488,12 @@ class MainConfigNames {
 	public const SessionCacheType = 'SessionCacheType';
 
 	/**
+	 * Name constant for the AnonSessionCacheType setting, for use with Config::get()
+	 * @see MainConfigSchema::AnonSessionCacheType
+	 */
+	public const AnonSessionCacheType = 'AnonSessionCacheType';
+
+	/**
 	 * Name constant for the LanguageConverterCacheType setting, for use with Config::get()
 	 * @see MainConfigSchema::LanguageConverterCacheType
 	 */

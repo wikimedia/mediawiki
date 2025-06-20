@@ -57,29 +57,7 @@ use Wikimedia\ObjectFactory\ObjectFactory;
  *
  * To provide custom session handling, implement a MediaWiki\Session\SessionProvider.
  *
- * @anchor SessionManager-storage-expectations
- *
- * ## Storage expectations
- *
- * The SessionManager should be configured with a very fast storage system that is
- * optimized for holding key-value pairs. It expects:
- *
- * - Low latencies. Session data is read or written to during nearly all web requests from
- *   people that have contributed to or otherwise engaged with the site, including those not
- *   logged in with a registered account.
- *
- * - Locally writable data. The data must be writable from both primary and secondary
- *   data centres.
- *
- * - Locally latest reads. Writes must by default be immediately consistent within
- *   the local data centre, and visible to other reads from web servers in that data centre.
- *
- * - Replication. The data must be eventually consistent across all data centres. Writes
- *   are either synced to all remote data centres, or locally overwritten by another write
- *   that is.
- *
- * The SessionManager uses `set()` and `delete()` for write operations, which should be
- * synchronous in the local data centre, and replicate asynchronously to any others.
+ * See [SessionStore Storage expectations](@ref SessionStore-storage-expectations).
  *
  * @see https://www.mediawiki.org/wiki/Manual:SessionManager_and_AuthManager
  * @since 1.27

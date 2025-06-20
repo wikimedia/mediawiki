@@ -1473,6 +1473,12 @@ $wgParserCacheType = null;
 $wgSessionCacheType = null;
 
 /**
+ * Config variable stub for the AnonSessionCacheType setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::AnonSessionCacheType
+ */
+$wgAnonSessionCacheType = null;
+
+/**
  * Config variable stub for the LanguageConverterCacheType setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::LanguageConverterCacheType
  */

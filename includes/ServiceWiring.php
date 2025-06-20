@@ -218,6 +218,7 @@ use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\Search\SearchEventIngress;
 use MediaWiki\Search\SearchResultThumbnailProvider;
 use MediaWiki\Search\TitleMatcher;
+use MediaWiki\Session\MultiBackendSessionStore;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\Session\SessionManagerInterface;
 use MediaWiki\Session\SessionStore;
@@ -2219,10 +2220,22 @@ return [
 	'SessionStore' => static function ( MediaWikiServices $services ): SessionStore {
 		$objectCacheFactory = $services->getObjectCacheFactory();
 		$mainConfig = $services->getMainConfig();
+		$logger = LoggerFactory::getInstance( 'session' );
+
+		$anonCacheType = $mainConfig->get( MainConfigNames::AnonSessionCacheType );
+		$authCacheType = $mainConfig->get( MainConfigNames::SessionCacheType );
+
+		if ( $anonCacheType !== false ) {
+			return new MultiBackendSessionStore(
+				$objectCacheFactory->getInstance( $anonCacheType ),
+				$objectCacheFactory->getInstance( $authCacheType ),
+				$logger
+			);
+		}
 
 		return new SingleBackendSessionStore(
-			$objectCacheFactory->getInstance( $mainConfig->get( MainConfigNames::SessionCacheType ) ),
-			LoggerFactory::getInstance( 'session' ),
+			$objectCacheFactory->getInstance( $authCacheType ),
+			$logger
 		);
 	},
 
