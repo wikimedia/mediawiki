@@ -649,7 +649,7 @@
 	"resetpass-validity": "Votre mot de passe n’est pas valide : $1\n\nVeuillez entrer un nouveau mot de passe pour vous connecter.",
 	"resetpass-validity-soft": "Votre mot de passe n’est pas valide : $1\n\nVeuillez choisir un nouveau mot de passe maintenant, ou cliquer sur « {{int:authprovider-resetpass-skip-label}} » pour le modifier plus tard.",
 	"passwordreset": "Réinitialisation du mot de passe",
-	"passwordreset-text-one": "Remplissez ce formulaire pour réinitialiser votre mot de passe.",
+	"passwordreset-text-one": "Remplissez ce formulaire pour recevoir un mot de passe temporaire par courriel.",
 	"passwordreset-text-many": "{{PLURAL:$1|Remplissez un des champs pour recevoir un mot de passe temporaire par courriel.}}",
 	"passwordreset-disabled": "La réinitialisation des mots de passe a été désactivée sur ce wiki.",
 	"passwordreset-emaildisabled": "Les fonctionnalités de courriel ont été désactivées sur ce wiki.",
