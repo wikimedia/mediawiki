@@ -162,6 +162,7 @@ class HtmlToContentTransform {
 		$this->originalContent = $content;
 	}
 
+	/** @throws ClientError */
 	private function validatePageBundle( HtmlPageBundle $pb ) {
 		if ( !$pb->version ) {
 			return;
@@ -177,6 +178,7 @@ class HtmlToContentTransform {
 	 * @note Call this after all original data has been set!
 	 *
 	 * @param array $modifiedDataMW
+	 * @throws ClientError
 	 */
 	public function setModifiedDataMW( array $modifiedDataMW ): void {
 		// Relies on setOriginalSchemaVersion having been called already.
@@ -315,6 +317,7 @@ class HtmlToContentTransform {
 	 * @todo Make this method redundant, nothing should operate on HTML strings.
 	 *
 	 * @return string
+	 * @throws ClientError
 	 */
 	public function getOriginalHtml(): string {
 		// NOTE: Schema version should have been set explicitly,
@@ -453,6 +456,7 @@ class HtmlToContentTransform {
 		return $vOriginal !== null && !Semver::satisfies( $vOriginal, "^{$vEdited}" );
 	}
 
+	/** @throws ClientError */
 	private function downgradeOriginalData( HtmlPageBundle $pb, string $targetSchemaVersion ) {
 		if ( $pb->version === null ) {
 			throw new ClientError( 'Missing schema version' );

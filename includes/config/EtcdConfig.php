@@ -297,6 +297,7 @@ class EtcdConfig implements Config, LoggerAwareInterface {
 	 *
 	 * @param string $rbody
 	 * @return array
+	 * @throws EtcdConfigParseError
 	 */
 	protected function parseResponse( $rbody ) {
 		$info = json_decode( $rbody, true );
@@ -320,6 +321,7 @@ class EtcdConfig implements Config, LoggerAwareInterface {
 	 * @param array $dirNode The decoded directory node
 	 * @param array &$config The output array
 	 * @return int lastModifiedIndex The maximum last modified index across all keys in the directory
+	 * @throws EtcdConfigParseError
 	 */
 	protected function parseDirectory( $dirName, $dirNode, &$config ) {
 		$lastModifiedIndex = 0;

@@ -21,6 +21,7 @@
 namespace MediaWiki\JobQueue;
 
 use InvalidArgumentException;
+use LogicException;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Deferred\JobQueueEnqueueUpdate;
 use MediaWiki\JobQueue\Exceptions\JobQueueError;
@@ -286,7 +287,7 @@ class JobQueueGroup {
 	 */
 	public function getQueueTypes() {
 		if ( !$this->localJobClasses ) {
-			throw new JobQueueError( 'Cannot inspect job queue from foreign wiki' );
+			throw new LogicException( 'Cannot inspect job queue from foreign wiki' );
 		}
 		return array_keys( $this->localJobClasses );
 	}

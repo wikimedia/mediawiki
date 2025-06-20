@@ -85,7 +85,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	protected $conns;
 	/** @var float[] Map of (shard index => UNIX timestamps) */
 	protected $connFailureTimes = [];
-	/** @var Exception[] Map of (shard index => Exception) */
+	/** @var DBConnectionError[] Map of (shard index => Exception) */
 	protected $connFailureErrors = [];
 
 	/** @var bool Whether zlib methods are available to PHP */

@@ -42,6 +42,7 @@ use function is_object;
  * @since 1.38
  */
 class AbstractSchemaValidator {
+	/** @throws AbstractSchemaValidationError */
 	public function __construct() {
 		if ( !class_exists( Validator::class ) ) {
 			throw new AbstractSchemaValidationError(

@@ -22,7 +22,6 @@ use MediaWiki\Exception\ReadOnlyError;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
-use Wikimedia\RequestTimeout\TimeoutException;
 
 /**
  * @defgroup ExternalStorage ExternalStorage
@@ -149,9 +148,7 @@ class ExternalStoreAccess implements LoggerAwareInterface {
 						"No URL returned by storage medium ($storeUrl)"
 					);
 				}
-			} catch ( TimeoutException $e ) {
-				throw $e;
-			} catch ( Exception $ex ) {
+			} catch ( ExternalStoreException $ex ) {
 				$error = $ex;
 				$msg = 'caught ' . get_class( $error ) . ' exception: ' . $error->getMessage();
 			}

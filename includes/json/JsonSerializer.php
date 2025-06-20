@@ -21,7 +21,7 @@
 
 namespace MediaWiki\Json;
 
-use InvalidArgumentException;
+use JsonException;
 
 /**
  * Serializes things to JSON.
@@ -38,7 +38,7 @@ interface JsonSerializer {
 	 *
 	 * @param mixed|JsonDeserializable $value A value to encode. Can be any scalar,
 	 * array, stdClass, JsonDeserializable or any combination of them.
-	 * @throws InvalidArgumentException if the value can not be serialized.
+	 * @throws JsonException if the value can not be serialized.
 	 * @return string
 	 */
 	public function serialize( $value );
