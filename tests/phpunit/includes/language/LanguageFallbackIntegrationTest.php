@@ -10,7 +10,7 @@ use MediaWiki\MainConfigNames;
 class LanguageFallbackIntegrationTest extends MediaWikiIntegrationTestCase {
 	use LanguageFallbackTestTrait;
 
-	private function getCallee( array $options = [] ) {
+	private function getCallee( array $options = [] ): LanguageFallback {
 		if ( isset( $options['siteLangCode'] ) ) {
 			$this->overrideConfigValue( MainConfigNames::LanguageCode, $options['siteLangCode'] );
 		}
@@ -21,11 +21,4 @@ class LanguageFallbackIntegrationTest extends MediaWikiIntegrationTestCase {
 		return $this->getServiceContainer()->getLanguageFallback();
 	}
 
-	private function getMessagesKey() {
-		return LanguageFallback::MESSAGES;
-	}
-
-	private function getStrictKey() {
-		return LanguageFallback::STRICT;
-	}
 }
