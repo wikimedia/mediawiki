@@ -351,6 +351,19 @@ class RestStructureTest extends MediaWikiIntegrationTestCase {
 		$schemaFile = MW_INSTALL_PATH . '/docs/rest/mwapi-1.0.json';
 
 		$this->assertMatchesJsonSchema( $schemaFile, $moduleSpec, self::SPEC_FILES );
+
+		$moduleId = $moduleSpec->moduleId;
+		$version = $moduleSpec->info->version;
+
+		// TODO: Consider allowing other suffixes. If so, the regex would be something like:
+		//  '!^[-_.\w]+/v[0-9]+(?:-beta|alpha|rc)?(?:[0-9+])?$!';
+		$moduleIdRegex = '!^[-_.\w]+/v[0-9]+(?:-beta)?(?:[0-9+])?$!';
+		$this->assertMatchesRegularExpression( $moduleIdRegex, $moduleId );
+
+		// TODO: Consider allowing other suffixes. If so, the regex would be something like:
+		//  '!^[0-9]+\.[0-9]+\.[0-9]+(?:-beta|alpha|rc)?(?:[0-9+])?$!'
+		$versionRegex = '!^[0-9]+\.[0-9]+\.[0-9]+(?:-beta)?(?:[0-9+])?$!';
+		$this->assertMatchesRegularExpression( $versionRegex, $version );
 	}
 
 	public function testGetModuleDescription(): void {
