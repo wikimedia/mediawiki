@@ -217,6 +217,8 @@ because of Phabricator reports.
   hook runner. Migrate to the GetMagicVariableIDsHook instead.
 * PageConfigFactory::create() is now deprecated; use
   ::createFromParserOptions() instead.
+* Calling MessageCache::get with a Language object is now deprecated and emits
+  a deprecation warning.
 * …
 
 === Other changes in 1.45 ===
