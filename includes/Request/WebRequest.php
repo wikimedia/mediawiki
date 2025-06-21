@@ -497,22 +497,15 @@ class WebRequest {
 	 *
 	 * @since 1.28
 	 * @param string $name
-	 * @param string|null $default Deprecated since 1.43. Use ?? $default instead.
-	 * @return string|null The value, or $default if none set
+	 * @return string|null The value, or null if none set
 	 * @return-taint tainted
 	 */
-	public function getRawVal( $name, $default = null ): ?string {
-		if ( $default !== null ) {
-			wfDeprecated( __METHOD__ . ' with parameter $default', '1.43' );
-		}
+	public function getRawVal( $name ): ?string {
 		$name = strtr( $name, '.', '_' ); // See comment in self::getGPCVal()
-		if ( isset( $this->data[$name] ) && !is_array( $this->data[$name] ) ) {
-			$val = $this->data[$name];
-		} else {
-			$val = $default;
+		if ( !isset( $this->data[$name] ) || is_array( $this->data[$name] ) ) {
+			return null;
 		}
-
-		return $val === null ? null : (string)$val;
+		return (string)$this->data[$name];
 	}
 
 	/**
