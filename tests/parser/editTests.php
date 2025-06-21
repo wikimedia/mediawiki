@@ -456,7 +456,7 @@ class ParserEditTests extends Maintenance {
 		$text = file_get_contents( $fileName );
 		if ( $text === false ) {
 			print "Unable to open test file!";
-			return false;
+			return;
 		}
 		$result = TestFileEditor::edit( $text, $deletions, $changes,
 			static function ( $msg ) {
