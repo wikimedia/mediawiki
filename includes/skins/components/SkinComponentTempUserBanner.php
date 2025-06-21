@@ -27,8 +27,6 @@ class SkinComponentTempUserBanner implements SkinComponent {
 	private $isTempUser;
 	/** @var string */
 	private $username;
-	/** @var string */
-	private $userpageUrl;
 
 	/**
 	 * @param string|array $returnto
@@ -41,7 +39,6 @@ class SkinComponentTempUserBanner implements SkinComponent {
 		$this->localizer = $localizer;
 		$this->isTempUser = $user->isTemp();
 		$this->username = $user->getName(); // getUser
-		$this->userpageUrl = $user->getUserPage()->getFullURL();
 	}
 
 	private function createLoginLink(): string {
@@ -79,7 +76,7 @@ class SkinComponentTempUserBanner implements SkinComponent {
 					'id' => 'mw-temp-user-banner-tooltip-button',
 					'class' => 'mw-temp-user-banner-tooltip-summary cdx-button '
 						. 'cdx-button--icon-only cdx-button--weight-quiet',
-					'aria-label' => $this->localizer->msg( 'temp-user-banner-tooltip-label' )
+					'aria-label' => $this->localizer->msg( 'temp-user-banner-tooltip-label' )->text()
 					],
 					HTML::element( 'span', [ 'class' => 'mw-temp-user-banner-tooltip-icon ' ] )
 				)

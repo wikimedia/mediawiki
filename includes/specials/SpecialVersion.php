@@ -1092,12 +1092,12 @@ class SpecialVersion extends SpecialPage {
 		// ... such as extension names and links
 		if ( isset( $extension['namemsg'] ) ) {
 			// Localized name of extension
-			$extensionName = $this->msg( $extension['namemsg'] );
+			$extensionName = $this->msg( $extension['namemsg'] )->text();
 		} elseif ( isset( $extension['name'] ) ) {
 			// Non localized version
 			$extensionName = $extension['name'];
 		} else {
-			$extensionName = $this->msg( 'version-no-ext-name' );
+			$extensionName = $this->msg( 'version-no-ext-name' )->text();
 		}
 
 		if ( isset( $extension['url'] ) ) {

@@ -896,7 +896,7 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 		$fields['tagInvert'] = [
 			'type' => 'check',
 			'id' => 'tagInvert',
-			'label' => $this->msg( 'invert' ),
+			'label-message' => 'invert',
 			'name' => 'tagInvert',
 			'hide-if' => [ '===', 'tagfilter', '' ],
 			'section' => 'contribs-top',
