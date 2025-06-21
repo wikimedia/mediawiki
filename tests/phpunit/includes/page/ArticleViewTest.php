@@ -745,10 +745,11 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 			$context,
 			$title,
 			[ $revisionId ],
-			$services->getConnectionProvider(),
+			$services->getDBLoadBalancerFactory(),
 			$services->getHookContainer(),
 			$services->getHtmlCacheUpdater(),
-			$services->getRevisionStore()
+			$services->getRevisionStore(),
+			$services->getDomainEventDispatcher()
 		);
 	}
 

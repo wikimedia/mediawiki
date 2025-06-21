@@ -46,6 +46,7 @@ class RevisionDeleter {
 				'HookContainer',
 				'HtmlCacheUpdater',
 				'RevisionStore',
+				'DomainEventDispatcher'
 			],
 		],
 		'archive' => [
@@ -55,6 +56,7 @@ class RevisionDeleter {
 				'HookContainer',
 				'HtmlCacheUpdater',
 				'RevisionStore',
+				'DomainEventDispatcher'
 			],
 		],
 		'oldimage' => [
@@ -269,18 +271,25 @@ class RevisionDeleter {
 	/**
 	 * Put together a rev_deleted bitfield
 	 * @since 1.22
-	 * @param array $bitPars ExtractBitParams() params
+	 * @param array $bitPars associative array mapping bit masks to 0, 1 or -1.
+	 *        A value of 0 unsets the bits in the mask, 1 will set the bits in
+	 *        the mask, and any other value will retain the bits already present
+	 *        in $oldfield.
 	 * @param int $oldfield Current bitfield
+	 *
+	 * @internal
 	 * @return int
 	 */
 	public static function extractBitfield( array $bitPars, $oldfield ) {
 		// Build the actual new rev_deleted bitfield
-		$newBits = 0;
+		$newBits = $oldfield;
 		foreach ( $bitPars as $const => $val ) {
+			// $const is the XXX_DELETED const
+
 			if ( $val == 1 ) {
-				$newBits |= $const; // $const is the *_deleted const
-			} elseif ( $val == -1 ) {
-				$newBits |= ( $oldfield & $const ); // use existing
+				$newBits |= $const; // set the bit
+			} elseif ( $val == 0 ) {
+				$newBits &= ~$const; // unset the bit
 			}
 		}
 		return $newBits;
