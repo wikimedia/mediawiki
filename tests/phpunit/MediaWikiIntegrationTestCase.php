@@ -1403,7 +1403,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * called from inside a test case, a data provider, or a setUp or tearDown method.
 	 *
 	 * @return bool true if the original service locator was restored,
-	 *         false if there was nothing too do.
+	 *         false if there was nothing to do.
 	 */
 	public static function restoreMwServices() {
 		if ( !self::$originalServices ) {
