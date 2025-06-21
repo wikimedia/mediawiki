@@ -42,7 +42,7 @@ class RenameUserTableJob extends Job {
 
 	public function __construct(
 		Title $title,
-		$params,
+		array $params,
 		Config $config,
 		ILBFactory $lbFactory
 	) {

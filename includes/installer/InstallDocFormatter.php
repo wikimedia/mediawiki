@@ -31,7 +31,7 @@ class InstallDocFormatter {
 		return ( new self( $text ) )->execute();
 	}
 
-	protected function __construct( $text ) {
+	protected function __construct( string $text ) {
 		$this->text = $text;
 	}
 

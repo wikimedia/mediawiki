@@ -23,7 +23,7 @@ class RemexCompatFormatter extends HtmlFormatter {
 	/** @var ?callable */
 	private $textProcessor;
 
-	public function __construct( $options = [] ) {
+	public function __construct( array $options = [] ) {
 		parent::__construct( $options );
 		// Escape non-breaking space
 		$this->attributeEscapes["\u{00A0}"] = '&#160;';

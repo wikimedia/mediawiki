@@ -46,7 +46,7 @@ class PPDPart_Hash {
 	 */
 	public $visualEnd;
 
-	public function __construct( $out = '' ) {
+	public function __construct( string $out = '' ) {
 		$this->out = [];
 
 		if ( $out !== '' ) {

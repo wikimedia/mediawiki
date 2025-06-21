@@ -39,7 +39,7 @@ class Cookie {
 	// TO IMPLEMENT? protected $version
 	// TO IMPLEMENT? protected $comment
 
-	public function __construct( $name, $value, $attr ) {
+	public function __construct( string $name, string $value, array $attr ) {
 		$this->name = $name;
 		$this->set( $value, $attr );
 	}

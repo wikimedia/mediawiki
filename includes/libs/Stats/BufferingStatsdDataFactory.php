@@ -54,7 +54,7 @@ class BufferingStatsdDataFactory extends StatsdDataFactory implements IBuffering
 	/** @var string */
 	private $prefix;
 
-	public function __construct( $prefix ) {
+	public function __construct( string $prefix ) {
 		parent::__construct();
 		$this->prefix = $prefix;
 	}

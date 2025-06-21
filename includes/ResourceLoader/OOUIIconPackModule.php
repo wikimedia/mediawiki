@@ -29,7 +29,7 @@ use InvalidArgumentException;
  * @since 1.34
  */
 class OOUIIconPackModule extends OOUIImageModule {
-	public function __construct( array $options = [], $localBasePath = null ) {
+	public function __construct( array $options = [], ?string $localBasePath = null ) {
 		parent::__construct( $options, $localBasePath );
 
 		if ( !isset( $this->definition['icons'] ) || !$this->definition['icons'] ) {

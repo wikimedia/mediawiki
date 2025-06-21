@@ -20,7 +20,7 @@ trait HtmlHelperTrait {
 	/** @var callable */
 	private $modifyCallback;
 
-	public function __construct( $options, callable $shouldModifyCallback, callable $modifyCallback ) {
+	public function __construct( array $options, callable $shouldModifyCallback, callable $modifyCallback ) {
 		parent::__construct( $options );
 		$this->shouldModifyCallback = $shouldModifyCallback;
 		$this->modifyCallback = $modifyCallback;

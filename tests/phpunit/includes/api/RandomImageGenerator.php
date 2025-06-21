@@ -32,7 +32,7 @@ class RandomImageGenerator {
 	/** @var int */
 	private $maxHeight = 16;
 
-	public function __construct( $options = [] ) {
+	public function __construct( array $options = [] ) {
 		foreach ( [ 'minWidth', 'minHeight',
 			'maxWidth', 'maxHeight' ] as $property
 		) {

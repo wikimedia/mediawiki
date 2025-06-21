@@ -12,7 +12,7 @@ class FakeDimensionFile extends File {
 	/** @var int[] */
 	public $dimensions;
 
-	public function __construct( $dimensions, $mime = 'unknown/unknown' ) {
+	public function __construct( array $dimensions, string $mime = 'unknown/unknown' ) {
 		parent::__construct( Title::makeTitle( NS_FILE, 'Test' ),
 			new NullRepo( null ) );
 

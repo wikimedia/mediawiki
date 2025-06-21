@@ -19,7 +19,7 @@ class MiddlewareChain {
 
 	private bool $isProcessing = false;
 
-	public function __construct( ObjectFactory $objectFactory, $specs ) {
+	public function __construct( ObjectFactory $objectFactory, array $specs ) {
 		$this->objectFactory = $objectFactory;
 		$this->middlewareSpecs = $specs;
 	}

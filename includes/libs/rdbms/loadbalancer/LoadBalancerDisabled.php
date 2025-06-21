@@ -31,7 +31,7 @@ use RuntimeException;
  */
 class LoadBalancerDisabled extends LoadBalancer {
 
-	public function __construct( $params = [] ) {
+	public function __construct( array $params = [] ) {
 		parent::__construct( [
 			'servers' => [ [
 				'type' => 'disabled',

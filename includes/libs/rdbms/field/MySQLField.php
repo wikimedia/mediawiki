@@ -2,6 +2,8 @@
 
 namespace Wikimedia\Rdbms;
 
+use stdClass;
+
 class MySQLField implements Field {
 	private string $name;
 	private string $tablename;
@@ -19,7 +21,7 @@ class MySQLField implements Field {
 	private bool $is_unsigned;
 	private bool $is_zerofill;
 
-	public function __construct( $info ) {
+	public function __construct( stdClass $info ) {
 		$this->name = $info->name;
 		$this->tablename = $info->table;
 		$this->default = $info->def;

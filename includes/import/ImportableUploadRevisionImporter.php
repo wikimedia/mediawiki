@@ -18,7 +18,7 @@ class ImportableUploadRevisionImporter implements UploadRevisionImporter {
 	private bool $shouldCreateNullRevision = true;
 
 	public function __construct(
-		$enableUploads,
+		bool $enableUploads,
 		LoggerInterface $logger
 	) {
 		$this->enableUploads = $enableUploads;

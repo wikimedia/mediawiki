@@ -45,7 +45,7 @@ class DatabaseFlags implements IDatabaseFlags {
 		self::DBO_DEBUG | self::DBO_NOBUFFER | self::DBO_TRX | self::DBO_DDLMODE
 	);
 
-	public function __construct( $flags ) {
+	public function __construct( int $flags ) {
 		$this->flags = $flags;
 	}
 

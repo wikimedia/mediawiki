@@ -34,7 +34,7 @@ class RenameUserDerivedJob extends Job {
 
 	public function __construct(
 		Title $title,
-		$params,
+		array $params,
 		RenameUserFactory $renameUserFactory,
 		UserFactory $userFactory
 		) {
