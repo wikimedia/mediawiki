@@ -1,3 +1,0 @@
-ALTER TABLE /*_*/querycachetwo
-  MODIFY qcc_title VARBINARY(255) DEFAULT '' NOT NULL,
-  MODIFY qcc_titletwo VARBINARY(255) DEFAULT '' NOT NULL;

@@ -189,9 +189,9 @@ class UpdateMediaWiki extends Maintenance {
 		// Using an implicit marker (rev_actor was introduced in 1.34)
 		// TODO: Use an explicit marker
 		// See T259771
-		if ( !$updater->fieldExists( 'revision', 'rev_actor' ) ) {
+		if ( !$updater->tableExists( 'linktarget' ) ) {
 			$this->fatalError(
-				"Can not upgrade from versions older than 1.35, please upgrade to that version or later first."
+				"Can not upgrade from versions older than 1.38, please upgrade to that version or later first."
 			);
 		}
 

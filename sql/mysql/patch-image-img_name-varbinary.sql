@@ -1,1 +1,0 @@
-ALTER TABLE /*_*/image MODIFY img_name VARBINARY(255) DEFAULT '' NOT NULL;
