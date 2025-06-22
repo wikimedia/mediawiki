@@ -259,7 +259,7 @@ class LinkFilter {
 		return $newLinks;
 	}
 
-	public static function reverseIndexes( $domainIndex ) {
+	public static function reverseIndexes( string $domainIndex ): string {
 		$bits = MediaWikiServices::getInstance()->getUrlUtils()->parse( $domainIndex );
 		if ( !$bits ) {
 			return '';
@@ -388,7 +388,7 @@ class LinkFilter {
 		];
 	}
 
-	public static function getProtocolPrefix( $protocol ) {
+	public static function getProtocolPrefix( ?string $protocol ): ?string {
 		// Find the right prefix
 		$urlProtocols = MediaWikiServices::getInstance()->getMainConfig()
 			->get( MainConfigNames::UrlProtocols );
@@ -406,7 +406,7 @@ class LinkFilter {
 		}
 	}
 
-	public static function prepareProtocols() {
+	public static function prepareProtocols(): array {
 		$urlProtocols = MediaWikiServices::getInstance()->getMainConfig()
 			->get( MainConfigNames::UrlProtocols );
 		$protocols = [ '' ];
