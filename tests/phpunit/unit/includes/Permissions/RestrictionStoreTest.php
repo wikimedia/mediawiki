@@ -6,7 +6,6 @@ use DatabaseTestHelper;
 use MediaWiki\Cache\LinkCache;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Config\ServiceOptions;
-use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Linker\LinksMigration;
 use MediaWiki\MainConfigNames;
@@ -1063,7 +1062,7 @@ class RestrictionStoreTest extends MediaWikiUnitTestCase {
 			$this->createMock( PageStore::class )
 		);
 
-		$page = new PageIdentityValue( 1, NS_MAIN, 'Test', WikiAwareEntity::LOCAL );
+		$page = PageIdentityValue::localIdentity( 1, NS_MAIN, 'Test' );
 
 		$this->assertSame( [], $store->getRestrictions( $page, 'non-restrictable-action' ) );
 	}

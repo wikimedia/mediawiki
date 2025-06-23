@@ -4,7 +4,6 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\PageProps;
-use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\RecentChanges\RecentChange;
@@ -34,8 +33,8 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		$this->title = new PageIdentityValue( 17, NS_MAIN, 'SomeTitle', PageIdentity::LOCAL );
-		$this->target = new PageIdentityValue( 78, NS_MAIN, 'TestTarget', PageIdentity::LOCAL );
+		$this->title = PageIdentityValue::localIdentity( 17, NS_MAIN, 'SomeTitle' );
+		$this->target = PageIdentityValue::localIdentity( 78, NS_MAIN, 'TestTarget' );
 
 		$user = $this->getTestUser()->getUser();
 		$this->user = new UserIdentityValue( $user->getId(), $user->getName() );
@@ -302,7 +301,7 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testNewLogEntry() {
 		$now = MWTimestamp::now();
-		$logPage = new PageReferenceValue( NS_SPECIAL, 'Log/test', PageReference::LOCAL );
+		$logPage = PageReferenceValue::localReference( NS_SPECIAL, 'Log/test' );
 
 		$rc = RecentChange::newLogEntry(
 			$now,

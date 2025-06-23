@@ -37,7 +37,7 @@ class LinkRendererTest extends MediaWikiLangTestCase {
 
 	public static function provideMergeAttribs() {
 		yield [ new TitleValue( NS_SPECIAL, 'BlankPage' ) ];
-		yield [ new PageReferenceValue( NS_SPECIAL, 'BlankPage', PageReference::LOCAL ) ];
+		yield [ PageReferenceValue::localReference( NS_SPECIAL, 'BlankPage' ) ];
 	}
 
 	/**
@@ -64,7 +64,7 @@ class LinkRendererTest extends MediaWikiLangTestCase {
 
 	public static function provideMakeKnownLink() {
 		yield [ new TitleValue( NS_MAIN, 'Foobar' ) ];
-		yield [ new PageReferenceValue( NS_MAIN, 'Foobar', PageReference::LOCAL ) ];
+		yield [ PageReferenceValue::localReference( NS_MAIN, 'Foobar' ) ];
 	}
 
 	/**
@@ -104,8 +104,8 @@ class LinkRendererTest extends MediaWikiLangTestCase {
 			new TitleValue( NS_SPECIAL, 'Foobar' )
 		];
 		yield [
-			new PageReferenceValue( NS_MAIN, 'Foobar', PageReference::LOCAL ),
-			new PageReferenceValue( NS_SPECIAL, 'Foobar', PageReference::LOCAL )
+			PageReferenceValue::localReference( NS_MAIN, 'Foobar' ),
+			PageReferenceValue::localReference( NS_SPECIAL, 'Foobar' )
 		];
 	}
 
@@ -153,8 +153,8 @@ class LinkRendererTest extends MediaWikiLangTestCase {
 			new TitleValue( NS_SPECIAL, 'BlankPage' )
 		];
 		yield [
-			new PageReferenceValue( NS_SPECIAL, 'Foobar', PageReference::LOCAL ),
-			new PageReferenceValue( NS_SPECIAL, 'BlankPage', PageReference::LOCAL )
+			PageReferenceValue::localReference( NS_SPECIAL, 'Foobar' ),
+			PageReferenceValue::localReference( NS_SPECIAL, 'BlankPage' )
 		];
 	}
 
@@ -263,9 +263,9 @@ class LinkRendererTest extends MediaWikiLangTestCase {
 			new TitleValue( NS_USER, 'Someuser' )
 		];
 		yield [
-			new PageReferenceValue( NS_MAIN, 'FooBar', PageReference::LOCAL ),
-			new PageReferenceValue( NS_MAIN, 'Redirect', PageReference::LOCAL ),
-			new PageReferenceValue( NS_USER, 'Someuser', PageReference::LOCAL )
+			PageReferenceValue::localReference( NS_MAIN, 'FooBar' ),
+			PageReferenceValue::localReference( NS_MAIN, 'Redirect' ),
+			PageReferenceValue::localReference( NS_USER, 'Someuser' )
 		];
 	}
 

@@ -154,7 +154,7 @@ class ParsoidLocalization extends ContentDOMTransformStage {
 		$pageRef = $this->titleFactory->newFromDBkey( $titleDbKey );
 		if ( !$pageRef ) {
 			$this->logger->error( __METHOD__ . ": Bad title information in ParserOutput" );
-			$pageRef = new PageReferenceValue( NS_SPECIAL, 'BadTitle/Localization', false );
+			$pageRef = PageReferenceValue::localReference( NS_SPECIAL, 'BadTitle/Localization' );
 		}
 		return $pageRef;
 	}

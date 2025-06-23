@@ -534,7 +534,7 @@ class SearchHandlerTest extends MediaWikiUnitTestCase {
 			$this->makeMockSearchResult( 'FooBarBaz' ),
 		] );
 
-		$pageTarget = new PageIdentityValue( 1, NS_MAIN, 'Foo_Redirect_Target', PageIdentityValue::LOCAL );
+		$pageTarget = PageIdentityValue::localIdentity( 1, NS_MAIN, 'Foo_Redirect_Target' );
 
 		$mockRedirectLinkTarget = $this->createMock( LinkTarget::class );
 		$mockPageStore = $this->createMock( PageStore::class );
@@ -574,7 +574,7 @@ class SearchHandlerTest extends MediaWikiUnitTestCase {
 			$this->makeMockSearchResult( 'FooBarBaz' ),
 		] );
 
-		$pageTarget = new PageIdentityValue( 1, NS_MAIN, 'Foo_Redirect_Target', PageIdentityValue::LOCAL );
+		$pageTarget = PageIdentityValue::localIdentity( 1, NS_MAIN, 'Foo_Redirect_Target' );
 
 		$mockRedirectLinkTarget = $this->createMock( LinkTarget::class );
 		$mockRedirectLinkTarget->method( 'getFragment' )->willReturn( 'Lorem Ipsum' );

@@ -1,5 +1,5 @@
 <?php
-use MediaWiki\Page\PageIdentity;
+
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Title\TitleValue;
 
@@ -64,8 +64,8 @@ class TitleFormatterTest extends TitleCodecTestBase {
 		return [
 			[ new TitleValue( NS_MAIN, 'Foo_Bar', '' ), 'en', 'Foo Bar' ],
 			[ new TitleValue( NS_USER, 'Hansi_Maier', 'stuff_and_so_on' ), 'en', 'Hansi Maier' ],
-			[ new PageIdentityValue( 37, NS_MAIN, 'Foo_Bar', PageIdentity::LOCAL ), 'en', 'Foo Bar' ],
-			[ new PageIdentityValue( 37, NS_USER, 'Hansi_Maier', PageIdentity::LOCAL ), 'en', 'Hansi Maier' ],
+			[ PageIdentityValue::localIdentity( 37, NS_MAIN, 'Foo_Bar' ), 'en', 'Foo Bar' ],
+			[ PageIdentityValue::localIdentity( 37, NS_USER, 'Hansi_Maier' ), 'en', 'Hansi Maier' ],
 		];
 	}
 
@@ -99,27 +99,27 @@ class TitleFormatterTest extends TitleCodecTestBase {
 				'Special:Badtitle/NS1000000:Invalid namespace'
 			],
 			[
-				new PageIdentityValue( 37, NS_MAIN, 'Foo_Bar', PageIdentity::LOCAL ),
+				PageIdentityValue::localIdentity( 37, NS_MAIN, 'Foo_Bar' ),
 				'en',
 				'Foo Bar'
 			],
 			[
-				new PageIdentityValue( 37, NS_USER, 'Hansi_Maier', PageIdentity::LOCAL ),
+				PageIdentityValue::localIdentity( 37, NS_USER, 'Hansi_Maier' ),
 				'en',
 				'User:Hansi Maier'
 			],
 			[
-				new PageIdentityValue( 37, NS_USER_TALK, 'hansi__maier', PageIdentity::LOCAL ),
+				PageIdentityValue::localIdentity( 37, NS_USER_TALK, 'hansi__maier' ),
 				'en',
 				'User talk:hansi  maier'
 			],
 			[
-				new PageIdentityValue( 37, NS_USER, 'Lisa_Müller', PageIdentity::LOCAL ),
+				PageIdentityValue::localIdentity( 37, NS_USER, 'Lisa_Müller' ),
 				'de',
 				'Benutzerin:Lisa Müller'
 			],
 			[
-				new PageIdentityValue( 37, 1000000, 'Invalid_namespace', PageIdentity::LOCAL ),
+				PageIdentityValue::localIdentity( 37, 1000000, 'Invalid_namespace' ),
 				'en',
 				'Special:Badtitle/NS1000000:Invalid namespace'
 			],
@@ -154,32 +154,32 @@ class TitleFormatterTest extends TitleCodecTestBase {
 			[ new TitleValue( 10000000, 'Foobar', '', '' ), 'en', 'Special:Badtitle/NS10000000:Foobar' ],
 
 			[
-				new PageIdentityValue( 37, NS_MAIN, 'Foo_Bar', PageIdentity::LOCAL ),
+				PageIdentityValue::localIdentity( 37, NS_MAIN, 'Foo_Bar' ),
 				'en',
 				'Foo_Bar'
 			],
 			[
-				new PageIdentityValue( 37, NS_USER, 'Hansi_Maier', PageIdentity::LOCAL ),
+				PageIdentityValue::localIdentity( 37, NS_USER, 'Hansi_Maier' ),
 				'en',
 				'User:Hansi_Maier'
 			],
 			[
-				new PageIdentityValue( 37, NS_USER_TALK, 'hansi__maier', PageIdentity::LOCAL ),
+				PageIdentityValue::localIdentity( 37, NS_USER_TALK, 'hansi__maier' ),
 				'en',
 				'User_talk:hansi__maier'
 			],
 			[
-				new PageIdentityValue( 37, NS_USER, 'Lisa_Müller', PageIdentity::LOCAL ),
+				PageIdentityValue::localIdentity( 37, NS_USER, 'Lisa_Müller' ),
 				'de',
 				'Benutzerin:Lisa_Müller'
 			],
 			[
-				new PageIdentityValue( 37, NS_MAIN, 'Remote_page', PageIdentity::LOCAL ),
+				PageIdentityValue::localIdentity( 37, NS_MAIN, 'Remote_page' ),
 				'en',
 				'Remote_page'
 			],
 			[
-				new PageIdentityValue( 37, 10000000, 'Foobar', PageIdentity::LOCAL ),
+				PageIdentityValue::localIdentity( 37, 10000000, 'Foobar' ),
 				'en',
 				'Special:Badtitle/NS10000000:Foobar'
 			],
@@ -209,17 +209,17 @@ class TitleFormatterTest extends TitleCodecTestBase {
 			[ new TitleValue( NS_USER, 'Hansi_Maier' ), 'en', 'User:Hansi Maier' ],
 
 			[
-				new PageIdentityValue( 37, NS_MAIN, 'Foo_Bar', PageIdentity::LOCAL ),
+				PageIdentityValue::localIdentity( 37, NS_MAIN, 'Foo_Bar' ),
 				'en',
 				'Foo Bar'
 			],
 			[
-				new PageIdentityValue( 37, NS_USER, 'Hansi_Maier', PageIdentity::LOCAL ),
+				PageIdentityValue::localIdentity( 37, NS_USER, 'Hansi_Maier' ),
 				'en',
 				'User:Hansi Maier'
 			],
 			[
-				new PageIdentityValue( 37, NS_USER_TALK, 'hansi__maier', PageIdentity::LOCAL ),
+				PageIdentityValue::localIdentity( 37, NS_USER_TALK, 'hansi__maier' ),
 				'en',
 				'User talk:hansi  maier'
 			],

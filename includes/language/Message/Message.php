@@ -362,19 +362,17 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 
 		// Since 1.35, the key 'titlevalue' is set, instead of 'titlestr'.
 		if ( isset( $data['titlevalue'] ) ) {
-			$this->contextPage = new PageReferenceValue(
+			$this->contextPage = PageReferenceValue::localReference(
 				$data['titlevalue'][0],
-				$data['titlevalue'][1],
-				PageReference::LOCAL
+				$data['titlevalue'][1]
 			);
 		} elseif ( isset( $data['titlestr'] ) ) {
 			$titleParser = MediaWikiServices::getInstance()->getTitleParser();
 			$title = $titleParser->parseTitle( $data['titlestr'] );
 			// The title should not have any fragment or interwiki parts
-			$this->contextPage = new PageReferenceValue(
+			$this->contextPage = PageReferenceValue::localReference(
 				$title->getNamespace(),
-				$title->getDBkey(),
-				PageReference::LOCAL
+				$title->getDBkey()
 			);
 		} else {
 			$this->contextPage = null;

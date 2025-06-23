@@ -5,7 +5,6 @@ namespace MediaWiki\Deferred\LinksUpdate;
 use Collation;
 use MediaWiki\Config\Config;
 use MediaWiki\Config\ServiceOptions;
-use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\JobQueue\Utils\PurgeJobUtils;
 use MediaWiki\Language\ILanguageConverter;
 use MediaWiki\Languages\LanguageConverterFactory;
@@ -323,7 +322,7 @@ class CategoryLinksTable extends TitleLinksTable {
 	}
 
 	protected function makePageReferenceValue( $linkId ): PageReferenceValue {
-		return new PageReferenceValue( NS_CATEGORY, $linkId[0], WikiAwareEntity::LOCAL );
+		return PageReferenceValue::localReference( NS_CATEGORY, $linkId[0] );
 	}
 
 	protected function makeTitle( $linkId ): Title {

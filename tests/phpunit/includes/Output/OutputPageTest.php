@@ -827,7 +827,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	public function testSetRedirectedFrom() {
 		$op = $this->newInstance();
 
-		$op->setRedirectedFrom( new PageReferenceValue( NS_TALK, 'Some page', PageReference::LOCAL ) );
+		$op->setRedirectedFrom( PageReferenceValue::localReference( NS_TALK, 'Some page' ) );
 		$this->assertSame( 'Talk:Some_page', $op->getJSVars()['wgRedirectedFrom'] );
 	}
 
@@ -988,7 +988,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 	public static function provideBacklinkSubtitle() {
 		$page1title = [ 'Page 1', [ 'redirect' => true ] ];
-		$page1ref = new PageReferenceValue( NS_MAIN, 'Page 1', PageReference::LOCAL );
+		$page1ref = PageReferenceValue::localReference( NS_MAIN, 'Page 1' );
 
 		$row = [
 			'page_id' => 28,
@@ -1002,7 +1002,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		];
 		$page2rec = new PageStoreRecord( (object)$row, PageReference::LOCAL );
 
-		$special = new PageReferenceValue( NS_SPECIAL, 'BlankPage', PageReference::LOCAL );
+		$special = PageReferenceValue::localReference( NS_SPECIAL, 'BlankPage' );
 
 		return [
 			[
@@ -1843,7 +1843,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public static function provideAddWikiText() {
-		$somePageRef = new PageReferenceValue( NS_TALK, 'Some page', PageReference::LOCAL );
+		$somePageRef = PageReferenceValue::localReference( NS_TALK, 'Some page' );
 
 		$tests = [
 			'addWikiTextAsInterface' => [

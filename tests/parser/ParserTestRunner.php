@@ -1518,7 +1518,7 @@ class ParserTestRunner {
 
 		$wikitext = $test->wikitext;
 		$output = null;
-		$pageReference = new PageReferenceValue( $title->getNamespace(), $title->getDBkey(), PageReferenceValue::LOCAL );
+		$pageReference = PageReferenceValue::localReference( $title->getNamespace(), $title->getDBkey() );
 		'@phan-var string $wikitext'; // assert that this is not null
 		if ( isset( $opts['pst'] ) ) {
 			$out = $parser->preSaveTransform( $wikitext, $pageReference, $options->getUserIdentity(), $options );

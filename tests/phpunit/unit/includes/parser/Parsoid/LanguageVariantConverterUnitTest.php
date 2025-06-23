@@ -242,7 +242,7 @@ class LanguageVariantConverterUnitTest extends MediaWikiUnitTestCase {
 		$pageLanguageCode = preg_replace( '/-.*$/', '', $pageLanguageCode );
 
 		$shouldSiteConfigBeUsed = true;
-		$pageIdentityValue = new PageIdentityValue( 1, NS_MAIN, 'hello_world', PageIdentity::LOCAL );
+		$pageIdentityValue = PageIdentityValue::localIdentity( 1, NS_MAIN, 'hello_world' );
 
 		// Create the necessary mocks
 		$languageFactoryMock = $this->getLanguageFactoryMock();

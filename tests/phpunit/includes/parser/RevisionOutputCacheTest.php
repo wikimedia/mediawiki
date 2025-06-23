@@ -5,7 +5,6 @@ namespace MediaWiki\Tests\Parser;
 use InvalidArgumentException;
 use MediaWiki\Content\WikitextContent;
 use MediaWiki\Json\JsonCodec;
-use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
@@ -50,12 +49,7 @@ class RevisionOutputCacheTest extends MediaWikiIntegrationTestCase {
 		MWTimestamp::setFakeTime( $this->time );
 
 		$this->revision = new MutableRevisionRecord(
-			new PageIdentityValue(
-				42,
-				NS_MAIN,
-				'Testing_Testing',
-				PageIdentity::LOCAL
-			),
+			PageIdentityValue::localIdentity( 42, NS_MAIN, 'Testing_Testing' ),
 			RevisionRecord::LOCAL
 		);
 		$this->revision->setId( 24 );

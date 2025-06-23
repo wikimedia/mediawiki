@@ -395,10 +395,9 @@ class RecentChange implements Taggable {
 			//      at least if it's not a special page.
 			//      However, newForCategorization() puts the ID of the categorized page into
 			//      rc_cur_id, but the title of the category page into rc_title.
-			$this->mPage = new PageReferenceValue(
+			$this->mPage = PageReferenceValue::localReference(
 				(int)$this->mAttribs['rc_namespace'],
-				$this->mAttribs['rc_title'],
-				PageReference::LOCAL
+				$this->mAttribs['rc_title']
 			);
 		}
 

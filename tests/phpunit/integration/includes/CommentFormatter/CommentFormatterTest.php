@@ -234,7 +234,7 @@ class CommentFormatterTest extends MediaWikiIntegrationTestCase {
 	 * @return array<RevisionRecord|Authority>
 	 */
 	private function makeRevisionAndAuthority( $text, $isDeleted, $isAllowed ) {
-		$page = new PageIdentityValue( 1, 0, 'Page', false );
+		$page = PageIdentityValue::localIdentity( 1, 0, 'Page' );
 		$rev = new MutableRevisionRecord( $page );
 		$comment = new CommentStoreComment( 1, $text );
 		$rev->setId( 100 );

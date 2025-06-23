@@ -2,7 +2,6 @@
 
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
-use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Page\WikiPage;
 use MediaWiki\Page\WikiPageFactory;
@@ -240,7 +239,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 			return new TitleValue( $namespace, $dbKey );
 		} ];
 		yield [ static function ( $pageId, $namespace, $dbKey ) {
-			return new PageIdentityValue( $pageId, $namespace, $dbKey, PageIdentityValue::LOCAL );
+			return PageIdentityValue::localIdentity( $pageId, $namespace, $dbKey );
 		} ];
 		yield [ static function ( $pageId, $namespace, $dbKey, $testCase ) {
 			return $testCase->makeMockTitle( $dbKey, [
@@ -527,12 +526,12 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 	public function testIsWatchable() {
 		$manager = $this->getManager( [ 'readOnly' => 'never' ] );
 
-		$target = new PageReferenceValue( NS_USER, __METHOD__, PageReference::LOCAL );
+		$target = PageReferenceValue::localReference( NS_USER, __METHOD__ );
 		$this->assertTrue( $manager->isWatchable( $target ) );
 	}
 
 	public static function provideNotIsWatchable() {
-		yield [ new PageReferenceValue( NS_SPECIAL, 'Contributions', PageReference::LOCAL ) ];
+		yield [ PageReferenceValue::localReference( NS_SPECIAL, 'Contributions' ) ];
 		yield [ Title::makeTitle( NS_MAIN, '', 'References' ) ];
 		yield [ Title::makeTitle( NS_MAIN, 'Foo', '', 'acme' ) ];
 	}
@@ -556,7 +555,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 			$userIdentity,
 			[ 'editmywatchlist' ]
 		);
-		$title = new PageIdentityValue( 100, NS_MAIN, 'Page_db_Key_goesHere', PageIdentityValue::LOCAL );
+		$title = PageIdentityValue::localIdentity( 100, NS_MAIN, 'Page_db_Key_goesHere' );
 
 		$watchedItemStore = $this->getDummyWatchedItemStore();
 		$watchedItemStore->expects( $this->exactly( 4 ) )->method( 'addWatch' ); // watch page and its talk page twice
@@ -581,7 +580,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 	public function testSetWatchUserNotLoggedIn() {
 		$userIdentity = new UserIdentityValue( 0, 'User Name' );
 		$performer = $this->mockUserAuthorityWithPermissions( $userIdentity, [ 'editmywatchlist' ] );
-		$title = new PageIdentityValue( 100, NS_MAIN, 'Page_db_Key_goesHere', PageIdentityValue::LOCAL );
+		$title = PageIdentityValue::localIdentity( 100, NS_MAIN, 'Page_db_Key_goesHere' );
 
 		$watchedItemStore = $this->getDummyWatchedItemStore();
 		$watchedItemStore->expects( $this->never() )->method( 'addWatch' );
@@ -606,7 +605,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 			$userIdentity,
 			[ 'editmywatchlist' ]
 		);
-		$title = new PageIdentityValue( 100, NS_MAIN, 'Page_db_Key_goesHere', PageIdentityValue::LOCAL );
+		$title = PageIdentityValue::localIdentity( 100, NS_MAIN, 'Page_db_Key_goesHere' );
 
 		$watchedItemStore = $this->getDummyWatchedItemStore();
 		$watchedItemStore->expects( $this->exactly( 2 ) )->method( 'addWatch' ); // watch page and its talk page
@@ -635,7 +634,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 			$userIdentity,
 			[ 'editmywatchlist' ]
 		);
-		$title = new PageIdentityValue( 100, NS_MAIN, 'Page_db_Key_goesHere', PageIdentityValue::LOCAL );
+		$title = PageIdentityValue::localIdentity( 100, NS_MAIN, 'Page_db_Key_goesHere' );
 
 		$watchedItemStore = $this->getDummyWatchedItemStore();
 		$watchedItemStore->expects( $this->never() )->method( 'addWatch' );
@@ -660,7 +659,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 			$userIdentity,
 			[ 'editmywatchlist' ]
 		);
-		$title = new PageIdentityValue( 100, NS_MAIN, 'Page_db_Key_goesHere', PageIdentityValue::LOCAL );
+		$title = PageIdentityValue::localIdentity( 100, NS_MAIN, 'Page_db_Key_goesHere' );
 
 		$watchedItemStore = $this->getDummyWatchedItemStore();
 		$watchlistManager = $this->getManager( [
@@ -685,7 +684,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 			$userIdentity,
 			[ 'editmywatchlist' ]
 		);
-		$title = new PageIdentityValue( 100, NS_MAIN, 'Page_db_Key_goesHere', PageIdentityValue::LOCAL );
+		$title = PageIdentityValue::localIdentity( 100, NS_MAIN, 'Page_db_Key_goesHere' );
 
 		$watchedItemStore = $this->getDummyWatchedItemStore();
 		$watchlistManager = $this->getManager( [
@@ -708,7 +707,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 			$userIdentity,
 			[]
 		);
-		$title = new PageIdentityValue( 100, NS_MAIN, 'Page_db_Key_goesHere', PageIdentityValue::LOCAL );
+		$title = PageIdentityValue::localIdentity( 100, NS_MAIN, 'Page_db_Key_goesHere' );
 
 		$watchedItemStore = $this->getDummyWatchedItemStore();
 		$watchlistManager = $this->getManager( [
@@ -731,7 +730,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 			$userIdentity,
 			[ 'editmywatchlist' ]
 		);
-		$title = new PageIdentityValue( 100, NS_MAIN, 'Page_db_Key_goesHere', PageIdentityValue::LOCAL );
+		$title = PageIdentityValue::localIdentity( 100, NS_MAIN, 'Page_db_Key_goesHere' );
 
 		$watchedItemStore = $this->getDummyWatchedItemStore();
 		$watchlistManager = $this->getManager( [
@@ -754,7 +753,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 			$userIdentity,
 			[ 'editmywatchlist' ]
 		);
-		$title = new PageIdentityValue( 100, NS_MAIN, 'Page_db_Key_goesHere', PageIdentityValue::LOCAL );
+		$title = PageIdentityValue::localIdentity( 100, NS_MAIN, 'Page_db_Key_goesHere' );
 
 		$hookContainer = $this->createHookContainer( [
 			'UnwatchArticle' => static function () {
@@ -785,7 +784,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 			$userIdentity,
 			[ 'editmywatchlist' ]
 		);
-		$title = new PageIdentityValue( 100, NS_MAIN, 'Page_db_Key_goesHere', PageIdentityValue::LOCAL );
+		$title = PageIdentityValue::localIdentity( 100, NS_MAIN, 'Page_db_Key_goesHere' );
 
 		$watchedItemStore = $this->getDummyWatchedItemStore();
 		$watchlistManager = $this->getManager( [

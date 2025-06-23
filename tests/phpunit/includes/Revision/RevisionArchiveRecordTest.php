@@ -56,7 +56,7 @@ class RevisionArchiveRecordTest extends MediaWikiIntegrationTestCase {
 		];
 
 		yield 'all info, local' => [
-			new PageIdentityValue( 17, NS_MAIN, 'Dummy', PageIdentity::LOCAL ),
+			PageIdentityValue::localIdentity( 17, NS_MAIN, 'Dummy' ),
 			$user,
 			$comment,
 			(object)$row,
@@ -207,11 +207,10 @@ class RevisionArchiveRecordTest extends MediaWikiIntegrationTestCase {
 		$row = $protoRow;
 
 		yield 'mismatching wiki ID' => [
-			new PageIdentityValue(
+			PageIdentityValue::localIdentity(
 				$title->getArticleID(),
 				$title->getNamespace(),
-				$title->getDBkey(),
-				PageIdentity::LOCAL
+				$title->getDBkey()
 			),
 			$user,
 			$comment,

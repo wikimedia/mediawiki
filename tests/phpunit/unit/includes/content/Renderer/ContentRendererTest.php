@@ -25,7 +25,6 @@ use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\Renderer\ContentRenderer;
 use MediaWiki\Content\WikitextContent;
 use MediaWiki\Content\WikitextContentHandler;
-use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
@@ -53,7 +52,7 @@ class ContentRendererTest extends MediaWikiUnitTestCase {
 	 * object with a render ID, cache revision ID, and revision timestamp.
 	 */
 	public function testGetParserOutput() {
-		$page = new PageIdentityValue( 1, NS_MAIN, 'TestPage', WikiAwareEntity::LOCAL );
+		$page = PageIdentityValue::localIdentity( 1, NS_MAIN, 'TestPage' );
 		$parserOptions = $this->createMock( ParserOptions::class );
 		$revision = new MutableRevisionRecord( $page );
 		$revision->setTimestamp( '20230418000000' );
@@ -103,7 +102,7 @@ class ContentRendererTest extends MediaWikiUnitTestCase {
 	 * return a ParserOutput object with a render ID.
 	 */
 	public function testGetParserOutputWithNullRevision() {
-		$page = new PageIdentityValue( 1, NS_MAIN, 'TestPage', WikiAwareEntity::LOCAL );
+		$page = PageIdentityValue::localIdentity( 1, NS_MAIN, 'TestPage' );
 		$parserOptions = $this->createMock( ParserOptions::class );
 
 		$contentHandler = $this->createMock( WikitextContentHandler::class );

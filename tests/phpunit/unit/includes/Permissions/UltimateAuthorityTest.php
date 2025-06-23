@@ -21,7 +21,6 @@
 namespace MediaWiki\Tests\Unit\Permissions;
 
 use InvalidArgumentException;
-use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Permissions\UltimateAuthority;
@@ -52,7 +51,7 @@ class UltimateAuthorityTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testProbablyCan() {
-		$target = new PageIdentityValue( 321, NS_MAIN, __METHOD__, PageIdentity::LOCAL );
+		$target = PageIdentityValue::localIdentity( 321, NS_MAIN, __METHOD__ );
 		$actor = new UserIdentityValue( 12, 'Test' );
 		$authority = new UltimateAuthority( $actor );
 
@@ -65,7 +64,7 @@ class UltimateAuthorityTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testDefinitelyCan() {
-		$target = new PageIdentityValue( 321, NS_MAIN, __METHOD__, PageIdentity::LOCAL );
+		$target = PageIdentityValue::localIdentity( 321, NS_MAIN, __METHOD__ );
 		$actor = new UserIdentityValue( 12, 'Test' );
 		$authority = new UltimateAuthority( $actor );
 
@@ -78,7 +77,7 @@ class UltimateAuthorityTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testAuthorizeRead() {
-		$target = new PageIdentityValue( 321, NS_MAIN, __METHOD__, PageIdentity::LOCAL );
+		$target = PageIdentityValue::localIdentity( 321, NS_MAIN, __METHOD__ );
 		$actor = new UserIdentityValue( 12, 'Test' );
 		$authority = new UltimateAuthority( $actor );
 
@@ -91,7 +90,7 @@ class UltimateAuthorityTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testAuthorizeWrite() {
-		$target = new PageIdentityValue( 321, NS_MAIN, __METHOD__, PageIdentity::LOCAL );
+		$target = PageIdentityValue::localIdentity( 321, NS_MAIN, __METHOD__ );
 		$actor = new UserIdentityValue( 12, 'Test' );
 		$authority = new UltimateAuthority( $actor );
 

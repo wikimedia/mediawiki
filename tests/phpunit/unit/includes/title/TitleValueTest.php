@@ -19,7 +19,6 @@
  * @author Daniel Kinzler
  */
 
-use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Title\Title;
@@ -169,7 +168,7 @@ class TitleValueTest extends \MediaWikiUnitTestCase {
 	}
 
 	public static function provideNewFromPage() {
-		yield [ new PageReferenceValue( NS_USER, 'Test', PageIdentity::LOCAL ) ];
+		yield [ PageReferenceValue::localReference( NS_USER, 'Test' ) ];
 		yield [ new PageReferenceValue( NS_USER, 'Test', 'acme' ) ];
 	}
 

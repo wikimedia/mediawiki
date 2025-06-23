@@ -99,11 +99,11 @@ class LinkBatchTest extends MediaWikiIntegrationTestCase {
 		$batch = $this->newLinkBatch(
 			[
 				new TitleValue( NS_MAIN, 'Foo' ),
-				new PageReferenceValue( NS_USER, 'Foo', PageReference::LOCAL ),
+				PageReferenceValue::localReference( NS_USER, 'Foo' ),
 			]
 		);
 
-		$batch->addObj( new PageReferenceValue( NS_TALK, 'Bar', PageReference::LOCAL ) );
+		$batch->addObj( PageReferenceValue::localReference( NS_TALK, 'Bar' ) );
 		$batch->addObj( new TitleValue( NS_MAIN, 'Foo' ) );
 
 		$this->assertSame( 3, $batch->getSize() );

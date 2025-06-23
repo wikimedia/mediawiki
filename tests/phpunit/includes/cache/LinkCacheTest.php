@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\Cache\LinkCache;
-use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
@@ -33,14 +32,14 @@ class LinkCacheTest extends MediaWikiIntegrationTestCase {
 
 	public static function providePageAndLink() {
 		return [
-			[ new PageReferenceValue( NS_USER, __METHOD__, PageReference::LOCAL ) ],
+			[ PageReferenceValue::localReference( NS_USER, __METHOD__ ) ],
 			[ new TitleValue( NS_USER, __METHOD__ ) ]
 		];
 	}
 
 	public static function providePageAndLinkAndArray() {
 		return [
-			[ new PageReferenceValue( NS_USER, __METHOD__, PageReference::LOCAL ) ],
+			[ PageReferenceValue::localReference( NS_USER, __METHOD__ ) ],
 			[ new TitleValue( NS_USER, __METHOD__ ) ],
 			[ [ 'page_namespace' => NS_USER, 'page_title' => __METHOD__ ] ],
 		];
@@ -137,7 +136,7 @@ class LinkCacheTest extends MediaWikiIntegrationTestCase {
 	public function testAddGoodLinkObjWithAllParameters() {
 		$linkCache = $this->getServiceContainer()->getLinkCache();
 
-		$page = new PageReferenceValue( NS_USER, __METHOD__, PageReference::LOCAL );
+		$page = PageReferenceValue::localReference( NS_USER, __METHOD__ );
 		$this->addGoodLinkObject( 8, $page, 18, 0, 118, CONTENT_MODEL_TEXT, 'xyz' );
 
 		$row = $linkCache->getGoodLinkRow( $page->getNamespace(), $page->getDBkey() );
@@ -176,7 +175,7 @@ class LinkCacheTest extends MediaWikiIntegrationTestCase {
 	public function testAddGoodLinkObjFromRowWithMinimalParameters() {
 		$linkCache = $this->getServiceContainer()->getLinkCache();
 
-		$page = new PageReferenceValue( NS_USER, __METHOD__, PageReference::LOCAL );
+		$page = PageReferenceValue::localReference( NS_USER, __METHOD__ );
 
 		$this->addGoodLinkObject( 8, $page );
 		$expectedRow = [

@@ -606,11 +606,11 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 				'expectedFullText' => 'User:Test'
 			],
 			'PageIdentityValue object' => [
-				'title' => new PageIdentityValue( 0, NS_MAIN, 'Test', PageIdentityValue::LOCAL ),
+				'title' => PageIdentityValue::localIdentity( 0, NS_MAIN, 'Test' ),
 				'expectedFullText' => 'Test'
 			],
 			'PageIdentityValue object with namespace' => [
-				'title' => new PageIdentityValue( 0, NS_USER, 'Test', PageIdentityValue::LOCAL ),
+				'title' => PageIdentityValue::localIdentity( 0, NS_USER, 'Test' ),
 				'expectedFullText' => 'User:Test'
 			],
 		];

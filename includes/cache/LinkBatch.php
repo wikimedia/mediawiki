@@ -306,11 +306,10 @@ class LinkBatch {
 				$pdbk = $this->titleFormatter->getPrefixedDBkey( $title );
 				$ids[$pdbk] = $row->page_id;
 
-				$pageIdentity = new PageIdentityValue(
+				$pageIdentity = PageIdentityValue::localIdentity(
 					(int)$row->page_id,
 					(int)$row->page_namespace,
-					$row->page_title,
-					ProperPageIdentity::LOCAL
+					$row->page_title
 				);
 
 				$key = CacheKeyHelper::getKeyForPage( $pageIdentity );
@@ -335,7 +334,7 @@ class LinkBatch {
 					$pdbk = $this->titleFormatter->getPrefixedDBkey( $title );
 					$ids[$pdbk] = 0;
 
-					$pageIdentity = new PageIdentityValue( 0, (int)$ns, $dbkey, ProperPageIdentity::LOCAL );
+					$pageIdentity = PageIdentityValue::localIdentity( 0, (int)$ns, $dbkey );
 					$key = CacheKeyHelper::getKeyForPage( $pageIdentity );
 					$this->pageIdentities[$key] = $pageIdentity;
 				} catch ( InvalidArgumentException ) {

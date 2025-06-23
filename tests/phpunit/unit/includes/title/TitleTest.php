@@ -23,7 +23,6 @@ namespace MediaWiki\Tests\Unit;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
-use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
@@ -281,12 +280,12 @@ class TitleTest extends MediaWikiUnitTestCase {
 		];
 		yield 'LinkTarget == PageReference' => [
 			new TitleValue( NS_MAIN, 'Aa' ),
-			new PageReferenceValue( NS_MAIN, 'Aa', PageReference::LOCAL ),
+			PageReferenceValue::localReference( NS_MAIN, 'Aa' ),
 			0
 		];
 		yield 'Title > PageReference, name' => [
 			Title::makeTitle( NS_TALK, 'Aa' ),
-			new PageReferenceValue( NS_MAIN, 'Aa', PageReference::LOCAL ),
+			PageReferenceValue::localReference( NS_MAIN, 'Aa' ),
 			1
 		];
 		yield 'LinkTarget < Title, ns' => [
@@ -342,7 +341,7 @@ class TitleTest extends MediaWikiUnitTestCase {
 	}
 
 	public static function provideCastFromPageReference() {
-		yield [ new PageReferenceValue( NS_MAIN, 'Test', PageReference::LOCAL ) ];
+		yield [ PageReferenceValue::localReference( NS_MAIN, 'Test' ) ];
 	}
 
 	/**
@@ -458,7 +457,7 @@ class TitleTest extends MediaWikiUnitTestCase {
 		// Wrong type
 		yield '(makeTitle vs PageIdentityValue) name text' => [
 			Title::makeTitle( NS_MAIN, 'Foo' ),
-			new PageIdentityValue( 0, NS_MAIN, 'Foo', PageIdentity::LOCAL ),
+			PageIdentityValue::localIdentity( 0, NS_MAIN, 'Foo' ),
 			false
 		];
 		yield '(makeTitle vs TitleValue) name text' => [
