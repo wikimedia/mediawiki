@@ -52,9 +52,18 @@ const WatchlistTopSectionWidget = function MwRcfiltersUiWatchlistTopSectionWidge
 						.addClass( 'mw-rcfilters-ui-cell' )
 						.addClass( 'mw-rcfilters-ui-watchlistTopSectionWidget-buttonsSection' )
 						.append(
+							// eslint-disable-next-line mediawiki/class-doc
 							$( '<div>' )
-								.addClass( 'mw-rcfilters-ui-watchlistTopSectionWidget-editWatchlistButton' )
-								.append( $editWatchlistButtonLink )
+								.addClass(
+									// Do not add class in vector-2022 because it is redundant
+									mw.config.get( 'skin' ) !== 'vector-2022' && mw.config.get( 'skin' ) !== 'minerva' ?
+										'mw-rcfilters-ui-watchlistTopSectionWidget-editWatchlistButton' : undefined
+								)
+								.append(
+									// Do not append edit watchlist button in vector-2022 because it is redundant
+									mw.config.get( 'skin' ) !== 'vector-2022' && mw.config.get( 'skin' ) !== 'minerva' ?
+										$editWatchlistButtonLink : undefined
+								)
 						)
 						.append(
 							$( '<div>' )

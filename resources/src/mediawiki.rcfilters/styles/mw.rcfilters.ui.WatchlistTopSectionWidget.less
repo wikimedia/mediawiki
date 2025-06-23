@@ -10,7 +10,7 @@
 	}
 
 	&-watchlistDetails {
-		flex-grow: 1;
+		flex-grow: 4;
 	}
 
 	&-savedLinksTable {
@@ -41,11 +41,11 @@
 		&-editWatchlistButton {
 			align-self: start;
 			min-width: 6em;
-			margin: 0.5em 0.5em 0 0.5em;
+			margin: 0.25em 0.25em 0 0.375em;
 		}
 
 		.mw-rcfilters-ui-watchlistTopSectionWidget-editWatchlistButtonIcon {
-			margin-right: 0.25em;
+			margin-right: 0.375em;
 		}
 	}
 
@@ -61,15 +61,19 @@
 
 		// T235535
 		&-editWatchlistButton {
-			margin: 0.175em 0.5em 0.5em 0.175em;
+			margin: 0.15em 0 0.15em 0;
 		}
 
 		.mw-rcfilters-ui-watchlistTopSectionWidget-editWatchlistButtonIcon {
-			margin-right: 0.275em;
+			margin: 0 0.375em 0 0;
 		}
 
 		.mw-rcfilters-ui-watchlistTopSectionWidget-buttonsSection {
-			min-width: 9em;
+			display: flex;
+			flex-flow: column;
+			align-items: flex-end;
+			justify-content: flex-end;
+			min-width: 26%;
 		}
 	}
 }
@@ -79,19 +83,21 @@
 .skin-vector-2022 {
 	.mw-rcfilters-ui-watchlistTopSectionWidget-buttonsSection {
 		display: flex;
-		flex-flow: column;
+		flex-flow: row;
 		align-items: flex-end;
-		min-width: 16em;
+		justify-content: flex-end;
 	}
 
 	@media screen and ( max-width: @max-width-breakpoint-tablet ) {
 		.mw-rcfilters-ui-watchlistTopSectionWidget-buttonsSection {
 			display: flex;
-			flex-direction: row;
+			flex-flow: row;
+			align-items: flex-start;
+			min-width: 5em;
 		}
 
 		.mw-rcfilters-ui-watchlistTopSectionWidget-editWatchlistButton {
-			margin: 0.175em 0.75em 0 0.75em;
+			margin-top: 0.175em;
 		}
 	}
 }
