@@ -3173,13 +3173,16 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		$this->mWarnings = $jsonData['Warnings'] ?? [];
 		$this->mWarningMsgs = $jsonData['WarningMsgs'] ?? [];
 		$this->mFlags = $jsonData['Flags'];
-		if (
-			$jsonData['Sections'] !== [] ||
-			// backward-compatibility: distinguish "no sections" from
-			// "sections not set" (Will be unnecessary after T327439.)
+		if ( isset( $jsonData['TOCData'] ) ) {
+			$this->mTOCData = $jsonData['TOCData'];
+		// Backward-compatibility with old TOCData encoding (T327439)
+		// emitted in MW < 1.45
+		} elseif (
+			( $jsonData['Sections'] ?? [] ) !== [] ||
+			// distinguish "no sections" from "sections not set"
 			$this->getOutputFlag( 'mw:toc-set' )
 		) {
-			$this->setSections( $jsonData['Sections'] );
+			$this->setSections( $jsonData['Sections'] ?? [] );
 			unset( $this->mFlags['mw:toc-set'] );
 			if ( isset( $jsonData['TOCExtensionData'] ) ) {
 				$tocData = $this->getTOCData(); // created by setSections() above
