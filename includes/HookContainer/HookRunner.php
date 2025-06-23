@@ -364,6 +364,7 @@ class HookRunner implements
 	\MediaWiki\Hook\SpecialListusersHeaderHook,
 	\MediaWiki\Hook\SpecialListusersQueryInfoHook,
 	\MediaWiki\Hook\SpecialLogAddLogSearchRelationsHook,
+	\MediaWiki\Hook\SpecialLogResolveLogTypeHook,
 	\MediaWiki\Hook\SpecialMovepageAfterMoveHook,
 	\MediaWiki\Hook\SpecialMuteModifyFormFieldsHook,
 	\MediaWiki\Hook\SpecialNewpagesConditionsHook,
@@ -3762,6 +3763,17 @@ class HookRunner implements
 		return $this->container->run(
 			'SpecialLogAddLogSearchRelations',
 			[ $type, $request, &$qc ]
+		);
+	}
+
+	public function onSpecialLogResolveLogType(
+		array $params,
+		string &$type
+	): void {
+		$this->container->run(
+			'SpecialLogResolveLogType',
+			[ $params, &$type ],
+			[ 'abortable' => false ]
 		);
 	}
 

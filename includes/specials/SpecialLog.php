@@ -246,19 +246,55 @@ class SpecialLog extends SpecialPage {
 	 * @param string $par
 	 */
 	private function parseParams( string $par ) {
-		# Get parameters
-		$parms = explode( '/', $par, 2 );
-		$symsForAll = [ '*', 'all' ];
-		if ( $parms[0] !== '' &&
-			( in_array( $parms[0], LogPage::validTypes() ) || in_array( $parms[0], $symsForAll ) )
-		) {
-			$this->getRequest()->setVal( 'type', $parms[0] );
-			if ( count( $parms ) === 2 ) {
-				$this->getRequest()->setVal( 'user', $parms[1] );
+		$params = explode( '/', $par, 2 );
+		$logType = $this->resolveLogType( $params );
+
+		if ( $logType ) {
+			$this->getRequest()->setVal( 'type', $logType );
+			if ( count( $params ) === 2 ) {
+				$this->getRequest()->setVal( 'user', $params[1] );
 			}
 		} elseif ( $par !== '' ) {
 			$this->getRequest()->setVal( 'user', $par );
 		}
+	}
+
+	/**
+	 * Determines the requested log type based on the parameters from the
+	 * requested URL, which are obtained by splitting the path by the slash
+	 * character.
+	 *
+	 * This method returns the requested type, if one is provided and is '*',
+	 * 'all', or is included in the values from LogPage::validTypes(); or an
+	 * empty string otherwise.
+	 *
+	 * Extensions may modify the requested type by implementing the
+	 * SpecialLogResolveLogType hook, which may be used to change the log type
+	 * obtained from the URL and other request parameters.
+	 *
+	 * @param array $params Values resulting from splitting the URL by '/'.
+	 * @return string The requested type if valid, or an empty string otherwise.
+	 */
+	private function resolveLogType( array $params ): string {
+		// Mechanism for changing the parameters of Special:Log
+		// from extensions (T381875)
+		$logType = $params[0] ?? null;
+
+		$this->getHookRunner()->onSpecialLogResolveLogType(
+			$params,
+			$logType
+		);
+
+		if ( $logType !== '' ) {
+			$symsForAll = [ '*', 'all' ];
+			$allowedTypes = array_merge( LogPage::validTypes(), $symsForAll );
+
+			if ( in_array( $logType, $allowedTypes ) ) {
+				return $logType;
+			}
+		}
+
+		return '';
 	}
 
 	private function show( FormOptions $opts, array $extraConds ) {

@@ -22,6 +22,7 @@ class HookRunnerTest extends HookRunnerTestBase {
 
 	protected static array $unabortableHooksNotReturningVoid = [
 		'onGetAllBlockActions',
+		'onSpecialLogResolveLogType',
 		'onSpecialPrefixIndexGetFormFilters',
 		'onSpecialPrefixIndexQuery',
 		'onSpecialWhatLinksHereQuery',
