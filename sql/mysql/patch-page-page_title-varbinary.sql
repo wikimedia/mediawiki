@@ -1,1 +1,0 @@
-ALTER TABLE /*_*/page MODIFY page_title VARBINARY(255) NOT NULL;
