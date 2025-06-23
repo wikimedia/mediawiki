@@ -164,6 +164,7 @@ class Names {
 		'dga' => 'Dagaare', # Southern Dagaare
 		'din' => 'Thuɔŋjäŋ', # Dinka
 		'diq' => 'Zazaki', # Zazaki
+		'dlg' => 'долган тыла', # Dolgan
 		'dsb' => 'dolnoserbski', # Lower Sorbian
 		'dtp' => 'Kadazandusun', # Central Dusun
 		'dty' => 'डोटेली', # Doteli
