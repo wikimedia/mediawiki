@@ -4,6 +4,7 @@
 
 /* @phan-file-suppress PhanTypeSuspiciousEcho, PhanTypeConversionFromArray, PhanPluginUseReturnValueInternalKnown, PhanNoopNew */
 /* @phan-file-suppress PhanTypeMismatchArgument Ignore list/array mismatch for taint checks */
+/* @phan-file-suppress PhanParamTooFewInPHPDoc */
 
 /*
  * This test ensures that taint-check knows about unsafe methods in MediaWiki. Knowledge about those methods
@@ -28,14 +29,16 @@ use MediaWiki\Shell\Result;
 use MediaWiki\Shell\Shell;
 use MediaWiki\Status\Status;
 use MediaWiki\Status\StatusFormatter;
-use MediaWiki\Title\TitleValue;
 use Shellbox\Command\UnboxedResult;
 use Shellbox\Shellbox;
+use Wikimedia\Rdbms\Database\DbQuoter;
 use Wikimedia\Rdbms\DeleteQueryBuilder;
 use Wikimedia\HtmlArmor\HtmlArmor;
 use Wikimedia\Rdbms\Expression;
+use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\InsertQueryBuilder;
 use Wikimedia\Rdbms\JoinGroupBase;
+use Wikimedia\Rdbms\Platform\ISQLPlatform;
 use Wikimedia\Rdbms\RawSQLExpression;
 use Wikimedia\Rdbms\RawSQLValue;
 use Wikimedia\Rdbms\ReplaceQueryBuilder;
@@ -69,7 +72,7 @@ class TaintCheckAnnotationsTest {
 		$db->selectSQLText( '', $_GET['a'] ); // @phan-suppress-current-line SecurityCheck-SQLInjection
 		$db->selectSQLText( '', '', [ $_GET['a'] ] ); // @phan-suppress-current-line SecurityCheck-SQLInjection
 		echo $db->selectSQLText( 'safe', 'safe' ); // @phan-suppress-current-line SecurityCheck-XSS
-		$db->query( $db->selectSQLText( 'safe', 'safe' ) ); // Safe
+		$db->query( $db->selectSQLText( 'safe', 'safe', [ 'foo' => $_GET['a'] ] ) ); // Safe
 
 		$db->selectRowCount( $_GET['a'], '' ); // @phan-suppress-current-line SecurityCheck-SQLInjection
 		$db->selectRowCount( '', $_GET['a'] ); // @phan-suppress-current-line SecurityCheck-SQLInjection
@@ -106,19 +109,19 @@ class TaintCheckAnnotationsTest {
 		echo $quoted;// @phan-suppress-current-line SecurityCheck-XSS
 		$db->query( $quoted );// Safe
 
-		// buildLike is only hardcoded for the Database class
 		echo $db->buildLike( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-XSS
 		$db->query( $db->buildLike( $_GET['a'] ) );// Safe
 		echo $db->buildLike( '', $_GET['a'] );// @phan-suppress-current-line SecurityCheck-XSS
 		$db->query( $db->buildLike( '', $_GET['a'] ) );// Safe
 		echo $db->buildLike( '', '', '', '', '', $_GET['a'] );// @phan-suppress-current-line SecurityCheck-XSS
 		$db->query( $db->buildLike( '', '', '', '', '', $_GET['a'] ) );// Safe
+
+		echo $db->makeList( [ $_GET['a'] ] );// @phan-suppress-current-line SecurityCheck-XSS
+		$db->query( $db->makeList( $_GET['a'] ) );// Safe
+		echo $db->makeList( [] );// Safe
 	}
 
-	/**
-	 * @suppress PhanParamTooFewInPHPDoc
-	 */
-	function testIDatabase( \Wikimedia\Rdbms\IDatabase $db ) {
+	function testIDatabase( IDatabase $db ) {
 		$db->query( $_GET['a'] ); // @phan-suppress-current-line SecurityCheck-SQLInjection
 		echo $db->query( 'safe' ); // @phan-suppress-current-line SecurityCheck-XSS
 
@@ -141,7 +144,7 @@ class TaintCheckAnnotationsTest {
 		$db->selectSQLText( '', $_GET['a'] ); // @phan-suppress-current-line SecurityCheck-SQLInjection
 		$db->selectSQLText( '', '', [ $_GET['a'] ] ); // @phan-suppress-current-line SecurityCheck-SQLInjection
 		echo $db->selectSQLText( 'safe', 'safe' ); // @phan-suppress-current-line SecurityCheck-XSS
-		$db->query( $db->selectSQLText( 'safe', 'safe' ) ); // Safe
+		$db->query( $db->selectSQLText( 'safe', 'safe', [ 'foo' => $_GET['a'] ] ) ); // Safe
 
 		$db->selectRowCount( $_GET['a'], '' ); // @phan-suppress-current-line SecurityCheck-SQLInjection
 		$db->selectRowCount( '', $_GET['a'] ); // @phan-suppress-current-line SecurityCheck-SQLInjection
@@ -178,15 +181,45 @@ class TaintCheckAnnotationsTest {
 		echo $quoted;// @phan-suppress-current-line SecurityCheck-XSS
 		$db->query( $quoted );// Safe
 
-		// makeList is only hardcoded for the IDatabase interface
+		echo $db->buildLike( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-XSS
+		$db->query( $db->buildLike( $_GET['a'] ) );// Safe
+		echo $db->buildLike( '', $_GET['a'] );// @phan-suppress-current-line SecurityCheck-XSS
+		$db->query( $db->buildLike( '', $_GET['a'] ) );// Safe
+		echo $db->buildLike( '', '', '', '', '', $_GET['a'] );// @phan-suppress-current-line SecurityCheck-XSS
+		$db->query( $db->buildLike( '', '', '', '', '', $_GET['a'] ) );// Safe
+
 		echo $db->makeList( [ $_GET['a'] ] );// @phan-suppress-current-line SecurityCheck-XSS
 		$db->query( $db->makeList( $_GET['a'] ) );// Safe
 		echo $db->makeList( [] );// Safe
 	}
 
-	/**
-	 * @suppress PhanParamTooFewInPHPDoc
-	 */
+	function testIReadableDatabase( \Wikimedia\Rdbms\IReadableDatabase $dbr ) {
+		$dbr->select( $_GET['a'], '' ); // @phan-suppress-current-line SecurityCheck-SQLInjection
+		$dbr->select( '', $_GET['a'] ); // @phan-suppress-current-line SecurityCheck-SQLInjection
+		$dbr->select( '', '', [ $_GET['a'] ] ); // @phan-suppress-current-line SecurityCheck-SQLInjection
+		echo $dbr->select( 'safe', 'safe' ); // @phan-suppress-current-line SecurityCheck-XSS
+
+		$dbr->selectField( $_GET['a'], '' ); // @phan-suppress-current-line SecurityCheck-SQLInjection
+		$dbr->selectField( '', $_GET['a'] ); // @phan-suppress-current-line SecurityCheck-SQLInjection
+		$dbr->selectField( '', '', [ $_GET['a'] ] ); // @phan-suppress-current-line SecurityCheck-SQLInjection
+		echo $dbr->selectField( 'safe', 'safe' ); // @phan-suppress-current-line SecurityCheck-XSS
+
+		$dbr->selectFieldValues( $_GET['a'], '' ); // @phan-suppress-current-line SecurityCheck-SQLInjection
+		$dbr->selectFieldValues( '', $_GET['a'] ); // @phan-suppress-current-line SecurityCheck-SQLInjection
+		$dbr->selectFieldValues( '', '', [ $_GET['a'] ] ); // @phan-suppress-current-line SecurityCheck-SQLInjection
+		echo $dbr->selectFieldValues( 'safe', 'safe' ); // @phan-suppress-current-line SecurityCheck-XSS
+
+		$dbr->selectRowCount( $_GET['a'], '' ); // @phan-suppress-current-line SecurityCheck-SQLInjection
+		$dbr->selectRowCount( '', $_GET['a'] ); // @phan-suppress-current-line SecurityCheck-SQLInjection
+		$dbr->selectRowCount( '', '', [ $_GET['a'] ] ); // @phan-suppress-current-line SecurityCheck-SQLInjection
+		echo $dbr->selectRowCount( 'safe', 'safe' ); // Safe
+
+		$dbr->selectRow( $_GET['a'], '', [] ); // @phan-suppress-current-line SecurityCheck-SQLInjection
+		$dbr->selectRow( '', $_GET['a'], [] ); // @phan-suppress-current-line SecurityCheck-SQLInjection
+		$dbr->selectRow( '', '', [ $_GET['a'] ] ); // @phan-suppress-current-line SecurityCheck-SQLInjection
+		echo $dbr->selectRow( 'safe', 'safe', [] ); // @phan-suppress-current-line SecurityCheck-XSS
+	}
+
 	function testIMaintainableDatabase( \Wikimedia\Rdbms\IMaintainableDatabase $db ) {
 		$db->query( $_GET['a'] ); // @phan-suppress-current-line SecurityCheck-SQLInjection
 		echo $db->query( 'safe' ); // @phan-suppress-current-line SecurityCheck-XSS
@@ -210,7 +243,7 @@ class TaintCheckAnnotationsTest {
 		$db->selectSQLText( '', $_GET['a'] ); // @phan-suppress-current-line SecurityCheck-SQLInjection
 		$db->selectSQLText( '', '', [ $_GET['a'] ] ); // @phan-suppress-current-line SecurityCheck-SQLInjection
 		echo $db->selectSQLText( 'safe', 'safe' ); // @phan-suppress-current-line SecurityCheck-XSS
-		$db->query( $db->selectSQLText( 'safe', 'safe' ) ); // Safe
+		$db->query( $db->selectSQLText( 'safe', 'safe', [ 'foo' => $_GET['a'] ] ) ); // Safe
 
 		$db->selectRowCount( $_GET['a'], '' ); // @phan-suppress-current-line SecurityCheck-SQLInjection
 		$db->selectRowCount( '', $_GET['a'] ); // @phan-suppress-current-line SecurityCheck-SQLInjection
@@ -271,7 +304,7 @@ class TaintCheckAnnotationsTest {
 		$db->selectSQLText( '', $_GET['a'] ); // @phan-suppress-current-line SecurityCheck-SQLInjection
 		$db->selectSQLText( '', '', [ $_GET['a'] ] ); // @phan-suppress-current-line SecurityCheck-SQLInjection
 		echo $db->selectSQLText( 'safe', 'safe' ); // @phan-suppress-current-line SecurityCheck-XSS
-		$db->query( $db->selectSQLText( 'safe', 'safe' ) ); // Safe
+		$db->query( $db->selectSQLText( 'safe', 'safe', [ 'foo' => $_GET['a'] ] ) ); // Safe
 
 		$db->selectRowCount( $_GET['a'], '' ); // @phan-suppress-current-line SecurityCheck-SQLInjection
 		$db->selectRowCount( '', $_GET['a'] ); // @phan-suppress-current-line SecurityCheck-SQLInjection
@@ -329,6 +362,35 @@ class TaintCheckAnnotationsTest {
 		$quoted = $db->addQuotes( $_GET['a'] );
 		echo $quoted;// @phan-suppress-current-line SecurityCheck-XSS
 		$db->query( $quoted );// Safe
+	}
+
+	function testISQLPlatform( ISQLPlatform $platform, IDatabase $dbForQueryCalls ) {
+		$platform->selectSQLText( $_GET['a'], '' ); // @phan-suppress-current-line SecurityCheck-SQLInjection
+		$platform->selectSQLText( '', $_GET['a'] ); // @phan-suppress-current-line SecurityCheck-SQLInjection
+		$platform->selectSQLText( '', '', [ $_GET['a'] ] ); // @phan-suppress-current-line SecurityCheck-SQLInjection
+		echo $platform->selectSQLText( 'safe', 'safe' ); // @phan-suppress-current-line SecurityCheck-XSS
+		$dbForQueryCalls->query( $platform->selectSQLText( 'safe', 'safe' ) ); // Safe
+
+		$identQuoted = $platform->addIdentifierQuotes( $_GET['a'] );
+		echo $identQuoted;// @phan-suppress-current-line SecurityCheck-XSS
+		$dbForQueryCalls->query( $identQuoted );// Safe
+
+		echo $platform->buildLike( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-XSS
+		$dbForQueryCalls->query( $platform->buildLike( $_GET['a'] ) );// Safe
+		echo $platform->buildLike( '', $_GET['a'] );// @phan-suppress-current-line SecurityCheck-XSS
+		$dbForQueryCalls->query( $platform->buildLike( '', $_GET['a'] ) );// Safe
+		echo $platform->buildLike( '', '', '', '', '', $_GET['a'] );// @phan-suppress-current-line SecurityCheck-XSS
+		$dbForQueryCalls->query( $platform->buildLike( '', '', '', '', '', $_GET['a'] ) );// Safe
+
+		echo $platform->makeList( [ $_GET['a'] ] );// @phan-suppress-current-line SecurityCheck-XSS
+		$dbForQueryCalls->query( $platform->makeList( $_GET['a'] ) );// Safe
+		echo $platform->makeList( [] );// Safe
+	}
+
+	function testDbQuoter( DbQuoter $quoter, IDatabase $dbForQueryCalls ) {
+		$quoted = $quoter->addQuotes( $_GET['a'] );
+		echo $quoted;// @phan-suppress-current-line SecurityCheck-XSS
+		$dbForQueryCalls->query( $quoted );// Safe
 	}
 
 	function testSelectQueryBuilder( SelectQueryBuilder $sqb ) {
