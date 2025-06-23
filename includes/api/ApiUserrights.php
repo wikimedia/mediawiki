@@ -146,9 +146,9 @@ class ApiUserrights extends ApiBase {
 			$groupExpiries
 		);
 
-		$watchlistExpiry = $this->getExpiryFromParams( $params );
-		$watchuser = $params['watchuser'];
 		$userPage = Title::makeTitle( NS_USER, $user->getName() );
+		$watchlistExpiry = $this->getExpiryFromParams( $params, $userPage, $this->getUser() );
+		$watchuser = $params['watchuser'];
 		if ( $watchuser && $user->getWikiId() === UserIdentity::LOCAL ) {
 			$this->setWatch( 'watch', $userPage, $this->getUser(), null, $watchlistExpiry );
 		} else {

@@ -297,6 +297,7 @@ class ApiMain extends ApiBase {
 			'services' => [
 				'RollbackPageFactory',
 				'WatchlistManager',
+				'WatchedItemStore',
 				'UserOptionsLookup',
 			]
 		],
@@ -305,6 +306,7 @@ class ApiMain extends ApiBase {
 			'services' => [
 				'RepoGroup',
 				'WatchlistManager',
+				'WatchedItemStore',
 				'UserOptionsLookup',
 				'DeletePageFactory',
 			]
@@ -313,6 +315,7 @@ class ApiMain extends ApiBase {
 			'class' => ApiUndelete::class,
 			'services' => [
 				'WatchlistManager',
+				'WatchedItemStore',
 				'UserOptionsLookup',
 				'UndeletePageFactory',
 				'WikiPageFactory',
@@ -322,6 +325,7 @@ class ApiMain extends ApiBase {
 			'class' => ApiProtect::class,
 			'services' => [
 				'WatchlistManager',
+				'WatchedItemStore',
 				'UserOptionsLookup',
 				'RestrictionStore',
 			]
@@ -360,6 +364,7 @@ class ApiMain extends ApiBase {
 				'MovePageFactory',
 				'RepoGroup',
 				'WatchlistManager',
+				'WatchedItemStore',
 				'UserOptionsLookup',
 			]
 		],
@@ -382,6 +387,7 @@ class ApiMain extends ApiBase {
 			'services' => [
 				'JobQueueGroup',
 				'WatchlistManager',
+				'WatchedItemStore',
 				'UserOptionsLookup',
 			]
 		],

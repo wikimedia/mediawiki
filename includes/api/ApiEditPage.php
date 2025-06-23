@@ -460,7 +460,7 @@ class ApiEditPage extends ApiBase {
 			if ( !$pageObj->exists() ) {
 				$prefName = 'watchcreations-expiry';
 			}
-			$watchlistExpiry = $this->getExpiryFromParams( $params, $user, $prefName );
+			$watchlistExpiry = $this->getExpiryFromParams( $params, $titleObj, $user, $prefName );
 
 			if ( $watchlistExpiry ) {
 				$requestArray['wpWatchlistExpiry'] = $watchlistExpiry;

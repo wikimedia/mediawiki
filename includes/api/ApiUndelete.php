@@ -28,6 +28,7 @@ use MediaWiki\Page\UndeletePageFactory;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Title\Title;
 use MediaWiki\User\Options\UserOptionsLookup;
+use MediaWiki\Watchlist\WatchedItemStoreInterface;
 use MediaWiki\Watchlist\WatchlistManager;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\Rdbms\IDBAccessObject;
@@ -46,6 +47,7 @@ class ApiUndelete extends ApiBase {
 		ApiMain $mainModule,
 		string $moduleName,
 		WatchlistManager $watchlistManager,
+		WatchedItemStoreInterface $watchedItemStore,
 		UserOptionsLookup $userOptionsLookup,
 		UndeletePageFactory $undeletePageFactory,
 		WikiPageFactory $wikiPageFactory
@@ -57,6 +59,7 @@ class ApiUndelete extends ApiBase {
 		$this->watchlistMaxDuration =
 			$this->getConfig()->get( MainConfigNames::WatchlistExpiryMaxDuration );
 		$this->watchlistManager = $watchlistManager;
+		$this->watchedItemStore = $watchedItemStore;
 		$this->userOptionsLookup = $userOptionsLookup;
 		$this->undeletePageFactory = $undeletePageFactory;
 		$this->wikiPageFactory = $wikiPageFactory;
@@ -126,7 +129,7 @@ class ApiUndelete extends ApiBase {
 				$this->getUser(), $params['reason'] );
 		}
 
-		$watchlistExpiry = $this->getExpiryFromParams( $params );
+		$watchlistExpiry = $this->getExpiryFromParams( $params, $titleObj, $user );
 		$this->setWatch( $params['watchlist'], $titleObj, $user, null, $watchlistExpiry );
 
 		$info = [

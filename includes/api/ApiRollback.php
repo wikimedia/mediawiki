@@ -30,6 +30,7 @@ use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Title\Title;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\Watchlist\WatchedItemStoreInterface;
 use MediaWiki\Watchlist\WatchlistManager;
 use Profiler;
 use Wikimedia\ParamValidator\ParamValidator;
@@ -48,6 +49,7 @@ class ApiRollback extends ApiBase {
 		string $moduleName,
 		RollbackPageFactory $rollbackPageFactory,
 		WatchlistManager $watchlistManager,
+		WatchedItemStoreInterface $watchedItemStore,
 		UserOptionsLookup $userOptionsLookup
 	) {
 		parent::__construct( $mainModule, $moduleName );
@@ -58,6 +60,7 @@ class ApiRollback extends ApiBase {
 		$this->watchlistMaxDuration =
 			$this->getConfig()->get( MainConfigNames::WatchlistExpiryMaxDuration );
 		$this->watchlistManager = $watchlistManager;
+		$this->watchedItemStore = $watchedItemStore;
 		$this->userOptionsLookup = $userOptionsLookup;
 	}
 
@@ -109,7 +112,7 @@ class ApiRollback extends ApiBase {
 		}
 
 		$watch = $params['watchlist'] ?? 'preferences';
-		$watchlistExpiry = $this->getExpiryFromParams( $params, $user, 'watchrollback-expiry' );
+		$watchlistExpiry = $this->getExpiryFromParams( $params, $titleObj, $user, 'watchrollback-expiry' );
 
 		// Watch pages
 		$this->setWatch( $watch, $titleObj, $user, 'watchrollback', $watchlistExpiry );

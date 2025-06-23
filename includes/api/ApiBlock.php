@@ -163,8 +163,8 @@ class ApiBlock extends ApiBase {
 			throw new RuntimeException( "Unexpected block class" );
 		}
 
-		$watchlistExpiry = $this->getExpiryFromParams( $params );
 		$userPage = Title::makeTitle( NS_USER, $block->getTargetName() );
+		$watchlistExpiry = $this->getExpiryFromParams( $params, $userPage, $this->getUser() );
 
 		if ( $params['watchuser'] && $block->getType() !== AbstractBlock::TYPE_RANGE ) {
 			$this->setWatch( 'watch', $userPage, $this->getUser(), null, $watchlistExpiry );

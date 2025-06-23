@@ -42,6 +42,7 @@ use MediaWiki\Message\Message;
 use MediaWiki\Status\Status;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\User;
+use MediaWiki\Watchlist\WatchedItemStoreInterface;
 use MediaWiki\Watchlist\WatchlistManager;
 use Psr\Log\LoggerInterface;
 use StatusValue;
@@ -84,6 +85,7 @@ class ApiUpload extends ApiBase {
 		string $moduleName,
 		JobQueueGroup $jobQueueGroup,
 		WatchlistManager $watchlistManager,
+		WatchedItemStoreInterface $watchedItemStore,
 		UserOptionsLookup $userOptionsLookup
 	) {
 		parent::__construct( $mainModule, $moduleName );
@@ -94,6 +96,7 @@ class ApiUpload extends ApiBase {
 		$this->watchlistMaxDuration =
 			$this->getConfig()->get( MainConfigNames::WatchlistExpiryMaxDuration );
 		$this->watchlistManager = $watchlistManager;
+		$this->watchedItemStore = $watchedItemStore;
 		$this->userOptionsLookup = $userOptionsLookup;
 		$this->log = LoggerFactory::getInstance( 'upload' );
 	}
@@ -196,6 +199,7 @@ class ApiUpload extends ApiBase {
 			'upload',
 			$services->getJobQueueGroup(),
 			$services->getWatchlistManager(),
+			$services->getWatchedItemStore(),
 			$services->getUserOptionsLookup()
 		);
 
@@ -996,7 +1000,7 @@ class ApiUpload extends ApiBase {
 				$this->getWatchlistValue( 'preferences', $title, $user, 'watchcreations' )
 			);
 		}
-		$watchlistExpiry = $this->getExpiryFromParams( $this->mParams );
+		$watchlistExpiry = $this->getExpiryFromParams( $this->mParams, $title, $user );
 
 		// Deprecated parameters
 		if ( $this->mParams['watch'] ) {
