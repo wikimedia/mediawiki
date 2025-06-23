@@ -330,6 +330,9 @@ abstract class ParserCacheSerializationTestCases {
 		$parserOutputWithMetadataPost1_34->addExtraCSPScriptSrc( 'script1' );
 		$parserOutputWithMetadataPost1_34->addLink( Title::makeTitle( NS_SPECIAL, 'Link3' ) );
 
+		$parserOutputWithEmptyToC = new ParserOutput( '' );
+		$parserOutputWithEmptyToC->setSections( [] );
+
 		MWDebug::clearDeprecationFilters();
 
 		$testCases = [
@@ -355,6 +358,7 @@ abstract class ParserCacheSerializationTestCases {
 					$testCase->assertArrayEquals( [], $object->getIndicators() );
 					$testCase->assertSame( '', $object->getTitleText() );
 					$testCase->assertArrayEquals( [], $object->getSections() );
+					$testCase->assertNull( $object->getTOCData() );
 					$testCase->assertArrayEquals( [], $object->getLinks() );
 					$testCase->assertArrayEquals( [], $object->getLinksSpecial() );
 					$testCase->assertArrayEquals( [], $object->getTemplates() );
@@ -488,6 +492,7 @@ abstract class ParserCacheSerializationTestCases {
 					$testCase->assertArrayEquals( [ 'indicator1' => 'indicator1_value' ], $object->getIndicators() );
 					$testCase->assertSame( 'title_text1', $object->getTitleText() );
 					$testCase->assertArrayEquals( self::SECTIONS, $object->getSections() );
+					$testCase->assertNotNull( $object->getTOCData() );
 					$testCase->assertArrayEquals( [
 						NS_MAIN => [ 'Link1' => 42 ],
 						NS_USER => [ 'Link2' => 43 ]
@@ -529,6 +534,7 @@ abstract class ParserCacheSerializationTestCases {
 				'instance' => $parserOutputWithSections,
 				'assertions' => static function ( MediaWikiIntegrationTestCase $testCase, ParserOutput $object ) {
 					$testCase->assertArrayEquals( self::SECTIONS, $object->getSections() );
+					$testCase->assertNotNull( $object->getTOCData() );
 				}
 			],
 			'withMetadataPost1_31' => [
@@ -570,6 +576,7 @@ abstract class ParserCacheSerializationTestCases {
 					$testCase->assertArrayEquals( [ 'indicator1' => 'indicator1_value' ], $object->getIndicators() );
 					$testCase->assertSame( 'title_text1', $object->getTitleText() );
 					$testCase->assertArrayEquals( self::SECTIONS, $object->getSections() );
+					$testCase->assertNotNull( $object->getTOCData() );
 					$testCase->assertArrayEquals( [
 						NS_MAIN => [ 'Link1' => 42 ],
 						NS_USER => [ 'Link2' => 43 ]
@@ -635,6 +642,13 @@ abstract class ParserCacheSerializationTestCases {
 						$object->getPageProperty( 'array' )
 					);
 				}
+			],
+			'withEmptyToC' => [
+				'instance' => $parserOutputWithEmptyToC,
+				'assertions' => static function ( MediaWikiIntegrationTestCase $testCase, ParserOutput $object ) {
+					$testCase->assertArrayEquals( [], $object->getSections() );
+					$testCase->assertNotNull( $object->getTOCData() );
+				},
 			],
 		];
 		// We don't serialize or restore parseStartTime any more, so
