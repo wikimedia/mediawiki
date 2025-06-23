@@ -56,7 +56,8 @@ class PageIdentityValue extends PageReferenceValue implements ProperPageIdentity
 	 * @param int $namespace A valid namespace ID. Validation is the caller's responsibility!
 	 * @param string $dbKey A valid DB key. Validation is the caller's responsibility!
 	 * @param string|false $wikiId The Id of the wiki this page belongs to,
-	 *        or self::LOCAL for the local wiki.
+	 *        or self::LOCAL for the local wiki. The method {@link PageIdentityValue::localIdentity}
+	 *        is available as a shorthand for local wikis (only requires 3 parameters).
 	 *
 	 * @return PageIdentityValue|null
 	 */

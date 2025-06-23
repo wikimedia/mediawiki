@@ -59,7 +59,8 @@ class PageReferenceValue implements Stringable, PageReference {
 	 * @param int $namespace A valid namespace ID. Validation is the caller's responsibility!
 	 * @param string $dbKey A valid DB key. Validation is the caller's responsibility!
 	 * @param string|false $wikiId The Id of the wiki this page belongs to,
-	 *        or self::LOCAL for the local wiki.
+	 *        or self::LOCAL for the local wiki. The method {@link PageReferenceValue::localReference}
+	 *        is available as a shorthand for local wikis (only requires 2 parameters).
 	 */
 	public function __construct( int $namespace, string $dbKey, $wikiId ) {
 		$this->assertWikiIdParam( $wikiId );
