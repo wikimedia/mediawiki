@@ -197,6 +197,21 @@ class TaintCheckAnnotationsTest {
 		echo $db->makeList( [ $_GET['a'] ] );// @phan-suppress-current-line SecurityCheck-XSS
 		$db->query( $db->makeList( $_GET['a'] ) );// Safe
 		echo $db->makeList( [] );// Safe
+		// Check special handling
+		$db->makeList( $_GET['a'] ); // Safe
+		$db->makeList( $_GET['a'], IDatabase::LIST_COMMA ); // Safe
+		$db->makeList( $_GET['a'], IDatabase::LIST_AND ); // @phan-suppress-current-line SecurityCheck-SQLInjection
+		$db->makeList( [ $_GET['a'] ], IDatabase::LIST_AND ); // @phan-suppress-current-line SecurityCheck-SQLInjection
+		$db->makeList( [ 'a' => $_GET['a'] ], IDatabase::LIST_AND ); // Safe
+		$db->makeList( $_GET['a'], IDatabase::LIST_SET ); // @phan-suppress-current-line SecurityCheck-SQLInjection
+		$db->makeList( [ $_GET['a'] ], IDatabase::LIST_SET ); // @phan-suppress-current-line SecurityCheck-SQLInjection
+		$db->makeList( [ 'a' => $_GET['a'] ], IDatabase::LIST_SET ); // Safe
+		$db->makeList( $_GET['a'], IDatabase::LIST_NAMES ); // @phan-suppress-current-line SecurityCheck-SQLInjection
+		$db->makeList( [ $_GET['a'] ], IDatabase::LIST_NAMES ); // @phan-suppress-current-line SecurityCheck-SQLInjection
+		$db->makeList( [ 'a' => $_GET['a'] ], IDatabase::LIST_NAMES ); // @phan-suppress-current-line SecurityCheck-SQLInjection
+		$db->makeList( $_GET['a'], IDatabase::LIST_OR ); // @phan-suppress-current-line SecurityCheck-SQLInjection
+		$db->makeList( [ $_GET['a'] ], IDatabase::LIST_OR ); // @phan-suppress-current-line SecurityCheck-SQLInjection
+		$db->makeList( [ 'a' => $_GET['a'] ], IDatabase::LIST_OR ); // Safe
 	}
 
 	function testIDatabase( IDatabase $db ) {
@@ -347,6 +362,21 @@ class TaintCheckAnnotationsTest {
 		echo $db->makeList( [ $_GET['a'] ] );// @phan-suppress-current-line SecurityCheck-XSS
 		$db->query( $db->makeList( $_GET['a'] ) );// Safe
 		echo $db->makeList( [] );// Safe
+		// Check special handling
+		$db->makeList( $_GET['a'] ); // Safe
+		$db->makeList( $_GET['a'], IDatabase::LIST_COMMA ); // Safe
+		$db->makeList( $_GET['a'], IDatabase::LIST_AND ); // @phan-suppress-current-line SecurityCheck-SQLInjection
+		$db->makeList( [ $_GET['a'] ], IDatabase::LIST_AND ); // @phan-suppress-current-line SecurityCheck-SQLInjection
+		$db->makeList( [ 'a' => $_GET['a'] ], IDatabase::LIST_AND ); // Safe
+		$db->makeList( $_GET['a'], IDatabase::LIST_SET ); // @phan-suppress-current-line SecurityCheck-SQLInjection
+		$db->makeList( [ $_GET['a'] ], IDatabase::LIST_SET ); // @phan-suppress-current-line SecurityCheck-SQLInjection
+		$db->makeList( [ 'a' => $_GET['a'] ], IDatabase::LIST_SET ); // Safe
+		$db->makeList( $_GET['a'], IDatabase::LIST_NAMES ); // @phan-suppress-current-line SecurityCheck-SQLInjection
+		$db->makeList( [ $_GET['a'] ], IDatabase::LIST_NAMES ); // @phan-suppress-current-line SecurityCheck-SQLInjection
+		$db->makeList( [ 'a' => $_GET['a'] ], IDatabase::LIST_NAMES ); // @phan-suppress-current-line SecurityCheck-SQLInjection
+		$db->makeList( $_GET['a'], IDatabase::LIST_OR ); // @phan-suppress-current-line SecurityCheck-SQLInjection
+		$db->makeList( [ $_GET['a'] ], IDatabase::LIST_OR ); // @phan-suppress-current-line SecurityCheck-SQLInjection
+		$db->makeList( [ 'a' => $_GET['a'] ], IDatabase::LIST_OR ); // Safe
 	}
 
 	function testIReadableDatabase( \Wikimedia\Rdbms\IReadableDatabase $dbr ) {
@@ -775,6 +805,21 @@ class TaintCheckAnnotationsTest {
 		echo $platform->makeList( [ $_GET['a'] ] );// @phan-suppress-current-line SecurityCheck-XSS
 		$dbForQueryCalls->query( $platform->makeList( $_GET['a'] ) );// Safe
 		echo $platform->makeList( [] );// Safe
+		// Check special handling
+		$platform->makeList( $_GET['a'] ); // Safe
+		$platform->makeList( $_GET['a'], IDatabase::LIST_COMMA ); // Safe
+		$platform->makeList( $_GET['a'], IDatabase::LIST_AND ); // @phan-suppress-current-line SecurityCheck-SQLInjection
+		$platform->makeList( [ $_GET['a'] ], IDatabase::LIST_AND ); // @phan-suppress-current-line SecurityCheck-SQLInjection
+		$platform->makeList( [ 'a' => $_GET['a'] ], IDatabase::LIST_AND ); // Safe
+		$platform->makeList( $_GET['a'], IDatabase::LIST_SET ); // @phan-suppress-current-line SecurityCheck-SQLInjection
+		$platform->makeList( [ $_GET['a'] ], IDatabase::LIST_SET ); // @phan-suppress-current-line SecurityCheck-SQLInjection
+		$platform->makeList( [ 'a' => $_GET['a'] ], IDatabase::LIST_SET ); // Safe
+		$platform->makeList( $_GET['a'], IDatabase::LIST_NAMES ); // @phan-suppress-current-line SecurityCheck-SQLInjection
+		$platform->makeList( [ $_GET['a'] ], IDatabase::LIST_NAMES ); // @phan-suppress-current-line SecurityCheck-SQLInjection
+		$platform->makeList( [ 'a' => $_GET['a'] ], IDatabase::LIST_NAMES ); // @phan-suppress-current-line SecurityCheck-SQLInjection
+		$platform->makeList( $_GET['a'], IDatabase::LIST_OR ); // @phan-suppress-current-line SecurityCheck-SQLInjection
+		$platform->makeList( [ $_GET['a'] ], IDatabase::LIST_OR ); // @phan-suppress-current-line SecurityCheck-SQLInjection
+		$platform->makeList( [ 'a' => $_GET['a'] ], IDatabase::LIST_OR ); // Safe
 	}
 
 	function testDbQuoter( DbQuoter $quoter, IDatabase $dbForQueryCalls ) {
