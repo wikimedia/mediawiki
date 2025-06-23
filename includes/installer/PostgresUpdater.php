@@ -591,7 +591,7 @@ END;
 
 		if ( $currentColumns == $shouldBe ) {
 			$this->output( "...no need to change primary key of '$table'\n" );
-			return true;
+			return;
 		}
 
 		$this->dropConstraint( $table, '', 'primary', $constraintName );
