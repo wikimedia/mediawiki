@@ -98,4 +98,34 @@ class DomainEventIngressTest extends MediaWikiUnitTestCase {
 			$trace
 		);
 	}
+
+	public static function provideRegistrationError() {
+		// unknown event
+		yield [ [ 'events' => [ 'Xyzzy' ] ], '/No listener methods found/' ];
+
+		// known event, but with the "Event" suffix
+		yield [ [ 'events' => [ 'FooEvent' ] ], '/should not include the .* suffix/' ];
+	}
+
+	/**
+	 * @dataProvider provideRegistrationError
+	 */
+	public function testRegistrationError( $options, $expectedRegex ) {
+		$trace = [];
+		$source = $this->newSpyEventSource( $trace );
+
+		// Pass nothing to the constructor, rely on initSubscriber()
+		$subscriber = new class () extends DomainEventIngress {
+			public function handleFooEvent() {
+				// no-op
+			}
+		};
+
+		$this->expectException( 'LogicException' );
+		$this->expectExceptionMessageMatches( $expectedRegex );
+
+		$subscriber->initSubscriber( $options );
+		$subscriber->registerListeners( $source );
+	}
+
 }

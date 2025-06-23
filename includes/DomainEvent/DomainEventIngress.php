@@ -102,9 +102,14 @@ abstract class DomainEventIngress implements InitializableDomainEventSubscriber 
 		}
 
 		if ( !$found ) {
-			throw new LogicException(
-				"No listener methods found for $eventType on " . get_class( $this )
-			);
+			$msg = "No listener methods found for $eventType on " . get_class( $this ) . ".";
+			if ( str_ends_with( $eventType, 'Event' ) ) {
+				$fixedType = substr( $eventType, 0, -5 );
+				$msg .= "\nThe event type name should not include the 'Event' suffix, " .
+					"use '$fixedType' instead!";
+			}
+
+			throw new LogicException( $msg );
 		}
 	}
 
