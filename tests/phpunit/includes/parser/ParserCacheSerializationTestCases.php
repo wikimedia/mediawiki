@@ -655,23 +655,16 @@ abstract class ParserCacheSerializationTestCases {
 	 *  'deserializer' => callable to deserialize objects
 	 */
 	public static function getSupportedSerializationFormats( string $class ): array {
-		$serializationFormats = [ [
-			'ext' => 'serialized',
-			'serializer' => 'serialize',
-			'deserializer' => 'unserialize'
-		] ];
-		if ( is_subclass_of( $class, JsonSerializable::class ) ) {
-			$jsonCodec = new JsonCodec();
-			$serializationFormats[] = [
+		$jsonCodec = new JsonCodec();
+		$serializationFormats = [
+			[
 				'ext' => 'json',
-				'serializer' => static function ( JsonSerializable $obj ) use ( $jsonCodec ) {
-					return $jsonCodec->serialize( $obj );
-				},
-				'deserializer' => static function ( $data ) use ( $jsonCodec ) {
-					return $jsonCodec->deserialize( $data );
-				}
-			];
-		}
+				'serializer' => static fn ( JsonSerializable $obj ) =>
+					$jsonCodec->serialize( $obj ),
+				'deserializer' => static fn ( $data ) =>
+					$jsonCodec->deserialize( $data ),
+			],
+		];
 		return $serializationFormats;
 	}
 }
