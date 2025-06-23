@@ -21,9 +21,11 @@
 
 namespace MediaWiki\Json;
 
+use CacheTime;
 use FormatJson;
 use InvalidArgumentException;
 use JsonSerializable;
+use ParserOutput;
 use Wikimedia\Assert\Assert;
 
 /**
@@ -62,7 +64,11 @@ class JsonCodec implements JsonUnserializer, JsonSerializer {
 		}
 
 		$class = $json[JsonConstants::TYPE_ANNOTATION];
-		if ( !class_exists( $class ) || !is_subclass_of( $class, JsonUnserializable::class ) ) {
+		if ( $class == "ParserOutput" || $class == "MediaWiki\\Parser\\ParserOutput" ) {
+			$class = ParserOutput::class; // T353835
+		} elseif ( $class == "CacheTime" || $class == "MediaWiki\\Parser\\CacheTime" ) {
+			$class = CacheTime::class; // T353835
+		} elseif ( !class_exists( $class ) || !is_subclass_of( $class, JsonUnserializable::class ) ) {
 			throw new InvalidArgumentException( "Invalid target class {$class}" );
 		}
 

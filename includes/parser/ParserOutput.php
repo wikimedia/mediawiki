@@ -2639,3 +2639,4 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		}
 	}
 }
+class_alias( ParserOutput::class, "MediaWiki\\Parser\\ParserOutput" );
