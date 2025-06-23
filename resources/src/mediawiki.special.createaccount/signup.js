@@ -82,6 +82,8 @@ mw.hook( 'htmlform.enhance' ).add( ( $root ) => {
 			return $.Deferred().resolve( { valid: true, messages: [] } );
 		}
 
+		mw.track( 'stats.mediawiki_signup_validatepassword' );
+
 		return api.post( {
 			action: 'validatepassword',
 			user: $usernameInput.val(),
