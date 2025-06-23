@@ -2468,7 +2468,7 @@
 	"delete-talk-summary-prefix": "已同關聯頁面一併刪除，理由: $1",
 	"historywarning": "<strong>警告：</strong>您正要刪除的頁面內含$1次{{PLURAL:$1|的修訂}}歷史：",
 	"historyaction-submit": "顯示修訂",
-	"confirmdeletetext": "您正要刪除頁面或圖片及其所有歷史，請確定您要這樣做，並了解後果，而且行為符合[[{{MediaWiki:Policy-url}}|方針]]。",
+	"confirmdeletetext": "您即將刪除一個頁面或圖像以及其歷史。\n\n請確定您要進行此項操作，並且了解其後果，同時您的行為符合[[{{MediaWiki:Policy-url}}|方針]]。",
 	"actioncomplete": "操作完成",
 	"actionfailed": "操作失敗",
 	"deletedtext": "已刪除「$1」。請參考$2檢視最近的刪除記錄。",

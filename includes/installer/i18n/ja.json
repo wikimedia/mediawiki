@@ -233,7 +233,7 @@
 	"config-license-help": "多くの公開ウィキでは、すべての寄稿物が[https://freedomdefined.org/Definition フリーライセンス]のもとに置かれています。\nこうすることにより、コミュニティによる共有の感覚が生まれ、長期的な寄稿が促されます。\n私的ウィキや企業のウィキでは、通常、フリーライセンスにする必要はありません。\n\nウィキペディアにあるテキストをあなたのウィキで利用し、逆にあなたのウィキにあるテキストをウィキペディアに複製することを許可したい場合には、<strong>{{int:config-license-cc-by-sa}}</strong>を選択するべきです。\n\nウィキペディアは以前、GNUフリー文書利用許諾契約書(GFDL)を使用していました。\nGFDLは有効なライセンスですが、内容を理解するのは困難です。\nまた、GFDLのもとに置かれているコンテンツの再利用も困難です。",
 	"config-email-settings": "メールの設定",
 	"config-enable-email": "メール送信を有効にする",
-	"config-enable-email-help": "メールを使用したい場合は、[https://www.php.net/manual/en/mail.configuration.php PHP のメール設定]が正しく設定されている必要があります。\nメールの機能を使用しない場合は、ここで無効にすることができます。",
+	"config-enable-email-help": "メールを使用する場合は、[https://www.php.net/manual/en/mail.configuration.php PHP のメール設定]を正しく構成する必要があります。\nメール機能を使用しない場合は、ここで無効にできます。",
 	"config-email-user": "利用者間のメールを有効にする",
 	"config-email-user-help": "設定で有効になっている場合、すべての利用者がお互いにメールのやりとりを行うことを許可する。",
 	"config-email-usertalk": "利用者のトークページでの通知を有効にする",

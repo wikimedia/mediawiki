@@ -276,7 +276,7 @@
 	"apihelp-managetags-paramvalue-operation-create": "手動適用のための新たな変更タグを作成します。",
 	"apihelp-managetags-paramvalue-operation-delete": "変更タグをデータベースから削除し、そのタグが使用されているすべての版、最近の更新項目、記録項目からそれを除去します。",
 	"apihelp-managetags-paramvalue-operation-activate": "変更タグを有効化し、利用者がそのタグを手動で適用できるようにします。",
-	"apihelp-managetags-paramvalue-operation-deactivate": "変更タグを無効化し、利用者がそのタグを手動で適用することができないようにします。",
+	"apihelp-managetags-paramvalue-operation-deactivate": "変更タグを無効化し、利用者がそのタグを手動で適用できないようにします。",
 	"apihelp-managetags-param-tag": "作成、削除、有効化、または無効化するタグ。タグの作成の場合、そのタグは存在しないものでなければなりません。タグの削除の場合、そのタグが存在しなければなりません。タグの有効化の場合、そのタグが存在し、かつ拡張機能によって使用されていないものでなければなりません。タグの無効化の場合、そのタグが現在有効であって手動で定義されたものでなければなりません。",
 	"apihelp-managetags-param-reason": "タグを作成、削除、有効化、または無効化する追加の理由。",
 	"apihelp-managetags-param-ignorewarnings": "操作中に発生したすべての警告を無視するかどうか。",

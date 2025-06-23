@@ -1,0 +1,17 @@
+{
+	"@metadata": {
+		"authors": [
+			"شاه زمان پټان"
+		]
+	},
+	"paramvalidator-param-deprecated": "د \"$1\" پاراميتر بدگڼل‌شوی دی.",
+	"paramvalidator-toomanyvalues": "د \"$1\" پاراميټر لپاره ډېر ارزښتونه ورکړل شوي دي. وروستی بريد يې $2 دی.",
+	"paramvalidator-help-default": "تلواليز: $1",
+	"paramvalidator-help-default-empty": "تلواليز: (تش)",
+	"paramvalidator-help-deprecated": "دا پاراميتر بدگڼل‌شوی دی.",
+	"paramvalidator-help-required": "دا پاراميتر اړين دی.",
+	"paramvalidator-help-type-string-maxbytes": "له $1 {{PLURAL:$1|بايټه|بايټو}} اوږدېدای نشي.",
+	"paramvalidator-help-type-string-maxchars": "له $1 {{PLURAL:$1|لوښې|لوښو}} اوږدېدای نشي.",
+	"paramvalidator-help-type-timestamp": "ډول:{{PLURAL:$1|1=وخت‌ټاپه|2= وخت‌ټاپو لړليک}}",
+	"paramvalidator-help-type-upload": "بايد د څوبرخيزه/اومتوک-بڼې په کارولو د دوتنې راپورته‌کولو په توگه خپور‌شوی وي."
+}

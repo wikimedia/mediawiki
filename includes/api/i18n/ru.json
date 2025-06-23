@@ -483,7 +483,7 @@
 	"apihelp-protect-param-watchlistexpiry": "Временная метка истечения срока действия списка наблюдения. Опустите этот параметр, чтобы оставить текущий срок действия неизменным.",
 	"apihelp-protect-example-protect": "Защитить страницу.",
 	"apihelp-protect-example-unprotect": "Снять защиту страницы, установив ограничения <kbd>all</kbd> (то есть, позволив всем проводить действия над страницей).",
-	"apihelp-protect-example-unprotect2": "Снять защиту страницу, не указав ограничений.",
+	"apihelp-protect-example-unprotect2": "Снять защиту страницы, не указав ограничений.",
 	"apihelp-purge-summary": "Очистка кэша заданных страниц.",
 	"apihelp-purge-param-forcelinkupdate": "Обновить таблицы ссылок и выполнить другие дополнительные обновления данных.",
 	"apihelp-purge-param-forcerecursivelinkupdate": "То же, что <kbd>forcelinkupdate</kbd>, а также обновить таблицу ссылок для всех страниц, использующих данную как шаблон.",
