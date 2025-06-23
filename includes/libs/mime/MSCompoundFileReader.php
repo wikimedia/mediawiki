@@ -255,7 +255,7 @@ class MSCompoundFileReader {
 	 * @param int $code
 	 * @return never
 	 */
-	private function error( $message, $code ) {
+	private function error( $message, $code ): never {
 		throw new RuntimeException( $message, $code );
 	}
 

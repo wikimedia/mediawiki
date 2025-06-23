@@ -111,7 +111,7 @@ class MockEnvironment extends EntryPointEnvironment {
 		return $this->serverInfo[$key] ?? $default;
 	}
 
-	public function exit( int $code = 0 ) {
+	public function exit( int $code = 0 ): never {
 		throw new Exception( $code );
 	}
 

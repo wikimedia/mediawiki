@@ -1123,7 +1123,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	 * @throws DBConnectionError
 	 * @return never
 	 */
-	private function reportConnectionError( $extraLbError = '' ) {
+	private function reportConnectionError( $extraLbError = '' ): never {
 		if ( $this->lastErrorConn instanceof IDatabaseForOwner ) {
 			$srvName = $this->lastErrorConn->getServerName();
 			$lastDbError = $this->lastErrorConn->lastError() ?: 'unknown error';

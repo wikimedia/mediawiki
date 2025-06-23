@@ -55,7 +55,7 @@ class LoadBalancerDisabled extends LoadBalancer {
 	 *
 	 * @return never
 	 */
-	protected function reallyOpenConnection( $i, DatabaseDomain $domain, array $lbInfo ) {
+	protected function reallyOpenConnection( $i, DatabaseDomain $domain, array $lbInfo ): never {
 		throw new RuntimeException( 'Database backend disabled' );
 	}
 
@@ -67,7 +67,7 @@ class LoadBalancerDisabled extends LoadBalancer {
 	 *
 	 * @return never
 	 */
-	public function getConnection( $i, $groups = [], $domain = false, $flags = 0 ) {
+	public function getConnection( $i, $groups = [], $domain = false, $flags = 0 ): never {
 		throw new RuntimeException( 'Database backend disabled' );
 	}
 
@@ -79,7 +79,7 @@ class LoadBalancerDisabled extends LoadBalancer {
 	 * @param int $flags Bitfield of CONN_* class constants (e.g. CONN_TRX_AUTOCOMMIT)
 	 * @return never
 	 */
-	public function getConnectionInternal( $i, $groups = [], $domain = false, $flags = 0 ): IDatabase {
+	public function getConnectionInternal( $i, $groups = [], $domain = false, $flags = 0 ): never {
 		throw new RuntimeException( 'Database backend disabled' );
 	}
 
@@ -91,7 +91,7 @@ class LoadBalancerDisabled extends LoadBalancer {
 	 *
 	 * @return never
 	 */
-	public function getConnectionRef( $i, $groups = [], $domain = false, $flags = 0 ): DBConnRef {
+	public function getConnectionRef( $i, $groups = [], $domain = false, $flags = 0 ): never {
 		throw new RuntimeException( 'Database backend disabled' );
 	}
 
@@ -103,7 +103,7 @@ class LoadBalancerDisabled extends LoadBalancer {
 	 *
 	 * @return never
 	 */
-	public function getMaintenanceConnectionRef( $i, $groups = [], $domain = false, $flags = 0 ): DBConnRef {
+	public function getMaintenanceConnectionRef( $i, $groups = [], $domain = false, $flags = 0 ): never {
 		throw new RuntimeException( 'Database backend disabled' );
 	}
 

@@ -1523,7 +1523,7 @@ abstract class ApiBase extends ContextSource {
 	 * @throws ApiUsageException always
 	 * @return never
 	 */
-	public function dieWithError( $msg, $code = null, $data = null, $httpCode = 0 ) {
+	public function dieWithError( $msg, $code = null, $data = null, $httpCode = 0 ): never {
 		throw ApiUsageException::newWithMessage( $this, $msg, $code, $data, $httpCode );
 	}
 
@@ -1536,7 +1536,7 @@ abstract class ApiBase extends ContextSource {
 	 * @throws ApiUsageException always
 	 * @return never
 	 */
-	public function dieWithException( Throwable $exception, array $options = [] ) {
+	public function dieWithException( Throwable $exception, array $options = [] ): never {
 		$this->dieWithError(
 			$this->getErrorFormatter()->getMessageFromException( $exception, $options )
 		);
@@ -1551,7 +1551,7 @@ abstract class ApiBase extends ContextSource {
 	 * @throws ApiUsageException always
 	 * @return never
 	 */
-	public function dieBlocked( Block $block ) {
+	public function dieBlocked( Block $block ): never {
 		$blockErrorFormatter = MediaWikiServices::getInstance()->getFormatterFactory()
 			->getBlockErrorFormatter( $this->getContext() );
 
@@ -1574,7 +1574,7 @@ abstract class ApiBase extends ContextSource {
 	 * @throws ApiUsageException always
 	 * @return never
 	 */
-	public function dieStatus( StatusValue $status ) {
+	public function dieStatus( StatusValue $status ): never {
 		if ( $status->isGood() ) {
 			throw new InvalidArgumentException( 'Successful status passed to ApiBase::dieStatus' );
 		}
@@ -1616,7 +1616,7 @@ abstract class ApiBase extends ContextSource {
 	 * @throws ApiUsageException always
 	 * @return never
 	 */
-	public function dieReadOnly() {
+	public function dieReadOnly(): never {
 		$this->dieWithError(
 			'apierror-readonly',
 			'readonly',
@@ -1760,7 +1760,7 @@ abstract class ApiBase extends ContextSource {
 	 * @param string $message Error message
 	 * @return never
 	 */
-	protected static function dieDebug( $method, $message ) {
+	protected static function dieDebug( $method, $message ): never {
 		throw new MWException( "Internal error in $method: $message" );
 	}
 

@@ -58,7 +58,7 @@ class EntryPointEnvironment {
 	 *
 	 * @return never
 	 */
-	public function exit( int $code = 0 ) {
+	public function exit( int $code = 0 ): never {
 		exit( $code );
 	}
 

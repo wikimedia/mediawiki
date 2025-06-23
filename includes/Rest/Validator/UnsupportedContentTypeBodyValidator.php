@@ -30,7 +30,7 @@ class UnsupportedContentTypeBodyValidator implements BodyValidator {
 	 * @inheritDoc
 	 * @return never
 	 */
-	public function validateBody( RequestInterface $request ) {
+	public function validateBody( RequestInterface $request ): never {
 		throw new LocalizedHttpException(
 			new MessageValue( 'rest-unsupported-content-type', [ $this->contentType ] ),
 			415

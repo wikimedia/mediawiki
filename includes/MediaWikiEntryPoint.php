@@ -896,7 +896,7 @@ abstract class MediaWikiEntryPoint {
 	 *
 	 * @return never
 	 */
-	protected function exit( int $code = 0 ) {
+	protected function exit( int $code = 0 ): never {
 		$this->environment->exit( $code );
 	}
 

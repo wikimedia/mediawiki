@@ -98,7 +98,7 @@ abstract class TypeDef {
 	 */
 	protected function fatal(
 		$failure, $name, $value, array $settings, array $options
-	) {
+	): never {
 		$this->failure( $failure, $name, $value, $settings, $options );
 	}
 

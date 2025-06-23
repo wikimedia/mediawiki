@@ -72,10 +72,7 @@ class SlotRecord {
 
 		return new SlotRecord(
 			$row,
-			/**
-			 * @return never
-			 */
-			static function () {
+			static function (): never {
 				throw new SuppressedDataException( 'Content suppressed!' );
 			}
 		);

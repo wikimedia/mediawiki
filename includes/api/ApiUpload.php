@@ -599,7 +599,7 @@ class ApiUpload extends ApiBase {
 	 * @throws ApiUsageException
 	 * @return never
 	 */
-	private function dieRecoverableError( $errors, $parameter = null ) {
+	private function dieRecoverableError( $errors, $parameter = null ): never {
 		$this->performStash( 'optional', $data );
 
 		if ( $parameter ) {
@@ -625,7 +625,7 @@ class ApiUpload extends ApiBase {
 	 * @throws ApiUsageException
 	 * @return never
 	 */
-	public function dieStatusWithCode( $status, $overrideCode, $moreExtraData = null ) {
+	public function dieStatusWithCode( $status, $overrideCode, $moreExtraData = null ): never {
 		$sv = StatusValue::newGood();
 		foreach ( $status->getMessages() as $error ) {
 			$msg = ApiMessage::create( $error, $overrideCode );
@@ -848,7 +848,7 @@ class ApiUpload extends ApiBase {
 	 * @param array $verification
 	 * @return never
 	 */
-	protected function checkVerification( array $verification ) {
+	protected function checkVerification( array $verification ): never {
 		$status = $this->mUpload->convertVerifyErrorToStatus( $verification );
 		if ( $status->isRecoverableError() ) {
 			$this->dieRecoverableError( [ $status->asApiMessage() ], $status->getInvalidParameter() );

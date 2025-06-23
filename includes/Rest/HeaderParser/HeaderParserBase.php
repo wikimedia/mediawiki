@@ -64,7 +64,7 @@ class HeaderParserBase {
 	 * @throws HeaderParserError
 	 * @return never
 	 */
-	protected function error( $message ) {
+	protected function error( $message ): never {
 		throw new HeaderParserError( "$message at {$this->pos}" );
 	}
 

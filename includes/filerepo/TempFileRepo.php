@@ -11,10 +11,7 @@ use LogicException;
  * @ingroup FileRepo
  */
 class TempFileRepo extends FileRepo {
-	/**
-	 * @return never
-	 */
-	public function getTempRepo() {
+	public function getTempRepo(): never {
 		throw new LogicException( "Cannot get a temp repo from a temp repo." );
 	}
 }

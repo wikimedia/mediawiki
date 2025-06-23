@@ -96,7 +96,7 @@ class MwHttpRequestToResponseInterfaceAdapter implements ResponseInterface {
 	 * @param string $method
 	 * @return never
 	 */
-	private function throwExceptionForBuilderMethod( string $method ): void {
+	private function throwExceptionForBuilderMethod( string $method ): never {
 		throw new LogicException( "Builder method $method is not supported." );
 	}
 

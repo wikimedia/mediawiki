@@ -324,7 +324,7 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 		 * @throws FatalError
 		 * @return never
 		 */
-		$error = static function ( $status ) {
+		$error = static function ( $status ): never {
 			throw new FatalError( $status->getWikiText() );
 		};
 

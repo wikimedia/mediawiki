@@ -45,7 +45,7 @@ define( 'MEDIAWIKI', true );
  * @param SettingsBuilder $settings
  * @return never
  */
-function wfWebStartNoLocalSettings( SettingsBuilder $settings ) {
+function wfWebStartNoLocalSettings( SettingsBuilder $settings ): never {
 	# LocalSettings.php is the per-site customization file. If it does not exist
 	# the wiki installer needs to be launched or the generated file uploaded to
 	# the root wiki directory. Give a hint, if it is not readable by the server.

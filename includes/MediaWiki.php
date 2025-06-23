@@ -44,10 +44,7 @@ class MediaWiki extends MediaWikiEntryPoint {
 		parent::__construct( $context, $environment, MediaWikiServices::getInstance() );
 	}
 
-	/**
-	 * @return never
-	 */
-	protected function execute() {
+	protected function execute(): never {
 		throw new LogicException(
 			'The backwards-compat MediaWiki class does not implement the execute() method'
 		);

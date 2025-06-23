@@ -626,14 +626,11 @@ class ForeignAPIRepo extends FileRepo implements IForeignRepoWithMWApi {
 	 * @param callable $callback
 	 * @return never
 	 */
-	public function enumFiles( $callback ) {
+	public function enumFiles( $callback ): never {
 		throw new RuntimeException( 'enumFiles is not supported by ' . static::class );
 	}
 
-	/**
-	 * @return never
-	 */
-	protected function assertWritableRepo() {
+	protected function assertWritableRepo(): never {
 		throw new LogicException( static::class . ': write operations are not supported.' );
 	}
 }

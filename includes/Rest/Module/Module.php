@@ -238,7 +238,7 @@ abstract class Module {
 	 * @return never
 	 * @throws HttpException
 	 */
-	protected function throwNoMatch( string $path, string $method, array $allowed ): void {
+	protected function throwNoMatch( string $path, string $method, array $allowed ): never {
 		// Check for CORS Preflight. This response will *not* allow the request unless
 		// an Access-Control-Allow-Origin header is added to this response.
 		if ( $this->cors && $method === 'OPTIONS' && $allowed ) {

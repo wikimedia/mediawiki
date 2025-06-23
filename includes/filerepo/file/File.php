@@ -2062,10 +2062,7 @@ abstract class File implements MediaHandlerState {
 		return (bool)$this->repo->getHashLevels();
 	}
 
-	/**
-	 * @return never
-	 */
-	protected function readOnlyError() {
+	protected function readOnlyError(): never {
 		throw new LogicException( static::class . ': write operations are not supported' );
 	}
 

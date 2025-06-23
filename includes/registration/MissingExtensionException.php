@@ -91,7 +91,7 @@ class MissingExtensionException extends Exception {
 	 *
 	 * @return never
 	 */
-	public function render() {
+	public function render(): never {
 		if ( wfIsCli() ) {
 			$this->renderText();
 		} else {

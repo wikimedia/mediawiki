@@ -89,7 +89,7 @@ class MaintenanceRunnerTest extends TestCase {
 				parent::preloadScriptFile( $script );
 			}
 
-			protected function fatalError( $msg, $exitCode = 1 ) {
+			protected function fatalError( $msg, $exitCode = 1 ): never {
 				$this->error( $msg );
 				throw new UnexpectedValueException( $msg );
 			}

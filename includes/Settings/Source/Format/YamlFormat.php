@@ -84,7 +84,7 @@ class YamlFormat implements Stringable, SettingsFormat {
 					 *
 					 * @return never
 					 */
-					'!php/const' => static function () {
+					'!php/const' => static function (): never {
 						throw new UnexpectedValueException(
 							'PHP constants are not supported'
 						);

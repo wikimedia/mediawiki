@@ -103,7 +103,7 @@ class MaintenanceRunner {
 	 *
 	 * @return never
 	 */
-	private function showHelpAndExit( $code = 0 ) {
+	private function showHelpAndExit( $code = 0 ): never {
 		foreach ( $this->parameters->getErrors() as $error ) {
 			$this->error( "$error\n" );
 			$code = 1;
@@ -722,7 +722,7 @@ class MaintenanceRunner {
 	 * @param int $exitCode PHP exit status. Should be in range 1-254.
 	 * @return never
 	 */
-	protected function fatalError( $msg, $exitCode = 1 ) {
+	protected function fatalError( $msg, $exitCode = 1 ): never {
 		$this->error( $msg );
 		exit( $exitCode );
 	}

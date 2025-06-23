@@ -2007,7 +2007,7 @@ MESSAGE;
 				'mediawiki.skin.codex-design-tokens/' => $codexDevDir !== null ?
 					"$codexDevDir/packages/codex-design-tokens/dist/" :
 					MW_INSTALL_PATH . '/resources/lib/codex-design-tokens/',
-				'@wikimedia/codex-design-tokens/' => /** @return never */ static function ( $unused_path ) {
+				'@wikimedia/codex-design-tokens/' => static function ( $unused_path ): never {
 					throw new RuntimeException(
 						'Importing from @wikimedia/codex-design-tokens is not supported. ' .
 						"To use the Codex tokens, use `@import 'mediawiki.skin.variables.less';` instead."

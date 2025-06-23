@@ -119,10 +119,7 @@ class ForeignDBRepo extends LocalRepo implements IForeignRepoWithDB {
 		};
 	}
 
-	/**
-	 * @return never
-	 */
-	protected function assertWritableRepo() {
+	protected function assertWritableRepo(): never {
 		throw new LogicException( static::class . ': write operations are not supported.' );
 	}
 

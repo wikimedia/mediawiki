@@ -42,7 +42,7 @@ class JsonSerializableCodec implements JsonClassCodec {
 	}
 
 	/** @return never */
-	public function newFromJsonArray( string $className, array $json ) {
+	public function newFromJsonArray( string $className, array $json ): never {
 		throw new JsonException( "Cannot deserialize: {$className}" );
 	}
 

@@ -211,10 +211,7 @@ class MWExceptionHandler {
 		// Make sure we don't claim success on exit for CLI scripts (T177414)
 		if ( wfIsCLI() ) {
 			register_shutdown_function(
-				/**
-				 * @return never
-				 */
-				static function () {
+				static function (): never {
 					exit( 255 );
 				}
 			);

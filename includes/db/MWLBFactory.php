@@ -311,7 +311,7 @@ class MWLBFactory {
 	 * @param string $dbType Database type
 	 * @return never
 	 */
-	private function reportIfPrefixSet( string $prefix, string $dbType ) {
+	private function reportIfPrefixSet( string $prefix, string $dbType ): never {
 		$e = new UnexpectedValueException(
 			"\$wgDBprefix is set to '$prefix' but the database type is '$dbType'. " .
 			"MediaWiki does not support using a table prefix with this RDBMS type."
@@ -325,7 +325,7 @@ class MWLBFactory {
 	 * @param string $ldDB Local DB domain database
 	 * @return never
 	 */
-	private function reportMismatchedDBs( string $srvDB, string $ldDB ) {
+	private function reportMismatchedDBs( string $srvDB, string $ldDB ): never {
 		$e = new UnexpectedValueException(
 			"\$wgDBservers has dbname='$srvDB' but \$wgDBname='$ldDB'. " .
 			"Set \$wgDBname to the database used by this wiki project. " .
@@ -343,7 +343,7 @@ class MWLBFactory {
 	 * @param string $ldTP Local DB domain database
 	 * @return never
 	 */
-	private function reportMismatchedPrefixes( string $srvTP, string $ldTP ) {
+	private function reportMismatchedPrefixes( string $srvTP, string $ldTP ): never {
 		$e = new UnexpectedValueException(
 			"\$wgDBservers has tablePrefix='$srvTP' but \$wgDBprefix='$ldTP'. " .
 			"Set \$wgDBprefix to the table prefix used by this wiki project. " .
