@@ -13,6 +13,14 @@ QUnit.module( 'jquery.makeCollapsible', () => {
 			.makeCollapsible( options );
 	}
 
+	function isHidden( $el ) {
+		// Check the element is visible using computed CSS to be thorough (instead of just .hasAttribute( 'hidden' ) ).
+		return $el.css( 'content-visibility' ) === 'hidden' ||
+			// Support: FF<=138, Safari
+			// Browser doesn't support content-visiblity / hidden=until-found
+			$el.css( 'display' ) === 'none';
+	}
+
 	// Check events first, because most other tests here assume that the events work correctly.
 	QUnit.test( 'testing hooks/triggers', ( assert ) => {
 		const $collapsible = prepareCollapsible(
@@ -23,22 +31,22 @@ QUnit.module( 'jquery.makeCollapsible', () => {
 		const seq = [];
 		$collapsible.on( 'beforeCollapse.mw-collapsible', () => {
 			seq.push( {
-				beforeCollapse: $content.css( 'display' )
+				beforeCollapse: isHidden( $content )
 			} );
 		} );
 		$collapsible.on( 'afterCollapse.mw-collapsible', () => {
 			seq.push( {
-				afterCollapse: $content.css( 'display' )
+				afterCollapse: isHidden( $content )
 			} );
 		} );
 		$collapsible.on( 'beforeExpand.mw-collapsible', () => {
 			seq.push( {
-				beforeExpand: $content.css( 'display' )
+				beforeExpand: isHidden( $content )
 			} );
 		} );
 		$collapsible.on( 'afterExpand.mw-collapsible', () => {
 			seq.push( {
-				afterExpand: $content.css( 'display' )
+				afterExpand: isHidden( $content )
 			} );
 		} );
 		$toggle.trigger( 'click' ); // Click to collapse
@@ -47,10 +55,10 @@ QUnit.module( 'jquery.makeCollapsible', () => {
 		// The element starts in expanded form by default.
 		// In one full collapse-expand cycle, each event must fired once in exactly this order.
 		assert.deepEqual( seq, [
-			{ beforeCollapse: 'block' }, // content is visible
-			{ afterCollapse: 'none' }, // content is hidden
-			{ beforeExpand: 'none' },
-			{ afterExpand: 'block' }
+			{ beforeCollapse: false }, // content is visible
+			{ afterCollapse: true }, // content is hidden
+			{ beforeExpand: true },
+			{ afterExpand: false }
 		] );
 	} );
 
@@ -61,10 +69,16 @@ QUnit.module( 'jquery.makeCollapsible', () => {
 		const $content = $collapsible.find( '.mw-collapsible-content' );
 		const $toggle = $collapsible.find( '.mw-collapsible-toggle' );
 		const seq = [
-			{ init: $content.css( 'display' ) }
+			{ init: isHidden( $content ) }
 		];
-		$collapsible.on( 'afterCollapse.mw-collapsible', () => seq.push( { afterCollapse: $content.css( 'display' ) } ) );
-		$collapsible.on( 'afterExpand.mw-collapsible', () => seq.push( { afterExpand: $content.css( 'display' ) } ) );
+		$collapsible.on(
+			'afterCollapse.mw-collapsible',
+			() => seq.push( { afterCollapse: isHidden( $content ) } )
+		);
+		$collapsible.on(
+			'afterExpand.mw-collapsible',
+			() => seq.push( { afterExpand: isHidden( $content ) } )
+		);
 
 		$toggle.trigger( 'click' ); // Collapse
 		$toggle.trigger( 'click' ); // Expand
@@ -72,9 +86,9 @@ QUnit.module( 'jquery.makeCollapsible', () => {
 		assert.strictEqual( $content.length, 1, 'content is present' );
 		assert.strictEqual( $content.find( $toggle ).length, 0, 'toggle is not a descendant of content' );
 		assert.deepEqual( seq, [
-			{ init: 'block' },
-			{ afterCollapse: 'none' },
-			{ afterExpand: 'block' }
+			{ init: false },
+			{ afterCollapse: true },
+			{ afterExpand: false }
 		] );
 	} );
 
@@ -90,21 +104,27 @@ QUnit.module( 'jquery.makeCollapsible', () => {
 		const $content = $collapsible.find( 'tr' ).last();
 		const $toggle = $header.find( 'td' ).last().find( '.mw-collapsible-toggle' );
 		const seq = [
-			'init', { header: $header.css( 'display' ), content: $content.css( 'display' ) }
+			'init', { header: isHidden( $header ), content: isHidden( $content ) }
 		];
-		$collapsible.on( 'afterCollapse.mw-collapsible', () => seq.push( 'afterCollapse', { header: $header.css( 'display' ), content: $content.css( 'display' ) } ) );
-		$collapsible.on( 'afterExpand.mw-collapsible', () => seq.push( 'afterExpand', { header: $header.css( 'display' ), content: $content.css( 'display' ) } ) );
+		$collapsible.on(
+			'afterCollapse.mw-collapsible',
+			() => seq.push( 'afterCollapse', { header: isHidden( $header ), content: isHidden( $content ) } )
+		);
+		$collapsible.on(
+			'afterExpand.mw-collapsible',
+			() => seq.push( 'afterExpand', { header: isHidden( $header ), content: isHidden( $content ) } )
+		);
 
 		$toggle.trigger( 'click' ); // Collapse
 		$toggle.trigger( 'click' ); // Expand
 
 		assert.strictEqual( $toggle.length, 1, 'toggle is added to last cell of first row' );
 		assert.deepEqual( seq, [
-			'init', { header: 'table-row', content: 'table-row' },
+			'init', { header: false, content: false },
 			// headerRow is visible, contentRow is hidden
-			'afterCollapse', { header: 'table-row', content: 'none' },
+			'afterCollapse', { header: false, content: true },
 			// headerRow is still visible, contentRow is visible now
-			'afterExpand', { header: 'table-row', content: 'table-row' }
+			'afterExpand', { header: false, content: false }
 		] );
 	} );
 
@@ -129,31 +149,31 @@ QUnit.module( 'jquery.makeCollapsible', () => {
 		const $toggle = $caption.find( '.mw-collapsible-toggle' );
 		const seq = [
 			'init', {
-				caption: $caption.css( 'display' ),
-				header: $header.css( 'display' ),
-				content: $content.css( 'display' )
+				caption: isHidden( $caption ),
+				header: isHidden( $header ),
+				content: isHidden( $content )
 			}
 		];
 		$collapsible.on( 'afterCollapse.mw-collapsible', () => seq.push( 'afterCollapse', {
-			caption: $caption.css( 'display' ),
-			header: $header.css( 'display' ),
-			content: $content.css( 'display' )
+			caption: isHidden( $caption ),
+			header: isHidden( $header ),
+			content: isHidden( $content )
 		} ) );
 		$collapsible.on( 'afterExpand.mw-collapsible', () => seq.push( 'afterExpand', {
-			caption: $caption.css( 'display' ),
-			header: $header.css( 'display' ),
-			content: $content.css( 'display' )
+			caption: isHidden( $caption ),
+			header: isHidden( $header ),
+			content: isHidden( $content )
 		} ) );
 		$toggle.trigger( 'click' );
 		$toggle.trigger( 'click' );
 
 		assert.strictEqual( $toggle.length, 1, 'toggle is added to the end of the caption' );
 		assert.deepEqual( seq, [
-			'init', { caption: 'table-caption', header: 'table-row', content: 'table-row' },
+			'init', { caption: false, header: false, content: false },
 			// after collapsing: caption is still visible, rest hidden
-			'afterCollapse', { caption: 'table-caption', header: 'none', content: 'none' },
+			'afterCollapse', { caption: false, header: true, content: true },
 			// after expanding: all visible
-			'afterExpand', { caption: 'table-caption', header: 'table-row', content: 'table-row' }
+			'afterExpand', { caption: false, header: false, content: false }
 		] );
 	} );
 
@@ -168,20 +188,26 @@ QUnit.module( 'jquery.makeCollapsible', () => {
 		const $content = $collapsible.find( 'li' ).last();
 		const $toggle = $toggleItem.find( '.mw-collapsible-toggle' );
 		const seq = [
-			'init', { toggle: $toggleItem.css( 'display' ), content: $content.css( 'display' ) }
+			'init', { toggle: isHidden( $toggleItem ), content: isHidden( $content ) }
 		];
-		$collapsible.on( 'afterCollapse.mw-collapsible', () => seq.push( 'afterCollapse', { toggle: $toggleItem.css( 'display' ), content: $content.css( 'display' ) } ) );
-		$collapsible.on( 'afterExpand.mw-collapsible', () => seq.push( 'afterExpand', { toggle: $toggleItem.css( 'display' ), content: $content.css( 'display' ) } ) );
+		$collapsible.on(
+			'afterCollapse.mw-collapsible',
+			() => seq.push( 'afterCollapse', { toggle: isHidden( $toggleItem ), content: isHidden( $content ) } )
+		);
+		$collapsible.on(
+			'afterExpand.mw-collapsible',
+			() => seq.push( 'afterExpand', { toggle: isHidden( $toggleItem ), content: isHidden( $content ) } )
+		);
 
 		$toggle.trigger( 'click' );
 		$toggle.trigger( 'click' );
 
 		assert.strictEqual( $toggle.length, 1, 'toggle is present, added inside new zeroth list item' );
 		assert.deepEqual( seq, [
-			'init', { toggle: 'list-item', content: 'list-item' },
+			'init', { toggle: false, content: false },
 			// only the content gets hidden
-			'afterCollapse', { toggle: 'list-item', content: 'none' },
-			'afterExpand', { toggle: 'list-item', content: 'list-item' }
+			'afterCollapse', { toggle: false, content: true },
+			'afterExpand', { toggle: false, content: false }
 		] );
 	} );
 
@@ -192,10 +218,10 @@ QUnit.module( 'jquery.makeCollapsible', () => {
 		);
 
 		const $content = $collapsible.find( '.mw-collapsible-content' );
-		assert.notStrictEqual( $content.css( 'display' ), 'none', 'content is visible' );
+		assert.notStrictEqual( isHidden( $content ), true, 'content is visible' );
 
 		$collapsible.find( '.mw-collapsible-toggle' ).trigger( 'click' );
-		assert.strictEqual( $content.css( 'display' ), 'none', 'after collapsing: content is hidden' );
+		assert.strictEqual( isHidden( $content ), true, 'after collapsing: content is hidden' );
 	} );
 
 	QUnit.test( 'mw-made-collapsible data added', ( assert ) => {
@@ -230,10 +256,10 @@ QUnit.module( 'jquery.makeCollapsible', () => {
 		const $content = $collapsible.find( '.mw-collapsible-content' );
 
 		// Synchronous - mw-collapsed should cause instantHide: true to be used on initial collapsing
-		assert.strictEqual( $content.css( 'display' ), 'none', 'content is hidden' );
+		assert.strictEqual( isHidden( $content ), true, 'content is hidden' );
 
 		$collapsible.on( 'afterExpand.mw-collapsible', () => {
-			assert.notStrictEqual( $content.css( 'display' ), 'none', 'after expanding: content is visible' );
+			assert.notStrictEqual( isHidden( $content ), true, 'after expanding: content is visible' );
 		} );
 
 		$collapsible.find( '.mw-collapsible-toggle' ).trigger( 'click' );
@@ -247,10 +273,10 @@ QUnit.module( 'jquery.makeCollapsible', () => {
 		const $content = $collapsible.find( '.mw-collapsible-content' );
 
 		// Synchronous - collapsed: true should cause instantHide: true to be used on initial collapsing
-		assert.strictEqual( $content.css( 'display' ), 'none', 'content is hidden' );
+		assert.strictEqual( isHidden( $content ), true, 'content is hidden' );
 
 		$collapsible.on( 'afterExpand.mw-collapsible', () => {
-			assert.notStrictEqual( $content.css( 'display' ), 'none', 'after expanding: content is visible' );
+			assert.notStrictEqual( isHidden( $content ), true, 'after expanding: content is visible' );
 		} );
 
 		$collapsible.find( '.mw-collapsible-toggle' ).trigger( 'click' );
@@ -270,10 +296,10 @@ QUnit.module( 'jquery.makeCollapsible', () => {
 		const $content = $collapsible.find( '.mw-collapsible-content' );
 
 		$collapsible.find( '.mw-collapsible-toggle a' ).trigger( 'click' );
-		assert.notStrictEqual( $content.css( 'display' ), 'none', 'click event on link inside toggle passes through (content not toggled)' );
+		assert.notStrictEqual( isHidden( $content ), true, 'click event on link inside toggle passes through (content not toggled)' );
 
 		$collapsible.find( '.mw-collapsible-toggle b' ).trigger( 'click' );
-		assert.strictEqual( $content.css( 'display' ), 'none', 'click event on non-link inside toggle toggles content' );
+		assert.strictEqual( isHidden( $content ), true, 'click event on non-link inside toggle toggles content' );
 	} );
 
 	QUnit.test( 'click on non-link inside toggler counts as trigger', ( assert ) => {
@@ -289,7 +315,7 @@ QUnit.module( 'jquery.makeCollapsible', () => {
 		const $content = $collapsible.find( '.mw-collapsible-content' );
 
 		$collapsible.find( '.mw-collapsible-toggle a' ).trigger( 'click' );
-		assert.strictEqual( $content.css( 'display' ), 'none', 'click event on link (with no href) inside toggle toggles content' );
+		assert.strictEqual( isHidden( $content ), true, 'click event on link (with no href) inside toggle toggles content' );
 	} );
 
 	QUnit.test( 'collapse/expand text (data-collapsetext, data-expandtext)', ( assert ) => {
@@ -359,10 +385,10 @@ QUnit.module( 'jquery.makeCollapsible', () => {
 		const $clone = $collapsible.clone().appendTo( '#qunit-fixture' )
 			.makeCollapsible();
 		const $content = $clone.find( '.mw-collapsible-content' );
-		assert.notStrictEqual( $content.css( 'display' ), 'none', 'content is visible' );
+		assert.notStrictEqual( isHidden( $content ), true, 'content is visible' );
 
 		$clone.on( 'afterCollapse.mw-collapsible', () => {
-			assert.strictEqual( $content.css( 'display' ), 'none', 'after collapsing: content is hidden' );
+			assert.strictEqual( isHidden( $content ), true, 'after collapsing: content is hidden' );
 		} );
 
 		$clone.find( '.mw-collapsible-toggle' ).trigger( 'click' );
@@ -382,11 +408,11 @@ QUnit.module( 'jquery.makeCollapsible', () => {
 		const $clone = $original.clone( true ).appendTo( '#qunit-fixture' );
 		const $cloneCollapsible = $clone.find( '.mw-collapsible' );
 		const $cloneContent = $clone.find( '.mw-collapsible-content' );
-		assert.strictEqual( $cloneContent.css( 'display' ), 'none', 'clone of content is hidden' );
+		assert.strictEqual( isHidden( $cloneContent ), true, 'clone of content is hidden' );
 
 		$cloneCollapsible.add( $originalCollapsible ).on( 'afterExpand.mw-collapsible', () => {
-			assert.notStrictEqual( $cloneContent.css( 'display' ), 'none', 'after expanding clone: clone of content is visible' );
-			assert.strictEqual( $originalContent.css( 'display' ), 'none', 'after expanding clone: original content is hidden' );
+			assert.notStrictEqual( isHidden( $cloneContent ), true, 'after expanding clone: clone of content is visible' );
+			assert.strictEqual( isHidden( $originalContent ), true, 'after expanding clone: original content is hidden' );
 		} );
 
 		$clone.find( '.mw-collapsible-toggle' ).trigger( 'click' );
@@ -396,13 +422,13 @@ QUnit.module( 'jquery.makeCollapsible', () => {
 		const $collapsible = prepareCollapsible(
 			'<div class="mw-collapsible mw-collapsed">' + loremIpsum + '<div id="español,a:nth-child(even)">' + loremIpsum + '</div></div>'
 		);
-		const fragment = document.getElementById( 'español,a:nth-child(even)' );
+		const $fragment = $( document.getElementById( 'español,a:nth-child(even)' ) );
 		const done = assert.async();
 
-		assert.strictEqual( fragment.offsetParent, null, 'initial: fragment is hidden' );
+		assert.strictEqual( isHidden( $fragment.parent() ), true, 'initial: fragment is hidden' );
 
 		$collapsible.on( 'afterExpand.mw-collapsible', () => {
-			assert.notStrictEqual( fragment.offsetParent, null, 'after hash change: fragment is visible' );
+			assert.strictEqual( isHidden( $fragment.parent() ), false, 'after hash change: fragment is visible' );
 			done();
 			window.location.hash = '';
 		} );
@@ -495,11 +521,11 @@ QUnit.module( 'jquery.makeCollapsible', () => {
 		assert.strictEqual( $content.length, 1, 'content exists' );
 
 		assert.true( $collapsible.hasClass( 'mw-collapsed' ) );
-		assert.strictEqual( $content.css( 'display' ), 'none', 'content is hidden' );
+		assert.strictEqual( isHidden( $content ), true, 'content is hidden' );
 
 		$toggle.trigger( 'click' );
 
 		assert.false( $collapsible.hasClass( 'mw-collapsed' ), 'after expanding: toggle works after move' );
-		assert.notStrictEqual( $content.css( 'display' ), 'none', 'after expanding: content is visible' );
+		assert.strictEqual( isHidden( $content ), false, 'after expanding: content is visible' );
 	} );
 } );

@@ -59,3 +59,25 @@ caption .mw-collapsible-toggle,
 .mw-content-ltr .mw-content-rtl caption .mw-collapsible-toggle {
 	float: none;
 }
+
+.mw-collapsible [ hidden='until-found' ] {
+	// Ensure table structure is hidden. content-visibility:hidden doesn't
+	// work with display:table-*.
+	display: block;
+
+	// Make hidden attribute behave more like display:none
+	// Use !important as hidden elements should never have size, even if
+	// these styles have defaults with higher specificity.
+	/* stylelint-disable declaration-no-important */
+	width: 0 !important;
+	height: 0 !important;
+	padding: 0 !important;
+	overflow: hidden !important;
+	/* stylelint-enable declaration-no-important */
+}
+
+.wikitable.mw-collapsed {
+	// Avoid extra borders on un-rendered rows. Table cells themselves
+	// already render the required borders.
+	border: 0;
+}
