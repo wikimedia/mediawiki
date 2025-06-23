@@ -1278,6 +1278,7 @@
 	"apihelp-query+tokens-param-type": "Typen der Token, die abgerufen werden sollen.",
 	"apihelp-query+tokens-example-simple": "Ein csrf-Token abrufen (Standardeinstellung).",
 	"apihelp-query+tokens-example-types": "Erhalte einen Watch- und einen Kontrolleur-Token.",
+	"apihelp-query+trackingcategories-summary": "Listet alle vorhandenen Tracking-Kategorien auf, die in [[Special:TrackingCategories]] definiert sind. Eine Tracking-Kategorie ist vorhanden, wenn sie Seiten enthält oder wenn ihre Kategorieseite vorhanden ist.",
 	"apihelp-query+transcludedin-summary": "Finde alle Seiten, die die angegebenen Seiten einschließen.",
 	"apihelp-query+transcludedin-param-prop": "Zurückzugebende Eigenschaften:",
 	"apihelp-query+transcludedin-paramvalue-prop-pageid": "Seitenkennung jeder Seite.",

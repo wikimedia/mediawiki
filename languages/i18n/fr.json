@@ -693,7 +693,7 @@
 	"edit-recovery-nojs-placeholder": "JavaScript est requis pour la fonctionnalité \"Modifier la récupération\".",
 	"edit-recovery-special-user-unnamed": "Veuillez [[Special:UserLogin|vous connecter]] ou [[Special:CreateAccount|créer un compte]] pour utiliser cette fonctionnalité.",
 	"edit-recovery-special-user-not-enabled": "Vous pouvez activer cette fonctionnalité dans [[Special:Preferences#mw-prefsection-editing|vos préférences]].",
-	"edit-recovery-special-intro": "Vous avez des modifications non enregistrées dans les {{PLURAL:$1| suivants. page ou section|pages et/ou sections}} :",
+	"edit-recovery-special-intro": "Vous avez des modifications non enregistrées dans {{PLURAL:$1| la page ou la section suivante|les pages et/ou sections suivantes}} :",
 	"edit-recovery-special-intro-empty": "Vous n'avez aucune modification non sauvegardée.",
 	"edit-recovery-special-view": "afficher",
 	"edit-recovery-special-edit": "modifier",

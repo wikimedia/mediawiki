@@ -2423,6 +2423,7 @@
 	"sp-contributions-outofrange": "Nem sikerült eredményt megjeleníteni. A kért IP-tartomány nagyobb, mint a CIDR korlátja ($1).",
 	"sp-contributions-concurrency-user": "Sajnáljuk, túl sok kérés érkezett a fiókodból. Kérjük, próbáld újra később.",
 	"sp-contributions-concurrency-ip": "Sajnáljuk, túl sok kérés érkezett az IP-címedről. Kérjük, próbáld újra később.",
+	"sp-contributions-newcontribution": "Új közreműködés",
 	"whatlinkshere": "Mi hivatkozik erre?",
 	"whatlinkshere-count": "$1 {{PLURAL:$1|elem}} megjelenítve.",
 	"whatlinkshere-title": "A(z) „$1” lapra hivatkozó lapok",
