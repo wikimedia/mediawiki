@@ -2528,7 +2528,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		$this->mModules = $jsonData['Modules'];
 		$this->mModuleStyles = $jsonData['ModuleStyles'];
 		$this->mJsConfigVars = $jsonData['JsConfigVars'];
-		$this->mOutputHooks = $jsonData['OutputHooks'];
+		$this->mOutputHooks = $jsonData['OutputHooks'] ?? [];
 		$this->mWarnings = $jsonData['Warnings'];
 		$this->mSections = $jsonData['Sections'];
 		$this->mProperties = self::detectAndDecodeBinary( $jsonData['Properties'] );
