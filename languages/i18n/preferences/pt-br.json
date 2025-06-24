@@ -228,6 +228,8 @@
 	"rcfilters-watchlist-preference-label": "Use a interface não JavaScript",
 	"rcfilters-watchlist-preference-help": "Carrega as [[{{#special:Watchlist}}|páginas vigiadas]] sem a pesquisa filtrada nem a funcionalidade de realce.",
 	"prefs-changeswatchlist": "Mudanças mostradas",
+	"tog-watchstar-expiry": "Período de tempo padrão na lista de páginas vigiadas para páginas adicionadas manualmente:",
+	"tog-watch-expiry": "Período de tempo padrão:",
 	"tog-watchlisthideminor": "Ocultar edições menores da lista de páginas vigiadas",
 	"tog-watchlisthidebots": "Ocultar edições de robôs da lista de páginas vigiadas",
 	"tog-watchlisthideown": "Ocultar minhas edições da lista de páginas vigiadas",

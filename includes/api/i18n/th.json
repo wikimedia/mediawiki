@@ -3,6 +3,7 @@
 		"authors": [
 			"Aefgh39622",
 			"Ekminarin",
+			"Electorus",
 			"Patsagorn Y."
 		]
 	},
@@ -277,6 +278,9 @@
 	"apihelp-query+siteinfo-example-simple": "ดึงข้อมูลไซต์",
 	"apihelp-query+templates-param-limit": "จำนวนแม่แบบที่จะส่งกลับ",
 	"apihelp-query+tokens-param-type": "ชนิดของโทเค็นที่จะร้องขอ",
+	"apihelp-query+trackingcategories-param-min": "ส่งคืนเฉพาะหมวดหมู่ที่มีอยู่ที่มีสมาชิกอย่างน้อยจำนวนนี้เท่านั้น",
+	"apihelp-query+trackingcategories-paramvalue-prop-size": "เพิ่มจำนวนหน้าในหมวดหมู่",
+	"apihelp-query+trackingcategories-example-size": "รายการหมวดหมู่ที่มีข้อมูลเกี่ยวกับจํานวนหน้าในแต่ละหมวด",
 	"apihelp-query+transcludedin-paramvalue-prop-pageid": "ไอดีหน้าของแต่ละหน้า",
 	"apihelp-query+transcludedin-paramvalue-prop-title": "ชื่อของแต่ละหน้า",
 	"apihelp-query+userinfo-paramvalue-prop-realname": "เพิ่มชื่อจริงของผู้ใช้",
