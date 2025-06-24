@@ -127,6 +127,11 @@ class ParserOutputAccess implements LoggerAwareInterface {
 	public const POOL_COUNTER_ARTICLE_VIEW = 'ArticleView';
 
 	/**
+	 * @see MainConfigSchema::PoolCounterConf
+	 */
+	public const POOL_COUNTER_REST_API = 'HtmlRestApi';
+
+	/**
 	 * Defaults for options that are not covered by initializing
 	 * bit-based keys to zero.
 	 */
