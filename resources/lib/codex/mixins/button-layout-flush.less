@@ -31,6 +31,10 @@
 	}
 
 	& when ( @param-is-icon-only = true ) {
+		& when ( @param-size-button = 'small' ) {
+			.apply-margin( @spacing-12 + @border-width-base);
+		}
+
 		& when ( @param-size-button = 'medium' ) {
 			.apply-margin( @spacing-horizontal-button-icon-only + @border-width-base );
 		}

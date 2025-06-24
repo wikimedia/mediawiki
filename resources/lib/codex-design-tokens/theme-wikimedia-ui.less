@@ -1,5 +1,5 @@
 
-// Codex Design Tokens v2.1.0
+// Codex Design Tokens v2.2.0
 // Design System for Wikimedia
 // See https://doc.wikimedia.org/codex/latest/design-tokens/overview.html
 
@@ -287,6 +287,7 @@
 @border-width-thick: 2px;
 @border-width-input-radio--checked: 6px;
 @border-color-base: var( --border-color-base, #a2a9b1 );
+@border-color-emphasized: var( --border-color-emphasized, #202122 );
 @border-color-subtle: var( --border-color-subtle, #c8ccd1 );
 @border-color-muted: var( --border-color-muted, #dadde3 );
 @border-color-interactive: var( --border-color-interactive, #72777d );
@@ -342,6 +343,8 @@
 @position-offset-border-width-base: -@border-width-base;
 @spacing-horizontal-button: @spacing-75 - @border-width-base; // Padding should equal 12px of spacing minus the width of the border
 @spacing-horizontal-button-icon-only: @spacing-35 - @border-width-base; // Padding should equal 6px of spacing minus the width of the border
+@spacing-horizontal-button-small-icon-only: @spacing-12 - @border-width-base; // Padding should equal 2px of spacing minus the width of the border
+@spacing-horizontal-button-small: @spacing-35 - @border-width-base; // Padding should equal 6px of spacing minus the width of the border
 @spacing-horizontal-button-large: @spacing-100 - @border-width-base; // Padding should equal 16px of spacing minus the width of the border
 @spacing-horizontal-input-text-two-end-icons: calc( @spacing-50 * 2 + @size-icon-small ); // Rely on `calc()` to make token output usable in all formats. When there are two end icons, (i.e. a clear icon and an end icon), we need to double the horizontal padding and account for the size of the extra icon. This token can be used to calculate the horizontal position of the clear icon and the padding-end of the text input.
 @spacing-start-typeahead-search-figure: @spacing-75; // The amount of space between the TypeaheadSearch figure's parent component and the TypeaheadSearch figure (input icon container, search result thumbnail, and footer icon container). We want this space to be uniform so that the figures vertically line up nicely. We use the same horizontal padding as the MenuItem.

@@ -1,3 +1,51 @@
+# 2.2.0 / 2025-06-24
+
+## Deprecating changes
+- [DEPRECATING CHANGE] Throw deprecation warnings for old APIs (Anne Tomasevich)
+
+Some usages of component props are now officially deprecated. Check the console for warnings from
+the Dialog, Field, Label, Message, SearchInput, and TypeaheadSearch components.
+
+## Features
+- Image: move component out of WIP (Lauralyn Watson)
+- Button: create small size (Daphne Smit)
+- MenuButton: Fix selected prop type (Dillon)
+
+## Styles
+- Image, styles: unify placeholder, loading, and error states (Lauralyn Watson)
+- styles: Improve word-breaking and remove most hyphenation (Anne Tomasevich)
+
+## Tokens
+- token: Add new border color token (Derek Torsani)
+
+## Icons
+- icons: Fix 'logo-codex.svg' so it doesn't need `fill-rule` attribute (Thiemo Kreuz)
+
+## Build
+- build: prepare-release script sorts new commits in changelog (Lauralyn Watson)
+- build: Alias `lint:scripts` command to Wikimedia pseudo standard command (Volker E.)
+- tests: Reorganize unit tests (Anne Tomasevich)
+- Tests: Suppress some expected console warnings for better output (Eric Gardner)
+- tests, Combobox, MenuButton: Add snapshot tests (Anne Tomasevich)
+- tests: Fix snapshot test props, reorganize tests (Anne Tomasevich)
+
+## Documentation
+- docs: add guidelines for Image component (bmartinezcalvo)
+- docs: Redesign home page (Anne Tomasevich)
+- docs: Add initially selected chip to MultiselectLookupField example (Roan Kattouw)
+- docs: align ImageAspectRatios docs with colon separator change (Doğu Abaris)
+- docs: Include instructions to document types and constants (Anne Tomasevich)
+- docs: Add general data vizualization guidelines (Derek Torsani)
+- docs: Update RELEASING.md (Anne Tomasevich)
+- docs: update images in Codex homepage (Lauralyn Watson)
+- docs: Update Image guidelines for consistency (Anne Tomasevich)
+- docs: Document breaking changes process (Anne Tomasevich)
+- docs, Button: Reformat button size docs (Anne Tomasevich)
+
+# Code
+- Menu: Avoid scrolling the entire page when the menu opens (Roan Kattouw)
+- useResizeObserver: Check for valid ResizeObserver entry (bernardwang)
+
 # 2.1.0 / 2025-06-10
 
 ## Features
