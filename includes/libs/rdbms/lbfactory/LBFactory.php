@@ -383,10 +383,19 @@ abstract class LBFactory implements ILBFactory {
 		$fname = __METHOD__;
 		// Run all post-commit callbacks until new ones stop getting added
 		$e = null; // first callback exception
+		$iterations = 0;
 		do {
+			// Run any callbacks on tracked load balancers
 			foreach ( $this->getLBsForOwner() as $lb ) {
 				$ex = $lb->runPrimaryTransactionIdleCallbacks( $fname );
 				$e = $e ?: $ex;
+			}
+			// T392913: log and break when this method seems to be in an obviously broken loop
+			if ( ++$iterations >= 32 ) {
+				throw new DBTransactionError(
+					null,
+					"Aborting likely infinite callback loop due to unresolvable pending writes"
+				);
 			}
 		} while ( $this->hasPrimaryChanges() );
 		// Run all listener callbacks once

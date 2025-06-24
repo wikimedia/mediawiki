@@ -1526,6 +1526,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 						)
 					);
 					$this->statsFactory->getCounter( 'rdbms_callback_writes_found_total' )
+						->setLabel( 'db_cluster', $this->getClusterName() )
 						->setLabel( 'db_server', $conn->getServerName() )
 						->increment();
 				} elseif ( $conn->trxLevel() ) {
