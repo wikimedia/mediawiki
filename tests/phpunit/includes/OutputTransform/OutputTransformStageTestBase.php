@@ -5,9 +5,11 @@ namespace MediaWiki\Tests\OutputTransform;
 
 use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
+use Mediawiki\MediaWikiServices;
 use MediaWiki\OutputTransform\OutputTransformStage;
 use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWikiIntegrationTestCase;
+use Wikimedia\TestingAccessWrapper;
 
 abstract class OutputTransformStageTestBase extends MediaWikiIntegrationTestCase {
 	abstract public function createStage(): OutputTransformStage;
@@ -57,12 +59,19 @@ abstract class OutputTransformStageTestBase extends MediaWikiIntegrationTestCase
 		// value and the result; these are internal implementation details
 		// that shouldn't be hardwired into tests.
 		if ( PageBundleParserOutputConverter::hasPageBundle( $result ) ) {
-			$key = PageBundleParserOutputConverter::PARSOID_PAGE_BUNDLE_KEY;
-			$expected->setExtensionData( $key, $result->getExtensionData( $key ) );
+			$ch = TestingAccessWrapper::newFromObject(
+				$expected->getContentHolder()
+			);
+			$ch->pageBundle = clone $result->getContentHolder()->getBasePageBundle();
 		}
 		// Similarly, clear the parse start time to avoid a spurious diff.
 		$result->clearParseStartTime();
 		$expected->clearParseStartTime();
-		$this->assertEquals( $expected, $result, $message );
+		$jsonCodec = MediaWikiServices::getInstance()->getJsonCodec();
+		$this->assertEquals(
+			$jsonCodec->toJsonArray( $expected, ParserOutput::class ),
+			$jsonCodec->toJsonArray( $result, ParserOutput::class ),
+			$message
+		);
 	}
 }

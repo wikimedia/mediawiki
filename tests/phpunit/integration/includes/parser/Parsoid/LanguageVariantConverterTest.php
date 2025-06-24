@@ -228,12 +228,11 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 			$this->assertMatchesRegularExpression( "@<meta http-equiv=\"content-language\" content=\"($expectedLanguage)\"/>@i", $html );
 		}
 
-		$extensionData = $modifiedParserOutput
-			->getExtensionData( PageBundleParserOutputConverter::PARSOID_PAGE_BUNDLE_KEY );
-		$this->assertEquals( Parsoid::defaultHTMLVersion(), $extensionData['version'] );
+		$pageBundle = $modifiedParserOutput->getContentHolder()->getBasePageBundle();
+		$this->assertEquals( Parsoid::defaultHTMLVersion(), $pageBundle->version );
 
 		if ( $expectedLanguage !== false ) {
-			$this->assertMatchesRegularExpression( "@^$expectedLanguage@i", $extensionData['headers']['content-language'] );
+			$this->assertMatchesRegularExpression( "@^$expectedLanguage@i", $pageBundle->headers['content-language'] );
 			$this->assertSame( $expectedLanguage, (string)$modifiedParserOutput->getLanguage() );
 		}
 	}

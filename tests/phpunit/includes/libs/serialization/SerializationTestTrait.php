@@ -198,8 +198,13 @@ trait SerializationTestTrait {
 			$class = new ReflectionClass( $expected );
 		}
 
+		$propsToIgnore = $this->ignoreForObjectEquality();
+
 		foreach ( $class->getProperties() as $prop ) {
-			$prop->setAccessible( true );
+			$name = $prop->getName();
+			if ( in_array( [ $class->getName(), $name ], $propsToIgnore ) ) {
+				continue;
+			}
 			$this->validateEquality(
 				$prop->getValue( $expected ),
 				$prop->getValue( $actual ),
@@ -315,4 +320,12 @@ trait SerializationTestTrait {
 	 *  - 'deserializer' => callable to deserialize objects
 	 */
 	abstract public static function getSupportedSerializationFormats(): array;
+
+	/**
+	 * @return list<array{0:class-string,1:string}> list of properties that should
+	 * be ignored when testing for object equality.
+	 */
+	public function ignoreForObjectEquality(): array {
+		return [];
+	}
 }

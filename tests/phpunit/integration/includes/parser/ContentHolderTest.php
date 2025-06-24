@@ -3,8 +3,6 @@
 namespace MediaWiki\Tests\Parser;
 
 use MediaWiki\Parser\ContentHolder;
-use MediaWiki\Parser\ParserOutput;
-use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWikiIntegrationTestCase;
 use Wikimedia\Assert\InvariantException;
 use Wikimedia\Parsoid\Core\DomPageBundle;
@@ -23,7 +21,7 @@ class ContentHolderTest extends MediaWikiIntegrationTestCase {
 
 	private function legacyHtmlProvider() {
 		yield "Basic legacy test case" => [
-			 <<<EOD
+		<<<EOD
 <h2 data-mw-anchor="Test">Test<mw:editsection page="test" section="1">Test</mw:editsection></h2>
 <p>some basic wikitext
 </p>
@@ -48,14 +46,14 @@ EOD;
 		$htmlFiltered = preg_replace( "/ data-parsoid=\\\\?'[^']*\\\\?'/u", '', $html );
 		$htmlFiltered = preg_replace( '/ data-parsoid=\\\\?"[^\"]*\\\\?"/u', '', $htmlFiltered );
 		yield "Basic Parsoid test case" => [
-				[
-				'body' => $body,
-				'bodyFiltered' => $bodyFiltered,
-				'header' => $header,
-				'html' => $html,
-				'htmlFiltered' => $htmlFiltered,
-				'dom' => ContentUtils::createAndLoadDocument( $html ),
-				]
+		[
+		'body' => $body,
+		'bodyFiltered' => $bodyFiltered,
+		'header' => $header,
+		'html' => $html,
+		'htmlFiltered' => $htmlFiltered,
+		'dom' => ContentUtils::createAndLoadDocument( $html ),
+		]
 		];
 	}
 
@@ -119,7 +117,7 @@ EOD;
 	 */
 	public function testShouldSetDomParsoid( array $parsoidData ): void {
 		$dpb = DomPageBundle::fromLoadedDocument( $parsoidData['dom'], [
-			'siteConfig' => new MockSiteConfig( [] ),
+		'siteConfig' => new MockSiteConfig( [] ),
 		] );
 		$pb = HtmlPageBundle::fromDomPageBundle( $dpb );
 		$ch = ContentHolder::createFromParsoidPageBundle( $pb );
@@ -128,19 +126,16 @@ EOD;
 
 		$ch->setAsDom( ContentHolder::BODY_FRAGMENT, $frag );
 		self::assertEquals( $parsoidData['bodyFiltered'], $ch->getAsHtmlString( ContentHolder::BODY_FRAGMENT ) );
-		$this->checkBundle( $ch, $parsoidData['bodyFiltered'] );
+		$this->checkBundle( $ch );
 
 		$frag = $ch->createFragment( $parsoidData['body'] );
 		$ch->setAsDom( ContentHolder::BODY_FRAGMENT, $frag );
 		self::assertEquals( $parsoidData['bodyFiltered'], $ch->getAsHtmlString( ContentHolder::BODY_FRAGMENT ) );
-		$this->checkBundle( $ch, $parsoidData['bodyFiltered'] );
+		$this->checkBundle( $ch );
 	}
 
-	private function checkBundle( ContentHolder $ch, string $bodyFiltered ) {
-		$po = new ParserOutput( $bodyFiltered );
-		$ch->finalize( $po );
-		$this->assertTrue( PageBundleParserOutputConverter::hasPageBundle( $po ) );
-		$pb = PageBundleParserOutputConverter::pageBundleFromParserOutput( $po );
+	private function checkBundle( ContentHolder $ch ) {
+		$pb = $ch->getBasePageBundle();
 		self::assertEquals( 10, $pb->parsoid['ids']['Test']['dsr'][1] );
 	}
 
@@ -151,7 +146,7 @@ EOD;
 	 */
 	public function testShouldHandleTextOnlyOperationsParsoidFullDocBundle( array $parsoidData ): void {
 		$dpb = DomPageBundle::fromLoadedDocument( $parsoidData['dom'], [
-			'siteConfig' => new MockSiteConfig( [] ),
+		'siteConfig' => new MockSiteConfig( [] ),
 		] );
 		$pb = HtmlPageBundle::fromDomPageBundle( $dpb );
 		$ch = ContentHolder::createFromParsoidPageBundle( $pb );
@@ -165,7 +160,7 @@ EOD;
 	 */
 	public function testShouldHandleTextOnlyOperationsParsoidBodyBundle( array $parsoidData ): void {
 		$dpb = DomPageBundle::fromLoadedDocument( $parsoidData['dom'], [
-			'siteConfig' => new MockSiteConfig( [] ),
+		'siteConfig' => new MockSiteConfig( [] ),
 		] );
 		$pb = HtmlPageBundle::fromDomPageBundle( $dpb, [ 'body_only' => true ] );
 		$ch = ContentHolder::createFromParsoidPageBundle( $pb );
@@ -205,7 +200,7 @@ EOD;
 	 */
 	public function testShouldConvertHtmlStringToDomParsoid( Document $input, string $expected ): void {
 		$dpb = DomPageBundle::fromLoadedDocument( $input, [
-			'siteConfig' => new MockSiteConfig( [] ),
+		'siteConfig' => new MockSiteConfig( [] ),
 		] );
 		$pb = HtmlPageBundle::fromDomPageBundle( $dpb );
 		$ch = ContentHolder::createFromParsoidPageBundle( $pb );
@@ -221,14 +216,14 @@ EOD;
 	 */
 	public function testShouldConvertHtmlDocToDomToHtmlBodyParsoid( array $parsoidData ): void {
 		$dpb = DomPageBundle::fromLoadedDocument( $parsoidData[ 'dom' ], [
-			'siteConfig' => new MockSiteConfig( [] ),
+		'siteConfig' => new MockSiteConfig( [] ),
 		] );
 		$pb = HtmlPageBundle::fromDomPageBundle( $dpb );
 		$ch = ContentHolder::createFromParsoidPageBundle( $pb );
 		$ch->getAsDom( ContentHolder::BODY_FRAGMENT );
 		$res = $ch->getAsHtmlString( ContentHolder::BODY_FRAGMENT );
 		$this->assertEquals( $parsoidData['bodyFiltered'], $res );
-		$this->checkBundle( $ch, $parsoidData['bodyFiltered'] );
+		$this->checkBundle( $ch );
 	}
 
 	/**
@@ -239,14 +234,14 @@ EOD;
 	 */
 	public function testShouldConvertHtmlBodyToDomToHtmlBodyParsoid( array $parsoidData ): void {
 		$dpb = DomPageBundle::fromLoadedDocument( $parsoidData['dom'], [
-			'siteConfig' => new MockSiteConfig( [] ),
+		'siteConfig' => new MockSiteConfig( [] ),
 		] );
 		$pb = HtmlPageBundle::fromDomPageBundle( $dpb, [ 'body_only', true ] );
 		$ch = ContentHolder::createFromParsoidPageBundle( $pb );
 		$ch->getAsDom( ContentHolder::BODY_FRAGMENT );
 		$res = $ch->getAsHtmlString( ContentHolder::BODY_FRAGMENT );
 		$this->assertEquals( $parsoidData['bodyFiltered'], $res );
-		$this->checkBundle( $ch, $parsoidData['bodyFiltered'] );
+		$this->checkBundle( $ch );
 	}
 
 	/**
@@ -261,17 +256,4 @@ EOD;
 		$this->assertEquals( $legacyHtml, $res );
 	}
 
-	/**
-	 * @dataProvider parsoidContentProvider
-	 * @covers ::finalize
-	 */
-	public function testFinalize( array $parsoidData ): void {
-		$po = new ParserOutput( $parsoidData['html'] );
-		$dpb = DomPageBundle::fromLoadedDocument( $parsoidData['dom'], [
-			'siteConfig' => new MockSiteConfig( [] ),
-		] );
-		$pb = HtmlPageBundle::fromDomPageBundle( $dpb );
-		$ch = ContentHolder::createFromParsoidPageBundle( $pb );
-		$this->checkBundle( $ch, $parsoidData['bodyFiltered'] );
-	}
 }

@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\Storage;
 
 use MediaWiki\Content\WikitextContent;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Parser\ContentHolder;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Storage\PageEditStashContents;
 use MediaWikiIntegrationTestCase;
@@ -65,5 +66,11 @@ class PageEditStashContentsTest extends MediaWikiIntegrationTestCase {
 				return $wrapped->unserializeStashInfo( $data );
 			},
 		] ];
+	}
+
+	public function ignoreForObjectEquality(): array {
+		return [
+			[ ContentHolder::class, 'ownerDocument' ],
+		];
 	}
 }

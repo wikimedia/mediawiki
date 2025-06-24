@@ -82,16 +82,15 @@ abstract class ContentDOMTransformStage extends OutputTransformStage {
 				'siteConfig' => $services->getParsoidSiteConfig(),
 			] );
 			$pb = HtmlPageBundle::fromDomPageBundle( $dpb, [ 'body_only' => true ] );
-			PageBundleParserOutputConverter::applyPageBundleDataToParserOutput( $pb, $po );
-			$text = $pb->html;
+			$po = PageBundleParserOutputConverter::parserOutputFromPageBundle( $pb, $po );
 		} else {
 			$body = DOMCompat::getBody( $doc );
 			'@phan-var Element $body'; // assert non-null
 			$text = ContentUtils::ppToXML( $body, [
 				'innerXML' => true,
 			] );
+			$po->setContentHolderText( $text );
 		}
-		$po->setContentHolderText( $text );
 		return $po;
 	}
 

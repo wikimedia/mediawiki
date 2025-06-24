@@ -32,7 +32,6 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use MediaWiki\Output\OutputPage;
-use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWiki\Title\TitleValue;
 use UnexpectedValueException;
 use Wikimedia\Bcp47Code\Bcp47Code;
@@ -41,6 +40,7 @@ use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Parsoid\Core\ContentMetadataCollector;
 use Wikimedia\Parsoid\Core\ContentMetadataCollectorCompat;
+use Wikimedia\Parsoid\Core\HtmlPageBundle;
 use Wikimedia\Parsoid\Core\LinkTarget as ParsoidLinkTarget;
 use Wikimedia\Parsoid\Core\MergeStrategy;
 use Wikimedia\Parsoid\Core\TOCData;
@@ -50,7 +50,7 @@ use Wikimedia\Parsoid\Core\TOCData;
  * Content objects and messages often contain wikitext, but not always.
  *
  * `ParserOutput` object combine the HTML rendering of Content objects
- * or messages, available via `::getRawText()`, with various bits of
+ * or messages, available via `::getContentHolderText()`, with various bits of
  * metadata generated during rendering, which may include categories,
  * links, page properties, and extension data, among others.
  *
@@ -117,6 +117,12 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 
 	/**
 	 * @internal
+	 * @since 1.45
+	 */
+	public const PARSOID_PAGE_BUNDLE_KEY = 'parsoid-page-bundle';
+
+	/**
+	 * @internal
 	 * @since 1.38
 	 */
 	public const MW_MERGE_STRATEGY_KEY = '_mw-strategy';
@@ -134,10 +140,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 */
 	public const MW_MERGE_STRATEGY_UNION = MergeStrategy::UNION;
 
-	/**
-	 * @var string|null The output text
-	 */
-	private $mRawText = null;
+	private ContentHolder $contentHolder;
 
 	/**
 	 * @var array<string,string> Array mapping interwiki prefix to (non DB key) Titles (e.g. 'fr' => 'Test page')
@@ -387,7 +390,11 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	public function __construct( ?string $text = null, array $languageLinks = [], array $categoryLinks = [],
 		$unused = false, string $titletext = ''
 	) {
-		$this->mRawText = $text;
+		if ( $text === null ) {
+			$this->contentHolder = ContentHolder::createEmpty();
+		} else {
+			$this->contentHolder = ContentHolder::createFromLegacyString( $text );
+		}
 		$this->mCategories = $categoryLinks;
 		$this->mTitleText = $titletext;
 		foreach ( $languageLinks as $ll ) {
@@ -397,6 +404,22 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		// calling ::resetParseStartTime() at a later point) then use
 		// the creation of the ParserOutput as the "start of parse" time.
 		$this->resetParseStartTime();
+	}
+
+	/**
+	 * Return the ContentHolder storing the HTML/DOM contents of this
+	 * ParserOutput.
+	 * @unstable
+	 */
+	public function getContentHolder(): ContentHolder {
+		return $this->contentHolder;
+	}
+
+	/**
+	 * @internal Use __construct or PageBundleParserOutputConverter.
+	 */
+	public function setContentHolder( ContentHolder $contentHolder ) {
+		$this->contentHolder = $contentHolder;
 	}
 
 	/**
@@ -410,7 +433,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 *         ParserOutput contains meta-data only.
 	 */
 	public function hasText(): bool {
-		return ( $this->mRawText !== null );
+		return $this->contentHolder->has( ContentHolder::BODY_FRAGMENT );
 	}
 
 	/**
@@ -420,16 +443,13 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 *
 	 * @return string
 	 * @since 1.27
+	 * @deprecated since 1.45; use ::getContentHolderText() instead
 	 */
 	public function getRawText() {
-		if ( $this->mRawText === null ) {
-			throw new LogicException( 'This ParserOutput contains no text!' );
-		}
-
-		return $this->mRawText;
+		return $this->getContentHolderText();
 	}
 
-	/**
+	/*
 	 * @unstable This method is transitional and will be replaced by a method
 	 * in another class, maybe ContentRenderer.  It allows us to break our
 	 * porting work into two steps; in the first we bring ParserOptions to
@@ -496,7 +516,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			'deduplicateStyles' => true,
 			'absoluteURLs' => false,
 			'includeDebugInfo' => false,
-			'isParsoidContent' => PageBundleParserOutputConverter::hasPageBundle( $this ),
+			'isParsoidContent' => $this->contentHolder->isParsoidContent(),
 		];
 		return $pipeline->run( $this, $popts, $options );
 	}
@@ -1036,9 +1056,10 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * @since 1.42
 	 * @param string|null $text HTML content of ParserOutput or null if not generated
 	 * @param-taint $text exec_html
+	 * @deprecated Since 1.45, use ::setContentHolderText()
 	 */
 	public function setRawText( ?string $text ): void {
-		$this->mRawText = $text;
+		$this->setContentHolderText( $text );
 	}
 
 	/**
@@ -1050,10 +1071,13 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * @param string|null $text HTML content of ParserOutput or null if not generated
 	 * @param-taint $text exec_html
 	 * @return string|null Previous value of ParserOutput's raw text
-	 * @deprecated since 1.42; use ::setRawText() which matches the getter ::getRawText()
+	 * @deprecated since 1.42; use ::setContentHolderText() which matches
+	 *  the getter ::getContentHolderText()
 	 */
 	public function setText( $text ) {
-		return wfSetVar( $this->mRawText, $text, true );
+		$ret = $this->hasText() ? $this->getContentHolderText() : null;
+		$this->setContentHolderText( $text );
+		return $ret;
 	}
 
 	/**
@@ -3047,9 +3071,8 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	protected function toJsonArray(): array {
 		// WARNING: When changing how this class is serialized, follow the instructions
 		// at <https://www.mediawiki.org/wiki/Manual:Parser_cache/Serialization_compatibility>!
-
 		$data = [
-			'Text' => $this->mRawText,
+			'Text' => $this->hasText() ? $this->getContentHolderText() : null,
 			'LanguageLinks' => $this->getLanguageLinks(),
 			'Categories' => $this->mCategories,
 			'Indicators' => $this->mIndicators,
@@ -3095,6 +3118,13 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			'RevisionUsedSha1Base36' => $this->revisionUsedSha1Base36,
 			'WrapperDivClasses' => $this->mWrapperDivClasses,
 		];
+		// TODO ultimately we'll change the serialization to directly
+		// encode the ContentHolder, but let's maintain compatibility for now.
+		if ( $this->contentHolder->isParsoidContent() ) {
+			$pageBundle = $this->contentHolder->getBasePageBundle();
+			$data[ 'ExtensionData' ][ self::PARSOID_PAGE_BUNDLE_KEY ] =
+				$pageBundle->toJsonArray();
+		}
 
 		// Fill in missing fields from parents. Array addition does not override existing fields.
 		$data += parent::toJsonArray();
@@ -3126,7 +3156,21 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		// WARNING: When changing how this class is serialized, follow the instructions
 		// at <https://www.mediawiki.org/wiki/Manual:Parser_cache/Serialization_compatibility>!
 
-		$this->mRawText = $jsonData['Text'];
+		$pageBundleData = $jsonData['ExtensionData'][ self::PARSOID_PAGE_BUNDLE_KEY ] ?? null;
+		if ( $pageBundleData ) {
+			unset( $jsonData['ExtensionData'][ self::PARSOID_PAGE_BUNDLE_KEY ] );
+			$pb = HtmlPageBundle::newFromJsonArray(
+				$pageBundleData + [ 'html' => $jsonData[ 'Text' ] ?? '' ]
+			);
+			$this->contentHolder = ContentHolder::createFromParsoidPageBundle( $pb );
+		} else {
+			$this->contentHolder = ContentHolder::createFromLegacyString( $jsonData[ 'Text' ] ?? '' );
+		}
+		if ( !isset( $jsonData['Text'] ) ) {
+			// Make the content holder empty if 'Text' was null.
+			$this->contentHolder->setAsHtmlString( ContentHolder::BODY_FRAGMENT, null );
+		}
+
 		$this->mLanguageLinkMap = [];
 		foreach ( ( $jsonData['LanguageLinks'] ?? [] ) as $l ) {
 			// T374736: old serialized parser cache entries may
@@ -3285,29 +3329,33 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		if ( $this->mTOCData ) {
 			$this->mTOCData = clone $this->mTOCData;
 		}
+		$this->contentHolder = clone $this->contentHolder;
 	}
 
 	/**
-	 * Returns the content holder text of the ParserOutput.
-	 * This will eventually be replaced by something like getContentHolder()->getText() when we have a
-	 * ContentHolder/HtmlHolder class.
-	 * @internal
-	 * @unstable
+	 * Returns the body fragment text of the ParserOutput.
+	 *
+	 * This is a shortcut for `::getContentHolder()->getAsHtmlString( BODY_FRAGMENT )`.
 	 * @return string
 	 */
 	public function getContentHolderText(): string {
-		return $this->getRawText();
+		$html = $this->contentHolder->getAsHtmlString( ContentHolder::BODY_FRAGMENT );
+		if ( $html === null ) {
+			throw new LogicException( 'This ParserOutput contains no text!' );
+		}
+		return $html;
 	}
 
 	/**
-	 * Sets the content holder text of the ParserOutput.
-	 * This will eventually be replaced by something like getContentHolder()->setText() when we have a
-	 * ContentHolder/HtmlHolder class.
-	 * @internal
-	 * @unstable
+	 * Sets the body fragment text of the ParserOutput.
+	 *
+	 * This is a shortcut for `::getContentHolder()->setAsHtmlString( BODY_FRAGMENT, $s )`.
+	 *
+	 * @param ?string $text Content of the body fragment as an HTML string, or
+	 *   null if not generated
 	 */
-	public function setContentHolderText( string $s ): void {
-		$this->setRawText( $s );
+	public function setContentHolderText( ?string $text ): void {
+		$this->contentHolder->setAsHtmlString( ContentHolder::BODY_FRAGMENT, $text );
 	}
 }
 

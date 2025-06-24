@@ -160,7 +160,19 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 			$rev = $rev->getId() ?? 0;
 		}
 
-		$pout = new ParserOutput( $html );
+		$pout = PageBundleParserOutputConverter::parserOutputFromPageBundle(
+			new HtmlPageBundle(
+				html: $html,
+				parsoid: [ 'ids' => [
+					't3s7' => [ 'dsr' => [ 0, 0, 0, 0 ] ],
+				] ],
+				mw:  [ 'ids' => [] ],
+				version: $version,
+				headers: [
+					'content-language' => $lang
+				]
+			)
+		);
 		$pout->setCacheRevisionId( $rev ?? $page->getLatest() );
 		$pout->setCacheTime( wfTimestampNow() ); // will use fake time
 		if ( $revTimestamp ) {
@@ -168,18 +180,6 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		}
 		// We test that UUIDs are unique, so make a cheap unique UUID
 		$pout->setRenderId( 'bogus-uuid-' . strval( $counter++ ) );
-		$pout->setExtensionData( PageBundleParserOutputConverter::PARSOID_PAGE_BUNDLE_KEY, [
-			'parsoid' => [ 'ids' => [
-				't3s7' => [ 'dsr' => [ 0, 0, 0, 0 ] ],
-			] ],
-			'mw' => [ 'ids' => [] ],
-			'version' => $version,
-			'headers' => [
-				'content-language' => $lang
-			]
-		] );
-
-		$pout->setLanguage( new Bcp47CodeValue( $lang ) );
 		return $pout;
 	}
 

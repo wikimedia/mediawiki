@@ -27,6 +27,7 @@ use Psr\Log\NullLogger;
 use Wikimedia\ObjectCache\EmptyBagOStuff;
 use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\ObjectCache\WANObjectCache;
+use Wikimedia\Parsoid\Core\HtmlPageBundle;
 use Wikimedia\Rdbms\ChronologyProtector;
 use Wikimedia\Stats\StatsFactory;
 use Wikimedia\Stats\UnitTestingHelper;
@@ -603,12 +604,11 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testGetCachedParserOutputForObsoleteParsoidVersion() {
-		$fakeBundle = [
-			'version' => '0.0' // an obsolete version
-		];
-		$output = new ParserOutput( 'test' );
-		$output->setExtensionData(
-			PageBundleParserOutputConverter::PARSOID_PAGE_BUNDLE_KEY,
+		$fakeBundle = new HtmlPageBundle(
+			html: 'test',
+			version: '0.0', // an obsolete version
+		);
+		$output = PageBundleParserOutputConverter::parserOutputFromPageBundle(
 			$fakeBundle
 		);
 		$parserCache = $this->createMockParserCache( $output, true );

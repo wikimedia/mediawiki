@@ -4,7 +4,9 @@ declare( strict_types = 1 );
 namespace MediaWiki\Parser\Parsoid;
 
 use MediaWiki\Language\LanguageCode;
+use MediaWiki\Parser\ContentHolder;
 use MediaWiki\Parser\ParserOutput;
+use Wikimedia\Parsoid\Core\BasePageBundle;
 use Wikimedia\Parsoid\Core\HtmlPageBundle;
 
 /**
@@ -17,8 +19,9 @@ use Wikimedia\Parsoid\Core\HtmlPageBundle;
 final class PageBundleParserOutputConverter {
 	/**
 	 * @var string Key used to store parsoid page bundle data in ParserOutput
+	 * @deprecated since 1.45; use ParserOutput::PARSOID_PAGE_BUNDLE_KEY
 	 */
-	public const PARSOID_PAGE_BUNDLE_KEY = 'parsoid-page-bundle';
+	public const PARSOID_PAGE_BUNDLE_KEY = ParserOutput::PARSOID_PAGE_BUNDLE_KEY;
 
 	/**
 	 * We do not want instances of this class to be created
@@ -44,41 +47,19 @@ final class PageBundleParserOutputConverter {
 	public static function parserOutputFromPageBundle(
 		HtmlPageBundle $pageBundle, ?ParserOutput $originalParserOutput = null
 	): ParserOutput {
-		$parserOutput = new ParserOutput( $pageBundle->html );
+		$parserOutput = new ParserOutput();
+		$parserOutput->setContentHolder(
+			ContentHolder::createFromParsoidPageBundle( $pageBundle )
+		);
 		if ( $originalParserOutput ) {
+			// Merging metadata from the original parser output will also
+			// potentially transfer fragments from
+			// $originalParserOutput->getContentHolder() to
+			// $parserOutput->getContentHolder()
 			$parserOutput->mergeHtmlMetaDataFrom( $originalParserOutput );
 			$parserOutput->mergeTrackingMetaDataFrom( $originalParserOutput );
 			$parserOutput->mergeInternalMetaDataFrom( $originalParserOutput );
 		}
-		self::applyPageBundleDataToParserOutput( $pageBundle, $parserOutput );
-		return $parserOutput;
-	}
-
-	/**
-	 * Given an existing ParserOutput and a HtmlPageBundle, applies the HtmlPageBundle data to the ParserOutput.
-	 * NOTE: it does NOT apply the text of said pageBundle - this should be done by the calling method, if desired.
-	 * This way, we can modify a ParserOutput's associated bundle without creating a new ParserOutput,
-	 * which makes it easier to deal with in the OutputTransformPipeline.
-	 * @param HtmlPageBundle|\stdClass $pageBundle
-	 * @param ParserOutput $parserOutput
-	 * @internal
-	 */
-	public static function applyPageBundleDataToParserOutput(
-		$pageBundle, ParserOutput $parserOutput
-	): void {
-		// Overwriting ExtensionData was deprecated in 1.38 but it's safe inside an OutputTransform pipeline,
-		// which is the only place where this should happen right now.
-		$parserOutput->setExtensionData(
-			self::PARSOID_PAGE_BUNDLE_KEY,
-			[
-				'parsoid' => $pageBundle->parsoid ?? null,
-				'mw' => $pageBundle->mw ?? null,
-				'version' => $pageBundle->version ?? null,
-				'headers' => $pageBundle->headers ?? null,
-				'contentmodel' => $pageBundle->contentmodel ?? null,
-			]
-		);
-
 		if ( isset( $pageBundle->headers['content-language'] ) ) {
 			$lang = LanguageCode::normalizeNonstandardCodeAndWarn(
 			// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
@@ -86,38 +67,57 @@ final class PageBundleParserOutputConverter {
 			);
 			$parserOutput->setLanguage( $lang );
 		}
+		return $parserOutput;
 	}
 
 	/**
 	 * Returns a Parsoid HtmlPageBundle equivalent to the given ParserOutput.
+	 * @param ParserOutput $parserOutput
 	 *
+	 * @return HtmlPageBundle
+	 * @deprecated Use ::htmlPageBundleFromParserOutput
+	 */
+	public static function pageBundleFromParserOutput( ParserOutput $parserOutput ): HtmlPageBundle {
+		return self::htmlPageBundleFromParserOutput( $parserOutput );
+	}
+
+	/**
+	 * Returns a Parsoid HtmlPageBundle equivalent to the given ParserOutput.
 	 * @param ParserOutput $parserOutput
 	 *
 	 * @return HtmlPageBundle
 	 */
-	public static function pageBundleFromParserOutput( ParserOutput $parserOutput ): HtmlPageBundle {
-		$pageBundleData = $parserOutput->getExtensionData( self::PARSOID_PAGE_BUNDLE_KEY );
+	public static function htmlPageBundleFromParserOutput( ParserOutput $parserOutput ): HtmlPageBundle {
+		$bpb = self::basePageBundleFromParserOutput( $parserOutput );
+		$pb = $bpb->withHtml( $parserOutput->getContentHolderText() );
+		// NOTE that the fragments from the ContentHolder are missing
+		// from this page bundle.  It is assumed that the fragments
+		// are referenced from other parts of the ParserOutput; aka that
+		// they are loaded/saved as part of ParserOuput::$mIndicators
+		return $pb;
+	}
+
+	private static function basePageBundleFromParserOutput( ParserOutput $parserOutput ): BasePageBundle {
+		$contentHolder = $parserOutput->getContentHolder();
+		$basePageBundle = $contentHolder->isParsoidContent() ?
+			$contentHolder->getBasePageBundle() :
+			new BasePageBundle(
+				parsoid: [ 'ids' => [] ],
+				headers: [],
+				// It would be nice to have this be "null", but
+				// ParsoidFormatHelper chokes on that: T325137.
+				version: '0.0.0',
+			);
 		$lang = $parserOutput->getLanguage();
 
-		$headers = $pageBundleData['headers'] ?? [];
-
 		if ( $lang ) {
-			$headers['content-language'] = $lang->toBcp47Code();
+			$basePageBundle->headers ??= [];
+			$basePageBundle->headers['content-language'] = $lang->toBcp47Code();
 		}
-
-		return new HtmlPageBundle(
-			$parserOutput->getRawText(),
-			$pageBundleData['parsoid'] ?? [ 'ids' => [] ],
-			$pageBundleData['mw'] ?? null,
-			// It would be nice to have this be "null", but HtmlPageBundle::responseData()
-			// chokes on that: T325137.
-			$pageBundleData['version'] ?? '0.0.0',
-			$pageBundleData['headers'] ?? $headers,
-			$pageBundleData['contentmodel'] ?? null
-		);
+		return $basePageBundle;
 	}
 
 	public static function hasPageBundle( ParserOutput $parserOutput ): bool {
-		return $parserOutput->getExtensionData( self::PARSOID_PAGE_BUNDLE_KEY ) !== null;
+		return $parserOutput->getContentHolder()->isParsoidContent();
 	}
 }

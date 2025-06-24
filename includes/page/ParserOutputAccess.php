@@ -26,7 +26,6 @@ use MediaWiki\Parser\ParserCache;
 use MediaWiki\Parser\ParserCacheFactory;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
-use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWiki\Parser\RevisionOutputCache;
 use MediaWiki\PoolCounter\PoolCounterFactory;
 use MediaWiki\PoolCounter\PoolCounterWork;
@@ -340,11 +339,9 @@ class ParserOutputAccess implements LoggerAwareInterface {
 			$output && !$options[ self::OPT_IGNORE_PROFILE_VERSION ] &&
 			$parserOptions->getUseParsoid()
 		) {
-			$pageBundleData = $output->getExtensionData(
-				PageBundleParserOutputConverter::PARSOID_PAGE_BUNDLE_KEY
-			);
+			$pageBundle = $output->getContentHolder()->getBasePageBundle();
 			// T333606: Force a reparse if the version coming from cache is not the default
-			$cachedVersion = $pageBundleData['version'] ?? null;
+			$cachedVersion = $pageBundle->version ?? null;
 			if (
 				$cachedVersion !== null && // T325137: BadContentModel, no sense in reparsing
 				$cachedVersion !== Parsoid::defaultHTMLVersion()
