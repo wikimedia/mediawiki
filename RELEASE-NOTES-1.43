@@ -11,10 +11,56 @@ THIS IS NOT A RELEASE YET
 
 === Changes since MediaWiki 1.43.1 ===
 * Localisation updates.
+* (T388708) Diffs: avoid getContentHandler on null error.
+* filebackend: Avoid passing null to FileBackend::normalizeContainerPath.
+* (T390001) UploadBase: makeWarningsSerializable() should accept MessageParam
+  objects.
+* tests: Add test cases for UploadFromChunks.
+* (T382086) swagger-ui: Add licenses of packages used by Swagger UI bundle.
+* (T392086) specials: Fix PHP Warning on Special:PasswordReset for crafted
+  input.
+* (T386175) SECURITY: Escape newpage message in FeedUtils.
+* (T391179) installer: fix MySQL create user permissions check.
+* (T391169) INSTALL: Document requirement for bcmath/gmp on 32-bit systems.
+* (T389260) language: Avoid warning when 'namespaceGenderAliases' is null.
+* (T391867) http: Handle accept header with incomplete q.
+* Update Pingback address.
+* (T387684) filerepo: No exception on redirect without width in
+  ThumbnailEntryPoint.
+* (T393879) objectcache: Cast explicitly to integer.
+* tests: Use GLOB_BRACE in JsonSchemaAssertionTraitTest.
+* tests: Fix casing of MediaWiki in @covers.
+* (T394989) FormatMetadata::formatFraction: Don't risk passing null to
+  preg_match.
+* (T374314) Link mw.Uri migration guide in docs and log warnings.
+* (T395214) title: Reset cached Title objects between tests.
+* (T395214) phpunit: Remove superfluous Title::clearCaches() calls.
+* (T221560) Remove hyphens from legal search characters for MySQL-based database
+  searches.
+* (T393628) Use anonymous user when creating named account from temp account.
+* (T71997, T382963) Update RfC links to bypass redirect.
+* (T351055) Improve BrokenRedirects display.
+* (T382963) Sync up core repo with Parsoid.
+* (T382963) Update wikimedia/parsoid to 0.20.3.
+* (T395834) Treat File::getShortDesc() as possibly unsafe HTML.
+* tests: Match deprecation message under php8.4 in DeprecationHelperTest.
+* (T379445) debug: Migrate E_USER_ERROR to throw Error in DeprecationHelper.
+* (T221560) Setup: Switch vendor error from echo+E_USER_ERROR to echo+exit.
+* Setup: Update error message for composer dependencies check.
+* (T381341, T379445) widget: Remove outdated try/catch wrapper from
+  SpinnerWidget.
+* (T379445) phpunit: Remove unused trigger_error from TestLogger.
+* (T356451) logger: Make log() methods return void.
+* (T328921, T359868) Drop PHP 7.4/8.0 support from master (forward-port from MW
+  1.42).
+* Drop a few phan PhanImpossibleTypeComparison suppressions now we've dropped
+  PHP 7.4.
+* Clean up resource type and phan suppression in postgres code.
+* structure tests: allow PHP 8.1 syntax and autoload enums.
 
 == MediaWiki 1.43.1 ==
 
-This is a security and maintenance release of the MediaWiki 1.42 branch.
+This is a security and maintenance release of the MediaWiki 1.43 branch.
 
 === Changes since MediaWiki 1.43.0 ===
 * Localisation updates.
