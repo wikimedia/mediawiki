@@ -94,6 +94,7 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\RevisionStoreRecord;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Session\SessionManager;
 use MediaWiki\Skin\Skin;
 use MediaWiki\Status\Status;
 use MediaWiki\Storage\EditResult;
@@ -826,15 +827,28 @@ class EditPage implements IEditObject {
 			if ( $expiryAfterDays ) {
 				$expirationCutoff = (int)ConvertibleTimestamp::now( TS_UNIX ) - ( 86_400 * $expiryAfterDays );
 
-				// If the user was created before the expiration cutoff, then log them out. If no registration is
-				// set then do nothing, as if registration date system is broken it would cause a new temporary account
-				// for each edit.
+				// If the user was created before the expiration cutoff, then log them out, expire any other existing
+				// sessions, and revoke any access to the account that may exist.
+				// If no registration is set then do nothing, as if registration date system is broken it would
+				// cause a new temporary account for each edit.
 				$firstUserRegistration = $this->userRegistrationLookup->getFirstRegistration( $user );
 				if (
 					$firstUserRegistration &&
 					ConvertibleTimestamp::convert( TS_UNIX, $firstUserRegistration ) < $expirationCutoff
 				) {
+					// Log the user out of the expired temporary account.
 					$user->logout();
+
+					// Clear any stashed temporary account name (if any is set), as we want a new name for the user.
+					$session = $this->context->getRequest()->getSession();
+					$session->set( 'TempUser:name', null );
+					$session->save();
+
+					// Revoke access to any other sessions for the expired temporary account
+					$this->authManager->revokeAccessForUser( $user->getName() );
+					SessionManager::singleton()->invalidateSessionsForUser(
+						$this->userFactory->newFromUserIdentity( $user )
+					);
 				}
 			}
 		}
