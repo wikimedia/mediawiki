@@ -1178,7 +1178,7 @@
 	"right-sendemail": "Sendar e-posto ad altra uzeri",
 	"right-managechangetags": "Kreo e (des)uzo di [[Special:Tags|etiketi]]",
 	"right-applychangetags": "Adjuntez [[Special:Tags|etiketi (''tags'')]] a la chanji dil uzero",
-	"right-changetags": "Agregar y eliminar [[Special:Tags|etiquetas]] arbitrarias en revisiones individuales y entradas de registro",
+	"right-changetags": "Adjuntar e removar arbitriala [[Special:Tags|etiketi (''tags'')]] en individuala revizuri e ''log''-eniri",
 	"right-deletechangetags": "Efacar [[Special:Tags|etiketi]] de la datumaro",
 	"grant-generic": "grupo di yuri \"$1\"",
 	"grant-group-page-interaction": "Interagar kun pagini",

@@ -126,7 +126,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"Leo",
-			"Pedian4169"
+			"Pedian4169",
+			"Karacehennem"
 		]
 	},
 	"sunday": "Pazar",
@@ -1182,7 +1183,7 @@
 	"userrights-expiry-in-past": "\"$1\" grubunun bitiş süresi geçmişte.",
 	"userrights-cannot-shorten-expiry": "Üyelik süresinin sona ermesini \"$1\" grubunda ileriye taşıyamazsınız. Yalnızca bu grubu ekleme ve kaldırma izni olan kullanıcılar, sürenin dolduğu süreyi getirebilir.",
 	"userrights-no-tempuser": "Geçici kullanıcılar gruplara eklenemez.",
-	"userrights-no-group": "Geçici kullanıcıların kümeleri yoktur.",
+	"userrights-no-group": "Geçici kullanıcılar için kullanıcı grupları yoktur.",
 	"userrights-cross-wiki-assignment-for-reserved-name": "Geçici hesap sistemi tarafından ayrılmış bir kullanıcı adı için yerel olmayan bir vikide grup atayamazsınız; böylece geçici kullanıcılara grup atanması önlenir.",
 	"userrights-conflict": "Kullanıcı hakları değişikliklerinde çakışma! Lütfen değişikliklerinizi gözden geçirin ve onaylayın.",
 	"group": "Grup:",
@@ -1636,7 +1637,7 @@
 	"upload_directory_read_only": "Dosya yükleme dizinine ($1) web sunucusunun yazma izni yok.",
 	"uploaderror": "Yükleme hatası",
 	"upload-recreate-warning": "<strong>Uyarı: Bu adı taşıyan bir dosya silindi veya taşındı.</strong>\n\nBu sayfanın silme ve taşıma günlüğü kolaylık için burada sağlanmıştır:",
-	"uploadtext": "Dosya yüklemek için aşağıdaki formu kullanın.\nÖnceden yüklenmiş dosyaları görmek ya da aramak için [[Special:FileList|yüklenmiş dosyalar listesine]] bakın. Yüklemeler ve yeniden yüklemeler de [[Special:Log/upload|yükleme günlüğüne]] kaydedilir. Silme işlemleri, [[Special:Log/delete|silme günlüğüne]] kaydedilir.\nBir sayfaya dosya koymak için bağlantınızda aşağıdaki formlardan birini kullanın:\n* Dosyanın tam sürümünü kullanmak için: <strong><code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Dosya.jpg]]</nowiki></code></strong>\n* Sol kenar boşluğunda aşağıda \"Alt yazı\" metni bulunan bir kutuda 200 piksel genişliğinde bir yorumlama kullanmak için <strong><code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Dosya.png|200px|thumb|left|Altyazı]]</nowiki></code></strong>\n* Dosyayı göstermeden, dosyaya direkt bağlantı vermek için: <strong><code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Dosya.ogg]]</nowiki></code></strong>",
+	"uploadtext": "Dosya yüklemek için aşağıdaki formu kullanın.\nÖnceden yüklenmiş dosyaları görmek ya da aramak için [[Special:FileList|yüklenmiş dosyalar listesine]] bakın. Yüklemeler ve yeniden yüklemeler [[Special:Log/upload|yükleme günlüğüne]] kaydedilir. Silme işlemleri, [[Special:Log/delete|silme günlüğüne]] kaydedilir.\nBir sayfaya dosya eklemek için bağlantınızda aşağıdaki formlardan birini kullanın:\n* Dosyayı olduğu gibi kullanmak için: <strong><code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Dosya.jpg]]</nowiki></code></strong>\n* Sol kenar boşluğunda aşağıda \"Altyazı\" metni bulunan bir kutuda 200 piksel genişliğinde bir yorumlama kullanmak için <strong><code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Dosya.png|200px|thumb|left|Altyazı]]</nowiki></code></strong>\n* Dosyayı göstermeden dosyaya sadece bağlantı vermek için: <strong><code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Dosya.ogg]]</nowiki></code></strong>",
 	"upload-permitted": "İzin verilen dosya {{PLURAL:$2|türü|türleri}}: $1.",
 	"upload-preferred": "Tercih edilen dosya {{PLURAL:$2|türü|türleri}}: $1.",
 	"upload-prohibited": "Yasaklanan dosya {{PLURAL:$2|türü|türleri}}: $1.",

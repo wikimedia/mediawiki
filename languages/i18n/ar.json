@@ -2679,7 +2679,7 @@
 	"blocklist-userblocks": "أخف منع الحسابات",
 	"blocklist-tempblocks": "أخف المنع المؤقت",
 	"blocklist-indefblocks": "أخف عمليات المنع غير المحددة",
-	"blocklist-addressblocks": "أخف منع عنوان أيبي واحد",
+	"blocklist-addressblocks": "أخف منع عنوان آي بي واحد",
 	"blocklist-type": "النوع:",
 	"blocklist-type-header": "نوع",
 	"blocklist-type-opt-all": "الكل",

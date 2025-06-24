@@ -15,7 +15,8 @@
 			"SpeedyGonsales",
 			"Tivek",
 			"Vrhnje",
-			"לערי ריינהארט"
+			"לערי ריינהארט",
+			"Hijerovit"
 		]
 	},
 	"preferences": "Postavke",
@@ -86,10 +87,10 @@
 	"prefs-changeemail": "Promijeni ili ukloni adresu e-pošte",
 	"prefs-help-email": "Adresa e-pošte nije obvezna, ali je potrebna u slučaju ponovnih postavljanja zaporke, ako zaboravite svoju zaporku.",
 	"prefs-help-email-required": "Potrebno je navesti adresu e-pošte (e-mail).",
-	"prefs-help-email-others": "Također možete dopustiti drugima da Vas kontaktiraju preko poveznice na lijevoj strani Vaše stranice odnosno stranice za razgovor.\nVaša adresa e-pošte ne će biti prikazana drugim suradnicima koji Vas kontaktiraju.",
+	"prefs-help-email-others": "Također možete dopustiti drugima da Vas kontaktiraju preko poveznice na lijevoj strani Vaše suradničke stranice, odnosno stranice za razgovor.\nVaša adresa e-pošte neće biti prikazana drugim suradnicima koji Vas kontaktiraju.",
 	"tog-requireemail": "Pošalji e-poštu za resetiranje zaporke samo kad su navedena i adresa e-pošte i suradničko ime.",
 	"prefs-help-requireemail": "Ova mogućnost unapređuje privatnost i pomaže sprečavati neželjene e-poruke.",
-	"noemailprefs": "Nije navedena adresa elektroničke pošte, stoga sljedeće naredbe ne će raditi.",
+	"noemailprefs": "Nije navedena adresa elektroničke pošte, stoga sljedeće naredbe neće raditi.",
 	"emailnotauthenticated": "Vaša adresa e-pošte još nije potvrđena.\nNe možemo poslati e-poruku ni u jednoj od sljedećih naredbi.",
 	"emailconfirmlink": "Potvrdite svoju e-mail adresu",
 	"prefs-emailconfirm-label": "Potvrda adrese e-pošte:",
