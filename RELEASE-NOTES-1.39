@@ -12,8 +12,20 @@ THIS IS NOT A RELEASE YET
 
 === Changes since 1.39.12 ===
 * Localisation updates.
-* Remove hyphens from legal search characters for MySQL-based database searches.
-  (T221560)
+* (T386175) SECURITY: Escape newpage message in FeedUtils.
+* (T391867) http: Handle accept header with incomplete q.
+* Update Pingback address.
+* (T393879) objectcache: Cast explicitly to integer.
+* (T394989) FormatMetadata::formatFraction: Don't risk passing null to
+  preg_match.
+* (T395834) Treat File::getShortDesc() as possibly unsafe HTML.
+* (T396766) ApiQueryRevisionsBase: Cast ctype_digit() param to string.
+* (T221560) Remove hyphens from legal search characters for MySQL-based database
+  searches.
+* ParserCache forward-compatibility: anticipate removal of OutputHooks.
+* Protect against ParserOutput/CacheTime re-namespacing.
+* ParserCache forward-compatibility: anticipate removal of TOCHTML.
+* SerializationTestUtils: handle 1.xx_wmf* versions; don't fail immediately.
 
 == MediaWiki 1.39.12 ==
 
