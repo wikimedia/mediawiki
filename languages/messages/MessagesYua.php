@@ -9,4 +9,6 @@
 
 $fallback = 'es';
 
+$namespaceGenderAliases = [];
+
 $linkTrail = '/^([a-záéíóúñ]+)(.*)$/sDu';
