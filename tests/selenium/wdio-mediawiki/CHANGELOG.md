@@ -1,5 +1,8 @@
 # Changelog
 
+## 4.1.3 / 2025-06-24
+* Update waitForModuleState to use mw.loader.using for wdio 9 (T397014)
+
 ## 4.1.2 / 2025-06-17
 * Fix skipping tests for PrometheusReporter (T397030)
 
