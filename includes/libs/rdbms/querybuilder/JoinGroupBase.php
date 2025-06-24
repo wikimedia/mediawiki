@@ -62,9 +62,12 @@ abstract class JoinGroupBase {
 	 * @param string|JoinGroup|SelectQueryBuilder $table The unqualified name of a table,
 	 *   a table name of the form "information_schema.<unquoted identifier>", a JoinGroup
 	 *   containing multiple tables, or a SelectQueryBuilder representing a subquery.
+	 * @param-taint $table exec_sql
 	 * @param string|null $alias The alias name, or null to automatically
 	 *   generate an alias which will be unique to this builder
+	 * @param-taint $alias exec_sql
 	 * @param string|array $conds The conditions for the ON clause
+	 * @param-taint $conds exec_sql_numkey
 	 * @return $this
 	 */
 	public function leftJoin( $table, $alias = null, $conds = [] ) {
@@ -78,9 +81,12 @@ abstract class JoinGroupBase {
 	 * @param string|JoinGroup|SelectQueryBuilder $table The unqualified name of a table,
 	 *   a table name of the form "information_schema.<unquoted identifier>", a JoinGroup
 	 *   containing multiple tables, or a SelectQueryBuilder representing a subquery.
+	 * @param-taint $table exec_sql
 	 * @param string|null $alias The alias name, or null to automatically
 	 *   generate an alias which will be unique to this builder
+	 * @param-taint $alias exec_sql
 	 * @param string|array $conds The conditions for the ON clause
+	 * @param-taint $conds exec_sql_numkey
 	 * @return $this
 	 */
 	public function join( $table, $alias = null, $conds = [] ) {
@@ -94,9 +100,12 @@ abstract class JoinGroupBase {
 	 * @param string|JoinGroup|SelectQueryBuilder $table The unqualified name of a table,
 	 *   a table name of the form "information_schema.<unquoted identifier>", a JoinGroup
 	 *   containing multiple tables, or a SelectQueryBuilder representing a subquery.
+	 * @param-taint $table exec_sql
 	 * @param string|null $alias The alias name, or null to automatically
 	 *   generate an alias which will be unique to this builder
+	 * @param-taint $alias exec_sql
 	 * @param string|array $conds The conditions for the ON clause
+	 * @param-taint $conds exec_sql_numkey
 	 * @return $this
 	 */
 	public function straightJoin( $table, $alias = null, $conds = [] ) {
