@@ -2552,6 +2552,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		$this->revisionUsedSha1Base36 = $jsonData['RevisionUsedSha1Base36'];
 		$this->mWrapperDivClasses = $jsonData['WrapperDivClasses'];
 		$this->mMaxAdaptiveExpiry = $jsonData['MaxAdaptiveExpiry'] ?? INF;
+		unset( $this->mFlags['mw:toc-set'] );
 	}
 
 	/**
