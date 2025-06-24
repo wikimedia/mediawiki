@@ -11,8 +11,20 @@ THIS IS NOT A RELEASE YET
 
 === Changes since MediaWiki 1.42.6 ===
 * Localisation updates.
-* Remove hyphens from legal search characters for MySQL-based database searches.
-  (T221560)
+* (T388708) Diffs: avoid getContentHandler on null error.
+* filebackend: Avoid passing null to FileBackend::normalizeContainerPath.
+* (T386175) SECURITY: Escape newpage message in FeedUtils.
+* (T391179) installer: fix MySQL create user permissions check.
+* (T391169) INSTALL: Document requirement for bcmath/gmp on 32-bit systems.
+* (T391867) http: Handle accept header with incomplete q.
+* Update Pingback address.
+* (T393879) objectcache: Cast explicitly to integer.
+* (T394989) FormatMetadata::formatFraction: Don't risk passing null to
+  preg_match.
+* (T221560) Remove hyphens from legal search characters for MySQL-based database
+  searches.
+* (T351055) Improve BrokenRedirects display.
+* (T395834) Treat File::getShortDesc() as possibly unsafe HTML.
 
 == MediaWiki 1.42.6 ==
 
