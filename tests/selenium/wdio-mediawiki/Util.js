@@ -47,14 +47,26 @@ module.exports = {
 	 * @param {number} timeout The wait time in milliseconds before the wait fails
 	 */
 	async waitForModuleState( moduleName, moduleStatus = 'ready', timeout = 5000 ) {
+
+		// Wait for the mediaWiki object to be availible
 		await browser.waitUntil(
-			() => browser.execute(
-				( arg ) => typeof mw !== 'undefined' && mw.loader.getState( arg.name ) === arg.status,
-				{ status: moduleStatus, name: moduleName }
-			), {
-				timeout: timeout,
-				timeoutMsg: 'Failed to wait for ' + moduleName + ' to be ' + moduleStatus + ' after ' + timeout + ' ms.'
-			}
+			() => browser.execute( () => typeof mw !== 'undefined' ),
+			{ timeout, timeoutMsg: 'mw is not availible' }
 		);
+
+		// Use the built in using when we wait for modules to become ready
+		if ( moduleStatus === 'ready' ) {
+			await browser.execute( async ( name ) => mw.loader.using( name ), moduleName );
+		} else {
+			await browser.waitUntil(
+				async () => browser.execute(
+					( arg ) => mw.loader.getState( arg.name ) === arg.status,
+					{ status: moduleStatus, name: moduleName }
+				), {
+					timeout: timeout,
+					timeoutMsg: 'The module ' + moduleName + ' never reached ' + moduleStatus + ' after ' + timeout + ' ms.'
+				}
+			);
+		}
 	}
 };
