@@ -51,7 +51,7 @@ var __async = (__this, __arguments, generator) => {
   });
 };
 import { ref, onMounted, defineComponent, computed, openBlock, createElementBlock, normalizeClass, toDisplayString, createCommentVNode, Comment, warn, watch, withKeys, withModifiers, renderSlot, toRef, resolveComponent, createElementVNode, createBlock, resolveDynamicComponent, withCtx, createVNode, Fragment, renderList, createTextVNode, Transition, normalizeStyle, inject, mergeProps, useId, withDirectives, vModelCheckbox, createSlots, unref, shallowRef, getCurrentScope, onScopeDispose, shallowReadonly, resolveDirective, nextTick, vModelDynamic, onUnmounted, toHandlers, vShow, Teleport, toRefs, provide, reactive, vModelRadio, vModelText, getCurrentInstance } from "vue";
-const g = '<path d="M11.53 2.3A1.85 1.85 0 0010 1.21 1.85 1.85 0 008.48 2.3L.36 16.36C-.48 17.81.21 19 1.88 19h16.24c1.67 0 2.36-1.19 1.52-2.64zM11 16H9v-2h2zm0-4H9V6h2z"/>', w = '<path d="M12.43 14.34A5 5 0 0110 15a5 5 0 113.95-2L17 16.09V3a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 001.45-.63z"/><circle cx="10" cy="10" r="3"/>', n1 = '<path d="M7 14.17 2.83 10l-1.41 1.41L7 17 19 5l-1.41-1.42z"/>', d1 = '<path d="M10 0a10 10 0 1010 10A10 10 0 0010 0m5.66 14.24-1.41 1.41L10 11.41l-4.24 4.25-1.42-1.42L8.59 10 4.34 5.76l1.42-1.42L10 8.59l4.24-4.24 1.41 1.41L11.41 10z"/>', r1 = '<path d="m4.34 2.93 12.73 12.73-1.41 1.41L2.93 4.35z"/><path d="M17.07 4.34 4.34 17.07l-1.41-1.41L15.66 2.93z"/>', u1 = '<path d="M10 15 2 5h16z"/>', f1 = '<path d="M13.728 1H6.272L1 6.272v7.456L6.272 19h7.456L19 13.728V6.272zM11 15H9v-2h2zm0-4H9V5h2z"/>', b1 = '<path d="m17.5 4.75-7.5 7.5-7.5-7.5L1 6.25l9 9 9-9z"/>', s0 = '<path d="M19 3H1v14h18zM3 14l3.5-4.5 2.5 3L12.5 8l4.5 6z"/><path d="M19 5H1V3h18zm0 12H1v-2h18z"/>', i = '<path d="M8 19a1 1 0 001 1h2a1 1 0 001-1v-1H8zm9-12a7 7 0 10-12 4.9S7 14 7 15v1a1 1 0 001 1h4a1 1 0 001-1v-1c0-1 2-3.1 2-3.1A7 7 0 0017 7"/>', i0 = '<path d="M10 0C4.477 0 0 4.477 0 10s4.477 10 10 10 10-4.477 10-10S15.523 0 10 0M9 5h2v2H9zm0 4h2v6H9z"/>', M2 = '<path d="M3 1h2v18H3zm13.5 1.5L15 1l-9 9 9 9 1.5-1.5L9 10z"/>', g2 = '<path d="M15 1h2v18h-2zM3.5 2.5 11 10l-7.5 7.5L5 19l9-9-9-9z"/>', A2 = '<path d="M7 1 5.6 2.5 13 10l-7.4 7.5L7 19l9-9z"/>', Z2 = '<path d="m4 10 9 9 1.4-1.5L7 10l7.4-7.5L13 1z"/>', c5 = '<path d="M12.2 13.6a7 7 0 111.4-1.4l5.4 5.4-1.4 1.4zM3 8a5 5 0 1010 0A5 5 0 003 8"/>', d5 = '<path d="M10 0 3 8h14zm0 18-7-8h14z"/>', u5 = '<path d="M10 20a10 10 0 010-20 10 10 0 110 20m-2-5 9-8.5L15.5 5 8 12 4.5 8.5 3 10z"/>', X5 = '<path d="m10 5 8 10H2z"/>', I3 = g, R3 = w, t4 = n1, o4 = d1, l4 = r1, M4 = u1, I4 = f1, C4 = b1, _4 = s0, l6 = {
+const g = '<path d="M11.53 2.3A1.85 1.85 0 0010 1.21 1.85 1.85 0 008.48 2.3L.36 16.36C-.48 17.81.21 19 1.88 19h16.24c1.67 0 2.36-1.19 1.52-2.64zM11 16H9v-2h2zm0-4H9V6h2z"/>', w = '<path d="M12.43 14.34A5 5 0 0110 15a5 5 0 113.95-2L17 16.09V3a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 001.45-.63z"/><circle cx="10" cy="10" r="3"/>', n1 = '<path d="M7 14.17 2.83 10l-1.41 1.41L7 17 19 5l-1.41-1.42z"/>', d1 = '<path d="M10 0a10 10 0 1010 10A10 10 0 0010 0m5.66 14.24-1.41 1.41L10 11.41l-4.24 4.25-1.42-1.42L8.59 10 4.34 5.76l1.42-1.42L10 8.59l4.24-4.24 1.41 1.41L11.41 10z"/>', r1 = '<path d="m4.34 2.93 12.73 12.73-1.41 1.41L2.93 4.35z"/><path d="M17.07 4.34 4.34 17.07l-1.41-1.41L15.66 2.93z"/>', u1 = '<path d="M10 15 2 5h16z"/>', f1 = '<path d="M13.728 1H6.272L1 6.272v7.456L6.272 19h7.456L19 13.728V6.272zM11 15H9v-2h2zm0-4H9V5h2z"/>', b1 = '<path d="m17.5 4.75-7.5 7.5-7.5-7.5L1 6.25l9 9 9-9z"/>', _1 = '<path d="M2 2a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V4a2 2 0 00-2-2zm-.17 13 4.09-5.25 2.92 3.51L12.92 8l5.25 7z"/>', s0 = '<path d="M19 3H1v14h18zM3 14l3.5-4.5 2.5 3L12.5 8l4.5 6z"/><path d="M19 5H1V3h18zm0 12H1v-2h18z"/>', i = '<path d="M8 19a1 1 0 001 1h2a1 1 0 001-1v-1H8zm9-12a7 7 0 10-12 4.9S7 14 7 15v1a1 1 0 001 1h4a1 1 0 001-1v-1c0-1 2-3.1 2-3.1A7 7 0 0017 7"/>', i0 = '<path d="M10 0C4.477 0 0 4.477 0 10s4.477 10 10 10 10-4.477 10-10S15.523 0 10 0M9 5h2v2H9zm0 4h2v6H9z"/>', M2 = '<path d="M3 1h2v18H3zm13.5 1.5L15 1l-9 9 9 9 1.5-1.5L9 10z"/>', g2 = '<path d="M15 1h2v18h-2zM3.5 2.5 11 10l-7.5 7.5L5 19l9-9-9-9z"/>', A2 = '<path d="M7 1 5.6 2.5 13 10l-7.4 7.5L7 19l9-9z"/>', Z2 = '<path d="m4 10 9 9 1.4-1.5L7 10l7.4-7.5L13 1z"/>', c5 = '<path d="M12.2 13.6a7 7 0 111.4-1.4l5.4 5.4-1.4 1.4zM3 8a5 5 0 1010 0A5 5 0 003 8"/>', d5 = '<path d="M10 0 3 8h14zm0 18-7-8h14z"/>', u5 = '<path d="M10 20a10 10 0 010-20 10 10 0 110 20m-2-5 9-8.5L15.5 5 8 12 4.5 8.5 3 10z"/>', X5 = '<path d="m10 5 8 10H2z"/>', I3 = g, R3 = w, t4 = n1, o4 = d1, l4 = r1, M4 = u1, I4 = f1, C4 = b1, G4 = _1, _4 = s0, l6 = {
   langCodeMap: {
     ar: i
   },
@@ -116,6 +116,15 @@ function useComputedLanguage(root) {
 function makeStringTypeValidator(allowedValues) {
   return (s) => typeof s === "string" && allowedValues.includes(s);
 }
+/*!
+ * This file contains all constants used in the codex package.
+ *
+ * Exported constants should be marked with `@public` comments in this file, AND explicitly
+ * exported in lib.ts.
+ *
+ * IMPORTANT NOTE: All constants should be added to the Types and Constants page on the Codex docs
+ * site. Refer to `packages/codex-docs/docs/components/types-and-constants.md`.
+ */
 const LibraryPrefix = "cdx";
 const ButtonActions = [
   "default",
@@ -128,6 +137,7 @@ const ButtonWeights = [
   "quiet"
 ];
 const ButtonSizes = [
+  "small",
   "medium",
   "large"
 ];
@@ -170,6 +180,31 @@ const TableTextAlignments = [
   // Numbers should be aligned to the right in all reading directionalities.
   "number"
 ];
+const ImageAspectRatios = [
+  "16:9",
+  "3:2",
+  "4:3",
+  "1:1",
+  "3:4",
+  "2:3"
+];
+const imageAspectRatioValidator = makeStringTypeValidator(ImageAspectRatios);
+const ObjectFitOptions = [
+  "fill",
+  "contain",
+  "cover",
+  "none",
+  "scale-down"
+];
+const objectFitValidator = makeStringTypeValidator(ObjectFitOptions);
+const ObjectPositions = [
+  "top",
+  "bottom",
+  "left",
+  "right",
+  "center"
+];
+const imagePositionValidator = makeStringTypeValidator(ObjectPositions);
 const DebounceInterval = 120;
 const PendingDelay = 500;
 const MenuFooterValue = "cdx-menu-footer-item";
@@ -202,7 +237,7 @@ const oppositeSides = {
   "right-end": "left"
 };
 const iconSizeValidator = makeStringTypeValidator(IconSizes);
-const _sfc_main$A = defineComponent({
+const _sfc_main$B = defineComponent({
   name: "CdxIcon",
   props: {
     /** The SVG path or an object containing that path plus other data. */
@@ -288,11 +323,11 @@ const _export_sfc = (sfc, props) => {
   }
   return target;
 };
-const _hoisted_1$x = ["aria-hidden"];
+const _hoisted_1$y = ["aria-hidden"];
 const _hoisted_2$l = { key: 0 };
 const _hoisted_3$d = ["innerHTML"];
 const _hoisted_4$b = ["d"];
-function _sfc_render$A(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$B(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock(
     "span",
     {
@@ -321,13 +356,13 @@ function _sfc_render$A(_ctx, _cache, $props, $setup, $data, $options) {
           key: 2,
           d: _ctx.iconPath
         }, null, 8, _hoisted_4$b))
-      ], 8, _hoisted_1$x))
+      ], 8, _hoisted_1$y))
     ],
     2
     /* CLASS */
   );
 }
-const CdxIcon = /* @__PURE__ */ _export_sfc(_sfc_main$A, [["render", _sfc_render$A]]);
+const CdxIcon = /* @__PURE__ */ _export_sfc(_sfc_main$B, [["render", _sfc_render$B]]);
 function flattenSlotContents(slotContents) {
   const flattened = [];
   for (const node of slotContents) {
@@ -401,7 +436,7 @@ function useIconOnlyButton(slot, attrs, componentName) {
 const buttonActionValidator = makeStringTypeValidator(ButtonActions);
 const buttonWeightValidator = makeStringTypeValidator(ButtonWeights);
 const buttonSizeValidator = makeStringTypeValidator(ButtonSizes);
-const _sfc_main$z = defineComponent({
+const _sfc_main$A = defineComponent({
   name: "CdxButton",
   props: {
     /**
@@ -427,10 +462,12 @@ const _sfc_main$z = defineComponent({
     /**
      * Button size.
      *
-     * Most Buttons should use the default medium size. In rare cases the large size should
-     * be used, for example to make icon-only buttons larger on touchscreens.
+     * Medium: Default for most cases.
+     * Large: Use rarely, mainly for icon-only buttons on touchscreens.
+     * Small: Use in tight spaces or inline with text.
+     * Avoid on touchscreens - prefer medium for better accessibility.
      *
-     * @values 'medium', 'large'
+     * @values 'small', 'medium', 'large'
      */
     size: {
       type: String,
@@ -474,7 +511,7 @@ const _sfc_main$z = defineComponent({
     };
   }
 });
-function _sfc_render$z(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$A(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock(
     "button",
     {
@@ -491,7 +528,7 @@ function _sfc_render$z(_ctx, _cache, $props, $setup, $data, $options) {
     /* CLASS, NEED_HYDRATION */
   );
 }
-const CdxButton = /* @__PURE__ */ _export_sfc(_sfc_main$z, [["render", _sfc_render$z]]);
+const CdxButton = /* @__PURE__ */ _export_sfc(_sfc_main$A, [["render", _sfc_render$A]]);
 function useOptionalModelWrapper(internalValueRef, modelValueRef, emit, eventName) {
   return computed({
     get: () => {
@@ -507,7 +544,7 @@ function useOptionalModelWrapper(internalValueRef, modelValueRef, emit, eventNam
     }
   });
 }
-const _sfc_main$y = defineComponent({
+const _sfc_main$z = defineComponent({
   name: "CdxAccordion",
   components: { CdxButton, CdxIcon },
   props: {
@@ -615,10 +652,10 @@ const _sfc_main$y = defineComponent({
     };
   }
 });
-const _hoisted_1$w = ["open"];
+const _hoisted_1$x = ["open"];
 const _hoisted_2$k = { class: "cdx-accordion__header__title" };
 const _hoisted_3$c = { class: "cdx-accordion__header__description" };
-function _sfc_render$y(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$z(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_cdx_icon = resolveComponent("cdx-icon");
   const _component_cdx_button = resolveComponent("cdx-button");
   return openBlock(), createElementBlock("details", {
@@ -665,9 +702,9 @@ function _sfc_render$y(_ctx, _cache, $props, $setup, $data, $options) {
     }, [
       renderSlot(_ctx.$slots, "default")
     ])
-  ], 42, _hoisted_1$w);
+  ], 42, _hoisted_1$x);
 }
-const Accordion = /* @__PURE__ */ _export_sfc(_sfc_main$y, [["render", _sfc_render$y]]);
+const Accordion = /* @__PURE__ */ _export_sfc(_sfc_main$z, [["render", _sfc_render$z]]);
 function getButtonLabel(button) {
   if (button.label === void 0) {
     return button.value;
@@ -757,7 +794,7 @@ function useButtonGroupKeyboardNav(buttonsProp) {
     onKeydown
   };
 }
-const _sfc_main$x = defineComponent({
+const _sfc_main$y = defineComponent({
   name: "CdxButtonGroup",
   components: {
     CdxButton,
@@ -809,16 +846,16 @@ const _sfc_main$x = defineComponent({
     };
   }
 });
-const _hoisted_1$v = {
+const _hoisted_1$w = {
   ref: "rootElement",
   class: "cdx-button-group"
 };
-function _sfc_render$x(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$y(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_cdx_icon = resolveComponent("cdx-icon");
   const _component_cdx_button = resolveComponent("cdx-button");
   return openBlock(), createElementBlock(
     "div",
-    _hoisted_1$v,
+    _hoisted_1$w,
     [
       (openBlock(true), createElementBlock(
         Fragment,
@@ -860,8 +897,8 @@ function _sfc_render$x(_ctx, _cache, $props, $setup, $data, $options) {
     /* NEED_PATCH */
   );
 }
-const ButtonGroup = /* @__PURE__ */ _export_sfc(_sfc_main$x, [["render", _sfc_render$x]]);
-const _sfc_main$w = defineComponent({
+const ButtonGroup = /* @__PURE__ */ _export_sfc(_sfc_main$y, [["render", _sfc_render$y]]);
+const _sfc_main$x = defineComponent({
   name: "CdxThumbnail",
   components: { CdxIcon },
   props: {
@@ -919,14 +956,14 @@ const _sfc_main$w = defineComponent({
     };
   }
 });
-const _hoisted_1$u = { class: "cdx-thumbnail" };
+const _hoisted_1$v = { class: "cdx-thumbnail" };
 const _hoisted_2$j = {
   key: 0,
   class: "cdx-thumbnail__placeholder"
 };
-function _sfc_render$w(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$x(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_cdx_icon = resolveComponent("cdx-icon");
-  return openBlock(), createElementBlock("span", _hoisted_1$u, [
+  return openBlock(), createElementBlock("span", _hoisted_1$v, [
     !_ctx.thumbnailLoaded ? (openBlock(), createElementBlock("span", _hoisted_2$j, [
       createVNode(_component_cdx_icon, {
         icon: _ctx.placeholderIcon,
@@ -952,8 +989,8 @@ function _sfc_render$w(_ctx, _cache, $props, $setup, $data, $options) {
     })
   ]);
 }
-const CdxThumbnail = /* @__PURE__ */ _export_sfc(_sfc_main$w, [["render", _sfc_render$w]]);
-const _sfc_main$v = defineComponent({
+const CdxThumbnail = /* @__PURE__ */ _export_sfc(_sfc_main$x, [["render", _sfc_render$x]]);
+const _sfc_main$w = defineComponent({
   name: "CdxCard",
   components: { CdxIcon, CdxThumbnail },
   props: {
@@ -1017,7 +1054,7 @@ const _sfc_main$v = defineComponent({
     };
   }
 });
-const _hoisted_1$t = { class: "cdx-card__text" };
+const _hoisted_1$u = { class: "cdx-card__text" };
 const _hoisted_2$i = { class: "cdx-card__text__title" };
 const _hoisted_3$b = {
   key: 0,
@@ -1027,7 +1064,7 @@ const _hoisted_4$a = {
   key: 1,
   class: "cdx-card__text__supporting-text"
 };
-function _sfc_render$v(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$w(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_cdx_thumbnail = resolveComponent("cdx-thumbnail");
   const _component_cdx_icon = resolveComponent("cdx-icon");
   return openBlock(), createBlock(resolveDynamicComponent(_ctx.contentTag), {
@@ -1049,7 +1086,7 @@ function _sfc_render$v(_ctx, _cache, $props, $setup, $data, $options) {
         icon: _ctx.icon,
         class: "cdx-card__icon"
       }, null, 8, ["icon"])) : createCommentVNode("v-if", true),
-      createElementVNode("span", _hoisted_1$t, [
+      createElementVNode("span", _hoisted_1$u, [
         createElementVNode("span", _hoisted_2$i, [
           renderSlot(_ctx.$slots, "title")
         ]),
@@ -1065,7 +1102,7 @@ function _sfc_render$v(_ctx, _cache, $props, $setup, $data, $options) {
     /* FORWARDED */
   }, 8, ["href", "class"]);
 }
-const Card = /* @__PURE__ */ _export_sfc(_sfc_main$v, [["render", _sfc_render$v]]);
+const Card = /* @__PURE__ */ _export_sfc(_sfc_main$w, [["render", _sfc_render$w]]);
 function useComputedDisabled(disabledProp) {
   const providedDisabled = inject(DisabledKey, ref(false));
   return computed(() => providedDisabled.value || disabledProp.value);
@@ -1132,7 +1169,7 @@ function useI18nWithOverride(override, messageKey, defaultValue, params = []) {
   const translatedMessage = useI18n(messageKey, defaultValue, params);
   return computed(() => override.value || translatedMessage.value);
 }
-const _sfc_main$u = defineComponent({
+const _sfc_main$v = defineComponent({
   name: "CdxLabel",
   components: { CdxIcon },
   /**
@@ -1158,7 +1195,7 @@ const _sfc_main$u = defineComponent({
       type: Boolean,
       default: false
     },
-    // DEPRECATED: set default to '(optional)' (T368444).
+    // DEPRECATED: set default to '(optional)' and remove validator (T368444).
     /**
      * Text to indicate that the field is optional.
      *
@@ -1166,7 +1203,16 @@ const _sfc_main$u = defineComponent({
      */
     optionalFlag: {
       type: String,
-      default: ""
+      default: "",
+      validator: (value, props) => {
+        if (value.length > 0 && !props.optional) {
+          console.warn(
+            "[CdxLabel]: The boolean `optional` prop is required to show the optional flag.\n\nRefer to https://doc.wikimedia.org/codex/latest/components/demos/label.html#props."
+          );
+          return false;
+        }
+        return true;
+      }
     },
     /**
      * Whether the label should be visually hidden.
@@ -1235,7 +1281,7 @@ const _sfc_main$u = defineComponent({
     };
   }
 });
-const _hoisted_1$s = ["for"];
+const _hoisted_1$t = ["for"];
 const _hoisted_2$h = { class: "cdx-label__label__text" };
 const _hoisted_3$a = {
   key: 1,
@@ -1252,7 +1298,7 @@ const _hoisted_8$2 = {
   key: 0,
   class: "cdx-label__description"
 };
-function _sfc_render$u(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$v(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_cdx_icon = resolveComponent("cdx-icon");
   return !_ctx.isLegend ? (openBlock(), createElementBlock(
     "div",
@@ -1281,7 +1327,7 @@ function _sfc_render$u(_ctx, _cache, $props, $setup, $data, $options) {
           1
           /* TEXT */
         )) : createCommentVNode("v-if", true)
-      ], 16, _hoisted_1$s),
+      ], 16, _hoisted_1$t),
       _ctx.$slots.description && _ctx.$slots.description().length > 0 ? (openBlock(), createElementBlock("span", {
         key: 0,
         id: _ctx.descriptionId || void 0,
@@ -1325,7 +1371,7 @@ function _sfc_render$u(_ctx, _cache, $props, $setup, $data, $options) {
     /* FULL_PROPS */
   ));
 }
-const CdxLabel = /* @__PURE__ */ _export_sfc(_sfc_main$u, [["render", _sfc_render$u]]);
+const CdxLabel = /* @__PURE__ */ _export_sfc(_sfc_main$v, [["render", _sfc_render$v]]);
 function useLabelChecker(slot, attrs, componentName) {
   useWarnOnce(
     () => useSlotContents(slot).length === 0 && !(attrs == null ? void 0 : attrs["aria-label"]) && !(attrs == null ? void 0 : attrs["aria-labelledby"]),
@@ -1341,7 +1387,7 @@ function useModelWrapper(modelValueRef, emit, eventName) {
   });
 }
 const statusValidator$a = makeStringTypeValidator(ValidationStatusTypes);
-const _sfc_main$t = defineComponent({
+const _sfc_main$u = defineComponent({
   name: "CdxCheckbox",
   components: { CdxLabel },
   props: {
@@ -1455,9 +1501,9 @@ const _sfc_main$t = defineComponent({
     };
   }
 });
-const _hoisted_1$r = { class: "cdx-checkbox__wrapper" };
+const _hoisted_1$s = { class: "cdx-checkbox__wrapper" };
 const _hoisted_2$g = ["id", "aria-describedby", "value", "name", "disabled", ".indeterminate"];
-function _sfc_render$t(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$u(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_cdx_label = resolveComponent("cdx-label");
   return openBlock(), createElementBlock(
     "div",
@@ -1465,7 +1511,7 @@ function _sfc_render$t(_ctx, _cache, $props, $setup, $data, $options) {
       class: normalizeClass(["cdx-checkbox", _ctx.rootClasses])
     },
     [
-      createElementVNode("div", _hoisted_1$r, [
+      createElementVNode("div", _hoisted_1$s, [
         withDirectives(createElementVNode("input", {
           id: _ctx.checkboxId,
           ref: "input",
@@ -1527,7 +1573,7 @@ function _sfc_render$t(_ctx, _cache, $props, $setup, $data, $options) {
     /* CLASS */
   );
 }
-const CdxCheckbox = /* @__PURE__ */ _export_sfc(_sfc_main$t, [["render", _sfc_render$t]]);
+const CdxCheckbox = /* @__PURE__ */ _export_sfc(_sfc_main$u, [["render", _sfc_render$u]]);
 const sides = ["top", "right", "bottom", "left"];
 const min = Math.min;
 const max = Math.max;
@@ -3360,7 +3406,7 @@ const CdxTooltip = {
     }
   }
 };
-const _sfc_main$s = defineComponent({
+const _sfc_main$t = defineComponent({
   name: "CdxInputChip",
   components: {
     CdxButton,
@@ -3505,12 +3551,12 @@ const _sfc_main$s = defineComponent({
     }
   }
 });
-const _hoisted_1$q = ["tabindex", "aria-description"];
+const _hoisted_1$r = ["tabindex", "aria-description"];
 const _hoisted_2$f = {
   ref: "textElement",
   class: "cdx-input-chip__text"
 };
-function _sfc_render$s(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$t(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_cdx_icon = resolveComponent("cdx-icon");
   const _component_cdx_button = resolveComponent("cdx-button");
   const _directive_tooltip = resolveDirective("tooltip");
@@ -3554,13 +3600,13 @@ function _sfc_render$s(_ctx, _cache, $props, $setup, $data, $options) {
       _: 1
       /* STABLE */
     }, 8, ["disabled"])
-  ], 42, _hoisted_1$q)), [
+  ], 42, _hoisted_1$r)), [
     [_directive_tooltip, _ctx.tooltipContent]
   ]);
 }
-const CdxInputChip = /* @__PURE__ */ _export_sfc(_sfc_main$s, [["render", _sfc_render$s]]);
+const CdxInputChip = /* @__PURE__ */ _export_sfc(_sfc_main$t, [["render", _sfc_render$t]]);
 const statusValidator$9 = makeStringTypeValidator(ValidationStatusTypes);
-const _sfc_main$r = defineComponent({
+const _sfc_main$s = defineComponent({
   name: "CdxChipInput",
   components: {
     CdxInputChip
@@ -3853,7 +3899,7 @@ const _sfc_main$r = defineComponent({
     };
   }
 });
-const _hoisted_1$p = {
+const _hoisted_1$q = {
   ref: "chipsContainer",
   class: "cdx-chip-input__chips",
   role: "listbox",
@@ -3871,7 +3917,7 @@ const _hoisted_5$8 = {
   role: "status",
   "aria-live": "polite"
 };
-function _sfc_render$r(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$s(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_cdx_input_chip = resolveComponent("cdx-input-chip");
   return openBlock(), createElementBlock(
     "div",
@@ -3885,7 +3931,7 @@ function _sfc_render$r(_ctx, _cache, $props, $setup, $data, $options) {
     [
       createElementVNode(
         "div",
-        _hoisted_1$p,
+        _hoisted_1$q,
         [
           (openBlock(true), createElementBlock(
             Fragment,
@@ -3972,7 +4018,7 @@ function _sfc_render$r(_ctx, _cache, $props, $setup, $data, $options) {
     /* CLASS, STYLE, NEED_HYDRATION */
   );
 }
-const CdxChipInput = /* @__PURE__ */ _export_sfc(_sfc_main$r, [["render", _sfc_render$r]]);
+const CdxChipInput = /* @__PURE__ */ _export_sfc(_sfc_main$s, [["render", _sfc_render$s]]);
 function regExpEscape(value) {
   return value.replace(/([\\{}()|.?*+\-^$[\]])/g, "\\$1");
 }
@@ -4004,7 +4050,7 @@ const stringHelpers = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defin
   regExpEscape,
   splitStringAtMatch
 }, Symbol.toStringTag, { value: "Module" }));
-const _sfc_main$q = defineComponent({
+const _sfc_main$r = defineComponent({
   name: "CdxSearchResultTitle",
   props: {
     /**
@@ -4031,10 +4077,10 @@ const _sfc_main$q = defineComponent({
     };
   }
 });
-const _hoisted_1$o = { class: "cdx-search-result-title" };
+const _hoisted_1$p = { class: "cdx-search-result-title" };
 const _hoisted_2$d = { class: "cdx-search-result-title__match" };
-function _sfc_render$q(_ctx, _cache, $props, $setup, $data, $options) {
-  return openBlock(), createElementBlock("span", _hoisted_1$o, [
+function _sfc_render$r(_ctx, _cache, $props, $setup, $data, $options) {
+  return openBlock(), createElementBlock("span", _hoisted_1$p, [
     createElementVNode("bdi", null, [
       createTextVNode(
         toDisplayString(_ctx.titleChunks[0]),
@@ -4056,8 +4102,8 @@ function _sfc_render$q(_ctx, _cache, $props, $setup, $data, $options) {
     ])
   ]);
 }
-const CdxSearchResultTitle = /* @__PURE__ */ _export_sfc(_sfc_main$q, [["render", _sfc_render$q]]);
-const _sfc_main$p = defineComponent({
+const CdxSearchResultTitle = /* @__PURE__ */ _export_sfc(_sfc_main$r, [["render", _sfc_render$r]]);
+const _sfc_main$q = defineComponent({
   name: "CdxMenuItem",
   components: { CdxIcon, CdxThumbnail, CdxSearchResultTitle },
   props: {
@@ -4271,13 +4317,13 @@ const _sfc_main$p = defineComponent({
     };
   }
 });
-const _hoisted_1$n = ["id", "aria-disabled", "aria-selected", "aria-checked"];
+const _hoisted_1$o = ["id", "aria-disabled", "aria-selected", "aria-checked"];
 const _hoisted_2$c = { class: "cdx-menu-item__text" };
 const _hoisted_3$8 = ["lang"];
 const _hoisted_4$7 = ["lang"];
 const _hoisted_5$7 = ["lang"];
 const _hoisted_6$6 = ["lang"];
-function _sfc_render$p(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$q(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_cdx_thumbnail = resolveComponent("cdx-thumbnail");
   const _component_cdx_icon = resolveComponent("cdx-icon");
   const _component_cdx_search_result_title = resolveComponent("cdx-search-result-title");
@@ -4403,10 +4449,10 @@ function _sfc_render$p(_ctx, _cache, $props, $setup, $data, $options) {
         /* STABLE */
       }, 8, ["href"]))
     ])
-  ], 42, _hoisted_1$n);
+  ], 42, _hoisted_1$o);
 }
-const CdxMenuItem = /* @__PURE__ */ _export_sfc(_sfc_main$p, [["render", _sfc_render$p]]);
-const _sfc_main$o = defineComponent({
+const CdxMenuItem = /* @__PURE__ */ _export_sfc(_sfc_main$q, [["render", _sfc_render$q]]);
+const _sfc_main$p = defineComponent({
   name: "CdxProgressBar",
   props: {
     /**
@@ -4446,8 +4492,8 @@ const _sfc_main$o = defineComponent({
     };
   }
 });
-const _hoisted_1$m = ["aria-hidden", "aria-disabled"];
-function _sfc_render$o(_ctx, _cache, $props, $setup, $data, $options) {
+const _hoisted_1$n = ["aria-hidden", "aria-disabled"];
+function _sfc_render$p(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("div", {
     class: normalizeClass(["cdx-progress-bar", _ctx.rootClasses]),
     role: "progressbar",
@@ -4461,9 +4507,9 @@ function _sfc_render$o(_ctx, _cache, $props, $setup, $data, $options) {
       -1
       /* HOISTED */
     )
-  ]), 10, _hoisted_1$m);
+  ]), 10, _hoisted_1$n);
 }
-const CdxProgressBar = /* @__PURE__ */ _export_sfc(_sfc_main$o, [["render", _sfc_render$o]]);
+const CdxProgressBar = /* @__PURE__ */ _export_sfc(_sfc_main$p, [["render", _sfc_render$p]]);
 function useIntersectionObserver(templateRef, observerOptions) {
   const intersectionRef = ref(false);
   let mounted = false;
@@ -4510,7 +4556,7 @@ function selectedIsArray(selected) {
 function isMenuGroupData(menuEntry) {
   return "items" in menuEntry;
 }
-const _sfc_main$n = defineComponent({
+const _sfc_main$o = defineComponent({
   name: "CdxMenu",
   components: {
     CdxMenuItem,
@@ -5055,9 +5101,11 @@ const _sfc_main$n = defineComponent({
         return;
       }
       const scrollIndex = highlightedMenuItemIndex.value >= 0 ? highlightedMenuItemIndex.value : 0;
-      menuItemElements[scrollIndex].scrollIntoView({
-        behavior: "smooth",
-        block: "nearest"
+      requestAnimationFrame(() => {
+        menuItemElements[scrollIndex].scrollIntoView({
+          behavior: "smooth",
+          block: "nearest"
+        });
       });
     }
     const maxMenuHeight = ref(null);
@@ -5257,7 +5305,7 @@ const _sfc_main$n = defineComponent({
     }
   }
 });
-const _hoisted_1$l = ["aria-live", "aria-relevant", "aria-multiselectable"];
+const _hoisted_1$m = ["aria-live", "aria-relevant", "aria-multiselectable"];
 const _hoisted_2$b = {
   key: 0,
   class: "cdx-menu__pending cdx-menu-item"
@@ -5272,7 +5320,7 @@ const _hoisted_5$6 = { class: "cdx-menu__group__meta" };
 const _hoisted_6$5 = { class: "cdx-menu__group__meta__text" };
 const _hoisted_7$2 = ["id"];
 const _hoisted_8$1 = ["id"];
-function _sfc_render$n(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$o(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_cdx_icon = resolveComponent("cdx-icon");
   const _component_cdx_menu_item = resolveComponent("cdx-menu-item");
   const _component_cdx_progress_bar = resolveComponent("cdx-progress-bar");
@@ -5401,7 +5449,7 @@ function _sfc_render$n(_ctx, _cache, $props, $setup, $data, $options) {
           class: "cdx-menu__progress-bar",
           inline: true
         })) : createCommentVNode("v-if", true)
-      ], 16, _hoisted_1$l)
+      ], 16, _hoisted_1$m)
     ],
     6
     /* CLASS, STYLE */
@@ -5409,10 +5457,10 @@ function _sfc_render$n(_ctx, _cache, $props, $setup, $data, $options) {
     [vShow, _ctx.expanded]
   ]);
 }
-const CdxMenu = /* @__PURE__ */ _export_sfc(_sfc_main$n, [["render", _sfc_render$n]]);
+const CdxMenu = /* @__PURE__ */ _export_sfc(_sfc_main$o, [["render", _sfc_render$o]]);
 const textInputTypeValidator = makeStringTypeValidator(TextInputTypes);
 const statusValidator$8 = makeStringTypeValidator(ValidationStatusTypes);
-const _sfc_main$m = defineComponent({
+const _sfc_main$n = defineComponent({
   name: "CdxTextInput",
   components: { CdxIcon },
   /**
@@ -5690,8 +5738,8 @@ const _sfc_main$m = defineComponent({
     }
   }
 });
-const _hoisted_1$k = ["id", "type", "aria-describedby", "disabled"];
-function _sfc_render$m(_ctx, _cache, $props, $setup, $data, $options) {
+const _hoisted_1$l = ["id", "type", "aria-describedby", "disabled"];
+function _sfc_render$n(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_cdx_icon = resolveComponent("cdx-icon");
   return openBlock(), createElementBlock(
     "div",
@@ -5716,7 +5764,7 @@ function _sfc_render$m(_ctx, _cache, $props, $setup, $data, $options) {
         onBlur: _cache[4] || (_cache[4] = (...args) => _ctx.onBlur && _ctx.onBlur(...args)),
         onKeydown: _cache[5] || (_cache[5] = (...args) => _ctx.onKeydown && _ctx.onKeydown(...args)),
         onInvalid: _cache[6] || (_cache[6] = (e) => _ctx.onInvalid(e, _ctx.shouldPreventDefault))
-      }), null, 16, _hoisted_1$k), [
+      }), null, 16, _hoisted_1$l), [
         [vModelDynamic, _ctx.wrappedModel]
       ]),
       _ctx.startIcon ? (openBlock(), createBlock(_component_cdx_icon, {
@@ -5742,7 +5790,7 @@ function _sfc_render$m(_ctx, _cache, $props, $setup, $data, $options) {
     /* CLASS, STYLE */
   );
 }
-const CdxTextInput = /* @__PURE__ */ _export_sfc(_sfc_main$m, [["render", _sfc_render$m]]);
+const CdxTextInput = /* @__PURE__ */ _export_sfc(_sfc_main$n, [["render", _sfc_render$n]]);
 function unwrapElement(element) {
   return element && "$el" in element ? element.$el : element;
 }
@@ -5866,7 +5914,7 @@ function useFloatingMenu(referenceElement, menu, opt) {
   });
 }
 const statusValidator$7 = makeStringTypeValidator(ValidationStatusTypes);
-const _sfc_main$l = defineComponent({
+const _sfc_main$m = defineComponent({
   name: "CdxCombobox",
   components: {
     CdxButton,
@@ -6050,11 +6098,11 @@ const _sfc_main$l = defineComponent({
     };
   }
 });
-const _hoisted_1$j = {
+const _hoisted_1$k = {
   ref: "inputWrapper",
   class: "cdx-combobox__input-wrapper"
 };
-function _sfc_render$l(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$m(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_cdx_text_input = resolveComponent("cdx-text-input");
   const _component_cdx_icon = resolveComponent("cdx-icon");
   const _component_cdx_button = resolveComponent("cdx-button");
@@ -6068,7 +6116,7 @@ function _sfc_render$l(_ctx, _cache, $props, $setup, $data, $options) {
     [
       createElementVNode(
         "div",
-        _hoisted_1$j,
+        _hoisted_1$k,
         [
           createVNode(_component_cdx_text_input, mergeProps({
             ref: "input",
@@ -6136,7 +6184,7 @@ function _sfc_render$l(_ctx, _cache, $props, $setup, $data, $options) {
     /* CLASS, STYLE */
   );
 }
-const Combobox = /* @__PURE__ */ _export_sfc(_sfc_main$l, [["render", _sfc_render$l]]);
+const Combobox = /* @__PURE__ */ _export_sfc(_sfc_main$m, [["render", _sfc_render$m]]);
 function useResizeObserver(templateRef) {
   const currentDimensions = ref(
     { width: void 0, height: void 0 }
@@ -6146,11 +6194,12 @@ function useResizeObserver(templateRef) {
   }
   const observer = new window.ResizeObserver(
     (entries) => {
-      const entry = entries[0];
+      var _a, _b;
+      const entry = entries == null ? void 0 : entries[0];
       if (entry) {
         currentDimensions.value = {
-          width: entry.borderBoxSize[0].inlineSize,
-          height: entry.borderBoxSize[0].blockSize
+          width: (_a = entry.borderBoxSize) == null ? void 0 : _a[0].inlineSize,
+          height: (_b = entry.borderBoxSize) == null ? void 0 : _b[0].blockSize
         };
       }
     }
@@ -6181,7 +6230,7 @@ function useResizeObserver(templateRef) {
   });
   return currentDimensions;
 }
-const _sfc_main$k = defineComponent({
+const _sfc_main$l = defineComponent({
   name: "CdxDialog",
   components: {
     CdxButton,
@@ -6227,7 +6276,7 @@ const _sfc_main$k = defineComponent({
       type: Boolean,
       default: false
     },
-    // DEPRECATED: Set default to 'Close' (T368444)
+    // DEPRECATED: Set default to 'Close' and remove validator (T368444).
     /**
      * Visually-hidden label text for the icon-only close button in the header.
      *
@@ -6235,7 +6284,16 @@ const _sfc_main$k = defineComponent({
      */
     closeButtonLabel: {
       type: String,
-      default: ""
+      default: "",
+      validator: (value, props) => {
+        if (value.length > 0 && !props.useCloseButton) {
+          console.warn(
+            "[CdxDialog]: The boolean `useCloseButton` prop is required to show the close button.\n\nRefer to https://doc.wikimedia.org/codex/latest/components/demos/dialog.html#props."
+          );
+          return false;
+        }
+        return true;
+      }
     },
     /**
      * Primary user action. This will display a primary button with the specified action
@@ -6469,7 +6527,7 @@ const _sfc_main$k = defineComponent({
     };
   }
 });
-const _hoisted_1$i = ["aria-label", "aria-labelledby"];
+const _hoisted_1$j = ["aria-label", "aria-labelledby"];
 const _hoisted_2$a = {
   key: 0,
   class: "cdx-dialog__header__title-group"
@@ -6492,7 +6550,7 @@ const _hoisted_7$1 = {
   key: 1,
   class: "cdx-dialog__footer__actions"
 };
-function _sfc_render$k(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$l(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_cdx_icon = resolveComponent("cdx-icon");
   const _component_cdx_button = resolveComponent("cdx-button");
   return openBlock(), createBlock(Teleport, {
@@ -6651,7 +6709,7 @@ function _sfc_render$k(_ctx, _cache, $props, $setup, $data, $options) {
                 2
                 /* CLASS */
               )) : createCommentVNode("v-if", true)
-            ], 16, _hoisted_1$i),
+            ], 16, _hoisted_1$j),
             createElementVNode(
               "div",
               {
@@ -6673,14 +6731,14 @@ function _sfc_render$k(_ctx, _cache, $props, $setup, $data, $options) {
     })
   ], 8, ["to", "disabled"]);
 }
-const Dialog = /* @__PURE__ */ _export_sfc(_sfc_main$k, [["render", _sfc_render$k]]);
+const Dialog = /* @__PURE__ */ _export_sfc(_sfc_main$l, [["render", _sfc_render$l]]);
 const iconMap$2 = {
   notice: l6,
   error: I4,
   warning: I3,
   success: t8
 };
-const _sfc_main$j = defineComponent({
+const _sfc_main$k = defineComponent({
   name: "CdxMessage",
   components: { CdxButton, CdxIcon },
   props: {
@@ -6723,7 +6781,7 @@ const _sfc_main$j = defineComponent({
       type: Boolean,
       default: false
     },
-    // DEPRECATED: set default to 'Close' (T368444).
+    // DEPRECATED: set default to 'Close' and remove validator (T368444).
     /**
      * Visually-hidden label text for the dismiss button for user-dismissable messages.
      *
@@ -6731,7 +6789,16 @@ const _sfc_main$j = defineComponent({
      */
     dismissButtonLabel: {
       type: String,
-      default: ""
+      default: "",
+      validator: (value, props) => {
+        if (value.length > 0 && !props.allowUserDismiss) {
+          console.warn(
+            "[CdxMessage]: The boolean `allowUserDismiss` prop is required to show the dismiss button.\n\nRefer to https://doc.wikimedia.org/codex/latest/components/demos/message.html#props."
+          );
+          return false;
+        }
+        return true;
+      }
     },
     /**
      * Enable automatic dismissal of message after a period of time.
@@ -6818,9 +6885,9 @@ const _sfc_main$j = defineComponent({
     };
   }
 });
-const _hoisted_1$h = ["aria-live", "role"];
+const _hoisted_1$i = ["aria-live", "role"];
 const _hoisted_2$9 = { class: "cdx-message__content" };
-function _sfc_render$j(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$k(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_cdx_icon = resolveComponent("cdx-icon");
   const _component_cdx_button = resolveComponent("cdx-button");
   return openBlock(), createBlock(Transition, {
@@ -6856,15 +6923,15 @@ function _sfc_render$j(_ctx, _cache, $props, $setup, $data, $options) {
           _: 1
           /* STABLE */
         }, 8, ["aria-label"])) : createCommentVNode("v-if", true)
-      ], 10, _hoisted_1$h)) : createCommentVNode("v-if", true)
+      ], 10, _hoisted_1$i)) : createCommentVNode("v-if", true)
     ]),
     _: 3
     /* FORWARDED */
   }, 8, ["appear", "leave-active-class"]);
 }
-const CdxMessage = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["render", _sfc_render$j]]);
+const CdxMessage = /* @__PURE__ */ _export_sfc(_sfc_main$k, [["render", _sfc_render$k]]);
 const statusValidator$6 = makeStringTypeValidator(ValidationStatusTypes);
-const _sfc_main$i = defineComponent({
+const _sfc_main$j = defineComponent({
   name: "CdxField",
   components: { CdxLabel, CdxMessage },
   props: {
@@ -6886,7 +6953,7 @@ const _sfc_main$i = defineComponent({
       type: Boolean,
       default: false
     },
-    // DEPRECATED: set default to '(optional)' (T368444).
+    // DEPRECATED: set default to '(optional)' and remove validator (T368444).
     /**
      * Text to indicate that the field is optional.
      *
@@ -6894,7 +6961,16 @@ const _sfc_main$i = defineComponent({
      */
     optionalFlag: {
       type: String,
-      default: ""
+      default: "",
+      validator: (value, props) => {
+        if (value.length > 0 && !props.optional) {
+          console.warn(
+            "[CdxField]: The boolean `optional` prop is required to show the optional flag.\n\nRefer to https://doc.wikimedia.org/codex/latest/components/demos/field.html#props."
+          );
+          return false;
+        }
+        return true;
+      }
     },
     /**
      * Whether the label should be visually hidden.
@@ -6973,13 +7049,13 @@ const _sfc_main$i = defineComponent({
     };
   }
 });
-const _hoisted_1$g = { class: "cdx-field__control" };
+const _hoisted_1$h = { class: "cdx-field__control" };
 const _hoisted_2$8 = { class: "cdx-field__help-text" };
 const _hoisted_3$5 = {
   key: 0,
   class: "cdx-field__validation-message"
 };
-function _sfc_render$i(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$j(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_cdx_label = resolveComponent("cdx-label");
   const _component_cdx_message = resolveComponent("cdx-message");
   return openBlock(), createBlock(resolveDynamicComponent(_ctx.isFieldset ? "fieldset" : "div"), {
@@ -7013,7 +7089,7 @@ function _sfc_render$i(_ctx, _cache, $props, $setup, $data, $options) {
           key: "0"
         } : void 0
       ]), 1032, ["id", "icon", "visually-hidden", "optional", "optional-flag", "input-id", "description-id", "disabled", "is-legend"]),
-      createElementVNode("div", _hoisted_1$g, [
+      createElementVNode("div", _hoisted_1$h, [
         renderSlot(_ctx.$slots, "default")
       ]),
       createElementVNode("div", _hoisted_2$8, [
@@ -7048,7 +7124,202 @@ function _sfc_render$i(_ctx, _cache, $props, $setup, $data, $options) {
     /* FORWARDED */
   }, 8, ["class", "aria-disabled", "disabled"]);
 }
-const Field = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["render", _sfc_render$i]]);
+const Field = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["render", _sfc_render$j]]);
+const _sfc_main$i = defineComponent({
+  name: "CdxImage",
+  components: { CdxIcon },
+  /**
+   * We want the image to inherit attributes, not the root element.
+   */
+  inheritAttrs: false,
+  props: {
+    /**
+     * The source URL of the image.
+     */
+    src: {
+      type: String,
+      default: ""
+    },
+    /**
+     * Alternative text for the image.
+     *
+     * Descriptive text must be provided unless the image is decorative or described elsewhere.
+     */
+    alt: {
+      type: String,
+      required: true,
+      default: ""
+    },
+    /**
+     * The aspect ratio of the image.
+     *
+     * Accepts one of the predefined aspect ratios.
+     */
+    aspectRatio: {
+      type: String,
+      validator: imageAspectRatioValidator,
+      default: null
+    },
+    /**
+     * The object-position of the image when cropping with an aspect ratio.
+     *
+     * Accepts 'top', 'bottom', 'left', 'right', or 'center'.
+     */
+    objectPosition: {
+      type: String,
+      validator: imagePositionValidator,
+      default: "center"
+    },
+    /**
+     * Specifies how the image should be resized to fit its container.
+     * Accepts 'fill', 'contain', 'cover', 'none', or 'scale-down'.
+     */
+    objectFit: {
+      type: String,
+      validator: objectFitValidator,
+      default: "cover"
+    },
+    /**
+     * Image position on a page
+     */
+    position: {
+      type: String,
+      default: ""
+    },
+    /**
+     * The width of the image in pixels.
+     */
+    width: {
+      type: [String, Number],
+      default: void 0
+    },
+    /**
+     * The height of the image in pixels.
+     */
+    height: {
+      type: [String, Number],
+      default: void 0
+    },
+    /**
+     * The loading priority of the image.
+     *
+     * Accepts 'lazy' or 'eager'.
+     */
+    loadingPriority: {
+      type: String,
+      default: "lazy"
+    }
+  },
+  emits: [
+    /**
+     * Emitted when an error occurs loading the image.
+     *
+     * @param {Event} event - The error event object.
+     */
+    "error"
+  ],
+  setup(props, { emit, attrs }) {
+    const imageSrc = ref(props.src);
+    const isBroken = ref(false);
+    const isLoaded = ref(false);
+    const imageClasses = computed(() => {
+      var _a;
+      return {
+        ["cdx-image__image--".concat((_a = props.aspectRatio) == null ? void 0 : _a.split(":").join("-"))]: !!props.aspectRatio,
+        ["cdx-image__image--object-position-".concat(props.objectPosition)]: !!props.objectPosition,
+        ["cdx-image__image--object-fit-".concat(props.objectFit)]: !!props.objectFit,
+        "cdx-image__image--is-broken": isBroken.value,
+        "cdx-image__image--is-loading": !isLoaded.value && !isBroken.value
+      };
+    });
+    const internalRootClasses = computed(() => ({
+      ["cdx-image--".concat(props.position)]: !!props.position
+    }));
+    const {
+      rootClasses,
+      rootStyle,
+      otherAttrs
+    } = useSplitAttributes(attrs, internalRootClasses);
+    const placeholderStyles = computed(() => ({
+      width: "".concat(props.width, "px"),
+      height: "".concat(props.height, "px")
+    }));
+    const placeholderClasses = computed(() => {
+      var _a;
+      return {
+        ["cdx-image__placeholder--".concat((_a = props.aspectRatio) == null ? void 0 : _a.split(":").join("-"))]: !!props.aspectRatio
+      };
+    });
+    const handleError = (event) => {
+      isBroken.value = true;
+      emit("error", event);
+    };
+    const handleLoad = () => {
+      isLoaded.value = true;
+    };
+    const iconSizeClass = computed(() => {
+      const placeholderWidth = Number(props.width);
+      return placeholderWidth <= 32 ? "cdx-image__placeholder__icon--size-smallest" : placeholderWidth <= 180 ? "cdx-image__placeholder__icon--size-small" : placeholderWidth <= 280 ? "cdx-image__placeholder__icon--size-medium" : "cdx-image__placeholder__icon--size-large";
+    });
+    return {
+      imageSrc,
+      isBroken,
+      isLoaded,
+      imageClasses,
+      rootClasses,
+      rootStyle,
+      otherAttrs,
+      placeholderStyles,
+      handleError,
+      handleLoad,
+      cdxIconImage: G4,
+      iconSizeClass,
+      placeholderClasses
+    };
+  }
+});
+const _hoisted_1$g = ["src", "alt", "width", "height", "loading"];
+function _sfc_render$i(_ctx, _cache, $props, $setup, $data, $options) {
+  const _component_cdx_icon = resolveComponent("cdx-icon");
+  return openBlock(), createElementBlock(
+    "div",
+    {
+      class: normalizeClass(["cdx-image", _ctx.rootClasses]),
+      style: normalizeStyle(_ctx.rootStyle)
+    },
+    [
+      _ctx.src ? (openBlock(), createElementBlock("img", mergeProps({ key: 0 }, _ctx.otherAttrs, {
+        src: _ctx.imageSrc,
+        alt: _ctx.alt,
+        width: _ctx.width,
+        height: _ctx.height,
+        loading: _ctx.loadingPriority,
+        class: ["cdx-image__image", _ctx.imageClasses],
+        onLoad: _cache[0] || (_cache[0] = (...args) => _ctx.handleLoad && _ctx.handleLoad(...args)),
+        onError: _cache[1] || (_cache[1] = (...args) => _ctx.handleError && _ctx.handleError(...args))
+      }), null, 16, _hoisted_1$g)) : createCommentVNode("v-if", true),
+      !_ctx.src || !_ctx.isLoaded && !_ctx.isBroken ? (openBlock(), createElementBlock(
+        "div",
+        {
+          key: 1,
+          class: normalizeClass(["cdx-image__placeholder", _ctx.placeholderClasses]),
+          style: normalizeStyle(_ctx.placeholderStyles)
+        },
+        [
+          createVNode(_component_cdx_icon, {
+            icon: _ctx.cdxIconImage,
+            class: normalizeClass(["cdx-image__placeholder__icon", [_ctx.iconSizeClass]])
+          }, null, 8, ["icon", "class"])
+        ],
+        6
+        /* CLASS, STYLE */
+      )) : createCommentVNode("v-if", true)
+    ],
+    6
+    /* CLASS, STYLE */
+  );
+}
+const Image$1 = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["render", _sfc_render$i]]);
 const iconMap$1 = {
   notice: l6,
   error: I4,
@@ -7538,10 +7809,14 @@ const _sfc_main$e = defineComponent({
     /**
      * Value of the current selection.
      *
+     * This prop should be initialized to `null` (for single-select) or an empty array (for
+     * multi-select) rather than using a falsy value.
+     *
      * Must be bound with `v-model:selected`.
      */
     selected: {
-      type: [String, Number, null],
+      // eslint-disable-next-line max-len
+      type: [String, Number, Array, null],
       required: true
     },
     /**
@@ -8698,7 +8973,7 @@ const _sfc_main$9 = defineComponent({
       type: Boolean,
       default: false
     },
-    // DEPRECATED: set default to 'Search' (T368444).
+    // DEPRECATED: set default to 'Search' and remove validator (T368444).
     /**
      * Search button text.
      *
@@ -8706,7 +8981,16 @@ const _sfc_main$9 = defineComponent({
      */
     buttonLabel: {
       type: String,
-      default: ""
+      default: "",
+      validator: (value, props) => {
+        if (value.length > 0 && !props.useButton) {
+          console.warn(
+            "[CdxSearchInput]: The boolean `useButton` prop is required to show the search button.\n\nRefer to https://doc.wikimedia.org/codex/latest/components/demos/search-input.html#props."
+          );
+          return false;
+        }
+        return true;
+      }
     },
     /**
      * Whether the search input is disabled.
@@ -11281,7 +11565,7 @@ const _sfc_main = defineComponent({
       type: Boolean,
       default: false
     },
-    // DEPRECATED: set default to 'Search' (T368444).
+    // DEPRECATED: set default to 'Search' and remove validator (T368444).
     /**
      * Custom label for the submit button.
      *
@@ -11289,7 +11573,16 @@ const _sfc_main = defineComponent({
      */
     buttonLabel: {
       type: String,
-      default: ""
+      default: "",
+      validator: (value, props) => {
+        if (value.length > 0 && !props.useButton) {
+          console.warn(
+            "[CdxTypeaheadSearch]: The boolean `useButton` prop is required to show the search button.\n\nRefer to https://doc.wikimedia.org/codex/latest/components/demos/typeahead-search.html#props."
+          );
+          return false;
+        }
+        return true;
+      }
     },
     /**
      * Initial value for the text input.
@@ -11805,6 +12098,7 @@ export {
   Dialog as CdxDialog,
   Field as CdxField,
   CdxIcon,
+  Image$1 as CdxImage,
   InfoChip as CdxInfoChip,
   CdxLabel,
   Lookup as CdxLookup,

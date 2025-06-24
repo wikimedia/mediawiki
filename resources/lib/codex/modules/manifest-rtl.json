@@ -233,6 +233,21 @@
       "__plugin-vue_export-helper.js"
     ]
   },
+  "src/components/image/Image.vue": {
+    "file": "CdxImage.cjs",
+    "name": "CdxImage",
+    "src": "src/components/image/Image.vue",
+    "isEntry": true,
+    "imports": [
+      "_Icon.js",
+      "_constants.js",
+      "src/composables/useSplitAttributes.ts",
+      "__plugin-vue_export-helper.js"
+    ],
+    "css": [
+      "CdxImage-rtl.css"
+    ]
+  },
   "src/components/info-chip/InfoChip.vue": {
     "file": "CdxInfoChip.cjs",
     "name": "CdxInfoChip",

@@ -1,5 +1,5 @@
 /**
- * Codex Design Tokens v2.1.0
+ * Codex Design Tokens v2.2.0
  * Design System for Wikimedia
  * See https://doc.wikimedia.org/codex/latest/design-tokens/overview.html
  */
@@ -123,6 +123,7 @@
   --opacity-icon-placeholder: 0.51;
   --opacity-icon-subtle: 0.67;
   --border-color-base: #a2a9b1;
+  --border-color-emphasized: #202122;
   --border-color-subtle: #c8ccd1;
   --border-color-muted: #dadde3;
   --border-color-interactive: #72777d;
