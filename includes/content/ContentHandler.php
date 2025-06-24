@@ -1677,6 +1677,8 @@ abstract class ContentHandler {
 		// Initialize to the page language
 		$po->setLanguage( $title->getPageLanguage() );
 
+		// Necessary use of a reference, because the fillParserOutput() call below also uses
+		// pass-by-reference and may reassign $po (5c9322ae06384a8845962ba7e3c499731110e7f0).
 		$parserOptions->registerWatcher( [ &$po, 'recordOption' ] );
 		if ( $hookRunner->onContentGetParserOutput(
 			// FIXME $cpoParams->getRevId() may be null here?
