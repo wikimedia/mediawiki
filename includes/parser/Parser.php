@@ -921,7 +921,7 @@ class Parser {
 	 * @return string
 	 * @return-taint escaped
 	 */
-	public function parseExtensionTagAsTopLevelDoc( $text ) {
+	public function parseExtensionTagAsTopLevelDoc( string $text ): string {
 		$text = $this->recursiveTagParse( $text );
 		$this->hookRunner->onParserAfterParse( $this, $text, $this->mStripState );
 		$text = $this->internalParseHalfParsed( $text, true );
