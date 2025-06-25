@@ -101,6 +101,7 @@ use MediaWiki\Storage\PageUpdateCauses;
 use MediaWiki\Title\Title;
 use MediaWiki\User\ExternalUserNames;
 use MediaWiki\User\Options\UserOptionsLookup;
+use MediaWiki\User\Registration\UserRegistrationLookup;
 use MediaWiki\User\TempUser\CreateStatus;
 use MediaWiki\User\TempUser\TempUserCreator;
 use MediaWiki\User\User;
@@ -481,6 +482,7 @@ class EditPage implements IEditObject {
 	private IConnectionProvider $dbProvider;
 	private BlockErrorFormatter $blockErrorFormatter;
 	private AuthManager $authManager;
+	private UserRegistrationLookup $userRegistrationLookup;
 
 	/** @var User|null */
 	private $placeholderTempUser;
@@ -553,6 +555,7 @@ class EditPage implements IEditObject {
 		$this->blockErrorFormatter = $services->getFormatterFactory()
 			->getBlockErrorFormatter( $this->context );
 		$this->authManager = $services->getAuthManager();
+		$this->userRegistrationLookup = $services->getUserRegistrationLookup();
 
 		$this->deprecatePublicProperty( 'textbox2', '1.44', __CLASS__ );
 		$this->deprecatePublicProperty( 'action', '1.38', __CLASS__ );
@@ -826,9 +829,10 @@ class EditPage implements IEditObject {
 				// If the user was created before the expiration cutoff, then log them out. If no registration is
 				// set then do nothing, as if registration date system is broken it would cause a new temporary account
 				// for each edit.
+				$firstUserRegistration = $this->userRegistrationLookup->getFirstRegistration( $user );
 				if (
-					$user->getRegistration() &&
-					ConvertibleTimestamp::convert( TS_UNIX, $user->getRegistration() ) < $expirationCutoff
+					$firstUserRegistration &&
+					ConvertibleTimestamp::convert( TS_UNIX, $firstUserRegistration ) < $expirationCutoff
 				) {
 					$user->logout();
 				}
