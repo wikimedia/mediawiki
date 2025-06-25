@@ -29,6 +29,7 @@ use MediaWiki\Permissions\RestrictionStore;
 use MediaWiki\Title\Title;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\Utils\MWTimestamp;
+use MediaWiki\Watchlist\WatchedItemStoreInterface;
 use MediaWiki\Watchlist\WatchlistManager;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
@@ -46,6 +47,7 @@ class ApiProtect extends ApiBase {
 		ApiMain $mainModule,
 		string $moduleName,
 		WatchlistManager $watchlistManager,
+		WatchedItemStoreInterface $watchedItemStore,
 		UserOptionsLookup $userOptionsLookup,
 		RestrictionStore $restrictionStore
 	) {
@@ -57,6 +59,7 @@ class ApiProtect extends ApiBase {
 		$this->watchlistMaxDuration =
 			$this->getConfig()->get( MainConfigNames::WatchlistExpiryMaxDuration );
 		$this->watchlistManager = $watchlistManager;
+		$this->watchedItemStore = $watchedItemStore;
 		$this->userOptionsLookup = $userOptionsLookup;
 	}
 
@@ -138,7 +141,7 @@ class ApiProtect extends ApiBase {
 		$cascade = $params['cascade'];
 
 		$watch = $params['watch'] ? 'watch' : $params['watchlist'];
-		$watchlistExpiry = $this->getExpiryFromParams( $params );
+		$watchlistExpiry = $this->getExpiryFromParams( $params, $titleObj, $user );
 		$this->setWatch( $watch, $titleObj, $user, 'watchdefault', $watchlistExpiry );
 
 		$status = $pageObj->doUpdateRestrictions(

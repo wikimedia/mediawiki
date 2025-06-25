@@ -6,6 +6,7 @@ use MediaWiki\Api\ApiWatchlistTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\User;
+use MediaWiki\Watchlist\WatchedItemStore;
 use MediaWiki\Watchlist\WatchlistManager;
 use MediaWikiUnitTestCase;
 use Wikimedia\TestingAccessWrapper;
@@ -35,16 +36,19 @@ class ApiWatchlistTraitTest extends MediaWikiUnitTestCase {
 			}
 		);
 
+		$watchedItemStore = $this->createMock( WatchedItemStore::class );
+
 		$watchlistManager = $this->createMock( WatchlistManager::class );
 		$watchlistManager->method( 'isWatchable' )->willReturn( true );
 		$watchlistManager->method( 'isWatchedIgnoringRights' )->willReturn( $isWatched );
 
-		$title = $this->createMock( Title::class );
-		$title->method( 'exists' )->willReturn( true );
-
 		$trait = TestingAccessWrapper::newFromObject( $this->getMockForTrait( ApiWatchlistTrait::class ) );
 		$trait->watchlistManager = $watchlistManager;
+		$trait->watchedItemStore = $watchedItemStore;
 		$trait->userOptionsLookup = $userOptionsLookup;
+
+		$title = $this->createMock( Title::class );
+		$title->method( 'exists' )->willReturn( true );
 
 		$watch = $trait->getWatchlistValue( $watchlistValue, $title, $user, 'watchdefault' );
 		$this->assertEquals( $expect, $watch );

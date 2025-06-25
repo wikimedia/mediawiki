@@ -1788,7 +1788,6 @@ class ApiEditPageTest extends ApiTestCase {
 	public function testEditWithWatchlistExpiry(): void {
 		ConvertibleTimestamp::setFakeTime( '20240201000000' );
 		$user = $this->getTestUser()->getUser();
-		$watchlistManager = $this->getServiceContainer()->getWatchlistManager();
 		$mockUserOptionsLookup = new StaticUserOptionsLookup( [
 			$user->getName() => [
 				'watchdefault' => '1',
@@ -1798,6 +1797,7 @@ class ApiEditPageTest extends ApiTestCase {
 			],
 		] );
 		$this->setService( 'UserOptionsLookup', $mockUserOptionsLookup );
+		$watchlistManager = $this->getServiceContainer()->getWatchlistManager();
 
 		$title = Title::makeTitle( NS_HELP, 'TestEditWithWatchlistExpiry' );
 		$apiResult = $this->doApiRequestWithToken( [
@@ -1815,6 +1815,41 @@ class ApiEditPageTest extends ApiTestCase {
 		$this->assertTrue( $watchlistManager->isWatched( $user, $title ) );
 		$this->assertTrue( $watchlistManager->isTempWatched( $user, $title ) );
 
+		// Edit again. Watchlist expiry should be unchanged.
+		$apiResult = $this->doApiRequestWithToken( [
+			'action' => 'edit',
+			'title' => $title,
+			'appendtext' => 'some more text'
+		], null, $user );
+
+		$this->assertSame(
+			'2024-03-01T00:00:00Z',
+			$apiResult[0]['edit']['watchlistexpiry'],
+			'Watchlist expiry is unchanged when already watched with expiry'
+		);
+		$this->assertTrue( $watchlistManager->isWatched( $user, $title ) );
+		$this->assertTrue( $watchlistManager->isTempWatched( $user, $title ) );
+
+		// Watch without expiry, then edit again. Watchlist expiry should be unchanged.
+		$watchlistManager->removeWatch( $user, $title );
+		$watchlistManager->addWatch( $user, $title );
+		$this->assertTrue( $watchlistManager->isWatched( $user, $title ) );
+		$this->assertFalse( $watchlistManager->isTempWatched( $user, $title ) );
+
+		$apiResult = $this->doApiRequestWithToken( [
+			'action' => 'edit',
+			'title' => $title,
+			'appendtext' => 'some more text'
+		], null, $user );
+
+		$this->assertSame(
+			null,
+			$apiResult[0]['edit']['watchlistexpiry'] ?? null,
+			'Watchlist expiry is unchanged when already watched without expiry'
+		);
+		$this->assertTrue( $watchlistManager->isWatched( $user, $title ) );
+		$this->assertFalse( $watchlistManager->isTempWatched( $user, $title ) );
+
 		// Unwatch, then edit again. Watchlist expiry should be just 1 week.
 		$watchlistManager->removeWatch( $user, $title );
 		$this->assertFalse( $watchlistManager->isWatched( $user, $title ) );
@@ -1822,7 +1857,7 @@ class ApiEditPageTest extends ApiTestCase {
 		$apiResult = $this->doApiRequestWithToken( [
 			'action' => 'edit',
 			'title' => $title,
-			'text' => 'some more text'
+			'appendtext' => 'some more text'
 		], null, $user );
 
 		$this->assertSame(
@@ -1830,10 +1865,7 @@ class ApiEditPageTest extends ApiTestCase {
 			$apiResult[0]['edit']['watchlistexpiry'],
 			'Watchlist expiry is 1 week for existing pages'
 		);
-		// The above proves the API is acting as it should, however at this point
-		// $watchlistManager->isWatched( $user, $title ) will incorrectly return false.
-		// This is most likely due to the process cache, which has had some known issues (T259379).
-		// There's no user-facing way to watch/unwatch all in one process,
-		// so this shouldn't be an actual problem.
+		$this->assertTrue( $watchlistManager->isWatched( $user, $title ) );
+		$this->assertTrue( $watchlistManager->isTempWatched( $user, $title ) );
 	}
 }
