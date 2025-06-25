@@ -1,4 +1,6 @@
 <?php
+declare( strict_types = 1 );
+
 namespace MediaWiki\Tests\OutputTransform\Stages;
 
 use MediaWiki\Config\ServiceOptions;

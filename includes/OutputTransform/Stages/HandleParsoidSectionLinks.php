@@ -1,4 +1,5 @@
 <?php
+declare( strict_types = 1 );
 // Suppress UnusedPluginSuppression because Phan on PHP 8.1 needs more
 // suppressions than PHP 7.x due to tighter types on Element::insertBefore()
 // and Element::appendChild(): see comments marked PHP81 below.  The
