@@ -113,6 +113,7 @@
 	"search-close": "Keresési párbeszédpanel bezárása",
 	"search-ignored-headings": " #<!-- ezen a soron ne változtass --> <pre>\n# Az itt megadott szakaszokat figyelmen kívül hagyja a kereső.\n# Ha megváltoztatod ezt a listát, csak a változtatás után indexelt lapokra lesz hatása.\n# Ha újra akarsz indexelni egy adott oldalt, egy üres szerkesztéssel (megnyit-elment) megteheted.\n# Szintaxis:\n#   * A # jeltől a sor végéig tartó rész megjegyzés, a szoftver figyelmen kívül hagyja\n#   * Minden nem üres sor egy olyan szakasz címe, amit nem akarjuk, hogy indexeljen a kereső. (Csak a pontos egyezés számít, kisbetű/nagybetűt is beleértve.)\nForrások\nJegyzetek\nHivatkozások\nKülső hivatkozások\nLásd még\n #</pre> <!-- ezen a soron ne változtass -->",
 	"searchbutton": "Keresés",
+	"searchsuggest-containing-html": "A következőt tartalmazó lapok keresése: <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>",
 	"search-loader": "Keresési javaslatok betöltése",
 	"go": "Menj",
 	"searcharticle": "Menj",

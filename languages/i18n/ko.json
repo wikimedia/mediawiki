@@ -623,7 +623,7 @@
 	"autocreate-preview-warning": "<em>로그인 상태가 아닙니다. 한번 편집하게 되면, 임시 계정이 만들어집니다. [[{{MediaWiki:tempuser-helppage}}|더 알아보세요]].</em>",
 	"missingsummary": "<strong>알림:</strong> 편집 요약을 적지 않았습니다.\n\"$1\" 버튼을 다시 클릭하면 편집 요약 없이 편집이 게시됩니다.",
 	"selfredirect": "<strong>경고:</strong> 자기 자신으로 문서를 넘겨주고 있습니다.\n넘겨줄 대상을 잘못 입력했거나, 잘못된 문서를 편집하고 있을 수 있습니다.\n\"$1\" 버튼을 다시 클릭하면, 넘겨주기 문서가 생성됩니다.",
-	"edit-constraint-brokenredirect": "<strong>경고:</strong> 이 페이지를 존재하지 않는 페이지로 리디렉션하고 있습니다.\n리디렉션 대상이 잘못 지정되었을 수 있습니다.\n\"$1\"을 다시 클릭하면 리디렉션이 생성됩니다.",
+	"edit-constraint-brokenredirect": "<strong>경고:</strong> 이 문서를 존재하지 않는 문서로 넘겨주고 있습니다.\n넘겨주기 대상이 잘못 지정되었을 수 있습니다.\n\"$1\"을 다시 클릭하면 넘겨주기가 생성됩니다.",
 	"edit-constraint-doubleredirect": "<strong>경고:</strong> 이 문서를 두 번째 넘겨주기 문서로 넘겨주려고 하며, 이 경우 이중 넘겨주기가 생성됩니다.\n대상 문서는 현재 [[$2]] 문서로 넘겨주고 있습니다.\n\n이 넘겨주기의 내용을 다음과 같이 수정하는 것을 고려해 주세요.\n$3\n\n참고: \"$1\"를 다시 클릭하면 여하튼 이중 넘겨주기가 생성됩니다.",
 	"missingcommenttext": "댓글을 입력해 주십시오.",
 	"missingcommentheader": "<strong>알림:</strong> 이 댓글에 제목을 입력하지 않았습니다.\n\"$1\" 버튼을 다시 클릭하면 제목 없이 편집이 게시됩니다.",
