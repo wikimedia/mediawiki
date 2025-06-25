@@ -8,11 +8,11 @@ PHP 8.4 workboard: https://phabricator.wikimedia.org/tag/php_8.4_support/
 
 == MediaWiki 1.39.13 ==
 
-THIS IS NOT A RELEASE YET
+This is a security and maintenance release of the MediaWiki 1.39 branch.
 
 === Changes since 1.39.12 ===
 * Localisation updates.
-* (T386175) SECURITY: Escape newpage message in FeedUtils.
+* (T386175, CVE-2025-32072) SECURITY: Escape newpage message in FeedUtils.
 * (T391867) http: Handle accept header with incomplete q.
 * Update Pingback address.
 * (T393879) objectcache: Cast explicitly to integer.
@@ -26,6 +26,18 @@ THIS IS NOT A RELEASE YET
 * Protect against ParserOutput/CacheTime re-namespacing.
 * ParserCache forward-compatibility: anticipate removal of TOCHTML.
 * SerializationTestUtils: handle 1.xx_wmf* versions; don't fail immediately.
+* AuthManager: Be consistent about the remember flag on autocreate.
+* (T397883, T397643) htmlform: fix min/max validations on empty input in
+  int/float fields.
+* (T392746, CVE-2025-6590) SECURITY: Escape usernames in HTMLUserTextField
+  validation errors.
+* (T392276, CVE-2025-6591) SECURITY: API: Escape i18n messages in
+  action=feedcontributions.
+* (T396230, T31856, CVE-2025-6593) SECURITY: fix IP leak to unverified email.
+* (T395063, CVE-2025-6594) SECURITY: apisandbox: Fix reflected XSS when invalid
+  'format' is provided.
+* (T389009, CVE-2025-6597) SECURITY: Do not treat autocreation as login for
+  reauthentication.
 
 == MediaWiki 1.39.12 ==
 
