@@ -7,7 +7,7 @@ PHP 8.4 workboard: https://phabricator.wikimedia.org/tag/php_8.4_support/
 
 == Mediawiki 1.43.2 ==
 
-THIS IS NOT A RELEASE YET
+This is a security and maintenance release of the MediaWiki 1.43 branch.
 
 === Changes since MediaWiki 1.43.1 ===
 * Localisation updates.
@@ -19,7 +19,7 @@ THIS IS NOT A RELEASE YET
 * (T382086) swagger-ui: Add licenses of packages used by Swagger UI bundle.
 * (T392086) specials: Fix PHP Warning on Special:PasswordReset for crafted
   input.
-* (T386175) SECURITY: Escape newpage message in FeedUtils.
+* (T386175, CVE-2025-32072) SECURITY: Escape newpage message in FeedUtils.
 * (T391179) installer: fix MySQL create user permissions check.
 * (T391169) INSTALL: Document requirement for bcmath/gmp on 32-bit systems.
 * (T389260) language: Avoid warning when 'namespaceGenderAliases' is null.
@@ -57,6 +57,32 @@ THIS IS NOT A RELEASE YET
   PHP 7.4.
 * Clean up resource type and phan suppression in postgres code.
 * structure tests: allow PHP 8.1 syntax and autoload enums.
+* rdbms: fix table prefixing in "FOR UPDATE" clause generation in Postgres.
+* (T388406) RefreshLinksJob: Check hastext before comparing HTML.
+* (T397521) Api: Fix permission checks in action=compare.
+* (T397883, T397643) htmlform: fix min/max validations on empty input in
+  int/float fields.
+* specials: SpecialTalkPage: Use config from request context.
+* (T380456) exception: Avoid service container init in exception handler.
+* (T387408) exception: Skip use of HookRunner when not autoloaded.
+* (T397470) Remove feature flagged Swagger UI based Special:RestSandbox.
+* (T391343, CVE-2025-6589) SECURITY: BlockList: Hide rows containing suppressed
+  users.
+* (T392746, CVE-2025-6590) SECURITY: Escape usernames in HTMLUserTextField
+  validation errors.
+* (T392276, CVE-2025-6591) SECURITY: API: Escape i18n messages in
+  action=feedcontributions.
+* (T396230, T31856, CVE-2025-6593) SECURITY: fix IP leak to unverified email.
+* (T395063, CVE-2025-6594) SECURITY: apisandbox: Fix reflected XSS when invalid
+  'format' is provided.
+* (T389009, CVE-2025-6597) SECURITY: Do not treat autocreation as login for
+  reauthentication.
+* (T389010, CVE-2025-6926) SECURITY: Allow extensions to supress the reauth
+  flag on login.
+* (T397595, CVE-2025-6927) SECURITY: Fix autoblocks visibility when
+  bl_deleted=1.
+* (T397595, CVE-2025-6927) SECURITY: Fix leak of hidden usernames via autoblocks
+  of those users.
 
 == MediaWiki 1.43.1 ==
 
