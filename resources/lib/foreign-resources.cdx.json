@@ -541,38 +541,6 @@
         },
         {
             "type": "library",
-            "name": "swagger-ui",
-            "version": "4.15.5",
-            "licenses": [
-                {
-                    "license": {
-                        "id": "Apache-2.0"
-                    }
-                }
-            ],
-            "authors": [
-                {
-                    "name": "Kyle Shockey"
-                },
-                {
-                    "name": "Tony Tam"
-                },
-                {
-                    "name": "Vladimír Gorej"
-                },
-                {
-                    "name": "others"
-                }
-            ],
-            "externalReferences": [
-                {
-                    "url": "https://swagger.io/tools/swagger-ui/",
-                    "type": "website"
-                }
-            ]
-        },
-        {
-            "type": "library",
             "name": "vue-demi",
             "version": "0.14.7",
             "licenses": [
