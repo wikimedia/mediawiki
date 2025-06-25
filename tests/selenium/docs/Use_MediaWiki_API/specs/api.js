@@ -1,10 +1,8 @@
 // Example code for Selenium/How-to/Use MediaWiki API
 // https://www.mediawiki.org/wiki/Selenium/How-to/Use_MediaWiki_API
 
-'use strict';
-
-const assert = require( 'assert' );
-const MWBot = require( 'mwbot' );
+import assert from 'assert';
+import MWBot from 'mwbot';
 
 // apiUrl is required for our continuous integration.
 // If you don't have MW_SERVER and MW_SCRIPT_PATH environment variables set

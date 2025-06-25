@@ -1,5 +1,4 @@
-'use strict';
-
+// TODO T373125 This file still uses require but CI does not fail
 const MWBot = require( 'mwbot' );
 const Page = require( './Page' );
 const MAINPAGE_REQUESTS_MAX_RUNS = 10; // (arbitrary) safe-guard against endless execution

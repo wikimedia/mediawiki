@@ -1,6 +1,4 @@
-'use strict';
-
-const Page = require( 'wdio-mediawiki/Page' );
+import Page from 'wdio-mediawiki/Page.js';
 
 class RecentChangesPage extends Page {
 	get changesList() {
@@ -21,4 +19,4 @@ class RecentChangesPage extends Page {
 
 }
 
-module.exports = new RecentChangesPage();
+export default new RecentChangesPage();

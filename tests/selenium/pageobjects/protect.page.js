@@ -1,6 +1,4 @@
-'use strict';
-
-const Page = require( 'wdio-mediawiki/Page' );
+import Page from 'wdio-mediawiki/Page.js';
 
 class ProtectPage extends Page {
 	get reason() {
@@ -37,4 +35,4 @@ class ProtectPage extends Page {
 
 }
 
-module.exports = new ProtectPage();
+export default new ProtectPage();

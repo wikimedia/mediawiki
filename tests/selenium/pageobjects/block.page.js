@@ -1,6 +1,4 @@
-'use strict';
-
-const Page = require( 'wdio-mediawiki/Page' );
+import Page from 'wdio-mediawiki/Page.js';
 
 class BlockPage extends Page {
 	get target() {
@@ -53,4 +51,4 @@ class BlockPage extends Page {
 	}
 }
 
-module.exports = new BlockPage();
+export default new BlockPage();

@@ -1,9 +1,7 @@
 // This file is used at Selenium/Explanation/Page object pattern
 // https://www.mediawiki.org/wiki/Selenium/Explanation/Page_object_pattern
 
-'use strict';
-
-const Page = require( './Page' );
+import Page from './Page.js';
 
 class LoginPage extends Page {
 	get username() {
@@ -53,4 +51,4 @@ class LoginPage extends Page {
 	}
 }
 
-module.exports = new LoginPage();
+export default new LoginPage();

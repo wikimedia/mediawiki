@@ -1,11 +1,9 @@
-'use strict';
-
-const querystring = require( 'querystring' );
+import querystring from 'node:querystring';
 
 /**
  * Based on https://webdriver.io/docs/pageobjects
  */
-class Page {
+export default class Page {
 
 	/**
 	 * Navigate the browser to a given page.
@@ -26,5 +24,3 @@ class Page {
 		);
 	}
 }
-
-module.exports = Page;

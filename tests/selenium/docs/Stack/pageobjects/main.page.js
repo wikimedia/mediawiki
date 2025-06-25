@@ -1,9 +1,7 @@
 // Example code for Selenium/Explanation/Stack
 // https://www.mediawiki.org/wiki/Selenium/Explanation/Stack
 
-'use strict';
-
-const Page = require( './page' );
+import Page from './page.js';
 
 // baseUrl is required for our continuous integration.
 // If you don't have MW_SERVER and MW_SCRIPT_PATH environment variables set
@@ -20,4 +18,4 @@ class MainPage extends Page {
 		await super.open( `${ baseUrl }Main_Page` );
 	}
 }
-module.exports = new MainPage();
+export default new MainPage();

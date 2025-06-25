@@ -1,8 +1,6 @@
 // Example code for Selenium/Explanation/Stack
 // https://www.mediawiki.org/wiki/Selenium/Explanation/Stack
 
-'use strict';
-
 // baseUrl is required for our continuous integration.
 // If you don't have MW_SERVER and MW_SCRIPT_PATH environment variables set
 // you can probably hardcode it to something like this:

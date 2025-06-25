@@ -1,6 +1,4 @@
-'use strict';
-
-const Page = require( 'wdio-mediawiki/Page' );
+import Page from 'wdio-mediawiki/Page.js';
 
 class WatchablePage extends Page {
 
@@ -14,4 +12,4 @@ class WatchablePage extends Page {
 	}
 }
 
-module.exports = new WatchablePage();
+export default new WatchablePage();

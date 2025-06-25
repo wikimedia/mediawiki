@@ -1,6 +1,4 @@
-'use strict';
-
-const { mkdir } = require( 'fs/promises' );
+import { mkdir } from 'fs/promises';
 
 /**
  * @since 1.1.0
@@ -53,10 +51,10 @@ async function saveScreenshot( title ) {
  * @param {string} title Test title
  * @return {Object} ffmpeg object is returned so it could be used in stopVideo()
  */
-function startVideo( ffmpeg, title ) {
+async function startVideo( ffmpeg, title ) {
 	if ( process.env.DISPLAY && process.env.DISPLAY.startsWith( ':' ) ) {
 		const videoPath = filePath( title, 'mp4' );
-		const { spawn } = require( 'child_process' );
+		const { spawn } = await import( 'child_process' );
 		ffmpeg = spawn( 'ffmpeg', [
 			'-f', 'x11grab', //  grab the X11 display
 			'-video_size', '1280x1024', // video size
@@ -95,7 +93,7 @@ function stopVideo( ffmpeg ) {
 	}
 }
 
-module.exports = {
+export {
 	makeFilenameDate,
 	saveScreenshot,
 	startVideo,

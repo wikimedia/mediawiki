@@ -1,23 +1,21 @@
 /**
  * Base WebdriverIO configuration, meant to be imported from skins and extensions like so:
  *
- *   const { config } = require( 'wdio-mediawiki/wdio-defaults.conf.js' );
+ *   import { config as wdioDefaults } from 'wdio-mediawiki/wdio-defaults.conf.js';
  *
- *   exports.config = { ...config,
- *     logLevel: 'info'
- *   };
+ *   export const config = { ...wdioDefaults,
+ *     logLevel: 'info',
+ *   }
  */
 
-'use strict';
-
 let ffmpeg;
-const fs = require( 'fs' );
-const path = require( 'path' );
-const { PrometheusFileReporter, writeAllProjectMetrics } = require( './PrometheusFileReporter.js' );
+import fs from 'fs';
+import path from 'path';
+import { PrometheusFileReporter, writeAllProjectMetrics } from './PrometheusFileReporter.js';
 const logPath = process.env.LOG_DIR || path.join( process.cwd(), 'tests/selenium/log' );
-const { makeFilenameDate, saveScreenshot, startVideo, stopVideo } = require( 'wdio-mediawiki' );
+import { makeFilenameDate, saveScreenshot, startVideo, stopVideo } from 'wdio-mediawiki';
 // T355556: remove when T324766 is resolved
-const dns = require( 'dns' );
+import dns from 'dns';
 
 if ( !process.env.MW_SERVER || !process.env.MW_SCRIPT_PATH ) {
 	throw new Error( 'MW_SERVER or MW_SCRIPT_PATH not defined.\nSee https://www.mediawiki.org/wiki/Selenium/How-to/Set_environment_variables\n' );
@@ -44,7 +42,7 @@ process.on( 'unhandledRejection', ( reason, promise ) => {
  * - https://webdriver.io/docs/configurationfile
  * - https://webdriver.io/docs/configuration
  */
-exports.config = {
+export const config = {
 	// ==================
 	// Runner Configuration
 	// ==================
@@ -181,8 +179,8 @@ exports.config = {
 	 *
 	 * @param {Object} test Mocha Test object
 	 */
-	beforeTest: function ( test ) {
-		ffmpeg = startVideo( ffmpeg, `${ test.parent }-${ test.title }` );
+	beforeTest: async function ( test ) {
+		ffmpeg = await startVideo( ffmpeg, `${ test.parent }-${ test.title }` );
 	},
 
 	/**
