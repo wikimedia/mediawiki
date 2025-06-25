@@ -140,7 +140,6 @@ use MediaWiki\Specials\SpecialRedirect;
 use MediaWiki\Specials\SpecialRemoveCredentials;
 use MediaWiki\Specials\SpecialRenameUser;
 use MediaWiki\Specials\SpecialResetTokens;
-use MediaWiki\Specials\SpecialRestSandbox;
 use MediaWiki\Specials\SpecialRevisionDelete;
 use MediaWiki\Specials\SpecialRunJobs;
 use MediaWiki\Specials\SpecialSearch;
@@ -856,12 +855,6 @@ class SpecialPageFactory {
 				'LanguageNameUtils',
 				'UrlUtils',
 				'ConnectionProvider',
-			]
-		],
-		'RestSandbox' => [
-			'class' => SpecialRestSandbox::class,
-			'services' => [
-				'UrlUtils',
 			]
 		],
 		'Statistics' => [

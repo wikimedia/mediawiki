@@ -2189,30 +2189,6 @@ return [
 			'and'
 		],
 	],
-	'mediawiki.special.restsandbox.styles' => [
-		'styles' => [
-			'resources/src/mediawiki.special.restsandbox/restsandbox.css',
-		],
-	],
-	'mediawiki.special.restsandbox' => [
-		'localBasePath' => MW_INSTALL_PATH . '/resources',
-		'remoteBasePath' => "$wgResourceBasePath/resources",
-		'packageFiles' => [
-			"src/mediawiki.special.restsandbox/restsandbox.js",
-			"lib/swagger-ui/swagger-ui-bundle.js",
-			"lib/swagger-ui/swagger-ui-standalone-preset.js",
-			[
-				'name' => 'src/mediawiki.special.restsandbox/config.json',
-				'config' => [ 'RestSandboxSpecs' ],
-			],
-		],
-		'styles' => [
-			'lib/swagger-ui/swagger-ui.css',
-		],
-		'dependencies' => [
-			'mediawiki.special.restsandbox.styles'
-		]
-	],
 	'mediawiki.special.block' => [
 		'localBasePath' => MW_INSTALL_PATH . '/resources/src',
 		'remoteBasePath' => "$wgResourceBasePath/resources/src",
