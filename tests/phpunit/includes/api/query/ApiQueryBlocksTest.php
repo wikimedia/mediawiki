@@ -9,6 +9,7 @@ use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Tests\Api\ApiTestCase;
+use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 
 /**
  * @group API
@@ -18,6 +19,7 @@ use MediaWiki\Tests\Api\ApiTestCase;
  * @covers \ApiQueryBlocks
  */
 class ApiQueryBlocksTest extends ApiTestCase {
+	use MockAuthorityTrait;
 
 	public function testExecute() {
 		[ $data ] = $this->doApiRequest( [
@@ -79,6 +81,36 @@ class ApiQueryBlocksTest extends ApiTestCase {
 			'partial' => !$block->isSitewide(),
 		];
 		$this->assertArraySubmapSame( $subset, $data['query']['blocks'][0] );
+	}
+
+	public function testHiddenBlocksVisibility() {
+		// Ensure that hidden blocks are not shown by default.
+		$badActor = $this->getTestUser()->getUser();
+		$sysop = $this->getTestSysop()->getUser();
+
+		$parentBlock = $this->getServiceContainer()->getDatabaseBlockStore()
+			->insertBlockWithParams( [
+				'targetUser' => $badActor,
+				'by' => $sysop,
+				'hideName' => true,
+				'enableAutoblock' => true,
+			] );
+
+		$autoblock = $this->getServiceContainer()->getDatabaseBlockStore()
+			->doAutoblock( $parentBlock, '1.2.3.4' );
+
+		[ $data ] = $this->doApiRequest( [
+			'action' => 'query',
+			'list' => 'blocks',
+		] );
+		$this->assertCount( 0, $data['query']['blocks'] );
+
+		[ $data ] = $this->doApiRequestWithToken( [
+			'action' => 'query',
+			'list' => 'blocks',
+		], null, $this->mockRegisteredAuthorityWithPermissions( [ 'hideuser' ] ) );
+
+		$this->assertCount( 2, $data['query']['blocks'] );
 	}
 
 	public function testExecuteRestrictions() {

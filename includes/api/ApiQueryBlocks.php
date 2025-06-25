@@ -292,6 +292,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 			if ( $this->blockTargetReadStage === SCHEMA_COMPAT_READ_OLD ) {
 				$this->addWhereFld( $bl_deleted, 0 );
 			} else {
+				$this->addWhere( [ 'bl_deleted' => 0 ] );
 				$this->addWhere(
 					$this->hideUserUtils->getExpression( $db, 'block_target.bt_user' )
 				);
