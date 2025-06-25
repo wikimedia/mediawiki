@@ -5,7 +5,10 @@ use PhpParser\Node\Expr;
 use PhpParser\Node\Stmt;
 use PhpParser\ParserFactory;
 
-class ScopeStructureTest extends MediaWikiIntegrationTestCase {
+/**
+ * @coversNothing
+ */
+class ScopeStructureTest extends MediaWikiUnitTestCase {
 
 	public static function provideAutoloadNoFileScope() {
 		global $wgAutoloadLocalClasses;
