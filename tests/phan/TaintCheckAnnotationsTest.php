@@ -35,6 +35,7 @@ use Wikimedia\Rdbms\DeleteQueryBuilder;
 use Wikimedia\HtmlArmor\HtmlArmor;
 use Wikimedia\Rdbms\Expression;
 use Wikimedia\Rdbms\InsertQueryBuilder;
+use Wikimedia\Rdbms\JoinGroupBase;
 use Wikimedia\Rdbms\RawSQLExpression;
 use Wikimedia\Rdbms\RawSQLValue;
 use Wikimedia\Rdbms\ReplaceQueryBuilder;
@@ -363,6 +364,26 @@ class TaintCheckAnnotationsTest {
 		echo $sqb->fetchField();// @phan-suppress-current-line SecurityCheck-XSS
 		echo $sqb->fetchFieldValues();// @phan-suppress-current-line SecurityCheck-XSS
 		echo $sqb->fetchRow();// @phan-suppress-current-line SecurityCheck-XSS
+	}
+
+	function testJoinGroupBase( JoinGroupBase $jgb ) {
+		$jgb->join( $_GET['a'], '', '1=1' );// @phan-suppress-current-line SecurityCheck-SQLInjection
+		$jgb->join( '', $_GET['a'], '1=1' );// @phan-suppress-current-line SecurityCheck-SQLInjection
+		$jgb->join( '', '', $_GET['a'] );// @phan-suppress-current-line SecurityCheck-SQLInjection
+		$jgb->join( '', '', [ $_GET['a'] ] );// @phan-suppress-current-line SecurityCheck-SQLInjection
+		$jgb->join( '', '', [ 'safe' => $_GET['a'] ] );// Safe
+
+		$jgb->leftJoin( $_GET['a'], '', '1=1' );// @phan-suppress-current-line SecurityCheck-SQLInjection
+		$jgb->leftJoin( '', $_GET['a'], '1=1' );// @phan-suppress-current-line SecurityCheck-SQLInjection
+		$jgb->leftJoin( '', '', $_GET['a'] );// @phan-suppress-current-line SecurityCheck-SQLInjection
+		$jgb->leftJoin( '', '', [ $_GET['a'] ] );// @phan-suppress-current-line SecurityCheck-SQLInjection
+		$jgb->leftJoin( '', '', [ 'safe' => $_GET['a'] ] );// Safe
+
+		$jgb->straightJoin( $_GET['a'], '', '1=1' );// @phan-suppress-current-line SecurityCheck-SQLInjection
+		$jgb->straightJoin( '', $_GET['a'], '1=1' );// @phan-suppress-current-line SecurityCheck-SQLInjection
+		$jgb->straightJoin( '', '', $_GET['a'] );// @phan-suppress-current-line SecurityCheck-SQLInjection
+		$jgb->straightJoin( '', '', [ $_GET['a'] ] );// @phan-suppress-current-line SecurityCheck-SQLInjection
+		$jgb->straightJoin( '', '', [ 'safe' => $_GET['a'] ] );// Safe
 	}
 
 	function testInsertQueryBuilder( InsertQueryBuilder $iqb ) {
