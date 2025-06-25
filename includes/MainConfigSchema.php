@@ -10229,8 +10229,9 @@ class MainConfigSchema {
 
 	/**
 	 * Array of namespaces to generate a Google sitemap for when the
-	 * maintenance/generateSitemap.php script is run, or false if one is to be
-	 * generated for all namespaces.
+	 * maintenance/generateSitemap.php script is run. If this is false, the API
+	 * will consult NamespaceRobotPolicies, whereas the maintenance script will
+	 * produce a sitemap for all namespaces.
 	 */
 	public const SitemapNamespaces = [
 		'default' => false,
@@ -10238,24 +10239,49 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * Custom namespace priorities for sitemaps. Setting this will allow you to
-	 * set custom priorities to namespaces when sitemaps are generated using the
-	 * maintenance/generateSitemap.php script.
-	 *
-	 * This should be a map of namespace IDs to priority
-	 *
-	 * **Example:**
-	 *
-	 * ```
-	 * $wgSitemapNamespacesPriorities = [
-	 *     NS_USER => '0.9',
-	 *     NS_HELP => '0.0',
-	 * ];
-	 * ```
+	 * @deprecated since 1.45 and ignored
 	 */
 	public const SitemapNamespacesPriorities = [
+		'deprecated' => 'since 1.45 and ignored',
 		'default' => false,
 		'type' => 'false|map',
+	];
+
+	/**
+	 * Configuration for the sitemaps REST API endpoint /rest.php/site/v1/sitemap/0
+	 *
+	 * To use this API, set $wgSitemapApiConfig['enabled'] = true and then add
+	 * to robots.txt something like:
+	 *
+	 *   Sitemap: http://www.example.com/w/rest.php/site/v1/sitemap/0
+	 *
+	 * Search engines like Google will then use the sitemap to efficiently
+	 * discover pages on your site.
+	 *
+	 * If you have more than 500M pages (sitemapsPerIndex × pagesPerSitemap)
+	 * you can list multiple sitemaps in robots.txt, incrementing the number in
+	 * the index URL.
+	 *
+	 * An associative array with the following keys:
+	 *  - enabled: Whether to deliver sitemaps.
+	 *  - sitemapsPerIndex: The maximum number of sitemap files to link to from
+	 *    each index file. This must be 50,000 or less to comply with the
+	 *    protocol.
+	 *  - pagesPerSitemap: The maximum number of URLs to link to from each
+	 *    sitemap file. This must be 50,000 or less to comply with the protocol.
+	 *    It might take a few seconds to render a sitemap with 50,000 URLs.
+	 *  - expiry: The cache expiry time in seconds.
+	 *
+	 * @since 1.45
+	 */
+	public const SitemapApiConfig = [
+		'type' => 'object',
+		'properties' => [
+			'enabled' => [ 'type' => 'bool', 'default' => false ],
+			'sitemapsPerIndex' => [ 'type' => 'float|int', 'default' => 50_000 ],
+			'pagesPerSitemap' => [ 'type' => 'float|int', 'default' => 10_000 ],
+			'expiry' => [ 'type' => 'float|int', 'default' => 3600 ],
+		]
 	];
 
 	/**

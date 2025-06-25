@@ -3453,8 +3453,15 @@ class MainConfigNames {
 	/**
 	 * Name constant for the SitemapNamespacesPriorities setting, for use with Config::get()
 	 * @see MainConfigSchema::SitemapNamespacesPriorities
+	 * @deprecated since 1.45 and ignored
 	 */
 	public const SitemapNamespacesPriorities = 'SitemapNamespacesPriorities';
+
+	/**
+	 * Name constant for the SitemapApiConfig setting, for use with Config::get()
+	 * @see MainConfigSchema::SitemapApiConfig
+	 */
+	public const SitemapApiConfig = 'SitemapApiConfig';
 
 	/**
 	 * Name constant for the EnableSearchContributorsByIP setting, for use with Config::get()

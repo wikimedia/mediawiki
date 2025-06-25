@@ -335,6 +335,9 @@ $wgAutoloadClasses += [
 	# tests/phpunit/integration/includes/libs
 	'LockManagerIntegrationTestBase' => "$testDir/phpunit/integration/includes/libs/lockmanager/LockManagerIntegrationTestBase.php",
 
+	# tests/phpunit/integration/includes/Rest/Handler
+	'MediaWiki\\Tests\\Rest\\Handler\\HandlerIntegrationTestTrait' => "$testDir/phpunit/integration/includes/Rest/Handler/HandlerIntegrationTestTrait.php",
+
 	# tests/phpunit/integration/includes/user
 	'MediaWiki\\Tests\\User\\ActorStoreTestBase' => "$testDir/phpunit/integration/includes/user/ActorStoreTestBase.php",
 

@@ -3438,8 +3438,15 @@ $wgSitemapNamespaces = null;
 /**
  * Config variable stub for the SitemapNamespacesPriorities setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::SitemapNamespacesPriorities
+ * @deprecated since 1.45 and ignored
  */
 $wgSitemapNamespacesPriorities = null;
+
+/**
+ * Config variable stub for the SitemapApiConfig setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::SitemapApiConfig
+ */
+$wgSitemapApiConfig = null;
 
 /**
  * Config variable stub for the EnableSearchContributorsByIP setting, for use by phpdoc and IDEs.

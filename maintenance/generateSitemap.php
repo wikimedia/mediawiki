@@ -28,10 +28,9 @@
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\Maintenance\Maintenance;
-use MediaWiki\Title\Title;
+use MediaWiki\Page\SitemapGenerator;
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\Rdbms\IDatabase;
-use Wikimedia\Rdbms\IResultWrapper;
 
 // @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
@@ -43,9 +42,6 @@ require_once __DIR__ . '/Maintenance.php';
  * @ingroup Maintenance
  */
 class GenerateSitemap extends Maintenance {
-	private const GS_MAIN = -2;
-	private const GS_TALK = -1;
-
 	/**
 	 * The maximum amount of urls in a sitemap file
 	 *
@@ -54,15 +50,6 @@ class GenerateSitemap extends Maintenance {
 	 * @var int
 	 */
 	public $url_limit;
-
-	/**
-	 * The maximum size of a sitemap file
-	 *
-	 * @link http://www.sitemaps.org/faq.php#faq_sitemap_size
-	 *
-	 * @var int
-	 */
-	public $size_limit;
 
 	/**
 	 * The path to prepend to the filename
@@ -94,20 +81,6 @@ class GenerateSitemap extends Maintenance {
 	public $skipRedirects;
 
 	/**
-	 * The number of entries to save in each sitemap file
-	 *
-	 * @var array
-	 */
-	public $limit = [];
-
-	/**
-	 * Key => value entries of namespaces and their priorities
-	 *
-	 * @var array
-	 */
-	public $priorities = [];
-
-	/**
 	 * A one-dimensional array of namespaces in the wiki
 	 *
 	 * @var array
@@ -133,7 +106,7 @@ class GenerateSitemap extends Maintenance {
 	 *
 	 * @var resource
 	 */
-	public $findex;
+	public $indexFile;
 
 	/**
 	 * A resource pointing to a sitemap file
@@ -184,15 +157,19 @@ class GenerateSitemap extends Maintenance {
 			'defaults to the value of wgSitemapNamespaces if not defined.',
 			false, true, false, true
 		);
+		$this->addOption(
+			'limit',
+			'Maximum number of URLs per sitemap file. Default 50,000.',
+			false,
+			true
+		);
 	}
 
 	/**
 	 * Execute
 	 */
 	public function execute() {
-		$this->setNamespacePriorities();
-		$this->url_limit = 50000;
-		$this->size_limit = ( 2 ** 20 ) * 10;
+		$this->url_limit = $this->getOption( 'limit', 50_000 );
 
 		# Create directory if needed
 		$fspath = $this->getOption( 'fspath', getcwd() );
@@ -210,124 +187,23 @@ class GenerateSitemap extends Maintenance {
 		$this->compress = $this->getOption( 'compress', 'yes' ) !== 'no';
 		$this->skipRedirects = $this->hasOption( 'skip-redirects' );
 		$this->dbr = $this->getReplicaDB();
-		$this->generateNamespaces();
 		$this->timestamp = wfTimestamp( TS_ISO_8601, wfTimestampNow() );
 		$encIdentifier = rawurlencode( $this->identifier );
-		$this->findex = fopen( "{$this->fspath}sitemap-index-{$encIdentifier}.xml", 'wb' );
+		$indexPath = "{$this->fspath}sitemap-index-{$encIdentifier}.xml";
+		$this->indexFile = fopen( "{$this->fspath}sitemap-index-{$encIdentifier}.xml", 'wb' );
 		$this->main();
-	}
-
-	private function setNamespacePriorities() {
-		$sitemapNamespacesPriorities = $this->getConfig()->get( MainConfigNames::SitemapNamespacesPriorities );
-
-		// Custom main namespaces
-		$this->priorities[self::GS_MAIN] = '0.5';
-		// Custom talk namespaces
-		$this->priorities[self::GS_TALK] = '0.1';
-		// MediaWiki standard namespaces
-		$this->priorities[NS_MAIN] = '1.0';
-		$this->priorities[NS_TALK] = '0.1';
-		$this->priorities[NS_USER] = '0.5';
-		$this->priorities[NS_USER_TALK] = '0.1';
-		$this->priorities[NS_PROJECT] = '0.5';
-		$this->priorities[NS_PROJECT_TALK] = '0.1';
-		$this->priorities[NS_FILE] = '0.5';
-		$this->priorities[NS_FILE_TALK] = '0.1';
-		$this->priorities[NS_MEDIAWIKI] = '0.0';
-		$this->priorities[NS_MEDIAWIKI_TALK] = '0.1';
-		$this->priorities[NS_TEMPLATE] = '0.0';
-		$this->priorities[NS_TEMPLATE_TALK] = '0.1';
-		$this->priorities[NS_HELP] = '0.5';
-		$this->priorities[NS_HELP_TALK] = '0.1';
-		$this->priorities[NS_CATEGORY] = '0.5';
-		$this->priorities[NS_CATEGORY_TALK] = '0.1';
-
-		// Custom priorities
-		if ( $sitemapNamespacesPriorities !== false ) {
-			/**
-			 * @var array $sitemapNamespacesPriorities
-			 */
-			foreach ( $sitemapNamespacesPriorities as $namespace => $priority ) {
-				$float = floatval( $priority );
-				if ( $float > 1.0 ) {
-					$priority = '1.0';
-				} elseif ( $float < 0.0 ) {
-					$priority = '0.0';
-				}
-				$this->priorities[$namespace] = $priority;
-			}
-		}
+		$this->output( "Wrote index: $indexPath\n" );
 	}
 
 	/**
 	 * Generate a one-dimensional array of existing namespaces
+	 * @return array|null
 	 */
-	private function generateNamespaces() {
+	private function getNamespaces() {
 		// Use the namespaces passed in via command line arguments if they are set.
-		$sitemapNamespacesFromConfig = $this->getOption( 'namespaces' );
-		if ( is_array( $sitemapNamespacesFromConfig ) && count( $sitemapNamespacesFromConfig ) > 0 ) {
-			$this->namespaces = $sitemapNamespacesFromConfig;
-
-			return;
-		}
-
-		// Only generate for specific namespaces if $wgSitemapNamespaces is an array.
-		$sitemapNamespaces = $this->getConfig()->get( MainConfigNames::SitemapNamespaces );
-		if ( is_array( $sitemapNamespaces ) ) {
-			$this->namespaces = $sitemapNamespaces;
-
-			return;
-		}
-
-		$res = $this->dbr->newSelectQueryBuilder()
-			->select( [ 'page_namespace' ] )
-			->from( 'page' )
-			->groupBy( 'page_namespace' )
-			->orderBy( 'page_namespace' )
-			->caller( __METHOD__ )->fetchResultSet();
-
-		foreach ( $res as $row ) {
-			$this->namespaces[] = $row->page_namespace;
-		}
-	}
-
-	/**
-	 * Get the priority of a given namespace
-	 *
-	 * @param int $namespace The namespace to get the priority for
-	 * @return string
-	 */
-	private function priority( $namespace ) {
-		return $this->priorities[$namespace] ?? $this->guessPriority( $namespace );
-	}
-
-	/**
-	 * If the namespace isn't listed on the priority list return the
-	 * default priority for the namespace, varies depending on whether it's
-	 * a talkpage or not.
-	 *
-	 * @param int $namespace The namespace to get the priority for
-	 * @return string
-	 */
-	private function guessPriority( $namespace ) {
-		return $this->getServiceContainer()->getNamespaceInfo()->isSubject( $namespace )
-			? $this->priorities[self::GS_MAIN]
-			: $this->priorities[self::GS_TALK];
-	}
-
-	/**
-	 * Return a database resolution of all the pages in a given namespace
-	 *
-	 * @param int $namespace Limit the query to this namespace
-	 * @return IResultWrapper
-	 */
-	private function getPageRes( $namespace ) {
-		return $this->dbr->newSelectQueryBuilder()
-			->select( [ 'page_namespace', 'page_title', 'page_touched', 'page_is_redirect', 'pp_propname' ] )
-			->from( 'page' )
-			->leftJoin( 'page_props', null, [ 'page_id = pp_page', 'pp_propname' => 'noindex' ] )
-			->where( [ 'page_namespace' => $namespace ] )
-			->caller( __METHOD__ )->fetchResultSet();
+		return $this->getOption( 'namespaces' )
+			?? $this->getConfig()->get( MainConfigNames::SitemapNamespaces )
+			?: null;
 	}
 
 	/**
@@ -336,87 +212,33 @@ class GenerateSitemap extends Maintenance {
 	public function main() {
 		$services = $this->getServiceContainer();
 		$contLang = $services->getContentLanguage();
-		$langConverter = $services->getLanguageConverterFactory()->getLanguageConverter( $contLang );
 		$serverUrl = $services->getUrlUtils()->getServer( PROTO_CANONICAL ) ?? '';
 
-		fwrite( $this->findex, $this->openIndex() );
+		fwrite( $this->indexFile, $this->openIndex() );
 
-		foreach ( $this->namespaces as $namespace ) {
-			$res = $this->getPageRes( $namespace );
-			$this->file = false;
-			$this->generateLimit( $namespace );
-			$length = $this->limit[0];
-			$i = $smcount = 0;
+		$generator = new SitemapGenerator(
+			$contLang,
+			$services->getLanguageConverterFactory(),
+			$services->getGenderCache()
+		);
+		$generator->skipRedirects( $this->skipRedirects )
+			->namespaces( $this->getNamespaces() )
+			->limit( $this->url_limit );
 
-			$fns = $contLang->getFormattedNsText( $namespace );
-			$this->output( "$namespace ($fns)\n" );
-			$skippedRedirects = 0; // Number of redirects skipped for that namespace
-			$skippedNoindex = 0; // Number of pages with __NOINDEX__ switch for that NS
-			foreach ( $res as $row ) {
-				if ( $row->pp_propname === 'noindex' ) {
-					$skippedNoindex++;
-					continue;
-				}
+		$sitemapId = 0;
+		do {
+			$filename = $this->sitemapFilename( $sitemapId++ );
+			$filePath = $this->fspath . $filename;
+			$file = $this->open( $filePath, 'wb' );
+			$xml = $generator->getXml( $this->dbr );
+			$this->write( $file, $xml );
+			$this->close( $file );
+			fwrite( $this->indexFile, $this->indexEntry( $filename, $serverUrl ) );
+			$this->output( "Wrote sitemap: $filePath\n" );
+		} while ( $generator->nextBatch() );
 
-				if ( $this->skipRedirects && $row->page_is_redirect ) {
-					$skippedRedirects++;
-					continue;
-				}
-
-				if ( $i++ === 0
-					|| $i === $this->url_limit + 1
-					|| $length + $this->limit[1] + $this->limit[2] > $this->size_limit
-				) {
-					if ( $this->file !== false ) {
-						$this->write( $this->file, $this->closeFile() );
-						$this->close( $this->file );
-					}
-					$filename = $this->sitemapFilename( $namespace, $smcount++ );
-					$this->file = $this->open( $this->fspath . $filename, 'wb' );
-					$this->write( $this->file, $this->openFile() );
-					fwrite( $this->findex, $this->indexEntry( $filename, $serverUrl ) );
-					$this->output( "\t$this->fspath$filename\n" );
-					$length = $this->limit[0];
-					$i = 1;
-				}
-				$title = Title::makeTitle( $row->page_namespace, $row->page_title );
-				$date = wfTimestamp( TS_ISO_8601, $row->page_touched );
-				$entry = $this->fileEntry( $title->getCanonicalURL(), $date, $this->priority( $namespace ) );
-				$length += strlen( $entry );
-				$this->write( $this->file, $entry );
-				// generate pages for language variants
-				if ( $langConverter->hasVariants() ) {
-					$variants = $langConverter->getVariants();
-					foreach ( $variants as $vCode ) {
-						if ( $vCode == $contLang->getCode() ) {
-							continue; // we don't want default variant
-						}
-						$entry = $this->fileEntry(
-							$title->getCanonicalURL( [ 'variant' => $vCode ] ),
-							$date,
-							$this->priority( $namespace )
-						);
-						$length += strlen( $entry );
-						$this->write( $this->file, $entry );
-					}
-				}
-			}
-
-			if ( $skippedNoindex > 0 ) {
-				$this->output( "  skipped $skippedNoindex page(s) with __NOINDEX__ switch\n" );
-			}
-
-			if ( $this->skipRedirects && $skippedRedirects > 0 ) {
-				$this->output( "  skipped $skippedRedirects redirect(s)\n" );
-			}
-
-			if ( $this->file ) {
-				$this->write( $this->file, $this->closeFile() );
-				$this->close( $this->file );
-			}
-		}
-		fwrite( $this->findex, $this->closeIndex() );
-		fclose( $this->findex );
+		fwrite( $this->indexFile, $this->closeIndex() );
+		fclose( $this->indexFile );
 	}
 
 	/**
@@ -469,14 +291,13 @@ class GenerateSitemap extends Maintenance {
 	/**
 	 * Get a sitemap filename
 	 *
-	 * @param int $namespace
 	 * @param int $count
 	 * @return string
 	 */
-	private function sitemapFilename( $namespace, $count ) {
+	private function sitemapFilename( $count ) {
 		$ext = $this->compress ? '.gz' : '';
 
-		return "sitemap-{$this->identifier}-NS_$namespace-$count.xml$ext";
+		return "sitemap-{$this->identifier}-$count.xml$ext";
 	}
 
 	/**
@@ -529,61 +350,6 @@ class GenerateSitemap extends Maintenance {
 	 */
 	private function closeIndex() {
 		return "</sitemapindex>\n";
-	}
-
-	/**
-	 * Return the XML required to open a sitemap file
-	 *
-	 * @return string
-	 */
-	private function openFile() {
-		return $this->xmlHead() . '<urlset xmlns="' . $this->xmlSchema() . '">' . "\n";
-	}
-
-	/**
-	 * Return the XML for a single sitemap entry
-	 *
-	 * @param string $url An RFC 2396 compliant URL
-	 * @param string $date A ISO 8601 date
-	 * @param string $priority A priority indicator, 0.0 - 1.0 inclusive with a 0.1 stepsize
-	 * @return string
-	 */
-	private function fileEntry( $url, $date, $priority ) {
-		return "\t<url>\n" .
-			// T36666: $url may contain bad characters such as ampersands.
-			"\t\t<loc>" . htmlspecialchars( $url ) . "</loc>\n" .
-			"\t\t<lastmod>$date</lastmod>\n" .
-			"\t\t<priority>$priority</priority>\n" .
-			"\t</url>\n";
-	}
-
-	/**
-	 * Return the XML required to close sitemap file
-	 *
-	 * @return string
-	 */
-	private function closeFile() {
-		return "</urlset>\n";
-	}
-
-	/**
-	 * Populate $this->limit
-	 *
-	 * @param int $namespace
-	 */
-	private function generateLimit( $namespace ) {
-		// T19961: make a title with the longest possible URL in this namespace
-		$title = Title::makeTitle( $namespace, str_repeat( "\u{28B81}", 63 ) . "\u{5583}" );
-
-		$this->limit = [
-			strlen( $this->openFile() ),
-			strlen( $this->fileEntry(
-				$title->getCanonicalURL(),
-				wfTimestamp( TS_ISO_8601, wfTimestamp() ),
-				$this->priority( $namespace )
-			) ),
-			strlen( $this->closeFile() )
-		];
 	}
 }
 

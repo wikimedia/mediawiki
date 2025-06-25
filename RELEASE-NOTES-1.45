@@ -21,6 +21,7 @@ For notes on 1.44.x and older releases, see HISTORY.
 
 === Configuration changes for system administrators in 1.45 ===
 
+* $wgSitemapNamespacesPriorities is deprecated and ignored.
 * …
 
 ==== New configuration ====

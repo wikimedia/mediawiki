@@ -1611,9 +1611,11 @@ class WANObjectCache implements
 	 *      most sense for values that are moderately to highly expensive to regenerate and easy
 	 *      to query for dependency timestamps. The use of "pcTTL" reduces timestamp queries.
 	 *      Default: null.
+	 *   - segmentable: Allow partitioning of the value if it is a large string. Default: false.
+	 *
 	 * @param array $cbParams Custom field/value map to pass to the callback (since 1.35)
 	 * @phpcs:ignore Generic.Files.LineLength
-	 * @phan-param array{checkKeys?:string[],graceTTL?:int,lockTSE?:int,busyValue?:mixed,pcTTL?:int,pcGroup?:string,version?:int,minAsOf?:float|int,hotTTR?:int,lowTTL?:int,ageNew?:int,staleTTL?:int,touchedCallback?:callable} $opts
+	 * @phan-param array{checkKeys?:string[],graceTTL?:int,lockTSE?:int,busyValue?:mixed,pcTTL?:int,pcGroup?:string,version?:int,minAsOf?:float|int,hotTTR?:int,lowTTL?:int,ageNew?:int,staleTTL?:int,touchedCallback?:callable,segmentable?:bool} $opts
 	 * @return mixed Value found or written to the key
 	 * @note Options added in 1.28: version, busyValue, hotTTR, ageNew, pcGroup, minAsOf
 	 * @note Options added in 1.31: staleTTL, graceTTL

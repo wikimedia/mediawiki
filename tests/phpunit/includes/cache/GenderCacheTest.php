@@ -1,8 +1,10 @@
 <?php
 
 use MediaWiki\Cache\GenderCache;
+use Wikimedia\TestingAccessWrapper;
 
 /**
+ * @coversDefaultClass \MediaWiki\Cache\GenderCache
  * @group Database
  * @group Cache
  */
@@ -40,7 +42,7 @@ class GenderCacheTest extends MediaWikiLangTestCase {
 	 * test usernames
 	 *
 	 * @dataProvider provideUserGenders
-	 * @covers \MediaWiki\Cache\GenderCache::getGenderOf
+	 * @covers ::getGenderOf
 	 */
 	public function testUserName( $userKey, $expectedGender ) {
 		$genderCache = $this->getServiceContainer()->getGenderCache();
@@ -53,7 +55,7 @@ class GenderCacheTest extends MediaWikiLangTestCase {
 	 * genderCache should work with user objects, too
 	 *
 	 * @dataProvider provideUserGenders
-	 * @covers \MediaWiki\Cache\GenderCache::getGenderOf
+	 * @covers ::getGenderOf
 	 */
 	public function testUserObjects( $userKey, $expectedGender ) {
 		$username = self::$nameMap[$userKey] ?? $userKey;
@@ -79,13 +81,73 @@ class GenderCacheTest extends MediaWikiLangTestCase {
 	 * against the never existing username
 	 *
 	 * @dataProvider provideUserGenders
-	 * @covers \MediaWiki\Cache\GenderCache::getGenderOf
+	 * @covers ::getGenderOf
 	 */
 	public function testStripSubpages( $userKey, $expectedGender ) {
 		$username = self::$nameMap[$userKey] ?? $userKey;
 		$genderCache = $this->getServiceContainer()->getGenderCache();
 		$gender = $genderCache->getGenderOf( "$username/subpage" );
 		$this->assertEquals( $expectedGender, $gender, "GenderCache must strip of subpages" );
+	}
+
+	/**
+	 * @covers ::doLinkBatch
+	 */
+	public function testDoLinkBatch() {
+		$users = self::provideUserGenders();
+		$batch = [];
+		$expected = [];
+		foreach ( $users as [ $id, $gender ] ) {
+			$name = self::$nameMap[$id] ?? $id;
+			$batch[NS_USER][$name] = true;
+			$expected[$name] = $gender;
+		}
+		$genderCache = $this->getServiceContainer()->getGenderCache();
+		$genderCache->doLinkBatch( $batch );
+		$this->assertSame(
+			$expected,
+			TestingAccessWrapper::newFromObject( $genderCache )->cache
+		);
+	}
+
+	/**
+	 * @covers ::doTitlesArray
+	 */
+	public function testDoTitlesArray() {
+		$users = self::provideUserGenders();
+		$batch = [];
+		$expected = [];
+		foreach ( $users as [ $id, $gender ] ) {
+			$name = self::$nameMap[$id] ?? $id;
+			$batch[] = new TitleValue( NS_USER, $name );
+			$expected[$name] = $gender;
+		}
+		$genderCache = $this->getServiceContainer()->getGenderCache();
+		$genderCache->doTitlesArray( $batch );
+		$this->assertSame(
+			$expected,
+			TestingAccessWrapper::newFromObject( $genderCache )->cache
+		);
+	}
+
+	/**
+	 * @covers ::doTitlesArray
+	 */
+	public function testDoPageRows() {
+		$users = self::provideUserGenders();
+		$batch = [];
+		$expected = [];
+		foreach ( $users as [ $id, $gender ] ) {
+			$name = self::$nameMap[$id] ?? $id;
+			$batch[] = (object)[ 'page_namespace' => NS_USER, 'page_title' => $name ];
+			$expected[$name] = $gender;
+		}
+		$genderCache = $this->getServiceContainer()->getGenderCache();
+		$genderCache->doPageRows( $batch );
+		$this->assertSame(
+			$expected,
+			TestingAccessWrapper::newFromObject( $genderCache )->cache
+		);
 	}
 
 	/**

@@ -26,6 +26,7 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\UserIdentity;
+use Wikimedia\Rdbms\IResultWrapper;
 
 /**
  * Look up "gender" user preference.
@@ -135,6 +136,22 @@ class GenderCache {
 	}
 
 	/**
+	 * Process a set of rows from the page table
+	 *
+	 * @since 1.45
+	 * @param iterable<\stdClass>|IResultWrapper $rows
+	 */
+	public function doPageRows( $rows ) {
+		$users = [];
+		foreach ( $rows as $row ) {
+			if ( $this->nsInfo->hasGenderDistinction( (int)$row->page_namespace ) ) {
+				$users[] = $row->page_title;
+			}
+		}
+		$this->doQuery( $users );
+	}
+
+	/**
 	 * Preload gender option for multiple user names.
 	 *
 	 * @param string[]|string $users Usernames
@@ -152,9 +169,14 @@ class GenderCache {
 			return;
 		}
 
-		$genders = $this->userOptionsLookup->getOptionBatchForUserNames( $usersToFetch, 'gender' );
-		foreach ( $genders as $userName => $gender ) {
-			$this->cache[$userName] = $gender;
+		// Limit batch size to 1000 since the usernames need to be put into an
+		// IN() expression in SQL. Could be done closer to the backend, but
+		// there are multiple backends.
+		foreach ( array_chunk( array_unique( $usersToFetch ), 1000 ) as $batch ) {
+			$genders = $this->userOptionsLookup->getOptionBatchForUserNames( $batch, 'gender' );
+			foreach ( $genders as $userName => $gender ) {
+				$this->cache[$userName] = $gender;
+			}
 		}
 	}
 

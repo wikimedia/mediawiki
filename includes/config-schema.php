@@ -1958,6 +1958,12 @@ return [
 			'SearchForwardUrl' => null,
 			'SitemapNamespaces' => false,
 			'SitemapNamespacesPriorities' => false,
+			'SitemapApiConfig' => [
+				'enabled' => false,
+				'sitemapsPerIndex' => 50000,
+				'pagesPerSitemap' => 10000,
+				'expiry' => 3600,
+			],
 			'EnableSearchContributorsByIP' => true,
 			'SpecialSearchFormOptions' => [
 			],
@@ -3054,6 +3060,7 @@ return [
 				'boolean',
 				'object',
 			],
+			'SitemapApiConfig' => 'object',
 			'SpecialSearchFormOptions' => 'object',
 			'SearchMatchRedirectPreference' => 'boolean',
 			'SearchRunSuggestedQuery' => 'boolean',
@@ -3512,6 +3519,9 @@ return [
 			'additionalProperties' => [
 				'type' => 'string',
 			],
+		],
+		'SitemapNamespacesPriorities' => [
+			'deprecated' => 'since 1.45 and ignored',
 		],
 		'SoftwareTags' => [
 			'additionalProperties' => [
