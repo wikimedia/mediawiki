@@ -2,7 +2,7 @@
 	"$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
 	"bomFormat": "CycloneDX",
 	"specVersion": "1.6",
-	"serialNumber": "urn:uuid:169637c2-915a-46f9-a8d0-983169490c6e",
+	"serialNumber": "urn:uuid:e6bad5cc-16d4-4474-a9d2-0786850fd460",
 	"version": 1,
 	"components": [
 		{
@@ -535,38 +535,6 @@
 			"externalReferences": [
 				{
 					"url": "https://sinonjs.org/",
-					"type": "website"
-				}
-			]
-		},
-		{
-			"type": "library",
-			"name": "swagger-ui",
-			"version": "4.15.5",
-			"licenses": [
-				{
-					"license": {
-						"id": "Apache-2.0"
-					}
-				}
-			],
-			"authors": [
-				{
-					"name": "Kyle Shockey"
-				},
-				{
-					"name": "Tony Tam"
-				},
-				{
-					"name": "Vladimír Gorej"
-				},
-				{
-					"name": "others"
-				}
-			],
-			"externalReferences": [
-				{
-					"url": "https://swagger.io/tools/swagger-ui/",
 					"type": "website"
 				}
 			]

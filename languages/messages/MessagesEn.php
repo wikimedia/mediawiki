@@ -529,7 +529,6 @@ $specialPageAliases = [
 	'RemoveCredentials'          => [ 'RemoveCredentials' ],
 	'Renameuser'                 => [ 'RenameUser' ],
 	'ResetTokens'                => [ 'ResetTokens' ],
-	'RestSandbox'                => [ 'RestSandbox' ],
 	'Revisiondelete'             => [ 'RevisionDelete' ],
 	'RunJobs'                    => [ 'RunJobs' ],
 	'Search'                     => [ 'Search' ],
