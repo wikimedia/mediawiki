@@ -57,6 +57,27 @@ const ChangesLimitPopupWidget = function MwRcfiltersUiChangesLimitPopupWidget( l
 		);
 
 	this.valuePicker.selectWidget.$element.attr( 'aria-label', mw.msg( 'rcfilters-limit-title' ) );
+	this.hasToggle = !!new URL( location.href ).searchParams.get( 'toggleGroupBy' );
+	// check if toggle param is set
+	if ( this.hasToggle && ( mw.config.get( 'skin' ) !== 'minerva' ) ) {
+		this.groupByToggle = new OO.ui.ToggleSwitchWidget( { value: !!new URL( location.href ).searchParams.get( 'enhanced' ),
+			id: 'mw-rcfilters-ui-filterWrapperWidget-groupByToggle' } );
+		this.groupByLayout = new OO.ui.FieldLayout(
+			this.groupByToggle,
+			{
+				label: mw.msg( 'rcfilters-group-results-by-page' ),
+				align: 'side'
+			}
+		);
+		$( '.mw-rcfilters-ui-filterWrapperWidget-numChangesAndDateWidget' ).append(
+			this.groupByLayout.$element
+		);
+		this.groupByToggle.on( 'change', ( event ) => {
+			// update value of groupByPageCheckBox and bind click function to new group by toggle element
+			this.groupByPageCheckbox.setSelected( event );
+			this.onGroupByPageUserClick.bind( this );
+		} );
+	}
 };
 
 /* Initialization */
@@ -86,6 +107,9 @@ OO.inheritClass( ChangesLimitPopupWidget, OO.ui.Widget );
  */
 ChangesLimitPopupWidget.prototype.onGroupByPageModelUpdate = function () {
 	this.groupByPageCheckbox.setSelected( this.groupByPageItemModel.isSelected() );
+	if ( this.hasToggle ) {
+		this.groupByToggle.setValue( this.groupByPageItemModel.isSelected() );
+	}
 };
 
 /**

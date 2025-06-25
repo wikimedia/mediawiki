@@ -59,6 +59,7 @@ const FilterWrapperWidget = function MwRcfiltersUiFilterWrapperWidget(
 		this.controller,
 		this.model,
 		{
+			classes: [ 'mw-rcfilters-ui-filterWrapperWidget-numChangesAndDateWidget' ],
 			$overlay: this.$overlay
 		}
 	);
