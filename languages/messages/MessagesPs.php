@@ -270,7 +270,6 @@ $specialPageAliases = [
 	'RemoveCredentials'         => [ 'باورليکونه_لرې_کول' ],
 	'Renameuser'                => [ 'کارن_نوم_بدلول' ],
 	'ResetTokens'               => [ 'نښکې_بيااوڼل' ],
-	'RestSandbox'               => [ 'ازمون_مخ_بيااوڼل' ],
 	'Revisiondelete'            => [ 'بياليدنه_ړنگول' ],
 	'RunJobs'                   => [ 'دندې_پرمخ_وړل' ],
 	'Search'                    => [ 'پلټل', 'پلټنه' ],

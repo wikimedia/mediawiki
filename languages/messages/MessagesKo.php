@@ -178,7 +178,6 @@ $specialPageAliases = [
 	'RemoveCredentials'           => [ '자격증명삭제', '자격증명제거' ],
 	'Renameuser'                  => [ '사용자이름바꾸기', '이름바꾸기', '계정이름바꾸기' ],
 	'ResetTokens'                 => [ '토큰재설정' ],
-	'RestSandbox'                 => [ 'Rest연습장' ],
 	'Revisiondelete'              => [ '특정판삭제' ],
 	'RunJobs'                     => [ '작업실행' ],
 	'Search'                      => [ '검색', '찾기' ],
