@@ -4881,7 +4881,7 @@ class Parser {
 	/**
 	 * Clean up signature text
 	 *
-	 * 1) Strip 3, 4 or 5 tildes out of signatures @see cleanSigInSig
+	 * 1) Strip 3, 4 or 5 tildes out of signatures, see {@link cleanSigInSig}
 	 * 2) Substitute all transclusions
 	 *
 	 * @param string $text

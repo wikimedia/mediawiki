@@ -37,11 +37,11 @@ class TestLogger extends \Psr\Log\AbstractLogger {
 	private $filter;
 
 	/**
-	 * @param bool $collect Whether to collect logs. @see setCollect()
+	 * @param bool $collect Whether to collect logs, also see {@link setCollect}
 	 * @param callable|null $filter Filter logs before collecting/printing. Signature is
 	 *  string|null function ( string $message, string $level, array $context );
 	 * @param bool $collectContext Whether to keep the context passed to log
-	 *             (since 1.29, @see setCollectContext()).
+	 *  (since 1.29), also see {@link setCollectContext}
 	 */
 	public function __construct( $collect = false, $filter = null, $collectContext = false ) {
 		$this->collect = $collect;

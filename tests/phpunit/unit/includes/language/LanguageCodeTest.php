@@ -50,7 +50,6 @@ class LanguageCodeTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * test @see LanguageCode::bcp47().
 	 * Please note the BCP 47 explicitly state that language codes are case
 	 * insensitive, there are some exceptions to the rule :)
 	 * This test is used to verify our formatting against all lower and
