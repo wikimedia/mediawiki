@@ -66,7 +66,7 @@
 	"password-name-match": "您的密码必须和您的用户名不相同。",
 	"password-login-forbidden": "这个用户名称及密码的使用是被禁止的。",
 	"passwordincommonlist": "输入的密码在非常常用的密码列表中。请选择一个更独特的密码。",
-	"prefs-help-yourpassword": "账户恢复已启用。有关更多设置，请参见$1。",
+	"prefs-help-yourpassword": "账号恢复已启用。有关更多设置，请参见$1。",
 	"tog-prefershttps": "在登录后总是使用安全连接",
 	"prefs-help-prefershttps": "该设置将在下次登录时生效。",
 	"prefs-user-downloaddata-label": "访问账号数据：",

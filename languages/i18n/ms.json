@@ -1077,7 +1077,7 @@
 	"group-suppress-member": "{{GENDER:$1|peredam}}",
 	"grouppage-user": "{{ns:project}}:Pengguna",
 	"grouppage-temp": "{{ns:project}}:Pengguna sementara",
-	"grouppage-autoconfirmed": "{{ns:project}}:Pengguna yang disahkan secara automatik",
+	"grouppage-autoconfirmed": "{{ns:project}}:Pengguna sah automatik",
 	"grouppage-bot": "{{ns:project}}:Bot",
 	"grouppage-sysop": "{{ns:project}}:Penyelia",
 	"grouppage-interface-admin": "{{ns:project}}:Penyelia antara muka",

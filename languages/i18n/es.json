@@ -260,7 +260,8 @@
 			"ZhaleyLeitnib",
 			"לערי ריינהארט",
 			"ديفيد",
-			"아라"
+			"아라",
+			"JorgeElias2302"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Categoría|Categorías}}",
@@ -811,6 +812,7 @@
 	"selfredirect": "<strong>Advertencia:</strong> estás redirigiendo esta página a sí misma.\nPuede que hayas especificado erróneamente el destino de la redirección, o quizá estés editando la página equivocada. En cualquier caso, si haces clic de nuevo en «$1», se creará la redirección.",
 	"edit-constraint-brokenredirect": "<strong>Advertencia:</strong> estás redirigiendo esta página a una página que no existe.\nPuede que hayas especificado erróneamente el destino de la redirección. Si haces clic de nuevo en «$1», se creará la redirección.",
 	"edit-constraint-doubleredirect": "<strong>Advertencia:</strong> estás intentando redirigir esta página a una segunda página de redireccionamiento , creando una doble redirección.\nSu página de destino actualmente redirecciona a [[$2]].\n\nConsidere revisar el contenido de esta redirección de la siguiente manera:\n$3 \n\nNota: si hace clic en \"$1\" nuevamente, se creará la doble redirección de todos modos.",
+	"edit-constraint-doubleredirect-loop": "<strong>Advertencia:</strong> Estás intentando redirigir esta página a una redirección a sí misma, creando así un bucle de redirección que no funciona. Por favor, reconsidera lo que estás haciendo. Si vuelves a hacer clic en \"$1\", la redirección se creará de todos modos.",
 	"missingcommenttext": "Escribe un comentario.",
 	"missingcommentheader": "<strong>Atención:</strong> no has escrito un asunto para este comentario.\nSi haces clic nuevamente en \"$1\" tu edición se grabará sin él.",
 	"summary-preview": "Previsualización del resumen de edición:",
