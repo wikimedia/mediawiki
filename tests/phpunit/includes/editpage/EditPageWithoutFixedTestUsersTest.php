@@ -143,4 +143,32 @@ class EditPageWithoutFixedTestUsersTest extends MediaWikiLangTestCase {
 		$this->assertSame( '~2025-2', $editPage->getUserForPreview()->getName() );
 		$this->assertTrue( $hookCalled );
 	}
+
+	public function testMaybeActivateTempUserCreateCreatesNewTemporaryAccountWhenCurrentOneExpiredAndHasStashedName() {
+		// Get a temporary account which we will make expired by moving forward fake time by enough time
+		ConvertibleTimestamp::setFakeTime( '20250203040506' );
+		$this->enableAutoCreateTempUser();
+		$tempUser = $this->getServiceContainer()->getTempUserCreator()->create( null, new FauxRequest() )->getUser();
+		$this->assertSame( '~2025-1', $tempUser->getName() );
+		ConvertibleTimestamp::setFakeTime( '20251003040506' );
+
+		// Get an EditPage instance which uses the expired temporary account as the user and has a stashed temporary
+		// account name in the session.
+		$title = Title::newFromText( __METHOD__ );
+		$request = new FauxRequest();
+		$session = $request->getSession();
+		$session->setUser( $tempUser );
+		$session->set( 'TempUser:name', '~2025-1' );
+		$session->save();
+		$editPage = $this->getEditPageInstance( $tempUser, $title, $request );
+
+		// Assert that calling ::maybeActivateTempUserCreate causes the session to use a new temporary account
+		// stashed name and the current user to be logged out.
+		$hookCalled = &$this->mockUserLogoutHook();
+		$this->assertStatusGood( $editPage->maybeActivateTempUserCreate( true ) );
+		$this->assertSame( '~2025-2', $request->getSession()->get( 'TempUser:name' ) );
+		$editPage = TestingAccessWrapper::newFromObject( $editPage );
+		$this->assertSame( '~2025-2', $editPage->getUserForPreview()->getName() );
+		$this->assertTrue( $hookCalled );
+	}
 }
