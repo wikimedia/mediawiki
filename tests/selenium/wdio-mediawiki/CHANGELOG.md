@@ -1,15 +1,23 @@
 # Changelog
 
+## 5.0.0 / 2025-06-26
+
+* Use ECMAScript modules. (T373125)
+
 ## 4.1.3 / 2025-06-24
+
 * Update waitForModuleState to use mw.loader.using for wdio 9 (T397014)
 
 ## 4.1.2 / 2025-06-17
+
 * Fix skipping tests for PrometheusReporter (T397030)
 
 ## 4.1.1 / 2025-06-13
+
 * Use package name as project name for Prometheus (T396710)
 
 ## 4.1.0 / 2025-06-12
+
 * Add Prometheus support for CI usage. (T391078)
 
 ## 4.0.0 / 2025-06-04
