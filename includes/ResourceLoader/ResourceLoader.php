@@ -173,6 +173,8 @@ class ResourceLoader implements LoggerAwareInterface {
 	 *    controls how quickly changes (in the module registry, dependency tree, or module content)
 	 *    will propagate to clients.
 	 *    Default: 5 minutes.
+	 *  - maxageStaleIfError: HTTP cache max-age in seconds when server goes down
+	 *    Default: none
 	 */
 	public function __construct(
 		Config $config,
