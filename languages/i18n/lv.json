@@ -35,7 +35,8 @@
 			"Zuiks",
 			"לערי ריינהארט",
 			"아라",
-			"Marksomnian"
+			"Marksomnian",
+			"Edgarsdna"
 		]
 	},
 	"tog-underline": "Pasvītrot saites:",
@@ -192,6 +193,7 @@
 	"permalink": "Pastāvīgā saite",
 	"print": "Drukāt",
 	"view": "Skatīt",
+	"viewcontribs": "Skatīt ieguldījumu",
 	"skin-view-view": "Skatīt",
 	"skin-view-foreign": "Apskatīt $1",
 	"edit": "Labot šo lapu",

@@ -145,7 +145,8 @@
 			"아라",
 			"Anterdc99",
 			"優枰",
-			"Emojiwiki"
+			"Emojiwiki",
+			"SCP-2000"
 		]
 	},
 	"tog-underline": "底線標示連結：",
@@ -793,9 +794,9 @@
 	"temp-user-banner-tooltip-description-login": "請[[Special:UserLogin|登入]]或[[Special:CreateAccount|建立帳號]]，這樣一來之後的編輯將歸於您的名下，且您將可以使用更多功能。",
 	"blankarticle": "<strong>警告：</strong>您正在建立的頁面是空白的。如果您再按一下「$1」，將建立沒有任何內容的頁面。",
 	"anoneditwarning": "<strong>警告：</strong>您尚未登入。 若您進行任何的編輯您的 IP 位址將會被公開。 若您 <strong>[$1 登入]</strong> 或 <strong>[$2 建立帳號]</strong>，您的編輯將會以您的使用者名稱標示，並能擁有另外的益處。",
-	"autocreate-edit-warning": "<strong>警告：</strong>您尚未登入，此時一旦作出編輯，就會得到一個臨時帳號。[[{{MediaWiki:tempuser-helppage}}|深入了解]]。<strong>[$1 登入]</strong>或<strong>[$2 建立帳號]</strong>後，即可在臨時帳號過期後繼續收到通知，並解鎖更多功能。",
+	"autocreate-edit-warning": "<strong>警告：</strong>您尚未登入，此時一旦作出編輯，便會為您創建一個臨時帳號。[[{{MediaWiki:tempuser-helppage}}|深入了解]]。<strong>[$1 登入]</strong>或<strong>[$2 建立帳號]</strong>後，即可在臨時帳號過期後繼續收到通知，並使用更多功能。",
 	"anonpreviewwarning": "您尚未登入。發布頁面會將您的IP位址記錄在此頁面的編輯歷史中。",
-	"autocreate-preview-warning": "<em>您尚未登入，此時一旦作出編輯，就會得到一個臨時帳號。[[{{MediaWiki:tempuser-helppage}}|深入了解]]。</em>",
+	"autocreate-preview-warning": "<em>您尚未登入，此時一旦作出編輯，便會為您創建一個臨時帳號。[[{{MediaWiki:tempuser-helppage}}|深入了解]]。</em>",
 	"missingsummary": "<strong>提醒：</strong>您未填寫編輯摘要。若您再點選 \"$1\" 一次，將略過摘要直接發布您的編輯。",
 	"selfredirect": "<strong>警告：</strong> 您正建立連結至自己的重新導向。\n您可能指定錯要重新導向的目標頁面或者編輯錯頁面。\n若您再點選 \"$1\" 一次，將會繼續建立重新導向。",
 	"missingcommenttext": "請輸入一段評論。",
@@ -2564,7 +2565,7 @@
 	"delete-talk-summary-prefix": "已同關聯頁面一併刪除，理由: $1",
 	"historywarning": "<strong>警告：</strong>您正要刪除的頁面內含$1次{{PLURAL:$1|的修訂}}歷史：",
 	"historyaction-submit": "顯示修訂",
-	"confirmdeletetext": "您正要刪除頁面或圖片及其所有歷史，請確定您要這樣做，並了解後果，而且行為符合[[{{MediaWiki:Policy-url}}|方針]]。",
+	"confirmdeletetext": "您即將刪除一個頁面或圖像以及其歷史。\n\n請確定您要進行此項操作，並且了解其後果，同時您的行為符合[[{{MediaWiki:Policy-url}}|方針]]。",
 	"actioncomplete": "操作完成",
 	"actionfailed": "操作失敗",
 	"deletedtext": "已刪除「$1」。請參考$2檢視最近的刪除記錄。",

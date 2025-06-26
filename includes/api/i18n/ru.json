@@ -1292,7 +1292,7 @@
 	"apihelp-query+transcludedin-example-generator": "Получить информацию о страницах, включающих [[{{MediaWiki:Mainpage}}]].",
 	"apihelp-query+usercontribs-summary": "Получение всех правок участника.",
 	"apihelp-query+usercontribs-param-limit": "Максимальное количество возвращаемых правок.",
-	"apihelp-query+usercontribs-param-start": "Временная метка, с которой начать возврат, то есть версии до этой отметки времени..",
+	"apihelp-query+usercontribs-param-start": "Временная метка, с которой начать возврат, то есть версии до этой отметки времени.",
 	"apihelp-query+usercontribs-param-end": "Временная метка, на которой закончить возврат.",
 	"apihelp-query+usercontribs-param-user": "Участники, чей вклад необходимо получить. Не может быть использовано с <var>$1userids</var>, <var>$1userprefix</var> или <var>$1iprange</var>.",
 	"apihelp-query+usercontribs-param-userprefix": "Получить вклад всех участников, имена которых начинаются с этого значения. Не может быть использовано с <var>$1user</var>, <var>$1userids</var>, или <var>$1iprange</var>.",

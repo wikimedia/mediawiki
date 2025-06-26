@@ -7,7 +7,8 @@
 			"Kokage si",
 			"MathXplore",
 			"Omotecho",
-			"Shirayuki"
+			"Shirayuki",
+			"Shulmj"
 		]
 	},
 	"rest-prefix-mismatch": "リクエストされたパス ($1) は REST API ルートパス ($2) 内にありませんでした",
@@ -20,6 +21,7 @@
 	"rest-invalid-user": "指定した利用者名（$1）は無効です",
 	"rest-invalid-title": "指定されたタイトル ($1) はウィキページを示していません。",
 	"rest-unsupported-content-type": "非対応Content-Type：$1",
+	"rest-permission-error": "許可されていません: $1",
 	"rest-permission-denied-anon": "匿名利用者はアクセスできません",
 	"rest-permission-denied-title": "利用者にはページ名 ($1) の読み取り権限がありません",
 	"rest-permission-denied-revision": "利用者はリクエストした版 ($1) へのアクセス権がありません。",
@@ -48,7 +50,7 @@
 	"rest-bad-content-model": "無効なコンテンツモデル：$1",
 	"rest-update-cannot-create-page": "ページ「$1」が既に存在しているため、作成できません。既存のページを更新するには、リクエストボディにある「latest」の構造にベースとなる版を提供してください。",
 	"rest-extraneous-csrf-token": "余分な CSRF トークンが見つかりました。OAuth のように CSRF 攻撃に対して安全な認証メカニズムを使用している場合、CSRF トークンは使用してはいけません。",
-	"rest-cannot-load-file": "タイトル「$1」のファイルをロードできません。",
+	"rest-cannot-load-file": "ページ名「$1」のファイルを読み込めません。",
 	"rest-cross-origin-anon-write": "匿名のオリジン間書き込みリクエストは許可されません",
 	"rest-requires-safe-against-csrf": "このエンドポイントはCSRFを防げるセッションプロバイダーが必要です。",
 	"rest-badtoken": "与えられたCSRFトークンは無効です",
