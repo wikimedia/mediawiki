@@ -1,4 +1,5 @@
 <?php
+declare( strict_types = 1 );
 /**
  * Copyright (C) 2011-2022 Wikimedia Foundation and others.
  *

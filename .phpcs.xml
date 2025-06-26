@@ -16,6 +16,9 @@
 		<exclude-pattern>*/maintenance/doMaintenance\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/CommandLineInc\.php</exclude-pattern>
 	</rule>
+	<rule ref="Generic.PHP.RequireStrictTypes">
+		<include-pattern>*/Parsoid/*</include-pattern>
+	</rule>
 	<rule ref="Generic.Files.LineLength">
 		<exclude-pattern>*/languages/messages/*</exclude-pattern>
 		<exclude-pattern>*/tests/*</exclude-pattern>
