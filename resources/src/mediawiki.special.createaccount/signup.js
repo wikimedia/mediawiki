@@ -82,7 +82,7 @@ mw.hook( 'htmlform.enhance' ).add( ( $root ) => {
 			return $.Deferred().resolve( { valid: true, messages: [] } );
 		}
 
-		mw.track( 'stats.mediawiki_signup_validatepassword' );
+		mw.track( 'stats.mediawiki_signup_validatepassword_total' );
 
 		return api.post( {
 			action: 'validatepassword',
