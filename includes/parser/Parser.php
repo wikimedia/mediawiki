@@ -6532,6 +6532,10 @@ class Parser {
 	 */
 	public static function extractBody( string $text ): string {
 		$text = preg_replace( '!^.*?<body[^>]*>!s', '', $text, 1 );
+		if ( $text === null ) {
+			// T388729: this should never happen
+			throw new RuntimeException( 'Regex failed: ' . preg_last_error() );
+		}
 		$text = preg_replace( '!</body>\s*</html>\s*$!', '', $text, 1 );
 		return $text;
 	}
