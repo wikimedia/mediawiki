@@ -194,7 +194,7 @@ class VersionChecker {
 										'type' => 'incompatible-php',
 									];
 								}
-							} elseif ( substr( $dependency, 0, 4 ) === 'ext-' ) {
+							} elseif ( str_starts_with( $dependency, 'ext-' ) ) {
 								// PHP extensions
 								$phpExtension = substr( $dependency, 4 );
 								if ( $constraint !== '*' ) {
@@ -210,7 +210,7 @@ class VersionChecker {
 										'missing' => $phpExtension,
 									];
 								}
-							} elseif ( substr( $dependency, 0, 8 ) === 'ability-' ) {
+							} elseif ( str_starts_with( $dependency, 'ability-' ) ) {
 								// Other abilities the environment might provide.
 								$ability = substr( $dependency, 8 );
 								if ( !isset( $this->abilities[$ability] ) ) {

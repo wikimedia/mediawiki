@@ -1317,7 +1317,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	public static function isLinkInternal( $internal, $url ): bool {
 		return (bool)preg_match( '/^' .
 			# If server is proto relative, check also for http/https links
-			( substr( $internal, 0, 2 ) === '//' ? '(?:https?:)?' : '' ) .
+			( str_starts_with( $internal, '//' ) ? '(?:https?:)?' : '' ) .
 			preg_quote( $internal, '/' ) .
 			# check for query/path/anchor or end of link in each case
 			'(?:[\?\/\#]|$)/i',

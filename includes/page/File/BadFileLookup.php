@@ -99,7 +99,7 @@ class BadFileLookup {
 		$lines = explode( "\n", $list );
 		foreach ( $lines as $line ) {
 			// List items only
-			if ( substr( $line, 0, 1 ) !== '*' ) {
+			if ( !str_starts_with( $line, '*' ) ) {
 				continue;
 			}
 

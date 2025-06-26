@@ -137,7 +137,7 @@ class JpegMetadataExtractor {
 					$segments["XMP"] = trim( substr( $temp, 29 ) );
 					wfDebug( __METHOD__ . ' Found XMP section with wrong app identifier '
 						. "Using anyways." );
-				} elseif ( substr( $temp, 0, 6 ) === "Exif\0\0" ) {
+				} elseif ( str_starts_with( $temp, "Exif\0\0" ) ) {
 					// Just need to find out what the byte order is.
 					// because php's exif plugin sucks...
 					// This is a II for little Endian, MM for big. Not a unicode BOM.
@@ -153,7 +153,7 @@ class JpegMetadataExtractor {
 			} elseif ( $buffer === "\xED" ) {
 				// APP13 - PSIR. IPTC and some photoshop stuff
 				$temp = self::jpegExtractMarker( $fh );
-				if ( substr( $temp, 0, 14 ) === "Photoshop 3.0\x00" ) {
+				if ( str_starts_with( $temp, "Photoshop 3.0\x00" ) ) {
 					$segments["PSIR"][] = $temp;
 				}
 			} elseif ( $buffer === "\xD9" || $buffer === "\xDA" ) {

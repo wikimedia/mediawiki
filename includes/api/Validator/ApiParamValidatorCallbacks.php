@@ -41,7 +41,7 @@ class ApiParamValidatorCallbacks implements Callbacks {
 		}
 		if ( is_string( $rawValue ) ) {
 			// Preserve U+001F for multi-values
-			if ( substr( $rawValue, 0, 1 ) === "\x1f" ) {
+			if ( str_starts_with( $rawValue, "\x1f" ) ) {
 				// This loses the potential checkTitleEncoding() transformation done by
 				// WebRequest for $_GET. Let's call that a feature.
 				$value = implode( "\x1f", $request->normalizeUnicode( explode( "\x1f", $rawValue ) ) );

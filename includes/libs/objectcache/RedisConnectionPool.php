@@ -230,7 +230,7 @@ class RedisConnectionPool implements LoggerAwareInterface {
 		if ( !$server ) {
 			throw new InvalidArgumentException(
 				__CLASS__ . ": invalid configured server \"$server\"" );
-		} elseif ( substr( $server, 0, 1 ) === '/' ) {
+		} elseif ( str_starts_with( $server, '/' ) ) {
 			// UNIX domain socket
 			// These are required by the redis extension to start with a slash, but
 			// we still need to set the port to a special value to make it work.

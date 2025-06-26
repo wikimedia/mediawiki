@@ -1820,7 +1820,7 @@ class Parser {
 			return $this->makeFreeExternalLink( $m[0], strlen( $m[4] ) );
 		} elseif ( isset( $m[5] ) && $m[5] !== '' ) {
 			# RFC or PMID
-			if ( substr( $m[0], 0, 3 ) === 'RFC' ) {
+			if ( str_starts_with( $m[0], 'RFC' ) ) {
 				if ( !$this->mOptions->getMagicRFCLinks() ) {
 					return $m[0];
 				}
@@ -1829,7 +1829,7 @@ class Parser {
 				$cssClass = 'mw-magiclink-rfc';
 				$trackingCat = 'magiclink-tracking-rfc';
 				$id = $m[5];
-			} elseif ( substr( $m[0], 0, 4 ) === 'PMID' ) {
+			} elseif ( str_starts_with( $m[0], 'PMID' ) ) {
 				if ( !$this->mOptions->getMagicPMIDLinks() ) {
 					return $m[0];
 				}
@@ -2630,7 +2630,7 @@ class Parser {
 			$ns = $nt->getNamespace();
 			$iw = $nt->getInterwiki();
 
-			$noforce = ( substr( $origLink, 0, 1 ) !== ':' );
+			$noforce = !str_starts_with( $origLink, ':' );
 
 			if ( $might_be_img ) { # if this is actually an invalid link
 				if ( $ns === NS_FILE && $noforce ) { # but might be an image

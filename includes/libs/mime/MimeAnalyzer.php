@@ -1040,7 +1040,7 @@ class MimeAnalyzer implements LoggerAwareInterface {
 	 * @return int|string
 	 */
 	private function findMediaType( string $extMime ) {
-		if ( strpos( $extMime, '.' ) === 0 ) {
+		if ( str_starts_with( $extMime, '.' ) ) {
 			// If it's an extension, look up the MIME types
 			$m = $this->getMimeTypesFromExtension( substr( $extMime, 1 ) );
 			if ( !$m ) {

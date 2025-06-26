@@ -68,7 +68,7 @@ class CssContent extends TextContent {
 		}
 		$this->redirectTarget = null;
 		$text = $this->getText();
-		if ( strpos( $text, '/* #REDIRECT */' ) === 0 ) {
+		if ( str_starts_with( $text, '/* #REDIRECT */' ) ) {
 			// Extract the title from the url
 			if ( preg_match( '/title=(.*?)&action=raw/', $text, $matches ) ) {
 				$title = Title::newFromText( urldecode( $matches[1] ) );

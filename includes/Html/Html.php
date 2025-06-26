@@ -899,7 +899,7 @@ class Html {
 	public static function textarea( $name, $value = '', array $attribs = [] ) {
 		$attribs['name'] = $name;
 
-		if ( substr( $value ?? '', 0, 1 ) == "\n" ) {
+		if ( str_starts_with( $value ?? '', "\n" ) ) {
 			// Workaround for T14130: browsers eat the initial newline
 			// assuming that it's just for show, but they do keep the later
 			// newlines, which we may want to preserve during editing.
@@ -1233,7 +1233,7 @@ class Html {
 			if ( $value == '' ) {
 				continue;
 			}
-			if ( substr( $value, 0, 1 ) == '*' && substr( $value, 1, 1 ) != '*' ) {
+			if ( str_starts_with( $value, '*' ) && !str_starts_with( $value, '**' ) ) {
 				# A new group is starting...
 				$value = trim( substr( $value, 1 ) );
 				if ( $value !== '' &&
@@ -1244,7 +1244,7 @@ class Html {
 				} else {
 					$optgroup = false;
 				}
-			} elseif ( substr( $value, 0, 2 ) == '**' ) {
+			} elseif ( str_starts_with( $value, '**' ) ) {
 				# groupmember
 				$opt = trim( substr( $value, 2 ) );
 				if ( $optgroup === false ) {

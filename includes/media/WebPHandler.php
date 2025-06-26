@@ -208,7 +208,7 @@ class WebPHandler extends BitmapHandler {
 			// The Exif section of a webp file is basically a tiff file without an image.
 			// Some files start with an Exif\0\0. This is wrong according to standard and
 			// will prevent us from reading file, so remove for compatibility.
-			if ( substr( $exifData, 0, 6 ) === "Exif\x00\x00" ) {
+			if ( str_starts_with( $exifData, "Exif\x00\x00" ) ) {
 				$exifData = substr( $exifData, 6 );
 			}
 			$tmpFile = MediaWikiServices::getInstance()->

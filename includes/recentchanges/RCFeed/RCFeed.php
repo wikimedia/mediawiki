@@ -49,9 +49,9 @@ abstract class RCFeed {
 			if ( !isset( $params['uri'] ) ) {
 				throw new InvalidArgumentException( 'RCFeeds must have a class set' );
 			}
-			if ( strpos( $params['uri'], 'udp:' ) === 0 ) {
+			if ( str_starts_with( $params['uri'], 'udp:' ) ) {
 				$params['class'] = UDPRCFeedEngine::class;
-			} elseif ( strpos( $params['uri'], 'redis:' ) === 0 ) {
+			} elseif ( str_starts_with( $params['uri'], 'redis:' ) ) {
 				$params['class'] = RedisPubSubFeedEngine::class;
 			} else {
 				global $wgRCEngines;

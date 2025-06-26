@@ -405,7 +405,7 @@ if ( !$wgNoReplyAddress ) {
 
 // Non-trivial expansion of: $wgSecureLogin
 // (due to calling wfWarn).
-if ( $wgSecureLogin && substr( $wgServer, 0, 2 ) !== '//' ) {
+if ( $wgSecureLogin && !str_starts_with( $wgServer, '//' ) ) {
 	$wgSecureLogin = false;
 	wfWarn( 'Secure login was enabled on a server that only supports '
 		. 'HTTP or HTTPS. Disabling secure login.' );
