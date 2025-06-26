@@ -1890,6 +1890,8 @@ return [
 				'loadScript' => $config->get( MainConfigNames::LoadScript ),
 				'maxageVersioned' => $maxage['versioned'] ?? null,
 				'maxageUnversioned' => $maxage['unversioned'] ?? null,
+				/* Fandom change */
+				'maxageStaleIfError' => $maxage['staleIfError'] ?? null,
 			]
 		);
 
