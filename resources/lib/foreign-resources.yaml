@@ -482,3 +482,18 @@ vuex:
     package/LICENSE:
     package/dist/vuex.global.js:
     package/dist/vuex.global.prod.js:
+
+vue-router:
+  license: MIT
+  homepage: https://router.vuejs.org/
+  authors: Yuxi (Evan) You
+  version: 4.5.1
+  purl: pkg:npm/vue-router@4.5.1
+  type: tar
+  src: https://registry.npmjs.org/vue-router/-/vue-router-4.5.1.tgz
+  integrity: sha512-ogAF3P97NPm8fJsE4by9dwSYtDwXIY1nFY9T6DyQnGHd1E2Da94w9JIolpe42LJGIl0DwOHBi8TcRPlPGwbTtw==
+
+  dest:
+    package/LICENSE:
+    package/dist/vue-router.global.js:
+    package/dist/vue-router.global.prod.js:
