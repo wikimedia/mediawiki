@@ -2636,7 +2636,7 @@
 	"blocklist-target": "Cel",
 	"blocklist-expiry": "Upływa",
 	"blocklist-by": "Blokujący administrator",
-	"blocklist-params": "Parametry blokad",
+	"blocklist-params": "Parametry blokady",
 	"blocklist-reason": "Powód",
 	"ipblocklist-submit": "Szukaj",
 	"ipblocklist-localblock": "Lokalna blokada",

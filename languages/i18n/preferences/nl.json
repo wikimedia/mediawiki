@@ -219,6 +219,8 @@
 	"rcfilters-watchlist-preference-label": "Gebruik de niet-JavaScript interface",
 	"rcfilters-watchlist-preference-help": "Laadt de [[{{#special:Watchlist}}|volglijst]] zonder filters, zoek- of markeerfunctionaliteit.",
 	"prefs-changeswatchlist": "Weer te geven wijzigingen",
+	"tog-watchstar-expiry": "Standaardtijdsperiode in de volglijst voor handmatig toegevoegde pagina’s:",
+	"tog-watch-expiry": "Standaardtijdsperiode:",
 	"tog-watchlisthideminor": "Kleine bewerkingen op mijn volglijst verbergen",
 	"tog-watchlisthidebots": "Botbewerkingen op mijn volglijst verbergen",
 	"tog-watchlisthideown": "Eigen bewerkingen op mijn volglijst verbergen",
