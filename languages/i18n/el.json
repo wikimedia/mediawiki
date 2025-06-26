@@ -80,7 +80,8 @@
 			"Περίεργος",
 			"לערי ריינהארט",
 			"아라",
-			"Marios Zindilis"
+			"Marios Zindilis",
+			"JorgeElias2302"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Κατηγορία|Κατηγορίες}}",
@@ -1041,6 +1042,7 @@
 	"linterror-duplicate-ids": "Διπλότυπα IDs",
 	"linterror-empty-heading": "Κενές επικεφαλίδες",
 	"linterror-fostered": "Θετό περιεχόμενο",
+	"linterror-fostered-transparent": "Ενίσχυσε το διαφανές περιεχόμενο",
 	"linterror-html5-misnesting": "Κακή εμφώλευση (τώρα προβληματική)",
 	"linterror-inline-media-caption": "Αόρατη λεζάντα",
 	"linterror-large-tables": "Μεγάλοι πίνακες που σπάνε την εμφάνιση σε κινητές συσκευές",
@@ -2575,6 +2577,8 @@
 	"block-user-no-active-range-blocks": "Δεν βρέθηκαν ενεργές φραγές εύρους",
 	"block-user-previous-blocks": "Αρχείο καταγραφών φραγών",
 	"block-user-no-previous-blocks": "Δεν βρέθηκαν προηγούμενες φραγές",
+	"block-user-suppressed-blocks": "Καταργημένο αρχείο καταγραφής μπλοκ",
+	"block-user-no-suppressed-blocks": "Δεν βρέθηκαν προηγούμενα αποκλεισμένα μπλοκ",
 	"block-item-remove": "Αφαίρεση",
 	"block-item-edit": "Επεξεργασία",
 	"block-target": "Στόχος",
@@ -2590,6 +2594,7 @@
 	"block-removal-confirm-no": "Ακύρωση",
 	"block-javascript-required": "Απαιτείται JavaScript για τη χρήση της διεπαφής Special:Block.",
 	"block-removed": "Η φραγή έχει αφαιρεθεί.",
+	"block-reblock-multi-legacy": "Αυτός ο χρήστης έχει αποκλειστεί πολλές φορές ήδη και δεν μπορεί να αποκλειστεί ξανά με αυτήν τη φόρμα.",
 	"block-view-target": "Προβολή",
 	"unblockip": "Άρση φραγής χρήστη",
 	"unblockiptext": "Χρησιμοποιήστε την παρακάτω φόρμα για να αποκαταστήσετε την πρόσβαση σε επεξεργασία, σε μια διεύθυνση IP ή σε ένα χρήστη που είχε αποκλειστεί με φραγή.",
