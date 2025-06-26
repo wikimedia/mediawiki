@@ -6,6 +6,7 @@
 
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\RequestContext;
+use MediaWiki\Hook\SpecialLogResolveLogTypeHook;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\SpecialPage\SpecialPage;
@@ -120,4 +121,32 @@ class SpecialLogTest extends SpecialPageTestBase {
 		$this->assertMatchesRegularExpression( '/logentry-block-block:.*127\.0\.0\.0\/24/', $html );
 	}
 
+	public function testResolveLogTypeHookCall(): void {
+		$sysop = $this->getTestSysop()->getUser();
+		$buf = $this->getServiceContainer()->getBlockUserFactory();
+		$buf->newBlockUser( '127.0.0.1', $sysop, 'infinity' )->placeBlock();
+
+		$handlerMock = $this->createMock( SpecialLogResolveLogTypeHook::class );
+		$handlerMock
+			->expects( $this->once() )
+			->method( 'onSpecialLogResolveLogType' )
+			->with( [ 'alias-string' ] )
+			->willReturnCallback( static function ( array $params, &$type ): void {
+				$type = 'block';
+			} );
+
+		$this->setTemporaryHook( 'SpecialLogResolveLogType', $handlerMock );
+
+		[ $html ] = $this->executeSpecialPage(
+			'alias-string',
+			new FauxRequest( [ 'page' => [ 'User:127.0.0.1' ] ] ),
+			'qqx'
+		);
+
+		// Verify the page contents are as expected after resolving the alias
+		$this->assertMatchesRegularExpression(
+			'/logentry-block-block:(.*)127\.0\.0\.1/',
+			$html
+		);
+	}
 }
