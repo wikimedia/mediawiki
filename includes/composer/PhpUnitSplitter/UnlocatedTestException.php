@@ -9,8 +9,11 @@ namespace MediaWiki\Composer\PhpUnitSplitter;
  */
 class UnlocatedTestException extends \Exception {
 
-	public function __construct( TestDescriptor $testDescriptor ) {
-		parent::__construct( "Could not find file for class " . $testDescriptor->getFullClassname() );
+	public function __construct( TestDescriptor $testDescriptor, string $filename ) {
+		parent::__construct(
+			"Could not find file for class " . $testDescriptor->getFullClassname() .
+			" (expected .../$filename)"
+		);
 	}
 
 }
