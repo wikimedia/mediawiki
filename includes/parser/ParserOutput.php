@@ -2532,6 +2532,12 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			// Ensure that previews aren't cacheable, just to be safe.
 			$this->updateCacheExpiry( 0 );
 		}
+
+		// Record whether this was parsed with the legacy parser
+		// (Unlike some other options here, this does/should fork the cache.)
+		if ( $parserOptions->getUseParsoid() ) {
+			$this->setOutputFlag( ParserOutputFlags::USE_PARSOID, true );
+		}
 	}
 
 	/**

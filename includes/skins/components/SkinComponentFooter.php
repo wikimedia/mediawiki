@@ -10,6 +10,7 @@ use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\Article;
+use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Title\Title;
 
 class SkinComponentFooter implements SkinComponent {
@@ -381,6 +382,7 @@ class SkinComponentFooter implements SkinComponent {
 		$skinContext = $this->skinContext;
 		$out = $skinContext->getOutput();
 		$timestamp = $out->getRevisionTimestamp();
+		$useParsoid = $out->getOutputFlag( ParserOutputFlags::USE_PARSOID );
 
 		// No cached timestamp, load it from the database
 		// TODO: This code shouldn't be necessary, revision ID should always be available
@@ -394,7 +396,8 @@ class SkinComponentFooter implements SkinComponent {
 
 		$lastModified = new SkinComponentLastModified(
 			$skinContext,
-			$timestamp
+			$timestamp,
+			$useParsoid
 		);
 
 		return $lastModified->getTemplateData()['text'];
