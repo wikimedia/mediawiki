@@ -5,25 +5,6 @@ namespace MediaWiki\Tests\Maintenance;
 use CheckComposerLockUpToDate;
 
 /**
- * @internal Only for use by CheckComposerLockUpToDateTest
- */
-class SemiMockedCheckComposerLockUpToDate extends CheckComposerLockUpToDate {
-
-	private string $mockMwInstallPath;
-
-	/**
-	 * Set the a mock MW_INSTALL_PATH value for the test.
-	 */
-	public function setMockMwInstallPath( string $mockMwInstallPath ) {
-		$this->mockMwInstallPath = $mockMwInstallPath;
-	}
-
-	protected function getMwInstallPath(): string {
-		return $this->mockMwInstallPath;
-	}
-}
-
-/**
  * @covers \CheckComposerLockUpToDate
  * @author Dreamy Jazz
  */
@@ -73,5 +54,24 @@ class CheckComposerLockUpToDateTest extends MaintenanceBaseTestCase {
 			'Run "composer update" to install newer dependencies/'
 		);
 		$this->maintenance->execute();
+	}
+}
+
+/**
+ * @internal Only for use by CheckComposerLockUpToDateTest
+ */
+class SemiMockedCheckComposerLockUpToDate extends CheckComposerLockUpToDate {
+
+	private string $mockMwInstallPath;
+
+	/**
+	 * Set the a mock MW_INSTALL_PATH value for the test.
+	 */
+	public function setMockMwInstallPath( string $mockMwInstallPath ) {
+		$this->mockMwInstallPath = $mockMwInstallPath;
+	}
+
+	protected function getMwInstallPath(): string {
+		return $this->mockMwInstallPath;
 	}
 }

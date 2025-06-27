@@ -13,68 +13,6 @@ use PHPUnit\Framework\ExpectationFailedException;
 use RuntimeException;
 
 /**
- * Mock for the input/output of FetchText
- *
- * FetchText internally tries to access stdin and stdout. We mock those aspects
- * for testing.
- */
-class SemiMockedFetchText extends FetchText {
-
-	/**
-	 * @var string|null Text to pass as stdin
-	 */
-	private $mockStdinText = null;
-
-	/**
-	 * @var bool Whether or not a text for stdin has been provided
-	 */
-	private $mockSetUp = false;
-
-	/**
-	 * @var array Invocation counters for the mocked aspects
-	 */
-	private $mockInvocations = [ 'getStdin' => 0 ];
-
-	/**
-	 * Data for the fake stdin
-	 *
-	 * @param string $stdin The string to be used instead of stdin
-	 */
-	public function mockStdin( $stdin ) {
-		$this->mockStdinText = $stdin;
-		$this->mockSetUp = true;
-	}
-
-	/**
-	 * Gets invocation counters for mocked methods.
-	 *
-	 * @return array An array, whose keys are function names. The corresponding values
-	 * denote the number of times the function has been invoked.
-	 */
-	public function mockGetInvocations() {
-		return $this->mockInvocations;
-	}
-
-	// -----------------------------------------------------------------
-	// Mocked functions from FetchText follow.
-
-	public function getStdin( $len = null ) {
-		$this->mockInvocations['getStdin']++;
-		if ( $len !== null ) {
-			throw new ExpectationFailedException(
-				"Tried to get stdin with non null parameter" );
-		}
-
-		if ( !$this->mockSetUp ) {
-			throw new ExpectationFailedException(
-				"Tried to get stdin before setting up rerouting" );
-		}
-
-		return fopen( 'data://text/plain,' . $this->mockStdinText, 'r' );
-	}
-}
-
-/**
  * TestCase for FetchText
  *
  * @group Database
@@ -285,5 +223,67 @@ class FetchTextTest extends MediaWikiIntegrationTestCase {
 				self::$textId2 . "\n23\nFetchTextTestPage2Text1",
 				self::$textId3 . "\n23\nFetchTextTestPage2Text2"
 			] ) );
+	}
+}
+
+/**
+ * Mock for the input/output of FetchText
+ *
+ * FetchText internally tries to access stdin and stdout. We mock those aspects
+ * for testing.
+ */
+class SemiMockedFetchText extends FetchText {
+
+	/**
+	 * @var string|null Text to pass as stdin
+	 */
+	private $mockStdinText = null;
+
+	/**
+	 * @var bool Whether or not a text for stdin has been provided
+	 */
+	private $mockSetUp = false;
+
+	/**
+	 * @var array Invocation counters for the mocked aspects
+	 */
+	private $mockInvocations = [ 'getStdin' => 0 ];
+
+	/**
+	 * Data for the fake stdin
+	 *
+	 * @param string $stdin The string to be used instead of stdin
+	 */
+	public function mockStdin( $stdin ) {
+		$this->mockStdinText = $stdin;
+		$this->mockSetUp = true;
+	}
+
+	/**
+	 * Gets invocation counters for mocked methods.
+	 *
+	 * @return array An array, whose keys are function names. The corresponding values
+	 * denote the number of times the function has been invoked.
+	 */
+	public function mockGetInvocations() {
+		return $this->mockInvocations;
+	}
+
+	// -----------------------------------------------------------------
+	// Mocked functions from FetchText follow.
+
+	public function getStdin( $len = null ) {
+		$this->mockInvocations['getStdin']++;
+		if ( $len !== null ) {
+			throw new ExpectationFailedException(
+				"Tried to get stdin with non null parameter" );
+		}
+
+		if ( !$this->mockSetUp ) {
+			throw new ExpectationFailedException(
+				"Tried to get stdin before setting up rerouting" );
+		}
+
+		return fopen( 'data://text/plain,' . $this->mockStdinText, 'r' );
 	}
 }

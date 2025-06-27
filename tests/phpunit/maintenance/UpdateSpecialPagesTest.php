@@ -10,10 +10,6 @@ use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use UpdateSpecialPages;
 use Wikimedia\TestingAccessWrapper;
 
-class MockSpecialPageForUpdateSpecialPagesTest extends SpecialPage {
-
-}
-
 /**
  * @covers \UpdateSpecialPages
  * @group Database
@@ -227,4 +223,8 @@ class UpdateSpecialPagesTest extends MaintenanceBaseTestCase {
 			'Elapsed time is 3 hours, 5 minutes, and 7.334 seconds' => [ 3 * 3600 + 5 * 60 + 7.33, "3h 5m 7.33s\n" ],
 		];
 	}
+}
+
+class MockSpecialPageForUpdateSpecialPagesTest extends SpecialPage {
+
 }

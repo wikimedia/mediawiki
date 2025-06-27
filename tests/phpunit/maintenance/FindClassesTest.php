@@ -6,6 +6,24 @@ use FindClasses;
 use PHPUnit\Framework\ExpectationFailedException;
 
 /**
+ * @covers \FindClasses
+ * @group Database
+ * @author Dreamy Jazz
+ */
+class FindClassesTest extends MaintenanceBaseTestCase {
+
+	protected function getMaintenanceClass() {
+		return SemiMockedFindClasses::class;
+	}
+
+	public function testExecute() {
+		$this->maintenance->mockStdin( "MediaWiki\Maintenance\Version\n" );
+		$this->maintenance->execute();
+		$this->expectOutputString( MW_INSTALL_PATH . "/maintenance/Version.php\n" );
+	}
+}
+
+/**
  * Mock for the input/output of FindClasses
  *
  * FindClasses internally tries to access stdin and stdout. We mock those aspects
@@ -33,23 +51,5 @@ class SemiMockedFindClasses extends FindClasses {
 		}
 
 		return fopen( 'data://text/plain,' . $this->mockStdinText, 'r' );
-	}
-}
-
-/**
- * @covers \FindClasses
- * @group Database
- * @author Dreamy Jazz
- */
-class FindClassesTest extends MaintenanceBaseTestCase {
-
-	protected function getMaintenanceClass() {
-		return SemiMockedFindClasses::class;
-	}
-
-	public function testExecute() {
-		$this->maintenance->mockStdin( "MediaWiki\Maintenance\Version\n" );
-		$this->maintenance->execute();
-		$this->expectOutputString( MW_INSTALL_PATH . "/maintenance/Version.php\n" );
 	}
 }

@@ -12,37 +12,6 @@ use MediaWiki\User\User;
 use PHPUnit\Framework\ExpectationFailedException;
 
 /**
- * Mock for the input/output of EditCLI
- *
- * EditCLI internally tries to access stdin and stdout. We mock those aspects
- * for testing.
- */
-class SemiMockedEditCLI extends EditCLI {
-
-	/**
-	 * @var string|null Text to pass as stdin
-	 */
-	private ?string $mockStdinText = null;
-
-	/**
-	 * Data for the fake stdin
-	 *
-	 * @param string $stdin The string to be used instead of stdin
-	 */
-	public function mockStdin( $stdin ) {
-		$this->mockStdinText = $stdin;
-	}
-
-	public function getStdin( $len = null ) {
-		if ( $len !== Maintenance::STDIN_ALL ) {
-			throw new ExpectationFailedException( "Tried to get stdin without using Maintenance::STDIN_ALL" );
-		}
-
-		return file_get_contents( 'data://text/plain,' . $this->mockStdinText );
-	}
-}
-
-/**
  * @covers \EditCLI
  * @group Database
  * @author Dreamy Jazz
@@ -196,5 +165,36 @@ class EditTest extends MaintenanceBaseTestCase {
 			'/Page already exists/',
 			$this->getExistingTestPage()->getTitle()->getPrefixedText()
 		);
+	}
+}
+
+/**
+ * Mock for the input/output of EditCLI
+ *
+ * EditCLI internally tries to access stdin and stdout. We mock those aspects
+ * for testing.
+ */
+class SemiMockedEditCLI extends EditCLI {
+
+	/**
+	 * @var string|null Text to pass as stdin
+	 */
+	private ?string $mockStdinText = null;
+
+	/**
+	 * Data for the fake stdin
+	 *
+	 * @param string $stdin The string to be used instead of stdin
+	 */
+	public function mockStdin( $stdin ) {
+		$this->mockStdinText = $stdin;
+	}
+
+	public function getStdin( $len = null ) {
+		if ( $len !== Maintenance::STDIN_ALL ) {
+			throw new ExpectationFailedException( "Tried to get stdin without using Maintenance::STDIN_ALL" );
+		}
+
+		return file_get_contents( 'data://text/plain,' . $this->mockStdinText );
 	}
 }
