@@ -55,7 +55,7 @@ class ParserTestPrinter extends TestRecorder {
 	/** @var string */
 	private $xmlError;
 
-	public function __construct( $term, $options ) {
+	public function __construct( AnsiTermColorer|DummyTermColorer $term, array $options ) {
 		$this->term = $term;
 		$options += [
 			'showDiffs' => true,

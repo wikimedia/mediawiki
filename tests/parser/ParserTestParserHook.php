@@ -53,7 +53,7 @@ class ParserTestParserHook {
 		return true;
 	}
 
-	public static function dumpHook( $in, $argv ) {
+	public static function dumpHook( ?string $in, array $argv ): string {
 		// @phan-suppress-next-line SecurityCheck-XSS
 		return "<pre>\n" .
 			var_export( $in, true ) . "\n" .
