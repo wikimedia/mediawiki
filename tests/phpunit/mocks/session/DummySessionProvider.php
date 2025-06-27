@@ -48,11 +48,7 @@ class DummySessionProvider extends SessionProvider {
 	public function unpersistSession( WebRequest $request ) {
 	}
 
-	public function immutableSessionCouldExistForUser( $user ) {
-		return false;
-	}
-
-	public function preventImmutableSessionsForUser( $user ) {
+	public function preventSessionsForUser( $user ) {
 	}
 
 	public function suggestLoginUsername( WebRequest $request ) {
