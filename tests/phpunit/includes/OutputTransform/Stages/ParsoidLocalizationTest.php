@@ -12,8 +12,6 @@ use MediaWikiIntegrationTestCase;
 use Psr\Log\NullLogger;
 use Wikimedia\Bcp47Code\Bcp47CodeValue;
 use Wikimedia\Message\MessageValue;
-use Wikimedia\Message\ParamType;
-use Wikimedia\Message\ScalarParam;
 use Wikimedia\Parsoid\Core\HtmlPageBundle;
 use Wikimedia\Parsoid\ParserTests\TestUtils;
 use Wikimedia\Parsoid\Utils\ContentUtils;
@@ -146,7 +144,7 @@ class ParsoidLocalizationTest extends MediaWikiIntegrationTestCase {
 			],
 			[
 				'testparam',
-				[ new MessageValue( 'testparam', [ new ScalarParam( ParamType::TEXT, new MessageValue( 'testparam', [ new ScalarParam( ParamType::TEXT, 'hello' ) ] ) ) ] ) ],
+				[ new MessageValue( 'testparam', [ new MessageValue( 'testparam', [ 'hello' ] ) ] ) ],
 				'<p><span typeof="mw:I18n" data-mw-i18n=\'{"/":{"lang":"x-user","key":"testparam","params":{"0":{"key":"testparam","params":{"0":{"text":{"key":"testparam","params":{"0":{"text":"hello","_type_":"Wikimedia\\\\Message\\\\ScalarParam"},"_type_":"array"},"_type_":"Wikimedia\\\\Message\\\\MessageValue"},"_type_":"Wikimedia\\\\Message\\\\ScalarParam"},"_type_":"array"},"_type_":"Wikimedia\\\\Message\\\\MessageValue"},"_type_":"array"}}}\'>english english english hello</span></p>',
 				'Span with nested message'
 			],
@@ -212,7 +210,7 @@ class ParsoidLocalizationTest extends MediaWikiIntegrationTestCase {
 			],
 			[
 				'testparam',
-				[ new MessageValue( 'testparam', [ new ScalarParam( ParamType::TEXT, new MessageValue( 'testparam', [ new ScalarParam( ParamType::TEXT, 'hello' ) ] ) ) ] ) ],
+				[ new MessageValue( 'testparam', [ new MessageValue( 'testparam', [ 'hello' ] ) ] ) ],
 				'<a typeof="mw:LocalizedAttrs" title="english english english hello" data-mw-i18n=\'{"title":{"lang":"x-user","key":"testparam","params":{"0":{"key":"testparam","params":{"0":{"text":{"key":"testparam","params":{"0":{"text":"hello","_type_":"Wikimedia\\\\Message\\\\ScalarParam"},"_type_":"array"},"_type_":"Wikimedia\\\\Message\\\\MessageValue"},"_type_":"Wikimedia\\\\Message\\\\ScalarParam"},"_type_":"array"},"_type_":"Wikimedia\\\\Message\\\\MessageValue"},"_type_":"array"}}}\'></a>',
 				'Attr with nested message'
 			],

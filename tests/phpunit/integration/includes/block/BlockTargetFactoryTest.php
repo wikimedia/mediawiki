@@ -107,9 +107,11 @@ class BlockTargetFactoryTest extends \MediaWikiIntegrationTestCase {
 	public function testNoSuchUser() {
 		$target = $this->getBlockTargetFactory()->newFromString( 'Nonexistent' );
 		$status = $target->validateForCreation();
-		$this->assertStatusError( 'nosuchusershort', $status );
-		$this->assertSame( '<text>Nonexistent</text>',
-			$status->getMessages()[0]->getParams()[0]->dump() );
+		$this->assertStatusNotOK( $status );
+		$this->assertStatusMessagesExactly(
+			StatusValue::newFatal( 'nosuchusershort', 'Nonexistent' ),
+			$status
+		);
 	}
 
 	public static function provideNewFromIp() {

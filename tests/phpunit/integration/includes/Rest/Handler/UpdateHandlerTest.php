@@ -30,8 +30,6 @@ use MockTitleTrait;
 use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\Message\DataMessageValue;
 use Wikimedia\Message\MessageValue;
-use Wikimedia\Message\ParamType;
-use Wikimedia\Message\ScalarParam;
 use Wikimedia\UUID\GlobalIdGenerator;
 
 /**
@@ -586,10 +584,8 @@ class UpdateHandlerTest extends MediaWikiLangTestCase {
 				Status::newFatal( 'apierror-badtoken', Message::plaintextParam( 'BAD' ) )
 			),
 			new LocalizedHttpException(
-				new MessageValue(
-					'apierror-badtoken',
-					[ new ScalarParam( ParamType::PLAINTEXT, 'BAD' ) ]
-				), 403
+				( new MessageValue( 'apierror-badtoken' ) )->plaintextParams( 'BAD' ),
+				403
 			),
 		];
 

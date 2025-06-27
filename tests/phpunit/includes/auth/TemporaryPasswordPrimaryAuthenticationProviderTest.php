@@ -394,7 +394,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends MediaWikiIntegr
 		string $password,
 		string $expectedErrorMessage,
 		int $newPasswordExpiry = 100,
-		?StatusValue $validationError = null
+		?string $validationError = null
 	) {
 		$user = self::getMutableTestUser()->getUser();
 
@@ -409,14 +409,14 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends MediaWikiIntegr
 
 		$provider = $this->getProvider( [ 'newPasswordExpiry' => $newPasswordExpiry ] );
 
-		$this->validity = $validationError ?? Status::newGood();
+		$this->validity = $validationError ? Status::newFatal( $validationError ) : Status::newGood();
 
 		$response = $provider->beginPrimaryAuthentication( $reqs );
 
 		$this->assertSame( AuthenticationResponse::FAIL, $response->status );
 		if ( $validationError !== null ) {
 			$this->assertSame(
-				$validationError->getMessages()[0]->getKey(),
+				$validationError,
 				$response->message->getParams()[0]->getKey()
 			);
 		}
@@ -427,7 +427,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends MediaWikiIntegr
 			'TemporaryPassword',
 			'fatalpassworderror',
 			100,
-			Status::newFatal( 'arbitrary-failure' )
+			'arbitrary-failure'
 		];
 
 		yield 'expired password' => [

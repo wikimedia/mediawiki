@@ -19,8 +19,6 @@ use MediaWiki\Storage\NameTableStore;
 use MediaWiki\Storage\NameTableStoreFactory;
 use MediaWiki\Title\TitleFormatter;
 use Wikimedia\Message\MessageValue;
-use Wikimedia\Message\ParamType;
-use Wikimedia\Message\ScalarParam;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDBAccessObject;
@@ -133,16 +131,13 @@ class PageHistoryHandler extends SimpleHandler {
 
 		if ( !$page ) {
 			throw new LocalizedHttpException(
-				new MessageValue( 'rest-nonexistent-title',
-					[ new ScalarParam( ParamType::PLAINTEXT, $title ) ]
-				),
+				( new MessageValue( 'rest-nonexistent-title' ) )->plaintextParams( $title ),
 				404
 			);
 		}
 		if ( !$this->getAuthority()->authorizeRead( 'read', $page ) ) {
 			throw new LocalizedHttpException(
-				new MessageValue( 'rest-permission-denied-title',
-					[ new ScalarParam( ParamType::PLAINTEXT, $title ) ] ),
+				( new MessageValue( 'rest-permission-denied-title' ) )->plaintextParams( $title ),
 				403
 			);
 		}
@@ -166,9 +161,8 @@ class PageHistoryHandler extends SimpleHandler {
 			);
 			if ( !$rev ) {
 				throw new LocalizedHttpException(
-					new MessageValue( 'rest-nonexistent-title-revision',
-						[ $relativeRevId, new ScalarParam( ParamType::PLAINTEXT, $title ) ]
-					),
+					( new MessageValue( 'rest-nonexistent-title-revision', [ $relativeRevId ] ) )
+						->plaintextParams( $title ),
 					404
 				);
 			}
