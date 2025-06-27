@@ -2418,7 +2418,7 @@ class ParserTestRunner {
 			),
 			'wgMaxTocLevel' => $maxtoclevel,
 			'wgAllowExternalImages' => self::getOptionValue( 'wgAllowExternalImages', $opts, true ),
-			'wgThumbLimits' => [ 0, 0, 0, 0, 0, self::getOptionValue( 'thumbsize', $opts, 180 ) ],
+			'wgThumbLimits' => [ 0, 0, 0, 0, 0, (int)self::getOptionValue( 'thumbsize', $opts, 180 ) ],
 			'wgDefaultLanguageVariant' => $variant,
 			'wgLinkHolderBatchSize' => $linkHolderBatchSize,
 			// Set as a JSON object like:
