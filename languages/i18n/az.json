@@ -926,7 +926,7 @@
 	"viewprevnext": "Göstər ($1 {{int:pipe-separator}} $2) ($3).",
 	"searchmenu-exists": "{{SITENAME}} layihəsində \"[[:$1]]\" adında səhifə mövcuddur.</strong> {{PLURAL:$2|0=|Həmçinin tapılmış digər axtarış nəticələrinə də baxın.}}",
 	"searchmenu-new": "Bu vikidə \"[[:$1]]\" səhifəsini yaradın! {{PLURAL:$2|0=|Həmçinin, axtarışınız əsasında çıxan səhifəyə baxın.|Həmçinin, axtarışınız əsasında çıxan nəticələrə baxın.}}",
-	"searchmenu-new-external": "Deyəsən \"[[:$1]]\" səhifəsi başqa bir vikidədir. Onu orada ziyarət edə bilərsiniz. {{PLURAL:$2|0=|Həmçinin axtarışınızla birlikdə tapılan səhifəyə baxa bilərsiniz.|Həmçinin axtarış nəticələrinə baxa bilərsiniz.}}",
+	"searchmenu-new-external": "Görünür, \"[[:$1]]\" səhifəsi başqa bir vikidədir. Onu orada ziyarət edə {{PLURAL:$2|0=bilərsiniz|, həmçinin axtarışınızla tapılan səhifəyə baxa bilərsiniz|, həmçinin axtarış nəticələrinə baxa bilərsiniz}}.",
 	"searchprofile-articles": "Məzmun səhifələri",
 	"searchprofile-images": "Multimedia",
 	"searchprofile-everything": "Hər şey",

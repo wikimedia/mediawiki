@@ -224,5 +224,6 @@
 	"rest-schema-desc-page-history-count": "Aantal bewerkingen in paginageschiedenis",
 	"rest-schema-desc-page-language-links": "Koppelingen naar andere talen voor de pagina",
 	"rest-schema-desc-search-results": "Zoekresultaten",
-	"rest-schema-desc-revision-compare": "Versievergelijking"
+	"rest-schema-desc-revision-compare": "Versievergelijking",
+	"rest-endpoint-desc-mock-desc": "Voorbeeldbeschrijving."
 }
