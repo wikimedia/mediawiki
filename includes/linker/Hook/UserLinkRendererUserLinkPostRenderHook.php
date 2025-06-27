@@ -1,6 +1,6 @@
 <?php
 
-namespace Mediawiki\Linker\Hook;
+namespace MediaWiki\Linker\Hook;
 
 use MediaWiki\Context\IContextSource;
 use MediaWiki\User\UserIdentity;
