@@ -119,7 +119,7 @@ class PhpUnitXmlManager {
 				if ( $testDescriptor->getFullClassname() === ErrorTestCase::class ) {
 					throw new PhpUnitErrorTestCaseFoundException();
 				}
-				throw new UnlocatedTestException( $testDescriptor );
+				throw new UnlocatedTestException( $testDescriptor, $filename );
 			} else {
 				return null;
 			}
