@@ -14,7 +14,7 @@ const SUPPORTED = LanguageNameUtils::SUPPORTED;
  * @internal For LanguageNameUtilsTest and LanguageIntegrationTest.
  */
 trait LanguageNameUtilsTestTrait {
-	abstract protected function isSupportedLanguage( $code );
+	abstract protected function isSupportedLanguage( string $code ): bool;
 
 	/**
 	 * @dataProvider provideIsSupportedLanguage
@@ -33,7 +33,7 @@ trait LanguageNameUtilsTestTrait {
 		];
 	}
 
-	abstract protected function isValidCode( $code );
+	abstract protected function isValidCode( string $code ): bool;
 
 	/**
 	 * We don't test that the result is cached, because that should only be noticeable if the
@@ -80,7 +80,7 @@ trait LanguageNameUtilsTestTrait {
 		return $ret;
 	}
 
-	abstract protected function isValidBuiltInCode( $code );
+	abstract protected function isValidBuiltInCode( string $code ): bool;
 
 	/**
 	 * @dataProvider provideIsValidBuiltInCode
@@ -108,7 +108,7 @@ trait LanguageNameUtilsTestTrait {
 		];
 	}
 
-	abstract protected function isKnownLanguageTag( $code );
+	abstract protected function isKnownLanguageTag( string $code ): bool;
 
 	/**
 	 * @dataProvider provideIsKnownLanguageTag
@@ -138,12 +138,12 @@ trait LanguageNameUtilsTestTrait {
 	}
 
 	abstract protected function assertGetLanguageNames(
-		array $options, $expected, $code, ...$otherArgs
-	);
+		array $options, string $expected, string $code, ?string ...$otherArgs
+	): void;
 
-	abstract protected function getLanguageNames( ...$args );
+	abstract protected function getLanguageNames( ?string ...$args ): array;
 
-	abstract protected function getLanguageName( ...$args );
+	abstract protected function getLanguageName( ?string ...$args ): string;
 
 	/**
 	 * @dataProvider provideGetLanguageNames
@@ -403,7 +403,7 @@ trait LanguageNameUtilsTestTrait {
 		);
 	}
 
-	abstract protected function getFileName( ...$args );
+	abstract protected function getFileName( string ...$args ): string;
 
 	/**
 	 * @dataProvider provideGetFileName
@@ -422,7 +422,7 @@ trait LanguageNameUtilsTestTrait {
 		];
 	}
 
-	abstract protected function getMessagesFileName( $code );
+	abstract protected function getMessagesFileName( string $code ): string;
 
 	/**
 	 * @dataProvider provideGetMessagesFileName
@@ -461,7 +461,7 @@ trait LanguageNameUtilsTestTrait {
 		$this->assertSame( 1, $called );
 	}
 
-	abstract protected function getJsonMessagesFileName( $code );
+	abstract protected function getJsonMessagesFileName( string $code ): string;
 
 	public function testGetJsonMessagesFileName() {
 		global $IP;

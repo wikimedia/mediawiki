@@ -16,7 +16,7 @@ class TestUserRegistry {
 	/** @var int Random int, included in IDs */
 	private static $randInt;
 
-	public static function getNextId() {
+	public static function getNextId(): string {
 		if ( !self::$randInt ) {
 			self::$randInt = mt_rand( 1, 0xFFFFFF );
 		}

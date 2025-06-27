@@ -22,7 +22,7 @@ use MediaWiki\Specials\SpecialAllPages;
  */
 class SpecialPageTestHelper {
 
-	public static function newSpecialAllPages() {
+	public static function newSpecialAllPages(): SpecialAllPages {
 		return new SpecialAllPages();
 	}
 

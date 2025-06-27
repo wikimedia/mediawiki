@@ -51,7 +51,7 @@ class ConfigBuilderBaseTest extends TestCase {
 		return $this->builder;
 	}
 
-	protected function assertKeyHasValue( string $key, $value ) {
+	protected function assertKeyHasValue( string $key, mixed $value ): void {
 		$this->assertSame( $value, $this->builder->get( $key ) );
 	}
 

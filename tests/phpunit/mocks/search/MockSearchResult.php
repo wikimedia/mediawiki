@@ -12,7 +12,7 @@ class MockSearchResult extends RevisionSearchResult {
 		return $this->isMissingRevision;
 	}
 
-	public function setMissingRevision( $isMissingRevision ) {
+	public function setMissingRevision( bool $isMissingRevision ): self {
 		$this->isMissingRevision = $isMissingRevision;
 		return $this;
 	}
@@ -21,7 +21,7 @@ class MockSearchResult extends RevisionSearchResult {
 		return $this->isBrokenTitle;
 	}
 
-	public function setBrokenTitle( $isBrokenTitle ) {
+	public function setBrokenTitle( bool $isBrokenTitle ): self {
 		$this->isBrokenTitle = $isBrokenTitle;
 		return $this;
 	}
@@ -30,7 +30,7 @@ class MockSearchResult extends RevisionSearchResult {
 		return $this->interwikiPrefix;
 	}
 
-	public function setInterwikiPrefix( $interwikiPrefix ) {
+	public function setInterwikiPrefix( string $interwikiPrefix ): self {
 		$this->interwikiPrefix = $interwikiPrefix;
 		return $this;
 	}

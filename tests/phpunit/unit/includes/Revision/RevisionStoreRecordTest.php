@@ -19,7 +19,7 @@ use MediaWikiUnitTestCase;
 class RevisionStoreRecordTest extends MediaWikiUnitTestCase {
 	use RevisionRecordTests;
 
-	protected static function expectedDefaultFieldVisibility( $field ): bool {
+	protected static function expectedDefaultFieldVisibility( int $field ): bool {
 		return true;
 	}
 

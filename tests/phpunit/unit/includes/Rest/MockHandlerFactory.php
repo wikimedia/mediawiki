@@ -10,7 +10,7 @@ use RuntimeException;
 
 class MockHandlerFactory {
 
-	public static function throwHandlerFactory() {
+	public static function throwHandlerFactory(): Handler {
 		return new class extends Handler {
 			public function execute() {
 				throw new HttpException( 'Mock error', 555 );
@@ -18,7 +18,7 @@ class MockHandlerFactory {
 		};
 	}
 
-	public static function fatalHandlerFactory() {
+	public static function fatalHandlerFactory(): Handler {
 		return new class extends Handler {
 			public function execute() {
 				throw new RuntimeException( 'Fatal mock error', 12345 );
@@ -26,7 +26,7 @@ class MockHandlerFactory {
 		};
 	}
 
-	public static function throwRedirectHandlerFactory() {
+	public static function throwRedirectHandlerFactory(): Handler {
 		return new class extends Handler {
 			public function execute() {
 				throw new RedirectException( 301, 'http://example.com' );
@@ -34,7 +34,7 @@ class MockHandlerFactory {
 		};
 	}
 
-	public static function throwWrappedHandlerFactory() {
+	public static function throwWrappedHandlerFactory(): Handler {
 		return new class extends Handler {
 			public function execute() {
 				$response = $this->getResponseFactory()->create();

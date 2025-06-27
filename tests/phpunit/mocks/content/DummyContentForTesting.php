@@ -10,7 +10,7 @@ class DummyContentForTesting extends AbstractContent {
 	/** @var mixed */
 	private $data;
 
-	public function __construct( $data ) {
+	public function __construct( mixed $data ) {
 		parent::__construct( self::MODEL_ID );
 
 		$this->data = $data;

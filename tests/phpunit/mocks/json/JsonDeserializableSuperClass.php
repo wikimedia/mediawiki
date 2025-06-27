@@ -23,7 +23,7 @@ class JsonDeserializableSuperClass implements JsonDeserializable {
 		return $this->superClassField;
 	}
 
-	public static function newFromJsonArray( JsonDeserializer $deserializer, array $json ) {
+	public static function newFromJsonArray( JsonDeserializer $deserializer, array $json ): self {
 		return new self( $json['super_class_field'] );
 	}
 

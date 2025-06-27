@@ -28,7 +28,7 @@ class MutableRevisionRecordTest extends MediaWikiUnitTestCase {
 	use RevisionRecordTests;
 	use MockTitleTrait;
 
-	protected static function expectedDefaultFieldVisibility( $field ): bool {
+	protected static function expectedDefaultFieldVisibility( int $field ): bool {
 		return true;
 	}
 

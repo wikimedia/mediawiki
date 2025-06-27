@@ -16,7 +16,7 @@ class FileWithoutDeprecatedCode {
 		return trim( $param );
 	}
 
-	public function testMethodTwo() {
+	public function testMethodTwo(): string {
 		// Call a wf* method that is not wfDeprecated.
 		wfDebug( "test" );
 		return "test";

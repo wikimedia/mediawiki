@@ -23,7 +23,7 @@ class JsonDeserializableSubClass extends JsonDeserializableSuperClass {
 		return $this->subClassField;
 	}
 
-	public static function newFromJsonArray( JsonDeserializer $deserializer, array $json ) {
+	public static function newFromJsonArray( JsonDeserializer $deserializer, array $json ): self {
 		return new self( $json['super_class_field'], $json['sub_class_field'] );
 	}
 

@@ -19,7 +19,7 @@ use MediaWikiUnitTestCase;
 class RevisionArchiveRecordTest extends MediaWikiUnitTestCase {
 	use RevisionRecordTests;
 
-	protected static function expectedDefaultFieldVisibility( $field ): bool {
+	protected static function expectedDefaultFieldVisibility( int $field ): bool {
 		return [
 			RevisionRecord::DELETED_TEXT => false,
 			RevisionRecord::DELETED_COMMENT => false,

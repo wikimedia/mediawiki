@@ -56,7 +56,7 @@ class SQLPlatformTestHelper extends SQLPlatform {
 		return $this->unionSupportsOrderAndLimit;
 	}
 
-	public function setUnionSupportsOrderAndLimit( $v ) {
-		$this->unionSupportsOrderAndLimit = (bool)$v;
+	public function setUnionSupportsOrderAndLimit( bool $v ) {
+		$this->unionSupportsOrderAndLimit = $v;
 	}
 }
