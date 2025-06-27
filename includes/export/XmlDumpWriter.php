@@ -28,6 +28,7 @@ use MediaWiki\Content\Content;
 use MediaWiki\Content\TextContent;
 use MediaWiki\Debug\MWDebug;
 use MediaWiki\Exception\MWException;
+use MediaWiki\Exception\MWUnknownContentModelException;
 use MediaWiki\FileRepo\File\File;
 use MediaWiki\FileRepo\File\OldLocalFile;
 use MediaWiki\HookContainer\HookContainer;
@@ -471,9 +472,22 @@ class XmlDumpWriter {
 		}
 
 		$contentModel = $slot->getModel();
-		$contentHandler = MediaWikiServices::getInstance()
-			->getContentHandlerFactory()
-			->getContentHandler( $contentModel );
+		$contentHandlerFactory = MediaWikiServices::getInstance()->getContentHandlerFactory();
+		$contentHandler = null;
+
+		try {
+			$contentHandler = $contentHandlerFactory->getContentHandler( $contentModel );
+
+		} catch ( MWUnknownContentModelException $ex ) {
+			// A content model should not be removed, as this would cause old revisions
+			//   to fail to render.  If this does happen, let dumps keep going but warn.
+			//   To stop these warnings, register a fallback content model like so:
+			//     $wgContentHandlers['Your.Removed.Handler'] = 'FallbackContentHandler'
+			MWDebug::warning( 'Revision ' . $slot->getRevision() . ' is using an unknown '
+				. ' content model, falling back to FallbackContentHandler.' );
+			$contentModel = CONTENT_MODEL_UNKNOWN;
+			$contentHandler = $contentHandlerFactory->getContentHandler( $contentModel );
+		}
 		$contentFormat = $contentHandler->getDefaultFormat();
 
 		// XXX: The content format is only relevant when actually outputting serialized content.
