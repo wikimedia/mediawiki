@@ -39,7 +39,7 @@ class LCStoreStaticArray implements LCStore {
 	/** @var string Directory for cache files. */
 	private $directory;
 
-	public function __construct( $conf = [] ) {
+	public function __construct( array $conf = [] ) {
 		$this->directory = $conf['directory'];
 	}
 

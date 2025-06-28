@@ -27,7 +27,7 @@ use Throwable;
  * @ingroup Database
  */
 class DBLanguageError extends DBUnexpectedError {
-	public function __construct( $error, ?Throwable $prev = null ) {
+	public function __construct( string $error, ?Throwable $prev = null ) {
 		parent::__construct( null, $error, $prev );
 	}
 }

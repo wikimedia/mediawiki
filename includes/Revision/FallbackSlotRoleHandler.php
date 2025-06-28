@@ -36,7 +36,7 @@ use MediaWiki\Page\PageIdentity;
  */
 class FallbackSlotRoleHandler extends SlotRoleHandler {
 
-	public function __construct( $role ) {
+	public function __construct( string $role ) {
 		parent::__construct( $role, CONTENT_MODEL_UNKNOWN );
 	}
 

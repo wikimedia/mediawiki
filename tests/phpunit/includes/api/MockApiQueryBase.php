@@ -11,7 +11,7 @@ class MockApiQueryBase extends ApiQueryBase {
 	public function execute() {
 	}
 
-	public function __construct( $name = 'mock' ) {
+	public function __construct( string $name = 'mock' ) {
 		$this->name = $name;
 	}
 

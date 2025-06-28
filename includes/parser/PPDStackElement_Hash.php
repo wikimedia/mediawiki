@@ -69,7 +69,7 @@ class PPDStackElement_Hash {
 	/** @var string */
 	public $partClass = PPDPart_Hash::class;
 
-	public function __construct( $data = [] ) {
+	public function __construct( array $data = [] ) {
 		$class = $this->partClass;
 		$this->parts = [ new $class ];
 

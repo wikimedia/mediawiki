@@ -9,7 +9,7 @@ abstract class TidyDriverBase {
 	/** @var array */
 	protected $config;
 
-	public function __construct( $config ) {
+	public function __construct( array $config ) {
 		$this->config = $config;
 	}
 

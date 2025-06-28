@@ -66,7 +66,7 @@ class ScrambleMapping implements SerialMapping {
 	/** @var bool */
 	private $hasBcm;
 
-	public function __construct( $config ) {
+	public function __construct( array $config ) {
 		$this->offset = $config['offset'] ?? 0;
 		$this->hasGmp = extension_loaded( 'gmp' );
 		$this->hasBcm = extension_loaded( 'bcmath' );

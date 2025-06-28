@@ -44,7 +44,7 @@ class LCStoreDB implements LCStore {
 	/** @var bool Whether the DB is read-only or otherwise unavailable for writing */
 	private $readOnly = false;
 
-	public function __construct( $params ) {
+	public function __construct( array $params ) {
 		$this->server = $params['server'] ?? [];
 	}
 

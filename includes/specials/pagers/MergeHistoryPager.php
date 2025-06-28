@@ -65,7 +65,7 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 		RevisionStore $revisionStore,
 		CommentFormatter $commentFormatter,
 		ChangeTagsStore $changeTagsStore,
-		$conds,
+		array $conds,
 		PageIdentity $source,
 		PageIdentity $dest,
 		string $mergePointTimestamp

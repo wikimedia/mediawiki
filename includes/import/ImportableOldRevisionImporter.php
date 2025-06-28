@@ -32,7 +32,7 @@ class ImportableOldRevisionImporter implements OldRevisionImporter {
 	private UserFactory $userFactory;
 
 	public function __construct(
-		$doUpdates,
+		bool $doUpdates,
 		LoggerInterface $logger,
 		IConnectionProvider $dbProvider,
 		RevisionStore $revisionStore,

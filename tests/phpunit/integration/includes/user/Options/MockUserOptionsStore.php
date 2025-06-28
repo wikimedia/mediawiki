@@ -9,7 +9,7 @@ class MockUserOptionsStore implements UserOptionsStore {
 	/** @var array */
 	public $data = [];
 
-	public function __construct( $initialData = [] ) {
+	public function __construct( array $initialData = [] ) {
 		$this->data = $initialData;
 	}
 

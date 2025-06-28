@@ -31,7 +31,7 @@ class ApiOpenSearchFormatJson extends ApiFormatJson {
 	/** @var bool */
 	private $warningsAsError;
 
-	public function __construct( ApiMain $main, string $fm, $warningsAsError ) {
+	public function __construct( ApiMain $main, string $fm, bool $warningsAsError ) {
 		parent::__construct( $main, "json$fm" );
 		$this->warningsAsError = $warningsAsError;
 	}
