@@ -473,13 +473,13 @@ abstract class Skin extends ContextSource {
 
 		$bodyHtml = $out->getHTML();
 		// Preload jquery.tablesorter for mediawiki.page.ready
-		if ( strpos( $bodyHtml, 'sortable' ) !== false ) {
+		if ( str_contains( $bodyHtml, 'sortable' ) ) {
 			$modules['content'][] = 'jquery.tablesorter';
 			$modules['styles']['content'][] = 'jquery.tablesorter.styles';
 		}
 
 		// Preload jquery.makeCollapsible for mediawiki.page.ready
-		if ( strpos( $bodyHtml, 'mw-collapsible' ) !== false ) {
+		if ( str_contains( $bodyHtml, 'mw-collapsible' ) ) {
 			$modules['content'][] = 'jquery.makeCollapsible';
 			$modules['styles']['content'][] = 'jquery.makeCollapsible.styles';
 		}
@@ -487,14 +487,14 @@ abstract class Skin extends ContextSource {
 		// Load relevant styles on wiki pages that use mw-ui-button.
 		// Since 1.26, this no longer loads unconditionally. Special pages
 		// and extensions should load this via addModuleStyles() instead.
-		if ( strpos( $bodyHtml, 'mw-ui-button' ) !== false ) {
+		if ( str_contains( $bodyHtml, 'mw-ui-button' ) ) {
 			$modules['styles']['content'][] = 'mediawiki.ui.button';
 		}
 		// Since 1.41, styling for mw-message-box is only required for
 		// messages that appear in article content.
 		// This should only be removed when a suitable alternative exists
 		// e.g. https://phabricator.wikimedia.org/T363607 is resolved.
-		if ( strpos( $bodyHtml, 'mw-message-box' ) !== false ) {
+		if ( str_contains( $bodyHtml, 'mw-message-box' ) ) {
 			$modules['styles']['content'][] = 'mediawiki.legacy.messageBox';
 		}
 
@@ -984,7 +984,7 @@ abstract class Skin extends ContextSource {
 		}
 
 		$ptext = $title->getPrefixedText();
-		if ( strpos( $ptext, '/' ) !== false ) {
+		if ( str_contains( $ptext, '/' ) ) {
 			$links = explode( '/', $ptext );
 			array_pop( $links );
 			$count = 0;
@@ -1714,7 +1714,7 @@ abstract class Skin extends ContextSource {
 			} else {
 				$line = trim( $line, '* ' );
 
-				if ( strpos( $line, '|' ) !== false ) {
+				if ( str_contains( $line, '|' ) ) {
 					$line = $messageParser->transform( $line, false, null, $messageTitle );
 					$line = array_map( 'trim', explode( '|', $line, 2 ) );
 					if ( count( $line ) !== 2 ) {

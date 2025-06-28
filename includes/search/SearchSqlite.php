@@ -110,7 +110,7 @@ class SearchSqlite extends SearchDatabase {
 				}
 				$count = 0;
 				foreach ( $strippedVariants as $stripped ) {
-					if ( $nonQuoted && strpos( $stripped, ' ' ) !== false ) {
+					if ( $nonQuoted && str_contains( $stripped, ' ' ) ) {
 						// Hack for Chinese: we need to toss in quotes for
 						// multiple-character phrases since normalizeForSearch()
 						// added spaces between them to make word breaks.

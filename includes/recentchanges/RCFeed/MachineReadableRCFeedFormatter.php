@@ -122,7 +122,7 @@ abstract class MachineReadableRCFeedFormatter implements RCFeedFormatter {
 						$logParams = [];
 						// Keys like "4::paramname" can't be used for output so we change them to "paramname"
 						foreach ( $params as $key => $value ) {
-							if ( strpos( $key, ':' ) === false ) {
+							if ( !str_contains( $key, ':' ) ) {
 								$logParams[$key] = $value;
 								continue;
 							}

@@ -358,7 +358,7 @@ class CommentParser {
 				$comment = $match[0];
 
 				// Fix up urlencoded title texts (copied from Parser::replaceInternalLinks)
-				if ( strpos( $match[1], '%' ) !== false ) {
+				if ( str_contains( $match[1], '%' ) ) {
 					$match[1] = strtr(
 						rawurldecode( $match[1] ),
 						[ '<' => '&lt;', '>' => '&gt;' ]

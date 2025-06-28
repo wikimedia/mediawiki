@@ -271,7 +271,7 @@ class UserNameUtils implements UserRigorOptions {
 		// Reject names containing '#'; these will be cleaned up
 		// with title normalisation, but then it's too late to
 		// check elsewhere
-		if ( strpos( $name, '#' ) !== false ) {
+		if ( str_contains( $name, '#' ) ) {
 			return false;
 		}
 

@@ -1077,7 +1077,7 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 				$string = "($keylist$*)";
 			}
 			# Replace $* with a list of parameters for &uselang=qqx.
-			if ( strpos( $string, '$*' ) !== false ) {
+			if ( str_contains( $string, '$*' ) ) {
 				$paramlist = '';
 				if ( $this->parameters !== [] ) {
 					$paramlist = ': $' . implode( ', $', range( 1, count( $this->parameters ) ) );

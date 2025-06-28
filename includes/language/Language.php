@@ -4514,7 +4514,7 @@ class Language implements Bcp47Code {
 	 * @return string
 	 */
 	private function fixVariableInNamespace( $talk ) {
-		if ( strpos( $talk, '$1' ) === false ) {
+		if ( !str_contains( $talk, '$1' ) ) {
 			return $talk;
 		}
 

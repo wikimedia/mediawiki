@@ -42,7 +42,7 @@ function wfDetectLocalSettingsFile( ?string $installationPath = null ): string {
 	$configFile = getenv( 'MW_CONFIG_FILE' ) ?: "LocalSettings.php";
 	// Can't use str_contains because for maintenance scripts (update.php, install.php),
 	// this is called *before* Setup.php and vendor (polyfill-php80) are included.
-	if ( strpos( $configFile, '/' ) === false ) {
+	if ( !str_contains( $configFile, '/' ) ) {
 		$configFile = "$installationPath/$configFile";
 	}
 

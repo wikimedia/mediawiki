@@ -77,7 +77,7 @@ class WikiMap {
 		// If we don't have a canonical server or a path containing $1, the
 		// WikiReference isn't going to function properly. Just return null in
 		// that case.
-		if ( !is_string( $canonicalServer ) || !is_string( $path ) || strpos( $path, '$1' ) === false ) {
+		if ( !is_string( $canonicalServer ) || !is_string( $path ) || !str_contains( $path, '$1' ) ) {
 			return null;
 		}
 

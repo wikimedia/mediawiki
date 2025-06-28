@@ -89,7 +89,7 @@ class Image {
 		// → [ "en" => "foo.svg", "de" => "foo.svg", "fr" => "foo.svg" ]
 		if ( is_array( $this->descriptor ) && isset( $this->descriptor['lang'] ) ) {
 			foreach ( $this->descriptor['lang'] as $langList => $_ ) {
-				if ( strpos( $langList, ',' ) !== false ) {
+				if ( str_contains( $langList, ',' ) ) {
 					$this->descriptor['lang'] += array_fill_keys(
 						explode( ',', $langList ),
 						$this->descriptor['lang'][$langList]

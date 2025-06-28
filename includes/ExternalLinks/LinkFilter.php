@@ -498,7 +498,7 @@ class LinkFilter {
 
 		// Check for stray asterisks: asterisk only allowed at the start of the domain
 		foreach ( array_merge( $likeDomain, $likePath ) as $likepart ) {
-			if ( !( $likepart instanceof LikeMatch ) && strpos( $likepart, '*' ) !== false ) {
+			if ( !( $likepart instanceof LikeMatch ) && str_contains( $likepart, '*' ) ) {
 				return false;
 			}
 		}

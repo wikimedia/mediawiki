@@ -229,7 +229,7 @@ class UserDef extends TypeDef {
 
 		// (T232672) Reproduce the normalization applied in UserNameUtils::getCanonical() when
 		// performing the checks below.
-		if ( strpos( $value, '#' ) !== false ) {
+		if ( str_contains( $value, '#' ) ) {
 			return [ '', null ];
 		}
 

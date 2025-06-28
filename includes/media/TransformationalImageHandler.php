@@ -517,7 +517,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 		# If there are square brackets, add a do-nothing scene specification
 		# to force a literal interpretation
 		if ( $scene === false ) {
-			if ( strpos( $path, '[' ) !== false ) {
+			if ( str_contains( $path, '[' ) ) {
 				$path .= '[0--1]';
 			}
 		} else {

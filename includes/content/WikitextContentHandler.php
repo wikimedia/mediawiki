@@ -323,7 +323,7 @@ class WikitextContentHandler extends TextContentHandler {
 		if ( preg_match( '!^\s*:?\s*\[{2}(.*?)(?:\|.*?)?\]{2}\s*!', $text, $m ) ) {
 			// Strip preceding colon used to "escape" categories, etc.
 			// and URL-decode links
-			if ( strpos( $m[1], '%' ) !== false ) {
+			if ( str_contains( $m[1], '%' ) ) {
 				// Match behavior of inline link parsing here;
 				$m[1] = rawurldecode( ltrim( $m[1], ':' ) );
 			}

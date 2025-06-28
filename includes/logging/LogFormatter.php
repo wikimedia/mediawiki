@@ -626,7 +626,7 @@ class LogFormatter {
 
 		// Filter out parameters which are not in format #:foo
 		foreach ( $entry->getParameters() as $key => $value ) {
-			if ( strpos( $key, ':' ) === false ) {
+			if ( !str_contains( $key, ':' ) ) {
 				continue;
 			}
 			[ $index, $type, ] = explode( ':', $key, 3 );

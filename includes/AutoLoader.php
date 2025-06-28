@@ -224,7 +224,7 @@ class AutoLoader {
 			$wgAutoloadClasses[$className] ??
 			false;
 
-		if ( !$filename && strpos( $className, '\\' ) !== false ) {
+		if ( !$filename && str_contains( $className, '\\' ) ) {
 			// This class is namespaced, so look in the namespace map
 			$prefix = $className;
 			// phpcs:ignore Generic.CodeAnalysis.AssignmentInCondition.FoundInWhileCondition

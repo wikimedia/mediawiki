@@ -957,7 +957,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	private function getAutoPromoteConds(): array {
 		$allowedConditions = [];
 		foreach ( get_defined_constants() as $constantName => $constantValue ) {
-			if ( strpos( $constantName, 'APCOND_' ) !== false ) {
+			if ( str_contains( $constantName, 'APCOND_' ) ) {
 				$allowedConditions[$constantName] = $constantValue;
 			}
 		}

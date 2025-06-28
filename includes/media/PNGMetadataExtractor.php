@@ -233,7 +233,7 @@ class PNGMetadataExtractor {
 				}
 			} elseif ( $chunk_type === 'tEXt' ) {
 				// In case there is no \x00 which will make explode fail.
-				if ( strpos( $buf, "\x00" ) === false ) {
+				if ( !str_contains( $buf, "\x00" ) ) {
 					wfDebug( __METHOD__ . ": Invalid tEXt chunk: no null byte" );
 					continue;
 				}
@@ -265,7 +265,7 @@ class PNGMetadataExtractor {
 			} elseif ( $chunk_type === 'zTXt' ) {
 				if ( function_exists( 'gzuncompress' ) ) {
 					// In case there is no \x00 which will make explode fail.
-					if ( strpos( $buf, "\x00" ) === false ) {
+					if ( !str_contains( $buf, "\x00" ) ) {
 						wfDebug( __METHOD__ . ": No null byte in zTXt chunk" );
 						continue;
 					}

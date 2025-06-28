@@ -70,11 +70,11 @@ class MailingListSubscribeTask extends Task {
 			return $status;
 		}
 		$html = $checkReq->getContent();
-		if ( strpos( $html, 'Please check your inbox for further instructions' ) !== false ) {
+		if ( str_contains( $html, 'Please check your inbox for further instructions' ) ) {
 			// Success
-		} elseif ( strpos( $html, 'Member already subscribed' ) !== false ) {
+		} elseif ( str_contains( $html, 'Member already subscribed' ) ) {
 			$status->warning( 'config-install-subscribe-alreadysubscribed' );
-		} elseif ( strpos( $html, 'Subscription request already pending' ) !== false ) {
+		} elseif ( str_contains( $html, 'Subscription request already pending' ) ) {
 			$status->warning( 'config-install-subscribe-alreadypending' );
 		} else {
 			$status->warning( 'config-install-subscribe-possiblefail' );

@@ -401,7 +401,7 @@ function wfCgiToArray( $query ) {
 		if ( $bit === '' ) {
 			continue;
 		}
-		if ( strpos( $bit, '=' ) === false ) {
+		if ( !str_contains( $bit, '=' ) ) {
 			// Pieces like &qwerty become 'qwerty' => '' (at least this is what php does)
 			$key = $bit;
 			$value = '';
@@ -410,7 +410,7 @@ function wfCgiToArray( $query ) {
 		}
 		$key = urldecode( $key );
 		$value = urldecode( $value );
-		if ( strpos( $key, '[' ) !== false ) {
+		if ( str_contains( $key, '[' ) ) {
 			$keys = array_reverse( explode( '[', $key ) );
 			$key = array_pop( $keys );
 			$temp = $value;
@@ -452,7 +452,7 @@ function wfAppendQuery( $url, $query ) {
 		}
 
 		// Add parameter
-		if ( strpos( $url, '?' ) === false ) {
+		if ( !str_contains( $url, '?' ) ) {
 			$url .= '?';
 		} else {
 			$url .= '&';

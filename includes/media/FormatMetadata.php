@@ -867,7 +867,7 @@ class FormatMetadata extends ContextSource {
 						break;
 
 					case 'MaxApertureValue':
-						if ( strpos( $val, '/' ) !== false ) {
+						if ( str_contains( $val, '/' ) ) {
 							// need to expand this earlier to calculate fNumber
 							[ $n, $d ] = explode( '/', $val, 2 );
 							if ( is_numeric( $n ) && is_numeric( $d ) ) {
@@ -1623,7 +1623,7 @@ class FormatMetadata extends ContextSource {
 					if ( $finalEmail === ',' || $finalEmail === '' ) {
 						continue;
 					}
-					if ( strpos( $finalEmail, '<' ) !== false ) {
+					if ( str_contains( $finalEmail, '<' ) ) {
 						// Don't do fancy formatting to
 						// "My name" <foo@bar.com> style stuff
 						$emails[] = $this->literal( $finalEmail );

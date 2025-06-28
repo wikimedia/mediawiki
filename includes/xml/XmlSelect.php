@@ -160,7 +160,7 @@ class XmlSelect {
 		$options = [];
 		foreach ( explode( ',', $msg ) as $option ) {
 			// Normalize options that only have one part.
-			if ( strpos( $option, ':' ) === false ) {
+			if ( !str_contains( $option, ':' ) ) {
 				$option = "$option:$option";
 			}
 			// Extract the two parts.

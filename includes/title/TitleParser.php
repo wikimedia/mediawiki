@@ -341,7 +341,7 @@ class TitleParser {
 		}
 
 		# Magic tilde sequences? Nu-uh!
-		if ( strpos( $dbkey, '~~~' ) !== false ) {
+		if ( str_contains( $dbkey, '~~~' ) ) {
 			$exception = ( $this->createMalformedTitleException )( 'title-invalid-magic-tilde', $text );
 			throw $exception;
 		}

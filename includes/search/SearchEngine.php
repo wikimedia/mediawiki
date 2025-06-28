@@ -406,7 +406,7 @@ abstract class SearchEngine {
 		$withPrefixSearchExtractNamespaceHook = false
 	) {
 		$parsed = $query;
-		if ( strpos( $query, ':' ) === false ) { // nothing to do
+		if ( !str_contains( $query, ':' ) ) { // nothing to do
 			return false;
 		}
 		$extractedNamespace = null;
@@ -430,7 +430,7 @@ abstract class SearchEngine {
 			}
 		}
 
-		if ( !$allQuery && strpos( $query, ':' ) !== false ) {
+		if ( !$allQuery && str_contains( $query, ':' ) ) {
 			$prefix = str_replace( ' ', '_', substr( $query, 0, strpos( $query, ':' ) ) );
 			$services = MediaWikiServices::getInstance();
 			$index = $services->getContentLanguage()->getNsIndex( $prefix );

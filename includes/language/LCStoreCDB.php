@@ -120,7 +120,7 @@ class LCStoreCDB implements LCStore {
 	 * @return string
 	 */
 	protected function getFileName( $code ) {
-		if ( strval( $code ) === '' || strpos( $code, '/' ) !== false ) {
+		if ( strval( $code ) === '' || str_contains( $code, '/' ) ) {
 			throw new InvalidArgumentException( __METHOD__ . ": Invalid language \"$code\"" );
 		}
 

@@ -165,7 +165,7 @@ class SvgHandler extends ImageHandler {
 				return $svgLang;
 			}
 			$trimmedSvgLang = $svgLang;
-			while ( strpos( $trimmedSvgLang, '-' ) !== false ) {
+			while ( str_contains( $trimmedSvgLang, '-' ) ) {
 				$trimmedSvgLang = substr( $trimmedSvgLang, 0, strrpos( $trimmedSvgLang, '-' ) );
 				if ( strcasecmp( $trimmedSvgLang, $userPreferredLanguage ) === 0 ) {
 					return $svgLang;

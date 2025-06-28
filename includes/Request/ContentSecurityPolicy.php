@@ -341,7 +341,7 @@ class ContentSecurityPolicy {
 			return $url;
 		}
 		$bits = wfGetUrlUtils()->parse( $url );
-		if ( !$bits && strpos( $url, '/' ) === false ) {
+		if ( !$bits && !str_contains( $url, '/' ) ) {
 			// probably something like example.com.
 			// try again protocol-relative.
 			$url = '//' . $url;
@@ -470,7 +470,7 @@ class ContentSecurityPolicy {
 		$additionalUrls = [];
 		$CORSSources = $this->mwConfig->get( MainConfigNames::CrossSiteAJAXdomains );
 		foreach ( $CORSSources as $source ) {
-			if ( strpos( $source, '?' ) !== false ) {
+			if ( str_contains( $source, '?' ) ) {
 				// CSP doesn't support single char wildcard
 				continue;
 			}

@@ -113,7 +113,7 @@ class SpecialRandomPage extends SpecialPage {
 		// the empty string to mean main namespace only.
 		if ( is_string( $par ) ) {
 			$ns = $this->getContentLanguage()->getNsIndex( $par );
-			if ( $ns === false && strpos( $par, ',' ) !== false ) {
+			if ( $ns === false && str_contains( $par, ',' ) ) {
 				$nsList = [];
 				// Comma separated list
 				$parSplit = explode( ',', $par );

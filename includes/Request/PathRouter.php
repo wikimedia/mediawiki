@@ -101,7 +101,7 @@ class PathRouter {
 
 		if ( !isset( $options['strict'] ) || !$options['strict'] ) {
 			// Unless this is a strict path make sure that the path has a $1
-			if ( strpos( $path, '$1' ) === false ) {
+			if ( !str_contains( $path, '$1' ) ) {
 				if ( $path[-1] !== '/' ) {
 					$path .= '/';
 				}
@@ -111,7 +111,7 @@ class PathRouter {
 
 		// If 'title' is not specified and our path pattern contains a $1
 		// Add a default 'title' => '$1' rule to the parameters.
-		if ( !isset( $params['title'] ) && strpos( $path, '$1' ) !== false ) {
+		if ( !isset( $params['title'] ) && str_contains( $path, '$1' ) ) {
 			$params['title'] = '$1';
 		}
 		// If the user explicitly marked 'title' as false then omit it from the matches

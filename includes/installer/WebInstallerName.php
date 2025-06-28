@@ -187,7 +187,7 @@ class WebInstallerName extends WebInstallerPage {
 		}
 
 		// Validate namespace
-		if ( strpos( $name, ':' ) !== false ) {
+		if ( str_contains( $name, ':' ) ) {
 			$good = false;
 		} else {
 			// Title-style validation

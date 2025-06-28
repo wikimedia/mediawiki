@@ -1790,7 +1790,7 @@ MESSAGE;
 		$retval = [];
 		$exploded = explode( '|', $modules );
 		foreach ( $exploded as $group ) {
-			if ( strpos( $group, ',' ) === false ) {
+			if ( !str_contains( $group, ',' ) ) {
 				// This is not a set of modules in foo.bar,baz notation
 				// but a single module
 				$retval[] = $group;

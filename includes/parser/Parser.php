@@ -1831,7 +1831,7 @@ class Parser {
 		# Move trailing punctuation to $trail
 		$sep = ',;\.:!?';
 		# If there is no left bracket, then consider right brackets fair game too
-		if ( strpos( $url, '(' ) === false ) {
+		if ( !str_contains( $url, '(' ) ) {
 			$sep .= ')';
 		}
 
@@ -2499,7 +2499,7 @@ class Parser {
 					$m[3] = substr( $m[3], 1 );
 				}
 				# fix up urlencoded title texts
-				if ( strpos( $m[1], '%' ) !== false ) {
+				if ( str_contains( $m[1], '%' ) ) {
 					# Should anchors '#' also be rejected?
 					$m[1] = str_replace( [ '<', '>' ], [ '&lt;', '&gt;' ], rawurldecode( $m[1] ) );
 				}
@@ -2508,7 +2508,7 @@ class Parser {
 				# Invalid, but might be an image with a link in its caption
 				$might_be_img = true;
 				$text = $m[2];
-				if ( strpos( $m[1], '%' ) !== false ) {
+				if ( str_contains( $m[1], '%' ) ) {
 					$m[1] = str_replace( [ '<', '>' ], [ '&lt;', '&gt;' ], rawurldecode( $m[1] ) );
 				}
 				$trail = "";
@@ -3038,7 +3038,7 @@ class Parser {
 		if ( !$found && $args->getLength() == 0 ) {
 			$id = $this->mVariables->matchStartToEnd( $part1 );
 			if ( $id !== false ) {
-				if ( strpos( $part1, ':' ) !== false ) {
+				if ( str_contains( $part1, ':' ) ) {
 					wfDeprecatedMsg(
 						'Registering a magic variable with a name including a colon',
 						'1.39', false, false
@@ -4672,7 +4672,7 @@ class Parser {
 		# which may corrupt this parser instance via its wfMessage()->text() call-
 
 		# Signatures
-		if ( strpos( $text, '~~~' ) !== false ) {
+		if ( str_contains( $text, '~~~' ) ) {
 			$sigText = $this->getUserSig( $user );
 			$text = strtr( $text, [
 				'~~~~~' => $d,
@@ -5186,7 +5186,7 @@ class Parser {
 				continue;
 			}
 
-			if ( strpos( $matches[0], '%' ) !== false ) {
+			if ( str_contains( $matches[0], '%' ) ) {
 				$matches[1] = rawurldecode( $matches[1] );
 			}
 			$title = Title::newFromText( $matches[1], NS_FILE );
@@ -5628,7 +5628,7 @@ class Parser {
 			//
 			// Hence, double decoded is not an issue.  See the test,
 			// "Should not double decode the link option"
-			if ( strpos( $value, '%' ) !== false ) {
+			if ( str_contains( $value, '%' ) ) {
 				$value = rawurldecode( $value );
 			}
 			$linkTitle = Title::newFromText( $value );
@@ -6418,7 +6418,7 @@ class Parser {
 	 */
 	public static function stripOuterParagraph( $html ) {
 		$m = [];
-		if ( preg_match( '/^<p>(.*)\n?<\/p>\n?$/sU', $html, $m ) && strpos( $m[1], '</p>' ) === false ) {
+		if ( preg_match( '/^<p>(.*)\n?<\/p>\n?$/sU', $html, $m ) && !str_contains( $m[1], '</p>' ) ) {
 			$html = $m[1];
 		}
 
