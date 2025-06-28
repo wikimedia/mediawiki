@@ -60,6 +60,7 @@ abstract class GenericPageLinksTable extends TitleLinksTable {
 	 */
 	abstract protected function getFromNamespaceField();
 
+	/** @inheritDoc */
 	protected function getExistingFields() {
 		if ( $this->linksTargetNormalizationStage() & SCHEMA_COMPAT_WRITE_OLD ) {
 			return [
@@ -105,6 +106,7 @@ abstract class GenericPageLinksTable extends TitleLinksTable {
 			->fetchResultSet();
 	}
 
+	/** @inheritDoc */
 	protected function getNewLinkIDs() {
 		foreach ( $this->newLinks as $ns => $links ) {
 			foreach ( $links as $dbk => $unused ) {
@@ -113,6 +115,7 @@ abstract class GenericPageLinksTable extends TitleLinksTable {
 		}
 	}
 
+	/** @inheritDoc */
 	protected function getExistingLinkIDs() {
 		foreach ( $this->getExistingLinks() as $ns => $links ) {
 			foreach ( $links as $dbk => $unused ) {
@@ -121,16 +124,19 @@ abstract class GenericPageLinksTable extends TitleLinksTable {
 		}
 	}
 
+	/** @inheritDoc */
 	protected function isExisting( $linkId ) {
 		[ $ns, $dbk ] = $linkId;
 		return isset( $this->getExistingLinks()[$ns][$dbk] );
 	}
 
+	/** @inheritDoc */
 	protected function isInNewSet( $linkId ) {
 		[ $ns, $dbk ] = $linkId;
 		return isset( $this->newLinks[$ns][$dbk] );
 	}
 
+	/** @inheritDoc */
 	protected function insertLink( $linkId ) {
 		$row = [];
 		$fromNamespaceField = $this->getFromNamespaceField();
@@ -150,6 +156,7 @@ abstract class GenericPageLinksTable extends TitleLinksTable {
 		$this->insertRow( $row );
 	}
 
+	/** @inheritDoc */
 	protected function deleteLink( $linkId ) {
 		if ( $this->linksTargetNormalizationStage() & SCHEMA_COMPAT_WRITE_OLD ) {
 			$this->deleteRow( [
@@ -166,18 +173,22 @@ abstract class GenericPageLinksTable extends TitleLinksTable {
 		}
 	}
 
+	/** @inheritDoc */
 	protected function needForcedLinkRefresh() {
 		return $this->isCrossNamespaceMove();
 	}
 
+	/** @inheritDoc */
 	protected function makePageReferenceValue( $linkId ): PageReferenceValue {
 		return new PageReferenceValue( $linkId[0], $linkId[1], WikiAwareEntity::LOCAL );
 	}
 
+	/** @inheritDoc */
 	protected function makeTitle( $linkId ): Title {
 		return Title::makeTitle( $linkId[0], $linkId[1] );
 	}
 
+	/** @inheritDoc */
 	protected function deduplicateLinkIds( $linkIds ) {
 		$seen = [];
 		foreach ( $linkIds as $linkId ) {

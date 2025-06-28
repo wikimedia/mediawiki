@@ -23,6 +23,7 @@
 use MediaWiki\Context\IContextSource;
 
 class SlideshowImageGallery extends TraditionalImageGallery {
+	/** @inheritDoc */
 	public function __construct( $mode = 'traditional', ?IContextSource $context = null ) {
 		parent::__construct( $mode, $context );
 		// Does not support per row option.
@@ -37,6 +38,7 @@ class SlideshowImageGallery extends TraditionalImageGallery {
 		return [ 'mediawiki.page.gallery.slideshow' ];
 	}
 
+	/** @inheritDoc */
 	public function setAdditionalOptions( $params ) {
 		$this->mAttribs['data-showthumbnails'] = isset( $params['showthumbnails'] );
 	}

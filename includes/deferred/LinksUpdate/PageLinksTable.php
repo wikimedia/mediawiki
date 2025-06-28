@@ -21,26 +21,32 @@ class PageLinksTable extends GenericPageLinksTable {
 		}
 	}
 
+	/** @inheritDoc */
 	protected function getTableName() {
 		return 'pagelinks';
 	}
 
+	/** @inheritDoc */
 	protected function getFromField() {
 		return 'pl_from';
 	}
 
+	/** @inheritDoc */
 	protected function getNamespaceField() {
 		return 'pl_namespace';
 	}
 
+	/** @inheritDoc */
 	protected function getTitleField() {
 		return 'pl_title';
 	}
 
+	/** @inheritDoc */
 	protected function getFromNamespaceField() {
 		return 'pl_from_namespace';
 	}
 
+	/** @inheritDoc */
 	protected function getTargetIdField() {
 		return 'pl_target_id';
 	}

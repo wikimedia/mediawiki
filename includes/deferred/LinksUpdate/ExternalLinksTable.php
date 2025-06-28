@@ -26,14 +26,17 @@ class ExternalLinksTable extends LinksTable {
 		}
 	}
 
+	/** @inheritDoc */
 	protected function getTableName() {
 		return 'externallinks';
 	}
 
+	/** @inheritDoc */
 	protected function getFromField() {
 		return 'el_from';
 	}
 
+	/** @inheritDoc */
 	protected function getExistingFields() {
 		return [ 'el_to_domain_index', 'el_to_path' ];
 	}
@@ -53,6 +56,7 @@ class ExternalLinksTable extends LinksTable {
 		return $this->existingLinks;
 	}
 
+	/** @inheritDoc */
 	protected function getNewLinkIDs() {
 		foreach ( $this->newLinks as $domainIndex => $paths ) {
 			foreach ( $paths as $path => $unused ) {
@@ -61,6 +65,7 @@ class ExternalLinksTable extends LinksTable {
 		}
 	}
 
+	/** @inheritDoc */
 	protected function getExistingLinkIDs() {
 		foreach ( $this->getExistingLinks() as $domainIndex => $paths ) {
 			foreach ( $paths as $path => $unused ) {
@@ -69,16 +74,19 @@ class ExternalLinksTable extends LinksTable {
 		}
 	}
 
+	/** @inheritDoc */
 	protected function isExisting( $linkId ) {
 		[ $domainIndex, $path ] = $linkId;
 		return isset( $this->getExistingLinks()[$domainIndex][$path] );
 	}
 
+	/** @inheritDoc */
 	protected function isInNewSet( $linkId ) {
 		[ $domainIndex, $path ] = $linkId;
 		return isset( $this->newLinks[$domainIndex][$path] );
 	}
 
+	/** @inheritDoc */
 	protected function insertLink( $linkId ) {
 		[ $domainIndex, $path ] = $linkId;
 		$params = [
@@ -88,6 +96,7 @@ class ExternalLinksTable extends LinksTable {
 		$this->insertRow( $params );
 	}
 
+	/** @inheritDoc */
 	protected function deleteLink( $linkId ) {
 		[ $domainIndex, $path ] = $linkId;
 		$this->deleteRow( [

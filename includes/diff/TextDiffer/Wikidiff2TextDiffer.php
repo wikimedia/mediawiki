@@ -76,6 +76,7 @@ class Wikidiff2TextDiffer extends BaseTextDiffer {
 		return 'wikidiff2';
 	}
 
+	/** @inheritDoc */
 	public function getFormatContext( string $format ) {
 		return $format === 'inline' ? self::CONTEXT_PLAIN : self::CONTEXT_ROW;
 	}

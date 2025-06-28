@@ -123,6 +123,7 @@ class LinksUpdate extends DataUpdate {
 		$this->dbProvider = $services->getDBLoadBalancerFactory();
 	}
 
+	/** @inheritDoc */
 	public function setTransactionTicket( $ticket ) {
 		parent::setTransactionTicket( $ticket );
 		$this->tableFactory->setTransactionTicket( $ticket );

@@ -52,18 +52,22 @@ class PagePropsTable extends LinksTable {
 		$this->newProps = $parserOutput->getPageProperties();
 	}
 
+	/** @inheritDoc */
 	protected function getTableName() {
 		return 'page_props';
 	}
 
+	/** @inheritDoc */
 	protected function getFromField() {
 		return 'pp_page';
 	}
 
+	/** @inheritDoc */
 	protected function getExistingFields() {
 		return [ 'pp_propname', 'pp_value' ];
 	}
 
+	/** @inheritDoc */
 	protected function getNewLinkIDs() {
 		foreach ( $this->newProps as $name => $value ) {
 			yield [ (string)$name, $value ];
@@ -85,12 +89,14 @@ class PagePropsTable extends LinksTable {
 		return $this->existingProps;
 	}
 
+	/** @inheritDoc */
 	protected function getExistingLinkIDs() {
 		foreach ( $this->getExistingProps() as $name => $value ) {
 			yield [ (string)$name, $value ];
 		}
 	}
 
+	/** @inheritDoc */
 	protected function isExisting( $linkId ) {
 		$existing = $this->getExistingProps();
 		[ $name, $value ] = $linkId;
@@ -98,6 +104,7 @@ class PagePropsTable extends LinksTable {
 			&& $this->encodeValue( $existing[$name] ) === $this->encodeValue( $value );
 	}
 
+	/** @inheritDoc */
 	protected function isInNewSet( $linkId ) {
 		[ $name, $value ] = $linkId;
 		return \array_key_exists( $name, $this->newProps )
@@ -117,6 +124,7 @@ class PagePropsTable extends LinksTable {
 		}
 	}
 
+	/** @inheritDoc */
 	protected function insertLink( $linkId ) {
 		[ $name, $value ] = $linkId;
 		$this->insertRow( [
@@ -146,6 +154,7 @@ class PagePropsTable extends LinksTable {
 		return null;
 	}
 
+	/** @inheritDoc */
 	protected function deleteLink( $linkId ) {
 		$this->deleteRow( [
 			'pp_propname' => $linkId[0]

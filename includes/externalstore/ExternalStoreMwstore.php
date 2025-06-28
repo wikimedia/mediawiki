@@ -94,6 +94,7 @@ class ExternalStoreMwstore extends ExternalStoreMedium {
 		return $blobs;
 	}
 
+	/** @inheritDoc */
 	public function store( $backend, $data ) {
 		$be = $this->fbGroup->get( $backend );
 		// Get three random base 36 characters to act as shard directories
@@ -122,6 +123,7 @@ class ExternalStoreMwstore extends ExternalStoreMedium {
 		throw new ExternalStoreException( __METHOD__ . ": operation failed: $status" );
 	}
 
+	/** @inheritDoc */
 	public function isReadOnly( $backend ) {
 		if ( parent::isReadOnly( $backend ) ) {
 			return true;

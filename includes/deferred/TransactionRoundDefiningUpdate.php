@@ -30,6 +30,7 @@ class TransactionRoundDefiningUpdate
 		( $this->callback )();
 	}
 
+	/** @inheritDoc */
 	public function getOrigin() {
 		return $this->fname;
 	}

@@ -31,18 +31,22 @@ class InterwikiLinksTable extends LinksTable {
 		}
 	}
 
+	/** @inheritDoc */
 	protected function getTableName() {
 		return 'iwlinks';
 	}
 
+	/** @inheritDoc */
 	protected function getFromField() {
 		return 'iwl_from';
 	}
 
+	/** @inheritDoc */
 	protected function getExistingFields() {
 		return [ 'iwl_prefix', 'iwl_title' ];
 	}
 
+	/** @inheritDoc */
 	protected function getNewLinkIDs() {
 		foreach ( $this->newLinks as $prefix => $links ) {
 			foreach ( $links as $title => $unused ) {
@@ -67,6 +71,7 @@ class InterwikiLinksTable extends LinksTable {
 		return $this->existingLinks;
 	}
 
+	/** @inheritDoc */
 	protected function getExistingLinkIDs() {
 		foreach ( $this->getExistingLinks() as $prefix => $links ) {
 			foreach ( $links as $title => $unused ) {
@@ -75,17 +80,20 @@ class InterwikiLinksTable extends LinksTable {
 		}
 	}
 
+	/** @inheritDoc */
 	protected function isExisting( $linkId ) {
 		$links = $this->getExistingLinks();
 		[ $prefix, $title ] = $linkId;
 		return isset( $links[$prefix][$title] );
 	}
 
+	/** @inheritDoc */
 	protected function isInNewSet( $linkId ) {
 		[ $prefix, $title ] = $linkId;
 		return isset( $this->newLinks[$prefix][$title] );
 	}
 
+	/** @inheritDoc */
 	protected function insertLink( $linkId ) {
 		[ $prefix, $title ] = $linkId;
 		$this->insertRow( [
@@ -94,6 +102,7 @@ class InterwikiLinksTable extends LinksTable {
 		] );
 	}
 
+	/** @inheritDoc */
 	protected function deleteLink( $linkId ) {
 		[ $prefix, $title ] = $linkId;
 		$this->deleteRow( [

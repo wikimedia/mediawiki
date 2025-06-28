@@ -27,6 +27,7 @@ class ExternalTextDiffer extends BaseTextDiffer {
 		return [ 'external' ];
 	}
 
+	/** @inheritDoc */
 	public function getFormatContext( string $format ) {
 		return self::CONTEXT_ROW;
 	}

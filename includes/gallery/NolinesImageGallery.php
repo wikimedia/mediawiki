@@ -22,15 +22,18 @@
  */
 
 class NolinesImageGallery extends TraditionalImageGallery {
+	/** @inheritDoc */
 	protected function getThumbPadding() {
 		return 0;
 	}
 
+	/** @inheritDoc */
 	protected function getGBBorders() {
 		// This accounts for extra space between <li> elements.
 		return 4;
 	}
 
+	/** @inheritDoc */
 	protected function getVPad( $boxHeight, $thumbHeight ) {
 		return 0;
 	}

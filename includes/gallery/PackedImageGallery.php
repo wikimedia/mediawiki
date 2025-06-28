@@ -24,6 +24,7 @@ use MediaWiki\Context\IContextSource;
 use MediaWiki\FileRepo\File\File;
 
 class PackedImageGallery extends TraditionalImageGallery {
+	/** @inheritDoc */
 	public function __construct( $mode = 'traditional', ?IContextSource $context = null ) {
 		parent::__construct( $mode, $context );
 		// Does not support per row option.
@@ -37,14 +38,17 @@ class PackedImageGallery extends TraditionalImageGallery {
 	 */
 	private const SCALE_FACTOR = 1.5;
 
+	/** @inheritDoc */
 	protected function getVPad( $boxHeight, $thumbHeight ) {
 		return ( $this->getThumbPadding() + $boxHeight - $thumbHeight / self::SCALE_FACTOR ) / 2;
 	}
 
+	/** @inheritDoc */
 	protected function getThumbPadding() {
 		return 0;
 	}
 
+	/** @inheritDoc */
 	protected function getGBPadding() {
 		return 2;
 	}
@@ -69,6 +73,7 @@ class PackedImageGallery extends TraditionalImageGallery {
 		];
 	}
 
+	/** @inheritDoc */
 	protected function getThumbDivWidth( $thumbWidth ) {
 		// Require at least 60px wide, so caption is wide enough to work.
 		if ( $thumbWidth < 60 * self::SCALE_FACTOR ) {
@@ -89,6 +94,7 @@ class PackedImageGallery extends TraditionalImageGallery {
 		return $this->getThumbDivWidth( $thumbWidth ) + $this->getGBPadding();
 	}
 
+	/** @inheritDoc */
 	protected function adjustImageParameters( $thumb, &$imageParameters ) {
 		// Re-adjust back to normal size.
 		$imageParameters['override-width'] = ceil( $thumb->getWidth() / self::SCALE_FACTOR );
