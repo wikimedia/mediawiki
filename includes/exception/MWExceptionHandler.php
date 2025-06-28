@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use Psr\Log\LogLevel;
@@ -821,7 +822,10 @@ TXT;
 			// initialization, e.g. if an autoloaded file triggers deprecation warnings.
 			// To avoid a difficult-to-debug autoload loop, avoid attempting to initialize the service
 			// container here. (T380456).
-			if ( !MediaWikiServices::hasInstance() ) {
+			// The exception handler is also triggered when autoloading of HookRunner class fails,
+			// > Uncaught Error: Class "MediaWiki\HookContainer\HookRunner" not found
+			// Avoid use of the not-loaded class here, as that override the real error.
+			if ( !MediaWikiServices::hasInstance() || !class_exists( HookRunner::class, false ) ) {
 				return;
 			}
 
