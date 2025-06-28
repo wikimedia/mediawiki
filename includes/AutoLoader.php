@@ -32,10 +32,16 @@ class AutoLoader {
 
 	/**
 	 * A mapping of namespace => file path for MediaWiki core.
-	 * The namespaces should follow the PSR-4 standard for autoloading
+	 * The namespaces must follow the PSR-4 standard for autoloading.
+	 *
+	 * MediaWiki core does not use PSR-4 autoloading due to performance issues,
+	 * but enforce the mapping to be maintained for future use.
+	 * Instead using PSR-0, class map stored in autoload.php generated via script:
+	 * php maintenance/run.php generateLocalAutoload
 	 *
 	 * @see <https://www.php-fig.org/psr/psr-4/>
-	 * @internal Only public for usage in AutoloadGenerator
+	 * @see <https://techblog.wikimedia.org/2024/01/16/web-perf-hero-mate-szabo/>
+	 * @internal Only public for usage in AutoloadGenerator/AutoLoaderTest
 	 * @phpcs-require-sorted-array
 	 */
 	public const CORE_NAMESPACES = [
@@ -138,7 +144,7 @@ class AutoLoader {
 	/**
 	 * @var string[] Namespace (ends with \) => Path (ends with /)
 	 */
-	private static $psr4Namespaces = self::CORE_NAMESPACES;
+	private static $psr4Namespaces = [];
 
 	/**
 	 * @var string[] Class => File

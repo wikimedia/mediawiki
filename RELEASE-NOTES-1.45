@@ -214,6 +214,8 @@ because of Phabricator reports.
 * Calling ApiOptions::__construct() without $userOptionsManager and
   $preferencesFactory has been deprecated and emits deprecation warnings.
   Code that extends ApiOptions should instead extend ApiOptionsBase.
+* Autoloader::setPsr4Namespaces(), deprecated in 1.40, now emits deprecation
+  warnings.
 * ParserOutput::getWarnings() has been deprecated. Use ::getWarningMsgs()
   instead.
 * ParserOutput::setLanguageLinks(), deprecated in 1.42, now emits deprecation

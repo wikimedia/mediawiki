@@ -19,7 +19,6 @@ class GenerateAutoload extends Maintenance {
 
 	public function execute() {
 		$generator = new AutoloadGenerator( MW_INSTALL_PATH, 'local' );
-		$generator->setPsr4Namespaces( AutoLoader::CORE_NAMESPACES );
 		$generator->initMediaWikiDefault();
 
 		// Write out the autoload
