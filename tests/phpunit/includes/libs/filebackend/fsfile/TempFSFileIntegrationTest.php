@@ -22,7 +22,7 @@ class TempFSFileIntegrationTest extends MediaWikiIntegrationTestCase {
 	}
 
 	// For TempFSFileTestTrait
-	private function newFile() {
+	private function newFile(): TempFSFile {
 		return TempFSFile::factory( 'tmp' );
 	}
 }

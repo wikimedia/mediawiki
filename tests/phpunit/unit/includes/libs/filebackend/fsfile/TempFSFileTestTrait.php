@@ -2,11 +2,13 @@
 
 namespace Wikimedia\Tests\FileBackend\FSFile;
 
+use Wikimedia\FileBackend\FSFile\TempFSFile;
+
 /**
  * Code shared between the unit and integration tests
  */
 trait TempFSFileTestTrait {
-	abstract protected function newFile();
+	abstract protected function newFile(): TempFSFile;
 
 	/**
 	 * @covers \Wikimedia\FileBackend\FSFile\TempFSFile

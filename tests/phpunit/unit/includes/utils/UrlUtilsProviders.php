@@ -46,7 +46,7 @@ class UrlUtilsProviders {
 		];
 	}
 
-	public static function provideExpand() {
+	public static function provideExpand(): Generator {
 		$modes = [ 'http', 'https' ];
 		$servers = [
 			'http://example.com',

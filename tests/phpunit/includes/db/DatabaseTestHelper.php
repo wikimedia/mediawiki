@@ -100,7 +100,7 @@ class DatabaseTestHelper extends Database {
 		return $lastSqls;
 	}
 
-	public function setExistingTables( $tablesExists ) {
+	public function setExistingTables( string|array $tablesExists ) {
 		$this->tablesExists = (array)$tablesExists;
 	}
 
@@ -119,7 +119,7 @@ class DatabaseTestHelper extends Database {
 		] + $options;
 	}
 
-	protected function addSql( $sql ) {
+	protected function addSql( string $sql ) {
 		// clean up spaces before and after some words and the whole string
 		$this->lastSqls[] = trim( preg_replace(
 			'/\s{2,}(?=FROM|WHERE|GROUP BY|ORDER BY|LIMIT)|(?<=SELECT|INSERT|UPDATE)\s{2,}/',
@@ -127,7 +127,7 @@ class DatabaseTestHelper extends Database {
 		) );
 	}
 
-	protected function checkFunctionName( $fname ) {
+	protected function checkFunctionName( string $fname ) {
 		if ( $fname === 'Wikimedia\\Rdbms\\Database::close' ) {
 			return; // no $fname parameter
 		}

@@ -105,7 +105,7 @@ trait DummyServicesTrait {
 		return new class( $parser ) extends CommentParserFactory {
 			private $parser;
 
-			public function __construct( $parser ) {
+			public function __construct( CommentParser $parser ) {
 				$this->parser = $parser;
 			}
 

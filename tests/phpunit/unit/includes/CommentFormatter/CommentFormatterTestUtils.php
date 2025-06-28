@@ -3,7 +3,7 @@
 namespace MediaWiki\Tests\Unit\CommentFormatter;
 
 class CommentFormatterTestUtils {
-	public static function dumpArray( $a ) {
+	public static function dumpArray( array $a ): string {
 		$s = '';
 		foreach ( $a as $k => $v ) {
 			if ( $v === null ) {

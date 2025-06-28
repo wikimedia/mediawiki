@@ -27,7 +27,7 @@ class ArrayConfigBuilderTest extends TestCase {
 		return $this->builder;
 	}
 
-	protected function assertKeyHasValue( string $key, $value ) {
+	protected function assertKeyHasValue( string $key, mixed $value ): void {
 		$this->assertEquals( $value, $this->builder->build()->get( $key ) );
 	}
 

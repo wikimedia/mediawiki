@@ -2242,19 +2242,19 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 
 	// The following methods are for LanguageNameUtilsTestTrait
 
-	private function isSupportedLanguage( $code ) {
+	private function isSupportedLanguage( string $code ): bool {
 		return $this->getServiceContainer()->getLanguageNameUtils()->isSupportedLanguage( $code );
 	}
 
-	private function isValidCode( $code ) {
+	private function isValidCode( string $code ): bool {
 		return $this->getServiceContainer()->getLanguageNameUtils()->isValidCode( $code );
 	}
 
-	private function isValidBuiltInCode( $code ) {
+	private function isValidBuiltInCode( string $code ): bool {
 		return $this->getServiceContainer()->getLanguageNameUtils()->isValidBuiltInCode( $code );
 	}
 
-	private function isKnownLanguageTag( $code ) {
+	private function isKnownLanguageTag( string $code ): bool {
 		return $this->getServiceContainer()->getLanguageNameUtils()->isKnownLanguageTag( $code );
 	}
 
@@ -2274,7 +2274,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 	 * @param string $code
 	 * @param mixed ...$otherArgs Optionally, pass $inLanguage and/or $include.
 	 */
-	private function assertGetLanguageNames( array $options, $expected, $code, ...$otherArgs ) {
+	private function assertGetLanguageNames( array $options, string $expected, string $code, ?string ...$otherArgs ): void {
 		if ( $options ) {
 			$this->overrideConfigValues( $options );
 		}
@@ -2285,23 +2285,23 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 		$this->assertSame( $expected, $langNameUtils->getLanguageName( $code, ...$otherArgs ) );
 	}
 
-	private function getLanguageNames( ...$args ) {
+	private function getLanguageNames( ?string ...$args ): array {
 		return $this->getServiceContainer()->getLanguageNameUtils()->getLanguageNames( ...$args );
 	}
 
-	private function getLanguageName( ...$args ) {
+	private function getLanguageName( ?string ...$args ): string {
 		return $this->getServiceContainer()->getLanguageNameUtils()->getLanguageName( ...$args );
 	}
 
-	private function getFileName( ...$args ) {
+	private function getFileName( string ...$args ): string {
 		return MediaWikiServices::getInstance()->getLanguageNameUtils()->getFileName( ...$args );
 	}
 
-	private function getMessagesFileName( $code ) {
+	private function getMessagesFileName( string $code ): string {
 		return MediaWikiServices::getInstance()->getLanguageNameUtils()->getMessagesFileName( $code );
 	}
 
-	private function getJsonMessagesFileName( $code ) {
+	private function getJsonMessagesFileName( string $code ): string {
 		return MediaWikiServices::getInstance()->getLanguageNameUtils()->getJsonMessagesFileName( $code );
 	}
 

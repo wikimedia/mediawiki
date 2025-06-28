@@ -9,7 +9,7 @@ trait ConfigSinkTestTrait {
 
 	abstract protected function getConfigSink(): ConfigBuilder;
 
-	abstract protected function assertKeyHasValue( string $key, $value );
+	abstract protected function assertKeyHasValue( string $key, mixed $value ): void;
 
 	public function testSet() {
 		$this->getConfigSink()

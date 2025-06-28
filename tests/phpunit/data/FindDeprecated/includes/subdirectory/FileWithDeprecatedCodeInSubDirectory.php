@@ -9,7 +9,7 @@ class FileWithDeprecatedCodeInSubDirectory {
 		return 'deprecated';
 	}
 
-	public function testMethodTwo() {
+	public function testMethodTwo(): string {
 		return 'not deprecated';
 	}
 }

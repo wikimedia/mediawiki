@@ -22,7 +22,7 @@ trait LanguageConverterTestTrait {
 		return '';
 	}
 
-	protected function getConverterFactory() {
+	protected function getConverterFactory(): LanguageConverterFactory {
 		if ( $this->factory ) {
 			return $this->factory;
 		}

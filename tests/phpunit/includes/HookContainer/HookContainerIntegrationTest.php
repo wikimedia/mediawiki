@@ -117,7 +117,7 @@ namespace FooExtension {
 
 	class FooExtensionHooks {
 
-		public function onFooHook( &$numHandlersRun ) {
+		public function onFooHook( int &$numHandlersRun ) {
 			$numHandlersRun++;
 		}
 	}
@@ -126,7 +126,7 @@ namespace FooExtension {
 		public function __construct( \Wikimedia\Rdbms\ReadOnlyMode $readOnlyMode ) {
 		}
 
-		public function onMash( &$arg ) {
+		public function onMash( int &$arg ): bool {
 			$arg++;
 			return true;
 		}

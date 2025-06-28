@@ -19,7 +19,7 @@ class GlobalConfigBuilderTest extends TestCase {
 		return new GlobalConfigBuilder( 'GlobalConfigBuilderTestPrefix_' );
 	}
 
-	protected function assertKeyHasValue( string $key, $value ) {
+	protected function assertKeyHasValue( string $key, mixed $value ): void {
 		$this->assertEquals( $value, $GLOBALS['GlobalConfigBuilderTestPrefix_' . $key] );
 	}
 

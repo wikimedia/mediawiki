@@ -90,7 +90,7 @@ trait RevisionRecordTests {
 		$this->assertEquals( 1, $revision->getParentId() );
 	}
 
-	abstract protected static function expectedDefaultFieldVisibility( $field ): bool;
+	abstract protected static function expectedDefaultFieldVisibility( int $field ): bool;
 
 	private static function provideAudienceCheckData( int $field ): iterable {
 		yield 'field accessible for oversighter (ALL)' => [

@@ -173,7 +173,7 @@ trait PageHandlerTestTrait {
 		);
 	}
 
-	public function newPageHistoryHandler() {
+	public function newPageHistoryHandler(): PageHistoryHandler {
 		$services = $this->getServiceContainer();
 		return new PageHistoryHandler(
 			$services->getRevisionStore(),
@@ -186,7 +186,7 @@ trait PageHandlerTestTrait {
 		);
 	}
 
-	public function newPageHistoryCountHandler() {
+	public function newPageHistoryCountHandler(): PageHistoryCountHandler {
 		$services = $this->getServiceContainer();
 		return new PageHistoryCountHandler(
 			$services->getRevisionStore(),
@@ -200,7 +200,7 @@ trait PageHandlerTestTrait {
 		);
 	}
 
-	public function newLanguageLinksHandler() {
+	public function newLanguageLinksHandler(): LanguageLinksHandler {
 		$services = $this->getServiceContainer();
 		return new LanguageLinksHandler(
 			$services->getConnectionProvider(),

@@ -8,7 +8,7 @@ class DummyNonTextContent extends AbstractContent {
 	/** @var mixed */
 	private $data;
 
-	public function __construct( $data ) {
+	public function __construct( mixed $data ) {
 		parent::__construct( "testing-nontext" );
 
 		$this->data = $data;

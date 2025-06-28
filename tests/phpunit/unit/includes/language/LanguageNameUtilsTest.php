@@ -50,46 +50,46 @@ class LanguageNameUtilsTest extends MediaWikiUnitTestCase {
 		$this->hookContainer->clear( $hookName );
 	}
 
-	private function isSupportedLanguage( $code ) {
+	private function isSupportedLanguage( string $code ): bool {
 		return $this->newObj()->isSupportedLanguage( $code );
 	}
 
-	private function isValidCode( $code ) {
+	private function isValidCode( string $code ): bool {
 		return $this->newObj()->isValidCode( $code );
 	}
 
-	private function isValidBuiltInCode( $code ) {
+	private function isValidBuiltInCode( string $code ): bool {
 		return $this->newObj()->isValidBuiltInCode( $code );
 	}
 
-	private function isKnownLanguageTag( $code ) {
+	private function isKnownLanguageTag( string $code ): bool {
 		return $this->newObj()->isKnownLanguageTag( $code );
 	}
 
-	private function assertGetLanguageNames( array $options, $expected, $code, ...$otherArgs ) {
+	private function assertGetLanguageNames( array $options, string $expected, string $code, ?string ...$otherArgs ): void {
 		$this->assertSame( $expected, $this->newObj( $options )
 			->getLanguageNames( ...$otherArgs )[strtolower( $code )] ?? '' );
 		$this->assertSame( $expected,
 			$this->newObj( $options )->getLanguageName( $code, ...$otherArgs ) );
 	}
 
-	private function getLanguageNames( ...$args ) {
+	private function getLanguageNames( ?string ...$args ): array {
 		return $this->newObj()->getLanguageNames( ...$args );
 	}
 
-	private function getLanguageName( ...$args ) {
+	private function getLanguageName( ?string ...$args ): string {
 		return $this->newObj()->getLanguageName( ...$args );
 	}
 
-	private function getFileName( ...$args ) {
+	private function getFileName( string ...$args ): string {
 		return $this->newObj()->getFileName( ...$args );
 	}
 
-	private function getMessagesFileName( $code ) {
+	private function getMessagesFileName( string $code ): string {
 		return $this->newObj()->getMessagesFileName( $code );
 	}
 
-	private function getJsonMessagesFileName( $code ) {
+	private function getJsonMessagesFileName( string $code ): string {
 		return $this->newObj()->getJsonMessagesFileName( $code );
 	}
 }

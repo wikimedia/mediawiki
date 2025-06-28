@@ -36,8 +36,8 @@ class TestUser {
 		}
 	}
 
-	public function __construct( $username, $realname = 'Real Name',
-		$email = 'sample@example.com', $groups = []
+	public function __construct( string $username, string $realname = 'Real Name',
+		string $email = 'sample@example.com', array $groups = []
 	) {
 		$this->assertNotReal();
 

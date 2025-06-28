@@ -444,7 +444,7 @@ trait MediaWikiTestCaseTrait {
 		$this->fail( "$reason\n$status" );
 	}
 
-	protected function assertStatusOK( StatusValue $status, $message = '' ) {
+	protected function assertStatusOK( StatusValue $status, string $message = '' ) {
 		if ( !$status->isOK() ) {
 			$errors = $status->splitByErrorType()[0];
 			$this->failStatus( $errors, 'Status should be OK', $message );
@@ -453,7 +453,7 @@ trait MediaWikiTestCaseTrait {
 		}
 	}
 
-	protected function assertStatusGood( StatusValue $status, $message = '' ) {
+	protected function assertStatusGood( StatusValue $status, string $message = '' ) {
 		if ( !$status->isGood() ) {
 			$this->failStatus( $status, 'Status should be Good', $message );
 		} else {
@@ -461,7 +461,7 @@ trait MediaWikiTestCaseTrait {
 		}
 	}
 
-	protected function assertStatusNotOK( StatusValue $status, $message = '' ) {
+	protected function assertStatusNotOK( StatusValue $status, string $message = '' ) {
 		if ( $status->isOK() ) {
 			$this->failStatus( $status, 'Status should not be OK', $message );
 		} else {
@@ -469,7 +469,7 @@ trait MediaWikiTestCaseTrait {
 		}
 	}
 
-	protected function assertStatusNotGood( StatusValue $status, $message = '' ) {
+	protected function assertStatusNotGood( StatusValue $status, string $message = '' ) {
 		if ( $status->isGood() ) {
 			$this->failStatus( $status, 'Status should not be Good', $message );
 		} else {
@@ -477,7 +477,7 @@ trait MediaWikiTestCaseTrait {
 		}
 	}
 
-	protected function assertStatusMessage( string $messageKey, StatusValue $status, $message = '' ) {
+	protected function assertStatusMessage( string $messageKey, StatusValue $status, string $message = '' ) {
 		if ( !$status->hasMessage( $messageKey ) ) {
 			$this->failStatus( $status, "Status should have message $messageKey", $message );
 		} else {
@@ -521,16 +521,16 @@ trait MediaWikiTestCaseTrait {
 		$this->addToAssertionCount( 1 );
 	}
 
-	protected function assertStatusValue( $expected, StatusValue $status, $message = 'Status value' ) {
+	protected function assertStatusValue( mixed $expected, StatusValue $status, string $message = 'Status value' ) {
 		$this->assertEquals( $expected, $status->getValue(), $message );
 	}
 
-	protected function assertStatusError( string $messageKey, StatusValue $status, $message = '' ) {
+	protected function assertStatusError( string $messageKey, StatusValue $status, string $message = '' ) {
 		$this->assertStatusNotOK( $status, $message );
 		$this->assertStatusMessage( $messageKey, $status, $message );
 	}
 
-	protected function assertStatusWarning( string $messageKey, StatusValue $status, $message = '' ) {
+	protected function assertStatusWarning( string $messageKey, StatusValue $status, string $message = '' ) {
 		$this->assertStatusNotGood( $status, $message );
 		$this->assertStatusOK( $status, $message );
 		$this->assertStatusMessage( $messageKey, $status, $message );

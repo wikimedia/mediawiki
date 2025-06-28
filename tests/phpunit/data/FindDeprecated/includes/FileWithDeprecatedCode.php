@@ -14,7 +14,7 @@ class FileWithDeprecatedCode {
 		return 'def';
 	}
 
-	public function testMethodThree() {
+	public function testMethodThree(): string {
 		return 'not deprecated';
 	}
 }
