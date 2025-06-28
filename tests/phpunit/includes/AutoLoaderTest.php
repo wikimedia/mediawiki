@@ -27,7 +27,7 @@ class AutoLoaderTest extends MediaWikiIntegrationTestCase {
 		$this->oldPsr4 = $access->psr4Namespaces;
 		$this->oldClassFiles = $access->classFiles;
 		AutoLoader::registerNamespaces( [
-			'Test\\MediaWiki\\AutoLoader\\' => __DIR__ . '/../data/autoloader/psr4'
+			'Test\\MediaWiki\\AutoLoader\\' => __DIR__ . '/../data/autoloader/psr4/'
 		] );
 		AutoLoader::registerClasses( [
 			'TestAnotherAutoloadedClass' => __DIR__ . '/../data/autoloader/TestAnotherAutoloadedClass.php',
