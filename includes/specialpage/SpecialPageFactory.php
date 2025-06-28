@@ -1273,7 +1273,6 @@ class SpecialPageFactory {
 		'TalkPage' => [
 			'class' => SpecialTalkPage::class,
 			'services' => [
-				'MainConfig',
 				'TitleParser',
 			],
 		],
