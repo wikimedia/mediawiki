@@ -194,8 +194,9 @@ class PostgresPlatform extends SQLPlatform {
 			// VALUES(...) requires a uniform correspondence of (column => value)
 			if ( $rowColumns !== $tupleColumns ) {
 				throw new DBLanguageError(
-					'Got row columns (' . implode( ', ', $rowColumns ) . ') ' .
-					'instead of expected (' . implode( ', ', $tupleColumns ) . ')'
+					'All rows must specify the same columns in multi-row inserts. Found a row with (' .
+					implode( ', ', $rowColumns ) . ') ' .
+					'instead of expected (' . implode( ', ', $tupleColumns ) . ') as in the first row'
 				);
 			}
 			// Make the value tuple that defines this row
