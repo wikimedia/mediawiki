@@ -432,8 +432,8 @@ class Category {
 		}
 
 		// Get the aggregate `categorylinks` row counts for this category
-		$catCond = $dbw->conditional( [ 'page_namespace' => NS_CATEGORY ], '1', 'NULL' );
-		$fileCond = $dbw->conditional( [ 'page_namespace' => NS_FILE ], '1', 'NULL' );
+		$catCond = $dbw->conditional( [ 'page_namespace' => NS_CATEGORY ], 1, 'NULL' );
+		$fileCond = $dbw->conditional( [ 'page_namespace' => NS_FILE ], 1, 'NULL' );
 		$result = $dbw->newSelectQueryBuilder()
 			->select( [
 				'pages' => 'COUNT(*)',

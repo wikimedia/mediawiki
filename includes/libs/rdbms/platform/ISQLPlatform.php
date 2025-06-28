@@ -421,8 +421,8 @@ interface ISQLPlatform {
 	 *
 	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar>>|array<int,string|IExpression> $cond
 	 *  SQL condition expression (yields a boolean)
-	 * @param string $caseTrueExpression SQL expression to return when the condition is true
-	 * @param string $caseFalseExpression SQL expression to return when the condition is false
+	 * @param string|int $caseTrueExpression SQL expression to return when the condition is true
+	 * @param string|int $caseFalseExpression SQL expression to return when the condition is false
 	 * @return string SQL fragment
 	 */
 	public function conditional( $cond, $caseTrueExpression, $caseFalseExpression );
