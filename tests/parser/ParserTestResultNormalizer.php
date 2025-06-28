@@ -29,7 +29,7 @@ class ParserTestResultNormalizer {
 		return $norm->serialize();
 	}
 
-	protected function __construct( $text ) {
+	protected function __construct( string $text ) {
 		$this->doc = new DOMDocument( '1.0', 'utf-8' );
 
 		// Parsing a supposedly-XHTML document with an XML parser is not

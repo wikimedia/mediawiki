@@ -30,7 +30,7 @@ class DbTestRecorder extends TestRecorder {
 	/** @var int */
 	private $curRun;
 
-	public function __construct( $db ) {
+	public function __construct( IMaintainableDatabase $db ) {
 		$this->db = $db;
 	}
 

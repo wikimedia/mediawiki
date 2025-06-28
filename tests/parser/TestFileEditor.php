@@ -11,18 +11,20 @@ class TestFileEditor {
 	private $changes;
 	/** @var int */
 	private $pos = 0;
-	/** @var callable|false */
+	/** @var callable|null */
 	private $warningCallback;
 	/** @var string */
 	private $result = '';
 
-	public static function edit( $text, array $deletions, array $changes, $warningCallback = null ) {
+	public static function edit(
+		string $text, array $deletions, array $changes, ?callable $warningCallback = null
+	): string {
 		$editor = new self( $text, $deletions, $changes, $warningCallback );
 		$editor->execute();
 		return $editor->result;
 	}
 
-	private function __construct( string $text, array $deletions, array $changes, callable $warningCallback ) {
+	private function __construct( string $text, array $deletions, array $changes, ?callable $warningCallback ) {
 		$this->lines = explode( "\n", $text );
 		$this->numLines = count( $this->lines );
 		$this->deletions = array_fill_keys( $deletions, true );
@@ -140,11 +142,11 @@ class TestFileEditor {
 		$this->emitHooks( $heading, $contents );
 	}
 
-	protected function emitComment( $contents ) {
+	protected function emitComment( string $contents ) {
 		$this->result .= $contents;
 	}
 
-	protected function emitTest( $test ) {
+	protected function emitTest( array $test ) {
 		$testName = false;
 		foreach ( $test as $section ) {
 			if ( $section['name'] === 'test' ) {
@@ -191,7 +193,7 @@ class TestFileEditor {
 		}
 	}
 
-	protected function emitHooks( $heading, $contents ) {
+	protected function emitHooks( string $heading, string $contents ) {
 		$this->result .= $contents;
 	}
 }

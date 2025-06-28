@@ -26,11 +26,11 @@ namespace MediaWiki\Tests;
  * @ingroup Testing
  */
 class DummyTermColorer {
-	public function color( $color ) {
+	public function color( string|int $color ): string {
 		return '';
 	}
 
-	public function reset() {
+	public function reset(): string {
 		return '';
 	}
 }

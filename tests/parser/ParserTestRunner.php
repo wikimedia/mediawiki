@@ -704,7 +704,7 @@ class ParserTestRunner {
 		} );
 	}
 
-	protected function registerHook( string $name, callable $handler ) {
+	protected function registerHook( string $name, callable $handler ): callable {
 		$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
 		$reset = $hookContainer->scopedRegister( $name, $handler );
 		return static function () use ( &$reset ) {
@@ -1137,7 +1137,7 @@ class ParserTestRunner {
 		return null;
 	}
 
-	public static function getLegacyMetadataSection( ParserTest $test ) {
+	public static function getLegacyMetadataSection( ParserTest $test ): ?string {
 		return // specific results for legacy parser
 			$test->sections['metadata/php'] ??
 			// specific results for legacy parser and parsoid integrated mode
@@ -1148,7 +1148,7 @@ class ParserTestRunner {
 			null;
 	}
 
-	public static function getParsoidMetadataSection( ParserTest $test ) {
+	public static function getParsoidMetadataSection( ParserTest $test ): ?string {
 		return // specific results for parsoid integrated mode
 			$test->sections['metadata/parsoid+integrated'] ??
 			// specific results for parsoid

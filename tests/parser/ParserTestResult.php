@@ -44,7 +44,7 @@ class ParserTestResult {
 		return $this->expected === $this->actual;
 	}
 
-	public function getDescription() {
+	public function getDescription(): string {
 		return "{$this->test->testName} [{$this->mode}]";
 	}
 }
