@@ -108,8 +108,8 @@ class ParserOutputAccess implements LoggerAwareInterface {
 	 *
 	 * @see Bug T352837
 	 * @since 1.42
-	 * @deprecated since 1.45, use OPT_POOL_COUNTER with
-	 *             POOL_COUNTER_ARTICLE_VIEW instead.
+	 * @deprecated since 1.45, instead use OPT_POOL_COUNTER => POOL_COUNTER_ARTICLE_VIEW
+	 *             and OPT_POOL_COUNTER_FALLBACK => true.
 	 */
 	public const OPT_FOR_ARTICLE_VIEW = 16;
 
@@ -119,6 +119,15 @@ class ParserOutputAccess implements LoggerAwareInterface {
 	 */
 	public const OPT_IGNORE_PROFILE_VERSION = 128;
 
+	/**
+	 * Whether to fall back to using stale content when failing to
+	 * get a poolcounter lock.
+	 */
+	public const OPT_POOL_COUNTER_FALLBACK = 'poolcounter-fallback';
+
+	/**
+	 * @see MainConfigSchema::PoolCounterConf
+	 */
 	public const OPT_POOL_COUNTER = 'poolcounter-type';
 
 	/**
@@ -136,7 +145,8 @@ class ParserOutputAccess implements LoggerAwareInterface {
 	 * bit-based keys to zero.
 	 */
 	private const DEFAULT_OPTIONS = [
-		self::OPT_POOL_COUNTER => null
+		self::OPT_POOL_COUNTER => null,
+		self::OPT_POOL_COUNTER_FALLBACK => false
 	];
 
 	/** @var string Do not read or write any cache */
@@ -239,6 +249,7 @@ class ParserOutputAccess implements LoggerAwareInterface {
 
 		if ( $options[ self::OPT_FOR_ARTICLE_VIEW ] ) {
 			$options[ self::OPT_POOL_COUNTER ] = self::POOL_COUNTER_ARTICLE_VIEW;
+			$options[ self::OPT_POOL_COUNTER_FALLBACK ] = true;
 		}
 
 		$options += self::DEFAULT_OPTIONS;
@@ -724,10 +735,14 @@ class ParserOutputAccess implements LoggerAwareInterface {
 					};
 
 				$callbacks['fallback'] =
-					function ( $fast ) use ( $page, $parserOptions, $workKey ) {
-						return $this->getFallbackOutputForLatest(
-							$page, $parserOptions, $workKey, $fast
-						);
+					function ( $fast ) use ( $page, $parserOptions, $workKey, $options ) {
+						if ( $options[ self::OPT_POOL_COUNTER_FALLBACK ] ) {
+							return $this->getFallbackOutputForLatest(
+								$page, $parserOptions, $workKey, $fast
+							);
+						} else {
+							return false;
+						}
 					};
 
 				break;

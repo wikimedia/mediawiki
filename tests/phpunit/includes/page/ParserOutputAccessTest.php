@@ -174,6 +174,7 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 				'getDirty',
 				'makeParserOutputKey',
 				'getMetadata',
+				'save'
 			]
 		);
 
@@ -1030,7 +1031,6 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 
 		MWTimestamp::setFakeTime( '2020-04-04T01:02:03' );
 
-		// generate a result in the cache
 		$access = $this->getParserOutputAccess( [
 			'poolCounterFactory' => $this->makePoolCounterFactory( [
 				'mockAcquire' => Status::newGood( PoolCounter::LOCKED ),
@@ -1039,15 +1039,22 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 			'parserCache' => $cache
 		] );
 
+		// generate a result in the cache
 		$page = $this->getNonexistingTestPage( __METHOD__ );
 		$this->editPage( $page, 'Hello \'\'World\'\'!' );
 
 		$parserOptions = $this->getParserOptions();
+		$options = [
+			ParserOutputAccess::OPT_POOL_COUNTER
+				=> ParserOutputAccess::POOL_COUNTER_ARTICLE_VIEW,
+			ParserOutputAccess::OPT_POOL_COUNTER_FALLBACK => true
+		];
+
 		$result = $access->getParserOutput(
 			$page,
 			$parserOptions,
 			null,
-			[ ParserOutputAccess::OPT_POOL_COUNTER => ParserOutputAccess::POOL_COUNTER_ARTICLE_VIEW ]
+			$options
 		);
 		$this->assertContainsHtml( 'World', $result, 'fresh result' );
 
@@ -1071,7 +1078,7 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 			$page,
 			$parserOptions,
 			null,
-			[ ParserOutputAccess::OPT_POOL_COUNTER => ParserOutputAccess::POOL_COUNTER_ARTICLE_VIEW ]
+			$options
 		);
 		$this->assertContainsHtml( 'World', $cachedResult, 'cached result' );
 
@@ -1280,7 +1287,31 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 		$this->assertNotNull( $access1->getCachedParserOutput( $page, $popt, null, $options ) );
 	}
 
-	public function testFallbackFromOutdatedParserCache() {
+	public static function provideFallbackFromOutdatedParserCache() {
+		yield 'fallback but no poolcounter' => [
+			[ ParserOutputAccess::OPT_POOL_COUNTER_FALLBACK => true ],
+			true,
+			null // freshly parsed output, no warnings
+		];
+		yield 'poolcounter but no fallback' => [
+			[ ParserOutputAccess::OPT_POOL_COUNTER => 'test' ],
+			false,
+			'pool-timeout'
+		];
+		yield 'poolcounter and fallback' => [
+			[
+				ParserOutputAccess::OPT_POOL_COUNTER => 'test',
+				ParserOutputAccess::OPT_POOL_COUNTER_FALLBACK => true
+			],
+			true,
+			'view-pool-dirty-output'
+		];
+	}
+
+	/**
+	 * @dataProvider provideFallbackFromOutdatedParserCache
+	 */
+	public function testFallbackFromOutdatedParserCache( $options, $expectedOk, $expectedMessage ) {
 		// Fake Unix timestamps
 		$lastWrite = 10;
 		$outdated = $lastWrite;
@@ -1288,7 +1319,7 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 		$chronologyProtector = $this->createNoOpMock( ChronologyProtector::class, [ 'getTouched' ] );
 		$chronologyProtector->method( 'getTouched' )->willReturn( $lastWrite );
 
-		$output = new ParserOutput( 'hello world' );
+		$output = new ParserOutput( 'cached content' );
 		$output->setCacheTime( $outdated );
 
 		$parserCache = $this->createMockParserCache( $output, false );
@@ -1304,14 +1335,19 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 			$this->getExistingTestPage(),
 			$this->getParserOptions(),
 			null,
-			// keep bitmap form of options, so we keep testing that
-			ParserOutputAccess::OPT_NO_CHECK_CACHE
-			| ParserOutputAccess::OPT_FOR_ARTICLE_VIEW
+			$options
 		);
 
-		$this->assertStatusOk( $status );
-		$this->assertInstanceOf( ParserOutput::class, $status->getValue() );
-		$this->assertStatusWarning( 'view-pool-overload', $status );
+		if ( $expectedOk ) {
+			$this->assertStatusOk( $status );
+			$this->assertInstanceOf( ParserOutput::class, $status->getValue() );
+		} else {
+			$this->assertStatusNotOK( $status );
+		}
+
+		if ( $expectedMessage ) {
+			$this->assertStatusMessage( $expectedMessage, $status );
+		}
 	}
 
 	public function testFallbackFromMoreRecentParserCache() {
@@ -1338,7 +1374,8 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 			$page,
 			$this->getParserOptions(),
 			null,
-			// keep bitmap form of options, so we keep testing that
+			// keep bitmap form of options, so we keep testing that.
+			// Note that OPT_FOR_ARTICLE_VIEW implies OPT_POOL_COUNTER_FALLBACK.
 			ParserOutputAccess::OPT_NO_CHECK_CACHE
 			| ParserOutputAccess::OPT_FOR_ARTICLE_VIEW
 		);
