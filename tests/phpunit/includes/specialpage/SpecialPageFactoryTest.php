@@ -155,7 +155,7 @@ class SpecialPageFactoryTest extends MediaWikiIntegrationTestCase {
 	public static function provideExecutePath() {
 		yield [ 'BlankPage', 'intentionallyblankpage' ];
 
-		$path = new PageReferenceValue( NS_SPECIAL, 'BlankPage', PageReferenceValue::LOCAL );
+		$path = PageReferenceValue::localReference( NS_SPECIAL, 'BlankPage' );
 		yield [ $path, 'intentionallyblankpage' ];
 	}
 

@@ -99,16 +99,16 @@ class PageRedirectHelperTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public static function provideNormalizationRedirect() {
-		$page = new PageIdentityValue( 7, NS_MAIN, 'Foo', false );
+		$page = PageIdentityValue::localIdentity( 7, NS_MAIN, 'Foo' );
 		yield [ $page, 'foo', '/api/test/Foo' ];
 
-		$page = new PageIdentityValue( 7, NS_MAIN, 'Foo', false );
+		$page = PageIdentityValue::localIdentity( 7, NS_MAIN, 'Foo' );
 		yield [ $page, 'Foo', null ];
 
-		$page = new PageIdentityValue( 7, NS_TALK, 'Foo_bar/baz', false );
+		$page = PageIdentityValue::localIdentity( 7, NS_TALK, 'Foo_bar/baz' );
 		yield [ $page, 'Talk:Foo bar/baz', '/api/test/Talk%3AFoo_bar%2Fbaz' ];
 
-		$page = new PageIdentityValue( 7, NS_TALK, 'Foo_bar/baz', false );
+		$page = PageIdentityValue::localIdentity( 7, NS_TALK, 'Foo_bar/baz' );
 		yield [ $page, 'Talk:Foo_bar/baz', null ];
 	}
 
@@ -137,7 +137,7 @@ class PageRedirectHelperTest extends MediaWikiIntegrationTestCase {
 		$helper = $this->newRedirectHelper( [] );
 		$helper->setUseRelativeRedirects( false );
 
-		$page = new PageIdentityValue( 7, NS_MAIN, 'Foo', false );
+		$page = PageIdentityValue::localIdentity( 7, NS_MAIN, 'Foo' );
 		$resp = $helper->createNormalizationRedirectResponseIfNeeded( $page, 'foo' );
 
 		$this->assertNotNull( $resp );
@@ -145,13 +145,13 @@ class PageRedirectHelperTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public static function provideWikiRedirect() {
-		$page = new PageIdentityValue( 7, NS_MAIN, 'Redirect_to_foo', false );
+		$page = PageIdentityValue::localIdentity( 7, NS_MAIN, 'Redirect_to_foo' );
 		yield 'Wiki redirect' => [ $page, '/api/test/Foo?redirect=no', 'https://example.test/api/test/Foo?redirect=no' ];
 
-		$page = new PageIdentityValue( 7, NS_MAIN, 'Redirect_to_self', false );
+		$page = PageIdentityValue::localIdentity( 7, NS_MAIN, 'Redirect_to_self' );
 		yield 'Self-redirect (T353688)' => [ $page, null ];
 
-		$page = new PageIdentityValue( 7, NS_MAIN, 'foo', false );
+		$page = PageIdentityValue::localIdentity( 7, NS_MAIN, 'foo' );
 		yield 'no redirect' => [ $page, null ];
 	}
 
@@ -205,7 +205,7 @@ class PageRedirectHelperTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testWikiRedirectDisabled() {
-		$page = new PageIdentityValue( 7, NS_MAIN, 'Redirect_to_foo', false );
+		$page = PageIdentityValue::localIdentity( 7, NS_MAIN, 'Redirect_to_foo' );
 
 		// We assume that wiki redirect handling is disabled by default.
 		$helper = $this->newRedirectHelper();

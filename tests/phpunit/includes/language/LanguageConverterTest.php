@@ -220,7 +220,7 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 				'Акс:Dummy page',
 			],
 			'PageReference' => [
-				new PageReferenceValue( NS_FILE, 'Dummy page', PageReference::LOCAL ),
+				PageReferenceValue::localReference( NS_FILE, 'Dummy page' ),
 				'Акс:Dummy page',
 			],
 		];

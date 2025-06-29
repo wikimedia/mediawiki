@@ -145,7 +145,7 @@ class MultiTitleFilterTest extends MediaWikiUnitTestCase {
 	}
 
 	private function getMockPageIdentityValue( int $pageId, string $dbKey ) {
-		return new PageIdentityValue( $pageId, NS_MAIN, $dbKey, PageIdentityValue::LOCAL );
+		return PageIdentityValue::localIdentity( $pageId, NS_MAIN, $dbKey );
 	}
 
 	private function getMockTitle( $getTextResult, $articleId = 0 ) {

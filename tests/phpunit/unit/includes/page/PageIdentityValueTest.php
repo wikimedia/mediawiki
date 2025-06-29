@@ -103,11 +103,11 @@ class PageIdentityValueTest extends MediaWikiUnitTestCase {
 
 	public static function provideToString() {
 		yield [
-			new PageIdentityValue( 5, 0, 'Foo', PageIdentity::LOCAL ),
+			PageIdentityValue::localIdentity( 5, 0, 'Foo' ),
 			'[0:Foo]'
 		];
 		yield [
-			new PageIdentityValue( 0, 1, 'Bar_Baz', PageIdentity::LOCAL ),
+			PageIdentityValue::localIdentity( 0, 1, 'Bar_Baz' ),
 			'[1:Bar_Baz]'
 		];
 		yield [
@@ -128,23 +128,23 @@ class PageIdentityValueTest extends MediaWikiUnitTestCase {
 
 	public static function provideIsSamePageAs() {
 		yield [
-			new PageIdentityValue( 1, 0, 'Foo', PageIdentity::LOCAL ),
-			new PageIdentityValue( 1, 0, 'Foo', PageIdentity::LOCAL ),
+			PageIdentityValue::localIdentity( 1, 0, 'Foo' ),
+			PageIdentityValue::localIdentity( 1, 0, 'Foo' ),
 			true
 		];
 		yield [
-			new PageIdentityValue( 0, 1, 'Bar_Baz', PageIdentity::LOCAL ),
-			new PageIdentityValue( 0, 1, 'Bar_Baz', PageIdentity::LOCAL ),
+			PageIdentityValue::localIdentity( 0, 1, 'Bar_Baz' ),
+			PageIdentityValue::localIdentity( 0, 1, 'Bar_Baz' ),
 			true
 		];
 		yield [
-			new PageIdentityValue( 0, 0, 'Foo', PageIdentity::LOCAL ),
-			new PageIdentityValue( 0, 0, 'Foozz', PageIdentity::LOCAL ),
+			PageIdentityValue::localIdentity( 0, 0, 'Foo' ),
+			PageIdentityValue::localIdentity( 0, 0, 'Foozz' ),
 			false
 		];
 		yield [
-			new PageIdentityValue( 0, 0, 'Foo', PageIdentity::LOCAL ),
-			new PageIdentityValue( 0, 1, 'Foo', PageIdentity::LOCAL ),
+			PageIdentityValue::localIdentity( 0, 0, 'Foo' ),
+			PageIdentityValue::localIdentity( 0, 1, 'Foo' ),
 			false
 		];
 		yield [

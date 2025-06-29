@@ -4,7 +4,6 @@ namespace MediaWiki\Language;
 
 use LogicException;
 use MediaWiki\Context\RequestContext;
-use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\OutputTransform\OutputTransformPipeline;
 use MediaWiki\Page\PageReference;
@@ -227,11 +226,7 @@ class MessageParser {
 	}
 
 	private function getPlaceholderTitle(): PageReference {
-		return new PageReferenceValue(
-			NS_SPECIAL,
-			'Badtitle/MessageParser',
-			WikiAwareEntity::LOCAL
-		);
+		return PageReferenceValue::localReference( NS_SPECIAL, 'Badtitle/MessageParser' );
 	}
 
 	/**

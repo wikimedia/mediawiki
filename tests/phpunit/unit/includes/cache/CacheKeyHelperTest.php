@@ -2,7 +2,6 @@
 
 use MediaWiki\Cache\CacheKeyHelper;
 use MediaWiki\Page\PageIdentityValue;
-use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
@@ -16,8 +15,8 @@ class CacheKeyHelperTest extends MediaWikiUnitTestCase {
 		// NOTE: code changes that break these test cases
 		//       will result in incompatible cache keys when deployed!
 
-		yield [ new PageReferenceValue( NS_USER, 'Yulduz', PageReference::LOCAL ), 'ns2:Yulduz' ];
-		yield [ new PageIdentityValue( 7, NS_USER, 'Yulduz', PageReference::LOCAL ), 'ns2:Yulduz' ];
+		yield [ PageReferenceValue::localReference( NS_USER, 'Yulduz' ), 'ns2:Yulduz' ];
+		yield [ PageIdentityValue::localIdentity( 7, NS_USER, 'Yulduz' ), 'ns2:Yulduz' ];
 		yield [ Title::makeTitle( NS_USER, 'Yulduz' ), 'ns2:Yulduz' ];
 		yield [ new TitleValue( NS_USER, 'Yulduz' ), 'ns2:Yulduz' ];
 	}

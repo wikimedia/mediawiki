@@ -558,7 +558,7 @@ class PageStoreTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Page\PageStore::getPageByReference
 	 */
 	public function testGetPageByIdentity_knowNonexisting() {
-		$nonexistingPage = new PageIdentityValue( 0, NS_MAIN, 'Test', PageIdentity::LOCAL );
+		$nonexistingPage = PageIdentityValue::localIdentity( 0, NS_MAIN, 'Test' );
 
 		$pageStore = $this->getPageStore();
 		$page = $pageStore->getPageByReference( $nonexistingPage );
@@ -572,7 +572,7 @@ class PageStoreTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Page\PageStore::getPageByReference
 	 */
 	public function testGetPageByIdentity_notFound() {
-		$nonexistingPage = new PageIdentityValue( 523478562, NS_MAIN, 'Test', PageIdentity::LOCAL );
+		$nonexistingPage = PageIdentityValue::localIdentity( 523478562, NS_MAIN, 'Test' );
 
 		$pageStore = $this->getPageStore();
 		$page = $pageStore->getPageByReference( $nonexistingPage );

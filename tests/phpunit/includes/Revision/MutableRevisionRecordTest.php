@@ -23,7 +23,7 @@ class MutableRevisionRecordTest extends MediaWikiIntegrationTestCase {
 		$title->resetArticleID( 17 );
 		yield 'local wiki, with title' => [ $title, PageIdentity::LOCAL ];
 		yield 'local wiki' => [
-			new PageIdentityValue( 17, NS_MAIN, 'Dummy', PageIdentity::LOCAL ),
+			PageIdentityValue::localIdentity( 17, NS_MAIN, 'Dummy' ),
 			PageIdentity::LOCAL,
 		];
 		yield 'foreign wiki' => [

@@ -1,6 +1,5 @@
 <?php
 
-use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Parser\Parser;
@@ -93,7 +92,7 @@ class MessageParserTest extends MediaWikiIntegrationTestCase {
 
 	private function makePage( $title ) {
 		return $title
-			? new PageIdentityValue( 1, NS_MAIN, $title, WikiAwareEntity::LOCAL )
+			? PageIdentityValue::localIdentity( 1, NS_MAIN, $title )
 			: null;
 	}
 

@@ -13,7 +13,6 @@ use MediaWiki\Content\WikitextContent;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
-use MediaWiki\Page\PageRecord;
 use MediaWiki\Page\PageStore;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\ResourceLoader\Context;
@@ -359,9 +358,7 @@ class WikiModuleTest extends ResourceLoaderTestCase {
 			// Mock page table access via PageStore
 			$pageStore = $this->createNoOpMock( PageStore::class, [ 'getPageByText' ] );
 			$pageStore->method( 'getPageByText' )->willReturn(
-				new PageIdentityValue(
-					$title['id'], $title['ns'], $title['text'], PageRecord::LOCAL
-				)
+				PageIdentityValue::localIdentity( $title['id'], $title['ns'], $title['text'] )
 			);
 		} else {
 			$titleText = $title;

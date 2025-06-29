@@ -16,7 +16,6 @@ use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\Hook\OpportunisticLinksUpdateHook;
-use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\WikiPage;
 use MediaWiki\Parser\MagicWordFactory;
@@ -589,7 +588,7 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideValidateSave
 	 */
 	public function testValidateSave( $content, $expectedResult ) {
-		$page = new PageIdentityValue( 0, 1, 'Foo', PageIdentity::LOCAL );
+		$page = PageIdentityValue::localIdentity( 0, 1, 'Foo' );
 		$contentHandlerFactory = $this->getServiceContainer()->getContentHandlerFactory();
 		$contentHandler = $contentHandlerFactory->getContentHandler( $content->getModel() );
 		$validateParams = new ValidationParams( $page, 0 );

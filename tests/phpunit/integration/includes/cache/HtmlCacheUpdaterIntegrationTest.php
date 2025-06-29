@@ -3,7 +3,6 @@
 use MediaWiki\Cache\HTMLCacheUpdater;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\StaticHookRegistry;
-use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleArrayFromResult;
@@ -66,15 +65,15 @@ class HtmlCacheUpdaterIntegrationTest extends MediaWikiIntegrationTestCase {
 		yield [ [], [] ];
 
 		yield [
-			new PageReferenceValue( NS_MAIN, 'Test', PageReference::LOCAL ),
+			PageReferenceValue::localReference( NS_MAIN, 'Test' ),
 			[ 'Test', '?title=Test&action=history' ]
 		];
 
 		yield [
 			[
-				new PageReferenceValue( NS_MAIN, 'Test1', PageReference::LOCAL ),
-				new PageReferenceValue( NS_MAIN, 'Test2', PageReference::LOCAL ),
-				new PageReferenceValue( NS_SPECIAL, 'Nope', PageReference::LOCAL ),
+				PageReferenceValue::localReference( NS_MAIN, 'Test1' ),
+				PageReferenceValue::localReference( NS_MAIN, 'Test2' ),
+				PageReferenceValue::localReference( NS_SPECIAL, 'Nope' ),
 				Title::makeTitle( NS_MAIN, '', 'Nope' ),
 				Title::makeTitle( NS_MAIN, 'Foo', '', 'nope' ),
 			],

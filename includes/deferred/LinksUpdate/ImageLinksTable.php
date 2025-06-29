@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Deferred\LinksUpdate;
 
-use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\JobQueue\Utils\PurgeJobUtils;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Parser\ParserOutput;
@@ -112,7 +111,7 @@ class ImageLinksTable extends TitleLinksTable {
 
 	/** @inheritDoc */
 	protected function makePageReferenceValue( $linkId ): PageReferenceValue {
-		return new PageReferenceValue( NS_FILE, $linkId, WikiAwareEntity::LOCAL );
+		return PageReferenceValue::localReference( NS_FILE, $linkId );
 	}
 
 	/** @inheritDoc */

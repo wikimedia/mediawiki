@@ -72,7 +72,7 @@ class MutableRevisionRecordTest extends MediaWikiUnitTestCase {
 
 	public static function provideConstructorFailure() {
 		yield 'not a wiki id' => [
-			new PageIdentityValue( 17, NS_MAIN, 'Dummy', PageIdentity::LOCAL ),
+			PageIdentityValue::localIdentity( 17, NS_MAIN, 'Dummy' ),
 			InvalidArgumentException::class,
 			null,
 		];
@@ -108,7 +108,7 @@ class MutableRevisionRecordTest extends MediaWikiUnitTestCase {
 
 	public function testSetGetId() {
 		$record = new MutableRevisionRecord(
-			new PageIdentityValue( 1, NS_MAIN, 'Foo', PageIdentity::LOCAL )
+			PageIdentityValue::localIdentity( 1, NS_MAIN, 'Foo' )
 		);
 		$this->assertNull( $record->getId() );
 		$record->setId( 888 );
@@ -117,7 +117,7 @@ class MutableRevisionRecordTest extends MediaWikiUnitTestCase {
 
 	public function testSetGetUser() {
 		$record = new MutableRevisionRecord(
-			new PageIdentityValue( 1, NS_MAIN, 'Foo', PageIdentity::LOCAL )
+			PageIdentityValue::localIdentity( 1, NS_MAIN, 'Foo' )
 		);
 		$user = new UserIdentityValue( 0, 'Bla' );
 		$this->assertNull( $record->getUser() );
@@ -127,7 +127,7 @@ class MutableRevisionRecordTest extends MediaWikiUnitTestCase {
 
 	public function testSetGetPageId() {
 		$record = new MutableRevisionRecord(
-			new PageIdentityValue( 0, NS_MAIN, 'Foo', PageIdentity::LOCAL )
+			PageIdentityValue::localIdentity( 0, NS_MAIN, 'Foo' )
 		);
 		$this->assertSame( 0, $record->getPageId() );
 		$record->setPageId( 999 );
@@ -136,7 +136,7 @@ class MutableRevisionRecordTest extends MediaWikiUnitTestCase {
 
 	public function testSetGetParentId() {
 		$record = new MutableRevisionRecord(
-			new PageIdentityValue( 1, NS_MAIN, 'Foo', PageIdentity::LOCAL )
+			PageIdentityValue::localIdentity( 1, NS_MAIN, 'Foo' )
 		);
 		$this->assertNull( $record->getParentId() );
 		$record->setParentId( 100 );
@@ -145,7 +145,7 @@ class MutableRevisionRecordTest extends MediaWikiUnitTestCase {
 
 	public function testGetMainContentWhenEmpty() {
 		$record = new MutableRevisionRecord(
-			new PageIdentityValue( 1, NS_MAIN, 'Foo', PageIdentity::LOCAL )
+			PageIdentityValue::localIdentity( 1, NS_MAIN, 'Foo' )
 		);
 		$this->expectException( RevisionAccessException::class );
 		$this->assertNull( $record->getContent( SlotRecord::MAIN ) );
@@ -153,7 +153,7 @@ class MutableRevisionRecordTest extends MediaWikiUnitTestCase {
 
 	public function testSetGetMainContent() {
 		$record = new MutableRevisionRecord(
-			new PageIdentityValue( 1, NS_MAIN, 'Foo', PageIdentity::LOCAL )
+			PageIdentityValue::localIdentity( 1, NS_MAIN, 'Foo' )
 		);
 		$content = new DummyContentForTesting( 'Badger' );
 		$record->setContent( SlotRecord::MAIN, $content );
@@ -162,7 +162,7 @@ class MutableRevisionRecordTest extends MediaWikiUnitTestCase {
 
 	public function testGetSlotWhenEmpty() {
 		$record = new MutableRevisionRecord(
-			new PageIdentityValue( 1, NS_MAIN, 'Foo', PageIdentity::LOCAL )
+			PageIdentityValue::localIdentity( 1, NS_MAIN, 'Foo' )
 		);
 		$this->assertFalse( $record->hasSlot( SlotRecord::MAIN ) );
 
@@ -172,7 +172,7 @@ class MutableRevisionRecordTest extends MediaWikiUnitTestCase {
 
 	public function testSetGetSlot() {
 		$record = new MutableRevisionRecord(
-			new PageIdentityValue( 1, NS_MAIN, 'Foo', PageIdentity::LOCAL )
+			PageIdentityValue::localIdentity( 1, NS_MAIN, 'Foo' )
 		);
 		$slot = SlotRecord::newUnsaved(
 			SlotRecord::MAIN,
@@ -185,7 +185,7 @@ class MutableRevisionRecordTest extends MediaWikiUnitTestCase {
 
 	public function testSetGetMinor() {
 		$record = new MutableRevisionRecord(
-			new PageIdentityValue( 1, NS_MAIN, 'Foo', PageIdentity::LOCAL )
+			PageIdentityValue::localIdentity( 1, NS_MAIN, 'Foo' )
 		);
 		$this->assertFalse( $record->isMinor() );
 		$record->setMinorEdit( true );
@@ -194,7 +194,7 @@ class MutableRevisionRecordTest extends MediaWikiUnitTestCase {
 
 	public function testSetGetTimestamp() {
 		$record = new MutableRevisionRecord(
-			new PageIdentityValue( 1, NS_MAIN, 'Foo', PageIdentity::LOCAL )
+			PageIdentityValue::localIdentity( 1, NS_MAIN, 'Foo' )
 		);
 		$this->assertNull( $record->getTimestamp() );
 		$record->setTimestamp( '20180101010101' );
@@ -203,7 +203,7 @@ class MutableRevisionRecordTest extends MediaWikiUnitTestCase {
 
 	public function testSetGetVisibility() {
 		$record = new MutableRevisionRecord(
-			new PageIdentityValue( 1, NS_MAIN, 'Foo', PageIdentity::LOCAL )
+			PageIdentityValue::localIdentity( 1, NS_MAIN, 'Foo' )
 		);
 		$this->assertSame( 0, $record->getVisibility() );
 		$record->setVisibility( RevisionRecord::DELETED_USER );
@@ -212,7 +212,7 @@ class MutableRevisionRecordTest extends MediaWikiUnitTestCase {
 
 	public function testSetGetSha1() {
 		$record = new MutableRevisionRecord(
-			new PageIdentityValue( 1, NS_MAIN, 'Foo', PageIdentity::LOCAL )
+			PageIdentityValue::localIdentity( 1, NS_MAIN, 'Foo' )
 		);
 		$this->assertSame( 'phoiac9h4m842xq45sp7s6u21eteeq1', $record->getSha1() );
 		$record->setSha1( 'someHash' );
@@ -221,7 +221,7 @@ class MutableRevisionRecordTest extends MediaWikiUnitTestCase {
 
 	public function testResetSha1() {
 		$record = new MutableRevisionRecord(
-			new PageIdentityValue( 1, NS_MAIN, 'Foo', PageIdentity::LOCAL )
+			PageIdentityValue::localIdentity( 1, NS_MAIN, 'Foo' )
 		);
 
 		$record->setContent( SlotRecord::MAIN, new DummyContentForTesting( 'foo' ) );
@@ -240,14 +240,14 @@ class MutableRevisionRecordTest extends MediaWikiUnitTestCase {
 
 	public function testGetSlots() {
 		$record = new MutableRevisionRecord(
-			new PageIdentityValue( 1, NS_MAIN, 'Foo', PageIdentity::LOCAL )
+			PageIdentityValue::localIdentity( 1, NS_MAIN, 'Foo' )
 		);
 		$this->assertInstanceOf( MutableRevisionSlots::class, $record->getSlots() );
 	}
 
 	public function testSetGetSize() {
 		$record = new MutableRevisionRecord(
-			new PageIdentityValue( 1, NS_MAIN, 'Foo', PageIdentity::LOCAL )
+			PageIdentityValue::localIdentity( 1, NS_MAIN, 'Foo' )
 		);
 		$this->assertSame( 0, $record->getSize() );
 		$record->setSize( 775 );
@@ -256,7 +256,7 @@ class MutableRevisionRecordTest extends MediaWikiUnitTestCase {
 
 	public function testResetSize() {
 		$record = new MutableRevisionRecord(
-			new PageIdentityValue( 1, NS_MAIN, 'Foo', PageIdentity::LOCAL )
+			PageIdentityValue::localIdentity( 1, NS_MAIN, 'Foo' )
 		);
 
 		$record->setContent( SlotRecord::MAIN, new DummyContentForTesting( 'foo' ) );
@@ -275,7 +275,7 @@ class MutableRevisionRecordTest extends MediaWikiUnitTestCase {
 
 	public function testSetGetComment() {
 		$record = new MutableRevisionRecord(
-			new PageIdentityValue( 1, NS_MAIN, 'Foo', PageIdentity::LOCAL )
+			PageIdentityValue::localIdentity( 1, NS_MAIN, 'Foo' )
 		);
 		$comment = new CommentStoreComment( 1, 'foo' );
 		$this->assertNull( $record->getComment() );
@@ -285,7 +285,7 @@ class MutableRevisionRecordTest extends MediaWikiUnitTestCase {
 
 	public function testSimpleGetOriginalAndInheritedSlots() {
 		$record = new MutableRevisionRecord(
-			new PageIdentityValue( 1, NS_MAIN, 'Foo', PageIdentity::LOCAL )
+			PageIdentityValue::localIdentity( 1, NS_MAIN, 'Foo' )
 		);
 		$mainSlot = new SlotRecord(
 			(object)[
@@ -324,7 +324,7 @@ class MutableRevisionRecordTest extends MediaWikiUnitTestCase {
 
 	public function testSimpleremoveSlot() {
 		$record = new MutableRevisionRecord(
-			new PageIdentityValue( 1, NS_MAIN, 'Foo', PageIdentity::LOCAL )
+			PageIdentityValue::localIdentity( 1, NS_MAIN, 'Foo' )
 		);
 
 		$a = new DummyContentForTesting( 'a' );
@@ -353,7 +353,7 @@ class MutableRevisionRecordTest extends MediaWikiUnitTestCase {
 		$update->removeSlot( 'd' );
 
 		$record = new MutableRevisionRecord(
-			new PageIdentityValue( 1, NS_MAIN, 'Foo', PageIdentity::LOCAL )
+			PageIdentityValue::localIdentity( 1, NS_MAIN, 'Foo' )
 		);
 		$record->inheritSlot( SlotRecord::newSaved( 7, 3, 'a', SlotRecord::newUnsaved( 'a', $a ) ) );
 		$record->inheritSlot( SlotRecord::newSaved( 7, 4, 'b', SlotRecord::newUnsaved( 'b', $b ) ) );
@@ -398,7 +398,7 @@ class MutableRevisionRecordTest extends MediaWikiUnitTestCase {
 
 	public function testIsCurrent() {
 		$record = new MutableRevisionRecord(
-			new PageIdentityValue( 1, NS_MAIN, 'Foo', PageIdentity::LOCAL )
+			PageIdentityValue::localIdentity( 1, NS_MAIN, 'Foo' )
 		);
 		$this->assertFalse( $record->isCurrent(),
 			MutableRevisionRecord::class . ' cannot be stored current revision' );
@@ -406,12 +406,12 @@ class MutableRevisionRecordTest extends MediaWikiUnitTestCase {
 
 	public function testHasSameContent() {
 		$rev1 = new MutableRevisionRecord(
-			new PageIdentityValue( 1, NS_MAIN, 'Foo', PageIdentity::LOCAL )
+			PageIdentityValue::localIdentity( 1, NS_MAIN, 'Foo' )
 		);
 		$this->assertTrue( $rev1->hasSameContent( $rev1 ) );
 
 		$rev2 = new MutableRevisionRecord(
-			new PageIdentityValue( 2, NS_MAIN, 'Bar', PageIdentity::LOCAL )
+			PageIdentityValue::localIdentity( 2, NS_MAIN, 'Bar' )
 		);
 		$rev1->setSize( 1 );
 		$rev2->setSize( 2 );
@@ -420,7 +420,7 @@ class MutableRevisionRecordTest extends MediaWikiUnitTestCase {
 
 	public function testAudienceCan() {
 		$record = new MutableRevisionRecord(
-			new PageIdentityValue( 1, NS_MAIN, 'Foo', PageIdentity::LOCAL )
+			PageIdentityValue::localIdentity( 1, NS_MAIN, 'Foo' )
 		);
 		$this->expectException( InvalidArgumentException::class );
 		$this->expectExceptionMessage(
@@ -431,7 +431,7 @@ class MutableRevisionRecordTest extends MediaWikiUnitTestCase {
 
 	public function testGetContent_bad() {
 		$record = new MutableRevisionRecord(
-			new PageIdentityValue( 1, NS_MAIN, 'Foo', PageIdentity::LOCAL )
+			PageIdentityValue::localIdentity( 1, NS_MAIN, 'Foo' )
 		);
 		$slot = new SlotRecord(
 			(object)[

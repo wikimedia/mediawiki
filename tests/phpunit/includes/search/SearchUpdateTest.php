@@ -13,7 +13,7 @@ class SearchUpdateTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp(): void {
 		parent::setUp();
-		$pageIdentity = new PageIdentityValue( 42, NS_MAIN, 'Main_Page', PageIdentityValue::LOCAL );
+		$pageIdentity = PageIdentityValue::localIdentity( 42, NS_MAIN, 'Main_Page' );
 		$this->su = new SearchUpdate( 0, $pageIdentity );
 	}
 

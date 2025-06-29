@@ -602,18 +602,16 @@ class RestrictionStore {
 			$expiry = $dbr->decodeExpiry( $row->pr_expiry );
 			if ( $expiry > $now ) {
 				if ( $row->type === 'il' ) {
-					$ilSources[$row->pr_page] = new PageIdentityValue(
+					$ilSources[$row->pr_page] = PageIdentityValue::localIdentity(
 						$row->pr_page,
 						$row->page_namespace,
-						$row->page_title,
-						PageIdentity::LOCAL
+						$row->page_title
 					);
 				} elseif ( $row->type === 'tl' ) {
-					$tlSources[$row->pr_page] = new PageIdentityValue(
+					$tlSources[$row->pr_page] = PageIdentityValue::localIdentity(
 						$row->pr_page,
 						$row->page_namespace,
-						$row->page_title,
-						PageIdentity::LOCAL
+						$row->page_title
 					);
 				}
 

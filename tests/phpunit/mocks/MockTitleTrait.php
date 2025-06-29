@@ -102,11 +102,10 @@ trait MockTitleTrait {
 		$title->method( '__toString' )->willReturn( "MockTitle:{$preText}" );
 
 		$title->method( 'toPageIdentity' )->willReturnCallback( static function () use ( $title ) {
-			return new PageIdentityValue(
+			return PageIdentityValue::localIdentity(
 				$title->getId(),
 				$title->getNamespace(),
-				$title->getDBkey(),
-				PageIdentity::LOCAL
+				$title->getDBkey()
 			);
 		} );
 

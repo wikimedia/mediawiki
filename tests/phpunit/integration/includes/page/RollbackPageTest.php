@@ -10,7 +10,6 @@ use MediaWiki\Content\WikitextContent;
 use MediaWiki\Logging\DatabaseLogEntry;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\Event\PageLatestRevisionChangedEvent;
-use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\ProperPageIdentity;
 use MediaWiki\Page\RollbackPage;
@@ -89,7 +88,7 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 			$this->getServiceContainer()
 				->getRollbackPageFactory()
 				->newRollbackPage(
-					new PageIdentityValue( 10, NS_MAIN, 'Test', PageIdentity::LOCAL ),
+					PageIdentityValue::localIdentity( 10, NS_MAIN, 'Test' ),
 					$authority,
 					new UserIdentityValue( 0, '127.0.0.1' )
 				)
@@ -283,7 +282,7 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 		$rollbackStatus = $this->getServiceContainer()
 			->getRollbackPageFactory()
 			->newRollbackPage(
-				new PageIdentityValue( 0, NS_MAIN, __METHOD__, PageIdentityValue::LOCAL ),
+				PageIdentityValue::localIdentity( 0, NS_MAIN, __METHOD__ ),
 				$this->mockRegisteredUltimateAuthority(),
 				new UserIdentityValue( 0, '127.0.0.1' )
 			)

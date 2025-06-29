@@ -7,7 +7,6 @@ use MediaWiki\Cache\LinkCache;
 use MediaWiki\Language\Language;
 use MediaWiki\Linker\LinksMigration;
 use MediaWiki\Logger\LoggerFactory;
-use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Title\TitleFormatter;
 use MediaWiki\Title\TitleValue;
@@ -55,7 +54,7 @@ class LinkBatchFactoryTest extends MediaWikiUnitTestCase {
 
 		$linkBatch = $factory->newLinkBatch( [
 			new TitleValue( NS_MAIN, 'Foo' ),
-			new PageReferenceValue( NS_TALK, 'Bar', PageReference::LOCAL ),
+			PageReferenceValue::localReference( NS_TALK, 'Bar' ),
 		] );
 
 		$this->assertFalse( $linkBatch->isEmpty() );

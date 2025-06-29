@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\Context\RequestContext;
-use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\RevisionList\RevisionItem;
 use MediaWiki\RevisionList\RevisionList;
@@ -19,7 +18,7 @@ class RevisionListTest extends MediaWikiIntegrationTestCase {
 
 	public function testGetType() {
 		$context = new RequestContext();
-		$page = new PageIdentityValue( 123, NS_MAIN, __METHOD__, PageIdentity::LOCAL );
+		$page = PageIdentityValue::localIdentity( 123, NS_MAIN, __METHOD__ );
 		$revisionList = new RevisionList( $context, $page );
 
 		$this->assertSame(
@@ -43,7 +42,7 @@ class RevisionListTest extends MediaWikiIntegrationTestCase {
 		$context = new RequestContext();
 		$context->setUser( $this->getTestSysop()->getUser() );
 
-		$page = new PageIdentityValue( 123, NS_MAIN, __METHOD__, PageIdentity::LOCAL );
+		$page = PageIdentityValue::localIdentity( 123, NS_MAIN, __METHOD__ );
 		$revisionList = new RevisionList( $context, $page );
 
 		$revisionItem = $revisionList->newItem( $row );

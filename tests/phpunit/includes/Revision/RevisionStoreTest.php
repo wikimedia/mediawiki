@@ -388,7 +388,7 @@ class RevisionStoreTest extends MediaWikiIntegrationTestCase {
 		}
 		$revStore->checkContent(
 			$content,
-			new PageIdentityValue( 0, NS_MAIN, 'Example', PageIdentityValue::LOCAL ),
+			PageIdentityValue::localIdentity( 0, NS_MAIN, 'Example' ),
 			SlotRecord::MAIN
 		);
 		// Avoid issues with no assertions for the non-exception case

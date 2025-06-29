@@ -179,7 +179,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 		$po->addLink( Title::newFromText( "Foo" ) );
 		$this->assertMoveLinksUpdate(
 			$t,
-			new PageIdentityValue( 2, 0, "Foo", false ),
+			PageIdentityValue::localIdentity( 2, 0, "Foo" ),
 			$po,
 			'pagelinks',
 			[ 'lt_namespace', 'lt_title', 'pl_from_namespace' ],
@@ -507,7 +507,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 		// With move notification, update to cl_sortkey is expected
 		$this->assertMoveLinksUpdate(
 			$t,
-			new PageIdentityValue( 2, 0, "new", false ),
+			PageIdentityValue::localIdentity( 2, 0, "new" ),
 			$po,
 			'categorylinks',
 			[ 'cl_to', 'cl_sortkey' ],

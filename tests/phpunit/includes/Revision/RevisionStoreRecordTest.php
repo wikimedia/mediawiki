@@ -56,7 +56,7 @@ class RevisionStoreRecordTest extends MediaWikiIntegrationTestCase {
 		];
 
 		yield 'all info, local' => [
-			new PageIdentityValue( 17, NS_MAIN, 'Dummy', PageIdentity::LOCAL ),
+			PageIdentityValue::localIdentity( 17, NS_MAIN, 'Dummy' ),
 			$user,
 			$comment,
 			(object)$row,
@@ -280,12 +280,7 @@ class RevisionStoreRecordTest extends MediaWikiIntegrationTestCase {
 		];
 		$this->expectException( TimestampException::class );
 		new RevisionStoreRecord(
-			new PageIdentityValue(
-				$row->rev_page,
-				NS_MAIN,
-				'Foobar',
-				PageIdentityValue::LOCAL
-			),
+			PageIdentityValue::localIdentity( $row->rev_page, NS_MAIN, 'Foobar' ),
 			new UserIdentityValue( 11, __CLASS__ ),
 			$this->createMock( CommentStoreComment::class ),
 			$row,

@@ -450,7 +450,7 @@ class FileTest extends MediaWikiMediaTestCase {
 		yield [ 'some name.jpg', 'Some_name.jpg' ];
 		yield [ new TitleValue( NS_FILE, 'Some_name.jpg' ), 'Some_name.jpg' ];
 		yield [ new TitleValue( NS_MEDIA, 'Some_name.jpg' ), 'Some_name.jpg' ];
-		yield [ new PageIdentityValue( 0, NS_FILE, 'Some_name.jpg', false ), 'Some_name.jpg' ];
+		yield [ PageIdentityValue::localIdentity( 0, NS_FILE, 'Some_name.jpg' ), 'Some_name.jpg' ];
 	}
 
 	/**
@@ -468,7 +468,7 @@ class FileTest extends MediaWikiMediaTestCase {
 		yield [ '' ];
 		yield [ '#' ];
 		yield [ new TitleValue( NS_USER, 'Some_name.jpg' ) ];
-		yield [ new PageIdentityValue( 0, NS_USER, 'Some_name.jpg', false ) ];
+		yield [ PageIdentityValue::localIdentity( 0, NS_USER, 'Some_name.jpg' ) ];
 	}
 
 	/**

@@ -8,7 +8,6 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Message\Message;
 use MediaWiki\Page\Article;
-use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\Title\MalformedTitleException;
@@ -2148,7 +2147,7 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 		$title->resetArticleID( 1 );
 		yield '(PageIdentityValue) same text, title has ID 0' => [
 			$title,
-			new PageIdentityValue( 1, 0, 'Foo', PageIdentity::LOCAL ),
+			PageIdentityValue::localIdentity( 1, 0, 'Foo' ),
 			true
 		];
 
@@ -2156,7 +2155,7 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 		$title->resetArticleID( 0 );
 		yield '(PageIdentityValue) same text, PageIdentityValue has ID 0' => [
 			$title,
-			new PageIdentityValue( 0, 1, 'Bar_Baz', PageIdentity::LOCAL ),
+			PageIdentityValue::localIdentity( 0, 1, 'Bar_Baz' ),
 			true
 		];
 
@@ -2164,7 +2163,7 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 		$title->resetArticleID( 0 );
 		yield '(PageIdentityValue) different text, both IDs are 0' => [
 			$title,
-			new PageIdentityValue( 0, 0, 'Foozz', PageIdentity::LOCAL ),
+			PageIdentityValue::localIdentity( 0, 0, 'Foozz' ),
 			false
 		];
 
@@ -2172,7 +2171,7 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 		$title->resetArticleID( 0 );
 		yield '(PageIdentityValue) different namespace' => [
 			$title,
-			new PageIdentityValue( 0, 1, 'Foo', PageIdentity::LOCAL ),
+			PageIdentityValue::localIdentity( 0, 1, 'Foo' ),
 			false
 		];
 

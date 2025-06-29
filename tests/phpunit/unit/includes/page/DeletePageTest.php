@@ -301,10 +301,10 @@ class DeletePageTest extends MediaWikiUnitTestCase {
 	}
 
 	public static function provideAssociatedTalk(): Generator {
-		$talkPage = new PageIdentityValue( 42, NS_TALK, 'Test talk page', PageIdentity::LOCAL );
+		$talkPage = PageIdentityValue::localIdentity( 42, NS_TALK, 'Test talk page' );
 		yield 'Talk page' => [ $talkPage, false, 'delete-error-associated-alreadytalk' ];
 
-		$nonTalkPage = new PageIdentityValue( 44, NS_MAIN, 'Test article', PageIdentity::LOCAL );
+		$nonTalkPage = PageIdentityValue::localIdentity( 44, NS_MAIN, 'Test article' );
 		yield 'Article without talk page' => [ $nonTalkPage, false, 'delete-error-associated-doesnotexist' ];
 
 		yield 'Article with talk page' => [ $nonTalkPage, true, null ];

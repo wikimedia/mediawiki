@@ -67,11 +67,11 @@ class PageReferenceValueTest extends MediaWikiUnitTestCase {
 
 	public static function provideToString() {
 		yield [
-			new PageReferenceValue( 0, 'Foo', PageReference::LOCAL ),
+			PageReferenceValue::localReference( 0, 'Foo' ),
 			'[0:Foo]'
 		];
 		yield [
-			new PageReferenceValue( 1, 'Bar_Baz', PageReference::LOCAL ),
+			PageReferenceValue::localReference( 1, 'Bar_Baz' ),
 			'[1:Bar_Baz]'
 		];
 		yield [
@@ -92,23 +92,23 @@ class PageReferenceValueTest extends MediaWikiUnitTestCase {
 
 	public static function provideIsSamePageAs() {
 		yield [
-			new PageReferenceValue( 0, 'Foo', PageReference::LOCAL ),
-			new PageReferenceValue( 0, 'Foo', PageReference::LOCAL ),
+			PageReferenceValue::localReference( 0, 'Foo' ),
+			PageReferenceValue::localReference( 0, 'Foo' ),
 			true
 		];
 		yield [
-			new PageReferenceValue( 1, 'Bar_Baz', PageReference::LOCAL ),
-			new PageReferenceValue( 1, 'Bar_Baz', PageReference::LOCAL ),
+			PageReferenceValue::localReference( 1, 'Bar_Baz' ),
+			PageReferenceValue::localReference( 1, 'Bar_Baz' ),
 			true
 		];
 		yield [
-			new PageReferenceValue( 0, 'Foo', PageReference::LOCAL ),
-			new PageReferenceValue( 0, 'Foozz', PageReference::LOCAL ),
+			PageReferenceValue::localReference( 0, 'Foo' ),
+			PageReferenceValue::localReference( 0, 'Foozz' ),
 			false
 		];
 		yield [
-			new PageReferenceValue( 0, 'Foo', PageReference::LOCAL ),
-			new PageReferenceValue( 1, 'Foo', PageReference::LOCAL ),
+			PageReferenceValue::localReference( 0, 'Foo' ),
+			PageReferenceValue::localReference( 1, 'Foo' ),
 			false
 		];
 		yield [

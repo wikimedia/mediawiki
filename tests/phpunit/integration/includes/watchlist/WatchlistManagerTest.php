@@ -33,7 +33,7 @@ class WatchlistManagerTest extends MediaWikiIntegrationTestCase {
 			$userIdentity,
 			[ 'editmywatchlist', 'viewmywatchlist' ]
 		);
-		$title = new PageIdentityValue( 100, NS_MAIN, 'Page_db_Key_goesHere', PageIdentityValue::LOCAL );
+		$title = PageIdentityValue::localIdentity( 100, NS_MAIN, 'Page_db_Key_goesHere' );
 
 		$this->overrideConfigValue( MainConfigNames::WatchlistExpiry, true );
 		$services = $this->getServiceContainer();
@@ -102,7 +102,7 @@ class WatchlistManagerTest extends MediaWikiIntegrationTestCase {
 	public function testWatchlistNoRights() {
 		$userIdentity = new UserIdentityValue( 100, 'User Name' );
 		$authority = $this->mockUserAuthorityWithPermissions( $userIdentity, [] );
-		$title = new PageIdentityValue( 100, NS_MAIN, 'Page_db_Key_goesHere', PageIdentityValue::LOCAL );
+		$title = PageIdentityValue::localIdentity( 100, NS_MAIN, 'Page_db_Key_goesHere' );
 
 		$this->overrideConfigValue( MainConfigNames::WatchlistExpiry, true );
 		$services = $this->getServiceContainer();
@@ -157,7 +157,7 @@ class WatchlistManagerTest extends MediaWikiIntegrationTestCase {
 	public function testAddWatchUserNotPermittedStatusNotGood() {
 		$userIdentity = new UserIdentityValue( 100, 'User Name' );
 		$performer = $this->mockUserAuthorityWithPermissions( $userIdentity, [] );
-		$title = new PageIdentityValue( 100, NS_MAIN, 'Page_db_Key_goesHere', PageIdentityValue::LOCAL );
+		$title = PageIdentityValue::localIdentity( 100, NS_MAIN, 'Page_db_Key_goesHere' );
 
 		$services = $this->getServiceContainer();
 		$watchedItemStore = $services->getWatchedItemStore();
@@ -181,7 +181,7 @@ class WatchlistManagerTest extends MediaWikiIntegrationTestCase {
 	public function testRemoveWatchWithoutRights() {
 		$userIdentity = new UserIdentityValue( 100, 'User Name' );
 		$performer = $this->mockUserAuthorityWithPermissions( $userIdentity, [] );
-		$title = new PageIdentityValue( 100, NS_MAIN, 'Page_db_Key_goesHere', PageIdentityValue::LOCAL );
+		$title = PageIdentityValue::localIdentity( 100, NS_MAIN, 'Page_db_Key_goesHere' );
 
 		$services = $this->getServiceContainer();
 		$watchlistManager = $services->getWatchlistManager();

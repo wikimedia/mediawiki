@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Deferred\LinksUpdate;
 
-use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Title\Title;
 use Wikimedia\Rdbms\IResultWrapper;
@@ -180,7 +179,7 @@ abstract class GenericPageLinksTable extends TitleLinksTable {
 
 	/** @inheritDoc */
 	protected function makePageReferenceValue( $linkId ): PageReferenceValue {
-		return new PageReferenceValue( $linkId[0], $linkId[1], WikiAwareEntity::LOCAL );
+		return PageReferenceValue::localReference( $linkId[0], $linkId[1] );
 	}
 
 	/** @inheritDoc */
