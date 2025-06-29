@@ -131,7 +131,7 @@ TEXT
 		}
 	}
 
-	protected function doWork( string $mode ) {
+	protected function doWork( string $mode ): int|false {
 		$this->output( "Finding up to {$this->getBatchSize()} drifted rows " .
 			"greater than cat_id {$this->minimumId}...\n" );
 

@@ -69,7 +69,7 @@ class CheckStorage extends Maintenance {
 		'fixable' => 'Errors which would already be fixed if --fix was specified',
 	];
 
-	public function check( $fix = false, $xml = '' ) {
+	public function check( bool $fix = false, string|false $xml = '' ) {
 		$dbr = $this->getReplicaDB();
 		if ( $fix ) {
 			print "Checking, will fix errors if possible...\n";
