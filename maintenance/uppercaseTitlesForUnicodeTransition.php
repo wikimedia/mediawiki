@@ -201,6 +201,7 @@ class UppercaseTitlesForUnicodeTransition extends Maintenance {
 		);
 		$this->processTable( $db, self::MOVE, 'page', 'page_namespace', 'page_title', [ 'page_id' ] );
 		$this->processTable( $db, self::MOVE, 'image', NS_FILE, 'img_name', [] );
+		$this->processTable( $db, self::MOVE, 'file', NS_FILE, 'file_name', [ 'file_id' ] );
 		$this->processTable(
 			$db, self::UPPERCASE, 'redirect', 'rd_namespace', 'rd_title', [ 'rd_from' ]
 		);
