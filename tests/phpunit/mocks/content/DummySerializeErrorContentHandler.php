@@ -24,6 +24,7 @@ use MediaWiki\Exception\MWContentSerializationException;
  */
 class DummySerializeErrorContentHandler extends DummyContentHandlerForTesting {
 
+	/** @inheritDoc */
 	public function __construct( $dataModel ) {
 		parent::__construct( $dataModel, [ "testing-serialize-error" ] );
 	}

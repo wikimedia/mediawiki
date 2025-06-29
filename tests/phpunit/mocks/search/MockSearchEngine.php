@@ -39,6 +39,7 @@ class MockSearchEngine extends SearchEngine {
 		self::$interwikiResults = $interwikiResults;
 	}
 
+	/** @inheritDoc */
 	protected function doSearchText( $term ) {
 		if ( isset( self::$results[ $term ] ) ) {
 			$results = array_slice( self::$results[ $term ], $this->offset, $this->limit );

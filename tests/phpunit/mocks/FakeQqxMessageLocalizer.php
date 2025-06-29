@@ -26,6 +26,7 @@ use Wikimedia\Message\MessageSpecifier;
  */
 class FakeQqxMessageLocalizer implements MessageLocalizer {
 
+	/** @inheritDoc */
 	public function msg( $key, ...$params ): Message {
 		$message = new class( $key ) extends Message {
 
@@ -33,6 +34,7 @@ class FakeQqxMessageLocalizer implements MessageLocalizer {
 				return "($this->key$*)";
 			}
 
+			/** @inheritDoc */
 			public static function newFromSpecifier( $value ) {
 				if ( $value instanceof MessageSpecifier ) {
 					return new self( $value );
@@ -46,6 +48,7 @@ class FakeQqxMessageLocalizer implements MessageLocalizer {
 					public function __construct() {
 					}
 
+					/** @inheritDoc */
 					public function getCode(): string {
 						return 'qqx';
 					}
@@ -65,6 +68,7 @@ class FakeQqxMessageLocalizer implements MessageLocalizer {
 				return $this;
 			}
 
+			/** @inheritDoc */
 			protected function transformText( $string ): string {
 				return $string;
 			}

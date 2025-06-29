@@ -33,6 +33,7 @@ class MockCompletionSearchEngine extends SearchEngine {
 		self::$results[$normalized] = $result;
 	}
 
+	/** @inheritDoc */
 	public function completionSearchBackend( $search ) {
 		$search = mb_strtolower( $search );
 		if ( !isset( self::$results[$search] ) ) {

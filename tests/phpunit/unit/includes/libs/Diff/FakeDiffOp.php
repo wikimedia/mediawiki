@@ -9,6 +9,7 @@ use Wikimedia\Diff\DiffOp;
  */
 class FakeDiffOp extends DiffOp {
 
+	/** @inheritDoc */
 	public function reverse() {
 		return null;
 	}

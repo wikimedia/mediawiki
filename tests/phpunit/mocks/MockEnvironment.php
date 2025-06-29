@@ -119,16 +119,19 @@ class MockEnvironment extends EntryPointEnvironment {
 		// no-op
 	}
 
+	/** @inheritDoc */
 	public function getEnv( string $name ) {
 		// Implement when needed.
 		return false;
 	}
 
+	/** @inheritDoc */
 	public function getIni( string $name ) {
 		// Implement when needed.
 		return false;
 	}
 
+	/** @inheritDoc */
 	public function setIniOption( string $name, $value ) {
 		// Implement when needed.
 		return false;

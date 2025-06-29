@@ -18,14 +18,17 @@ class MockSearchResultSet extends SearchResultSet {
 		$this->interwikiResults = $interwikiResults;
 	}
 
+	/** @inheritDoc */
 	public function numRows() {
 		return count( $this->results );
 	}
 
+	/** @inheritDoc */
 	public function hasInterwikiResults( $type = self::SECONDARY_RESULTS ) {
 		return (bool)( $this->interwikiResults[$type] ?? false );
 	}
 
+	/** @inheritDoc */
 	public function extractResults() {
 		$results = parent::extractResults();
 
@@ -39,10 +42,12 @@ class MockSearchResultSet extends SearchResultSet {
 		return $results;
 	}
 
+	/** @inheritDoc */
 	public function getInterwikiResults( $type = self::SECONDARY_RESULTS ) {
 		return $this->interwikiResults[$type] ?? [];
 	}
 
+	/** @inheritDoc */
 	public function getTotalHits() {
 		return $this->numRows();
 	}

@@ -22,6 +22,7 @@ class TestLocalisationCache extends LocalisationCache {
 	/** @var self */
 	private $selfAccess;
 
+	/** @inheritDoc */
 	public function __construct( ...$params ) {
 		parent::__construct( ...$params );
 
@@ -31,6 +32,7 @@ class TestLocalisationCache extends LocalisationCache {
 		$this->selfAccess = TestingAccessWrapper::newFromObject( $this );
 	}
 
+	/** @inheritDoc */
 	public function recache( $code ) {
 		$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
 		// Test run performance is killed if we have to regenerate l10n for every test

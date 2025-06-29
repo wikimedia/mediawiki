@@ -15,10 +15,12 @@ class MockApiQueryBase extends ApiQueryBase {
 		$this->name = $name;
 	}
 
+	/** @inheritDoc */
 	public function getModuleName() {
 		return $this->name;
 	}
 
+	/** @inheritDoc */
 	public function getModulePath() {
 		return 'query+' . $this->getModuleName();
 	}

@@ -16,6 +16,7 @@ class CustomDifferenceEngine extends DifferenceEngine {
 		$this->getOutput()->addModules( 'foo' );
 	}
 
+	/** @inheritDoc */
 	public function getDiffBodyCacheKeyParams() {
 		$params = parent::getDiffBodyCacheKeyParams();
 		$params[] = 'foo';

@@ -30,6 +30,7 @@ class MockPoolCounterFailing extends PoolCounter {
 	/** @var Status|null */
 	private $mockRelease;
 
+	/** @inheritDoc */
 	public function __construct( $conf, $type, $key ) {
 		$conf += [
 			'timeout' => 15,
@@ -42,14 +43,17 @@ class MockPoolCounterFailing extends PoolCounter {
 		$this->mockRelease = $conf['mockRelease'] ?? null;
 	}
 
+	/** @inheritDoc */
 	public function acquireForMe( $timeout = null ) {
 		return $this->mockAcquire ?? Status::newGood( PoolCounter::QUEUE_FULL );
 	}
 
+	/** @inheritDoc */
 	public function acquireForAnyone( $timeout = null ) {
 		return $this->mockAcquire ?? Status::newGood( PoolCounter::QUEUE_FULL );
 	}
 
+	/** @inheritDoc */
 	public function release() {
 		return $this->mockRelease ?? Status::newGood( PoolCounter::NOT_LOCKED );
 	}
