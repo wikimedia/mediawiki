@@ -20,22 +20,27 @@ class FakeDimensionFile extends File {
 		$this->mime = $mime;
 	}
 
+	/** @inheritDoc */
 	public function getWidth( $page = 1 ) {
 		return $this->dimensions[0];
 	}
 
+	/** @inheritDoc */
 	public function getHeight( $page = 1 ) {
 		return $this->dimensions[1];
 	}
 
+	/** @inheritDoc */
 	public function mustRender() {
 		return $this->mustRender;
 	}
 
+	/** @inheritDoc */
 	public function getPath() {
 		return '';
 	}
 
+	/** @inheritDoc */
 	public function getMimeType() {
 		return $this->mime;
 	}

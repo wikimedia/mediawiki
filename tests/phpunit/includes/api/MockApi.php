@@ -14,14 +14,17 @@ class MockApi extends ApiBase {
 	public function __construct() {
 	}
 
+	/** @inheritDoc */
 	public function getModulePath() {
 		return $this->getModuleName();
 	}
 
+	/** @inheritDoc */
 	public function addWarning( $warning, $code = null, $data = null ) {
 		$this->warnings[] = $warning;
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		return [
 			'filename' => null,

@@ -15,12 +15,14 @@ class ParserTestMockParser extends Parser {
 	public function __construct() {
 	}
 
+	/** @inheritDoc */
 	public function preSaveTransform( $text, PageReference $page, UserIdentity $user,
 		ParserOptions $options, $clearState = true
 	) {
 		return $text;
 	}
 
+	/** @inheritDoc */
 	public function parse(
 		$text, PageReference $page, ParserOptions $options,
 		$linestart = true, $clearState = true, $revid = null
@@ -28,6 +30,7 @@ class ParserTestMockParser extends Parser {
 		return new ParserOutput;
 	}
 
+	/** @inheritDoc */
 	public function getOutput() {
 		return new ParserOutput;
 	}

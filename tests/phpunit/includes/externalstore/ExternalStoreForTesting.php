@@ -40,12 +40,14 @@ class ExternalStoreForTesting {
 		return $this->data[$cluster][$id];
 	}
 
+	/** @inheritDoc */
 	public function store( $location, $data ) {
 		$itemId = mt_rand( 500, 1000 );
 		$this->data[$location][$itemId] = $data;
 		return "ForTesting://$location/$itemId";
 	}
 
+	/** @inheritDoc */
 	public function isReadOnly() {
 		return false;
 	}

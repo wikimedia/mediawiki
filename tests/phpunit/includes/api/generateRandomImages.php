@@ -16,6 +16,7 @@ require_once __DIR__ . "/RandomImageGenerator.php";
 
 class GenerateRandomImages extends Maintenance {
 
+	/** @inheritDoc */
 	public function getDbType() {
 		return Maintenance::DB_NONE;
 	}

@@ -9,11 +9,13 @@ use MediaWiki\Rest\Handler;
  * @unstable
  */
 class HelloHandler extends Handler {
+	/** @inheritDoc */
 	public function execute() {
 		$hello = $this->getConfig()['hello'] ?? 'Hello!';
 		return [ 'message' => $hello ];
 	}
 
+	/** @inheritDoc */
 	public function needsWriteAccess() {
 		return false;
 	}

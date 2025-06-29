@@ -25,6 +25,7 @@ class DummySessionBackend {
 	/** @var bool */
 	public $dirty = false;
 
+	/** @inheritDoc */
 	public function &getData() {
 		return $this->data;
 	}
@@ -37,6 +38,7 @@ class DummySessionBackend {
 		return new User();
 	}
 
+	/** @inheritDoc */
 	public function deregisterSession( $index ) {
 	}
 }

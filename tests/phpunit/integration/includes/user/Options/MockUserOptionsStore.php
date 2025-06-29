@@ -13,10 +13,12 @@ class MockUserOptionsStore implements UserOptionsStore {
 		$this->data = $initialData;
 	}
 
+	/** @inheritDoc */
 	public function fetch( UserIdentity $user, int $recency ) {
 		return $this->data[$user->getName()] ?? [];
 	}
 
+	/** @inheritDoc */
 	public function fetchBatchForUserNames( array $keys, array $userNames ) {
 		$result = [];
 		foreach ( $keys as $key ) {
@@ -29,6 +31,7 @@ class MockUserOptionsStore implements UserOptionsStore {
 		return $result;
 	}
 
+	/** @inheritDoc */
 	public function store( UserIdentity $user, array $updates ) {
 		$userName = $user->getName();
 		if ( !isset( $this->data[$userName] ) ) {

@@ -4,11 +4,13 @@ use PHPUnit\Framework\Assert;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
 class TestSelectQueryBuilder extends SelectQueryBuilder {
+	/** @inheritDoc */
 	public function fields( $fields ) {
 		$this->orderBy( $fields );
 		return parent::fields( $fields );
 	}
 
+	/** @inheritDoc */
 	public function field( $field, $alias = null ) {
 		$this->orderBy( $field );
 		return parent::field( $field, $alias );

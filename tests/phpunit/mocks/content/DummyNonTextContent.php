@@ -14,6 +14,7 @@ class DummyNonTextContent extends AbstractContent {
 		$this->data = $data;
 	}
 
+	/** @inheritDoc */
 	public function serialize( $format = null ) {
 		return $this->data;
 	}

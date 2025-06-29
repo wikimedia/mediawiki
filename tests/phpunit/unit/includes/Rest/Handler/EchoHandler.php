@@ -14,6 +14,7 @@ class EchoHandler extends Handler {
 	/** @var bool */
 	private $postValidationSetupCalled = false;
 
+	/** @inheritDoc */
 	public function execute() {
 		if ( !$this->postValidationSetupCalled ) {
 			throw new LogicException( 'postValidationSetup was not called' );
@@ -53,6 +54,7 @@ class EchoHandler extends Handler {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getParamSettings() {
 		$paramSettings = [
 			'q' => [
@@ -88,6 +90,7 @@ class EchoHandler extends Handler {
 		];
 	}
 
+	/** @inheritDoc */
 	public function needsWriteAccess() {
 		return false;
 	}

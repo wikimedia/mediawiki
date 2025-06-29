@@ -31,6 +31,7 @@ use Wikimedia\FileBackend\MemoryFileBackend;
  * @since 1.22
  */
 class MockFileBackend extends MemoryFileBackend {
+	/** @inheritDoc */
 	protected function doGetLocalCopyMulti( array $params ) {
 		$tmpFiles = []; // (path => MockFSFile)
 		foreach ( $params['srcs'] as $src ) {

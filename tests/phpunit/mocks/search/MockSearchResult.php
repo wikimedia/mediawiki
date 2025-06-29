@@ -8,6 +8,7 @@ class MockSearchResult extends RevisionSearchResult {
 	/** @var string */
 	private $interwikiPrefix = '';
 
+	/** @inheritDoc */
 	public function isMissingRevision() {
 		return $this->isMissingRevision;
 	}
@@ -17,6 +18,7 @@ class MockSearchResult extends RevisionSearchResult {
 		return $this;
 	}
 
+	/** @inheritDoc */
 	public function isBrokenTitle() {
 		return $this->isBrokenTitle;
 	}
@@ -26,6 +28,7 @@ class MockSearchResult extends RevisionSearchResult {
 		return $this;
 	}
 
+	/** @inheritDoc */
 	public function getInterwikiPrefix() {
 		return $this->interwikiPrefix;
 	}

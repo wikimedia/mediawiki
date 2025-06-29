@@ -149,17 +149,20 @@ class DatabaseTestHelper extends Database {
 		}
 	}
 
+	/** @inheritDoc */
 	public function strencode( $s ) {
 		// Choose apos to avoid handling of escaping double quotes in quoted text
 		return str_replace( "'", "\'", $s );
 	}
 
+	/** @inheritDoc */
 	public function query( $sql, $fname = '', $flags = 0 ) {
 		$this->checkFunctionName( $fname );
 
 		return parent::query( $sql, $fname, $flags );
 	}
 
+	/** @inheritDoc */
 	public function tableExists( $table, $fname = __METHOD__ ) {
 		[ $db, $pt ] = $this->platform->getDatabaseAndTableIdentifier( $table );
 		if ( isset( $this->sessionTempTables[$db][$pt] ) ) {
@@ -171,59 +174,72 @@ class DatabaseTestHelper extends Database {
 		return in_array( $table, (array)$this->tablesExists );
 	}
 
+	/** @inheritDoc */
 	public function getType() {
 		return 'test';
 	}
 
+	/** @inheritDoc */
 	public function open( $server, $user, $password, $db, $schema, $tablePrefix ) {
 		$this->conn = (object)[ 'test' ];
 
 		return true;
 	}
 
+	/** @inheritDoc */
 	protected function lastInsertId() {
 		return -1;
 	}
 
+	/** @inheritDoc */
 	public function lastErrno() {
 		return $this->lastResMap ? $this->lastResMap['errno'] : -1;
 	}
 
+	/** @inheritDoc */
 	public function lastError() {
 		return $this->lastResMap ? $this->lastResMap['error'] : 'test';
 	}
 
+	/** @inheritDoc */
 	protected function isKnownStatementRollbackError( $errno ) {
 		return ( $this->lastResMap['errno'] ?? 0 ) === $errno
 			? ( $this->lastResMap['isKnownStatementRollbackError'] ?? false )
 			: false;
 	}
 
+	/** @inheritDoc */
 	public function fieldInfo( $table, $field ) {
 		return false;
 	}
 
+	/** @inheritDoc */
 	public function indexInfo( $table, $index, $fname = 'Database::indexInfo' ) {
 		return false;
 	}
 
+	/** @inheritDoc */
 	public function getSoftwareLink() {
 		return 'test';
 	}
 
+	/** @inheritDoc */
 	public function getServerVersion() {
 		return 'test';
 	}
 
+	/** @inheritDoc */
 	public function getServerInfo() {
 		return 'test';
 	}
 
+	/** @inheritDoc */
 	public function ping( &$rtt = null ) {
 		$rtt = 0.0;
 		return true;
 	}
 
+	/** @inheritDoc */
 	protected function closeConnection() {
 		return true;
 	}

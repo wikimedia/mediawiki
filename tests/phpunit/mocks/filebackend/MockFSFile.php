@@ -37,6 +37,7 @@ class MockFSFile extends FSFile {
 	/** @inheritDoc */
 	protected $sha1Base36 = null;
 
+	/** @inheritDoc */
 	public function exists() {
 		return true;
 	}
@@ -50,10 +51,12 @@ class MockFSFile extends FSFile {
 		return 1911;
 	}
 
+	/** @inheritDoc */
 	public function getTimestamp() {
 		return wfTimestamp( TS_MW );
 	}
 
+	/** @inheritDoc */
 	public function getProps( $ext = true ) {
 		return [
 			'fileExists' => $this->exists(),
@@ -63,6 +66,7 @@ class MockFSFile extends FSFile {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getSha1Base36( $recache = false ) {
 		return '1234567890123456789012345678901';
 	}

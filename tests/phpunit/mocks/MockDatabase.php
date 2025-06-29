@@ -32,6 +32,7 @@ class MockDatabase extends Database {
 	/** @var int */
 	private $nextInsertId = 0;
 
+	/** @inheritDoc */
 	public function __construct( $options = [] ) {
 		// Use a real logger because tests need logging, maybe more than production
 		$logger = $options['logger'] ?? LoggerFactory::getInstance( 'MockDatabase' );
@@ -61,17 +62,21 @@ class MockDatabase extends Database {
 		);
 	}
 
+	/** @inheritDoc */
 	protected function open( $server, $user, $password, $db, $schema, $tablePrefix ) {
 	}
 
+	/** @inheritDoc */
 	public function isOpen() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function indexInfo( $table, $index, $fname = __METHOD__ ) {
 		throw new \RuntimeException( 'Not implemented' );
 	}
 
+	/** @inheritDoc */
 	public function strencode( $s ) {
 		return addslashes( $s );
 	}
@@ -88,34 +93,42 @@ class MockDatabase extends Database {
 		}
 	}
 
+	/** @inheritDoc */
 	public function tableExists( $table, $fname = __METHOD__ ) {
 		return true;
 	}
 
+	/** @inheritDoc */
 	protected function lastInsertId() {
 		return $this->nextInsertId++;
 	}
 
+	/** @inheritDoc */
 	public function fieldInfo( $table, $field ) {
 		throw new \RuntimeException( 'Not implemented' );
 	}
 
+	/** @inheritDoc */
 	public function getType() {
 		return 'mock';
 	}
 
+	/** @inheritDoc */
 	public function lastErrno() {
 		return 0;
 	}
 
+	/** @inheritDoc */
 	public function lastError() {
 		return '';
 	}
 
+	/** @inheritDoc */
 	public function getSoftwareLink() {
 		return '';
 	}
 
+	/** @inheritDoc */
 	public function getServerVersion() {
 		return '';
 	}

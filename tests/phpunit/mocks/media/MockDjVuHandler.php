@@ -22,10 +22,12 @@
  */
 
 class MockDjVuHandler extends DjVuHandler {
+	/** @inheritDoc */
 	public function isEnabled() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function doTransform( $image, $dstPath, $dstUrl, $params, $flags = 0 ) {
 		if ( !$this->normaliseParams( $image, $params ) ) {
 			return new TransformParameterError( $params );

@@ -6,6 +6,7 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
 class NullGuzzleClient extends \GuzzleHttp\Client {
+	/** @inheritDoc */
 	public function __construct( $config ) {
 	}
 
@@ -24,10 +25,12 @@ class NullGuzzleClient extends \GuzzleHttp\Client {
 		Assert::fail( "HTTP request blocked: $url. Use MockHttpTrait." );
 	}
 
+	/** @inheritDoc */
 	public function request( string $method, $uri = '', array $options = [] ): ResponseInterface {
 		Assert::fail( "HTTP request blocked: $uri. Use MockHttpTrait." );
 	}
 
+	/** @inheritDoc */
 	public function requestAsync( string $method, $uri = '', array $options = [] ): PromiseInterface {
 		Assert::fail( "HTTP request blocked: $uri. Use MockHttpTrait." );
 	}
