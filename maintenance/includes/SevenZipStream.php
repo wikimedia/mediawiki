@@ -56,7 +56,7 @@ class SevenZipStream {
 		return substr( $path, strlen( $prefix ) );
 	}
 
-	public function stream_open( $path, $mode, $options, &$opened_path ) {
+	public function stream_open( string $path, string $mode, int $options, ?string &$opened_path ): bool {
 		if ( $mode[0] == 'r' ) {
 			$options = 'e -bd -so';
 		} elseif ( $mode[0] == 'w' ) {
@@ -75,36 +75,36 @@ class SevenZipStream {
 		return ( $this->stream !== false );
 	}
 
-	public function url_stat( $path, $flags ) {
+	public function url_stat( string $path, int $flags ): array|false {
 		return stat( $this->stripPath( $path ) );
 	}
 
-	public function stream_close() {
-		return fclose( $this->stream );
+	public function stream_close(): void {
+		fclose( $this->stream );
 	}
 
-	public function stream_flush() {
+	public function stream_flush(): bool {
 		return fflush( $this->stream );
 	}
 
-	public function stream_read( $count ) {
+	public function stream_read( int $count ): string|false {
 		return fread( $this->stream, $count );
 	}
 
-	public function stream_write( $data ) {
+	public function stream_write( string $data ): int {
 		return fwrite( $this->stream, $data );
 	}
 
-	public function stream_tell() {
+	public function stream_tell(): int {
 		return ftell( $this->stream );
 	}
 
-	public function stream_eof() {
+	public function stream_eof(): bool {
 		return feof( $this->stream );
 	}
 
-	public function stream_seek( $offset, $whence ) {
-		return fseek( $this->stream, $offset, $whence );
+	public function stream_seek( int $offset, int $whence ): bool {
+		return fseek( $this->stream, $offset, $whence ) === 0;
 	}
 }
 

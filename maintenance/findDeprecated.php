@@ -43,11 +43,11 @@ class FileAwareNodeVisitor extends PhpParser\NodeVisitorAbstract {
 		return $retVal;
 	}
 
-	public function setCurrentFile( $filename ) {
+	public function setCurrentFile( ?string $filename ) {
 		$this->currentFile = $filename;
 	}
 
-	public function getCurrentFile() {
+	public function getCurrentFile(): ?string {
 		return $this->currentFile;
 	}
 }
@@ -63,7 +63,7 @@ class DeprecatedInterfaceFinder extends FileAwareNodeVisitor {
 	/** @var array[] */
 	private $foundNodes = [];
 
-	public function getFoundNodes() {
+	public function getFoundNodes(): array {
 		// Sort results by version, then by filename, then by name.
 		foreach ( $this->foundNodes as &$nodes ) {
 			uasort( $nodes, static function ( $a, $b ) {

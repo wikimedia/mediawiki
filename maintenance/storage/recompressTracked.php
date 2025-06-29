@@ -118,11 +118,11 @@ class RecompressTracked {
 		'critical-log' => 'criticalLog',
 	];
 
-	public static function getOptionsWithArgs() {
+	public static function getOptionsWithArgs(): array {
 		return self::$optionsWithArgs;
 	}
 
-	public static function newFromCommandLine( $args, $options ) {
+	public static function newFromCommandLine( array $args, array $options ): self {
 		$jobOptions = [ 'destClusters' => $args ];
 		foreach ( self::$cmdLineOptionMap as $cmdOption => $classOption ) {
 			if ( isset( $options[$cmdOption] ) ) {
@@ -153,21 +153,21 @@ class RecompressTracked {
 			->newSqlBlobStore();
 	}
 
-	public function debug( $msg ) {
+	public function debug( string $msg ) {
 		wfDebug( "$msg" );
 		if ( $this->debugLog ) {
 			$this->logToFile( $msg, $this->debugLog );
 		}
 	}
 
-	public function info( $msg ) {
+	public function info( string $msg ) {
 		echo "$msg\n";
 		if ( $this->infoLog ) {
 			$this->logToFile( $msg, $this->infoLog );
 		}
 	}
 
-	public function critical( $msg ) {
+	public function critical( string $msg ) {
 		echo "$msg\n";
 		if ( $this->criticalLog ) {
 			$this->logToFile( $msg, $this->criticalLog );
@@ -749,7 +749,7 @@ class CgzCopyTransaction {
 		return $this->cgz->isHappy();
 	}
 
-	public function getSize() {
+	public function getSize(): int {
 		return count( $this->texts );
 	}
 

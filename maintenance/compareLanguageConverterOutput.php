@@ -224,7 +224,7 @@ class CompareLanguageConverterOutput extends Maintenance {
 	}
 
 	// Inspired from: https://stackoverflow.com/a/55927237/903324
-	private function mb_sprintf( string $format, ...$args ): string {
+	private function mb_sprintf( string $format, string ...$args ): string {
 		$params = $args;
 
 		return sprintf(
