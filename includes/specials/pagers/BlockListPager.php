@@ -549,6 +549,7 @@ class BlockListPager extends TablePager {
 					'block_target.bt_user',
 					HideUserUtils::SHOWN_USERS
 				);
+				$info['conds']['bl_deleted'] = 0;
 			}
 		}
 		return $info;
