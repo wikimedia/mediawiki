@@ -367,6 +367,45 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * T385765 regression test
+	 * @coversNothing
+	 */
+	public function testAutoblockLeak() {
+		$sysop = $this->getTestSysop()->getUserIdentity();
+		$this->overrideConfigValue( MainConfigNames::UseCodexSpecialBlock, true );
+		// Enable block links
+		RequestContext::getMain()->setAuthority( new UltimateAuthority( $sysop ) );
+		// Don't localise
+		RequestContext::getMain()->setLanguage( 'qqx' );
+		// Create autoblock
+		$addr = '127.0.0.1';
+		$this->getServiceContainer()->getDatabaseBlockStore()
+			->insertBlockWithParams( [
+				'address' => $addr,
+				'auto' => true,
+				'by' => $sysop
+			] );
+		// Run the pager over all blocks (there should only be one)
+		$pager = $this->getBlockListPager();
+		$body = $pager->getBody();
+		// Check that we managed to generate a remove link
+		$this->assertStringContainsString( '(remove-blocklink)', $body );
+		// Check that we didn't leak the IP address into it
+		$this->assertStringNotContainsString( $addr, $body );
+	}
+
+	/**
+	 * @param string $expected
+	 * @param string $actual
+	 */
+	private function assertStringNotContainsStringIgnoringPunctuation( $expected, $actual ) {
+		$this->assertStringNotContainsString( $expected, $actual );
+		// Fail even if punctuation in the name was replaced
+		$regex = '/' . preg_replace( '/[^A-Za-z0-9]+/', '.+', $expected ) . '/';
+		$this->assertDoesNotMatchRegularExpression( $regex, $actual );
+	}
+
+	/**
 	 * T391343 regression test
 	 * @coversNothing
 	 */
@@ -392,9 +431,26 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 
 		$pager = $this->getBlockListPager();
 		$body = $pager->getBody();
-		$this->assertStringNotContainsString( $user->getName(), $body );
-		// Fail even if punctuation in the name was replaced
-		$regex = '/' . preg_replace( '/[^A-Za-z0-9]+/', '.+', $user->getName() ) . '/';
-		$this->assertDoesNotMatchRegularExpression( $regex, $body );
+		$this->assertStringNotContainsStringIgnoringPunctuation( $user->getName(), $body );
+	}
+
+	/**
+	 * T397595 regression test
+	 * @coversNothing
+	 */
+	public function testAutoblockSuppression() {
+		$user = $this->getTestUser()->getUserIdentity();
+		$store = $this->getServiceContainer()->getDatabaseBlockStore();
+		$block = $store->insertBlockWithParams( [
+			'targetUser' => $user,
+			'by' => $this->getTestSysop()->getUser(),
+			'hideName' => true,
+			'enableAutoblock' => true,
+		] );
+		$store->doAutoblock( $block, '127.0.0.42' );
+
+		$pager = $this->getBlockListPager();
+		$body = $pager->getBody();
+		$this->assertStringNotContainsStringIgnoringPunctuation( $user->getName(), $body );
 	}
 }
