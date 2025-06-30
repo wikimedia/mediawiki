@@ -25,6 +25,7 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
 use Wikimedia\Rdbms\IDBAccessObject;
 
@@ -104,15 +105,30 @@ class TitleCleanup extends TableCleanup {
 	 * @return bool
 	 */
 	protected function fileExists( $name ) {
-		// XXX: Doesn't actually check for file existence, just presence of image record.
-		// This is reasonable, since cleanupImages.php only iterates over the image table.
+		// XXX: Doesn't actually check for file existence, just presence of image/file record.
+		// This is reasonable, since cleanupImages.php only iterates over the image/file table.
 		$dbr = $this->getReplicaDB();
-		$row = $dbr->newSelectQueryBuilder()
-			->select( '*' )
-			->from( 'image' )
-			->where( [ 'img_name' => $name ] )
-			->caller( __METHOD__ )
-			->fetchRow();
+		$migrationStage = $this->getServiceContainer()->getMainConfig()->get(
+			MainConfigNames::FileSchemaMigrationStage
+		);
+		if ( $migrationStage & SCHEMA_COMPAT_READ_OLD ) {
+			$row = $dbr->newSelectQueryBuilder()
+				->select( '*' )
+				->from( 'image' )
+				->where( [ 'img_name' => $name ] )
+				->caller( __METHOD__ )
+				->fetchRow();
+		} else {
+			$row = $dbr->newSelectQueryBuilder()
+				->select( '*' )
+				->from( 'file' )
+				->where( [
+					'file_name' => $name,
+					'file_deleted' => 0,
+				] )
+				->caller( __METHOD__ )
+				->fetchRow();
+		}
 
 		return $row !== false;
 	}
