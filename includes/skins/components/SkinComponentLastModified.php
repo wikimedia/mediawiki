@@ -45,15 +45,17 @@ class SkinComponentLastModified implements SkinComponent {
 		if ( $timestamp ) {
 			$d = $language->userDate( $timestamp, $user );
 			$t = $language->userTime( $timestamp, $user );
-			$msg = $useParsoid ?
-				 $localizer->msg( 'lastmodifiedat-parsoid', $d, $t ) :
-				 $localizer->msg( 'lastmodifiedat', $d, $t );
+			$msg = $localizer->msg( 'lastmodifiedat', $d, $t );
 			$s = ' ' . $msg->parse();
 		} else {
 			$s = '';
 			$d = null;
 			$t = null;
 		}
+		$msg = $useParsoid ?
+			 $localizer->msg( 'renderedwith-parsoid' ) :
+			 $localizer->msg( 'renderedwith-legacy' );
+		$s = $s . ' ' . $msg->parse();
 
 		$isLagged = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->laggedReplicaUsed();
 		if ( $isLagged ) {
