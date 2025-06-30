@@ -120,6 +120,9 @@ class SkinComponentFooter implements SkinComponent {
 			'numberofwatchingusers' => null,
 			'credits' => $useCredits && $action ?
 				$action->getCredits( $maxCredits, $showCreditsIfMax ) : null,
+			'renderedwith' => $this->renderedWith(),
+			// Copyright is often rendered as a block in skins and
+			// should thus be last, after the inline elements.
 			'copyright' => $titleExists &&
 			$out->showsCopyright() ? $this->getCopyright() : null,
 		];
@@ -382,7 +385,6 @@ class SkinComponentFooter implements SkinComponent {
 		$skinContext = $this->skinContext;
 		$out = $skinContext->getOutput();
 		$timestamp = $out->getRevisionTimestamp();
-		$useParsoid = $out->getOutputFlag( ParserOutputFlags::USE_PARSOID );
 
 		// No cached timestamp, load it from the database
 		// TODO: This code shouldn't be necessary, revision ID should always be available
@@ -396,10 +398,28 @@ class SkinComponentFooter implements SkinComponent {
 
 		$lastModified = new SkinComponentLastModified(
 			$skinContext,
-			$timestamp,
-			$useParsoid
+			$timestamp
 		);
 
 		return $lastModified->getTemplateData()['text'];
+	}
+
+	/**
+	 * Get the "rendered with" text, formatted in user language
+	 *
+	 * @internal for use in Skin.php only
+	 * @return string
+	 */
+	private function renderedWith() {
+		$skinContext = $this->skinContext;
+		$out = $skinContext->getOutput();
+		$useParsoid = $out->getOutputFlag( ParserOutputFlags::USE_PARSOID );
+
+		$renderedWith = new SkinComponentRenderedWith(
+			$skinContext,
+			$useParsoid
+		);
+
+		return $renderedWith->getTemplateData()['text'];
 	}
 }

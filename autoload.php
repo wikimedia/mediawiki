@@ -2694,6 +2694,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Skin\\SkinComponentMenu' => __DIR__ . '/includes/skins/components/SkinComponentMenu.php',
 	'MediaWiki\\Skin\\SkinComponentRegistry' => __DIR__ . '/includes/skins/components/SkinComponentRegistry.php',
 	'MediaWiki\\Skin\\SkinComponentRegistryContext' => __DIR__ . '/includes/skins/components/SkinComponentRegistryContext.php',
+	'MediaWiki\\Skin\\SkinComponentRenderedWith' => __DIR__ . '/includes/skins/components/SkinComponentRenderedWith.php',
 	'MediaWiki\\Skin\\SkinComponentSearch' => __DIR__ . '/includes/skins/components/SkinComponentSearch.php',
 	'MediaWiki\\Skin\\SkinComponentTableOfContents' => __DIR__ . '/includes/skins/components/SkinComponentTableOfContents.php',
 	'MediaWiki\\Skin\\SkinComponentTempUserBanner' => __DIR__ . '/includes/skins/components/SkinComponentTempUserBanner.php',

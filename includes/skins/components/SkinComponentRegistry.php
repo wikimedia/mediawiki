@@ -105,7 +105,12 @@ class SkinComponentRegistry {
 			case 'last-modified':
 				$component = new SkinComponentLastModified(
 					$skin,
-					$skin->getOutput()->getRevisionTimestamp(),
+					$skin->getOutput()->getRevisionTimestamp()
+				);
+				break;
+			case 'rendered-with':
+				$component = new SkinComponentRenderedWith(
+					$skin,
 					$skin->getOutput()->getOutputFlag( ParserOutputFlags::USE_PARSOID )
 				);
 				break;
