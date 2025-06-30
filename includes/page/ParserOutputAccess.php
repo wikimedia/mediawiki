@@ -191,7 +191,7 @@ class ParserOutputAccess implements LoggerAwareInterface {
 		$this->logger = new NullLogger();
 	}
 
-	public function setLogger( LoggerInterface $logger ) {
+	public function setLogger( LoggerInterface $logger ): void {
 		$this->logger = $logger;
 	}
 
