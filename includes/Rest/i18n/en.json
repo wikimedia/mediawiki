@@ -241,7 +241,10 @@
 	"rest-endpoint-desc-get-page-title-language": "Searches for pages with the same topic in different languages. Returns an array of language objects that include the name of the language, the language code, and the translated page title.",
 	"rest-endpoint-desc-get-page-title-media": "Returns information about media files used on a wiki page, up to 100 files.",
 	"rest-endpoint-desc-get-file-title": "Returns information about a file, including links to download the file in thumbnail, preview, and original formats.",
-	"rest-endpoint-desc-post-transform-wikitext-to-html": "Transforms wikitext to HTML",
-	"rest-endpoint-desc-post-transform-wikitext-to-lint": "Returns lint errors for wikitext",
-	"rest-endpoint-desc-post-transform-html-to-wikitext": "Transforms HTML back into wikitext"
+	"rest-endpoint-desc-post-transform-to-html-revision": "Returns transformation of the specified content, to html",
+	"rest-endpoint-desc-post-transform-to-wikitext-revision": "Returns transformation of the specified content, to wikitext",
+	"rest-endpoint-desc-post-transform-to-html": "Returns transformation of the specified content, to html",
+	"rest-endpoint-desc-post-transform-to-wikitext": "Returns transformation of the specified content, to wikitext",
+	"rest-endpoint-desc-post-transform-to-html-title": "Returns transformation of the specified content, to html",
+	"rest-endpoint-desc-post-transform-to-wikitext-title": "Returns transformation of the specified content, to wikitext"
 }

@@ -139,9 +139,6 @@ $wgMaxArticleSize = 20; // in Kilobyte
 $wgParsoidSettings['wt2htmlLimits']['wikitextSize'] = 20 * 1024; // $wgMaxArticleSize, in byte
 $wgParsoidSettings['html2wtLimits']['htmlSize'] = 100 * 1024; // in characters!
 
-// Enable linting, so we can test it.
-$wgParsoidSettings['linting'] = true;
-
 // Enable Vue dev mode by default, so that Vue devtools are functional.
 $wgVueDevelopmentMode = true;
 
