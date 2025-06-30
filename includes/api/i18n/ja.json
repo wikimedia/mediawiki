@@ -1194,7 +1194,7 @@
 	"apierror-specialpage-cantexecute": "あなたにはこの特別ページの結果を閲覧する権限がありません。",
 	"apierror-stashfailed-complete": "チャンクアップロードは既に完了しています。詳細はステータスを確認してください。",
 	"apierror-stashfailed-nosession": "このキーを使用したチャンクアップロードのセッションが存在しません。",
-	"apierror-stashfilestorage": "一時的にファイルを保管することができませんでした: $1",
+	"apierror-stashfilestorage": "アップロードを一時保管領域に保存できませんでした: $1",
 	"apierror-unknownerror-editpage": "不明な編集ページのエラー:$1",
 	"apierror-unknownerror-nocode": "不明なエラーです。",
 	"apierror-unknownerror": "不明なエラー:「$1」",

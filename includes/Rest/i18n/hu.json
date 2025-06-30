@@ -5,6 +5,8 @@
 		]
 	},
 	"rest-prefix-mismatch": "A kért elérési út ($1) nem volt a REST API gyökérútvonalán ($2) belül.",
+	"rest-wrong-method": "A kéréstípusa ($1) nem {{PLURAL:$3|az engedélyezett metódus ezen az elérési úton|az egyik engedélyezett metódus ezen az elérési úton}} ($2)",
+	"rest-no-match": "A kért relatív elérési út ($1) nem egyezett egyetlen ismert kezelővel sem",
 	"rest-nonexistent-title-revision": "A megadott változat ($1) nem létezik a megadott lapon ($2)",
 	"rest-nonexistent-revision": "A megadott változat ($1) nem létezik",
 	"rest-nonexistent-user": "A megadott felhasználó ($1) nem létezik",
@@ -22,8 +24,21 @@
 	"rest-compare-permission-denied": "A felhasználónak nincs hozzáférése a kért változatokhoz",
 	"rest-compare-nonexistent": "A $1 paraméter által megadott változat nem létezik.",
 	"rest-compare-inaccessible": "A $1 paraméter által megadott változat nem érhető el nyilvánosan.",
+	"rest-compare-wrong-content": "A(z) $2 paraméterrel megadott változat $1 része olyan tartalomtípust tartalmaz, amely nem alakítható szöveggé",
 	"rest-compare-wikidiff2": "Ehhez a végponthoz a wikidiff2 1.9.0 vagy újabb verziója szükséges.",
 	"rest-pagehistorycount-too-many-revisions": "A megadott cím túl sok revíziót tartalmaz a szám lekéréséhez.",
 	"rest-search-error": "Hiba a keresési eredmények visszaküldésekor: $1",
-	"rest-page-source-type-error": "A kért lapforrás tartalomtípusa nem támogatott"
+	"rest-page-source-type-error": "A kért lapforrás tartalomtípusa nem támogatott",
+	"rest-no-revision": "Nem sikerült lekérni a változatot a(z) $1 címhez",
+	"rest-media-too-many-links": "Túl sok médiára mutató hivatkozás található a(z) $1 címen ($2 engedélyezett)",
+	"rest-bad-json-body": "Érvénytelen kérés törzs, JSON objektumnak kell lennie.",
+	"rest-json-body-parse-error": "A kérés törzsének JSON-ként történő feldolgozása sikertelen: $1",
+	"rest-missing-body-field": "A kötelező „$1” mező hiányzik a kérés törzséből.",
+	"rest-bad-content-model": "Érvénytelen tartalommodell: $1",
+	"rest-update-cannot-create-page": "A(z) „$1” oldal nem hozható létre, mert már létezik. A meglévő oldal frissítéséhez add meg az alapváltozat azonosítóját a kérés törzsében a „latest” kulcs alatti struktúrában.",
+	"rest-extraneous-csrf-token": "Felesleges CSRF token található. CSRF token nem használható olyan hitelesítési mechanizmusokkal, mint az OAuth, amelyek biztonságosak a CSRF-támadásokkal szemben.",
+	"rest-cannot-load-file": "A(z) „$1” címhez tartozó fájl nem tölthető be.",
+	"rest-cross-origin-anon-write": "Névtelen, eltérő eredetű írási kérések nem engedélyezettek",
+	"rest-requires-safe-against-csrf": "Ez a végpont CSRF-biztos munkamenet-szolgáltatót igényel.",
+	"rest-badtoken": "A megadott CSRF token érvénytelen"
 }

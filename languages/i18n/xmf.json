@@ -2009,7 +2009,7 @@
 	"ncategories": "$1 {{PLURAL:$1|კატეგორია|კატეგორიეფი}}",
 	"ninterwikis": "$1 {{PLURAL:$1|ინტერვიკი|ინტერვიკი}}",
 	"nlinks": "$1 {{PLURAL:$1|რსხილი}}",
-	"nmembers": "$1 {{PLURAL:$1|მაკათური|მაკათური}}",
+	"nmembers": "$1 {{PLURAL:$1|მაკათური}}",
 	"nmemberschanged": "$1 → $2 {{PLURAL:$2|მაკათური}}",
 	"nrevisions": "$1 {{PLURAL:$1|ვერსია|ვერსია}}",
 	"nimagelinks": "$1 {{PLURAL:$1|ხასჷლა|ხასჷლა}}",

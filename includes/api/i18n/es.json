@@ -59,7 +59,8 @@
 			"PoLuX124",
 			"Danielyepezgarces",
 			"JaimeDes",
-			"JorgeElias2302"
+			"JorgeElias2302",
+			"Anita"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Documentación]]\n* [[mw:Special:MyLanguage/API:Etiquette|Pautas de etiqueta y uso]]\n* [[mw:Special:MyLanguage/API:FAQ|Preguntas frecuentes]]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api.lists.wikimedia.org/ Lista de correo]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/ Anuncios de API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Errores y solicitudes]\n</div>\n<strong>Status:</strong> La API de MediaWiki es una interfaz madura y estable que recibe soporte y mejoras constantes. Aunque intentamos evitarlo, ocasionalmente podemos necesitar realizar cambios importantes; suscríbete a la [https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ lista de correo mediawiki-api-announce] para recibir actualizaciones.\n\n<strong>Solicitudes erróneas:</strong> Cuando se envían solicitudes erróneas a la API, se envía un encabezado HTTP con la clave \"MediaWiki-API-Error\" y, a continuación, tanto el valor del encabezado como el del código de error devuelto se establecen con el mismo valor. Para más información, consulte [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Errores y advertencias]].\n\n<p class=\"mw-apisandbox-link\"><strong>Pruebas:</strong> Para facilitar la prueba de solicitudes de API, consulte [[Special:ApiSandbox]].</p>",
@@ -1186,12 +1187,15 @@
 	"apihelp-query+revisions+base-paramvalue-prop-size": "Longitud (en bytes) de la revisión.",
 	"apihelp-query+revisions+base-paramvalue-prop-slotsize": "Longitud (bytes) de cada ranura de revisión.",
 	"apihelp-query+revisions+base-paramvalue-prop-sha1": "SHA-1 (base 16) de la revisión. Si se ha eliminado la revisión del contenido, se devolverá la propiedad <samp>sha1hidden</samp>.",
+	"apihelp-query+revisions+base-paramvalue-prop-slotsha1": "SHA-1 (base 16) de la revisión. Si se ha eliminado la revisión del contenido, se devolverá la propiedad <samp>sha1hidden</samp>.",
 	"apihelp-query+revisions+base-paramvalue-prop-contentmodel": "Id. del modelo de contenido en cada espacio de revisión.",
-	"apihelp-query+revisions+base-paramvalue-prop-comment": "Comentario del usuario para la revisión.",
-	"apihelp-query+revisions+base-paramvalue-prop-parsedcomment": "Comentario analizado del usuario para la revisión.",
+	"apihelp-query+revisions+base-paramvalue-prop-comment": "Comentarios sobre la versión. Si el comentario se ha eliminado por revisión, se devolverá la propiedad <samp>commenthidden</samp>.",
+	"apihelp-query+revisions+base-paramvalue-prop-parsedcomment": "Analiza el comentario de la versión. Si se ha eliminado la revisión del comentario, se devolverá la propiedad <samp>commenthidden</samp>.",
 	"apihelp-query+revisions+base-paramvalue-prop-content": "Contenido de cada espacio de revisión.",
 	"apihelp-query+revisions+base-paramvalue-prop-tags": "Etiquetas para la revisión.",
+	"apihelp-query+revisions+base-paramvalue-prop-roles": "Enumere los roles de ranuras de contenido que existen en la revisión.",
 	"apihelp-query+revisions+base-paramvalue-prop-parsetree": "Usa <kbd>[[Special:ApiHelp/expandtemplates|action=expandtemplates]]</kbd> o <kbd>[[Special:ApiHelp/parse|action=parse]]</kbd> en su lugar.\nEl árbol de análisis sintáctico XML del contenido de la revisión (necesita el modelo de contenido <code>$1</code>).",
+	"apihelp-query+revisions+base-param-slots": "Para qué ranuras de revisión se devolverán los datos cuando las propiedades relacionadas con la ranura se incluyan en <var>las propiedades $1</var> . Si se omite, los datos de la ranura <kbd>principal</kbd> se devolverán en un formato compatible con versiones anteriores.",
 	"apihelp-query+revisions+base-param-limit": "Limitar la cantidad de revisiones que se devolverán.",
 	"apihelp-query+revisions+base-param-expandtemplates": "Usa <kbd>[[Special:ApiHelp/expandtemplates|action=expandtemplates]]</kbd> en su lugar.\nExpandir las plantillas en el contenido de la revisión (necesita $1prop=content).",
 	"apihelp-query+revisions+base-param-generatexml": "Usa <kbd>[[Special:ApiHelp/expandtemplates|action=expandtemplates]]</kbd> o <kbd>[[Special:ApiHelp/parse|action=parse]]</kbd> en su lugar.\nGenerar el árbol de análisis sintáctico XML para el contenido de la revisión (necesita $1prop=content).",

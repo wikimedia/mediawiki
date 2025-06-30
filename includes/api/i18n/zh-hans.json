@@ -65,7 +65,8 @@
 			"Midleading",
 			"XtexChooser",
 			"Mishidexfc",
-			"WaitSpring"
+			"WaitSpring",
+			"Peterxy12"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|文档]]\n* [[mw:Special:MyLanguage/API:Etiquette|礼仪和使用指引]]\n* [[mw:Special:MyLanguage/API:FAQ|常见问题]]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api.lists.wikimedia.org/ 邮件列表]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/ API宣告]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R 程序错误与功能请求]\n</div>\n<strong>状态：</strong>MediaWiki API已是成熟稳定的接口，且会得到积极的支持和改进。尽管我们尽力避免，但偶尔也需要作出重大更新；请订阅[https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ mediawiki-api-announce 邮件列表]以便获得更新通知。\n\n<strong>错误请求：</strong>当API收到错误请求时，HTTP header将会返回一个包含\"MediaWiki-API-Error\"的值，随后header的值与错误代码将会返回并设置为相同的值。详细信息请参阅[[mw:Special:MyLanguage/API:Errors_and_warnings|API:错误与警告]]。\n\n<p class=\"mw-apisandbox-link\"><strong>测试：</strong>要简化测试API请求的过程，请参见[[Special:ApiSandbox]]。</p>",
