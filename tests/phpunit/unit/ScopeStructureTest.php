@@ -9,7 +9,7 @@ use PhpParser\PhpVersion;
 /**
  * @coversNothing
  */
-class ScopeStructureTest extends MediaWikiIntegrationTestCase {
+class ScopeStructureTest extends MediaWikiUnitTestCase {
 
 	public static function provideAutoloadNoFileScope() {
 		global $wgAutoloadLocalClasses;
