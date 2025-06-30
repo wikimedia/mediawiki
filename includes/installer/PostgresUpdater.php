@@ -440,7 +440,7 @@ END;
 	 */
 	protected function dropDefault( $table, $field ) {
 		$info = $this->db->fieldInfo( $table, $field );
-		if ( $info->defaultValue() !== false ) {
+		if ( $info && $info->defaultValue() !== false ) {
 			$this->output( "Removing '$table.$field' default value\n" );
 			$table = $this->db->addIdentifierQuotes( $table );
 			$this->db->query( "ALTER TABLE $table ALTER $field DROP DEFAULT", __METHOD__ );
