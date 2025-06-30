@@ -44,7 +44,13 @@ class TransformHandler extends ParsoidHandler {
 
 	/** @inheritDoc */
 	public function getParamSettings() {
-		$params = [
+		return [
+			'from' => [
+				self::PARAM_SOURCE => 'path',
+				ParamValidator::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_REQUIRED => true,
+				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-transform-from' ),
+			],
 			'title' => [
 				self::PARAM_SOURCE => 'path',
 				ParamValidator::PARAM_TYPE => 'string',
@@ -58,17 +64,6 @@ class TransformHandler extends ParsoidHandler {
 				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-transform-revision' ),
 			],
 		];
-
-		if ( !isset( $this->getConfig()['from'] ) ) {
-			$params['from'] = [
-				self::PARAM_SOURCE => 'path',
-				ParamValidator::PARAM_TYPE => 'string',
-				ParamValidator::PARAM_REQUIRED => true,
-				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-transform-from' ),
-			];
-		}
-
-		return $params;
 	}
 
 	/**
@@ -88,10 +83,8 @@ class TransformHandler extends ParsoidHandler {
 	protected function getOpts( array $body, RequestInterface $request ): array {
 		return array_merge(
 			$body,
-			[
-				'format' => $this->getTargetFormat(),
-				'from' => $this->getFromFormat(),
-			]
+			array_intersect_key( $request->getPathParams(), [ 'from' => true ] ),
+			[ 'format' => $this->getTargetFormat() ]
 		);
 	}
 
@@ -115,11 +108,6 @@ class TransformHandler extends ParsoidHandler {
 		return $this->getConfig()['format'];
 	}
 
-	private function getFromFormat(): string {
-		$request = $this->getRequest();
-		return $this->getConfig()['from'] ?? $request->getPathParam( 'from' );
-	}
-
 	protected function generateResponseSpec( string $method ): array {
 		// TODO: Consider if we prefer something like (for html and wikitext):
 		//    text/html; charset=utf-8; profile="https://www.mediawiki.org/wiki/Specs/HTML/2.8.0"
@@ -136,13 +124,6 @@ class TransformHandler extends ParsoidHandler {
 				$spec['200']['content']['text/plain']['schema']['type'] = 'string';
 				return $spec;
 
-			case 'lint':
-				$spec = parent::generateResponseSpec( $method );
-
-				// TODO: define a schema for lint responses
-				$spec['200']['content']['application/json']['schema']['type'] = 'array';
-				return $spec;
-
 			default:
 				// Additional formats may be supported by subclasses, just do nothing.
 				return parent::generateResponseSpec( $method );
@@ -157,7 +138,7 @@ class TransformHandler extends ParsoidHandler {
 	 */
 	public function execute(): Response {
 		$request = $this->getRequest();
-		$from = $this->getFromFormat();
+		$from = $request->getPathParam( 'from' );
 		$format = $this->getTargetFormat();
 
 		// XXX: Fallback to the default valid transforms in case the request is
