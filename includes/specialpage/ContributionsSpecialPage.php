@@ -247,10 +247,12 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 		);
 
 		// "+ New contribution" button
-		if ( ContributeFactory::isEnabledOnCurrentSkin(
+		$contributeEnabled = ContributeFactory::isEnabledOnCurrentSkin(
 			$this->getSkin(),
 			$this->getConfig()->get( MainConfigNames::SpecialContributeSkinsEnabled )
-		) ) {
+		);
+		$isOwnContributionPage = $user->getName() === $target;
+		if ( $contributeEnabled && $isOwnContributionPage ) {
 			$out->enableOOUI();
 			$out->addHTML( new ButtonWidget( [
 				'id' => 'mw-specialcontributions-newcontribution',
