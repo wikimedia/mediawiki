@@ -15,28 +15,24 @@ use Psr\Log\LoggerInterface;
  * @ingroup Debug
  */
 class LogCapturingSpi implements Spi {
-	/** @var LoggerInterface[] */
-	private $singletons;
-	/** @var Spi */
-	private $inner;
-	/** @var array */
-	private $logs = [];
+	/** @var array<string,LoggerInterface> */
+	private array $singletons;
+	private Spi $inner;
+	/** @var array[] */
+	private array $logs = [];
 
 	public function __construct( Spi $inner ) {
 		$this->inner = $inner;
 	}
 
 	/**
-	 * @return array
+	 * @return array[]
 	 */
-	public function getLogs() {
+	public function getLogs(): array {
 		return $this->logs;
 	}
 
-	/**
-	 * @param string $channel
-	 * @return LoggerInterface
-	 */
+	/** @inheritDoc */
 	public function getLogger( $channel ) {
 		if ( !isset( $this->singletons[$channel] ) ) {
 			$this->singletons[$channel] = $this->createLogger( $channel );
@@ -44,28 +40,18 @@ class LogCapturingSpi implements Spi {
 		return $this->singletons[$channel];
 	}
 
-	/**
-	 * @param array $log
-	 */
-	public function capture( $log ) {
+	public function capture( array $log ): void {
 		$this->logs[] = $log;
 	}
 
-	/**
-	 * @param string $channel
-	 * @return LoggerInterface
-	 */
-	private function createLogger( $channel ) {
+	private function createLogger( string $channel ): LoggerInterface {
 		$inner = $this->inner->getLogger( $channel );
 		return new class( $channel, $inner, $this ) extends AbstractLogger {
-			/** @var string */
-			private $channel;
-			/** @var LoggerInterface */
-			private $logger;
-			/** @var LogCapturingSpi */
-			private $parent;
+			private string $channel;
+			private LoggerInterface $logger;
+			private LogCapturingSpi $parent;
 
-			public function __construct( $channel, LoggerInterface $logger, LogCapturingSpi $parent ) {
+			public function __construct( string $channel, LoggerInterface $logger, LogCapturingSpi $parent ) {
 				$this->channel = $channel;
 				$this->logger = $logger;
 				$this->parent = $parent;
@@ -86,7 +72,6 @@ class LogCapturingSpi implements Spi {
 
 	/**
 	 * @internal For use by MediaWikiIntegrationTestCase
-	 * @return Spi
 	 */
 	public function getInnerSpi(): Spi {
 		return $this->inner;
@@ -94,11 +79,8 @@ class LogCapturingSpi implements Spi {
 
 	/**
 	 * @internal For use by MediaWikiIntegrationTestCase
-	 * @param string $channel
-	 * @param LoggerInterface|null $logger
-	 * @return LoggerInterface|null
 	 */
-	public function setLoggerForTest( $channel, ?LoggerInterface $logger = null ) {
+	public function setLoggerForTest( string $channel, ?LoggerInterface $logger = null ): ?LoggerInterface {
 		$ret = $this->singletons[$channel] ?? null;
 		$this->singletons[$channel] = $logger;
 		return $ret;
