@@ -101,6 +101,7 @@
 	"redirectpagesub": "Prěnapravjajuča stranica",
 	"redirectto": "Prěnapravjenje na:",
 	"lastmodifiedat": "Poslědnja izměna tutoj stranice: $1 č. $2.",
+	"lastmodifiedat-parsoid": "Tuta stranica byla izměnjena poslědnji raz v $1 č. $2 i izobražena s pomočju [[mw:Special:MyLanguage/Parsoid|Parsoida]].",
 	"viewcount": "Tuta stranica byla posěčena {{PLURAL:$1|$1-kratno}}.",
 	"protectedpage": "Zaščičena stranica",
 	"jumpto": "Prějdti na:",

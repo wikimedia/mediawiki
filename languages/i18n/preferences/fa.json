@@ -218,6 +218,8 @@
 	"rcfilters-watchlist-preference-label": "استفاده واسط بدون جاوااسکریپت",
 	"rcfilters-watchlist-preference-help": "نمایش [[{{#special:Watchlist}}|فهرست پیگیری‌]] بدون پالایه‌های جستجو یا قابلیت برجسته‌سازی.",
 	"prefs-changeswatchlist": "نمایش تغییرات",
+	"tog-watchstar-expiry": "بازهٔ زمانی پیش‌فرض در فهرست پیگیری برای صفحه‌هایی که به صورت دستی افزوده می‌شوند:",
+	"tog-watch-expiry": "بازهٔ زمانی پیش‌فرض:",
 	"tog-watchlisthideminor": "ویرایش‌های جزئی در فهرست پیگیری‌ پنهان شود",
 	"tog-watchlisthidebots": "ویرایش‌های ربات‌ها در فهرست پیگیری‌ پنهان شود",
 	"tog-watchlisthideown": "ویرایش‌های خودم در فهرست پیگیری‌ پنهان شود",

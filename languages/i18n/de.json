@@ -229,6 +229,7 @@
 	"redirectpagesub": "Weiterleitung",
 	"redirectto": "Weiterleitung nach:",
 	"lastmodifiedat": "Diese Seite wurde zuletzt am $1 um $2 Uhr bearbeitet.",
+	"lastmodifiedat-parsoid": "Diese Seite wurde zuletzt am $1 um $2 bearbeitet und mit [[mw:Special:MyLanguage/Parsoid|Parsoid]] gerendert.",
 	"viewcount": "Diese Seite wurde bisher {{PLURAL:$1|einmal|$1-mal}} abgerufen.",
 	"protectedpage": "Geschützte Seite",
 	"jumpto": "Wechseln zu:",

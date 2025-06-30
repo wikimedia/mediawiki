@@ -146,6 +146,7 @@
 	"redirectpagesub": "Yönləndirmə səhifəsi",
 	"redirectto": "İstiqamətləndirilir:",
 	"lastmodifiedat": "Bu səhifə sonuncu dəfə $2, $1 tarixində redaktə edilib.",
+	"lastmodifiedat-parsoid": "Bu səhifə sonuncu dəfə $1, $2 tarixində redaktə edilib və [[mw:Special:MyLanguage/Parsoid|Parsoid]] vasitəsilə render olunub.",
 	"viewcount": "Bu səhifə $1 {{PLURAL:$1|dəfə}} dəfə oxunub.",
 	"protectedpage": "Mühafizəli səhifə",
 	"jumpto": "Keçid et:",

@@ -216,6 +216,7 @@
 	"rcfilters-watchlist-preference-label": "자바스크립트가 아닌 인터페이스 사용",
 	"rcfilters-watchlist-preference-help": "필터 검색 또는 강조 기능이 없는 [[{{#special:Watchlist}}|주시문서 목록]]을 불러옵니다.",
 	"prefs-changeswatchlist": "표시되는 변경사항",
+	"tog-watch-expiry": "기본 기간:",
 	"tog-watchlisthideminor": "주시문서 목록에서 사소한 편집을 숨기기",
 	"tog-watchlisthidebots": "주시문서 목록에서 봇 편집을 숨기기",
 	"tog-watchlisthideown": "주시문서 목록에서 내 편집을 숨기기",

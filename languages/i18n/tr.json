@@ -226,6 +226,7 @@
 	"redirectpagesub": "Yönlendirme sayfası",
 	"redirectto": "Şuraya yönlendir:",
 	"lastmodifiedat": "Sayfa en son $2, $1 tarihinde değiştirildi.",
+	"lastmodifiedat-parsoid": "Bu sayfa son olarak $1 $2 tarihinde düzenlendi ve [[mw:Special:MyLanguage/Parsoid|Parsoid]] ile işlendi.",
 	"viewcount": "Bu sayfaya {{PLURAL:$1|bir|$1}} defa erişilmiş.",
 	"protectedpage": "Korumalı sayfa",
 	"jumpto": "Şuraya atla:",
