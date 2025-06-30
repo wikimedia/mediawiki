@@ -394,6 +394,17 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * @param string $expected
+	 * @param string $actual
+	 */
+	private function assertStringNotContainsStringIgnoringPunctuation( $expected, $actual ) {
+		$this->assertStringNotContainsString( $expected, $actual );
+		// Fail even if punctuation in the name was replaced
+		$regex = '/' . preg_replace( '/[^A-Za-z0-9]+/', '.+', $expected ) . '/';
+		$this->assertDoesNotMatchRegularExpression( $regex, $actual );
+	}
+
+	/**
 	 * T391343 regression test
 	 * @coversNothing
 	 */
@@ -419,9 +430,26 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 
 		$pager = $this->getBlockListPager();
 		$body = $pager->getBody();
-		$this->assertStringNotContainsString( $user->getName(), $body );
-		// Fail even if punctuation in the name was replaced
-		$regex = '/' . preg_replace( '/[^A-Za-z0-9]+/', '.+', $user->getName() ) . '/';
-		$this->assertDoesNotMatchRegularExpression( $regex, $body );
+		$this->assertStringNotContainsStringIgnoringPunctuation( $user->getName(), $body );
+	}
+
+	/**
+	 * T397595 regression test
+	 * @coversNothing
+	 */
+	public function testAutoblockSuppression() {
+		$user = $this->getTestUser()->getUserIdentity();
+		$store = $this->getServiceContainer()->getDatabaseBlockStore();
+		$block = $store->insertBlockWithParams( [
+			'targetUser' => $user,
+			'by' => $this->getTestSysop()->getUser(),
+			'hideName' => true,
+			'enableAutoblock' => true,
+		] );
+		$store->doAutoblock( $block, '127.0.0.42' );
+
+		$pager = $this->getBlockListPager();
+		$body = $pager->getBody();
+		$this->assertStringNotContainsStringIgnoringPunctuation( $user->getName(), $body );
 	}
 }
