@@ -676,16 +676,16 @@
         },
         {
             "name": "gr4vy/gr4vy-php",
-            "version": "v0.26.0",
+            "version": "v0.27.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/gr4vy/gr4vy-php.git",
-                "reference": "2c85b6d8b44e1afb4a21b16f5f414fe659e1dcb8"
+                "reference": "e0e3da9b4d20e0dac1cc8448fb60fce858bc0fa7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/gr4vy/gr4vy-php/zipball/2c85b6d8b44e1afb4a21b16f5f414fe659e1dcb8",
-                "reference": "2c85b6d8b44e1afb4a21b16f5f414fe659e1dcb8",
+                "url": "https://api.github.com/repos/gr4vy/gr4vy-php/zipball/e0e3da9b4d20e0dac1cc8448fb60fce858bc0fa7",
+                "reference": "e0e3da9b4d20e0dac1cc8448fb60fce858bc0fa7",
                 "shasum": ""
             },
             "require": {
@@ -728,9 +728,9 @@
                 "sdk"
             ],
             "support": {
-                "source": "https://github.com/gr4vy/gr4vy-php/tree/v0.26.0"
+                "source": "https://github.com/gr4vy/gr4vy-php/tree/v0.27.0"
             },
-            "time": "2025-04-23T18:25:53+00:00"
+            "time": "2025-06-25T16:51:46+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -2919,16 +2919,16 @@
         },
         {
             "name": "symfony/deprecation-contracts",
-            "version": "v3.5.1",
+            "version": "v3.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/deprecation-contracts.git",
-                "reference": "74c71c939a79f7d5bf3c1ce9f5ea37ba0114c6f6"
+                "reference": "63afe740e99a13ba87ec199bb07bbdee937a5b62"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/deprecation-contracts/zipball/74c71c939a79f7d5bf3c1ce9f5ea37ba0114c6f6",
-                "reference": "74c71c939a79f7d5bf3c1ce9f5ea37ba0114c6f6",
+                "url": "https://api.github.com/repos/symfony/deprecation-contracts/zipball/63afe740e99a13ba87ec199bb07bbdee937a5b62",
+                "reference": "63afe740e99a13ba87ec199bb07bbdee937a5b62",
                 "shasum": ""
             },
             "require": {
@@ -2941,7 +2941,7 @@
                     "name": "symfony/contracts"
                 },
                 "branch-alias": {
-                    "dev-main": "3.5-dev"
+                    "dev-main": "3.6-dev"
                 }
             },
             "autoload": {
@@ -2966,7 +2966,7 @@
             "description": "A generic function and convention to trigger deprecation notices",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/deprecation-contracts/tree/v3.5.1"
+                "source": "https://github.com/symfony/deprecation-contracts/tree/v3.6.0"
             },
             "funding": [
                 {
@@ -2982,20 +2982,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-09-25T14:20:29+00:00"
+            "time": "2024-09-25T14:21:43+00:00"
         },
         {
             "name": "symfony/http-foundation",
-            "version": "v6.4.18",
+            "version": "v6.4.23",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-foundation.git",
-                "reference": "d0492d6217e5ab48f51fca76f64cf8e78919d0db"
+                "reference": "452d19f945ee41345fd8a50c18b60783546b7bd3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/d0492d6217e5ab48f51fca76f64cf8e78919d0db",
-                "reference": "d0492d6217e5ab48f51fca76f64cf8e78919d0db",
+                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/452d19f945ee41345fd8a50c18b60783546b7bd3",
+                "reference": "452d19f945ee41345fd8a50c18b60783546b7bd3",
                 "shasum": ""
             },
             "require": {
@@ -3043,7 +3043,7 @@
             "description": "Defines an object-oriented layer for the HTTP specification",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/http-foundation/tree/v6.4.18"
+                "source": "https://github.com/symfony/http-foundation/tree/v6.4.23"
             },
             "funding": [
                 {
@@ -3059,7 +3059,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-01-09T15:48:56+00:00"
+            "time": "2025-05-26T09:17:58+00:00"
         },
         {
             "name": "symfony/polyfill-php80",
@@ -5067,16 +5067,16 @@
         },
         {
             "name": "wikimedia/smash-pig",
-            "version": "v0.9.6.10",
+            "version": "v0.9.6.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wikimedia/wikimedia-fundraising-SmashPig.git",
-                "reference": "064e15f7838f32a1b2413e0516199e17e1e64414"
+                "reference": "fb9e80dcc896564d74d1dfec82a56c1bcfd612d8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wikimedia/wikimedia-fundraising-SmashPig/zipball/064e15f7838f32a1b2413e0516199e17e1e64414",
-                "reference": "064e15f7838f32a1b2413e0516199e17e1e64414",
+                "url": "https://api.github.com/repos/wikimedia/wikimedia-fundraising-SmashPig/zipball/fb9e80dcc896564d74d1dfec82a56c1bcfd612d8",
+                "reference": "fb9e80dcc896564d74d1dfec82a56c1bcfd612d8",
                 "shasum": ""
             },
             "require": {
@@ -5086,11 +5086,12 @@
                 "ext-curl": "*",
                 "ext-json": "*",
                 "ext-pdo": "*",
-                "gr4vy/gr4vy-php": "0.26.0",
+                "gr4vy/gr4vy-php": "0.27",
                 "php": ">=8.0",
                 "phpmailer/phpmailer": "^6",
                 "predis/predis": "^1.1",
                 "psr/cache": "^1.0",
+                "psr/container": "~1.0 || ~2.0",
                 "psr/log": "^1.0",
                 "symfony/http-foundation": "^5|^6",
                 "symfony/yaml": "^4|^5"
@@ -5152,9 +5153,9 @@
                 "payments"
             ],
             "support": {
-                "source": "https://github.com/wikimedia/wikimedia-fundraising-SmashPig/tree/v0.9.6.10"
+                "source": "https://github.com/wikimedia/wikimedia-fundraising-SmashPig/tree/v0.9.6.13"
             },
-            "time": "2025-06-23T21:42:37+00:00"
+            "time": "2025-06-30T18:59:04+00:00"
         },
         {
             "name": "wikimedia/timestamp",
