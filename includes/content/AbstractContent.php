@@ -34,6 +34,10 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\MagicWord;
 use MediaWiki\Title\Title;
 use MWException;
+use Psr\Container\ContainerInterface;
+use Wikimedia\JsonCodec\JsonClassCodec;
+use Wikimedia\JsonCodec\JsonCodecable;
+use Wikimedia\JsonCodec\JsonCodecInterface;
 
 /**
  * Base implementation for content objects.
@@ -42,7 +46,7 @@ use MWException;
  *
  * @ingroup Content
  */
-abstract class AbstractContent implements Content {
+abstract class AbstractContent implements Content, JsonCodecable {
 	/**
 	 * Name of the content model this Content object represents.
 	 * Use with CONTENT_MODEL_XXX constants
@@ -419,6 +423,12 @@ abstract class AbstractContent implements Content {
 		return $result;
 	}
 
+	public static function jsonClassCodec(
+		JsonCodecInterface $codec,
+		ContainerInterface $serviceContainer
+	): JsonClassCodec {
+		return $serviceContainer->get( 'ContentJsonCodec' );
+	}
 }
 
 /** @deprecated class alias since 1.43 */

@@ -1,4 +1,7 @@
 <?php
+declare( strict_types = 1 );
+
+namespace MediaWiki\Tests\Content;
 
 use MediaWiki\Content\Content;
 use MediaWiki\Content\CssContent;
@@ -12,6 +15,7 @@ use MediaWiki\MainConfigNames;
  * @covers \MediaWiki\Content\CssContent
  */
 class CssContentTest extends TextContentTest {
+	use ContentSerializationTestTrait;
 
 	protected function setUp(): void {
 		parent::setUp();
@@ -114,5 +118,37 @@ class CssContentTest extends TextContentTest {
 	 */
 	public function testEquals( Content $a, ?Content $b = null, $equal = false ) {
 		$this->assertEquals( $equal, $a->equals( $b ) );
+	}
+
+	public static function getClassToTest(): string {
+		return CssContent::class;
+	}
+
+	public static function getTestInstancesAndAssertions(): array {
+		$redirects = self::provideGetRedirectTarget();
+		[ $redirectTitle, $redirectBlob ] = $redirects[0];
+		return [
+			'basic' => [
+				'instance' => new CssContent( '/* hello */' ),
+				'assertions' => static function ( $testCase, $obj ) {
+					$testCase->assertInstanceof( CssContent::class, $obj );
+					$testCase->assertSame( '/* hello */', $obj->getText() );
+					$testCase->assertNull( $obj->getRedirectTarget() );
+				},
+			],
+			'redirect' => [
+				'instance' => new CssContent( $redirectBlob ),
+				'assertions' => static function ( $testCase, $obj ) use ( $redirectTitle, $redirectBlob ) {
+					$testCase->overrideConfigValues( [
+						MainConfigNames::Server => '//example.org',
+						MainConfigNames::ScriptPath => '/w',
+						MainConfigNames::Script => '/w/index.php',
+					] );
+					$testCase->assertInstanceof( CssContent::class, $obj );
+					$testCase->assertSame( $redirectBlob, $obj->getText() );
+					$testCase->assertSame( $redirectTitle, $obj->getRedirectTarget()->getPrefixedText() );
+				},
+			],
+		];
 	}
 }
