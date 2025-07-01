@@ -88,15 +88,16 @@ class ApiQueryBlocksTest extends ApiTestCase {
 		$badActor = $this->getTestUser()->getUser();
 		$sysop = $this->getTestSysop()->getUser();
 
-		$parentBlock = $this->getServiceContainer()->getDatabaseBlockStore()
-			->insertBlockWithParams( [
-				'targetUser' => $badActor,
-				'by' => $sysop,
-				'hideName' => true,
-				'enableAutoblock' => true,
-			] );
+		$store = $this->getServiceContainer()->getDatabaseBlockStore();
+		$parentBlock = new DatabaseBlock( [
+			'hideName' => true,
+			'enableAutoblock' => true,
+		] );
+		$parentBlock->setTarget( $badActor );
+		$parentBlock->setBlocker( $sysop );
+		$store->insertBlock( $parentBlock );
 
-		$autoblock = $this->getServiceContainer()->getDatabaseBlockStore()
+		$autoblock = $store
 			->doAutoblock( $parentBlock, '1.2.3.4' );
 
 		[ $data ] = $this->doApiRequest( [

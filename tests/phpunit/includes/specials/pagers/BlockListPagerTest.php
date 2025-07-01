@@ -15,6 +15,7 @@ use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Pager\BlockListPager;
 use MediaWiki\Permissions\SimpleAuthority;
+use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Utils\MWTimestamp;
@@ -379,17 +380,19 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 		RequestContext::getMain()->setLanguage( 'qqx' );
 		// Create autoblock
 		$addr = '127.0.0.1';
-		$this->getServiceContainer()->getDatabaseBlockStore()
-			->insertBlockWithParams( [
-				'address' => $addr,
-				'auto' => true,
-				'by' => $sysop
-			] );
+		$block = new DatabaseBlock( [
+			'address' => $addr,
+			'auto' => true,
+		] );
+		$block->setBlocker( $sysop );
+		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
+		$status = $blockStore->insertBlock( $block );
+		$this->assertNotFalse( $status );
 		// Run the pager over all blocks (there should only be one)
 		$pager = $this->getBlockListPager();
 		$body = $pager->getBody();
 		// Check that we managed to generate a remove link
-		$this->assertStringContainsString( '(remove-blocklink)', $body );
+		$this->assertStringContainsString( '(unblocklink)', $body );
 		// Check that we didn't leak the IP address into it
 		$this->assertStringNotContainsString( $addr, $body );
 	}
@@ -412,15 +415,18 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 	public function testBlockLinkSuppression() {
 		$user = $this->getTestUser()->getUserIdentity();
 		$store = $this->getServiceContainer()->getDatabaseBlockStore();
-		$store->insertBlockWithParams( [
-			'targetUser' => $user,
-			'by' => $this->getTestSysop()->getUser(),
-		] );
-		$store->insertBlockWithParams( [
-			'targetUser' => $user,
-			'by' => $this->getTestSysop()->getUser(),
+		$block = new DatabaseBlock();
+		$block->setTarget( $user );
+		$block->setBlocker( $this->getTestSysop()->getUser() );
+		$status = $store->insertBlock( $block );
+		$this->assertNotFalse( $status );
+		$block = new DatabaseBlock( [
 			'hideName' => true
 		] );
+		$block->setTarget( $user );
+		$block->setBlocker( $this->getTestSysop()->getUser() );
+		$status = $store->insertBlock( $block, null );
+		$this->assertNotFalse( $status );
 
 		RequestContext::getMain()->setAuthority(
 			new SimpleAuthority(
@@ -441,12 +447,14 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 	public function testAutoblockSuppression() {
 		$user = $this->getTestUser()->getUserIdentity();
 		$store = $this->getServiceContainer()->getDatabaseBlockStore();
-		$block = $store->insertBlockWithParams( [
-			'targetUser' => $user,
-			'by' => $this->getTestSysop()->getUser(),
+		$block = new DatabaseBlock( [
 			'hideName' => true,
 			'enableAutoblock' => true,
 		] );
+		$block->setTarget( $user );
+		$block->setBlocker( $this->getTestSysop()->getUser() );
+		$status = $store->insertBlock( $block );
+		$this->assertNotFalse( $status );
 		$store->doAutoblock( $block, '127.0.0.42' );
 
 		$pager = $this->getBlockListPager();
