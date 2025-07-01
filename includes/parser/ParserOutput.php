@@ -3264,6 +3264,13 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		return $properties;
 	}
 
+	public function __serialize(): array {
+		// Support for PHP serialization of ParserOutput for ParserCache
+		// was turned off in 1.39 and is not guaranteed to work.
+		wfDeprecated( "PHP serialization of ParserOutput", "1.39" );
+		return (array)$this;
+	}
+
 	public function __clone() {
 		// It seems that very little of this object needs to be explicitly deep-cloned
 		// while keeping copies reasonably separated.
