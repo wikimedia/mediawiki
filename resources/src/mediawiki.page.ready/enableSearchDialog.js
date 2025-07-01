@@ -39,7 +39,9 @@ function createTempInput() {
 	tempInput = document.createElement( 'input' );
 	tempInput.type = 'text';
 	tempInput.style.position = 'absolute';
-	tempInput.style.left = '-9999px';
+	tempInput.style.left = '0';
+	tempInput.style.top = '0';
+	tempInput.style.fontSize = '16px'; // Prevent iOS zoom
 	tempInput.style.opacity = '0';
 	tempInput.style.pointerEvents = 'none';
 	tempInput.setAttribute( 'readonly', true );
