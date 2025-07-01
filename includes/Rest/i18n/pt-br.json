@@ -5,7 +5,9 @@
 			"Eduardoaddad",
 			"Felipe L. Ewald",
 			"Jhonnatanricardo",
-			"Re demz"
+			"Re demz",
+			"Ninawauwau",
+			"Mitternachtvega"
 		]
 	},
 	"rest-prefix-mismatch": "O caminho pedido ($1) não estava no interior do caminho raiz da API REST ($2)",
@@ -17,9 +19,11 @@
 	"rest-nonexistent-user": "O usuário especificado ($1) não existe",
 	"rest-invalid-user": "O nome de usuário especificado ($1) é inválido",
 	"rest-unsupported-content-type": "Tipo de conteúdo não supportado: $1",
+	"rest-permission-error": "Permissão negada: $1",
 	"rest-permission-denied-anon": "Não acessível por usuário anônimo",
 	"rest-permission-denied-title": "O usuário não tem o direitos de ler o título ($1)",
 	"rest-permission-denied-revision": "O usuário não tem acesso à revisão solicitada ($1).",
+	"rest-rate-limit-exceeded": "Limite de taxa excedido. Por favor, tente novamente mais tarde.",
 	"rest-resource-limit-exceeded": "Limites de recursos ultrapassados ao processar o pedido.",
 	"rest-pagehistory-incompatible-params": "Os parâmetros \"older_than\" ''(anterior a)'' e \"newer_than\" ''(posterior a)'' não podem ser especificados em simultâneo",
 	"rest-pagehistory-param-range-error": "O ID da revisão deve ser maior que 0",
@@ -37,7 +41,7 @@
 	"rest-page-source-type-error": "O tipo de conteúdo da fonte da página solicitada não é suportado",
 	"rest-no-revision": "Não foi possível recuperar a revisão para o título $1",
 	"rest-media-too-many-links": "Muitos links de mídia encontrados no título $1 ($2 permitidos)",
-	"rest-html-backend-error": "Não foi possível buscar o HTML Parsoid",
+	"rest-html-backend-error": "Não foi possível buscar o HTML Parsoid: $1",
 	"rest-bad-json-body": "Corpo de solicitação inválido, deve ser um objeto JSON.",
 	"rest-json-body-parse-error": "A análise do corpo da solicitação como JSON falhou: $1",
 	"rest-missing-body-field": "Campo obrigatório \"$1\" ausente do corpo da solicitação.",

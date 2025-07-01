@@ -25,6 +25,9 @@ Required software as of MediaWiki 1.43.0:
 ** PostgreSQL 10 or higher
 ** SQLite 3.8.0 or higher
 
+In addition, either the bcmath or gmp PHP extension is required on 32-bit
+systems.
+
 MediaWiki is developed and tested mainly on Unix/Linux platforms, but should
 work on Windows as well.
 

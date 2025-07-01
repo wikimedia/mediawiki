@@ -1520,7 +1520,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 					// `( 9 / 10 ) + ( 0.3 / 10 ) = 0.93`, or 93% done, overall.
 					$overallRatio = ( $progress['serversDone'] / $progress['serversTotal'] ) +
 						( $tablesDoneRatio / $progress['serversTotal'] );
-					( $progress['fn'] )( $overallRatio * 100 );
+					( $progress['fn'] )( (int)( $overallRatio * 100 ) );
 				}
 			} while ( $res->numRows() && $keysDeletedCount < $limit );
 		}

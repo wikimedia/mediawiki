@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Better"
+			"Better",
+			"HackerPunki"
 		]
 	},
 	"exif-imagewidth": "Anchón",
@@ -24,7 +25,7 @@
 	"exif-software": "Software gastau",
 	"exif-artist": "Autol",
 	"exif-copyright": "Entitulal el Copyright",
-	"exif-exifversion": "Velsión Exif",
+	"exif-exifversion": "Vessión d'Exif",
 	"exif-flashpixversion": "Velsión Flashpix soportá",
 	"exif-colorspace": "Espaciu e colol",
 	"exif-componentsconfiguration": "Senificau e ca componenti",

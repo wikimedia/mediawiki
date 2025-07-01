@@ -83,6 +83,12 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 	private static $titleCache = null;
 
 	/**
+	 * Cached instance of the main page title, to speed up isMainPage() checks.
+	 * @var Title|null
+	 */
+	private static ?Title $cachedMainPage = null;
+
+	/**
 	 * Title::newFromText maintains a cache to avoid expensive re-normalization of
 	 * commonly used titles. On a batch operation this can become a memory leak
 	 * if not bounded.
@@ -1383,10 +1389,8 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 	 * @return bool
 	 */
 	public function isMainPage() {
-		/** @var Title|null */
-		static $cachedMainPage;
-		$cachedMainPage ??= self::newMainPage();
-		return $this->equals( $cachedMainPage );
+		self::$cachedMainPage ??= self::newMainPage();
+		return $this->equals( self::$cachedMainPage );
 	}
 
 	/**
@@ -2692,6 +2696,9 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 	public static function clearCaches() {
 		$linkCache = MediaWikiServices::getInstance()->getLinkCache();
 		$linkCache->clear();
+
+		// Reset cached main page instance (T395214).
+		self::$cachedMainPage = null;
 
 		$titleCache = self::getTitleCache();
 		$titleCache->clear();

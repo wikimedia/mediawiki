@@ -12373,36 +12373,6 @@ class MainConfigSchema {
 		'type' => 'list',
 	];
 
-	/**
-	 * A list of OpenAPI specs to be made available for exploration on
-	 * Special:RestSandbox. If none are given, Special:RestSandbox is disabled.
-	 *
-	 * This is an associative array, arbitrary spec IDs to spec descriptions.
-	 * Each spec description is an array with the following keys:
-	 * - url: the URL that will return the OpenAPI spec.
-	 * - name: the name of the API, to be shown on Special:RestSandbox.
-	 *   Ignored if msg is given.
-	 * - msg: a message key for the name of the API, to be shown on
-	 *   Special:RestSandbox.
-	 *
-	 * @unstable Introduced in 1.43. We may want to rename or change this to
-	 * accommodate the need to list external APIs in a central discovery
-	 * document.
-	 */
-	public const RestSandboxSpecs = [
-		'default' => [],
-		'type' => 'map',
-		'additionalProperties' => [
-			'type' => 'object',
-			'properties' => [
-				'url' => [ 'type' => 'string', 'format' => 'url' ],
-				'name' => [ 'type' => 'string' ],
-				'msg' => [ 'type' => 'string', 'description' => 'a message key' ]
-			],
-			'required' => [ 'url' ]
-		]
-	];
-
 	// endregion -- End AJAX and API
 
 	/***************************************************************************/
@@ -12821,7 +12791,7 @@ class MainConfigSchema {
 	 * For the pingback privacy policy, see:
 	 * https://wikimediafoundation.org/wiki/MediaWiki_Pingback_Privacy_Statement
 	 *
-	 * Aggregate pingback data is available at: https://pingback.wmflabs.org/
+	 * Aggregate pingback data is available at: https://pingback.wmcloud.org/
 	 *
 	 * @since 1.28
 	 */

@@ -103,7 +103,7 @@ class ConvertExtensionToRegistration extends Maintenance {
 
 		foreach ( $vars as $name => $value ) {
 			$realName = substr( $name, 2 ); // Strip 'wg'
-			if ( $realName === false ) {
+			if ( $realName === '' ) {
 				continue;
 			}
 

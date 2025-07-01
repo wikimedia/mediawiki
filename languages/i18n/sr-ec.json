@@ -50,7 +50,8 @@
 			"Петар Петковић",
 			"Сербијана",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Aca"
 		]
 	},
 	"sunday": "недеља",
@@ -175,7 +176,7 @@
 	"skin-action-unprotect": "Промени заштиту",
 	"unprotect": "Промени заштиту",
 	"newpage": "Нова страница",
-	"newpage-desc": "Направите нову страницу за тражену тему.",
+	"newpage-desc": "Напишите чланак за тражену тему.",
 	"view-missing-pages": "Види недостајуће странице",
 	"talkpagelinktext": "разговор",
 	"specialpage": "Посебна страница",
@@ -2408,7 +2409,7 @@
 	"tool-link-contributions": "Доприноси {{GENDER:$1|корисника|кориснице}}",
 	"contributions-title": "Доприноси {{GENDER:$1|корисника|кориснице}} $1",
 	"contributions-title-for-ip-when-temporary-accounts-enabled": "Пређашњи IP доприноси за $1",
-	"contribute-title": "Кориснички доприноси",
+	"contribute-title": "Допринеси",
 	"mycontris": "Доприноси",
 	"anoncontribs": "Доприноси",
 	"contribute": "Доприноси",
@@ -4025,6 +4026,7 @@
 	"deflate-invaliddeflate": "Пружена садржина није исправно сабијена",
 	"unprotected-js": "Из сигурносних разлога JavaScript не може бити учитан с незаштићених страница. Правите скрипте само у именском простору „Медијавики:” или на корисничкој подстраници",
 	"userlogout-continue": "Желите ли да се одјавите?",
+	"userlogout-temp": "Сигурно желите да се одјавите? Не постоји могућност поновног пријављивања на привремени налог.",
 	"paramvalidator-baduser": "Неважећа вредност „$2” за кориснички параметар <var>$1</var>.",
 	"paramvalidator-help-type-user": "Тип: {{PLURAL:$1|1=корисник|2=списак корисника}}, {{PLURAL:$3|по}}: $2",
 	"paramvalidator-help-type-user-subtype-name": "корисничко име",

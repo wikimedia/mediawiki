@@ -234,8 +234,9 @@ class ApiQueryBlocks extends ApiQueryBase {
 		}
 
 		if ( !$this->getAuthority()->isAllowed( 'hideuser' ) ) {
+			$this->addWhere( [ 'bl_deleted' => 0 ] );
 			$this->addWhere(
-				$this->hideUserUtils->getExpression( $db, $db->tableName( 'block_target' ) . '.bt_user' )
+				$this->hideUserUtils->getExpression( $db, 'block_target.bt_user' )
 			);
 		}
 

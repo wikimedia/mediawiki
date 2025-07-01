@@ -1989,6 +1989,7 @@
 	"contributions-title": "Kontributet e {{GENDER:$1|përdoruesit|përdorueses}} për $1",
 	"mycontris": "Kontributet",
 	"anoncontribs": "Kontribute",
+	"contributions-account-creation-date": "Llogaria krijuar më $1.",
 	"contributions-userdoesnotexist": "Llogaria e përdoruesit \"$1\" nuk është e regjistruar.",
 	"nocontribs": "S’u gjetën ndryshime që përputhet me këto kritere.",
 	"uctop": "aktual",

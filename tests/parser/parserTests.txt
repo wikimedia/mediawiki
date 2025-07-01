@@ -2798,6 +2798,32 @@ subpage
 !! end
 
 !! test
+Purely hash wikilink on file page
+!! options
+title=[[File:Foobar.jpg]]
+!! wikitext
+[[#a|b]]
+!! html/php
+<p><a href="#a">b</a>
+</p>
+!! html/parsoid
+<p><a rel="mw:WikiLink" href="./File:Foobar.jpg#a" class="mw-selflink-fragment" data-parsoid='{"stx":"piped","a":{"href":"./File:Foobar.jpg#a"},"sa":{"href":"#a"}}'>b</a></p>
+!! end
+
+!! test
+Purely hash wikilink on category page
+!! options
+title=[[Category:Foobar]]
+!! wikitext
+[[#a|b]]
+!! html/php
+<p><a href="#a">b</a>
+</p>
+!! html/parsoid
+<p><a rel="mw:WikiLink" href="./Category:Foobar#a" class="mw-selflink-fragment" data-parsoid='{"stx":"piped","a":{"href":"./Category:Foobar#a"},"sa":{"href":"#a"}}'>b</a></p>
+!! end
+
+!! test
 Serialization of purely hash wikilink
 !! options
 title=[[User:Test/123]]
@@ -5328,46 +5354,6 @@ b}}
 </span><table about="#mwt3" data-parsoid='{"stx":"html"}'></table><span about="#mwt3">
 
 </span><p about="#mwt3">b</p>
-!! end
-
-!! test
-Parsoid: Merge double tds (T52603)
-!! wikitext
-{|
-|{{1x|{{!}} foo}}
-|}
-!! html/php
-<table>
-<tbody><tr>
-<td>foo
-</td></tr></tbody></table>
-!! html/parsoid
-<table><tbody>
-<tr><td about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":["|",{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"{{!}} foo"}},"i":0}}]}'> foo</td></tr>
-</tbody></table>
-!! end
-
-!! test
-Parsoid: Merge double tds in nested transclusion content (T52603)
-!! wikitext
-{{1x|<div>}}
-{|
-|{{1x|{{!}} foo}}
-|}
-{{1x|</div>}}
-!! html/php
-<div>
-<table>
-<tbody><tr>
-<td>foo
-</td></tr></tbody></table>
-</div>
-!! html/parsoid
-<div about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"<div>"}},"i":0}},"\n{|\n|",{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"{{!}} foo"}},"i":1}},"\n|}\n",{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"</div>"}},"i":2}}]}'>
-<table><tbody>
-<tr><td data-mw='{"parts":["|"]}'> foo</td></tr>
-</tbody></table>
-</div>
 !! end
 
 !! article

@@ -25,7 +25,7 @@ class AutoLoaderStructureTest extends MediaWikiIntegrationTestCase {
 		$matches = [];
 		preg_match_all( '/
 				^ [\t ]* (?:
-					(?:final\s+)? (?:abstract\s+)? (?:class|interface|trait) \s+
+					(?:final\s+)? (?:abstract\s+)? (?:class|interface|trait|enum) \s+
 					(?P<class> \w+)
 				|
 					class_alias \s* \( \s*

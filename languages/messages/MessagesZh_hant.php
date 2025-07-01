@@ -244,7 +244,6 @@ $specialPageAliases = [
 	'RemoveCredentials'          => [ '移除憑證' ],
 	'Renameuser'                 => [ '重新命名使用者' ],
 	'ResetTokens'                => [ '重設密鑰', '覆寫令牌' ],
-	'RestSandbox'                => [ 'REST沙盒' ],
 	'Revisiondelete'             => [ '修訂刪除', '刪除或恢復版本' ],
 	'RunJobs'                    => [ '執行作業', '運行工作' ],
 	'Search'                     => [ '搜尋' ],

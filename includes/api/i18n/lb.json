@@ -216,7 +216,7 @@
 	"apierror-articleexists": "D'Säit, déi Dir probéiert hutt unzeleeën, gouf schonn ugeluecht.",
 	"apierror-assertuserfailed": "D'Kontroll datt de Benotzer ageloggt ass war negativ.",
 	"apierror-autoblocked": "Är IP-Adress gouf automatesch gespaart well se vun engem gespaarte Benotzer benotzt gouf.",
-	"apierror-badip": "IP-Parameter ass net valabel.",
+	"apierror-badip": "Den IP-Parameter ass ongülteg.",
 	"apierror-blocked-partial": "Dir gouft gespaart fir dës Säit z'änneren.",
 	"apierror-cantblock": "Dir hutt net d'Recht fir Benotzer ze spären.",
 	"apierror-cantimport": "Dir hutt net déi néideg Rechter fir Säiten z'importéieren.",
@@ -225,6 +225,7 @@
 	"apierror-import-unknownerror": "Onbekannte Feeler beim Import: $1\nf",
 	"apierror-invalidcategory": "Den Numm vun der Kategorie deen Dir aginn hutt ass net valabel.",
 	"apierror-invalidtitle": "Schlechten Titel \"$1\".",
+	"apierror-invaliduser": "Ongültege Benotzernumm „$1“.",
 	"apierror-invaliduserid": "Benotzer ID <var>$1</var> ass net valabel.",
 	"apierror-missingrev-title": "Keng aktuell Versioun vum Titel $1.",
 	"apierror-missingtitle": "D'Säit déi Dir spezifizéiert hutt gëtt et net.",
@@ -254,6 +255,6 @@
 	"apiwarn-invalidcategory": "\"$1\" ass keng Kategorie.",
 	"apiwarn-invalidtitle": "\"$1\" ass kee valabelen Titel",
 	"apiwarn-notfile": "\"$1\" ass kee Fichier.",
-	"apiwarn-validationfailed-badpref": "keng valabel Astellung",
+	"apiwarn-validationfailed-badpref": "keng gülteg Astellung.",
 	"api-feed-error-title": "Feeler ($1)"
 }
