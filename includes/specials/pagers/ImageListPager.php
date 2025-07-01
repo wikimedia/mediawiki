@@ -713,7 +713,7 @@ class ImageListPager extends TablePager {
 		return $queries;
 	}
 
-	public function getTitle() {
+	public function getTitle(): Title {
 		return SpecialPage::getTitleFor( 'Listfiles' );
 	}
 }

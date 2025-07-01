@@ -1670,7 +1670,7 @@ class PageUpdater implements PageUpdateCauses {
 		$this->derivedDataUpdater->prepareUpdate( $newRevisionRecord, $hints );
 	}
 
-	private function updatesSuppressed() {
+	private function updatesSuppressed(): bool {
 		return $this->hints['suppressDerivedDataUpdates'] ?? false;
 	}
 

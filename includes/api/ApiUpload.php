@@ -873,7 +873,7 @@ class ApiUpload extends ApiBase {
 		return $this->transformWarnings( $warnings );
 	}
 
-	protected function transformWarnings( $warnings ) {
+	protected function transformWarnings( array $warnings ): array {
 		if ( $warnings ) {
 			// Add indices
 			ApiResult::setIndexedTagName( $warnings, 'warning' );

@@ -93,7 +93,7 @@ class DatabaseLogEntry extends LogEntryBase {
 		];
 	}
 
-	public static function newSelectQueryBuilder( IReadableDatabase $db ) {
+	public static function newSelectQueryBuilder( IReadableDatabase $db ): LoggingSelectQueryBuilder {
 		return new LoggingSelectQueryBuilder( $db );
 	}
 

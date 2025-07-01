@@ -863,7 +863,7 @@ class LocalFile extends File {
 		}
 	}
 
-	protected function getFileTypeId() {
+	protected function getFileTypeId(): int {
 		if ( $this->fileTypeId ) {
 			return $this->fileTypeId;
 		}

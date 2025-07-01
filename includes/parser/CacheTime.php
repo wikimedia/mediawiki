@@ -260,7 +260,7 @@ class CacheTime implements ParserCacheMetadata, JsonDeserializable {
 		];
 	}
 
-	public static function newFromJsonArray( JsonDeserializer $deserializer, array $json ) {
+	public static function newFromJsonArray( JsonDeserializer $deserializer, array $json ): self {
 		$cacheTime = new CacheTime();
 		$cacheTime->initFromJson( $deserializer, $json );
 		return $cacheTime;

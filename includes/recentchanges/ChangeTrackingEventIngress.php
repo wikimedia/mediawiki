@@ -122,7 +122,7 @@ class ChangeTrackingEventIngress
 		Config $mainConfig,
 		JobQueueGroup $jobQueueGroup,
 		IContentHandlerFactory $contentHandlerFactory
-	) {
+	): self {
 		$ingress = new self(
 			$changeTagsStore,
 			$userEditTracker,

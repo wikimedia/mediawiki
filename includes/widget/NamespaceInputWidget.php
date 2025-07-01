@@ -47,7 +47,7 @@ class NamespaceInputWidget extends DropdownInputWidget {
 		$this->addClasses( [ 'mw-widget-namespaceInputWidget' ] );
 	}
 
-	protected function getNamespaceDropdownOptions( array $config ) {
+	protected function getNamespaceDropdownOptions( array $config ): array {
 		$namespaceOptionsParams = [
 			'all' => $config['includeAllValue'] ?? null,
 			'in-user-lang' => $config['userLang'] ?? false,

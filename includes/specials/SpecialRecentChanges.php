@@ -1035,7 +1035,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		return 60 * 5;
 	}
 
-	public function getDefaultLimit() {
+	public function getDefaultLimit(): int {
 		$systemPrefValue = $this->userOptionsLookup->getIntOption( $this->getUser(), 'rclimit' );
 		// Prefer the RCFilters-specific preference if RCFilters is enabled
 		if ( $this->isStructuredFilterUiEnabled() ) {

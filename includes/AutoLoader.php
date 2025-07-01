@@ -228,7 +228,7 @@ class AutoLoader {
 	}
 
 	///// Methods used during testing //////////////////////////////////////////////
-	private static function assertTesting( $method ) {
+	private static function assertTesting( string $method ): void {
 		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
 			throw new LogicException( "$method is not supported outside phpunit tests!" );
 		}

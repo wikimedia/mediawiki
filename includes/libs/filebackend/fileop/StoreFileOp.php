@@ -87,7 +87,7 @@ class StoreFileOp extends FileOp {
 		return $status;
 	}
 
-	protected function getSourceSize() {
+	protected function getSourceSize(): int {
 		AtEase::suppressWarnings();
 		$size = filesize( $this->params['src'] );
 		AtEase::restoreWarnings();
@@ -95,7 +95,7 @@ class StoreFileOp extends FileOp {
 		return $size;
 	}
 
-	protected function getSourceSha1Base36() {
+	protected function getSourceSha1Base36(): string {
 		AtEase::suppressWarnings();
 		$hash = sha1_file( $this->params['src'] );
 		AtEase::restoreWarnings();

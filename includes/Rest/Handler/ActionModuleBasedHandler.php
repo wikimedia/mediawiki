@@ -15,6 +15,7 @@ use MediaWiki\Rest\Handler\Helper\RestStatusTrait;
 use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
+use MediaWiki\User\User;
 use Wikimedia\Message\MessageValue;
 
 /**
@@ -30,7 +31,7 @@ abstract class ActionModuleBasedHandler extends Handler {
 	 */
 	private $apiMain = null;
 
-	protected function getUser() {
+	protected function getUser(): User {
 		return $this->getApiMain()->getUser();
 	}
 
