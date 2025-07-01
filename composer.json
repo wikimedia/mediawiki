@@ -110,7 +110,9 @@
 		"symfony/polyfill-ctype": "1.99",
 		"symfony/polyfill-intl-grapheme": "1.17.1",
 		"symfony/polyfill-intl-normalizer": "1.17.1",
-		"symfony/polyfill-mbstring": "1.99"
+		"symfony/polyfill-mbstring": "1.99",
+		"symfony/polyfill-php80": "1.99",
+		"symfony/polyfill-php81": "1.99"
 	},
 	"suggest": {
 		"ext-apcu": "Faster web responses overall.",
