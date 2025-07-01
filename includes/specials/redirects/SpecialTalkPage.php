@@ -20,7 +20,6 @@
 
 namespace MediaWiki\Specials\Redirects;
 
-use MediaWiki\Config\Config;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\MainConfigNames;
 use MediaWiki\SpecialPage\FormSpecialPage;
@@ -36,12 +35,10 @@ use MediaWiki\Title\TitleParser;
  */
 class SpecialTalkPage extends FormSpecialPage {
 
-	private Config $config;
 	private TitleParser $titleParser;
 
-	public function __construct( Config $config, TitleParser $titleParser ) {
+	public function __construct( TitleParser $titleParser ) {
 		parent::__construct( 'TalkPage' );
-		$this->config = $config;
 		$this->titleParser = $titleParser;
 	}
 
@@ -80,7 +77,7 @@ class SpecialTalkPage extends FormSpecialPage {
 		$this->getOutput()->redirect( $talk->getFullUrlForRedirect(), '302' );
 		$this->getOutput()->enableClientCache();
 		$this->getOutput()->setCdnMaxage(
-			$this->config->get( MainConfigNames::ParserCacheExpireTime )
+			$this->getConfig()->get( MainConfigNames::ParserCacheExpireTime )
 		);
 		return true;
 	}

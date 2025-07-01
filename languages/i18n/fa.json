@@ -99,7 +99,8 @@
 			"محک",
 			"아라",
 			"Arasteh",
-			"Hamid rostami"
+			"Hamid rostami",
+			"Hosseinronaghi"
 		]
 	},
 	"sunday": "یکشنبه",
@@ -2511,7 +2512,7 @@
 	"anoncontribs": "مشارکت‌ها",
 	"contribute": "مشارکت",
 	"contributions-subtitle": "نتایج برای {{GENDER:$2|$1}}",
-	"contributions-edit-count": "یک {{GENDER:$1|کاربر}} با $2 {{PLURAL:$2|ویرایش}}.",
+	"contributions-edit-count": "{{GENDER:$1|کاربری}} با $2 {{PLURAL:$2|ویرایش}}.",
 	"contributions-account-creation-date": "حساب ایجاد شده در $1 .",
 	"contributions-userdoesnotexist": "حساب کاربری «$1» ثبت نشده است.",
 	"negative-namespace-not-supported": "فضاهای نام با مقدار منفی پشتیبانی نمی‌شوند.",
@@ -2594,7 +2595,7 @@
 	"blockipsuccesssub": "بستن دسترسی با موفقیت انجام شد",
 	"blockipsuccesstext": "[[Special:Contributions/$1|$1]] بسته شد.<br />\nبرای بررسی بسته‌شده‌ها [[Special:BlockList|فهرست بسته‌شده‌ها]] را ببینید.",
 	"ipb-empty-block": "برای بستن دسترسی ثبت‌شده هیچ محدودیتی فعال نشده است.",
-	"ipb-block-not-found": "انجام قطع دسترسی ممکن نیست، اما بندایش دیگری هم برای «$1» یافت نشد. اگر این مشکل ادامه یافت، لطفاً آن را [https://www.mediawiki.org/wiki/Special:MyLanguage/Help_talk:Blocking_users گزارش کنید].",
+	"ipb-block-not-found": "احتمالاً به دلیل اقدام همزمان یک مدیر دیگر برای قطع دسترسی این کاربر، قطع دسترسی امکان‌پذیر نبود. وضعیت قطع دسترسی را بررسی کنید و دوباره تلاش کنید.",
 	"ipb-blockingself": "شما در حال قطع دسترسی خودتان هستید!  آیا مطمئن هستید که می‌خواهید چنین کاری انجام دهید؟",
 	"ipb-confirmhideuser": "شما در حال قطع دسترسی یک کاربر هستید که «پنهان‌سازی کاربر» برایش فعال شد‌ه است. این کار نام کاربر را از همهٔ فهرست‌ها و سیاهه‌ها مخفی می‌کند. آیا مطمئن هستید که می‌خواهید آن را انجام دهید؟",
 	"ipb-confirmaction": "اگر واقعاً مطمئنید که می‌خواهید آن را انجام دهید، لطفاً زمینهٔ \"{{int:ipb-confirm}}\" را در زیر بررسی کنید.",

@@ -3,7 +3,8 @@
 		"authors": [
 			"Egiebizzy",
 			"Kambai Akau",
-			"Samatics"
+			"Samatics",
+			"Pingponging"
 		]
 	},
 	"sunday": "Sunday",
@@ -272,7 +273,7 @@
 	"compareselectedversions": "Kompie di rivishon-dem wey you chuz",
 	"editundo": "chenj-am bak",
 	"diff-empty": "(Difrens no dey)",
-	"diff-multi-sameuser": "({{PLURAL:$1|One rivishon wey dey bifo dis one|$1 rivishon-dem wey dey bifo dis one}} from dis yuza no dey show)",
+	"diff-multi-sameuser": "({{PLURAL:$1|One rivishon wey dey bifo dis |$1 rivishon-dem wey dey bifo dis}} from di sem {{GENDER:$3|yuza}} no dey show)",
 	"diff-multi-otherusers": "({{PLURAL:$1|One rivishon dey bifo dis one|$1 rivishon-dem dey bifo dis one}} wey {{PLURAL:$2|one oda yuza|$2 yuza-dem}} no dey show)",
 	"searchresults": "Find risot-dem",
 	"searchresults-title": "Find risot-dem for \"$1\"",
@@ -305,6 +306,7 @@
 	"grouppage-bot": "{{ns:project}}:Bot-dem",
 	"grouppage-sysop": "{{ns:project}}:Adminisreto-dem",
 	"rightslog": "Yuza rights log",
+	"skin-action-addsection": "Put anoda topik",
 	"action-edit": "chenj dis pej",
 	"action-createaccount": "Mek dis yuza akaunt",
 	"nchanges": "$1 {{PLURAL:$1|chenj|chenj-dem}}",
@@ -369,6 +371,8 @@
 	"recentchangeslinked-summary": "Rait pej nem mek you si di chenj-dem for di pej wey link kom hie. (If you wan si memba for di katigori, rait {{ns:category}}:Nem of di katigori). Chenj-dem for di pej-dem wey dey for [[Special:Watchlist|your Wochlist]] dey for <strong>bold</strong>.",
 	"recentchangeslinked-page": "Pej nem:",
 	"recentchangeslinked-to": "Show chenj-dem to pej-dem wey link go di pej",
+	"recentchanges-page-added-to-category": "Na [[:$1]] dem ad to katigori",
+	"recentchanges-page-removed-from-category": "Na [[:$1]] dem rimov from katigori",
 	"upload": "Put file inside",
 	"filedesc": "How evritin dey",
 	"filesource": "Source:",
@@ -443,7 +447,7 @@
 	"specialloguserlabel": "Pesin wey do-am:",
 	"speciallogtitlelabel": "Taget (topik or {{ns:user}}:yuzanem for yuza):",
 	"log": "Log-dem",
-	"all-logs-page": "Evri poblik log-dem",
+	"all-logs-page": "Main log-dem wey evribodi fit si",
 	"alllogstext": "Na evri log-dem wey dey for {{SITENAME}}.\nYou fit see plenti if you chuz one log taip, di yuzanem (case-sensitive), or di pej wey e afet (olso case-sensitive).",
 	"logempty": "No item-dem bi like am for dis log",
 	"checkbox-all": "Evritin",
@@ -565,13 +569,14 @@
 	"searchsuggest-search": "Find-am for {{SITENAME}}",
 	"searchsuggest-containing": "Find pej-dem wey get",
 	"duration-days": "$1 {{PLURAL:$1|day|day-dem}}",
+	"nstab-mainpage": "Main Pej",
 	"blockedtext-made-by": "Na $1 mek dis blok.",
 	"blockedtext-reason-comment": "Di risin na <em>$1</em>.",
 	"blockedtext-start-time": "Di blok go stat for: $1",
 	"blockedtext-expiration-time": "Di block go end for: $1",
 	"blockedtext-intended-blockee": "Pesin wey dem wan blok: $1",
 	"blockedtext-contact-blocker-admin": "You fit mesej $1 or anoda [[{{MediaWiki:Grouppage-sysop}}|administreto]] to diskos di blok.",
-	"blockedtext-block-ip": "Di IP adres wey you dey yuz now na $1",
+	"blockedtext-block-ip": "Di IP adres wey yu dey yuz nau na $1.",
 	"blockedtext-block-id": "Di blok ID na #$1.",
 	"blockedtext-include-details-queries": "Mek you ad evri info wey de abov for di mesej wey you wan send."
 }

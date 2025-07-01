@@ -300,7 +300,7 @@
 	"tooltip-pt-login": "Sich anzumelden wird gerne gesehen, ist jedoch nicht zwingend erforderlich.",
 	"tooltip-pt-createaccount": "Wir ermutigen dich ein Benutzerkonto zu erstellen und dich anzumelden. Es ist jedoch nicht zwingend erforderlich.",
 	"tooltip-ca-edit": "Diese Seite bearbeiten",
-	"tooltip-ca-history": "Frühere Versionen dieser Seite",
+	"tooltip-ca-history": "Frühere Versionen dieser Seite listen",
 	"tooltip-search": "{{SITENAME}} durchsuchen",
 	"tooltip-search-go": "Gehe zur Seite mit diesem exakten Namen, falls diese existiert.",
 	"tooltip-search-fulltext": "Durchsuche die Seiten nach diesem Text",

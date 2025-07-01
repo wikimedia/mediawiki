@@ -138,8 +138,6 @@ class ApiComparePagesTest extends ApiTestCase {
 			],
 			'comment' => 'Test for ApiComparePages',
 		] );
-
-		Title::clearCaches(); // Otherwise it has the wrong latest revision for some reason
 	}
 
 	protected function doReplacements( &$value ) {
@@ -1074,5 +1072,48 @@ class ApiComparePagesTest extends ApiTestCase {
 			// @todo Add a test for using 'tosection-foo' without 'totext-foo' (can't do it with main)
 		];
 		// phpcs:enable
+	}
+
+	/**
+	 * Assert that read access restrictions are enforced (T397521).
+	 */
+	public function testNoReadAccess() {
+		$this->overrideConfigValue( MainConfigNames::DiffEngine, 'php' );
+
+		$params = [
+			'fromrev' => '{{REPL:revA2}}',
+			'torelative' => 'cur',
+			'prop' => 'ids',
+			'action' => 'compare',
+			'errorformat' => 'none',
+		];
+
+		$this->doReplacements( $params );
+
+		$performer = static::getTestUser()->getAuthority();
+
+		// Emulate access restrictions as implemented by Lockdown and similar
+		// extensions.
+		$this->setTemporaryHook(
+			'getUserPermissionsErrors',
+			static function ( $title, $user, $action, &$result ) {
+				if ( $action === 'read' ) {
+					$result = 'badaccess-group0';
+					return false;
+				}
+
+				return true;
+			}
+		);
+
+		$expectedCode = 'permissiondenied';
+
+		try {
+			$this->doApiRequest( $params, null, false, $performer );
+			$this->fail( 'Expected exception not thrown' );
+		} catch ( ApiUsageException $ex ) {
+			$this->assertApiErrorCode( $expectedCode, $ex,
+				"Exception with code $expectedCode" );
+		}
 	}
 }

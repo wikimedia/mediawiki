@@ -82,7 +82,6 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	}
 
 	protected function tearDown(): void {
-		Title::clearCaches();
 		parent::tearDown();
 		// delete dummy pages
 		$this->getNonexistingTestPage( 'UTest1' );

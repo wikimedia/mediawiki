@@ -4242,12 +4242,6 @@ class MainConfigNames {
 	public const RestAPIAdditionalRouteFiles = 'RestAPIAdditionalRouteFiles';
 
 	/**
-	 * Name constant for the RestSandboxSpecs setting, for use with Config::get()
-	 * @see MainConfigSchema::RestSandboxSpecs
-	 */
-	public const RestSandboxSpecs = 'RestSandboxSpecs';
-
-	/**
 	 * Name constant for the MaxShellMemory setting, for use with Config::get()
 	 * @see MainConfigSchema::MaxShellMemory
 	 */
