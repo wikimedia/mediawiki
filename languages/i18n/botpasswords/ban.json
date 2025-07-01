@@ -21,7 +21,7 @@
 	"botpasswords-label-delete": "Usap",
 	"botpasswords-label-resetpassword": "Nyumu ngardi kruna sandi",
 	"botpasswords-label-grants": "Aksés sané polih lugra:",
-	"botpasswords-help-grants": "Lugra ring aksés katentu sampun kadruén olih akun sang anganggé Ida. Nguripang satunggal hak iriki nénten ngicain aksés ring aksés tiosan sané nénten kadruén olih akun sang anganggé Ida. Cingak [[Special:ListGrants|lis hak aksés]] antuk informasi sajangkepné.",
+	"botpasswords-help-grants": "Lugra ring aksés katentu sampun kadruén olih akun sang anganggé ragané. Nguripang satunggal hak iriki nénten ngicain aksés ring aksés tiosan sané nénten kadruén olih akun sang anganggé ragané. Cingak [[Special:ListGrants|lis hak aksés]] antuk informasi sajangkepné.\n\nLugra sané maréisiko sampun kacihnain. Lugra tanpa cihna ketahnyané méweh kasalahanggén ritatkala bot kabajak olih jadma sané makeneh jelé. Lugra sareng risiko vandalisme (<span class=\"mw-grantriskgroup-vandalism\">{{int:grantriskgroup-vandalism}}</span>) prasida kaanggén antuk ngaranayang gangguan sané perlu makarya ageng antuk karesikin. Lugra sareng risiko kaamanan (<span class=\"mw-grantriskgroup-security\">{{int:grantriskgroup-security}}</span>) prasida ngeranayang karusakan sané madampak suwé (minakadi pamalingan data pribadi). Lugta internal (<span class=\"mw-grantriskgroup-internal\">{{int:grantriskgroup-internal}}</span>) ketahnyané wantah kaanggén olih operator situs. Tulung sampunang nunas lugra sané marisiko tiosan ragané yakti perlu.",
 	"botpasswords-label-grants-column": "Kalurga",
 	"botpasswords-bad-appid": "Aran bot \"$1\" nénten valid.",
 	"botpasswords-toolong-restrictions": "Kaakéhan alamat utawi jangkauan IP sané kangeranjingang.",
