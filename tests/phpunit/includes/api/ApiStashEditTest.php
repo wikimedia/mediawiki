@@ -5,13 +5,13 @@ namespace MediaWiki\Tests\Api;
 use MediaWiki\Content\CssContent;
 use MediaWiki\Content\WikitextContent;
 use MediaWiki\Storage\PageEditStash;
+use MediaWiki\Storage\PageEditStashContents;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserRigorOptions;
 use Psr\Log\NullLogger;
-use stdClass;
 use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\Stats\StatsFactory;
 use Wikimedia\TestingAccessWrapper;
@@ -46,6 +46,7 @@ class ApiStashEditTest extends ApiTestCase {
 			$this->getServiceContainer()->getUserEditTracker(),
 			$this->getServiceContainer()->getUserFactory(),
 			$this->getServiceContainer()->getWikiPageFactory(),
+			$this->getServiceContainer()->getJsonCodec(),
 			$this->getServiceContainer()->getHookContainer(),
 			PageEditStash::INITIATOR_USER
 		) );
@@ -322,7 +323,7 @@ class ApiStashEditTest extends ApiTestCase {
 	 *
 	 * @param UserIdentity $user
 	 * @param string $text The text of the article
-	 * @return stdClass|bool Return value of PageStashEdit::checkCache(), false if not in cache
+	 * @return PageEditStashContents|false Return value of PageStashEdit::checkCache(), false if not in cache
 	 */
 	protected function doCheckCache( UserIdentity $user, $text = 'Content' ) {
 		return $this->getServiceContainer()->getPageEditStash()->checkCache(
@@ -339,7 +340,7 @@ class ApiStashEditTest extends ApiTestCase {
 
 		$this->doStash( [], $user );
 
-		$this->assertInstanceOf( stdClass::class, $this->doCheckCache( $user ) );
+		$this->assertInstanceOf( PageEditStashContents::class, $this->doCheckCache( $user ) );
 
 		// Another user doesn't see the cache
 		$this->assertFalse(
@@ -359,7 +360,7 @@ class ApiStashEditTest extends ApiTestCase {
 		$userGroupManager->removeUserFromGroup( $user, 'bot' );
 		$userGroupManager->addUserToGroup( $user, 'sysop' );
 		$permissionManager->invalidateUsersRightsCache();
-		$this->assertInstanceOf( stdClass::class, $this->doCheckCache( $user ) );
+		$this->assertInstanceOf( PageEditStashContents::class, $this->doCheckCache( $user ) );
 	}
 
 	public function testCheckCacheAnon() {
@@ -368,7 +369,7 @@ class ApiStashEditTest extends ApiTestCase {
 
 		$this->doStash( [], $user );
 
-		$this->assertInstanceOf( stdClass::class, $this->doCheckCache( $user ) );
+		$this->assertInstanceOf( PageEditStashContents::class, $this->doCheckCache( $user ) );
 	}
 
 	/**
@@ -391,7 +392,7 @@ class ApiStashEditTest extends ApiTestCase {
 		$this->doStashOld( $user );
 
 		// Should still be good, because no intervening edits
-		$this->assertInstanceOf( stdClass::class, $this->doCheckCache( $user ) );
+		$this->assertInstanceOf( PageEditStashContents::class, $this->doCheckCache( $user ) );
 	}
 
 	public function testCheckCacheOldNoEditsAnon() {
@@ -402,7 +403,7 @@ class ApiStashEditTest extends ApiTestCase {
 		$this->doStashOld( $user );
 
 		// Should still be good, because no intervening edits
-		$this->assertInstanceOf( stdClass::class, $this->doCheckCache( $user ) );
+		$this->assertInstanceOf( PageEditStashContents::class, $this->doCheckCache( $user ) );
 	}
 
 	public function testCheckCacheInterveningEdits() {

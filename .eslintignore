@@ -18,6 +18,7 @@
 /tests/phpunit/data/resourceloader/codex/
 /tests/phpunit/data/resourceloader/codex-devmode/
 /tests/phpunit/data/SelserContext/*.json
+/tests/phpunit/data/PageEditStashContents/*.json
 /tests/phpunit/unit/includes/Settings/Source/fixtures/bad.json
 /tests/phpunit/**/*malformed*.json
 /maintenance/benchmarks/data/

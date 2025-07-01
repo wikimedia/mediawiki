@@ -193,6 +193,9 @@ $wgAutoloadClasses += [
 	'SpecialPageExecutor' => "$testDir/phpunit/includes/specials/SpecialPageExecutor.php",
 	'SpecialSearchTestMockResultSet' => "$testDir/phpunit/includes/specials/SpecialSearchTestMockResultSet.php",
 
+	# tests/phpunit/includes/Storage
+	'MediaWiki\\Tests\\Storage\\PageEditStashContentsTest' => "$testDir/phpunit/includes/Storage/PageEditStashContentsTest.php",
+
 	# tests/phpunit/includes/title
 	'TitleCodecTestBase' => "$testDir/phpunit/includes/title/TitleCodecTestBase.php",
 
