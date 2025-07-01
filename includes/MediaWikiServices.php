@@ -2169,6 +2169,7 @@ class MediaWikiServices extends ServiceContainer {
 
 	/**
 	 * @since 1.44
+	 * @internal
 	 */
 	public function getUserLinkRenderer(): UserLinkRenderer {
 		return $this->getService( 'UserLinkRenderer' );

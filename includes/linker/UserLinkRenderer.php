@@ -16,6 +16,7 @@ use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\TempUser\TempUserDetailsLookup;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityLookup;
+use MediaWiki\User\UserNameUtils;
 use MediaWiki\WikiMap\WikiMap;
 use MessageLocalizer;
 use Wikimedia\HtmlArmor\HtmlArmor;
@@ -25,7 +26,7 @@ use Wikimedia\MapCacheLRU\MapCacheLRU;
 /**
  * Service class that renders HTML for user-related links.
  * @since 1.44
- * @unstable
+ * @internal Call via LinkRenderer::userLink(), not directly.
  */
 class UserLinkRenderer {
 
@@ -35,6 +36,7 @@ class UserLinkRenderer {
 	private LinkRenderer $linkRenderer;
 	private TempUserDetailsLookup $tempUserDetailsLookup;
 	private UserIdentityLookup $userIdentityLookup;
+	private UserNameUtils $userNameUtils;
 
 	/**
 	 * Process cache for user links keyed by user name,
@@ -50,7 +52,8 @@ class UserLinkRenderer {
 		SpecialPageFactory $specialPageFactory,
 		LinkRenderer $linkRenderer,
 		TempUserDetailsLookup $tempUserDetailsLookup,
-		UserIdentityLookup $userIdentityLookup
+		UserIdentityLookup $userIdentityLookup,
+		UserNameUtils $userNameUtils
 	) {
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->tempUserConfig = $tempUserConfig;
@@ -58,6 +61,7 @@ class UserLinkRenderer {
 		$this->linkRenderer = $linkRenderer;
 		$this->tempUserDetailsLookup = $tempUserDetailsLookup;
 		$this->userIdentityLookup = $userIdentityLookup;
+		$this->userNameUtils = $userNameUtils;
 
 		// Set a large enough cache size to accommodate long pagers,
 		// such as Special:RecentChanges with a high limit.
@@ -72,8 +76,9 @@ class UserLinkRenderer {
 	 * @param IContextSource $context
 	 * @param string|null $altUserName Optional text to display instead of the user name,
 	 * or `null` to use the user name.
-	 * @param string[] $attributes Optional extra HTML attributes for the link.
+	 * @param array<string,string> $attributes Optional extra HTML attributes for the link.
 	 * @return string HTML fragment
+	 * @deprecated since 1.45, use LinkRenderer::makeUserLink() instead.
 	 */
 	public function userLink(
 		UserIdentity $targetUser,
@@ -167,11 +172,15 @@ class UserLinkRenderer {
 	 * Render a user page link (or user contributions for anonymous and temporary users),
 	 * without caching.
 	 *
+	 * In addition to the classes applied by ::getLinkClassesFromUserName(),
+	 * this method adds 'mw-tempuserlink-expired', 'mw-extuserlink', and
+	 * 'mw-anonuserlink'.
+	 *
 	 * @param UserIdentity $targetUser The user to render a link for.
 	 * @param MessageLocalizer $messageLocalizer
 	 * @param string|null $altUserName Optional text to display instead of the user name,
 	 * or `null` to use the user name.
-	 * @param string[] $attributes Optional extra HTML attributes for the link.
+	 * @param array<string,string> $attributes Optional extra HTML attributes for the link.
 	 * @return string HTML fragment
 	 */
 	private function renderUserLink(
@@ -195,8 +204,8 @@ class UserLinkRenderer {
 
 			if ( ExternalUserNames::isExternal( $userName ) ) {
 				$classes[] = 'mw-extuserlink';
-			} elseif ( $altUserName === null ) {
-				$altUserName = IPUtils::prettifyIP( $userName );
+			} else {
+				$altUserName ??= IPUtils::prettifyIP( $userName );
 			}
 			$classes[] = 'mw-anonuserlink'; // Separate link class for anons (T45179)
 		} else {
@@ -231,13 +240,12 @@ class UserLinkRenderer {
 		MessageLocalizer $messageLocalizer
 	) {
 		$attributes = [];
-		$classes = [ 'mw-userlink' ];
 		$userName = $targetUser->getName();
 		$isExpired = false;
 		$postfix = '';
 
+		$classes = $this->getLinkClassesFromUserName( $userName );
 		if ( $this->tempUserConfig->isTempName( $userName ) ) {
-			$classes[] = 'mw-tempuserlink';
 			$attributes['data-mw-target'] = $userName;
 
 			if ( $this->isFromExternalWiki( $targetUser->getWikiId() ) ) {
@@ -303,5 +311,55 @@ class UserLinkRenderer {
 		}
 
 		return !WikiMap::isCurrentWikiDbDomain( $wikiId );
+	}
+
+	/**
+	 * Returns CSS classes to add to a link to the given user.
+	 *
+	 * This adds the `mw-userlink` and `mw-tempuserlink` classes, which
+	 * don't require a database lookup to apply; since this method
+	 * is potentially called on a large number of page links, a batch
+	 * of some kind would have to be used if evaluating link classes
+	 * involved a DB lookup.
+	 *
+	 * @param string $userName The (canonical) user name to render a link for.
+	 * @return string[] CSS classes.
+	 */
+	private function getLinkClassesFromUserName( string $userName ): array {
+		$classes = [ 'mw-userlink' ];
+		if ( $this->tempUserConfig->isTempName( $userName ) ) {
+			$classes[] = 'mw-tempuserlink';
+		}
+		return $classes;
+	}
+
+	/**
+	 * Convenience function for LinkRenderer: return the CSS classes
+	 * to add to a given LinkTarget if it represents a link to a user.
+	 *
+	 * @see ::getLinkClassesFromUserName() for details on the classes
+	 *   applied.
+	 * @internal For use by LinkRenderer::getLinkClasses()
+	 */
+	public function getLinkClasses( LinkTarget $target ): array {
+		$ns = $target->getNamespace();
+		$userName = null;
+		if ( $ns === NS_USER || $ns === NS_USER_TALK ) {
+			// Recognize direct links to users
+			$userName = $target->getText();
+		} elseif ( $ns === NS_SPECIAL ) {
+			// Recognize links to contributions pages
+			[ $name, $subpage ] = $this->specialPageFactory->resolveAlias( $target->getText() );
+			if ( $name === 'Contributions' && $subpage !== null ) {
+				$userName = $subpage;
+			}
+		}
+		if ( $userName !== null ) {
+			$userName = $this->userNameUtils->getCanonical( $userName );
+			if ( $userName !== false ) {
+				return $this->getLinkClassesFromUserName( $userName );
+			}
+		}
+		return [];
 	}
 }

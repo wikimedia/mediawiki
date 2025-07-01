@@ -14,6 +14,7 @@ use Wikimedia\HtmlArmor\HtmlArmor;
 
 /**
  * @covers \MediaWiki\Linker\LinkRenderer
+ * @group Database
  */
 class LinkRendererTest extends MediaWikiLangTestCase {
 	use LinkCacheTestTrait;
@@ -267,6 +268,11 @@ class LinkRendererTest extends MediaWikiLangTestCase {
 			PageReferenceValue::localReference( NS_MAIN, 'Redirect' ),
 			PageReferenceValue::localReference( NS_USER, 'Someuser' )
 		];
+		yield [
+			new TitleValue( NS_MAIN, 'FooBar', 'ignore' ),
+			new TitleValue( NS_MAIN, 'Redirect', 'ignore' ),
+			new TitleValue( NS_SPECIAL, 'Contributions/Someuser', 'ignore' )
+		];
 	}
 
 	/**
@@ -278,6 +284,10 @@ class LinkRendererTest extends MediaWikiLangTestCase {
 		$titleFormatter = $services->getTitleFormatter();
 		$specialPageFactory = $services->getSpecialPageFactory();
 		$hookContainer = $services->getHookContainer();
+		$tempUserConfig = $services->getTempUserConfig();
+		$tempUserDetailsLookup = $services->getTempUserDetailsLookup();
+		$userIdentityLookup = $services->getUserIdentityLookup();
+		$userNameUtils = $services->getUserNameUtils();
 		$linkCache = $services->getLinkCache();
 		if ( $foobarTitle instanceof PageReference ) {
 			$cacheTitle = Title::newFromPageReference( $foobarTitle );
@@ -304,6 +314,10 @@ class LinkRendererTest extends MediaWikiLangTestCase {
 			$linkCache,
 			$specialPageFactory,
 			$hookContainer,
+			$tempUserConfig,
+			$tempUserDetailsLookup,
+			$userIdentityLookup,
+			$userNameUtils,
 			new ServiceOptions( LinkRenderer::CONSTRUCTOR_OPTIONS, [ 'renderForComment' => false ] )
 		);
 		$this->assertSame(
@@ -313,6 +327,10 @@ class LinkRendererTest extends MediaWikiLangTestCase {
 		$this->assertEquals(
 			'mw-redirect',
 			$linkRenderer->getLinkClasses( $redirectTitle )
+		);
+		$this->assertEquals(
+			'mw-userlink',
+			$linkRenderer->getLinkClasses( $userTitle )
 		);
 	}
 }

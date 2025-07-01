@@ -80,7 +80,8 @@ class UserLinkRendererTest extends MediaWikiLangTestCase {
 			$this->getServiceContainer()->getSpecialPageFactory(),
 			$this->getServiceContainer()->getLinkRenderer(),
 			$this->tempUserDetailsLookup,
-			$this->userIdentityLookup
+			$this->userIdentityLookup,
+			$this->getServiceContainer()->getUserNameUtils()
 		);
 	}
 

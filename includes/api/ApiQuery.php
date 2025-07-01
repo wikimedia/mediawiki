@@ -135,6 +135,7 @@ class ApiQuery extends ApiBase {
 				'PreloadedContentBuilder',
 				'RevisionLookup',
 				'UrlUtils',
+				'LinkRenderer',
 			],
 		],
 		'links' => [
