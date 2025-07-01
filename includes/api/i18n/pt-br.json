@@ -1540,7 +1540,7 @@
 	"api-login-fail-aborted-nobotpw": "A autenticação requer interação do usuário, que não é suportada por <kbd>action=login</kbd>. Para fazer loging veja <kbd>[[Special:ApiHelp/clientlogin|action=clientlogin]]</kbd>.",
 	"api-login-fail-badsessionprovider": "Não é possível fazer o login ao usar $1.",
 	"api-login-fail-sameorigin": "Não é possível iniciar sessão quando a mesma política de origem não é aplicada.",
-	"api-pageset-param-titles": "Uma lista de IDs de título para trabalhar.",
+	"api-pageset-param-titles": "Uma lista de títulos para trabalhar.",
 	"api-pageset-param-pageids": "Uma lista de IDs de página para trabalhar.",
 	"api-pageset-param-revids": "Uma lista de IDs de revisão para trabalhar.",
 	"api-pageset-param-generator": "Obter a lista de páginas para trabalhar executando o módulo de consulta especificado.\n\n<strong>Nota:</strong>Os nomes dos parâmetros do gerador devem ser prefixados com um \"g\", veja exemplos.",

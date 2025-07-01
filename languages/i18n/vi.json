@@ -73,7 +73,10 @@
 			"沈澄心",
 			"FunnyYellowDog",
 			"Yummie1207",
-			"Quangquy322"
+			"Quangquy322",
+			"Chaiwan2009",
+			"Noeruchan",
+			"Nvdtn19"
 		]
 	},
 	"sunday": "Chủ nhật",
@@ -4149,12 +4152,6 @@
 	"newpages-showhide-patrolled": "$1 sửa đổi đã tuần tra",
 	"newpages-showhide-redirect": "$1 đổi hướng",
 	"newpages-showhide-registered": "$1 thành viên có tài khoản",
-	"restsandbox": "Chỗ thử REST",
-	"restsandbox-text": "Trang này cung cấp trình xây dựng truy vấn cho REST API. Lưu ý rằng các lệnh gọi API sẽ tương tác với nội dung wiki trực tiếp.",
-	"restsandbox-select-api": "Chọn API để khám phá.",
-	"restsandbox-no-specs-configured": "Không có REST API nào được cấu hình để khám phá. Sử dụng cài đặt RestExplorerSpecs.",
-	"restsandbox-no-such-api": "Tham số API đã cho không được hỗ trợ: $1",
-	"restsandbox-jsonly": "Cần phải có JavaScript để xem thông số kỹ thuật REST.",
 	"blockedtext-made-by": "Lệnh cấm được thực hiện bởi $1.",
 	"blockedtext-reason-comment": "Lý do được đưa ra là <em>$1</em>.",
 	"blockedtext-start-time": "Lệnh cấm có hiệu lực từ: $1",
