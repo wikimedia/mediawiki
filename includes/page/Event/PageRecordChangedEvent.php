@@ -41,7 +41,7 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  * event for the same page ID. The return values of getPageRecordAfter() however
  * form a complete history.
  *
- * @unstable until 1.45
+ * @since 1.45
  */
 abstract class PageRecordChangedEvent extends PageEvent {
 

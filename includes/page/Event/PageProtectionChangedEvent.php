@@ -33,7 +33,7 @@ use Wikimedia\Assert\Assert;
  * @see RestrictionStore
  * @see PageRevisionUpdatedEvent
  *
- * @unstable until 1.45
+ * @since 1.45
  */
 class PageProtectionChangedEvent extends PageEvent {
 	public const TYPE = 'PageProtectionChanged';

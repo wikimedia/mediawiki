@@ -46,9 +46,9 @@ use Wikimedia\Assert\Assert;
  * @see PageUpdatedEvent
  * @see PageDeletedEvent
  *
- * @unstable until 1.45
+ * @since 1.45
  */
-class PageCreatedEvent extends PageStateEvent {
+class PageCreatedEvent extends PageRecordChangedEvent {
 	public const TYPE = 'PageCreated';
 
 	private RevisionRecord $latestRevisionAfter;

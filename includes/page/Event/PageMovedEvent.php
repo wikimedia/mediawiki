@@ -47,9 +47,9 @@ use Wikimedia\Assert\Assert;
  *
  * @see PageLatestRevisionChangedEvent
  *
- * @unstable until 1.45
+ * @since 1.45
  */
-class PageMovedEvent extends PageStateEvent {
+class PageMovedEvent extends PageRecordChangedEvent {
 	public const TYPE = 'PageMoved';
 	private string $reason;
 	private ?PageRecord $redirectPage;

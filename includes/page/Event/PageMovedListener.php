@@ -9,7 +9,7 @@ namespace MediaWiki\Page\Event;
  * event type 'PageMoved', see PageMovedEvent::TYPE.
  *
  * @see PageMovedEvent
- * @unstable until 1.45, should become stable to implement
+ * @since 1.45
  */
 interface PageMovedListener {
 

@@ -29,7 +29,7 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  * Domain event representing a change to the visibility attributes of one of
  * the page's revisions. This does not cover changes to archived revisions.
  *
- * @unstable until 1.45
+ * @since 1.45
  */
 class PageHistoryVisibilityChangedEvent extends PageEvent {
 
@@ -50,10 +50,11 @@ class PageHistoryVisibilityChangedEvent extends PageEvent {
 	 * @param int $currentRevisionId
 	 * @param int $bitsSet Bitmap indicating which bits got set by the change
 	 * @param int $bitsUnset Bitmap indicating which bits got unset by the change
-	 * @param array $visibilityChangeMap a map from revision IDs to visibility changes.
+	 * @param array<int,array> $visibilityChangeMap a map from revision IDs to visibility changes,
+	 *        in the form [id => ['oldBits' => $oldBits, 'newBits' => $newBits], ... ].
 	 * @param string $reason
-	 * @param array $tags
-	 * @param array $flags
+	 * @param array<string> $tags Applicable tags, see ChangeTags.
+	 * @param array<string,bool> $flags See the self::FLAG_XXX constants.
 	 * @param string|ConvertibleTimestamp|false $timestamp
 	 */
 	public function __construct(
@@ -66,7 +67,7 @@ class PageHistoryVisibilityChangedEvent extends PageEvent {
 		string $reason,
 		array $tags,
 		array $flags,
-		$timestamp
+		string|ConvertibleTimestamp|false $timestamp
 	) {
 		parent::__construct(
 			'revision-deletion',
@@ -124,6 +125,9 @@ class PageHistoryVisibilityChangedEvent extends PageEvent {
 		return $this->reason;
 	}
 
+	/**
+	 * @return int[]
+	 */
 	public function getAffectedRevisionIDs(): array {
 		return array_keys( $this->visibilityChangeMap );
 	}

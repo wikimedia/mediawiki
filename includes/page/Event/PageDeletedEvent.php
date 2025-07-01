@@ -15,9 +15,9 @@ use Wikimedia\Assert\Assert;
  *
  * @see PageCreatedEvent
  *
- * @unstable until 1.45
+ * @since 1.45
  */
-class PageDeletedEvent extends PageStateEvent {
+class PageDeletedEvent extends PageRecordChangedEvent {
 
 	public const TYPE = 'PageDeleted';
 

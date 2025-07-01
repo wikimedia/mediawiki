@@ -32,7 +32,7 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  * The base class itself doesn't cary much information and is not
  * particularly useful on its own.
  *
- * @unstable until 1.45
+ * @since 1.45
  */
 abstract class PageEvent extends DomainEvent {
 

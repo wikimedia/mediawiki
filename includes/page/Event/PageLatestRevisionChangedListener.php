@@ -9,7 +9,7 @@ namespace MediaWiki\Page\Event;
  * event type 'PageLatestRevisionChanged', see PageLatestRevisionChangedEvent::TYPE.
  *
  * @see PageLatestRevisionChangedEvent
- * @unstable until 1.45, should become stable to implement
+ * @since 1.45
  */
 interface PageLatestRevisionChangedListener {
 

@@ -67,7 +67,7 @@ use Wikimedia\Assert\Assert;
  * deliver events in the order they were emitted, but this cannot be guaranteed
  * under all circumstances.
  *
- * @unstable until 1.45
+ * @since 1.45
  */
 class PageLatestRevisionChangedEvent extends PageRecordChangedEvent implements PageUpdateCauses {
 
