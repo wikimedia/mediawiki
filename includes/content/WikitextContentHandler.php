@@ -432,6 +432,20 @@ class WikitextContentHandler extends TextContentHandler {
 			$parserOutput->setOutputFlag( ParserOutputFlags::USER_SIGNATURE );
 		}
 	}
+
+	public function serializeContentToJsonArray( Content $content ): array {
+		'@phan-var WikitextContent $content'; /** @var WikitextContent $content */
+		return parent::serializeContentToJsonArray( $content ) + [
+			'pstFlags' => $content->getPreSaveTransformFlags(),
+		];
+	}
+
+	public function deserializeContentFromJsonArray( array $json ): WikitextContent {
+		$content = parent::deserializeContentFromJsonArray( $json );
+		'@phan-var WikitextContent $content'; /** @var WikitextContent $content */
+		$content->setPreSaveTransformFlags( $json['pstFlags'] ?? [] );
+		return $content;
+	}
 }
 
 /** @deprecated class alias since 1.43 */

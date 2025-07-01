@@ -23,6 +23,7 @@ namespace MediaWiki\Content;
 use DifferenceEngine;
 use DifferenceEngineSlotDiffRenderer;
 use InvalidArgumentException;
+use JsonException;
 use LogicException;
 use MediaWiki\Actions\Action;
 use MediaWiki\CommentStore\CommentStore;
@@ -350,6 +351,25 @@ abstract class ContentHandler {
 	abstract public function serializeContent( Content $content, $format = null );
 
 	/**
+	 * Serializes a Content object of the type supported by this
+	 * ContentHandler to an array which is JsonCodecable.
+	 *
+	 * @since 1.45
+	 *
+	 * @param Content $content The Content object to serialize
+	 *
+	 * @return array An array of JsonCodecable content
+	 */
+	public function serializeContentToJsonArray( Content $content ): array {
+		$format = $this->getJsonFormat();
+		$blob = $this->serializeContent( $content, $format );
+		return [
+			'format' => $format,
+			'blob' => $blob,
+		];
+	}
+
+	/**
 	 * Applies transformations on export (returns the blob unchanged by default).
 	 * Subclasses may override this to perform transformations such as conversion
 	 * of legacy formats or filtering of internal meta-data.
@@ -376,8 +396,29 @@ abstract class ContentHandler {
 	 *
 	 * @return Content The Content object created by deserializing $blob
 	 * @throws MWContentSerializationException
+	 * @see ContentJsonCodec
 	 */
 	abstract public function unserializeContent( $blob, $format = null );
+
+	/**
+	 * Deserializes a Content object of the type supported by this
+	 * ContentHandler from a JsonCodecable array.
+	 *
+	 * @since 1.45
+	 *
+	 * @param array $json Serialized form of the content
+	 *
+	 * @return Content The Content object created by deserializing $blob
+	 * @throws JsonException
+	 * @see ContentJsonCodec
+	 */
+	public function deserializeContentFromJsonArray( array $json ): Content {
+		try {
+			return $this->unserializeContent( $json['blob'], $json['format'] );
+		} catch ( MWContentSerializationException $e ) {
+			throw new JsonException( $e->getMessage() );
+		}
+	}
 
 	/**
 	 * Apply import transformation (by default, returns $blob unchanged).
@@ -477,6 +518,16 @@ abstract class ContentHandler {
 	 */
 	public function getDefaultFormat() {
 		return $this->mSupportedFormats[0];
+	}
+
+	/**
+	 * Allow ContentHandler to chose a non-default format for JSON
+	 * serialization.
+	 *
+	 * In most cases will return the same as `::getDefaultFormat()`.
+	 */
+	public function getJsonFormat(): string {
+		return $this->getDefaultFormat();
 	}
 
 	/**

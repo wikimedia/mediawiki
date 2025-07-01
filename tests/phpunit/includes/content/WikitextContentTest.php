@@ -1,11 +1,14 @@
 <?php
 
+namespace MediaWiki\Tests\Content;
+
 use MediaWiki\Content\JavaScriptContent;
 use MediaWiki\Content\TextContent;
 use MediaWiki\Content\WikitextContent;
 use MediaWiki\Deferred\LinksUpdate\LinksDeletionUpdate;
 use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\ParserOptions;
+use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Title\Title;
 
 /**
@@ -16,6 +19,8 @@ use MediaWiki\Title\Title;
  * @covers \MediaWiki\Content\WikitextContent
  */
 class WikitextContentTest extends TextContentTest {
+	use ContentSerializationTestTrait;
+
 	public const SECTIONS = "Intro
 
 == stuff ==
@@ -346,6 +351,40 @@ just a test"
 				[ LinksDeletionUpdate::class => [] ]
 			],
 			// @todo more...?
+		];
+	}
+
+	public static function getClassToTest(): string {
+		return WikitextContent::class;
+	}
+
+	public static function getTestInstancesAndAssertions(): array {
+		// Note that WikitextContent::{get,set}PreSaveTransformFlags()
+		// is preserved over JSON serialization.
+		$pstFlags = [
+			ParserOutputFlags::SHOW_TOC->value,
+			ParserOutputFlags::VARY_REVISION->value,
+		];
+		$withPstFlags = new WikitextContent( 'with PST flags' );
+		$withPstFlags->setPreSaveTransformFlags( $pstFlags );
+
+		return [
+			'basic' => [
+				'instance' => new WikitextContent( 'hello' ),
+				'assertions' => static function ( $testCase, $obj ) {
+					$testCase->assertInstanceof( WikitextContent::class, $obj );
+					$testCase->assertSame( 'hello', $obj->getText() );
+					$testCase->assertArrayEquals( [], $obj->getPreSaveTransformFlags() );
+				},
+			],
+			'withPstFlags' => [
+				'instance' => $withPstFlags,
+				'assertions' => static function ( $testCase, $obj ) use ( $pstFlags ) {
+					$testCase->assertInstanceof( WikitextContent::class, $obj );
+					$testCase->assertSame( 'with PST flags', $obj->getText() );
+					$testCase->assertArrayEquals( $pstFlags, $obj->getPreSaveTransformFlags() );
+				},
+			],
 		];
 	}
 }

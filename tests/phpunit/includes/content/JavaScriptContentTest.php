@@ -1,5 +1,9 @@
 <?php
+declare( strict_types = 1 );
 
+namespace MediaWiki\Tests\Content;
+
+use JavaScriptContentHandlerTest;
 use MediaWiki\Content\CssContent;
 use MediaWiki\Content\JavaScriptContent;
 use MediaWiki\MainConfigNames;
@@ -13,6 +17,7 @@ use MediaWiki\Title\Title;
  * @covers \MediaWiki\Content\JavaScriptContent
  */
 class JavaScriptContentTest extends TextContentTest {
+	use ContentSerializationTestTrait;
 
 	public function newContent( $text ) {
 		return new JavaScriptContent( $text );
@@ -211,6 +216,39 @@ class JavaScriptContentTest extends TextContentTest {
 			// \u0026 instead of literal &
 			'MediaWiki:MonoBook.js',
 			'/* #REDIRECT */mw.loader.load("//example.org/w/index.php?title=MediaWiki:MonoBook.js\u0026action=raw\u0026ctype=text/javascript");'
+		];
+	}
+
+	public static function getClassToTest(): string {
+		return JavaScriptContent::class;
+	}
+
+	public static function getTestInstancesAndAssertions(): array {
+		$redirects = JavaScriptContentHandlerTest::provideMakeRedirectContent();
+		[ $redirectTitle, $redirectBlob ] = $redirects['MediaWiki namespace page'];
+		return [
+			'basic' => [
+				'instance' => new JavaScriptContent( '/* hello */' ),
+				'assertions' => static function ( $testCase, $obj ) {
+					$testCase->assertInstanceof( JavaScriptContent::class, $obj );
+					$testCase->assertSame( '/* hello */', $obj->getText() );
+					$testCase->assertNull( $obj->getRedirectTarget() );
+				},
+			],
+			'redirect' => [
+				'instance' => new JavaScriptContent( $redirectBlob ),
+				'assertions' => static function ( $testCase, $obj ) use ( $redirectTitle, $redirectBlob ) {
+					$testCase->overrideConfigValues( [
+						MainConfigNames::Server => '//example.org',
+						MainConfigNames::ScriptPath => '/w',
+						MainConfigNames::Script => '/w/index.php',
+						MainConfigNames::ResourceBasePath => '/w',
+					] );
+					$testCase->assertInstanceof( JavaScriptContent::class, $obj );
+					$testCase->assertSame( $redirectBlob, $obj->getText() );
+					$testCase->assertSame( $redirectTitle, $obj->getRedirectTarget()->getPrefixedText() );
+				},
+			],
 		];
 	}
 }

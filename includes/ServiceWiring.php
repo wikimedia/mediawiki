@@ -85,6 +85,7 @@ use MediaWiki\Config\ConfigFactory;
 use MediaWiki\Config\ConfigRepository;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\ContentHandlerFactory;
+use MediaWiki\Content\ContentJsonCodec;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\Renderer\ContentRenderer;
 use MediaWiki\Content\Transform\ContentTransformer;
@@ -667,6 +668,12 @@ return [
 			$services->getObjectFactory(),
 			$services->getHookContainer(),
 			LoggerFactory::getInstance( 'ContentHandler' )
+		);
+	},
+
+	'ContentJsonCodec' => static function ( MediaWikiServices $services ): ContentJsonCodec {
+		return new ContentJsonCodec(
+			$services->getContentHandlerFactory(),
 		);
 	},
 

@@ -1176,6 +1176,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Content\\Content' => __DIR__ . '/includes/content/Content.php',
 	'MediaWiki\\Content\\ContentHandler' => __DIR__ . '/includes/content/ContentHandler.php',
 	'MediaWiki\\Content\\ContentHandlerFactory' => __DIR__ . '/includes/content/ContentHandlerFactory.php',
+	'MediaWiki\\Content\\ContentJsonCodec' => __DIR__ . '/includes/content/ContentJsonCodec.php',
 	'MediaWiki\\Content\\ContentModelChange' => __DIR__ . '/includes/content/ContentModelChange.php',
 	'MediaWiki\\Content\\CssContent' => __DIR__ . '/includes/content/CssContent.php',
 	'MediaWiki\\Content\\CssContentHandler' => __DIR__ . '/includes/content/CssContentHandler.php',
