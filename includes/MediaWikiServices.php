@@ -61,6 +61,7 @@ use MediaWiki\Config\Config;
 use MediaWiki\Config\ConfigFactory;
 use MediaWiki\Config\ConfigRepository;
 use MediaWiki\Config\GlobalVarConfig;
+use MediaWiki\Content\ContentJsonCodec;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\Renderer\ContentRenderer;
 use MediaWiki\Content\Transform\ContentTransformer;
@@ -991,6 +992,13 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getContentHandlerFactory(): IContentHandlerFactory {
 		return $this->getService( 'ContentHandlerFactory' );
+	}
+
+	/**
+	 * @since 1.45
+	 */
+	public function getContentJsonCodec(): ContentJsonCodec {
+		return $this->getService( 'ContentJsonCodec' );
 	}
 
 	/**

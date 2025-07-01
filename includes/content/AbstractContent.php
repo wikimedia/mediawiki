@@ -27,6 +27,10 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\MagicWord;
 use MediaWiki\Title\Title;
+use Psr\Container\ContainerInterface;
+use Wikimedia\JsonCodec\JsonClassCodec;
+use Wikimedia\JsonCodec\JsonCodecable;
+use Wikimedia\JsonCodec\JsonCodecInterface;
 
 /**
  * Base class for all Content objects. Refer to Content for more information.
@@ -35,7 +39,7 @@ use MediaWiki\Title\Title;
  * @since 1.21
  * @ingroup Content
  */
-abstract class AbstractContent implements Content {
+abstract class AbstractContent implements Content, JsonCodecable {
 	/**
 	 * @var string
 	 * @since 1.21
@@ -342,6 +346,12 @@ abstract class AbstractContent implements Content {
 		return $result;
 	}
 
+	public static function jsonClassCodec(
+		JsonCodecInterface $codec,
+		ContainerInterface $serviceContainer
+	): JsonClassCodec {
+		return $serviceContainer->get( 'ContentJsonCodec' );
+	}
 }
 
 /** @deprecated class alias since 1.43 */
