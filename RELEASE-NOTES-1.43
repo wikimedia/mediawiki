@@ -7,10 +7,12 @@ PHP 8.4 workboard: https://phabricator.wikimedia.org/tag/php_8.4_support/
 
 == MediaWiki 1.43.3 ==
 
-THIS IS NOT A RELEASE YET
+This is a maintenance release of the MediaWiki 1.43 branch.
 
 === Changes since MediaWiki 1.43.2 ===
 * Localisation updates.
+* Fix test failures related to 1.43.2.
+* (T398269) Fixup vendor issues related to symfony/polyfill-php.
 
 == Mediawiki 1.43.2 ==
 
