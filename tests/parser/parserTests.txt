@@ -4080,6 +4080,30 @@ parsoid=wt2html,wt2wt,html2html
 <ul><li><ul><li data-parsoid='{}'><small data-parsoid='{"stx":"html","autoInsertedStart":true}'> 123</small></li></ul></li></ul>
 !! end
 
+# T390629: category used to be moved outside of the <body>!
+!! test
+4. Category at the end of a bare <li> list item
+!! options
+parsoid=wt2html
+!! wikitext
+<li>Broken list
+== Section ==
+* Proper list
+
+[[Category:Foo]]
+!! html/php
+<li>Broken list
+<div class="mw-heading mw-heading2"><h2 id="Section">Section</h2><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Section">edit</a><span class="mw-editsection-bracket">]</span></span></div>
+<ul><li>Proper list</li></ul></li>
+!! html/parsoid
+<li>Broken list
+<h2 id="Section">Section</h2>
+<ul>
+<li>Proper list</li>
+</ul>
+<link rel="mw:PageProp/Category" href="./Category:Foo"/></li>
+!! end
+
 !! test
 Parsoid: unknown parser function (T314524)
 !! wikitext
