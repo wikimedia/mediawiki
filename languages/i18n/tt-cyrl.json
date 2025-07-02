@@ -385,6 +385,8 @@
 	"createacct-temp-warning": "Сезнең вакытлыча төзелгән хисап язмасы аша ясалган үзгәртүләр даими кулланучы язмагызга кучерелмәячәк.",
 	"noname": "Сез гамәлдәге кулланучы исемегезне күрсәтмәдегез.",
 	"userlogin-authpopup-loggingin-title": "Керү бара…",
+	"userlogin-authpopup-retry": "Яңадан кабатла",
+	"userlogin-authpopup-cancel": "Кире алу",
 	"loginsuccesstitle": "Системага кердегез",
 	"loginsuccess": "<strong>Сез {{SITENAME}} проектына $1 исеме белән кердегез.</strong>",
 	"nosuchuser": "$1 исемле кулланучы юк.\nКулланучы исеменең дөреслеге хәрефләрнең регистрына сизгер.\nЯзылышыгызны тикшерегез яки [[Special:CreateAccount|яңа хисап язмасы төзегез]].",

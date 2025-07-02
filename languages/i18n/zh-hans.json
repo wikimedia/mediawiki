@@ -216,7 +216,8 @@
 			"WaitSpring",
 			"Zorua Fox",
 			"Dabao qian",
-			"Kcx36"
+			"Kcx36",
+			"1F616EMO"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|分类}}",
@@ -2584,7 +2585,7 @@
 	"contributions": "用户贡献",
 	"tool-link-contributions": "{{GENDER:$1|用户}}贡献",
 	"contributions-title": "$1的{{GENDER:$2|用户}}贡献",
-	"contributions-title-for-ip-when-temporary-accounts-enabled": "$1的旧IP贡献",
+	"contributions-title-for-ip-when-temporary-accounts-enabled": "$1的IP贡献（旧版）",
 	"contribute-title": "用户贡献",
 	"mycontris": "贡献",
 	"anoncontribs": "贡献",
@@ -4231,13 +4232,6 @@
 	"newpages-showhide-patrolled": "$1已巡查的编辑",
 	"newpages-showhide-redirect": "$1重定向",
 	"newpages-showhide-registered": "$1注册用户",
-	"restsandbox": "REST沙盒",
-	"restsandbox-text": "请使用此页面试用MediaWiki REST API。请注意，通过沙盒界面发出的API调用将会与wiki内容实时交互，并实际修改wiki内容。参见[https://www.mediawiki.org/wiki/API:REST_API API文档]了解更多有关API使用的详细信息。",
-	"restsandbox-disclaimer": "想为沙盒提供自己的意见反馈？请在[https://www.mediawiki.org/wiki/MediaWiki_Interfaces_Team/Feature_Feedback/REST_Sandbox  此处]留言。<br />注意：沙盒UI及导航条目暂不支持翻译。<br />",
-	"restsandbox-select-api": "选择要探索的API。",
-	"restsandbox-no-specs-configured": "没有配置可探索的REST API。请使用RestSandboxSpecs设置。",
-	"restsandbox-no-such-api": "给定的API参数不受支持：$1",
-	"restsandbox-jsonly": "请启用JavaScript查看REST规范。",
 	"blockedtext-made-by": "封禁执行者是$1。",
 	"blockedtext-reason-comment": "封禁原因是<em>$1</em>。",
 	"blockedtext-start-time": "封禁开始时间：$1",

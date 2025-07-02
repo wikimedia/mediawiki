@@ -3565,8 +3565,6 @@
 	"newpages-showhide-patrolled": "$1 golygiadau o dan batrôl",
 	"newpages-showhide-redirect": "$1 ailgyfeiriadau",
 	"newpages-showhide-registered": "$1 o ddefnyddwyr cofrestredig",
-	"restsandbox": "Blwch Tywod REST",
-	"restsandbox-select-api": "Dewiswch yr API i'w archwilio.",
 	"blockedtext-made-by": "Bloc gan $1",
 	"blockedtext-reason-comment": "Y rheswm a roddir yw <em>$1</em>.",
 	"blockedtext-start-time": "Dechrau'r bloc: $1",

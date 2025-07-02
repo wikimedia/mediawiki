@@ -3821,7 +3821,6 @@
 	"newpages-showhide-patrolled": "тикшерелгән төҙәтеүҙәрҙе $1",
 	"newpages-showhide-redirect": "йүнәлтеүҙәрҙе $1",
 	"newpages-showhide-registered": "теркәлгән ҡатнашыусыларҙы $1",
-	"restsandbox-text": "Был биттә REST API өсөн һорауҙар конструкторы күрһәтелгән. Иғтибар итегеҙ, API саҡырыуҙары тере вики-контент менән үҙ-ара эш итәсәк.",
 	"blockedtext-made-by": "Бикләүҙе хаким $1 башҡарған.",
 	"blockedtext-reason-comment": "Бликләү сәбәбе: <em>$1</em>.",
 	"blockedtext-start-time": "Бикләү башлана: $1",
