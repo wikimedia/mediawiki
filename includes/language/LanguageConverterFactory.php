@@ -18,7 +18,7 @@
  * @file
  */
 
-namespace MediaWiki\Languages;
+namespace MediaWiki\Language;
 
 use BanConverter;
 use CrhConverter;
@@ -27,8 +27,6 @@ use GanConverter;
 use IuConverter;
 use KuConverter;
 use MediaWiki\Config\ServiceOptions;
-use MediaWiki\Language\ILanguageConverter;
-use MediaWiki\Language\Language;
 use MediaWiki\MainConfigNames;
 use MediaWiki\StubObject\StubUserLang;
 use MniConverter;
@@ -216,3 +214,6 @@ class LanguageConverterFactory {
 			$this->options->get( MainConfigNames::DisableTitleConversion );
 	}
 }
+
+/** @deprecated class alias since 1.45 */
+class_alias( LanguageConverterFactory::class, 'MediaWiki\\Languages\\LanguageConverterFactory' );

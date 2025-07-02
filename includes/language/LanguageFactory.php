@@ -18,7 +18,7 @@
  * @file
  */
 
-namespace MediaWiki\Languages;
+namespace MediaWiki\Language;
 
 use InvalidArgumentException;
 use LocalisationCache;
@@ -26,9 +26,6 @@ use LogicException;
 use MediaWiki\Config\Config;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
-use MediaWiki\Language\Language;
-use MediaWiki\Language\LanguageCode;
-use MediaWiki\Language\LanguageConverter;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Title\NamespaceInfo;
 use Wikimedia\Bcp47Code\Bcp47Code;
@@ -283,3 +280,6 @@ class LanguageFactory {
 		return $this->parentLangCache[$code];
 	}
 }
+
+/** @deprecated class alias since 1.45 */
+class_alias( LanguageFactory::class, 'MediaWiki\\Languages\\LanguageFactory' );

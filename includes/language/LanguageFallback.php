@@ -18,7 +18,7 @@
  * @file
  */
 
-namespace MediaWiki\Languages;
+namespace MediaWiki\Language;
 
 use InvalidArgumentException;
 use LocalisationCache;
@@ -150,3 +150,6 @@ class LanguageFallback {
 		return $this->fallbackCache[$cacheKey];
 	}
 }
+
+/** @deprecated class alias since 1.45 */
+class_alias( LanguageFallback::class, 'MediaWiki\\Languages\\LanguageFallback' );
