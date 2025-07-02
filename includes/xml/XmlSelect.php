@@ -37,6 +37,11 @@ class XmlSelect {
 	/** @var (string|int)[] */
 	protected $attributes = [];
 
+	/**
+	 * @param string|false $name
+	 * @param string|false $id
+	 * @param string|array|false $default
+	 */
 	public function __construct( $name = false, $id = false, $default = false ) {
 		if ( $name ) {
 			$this->setAttribute( 'name', $name );
