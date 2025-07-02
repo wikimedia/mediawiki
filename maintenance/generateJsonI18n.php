@@ -51,7 +51,7 @@ class GenerateJsonI18n extends Maintenance {
 	}
 
 	public function execute() {
-		global $IP;
+		global $wgExtensionDirectory;
 
 		$phpfile = $this->getArg( 0 );
 		$jsondir = $this->getArg( 1 );
@@ -62,7 +62,7 @@ class GenerateJsonI18n extends Maintenance {
 			if ( $phpfile ) {
 				$this->fatalError( "The phpfile is already specified, conflicts with --extension." );
 			}
-			$phpfile = "$IP/extensions/$extension/$extension.i18n.php";
+			$phpfile = "$wgExtensionDirectory/$extension/$extension.i18n.php";
 		}
 
 		if ( !$phpfile ) {
