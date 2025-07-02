@@ -242,7 +242,9 @@ FeedbackDialog.prototype.getActionProcess = function ( action ) {
 				mw.log.warn( 'Feedback report failed because MessagePoster could not be fetched' );
 			} ).then( () => {
 				this.close();
-			}, () => this.getErrorMessage() );
+			}, () => {
+				throw this.getErrorMessage();
+			} );
 		} );
 	}
 	// Fallback to parent handler
@@ -296,6 +298,7 @@ FeedbackDialog.prototype.postMessage = function ( poster, subject, message ) {
 		} else {
 			this.status = 'error1';
 		}
+		throw this.getErrorMessage();
 	} );
 };
 
