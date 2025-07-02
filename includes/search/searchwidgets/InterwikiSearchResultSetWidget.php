@@ -23,21 +23,18 @@ class InterwikiSearchResultSetWidget implements SearchResultSetWidget {
 	protected LinkRenderer $linkRenderer;
 	protected InterwikiLookup $iwLookup;
 	protected OutputPage $output;
-
-	/** @var bool */
-	protected $showMultimedia;
-	/** @var array */
-	protected $iwLogoOverrides;
-
+	protected bool $showMultimedia;
+	/** @var array<string,string> */
+	protected array $iwLogoOverrides;
 	/** @var array<string,string>|null */
-	protected $customCaptions;
+	protected ?array $customCaptions = null;
 
 	public function __construct(
 		SpecialSearch $specialSearch,
 		SearchResultWidget $resultWidget,
 		LinkRenderer $linkRenderer,
 		InterwikiLookup $iwLookup,
-		$showMultimedia = false
+		bool $showMultimedia = false
 	) {
 		$this->specialSearch = $specialSearch;
 		$this->resultWidget = $resultWidget;
@@ -206,8 +203,7 @@ class InterwikiSearchResultSetWidget implements SearchResultSetWidget {
 	 * @return string logoName
 	 */
 	protected function generateLogoName( $prefix ) {
-		$logoOverridesKeys = array_keys( $this->iwLogoOverrides );
-		if ( in_array( $prefix, $logoOverridesKeys ) ) {
+		if ( isset( $this->iwLogoOverrides[ $prefix ] ) ) {
 			return $this->iwLogoOverrides[ $prefix ];
 		}
 

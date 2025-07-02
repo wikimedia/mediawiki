@@ -543,7 +543,7 @@ class SpecialSearch extends SpecialPage {
 			$sidebarResultWidget,
 			$linkRenderer,
 			$this->interwikiLookup,
-			$engine->getFeatureData( 'show-multimedia-search-results' )
+			$engine->getFeatureData( 'show-multimedia-search-results' ) ?? false
 		);
 
 		$widget = new BasicSearchResultSetWidget( $this, $mainResultWidget, $sidebarResultsWidget );
