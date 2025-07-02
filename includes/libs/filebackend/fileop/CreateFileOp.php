@@ -74,11 +74,11 @@ class CreateFileOp extends FileOp {
 		return $status;
 	}
 
-	protected function getSourceSize() {
+	protected function getSourceSize(): int {
 		return strlen( $this->params['content'] );
 	}
 
-	protected function getSourceSha1Base36() {
+	protected function getSourceSha1Base36(): string {
 		return \Wikimedia\base_convert( sha1( $this->params['content'] ), 16, 36, 31 );
 	}
 

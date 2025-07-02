@@ -67,11 +67,11 @@ class RawMessage extends Message {
 		return $this->message;
 	}
 
-	public function getTextOfRawMessage() {
+	public function getTextOfRawMessage(): string {
 		return $this->key;
 	}
 
-	public function getParamsOfRawMessage() {
+	public function getParamsOfRawMessage(): array {
 		return $this->parameters;
 	}
 

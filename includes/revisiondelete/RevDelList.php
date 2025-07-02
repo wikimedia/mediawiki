@@ -344,7 +344,7 @@ abstract class RevDelList extends RevisionListBase {
 		// stub
 	}
 
-	final protected function acquireItemLocks() {
+	final protected function acquireItemLocks(): Status {
 		$status = Status::newGood();
 		/** @var RevDelItem $item */
 		foreach ( $this as $item ) {
@@ -354,7 +354,7 @@ abstract class RevDelList extends RevisionListBase {
 		return $status;
 	}
 
-	final protected function releaseItemLocks() {
+	final protected function releaseItemLocks(): Status {
 		$status = Status::newGood();
 		/** @var RevDelItem $item */
 		foreach ( $this as $item ) {

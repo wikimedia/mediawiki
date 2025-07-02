@@ -1449,7 +1449,7 @@ abstract class Installer {
 		return $taskList;
 	}
 
-	protected function getTaskFactory() {
+	protected function getTaskFactory(): TaskFactory {
 		if ( $this->taskFactory === null ) {
 			$this->taskFactory = new TaskFactory(
 				MediaWikiServices::getInstance()->getObjectFactory(),

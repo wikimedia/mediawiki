@@ -74,7 +74,7 @@ class SpecialEmailUser extends SpecialPage {
 		return $this->msg( 'emailuser-title-notarget' );
 	}
 
-	protected function getFormFields( User $target ) {
+	protected function getFormFields( User $target ): array {
 		$linkRenderer = $this->getLinkRenderer();
 		$user = $this->getUser();
 		return [

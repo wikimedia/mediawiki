@@ -96,11 +96,11 @@ class PagerTools {
 		$this->tools = $tools;
 	}
 
-	public function shouldPreventClickjacking() {
+	public function shouldPreventClickjacking(): bool {
 		return $this->preventClickjacking;
 	}
 
-	public function toHTML() {
+	public function toHTML(): string {
 		$tools = $this->tools;
 		$s2 = '';
 		if ( $tools ) {

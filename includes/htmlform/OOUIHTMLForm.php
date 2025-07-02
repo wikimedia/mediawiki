@@ -255,7 +255,7 @@ class OOUIHTMLForm extends HTMLForm {
 		}
 	}
 
-	protected function formatFormHeader() {
+	protected function formatFormHeader(): string {
 		if ( !( $this->mHeader || $this->oouiErrors || $this->oouiWarnings ) ) {
 			return '';
 		}

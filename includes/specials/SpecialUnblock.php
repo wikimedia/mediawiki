@@ -230,7 +230,7 @@ class SpecialUnblock extends SpecialPage {
 		return $target;
 	}
 
-	protected function getFields() {
+	protected function getFields(): array {
 		$fields = [
 			'Target' => [
 				'type' => 'text',

@@ -1088,7 +1088,7 @@ class Article implements Page {
 		$context->getOutput()->addHelpLink( 'Help:Diff' );
 	}
 
-	protected function isDiffOnlyView() {
+	protected function isDiffOnlyView(): bool {
 		return $this->getContext()->getRequest()->getBool(
 			'diffonly',
 			$this->userOptionsLookup->getBoolOption( $this->getContext()->getUser(), 'diffonly' )

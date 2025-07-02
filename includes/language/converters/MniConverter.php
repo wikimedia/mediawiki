@@ -247,7 +247,7 @@ class MniConverter extends LanguageConverterSpecific {
 		}
 	}
 
-	public function transliterate( $text ) {
+	public function transliterate( string $text ): string {
 		$transliterated = '';
 		foreach ( $this->mteiToBengali( $text ) as $char ) {
 			$transliterated .= $char;

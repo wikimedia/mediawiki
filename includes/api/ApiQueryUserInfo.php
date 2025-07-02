@@ -133,7 +133,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		return $ret;
 	}
 
-	protected function getCurrentUserInfo() {
+	protected function getCurrentUserInfo(): array {
 		$user = $this->getUser();
 		$vals = [];
 		$vals['id'] = $user->getId();

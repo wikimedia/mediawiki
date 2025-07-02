@@ -180,7 +180,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 	}
 
 	// Based on ContribsPager.php
-	private function getNamespaceCond() {
+	private function getNamespaceCond(): array {
 		$namespace = $this->opts->getValue( 'namespace' );
 		if ( $namespace === 'all' || $namespace === '' ) {
 			return [];

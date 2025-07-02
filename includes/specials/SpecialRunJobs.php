@@ -125,7 +125,7 @@ class SpecialRunJobs extends UnlistedSpecialPage {
 		}
 	}
 
-	protected function doRun( array $params ) {
+	protected function doRun( array $params ): array {
 		return $this->jobRunner->run( [
 			'type'     => $params['type'],
 			'maxJobs'  => $params['maxjobs'] ?: 1,

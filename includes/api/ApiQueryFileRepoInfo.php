@@ -94,7 +94,7 @@ class ApiQueryFileRepoInfo extends ApiQueryBase {
 		];
 	}
 
-	public function getProps() {
+	public function getProps(): array {
 		$props = [];
 		$this->repoGroup->forEachForeignRepo( static function ( FileRepo $repo ) use ( &$props ) {
 			$props = array_merge( $props, array_keys( $repo->getInfo() ) );

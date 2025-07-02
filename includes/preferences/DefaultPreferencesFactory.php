@@ -2204,7 +2204,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		return $mapping;
 	}
 
-	public function listResetKinds() {
+	public function listResetKinds(): array {
 		return [
 			'registered',
 			'registered-multiselect',

@@ -117,7 +117,7 @@ final class PageBundleParserOutputConverter {
 		);
 	}
 
-	public static function hasPageBundle( ParserOutput $parserOutput ) {
+	public static function hasPageBundle( ParserOutput $parserOutput ): bool {
 		return $parserOutput->getExtensionData( self::PARSOID_PAGE_BUNDLE_KEY ) !== null;
 	}
 }

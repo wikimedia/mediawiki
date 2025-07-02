@@ -95,7 +95,7 @@ class CrhExceptions {
 		}
 	}
 
-	public function loadExceptions( $lcChars, $ucChars ) {
+	public function loadExceptions( string $lcChars, string $ucChars ): array {
 		# init lc and uc, as needed
 		$this->initLcUc( $lcChars, $ucChars );
 

@@ -809,7 +809,7 @@ class ImagePage extends Article {
 		}
 	}
 
-	public function getUploadUrl() {
+	public function getUploadUrl(): string {
 		$this->loadFile();
 		$uploadTitle = SpecialPage::getTitleFor( 'Upload' );
 		return $uploadTitle->getFullURL( [

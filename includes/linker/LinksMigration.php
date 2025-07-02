@@ -157,7 +157,7 @@ class LinksMigration {
 		}
 	}
 
-	public function getTitleFields( $table ) {
+	public function getTitleFields( string $table ): array {
 		$this->assertMapping( $table );
 
 		if ( $this->isMigrationReadNew( $table ) ) {

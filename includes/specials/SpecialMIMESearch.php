@@ -171,7 +171,7 @@ class SpecialMIMESearch extends QueryPage {
 		return '';
 	}
 
-	protected function getSuggestionsForTypes() {
+	protected function getSuggestionsForTypes(): array {
 		$queryBuilder = $this->getDatabaseProvider()->getReplicaDatabase()->newSelectQueryBuilder();
 		$migrationStage = MediaWikiServices::getInstance()->getMainConfig()->get(
 			MainConfigNames::FileSchemaMigrationStage

@@ -451,7 +451,7 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 		return $queryInfo;
 	}
 
-	protected function getNamespaceCond() {
+	protected function getNamespaceCond(): array {
 		if ( $this->namespace !== '' ) {
 			$dbr = $this->getDatabase();
 			$namespaces = [ $this->namespace ];

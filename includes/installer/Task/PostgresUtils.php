@@ -18,12 +18,12 @@ class PostgresUtils {
 		$this->context = $context;
 	}
 
-	public function canCreateAccounts() {
+	public function canCreateAccounts(): bool {
 		$perms = $this->getInstallUserPermissions();
 		return ( $perms && $perms->rolsuper ) || $perms->rolcreaterole;
 	}
 
-	public function isSuperUser() {
+	public function isSuperUser(): bool {
 		$perms = $this->getInstallUserPermissions();
 		return $perms && $perms->rolsuper;
 	}
