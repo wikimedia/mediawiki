@@ -99,10 +99,8 @@ class VueComponentParser {
 
 	/**
 	 * Parse HTML to DOM using RemexHtml
-	 * @param string $html
-	 * @return DOMDocument
 	 */
-	private function parseHTML( $html ): DOMDocument {
+	private function parseHTML( string $html ): DOMDocument {
 		$domBuilder = new DOMBuilder( [ 'suppressHtmlNamespace' => true ] );
 		$treeBuilder = new TreeBuilder( $domBuilder, [ 'ignoreErrors' => true ] );
 		$tokenizer = new Tokenizer( new Dispatcher( $treeBuilder ), $html, [ 'ignoreErrors' => true ] );
@@ -184,7 +182,7 @@ class VueComponentParser {
 	 * @param bool $minify Whether to minify the output (remove comments, strip whitespace)
 	 * @return string HTML contents of the template tag
 	 */
-	private function getTemplateHtml( $html, $minify ) {
+	private function getTemplateHtml( string $html, bool $minify ): string {
 		$serializer = new Serializer( $this->newTemplateFormatter( $minify ) );
 		$tokenizer = new Tokenizer(
 			$this->newFilteringDispatcher(
@@ -203,21 +201,22 @@ class VueComponentParser {
 	 * it strips the <!doctype html> tag).
 	 *
 	 * @param bool $minify If true, remove comments and strip whitespace
-	 * @return HtmlFormatter
 	 */
-	private function newTemplateFormatter( $minify ) {
+	private function newTemplateFormatter( bool $minify ): HtmlFormatter {
 		return new class( $minify ) extends HtmlFormatter {
-			private $minify;
+			private bool $minify;
 
-			public function __construct( $minify ) {
+			public function __construct( bool $minify ) {
 				$this->minify = $minify;
 			}
 
+			/** @inheritDoc */
 			public function startDocument( $fragmentNamespace, $fragmentName ) {
 				// Remove <!doctype html>
 				return '';
 			}
 
+			/** @inheritDoc */
 			public function comment( SerializerNode $parent, $text ) {
 				if ( $this->minify ) {
 					// Remove all comments
@@ -226,6 +225,7 @@ class VueComponentParser {
 				return parent::comment( $parent, $text );
 			}
 
+			/** @inheritDoc */
 			public function characters( SerializerNode $parent, $text, $start, $length ) {
 				if (
 					$this->minify && (
@@ -243,6 +243,7 @@ class VueComponentParser {
 				return parent::characters( $parent, $text, $start, $length );
 			}
 
+			/** @inheritDoc */
 			public function element( SerializerNode $parent, SerializerNode $node, $contents ) {
 				if (
 					$this->minify && (
@@ -266,19 +267,19 @@ class VueComponentParser {
 	 *
 	 * @param TreeBuilder $treeBuilder
 	 * @param string $nodeName Tag name to filter for
-	 * @return Dispatcher
 	 */
-	private function newFilteringDispatcher( TreeBuilder $treeBuilder, $nodeName ) {
+	private function newFilteringDispatcher( TreeBuilder $treeBuilder, string $nodeName ): Dispatcher {
 		return new class( $treeBuilder, $nodeName ) extends Dispatcher {
-			private $nodeName;
-			private $nodeDepth = 0;
-			private $seenTag = false;
+			private string $nodeName;
+			private int $nodeDepth = 0;
+			private bool $seenTag = false;
 
-			public function __construct( TreeBuilder $treeBuilder, $nodeName ) {
+			public function __construct( TreeBuilder $treeBuilder, string $nodeName ) {
 				$this->nodeName = $nodeName;
 				parent::__construct( $treeBuilder );
 			}
 
+			/** @inheritDoc */
 			public function startTag( $name, Attributes $attrs, $selfClose, $sourceStart, $sourceLength ) {
 				if ( $this->nodeDepth ) {
 					parent::startTag( $name, $attrs, $selfClose, $sourceStart, $sourceLength );
@@ -294,6 +295,7 @@ class VueComponentParser {
 				}
 			}
 
+			/** @inheritDoc */
 			public function endTag( $name, $sourceStart, $sourceLength ) {
 				if ( $name === $this->nodeName ) {
 					$this->nodeDepth--;
@@ -303,12 +305,14 @@ class VueComponentParser {
 				}
 			}
 
+			/** @inheritDoc */
 			public function characters( $text, $start, $length, $sourceStart, $sourceLength ) {
 				if ( $this->nodeDepth ) {
 					parent::characters( $text, $start, $length, $sourceStart, $sourceLength );
 				}
 			}
 
+			/** @inheritDoc */
 			public function comment( $text, $sourceStart, $sourceLength ) {
 				if ( $this->nodeDepth ) {
 					parent::comment( $text, $sourceStart, $sourceLength );
