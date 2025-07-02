@@ -19,7 +19,7 @@
  */
 
 use MediaWiki\Language\LanguageConverter;
-use MediaWiki\Language\ReplacementArray;
+use Wikimedia\ReplacementArray;
 
 /**
  * Gan Chinese specific code.

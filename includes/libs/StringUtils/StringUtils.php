@@ -4,9 +4,9 @@ namespace Wikimedia\StringUtils;
 
 use ArrayIterator;
 use InvalidArgumentException;
-use MediaWiki\Libs\UnpackFailedException;
 use Wikimedia\Assert\Assert;
 use Wikimedia\AtEase\AtEase;
+use Wikimedia\UnpackFailedException;
 
 /**
  * Methods to play with strings.

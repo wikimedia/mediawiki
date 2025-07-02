@@ -20,7 +20,7 @@
  * @author Haoreima
  */
 
-use MediaWiki\Language\ReplacementArray;
+use Wikimedia\ReplacementArray;
 
 /**
  * Meitei specific converter routines.

@@ -18,7 +18,7 @@
  * @file
  */
 
-use MediaWiki\Language\ReplacementArray;
+use Wikimedia\ReplacementArray;
 
 /**
  * Serbian (Српски / Srpski) specific code.

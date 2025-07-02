@@ -18,7 +18,7 @@
  * @file
  */
 
-use MediaWiki\Language\ReplacementArray;
+use Wikimedia\ReplacementArray;
 
 /**
  * Standard Moroccan Amazigh specific code.

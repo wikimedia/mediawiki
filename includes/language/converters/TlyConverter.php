@@ -20,7 +20,7 @@
  */
 
 use MediaWiki\Language\LanguageConverter;
-use MediaWiki\Language\ReplacementArray;
+use Wikimedia\ReplacementArray;
 
 /**
  * Talysh specific code.

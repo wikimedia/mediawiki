@@ -44,6 +44,7 @@ use MediaWiki\User\User;
 use RuntimeException;
 use UnexpectedValueException;
 use Wikimedia\ObjectCache\BagOStuff;
+use Wikimedia\ReplacementArray;
 use Wikimedia\StringUtils\StringUtils;
 
 /**

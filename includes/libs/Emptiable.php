@@ -1,5 +1,5 @@
 <?php
-namespace MediaWiki\Libs;
+namespace Wikimedia;
 
 /**
  * An interface to check for emptiness of an object
@@ -16,3 +16,5 @@ interface Emptiable {
 
 /** @deprecated class alias since 1.41 */
 class_alias( Emptiable::class, 'MediaWiki\\Emptiable' );
+/** @deprecated class alias since 1.45 */
+class_alias( Emptiable::class, 'MediaWiki\\Libs\\Emptiable' );

@@ -84,7 +84,6 @@ class AutoLoader {
 		'MediaWiki\\Json\\' => __DIR__ . '/json/',
 		'MediaWiki\\Languages\\Data\\' => __DIR__ . '/languages/data/',
 		'MediaWiki\\Language\\' => __DIR__ . '/language/',
-		'MediaWiki\\Libs\\' => __DIR__ . '/libs/',
 		'MediaWiki\\LinkedData\\' => __DIR__ . '/linkeddata/',
 		'MediaWiki\\Linker\\' => __DIR__ . '/linker/',
 		'MediaWiki\\Logger\\' => __DIR__ . '/debug/logger/',

@@ -18,7 +18,7 @@
  * @file
  */
 
-namespace MediaWiki\Language;
+namespace Wikimedia;
 
 /**
  * Wrapper around strtr() that holds replacements
@@ -103,3 +103,5 @@ class ReplacementArray {
 
 /** @deprecated class alias since 1.43 */
 class_alias( ReplacementArray::class, 'ReplacementArray' );
+/** @deprecated class alias since 1.45 */
+class_alias( ReplacementArray::class, 'MediaWiki\\Language\\ReplacementArray' );

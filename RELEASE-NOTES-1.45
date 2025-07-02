@@ -245,6 +245,10 @@ because of Phabricator reports.
     - LanguageGetNamespacesHook
     - LocalisationCacheRecacheFallbackHook
     - LocalisationCacheRecacheHook
+  - Wikimedia:
+    - ReplacementArray (was MediaWiki\Language\ReplacementArray)
+    - Emptiable (was Wikimedia\Libs\Emptiable)
+    - UnpackFailedException (was Wikimedia\Libs\UnpackFailedException)
 * UserNameUtils::getTempPlaceholder() has been deprecated and now emits
   deprecation warnings. Use TempUserConfig::getPlaceholderName() instead.
 * MediaWikiServices::disableStorageBackend(), deprecated in 1.40 now

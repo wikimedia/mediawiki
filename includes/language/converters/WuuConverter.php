@@ -19,8 +19,8 @@
  */
 
 use MediaWiki\Language\LanguageConverter;
-use MediaWiki\Language\ReplacementArray;
 use MediaWiki\Languages\Data\ZhConversion;
+use Wikimedia\ReplacementArray;
 
 /**
  * Wu language specific code.

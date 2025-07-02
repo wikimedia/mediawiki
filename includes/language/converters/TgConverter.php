@@ -19,7 +19,7 @@
  */
 
 use MediaWiki\Language\LanguageConverter;
-use MediaWiki\Language\ReplacementArray;
+use Wikimedia\ReplacementArray;
 
 /**
  * Tajik (Тоҷикӣ) specific code, converting Tajiki to Latin orthography.
