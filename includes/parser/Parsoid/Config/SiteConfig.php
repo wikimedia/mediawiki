@@ -620,7 +620,12 @@ class SiteConfig extends ISiteConfig {
 	): void {
 		'@phan-var ParserOutput $metadata'; // @var ParserOutput $metadata
 		// Look for a displaytitle.
-		$displayTitle = $metadata->getPageProperty( 'displaytitle' ) ?:
+		//
+		// Temporarily (while we wait for ParserCache content to expire),
+		// explicitly cast to handle titles that are numbers. A separate patch
+		// ensures that ParserOutput only contains strings for displaytitle
+		// (and other number-like string properties).
+		$displayTitle = (string)$metadata->getPageProperty( 'displaytitle' ) ?:
 			// Use the default title, properly escaped
 			Utils::escapeHtml( $defaultTitle );
 		$this->exportMetadataHelper(
