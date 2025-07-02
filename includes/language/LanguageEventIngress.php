@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Languages;
+namespace MediaWiki\Language;
 
 use MediaWiki\DomainEvent\DomainEventIngress;
 use MediaWiki\Page\Event\PageDeletedEvent;
@@ -68,3 +68,6 @@ class LanguageEventIngress
 	}
 
 }
+
+/** @deprecated class alias since 1.45 */
+class_alias( LanguageEventIngress::class, 'MediaWiki\\Languages\\LanguageEventIngress' );
