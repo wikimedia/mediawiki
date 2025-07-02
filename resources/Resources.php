@@ -2746,7 +2746,7 @@ return [
 		'localBasePath' => MW_INSTALL_PATH . '/resources/src',
 		'remoteBasePath' => "$wgResourceBasePath/resources/src",
 		'packageFiles' => [
-			'mediawiki.special.specialpages.js',
+			'mediawiki.special.specialpages/init.js',
 		],
 		'dependencies' => [
 			'oojs-ui-core',

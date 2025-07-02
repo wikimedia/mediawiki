@@ -1,35 +1,35 @@
 let index, texts;
 function buildIndex() {
 	index = {};
-	const $rows = $( '.mw-special-pages-row' );
-	$rows.each( function () {
-		const $row = $( this );
-		const $labels = $row.find(
-			'td'
-		);
+	const $items = $( '.mw-specialpages-list li' );
+	$items.each( function () {
+		const $item = $( this );
+		const $group = $item.closest( '.mw-specialpages-list' ).prev( '.mw-specialpagesgroup' );
 
 		function addToIndex( $label ) {
 			const text = $label.val() || $label[ 0 ].textContent.toLowerCase().trim().replace( /\s+/, ' ' );
 			if ( text ) {
 				index[ text ] = index[ text ] || [];
 				index[ text ].push( {
-					$row: $row
+					$item: $item,
+					$group: $group
 				} );
 			}
 		}
 
-		$labels.each( function () {
-			addToIndex( $( this ) );
-		} );
+		addToIndex( $item );
+		addToIndex( $group );
+		// Future: Add other text associated with the item to the index, e.g. a description label
 
 		// Add aliases to index
-		for ( let i = 0; i < $row[ 0 ].attributes.length; i++ ) {
-			if ( $row[ 0 ].attributes[ i ].name.startsWith( 'data-search-index-' ) ) {
-				const text = $row[ 0 ].attributes[ i ].value;
+		for ( let i = 0; i < $item[ 0 ].attributes.length; i++ ) {
+			if ( $item[ 0 ].attributes[ i ].name.startsWith( 'data-search-index-' ) ) {
+				const text = $item[ 0 ].attributes[ i ].value;
 				if ( text ) {
 					index[ text ] = index[ text ] || [];
 					index[ text ].push( {
-						$row: $row
+						$item: $item,
+						$group: $group
 					} );
 				}
 			}
@@ -52,19 +52,21 @@ search.on( 'change', ( val ) => {
 	}
 	const isSearching = !!val;
 
+	const $content = $( '#mw-content-text' );
 	$( '.mw-special-pages-search-highlight' ).removeClass( 'mw-special-pages-search-highlight' );
 	if ( isSearching ) {
-		$( '.cdx-table__table tbody' ).addClass( 'mw-special-pages-is-searching' );
+		$content.addClass( 'mw-special-pages-is-searching' );
 		val = val.toLowerCase();
 		texts.forEach( ( text ) => {
 			if ( text.includes( val ) ) {
 				index[ text ].forEach( ( item ) => {
-					item.$row.addClass( 'mw-special-pages-search-highlight' );
+					item.$item.addClass( 'mw-special-pages-search-highlight' );
+					item.$group.addClass( 'mw-special-pages-search-highlight' );
 				} );
 			}
 		} );
 	} else {
-		$( '.cdx-table__table tbody' ).removeClass( 'mw-special-pages-is-searching' );
+		$content.removeClass( 'mw-special-pages-is-searching' );
 	}
 } );
 

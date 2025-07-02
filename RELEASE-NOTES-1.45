@@ -52,10 +52,8 @@ For notes on 1.44.x and older releases, see HISTORY.
 
 === New user-facing features in 1.45 ===
 
-* (T219543) [[Special:SpecialPages]], the index of special pages, has been re-
-  designed to be clearer, filterable/sortable, and mobile-friendly. Restricted
-  special pages, previously shown in bold, are now explicitly labelled as such,
-  with the row highlighted in yellow.
+* (T219543) [[Special:SpecialPages]], the index of special pages, now has
+  a search box that filters the list.
 * (T118132) After using [[Special:MergeHistory]] to merge page histories,
   [[Special:Log]] will show entries for both the source and the destination
   page. Previously, the merge was only logged for the source page.
