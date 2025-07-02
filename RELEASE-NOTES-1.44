@@ -1,8 +1,19 @@
 = MediaWiki 1.44 =
 
+== MediaWiki 1.44.1 ==
+
+THIS IS NOT A RELEASE YET
+
+=== Changes since MediaWiki 1.44.0 ===
+
+* (T385890, T398448) ApiQueryCategoryMembers: Use correct index for
+  categorylinks
+* …
+
 == MediaWiki 1.44.0 ==
 
 === Changes since MediaWiki 1.44.0-rc.0 ===
+
 * Localisation updates.
 * (T379445) debug: Migrate E_USER_ERROR to throw Error in DeprecationHelper.
 * (T379445) Setup: Switch vendor error from echo+E_USER_ERROR to echo+exit.
@@ -58,6 +69,7 @@
 == MediaWiki 1.44.0-rc.0 ==
 
 == Upgrading notes for 1.44 ==
+
 Don't forget to always back up your database before upgrading!
 
 See the file UPGRADE for more detailed per-version upgrade instructions from the
