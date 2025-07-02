@@ -1090,19 +1090,6 @@ Examples from RFC 2732, section 2:
 <li><a rel="mw:ExtLink" href="http://[2010:836B:4179::836B:4179]" class="external free">http://[2010:836B:4179::836B:4179]</a></li></ul>
 !! end
 
-!! test
-Ensure html2wt b/c for stashed RFC target links (T382963)
-!! options
-parsoid=html2wt
-!! html/parsoid
-<p><a href="https://datatracker.ietf.org/doc/html/rfc1234" rel="mw:ExtLink nofollow" class="external mw-magiclink">RFC 1234</a></p>
-<p><a href="https://tools.ietf.org/html/rfc1234" rel="mw:ExtLink nofollow" class="external mw-magiclink">RFC 1234</a></p>
-!! wikitext
-RFC 1234
-
-RFC 1234
-!! end
-
 # It might make sense to change this behavior; see
 # See https://phabricator.wikimedia.org/T238022#5665580
 !! test

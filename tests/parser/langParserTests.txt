@@ -506,6 +506,36 @@ language=zh htmlVariantLanguage=zh-Hant-TW
 !! end
 
 !! test
+html2wt support for edited wildcard rule (strip trailing semi where needed)
+!! options
+language=zh htmlVariantLanguage=zh-Hant-TW
+parsoid={
+  "modes": ["wt2wt", "selser"],
+  "changes": [
+    ["meta[typeof]", "attr", "data-mw-variant", "{\"add\":true,\"twoway\":[{\"l\":\"*\",\"t\":\"content\"}]}"]
+  ]
+}
+!! wikitext
+test: -{H|zh:content; }-
+!! wikitext/edited
+test: -{H|content}-
+!! end
+
+!! test
+html2wt support for wildcard rule with whitespace around flag value
+!! options
+language=zh htmlVariantLanguage=zh-Hant-TW
+parsoid=wt2html,wt2wt,html2html
+!! wikitext
+test: -{ H  |all variants}-
+!! html/php
+<p>test: 
+</p>
+!! html/parsoid
+<p>test: <meta typeof="mw:LanguageVariant" data-mw-variant='{"add":true,"twoway":[{"l":"*","t":"all variants"}]}'/></p>
+!! end
+
+!! test
 Filter syntax for language variants
 !! options
 language=zh htmlVariantLanguage=zh-Hant-TW
@@ -1678,7 +1708,7 @@ parsoid=html2wt
 !! test
 Nonexistent internal link targets should be resolved using variants (T258856)
 !! options
-language=sr variant=sr-ec
+language=sr htmlVariantLanguage=sr-Cyrl
 !! wikitext
 [[Test]]
 !! html/php
