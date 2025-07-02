@@ -1,11 +1,61 @@
 = MediaWiki 1.44 =
 
-== MediaWiki 1.44.0-PRERELEASE ==
+== MediaWiki 1.44.0 ==
 
-THIS IS NOT A RELEASE YET
+=== Changes since MediaWiki 1.44.0-rc.0 ===
+* Localisation updates.
+* (T379445) debug: Migrate E_USER_ERROR to throw Error in DeprecationHelper.
+* (T379445) Setup: Switch vendor error from echo+E_USER_ERROR to echo+exit.
+* Setup: Update error message for composer dependencies check.
+* (T381341, T379445) widget: Remove outdated try/catch wrapper from
+  SpinnerWidget.
+* (T379445) phpunit: Remove unused trigger_error from TestLogger.
+* (T396766) ApiQueryRevisionsBase: Cast ctype_digit() param to string.
+* (T356451) logger: Add void as return type on setLogger.
+* (T328921, T359868) Drop PHP 7.4/8.0 support from master
+  (forward-port from MW 1.42).
+* Drop a few phan PhanImpossibleTypeComparison suppressions now we've dropped
+  PHP 7.4.
+* Clean up resource type and phan suppression in postgres code.
+* structure tests: allow PHP 8.1 syntax and autoload enums.
+* (T379508, T381291) composer.json: Updated nikic/php-parser from
+  ^5.3.1 to ^5.5.0.
+* (T351055) SpecialBrokenRedirects: Batch and preload destination title info.
+* Pass fname to LinkBatch->setCaller in more places.
+* SpecialBrokenRedirects: Dedupe logic via private getRedirectTarget helper.
+* (T351055) SpecialBrokenRedirects: Load redirect data in batch from database
+* (T388406) RefreshLinksJob: Check hasText before comparing HTML.
+* (T397521)  Api: Fix permission checks in action=compare.
+* (T397472) [REST Sandbox] Remove SwaggerUI from MediaWiki Releases.
+* (T397883, T397643) htmlform: fix min/max validations on empty input in
+  int/float fields
+* specials: SpecialTalkPage: Use config from request context.
+* (T387408) exception: Skip use of HookRunner when not autoloaded.
+* (T391343, CVE-2025-6589) SECURITY: BlockList: Hide rows containing suppressed
+  users.
+* (T392746, CVE-2025-6590) SECURITY: Escape usernames in HTMLUserTextField
+  validation errors.
+* (T392276, CVE-2025-6591) SECURITY: API: Escape i18n messages in
+  action=feedcontributions.
+* (T396230, CVE-2025-6593) SECURITY: fix IP leak to unverified email.
+* (T389009, CVE-2025-6597) SECURITY: Do not treat autocreation as login
+  for reauthentication.
+* (T389010, CVE-2025-6926) SECURITY: Allow extensions to supress the reauth
+  flag on login.
+* (T397595, CVE-2025-6927) SECURITY: Fix autoblocks visibility when
+  bl_deleted=1.
+* (T397595, CVE-2025-6927) SECURITY: Fix leak of hidden usernames via
+  autoblocks of those users.
+* (T395063, CVE-2025-6594) SECURITY: apisandbox: Fix reflected XSS when
+  invalid 'format' is provided.
+* (T398269) Replace away symfony php polyfills for PHP8/8.1.
+* Rest: Move ModuleConfigurationException into correct folder.
+* Cache: Move MessageCache hook interfaces into correct folder.
+* (T394556) uppercaseTitlesForUnicodeTransition: Add missing return.
+* installer: Always check return of IDatabase::fieldInfo in postgres.
+* autoload: Expand Autoloader::CORE_NAMESPACES.
 
-MediaWiki 1.44 is a pre-release testing branch, and is not recommended
-for use in production.
+== MediaWiki 1.44.0-rc.0 ==
 
 == Upgrading notes for 1.44 ==
 Don't forget to always back up your database before upgrading!
