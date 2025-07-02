@@ -17,9 +17,7 @@
 	 * @param {string} apiurl The API url
 	 * @param {Object} [config] Configuration options
 	 */
-	mw.widgets.MediaSearchProvider = function MwWidgetsMediaSearchProvider( apiurl, config ) {
-		config = config || {};
-
+	mw.widgets.MediaSearchProvider = function MwWidgetsMediaSearchProvider( apiurl, config = {} ) {
 		config.staticParams = Object.assign( {
 			generator: 'search',
 			gsrnamespace: mw.config.get( 'wgNamespaceIds' ).file,

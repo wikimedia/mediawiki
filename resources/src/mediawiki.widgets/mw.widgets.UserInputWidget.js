@@ -22,10 +22,7 @@
 	 * @param {boolean} [config.excludetemp] Whether to exclude temporary users or not
 	 * @param {mw.Api} [config.api] API object to use, creates a default mw.Api instance if not specified
 	 */
-	mw.widgets.UserInputWidget = function MwWidgetsUserInputWidget( config ) {
-		// Config initialization
-		config = config || {};
-
+	mw.widgets.UserInputWidget = function MwWidgetsUserInputWidget( config = {} ) {
 		// Parent constructor
 		mw.widgets.UserInputWidget.super.call( this, Object.assign( {}, config, { autocomplete: false } ) );
 

@@ -10,10 +10,7 @@
  * @description Create an instance of `mw.widgets.TableWidget`.
  * @param {mw.widgets.TableWidgetModel~Config} [config] Configuration options
  */
-mw.widgets.TableWidget = function MwWidgetsTableWidget( config ) {
-	// Configuration initialization
-	config = config || {};
-
+mw.widgets.TableWidget = function MwWidgetsTableWidget( config = {} ) {
 	// Parent constructor
 	mw.widgets.TableWidget.super.call( this, config );
 

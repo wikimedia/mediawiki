@@ -18,9 +18,7 @@
 	 * @description Create an mw.widgets.TitleSearchWidget object.
 	 * @param {Object} [config] Configuration options
 	 */
-	mw.widgets.TitleSearchWidget = function MwWidgetsTitleSearchWidget( config ) {
-		config = config || {};
-
+	mw.widgets.TitleSearchWidget = function MwWidgetsTitleSearchWidget( config = {} ) {
 		// Parent constructor
 		mw.widgets.TitleSearchWidget.super.call( this, config );
 

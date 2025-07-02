@@ -21,9 +21,7 @@
 	 * @param {Object} [config.tooltipsHtml] Optional object mapping row labels to tooltips
 	 *  (as HTML). Takes precedence over text tooltips.
 	 */
-	mw.widgets.CheckMatrixWidget = function MWWCheckMatrixWidget( config ) {
-		config = config || {};
-
+	mw.widgets.CheckMatrixWidget = function MWWCheckMatrixWidget( config = {} ) {
 		// Parent constructor
 		mw.widgets.CheckMatrixWidget.super.call( this, config );
 		this.checkboxes = {};
