@@ -198,7 +198,11 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 					$endsortkey );
 				$this->addWhereRange( 'cl_from', $dir, null, null );
 			}
-			$this->addOption( 'USE INDEX', [ 'categorylinks' => 'cl_sortkey' ] );
+			if ( $this->migrationStage & SCHEMA_COMPAT_READ_OLD ) {
+				$this->addOption( 'USE INDEX', [ 'categorylinks' => 'cl_sortkey' ] );
+			} else {
+				$this->addOption( 'USE INDEX', [ 'categorylinks' => 'cl_sortkey_id' ] );
+			}
 		}
 
 		$this->addWhere( 'cl_from=page_id' );
