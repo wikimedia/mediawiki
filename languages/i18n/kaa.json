@@ -1493,7 +1493,7 @@
 	"blanknamespace": "(Baslı)",
 	"contributions": "Paydalanıwshı úlesi",
 	"tool-link-contributions": "{{GENDER:$1|Paydalanıwshı}} úlesi",
-	"contributions-title": "$1 atlı paydalanıwshınıń qosqan úlesi",
+	"contributions-title": "{{GENDER:$2|Paydalanıwshınıń}} $1 ushın qosqan úlesi",
 	"contribute-title": "Paydalanıwshı úlesleri",
 	"mycontris": "Úlesim",
 	"anoncontribs": "Úlesim",

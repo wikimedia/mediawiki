@@ -115,7 +115,7 @@
 	"redirectpagesub": "Pagina de redirection",
 	"redirectto": "Redirection verso:",
 	"lastmodifiedat": "Le ultime modification de iste pagina data del $1 a $2.",
-	"lastmodifiedat-parsoid": "Iste pagina ha essite modificate pro le ultime vice le $1 a $2 e ha essite visualisate con [[mw:Special:MyLanguage/Parsoid|Parsoid]].",
+	"renderedwith-parsoid": "Le pagina ha essite rendite con [[mw:Special:MyLanguage/Parsoid|Parsoid]].",
 	"viewcount": "Iste pagina ha essite visitate {{PLURAL:$1|un vice|$1 vices}}.",
 	"protectedpage": "Pagina protegite",
 	"jumpto": "Saltar a:",

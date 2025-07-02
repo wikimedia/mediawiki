@@ -135,6 +135,7 @@
 	"redirectpagesub": "Páxina de redirección",
 	"redirectto": "Redirixir cara a:",
 	"lastmodifiedat": "A última edición desta páxina foi o $1 ás $2.",
+	"renderedwith-parsoid": "A páxina renderizouse mediante [[mw:Special:MyLanguage/Parsoid|Parsoid]].",
 	"viewcount": "Visitaron esta páxina {{PLURAL:$1|unha vez|$1 veces}}.",
 	"protectedpage": "Páxina protexida",
 	"jumpto": "Ir a:",

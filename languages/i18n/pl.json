@@ -215,7 +215,7 @@
 	"redirectpagesub": "Strona przekierowująca",
 	"redirectto": "Przekierowanie do:",
 	"lastmodifiedat": "Tę stronę ostatnio edytowano $1, $2.",
-	"lastmodifiedat-parsoid": "Tę stronę ostatnio edytowano $1, $2 i wyrenderowano z wykorzystaniem [[mw:Special:MyLanguage/Parsoid|Parsoida]].",
+	"renderedwith-parsoid": "Strona została wyrenderowana z wykorzystaniem [[mw:Special:MyLanguage/Parsoid|Parsoida]].",
 	"viewcount": "Tę stronę obejrzano {{PLURAL:$1|tylko raz|$1 razy}}.",
 	"protectedpage": "Strona zabezpieczona",
 	"jumpto": "Skocz do:",

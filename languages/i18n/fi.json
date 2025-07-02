@@ -187,7 +187,7 @@
 	"redirectpagesub": "Ohjaussivu",
 	"redirectto": "Ohjaus sivulle:",
 	"lastmodifiedat": "Sivua on viimeksi muutettu $1 kello $2.",
-	"lastmodifiedat-parsoid": "Tätä sivua on viimeksi muutettu $1 kello $2, ja se renderöitiin [[mw:Special:MyLanguage/Parsoid|Parsoidilla]].",
+	"renderedwith-parsoid": "Sivu renderöitiin [[mw:Special:MyLanguage/Parsoid|Parsoidilla]].",
 	"viewcount": "Tämä sivu on näytetty {{PLURAL:$1|yhden kerran|$1 kertaa}}.",
 	"protectedpage": "Suojattu sivu",
 	"jumpto": "Loikkaa:",

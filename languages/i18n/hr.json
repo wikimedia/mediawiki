@@ -1572,7 +1572,7 @@
 	"filedelete-nofile-old": "Nema arhivirane inačice datoteke '''$1''' sa zadanim parametrima.",
 	"filedelete-otherreason": "Drugi/dodatni razlog:",
 	"filedelete-reason-otherlist": "Drugi razlog",
-	"filedelete-reason-dropdown": "*Česti razlozi brisanja\n** Kršenje autorskih prava\n** Dupla datoteka\n** Nekorištena datoteka",
+	"filedelete-reason-dropdown": "*Česti razlozi brisanja\n** Kršenje autorskih prava\n** Dvostruka datoteka\n** Nekorištena datoteka",
 	"filedelete-edit-reasonlist": "Uredi razloge za brisanje",
 	"filedelete-edit-reasonlist-suppress": "Uredi razloge za skrivanje",
 	"filedelete-maintenance": "Brisanje i vraćanje datoteka privremeno je onemogućeno zbog održavanja.",

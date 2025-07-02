@@ -668,7 +668,7 @@
 	"temp-user-banner-tooltip-description-login": "[[Special:UserLogin|ログイン]]もしくは[[Special:CreateAccount|アカウントを作成]]して、これからの編集をそのアカウントに関連付けし、その他の機能にもアクセスできます。",
 	"blankarticle": "<strong>警告:</strong> 作成しようとしているページの内容がありません。「$1」をもう一度クリックすると、中身の無いページが作成されます。",
 	"anoneditwarning": "<strong>警告:</strong> ログインしていません。編集を行うと、あなたの IP アドレスが公開されます。<strong>[$1 ログイン]</strong>または<strong>[$2 アカウントを作成]</strong>すれば、あなたの編集はその利用者名とともに表示されるほか、さまざまなメリットもあります。",
-	"autocreate-edit-warning": "<strong>警告:</strong>あなたはログインしていません。このまま編集すると、臨時アカウントが作成されます。[[{{MediaWiki:tempuser-helppage}}|詳細はこちら]]。信頼された利用者があなたのIPアドレスを見ることができます。このアカウントの有効期限が切れた後も通知を受け取り続けたり、その他の機能を利用するには、<strong>[$1|ログイン]</strong>または<strong>[$2|アカウントを作成]</strong>してください。",
+	"autocreate-edit-warning": "<strong>警告:</strong>あなたはログインしていません。このまま編集すると、臨時アカウントが作成されます。[[{{MediaWiki:tempuser-helppage}}|詳細はこちら]]。信頼された利用者があなたのIPアドレスを見ることができます。このアカウントの有効期限が切れた後も通知を受け取り続けたり、その他の機能を利用するには、<strong>[$1 ログイン]</strong>または<strong>[$2 アカウントを作成]</strong>してください。",
 	"anonpreviewwarning": "<em>ログインしていません。投稿すると、あなたのIPアドレスがこのページの履歴に記録されます。</em>",
 	"autocreate-preview-warning": "<em>ログインしていません。編集を行うと、臨時アカウントが作成されます。[[{{MediaWiki:tempuser-helppage}}|詳細はこちら]]。</em>",
 	"missingsummary": "<strong>注意:</strong> 編集内容の要約が空欄です。\n「$1」をもう一度クリックすると、編集内容は要約なしで公開されます。",

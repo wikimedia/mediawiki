@@ -78,7 +78,7 @@
 	"prefs-changeemail": "sprememba ali odstranitev e-poštnega naslova",
 	"prefs-help-email": "E-poštni naslov ni obvezen, vendar je potreben za ponastavitev gesla, če bi pozabili geslo.",
 	"prefs-help-email-required": "E-poštni naslov je obvezen.",
-	"prefs-help-email-others": "Omogočite lahko tudi možnost, da vam lahko ostali uporabniki pošiljajo e-pošto prek vaše uporabniške ali pogovorne strani.\nKo vas bodo drugi uporabniki kontaktirali, jim vašega e-poštnega naslova ne bomo razkrili.",
+	"prefs-help-email-others": "Omogočite lahko tudi možnost, da vam lahko drugi uporabniki pošiljajo e-pošto prek vaše uporabniške ali pogovorne strani.\nKo vas bodo drugi uporabniki kontaktirali, jim vaš e-poštni naslov ne bo razkrit.",
 	"tog-requireemail": "Pošlji e-pošto za ponastavitev gesla samo, ko sta vnesena e-poštni naslov in uporabniško ime",
 	"prefs-help-requireemail": "To izboljša zasebnost in pomaga preprečevati neželeno e-pošto.",
 	"noemailprefs": "E-poštnega naslova niste vnesli, zato naslednje možnosti ne bodo delovale.",

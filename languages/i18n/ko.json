@@ -205,7 +205,6 @@
 	"redirectpagesub": "넘겨주기 문서",
 	"redirectto": "넘겨줄 대상:",
 	"lastmodifiedat": "이 문서는 $1 $2에 마지막으로 편집되었습니다.",
-	"lastmodifiedat-parsoid": "이 문서는 $1 $2에 마지막으로 편집되었으며 [[mw:Special:MyLanguage/Parsoid|파소이드]]로 렌더링되었습니다.",
 	"viewcount": "이 문서는 {{PLURAL:$1|한 번|$1번}} 읽혔습니다.",
 	"protectedpage": "보호된 문서",
 	"jumpto": "이동:",

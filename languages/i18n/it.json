@@ -250,7 +250,6 @@
 	"redirectpagesub": "Pagina di reindirizzamento",
 	"redirectto": "Reindirizza a:",
 	"lastmodifiedat": "Questa pagina è stata modificata per l'ultima volta {{PLURAL:$1|1=l'$1|8=l'$1|11=l'$1|il $1}} alle $2.",
-	"lastmodifiedat-parsoid": "Questa pagina è stata modificata l'ultima volta il $1 alle $2 ed è stata renderizzata con [[mw:Special:MyLanguage/Parsoid|Parsoid]].",
 	"viewcount": "Questa pagina è stata letta {{PLURAL:$1|una volta|$1 volte}}.",
 	"protectedpage": "Pagina protetta",
 	"jumpto": "Vai a:",

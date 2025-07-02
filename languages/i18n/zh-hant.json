@@ -247,7 +247,6 @@
 	"redirectpagesub": "重新導向頁面",
 	"redirectto": "重新導向至：",
 	"lastmodifiedat": "此頁面最後編輯於 $1 $2。",
-	"lastmodifiedat-parsoid": "此頁面最後編輯於 $1 $2 並使用[[mw:Special:MyLanguage/Parsoid|Parsoid]]呈現。",
 	"viewcount": "此頁面已被存取過{{PLURAL:$1| $1 次}}。",
 	"protectedpage": "受保護頁面",
 	"jumpto": "前往：",
