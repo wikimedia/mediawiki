@@ -2882,10 +2882,10 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		foreach ( $this->mProperties as $prop => $value ) {
 			// Numeric properties are going to come out of the array as ints
 			$prop = (string)$prop;
-			if ( is_numeric( $value ) ) {
-				$metadata->setNumericPageProperty( $prop, $value );
-			} elseif ( is_string( $value ) ) {
+			if ( is_string( $value ) ) {
 				$metadata->setUnsortedPageProperty( $prop, $value );
+			} elseif ( is_numeric( $value ) ) {
+				$metadata->setNumericPageProperty( $prop, $value );
 			} else {
 				// Deprecated, but there are still sites which call
 				// ::setPageProperty() with "unusual" values (T374046)
