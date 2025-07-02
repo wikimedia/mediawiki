@@ -1007,7 +1007,7 @@ class Article implements Page {
 
 		# Adjust the title if it was set by displaytitle, -{T|}- or language conversion
 		$titleText = $pOutput->getTitleText();
-		if ( strval( $titleText ) !== '' ) {
+		if ( $titleText !== '' ) {
 			$out->setPageTitle( $titleText );
 			$out->setDisplayTitle( $titleText );
 		}

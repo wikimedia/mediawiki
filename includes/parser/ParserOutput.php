@@ -155,7 +155,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	/**
 	 * @var string Title text of the chosen language variant, as HTML.
 	 */
-	private $mTitleText;
+	private string $mTitleText;
 
 	/**
 	 * @var array<int,array<string,int>> 2-D map of NS/DBK to ID for the links in the document.
@@ -383,7 +383,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * @param string $titletext
 	 */
 	public function __construct( ?string $text = null, array $languageLinks = [], array $categoryLinks = [],
-		$unused = false, $titletext = ''
+		$unused = false, string $titletext = ''
 	) {
 		$this->mRawText = $text;
 		$this->mCategories = $categoryLinks;
@@ -684,10 +684,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		return $this->mIndicators;
 	}
 
-	/**
-	 * @return string
-	 */
-	public function getTitleText() {
+	public function getTitleText(): string {
 		return $this->mTitleText;
 	}
 
@@ -1082,7 +1079,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * @param string $t
 	 * @return ?string
 	 */
-	public function setTitleText( $t ) {
+	public function setTitleText( string $t ) {
 		return wfSetVar( $this->mTitleText, $t );
 	}
 
@@ -1595,7 +1592,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 *
 	 * @param string $text Desired title text
 	 */
-	public function setDisplayTitle( $text ): void {
+	public function setDisplayTitle( string $text ): void {
 		$this->setTitleText( $text );
 		$this->setPageProperty( 'displaytitle', $text );
 	}
@@ -1608,7 +1605,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 *
 	 * @return string|false HTML
 	 */
-	public function getDisplayTitle() {
+	public function getDisplayTitle(): string|false {
 		$t = $this->getTitleText();
 		if ( $t === '' ) {
 			return false;
@@ -2654,7 +2651,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 
 		// XXX: we don't want to concatenate title text, so first write wins.
 		// We should use the first *modified* title text, but we don't have the original to check.
-		if ( $this->mTitleText === null || $this->mTitleText === '' ) {
+		if ( $this->mTitleText === '' ) {
 			$this->mTitleText = $source->mTitleText;
 		}
 
@@ -2921,7 +2918,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			// T293514: We should use the first *modified* title text, but
 			// we don't have the original to check.
 			$otherTitle = $metadata->getTitleText();
-			if ( $otherTitle === null || $otherTitle === '' ) {
+			if ( $otherTitle === '' ) {
 				$metadata->setTitleText( $this->getTitleText() );
 			}
 			foreach ( $this->mTemplates as $ns => $arr ) {
