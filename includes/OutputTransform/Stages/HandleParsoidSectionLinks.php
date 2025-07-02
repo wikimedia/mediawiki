@@ -1,10 +1,5 @@
 <?php
 declare( strict_types = 1 );
-// Suppress UnusedPluginSuppression because Phan on PHP 8.1 needs more
-// suppressions than PHP 7.x due to tighter types on Element::insertBefore()
-// and Element::appendChild(): see comments marked PHP81 below.  The
-// Unused*Suppression can be removed once MW moves to >= PHP 8.1.
-// @phan-file-suppress UnusedPluginSuppression,UnusedPluginFileSuppression
 
 namespace MediaWiki\OutputTransform\Stages;
 
