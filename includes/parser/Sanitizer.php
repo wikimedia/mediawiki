@@ -1223,11 +1223,11 @@ class Sanitizer {
 		} elseif ( in_array( $name, [ 'lt;', 'gt;', 'amp;', 'quot;' ], true ) ) {
 			// Keep these in word form
 			return "&$name";
-		} elseif ( isset( HTMLData::$namedEntityTranslations[$name] ) ) {
+		} elseif ( isset( HTMLData::NAMED_ENTITY_TRANSLATION[$name] ) ) {
 			// Beware: some entities expand to more than 1 codepoint
 			return preg_replace_callback( '/./Ssu', static function ( $m ) {
 				return '&#' . \UtfNormal\Utils::utf8ToCodepoint( $m[0] ) . ';';
-			}, HTMLData::$namedEntityTranslations[$name] );
+			}, HTMLData::NAMED_ENTITY_TRANSLATION[$name] );
 		} else {
 			return "&amp;$name";
 		}
@@ -1350,7 +1350,7 @@ class Sanitizer {
 		if ( isset( self::MW_ENTITY_ALIASES[$name] ) ) {
 			$name = self::MW_ENTITY_ALIASES[$name];
 		}
-		$trans = HTMLData::$namedEntityTranslations[$name] ?? null;
+		$trans = HTMLData::NAMED_ENTITY_TRANSLATION[$name] ?? null;
 		return $trans ?? "&$name";
 	}
 
@@ -1648,7 +1648,7 @@ class Sanitizer {
 	 */
 	public static function hackDocType(): string {
 		$out = "<!DOCTYPE html [\n";
-		foreach ( HTMLData::$namedEntityTranslations as $entity => $translation ) {
+		foreach ( HTMLData::NAMED_ENTITY_TRANSLATION as $entity => $translation ) {
 			if ( substr( $entity, -1 ) !== ';' ) {
 				// Some HTML entities omit the trailing semicolon;
 				// wikitext does not permit these.
