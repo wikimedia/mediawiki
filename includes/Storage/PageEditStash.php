@@ -74,6 +74,10 @@ class PageEditStash {
 	public const INITIATOR_USER = 1;
 	public const INITIATOR_JOB_OR_CLI = 2;
 
+	public const CURRENT_FORMAT_VERSION = 2;
+	// Used for forward/backward compatibility; set to empty array to disable
+	public const OTHER_FORMAT_VERSIONS = [ 3 ];
+
 	/**
 	 * @param BagOStuff $cache
 	 * @param IConnectionProvider $dbProvider
@@ -118,7 +122,8 @@ class PageEditStash {
 		}
 
 		$page = $pageUpdater->getPage();
-		$key = $this->getStashKey( $page, $this->getContentHash( $content ), $user );
+		$contentHash = $this->getContentHash( $content );
+		$key = $this->getStashKey( $page, $contentHash, $user );
 		$fname = __METHOD__;
 
 		// Use the primary DB to allow for fast blocking locks on the "save path" where this
@@ -139,14 +144,22 @@ class PageEditStash {
 
 		$cutoffTime = time() - self::PRESUME_FRESH_TTL_SEC;
 
-		// Reuse any freshly build matching edit stash cache
+		// Reuse any freshly built matching edit stash cache
 		$editInfo = $this->getStashValue( $key );
+		// Forward and backward compatibility
+		foreach ( self::OTHER_FORMAT_VERSIONS as $other_version ) {
+			if ( $editInfo !== false ) {
+				break;
+			}
+			$newKey = $this->getStashKey( $page, $contentHash, $user, $other_version );
+			$editInfo = $this->getStashValue( $newKey );
+		}
 		if ( $editInfo && (int)wfTimestamp( TS_UNIX, $editInfo->timestamp ) >= $cutoffTime ) {
 			$alreadyCached = true;
 		} else {
 			$pageUpdater->setContent( SlotRecord::MAIN, $content );
 
-			$update = $pageUpdater->prepareUpdate( EDIT_INTERNAL ); // applies pre-safe transform
+			$update = $pageUpdater->prepareUpdate( EDIT_INTERNAL ); // applies pre-save transform
 			$output = $update->getCanonicalParserOutput(); // causes content to be parsed
 			$output->setCacheTime( $update->getRevision()->getTimestamp() );
 
@@ -246,7 +259,9 @@ class PageEditStash {
 
 		$logger = $this->logger;
 
-		$key = $this->getStashKey( $page, $this->getContentHash( $content ), $user );
+		$contentHash = $this->getContentHash( $content );
+		$key = $this->getStashKey( $page, $contentHash, $user );
+
 		$logContext = [
 			'key' => $key,
 			'title' => (string)$page,
@@ -254,6 +269,17 @@ class PageEditStash {
 		];
 
 		$editInfo = $this->getAndWaitForStashValue( $key );
+		// Forward and backward compatibility
+		foreach ( self::OTHER_FORMAT_VERSIONS as $other_version ) {
+			if ( $editInfo !== false ) {
+				break;
+			}
+			$newKey = $this->getStashKey( $page, $contentHash, $user, $other_version );
+			// Not "getAndWait" because there shouldn't be anyone actively
+			// generating cache entries from other format versions, they are
+			// just left over from rollforward/rollback.
+			$editInfo = $this->getStashValue( $newKey );
+		}
 		if ( !is_object( $editInfo ) || !$editInfo->output ) {
 			$this->incrCacheReadStats( 'miss', 'no_stash', $content );
 			if ( $this->recentStashEntryCount( $user ) > 0 ) {
@@ -434,9 +460,14 @@ class PageEditStash {
 	 * @param UserIdentity $user User to get parser options from
 	 * @return string
 	 */
-	private function getStashKey( PageIdentity $page, string $contentHash, UserIdentity $user ): string {
+	private function getStashKey(
+		PageIdentity $page,
+		string $contentHash,
+		UserIdentity $user,
+		int $version = self::CURRENT_FORMAT_VERSION
+	): string {
 		return $this->cache->makeKey(
-			'stashedit-info-v2',
+			"stashedit-info-v{$version}",
 			md5( "{$page->getNamespace()}\n{$page->getDBkey()}" ),
 			// Account for the edit model/text
 			$contentHash,
