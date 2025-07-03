@@ -23,7 +23,6 @@ namespace MediaWiki\Specials\Redirects;
 
 use MediaWiki\SpecialPage\RedirectSpecialPage;
 use MediaWiki\SpecialPage\SpecialPage;
-use MediaWiki\Title\Title;
 use MediaWiki\User\TempUser\TempUserConfig;
 
 /**
@@ -46,14 +45,19 @@ class SpecialMycontributions extends RedirectSpecialPage {
 			'returnto' ];
 	}
 
-	/**
-	 * @param string|null $subpage
-	 * @return Title
-	 */
-	public function getRedirect( $subpage ) {
+	/** @inheritDoc */
+	public function execute( $subpage ) {
 		// Redirect to login for anon users when temp accounts are enabled.
 		if ( $this->tempUserConfig->isEnabled() && $this->getUser()->isAnon() ) {
 			$this->requireLogin();
+		}
+		parent::execute( $subpage );
+	}
+
+	/** @inheritDoc */
+	public function getRedirect( $subpage ) {
+		if ( $this->tempUserConfig->isEnabled() && $this->getUser()->isAnon() ) {
+			return false;
 		}
 
 		return SpecialPage::getTitleFor( 'Contributions', $this->getUser()->getName() );
