@@ -27,6 +27,10 @@ class HTMLHiddenField extends HTMLFormField {
 		unset( $this->mParams['required'] );
 	}
 
+	/**
+	 * @param mixed $value
+	 * @return array
+	 */
 	public function getHiddenFieldData( $value ) {
 		$params = [];
 		if ( $this->mID ) {

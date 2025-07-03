@@ -129,6 +129,10 @@ class HTMLDateTimeField extends HTMLTextField {
 		return true;
 	}
 
+	/**
+	 * @param string|null $value
+	 * @return int|false
+	 */
 	protected function parseDate( $value ) {
 		$value = trim( $value ?? '' );
 		if ( $value === '' ) {
@@ -152,6 +156,10 @@ class HTMLDateTimeField extends HTMLTextField {
 		}
 	}
 
+	/**
+	 * @param int $value
+	 * @return string
+	 */
 	protected function formatDate( $value ) {
 		switch ( $this->mType ) {
 			case 'date':

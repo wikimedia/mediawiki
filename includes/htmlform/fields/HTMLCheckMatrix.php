@@ -190,15 +190,28 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 		);
 	}
 
+	/**
+	 * @param bool $checked
+	 * @param array $attribs
+	 * @return string
+	 */
 	protected function getOneCheckboxHTML( $checked, $attribs ) {
 		return Html::check( "{$this->mName}[]", $checked, $attribs );
 	}
 
+	/**
+	 * @param string $tag
+	 * @return bool
+	 */
 	protected function isTagForcedOff( $tag ) {
 		return isset( $this->mParams['force-options-off'] )
 			&& in_array( $tag, $this->mParams['force-options-off'] );
 	}
 
+	/**
+	 * @param string $tag
+	 * @return bool
+	 */
 	protected function isTagForcedOn( $tag ) {
 		return isset( $this->mParams['force-options-on'] )
 			&& in_array( $tag, $this->mParams['force-options-on'] );

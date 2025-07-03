@@ -3,6 +3,7 @@
 namespace MediaWiki\HTMLForm\Field;
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Message\Message;
 use MediaWiki\User\ExternalUserNames;
 use MediaWiki\Widget\UserInputWidget;
 use Wikimedia\IPUtils;
@@ -109,6 +110,10 @@ class HTMLUserTextField extends HTMLTextField {
 		return parent::validate( $value, $alldata );
 	}
 
+	/**
+	 * @param string $value
+	 * @return bool|Message
+	 */
 	protected function isValidIPRange( $value ) {
 		$cidrIPRanges = $this->mParams['iprangelimits'];
 

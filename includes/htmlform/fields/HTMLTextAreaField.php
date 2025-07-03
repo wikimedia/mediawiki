@@ -42,14 +42,23 @@ class HTMLTextAreaField extends HTMLFormField {
 		}
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getCols() {
 		return $this->mParams['cols'] ?? static::DEFAULT_COLS;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getRows() {
 		return $this->mParams['rows'] ?? static::DEFAULT_ROWS;
 	}
 
+	/**
+	 * @return string|null
+	 */
 	public function getSpellCheck() {
 		$val = $this->mParams['spellcheck'] ?? null;
 		if ( is_bool( $val ) ) {

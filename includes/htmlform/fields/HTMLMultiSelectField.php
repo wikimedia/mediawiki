@@ -149,6 +149,12 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 		return $html;
 	}
 
+	/**
+	 * @param bool $checked
+	 * @param array $attribs
+	 * @param string $label
+	 * @return string
+	 */
 	protected function getOneCheckbox( $checked, $attribs, $label ) {
 		if ( $this->mParent instanceof OOUIHTMLForm ) {
 			throw new RuntimeException( __METHOD__ . ' is not supported' );

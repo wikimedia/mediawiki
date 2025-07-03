@@ -56,6 +56,9 @@ class HTMLTextField extends HTMLFormField {
 		return $this->mParams['size'] ?? 45;
 	}
 
+	/**
+	 * @return string|null
+	 */
 	public function getSpellCheck() {
 		$val = $this->mParams['spellcheck'] ?? null;
 		if ( is_bool( $val ) ) {
@@ -65,6 +68,9 @@ class HTMLTextField extends HTMLFormField {
 		return null;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function isPersistent() {
 		if ( isset( $this->mParams['persistent'] ) ) {
 			return $this->mParams['persistent'];
@@ -129,6 +135,10 @@ class HTMLTextField extends HTMLFormField {
 		return $inputHtml;
 	}
 
+	/**
+	 * @param array &$attribs
+	 * @return string
+	 */
 	protected function getType( &$attribs ) {
 		$type = $attribs['type'] ?? 'text';
 		unset( $attribs['type'] );

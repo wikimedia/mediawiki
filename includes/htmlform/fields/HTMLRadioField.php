@@ -186,6 +186,11 @@ class HTMLRadioField extends HTMLFormField {
 		return $html;
 	}
 
+	/**
+	 * @param array $options
+	 * @param mixed $value
+	 * @return string
+	 */
 	public function formatOptions( $options, $value ) {
 		$html = '';
 
