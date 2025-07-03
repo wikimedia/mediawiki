@@ -74,9 +74,18 @@ class PageEditStash {
 	public const INITIATOR_USER = 1;
 	public const INITIATOR_JOB_OR_CLI = 2;
 
-	public const CURRENT_FORMAT_VERSION = 2;
+	// Format version 3 became the default in MW 1.45
+	public const CURRENT_FORMAT_VERSION = 3;
 	// Used for forward/backward compatibility; set to empty array to disable
-	public const OTHER_FORMAT_VERSIONS = [ 3 ];
+	// Format version 2 was added in MW 1.40
+	// (18770c6ad96d174b96c2f539f386cc84302dc5c1) but relies on PHP
+	// serialization of ParserOutput which was last supported in MW
+	// 1.44 (59b56ee59c97e86d3bbfca7413e3822b3e0ae4fe).  As such this
+	// should be removed before MW 1.45 is released, since MW 1.45 is
+	// not guaranteed to recognize ParserOutputs serialized by MW 1.44
+	// or earlier.  As this is a short term stash (5 minutes) preservation
+	// across upgrade is not expected/guaranteed.
+	public const OTHER_FORMAT_VERSIONS = [ 2 ];
 
 	/**
 	 * @param BagOStuff $cache
