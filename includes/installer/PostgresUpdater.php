@@ -130,6 +130,10 @@ class PostgresUpdater extends DatabaseUpdater {
 		];
 	}
 
+	/**
+	 * @param string $table
+	 * @return array[]|null
+	 */
 	protected function describeTable( $table ) {
 		$q = <<<END
 SELECT attname, attnum FROM pg_namespace, pg_class, pg_attribute
@@ -159,6 +163,10 @@ END;
 		return $cols;
 	}
 
+	/**
+	 * @param string $idx
+	 * @return array|null
+	 */
 	protected function describeIndex( $idx ) {
 		// first fetch the key (which is a list of columns ords) and
 		// the table the index applies to (an oid)
@@ -211,6 +219,10 @@ END;
 		return $colnames;
 	}
 
+	/**
+	 * @param string $fkey
+	 * @return string|null
+	 */
 	protected function fkeyDeltype( $fkey ) {
 		$q = <<<END
 SELECT confdeltype FROM pg_constraint, pg_namespace
@@ -230,6 +242,11 @@ END;
 		return $row ? $row[0] : null;
 	}
 
+	/**
+	 * @param string $table
+	 * @param string $rule
+	 * @return string|null
+	 */
 	protected function ruleDef( $table, $rule ) {
 		$q = <<<END
 SELECT definition FROM pg_rules
@@ -255,6 +272,11 @@ END;
 		return $d;
 	}
 
+	/**
+	 * @param string $table
+	 * @param string $pkey
+	 * @param string $ns
+	 */
 	protected function addSequence( $table, $pkey, $ns ) {
 		if ( !$this->db->sequenceExists( $ns ) ) {
 			$this->output( "Creating sequence $ns\n" );
@@ -268,6 +290,10 @@ END;
 		}
 	}
 
+	/**
+	 * @param string $table
+	 * @param string $ns
+	 */
 	protected function dropSequence( $table, $ns ) {
 		if ( $this->db->sequenceExists( $ns ) ) {
 			$this->output( "Dropping sequence $ns\n" );
@@ -275,6 +301,10 @@ END;
 		}
 	}
 
+	/**
+	 * @param string $old
+	 * @param string $new
+	 */
 	protected function renameSequence( $old, $new ) {
 		if ( $this->db->sequenceExists( $new ) ) {
 			$this->output( "...sequence $new already exists.\n" );
@@ -287,6 +317,11 @@ END;
 		}
 	}
 
+	/**
+	 * @param string $table
+	 * @param string $pkey
+	 * @param string $seq
+	 */
 	protected function setSequenceOwner( $table, $pkey, $seq ) {
 		if ( $this->db->sequenceExists( $seq ) ) {
 			$this->output( "Setting sequence $seq owner to $table.$pkey\n" );
@@ -295,6 +330,11 @@ END;
 		}
 	}
 
+	/**
+	 * @param string $old
+	 * @param string $new
+	 * @param string|false $patch
+	 */
 	protected function renameTable( $old, $new, $patch = false ) {
 		if ( $this->db->tableExists( $old, __METHOD__ ) ) {
 			$this->output( "Renaming table $old to $new\n" );
@@ -307,6 +347,15 @@ END;
 		}
 	}
 
+	/**
+	 * @param string $table
+	 * @param string $old
+	 * @param string $new
+	 * @param bool $skipBothIndexExistWarning
+	 * @param string|false $a
+	 * @param bool $b
+	 * @return bool
+	 */
 	protected function renameIndex(
 		$table, $old, $new, $skipBothIndexExistWarning = false, $a = false, $b = false
 	) {
@@ -342,6 +391,10 @@ END;
 		return true;
 	}
 
+	/**
+	 * @param string $table
+	 * @param string $field
+	 */
 	protected function dropPgField( $table, $field ) {
 		$fi = $this->db->fieldInfo( $table, $field );
 		if ( $fi === null ) {
@@ -353,6 +406,11 @@ END;
 		}
 	}
 
+	/**
+	 * @param string $table
+	 * @param string $field
+	 * @param string $type
+	 */
 	protected function addPgField( $table, $field, $type ) {
 		$fi = $this->db->fieldInfo( $table, $field );
 		if ( $fi !== null ) {
@@ -364,6 +422,12 @@ END;
 		}
 	}
 
+	/**
+	 * @param string $table
+	 * @param string $field
+	 * @param string $newtype
+	 * @param string $default
+	 */
 	protected function changeField( $table, $field, $newtype, $default ) {
 		if ( !$this->db->tableExists( $table, __METHOD__ ) ) {
 			$this->output( "...$table table does not exist, skipping default change.\n" );
@@ -394,6 +458,12 @@ END;
 		}
 	}
 
+	/**
+	 * @param string $table
+	 * @param string $field
+	 * @param string $newtype
+	 * @param string $default
+	 */
 	protected function changeFieldPurgeTable( $table, $field, $newtype, $default ) {
 		# # For a cache table, empty it if the field needs to be changed, because the old contents
 		# # may be corrupted.  If the column is already the desired type, refrain from purging.
@@ -424,6 +494,11 @@ END;
 		}
 	}
 
+	/**
+	 * @param string $table
+	 * @param string $field
+	 * @param string $default
+	 */
 	protected function setDefault( $table, $field, $default ) {
 		if ( !$this->db->tableExists( $table, __METHOD__ ) ) {
 			$this->output( "...$table table does not exist, skipping default change.\n" );
@@ -453,6 +528,12 @@ END;
 		}
 	}
 
+	/**
+	 * @param string $table
+	 * @param string $field
+	 * @param string $null
+	 * @param bool $update
+	 */
 	protected function changeNullableField( $table, $field, $null, $update = false ) {
 		$fi = $this->db->fieldInfo( $table, $field );
 		if ( $fi === null ) {
@@ -482,6 +563,12 @@ END;
 		}
 	}
 
+	/**
+	 * @param string $table
+	 * @param string $index
+	 * @param string $type
+	 * @param bool $unique
+	 */
 	protected function addPgIndex( $table, $index, $type, $unique = false ) {
 		if ( !$this->db->tableExists( $table, __METHOD__ ) ) {
 			$this->output( "...$table table does not exist, skipping index.\n" );
@@ -495,6 +582,11 @@ END;
 		}
 	}
 
+	/**
+	 * @param string $table
+	 * @param string $index
+	 * @param string $type
+	 */
 	protected function addPgExtIndex( $table, $index, $type ) {
 		if ( $this->db->indexExists( $table, $index, __METHOD__ ) ) {
 			$this->output( "...index '$index' on table '$table' already exists\n" );
@@ -507,6 +599,10 @@ END;
 		}
 	}
 
+	/**
+	 * @param string $table
+	 * @param string $field
+	 */
 	protected function dropFkey( $table, $field ) {
 		if ( !$this->db->tableExists( $table, __METHOD__ ) ) {
 			$this->output( "...$table table does not exist, skipping constraint change.\n" );
@@ -526,6 +622,11 @@ END;
 		}
 	}
 
+	/**
+	 * @param string $table
+	 * @param string $field
+	 * @param string $clause
+	 */
 	protected function changeFkeyDeferrable( $table, $field, $clause ) {
 		$fi = $this->db->fieldInfo( $table, $field );
 		if ( $fi === null ) {
@@ -554,6 +655,10 @@ END;
 		$this->db->query( $command, __METHOD__ );
 	}
 
+	/**
+	 * @param string $table
+	 * @param string $index
+	 */
 	protected function dropPgIndex( $table, $index ) {
 		if ( $this->db->indexExists( $table, $index, __METHOD__ ) ) {
 			$this->output( "Dropping obsolete index '$index'\n" );
@@ -561,6 +666,11 @@ END;
 		}
 	}
 
+	/**
+	 * @param string $index
+	 * @param array $should_be
+	 * @param string $good_def
+	 */
 	protected function checkIndex( $index, $should_be, $good_def ) {
 		$pu = $this->db->indexAttributes( $index );
 		if ( $pu && $pu != $should_be ) {
@@ -579,6 +689,11 @@ END;
 		}
 	}
 
+	/**
+	 * @param string $table
+	 * @param array $shouldBe
+	 * @param string|null $constraintName
+	 */
 	protected function changePrimaryKey( $table, $shouldBe, $constraintName = null ) {
 		// https://wiki.postgresql.org/wiki/Retrieve_primary_key_columns
 		$result = $this->db->query(

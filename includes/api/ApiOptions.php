@@ -25,6 +25,7 @@ namespace MediaWiki\Api;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Preferences\PreferencesFactory;
 use MediaWiki\User\Options\UserOptionsManager;
+use MediaWiki\User\User;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**
@@ -52,10 +53,19 @@ class ApiOptions extends ApiOptionsBase {
 		parent::__construct( $main, $action, $userOptionsManager, $preferencesFactory );
 	}
 
+	/**
+	 * @param User $user
+	 * @param array $changes
+	 * @param string[] $resetKinds
+	 */
 	protected function runHook( $user, $changes, $resetKinds ) {
 		$this->getHookRunner()->onApiOptions( $this, $user, $changes, $resetKinds );
 	}
 
+	/**
+	 * @param string $key
+	 * @return bool
+	 */
 	protected function shouldIgnoreKey( $key ) {
 		$user = $this->getUserForUpdates();
 		$manager = $this->getUserOptionsManager();
@@ -72,6 +82,10 @@ class ApiOptions extends ApiOptionsBase {
 		$this->getUserOptionsManager()->resetOptionsByName( $this->getUserForUpdates(), $optionNames );
 	}
 
+	/**
+	 * @param string $preference
+	 * @param mixed $value
+	 */
 	protected function setPreference( $preference, $value ) {
 		$globalUpdateType = [
 			'ignore' => UserOptionsManager::GLOBAL_IGNORE,

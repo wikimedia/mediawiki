@@ -1318,6 +1318,12 @@ class SpecialUndelete extends SpecialPage {
 		}
 	}
 
+	/**
+	 * @param \stdClass $row
+	 * @param string $earliestLiveTime
+	 * @param int $remaining
+	 * @return string
+	 */
 	protected function formatRevisionRow( $row, $earliestLiveTime, $remaining ) {
 		$revRecord = $this->revisionStore->newRevisionFromArchiveRow(
 				$row,

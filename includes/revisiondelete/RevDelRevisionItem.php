@@ -132,6 +132,9 @@ class RevDelRevisionItem extends RevDelItem {
 		return true;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function isDeleted() {
 		return $this->getRevisionRecord()->isDeleted( RevisionRecord::DELETED_TEXT );
 	}

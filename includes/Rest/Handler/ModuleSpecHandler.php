@@ -40,6 +40,10 @@ class ModuleSpecHandler extends SimpleHandler {
 		$this->options = $options;
 	}
 
+	/**
+	 * @param string $moduleName
+	 * @param string $version
+	 */
 	public function run( $moduleName, $version = '' ): array {
 		// TODO: implement caching, get cache key from Router.
 

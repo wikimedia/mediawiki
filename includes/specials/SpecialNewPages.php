@@ -39,6 +39,7 @@ use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\TempUser\TempUserConfig;
+use stdClass;
 use Wikimedia\HtmlArmor\HtmlArmor;
 
 /**
@@ -444,6 +445,10 @@ class SpecialNewPages extends IncludableSpecialPage {
 		return "$sitename - $desc [$code]";
 	}
 
+	/**
+	 * @param stdClass $row
+	 * @return FeedItem
+	 */
 	protected function feedItem( $row ) {
 		$title = Title::makeTitle( intval( $row->rc_namespace ), $row->rc_title );
 		$date = $row->rc_timestamp;
@@ -459,10 +464,16 @@ class SpecialNewPages extends IncludableSpecialPage {
 		);
 	}
 
+	/**
+	 * @param stdClass $row
+	 */
 	protected function feedItemAuthor( $row ): string {
 		return $row->rc_user_text ?? '';
 	}
 
+	/**
+	 * @param stdClass $row
+	 */
 	protected function feedItemDesc( $row ): string {
 		$revisionRecord = $this->revisionLookup->getRevisionById( $row->rev_id );
 		if ( !$revisionRecord ) {

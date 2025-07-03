@@ -28,6 +28,8 @@ use MediaWiki\Page\PageIdentity;
 use MediaWiki\Status\Status;
 use MediaWiki\Storage\PageUpdater;
 use MediaWiki\Title\ForeignTitle;
+use Wikimedia\Message\MessageParam;
+use Wikimedia\Message\MessageSpecifier;
 
 /**
  * Reporting callback
@@ -90,12 +92,20 @@ class ImportReporter extends ContextSource {
 		$this->getOutput()->addHTML( "<ul>\n" );
 	}
 
+	/**
+	 * @param string|string[]|MessageSpecifier $msg
+	 * @phpcs:ignore Generic.Files.LineLength.TooLong
+	 * @param (MessageParam|MessageSpecifier|string|int|float|list<MessageParam|MessageSpecifier|string|int|float>)[] $params
+	 */
 	public function reportNotice( $msg, array $params ) {
 		$this->getOutput()->addHTML(
 			Html::element( 'li', [], $this->msg( $msg, $params )->text() )
 		);
 	}
 
+	/**
+	 * @param mixed ...$args
+	 */
 	public function reportLogItem( ...$args ) {
 		$this->mLogItemCount++;
 		if ( is_callable( $this->mOriginalLogCallback ) ) {

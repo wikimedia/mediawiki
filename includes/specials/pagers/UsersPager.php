@@ -488,6 +488,9 @@ class UsersPager extends AlphabeticPager {
 		return $htmlForm->prepareForm()->getHTML( true );
 	}
 
+	/**
+	 * @return bool
+	 */
 	protected function canSeeHideuser() {
 		return $this->getAuthority()->isAllowed( 'hideuser' );
 	}

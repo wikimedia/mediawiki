@@ -115,6 +115,10 @@ class LCStoreCDB implements LCStore {
 		$this->writer->set( $key, serialize( $value ) );
 	}
 
+	/**
+	 * @param string|null $code
+	 * @return string
+	 */
 	protected function getFileName( $code ) {
 		if ( strval( $code ) === '' || strpos( $code, '/' ) !== false ) {
 			throw new InvalidArgumentException( __METHOD__ . ": Invalid language \"$code\"" );

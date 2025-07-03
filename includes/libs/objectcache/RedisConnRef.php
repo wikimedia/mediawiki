@@ -93,6 +93,9 @@ class RedisConnRef implements LoggerAwareInterface {
 		return $this->server;
 	}
 
+	/**
+	 * @return string|null
+	 */
 	public function getLastError() {
 		return $this->lastError;
 	}

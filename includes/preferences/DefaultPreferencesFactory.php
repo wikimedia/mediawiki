@@ -2127,6 +2127,12 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		return ( $res === true ? Status::newGood() : $res );
 	}
 
+	/**
+	 * @param User $user
+	 * @param IContextSource $context
+	 * @param array|null $options
+	 * @return string[]
+	 */
 	public function getResetKinds(
 		User $user, IContextSource $context, $options = null
 	): array {
@@ -2215,6 +2221,12 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		];
 	}
 
+	/**
+	 * @param User $user
+	 * @param IContextSource $context
+	 * @param string|string[] $kinds
+	 * @return string[]
+	 */
 	public function getOptionNamesForReset( User $user, IContextSource $context, $kinds ) {
 		$oldOptions = $this->userOptionsManager->loadUserOptions( $user, IDBAccessObject::READ_LATEST );
 

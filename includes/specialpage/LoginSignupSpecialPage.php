@@ -122,6 +122,9 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	/** @var HTMLForm|null */
 	protected $authForm;
 
+	/**
+	 * @return bool
+	 */
 	abstract protected function isSignup();
 
 	/**
@@ -1232,6 +1235,9 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			$this->getContext()->getAuthority()->isAllowed( 'createaccount' );
 	}
 
+	/**
+	 * @return string
+	 */
 	protected function getTokenName() {
 		return $this->isSignup() ? 'wpCreateaccountToken' : 'wpLoginToken';
 	}

@@ -29,6 +29,12 @@ trait HtmlHelperTrait {
 		$this->textEscapes["\u{0338}"] = '&#x338;';
 	}
 
+	/**
+	 * @param SerializerNode $parent
+	 * @param SerializerNode $node
+	 * @param string|null $contents
+	 * @return string
+	 */
 	public function element( SerializerNode $parent, SerializerNode $node, $contents ) {
 		if ( ( $this->shouldModifyCallback )( $node ) ) {
 			$node = clone $node;
@@ -45,6 +51,11 @@ trait HtmlHelperTrait {
 		}
 	}
 
+	/**
+	 * @param string|null $fragmentNamespace
+	 * @param string|null $fragmentName
+	 * @return string
+	 */
 	public function startDocument( $fragmentNamespace, $fragmentName ) {
 		return '';
 	}

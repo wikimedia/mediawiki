@@ -9,6 +9,7 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Storage\PageUpdateCauses;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Assert\Assert;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * Domain event representing page deletion.
@@ -32,6 +33,17 @@ class PageDeletedEvent extends PageRecordChangedEvent {
 	private int $archivedRevisionCount;
 	private ?LinkTarget $redirectTarget;
 
+	/**
+	 * @param ExistingPageRecord $pageRecordBefore
+	 * @param RevisionRecord $latestRevisionBefore
+	 * @param UserIdentity $performer
+	 * @param array<string> $tags
+	 * @param array<string,bool> $flags
+	 * @param string|ConvertibleTimestamp|false $timestamp
+	 * @param string $reason
+	 * @param int $archivedRevisionCount
+	 * @param ?LinkTarget $redirectTarget
+	 */
 	public function __construct(
 		ExistingPageRecord $pageRecordBefore,
 		RevisionRecord $latestRevisionBefore,

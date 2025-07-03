@@ -1601,6 +1601,15 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			->fetchResultSet();
 	}
 
+	/**
+	 * @param array &$tables Array of tables to be queried
+	 * @param array &$fields Array of columns to select
+	 * @param array &$conds Array of WHERE conditionals for query
+	 * @param array &$query_options Array of options for the database request
+	 * @param array &$join_conds Join conditions for the tables
+	 * @param FormOptions $opts FormOptions for this request
+	 * @return bool|void True or no return value to continue or false to abort
+	 */
 	protected function runMainQueryHook( &$tables, &$fields, &$conds,
 		&$query_options, &$join_conds, $opts
 	) {

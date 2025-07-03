@@ -257,6 +257,9 @@ abstract class FileBackend implements LoggerAwareInterface {
 		}
 	}
 
+	/**
+	 * @param string $header
+	 */
 	protected function header( $header ) {
 		( $this->headerFunc )( $header );
 	}

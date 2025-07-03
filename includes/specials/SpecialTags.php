@@ -347,6 +347,9 @@ class SpecialTags extends SpecialPage {
 		}
 	}
 
+	/**
+	 * @param string $tag
+	 */
 	protected function showDeleteTagForm( $tag ) {
 		$authority = $this->getAuthority();
 		if ( !$authority->isAllowed( 'deletechangetags' ) ) {
@@ -409,6 +412,10 @@ class SpecialTags extends SpecialPage {
 			->show();
 	}
 
+	/**
+	 * @param string $tag
+	 * @param bool $activate
+	 */
 	protected function showActivateDeactivateForm( $tag, $activate ) {
 		$actionStr = $activate ? 'activate' : 'deactivate';
 

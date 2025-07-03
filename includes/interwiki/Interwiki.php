@@ -48,6 +48,14 @@ class Interwiki {
 	/** @var bool Whether interwiki transclusions are allowed */
 	protected $mTrans;
 
+	/**
+	 * @param string|null $prefix
+	 * @param string $url
+	 * @param string $api
+	 * @param string $wikiId
+	 * @param bool|int $local
+	 * @param bool|int $trans
+	 */
 	public function __construct( $prefix = null, $url = '', $api = '', $wikiId = '', $local = 0,
 		$trans = 0
 	) {

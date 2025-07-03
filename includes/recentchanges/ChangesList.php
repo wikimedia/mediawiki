@@ -1013,10 +1013,18 @@ class ChangesList extends ContextSource {
 		return $s;
 	}
 
+	/**
+	 * @param string &$s
+	 * @param RecentChange &$rc
+	 * @param string[] &$classes
+	 */
 	public function insertExtra( &$s, &$rc, &$classes ) {
 		// Empty, used for subclasses to add anything special.
 	}
 
+	/**
+	 * @return bool
+	 */
 	protected function showAsUnpatrolled( RecentChange $rc ) {
 		return self::isUnpatrolled( $rc, $this->getUser() );
 	}

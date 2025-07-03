@@ -867,6 +867,9 @@ abstract class MediaWikiEntryPoint {
 		return $this->getRequest()->response();
 	}
 
+	/**
+	 * @return mixed
+	 */
 	protected function getConfig( string $key ) {
 		return $this->config->get( $key );
 	}
@@ -879,6 +882,11 @@ abstract class MediaWikiEntryPoint {
 		return $this->environment->hasFastCgi();
 	}
 
+	/**
+	 * @param string $key
+	 * @param mixed|null $default
+	 * @return mixed|null
+	 */
 	protected function getServerInfo( string $key, $default = null ) {
 		return $this->environment->getServerInfo( $key, $default );
 	}

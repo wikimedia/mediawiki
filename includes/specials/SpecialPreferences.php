@@ -171,6 +171,10 @@ class SpecialPreferences extends SpecialPage {
 			->show();
 	}
 
+	/**
+	 * @param array $formData
+	 * @return bool
+	 */
 	public function submitReset( $formData ) {
 		if ( !$this->getAuthority()->isAllowed( 'editmyoptions' ) ) {
 			throw new PermissionsError( 'editmyoptions' );

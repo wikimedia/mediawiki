@@ -134,6 +134,9 @@ class RevDelFileItem extends RevDelItem {
 		return (bool)$dbw->affectedRows();
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function isDeleted() {
 		return $this->file->isDeleted( File::DELETED_FILE );
 	}

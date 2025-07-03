@@ -50,10 +50,16 @@ class SpecialRandomPage extends SpecialPage {
 		$this->namespaces = $nsInfo->getContentNamespaces();
 	}
 
+	/**
+	 * @return int[]
+	 */
 	public function getNamespaces() {
 		return $this->namespaces;
 	}
 
+	/**
+	 * @param int|false $ns
+	 */
 	public function setNamespace( $ns ) {
 		if ( !$this->isValidNS( $ns ) ) {
 			$ns = NS_MAIN;
@@ -68,7 +74,10 @@ class SpecialRandomPage extends SpecialPage {
 		return $ns !== false && $ns >= 0;
 	}
 
-	// select redirects instead of normal pages?
+	/**
+	 * select redirects instead of normal pages?
+	 * @return bool
+	 */
 	public function isRedirect() {
 		return $this->isRedir;
 	}
@@ -185,6 +194,10 @@ class SpecialRandomPage extends SpecialPage {
 		return null;
 	}
 
+	/**
+	 * @param string $randstr
+	 * @return array
+	 */
 	protected function getQueryInfo( $randstr ) {
 		$dbr = $this->dbProvider->getReplicaDatabase();
 		$redirect = $this->isRedirect() ? 1 : 0;

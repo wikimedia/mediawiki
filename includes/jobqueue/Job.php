@@ -432,6 +432,9 @@ abstract class Job implements RunnableJob {
 		return $s;
 	}
 
+	/**
+	 * @param string $error
+	 */
 	protected function setLastError( $error ) {
 		$this->error = $error;
 	}

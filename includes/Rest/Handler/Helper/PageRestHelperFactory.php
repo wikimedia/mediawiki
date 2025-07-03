@@ -187,6 +187,14 @@ class PageRestHelperFactory {
 		return new HtmlMessageOutputHelper( $page );
 	}
 
+	/**
+	 * @param array $envOptions
+	 * @param ?PageIdentity $page
+	 * @param array|string|null $body
+	 * @param array $parameters
+	 * @param RevisionRecord|null $originalRevision
+	 * @param Bcp47Code|null $pageLanguage
+	 */
 	public function newHtmlInputTransformHelper(
 		$envOptions = [],
 		?PageIdentity $page = null,

@@ -50,6 +50,9 @@ abstract class BaseTemplate extends QuickTemplate {
 		return $this->getSkin()->msg( $name, ...$params );
 	}
 
+	/**
+	 * @param string $str
+	 */
 	public function msg( $str ) {
 		echo $this->getMsg( $str )->escaped();
 	}

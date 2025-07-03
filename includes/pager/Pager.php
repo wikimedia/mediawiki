@@ -24,6 +24,8 @@
 
 namespace MediaWiki\Pager;
 
+use MediaWiki\Navigation\PagerNavigationBuilder;
+
 /**
  * Basic pager interface for efficient paging through SQL queries.
  *
@@ -34,8 +36,10 @@ namespace MediaWiki\Pager;
  * @ingroup Pager
  */
 interface Pager {
+	/** @return string|PagerNavigationBuilder */
 	public function getNavigationBar();
 
+	/** @return string */
 	public function getBody();
 }
 
