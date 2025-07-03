@@ -2439,7 +2439,6 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\ResourceLoader\\LessVarFileModule' => __DIR__ . '/includes/ResourceLoader/LessVarFileModule.php',
 	'MediaWiki\\ResourceLoader\\MessageBlobStore' => __DIR__ . '/includes/ResourceLoader/MessageBlobStore.php',
 	'MediaWiki\\ResourceLoader\\Module' => __DIR__ . '/includes/ResourceLoader/Module.php',
-	'MediaWiki\\ResourceLoader\\MwUrlModule' => __DIR__ . '/includes/ResourceLoader/MwUrlModule.php',
 	'MediaWiki\\ResourceLoader\\OOUIFileModule' => __DIR__ . '/includes/ResourceLoader/OOUIFileModule.php',
 	'MediaWiki\\ResourceLoader\\OOUIIconPackModule' => __DIR__ . '/includes/ResourceLoader/OOUIIconPackModule.php',
 	'MediaWiki\\ResourceLoader\\OOUIImageModule' => __DIR__ . '/includes/ResourceLoader/OOUIImageModule.php',

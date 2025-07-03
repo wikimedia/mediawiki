@@ -21,19 +21,76 @@
 	}
 
 	/**
-	 * Regular expressions to parse many common URIs.
+	 * As they are gnarly expressions, we use a an 'extended' regular expression format
+	 * (which JavaScript doesn't natively support), where we can use:
 	 *
-	 * These are gnarly expressions. For improved readability, they have been moved to a separate
-	 * file where they make use of named capture groups. That syntax isn't valid in JavaScript ES5,
-	 * so the server-side strips these before delivering to the client.
+	 * - Free whitespace over multiple lines, to improve readability.
+	 * - Named capture groups, to make long regexes self-documenting for developer convenience.
+	 *
+	 * @private
+	 * @static
+	 * @param {string} s
+	 * @return {RegExp}
+	 */
+	function parseRegExp( s ) {
+		return new RegExp(
+			s
+				// Remove whitespace
+				.replace( /\s+/g, '' )
+				// Remove named capturing groups
+				.replace( /\?<\w+?>/g, '' )
+		);
+	}
+
+	/**
+	 * Regular expressions to parse many common URIs.
 	 *
 	 * @private
 	 * @static
 	 * @property {Object} parser
 	 */
 	const parser = {
-		strict: require( './strict.regexp.js' ),
-		loose: require( './loose.regexp.js' )
+		strict: parseRegExp(
+			`^
+			(?:(?<protocol>[^:/?#]+):)?
+			(?://(?:
+				(?:
+					(?<user>[^:@/?#]*)
+					(?::(?<password>[^:@/?#]*))?
+				)?@)?
+				(?<host>[^:/?#]*)
+				(?::(?<port>\\d*))?
+			)?
+			(?<path>(?:[^?#/]*/)*[^?#]*)
+			(?:\\?(?<query>[^#]*))?
+			(?:\\#(?<fragment>.*))?
+			`
+		),
+		loose: parseRegExp(
+			`^
+			(?:
+				(?![^:@]+:[^:@/]*@)
+				(?<protocol>[^:/?#.]+):
+			)?
+			(?://)?
+			(?:(?:
+				(?<user>[^:@/?#]*)
+				(?::(?<password>[^:@/?#]*))?
+			)?@)?
+			(?<host>[^:/?#]*)
+			(?::(?<port>\\d*))?
+			(
+				(?:/
+					(?:[^?#]
+						(?![^?#/]*\\.[^?#/.]+(?:[?#]|$))
+					)*/?
+				)?
+				[^?#/]*
+			)
+			(?:\\?(?<query>[^#]*))?
+			(?:\\#(?<fragment>.*))?
+			`
+		)
 	};
 
 	/**

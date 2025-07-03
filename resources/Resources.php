@@ -36,7 +36,6 @@ use MediaWiki\ResourceLoader\FilePath;
 use MediaWiki\ResourceLoader\ForeignApiModule;
 use MediaWiki\ResourceLoader\LessVarFileModule;
 use MediaWiki\ResourceLoader\Module;
-use MediaWiki\ResourceLoader\MwUrlModule;
 use MediaWiki\ResourceLoader\OOUIFileModule;
 use MediaWiki\ResourceLoader\OOUIIconPackModule;
 use MediaWiki\ResourceLoader\OOUIImageModule;
@@ -1196,26 +1195,6 @@ return [
 		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.Uri",
 		'packageFiles' => [
 			'Uri.js',
-			[ 'name' => 'loose.regexp.js',
-				'callback' => static function ( Context $context, Config $config ) {
-					return MwUrlModule::makeJsFromExtendedRegExp(
-						file_get_contents( MW_INSTALL_PATH . '/resources/src/mediawiki.Uri/loose.regexp' )
-					);
-				},
-				'versionCallback' => static function () {
-					return new FilePath( 'loose.regexp' );
-				},
-			],
-			[ 'name' => 'strict.regexp.js',
-				'callback' => static function ( Context $context, Config $config ) {
-					return MwUrlModule::makeJsFromExtendedRegExp(
-						file_get_contents( MW_INSTALL_PATH . '/resources/src/mediawiki.Uri/strict.regexp' )
-					);
-				},
-				'versionCallback' => static function () {
-					return new FilePath( 'strict.regexp' );
-				},
-			],
 		],
 		'dependencies' => 'mediawiki.util',
 		'deprecated' =>
