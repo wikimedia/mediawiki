@@ -684,6 +684,9 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		return $this->mIndicators;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getTitleText() {
 		return $this->mTitleText;
 	}
@@ -888,22 +891,37 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		return $this->mExternalLinks;
 	}
 
+	/**
+	 * @param bool $value
+	 */
 	public function setNoGallery( $value ): void {
 		$this->mNoGallery = (bool)$value;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function getNoGallery() {
 		return $this->mNoGallery;
 	}
 
+	/**
+	 * @return array
+	 */
 	public function getHeadItems() {
 		return $this->mHeadItems;
 	}
 
+	/**
+	 * @return array
+	 */
 	public function getModules() {
 		return array_keys( $this->mModuleSet );
 	}
 
+	/**
+	 * @return array
+	 */
 	public function getModuleStyles() {
 		return array_keys( $this->mModuleStyleSet );
 	}
@@ -963,14 +981,23 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		return $this->getRevisionTimestamp();
 	}
 
+	/**
+	 * @return array
+	 */
 	public function getLimitReportData() {
 		return $this->mLimitReportData;
 	}
 
+	/**
+	 * @return array
+	 */
 	public function getLimitReportJSData() {
 		return $this->mLimitReportJSData;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function getEnableOOUI() {
 		return $this->mEnableOOUI;
 	}
@@ -1051,6 +1078,10 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		$this->mLanguageLinkMap = [];
 	}
 
+	/**
+	 * @param string $t
+	 * @return ?string
+	 */
 	public function setTitleText( $t ) {
 		return wfSetVar( $this->mTitleText, $t );
 	}
@@ -1230,6 +1261,9 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		$this->addWarningMsgVal( MessageValue::new( $msg, $args ) );
 	}
 
+	/**
+	 * @param bool $value
+	 */
 	public function setNewSection( $value ): void {
 		$this->mNewSection = (bool)$value;
 	}
@@ -1268,6 +1302,9 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		);
 	}
 
+	/**
+	 * @param string $url
+	 */
 	public function addExternalLink( $url ): void {
 		# We don't register links pointing to our own server, unless... :-)
 		$config = MediaWikiServices::getInstance()->getMainConfig();
