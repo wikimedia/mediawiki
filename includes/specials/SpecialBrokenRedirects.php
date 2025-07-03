@@ -199,7 +199,7 @@ class SpecialBrokenRedirects extends QueryPage {
 
 		$linkRenderer = $this->getLinkRenderer();
 
-		if ( $toObj === null || $toObj->exists() ) {
+		if ( $toObj === null || $toObj->isKnown() ) {
 			return '<del>' . $linkRenderer->makeLink( $fromObj ) . '</del>';
 		}
 
