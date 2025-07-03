@@ -242,7 +242,9 @@ class WikiMap {
 		}
 
 		$urlPartsCheck = wfGetUrlUtils()->parse( $url );
-		if ( $urlPartsCheck === null ) {
+		if ( $urlPartsCheck === null
+			|| !in_array( $urlPartsCheck['scheme'], [ '', 'http', 'https' ], true )
+		) {
 			return false;
 		}
 

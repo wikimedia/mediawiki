@@ -219,6 +219,7 @@ class WikiMapTest extends MediaWikiLangTestCase {
 		return [
 			[ 'http://this.wiki.org', 'thiswiki' ],
 			[ 'https://this.wiki.org', 'thiswiki' ],
+			[ '//this.wiki.org', 'thiswiki' ],
 			[ 'http://this.wiki.org/$1', 'thiswiki' ],
 			[ 'https://this.wiki.org/$2', 'thiswiki' ],
 			[ 'http://en.example.org', 'enwiki' ],
@@ -229,7 +230,8 @@ class WikiMapTest extends MediaWikiLangTestCase {
 			[ 'https://ru.example.org', 'ruwiki' ],
 			[ 'http://ru.example.org/$1', 'ruwiki' ],
 			[ 'https://ru.example.org/$2', 'ruwiki' ],
-			[ 'http://not.defined.org', false ]
+			[ 'http://not.defined.org', false ],
+			[ 'ftp://this.wiki.org', false ],
 		];
 	}
 
