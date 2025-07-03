@@ -31,10 +31,7 @@
 	 *     'YYYY-MM-DD' or 'YYYY-MM'. When null, the calendar will show today's date, but not select
 	 *     it.
 	 */
-	mw.widgets.CalendarWidget = function MWWCalendarWidget( config ) {
-		// Config initialization
-		config = config || {};
-
+	mw.widgets.CalendarWidget = function MWWCalendarWidget( config = {} ) {
 		// Parent constructor
 		mw.widgets.CalendarWidget.super.call( this, config );
 

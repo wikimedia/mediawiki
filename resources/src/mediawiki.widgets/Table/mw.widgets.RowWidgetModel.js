@@ -20,9 +20,7 @@
  * @param {boolean} [config.showLabel=true] Show row label. Defaults to true.
  * @param {boolean} [config.deletable=true] Allow row to be deleted. Defaults to true.
  */
-mw.widgets.RowWidgetModel = function MwWidgetsRowWidgetModel( config ) {
-	config = config || {};
-
+mw.widgets.RowWidgetModel = function MwWidgetsRowWidgetModel( config = {} ) {
 	// Mixin constructors
 	OO.EventEmitter.call( this, config );
 

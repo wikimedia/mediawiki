@@ -18,9 +18,7 @@
 	 * @param {number} config.maxHeight The maximum height of the media, used in the
 	 *  search call to the API.
 	 */
-	mw.widgets.MediaResourceQueue = function MwWidgetsMediaResourceQueue( config ) {
-		config = config || {};
-
+	mw.widgets.MediaResourceQueue = function MwWidgetsMediaResourceQueue( config = {} ) {
 		// Parent constructor
 		mw.widgets.MediaResourceQueue.super.call( this, config );
 

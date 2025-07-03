@@ -28,9 +28,7 @@
  * @description Create an instance of `mw.widgets.TableWidgetModel`.
  * @param {mw.widgets.TableWidgetModel~Config} [config] Configuration options
  */
-mw.widgets.TableWidgetModel = function MwWidgetsTableWidgetModel( config ) {
-	config = config || {};
-
+mw.widgets.TableWidgetModel = function MwWidgetsTableWidgetModel( config = {} ) {
 	// Mixin constructors
 	OO.EventEmitter.call( this, config );
 

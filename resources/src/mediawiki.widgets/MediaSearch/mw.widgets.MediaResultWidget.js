@@ -21,10 +21,7 @@
 	 * @param {number} [config.minWidth] Minimum width for the result
 	 * @param {number} [config.maxWidth] Maximum width for the result
 	 */
-	mw.widgets.MediaResultWidget = function MwWidgetsMediaResultWidget( config ) {
-		// Configuration initialization
-		config = config || {};
-
+	mw.widgets.MediaResultWidget = function MwWidgetsMediaResultWidget( config = {} ) {
 		// Parent constructor
 		mw.widgets.MediaResultWidget.super.call( this, config );
 
@@ -111,9 +108,7 @@
 	 * @param {Object} originalDimensions Original image dimensions with width and height values
 	 * @param {Object} [boundingBox] Specific bounding box, if supplied
 	 */
-	mw.widgets.MediaResultWidget.prototype.calculateSizing = function ( originalDimensions, boundingBox ) {
-		boundingBox = boundingBox || {};
-
+	mw.widgets.MediaResultWidget.prototype.calculateSizing = function ( originalDimensions, boundingBox = {} ) {
 		let imageDimensions;
 		if ( this.isAudio ) {
 			// HACK: We are getting the wrong information from the

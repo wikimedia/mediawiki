@@ -25,9 +25,7 @@
 	 *  the API request. These can change per request, like the search query term
 	 *  or sizing parameters for images, etc.
 	 */
-	mw.widgets.APIResultsProvider = function MwWidgetsAPIResultsProvider( apiurl, config ) {
-		config = config || {};
-
+	mw.widgets.APIResultsProvider = function MwWidgetsAPIResultsProvider( apiurl, config = {} ) {
 		this.setAPIurl( apiurl );
 		this.setDefaultFetchLimit( config.fetchLimit || 30 );
 		this.setLang( config.lang );

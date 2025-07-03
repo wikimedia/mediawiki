@@ -22,9 +22,7 @@
 	 * @param {boolean} [config.suggestions=true] Display search suggestions
 	 * @param {RegExp|Function|string} [config.validate] Perform title validation
 	 */
-	mw.widgets.TitleInputWidget = function MwWidgetsTitleInputWidget( config ) {
-		config = config || {};
-
+	mw.widgets.TitleInputWidget = function MwWidgetsTitleInputWidget( config = {} ) {
 		// Parent constructor
 		mw.widgets.TitleInputWidget.super.call( this, Object.assign( {}, config, {
 			validate: config.validate !== undefined ? config.validate : this.isQueryValid.bind( this ),
