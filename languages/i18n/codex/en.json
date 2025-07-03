@@ -5,6 +5,8 @@
 			"Doğu Abaris"
 		]
 	},
+	"cdx-breadcrumb-navigation-label": "Breadcrumb",
+	"cdx-breadcrumb-overflow-label": "More navigation options",
 	"cdx-chip-input-chip-added": "Chip $1 was added.",
 	"cdx-chip-input-chip-removed": "Chip $1 was removed.",
 	"cdx-input-chip-aria-description": "Press Enter to edit or Delete to remove.",

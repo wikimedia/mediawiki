@@ -6,6 +6,8 @@
 			"Doğu Abaris"
 		]
 	},
+	"cdx-breadcrumb-navigation-label": "Visually-hidden label indicating the type of navigation used in a CdxBreadcrumb component's nav element",
+	"cdx-breadcrumb-overflow-label": "Visually-hidden label for CdxBreadcrumb's overflow menu button",
 	"cdx-chip-input-chip-added": "Visually-hidden status message that is announced to users of assistive technology when a new chip is added. (A \"Chip\" is a visual component that puts a short text that a user has recently written into a small box. See a [[:wmdoc:codex/latest/components/demos/chip-input.html|full ChipInput description]].)",
 	"cdx-chip-input-chip-removed": "Visually-hidden status message that is announced to users of assistive technology when a chip is removed. (A \"Chip\" is a visual component that puts a short text that a user has recently written into a small box. See a [[:wmdoc:codex/latest/components/demos/chip-input.html|full ChipInput description]].)",
 	"cdx-input-chip-aria-description": "Visually-hidden description of a CdxInputChip, describing the available keyboard commands.",
