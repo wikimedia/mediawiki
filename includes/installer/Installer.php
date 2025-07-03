@@ -1036,7 +1036,7 @@ abstract class Installer {
 		return true;
 	}
 
-	protected function envCheckUploadsServerResponse() {
+	protected function envCheckUploadsServerResponse(): bool {
 		$url = $this->getVar( 'wgServer' ) . $this->getVar( 'wgScriptPath' ) . '/images/README';
 		$httpRequestFactory = MediaWikiServices::getInstance()->getHttpRequestFactory();
 		$status = null;

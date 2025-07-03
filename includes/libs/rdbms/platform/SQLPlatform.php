@@ -613,7 +613,7 @@ class SQLPlatform implements ISQLPlatform {
 		return $this->tableAliases;
 	}
 
-	public function setPrefix( $prefix ) {
+	public function setPrefix( string $prefix ) {
 		$this->currentDomain = new DatabaseDomain(
 			$this->currentDomain->getDatabase(),
 			$this->currentDomain->getSchema(),

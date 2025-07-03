@@ -175,7 +175,7 @@ class LoadMonitor implements ILoadMonitor {
 		return $stateByServerIndex;
 	}
 
-	protected function getStateFromWanCache( $i, ?array $srvPrevState ) {
+	protected function getStateFromWanCache( int $i, ?array $srvPrevState ): array {
 		$hit = true;
 		$key = $this->makeStateKey( $this->wanCache, $i );
 		$state = $this->wanCache->getWithSetCallback(
@@ -202,7 +202,7 @@ class LoadMonitor implements ILoadMonitor {
 		return $state;
 	}
 
-	protected function makeStateKey( IStoreKeyEncoder $cache, int $i ) {
+	protected function makeStateKey( IStoreKeyEncoder $cache, int $i ): string {
 		return $cache->makeGlobalKey(
 			'rdbms-gauge',
 			self::VERSION,

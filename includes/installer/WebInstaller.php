@@ -1264,7 +1264,7 @@ class WebInstaller extends Installer {
 		return $ret;
 	}
 
-	public function outputHandler( $string ) {
+	public function outputHandler( string $string ): string {
 		return htmlspecialchars( $string );
 	}
 

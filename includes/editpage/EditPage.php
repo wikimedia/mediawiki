@@ -3678,7 +3678,7 @@ class EditPage implements IEditObject {
 		);
 	}
 
-	protected function showTextbox( $text, $name, $customAttribs = [] ) {
+	protected function showTextbox( string $text, string $name, array $customAttribs = [] ) {
 		$builder = new TextboxBuilder();
 		$attribs = $builder->buildTextboxAttribs(
 			$name,
@@ -3946,7 +3946,7 @@ class EditPage implements IEditObject {
 		return $limitReport;
 	}
 
-	protected function showStandardInputs( &$tabindex = 2 ) {
+	protected function showStandardInputs( int &$tabindex = 2 ) {
 		$out = $this->context->getOutput();
 		$out->addHTML( "<div class='editOptions'>\n" );
 

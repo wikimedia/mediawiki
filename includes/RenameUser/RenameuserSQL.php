@@ -176,7 +176,7 @@ class RenameuserSQL {
 		$this->hookRunner->onRenameUserSQL( $this );
 	}
 
-	protected function debug( $msg ) {
+	protected function debug( string $msg ) {
 		if ( $this->debugPrefix ) {
 			$msg = "{$this->debugPrefix}: $msg";
 		}

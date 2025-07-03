@@ -167,7 +167,7 @@ class PostgresInstaller extends DatabaseInstaller {
 		return $status;
 	}
 
-	public function openConnectionToAnyDB( $user, $password ) {
+	public function openConnectionToAnyDB( string $user, string $password ): ConnectionStatus {
 		$dbs = [
 			'template1',
 			'postgres',

@@ -23,39 +23,39 @@ class ServerInfo {
 	/** @var array[] Map of (server index => server config array) */
 	private $servers;
 
-	public function addServer( $i, $server ) {
+	public function addServer( int $i, array $server ) {
 		$this->servers[$i] = $server;
 	}
 
-	public function getServerMaxLag( $i ) {
+	public function getServerMaxLag( int $i ): int {
 		return $this->servers[$i]['max lag'] ?? self::MAX_LAG_DEFAULT;
 	}
 
-	public function getServerDriver( $i ) {
+	public function getServerDriver( int $i ): ?string {
 		return $this->servers[$i]['driver'] ?? null;
 	}
 
-	public function getServerType( $i ) {
+	public function getServerType( int $i ): string {
 		return $this->servers[$i]['type'] ?? 'unknown';
 	}
 
-	public function getServerName( $i ): string {
+	public function getServerName( int $i ): string {
 		return $this->servers[$i]['serverName'] ?? 'localhost';
 	}
 
-	public function getServerInfo( $i ) {
+	public function getServerInfo( int $i ): array|false {
 		return $this->servers[$i] ?? false;
 	}
 
-	public function getServerCount() {
+	public function getServerCount(): int {
 		return count( $this->servers );
 	}
 
-	public function hasServerIndex( $i ) {
+	public function hasServerIndex( int $i ): bool {
 		return isset( $this->servers[$i] );
 	}
 
-	public function getLagTimes() {
+	public function getLagTimes(): array {
 		$knownLagTimes = []; // map of (server index => 0 seconds)
 		$indexesWithLag = [];
 		foreach ( $this->servers as $i => $server ) {
@@ -105,11 +105,11 @@ class ServerInfo {
 		return $indexes;
 	}
 
-	public function hasStreamingReplicaServers() {
+	public function hasStreamingReplicaServers(): bool {
 		return (bool)$this->getStreamingReplicaIndexes();
 	}
 
-	public function reconfigureServers( $paramServers ) {
+	public function reconfigureServers( array $paramServers ): array {
 		$newIndexBySrvName = [];
 		$this->normalizeServerMaps( $paramServers, $newIndexBySrvName );
 
@@ -136,7 +136,7 @@ class ServerInfo {
 		return $newIndexByServerIndex;
 	}
 
-	public function normalizeServerMaps( array $servers, ?array &$indexBySrvName = null ) {
+	public function normalizeServerMaps( array $servers, ?array &$indexBySrvName = null ): array {
 		if ( !$servers ) {
 			throw new InvalidArgumentException( 'Missing or empty "servers" parameter' );
 		}
@@ -167,7 +167,7 @@ class ServerInfo {
 		return $this->getServerName( self::WRITER_INDEX );
 	}
 
-	public function hasReplicaServers() {
+	public function hasReplicaServers(): bool {
 		return ( $this->getServerCount() > 1 );
 	}
 }

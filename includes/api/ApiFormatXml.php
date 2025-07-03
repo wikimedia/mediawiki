@@ -45,7 +45,7 @@ class ApiFormatXml extends ApiFormatBase {
 		return 'text/xml';
 	}
 
-	public function setRootElement( $rootElemName ) {
+	public function setRootElement( string $rootElemName ) {
 		$this->mRootElemName = $rootElemName;
 	}
 

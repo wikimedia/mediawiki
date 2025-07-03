@@ -200,7 +200,7 @@ class SearchMySQL extends SearchDatabase {
 		return $this->searchInternal( $term, false );
 	}
 
-	protected function searchInternal( $term, $fulltext ) {
+	protected function searchInternal( string $term, bool $fulltext ): ?SqlSearchResultSet {
 		// This seems out of place, why is this called with empty term?
 		if ( trim( $term ) === '' ) {
 			return null;

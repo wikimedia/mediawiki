@@ -181,7 +181,7 @@ class ImportReporter extends ContextSource {
 		}
 	}
 
-	public function close() {
+	public function close(): Status {
 		$out = $this->getOutput();
 		if ( $this->mLogItemCount > 0 ) {
 			$msg = $this->msg( 'imported-log-entries' )->numParams( $this->mLogItemCount )->parse();

@@ -232,7 +232,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		}
 	}
 
-	protected function appendGeneralInfo( $property ) {
+	protected function appendGeneralInfo( string $property ): bool {
 		$config = $this->getConfig();
 		$mainPage = Title::newMainPage();
 		$logo = SkinModule::getAvailableLogos( $config, $this->getLanguage()->getCode() );
@@ -387,7 +387,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		return $this->getResult()->addValue( 'query', $property, $data );
 	}
 
-	protected function appendNamespaces( $property ) {
+	protected function appendNamespaces( string $property ): bool {
 		$nsProtection = $this->getConfig()->get( MainConfigNames::NamespaceProtection );
 
 		$data = [ ApiResult::META_TYPE => 'assoc' ];
@@ -428,7 +428,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		return $this->getResult()->addValue( 'query', $property, $data );
 	}
 
-	protected function appendNamespaceAliases( $property ) {
+	protected function appendNamespaceAliases( string $property ): bool {
 		$aliases = $this->contentLanguage->getNamespaceAliases();
 		$namespaces = $this->contentLanguage->getNamespaces();
 		$data = [];
@@ -449,7 +449,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		return $this->getResult()->addValue( 'query', $property, $data );
 	}
 
-	protected function appendSpecialPageAliases( $property ) {
+	protected function appendSpecialPageAliases( string $property ): bool {
 		$data = [];
 		$aliases = $this->contentLanguage->getSpecialPageAliases();
 		foreach ( $this->specialPageFactory->getNames() as $specialpage ) {
@@ -464,7 +464,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		return $this->getResult()->addValue( 'query', $property, $data );
 	}
 
-	protected function appendMagicWords( $property ) {
+	protected function appendMagicWords( string $property ): bool {
 		$data = [];
 		foreach ( $this->contentLanguage->getMagicWords() as $name => $aliases ) {
 			$caseSensitive = (bool)array_shift( $aliases );
@@ -481,7 +481,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		return $this->getResult()->addValue( 'query', $property, $data );
 	}
 
-	protected function appendInterwikiMap( $property, $filter ) {
+	protected function appendInterwikiMap( string $property, ?string $filter ): bool {
 		$local = $filter ? $filter === 'local' : null;
 
 		$params = $this->extractRequestParams();
@@ -554,7 +554,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		return $this->getResult()->addValue( 'query', $property, $data );
 	}
 
-	protected function appendDbReplLagInfo( $property, $includeAll ) {
+	protected function appendDbReplLagInfo( string $property, bool $includeAll ): bool {
 		$data = [];
 		$showHostnames = $this->getConfig()->get( MainConfigNames::ShowHostnames );
 		if ( $includeAll ) {
@@ -581,7 +581,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		return $this->getResult()->addValue( 'query', $property, $data );
 	}
 
-	protected function appendStatistics( $property ) {
+	protected function appendStatistics( string $property ): bool {
 		$data = [
 			'pages' => SiteStats::pages(),
 			'articles' => SiteStats::articles(),
@@ -598,7 +598,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		return $this->getResult()->addValue( 'query', $property, $data );
 	}
 
-	protected function appendUserGroups( $property, $numberInGroup ) {
+	protected function appendUserGroups( string $property, bool $numberInGroup ): bool {
 		$config = $this->getConfig();
 
 		$data = [];
@@ -643,7 +643,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		return $result->addValue( 'query', $property, $data );
 	}
 
-	protected function appendAutoCreateTempUser( $property ) {
+	protected function appendAutoCreateTempUser( string $property ): bool {
 		$data = [ 'enabled' => $this->tempUserConfig->isEnabled() ];
 		if ( $this->tempUserConfig->isKnown() ) {
 			$data['matchPatterns'] = $this->tempUserConfig->getMatchPatterns();
@@ -651,7 +651,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		return $this->getResult()->addValue( 'query', $property, $data );
 	}
 
-	protected function appendFileExtensions( $property ) {
+	protected function appendFileExtensions( string $property ): bool {
 		$data = [];
 		foreach (
 			array_unique( $this->getConfig()->get( MainConfigNames::FileExtensions ) ) as $ext
@@ -663,7 +663,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		return $this->getResult()->addValue( 'query', $property, $data );
 	}
 
-	protected function appendInstalledClientLibraries( $property ) {
+	protected function appendInstalledClientLibraries( string $property ): bool {
 		$data = [];
 		foreach ( SpecialVersion::parseForeignResources() as $name => $info ) {
 			$data[] = [
@@ -677,7 +677,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		return $this->getResult()->addValue( 'query', $property, $data );
 	}
 
-	protected function appendInstalledLibraries( $property ) {
+	protected function appendInstalledLibraries( string $property ): bool {
 		$credits = SpecialVersion::getCredits(
 			ExtensionRegistry::getInstance(),
 			$this->getConfig()
@@ -699,7 +699,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		return $this->getResult()->addValue( 'query', $property, $data );
 	}
 
-	protected function appendExtensions( $property ) {
+	protected function appendExtensions( string $property ): bool {
 		$data = [];
 		$credits = SpecialVersion::getCredits(
 			ExtensionRegistry::getInstance(),
@@ -775,7 +775,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		return $this->getResult()->addValue( 'query', $property, $data );
 	}
 
-	protected function appendRightsInfo( $property ) {
+	protected function appendRightsInfo( string $property ): bool {
 		$config = $this->getConfig();
 		$title = Title::newFromText( $config->get( MainConfigNames::RightsPage ) );
 		if ( $title ) {
@@ -796,7 +796,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		return $this->getResult()->addValue( 'query', $property, $data );
 	}
 
-	protected function appendRestrictions( $property ) {
+	protected function appendRestrictions( string $property ): bool {
 		$config = $this->getConfig();
 		$data = [
 			'types' => $config->get( MainConfigNames::RestrictionTypes ),
@@ -818,7 +818,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		return $this->getResult()->addValue( 'query', $property, $data );
 	}
 
-	public function appendLanguages( $property ) {
+	public function appendLanguages( string $property ): bool {
 		$params = $this->extractRequestParams();
 		$langCode = $params['inlanguagecode'] ?? '';
 		$langNames = $this->languageNameUtils->getLanguageNames( $langCode );
@@ -840,7 +840,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 	// Export information about which page languages will trigger
 	// language conversion. (T153341)
-	public function appendLanguageVariants( $property ) {
+	public function appendLanguageVariants( string $property ): bool {
 		$langNames = $this->languageConverterFactory->isConversionDisabled() ? [] :
 			LanguageConverter::$languagesWithVariants;
 		sort( $langNames );
@@ -874,7 +874,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		return $this->getResult()->addValue( 'query', $property, $data );
 	}
 
-	public function appendSkins( $property ) {
+	public function appendSkins( string $property ): bool {
 		$data = [];
 		$allowed = $this->skinFactory->getAllowedSkins();
 		$default = Skin::normalizeKey( 'default' );
@@ -905,7 +905,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		return $this->getResult()->addValue( 'query', $property, $data );
 	}
 
-	public function appendExtensionTags( $property ) {
+	public function appendExtensionTags( string $property ): bool {
 		$tags = array_map(
 			static function ( $item ) {
 				return "<$item>";
@@ -918,7 +918,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		return $this->getResult()->addValue( 'query', $property, $tags );
 	}
 
-	public function appendFunctionHooks( $property ) {
+	public function appendFunctionHooks( string $property ): bool {
 		$hooks = $this->parserFactory->getMainInstance()->getFunctionHooks();
 		ApiResult::setArrayType( $hooks, 'BCarray' );
 		ApiResult::setIndexedTagName( $hooks, 'h' );
@@ -926,7 +926,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		return $this->getResult()->addValue( 'query', $property, $hooks );
 	}
 
-	public function appendVariables( $property ) {
+	public function appendVariables( string $property ): bool {
 		$variables = $this->magicWordFactory->getVariableIDs();
 		ApiResult::setArrayType( $variables, 'BCarray' );
 		ApiResult::setIndexedTagName( $variables, 'v' );
@@ -934,7 +934,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		return $this->getResult()->addValue( 'query', $property, $variables );
 	}
 
-	public function appendProtocols( $property ) {
+	public function appendProtocols( string $property ): bool {
 		// Make a copy of the global so we don't try to set the _element key of it - T47130
 		$protocols = array_values( $this->getConfig()->get( MainConfigNames::UrlProtocols ) );
 		ApiResult::setArrayType( $protocols, 'BCarray' );
@@ -943,13 +943,13 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		return $this->getResult()->addValue( 'query', $property, $protocols );
 	}
 
-	public function appendDefaultOptions( $property ) {
+	public function appendDefaultOptions( string $property ): bool {
 		$options = $this->userOptionsLookup->getDefaultOptions( null );
 		$options[ApiResult::META_BC_BOOLS] = array_keys( $options );
 		return $this->getResult()->addValue( 'query', $property, $options );
 	}
 
-	public function appendUploadDialog( $property ) {
+	public function appendUploadDialog( string $property ): bool {
 		$config = $this->getConfig()->get( MainConfigNames::UploadDialog );
 		return $this->getResult()->addValue( 'query', $property, $config );
 	}
@@ -1057,7 +1057,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		return $config;
 	}
 
-	public function appendSubscribedHooks( $property ) {
+	public function appendSubscribedHooks( string $property ): bool {
 		$hookNames = $this->hookContainer->getHookNames();
 		sort( $hookNames );
 

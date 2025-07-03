@@ -165,7 +165,7 @@ class LogPager extends ReverseChronologicalPager {
 		}
 	}
 
-	public function getFilterParams() {
+	public function getFilterParams(): array {
 		$filters = [];
 		if ( count( $this->types ) ) {
 			return $filters;

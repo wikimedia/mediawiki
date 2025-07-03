@@ -98,7 +98,7 @@ class ApiTag extends ApiBase {
 		$this->getResult()->addValue( null, $this->getModuleName(), $ret );
 	}
 
-	protected function validateLogId( $logid ) {
+	protected function validateLogId( int $logid ): bool {
 		$result = $this->dbr->newSelectQueryBuilder()
 			->select( 'log_id' )
 			->from( 'logging' )
@@ -107,7 +107,7 @@ class ApiTag extends ApiBase {
 		return (bool)$result;
 	}
 
-	protected function processIndividual( $type, $params, $id ) {
+	protected function processIndividual( string $type, array $params, int $id ): array {
 		$user = $this->getUser();
 		$idResult = [ $type => $id ];
 

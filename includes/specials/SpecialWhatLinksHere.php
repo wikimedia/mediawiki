@@ -486,7 +486,7 @@ class SpecialWhatLinksHere extends FormSpecialPage {
 		}
 	}
 
-	protected function listStart( $level ) {
+	protected function listStart( int $level ): string {
 		return Html::openElement( 'ul', ( $level ? [] : [ 'id' => 'mw-whatlinkshere-list' ] ) );
 	}
 
@@ -551,11 +551,11 @@ class SpecialWhatLinksHere extends FormSpecialPage {
 			Html::rawElement( 'li', [], "$link $propsText $wlh" ) . "\n";
 	}
 
-	protected function listEnd() {
+	protected function listEnd(): string {
 		return Html::closeElement( 'ul' );
 	}
 
-	protected function wlhLink( Title $target, $text, $editText ) {
+	protected function wlhLink( Title $target, string $text, string $editText ): string {
 		static $title = null;
 		$title ??= $this->getPageTitle();
 

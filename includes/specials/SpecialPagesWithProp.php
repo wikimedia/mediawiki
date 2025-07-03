@@ -247,14 +247,14 @@ class SpecialPagesWithProp extends QueryPage {
 		return $ret;
 	}
 
-	public function getExistingPropNames() {
+	public function getExistingPropNames(): array {
 		if ( $this->existingPropNames === null ) {
 			$this->existingPropNames = $this->queryExistingProps();
 		}
 		return $this->existingPropNames;
 	}
 
-	protected function queryExistingProps( $limit = null, $offset = 0 ) {
+	protected function queryExistingProps( ?int $limit = null, int $offset = 0 ): array {
 		$queryBuilder = $this->getDatabaseProvider()
 			->getReplicaDatabase()
 			->newSelectQueryBuilder()

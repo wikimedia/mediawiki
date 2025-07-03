@@ -232,7 +232,7 @@ class SpecialNewPages extends IncludableSpecialPage {
 		}
 	}
 
-	protected function filterLinks() {
+	protected function filterLinks(): string {
 		// show/hide links
 		$showhide = [ $this->msg( 'show' )->escaped(), $this->msg( 'hide' )->escaped() ];
 
@@ -436,7 +436,7 @@ class SpecialNewPages extends IncludableSpecialPage {
 		$feed->outFooter();
 	}
 
-	protected function feedTitle() {
+	protected function feedTitle(): string {
 		$desc = $this->getDescription()->text();
 		$code = $this->getConfig()->get( MainConfigNames::LanguageCode );
 		$sitename = $this->getConfig()->get( MainConfigNames::Sitename );
@@ -463,11 +463,11 @@ class SpecialNewPages extends IncludableSpecialPage {
 		}
 	}
 
-	protected function feedItemAuthor( $row ) {
+	protected function feedItemAuthor( $row ): string {
 		return $row->rc_user_text ?? '';
 	}
 
-	protected function feedItemDesc( $row ) {
+	protected function feedItemDesc( $row ): string {
 		$revisionRecord = $this->revisionLookup->getRevisionById( $row->rev_id );
 		if ( !$revisionRecord ) {
 			return '';

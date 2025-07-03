@@ -118,12 +118,12 @@ class TransactionManager {
 	/** @var TransactionProfiler */
 	private $profiler;
 
-	public function __construct( ?LoggerInterface $logger = null, $profiler = null ) {
+	public function __construct( ?LoggerInterface $logger = null, ?TransactionProfiler $profiler = null ) {
 		$this->logger = $logger ?? new NullLogger();
 		$this->profiler = $profiler ?? new TransactionProfiler();
 	}
 
-	public function trxLevel() {
+	public function trxLevel(): int {
 		return $this->trxId ? 1 : 0;
 	}
 
@@ -194,7 +194,7 @@ class TransactionManager {
 		}
 	}
 
-	public function assertSessionStatus( IDatabase $db, $fname ) {
+	public function assertSessionStatus( IDatabase $db, string $fname ) {
 		if ( $this->sessionError ) {
 			throw new DBSessionStateError(
 				$db,
@@ -257,7 +257,7 @@ class TransactionManager {
 		return $applyTime;
 	}
 
-	public function pendingWriteCallers() {
+	public function pendingWriteCallers(): array {
 		return $this->trxLevel() ? $this->trxWriteCallers : [];
 	}
 
@@ -297,7 +297,7 @@ class TransactionManager {
 		$this->trxWriteCallers[] = $fname;
 	}
 
-	public function pendingWriteQueryDuration( $type = IDatabase::ESTIMATE_TOTAL ) {
+	public function pendingWriteQueryDuration( string $type = IDatabase::ESTIMATE_TOTAL ): float|false {
 		if ( !$this->trxLevel() ) {
 			return false;
 		} elseif ( !$this->trxWriteCallers ) {
@@ -325,11 +325,11 @@ class TransactionManager {
 		$this->trxAtomicCounter = 0;
 	}
 
-	public function explicitTrxActive() {
+	public function explicitTrxActive(): bool {
 		return $this->trxLevel() && ( $this->trxAtomicLevels || !$this->trxAutomatic );
 	}
 
-	public function trxCheckBeforeClose( IDatabaseForOwner $db, $fname ) {
+	public function trxCheckBeforeClose( IDatabaseForOwner $db, string $fname ): ?string {
 		$error = null;
 		if ( $this->trxAtomicLevels ) {
 			// Cannot let incomplete atomic sections be committed
@@ -355,7 +355,7 @@ class TransactionManager {
 		return $error;
 	}
 
-	public function onCancelAtomicBeforeCriticalSection( IDatabase $db, $fname ): void {
+	public function onCancelAtomicBeforeCriticalSection( IDatabase $db, string $fname ): void {
 		if ( !$this->trxLevel() || !$this->trxAtomicLevels ) {
 			throw new DBUnexpectedError( $db, "No atomic section is open (got $fname)" );
 		}
@@ -374,13 +374,13 @@ class TransactionManager {
 		return null;
 	}
 
-	public function addToAtomicLevels( $fname, AtomicSectionIdentifier $sectionId, $savepointId ) {
+	public function addToAtomicLevels( string $fname, AtomicSectionIdentifier $sectionId, ?string $savepointId ) {
 		$this->trxAtomicLevels[] = [ $fname, $sectionId, $savepointId ];
 		$this->logger->debug( 'startAtomic: entering level ' .
 			( count( $this->trxAtomicLevels ) - 1 ) . " ($fname)", [ 'db_log_category' => 'trx' ] );
 	}
 
-	public function onBegin( IDatabase $db, $fname ): void {
+	public function onBegin( IDatabase $db, string $fname ): void {
 		// Protect against mismatched atomic section, transaction nesting, and snapshot loss
 		if ( $this->trxLevel() ) {
 			if ( $this->trxAtomicLevels ) {
@@ -441,7 +441,7 @@ class TransactionManager {
 		return true;
 	}
 
-	public function onEndAtomic( IDatabase $db, $fname ): array {
+	public function onEndAtomic( IDatabase $db, string $fname ): array {
 		if ( !$this->trxLevel() || !$this->trxAtomicLevels ) {
 			throw new DBUnexpectedError( $db, "No atomic section is open (got $fname)" );
 		}
@@ -476,7 +476,7 @@ class TransactionManager {
 		return $pos;
 	}
 
-	public function cancelAtomic( $pos ) {
+	public function cancelAtomic( ?int $pos ): array {
 		$excisedIds = [];
 		$excisedFnames = [];
 		$newTopSection = $this->currentAtomicSectionId();
@@ -518,7 +518,7 @@ class TransactionManager {
 		return !$this->trxAtomicLevels && $this->trxAutomaticAtomic;
 	}
 
-	public function setAutomaticAtomic( $value ) {
+	public function setAutomaticAtomic( bool $value ) {
 		$this->trxAutomaticAtomic = $value;
 	}
 
@@ -526,7 +526,7 @@ class TransactionManager {
 		$this->trxAutomatic = true;
 	}
 
-	public function nextSavePointId( IDatabase $db, $fname ) {
+	public function nextSavePointId( IDatabase $db, string $fname ): string {
 		$savepointId = self::SAVEPOINT_PREFIX . ++$this->trxAtomicCounter;
 		if ( strlen( $savepointId ) > 30 ) {
 			// 30 == Oracle's identifier length limit (pre 12c)
@@ -541,7 +541,7 @@ class TransactionManager {
 		return $savepointId;
 	}
 
-	public function writesPending() {
+	public function writesPending(): bool {
 		return $this->trxLevel() && $this->trxWriteCallers;
 	}
 
@@ -551,7 +551,7 @@ class TransactionManager {
 		}
 	}
 
-	public function transactionWritingIn( $serverName, $domainId, float $startTime ) {
+	public function transactionWritingIn( string $serverName, ?string $domainId, float $startTime ) {
 		if ( !$this->trxWriteCallers ) {
 			$this->profiler->transactionWritingIn(
 				$serverName,
@@ -562,7 +562,7 @@ class TransactionManager {
 		}
 	}
 
-	public function transactionWritingOut( IDatabase $db, $oldId ) {
+	public function transactionWritingOut( IDatabase $db, string $oldId ) {
 		if ( $this->trxWriteCallers ) {
 			$this->profiler->transactionWritingOut(
 				$db->getServerName(),
@@ -592,14 +592,14 @@ class TransactionManager {
 		);
 	}
 
-	public function onTransactionResolution( IDatabase $db, callable $callback, $fname ) {
+	public function onTransactionResolution( IDatabase $db, callable $callback, string $fname ) {
 		if ( !$this->trxLevel() ) {
 			throw new DBUnexpectedError( $db, "No transaction is active" );
 		}
 		$this->trxEndCallbacks[] = [ $callback, $fname, $this->currentAtomicSectionId() ];
 	}
 
-	public function addPostCommitOrIdleCallback( callable $callback, $fname ) {
+	public function addPostCommitOrIdleCallback( callable $callback, string $fname ) {
 		$this->trxPostCommitOrIdleCallbacks[] = [
 			$callback,
 			$fname,
@@ -607,7 +607,7 @@ class TransactionManager {
 		];
 	}
 
-	final public function addPreCommitOrIdleCallback( callable $callback, $fname ) {
+	final public function addPreCommitOrIdleCallback( callable $callback, string $fname ) {
 		$this->trxPreCommitOrIdleCallbacks[] = [
 			$callback,
 			$fname,
@@ -615,7 +615,7 @@ class TransactionManager {
 		];
 	}
 
-	public function setTransactionListener( $name, ?callable $callback = null ) {
+	public function setTransactionListener( string $name, ?callable $callback = null ) {
 		if ( $callback ) {
 			$this->trxRecurringCallbacks[$name] = $callback;
 		} else {
@@ -802,11 +802,11 @@ class TransactionManager {
 		return $this->trxEndCallbacksSuppressed;
 	}
 
-	public function getRecurringCallbacks() {
+	public function getRecurringCallbacks(): array {
 		return $this->trxRecurringCallbacks;
 	}
 
-	public function countPostCommitOrIdleCallbacks() {
+	public function countPostCommitOrIdleCallbacks(): int {
 		return count( $this->trxPostCommitOrIdleCallbacks );
 	}
 
@@ -844,7 +844,7 @@ class TransactionManager {
 		$this->transactionWritingOut( $db, (string)$oldTrxId );
 	}
 
-	public function onCommitInCriticalSection( IDatabase $db ) {
+	public function onCommitInCriticalSection( IDatabase $db ): ?float {
 		$lastWriteTime = null;
 
 		$oldTrxId = $this->consumeTrxId();
@@ -863,7 +863,7 @@ class TransactionManager {
 		$this->transactionWritingOut( $db, (string)$oldTrxId );
 	}
 
-	public function onEndAtomicInCriticalSection( $sectionId ) {
+	public function onEndAtomicInCriticalSection( AtomicSectionIdentifier $sectionId ) {
 		// Hoist callback ownership for callbacks in the section that just ended;
 		// all callbacks should have an owner that is present in trxAtomicLevels.
 		$currentSectionId = $this->currentAtomicSectionId();
@@ -872,7 +872,7 @@ class TransactionManager {
 		}
 	}
 
-	public function onFlushSnapshot( IDatabase $db, $fname, $flush, $trxRoundFname ) {
+	public function onFlushSnapshot( IDatabase $db, string $fname, string $flush, ?string $trxRoundFname ) {
 		if ( $this->explicitTrxActive() ) {
 			// Committing this transaction would break callers that assume it is still open
 			throw new DBUnexpectedError(
@@ -905,7 +905,7 @@ class TransactionManager {
 		}
 	}
 
-	public function onGetScopedLockAndFlush( IDatabase $db, $fname ) {
+	public function onGetScopedLockAndFlush( IDatabase $db, string $fname ) {
 		if ( $this->writesOrCallbacksPending() ) {
 			// This only flushes transactions to clear snapshots, not to write data
 			$fnames = implode( ', ', $this->pendingWriteAndCallbackCallers() );

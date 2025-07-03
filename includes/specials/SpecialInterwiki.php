@@ -577,7 +577,7 @@ class SpecialInterwiki extends SpecialPage {
 		}
 	}
 
-	protected function makeTable( $canModify, $iwPrefixes ) {
+	protected function makeTable( bool $canModify, array $iwPrefixes ) {
 		// Output the existing Interwiki prefixes table header
 		$out = Html::openElement(
 			'table',

@@ -189,7 +189,7 @@ class SearchSqlite extends SearchDatabase {
 		return $this->searchInternal( $term, false );
 	}
 
-	protected function searchInternal( $term, $fulltext ) {
+	protected function searchInternal( string $term, bool $fulltext ): ?SqlSearchResultSet {
 		if ( !$this->fulltextSearchSupported() ) {
 			return null;
 		}

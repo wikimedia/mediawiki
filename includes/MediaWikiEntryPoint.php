@@ -883,7 +883,7 @@ abstract class MediaWikiEntryPoint {
 		return $this->environment->getServerInfo( $key, $default );
 	}
 
-	protected function print( $data ) {
+	protected function print( string $data ) {
 		if ( $this->inPostSendMode() ) {
 			throw new RuntimeException( 'Output already sent!' );
 		}
