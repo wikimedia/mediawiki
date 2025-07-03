@@ -217,6 +217,8 @@
 	"rcfilters-watchlist-preference-label": "Używaj interfejsu bez stosowania JavaScriptu",
 	"rcfilters-watchlist-preference-help": "Ładuje [[{{#special:Watchlist}}|listę obserwowanych]] bez filtrów wyszukiwania lub opcji podświetlania.",
 	"prefs-changeswatchlist": "Pokazywane zmiany",
+	"tog-watchstar-expiry": "Domyślny czas obserwowania stron ręcznie dodanych do listy obserwowanych:",
+	"tog-watch-expiry": "Domyślny czas trwania:",
 	"tog-watchlisthideminor": "Ukryj drobne zmiany na liście obserwowanych",
 	"tog-watchlisthidebots": "Ukryj edycje botów na liście obserwowanych",
 	"tog-watchlisthideown": "Ukryj moje edycje na liście obserwowanych",

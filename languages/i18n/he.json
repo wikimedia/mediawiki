@@ -561,7 +561,7 @@
 	"showpreview": "תצוגה מקדימה",
 	"showdiff": "הצגת שינויים",
 	"tempuser-expired-link-tooltip": "תוקף החשבון החולף פג",
-	"temp-user-banner-description": "החשבון שלך חולף",
+	"temp-user-banner-description": "החשבון החולף שלך",
 	"temp-user-banner-tooltip-label": "מידע נוסף על חשבונות חולפים",
 	"temp-user-banner-tooltip-title": "חשבון חולף",
 	"temp-user-banner-tooltip-description-expiration-soon": "<strong>החשבון החולף שלך יפוג {{PLURAL:$1|מחר|2=מוחרתיים|3=בעוד יומיים|בעוד $1 ימים}}.</strong> לאחר שיפוג, ייווצר אחד חדש בפעם הבאה שתבצע עריכה מבלי להתחבר.",

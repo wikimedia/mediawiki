@@ -98,6 +98,7 @@
 	"search": "Traži",
 	"search-ignored-headings": " #<!-- ne mijenjajte ništa u ovom retku --> <pre>\n# Zaglavlja koja će biti zanemarena pri pretrazi.\n# Izmjene koje ovdje načinite stupit će na snagu čim se stranica sa zaglavljem indeksira.\n# Možete forsirati da se stranica indeksira tako što ćete izvršiti prazno uređivanje.\n# Sintaksa je sljedeća:\n#   * Sve od znaka \"#\" pa do kraja retka je komentar.\n#   * Svaki redak koji nije prazan jest točan naziv koji će biti zanemaren, s tim da se razlikuju mala i velika slova i sve ostalo.\nIzvori\nVanjske poveznice\nVidi i\n #</pre> <!-- ne mijenjajte ništa u ovom retku -->",
 	"searchbutton": "Traži",
+	"searchsuggest-containing-html": "Traži stranice koje sadrže <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>",
 	"go": "Kreni",
 	"searcharticle": "Kreni",
 	"skin-view-history": "Vidi povijest",

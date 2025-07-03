@@ -1,0 +1,32 @@
+{
+	"@metadata": {
+		"authors": [
+			"Sauit"
+		]
+	},
+	"cdx-chip-input-chip-added": "$1 чип эбилиннэ.",
+	"cdx-chip-input-chip-removed": "$1 һотторолунна.",
+	"cdx-input-chip-aria-description": "Уларытарга Enter-ы баттаан эбэтэр Delete һотторорго",
+	"cdx-dialog-close-button-label": "Һап",
+	"cdx-label-optional-flag": "(наадата һуок)",
+	"cdx-message-dismiss-button-label": "Һап",
+	"cdx-popover-close-button-label": "Һап",
+	"cdx-search-input-search-button-label": "Көрдөө",
+	"cdx-table-select-all-label": "Бары устуруокалары тал",
+	"cdx-table-select-row-label": "$2 $1 строканы тал",
+	"cdx-table-sort-caption": "$1 (столбецтары дьаарыстыакка һөп)",
+	"cdx-typeahead-search-search-results-label": "Көрдүү түмүгэ",
+	"cdx-table-pager-button-first-page": "Маӈнайгы һырай",
+	"cdx-table-pager-button-last-page": "Кэнники һырай",
+	"cdx-table-pager-button-next-page": "Нөӈүө һырай",
+	"cdx-table-pager-button-prev-page": "Инники һырай",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|строка}}",
+	"cdx-table-pager-items-per-page-default": "Түмүк һырайга",
+	"cdx-table-pagination-status-message-determinate-long": "$1—$2 $3-тэн түмүктэр",
+	"cdx-table-pagination-status-message-determinate-short": "$1–$2 $3-тэн",
+	"cdx-table-pagination-status-message-indeterminate-long": "$1–$2 түмүктэри көрдөрүү",
+	"cdx-table-pagination-status-message-indeterminate-short": "$1–$2 үгүстэн",
+	"cdx-table-pagination-status-message-indeterminate-final": "Кэнники {{PLURAL:$1|түмүгү}} көрдөрүү",
+	"cdx-table-pagination-status-message-pending": "Түмүктэри тиэйэбит...",
+	"cdx-table-no-data-message": "Даннайдар һуоктар."
+}

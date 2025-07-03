@@ -1,0 +1,27 @@
+{
+	"@metadata": {
+		"authors": [
+			"Chinamoonroll"
+		]
+	},
+	"cdx-dialog-close-button-label": "Sineb",
+	"cdx-message-dismiss-button-label": "Sineb",
+	"cdx-popover-close-button-label": "Sineb",
+	"cdx-search-input-search-button-label": "Rereh",
+	"cdx-table-select-all-label": "Pilih baris makasami",
+	"cdx-table-select-row-label": "Pilih baris $1 saking $2",
+	"cdx-typeahead-search-search-results-label": "Asil pangrereh",
+	"cdx-table-pager-button-first-page": "Kaca kapartama",
+	"cdx-table-pager-button-last-page": "Kaca untat",
+	"cdx-table-pager-button-next-page": "Kaca salanturnyané",
+	"cdx-table-pager-button-prev-page": "Kaca sadurungnyané",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 baris}}",
+	"cdx-table-pager-items-per-page-default": "Asil per kaca",
+	"cdx-table-pagination-status-message-determinate-long": "Nyihnayang asil $1–$2 saking $3",
+	"cdx-table-pagination-status-message-determinate-short": "$1–$2 saking $3",
+	"cdx-table-pagination-status-message-indeterminate-long": "Nyihnayang asil $1–$2 saking akeh",
+	"cdx-table-pagination-status-message-indeterminate-short": "$1–$2 saking akeh",
+	"cdx-table-pagination-status-message-indeterminate-final": "Nyihnayang {{PLURAL:$1|$1 asil}}",
+	"cdx-table-pagination-status-message-pending": "Muat asil...",
+	"cdx-table-no-data-message": "Nénten wénten data sané kasedia."
+}

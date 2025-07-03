@@ -19,7 +19,7 @@
 	"botpasswords-label-update": "Ažuriraj",
 	"botpasswords-label-cancel": "Otkaži",
 	"botpasswords-label-delete": "Izbriši",
-	"botpasswords-label-resetpassword": "Resetuj lozinku",
+	"botpasswords-label-resetpassword": "Resetiraj lozinku",
 	"botpasswords-label-grants": "Primjenjive dozvole:",
 	"botpasswords-help-grants": "Dozvole vam daje pristup pravima koja već imaju vaš račun. Omogućavanjem dodjele ovdje nećete primati prava koja više nemaju račun. Više informacija možete pronaći na [[Special:ListGrants|tablici dozvole]].",
 	"botpasswords-label-grants-column": "Odobreno",

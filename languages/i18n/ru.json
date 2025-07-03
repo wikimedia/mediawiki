@@ -295,6 +295,7 @@
 	"redirectpagesub": "Страница-перенаправление",
 	"redirectto": "Перенаправление на:",
 	"lastmodifiedat": "Эта страница в последний раз была отредактирована $1 в $2.",
+	"renderedwith-parsoid": "Страница была сгенерирована с помощью [[mw:Special:MyLanguage/Parsoid|Parsoid]].",
 	"viewcount": "К этой странице обращались $1 {{PLURAL:$1|раз|раза|раз}}.",
 	"protectedpage": "Защищённая страница",
 	"jumpto": "Перейти к:",
