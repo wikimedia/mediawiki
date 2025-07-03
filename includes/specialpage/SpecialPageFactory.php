@@ -1219,6 +1219,9 @@ class SpecialPageFactory {
 		],
 		'AllMyUploads' => [
 			'class' => SpecialAllMyUploads::class,
+			'services' => [
+				'TempUserConfig',
+			],
 		],
 		'NewSection' => [
 			'class' => SpecialNewSection::class,
