@@ -14,10 +14,8 @@ use Wikimedia\Assert\Assert;
  */
 class RecipientSet implements IteratorAggregate, Countable {
 
-	/**
-	 * @var UserIdentity[]
-	 */
-	private array $recipients;
+	/** @var UserIdentity[] */
+	private array $recipients = [];
 
 	/**
 	 * @param UserIdentity|UserIdentity[] $recipients
@@ -27,24 +25,29 @@ class RecipientSet implements IteratorAggregate, Countable {
 			$recipients = [ $recipients ];
 		}
 		Assert::parameterElementType( UserIdentity::class, $recipients, '$recipients' );
-		$this->recipients = $recipients;
+		foreach ( $recipients as $recipient ) {
+			$this->addRecipient( $recipient );
+		}
 	}
 
 	/** @return UserIdentity[] */
 	public function getRecipients(): array {
-		return $this->recipients;
+		return array_values( $this->recipients );
+	}
+
+	public function addRecipient( UserIdentity $identity ): void {
+		$this->recipients[ $identity->getName() ] = $identity;
+	}
+
+	public function removeRecipient( UserIdentity $identity ): void {
+		unset( $this->recipients[ $identity->getName() ] );
 	}
 
 	/**
-	 * @param UserIdentity $identity
-	 * @return void
+	 * @return ArrayIterator<UserIdentity>
 	 */
-	public function addRecipient( UserIdentity $identity ) {
-		$this->recipients[] = $identity;
-	}
-
 	public function getIterator(): ArrayIterator {
-		return new ArrayIterator( $this->recipients );
+		return new ArrayIterator( array_values( $this->recipients ) );
 	}
 
 	public function count(): int {
