@@ -45,6 +45,10 @@ class PNGMetadataExtractor {
 	public const VERSION = 1;
 	private const MAX_CHUNK_SIZE = 3_145_728; // 3 mebibytes
 
+	/**
+	 * @param string $filename
+	 * @return array
+	 */
 	public static function getMetadata( $filename ) {
 		self::$pngSig = pack( "C8", 137, 80, 78, 71, 13, 10, 26, 10 );
 		self::$crcSize = 4;

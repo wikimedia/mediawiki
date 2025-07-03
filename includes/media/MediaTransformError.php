@@ -59,14 +59,23 @@ class MediaTransformError extends MediaTransformOutput {
 			"</div>";
 	}
 
+	/**
+	 * @return string
+	 */
 	public function toText() {
 		return $this->msg->text();
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getHtmlMsg() {
 		return $this->msg->escaped();
 	}
 
+	/**
+	 * @return Message
+	 */
 	public function getMsg() {
 		return $this->msg;
 	}
