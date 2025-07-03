@@ -171,6 +171,11 @@ class TransactionManager {
 		$this->trxStatusIgnoredCause = null;
 	}
 
+	/**
+	 * @param IDatabase $db
+	 * @param callable $deprecationLogger
+	 * @param string $fname
+	 */
 	public function assertTransactionStatus( IDatabase $db, $deprecationLogger, $fname ) {
 		if ( $this->trxStatus === self::STATUS_TRX_ERROR ) {
 			throw new DBTransactionStateError(
@@ -569,6 +574,13 @@ class TransactionManager {
 		}
 	}
 
+	/**
+	 * @param string|GeneralizedSql $sql
+	 * @param float $startTime
+	 * @param bool $isPermWrite
+	 * @param int|null $rowCount
+	 * @param string|null $serverName
+	 */
 	public function recordQueryCompletion( $sql, $startTime, $isPermWrite, $rowCount, $serverName ) {
 		$this->profiler->recordQueryCompletion(
 			$sql,

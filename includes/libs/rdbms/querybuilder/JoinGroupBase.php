@@ -157,5 +157,8 @@ abstract class JoinGroupBase {
 		$this->lastAlias = $alias;
 	}
 
+	/**
+	 * @return string
+	 */
 	abstract protected function getAutoAlias();
 }

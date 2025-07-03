@@ -94,18 +94,30 @@ SQL;
 		return $this->nullable;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function maxLength() {
 		return $this->max_length;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function is_deferrable() {
 		return $this->deferrable;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function is_deferred() {
 		return $this->deferred;
 	}
 
+	/**
+	 * @return string|null
+	 */
 	public function conname() {
 		return $this->conname;
 	}

@@ -20,8 +20,10 @@
 namespace Wikimedia\Rdbms\Replication;
 
 use InvalidArgumentException;
+use Psr\Log\LoggerInterface;
 use RuntimeException;
 use stdClass;
+use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\Rdbms\DBPrimaryPos;
 use Wikimedia\Rdbms\DBQueryError;
 use Wikimedia\Rdbms\IDatabase;
@@ -51,6 +53,14 @@ class MysqlReplicationReporter extends ReplicationReporter {
 	/** @var float Warn if lag estimates are made for transactions older than this many seconds */
 	private const LAG_STALE_WARN_THRESHOLD = 0.100;
 
+	/**
+	 * @param string $topologyRole
+	 * @param LoggerInterface $logger
+	 * @param BagOStuff $srvCache
+	 * @param string $lagDetectionMethod
+	 * @param array $lagDetectionOptions
+	 * @param bool $useGTIDs
+	 */
 	public function __construct(
 		$topologyRole,
 		$logger,

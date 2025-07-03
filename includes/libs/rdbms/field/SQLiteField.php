@@ -21,6 +21,9 @@ class SQLiteField implements Field {
 		return $this->tableName;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function defaultValue() {
 		if ( is_string( $this->info->dflt_value ) ) {
 			// Typically quoted

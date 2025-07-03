@@ -55,6 +55,12 @@ class SQLPlatform implements ISQLPlatform {
 	/** @var callable Error logging callback */
 	protected $errorLogger;
 
+	/**
+	 * @param DbQuoter $quoter
+	 * @param ?LoggerInterface $logger
+	 * @param ?DatabaseDomain $currentDomain
+	 * @param callable|null $errorLogger
+	 */
 	public function __construct(
 		DbQuoter $quoter,
 		?LoggerInterface $logger = null,
@@ -1365,6 +1371,11 @@ class SQLPlatform implements ISQLPlatform {
 		);
 	}
 
+	/**
+	 * @param string $table
+	 * @param array $rows
+	 * @return string[]
+	 */
 	public function insertSqlText( $table, array $rows ) {
 		$encTable = $this->tableName( $table );
 		[ $sqlColumns, $sqlTuples ] = $this->makeInsertLists( $rows );
@@ -1422,6 +1433,11 @@ class SQLPlatform implements ISQLPlatform {
 		];
 	}
 
+	/**
+	 * @param string $table
+	 * @param array $rows
+	 * @return string[]
+	 */
 	public function insertNonConflictingSqlText( $table, array $rows ) {
 		$encTable = $this->tableName( $table );
 		[ $sqlColumns, $sqlTuples ] = $this->makeInsertLists( $rows );
@@ -1441,6 +1457,17 @@ class SQLPlatform implements ISQLPlatform {
 		return [ 'INSERT IGNORE INTO', '' ];
 	}
 
+	/**
+	 * @param string $destTable
+	 * @param string $srcTable
+	 * @param array $varMap
+	 * @param array $conds
+	 * @param string $fname
+	 * @param array $insertOptions
+	 * @param array $selectOptions
+	 * @param array $selectJoinConds
+	 * @return string
+	 */
 	public function insertSelectNativeSqlText(
 		$destTable,
 		$srcTable,
@@ -1527,6 +1554,14 @@ class SQLPlatform implements ISQLPlatform {
 			: $orConds[0];
 	}
 
+	/**
+	 * @param string $delTable
+	 * @param string $joinTable
+	 * @param string $delVar
+	 * @param string $joinVar
+	 * @param array|string $conds
+	 * @return string
+	 */
 	public function deleteJoinSqlText( $delTable, $joinTable, $delVar, $joinVar, $conds ) {
 		if ( !$conds ) {
 			throw new DBLanguageError( __METHOD__ . ' called with empty $conds' );
@@ -1594,6 +1629,13 @@ class SQLPlatform implements ISQLPlatform {
 		return '?';
 	}
 
+	/**
+	 * @param string $table
+	 * @param array $set
+	 * @param string|IExpression|array $conds
+	 * @param string|array $options
+	 * @return Query
+	 */
 	public function updateSqlText( $table, $set, $conds, $options ) {
 		$isCondValid = ( is_string( $conds ) || is_array( $conds ) ) && $conds;
 		if ( !$isCondValid ) {
@@ -1666,6 +1708,10 @@ class SQLPlatform implements ISQLPlatform {
 		}
 	}
 
+	/**
+	 * @param string $table
+	 * @return string
+	 */
 	public function dropTableSqlText( $table ) {
 		// https://mariadb.com/kb/en/drop-table/
 		// https://dev.mysql.com/doc/refman/8.0/en/drop-table.html
@@ -1714,28 +1760,53 @@ class SQLPlatform implements ISQLPlatform {
 		);
 	}
 
+	/**
+	 * @param string $column
+	 * @return string
+	 */
 	public function buildExcludedValue( $column ) {
 		/* @see Database::upsert() */
 		// This can be treated like a single value since __VALS is a single row table
 		return "(SELECT __$column FROM __VALS)";
 	}
 
+	/**
+	 * @param string $identifier
+	 * @return string
+	 */
 	public function savepointSqlText( $identifier ) {
 		return 'SAVEPOINT ' . $this->addIdentifierQuotes( $identifier );
 	}
 
+	/**
+	 * @param string $identifier
+	 * @return string
+	 */
 	public function releaseSavepointSqlText( $identifier ) {
 		return 'RELEASE SAVEPOINT ' . $this->addIdentifierQuotes( $identifier );
 	}
 
+	/**
+	 * @param string $identifier
+	 * @return string
+	 */
 	public function rollbackToSavepointSqlText( $identifier ) {
 		return 'ROLLBACK TO SAVEPOINT ' . $this->addIdentifierQuotes( $identifier );
 	}
 
+	/**
+	 * @return string
+	 */
 	public function rollbackSqlText() {
 		return 'ROLLBACK';
 	}
 
+	/**
+	 * @param string $table
+	 * @param array $rows
+	 * @param array $options
+	 * @return Query|false
+	 */
 	public function dispatchingInsertSqlText( $table, $rows, $options ) {
 		$rows = $this->normalizeRowArray( $rows );
 		if ( !$rows ) {
@@ -2019,14 +2090,27 @@ class SQLPlatform implements ISQLPlatform {
 		);
 	}
 
+	/**
+	 * @param string $lockName
+	 * @param float $timeout
+	 * @return string
+	 */
 	public function lockSQLText( $lockName, $timeout ) {
 		throw new RuntimeException( 'locking must be implemented in subclasses' );
 	}
 
+	/**
+	 * @param string $lockName
+	 * @return string
+	 */
 	public function lockIsFreeSQLText( $lockName ) {
 		throw new RuntimeException( 'locking must be implemented in subclasses' );
 	}
 
+	/**
+	 * @param string $lockName
+	 * @return string
+	 */
 	public function unlockSQLText( $lockName ) {
 		throw new RuntimeException( 'locking must be implemented in subclasses' );
 	}

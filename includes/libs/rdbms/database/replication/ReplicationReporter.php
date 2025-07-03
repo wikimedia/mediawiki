@@ -40,16 +40,27 @@ class ReplicationReporter {
 	/** @var array|null Replication lag estimate at the time of BEGIN for the last transaction */
 	private $trxReplicaLagStatus = null;
 
+	/**
+	 * @param string $topologyRole
+	 * @param LoggerInterface $logger
+	 * @param BagOStuff $srvCache
+	 */
 	public function __construct( $topologyRole, $logger, $srvCache ) {
 		$this->topologyRole = $topologyRole;
 		$this->logger = $logger;
 		$this->srvCache = $srvCache;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getTopologyRole() {
 		return $this->topologyRole;
 	}
 
+	/**
+	 * @return float|int|false
+	 */
 	public function getLag( IDatabase $conn ) {
 		if ( $this->topologyRole === IDatabase::ROLE_STREAMING_MASTER ) {
 			return 0; // this is the primary DB
@@ -99,16 +110,28 @@ class ReplicationReporter {
 		return [ 'lag' => $lag, 'since' => microtime( true ) ];
 	}
 
+	/**
+	 * @param IDatabase $conn
+	 * @param DBPrimaryPos $pos
+	 * @param int $timeout
+	 * @return int|null
+	 */
 	public function primaryPosWait( IDatabase $conn, DBPrimaryPos $pos, $timeout ) {
 		// Real waits are implemented in the subclass.
 		return 0;
 	}
 
+	/**
+	 * @return DBPrimaryPos|false
+	 */
 	public function getReplicaPos( IDatabase $conn ) {
 		// Stub
 		return false;
 	}
 
+	/**
+	 * @return DBPrimaryPos|false
+	 */
 	public function getPrimaryPos( IDatabase $conn ) {
 		// Stub
 		return false;
@@ -155,6 +178,9 @@ class ReplicationReporter {
 		return $conn->trxLevel() ? $this->trxReplicaLagStatus : null;
 	}
 
+	/**
+	 * @return array
+	 */
 	public function getSessionLagStatus( IDatabase $conn ) {
 		return $this->getRecordedTransactionLagStatus( $conn ) ?: $this->getApproximateLagStatus( $conn );
 	}

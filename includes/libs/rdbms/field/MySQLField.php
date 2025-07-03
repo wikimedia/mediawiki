@@ -66,6 +66,9 @@ class MySQLField implements Field {
 		return $this->nullable;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function defaultValue() {
 		return $this->default;
 	}
