@@ -52,10 +52,13 @@ class SkinComponentLastModified implements SkinComponent {
 			$d = null;
 			$t = null;
 		}
+
 		$msg = $useParsoid ?
-			 $localizer->msg( 'renderedwith-parsoid' ) :
-			 $localizer->msg( 'renderedwith-legacy' );
-		$s = $s . ' ' . $msg->parse();
+			$localizer->msg( 'renderedwith-parsoid' ) :
+			$localizer->msg( 'renderedwith-legacy' );
+		if ( !$msg->isDisabled() ) {
+			$s .= ' ' . $msg->parse();
+		}
 
 		$isLagged = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->laggedReplicaUsed();
 		if ( $isLagged ) {
