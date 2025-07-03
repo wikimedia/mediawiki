@@ -63,9 +63,10 @@ caption .mw-collapsible-toggle,
 // On collapsible elements with custom togglers, the element itself can be hidden (T398754)
 .mw-collapsible[ hidden='until-found' ],
 .mw-collapsible [ hidden='until-found' ] {
-	// Ensure table structure is hidden. content-visibility:hidden doesn't
-	// work with display:table-*.
+	// Ensure table structure and inline content is hidden. content-visibility:hidden doesn't
+	// work with display:table-* or display:inline.
 	display: block;
+	position: absolute;
 
 	// Make hidden attribute behave more like display:none
 	// Use !important as hidden elements should never have size, even if
@@ -73,8 +74,11 @@ caption .mw-collapsible-toggle,
 	/* stylelint-disable declaration-no-important */
 	width: 0 !important;
 	height: 0 !important;
-	padding: 0 !important;
 	overflow: hidden !important;
+	// Avoid extra borders etc. on un-rendered elements
+	padding: 0 !important;
+	margin: 0 !important;
+	border: 0 !important;
 	/* stylelint-enable declaration-no-important */
 }
 
