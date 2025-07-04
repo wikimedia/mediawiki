@@ -27,6 +27,7 @@
  * @ingroup Languages
  */
 class LanguageWuu extends LanguageZh {
+	/** @inheritDoc */
 	protected function getSearchIndexVariant() {
 		return 'wuu-hans';
 	}

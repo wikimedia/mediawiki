@@ -44,6 +44,7 @@ abstract class LanguageConverterIcu extends LanguageConverterSpecific {
 		return $tables;
 	}
 
+	/** @inheritDoc */
 	public function translate( $text, $variant ) {
 		$text = parent::translate( $text, $variant );
 		if ( trim( $text ) ) {

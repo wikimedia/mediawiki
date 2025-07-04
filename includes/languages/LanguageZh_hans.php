@@ -30,6 +30,7 @@ class LanguageZh_hans extends Language {
 
 	private const WORD_SEGMENTATION_REGEX = '/([\xc0-\xff][\x80-\xbf]*)/';
 
+	/** @inheritDoc */
 	public function hasWordBreaks() {
 		return false;
 	}

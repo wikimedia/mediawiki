@@ -114,6 +114,7 @@ class ZhConverter extends LanguageConverter {
 		];
 	}
 
+	/** @inheritDoc */
 	protected function postLoadTables( &$tables ) {
 		$tables['zh-cn']->setArray(
 			$tables['zh-cn']->getArray() + $tables['zh-hans']->getArray()
@@ -135,6 +136,7 @@ class ZhConverter extends LanguageConverter {
 		);
 	}
 
+	/** @inheritDoc */
 	public function convertCategoryKey( $key ) {
 		return $this->autoConvert( $key, 'zh' );
 	}

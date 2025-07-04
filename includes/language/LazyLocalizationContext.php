@@ -45,10 +45,12 @@ class LazyLocalizationContext implements LocalizationContext {
 		return $this->context;
 	}
 
+	/** @inheritDoc */
 	public function getLanguageCode() {
 		return $this->resolve()->getLanguageCode();
 	}
 
+	/** @inheritDoc */
 	public function msg( $key, ...$params ) {
 		return $this->resolve()->msg( $key, ...$params );
 	}

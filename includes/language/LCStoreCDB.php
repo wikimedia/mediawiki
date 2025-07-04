@@ -51,6 +51,7 @@ class LCStoreCDB implements LCStore {
 		$this->directory = $conf['directory'];
 	}
 
+	/** @inheritDoc */
 	public function get( $code, $key ) {
 		if ( !isset( $this->readers[$code] ) ) {
 			$fileName = $this->getFileName( $code );
@@ -83,6 +84,7 @@ class LCStoreCDB implements LCStore {
 		}
 	}
 
+	/** @inheritDoc */
 	public function startWrite( $code ) {
 		if ( !is_dir( $this->directory ) && !wfMkdirParents( $this->directory, null, __METHOD__ ) ) {
 			throw new RuntimeException( "Unable to create the localisation store " .
@@ -105,6 +107,7 @@ class LCStoreCDB implements LCStore {
 		$this->currentLang = null;
 	}
 
+	/** @inheritDoc */
 	public function set( $key, $value ) {
 		if ( $this->writer === null ) {
 			throw new LogicException( __CLASS__ . ': must call startWrite() before calling set()' );

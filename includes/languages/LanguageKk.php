@@ -28,6 +28,7 @@
  * @ingroup Languages
  */
 class LanguageKk extends LanguageKk_cyrl {
+	/** @inheritDoc */
 	public function convertGrammar( $word, $case ) {
 		// T277689: If there's no word, then there's nothing to convert.
 		if ( $word === '' ) {

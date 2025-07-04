@@ -135,6 +135,7 @@ class KuConverter extends LanguageConverterSpecific {
 		];
 	}
 
+	/** @inheritDoc */
 	public function translate( $text, $toVariant ) {
 		if ( $toVariant == 'ku-arab' ) {
 			$chars = mb_str_split( $text );

@@ -27,6 +27,7 @@
  * @ingroup Languages
  */
 class LanguageGan extends LanguageZh {
+	/** @inheritDoc */
 	protected function getSearchIndexVariant() {
 		return 'gan-hans';
 	}

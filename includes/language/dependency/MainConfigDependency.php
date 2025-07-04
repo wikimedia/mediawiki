@@ -41,6 +41,7 @@ class MainConfigDependency extends CacheDependency {
 		return MediaWikiServices::getInstance()->getMainConfig();
 	}
 
+	/** @inheritDoc */
 	public function isExpired() {
 		if ( !$this->getConfig()->has( $this->name ) ) {
 			return true;

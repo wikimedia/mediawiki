@@ -25,16 +25,19 @@
  */
 class LCStoreNull implements LCStore {
 
+	/** @inheritDoc */
 	public function get( $code, $key ) {
 		return null;
 	}
 
+	/** @inheritDoc */
 	public function startWrite( $code ) {
 	}
 
 	public function finishWrite() {
 	}
 
+	/** @inheritDoc */
 	public function set( $key, $value ) {
 	}
 

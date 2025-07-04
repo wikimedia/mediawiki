@@ -128,6 +128,7 @@ class UzConverter extends LanguageConverter {
 		];
 	}
 
+	/** @inheritDoc */
 	public function translate( $text, $toVariant ) {
 		if ( $toVariant == 'uz-cyrl' ) {
 			$text = str_replace( 'ye', 'е', $text );

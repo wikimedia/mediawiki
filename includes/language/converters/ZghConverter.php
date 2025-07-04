@@ -93,6 +93,7 @@ class ZghConverter extends LanguageConverterSpecific {
 		];
 	}
 
+	/** @inheritDoc */
 	public function translate( $text, $toVariant ) {
 		// We only convert zgh (zgh-Tfng) to zgh-Latn, not the
 		// other way around. We also don't need to try to

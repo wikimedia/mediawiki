@@ -29,6 +29,7 @@ use MediaWiki\MediaWikiServices;
  */
 class LanguageHsb extends Language {
 
+	/** @inheritDoc */
 	public function convertGrammar( $word, $case ) {
 		$grammarForms =
 			MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::GrammarForms );

@@ -36,6 +36,7 @@ use MediaWiki\Language\Language;
  *   $languageFactory->getLanguage( 'qqx' ) to get a Language object with its code set to qqx.
  */
 class LanguageQqx extends Language {
+	/** @inheritDoc */
 	public function getMessage( $key ) {
 		// Special value replaced in Message::format()
 		return '($*)';

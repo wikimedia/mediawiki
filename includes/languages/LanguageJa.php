@@ -40,6 +40,7 @@ class LanguageJa extends Language {
 	private const WORD_SEGMENTATION_REGEX =
 		'/(' . self::WORD_SEG_HIRAGANA . '+|' . self::WORD_SEG_KATAKANA . '+|' . self::WORD_SEG_KANJI . '+)/';
 
+	/** @inheritDoc */
 	public function segmentByWord( $string ) {
 		return self::insertSpace( $string, self::WORD_SEGMENTATION_REGEX );
 	}

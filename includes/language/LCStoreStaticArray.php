@@ -43,6 +43,7 @@ class LCStoreStaticArray implements LCStore {
 		$this->directory = $conf['directory'];
 	}
 
+	/** @inheritDoc */
 	public function startWrite( $code ) {
 		if ( !is_dir( $this->directory ) && !wfMkdirParents( $this->directory, null, __METHOD__ ) ) {
 			throw new RuntimeException( "Unable to create the localisation store " .
@@ -57,6 +58,7 @@ class LCStoreStaticArray implements LCStore {
 		}
 	}
 
+	/** @inheritDoc */
 	public function set( $key, $value ) {
 		$this->data[$this->currentLang][$key] = self::encode( $value );
 	}
@@ -154,6 +156,7 @@ class LCStoreStaticArray implements LCStore {
 		$this->fname = null;
 	}
 
+	/** @inheritDoc */
 	public function get( $code, $key ) {
 		if ( !array_key_exists( $code, $this->data ) ) {
 			$fname = $this->directory . '/' . $code . '.l10n.php';

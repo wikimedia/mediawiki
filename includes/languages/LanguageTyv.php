@@ -31,6 +31,7 @@ use MediaWiki\MediaWikiServices;
  */
 class LanguageTyv extends Language {
 
+	/** @inheritDoc */
 	public function convertGrammar( $word, $case ) {
 		$grammarForms =
 			MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::GrammarForms );

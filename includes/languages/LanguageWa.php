@@ -67,6 +67,7 @@ class LanguageWa extends Language {
 		return $d;
 	}
 
+	/** @inheritDoc */
 	public function timeanddate( $ts, $adj = false, $format = true, $tc = false ) {
 		$datePreference = $this->dateFormat( $format );
 		if ( $datePreference == 'ISO 8601' || $datePreference == 'walloon short' ) {

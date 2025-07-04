@@ -53,6 +53,7 @@ class BanConverter extends LanguageConverterIcu {
 		return array_merge( parent::getVariantNames(), $names );
 	}
 
+	/** @inheritDoc */
 	protected function getIcuRules() {
 		$rules = [];
 
@@ -1013,6 +1014,7 @@ EOF;
 		return $rules;
 	}
 
+	/** @inheritDoc */
 	protected function getTransliteratorAliases() {
 		return [
 			'ban' => 'ban-x-pku',

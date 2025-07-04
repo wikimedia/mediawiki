@@ -42,6 +42,7 @@ class LanguageTr extends Language {
 	private const UC = [ 'I', 'İ' ];
 	private const LC = [ 'ı', 'i' ];
 
+	/** @inheritDoc */
 	public function ucfirst( $str ) {
 		$first = mb_substr( $str, 0, 1 );
 		if ( in_array( $first, self::LC ) ) {
@@ -51,6 +52,7 @@ class LanguageTr extends Language {
 		return parent::ucfirst( $str );
 	}
 
+	/** @inheritDoc */
 	public function lcfirst( $str ) {
 		$first = mb_substr( $str, 0, 1 );
 		if ( in_array( $first, self::UC ) ) {

@@ -75,6 +75,7 @@ class GanConverter extends LanguageConverter {
 		];
 	}
 
+	/** @inheritDoc */
 	public function convertCategoryKey( $key ) {
 		return $this->autoConvert( $key, 'gan' );
 	}

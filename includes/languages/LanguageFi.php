@@ -30,6 +30,7 @@ use MediaWiki\User\UserIdentity;
  * @ingroup Languages
  */
 class LanguageFi extends Language {
+	/** @inheritDoc */
 	public function convertGrammar( $word, $case ) {
 		$grammarForms =
 			MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::GrammarForms );

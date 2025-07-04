@@ -47,14 +47,17 @@ class LanguageZh extends LanguageZh_hans {
 		return preg_replace( '/[\xc0-\xff][\x80-\xbf]*/', "\x0c$0", $text );
 	}
 
+	/** @inheritDoc */
 	public function unsegmentForDiff( $text ) {
 		return str_replace( "\x0c", '', $text );
 	}
 
+	/** @inheritDoc */
 	protected function getSearchIndexVariant() {
 		return 'zh-hans';
 	}
 
+	/** @inheritDoc */
 	public function convertForSearchResult( $termsArray ) {
 		$terms = implode( '|', $termsArray );
 		$terms = self::convertDoubleWidth( $terms );
