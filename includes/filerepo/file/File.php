@@ -774,10 +774,12 @@ abstract class File implements MediaHandlerState {
 		return false;
 	}
 
+	/** @inheritDoc */
 	public function getHandlerState( string $key ) {
 		return $this->handlerState[$key] ?? null;
 	}
 
+	/** @inheritDoc */
 	public function setHandlerState( string $key, $value ) {
 		$this->handlerState[$key] = $value;
 	}

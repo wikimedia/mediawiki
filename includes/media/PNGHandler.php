@@ -110,10 +110,12 @@ class PNGHandler extends BitmapHandler {
 		return false;
 	}
 
+	/** @inheritDoc */
 	public function getMetadataType( $image ) {
 		return 'parsed-png';
 	}
 
+	/** @inheritDoc */
 	public function isFileMetadataValid( $image ) {
 		$data = $image->getMetadataArray();
 		if ( $data === [ '_error' => self::BROKEN_FILE ] ) {

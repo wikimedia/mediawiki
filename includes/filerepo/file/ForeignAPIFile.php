@@ -382,6 +382,7 @@ class ForeignAPIFile extends File {
 		return $files;
 	}
 
+	/** @inheritDoc */
 	public function purgeCache( $options = [] ) {
 		$this->purgeThumbnails( $options );
 		$this->purgeDescriptionPage();

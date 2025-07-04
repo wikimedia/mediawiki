@@ -42,6 +42,7 @@ class TransformParameterError extends MediaTransformError {
 		);
 	}
 
+	/** @inheritDoc */
 	public function getHttpStatusCode() {
 		return 400;
 	}

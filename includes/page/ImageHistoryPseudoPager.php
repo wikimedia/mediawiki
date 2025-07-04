@@ -95,6 +95,7 @@ class ImageHistoryPseudoPager extends ReverseChronologicalPager {
 		return $this->mTitle;
 	}
 
+	/** @inheritDoc */
 	public function getQueryInfo() {
 		return [];
 	}

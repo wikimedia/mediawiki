@@ -230,6 +230,7 @@ class UploadStashFile extends UnregisteredLocalFile {
 		return $this->repo->freeTemp( $this->path );
 	}
 
+	/** @inheritDoc */
 	public function exists() {
 		return $this->repo->fileExists( $this->path );
 	}

@@ -172,6 +172,7 @@ class OldLocalFile extends LocalFile {
 		}
 	}
 
+	/** @inheritDoc */
 	public function loadFromRow( $row, $prefix = 'img_' ) {
 		$this->archive_name = $row->{"{$prefix}archive_name"};
 		$this->deleted = $row->{"{$prefix}deleted"};

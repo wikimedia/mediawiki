@@ -46,6 +46,7 @@ class UploadStashException extends RuntimeException implements ILocalizedExcepti
 		parent::__construct( $msg, $code, $previous );
 	}
 
+	/** @inheritDoc */
 	public function getMessageObject() {
 		return Message::newFromSpecifier( $this->messageSpec );
 	}

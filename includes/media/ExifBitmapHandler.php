@@ -41,6 +41,7 @@ class ExifBitmapHandler extends BitmapHandler {
 	/** Outdated error extracting metadata */
 	public const OLD_BROKEN_FILE = '0';
 
+	/** @inheritDoc */
 	public function convertMetadataVersion( $metadata, $version = 1 ) {
 		// basically flattens arrays.
 		$version = is_int( $version ) ? $version : (int)explode( ';', $version, 2 )[0];
@@ -150,6 +151,7 @@ class ExifBitmapHandler extends BitmapHandler {
 		return $this->formatMetadataHelper( $meta, $context );
 	}
 
+	/** @inheritDoc */
 	public function getCommonMetaArray( File $file ) {
 		$exif = $file->getMetadataArray();
 		if ( !$exif ) {
@@ -160,6 +162,7 @@ class ExifBitmapHandler extends BitmapHandler {
 		return $exif;
 	}
 
+	/** @inheritDoc */
 	public function getMetadataType( $image ) {
 		return 'exif';
 	}

@@ -48,10 +48,12 @@ class ForeignDBViaLBRepo extends LocalRepo implements IForeignRepoWithDB {
 		$this->hasAccessibleSharedCache = $info['hasSharedCache'];
 	}
 
+	/** @inheritDoc */
 	public function getPrimaryDB() {
 		return $this->getDbProvider()->getPrimaryDatabase( $this->dbDomain );
 	}
 
+	/** @inheritDoc */
 	public function getReplicaDB() {
 		return $this->getDbProvider()->getReplicaDatabase( $this->dbDomain );
 	}
@@ -77,6 +79,7 @@ class ForeignDBViaLBRepo extends LocalRepo implements IForeignRepoWithDB {
 		throw new LogicException( static::class . ': write operations are not supported.' );
 	}
 
+	/** @inheritDoc */
 	public function getInfo() {
 		return FileRepo::getInfo();
 	}

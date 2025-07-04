@@ -55,6 +55,7 @@ class WebPHandler extends BitmapHandler {
 	private const VP8X_XMP = 4;
 	private const VP8X_ANIM = 2;
 
+	/** @inheritDoc */
 	public function getSizeAndMetadata( $state, $filename ) {
 		$parsedWebPData = self::extractMetadata( $filename );
 		if ( !$parsedWebPData ) {
@@ -70,10 +71,12 @@ class WebPHandler extends BitmapHandler {
 		return $info;
 	}
 
+	/** @inheritDoc */
 	public function getMetadataType( $image ) {
 		return 'parsed-webp';
 	}
 
+	/** @inheritDoc */
 	public function isFileMetadataValid( $image ) {
 		$data = $image->getMetadataArray();
 		if ( $data === [ '_error' => self::BROKEN_FILE ] ) {
@@ -344,6 +347,7 @@ class WebPHandler extends BitmapHandler {
 		return false;
 	}
 
+	/** @inheritDoc */
 	public function canAnimateThumbnail( $file ) {
 		return false;
 	}
@@ -360,15 +364,18 @@ class WebPHandler extends BitmapHandler {
 		return [ 'png', 'image/png' ];
 	}
 
+	/** @inheritDoc */
 	protected function hasGDSupport() {
 		return function_exists( 'gd_info' ) && ( gd_info()['WebP Support'] ?? false );
 	}
 
+	/** @inheritDoc */
 	public function getCommonMetaArray( File $image ) {
 		$meta = $image->getMetadataArray();
 		return $meta['media-metadata'] ?? [];
 	}
 
+	/** @inheritDoc */
 	public function formatMetadata( $image, $context = false ) {
 		$meta = $this->getCommonMetaArray( $image );
 		if ( !$meta ) {

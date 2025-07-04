@@ -177,62 +177,77 @@ class FileBackendDBRepoWrapper extends FileBackend {
 		return $res;
 	}
 
+	/** @inheritDoc */
 	protected function doOperationsInternal( array $ops, array $opts ) {
 		return $this->backend->doOperationsInternal( $this->mungeOpPaths( $ops ), $opts );
 	}
 
+	/** @inheritDoc */
 	protected function doQuickOperationsInternal( array $ops, array $opts ) {
 		return $this->backend->doQuickOperationsInternal( $this->mungeOpPaths( $ops ), $opts );
 	}
 
+	/** @inheritDoc */
 	protected function doPrepare( array $params ) {
 		return $this->backend->doPrepare( $params );
 	}
 
+	/** @inheritDoc */
 	protected function doSecure( array $params ) {
 		return $this->backend->doSecure( $params );
 	}
 
+	/** @inheritDoc */
 	protected function doPublish( array $params ) {
 		return $this->backend->doPublish( $params );
 	}
 
+	/** @inheritDoc */
 	protected function doClean( array $params ) {
 		return $this->backend->doClean( $params );
 	}
 
+	/** @inheritDoc */
 	public function concatenate( array $params ) {
 		return $this->translateSrcParams( __FUNCTION__, $params );
 	}
 
+	/** @inheritDoc */
 	public function fileExists( array $params ) {
 		return $this->translateSrcParams( __FUNCTION__, $params );
 	}
 
+	/** @inheritDoc */
 	public function getFileTimestamp( array $params ) {
 		return $this->translateSrcParams( __FUNCTION__, $params );
 	}
 
+	/** @inheritDoc */
 	public function getFileSize( array $params ) {
 		return $this->translateSrcParams( __FUNCTION__, $params );
 	}
 
+	/** @inheritDoc */
 	public function getFileStat( array $params ) {
 		return $this->translateSrcParams( __FUNCTION__, $params );
 	}
 
+	/** @inheritDoc */
 	public function getFileXAttributes( array $params ) {
 		return $this->translateSrcParams( __FUNCTION__, $params );
 	}
 
+	/** @inheritDoc */
 	public function getFileSha1Base36( array $params ) {
 		return $this->translateSrcParams( __FUNCTION__, $params );
 	}
 
+	/** @inheritDoc */
 	public function getFileProps( array $params ) {
 		return $this->translateSrcParams( __FUNCTION__, $params );
 	}
 
+	/** @inheritDoc */
 	public function streamFile( array $params ) {
 		// The stream methods use the file extension to determine the
 		// Content-Type (as MediaWiki should already validate it on upload).
@@ -245,22 +260,27 @@ class FileBackendDBRepoWrapper extends FileBackend {
 		return $this->translateSrcParams( __FUNCTION__, $params );
 	}
 
+	/** @inheritDoc */
 	public function getFileContentsMulti( array $params ) {
 		return $this->translateArrayResults( __FUNCTION__, $params );
 	}
 
+	/** @inheritDoc */
 	public function getLocalReferenceMulti( array $params ) {
 		return $this->translateArrayResults( __FUNCTION__, $params );
 	}
 
+	/** @inheritDoc */
 	public function getLocalCopyMulti( array $params ) {
 		return $this->translateArrayResults( __FUNCTION__, $params );
 	}
 
+	/** @inheritDoc */
 	public function getFileHttpUrl( array $params ) {
 		return $this->translateSrcParams( __FUNCTION__, $params );
 	}
 
+	/** @inheritDoc */
 	public function addShellboxInputFile( BoxedCommand $command, string $boxedName,
 		array $params
 	) {
@@ -268,18 +288,22 @@ class FileBackendDBRepoWrapper extends FileBackend {
 		return $this->backend->addShellboxInputFile( $command, $boxedName, $params );
 	}
 
+	/** @inheritDoc */
 	public function directoryExists( array $params ) {
 		return $this->backend->directoryExists( $params );
 	}
 
+	/** @inheritDoc */
 	public function getDirectoryList( array $params ) {
 		return $this->backend->getDirectoryList( $params );
 	}
 
+	/** @inheritDoc */
 	public function getFileList( array $params ) {
 		return $this->backend->getFileList( $params );
 	}
 
+	/** @inheritDoc */
 	public function getFeatures() {
 		return $this->backend->getFeatures();
 	}
@@ -293,10 +317,12 @@ class FileBackendDBRepoWrapper extends FileBackend {
 		$this->backend->preloadCache( $paths );
 	}
 
+	/** @inheritDoc */
 	public function preloadFileStat( array $params ) {
 		return $this->translateSrcParams( __FUNCTION__, $params );
 	}
 
+	/** @inheritDoc */
 	public function getScopedLocksForOps( array $ops, StatusValue $status ) {
 		return $this->backend->getScopedLocksForOps( $ops, $status );
 	}

@@ -223,6 +223,7 @@ abstract class ImageHandler extends MediaHandler {
 		}
 	}
 
+	/** @inheritDoc */
 	public function getImageSize( $image, $path ) {
 		AtEase::suppressWarnings();
 		$gis = getimagesize( $path );
@@ -231,6 +232,7 @@ abstract class ImageHandler extends MediaHandler {
 		return $gis;
 	}
 
+	/** @inheritDoc */
 	public function getSizeAndMetadata( $state, $path ) {
 		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
 		$gis = @getimagesize( $path );

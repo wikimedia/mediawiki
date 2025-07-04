@@ -302,6 +302,7 @@ class LocalRepo extends FileRepo {
 		return false; // no redirect
 	}
 
+	/** @inheritDoc */
 	public function findFiles( array $items, $flags = 0 ) {
 		$finalFiles = []; // map of (DB key => corresponding File) for matches
 
@@ -550,6 +551,7 @@ class LocalRepo extends FileRepo {
 		return $this->hasAccessibleSharedCache;
 	}
 
+	/** @inheritDoc */
 	public function getSharedCacheKey( $kClassSuffix, ...$components ) {
 		// T267668: do not include the repo name in the key
 		return $this->hasAcessibleSharedCache()
@@ -579,18 +581,22 @@ class LocalRepo extends FileRepo {
 		}
 	}
 
+	/** @inheritDoc */
 	public function store( $srcPath, $dstZone, $dstRel, $flags = 0 ) {
 		return $this->skipWriteOperationIfSha1( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function storeBatch( array $triplets, $flags = 0 ) {
 		return $this->skipWriteOperationIfSha1( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function cleanupBatch( array $files, $flags = 0 ) {
 		return $this->skipWriteOperationIfSha1( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function publish(
 		$src,
 		$dstRel,
@@ -601,14 +607,17 @@ class LocalRepo extends FileRepo {
 		return $this->skipWriteOperationIfSha1( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function publishBatch( array $ntuples, $flags = 0 ) {
 		return $this->skipWriteOperationIfSha1( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function delete( $srcRel, $archiveRel ) {
 		return $this->skipWriteOperationIfSha1( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function deleteBatch( array $sourceDestPairs ) {
 		return $this->skipWriteOperationIfSha1( __FUNCTION__, func_get_args() );
 	}
@@ -664,10 +673,12 @@ class LocalRepo extends FileRepo {
 		return $this->splitMetadataThreshold;
 	}
 
+	/** @inheritDoc */
 	public function isMetadataUpdateEnabled() {
 		return $this->updateCompatibleMetadata;
 	}
 
+	/** @inheritDoc */
 	public function isMetadataReserializeEnabled() {
 		return $this->reserializeMetadata;
 	}

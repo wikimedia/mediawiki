@@ -51,6 +51,7 @@ class SvgHandler extends ImageHandler {
 		'title' => 'ObjectName',
 	];
 
+	/** @inheritDoc */
 	public function isEnabled() {
 		$config = MediaWikiServices::getInstance()->getMainConfig();
 		$svgConverters = $config->get( MainConfigNames::SVGConverters );
@@ -90,10 +91,12 @@ class SvgHandler extends ImageHandler {
 			&& $file->getSize() <= $maxSVGFilesize;
 	}
 
+	/** @inheritDoc */
 	public function mustRender( $file ) {
 		return !$this->allowRenderingByUserAgent( $file );
 	}
 
+	/** @inheritDoc */
 	public function isVectorized( $file ) {
 		return true;
 	}
@@ -432,6 +435,7 @@ class SvgHandler extends ImageHandler {
 		}
 	}
 
+	/** @inheritDoc */
 	public function getThumbType( $ext, $mime, $params = null ) {
 		return [ 'png', 'image/png' ];
 	}
@@ -490,6 +494,7 @@ class SvgHandler extends ImageHandler {
 		];
 	}
 
+	/** @inheritDoc */
 	protected function validateMetadata( $unser ) {
 		if ( isset( $unser['version'] ) && $unser['version'] === self::SVG_METADATA_VERSION ) {
 			return $unser;
@@ -498,10 +503,12 @@ class SvgHandler extends ImageHandler {
 		return null;
 	}
 
+	/** @inheritDoc */
 	public function getMetadataType( $image ) {
 		return 'parsed-svg';
 	}
 
+	/** @inheritDoc */
 	public function isFileMetadataValid( $image ) {
 		$meta = $this->validateMetadata( $image->getMetadataArray() );
 		if ( !$meta ) {
@@ -515,6 +522,7 @@ class SvgHandler extends ImageHandler {
 		return self::METADATA_GOOD;
 	}
 
+	/** @inheritDoc */
 	protected function visibleMetadataFields() {
 		return [ 'objectname', 'imagedescription' ];
 	}
@@ -610,6 +618,7 @@ class SvgHandler extends ImageHandler {
 		return "$lang{$params['width']}px";
 	}
 
+	/** @inheritDoc */
 	public function parseParamString( $str ) {
 		$m = false;
 		// Language codes are supposed to be lowercase
@@ -625,6 +634,7 @@ class SvgHandler extends ImageHandler {
 		return false;
 	}
 
+	/** @inheritDoc */
 	public function getParamMap() {
 		return [ 'img_lang' => 'lang', 'img_width' => 'width' ];
 	}
@@ -642,6 +652,7 @@ class SvgHandler extends ImageHandler {
 		return $scriptParams;
 	}
 
+	/** @inheritDoc */
 	public function getCommonMetaArray( File $file ) {
 		$metadata = $this->validateMetadata( $file->getMetadataArray() );
 		if ( !$metadata || isset( $metadata['error'] ) ) {

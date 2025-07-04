@@ -122,6 +122,7 @@ class XCFHandler extends BitmapHandler {
 		return $header;
 	}
 
+	/** @inheritDoc */
 	public function getSizeAndMetadata( $state, $filename ) {
 		$header = self::getXCFMetaData( $filename );
 		$metadata = [];
@@ -169,6 +170,7 @@ class XCFHandler extends BitmapHandler {
 		return self::METADATA_GOOD;
 	}
 
+	/** @inheritDoc */
 	protected function hasGDSupport() {
 		return false;
 	}

@@ -300,6 +300,7 @@ class DjVuHandler extends ImageHandler {
 		return $metadata;
 	}
 
+	/** @inheritDoc */
 	public function getThumbType( $ext, $mime, $params = null ) {
 		$djvuOutputExtension = MediaWikiServices::getInstance()->getMainConfig()
 			->get( MainConfigNames::DjvuOutputExtension );
@@ -312,6 +313,7 @@ class DjVuHandler extends ImageHandler {
 		return [ $djvuOutputExtension, $djvuMime ];
 	}
 
+	/** @inheritDoc */
 	public function getSizeAndMetadata( $state, $path ) {
 		wfDebug( "Getting DjVu metadata for $path" );
 
@@ -324,21 +326,25 @@ class DjVuHandler extends ImageHandler {
 		return [ 'metadata' => $metadata ] + $djvuImage->getImageSize();
 	}
 
+	/** @inheritDoc */
 	public function getMetadataType( $image ) {
 		// historical reasons
 		return 'djvuxml';
 	}
 
+	/** @inheritDoc */
 	public function isFileMetadataValid( $image ) {
 		return $image->getMetadataArray() ? self::METADATA_GOOD : self::METADATA_BAD;
 	}
 
+	/** @inheritDoc */
 	public function pageCount( File $image ) {
 		$info = $this->getDimensionInfo( $image );
 
 		return $info ? $info['pageCount'] : false;
 	}
 
+	/** @inheritDoc */
 	public function getPageDimensions( File $image, $page ) {
 		$index = $page - 1; // MW starts pages at 1
 
@@ -350,6 +356,7 @@ class DjVuHandler extends ImageHandler {
 		return false;
 	}
 
+	/** @inheritDoc */
 	protected function getDimensionInfo( File $file ) {
 		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 		return $cache->getWithSetCallback(
@@ -409,6 +416,7 @@ class DjVuHandler extends ImageHandler {
 		return false;
 	}
 
+	/** @inheritDoc */
 	public function useSplitMetadata() {
 		return true;
 	}

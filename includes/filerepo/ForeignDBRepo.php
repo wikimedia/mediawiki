@@ -86,6 +86,7 @@ class ForeignDBRepo extends LocalRepo implements IForeignRepoWithDB {
 		$this->dbDomain = $dbDomain->getId();
 	}
 
+	/** @inheritDoc */
 	public function getPrimaryDB() {
 		if ( !$this->dbConn ) {
 			$func = $this->getDBFactory();
@@ -95,6 +96,7 @@ class ForeignDBRepo extends LocalRepo implements IForeignRepoWithDB {
 		return $this->dbConn;
 	}
 
+	/** @inheritDoc */
 	public function getReplicaDB() {
 		return $this->getPrimaryDB();
 	}

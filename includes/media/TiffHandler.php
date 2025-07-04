@@ -80,6 +80,7 @@ class TiffHandler extends ExifBitmapHandler {
 		return $tiffThumbnailType;
 	}
 
+	/** @inheritDoc */
 	public function getSizeAndMetadata( $state, $filename ) {
 		$showEXIF = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::ShowEXIF );
 
@@ -108,6 +109,7 @@ class TiffHandler extends ExifBitmapHandler {
 		}
 	}
 
+	/** @inheritDoc */
 	public function isExpensiveToThumbnail( $file ) {
 		return $file->getSize() > static::EXPENSIVE_SIZE_LIMIT;
 	}

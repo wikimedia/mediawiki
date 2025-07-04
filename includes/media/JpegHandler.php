@@ -39,6 +39,7 @@ class JpegHandler extends ExifBitmapHandler {
 	private const SRGB_EXIF_COLOR_SPACE = 'sRGB';
 	private const SRGB_ICC_PROFILE_DESCRIPTION = 'sRGB IEC61966-2.1';
 
+	/** @inheritDoc */
 	public function normaliseParams( $image, &$params ) {
 		if ( !parent::normaliseParams( $image, $params ) ) {
 			return false;
@@ -49,6 +50,7 @@ class JpegHandler extends ExifBitmapHandler {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function validateParam( $name, $value ) {
 		if ( $name === 'quality' ) {
 			return self::validateQuality( $value );
@@ -64,6 +66,7 @@ class JpegHandler extends ExifBitmapHandler {
 		return $value === 'low';
 	}
 
+	/** @inheritDoc */
 	public function makeParamString( $params ) {
 		// Prepend quality as "qValue-". This has to match parseParamString() below
 		$res = parent::makeParamString( $params );
@@ -73,6 +76,7 @@ class JpegHandler extends ExifBitmapHandler {
 		return $res;
 	}
 
+	/** @inheritDoc */
 	public function parseParamString( $str ) {
 		// $str contains "qlow-200px" or "200px" strings because thumb.php would strip the filename
 		// first - check if the string begins with "qlow-", and if so, treat it as quality.
@@ -94,6 +98,7 @@ class JpegHandler extends ExifBitmapHandler {
 		return $res;
 	}
 
+	/** @inheritDoc */
 	protected function getScriptParams( $params ) {
 		$res = parent::getScriptParams( $params );
 		if ( isset( $params['quality'] ) ) {
@@ -102,6 +107,7 @@ class JpegHandler extends ExifBitmapHandler {
 		return $res;
 	}
 
+	/** @inheritDoc */
 	public function getSizeAndMetadata( $state, $filename ) {
 		try {
 			$meta = BitmapMetadataHandler::Jpeg( $filename );
@@ -170,10 +176,12 @@ class JpegHandler extends ExifBitmapHandler {
 		return parent::rotate( $file, $params );
 	}
 
+	/** @inheritDoc */
 	public function supportsBucketing() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function sanitizeParamsForBucketing( $params ) {
 		$params = parent::sanitizeParamsForBucketing( $params );
 
