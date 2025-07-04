@@ -25,6 +25,7 @@ class BooleanDef extends TypeDef {
 	public const TRUEVALS = [ 'true', 't', 'yes', 'y', 'on', '1' ];
 	public const FALSEVALS = [ 'false', 'f', 'no', 'n', 'off', '0' ];
 
+	/** @inheritDoc */
 	public function validate( $name, $value, array $settings, array $options ) {
 		if ( is_bool( $value ) ) {
 			return $value;
@@ -61,10 +62,12 @@ class BooleanDef extends TypeDef {
 		return new ScalarParam( ParamType::TEXT, "\"$v\"" );
 	}
 
+	/** @inheritDoc */
 	public function stringifyValue( $name, $value, array $settings, array $options ) {
 		return $value ? self::TRUEVALS[0] : self::FALSEVALS[0];
 	}
 
+	/** @inheritDoc */
 	public function getHelpInfo( $name, array $settings, array $options ) {
 		$info = parent::getHelpInfo( $name, $settings, $options );
 

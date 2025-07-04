@@ -71,6 +71,7 @@ class HashBagOStuff extends MediumSpecificBagOStuff {
 		$this->attrMap[self::ATTR_DURABILITY] = self::QOS_DURABILITY_SCRIPT;
 	}
 
+	/** @inheritDoc */
 	protected function doGet( $key, $flags = 0, &$casToken = null ) {
 		$getToken = ( $casToken === self::PASS_BY_REF );
 		$casToken = null;
@@ -92,6 +93,7 @@ class HashBagOStuff extends MediumSpecificBagOStuff {
 		return $value;
 	}
 
+	/** @inheritDoc */
 	protected function doSet( $key, $value, $exptime = 0, $flags = 0 ) {
 		// Refresh key position for maxCacheKeys eviction
 		unset( $this->bag[$key] );
@@ -109,6 +111,7 @@ class HashBagOStuff extends MediumSpecificBagOStuff {
 		return true;
 	}
 
+	/** @inheritDoc */
 	protected function doAdd( $key, $value, $exptime = 0, $flags = 0 ) {
 		if ( $this->hasKey( $key ) && !$this->expire( $key ) ) {
 			// key already set
@@ -118,12 +121,14 @@ class HashBagOStuff extends MediumSpecificBagOStuff {
 		return $this->doSet( $key, $value, $exptime, $flags );
 	}
 
+	/** @inheritDoc */
 	protected function doDelete( $key, $flags = 0 ) {
 		unset( $this->bag[$key] );
 
 		return true;
 	}
 
+	/** @inheritDoc */
 	protected function doIncrWithInit( $key, $exptime, $step, $init, $flags ) {
 		$curValue = $this->doGet( $key );
 		if ( $curValue === false ) {

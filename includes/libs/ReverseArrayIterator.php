@@ -54,11 +54,13 @@ class ReverseArrayIterator implements Iterator, Countable {
 		$this->rewind();
 	}
 
+	/** @inheritDoc */
 	#[\ReturnTypeWillChange]
 	public function current() {
 		return current( $this->array );
 	}
 
+	/** @inheritDoc */
 	#[\ReturnTypeWillChange]
 	public function key() {
 		return key( $this->array );

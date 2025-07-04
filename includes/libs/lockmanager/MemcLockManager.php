@@ -90,6 +90,7 @@ class MemcLockManager extends QuorumLockManager {
 		$this->statusCache = new MapCacheLRU( 100 );
 	}
 
+	/** @inheritDoc */
 	protected function getLocksOnServer( $lockSrv, array $pathsByType ) {
 		$status = StatusValue::newGood();
 
@@ -162,6 +163,7 @@ class MemcLockManager extends QuorumLockManager {
 		return $status;
 	}
 
+	/** @inheritDoc */
 	protected function freeLocksOnServer( $lockSrv, array $pathsByType ) {
 		$status = StatusValue::newGood();
 

@@ -31,10 +31,12 @@ use Wikimedia\FileBackend\FileBackend;
  * Parameters for this operation are outlined in FileBackend::doOperations().
  */
 class DeleteFileOp extends FileOp {
+	/** @inheritDoc */
 	protected function allowedParams() {
 		return [ [ 'src' ], [ 'ignoreMissingSource' ], [ 'src' ] ];
 	}
 
+	/** @inheritDoc */
 	protected function doPrecheck(
 		FileStatePredicates $opPredicates,
 		FileStatePredicates $batchPredicates
@@ -67,11 +69,13 @@ class DeleteFileOp extends FileOp {
 		return $status; // safe to call attempt()
 	}
 
+	/** @inheritDoc */
 	protected function doAttempt() {
 		// Delete the source file
 		return $this->backend->deleteInternal( $this->setFlags( $this->params ) );
 	}
 
+	/** @inheritDoc */
 	public function storagePathsChanged() {
 		return [ $this->params['src'] ];
 	}

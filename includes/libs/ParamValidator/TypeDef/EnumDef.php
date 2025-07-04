@@ -48,6 +48,7 @@ class EnumDef extends TypeDef {
 	 */
 	public const PARAM_DEPRECATED_VALUES = 'param-deprecated-values';
 
+	/** @inheritDoc */
 	public function validate( $name, $value, array $settings, array $options ) {
 		$values = $this->getEnumValues( $name, $settings, $options );
 
@@ -84,6 +85,7 @@ class EnumDef extends TypeDef {
 		);
 	}
 
+	/** @inheritDoc */
 	public function checkSettings( string $name, $settings, array $options, array $ret ): array {
 		$ret = parent::checkSettings( $name, $settings, $options, $ret );
 
@@ -115,10 +117,12 @@ class EnumDef extends TypeDef {
 		return $ret;
 	}
 
+	/** @inheritDoc */
 	public function getEnumValues( $name, array $settings, array $options ) {
 		return array_values( $settings[ParamValidator::PARAM_TYPE] );
 	}
 
+	/** @inheritDoc */
 	public function stringifyValue( $name, $value, array $settings, array $options ) {
 		if ( !is_array( $value ) ) {
 			return parent::stringifyValue( $name, $value, $settings, $options );
@@ -127,6 +131,7 @@ class EnumDef extends TypeDef {
 		return ParamValidator::implodeMultiValue( $value );
 	}
 
+	/** @inheritDoc */
 	public function getParamInfo( $name, array $settings, array $options ) {
 		$info = parent::getParamInfo( $name, $settings, $options );
 
@@ -151,6 +156,7 @@ class EnumDef extends TypeDef {
 		return $info;
 	}
 
+	/** @inheritDoc */
 	public function getHelpInfo( $name, array $settings, array $options ) {
 		$info = parent::getHelpInfo( $name, $settings, $options );
 

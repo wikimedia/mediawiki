@@ -60,6 +60,7 @@ class MemcachedPhpBagOStuff extends MemcachedBagOStuff {
 		$this->client->set_debug( true );
 	}
 
+	/** @inheritDoc */
 	protected function doGet( $key, $flags = 0, &$casToken = null ) {
 		$getToken = ( $casToken === self::PASS_BY_REF );
 		$casToken = null;
@@ -77,6 +78,7 @@ class MemcachedPhpBagOStuff extends MemcachedBagOStuff {
 		return $res;
 	}
 
+	/** @inheritDoc */
 	protected function doSet( $key, $value, $exptime = 0, $flags = 0 ) {
 		$routeKey = $this->validateKeyAndPrependRoute( $key );
 
@@ -89,6 +91,7 @@ class MemcachedPhpBagOStuff extends MemcachedBagOStuff {
 		return $res;
 	}
 
+	/** @inheritDoc */
 	protected function doDelete( $key, $flags = 0 ) {
 		$routeKey = $this->validateKeyAndPrependRoute( $key );
 
@@ -101,6 +104,7 @@ class MemcachedPhpBagOStuff extends MemcachedBagOStuff {
 		return $res;
 	}
 
+	/** @inheritDoc */
 	protected function doAdd( $key, $value, $exptime = 0, $flags = 0 ) {
 		$routeKey = $this->validateKeyAndPrependRoute( $key );
 
@@ -113,6 +117,7 @@ class MemcachedPhpBagOStuff extends MemcachedBagOStuff {
 		return $res;
 	}
 
+	/** @inheritDoc */
 	protected function doCas( $casToken, $key, $value, $exptime = 0, $flags = 0 ) {
 		$routeKey = $this->validateKeyAndPrependRoute( $key );
 
@@ -125,6 +130,7 @@ class MemcachedPhpBagOStuff extends MemcachedBagOStuff {
 		return $res;
 	}
 
+	/** @inheritDoc */
 	protected function doIncrWithInitAsync( $key, $exptime, $step, $init ) {
 		$routeKey = $this->validateKeyAndPrependRoute( $key );
 		$watchPoint = $this->watchErrors();
@@ -134,6 +140,7 @@ class MemcachedPhpBagOStuff extends MemcachedBagOStuff {
 		return !$this->getLastError( $watchPoint );
 	}
 
+	/** @inheritDoc */
 	protected function doIncrWithInitSync( $key, $exptime, $step, $init ) {
 		$routeKey = $this->validateKeyAndPrependRoute( $key );
 
@@ -152,6 +159,7 @@ class MemcachedPhpBagOStuff extends MemcachedBagOStuff {
 		return $newValue;
 	}
 
+	/** @inheritDoc */
 	protected function doChangeTTL( $key, $exptime, $flags ) {
 		$routeKey = $this->validateKeyAndPrependRoute( $key );
 
@@ -164,6 +172,7 @@ class MemcachedPhpBagOStuff extends MemcachedBagOStuff {
 		return $res;
 	}
 
+	/** @inheritDoc */
 	protected function doGetMulti( array $keys, $flags = 0 ) {
 		$routeKeys = [];
 		foreach ( $keys as $key ) {
@@ -184,10 +193,12 @@ class MemcachedPhpBagOStuff extends MemcachedBagOStuff {
 		return $res;
 	}
 
+	/** @inheritDoc */
 	protected function serialize( $value ) {
 		return is_int( $value ) ? $value : $this->client->serialize( $value );
 	}
 
+	/** @inheritDoc */
 	protected function unserialize( $value ) {
 		return $this->isInteger( $value ) ? (int)$value : $this->client->unserialize( $value );
 	}

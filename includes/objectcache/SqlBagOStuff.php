@@ -186,6 +186,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		$this->hasZlib = extension_loaded( 'zlib' );
 	}
 
+	/** @inheritDoc */
 	protected function doGet( $key, $flags = 0, &$casToken = null ) {
 		$getToken = ( $casToken === self::PASS_BY_REF );
 		$casToken = null;
@@ -207,6 +208,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		return $result;
 	}
 
+	/** @inheritDoc */
 	protected function doSet( $key, $value, $exptime = 0, $flags = 0 ) {
 		$mtime = $this->getCurrentTime();
 
@@ -217,6 +219,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		);
 	}
 
+	/** @inheritDoc */
 	protected function doDelete( $key, $flags = 0 ) {
 		$mtime = $this->getCurrentTime();
 
@@ -227,6 +230,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		);
 	}
 
+	/** @inheritDoc */
 	protected function doAdd( $key, $value, $exptime = 0, $flags = 0 ) {
 		$mtime = $this->newLockingWriteSectionModificationTimestamp( $key, $scope );
 		if ( $mtime === null ) {
@@ -241,6 +245,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		);
 	}
 
+	/** @inheritDoc */
 	protected function doCas( $casToken, $key, $value, $exptime = 0, $flags = 0 ) {
 		$mtime = $this->newLockingWriteSectionModificationTimestamp( $key, $scope );
 		if ( $mtime === null ) {
@@ -255,6 +260,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		);
 	}
 
+	/** @inheritDoc */
 	protected function doChangeTTL( $key, $exptime, $flags ) {
 		$mtime = $this->getCurrentTime();
 
@@ -265,6 +271,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		);
 	}
 
+	/** @inheritDoc */
 	protected function doIncrWithInit( $key, $exptime, $step, $init, $flags ) {
 		$mtime = $this->getCurrentTime();
 
@@ -284,6 +291,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		return $result;
 	}
 
+	/** @inheritDoc */
 	protected function doGetMulti( array $keys, $flags = 0 ) {
 		$result = [];
 		$valueSizeByKey = [];
@@ -309,6 +317,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		return $result;
 	}
 
+	/** @inheritDoc */
 	protected function doSetMulti( array $data, $exptime = 0, $flags = 0 ) {
 		$mtime = $this->getCurrentTime();
 
@@ -324,6 +333,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		);
 	}
 
+	/** @inheritDoc */
 	protected function doDeleteMulti( array $keys, $flags = 0 ) {
 		$mtime = $this->getCurrentTime();
 
@@ -334,6 +344,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		);
 	}
 
+	/** @inheritDoc */
 	public function doChangeTTLMulti( array $keys, $exptime, $flags = 0 ) {
 		$mtime = $this->getCurrentTime();
 
@@ -1431,6 +1442,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		}
 	}
 
+	/** @inheritDoc */
 	public function deleteObjectsExpiringBefore(
 		$timestamp,
 		?callable $progress = null,
@@ -1604,6 +1616,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		}
 	}
 
+	/** @inheritDoc */
 	public function doLock( $key, $timeout = 6, $exptime = 6 ) {
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$silenceScope = $this->silenceTransactionProfiler();
@@ -1627,6 +1640,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		return $lockTsUnix;
 	}
 
+	/** @inheritDoc */
 	public function doUnlock( $key ) {
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$silenceScope = $this->silenceTransactionProfiler();
@@ -1646,6 +1660,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		return $released;
 	}
 
+	/** @inheritDoc */
 	protected function makeKeyInternal( $keyspace, $components ) {
 		$key = strtr( $keyspace, ' ', '_' );
 		foreach ( $components as $component ) {
@@ -1665,6 +1680,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		return true;
 	}
 
+	/** @inheritDoc */
 	protected function serialize( $value ) {
 		if ( is_int( $value ) ) {
 			return $value;
@@ -1679,6 +1695,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		return $serial;
 	}
 
+	/** @inheritDoc */
 	protected function unserialize( $value ) {
 		if ( $value === self::TOMB_SERIAL ) {
 			return false; // tombstone

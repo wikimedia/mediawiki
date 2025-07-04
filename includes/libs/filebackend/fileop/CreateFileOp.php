@@ -28,6 +28,7 @@ use StatusValue;
  * Parameters for this operation are outlined in FileBackend::doOperations().
  */
 class CreateFileOp extends FileOp {
+	/** @inheritDoc */
 	protected function allowedParams() {
 		return [
 			[ 'content', 'dst' ],
@@ -36,6 +37,7 @@ class CreateFileOp extends FileOp {
 		];
 	}
 
+	/** @inheritDoc */
 	protected function doPrecheck(
 		FileStatePredicates $opPredicates,
 		FileStatePredicates $batchPredicates
@@ -63,6 +65,7 @@ class CreateFileOp extends FileOp {
 		return $status; // safe to call attempt()
 	}
 
+	/** @inheritDoc */
 	protected function doAttempt() {
 		if ( $this->overwriteSameCase ) {
 			$status = StatusValue::newGood(); // nothing to do
@@ -82,6 +85,7 @@ class CreateFileOp extends FileOp {
 		return \Wikimedia\base_convert( sha1( $this->params['content'] ), 16, 36, 31 );
 	}
 
+	/** @inheritDoc */
 	public function storagePathsChanged() {
 		return [ $this->params['dst'] ];
 	}

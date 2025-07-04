@@ -63,6 +63,7 @@ class APCUBagOStuff extends MediumSpecificBagOStuff {
 		}
 	}
 
+	/** @inheritDoc */
 	protected function doGet( $key, $flags = 0, &$casToken = null ) {
 		$getToken = ( $casToken === self::PASS_BY_REF );
 		$casToken = null;
@@ -77,12 +78,14 @@ class APCUBagOStuff extends MediumSpecificBagOStuff {
 		return $value;
 	}
 
+	/** @inheritDoc */
 	protected function doSet( $key, $value, $exptime = 0, $flags = 0 ) {
 		$ttl = $this->getExpirationAsTTL( $exptime );
 
 		return apcu_store( $key . self::KEY_SUFFIX, $value, $ttl );
 	}
 
+	/** @inheritDoc */
 	protected function doAdd( $key, $value, $exptime = 0, $flags = 0 ) {
 		if ( apcu_exists( $key . self::KEY_SUFFIX ) ) {
 			// Avoid global write locks for high contention keys
@@ -94,12 +97,14 @@ class APCUBagOStuff extends MediumSpecificBagOStuff {
 		return apcu_add( $key . self::KEY_SUFFIX, $value, $ttl );
 	}
 
+	/** @inheritDoc */
 	protected function doDelete( $key, $flags = 0 ) {
 		apcu_delete( $key . self::KEY_SUFFIX );
 
 		return true;
 	}
 
+	/** @inheritDoc */
 	protected function doIncrWithInit( $key, $exptime, $step, $init, $flags ) {
 		// Use apcu 5.1.12 $ttl argument if apcu_inc() will initialize to $init:
 		// https://www.php.net/manual/en/function.apcu-inc.php

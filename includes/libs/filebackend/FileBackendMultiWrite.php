@@ -143,6 +143,7 @@ class FileBackendMultiWrite extends FileBackend {
 		}
 	}
 
+	/** @inheritDoc */
 	final protected function doOperationsInternal( array $ops, array $opts ) {
 		$status = $this->newStatus();
 
@@ -551,6 +552,7 @@ class FileBackendMultiWrite extends FileBackend {
 		return false;
 	}
 
+	/** @inheritDoc */
 	protected function doQuickOperationsInternal( array $ops, array $opts ) {
 		$status = $this->newStatus();
 		// Do the operations on the master backend; setting StatusValue fields
@@ -584,18 +586,22 @@ class FileBackendMultiWrite extends FileBackend {
 		return $status;
 	}
 
+	/** @inheritDoc */
 	protected function doPrepare( array $params ) {
 		return $this->doDirectoryOp( 'prepare', $params );
 	}
 
+	/** @inheritDoc */
 	protected function doSecure( array $params ) {
 		return $this->doDirectoryOp( 'secure', $params );
 	}
 
+	/** @inheritDoc */
 	protected function doPublish( array $params ) {
 		return $this->doDirectoryOp( 'publish', $params );
 	}
 
+	/** @inheritDoc */
 	protected function doClean( array $params ) {
 		return $this->doDirectoryOp( 'clean', $params );
 	}
@@ -632,6 +638,7 @@ class FileBackendMultiWrite extends FileBackend {
 		return $status;
 	}
 
+	/** @inheritDoc */
 	public function concatenate( array $params ) {
 		$status = $this->newStatus();
 		// We are writing to an FS file, so we don't need to do this per-backend
@@ -643,6 +650,7 @@ class FileBackendMultiWrite extends FileBackend {
 		return $status;
 	}
 
+	/** @inheritDoc */
 	public function fileExists( array $params ) {
 		$index = $this->getReadIndexFromParams( $params );
 		$realParams = $this->substOpPaths( $params, $this->backends[$index] );
@@ -650,6 +658,7 @@ class FileBackendMultiWrite extends FileBackend {
 		return $this->backends[$index]->fileExists( $realParams );
 	}
 
+	/** @inheritDoc */
 	public function getFileTimestamp( array $params ) {
 		$index = $this->getReadIndexFromParams( $params );
 		$realParams = $this->substOpPaths( $params, $this->backends[$index] );
@@ -657,6 +666,7 @@ class FileBackendMultiWrite extends FileBackend {
 		return $this->backends[$index]->getFileTimestamp( $realParams );
 	}
 
+	/** @inheritDoc */
 	public function getFileSize( array $params ) {
 		$index = $this->getReadIndexFromParams( $params );
 		$realParams = $this->substOpPaths( $params, $this->backends[$index] );
@@ -664,6 +674,7 @@ class FileBackendMultiWrite extends FileBackend {
 		return $this->backends[$index]->getFileSize( $realParams );
 	}
 
+	/** @inheritDoc */
 	public function getFileStat( array $params ) {
 		$index = $this->getReadIndexFromParams( $params );
 		$realParams = $this->substOpPaths( $params, $this->backends[$index] );
@@ -671,6 +682,7 @@ class FileBackendMultiWrite extends FileBackend {
 		return $this->backends[$index]->getFileStat( $realParams );
 	}
 
+	/** @inheritDoc */
 	public function getFileXAttributes( array $params ) {
 		$index = $this->getReadIndexFromParams( $params );
 		$realParams = $this->substOpPaths( $params, $this->backends[$index] );
@@ -678,6 +690,7 @@ class FileBackendMultiWrite extends FileBackend {
 		return $this->backends[$index]->getFileXAttributes( $realParams );
 	}
 
+	/** @inheritDoc */
 	public function getFileContentsMulti( array $params ) {
 		$index = $this->getReadIndexFromParams( $params );
 		$realParams = $this->substOpPaths( $params, $this->backends[$index] );
@@ -692,6 +705,7 @@ class FileBackendMultiWrite extends FileBackend {
 		return $contents;
 	}
 
+	/** @inheritDoc */
 	public function getFileSha1Base36( array $params ) {
 		$index = $this->getReadIndexFromParams( $params );
 		$realParams = $this->substOpPaths( $params, $this->backends[$index] );
@@ -699,6 +713,7 @@ class FileBackendMultiWrite extends FileBackend {
 		return $this->backends[$index]->getFileSha1Base36( $realParams );
 	}
 
+	/** @inheritDoc */
 	public function getFileProps( array $params ) {
 		$index = $this->getReadIndexFromParams( $params );
 		$realParams = $this->substOpPaths( $params, $this->backends[$index] );
@@ -706,6 +721,7 @@ class FileBackendMultiWrite extends FileBackend {
 		return $this->backends[$index]->getFileProps( $realParams );
 	}
 
+	/** @inheritDoc */
 	public function streamFile( array $params ) {
 		$index = $this->getReadIndexFromParams( $params );
 		$realParams = $this->substOpPaths( $params, $this->backends[$index] );
@@ -713,6 +729,7 @@ class FileBackendMultiWrite extends FileBackend {
 		return $this->backends[$index]->streamFile( $realParams );
 	}
 
+	/** @inheritDoc */
 	public function getLocalReferenceMulti( array $params ) {
 		$index = $this->getReadIndexFromParams( $params );
 		$realParams = $this->substOpPaths( $params, $this->backends[$index] );
@@ -727,6 +744,7 @@ class FileBackendMultiWrite extends FileBackend {
 		return $fsFiles;
 	}
 
+	/** @inheritDoc */
 	public function getLocalCopyMulti( array $params ) {
 		$index = $this->getReadIndexFromParams( $params );
 		$realParams = $this->substOpPaths( $params, $this->backends[$index] );
@@ -741,6 +759,7 @@ class FileBackendMultiWrite extends FileBackend {
 		return $tempFiles;
 	}
 
+	/** @inheritDoc */
 	public function getFileHttpUrl( array $params ) {
 		$index = $this->getReadIndexFromParams( $params );
 		$realParams = $this->substOpPaths( $params, $this->backends[$index] );
@@ -748,6 +767,7 @@ class FileBackendMultiWrite extends FileBackend {
 		return $this->backends[$index]->getFileHttpUrl( $realParams );
 	}
 
+	/** @inheritDoc */
 	public function addShellboxInputFile( BoxedCommand $command, string $boxedName,
 		array $params
 	) {
@@ -756,18 +776,21 @@ class FileBackendMultiWrite extends FileBackend {
 		return $this->backends[$index]->addShellboxInputFile( $command, $boxedName, $realParams );
 	}
 
+	/** @inheritDoc */
 	public function directoryExists( array $params ) {
 		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
 
 		return $this->backends[$this->masterIndex]->directoryExists( $realParams );
 	}
 
+	/** @inheritDoc */
 	public function getDirectoryList( array $params ) {
 		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
 
 		return $this->backends[$this->masterIndex]->getDirectoryList( $realParams );
 	}
 
+	/** @inheritDoc */
 	public function getFileList( array $params ) {
 		if ( isset( $params['forWrite'] ) && $params['forWrite'] ) {
 			return $this->getFileListForWrite( $params );
@@ -795,10 +818,12 @@ class FileBackendMultiWrite extends FileBackend {
 		return array_unique( $files );
 	}
 
+	/** @inheritDoc */
 	public function getFeatures() {
 		return $this->backends[$this->masterIndex]->getFeatures();
 	}
 
+	/** @inheritDoc */
 	public function clearCache( ?array $paths = null ) {
 		foreach ( $this->backends as $backend ) {
 			$realPaths = is_array( $paths ) ? $this->substPaths( $paths, $backend ) : null;
@@ -806,11 +831,13 @@ class FileBackendMultiWrite extends FileBackend {
 		}
 	}
 
+	/** @inheritDoc */
 	public function preloadCache( array $paths ) {
 		$realPaths = $this->substPaths( $paths, $this->backends[$this->readIndex] );
 		$this->backends[$this->readIndex]->preloadCache( $realPaths );
 	}
 
+	/** @inheritDoc */
 	public function preloadFileStat( array $params ) {
 		$index = $this->getReadIndexFromParams( $params );
 		$realParams = $this->substOpPaths( $params, $this->backends[$index] );
@@ -818,6 +845,7 @@ class FileBackendMultiWrite extends FileBackend {
 		return $this->backends[$index]->preloadFileStat( $realParams );
 	}
 
+	/** @inheritDoc */
 	public function getScopedLocksForOps( array $ops, StatusValue $status ) {
 		$realOps = $this->substOpBatchPaths( $ops, $this->backends[$this->masterIndex] );
 		$fileOps = $this->backends[$this->masterIndex]->getOperationsInternal( $realOps );

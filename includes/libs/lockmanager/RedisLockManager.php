@@ -76,6 +76,7 @@ class RedisLockManager extends QuorumLockManager {
 		$this->redisPool = RedisConnectionPool::singleton( $config['redisConfig'] );
 	}
 
+	/** @inheritDoc */
 	protected function getLocksOnServer( $lockSrv, array $pathsByType ) {
 		$status = StatusValue::newGood();
 
@@ -169,6 +170,7 @@ LUA;
 		return $status;
 	}
 
+	/** @inheritDoc */
 	protected function freeLocksOnServer( $lockSrv, array $pathsByType ) {
 		$status = StatusValue::newGood();
 
@@ -240,10 +242,12 @@ LUA;
 		return $status;
 	}
 
+	/** @inheritDoc */
 	protected function releaseAllLocks() {
 		return StatusValue::newGood(); // not supported
 	}
 
+	/** @inheritDoc */
 	protected function isServerUp( $lockSrv ) {
 		$conn = $this->redisPool->getConnection( $this->lockServers[$lockSrv], $this->logger );
 

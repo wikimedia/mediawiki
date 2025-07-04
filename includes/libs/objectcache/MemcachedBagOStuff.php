@@ -166,6 +166,7 @@ abstract class MemcachedBagOStuff extends MediumSpecificBagOStuff {
 		return (int)$expiresAt;
 	}
 
+	/** @inheritDoc */
 	protected function doIncrWithInit( $key, $exptime, $step, $init, $flags ) {
 		if ( $flags & self::WRITE_BACKGROUND ) {
 			return $this->doIncrWithInitAsync( $key, $exptime, $step, $init );

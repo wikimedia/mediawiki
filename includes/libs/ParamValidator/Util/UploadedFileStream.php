@@ -89,12 +89,14 @@ class UploadedFileStream implements Stringable, StreamInterface {
 		}
 	}
 
+	/** @inheritDoc */
 	public function detach() {
 		$ret = $this->fp;
 		$this->fp = null;
 		return $ret;
 	}
 
+	/** @inheritDoc */
 	public function getSize() {
 		if ( $this->size === false ) {
 			$this->size = null;
@@ -112,11 +114,13 @@ class UploadedFileStream implements Stringable, StreamInterface {
 		return $this->size;
 	}
 
+	/** @inheritDoc */
 	public function tell() {
 		$this->checkOpen();
 		return self::quietCall( 'ftell', [ $this->fp ], -1, 'Cannot determine stream position' );
 	}
 
+	/** @inheritDoc */
 	public function eof() {
 		// Spec doesn't care about errors here.
 		try {
@@ -126,43 +130,52 @@ class UploadedFileStream implements Stringable, StreamInterface {
 		}
 	}
 
+	/** @inheritDoc */
 	public function isSeekable() {
 		return (bool)$this->fp;
 	}
 
+	/** @inheritDoc */
 	public function seek( $offset, $whence = SEEK_SET ) {
 		$this->checkOpen();
 		self::quietCall( 'fseek', [ $this->fp, $offset, $whence ], -1, 'Seek failed' );
 	}
 
+	/** @inheritDoc */
 	public function rewind() {
 		$this->seek( 0 );
 	}
 
+	/** @inheritDoc */
 	public function isWritable() {
 		return false;
 	}
 
+	/** @inheritDoc */
 	public function write( $string ) {
 		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
 		$this->checkOpen();
 		throw new RuntimeException( 'Stream is read-only' );
 	}
 
+	/** @inheritDoc */
 	public function isReadable() {
 		return (bool)$this->fp;
 	}
 
+	/** @inheritDoc */
 	public function read( $length ) {
 		$this->checkOpen();
 		return self::quietCall( 'fread', [ $this->fp, $length ], false, 'Read failed' );
 	}
 
+	/** @inheritDoc */
 	public function getContents() {
 		$this->checkOpen();
 		return self::quietCall( 'stream_get_contents', [ $this->fp ], false, 'Read failed' );
 	}
 
+	/** @inheritDoc */
 	public function getMetadata( $key = null ) {
 		$this->checkOpen();
 		$ret = self::quietCall( 'stream_get_meta_data', [ $this->fp ], false, 'Metadata fetch failed' );

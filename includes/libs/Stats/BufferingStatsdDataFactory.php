@@ -158,6 +158,7 @@ class BufferingStatsdDataFactory extends StatsdDataFactory implements IBuffering
 		return strtr( $key, [ '..' => '.' ] );
 	}
 
+	/** @inheritDoc */
 	public function produceStatsdData(
 		$key, $value = 1, $metric = StatsdDataInterface::STATSD_METRIC_COUNT
 	) {
@@ -179,6 +180,7 @@ class BufferingStatsdDataFactory extends StatsdDataFactory implements IBuffering
 	// Methods for IBufferingStatsdDataFactory
 	//
 
+	/** @inheritDoc */
 	public function hasData() {
 		return (bool)$this->buffer;
 	}
@@ -203,14 +205,17 @@ class BufferingStatsdDataFactory extends StatsdDataFactory implements IBuffering
 		return $data;
 	}
 
+	/** @inheritDoc */
 	public function clearData() {
 		$this->buffer = [];
 	}
 
+	/** @inheritDoc */
 	public function getDataCount() {
 		return count( $this->buffer );
 	}
 
+	/** @inheritDoc */
 	public function setEnabled( $enabled ) {
 		$this->enabled = $enabled;
 	}

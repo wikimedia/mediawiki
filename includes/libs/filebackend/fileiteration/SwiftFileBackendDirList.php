@@ -37,6 +37,7 @@ class SwiftFileBackendDirList extends SwiftFileBackendList {
 		return substr( current( $this->iterableBuffer ), $this->suffixStart, -1 );
 	}
 
+	/** @inheritDoc */
 	protected function pageFromList( $container, $dir, &$after, $limit, array $params ) {
 		return $this->backend->getDirListPageInternal( $container, $dir, $after, $limit, $params );
 	}

@@ -197,6 +197,7 @@ class SwiftFileBackend extends FileBackendStore {
 		$this->http->setLogger( $logger );
 	}
 
+	/** @inheritDoc */
 	public function getFeatures() {
 		return (
 			self::ATTR_UNICODE_PATHS |
@@ -205,6 +206,7 @@ class SwiftFileBackend extends FileBackendStore {
 		);
 	}
 
+	/** @inheritDoc */
 	protected function resolveContainerPath( $container, $relStoragePath ) {
 		if ( !mb_check_encoding( $relStoragePath, 'UTF-8' ) ) {
 			return null; // not UTF-8, makes it hard to use CF and the swift HTTP API
@@ -215,6 +217,7 @@ class SwiftFileBackend extends FileBackendStore {
 		return $relStoragePath;
 	}
 
+	/** @inheritDoc */
 	public function isPathUsableInternal( $storagePath ) {
 		[ $container, $rel ] = $this->resolveStoragePathReal( $storagePath );
 		if ( $rel === null ) {
@@ -301,6 +304,7 @@ class SwiftFileBackend extends FileBackendStore {
 		return $metadata;
 	}
 
+	/** @inheritDoc */
 	protected function doCreateInternal( array $params ) {
 		$status = $this->newStatus();
 
@@ -357,6 +361,7 @@ class SwiftFileBackend extends FileBackendStore {
 		return $status;
 	}
 
+	/** @inheritDoc */
 	protected function doStoreInternal( array $params ) {
 		$status = $this->newStatus();
 
@@ -447,6 +452,7 @@ class SwiftFileBackend extends FileBackendStore {
 		return $status;
 	}
 
+	/** @inheritDoc */
 	protected function doCopyInternal( array $params ) {
 		$status = $this->newStatus();
 
@@ -503,6 +509,7 @@ class SwiftFileBackend extends FileBackendStore {
 		return $status;
 	}
 
+	/** @inheritDoc */
 	protected function doMoveInternal( array $params ) {
 		$status = $this->newStatus();
 
@@ -572,6 +579,7 @@ class SwiftFileBackend extends FileBackendStore {
 		return $status;
 	}
 
+	/** @inheritDoc */
 	protected function doDeleteInternal( array $params ) {
 		$status = $this->newStatus();
 
@@ -615,6 +623,7 @@ class SwiftFileBackend extends FileBackendStore {
 		return $status;
 	}
 
+	/** @inheritDoc */
 	protected function doDescribeInternal( array $params ) {
 		$status = $this->newStatus();
 
@@ -697,6 +706,7 @@ class SwiftFileBackend extends FileBackendStore {
 		return $status;
 	}
 
+	/** @inheritDoc */
 	protected function doSecureInternal( $fullCont, $dir, array $params ) {
 		$status = $this->newStatus();
 		if ( empty( $params['noAccess'] ) ) {
@@ -723,6 +733,7 @@ class SwiftFileBackend extends FileBackendStore {
 		return $status;
 	}
 
+	/** @inheritDoc */
 	protected function doPublishInternal( $fullCont, $dir, array $params ) {
 		$status = $this->newStatus();
 		if ( empty( $params['access'] ) ) {
@@ -753,6 +764,7 @@ class SwiftFileBackend extends FileBackendStore {
 		return $status;
 	}
 
+	/** @inheritDoc */
 	protected function doCleanInternal( $fullCont, $dir, array $params ) {
 		$status = $this->newStatus();
 
@@ -777,6 +789,7 @@ class SwiftFileBackend extends FileBackendStore {
 		return $status;
 	}
 
+	/** @inheritDoc */
 	protected function doGetFileStat( array $params ) {
 		$params = [ 'srcs' => [ $params['src'] ], 'concurrency' => 1 ] + $params;
 		unset( $params['src'] );
@@ -864,6 +877,7 @@ class SwiftFileBackend extends FileBackendStore {
 		return $objHdrs; // failed
 	}
 
+	/** @inheritDoc */
 	protected function doGetFileContentsMulti( array $params ) {
 		$ep = array_diff_key( $params, [ 'srcs' => 1 ] ); // for error logging
 		// Blindly create tmp files and stream to them, catching any exception
@@ -922,6 +936,7 @@ class SwiftFileBackend extends FileBackendStore {
 		return $contents;
 	}
 
+	/** @inheritDoc */
 	protected function doDirectoryExists( $fullCont, $dir, array $params ) {
 		$prefix = ( $dir == '' ) ? null : "{$dir}/";
 		$status = $this->objectListing( $fullCont, 'names', 1, null, $prefix );
@@ -1137,6 +1152,7 @@ class SwiftFileBackend extends FileBackendStore {
 		$this->cheapCache->setField( $path, 'stat', $val );
 	}
 
+	/** @inheritDoc */
 	protected function doGetFileXAttributes( array $params ) {
 		$stat = $this->getFileStat( $params );
 		// Stat entries filled by file listings don't include metadata/headers
@@ -1152,6 +1168,7 @@ class SwiftFileBackend extends FileBackendStore {
 		return $stat === self::RES_ERROR ? self::RES_ERROR : self::RES_ABSENT;
 	}
 
+	/** @inheritDoc */
 	protected function doGetFileSha1base36( array $params ) {
 		// Avoid using stat entries from file listings, which never include the SHA-1 hash.
 		// Also, recompute the hash if it's not part of the metadata headers for some reason.
@@ -1165,6 +1182,7 @@ class SwiftFileBackend extends FileBackendStore {
 		return $stat === self::RES_ERROR ? self::RES_ERROR : self::RES_ABSENT;
 	}
 
+	/** @inheritDoc */
 	protected function doStreamFile( array $params ) {
 		$status = $this->newStatus();
 
@@ -1232,6 +1250,7 @@ class SwiftFileBackend extends FileBackendStore {
 		return $status;
 	}
 
+	/** @inheritDoc */
 	protected function doGetLocalCopyMulti( array $params ) {
 		$ep = array_diff_key( $params, [ 'srcs' => 1 ] ); // for error logging
 		// Blindly create tmp files and stream to them, catching any exception
@@ -1304,6 +1323,7 @@ class SwiftFileBackend extends FileBackendStore {
 		return $tmpFiles;
 	}
 
+	/** @inheritDoc */
 	public function addShellboxInputFile( BoxedCommand $command, string $boxedName,
 		array $params
 	) {
@@ -1321,6 +1341,7 @@ class SwiftFileBackend extends FileBackendStore {
 		return parent::addShellboxInputFile( $command, $boxedName, $params );
 	}
 
+	/** @inheritDoc */
 	public function getFileHttpUrl( array $params ) {
 		if ( $this->swiftTempUrlKey == '' &&
 			( $this->rgwS3AccessKey == '' || $this->rgwS3SecretKey != '' )
@@ -1393,6 +1414,7 @@ class SwiftFileBackend extends FileBackendStore {
 		}
 	}
 
+	/** @inheritDoc */
 	protected function directoriesAreVirtual() {
 		return true;
 	}
@@ -1414,6 +1436,7 @@ class SwiftFileBackend extends FileBackendStore {
 		return $hdrs;
 	}
 
+	/** @inheritDoc */
 	protected function doExecuteOpHandlesInternal( array $fileOpHandles ) {
 		/** @var SwiftFileOpHandle[] $fileOpHandles */
 		'@phan-var SwiftFileOpHandle[] $fileOpHandles';
@@ -1675,12 +1698,14 @@ class SwiftFileBackend extends FileBackendStore {
 		return $status;
 	}
 
+	/** @inheritDoc */
 	protected function doPrimeContainerCache( array $containerInfo ) {
 		foreach ( $containerInfo as $container => $info ) {
 			$this->containerStatCache->setField( $container, 'stat', $info );
 		}
 	}
 
+	/** @inheritDoc */
 	protected function doGetFileStatMulti( array $params ) {
 		$stats = [];
 

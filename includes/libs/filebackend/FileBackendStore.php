@@ -385,6 +385,7 @@ abstract class FileBackendStore extends FileBackend {
 		return $this->newStatus();
 	}
 
+	/** @inheritDoc */
 	final public function concatenate( array $params ) {
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$ps = $this->scopedProfileSection( __METHOD__ . "-{$this->name}" );
@@ -524,6 +525,7 @@ abstract class FileBackendStore extends FileBackend {
 		return $this->newStatus();
 	}
 
+	/** @inheritDoc */
 	final protected function doSecure( array $params ) {
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$ps = $this->scopedProfileSection( __METHOD__ . "-{$this->name}" );
@@ -561,6 +563,7 @@ abstract class FileBackendStore extends FileBackend {
 		return $this->newStatus();
 	}
 
+	/** @inheritDoc */
 	final protected function doPublish( array $params ) {
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$ps = $this->scopedProfileSection( __METHOD__ . "-{$this->name}" );
@@ -598,6 +601,7 @@ abstract class FileBackendStore extends FileBackend {
 		return $this->newStatus();
 	}
 
+	/** @inheritDoc */
 	final protected function doClean( array $params ) {
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$ps = $this->scopedProfileSection( __METHOD__ . "-{$this->name}" );
@@ -657,6 +661,7 @@ abstract class FileBackendStore extends FileBackend {
 		return $this->newStatus();
 	}
 
+	/** @inheritDoc */
 	final public function fileExists( array $params ) {
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$ps = $this->scopedProfileSection( __METHOD__ . "-{$this->name}" );
@@ -669,6 +674,7 @@ abstract class FileBackendStore extends FileBackend {
 		return $stat === self::RES_ABSENT ? false : self::EXISTENCE_ERROR;
 	}
 
+	/** @inheritDoc */
 	final public function getFileTimestamp( array $params ) {
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$ps = $this->scopedProfileSection( __METHOD__ . "-{$this->name}" );
@@ -681,6 +687,7 @@ abstract class FileBackendStore extends FileBackend {
 		return self::TIMESTAMP_FAIL; // all failure cases
 	}
 
+	/** @inheritDoc */
 	final public function getFileSize( array $params ) {
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$ps = $this->scopedProfileSection( __METHOD__ . "-{$this->name}" );
@@ -693,6 +700,7 @@ abstract class FileBackendStore extends FileBackend {
 		return self::SIZE_FAIL; // all failure cases
 	}
 
+	/** @inheritDoc */
 	final public function getFileStat( array $params ) {
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$ps = $this->scopedProfileSection( __METHOD__ . "-{$this->name}" );
@@ -825,6 +833,7 @@ abstract class FileBackendStore extends FileBackend {
 	 */
 	abstract protected function doGetFileStat( array $params );
 
+	/** @inheritDoc */
 	public function getFileContentsMulti( array $params ) {
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$ps = $this->scopedProfileSection( __METHOD__ . "-{$this->name}" );
@@ -863,6 +872,7 @@ abstract class FileBackendStore extends FileBackend {
 		return $contents;
 	}
 
+	/** @inheritDoc */
 	final public function getFileXAttributes( array $params ) {
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$ps = $this->scopedProfileSection( __METHOD__ . "-{$this->name}" );
@@ -911,6 +921,7 @@ abstract class FileBackendStore extends FileBackend {
 		return [ 'headers' => [], 'metadata' => [] ]; // not supported
 	}
 
+	/** @inheritDoc */
 	final public function getFileSha1Base36( array $params ) {
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$ps = $this->scopedProfileSection( __METHOD__ . "-{$this->name}" );
@@ -965,6 +976,7 @@ abstract class FileBackendStore extends FileBackend {
 		return $fsFile === self::RES_ERROR ? self::RES_ERROR : self::RES_ABSENT;
 	}
 
+	/** @inheritDoc */
 	final public function getFileProps( array $params ) {
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$ps = $this->scopedProfileSection( __METHOD__ . "-{$this->name}" );
@@ -974,6 +986,7 @@ abstract class FileBackendStore extends FileBackend {
 		return $fsFile ? $fsFile->getProps() : FSFile::placeholderProps();
 	}
 
+	/** @inheritDoc */
 	final public function getLocalReferenceMulti( array $params ) {
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$ps = $this->scopedProfileSection( __METHOD__ . "-{$this->name}" );
@@ -1022,6 +1035,7 @@ abstract class FileBackendStore extends FileBackend {
 		return $this->doGetLocalCopyMulti( $params );
 	}
 
+	/** @inheritDoc */
 	final public function getLocalCopyMulti( array $params ) {
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$ps = $this->scopedProfileSection( __METHOD__ . "-{$this->name}" );
@@ -1048,6 +1062,7 @@ abstract class FileBackendStore extends FileBackend {
 		return self::TEMPURL_ERROR; // not supported
 	}
 
+	/** @inheritDoc */
 	public function addShellboxInputFile( BoxedCommand $command, string $boxedName,
 		array $params
 	) {
@@ -1064,6 +1079,7 @@ abstract class FileBackendStore extends FileBackend {
 		}
 	}
 
+	/** @inheritDoc */
 	final public function streamFile( array $params ) {
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$ps = $this->scopedProfileSection( __METHOD__ . "-{$this->name}" );
@@ -1117,6 +1133,7 @@ abstract class FileBackendStore extends FileBackend {
 		return $status;
 	}
 
+	/** @inheritDoc */
 	final public function directoryExists( array $params ) {
 		[ $fullCont, $dir, $shard ] = $this->resolveStoragePath( $params['dir'] );
 		if ( $dir === null ) {
@@ -1152,6 +1169,7 @@ abstract class FileBackendStore extends FileBackend {
 	 */
 	abstract protected function doDirectoryExists( $container, $dir, array $params );
 
+	/** @inheritDoc */
 	final public function getDirectoryList( array $params ) {
 		[ $fullCont, $dir, $shard ] = $this->resolveStoragePath( $params['dir'] );
 		if ( $dir === null ) {
@@ -1182,6 +1200,7 @@ abstract class FileBackendStore extends FileBackend {
 	 */
 	abstract public function getDirectoryListInternal( $container, $dir, array $params );
 
+	/** @inheritDoc */
 	final public function getFileList( array $params ) {
 		[ $fullCont, $dir, $shard ] = $this->resolveStoragePath( $params['dir'] );
 		if ( $dir === null ) {
@@ -1280,12 +1299,14 @@ abstract class FileBackendStore extends FileBackend {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getScopedLocksForOps( array $ops, StatusValue $status ) {
 		$paths = $this->getPathsToLockForOpsInternal( $this->getOperationsInternal( $ops ) );
 
 		return $this->getScopedFileLocks( $paths, 'mixed', $status );
 	}
 
+	/** @inheritDoc */
 	final protected function doOperationsInternal( array $ops, array $opts ) {
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$ps = $this->scopedProfileSection( __METHOD__ . "-{$this->name}" );
@@ -1349,6 +1370,7 @@ abstract class FileBackendStore extends FileBackend {
 		return $status;
 	}
 
+	/** @inheritDoc */
 	final protected function doQuickOperationsInternal( array $ops, array $opts ) {
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$ps = $this->scopedProfileSection( __METHOD__ . "-{$this->name}" );
@@ -1528,6 +1550,7 @@ abstract class FileBackendStore extends FileBackend {
 	protected function doClearCache( ?array $paths = null ) {
 	}
 
+	/** @inheritDoc */
 	final public function preloadFileStat( array $params ) {
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$ps = $this->scopedProfileSection( __METHOD__ . "-{$this->name}" );

@@ -83,6 +83,7 @@ class UploadedFile implements UploadedFileInterface {
 		}
 	}
 
+	/** @inheritDoc */
 	public function getStream() {
 		if ( $this->stream ) {
 			return $this->stream;
@@ -93,6 +94,7 @@ class UploadedFile implements UploadedFileInterface {
 		return $this->stream;
 	}
 
+	/** @inheritDoc */
 	public function moveTo( $targetPath ) {
 		$this->checkError();
 
@@ -118,19 +120,23 @@ class UploadedFile implements UploadedFileInterface {
 		}
 	}
 
+	/** @inheritDoc */
 	public function getSize() {
 		return $this->data['size'] ?? null;
 	}
 
+	/** @inheritDoc */
 	public function getError() {
 		return $this->data['error'] ?? UPLOAD_ERR_NO_FILE;
 	}
 
+	/** @inheritDoc */
 	public function getClientFilename() {
 		$ret = $this->data['name'] ?? null;
 		return $ret === '' ? null : $ret;
 	}
 
+	/** @inheritDoc */
 	public function getClientMediaType() {
 		$ret = $this->data['type'] ?? null;
 		return $ret === '' ? null : $ret;

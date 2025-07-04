@@ -25,6 +25,7 @@
  * @ingroup LockManager
  */
 class NullLockManager extends LockManager {
+	/** @inheritDoc */
 	protected function doLock( array $paths, $type ) {
 		foreach ( $paths as $path ) {
 			if ( isset( $this->locksHeld[$path][$type] ) ) {
@@ -37,6 +38,7 @@ class NullLockManager extends LockManager {
 		return StatusValue::newGood();
 	}
 
+	/** @inheritDoc */
 	protected function doUnlock( array $paths, $type ) {
 		$status = StatusValue::newGood();
 

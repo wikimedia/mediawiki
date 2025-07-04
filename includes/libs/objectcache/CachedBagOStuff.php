@@ -54,6 +54,7 @@ class CachedBagOStuff extends BagOStuff {
 		$this->attrMap = $backend->attrMap;
 	}
 
+	/** @inheritDoc */
 	public function get( $key, $flags = 0 ) {
 		$value = $this->procCache->get( $key, $flags );
 		if ( $value !== false || $this->procCache->hasKey( $key ) ) {
@@ -72,6 +73,7 @@ class CachedBagOStuff extends BagOStuff {
 		return $value;
 	}
 
+	/** @inheritDoc */
 	public function getMulti( array $keys, $flags = 0 ) {
 		$valueByKeyCached = [];
 
@@ -97,6 +99,7 @@ class CachedBagOStuff extends BagOStuff {
 		return $valueByKeyCached + $valueByKeyFetched;
 	}
 
+	/** @inheritDoc */
 	public function set( $key, $value, $exptime = 0, $flags = 0 ) {
 		$this->procCache->set( $key, $value, $exptime, $flags );
 
@@ -113,6 +116,7 @@ class CachedBagOStuff extends BagOStuff {
 		);
 	}
 
+	/** @inheritDoc */
 	public function delete( $key, $flags = 0 ) {
 		$this->procCache->delete( $key, $flags );
 
@@ -129,6 +133,7 @@ class CachedBagOStuff extends BagOStuff {
 		);
 	}
 
+	/** @inheritDoc */
 	public function add( $key, $value, $exptime = 0, $flags = 0 ) {
 		if ( $this->get( $key ) === false ) {
 			return $this->set( $key, $value, $exptime, $flags );
@@ -141,6 +146,7 @@ class CachedBagOStuff extends BagOStuff {
 	// These just call the backend (tested elsewhere)
 	// @codeCoverageIgnoreStart
 
+	/** @inheritDoc */
 	public function merge( $key, callable $callback, $exptime = 0, $attempts = 10, $flags = 0 ) {
 		$this->procCache->delete( $key );
 
@@ -153,6 +159,7 @@ class CachedBagOStuff extends BagOStuff {
 		);
 	}
 
+	/** @inheritDoc */
 	public function changeTTL( $key, $exptime = 0, $flags = 0 ) {
 		$this->procCache->delete( $key );
 
@@ -165,6 +172,7 @@ class CachedBagOStuff extends BagOStuff {
 		);
 	}
 
+	/** @inheritDoc */
 	public function lock( $key, $timeout = 6, $exptime = 6, $rclass = '' ) {
 		return $this->store->proxyCall(
 			__FUNCTION__,
@@ -175,6 +183,7 @@ class CachedBagOStuff extends BagOStuff {
 		);
 	}
 
+	/** @inheritDoc */
 	public function unlock( $key ) {
 		return $this->store->proxyCall(
 			__FUNCTION__,
@@ -185,6 +194,7 @@ class CachedBagOStuff extends BagOStuff {
 		);
 	}
 
+	/** @inheritDoc */
 	public function deleteObjectsExpiringBefore(
 		$timestamp,
 		?callable $progress = null,
@@ -202,6 +212,7 @@ class CachedBagOStuff extends BagOStuff {
 		);
 	}
 
+	/** @inheritDoc */
 	public function setMulti( array $valueByKey, $exptime = 0, $flags = 0 ) {
 		$this->procCache->setMulti( $valueByKey, $exptime, $flags );
 
@@ -218,6 +229,7 @@ class CachedBagOStuff extends BagOStuff {
 		);
 	}
 
+	/** @inheritDoc */
 	public function deleteMulti( array $keys, $flags = 0 ) {
 		$this->procCache->deleteMulti( $keys, $flags );
 
@@ -234,6 +246,7 @@ class CachedBagOStuff extends BagOStuff {
 		);
 	}
 
+	/** @inheritDoc */
 	public function changeTTLMulti( array $keys, $exptime, $flags = 0 ) {
 		$this->procCache->changeTTLMulti( $keys, $exptime, $flags );
 
@@ -250,6 +263,7 @@ class CachedBagOStuff extends BagOStuff {
 		);
 	}
 
+	/** @inheritDoc */
 	public function incrWithInit( $key, $exptime, $step = 1, $init = null, $flags = 0 ) {
 		$this->procCache->delete( $key );
 
@@ -262,6 +276,7 @@ class CachedBagOStuff extends BagOStuff {
 		);
 	}
 
+	/** @inheritDoc */
 	public function setMockTime( &$time ) {
 		parent::setMockTime( $time );
 		$this->procCache->setMockTime( $time );

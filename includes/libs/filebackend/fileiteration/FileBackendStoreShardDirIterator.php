@@ -27,6 +27,7 @@ use ArrayIterator;
  * Iterator for listing directories
  */
 class FileBackendStoreShardDirIterator extends FileBackendStoreShardListIterator {
+	/** @inheritDoc */
 	protected function listFromShard( $container ) {
 		$list = $this->backend->getDirectoryListInternal(
 			$container, $this->directory, $this->params );

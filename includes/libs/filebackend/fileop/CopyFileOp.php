@@ -31,6 +31,7 @@ use Wikimedia\FileBackend\FileBackend;
  * Parameters for this operation are outlined in FileBackend::doOperations().
  */
 class CopyFileOp extends FileOp {
+	/** @inheritDoc */
 	protected function allowedParams() {
 		return [
 			[ 'src', 'dst' ],
@@ -39,6 +40,7 @@ class CopyFileOp extends FileOp {
 		];
 	}
 
+	/** @inheritDoc */
 	protected function doPrecheck(
 		FileStatePredicates $opPredicates,
 		FileStatePredicates $batchPredicates
@@ -86,6 +88,7 @@ class CopyFileOp extends FileOp {
 		return $status; // safe to call attempt()
 	}
 
+	/** @inheritDoc */
 	protected function doAttempt() {
 		if ( $this->overwriteSameCase ) {
 			$status = StatusValue::newGood(); // nothing to do
@@ -103,10 +106,12 @@ class CopyFileOp extends FileOp {
 		return $status;
 	}
 
+	/** @inheritDoc */
 	public function storagePathsRead() {
 		return [ $this->params['src'] ];
 	}
 
+	/** @inheritDoc */
 	public function storagePathsChanged() {
 		return [ $this->params['dst'] ];
 	}

@@ -70,30 +70,37 @@ class PrefixingStatsdDataFactoryProxy implements StatsdDataFactoryInterface {
 		return $this->prefix . '.' . $key;
 	}
 
+	/** @inheritDoc */
 	public function timing( $key, $time ) {
 		return $this->factory->timing( $this->addPrefixToKey( $key ), $time );
 	}
 
+	/** @inheritDoc */
 	public function gauge( $key, $value ) {
 		return $this->factory->gauge( $this->addPrefixToKey( $key ), $value );
 	}
 
+	/** @inheritDoc */
 	public function set( $key, $value ) {
 		return $this->factory->set( $this->addPrefixToKey( $key ), $value );
 	}
 
+	/** @inheritDoc */
 	public function increment( $key ) {
 		return $this->factory->increment( $this->addPrefixToKey( $key ) );
 	}
 
+	/** @inheritDoc */
 	public function decrement( $key ) {
 		return $this->factory->decrement( $this->addPrefixToKey( $key ) );
 	}
 
+	/** @inheritDoc */
 	public function updateCount( $key, $delta ) {
 		return $this->factory->updateCount( $this->addPrefixToKey( $key ), $delta );
 	}
 
+	/** @inheritDoc */
 	public function produceStatsdData(
 		$key,
 		$value = 1,

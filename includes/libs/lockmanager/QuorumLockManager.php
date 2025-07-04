@@ -36,6 +36,7 @@ abstract class QuorumLockManager extends LockManager {
 	/** @var array Map of degraded buckets */
 	protected $degradedBuckets = []; // (bucket index => UNIX timestamp)
 
+	/** @inheritDoc */
 	final protected function doLockByType( array $pathsByType ) {
 		$status = StatusValue::newGood();
 
@@ -283,11 +284,13 @@ abstract class QuorumLockManager extends LockManager {
 	 */
 	abstract protected function releaseAllLocks();
 
+	/** @inheritDoc */
 	final protected function doLock( array $paths, $type ) {
 		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
 		throw new LogicException( __METHOD__ . ': proxy class does not need this method.' );
 	}
 
+	/** @inheritDoc */
 	final protected function doUnlock( array $paths, $type ) {
 		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
 		throw new LogicException( __METHOD__ . ': proxy class does not need this method.' );

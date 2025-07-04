@@ -181,6 +181,7 @@ class RESTBagOStuff extends MediumSpecificBagOStuff {
 		$this->client->setLogger( $logger );
 	}
 
+	/** @inheritDoc */
 	protected function doGet( $key, $flags = 0, &$casToken = null ) {
 		$getToken = ( $casToken === self::PASS_BY_REF );
 		$casToken = null;
@@ -211,6 +212,7 @@ class RESTBagOStuff extends MediumSpecificBagOStuff {
 		return $value;
 	}
 
+	/** @inheritDoc */
 	protected function doSet( $key, $value, $exptime = 0, $flags = 0 ) {
 		$req = [
 			'method' => $this->httpParams['writeMethod'],
@@ -231,6 +233,7 @@ class RESTBagOStuff extends MediumSpecificBagOStuff {
 		return $res;
 	}
 
+	/** @inheritDoc */
 	protected function doAdd( $key, $value, $exptime = 0, $flags = 0 ) {
 		// NOTE: This is non-atomic
 		if ( $this->get( $key ) === false ) {
@@ -241,6 +244,7 @@ class RESTBagOStuff extends MediumSpecificBagOStuff {
 		return false;
 	}
 
+	/** @inheritDoc */
 	protected function doDelete( $key, $flags = 0 ) {
 		$req = [
 			'method' => 'DELETE',
@@ -260,6 +264,7 @@ class RESTBagOStuff extends MediumSpecificBagOStuff {
 		return $res;
 	}
 
+	/** @inheritDoc */
 	protected function doIncrWithInit( $key, $exptime, $step, $init, $flags ) {
 		// NOTE: This is non-atomic
 		$curValue = $this->doGet( $key );

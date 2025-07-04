@@ -31,10 +31,12 @@ use Wikimedia\FileBackend\FileBackend;
  * Parameters for this operation are outlined in FileBackend::doOperations().
  */
 class DescribeFileOp extends FileOp {
+	/** @inheritDoc */
 	protected function allowedParams() {
 		return [ [ 'src' ], [ 'headers' ], [ 'src' ] ];
 	}
 
+	/** @inheritDoc */
 	protected function doPrecheck(
 		FileStatePredicates $opPredicates,
 		FileStatePredicates $batchPredicates
@@ -69,11 +71,13 @@ class DescribeFileOp extends FileOp {
 		return $status; // safe to call attempt()
 	}
 
+	/** @inheritDoc */
 	protected function doAttempt() {
 		// Update the source file's metadata
 		return $this->backend->describeInternal( $this->setFlags( $this->params ) );
 	}
 
+	/** @inheritDoc */
 	public function storagePathsChanged() {
 		return [ $this->params['src'] ];
 	}

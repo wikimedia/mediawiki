@@ -37,6 +37,7 @@ class LimitDef extends IntegerDef {
 		return parent::validate( $name, $value, $settings, $options );
 	}
 
+	/** @inheritDoc */
 	public function normalizeSettings( array $settings ) {
 		$settings += [
 			self::PARAM_MIN => 0,
@@ -48,6 +49,7 @@ class LimitDef extends IntegerDef {
 		return parent::normalizeSettings( $settings );
 	}
 
+	/** @inheritDoc */
 	public function checkSettings( string $name, $settings, array $options, array $ret ): array {
 		$ret = parent::checkSettings( $name, $settings, $options, $ret );
 
@@ -68,6 +70,7 @@ class LimitDef extends IntegerDef {
 		return $ret;
 	}
 
+	/** @inheritDoc */
 	public function getHelpInfo( $name, array $settings, array $options ) {
 		$info = parent::getHelpInfo( $name, $settings, $options );
 

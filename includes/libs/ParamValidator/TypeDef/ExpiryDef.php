@@ -32,6 +32,7 @@ class ExpiryDef extends TypeDef {
 	 */
 	public const PARAM_MAX = 'param-max';
 
+	/** @inheritDoc */
 	public function validate( $name, $value, array $settings, array $options ) {
 		$this->failIfNotString( $name, $value, $settings, $options );
 
@@ -64,6 +65,7 @@ class ExpiryDef extends TypeDef {
 		return $expiry;
 	}
 
+	/** @inheritDoc */
 	public function getHelpInfo( $name, array $settings, array $options ) {
 		$info = parent::getHelpInfo( $name, $settings, $options );
 
@@ -145,6 +147,7 @@ class ExpiryDef extends TypeDef {
 		return self::normalizeExpiry( $expiry, $style );
 	}
 
+	/** @inheritDoc */
 	public function checkSettings( string $name, $settings, array $options, array $ret ): array {
 		$ret = parent::checkSettings( $name, $settings, $options, $ret );
 

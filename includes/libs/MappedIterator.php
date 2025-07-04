@@ -88,6 +88,7 @@ class MappedIterator extends FilterIterator {
 		return $ok;
 	}
 
+	/** @inheritDoc */
 	#[\ReturnTypeWillChange]
 	public function key() {
 		$this->init();
@@ -101,6 +102,7 @@ class MappedIterator extends FilterIterator {
 		return parent::valid();
 	}
 
+	/** @inheritDoc */
 	#[\ReturnTypeWillChange]
 	public function current() {
 		$this->init();

@@ -169,6 +169,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	 */
 	abstract protected function doGet( $key, $flags = 0, &$casToken = null );
 
+	/** @inheritDoc */
 	public function set( $key, $value, $exptime = 0, $flags = 0 ) {
 		$entry = $this->makeValueOrSegmentList( $key, $value, $exptime, $flags, $ok );
 
@@ -188,6 +189,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	 */
 	abstract protected function doSet( $key, $value, $exptime = 0, $flags = 0 );
 
+	/** @inheritDoc */
 	public function delete( $key, $flags = 0 ) {
 		if ( !$this->fieldHasFlags( $flags, self::WRITE_ALLOW_SEGMENTS ) ) {
 			return $this->doDelete( $key, $flags );
@@ -223,6 +225,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	 */
 	abstract protected function doDelete( $key, $flags = 0 );
 
+	/** @inheritDoc */
 	public function add( $key, $value, $exptime = 0, $flags = 0 ) {
 		$entry = $this->makeValueOrSegmentList( $key, $value, $exptime, $flags, $ok );
 
@@ -478,6 +481,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 		return $ok;
 	}
 
+	/** @inheritDoc */
 	public function incrWithInit( $key, $exptime, $step = 1, $init = null, $flags = 0 ) {
 		$step = (int)$step;
 		$init = is_int( $init ) ? $init : $step;
@@ -654,6 +658,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 		return "$key:lock";
 	}
 
+	/** @inheritDoc */
 	public function deleteObjectsExpiringBefore(
 		$timestamp,
 		?callable $progress = null,
@@ -745,6 +750,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 		return $res;
 	}
 
+	/** @inheritDoc */
 	public function deleteMulti( array $keys, $flags = 0 ) {
 		if ( $this->fieldHasFlags( $flags, self::WRITE_ALLOW_SEGMENTS ) ) {
 			throw new InvalidArgumentException( __METHOD__ . ' got WRITE_ALLOW_SEGMENTS' );
@@ -997,6 +1003,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 		return ( $value === (string)$integer );
 	}
 
+	/** @inheritDoc */
 	public function getQoS( $flag ) {
 		return $this->attrMap[$flag] ?? self::QOS_UNKNOWN;
 	}

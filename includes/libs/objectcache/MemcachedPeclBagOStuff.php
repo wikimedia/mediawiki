@@ -181,6 +181,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 		} );
 	}
 
+	/** @inheritDoc */
 	protected function doGet( $key, $flags = 0, &$casToken = null ) {
 		$getToken = ( $casToken === self::PASS_BY_REF );
 		$casToken = null;
@@ -207,6 +208,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 		return $this->checkResult( $key, $result );
 	}
 
+	/** @inheritDoc */
 	protected function doSet( $key, $value, $exptime = 0, $flags = 0 ) {
 		$this->debug( "set($key)" );
 
@@ -222,6 +224,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 			: $this->checkResult( $key, $result );
 	}
 
+	/** @inheritDoc */
 	protected function doCas( $casToken, $key, $value, $exptime = 0, $flags = 0 ) {
 		$this->debug( "cas($key)" );
 
@@ -235,6 +238,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 		return $this->checkResult( $key, $result );
 	}
 
+	/** @inheritDoc */
 	protected function doDelete( $key, $flags = 0 ) {
 		$this->debug( "delete($key)" );
 
@@ -249,6 +253,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 			: $this->checkResult( $key, $result );
 	}
 
+	/** @inheritDoc */
 	protected function doAdd( $key, $value, $exptime = 0, $flags = 0 ) {
 		$this->debug( "add($key)" );
 
@@ -264,6 +269,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 		return $this->checkResult( $key, $result );
 	}
 
+	/** @inheritDoc */
 	protected function doIncrWithInitAsync( $key, $exptime, $step, $init ) {
 		$this->debug( "incrWithInit($key)" );
 		$routeKey = $this->validateKeyAndPrependRoute( $key );
@@ -277,6 +283,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 		return !$lastError;
 	}
 
+	/** @inheritDoc */
 	protected function doIncrWithInitSync( $key, $exptime, $step, $init ) {
 		$this->debug( "incrWithInit($key)" );
 		$routeKey = $this->validateKeyAndPrependRoute( $key );
@@ -357,6 +364,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 		return $result;
 	}
 
+	/** @inheritDoc */
 	protected function doGetMulti( array $keys, $flags = 0 ) {
 		$this->debug( 'getMulti(' . implode( ', ', $keys ) . ')' );
 
@@ -384,6 +392,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 		return $res !== false ? $res : [];
 	}
 
+	/** @inheritDoc */
 	protected function doSetMulti( array $data, $exptime = 0, $flags = 0 ) {
 		$this->debug( 'setMulti(' . implode( ', ', array_keys( $data ) ) . ')' );
 
@@ -403,6 +412,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 		return $this->checkResult( false, $result );
 	}
 
+	/** @inheritDoc */
 	protected function doDeleteMulti( array $keys, $flags = 0 ) {
 		$this->debug( 'deleteMulti(' . implode( ', ', $keys ) . ')' );
 
@@ -426,6 +436,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 		return $this->checkResult( false, $result );
 	}
 
+	/** @inheritDoc */
 	protected function doChangeTTL( $key, $exptime, $flags ) {
 		$this->debug( "touch($key)" );
 
@@ -437,6 +448,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 		return $this->checkResult( $key, $result );
 	}
 
+	/** @inheritDoc */
 	protected function serialize( $value ) {
 		if ( is_int( $value ) ) {
 			return $value;
@@ -452,6 +464,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 		throw new UnexpectedValueException( __METHOD__ . ": got serializer '$serializer'." );
 	}
 
+	/** @inheritDoc */
 	protected function unserialize( $value ) {
 		if ( $this->isInteger( $value ) ) {
 			return (int)$value;

@@ -141,10 +141,12 @@ class FSFileBackend extends FileBackendStore {
 		$this->usableDirCache = new MapCacheLRU( self::CACHE_CHEAP_SIZE );
 	}
 
+	/** @inheritDoc */
 	public function getFeatures() {
 		return self::ATTR_UNICODE_PATHS;
 	}
 
+	/** @inheritDoc */
 	protected function resolveContainerPath( $container, $relStoragePath ) {
 		// Check that container has a root directory
 		if ( isset( $this->containerPaths[$container] ) || $this->basePath !== null ) {
@@ -213,6 +215,7 @@ class FSFileBackend extends FileBackendStore {
 		return $fsPath;
 	}
 
+	/** @inheritDoc */
 	public function isPathUsableInternal( $storagePath ) {
 		$fsPath = $this->resolveToFSPath( $storagePath );
 		if ( $fsPath === null ) {
@@ -236,6 +239,7 @@ class FSFileBackend extends FileBackendStore {
 		return $usable;
 	}
 
+	/** @inheritDoc */
 	protected function doCreateInternal( array $params ) {
 		$status = $this->newStatus();
 
@@ -288,6 +292,7 @@ class FSFileBackend extends FileBackendStore {
 		return $status;
 	}
 
+	/** @inheritDoc */
 	protected function doStoreInternal( array $params ) {
 		$status = $this->newStatus();
 
@@ -344,6 +349,7 @@ class FSFileBackend extends FileBackendStore {
 		return $status;
 	}
 
+	/** @inheritDoc */
 	protected function doCopyInternal( array $params ) {
 		$status = $this->newStatus();
 
@@ -408,6 +414,7 @@ class FSFileBackend extends FileBackendStore {
 		return $status;
 	}
 
+	/** @inheritDoc */
 	protected function doMoveInternal( array $params ) {
 		$status = $this->newStatus();
 
@@ -457,6 +464,7 @@ class FSFileBackend extends FileBackendStore {
 		return $status;
 	}
 
+	/** @inheritDoc */
 	protected function doDeleteInternal( array $params ) {
 		$status = $this->newStatus();
 
@@ -531,6 +539,7 @@ class FSFileBackend extends FileBackendStore {
 		return $status;
 	}
 
+	/** @inheritDoc */
 	protected function doSecureInternal( $fullCont, $dirRel, array $params ) {
 		$status = $this->newStatus();
 		[ , $shortCont, ] = FileBackend::splitStoragePath( $params['dir'] );
@@ -559,6 +568,7 @@ class FSFileBackend extends FileBackendStore {
 		return $status;
 	}
 
+	/** @inheritDoc */
 	protected function doPublishInternal( $fullCont, $dirRel, array $params ) {
 		$status = $this->newStatus();
 		[ , $shortCont, ] = FileBackend::splitStoragePath( $params['dir'] );
@@ -583,6 +593,7 @@ class FSFileBackend extends FileBackendStore {
 		return $status;
 	}
 
+	/** @inheritDoc */
 	protected function doCleanInternal( $fullCont, $dirRel, array $params ) {
 		$status = $this->newStatus();
 		[ , $shortCont, ] = FileBackend::splitStoragePath( $params['dir'] );
@@ -594,6 +605,7 @@ class FSFileBackend extends FileBackendStore {
 		return $status;
 	}
 
+	/** @inheritDoc */
 	protected function doGetFileStat( array $params ) {
 		$fsSrcPath = $this->resolveToFSPath( $params['src'] );
 		if ( $fsSrcPath === null ) {
@@ -616,6 +628,7 @@ class FSFileBackend extends FileBackendStore {
 		return $hadError ? self::RES_ERROR : self::RES_ABSENT;
 	}
 
+	/** @inheritDoc */
 	protected function doClearCache( ?array $paths = null ) {
 		if ( is_array( $paths ) ) {
 			foreach ( $paths as $path ) {
@@ -631,6 +644,7 @@ class FSFileBackend extends FileBackendStore {
 		}
 	}
 
+	/** @inheritDoc */
 	protected function doDirectoryExists( $fullCont, $dirRel, array $params ) {
 		[ , $shortCont, ] = FileBackend::splitStoragePath( $params['dir'] );
 		$contRoot = $this->containerFSRoot( $shortCont, $fullCont ); // must be valid
@@ -711,6 +725,7 @@ class FSFileBackend extends FileBackendStore {
 		return $list;
 	}
 
+	/** @inheritDoc */
 	protected function doGetLocalReferenceMulti( array $params ) {
 		$fsFiles = []; // (path => FSFile)
 
@@ -737,6 +752,7 @@ class FSFileBackend extends FileBackendStore {
 		return $fsFiles;
 	}
 
+	/** @inheritDoc */
 	protected function doGetLocalCopyMulti( array $params ) {
 		$tmpFiles = []; // (path => TempFSFile)
 
@@ -774,6 +790,7 @@ class FSFileBackend extends FileBackendStore {
 		return $tmpFiles;
 	}
 
+	/** @inheritDoc */
 	public function addShellboxInputFile( BoxedCommand $command, string $boxedName,
 		array $params
 	) {
@@ -785,6 +802,7 @@ class FSFileBackend extends FileBackendStore {
 		return $this->newStatus();
 	}
 
+	/** @inheritDoc */
 	protected function directoriesAreVirtual() {
 		return false;
 	}

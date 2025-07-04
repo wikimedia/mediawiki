@@ -24,6 +24,7 @@ namespace Wikimedia\EventRelayer;
  * No-op class for publishing messages into a PubSub system
  */
 class EventRelayerNull extends EventRelayer {
+	/** @inheritDoc */
 	public function doNotify( $channel, array $events ) {
 		return true;
 	}

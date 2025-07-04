@@ -9,6 +9,7 @@ namespace Wikimedia\WRStats;
  * @since 1.39
  */
 class LocalEntityKey extends EntityKey {
+	/** @inheritDoc */
 	public function isGlobal() {
 		return false;
 	}

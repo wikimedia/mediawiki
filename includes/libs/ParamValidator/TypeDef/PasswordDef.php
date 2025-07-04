@@ -15,11 +15,13 @@ use Wikimedia\ParamValidator\ParamValidator;
  */
 class PasswordDef extends StringDef {
 
+	/** @inheritDoc */
 	public function normalizeSettings( array $settings ) {
 		$settings[ParamValidator::PARAM_SENSITIVE] = true;
 		return parent::normalizeSettings( $settings );
 	}
 
+	/** @inheritDoc */
 	public function checkSettings( string $name, $settings, array $options, array $ret ): array {
 		$ret = parent::checkSettings( $name, $settings, $options, $ret );
 

@@ -39,14 +39,17 @@ class MemoryFileBackend extends FileBackendStore {
 	/** @var array Map of (file path => (data,mtime) */
 	protected $files = [];
 
+	/** @inheritDoc */
 	public function getFeatures() {
 		return self::ATTR_UNICODE_PATHS;
 	}
 
+	/** @inheritDoc */
 	public function isPathUsableInternal( $storagePath ) {
 		return ( $this->resolveHashKey( $storagePath ) !== null );
 	}
 
+	/** @inheritDoc */
 	protected function doCreateInternal( array $params ) {
 		$status = $this->newStatus();
 
@@ -65,6 +68,7 @@ class MemoryFileBackend extends FileBackendStore {
 		return $status;
 	}
 
+	/** @inheritDoc */
 	protected function doStoreInternal( array $params ) {
 		$status = $this->newStatus();
 
@@ -92,10 +96,12 @@ class MemoryFileBackend extends FileBackendStore {
 		return $status;
 	}
 
+	/** @inheritDoc */
 	protected function doCopyInternal( array $params ) {
 		return $this->copyInMemory( $params, 'copy' );
 	}
 
+	/** @inheritDoc */
 	protected function doMoveInternal( array $params ) {
 		return $this->copyInMemory( $params, 'move' );
 	}
@@ -142,6 +148,7 @@ class MemoryFileBackend extends FileBackendStore {
 		return $status;
 	}
 
+	/** @inheritDoc */
 	protected function doDeleteInternal( array $params ) {
 		$status = $this->newStatus();
 
@@ -165,6 +172,7 @@ class MemoryFileBackend extends FileBackendStore {
 		return $status;
 	}
 
+	/** @inheritDoc */
 	protected function doGetFileStat( array $params ) {
 		$src = $this->resolveHashKey( $params['src'] );
 		if ( $src === null ) {
@@ -181,6 +189,7 @@ class MemoryFileBackend extends FileBackendStore {
 		return self::RES_ABSENT;
 	}
 
+	/** @inheritDoc */
 	protected function doGetLocalCopyMulti( array $params ) {
 		$tmpFiles = []; // (path => TempFSFile)
 		foreach ( $params['srcs'] as $srcPath ) {
@@ -206,6 +215,7 @@ class MemoryFileBackend extends FileBackendStore {
 		return $tmpFiles;
 	}
 
+	/** @inheritDoc */
 	protected function doDirectoryExists( $container, $dir, array $params ) {
 		$prefix = rtrim( "$container/$dir", '/' ) . '/';
 		foreach ( $this->files as $path => $data ) {
@@ -217,6 +227,7 @@ class MemoryFileBackend extends FileBackendStore {
 		return false;
 	}
 
+	/** @inheritDoc */
 	public function getDirectoryListInternal( $container, $dir, array $params ) {
 		$dirs = [];
 		$prefix = rtrim( "$container/$dir", '/' ) . '/';
@@ -244,6 +255,7 @@ class MemoryFileBackend extends FileBackendStore {
 		return array_keys( $dirs );
 	}
 
+	/** @inheritDoc */
 	public function getFileListInternal( $container, $dir, array $params ) {
 		$files = [];
 		$prefix = rtrim( "$container/$dir", '/' ) . '/';
@@ -264,6 +276,7 @@ class MemoryFileBackend extends FileBackendStore {
 		return $files;
 	}
 
+	/** @inheritDoc */
 	protected function directoriesAreVirtual() {
 		return true;
 	}

@@ -20,14 +20,17 @@ use Wikimedia\ParamValidator\TypeDef;
  */
 class PresenceBooleanDef extends TypeDef {
 
+	/** @inheritDoc */
 	public function getValue( $name, array $settings, array $options ) {
 		return $this->callbacks->hasParam( $name, $options ) ? true : null;
 	}
 
+	/** @inheritDoc */
 	public function validate( $name, $value, array $settings, array $options ) {
 		return (bool)$value;
 	}
 
+	/** @inheritDoc */
 	public function normalizeSettings( array $settings ) {
 		// Cannot be multi-valued
 		$settings[ParamValidator::PARAM_ISMULTI] = false;
@@ -38,6 +41,7 @@ class PresenceBooleanDef extends TypeDef {
 		return parent::normalizeSettings( $settings );
 	}
 
+	/** @inheritDoc */
 	public function checkSettings( string $name, $settings, array $options, array $ret ): array {
 		$ret = parent::checkSettings( $name, $settings, $options, $ret );
 
@@ -58,6 +62,7 @@ class PresenceBooleanDef extends TypeDef {
 		return $ret;
 	}
 
+	/** @inheritDoc */
 	public function getParamInfo( $name, array $settings, array $options ) {
 		$info = parent::getParamInfo( $name, $settings, $options );
 
@@ -67,6 +72,7 @@ class PresenceBooleanDef extends TypeDef {
 		return $info;
 	}
 
+	/** @inheritDoc */
 	public function getHelpInfo( $name, array $settings, array $options ) {
 		$info = parent::getHelpInfo( $name, $settings, $options );
 

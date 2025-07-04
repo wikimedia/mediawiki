@@ -44,6 +44,7 @@ class SwiftFileBackendFileList extends SwiftFileBackendList {
 		return $relPath;
 	}
 
+	/** @inheritDoc */
 	protected function pageFromList( $container, $dir, &$after, $limit, array $params ) {
 		return $this->backend->getFileListPageInternal( $container, $dir, $after, $limit, $params );
 	}

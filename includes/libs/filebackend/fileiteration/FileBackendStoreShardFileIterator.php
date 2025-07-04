@@ -27,6 +27,7 @@ use ArrayIterator;
  * Iterator for listing regular files
  */
 class FileBackendStoreShardFileIterator extends FileBackendStoreShardListIterator {
+	/** @inheritDoc */
 	protected function listFromShard( $container ) {
 		$list = $this->backend->getFileListInternal(
 			$container, $this->directory, $this->params );

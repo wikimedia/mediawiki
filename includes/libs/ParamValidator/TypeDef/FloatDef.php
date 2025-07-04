@@ -31,6 +31,7 @@ class FloatDef extends NumericDef {
 	/** @inheritDoc */
 	protected $valueType = 'double';
 
+	/** @inheritDoc */
 	public function validate( $name, $value, array $settings, array $options ) {
 		if ( is_float( $value ) ) {
 			$ret = $value;
@@ -58,12 +59,14 @@ class FloatDef extends NumericDef {
 		return $this->checkRange( $ret, $name, $value, $settings, $options );
 	}
 
+	/** @inheritDoc */
 	public function stringifyValue( $name, $value, array $settings, array $options ) {
 		// Ensure sufficient precision for round-tripping
 		$digits = PHP_FLOAT_DIG;
 		return sprintf( "%.{$digits}g", $value );
 	}
 
+	/** @inheritDoc */
 	public function getHelpInfo( $name, array $settings, array $options ) {
 		$info = parent::getHelpInfo( $name, $settings, $options );
 
