@@ -217,6 +217,7 @@ class SpecBasedModule extends MatcherBasedModule {
 		return $info;
 	}
 
+	/** @inheritDoc */
 	public function getOpenApiInfo() {
 		$def = $this->getModuleDefinition();
 		return $def['info'] ?? [];

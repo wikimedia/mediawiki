@@ -35,6 +35,7 @@ class StringStream implements Stringable, CopyableStreamInterface {
 		$this->contents = $contents;
 	}
 
+	/** @inheritDoc */
 	public function copyToStream( $stream ) {
 		fwrite( $stream, $this->getContents() );
 	}
@@ -46,26 +47,32 @@ class StringStream implements Stringable, CopyableStreamInterface {
 	public function close() {
 	}
 
+	/** @inheritDoc */
 	public function detach() {
 		return null;
 	}
 
+	/** @inheritDoc */
 	public function getSize() {
 		return strlen( $this->contents );
 	}
 
+	/** @inheritDoc */
 	public function tell() {
 		return $this->offset;
 	}
 
+	/** @inheritDoc */
 	public function eof() {
 		return $this->offset >= strlen( $this->contents );
 	}
 
+	/** @inheritDoc */
 	public function isSeekable() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function seek( $offset, $whence = SEEK_SET ) {
 		switch ( $whence ) {
 			case SEEK_SET:
@@ -91,14 +98,17 @@ class StringStream implements Stringable, CopyableStreamInterface {
 		}
 	}
 
+	/** @inheritDoc */
 	public function rewind() {
 		$this->offset = 0;
 	}
 
+	/** @inheritDoc */
 	public function isWritable() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function write( $string ) {
 		if ( $this->offset === strlen( $this->contents ) ) {
 			$this->contents .= $string;
@@ -110,10 +120,12 @@ class StringStream implements Stringable, CopyableStreamInterface {
 		return strlen( $string );
 	}
 
+	/** @inheritDoc */
 	public function isReadable() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function read( $length ) {
 		if ( $this->offset === 0 && $length >= strlen( $this->contents ) ) {
 			$ret = $this->contents;
@@ -126,6 +138,7 @@ class StringStream implements Stringable, CopyableStreamInterface {
 		return $ret;
 	}
 
+	/** @inheritDoc */
 	public function getContents() {
 		if ( $this->offset === 0 ) {
 			$ret = $this->contents;
@@ -138,6 +151,7 @@ class StringStream implements Stringable, CopyableStreamInterface {
 		return $ret;
 	}
 
+	/** @inheritDoc */
 	public function getMetadata( $key = null ) {
 		return null;
 	}

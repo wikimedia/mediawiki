@@ -124,6 +124,7 @@ class SearchHandler extends Handler {
 		return $searchEngine;
 	}
 
+	/** @inheritDoc */
 	public function needsWriteAccess() {
 		return false;
 	}
@@ -404,6 +405,7 @@ class SearchHandler extends Handler {
 		return $response;
 	}
 
+	/** @inheritDoc */
 	public function getParamSettings() {
 		return [
 			'q' => [

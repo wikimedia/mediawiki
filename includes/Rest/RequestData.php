@@ -73,42 +73,52 @@ class RequestData extends RequestBase {
 		parent::__construct( $params['cookiePrefix'] ?? '' );
 	}
 
+	/** @inheritDoc */
 	public function getMethod() {
 		return $this->method;
 	}
 
+	/** @inheritDoc */
 	public function getUri() {
 		return $this->uri;
 	}
 
+	/** @inheritDoc */
 	public function getProtocolVersion() {
 		return $this->protocolVersion;
 	}
 
+	/** @inheritDoc */
 	public function getBody() {
 		return $this->body;
 	}
 
+	/** @inheritDoc */
 	public function getServerParams() {
 		return $this->serverParams;
 	}
 
+	/** @inheritDoc */
 	public function getCookieParams() {
 		return $this->cookieParams;
 	}
 
+	/** @inheritDoc */
 	public function getQueryParams() {
 		return $this->queryParams;
 	}
 
+	/** @inheritDoc */
 	public function getUploadedFiles() {
 		return $this->uploadedFiles;
 	}
 
+	/** @inheritDoc */
 	public function getPostParams() {
 		return $this->postParams;
 	}
 
+	/** @inheritDoc */
 	public function hasBody(): bool {
 		if ( parent::hasBody() ) {
 			return true;

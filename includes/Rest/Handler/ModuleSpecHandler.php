@@ -174,6 +174,7 @@ class ModuleSpecHandler extends SimpleHandler {
 		return 'includes/Rest/Handler/Schema/ModuleSpec.json';
 	}
 
+	/** @inheritDoc */
 	public function getParamSettings() {
 		return [
 			'module' => [

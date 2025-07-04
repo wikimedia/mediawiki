@@ -40,6 +40,7 @@ class SitemapFileHandler extends SitemapHandlerBase {
 		$this->config = $config;
 	}
 
+	/** @inheritDoc */
 	public function getParamSettings() {
 		return [
 			'indexId' => [
@@ -55,10 +56,12 @@ class SitemapFileHandler extends SitemapHandlerBase {
 		];
 	}
 
+	/** @inheritDoc */
 	protected function getLastModified() {
 		return $this->getData()['timestamp'];
 	}
 
+	/** @inheritDoc */
 	protected function getXml() {
 		return $this->getData()['xml'];
 	}

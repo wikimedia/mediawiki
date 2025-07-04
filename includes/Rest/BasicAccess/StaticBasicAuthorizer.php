@@ -25,6 +25,7 @@ class StaticBasicAuthorizer implements BasicAuthorizerInterface {
 		$this->value = $value;
 	}
 
+	/** @inheritDoc */
 	public function authorize( RequestInterface $request, Handler $handler ) {
 		return $this->value;
 	}

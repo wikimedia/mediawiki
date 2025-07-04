@@ -18,6 +18,7 @@ use Wikimedia\ParamValidator\ParamValidator;
  * @package MediaWiki\Rest
  */
 trait TokenAwareHandlerTrait {
+	/** @inheritDoc */
 	abstract public function getValidatedBody();
 
 	abstract public function getSession(): Session;

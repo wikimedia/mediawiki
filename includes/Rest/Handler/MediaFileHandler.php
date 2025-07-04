@@ -118,10 +118,12 @@ class MediaFileHandler extends SimpleHandler {
 		return $this->getFileInfo( $file, $this->getAuthority(), $transforms );
 	}
 
+	/** @inheritDoc */
 	public function needsWriteAccess() {
 		return false;
 	}
 
+	/** @inheritDoc */
 	public function getParamSettings() {
 		return [
 			'title' => [

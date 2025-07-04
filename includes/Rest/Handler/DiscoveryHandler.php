@@ -33,6 +33,7 @@ class DiscoveryHandler extends Handler {
 		$this->options = $options;
 	}
 
+	/** @inheritDoc */
 	public function execute() {
 		// NOTE: must match docs/rest/discovery-1.0.json
 		return [

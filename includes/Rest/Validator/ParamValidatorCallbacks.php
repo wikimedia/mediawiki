@@ -49,11 +49,13 @@ class ParamValidatorCallbacks implements Callbacks {
 		}
 	}
 
+	/** @inheritDoc */
 	public function hasParam( $name, array $options ) {
 		$params = $this->getParamsFromSource( $options['source'] );
 		return isset( $params[$name] );
 	}
 
+	/** @inheritDoc */
 	public function getValue( $name, $default, array $options ) {
 		$params = $this->getParamsFromSource( $options['source'] );
 		$value = $params[$name] ?? $default;
@@ -72,6 +74,7 @@ class ParamValidatorCallbacks implements Callbacks {
 		return $value;
 	}
 
+	/** @inheritDoc */
 	public function hasUpload( $name, array $options ) {
 		if ( $options['source'] !== 'post' ) {
 			return false;
@@ -79,6 +82,7 @@ class ParamValidatorCallbacks implements Callbacks {
 		return $this->getUploadedFile( $name, $options ) !== null;
 	}
 
+	/** @inheritDoc */
 	public function getUploadedFile( $name, array $options ) {
 		if ( $options['source'] !== 'post' ) {
 			return null;
@@ -87,12 +91,14 @@ class ParamValidatorCallbacks implements Callbacks {
 		return $upload instanceof UploadedFileInterface ? $upload : null;
 	}
 
+	/** @inheritDoc */
 	public function recordCondition(
 		DataMessageValue $message, $name, $value, array $settings, array $options
 	) {
 		// @todo Figure out how to handle warnings
 	}
 
+	/** @inheritDoc */
 	public function useHighLimits( array $options ) {
 		return $this->authority->isAllowed( 'apihighlimits' );
 	}

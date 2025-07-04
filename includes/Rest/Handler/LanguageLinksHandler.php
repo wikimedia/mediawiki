@@ -141,10 +141,12 @@ class LanguageLinksHandler extends SimpleHandler {
 		return $result;
 	}
 
+	/** @inheritDoc */
 	public function needsWriteAccess() {
 		return false;
 	}
 
+	/** @inheritDoc */
 	public function getParamSettings() {
 		return [
 			'title' => [

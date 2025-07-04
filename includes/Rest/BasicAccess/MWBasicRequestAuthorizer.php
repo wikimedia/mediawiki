@@ -23,10 +23,12 @@ class MWBasicRequestAuthorizer extends BasicRequestAuthorizer {
 		$this->authority = $authority;
 	}
 
+	/** @inheritDoc */
 	protected function isReadAllowed() {
 		return $this->authority->isAllowed( 'read' );
 	}
 
+	/** @inheritDoc */
 	protected function isWriteAllowed() {
 		return true;
 	}

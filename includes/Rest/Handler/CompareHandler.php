@@ -33,6 +33,7 @@ class CompareHandler extends Handler {
 		$this->parserFactory = $parserFactory;
 	}
 
+	/** @inheritDoc */
 	public function execute() {
 		$fromRev = $this->getRevisionOrThrow( 'from' );
 		$toRev = $this->getRevisionOrThrow( 'to' );
@@ -192,6 +193,7 @@ class CompareHandler extends Handler {
 		return 'includes/Rest/Handler/Schema/RevisionCompare.json';
 	}
 
+	/** @inheritDoc */
 	public function getParamSettings() {
 		return [
 			'from' => [

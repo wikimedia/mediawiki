@@ -193,6 +193,7 @@ class OpenSearchDescriptionHandler extends Handler {
 		return $spec;
 	}
 
+	/** @inheritDoc */
 	public function getParamSettings() {
 		return [
 			'ctype' => [

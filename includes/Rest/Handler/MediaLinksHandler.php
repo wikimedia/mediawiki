@@ -137,10 +137,12 @@ class MediaLinksHandler extends SimpleHandler {
 		return $response;
 	}
 
+	/** @inheritDoc */
 	public function needsWriteAccess() {
 		return false;
 	}
 
+	/** @inheritDoc */
 	public function getParamSettings() {
 		return [
 			'title' => [

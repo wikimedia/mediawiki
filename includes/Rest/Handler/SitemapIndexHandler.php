@@ -25,6 +25,7 @@ class SitemapIndexHandler extends SitemapHandlerBase {
 		);
 	}
 
+	/** @inheritDoc */
 	public function getParamSettings() {
 		return [
 			'indexId' => [
@@ -35,6 +36,7 @@ class SitemapIndexHandler extends SitemapHandlerBase {
 		];
 	}
 
+	/** @inheritDoc */
 	protected function getXml() {
 		$index = $this->getValidatedParams()['indexId'];
 		$dbr = $this->connectionProvider->getReplicaDatabase();

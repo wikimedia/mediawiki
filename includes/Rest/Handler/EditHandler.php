@@ -44,6 +44,7 @@ abstract class EditHandler extends ActionModuleBasedHandler {
 		$this->revisionLookup = $revisionLookup;
 	}
 
+	/** @inheritDoc */
 	public function needsWriteAccess() {
 		return true;
 	}

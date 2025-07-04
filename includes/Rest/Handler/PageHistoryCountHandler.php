@@ -682,6 +682,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 		return [ $fromRev, $toRev ];
 	}
 
+	/** @inheritDoc */
 	public function needsWriteAccess() {
 		return false;
 	}
@@ -690,6 +691,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 		return 'includes/Rest/Handler/Schema/PageHistoryCount.json';
 	}
 
+	/** @inheritDoc */
 	public function getParamSettings() {
 		return [
 			'title' => [

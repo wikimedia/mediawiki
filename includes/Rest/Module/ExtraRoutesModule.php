@@ -250,6 +250,7 @@ class ExtraRoutesModule extends MatcherBasedModule {
 		return $info;
 	}
 
+	/** @inheritDoc */
 	public function getOpenApiInfo() {
 		// Note that mwapi-1.0 is based on OAS 3.0, so it doesn't support the
 		// "summary" property introduced in 3.1.
