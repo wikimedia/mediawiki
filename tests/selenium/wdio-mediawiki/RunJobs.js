@@ -1,6 +1,6 @@
-// TODO T373125 This file still uses require but CI does not fail
-const MWBot = require( 'mwbot' );
-const Page = require( './Page' );
+import MWBot from 'mwbot';
+import Page from './Page.js';
+
 const MAINPAGE_REQUESTS_MAX_RUNS = 10; // (arbitrary) safe-guard against endless execution
 
 function getJobCount() {
@@ -64,4 +64,4 @@ class RunJobs {
 	}
 }
 
-module.exports = RunJobs;
+export default RunJobs;
