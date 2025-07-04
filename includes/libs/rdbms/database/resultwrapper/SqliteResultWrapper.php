@@ -24,14 +24,17 @@ class SqliteResultWrapper extends ResultWrapper {
 		$this->rows = $result->fetchAll( PDO::FETCH_OBJ );
 	}
 
+	/** @inheritDoc */
 	protected function doNumRows() {
 		return count( $this->rows );
 	}
 
+	/** @inheritDoc */
 	protected function doFetchObject() {
 		return $this->rows[$this->currentPos] ?? false;
 	}
 
+	/** @inheritDoc */
 	protected function doFetchRow() {
 		$obj = $this->doFetchObject();
 		if ( is_object( $obj ) ) {
@@ -46,15 +49,18 @@ class SqliteResultWrapper extends ResultWrapper {
 		}
 	}
 
+	/** @inheritDoc */
 	protected function doSeek( $pos ) {
 		// Nothing to do -- parent updates $this->currentPos
 	}
 
+	/** @inheritDoc */
 	protected function doFree() {
 		$this->rows = null;
 		$this->result = null;
 	}
 
+	/** @inheritDoc */
 	protected function doGetFieldNames() {
 		if ( $this->rows ) {
 			return array_keys( get_object_vars( $this->rows[0] ) );

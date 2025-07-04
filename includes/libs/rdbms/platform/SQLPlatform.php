@@ -75,18 +75,22 @@ class SQLPlatform implements ISQLPlatform {
 		};
 	}
 
+	/** @inheritDoc */
 	public function bitNot( $field ) {
 		return "(~$field)";
 	}
 
+	/** @inheritDoc */
 	public function bitAnd( $fieldLeft, $fieldRight ) {
 		return "($fieldLeft & $fieldRight)";
 	}
 
+	/** @inheritDoc */
 	public function bitOr( $fieldLeft, $fieldRight ) {
 		return "($fieldLeft | $fieldRight)";
 	}
 
+	/** @inheritDoc */
 	public function addIdentifierQuotes( $s ) {
 		if ( strcspn( $s, "\0\"`'." ) !== strlen( $s ) ) {
 			throw new DBLanguageError(
@@ -208,6 +212,7 @@ class SQLPlatform implements ISQLPlatform {
 		return $sql;
 	}
 
+	/** @inheritDoc */
 	public function makeList( array $a, $mode = self::LIST_COMMA ) {
 		$first = true;
 		$list = '';
@@ -325,6 +330,7 @@ class SQLPlatform implements ISQLPlatform {
 		return $list;
 	}
 
+	/** @inheritDoc */
 	public function makeWhereFrom2d( $data, $baseKey, $subKey ) {
 		$conds = [];
 		foreach ( $data as $base => $sub ) {
@@ -343,6 +349,7 @@ class SQLPlatform implements ISQLPlatform {
 		return $this->makeList( $conds, self::LIST_OR );
 	}
 
+	/** @inheritDoc */
 	public function factorConds( $condsArray ) {
 		if ( count( $condsArray ) === 0 ) {
 			throw new InvalidArgumentException(
@@ -432,6 +439,7 @@ class SQLPlatform implements ISQLPlatform {
 		return 'CONCAT(' . implode( ',', $stringList ) . ')';
 	}
 
+	/** @inheritDoc */
 	public function limitResult( $sql, $limit, $offset = false ) {
 		if ( !is_numeric( $limit ) ) {
 			throw new DBLanguageError(
@@ -458,6 +466,7 @@ class SQLPlatform implements ISQLPlatform {
 		);
 	}
 
+	/** @inheritDoc */
 	public function buildLike( $param, ...$params ) {
 		if ( is_array( $param ) ) {
 			$params = $param;
@@ -468,10 +477,12 @@ class SQLPlatform implements ISQLPlatform {
 		return ' LIKE ' . $likeValue->toSql( $this->quoter );
 	}
 
+	/** @inheritDoc */
 	public function anyChar() {
 		return new LikeMatch( '_' );
 	}
 
+	/** @inheritDoc */
 	public function anyString() {
 		return new LikeMatch( '%' );
 	}
@@ -483,6 +494,7 @@ class SQLPlatform implements ISQLPlatform {
 		return true; // True for almost every DB supported
 	}
 
+	/** @inheritDoc */
 	public function unionQueries( $sqls, $all, $options = [] ) {
 		$glue = $all ? ') UNION ALL (' : ') UNION (';
 
@@ -500,6 +512,7 @@ class SQLPlatform implements ISQLPlatform {
 		return $sql;
 	}
 
+	/** @inheritDoc */
 	public function conditional( $cond, $caseTrueExpression, $caseFalseExpression ) {
 		if ( is_array( $cond ) ) {
 			$cond = $this->makeList( $cond, self::LIST_AND );
@@ -511,16 +524,19 @@ class SQLPlatform implements ISQLPlatform {
 		return "(CASE WHEN $cond THEN $caseTrueExpression ELSE $caseFalseExpression END)";
 	}
 
+	/** @inheritDoc */
 	public function strreplace( $orig, $old, $new ) {
 		return "REPLACE({$orig}, {$old}, {$new})";
 	}
 
+	/** @inheritDoc */
 	public function timestamp( $ts = 0 ) {
 		$t = new ConvertibleTimestamp( $ts );
 		// Let errors bubble up to avoid putting garbage in the DB
 		return $t->getTimestamp( TS_MW );
 	}
 
+	/** @inheritDoc */
 	public function timestampOrNull( $ts = null ) {
 		if ( $ts === null ) {
 			return null;
@@ -529,16 +545,19 @@ class SQLPlatform implements ISQLPlatform {
 		}
 	}
 
+	/** @inheritDoc */
 	public function getInfinity() {
 		return 'infinity';
 	}
 
+	/** @inheritDoc */
 	public function encodeExpiry( $expiry ) {
 		return ( $expiry == '' || $expiry == 'infinity' || $expiry == $this->getInfinity() )
 			? $this->getInfinity()
 			: $this->timestamp( $expiry );
 	}
 
+	/** @inheritDoc */
 	public function decodeExpiry( $expiry, $format = TS_MW ) {
 		if ( $expiry == '' || $expiry == 'infinity' || $expiry == $this->getInfinity() ) {
 			return 'infinity';
@@ -588,16 +607,19 @@ class SQLPlatform implements ISQLPlatform {
 		}
 	}
 
+	/** @inheritDoc */
 	public function buildStringCast( $field ) {
 		// In theory this should work for any standards-compliant
 		// SQL implementation, although it may not be the best way to do it.
 		return "CAST( $field AS CHARACTER )";
 	}
 
+	/** @inheritDoc */
 	public function buildIntegerCast( $field ) {
 		return 'CAST( ' . $field . ' AS INTEGER )';
 	}
 
+	/** @inheritDoc */
 	public function implicitOrderby() {
 		return true;
 	}
@@ -633,6 +655,7 @@ class SQLPlatform implements ISQLPlatform {
 		return $this->currentDomain;
 	}
 
+	/** @inheritDoc */
 	public function selectSQLText(
 		$tables, $vars, $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
 	) {
@@ -1024,6 +1047,7 @@ class SQLPlatform implements ISQLPlatform {
 		return $quotedTableWithAnyAlias;
 	}
 
+	/** @inheritDoc */
 	public function tableName( string $name, $format = 'quoted' ) {
 		$prefix = $this->currentDomain->getTablePrefix();
 
@@ -1189,6 +1213,7 @@ class SQLPlatform implements ISQLPlatform {
 		return $this->currentDomain->getSchema();
 	}
 
+	/** @inheritDoc */
 	public function tableNamesN( ...$tables ) {
 		$retVal = [];
 
@@ -1354,6 +1379,7 @@ class SQLPlatform implements ISQLPlatform {
 		return '';
 	}
 
+	/** @inheritDoc */
 	public function buildGroupConcatField(
 		$delim, $tables, $field, $conds = '', $join_conds = []
 	) {
@@ -1362,6 +1388,7 @@ class SQLPlatform implements ISQLPlatform {
 		return '(' . $this->selectSQLText( $tables, $fld, $conds, static::CALLER_SUBQUERY, [], $join_conds ) . ')';
 	}
 
+	/** @inheritDoc */
 	public function buildSelectSubquery(
 		$tables, $vars, $conds = '', $fname = __METHOD__,
 		$options = [], $join_conds = []
@@ -2012,6 +2039,7 @@ class SQLPlatform implements ISQLPlatform {
 		return $column;
 	}
 
+	/** @inheritDoc */
 	public function setSchemaVars( $vars ) {
 		$this->schemaVars = is_array( $vars ) ? $vars : null;
 	}

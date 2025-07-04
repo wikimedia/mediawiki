@@ -89,20 +89,24 @@ class LBFactorySingle extends LBFactory {
 		) );
 	}
 
+	/** @inheritDoc */
 	public function newMainLB( $domain = false ): ILoadBalancerForOwner {
 		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
 		throw new BadMethodCallException( "Method is not supported." );
 	}
 
+	/** @inheritDoc */
 	public function getMainLB( $domain = false ): ILoadBalancer {
 		return $this->mainLB;
 	}
 
+	/** @inheritDoc */
 	public function newExternalLB( $cluster ): ILoadBalancerForOwner {
 		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
 		throw new BadMethodCallException( "Method is not supported." );
 	}
 
+	/** @inheritDoc */
 	public function getExternalLB( $cluster ): ILoadBalancer {
 		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
 		throw new BadMethodCallException( "Method is not supported." );
@@ -116,6 +120,7 @@ class LBFactorySingle extends LBFactory {
 		return [];
 	}
 
+	/** @inheritDoc */
 	protected function getLBsForOwner() {
 		if ( $this->mainLB !== null ) {
 			yield $this->mainLB;

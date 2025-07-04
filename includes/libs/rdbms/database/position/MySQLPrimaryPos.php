@@ -92,10 +92,12 @@ class MySQLPrimaryPos implements Stringable, DBPrimaryPos {
 		$this->asOfTime = $asOfTime;
 	}
 
+	/** @inheritDoc */
 	public function asOfTime() {
 		return $this->asOfTime;
 	}
 
+	/** @inheritDoc */
 	public function hasReached( DBPrimaryPos $pos ) {
 		if ( !( $pos instanceof self ) ) {
 			throw new InvalidArgumentException( "Position not an instance of " . __CLASS__ );
@@ -292,6 +294,7 @@ class MySQLPrimaryPos implements Stringable, DBPrimaryPos {
 			: false;
 	}
 
+	/** @inheritDoc */
 	public static function newFromArray( array $data ) {
 		$pos = new self( $data['position'], $data['asOfTime'] );
 

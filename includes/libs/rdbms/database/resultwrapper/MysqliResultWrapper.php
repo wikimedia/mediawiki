@@ -21,6 +21,7 @@ class MysqliResultWrapper extends ResultWrapper {
 		$this->result = $result;
 	}
 
+	/** @inheritDoc */
 	protected function doNumRows() {
 		// We are not checking for any errors here, since
 		// there are no errors mysql_num_rows can cause.
@@ -43,6 +44,7 @@ class MysqliResultWrapper extends ResultWrapper {
 		}
 	}
 
+	/** @inheritDoc */
 	protected function doFetchObject() {
 		$object = $this->result->fetch_object();
 		$this->checkFetchError();
@@ -52,6 +54,7 @@ class MysqliResultWrapper extends ResultWrapper {
 		return $object;
 	}
 
+	/** @inheritDoc */
 	protected function doFetchRow() {
 		$array = $this->result->fetch_array();
 		$this->checkFetchError();
@@ -61,14 +64,17 @@ class MysqliResultWrapper extends ResultWrapper {
 		return $array;
 	}
 
+	/** @inheritDoc */
 	protected function doSeek( $pos ) {
 		$this->result->data_seek( $pos );
 	}
 
+	/** @inheritDoc */
 	protected function doFree() {
 		$this->result = null;
 	}
 
+	/** @inheritDoc */
 	protected function doGetFieldNames() {
 		$names = [];
 		foreach ( $this->result->fetch_fields() as $fieldInfo ) {

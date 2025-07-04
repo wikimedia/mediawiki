@@ -305,10 +305,12 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		$this->logger = $logger;
 	}
 
+	/** @inheritDoc */
 	public function getServerInfo() {
 		return $this->getServerVersion();
 	}
 
+	/** @inheritDoc */
 	public function tablePrefix( $prefix = null ) {
 		$old = $this->currentDomain->getTablePrefix();
 
@@ -324,6 +326,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		return $old;
 	}
 
+	/** @inheritDoc */
 	public function dbSchema( $schema = null ) {
 		$old = $this->currentDomain->getSchema();
 
@@ -347,6 +350,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		return (string)$old;
 	}
 
+	/** @inheritDoc */
 	public function getLBInfo( $name = null ) {
 		if ( $name === null ) {
 			return $this->lbInfo;
@@ -359,6 +363,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		return null;
 	}
 
+	/** @inheritDoc */
 	public function setLBInfo( $nameOrArray, $value = null ) {
 		if ( is_array( $nameOrArray ) ) {
 			$this->lbInfo = $nameOrArray;
@@ -373,6 +378,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		}
 	}
 
+	/** @inheritDoc */
 	public function lastDoneWrites() {
 		return $this->lastWriteTime;
 	}
@@ -399,10 +405,12 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		return null;
 	}
 
+	/** @inheritDoc */
 	public function isOpen() {
 		return (bool)$this->conn;
 	}
 
+	/** @inheritDoc */
 	public function getDomainID() {
 		return $this->currentDomain->getId();
 	}
@@ -481,6 +489,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		);
 	}
 
+	/** @inheritDoc */
 	final public function close( $fname = __METHOD__ ) {
 		$error = null; // error to throw after disconnecting
 
@@ -623,6 +632,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		}
 	}
 
+	/** @inheritDoc */
 	public function query( $sql, $fname = __METHOD__, $flags = 0 ) {
 		if ( !( $sql instanceof Query ) ) {
 			$flags = (int)$flags; // b/c; this field used to be a bool
@@ -1303,6 +1313,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		return new ReplaceQueryBuilder( $this );
 	}
 
+	/** @inheritDoc */
 	public function selectField(
 		$tables, $var, $cond = '', $fname = __METHOD__, $options = [], $join_conds = []
 	) {
@@ -1328,6 +1339,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		return reset( $row );
 	}
 
+	/** @inheritDoc */
 	public function selectFieldValues(
 		$tables, $var, $cond = '', $fname = __METHOD__, $options = [], $join_conds = []
 	): array {
@@ -1351,6 +1363,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		return $values;
 	}
 
+	/** @inheritDoc */
 	public function select(
 		$tables, $vars, $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
 	) {
@@ -1367,6 +1380,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		return $this->query( $query, $fname );
 	}
 
+	/** @inheritDoc */
 	public function selectRow( $tables, $vars, $conds, $fname = __METHOD__,
 		$options = [], $join_conds = []
 	) {
@@ -1405,6 +1419,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		return isset( $row['rowcount'] ) ? (int)$row['rowcount'] : 0;
 	}
 
+	/** @inheritDoc */
 	public function selectRowCount(
 		$tables, $var = '*', $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
 	): int {
@@ -1443,6 +1458,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		return isset( $row['rowcount'] ) ? (int)$row['rowcount'] : 0;
 	}
 
+	/** @inheritDoc */
 	public function lockForUpdate(
 		$table, $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
 	) {
@@ -1459,20 +1475,24 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		return $this->selectRowCount( $table, '*', $conds, $fname, $options, $join_conds );
 	}
 
+	/** @inheritDoc */
 	public function fieldExists( $table, $field, $fname = __METHOD__ ) {
 		$info = $this->fieldInfo( $table, $field );
 
 		return (bool)$info;
 	}
 
+	/** @inheritDoc */
 	abstract public function tableExists( $table, $fname = __METHOD__ );
 
+	/** @inheritDoc */
 	public function indexExists( $table, $index, $fname = __METHOD__ ) {
 		$info = $this->indexInfo( $table, $index, $fname );
 
 		return (bool)$info;
 	}
 
+	/** @inheritDoc */
 	public function indexUnique( $table, $index, $fname = __METHOD__ ) {
 		$info = $this->indexInfo( $table, $index, $fname );
 
@@ -1490,6 +1510,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 	 */
 	abstract public function indexInfo( $table, $index, $fname = __METHOD__ );
 
+	/** @inheritDoc */
 	public function insert( $table, $rows, $fname = __METHOD__, $options = [] ) {
 		$query = $this->platform->dispatchingInsertSqlText( $table, $rows, $options );
 		if ( !$query ) {
@@ -1513,6 +1534,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 	protected function checkInsertWarnings( Query $query, $fname ) {
 	}
 
+	/** @inheritDoc */
 	public function update( $table, $set, $conds, $fname = __METHOD__, $options = [] ) {
 		$query = $this->platform->updateSqlText( $table, $set, $conds, $options );
 		$this->query( $query, $fname );
@@ -1520,10 +1542,12 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function databasesAreIndependent() {
 		return false;
 	}
 
+	/** @inheritDoc */
 	final public function selectDomain( $domain ) {
 		$cs = $this->commenceCriticalSection( __METHOD__ );
 
@@ -1548,18 +1572,22 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		$this->platform->setCurrentDomain( $this->currentDomain );
 	}
 
+	/** @inheritDoc */
 	public function getDBname() {
 		return $this->currentDomain->getDatabase();
 	}
 
+	/** @inheritDoc */
 	public function getServer() {
 		return $this->connectionParams[self::CONN_HOST] ?? null;
 	}
 
+	/** @inheritDoc */
 	public function getServerName() {
 		return $this->serverName ?? $this->getServer() ?? 'unknown';
 	}
 
+	/** @inheritDoc */
 	public function addQuotes( $s ) {
 		if ( $s instanceof RawSQLValue ) {
 			return $s->toSql();
@@ -1578,18 +1606,22 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		}
 	}
 
+	/** @inheritDoc */
 	public function expr( string $field, string $op, $value ): Expression {
 		return new Expression( $field, $op, $value );
 	}
 
+	/** @inheritDoc */
 	public function andExpr( array $conds ): AndExpressionGroup {
 		return AndExpressionGroup::newFromArray( $conds );
 	}
 
+	/** @inheritDoc */
 	public function orExpr( array $conds ): OrExpressionGroup {
 		return OrExpressionGroup::newFromArray( $conds );
 	}
 
+	/** @inheritDoc */
 	public function replace( $table, $uniqueKeys, $rows, $fname = __METHOD__ ) {
 		$uniqueKey = $this->platform->normalizeUpsertParams( $uniqueKeys, $rows );
 		if ( !$rows ) {
@@ -1621,6 +1653,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		$this->lastEmulatedInsertId = $insertId;
 	}
 
+	/** @inheritDoc */
 	public function upsert( $table, array $rows, $uniqueKeys, array $set, $fname = __METHOD__ ) {
 		$uniqueKey = $this->platform->normalizeUpsertParams( $uniqueKeys, $rows );
 		if ( !$rows ) {
@@ -1723,6 +1756,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		return [];
 	}
 
+	/** @inheritDoc */
 	public function deleteJoin(
 		$delTable,
 		$joinTable,
@@ -1736,12 +1770,14 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		$this->query( $query, $fname );
 	}
 
+	/** @inheritDoc */
 	public function delete( $table, $conds, $fname = __METHOD__ ) {
 		$this->query( $this->platform->deleteSqlText( $table, $conds ), $fname );
 
 		return true;
 	}
 
+	/** @inheritDoc */
 	final public function insertSelect(
 		$destTable,
 		$srcTable,
@@ -1937,10 +1973,12 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		return false;
 	}
 
+	/** @inheritDoc */
 	final public function onTransactionResolution( callable $callback, $fname = __METHOD__ ) {
 		$this->transactionManager->onTransactionResolution( $this, $callback, $fname );
 	}
 
+	/** @inheritDoc */
 	final public function onTransactionCommitOrIdle( callable $callback, $fname = __METHOD__ ) {
 		if ( !$this->trxLevel() && $this->getTransactionRoundFname() !== null ) {
 			// This DB handle is set to participate in LoadBalancer transaction rounds and
@@ -1959,6 +1997,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		}
 	}
 
+	/** @inheritDoc */
 	final public function onTransactionPreCommitOrIdle( callable $callback, $fname = __METHOD__ ) {
 		if ( !$this->trxLevel() && $this->getTransactionRoundFname() !== null ) {
 			// This DB handle is set to participate in LoadBalancer transaction rounds and
@@ -1988,6 +2027,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		}
 	}
 
+	/** @inheritDoc */
 	final public function setTransactionListener( $name, ?callable $callback = null ) {
 		$this->transactionManager->setTransactionListener( $name, $callback );
 	}
@@ -2117,6 +2157,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		$this->lastEmulatedAffectedRows = 0; // for the sake of consistency
 	}
 
+	/** @inheritDoc */
 	final public function startAtomic(
 		$fname = __METHOD__,
 		$cancelable = self::ATOMIC_NOT_CANCELABLE
@@ -2179,6 +2220,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		return $sectionId;
 	}
 
+	/** @inheritDoc */
 	final public function endAtomic( $fname = __METHOD__ ) {
 		[ $savepointId, $sectionId ] = $this->transactionManager->onEndAtomic( $this, $fname );
 
@@ -2212,6 +2254,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		}
 	}
 
+	/** @inheritDoc */
 	final public function cancelAtomic(
 		$fname = __METHOD__,
 		?AtomicSectionIdentifier $sectionId = null
@@ -2283,6 +2326,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		}
 	}
 
+	/** @inheritDoc */
 	final public function doAtomicSection(
 		$fname,
 		callable $callback,
@@ -2304,6 +2348,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		return $res;
 	}
 
+	/** @inheritDoc */
 	final public function begin( $fname = __METHOD__, $mode = self::TRANSACTION_EXPLICIT ) {
 		static $modes = [ self::TRANSACTION_EXPLICIT, self::TRANSACTION_INTERNAL ];
 		if ( !in_array( $mode, $modes, true ) ) {
@@ -2347,6 +2392,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		$this->query( $query, $fname );
 	}
 
+	/** @inheritDoc */
 	final public function commit( $fname = __METHOD__, $flush = self::FLUSHING_ONE ) {
 		static $modes = [ self::FLUSHING_ONE, self::FLUSHING_ALL_PEERS, self::FLUSHING_INTERNAL ];
 		if ( !in_array( $flush, $modes, true ) ) {
@@ -2384,6 +2430,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		$this->completeCriticalSection( __METHOD__, $cs );
 	}
 
+	/** @inheritDoc */
 	final public function rollback( $fname = __METHOD__, $flush = self::FLUSHING_ONE ) {
 		if (
 			$flush !== self::FLUSHING_INTERNAL &&
@@ -2452,6 +2499,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		$this->transactionManager = $transactionManager;
 	}
 
+	/** @inheritDoc */
 	public function flushSession( $fname = __METHOD__, $flush = self::FLUSHING_ONE ) {
 		if (
 			$flush !== self::FLUSHING_INTERNAL &&
@@ -2519,6 +2567,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		// no-op
 	}
 
+	/** @inheritDoc */
 	public function flushSnapshot( $fname = __METHOD__, $flush = self::FLUSHING_ONE ) {
 		$this->transactionManager->onFlushSnapshot(
 			$this,
@@ -2536,6 +2585,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		}
 	}
 
+	/** @inheritDoc */
 	public function duplicateTableStructure(
 		$oldName,
 		$newName,
@@ -2545,16 +2595,19 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		throw new RuntimeException( __METHOD__ . ' is not implemented in descendant class' );
 	}
 
+	/** @inheritDoc */
 	public function listTables( $prefix = null, $fname = __METHOD__ ) {
 		throw new RuntimeException( __METHOD__ . ' is not implemented in descendant class' );
 	}
 
+	/** @inheritDoc */
 	public function affectedRows() {
 		$this->lastEmulatedAffectedRows ??= $this->lastQueryAffectedRows;
 
 		return $this->lastEmulatedAffectedRows;
 	}
 
+	/** @inheritDoc */
 	public function insertId() {
 		if ( $this->lastEmulatedInsertId === null ) {
 			// Guard against misuse of this method by checking affectedRows(). Note that calls
@@ -2584,6 +2637,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 	 */
 	abstract protected function lastInsertId();
 
+	/** @inheritDoc */
 	public function ping() {
 		if ( $this->isOpen() ) {
 			// If the connection was recently used, assume that it is still good
@@ -2710,10 +2764,12 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		return $res;
 	}
 
+	/** @inheritDoc */
 	public function encodeBlob( $b ) {
 		return $b;
 	}
 
+	/** @inheritDoc */
 	public function decodeBlob( $b ) {
 		if ( $b instanceof Blob ) {
 			$b = $b->fetch();
@@ -2724,6 +2780,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 	public function setSessionOptions( array $options ) {
 	}
 
+	/** @inheritDoc */
 	public function sourceFile(
 		$filename,
 		?callable $lineCallback = null,
@@ -2756,6 +2813,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		}
 	}
 
+	/** @inheritDoc */
 	public function sourceStream(
 		$fp,
 		?callable $lineCallback = null,
@@ -2952,6 +3010,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		return true; // not implemented
 	}
 
+	/** @inheritDoc */
 	public function getScopedLockAndFlush( $lockKey, $fname, $timeout ) {
 		$this->transactionManager->onGetScopedLockAndFlush( $this, $fname );
 
@@ -2987,6 +3046,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		return $unlocker;
 	}
 
+	/** @inheritDoc */
 	public function dropTable( $table, $fname = __METHOD__ ) {
 		if ( !$this->tableExists( $table, $fname ) ) {
 			return false;
@@ -3003,12 +3063,14 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function truncateTable( $table, $fname = __METHOD__ ) {
 		$sql = "TRUNCATE TABLE " . $this->tableName( $table );
 		$query = new Query( $sql, self::QUERY_CHANGE_SCHEMA, 'TRUNCATE', $table );
 		$this->query( $query, $fname );
 	}
 
+	/** @inheritDoc */
 	public function isReadOnly() {
 		return ( $this->getReadOnlyReason() !== null );
 	}
@@ -3237,18 +3299,22 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 
 	/* Start of methods delegated to DatabaseFlags. Avoid using them outside of rdbms library */
 
+	/** @inheritDoc */
 	public function setFlag( $flag, $remember = self::REMEMBER_NOTHING ) {
 		$this->flagsHolder->setFlag( $flag, $remember );
 	}
 
+	/** @inheritDoc */
 	public function clearFlag( $flag, $remember = self::REMEMBER_NOTHING ) {
 		$this->flagsHolder->clearFlag( $flag, $remember );
 	}
 
+	/** @inheritDoc */
 	public function restoreFlags( $state = self::RESTORE_PRIOR ) {
 		$this->flagsHolder->restoreFlags( $state );
 	}
 
+	/** @inheritDoc */
 	public function getFlag( $flag ) {
 		return $this->flagsHolder->getFlag( $flag );
 	}
@@ -3257,6 +3323,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 
 	/* Start of methods delegated to TransactionManager. Avoid using them outside of rdbms library */
 
+	/** @inheritDoc */
 	final public function trxLevel() {
 		// FIXME: A lot of tests disable constructor leading to trx manager being
 		// null and breaking, this is unacceptable but hopefully this should
@@ -3267,26 +3334,32 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		return $this->transactionManager->trxLevel();
 	}
 
+	/** @inheritDoc */
 	public function trxTimestamp() {
 		return $this->transactionManager->trxTimestamp();
 	}
 
+	/** @inheritDoc */
 	public function trxStatus() {
 		return $this->transactionManager->trxStatus();
 	}
 
+	/** @inheritDoc */
 	public function writesPending() {
 		return $this->transactionManager->writesPending();
 	}
 
+	/** @inheritDoc */
 	public function writesOrCallbacksPending() {
 		return $this->transactionManager->writesOrCallbacksPending();
 	}
 
+	/** @inheritDoc */
 	public function pendingWriteQueryDuration( $type = self::ESTIMATE_TOTAL ) {
 		return $this->transactionManager->pendingWriteQueryDuration( $type );
 	}
 
+	/** @inheritDoc */
 	public function pendingWriteCallers() {
 		if ( !$this->transactionManager ) {
 			return [];
@@ -3294,6 +3367,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		return $this->transactionManager->pendingWriteCallers();
 	}
 
+	/** @inheritDoc */
 	public function pendingWriteAndCallbackCallers() {
 		if ( !$this->transactionManager ) {
 			return [];
@@ -3301,10 +3375,12 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		return $this->transactionManager->pendingWriteAndCallbackCallers();
 	}
 
+	/** @inheritDoc */
 	public function runOnTransactionPreCommitCallbacks() {
 		return $this->transactionManager->runOnTransactionPreCommitCallbacks();
 	}
 
+	/** @inheritDoc */
 	public function explicitTrxActive() {
 		return $this->transactionManager->explicitTrxActive();
 	}
@@ -3313,150 +3389,186 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 
 	/* Start of methods delegated to SQLPlatform. Avoid using them outside of rdbms library */
 
+	/** @inheritDoc */
 	public function implicitOrderby() {
 		return $this->platform->implicitOrderby();
 	}
 
+	/** @inheritDoc */
 	public function selectSQLText(
 		$tables, $vars, $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
 	) {
 		return $this->platform->selectSQLText( $tables, $vars, $conds, $fname, $options, $join_conds );
 	}
 
+	/** @inheritDoc */
 	public function buildComparison( string $op, array $conds ): string {
 		return $this->platform->buildComparison( $op, $conds );
 	}
 
+	/** @inheritDoc */
 	public function makeList( array $a, $mode = self::LIST_COMMA ) {
 		return $this->platform->makeList( $a, $mode );
 	}
 
+	/** @inheritDoc */
 	public function makeWhereFrom2d( $data, $baseKey, $subKey ) {
 		return $this->platform->makeWhereFrom2d( $data, $baseKey, $subKey );
 	}
 
+	/** @inheritDoc */
 	public function factorConds( $condsArray ) {
 		return $this->platform->factorConds( $condsArray );
 	}
 
+	/** @inheritDoc */
 	public function bitNot( $field ) {
 		return $this->platform->bitNot( $field );
 	}
 
+	/** @inheritDoc */
 	public function bitAnd( $fieldLeft, $fieldRight ) {
 		return $this->platform->bitAnd( $fieldLeft, $fieldRight );
 	}
 
+	/** @inheritDoc */
 	public function bitOr( $fieldLeft, $fieldRight ) {
 		return $this->platform->bitOr( $fieldLeft, $fieldRight );
 	}
 
+	/** @inheritDoc */
 	public function buildConcat( $stringList ) {
 		return $this->platform->buildConcat( $stringList );
 	}
 
+	/** @inheritDoc */
 	public function buildGreatest( $fields, $values ) {
 		return $this->platform->buildGreatest( $fields, $values );
 	}
 
+	/** @inheritDoc */
 	public function buildLeast( $fields, $values ) {
 		return $this->platform->buildLeast( $fields, $values );
 	}
 
+	/** @inheritDoc */
 	public function buildSubstring( $input, $startPosition, $length = null ) {
 		return $this->platform->buildSubstring( $input, $startPosition, $length );
 	}
 
+	/** @inheritDoc */
 	public function buildStringCast( $field ) {
 		return $this->platform->buildStringCast( $field );
 	}
 
+	/** @inheritDoc */
 	public function buildIntegerCast( $field ) {
 		return $this->platform->buildIntegerCast( $field );
 	}
 
+	/** @inheritDoc */
 	public function tableName( string $name, $format = 'quoted' ) {
 		return $this->platform->tableName( $name, $format );
 	}
 
+	/** @inheritDoc */
 	public function tableNamesN( ...$tables ) {
 		return $this->platform->tableNamesN( ...$tables );
 	}
 
+	/** @inheritDoc */
 	public function addIdentifierQuotes( $s ) {
 		return $this->platform->addIdentifierQuotes( $s );
 	}
 
+	/** @inheritDoc */
 	public function isQuotedIdentifier( $name ) {
 		return $this->platform->isQuotedIdentifier( $name );
 	}
 
+	/** @inheritDoc */
 	public function buildLike( $param, ...$params ) {
 		return $this->platform->buildLike( $param, ...$params );
 	}
 
+	/** @inheritDoc */
 	public function anyChar() {
 		return $this->platform->anyChar();
 	}
 
+	/** @inheritDoc */
 	public function anyString() {
 		return $this->platform->anyString();
 	}
 
+	/** @inheritDoc */
 	public function limitResult( $sql, $limit, $offset = false ) {
 		return $this->platform->limitResult( $sql, $limit, $offset );
 	}
 
+	/** @inheritDoc */
 	public function unionSupportsOrderAndLimit() {
 		return $this->platform->unionSupportsOrderAndLimit();
 	}
 
+	/** @inheritDoc */
 	public function unionQueries( $sqls, $all, $options = [] ) {
 		return $this->platform->unionQueries( $sqls, $all, $options );
 	}
 
+	/** @inheritDoc */
 	public function conditional( $cond, $caseTrueExpression, $caseFalseExpression ) {
 		return $this->platform->conditional( $cond, $caseTrueExpression, $caseFalseExpression );
 	}
 
+	/** @inheritDoc */
 	public function strreplace( $orig, $old, $new ) {
 		return $this->platform->strreplace( $orig, $old, $new );
 	}
 
+	/** @inheritDoc */
 	public function timestamp( $ts = 0 ) {
 		return $this->platform->timestamp( $ts );
 	}
 
+	/** @inheritDoc */
 	public function timestampOrNull( $ts = null ) {
 		return $this->platform->timestampOrNull( $ts );
 	}
 
+	/** @inheritDoc */
 	public function getInfinity() {
 		return $this->platform->getInfinity();
 	}
 
+	/** @inheritDoc */
 	public function encodeExpiry( $expiry ) {
 		return $this->platform->encodeExpiry( $expiry );
 	}
 
+	/** @inheritDoc */
 	public function decodeExpiry( $expiry, $format = TS_MW ) {
 		return $this->platform->decodeExpiry( $expiry, $format );
 	}
 
+	/** @inheritDoc */
 	public function setTableAliases( array $aliases ) {
 		$this->platform->setTableAliases( $aliases );
 	}
 
+	/** @inheritDoc */
 	public function getTableAliases() {
 		return $this->platform->getTableAliases();
 	}
 
+	/** @inheritDoc */
 	public function buildGroupConcatField(
 		$delim, $tables, $field, $conds = '', $join_conds = []
 	) {
 		return $this->platform->buildGroupConcatField( $delim, $tables, $field, $conds, $join_conds );
 	}
 
+	/** @inheritDoc */
 	public function buildSelectSubquery(
 		$tables, $vars, $conds = '', $fname = __METHOD__,
 		$options = [], $join_conds = []
@@ -3464,10 +3576,12 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		return $this->platform->buildSelectSubquery( $tables, $vars, $conds, $fname, $options, $join_conds );
 	}
 
+	/** @inheritDoc */
 	public function buildExcludedValue( $column ) {
 		return $this->platform->buildExcludedValue( $column );
 	}
 
+	/** @inheritDoc */
 	public function setSchemaVars( $vars ) {
 		$this->platform->setSchemaVars( $vars );
 	}
@@ -3475,18 +3589,23 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 	/* End of methods delegated to SQLPlatform. */
 
 	/* Start of methods delegated to ReplicationReporter. */
+
+	/** @inheritDoc */
 	public function primaryPosWait( DBPrimaryPos $pos, $timeout ) {
 		return $this->replicationReporter->primaryPosWait( $this, $pos, $timeout );
 	}
 
+	/** @inheritDoc */
 	public function getPrimaryPos() {
 		return $this->replicationReporter->getPrimaryPos( $this );
 	}
 
+	/** @inheritDoc */
 	public function getLag() {
 		return $this->replicationReporter->getLag( $this );
 	}
 
+	/** @inheritDoc */
 	public function getSessionLagStatus() {
 		return $this->replicationReporter->getSessionLagStatus( $this );
 	}

@@ -18,6 +18,7 @@ class Blob implements IBlob {
 		$this->data = $data;
 	}
 
+	/** @inheritDoc */
 	public function fetch() {
 		return $this->data;
 	}

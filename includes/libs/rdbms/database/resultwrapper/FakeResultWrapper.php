@@ -24,27 +24,33 @@ class FakeResultWrapper extends ResultWrapper {
 		}
 	}
 
+	/** @inheritDoc */
 	protected function doNumRows() {
 		return count( $this->result );
 	}
 
+	/** @inheritDoc */
 	protected function doFetchObject() {
 		$value = $this->result[$this->currentPos] ?? false;
 		return is_array( $value ) ? (object)$value : $value;
 	}
 
+	/** @inheritDoc */
 	protected function doFetchRow() {
 		$row = $this->doFetchObject();
 		return is_object( $row ) ? get_object_vars( $row ) : $row;
 	}
 
+	/** @inheritDoc */
 	protected function doSeek( $pos ) {
 	}
 
+	/** @inheritDoc */
 	protected function doFree() {
 		$this->result = null;
 	}
 
+	/** @inheritDoc */
 	protected function doGetFieldNames() {
 		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
 		throw new RuntimeException( __METHOD__ . ' is unimplemented' );

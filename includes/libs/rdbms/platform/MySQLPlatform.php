@@ -27,10 +27,12 @@ use Wikimedia\Rdbms\Query;
  * @see ISQLPlatform
  */
 class MySQLPlatform extends SQLPlatform {
+	/** @inheritDoc */
 	protected function getIdentifierQuoteChar() {
 		return '`';
 	}
 
+	/** @inheritDoc */
 	public function buildStringCast( $field ) {
 		return "CAST( $field AS BINARY )";
 	}
@@ -43,6 +45,7 @@ class MySQLPlatform extends SQLPlatform {
 		return 'CAST( ' . $field . ' AS SIGNED )';
 	}
 
+	/** @inheritDoc */
 	protected function normalizeJoinType( string $joinType ) {
 		switch ( strtoupper( $joinType ) ) {
 			case 'STRAIGHT_JOIN':
@@ -70,6 +73,7 @@ class MySQLPlatform extends SQLPlatform {
 		return "IGNORE INDEX (" . $index . ")";
 	}
 
+	/** @inheritDoc */
 	public function deleteJoinSqlText( $delTable, $joinTable, $delVar, $joinVar, $conds ) {
 		if ( !$conds ) {
 			throw new DBLanguageError( __METHOD__ . ' called with empty $conds' );
@@ -86,12 +90,14 @@ class MySQLPlatform extends SQLPlatform {
 		return $sql;
 	}
 
+	/** @inheritDoc */
 	public function isTransactableQuery( Query $sql ) {
 		return parent::isTransactableQuery( $sql ) &&
 			// TODO: Use query verb
 			!preg_match( '/^SELECT\s+(GET|RELEASE|IS_FREE)_LOCK\(/', $sql->getSQL() );
 	}
 
+	/** @inheritDoc */
 	public function buildExcludedValue( $column ) {
 		/* @see DatabaseMySQL::upsert() */
 		// Within "INSERT INTO ON DUPLICATE KEY UPDATE" statements:
@@ -103,6 +109,7 @@ class MySQLPlatform extends SQLPlatform {
 		return "VALUES($column)";
 	}
 
+	/** @inheritDoc */
 	public function lockSQLText( $lockName, $timeout ) {
 		$encName = $this->quoter->addQuotes( $this->makeLockName( $lockName ) );
 		// Unlike NOW(), SYSDATE() gets the time at invocation rather than query start.
@@ -112,16 +119,19 @@ class MySQLPlatform extends SQLPlatform {
 		return "SELECT IF(GET_LOCK($encName,$timeout),UNIX_TIMESTAMP(SYSDATE(6)),NULL) AS acquired";
 	}
 
+	/** @inheritDoc */
 	public function lockIsFreeSQLText( $lockName ) {
 		$encName = $this->quoter->addQuotes( $this->makeLockName( $lockName ) );
 		return "SELECT IS_FREE_LOCK($encName) AS unlocked";
 	}
 
+	/** @inheritDoc */
 	public function unlockSQLText( $lockName ) {
 		$encName = $this->quoter->addQuotes( $this->makeLockName( $lockName ) );
 		return "SELECT RELEASE_LOCK($encName) AS released";
 	}
 
+	/** @inheritDoc */
 	public function makeLockName( $lockName ) {
 		// https://dev.mysql.com/doc/refman/5.7/en/locking-functions.html#function_get-lock
 		// MySQL 5.7+ enforces a 64 char length limit.

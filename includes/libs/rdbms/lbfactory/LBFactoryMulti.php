@@ -168,6 +168,7 @@ class LBFactoryMulti extends LBFactory {
 		}
 	}
 
+	/** @inheritDoc */
 	public function newMainLB( $domain = false ): ILoadBalancerForOwner {
 		$domainInstance = $this->resolveDomainInstance( $domain );
 		$database = $domainInstance->getDatabase();
@@ -218,6 +219,7 @@ class LBFactoryMulti extends LBFactory {
 		return $cachedDomain;
 	}
 
+	/** @inheritDoc */
 	public function getMainLB( $domain = false ): ILoadBalancer {
 		$domainInstance = $this->resolveDomainInstance( $domain );
 		$section = $this->getSectionFromDatabase( $domainInstance->getDatabase() );
@@ -229,6 +231,7 @@ class LBFactoryMulti extends LBFactory {
 		return $this->mainLBs[$section];
 	}
 
+	/** @inheritDoc */
 	public function newExternalLB( $cluster ): ILoadBalancerForOwner {
 		if ( !isset( $this->externalLoadsByCluster[$cluster] ) ) {
 			throw new InvalidArgumentException( "Unknown cluster '$cluster'" );
@@ -245,6 +248,7 @@ class LBFactoryMulti extends LBFactory {
 		);
 	}
 
+	/** @inheritDoc */
 	public function getExternalLB( $cluster ): ILoadBalancer {
 		if ( !isset( $this->externalLBs[$cluster] ) ) {
 			$this->externalLBs[$cluster] = $this->newExternalLB(
@@ -275,6 +279,7 @@ class LBFactoryMulti extends LBFactory {
 		return $lbs;
 	}
 
+	/** @inheritDoc */
 	protected function getLBsForOwner() {
 		foreach ( $this->mainLBs as $lb ) {
 			yield $lb;

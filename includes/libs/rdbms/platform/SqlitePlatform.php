@@ -26,10 +26,12 @@ use Wikimedia\Rdbms\Query;
  * @see ISQLPlatform
  */
 class SqlitePlatform extends SQLPlatform {
+	/** @inheritDoc */
 	public function buildGreatest( $fields, $values ) {
 		return $this->buildSuperlative( 'MAX', $fields, $values );
 	}
 
+	/** @inheritDoc */
 	public function buildLeast( $fields, $values ) {
 		return $this->buildSuperlative( 'MIN', $fields, $values );
 	}
@@ -63,6 +65,7 @@ class SqlitePlatform extends SQLPlatform {
 		return false;
 	}
 
+	/** @inheritDoc */
 	public function buildSubstring( $input, $startPosition, $length = null ) {
 		$this->assertBuildSubstringParams( $startPosition, $length );
 		$params = [ $input, $startPosition ];
@@ -81,6 +84,7 @@ class SqlitePlatform extends SQLPlatform {
 		return 'CAST ( ' . $field . ' AS TEXT )';
 	}
 
+	/** @inheritDoc */
 	public function tableName( string $name, $format = 'quoted' ) {
 		if ( preg_match( '/^sqlite_[a-z_]+$/', $name ) ) {
 			// Such names are reserved for internal SQLite tables
@@ -90,6 +94,7 @@ class SqlitePlatform extends SQLPlatform {
 		return parent::tableName( $name, $format );
 	}
 
+	/** @inheritDoc */
 	protected function makeSelectOptions( array $options ) {
 		// Remove problematic options that the base implementation converts to SQL
 		foreach ( $options as $k => $v ) {
@@ -101,6 +106,7 @@ class SqlitePlatform extends SQLPlatform {
 		return parent::makeSelectOptions( $options );
 	}
 
+	/** @inheritDoc */
 	public function buildGroupConcatField(
 		$delim, $tables, $field, $conds = '', $join_conds = []
 	) {
@@ -109,6 +115,7 @@ class SqlitePlatform extends SQLPlatform {
 		return '(' . $this->selectSQLText( $tables, $fld, $conds, static::CALLER_SUBQUERY, [], $join_conds ) . ')';
 	}
 
+	/** @inheritDoc */
 	protected function makeInsertNonConflictingVerbAndOptions() {
 		return [ 'INSERT OR IGNORE INTO', '' ];
 	}
@@ -139,11 +146,13 @@ class SqlitePlatform extends SQLPlatform {
 		return $options;
 	}
 
+	/** @inheritDoc */
 	public function dropTableSqlText( $table ) {
 		// No CASCADE support; https://www.sqlite.org/lang_droptable.html
 		return "DROP TABLE " . $this->tableName( $table );
 	}
 
+	/** @inheritDoc */
 	public function isTransactableQuery( Query $sql ) {
 		return parent::isTransactableQuery( $sql ) && !in_array(
 				$sql->getVerb(),

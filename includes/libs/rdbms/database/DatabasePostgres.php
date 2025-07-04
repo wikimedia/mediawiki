@@ -68,10 +68,12 @@ class DatabasePostgres extends Database {
 		);
 	}
 
+	/** @inheritDoc */
 	public function getType() {
 		return 'postgres';
 	}
 
+	/** @inheritDoc */
 	protected function open( $server, $user, $password, $db, $schema, $tablePrefix ) {
 		if ( !function_exists( 'pg_connect' ) ) {
 			throw $this->newExceptionAfterConnectError(
@@ -139,10 +141,12 @@ class DatabasePostgres extends Database {
 		}
 	}
 
+	/** @inheritDoc */
 	public function databasesAreIndependent() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function doSelectDomain( DatabaseDomain $domain ) {
 		$database = $domain->getDatabase();
 		if ( $database === null ) {
@@ -189,6 +193,7 @@ class DatabasePostgres extends Database {
 		return $s;
 	}
 
+	/** @inheritDoc */
 	protected function closeConnection() {
 		return $this->conn ? pg_close( $this->conn ) : true;
 	}
@@ -240,6 +245,7 @@ class DatabasePostgres extends Database {
 		}
 	}
 
+	/** @inheritDoc */
 	protected function lastInsertId() {
 		// Avoid using query() to prevent unwanted side-effects like changing affected
 		// row counts or connection retries. Note that lastval() is connection-specific.
@@ -250,6 +256,7 @@ class DatabasePostgres extends Database {
 		return $qs->res ? (int)$qs->res->fetchRow()['id'] : 0;
 	}
 
+	/** @inheritDoc */
 	public function lastError() {
 		if ( $this->conn ) {
 			if ( $this->lastResultHandle ) {
@@ -262,6 +269,7 @@ class DatabasePostgres extends Database {
 		return $this->getLastPHPError() ?: 'No database connection';
 	}
 
+	/** @inheritDoc */
 	public function lastErrno() {
 		if ( $this->lastResultHandle ) {
 			$lastErrno = pg_result_error_field( $this->lastResultHandle, PGSQL_DIAG_SQLSTATE );
@@ -273,6 +281,7 @@ class DatabasePostgres extends Database {
 		return '00000';
 	}
 
+	/** @inheritDoc */
 	public function estimateRowCount( $table, $var = '*', $conds = '',
 		$fname = __METHOD__, $options = [], $join_conds = []
 	): int {
@@ -296,6 +305,7 @@ class DatabasePostgres extends Database {
 		return $rows;
 	}
 
+	/** @inheritDoc */
 	public function indexInfo( $table, $index, $fname = __METHOD__ ) {
 		$components = $this->platform->qualifiedTableComponents( $table );
 		if ( count( $components ) === 1 ) {
@@ -329,6 +339,7 @@ class DatabasePostgres extends Database {
 		return false;
 	}
 
+	/** @inheritDoc */
 	public function indexAttributes( $index, $schema = false ) {
 		if ( $schema === false ) {
 			$schemas = $this->getCoreSchemas();
@@ -394,6 +405,7 @@ __INDEXATTR__;
 		return null;
 	}
 
+	/** @inheritDoc */
 	protected function doInsertSelectNative(
 		$destTable,
 		$srcTable,
@@ -427,6 +439,7 @@ __INDEXATTR__;
 		}
 	}
 
+	/** @inheritDoc */
 	public function getValueTypesForWithClause( $table ) {
 		$typesByColumn = [];
 
@@ -450,6 +463,7 @@ __INDEXATTR__;
 		return $typesByColumn;
 	}
 
+	/** @inheritDoc */
 	protected function isConnectionError( $errno ) {
 		// https://www.postgresql.org/docs/9.2/static/errcodes-appendix.html
 		static $codes = [ '08000', '08003', '08006', '08001', '08004', '57P01', '57P03', '53300' ];
@@ -457,15 +471,18 @@ __INDEXATTR__;
 		return in_array( $errno, $codes, true );
 	}
 
+	/** @inheritDoc */
 	protected function isQueryTimeoutError( $errno ) {
 		// https://www.postgresql.org/docs/9.2/static/errcodes-appendix.html
 		return ( $errno === '57014' );
 	}
 
+	/** @inheritDoc */
 	protected function isKnownStatementRollbackError( $errno ) {
 		return false; // transaction has to be rolled-back from error state
 	}
 
+	/** @inheritDoc */
 	public function duplicateTableStructure(
 		$oldName, $newName, $temporary = false, $fname = __METHOD__
 	) {
@@ -529,6 +546,7 @@ __INDEXATTR__;
 		return $ret;
 	}
 
+	/** @inheritDoc */
 	public function truncateTable( $table, $fname = __METHOD__ ) {
 		$sql = "TRUNCATE TABLE " . $this->tableName( $table ) . " RESTART IDENTITY";
 		$query = new Query( $sql, self::QUERY_CHANGE_SCHEMA, 'TRUNCATE', $table );
@@ -607,6 +625,7 @@ __INDEXATTR__;
 		return $output;
 	}
 
+	/** @inheritDoc */
 	public function getSoftwareLink() {
 		return '[{{int:version-db-postgres-url}} PostgreSQL]';
 	}
@@ -775,6 +794,7 @@ __INDEXATTR__;
 		return [ $this->getCoreSchema() ];
 	}
 
+	/** @inheritDoc */
 	public function getServerVersion() {
 		if ( $this->numericVersion === null ) {
 			// Works on PG 7.4+
@@ -817,14 +837,17 @@ __INDEXATTR__;
 		return false;
 	}
 
+	/** @inheritDoc */
 	public function tableExists( $table, $fname = __METHOD__ ) {
 		return $this->relationExists( $table, [ 'r', 'v' ] );
 	}
 
+	/** @inheritDoc */
 	public function sequenceExists( $sequence ) {
 		return $this->relationExists( $sequence, 'S' );
 	}
 
+	/** @inheritDoc */
 	public function constraintExists( $table, $constraint ) {
 		foreach ( $this->getCoreSchemas() as $schema ) {
 			$sql = sprintf( "SELECT 1 FROM information_schema.table_constraints " .
@@ -892,12 +915,14 @@ __INDEXATTR__;
 		return PostgresField::fromText( $this, $table, $field );
 	}
 
+	/** @inheritDoc */
 	public function encodeBlob( $b ) {
 		$conn = $this->getBindingHandle();
 
 		return new PostgresBlob( pg_escape_bytea( $conn, $b ) );
 	}
 
+	/** @inheritDoc */
 	public function decodeBlob( $b ) {
 		if ( $b instanceof PostgresBlob ) {
 			$b = $b->fetch();
@@ -908,11 +933,13 @@ __INDEXATTR__;
 		return pg_unescape_bytea( $b );
 	}
 
+	/** @inheritDoc */
 	public function strencode( $s ) {
 		// Should not be called by us
 		return pg_escape_string( $this->getBindingHandle(), (string)$s );
 	}
 
+	/** @inheritDoc */
 	public function addQuotes( $s ) {
 		if ( $s instanceof RawSQLValue ) {
 			return $s->toSql();
@@ -937,6 +964,7 @@ __INDEXATTR__;
 		return "'" . pg_escape_string( $conn, (string)$s ) . "'";
 	}
 
+	/** @inheritDoc */
 	public function streamStatementEnd( &$sql, &$newLine ) {
 		# Allow dollar quoting for function declarations
 		if ( str_starts_with( $newLine, '$mw$' ) ) {
@@ -950,6 +978,7 @@ __INDEXATTR__;
 		return parent::streamStatementEnd( $sql, $newLine );
 	}
 
+	/** @inheritDoc */
 	public function doLockIsFree( string $lockName, string $method ) {
 		$query = new Query(
 			$this->platform->lockIsFreeSQLText( $lockName ),
@@ -962,6 +991,7 @@ __INDEXATTR__;
 		return (bool)$row->unlocked;
 	}
 
+	/** @inheritDoc */
 	public function doLock( string $lockName, string $method, int $timeout ) {
 		$query = new Query(
 			$this->platform->lockSQLText( $lockName, $timeout ),
@@ -990,6 +1020,7 @@ __INDEXATTR__;
 		return $acquired;
 	}
 
+	/** @inheritDoc */
 	public function doUnlock( string $lockName, string $method ) {
 		$query = new Query(
 			$this->platform->unlockSQLText( $lockName ),
@@ -1002,6 +1033,7 @@ __INDEXATTR__;
 		return (bool)$row->released;
 	}
 
+	/** @inheritDoc */
 	protected function doFlushSession( $fname ) {
 		$flags = self::QUERY_CHANGE_LOCKS | self::QUERY_NO_RETRY;
 
@@ -1014,6 +1046,7 @@ __INDEXATTR__;
 		}
 	}
 
+	/** @inheritDoc */
 	public function serverIsReadOnly() {
 		$query = new Query(
 			"SHOW default_transaction_read_only",
@@ -1026,6 +1059,7 @@ __INDEXATTR__;
 		return $row && strtolower( $row->default_transaction_read_only ) === 'on';
 	}
 
+	/** @inheritDoc */
 	protected function getInsertIdColumnForUpsert( $table ) {
 		$column = null;
 
@@ -1059,6 +1093,7 @@ __INDEXATTR__;
 		return $column;
 	}
 
+	/** @inheritDoc */
 	public static function getAttributes() {
 		return [ self::ATTR_SCHEMAS_AS_TABLE_GROUPS => true ];
 	}

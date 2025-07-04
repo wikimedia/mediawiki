@@ -13,10 +13,12 @@ class SQLiteField implements Field {
 		$this->tableName = $tableName;
 	}
 
+	/** @inheritDoc */
 	public function name() {
 		return $this->info->name;
 	}
 
+	/** @inheritDoc */
 	public function tableName() {
 		return $this->tableName;
 	}
@@ -42,6 +44,7 @@ class SQLiteField implements Field {
 		return !$this->info->notnull;
 	}
 
+	/** @inheritDoc */
 	public function type() {
 		return $this->info->type;
 	}

@@ -90,26 +90,31 @@ abstract class ResultWrapper implements IResultWrapper {
 	 */
 	abstract protected function doGetFieldNames();
 
+	/** @inheritDoc */
 	public function numRows() {
 		return $this->doNumRows();
 	}
 
+	/** @inheritDoc */
 	public function count(): int {
 		return $this->doNumRows();
 	}
 
+	/** @inheritDoc */
 	public function fetchObject() {
 		$this->currentPos = $this->nextPos++;
 		$this->currentRow = $this->doFetchObject();
 		return $this->currentRow;
 	}
 
+	/** @inheritDoc */
 	public function fetchRow() {
 		$this->currentPos = $this->nextPos++;
 		$this->currentRow = $this->doFetchRow();
 		return $this->currentRow;
 	}
 
+	/** @inheritDoc */
 	public function seek( $pos ): void {
 		$numRows = $this->numRows();
 		// Allow seeking to zero if there are no results
@@ -125,6 +130,7 @@ abstract class ResultWrapper implements IResultWrapper {
 		$this->currentRow = null;
 	}
 
+	/** @inheritDoc */
 	public function free() {
 		$this->doFree();
 		$this->currentRow = false;
@@ -134,6 +140,7 @@ abstract class ResultWrapper implements IResultWrapper {
 		$this->seek( 0 );
 	}
 
+	/** @inheritDoc */
 	#[\ReturnTypeWillChange]
 	public function current() {
 		$this->currentRow ??= $this->fetchObject();
@@ -141,10 +148,12 @@ abstract class ResultWrapper implements IResultWrapper {
 		return $this->currentRow;
 	}
 
+	/** @inheritDoc */
 	public function key(): int {
 		return $this->currentPos;
 	}
 
+	/** @inheritDoc */
 	public function next(): void {
 		$this->fetchObject();
 	}
@@ -154,6 +163,7 @@ abstract class ResultWrapper implements IResultWrapper {
 			&& $this->currentPos < $this->numRows();
 	}
 
+	/** @inheritDoc */
 	public function getFieldNames() {
 		$this->fieldNames ??= $this->doGetFieldNames();
 		return $this->fieldNames;

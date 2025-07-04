@@ -78,18 +78,22 @@ SQL;
 		return null;
 	}
 
+	/** @inheritDoc */
 	public function name() {
 		return $this->name;
 	}
 
+	/** @inheritDoc */
 	public function tableName() {
 		return $this->tablename;
 	}
 
+	/** @inheritDoc */
 	public function type() {
 		return $this->type;
 	}
 
+	/** @inheritDoc */
 	public function isNullable() {
 		return $this->nullable;
 	}

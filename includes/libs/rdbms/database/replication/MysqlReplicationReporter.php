@@ -75,6 +75,7 @@ class MysqlReplicationReporter extends ReplicationReporter {
 		$this->useGTIDs = $useGTIDs;
 	}
 
+	/** @inheritDoc */
 	protected function doGetLag( IDatabase $conn ) {
 		if ( $this->lagDetectionMethod === 'pt-heartbeat' ) {
 			return $this->getLagFromPtHeartbeat( $conn );
@@ -179,6 +180,7 @@ class MysqlReplicationReporter extends ReplicationReporter {
 		return $row ? ( $row->us_ago / 1e6 ) : null;
 	}
 
+	/** @inheritDoc */
 	public function getApproximateLagStatus( IDatabase $conn ) {
 		if ( $this->lagDetectionMethod === 'pt-heartbeat' ) {
 			// Disable caching since this is fast enough and we don't want
@@ -224,6 +226,7 @@ class MysqlReplicationReporter extends ReplicationReporter {
 		return $this->useGTIDs;
 	}
 
+	/** @inheritDoc */
 	public function primaryPosWait( IDatabase $conn, DBPrimaryPos $pos, $timeout ) {
 		if ( !( $pos instanceof MySQLPrimaryPos ) ) {
 			throw new InvalidArgumentException( "Position not an instance of MySQLPrimaryPos" );

@@ -31,24 +31,29 @@ class PostgresPlatform extends SQLPlatform {
 	/** @var string */
 	private $coreSchema;
 
+	/** @inheritDoc */
 	public function limitResult( $sql, $limit, $offset = false ) {
 		return "$sql LIMIT $limit " . ( is_numeric( $offset ) ? " OFFSET {$offset} " : '' );
 	}
 
+	/** @inheritDoc */
 	public function buildConcat( $stringList ) {
 		return implode( ' || ', $stringList );
 	}
 
+	/** @inheritDoc */
 	public function timestamp( $ts = 0 ) {
 		$ct = new ConvertibleTimestamp( $ts );
 
 		return $ct->getTimestamp( TS_POSTGRES );
 	}
 
+	/** @inheritDoc */
 	public function buildStringCast( $field ) {
 		return $field . '::text';
 	}
 
+	/** @inheritDoc */
 	public function implicitOrderby() {
 		return false;
 	}
@@ -61,6 +66,7 @@ class PostgresPlatform extends SQLPlatform {
 		$this->coreSchema = $coreSchema;
 	}
 
+	/** @inheritDoc */
 	public function selectSQLText(
 		$tables, $vars, $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
 	) {
@@ -118,6 +124,7 @@ class PostgresPlatform extends SQLPlatform {
 		return parent::selectSQLText( $tables, $vars, $conds, $fname, $options, $join_conds );
 	}
 
+	/** @inheritDoc */
 	protected function makeSelectOptions( array $options ) {
 		$preLimitTail = $postLimitTail = '';
 		$startOpts = '';
@@ -149,6 +156,7 @@ class PostgresPlatform extends SQLPlatform {
 		return [ $startOpts, $preLimitTail, $postLimitTail ];
 	}
 
+	/** @inheritDoc */
 	public function getDatabaseAndTableIdentifier( string $table ) {
 		$components = $this->qualifiedTableComponents( $table );
 		switch ( count( $components ) ) {
@@ -163,6 +171,7 @@ class PostgresPlatform extends SQLPlatform {
 		}
 	}
 
+	/** @inheritDoc */
 	protected function relationSchemaQualifier() {
 		if ( $this->coreSchema === $this->currentDomain->getSchema() ) {
 			// The schema to be used is now in the search path; no need for explicit qualification
@@ -172,6 +181,7 @@ class PostgresPlatform extends SQLPlatform {
 		return parent::relationSchemaQualifier();
 	}
 
+	/** @inheritDoc */
 	public function buildGroupConcatField(
 		$delim, $tables, $field, $conds = '', $join_conds = []
 	) {
@@ -180,6 +190,7 @@ class PostgresPlatform extends SQLPlatform {
 		return '(' . $this->selectSQLText( $tables, $fld, $conds, static::CALLER_SUBQUERY, [], $join_conds ) . ')';
 	}
 
+	/** @inheritDoc */
 	public function makeInsertLists( array $rows, $aliasPrefix = '', array $typeByColumn = [] ) {
 		$firstRow = $rows[0];
 		if ( !is_array( $firstRow ) || !$firstRow ) {
@@ -226,10 +237,12 @@ class PostgresPlatform extends SQLPlatform {
 		];
 	}
 
+	/** @inheritDoc */
 	protected function makeInsertNonConflictingVerbAndOptions() {
 		return [ 'INSERT INTO', 'ON CONFLICT DO NOTHING' ];
 	}
 
+	/** @inheritDoc */
 	protected function makeUpdateOptionsArray( $options ) {
 		$options = $this->normalizeOptions( $options );
 		// PostgreSQL doesn't support anything like "ignore" for UPDATE.
@@ -238,11 +251,13 @@ class PostgresPlatform extends SQLPlatform {
 		return parent::makeUpdateOptionsArray( $options );
 	}
 
+	/** @inheritDoc */
 	public function isTransactableQuery( Query $sql ) {
 		return parent::isTransactableQuery( $sql ) &&
 			!preg_match( '/^SELECT\s+pg_(try_|)advisory_\w+\(/', $sql->getSQL() );
 	}
 
+	/** @inheritDoc */
 	public function lockSQLText( $lockName, $timeout ) {
 		// http://www.postgresql.org/docs/9.2/static/functions-admin.html#FUNCTIONS-ADVISORY-LOCKS
 		$key = $this->quoter->addQuotes( $this->bigintFromLockName( $lockName ) );
@@ -252,6 +267,7 @@ class PostgresPlatform extends SQLPlatform {
 			"END) AS acquired";
 	}
 
+	/** @inheritDoc */
 	public function lockIsFreeSQLText( $lockName ) {
 		// http://www.postgresql.org/docs/9.2/static/functions-admin.html#FUNCTIONS-ADVISORY-LOCKS
 		$key = $this->quoter->addQuotes( $this->bigintFromLockName( $lockName ) );
@@ -259,6 +275,7 @@ class PostgresPlatform extends SQLPlatform {
 			WHEN FALSE THEN FALSE ELSE pg_advisory_unlock($key) END) AS unlocked";
 	}
 
+	/** @inheritDoc */
 	public function unlockSQLText( $lockName ) {
 		// http://www.postgresql.org/docs/9.2/static/functions-admin.html#FUNCTIONS-ADVISORY-LOCKS
 		$key = $this->quoter->addQuotes( $this->bigintFromLockName( $lockName ) );

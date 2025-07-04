@@ -79,6 +79,7 @@ class LoadBalancerSingle extends LoadBalancer {
 		) );
 	}
 
+	/** @inheritDoc */
 	protected function sanitizeConnectionFlags( $flags, $domain ) {
 		// There is only one underlying connection handle. Also, this class is only meant to
 		// be used during situations like site installation, where there should be no contenting
@@ -88,6 +89,7 @@ class LoadBalancerSingle extends LoadBalancer {
 		return $flags;
 	}
 
+	/** @inheritDoc */
 	protected function reallyOpenConnection( $i, DatabaseDomain $domain, array $lbInfo ) {
 		foreach ( $lbInfo as $k => $v ) {
 			$this->conn->setLBInfo( $k, $v );

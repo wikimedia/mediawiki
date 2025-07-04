@@ -25,10 +25,12 @@ class PostgresResultWrapper extends ResultWrapper {
 		$this->result = $result;
 	}
 
+	/** @inheritDoc */
 	protected function doNumRows() {
 		return pg_num_rows( $this->result );
 	}
 
+	/** @inheritDoc */
 	protected function doFetchObject() {
 		// pg_fetch_object may raise a warning after a seek to an invalid offset
 		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
@@ -46,6 +48,7 @@ class PostgresResultWrapper extends ResultWrapper {
 		return $row;
 	}
 
+	/** @inheritDoc */
 	protected function doFetchRow() {
 		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
 		$row = @pg_fetch_array( $this->result );
@@ -81,14 +84,17 @@ class PostgresResultWrapper extends ResultWrapper {
 		}
 	}
 
+	/** @inheritDoc */
 	protected function doSeek( $pos ) {
 		pg_result_seek( $this->result, $pos );
 	}
 
+	/** @inheritDoc */
 	protected function doFree() {
 		return pg_free_result( $this->result );
 	}
 
+	/** @inheritDoc */
 	protected function doGetFieldNames() {
 		$names = [];
 		$n = pg_num_fields( $this->result );

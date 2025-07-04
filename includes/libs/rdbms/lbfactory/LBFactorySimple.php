@@ -79,6 +79,7 @@ class LBFactorySimple extends LBFactory {
 		}
 	}
 
+	/** @inheritDoc */
 	public function newMainLB( $domain = false ): ILoadBalancerForOwner {
 		return $this->newLoadBalancer(
 			self::CLUSTER_MAIN_DEFAULT,
@@ -86,12 +87,14 @@ class LBFactorySimple extends LBFactory {
 		);
 	}
 
+	/** @inheritDoc */
 	public function getMainLB( $domain = false ): ILoadBalancer {
 		$this->mainLB ??= $this->newMainLB( $domain );
 
 		return $this->mainLB;
 	}
 
+	/** @inheritDoc */
 	public function newExternalLB( $cluster ): ILoadBalancerForOwner {
 		if ( !isset( $this->externalServersByCluster[$cluster] ) ) {
 			throw new InvalidArgumentException( "Unknown cluster '$cluster'." );
@@ -103,6 +106,7 @@ class LBFactorySimple extends LBFactory {
 		);
 	}
 
+	/** @inheritDoc */
 	public function getExternalLB( $cluster ): ILoadBalancer {
 		if ( !isset( $this->externalLBs[$cluster] ) ) {
 			$this->externalLBs[$cluster] = $this->newExternalLB( $cluster );
@@ -138,6 +142,7 @@ class LBFactorySimple extends LBFactory {
 		return $lb;
 	}
 
+	/** @inheritDoc */
 	protected function getLBsForOwner() {
 		if ( $this->mainLB !== null ) {
 			yield $this->mainLB;

@@ -135,22 +135,27 @@ class DBConnRef implements Stringable, IMaintainableDatabase, IDatabaseForOwner 
 		return $this->role;
 	}
 
+	/** @inheritDoc */
 	public function getServerInfo() {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function trxLevel() {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function trxTimestamp() {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function explicitTrxActive() {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function tablePrefix( $prefix = null ) {
 		if ( $prefix !== null ) {
 			// Disallow things that might confuse the LoadBalancer tracking
@@ -168,6 +173,7 @@ class DBConnRef implements Stringable, IMaintainableDatabase, IDatabaseForOwner 
 		return $prefix;
 	}
 
+	/** @inheritDoc */
 	public function dbSchema( $schema = null ) {
 		if ( $schema !== null ) {
 			// Disallow things that might confuse the LoadBalancer tracking
@@ -185,64 +191,79 @@ class DBConnRef implements Stringable, IMaintainableDatabase, IDatabaseForOwner 
 		return $schema;
 	}
 
+	/** @inheritDoc */
 	public function getLBInfo( $name = null ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function setLBInfo( $nameOrArray, $value = null ) {
 		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
 		// Disallow things that might confuse the LoadBalancer tracking
 		throw $this->getDomainChangeException();
 	}
 
+	/** @inheritDoc */
 	public function implicitOrderby() {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function lastDoneWrites() {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function writesPending() {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function writesOrCallbacksPending() {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function pendingWriteQueryDuration( $type = self::ESTIMATE_TOTAL ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function pendingWriteCallers() {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function isOpen() {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function setFlag( $flag, $remember = self::REMEMBER_NOTHING ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function clearFlag( $flag, $remember = self::REMEMBER_NOTHING ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function restoreFlags( $state = self::RESTORE_PRIOR ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function getFlag( $flag ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function getProperty( $name ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function getDomainID() {
 		if ( $this->conn === null ) {
 			// Avoid triggering a database connection
@@ -252,6 +273,7 @@ class DBConnRef implements Stringable, IMaintainableDatabase, IDatabaseForOwner 
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function getType() {
 		if ( $this->conn === null ) {
 			// Avoid triggering a database connection
@@ -265,35 +287,43 @@ class DBConnRef implements Stringable, IMaintainableDatabase, IDatabaseForOwner 
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function insertId() {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function lastErrno() {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function lastError() {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function affectedRows() {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function getSoftwareLink() {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function getServerVersion() {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function close( $fname = __METHOD__ ) {
 		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
 		throw new DBUnexpectedError( $this->conn, 'Cannot close shared connection.' );
 	}
 
+	/** @inheritDoc */
 	public function query( $sql, $fname = __METHOD__, $flags = 0 ) {
 		if ( $this->role !== ILoadBalancer::DB_PRIMARY ) {
 			$flags |= IDatabase::QUERY_REPLICA_ROLE;
@@ -332,18 +362,21 @@ class DBConnRef implements Stringable, IMaintainableDatabase, IDatabaseForOwner 
 		return new ReplaceQueryBuilder( $this );
 	}
 
+	/** @inheritDoc */
 	public function selectField(
 		$tables, $var, $cond = '', $fname = __METHOD__, $options = [], $join_conds = []
 	) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function selectFieldValues(
 		$tables, $var, $cond = '', $fname = __METHOD__, $options = [], $join_conds = []
 	): array {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function select(
 		$tables, $vars, $conds = '', $fname = __METHOD__,
 		$options = [], $join_conds = []
@@ -351,6 +384,7 @@ class DBConnRef implements Stringable, IMaintainableDatabase, IDatabaseForOwner 
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function selectSQLText(
 		$tables, $vars, $conds = '', $fname = __METHOD__,
 		$options = [], $join_conds = []
@@ -358,10 +392,12 @@ class DBConnRef implements Stringable, IMaintainableDatabase, IDatabaseForOwner 
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function limitResult( $sql, $limit, $offset = false ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function selectRow(
 		$tables, $vars, $conds, $fname = __METHOD__,
 		$options = [], $join_conds = []
@@ -369,18 +405,21 @@ class DBConnRef implements Stringable, IMaintainableDatabase, IDatabaseForOwner 
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function estimateRowCount(
 		$tables, $vars = '*', $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
 	): int {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function selectRowCount(
 		$tables, $vars = '*', $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
 	): int {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function lockForUpdate(
 		$table, $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
 	) {
@@ -389,92 +428,113 @@ class DBConnRef implements Stringable, IMaintainableDatabase, IDatabaseForOwner 
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function fieldExists( $table, $field, $fname = __METHOD__ ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function indexExists( $table, $index, $fname = __METHOD__ ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function tableExists( $table, $fname = __METHOD__ ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function insert( $table, $rows, $fname = __METHOD__, $options = [] ) {
 		$this->assertRoleAllowsWrites();
 
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function update( $table, $set, $conds, $fname = __METHOD__, $options = [] ) {
 		$this->assertRoleAllowsWrites();
 
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function buildComparison( string $op, array $conds ): string {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function makeList( array $a, $mode = self::LIST_COMMA ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function makeWhereFrom2d( $data, $baseKey, $subKey ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function factorConds( $condsArray ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function bitNot( $field ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function bitAnd( $fieldLeft, $fieldRight ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function bitOr( $fieldLeft, $fieldRight ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function buildConcat( $stringList ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function buildGroupConcatField(
 		$delim, $tables, $field, $conds = '', $join_conds = []
 	) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function buildGreatest( $fields, $values ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function buildLeast( $fields, $values ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function buildSubstring( $input, $startPosition, $length = null ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function buildStringCast( $field ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function buildIntegerCast( $field ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function buildExcludedValue( $column ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function buildSelectSubquery(
 		$tables, $vars, $conds = '', $fname = __METHOD__,
 		$options = [], $join_conds = []
@@ -482,16 +542,19 @@ class DBConnRef implements Stringable, IMaintainableDatabase, IDatabaseForOwner 
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function databasesAreIndependent() {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function selectDomain( $domain ) {
 		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
 		// Disallow things that might confuse the LoadBalancer tracking
 		throw $this->getDomainChangeException();
 	}
 
+	/** @inheritDoc */
 	public function getDBname() {
 		if ( $this->conn === null ) {
 			// Avoid triggering a database connection
@@ -501,10 +564,12 @@ class DBConnRef implements Stringable, IMaintainableDatabase, IDatabaseForOwner 
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function getServer() {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function getServerName() {
 		if ( $this->conn === null ) {
 			// Avoid triggering a database connection
@@ -518,47 +583,57 @@ class DBConnRef implements Stringable, IMaintainableDatabase, IDatabaseForOwner 
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function addQuotes( $s ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function expr( string $field, string $op, $value ): Expression {
 		// Does not use __call here to delay creating the db connection
 		return new Expression( $field, $op, $value );
 	}
 
+	/** @inheritDoc */
 	public function andExpr( array $conds ): AndExpressionGroup {
 		// Does not use __call here to delay creating the db connection
 		return AndExpressionGroup::newFromArray( $conds );
 	}
 
+	/** @inheritDoc */
 	public function orExpr( array $conds ): OrExpressionGroup {
 		// Does not use __call here to delay creating the db connection
 		return OrExpressionGroup::newFromArray( $conds );
 	}
 
+	/** @inheritDoc */
 	public function addIdentifierQuotes( $s ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function buildLike( $param, ...$params ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function anyChar() {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function anyString() {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function replace( $table, $uniqueKeys, $rows, $fname = __METHOD__ ) {
 		$this->assertRoleAllowsWrites();
 
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function upsert(
 		$table, array $rows, $uniqueKeys, array $set, $fname = __METHOD__
 	) {
@@ -567,6 +642,7 @@ class DBConnRef implements Stringable, IMaintainableDatabase, IDatabaseForOwner 
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function deleteJoin(
 		$delTable, $joinTable, $delVar, $joinVar, $conds, $fname = __METHOD__
 	) {
@@ -575,12 +651,14 @@ class DBConnRef implements Stringable, IMaintainableDatabase, IDatabaseForOwner 
 		$this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function delete( $table, $conds, $fname = __METHOD__ ) {
 		$this->assertRoleAllowsWrites();
 
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function insertSelect(
 		$destTable, $srcTable, $varMap, $conds,
 		$fname = __METHOD__, $insertOptions = [], $selectOptions = [], $selectJoinConds = []
@@ -590,53 +668,65 @@ class DBConnRef implements Stringable, IMaintainableDatabase, IDatabaseForOwner 
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function unionSupportsOrderAndLimit() {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function unionQueries( $sqls, $all, $options = [] ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function conditional( $cond, $caseTrueExpression, $caseFalseExpression ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function strreplace( $orig, $old, $new ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function primaryPosWait( DBPrimaryPos $pos, $timeout ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function getPrimaryPos() {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function serverIsReadOnly() {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function onTransactionResolution( callable $callback, $fname = __METHOD__ ) {
 		// DB_REPLICA role: caller might want to refresh cache after a REPEATABLE-READ snapshot
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function onTransactionCommitOrIdle( callable $callback, $fname = __METHOD__ ) {
 		// DB_REPLICA role: caller might want to refresh cache after a REPEATABLE-READ snapshot
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function onTransactionPreCommitOrIdle( callable $callback, $fname = __METHOD__ ) {
 		// DB_REPLICA role: caller might want to refresh cache after a cache mutex is released
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function setTransactionListener( $name, ?callable $callback = null ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function startAtomic(
 		$fname = __METHOD__, $cancelable = IDatabase::ATOMIC_NOT_CANCELABLE
 	) {
@@ -644,16 +734,19 @@ class DBConnRef implements Stringable, IMaintainableDatabase, IDatabaseForOwner 
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function endAtomic( $fname = __METHOD__ ) {
 		// Don't call assertRoleAllowsWrites(); caller might want a REPEATABLE-READ snapshot
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function cancelAtomic( $fname = __METHOD__, ?AtomicSectionIdentifier $sectionId = null ) {
 		// Don't call assertRoleAllowsWrites(); caller might want a REPEATABLE-READ snapshot
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function doAtomicSection(
 		$fname, callable $callback, $cancelable = self::ATOMIC_NOT_CANCELABLE
 	) {
@@ -661,124 +754,152 @@ class DBConnRef implements Stringable, IMaintainableDatabase, IDatabaseForOwner 
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function begin( $fname = __METHOD__, $mode = IDatabase::TRANSACTION_EXPLICIT ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function commit( $fname = __METHOD__, $flush = self::FLUSHING_ONE ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function rollback( $fname = __METHOD__, $flush = self::FLUSHING_ONE ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function flushSession( $fname = __METHOD__, $flush = self::FLUSHING_ONE ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function flushSnapshot( $fname = __METHOD__, $flush = self::FLUSHING_ONE ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function timestamp( $ts = 0 ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function timestampOrNull( $ts = null ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function ping( &$rtt = null ) {
 		return func_num_args()
 			? $this->__call( __FUNCTION__, [ &$rtt ] )
 			: $this->__call( __FUNCTION__, [] ); // method cares about null vs missing
 	}
 
+	/** @inheritDoc */
 	public function getLag() {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function getSessionLagStatus() {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function encodeBlob( $b ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function decodeBlob( $b ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function setSessionOptions( array $options ) {
 		$this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function setSchemaVars( $vars ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function lockIsFree( $lockName, $method ) {
 		$this->assertRoleAllowsWrites();
 
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function lock( $lockName, $method, $timeout = 5, $flags = 0 ) {
 		$this->assertRoleAllowsWrites();
 
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function unlock( $lockName, $method ) {
 		$this->assertRoleAllowsWrites();
 
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function getScopedLockAndFlush( $lockKey, $fname, $timeout ) {
 		$this->assertRoleAllowsWrites();
 
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function getInfinity() {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function encodeExpiry( $expiry ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function decodeExpiry( $expiry, $format = TS_MW ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function isReadOnly() {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function setTableAliases( array $aliases ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function getTableAliases() {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function tableName( $name, $format = 'quoted' ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function tableNames( ...$tables ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function tableNamesN( ...$tables ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function sourceFile(
 		$filename,
 		?callable $lineCallback = null,
@@ -791,6 +912,7 @@ class DBConnRef implements Stringable, IMaintainableDatabase, IDatabaseForOwner 
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function sourceStream(
 		$fp,
 		?callable $lineCallback = null,
@@ -803,22 +925,26 @@ class DBConnRef implements Stringable, IMaintainableDatabase, IDatabaseForOwner 
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function dropTable( $table, $fname = __METHOD__ ) {
 		$this->assertRoleAllowsWrites();
 
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function truncateTable( $table, $fname = __METHOD__ ) {
 		$this->assertRoleAllowsWrites();
 
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function streamStatementEnd( &$sql, &$newLine ) {
 		return $this->__call( __FUNCTION__, [ &$sql, &$newLine ] );
 	}
 
+	/** @inheritDoc */
 	public function duplicateTableStructure(
 		$oldName, $newName, $temporary = false, $fname = __METHOD__
 	) {
@@ -827,14 +953,17 @@ class DBConnRef implements Stringable, IMaintainableDatabase, IDatabaseForOwner 
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function indexUnique( $table, $index, $fname = __METHOD__ ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function listTables( $prefix = null, $fname = __METHOD__ ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/** @inheritDoc */
 	public function fieldInfo( $table, $field ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
