@@ -4268,7 +4268,7 @@
 	"interwiki_deleted": "O prefixo \"$1\" foi removido da tabelas de interwikis.",
 	"interwiki_delfailed": "O prefixo \"$1\" não pôde ser removido da tabela de interwikis.",
 	"interwiki-logtext": "Visualizar o registo",
-	"interwiki_addtext": "Adicione um prefixo de interwiki ou idioma",
+	"interwiki_addtext": "Adicionar um prefixo interwiki ou de idioma",
 	"interwiki-addtext-local": "Adicione um interwiki local ou prefixo de idioma",
 	"interwiki-addtext-nolang": "Adicionar um prefixo interwiki",
 	"interwiki-addtext-local-nolang": "Adicionar um prefixo interwiki local",

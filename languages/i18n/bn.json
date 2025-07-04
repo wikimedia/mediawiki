@@ -164,6 +164,7 @@
 	"redirectpagesub": "পুনর্নির্দেশ পাতা",
 	"redirectto": "পুনর্নির্দেশিত হয়েছে:",
 	"lastmodifiedat": "এই পাতা শেষ সম্পাদিত হয়েছে $2টার সময়, $1 তারিখে।",
+	"renderedwith-parsoid": "এই পাতাটি [[mw:Special:MyLanguage/Parsoid|পার্সইড]] দিয়ে রেন্ডার করা হয়েছে।",
 	"viewcount": "এই পাতাটি {{PLURAL:$1|একবার|$1 বার}} দেখা হয়েছে।",
 	"protectedpage": "সুরক্ষিত পাতা",
 	"jumpto": "সরাসরি যান:",

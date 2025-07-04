@@ -317,6 +317,7 @@
 	"redirectpagesub": "重定向页面",
 	"redirectto": "重定向到：",
 	"lastmodifiedat": "此页面最后编辑于$1 $2。",
+	"renderedwith-parsoid": "页面由[[mw:Special:MyLanguage/Parsoid|Parsoid]]渲染。",
 	"viewcount": "此页面已被访问过$1次。",
 	"protectedpage": "受保护页面",
 	"jumpto": "跳转至：",
