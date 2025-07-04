@@ -55,51 +55,63 @@ class DerivativeRequest extends FauxRequest {
 		parent::__construct( $data, $wasPosted );
 	}
 
+	/** @inheritDoc */
 	public function getCookie( $key, $prefix = null, $default = null ) {
 		return $this->base->getCookie( $key, $prefix, $default );
 	}
 
+	/** @inheritDoc */
 	public function getHeader( $name, $flags = 0 ) {
 		return $this->base->getHeader( $name, $flags );
 	}
 
+	/** @inheritDoc */
 	public function getAllHeaders() {
 		return $this->base->getAllHeaders();
 	}
 
+	/** @inheritDoc */
 	public function getSession(): Session {
 		return $this->base->getSession();
 	}
 
+	/** @inheritDoc */
 	public function getSessionData( $key ) {
 		return $this->base->getSessionData( $key );
 	}
 
+	/** @inheritDoc */
 	public function setSessionData( $key, $data ) {
 		$this->base->setSessionData( $key, $data );
 	}
 
+	/** @inheritDoc */
 	public function getAcceptLang() {
 		return $this->base->getAcceptLang();
 	}
 
+	/** @inheritDoc */
 	public function getIP(): string {
 		return $this->ip ?: $this->base->getIP();
 	}
 
+	/** @inheritDoc */
 	public function setIP( $ip ) {
 		$this->ip = $ip;
 	}
 
+	/** @inheritDoc */
 	public function getProtocol() {
 		return $this->base->getProtocol();
 	}
 
+	/** @inheritDoc */
 	public function getUpload( $key ) {
 		// @phan-suppress-next-line PhanTypeMismatchReturnSuperType
 		return $this->base->getUpload( $key );
 	}
 
+	/** @inheritDoc */
 	public function getElapsedTime() {
 		return $this->base->getElapsedTime();
 	}

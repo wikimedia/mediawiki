@@ -34,6 +34,7 @@ class ProfilerSectionOnly extends Profiler {
 		$this->sprofiler = new SectionProfiler();
 	}
 
+	/** @inheritDoc */
 	public function scopedProfileIn( $section ) {
 		return $this->sprofiler->scopedProfileIn( $section );
 	}
@@ -41,10 +42,12 @@ class ProfilerSectionOnly extends Profiler {
 	public function close() {
 	}
 
+	/** @inheritDoc */
 	public function getFunctionStats() {
 		return $this->sprofiler->getFunctionStats();
 	}
 
+	/** @inheritDoc */
 	public function getOutput() {
 		return $this->getFunctionReport();
 	}

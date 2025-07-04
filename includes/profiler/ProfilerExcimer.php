@@ -67,6 +67,7 @@ class ProfilerExcimer extends Profiler {
 		}
 	}
 
+	/** @inheritDoc */
 	public function scopedProfileIn( $section ) {
 	}
 
@@ -75,6 +76,7 @@ class ProfilerExcimer extends Profiler {
 		$this->realProf->stop();
 	}
 
+	/** @inheritDoc */
 	public function getFunctionStats() {
 		$this->close();
 		$cpuStats = $this->cpuProf->getLog()->aggregateByFunction();
@@ -130,6 +132,7 @@ class ProfilerExcimer extends Profiler {
 		return $resultStats;
 	}
 
+	/** @inheritDoc */
 	public function getOutput() {
 		$this->close();
 		$cpuLog = $this->cpuProf->getLog();

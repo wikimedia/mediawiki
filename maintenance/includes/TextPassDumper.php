@@ -242,11 +242,13 @@ TEXT
 		}
 	}
 
+	/** @inheritDoc */
 	public function initProgress( $history = WikiExporter::FULL ) {
 		parent::initProgress();
 		$this->timeOfCheckpoint = $this->startTime;
 	}
 
+	/** @inheritDoc */
 	public function dump( $history, $text = WikiExporter::TEXT ) {
 		// Notice messages will foul up your XML output even if they're
 		// relatively harmless.

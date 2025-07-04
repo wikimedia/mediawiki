@@ -358,6 +358,7 @@ class ExtensionProcessor implements Processor {
 		}
 	}
 
+	/** @inheritDoc */
 	public function getExtractedInfo( bool $includeDev = false ) {
 		// Make sure the merge strategies are set
 		foreach ( $this->globals as $key => $val ) {
@@ -396,6 +397,7 @@ class ExtensionProcessor implements Processor {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getRequirements( array $info, $includeDev ) {
 		// Quick shortcuts
 		if ( !$includeDev || !isset( $info['dev-requires'] ) ) {

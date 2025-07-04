@@ -15,10 +15,12 @@ class ArrayConfigBuilder extends ConfigBuilderBase {
 		return array_key_exists( $key, $this->config );
 	}
 
+	/** @inheritDoc */
 	public function get( string $key ) {
 		return $this->config[$key] ?? null;
 	}
 
+	/** @inheritDoc */
 	protected function update( string $key, $value ) {
 		$this->config[$key] = $value;
 	}
@@ -53,6 +55,7 @@ class ArrayConfigBuilder extends ConfigBuilderBase {
 		return new HashConfig( $this->config );
 	}
 
+	/** @inheritDoc */
 	public function setMultiDefault( $defaults, $mergeStrategies ): ConfigBuilder {
 		foreach ( $defaults as $key => $defaultValue ) {
 			// Optimization: Inlined logic from setDefault() for performance

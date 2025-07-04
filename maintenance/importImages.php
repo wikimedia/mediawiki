@@ -133,6 +133,7 @@ class ImportImages extends Maintenance {
 		$this->addOption( 'dry', "Dry run, don't import anything" );
 	}
 
+	/** @inheritDoc */
 	public function execute() {
 		$services = $this->getServiceContainer();
 		$permissionManager = $services->getPermissionManager();

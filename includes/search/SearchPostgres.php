@@ -52,6 +52,7 @@ class SearchPostgres extends SearchDatabase {
 		return new SqlSearchResultSet( $resultSet, $this->searchTerms );
 	}
 
+	/** @inheritDoc */
 	protected function doSearchTextInDB( $term ) {
 		$q = $this->searchQuery( $term, 'textvector' );
 		$olderror = error_reporting( E_ERROR );
@@ -203,6 +204,7 @@ class SearchPostgres extends SearchDatabase {
 
 	// Most of the work of these two functions are done automatically via triggers
 
+	/** @inheritDoc */
 	public function update( $pageid, $title, $text ) {
 		// We don't want to index older revisions
 		$slotRoleStore = MediaWikiServices::getInstance()->getSlotRoleStore();
@@ -224,6 +226,7 @@ class SearchPostgres extends SearchDatabase {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function updateTitle( $id, $title ) {
 		return true;
 	}

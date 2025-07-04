@@ -47,6 +47,7 @@ class MWCallbackStream implements StreamInterface {
 		$this->callback = $cb;
 	}
 
+	/** @inheritDoc */
 	public function write( $string ) {
 		return ( $this->callback )( $this, $string );
 	}

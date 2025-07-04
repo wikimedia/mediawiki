@@ -29,11 +29,13 @@ class GlobalConfigBuilder extends ConfigBuilderBase {
 		return isset( $GLOBALS[$var] ) || array_key_exists( $var, $GLOBALS );
 	}
 
+	/** @inheritDoc */
 	public function get( string $key ) {
 		$var = $this->getVarName( $key );
 		return $GLOBALS[ $var ] ?? null;
 	}
 
+	/** @inheritDoc */
 	protected function update( string $key, $value ) {
 		$var = $this->getVarName( $key );
 		$GLOBALS[ $var ] = $value;

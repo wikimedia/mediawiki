@@ -70,6 +70,7 @@ class SearchResultSet extends BaseSearchResultSet {
 		$this->hasMoreResults = $hasMoreResults;
 	}
 
+	/** @inheritDoc */
 	public function numRows() {
 		return $this->count();
 	}

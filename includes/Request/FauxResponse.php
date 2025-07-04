@@ -78,6 +78,7 @@ class FauxResponse extends WebResponse {
 		$this->code = intval( $code );
 	}
 
+	/** @inheritDoc */
 	public function headersSent() {
 		return false;
 	}

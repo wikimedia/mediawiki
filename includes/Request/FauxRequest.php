@@ -117,10 +117,12 @@ class FauxRequest extends WebRequest {
 		}
 	}
 
+	/** @inheritDoc */
 	public function getQueryValuesOnly() {
 		return $this->getQueryValues();
 	}
 
+	/** @inheritDoc */
 	public function getMethod() {
 		return $this->wasPosted ? 'POST' : 'GET';
 	}
@@ -132,6 +134,7 @@ class FauxRequest extends WebRequest {
 		return $this->wasPosted;
 	}
 
+	/** @inheritDoc */
 	public function getCookie( $key, $prefix = null, $default = null ) {
 		if ( $prefix === null ) {
 			$cookiePrefix = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::CookiePrefix );
@@ -237,6 +240,7 @@ class FauxRequest extends WebRequest {
 		return $this->requestUrl !== null;
 	}
 
+	/** @inheritDoc */
 	protected function getServerInfo( $name, $default = null ): ?string {
 		return $this->serverInfo[$name] ?? $default;
 	}
@@ -259,6 +263,7 @@ class FauxRequest extends WebRequest {
 		return $this->requestUrl;
 	}
 
+	/** @inheritDoc */
 	public function getProtocol() {
 		return $this->protocol;
 	}
@@ -292,6 +297,7 @@ class FauxRequest extends WebRequest {
 		return null;
 	}
 
+	/** @inheritDoc */
 	public function getPostValues() {
 		return $this->wasPosted ? $this->data : [];
 	}

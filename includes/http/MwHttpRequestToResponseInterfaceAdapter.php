@@ -31,6 +31,7 @@ class MwHttpRequestToResponseInterfaceAdapter implements ResponseInterface {
 		$this->mwHttpRequest = $mwHttpRequest;
 	}
 
+	/** @inheritDoc */
 	public function getProtocolVersion(): string {
 		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
 		// This is not accessible via MWHttpRequest, but it is set in its protected `respVersion` property.
@@ -38,40 +39,49 @@ class MwHttpRequestToResponseInterfaceAdapter implements ResponseInterface {
 		throw new LogicException( __METHOD__ . ' is not implemented' );
 	}
 
+	/** @inheritDoc */
 	public function withProtocolVersion( $version ): self {
 		$this->throwExceptionForBuilderMethod( __METHOD__ );
 	}
 
+	/** @inheritDoc */
 	public function getHeaders(): array {
 		return $this->mwHttpRequest->getResponseHeaders();
 	}
 
+	/** @inheritDoc */
 	public function hasHeader( $name ): bool {
 		return isset( $this->mwHttpRequest->getResponseHeaders()[$name] );
 	}
 
+	/** @inheritDoc */
 	public function getHeader( $name ): array {
 		return $this->hasHeader( $name ) ? $this->mwHttpRequest->getResponseHeaders()[$name] : [];
 	}
 
+	/** @inheritDoc */
 	public function getHeaderLine( $name ): string {
 		return $this->hasHeader( $name )
 			? implode( ',', $this->mwHttpRequest->getResponseHeaders()[$name] )
 			: '';
 	}
 
+	/** @inheritDoc */
 	public function withHeader( $name, $value ): self {
 		$this->throwExceptionForBuilderMethod( __METHOD__ );
 	}
 
+	/** @inheritDoc */
 	public function withAddedHeader( $name, $value ): self {
 		$this->throwExceptionForBuilderMethod( __METHOD__ );
 	}
 
+	/** @inheritDoc */
 	public function withoutHeader( $name ): self {
 		$this->throwExceptionForBuilderMethod( __METHOD__ );
 	}
 
+	/** @inheritDoc */
 	public function getBody(): StreamInterface {
 		return Utils::streamFor( $this->mwHttpRequest->getContent() );
 	}
@@ -80,10 +90,12 @@ class MwHttpRequestToResponseInterfaceAdapter implements ResponseInterface {
 		$this->throwExceptionForBuilderMethod( __METHOD__ );
 	}
 
+	/** @inheritDoc */
 	public function getStatusCode(): int {
 		return $this->mwHttpRequest->getStatus();
 	}
 
+	/** @inheritDoc */
 	public function withStatus( $code, $reasonPhrase = '' ): self {
 		$this->throwExceptionForBuilderMethod( __METHOD__ );
 	}

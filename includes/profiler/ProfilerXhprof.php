@@ -105,6 +105,7 @@ class ProfilerXhprof extends Profiler {
 		return $this->xhprofData;
 	}
 
+	/** @inheritDoc */
 	public function scopedProfileIn( $section ) {
 		$key = 'section.' . ltrim( $section, '.' );
 		return $this->sprofiler->scopedProfileIn( $key );
@@ -144,6 +145,7 @@ class ProfilerXhprof extends Profiler {
 		return false;
 	}
 
+	/** @inheritDoc */
 	public function getFunctionStats() {
 		$metrics = $this->getXhprofData()->getCompleteMetrics();
 		$profile = [];

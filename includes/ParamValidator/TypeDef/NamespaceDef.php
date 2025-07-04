@@ -32,6 +32,7 @@ class NamespaceDef extends EnumDef {
 		$this->nsInfo = $nsInfo;
 	}
 
+	/** @inheritDoc */
 	public function validate( $name, $value, array $settings, array $options ) {
 		if ( !is_int( $value ) && preg_match( '/^[+-]?\d+$/D', $value ) ) {
 			// Convert to int since that's what getEnumValues() returns.
@@ -41,6 +42,7 @@ class NamespaceDef extends EnumDef {
 		return parent::validate( $name, $value, $settings, $options );
 	}
 
+	/** @inheritDoc */
 	public function getEnumValues( $name, array $settings, array $options ) {
 		$namespaces = $this->nsInfo->getValidNamespaces();
 		$extra = $settings[self::PARAM_EXTRA_NAMESPACES] ?? [];
@@ -51,6 +53,7 @@ class NamespaceDef extends EnumDef {
 		return $namespaces;
 	}
 
+	/** @inheritDoc */
 	public function normalizeSettings( array $settings ) {
 		// Force PARAM_ALL
 		if ( !empty( $settings[ParamValidator::PARAM_ISMULTI] ) ) {
@@ -59,6 +62,7 @@ class NamespaceDef extends EnumDef {
 		return parent::normalizeSettings( $settings );
 	}
 
+	/** @inheritDoc */
 	public function checkSettings( string $name, $settings, array $options, array $ret ): array {
 		$ret = parent::checkSettings( $name, $settings, $options, $ret );
 
@@ -92,6 +96,7 @@ class NamespaceDef extends EnumDef {
 		return $ret;
 	}
 
+	/** @inheritDoc */
 	public function getParamInfo( $name, array $settings, array $options ) {
 		$info = parent::getParamInfo( $name, $settings, $options );
 

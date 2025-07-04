@@ -38,6 +38,7 @@ class SqlSearchResultSet extends SearchResultSet {
 		return $this->terms;
 	}
 
+	/** @inheritDoc */
 	public function numRows() {
 		if ( $this->resultSet === false ) {
 			return 0;
@@ -46,6 +47,7 @@ class SqlSearchResultSet extends SearchResultSet {
 		return $this->resultSet->numRows();
 	}
 
+	/** @inheritDoc */
 	public function extractResults() {
 		if ( $this->resultSet === false ) {
 			return [];
@@ -68,6 +70,7 @@ class SqlSearchResultSet extends SearchResultSet {
 		return $this->results;
 	}
 
+	/** @inheritDoc */
 	public function getTotalHits() {
 		if ( $this->totalHits !== null ) {
 			return $this->totalHits;

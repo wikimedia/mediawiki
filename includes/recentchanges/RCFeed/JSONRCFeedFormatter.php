@@ -36,6 +36,7 @@ use MediaWiki\Json\FormatJson;
  */
 class JSONRCFeedFormatter extends MachineReadableRCFeedFormatter {
 
+	/** @inheritDoc */
 	protected function formatArray( array $packet ) {
 		return FormatJson::encode( $packet );
 	}

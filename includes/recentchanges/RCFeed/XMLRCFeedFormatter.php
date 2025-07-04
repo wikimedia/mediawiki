@@ -28,6 +28,7 @@ use MediaWiki\Api\ApiFormatXml;
  */
 class XMLRCFeedFormatter extends MachineReadableRCFeedFormatter {
 
+	/** @inheritDoc */
 	protected function formatArray( array $packet ) {
 		return ApiFormatXml::recXmlPrint( 'recentchange', $packet, 0 );
 	}

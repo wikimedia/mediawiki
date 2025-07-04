@@ -83,6 +83,7 @@ class UserDef extends TypeDef {
 		$this->userNameUtils = $userNameUtils;
 	}
 
+	/** @inheritDoc */
 	public function validate( $name, $value, array $settings, array $options ) {
 		$this->failIfNotString( $name, $value, $settings, $options );
 
@@ -96,6 +97,7 @@ class UserDef extends TypeDef {
 		return empty( $settings[self::PARAM_RETURN_OBJECT] ) ? $user->getName() : $user;
 	}
 
+	/** @inheritDoc */
 	public function normalizeSettings( array $settings ) {
 		if ( isset( $settings[self::PARAM_ALLOWED_USER_TYPES] ) ) {
 			$settings[self::PARAM_ALLOWED_USER_TYPES] = array_values( array_intersect(
@@ -110,6 +112,7 @@ class UserDef extends TypeDef {
 		return parent::normalizeSettings( $settings );
 	}
 
+	/** @inheritDoc */
 	public function checkSettings( string $name, $settings, array $options, array $ret ): array {
 		$ret = parent::checkSettings( $name, $settings, $options, $ret );
 
@@ -279,6 +282,7 @@ class UserDef extends TypeDef {
 		return [ '', null ];
 	}
 
+	/** @inheritDoc */
 	public function getParamInfo( $name, array $settings, array $options ) {
 		$info = parent::getParamInfo( $name, $settings, $options );
 
@@ -287,6 +291,7 @@ class UserDef extends TypeDef {
 		return $info;
 	}
 
+	/** @inheritDoc */
 	public function getHelpInfo( $name, array $settings, array $options ) {
 		$info = parent::getParamInfo( $name, $settings, $options );
 

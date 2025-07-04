@@ -17,6 +17,7 @@ class SearchNearMatchResultSet extends SearchResultSet {
 		}
 	}
 
+	/** @inheritDoc */
 	public function numRows() {
 		return $this->results ? 1 : 0;
 	}

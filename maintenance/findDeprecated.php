@@ -37,6 +37,7 @@ class FileAwareNodeVisitor extends PhpParser\NodeVisitorAbstract {
 	/** @var string|null */
 	private $currentFile = null;
 
+	/** @inheritDoc */
 	public function enterNode( PhpParser\Node $node ) {
 		$retVal = parent::enterNode( $node );
 		$node->filename = $this->currentFile;
@@ -99,6 +100,7 @@ class DeprecatedInterfaceFinder extends FileAwareNodeVisitor {
 		}
 	}
 
+	/** @inheritDoc */
 	public function enterNode( PhpParser\Node $node ) {
 		$retVal = parent::enterNode( $node );
 

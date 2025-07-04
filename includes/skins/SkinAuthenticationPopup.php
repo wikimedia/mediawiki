@@ -48,6 +48,7 @@ class SkinAuthenticationPopup extends SkinMustache {
 		);
 	}
 
+	/** @inheritDoc */
 	public function getTemplateData() {
 		$data = parent::getTemplateData();
 

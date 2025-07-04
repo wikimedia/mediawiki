@@ -160,6 +160,7 @@ class SearchSqlite extends SearchDatabase {
 		return $regex;
 	}
 
+	/** @inheritDoc */
 	public function legalSearchChars( $type = self::CHARS_ALL ) {
 		$searchChars = parent::legalSearchChars( $type );
 		if ( $type === self::CHARS_ALL ) {

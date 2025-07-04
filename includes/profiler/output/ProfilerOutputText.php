@@ -39,6 +39,7 @@ class ProfilerOutputText extends ProfilerOutput {
 		$this->visible = $params['visible'] ?? false;
 	}
 
+	/** @inheritDoc */
 	public function logsToOutput() {
 		return true;
 	}

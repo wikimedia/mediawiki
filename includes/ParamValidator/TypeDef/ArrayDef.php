@@ -26,10 +26,12 @@ class ArrayDef extends TypeDef {
 	 */
 	public const PARAM_SCHEMA = 'param-schema';
 
+	/** @inheritDoc */
 	public function supportsArrays() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function validate( $name, $value, array $settings, array $options ) {
 		if ( !is_array( $value ) ) {
 			// Message used: paramvalidator-notarray
@@ -72,6 +74,7 @@ class ArrayDef extends TypeDef {
 		return $value;
 	}
 
+	/** @inheritDoc */
 	public function stringifyValue( $name, $value, array $settings, array $options ) {
 		if ( !is_array( $value ) ) {
 			return parent::stringifyValue( $name, $value, $settings, $options );

@@ -29,6 +29,7 @@ class TagsDef extends EnumDef {
 		$this->changeTagsStore = $changeTagsStore;
 	}
 
+	/** @inheritDoc */
 	public function validate( $name, $value, array $settings, array $options ) {
 		$this->failIfNotString( $name, $value, $settings, $options );
 
@@ -68,6 +69,7 @@ class TagsDef extends EnumDef {
 		return $ret;
 	}
 
+	/** @inheritDoc */
 	public function getEnumValues( $name, array $settings, array $options ) {
 		return $this->changeTagsStore->listExplicitlyDefinedTags();
 	}

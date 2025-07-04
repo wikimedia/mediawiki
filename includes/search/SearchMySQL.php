@@ -160,6 +160,7 @@ class SearchMySQL extends SearchDatabase {
 		return $regex;
 	}
 
+	/** @inheritDoc */
 	public function legalSearchChars( $type = self::CHARS_ALL ) {
 		$searchChars = parent::legalSearchChars( $type );
 
@@ -223,6 +224,7 @@ class SearchMySQL extends SearchDatabase {
 		return new SqlSearchResultSet( $resultSet, $this->searchTerms, $total );
 	}
 
+	/** @inheritDoc */
 	public function supports( $feature ) {
 		switch ( $feature ) {
 			case 'title-suffix-filter':

@@ -24,14 +24,17 @@
  * @ingroup Profiler
  */
 class ProfilerStub extends Profiler {
+	/** @inheritDoc */
 	public function scopedProfileIn( $section ) {
 		return null; // no-op
 	}
 
+	/** @inheritDoc */
 	public function getFunctionStats() {
 		return [];
 	}
 
+	/** @inheritDoc */
 	public function getOutput() {
 		return '';
 	}

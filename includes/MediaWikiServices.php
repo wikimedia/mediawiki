@@ -361,6 +361,7 @@ class MediaWikiServices extends ServiceContainer {
 		return self::$instance;
 	}
 
+	/** @inheritDoc */
 	public function getService( $name ) {
 		// TODO: in 1.37, getInstance() should fail if $globalInstanceAllowed is false! (T153256)
 		if ( !self::$globalInstanceAllowed && $this === self::$instance ) {
