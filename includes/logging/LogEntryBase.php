@@ -32,10 +32,12 @@ namespace MediaWiki\Logging;
  */
 abstract class LogEntryBase implements LogEntry {
 
+	/** @inheritDoc */
 	public function getFullType() {
 		return $this->getType() . '/' . $this->getSubtype();
 	}
 
+	/** @inheritDoc */
 	public function isDeleted( $field ) {
 		return ( $this->getDeleted() & $field ) === $field;
 	}

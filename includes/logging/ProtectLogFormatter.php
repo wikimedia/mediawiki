@@ -45,6 +45,7 @@ class ProtectLogFormatter extends LogFormatter {
 		$this->titleParser = $titleParser;
 	}
 
+	/** @inheritDoc */
 	public function getPreloadTitles() {
 		$subtype = $this->entry->getSubtype();
 		if ( $subtype === 'move_prot' ) {
@@ -57,6 +58,7 @@ class ProtectLogFormatter extends LogFormatter {
 		return [];
 	}
 
+	/** @inheritDoc */
 	protected function getMessageKey() {
 		$key = parent::getMessageKey();
 		$params = $this->extractParameters();
@@ -68,6 +70,7 @@ class ProtectLogFormatter extends LogFormatter {
 		return $key;
 	}
 
+	/** @inheritDoc */
 	protected function getMessageParameters() {
 		$params = parent::getMessageParameters();
 
@@ -96,6 +99,7 @@ class ProtectLogFormatter extends LogFormatter {
 		return $params;
 	}
 
+	/** @inheritDoc */
 	public function getActionLinks() {
 		$linkRenderer = $this->getLinkRenderer();
 		$subtype = $this->entry->getSubtype();
@@ -138,6 +142,7 @@ class ProtectLogFormatter extends LogFormatter {
 		}
 	}
 
+	/** @inheritDoc */
 	protected function getParametersForApi() {
 		$entry = $this->entry;
 		$subtype = $this->entry->getSubtype();
@@ -171,6 +176,7 @@ class ProtectLogFormatter extends LogFormatter {
 		return $params;
 	}
 
+	/** @inheritDoc */
 	public function formatParametersForApi() {
 		$ret = parent::formatParametersForApi();
 		if ( isset( $ret['details'] ) && is_array( $ret['details'] ) ) {

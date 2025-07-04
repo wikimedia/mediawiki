@@ -36,6 +36,7 @@ use MediaWiki\SpecialPage\SpecialPage;
  */
 class TagLogFormatter extends LogFormatter {
 
+	/** @inheritDoc */
 	protected function getMessageParameters() {
 		$params = parent::getMessageParameters();
 
@@ -76,6 +77,7 @@ class TagLogFormatter extends LogFormatter {
 		return $params;
 	}
 
+	/** @inheritDoc */
 	protected function getMessageKey() {
 		$key = parent::getMessageKey();
 		$rawParams = $this->entry->getParameters();

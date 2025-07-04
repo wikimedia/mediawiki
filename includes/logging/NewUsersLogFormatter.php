@@ -45,6 +45,7 @@ class NewUsersLogFormatter extends LogFormatter {
 		$this->namespaceInfo = $namespaceInfo;
 	}
 
+	/** @inheritDoc */
 	protected function getMessageParameters() {
 		$params = parent::getMessageParameters();
 		$subtype = $this->entry->getSubtype();
@@ -61,6 +62,7 @@ class NewUsersLogFormatter extends LogFormatter {
 		return $params;
 	}
 
+	/** @inheritDoc */
 	public function getComment() {
 		$timestamp = wfTimestamp( TS_MW, $this->entry->getTimestamp() );
 		if ( $timestamp < '20080129000000' ) {
@@ -72,6 +74,7 @@ class NewUsersLogFormatter extends LogFormatter {
 		return parent::getComment();
 	}
 
+	/** @inheritDoc */
 	public function getPreloadTitles() {
 		$subtype = $this->entry->getSubtype();
 		if ( $subtype === 'create2' || $subtype === 'byemail' ) {

@@ -33,6 +33,7 @@ use MediaWiki\Message\Message;
  * @since 1.19
  */
 class PatrolLogFormatter extends LogFormatter {
+	/** @inheritDoc */
 	protected function getMessageKey() {
 		$params = $this->getMessageParameters();
 		if ( isset( $params[5] ) && $params[5] ) {
@@ -44,6 +45,7 @@ class PatrolLogFormatter extends LogFormatter {
 		return $key;
 	}
 
+	/** @inheritDoc */
 	protected function getMessageParameters() {
 		$params = parent::getMessageParameters();
 
@@ -69,6 +71,7 @@ class PatrolLogFormatter extends LogFormatter {
 		return $params;
 	}
 
+	/** @inheritDoc */
 	protected function getParametersForApi() {
 		$entry = $this->entry;
 		$params = $entry->getParameters();

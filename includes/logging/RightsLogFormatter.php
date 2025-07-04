@@ -38,6 +38,7 @@ use MediaWiki\WikiMap\WikiMap;
  * @since 1.21
  */
 class RightsLogFormatter extends LogFormatter {
+	/** @inheritDoc */
 	protected function makePageLink( ?Title $title = null, $parameters = [], $html = null ) {
 		$userrightsInterwikiDelimiter = $this->context->getConfig()
 			->get( MainConfigNames::UserrightsInterwikiDelimiter );
@@ -68,6 +69,7 @@ class RightsLogFormatter extends LogFormatter {
 		return parent::makePageLink( $title, $parameters, $title ? $title->getText() : null );
 	}
 
+	/** @inheritDoc */
 	protected function getMessageKey() {
 		$key = parent::getMessageKey();
 		$params = $this->getMessageParameters();
@@ -79,6 +81,7 @@ class RightsLogFormatter extends LogFormatter {
 		return $key;
 	}
 
+	/** @inheritDoc */
 	protected function getMessageParameters() {
 		$params = parent::getMessageParameters();
 
@@ -388,6 +391,7 @@ class RightsLogFormatter extends LogFormatter {
 		];
 	}
 
+	/** @inheritDoc */
 	protected function getParametersForApi() {
 		$entry = $this->entry;
 		$params = $entry->getParameters();
@@ -446,6 +450,7 @@ class RightsLogFormatter extends LogFormatter {
 		return $params;
 	}
 
+	/** @inheritDoc */
 	public function formatParametersForApi() {
 		$ret = parent::formatParametersForApi();
 		if ( isset( $ret['oldgroups'] ) ) {

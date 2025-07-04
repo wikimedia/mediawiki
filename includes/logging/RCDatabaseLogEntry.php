@@ -41,38 +41,46 @@ use Wikimedia\Rdbms\IReadableDatabase;
  */
 class RCDatabaseLogEntry extends DatabaseLogEntry {
 
+	/** @inheritDoc */
 	public static function newFromId( $id, IReadableDatabase $db ) {
 		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
 		// Make the LSP violation explicit to prevent sneaky failures
 		throw new LogicException( 'Not implemented!' );
 	}
 
+	/** @inheritDoc */
 	public static function getSelectQueryData() {
 		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
 		// Make the LSP violation explicit to prevent sneaky failures
 		throw new LogicException( 'Not implemented!' );
 	}
 
+	/** @inheritDoc */
 	public function getId() {
 		return $this->row->rc_logid;
 	}
 
+	/** @inheritDoc */
 	protected function getRawParameters() {
 		return $this->row->rc_params;
 	}
 
+	/** @inheritDoc */
 	public function getAssociatedRevId() {
 		return $this->row->rc_this_oldid;
 	}
 
+	/** @inheritDoc */
 	public function getType() {
 		return $this->row->rc_log_type;
 	}
 
+	/** @inheritDoc */
 	public function getSubtype() {
 		return $this->row->rc_log_action;
 	}
 
+	/** @inheritDoc */
 	public function getPerformerIdentity(): UserIdentity {
 		if ( !$this->performer ) {
 			$actorStore = MediaWikiServices::getInstance()->getActorStore();
@@ -113,16 +121,19 @@ class RCDatabaseLogEntry extends DatabaseLogEntry {
 		return $this->performer;
 	}
 
+	/** @inheritDoc */
 	public function getTarget() {
 		$namespace = $this->row->rc_namespace;
 		$page = $this->row->rc_title;
 		return Title::makeTitle( $namespace, $page );
 	}
 
+	/** @inheritDoc */
 	public function getTimestamp() {
 		return wfTimestamp( TS_MW, $this->row->rc_timestamp );
 	}
 
+	/** @inheritDoc */
 	public function getComment() {
 		$services = MediaWikiServices::getInstance();
 
@@ -135,6 +146,7 @@ class RCDatabaseLogEntry extends DatabaseLogEntry {
 			)->text;
 	}
 
+	/** @inheritDoc */
 	public function getDeleted() {
 		return $this->row->rc_deleted;
 	}

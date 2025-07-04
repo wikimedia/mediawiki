@@ -47,6 +47,7 @@ class MoveLogFormatter extends LogFormatter {
 		$this->titleParser = $titleParser;
 	}
 
+	/** @inheritDoc */
 	public function getPreloadTitles() {
 		$params = $this->extractParameters();
 
@@ -59,6 +60,7 @@ class MoveLogFormatter extends LogFormatter {
 		}
 	}
 
+	/** @inheritDoc */
 	protected function getMessageKey() {
 		$key = parent::getMessageKey();
 		$params = $this->extractParameters();
@@ -70,6 +72,7 @@ class MoveLogFormatter extends LogFormatter {
 		return $key;
 	}
 
+	/** @inheritDoc */
 	protected function getMessageParameters() {
 		$params = parent::getMessageParameters();
 		$oldname = $this->makePageLink( $this->entry->getTarget(), [ 'redirect' => 'no' ] );
@@ -81,6 +84,7 @@ class MoveLogFormatter extends LogFormatter {
 		return $params;
 	}
 
+	/** @inheritDoc */
 	public function getActionLinks() {
 		if ( $this->entry->isDeleted( LogPage::DELETED_ACTION ) // Action is hidden
 			|| $this->entry->getSubtype() !== 'move'
@@ -110,6 +114,7 @@ class MoveLogFormatter extends LogFormatter {
 		return $this->msg( 'parentheses' )->rawParams( $revert )->escaped();
 	}
 
+	/** @inheritDoc */
 	protected function getParametersForApi() {
 		$entry = $this->entry;
 		$params = $entry->getParameters();

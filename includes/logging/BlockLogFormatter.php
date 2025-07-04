@@ -55,6 +55,7 @@ class BlockLogFormatter extends LogFormatter {
 		$this->namespaceInfo = $namespaceInfo;
 	}
 
+	/** @inheritDoc */
 	protected function getMessageParameters() {
 		$params = parent::getMessageParameters();
 
@@ -165,6 +166,7 @@ class BlockLogFormatter extends LogFormatter {
 		return $params;
 	}
 
+	/** @inheritDoc */
 	protected function extractParameters() {
 		$params = parent::extractParameters();
 		// Legacy log params returning the params in index 3 and 4, moved to 4 and 5
@@ -178,6 +180,7 @@ class BlockLogFormatter extends LogFormatter {
 		return $params;
 	}
 
+	/** @inheritDoc */
 	public function getPreloadTitles() {
 		$title = $this->entry->getTarget();
 		$preload = [];
@@ -198,6 +201,7 @@ class BlockLogFormatter extends LogFormatter {
 		return $preload;
 	}
 
+	/** @inheritDoc */
 	public function getActionLinks() {
 		$subtype = $this->entry->getSubtype();
 		$linkRenderer = $this->getLinkRenderer();
@@ -313,6 +317,7 @@ class BlockLogFormatter extends LogFormatter {
 		return $messages[$flag];
 	}
 
+	/** @inheritDoc */
 	protected function getParametersForApi() {
 		$entry = $this->entry;
 		$params = $entry->getParameters();
@@ -392,6 +397,7 @@ class BlockLogFormatter extends LogFormatter {
 		return $ret;
 	}
 
+	/** @inheritDoc */
 	protected function getMessageKey() {
 		$type = $this->entry->getType();
 		$subtype = $this->entry->getSubtype();

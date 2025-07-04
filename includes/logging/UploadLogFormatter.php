@@ -31,6 +31,7 @@ namespace MediaWiki\Logging;
  */
 class UploadLogFormatter extends LogFormatter {
 
+	/** @inheritDoc */
 	protected function getParametersForApi() {
 		$entry = $this->entry;
 		$params = $entry->getParameters();

@@ -43,6 +43,7 @@ class PageLangLogFormatter extends LogFormatter {
 		$this->languageNameUtils = $languageNameUtils;
 	}
 
+	/** @inheritDoc */
 	protected function getMessageParameters() {
 		// Get the user language for displaying language names
 		$userLang = $this->context->getLanguage()->getCode();

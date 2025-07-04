@@ -30,6 +30,7 @@ namespace MediaWiki\Logging;
  * @since 1.27
  */
 class ImportLogFormatter extends LogFormatter {
+	/** @inheritDoc */
 	protected function getMessageKey() {
 		$key = parent::getMessageKey();
 		$params = $this->extractParameters();

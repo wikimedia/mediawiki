@@ -68,6 +68,7 @@ class LegacyLogFormatter extends LogFormatter {
 		$this->hookRunner = new HookRunner( $hookContainer );
 	}
 
+	/** @inheritDoc */
 	public function getComment() {
 		$this->comment ??= parent::getComment();
 
@@ -105,6 +106,7 @@ class LegacyLogFormatter extends LogFormatter {
 		return $action;
 	}
 
+	/** @inheritDoc */
 	public function getActionLinks() {
 		if ( $this->revert !== null ) {
 			return $this->revert;

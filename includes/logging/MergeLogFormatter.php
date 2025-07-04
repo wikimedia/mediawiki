@@ -46,6 +46,7 @@ class MergeLogFormatter extends LogFormatter {
 		$this->titleParser = $titleParser;
 	}
 
+	/** @inheritDoc */
 	public function getPreloadTitles() {
 		$params = $this->extractParameters();
 
@@ -56,6 +57,7 @@ class MergeLogFormatter extends LogFormatter {
 		return [];
 	}
 
+	/** @inheritDoc */
 	protected function getMessageParameters() {
 		$params = parent::getMessageParameters();
 		$oldname = $this->makePageLink( $this->entry->getTarget(), [ 'redirect' => 'no' ] );
@@ -67,6 +69,7 @@ class MergeLogFormatter extends LogFormatter {
 		return $params;
 	}
 
+	/** @inheritDoc */
 	public function getActionLinks() {
 		if ( $this->entry->isDeleted( LogPage::DELETED_ACTION ) // Action is hidden
 			|| !$this->context->getAuthority()->isAllowed( 'mergehistory' )
@@ -108,6 +111,7 @@ class MergeLogFormatter extends LogFormatter {
 		return $this->msg( 'parentheses' )->rawParams( $revert )->escaped();
 	}
 
+	/** @inheritDoc */
 	protected function getParametersForApi() {
 		$entry = $this->entry;
 		$params = $entry->getParameters();

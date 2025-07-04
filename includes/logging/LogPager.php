@@ -138,6 +138,7 @@ class LogPager extends ReverseChronologicalPager {
 		$this->mTagInvert = (bool)$tagInvert;
 	}
 
+	/** @inheritDoc */
 	public function getDefaultQuery() {
 		$query = parent::getDefaultQuery();
 		$query['type'] = $this->typeCGI; // arrays won't work here
@@ -471,6 +472,7 @@ class LogPager extends ReverseChronologicalPager {
 		);
 	}
 
+	/** @inheritDoc */
 	public function getIndexField() {
 		return [ [ 'log_timestamp', 'log_id' ] ];
 	}
@@ -488,6 +490,7 @@ class LogPager extends ReverseChronologicalPager {
 		$lb->execute();
 	}
 
+	/** @inheritDoc */
 	public function formatRow( $row ) {
 		return $this->mLogEventsList->logLine( $row );
 	}

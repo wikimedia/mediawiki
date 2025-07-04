@@ -6,6 +6,7 @@ use MediaWiki\Content\ContentHandler;
 use MediaWiki\SpecialPage\SpecialPage;
 
 class ContentModelLogFormatter extends LogFormatter {
+	/** @inheritDoc */
 	protected function getMessageParameters() {
 		$lang = $this->context->getLanguage();
 		$params = parent::getMessageParameters();
@@ -14,6 +15,7 @@ class ContentModelLogFormatter extends LogFormatter {
 		return $params;
 	}
 
+	/** @inheritDoc */
 	public function getActionLinks() {
 		if ( $this->entry->isDeleted( LogPage::DELETED_ACTION ) // Action is hidden
 			|| $this->entry->getSubtype() !== 'change'

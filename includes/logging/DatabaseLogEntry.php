@@ -168,20 +168,24 @@ class DatabaseLogEntry extends LogEntryBase {
 		return $this->row->log_params;
 	}
 
+	/** @inheritDoc */
 	public function isLegacy() {
 		// This extracts the property
 		$this->getParameters();
 		return $this->legacy;
 	}
 
+	/** @inheritDoc */
 	public function getType() {
 		return $this->row->log_type;
 	}
 
+	/** @inheritDoc */
 	public function getSubtype() {
 		return $this->row->log_action;
 	}
 
+	/** @inheritDoc */
 	public function getParameters() {
 		if ( $this->params === null ) {
 			$blob = $this->getRawParameters();
@@ -205,12 +209,14 @@ class DatabaseLogEntry extends LogEntryBase {
 		return $this->params;
 	}
 
+	/** @inheritDoc */
 	public function getAssociatedRevId() {
 		// This extracts the property
 		$this->getParameters();
 		return $this->revId;
 	}
 
+	/** @inheritDoc */
 	public function getPerformerIdentity(): UserIdentity {
 		if ( !$this->performer ) {
 			$actorStore = MediaWikiServices::getInstance()->getActorStore();
@@ -233,21 +239,25 @@ class DatabaseLogEntry extends LogEntryBase {
 		return $this->performer;
 	}
 
+	/** @inheritDoc */
 	public function getTarget() {
 		$namespace = $this->row->log_namespace;
 		$page = $this->row->log_title;
 		return MediaWikiServices::getInstance()->getTitleFactory()->makeTitle( $namespace, $page );
 	}
 
+	/** @inheritDoc */
 	public function getTimestamp() {
 		return wfTimestamp( TS_MW, $this->row->log_timestamp );
 	}
 
+	/** @inheritDoc */
 	public function getComment() {
 		return MediaWikiServices::getInstance()->getCommentStore()
 			->getComment( 'log_comment', $this->row )->text;
 	}
 
+	/** @inheritDoc */
 	public function getDeleted() {
 		return $this->row->log_deleted;
 	}

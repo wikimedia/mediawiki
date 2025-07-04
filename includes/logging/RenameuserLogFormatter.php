@@ -97,6 +97,7 @@ class RenameuserLogFormatter extends LogFormatter {
 		return $link;
 	}
 
+	/** @inheritDoc */
 	public function getMessageKey() {
 		$key = parent::getMessageKey();
 		$params = $this->extractParameters();
@@ -114,6 +115,7 @@ class RenameuserLogFormatter extends LogFormatter {
 		return $key;
 	}
 
+	/** @inheritDoc */
 	public function getPreloadTitles() {
 		$params = $this->extractParameters();
 		if ( !isset( $params[3] ) ) {
