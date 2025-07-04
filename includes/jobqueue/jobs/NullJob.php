@@ -66,6 +66,7 @@ class NullJob extends Job implements GenericParameterJob {
 		$this->removeDuplicates = !empty( $this->params['removeDuplicates'] );
 	}
 
+	/** @inheritDoc */
 	public function run() {
 		if ( $this->params['usleep'] > 0 ) {
 			usleep( $this->params['usleep'] );

@@ -85,10 +85,12 @@ class JobQueueDB extends JobQueue {
 		}
 	}
 
+	/** @inheritDoc */
 	protected function supportedOrders() {
 		return [ 'random', 'timestamp', 'fifo' ];
 	}
 
+	/** @inheritDoc */
 	protected function optimalOrder() {
 		return 'random';
 	}
@@ -654,6 +656,7 @@ class JobQueueDB extends JobQueue {
 		}
 	}
 
+	/** @inheritDoc */
 	public function getCoalesceLocationInternal() {
 		if ( $this->server ) {
 			return null; // not using the LBFactory instance
@@ -664,6 +667,7 @@ class JobQueueDB extends JobQueue {
 			: "LBFactory:{$this->domain}";
 	}
 
+	/** @inheritDoc */
 	protected function doGetSiblingQueuesWithJobs( array $types ) {
 		$dbr = $this->getReplicaDB();
 		// @note: this does not check whether the jobs are claimed or not.
@@ -685,6 +689,7 @@ class JobQueueDB extends JobQueue {
 		return $types;
 	}
 
+	/** @inheritDoc */
 	protected function doGetSiblingQueueSizes( array $types ) {
 		$dbr = $this->getReplicaDB();
 

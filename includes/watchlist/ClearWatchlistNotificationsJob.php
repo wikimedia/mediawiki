@@ -51,6 +51,7 @@ class ClearWatchlistNotificationsJob extends Job implements GenericParameterJob 
 		$this->removeDuplicates = true;
 	}
 
+	/** @inheritDoc */
 	public function run() {
 		$services = MediaWikiServices::getInstance();
 		$dbProvider = $services->getConnectionProvider();

@@ -42,6 +42,7 @@ class UserEditCountInitJob extends Job implements GenericParameterJob {
 		$this->removeDuplicates = true;
 	}
 
+	/** @inheritDoc */
 	public function run() {
 		$dbw = MediaWikiServices::getInstance()->getConnectionProvider()->getPrimaryDatabase();
 

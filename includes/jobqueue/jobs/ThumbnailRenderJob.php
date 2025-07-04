@@ -40,6 +40,7 @@ class ThumbnailRenderJob extends Job {
 		parent::__construct( 'ThumbnailRender', $title, $params );
 	}
 
+	/** @inheritDoc */
 	public function run() {
 		$uploadThumbnailRenderMethod = MediaWikiServices::getInstance()
 			->getMainConfig()->get( MainConfigNames::UploadThumbnailRenderMethod );

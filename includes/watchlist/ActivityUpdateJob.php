@@ -61,6 +61,7 @@ class ActivityUpdateJob extends Job {
 		$this->removeDuplicates = true;
 	}
 
+	/** @inheritDoc */
 	public function run() {
 		if ( $this->params['type'] === 'updateWatchlistNotification' ) {
 			$this->updateWatchlistNotification();

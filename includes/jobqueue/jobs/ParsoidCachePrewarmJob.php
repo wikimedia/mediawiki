@@ -162,6 +162,7 @@ class ParsoidCachePrewarmJob extends Job {
 		}
 	}
 
+	/** @inheritDoc */
 	public function run() {
 		$this->doParsoidCacheUpdate();
 

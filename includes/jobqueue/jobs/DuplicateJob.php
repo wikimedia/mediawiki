@@ -58,6 +58,7 @@ final class DuplicateJob extends Job implements GenericParameterJob {
 		return $djob;
 	}
 
+	/** @inheritDoc */
 	public function run() {
 		return true;
 	}

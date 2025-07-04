@@ -42,6 +42,7 @@ class PublishStashedFileJob extends Job implements GenericParameterJob {
 		$this->initialiseUploadJob( $this->params['filekey'] );
 	}
 
+	/** @inheritDoc */
 	public function getDeduplicationInfo() {
 		$info = parent::getDeduplicationInfo();
 		if ( is_array( $info['params'] ) ) {

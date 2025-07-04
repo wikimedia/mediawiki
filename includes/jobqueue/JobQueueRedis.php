@@ -119,14 +119,17 @@ class JobQueueRedis extends JobQueue {
 		$this->logger = LoggerFactory::getInstance( 'redis' );
 	}
 
+	/** @inheritDoc */
 	protected function supportedOrders() {
 		return [ 'timestamp', 'fifo' ];
 	}
 
+	/** @inheritDoc */
 	protected function optimalOrder() {
 		return 'fifo';
 	}
 
+	/** @inheritDoc */
 	protected function supportsDelayedJobs() {
 		return true;
 	}
@@ -606,14 +609,17 @@ LUA;
 		);
 	}
 
+	/** @inheritDoc */
 	public function getCoalesceLocationInternal() {
 		return "RedisServer:" . $this->server;
 	}
 
+	/** @inheritDoc */
 	protected function doGetSiblingQueuesWithJobs( array $types ) {
 		return array_keys( array_filter( $this->doGetSiblingQueueSizes( $types ) ) );
 	}
 
+	/** @inheritDoc */
 	protected function doGetSiblingQueueSizes( array $types ) {
 		$sizes = []; // (type => size)
 		$types = array_values( $types ); // reindex

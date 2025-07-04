@@ -52,6 +52,7 @@ class RenameUserTableJob extends Job {
 		$this->lbFactory = $lbFactory;
 	}
 
+	/** @inheritDoc */
 	public function run() {
 		$dbw = $this->lbFactory->getPrimaryDatabase();
 		$ticket = $this->lbFactory->getEmptyTransactionTicket( __METHOD__ );

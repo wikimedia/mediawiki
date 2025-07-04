@@ -68,6 +68,7 @@ class RecentChangesUpdateJob extends Job {
 		);
 	}
 
+	/** @inheritDoc */
 	public function run() {
 		if ( $this->params['type'] === 'purge' ) {
 			$this->purgeExpiredRows();

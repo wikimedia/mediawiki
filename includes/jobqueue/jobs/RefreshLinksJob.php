@@ -168,6 +168,7 @@ class RefreshLinksJob extends Job {
 		return $job;
 	}
 
+	/** @inheritDoc */
 	public function run() {
 		$ok = true;
 
@@ -624,6 +625,7 @@ class RefreshLinksJob extends Job {
 		return $options;
 	}
 
+	/** @inheritDoc */
 	public function getDeduplicationInfo() {
 		$info = parent::getDeduplicationInfo();
 		unset( $info['causeAction'] );
@@ -640,6 +642,7 @@ class RefreshLinksJob extends Job {
 		return $info;
 	}
 
+	/** @inheritDoc */
 	public function workItemCount() {
 		if ( !empty( $this->params['recursive'] ) ) {
 			return 0; // nothing actually refreshed

@@ -37,6 +37,7 @@ class ClearUserWatchlistJob extends Job implements GenericParameterJob {
 		return new self( [ 'userId' => $user->getId(), 'maxWatchlistId' => $maxWatchlistId ] );
 	}
 
+	/** @inheritDoc */
 	public function run() {
 		$updateRowsPerQuery = MediaWikiServices::getInstance()->getMainConfig()->get(
 			MainConfigNames::UpdateRowsPerQuery );
@@ -106,6 +107,7 @@ class ClearUserWatchlistJob extends Job implements GenericParameterJob {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function getDeduplicationInfo() {
 		$info = parent::getDeduplicationInfo();
 		// This job never has a namespace or title so we can't use it for deduplication

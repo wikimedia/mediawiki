@@ -107,15 +107,18 @@ class JobQueueFederated extends JobQueue {
 		$this->partitionRing = new HashRing( $partitionMap );
 	}
 
+	/** @inheritDoc */
 	protected function supportedOrders() {
 		// No FIFO due to partitioning, though "rough timestamp order" is supported
 		return [ 'undefined', 'random', 'timestamp' ];
 	}
 
+	/** @inheritDoc */
 	protected function optimalOrder() {
 		return 'undefined'; // defer to the partitions
 	}
 
+	/** @inheritDoc */
 	protected function supportsDelayedJobs() {
 		foreach ( $this->partitionQueues as $queue ) {
 			if ( !$queue->supportsDelayedJobs() ) {
@@ -126,6 +129,7 @@ class JobQueueFederated extends JobQueue {
 		return true;
 	}
 
+	/** @inheritDoc */
 	protected function doIsEmpty() {
 		$empty = true;
 		$failed = 0;
@@ -142,18 +146,22 @@ class JobQueueFederated extends JobQueue {
 		return $empty;
 	}
 
+	/** @inheritDoc */
 	protected function doGetSize() {
 		return $this->getCrossPartitionSum( 'size', 'doGetSize' );
 	}
 
+	/** @inheritDoc */
 	protected function doGetAcquiredCount() {
 		return $this->getCrossPartitionSum( 'acquiredcount', 'doGetAcquiredCount' );
 	}
 
+	/** @inheritDoc */
 	protected function doGetDelayedCount() {
 		return $this->getCrossPartitionSum( 'delayedcount', 'doGetDelayedCount' );
 	}
 
+	/** @inheritDoc */
 	protected function doGetAbandonedCount() {
 		return $this->getCrossPartitionSum( 'abandonedcount', 'doGetAbandonedCount' );
 	}
@@ -179,6 +187,7 @@ class JobQueueFederated extends JobQueue {
 		return $count;
 	}
 
+	/** @inheritDoc */
 	protected function doBatchPush( array $jobs, $flags ) {
 		// Local ring variable that may be changed to point to a new ring on failure
 		$partitionRing = $this->partitionRing;
@@ -272,6 +281,7 @@ class JobQueueFederated extends JobQueue {
 		return $jobsLeft;
 	}
 
+	/** @inheritDoc */
 	protected function doPop() {
 		$partitionsTry = $this->partitionRing->getLiveLocationWeights(); // (partition => weight)
 
@@ -304,6 +314,7 @@ class JobQueueFederated extends JobQueue {
 		return false;
 	}
 
+	/** @inheritDoc */
 	protected function doAck( RunnableJob $job ) {
 		$partition = $job->getMetadata( 'QueuePartition' );
 		if ( $partition === null ) {
@@ -313,6 +324,7 @@ class JobQueueFederated extends JobQueue {
 		$this->partitionQueues[$partition]->ack( $job );
 	}
 
+	/** @inheritDoc */
 	protected function doIsRootJobOldDuplicate( IJobSpecification $job ) {
 		$signature = $job->getRootJobParams()['rootJobSignature'];
 		$partition = $this->partitionRing->getLiveLocation( $signature );
@@ -328,6 +340,7 @@ class JobQueueFederated extends JobQueue {
 		return false;
 	}
 
+	/** @inheritDoc */
 	protected function doDeduplicateRootJob( IJobSpecification $job ) {
 		$signature = $job->getRootJobParams()['rootJobSignature'];
 		$partition = $this->partitionRing->getLiveLocation( $signature );
@@ -343,6 +356,7 @@ class JobQueueFederated extends JobQueue {
 		return false;
 	}
 
+	/** @inheritDoc */
 	protected function doDelete() {
 		$failed = 0;
 		/** @var JobQueue $queue */
@@ -358,6 +372,7 @@ class JobQueueFederated extends JobQueue {
 		return true;
 	}
 
+	/** @inheritDoc */
 	protected function doWaitForBackups() {
 		$failed = 0;
 		/** @var JobQueue $queue */
@@ -372,6 +387,7 @@ class JobQueueFederated extends JobQueue {
 		$this->throwErrorIfAllPartitionsDown( $failed );
 	}
 
+	/** @inheritDoc */
 	protected function doFlushCaches() {
 		/** @var JobQueue $queue */
 		foreach ( $this->partitionQueues as $queue ) {
@@ -379,6 +395,7 @@ class JobQueueFederated extends JobQueue {
 		}
 	}
 
+	/** @inheritDoc */
 	public function getAllQueuedJobs() {
 		$iterator = new AppendIterator();
 
@@ -390,6 +407,7 @@ class JobQueueFederated extends JobQueue {
 		return $iterator;
 	}
 
+	/** @inheritDoc */
 	public function getAllDelayedJobs() {
 		$iterator = new AppendIterator();
 
@@ -401,6 +419,7 @@ class JobQueueFederated extends JobQueue {
 		return $iterator;
 	}
 
+	/** @inheritDoc */
 	public function getAllAcquiredJobs() {
 		$iterator = new AppendIterator();
 
@@ -412,6 +431,7 @@ class JobQueueFederated extends JobQueue {
 		return $iterator;
 	}
 
+	/** @inheritDoc */
 	public function getAllAbandonedJobs() {
 		$iterator = new AppendIterator();
 
@@ -423,11 +443,13 @@ class JobQueueFederated extends JobQueue {
 		return $iterator;
 	}
 
+	/** @inheritDoc */
 	public function getCoalesceLocationInternal() {
 		return "JobQueueFederated:wiki:{$this->domain}" .
 			sha1( serialize( array_keys( $this->partitionQueues ) ) );
 	}
 
+	/** @inheritDoc */
 	protected function doGetSiblingQueuesWithJobs( array $types ) {
 		$result = [];
 
@@ -454,6 +476,7 @@ class JobQueueFederated extends JobQueue {
 		return array_values( $result );
 	}
 
+	/** @inheritDoc */
 	protected function doGetSiblingQueueSizes( array $types ) {
 		$result = [];
 		$failed = 0;

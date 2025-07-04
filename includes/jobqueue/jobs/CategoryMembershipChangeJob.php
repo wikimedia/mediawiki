@@ -91,6 +91,7 @@ class CategoryMembershipChangeJob extends Job {
 		$this->removeDuplicates = true;
 	}
 
+	/** @inheritDoc */
 	public function run() {
 		$services = MediaWikiServices::getInstance();
 		$lbFactory = $services->getDBLoadBalancerFactory();
@@ -288,6 +289,7 @@ class CategoryMembershipChangeJob extends Job {
 		return $output->getCategoryNames();
 	}
 
+	/** @inheritDoc */
 	public function getDeduplicationInfo() {
 		$info = parent::getDeduplicationInfo();
 		unset( $info['params']['revTimestamp'] ); // first job wins

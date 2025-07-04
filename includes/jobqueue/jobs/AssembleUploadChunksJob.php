@@ -46,6 +46,7 @@ class AssembleUploadChunksJob extends Job implements GenericParameterJob {
 		$this->removeDuplicates = true;
 	}
 
+	/** @inheritDoc */
 	public function run() {
 		$scope = RequestContext::importScopedSession( $this->params['session'] );
 		$this->addTeardownCallback( static function () use ( &$scope ) {
@@ -199,6 +200,7 @@ class AssembleUploadChunksJob extends Job implements GenericParameterJob {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function getDeduplicationInfo() {
 		$info = parent::getDeduplicationInfo();
 		if ( is_array( $info['params'] ) ) {
@@ -208,6 +210,7 @@ class AssembleUploadChunksJob extends Job implements GenericParameterJob {
 		return $info;
 	}
 
+	/** @inheritDoc */
 	public function allowRetries() {
 		return false;
 	}

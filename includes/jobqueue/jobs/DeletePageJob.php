@@ -20,6 +20,7 @@ class DeletePageJob extends Job implements GenericParameterJob {
 		$this->title = Title::makeTitle( $params['namespace'], $params['title'] );
 	}
 
+	/** @inheritDoc */
 	public function run() {
 		$services = MediaWikiServices::getInstance();
 		$ticket = $services->getDBLoadBalancerFactory()->getEmptyTransactionTicket( __METHOD__ );

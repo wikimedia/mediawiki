@@ -77,6 +77,7 @@ class HTMLCacheUpdateJob extends Job {
 		);
 	}
 
+	/** @inheritDoc */
 	public function run() {
 		$updateRowsPerJob = MediaWikiServices::getInstance()->getMainConfig()->get(
 			MainConfigNames::UpdateRowsPerJob );
@@ -181,6 +182,7 @@ class HTMLCacheUpdateJob extends Job {
 		);
 	}
 
+	/** @inheritDoc */
 	public function getDeduplicationInfo() {
 		$info = parent::getDeduplicationInfo();
 		if ( is_array( $info['params'] ) ) {
@@ -195,6 +197,7 @@ class HTMLCacheUpdateJob extends Job {
 		return $info;
 	}
 
+	/** @inheritDoc */
 	public function workItemCount() {
 		if ( !empty( $this->params['recursive'] ) ) {
 			return 0; // nothing actually purged

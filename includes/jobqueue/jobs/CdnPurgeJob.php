@@ -36,6 +36,7 @@ class CdnPurgeJob extends Job implements GenericParameterJob {
 		$this->removeDuplicates = false; // delay semantics are critical
 	}
 
+	/** @inheritDoc */
 	public function run() {
 		// Use purge() directly to avoid infinite recursion
 		CdnCacheUpdate::purge( $this->params['urls'] );

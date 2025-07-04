@@ -40,6 +40,7 @@ class EmaillingJob extends Job {
 		$this->emailer = $emailer;
 	}
 
+	/** @inheritDoc */
 	public function run() {
 		$status = $this->emailer->send(
 			[ $this->params['to'] ],

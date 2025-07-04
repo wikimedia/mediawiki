@@ -103,24 +103,29 @@ class JobSpecification implements IJobSpecification {
 		}
 	}
 
+	/** @inheritDoc */
 	public function getType() {
 		return $this->type;
 	}
 
+	/** @inheritDoc */
 	public function getParams() {
 		return $this->params;
 	}
 
+	/** @inheritDoc */
 	public function getReleaseTimestamp() {
 		return isset( $this->params['jobReleaseTimestamp'] )
 			? wfTimestampOrNull( TS_UNIX, $this->params['jobReleaseTimestamp'] )
 			: null;
 	}
 
+	/** @inheritDoc */
 	public function ignoreDuplicates() {
 		return !empty( $this->opts['removeDuplicates'] );
 	}
 
+	/** @inheritDoc */
 	public function getDeduplicationInfo() {
 		$info = [
 			'type' => $this->getType(),
@@ -144,6 +149,7 @@ class JobSpecification implements IJobSpecification {
 		return $info;
 	}
 
+	/** @inheritDoc */
 	public function getRootJobParams() {
 		return [
 			'rootJobSignature' => $this->params['rootJobSignature'] ?? null,
@@ -151,11 +157,13 @@ class JobSpecification implements IJobSpecification {
 		];
 	}
 
+	/** @inheritDoc */
 	public function hasRootJobParams() {
 		return isset( $this->params['rootJobSignature'] )
 			&& isset( $this->params['rootJobTimestamp'] );
 	}
 
+	/** @inheritDoc */
 	public function isRootJob() {
 		return $this->hasRootJobParams() && !empty( $this->params['rootJobIsSelf'] );
 	}

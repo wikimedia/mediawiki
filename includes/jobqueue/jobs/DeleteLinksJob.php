@@ -40,6 +40,7 @@ class DeleteLinksJob extends Job {
 		$this->removeDuplicates = true;
 	}
 
+	/** @inheritDoc */
 	public function run() {
 		if ( $this->title === null ) {
 			$this->setLastError( "deleteLinks: Invalid title" );
