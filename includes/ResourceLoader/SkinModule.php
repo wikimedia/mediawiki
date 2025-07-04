@@ -768,6 +768,7 @@ class SkinModule extends LessVarFileModule {
 		return $lessVars;
 	}
 
+	/** @inheritDoc */
 	public function getDefinitionSummary( Context $context ) {
 		$summary = parent::getDefinitionSummary( $context );
 		$summary[] = [

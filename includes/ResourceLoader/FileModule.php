@@ -323,6 +323,7 @@ class FileModule extends Module {
 		return [ $localBasePath, $remoteBasePath ];
 	}
 
+	/** @inheritDoc */
 	public function getScript( Context $context ) {
 		$packageFiles = $this->getPackageFiles( $context );
 		if ( $packageFiles !== null ) {
@@ -357,6 +358,7 @@ class FileModule extends Module {
 			&& !$this->hasGeneratedScripts();
 	}
 
+	/** @inheritDoc */
 	public function shouldSkipStructureTest() {
 		return $this->skipStructureTest || parent::shouldSkipStructureTest();
 	}
@@ -494,6 +496,7 @@ class FileModule extends Module {
 		return $this->getFileContents( $localPath, 'skip function' );
 	}
 
+	/** @inheritDoc */
 	public function requiresES6() {
 		return true;
 	}

@@ -35,6 +35,7 @@ class HookRunner implements
 		);
 	}
 
+	/** @inheritDoc */
 	public function onResourceLoaderForeignApiModules( &$dependencies, $context ): void {
 		$this->container->run(
 			'ResourceLoaderForeignApiModules',
@@ -59,6 +60,7 @@ class HookRunner implements
 		);
 	}
 
+	/** @inheritDoc */
 	public function onResourceLoaderSiteModulePages( $skin, array &$pages ): void {
 		$this->container->run(
 			'ResourceLoaderSiteModulePages',
@@ -67,6 +69,7 @@ class HookRunner implements
 		);
 	}
 
+	/** @inheritDoc */
 	public function onResourceLoaderSiteStylesModulePages( $skin, array &$pages ): void {
 		$this->container->run(
 			'ResourceLoaderSiteStylesModulePages',
@@ -75,6 +78,7 @@ class HookRunner implements
 		);
 	}
 
+	/** @inheritDoc */
 	public function onResourceLoaderGetConfigVars( array &$vars, $skin, Config $config ): void {
 		$this->container->run(
 			'ResourceLoaderGetConfigVars',

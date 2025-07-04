@@ -247,6 +247,7 @@ class DerivativeContext extends Context {
 		return $this->context->getResourceLoader();
 	}
 
+	/** @inheritDoc */
 	public function getContentOverrideCallback() {
 		if ( $this->contentOverrideCallback === self::INHERIT_VALUE ) {
 			return $this->context->getContentOverrideCallback();
