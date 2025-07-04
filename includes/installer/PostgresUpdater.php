@@ -136,6 +136,7 @@ class PostgresUpdater extends DatabaseUpdater {
 		];
 	}
 
+	/** @inheritDoc */
 	protected function getInitialUpdateKeys() {
 		return [
 			'filearchive-fa_major_mime-patch-fa_major_mime-chemical.sql',

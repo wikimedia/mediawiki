@@ -98,6 +98,7 @@ class MysqlInstaller extends DatabaseInstaller {
 		return new MysqlSettingsForm( $webInstaller, $this );
 	}
 
+	/** @inheritDoc */
 	public static function meetsMinimumRequirement( IDatabase $conn ) {
 		$type = str_contains( $conn->getSoftwareLink(), 'MariaDB' ) ? 'MariaDB' : 'MySQL';
 		self::$minimumVersion = self::MIN_VERSIONS[$type];
@@ -345,6 +346,7 @@ class MysqlInstaller extends DatabaseInstaller {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getLocalSettings() {
 		$prefix = LocalSettingsGenerator::escapePhpString( $this->getVar( 'wgDBprefix' ) );
 		$useSsl = $this->getVar( 'wgDBssl' ) ? 'true' : 'false';

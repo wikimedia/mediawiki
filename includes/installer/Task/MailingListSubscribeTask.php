@@ -16,10 +16,12 @@ class MailingListSubscribeTask extends Task {
 	private const MEDIAWIKI_ANNOUNCE_URL =
 		'https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/';
 
+	/** @inheritDoc */
 	public function getName() {
 		return 'subscribe';
 	}
 
+	/** @inheritDoc */
 	public function getDependencies() {
 		return [ 'services', 'tables' ];
 	}

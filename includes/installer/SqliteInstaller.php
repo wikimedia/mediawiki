@@ -53,10 +53,12 @@ class SqliteInstaller extends DatabaseInstaller {
 		'wgSQLiteDataDir',
 	];
 
+	/** @inheritDoc */
 	public function getName() {
 		return 'sqlite';
 	}
 
+	/** @inheritDoc */
 	public function isCompiled() {
 		return self::checkExtension( 'pdo_sqlite' );
 	}
@@ -84,6 +86,7 @@ class SqliteInstaller extends DatabaseInstaller {
 		return $result;
 	}
 
+	/** @inheritDoc */
 	public function getGlobalDefaults() {
 		global $IP;
 		$defaults = parent::getGlobalDefaults();

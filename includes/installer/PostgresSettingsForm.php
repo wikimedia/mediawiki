@@ -12,6 +12,7 @@ use Wikimedia\Rdbms\DatabasePostgres;
  */
 class PostgresSettingsForm extends DatabaseSettingsForm {
 
+	/** @inheritDoc */
 	public function getHtml() {
 		if ( $this->getPostgresUtils()->canCreateAccounts() ) {
 			$noCreateMsg = false;
@@ -23,6 +24,7 @@ class PostgresSettingsForm extends DatabaseSettingsForm {
 		return $s;
 	}
 
+	/** @inheritDoc */
 	public function submit() {
 		$status = $this->submitWebUserBox();
 		if ( !$status->isOK() ) {

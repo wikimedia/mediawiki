@@ -15,10 +15,12 @@ use Wikimedia\Rdbms\IMaintainableDatabase;
  * @internal For use by the installer
  */
 class MysqlCreateUserTask extends Task {
+	/** @inheritDoc */
 	public function getName() {
 		return 'user';
 	}
 
+	/** @inheritDoc */
 	public function getDependencies() {
 		return 'database';
 	}

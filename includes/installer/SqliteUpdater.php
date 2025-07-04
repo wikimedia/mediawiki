@@ -42,6 +42,7 @@ use UpdateRestrictions;
  */
 class SqliteUpdater extends DatabaseUpdater {
 
+	/** @inheritDoc */
 	protected function getCoreUpdateList() {
 		return [
 			// 1.39
@@ -109,6 +110,7 @@ class SqliteUpdater extends DatabaseUpdater {
 		];
 	}
 
+	/** @inheritDoc */
 	protected function getInitialUpdateKeys() {
 		return [
 			'filearchive-fa_major_mime-patch-fa_major_mime-chemical.sql',

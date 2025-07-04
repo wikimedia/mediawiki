@@ -59,10 +59,12 @@ class PostgresInstaller extends DatabaseInstaller {
 	/** @inheritDoc */
 	protected static $notMinimumVersionMessage = 'config-postgres-old';
 
+	/** @inheritDoc */
 	public function getName() {
 		return 'postgres';
 	}
 
+	/** @inheritDoc */
 	public function isCompiled() {
 		return self::checkExtension( 'pgsql' );
 	}
@@ -150,6 +152,7 @@ class PostgresInstaller extends DatabaseInstaller {
 		}
 	}
 
+	/** @inheritDoc */
 	protected function changeConnTypeFromSchemaToTables( IMaintainableDatabase $conn ) {
 		if ( !( $conn instanceof DatabasePostgres ) ) {
 			throw new InvalidArgumentException( 'Invalid connection type' );
@@ -204,6 +207,7 @@ class PostgresInstaller extends DatabaseInstaller {
 		}
 	}
 
+	/** @inheritDoc */
 	public function getLocalSettings() {
 		$port = $this->getVar( 'wgDBport' );
 		$useSsl = $this->getVar( 'wgDBssl' ) ? 'true' : 'false';
@@ -224,6 +228,7 @@ class PostgresInstaller extends DatabaseInstaller {
 		$wgDBpassword = $this->getVar( '_InstallPassword' );
 	}
 
+	/** @inheritDoc */
 	public function getGlobalDefaults() {
 		// The default $wgDBmwschema is null, which breaks Postgres and other DBMSes that require
 		// the use of a schema, so we need to set it here

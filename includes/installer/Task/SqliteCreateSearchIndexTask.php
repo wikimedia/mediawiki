@@ -11,6 +11,7 @@ use Wikimedia\Rdbms\DatabaseSqlite;
  * @internal For use by the installer
  */
 class SqliteCreateSearchIndexTask extends Task {
+	/** @inheritDoc */
 	public function getName() {
 		return 'search';
 	}

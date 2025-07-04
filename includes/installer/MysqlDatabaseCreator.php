@@ -6,6 +6,7 @@ use MediaWiki\Status\Status;
 use Wikimedia\Rdbms\IDatabase;
 
 class MysqlDatabaseCreator extends NetworkedDatabaseCreator {
+	/** @inheritDoc */
 	protected function existsInConnection( IDatabase $conn, $database ) {
 		return (bool)$conn->newSelectQueryBuilder()
 			->select( '1' )
@@ -15,6 +16,7 @@ class MysqlDatabaseCreator extends NetworkedDatabaseCreator {
 			->fetchRow();
 	}
 
+	/** @inheritDoc */
 	protected function createInConnection( IDatabase $conn, $database ): Status {
 		$encDatabase = $conn->addIdentifierQuotes( $database );
 		$conn->query( "CREATE DATABASE IF NOT EXISTS $encDatabase", __METHOD__ );

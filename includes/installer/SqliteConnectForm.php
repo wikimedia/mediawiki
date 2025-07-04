@@ -10,6 +10,7 @@ use MediaWiki\Status\Status;
  */
 class SqliteConnectForm extends DatabaseConnectForm {
 
+	/** @inheritDoc */
 	public function getHtml() {
 		return $this->getTextBox(
 				'wgSQLiteDataDir',

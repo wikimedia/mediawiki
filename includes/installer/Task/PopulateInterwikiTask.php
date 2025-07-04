@@ -11,10 +11,12 @@ use Wikimedia\AtEase\AtEase;
  * @internal For use by the installer
  */
 class PopulateInterwikiTask extends Task {
+	/** @inheritDoc */
 	public function getName() {
 		return 'interwiki';
 	}
 
+	/** @inheritDoc */
 	public function getDependencies() {
 		return 'tables';
 	}

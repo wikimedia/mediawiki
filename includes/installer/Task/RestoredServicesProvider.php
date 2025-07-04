@@ -20,10 +20,12 @@ class RestoredServicesProvider extends Task {
 		return 'restore-services';
 	}
 
+	/** @inheritDoc */
 	public function getDependencies() {
 		return [ 'tables', 'VirtualDomains' ];
 	}
 
+	/** @inheritDoc */
 	public function getProvidedNames() {
 		return 'services';
 	}

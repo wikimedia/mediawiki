@@ -11,10 +11,12 @@ use MediaWiki\Status\Status;
  * @internal For use by the installer
  */
 class InsertUpdateKeysTask extends Task {
+	/** @inheritDoc */
 	public function getName() {
 		return 'updates';
 	}
 
+	/** @inheritDoc */
 	public function getDependencies() {
 		return 'tables';
 	}

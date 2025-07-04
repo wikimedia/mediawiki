@@ -13,10 +13,12 @@ use Wikimedia\Rdbms\DBQueryError;
  * @internal For use by the installer
  */
 class PostgresCreateUserTask extends Task {
+	/** @inheritDoc */
 	public function getName() {
 		return 'user';
 	}
 
+	/** @inheritDoc */
 	public function getDependencies() {
 		return 'database';
 	}

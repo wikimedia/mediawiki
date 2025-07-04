@@ -16,10 +16,12 @@ use MediaWiki\Status\Status;
  * @internal For use by the installer
  */
 class ExtensionsProvider extends Task {
+	/** @inheritDoc */
 	public function getName() {
 		return 'extensions';
 	}
 
+	/** @inheritDoc */
 	public function getProvidedNames() {
 		return [ 'HookContainer', 'VirtualDomains', 'ExtensionTaskSpecs' ];
 	}

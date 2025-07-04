@@ -13,10 +13,12 @@ use Wikimedia\Rdbms\DBConnectionError;
  * @internal For use by the installer
  */
 class SqliteCreateDatabaseTask extends Task {
+	/** @inheritDoc */
 	public function getName() {
 		return 'database';
 	}
 
+	/** @inheritDoc */
 	public function getAliases() {
 		return 'schema';
 	}

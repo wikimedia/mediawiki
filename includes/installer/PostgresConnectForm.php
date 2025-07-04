@@ -10,6 +10,7 @@ use MediaWiki\Status\Status;
  */
 class PostgresConnectForm extends DatabaseConnectForm {
 
+	/** @inheritDoc */
 	public function getHtml() {
 		return $this->getTextBox(
 				'wgDBserver',
@@ -41,6 +42,7 @@ class PostgresConnectForm extends DatabaseConnectForm {
 			$this->getInstallUserBox();
 	}
 
+	/** @inheritDoc */
 	public function submit() {
 		// Get variables from the request
 		$newValues = $this->setVarsFromRequest( [

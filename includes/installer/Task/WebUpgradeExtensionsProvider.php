@@ -18,14 +18,17 @@ use MediaWiki\Status\Status;
  * core as well as extensions.
  */
 class WebUpgradeExtensionsProvider extends Task {
+	/** @inheritDoc */
 	public function getName() {
 		return 'extensions';
 	}
 
+	/** @inheritDoc */
 	public function getAliases() {
 		return 'tables';
 	}
 
+	/** @inheritDoc */
 	public function getProvidedNames() {
 		return [ 'HookContainer', 'VirtualDomains', 'ExtensionTaskSpecs' ];
 	}

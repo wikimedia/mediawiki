@@ -24,10 +24,12 @@ class InitialContentTask extends Task {
 	/** @var PageStore */
 	private $pageStore;
 
+	/** @inheritDoc */
 	public function getName() {
 		return 'mainpage';
 	}
 
+	/** @inheritDoc */
 	public function getDependencies() {
 		return [ 'services', 'extension-tables' ];
 	}

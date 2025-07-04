@@ -265,24 +265,28 @@ class CliInstaller extends Installer {
 		}
 	}
 
+	/** @inheritDoc */
 	public function showMessage( $msg, ...$params ) {
 		// @phan-suppress-next-line SecurityCheck-XSS
 		echo $this->getMessageText( $msg, $params ) . "\n";
 		flush();
 	}
 
+	/** @inheritDoc */
 	public function showSuccess( $msg, ...$params ) {
 		// @phan-suppress-next-line SecurityCheck-XSS
 		echo $this->getMessageText( $msg, $params ) . "\n";
 		flush();
 	}
 
+	/** @inheritDoc */
 	public function showWarning( $msg, ...$params ) {
 		// @phan-suppress-next-line SecurityCheck-XSS
 		echo $this->getMessageText( $msg, $params ) . "\n";
 		flush();
 	}
 
+	/** @inheritDoc */
 	public function showError( $msg, ...$params ) {
 		// @phan-suppress-next-line SecurityCheck-XSS
 		echo "***{$this->getMessageText( $msg, $params )}***\n";
@@ -318,6 +322,7 @@ class CliInstaller extends Installer {
 		}
 	}
 
+	/** @inheritDoc */
 	public function envCheckPath() {
 		if ( !$this->specifiedScriptPath ) {
 			$this->showMessage( 'config-no-cli-uri', $this->getVar( "wgScriptPath" ) );
@@ -326,11 +331,13 @@ class CliInstaller extends Installer {
 		return parent::envCheckPath();
 	}
 
+	/** @inheritDoc */
 	protected function envGetDefaultServer() {
 		// Use a basic value if the user didn't pass in --server
 		return 'http://localhost';
 	}
 
+	/** @inheritDoc */
 	public function dirIsExecutable( $dir, $url ) {
 		$this->showMessage( 'config-no-cli-uploads-check', $dir );
 

@@ -10,10 +10,12 @@ use MediaWiki\Status\Status;
  * @internal For use by the installer
  */
 class CreateTablesTask extends Task {
+	/** @inheritDoc */
 	public function getName() {
 		return 'tables';
 	}
 
+	/** @inheritDoc */
 	public function getDependencies() {
 		return 'schema';
 	}

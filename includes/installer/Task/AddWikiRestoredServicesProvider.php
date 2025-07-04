@@ -19,10 +19,12 @@ class AddWikiRestoredServicesProvider extends Task {
 		return 'restore-services';
 	}
 
+	/** @inheritDoc */
 	public function getDependencies() {
 		return [ 'tables' ];
 	}
 
+	/** @inheritDoc */
 	public function getProvidedNames() {
 		return 'services';
 	}

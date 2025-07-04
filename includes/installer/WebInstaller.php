@@ -368,6 +368,7 @@ class WebInstaller extends Installer {
 		] ) );
 	}
 
+	/** @inheritDoc */
 	public function showError( $msg, ...$params ) {
 		if ( !( $msg instanceof Message ) ) {
 			$msg = wfMessage(
@@ -666,6 +667,7 @@ class WebInstaller extends Installer {
 			"</div></div>\n";
 	}
 
+	/** @inheritDoc */
 	public function showSuccess( $msg, ...$params ) {
 		$html = '<div class="cdx-message cdx-message--block cdx-message--success">' .
 			'<span class="cdx-message__icon"></span><div class="cdx-message__content">' .
@@ -674,6 +676,7 @@ class WebInstaller extends Installer {
 		$this->output->addHTML( $html );
 	}
 
+	/** @inheritDoc */
 	public function showMessage( $msg, ...$params ) {
 		$html = '<div class="cdx-message cdx-message--block cdx-message--notice">' .
 			'<span class="cdx-message__icon"></span><div class="cdx-message__content">' .
@@ -682,6 +685,7 @@ class WebInstaller extends Installer {
 		$this->output->addHTML( $html );
 	}
 
+	/** @inheritDoc */
 	public function showWarning( $msg, ...$params ) {
 		$html = '<div class="cdx-message cdx-message--block cdx-message--warning">' .
 			'<span class="cdx-message__icon"></span><div class="cdx-message__content">' .
@@ -690,6 +694,7 @@ class WebInstaller extends Installer {
 		$this->output->addHTML( $html );
 	}
 
+	/** @inheritDoc */
 	public function showStatusMessage( Status $status ) {
 		// Show errors at the top in web installer to make them easier to notice
 		foreach ( $status->getMessages( 'error' ) as $msg ) {
@@ -1146,6 +1151,7 @@ class WebInstaller extends Installer {
 		return parent::envCheckPath();
 	}
 
+	/** @inheritDoc */
 	protected function detectWebPaths() {
 		// PHP_SELF isn't available sometimes, such as when PHP is CGI but
 		// cgi.fix_pathinfo is disabled. In that case, fall back to SCRIPT_NAME

@@ -36,14 +36,17 @@ class AddWikiTaskContext implements ITaskContext {
 		$this->lbFactory = $lbFactory;
 	}
 
+	/** @inheritDoc */
 	public function getConfigVar( string $name ) {
 		return $this->configOverrides[$name] ?? $this->config->get( $name );
 	}
 
+	/** @inheritDoc */
 	public function getOption( string $name ) {
 		return $this->options[$name] ?? null;
 	}
 
+	/** @inheritDoc */
 	public function getConnection( $type = self::CONN_DONT_KNOW ): ConnectionStatus {
 		$localDomain = $this->getDomain();
 		$lb = $this->lbFactory->getLoadBalancer( $localDomain );
@@ -98,10 +101,12 @@ class AddWikiTaskContext implements ITaskContext {
 		return $this->getConfigVar( MainConfigNames::DBtype );
 	}
 
+	/** @inheritDoc */
 	public function provide( string $name, $value ) {
 		$this->provisions[$name] = $value;
 	}
 
+	/** @inheritDoc */
 	public function getProvision( string $name ) {
 		if ( isset( $this->provisions[$name] ) ) {
 			return $this->provisions[$name];

@@ -37,10 +37,12 @@ class CallbackTask extends Task {
 		$this->postInstall = $spec['postInstall'] ?? false;
 	}
 
+	/** @inheritDoc */
 	public function getName() {
 		return $this->name;
 	}
 
+	/** @inheritDoc */
 	public function getDescription() {
 		if ( $this->description !== null ) {
 			return $this->description;
@@ -48,14 +50,17 @@ class CallbackTask extends Task {
 		return parent::getDescription();
 	}
 
+	/** @inheritDoc */
 	public function getAliases() {
 		return $this->aliases;
 	}
 
+	/** @inheritDoc */
 	public function getDependencies() {
 		return $this->dependencies;
 	}
 
+	/** @inheritDoc */
 	public function isPostInstall() {
 		return $this->postInstall;
 	}

@@ -10,10 +10,12 @@ use MediaWiki\Status\Status;
  */
 class WebUpgradeTask extends Task {
 
+	/** @inheritDoc */
 	public function getName() {
 		return 'upgrade';
 	}
 
+	/** @inheritDoc */
 	public function getDependencies() {
 		return [ 'HookContainer' ];
 	}

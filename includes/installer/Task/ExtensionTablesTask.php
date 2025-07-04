@@ -11,10 +11,12 @@ use MediaWiki\Status\Status;
  * @internal For use by the installer
  */
 class ExtensionTablesTask extends Task {
+	/** @inheritDoc */
 	public function getName() {
 		return 'extension-tables';
 	}
 
+	/** @inheritDoc */
 	public function getDependencies() {
 		return [ 'services', 'HookContainer', 'tables' ];
 	}

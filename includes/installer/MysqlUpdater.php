@@ -41,6 +41,7 @@ use UpdateRestrictions;
  * @property \Wikimedia\Rdbms\DatabaseMySQL $db
  */
 class MysqlUpdater extends DatabaseUpdater {
+	/** @inheritDoc */
 	protected function getCoreUpdateList() {
 		return [
 			// 1.39
@@ -112,6 +113,7 @@ class MysqlUpdater extends DatabaseUpdater {
 		];
 	}
 
+	/** @inheritDoc */
 	protected function getInitialUpdateKeys() {
 		return [
 			'filearchive-fa_major_mime-patch-fa_major_mime-chemical.sql',
@@ -123,6 +125,7 @@ class MysqlUpdater extends DatabaseUpdater {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getSchemaVars() {
 		global $wgDBTableOptions;
 

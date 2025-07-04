@@ -17,19 +17,23 @@ class SqliteDatabaseCreator extends DatabaseCreator {
 		$this->dataDir = $context->getConfigVar( MainConfigNames::SQLiteDataDir );
 	}
 
+	/** @inheritDoc */
 	public function existsLocally( $database ) {
 		$file = DatabaseSqlite::generateFileName( $this->dataDir, $database );
 		return file_exists( $file );
 	}
 
+	/** @inheritDoc */
 	public function existsInLoadBalancer( ILoadBalancer $loadBalancer, $database ) {
 		return $this->existsLocally( $database );
 	}
 
+	/** @inheritDoc */
 	public function createLocally( $database ): Status {
 		return $this->makeStubDBFile( $database );
 	}
 
+	/** @inheritDoc */
 	public function createInLoadBalancer( ILoadBalancer $loadBalancer, $database ): Status {
 		return $this->createLocally( $database );
 	}

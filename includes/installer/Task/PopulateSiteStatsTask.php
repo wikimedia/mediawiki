@@ -10,10 +10,12 @@ use MediaWiki\Status\Status;
  * @internal For use by the installer
  */
 class PopulateSiteStatsTask extends Task {
+	/** @inheritDoc */
 	public function getName() {
 		return 'stats';
 	}
 
+	/** @inheritDoc */
 	public function getDependencies() {
 		return 'tables';
 	}

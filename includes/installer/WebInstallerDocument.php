@@ -28,6 +28,7 @@ abstract class WebInstallerDocument extends WebInstallerPage {
 	 */
 	abstract protected function getFileName();
 
+	/** @inheritDoc */
 	public function execute() {
 		$text = $this->getFileContents();
 		$text = InstallDocFormatter::format( $text );

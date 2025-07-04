@@ -11,10 +11,12 @@ use MediaWiki\Status\Status;
  * @internal For use by the installer
  */
 class CreateDatabaseTask extends Task {
+	/** @inheritDoc */
 	public function getName() {
 		return 'database';
 	}
 
+	/** @inheritDoc */
 	public function getAliases() {
 		return 'schema';
 	}

@@ -20,10 +20,12 @@ class CreateExternalDomainsTask extends Task {
 	/** @var \ExternalStoreFactory */
 	private $esFactory;
 
+	/** @inheritDoc */
 	public function getName() {
 		return 'external-domains';
 	}
 
+	/** @inheritDoc */
 	public function getDependencies() {
 		return [ 'VirtualDomains', 'services' ];
 	}

@@ -23,6 +23,7 @@ namespace MediaWiki\Installer;
 
 class WebInstallerComplete extends WebInstallerPage {
 
+	/** @inheritDoc */
 	public function execute() {
 		// Pop up a dialog box, to make it difficult for the user to forget
 		// to download the file

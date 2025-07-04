@@ -35,6 +35,7 @@ class MysqlConnectForm extends DatabaseConnectForm {
 			$this->getInstallUserBox();
 	}
 
+	/** @inheritDoc */
 	public function submit() {
 		// Get variables from the request.
 		$newValues = $this->setVarsFromRequest( [ 'wgDBserver', 'wgDBname', 'wgDBprefix', 'wgDBssl' ] );

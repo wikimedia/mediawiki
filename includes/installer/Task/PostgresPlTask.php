@@ -12,6 +12,7 @@ use Wikimedia\Rdbms\DBQueryError;
  * @internal For use by the installer
  */
 class PostgresPlTask extends Task {
+	/** @inheritDoc */
 	public function getName() {
 		return 'pg-plpgsql';
 	}

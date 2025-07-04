@@ -16,6 +16,7 @@ use Wikimedia\Rdbms\ILoadBalancer;
  * databases other than the one you originally connected to.
  */
 abstract class NetworkedDatabaseCreator extends DatabaseCreator {
+	/** @inheritDoc */
 	public function existsLocally( $database ) {
 		$connStatus = $this->context->getConnection( ITaskContext::CONN_CREATE_DATABASE );
 		if ( !$connStatus->isOK() ) {
@@ -24,11 +25,13 @@ abstract class NetworkedDatabaseCreator extends DatabaseCreator {
 		return $this->existsInConnection( $connStatus->getDB(), $database );
 	}
 
+	/** @inheritDoc */
 	public function existsInLoadBalancer( ILoadBalancer $loadBalancer, $database ) {
 		$conn = $loadBalancer->getConnection( DB_PRIMARY, [], DatabaseDomain::newUnspecified()->getId() );
 		return $this->existsInConnection( $conn, $database );
 	}
 
+	/** @inheritDoc */
 	public function createLocally( $database ): Status {
 		$connStatus = $this->context->getConnection( ITaskContext::CONN_CREATE_DATABASE );
 		if ( !$connStatus->isOK() ) {
@@ -38,6 +41,7 @@ abstract class NetworkedDatabaseCreator extends DatabaseCreator {
 		return $this->createInConnection( $conn, $database );
 	}
 
+	/** @inheritDoc */
 	public function createInLoadBalancer( ILoadBalancer $loadBalancer, $database ): Status {
 		$conn = $loadBalancer->getConnection( DB_PRIMARY, [], DatabaseDomain::newUnspecified()->getId() );
 		return $this->createInConnection( $conn, $database );

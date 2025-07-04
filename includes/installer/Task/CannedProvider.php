@@ -30,10 +30,12 @@ class CannedProvider extends Task {
 		$this->provisions = $provisions;
 	}
 
+	/** @inheritDoc */
 	public function getName() {
 		return $this->name;
 	}
 
+	/** @inheritDoc */
 	public function getProvidedNames() {
 		return array_keys( $this->provisions );
 	}

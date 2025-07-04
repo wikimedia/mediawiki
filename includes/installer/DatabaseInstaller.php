@@ -253,18 +253,22 @@ abstract class DatabaseInstaller implements ITaskContext {
 		return $this->getName();
 	}
 
+	/** @inheritDoc */
 	public function getConfigVar( string $name ) {
 		return $this->getVar( "wg$name" );
 	}
 
+	/** @inheritDoc */
 	public function getOption( string $name ) {
 		return $this->getVar( "_$name" );
 	}
 
+	/** @inheritDoc */
 	public function provide( string $name, $value ) {
 		$this->provisions[$name] = $value;
 	}
 
+	/** @inheritDoc */
 	public function getProvision( string $name ) {
 		if ( isset( $this->provisions[$name] ) ) {
 			return $this->provisions[$name];

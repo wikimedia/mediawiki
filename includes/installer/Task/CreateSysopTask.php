@@ -15,14 +15,17 @@ class CreateSysopTask extends Task {
 	/** @var UserGroupManager */
 	private $userGroupManager;
 
+	/** @inheritDoc */
 	public function getName() {
 		return 'sysop';
 	}
 
+	/** @inheritDoc */
 	public function getDependencies() {
 		return [ 'services', 'extension-tables' ];
 	}
 
+	/** @inheritDoc */
 	public function getProvidedNames() {
 		return [ 'created-user-names' ];
 	}
