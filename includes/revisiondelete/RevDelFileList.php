@@ -75,18 +75,22 @@ class RevDelFileList extends RevDelList {
 		$this->repoGroup = $repoGroup;
 	}
 
+	/** @inheritDoc */
 	public function getType() {
 		return 'oldimage';
 	}
 
+	/** @inheritDoc */
 	public static function getRelationType() {
 		return 'oi_archive_name';
 	}
 
+	/** @inheritDoc */
 	public static function getRestriction() {
 		return 'deleterevision';
 	}
 
+	/** @inheritDoc */
 	public static function getRevdelConstant() {
 		return File::DELETED_FILE;
 	}
@@ -108,6 +112,7 @@ class RevDelFileList extends RevDelList {
 		return $queryBuilder->caller( __METHOD__ )->fetchResultSet();
 	}
 
+	/** @inheritDoc */
 	public function newItem( $row ) {
 		return new RevDelFileItem( $this, $row );
 	}
@@ -118,6 +123,7 @@ class RevDelFileList extends RevDelList {
 		$this->cleanupBatch = [];
 	}
 
+	/** @inheritDoc */
 	public function doPreCommitUpdates() {
 		$status = Status::newGood();
 		$repo = $this->repoGroup->getLocalRepo();
@@ -142,6 +148,7 @@ class RevDelFileList extends RevDelList {
 		return $status;
 	}
 
+	/** @inheritDoc */
 	public function doPostCommitUpdates( array $visibilityChangeMap ) {
 		$file = $this->repoGroup->getLocalRepo()->newFile( $this->page );
 		$file->purgeCache();

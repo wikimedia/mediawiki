@@ -81,22 +81,27 @@ class RevDelRevisionList extends RevDelList {
 		$this->eventDispatcher = $eventDispatcher;
 	}
 
+	/** @inheritDoc */
 	public function getType() {
 		return 'revision';
 	}
 
+	/** @inheritDoc */
 	public static function getRelationType() {
 		return 'rev_id';
 	}
 
+	/** @inheritDoc */
 	public static function getRestriction() {
 		return 'deleterevision';
 	}
 
+	/** @inheritDoc */
 	public static function getRevdelConstant() {
 		return RevisionRecord::DELETED_TEXT;
 	}
 
+	/** @inheritDoc */
 	public static function suggestTarget( $target, array $ids ) {
 		$revisionRecord = MediaWikiServices::getInstance()
 			->getRevisionLookup()
@@ -159,6 +164,7 @@ class RevDelRevisionList extends RevDelList {
 		}
 	}
 
+	/** @inheritDoc */
 	public function newItem( $row ) {
 		if ( isset( $row->rev_id ) ) {
 			return new RevDelRevisionItem( $this, $row );
@@ -170,6 +176,7 @@ class RevDelRevisionList extends RevDelList {
 		}
 	}
 
+	/** @inheritDoc */
 	public function getCurrent() {
 		if ( $this->currentRevId === null ) {
 			$dbw = $this->lbFactory->getPrimaryDatabase();
@@ -234,11 +241,13 @@ class RevDelRevisionList extends RevDelList {
 		);
 	}
 
+	/** @inheritDoc */
 	public function doPreCommitUpdates() {
 		Title::newFromPageIdentity( $this->page )->invalidateCache();
 		return Status::newGood();
 	}
 
+	/** @inheritDoc */
 	public function doPostCommitUpdates( array $visibilityChangeMap ) {
 		$this->htmlCacheUpdater->purgeTitleUrls(
 			$this->page,

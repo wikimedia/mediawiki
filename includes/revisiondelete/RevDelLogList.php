@@ -63,22 +63,27 @@ class RevDelLogList extends RevDelList {
 		$this->logFormatterFactory = $logFormatterFactory;
 	}
 
+	/** @inheritDoc */
 	public function getType() {
 		return 'logging';
 	}
 
+	/** @inheritDoc */
 	public static function getRelationType() {
 		return 'log_id';
 	}
 
+	/** @inheritDoc */
 	public static function getRestriction() {
 		return 'deletelogentry';
 	}
 
+	/** @inheritDoc */
 	public static function getRevdelConstant() {
 		return LogPage::DELETED_ACTION;
 	}
 
+	/** @inheritDoc */
 	public static function suggestTarget( $target, array $ids ) {
 		$dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
 		$result = $dbr->newSelectQueryBuilder()
@@ -130,6 +135,7 @@ class RevDelLogList extends RevDelList {
 		return $queryBuilder->caller( __METHOD__ )->fetchResultSet();
 	}
 
+	/** @inheritDoc */
 	public function newItem( $row ) {
 		return new RevDelLogItem(
 			$this,
@@ -140,10 +146,12 @@ class RevDelLogList extends RevDelList {
 		);
 	}
 
+	/** @inheritDoc */
 	public function getLogAction() {
 		return 'event';
 	}
 
+	/** @inheritDoc */
 	public function getLogParams( $params ) {
 		return [
 			'4::ids' => $params['ids'],

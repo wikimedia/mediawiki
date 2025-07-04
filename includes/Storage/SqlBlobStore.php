@@ -794,6 +794,7 @@ class SqlBlobStore implements BlobStore {
 		return [ $schema, $id, $parameters ];
 	}
 
+	/** @inheritDoc */
 	public function isReadOnly() {
 		if ( $this->useExternalStore && $this->extStoreAccess->isReadOnly() ) {
 			return true;

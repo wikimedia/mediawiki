@@ -60,6 +60,7 @@ class FallbackSlotRoleHandler extends SlotRoleHandler {
 		return false;
 	}
 
+	/** @inheritDoc */
 	public function getOutputLayoutHints() {
 		// TODO: should we return [ 'display' => 'none'] here, causing undefined slots
 		// to be hidden? We'd still need some place to surface the content of such

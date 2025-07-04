@@ -37,6 +37,7 @@ class RevDelRevisionItem extends RevDelItem {
 	/** @var RevisionRecord */
 	public $revisionRecord;
 
+	/** @inheritDoc */
 	public function __construct( RevisionListBase $list, $row ) {
 		parent::__construct( $list, $row );
 		$this->revisionRecord = static::initRevisionRecord( $list, $row );
@@ -62,26 +63,32 @@ class RevDelRevisionItem extends RevDelItem {
 		return $this->revisionRecord;
 	}
 
+	/** @inheritDoc */
 	public function getIdField() {
 		return 'rev_id';
 	}
 
+	/** @inheritDoc */
 	public function getTimestampField() {
 		return 'rev_timestamp';
 	}
 
+	/** @inheritDoc */
 	public function getAuthorIdField() {
 		return 'rev_user';
 	}
 
+	/** @inheritDoc */
 	public function getAuthorNameField() {
 		return 'rev_user_text';
 	}
 
+	/** @inheritDoc */
 	public function getAuthorActorField() {
 		return 'rev_actor';
 	}
 
+	/** @inheritDoc */
 	public function canView() {
 		return $this->getRevisionRecord()->userCan(
 			RevisionRecord::DELETED_RESTRICTED,
@@ -89,6 +96,7 @@ class RevDelRevisionItem extends RevDelItem {
 		);
 	}
 
+	/** @inheritDoc */
 	public function canViewContent() {
 		return $this->getRevisionRecord()->userCan(
 			RevisionRecord::DELETED_TEXT,
@@ -96,10 +104,12 @@ class RevDelRevisionItem extends RevDelItem {
 		);
 	}
 
+	/** @inheritDoc */
 	public function getBits() {
 		return $this->getRevisionRecord()->getVisibility();
 	}
 
+	/** @inheritDoc */
 	public function setBits( $bits ) {
 		$revRecord = $this->getRevisionRecord();
 
@@ -139,6 +149,7 @@ class RevDelRevisionItem extends RevDelItem {
 		return $this->getRevisionRecord()->isDeleted( RevisionRecord::DELETED_TEXT );
 	}
 
+	/** @inheritDoc */
 	public function isHideCurrentOp( $newBits ) {
 		return ( $newBits & RevisionRecord::DELETED_TEXT )
 			&& $this->list->getCurrent() == $this->getId();
@@ -231,6 +242,7 @@ class RevDelRevisionItem extends RevDelItem {
 		return $this->row->ts_tags;
 	}
 
+	/** @inheritDoc */
 	public function getApiData( ApiResult $result ) {
 		$revRecord = $this->getRevisionRecord();
 		$authority = $this->list->getAuthority();

@@ -78,6 +78,7 @@ class MainSlotRoleHandler extends SlotRoleHandler {
 		$this->titleFactory = $titleFactory;
 	}
 
+	/** @inheritDoc */
 	public function supportsArticleCount() {
 		return true;
 	}

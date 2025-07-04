@@ -188,6 +188,7 @@ class RevisionArchiveRecord extends RevisionRecord {
 		return parent::getTimestamp();
 	}
 
+	/** @inheritDoc */
 	public function userCan( $field, Authority $performer ) {
 		// This revision belongs to a deleted page, so check the relevant permissions as well. (T345777)
 
@@ -213,6 +214,7 @@ class RevisionArchiveRecord extends RevisionRecord {
 		return parent::userCan( $field, $performer );
 	}
 
+	/** @inheritDoc */
 	public function audienceCan( $field, $audience, ?Authority $performer = null ) {
 		// This revision belongs to a deleted page, so check the relevant permissions as well. (T345777)
 		// See userCan().

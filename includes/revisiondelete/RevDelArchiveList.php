@@ -62,10 +62,12 @@ class RevDelArchiveList extends RevDelRevisionList {
 		$this->revisionStore = $revisionStore;
 	}
 
+	/** @inheritDoc */
 	public function getType() {
 		return 'archive';
 	}
 
+	/** @inheritDoc */
 	public static function getRelationType() {
 		return 'ar_timestamp';
 	}
@@ -94,14 +96,17 @@ class RevDelArchiveList extends RevDelRevisionList {
 		return $queryBuilder->caller( __METHOD__ )->fetchResultSet();
 	}
 
+	/** @inheritDoc */
 	public function newItem( $row ) {
 		return new RevDelArchiveItem( $this, $row );
 	}
 
+	/** @inheritDoc */
 	public function doPreCommitUpdates() {
 		return Status::newGood();
 	}
 
+	/** @inheritDoc */
 	public function doPostCommitUpdates( array $visibilityChangeMap ) {
 		return Status::newGood();
 	}

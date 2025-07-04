@@ -27,6 +27,7 @@ use Wikimedia\Rdbms\IDBAccessObject;
  * Item class for a archive table row
  */
 class RevDelArchiveItem extends RevDelRevisionItem {
+	/** @inheritDoc */
 	protected static function initRevisionRecord( $list, $row ) {
 		$revRecord = MediaWikiServices::getInstance()
 			->getRevisionFactory()
@@ -40,31 +41,38 @@ class RevDelArchiveItem extends RevDelRevisionItem {
 		return $revRecord;
 	}
 
+	/** @inheritDoc */
 	public function getIdField() {
 		return 'ar_timestamp';
 	}
 
+	/** @inheritDoc */
 	public function getTimestampField() {
 		return 'ar_timestamp';
 	}
 
+	/** @inheritDoc */
 	public function getAuthorIdField() {
 		return 'ar_user';
 	}
 
+	/** @inheritDoc */
 	public function getAuthorNameField() {
 		return 'ar_user_text';
 	}
 
+	/** @inheritDoc */
 	public function getAuthorActorField() {
 		return 'ar_actor';
 	}
 
+	/** @inheritDoc */
 	public function getId() {
 		# Convert DB timestamp to MW timestamp
 		return $this->revisionRecord->getTimestamp();
 	}
 
+	/** @inheritDoc */
 	public function setBits( $bits ) {
 		$dbw = MediaWikiServices::getInstance()->getConnectionProvider()->getPrimaryDatabase();
 		$dbw->newUpdateQueryBuilder()
@@ -83,6 +91,7 @@ class RevDelArchiveItem extends RevDelRevisionItem {
 		return (bool)$dbw->affectedRows();
 	}
 
+	/** @inheritDoc */
 	protected function getRevisionLink() {
 		$date = $this->list->getLanguage()->userTimeAndDate(
 			$this->revisionRecord->getTimestamp(), $this->list->getUser() );
@@ -102,6 +111,7 @@ class RevDelArchiveItem extends RevDelRevisionItem {
 		);
 	}
 
+	/** @inheritDoc */
 	protected function getDiffLink() {
 		if ( $this->isDeleted() && !$this->canViewContent() ) {
 			return $this->list->msg( 'diff' )->escaped();

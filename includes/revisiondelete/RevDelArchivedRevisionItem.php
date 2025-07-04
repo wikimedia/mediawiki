@@ -40,10 +40,12 @@ class RevDelArchivedRevisionItem extends RevDelArchiveItem {
 		parent::__construct( $list, $row );
 	}
 
+	/** @inheritDoc */
 	public function getIdField(): string {
 		return 'ar_rev_id';
 	}
 
+	/** @inheritDoc */
 	public function getId(): int {
 		return $this->getRevisionRecord()->getId();
 	}

@@ -154,6 +154,7 @@ class RevisionStoreRecord extends RevisionRecord {
 		return parent::isDeleted( $field );
 	}
 
+	/** @inheritDoc */
 	public function userCan( $field, Authority $performer ) {
 		if ( $this->isCurrent() && $field === self::DELETED_TEXT ) {
 			// Current revisions of pages cannot have the content hidden. Skipping this

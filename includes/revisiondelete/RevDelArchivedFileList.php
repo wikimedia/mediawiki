@@ -64,10 +64,12 @@ class RevDelArchivedFileList extends RevDelFileList {
 		// service to allow for unit testing
 	}
 
+	/** @inheritDoc */
 	public function getType() {
 		return 'filearchive';
 	}
 
+	/** @inheritDoc */
 	public static function getRelationType() {
 		return 'fa_id';
 	}
@@ -86,6 +88,7 @@ class RevDelArchivedFileList extends RevDelFileList {
 		return $queryBuilder->caller( __METHOD__ )->fetchResultSet();
 	}
 
+	/** @inheritDoc */
 	public function newItem( $row ) {
 		return new RevDelArchivedFileItem( $this, $row );
 	}

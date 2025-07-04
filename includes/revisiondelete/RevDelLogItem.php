@@ -64,40 +64,49 @@ class RevDelLogItem extends RevDelItem {
 		$this->logFormatterFactory = $logFormatterFactory;
 	}
 
+	/** @inheritDoc */
 	public function getIdField() {
 		return 'log_id';
 	}
 
+	/** @inheritDoc */
 	public function getTimestampField() {
 		return 'log_timestamp';
 	}
 
+	/** @inheritDoc */
 	public function getAuthorIdField() {
 		return 'log_user';
 	}
 
+	/** @inheritDoc */
 	public function getAuthorNameField() {
 		return 'log_user_text';
 	}
 
+	/** @inheritDoc */
 	public function getAuthorActorField() {
 		return 'log_actor';
 	}
 
+	/** @inheritDoc */
 	public function canView() {
 		return LogEventsList::userCan(
 			$this->row, LogPage::DELETED_RESTRICTED, $this->list->getAuthority()
 		);
 	}
 
+	/** @inheritDoc */
 	public function canViewContent() {
 		return true; // none
 	}
 
+	/** @inheritDoc */
 	public function getBits() {
 		return (int)$this->row->log_deleted;
 	}
 
+	/** @inheritDoc */
 	public function setBits( $bits ) {
 		$dbw = $this->dbProvider->getPrimaryDatabase();
 
@@ -130,6 +139,7 @@ class RevDelLogItem extends RevDelItem {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function getHTML() {
 		$date = htmlspecialchars( $this->list->getLanguage()->userTimeAndDate(
 			$this->row->log_timestamp, $this->list->getUser() ) );
@@ -166,6 +176,7 @@ class RevDelLogItem extends RevDelItem {
 		return Html::rawElement( 'li', $attribs, $content );
 	}
 
+	/** @inheritDoc */
 	public function getApiData( ApiResult $result ) {
 		$logEntry = DatabaseLogEntry::newFromRow( $this->row );
 		$user = $this->list->getAuthority();

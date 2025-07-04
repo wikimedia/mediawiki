@@ -39,6 +39,7 @@ class RevDelFileItem extends RevDelItem {
 	protected $file;
 	protected IConnectionProvider $dbProvider;
 
+	/** @inheritDoc */
 	public function __construct( RevisionListBase $list, $row ) {
 		parent::__construct( $list, $row );
 		$this->file = static::initFile( $list, $row );
@@ -57,44 +58,54 @@ class RevDelFileItem extends RevDelItem {
 			->newFileFromRow( $row );
 	}
 
+	/** @inheritDoc */
 	public function getIdField() {
 		return 'oi_archive_name';
 	}
 
+	/** @inheritDoc */
 	public function getTimestampField() {
 		return 'oi_timestamp';
 	}
 
+	/** @inheritDoc */
 	public function getAuthorIdField() {
 		return 'oi_user';
 	}
 
+	/** @inheritDoc */
 	public function getAuthorNameField() {
 		return 'oi_user_text';
 	}
 
+	/** @inheritDoc */
 	public function getAuthorActorField() {
 		return 'oi_actor';
 	}
 
+	/** @inheritDoc */
 	public function getId() {
 		$parts = explode( '!', $this->row->oi_archive_name );
 
 		return $parts[0];
 	}
 
+	/** @inheritDoc */
 	public function canView() {
 		return $this->file->userCan( File::DELETED_RESTRICTED, $this->list->getAuthority() );
 	}
 
+	/** @inheritDoc */
 	public function canViewContent() {
 		return $this->file->userCan( File::DELETED_FILE, $this->list->getAuthority() );
 	}
 
+	/** @inheritDoc */
 	public function getBits() {
 		return $this->file->getVisibility();
 	}
 
+	/** @inheritDoc */
 	public function setBits( $bits ) {
 		# Queue the file op
 		# @todo FIXME: Move to LocalFile.php
@@ -214,6 +225,7 @@ class RevDelFileItem extends RevDelItem {
 		return $block;
 	}
 
+	/** @inheritDoc */
 	public function getHTML() {
 		$data =
 			$this->list->msg( 'widthheight' )->numParams(
@@ -226,6 +238,7 @@ class RevDelFileItem extends RevDelItem {
 			$data . ' ' . $this->getComment() . '</li>';
 	}
 
+	/** @inheritDoc */
 	public function getApiData( ApiResult $result ) {
 		$file = $this->file;
 		$user = $this->list->getUser();
@@ -272,10 +285,12 @@ class RevDelFileItem extends RevDelItem {
 		return $ret;
 	}
 
+	/** @inheritDoc */
 	public function lock() {
 		return $this->file->acquireFileLock();
 	}
 
+	/** @inheritDoc */
 	public function unlock() {
 		return $this->file->releaseFileLock();
 	}
