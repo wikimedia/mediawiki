@@ -1,5 +1,9 @@
 # Changelog
 
+## 5.0.1 / 2025-07-04
+
+* Use ECMAScript modules in RunJobs.js. (T398046)
+
 ## 5.0.0 / 2025-06-26
 
 * Use ECMAScript modules. (T373125)
