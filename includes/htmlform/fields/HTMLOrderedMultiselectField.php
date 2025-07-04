@@ -18,6 +18,7 @@ use MediaWiki\Widget\OrderedMultiselectWidget;
  */
 class HTMLOrderedMultiselectField extends HTMLTagMultiselectField {
 
+	/** @inheritDoc */
 	protected function getInputWidget( $params ) {
 		$widget = new OrderedMultiselectWidget( $params + [
 			'options' => $this->getOptionsOOUI(),
@@ -26,11 +27,13 @@ class HTMLOrderedMultiselectField extends HTMLTagMultiselectField {
 		return $widget;
 	}
 
+	/** @inheritDoc */
 	public function validate( $value, $alldata ) {
 		$this->mParams['allowedValues'] = self::flattenOptions( $this->getOptions() );
 		return parent::validate( $value, $alldata );
 	}
 
+	/** @inheritDoc */
 	public function getOptionsOOUI() {
 		$optionsOouiSections = [];
 		$options = $this->getOptions();
@@ -53,6 +56,7 @@ class HTMLOrderedMultiselectField extends HTMLTagMultiselectField {
 		return $optionsOouiSections;
 	}
 
+	/** @inheritDoc */
 	public function getOOUIModules() {
 		return [ 'mediawiki.widgets.OrderedMultiselectWidget' ];
 	}

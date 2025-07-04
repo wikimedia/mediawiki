@@ -36,6 +36,7 @@ class HTMLTitlesMultiselectField extends HTMLTitleTextField {
 		parent::__construct( $params );
 	}
 
+	/** @inheritDoc */
 	public function loadDataFromRequest( $request ) {
 		$value = $request->getText( $this->mName, $this->getDefault() ?? '' );
 
@@ -48,6 +49,7 @@ class HTMLTitlesMultiselectField extends HTMLTitleTextField {
 		return implode( "\n", $titlesArray );
 	}
 
+	/** @inheritDoc */
 	public function validate( $value, $alldata ) {
 		if ( !$this->mParams['exists'] ) {
 			return true;
@@ -74,11 +76,13 @@ class HTMLTitlesMultiselectField extends HTMLTitleTextField {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function getInputHTML( $value ) {
 		$this->mParent->getOutput()->enableOOUI();
 		return $this->getInputOOUI( $value );
 	}
 
+	/** @inheritDoc */
 	public function getInputOOUI( $value ) {
 		$this->mParent->getOutput()->addModuleStyles( 'mediawiki.widgets.TagMultiselectWidget.styles' );
 
@@ -142,14 +146,17 @@ class HTMLTitlesMultiselectField extends HTMLTitleTextField {
 		return $widget;
 	}
 
+	/** @inheritDoc */
 	protected function shouldInfuseOOUI() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	protected function getOOUIModules() {
 		return [ 'mediawiki.widgets.TitlesMultiselectWidget' ];
 	}
 
+	/** @inheritDoc */
 	public function getInputCodex( $value, $hasErrors ) {
 		// HTMLTextAreaField defaults to 'rows' => 25, which is too big for this field
 		// Use 10 instead (but allow $this->mParams to override that value)

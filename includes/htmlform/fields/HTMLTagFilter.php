@@ -38,6 +38,7 @@ class HTMLTagFilter extends HTMLFormField {
 		}
 	}
 
+	/** @inheritDoc */
 	public function getTableRow( $value ) {
 		$this->tagFilter = ChangeTags::buildTagFilterSelector(
 			$value,
@@ -52,6 +53,7 @@ class HTMLTagFilter extends HTMLFormField {
 		return '';
 	}
 
+	/** @inheritDoc */
 	public function getDiv( $value ) {
 		$this->tagFilter = ChangeTags::buildTagFilterSelector(
 			$value,
@@ -66,6 +68,7 @@ class HTMLTagFilter extends HTMLFormField {
 		return '';
 	}
 
+	/** @inheritDoc */
 	public function getOOUI( $value ) {
 		$this->tagFilter = ChangeTags::buildTagFilterSelector(
 			$value,
@@ -80,6 +83,7 @@ class HTMLTagFilter extends HTMLFormField {
 		return new \OOUI\FieldLayout( new \OOUI\Widget() );
 	}
 
+	/** @inheritDoc */
 	public function getInputHTML( $value ) {
 		if ( $this->tagFilter ) {
 			// we only need the select field, HTMLForm should handle the label
@@ -88,6 +92,7 @@ class HTMLTagFilter extends HTMLFormField {
 		return '';
 	}
 
+	/** @inheritDoc */
 	public function getInputOOUI( $value ) {
 		if ( $this->tagFilter ) {
 			// we only need the select field, HTMLForm should handle the label
@@ -96,6 +101,7 @@ class HTMLTagFilter extends HTMLFormField {
 		return '';
 	}
 
+	/** @inheritDoc */
 	protected function shouldInfuseOOUI() {
 		return true;
 	}

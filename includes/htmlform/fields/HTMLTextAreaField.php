@@ -175,6 +175,7 @@ class HTMLTextAreaField extends HTMLFormField {
 		] + $attribs );
 	}
 
+	/** @inheritDoc */
 	public function getInputCodex( $value, $hasErrors ) {
 		$textareaClasses = [ 'cdx-text-area__textarea' ];
 		if ( $this->mClass !== '' ) {

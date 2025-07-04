@@ -45,6 +45,7 @@ class HTMLToggleSwitchField extends HTMLCheckField {
 		return true;
 	}
 
+	/** @inheritDoc */
 	protected function getOOUIModules() {
 		return [ 'mediawiki.widgets.ToggleSwitchWidget' ];
 	}

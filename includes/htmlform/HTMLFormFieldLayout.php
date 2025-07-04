@@ -19,6 +19,7 @@ class HTMLFormFieldLayout extends \OOUI\FieldLayout {
 		$this->initializeHTMLFormElement( $config );
 	}
 
+	/** @inheritDoc */
 	protected function getJavaScriptClassName() {
 		return 'mw.htmlform.FieldLayout';
 	}

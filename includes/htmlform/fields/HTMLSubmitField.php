@@ -15,10 +15,12 @@ class HTMLSubmitField extends HTMLButtonField {
 	/** @inheritDoc */
 	protected $mFlags = [ 'primary', 'progressive' ];
 
+	/** @inheritDoc */
 	public function skipLoadData( $request ) {
 		return !$request->getCheck( $this->mName );
 	}
 
+	/** @inheritDoc */
 	public function loadDataFromRequest( $request ) {
 		return $request->getCheck( $this->mName );
 	}

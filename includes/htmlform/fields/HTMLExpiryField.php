@@ -41,6 +41,7 @@ class HTMLExpiryField extends HTMLFormField {
 		return $this->relativeField->getInputHTML( $value );
 	}
 
+	/** @inheritDoc */
 	protected function shouldInfuseOOUI() {
 		return true;
 	}
@@ -70,6 +71,7 @@ class HTMLExpiryField extends HTMLFormField {
 		);
 	}
 
+	/** @inheritDoc */
 	public function getInputCodex( $value, $hasErrors ) {
 		return $this->relativeField->getInputCodex( $value, $hasErrors );
 	}

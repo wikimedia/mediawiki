@@ -86,6 +86,7 @@ class HTMLSelectField extends HTMLFormField {
 		] + $attribs );
 	}
 
+	/** @inheritDoc */
 	public function getInputCodex( $value, $hasErrors ) {
 		$select = new XmlSelect( $this->mName, $this->mID, strval( $value ) );
 

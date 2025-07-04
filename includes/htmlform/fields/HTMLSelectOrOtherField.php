@@ -33,6 +33,7 @@ class HTMLSelectOrOtherField extends HTMLTextField {
 		}
 	}
 
+	/** @inheritDoc */
 	public function getInputHTML( $value ) {
 		$valInSelect = false;
 
@@ -86,14 +87,17 @@ class HTMLSelectOrOtherField extends HTMLTextField {
 		);
 	}
 
+	/** @inheritDoc */
 	protected function shouldInfuseOOUI() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	protected function getOOUIModules() {
 		return [ 'mediawiki.widgets.SelectWithInputWidget' ];
 	}
 
+	/** @inheritDoc */
 	public function getInputOOUI( $value ) {
 		$this->mParent->getOutput()->addModuleStyles( 'mediawiki.widgets.SelectWithInputWidget.styles' );
 
@@ -166,10 +170,12 @@ class HTMLSelectOrOtherField extends HTMLTextField {
 		] );
 	}
 
+	/** @inheritDoc */
 	public function getInputWidget( $params ) {
 		return new \MediaWiki\Widget\SelectWithInputWidget( $params );
 	}
 
+	/** @inheritDoc */
 	public function getInputCodex( $value, $hasErrors ) {
 		// Figure out the value of the select.
 		$valInSelect = false;

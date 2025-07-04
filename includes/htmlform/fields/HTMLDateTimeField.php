@@ -57,6 +57,7 @@ class HTMLDateTimeField extends HTMLTextField {
 		$this->mClass .= ' mw-htmlform-datetime-field';
 	}
 
+	/** @inheritDoc */
 	public function getAttributes( array $list ) {
 		$parentList = array_diff( $list, [ 'min', 'max' ] );
 		$ret = parent::getAttributes( $parentList );
@@ -82,6 +83,7 @@ class HTMLDateTimeField extends HTMLTextField {
 		return $ret;
 	}
 
+	/** @inheritDoc */
 	public function loadDataFromRequest( $request ) {
 		if ( !$request->getCheck( $this->mName ) ) {
 			return $this->getDefault();
@@ -92,6 +94,7 @@ class HTMLDateTimeField extends HTMLTextField {
 		return $date ? $this->formatDate( $date ) : $value;
 	}
 
+	/** @inheritDoc */
 	public function validate( $value, $alldata ) {
 		$p = parent::validate( $value, $alldata );
 
@@ -173,6 +176,7 @@ class HTMLDateTimeField extends HTMLTextField {
 		}
 	}
 
+	/** @inheritDoc */
 	public function getInputOOUI( $value ) {
 		$params = [
 			'type' => $this->mType,
@@ -194,6 +198,7 @@ class HTMLDateTimeField extends HTMLTextField {
 		}
 	}
 
+	/** @inheritDoc */
 	protected function getOOUIModules() {
 		if ( $this->mType === 'date' ) {
 			return [ 'mediawiki.widgets.DateInputWidget' ];
@@ -202,6 +207,7 @@ class HTMLDateTimeField extends HTMLTextField {
 		}
 	}
 
+	/** @inheritDoc */
 	protected function shouldInfuseOOUI() {
 		return true;
 	}

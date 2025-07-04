@@ -40,6 +40,7 @@ class VFormHTMLForm extends HTMLForm {
 	/** @inheritDoc */
 	protected $displayFormat = 'vform';
 
+	/** @inheritDoc */
 	public static function loadInputFromParameters( $fieldname, $descriptor,
 		?HTMLForm $parent = null
 	) {
@@ -48,6 +49,7 @@ class VFormHTMLForm extends HTMLForm {
 		return $field;
 	}
 
+	/** @inheritDoc */
 	public function getHTML( $submitResult ) {
 		$this->getOutput()->addModuleStyles( [
 			'mediawiki.ui',
@@ -66,11 +68,13 @@ class VFormHTMLForm extends HTMLForm {
 		return $field->getVForm( $value );
 	}
 
+	/** @inheritDoc */
 	protected function getFormAttributes() {
 		return [ 'class' => [ 'mw-htmlform', 'mw-ui-vform', 'mw-ui-container' ] ] +
 			parent::getFormAttributes();
 	}
 
+	/** @inheritDoc */
 	public function wrapForm( $html ) {
 		// Always discard $this->mWrapperLegend
 		return Html::rawElement( 'form', $this->getFormAttributes(), $html );

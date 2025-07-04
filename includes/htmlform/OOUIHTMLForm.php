@@ -53,6 +53,7 @@ class OOUIHTMLForm extends HTMLForm {
 	/** @inheritDoc */
 	protected $displayFormat = 'ooui';
 
+	/** @inheritDoc */
 	public static function loadInputFromParameters( $fieldname, $descriptor,
 		?HTMLForm $parent = null
 	) {
@@ -61,6 +62,7 @@ class OOUIHTMLForm extends HTMLForm {
 		return $field;
 	}
 
+	/** @inheritDoc */
 	public function getButtons() {
 		$buttons = '';
 
@@ -246,6 +248,7 @@ class OOUIHTMLForm extends HTMLForm {
 		return '';
 	}
 
+	/** @inheritDoc */
 	public function getHeaderHtml( $section = null ) {
 		if ( $section === null ) {
 			// We handle $this->mHeader elsewhere, in getBody()
@@ -281,10 +284,12 @@ class OOUIHTMLForm extends HTMLForm {
 		);
 	}
 
+	/** @inheritDoc */
 	public function getBody() {
 		return $this->formatFormHeader() . parent::getBody();
 	}
 
+	/** @inheritDoc */
 	public function wrapForm( $html ) {
 		if ( is_string( $this->mWrapperLegend ) ) {
 			$phpClass = $this->mCollapsible ? CollapsibleFieldsetLayout::class : \OOUI\FieldsetLayout::class;

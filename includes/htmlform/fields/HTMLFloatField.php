@@ -8,10 +8,12 @@ namespace MediaWiki\HTMLForm\Field;
  * @stable to extend
  */
 class HTMLFloatField extends HTMLTextField {
+	/** @inheritDoc */
 	public function getSize() {
 		return $this->mParams['size'] ?? 20;
 	}
 
+	/** @inheritDoc */
 	public function validate( $value, $alldata ) {
 		$p = parent::validate( $value, $alldata );
 

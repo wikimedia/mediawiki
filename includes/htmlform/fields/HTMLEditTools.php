@@ -9,10 +9,12 @@ use MediaWiki\Message\Message;
  * @stable to extend
  */
 class HTMLEditTools extends HTMLFormField {
+	/** @inheritDoc */
 	public function getInputHTML( $value ) {
 		return '';
 	}
 
+	/** @inheritDoc */
 	public function getTableRow( $value ) {
 		$msg = $this->formatMsg();
 

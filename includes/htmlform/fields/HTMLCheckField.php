@@ -89,6 +89,7 @@ class HTMLCheckField extends HTMLFormField {
 		return new \OOUI\CheckboxInputWidget( $attr );
 	}
 
+	/** @inheritDoc */
 	public function getInputCodex( $value, $hasErrors ) {
 		if ( !empty( $this->mParams['invert'] ) ) {
 			$value = !$value;

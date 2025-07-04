@@ -21,10 +21,12 @@ class HTMLSizeFilterField extends HTMLIntField {
 
 	protected bool $mSelectMin = true;
 
+	/** @inheritDoc */
 	public function getSize() {
 		return $this->mParams['size'] ?? 9;
 	}
 
+	/** @inheritDoc */
 	public function getInputHTML( $value ) {
 		$attribs = [];
 		if ( !empty( $this->mParams['disabled'] ) ) {
@@ -78,6 +80,7 @@ class HTMLSizeFilterField extends HTMLIntField {
 		] );
 	}
 
+	/** @inheritDoc */
 	protected function getOOUIModules() {
 		return [ 'mediawiki.widgets.SizeFilterWidget' ];
 	}
@@ -99,6 +102,7 @@ class HTMLSizeFilterField extends HTMLIntField {
 		}
 	}
 
+	/** @inheritDoc */
 	protected function needsLabel() {
 		return false;
 	}

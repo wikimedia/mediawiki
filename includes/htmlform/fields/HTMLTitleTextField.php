@@ -44,6 +44,7 @@ class HTMLTitleTextField extends HTMLTextField {
 		parent::__construct( $params );
 	}
 
+	/** @inheritDoc */
 	public function validate( $value, $alldata ) {
 		if ( $this->mParams['interwiki'] && $this->mParams['relative'] ) {
 			// relative and interwiki cannot be used together, because we don't have a way to know about
@@ -97,6 +98,7 @@ class HTMLTitleTextField extends HTMLTextField {
 		return parent::validate( $value, $alldata );
 	}
 
+	/** @inheritDoc */
 	protected function getInputWidget( $params ) {
 		if ( $this->mParams['namespace'] !== false ) {
 			$params['namespace'] = $this->mParams['namespace'];
@@ -105,15 +107,18 @@ class HTMLTitleTextField extends HTMLTextField {
 		return new TitleInputWidget( $params );
 	}
 
+	/** @inheritDoc */
 	protected function shouldInfuseOOUI() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	protected function getOOUIModules() {
 		// FIXME: TitleInputWidget should be in its own module
 		return [ 'mediawiki.widgets' ];
 	}
 
+	/** @inheritDoc */
 	public function getInputHtml( $value ) {
 		// add mw-searchInput class to enable search suggestions for non-OOUI, too
 		$this->mClass .= 'mw-searchInput';
@@ -122,6 +127,7 @@ class HTMLTitleTextField extends HTMLTextField {
 		return parent::getInputHTML( $value );
 	}
 
+	/** @inheritDoc */
 	protected function getDataAttribs() {
 		return [
 			'data-mw-searchsuggest' => FormatJson::encode( [

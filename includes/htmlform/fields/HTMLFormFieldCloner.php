@@ -236,10 +236,12 @@ class HTMLFormFieldCloner extends HTMLFormField {
 		return $alldata[$field->mParams['fieldname']];
 	}
 
+	/** @inheritDoc */
 	protected function needsLabel() {
 		return false;
 	}
 
+	/** @inheritDoc */
 	public function loadDataFromRequest( $request ) {
 		// It's possible that this might be posted with no fields. Detect that
 		// by looking for an edit token.
@@ -292,6 +294,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 		return $ret;
 	}
 
+	/** @inheritDoc */
 	public function getDefault() {
 		$ret = parent::getDefault();
 
@@ -483,6 +486,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 		], $this->mParent );
 	}
 
+	/** @inheritDoc */
 	public function getInputHTML( $values ) {
 		$html = '';
 
@@ -560,6 +564,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 		return $html;
 	}
 
+	/** @inheritDoc */
 	public function getInputOOUI( $values ) {
 		$html = '';
 

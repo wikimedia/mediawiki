@@ -57,6 +57,7 @@ class HTMLFormFieldWithButton extends HTMLFormField {
 		parent::__construct( $info );
 	}
 
+	/** @inheritDoc */
 	public function getInputHTML( $value ) {
 		$attr = [
 			'class' => 'mw-htmlform-submit ' . $this->mButtonClass,
@@ -66,6 +67,7 @@ class HTMLFormFieldWithButton extends HTMLFormField {
 		return Html::input( $this->mButtonName, $this->mButtonValue, $this->mButtonType, $attr );
 	}
 
+	/** @inheritDoc */
 	public function getInputOOUI( $value ) {
 		return new \OOUI\ButtonInputWidget( [
 			'name' => $this->mButtonName,

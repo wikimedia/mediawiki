@@ -60,6 +60,7 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 		parent::__construct( $params );
 	}
 
+	/** @inheritDoc */
 	public function validate( $value, $alldata ) {
 		$rows = $this->mParams['rows'];
 		$columns = $this->mParams['columns'];
@@ -171,6 +172,7 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 		return $html;
 	}
 
+	/** @inheritDoc */
 	public function getInputOOUI( $value ) {
 		$attribs = $this->getAttributes( [ 'disabled', 'tabindex' ] );
 
@@ -233,10 +235,12 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 		}
 	}
 
+	/** @inheritDoc */
 	public function getDefault() {
 		return $this->mDefault ?? [];
 	}
 
+	/** @inheritDoc */
 	public function filterDataForSubmit( $data ) {
 		$columns = HTMLFormField::flattenOptions( $this->mParams['columns'] );
 		$rows = HTMLFormField::flattenOptions( $this->mParams['rows'] );
@@ -258,10 +262,12 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 		return $res;
 	}
 
+	/** @inheritDoc */
 	protected function getOOUIModules() {
 		return [ 'mediawiki.widgets.CheckMatrixWidget' ];
 	}
 
+	/** @inheritDoc */
 	protected function shouldInfuseOOUI() {
 		return true;
 	}

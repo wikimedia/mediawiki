@@ -44,6 +44,7 @@ class HTMLHiddenField extends HTMLFormField {
 		return [ $this->mName, $value, $params ];
 	}
 
+	/** @inheritDoc */
 	public function getTableRow( $value ) {
 		[ $name, $value, $params ] = $this->getHiddenFieldData( $value );
 		$this->mParent->addHiddenField( $name, $value, $params );
@@ -68,18 +69,22 @@ class HTMLHiddenField extends HTMLFormField {
 		return $this->getTableRow( $value );
 	}
 
+	/** @inheritDoc */
 	public function getCodex( $value ) {
 		return $this->getTableRow( $value );
 	}
 
+	/** @inheritDoc */
 	public function getInputHTML( $value ) {
 		return '';
 	}
 
+	/** @inheritDoc */
 	public function canDisplayErrors() {
 		return false;
 	}
 
+	/** @inheritDoc */
 	public function hasVisibleOutput() {
 		return false;
 	}

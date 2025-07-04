@@ -21,6 +21,7 @@ use Wikimedia\IPUtils;
  * @note This widget is not likely to remain functional in non-OOUI forms.
  */
 class HTMLUsersMultiselectField extends HTMLUserTextField {
+	/** @inheritDoc */
 	public function loadDataFromRequest( $request ) {
 		$value = $request->getText( $this->mName, $this->getDefault() ?? '' );
 
@@ -57,6 +58,7 @@ class HTMLUsersMultiselectField extends HTMLUserTextField {
 		return implode( "\n", $uniqueUsers );
 	}
 
+	/** @inheritDoc */
 	public function validate( $value, $alldata ) {
 		if ( !$this->mParams['exists'] ) {
 			return true;
@@ -83,11 +85,13 @@ class HTMLUsersMultiselectField extends HTMLUserTextField {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function getInputHTML( $value ) {
 		$this->mParent->getOutput()->enableOOUI();
 		return $this->getInputOOUI( $value );
 	}
 
+	/** @inheritDoc */
 	public function getInputOOUI( $value ) {
 		$this->mParent->getOutput()->addModuleStyles( 'mediawiki.widgets.TagMultiselectWidget.styles' );
 
@@ -157,10 +161,12 @@ class HTMLUsersMultiselectField extends HTMLUserTextField {
 		return $widget;
 	}
 
+	/** @inheritDoc */
 	protected function shouldInfuseOOUI() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	protected function getOOUIModules() {
 		return [ 'mediawiki.widgets.UsersMultiselectWidget' ];
 	}

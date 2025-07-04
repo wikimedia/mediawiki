@@ -49,6 +49,7 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 		$this->mFlatOptions = self::flattenOptions( $this->getOptions() );
 	}
 
+	/** @inheritDoc */
 	public function getInputHTML( $value ) {
 		$select = parent::getInputHTML( $value[1] );
 
@@ -88,10 +89,12 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 		);
 	}
 
+	/** @inheritDoc */
 	protected function getOOUIModules() {
 		return [ 'mediawiki.widgets.SelectWithInputWidget' ];
 	}
 
+	/** @inheritDoc */
 	public function getInputOOUI( $value ) {
 		$this->mParent->getOutput()->addModuleStyles( 'mediawiki.widgets.SelectWithInputWidget.styles' );
 
@@ -162,6 +165,7 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 		return new SelectWithInputWidget( $params );
 	}
 
+	/** @inheritDoc */
 	public function getInputCodex( $value, $hasErrors ) {
 		$select = parent::getInputCodex( $value[1], $hasErrors );
 
@@ -267,10 +271,12 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 		return $this->getDefault();
 	}
 
+	/** @inheritDoc */
 	public function getSize() {
 		return $this->mParams['size'] ?? 45;
 	}
 
+	/** @inheritDoc */
 	public function validate( $value, $alldata ) {
 		# HTMLSelectField forces $value to be one of the options in the select
 		# field, which is not useful here.  But we do want the validation further up

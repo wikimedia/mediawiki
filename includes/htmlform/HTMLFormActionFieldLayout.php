@@ -19,6 +19,7 @@ class HTMLFormActionFieldLayout extends \OOUI\ActionFieldLayout {
 		$this->initializeHTMLFormElement( $config );
 	}
 
+	/** @inheritDoc */
 	protected function getJavaScriptClassName() {
 		return 'mw.htmlform.ActionFieldLayout';
 	}

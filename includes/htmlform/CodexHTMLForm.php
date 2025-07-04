@@ -38,6 +38,7 @@ class CodexHTMLForm extends HTMLForm {
 	/** @inheritDoc */
 	protected $displayFormat = 'codex';
 
+	/** @inheritDoc */
 	public static function loadInputFromParameters( $fieldname, $descriptor,
 		?HTMLForm $parent = null
 	) {
@@ -46,6 +47,7 @@ class CodexHTMLForm extends HTMLForm {
 		return $field;
 	}
 
+	/** @inheritDoc */
 	public function getHTML( $submitResult ) {
 		$this->getOutput()->addModuleStyles( [
 			'mediawiki.htmlform.codex.styles',
@@ -61,16 +63,19 @@ class CodexHTMLForm extends HTMLForm {
 		return $field->getCodex( $value );
 	}
 
+	/** @inheritDoc */
 	protected function getFormAttributes() {
 		$attribs = parent::getFormAttributes();
 		$attribs['class'] = [ 'mw-htmlform', 'mw-htmlform-codex' ];
 		return $attribs;
 	}
 
+	/** @inheritDoc */
 	public function wrapForm( $html ) {
 		return Html::rawElement( 'form', $this->getFormAttributes(), $html );
 	}
 
+	/** @inheritDoc */
 	protected function wrapFieldSetSection( $legend, $section, $attributes, $isRoot ) {
 		$attributes['class'] = 'cdx-field cdx-field--is-fieldset';
 		$legendElement = Html::rawElement( 'legend', [ 'class' => [ 'cdx-label' ] ], $legend );
@@ -128,6 +133,7 @@ class CodexHTMLForm extends HTMLForm {
 		) . $descriptionMarkup;
 	}
 
+	/** @inheritDoc */
 	protected function formatSection( array $fieldsHtml, $sectionName, $anyFieldHasLabel ) {
 		if ( !$fieldsHtml ) {
 			// Do not generate any wrappers for empty sections. Sections may be empty if they only

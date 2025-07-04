@@ -230,6 +230,7 @@ class HTMLTextField extends HTMLFormField {
 		] + $attribs );
 	}
 
+	/** @inheritDoc */
 	public function getInputCodex( $value, $hasErrors ) {
 		if ( !$this->isPersistent() ) {
 			$value = '';

@@ -73,6 +73,7 @@ class HTMLButtonField extends HTMLFormField {
 		}
 	}
 
+	/** @inheritDoc */
 	public function getInputHTML( $value ) {
 		$flags = '';
 		$prefix = 'mw-htmlform-';
@@ -119,6 +120,7 @@ class HTMLButtonField extends HTMLFormField {
 		) );
 	}
 
+	/** @inheritDoc */
 	public function getInputCodex( $value, $hasErrors ) {
 		$flags = $this->mFlags;
 		$buttonLabel = $this->buttonLabel ?: htmlspecialchars( $this->getDefault() );

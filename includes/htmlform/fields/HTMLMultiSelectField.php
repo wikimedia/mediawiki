@@ -171,6 +171,7 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 		}
 	}
 
+	/** @inheritDoc */
 	public function getOptionsOOUI() {
 		$optionsOouiSections = [];
 		$options = $this->getOptions();
@@ -279,10 +280,12 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 		return implode( '', $out );
 	}
 
+	/** @inheritDoc */
 	protected function getOOUIModules() {
 		return $this->mDropdown ? [ 'mediawiki.widgets.MenuTagMultiselectWidget' ] : [];
 	}
 
+	/** @inheritDoc */
 	protected function shouldInfuseOOUI() {
 		return $this->mDropdown;
 	}

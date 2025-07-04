@@ -22,10 +22,12 @@ class HTMLTextFieldWithButton extends HTMLTextField {
 		parent::__construct( $info );
 	}
 
+	/** @inheritDoc */
 	public function getInputHTML( $value ) {
 		return $this->mClassWithButton->getElement( parent::getInputHTML( $value ) );
 	}
 
+	/** @inheritDoc */
 	protected function getFieldLayoutOOUI( $inputField, $config ) {
 		$buttonWidget = $this->mClassWithButton->getInputOOUI( '' );
 		return new HTMLFormActionFieldLayout( $inputField, $buttonWidget, $config );

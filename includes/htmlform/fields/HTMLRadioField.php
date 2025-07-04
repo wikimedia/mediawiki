@@ -37,6 +37,7 @@ class HTMLRadioField extends HTMLFormField {
 		}
 	}
 
+	/** @inheritDoc */
 	public function validate( $value, $alldata ) {
 		$p = parent::validate( $value, $alldata );
 
@@ -79,6 +80,7 @@ class HTMLRadioField extends HTMLFormField {
 		return $html;
 	}
 
+	/** @inheritDoc */
 	public function getInputOOUI( $value ) {
 		if (
 			isset( $this->mParams['option-descriptions'] ) ||
@@ -109,6 +111,7 @@ class HTMLRadioField extends HTMLFormField {
 		) );
 	}
 
+	/** @inheritDoc */
 	public function getInputCodex( $value, $hasErrors ) {
 		$optionDescriptions = $this->getOptionDescriptions();
 		$html = '';
@@ -244,10 +247,12 @@ class HTMLRadioField extends HTMLFormField {
 		}
 	}
 
+	/** @inheritDoc */
 	protected function needsLabel() {
 		return false;
 	}
 
+	/** @inheritDoc */
 	protected function shouldInfuseOOUI() {
 		// Avoid accessibility issues when the widget is infused (e.g. by hide-if) but the layout isn't (T396261)
 		return true;

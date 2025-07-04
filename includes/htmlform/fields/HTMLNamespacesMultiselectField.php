@@ -18,6 +18,7 @@ use MediaWiki\Widget\NamespacesMultiselectWidget;
  * @note This widget is not likely to remain functional in non-OOUI forms.
  */
 class HTMLNamespacesMultiselectField extends HTMLSelectNamespace {
+	/** @inheritDoc */
 	public function loadDataFromRequest( $request ) {
 		$value = $request->getText( $this->mName, $this->getDefault() ?? '' );
 
@@ -30,6 +31,7 @@ class HTMLNamespacesMultiselectField extends HTMLSelectNamespace {
 		return implode( "\n", $namespaces );
 	}
 
+	/** @inheritDoc */
 	public function validate( $value, $alldata ) {
 		if ( !$this->mParams['exists'] || $value === '' ) {
 			return true;
@@ -63,11 +65,13 @@ class HTMLNamespacesMultiselectField extends HTMLSelectNamespace {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function getInputHTML( $value ) {
 		$this->mParent->getOutput()->enableOOUI();
 		return $this->getInputOOUI( $value );
 	}
 
+	/** @inheritDoc */
 	public function getInputOOUI( $value ) {
 		$this->mParent->getOutput()->addModuleStyles( 'mediawiki.widgets.TagMultiselectWidget.styles' );
 
@@ -114,14 +118,17 @@ class HTMLNamespacesMultiselectField extends HTMLSelectNamespace {
 		return $widget;
 	}
 
+	/** @inheritDoc */
 	protected function shouldInfuseOOUI() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	protected function getOOUIModules() {
 		return [ 'mediawiki.widgets.NamespacesMultiselectWidget' ];
 	}
 
+	/** @inheritDoc */
 	public function getInputCodex( $value, $hasErrors ) {
 		// HTMLTextAreaField defaults to 'rows' => 25, which is too big for this field
 		// Use 10 instead (but allow $this->mParams to override that value)
