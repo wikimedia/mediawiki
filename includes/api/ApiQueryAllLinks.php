@@ -120,10 +120,12 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 		$this->run();
 	}
 
+	/** @inheritDoc */
 	public function getCacheMode( $params ) {
 		return 'public';
 	}
 
+	/** @inheritDoc */
 	public function executeGenerator( $resultPageSet ) {
 		$this->run( $resultPageSet );
 	}
@@ -326,6 +328,7 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 		}
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		$allowedParams = [
 			'continue' => [
@@ -370,6 +373,7 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 		return $allowedParams;
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		$p = $this->getModulePrefix();
 		$name = $this->getModuleName();
@@ -387,6 +391,7 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		$name = ucfirst( $this->getModuleName() );
 

@@ -38,6 +38,7 @@ class ApiQueryPagePropNames extends ApiQueryBase {
 		parent::__construct( $query, $moduleName, 'ppn' );
 	}
 
+	/** @inheritDoc */
 	public function getCacheMode( $params ) {
 		return 'public';
 	}
@@ -85,6 +86,7 @@ class ApiQueryPagePropNames extends ApiQueryBase {
 		$result->addIndexedTagName( [ 'query', $this->getModuleName() ], 'p' );
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		return [
 			'continue' => [
@@ -100,6 +102,7 @@ class ApiQueryPagePropNames extends ApiQueryBase {
 		];
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		return [
 			'action=query&list=pagepropnames'
@@ -107,6 +110,7 @@ class ApiQueryPagePropNames extends ApiQueryBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Pagepropnames';
 	}

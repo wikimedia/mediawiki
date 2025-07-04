@@ -29,6 +29,7 @@ namespace MediaWiki\Api;
  */
 class ApiFormatNone extends ApiFormatBase {
 
+	/** @inheritDoc */
 	public function getMimeType() {
 		return 'text/plain';
 	}

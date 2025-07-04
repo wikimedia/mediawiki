@@ -654,12 +654,14 @@ class ApiQueryUserContribs extends ApiQueryBase {
 		}
 	}
 
+	/** @inheritDoc */
 	public function getCacheMode( $params ) {
 		// This module provides access to deleted revisions and patrol flags if
 		// the requester is logged in
 		return 'anon-public-user-private';
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		return [
 			'limit' => [
@@ -749,6 +751,7 @@ class ApiQueryUserContribs extends ApiQueryBase {
 		];
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		return [
 			'action=query&list=usercontribs&ucuser=Example'
@@ -758,6 +761,7 @@ class ApiQueryUserContribs extends ApiQueryBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Usercontribs';
 	}

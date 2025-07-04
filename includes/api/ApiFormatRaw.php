@@ -43,6 +43,7 @@ class ApiFormatRaw extends ApiFormatBase {
 			$main->createPrinterByName( $main->getParameter( 'format' ) );
 	}
 
+	/** @inheritDoc */
 	public function getMimeType() {
 		$data = $this->getResult()->getResultData();
 
@@ -57,6 +58,7 @@ class ApiFormatRaw extends ApiFormatBase {
 		return $data['mime'];
 	}
 
+	/** @inheritDoc */
 	public function getFilename() {
 		$data = $this->getResult()->getResultData();
 		if ( isset( $data['error'] ) ) {
@@ -68,6 +70,7 @@ class ApiFormatRaw extends ApiFormatBase {
 		}
 	}
 
+	/** @inheritDoc */
 	public function initPrinter( $unused = false ) {
 		$data = $this->getResult()->getResultData();
 		if ( isset( $data['error'] ) || isset( $data['errors'] ) ) {

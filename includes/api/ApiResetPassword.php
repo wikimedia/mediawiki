@@ -99,10 +99,12 @@ class ApiResetPassword extends ApiBase {
 		$result->addValue( [ 'resetpassword' ], 'status', 'success' );
 	}
 
+	/** @inheritDoc */
 	public function isWriteMode() {
 		return $this->hasAnyRoutes();
 	}
 
+	/** @inheritDoc */
 	public function needsToken() {
 		if ( !$this->hasAnyRoutes() ) {
 			return false;

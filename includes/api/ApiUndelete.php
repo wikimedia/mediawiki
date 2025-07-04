@@ -141,14 +141,17 @@ class ApiUndelete extends ApiBase {
 		$this->getResult()->addValue( null, $this->getModuleName(), $info );
 	}
 
+	/** @inheritDoc */
 	public function mustBePosted() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function isWriteMode() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		return [
 			'title' => [
@@ -172,10 +175,12 @@ class ApiUndelete extends ApiBase {
 		] + $this->getWatchlistParams();
 	}
 
+	/** @inheritDoc */
 	public function needsToken() {
 		return 'csrf';
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		$title = Title::newMainPage()->getPrefixedText();
 		$mp = rawurlencode( $title );
@@ -189,6 +194,7 @@ class ApiUndelete extends ApiBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Undelete';
 	}

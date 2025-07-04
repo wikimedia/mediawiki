@@ -43,10 +43,12 @@ class ApiQueryPagesWithProp extends ApiQueryGeneratorBase {
 		$this->run();
 	}
 
+	/** @inheritDoc */
 	public function getCacheMode( $params ) {
 		return 'public';
 	}
 
+	/** @inheritDoc */
 	public function executeGenerator( $resultPageSet ) {
 		$this->run( $resultPageSet );
 	}
@@ -133,6 +135,7 @@ class ApiQueryPagesWithProp extends ApiQueryGeneratorBase {
 		}
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		return [
 			'propname' => [
@@ -169,6 +172,7 @@ class ApiQueryPagesWithProp extends ApiQueryGeneratorBase {
 		];
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		return [
 			'action=query&list=pageswithprop&pwppropname=displaytitle&pwpprop=ids|title|value'
@@ -178,6 +182,7 @@ class ApiQueryPagesWithProp extends ApiQueryGeneratorBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Pageswithprop';
 	}

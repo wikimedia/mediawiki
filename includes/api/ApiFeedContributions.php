@@ -263,6 +263,7 @@ class ApiFeedContributions extends ApiBase {
 			"</p>\n<hr />\n<div>" . $html . '</div>';
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		$feedFormatNames = array_keys( $this->getConfig()->get( MainConfigNames::FeedClasses ) );
 
@@ -308,6 +309,7 @@ class ApiFeedContributions extends ApiBase {
 		return $ret;
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		return [
 			'action=feedcontributions&user=Example'
@@ -315,6 +317,7 @@ class ApiFeedContributions extends ApiBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Feedcontributions';
 	}

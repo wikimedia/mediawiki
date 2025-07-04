@@ -30,6 +30,7 @@ class SubmoduleDef extends EnumDef {
 	 */
 	public const PARAM_SUBMODULE_PARAM_PREFIX = 'param-submodule-param-prefix';
 
+	/** @inheritDoc */
 	public function checkSettings( string $name, $settings, array $options, array $ret ): array {
 		$map = $settings[self::PARAM_SUBMODULE_MAP] ?? [];
 		if ( !is_array( $map ) ) {
@@ -73,6 +74,7 @@ class SubmoduleDef extends EnumDef {
 		return $ret;
 	}
 
+	/** @inheritDoc */
 	public function getEnumValues( $name, array $settings, array $options ) {
 		if ( isset( $settings[self::PARAM_SUBMODULE_MAP] ) ) {
 			$modules = array_keys( $settings[self::PARAM_SUBMODULE_MAP] );
@@ -83,6 +85,7 @@ class SubmoduleDef extends EnumDef {
 		return $modules;
 	}
 
+	/** @inheritDoc */
 	public function getParamInfo( $name, array $settings, array $options ) {
 		$info = parent::getParamInfo( $name, $settings, $options );
 		/** @var ApiBase $module */
@@ -178,6 +181,7 @@ class SubmoduleDef extends EnumDef {
 		return $values;
 	}
 
+	/** @inheritDoc */
 	protected function getEnumValuesForHelp( $name, array $settings, array $options ) {
 		$module = $options['module'];
 		$map = $this->getSubmoduleMap( $module, $name, $settings );

@@ -181,18 +181,22 @@ class ApiWatch extends ApiBase {
 		return $this->mPageSet;
 	}
 
+	/** @inheritDoc */
 	public function mustBePosted() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function isWriteMode() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function needsToken() {
 		return 'watch';
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams( $flags = 0 ) {
 		$result = [
 			'title' => [
@@ -222,6 +226,7 @@ class ApiWatch extends ApiBase {
 		return $result;
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		$title = Title::newMainPage()->getPrefixedText();
 		$mp = rawurlencode( $title );
@@ -244,6 +249,7 @@ class ApiWatch extends ApiBase {
 		] );
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Watch';
 	}

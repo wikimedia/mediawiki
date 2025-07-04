@@ -277,6 +277,7 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 		}
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		$ret = parent::getAllowedParams() + [
 			'user' => [
@@ -329,6 +330,7 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 		return $ret;
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		return [
 			'action=query&list=allrevisions&arvuser=Example&arvlimit=50'
@@ -338,6 +340,7 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Allrevisions';
 	}

@@ -206,10 +206,12 @@ class ApiQueryLanguageinfo extends ApiQueryBase {
 		}
 	}
 
+	/** @inheritDoc */
 	public function getCacheMode( $params ) {
 		return 'public';
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		return [
 			'prop' => [
@@ -237,6 +239,7 @@ class ApiQueryLanguageinfo extends ApiQueryBase {
 		];
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		$pathUrl = 'action=' . $this->getQuery()->getModuleName() .
 			'&meta=' . $this->getModuleName();

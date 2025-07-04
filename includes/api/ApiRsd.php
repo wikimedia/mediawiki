@@ -52,10 +52,12 @@ class ApiRsd extends ApiBase {
 		$result->addValue( null, 'service', $service );
 	}
 
+	/** @inheritDoc */
 	public function getCustomPrinter() {
 		return new ApiFormatXmlRsd( $this->getMain(), 'xml' );
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		return [
 			'action=rsd'
@@ -63,6 +65,7 @@ class ApiRsd extends ApiBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function isReadMode() {
 		return false;
 	}
@@ -155,6 +158,7 @@ class ApiRsd extends ApiBase {
 		return $outputData;
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Rsd';
 	}

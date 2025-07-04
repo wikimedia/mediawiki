@@ -393,6 +393,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 		return $data;
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		$blockCIDRLimit = $this->getConfig()->get( MainConfigNames::BlockCIDRLimit );
 
@@ -476,6 +477,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 		];
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		return [
 			'action=query&list=blocks'
@@ -485,6 +487,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Blocks';
 	}

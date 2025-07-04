@@ -292,6 +292,7 @@ class ApiQueryDeletedRevisions extends ApiQueryRevisionsBase {
 		}
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		return parent::getAllowedParams() + [
 			'start' => [
@@ -327,6 +328,7 @@ class ApiQueryDeletedRevisions extends ApiQueryRevisionsBase {
 		];
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		$title = Title::newMainPage();
 		$talkTitle = $title->getTalkPageIfDefined();
@@ -345,6 +347,7 @@ class ApiQueryDeletedRevisions extends ApiQueryRevisionsBase {
 		return $examples;
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Deletedrevisions';
 	}

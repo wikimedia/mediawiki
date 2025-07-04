@@ -195,14 +195,17 @@ class ApiUserrights extends ApiBase {
 		return $status->value;
 	}
 
+	/** @inheritDoc */
 	public function mustBePosted() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function isWriteMode() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams( $flags = 0 ) {
 		$allGroups = $this->userGroupManager->listAllGroups();
 
@@ -262,14 +265,17 @@ class ApiUserrights extends ApiBase {
 		return $params;
 	}
 
+	/** @inheritDoc */
 	public function needsToken() {
 		return 'userrights';
 	}
 
+	/** @inheritDoc */
 	protected function getWebUITokenSalt( array $params ) {
 		return $this->getUrUser( $params )->getName();
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		return [
 			'action=userrights&user=FooBot&add=bot&remove=sysop|bureaucrat&token=123ABC'
@@ -281,6 +287,7 @@ class ApiUserrights extends ApiBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:User_group_membership';
 	}

@@ -45,10 +45,12 @@ class ApiErrorFormatter_BackCompat extends ApiErrorFormatter {
 		);
 	}
 
+	/** @inheritDoc */
 	public function getFormat() {
 		return 'bc';
 	}
 
+	/** @inheritDoc */
 	public function arrayFromStatus( StatusValue $status, $type = 'error', $format = null ) {
 		if ( $status->isGood() ) {
 			return [];
@@ -71,6 +73,7 @@ class ApiErrorFormatter_BackCompat extends ApiErrorFormatter {
 		return $result;
 	}
 
+	/** @inheritDoc */
 	protected function formatMessageInternal( $msg, $format ) {
 		return [
 			'code' => $msg->getApiCode(),
@@ -91,6 +94,7 @@ class ApiErrorFormatter_BackCompat extends ApiErrorFormatter {
 		return empty( $options['bc'] ) ? $ret : $ret['info'];
 	}
 
+	/** @inheritDoc */
 	protected function addWarningOrError( $tag, $modulePath, $msg ) {
 		$value = self::stripMarkup( $msg->text() );
 

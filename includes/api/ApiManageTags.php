@@ -93,14 +93,17 @@ class ApiManageTags extends ApiBase {
 		$result->addValue( null, $this->getModuleName(), $ret );
 	}
 
+	/** @inheritDoc */
 	public function mustBePosted() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function isWriteMode() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		return [
 			'operation' => [
@@ -127,10 +130,12 @@ class ApiManageTags extends ApiBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function needsToken() {
 		return 'csrf';
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		return [
 			'action=managetags&operation=create&tag=spam&reason=For+use+in+edit+patrolling&token=123ABC'
@@ -144,6 +149,7 @@ class ApiManageTags extends ApiBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tag_management';
 	}

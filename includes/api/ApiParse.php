@@ -1113,6 +1113,7 @@ class ApiParse extends ApiBase {
 		}
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		return [
 			'title' => null,
@@ -1216,6 +1217,7 @@ class ApiParse extends ApiBase {
 		];
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		return [
 			'action=parse&page=Project:Sandbox'
@@ -1229,6 +1231,7 @@ class ApiParse extends ApiBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Parsing_wikitext';
 	}

@@ -452,6 +452,7 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 		}
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		$ret = parent::getAllowedParams() + [
 			'user' => [
@@ -517,6 +518,7 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 		return $ret;
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		return [
 			'action=query&list=alldeletedrevisions&adruser=Example&adrlimit=50'
@@ -526,6 +528,7 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Alldeletedrevisions';
 	}

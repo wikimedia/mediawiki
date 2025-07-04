@@ -162,6 +162,7 @@ class ApiFeedRecentChanges extends ApiBase {
 		return $feedObj;
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		$config = $this->getConfig();
 		$feedFormatNames = array_keys( $config->get( MainConfigNames::FeedClasses ) );
@@ -219,6 +220,7 @@ class ApiFeedRecentChanges extends ApiBase {
 		];
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		return [
 			'action=feedrecentchanges'
@@ -228,6 +230,7 @@ class ApiFeedRecentChanges extends ApiBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Feedrecentchanges';
 	}

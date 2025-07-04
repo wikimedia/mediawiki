@@ -141,10 +141,12 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		$this->run();
 	}
 
+	/** @inheritDoc */
 	public function getCacheMode( $params ) {
 		return 'public';
 	}
 
+	/** @inheritDoc */
 	public function executeGenerator( $resultPageSet ) {
 		$this->run( $resultPageSet );
 	}
@@ -574,6 +576,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		}
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		$retval = [
 			'title' => [
@@ -619,6 +622,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		return $retval;
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		$title = Title::newMainPage()->getPrefixedText();
 		$mp = rawurlencode( $title );
@@ -646,6 +650,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		return $examples[$this->getModuleName()];
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return $this->helpUrl;
 	}

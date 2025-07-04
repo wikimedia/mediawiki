@@ -41,10 +41,12 @@ class ApiQueryAllCategories extends ApiQueryCategoryList {
 		$this->run();
 	}
 
+	/** @inheritDoc */
 	public function getCacheMode( $params ) {
 		return 'public';
 	}
 
+	/** @inheritDoc */
 	public function executeGenerator( $resultPageSet ) {
 		$this->run( $resultPageSet );
 	}
@@ -60,6 +62,7 @@ class ApiQueryAllCategories extends ApiQueryCategoryList {
 		$this->executeQuery( $params, $resultPageSet );
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		return [
 			'from' => null,
@@ -97,6 +100,7 @@ class ApiQueryAllCategories extends ApiQueryCategoryList {
 		];
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		return [
 			'action=query&list=allcategories&acprop=size'
@@ -106,6 +110,7 @@ class ApiQueryAllCategories extends ApiQueryCategoryList {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Allcategories';
 	}

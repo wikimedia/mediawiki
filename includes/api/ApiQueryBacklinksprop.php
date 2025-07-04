@@ -97,6 +97,7 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 		$this->run();
 	}
 
+	/** @inheritDoc */
 	public function executeGenerator( $resultPageSet ) {
 		$this->run( $resultPageSet );
 	}
@@ -367,10 +368,12 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 		$this->setContinueEnumParameter( 'continue', implode( '|', $cont ) );
 	}
 
+	/** @inheritDoc */
 	public function getCacheMode( $params ) {
 		return 'public';
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		$settings = self::$settings[$this->getModuleName()];
 
@@ -439,6 +442,7 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 		return $ret;
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		$settings = self::$settings[$this->getModuleName()];
 		$name = $this->getModuleName();
@@ -454,6 +458,7 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		$name = ucfirst( $this->getModuleName() );
 		return "https://www.mediawiki.org/wiki/Special:MyLanguage/API:{$name}";

@@ -107,6 +107,7 @@ trait ApiMessageTrait {
 	/** @var array */
 	protected $apiData = [];
 
+	/** @inheritDoc */
 	public function getApiCode() {
 		if ( $this->apiCode === null ) {
 			$key = $this->getKey();
@@ -129,6 +130,7 @@ trait ApiMessageTrait {
 		return $this->apiCode;
 	}
 
+	/** @inheritDoc */
 	public function setApiCode( $code, ?array $data = null ) {
 		if ( $code !== null && !ApiErrorFormatter::isValidApiCode( $code ) ) {
 			throw new InvalidArgumentException( "Invalid code \"$code\"" );
@@ -140,6 +142,7 @@ trait ApiMessageTrait {
 		}
 	}
 
+	/** @inheritDoc */
 	public function getApiData() {
 		return $this->apiData;
 	}

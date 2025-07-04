@@ -1078,6 +1078,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		return $this->getResult()->addValue( 'query', $property, $data );
 	}
 
+	/** @inheritDoc */
 	public function getCacheMode( $params ) {
 		// Messages for $wgExtraInterlanguageLinkPrefixes depend on user language
 		if ( $this->getConfig()->get( MainConfigNames::ExtraInterlanguageLinkPrefixes ) &&
@@ -1089,6 +1090,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		return 'public';
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		return [
 			'prop' => [
@@ -1139,6 +1141,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		];
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		return [
 			'action=query&meta=siteinfo&siprop=general|namespaces|namespacealiases|statistics'
@@ -1150,6 +1153,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Siteinfo';
 	}

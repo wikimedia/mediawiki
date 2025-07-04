@@ -128,6 +128,7 @@ class ApiOptions extends ApiOptionsBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		return parent::getAllowedParams() + [
 			'global' => [

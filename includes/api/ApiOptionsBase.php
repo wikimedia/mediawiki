@@ -318,14 +318,17 @@ abstract class ApiOptionsBase extends ApiBase {
 	 */
 	abstract protected function commitChanges();
 
+	/** @inheritDoc */
 	public function mustBePosted() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function isWriteMode() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		$optionKinds = $this->preferencesFactory->listResetKinds();
 		$optionKinds[] = 'all';
@@ -349,6 +352,7 @@ abstract class ApiOptionsBase extends ApiBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function needsToken() {
 		return 'csrf';
 	}

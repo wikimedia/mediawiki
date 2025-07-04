@@ -38,14 +38,17 @@ class ApiDisabled extends ApiBase {
 		$this->dieWithError( [ 'apierror-moduledisabled', $this->getModuleName() ] );
 	}
 
+	/** @inheritDoc */
 	public function isReadMode() {
 		return false;
 	}
 
+	/** @inheritDoc */
 	protected function getSummaryMessage() {
 		return 'apihelp-disabled-summary';
 	}
 
+	/** @inheritDoc */
 	protected function getExtendedDescription() {
 		return [ [
 			'apihelp-disabled-extended-description',

@@ -117,6 +117,7 @@ class ApiQueryTokens extends ApiQueryBase {
 		}
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		return [
 			'type' => [
@@ -128,6 +129,7 @@ class ApiQueryTokens extends ApiQueryBase {
 		];
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		return [
 			'action=query&meta=tokens'
@@ -137,11 +139,13 @@ class ApiQueryTokens extends ApiQueryBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function isReadMode() {
 		// So login tokens can be fetched on private wikis
 		return false;
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tokens';
 	}

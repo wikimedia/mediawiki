@@ -378,10 +378,12 @@ class ApiQueryAllUsers extends ApiQueryBase {
 		$result->addIndexedTagName( [ 'query', $this->getModuleName() ], 'u' );
 	}
 
+	/** @inheritDoc */
 	public function getCacheMode( $params ) {
 		return 'anon-public-user-private';
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams( $flags = 0 ) {
 		$userGroups = $this->userGroupManager->listAllGroups();
 
@@ -453,6 +455,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 		];
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		return [
 			'action=query&list=allusers&aufrom=Y'
@@ -460,6 +463,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Allusers';
 	}

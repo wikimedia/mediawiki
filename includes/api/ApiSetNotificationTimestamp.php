@@ -239,18 +239,22 @@ class ApiSetNotificationTimestamp extends ApiBase {
 		return $this->mPageSet;
 	}
 
+	/** @inheritDoc */
 	public function mustBePosted() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function isWriteMode() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function needsToken() {
 		return 'csrf';
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams( $flags = 0 ) {
 		$result = [
 			'entirewatchlist' => [
@@ -276,6 +280,7 @@ class ApiSetNotificationTimestamp extends ApiBase {
 		return $result;
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		$title = Title::newMainPage()->getPrefixedText();
 		$mp = rawurlencode( $title );
@@ -293,6 +298,7 @@ class ApiSetNotificationTimestamp extends ApiBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:SetNotificationTimestamp';
 	}

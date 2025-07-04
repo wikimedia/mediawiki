@@ -134,6 +134,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		$this->run();
 	}
 
+	/** @inheritDoc */
 	public function executeGenerator( $resultPageSet ) {
 		$this->run( $resultPageSet );
 	}
@@ -705,6 +706,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			isset( $flagsArray['!autopatrolled'] );
 	}
 
+	/** @inheritDoc */
 	public function getCacheMode( $params ) {
 		if ( isset( $params['show'] ) &&
 			$this->includesPatrollingFlags( array_fill_keys( $params['show'], true ) )
@@ -722,6 +724,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		return 'public';
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		$slotRoles = $this->slotRoleRegistry->getKnownRoles();
 		sort( $slotRoles, SORT_STRING );
@@ -822,6 +825,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		];
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		return [
 			'action=query&list=recentchanges'
@@ -831,6 +835,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Recentchanges';
 	}

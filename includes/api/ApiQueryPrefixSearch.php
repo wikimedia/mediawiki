@@ -48,6 +48,7 @@ class ApiQueryPrefixSearch extends ApiQueryGeneratorBase {
 		$this->run();
 	}
 
+	/** @inheritDoc */
 	public function executeGenerator( $resultPageSet ) {
 		$this->run( $resultPageSet );
 	}
@@ -106,14 +107,17 @@ class ApiQueryPrefixSearch extends ApiQueryGeneratorBase {
 		}
 	}
 
+	/** @inheritDoc */
 	public function getCacheMode( $params ) {
 		return 'public';
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		return $this->buildCommonApiParams();
 	}
 
+	/** @inheritDoc */
 	public function getSearchProfileParams() {
 		return [
 			'profile' => [
@@ -123,6 +127,7 @@ class ApiQueryPrefixSearch extends ApiQueryGeneratorBase {
 		];
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		return [
 			'action=query&list=prefixsearch&pssearch=meaning'
@@ -130,6 +135,7 @@ class ApiQueryPrefixSearch extends ApiQueryGeneratorBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Prefixsearch';
 	}

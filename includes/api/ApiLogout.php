@@ -69,14 +69,17 @@ class ApiLogout extends ApiBase {
 		$this->getHookRunner()->onUserLogoutComplete( $user, $injected_html, $oldName );
 	}
 
+	/** @inheritDoc */
 	public function mustBePosted() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function needsToken() {
 		return 'csrf';
 	}
 
+	/** @inheritDoc */
 	public function isWriteMode() {
 		// While core is optimized by default to not require DB writes on log out,
 		// these are authenticated POST requests and extensions (eg. CheckUser) are
@@ -84,14 +87,17 @@ class ApiLogout extends ApiBase {
 		return true;
 	}
 
+	/** @inheritDoc */
 	protected function getWebUITokenSalt( array $params ) {
 		return 'logoutToken';
 	}
 
+	/** @inheritDoc */
 	public function isReadMode() {
 		return false;
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		return [
 			'action=logout&token=123ABC'
@@ -99,6 +105,7 @@ class ApiLogout extends ApiBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Logout';
 	}

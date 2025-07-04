@@ -66,6 +66,7 @@ class ApiCheckToken extends ApiBase {
 		$this->getResult()->addValue( null, $this->getModuleName(), $res );
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		return [
 			'type' => [
@@ -83,6 +84,7 @@ class ApiCheckToken extends ApiBase {
 		];
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		return [
 			'action=checktoken&type=csrf&token=123ABC'
@@ -90,6 +92,7 @@ class ApiCheckToken extends ApiBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Checktoken';
 	}

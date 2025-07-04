@@ -135,14 +135,17 @@ class ApiRollback extends ApiBase {
 		$this->getResult()->addValue( null, $this->getModuleName(), $info );
 	}
 
+	/** @inheritDoc */
 	public function mustBePosted() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function isWriteMode() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		$params = [
 			'title' => null,
@@ -175,6 +178,7 @@ class ApiRollback extends ApiBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function needsToken() {
 		return 'rollback';
 	}
@@ -220,6 +224,7 @@ class ApiRollback extends ApiBase {
 		return $this->mTitleObj;
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		$title = Title::newMainPage()->getPrefixedText();
 		$mp = rawurlencode( $title );
@@ -233,6 +238,7 @@ class ApiRollback extends ApiBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Rollback';
 	}

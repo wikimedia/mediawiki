@@ -120,14 +120,17 @@ class ApiFileRevert extends ApiBase {
 		}
 	}
 
+	/** @inheritDoc */
 	public function mustBePosted() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function isWriteMode() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		return [
 			'filename' => [
@@ -144,10 +147,12 @@ class ApiFileRevert extends ApiBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function needsToken() {
 		return 'csrf';
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		return [
 			'action=filerevert&filename=Wiki.png&comment=Revert&' .
@@ -156,6 +161,7 @@ class ApiFileRevert extends ApiBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Filerevert';
 	}

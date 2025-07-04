@@ -55,10 +55,12 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 		$this->run();
 	}
 
+	/** @inheritDoc */
 	public function getCacheMode( $params ) {
 		return 'public';
 	}
 
+	/** @inheritDoc */
 	public function executeGenerator( $resultPageSet ) {
 		$this->run( $resultPageSet );
 	}
@@ -327,6 +329,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 		}
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		$ret = [
 			'title' => [
@@ -417,6 +420,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 		return $ret;
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		return [
 			'action=query&list=categorymembers&cmtitle=Category:Physics'
@@ -426,6 +430,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Categorymembers';
 	}

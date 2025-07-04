@@ -86,6 +86,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		$this->run();
 	}
 
+	/** @inheritDoc */
 	public function executeGenerator( $resultPageSet ) {
 		$this->run( $resultPageSet );
 	}
@@ -487,6 +488,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		return $vals;
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		return [
 			'allrev' => false,
@@ -585,6 +587,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		];
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		return [
 			'action=query&list=watchlist'
@@ -604,6 +607,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Watchlist';
 	}

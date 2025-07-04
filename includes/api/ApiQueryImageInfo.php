@@ -716,6 +716,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		return $retval;
 	}
 
+	/** @inheritDoc */
 	public function getCacheMode( $params ) {
 		if ( $this->userCanSeeRevDel() ) {
 			return 'private';
@@ -733,6 +734,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		return $img->getOriginalTitle()->getDBkey() . '|' . ( $start ?? $img->getTimestamp() );
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		return [
 			'prop' => [
@@ -844,6 +846,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		);
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		return [
 			'action=query&titles=File:Albert%20Einstein%20Head.jpg&prop=imageinfo'
@@ -854,6 +857,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Imageinfo';
 	}

@@ -100,10 +100,12 @@ class ApiQueryAuthManagerInfo extends ApiQueryBase {
 		$this->getResult()->addValue( [ 'query' ], $this->getModuleName(), $ret );
 	}
 
+	/** @inheritDoc */
 	public function isReadMode() {
 		return false;
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		return [
 			'securitysensitiveoperation' => null,
@@ -123,6 +125,7 @@ class ApiQueryAuthManagerInfo extends ApiQueryBase {
 		] + ApiAuthManagerHelper::getStandardParams( '', 'mergerequestfields', 'messageformat' );
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		return [
 			'action=query&meta=authmanagerinfo&amirequestsfor=' . urlencode( AuthManager::ACTION_LOGIN )
@@ -135,6 +138,7 @@ class ApiQueryAuthManagerInfo extends ApiQueryBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Authmanagerinfo';
 	}

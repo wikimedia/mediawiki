@@ -47,6 +47,7 @@ class ApiAMCreateAccount extends ApiBase {
 		$this->urlUtils = $urlUtils;
 	}
 
+	/** @inheritDoc */
 	public function getFinalDescription() {
 		// A bit of a hack to append 'api-help-authmanager-general-usage'
 		$msgs = parent::getFinalDescription();
@@ -112,18 +113,22 @@ class ApiAMCreateAccount extends ApiBase {
 		$helper->logAuthenticationResult( 'accountcreation', $performer, $res );
 	}
 
+	/** @inheritDoc */
 	public function isReadMode() {
 		return false;
 	}
 
+	/** @inheritDoc */
 	public function isWriteMode() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function needsToken() {
 		return 'createaccount';
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		$ret = ApiAuthManagerHelper::getStandardParams( AuthManager::ACTION_CREATE,
 			'requests', 'messageformat', 'mergerequestfields', 'preservestate', 'returnurl', 'continue'
@@ -133,10 +138,12 @@ class ApiAMCreateAccount extends ApiBase {
 		return $ret;
 	}
 
+	/** @inheritDoc */
 	public function dynamicParameterDocumentation() {
 		return [ 'api-help-authmanagerhelper-additional-params', AuthManager::ACTION_CREATE ];
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		return [
 			'action=createaccount&username=Example&password=ExamplePassword&retype=ExamplePassword'
@@ -145,6 +152,7 @@ class ApiAMCreateAccount extends ApiBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Account_creation';
 	}

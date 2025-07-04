@@ -683,14 +683,17 @@ class ApiHelp extends ApiBase {
 		return $out;
 	}
 
+	/** @inheritDoc */
 	public function shouldCheckMaxlag() {
 		return false;
 	}
 
+	/** @inheritDoc */
 	public function isReadMode() {
 		return false;
 	}
 
+	/** @inheritDoc */
 	public function getCustomPrinter() {
 		$params = $this->extractRequestParams();
 		if ( $params['wrap'] ) {
@@ -702,6 +705,7 @@ class ApiHelp extends ApiBase {
 		return new ApiFormatRaw( $main, $errorPrinter );
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		return [
 			'modules' => [
@@ -715,6 +719,7 @@ class ApiHelp extends ApiBase {
 		];
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		return [
 			'action=help'
@@ -730,6 +735,7 @@ class ApiHelp extends ApiBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return [
 			'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Main_page',

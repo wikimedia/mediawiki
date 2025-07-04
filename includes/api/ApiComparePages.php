@@ -691,6 +691,7 @@ class ApiComparePages extends ApiBase {
 		return $user;
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		$slotRoles = $this->slotRoleRegistry->getKnownRoles();
 		sort( $slotRoles, SORT_STRING );
@@ -797,6 +798,7 @@ class ApiComparePages extends ApiBase {
 		return $ret;
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		return [
 			'action=compare&fromrev=1&torev=2'
@@ -804,6 +806,7 @@ class ApiComparePages extends ApiBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Compare';
 	}

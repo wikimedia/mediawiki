@@ -69,6 +69,7 @@ class ApiOpenSearch extends ApiBase {
 		return str_ends_with( $format, 'fm' ) ? substr( $format, 0, -2 ) : $format;
 	}
 
+	/** @inheritDoc */
 	public function getCustomPrinter() {
 		switch ( $this->getBaseFormat() ) {
 			case 'json':
@@ -275,6 +276,7 @@ class ApiOpenSearch extends ApiBase {
 		}
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		$allowedParams = $this->buildCommonApiParams( false ) + [
 			'suggest' => [
@@ -302,6 +304,7 @@ class ApiOpenSearch extends ApiBase {
 		return $allowedParams;
 	}
 
+	/** @inheritDoc */
 	public function getSearchProfileParams() {
 		return [
 			'profile' => [
@@ -311,6 +314,7 @@ class ApiOpenSearch extends ApiBase {
 		];
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		return [
 			'action=opensearch&search=Te'
@@ -318,6 +322,7 @@ class ApiOpenSearch extends ApiBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Opensearch';
 	}

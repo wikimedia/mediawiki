@@ -60,6 +60,7 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 		$this->run();
 	}
 
+	/** @inheritDoc */
 	public function executeGenerator( $resultPageSet ) {
 		$this->run( $resultPageSet );
 	}
@@ -166,6 +167,7 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 		}
 	}
 
+	/** @inheritDoc */
 	public function getCacheMode( $params ) {
 		$qp = $this->getSpecialPage( $params['page'] );
 		if ( $qp->getRestriction() != '' ) {
@@ -175,6 +177,7 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 		return 'public';
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		return [
 			'page' => [
@@ -195,6 +198,7 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 		];
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		return [
 			'action=query&list=querypage&qppage=Ancientpages'
@@ -202,6 +206,7 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Querypage';
 	}

@@ -222,6 +222,7 @@ class ApiQueryAllMessages extends ApiQueryBase {
 		$result->addIndexedTagName( [ 'query', $this->getModuleName() ], 'message' );
 	}
 
+	/** @inheritDoc */
 	public function getCacheMode( $params ) {
 		if ( $params['lang'] === null ) {
 			// Language not specified, will be fetched from preferences
@@ -235,6 +236,7 @@ class ApiQueryAllMessages extends ApiQueryBase {
 		}
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		return [
 			'messages' => [
@@ -271,6 +273,7 @@ class ApiQueryAllMessages extends ApiQueryBase {
 		];
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		return [
 			'action=query&meta=allmessages&amprefix=ipb-'
@@ -280,6 +283,7 @@ class ApiQueryAllMessages extends ApiQueryBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Allmessages';
 	}

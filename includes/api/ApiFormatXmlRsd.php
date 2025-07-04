@@ -32,10 +32,12 @@ class ApiFormatXmlRsd extends ApiFormatXml {
 		$this->setRootElement( 'rsd' );
 	}
 
+	/** @inheritDoc */
 	public function getMimeType() {
 		return 'application/rsd+xml';
 	}
 
+	/** @inheritDoc */
 	public static function recXmlPrint( $name, $value, $indent, $attributes = [] ) {
 		unset( $attributes['_idx'] );
 		return parent::recXmlPrint( $name, $value, $indent, $attributes );

@@ -61,6 +61,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 		$this->run();
 	}
 
+	/** @inheritDoc */
 	public function executeGenerator( $resultPageSet ) {
 		$this->run( $resultPageSet );
 	}
@@ -390,10 +391,12 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 		return $fields;
 	}
 
+	/** @inheritDoc */
 	public function getCacheMode( $params ) {
 		return 'public';
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		$allowedParams = $this->buildCommonApiParams() + [
 			'what' => [
@@ -460,6 +463,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 		return $allowedParams;
 	}
 
+	/** @inheritDoc */
 	public function getSearchProfileParams() {
 		return [
 			'qiprofile' => [
@@ -469,6 +473,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 		];
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		return [
 			'action=query&list=search&srsearch=meaning'
@@ -480,6 +485,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Search';
 	}

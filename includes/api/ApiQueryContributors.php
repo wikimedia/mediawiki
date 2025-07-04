@@ -243,10 +243,12 @@ class ApiQueryContributors extends ApiQueryBase {
 		}
 	}
 
+	/** @inheritDoc */
 	public function getCacheMode( $params ) {
 		return 'public';
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams( $flags = 0 ) {
 		$userGroups = $this->userGroupManager->listAllGroups();
 		$userRights = $this->getPermissionManager()->getAllPermissions();
@@ -285,6 +287,7 @@ class ApiQueryContributors extends ApiQueryBase {
 		];
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		$title = Title::newMainPage()->getPrefixedText();
 		$mp = rawurlencode( $title );
@@ -295,10 +298,12 @@ class ApiQueryContributors extends ApiQueryBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Contributors';
 	}
 
+	/** @inheritDoc */
 	protected function getSummaryMessage() {
 		if ( $this->tempUserConfig->isKnown() ) {
 			return 'apihelp-query+contributors-summary-tempusers-enabled';

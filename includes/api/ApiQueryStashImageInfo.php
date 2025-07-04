@@ -120,6 +120,7 @@ class ApiQueryStashImageInfo extends ApiQueryImageInfo {
 		return parent::getPropertyMessages( $filter ?? self::PROPERTY_FILTER );
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		return [
 			'filekey' => [
@@ -157,6 +158,7 @@ class ApiQueryStashImageInfo extends ApiQueryImageInfo {
 		];
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		return [
 			'action=query&prop=stashimageinfo&siifilekey=124sd34rsdf567'
@@ -167,6 +169,7 @@ class ApiQueryStashImageInfo extends ApiQueryImageInfo {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Stashimageinfo';
 	}

@@ -271,6 +271,7 @@ class ApiCSPReport extends ApiBase {
 		);
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		return [
 			'reportonly' => [
@@ -285,6 +286,7 @@ class ApiCSPReport extends ApiBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function mustBePosted() {
 		return true;
 	}

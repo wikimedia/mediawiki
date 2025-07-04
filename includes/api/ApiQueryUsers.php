@@ -306,6 +306,7 @@ class ApiQueryUsers extends ApiQueryBase {
 		$result->addIndexedTagName( [ 'query', $this->getModuleName() ], 'user' );
 	}
 
+	/** @inheritDoc */
 	public function getCacheMode( $params ) {
 		if ( array_diff( (array)$params['prop'], static::$publicProps ) ) {
 			return 'anon-public-user-private';
@@ -314,6 +315,7 @@ class ApiQueryUsers extends ApiQueryBase {
 		}
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		return [
 			'prop' => [
@@ -346,6 +348,7 @@ class ApiQueryUsers extends ApiQueryBase {
 		];
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		return [
 			'action=query&list=users&ususers=Example&usprop=groups|editcount|gender'
@@ -353,6 +356,7 @@ class ApiQueryUsers extends ApiQueryBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Users';
 	}

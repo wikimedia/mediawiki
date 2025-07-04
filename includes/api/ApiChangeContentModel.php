@@ -92,6 +92,7 @@ class ApiChangeContentModel extends ApiBase {
 		$this->getResult()->addValue( null, $this->getModuleName(), $result );
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		$models = $this->contentHandlerFactory->getContentModels();
 		$modelOptions = [];
@@ -125,22 +126,27 @@ class ApiChangeContentModel extends ApiBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function mustBePosted() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function isWriteMode() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function needsToken() {
 		return 'csrf';
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel';
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		return [
 			'action=changecontentmodel&title=Main Page&model=text&token=123ABC'

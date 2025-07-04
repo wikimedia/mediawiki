@@ -174,14 +174,17 @@ class ApiImageRotate extends ApiBase {
 		return $this->mPageSet;
 	}
 
+	/** @inheritDoc */
 	public function mustBePosted() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function isWriteMode() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams( $flags = 0 ) {
 		$result = [
 			'rotation' => [
@@ -203,10 +206,12 @@ class ApiImageRotate extends ApiBase {
 		return $result;
 	}
 
+	/** @inheritDoc */
 	public function needsToken() {
 		return 'csrf';
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		return [
 			'action=imagerotate&titles=File:Example.jpg&rotation=90&token=123ABC'
@@ -217,6 +222,7 @@ class ApiImageRotate extends ApiBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Imagerotate';
 	}

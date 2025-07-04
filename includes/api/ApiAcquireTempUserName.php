@@ -68,10 +68,12 @@ class ApiAcquireTempUserName extends ApiBase {
 		$this->getResult()->addValue( null, $this->getModuleName(), $name );
 	}
 
+	/** @inheritDoc */
 	public function isWriteMode() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function mustBePosted() {
 		return true;
 	}

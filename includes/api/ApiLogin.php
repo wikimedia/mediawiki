@@ -62,6 +62,7 @@ class ApiLogin extends ApiBase {
 		$this->identityUtils = $identityUtils;
 	}
 
+	/** @inheritDoc */
 	protected function getExtendedDescription() {
 		if ( $this->getConfig()->get( MainConfigNames::EnableBotPasswords ) ) {
 			return 'apihelp-login-extended-description';
@@ -284,23 +285,28 @@ class ApiLogin extends ApiBase {
 		] );
 	}
 
+	/** @inheritDoc */
 	public function isDeprecated() {
 		return !$this->getConfig()->get( MainConfigNames::EnableBotPasswords );
 	}
 
+	/** @inheritDoc */
 	public function mustBePosted() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function isReadMode() {
 		return false;
 	}
 
+	/** @inheritDoc */
 	public function isWriteMode() {
 		// (T283394) Logging in triggers some database writes, so should be marked appropriately.
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		return [
 			'name' => null,
@@ -317,6 +323,7 @@ class ApiLogin extends ApiBase {
 		];
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		return [
 			'action=login&lgname=user&lgpassword=password&lgtoken=123ABC'
@@ -324,6 +331,7 @@ class ApiLogin extends ApiBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Login';
 	}

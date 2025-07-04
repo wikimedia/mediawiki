@@ -67,6 +67,7 @@ class ApiHookRunner implements
 		$this->container = $container;
 	}
 
+	/** @inheritDoc */
 	public function onAPIAfterExecute( $module ) {
 		return $this->container->run(
 			'APIAfterExecute',
@@ -74,6 +75,7 @@ class ApiHookRunner implements
 		);
 	}
 
+	/** @inheritDoc */
 	public function onApiCheckCanExecute( $module, $user, &$message ) {
 		return $this->container->run(
 			'ApiCheckCanExecute',
@@ -81,6 +83,7 @@ class ApiHookRunner implements
 		);
 	}
 
+	/** @inheritDoc */
 	public function onApiDeprecationHelp( &$msgs ) {
 		return $this->container->run(
 			'ApiDeprecationHelp',
@@ -88,6 +91,7 @@ class ApiHookRunner implements
 		);
 	}
 
+	/** @inheritDoc */
 	public function onApiFeedContributions__feedItem( $row, $context, &$feedItem ) {
 		return $this->container->run(
 			'ApiFeedContributions::feedItem',
@@ -95,6 +99,7 @@ class ApiHookRunner implements
 		);
 	}
 
+	/** @inheritDoc */
 	public function onApiFormatHighlight( $context, $text, $mime, $format ) {
 		return $this->container->run(
 			'ApiFormatHighlight',
@@ -102,6 +107,7 @@ class ApiHookRunner implements
 		);
 	}
 
+	/** @inheritDoc */
 	public function onAPIGetAllowedParams( $module, &$params, $flags ) {
 		return $this->container->run(
 			'APIGetAllowedParams',
@@ -109,6 +115,7 @@ class ApiHookRunner implements
 		);
 	}
 
+	/** @inheritDoc */
 	public function onAPIGetDescriptionMessages( $module, &$msg ) {
 		return $this->container->run(
 			'APIGetDescriptionMessages',
@@ -116,6 +123,7 @@ class ApiHookRunner implements
 		);
 	}
 
+	/** @inheritDoc */
 	public function onAPIGetParamDescriptionMessages( $module, &$msg ) {
 		return $this->container->run(
 			'APIGetParamDescriptionMessages',
@@ -123,6 +131,7 @@ class ApiHookRunner implements
 		);
 	}
 
+	/** @inheritDoc */
 	public function onAPIHelpModifyOutput( $module, &$help, $options, &$tocData ) {
 		return $this->container->run(
 			'APIHelpModifyOutput',
@@ -130,6 +139,7 @@ class ApiHookRunner implements
 		);
 	}
 
+	/** @inheritDoc */
 	public function onApiLogFeatureUsage( $feature, array $clientInfo ): void {
 		$this->container->run(
 			'ApiLogFeatureUsage',
@@ -137,6 +147,7 @@ class ApiHookRunner implements
 		);
 	}
 
+	/** @inheritDoc */
 	public function onApiMain__moduleManager( $moduleManager ) {
 		return $this->container->run(
 			'ApiMain::moduleManager',
@@ -144,6 +155,7 @@ class ApiHookRunner implements
 		);
 	}
 
+	/** @inheritDoc */
 	public function onApiMain__onException( $apiMain, $e ) {
 		return $this->container->run(
 			'ApiMain::onException',
@@ -151,6 +163,7 @@ class ApiHookRunner implements
 		);
 	}
 
+	/** @inheritDoc */
 	public function onApiMakeParserOptions( $options, $title, $params, $module,
 		&$reset, &$suppressCache
 	) {
@@ -160,6 +173,7 @@ class ApiHookRunner implements
 		);
 	}
 
+	/** @inheritDoc */
 	public function onApiMaxLagInfo( &$lagInfo ): void {
 		$this->container->run(
 			'ApiMaxLagInfo',
@@ -168,6 +182,7 @@ class ApiHookRunner implements
 		);
 	}
 
+	/** @inheritDoc */
 	public function onApiOpenSearchSuggest( &$results ) {
 		return $this->container->run(
 			'ApiOpenSearchSuggest',
@@ -175,6 +190,7 @@ class ApiHookRunner implements
 		);
 	}
 
+	/** @inheritDoc */
 	public function onApiOptions( $apiModule, $user, $changes, $resetKinds ) {
 		return $this->container->run(
 			'ApiOptions',
@@ -182,6 +198,7 @@ class ApiHookRunner implements
 		);
 	}
 
+	/** @inheritDoc */
 	public function onApiParseMakeOutputPage( $module, $output ) {
 		return $this->container->run(
 			'ApiParseMakeOutputPage',
@@ -189,6 +206,7 @@ class ApiHookRunner implements
 		);
 	}
 
+	/** @inheritDoc */
 	public function onAPIQueryAfterExecute( $module ) {
 		return $this->container->run(
 			'APIQueryAfterExecute',
@@ -196,6 +214,7 @@ class ApiHookRunner implements
 		);
 	}
 
+	/** @inheritDoc */
 	public function onApiQueryBaseAfterQuery( $module, $result, &$hookData ) {
 		return $this->container->run(
 			'ApiQueryBaseAfterQuery',
@@ -203,6 +222,7 @@ class ApiHookRunner implements
 		);
 	}
 
+	/** @inheritDoc */
 	public function onApiQueryBaseBeforeQuery( $module, &$tables, &$fields,
 		&$conds, &$query_options, &$join_conds, &$hookData
 	) {
@@ -213,6 +233,7 @@ class ApiHookRunner implements
 		);
 	}
 
+	/** @inheritDoc */
 	public function onApiQueryBaseProcessRow( $module, $row, &$data, &$hookData ) {
 		return $this->container->run(
 			'ApiQueryBaseProcessRow',
@@ -220,6 +241,7 @@ class ApiHookRunner implements
 		);
 	}
 
+	/** @inheritDoc */
 	public function onApiQueryCheckCanExecute( $modules, $authority, &$message ) {
 		return $this->container->run(
 			'ApiQueryCheckCanExecute',
@@ -227,6 +249,7 @@ class ApiHookRunner implements
 		);
 	}
 
+	/** @inheritDoc */
 	public function onAPIQueryGeneratorAfterExecute( $module, $resultPageSet ) {
 		return $this->container->run(
 			'APIQueryGeneratorAfterExecute',
@@ -234,6 +257,7 @@ class ApiHookRunner implements
 		);
 	}
 
+	/** @inheritDoc */
 	public function onAPIQuerySiteInfoGeneralInfo( $module, &$results ) {
 		return $this->container->run(
 			'APIQuerySiteInfoGeneralInfo',
@@ -241,6 +265,7 @@ class ApiHookRunner implements
 		);
 	}
 
+	/** @inheritDoc */
 	public function onAPIQuerySiteInfoStatisticsInfo( &$results ) {
 		return $this->container->run(
 			'APIQuerySiteInfoStatisticsInfo',
@@ -248,6 +273,7 @@ class ApiHookRunner implements
 		);
 	}
 
+	/** @inheritDoc */
 	public function onApiQueryTokensRegisterTypes( &$salts ) {
 		return $this->container->run(
 			'ApiQueryTokensRegisterTypes',
@@ -255,6 +281,7 @@ class ApiHookRunner implements
 		);
 	}
 
+	/** @inheritDoc */
 	public function onApiQueryWatchlistExtractOutputData( $module, $watchedItem,
 		$recentChangeInfo, &$vals
 	) {
@@ -264,6 +291,7 @@ class ApiHookRunner implements
 		);
 	}
 
+	/** @inheritDoc */
 	public function onApiQueryWatchlistPrepareWatchedItemQueryServiceOptions(
 		$module, $params, &$options
 	) {
@@ -273,6 +301,7 @@ class ApiHookRunner implements
 		);
 	}
 
+	/** @inheritDoc */
 	public function onApiQuery__moduleManager( $moduleManager ) {
 		return $this->container->run(
 			'ApiQuery::moduleManager',
@@ -280,6 +309,7 @@ class ApiHookRunner implements
 		);
 	}
 
+	/** @inheritDoc */
 	public function onApiRsdServiceApis( &$apis ) {
 		return $this->container->run(
 			'ApiRsdServiceApis',
@@ -287,6 +317,7 @@ class ApiHookRunner implements
 		);
 	}
 
+	/** @inheritDoc */
 	public function onApiValidatePassword( $module, &$r ) {
 		return $this->container->run(
 			'ApiValidatePassword',
@@ -294,6 +325,7 @@ class ApiHookRunner implements
 		);
 	}
 
+	/** @inheritDoc */
 	public function onArticleParserOptions( Article $article, ParserOptions $popts ) {
 		return $this->container->run(
 			'ArticleParserOptions',
@@ -301,6 +333,7 @@ class ApiHookRunner implements
 		);
 	}
 
+	/** @inheritDoc */
 	public function onChangeAuthenticationDataAudit( $req, $status ) {
 		return $this->container->run(
 			'ChangeAuthenticationDataAudit',
@@ -308,6 +341,7 @@ class ApiHookRunner implements
 		);
 	}
 
+	/** @inheritDoc */
 	public function onEditFormPreloadText( &$text, $title ) {
 		return $this->container->run(
 			'EditFormPreloadText',
@@ -315,6 +349,7 @@ class ApiHookRunner implements
 		);
 	}
 
+	/** @inheritDoc */
 	public function onFileUndeleteComplete( $title, $fileVersions, $user, $reason ) {
 		return $this->container->run(
 			'FileUndeleteComplete',
@@ -322,6 +357,7 @@ class ApiHookRunner implements
 		);
 	}
 
+	/** @inheritDoc */
 	public function onGetLinkColours( $pagemap, &$classes, $title ) {
 		return $this->container->run(
 			'GetLinkColours',
@@ -329,6 +365,7 @@ class ApiHookRunner implements
 		);
 	}
 
+	/** @inheritDoc */
 	public function onImportSources( &$importSources ) {
 		return $this->container->run(
 			'ImportSources',
@@ -336,6 +373,7 @@ class ApiHookRunner implements
 		);
 	}
 
+	/** @inheritDoc */
 	public function onLanguageLinks( $title, &$links, &$linkFlags ) {
 		return $this->container->run(
 			'LanguageLinks',
@@ -343,6 +381,7 @@ class ApiHookRunner implements
 		);
 	}
 
+	/** @inheritDoc */
 	public function onOutputPageBeforeHTML( $out, &$text ) {
 		return $this->container->run(
 			'OutputPageBeforeHTML',
@@ -350,6 +389,7 @@ class ApiHookRunner implements
 		);
 	}
 
+	/** @inheritDoc */
 	public function onOutputPageCheckLastModified( &$modifiedTimes, $out ) {
 		return $this->container->run(
 			'OutputPageCheckLastModified',
@@ -357,6 +397,7 @@ class ApiHookRunner implements
 		);
 	}
 
+	/** @inheritDoc */
 	public function onRequestHasSameOriginSecurity( $request ) {
 		return $this->container->run(
 			'RequestHasSameOriginSecurity',
@@ -364,6 +405,7 @@ class ApiHookRunner implements
 		);
 	}
 
+	/** @inheritDoc */
 	public function onTempUserCreatedRedirect(
 		Session $session,
 		UserIdentity $user,
@@ -378,6 +420,7 @@ class ApiHookRunner implements
 		);
 	}
 
+	/** @inheritDoc */
 	public function onUserLoginComplete( $user, &$inject_html, $direct ) {
 		return $this->container->run(
 			'UserLoginComplete',
@@ -385,6 +428,7 @@ class ApiHookRunner implements
 		);
 	}
 
+	/** @inheritDoc */
 	public function onUserLogoutComplete( $user, &$inject_html, $oldName ) {
 		return $this->container->run(
 			'UserLogoutComplete',

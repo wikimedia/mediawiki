@@ -211,6 +211,7 @@ class ApiExpandTemplates extends ApiBase {
 		$result->addValue( null, $this->getModuleName(), $retval );
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		return [
 			'title' => null,
@@ -245,6 +246,7 @@ class ApiExpandTemplates extends ApiBase {
 		];
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		return [
 			'action=expandtemplates&text={{Project:Sandbox}}'
@@ -252,6 +254,7 @@ class ApiExpandTemplates extends ApiBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Expandtemplates';
 	}

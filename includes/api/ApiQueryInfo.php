@@ -991,6 +991,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		);
 	}
 
+	/** @inheritDoc */
 	public function getCacheMode( $params ) {
 		// Other props depend on something about the current user
 		$publicProps = [
@@ -1015,6 +1016,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		return 'public';
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		return [
 			'prop' => [
@@ -1097,6 +1099,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		];
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		$title = Title::newMainPage()->getPrefixedText();
 		$mp = rawurlencode( $title );
@@ -1109,6 +1112,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Info';
 	}

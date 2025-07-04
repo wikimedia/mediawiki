@@ -43,6 +43,7 @@ class ApiQueryIWBacklinks extends ApiQueryGeneratorBase {
 		$this->run();
 	}
 
+	/** @inheritDoc */
 	public function executeGenerator( $resultPageSet ) {
 		$this->run( $resultPageSet );
 	}
@@ -170,10 +171,12 @@ class ApiQueryIWBacklinks extends ApiQueryGeneratorBase {
 		}
 	}
 
+	/** @inheritDoc */
 	public function getCacheMode( $params ) {
 		return 'public';
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		return [
 			'prefix' => null,
@@ -207,6 +210,7 @@ class ApiQueryIWBacklinks extends ApiQueryGeneratorBase {
 		];
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		return [
 			'action=query&list=iwbacklinks&iwbltitle=Test&iwblprefix=wikibooks'
@@ -216,6 +220,7 @@ class ApiQueryIWBacklinks extends ApiQueryGeneratorBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Iwbacklinks';
 	}

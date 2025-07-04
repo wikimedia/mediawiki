@@ -135,10 +135,12 @@ class ApiQueryExternalLinks extends ApiQueryBase {
 		$this->setContinueEnumParameter( 'continue', implode( '|', $fields ) );
 	}
 
+	/** @inheritDoc */
 	public function getCacheMode( $params ) {
 		return 'public';
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		return [
 			'limit' => [
@@ -164,6 +166,7 @@ class ApiQueryExternalLinks extends ApiQueryBase {
 		];
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		$title = Title::newMainPage()->getPrefixedText();
 		$mp = rawurlencode( $title );
@@ -174,6 +177,7 @@ class ApiQueryExternalLinks extends ApiQueryBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Extlinks';
 	}

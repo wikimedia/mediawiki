@@ -445,6 +445,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		) );
 	}
 
+	/** @inheritDoc */
 	public function getCacheMode( $params ) {
 		if ( $this->userCanSeeRevDel() ) {
 			return 'private';
@@ -461,6 +462,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		}
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams( $flags = 0 ) {
 		$config = $this->getConfig();
 		if ( $flags & ApiBase::GET_VALUES_FOR_HELP ) {
@@ -542,6 +544,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		return $ret;
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		return [
 			'action=query&list=logevents'
@@ -549,6 +552,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Logevents';
 	}

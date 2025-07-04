@@ -30,6 +30,7 @@ use Wikimedia\ParamValidator\ParamValidator;
  */
 class ApiFormatPhp extends ApiFormatBase {
 
+	/** @inheritDoc */
 	public function getMimeType() {
 		return 'application/vnd.php.serialized';
 	}
@@ -61,6 +62,7 @@ class ApiFormatPhp extends ApiFormatBase {
 		$this->printText( serialize( $this->getResult()->getResultData( null, $transforms ) ) );
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		return parent::getAllowedParams() + [
 			'formatversion' => [

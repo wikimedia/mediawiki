@@ -48,14 +48,17 @@ class ApiClearHasMsg extends ApiBase {
 		$this->getResult()->addValue( null, $this->getModuleName(), 'success' );
 	}
 
+	/** @inheritDoc */
 	public function isWriteMode() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function mustBePosted() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		return [
 			'action=clearhasmsg'
@@ -63,6 +66,7 @@ class ApiClearHasMsg extends ApiBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:ClearHasMsg';
 	}

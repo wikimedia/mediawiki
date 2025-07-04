@@ -56,6 +56,7 @@ class ApiRawMessage extends RawMessage implements IApiMessage {
 		$this->setApiCode( $code, $data );
 	}
 
+	/** @inheritDoc */
 	public function getApiCode() {
 		if ( $this->apiCode === null ) {
 			// Copied from ApiMessageTrait to avoid changing the error codes. This causes T350248,

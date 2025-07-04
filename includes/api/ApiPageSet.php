@@ -1558,6 +1558,7 @@ class ApiPageSet extends ApiBase {
 		return $this->mDbSource->getDB();
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams( $flags = 0 ) {
 		$result = [
 			'titles' => [
@@ -1604,6 +1605,7 @@ class ApiPageSet extends ApiBase {
 		return $result;
 	}
 
+	/** @inheritDoc */
 	public function handleParamNormalization( $paramName, $value, $rawValue ) {
 		parent::handleParamNormalization( $paramName, $value, $rawValue );
 

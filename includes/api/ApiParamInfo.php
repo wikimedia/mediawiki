@@ -415,10 +415,12 @@ class ApiParamInfo extends ApiBase {
 		return $ret;
 	}
 
+	/** @inheritDoc */
 	public function isReadMode() {
 		return false;
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		// back compat
 		$querymodules = $this->getMain()->getModuleManager()
@@ -455,6 +457,7 @@ class ApiParamInfo extends ApiBase {
 		];
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		return [
 			'action=paraminfo&modules=parse|phpfm|query%2Ballpages|query%2Bsiteinfo'
@@ -464,6 +467,7 @@ class ApiParamInfo extends ApiBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Parameter_information';
 	}

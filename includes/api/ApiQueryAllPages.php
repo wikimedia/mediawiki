@@ -60,6 +60,7 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 		$this->run();
 	}
 
+	/** @inheritDoc */
 	public function getCacheMode( $params ) {
 		return 'public';
 	}
@@ -274,6 +275,7 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 		}
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		$ret = [
 			'from' => null,
@@ -357,6 +359,7 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 		return $ret;
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		return [
 			'action=query&list=allpages&apfrom=B'
@@ -369,6 +372,7 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Allpages';
 	}

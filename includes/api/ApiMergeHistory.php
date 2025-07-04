@@ -114,14 +114,17 @@ class ApiMergeHistory extends ApiBase {
 		return $mh->merge( $this->getAuthority(), $reason );
 	}
 
+	/** @inheritDoc */
 	public function mustBePosted() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function isWriteMode() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		return [
 			'from' => null,
@@ -139,10 +142,12 @@ class ApiMergeHistory extends ApiBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function needsToken() {
 		return 'csrf';
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		return [
 			'action=mergehistory&from=Oldpage&to=Newpage&token=123ABC&' .
@@ -154,6 +159,7 @@ class ApiMergeHistory extends ApiBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Mergehistory';
 	}

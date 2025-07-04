@@ -43,6 +43,7 @@ class ApiQueryLangBacklinks extends ApiQueryGeneratorBase {
 		$this->run();
 	}
 
+	/** @inheritDoc */
 	public function executeGenerator( $resultPageSet ) {
 		$this->run( $resultPageSet );
 	}
@@ -169,10 +170,12 @@ class ApiQueryLangBacklinks extends ApiQueryGeneratorBase {
 		}
 	}
 
+	/** @inheritDoc */
 	public function getCacheMode( $params ) {
 		return 'public';
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		return [
 			'lang' => null,
@@ -206,6 +209,7 @@ class ApiQueryLangBacklinks extends ApiQueryGeneratorBase {
 		];
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		return [
 			'action=query&list=langbacklinks&lbltitle=Test&lbllang=fr'
@@ -215,6 +219,7 @@ class ApiQueryLangBacklinks extends ApiQueryGeneratorBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Langbacklinks';
 	}

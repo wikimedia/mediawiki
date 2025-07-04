@@ -38,10 +38,12 @@ class ApiQueryDisabled extends ApiQueryBase {
 		$this->addWarning( [ 'apierror-moduledisabled', $this->getModuleName() ] );
 	}
 
+	/** @inheritDoc */
 	public function getSummaryMessage() {
 		return 'apihelp-query+disabled-summary';
 	}
 
+	/** @inheritDoc */
 	public function getExtendedDescription() {
 		return [ [
 			'apihelp-query+disabled-extended-description',

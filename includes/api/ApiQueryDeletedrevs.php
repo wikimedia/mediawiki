@@ -454,10 +454,12 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 		$result->addIndexedTagName( [ 'query', $this->getModuleName() ], 'page' );
 	}
 
+	/** @inheritDoc */
 	public function isDeprecated() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		$smallLimit = $this->getMain()->canApiHighLimits() ? ApiBase::LIMIT_SML2 : ApiBase::LIMIT_SML1;
 		return [
@@ -547,6 +549,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 		];
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		$title = Title::newMainPage();
 		$talkTitle = $title->getTalkPageIfDefined();
@@ -572,6 +575,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 		] );
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Deletedrevs';
 	}

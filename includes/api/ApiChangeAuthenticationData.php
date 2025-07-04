@@ -73,24 +73,29 @@ class ApiChangeAuthenticationData extends ApiBase {
 		$this->getResult()->addValue( null, 'changeauthenticationdata', [ 'status' => 'success' ] );
 	}
 
+	/** @inheritDoc */
 	public function isWriteMode() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function needsToken() {
 		return 'csrf';
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		return ApiAuthManagerHelper::getStandardParams( AuthManager::ACTION_CHANGE,
 			'request'
 		);
 	}
 
+	/** @inheritDoc */
 	public function dynamicParameterDocumentation() {
 		return [ 'api-help-authmanagerhelper-additional-params', AuthManager::ACTION_CHANGE ];
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		return [
 			'action=changeauthenticationdata' .
@@ -100,6 +105,7 @@ class ApiChangeAuthenticationData extends ApiBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Manage_authentication_data';
 	}

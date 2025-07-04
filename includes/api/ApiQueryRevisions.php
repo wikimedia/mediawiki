@@ -452,6 +452,7 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 		}
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		$ret = parent::getAllowedParams() + [
 			'startid' => [
@@ -506,6 +507,7 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 		return $ret;
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		$title = Title::newMainPage()->getPrefixedText();
 		$mp = rawurlencode( $title );
@@ -532,6 +534,7 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Revisions';
 	}

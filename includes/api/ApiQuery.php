@@ -976,6 +976,7 @@ class ApiQuery extends ApiBase {
 		}
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams( $flags = 0 ) {
 		$result = [
 			'prop' => [
@@ -1010,6 +1011,7 @@ class ApiQuery extends ApiBase {
 		return $result;
 	}
 
+	/** @inheritDoc */
 	public function isReadMode() {
 		// We need to make an exception for certain meta modules that should be
 		// accessible even without the 'read' right. Restrict the exception as
@@ -1040,6 +1042,7 @@ class ApiQuery extends ApiBase {
 		return false;
 	}
 
+	/** @inheritDoc */
 	public function isWriteMode() {
 		// Ask each module if it requires write mode. If any require write mode this returns true.
 		$modules = [];
@@ -1056,6 +1059,7 @@ class ApiQuery extends ApiBase {
 		return false;
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		$title = Title::newMainPage()->getPrefixedText();
 		$mp = rawurlencode( $title );
@@ -1069,6 +1073,7 @@ class ApiQuery extends ApiBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return [
 			'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Query',

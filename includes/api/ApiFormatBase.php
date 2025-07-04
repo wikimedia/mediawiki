@@ -375,6 +375,7 @@ abstract class ApiFormatBase extends ApiBase {
 		return $this->mBuffer;
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		$ret = [];
 		if ( $this->getIsHtml() ) {
@@ -386,6 +387,7 @@ abstract class ApiFormatBase extends ApiBase {
 		return $ret;
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		return [
 			'action=query&meta=siteinfo&siprop=namespaces&format=' . $this->getModuleName()
@@ -393,6 +395,7 @@ abstract class ApiFormatBase extends ApiBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Data_formats';
 	}

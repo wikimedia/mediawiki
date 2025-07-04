@@ -97,20 +97,24 @@ class ApiRemoveAuthenticationData extends ApiBase {
 		$this->getResult()->addValue( null, $this->getModuleName(), [ 'status' => 'success' ] );
 	}
 
+	/** @inheritDoc */
 	public function isWriteMode() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function needsToken() {
 		return 'csrf';
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		return ApiAuthManagerHelper::getStandardParams( $this->authAction,
 			'request'
 		);
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		$path = $this->getModulePath();
 		$action = $this->getModuleName();
@@ -120,6 +124,7 @@ class ApiRemoveAuthenticationData extends ApiBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Manage_authentication_data';
 	}

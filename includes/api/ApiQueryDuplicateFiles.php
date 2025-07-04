@@ -49,10 +49,12 @@ class ApiQueryDuplicateFiles extends ApiQueryGeneratorBase {
 		$this->run();
 	}
 
+	/** @inheritDoc */
 	public function getCacheMode( $params ) {
 		return 'public';
 	}
 
+	/** @inheritDoc */
 	public function executeGenerator( $resultPageSet ) {
 		$this->run( $resultPageSet );
 	}
@@ -168,6 +170,7 @@ class ApiQueryDuplicateFiles extends ApiQueryGeneratorBase {
 		}
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		return [
 			'limit' => [
@@ -191,6 +194,7 @@ class ApiQueryDuplicateFiles extends ApiQueryGeneratorBase {
 		];
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		return [
 			'action=query&titles=File:Albert_Einstein_Head.jpg&prop=duplicatefiles'
@@ -200,6 +204,7 @@ class ApiQueryDuplicateFiles extends ApiQueryGeneratorBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Duplicatefiles';
 	}

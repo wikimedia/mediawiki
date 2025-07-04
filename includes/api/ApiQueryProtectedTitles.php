@@ -54,6 +54,7 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 		$this->run();
 	}
 
+	/** @inheritDoc */
 	public function executeGenerator( $resultPageSet ) {
 		$this->run( $resultPageSet );
 	}
@@ -192,6 +193,7 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 		}
 	}
 
+	/** @inheritDoc */
 	public function getCacheMode( $params ) {
 		if ( $params['prop'] !== null && in_array( 'parsedcomment', $params['prop'] ) ) {
 			// MediaWiki\CommentFormatter\CommentFormatter::formatItems() calls wfMessage() among other things
@@ -201,6 +203,7 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 		}
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		return [
 			'namespace' => [
@@ -257,6 +260,7 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 		];
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		return [
 			'action=query&list=protectedtitles'
@@ -266,6 +270,7 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Protectedtitles';
 	}

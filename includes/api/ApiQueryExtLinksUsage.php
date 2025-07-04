@@ -50,10 +50,12 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 		$this->run();
 	}
 
+	/** @inheritDoc */
 	public function getCacheMode( $params ) {
 		return 'public';
 	}
 
+	/** @inheritDoc */
 	public function executeGenerator( $resultPageSet ) {
 		$this->run( $resultPageSet );
 	}
@@ -198,6 +200,7 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 		$this->setContinueEnumParameter( 'continue', implode( '|', $fields ) );
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		$ret = [
 			'prop' => [
@@ -245,6 +248,7 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 		return $ret;
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		return [
 			'action=query&list=exturlusage&euquery=www.mediawiki.org'
@@ -252,6 +256,7 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Exturlusage';
 	}

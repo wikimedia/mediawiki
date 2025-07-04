@@ -65,6 +65,7 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 		$this->run();
 	}
 
+	/** @inheritDoc */
 	public function executeGenerator( $resultPageSet ) {
 		$this->run( $resultPageSet );
 	}
@@ -170,6 +171,7 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 		}
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		return [
 			'continue' => [
@@ -224,6 +226,7 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 		];
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		return [
 			'action=query&list=watchlistraw'
@@ -233,6 +236,7 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Watchlistraw';
 	}

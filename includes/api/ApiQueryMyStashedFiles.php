@@ -118,6 +118,7 @@ class ApiQueryMyStashedFiles extends ApiQueryBase {
 		$result->addIndexedTagName( [ 'query', $this->getModuleName() ], 'file' );
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		return [
 			'prop' => [
@@ -141,6 +142,7 @@ class ApiQueryMyStashedFiles extends ApiQueryBase {
 		];
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		return [
 			'action=query&list=mystashedfiles&msfprop=size'
@@ -148,6 +150,7 @@ class ApiQueryMyStashedFiles extends ApiQueryBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:mystashedfiles';
 	}

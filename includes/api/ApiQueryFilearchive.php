@@ -278,6 +278,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 		$result->addIndexedTagName( [ 'query', $this->getModuleName() ], 'fa' );
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		return [
 			'from' => null,
@@ -324,6 +325,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 		];
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		return [
 			'action=query&list=filearchive'
@@ -331,6 +333,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Filearchive';
 	}

@@ -308,14 +308,17 @@ class ApiBlock extends ApiBase {
 		)->placeBlock( $params['newblock'] ? BlockUser::CONFLICT_NEW : BlockUser::CONFLICT_FAIL );
 	}
 
+	/** @inheritDoc */
 	public function mustBePosted() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function isWriteMode() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		$params = [
 			'id' => [ ParamValidator::PARAM_TYPE => 'integer' ],
@@ -395,10 +398,12 @@ class ApiBlock extends ApiBase {
 		return $params;
 	}
 
+	/** @inheritDoc */
 	public function needsToken() {
 		return 'csrf';
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		// phpcs:disable Generic.Files.LineLength
 		return [
@@ -410,6 +415,7 @@ class ApiBlock extends ApiBase {
 		// phpcs:enable
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Block';
 	}

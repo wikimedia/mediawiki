@@ -48,6 +48,7 @@ class ApiFormatJson extends ApiFormatBase {
 		}
 	}
 
+	/** @inheritDoc */
 	public function getMimeType() {
 		$params = $this->extractRequestParams();
 		// callback:
@@ -112,6 +113,7 @@ class ApiFormatJson extends ApiFormatBase {
 		}
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		if ( $this->isRaw ) {
 			return parent::getAllowedParams();

@@ -47,6 +47,7 @@ class ApiLinkAccount extends ApiBase {
 		$this->urlUtils = $urlUtils;
 	}
 
+	/** @inheritDoc */
 	public function getFinalDescription() {
 		// A bit of a hack to append 'api-help-authmanager-general-usage'
 		$msgs = parent::getFinalDescription();
@@ -106,28 +107,34 @@ class ApiLinkAccount extends ApiBase {
 			$helper->formatAuthenticationResponse( $res ) );
 	}
 
+	/** @inheritDoc */
 	public function isReadMode() {
 		return false;
 	}
 
+	/** @inheritDoc */
 	public function isWriteMode() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function needsToken() {
 		return 'csrf';
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		return ApiAuthManagerHelper::getStandardParams( AuthManager::ACTION_LINK,
 			'requests', 'messageformat', 'mergerequestfields', 'returnurl', 'continue'
 		);
 	}
 
+	/** @inheritDoc */
 	public function dynamicParameterDocumentation() {
 		return [ 'api-help-authmanagerhelper-additional-params', AuthManager::ACTION_LINK ];
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		return [
 			'action=linkaccount&provider=Example&linkreturnurl=http://example.org/&linktoken=123ABC'
@@ -135,6 +142,7 @@ class ApiLinkAccount extends ApiBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Linkaccount';
 	}

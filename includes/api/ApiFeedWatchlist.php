@@ -261,6 +261,7 @@ class ApiFeedWatchlist extends ApiBase {
 		return $this->watchlistModule;
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams( $flags = 0 ) {
 		$feedFormatNames = array_keys( $this->getConfig()->get( MainConfigNames::FeedClasses ) );
 		$ret = [
@@ -310,6 +311,7 @@ class ApiFeedWatchlist extends ApiBase {
 		return $ret;
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		return [
 			'action=feedwatchlist'
@@ -319,6 +321,7 @@ class ApiFeedWatchlist extends ApiBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Watchlist_feed';
 	}

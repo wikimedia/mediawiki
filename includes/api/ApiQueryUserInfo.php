@@ -345,6 +345,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		return MWTimestamp::convert( TS_ISO_8601, $timestamp );
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		return [
 			'prop' => [
@@ -383,6 +384,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		];
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		return [
 			'action=query&meta=userinfo'
@@ -392,6 +394,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Userinfo';
 	}

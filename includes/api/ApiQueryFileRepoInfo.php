@@ -77,10 +77,12 @@ class ApiQueryFileRepoInfo extends ApiQueryBase {
 		$result->addValue( [ 'query' ], 'repos', $repos );
 	}
 
+	/** @inheritDoc */
 	public function getCacheMode( $params ) {
 		return 'public';
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		$props = $this->getProps();
 
@@ -111,6 +113,7 @@ class ApiQueryFileRepoInfo extends ApiQueryBase {
 		return $propValues;
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		$examples = [];
 
@@ -123,6 +126,7 @@ class ApiQueryFileRepoInfo extends ApiQueryBase {
 		return $examples;
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Filerepoinfo';
 	}

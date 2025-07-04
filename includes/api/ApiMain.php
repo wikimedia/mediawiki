@@ -878,6 +878,7 @@ class ApiMain extends ApiBase {
 		$this->mCacheMode = $mode;
 	}
 
+	/** @inheritDoc */
 	public function getCacheMode() {
 		return $this->mCacheMode;
 	}
