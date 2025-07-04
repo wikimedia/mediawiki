@@ -72,6 +72,7 @@ class BotPasswordSessionProvider extends ImmutableSessionProviderWithCookie {
 			?? ( defined( 'MW_API' ) || defined( 'MW_REST_API' ) );
 	}
 
+	/** @inheritDoc */
 	public function provideSessionInfo( WebRequest $request ) {
 		// Only relevant for the (Action or REST) API
 		if ( !$this->isApiRequest ) {
@@ -96,6 +97,7 @@ class BotPasswordSessionProvider extends ImmutableSessionProviderWithCookie {
 		] );
 	}
 
+	/** @inheritDoc */
 	public function newSessionInfo( $id = null ) {
 		// We don't activate by default
 		return null;
@@ -193,6 +195,7 @@ class BotPasswordSessionProvider extends ImmutableSessionProviderWithCookie {
 		BotPassword::removeAllPasswordsForUser( $username );
 	}
 
+	/** @inheritDoc */
 	public function getAllowedUserRights( SessionBackend $backend ) {
 		if ( $backend->getProvider() !== $this ) {
 			throw new InvalidArgumentException( 'Backend\'s provider isn\'t $this' );

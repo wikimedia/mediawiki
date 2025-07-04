@@ -206,6 +206,7 @@ class DefaultOptionsLookup extends UserOptionsLookup {
 		Assert::precondition( !$user->isRegistered(), "$fname called on a registered user" );
 	}
 
+	/** @inheritDoc */
 	public function getOptionBatchForUserNames( array $users, string $key ) {
 		$genericDefault = $this->getGenericDefaultOptions()[$key] ?? '';
 		$options = array_fill_keys( $users, $genericDefault );

@@ -26,6 +26,7 @@ class LocalSerialProvider extends DBSerialProvider {
 		$this->lbf = $lbf;
 	}
 
+	/** @inheritDoc */
 	protected function getDB() {
 		// So that startAtomic() will start a commit, reducing lock time.
 		// Without this flag, the transaction will be open until the start
@@ -34,6 +35,7 @@ class LocalSerialProvider extends DBSerialProvider {
 		return $this->lbf->getAutoCommitPrimaryConnection();
 	}
 
+	/** @inheritDoc */
 	protected function getTableName() {
 		return 'user_autocreate_serial';
 	}

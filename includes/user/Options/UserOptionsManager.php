@@ -219,12 +219,14 @@ class UserOptionsManager extends UserOptionsLookup {
 		return $options;
 	}
 
+	/** @inheritDoc */
 	public function isOptionGlobal( UserIdentity $user, string $key ) {
 		$this->getOptions( $user );
 		$source = $this->cache[ $this->getCacheKey( $user ) ]->sources[$key] ?? self::LOCAL_STORE_KEY;
 		return $source !== self::LOCAL_STORE_KEY;
 	}
 
+	/** @inheritDoc */
 	public function getOptionBatchForUserNames( array $users, string $key ) {
 		if ( !$users ) {
 			return [];

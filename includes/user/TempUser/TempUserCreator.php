@@ -134,26 +134,32 @@ class TempUserCreator implements TempUserConfig {
 		return $createStatus;
 	}
 
+	/** @inheritDoc */
 	public function isEnabled() {
 		return $this->config->isEnabled();
 	}
 
+	/** @inheritDoc */
 	public function isKnown() {
 		return $this->config->isKnown();
 	}
 
+	/** @inheritDoc */
 	public function isAutoCreateAction( string $action ) {
 		return $this->config->isAutoCreateAction( $action );
 	}
 
+	/** @inheritDoc */
 	public function shouldAutoCreate( Authority $authority, string $action ) {
 		return $this->config->shouldAutoCreate( $authority, $action );
 	}
 
+	/** @inheritDoc */
 	public function isTempName( string $name ) {
 		return $this->config->isTempName( $name );
 	}
 
+	/** @inheritDoc */
 	public function isReservedName( string $name ) {
 		return $this->config->isReservedName( $name );
 	}

@@ -107,6 +107,7 @@ class CookieSessionProvider extends SessionProvider {
 		];
 	}
 
+	/** @inheritDoc */
 	public function provideSessionInfo( WebRequest $request ) {
 		$sessionId = $this->getCookie( $request, $this->params['sessionName'], '' );
 		$info = [
@@ -181,10 +182,12 @@ class CookieSessionProvider extends SessionProvider {
 		return new SessionInfo( $this->priority, $info );
 	}
 
+	/** @inheritDoc */
 	public function persistsSessionId() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function canChangeUser() {
 		return true;
 	}
@@ -300,6 +303,7 @@ class CookieSessionProvider extends SessionProvider {
 		}
 	}
 
+	/** @inheritDoc */
 	public function getVaryCookies() {
 		return [
 			// Vary on token and session because those are the real authn
@@ -311,6 +315,7 @@ class CookieSessionProvider extends SessionProvider {
 		];
 	}
 
+	/** @inheritDoc */
 	public function suggestLoginUsername( WebRequest $request ) {
 		$name = $this->getCookie( $request, 'UserName', $this->cookieOptions['prefix'] );
 		if ( $name !== null ) {
@@ -388,10 +393,12 @@ class CookieSessionProvider extends SessionProvider {
 		return [];
 	}
 
+	/** @inheritDoc */
 	public function whyNoSession() {
 		return wfMessage( 'sessionprovider-nocookies' );
 	}
 
+	/** @inheritDoc */
 	public function getRememberUserDuration() {
 		return min( $this->getLoginCookieExpiration( 'UserID', true ),
 			$this->getLoginCookieExpiration( 'Token', true ) ) ?: null;

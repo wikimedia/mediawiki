@@ -96,14 +96,17 @@ class RealTempUserConfig implements TempUserConfig {
 		}
 	}
 
+	/** @inheritDoc */
 	public function isEnabled() {
 		return $this->enabled;
 	}
 
+	/** @inheritDoc */
 	public function isKnown() {
 		return $this->known;
 	}
 
+	/** @inheritDoc */
 	public function isAutoCreateAction( string $action ) {
 		if ( $action === 'create' ) {
 			$action = 'edit';
@@ -112,12 +115,14 @@ class RealTempUserConfig implements TempUserConfig {
 			&& in_array( $action, $this->autoCreateActions, true );
 	}
 
+	/** @inheritDoc */
 	public function shouldAutoCreate( Authority $authority, string $action ) {
 		return $this->isAutoCreateAction( $action )
 			&& !$authority->isRegistered()
 			&& $authority->isAllowed( 'createaccount' );
 	}
 
+	/** @inheritDoc */
 	public function isTempName( string $name ) {
 		if ( !$this->isKnown() ) {
 			return false;
@@ -130,10 +135,12 @@ class RealTempUserConfig implements TempUserConfig {
 		return false;
 	}
 
+	/** @inheritDoc */
 	public function isReservedName( string $name ) {
 		return $this->isTempName( $name ) || ( $this->reservedPattern && $this->reservedPattern->isMatch( $name ) );
 	}
 
+	/** @inheritDoc */
 	public function getPlaceholderName(): string {
 		$year = null;
 		if ( $this->serialProviderConfig['useYear'] ?? false ) {
@@ -160,6 +167,7 @@ class RealTempUserConfig implements TempUserConfig {
 		}
 	}
 
+	/** @inheritDoc */
 	public function getMatchPatterns(): array {
 		if ( $this->isKnown() ) {
 			return $this->matchPatterns;
@@ -168,6 +176,7 @@ class RealTempUserConfig implements TempUserConfig {
 		}
 	}
 
+	/** @inheritDoc */
 	public function getMatchCondition( IReadableDatabase $db, string $field, string $op ): IExpression {
 		if ( $this->isKnown() ) {
 			$exprs = [];
@@ -189,10 +198,12 @@ class RealTempUserConfig implements TempUserConfig {
 		}
 	}
 
+	/** @inheritDoc */
 	public function getExpireAfterDays(): ?int {
 		return $this->expireAfterDays;
 	}
 
+	/** @inheritDoc */
 	public function getNotifyBeforeExpirationDays(): ?int {
 		return $this->notifyBeforeExpirationDays;
 	}

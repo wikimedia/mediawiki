@@ -42,10 +42,12 @@ class LoggedOutEditToken extends Token {
 		parent::__construct( '', '', false );
 	}
 
+	/** @inheritDoc */
 	protected function toStringAtTimestamp( $timestamp ) {
 		return self::SUFFIX;
 	}
 
+	/** @inheritDoc */
 	public function match( $userToken, $maxAge = null ) {
 		return $userToken === self::SUFFIX;
 	}

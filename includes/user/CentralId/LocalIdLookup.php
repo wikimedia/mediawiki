@@ -70,6 +70,7 @@ class LocalIdLookup extends CentralIdLookup {
 		$this->hideUserUtils = $hideUserUtils;
 	}
 
+	/** @inheritDoc */
 	public function isAttached( UserIdentity $user, $wikiId = UserIdentity::LOCAL ): bool {
 		// If the user has no ID, it can't be attached
 		if ( !$user->isRegistered() ) {
@@ -98,6 +99,7 @@ class LocalIdLookup extends CentralIdLookup {
 			in_array( $wikiId, $this->localDatabases, true );
 	}
 
+	/** @inheritDoc */
 	public function lookupCentralIds(
 		array $idToName, $audience = self::AUDIENCE_PUBLIC, $flags = IDBAccessObject::READ_NORMAL
 	): array {
@@ -125,6 +127,7 @@ class LocalIdLookup extends CentralIdLookup {
 		return $idToName;
 	}
 
+	/** @inheritDoc */
 	public function lookupUserNamesWithFilter(
 		array $nameToId, $filter, $audience = self::AUDIENCE_PUBLIC,
 		$flags = IDBAccessObject::READ_NORMAL,

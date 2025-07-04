@@ -173,6 +173,7 @@ abstract class ImmutableSessionProviderWithCookie extends SessionProvider {
 		return [ $prefix . $this->sessionCookieName ];
 	}
 
+	/** @inheritDoc */
 	public function whyNoSession() {
 		return wfMessage( 'sessionprovider-nocookies' );
 	}

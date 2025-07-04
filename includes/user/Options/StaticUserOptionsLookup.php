@@ -64,6 +64,7 @@ class StaticUserOptionsLookup extends UserOptionsLookup {
 		return $userOptions;
 	}
 
+	/** @inheritDoc */
 	public function getOptionBatchForUserNames( array $users, string $key ) {
 		$options = [];
 		foreach ( $users as $name ) {

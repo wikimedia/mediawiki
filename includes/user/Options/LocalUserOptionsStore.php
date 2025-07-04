@@ -46,6 +46,7 @@ class LocalUserOptionsStore implements UserOptionsStore {
 		return $options;
 	}
 
+	/** @inheritDoc */
 	public function fetchBatchForUserNames( array $keys, array $userNames ) {
 		if ( !$keys || !$userNames ) {
 			return [];
@@ -69,6 +70,7 @@ class LocalUserOptionsStore implements UserOptionsStore {
 		return $options;
 	}
 
+	/** @inheritDoc */
 	public function store( UserIdentity $user, array $updates ) {
 		// In core, only users with local accounts may have preferences
 		if ( !$user->getId() ) {

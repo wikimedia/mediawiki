@@ -2180,10 +2180,12 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function isAllowedAny( ...$permissions ): bool {
 		return $this->getThisAsAuthority()->isAllowedAny( ...$permissions );
 	}
 
+	/** @inheritDoc */
 	public function isAllowedAll( ...$permissions ): bool {
 		return $this->getThisAsAuthority()->isAllowedAll( ...$permissions );
 	}

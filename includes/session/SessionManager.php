@@ -161,6 +161,7 @@ class SessionManager implements SessionManagerInterface {
 		$this->hookRunner = new HookRunner( $hookContainer );
 	}
 
+	/** @inheritDoc */
 	public function getSessionForRequest( WebRequest $request ) {
 		$info = $this->getSessionInfoForRequest( $request );
 
@@ -172,6 +173,7 @@ class SessionManager implements SessionManagerInterface {
 		return $session;
 	}
 
+	/** @inheritDoc */
 	public function getSessionById( $id, $create = false, ?WebRequest $request = null ) {
 		if ( !self::validateSessionId( $id ) ) {
 			throw new InvalidArgumentException( 'Invalid session ID' );
@@ -213,6 +215,7 @@ class SessionManager implements SessionManagerInterface {
 		return $session;
 	}
 
+	/** @inheritDoc */
 	public function getEmptySession( ?WebRequest $request = null ) {
 		return $this->getEmptySessionInternal( $request );
 	}
@@ -329,6 +332,7 @@ class SessionManager implements SessionManagerInterface {
 		return $this->varyHeaders;
 	}
 
+	/** @inheritDoc */
 	public function getVaryCookies() {
 		// @codeCoverageIgnoreStart
 		if ( defined( 'MW_NO_SESSION' ) && MW_NO_SESSION !== 'warn' ) {

@@ -40,6 +40,7 @@ class UserOptionsUpdateJob extends Job implements GenericParameterJob {
 		$this->removeDuplicates = true;
 	}
 
+	/** @inheritDoc */
 	public function run() {
 		if ( !$this->params['options'] ) {
 			return true; // nothing to do
