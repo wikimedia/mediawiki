@@ -40,14 +40,17 @@ class PoolCounterNull extends PoolCounter {
 		parent::__construct( $conf, 'Null', 'none' );
 	}
 
+	/** @inheritDoc */
 	public function acquireForMe( $timeout = null ) {
 		return Status::newGood( PoolCounter::LOCKED );
 	}
 
+	/** @inheritDoc */
 	public function acquireForAnyone( $timeout = null ) {
 		return Status::newGood( PoolCounter::LOCKED );
 	}
 
+	/** @inheritDoc */
 	public function release() {
 		return Status::newGood( PoolCounter::RELEASED );
 	}

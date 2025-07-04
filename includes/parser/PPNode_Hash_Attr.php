@@ -62,44 +62,54 @@ class PPNode_Hash_Attr implements Stringable, PPNode {
 		return "<@{$this->name}>" . htmlspecialchars( $this->value, ENT_COMPAT ) . "</@{$this->name}>";
 	}
 
+	/** @inheritDoc */
 	public function getName() {
 		return $this->name;
 	}
 
+	/** @inheritDoc */
 	public function getNextSibling() {
 		return PPNode_Hash_Tree::factory( $this->store, $this->index + 1 );
 	}
 
+	/** @inheritDoc */
 	public function getChildren() {
 		return false;
 	}
 
+	/** @inheritDoc */
 	public function getFirstChild() {
 		return false;
 	}
 
+	/** @inheritDoc */
 	public function getChildrenOfType( $name ) {
 		return false;
 	}
 
+	/** @inheritDoc */
 	public function getLength() {
 		return false;
 	}
 
+	/** @inheritDoc */
 	public function item( $i ) {
 		return false;
 	}
 
+	/** @inheritDoc */
 	public function splitArg() {
 		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
 		throw new LogicException( __METHOD__ . ': not supported' );
 	}
 
+	/** @inheritDoc */
 	public function splitExt() {
 		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
 		throw new LogicException( __METHOD__ . ': not supported' );
 	}
 
+	/** @inheritDoc */
 	public function splitHeading() {
 		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
 		throw new LogicException( __METHOD__ . ': not supported' );

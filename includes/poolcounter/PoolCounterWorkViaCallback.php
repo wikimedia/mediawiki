@@ -77,10 +77,12 @@ class PoolCounterWorkViaCallback extends PoolCounterWork {
 		$this->cacheable = (bool)$this->doCachedWork;
 	}
 
+	/** @inheritDoc */
 	public function doWork() {
 		return ( $this->doWork )();
 	}
 
+	/** @inheritDoc */
 	public function getCachedWork() {
 		if ( $this->doCachedWork ) {
 			return ( $this->doCachedWork )();
@@ -88,6 +90,7 @@ class PoolCounterWorkViaCallback extends PoolCounterWork {
 		return false;
 	}
 
+	/** @inheritDoc */
 	public function fallback( $fast ) {
 		if ( $this->fallback ) {
 			return ( $this->fallback )( $fast );
@@ -95,6 +98,7 @@ class PoolCounterWorkViaCallback extends PoolCounterWork {
 		return false;
 	}
 
+	/** @inheritDoc */
 	public function error( $status ) {
 		if ( $this->error ) {
 			return ( $this->error )( $status );

@@ -130,6 +130,7 @@ class PoolCounterRedis extends PoolCounter {
 		return Status::newGood( $this->conn );
 	}
 
+	/** @inheritDoc */
 	public function acquireForMe( $timeout = null ) {
 		$status = $this->precheckAcquire();
 		if ( !$status->isGood() ) {
@@ -139,6 +140,7 @@ class PoolCounterRedis extends PoolCounter {
 		return $this->waitForSlotOrNotif( self::AWAKE_ONE, $timeout );
 	}
 
+	/** @inheritDoc */
 	public function acquireForAnyone( $timeout = null ) {
 		$status = $this->precheckAcquire();
 		if ( !$status->isGood() ) {
@@ -148,6 +150,7 @@ class PoolCounterRedis extends PoolCounter {
 		return $this->waitForSlotOrNotif( self::AWAKE_ALL, $timeout );
 	}
 
+	/** @inheritDoc */
 	public function release() {
 		if ( $this->slot === null ) {
 			return Status::newGood( PoolCounter::NOT_LOCKED ); // not locked

@@ -141,6 +141,7 @@ class JsonCodec
 		return $this->deserialize( $json, $expectedClass );
 	}
 
+	/** @inheritDoc */
 	public function deserialize( $json, ?string $expectedClass = null ) {
 		Assert::parameterType( [ 'stdClass', 'array', 'string' ], $json, '$json' );
 		Assert::precondition(
@@ -202,6 +203,7 @@ class JsonCodec
 		}
 	}
 
+	/** @inheritDoc */
 	public function serialize( $value ) {
 		// Recursively convert stdClass, JsonSerializable, and JsonCodecable
 		// to serializable arrays

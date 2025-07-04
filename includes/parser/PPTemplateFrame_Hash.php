@@ -203,11 +203,13 @@ class PPTemplateFrame_Hash extends PPFrame_Hash {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function setVolatile( $flag = true ) {
 		parent::setVolatile( $flag );
 		$this->parent->setVolatile( $flag );
 	}
 
+	/** @inheritDoc */
 	public function setTTL( $ttl ) {
 		parent::setTTL( $ttl );
 		$this->parent->setTTL( $ttl );

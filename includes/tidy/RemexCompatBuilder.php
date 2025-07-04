@@ -9,6 +9,7 @@ use Wikimedia\RemexHtml\TreeBuilder\TreeBuilder;
  * @internal
  */
 class RemexCompatBuilder extends TreeBuilder {
+	/** @inheritDoc */
 	public function reconstructAFE( $sourceStart ) {
 		// These checks are redundant with the parent, but here for performance
 		$entry = $this->afe->getTail();

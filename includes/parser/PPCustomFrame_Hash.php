@@ -71,6 +71,7 @@ class PPCustomFrame_Hash extends PPFrame_Hash {
 		return $this->args[$index] ?? false;
 	}
 
+	/** @inheritDoc */
 	public function getArguments() {
 		return $this->args;
 	}

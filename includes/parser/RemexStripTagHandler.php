@@ -15,16 +15,19 @@ class RemexStripTagHandler extends NullTokenHandler {
 	/** @var string */
 	private $text = '';
 
+	/** @inheritDoc */
 	public function getResult() {
 		return $this->text;
 	}
 
+	/** @inheritDoc */
 	public function characters( $text, $start, $length, $sourceStart, $sourceLength ) {
 		if ( !$this->insideNonVisibleTag ) {
 			$this->text .= substr( $text, $start, $length );
 		}
 	}
 
+	/** @inheritDoc */
 	public function startTag( $name, Attributes $attrs, $selfClose, $sourceStart, $sourceLength ) {
 		if ( $this->isNonVisibleTag( $name ) ) {
 			$this->insideNonVisibleTag = true;
@@ -36,6 +39,7 @@ class RemexStripTagHandler extends NullTokenHandler {
 		}
 	}
 
+	/** @inheritDoc */
 	public function endTag( $name, $sourceStart, $sourceLength ) {
 		if ( $this->isNonVisibleTag( $name ) ) {
 			$this->insideNonVisibleTag = false;

@@ -36,6 +36,7 @@ class RemexCompatFormatter extends HtmlFormatter {
 		$this->textProcessor = $options['textProcessor'] ?? null;
 	}
 
+	/** @inheritDoc */
 	public function startDocument( $fragmentNamespace, $fragmentName ) {
 		return '';
 	}
@@ -63,6 +64,7 @@ class RemexCompatFormatter extends HtmlFormatter {
 		return $text;
 	}
 
+	/** @inheritDoc */
 	public function element( SerializerNode $parent, SerializerNode $node, $contents ) {
 		$data = $node->snData;
 		if ( $data && $data->isPWrapper ) {

@@ -110,6 +110,7 @@ class Preprocessor_Hash extends Preprocessor {
 		return new PPNode_Hash_Array( $list );
 	}
 
+	/** @inheritDoc */
 	public function preprocessToObj( $text, $flags = 0 ) {
 		if ( $this->disableLangConversion ) {
 			// Language conversions are globally disabled; implicitly set flag

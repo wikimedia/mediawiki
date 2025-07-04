@@ -123,6 +123,7 @@ class RemexCompatMunger implements TreeHandler {
 		$this->trace = $trace;
 	}
 
+	/** @inheritDoc */
 	public function startDocument( $fragmentNamespace, $fragmentName ) {
 		$this->serializer->startDocument( $fragmentNamespace, $fragmentName );
 		$root = $this->serializer->getRootNode();
@@ -130,6 +131,7 @@ class RemexCompatMunger implements TreeHandler {
 		$root->snData->needsPWrapping = true;
 	}
 
+	/** @inheritDoc */
 	public function endDocument( $pos ) {
 		$this->serializer->endDocument( $pos );
 	}
@@ -180,6 +182,7 @@ class RemexCompatMunger implements TreeHandler {
 		return $pWrap->userData;
 	}
 
+	/** @inheritDoc */
 	public function characters( $preposition, $refElement, $text, $start, $length,
 		$sourceStart, $sourceLength
 	) {
@@ -473,6 +476,7 @@ class RemexCompatMunger implements TreeHandler {
 		$newParent->snData->childPElement = null;
 	}
 
+	/** @inheritDoc */
 	public function endTag( Element $element, $sourceStart, $sourceLength ) {
 		$data = $element->userData->snData;
 		if ( $data->childPElement ) {
@@ -483,28 +487,34 @@ class RemexCompatMunger implements TreeHandler {
 		$element->userData = null;
 	}
 
+	/** @inheritDoc */
 	public function doctype( $name, $public, $system, $quirks, $sourceStart, $sourceLength ) {
 		$this->serializer->doctype( $name, $public, $system, $quirks,
 			$sourceStart, $sourceLength );
 	}
 
+	/** @inheritDoc */
 	public function comment( $preposition, $refElement, $text, $sourceStart, $sourceLength ) {
 		[ , $refNode ] = $this->getParentForInsert( $preposition, $refElement );
 		$this->serializer->comment( $preposition, $refNode, $text, $sourceStart, $sourceLength );
 	}
 
+	/** @inheritDoc */
 	public function error( $text, $pos ) {
 		$this->serializer->error( $text, $pos );
 	}
 
+	/** @inheritDoc */
 	public function mergeAttributes( Element $element, Attributes $attrs, $sourceStart ) {
 		$this->serializer->mergeAttributes( $element, $attrs, $sourceStart );
 	}
 
+	/** @inheritDoc */
 	public function removeNode( Element $element, $sourceStart ) {
 		$this->serializer->removeNode( $element, $sourceStart );
 	}
 
+	/** @inheritDoc */
 	public function reparentChildren( Element $element, Element $newParent, $sourceStart ) {
 		$self = $element->userData;
 		if ( $self->snData->childPElement ) {
