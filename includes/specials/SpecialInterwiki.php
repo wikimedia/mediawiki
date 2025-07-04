@@ -53,6 +53,7 @@ class SpecialInterwiki extends SpecialPage {
 		$this->interwikiMagic = $this->getConfig()->get( MainConfigNames::InterwikiMagic ) ?? true;
 	}
 
+	/** @inheritDoc */
 	public function doesWrites() {
 		return true;
 	}
@@ -67,6 +68,7 @@ class SpecialInterwiki extends SpecialPage {
 		return $this->msg( $this->canModify() ? 'interwiki' : 'interwiki-title-norights' );
 	}
 
+	/** @inheritDoc */
 	public function getSubpagesForPrefixSearch() {
 		// delete, edit both require the prefix parameter.
 		return [ 'add' ];
@@ -669,6 +671,7 @@ class SpecialInterwiki extends SpecialPage {
 		$this->getOutput()->wrapWikiMsg( "<p class='error'>$1</p>", $args );
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'wiki';
 	}

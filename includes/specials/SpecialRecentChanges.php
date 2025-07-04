@@ -1027,10 +1027,12 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		return "{$note}$rclinks<br />$pipedLinks<br />$rclistfrom";
 	}
 
+	/** @inheritDoc */
 	public function isIncludable() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	protected function getCacheTTL() {
 		return 60 * 5;
 	}

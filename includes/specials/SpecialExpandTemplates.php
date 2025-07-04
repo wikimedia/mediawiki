@@ -277,6 +277,7 @@ class SpecialExpandTemplates extends SpecialPage {
 		$out->addCategoryLinks( $pout->getCategoryMap() );
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'wiki';
 	}

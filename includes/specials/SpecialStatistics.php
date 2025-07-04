@@ -50,6 +50,7 @@ class SpecialStatistics extends SpecialPage {
 		$this->userGroupManager = $userGroupManager;
 	}
 
+	/** @inheritDoc */
 	public function execute( $par ) {
 		$this->setHeaders();
 		$this->outputHeader();
@@ -309,6 +310,7 @@ class SpecialStatistics extends SpecialPage {
 		);
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'wiki';
 	}

@@ -37,6 +37,7 @@ class SpecialSpecialPages extends UnlistedSpecialPage {
 		parent::__construct( 'Specialpages' );
 	}
 
+	/** @inheritDoc */
 	public function execute( $par ) {
 		$out = $this->getOutput();
 		$this->setHeaders();

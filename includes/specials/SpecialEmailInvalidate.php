@@ -43,10 +43,12 @@ class SpecialEmailInvalidate extends UnlistedSpecialPage {
 		$this->userFactory = $userFactory;
 	}
 
+	/** @inheritDoc */
 	public function doesWrites() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function execute( $code ) {
 		// Ignore things like primary queries/connections on GET requests.
 		// It's very convenient to just allow formless link usage.

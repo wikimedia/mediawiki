@@ -53,11 +53,13 @@ class SpecialRestSandbox extends SpecialPage {
 		return $this->getConfig()->get( MainConfigNames::RestSandboxSpecs );
 	}
 
+	/** @inheritDoc */
 	public function isListed() {
 		// Hide the special pages if there are no APIs to explore.
 		return $this->getApiSpecs() !== [];
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'wiki';
 	}
@@ -78,6 +80,7 @@ class SpecialRestSandbox extends SpecialPage {
 		return $this->urlUtils->expand( $spec['url'] );
 	}
 
+	/** @inheritDoc */
 	public function execute( $sub ) {
 		$this->setHeaders();
 		$out = $this->getOutput();

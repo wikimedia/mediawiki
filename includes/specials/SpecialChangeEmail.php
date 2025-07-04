@@ -49,6 +49,7 @@ class SpecialChangeEmail extends FormSpecialPage {
 		$this->setAuthManager( $authManager );
 	}
 
+	/** @inheritDoc */
 	public function doesWrites() {
 		return true;
 	}
@@ -71,6 +72,7 @@ class SpecialChangeEmail extends FormSpecialPage {
 		parent::execute( $par );
 	}
 
+	/** @inheritDoc */
 	protected function getLoginSecurityLevel() {
 		return $this->getName();
 	}
@@ -91,6 +93,7 @@ class SpecialChangeEmail extends FormSpecialPage {
 		parent::checkExecutePermissions( $user );
 	}
 
+	/** @inheritDoc */
 	protected function getFormFields() {
 		$user = $this->getUser();
 
@@ -115,6 +118,7 @@ class SpecialChangeEmail extends FormSpecialPage {
 		];
 	}
 
+	/** @inheritDoc */
 	protected function getDisplayFormat() {
 		return 'ooui';
 	}
@@ -129,6 +133,7 @@ class SpecialChangeEmail extends FormSpecialPage {
 		$form->setSubmitID( 'change_email_submit' );
 	}
 
+	/** @inheritDoc */
 	public function onSubmit( array $data ) {
 		$this->status = $this->attemptChange( $this->getUser(), $data['NewEmail'] );
 
@@ -212,10 +217,12 @@ class SpecialChangeEmail extends FormSpecialPage {
 		return $status;
 	}
 
+	/** @inheritDoc */
 	public function requiresUnblock() {
 		return false;
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'login';
 	}

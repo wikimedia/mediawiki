@@ -105,6 +105,7 @@ class SpecialUserRights extends SpecialPage {
 		$this->tempUserConfig = $tempUserConfig ?? $services->getTempUserConfig();
 	}
 
+	/** @inheritDoc */
 	public function doesWrites() {
 		return true;
 	}
@@ -1225,6 +1226,7 @@ class SpecialUserRights extends SpecialPage {
 			->search( UserNamePrefixSearch::AUDIENCE_PUBLIC, $search, $limit, $offset );
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'users';
 	}

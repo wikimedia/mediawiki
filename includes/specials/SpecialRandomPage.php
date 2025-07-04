@@ -82,6 +82,7 @@ class SpecialRandomPage extends SpecialPage {
 		return $this->isRedir;
 	}
 
+	/** @inheritDoc */
 	public function execute( $par ) {
 		$this->parsePar( $par );
 
@@ -239,6 +240,7 @@ class SpecialRandomPage extends SpecialPage {
 			->fetchRow();
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'redirects';
 	}

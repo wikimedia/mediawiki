@@ -66,6 +66,7 @@ class SpecialListFiles extends IncludableSpecialPage {
 		$this->linkBatchFactory = $linkBatchFactory;
 	}
 
+	/** @inheritDoc */
 	public function execute( $par ) {
 		$this->setHeaders();
 		$this->outputHeader();
@@ -142,6 +143,7 @@ class SpecialListFiles extends IncludableSpecialPage {
 			->search( UserNamePrefixSearch::AUDIENCE_PUBLIC, $search, $limit, $offset );
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'media';
 	}

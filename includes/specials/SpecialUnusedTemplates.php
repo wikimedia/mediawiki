@@ -51,22 +51,27 @@ class SpecialUnusedTemplates extends QueryPage {
 		$this->linksMigration = $linksMigration;
 	}
 
+	/** @inheritDoc */
 	public function isExpensive() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function isSyndicated() {
 		return false;
 	}
 
+	/** @inheritDoc */
 	protected function sortDescending() {
 		return false;
 	}
 
+	/** @inheritDoc */
 	protected function getOrderFields() {
 		return [ 'title' ];
 	}
 
+	/** @inheritDoc */
 	public function getQueryInfo() {
 		$queryInfo = $this->linksMigration->getQueryInfo(
 			'templatelinks',
@@ -100,6 +105,7 @@ class SpecialUnusedTemplates extends QueryPage {
 		];
 	}
 
+	/** @inheritDoc */
 	public function preprocessResults( $db, $res ) {
 		$this->executeLBFromResultWrapper( $res );
 	}
@@ -121,14 +127,17 @@ class SpecialUnusedTemplates extends QueryPage {
 		return $this->getLanguage()->specialList( $pageLink, $wlhLink );
 	}
 
+	/** @inheritDoc */
 	protected function getPageHeader() {
 		return $this->msg( 'unusedtemplatestext' )->parseAsBlock();
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'maintenance';
 	}
 
+	/** @inheritDoc */
 	protected function getRecacheDB() {
 		return $this->getDatabaseProvider()->getReplicaDatabase(
 			TemplateLinksTable::VIRTUAL_DOMAIN,

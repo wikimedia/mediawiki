@@ -47,6 +47,7 @@ class SpecialProtectedTitles extends SpecialPage {
 		$this->dbProvider = $dbProvider;
 	}
 
+	/** @inheritDoc */
 	public function execute( $par ) {
 		$this->setHeaders();
 		$this->outputHeader();
@@ -130,6 +131,7 @@ class SpecialProtectedTitles extends SpecialPage {
 		];
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'maintenance';
 	}

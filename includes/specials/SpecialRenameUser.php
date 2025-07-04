@@ -49,6 +49,7 @@ class SpecialRenameUser extends SpecialPage {
 		$this->renameUserFactory = $renameUserFactory;
 	}
 
+	/** @inheritDoc */
 	public function doesWrites() {
 		return true;
 	}
@@ -375,6 +376,7 @@ class SpecialRenameUser extends SpecialPage {
 		return $this->userNamePrefixSearch->search( 'public', $search, $limit, $offset );
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'users';
 	}

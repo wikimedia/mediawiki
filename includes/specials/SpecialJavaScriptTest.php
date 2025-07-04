@@ -40,6 +40,7 @@ class SpecialJavaScriptTest extends SpecialPage {
 		parent::__construct( 'JavaScriptTest' );
 	}
 
+	/** @inheritDoc */
 	public function execute( $par ) {
 		$this->getOutput()->disable();
 
@@ -206,6 +207,7 @@ $script
 HTML;
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'other';
 	}

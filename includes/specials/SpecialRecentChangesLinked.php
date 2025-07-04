@@ -70,6 +70,7 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 		$this->changeTagsStore = $changeTagsStore;
 	}
 
+	/** @inheritDoc */
 	public function getDefaultOptions() {
 		$opts = parent::getDefaultOptions();
 		$opts->add( 'target', '' );
@@ -78,6 +79,7 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 		return $opts;
 	}
 
+	/** @inheritDoc */
 	public function parseParameters( $par, FormOptions $opts ) {
 		$opts['target'] = $par;
 	}

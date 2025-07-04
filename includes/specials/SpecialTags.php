@@ -57,6 +57,7 @@ class SpecialTags extends SpecialPage {
 		$this->changeTagsStore = $changeTagsStore;
 	}
 
+	/** @inheritDoc */
 	public function execute( $par ) {
 		$this->setHeaders();
 		$this->outputHeader();
@@ -525,6 +526,7 @@ class SpecialTags extends SpecialPage {
 		];
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'changes';
 	}

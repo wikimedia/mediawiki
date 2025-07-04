@@ -98,6 +98,7 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 		$this->changeTagsStore = $changeTagsStore;
 	}
 
+	/** @inheritDoc */
 	protected function doBatchLookups() {
 		# Do a link batch query
 		$this->mResult->seek( 0 );
@@ -137,6 +138,7 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 		return "</section>\n";
 	}
 
+	/** @inheritDoc */
 	public function formatRow( $row ) {
 		$revRecord = $this->revisionStore->newRevisionFromRow( $row );
 
@@ -201,6 +203,7 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 				->rawParams( $checkBox, $last, $pageLink, $userLink, $stxt, $comment, $tagSummary )->escaped() );
 	}
 
+	/** @inheritDoc */
 	public function getQueryInfo() {
 		$dbr = $this->getDatabase();
 		$queryBuilder = $this->revisionStore->newSelectQueryBuilder( $dbr )
@@ -222,6 +225,7 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 		return $queryBuilder->getQueryInfo( 'join_conds' );
 	}
 
+	/** @inheritDoc */
 	public function getIndexField() {
 		return [ [ 'rev_timestamp', 'rev_id' ] ];
 	}

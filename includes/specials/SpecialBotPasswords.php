@@ -87,6 +87,7 @@ class SpecialBotPasswords extends FormSpecialPage {
 		return $this->getConfig()->get( MainConfigNames::EnableBotPasswords );
 	}
 
+	/** @inheritDoc */
 	protected function getLoginSecurityLevel() {
 		return $this->getName();
 	}
@@ -115,6 +116,7 @@ class SpecialBotPasswords extends FormSpecialPage {
 		parent::execute( $par );
 	}
 
+	/** @inheritDoc */
 	protected function checkExecutePermissions( User $user ) {
 		parent::checkExecutePermissions( $user );
 
@@ -128,6 +130,7 @@ class SpecialBotPasswords extends FormSpecialPage {
 		}
 	}
 
+	/** @inheritDoc */
 	protected function getFormFields() {
 		$fields = [];
 
@@ -305,6 +308,7 @@ class SpecialBotPasswords extends FormSpecialPage {
 		}
 	}
 
+	/** @inheritDoc */
 	public function onSubmit( array $data ) {
 		$op = $this->getRequest()->getVal( 'op', '' );
 
@@ -430,10 +434,12 @@ class SpecialBotPasswords extends FormSpecialPage {
 		$out->addReturnTo( $this->getPageTitle() );
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'login';
 	}
 
+	/** @inheritDoc */
 	protected function getDisplayFormat() {
 		return 'ooui';
 	}

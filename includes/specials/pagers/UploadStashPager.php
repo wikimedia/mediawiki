@@ -64,6 +64,7 @@ class UploadStashPager extends TablePager {
 		$this->localRepo = $localRepo;
 	}
 
+	/** @inheritDoc */
 	protected function getFieldNames() {
 		if ( !$this->mFieldNames ) {
 			$this->mFieldNames = [
@@ -77,10 +78,12 @@ class UploadStashPager extends TablePager {
 		return $this->mFieldNames;
 	}
 
+	/** @inheritDoc */
 	protected function isFieldSortable( $field ) {
 		return in_array( $field, [ 'us_timestamp', 'us_key' ] );
 	}
 
+	/** @inheritDoc */
 	public function getQueryInfo() {
 		return [
 			'tables' => [ 'uploadstash' ],
@@ -99,10 +102,12 @@ class UploadStashPager extends TablePager {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getIndexField() {
 		return [ [ 'us_timestamp', 'us_id' ] ];
 	}
 
+	/** @inheritDoc */
 	public function getDefaultSort() {
 		return 'us_timestamp';
 	}
@@ -172,6 +177,7 @@ class UploadStashPager extends TablePager {
 		return $result;
 	}
 
+	/** @inheritDoc */
 	public function getForm() {
 		$formDescriptor = [];
 		$formDescriptor['limit'] = [
@@ -193,14 +199,17 @@ class UploadStashPager extends TablePager {
 			->displayForm( '' );
 	}
 
+	/** @inheritDoc */
 	protected function getTableClass() {
 		return parent::getTableClass() . ' uploadstash';
 	}
 
+	/** @inheritDoc */
 	protected function getNavClass() {
 		return parent::getNavClass() . ' uploadstash_nav';
 	}
 
+	/** @inheritDoc */
 	protected function getSortHeaderClass() {
 		return parent::getSortHeaderClass() . ' uploadstash_sort';
 	}

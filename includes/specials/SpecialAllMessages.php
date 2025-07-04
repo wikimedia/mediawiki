@@ -167,6 +167,7 @@ class SpecialAllMessages extends SpecialPage {
 		);
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'wiki';
 	}

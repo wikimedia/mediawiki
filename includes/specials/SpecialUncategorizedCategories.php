@@ -86,6 +86,7 @@ class SpecialUncategorizedCategories extends SpecialUncategorizedPages {
 		return $this->exceptionList;
 	}
 
+	/** @inheritDoc */
 	public function getQueryInfo() {
 		$query = parent::getQueryInfo();
 		$exceptionList = $this->getExceptionList();

@@ -50,10 +50,12 @@ class SpecialMostRevisions extends SpecialFewestRevisions {
 		$this->mName = 'Mostrevisions';
 	}
 
+	/** @inheritDoc */
 	protected function sortDescending() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'highuse';
 	}

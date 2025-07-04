@@ -1585,6 +1585,7 @@ class SpecialVersion extends SpecialPage {
 		return $out;
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'wiki';
 	}

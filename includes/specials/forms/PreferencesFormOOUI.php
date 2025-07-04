@@ -105,6 +105,7 @@ class PreferencesFormOOUI extends OOUIHTMLForm {
 		return [];
 	}
 
+	/** @inheritDoc */
 	public function wrapForm( $html ) {
 		$html = Html::rawElement( 'div', [ 'id' => 'preferences' ], $html );
 
@@ -132,6 +133,7 @@ class PreferencesFormOOUI extends OOUIHTMLForm {
 		return $data;
 	}
 
+	/** @inheritDoc */
 	protected function wrapFieldSetSection( $legend, $section, $attributes, $isRoot ) {
 		$layout = parent::wrapFieldSetSection( $legend, $section, $attributes, $isRoot );
 

@@ -518,10 +518,12 @@ class SpecialNewPages extends IncludableSpecialPage {
 		return false;
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'changes';
 	}
 
+	/** @inheritDoc */
 	protected function getCacheTTL() {
 		return 60 * 5;
 	}

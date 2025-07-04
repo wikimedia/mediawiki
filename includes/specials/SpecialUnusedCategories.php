@@ -50,18 +50,22 @@ class SpecialUnusedCategories extends QueryPage {
 		);
 	}
 
+	/** @inheritDoc */
 	public function isExpensive() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	protected function getPageHeader() {
 		return $this->msg( 'unusedcategoriestext' )->parseAsBlock();
 	}
 
+	/** @inheritDoc */
 	protected function getOrderFields() {
 		return [ 'title' ];
 	}
 
+	/** @inheritDoc */
 	public function getQueryInfo() {
 		if ( $this->migrationStage & SCHEMA_COMPAT_READ_OLD ) {
 			$tables = [ 'page', 'categorylinks', 'page_props' ];
@@ -122,10 +126,12 @@ class SpecialUnusedCategories extends QueryPage {
 		return $this->getLinkRenderer()->makeLink( $title, $title->getText() );
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'maintenance';
 	}
 
+	/** @inheritDoc */
 	public function preprocessResults( $db, $res ) {
 		$this->executeLBFromResultWrapper( $res );
 	}

@@ -41,10 +41,12 @@ class SpecialResetTokens extends FormSpecialPage {
 		parent::__construct( 'ResetTokens' );
 	}
 
+	/** @inheritDoc */
 	public function doesWrites() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function requiresUnblock() {
 		return false;
 	}
@@ -73,6 +75,7 @@ class SpecialResetTokens extends FormSpecialPage {
 		return $this->tokensList;
 	}
 
+	/** @inheritDoc */
 	public function execute( $par ) {
 		// This is a preferences page, so no user JS for y'all.
 		$this->getOutput()->disallowUserJs();
@@ -139,10 +142,12 @@ class SpecialResetTokens extends FormSpecialPage {
 		}
 	}
 
+	/** @inheritDoc */
 	protected function getDisplayFormat() {
 		return 'ooui';
 	}
 
+	/** @inheritDoc */
 	public function onSubmit( array $formData ) {
 		if ( $formData['tokens'] ) {
 			$user = $this->getUser();
@@ -157,10 +162,12 @@ class SpecialResetTokens extends FormSpecialPage {
 		return false;
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'login';
 	}
 
+	/** @inheritDoc */
 	public function isListed() {
 		return (bool)$this->getTokensList();
 	}

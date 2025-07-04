@@ -1806,6 +1806,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		}
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'changes';
 	}

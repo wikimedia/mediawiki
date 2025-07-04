@@ -89,6 +89,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 		return $this->getName();
 	}
 
+	/** @inheritDoc */
 	public function getRequest() {
 		return $this->savedRequest ?: $this->getContext()->getRequest();
 	}

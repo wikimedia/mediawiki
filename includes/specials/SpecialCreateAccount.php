@@ -66,6 +66,7 @@ class SpecialCreateAccount extends LoginSignupSpecialPage {
 		$this->identityUtils = $identityUtils;
 	}
 
+	/** @inheritDoc */
 	public function doesWrites() {
 		return true;
 	}
@@ -89,18 +90,22 @@ class SpecialCreateAccount extends LoginSignupSpecialPage {
 		}
 	}
 
+	/** @inheritDoc */
 	protected function getLoginSecurityLevel() {
 		return false;
 	}
 
+	/** @inheritDoc */
 	protected function getDefaultAction( $subPage ) {
 		return AuthManager::ACTION_CREATE;
 	}
 
+	/** @inheritDoc */
 	public function getDescription() {
 		return $this->msg( 'createaccount' );
 	}
 
+	/** @inheritDoc */
 	protected function isSignup() {
 		return true;
 	}
@@ -172,6 +177,7 @@ class SpecialCreateAccount extends LoginSignupSpecialPage {
 			$welcome_creation_msg, $injected_html, $extraMessages );
 	}
 
+	/** @inheritDoc */
 	protected function getToken() {
 		return $this->getRequest()->getSession()->getToken( '', 'createaccount' );
 	}
@@ -180,14 +186,17 @@ class SpecialCreateAccount extends LoginSignupSpecialPage {
 		$this->getRequest()->getSession()->resetToken( 'createaccount' );
 	}
 
+	/** @inheritDoc */
 	protected function getTokenName() {
 		return 'wpCreateaccountToken';
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'users';
 	}
 
+	/** @inheritDoc */
 	protected function logAuthResult( $success, UserIdentity $performer, $status = null ) {
 		LoggerFactory::getInstance( 'authevents' )->info( 'Account creation attempt', [
 			'event' => 'accountcreation',

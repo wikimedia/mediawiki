@@ -143,6 +143,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	 */
 	abstract protected function logAuthResult( $success, UserIdentity $performer, $status = null );
 
+	/** @inheritDoc */
 	protected function setRequest( array $data, $wasPosted = null ) {
 		parent::setRequest( $data, $wasPosted );
 		$this->mLoadedRequest = false;
@@ -276,6 +277,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		return array_filter( $params, static fn ( $val ) => $val !== null );
 	}
 
+	/** @inheritDoc */
 	protected function beforeExecute( $subPage ) {
 		// finish initializing the class before processing the request - T135924
 		$this->loadRequestParameters();
@@ -1303,6 +1305,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		);
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'login';
 	}

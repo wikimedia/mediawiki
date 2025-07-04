@@ -98,6 +98,7 @@ class SpecialUpload extends SpecialPage {
 		$this->getOutput()->addModuleStyles( 'mediawiki.codex.messagebox.styles' );
 	}
 
+	/** @inheritDoc */
 	public function doesWrites() {
 		return true;
 	}
@@ -1163,6 +1164,7 @@ class SpecialUpload extends SpecialPage {
 			$gallery->toHTML() . "</li>\n";
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'media';
 	}

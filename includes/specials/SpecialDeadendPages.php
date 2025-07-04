@@ -48,6 +48,7 @@ class SpecialDeadendPages extends PageQueryPage {
 		$this->setLanguageConverter( $languageConverterFactory->getLanguageConverter( $this->getContentLanguage() ) );
 	}
 
+	/** @inheritDoc */
 	protected function getPageHeader() {
 		return $this->msg( 'deadendpagestext' )->parseAsBlock();
 	}
@@ -61,6 +62,7 @@ class SpecialDeadendPages extends PageQueryPage {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function isSyndicated() {
 		return false;
 	}
@@ -72,6 +74,7 @@ class SpecialDeadendPages extends PageQueryPage {
 		return false;
 	}
 
+	/** @inheritDoc */
 	public function getQueryInfo() {
 		return [
 			'tables' => [ 'page', 'pagelinks' ],
@@ -93,6 +96,7 @@ class SpecialDeadendPages extends PageQueryPage {
 		];
 	}
 
+	/** @inheritDoc */
 	protected function getOrderFields() {
 		// For some crazy reason ordering by a constant
 		// causes a filesort
@@ -103,6 +107,7 @@ class SpecialDeadendPages extends PageQueryPage {
 		}
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'maintenance';
 	}

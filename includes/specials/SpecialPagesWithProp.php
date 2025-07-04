@@ -66,10 +66,12 @@ class SpecialPagesWithProp extends QueryPage {
 		$this->setDatabaseProvider( $dbProvider );
 	}
 
+	/** @inheritDoc */
 	public function isCacheable() {
 		return false;
 	}
 
+	/** @inheritDoc */
 	public function execute( $par ) {
 		$this->setHeaders();
 		$this->outputHeader();
@@ -174,6 +176,7 @@ class SpecialPagesWithProp extends QueryPage {
 		return $params;
 	}
 
+	/** @inheritDoc */
 	public function getQueryInfo() {
 		$query = [
 			'tables' => [ 'page_props', 'page' ],
@@ -202,6 +205,7 @@ class SpecialPagesWithProp extends QueryPage {
 		return $query;
 	}
 
+	/** @inheritDoc */
 	protected function getOrderFields() {
 		$sort = [ 'page_id' ];
 		if ( $this->sortByValue ) {
@@ -279,6 +283,7 @@ class SpecialPagesWithProp extends QueryPage {
 		return $propnames;
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'pages';
 	}

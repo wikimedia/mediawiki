@@ -108,6 +108,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		$this->watchlistManager = $watchlistManager ?? $services->getWatchlistManager();
 	}
 
+	/** @inheritDoc */
 	public function doesWrites() {
 		return true;
 	}

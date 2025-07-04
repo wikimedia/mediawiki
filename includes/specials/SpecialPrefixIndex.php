@@ -304,6 +304,7 @@ class SpecialPrefixIndex extends SpecialAllPages {
 		$output->addHTML( $topOut . $out );
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'pages';
 	}

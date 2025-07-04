@@ -64,22 +64,27 @@ class SpecialMIMESearch extends QueryPage {
 		$this->languageConverter = $languageConverterFactory->getLanguageConverter( $this->getContentLanguage() );
 	}
 
+	/** @inheritDoc */
 	public function isExpensive() {
 		return false;
 	}
 
+	/** @inheritDoc */
 	public function isSyndicated() {
 		return false;
 	}
 
+	/** @inheritDoc */
 	public function isCacheable() {
 		return false;
 	}
 
+	/** @inheritDoc */
 	protected function linkParameters() {
 		return [ 'mime' => "{$this->major}/{$this->minor}" ];
 	}
 
+	/** @inheritDoc */
 	public function getQueryInfo() {
 		$minorType = [];
 		if ( $this->minor !== '*' ) {
@@ -212,6 +217,7 @@ class SpecialMIMESearch extends QueryPage {
 		return $suggestions;
 	}
 
+	/** @inheritDoc */
 	public function execute( $par ) {
 		$this->addHelpLink( 'Help:Managing_files' );
 		$this->mime = $par ?: $this->getRequest()->getText( 'mime' );
@@ -263,10 +269,12 @@ class SpecialMIMESearch extends QueryPage {
 		return "$download $plink . . $dimensions . . $bytes . . $user . . $time";
 	}
 
+	/** @inheritDoc */
 	public function preprocessResults( $db, $res ) {
 		$this->executeLBFromResultWrapper( $res );
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'media';
 	}

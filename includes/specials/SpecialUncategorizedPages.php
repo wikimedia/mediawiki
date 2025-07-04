@@ -52,23 +52,28 @@ class SpecialUncategorizedPages extends PageQueryPage {
 		$this->setLanguageConverter( $languageConverterFactory->getLanguageConverter( $this->getContentLanguage() ) );
 	}
 
+	/** @inheritDoc */
 	protected function sortDescending() {
 		return false;
 	}
 
+	/** @inheritDoc */
 	public function isExpensive() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function isSyndicated() {
 		return false;
 	}
 
+	/** @inheritDoc */
 	public function execute( $par ) {
 		$this->addHelpLink( 'Help:Categories' );
 		parent::execute( $par );
 	}
 
+	/** @inheritDoc */
 	public function getQueryInfo() {
 		return [
 			'tables' => [ 'page', 'categorylinks' ],
@@ -91,6 +96,7 @@ class SpecialUncategorizedPages extends PageQueryPage {
 		];
 	}
 
+	/** @inheritDoc */
 	protected function getOrderFields() {
 		// For some crazy reason ordering by a constant
 		// causes a filesort
@@ -103,6 +109,7 @@ class SpecialUncategorizedPages extends PageQueryPage {
 		return [ 'page_title' ];
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'maintenance';
 	}

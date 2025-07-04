@@ -58,6 +58,7 @@ class SpecialWantedCategories extends WantedQueryPage {
 		$this->linksMigration = $linksMigration;
 	}
 
+	/** @inheritDoc */
 	public function getQueryInfo() {
 		$queryInfo = $this->linksMigration->getQueryInfo( 'categorylinks' );
 		$titleField = $this->linksMigration->getTitleFields( 'categorylinks' )[1];
@@ -78,6 +79,7 @@ class SpecialWantedCategories extends WantedQueryPage {
 		];
 	}
 
+	/** @inheritDoc */
 	public function preprocessResults( $db, $res ) {
 		parent::preprocessResults( $db, $res );
 
@@ -148,6 +150,7 @@ class SpecialWantedCategories extends WantedQueryPage {
 		return $this->getLanguage()->specialList( $plink, $nlinks );
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'maintenance';
 	}

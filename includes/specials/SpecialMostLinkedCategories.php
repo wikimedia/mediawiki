@@ -57,10 +57,12 @@ class SpecialMostLinkedCategories extends QueryPage {
 		$this->languageConverter = $languageConverterFactory->getLanguageConverter( $this->getContentLanguage() );
 	}
 
+	/** @inheritDoc */
 	public function isSyndicated() {
 		return false;
 	}
 
+	/** @inheritDoc */
 	public function getQueryInfo() {
 		$dbr = $this->getDatabaseProvider()->getReplicaDatabase();
 		return [
@@ -72,6 +74,7 @@ class SpecialMostLinkedCategories extends QueryPage {
 		];
 	}
 
+	/** @inheritDoc */
 	protected function sortDescending() {
 		return true;
 	}
@@ -112,6 +115,7 @@ class SpecialMostLinkedCategories extends QueryPage {
 		return $this->getLanguage()->specialList( $plink, $nlinks );
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'highuse';
 	}

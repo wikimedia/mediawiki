@@ -24,6 +24,7 @@ use MediaWiki\HTMLForm\OOUIHTMLForm;
  * Extend OOUIHTMLForm purely so we can have a more sensible way of getting the section headers
  */
 class EditWatchlistNormalHTMLForm extends OOUIHTMLForm {
+	/** @inheritDoc */
 	public function getLegend( $namespace ) {
 		$namespace = (int)substr( $namespace, 2 );
 
@@ -32,6 +33,7 @@ class EditWatchlistNormalHTMLForm extends OOUIHTMLForm {
 			: $this->getContext()->getLanguage()->getFormattedNsText( $namespace );
 	}
 
+	/** @inheritDoc */
 	public function displaySection(
 		$fields, $sectionName = '', $fieldsetIDPrefix = '', &$hasUserVisibleFields = false
 	) {

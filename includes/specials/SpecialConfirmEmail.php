@@ -58,6 +58,7 @@ class SpecialConfirmEmail extends UnlistedSpecialPage {
 		$this->userFactory = $userFactory;
 	}
 
+	/** @inheritDoc */
 	public function doesWrites() {
 		return true;
 	}

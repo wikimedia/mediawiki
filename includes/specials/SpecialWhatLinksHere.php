@@ -634,6 +634,7 @@ class SpecialWhatLinksHere extends FormSpecialPage {
 		return $navBuilder->getHtml();
 	}
 
+	/** @inheritDoc */
 	protected function getFormFields() {
 		$this->addHelpLink( 'Help:What links here' );
 		$this->getOutput()->addModuleStyles( 'mediawiki.special' );
@@ -736,23 +737,28 @@ class SpecialWhatLinksHere extends FormSpecialPage {
 			->setSubmitTextMsg( 'whatlinkshere-submit' );
 	}
 
+	/** @inheritDoc */
 	protected function getShowAlways() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	protected function getSubpageField() {
 		return 'target';
 	}
 
+	/** @inheritDoc */
 	public function onSubmit( array $data ) {
 		$this->formData = $data;
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function requiresPost() {
 		return false;
 	}
 
+	/** @inheritDoc */
 	protected function getDisplayFormat() {
 		return 'ooui';
 	}
@@ -769,6 +775,7 @@ class SpecialWhatLinksHere extends FormSpecialPage {
 		return $this->prefixSearchString( $search, $limit, $offset, $this->searchEngineFactory );
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'pagetools';
 	}

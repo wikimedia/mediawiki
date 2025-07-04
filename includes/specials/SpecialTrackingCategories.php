@@ -49,6 +49,7 @@ class SpecialTrackingCategories extends SpecialPage {
 		$this->trackingCategories = $trackingCategories;
 	}
 
+	/** @inheritDoc */
 	public function execute( $par ) {
 		$this->setHeaders();
 		$this->outputHeader();
@@ -137,6 +138,7 @@ class SpecialTrackingCategories extends SpecialPage {
 		$this->getOutput()->addHTML( Html::closeElement( 'table' ) );
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'pages';
 	}

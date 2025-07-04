@@ -97,6 +97,7 @@ class SpecialFileDuplicateSearch extends SpecialPage {
 		$this->getOutput()->addHTML( implode( "\n", $html ) );
 	}
 
+	/** @inheritDoc */
 	public function execute( $par ) {
 		$this->setHeaders();
 		$this->outputHeader();
@@ -255,6 +256,7 @@ class SpecialFileDuplicateSearch extends SpecialPage {
 		}, $result );
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'media';
 	}

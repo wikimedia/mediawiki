@@ -91,6 +91,7 @@ class SpecialFilepath extends RedirectSpecialPage {
 		}, $result );
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'media';
 	}

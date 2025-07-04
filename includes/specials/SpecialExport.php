@@ -67,6 +67,7 @@ class SpecialExport extends SpecialPage {
 		$this->linksMigration = $linksMigration;
 	}
 
+	/** @inheritDoc */
 	public function execute( $par ) {
 		$this->setHeaders();
 		$this->outputHeader();
@@ -615,6 +616,7 @@ class SpecialExport extends SpecialPage {
 		return $pageSet;
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'pagetools';
 	}

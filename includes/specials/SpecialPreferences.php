@@ -54,10 +54,12 @@ class SpecialPreferences extends SpecialPage {
 		$this->userOptionsManager = $userOptionsManager ?? $services->getUserOptionsManager();
 	}
 
+	/** @inheritDoc */
 	public function doesWrites() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function execute( $par ) {
 		$this->setHeaders();
 		$this->outputHeader();
@@ -193,6 +195,7 @@ class SpecialPreferences extends SpecialPage {
 		return true;
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'login';
 	}

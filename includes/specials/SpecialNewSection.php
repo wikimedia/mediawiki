@@ -90,6 +90,7 @@ class SpecialNewSection extends RedirectSpecialPage {
 		$this->getOutput()->redirect( $url );
 	}
 
+	/** @inheritDoc */
 	public function isListed() {
 		return true;
 	}
@@ -106,6 +107,7 @@ class SpecialNewSection extends RedirectSpecialPage {
 		return $this->prefixSearchString( $search, $limit, $offset, $this->searchEngineFactory );
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'redirects';
 	}

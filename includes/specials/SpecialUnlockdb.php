@@ -40,10 +40,12 @@ class SpecialUnlockdb extends FormSpecialPage {
 		parent::__construct( 'Unlockdb', 'siteadmin' );
 	}
 
+	/** @inheritDoc */
 	public function doesWrites() {
 		return false;
 	}
 
+	/** @inheritDoc */
 	public function requiresWrite() {
 		return false;
 	}
@@ -56,6 +58,7 @@ class SpecialUnlockdb extends FormSpecialPage {
 		}
 	}
 
+	/** @inheritDoc */
 	protected function getFormFields() {
 		return [
 			'Confirm' => [
@@ -71,6 +74,7 @@ class SpecialUnlockdb extends FormSpecialPage {
 			->setSubmitTextMsg( 'unlockbtn' );
 	}
 
+	/** @inheritDoc */
 	public function onSubmit( array $data ) {
 		if ( !$data['Confirm'] ) {
 			return Status::newFatal( 'locknoconfirm' );
@@ -94,10 +98,12 @@ class SpecialUnlockdb extends FormSpecialPage {
 		$out->addWikiMsg( 'unlockdbsuccesstext' );
 	}
 
+	/** @inheritDoc */
 	protected function getDisplayFormat() {
 		return 'ooui';
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'wiki';
 	}

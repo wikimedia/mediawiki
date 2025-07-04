@@ -123,19 +123,23 @@ class SpecialDiff extends RedirectSpecialPage {
 		$this->getOutput()->redirect( $url );
 	}
 
+	/** @inheritDoc */
 	public function getDescription() {
 		// 'diff' message is in lowercase, using own message
 		return $this->msg( 'diff-form' );
 	}
 
+	/** @inheritDoc */
 	public function getName() {
 		return 'diff-form';
 	}
 
+	/** @inheritDoc */
 	public function isListed() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'redirects';
 	}

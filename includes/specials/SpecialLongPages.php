@@ -44,10 +44,12 @@ class SpecialLongPages extends SpecialShortPages {
 		$this->mName = 'Longpages';
 	}
 
+	/** @inheritDoc */
 	protected function sortDescending() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'maintenance';
 	}

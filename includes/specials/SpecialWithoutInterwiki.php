@@ -55,12 +55,14 @@ class SpecialWithoutInterwiki extends PageQueryPage {
 		$this->setLanguageConverter( $languageConverterFactory->getLanguageConverter( $this->getContentLanguage() ) );
 	}
 
+	/** @inheritDoc */
 	public function execute( $par ) {
 		$prefix = $this->getRequest()->getVal( 'prefix', $par );
 		$this->prefix = $prefix !== null ? Title::capitalize( $prefix, NS_MAIN ) : '';
 		parent::execute( $par );
 	}
 
+	/** @inheritDoc */
 	protected function getPageHeader() {
 		# Do not show useless input form if special page is cached
 		if ( $this->isCached() ) {
@@ -87,22 +89,27 @@ class SpecialWithoutInterwiki extends PageQueryPage {
 		return '';
 	}
 
+	/** @inheritDoc */
 	protected function sortDescending() {
 		return false;
 	}
 
+	/** @inheritDoc */
 	protected function getOrderFields() {
 		return [ 'page_namespace', 'page_title' ];
 	}
 
+	/** @inheritDoc */
 	public function isExpensive() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function isSyndicated() {
 		return false;
 	}
 
+	/** @inheritDoc */
 	public function getQueryInfo() {
 		$query = [
 			'tables' => [ 'page', 'langlinks' ],
@@ -129,6 +136,7 @@ class SpecialWithoutInterwiki extends PageQueryPage {
 		return $query;
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'maintenance';
 	}

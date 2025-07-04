@@ -72,15 +72,18 @@ class SpecialPageLanguage extends FormSpecialPage {
 		$this->searchEngineFactory = $searchEngineFactory;
 	}
 
+	/** @inheritDoc */
 	public function doesWrites() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	protected function preHtml() {
 		$this->getOutput()->addModules( 'mediawiki.misc-authed-ooui' );
 		return parent::preHtml();
 	}
 
+	/** @inheritDoc */
 	protected function getFormFields() {
 		// Get default from the subpage of Special page
 		$defaultName = $this->par;
@@ -143,6 +146,7 @@ class SpecialPageLanguage extends FormSpecialPage {
 		return $page;
 	}
 
+	/** @inheritDoc */
 	protected function postHtml() {
 		if ( $this->par ) {
 			return $this->showLogFragment( $this->par );
@@ -150,6 +154,7 @@ class SpecialPageLanguage extends FormSpecialPage {
 		return '';
 	}
 
+	/** @inheritDoc */
 	protected function getDisplayFormat() {
 		return 'ooui';
 	}
@@ -328,6 +333,7 @@ class SpecialPageLanguage extends FormSpecialPage {
 		return $this->prefixSearchString( $search, $limit, $offset, $this->searchEngineFactory );
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'pagetools';
 	}

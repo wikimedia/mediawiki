@@ -25,10 +25,12 @@ class SpecialRemoveCredentials extends SpecialChangeCredentials {
 		$this->mName = 'RemoveCredentials';
 	}
 
+	/** @inheritDoc */
 	protected function getDefaultAction( $subPage ) {
 		return AuthManager::ACTION_REMOVE;
 	}
 
+	/** @inheritDoc */
 	protected function getRequestBlacklist() {
 		return $this->getConfig()->get( MainConfigNames::RemoveCredentialsBlacklist );
 	}

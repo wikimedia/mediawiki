@@ -82,6 +82,7 @@ class SpecialMostLinkedTemplates extends QueryPage {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function getQueryInfo() {
 		$queryInfo = $this->linksMigration->getQueryInfo( 'templatelinks' );
 		[ $ns, $title ] = $this->linksMigration->getTitleFields( 'templatelinks' );
@@ -148,6 +149,7 @@ class SpecialMostLinkedTemplates extends QueryPage {
 		return $this->getLinkRenderer()->makeLink( $wlh, $label );
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'highuse';
 	}

@@ -115,6 +115,7 @@ class SpecialListUsers extends IncludableSpecialPage {
 		return $this->userGroupManager->listAllGroups();
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'users';
 	}

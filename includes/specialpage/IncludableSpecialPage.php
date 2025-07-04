@@ -41,6 +41,7 @@ class IncludableSpecialPage extends SpecialPage {
 		parent::__construct( $name, $restriction, $listed, $function, $file, true );
 	}
 
+	/** @inheritDoc */
 	public function isIncludable() {
 		return true;
 	}

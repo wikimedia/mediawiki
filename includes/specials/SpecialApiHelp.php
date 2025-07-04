@@ -47,6 +47,7 @@ class SpecialApiHelp extends UnlistedSpecialPage {
 		$this->urlUtils = $urlUtils;
 	}
 
+	/** @inheritDoc */
 	public function execute( $par ) {
 		$this->getOutput()->addModuleStyles( 'mediawiki.codex.messagebox.styles' );
 		if ( !$par ) {
@@ -106,6 +107,7 @@ class SpecialApiHelp extends UnlistedSpecialPage {
 		ApiHelp::getHelp( $this->getContext(), $module, $options );
 	}
 
+	/** @inheritDoc */
 	public function isIncludable() {
 		return true;
 	}

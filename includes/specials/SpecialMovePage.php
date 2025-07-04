@@ -153,10 +153,12 @@ class SpecialMovePage extends UnlistedSpecialPage {
 		$this->deletePageFactory = $deletePageFactory;
 	}
 
+	/** @inheritDoc */
 	public function doesWrites() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function execute( $par ) {
 		$this->useTransactionalTimeLimit();
 		$this->checkReadOnly();
@@ -1118,6 +1120,7 @@ class SpecialMovePage extends UnlistedSpecialPage {
 		return $this->prefixSearchString( $search, $limit, $offset, $this->searchEngineFactory );
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'pagetools';
 	}

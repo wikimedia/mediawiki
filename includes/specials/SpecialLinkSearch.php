@@ -72,10 +72,12 @@ class SpecialLinkSearch extends QueryPage {
 		$this->urlUtils = $urlUtils;
 	}
 
+	/** @inheritDoc */
 	public function isCacheable() {
 		return false;
 	}
 
+	/** @inheritDoc */
 	public function execute( $par ) {
 		$this->setHeaders();
 		$this->outputHeader();
@@ -165,6 +167,7 @@ class SpecialLinkSearch extends QueryPage {
 		return false;
 	}
 
+	/** @inheritDoc */
 	protected function linkParameters() {
 		$params = [];
 		$params['target'] = $this->mProt . $this->mQuery;
@@ -175,6 +178,7 @@ class SpecialLinkSearch extends QueryPage {
 		return $params;
 	}
 
+	/** @inheritDoc */
 	public function getQueryInfo() {
 		$dbr = $this->getDatabaseProvider()->getReplicaDatabase( ExternalLinksTable::VIRTUAL_DOMAIN );
 
@@ -263,6 +267,7 @@ class SpecialLinkSearch extends QueryPage {
 		return [];
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'pages';
 	}
@@ -278,6 +283,7 @@ class SpecialLinkSearch extends QueryPage {
 		return max( parent::getMaxResults(), 60000 );
 	}
 
+	/** @inheritDoc */
 	protected function getRecacheDB() {
 		return $this->getDatabaseProvider()->getReplicaDatabase(
 			ExternalLinksTable::VIRTUAL_DOMAIN,

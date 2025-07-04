@@ -58,22 +58,27 @@ class SpecialUserLogin extends LoginSignupSpecialPage {
 		$this->identityUtils = $identityUtils;
 	}
 
+	/** @inheritDoc */
 	public function doesWrites() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function isListed() {
 		return $this->getAuthManager()->canAuthenticateNow();
 	}
 
+	/** @inheritDoc */
 	protected function getLoginSecurityLevel() {
 		return false;
 	}
 
+	/** @inheritDoc */
 	protected function getDefaultAction( $subPage ) {
 		return AuthManager::ACTION_LOGIN;
 	}
 
+	/** @inheritDoc */
 	public function getDescription() {
 		return $this->msg( 'login' );
 	}
@@ -86,10 +91,12 @@ class SpecialUserLogin extends LoginSignupSpecialPage {
 		}
 	}
 
+	/** @inheritDoc */
 	protected function isSignup() {
 		return false;
 	}
 
+	/** @inheritDoc */
 	protected function beforeExecute( $subPage ) {
 		if ( $subPage === 'signup' || $this->getRequest()->getText( 'type' ) === 'signup' ) {
 			// B/C for old account creation URLs
@@ -154,6 +161,7 @@ class SpecialUserLogin extends LoginSignupSpecialPage {
 		}
 	}
 
+	/** @inheritDoc */
 	protected function getToken() {
 		return $this->getRequest()->getSession()->getToken( '', 'login' );
 	}
@@ -162,14 +170,17 @@ class SpecialUserLogin extends LoginSignupSpecialPage {
 		$this->getRequest()->getSession()->resetToken( 'login' );
 	}
 
+	/** @inheritDoc */
 	protected function getTokenName() {
 		return 'wpLoginToken';
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'login';
 	}
 
+	/** @inheritDoc */
 	protected function logAuthResult( $success, UserIdentity $performer, $status = null ) {
 		LoggerFactory::getInstance( 'authevents' )->info( 'Login attempt', [
 			'event' => 'login',

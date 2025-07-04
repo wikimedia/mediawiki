@@ -84,6 +84,7 @@ class SpecialRandomInCategory extends FormSpecialPage {
 		$this->minTimestamp = null;
 	}
 
+	/** @inheritDoc */
 	protected function getFormFields() {
 		$this->addHelpLink( 'Help:RandomInCategory' );
 
@@ -98,10 +99,12 @@ class SpecialRandomInCategory extends FormSpecialPage {
 		];
 	}
 
+	/** @inheritDoc */
 	public function requiresPost() {
 		return false;
 	}
 
+	/** @inheritDoc */
 	protected function getDisplayFormat() {
 		return 'ooui';
 	}
@@ -110,10 +113,12 @@ class SpecialRandomInCategory extends FormSpecialPage {
 		$form->setSubmitTextMsg( 'randomincategory-submit' );
 	}
 
+	/** @inheritDoc */
 	protected function getSubpageField() {
 		return 'category';
 	}
 
+	/** @inheritDoc */
 	public function onSubmit( array $data ) {
 		$cat = false;
 
@@ -304,6 +309,7 @@ class SpecialRandomInCategory extends FormSpecialPage {
 		return $this->getQueryBuilder( $rand, $offset, $up )->caller( $fname )->fetchRow();
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'redirects';
 	}

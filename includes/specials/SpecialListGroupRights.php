@@ -313,6 +313,7 @@ class SpecialListGroupRights extends SpecialPage {
 		}
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'users';
 	}

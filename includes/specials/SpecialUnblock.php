@@ -79,10 +79,12 @@ class SpecialUnblock extends SpecialPage {
 			$this->getRequest()->getBool( 'usecodex' );
 	}
 
+	/** @inheritDoc */
 	public function doesWrites() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function execute( $par ) {
 		$this->checkPermissions();
 		$this->checkReadOnly();
@@ -329,6 +331,7 @@ class SpecialUnblock extends SpecialPage {
 			->search( UserNamePrefixSearch::AUDIENCE_PUBLIC, $search, $limit, $offset );
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'users';
 	}

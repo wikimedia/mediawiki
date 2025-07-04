@@ -66,10 +66,12 @@ class SpecialEmailUser extends SpecialPage {
 		$this->userFactory = $userFactory;
 	}
 
+	/** @inheritDoc */
 	public function doesWrites() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function getDescription() {
 		return $this->msg( 'emailuser-title-notarget' );
 	}
@@ -147,6 +149,7 @@ class SpecialEmailUser extends SpecialPage {
 		}
 	}
 
+	/** @inheritDoc */
 	public function execute( $par ) {
 		$this->setHeaders();
 		$this->outputHeader();
@@ -354,6 +357,7 @@ class SpecialEmailUser extends SpecialPage {
 		return $this->getConfig()->get( MainConfigNames::EnableUserEmail );
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'users';
 	}

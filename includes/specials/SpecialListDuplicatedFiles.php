@@ -56,10 +56,12 @@ class SpecialListDuplicatedFiles extends QueryPage {
 		);
 	}
 
+	/** @inheritDoc */
 	public function isExpensive() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function isSyndicated() {
 		return false;
 	}
@@ -134,11 +136,13 @@ class SpecialListDuplicatedFiles extends QueryPage {
 		return $msg->parse();
 	}
 
+	/** @inheritDoc */
 	public function execute( $par ) {
 		$this->addHelpLink( 'Help:Managing_files' );
 		parent::execute( $par );
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'media';
 	}

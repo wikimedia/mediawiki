@@ -53,22 +53,27 @@ class SpecialLonelyPages extends PageQueryPage {
 		$this->linksMigration = $linksMigration;
 	}
 
+	/** @inheritDoc */
 	protected function getPageHeader() {
 		return $this->msg( 'lonelypagestext' )->parseAsBlock();
 	}
 
+	/** @inheritDoc */
 	protected function sortDescending() {
 		return false;
 	}
 
+	/** @inheritDoc */
 	public function isExpensive() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function isSyndicated() {
 		return false;
 	}
 
+	/** @inheritDoc */
 	public function getQueryInfo() {
 		$queryInfo = $this->linksMigration->getQueryInfo( 'pagelinks', 'pagelinks', 'LEFT JOIN' );
 		$tables = [ 'page', 'linktarget', 'templatelinks', 'pagelinks' ];
@@ -111,6 +116,7 @@ class SpecialLonelyPages extends PageQueryPage {
 		];
 	}
 
+	/** @inheritDoc */
 	protected function getOrderFields() {
 		// For some crazy reason ordering by a constant
 		// causes a filesort in MySQL 5
@@ -121,6 +127,7 @@ class SpecialLonelyPages extends PageQueryPage {
 		}
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'maintenance';
 	}

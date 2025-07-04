@@ -103,6 +103,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$this->changeTagsStore = $changeTagsStore;
 	}
 
+	/** @inheritDoc */
 	public function doesWrites() {
 		return true;
 	}

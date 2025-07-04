@@ -88,6 +88,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 		$this->dbProvider = $dbProvider;
 	}
 
+	/** @inheritDoc */
 	public function doesWrites() {
 		return true;
 	}

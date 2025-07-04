@@ -56,6 +56,7 @@ class SpecialWantedFiles extends WantedQueryPage {
 		);
 	}
 
+	/** @inheritDoc */
 	protected function getPageHeader() {
 		# Specifically setting to use "Wanted Files" (NS_MAIN) as title, so as to get what
 		# category would be used on main namespace pages, for those tricky wikipedia
@@ -128,6 +129,7 @@ class SpecialWantedFiles extends WantedQueryPage {
 		return (bool)$this->repoGroup->findFile( $title );
 	}
 
+	/** @inheritDoc */
 	public function getQueryInfo() {
 		if ( $this->migrationStage & SCHEMA_COMPAT_READ_OLD ) {
 			$fileTable = 'image';
@@ -179,6 +181,7 @@ class SpecialWantedFiles extends WantedQueryPage {
 		];
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'maintenance';
 	}

@@ -24,10 +24,12 @@ class SpecialUnlinkAccounts extends AuthManagerSpecialPage {
 		$this->setAuthManager( $authManager );
 	}
 
+	/** @inheritDoc */
 	protected function getLoginSecurityLevel() {
 		return 'UnlinkAccount';
 	}
 
+	/** @inheritDoc */
 	protected function getDefaultAction( $subPage ) {
 		return AuthManager::ACTION_UNLINK;
 	}
@@ -40,14 +42,17 @@ class SpecialUnlinkAccounts extends AuthManagerSpecialPage {
 		return 'login';
 	}
 
+	/** @inheritDoc */
 	public function isListed() {
 		return $this->getAuthManager()->canLinkAccounts();
 	}
 
+	/** @inheritDoc */
 	protected function getRequestBlacklist() {
 		return $this->getConfig()->get( MainConfigNames::RemoveCredentialsBlacklist );
 	}
 
+	/** @inheritDoc */
 	public function execute( $subPage ) {
 		$this->setHeaders();
 		$this->loadAuth( $subPage );
@@ -98,6 +103,7 @@ class SpecialUnlinkAccounts extends AuthManagerSpecialPage {
 		$this->displayForm( $status );
 	}
 
+	/** @inheritDoc */
 	public function handleFormSubmit( $data ) {
 		// unlink requests do not accept user input so repeat parent code but skip call to
 		// AuthenticationRequest::loadRequestsFromSubmission

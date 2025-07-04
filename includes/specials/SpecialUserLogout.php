@@ -47,26 +47,32 @@ class SpecialUserLogout extends FormSpecialPage {
 		$this->tempUserConfig = $tempUserConfig;
 	}
 
+	/** @inheritDoc */
 	public function doesWrites() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function isListed() {
 		return $this->getAuthManager()->canAuthenticateNow();
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'login';
 	}
 
+	/** @inheritDoc */
 	protected function getFormFields() {
 		return [];
 	}
 
+	/** @inheritDoc */
 	protected function getDisplayFormat() {
 		return 'ooui';
 	}
 
+	/** @inheritDoc */
 	public function execute( $par ) {
 		$user = $this->getUser();
 		if ( $user->isAnon() ) {
@@ -152,6 +158,7 @@ class SpecialUserLogout extends FormSpecialPage {
 		return false;
 	}
 
+	/** @inheritDoc */
 	public function getDescription() {
 		// Set the page title as "templogout" if the user is (or just was) logged in to a temporary account
 		if (

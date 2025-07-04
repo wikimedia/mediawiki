@@ -272,6 +272,7 @@ class SpecialRedirect extends FormSpecialPage {
 		return false;
 	}
 
+	/** @inheritDoc */
 	protected function getFormFields() {
 		return [
 			'type' => [
@@ -295,6 +296,7 @@ class SpecialRedirect extends FormSpecialPage {
 		];
 	}
 
+	/** @inheritDoc */
 	public function onSubmit( array $data ) {
 		if ( !empty( $data['type'] ) && !empty( $data['value'] ) ) {
 			$this->setParameter( $data['type'] . '/' . $data['value'] );
@@ -313,6 +315,7 @@ class SpecialRedirect extends FormSpecialPage {
 		$form->setSubmitTextMsg( 'redirect-submit' );
 	}
 
+	/** @inheritDoc */
 	protected function getDisplayFormat() {
 		return 'ooui';
 	}
@@ -339,6 +342,7 @@ class SpecialRedirect extends FormSpecialPage {
 		return false;
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'redirects';
 	}

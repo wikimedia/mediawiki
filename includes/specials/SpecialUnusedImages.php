@@ -41,18 +41,22 @@ class SpecialUnusedImages extends ImageQueryPage {
 		);
 	}
 
+	/** @inheritDoc */
 	public function isExpensive() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	protected function sortDescending() {
 		return false;
 	}
 
+	/** @inheritDoc */
 	public function isSyndicated() {
 		return false;
 	}
 
+	/** @inheritDoc */
 	public function getQueryInfo() {
 		if ( $this->migrationStage & SCHEMA_COMPAT_READ_OLD ) {
 			$tables = [ 'image' ];
@@ -98,10 +102,12 @@ class SpecialUnusedImages extends ImageQueryPage {
 		return $retval;
 	}
 
+	/** @inheritDoc */
 	public function usesTimestamps() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	protected function getPageHeader() {
 		if ( $this->getConfig()->get( MainConfigNames::CountCategorizedImagesAsUsed ) ) {
 			return $this->msg(
@@ -111,6 +117,7 @@ class SpecialUnusedImages extends ImageQueryPage {
 		return $this->msg( 'unusedimagestext' )->parseAsBlock();
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'maintenance';
 	}

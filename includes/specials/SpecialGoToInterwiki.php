@@ -51,6 +51,7 @@ class SpecialGoToInterwiki extends UnlistedSpecialPage {
 		parent::__construct( 'GoToInterwiki' );
 	}
 
+	/** @inheritDoc */
 	public function execute( $par ) {
 		$par ??= '';
 

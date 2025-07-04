@@ -59,14 +59,17 @@ class SpecialFewestRevisions extends QueryPage {
 		$this->languageConverter = $languageConverterFactory->getLanguageConverter( $this->getContentLanguage() );
 	}
 
+	/** @inheritDoc */
 	public function isExpensive() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function isSyndicated() {
 		return false;
 	}
 
+	/** @inheritDoc */
 	public function getQueryInfo() {
 		return [
 			'tables' => [ 'revision', 'page' ],
@@ -86,6 +89,7 @@ class SpecialFewestRevisions extends QueryPage {
 		];
 	}
 
+	/** @inheritDoc */
 	protected function sortDescending() {
 		return false;
 	}
@@ -136,6 +140,7 @@ class SpecialFewestRevisions extends QueryPage {
 		$this->executeLBFromResultWrapper( $res );
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'maintenance';
 	}

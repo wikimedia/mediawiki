@@ -46,10 +46,12 @@ class SpecialWantedPages extends WantedQueryPage {
 		$this->linksMigration = $linksMigration;
 	}
 
+	/** @inheritDoc */
 	public function isIncludable() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function execute( $par ) {
 		$inc = $this->including();
 
@@ -61,6 +63,7 @@ class SpecialWantedPages extends WantedQueryPage {
 		parent::execute( $par );
 	}
 
+	/** @inheritDoc */
 	public function getQueryInfo() {
 		$dbr = $this->getDatabaseProvider()->getReplicaDatabase();
 		$count = $this->getConfig()->get( MainConfigNames::WantedPagesThreshold ) - 1;
@@ -104,6 +107,7 @@ class SpecialWantedPages extends WantedQueryPage {
 		return $query;
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'maintenance';
 	}

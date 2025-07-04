@@ -42,6 +42,7 @@ class SpecialAuthenticationPopupSuccess extends UnlistedSpecialPage {
 		$this->skinFactory = $skinFactory;
 	}
 
+	/** @inheritDoc */
 	public function execute( $par ) {
 		if ( $this->getRequest()->getRawVal( 'display' ) === 'popup' ) {
 			// Replace the default skin with a "micro-skin" that omits most of the interface. (T362706)

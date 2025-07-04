@@ -82,6 +82,7 @@ class SpecialMediaStatistics extends QueryPage {
 		);
 	}
 
+	/** @inheritDoc */
 	public function isExpensive() {
 		return true;
 	}

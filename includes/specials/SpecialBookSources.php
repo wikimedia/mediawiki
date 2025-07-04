@@ -224,6 +224,7 @@ class SpecialBookSources extends SpecialPage {
 		);
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'wiki';
 	}

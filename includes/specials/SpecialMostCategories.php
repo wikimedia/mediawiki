@@ -55,14 +55,17 @@ class SpecialMostCategories extends QueryPage {
 		$this->setLinkBatchFactory( $linkBatchFactory );
 	}
 
+	/** @inheritDoc */
 	public function isExpensive() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function isSyndicated() {
 		return false;
 	}
 
+	/** @inheritDoc */
 	public function getQueryInfo() {
 		return [
 			'tables' => [ 'categorylinks', 'page' ],
@@ -126,6 +129,7 @@ class SpecialMostCategories extends QueryPage {
 		return $this->getLanguage()->specialList( $link, $count );
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'highuse';
 	}

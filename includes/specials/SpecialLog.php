@@ -89,6 +89,7 @@ class SpecialLog extends SpecialPage {
 		}
 	}
 
+	/** @inheritDoc */
 	public function execute( $par ) {
 		$this->setHeaders();
 		$this->outputHeader();
@@ -466,6 +467,7 @@ class SpecialLog extends SpecialPage {
 		return $s;
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'changes';
 	}

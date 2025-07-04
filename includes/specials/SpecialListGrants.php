@@ -103,6 +103,7 @@ class SpecialListGrants extends SpecialPage {
 		$out->addHTML( Html::closeElement( 'table' ) );
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'users';
 	}

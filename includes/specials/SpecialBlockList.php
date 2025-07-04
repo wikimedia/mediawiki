@@ -370,6 +370,7 @@ class SpecialBlockList extends SpecialPage {
 		}
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'users';
 	}

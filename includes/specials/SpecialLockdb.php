@@ -41,10 +41,12 @@ class SpecialLockdb extends FormSpecialPage {
 		parent::__construct( 'Lockdb', 'siteadmin' );
 	}
 
+	/** @inheritDoc */
 	public function doesWrites() {
 		return false;
 	}
 
+	/** @inheritDoc */
 	public function requiresWrite() {
 		return false;
 	}
@@ -60,6 +62,7 @@ class SpecialLockdb extends FormSpecialPage {
 		}
 	}
 
+	/** @inheritDoc */
 	protected function getFormFields() {
 		return [
 			'Reason' => [
@@ -80,6 +83,7 @@ class SpecialLockdb extends FormSpecialPage {
 			->setSubmitTextMsg( 'lockbtn' );
 	}
 
+	/** @inheritDoc */
 	public function onSubmit( array $data ) {
 		if ( !$data['Confirm'] ) {
 			return Status::newFatal( 'locknoconfirm' );
@@ -114,10 +118,12 @@ class SpecialLockdb extends FormSpecialPage {
 		$out->addWikiMsg( 'lockdbsuccesstext' );
 	}
 
+	/** @inheritDoc */
 	protected function getDisplayFormat() {
 		return 'ooui';
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'wiki';
 	}

@@ -133,10 +133,12 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		$this->repoGroup = $repoGroup;
 	}
 
+	/** @inheritDoc */
 	public function doesWrites() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function execute( $par ) {
 		$this->useTransactionalTimeLimit();
 
@@ -739,6 +741,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		);
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'pagetools';
 	}

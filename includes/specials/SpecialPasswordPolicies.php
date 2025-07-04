@@ -186,6 +186,7 @@ class SpecialPasswordPolicies extends SpecialPage {
 		}
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'users';
 	}

@@ -280,6 +280,7 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 		$this->tagsCache = new MapCacheLRU( 50 );
 	}
 
+	/** @inheritDoc */
 	public function getDefaultQuery() {
 		$query = parent::getDefaultQuery();
 		$query['target'] = $this->target;
@@ -388,6 +389,7 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 	 */
 	abstract protected function getRevisionQuery();
 
+	/** @inheritDoc */
 	public function getQueryInfo() {
 		$queryInfo = $this->getRevisionQuery();
 

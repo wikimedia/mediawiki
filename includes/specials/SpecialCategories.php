@@ -45,6 +45,7 @@ class SpecialCategories extends SpecialPage {
 		$this->dbProvider = $dbProvider;
 	}
 
+	/** @inheritDoc */
 	public function execute( $par ) {
 		$this->setHeaders();
 		$this->outputHeader();
@@ -73,6 +74,7 @@ class SpecialCategories extends SpecialPage {
 		);
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'pages';
 	}

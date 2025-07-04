@@ -217,6 +217,7 @@ class SpecialActiveUsers extends SpecialPage {
 		return $intro;
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'users';
 	}

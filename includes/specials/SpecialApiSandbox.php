@@ -34,6 +34,7 @@ class SpecialApiSandbox extends SpecialPage {
 		parent::__construct( 'ApiSandbox' );
 	}
 
+	/** @inheritDoc */
 	public function execute( $par ) {
 		$this->setHeaders();
 		$out = $this->getOutput();
@@ -57,6 +58,7 @@ class SpecialApiSandbox extends SpecialPage {
 		);
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'wiki';
 	}

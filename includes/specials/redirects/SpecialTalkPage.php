@@ -42,6 +42,7 @@ class SpecialTalkPage extends FormSpecialPage {
 		$this->titleParser = $titleParser;
 	}
 
+	/** @inheritDoc */
 	protected function getFormFields() {
 		return [
 			'target' => [
@@ -60,6 +61,7 @@ class SpecialTalkPage extends FormSpecialPage {
 		$form->setSubmitTextMsg( 'special-talkpage-submit' );
 	}
 
+	/** @inheritDoc */
 	public function onSubmit( array $formData ) {
 		$target = $formData['target'];
 		try {
@@ -82,26 +84,32 @@ class SpecialTalkPage extends FormSpecialPage {
 		return true;
 	}
 
+	/** @inheritDoc */
 	protected function getDisplayFormat() {
 		return 'ooui';
 	}
 
+	/** @inheritDoc */
 	public function requiresWrite() {
 		return false;
 	}
 
+	/** @inheritDoc */
 	public function requiresUnblock() {
 		return false;
 	}
 
+	/** @inheritDoc */
 	public function isListed() {
 		return false;
 	}
 
+	/** @inheritDoc */
 	protected function getMessagePrefix() {
 		return 'special-talkpage';
 	}
 
+	/** @inheritDoc */
 	public function getDescription() {
 		// "talkpage" is already taken by CologneBlue
 		return $this->msg( 'special-talkpage' );

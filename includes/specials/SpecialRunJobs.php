@@ -50,10 +50,12 @@ class SpecialRunJobs extends UnlistedSpecialPage {
 		$this->readOnlyMode = $readOnlyMode;
 	}
 
+	/** @inheritDoc */
 	public function doesWrites() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function execute( $par ) {
 		$this->getOutput()->disable();
 

@@ -86,6 +86,7 @@ class ProtectedPagesPager extends TablePager {
 		$this->noredirect = $noredirect;
 	}
 
+	/** @inheritDoc */
 	public function preprocessResults( $result ) {
 		# Do a link batch query
 		$lb = $this->linkBatchFactory->newLinkBatch();
@@ -114,6 +115,7 @@ class ProtectedPagesPager extends TablePager {
 		);
 	}
 
+	/** @inheritDoc */
 	protected function getFieldNames() {
 		static $headers = null;
 
@@ -272,6 +274,7 @@ class ProtectedPagesPager extends TablePager {
 		return $formatted;
 	}
 
+	/** @inheritDoc */
 	public function getQueryInfo() {
 		$dbr = $this->getDatabase();
 		$conds = [
@@ -346,18 +349,22 @@ class ProtectedPagesPager extends TablePager {
 		];
 	}
 
+	/** @inheritDoc */
 	protected function getTableClass() {
 		return parent::getTableClass() . ' mw-protectedpages';
 	}
 
+	/** @inheritDoc */
 	public function getIndexField() {
 		return 'pr_id';
 	}
 
+	/** @inheritDoc */
 	public function getDefaultSort() {
 		return 'pr_id';
 	}
 
+	/** @inheritDoc */
 	protected function isFieldSortable( $field ) {
 		// no index for sorting exists
 		return false;

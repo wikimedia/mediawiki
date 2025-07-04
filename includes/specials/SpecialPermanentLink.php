@@ -79,10 +79,12 @@ class SpecialPermanentLink extends RedirectSpecialPage {
 		$this->getOutput()->redirect( $url );
 	}
 
+	/** @inheritDoc */
 	public function isListed() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'redirects';
 	}

@@ -31,14 +31,17 @@ class SpecialLinkAccounts extends AuthManagerSpecialPage {
 		$this->setAuthManager( $authManager );
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'login';
 	}
 
+	/** @inheritDoc */
 	public function isListed() {
 		return $this->getAuthManager()->canLinkAccounts();
 	}
 
+	/** @inheritDoc */
 	protected function getRequestBlacklist() {
 		return $this->getConfig()->get( MainConfigNames::ChangeCredentialsBlacklist );
 	}
@@ -98,6 +101,7 @@ class SpecialLinkAccounts extends AuthManagerSpecialPage {
 		}
 	}
 
+	/** @inheritDoc */
 	protected function getDefaultAction( $subPage ) {
 		return AuthManager::ACTION_LINK;
 	}

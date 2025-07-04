@@ -19,6 +19,7 @@ class SpecialEditRecovery extends SpecialPage {
 		$this->userOptionsLookup = $userOptionsLookup;
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'changes';
 	}

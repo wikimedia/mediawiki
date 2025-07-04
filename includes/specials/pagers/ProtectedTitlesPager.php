@@ -55,6 +55,7 @@ class ProtectedTitlesPager extends AlphabeticPager {
 		$this->linkBatchFactory = $linkBatchFactory;
 	}
 
+	/** @inheritDoc */
 	protected function doBatchLookups() {
 		$this->mResult->seek( 0 );
 
@@ -65,6 +66,7 @@ class ProtectedTitlesPager extends AlphabeticPager {
 		$lb->execute();
 	}
 
+	/** @inheritDoc */
 	public function formatRow( $row ) {
 		$title = Title::makeTitleSafe( $row->pt_namespace, $row->pt_title );
 		if ( !$title ) {
@@ -129,6 +131,7 @@ class ProtectedTitlesPager extends AlphabeticPager {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getIndexField() {
 		return [ [ 'pt_timestamp', 'pt_namespace', 'pt_title' ] ];
 	}

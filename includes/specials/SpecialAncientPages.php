@@ -53,14 +53,17 @@ class SpecialAncientPages extends QueryPage {
 		$this->languageConverter = $languageConverterFactory->getLanguageConverter( $this->getContentLanguage() );
 	}
 
+	/** @inheritDoc */
 	public function isExpensive() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function isSyndicated() {
 		return false;
 	}
 
+	/** @inheritDoc */
 	public function getQueryInfo() {
 		$tables = [ 'page', 'revision' ];
 		$conds = [
@@ -90,14 +93,17 @@ class SpecialAncientPages extends QueryPage {
 		];
 	}
 
+	/** @inheritDoc */
 	public function usesTimestamps() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	protected function sortDescending() {
 		return false;
 	}
 
+	/** @inheritDoc */
 	public function preprocessResults( $db, $res ) {
 		$this->executeLBFromResultWrapper( $res );
 	}
@@ -120,6 +126,7 @@ class SpecialAncientPages extends QueryPage {
 		return $this->getLanguage()->specialList( $link, htmlspecialchars( $d ) );
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'maintenance';
 	}

@@ -244,6 +244,7 @@ class AllMessagesTablePager extends TablePager {
 		return new FakeResultWrapper( $rows );
 	}
 
+	/** @inheritDoc */
 	protected function getStartBody() {
 		return Html::openElement( 'table', [
 			'class' => $this->getTableClass(),
@@ -265,6 +266,7 @@ class AllMessagesTablePager extends TablePager {
 			</tr></thead>\n";
 	}
 
+	/** @inheritDoc */
 	protected function getEndBody() {
 		return Html::closeElement( 'table' );
 	}
@@ -347,6 +349,7 @@ class AllMessagesTablePager extends TablePager {
 		return Html::rawElement( 'tbody', [], $s );
 	}
 
+	/** @inheritDoc */
 	protected function getRowAttrs( $row ) {
 		return [];
 	}
@@ -383,18 +386,22 @@ class AllMessagesTablePager extends TablePager {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getTitle() {
 		return SpecialPage::getTitleFor( 'Allmessages', false );
 	}
 
+	/** @inheritDoc */
 	protected function isFieldSortable( $x ) {
 		return false;
 	}
 
+	/** @inheritDoc */
 	public function getDefaultSort() {
 		return '';
 	}
 
+	/** @inheritDoc */
 	public function getQueryInfo() {
 		return [];
 	}

@@ -44,6 +44,7 @@ class UnlistedSpecialPage extends SpecialPage {
 		parent::__construct( $name, $restriction, false, $function, $file );
 	}
 
+	/** @inheritDoc */
 	public function isListed() {
 		return false;
 	}

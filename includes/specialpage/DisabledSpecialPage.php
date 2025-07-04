@@ -64,6 +64,7 @@ class DisabledSpecialPage extends UnlistedSpecialPage {
 		$this->errorMessage = $errorMessage ?: 'disabledspecialpage-disabled';
 	}
 
+	/** @inheritDoc */
 	public function execute( $subPage ) {
 		$this->setHeaders();
 		$this->outputHeader();

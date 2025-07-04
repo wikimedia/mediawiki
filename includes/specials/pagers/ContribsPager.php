@@ -103,6 +103,7 @@ class ContribsPager extends ContributionsPager {
 		return 'revision';
 	}
 
+	/** @inheritDoc */
 	protected function getRevisionQuery() {
 		$revQuery = $this->revisionStore->getQueryInfo( [ 'page', 'user' ] );
 		$queryInfo = [

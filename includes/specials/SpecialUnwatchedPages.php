@@ -58,10 +58,12 @@ class SpecialUnwatchedPages extends QueryPage {
 		$this->languageConverter = $languageConverterFactory->getLanguageConverter( $this->getContentLanguage() );
 	}
 
+	/** @inheritDoc */
 	public function isExpensive() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function isSyndicated() {
 		return false;
 	}
@@ -86,6 +88,7 @@ class SpecialUnwatchedPages extends QueryPage {
 		$res->seek( 0 );
 	}
 
+	/** @inheritDoc */
 	public function getQueryInfo() {
 		$dbr = $this->getDatabaseProvider()->getReplicaDatabase();
 		return [
@@ -106,10 +109,12 @@ class SpecialUnwatchedPages extends QueryPage {
 		];
 	}
 
+	/** @inheritDoc */
 	protected function sortDescending() {
 		return false;
 	}
 
+	/** @inheritDoc */
 	protected function getOrderFields() {
 		return [ 'page_namespace', 'page_title' ];
 	}
@@ -151,6 +156,7 @@ class SpecialUnwatchedPages extends QueryPage {
 		return $this->getLanguage()->specialList( $plink, $wlink );
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'maintenance';
 	}

@@ -76,10 +76,12 @@ class SpecialEditTags extends UnlistedSpecialPage {
 		$this->changeTagsStore = $changeTagsStore;
 	}
 
+	/** @inheritDoc */
 	public function doesWrites() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function execute( $par ) {
 		$this->checkPermissions();
 		$this->checkReadOnly();
@@ -496,10 +498,12 @@ class SpecialEditTags extends UnlistedSpecialPage {
 		$this->showForm();
 	}
 
+	/** @inheritDoc */
 	public function getDescription() {
 		return $this->msg( 'tags-edit-title' );
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'pagetools';
 	}

@@ -93,6 +93,7 @@ class DeletedContribsPager extends ContributionsPager {
 		return [ 'ar_id' ];
 	}
 
+	/** @inheritDoc */
 	public function getIndexField() {
 		return 'ar_timestamp';
 	}

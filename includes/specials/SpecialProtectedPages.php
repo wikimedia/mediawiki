@@ -61,6 +61,7 @@ class SpecialProtectedPages extends SpecialPage {
 		$this->restrictionStore = $restrictionStore;
 	}
 
+	/** @inheritDoc */
 	public function execute( $par ) {
 		$this->setHeaders();
 		$this->outputHeader();
@@ -211,6 +212,7 @@ class SpecialProtectedPages extends SpecialPage {
 		];
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'maintenance';
 	}

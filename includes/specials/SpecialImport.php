@@ -57,6 +57,7 @@ class SpecialImport extends SpecialPage {
 		$this->wikiImporterFactory = $wikiImporterFactory;
 	}
 
+	/** @inheritDoc */
 	public function doesWrites() {
 		return true;
 	}
@@ -478,6 +479,7 @@ class SpecialImport extends SpecialPage {
 		}
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'pagetools';
 	}

@@ -193,6 +193,7 @@ class SpecialUndelete extends SpecialPage {
 		$this->watchlistManager = $watchlistManager;
 	}
 
+	/** @inheritDoc */
 	public function doesWrites() {
 		return true;
 	}
@@ -296,6 +297,7 @@ class SpecialUndelete extends SpecialPage {
 		}
 	}
 
+	/** @inheritDoc */
 	public function userCanExecute( User $user ) {
 		return $this->isAllowed( $this->mRestriction, $user );
 	}
@@ -326,6 +328,7 @@ class SpecialUndelete extends SpecialPage {
 		}
 	}
 
+	/** @inheritDoc */
 	public function execute( $par ) {
 		$this->useTransactionalTimeLimit();
 
@@ -1677,6 +1680,7 @@ class SpecialUndelete extends SpecialPage {
 		return $this->prefixSearchString( $search, $limit, $offset, $this->searchEngineFactory );
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'pagetools';
 	}

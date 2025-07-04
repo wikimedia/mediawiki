@@ -47,6 +47,7 @@ class SpecialPasswordReset extends FormSpecialPage {
 		$this->passwordReset = $passwordReset;
 	}
 
+	/** @inheritDoc */
 	public function doesWrites() {
 		return true;
 	}

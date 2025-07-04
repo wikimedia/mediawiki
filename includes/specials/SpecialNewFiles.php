@@ -63,6 +63,7 @@ class SpecialNewFiles extends IncludableSpecialPage {
 		$this->linkBatchFactory = $linkBatchFactory;
 	}
 
+	/** @inheritDoc */
 	public function execute( $par ) {
 		$context = new DerivativeContext( $this->getContext() );
 
@@ -227,6 +228,7 @@ class SpecialNewFiles extends IncludableSpecialPage {
 			->displayForm( false );
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'changes';
 	}
