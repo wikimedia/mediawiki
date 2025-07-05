@@ -9,7 +9,6 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Session\MetadataMergeException;
 use MediaWiki\Session\SessionInfo;
-use MediaWiki\Session\SessionManager;
 use MediaWiki\Session\SessionProvider;
 use MediaWiki\User\User;
 use MediaWiki\User\UserNameUtils;
@@ -26,7 +25,7 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 	use SessionProviderTestTrait;
 
 	public function testBasics() {
-		$manager = new SessionManager();
+		$manager = $this->getServiceContainer()->getSessionManager();
 		$logger = new TestLogger();
 		$config = new HashConfig();
 		$hookContainer = $this->createHookContainer();
@@ -77,7 +76,7 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 	 * @param bool $ok Whether a SessionInfo is provided
 	 */
 	public function testNewSessionInfo( $persistId, $persistUser, $ok ) {
-		$manager = new SessionManager();
+		$manager = $this->getServiceContainer()->getSessionManager();
 
 		$provider = $this->getMockBuilder( SessionProvider::class )
 			->onlyMethods( [ 'canChangeUser', 'persistsSessionId' ] )

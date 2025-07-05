@@ -2126,8 +2126,16 @@ return [
 	},
 
 	'SessionManager' => static function ( MediaWikiServices $services ): SessionManager {
-		// TODO use proper dependency injection
-		return SessionManager::singleton();
+		$objectCacheFactory = $services->getObjectCacheFactory();
+		$mainConfig = $services->getMainConfig();
+
+		return new SessionManager(
+			$mainConfig,
+			LoggerFactory::getInstance( 'session' ),
+			$objectCacheFactory->getInstance( $mainConfig->get( MainConfigNames::SessionCacheType ) ),
+			$services->getHookContainer(),
+			$services->getUserNameUtils()
+		);
 	},
 
 	'ShellboxClientFactory' => static function ( MediaWikiServices $services ): ShellboxClientFactory {

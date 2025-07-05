@@ -26,7 +26,6 @@ use Psr\Log\NullLogger;
 use ReflectionClass;
 use stdClass;
 use TestLogger;
-use TypeError;
 use UnexpectedValueException;
 use Wikimedia\ScopedCallback;
 use Wikimedia\TestingAccessWrapper;
@@ -67,11 +66,13 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		$this->sampledLogger = new TestLogger( true );
 		$this->setLogger( 'session-sampled', $this->sampledLogger );
 
-		return new SessionManager( [
-			'config' => $this->config,
-			'logger' => $this->logger,
-			'store' => $this->store,
-		] );
+		return new SessionManager(
+			$this->config,
+			$this->logger,
+			$this->store,
+			$this->getServiceContainer()->getHookContainer(),
+			$this->getServiceContainer()->getUserNameUtils()
+		);
 	}
 
 	protected function objectCacheDef( $object ) {
@@ -142,27 +143,17 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $this->logger, $manager->logger );
 		$this->assertSame( $this->store, $manager->store );
 
-		$manager = TestingAccessWrapper::newFromObject( new SessionManager() );
+		$manager = TestingAccessWrapper::newFromObject( $this->getServiceContainer()->getSessionManager() );
 		$this->assertSame( $this->getServiceContainer()->getMainConfig(), $manager->config );
 
-		$manager = TestingAccessWrapper::newFromObject( new SessionManager( [
-			'config' => $this->config,
-			'store' => $this->store,
-		] ) );
+		$manager = TestingAccessWrapper::newFromObject( new SessionManager(
+			$this->config,
+			$this->logger,
+			$this->store,
+			$this->getServiceContainer()->getHookContainer(),
+			$this->getServiceContainer()->getUserNameUtils()
+		) );
 		$this->assertSame( $this->store, $manager->store );
-
-		foreach ( [
-			'config' => 'MediaWiki\Config\Config',
-			'logger' => 'Psr\Log\LoggerInterface',
-			'store' => 'Wikimedia\ObjectCache\BagOStuff',
-		] as $key => $error ) {
-			try {
-				new SessionManager( [ $key => new stdClass ] );
-				$this->fail( 'Expected exception not thrown' );
-			} catch ( TypeError $ex ) {
-				$this->assertStringContainsString( $error, $ex->getMessage() );
-			}
-		}
 	}
 
 	public function testGetSessionForRequest() {
@@ -1574,7 +1565,7 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 	) {
 		MWTimestamp::setFakeTime( 1234567 );
 		$this->overrideConfigValue( MainConfigNames::SuspiciousIpExpiry, 600 );
-		$manager = new SessionManager();
+		$manager = $this->getServiceContainer()->getSessionManager();
 		$logger = $this->createMock( LoggerInterface::class );
 		$this->setLogger( 'session-ip', $logger );
 		$request = new FauxRequest();

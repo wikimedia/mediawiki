@@ -72,15 +72,17 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		}
 
 		$logger = new NullLogger();
-		if ( !$this->manager ) {
-			$this->manager = new SessionManager( [
-				'store' => $this->store,
-				'logger' => $logger,
-				'config' => $this->config,
-			] );
-		}
-
 		$hookContainer = $this->getHookContainer();
+
+		if ( !$this->manager ) {
+			$this->manager = new SessionManager(
+				$this->config,
+				$logger,
+				$this->store,
+				$hookContainer,
+				$this->getServiceContainer()->getUserNameUtils()
+			);
+		}
 
 		if ( !$this->provider ) {
 			$this->provider = new DummySessionProvider();
@@ -830,6 +832,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		TestingAccessWrapper::newFromObject( $backend )->dataDirty = true;
 		$backend->save();
 		$this->assertFalse( $this->store->getSession( self::SESSIONID ), 'making sure it didn\'t save' );
+		$this->clearHook( 'SessionMetadata' );
 	}
 
 	public function testRenew() {

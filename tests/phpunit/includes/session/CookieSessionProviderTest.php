@@ -192,7 +192,9 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 		];
 		$provider = new CookieSessionProvider( $params );
 		$logger = new TestLogger( true );
-		$this->initProvider( $provider, $logger, $this->getConfig(), new SessionManager() );
+		$this->initProvider(
+			$provider, $logger, $this->getConfig(), $this->getServiceContainer()->getSessionManager()
+		);
 
 		$user = static::getTestSysop()->getUser();
 		$id = $user->getId();

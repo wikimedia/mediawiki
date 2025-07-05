@@ -97,7 +97,7 @@ class RequestContextTest extends MediaWikiIntegrationTestCase {
 		// Make sure session handling is started
 		if ( !PHPSessionHandler::isInstalled() ) {
 			PHPSessionHandler::install(
-				SessionManager::singleton()
+				$this->getServiceContainer()->getSessionManager()
 			);
 		}
 		$oldSessionId = session_id();
@@ -127,6 +127,7 @@ class RequestContextTest extends MediaWikiIntegrationTestCase {
 		] );
 		$sc = RequestContext::importScopedSession( $sinfo ); // load new context
 
+		SessionManager::getGlobalSession()->persist();
 		$info = $context->exportSession();
 		$this->assertEquals( $sinfo['ip'], $info['ip'], "Correct IP address." );
 		$this->assertEquals( $sinfo['headers'], $info['headers'], "Correct headers." );

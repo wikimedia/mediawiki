@@ -80,10 +80,15 @@ class PHPSessionHandlerTest extends MediaWikiIntegrationTestCase {
 		$logger = new TestLogger( false, static function ( $m ) {
 			return preg_match( '/^SessionManager using store/', $m ) ? null : $m;
 		} );
-		$manager = new SessionManager( [
-			'store' => $store,
-			'logger' => $logger,
-		] );
+
+		$services = $this->getServiceContainer();
+		$manager = new SessionManager(
+			$services->getMainConfig(),
+			$logger,
+			$store,
+			$services->getHookContainer(),
+			$services->getUserNameUtils()
+		);
 
 		$this->assertFalse( PHPSessionHandler::isInstalled() );
 		PHPSessionHandler::install( $manager );
@@ -120,10 +125,15 @@ class PHPSessionHandlerTest extends MediaWikiIntegrationTestCase {
 				|| preg_match( '/^(Persisting|Unpersisting) session (for|due to)/', $m )
 			) ? null : $m;
 		} );
-		$manager = new SessionManager( [
-			'store' => $store,
-			'logger' => $logger,
-		] );
+
+		$services = $this->getServiceContainer();
+		$manager = new SessionManager(
+			$services->getMainConfig(),
+			$logger,
+			$store,
+			$services->getHookContainer(),
+			$services->getUserNameUtils()
+		);
 		PHPSessionHandler::install( $manager );
 		$wrap = TestingAccessWrapper::newFromObject( $staticAccess->instance );
 		$reset[] = new ScopedCallback(

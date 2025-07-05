@@ -335,11 +335,13 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 			} ],
 		] );
 
-		$manager = new SessionManager( [
-			'config' => $this->config,
-			'logger' => new NullLogger(),
-			'store' => new HashBagOStuff(),
-		] );
+		$manager = new SessionManager(
+			$this->config,
+			new NullLogger(),
+			new HashBagOStuff(),
+			$this->getServiceContainer()->getHookContainer(),
+			$this->getServiceContainer()->getUserNameUtils()
+		);
 		TestingAccessWrapper::newFromObject( $manager )->getProvider( (string)$provider );
 
 		$reset = TestUtils::setSessionManagerSingleton( $manager );

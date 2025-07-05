@@ -268,11 +268,16 @@ class BotPasswordTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( Status::newFatal( 'botpasswords-disabled' ), $status );
 		$this->overrideConfigValue( MainConfigNames::EnableBotPasswords, true );
 
+		$mainConfig = $this->getServiceContainer()->getMainConfig();
+
 		// Test failure when BotPasswordSessionProvider isn't configured
-		$manager = new SessionManager( [
-			'logger' => new Psr\Log\NullLogger,
-			'store' => new EmptyBagOStuff,
-		] );
+		$manager = new SessionManager(
+			$mainConfig,
+			new Psr\Log\NullLogger,
+			new EmptyBagOStuff,
+			$this->getServiceContainer()->getHookContainer(),
+			$this->getServiceContainer()->getUserNameUtils()
+		);
 		$reset = TestUtils::setSessionManagerSingleton( $manager );
 		$this->assertNull(
 			$manager->getProvider( MediaWiki\Session\BotPasswordSessionProvider::class )
@@ -282,7 +287,7 @@ class BotPasswordTest extends MediaWikiIntegrationTestCase {
 		ScopedCallback::consume( $reset );
 
 		// Now configure BotPasswordSessionProvider for further tests...
-		$mainConfig = $this->getServiceContainer()->getMainConfig();
+
 		$config = new HashConfig( [
 			MainConfigNames::SessionProviders => $mainConfig->get( MainConfigNames::SessionProviders ) + [
 				MediaWiki\Session\BotPasswordSessionProvider::class => [
@@ -292,11 +297,14 @@ class BotPasswordTest extends MediaWikiIntegrationTestCase {
 				]
 			],
 		] );
-		$manager = new SessionManager( [
-			'config' => new MultiConfig( [ $config, $mainConfig ] ),
-			'logger' => new Psr\Log\NullLogger,
-			'store' => new EmptyBagOStuff,
-		] );
+
+		$manager = new SessionManager(
+			new MultiConfig( [ $config, $mainConfig ] ),
+			new Psr\Log\NullLogger,
+			new EmptyBagOStuff,
+			$this->getServiceContainer()->getHookContainer(),
+			$this->getServiceContainer()->getUserNameUtils()
+		);
 		$reset = TestUtils::setSessionManagerSingleton( $manager );
 
 		// No "@"-thing in the username

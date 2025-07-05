@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Tests\Session;
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Session\PHPSessionHandler;
 use MediaWiki\Session\Session;
 use MediaWiki\Session\SessionBackend;
@@ -24,28 +25,33 @@ class TestUtils {
 	 * @return ScopedCallback|null
 	 */
 	public static function setSessionManagerSingleton( ?SessionManager $manager = null ) {
+		$services = MediaWikiServices::getInstance();
 		session_write_close();
 
 		$staticAccess = TestingAccessWrapper::newFromClass( SessionManager::class );
-
-		$oldInstance = $staticAccess->instance;
-
+		$oldInstance = $services->getSessionManager();
 		$reset = [
-			[ 'instance', $oldInstance ],
 			[ 'globalSession', $staticAccess->globalSession ],
 			[ 'globalSessionRequest', $staticAccess->globalSessionRequest ],
 		];
 
-		$staticAccess->instance = $manager;
+		$services->resetServiceForTesting( 'SessionManager' );
+		if ( $manager ) {
+			$services->redefineService( 'SessionManager', static fn () => $manager );
+		}
 		$staticAccess->globalSession = null;
 		$staticAccess->globalSessionRequest = null;
 		if ( $manager && PHPSessionHandler::isInstalled() ) {
 			PHPSessionHandler::install( $manager );
 		}
 
-		return new ScopedCallback( static function () use ( $reset, $staticAccess, $oldInstance ) {
+		return new ScopedCallback( static function () use ( $services, $reset, $staticAccess, $oldInstance ) {
 			foreach ( $reset as [ $property, $oldValue ] ) {
 				$staticAccess->$property = $oldValue;
+			}
+			if ( $oldInstance ) {
+				$services->resetServiceForTesting( 'SessionManager' );
+				$services->redefineService( 'SessionManager', static fn () => $oldInstance );
 			}
 			if ( $oldInstance && PHPSessionHandler::isInstalled() ) {
 				PHPSessionHandler::install( $oldInstance );

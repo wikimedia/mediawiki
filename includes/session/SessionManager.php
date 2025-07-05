@@ -80,7 +80,6 @@ use Wikimedia\ObjectCache\CachedBagOStuff;
  * @see https://www.mediawiki.org/wiki/Manual:SessionManager_and_AuthManager
  */
 class SessionManager implements SessionManagerInterface {
-	private static ?SessionManager $instance = null;
 	private static ?Session $globalSession = null;
 	private static ?WebRequest $globalSessionRequest = null;
 
@@ -111,13 +110,11 @@ class SessionManager implements SessionManagerInterface {
 
 	/**
 	 * Get the global SessionManager
+	 * @deprecated since 1.45 Use MediaWikiServices::getInstance()->getSessionManager() instead
 	 * @return self
 	 */
 	public static function singleton() {
-		if ( self::$instance === null ) {
-			self::$instance = new self();
-		}
-		return self::$instance;
+		return MediaWikiServices::getInstance()->getSessionManager();
 	}
 
 	/**
@@ -192,25 +189,21 @@ class SessionManager implements SessionManagerInterface {
 		return self::$globalSession;
 	}
 
-	/**
-	 * @param array $options
-	 *  - config: Config to fetch configuration from. Defaults to the default 'main' config.
-	 *  - logger: LoggerInterface to use for logging. Defaults to the 'session' channel.
-	 *  - store: BagOStuff to store session data in.
-	 */
-	public function __construct( $options = [] ) {
-		$services = MediaWikiServices::getInstance();
+	public function __construct(
+		Config $config,
+		LoggerInterface $logger,
+		BagOStuff $store,
+		HookContainer $hookContainer,
+		UserNameUtils $userNameUtils
+	) {
+		$this->config = $config;
+		$this->setLogger( $logger );
+		$this->setHookContainer( $hookContainer );
 
-		$this->config = $options['config'] ?? $services->getMainConfig();
-		$this->setLogger( $options['logger'] ?? \MediaWiki\Logger\LoggerFactory::getInstance( 'session' ) );
-		$this->setHookContainer( $options['hookContainer'] ?? $services->getHookContainer() );
-
-		$store = $options['store'] ?? $services->getObjectCacheFactory()
-			->getInstance( $this->config->get( MainConfigNames::SessionCacheType ) );
-		$this->logger->debug( 'SessionManager using store ' . get_class( $store ) );
+		$logger->debug( 'SessionManager using store ' . get_class( $store ) );
 		$this->store = $store instanceof CachedBagOStuff ? $store : new CachedBagOStuff( $store );
 
-		$this->userNameUtils = $services->getUserNameUtils();
+		$this->userNameUtils = $userNameUtils;
 
 		register_shutdown_function( $this->shutdown( ... ) );
 	}
@@ -1022,21 +1015,6 @@ class SessionManager implements SessionManagerInterface {
 		self::$globalSessionRequest = null;
 	}
 
-	/**
-	 * Reset the internal instance for unit testing
-	 * @note Temporary and used by Unit tests only
-	 * @internal
-	 */
-	public static function resetInstance() {
-		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
-			// @codeCoverageIgnoreStart
-			throw new LogicException( __METHOD__ . ' may only be called from unit tests!' );
-			// @codeCoverageIgnoreEnd
-		}
-
-		self::$instance = null;
-	}
-
 	private function logUnpersist( SessionInfo $info, WebRequest $request ) {
 		$logData = [
 			'id' => $info->getId(),
@@ -1144,7 +1122,7 @@ class SessionManager implements SessionManagerInterface {
 				'clientip' => $ip,
 				'userAgent' => $session->getRequest()->getHeader( 'user-agent' ),
 			];
-			$logger = \MediaWiki\Logger\LoggerFactory::getInstance( 'session-ip' );
+			$logger = LoggerFactory::getInstance( 'session-ip' );
 			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable message is set when used here
 			$logger->log( $logLevel, $message, $logData );
 		}

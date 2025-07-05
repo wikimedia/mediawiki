@@ -60,11 +60,14 @@ class BotPasswordSessionProviderTest extends MediaWikiIntegrationTestCase {
 			] );
 			$this->configHash = $configHash;
 		}
-		$manager = new SessionManager( [
-			'config' => new MultiConfig( [ $this->config, $this->getServiceContainer()->getMainConfig() ] ),
-			'logger' => new NullLogger,
-			'store' => new TestBagOStuff,
-		] );
+
+		$manager = new SessionManager(
+			new MultiConfig( [ $this->config, $this->getServiceContainer()->getMainConfig() ] ),
+			new NullLogger,
+			new TestBagOStuff,
+			$this->getServiceContainer()->getHookContainer(),
+			$this->getServiceContainer()->getUserNameUtils()
+		);
 
 		return $manager->getProvider( BotPasswordSessionProvider::class );
 	}

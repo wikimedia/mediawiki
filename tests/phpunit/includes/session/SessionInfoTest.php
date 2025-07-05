@@ -4,7 +4,6 @@ namespace MediaWiki\Tests\Session;
 
 use InvalidArgumentException;
 use MediaWiki\Session\SessionInfo;
-use MediaWiki\Session\SessionManager;
 use MediaWiki\Session\SessionProvider;
 use MediaWiki\Session\UserInfo;
 use MediaWikiIntegrationTestCase;
@@ -68,7 +67,7 @@ class SessionInfoTest extends MediaWikiIntegrationTestCase {
 				'bad copyFrom' );
 		}
 
-		$manager = new SessionManager();
+		$manager = $this->getServiceContainer()->getSessionManager();
 		$provider = $this->getMockBuilder( SessionProvider::class )
 			->onlyMethods( [ 'persistsSessionId', 'canChangeUser', '__toString' ] )
 			->getMockForAbstractClass();

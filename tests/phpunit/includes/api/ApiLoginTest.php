@@ -13,7 +13,6 @@ use MediaWiki\Session\Token;
 use MediaWiki\User\BotPassword;
 use MediaWiki\User\User;
 use MWRestrictions;
-use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group API
@@ -296,14 +295,9 @@ class ApiLoginTest extends ApiTestCase {
 		] );
 
 		// Make sure our session provider is present
-		$manager = TestingAccessWrapper::newFromObject( SessionManager::singleton() );
-		if ( !isset( $manager->sessionProviders[BotPasswordSessionProvider::class] ) ) {
-			$tmp = $manager->sessionProviders;
-			$manager->sessionProviders = null;
-			$manager->sessionProviders = $tmp + $manager->getProviders();
-		}
+		$this->getServiceContainer()->resetServiceForTesting( 'SessionManager' );
 		$this->assertNotNull(
-			SessionManager::singleton()->getProvider( BotPasswordSessionProvider::class )
+			$this->getServiceContainer()->getSessionManager()->getProvider( BotPasswordSessionProvider::class )
 		);
 
 		$user = $this->getTestSysop()->getUser();
