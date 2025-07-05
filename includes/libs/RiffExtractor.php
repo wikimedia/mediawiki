@@ -23,6 +23,11 @@
  */
 
 class RiffExtractor {
+	/**
+	 * @param string $filename
+	 * @param int $maxChunks
+	 * @return array|false
+	 */
 	public static function findChunksFromFile( $filename, $maxChunks = -1 ) {
 		$file = fopen( $filename, 'rb' );
 		$info = self::findChunks( $file, $maxChunks );
@@ -30,6 +35,11 @@ class RiffExtractor {
 		return $info;
 	}
 
+	/**
+	 * @param resource $file
+	 * @param int $maxChunks
+	 * @return array|false
+	 */
 	public static function findChunks( $file, $maxChunks = -1 ) {
 		$riff = fread( $file, 4 );
 		if ( $riff !== 'RIFF' ) {

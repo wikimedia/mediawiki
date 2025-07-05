@@ -223,7 +223,6 @@ class BitmapMetadataHandler {
 			}
 		}
 		unset( $array['text']['xmp'] );
-		// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset xmp is not alone in text, makes text always set
 		$meta->addMetadata( $array['text'], 'native' );
 		unset( $array['text'] );
 		$array['metadata'] = $meta->getMetadataArray();

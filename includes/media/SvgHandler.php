@@ -67,6 +67,10 @@ class SvgHandler extends ImageHandler {
 		return true;
 	}
 
+	/**
+	 * @param File $file
+	 * @return bool
+	 */
 	public function allowRenderingByUserAgent( $file ) {
 		$svgNativeRendering = MediaWikiServices::getInstance()
 			->getMainConfig()->get( MainConfigNames::SVGNativeRendering );
@@ -406,6 +410,13 @@ class SvgHandler extends ImageHandler {
 		return true;
 	}
 
+	/**
+	 * @param string $srcPath
+	 * @param string $dstPath
+	 * @param int $width
+	 * @param int $height
+	 * @return string|void
+	 */
 	public static function rasterizeImagickExt( $srcPath, $dstPath, $width, $height ) {
 		$im = new Imagick( $srcPath );
 		$im->setBackgroundColor( 'transparent' );

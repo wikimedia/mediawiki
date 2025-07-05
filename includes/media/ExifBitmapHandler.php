@@ -164,6 +164,11 @@ class ExifBitmapHandler extends BitmapHandler {
 		return 'exif';
 	}
 
+	/**
+	 * @param array $info
+	 * @param array $metadata
+	 * @return array
+	 */
 	protected function applyExifRotation( $info, $metadata ) {
 		if ( $this->autoRotateEnabled() ) {
 			$rotation = $this->getRotationForExifFromOrientation( $metadata['Orientation'] ?? null );

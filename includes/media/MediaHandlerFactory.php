@@ -72,6 +72,10 @@ class MediaHandlerFactory {
 		$this->registry = $registry + self::CORE_HANDLERS;
 	}
 
+	/**
+	 * @param string $type
+	 * @return class-string<MediaHandler>|false
+	 */
 	protected function getHandlerClass( $type ) {
 		return $this->registry[$type] ?? false;
 	}
