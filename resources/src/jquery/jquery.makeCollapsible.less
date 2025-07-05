@@ -60,6 +60,8 @@ caption .mw-collapsible-toggle,
 	float: none;
 }
 
+// On collapsible elements with custom togglers, the element itself can be hidden (T398754)
+.mw-collapsible[ hidden='until-found' ],
 .mw-collapsible [ hidden='until-found' ] {
 	// Ensure table structure is hidden. content-visibility:hidden doesn't
 	// work with display:table-*.
