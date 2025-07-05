@@ -121,6 +121,39 @@ class SessionManager implements SessionManagerInterface {
 	}
 
 	/**
+	 * @note Temporary setter to prepare SessionManager for proper
+	 *   DI with service objects.
+	 *
+	 * @param Config $config
+	 * @internal temporary method for refactoring
+	 */
+	public function setConfig( Config $config ): void {
+		$this->config = $config;
+	}
+
+	/**
+	 * @note Temporary setter to prepare SessionManager for proper
+	 *   DI with service objects.
+	 *
+	 * @param CachedBagOStuff $store
+	 * @internal temporary method for refactoring
+	 */
+	public function setSessionStore( $store ): void {
+		$this->store = $store;
+	}
+
+	/**
+	 * @note Temporary setter to prepare SessionManager for proper
+	 *   DI with service objects.
+	 *
+	 * @param UserNameUtils $userNameUtils
+	 * @internal temporary method for refactoring
+	 */
+	public function setUsernameUtils( $userNameUtils ): void {
+		$this->userNameUtils = $userNameUtils;
+	}
+
+	/**
 	 * If PHP's session_id() has been set, returns that session. Otherwise
 	 * returns the session for RequestContext::getMain()->getRequest().
 	 */
@@ -987,6 +1020,21 @@ class SessionManager implements SessionManagerInterface {
 
 		self::$globalSession = null;
 		self::$globalSessionRequest = null;
+	}
+
+	/**
+	 * Reset the internal instance for unit testing
+	 * @note Temporary and used by Unit tests only
+	 * @internal
+	 */
+	public static function resetInstance() {
+		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
+			// @codeCoverageIgnoreStart
+			throw new LogicException( __METHOD__ . ' may only be called from unit tests!' );
+			// @codeCoverageIgnoreEnd
+		}
+
+		self::$instance = null;
 	}
 
 	private function logUnpersist( SessionInfo $info, WebRequest $request ) {
