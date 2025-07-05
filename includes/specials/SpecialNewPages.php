@@ -24,6 +24,7 @@ use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\CommentFormatter\RowCommentFormatter;
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\Feed\ChannelFeed;
 use MediaWiki\Feed\FeedItem;
 use MediaWiki\Html\FormOptions;
 use MediaWiki\Html\Html;
@@ -409,6 +410,7 @@ class SpecialNewPages extends IncludableSpecialPage {
 		}
 
 		$feedClasses = $this->getConfig()->get( MainConfigNames::FeedClasses );
+		'@phan-var array<string,class-string<ChannelFeed>> $feedClasses';
 		if ( !isset( $feedClasses[$type] ) ) {
 			$this->getOutput()->addWikiMsg( 'feed-invalid' );
 

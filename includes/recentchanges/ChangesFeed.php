@@ -59,6 +59,7 @@ class ChangesFeed {
 		$sitename = $mainConfig->get( MainConfigNames::Sitename );
 		$languageCode = $mainConfig->get( MainConfigNames::LanguageCode );
 		$feedClasses = $mainConfig->get( MainConfigNames::FeedClasses );
+		'@phan-var array<string,class-string<ChannelFeed>> $feedClasses';
 		if ( !isset( $feedClasses[$this->format] ) ) {
 			return false;
 		}

@@ -88,6 +88,7 @@ class ApiFeedRecentChanges extends ApiBase {
 		}
 
 		$feedClasses = $config->get( MainConfigNames::FeedClasses );
+		'@phan-var array<string,class-string<ChannelFeed>> $feedClasses';
 		if ( !isset( $feedClasses[$this->params['feedformat']] ) ) {
 			$this->dieWithError( 'feed-invalid' );
 		}

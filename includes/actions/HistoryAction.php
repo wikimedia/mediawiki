@@ -395,6 +395,7 @@ class HistoryAction extends FormlessAction {
 		$request = $this->getRequest();
 
 		$feedClasses = $this->context->getConfig()->get( MainConfigNames::FeedClasses );
+		'@phan-var array<string,class-string<ChannelFeed>> $feedClasses';
 		/** @var ChannelFeed $feed */
 		$feed = new $feedClasses[$type](
 			$this->getTitle()->getPrefixedText() . ' - ' .

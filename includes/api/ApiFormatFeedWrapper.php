@@ -38,7 +38,7 @@ class ApiFormatFeedWrapper extends ApiFormatBase {
 	/**
 	 * Call this method to initialize output data. See execute()
 	 * @param ApiResult $result
-	 * @param FeedItem $feed An instance of one of the $wgFeedClasses classes
+	 * @param ChannelFeed $feed An instance of one of the $wgFeedClasses classes
 	 * @param FeedItem[] $feedItems
 	 */
 	public static function setResult( $result, $feed, $feedItems ) {
@@ -86,6 +86,8 @@ class ApiFormatFeedWrapper extends ApiFormatBase {
 		if ( isset( $data['_feed'] ) && isset( $data['_feeditems'] ) ) {
 			/** @var ChannelFeed $feed */
 			$feed = $data['_feed'];
+			'@phan-var ChannelFeed $feed';
+
 			$feed->httpHeaders();
 		} else {
 			// Error has occurred, print something useful
@@ -105,10 +107,13 @@ class ApiFormatFeedWrapper extends ApiFormatBase {
 			$feed = $data['_feed'];
 			$items = $data['_feeditems'];
 
+			'@phan-var ChannelFeed $feed';
+			'@phan-var FeedItem[] $items';
+
 			// execute() needs to pass strings to $this->printText, not produce output itself.
 			ob_start();
 			$feed->outHeader();
-			foreach ( $items as & $item ) {
+			foreach ( $items as $item ) {
 				$feed->outItem( $item );
 			}
 			$feed->outFooter();

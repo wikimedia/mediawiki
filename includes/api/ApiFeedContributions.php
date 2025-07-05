@@ -25,6 +25,7 @@ namespace MediaWiki\Api;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\Content\TextContent;
+use MediaWiki\Feed\ChannelFeed;
 use MediaWiki\Feed\FeedItem;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Linker\LinkRenderer;
@@ -104,6 +105,7 @@ class ApiFeedContributions extends ApiBase {
 		}
 
 		$feedClasses = $config->get( MainConfigNames::FeedClasses );
+		'@phan-var array<string,class-string<ChannelFeed>> $feedClasses';
 		if ( !isset( $feedClasses[$params['feedformat']] ) ) {
 			$this->dieWithError( 'feed-invalid' );
 		}
@@ -124,7 +126,7 @@ class ApiFeedContributions extends ApiBase {
 			$feedUrl = SpecialPage::getTitleFor( 'Contributions', $target )->getFullURL();
 		}
 
-		$feed = new $feedClasses[$params['feedformat']] (
+		$feed = new $feedClasses[$params['feedformat']](
 			$feedTitle,
 			$msg,
 			$feedUrl
