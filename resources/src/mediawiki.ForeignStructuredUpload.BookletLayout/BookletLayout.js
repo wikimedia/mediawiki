@@ -306,11 +306,9 @@
 	 * @return {string} date as YYYY-MM-DD
 	 */
 	mw.ForeignStructuredUpload.BookletLayout.prototype.isoFormat = function ( date ) {
-		const year = String( date.getFullYear() );
-
-		// Ensure two-digit format (ES2017 String.padStart would be nicer)
-		const month = `0${ date.getMonth() + 1 }`.slice( -2 );
-		const day = `0${ date.getDate() }`.slice( -2 );
+		const year = date.getFullYear().toString();
+		const month = ( date.getMonth() + 1 ).toString().padStart( 2, '0' );
+		const day = date.getDate().toString().padStart( 2, '0' );
 
 		return `${ year }-${ month }-${ day }`;
 	};
