@@ -461,8 +461,8 @@ because of Phabricator reports.
   speed up general code loading of MediaWiki. The old global namespace class
   names are being left behind as deprecated aliases.
 
-  In this release of MediaWiki, XXX classes now have a namespace and XXX do
-  not yet (XXX% done, up from 81% in MediaWiki 1.43.0). The following have newly
+  In this release of MediaWiki, 2535 classes now have a namespace and 337 do
+  not yet (88% done, up from 81% in MediaWiki 1.43.0). The following have newly
   been moved:
   - MediaWiki\Actions:
     - Action
