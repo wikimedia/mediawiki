@@ -1985,7 +1985,7 @@
 	"apisandbox-request-php-label": "Cererea pentru matrice PHP:",
 	"apisandbox-request-time": "Durata cererii: {{PLURAL:$1|$1 ms}}",
 	"apisandbox-request-post": "Această cerere trebuie să fie trimisă folosind metoda HTTP POST.",
-	"apisandbox-request-formdata": "Această cerere trebuie să fie trimisă ca o încărcare de fișier (adică folosind <code>multipart/form-data</code>",
+	"apisandbox-request-formdata": "Această cerere trebuie să fie trimisă ca o încărcare de fișier (adică folosind <code>multipart/form-data</code>).",
 	"apisandbox-results-fixtoken": "Corectează jetonul și retrimite",
 	"apisandbox-results-fixtoken-fail": "Imposibil de recuperat jetonul „$1”.",
 	"apisandbox-alert-page": "Câmpurile de pe această pagină nu sunt valide.",

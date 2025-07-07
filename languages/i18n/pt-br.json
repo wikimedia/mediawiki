@@ -4269,7 +4269,7 @@
 	"interwiki_delfailed": "O prefixo \"$1\" não pôde ser removido da tabela de interwikis.",
 	"interwiki-logtext": "Visualizar o registo",
 	"interwiki_addtext": "Adicionar um prefixo interwiki ou de idioma",
-	"interwiki-addtext-local": "Adicione um interwiki local ou prefixo de idioma",
+	"interwiki-addtext-local": "Adicionar um prefixo interwiki local ou de idioma",
 	"interwiki-addtext-nolang": "Adicionar um prefixo interwiki",
 	"interwiki-addtext-local-nolang": "Adicionar um prefixo interwiki local",
 	"interwiki_addintro": "Você se encontra prestes a adicionar um novo prefixo de interwiki. Lembre-se de que ele não pode conter espaços ( ), dois-pontos (:), conjunções (&) ou sinais de igualdade (=).",

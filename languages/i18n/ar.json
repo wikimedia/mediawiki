@@ -216,6 +216,7 @@
 	"redirectpagesub": "صفحة تحويل",
 	"redirectto": "تحويل إلى:",
 	"lastmodifiedat": "آخر تعديل لهذه الصفحة كان يوم $1، الساعة $2.",
+	"renderedwith-parsoid": "تمت معالجة الصفحة باستخدام [[mw:Special:MyLanguage/Parsoid|Parsoid]].",
 	"viewcount": "{{PLURAL:$1|لم تعرض هذه الصفحة أبدا|تم عرض هذه الصفحة مرة واحدة|تم عرض هذه الصفحة مرتين|تم عرض هذه الصفحة $1 مرات|تم عرض هذه الصفحة $1 مرة}}.",
 	"protectedpage": "صفحة محمية",
 	"jumpto": "اذهب إلى:",

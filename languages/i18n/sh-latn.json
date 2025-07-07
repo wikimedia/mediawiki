@@ -2267,7 +2267,7 @@
 	"sp-contributions-outofrange": "Nije moguće prikazati ishod. Traženi raspon IP adresa veći je od dopuštenog /$1 u CIDR-u.",
 	"sp-contributions-concurrency-user": "Nažalost, s vašeg korisničkog računa dolazi previše zahtjeva. Molimo pokušajte ponovo kasnije.",
 	"sp-contributions-concurrency-ip": "Nažalost, s vaše IP adrese dolazi previše zahtjeva. Molimo pokušajte ponovo kasnije.",
-	"sp-contributions-newcontribution": "Dodaj doprinos",
+	"sp-contributions-newcontribution": "Novi doprinos",
 	"whatlinkshere": "Šta vodi ovamo",
 	"whatlinkshere-count": "{{PLURAL:$1|Prikazuje|Prikazuju|Prikazuje}} se $1 {{PLURAL:$1|stavka|stavke|stavki}}.",
 	"whatlinkshere-title": "Stranice koje vode ovamo: $1",
