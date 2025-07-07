@@ -1,9 +1,11 @@
 <?php
 
+use MediaWiki\Collation\CustomUppercaseCollation;
+
 /**
  * TODO convert to a Unit test
  *
- * @covers \CustomUppercaseCollation
+ * @covers \MediaWiki\Collation\CustomUppercaseCollation
  */
 class CustomUppercaseCollationTest extends MediaWikiIntegrationTestCase {
 

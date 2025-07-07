@@ -4,6 +4,8 @@
  * @file
  */
 
+namespace MediaWiki\Collation;
+
 use MediaWiki\Language\Language;
 use MediaWiki\Languages\LanguageFactory;
 
@@ -99,3 +101,6 @@ class NumericUppercaseCollation extends UppercaseCollation {
 		}
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( NumericUppercaseCollation::class, 'NumericUppercaseCollation' );

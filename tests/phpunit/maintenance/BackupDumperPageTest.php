@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Tests\Maintenance;
 
-use CloneDatabase;
 use DumpBackup;
+use MediaWiki\DB\CloneDatabase;
 use MediaWiki\MainConfigNames;
 use MediaWikiIntegrationTestCase;
 use WikiExporter;

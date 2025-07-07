@@ -1,9 +1,10 @@
 <?php
 
+use MediaWiki\Collation\RemoteIcuCollation;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers \RemoteIcuCollation
+ * @covers \MediaWiki\Collation\RemoteIcuCollation
  */
 class RemoteIcuCollationTest extends MediaWikiLangTestCase {
 	public static function provideEncode() {

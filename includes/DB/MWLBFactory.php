@@ -7,6 +7,8 @@
  * @ingroup Database
  */
 
+namespace MediaWiki\DB;
+
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Debug\MWDebug;
 use MediaWiki\Deferred\LinksUpdate\CategoryLinksTable;
@@ -20,6 +22,10 @@ use MediaWiki\Exception\MWExceptionHandler;
 use MediaWiki\Exception\MWExceptionRenderer;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Rest\EntryPoint;
+use Profiler;
+use ProfilerStub;
+use UnexpectedValueException;
 use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\Rdbms\ChronologyProtector;
@@ -27,6 +33,9 @@ use Wikimedia\Rdbms\ConfiguredReadOnlyMode;
 use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\ILBFactory;
 use Wikimedia\Rdbms\LBFactory;
+use Wikimedia\Rdbms\LBFactoryMulti;
+use Wikimedia\Rdbms\LBFactorySimple;
+use Wikimedia\Rdbms\LBFactorySingle;
 use Wikimedia\RequestTimeout\CriticalSectionProvider;
 use Wikimedia\Stats\StatsFactory;
 use Wikimedia\Telemetry\TracerInterface;
@@ -166,7 +175,7 @@ class MWLBFactory {
 		// When making changes here, remember to also specify MediaWiki-specific options
 		// for Database classes in the relevant Installer subclass.
 		// Such as MysqlInstaller::openConnection and PostgresInstaller::openConnectionWithParams.
-		if ( $lbConf['class'] === Wikimedia\Rdbms\LBFactorySimple::class ) {
+		if ( $lbConf['class'] === LBFactorySimple::class ) {
 			if ( isset( $lbConf['servers'] ) ) {
 				// Server array is already explicitly configured
 			} elseif ( is_array( $this->options->get( MainConfigNames::DBservers ) ) ) {
@@ -202,7 +211,7 @@ class MWLBFactory {
 			}
 
 			$serversCheck = $lbConf['servers'];
-		} elseif ( $lbConf['class'] === Wikimedia\Rdbms\LBFactoryMulti::class ) {
+		} elseif ( $lbConf['class'] === LBFactoryMulti::class ) {
 			if ( isset( $lbConf['serverTemplate'] ) ) {
 				if ( in_array( $lbConf['serverTemplate']['type'], $typesWithSchema, true ) ) {
 					$lbConf['serverTemplate']['schema'] = $this->options->get( MainConfigNames::DBmwschema );
@@ -247,7 +256,7 @@ class MWLBFactory {
 			if ( MW_ENTRY_POINT === 'rest' && !$isHttpRead ) {
 				// Hack to support some re-entrant invocations using sqlite
 				// See: T259685, T91820
-				$request = \MediaWiki\Rest\EntryPoint::getMainRequest();
+				$request = EntryPoint::getMainRequest();
 				if ( $request->hasHeader( 'Promise-Non-Write-API-Action' ) ) {
 					$isHttpRead = true;
 				}
@@ -370,13 +379,13 @@ class MWLBFactory {
 	public function getLBFactoryClass( array $config ): string {
 		$compat = [
 			// For LocalSettings.php compat after removing underscores (since 1.23).
-			'LBFactory_Single' => Wikimedia\Rdbms\LBFactorySingle::class,
-			'LBFactory_Simple' => Wikimedia\Rdbms\LBFactorySimple::class,
-			'LBFactory_Multi' => Wikimedia\Rdbms\LBFactoryMulti::class,
+			'LBFactory_Single' => LBFactorySingle::class,
+			'LBFactory_Simple' => LBFactorySimple::class,
+			'LBFactory_Multi' => LBFactoryMulti::class,
 			// For LocalSettings.php compat after moving classes to namespaces (since 1.29).
-			'LBFactorySingle' => Wikimedia\Rdbms\LBFactorySingle::class,
-			'LBFactorySimple' => Wikimedia\Rdbms\LBFactorySimple::class,
-			'LBFactoryMulti' => Wikimedia\Rdbms\LBFactoryMulti::class
+			'LBFactorySingle' => LBFactorySingle::class,
+			'LBFactorySimple' => LBFactorySimple::class,
+			'LBFactoryMulti' => LBFactoryMulti::class
 		];
 
 		$class = $config['class'];
@@ -407,3 +416,6 @@ class MWLBFactory {
 		MWDebug::sendRawDeprecated( $msg, true, wfGetCaller() );
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( MWLBFactory::class, 'MWLBFactory' );

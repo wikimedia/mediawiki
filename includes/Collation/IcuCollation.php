@@ -4,9 +4,14 @@
  * @file
  */
 
+namespace MediaWiki\Collation;
+
+use Collator;
+use InvalidArgumentException;
 use MediaWiki\Language\Language;
 use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\MediaWikiServices;
+use RuntimeException;
 use Wikimedia\ArrayUtils\ArrayUtils;
 
 /**
@@ -556,3 +561,6 @@ class IcuCollation extends Collation {
 		return false;
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( IcuCollation::class, 'IcuCollation' );

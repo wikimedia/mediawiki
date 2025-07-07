@@ -1,5 +1,8 @@
 <?php
 
+namespace MediaWiki\Debug;
+
+use DomainException;
 use MediaWiki\FileRepo\File\File;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\WikiPage;
@@ -56,3 +59,6 @@ class MW {
 	}
 
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( MW::class, 'MW' );

@@ -2,11 +2,11 @@
 
 namespace MediaWiki\Installer\Task;
 
+use MediaWiki\DB\MWLBFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Status\Status;
 use MediaWiki\Utils\UrlUtils;
-use MWLBFactory;
 use Wikimedia\Rdbms\LBFactorySingle;
 use Wikimedia\Services\ServiceContainer;
 
