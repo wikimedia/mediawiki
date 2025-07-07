@@ -443,7 +443,7 @@ class CategoryViewer extends ContextSource {
 				$queryBuilder->join( 'linktarget', null, 'cl_target_id = lt_id' )
 					->where( [ 'lt_title' => $this->page->getDBkey(), 'lt_namespace' => NS_CATEGORY ] );
 
-				$queryBuilder->join( 'collation', null, 'cl_collation_id = collation_id' )
+				$queryBuilder->straightJoin( 'collation', null, 'cl_collation_id = collation_id' )
 					->field( 'collation_name', 'cl_collation' );
 
 				$queryBuilder->useIndex( [ 'categorylinks' => 'cl_sortkey_id' ] );
