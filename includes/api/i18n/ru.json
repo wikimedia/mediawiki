@@ -1861,7 +1861,7 @@
 	"apiwarn-invalidxmlstylesheetext": "Таблицы стилей должны иметь расширение <code>.xsl</code>.",
 	"apiwarn-invalidxmlstylesheet": "Задана некорректная или несуществующая таблица стилей.",
 	"apiwarn-invalidxmlstylesheetns": "Таблица стилей должна находиться в пространстве имён {{ns:MediaWiki}}.",
-	"apiwarn-moduleswithoutvars": "Было задано свойство kbd>modules</kbd>, но не были —<kbd>jsconfigvars</kbd> или <kbd>encodedjsconfigvars</kbd>. Конфигурационные переменные обязательны для корректного использования модуля.",
+	"apiwarn-moduleswithoutvars": "Было задано свойство <kbd>modules</kbd>, но не были —<kbd>jsconfigvars</kbd> или <kbd>encodedjsconfigvars</kbd>. Конфигурационные переменные обязательны для корректного использования модуля.",
 	"apiwarn-notfile": "«$1» не является файлом.",
 	"apiwarn-nothumb-noimagehandler": "Невозможно создать эскиз, поскольку у $1 нет связанного обработчика изображений.",
 	"apiwarn-parse-nocontentmodel": "Параметры <var>title</var> или <var>contentmodel</var> не заданы, предполагается $1.",

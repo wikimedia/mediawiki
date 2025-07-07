@@ -58,7 +58,8 @@
 			"Paloi Sciurala",
 			"Trotinel Iftode",
 			"Michael2101",
-			"Valentin JJ."
+			"Valentin JJ.",
+			"Dimitrie569"
 		]
 	},
 	"tog-underline": "Sublinierea legăturilor:",
@@ -2003,7 +2004,7 @@
 	"statistics-header-hooks": "Alte statistici",
 	"statistics-articles": "Articole",
 	"statistics-pages": "Pagini",
-	"statistics-pages-desc": "Toate paginile din wiki, inclusiv pagini de discuție, redirectări etc.",
+	"statistics-pages-desc": "Toate paginile din wiki, inclusiv pagini de discuție, redirecționări etc.",
 	"statistics-files": "Fișiere încărcate",
 	"statistics-edits": "Modificări de la instalarea proiectului {{SITENAME}}",
 	"statistics-edits-average": "Media editărilor pe pagină",

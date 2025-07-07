@@ -4,7 +4,8 @@
 			"KhayR",
 			"Seb35",
 			"Ерней",
-			"Ильнар"
+			"Ильнар",
+			"Ильгиз"
 		]
 	},
 	"config-desc": "MediaWiki урнаштыручы",
@@ -64,7 +65,7 @@
 	"config-mysql-innodb": "InnoDB (киңәш ителә)",
 	"config-site-name": "Вики исеме:",
 	"config-site-name-blank": "Сайт исемен языгыз.",
-	"config-project-namespace": "Проектның исемнәр киңлеге:",
+	"config-project-namespace": "Проектның исемарасы:",
 	"config-ns-generic": "Проект",
 	"config-ns-site-name": "Вики исеме сыман: $1",
 	"config-ns-other": "Башка (күрсәтегез)",
