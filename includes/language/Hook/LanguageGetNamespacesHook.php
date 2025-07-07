@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Language\Hook;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.
@@ -22,3 +22,6 @@ interface LanguageGetNamespacesHook {
 	 */
 	public function onLanguageGetNamespaces( &$namespaces );
 }
+
+/** @deprecated class alias since 1.45 */
+class_alias( LanguageGetNamespacesHook::class, 'MediaWiki\\Hook\\LanguageGetNamespacesHook' );

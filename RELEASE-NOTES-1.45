@@ -216,6 +216,21 @@ because of Phabricator reports.
     - MailAddress
     - UserMailer
     - EmaillingJob
+  - MediaWiki\Languages => MediaWiki\Language
+    - LanguageConverterFactory
+    - LanguageEventIngress
+    - LanguageFactory
+    - LanguageFallback
+    - LanguageNameUtils
+  - MediaWiki\Languages\Hook => MediaWiki\Language\Hook
+    - Language__getMessagesFileNameHook
+    - LanguageGetTranslatedLanguageNamesHook
+  - Language related hooks: MediaWiki\Hook => MediaWiki\Language\Hook
+    - GetHumanTimestampHook
+    - GetLangPreferredVariantHook
+    - LanguageGetNamespacesHook
+    - LocalisationCacheRecacheFallbackHook
+    - LocalisationCacheRecacheHook
 * UserNameUtils::getTempPlaceholder() has been deprecated and now emits
   deprecation warnings. Use TempUserConfig::getPlaceholderName() instead.
 * MediaWikiServices::disableStorageBackend(), deprecated in 1.40 now

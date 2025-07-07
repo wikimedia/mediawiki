@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Languages\Hook;
+namespace MediaWiki\Language\Hook;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.
@@ -21,3 +21,7 @@ interface LanguageGetTranslatedLanguageNamesHook {
 	 */
 	public function onLanguageGetTranslatedLanguageNames( &$names, $code );
 }
+
+/** @deprecated class alias since 1.45 */
+class_alias( LanguageGetTranslatedLanguageNamesHook::class,
+	'MediaWiki\\Languages\\Hook\\LanguageGetTranslatedLanguageNamesHook' );

@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Language\Hook;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.
@@ -24,3 +24,6 @@ interface LocalisationCacheRecacheHook {
 	 */
 	public function onLocalisationCacheRecache( $cache, $code, &$alldata, $unused );
 }
+
+/** @deprecated class alias since 1.45 */
+class_alias( LocalisationCacheRecacheHook::class, 'MediaWiki\\Hook\\LocalisationCacheRecacheHook' );

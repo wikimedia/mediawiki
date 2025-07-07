@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Language\Hook;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.
@@ -24,3 +24,6 @@ interface GetLangPreferredVariantHook {
 	 */
 	public function onGetLangPreferredVariant( &$req );
 }
+
+/** @deprecated class alias since 1.45 */
+class_alias( GetLangPreferredVariantHook::class, 'MediaWiki\\Hook\\GetLangPreferredVariantHook' );

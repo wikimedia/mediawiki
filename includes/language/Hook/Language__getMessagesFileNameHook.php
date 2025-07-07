@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Languages\Hook;
+namespace MediaWiki\Language\Hook;
 
 // phpcs:disable Squiz.Classes.ValidClassName.NotCamelCaps
 /**
@@ -22,3 +22,7 @@ interface Language__getMessagesFileNameHook {
 	 */
 	public function onLanguage__getMessagesFileName( $code, &$file );
 }
+
+/** @deprecated class alias since 1.45 */
+class_alias( Language__getMessagesFileNameHook::class,
+	'MediaWiki\\Languages\\Hook\\Language__getMessagesFileNameHook' );

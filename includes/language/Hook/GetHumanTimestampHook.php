@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Language\Hook;
 
 use MediaWiki\Language\Language;
 use MediaWiki\User\User;
@@ -32,3 +32,6 @@ interface GetHumanTimestampHook {
 		$lang
 	);
 }
+
+/** @deprecated class alias since 1.45 */
+class_alias( GetHumanTimestampHook::class, 'MediaWiki\\Hook\\GetHumanTimestampHook' );
