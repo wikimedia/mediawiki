@@ -58,6 +58,7 @@
 		"wikimedia/bcp-47-code": "2.0.1",
 		"wikimedia/cdb": "3.0.0",
 		"wikimedia/cldr-plural-rule-parser": "2.0.0",
+		"wikimedia/codex": "0.7.1",
 		"wikimedia/common-passwords": "0.5.1",
 		"wikimedia/composer-merge-plugin": "2.1.0",
 		"wikimedia/html-formatter": "4.1.0",
@@ -107,6 +108,7 @@
 		"wmde/hamcrest-html-matchers": "^1.0.0"
 	},
 	"replace": {
+		"krinkle/intuition": "2.3.99",
 		"symfony/polyfill-ctype": "1.99",
 		"symfony/polyfill-intl-grapheme": "1.17.1",
 		"symfony/polyfill-intl-normalizer": "1.17.1",

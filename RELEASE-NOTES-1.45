@@ -75,6 +75,7 @@ For notes on 1.44.x and older releases, see HISTORY.
 
 ==== New external libraries ====
 
+* Added wikimedia/codex ("Codex-PHP") v0.7.1.
 * …
 
 ===== New development-only external libraries =====
