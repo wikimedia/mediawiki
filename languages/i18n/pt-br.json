@@ -3374,6 +3374,7 @@
 	"version-hooks": "Hooks",
 	"version-parser-extensiontags": "Etiquetas de extensões de tipo \"parser\"",
 	"version-parser-function-hooks": "Funções \"hooks\" de \"parser\"",
+	"version-parser-function-hooks-parsoid": "Somente Parsoid",
 	"version-parsoid-modules": "Módulos da extensão Parsoid",
 	"version-hook-name": "Nome do hook",
 	"version-hook-subscribedby": "Subscrito por",

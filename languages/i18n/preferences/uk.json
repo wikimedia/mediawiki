@@ -221,6 +221,8 @@
 	"rcfilters-watchlist-preference-label": "Використовувати інтерфейс без JavaScript",
 	"rcfilters-watchlist-preference-help": "Завантажує сторінку [[{{#special:Watchlist}}|Списку спостереження]] без функціоналу пошуку фільтрів чи підсвічування.",
 	"prefs-changeswatchlist": "Показані зміни",
+	"tog-watchstar-expiry": "Стандартний час перебування у списку спостереження для сторінок, доданих вручну:",
+	"tog-watch-expiry": "Період часу за замовчуванням:",
 	"tog-watchlisthideminor": "Приховати незначні редагування у списку спостереження",
 	"tog-watchlisthidebots": "Приховати редагування ботів у списку спостереження",
 	"tog-watchlisthideown": "Приховати мої редагування у списку спостереження",

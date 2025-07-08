@@ -2352,6 +2352,7 @@
 	"block-options": "Plusa agadi:",
 	"block-reason": "Motivo:",
 	"block-reason-help": "Exemple, mencionanta pagini atakita da vandalo, pagini kreita por personala promoco, edc.",
+	"block-user-active-range-blocks": "Intervalo di IP-blokuso aktiva",
 	"block-target": "Uzero-nomo, IP-adreso o IP-serio:",
 	"block-target-placeholder": "Uzero-nomo, 1.1.1.42, o 1.1.1.42/16",
 	"unblockip": "Desblokusar uzero",
