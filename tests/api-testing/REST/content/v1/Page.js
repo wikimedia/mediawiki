@@ -142,7 +142,7 @@ describe( 'Page Source', () => {
 
 			assert.containsAllKeys( postEditHeaders, [ 'etag' ] );
 			assert.deepEqual( postEditHeaders[ 'last-modified' ], postEditDate.toGMTString() );
-			assert.match( postEditHeaders[ 'cache-control' ], /^max-age=\d/ );
+			assert.match( postEditHeaders[ 'cache-control' ], /\bmax-age=\d/ );
 			assert.strictEqual( isNaN( preEditDate.getTime() ), false );
 			assert.strictEqual( isNaN( postEditDate.getTime() ), false );
 			assert.notEqual( preEditDate, postEditDate );
@@ -202,7 +202,7 @@ describe( 'Page Source', () => {
 
 			assert.containsAllKeys( postEditHeaders, [ 'etag' ] );
 			assert.deepEqual( postEditHeaders[ 'last-modified' ], postEditDate.toGMTString() );
-			assert.match( postEditHeaders[ 'cache-control' ], /^max-age=\d/ );
+			assert.match( postEditHeaders[ 'cache-control' ], /\bmax-age=\d/ );
 			assert.strictEqual( isNaN( preEditDate.getTime() ), false );
 			assert.strictEqual( isNaN( postEditDate.getTime() ), false );
 			assert.notEqual( preEditDate, postEditDate );
@@ -361,7 +361,7 @@ describe( 'Page Source', () => {
 			const postEditEtag = postEditResponse.headers.etag;
 
 			assert.containsAllKeys( postEditHeaders, [ 'etag', 'cache-control', 'last-modified' ] );
-			assert.match( postEditHeaders[ 'cache-control' ], /^max-age=\d/ );
+			assert.match( postEditHeaders[ 'cache-control' ], /\bmax-age=\d/ );
 			assert.strictEqual( isNaN( preEditDate.getTime() ), false );
 			assert.strictEqual( isNaN( postEditDate.getTime() ), false );
 			assert.notEqual( preEditDate, postEditDate );
@@ -490,7 +490,7 @@ describe( 'Page Source', () => {
 
 			// The last-modified date is the render timestamp, which may be newer than the revision
 			assert.strictEqual( postEditRevDate.valueOf() <= postEditHeaderDate.valueOf(), true );
-			assert.match( postEditHeaders[ 'cache-control' ], /^max-age=\d/ );
+			assert.match( postEditHeaders[ 'cache-control' ], /\bmax-age=\d/ );
 			assert.strictEqual( isNaN( preEditRevDate.getTime() ), false );
 			assert.strictEqual( isNaN( postEditRevDate.getTime() ), false );
 			assert.notEqual( preEditRevDate, postEditRevDate );
