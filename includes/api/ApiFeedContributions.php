@@ -43,7 +43,6 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\ExternalUserNames;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserRigorOptions;
-use stdClass;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\Rdbms\IConnectionProvider;
 
@@ -186,7 +185,8 @@ class ApiFeedContributions extends ApiBase {
 		ApiFormatFeedWrapper::setResult( $this->getResult(), $feed, $feedItems );
 	}
 
-	protected function feedItem( stdClass $row ): ?FeedItem {
+	// TODO: use stdClass type hint without T398925
+	protected function feedItem( $row ): ?FeedItem {
 		// This hook is the api contributions equivalent to the
 		// ContributionsLineEnding hook. Hook implementers may cancel
 		// the hook to signal the user is not allowed to read this item.
