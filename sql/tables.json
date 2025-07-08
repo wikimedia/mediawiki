@@ -3759,7 +3759,7 @@
 			},
 			{
 				"name": "file_type",
-				"comment": "FK to file_types.ft_id",
+				"comment": "FK to filetypes.ft_id",
 				"type": "smallint",
 				"options": { "unsigned": true, "notnull": true }
 			},
