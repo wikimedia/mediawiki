@@ -2400,7 +2400,7 @@
 	"unblockiptext": "Defnyddiwch y ffurflen isod i ail-alluogi golygiadau gan ddefnyddiwr neu o gyfeiriad IP a fu gynt wedi'i flocio.",
 	"ipusubmit": "Tynnu'r bloc hwn",
 	"unblocked": "Mae [[User:$1|$1]] wedi cael ei ddad-flocio",
-	"unblocked-range": "Dadrwystrir $1",
+	"unblocked-range": "Dadflociwyd $1.",
 	"unblocked-id": "Tynnwyd y bloc $1.",
 	"unblocked-ip": "Mae [[Special:Contributions/$1|$1]] wedi ei atal.",
 	"blocklist": "Defnyddwyr wedi'u blocio",

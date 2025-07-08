@@ -22,7 +22,8 @@
 			"TK-999",
 			"Tacsipacsi",
 			"Tgr",
-			"ViDam"
+			"ViDam",
+			"Krisztina"
 		]
 	},
 	"preferences": "Beállítások",
@@ -44,7 +45,7 @@
 	"group-membership-link-with-expiry": "$1 (a következő időpontig: $2)",
 	"prefs-edits": "Szerkesztéseid száma:",
 	"prefs-registration": "Regisztráció ideje:",
-	"yourrealname": "Valódi neved:",
+	"yourrealname": "Valódi név:",
 	"prefs-help-realname": "A valódi név nem kötelező.\nHa megadod, akkor leszel feltüntetve a munkád szerzőjeként.",
 	"yourpassword": "Jelszavad:",
 	"prefs-resetpass": "Jelszó megváltoztatása",

@@ -2247,6 +2247,8 @@
 	"mycontris": "Collaboraciones",
 	"anoncontribs": "Contribuciones",
 	"contributions-subtitle": "Pa {{GENDER:$2|$1}}",
+	"contributions-edit-count": "{{GENDER:$1|Un usuariu|Una usuaria}} con $2 {{PLURAL:$2|edición|ediciones}}.",
+	"contributions-account-creation-date": "Cuenta creada'l $1.",
 	"contributions-userdoesnotexist": "La cuenta d'usuariu «$1» nun ta rexistrada.",
 	"negative-namespace-not-supported": "Nun se permiten los espacios de nomes con valores negativos.",
 	"nocontribs": "Nun s'atoparon cambeos que coincidan con esi criteriu.",
