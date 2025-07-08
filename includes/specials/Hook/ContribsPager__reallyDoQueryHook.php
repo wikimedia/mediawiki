@@ -3,6 +3,7 @@
 namespace MediaWiki\Hook;
 
 use MediaWiki\Pager\ContributionsPager;
+use stdClass;
 
 // phpcs:disable Squiz.Classes.ValidClassName.NotCamelCaps
 /**
@@ -18,7 +19,7 @@ interface ContribsPager__reallyDoQueryHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param array &$data an array of results of all contribs queries
+	 * @param array<iterable<stdClass>> &$data An array of results of all contribs queries
 	 * @param ContributionsPager $pager The ContributionsPager object hooked into
 	 * @param string $offset Index offset, inclusive
 	 * @param int $limit Exact query limit
