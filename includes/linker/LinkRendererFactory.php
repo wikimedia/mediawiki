@@ -25,10 +25,6 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Title\TitleFormatter;
-use MediaWiki\User\TempUser\TempUserConfig;
-use MediaWiki\User\TempUser\TempUserDetailsLookup;
-use MediaWiki\User\UserIdentityLookup;
-use MediaWiki\User\UserNameUtils;
 
 /**
  * Factory to create LinkRender objects
@@ -56,32 +52,23 @@ class LinkRendererFactory {
 	 */
 	private $specialPageFactory;
 
-	private TempUserConfig $tempUserConfig;
-	private TempUserDetailsLookup $tempUserDetailsLookup;
-	private UserIdentityLookup $userIdentityLookup;
-	private UserNameUtils $userNameUtils;
-
 	/**
 	 * @internal For use by core ServiceWiring
+	 * @param TitleFormatter $titleFormatter
+	 * @param LinkCache $linkCache
+	 * @param SpecialPageFactory $specialPageFactory
+	 * @param HookContainer $hookContainer
 	 */
 	public function __construct(
 		TitleFormatter $titleFormatter,
 		LinkCache $linkCache,
 		SpecialPageFactory $specialPageFactory,
-		HookContainer $hookContainer,
-		TempUserConfig $tempUserConfig,
-		TempUserDetailsLookup $tempUserDetailsLookup,
-		UserIdentityLookup $userIdentityLookup,
-		UserNameUtils $userNameUtils
+		HookContainer $hookContainer
 	) {
 		$this->titleFormatter = $titleFormatter;
 		$this->linkCache = $linkCache;
 		$this->specialPageFactory = $specialPageFactory;
 		$this->hookContainer = $hookContainer;
-		$this->tempUserConfig = $tempUserConfig;
-		$this->tempUserDetailsLookup = $tempUserDetailsLookup;
-		$this->userIdentityLookup = $userIdentityLookup;
-		$this->userNameUtils = $userNameUtils;
 	}
 
 	/**
@@ -95,9 +82,7 @@ class LinkRendererFactory {
 	public function create( array $options = [ 'renderForComment' => false ] ) {
 		return new LinkRenderer(
 			$this->titleFormatter, $this->linkCache, $this->specialPageFactory,
-			$this->hookContainer, $this->tempUserConfig,
-			$this->tempUserDetailsLookup, $this->userIdentityLookup,
-			$this->userNameUtils,
+			$this->hookContainer,
 			new ServiceOptions( LinkRenderer::CONSTRUCTOR_OPTIONS, $options )
 		);
 	}

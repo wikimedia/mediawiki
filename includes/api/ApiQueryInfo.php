@@ -28,7 +28,6 @@ use MediaWiki\EditPage\PreloadedContentBuilder;
 use MediaWiki\Language\ILanguageConverter;
 use MediaWiki\Language\Language;
 use MediaWiki\Languages\LanguageConverterFactory;
-use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinksMigration;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
@@ -73,7 +72,6 @@ class ApiQueryInfo extends ApiQueryBase {
 	private PreloadedContentBuilder $preloadedContentBuilder;
 	private RevisionLookup $revisionLookup;
 	private UrlUtils $urlUtils;
-	private LinkRenderer $linkRenderer;
 
 	private bool $fld_protection = false;
 	private bool $fld_talkid = false;
@@ -193,8 +191,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		IntroMessageBuilder $introMessageBuilder,
 		PreloadedContentBuilder $preloadedContentBuilder,
 		RevisionLookup $revisionLookup,
-		UrlUtils $urlUtils,
-		LinkRenderer $linkRenderer
+		UrlUtils $urlUtils
 	) {
 		parent::__construct( $queryModule, $moduleName, 'in' );
 		$this->languageConverter = $languageConverterFactory->getLanguageConverter( $contentLanguage );
@@ -211,7 +208,6 @@ class ApiQueryInfo extends ApiQueryBase {
 		$this->preloadedContentBuilder = $preloadedContentBuilder;
 		$this->revisionLookup = $revisionLookup;
 		$this->urlUtils = $urlUtils;
-		$this->linkRenderer = $linkRenderer;
 	}
 
 	/**
@@ -814,7 +810,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		foreach ( $this->titles as $pageId => $page ) {
 			$pdbk = $this->titleFormatter->getPrefixedDBkey( $page );
 			$pagemap[$pageId] = $pdbk;
-			$classes[$pdbk] = $this->linkRenderer->getLinkClasses( $page );
+			$classes[$pdbk] = isset( $this->pageIsRedir[$pageId] ) && $this->pageIsRedir[$pageId] ? 'mw-redirect' : '';
 		}
 		// legacy hook requires a real Title, not a LinkTarget
 		$context_title = $this->titleFactory->newFromLinkTarget(
