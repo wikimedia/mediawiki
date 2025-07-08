@@ -120,6 +120,9 @@ function restSearchClient( searchApiUrl, urlGeneratorInstance, recommendationApi
 		fetchByTitle: ( q, limit = 10, showDescription = true ) => {
 			const params = { q, limit: limit.toString() };
 			const search = new URLSearchParams( params );
+			mw.hook( 'typeaheadSearch.appendUrlParams' ).fire( ( key, value ) => {
+				search.append( key, value );
+			} );
 			const url = `${ searchApiUrl }/v1/search/title?${ search.toString() }`;
 			const result = fetchJson( url, {
 				headers: {
