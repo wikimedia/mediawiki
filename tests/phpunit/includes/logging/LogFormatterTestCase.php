@@ -6,7 +6,6 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkTarget;
-use MediaWiki\Linker\UserLinkRenderer;
 use MediaWiki\Logging\LogEntryBase;
 use MediaWiki\Logging\LogPage;
 use MediaWiki\Page\ExistingPageRecord;
@@ -45,10 +44,6 @@ abstract class LogFormatterTestCase extends MediaWikiLangTestCase {
 			$this->createMock( LinkCache::class ),
 			$services->getSpecialPageFactory(),
 			$services->getHookContainer(),
-			$services->getTempUserConfig(),
-			$services->getTempUserDetailsLookup(),
-			$services->getUserIdentityLookup(),
-			$services->getUserNameUtils(),
 			new ServiceOptions(
 				LinkRenderer::CONSTRUCTOR_OPTIONS,
 				$services->getMainConfig(),
@@ -62,24 +57,6 @@ abstract class LogFormatterTestCase extends MediaWikiLangTestCase {
 			->willReturnCallback(
 				static function ( $target, $text = null, $extra = [], $query = [] ) use ( $realLinkRenderer ) {
 					return $realLinkRenderer->makeKnownLink( $target, $text, $extra, $query );
-				}
-			);
-		// Proxy 'makeUserLink' as well
-		$userLinkRenderer = new UserLinkRenderer(
-			$services->getHookContainer(),
-			$services->getTempUserConfig(),
-			$services->getSpecialPageFactory(),
-			$linkRenderer,
-			$services->getTempUserDetailsLookup(),
-			$services->getUserIdentityLookup(),
-			$services->getUserNameUtils()
-		);
-		$linkRenderer->method( 'makeUserLink' )
-			->willReturnCallback(
-				static function ( $targetUser, $context, $altUserName = null, $attributes = [] ) use ( $userLinkRenderer ) {
-					return $userLinkRenderer->userLink(
-						$targetUser, $context, $altUserName, $attributes
-					);
 				}
 			);
 		$formatter->setLinkRenderer( $linkRenderer );

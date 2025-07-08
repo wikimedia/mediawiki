@@ -316,7 +316,7 @@ class RCCacheEntryFactory {
 			$userLink = ' <span class="' . $deletedClass . '">' .
 				$this->context->msg( 'rev-deleted-user' )->escaped() . '</span>';
 		} else {
-			return $this->linkRenderer->makeUserLink(
+			return $this->userLinkRenderer->userLink(
 				$cacheEntry->getPerformerIdentity(),
 				$this->context,
 				ExternalUserNames::getLocal( $cacheEntry->mAttribs['rc_user_text'] )
