@@ -26,11 +26,25 @@
 		justify-content: flex-start;
 	}
 
+	.mw-rcfilters-ui-watchlistTopSectionWidget-buttonsSection {
+		display: flex;
+		flex-flow: column;
+		align-items: flex-end;
+		justify-content: flex-end;
+		min-width: 26%;
+	}
+
+	.mw-rcfilters-ui-watchlistTopSectionWidget-editWatchlistButtonIcon {
+		margin: 0 0.375em 0 0;
+		vertical-align: top;
+	}
+
 	// On small screens, remove the table properties from the
 	// top section. T225127#5518870
 	@media screen and ( max-width: @max-width-breakpoint-tablet ) {
 		.mw-rcfilters-ui-row {
-			flex-direction: column;
+			display: flex;
+			flex-flow: column;
 		}
 
 		.mw-rcfilters-ui-watchlistTopSectionWidget-buttonsSection {
@@ -50,7 +64,8 @@
 	}
 
 	// styles that should only kick in for tablet mode:
-	@media screen and ( min-width: @min-width-breakpoint-tablet ) {
+	@media screen and ( min-width: @min-width-breakpoint-tablet )
+		and ( max-width: @max-width-breakpoint-tablet ) {
 		// T358424
 		&-savedLinksTable {
 			.mw-rcfilters-ui-row {
@@ -61,7 +76,8 @@
 
 		// T235535
 		&-editWatchlistButton {
-			margin: 0.15em 0 0.15em 0;
+			min-width: 9em;
+			margin: 0.15em 0.15em 0.15em 0.15em;
 		}
 
 		.mw-rcfilters-ui-watchlistTopSectionWidget-editWatchlistButtonIcon {
@@ -70,10 +86,13 @@
 
 		.mw-rcfilters-ui-watchlistTopSectionWidget-buttonsSection {
 			display: flex;
+			flex-flow: row;
+			min-width: auto;
+		}
+
+		.mw-rcfilters-ui-row {
+			display: flex;
 			flex-flow: column;
-			align-items: flex-end;
-			justify-content: flex-end;
-			min-width: 26%;
 		}
 	}
 }
