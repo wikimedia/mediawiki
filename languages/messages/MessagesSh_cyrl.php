@@ -7,7 +7,16 @@
  * @author Aca
  */
 
-$fallback = 'sr-cyrl, sr-ec, sh, sh-latn';
+/**
+ * Fallback prioritizes language codes in the following order:
+ *
+ * 1. Cyrillic-script Ekavian codes
+ * 2. Latin-script Ekavian codes
+ * 3. Latin-script Ijekavian codes
+ *
+ * This order aligns with T399126.
+ */
+$fallback = 'sr-cyrl, sr-ec, sr-latn, sr-el, sh, sh-latn, bs, hr';
 
 $namespaceNames = [
 	NS_SPECIAL          => 'Посебно',

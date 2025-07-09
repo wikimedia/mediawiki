@@ -17,7 +17,7 @@ class LanguageFallbackTest extends MediaWikiUnitTestCase {
 		'sco' => [ 'en' ],
 		'yi' => [ 'he' ],
 		'ruq' => [ 'ruq-latn', 'ro' ],
-		'sh' => [ 'sh-latn', 'sh-cyrl', 'bs', 'sr-el', 'sr-latn', 'hr' ],
+		'sh' => [ 'sh-latn', 'bs', 'hr', 'sr-latn', 'sr-el', 'sh-cyrl', 'sr-cyrl', 'sr-ec' ],
 	];
 
 	private function getCallee( array $options = [] ): LanguageFallback {

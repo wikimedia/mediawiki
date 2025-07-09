@@ -83,7 +83,7 @@ trait LanguageFallbackTestTrait {
 			'sco' => [ 'sco', [ 'en' ] ],
 			'yi' => [ 'yi', [ 'he', 'en' ] ],
 			'ruq' => [ 'ruq', [ 'ruq-latn', 'ro', 'en' ] ],
-			'sh' => [ 'sh', [ 'sh-latn', 'sh-cyrl', 'bs', 'sr-el', 'sr-latn', 'hr', 'en' ] ],
+			'sh' => [ 'sh', [ 'sh-latn', 'bs', 'hr', 'sr-latn', 'sr-el', 'sh-cyrl', 'sr-cyrl', 'sr-ec', 'en' ] ],
 		];
 	}
 
@@ -106,7 +106,7 @@ trait LanguageFallbackTestTrait {
 			'sco' => [ 'sco', [ 'en' ] ],
 			'yi' => [ 'yi', [ 'he' ] ],
 			'ruq' => [ 'ruq', [ 'ruq-latn', 'ro' ] ],
-			'sh' => [ 'sh', [ 'sh-latn', 'sh-cyrl', 'bs', 'sr-el', 'sr-latn', 'hr' ] ],
+			'sh' => [ 'sh', [ 'sh-latn', 'bs', 'hr', 'sr-latn', 'sr-el', 'sh-cyrl', 'sr-cyrl', 'sr-ec' ] ],
 		];
 	}
 
@@ -164,9 +164,9 @@ trait LanguageFallbackTestTrait {
 			'yi on yi' => [ 'yi', 'yi', [ [ 'he', 'en' ], [ 'yi' ] ] ],
 
 			'sh on ruq' => [ 'sh', 'ruq',
-				[ [ 'sh-latn', 'sh-cyrl', 'bs', 'sr-el', 'sr-latn', 'hr', 'en' ], [ 'ruq', 'ruq-latn', 'ro' ] ], 2 ],
+				[ [ 'sh-latn', 'bs', 'hr', 'sr-latn', 'sr-el', 'sh-cyrl', 'sr-cyrl', 'sr-ec', 'en' ], [ 'ruq', 'ruq-latn', 'ro' ] ], 2 ],
 			'ruq on sh' => [ 'ruq', 'sh',
-				[ [ 'ruq-latn', 'ro', 'en' ], [ 'sh', 'sh-latn', 'sh-cyrl', 'bs', 'sr-el', 'sr-latn', 'hr' ] ], 2 ],
+				[ [ 'ruq-latn', 'ro', 'en' ], [ 'sh', 'sh-latn', 'bs', 'hr', 'sr-latn', 'sr-el', 'sh-cyrl', 'sr-cyrl', 'sr-ec' ] ], 2 ],
 		];
 	}
 }
