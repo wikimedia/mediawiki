@@ -10,5 +10,11 @@ export const config = { ...wdioDefaults,
 		'docs/**/specs/*.js',
 		'specs/**/*.js',
 		'wdio-mediawiki/specs/*.js'
-	]
+	],
+	suites: {
+		daily: [
+			'specs/page.js',
+			'wdio-mediawiki/specs/BlankPage.js'
+		]
+	}
 };

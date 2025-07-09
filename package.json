@@ -8,7 +8,7 @@
 		"minify:svg": "svgo --config=.svgo.config.js --quiet --recursive --folder resources/src --folder resources/assets",
 		"mocha": "mocha --timeout 0 --recursive",
 		"qunit": "grunt qunit",
-		"selenium-daily": "npm run selenium-test -- --mochaOpts.grep @daily",
+		"selenium-daily": "npm run selenium-test -- --suite daily --mochaOpts.grep @daily",
 		"selenium-test": "wdio ./tests/selenium/wdio.conf.js",
 		"test": "grunt lint && npm run doc && npm run jest",
 		"jest": "jest --config tests/jest/jest.config.js"
