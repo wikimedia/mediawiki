@@ -103,7 +103,8 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 
 		$this->addFieldsIf( 'cl_timestamp', $fld_timestamp || $params['sort'] == 'timestamp' );
 
-		$this->addTables( [ 'page', 'categorylinks' ] ); // must be in this order for 'USE INDEX'
+		$this->addTables( [ 'page', 'categorylinks' ] );
+		$this->addJoinConds( [ 'categorylinks' => [ 'JOIN', 'cl_from=page_id' ] ] );
 		if ( $this->migrationStage & SCHEMA_COMPAT_READ_OLD ) {
 			$this->addWhereFld( 'cl_to', $categoryTitle->getDBkey() );
 		} else {
@@ -147,7 +148,9 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 				] ) );
 			}
 
-			$this->addOption( 'USE INDEX', [ 'categorylinks' => 'cl_timestamp' ] );
+			if ( $this->migrationStage & SCHEMA_COMPAT_READ_OLD ) {
+				$this->addOption( 'USE INDEX', [ 'categorylinks' => 'cl_timestamp' ] );
+			}
 		} else {
 			if ( $params['continue'] ) {
 				$cont = $this->parseContinueParamOrDie( $params['continue'], [ 'string', 'string', 'int' ] );
@@ -204,8 +207,6 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 				$this->addOption( 'USE INDEX', [ 'categorylinks' => 'cl_sortkey_id' ] );
 			}
 		}
-
-		$this->addWhere( 'cl_from=page_id' );
 
 		$limit = $params['limit'];
 		$this->addOption( 'LIMIT', $limit + 1 );
