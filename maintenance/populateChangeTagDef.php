@@ -124,7 +124,7 @@ class PopulateChangeTagDef extends LoggedUpdateMaintenance {
 			}
 
 			if ( $this->hasOption( 'dry-run' ) ) {
-				$this->output( 'This row will be updated: ' . implode( ', ', $row ) . "\n" );
+				$this->output( 'This row will be updated: id ' . $row->ct_tag_id . ', ' . $row->hitcount . " hits\n" );
 				continue;
 			}
 
