@@ -36,6 +36,9 @@ class RevisionListBaseTest extends MediaWikiUnitTestCase {
 		$resultWrapper->expects( $this->once() )
 			->method( 'rewind' );
 		$resultWrapper->expects( $this->once() )
+			->method( 'valid' )
+			->willReturn( true );
+		$resultWrapper->expects( $this->once() )
 			->method( 'current' )
 			->willReturn( $fakeRow );
 

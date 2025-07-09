@@ -105,9 +105,8 @@ abstract class RevisionListBase extends ContextSource implements Iterator {
 	 * Initialise the current iteration pointer
 	 */
 	protected function initCurrent() {
-		$row = $this->res->current();
-		if ( $row ) {
-			$this->current = $this->newItem( $row );
+		if ( $this->res->valid() ) {
+			$this->current = $this->newItem( $this->res->current() );
 		} else {
 			$this->current = false;
 		}
@@ -135,7 +134,7 @@ abstract class RevisionListBase extends ContextSource implements Iterator {
 
 	/**
 	 * Get the current list item, or false if we are at the end
-	 * @return RevisionItemBase|false
+	 * @return RevisionItemBase
 	 */
 	#[\ReturnTypeWillChange]
 	public function current() {

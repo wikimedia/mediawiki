@@ -428,9 +428,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		$numRevisions = 0;
 		// Live revisions...
 		$list = $this->getList();
-		for ( $list->reset(); $list->current(); $list->next() ) {
-			$item = $list->current();
-
+		foreach ( $list as $item ) {
 			if ( !$item->canView() ) {
 				if ( !$this->submitClicked ) {
 					throw new PermissionsError( 'suppressrevision' );
