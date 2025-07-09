@@ -2234,7 +2234,7 @@
 	"categoriesfrom": "从此处开始显示分类：",
 	"deletedcontributions": "被删除的用户贡献",
 	"deletedcontributions-title": "用户$1已被删除的贡献",
-	"deletedcontributions-title-for-ip-when-temporary-accounts-enabled": "删除了$1的旧IP的贡献",
+	"deletedcontributions-title-for-ip-when-temporary-accounts-enabled": "删除了$1的旧版IP贡献",
 	"sp-deletedcontributions-contribs": "贡献",
 	"linksearch": "外部链接搜索",
 	"linksearch-pat": "搜索模式：",

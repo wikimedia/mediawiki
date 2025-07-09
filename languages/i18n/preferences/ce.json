@@ -34,7 +34,7 @@
 	"prefs-resetpass": "Хийца пароль",
 	"passwordtooshort": "Пароль хилла йеза $1 {{PLURAL:$1|хьаьрк}} долуш.",
 	"passwordtoolong": "Паролан йукъахь хила йеза сов {{PLURAL:$1|1=$1 хьаьрк|$1 хьаьркаш}}.",
-	"password-substring-username-match": "Пароль шун декъахочун цӀарчохь гучуйала ца йеза.",
+	"password-substring-username-match": "Пароль шун декъашхочун цӀарчохь гучуйала ца йеза.",
 	"password-name-match": "Йазйина пароль декъашхочун дӀайаздарал башха хила йеза.",
 	"password-login-forbidden": "Иштта декъашхочун цӀе а, пароль а лелаян цамаго.",
 	"passwordincommonlist": "Чуйаьккхина пароль йу сих-сиха лелориг. Дехар до, харжа кхин.",

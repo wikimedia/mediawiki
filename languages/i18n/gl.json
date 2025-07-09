@@ -756,7 +756,7 @@
 	"double-px-category": "Páxinas con tamaños de imaxe que conteñen un px de máis",
 	"double-px-category-desc": "A páxina contén unha imaxe cuxo tamaño contén un sufixo <code>px</code> de máis, como <code>100pxpx</code>.",
 	"converter-manual-rule-error": "Detectouse un erro na regra manual de conversión da lingua",
-	"undo-success": "A edición pódese desfacer.\nComprobe a comparación que aparece a continuación para confirmar que isto é o que desexa facer; despois, publique os cambios para desfacer a edición.",
+	"undo-success": "A edición pódese desfacer.\nComproba a comparación que aparece a continuación para confirmar que isto é o que desexas facer; despois, publica os cambios para desfaceres a edición.",
 	"undo-failure": "Non se pode desfacer a edición debido a un conflito con algunha das edicións intermedias.",
 	"undo-main-slot-only": "A edición non puido desfacerse xa que implica contido que se atopa fóra da posición principal.",
 	"undo-norev": "A edición non se pode desfacer porque non existe ou foi eliminada.",

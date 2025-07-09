@@ -866,6 +866,8 @@
 	"diff-paragraph-moved-toold": "Dilec’hiet eo bet ar rannbennad. Klikit evit mont d’al lec'h kozh.",
 	"diff-inline-tooltip-ins": "Danvez ouzhpennet",
 	"diff-inline-tooltip-del": "Endalc’h diverket",
+	"diff-inline-format-label": "Enlinenn",
+	"diff-inline-switch-desc": "Dibab etre stumm enlinenn pe daou vann",
 	"diff-line-deleted": "⟵ dilemel",
 	"diff-newline": "↲ linenn nevez",
 	"difference-missing-revision": "!!{{PLURAL:$2|Un adweladur|$2 adweladurioù}} eus an disheñvelder ($1) {{PLURAL:$2|n'eo ket bet kavet|n'int ket bet adkavet}}.\n\nC'hoarvezout a ra peurliesañ pa vez heuliet ul liamm disheñvel dispredet war-zu ur bajenn zo bet dilamet.\nGallout a reot kavout munudoù e [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} renabl an dilamadurioù].",

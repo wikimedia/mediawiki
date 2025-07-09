@@ -1902,6 +1902,7 @@
 	"statistics-header-users": "آمار کاربران",
 	"statistics-header-hooks": "آمارهای دیگر",
 	"statistics-articles": "صفحه‌های محتوایی",
+	"statistics-articles-desc": "برای جزئیات به [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgArticleCountMethod مستندات شمار مقاله‌ها] مراجعه کنید",
 	"statistics-pages": "صفحه‌ها",
 	"statistics-pages-desc": "تمام صفحه‌های این ویکی، از جمله صفحه‌های بحث، تغییرمسیر و غیره",
 	"statistics-files": "پرونده‌های بارگذاری‌شده",

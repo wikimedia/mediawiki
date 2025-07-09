@@ -271,7 +271,8 @@
 			"捍粵者",
 			"아라",
 			"Aca",
-			"Foomin10"
+			"Foomin10",
+			"codeofdusk"
 		]
 	},
 	"sidebar": "{{notranslate}}",
@@ -858,7 +859,7 @@
 	"showdiff": "Button below the edit page. See also {{msg-mw|Showpreview}} and {{msg-mw|Savearticle}} for the other buttons.\n\nSee also:\n* {{msg-mw|Showdiff}}\n* {{msg-mw|Accesskey-diff}}\n* {{msg-mw|Tooltip-diff}}\n{{Identical|Show change}}",
 	"tempuser-expired-link-tooltip": "Tooltip shown next to user links associated with expired temporary accounts.",
 	"tempuser-helppage": "{{notranslate}}\nDefines a link to the documentation page for temporary accounts.",
-	"temp-user-banner-description": "The text on the banner that informs users that they are editing with a temporary arrount",
+	"temp-user-banner-description": "The text on the banner that informs users that they are editing with a temporary account. After this message, there is {{msg-mw|colon-separator}} and a temporary account name. See https://phabricator.wikimedia.org/T398443",
 	"temp-user-banner-tooltip-label": "Accessible label for the tooltip toggle.",
 	"temp-user-banner-tooltip-title": "The title of the tooltip that explains what a temporary account is.",
 	"temp-user-banner-tooltip-description-expiration-soon": "First paragraph of the temporary user expiration alert tooltip. Explains the temporary account expiration is scheduled in the near future.\n\nParameters:\n* $1 - the number of days until the temporary account will be expired",

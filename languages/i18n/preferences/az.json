@@ -17,7 +17,8 @@
 			"Vesely35",
 			"Vugar 1981",
 			"Wertuose",
-			"Şeyx Şamil"
+			"Şeyx Şamil",
+			"Əkrəm"
 		]
 	},
 	"preferences": "Nizamlamalar",
@@ -41,7 +42,7 @@
 	"prefs-edits": "Redaktə sayı:",
 	"prefs-registration": "Qeydiyyatdan keçdiyi tarix:",
 	"yourrealname": "Əsl adı:",
-	"prefs-help-realname": "Əsl ad istəyə bağlıdır.\nTəqdim olunarsa, o, yazdıqlarınıza istinad vermək üçün istifadə edilə bilər.",
+	"prefs-help-realname": "Əsl ad məcburi deyil.\nTəqdim olunarsa, o, yazdıqlarınıza istinad vermək üçün istifadə edilə bilər.",
 	"yourpassword": "Parol:",
 	"prefs-resetpass": "Parolu dəyiş",
 	"passwordtooshort": "Parolda ən azı {{PLURAL:$1|1 simvol}} olmalıdır.",
