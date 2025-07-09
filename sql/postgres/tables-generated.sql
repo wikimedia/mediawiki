@@ -526,6 +526,8 @@ CREATE INDEX cl_sortkey_id ON categorylinks (
   cl_from
 );
 
+CREATE INDEX cl_timestamp_id ON categorylinks (cl_target_id, cl_timestamp);
+
 
 CREATE TABLE logging (
   log_id SERIAL NOT NULL,

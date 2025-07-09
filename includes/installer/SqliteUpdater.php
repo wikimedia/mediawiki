@@ -100,6 +100,7 @@ class SqliteUpdater extends DatabaseUpdater {
 			// 1.45
 			[ 'addTable', 'existencelinks', 'patch-existencelinks.sql' ],
 			[ 'runMaintenance', FixWrongPasswordPrefixes::class ],
+			[ 'addIndex', 'categorylinks', 'cl_timestamp_id', 'patch-categorylinks-cl_timestamp_id.sql' ],
 		];
 	}
 

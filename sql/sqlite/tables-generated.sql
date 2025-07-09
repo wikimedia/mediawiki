@@ -501,6 +501,8 @@ CREATE INDEX cl_sortkey_id ON /*_*/categorylinks (
   cl_from
 );
 
+CREATE INDEX cl_timestamp_id ON /*_*/categorylinks (cl_target_id, cl_timestamp);
+
 
 CREATE TABLE /*_*/logging (
   log_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,

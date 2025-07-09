@@ -468,6 +468,7 @@ CREATE TABLE /*_*/categorylinks (
     cl_target_id, cl_type, cl_sortkey,
     cl_from
   ),
+  INDEX cl_timestamp_id (cl_target_id, cl_timestamp),
   PRIMARY KEY(cl_from, cl_to)
 ) /*$wgDBTableOptions*/;
 

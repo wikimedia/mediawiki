@@ -1562,6 +1562,12 @@
 				"comment": "We always sort within a given category, and within a given type.  FIXME: Formerly this index didn't cover cl_type (since that didn't exist), so old callers won't be using an index: fix this?",
 				"columns": [ "cl_target_id", "cl_type", "cl_sortkey", "cl_from" ],
 				"unique": false
+			},
+			{
+				"name": "cl_timestamp_id",
+				"comment": "Used by the API (and some extensions)",
+				"columns": [ "cl_target_id", "cl_timestamp" ],
+				"unique": false
 			}
 		],
 		"pk": [ "cl_from", "cl_to" ]
