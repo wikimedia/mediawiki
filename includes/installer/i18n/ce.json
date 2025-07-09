@@ -141,6 +141,7 @@
 	"config-install-sysop": "Администраторан аккаунт кхоллар",
 	"config-install-subscribe-notpossible": "cURL дӀахӀоттийна йац йа тӀекхочехь йац опци <code>allow_url_fopen</code>.",
 	"config-install-mainpage-failed": "Коьрта агӀо йилла цатарло: $1",
+	"config-install-db-success": "База кхиамца дӀахӀоттийна.",
 	"config-install-generic": "«$1» тӀедиллар кхочушдар",
 	"config-install-external-domains": "Арахьара базанаш кхоллар",
 	"config-download-localsettings": "Чуйаккха <code>LocalSettings.php</code>",

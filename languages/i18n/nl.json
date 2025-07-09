@@ -215,6 +215,7 @@
 	"redirectpagesub": "Doorverwijspagina",
 	"redirectto": "Doorverwijzing naar:",
 	"lastmodifiedat": "Deze pagina is voor het laatst bewerkt op $1 om $2.",
+	"renderedwith-parsoid": "Pagina is weergegeven met [[mw:Special:MyLanguage/Parsoid|Parsoid]].",
 	"viewcount": "Deze pagina is {{PLURAL:$1|één keer|$1 keer}} bekeken.",
 	"protectedpage": "Beveiligde pagina",
 	"jumpto": "Ga naar:",

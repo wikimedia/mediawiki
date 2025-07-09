@@ -99,5 +99,8 @@
 	"rest-param-desc-revision-id": "Identificador da revisión",
 	"rest-param-desc-source": "Contido da páxina no formato especificado pola propiedade content_model",
 	"rest-property-desc-revision-content-model": "Tipo de contido",
-	"rest-property-desc-revision-page": "A páxina á que pertence a revisión"
+	"rest-property-desc-revision-page": "A páxina á que pertence a revisión",
+	"rest-schema-desc-revision-metadata": "Metadatos da revisión",
+	"rest-schema-desc-search-results": "Resultados da procura",
+	"rest-schema-desc-revision-compare": "Comparación de revisións"
 }

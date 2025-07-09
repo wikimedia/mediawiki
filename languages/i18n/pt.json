@@ -3479,6 +3479,7 @@
 	"revdelete-restricted": "restrições a administradores aplicadas",
 	"revdelete-unrestricted": "restrições a administradores removidas",
 	"logentry-block-block": "$1 {{GENDER:$2|bloqueou}} {{GENDER:$4|$3}} com expiração a $5 $6",
+	"logentry-block-block-multi": "$1 {{GENDER:$2|adicionou}} um bloqueio para {{GENDER:$4|$3}} com um tempo de expiração de $5 $6",
 	"logentry-block-unblock": "$1 {{GENDER:$2|desbloqueou}} {{GENDER:$4|$3}}",
 	"logentry-block-reblock": "$1 {{GENDER:$2|modificou}} parâmetros de bloqueio de {{GENDER:$4|$3}} com expiração a $5 $6",
 	"logentry-partialblock-block-page": "{{PLURAL:$1|da página|das páginas}} $2",

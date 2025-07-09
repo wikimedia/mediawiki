@@ -5,7 +5,7 @@
 			"Yakubu Musa"
 		]
 	},
-	"cdx-chip-input-chip-added": "Baga tè",
+	"cdx-chip-input-chip-added": "Baga te",
 	"cdx-chip-input-chip-removed": "Baga pat",
 	"cdx-input-chip-aria-description": "Yegle yel na Hwo Fukta ke hwo kyo na hwo bak",
 	"cdx-dialog-close-button-label": "Bang",
@@ -24,5 +24,10 @@
 	"cdx-table-pager-items-per-page-current": "$1 jōt",
 	"cdx-table-pager-items-per-page-default": "Nu ha e kawe bwok",
 	"cdx-table-pagination-status-message-determinate-long": "Nunga nenu $1-$2 wò $3",
-	"cdx-table-pagination-status-message-determinate-short": "$1-$2 wò $3"
+	"cdx-table-pagination-status-message-determinate-short": "$1-$2 wò $3",
+	"cdx-table-pagination-status-message-indeterminate-long": "Wa SE nunga $1-$2 wo pyàk",
+	"cdx-table-pagination-status-message-indeterminate-short": "$1-$2 wo pyàk",
+	"cdx-table-pagination-status-message-indeterminate-final": "Dura wo yene",
+	"cdx-table-pagination-status-message-pending": "Sé tê nehà",
+	"cdx-table-no-data-message": "Vit à dyâm"
 }

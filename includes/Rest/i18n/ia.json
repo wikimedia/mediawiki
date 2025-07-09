@@ -240,10 +240,7 @@
 	"rest-endpoint-desc-get-page-title-language": "Cerca paginas del mesme topico in altere linguas. Restitue un matrice de objectos de lingua que include le nomine del lingua, le codice del lingua, e le titulo traducite del pagina.",
 	"rest-endpoint-desc-get-page-title-media": "Restitue information sur files multimedial usate sur un pagina wiki, usque a 100 files.",
 	"rest-endpoint-desc-get-file-title": "Restitue information sur un file, includente ligamines pro discargar le file in formato de miniatura, previsualisation e original.",
-	"rest-endpoint-desc-post-transform-to-html-revision": "Restitue le transformation del contento specificate in HTML.",
-	"rest-endpoint-desc-post-transform-to-wikitext-revision": "Restitue le transformation del contento specificate in wikitexto.",
-	"rest-endpoint-desc-post-transform-to-html": "Restitue le transformation del contento specificate in HTML.",
-	"rest-endpoint-desc-post-transform-to-wikitext": "Restitue le transformation del contento specificate in wikitexto.",
-	"rest-endpoint-desc-post-transform-to-html-title": "Restitue le transformation del contento specificate in HTML.",
-	"rest-endpoint-desc-post-transform-to-wikitext-title": "Restitue le transformation del contento specificate in wikitexto."
+	"rest-endpoint-desc-post-transform-wikitext-to-html": "Transforma wikitexto in HTML",
+	"rest-endpoint-desc-post-transform-wikitext-to-lint": "Restitue errores de lint pro wikitexto",
+	"rest-endpoint-desc-post-transform-html-to-wikitext": "Transforma HTML retro in wikitexto"
 }
