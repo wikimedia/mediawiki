@@ -104,11 +104,15 @@ export async function addUserToGroup( adminBot, username, groupName ) {
 		formatversion: 2
 	} );
 
-	if (
-		userGroupsResponse.query.users.length &&
-                        userGroupsResponse.query.users[ 0 ].groups.includes( groupName )
-	) {
-		return;
+	if ( userGroupsResponse.query.users.length ) {
+		const respUser = userGroupsResponse.query.users[ 0 ];
+		if ( !respUser.groups ) {
+			// Should not happen, except it does: T393428
+			throw new Error( 'API response does not include user groups: ' + JSON.stringify( userGroupsResponse ) );
+		}
+		if ( respUser.groups.includes( groupName ) ) {
+			return;
+		}
 	}
 	const tokenResponse = await adminBot.request( {
 		action: 'query',
