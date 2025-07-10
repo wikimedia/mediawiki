@@ -104,6 +104,11 @@ For notes on 1.44.x and older releases, see HISTORY.
 * The JwtCodec service has been added, for encoding/decoding JWTs.
 * The LeximorphFactory service was added.
 * (T402154) MessagePostProcessText and MessagePostProcessHtml hooks were added.
+* (T396889) In the past, messages that have to exist for technical
+  reason but shouldn't be translated, were added to the usual
+  en.json and qqq.json files, and then configured as 'ignored' in translatewiki.
+  From now on, such messages should be added to the en.json and qqq.json file
+  under nontranslatable/.
 * …
 
 === External library changes in 1.45 ===

@@ -65,6 +65,7 @@ module.exports = function ( grunt ) {
 			codex: 'languages/i18n/codex/',
 			datetime: 'languages/i18n/datetime/',
 			exif: 'languages/i18n/exif/',
+			nontranslatable: 'languages/i18n/nontranslatable/',
 			preferences: 'languages/i18n/preferences/',
 			api: 'includes/api/i18n/',
 			rest: 'includes/Rest/i18n/',

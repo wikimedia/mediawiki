@@ -969,6 +969,7 @@ class LocalisationCache {
 			'datetime' => "$IP/languages/i18n/datetime",
 			'exif' => "$IP/languages/i18n/exif",
 			'preferences' => "$IP/languages/i18n/preferences",
+			'nontranslatable' => "$IP/languages/i18n/nontranslatable",
 			'api' => "$IP/includes/api/i18n",
 			'rest' => "$IP/includes/Rest/i18n",
 			'oojs-ui' => "$IP/resources/lib/ooui/i18n",
