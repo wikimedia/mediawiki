@@ -82,8 +82,11 @@ class LogCapturingSpi implements Spi {
 	 */
 	public function setLoggerForTest( string $channel, ?LoggerInterface $logger = null ): ?LoggerInterface {
 		$ret = $this->singletons[$channel] ?? null;
-		// @phan-suppress-next-line PhanTypeMismatchProperty
-		$this->singletons[$channel] = $logger;
+		if ( $logger ) {
+			$this->singletons[$channel] = $logger;
+		} else {
+			unset( $this->singletons[$channel] );
+		}
 		return $ret;
 	}
 }

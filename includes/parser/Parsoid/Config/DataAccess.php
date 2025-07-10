@@ -462,7 +462,7 @@ class DataAccess extends IDataAccess {
 					// wikitext (could include extension tag snippets like <tag..>...</tag>)
 					$pieces[$i] = $content;
 				} elseif ( $type === 'parsoid' ) {
-					// @phan-suppress-next-line PhanTypeInvalidDimOffset
+					// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset
 					$pieces[$i] = $pieces[$i]['extra']; // replace w/ fragment
 				} elseif ( $type === 'nowiki' ) {
 					$extra = $pieces[$i]['extra'] ?? null;

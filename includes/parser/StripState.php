@@ -195,7 +195,7 @@ class StripState {
 	 * property is:
 	 * - 'string' for plain strings and 'exttag' strip markers
 	 * - otherwise, name of the strip marker that generated the 'content' value
-	 * @return array<string|array{type:string,content:string}>
+	 * @return array<string|array{type:string,content:string,extra?:mixed}>
 	 */
 	public function split( string $text ): array {
 		$result = [];
