@@ -46,7 +46,20 @@ module.exports = exports = defineComponent( {
 	},
 	emits: [
 		'exit'
-	]
+	],
+	mounted() {
+		// Adjust the bottom position of the typeahead search menu on mobile devices
+		// to account for the virtual keyboard covering the bottom part of the viewport
+		if ( this.mobileExperience && window.visualViewport ) {
+			window.visualViewport.addEventListener( 'resize', () => {
+				const menu = document.querySelector( '.cdx-typeahead-search__menu' );
+				if ( menu ) {
+					const bottom = window.innerHeight - ( visualViewport.offsetTop + visualViewport.height );
+					menu.style.bottom = `${ Math.round( bottom ) }px`;
+				}
+			} );
+		}
+	}
 } );
 
 </script>
