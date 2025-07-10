@@ -28,4 +28,6 @@ $namespaceNames = [
 	NS_CATEGORY_TALK    => 'Категория_ырытыыта',
 ];
 
+$namespaceGenderAliases = [];
+
 $linkTrail = '/^([a-zабвгдеёжзийклмнӈоөпрсһтуүфхцчшщъыьэюя]+)(.*)$/sDu';
