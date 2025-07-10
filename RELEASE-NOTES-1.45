@@ -126,6 +126,7 @@ because of Phabricator reports.
 * (T397435) Added language support for Dolgan (dlg).
 * Update language fallback chains for Minnan (nan/nan-*) by changing to only
   fallback to Mindong - Traditional Han script (cdo-hant).
+* (T398790) Added language support for Antigua and Barbuda Creole English (aig).
 * …
 
 === Breaking changes in 1.45 ===
