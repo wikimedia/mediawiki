@@ -30,11 +30,14 @@ use StatusValue;
 /**
  * A StatusValue for permission errors.
  *
+ * This status will never have a value. It's only used to keep track of errors.
+ *
  * @todo Add compat code for PermissionManager::getPermissionErrors
  *       and additional info about user blocks.
  *
  * @unstable
  * @since 1.36
+ * @extends StatusValue<never>
  */
 class PermissionStatus extends StatusValue {
 

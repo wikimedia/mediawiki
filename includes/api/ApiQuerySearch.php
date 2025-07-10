@@ -209,12 +209,14 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 		// Interwiki results inside main result set
 		$canAddInterwiki = (bool)$params['enablerewrites'] && ( $resultPageSet === null );
 		if ( $canAddInterwiki ) {
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable
 			$this->addInterwikiResults( $matches, $apiResult, $prop, 'additional',
 				ISearchResultSet::INLINE_RESULTS );
 		}
 
 		// Interwiki results outside main result set
 		if ( $interwiki && $resultPageSet === null ) {
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable
 			$this->addInterwikiResults( $matches, $apiResult, $prop, 'interwiki',
 				ISearchResultSet::SECONDARY_RESULTS );
 		}

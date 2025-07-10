@@ -69,6 +69,12 @@ For notes on 1.44.x and older releases, see HISTORY.
 
 * The new built-in notifications framework is now stable for use by extensions.
   https://www.mediawiki.org/wiki/Manual:Notifications
+* The Status and StatusValue classes can now be documented as generic classes
+  with a type parameter for their value. These annotations allow IDEs and
+  static analysis tools to better understand the types in code such as:
+      /** @return StatusValue<Foo> */
+      function doStuff(): StatusValue { ... }
+      doStuff()->getValue()->bar();
 * The SpecialUserRightsChangeableGroupsHook hook was added.
 * The UserLinkRendererUserPostRenderLink hook was added.
 * The LocalUserOptionsStoreSave hook was added.

@@ -345,6 +345,7 @@ class UndeletePage {
 					$this->page,
 					$this->performer,
 					$comment,
+					// @phan-suppress-next-line PhanTypeMismatchArgument
 					$restoredRevision,
 					$logEntry,
 					$textRestored,
@@ -364,6 +365,7 @@ class UndeletePage {
 				$this->associatedTalk,
 				$this->performer,
 				$talkRestoredComment,
+				// @phan-suppress-next-line PhanTypeMismatchArgument
 				$restoredTalkRevision,
 				$logEntry,
 				$talkRestored,
