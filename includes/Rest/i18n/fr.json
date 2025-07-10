@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Bananax47",
 			"Derugon",
 			"Gomoko",
 			"Hecatonchire",
@@ -249,5 +250,8 @@
 	"rest-endpoint-desc-get-search-title": "Recherche des titres de pages du wiki et renvoie les pages dont le titre commence par les termes de recherche fournis. Vous pouvez utiliser ce point de terminaison comme recherche automatique, suggérant automatiquement les pages pertinentes par titre.",
 	"rest-endpoint-desc-get-page-title-language": "Recherche des pages portant sur le même sujet dans différentes langues. Renvoie une liste d’objets de langue incluant le nom de la langue, le code de langue et le titre de la page traduite.",
 	"rest-endpoint-desc-get-page-title-media": "Renvoie des informations sur les fichiers multimédias utilisés sur une page du wiki, jusqu’à 100 fichiers.",
-	"rest-endpoint-desc-get-file-title": "Renvoie des informations sur un fichier, dont des liens de téléchargement du fichier aux formats miniature, aperçu et original."
+	"rest-endpoint-desc-get-file-title": "Renvoie des informations sur un fichier, dont des liens de téléchargement du fichier aux formats miniature, aperçu et original.",
+	"rest-endpoint-desc-post-transform-wikitext-to-html": "Transforme le wikitext en HTML",
+	"rest-endpoint-desc-post-transform-wikitext-to-lint": "Renvoie les erreurs de l’analyseur syntaxique pour du wikitexte",
+	"rest-endpoint-desc-post-transform-html-to-wikitext": "Retransforme le HTML en wikitext"
 }

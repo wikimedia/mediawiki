@@ -3561,7 +3561,7 @@
 	"logentry-import-interwiki-details": "$1 $5 saytından $3 səhifəsini {{GENDER:$2|idxal etdi}} ($4 {{PLURAL:$4|versiya}})",
 	"logentry-merge-merge": "$1 $3 səhifəsini ($5 tarixinə qədər olan redaktələri) $4 səhifəsinə {{GENDER:$2|birləşdirdi}}.",
 	"logentry-merge-merge-into": "$1 $4 səhifəsindəki versiyaları ($5 tarixinə qədər olan) $3 səhifəsinə {{GENDER:$2|birləşdirdi}}.",
-	"logentry-move-move": "$1 $3 səhifəsinin adını $4 olaraq {{GENDER:$1|dəyişdi}}.",
+	"logentry-move-move": "$1 $3 səhifəsinin adını $4 olaraq {{GENDER:$2|dəyişdi}}",
 	"logentry-move-move-noredirect": "$1 $3 səhifəsinin adını istiqamətləndirmə qoymadan $4 olaraq {{GENDER:$2|dəyişdi}}",
 	"logentry-move-move_redir": "$1 $3 səhifəsinin adını yönləndirmənin əksinə dəyişərək $4 {{GENDER:$2|adlandırdı}}",
 	"logentry-move-move_redir-noredirect": "$1 $3 səhifəsinin adını istiqamətləndirmə qoymadan $4 olaraq {{GENDER:$2|dəyişdi}}",
