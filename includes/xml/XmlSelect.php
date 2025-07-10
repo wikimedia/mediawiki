@@ -28,9 +28,9 @@ use MediaWiki\Html\Html;
  * Class for generating HTML <select> or <datalist> elements.
  */
 class XmlSelect {
-	/** @var array[] */
+	/** @var array<array<string,string|int|float|array>> */
 	protected $options = [];
-	/** @var string|array|false */
+	/** @var string|int|float|array|false */
 	protected $default = false;
 	/** @var string|array */
 	protected $tagName = 'select';
@@ -40,7 +40,7 @@ class XmlSelect {
 	/**
 	 * @param string|false $name
 	 * @param string|false $id
-	 * @param string|array|false $default
+	 * @param string|int|float|array|false $default
 	 */
 	public function __construct( $name = false, $id = false, $default = false ) {
 		if ( $name ) {
@@ -57,7 +57,7 @@ class XmlSelect {
 	}
 
 	/**
-	 * @param string|array $default
+	 * @param string|int|float|array $default
 	 */
 	public function setDefault( $default ) {
 		$this->default = $default;
@@ -88,7 +88,7 @@ class XmlSelect {
 
 	/**
 	 * @param string $label
-	 * @param string|int|float|false $value If not given, assumed equal to $label
+	 * @param string|int|float|array|false $value If not given, assumed equal to $label
 	 */
 	public function addOption( $label, $value = false ) {
 		$value = $value !== false ? $value : $label;
@@ -100,7 +100,7 @@ class XmlSelect {
 	 * label => value
 	 * label => ( label => value, label => value )
 	 *
-	 * @param array $options
+	 * @param array<string,string|int|float|array> $options
 	 */
 	public function addOptions( $options ) {
 		$this->options[] = $options;
@@ -111,8 +111,8 @@ class XmlSelect {
 	 * label => value
 	 * label => ( label => value, label => value )
 	 *
-	 * @param array $options
-	 * @param string|array|false $default
+	 * @param array<string,string|int|float|array> $options
+	 * @param string|int|float|array|false $default
 	 * @return string
 	 */
 	public static function formatOptions( $options, $default = false ) {
