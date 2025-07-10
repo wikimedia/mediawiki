@@ -210,7 +210,9 @@ interface RequestInterface {
 	 * values, you may need to parse the query string from `getUri()->getQuery()`
 	 * or from the `QUERY_STRING` server param.
 	 *
-	 * @return array
+	 * @return array The deserialized GET parameters. May be a nested array
+	 *          structure, since the PHP runtime supports nested arrays in
+	 *          $_GET.
 	 */
 	public function getQueryParams();
 
@@ -277,7 +279,9 @@ interface RequestInterface {
 	 *
 	 * This will return an array of parameters in the format of $_POST.
 	 *
-	 * @return array The deserialized POST parameters
+	 * @return array The deserialized POST parameters. May be a nested array
+	 *         structure, since the PHP runtime supports nested arrays in
+	 *         $_POST.
 	 */
 	public function getPostParams();
 

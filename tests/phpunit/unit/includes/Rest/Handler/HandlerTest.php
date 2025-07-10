@@ -1006,7 +1006,14 @@ class HandlerTest extends MediaWikiUnitTestCase {
 					'headers' => [ 'Content-Type' => 'multipart/form-data' ]
 				] ),
 				[ 'param' => "L\u{00E4}rm" ]
-			]
+			],
+			'form data with array' => [
+				new RequestData( [
+					'postParams' => [ 'foo' => [ 'a' => "L\u{0061}\u{0308}rm", 'b' => 'X' ] ],
+					'headers' => [ 'Content-Type' => 'application/x-www-form-urlencoded' ]
+				] ),
+				[ 'foo' => [ 'a' => "L\u{00E4}rm", 'b' => 'X' ] ]
+			],
 		];
 	}
 

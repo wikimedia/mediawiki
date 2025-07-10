@@ -961,7 +961,7 @@ abstract class Handler {
 			case RequestInterface::MULTIPART_FORM_DATA_CONTENT_TYPE:
 				$params = $request->getPostParams();
 				foreach ( $params as $key => $value ) {
-					$params[ $key ] = UtfNormalValidator::cleanUp( $value );
+					$params[ $key ] = $this->recursiveUtfCleanup( $value );
 					// TODO: Warn if normalization was applied
 				}
 				return $params;
@@ -992,6 +992,29 @@ abstract class Handler {
 					new MessageValue( 'rest-unsupported-content-type', [ $contentType ?? '(null)' ] ),
 					415
 				);
+		}
+	}
+
+	/**
+	 * Recursively applies unicode normalization
+	 *
+	 * @param mixed $value
+	 *
+	 * @return mixed
+	 */
+	private function recursiveUtfCleanup( $value ) {
+		if ( is_string( $value ) ) {
+			return UtfNormalValidator::cleanUp( $value );
+		} elseif ( is_array( $value ) ) {
+			foreach ( $value as $k => $v ) {
+				$value[ $k ] = $this->recursiveUtfCleanup( $v );
+				// TODO: Warn if normalization was applied
+				// TODO: also normalize key
+			}
+
+			return $value;
+		} else {
+			return $value;
 		}
 	}
 
