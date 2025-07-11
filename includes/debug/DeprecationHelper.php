@@ -66,13 +66,15 @@ use ReflectionProperty;
 trait DeprecationHelper {
 
 	/**
-	 * List of deprecated properties, in <property name> => [<version>, <class>,
-	 * <component>, <getter>, <setter> ] format where <version> is the MediaWiki version
-	 * where the property got deprecated, <class> is the
-	 * the name of the class defining the property, <component> is the MediaWiki component
-	 * (extension, skin etc.) for use in the deprecation warning) or null if it is MediaWiki.
-	 * E.g. [ 'mNewRev' => [ '1.32', 'DifferenceEngine', null ]
-	 * @var string[][]
+	 * List of deprecated properties, in the format:
+	 *     <property name> => [<version>, <class>, <component>, <getter>, <setter> ]
+	 * where:
+	 * - <version> is the MediaWiki version where the property got deprecated,
+	 * - <class> is the the name of the class defining the property,
+	 * - <component> is the MediaWiki component (extension, skin etc.) for use in the deprecation
+	 *   warning) or false if it is MediaWiki.
+	 * E.g. [ 'mNewRev' => [ '1.32', 'DifferenceEngine', false ]
+	 * @var array<string, array{string, class-string, string|false, callable|string|null, callable|string|null}>
 	 */
 	protected static $deprecatedPublicProperties = [];
 
@@ -109,8 +111,9 @@ trait DeprecationHelper {
 		self::$deprecatedPublicProperties[$property] = [
 			$version,
 			$class ?: __CLASS__,
-			$component,
-			null, null
+			$component ?: false,
+			null,
+			null,
 		];
 	}
 
@@ -145,10 +148,9 @@ trait DeprecationHelper {
 		self::$deprecatedPublicProperties[$property] = [
 			$version,
 			$class ?: __CLASS__,
-			null,
+			$component ?: false,
 			$getter,
 			$setter,
-			$component
 		];
 	}
 
