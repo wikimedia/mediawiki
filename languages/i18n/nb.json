@@ -163,6 +163,7 @@
 	"redirectpagesub": "Omdirigeringsside",
 	"redirectto": "Omdirigering til:",
 	"lastmodifiedat": "Denne siden ble sist redigert $1 kl. $2.",
+	"renderedwith-parsoid": "Siden ble gjengitt med [[mw:Special:MyLanguage/Parsoid|Parsoid]].",
 	"viewcount": "Denne siden er vist {{PLURAL:$1|én gang|$1 ganger}}.",
 	"protectedpage": "Låst side",
 	"jumpto": "Hopp til:",

@@ -1687,7 +1687,7 @@
 	"upload-dialog-button-done": "完成",
 	"upload-dialog-button-save": "儲存",
 	"upload-dialog-button-upload": "上傳",
-	"upload-form-label-infoform-title": "詳細資料",
+	"upload-form-label-infoform-title": "詳細資訊",
 	"upload-form-label-infoform-name": "名稱",
 	"upload-form-label-infoform-name-tooltip": "具獨特描述性的檔案標題，將會用來做為檔名。 您可以使用您的語系及空白做為檔名，請勿包含檔案副檔名。",
 	"upload-form-label-infoform-description": "描述",
