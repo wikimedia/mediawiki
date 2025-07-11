@@ -129,11 +129,8 @@ class SpecialConfirmEmail extends UnlistedSpecialPage {
 
 			$retval = $form->show();
 
-			if ( $retval === true ) {
-				// should never happen, but if so, don't let the user without any message
+			if ( $retval === true || ( $retval instanceof Status && $retval->isGood() ) ) {
 				$out->addWikiMsg( 'confirmemail_sent' );
-			} elseif ( $retval instanceof Status && $retval->isGood() ) {
-				$out->addWikiTextAsInterface( $retval->getValue() );
 			}
 		} else {
 			// date and time are separate parameters to facilitate localisation.
@@ -156,7 +153,7 @@ class SpecialConfirmEmail extends UnlistedSpecialPage {
 	private function submitSend() {
 		$status = $this->getUser()->sendConfirmationMail();
 		if ( $status->isGood() ) {
-			return Status::newGood( $this->msg( 'confirmemail_sent' )->text() );
+			return Status::newGood();
 		} else {
 			return Status::newFatal( new RawMessage(
 				$status->getWikiText( 'confirmemail_sendfailed', false, $this->getLanguage() )
