@@ -45,6 +45,7 @@ use MediaWiki\Page\PageIdentity;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Request\WebRequest;
+use MediaWiki\Session\SessionManager;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\StubObject\StubGlobalUser;
@@ -177,7 +178,7 @@ class AuthManager implements LoggerAwareInterface {
 	public const SEC_FAIL = 'fail';
 
 	/** Auto-creation is due to SessionManager */
-	public const AUTOCREATE_SOURCE_SESSION = \MediaWiki\Session\SessionManager::class;
+	public const AUTOCREATE_SOURCE_SESSION = SessionManager::class;
 
 	/** Auto-creation is due to a Maintenance script */
 	public const AUTOCREATE_SOURCE_MAINT = '::Maintenance::';
@@ -1291,8 +1292,10 @@ class AuthManager implements LoggerAwareInterface {
 		if ( $creator->isTemp() ) {
 			// For a temp account creating a permanent account, we do not want the temporary
 			// account to be associated with the created permanent account. To avoid this,
-			// set the session user to a new anonymous user, save it, and set the request
-			// context from the new session user account. (T393628)
+			// invalidate their sessions, set the session user to a new anonymous user, save it,
+			// set the request context from the new session user account. (T393628)
+			$creatorUser = $this->userFactory->newFromUserIdentity( $creator->getUser() );
+			SessionManager::singleton()->invalidateSessionsForUser( $creatorUser );
 			$creator = $this->userFactory->newAnonymous();
 			$session->setUser( $creator );
 			// Ensure the temporary account username is also cleared from the session, this is set

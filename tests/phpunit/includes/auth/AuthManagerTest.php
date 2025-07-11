@@ -4359,6 +4359,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		$this->initializeManager();
 		$this->logger->setCollectContext( true );
 		$this->logger->setCollect( true );
+		$initialToken = $tempAccount->getToken();
 
 		$usernameAuthRequest = new UsernameAuthenticationRequest();
 		$usernameAuthRequest->username = ucfirst( wfRandomString() );
@@ -4379,6 +4380,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 			// Check the context variables on the last message passed to the logger
 			$this->logger->getBuffer()[0][2]
 		);
+		$this->assertNotEquals( $initialToken, $tempAccount->getToken() );
 		$this->assertSame( null, $this->request->getSession()->get( 'TempUser:name' ) );
 	}
 }
