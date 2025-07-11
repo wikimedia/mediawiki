@@ -435,7 +435,6 @@ TEXT
 					$this->dbw->expr( 'cl_from', '>=', $batchValue )
 						->and( 'cl_from', '<', $batchValue + $this->getBatchSize() )
 				)
-				->orderBy( 'cl_from' )
 				->caller( __METHOD__ )->fetchResultSet();
 			$this->output( "processing... " );
 

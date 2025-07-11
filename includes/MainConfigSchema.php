@@ -3310,10 +3310,11 @@ class MainConfigSchema {
 	 *
 	 * History:
 	 *   - 1.44: Added
-	 *   - 1.45: Added support for _READ_NEW
+	 *   - 1.45: Added support for _READ_NEW,
+	 *      changed default to SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW.
 	 */
 	public const CategoryLinksSchemaMigrationStage = [
-		'default' => SCHEMA_COMPAT_OLD,
+		'default' => SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW,
 		'type' => 'integer',
 	];
 

@@ -391,7 +391,7 @@ return [
 			'VirtualDomainsMapping' => [
 			],
 			'FileSchemaMigrationStage' => 3,
-			'CategoryLinksSchemaMigrationStage' => 3,
+			'CategoryLinksSchemaMigrationStage' => 769,
 			'ExternalLinksDomainGaps' => [
 			],
 			'ContentHandlers' => [
