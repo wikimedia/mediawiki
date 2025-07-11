@@ -550,13 +550,11 @@ class PageEditStash {
 	}
 
 	private function serializeStashInfo( PageEditStashContents $stashInfo ): string|false {
-		// T398656: This should use JSON with ParserOutput and Content
-		return serialize( (object)[
-			'pstContent' => $stashInfo->pstContent,
-			'output' => $stashInfo->output,
-			'timestamp' => $stashInfo->timestamp,
-			'edits' => $stashInfo->edits,
-		] );
+		try {
+			return $this->jsonCodec->serialize( $stashInfo );
+		} catch ( JsonException ) {
+			return false;
+		}
 	}
 
 	private function unserializeStashInfo( string $serial ): PageEditStashContents|false {
