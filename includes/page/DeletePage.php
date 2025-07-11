@@ -325,7 +325,7 @@ class DeletePage {
 	 * Same as deleteUnsafe, but checks permissions.
 	 *
 	 * @param string $reason
-	 * @return StatusValue
+	 * @return StatusValue<never>
 	 */
 	public function deleteIfAllowed( string $reason ): StatusValue {
 		$this->setDeletionAttempted();
@@ -404,8 +404,8 @@ class DeletePage {
 	 * @note This method doesn't check user permissions. Use deleteIfAllowed for that.
 	 *
 	 * @param string $reason Delete reason for deletion log
-	 * @return Status Status object:
-	 *   - If successful (or scheduled), a good Status
+	 * @return Status<never> Status object:
+	 *   - If successful (or scheduled), a good Status with no value
 	 *   - If a page couldn't be deleted because it wasn't found, a Status with a non-fatal 'cannotdelete' error.
 	 *   - A fatal Status otherwise.
 	 */
@@ -441,7 +441,7 @@ class DeletePage {
 	/**
 	 * @param WikiPage $page
 	 * @param string &$reason
-	 * @return Status
+	 * @return Status<never>
 	 */
 	private function runPreDeleteHooks( WikiPage $page, string &$reason ): Status {
 		$status = Status::newGood();
@@ -488,7 +488,7 @@ class DeletePage {
 	 * @param string $reason
 	 * @param string|null $webRequestId
 	 * @param mixed|null $ticket Result of ILBFactory::getEmptyTransactionTicket() or null
-	 * @return Status
+	 * @return Status<never>
 	 */
 	public function deleteInternal(
 		WikiPage $page,

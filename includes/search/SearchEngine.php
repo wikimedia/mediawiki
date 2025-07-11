@@ -96,7 +96,7 @@ abstract class SearchEngine {
 	 * be converted to final in 1.34. Override self::doSearchText().
 	 *
 	 * @param string $term Raw search term
-	 * @return ISearchResultSet|Status|null
+	 * @return ISearchResultSet|Status<ISearchResultSet>|null
 	 */
 	public function searchText( $term ) {
 		return $this->maybePaginate( function () use ( $term ) {
@@ -110,7 +110,7 @@ abstract class SearchEngine {
 	 * @stable to override
 	 *
 	 * @param string $term Raw search term
-	 * @return ISearchResultSet|Status|null
+	 * @return ISearchResultSet|Status<ISearchResultSet>|null
 	 * @since 1.32
 	 */
 	protected function doSearchText( $term ) {

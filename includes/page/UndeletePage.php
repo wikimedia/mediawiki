@@ -64,7 +64,7 @@ class UndeletePage {
 
 	/** @var Status|null */
 	private $fileStatus;
-	/** @var StatusValue|null */
+	/** @var StatusValue<array{int, bool, ?RevisionRecord, array<int,true>}>|null */
 	private $revisionStatus;
 	/** @var string[] */
 	private $timestamps = [];
@@ -178,6 +178,7 @@ class UndeletePage {
 	/**
 	 * Tests whether it's probably possible to undelete the associated talk page. This checks the replica,
 	 * so it may not see the latest master change, and is useful e.g. for building the UI.
+	 * @return StatusValue<never>
 	 */
 	public function canProbablyUndeleteAssociatedTalk(): StatusValue {
 		if ( $this->namespaceInfo->isTalk( $this->page->getNamespace() ) ) {
@@ -219,7 +220,7 @@ class UndeletePage {
 	 * Same as undeleteUnsafe, but checks permissions.
 	 *
 	 * @param string $comment
-	 * @return StatusValue
+	 * @return StatusValue<array{files:int, revs:int}>
 	 */
 	public function undeleteIfAllowed( string $comment ): StatusValue {
 		$status = $this->authorizeUndeletion();
@@ -253,7 +254,7 @@ class UndeletePage {
 	 * @note This method doesn't check user permissions. Use undeleteIfAllowed for that.
 	 *
 	 * @param string $comment
-	 * @return StatusValue Good Status with the following value on success:
+	 * @return StatusValue<array{revs:int, files:int}> Good Status with the following value on success:
 	 *   [
 	 *     self::REVISIONS_RESTORED => number of text revisions restored,
 	 *     self::FILES_RESTORED => number of file revisions restored
@@ -298,6 +299,8 @@ class UndeletePage {
 				$comment, $acceptNoRevisions
 			);
 			if ( !$this->revisionStatus->isOK() ) {
+				// Type mismatch for status's value doesn't matter for non-OK status
+				// @phan-suppress-next-line PhanTypeMismatchReturn
 				return $this->revisionStatus;
 			}
 
@@ -315,6 +318,8 @@ class UndeletePage {
 			if ( $talkStatus->isGood() && $resStatus->isGood() ) {
 				$talkStatus = $this->undeleteRevisions( $this->associatedTalk, [], $comment, false );
 				if ( !$talkStatus->isOK() ) {
+					// Type mismatch for status's value doesn't matter for non-OK status
+					// @phan-suppress-next-line PhanTypeMismatchReturn
 					return $talkStatus;
 				}
 				[ $talkRestored, $talkCreated, $restoredTalkRevision, $restoredTalkPageIds ] = $talkStatus->getValue();
@@ -345,7 +350,7 @@ class UndeletePage {
 					$this->page,
 					$this->performer,
 					$comment,
-					// @phan-suppress-next-line PhanTypeMismatchArgument
+					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable
 					$restoredRevision,
 					$logEntry,
 					$textRestored,
@@ -365,7 +370,7 @@ class UndeletePage {
 				$this->associatedTalk,
 				$this->performer,
 				$talkRestoredComment,
-				// @phan-suppress-next-line PhanTypeMismatchArgument
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable
 				$restoredTalkRevision,
 				$logEntry,
 				$talkRestored,
@@ -377,6 +382,9 @@ class UndeletePage {
 		return $resStatus;
 	}
 
+	/**
+	 * @return StatusValue<never>
+	 */
 	private function runPreUndeleteHook( string $comment ): StatusValue {
 		$checkPages = [ $this->page ];
 		if ( $this->associatedTalk ) {
@@ -443,7 +451,7 @@ class UndeletePage {
 	 * @param bool $acceptNoRevisions Whether to return a good status rather than an error
 	 * 	if no revisions are undeleted.
 	 * @throws ReadOnlyError
-	 * @return StatusValue Status object containing the number of revisions restored on success
+	 * @return StatusValue<array{int, bool, ?RevisionRecord, array<int,true>}>
 	 */
 	private function undeleteRevisions(
 		ProperPageIdentity $page, array $timestamps,
@@ -687,7 +695,7 @@ class UndeletePage {
 
 	/**
 	 * @internal BC methods to be used by PageArchive only
-	 * @return StatusValue|null
+	 * @return StatusValue<array{int, bool, ?RevisionRecord, array<int,true>}>|null
 	 */
 	public function getRevisionStatus(): ?StatusValue {
 		return $this->revisionStatus;

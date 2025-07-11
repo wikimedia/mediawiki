@@ -1881,8 +1881,8 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	 *        If this parameter is given and any of the rows has a rev_page_id that is different
 	 *        from Article Id associated with the page, an InvalidArgumentException is thrown.
 	 *
-	 * @return StatusValue a status with a RevisionRecord[] of successfully fetched revisions
-	 *                     and an array of errors for the revisions failed to fetch.
+	 * @return StatusValue<array<int,?RevisionRecord>> a status with an array of successfully fetched revisions
+	 *                     (keyed by revision IDs) and with warnings for the revisions failed to fetch.
 	 */
 	public function newRevisionsFromBatch(
 		$rows,
@@ -2083,7 +2083,7 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	 *
 	 * @param Traversable|array $rowsOrIds list of revision ids, or revision or archive rows
 	 *        from a db query.
-	 * @param array $options Supports the following options:
+	 * @param array{slots?: string[], blobs?: bool} $options Supports the following options:
 	 *               'slots' - a list of slot role names to fetch. If omitted or true or null,
 	 *                         all slots are fetched
 	 *               'blobs' - whether the serialized content of each slot should be loaded.
@@ -2091,7 +2091,8 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	 *                        in the blob_data field.
 	 * @param int $queryFlags
 	 *
-	 * @return StatusValue a status containing, if isOK() returns true, a two-level nested
+	 * @return StatusValue<array<int,array<string,stdClass>>>
+	 *         a status containing, if isOK() returns true, a two-level nested
 	 *         associative array, mapping from revision ID to an associative array that maps from
 	 *         role name to a database row object. The database row object will contain the fields
 	 *         defined by getSlotQueryInfo() with the 'content' flag set, plus the blob_data field
@@ -2208,10 +2209,11 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	 * slots, or content objects should use newRevisionsFromBatch() instead.
 	 *
 	 * @param Traversable|array $rowsOrIds list of revision ids, or revision rows from a db query.
-	 * @param array|null $slots the role names for which to get slots.
+	 * @param string[]|null $slots the role names for which to get slots.
 	 * @param int $queryFlags
 	 *
-	 * @return StatusValue a status containing, if isOK() returns true, a two-level nested
+	 * @return StatusValue<array<int,array<string,stdClass>>>
+	 *         a status containing, if isOK() returns true, a two-level nested
 	 *         associative array, mapping from revision ID to an associative array that maps from
 	 *         role name to an anonymous object containing two fields:
 	 *         - model_name: the name of the content's model

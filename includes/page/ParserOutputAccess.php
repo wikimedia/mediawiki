@@ -374,7 +374,7 @@ class ParserOutputAccess implements LoggerAwareInterface {
 	 * Fallback for use with PoolCounterWork.
 	 * Returns stale cached output if appropriate.
 	 *
-	 * @return Status|false
+	 * @return Status<ParserOutput>|false
 	 */
 	private function getFallbackOutputForLatest(
 		PageRecord $page,
@@ -432,8 +432,8 @@ class ParserOutputAccess implements LoggerAwareInterface {
 	 *        Passing an int is deprecated and will trigger deprecation warnings
 	 *        in the future.
 	 *
-	 * @return Status containing a ParserOutput if no error occurred.
-	 *         Well known errors and warnings include the following messages:
+	 * @return Status<ParserOutput> containing a ParserOutput if no error occurred.
+	 *         Well-known errors and warnings include the following messages:
 	 *         - 'view-pool-dirty-output' (warning) The output is dirty (from a stale cache entry).
 	 *         - 'view-pool-contention' (warning) Dirty output was returned immediately instead of
 	 *           waiting to acquire a work lock (when "fast stale" mode is enabled in PoolCounter).
@@ -558,6 +558,7 @@ class ParserOutputAccess implements LoggerAwareInterface {
 	 * unnecessary double-lookup in the cache.
 	 *
 	 * @see PoolWorkArticleView::renderRevision
+	 * @return Status<ParserOutput>
 	 */
 	private function renderRevision(
 		PageRecord $page,

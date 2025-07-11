@@ -1911,7 +1911,7 @@ class WikiPage implements Stringable, Page, PageRecord {
 	 * @param UserIdentity $user The user updating the restrictions
 	 * @param string[] $tags Change tags to add to the pages and protection log entries
 	 *   ($user should be able to add the specified tags before this is called)
-	 * @return Status Status object; if action is taken, $status->value is the log_id of the
+	 * @return Status<?int> Status object; if action is taken, $status->value is the log_id of the
 	 *   protection log entry.
 	 */
 	public function doUpdateRestrictions( array $limit, array $expiry,
@@ -2388,7 +2388,7 @@ class WikiPage implements Stringable, Page, PageRecord {
 	 * @param string[]|null $tags Tags to apply to the deletion action
 	 * @param string $logsubtype
 	 * @param bool $immediate false allows deleting over time via the job queue
-	 * @return Status Status object; if successful, $status->value is the log_id of the
+	 * @return Status<int> Status object; if successful, $status->value is the log_id of the
 	 *   deletion log entry. If the page couldn't be deleted because it wasn't
 	 *   found, $status is a non-fatal 'cannotdelete' error
 	 */
@@ -2415,6 +2415,7 @@ class WikiPage implements Stringable, Page, PageRecord {
 			if ( $deletePage->deletionsWereScheduled()[DeletePage::PAGE_BASE] ) {
 				$status->warning( 'delete-scheduled', wfEscapeWikiText( $this->getTitle()->getPrefixedText() ) );
 			} else {
+				// @phan-suppress-next-line PhanTypeMismatchProperty Changing the type of the status parameter
 				$status->value = $deletePage->getSuccessfulDeletionsIDs()[DeletePage::PAGE_BASE];
 			}
 		}
