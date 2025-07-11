@@ -21,6 +21,7 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\Maintenance\Maintenance;
 
 // @codeCoverageIgnoreStart
@@ -136,10 +137,24 @@ TEXT
 			"greater than cat_id {$this->minimumId}...\n" );
 
 		$dbr = $this->getDB( DB_REPLICA, 'vslow' );
-		$queryBuilder = $dbr->newSelectQueryBuilder()
-			->select( 'COUNT(*)' )
-			->from( 'categorylinks' )
-			->where( 'cl_to = cat_title' );
+
+		$migrationStage = $this->getServiceContainer()->getMainConfig()->get(
+			MainConfigNames::CategoryLinksSchemaMigrationStage
+		);
+
+		if ( $migrationStage & SCHEMA_COMPAT_READ_OLD ) {
+			$queryBuilder = $dbr->newSelectQueryBuilder()
+				->select( 'COUNT(*)' )
+				->from( 'categorylinks' )
+				->where( 'cl_to = cat_title' );
+		} else {
+			$queryBuilder = $dbr->newSelectQueryBuilder()
+				->select( 'COUNT(*)' )
+				->from( 'categorylinks' )
+				->join( 'linktarget', null, 'cl_target_id = lt_id' )
+				->where( 'lt_title = cat_title' );
+		}
+
 		if ( $mode === 'subcats' ) {
 			$queryBuilder->andWhere( [ 'cl_type' => 'subcat' ] );
 		} elseif ( $mode === 'files' ) {
