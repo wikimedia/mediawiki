@@ -686,6 +686,15 @@
 				}
 			},
 			{
+				"name": "cl_target_id",
+				"type": "bigint",
+				"comment": "Foreign key to linktarget.lt_id",
+				"options": {
+					"notnull": true,
+					"unsigned": true
+				}
+			},
+			{
 				"name": "cl_to",
 				"comment": "Name of the category. This is also the page_title of the category's description page; all such pages are in namespace 14 (NS_CATEGORY).",
 				"type": "binary",
@@ -761,15 +770,6 @@
 					"unsigned": true,
 					"default": 0
 				}
-			},
-			{
-				"name": "cl_target_id",
-				"type": "bigint",
-				"comment": "Foreign key to linktarget.lt_id",
-				"options": {
-					"notnull": false,
-					"unsigned": true
-				}
 			}
 		],
 		"indexes": [
@@ -816,7 +816,7 @@
 		],
 		"pk": [
 			"cl_from",
-			"cl_to"
+			"cl_target_id"
 		]
 	},
 	{

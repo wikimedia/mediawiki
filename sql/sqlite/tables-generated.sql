@@ -103,6 +103,7 @@ CREATE INDEX cat_pages ON /*_*/category (cat_pages);
 
 CREATE TABLE /*_*/categorylinks (
   cl_from INTEGER UNSIGNED DEFAULT 0 NOT NULL,
+  cl_target_id BIGINT UNSIGNED NOT NULL,
   cl_to BLOB DEFAULT '' NOT NULL,
   cl_sortkey BLOB DEFAULT '' NOT NULL,
   cl_sortkey_prefix BLOB DEFAULT '' NOT NULL,
@@ -110,8 +111,7 @@ CREATE TABLE /*_*/categorylinks (
   cl_collation BLOB DEFAULT '' NOT NULL,
   cl_type TEXT DEFAULT 'page' NOT NULL,
   cl_collation_id SMALLINT UNSIGNED DEFAULT 0 NOT NULL,
-  cl_target_id BIGINT UNSIGNED DEFAULT NULL,
-  PRIMARY KEY(cl_from, cl_to)
+  PRIMARY KEY(cl_from, cl_target_id)
 );
 
 CREATE INDEX cl_sortkey ON /*_*/categorylinks (

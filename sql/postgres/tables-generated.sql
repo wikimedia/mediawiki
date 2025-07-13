@@ -116,6 +116,7 @@ CREATE INDEX cat_pages ON category (cat_pages);
 
 CREATE TABLE categorylinks (
   cl_from INT DEFAULT 0 NOT NULL,
+  cl_target_id BIGINT NOT NULL,
   cl_to TEXT DEFAULT '' NOT NULL,
   cl_sortkey TEXT DEFAULT '' NOT NULL,
   cl_sortkey_prefix TEXT DEFAULT '' NOT NULL,
@@ -123,8 +124,7 @@ CREATE TABLE categorylinks (
   cl_collation TEXT DEFAULT '' NOT NULL,
   cl_type TEXT DEFAULT 'page' NOT NULL,
   cl_collation_id SMALLINT DEFAULT 0 NOT NULL,
-  cl_target_id BIGINT DEFAULT NULL,
-  PRIMARY KEY(cl_from, cl_to)
+  PRIMARY KEY(cl_from, cl_target_id)
 );
 
 CREATE INDEX cl_sortkey ON categorylinks (

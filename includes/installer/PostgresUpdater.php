@@ -113,6 +113,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'addIndex', 'categorylinks', 'cl_timestamp_id', 'patch-categorylinks-cl_timestamp_id.sql' ],
 			[ 'migrateCategorylinks' ],
 			[ 'normalizeCollation' ],
+			[ 'addIndex', 'categorylinks', 'cl_pkey', 'patch-categorylinks-pk.sql' ],
 		];
 	}
 

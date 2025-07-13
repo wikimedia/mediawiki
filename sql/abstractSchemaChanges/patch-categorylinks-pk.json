@@ -1,0 +1,298 @@
+{
+	"before": {
+		"name": "categorylinks",
+		"comment": "Track category inclusions *used inline* This tracks a single level of category membership",
+		"columns": [
+			{
+				"name": "cl_from",
+				"comment": "Key to page_id of the page defined as a category member.",
+				"type": "integer",
+				"options": {
+					"unsigned": true,
+					"notnull": true,
+					"default": 0
+				}
+			},
+			{
+				"name": "cl_to",
+				"comment": "Name of the category. This is also the page_title of the category's description page; all such pages are in namespace 14 (NS_CATEGORY).",
+				"type": "binary",
+				"options": {
+					"notnull": true,
+					"default": "",
+					"length": 255
+				}
+			},
+			{
+				"name": "cl_sortkey",
+				"comment": "A binary string obtained by applying a sortkey generation algorithm (Collation::getSortKey()) to page_title, or cl_sortkey_prefix . \"\\n\" page_title if cl_sortkey_prefix is nonempty.",
+				"type": "binary",
+				"options": {
+					"notnull": true,
+					"default": "",
+					"length": 230
+				}
+			},
+			{
+				"name": "cl_sortkey_prefix",
+				"comment": "A prefix for the raw sortkey manually specified by the user, either via [[Category:Foo|prefix]] or {{defaultsort:prefix}}.  If nonempty, it's concatenated with a line break followed by the page title before the sortkey conversion algorithm is run.  We store this so that we can update collations without reparsing all pages. Note: If you change the length of this field, you also need to change code in LinksUpdate.php. See T27254.",
+				"type": "binary",
+				"options": {
+					"notnull": true,
+					"default": "",
+					"length": 255
+				}
+			},
+			{
+				"name": "cl_timestamp",
+				"comment": "This isn't really used at present. Provided for an optional sorting method by approximate addition time.",
+				"type": "datetimetz",
+				"options": {
+					"notnull": true,
+					"PlatformOptions": {
+						"version": true
+					}
+				}
+			},
+			{
+				"name": "cl_collation",
+				"comment": "Stores $wgCategoryCollation at the time cl_sortkey was generated.  This can be used to install new collation versions, tracking which rows are not yet updated.  '' means no collation, this is a legacy row that needs to be updated by updateCollation.php.  In the future, it might be possible to specify different collations per category.",
+				"type": "binary",
+				"options": {
+					"notnull": true,
+					"default": "",
+					"length": 32
+				}
+			},
+			{
+				"name": "cl_type",
+				"comment": "Stores whether cl_from is a category, file, or other page, so we can paginate the three categories separately.  This only has to be updated when moving pages into or out of the category namespace, since file pages cannot be moved to other namespaces, nor can non-files be moved into the file namespace.",
+				"type": "mwenum",
+				"options": {
+					"notnull": true,
+					"default": "page",
+					"CustomSchemaOptions": {
+						"enum_values": [
+							"page",
+							"subcat",
+							"file"
+						]
+					}
+				}
+			},
+			{
+				"name": "cl_collation_id",
+				"comment": "FK to collation_id",
+				"type": "smallint",
+				"options": {
+					"notnull": true,
+					"unsigned": true,
+					"default": 0
+				}
+			},
+			{
+				"name": "cl_target_id",
+				"type": "bigint",
+				"comment": "Foreign key to linktarget.lt_id",
+				"options": {
+					"notnull": false,
+					"unsigned": true
+				}
+			}
+		],
+		"indexes": [
+			{
+				"name": "cl_sortkey",
+				"comment": "We always sort within a given category, and within a given type.  FIXME: Formerly this index didn't cover cl_type (since that didn't exist), so old callers won't be using an index: fix this?",
+				"columns": [
+					"cl_to",
+					"cl_type",
+					"cl_sortkey",
+					"cl_from"
+				],
+				"unique": false
+			},
+			{
+				"name": "cl_timestamp",
+				"comment": "Used by the API (and some extensions)",
+				"columns": [
+					"cl_to",
+					"cl_timestamp"
+				],
+				"unique": false
+			},
+			{
+				"name": "cl_sortkey_id",
+				"comment": "We always sort within a given category, and within a given type.  FIXME: Formerly this index didn't cover cl_type (since that didn't exist), so old callers won't be using an index: fix this?",
+				"columns": [
+					"cl_target_id",
+					"cl_type",
+					"cl_sortkey",
+					"cl_from"
+				],
+				"unique": false
+			},
+			{
+				"name": "cl_timestamp_id",
+				"comment": "Used by the API (and some extensions)",
+				"columns": [
+					"cl_target_id",
+					"cl_timestamp"
+				],
+				"unique": false
+			}
+		],
+		"pk": [
+			"cl_from",
+			"cl_to"
+		]
+	},
+	"after": {
+		"name": "categorylinks",
+		"comment": "Track category inclusions *used inline* This tracks a single level of category membership",
+		"columns": [
+			{
+				"name": "cl_from",
+				"comment": "Key to page_id of the page defined as a category member.",
+				"type": "integer",
+				"options": {
+					"unsigned": true,
+					"notnull": true,
+					"default": 0
+				}
+			},
+			{
+				"name": "cl_to",
+				"comment": "Name of the category. This is also the page_title of the category's description page; all such pages are in namespace 14 (NS_CATEGORY).",
+				"type": "binary",
+				"options": {
+					"notnull": true,
+					"default": "",
+					"length": 255
+				}
+			},
+			{
+				"name": "cl_sortkey",
+				"comment": "A binary string obtained by applying a sortkey generation algorithm (Collation::getSortKey()) to page_title, or cl_sortkey_prefix . \"\\n\" page_title if cl_sortkey_prefix is nonempty.",
+				"type": "binary",
+				"options": {
+					"notnull": true,
+					"default": "",
+					"length": 230
+				}
+			},
+			{
+				"name": "cl_sortkey_prefix",
+				"comment": "A prefix for the raw sortkey manually specified by the user, either via [[Category:Foo|prefix]] or {{defaultsort:prefix}}.  If nonempty, it's concatenated with a line break followed by the page title before the sortkey conversion algorithm is run.  We store this so that we can update collations without reparsing all pages. Note: If you change the length of this field, you also need to change code in LinksUpdate.php. See T27254.",
+				"type": "binary",
+				"options": {
+					"notnull": true,
+					"default": "",
+					"length": 255
+				}
+			},
+			{
+				"name": "cl_timestamp",
+				"comment": "This isn't really used at present. Provided for an optional sorting method by approximate addition time.",
+				"type": "datetimetz",
+				"options": {
+					"notnull": true,
+					"PlatformOptions": {
+						"version": true
+					}
+				}
+			},
+			{
+				"name": "cl_collation",
+				"comment": "Stores $wgCategoryCollation at the time cl_sortkey was generated.  This can be used to install new collation versions, tracking which rows are not yet updated.  '' means no collation, this is a legacy row that needs to be updated by updateCollation.php.  In the future, it might be possible to specify different collations per category.",
+				"type": "binary",
+				"options": {
+					"notnull": true,
+					"default": "",
+					"length": 32
+				}
+			},
+			{
+				"name": "cl_type",
+				"comment": "Stores whether cl_from is a category, file, or other page, so we can paginate the three categories separately.  This only has to be updated when moving pages into or out of the category namespace, since file pages cannot be moved to other namespaces, nor can non-files be moved into the file namespace.",
+				"type": "mwenum",
+				"options": {
+					"notnull": true,
+					"default": "page",
+					"CustomSchemaOptions": {
+						"enum_values": [
+							"page",
+							"subcat",
+							"file"
+						]
+					}
+				}
+			},
+			{
+				"name": "cl_collation_id",
+				"comment": "FK to collation_id",
+				"type": "smallint",
+				"options": {
+					"notnull": true,
+					"unsigned": true,
+					"default": 0
+				}
+			},
+			{
+				"name": "cl_target_id",
+				"type": "bigint",
+				"comment": "Foreign key to linktarget.lt_id",
+				"options": {
+					"notnull": true,
+					"unsigned": true
+				}
+			}
+		],
+		"indexes": [
+			{
+				"name": "cl_sortkey",
+				"comment": "We always sort within a given category, and within a given type.  FIXME: Formerly this index didn't cover cl_type (since that didn't exist), so old callers won't be using an index: fix this?",
+				"columns": [
+					"cl_to",
+					"cl_type",
+					"cl_sortkey",
+					"cl_from"
+				],
+				"unique": false
+			},
+			{
+				"name": "cl_timestamp",
+				"comment": "Used by the API (and some extensions)",
+				"columns": [
+					"cl_to",
+					"cl_timestamp"
+				],
+				"unique": false
+			},
+			{
+				"name": "cl_sortkey_id",
+				"comment": "We always sort within a given category, and within a given type.  FIXME: Formerly this index didn't cover cl_type (since that didn't exist), so old callers won't be using an index: fix this?",
+				"columns": [
+					"cl_target_id",
+					"cl_type",
+					"cl_sortkey",
+					"cl_from"
+				],
+				"unique": false
+			},
+			{
+				"name": "cl_timestamp_id",
+				"comment": "Used by the API (and some extensions)",
+				"columns": [
+					"cl_target_id",
+					"cl_timestamp"
+				],
+				"unique": false
+			}
+		],
+		"pk": [
+			"cl_from",
+			"cl_target_id"
+		]
+	}
+}
