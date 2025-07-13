@@ -184,8 +184,7 @@ class HandleSectionLinks extends ContentTextTransformStage {
 			// Should be unreachable
 			return $text;
 		}
-		$titleText = $po->getTitleText();
-		return preg_replace_callback( self::EDITSECTION_REGEX, function ( $m ) use ( $skin, $titleText ) {
+		return preg_replace_callback( self::EDITSECTION_REGEX, function ( $m ) use ( $skin ) {
 			$editsectionPage = $this->titleFactory->newFromTextThrow( htmlspecialchars_decode( $m[1] ) );
 			$editsectionSection = htmlspecialchars_decode( $m[2] );
 			$editsectionContent = Sanitizer::decodeCharReferences( $m[3] );

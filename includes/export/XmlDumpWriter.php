@@ -478,7 +478,7 @@ class XmlDumpWriter {
 		try {
 			$contentHandler = $contentHandlerFactory->getContentHandler( $contentModel );
 
-		} catch ( MWUnknownContentModelException $ex ) {
+		} catch ( MWUnknownContentModelException ) {
 			// A content model should not be removed, as this would cause old revisions
 			//   to fail to render.  If this does happen, let dumps keep going but warn.
 			//   To stop these warnings, register a fallback content model like so:

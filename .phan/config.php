@@ -24,6 +24,11 @@ $cfg = require __DIR__ . '/../vendor/mediawiki/mediawiki-phan-config/src/config.
 // PHPVersionCheck.php, and ScopeStructureTest.php
 $cfg['minimum_target_php_version'] = '8.1.0';
 
+// TODO Fix these issues, suppressed to allow upgrading
+$cfg['suppress_issue_types'][] = 'PhanUnusedPrivateMethodParameter';
+$cfg['suppress_issue_types'][] = 'PhanThrowTypeAbsent';
+$cfg['suppress_issue_types'][] = 'PhanThrowTypeMismatch';
+
 $cfg['file_list'] = array_merge(
 	$cfg['file_list'],
 	class_exists( AllowDynamicProperties::class ) ? [] : [ '.phan/stubs/AllowDynamicProperties.php' ],

@@ -64,7 +64,6 @@ class ParserEditTests extends Maintenance {
 		} else {
 			$this->session = [ 'options' => [] ];
 		}
-		// @phan-suppress-next-line PhanTypeArraySuspiciousNullable options always set
 		$this->runner = new ParserTestRunner( $this->recorder, $this->session['options'] );
 
 		$this->runTests();
@@ -200,7 +199,6 @@ class ParserEditTests extends Maintenance {
 			print "Could not find the test after a restart, did you rename it?";
 			unset( $this->session['startFile'] );
 			unset( $this->session['startTest'] );
-			// @phan-suppress-next-line PhanPossiblyInfiniteRecursionSameParams
 			$this->showResults();
 		}
 		print "All done\n";

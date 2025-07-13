@@ -63,6 +63,7 @@ class Xml {
 		} elseif ( $allowShortTag && $contents === '' ) {
 			$out .= ' />';
 		} else {
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullableInternal $contents is non-nullable
 			$out .= '>' . htmlspecialchars( $contents, ENT_NOQUOTES ) . "</$element>";
 		}
 		return $out;

@@ -189,7 +189,7 @@ class EventDispatchEngine implements DomainEventDispatcher, DomainEventSource {
 		// the current transactional context!
 		$dbw = $dbProvider->getPrimaryDatabase();
 		DeferredUpdates::addUpdate( new MWCallableUpdate(
-			function () use ( $callback, $event, $dbProvider ) {
+			function () use ( $callback, $event ) {
 				$this->invoke( $callback, $event );
 			},
 			__METHOD__,

@@ -83,7 +83,7 @@ SQL;
 				}
 				$class = $row->class;
 				$count = $row->count;
-				// @phan-suppress-next-line PhanImpossibleConditionInLoop,PhanPossiblyUndeclaredVariable False positive
+				// @phan-suppress-next-line PhanImpossibleConditionInLoop False positive
 				if ( !isset( $stats[$flags][$class] ) ) {
 					$stats[$flags][$class] = [
 						'count' => 0,

@@ -66,7 +66,6 @@ class JsonCodec
 	 */
 	protected function codecFor( string $className ): ?JsonClassCodec {
 		static $deserializableCodec = null;
-		static $serializableCodec = null;
 		$codec = parent::codecFor( $className );
 		if ( $codec !== null ) {
 			return $codec;

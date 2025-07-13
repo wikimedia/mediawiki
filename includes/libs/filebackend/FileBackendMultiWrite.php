@@ -201,6 +201,7 @@ class FileBackendMultiWrite extends FileBackend {
 					// Bind $scopeLock to the callback to preserve locks
 					$this->callNowOrLater(
 						function () use (
+							// @phan-suppress-next-line PhanUnusedClosureUseVariable
 							$backend, $realOps, $opts, $scopeLock, $relevantPaths, $fname
 						) {
 							$this->logger->debug(

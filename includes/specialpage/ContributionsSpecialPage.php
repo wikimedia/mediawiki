@@ -369,7 +369,7 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 					$poolKey .= 'u:' . $this->getUser()->getId();
 				}
 				$work = new PoolCounterWorkViaCallback( 'Special' . $this->mName, $poolKey, [
-					'doWork' => function () use ( $pager, $out, $target ) {
+					'doWork' => function () use ( $pager, $out ) {
 						# Show a message about replica DB lag, if applicable
 						$lag = $pager->getDatabase()->getSessionLagStatus()['lag'];
 						if ( $lag > 0 ) {

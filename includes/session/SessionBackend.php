@@ -821,7 +821,6 @@ final class SessionBackend {
 				'forcePersist' => $forcePersist,
 				'action' => 'write',
 				// 'other' probably means the session had dirty data.
-				// @phan-suppress-next-line PhanCoalescingNeverNull
 				'reason' => $persistenceChangeReason ?? 'other',
 			] );
 
