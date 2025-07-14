@@ -37,21 +37,22 @@ class TempUserDetailsLookup {
 	 * @return bool `true` if the account is expired, `false` otherwise.
 	 */
 	public function isExpired( UserIdentity $user ): bool {
-		$userName = $user->getName();
 		if (
-			!$this->tempUserConfig->isTempName( $userName ) ||
+			!$this->tempUserConfig->isTempName( $user->getName() ) ||
 			!$user->isRegistered()
 		) {
 			return false;
 		}
 
-		if ( !$this->expiryCache->has( $userName ) ) {
+		$userId = $user->getId();
+
+		if ( !$this->expiryCache->has( $userId ) ) {
 			$registration = $this->userRegistrationLookup->getFirstRegistration( $user );
 
-			$this->expiryCache->set( $userName, $this->getExpirationState( $registration ) );
+			$this->expiryCache->set( $userId, $this->getExpirationState( $registration ) );
 		}
 
-		return $this->expiryCache->get( $userName );
+		return $this->expiryCache->get( $userId );
 	}
 
 	/**
@@ -60,12 +61,6 @@ class TempUserDetailsLookup {
 	 * @param iterable<UserIdentity> $users The users to preload the expiration status for.
 	 */
 	public function preloadExpirationStatus( iterable $users ): void {
-		// Save the user name associated with each user id for use later.
-		$usersById = [];
-		foreach ( $users as $user ) {
-			$usersById[$user->getId()] = $user->getName();
-		}
-
 		$users = is_array( $users ) ? new ArrayIterator( $users ) : new IteratorIterator( $users );
 		$timestampsById = $this->userRegistrationLookup->getFirstRegistrationBatch(
 			new CallbackFilterIterator(
@@ -76,9 +71,8 @@ class TempUserDetailsLookup {
 		);
 
 		foreach ( $timestampsById as $userId => $registrationTimestamp ) {
-			// Cache expiry by user name instead of user id. See T398722.
 			$this->expiryCache->set(
-				$usersById[$userId],
+				$userId,
 				$this->getExpirationState( $registrationTimestamp )
 			);
 		}
