@@ -2677,7 +2677,7 @@ class WikiPage implements Stringable, Page, PageRecord {
 			$qb->select( [ 'page_title' => 'cl_to', 'page_namespace' => (string)NS_CATEGORY ] );
 		} else {
 			$qb->select( [ 'page_title' => 'lt_title', 'page_namespace' => (string)NS_CATEGORY ] )
-				->join( 'linktarget', null, 'cl_target_id = lt_id' );
+				->join( 'linktarget', null, [ 'cl_target_id = lt_id', 'lt_namespace = ' . NS_CATEGORY ] );
 		}
 
 		$res = $qb->where( [ 'cl_from' => $id ] )
@@ -2714,7 +2714,7 @@ class WikiPage implements Stringable, Page, PageRecord {
 		} else {
 			$qb->select( [ 'cl_to' => 'lt_title' ] )
 				->join( 'linktarget', null, 'cl_target_id = lt_id' )
-				->join( 'page', null, 'page_title = lt_title' );
+				->join( 'page', null, [ 'page_title = lt_title', 'page_namespace = lt_namespace' ] );
 		}
 
 		$res = $qb->join( 'page_props', null, 'pp_page=page_id' )
