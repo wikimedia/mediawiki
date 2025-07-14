@@ -156,7 +156,7 @@
 				"url": {
 					"type": "string",
 					"format": "uri",
-					"x-i18n-description": "rest-param-desc-media-preferred-url"
+					"x-i18n-description": "rest-param-desc-media-url"
 				}
 			},
 			"required": [ "mediatype", "size", "width", "height", "duration", "url" ]
