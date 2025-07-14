@@ -4,7 +4,7 @@ use MediaWiki\Cache\GenderCache;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @coversDefaultClass \MediaWiki\Cache\GenderCache
+ * @covers \MediaWiki\Cache\GenderCache
  * @group Database
  * @group Cache
  */
@@ -39,29 +39,26 @@ class GenderCacheTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * test usernames
-	 *
 	 * @dataProvider provideUserGenders
-	 * @covers ::getGenderOf
 	 */
 	public function testUserName( $userKey, $expectedGender ) {
-		$genderCache = $this->getServiceContainer()->getGenderCache();
 		$username = self::$nameMap[$userKey] ?? $userKey;
+
+		$genderCache = $this->getServiceContainer()->getGenderCache();
 		$gender = $genderCache->getGenderOf( $username );
-		$this->assertEquals( $expectedGender, $gender, "GenderCache normal" );
+		$this->assertEquals( $expectedGender, $gender );
 	}
 
 	/**
-	 * genderCache should work with user objects, too
-	 *
 	 * @dataProvider provideUserGenders
-	 * @covers ::getGenderOf
 	 */
 	public function testUserObjects( $userKey, $expectedGender ) {
 		$username = self::$nameMap[$userKey] ?? $userKey;
+		$user = User::newFromName( $username );
+
 		$genderCache = $this->getServiceContainer()->getGenderCache();
-		$gender = $genderCache->getGenderOf( $username );
-		$this->assertEquals( $expectedGender, $gender, "GenderCache normal" );
+		$gender = $genderCache->getGenderOf( $user );
+		$this->assertEquals( $expectedGender, $gender );
 	}
 
 	public static function provideUserGenders() {
@@ -77,11 +74,9 @@ class GenderCacheTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * test strip of subpages to avoid unnecessary queries
-	 * against the never existing username
+	 * Strip subpages to avoid unnecessary queries against the never existing username
 	 *
 	 * @dataProvider provideUserGenders
-	 * @covers ::getGenderOf
 	 */
 	public function testStripSubpages( $userKey, $expectedGender ) {
 		$username = self::$nameMap[$userKey] ?? $userKey;
@@ -90,9 +85,6 @@ class GenderCacheTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $expectedGender, $gender, "GenderCache must strip of subpages" );
 	}
 
-	/**
-	 * @covers ::doLinkBatch
-	 */
 	public function testDoLinkBatch() {
 		$users = self::provideUserGenders();
 		$batch = [];
@@ -110,9 +102,6 @@ class GenderCacheTest extends MediaWikiLangTestCase {
 		);
 	}
 
-	/**
-	 * @covers ::doTitlesArray
-	 */
 	public function testDoTitlesArray() {
 		$users = self::provideUserGenders();
 		$batch = [];
@@ -130,9 +119,6 @@ class GenderCacheTest extends MediaWikiLangTestCase {
 		);
 	}
 
-	/**
-	 * @covers ::doTitlesArray
-	 */
 	public function testDoPageRows() {
 		$users = self::provideUserGenders();
 		$batch = [];
@@ -152,7 +138,6 @@ class GenderCacheTest extends MediaWikiLangTestCase {
 
 	/**
 	 * GenderCache must work without database (like Installer)
-	 * @coversNothing
 	 */
 	public function testWithoutDB() {
 		$this->overrideMwServices();
