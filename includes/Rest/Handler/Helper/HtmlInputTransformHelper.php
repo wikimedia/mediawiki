@@ -583,12 +583,14 @@ class HtmlInputTransformHelper {
 			$this->transform->setOriginalHtml( $originalRendering->html );
 		}
 
-		if ( $originalRendering->parsoid !== null ) {
-			$this->transform->setOriginalDataParsoid( $originalRendering->parsoid );
+		$originalDataParsoid = $originalRendering->parsoid;
+		if ( $originalDataParsoid !== null ) {
+			$this->transform->setOriginalDataParsoid( $originalDataParsoid );
 		}
 
-		if ( $originalRendering->mw !== null ) {
-			$this->transform->setOriginalDataMW( $originalRendering->mw );
+		$originalDataMW = $originalRendering->mw;
+		if ( $originalDataMW !== null ) {
+			$this->transform->setOriginalDataMW( $originalDataMW );
 		}
 	}
 
