@@ -24,8 +24,9 @@ class SuppressNotificationByTypeMiddleware extends FilterMiddleware {
 	/**
 	 * Decide whether we want to remove notification from the list
 	 */
-	protected function filter( NotificationEnvelope $envelope ): bool {
-		return $envelope->getNotification()->getType() !== $this->notificationToSuppress;
+	protected function filter( NotificationEnvelope $envelope ): FilterMiddlewareAction {
+		return $envelope->getNotification()->getType() === $this->notificationToSuppress ?
+			FilterMiddlewareAction::REMOVE : FilterMiddlewareAction::KEEP;
 	}
 
 }

@@ -2060,6 +2060,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Notification\\MiddlewareChain' => __DIR__ . '/includes/Notification/MiddlewareChain.php',
 	'MediaWiki\\Notification\\MiddlewareException' => __DIR__ . '/includes/Notification/MiddlewareException.php',
 	'MediaWiki\\Notification\\Middleware\\FilterMiddleware' => __DIR__ . '/includes/Notification/Middleware/FilterMiddleware.php',
+	'MediaWiki\\Notification\\Middleware\\FilterMiddlewareAction' => __DIR__ . '/includes/Notification/Middleware/FilterMiddlewareAction.php',
 	'MediaWiki\\Notification\\Middleware\\SuppressNotificationByTypeMiddleware' => __DIR__ . '/includes/Notification/Middleware/SuppressNotificationByTypeMiddleware.php',
 	'MediaWiki\\Notification\\Notification' => __DIR__ . '/includes/Notification/Notification.php',
 	'MediaWiki\\Notification\\NotificationEnvelope' => __DIR__ . '/includes/Notification/NotificationEnvelope.php',
