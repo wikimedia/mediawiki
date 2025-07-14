@@ -506,7 +506,7 @@
 	"revdelete-show-file-submit": "Oui",
 	"logdelete-selected": "{{PLURAL:$1|Événement de notes choisi|Événements de notes choisis}}:",
 	"revdelete-legend": "Mettre des restrictions",
-	"revdelete-hide-text": "Texte de la révision",
+	"revdelete-hide-text": "Texte de la version",
 	"revdelete-hide-image": "Cacher l'information du dossier",
 	"revdelete-hide-name": "Cacher l'action et l'objet",
 	"revdelete-hide-comment": "Cacher la remarque du changement",

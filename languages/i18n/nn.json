@@ -3369,5 +3369,9 @@
 	"skin-action-protect": "Vern",
 	"skin-action-undelete": "Gjenopprett",
 	"skin-action-delete": "Slett",
-	"skin-action-move": "Flytt"
+	"skin-action-move": "Flytt",
+	"newpages-showhide-bots": "$1 robotar",
+	"newpages-showhide-patrolled": "$1 patruljerte endringar",
+	"newpages-showhide-redirect": "$1 omdirigeringar",
+	"newpages-showhide-registered": "$1 registrerte brukarar"
 }

@@ -7,7 +7,8 @@
 			"Macofe",
 			"MaxSem",
 			"Pizza1016",
-			"SNN95"
+			"SNN95",
+			"Hakimi97"
 		]
 	},
 	"config-desc": "Pemasang MediaWiki",
@@ -16,7 +17,7 @@
 	"config-localsettings-upgrade": "Fail <code>LocalSettings.php</code> telah dikesan.\nUntuk menaik taraf pemasangan, sila masukkan nilai <code>$wgUpgradeKey</code> dalam kotak di bawah.\nAnda akan menjumpainya di <code>LocalSettings.php</code> .",
 	"config-localsettings-cli-upgrade": "Fail <code>LocalSettings.php</code> telah dikesan.\nUntuk menaik taraf pemasangan, sila jalankan <code>update.php</code> sebaliknya",
 	"config-localsettings-key": "Kunci naik taraf:",
-	"config-localsettings-badkey": "Kunci yang anda berikan tidak betul.",
+	"config-localsettings-badkey": "Kunci naik taraf yang anda berikan adalah salah.",
 	"config-upgrade-key-missing": "Pemasangan yang sedia ada MediaWiki telah dikesan.\nUntuk menaik taraf pemasangan, Sila letakkan baris berikut di bahagian bawah <code>LocalSettings.php</code> anda:\n\n$1",
 	"config-localsettings-incomplete": "<code>LocalSettings.php</code> sedia ada nampaknya tidak lengkap.\nPemboleh ubah $1 tidak disetkan.\nSila tukar <code>LocalSettings.php</code> supaya pemboleh ubah ini disetkan, dan klik \"{{int:Config-terus}}\".",
 	"config-localsettings-connection-error": "Ralat berlaku semasa menyambung ke pangkalan data dengan menggunakan tetapan yang dinyatakan dalam <code>LocalSettings.php</code>. Sila betulkan tetapan tersebut dan cuba lagi.\n\n$1",
@@ -47,7 +48,8 @@
 	"config-restart": "Ya, mula semula",
 	"config-welcome": "MediaWiki merupakan pakej perisian bebas dan bersumber terbuka yang ditulis dalam PHP. Ia berkhidmat sebagai platform untuk Wikipedia dan projek-projek lain Wikimedia yang digunakan oleh beratus juta orang setiap bulan. MediaWiki disetempatkan kepada lebih 350 bahasa, malah keutuhan dan kelengkapan ciri-cirinya menjadikannya ikutan ramai pengguna dan pembangun pihak ketiga.\n\n=== Pemeriksaan persekitaran ===\nPemeriksaan asas kini boleh dilakukan untuk melihat jika persekitaran ini adalah sesuai untuk pemasangan MediaWiki.\nIngat untuk memasukkan maklumat ini jika anda mahukan sokongan tentang bagaimana untuk menyelesaikan pemasangan.",
 	"config-welcome-section-copyright": "=== Hakcipta dan Syarat-Syarat ===\n\n$1\n\nProgram ini merupakan perisian bebas; anda boleh mengedarkannya semula dan/atau mengubahsuainya di bawah syarat-syarat Lesen Awam GNU seperti yang diterbitkan oleh Yayasan Perisian Bebas; sama ada versi 2 Lesen ini atau (mengikut pilihan anda) mana-mana versi selepas ini.\n\nProgram ini diedarkan dengan harapan bahawa ia akan menjadi berguna, tetapi '''tanpa sebarang waranti'''; tanpa jaminan yang tersirat '''kebolehdagangan''' atau '''kesesuaian untuk tujuan tertentu'''.\nLihat Lesen Awam GNU untuk maklumat lanjut.\n\nAnda sepatutnya telah menerima [$2  satu salinan Lesen Awam GNU ] bersama-sama dengan program ini, jika tidak, menulis surat kepada Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA, atau [https://www.gnu.org/copyleft/gpl.html membacanya dalam talian].",
-	"config-sidebar": "* [https://www.mediawiki.org Laman utama MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Panduan Pengguna]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Contents Panduan Penyelia]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Soalan lazim]\n----\n* <doclink href=Readme>Baca saya</doclink>\n* <doclink href=ReleaseNotes>Nota keluaran</doclink>\n* <doclink href=Copying>Menyalin</doclink>\n* <doclink href=UpgradeDoc>Menaik taraf</doclink>",
+	"config-sidebar": "* [https://www.mediawiki.org Laman utama MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Panduan Pengguna]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Contents Panduan Penyelia]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Soalan Lazim]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Communication Cari bantuan]\n* [https://phabricator.wikimedia.org/ Penjejak pepijat]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/How_to_contribute Sumbangan]",
+	"config-sidebar-relnotes": "Nota keluaran",
 	"config-env-good": "Persekitaran telah diperiksa.\nAnda boleh memasang MediaWiki.",
 	"config-env-bad": "Persekitaran telah diperiksa. \nAnda tidak boleh memasang MediaWiki.",
 	"config-env-php": "PHP $1 dipasang.",
