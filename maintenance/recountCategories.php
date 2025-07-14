@@ -152,7 +152,10 @@ TEXT
 				->select( 'COUNT(*)' )
 				->from( 'categorylinks' )
 				->join( 'linktarget', null, 'cl_target_id = lt_id' )
-				->where( 'lt_title = cat_title' );
+				->where( [
+					'lt_title' => 'cat_title',
+					'lt_namespace' => NS_CATEGORY,
+				] );
 		}
 
 		if ( $mode === 'subcats' ) {
