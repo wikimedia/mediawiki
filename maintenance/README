@@ -66,7 +66,9 @@ For example, if your class is called ''Frobnify'', place it in a file called
 ''maintenance/Frobnify.php'' and at the end of the file, put the following
 statement:
 <pre>
+// @codeCoverageIgnoreStart
 return Frobnify::class;
+// @codeCoverageIgnoreEnd
 </pre>
 
 You can now run your script by calling ''maintenance/run Frobnify''.
@@ -90,9 +92,11 @@ require_once __DIR__ . '/Maintenance.php';
 
 For maintenance scripts defined in extensions, this is slightly more complex:
 <pre>
+// @codeCoverageIgnoreStart
 require_once getenv( 'MW_INSTALL_PATH' ) !== false
 	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance/Maintenance.php'
 	: __DIR__ . '/../../../maintenance/Maintenance.php';
+// @codeCoverageIgnoreEnd
 </pre>
 
 Then, at the bottom of the file, replace the return statement with the
