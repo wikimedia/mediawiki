@@ -2090,8 +2090,8 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 
 		// should be rendered as table, not interpreted as wikitext
 		$expectedText = [
-			'>color</th>',
-			'>green</td>',
+			'>color</span>',
+			'>"green"</td>',
 			'<html',
 		];
 
@@ -2102,12 +2102,15 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 				'contentmodel' => CONTENT_MODEL_JSON,
 			]
 		];
+
+		$dummyContentType = 'text/html; charset=utf-8; profile="https://www.mediawiki.org/wiki/Specs/HTML/0.0.0"';
+
 		yield 'should parse the given JSON' => [
 			$attribs,
 			$wikitext,
 			$expectedText,
 			$unexpectedText,
-			$htmlHeaders
+			[ 'content-type' => $dummyContentType ]
 		];
 	}
 

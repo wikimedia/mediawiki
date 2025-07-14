@@ -489,11 +489,13 @@ describe( '/transform/ and related endpoints', () => {
 		};
 	};
 
-	const validHtmlResponse = function ( expectFunc ) {
+	const validHtmlResponse = function ( expectFunc, contentVersion ) {
 		return function ( res ) {
 			res.statusCode.should.equal( 200 );
 			res.headers.should.have.property( 'content-type' );
-			res.headers[ 'content-type' ].should.satisfy( contentTypeMatcher( 'text/html', 'HTML' ) );
+			res.headers[ 'content-type' ].should.satisfy(
+				contentTypeMatcher( 'text/html', 'HTML', contentVersion )
+			);
 			validateSpec( res );
 			const doc = domino.createDocument( res.text );
 			if ( expectFunc ) {
@@ -504,19 +506,23 @@ describe( '/transform/ and related endpoints', () => {
 		};
 	};
 
-	const validPageBundleResponse = function ( expectFunc ) {
+	const validPageBundleResponse = function ( expectFunc, contentVersion ) {
 		return function ( res ) {
 			res.statusCode.should.equal( 200 );
 			validateSpec( res );
 			res.body.should.have.property( 'html' );
 			res.body.html.should.have.property( 'headers' );
 			res.body.html.headers.should.have.property( 'content-type' );
-			res.body.html.headers[ 'content-type' ].should.satisfy( contentTypeMatcher( 'text/html', 'HTML' ) );
+			res.body.html.headers[ 'content-type' ].should.satisfy(
+				contentTypeMatcher( 'text/html', 'HTML', contentVersion )
+			);
 			res.body.html.should.have.property( 'body' );
 			res.body.should.have.property( 'data-parsoid' );
 			res.body[ 'data-parsoid' ].should.have.property( 'headers' );
 			res.body[ 'data-parsoid' ].headers.should.have.property( 'content-type' );
-			res.body[ 'data-parsoid' ].headers[ 'content-type' ].should.satisfy( contentTypeMatcher( 'application/json', 'data-parsoid' ) );
+			res.body[ 'data-parsoid' ].headers[ 'content-type' ].should.satisfy(
+				contentTypeMatcher( 'application/json', 'data-parsoid', contentVersion )
+			);
 			res.body[ 'data-parsoid' ].should.have.property( 'body' );
 			// TODO: Check data-mw when 999.x is the default.
 			console.assert( !semver.gte( defaultContentVersion, '999.0.0' ) );
@@ -699,8 +705,8 @@ describe( '/transform/ and related endpoints', () => {
 					contentmodel: 'json'
 				} )
 				.expect( validHtmlResponse( ( doc ) => {
-					doc.body.firstChild.nodeName.should.equal( 'TABLE' );
-				} ) )
+					doc.body.firstChild.nodeName.should.equal( 'DIV' );
+				}, '0.0.0' ) ) // Dummy version set in PageBundleParserOutputConverter
 				.end( done );
 		} );
 
@@ -726,9 +732,9 @@ describe( '/transform/ and related endpoints', () => {
 					contentmodel: 'json'
 				} )
 				.expect( validPageBundleResponse( ( doc ) => {
-					doc.body.firstChild.nodeName.should.equal( 'TABLE' );
+					doc.body.firstChild.nodeName.should.equal( 'DIV' );
 					should.not.exist( doc.querySelector( '*[typeof="mw:Error"]' ) );
-				} ) )
+				}, '0.0.0' ) ) // Dummy version set in PageBundleParserOutputConverter
 				.end( done );
 		} );
 
@@ -1349,6 +1355,8 @@ describe( '/transform/ and related endpoints', () => {
 				.end( done );
 		} );
 
+		// FIXME: The REST API no longer returns Parsoid output for the JSON
+		// contentmodel and so Parsoid shouldn't be asked the serialize it
 		const htmlOfJsonConfig = getTextFromFile( 'JsonConfig.html' );
 		it( 'should accept html for json contentmodel as a string', ( done ) => {
 			client.req

@@ -122,36 +122,20 @@ class JsonContentHandler extends CodeContentHandler {
 		// As such, native data may be invalid (though output is discarded later in that case).
 		if ( $cpoParams->getGenerateHtml() ) {
 			if ( $content->isValid() ) {
-				$parserOptions = $cpoParams->getParserOptions();
-				if ( $cpoParams->getParserOptions()->getUseParsoid() ) {
-					$title = $this->titleFactory->newFromPageReference( $cpoParams->getPage() );
-					$parser = $this->parsoidParserFactory->create();
-					$parserOutput = $parser->parse(
-						// It is necessary to pass a Content rather than a
-						// string in order for Parsoid to handle the
-						// contentmodel correctly.
-						$content, $title, $parserOptions,
-						true, true, $cpoParams->getRevId()
-					);
-					// Register the use of the 'parsoid' option again, since
-					// we have a new $parserOutput now.
-					$parserOptions->getUseParsoid();
+				$pageText = $content->getText();
+				$pageSize = strlen( $pageText );
+				if ( $pageSize > self::WIKITEXT_SIZE_BYTES ) {
+					// T344505: For big pages, output plain text wrapped in <pre> tags.
+					// Browsers render this quickly, avoiding performance issues.
+					$html = htmlspecialchars( $content->getText(), ENT_COMPAT );
+					$html = "<pre>$html</pre>";
+					$parserOutput->setContentHolderText( $html );
 				} else {
-					$pageText = $content->getText();
-					$pageSize = strlen( $pageText );
-					if ( $pageSize > self::WIKITEXT_SIZE_BYTES ) {
-						// T344505: For big pages, output plain text wrapped in <pre> tags.
-						// Browsers render this quickly, avoiding performance issues.
-						$html = htmlspecialchars( $content->getText(), ENT_COMPAT );
-						$html = "<pre>$html</pre>";
-						$parserOutput->setContentHolderText( $html );
-					} else {
-						// Output an HTML table, which is a little bit easier to read for
-						// non-programmers. Browsers render this slowly, but the page is small
-						// enough that this isn't a problem.
-						$html = $content->rootValueTable( $content->getData()->getValue() );
-						$parserOutput->setContentHolderText( $html );
-					}
+					// Output an HTML table, which is a little bit easier to read for
+					// non-programmers. Browsers render this slowly, but the page is small
+					// enough that this isn't a problem.
+					$html = $content->rootValueTable( $content->getData()->getValue() );
+					$parserOutput->setContentHolderText( $html );
 				}
 			} else {
 				$error = wfMessage( 'invalid-json-data' )->parse();
