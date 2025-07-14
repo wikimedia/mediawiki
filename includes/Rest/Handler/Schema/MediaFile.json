@@ -11,7 +11,7 @@
 	"properties": {
 		"title": {
 			"type": "string",
-			"x-i18n-description": "rest-param-desc-media-links-title"
+			"x-i18n-description": "rest-param-desc-media-file-title"
 		},
 		"file_description_url": {
 			"type": "string",
