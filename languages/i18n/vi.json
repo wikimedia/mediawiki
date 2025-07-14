@@ -4085,7 +4085,7 @@
 	"renameuser-move-log": "Đã tự động di chuyển trang khi đổi tên thành viên “[[User:$1|$1]]” thành “[[User:$2|$2]]”",
 	"action-renameuser": "đổi tên thành viên",
 	"right-renameuser": "Đổi tên thành viên",
-	"renameuser-renamed-notice": "Thành viên này đã được đổi tên.\nNhật trình đổi tên được ghi ở dưới để tiện theo dõi.",
+	"renameuser-renamed-notice": "{{GENDER:$1|Thành viên}} này đã được đổi tên.\nNhật trình đổi tên được ghi ở dưới để tiện theo dõi.",
 	"log-unknown-action": "đã thực hiện hành động không xác định \"$2\" tại [[$1]]",
 	"createacct-benefit-heading-temp-user": "Cảm ơn bạn đã đóng góp cho {{SITENAME}}.\nTạo một tài khoản để truy cập nhiều tính năng hơn.",
 	"createacct-benefit-subheading-temp-user": "{{SITENAME}} được tạo bởi những người như bạn. Với tài khoản, bạn có thể có danh tính vĩnh viễn và an toàn với quyền truy cập vào các tính năng như:",

@@ -625,7 +625,7 @@
 	"apihelp-query+allusers-param-prefix": "Оцу маьӀнаца йолалуш йолу йерриге а никаш лаха.",
 	"apihelp-query+allusers-param-dir": "Къепе листар.",
 	"apihelp-query+allusers-param-group": "Оцу тобанашкара декъашхой бен йукъа ма бахийта. Ган а гуш доцуш йа авто дӀайелла тобанаш, масала *, user , йа autoconfirmed, лоруш йац.",
-	"apihelp-query+allusers-param-excludegroup": "ХӀокху тобан чуьра декъашхой дӀабаха.",
+	"apihelp-query+allusers-param-excludegroup": "ХӀокху тобанан чуьра декъашхой дӀабаха.",
 	"apihelp-query+allusers-param-rights": "И бакъонаш йолу декъашхой бен йукъа ма бахийта. Авто дӀайеллачу тобанаша йелла бакъонаш йолу декъашхой, масала *, user йа autoconfirmed, йукъа ца боху.",
 	"apihelp-query+allusers-param-prop": "Муьлха информаци йукъайакха йеза:",
 	"apihelp-query+allusers-paramvalue-prop-blockinfo": "ТӀетуху декъашхочун карарчу блоктохарех лаьцна информаци.",

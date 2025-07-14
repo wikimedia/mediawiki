@@ -7,13 +7,14 @@
 			"Max20091",
 			"Minh Nguyen",
 			"NguoiDungKhongDinhDanh",
+			"NguyenHung",
 			"Nguyenphutrong2",
 			"Vinhtantran"
 		]
 	},
 	"apihelp-main-param-action": "Tác vụ để thực hiện.",
 	"apihelp-main-param-format": "Định dạng của dữ liệu được cho ra.",
-	"apihelp-main-param-uselang": "Ngôn ngữ để sử dụng cho các bản dịch thông điệp. <kbd>[[Special:ApiHelp/query+siteinfo|action=query&meta=siteinfo]]</kbd> với <kbd>siprop=languages</kbd> trả về một danh sách các mã ngôn ngữ, hoặc định rõ <kbd>user</kbd> để sử dụng ngôn ngữ của người dùng hiện tại, hoặc định rõ <kbd>content</kbd> để sử dụng ngôn ngữ nội dung của wiki này.",
+	"apihelp-main-param-uselang": "Ngôn ngữ để sử dụng cho các bản dịch thông điệp. <kbd>[[Special:ApiHelp/query+siteinfo|action=query&meta=siteinfo]]</kbd>&siprop=languages</kbd> trả về một danh sách các mã ngôn ngữ. Bạn có thể định rõ <kbd>user</kbd> để sử dụng ngôn ngữ của người dùng hiện tại hoặc <kbd>content</kbd> để sử dụng ngôn ngữ nội dung của wiki này.",
 	"apihelp-block-summary": "Cấm người dùng.",
 	"apihelp-block-param-user": "Thành viên cần cấm.",
 	"apihelp-block-param-reason": "Lý do cấm.",

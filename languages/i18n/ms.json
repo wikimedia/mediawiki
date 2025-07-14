@@ -139,6 +139,7 @@
 	"redirectpagesub": "Laman lencongan",
 	"redirectto": "Lencong ke:",
 	"lastmodifiedat": "Laman ini kali terakhir disunting pada $2, $1.",
+	"renderedwith-parsoid": "Laman telah dikemas menggunakan [[mw:Special:MyLanguage/Parsoid|Parsoid]].",
 	"viewcount": "Laman ini telah dilihat {{PLURAL:$1|sekali|sebanyak $1 kali}}.",
 	"protectedpage": "Laman dilindungi",
 	"jumpto": "Lompat ke:",
