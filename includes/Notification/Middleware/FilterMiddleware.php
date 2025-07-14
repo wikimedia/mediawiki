@@ -14,16 +14,13 @@ use MediaWiki\Notification\NotificationsBatch;
  */
 abstract class FilterMiddleware implements NotificationMiddlewareInterface {
 
-	protected const KEEP = true;
-	protected const REMOVE = false;
-
 	/**
 	 * Decide whether we want to remove notification from the list
 	 *
-	 * Return FilterMiddlewareAction::KEEP or true to keep the envelope
-	 * Return FilterMiddlewareAction::REMOVE or false to remove the envelope
+	 * Return FilterMiddlewareAction::KEEP to keep the envelope
+	 * Return FilterMiddlewareAction::REMOVE to remove the envelope
 	 */
-	abstract protected function filter( NotificationEnvelope $envelope ): bool|FilterMiddlewareAction;
+	abstract protected function filter( NotificationEnvelope $envelope ): FilterMiddlewareAction;
 
 	/**
 	 * @param NotificationsBatch $batch
@@ -32,8 +29,7 @@ abstract class FilterMiddleware implements NotificationMiddlewareInterface {
 	public function handle( NotificationsBatch $batch, callable $next ): void {
 		$next();
 		$batch->filter( function ( NotificationEnvelope $envelope ) {
-			$result = $this->filter( $envelope );
-			return $result === self::KEEP || $result === FilterMiddlewareAction::KEEP;
+			return $this->filter( $envelope ) === FilterMiddlewareAction::KEEP;
 		} );
 	}
 

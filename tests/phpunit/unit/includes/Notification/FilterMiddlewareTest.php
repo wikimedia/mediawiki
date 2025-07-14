@@ -3,6 +3,7 @@
 namespace MediaWiki\Tests\Notification;
 
 use MediaWiki\Notification\Middleware\FilterMiddleware;
+use MediaWiki\Notification\Middleware\FilterMiddlewareAction;
 use MediaWiki\Notification\Notification;
 use MediaWiki\Notification\NotificationEnvelope;
 use MediaWiki\Notification\NotificationsBatch;
@@ -20,9 +21,8 @@ class FilterMiddlewareTest extends MediaWikiUnitTestCase {
 		$sut->expects( $this->any() )
 			->method( 'filter' )
 			->willReturnCallback( static function ( NotificationEnvelope $envelope ) {
-				// remove the one with `remove` or no recipients
-				return $envelope->getNotification()->getType() !== 'remove' &&
-					$envelope->getRecipientSet()->count() !== 0;
+				return $envelope->getNotification()->getType() === 'remove' || $envelope->getRecipientSet()->count() === 0 ?
+					FilterMiddlewareAction::REMOVE : FilterMiddlewareAction::KEEP;
 			} );
 
 		$notificationA = new Notification( 'first' );
