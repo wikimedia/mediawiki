@@ -11,15 +11,16 @@ namespace MediaWiki\Hook;
  */
 interface LoginFormValidErrorMessagesHook {
 	/**
-	 * This hook is called in LoginForm when a function gets valid error messages.
+	 * This hook is called in {@link LoginHelper::getValidErrorMessages} before returning the
+	 * list of message keys that are valid for display on Special:UserLogin or Special:CreateAccount.
 	 *
-	 * This hook allows extensions to add additional error messages (except messages already
-	 * in LoginForm::$validErrorMessages).
+	 * This hook allows extensions to add additional error or warning messages to the array returned by
+	 * {@link LoginHelper::getValidErrorMessages}.
 	 *
 	 * @since 1.35
 	 *
-	 * @param string[] &$messages Already added message keys (including message
-	 *   keys from LoginForm::$validErrorMessages)
+	 * @see LoginHelper::getValidErrorMessages for more information
+	 * @param string[] &$messages Already added message keys (includes message keys defined by MediaWiki core)
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onLoginFormValidErrorMessages( array &$messages );

@@ -17,15 +17,8 @@ class LoginHelper extends ContextSource {
 	use ProtectedHookAccessorTrait;
 
 	/**
-	 * Valid error and warning messages
-	 *
-	 * Special:Userlogin can show an error or warning message on the form when
-	 * coming from another page. This is done via the ?error= or ?warning= GET
-	 * parameters.
-	 *
-	 * This array is the list of valid message keys. Further keys can be added by the
-	 * LoginFormValidErrorMessages hook. All other values will be ignored.
-	 *
+	 * @deprecated Direct access to this static property is deprecated since 1.45.
+	 *   Use {@link LoginHelper::getValidErrorMessages} instead.
 	 * @var string[]
 	 */
 	public static $validErrorMessages = [
@@ -41,21 +34,30 @@ class LoginHelper extends ContextSource {
 		'specialmute-login-required-for-temp-user',
 	];
 
+	/** @var array|null Cache for {@link LoginHelper::getValidErrorMessages} */
+	private static ?array $validErrorMessagesCache = null;
+
 	/**
-	 * Returns an array of all valid error messages.
+	 * Returns an array of all error and warning messages that can be displayed on Special:UserLogin or
+	 * Special:CreateAccount through the ?error or ?warning GET parameters.
 	 *
-	 * @return array
+	 * Special:UserLogin and Special:CreateAccount can show an error or warning message on the form when
+	 * coming from another page using the aforementioned GET parameters.
+	 *
+	 * Further keys can be added by the LoginFormValidErrorMessages hook. If a message key is not in this
+	 * list, then no redirect will be performed to Special:UserLogin or Special:CreateAccount.
+	 *
+	 * @return string[]
 	 * @see LoginHelper::$validErrorMessages
 	 */
-	public static function getValidErrorMessages() {
-		static $messages = null;
-		if ( !$messages ) {
-			$messages = self::$validErrorMessages;
+	public static function getValidErrorMessages(): array {
+		if ( !static::$validErrorMessagesCache ) {
+			static::$validErrorMessagesCache = self::$validErrorMessages;
 			( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )
-				->onLoginFormValidErrorMessages( $messages );
+				->onLoginFormValidErrorMessages( static::$validErrorMessagesCache );
 		}
 
-		return $messages;
+		return static::$validErrorMessagesCache;
 	}
 
 	public function __construct( IContextSource $context ) {
