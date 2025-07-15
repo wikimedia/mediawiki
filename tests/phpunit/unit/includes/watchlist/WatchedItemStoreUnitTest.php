@@ -1796,21 +1796,21 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 		$mockLoadBalancer = $this->getMockLBFactory( $mockDb );
 		$user = new UserIdentityValue( 1, 'MockUser' );
 
-		$mockDb->expects( $this->once() )
+		$mockDb->expects( $this->atLeastOnce() )
 			->method( 'timestamp' )
 			->willReturn( '20200101000000' );
 		$selectArgs = [
 			[
 				[ 'watchlist', 'watchlist_expiry' => 'watchlist_expiry' ],
 				[ 'wl_namespace', 'wl_title', 'wl_notificationtimestamp', 'we_expiry' ],
-				[ 'wl_user' => 1, '(we_expiry IS NULL OR we_expiry > \'20200101000000\')' ],
-				[ 'ORDER BY' => [ 'wl_namespace ASC', 'wl_title ASC' ] ],
+				[ 'wl_user' => 1, '(we_expiry IS NULL OR we_expiry > \'20200101000000\')', ],
+				[ 'ORDER BY' => [ 'wl_namespace', 'wl_title' ] ],
 				new FakeResultWrapper( [] ),
 			],
 		];
 		$mockDb->expects( $this->once() )
 			->method( 'select' )
-			->willReturnCallback( function ( $table, $vars, $conds, $fname, $options, $join_conds ) use ( &$selectArgs ) {
+			->willReturnCallback( function ( $table, $vars, $conds, $fname, $options, ) use ( &$selectArgs ) {
 				[ $nextTable, $nextVars, $nextConds, $nextOptions, $returnValue ] = array_shift( $selectArgs );
 				$this->assertSame( $nextTable, $table );
 				$this->assertSame( $nextVars, $vars );
@@ -1824,14 +1824,14 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 
 		$watchedItems = $store->getWatchedItemsForUser(
 			$user,
-			[ 'forWrite' => $forWrite, 'sort' => WatchedItemStore::SORT_ASC ]
+			[ 'forWrite' => $forWrite ]
 		);
 		$this->assertEquals( [], $watchedItems );
 	}
 
-	public function testGetWatchedItemsForUser_sortByExpiry() {
+	public function testGetWatchedItemsForUser_nonEmptyResult() {
 		$mockDb = $this->getMockDb();
-		$mockDb->expects( $this->once() )
+		$mockDb->expects( $this->atLeastOnce() )
 			->method( 'timestamp' )
 			->willReturn( '20200101000000' );
 		$selectArgs = [
@@ -1841,10 +1841,10 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 					'wl_namespace',
 					'wl_title',
 					'wl_notificationtimestamp',
-					'wl_has_expiry' => null,
 					'we_expiry',
 				],
 				[ 'wl_user' => 1, '(we_expiry IS NULL OR we_expiry > \'20200101000000\')' ],
+				[ 'ORDER BY' => [ 'wl_namespace', 'wl_title' ], 'LIMIT' => 4 ],
 				new FakeResultWrapper( [
 					(object)[
 						'wl_namespace' => 0,
@@ -1861,33 +1861,37 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 					(object)[
 						'wl_namespace' => 1,
 						'wl_title' => 'Foo3',
+						'wl_notificationtimestamp' => '20151212010101',
+						'we_expiry' => '20301201000000'
+					],
+					(object)[
+						'wl_namespace' => 1,
+						'wl_title' => 'Foo4',
 						'wl_notificationtimestamp' => null,
+						'we_expiry' => null,
 					],
 				] ),
 			],
 		];
 		$mockDb->expects( $this->once() )
 			->method( 'select' )
-			->willReturnCallback( function ( $table, $vars, $conds, $fname, $options, $join_conds ) use ( &$selectArgs ) {
-				[ $nextTable, $nextVars, $nextConds, $returnValue ] = array_shift( $selectArgs );
+			->willReturnCallback( function ( $table, $vars, $conds, $fname, $options, ) use ( &$selectArgs ) {
+				[ $nextTable, $nextVars, $nextConds, $nextOptions, $returnValue ] = array_shift( $selectArgs );
 				$this->assertSame( $nextTable, $table );
 				$this->assertSame( $nextVars, $vars );
 				$this->assertSame( $nextConds, $this->expandExpr( $conds ) );
+				$this->assertSame( $nextOptions, $options );
 				return $returnValue;
 			} );
-
 		$mockCache = $this->createNoOpMock( HashBagOStuff::class );
-
 		$store = $this->newWatchedItemStore( [ 'db' => $mockDb, 'cache' => $mockCache ] );
 		$user = new UserIdentityValue( 1, 'MockUser' );
-
 		$watchedItems = $store->getWatchedItemsForUser(
 			$user,
-			[ 'sortByExpiry' => true, 'sort' => WatchedItemStore::SORT_ASC ]
+			[ 'sort' => WatchedItemStore::SORT_ASC, 'limit' => 4 ]
 		);
-
 		$this->assertIsArray( $watchedItems );
-		$this->assertCount( 3, $watchedItems );
+		$this->assertCount( 4, $watchedItems );
 		foreach ( $watchedItems as $watchedItem ) {
 			$this->assertInstanceOf( WatchedItem::class, $watchedItem );
 		}
@@ -1901,14 +1905,13 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 			$watchedItems[0]
 		);
 		$this->assertEquals(
-			new WatchedItem( $user, new TitleValue( 1, 'Foo3' ), null ),
-			$watchedItems[2]
+			new WatchedItem( $user, new TitleValue( 1, 'Foo4' ), null ),
+			$watchedItems[3]
 		);
 	}
 
 	public function testGetWatchedItemsForUser_badSortOptionThrowsException() {
 		$store = $this->newWatchedItemStore();
-
 		$this->expectException( InvalidArgumentException::class );
 		$store->getWatchedItemsForUser(
 			new UserIdentityValue( 1, 'MockUser' ),

@@ -3778,6 +3778,12 @@ class MainConfigNames {
 	public const WatchlistExpiryMaxDuration = 'WatchlistExpiryMaxDuration';
 
 	/**
+	 * Name constant for the EditWatchlistPaginate setting, for use with Config::get()
+	 * @see MainConfigSchema::EditWatchlistPaginate
+	 */
+	public const EditWatchlistPaginate = 'EditWatchlistPaginate';
+
+	/**
 	 * Name constant for the RightsPage setting, for use with Config::get()
 	 * @see MainConfigSchema::RightsPage
 	 */

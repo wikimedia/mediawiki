@@ -11106,6 +11106,16 @@ class MainConfigSchema {
 		'type' => '?string',
 	];
 
+	/**
+	 * Whether to enable pagination on Special:EditWatchlist (feature flag)
+	 *
+	 * @since 1.45
+	 */
+	public const EditWatchlistPaginate = [
+		'default' => false,
+		'type' => 'boolean',
+	];
+
 	// endregion -- end RC/watchlist
 
 	/***************************************************************************/

@@ -2248,6 +2248,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Pager\\ContribsPager' => __DIR__ . '/includes/specials/pagers/ContribsPager.php',
 	'MediaWiki\\Pager\\ContributionsPager' => __DIR__ . '/includes/pager/ContributionsPager.php',
 	'MediaWiki\\Pager\\DeletedContribsPager' => __DIR__ . '/includes/specials/pagers/DeletedContribsPager.php',
+	'MediaWiki\\Pager\\EditWatchlistPager' => __DIR__ . '/includes/specials/pagers/EditWatchlistPager.php',
 	'MediaWiki\\Pager\\HistoryPager' => __DIR__ . '/includes/actions/pagers/HistoryPager.php',
 	'MediaWiki\\Pager\\ImageListPager' => __DIR__ . '/includes/specials/pagers/ImageListPager.php',
 	'MediaWiki\\Pager\\IndexPager' => __DIR__ . '/includes/pager/IndexPager.php',

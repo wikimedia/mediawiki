@@ -3763,6 +3763,12 @@ $wgWatchlistPurgeRate = null;
 $wgWatchlistExpiryMaxDuration = null;
 
 /**
+ * Config variable stub for the EditWatchlistPaginate setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::EditWatchlistPaginate
+ */
+$wgEditWatchlistPaginate = null;
+
+/**
  * Config variable stub for the RightsPage setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::RightsPage
  */

@@ -36,10 +36,10 @@ class SpecialEditWatchlistTest extends SpecialPageTestBase {
 		$this->executeSpecialPage();
 	}
 
-	public function testRootPage_displaysExplanationMessage() {
+	public function testRootPage_displaysNormalTitle() {
 		$user = new TestUser( __METHOD__ );
 		[ $html, ] = $this->executeSpecialPage( '', null, 'qqx', $user->getUser() );
-		$this->assertStringContainsString( '(watchlistedit-normal-explain)', $html );
+		$this->assertStringContainsString( '(editwatchlist-summary)', $html );
 	}
 
 	public function testClearPage_hasClearButtonForm() {

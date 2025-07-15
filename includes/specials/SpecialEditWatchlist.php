@@ -21,6 +21,7 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\WikiPageFactory;
+use MediaWiki\Pager\EditWatchlistPager;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\SpecialPage\UnlistedSpecialPage;
@@ -30,11 +31,8 @@ use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleParser;
 use MediaWiki\Title\TitleValue;
-use MediaWiki\Watchlist\WatchedItemStore;
 use MediaWiki\Watchlist\WatchedItemStoreInterface;
 use MediaWiki\Watchlist\WatchlistManager;
-use Wikimedia\Parsoid\Core\SectionMetadata;
-use Wikimedia\Parsoid\Core\TOCData;
 
 /**
  * Users can edit their watchlist via this page.
@@ -44,6 +42,7 @@ use Wikimedia\Parsoid\Core\TOCData;
  * @author Rob Church <robchur@gmail.com>
  */
 class SpecialEditWatchlist extends UnlistedSpecialPage {
+
 	/**
 	 * Editing modes. EDIT_CLEAR is no longer used; the "Clear" link scared people
 	 * too much. Now it's passed on to the raw editor, from which it's very easy to clear.
@@ -56,9 +55,6 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	/** @var string|null */
 	protected $successMessage;
 
-	/** @var TOCData */
-	protected $tocData;
-
 	/** @var array[] */
 	private $badItems = [];
 
@@ -69,6 +65,8 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	private NamespaceInfo $nsInfo;
 	private WikiPageFactory $wikiPageFactory;
 	private WatchlistManager $watchlistManager;
+	protected EditWatchlistPager $pager;
+	protected bool $paginationEnabled;
 
 	/** @var int|false where the value is one of the EDIT_ prefixed constants (e.g. EDIT_NORMAL) */
 	private $currentMode;
@@ -80,7 +78,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		?LinkBatchFactory $linkBatchFactory = null,
 		?NamespaceInfo $nsInfo = null,
 		?WikiPageFactory $wikiPageFactory = null,
-		?WatchlistManager $watchlistManager = null
+		?WatchlistManager $watchlistManager = null,
 	) {
 		parent::__construct( 'EditWatchlist', 'editmywatchlist' );
 		// This class is extended and therefor fallback to global state - T266065
@@ -92,6 +90,19 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		$this->nsInfo = $nsInfo ?? $services->getNamespaceInfo();
 		$this->wikiPageFactory = $wikiPageFactory ?? $services->getWikiPageFactory();
 		$this->watchlistManager = $watchlistManager ?? $services->getWatchlistManager();
+		$this->pager = $this->getDefaultPager();
+		$this->paginationEnabled = $this->getRequest()->getBool(
+			'paginate',
+			$this->getConfig()->get( MainConfigNames::EditWatchlistPaginate )
+		);
+	}
+
+	private function getDefaultPager(): EditWatchlistPager {
+		return new EditWatchlistPager(
+			$this->getContext(),
+			$this->watchedItemStore,
+			$this->nsInfo,
+		);
 	}
 
 	/** @inheritDoc */
@@ -209,19 +220,55 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		$out = $this->getOutput();
 		$out->setPageTitleMsg( $this->msg( 'watchlistedit-normal-title' ) );
 
-		$form = $this->getNormalForm();
-		$form->prepareForm();
-
-		$result = $form->tryAuthorizedSubmit();
-		if ( $result === true || ( $result instanceof Status && $result->isGood() ) ) {
-			$out->addHTML( $this->successMessage );
-			$out->addReturnTo( SpecialPage::getTitleFor( 'Watchlist' ) );
-			return;
+		// @todo remove this condition when the EditWatchlistPaginate feature flag is removed
+		if ( $this->paginationEnabled ) {
+			$namespaceFormDescriptor = [
+				'namespace' => [
+					'type' => 'namespaceselect',
+					'name' => 'namespace',
+					'id' => 'namespace',
+					'label-message' => 'namespace',
+					'all' => '',
+					'default' => '',
+					'include' => array_merge( array_values( $this->nsInfo->getSubjectNamespaces() ) ),
+				],
+			];
+			$namespaceSelectForm = HTMLForm::factory( 'ooui', $namespaceFormDescriptor, $this->getContext() );
+			$namespaceSelectForm
+				->setMethod( 'get' )
+				->setTitle( $this->getPageTitle() ) // Remove subpage
+				->setSubmitTextMsg( 'allpagessubmit' )
+				->prepareForm()
+				->displayForm( false );
 		}
 
-		$out->addTOCPlaceholder( $this->tocData );
+		$watchlistInfo = $this->getWatchlistInfo();
+		$this->getHookRunner()->onWatchlistEditorBeforeFormRender( $watchlistInfo );
+		if ( count( $watchlistInfo ) > 0 ) {
+			$form = $this->getNormalForm( $watchlistInfo );
+			$form->prepareForm();
 
-		$form->displayForm( $result );
+			$result = $form->tryAuthorizedSubmit();
+			if ( $result === true || ( $result instanceof Status && $result->isGood() ) ) {
+				$out->addHTML( $this->successMessage );
+				$out->addReturnTo( SpecialPage::getTitleFor( 'Watchlist' ) );
+				return;
+			}
+
+			// @todo remove this condition when the EditWatchlistPaginate feature flag is removed
+			if ( $this->paginationEnabled ) {
+				$out->addHTML( $this->pager->getNavigationBar() );
+			}
+
+			$form->displayForm( $result );
+
+			// @todo remove this condition when the EditWatchlistPaginate feature flag is removed
+			if ( $this->paginationEnabled ) {
+				$out->addHTML( $this->pager->getNavigationBar() );
+			}
+		} else {
+			$out->addWikiMsg( 'nowatchlist' );
+		}
 	}
 
 	/**
@@ -278,7 +325,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 */
 	private function submitRaw( $data ) {
 		$wanted = $this->extractTitles( $data['Titles'] );
-		$current = $this->getWatchlist();
+		$current = $this->getWatchlistFull();
 
 		if ( count( $wanted ) > 0 ) {
 			$toWatch = array_diff( $wanted, $current );
@@ -346,7 +393,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 * @param string $messageFor 'raw' or 'clear'
 	 */
 	private function clearUserWatchedItemsNow( string $messageFor ): void {
-		$current = $this->getWatchlist();
+		$current = $this->getWatchlistFull();
 		if ( !$this->watchedItemStore->clearUserWatchedItems( $this->getUser() ) ) {
 			throw new LogicException(
 				__METHOD__ . ' should only be called when able to clear synchronously'
@@ -422,19 +469,17 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	}
 
 	/**
-	 * Prepare a list of titles on a user's watchlist (excluding talk pages)
+	 * Prepare a list of ALL titles on a user's watchlist (excluding talk pages)
 	 * and return an array of (prefixed) strings
 	 *
 	 * @return array
 	 */
-	private function getWatchlist() {
+	private function getWatchlistFull(): array {
 		$list = [];
-
 		$watchedItems = $this->watchedItemStore->getWatchedItemsForUser(
 			$this->getUser(),
 			[ 'forWrite' => $this->getRequest()->wasPosted() ]
 		);
-
 		if ( $watchedItems ) {
 			/** @var Title[] $titles */
 			$titles = [];
@@ -449,51 +494,47 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 					$titles[] = $title;
 				}
 			}
-
 			$this->genderCache->doTitlesArray( $titles );
-
 			foreach ( $titles as $title ) {
 				$list[] = $title->getPrefixedText();
 			}
 		}
-
 		$this->cleanupWatchlist();
-
 		return $list;
 	}
 
 	/**
-	 * Get a list of titles on a user's watchlist, excluding talk pages,
+	 * Get a paged list of titles on a user's watchlist, excluding talk pages,
 	 * and return as a two-dimensional array with namespace and title.
 	 *
 	 * @return array
 	 */
 	protected function getWatchlistInfo() {
 		$titles = [];
-		$options = [ 'sort' => WatchedItemStore::SORT_ASC ];
-
-		if ( $this->getConfig()->get( MainConfigNames::WatchlistExpiry ) ) {
-			$options[ 'sortByExpiry'] = true;
-		}
-
-		$watchedItems = $this->watchedItemStore->getWatchedItemsForUser(
-			$this->getUser(), $options
-		);
-
 		$lb = $this->linkBatchFactory->newLinkBatch();
-		$context = $this->getContext();
-
-		foreach ( $watchedItems as $watchedItem ) {
-			$namespace = $watchedItem->getTarget()->getNamespace();
-			$dbKey = $watchedItem->getTarget()->getDBkey();
-			$lb->add( $namespace, $dbKey );
-			if ( !$this->nsInfo->isTalk( $namespace ) ) {
-				$titles[$namespace][$dbKey] = $watchedItem->getExpiryInDaysText( $context );
+		// @todo remove this clause when the EditWatchlistPaginate feature flag is removed
+		if ( !$this->paginationEnabled ) {
+			$options = [ 'sort' => WatchedItemStoreInterface::SORT_ASC ];
+			$watchedItems = $this->watchedItemStore->getWatchedItemsForUser(
+				$this->getUser(), $options
+			);
+			foreach ( $watchedItems as $watchedItem ) {
+				$namespace = $watchedItem->getTarget()->getNamespace();
+				$dbKey = $watchedItem->getTarget()->getDBkey();
+				if ( !$this->nsInfo->isTalk( $namespace ) ) {
+					$titles[$namespace][$dbKey] = $watchedItem->getExpiryInDaysText( $this->getContext() );
+				}
+				$lb->add( $namespace, $dbKey );
+			}
+		} else {
+			$this->pager->doQuery();
+			$watchedItems = $this->pager->getOrderedResult();
+			foreach ( $watchedItems as $item ) {
+				$titles[$item->wl_namespace][$item->wl_title] = $item->expiryInDaysText;
+				$lb->add( $item->wl_namespace, $item->wl_title );
 			}
 		}
-
 		$lb->execute();
-
 		return $titles;
 	}
 
@@ -659,17 +700,14 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	/**
 	 * Get the standard watchlist editing form
 	 *
+	 * @param array $watchlistInfo
 	 * @return HTMLForm
 	 */
-	protected function getNormalForm() {
+	protected function getNormalForm( array $watchlistInfo ) {
 		$fields = [];
 		$count = 0;
 
-		// Allow subscribers to manipulate the list of watched pages (or use it
-		// to preload lots of details at once)
-		$watchlistInfo = $this->getWatchlistInfo();
 		$this->getHookRunner()->onWatchlistEditorBeforeFormRender( $watchlistInfo );
-
 		foreach ( $watchlistInfo as $namespace => $pages ) {
 			$options = [];
 			foreach ( $pages as $dbkey => $expiryDaysText ) {
@@ -698,41 +736,24 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 					'options' => $options,
 					'section' => "ns$namespace",
 				];
+
+				$namespace = $this->getContext()->getRequest()->getIntOrNull( 'namespace' );
+				if ( $namespace ) {
+					$fields['namespace'] = [
+						'type' => 'hidden',
+						'name' => 'namespace',
+						'default' => $namespace,
+					];
+				}
+
+				$fields['offset'] = [
+					'type' => 'hidden',
+					'name' => 'offset',
+					'default' => $this->pager->getOffset(),
+				];
 			}
 		}
 		$this->cleanupWatchlist();
-
-		$this->tocData = new TOCData();
-		if ( count( $fields ) > 1 && $count > 30 ) {
-			$tocLength = 0;
-			$contLang = $this->getContentLanguage();
-			foreach ( $fields as $key => $data ) {
-				// ignore the 'check all'  field
-				if ( str_starts_with( $key, 'CheckAllNs' ) ) {
-					continue;
-				}
-				# strip out the 'ns' prefix from the section name:
-				$ns = (int)substr( $data['section'], 2 );
-				$nsText = ( $ns === NS_MAIN )
-					? $this->msg( 'blanknamespace' )->text()
-					: $contLang->getFormattedNsText( $ns );
-				$anchor = "editwatchlist-{$data['section']}";
-				++$tocLength;
-				$this->tocData->addSection( new SectionMetadata(
-					1,
-					// This is supposed to be the heading level, e.g. 2 for a <h2> tag,
-					// but this page uses <legend> tags for the headings, so use a fake value
-					99,
-					htmlspecialchars( $nsText ),
-					$this->getLanguage()->formatNum( $tocLength ),
-					(string)$tocLength,
-					null,
-					null,
-					$anchor,
-					$anchor
-				) );
-			}
-		}
 
 		$form = new EditWatchlistNormalHTMLForm( $fields, $this->getContext() );
 		$form->setTitle( $this->getPageTitle() ); // Remove subpage
@@ -816,7 +837,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 * @return HTMLForm
 	 */
 	protected function getRawForm() {
-		$titles = implode( "\n", $this->getWatchlist() );
+		$titles = implode( "\n", $this->getWatchlistFull() );
 		$fields = [
 			'Titles' => [
 				'type' => 'textarea',

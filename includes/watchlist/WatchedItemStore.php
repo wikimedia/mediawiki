@@ -17,7 +17,6 @@ use MediaWiki\Title\TitleValue;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\Utils\MWTimestamp;
 use stdClass;
-use Wikimedia\Assert\Assert;
 use Wikimedia\MapCacheLRU\MapCacheLRU;
 use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\ObjectCache\HashBagOStuff;
@@ -733,12 +732,11 @@ class WatchedItemStore implements WatchedItemStoreInterface {
 
 		$dbr = $this->lbFactory->getReplicaDatabase();
 
-		$rows = $this->fetchWatchedItems(
+		$rows = $this->fetchWatchedItemRows(
 			$dbr,
 			$user,
-			[ 'wl_namespace', 'wl_title', 'wl_notificationtimestamp' ],
+			$targets,
 			[],
-			$targets
 		);
 
 		if ( !$rows ) {
@@ -747,9 +745,7 @@ class WatchedItemStore implements WatchedItemStoreInterface {
 
 		$items = [];
 		foreach ( $rows as $row ) {
-			// TODO: convert to PageIdentity
-			$target = new TitleValue( (int)$row->wl_namespace, $row->wl_title );
-			$item = $this->getWatchedItemFromRow( $user, $target, $row );
+			$item = $this->getWatchedItemFromRow( $user, $row );
 			$this->cache( $item );
 			$items[] = $item;
 		}
@@ -761,73 +757,78 @@ class WatchedItemStore implements WatchedItemStoreInterface {
 	 * @since 1.27
 	 * @param UserIdentity $user
 	 * @param array $options Supported options are:
-	 *  - 'forWrite': whether to use the primary database instead of a replica
-	 *  - 'sort': how to sort the titles, either SORT_ASC or SORT_DESC
-	 *  - 'sortByExpiry': whether to also sort results by expiration, with temporarily watched titles
-	 *                    above titles watched indefinitely and titles expiring soonest at the top
+	 *  - 'forWrite': bool optional whether to use the primary database instead of a replica (defaults to false)
+	 *  - 'sort': string optional self::SORT_ASC or self:SORT_DESC (defaults to self::SORT_ASC)
+	 *  - 'offsetConds': optional array SQL conditions that the watched items must match
+	 *  - 'namespaces': array
+	 *  - 'limit': int max number of watched items to return
 	 * @return WatchedItem[]
 	 */
 	public function getWatchedItemsForUser( UserIdentity $user, array $options = [] ): array {
-		$options += [ 'forWrite' => false ];
-		$vars = [ 'wl_namespace', 'wl_title', 'wl_notificationtimestamp' ];
-		$orderBy = [];
+		$options += [ 'forWrite' => false, 'sort' => self::SORT_ASC ];
 		if ( $options['forWrite'] ) {
 			$db = $this->lbFactory->getPrimaryDatabase();
 		} else {
 			$db = $this->lbFactory->getReplicaDatabase();
 		}
-		if ( array_key_exists( 'sort', $options ) ) {
-			Assert::parameter(
-				( in_array( $options['sort'], [ self::SORT_ASC, self::SORT_DESC ] ) ),
-				'$options[\'sort\']',
-				'must be SORT_ASC or SORT_DESC'
-			);
-			$orderBy[] = "wl_namespace {$options['sort']}";
-			if ( $this->expiryEnabled
-				&& array_key_exists( 'sortByExpiry', $options )
-				&& $options['sortByExpiry']
-			) {
-				// Add `wl_has_expiry` column to allow sorting by watched titles that have an expiration date first.
-				$vars['wl_has_expiry'] = $db->conditional( 'we_expiry IS NULL', '0', '1' );
-				// Display temporarily watched titles first.
-				// Order by expiration date, with the titles that will expire soonest at the top.
-				$orderBy[] = "wl_has_expiry DESC";
-				$orderBy[] = "we_expiry ASC";
-			}
 
-			$orderBy[] = "wl_title {$options['sort']}";
+		if ( $options['sort'] == self::SORT_ASC ) {
+			$orderBy = [ 'wl_namespace', 'wl_title' ];
+		} else {
+			$orderBy = [ 'wl_namespace DESC', 'wl_title DESC' ];
 		}
+		return $this->fetchWatchedItems( $db, $user, $options, $orderBy );
+	}
 
-		$res = $this->fetchWatchedItems(
-			$db,
-			$user,
-			$vars,
-			$orderBy
-		);
-
+	/**
+	 * @param IDatabase $db
+	 * @param UserIdentity $user
+	 * @param array $options Supported options are:
+	 *  - 'offsetConds': array SQL conditions that the watched items must match
+	 *  - 'limit': int max number of watched items to return
+	 *  - 'namespaces': array
+	 * @param array $orderBy SQL order by
+	 * @param array $extraConditions SQL conditions
+	 * @return array WatchedItem[]
+	 */
+	private function fetchWatchedItems(
+		IDatabase $db, UserIdentity $user, array $options, array $orderBy, array $extraConditions = []
+	): array {
+		$fetchOptions = [];
+		$fetchOptions['orderBy'] = $orderBy;
+		if ( isset( $options['limit'] ) ) {
+			$fetchOptions['limit'] = $options['limit'];
+		}
+		if ( isset( $options['offsetConds'] ) ) {
+			$offsetConds = is_array( $options['offsetConds'] )
+				? $options['offsetConds'] :
+				[ $options['offsetConds'] ];
+			$extraConditions = array_merge( $extraConditions, $offsetConds );
+		}
+		if ( isset( $options['namespaces'] ) ) {
+			$extraConditions['wl_namespace'] = $options['namespaces'];
+		}
+		$fetchOptions = array_merge( $fetchOptions, [ 'extraConds' => $extraConditions ] );
+		$res = $this->fetchWatchedItemRows( $db, $user, null, $fetchOptions );
 		$watchedItems = [];
 		foreach ( $res as $row ) {
-			// TODO: convert to PageIdentity
-			$target = new TitleValue( (int)$row->wl_namespace, $row->wl_title );
-			// @todo: Should we add these to the process cache?
-			$watchedItems[] = $this->getWatchedItemFromRow( $user, $target, $row );
+			$watchedItems[] = $this->getWatchedItemFromRow( $user, $row );
 		}
-
 		return $watchedItems;
 	}
 
 	/**
 	 * Construct a new WatchedItem given a row from watchlist/watchlist_expiry.
 	 * @param UserIdentity $user
-	 * @param LinkTarget|PageIdentity $target deprecated passing LinkTarget since 1.36
 	 * @param \stdClass $row
 	 * @return WatchedItem
 	 */
 	private function getWatchedItemFromRow(
 		UserIdentity $user,
-		$target,
 		stdClass $row
 	): WatchedItem {
+		// @todo convert to PageIdentity
+		$target = new TitleValue( (int)$row->wl_namespace, $row->wl_title );
 		return new WatchedItem(
 			$user,
 			$target,
@@ -844,22 +845,27 @@ class WatchedItemStore implements WatchedItemStoreInterface {
 	 *
 	 * @param IReadableDatabase $db
 	 * @param UserIdentity $user
-	 * @param array $vars we_expiry is added when $wgWatchlistExpiry is enabled.
-	 * @param array $orderBy array of columns
 	 * @param LinkTarget|LinkTarget[]|PageIdentity|PageIdentity[]|null $target null if selecting all
 	 *        watched items - deprecated passing LinkTarget or LinkTarget[] since 1.36
+	 * @param array $options Supported options are:
+	 *  - 'orderBy': an array of SQL `order by` strings
+	 *  - 'extraConds': an array of SQL condition strings
+	 *  - 'limit': integer value for use in an SQL `limit`
 	 * @return IResultWrapper|\stdClass|false
 	 */
-	private function fetchWatchedItems(
+	private function fetchWatchedItemRows(
 		IReadableDatabase $db,
 		UserIdentity $user,
-		array $vars,
-		array $orderBy = [],
-		$target = null
+		$target = null,
+		array $options = [],
 	) {
 		$dbMethod = 'select';
+		$fieldNames = [ 'wl_namespace', 'wl_title', 'wl_notificationtimestamp' ];
+		if ( $this->expiryEnabled ) {
+			$fieldNames[] = 'we_expiry';
+		}
 		$queryBuilder = $db->newSelectQueryBuilder()
-			->select( $vars )
+			->select( $fieldNames )
 			->from( 'watchlist' )
 			->where( [ 'wl_user' => $user->getId() ] )
 			->caller( __METHOD__ );
@@ -884,13 +890,16 @@ class WatchedItemStore implements WatchedItemStoreInterface {
 				$queryBuilder->where( $db->makeList( $titleConds, $db::LIST_OR ) );
 			}
 		}
-
 		$this->modifyQueryBuilderForExpiry( $queryBuilder, $db );
-		if ( $this->expiryEnabled ) {
-			$queryBuilder->field( 'we_expiry' );
+
+		if ( array_key_exists( 'orderBy', $options ) && is_array( $options['orderBy'] ) ) {
+			$queryBuilder->orderBy( $options['orderBy'] );
 		}
-		if ( $orderBy ) {
-			$queryBuilder->orderBy( $orderBy );
+		if ( array_key_exists( 'extraConds', $options ) && is_array( $options['extraConds'] ) ) {
+			$queryBuilder->where( $options['extraConds'] );
+		}
+		if ( array_key_exists( 'limit', $options ) && ( intval( $options['limit'] ) > 0 ) ) {
+			$queryBuilder->limit( $options['limit'] );
 		}
 
 		if ( $dbMethod == 'selectRow' ) {

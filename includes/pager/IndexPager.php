@@ -251,13 +251,31 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 * @stable to override
 	 */
 	public function doQuery() {
+		$order = $this->getQueryOrder();
+		# Plus an extra row so that we can tell the "next" link should be shown
+		$queryLimit = $this->mLimit + 1;
+
+		$this->mResult = $this->reallyDoQuery(
+			$this->mOffset,
+			$queryLimit,
+			$order
+		);
+
+		$this->extractResultInfo( $this->isFirst( $order ), $queryLimit, $this->mResult );
+		$this->mQueryDone = true;
+
+		$this->preprocessResults( $this->mResult );
+		$this->mResult->rewind(); // Paranoia
+	}
+
+	public function getQueryOrder(): bool {
 		$defaultOrder = ( $this->mDefaultDirection === self::DIR_ASCENDING )
 			? self::QUERY_ASCENDING
 			: self::QUERY_DESCENDING;
-		$order = $this->mIsBackwards ? self::oppositeOrder( $defaultOrder ) : $defaultOrder;
+		return $this->mIsBackwards ? self::oppositeOrder( $defaultOrder ) : $defaultOrder;
+	}
 
-		# Plus an extra row so that we can tell the "next" link should be shown
-		$queryLimit = $this->mLimit + 1;
+	private function isFirst( bool $order ): bool {
 		if ( $this->mOffset == '' ) {
 			$isFirst = true;
 		} else {
@@ -270,18 +288,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 			$isFirst = !$this->reallyDoQuery( $this->mOffset, 1, $oppositeOrder )->numRows();
 			$this->mIncludeOffset = $oldIncludeOffset;
 		}
-
-		$this->mResult = $this->reallyDoQuery(
-			$this->mOffset,
-			$queryLimit,
-			$order
-		);
-
-		$this->extractResultInfo( $isFirst, $queryLimit, $this->mResult );
-		$this->mQueryDone = true;
-
-		$this->preprocessResults( $this->mResult );
-		$this->mResult->rewind(); // Paranoia
+		return $isFirst;
 	}
 
 	/**
@@ -480,6 +487,30 @@ abstract class IndexPager extends ContextSource implements Pager {
 		$conds = $info['conds'] ?? [];
 		$options = $info['options'] ?? [];
 		$join_conds = $info['join_conds'] ?? [];
+
+		[ $offsetConds, $sortOptions ] = $this->getOffsetCondsAndSortOptions(
+			$offset, $limit, $order
+		);
+		if ( !is_array( $offsetConds ) ) {
+			$offsetConds = [ $offsetConds ];
+		}
+
+		return [
+			$tables, $fields, array_merge( $conds, $offsetConds ), $fname, array_merge( $options, $sortOptions ),
+			$join_conds
+		];
+	}
+
+	/**
+	 * Get $conds and $options relevant for sorting
+	 *
+	 * @param int|string|null $offset Index offset, inclusive
+	 * @param int $limit
+	 * @param bool $order
+	 * @return array
+	 */
+	protected function getOffsetCondsAndSortOptions( $offset, int $limit, bool $order ): array {
+		$options = $conds = [];
 		$indexColumns = (array)$this->mIndexField;
 		$sortColumns = array_merge( $indexColumns, $this->mExtraSortFields );
 
@@ -497,14 +528,14 @@ abstract class IndexPager extends ContextSource implements Pager {
 		if ( $offset ) {
 			$offsets = explode( '|', $offset, /* Limit to max of indices */ count( $indexColumns ) );
 
-			$conds[] = $this->buildOffsetConds(
+			$conds = $this->buildOffsetConds(
 				$offsets,
 				$indexColumns,
 				$operator
 			);
 		}
-		$options['LIMIT'] = intval( $limit );
-		return [ $tables, $fields, $conds, $fname, $options, $join_conds ];
+		$options['LIMIT'] = $limit;
+		return [ $conds, $options ];
 	}
 
 	/**
@@ -789,6 +820,13 @@ abstract class IndexPager extends ContextSource implements Pager {
 		} else {
 			return $this->mOffset;
 		}
+	}
+
+	/**
+	 * @return mixed|string
+	 */
+	public function getOffset() {
+		return $this->mOffset;
 	}
 
 	/**
