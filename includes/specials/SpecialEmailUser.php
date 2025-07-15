@@ -124,22 +124,10 @@ class SpecialEmailUser extends SpecialPage {
 		];
 	}
 
-	public function execute( $par ) {
-		$this->setHeaders();
-		$this->outputHeader();
-
-		$out = $this->getOutput();
-		$request = $this->getRequest();
-		$out->addModuleStyles( 'mediawiki.special' );
-
-		// Error out if sending user cannot do this. Don't authorize yet.
-		$emailUser = $this->emailUserFactory->newEmailUserBC(
-			$this->getUser(),
-			$this->getConfig()
-		);
-		$emailUser->setEditToken( (string)$request->getVal( 'wpEditToken' ) );
-		$status = $emailUser->canSend();
-
+	/**
+	 * Handles a {@link StatusValue} from {@link EmailUser::canSend}.
+	 */
+	private function handleCanSendEmailStatus( StatusValue $status ): void {
 		if ( !$status->isGood() ) {
 			if ( $status instanceof PermissionStatus ) {
 				$status->throwErrorPageError();
@@ -157,6 +145,36 @@ class SpecialEmailUser extends SpecialPage {
 				throw new ErrorPageError( $this->getDescription(), Status::wrap( $status )->getMessage() );
 			}
 		}
+	}
+
+	public function execute( $par ) {
+		$this->setHeaders();
+		$this->outputHeader();
+
+		$out = $this->getOutput();
+		$request = $this->getRequest();
+		$out->addModuleStyles( 'mediawiki.special' );
+
+		// Check if the user can send emails without authorizing the action.
+		$emailUser = $this->emailUserFactory->newEmailUserBC(
+			$this->getUser(),
+			$this->getConfig()
+		);
+		$emailUser->setEditToken( (string)$request->getVal( 'wpEditToken' ) );
+		$status = $emailUser->canSend();
+
+		// If user emailing is disabled, then prioritise this error over anything else (including the
+		// ::requireNamedUser check). This is because a user would still be unable access the form if they were to
+		// log in or create account.
+		if ( !$status->isGood() && $status->hasMessage( 'usermaildisabled' ) ) {
+			$this->handleCanSendEmailStatus( $status );
+		}
+
+		// If the user is not logged into a named account, then display this error. This should redirect to
+		// Special:UserLogin or Special:CreateAccount to not interrupt the flow.
+		$this->requireNamedUser( 'mailnologintext', 'mailnologin' );
+
+		$this->handleCanSendEmailStatus( $status );
 
 		// Always go through the userform, it will do validations on the target
 		// and display the emailform for us.

@@ -32,6 +32,7 @@ class LoginHelper extends ContextSource {
 		'prefsnologintext2-for-temp-user',
 		'specialmute-login-required',
 		'specialmute-login-required-for-temp-user',
+		'mailnologintext',
 	];
 
 	/** @var array|null Cache for {@link LoginHelper::getValidErrorMessages} */

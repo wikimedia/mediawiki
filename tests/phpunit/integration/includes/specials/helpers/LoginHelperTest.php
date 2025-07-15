@@ -32,6 +32,7 @@ class LoginHelperTest extends MediaWikiIntegrationTestCase {
 		$actualMessages = LoginHelper::getValidErrorMessages();
 		$this->assertContains( 'testing-abc', $actualMessages );
 		$this->assertContains( 'exception-nologin-text', $actualMessages );
+		$this->assertContains( 'mailnologintext', $actualMessages );
 		$this->assertTrue( $hookCalled );
 	}
 
@@ -39,5 +40,6 @@ class LoginHelperTest extends MediaWikiIntegrationTestCase {
 		$actualMessages = LoginHelper::getValidErrorMessages();
 		$this->assertNotContains( 'testing-abc', $actualMessages );
 		$this->assertContains( 'exception-nologin-text', $actualMessages );
+		$this->assertContains( 'mailnologintext', $actualMessages );
 	}
 }
