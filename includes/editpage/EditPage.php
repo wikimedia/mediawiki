@@ -844,8 +844,7 @@ class EditPage implements IEditObject {
 					$session->set( 'TempUser:name', null );
 					$session->save();
 
-					// Revoke access to any other sessions for the expired temporary account
-					$this->authManager->revokeAccessForUser( $user->getName() );
+					// Invalidate any sessions for the expired temporary account
 					SessionManager::singleton()->invalidateSessionsForUser(
 						$this->userFactory->newFromUserIdentity( $user )
 					);
