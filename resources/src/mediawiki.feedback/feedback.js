@@ -48,7 +48,7 @@
 	 * @param {string} [config.apiUrl] api.php URL if the feedback page is on another wiki
 	 * @param {string} [config.dialogTitleMessageKey="feedback-dialog-title"] Message key for the
 	 *  title of the dialog box
-	 * @param {mw.Uri|string} [config.bugsLink="//phabricator.wikimedia.org/maniphest/task/edit/form/1/"] URL where
+	 * @param {string} [config.bugsLink="//phabricator.wikimedia.org/maniphest/task/edit/form/1/"] URL where
 	 *  bugs can be posted
 	 * @param {boolean} [config.showUseragentCheckbox=false] Show a Useragent agreement checkbox as part of the form.
 	 * @param {boolean} [config.useragentCheckboxMandatory=false] Make the Useragent checkbox mandatory.

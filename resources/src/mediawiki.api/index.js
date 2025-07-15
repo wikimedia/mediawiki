@@ -75,7 +75,7 @@
 		defaults.ajax = Object.assign( {}, defaultOptions.ajax, defaults.ajax );
 		defaults.userAgent = defaults.userAgent || ( 'MediaWiki-JS/' + mw.config.get( 'wgVersion' ) );
 
-		// Force a string if we got a mw.Uri object
+		// Force a string if we got an object, e.g. a `URL`
 		if ( setsUrl ) {
 			defaults.ajax.url = String( defaults.ajax.url );
 		}
