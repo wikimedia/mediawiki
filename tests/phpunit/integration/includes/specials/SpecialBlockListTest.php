@@ -1,12 +1,12 @@
 <?php
 namespace MediaWiki\Tests\Specials;
 
-use HtmlFormatter\HtmlFormatter;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\User\UserIdentity;
 use SpecialPageTestBase;
 use Wikimedia\Parsoid\Utils\DOMCompat;
+use Wikimedia\Parsoid\Utils\DOMUtils;
 
 /**
  * @covers \MediaWiki\Specials\SpecialBlockList
@@ -77,7 +77,7 @@ class SpecialBlockListTest extends SpecialPageTestBase {
 
 		[ $html ] = $this->executeSpecialPage( '', $req );
 
-		$doc = ( new HtmlFormatter( HtmlFormatter::wrapHTML( $html ) ) )->getDoc();
+		$doc = DOMUtils::parseHTML( $html );
 		$targetUserNames = [];
 		foreach ( DOMCompat::querySelectorAll( $doc, '.TablePager_col_target > .mw-userlink' ) as $targetUser ) {
 			$targetUserNames[] = $targetUser->textContent;
@@ -131,7 +131,7 @@ class SpecialBlockListTest extends SpecialPageTestBase {
 
 		[ $html ] = $this->executeSpecialPage();
 
-		$doc = ( new HtmlFormatter( HtmlFormatter::wrapHTML( $html ) ) )->getDoc();
+		$doc = DOMUtils::parseHTML( $html );
 
 		$accountBlocksFilter = DOMCompat::querySelector( $doc, 'input[name="wpOptions[]"][value="userblocks"]' );
 		$accountBlocksLabel = DOMCompat::querySelector(
@@ -153,7 +153,7 @@ class SpecialBlockListTest extends SpecialPageTestBase {
 
 		[ $html ] = $this->executeSpecialPage();
 
-		$doc = ( new HtmlFormatter( HtmlFormatter::wrapHTML( $html ) ) )->getDoc();
+		$doc = DOMUtils::parseHTML( $html );
 
 		$accountBlocksFilter = DOMCompat::querySelector( $doc, 'input[name="wpOptions[]"][value="userblocks"]' );
 		$accountBlocksLabel = DOMCompat::querySelector(

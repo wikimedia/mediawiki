@@ -1,7 +1,7 @@
 <?php
 
-use HtmlFormatter\HtmlFormatter;
 use MediaWiki\Pager\CodexTablePager;
+use Wikimedia\Parsoid\Utils\DOMUtils;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\TestingAccessWrapper;
 use Wikimedia\Zest\Zest;
@@ -76,12 +76,12 @@ class CodexTablePagerTest extends MediaWikiIntegrationTestCase {
 	 * @return DOMDocument
 	 */
 	private static function getOutputHtml( string $markup ) {
-		$html = HtmlFormatter::wrapHTML( $markup );
-		return ( new HtmlFormatter( $html ) )->getDoc();
+		return DOMUtils::parseHTML( $markup );
 	}
 
 	public function testGetEmptyBody() {
-		$doc = self::getOutputHtml( $this->pager->getEmptyBody() );
+		// We're parsing a whole document, so <tr> tag without a parent <table> would be dropped
+		$doc = self::getOutputHtml( '<table>' . $this->pager->getEmptyBody() . '</table>' );
 
 		// Find the <td> element inside that document with Zest
 		$td = Zest::find( 'td', $doc )[ 0 ];

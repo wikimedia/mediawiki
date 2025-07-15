@@ -1,6 +1,5 @@
 <?php
 
-use HtmlFormatter\HtmlFormatter;
 use MediaWiki\Auth\AbstractPreAuthenticationProvider;
 use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\Context\DerivativeContext;
@@ -11,6 +10,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Specials\SpecialCreateAccount;
+use Wikimedia\Parsoid\Utils\DOMUtils;
 
 /**
  * @covers \MediaWiki\Specials\SpecialCreateAccount
@@ -104,8 +104,7 @@ class SpecialCreateAccountTest extends SpecialPageTestBase {
 	 * @return DOMDocument
 	 */
 	private static function getOutputHtml( SpecialPage $page ): DOMDocument {
-		$html = HtmlFormatter::wrapHTML( $page->getOutput()->getHTML() );
-		return ( new HtmlFormatter( $html ) )->getDoc();
+		return DOMUtils::parseHTML( $page->getOutput()->getHTML() );
 	}
 }
 
