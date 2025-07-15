@@ -150,7 +150,7 @@
 	"config-db-web-no-create-privs": "A conta que especificou para a instalación non ten os privilexios suficientes para crear unha conta.\nA conta que se especifique aquí xa debe existir.",
 	"config-mysql-engine": "Motor de almacenamento:",
 	"config-mysql-innodb": "InnoDB (recomendado)",
-	"config-mysql-engine-help": "<strong>InnoDB</strong> é case sempre a mellor opción, dado que soporta ben os accesos simultáneos.\n\n<strong>MyISAM</strong> é máis rápido en instalacións de usuario único e de só lectura.\nAs bases de datos MyISAM tenden a se corromper máis a miúdo ca as bases de datos InnoDB.",
+	"config-mysql-engine-help": "<strong>InnoDB</strong> é case sempre a mellor opción, dado que soporta ben os accesos simultáneos.\n\n<strong>MyISAM</strong> é máis rápido en instalacións de usuario único e de lectura só.\nAs bases de datos MyISAM tenden a se corromper máis a miúdo cás bases de datos InnoDB.",
 	"config-site-name": "Nome do wiki:",
 	"config-site-name-help": "Isto aparecerá na barra de títulos do navegador e noutros lugares.",
 	"config-site-name-blank": "Escriba o nome do sitio.",

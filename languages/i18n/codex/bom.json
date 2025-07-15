@@ -1,0 +1,32 @@
+{
+	"@metadata": {
+		"authors": [
+			"Gadu Israel",
+			"Gaison001",
+			"Yakubu Musa"
+		]
+	},
+	"cdx-chip-input-chip-added": "$1 Baga te",
+	"cdx-chip-input-chip-removed": "Chip $1 Baga pat",
+	"cdx-input-chip-aria-description": "Yegle yel na Hwo Fukta ke hwo kyo na hwo bak",
+	"cdx-dialog-close-button-label": "Bang",
+	"cdx-label-optional-flag": "Vit a bwing",
+	"cdx-message-dismiss-button-label": "Babg",
+	"cdx-search-input-search-button-label": "Jama",
+	"cdx-table-select-all-label": "Kasa mwa jōt o",
+	"cdx-table-select-row-label": "Kasa jòt $1 ye $2",
+	"cdx-table-sort-caption": "$1 (jōt rak na Dem nyit be tòk yong).",
+	"cdx-typeahead-search-search-results-label": "Jama nenu ha",
+	"cdx-table-pager-button-first-page": "Bwôk meseng",
+	"cdx-table-pager-button-last-page": "Bwôk yene",
+	"cdx-table-pager-button-next-page": "Bwôk nuyel",
+	"cdx-table-pager-button-prev-page": "Bwôk bama",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 row|$1 rows}}",
+	"cdx-table-pager-items-per-page-default": "Nu ha e kawe bwok",
+	"cdx-table-pagination-status-message-determinate-long": "Nunga nenu $1-$2 wò $3",
+	"cdx-table-pagination-status-message-determinate-short": "$1-$2 wò $3",
+	"cdx-table-pagination-status-message-indeterminate-long": "Wa se nunga $1-$2 wo pyàk",
+	"cdx-table-pagination-status-message-indeterminate-short": "$1-$2 wo pyàk",
+	"cdx-table-pagination-status-message-indeterminate-final": "Dura wo yene {{PLURAL:$1|$1 result |$1 results}}",
+	"cdx-table-pagination-status-message-pending": "Sé tê nehà"
+}

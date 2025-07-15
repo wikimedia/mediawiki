@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Elisardojm",
-			"Toliño"
+			"Toliño",
+			"Xosecalvo"
 		]
 	},
 	"rest-prefix-mismatch": "O camiño solicitado ($1) non estaba no interior do camiño base da API REST ($2)",
@@ -65,7 +66,7 @@
 	"rest-unsupported-target-format": "O formato de destino solicitado non é compatible.",
 	"rest-parsoid-resource-exceeded": "Superouse o límite de recursos",
 	"rest-parsoid-error": "Erro de Parsoid.",
-	"rest-parsoid-bad-render-id": "ID de renderizado de Parsoid incorrecto: $1",
+	"rest-parsoid-bad-render-id": "ID de renderización de Parsoid incorrecto: $1",
 	"rest-bad-stash-key": "Clave de reserva incorrecta.",
 	"rest-html-key-expected": "Agardábase unha clave <var>html</var> no corpo",
 	"rest-invalid-transform": "Transformación non válida: $1 a $2",

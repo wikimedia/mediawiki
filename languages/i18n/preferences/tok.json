@@ -21,7 +21,7 @@
 	"prefs-personal": "sijelo",
 	"prefs-info": "sona mi",
 	"username": "{{GENDER:$1|nimi jan}}:",
-	"prefs-memberingroups": "{{GENDER:$2|sina}} lon {{PLURAL:$1|lipu ni}}:",
+	"prefs-memberingroups": "{{GENDER:$2|sina}} lon {{PLURAL:$1|kulupu ni}}:",
 	"group-membership-link-with-expiry": "$1 (tenpo pini li $2)",
 	"prefs-edits": "nanpa pi mute ante:",
 	"prefs-registration": "tenpo pi pali sijelo:",

@@ -223,7 +223,7 @@
 	"tog-watchlisthideminor": "Kleine Bearbeitungen in der Beobachtungsliste ausblenden",
 	"tog-watchlisthidebots": "Bearbeitungen durch Bots in der Beobachtungsliste ausblenden",
 	"tog-watchlisthideown": "Eigene Bearbeitungen in der Beobachtungsliste ausblenden",
-	"tog-watchlisthideanons": "Bearbeitungen anonymer Benutzer (IP-Adressen) in der Beobachtungsliste ausblenden",
+	"tog-watchlisthideanons": "Bearbeitungen anonymer Benutzer in der Beobachtungsliste ausblenden",
 	"tog-watchlisthideliu": "Bearbeitungen angemeldeter Benutzer in der Beobachtungsliste ausblenden",
 	"tog-watchlistreloadautomatically": "Sofern ein Filter geändert wurde, die Beobachtungsliste automatisch neu laden (erfordert JavaScript)",
 	"tog-watchlisthidecategorization": "Kategorisierungen von Seiten in der Beobachtungsliste ausblenden",

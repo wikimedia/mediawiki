@@ -3,14 +3,16 @@
 		"authors": [
 			"Kly",
 			"Winston Sung",
-			"沈澄心"
+			"沈澄心",
+			"August.C",
+			"列维劳德"
 		]
 	},
 	"cdx-chip-input-chip-added": "已添加標籤塊$1。",
 	"cdx-chip-input-chip-removed": "已移除標籤塊$1。",
 	"cdx-input-chip-aria-description": "請按 Enter 鍵編輯，或是按 Delete 鍵移除。",
 	"cdx-dialog-close-button-label": "關閉",
-	"cdx-label-optional-flag": "（選擇性）",
+	"cdx-label-optional-flag": "（非必填）",
 	"cdx-message-dismiss-button-label": "關閉",
 	"cdx-search-input-search-button-label": "搜尋",
 	"cdx-table-select-all-label": "選取所有列",
