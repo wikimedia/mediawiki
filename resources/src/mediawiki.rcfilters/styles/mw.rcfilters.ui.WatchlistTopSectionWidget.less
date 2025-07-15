@@ -23,7 +23,7 @@
 	}
 
 	.mw-rcfilters-ui-row {
-		justify-content: flex-start;
+		justify-content: space-between;
 	}
 
 	.mw-rcfilters-ui-watchlistTopSectionWidget-buttonsSection {
@@ -60,6 +60,13 @@
 
 		.mw-rcfilters-ui-watchlistTopSectionWidget-editWatchlistButtonIcon {
 			margin-right: 0.375em;
+		}
+
+		&-savedLinksTable {
+			.mw-rcfilters-ui-row {
+				flex-wrap: wrap;
+				gap: 1em;
+			}
 		}
 	}
 
