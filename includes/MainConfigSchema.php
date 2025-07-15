@@ -9862,7 +9862,7 @@ class MainConfigSchema {
 
 	/**
 	 * If true, the MediaWiki error handler passes errors/warnings to the default error handler
-	 * after logging them. The setting is ignored when the track_errors php.ini flag is true.
+	 * after logging them.
 	 */
 	public const PropagateErrors = [
 		'default' => true,

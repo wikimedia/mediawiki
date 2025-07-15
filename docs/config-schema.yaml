@@ -6151,7 +6151,7 @@ config-schema:
         default: true
         description: |-
             If true, the MediaWiki error handler passes errors/warnings to the default error handler
-            after logging them. The setting is ignored when the track_errors php.ini flag is true.
+            after logging them.
     ShowHostnames:
         default: false
         description: 'Expose backend server host names through the API and various HTML comments'

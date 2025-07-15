@@ -328,9 +328,7 @@ class MWExceptionHandler {
 		self::logError( $e, $severity, self::CAUGHT_BY_HANDLER );
 
 		// If $propagateErrors is true return false so PHP shows/logs the error normally.
-		// Ignore $propagateErrors if track_errors is set
-		// (which means someone is counting on regular PHP error handling behavior).
-		return !( self::$propagateErrors || ini_get( 'track_errors' ) );
+		return !self::$propagateErrors;
 	}
 
 	/**
