@@ -76,7 +76,7 @@ class GenderCache {
 	 * Get the gender option for given username.
 	 *
 	 * @param string|UserIdentity $username
-	 * @param string|null $caller Calling method for database profiling
+	 * @param string|null $caller Unused since 1.44
 	 * @return string
 	 */
 	public function getGenderOf( $username, $caller = '' ) {
@@ -90,7 +90,7 @@ class GenderCache {
 				RequestContext::getMain()->getUser()->getName() === $username
 			) {
 				$this->misses++;
-				$this->doQuery( $username, $caller );
+				$this->doQuery( $username );
 			}
 			if ( $this->misses === $this->missLimit ) {
 				// Log only once and don't bother incrementing beyond limit+1
@@ -106,7 +106,7 @@ class GenderCache {
 	 * Wrapper for doQuery that processes raw LinkBatch data.
 	 *
 	 * @param array<int,array<string,mixed>> $data
-	 * @param string|null $caller
+	 * @param string|null $caller Unused since 1.44
 	 */
 	public function doLinkBatch( array $data, $caller = '' ) {
 		$users = [];
@@ -115,7 +115,7 @@ class GenderCache {
 				$users += $pagenames;
 			}
 		}
-		$this->doQuery( array_keys( $users ), $caller );
+		$this->doQuery( array_keys( $users ) );
 	}
 
 	/**
@@ -123,7 +123,7 @@ class GenderCache {
 	 *
 	 * @since 1.20
 	 * @param LinkTarget[] $titles
-	 * @param string|null $caller Calling method for database profiling
+	 * @param string|null $caller Unused since 1.44
 	 */
 	public function doTitlesArray( $titles, $caller = '' ) {
 		$users = [];
@@ -132,7 +132,7 @@ class GenderCache {
 				$users[] = $titleObj->getText();
 			}
 		}
-		$this->doQuery( $users, $caller );
+		$this->doQuery( $users );
 	}
 
 	/**
@@ -155,7 +155,7 @@ class GenderCache {
 	 * Preload gender option for multiple user names.
 	 *
 	 * @param string[]|string $users Usernames
-	 * @param string|null $caller Calling method for database profiling
+	 * @param string|null $caller Unused since 1.44
 	 */
 	public function doQuery( $users, $caller = '' ) {
 		$usersToFetch = [];
