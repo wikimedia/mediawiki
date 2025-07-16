@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Notification;
 
-use MediaWiki\Notification\Handlers\RecentChangeNotificationHandler;
+use MediaWiki\RecentChanges\RecentChangeNotificationHandler;
 use MediaWiki\User\UserIdentity;
 use Psr\Log\LoggerInterface;
 use RuntimeException;

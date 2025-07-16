@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Hook;
 
-use EmailNotification;
+use MediaWiki\RecentChanges\RecentChangeNotifier;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 
@@ -21,7 +21,7 @@ interface SendWatchlistEmailNotificationHook {
 	 *
 	 * @param User $targetUser User whom to send watchlist email notification
 	 * @param Title $title Page title
-	 * @param EmailNotification $enotif
+	 * @param RecentChangeNotifier $enotif
 	 * @return bool|void True or no return value to send watchlist email
 	 *   notification, or false to abort
 	 */

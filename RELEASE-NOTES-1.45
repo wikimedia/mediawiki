@@ -240,6 +240,8 @@ because of Phabricator reports.
   ::createFromParserOptions() instead.
 * Calling MessageCache::get with a Language object is now deprecated and emits
   a deprecation warning.
+* EmailNotification renamed to MediaWiki\RecentChanges\RecentChangeNotifier.
+* EnotifNotifyJob renamed to MediaWiki\RecentChanges\RecentChangeNotifyJob.
 * …
 
 === Other changes in 1.45 ===

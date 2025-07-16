@@ -20,7 +20,6 @@
 
 namespace MediaWiki\RecentChanges;
 
-use EmailNotification;
 use InvalidArgumentException;
 use MediaWiki\ChangeTags\Taggable;
 use MediaWiki\Config\Config;
@@ -542,8 +541,8 @@ class RecentChange implements Taggable {
 				// Send emails or email jobs once this row is safely committed
 				$dbw->onTransactionCommitOrIdle(
 					function () {
-						$enotif = new EmailNotification();
-						$enotif->notifyOnPageChange( $this );
+						$notifier = new RecentChangeNotifier();
+						$notifier->notifyOnPageChange( $this );
 					},
 					__METHOD__
 				);
@@ -1309,8 +1308,8 @@ class RecentChange implements Taggable {
 	 * This is used for:
 	 *
 	 * - performance optimization in RecentChange::save().
-	 *   After an edit, whether or not we need to use the EmailNotification
-	 *   service to determine which EnotifNotifyJob to dispatch.
+	 *   After an edit, whether or not we need to use the RecentChangeNotifier
+	 *   to determine which RecentChangeNotifyJob to dispatch.
 	 *
 	 * - performance optmization in WatchlistManager.
 	 *   After using reset ("Mark all pages as seen") on Special:Watchlist,
@@ -1322,7 +1321,7 @@ class RecentChange implements Taggable {
 	 * FIXME: The $wgShowUpdatedMarker variable was added to this condtion
 	 * in 2008 (2cf12c973d, SVN r35001) because at the time the per-user
 	 * "last seen" marker for watchlist and page history, was managed by
-	 * the EmailNotification/UserMailed classes. As of August 2022, this
+	 * the RecentChangeNotifier/UserMailer classes. As of August 2022, this
 	 * appears to no longer be the case.
 	 *
 	 * @since 1.40

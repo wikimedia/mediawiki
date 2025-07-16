@@ -2133,7 +2133,7 @@ return [
 						'Emailer',
 					],
 				],
-				'enotifNotify' => 'EnotifNotifyJob',
+				'enotifNotify' => 'MediaWiki\\RecentChanges\\RecentChangeNotifyJob',
 				'fixDoubleRedirect' => [
 					'class' => 'MediaWiki\\JobQueue\\Jobs\\DoubleRedirectJob',
 					'services' => [

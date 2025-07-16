@@ -18,8 +18,9 @@
  * @file
  */
 
+namespace MediaWiki\RecentChanges;
+
 use MediaWiki\JobQueue\Job;
-use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 
@@ -29,13 +30,13 @@ use MediaWiki\User\User;
  * @ingroup JobQueue
  * @ingroup Mail
  */
-class EnotifNotifyJob extends Job {
+class RecentChangeNotifyJob extends Job {
 	public function __construct( Title $title, array $params ) {
 		parent::__construct( 'enotifNotify', $title, $params );
 	}
 
 	public function run() {
-		$enotif = new EmailNotification();
+		$notifier = new RecentChangeNotifier();
 		// Get the user from ID (rename safe). Anons are 0, so defer to name.
 		if ( isset( $this->params['editorID'] ) && $this->params['editorID'] ) {
 			$editor = User::newFromId( $this->params['editorID'] );
@@ -46,13 +47,13 @@ class EnotifNotifyJob extends Job {
 		}
 		if ( !array_key_exists( 'rc_id', $this->params ) ) {
 			$this->setLastError(
-				'Cannot execute EnotifNotifyJob without `rc_id`. This has to be an old job'
+				'Cannot execute RecentChangeNotifyJob without `rc_id`. This has to be an old job'
 			);
 			return true;
 		}
 		$recentChange = RecentChange::newFromId( $this->params['rc_id'] );
 		if ( $recentChange ) {
-			$enotif->actuallyNotifyOnPageChange(
+			$notifier->actuallyNotifyOnPageChange(
 				$editor,
 				$this->title,
 				$recentChange,
@@ -63,3 +64,6 @@ class EnotifNotifyJob extends Job {
 		return true;
 	}
 }
+
+/** @deprecated class alias since 1.45 */
+class_alias( RecentChangeNotifyJob::class, 'EnotifNotifyJob' );

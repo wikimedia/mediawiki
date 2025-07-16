@@ -33,7 +33,7 @@ use UserMailer;
  * Use of this class is discouraged in favour of higher-level abstractions
  * whenever possible:
  *
- * - EmailNotification: Format and send emails to watchers about a recent change.
+ * - NotificationService with RecentChangeNotification: Format and send emails to watchers about a recent change.
  * - EmailUserFactory: Format and send emails between two wiki users.
  *
  * @since 1.35

@@ -2,22 +2,23 @@
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\RecentChanges\RecentChange;
+use MediaWiki\RecentChanges\RecentChangeNotifier;
 use MediaWiki\Title\Title;
 
 /**
  * @group Database
  * @group Mail
- * @covers \EmailNotification
+ * @covers \MediaWiki\RecentChanges\RecentChangeNotifier
  */
-class EmailNotificationTest extends MediaWikiIntegrationTestCase {
+class RecentChangeNotifierTest extends MediaWikiIntegrationTestCase {
 
-	/** @var EmailNotification */
-	protected $emailNotification;
+	/** @var RecentChangeNotifier */
+	protected $recentChangeNotifier;
 
 	protected function setUp(): void {
 		parent::setUp();
 
-		$this->emailNotification = new EmailNotification();
+		$this->recentChangeNotifier = new RecentChangeNotifier();
 
 		$this->overrideConfigValue( MainConfigNames::WatchlistExpiry, true );
 	}
@@ -46,12 +47,12 @@ class EmailNotificationTest extends MediaWikiIntegrationTestCase {
 		];
 		$rc = @RecentChange::newFromRow( $row );
 
-		$sent = $this->emailNotification->notifyOnPageChange( $rc );
+		$sent = $this->recentChangeNotifier->notifyOnPageChange( $rc );
 		static::assertTrue( $sent );
 
 		// Alice edits again, but Bob shouldn't be notified again
 		// (only one email until Bob visits the page again).
-		$sent = $this->emailNotification->notifyOnPageChange( $rc );
+		$sent = $this->recentChangeNotifier->notifyOnPageChange( $rc );
 		static::assertFalse( $sent );
 
 		// Reset notification timestamp, simulating that Bob visited the page.
@@ -62,7 +63,7 @@ class EmailNotificationTest extends MediaWikiIntegrationTestCase {
 		$store->addWatch( $bob, $title, '20060123000000' );
 
 		// Alice edits again, email should not be sent.
-		$sent = $this->emailNotification->notifyOnPageChange( $rc );
+		$sent = $this->recentChangeNotifier->notifyOnPageChange( $rc );
 		static::assertFalse( $sent );
 	}
 }

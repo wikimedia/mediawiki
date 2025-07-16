@@ -1,15 +1,13 @@
 <?php
 
-namespace MediaWiki\Notification\Handlers;
+namespace MediaWiki\RecentChanges;
 
-use MediaWiki\Mail\RecentChangeMailComposer;
 use MediaWiki\Notification\Notification;
 use MediaWiki\Notification\NotificationHandler;
 use MediaWiki\Notification\RecipientSet;
 use MediaWiki\Title\TitleFactory;
 use MediaWiki\User\User;
 use MediaWiki\User\UserFactory;
-use MediaWiki\Watchlist\RecentChangeNotification;
 
 /**
  * Accept notification events and notify users about them.

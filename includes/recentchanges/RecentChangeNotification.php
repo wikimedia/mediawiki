@@ -18,11 +18,10 @@
  * @file
  */
 
-namespace MediaWiki\Watchlist;
+namespace MediaWiki\RecentChanges;
 
 use MediaWiki\Notification\Types\WikiNotification;
 use MediaWiki\Page\PageIdentity;
-use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\User\UserIdentity;
 
 /**
@@ -95,3 +94,6 @@ class RecentChangeNotification extends WikiNotification {
 	}
 
 }
+
+/** @deprecated class alias since 1.45 */
+class_alias( RecentChangeNotification::class, 'MediaWiki\\Watchlist\\RecentChangeNotification' );

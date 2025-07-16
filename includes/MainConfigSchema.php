@@ -14,7 +14,6 @@ namespace MediaWiki;
 use DateTime;
 use DateTimeZone;
 use EmaillingJob;
-use EnotifNotifyJob;
 use Generator;
 use InvalidArgumentException;
 use LocalisationCache;
@@ -74,6 +73,7 @@ use MediaWiki\Password\Pbkdf2PasswordUsingOpenSSL;
 use MediaWiki\Permissions\GrantsInfo;
 use MediaWiki\RCFeed\RedisPubSubFeedEngine;
 use MediaWiki\RCFeed\UDPRCFeedEngine;
+use MediaWiki\RecentChanges\RecentChangeNotifyJob;
 use MediaWiki\RecentChanges\RecentChangesUpdateJob;
 use MediaWiki\RenameUser\Job\RenameUserDerivedJob;
 use MediaWiki\RenameUser\Job\RenameUserTableJob;
@@ -11526,7 +11526,7 @@ class MainConfigSchema {
 					0 => 'Emailer'
 				]
 			],
-			'enotifNotify' => EnotifNotifyJob::class,
+			'enotifNotify' => RecentChangeNotifyJob::class,
 			'fixDoubleRedirect' => [
 				'class' => DoubleRedirectJob::class,
 				'services' => [

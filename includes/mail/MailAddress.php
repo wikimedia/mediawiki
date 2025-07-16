@@ -27,7 +27,7 @@ use MediaWiki\Mail\UserEmailContact;
 /**
  * Represent and format a single name and email address pair for SMTP.
  *
- * Used by Emailer, e.g. via EmailUser or EmailNotification.
+ * Used by Emailer, e.g. via EmailUser.
  *
  * @newable
  * @since 1.6.0

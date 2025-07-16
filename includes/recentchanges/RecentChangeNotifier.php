@@ -22,22 +22,23 @@
  * @author Luke Welling lwelling@wikimedia.org
  */
 
+namespace MediaWiki\RecentChanges;
+
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Notification\RecipientSet;
 use MediaWiki\Permissions\Authority;
-use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWiki\User\UserArray;
 use MediaWiki\User\UserIdentity;
-use MediaWiki\Watchlist\RecentChangeNotification;
+use UnexpectedValueException;
 
 /**
  * Find watchers and create notifications after a page is changed.
  *
- * After an edit is published to RCFeed, RecentChange::save calls EmailNotification.
+ * After an edit is published to RCFeed, RecentChange::save calls RecentChangeNotifier.
  * Here we query the `watchlist` table (via WatchedItemStore) to find who is watching
  * a given page, format the emails in question, and dispatch notifications to each of them
  * via the JobQueue.
@@ -50,7 +51,7 @@ use MediaWiki\Watchlist\RecentChangeNotification;
  * @since 1.11.0
  * @ingroup Mail
  */
-class EmailNotification {
+class RecentChangeNotifier {
 
 	protected string $pageStatus = '';
 
@@ -135,7 +136,7 @@ class EmailNotification {
 		}
 
 		if ( $sendNotification ) {
-			$mwServices->getJobQueueGroup()->lazyPush( new EnotifNotifyJob(
+			$mwServices->getJobQueueGroup()->lazyPush( new RecentChangeNotifyJob(
 				$title,
 				[
 					'editor' => $editor->getName(),
@@ -180,7 +181,7 @@ class EmailNotification {
 
 		$minorEdit = $recentChange->getAttribute( 'rc_minor' );
 		# The following code is only run, if several conditions are met:
-		# 1. EmailNotification for pages (other than user_talk pages) must be enabled
+		# 1. RecentChangeNotifier for pages (other than user_talk pages) must be enabled
 		# 2. minor edits (changes) are only regarded if the global flag indicates so
 		$this->pageStatus = $pageStatus;
 		$formattedPageStatus = [ 'deleted', 'created', 'moved', 'restored', 'changed' ];
@@ -319,3 +320,6 @@ class EmailNotification {
 	}
 
 }
+
+/** @deprecated class alias since 1.45 */
+class_alias( RecentChangeNotifier::class, 'EmailNotification' );
