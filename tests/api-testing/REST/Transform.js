@@ -534,9 +534,9 @@ describe( '/transform/ endpoint', () => {
 				.end( done );
 		} );
 
-		it.skip( 'should lint the given revision, transform', ( done ) => {
+		it( 'should lint the given revision, transform', ( done ) => {
 			client.req
-				.post( endpointPrefix + '/v1/transform/wikitext/to/lint/Lint_Page/102' )
+				.post( `${ endpointPrefix }/v1/transform/wikitext/to/lint/${ pageEncoded }/${ revid }` )
 				.send( {} )
 				.expect( status200 )
 				.expect( ( res ) => {
@@ -548,9 +548,9 @@ describe( '/transform/ endpoint', () => {
 				.end( done );
 		} );
 
-		it.skip( 'should lint the given page, transform', ( done ) => {
+		it( 'should lint the given page, transform', ( done ) => {
 			client.req
-				.post( endpointPrefix + '/v1/transform/wikitext/to/lint/Lint_Page' )
+				.post( `${ endpointPrefix }/v1/transform/wikitext/to/lint/${ pageEncoded }` )
 				.send( {} )
 				.expect( status200 )
 				.expect( ( res ) => {
