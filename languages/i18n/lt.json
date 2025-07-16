@@ -651,7 +651,7 @@
 	"previewconflict": "Ši peržiūra parodo viršutinėje teksto redagavimo srityje esantį tekstą taip, kaip jis bus rodomas, jei nuspręsite jį išsaugoti.",
 	"session_fail_preview": "Atsiprašome! Mes negalime vykdyti jūsų keitimo dėl sesijos duomenų praradimo.\n\nGali būti, kad esate atsijungęs. <strong>Prašome patikrinti, ar vis dar esate prisijungęs, ir pabandyti iš naujo</strong>. \nJei ir toliau nepavyksta, pamėginkite [[Special:UserLogout|atsijungti]] ir vėl prisijungti, taip pat patikrinkite, ar jūsų naršyklė priima šios svetainės slapukus.",
 	"session_fail_preview_html": "Atsiprašome! Mes negalime apdoroti jūsų keitimo dėl sesijos duomenų praradimo.\n\n<em>Kadangi {{SITENAME}} grynasis HTML yra įjungtas, peržiūra yra paslėpta kaip atsargumo priemonė prieš JavaScript atakas.</em>\n\n<strong>Jei tai teisėtas keitimo bandymas, prašome pamėginti vėl.</strong> Jei tai nepadeda, pamėginkite [[Special:UserLogout|atsijungti]] ir prisijungti atgal, ir patikrinkite ar jūsų naršyklė leidžia šiam tinklapiui naudoti slapukus.",
-	"edit_form_incomplete": "'''Kai redaguoti formos dalys nepasiekė serverio; du kartus patikrinti, kad jūsų pakeitimai yra nesugadintos ir bandykite dar kartą.'''",
+	"edit_form_incomplete": "<strong>Kai kurie šio pakeitimo elementai nepasiekė serverio; darsyk patikrinkite, ar jūsų pakeitimai nepradingo ir bandykite išsaugoti iš naujo.</strong>",
 	"editing": "Taisomas $1",
 	"edit-textarea-aria-label": "Vikiteksto šaltinio redaktorius",
 	"creating": "Kuriamas straipsnis „$1“",

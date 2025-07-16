@@ -3183,7 +3183,7 @@
 	"watchlisttools-clear": "испразни списак надгледања",
 	"watchlisttools-view": "прикажи списак надгледања",
 	"watchlisttools-edit": "уреди списак надгледања",
-	"watchlisttools-raw": "уреди необрађени списак надгледања",
+	"watchlisttools-raw": "уреди (прост) списак надгледања",
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|разговор]])",
 	"signature-temp": "[[{{#special:Contributions}}/$1|$2]] ([[{{ns:user_talk}}:$1|разговор]])",
 	"duplicate-defaultsort": "<strong>Упозорење:</strong> Подразумевани кључ сврставања „$2” мења ранији подразумевани кључ сврставања „$1”.",

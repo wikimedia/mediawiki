@@ -100,7 +100,7 @@
 	"prefs-help-email": "Địa chỉ thư điện tử là tùy chọn, nhưng nó giúp chúng tôi gửi cho bạn mật khẩu mới qua thư điện tử nếu bạn quên mật khẩu của mình.",
 	"prefs-help-email-required": "Bắt buộc phải có địa chỉ thư điện tử.",
 	"prefs-help-email-others": "Bạn cũng có thể lựa chọn cho phép người khác liên lạc với bạn thông qua trang cá nhân hoặc trang thảo luận cá nhân mà không cần để lộ danh tính.",
-	"tog-requireemail": "Gửi thư điện tử đặt lại mật khẩu chỉ khi bạn cung cấp cả địa chỉ thư điện tử và tên người dùng.",
+	"tog-requireemail": "Gửi thư điện tử đặt lại mật khẩu chỉ khi bạn cung cấp cả địa chỉ thư điện tử và tên người dùng",
 	"prefs-help-requireemail": "Nó giúp tăng tính riêng tư và giúp tránh những bức thư điện tử không mong muốn.",
 	"noemailprefs": "Hãy ghi một địa chỉ thư điện tử trong tùy chọn cá nhân để có thể sử dụng tính năng này.",
 	"emailnotauthenticated": "Địa chỉ thư điện tử của bạn chưa được xác nhận. Các chức năng sau sẽ không gửi thư điện tử.",

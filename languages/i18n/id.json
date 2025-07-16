@@ -2486,7 +2486,7 @@
 	"contributions": "Kontribusi pengguna",
 	"tool-link-contributions": "Kontribusi {{GENDER:$1|pengguna}}",
 	"contributions-title": "Kontribusi {{GENDER:$2|Pengguna}} untuk $1",
-	"contributions-title-for-ip-when-temporary-accounts-enabled": "Kontribusi IP legasi tu $1",
+	"contributions-title-for-ip-when-temporary-accounts-enabled": "Kontribusi lama pengguna untuk IP $1",
 	"contribute-title": "Kontribusi pengguna",
 	"mycontris": "Kontribusi",
 	"anoncontribs": "Kontribusi",
