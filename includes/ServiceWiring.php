@@ -311,6 +311,11 @@ use Wikimedia\UUID\GlobalIdGenerator;
 use Wikimedia\WRStats\BagOStuffStatsStore;
 use Wikimedia\WRStats\WRStatsFactory;
 
+// PHP unit does not understand code coverage for this file
+// as the @covers annotation cannot cover a specific file
+// This is tested in MediaWikiServicesTest::testGetService
+// @codeCoverageIgnoreStart
+
 /** @phpcs-require-sorted-array */
 return [
 	'ActionFactory' => static function ( MediaWikiServices $services ): ActionFactory {
@@ -2906,3 +2911,5 @@ return [
 	///////////////////////////////////////////////////////////////////////////
 
 ];
+
+// @codeCoverageIgnoreEnd
