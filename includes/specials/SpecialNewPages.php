@@ -446,21 +446,17 @@ class SpecialNewPages extends IncludableSpecialPage {
 
 	protected function feedItem( $row ) {
 		$title = Title::makeTitle( intval( $row->rc_namespace ), $row->rc_title );
-		if ( $title ) {
-			$date = $row->rc_timestamp;
-			$comments = $title->getTalkPage()->getFullURL();
+		$date = $row->rc_timestamp;
+		$comments = $title->getTalkPage()->getFullURL();
 
-			return new FeedItem(
-				$title->getPrefixedText(),
-				$this->feedItemDesc( $row ),
-				$title->getFullURL(),
-				$date,
-				$this->feedItemAuthor( $row ),
-				$comments
-			);
-		} else {
-			return null;
-		}
+		return new FeedItem(
+			$title->getPrefixedText(),
+			$this->feedItemDesc( $row ),
+			$title->getFullURL(),
+			$date,
+			$this->feedItemAuthor( $row ),
+			$comments
+		);
 	}
 
 	protected function feedItemAuthor( $row ): string {

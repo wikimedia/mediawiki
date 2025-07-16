@@ -204,7 +204,7 @@ class ApiFeedContributions extends ApiBase {
 		// Hook completed and did not return a valid feed item
 		$title = Title::makeTitle( (int)$row->page_namespace, $row->page_title );
 
-		if ( $title && $this->getAuthority()->authorizeRead( 'read', $title ) ) {
+		if ( $this->getAuthority()->authorizeRead( 'read', $title ) ) {
 			$date = $row->rev_timestamp;
 			$comments = $title->getTalkPage()->getFullURL();
 			$revision = $this->revisionStore->newRevisionFromRow( $row, 0, $title );
