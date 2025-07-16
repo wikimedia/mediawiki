@@ -272,7 +272,6 @@ class SpecialImport extends SpecialPage {
 				# Success!
 				$out->addWikiMsg( 'importsuccess' );
 			}
-			$out->addHTML( '<hr />' );
 		}
 	}
 
