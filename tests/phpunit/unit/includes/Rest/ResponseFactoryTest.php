@@ -148,6 +148,19 @@ class ResponseFactoryTest extends MediaWikiUnitTestCase {
 		$data = json_decode( $body->getContents(), true );
 		$this->assertSame( 415, $data['httpCode'] );
 		$this->assertSame( '...', $data['message'] );
+		$this->assertArrayNotHasKey( 'reqId', $data );
+	}
+
+	public function testCreateFatalHttpError() {
+		$rf = $this->createResponseFactory();
+		$response = $rf->createHttpError( 501, [ 'message' => '...' ] );
+		$this->assertSame( 501, $response->getStatusCode() );
+		$body = $response->getBody();
+		$body->rewind();
+		$data = json_decode( $body->getContents(), true );
+		$this->assertSame( 501, $data['httpCode'] );
+		$this->assertSame( '...', $data['message'] );
+		$this->assertArrayHasKey( 'reqId', $data );
 	}
 
 	public function testCreateFromExceptionUnlogged() {
@@ -170,6 +183,7 @@ class ResponseFactoryTest extends MediaWikiUnitTestCase {
 		$data = json_decode( $body->getContents(), true );
 		$this->assertSame( 500, $data['httpCode'] );
 		$this->assertSame( 'Error: exception of type Exception', $data['message'] );
+		$this->assertArrayHasKey( 'reqId', $data );
 	}
 
 	public function testCreateFromExceptionWrapped() {
