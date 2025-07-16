@@ -100,6 +100,7 @@ class PrometheusFileReporter extends WDIOReporter {
 				retries: 0,
 				maxDuration: 0
 			};
+			this.spec.totalTests++;
 		}
 	}
 
@@ -109,7 +110,6 @@ class PrometheusFileReporter extends WDIOReporter {
 		myTest.passed++;
 		myTest.maxDuration = Math.max( myTest.maxDuration, testDurationInSeconds );
 		this.spec.passed++;
-		this.spec.totalTests++;
 	}
 
 	onTestFail( test ) {
@@ -118,7 +118,6 @@ class PrometheusFileReporter extends WDIOReporter {
 		myTest.failed++;
 		myTest.maxDuration = Math.max( myTest.maxDuration, testDurationInSeconds );
 		this.spec.failed++;
-		this.spec.totalTests++;
 	}
 
 	onTestSkip( test ) {
@@ -132,9 +131,9 @@ class PrometheusFileReporter extends WDIOReporter {
 				retries: 0,
 				maxDuration: 0
 			};
+			this.spec.totalTests++;
 		}
 		this.spec.skipped++;
-		this.spec.totalTests++;
 	}
 
 	onTestRetry( test ) {
