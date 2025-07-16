@@ -20,7 +20,6 @@
 
 namespace MediaWiki\Mail;
 
-use MailAddress;
 use StatusValue;
 
 /**

@@ -2128,7 +2128,7 @@ return [
 				'deleteLinks' => 'MediaWiki\\JobQueue\\Jobs\\DeleteLinksJob',
 				'htmlCacheUpdate' => 'MediaWiki\\JobQueue\\Jobs\\HTMLCacheUpdateJob',
 				'sendMail' => [
-					'class' => 'EmaillingJob',
+					'class' => 'MediaWiki\\Mail\\EmaillingJob',
 					'services' => [
 						'Emailer',
 					],

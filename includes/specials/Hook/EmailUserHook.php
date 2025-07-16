@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Hook;
 
-use MailAddress;
+use MediaWiki\Mail\MailAddress;
 use MediaWiki\Status\Status;
 use Wikimedia\Message\MessageSpecifier;
 

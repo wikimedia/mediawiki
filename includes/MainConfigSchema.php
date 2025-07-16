@@ -13,7 +13,6 @@ namespace MediaWiki;
 
 use DateTime;
 use DateTimeZone;
-use EmaillingJob;
 use Generator;
 use InvalidArgumentException;
 use LocalisationCache;
@@ -63,6 +62,7 @@ use MediaWiki\Logging\RenameuserLogFormatter;
 use MediaWiki\Logging\RightsLogFormatter;
 use MediaWiki\Logging\TagLogFormatter;
 use MediaWiki\Logging\UploadLogFormatter;
+use MediaWiki\Mail\EmaillingJob;
 use MediaWiki\Password\Argon2Password;
 use MediaWiki\Password\BcryptPassword;
 use MediaWiki\Password\LayeredParameterizedPassword;

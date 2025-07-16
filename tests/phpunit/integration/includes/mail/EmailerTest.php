@@ -20,14 +20,14 @@
 
 namespace MediaWiki\Tests\Integration\Mail;
 
-use MailAddress;
 use MediaWiki\Mail\Emailer;
+use MediaWiki\Mail\MailAddress;
 use MediaWikiIntegrationTestCase;
 
 /**
  * @group Mail
  * @covers \MediaWiki\Mail\Emailer
- * @covers \UserMailer
+ * @covers \MediaWiki\Mail\UserMailer
  */
 class EmailerTest extends MediaWikiIntegrationTestCase {
 

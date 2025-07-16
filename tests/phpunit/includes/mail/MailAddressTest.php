@@ -1,11 +1,16 @@
 <?php
 
+namespace MediaWiki\Tests\Mail;
+
+use Generator;
+use MediaWiki\Mail\MailAddress;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentityValue;
+use MediaWikiIntegrationTestCase;
 
 /**
  * @group Mail
- * @covers \MailAddress
+ * @covers \MediaWiki\Mail\MailAddress
  */
 class MailAddressTest extends MediaWikiIntegrationTestCase {
 

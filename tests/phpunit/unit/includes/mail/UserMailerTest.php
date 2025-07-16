@@ -1,8 +1,13 @@
 <?php
 
+namespace MediaWiki\Tests\Unit\Mail;
+
+use MediaWiki\Mail\UserMailer;
+use MediaWikiUnitTestCase;
+
 /**
  * @group Mail
- * @covers \UserMailer
+ * @covers \MediaWiki\Mail\UserMailer
  */
 class UserMailerTest extends MediaWikiUnitTestCase {
 

@@ -18,8 +18,9 @@
  * @file
  */
 
+namespace MediaWiki\Mail;
+
 use MediaWiki\JobQueue\Job;
-use MediaWiki\Mail\IEmailer;
 use MediaWiki\Title\Title;
 
 /**
@@ -52,3 +53,6 @@ class EmaillingJob extends Job {
 		return $status->isOK();
 	}
 }
+
+/** @deprecated class alias since 1.45 */
+class_alias( EmaillingJob::class, 'EmaillingJob' );

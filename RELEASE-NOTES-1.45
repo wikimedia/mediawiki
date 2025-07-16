@@ -204,6 +204,18 @@ because of Phabricator reports.
 
 === Deprecations in 1.45 ===
 
+* (T166010) All PHP code in MediaWiki is slowly being moved to be in a class
+  namespace as appropriate, so that we can use PSR-4 auto-loading, which will
+  speed up general code loading of MediaWiki. The old global namespace class
+  names are being left behind as deprecated aliases.
+
+  In this release of MediaWiki, XXX classes now have a namespace and XXX do
+  not yet (XXX% done, up from 88% in MediaWiki 1.44.0). The following have newly
+  been moved:
+  - MediaWiki\Mail:
+    - MailAddress
+    - UserMailer
+    - EmaillingJob
 * UserNameUtils::getTempPlaceholder() has been deprecated and now emits
   deprecation warnings. Use TempUserConfig::getPlaceholderName() instead.
 * MediaWikiServices::disableStorageBackend(), deprecated in 1.40 now

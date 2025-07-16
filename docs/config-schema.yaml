@@ -7200,7 +7200,7 @@ config-schema:
             refreshLinks: MediaWiki\JobQueue\Jobs\RefreshLinksJob
             deleteLinks: MediaWiki\JobQueue\Jobs\DeleteLinksJob
             htmlCacheUpdate: MediaWiki\JobQueue\Jobs\HTMLCacheUpdateJob
-            sendMail: { class: EmaillingJob, services: [Emailer] }
+            sendMail: { class: MediaWiki\Mail\EmaillingJob, services: [Emailer] }
             enotifNotify: MediaWiki\RecentChanges\RecentChangeNotifyJob
             fixDoubleRedirect: { class: MediaWiki\JobQueue\Jobs\DoubleRedirectJob, services: [RevisionLookup, MagicWordFactory, WikiPageFactory], needsPage: true }
             AssembleUploadChunks: MediaWiki\JobQueue\Jobs\AssembleUploadChunksJob

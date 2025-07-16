@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Mail\Hook;
 
-use MailAddress;
+use MediaWiki\Mail\MailAddress;
 use MediaWiki\Mail\UserEmailContact;
 use MediaWiki\Permissions\Authority;
 use StatusValue;

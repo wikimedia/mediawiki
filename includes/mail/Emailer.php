@@ -20,9 +20,7 @@
 
 namespace MediaWiki\Mail;
 
-use MailAddress;
 use StatusValue;
-use UserMailer;
 
 /**
  * Send arbitrary emails.

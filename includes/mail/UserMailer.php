@@ -22,6 +22,12 @@
  * @author Luke Welling lwelling@wikimedia.org
  */
 
+namespace MediaWiki\Mail;
+
+use Exception;
+use Mail;
+use Mail_mime;
+use Mail_smtp;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
@@ -30,6 +36,8 @@ use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\Utils\MWTimestamp;
 use MediaWiki\WikiMap\WikiMap;
+use PEAR;
+use RuntimeException;
 
 /**
  * @defgroup Mail Mail
@@ -495,3 +503,6 @@ class UserMailer {
 		return $out;
 	}
 }
+
+/** @deprecated class alias since 1.45 */
+class_alias( UserMailer::class, 'UserMailer' );

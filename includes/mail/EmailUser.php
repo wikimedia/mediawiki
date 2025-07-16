@@ -20,7 +20,6 @@
 
 namespace MediaWiki\Mail;
 
-use MailAddress;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;

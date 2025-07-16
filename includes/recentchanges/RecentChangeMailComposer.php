@@ -20,11 +20,11 @@
 
 namespace MediaWiki\RecentChanges;
 
-use MailAddress;
 use MediaWiki\Config\Config;
 use MediaWiki\Language\Language;
 use MediaWiki\Language\MessageParser;
 use MediaWiki\Mail\Emailer;
+use MediaWiki\Mail\MailAddress;
 use MediaWiki\Mail\UserEmailContact;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
