@@ -19,7 +19,7 @@
 	"rest-module-default": "Standardmodul",
 	"rest-module-specs.v0-title": "Spezifikatiounen",
 	"rest-module-content.v1-title": "Säiteninhalt",
-	"rest-param-desc-media-links-title": "Titel vum Fichier",
+	"rest-param-desc-media-links-title": "Säitentitel",
 	"rest-param-desc-media-file-title": "Titel vum Fichier",
 	"rest-param-desc-media-mediatype": "Den Typ vum Fichier",
 	"rest-param-desc-media-url": "URL fir de Fichier erofzelueden",

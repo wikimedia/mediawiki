@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amos Rautha",
 			"Habila Dachollom",
-			"Kambai Akau"
+			"Kambai Akau",
+			"Sarah Niya Danbwarang"
 		]
 	},
 	"january": "Pwel susu",
@@ -44,9 +46,9 @@
 	"monday": "Tuk Susufom",
 	"tuesday": "Tuk Bafwōm",
 	"wednesday": "Tuk Tatfwōm",
-	"thursday": "Tuk Nasfwōm",
+	"thursday": "Tuk Naas fwom",
 	"friday": "Tuk Tung'un fwōm",
-	"saturday": "Tuk Gasdyam",
+	"saturday": "Tuk Gas dyam",
 	"sunday": "Tuk Wusal",
 	"mon": "Sus",
 	"tue": "Baf",
@@ -54,5 +56,6 @@
 	"thu": "Nas",
 	"fri": "Tun",
 	"sat": "Gas",
-	"sun": "Wus"
+	"sun": "Gwi",
+	"duration-days": "\n$1 {{PLURAL:$1 polo| me polo}}"
 }

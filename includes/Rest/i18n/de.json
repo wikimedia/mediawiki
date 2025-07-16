@@ -120,7 +120,7 @@
 	"rest-param-desc-compare-to-section-offset": "Byte-Offset innerhalb des Wikitextes, bei dem der Abschnitt beginnt",
 	"rest-param-desc-compare-diff": "Unterschied zwischen Versionen",
 	"rest-param-desc-language-links-title": "Wiki-Seitentitel",
-	"rest-param-desc-media-links-title": "Dateiname",
+	"rest-param-desc-media-links-title": "Seitentitel",
 	"rest-param-desc-media-file-title": "Dateiname",
 	"rest-param-desc-media-description-url": "URL für die Seite, die die Datei beschreibt, einschließlich Lizenzinformationen und anderer Metadaten",
 	"rest-param-desc-media-latest": "Informationen zur neuesten Version der Datei",

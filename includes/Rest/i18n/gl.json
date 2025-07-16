@@ -131,7 +131,7 @@
 	"rest-param-desc-compare-to-section-offset": "Desprazamento de bytes dentro do texto wiki no que comeza a sección",
 	"rest-param-desc-compare-diff": "Diferenzas entre revisións",
 	"rest-param-desc-language-links-title": "Título da páxina wiki",
-	"rest-param-desc-media-links-title": "Título do ficheiro",
+	"rest-param-desc-media-links-title": "Título da páxina",
 	"rest-param-desc-media-file-title": "Título do ficheiro",
 	"rest-param-desc-media-description-url": "Enderezo URL da páxina que describe o ficheiro, incluíndo a información da licenza e outros metadatos",
 	"rest-param-desc-media-latest": "Información sobre a última revisión do ficheiro",

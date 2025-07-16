@@ -140,7 +140,7 @@
 	"rest-param-desc-compare-to-section-offset": "Offset en octets dans le wikitexte où la section commence",
 	"rest-param-desc-compare-diff": "Différences entre les versions",
 	"rest-param-desc-language-links-title": "Titre de la page wiki",
-	"rest-param-desc-media-links-title": "Titre du fichier",
+	"rest-param-desc-media-links-title": "Titre de la page",
 	"rest-param-desc-media-file-title": "Titre du fichier",
 	"rest-param-desc-media-description-url": "URL de la page décrivant le fichier, y compris les informations de licence et d'autres métadonnées",
 	"rest-param-desc-media-latest": "Informations sur la dernière révision du fichier",

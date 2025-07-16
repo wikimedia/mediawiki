@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"*surak*",
 			"1233qwer1234qwer4",
 			"Andreasburmeister",
 			"Anomie",
@@ -126,6 +127,7 @@
 	"apihelp-compare-param-torev": "Zweite zu vergleichende Version.",
 	"apihelp-compare-param-torelative": "Verwenden einer Version relativ zu der Version, die aus <var>fromtitle</var>, <var>fromid</var> oder <var>fromrev</var> ermittelt wird. Alle anderen „to“-Optionen werden ignoriert.",
 	"apihelp-compare-param-topst": "Führt eine Vorspeicherungsumwandlung für <var>totext</var> aus.",
+	"apihelp-compare-param-toslots": "Überschreibt den Inhalt der durch <var>totitle</var> , <var>toid</var> oder <var>torev</var> angegebenen Revision.\n\nDieser Parameter gibt die zu ändernden Slots an. Verwende <var>totext-&#x7B;slot}</var>, <var>tocontentmodel-&#x7B;slot}</var> und <var>tocontentformat-&#x7B;slot}</var>, um den Inhalt für jeden Slot anzugeben.",
 	"apihelp-compare-param-totext-{slot}": "Text des angegebenen Slots. Wenn er weggelassen wird, wird der Slot aus der Version entfernt.",
 	"apihelp-compare-param-tosection-{slot}": "Wenn <var>totext-&#x7B;slot}</var> der Inhalt eines einzelnen Abschnitts ist, ist dies die Abschnittskennung. Es wird wie bei einer Abschnittsbearbeitung in die durch <var>totitle</var>, <var>toid</var> oder <var>torev</var> angegebene Version eingefügt.",
 	"apihelp-compare-param-tocontentmodel-{slot}": "Inhaltsmodell von <var>totext-&#x7B;slot}</var>. Falls nicht angegeben, wird es auf der Grundlage der anderen Parameter geschätzt.",
@@ -388,6 +390,7 @@
 	"apihelp-paraminfo-example-1": "Zeige Info für <kbd>[[Special:ApiHelp/parse|action=parse]]</kbd>, <kbd>[[Special:ApiHelp/jsonfm|format=jsonfm]]</kbd>, <kbd>[[Special:ApiHelp/query+allpages|action=query&list=allpages]]</kbd>, und <kbd>[[Special:ApiHelp/query+siteinfo|action=query&meta=siteinfo]]</kbd>.",
 	"apihelp-paraminfo-example-2": "Zeigt Informationen für alle Untermodule von <kbd>[[Special:ApiHelp/query|action=query]]</kbd>.",
 	"apihelp-parse-summary": "Parst den Inhalt und gibt die Parserausgabe zurück.",
+	"apihelp-parse-extended-description": "Siehe die Informationen zu den verschiedenen Prop-Modulen von <kbd>[[Special:ApiHelp/query|action=query]]</kbd>, um Informationen von der aktuellen Version der Seite zu erhalten.\n\nEs gibt mehrere Möglichkeiten, den zu parsenden Text anzugeben:\n# Angabe einer Seite oder Revision unter Verwendung von <var>$1page</var>, <var>$1pageid</var> oder <var>$1oldid</var>.\n# Explizite Angabe des Inhalts unter Verwendung von <var>$1text</var>, <var>$1title</var>, <var>$1revid</var> und <var>$1contentmodel</var>.\n# Angabe einer zu parsenden Zusammenfassung. Für <var>$1prop</var> sollte ein leerer Wert angegeben werden.",
 	"apihelp-parse-param-title": "Titel der Seite, zu der der Text gehört. Falls ausgelassen, muss <var>$1contentmodel</var> angegeben werden und [[API]] wird als Titel verwendet.",
 	"apihelp-parse-param-text": "Zu parsender Text. <var>$1title</var> oder <var>$1contentmodel</var> verwenden, um das Inhaltsmodell zu steuern.",
 	"apihelp-parse-param-revid": "Versionskennung, für <code><nowiki>{{REVISIONID}}</nowiki></code> und ähnliche Variablen.",
@@ -424,6 +427,7 @@
 	"apihelp-parse-paramvalue-prop-parsewarnings": "Gibt die Warnungen aus, die beim Parsen des Inhalts aufgetreten sind (als Wikitext).",
 	"apihelp-parse-paramvalue-prop-parsewarningshtml": "Gibt die Warnungen aus, die beim Parsen des Inhalts aufgetreten sind (als HTML).",
 	"apihelp-parse-param-wrapoutputclass": "Zu verwendende CSS-Klasse, in der die Parserausgabe verpackt werden soll.",
+	"apihelp-parse-param-usearticle": "Verwende den ArticleParserOptions-Hook, um sicherzustellen, dass die verwendeten Optionen mit denen für die Seitenansichten von Artikeln übereinstimmen",
 	"apihelp-parse-param-parsoid": "Erzeugt HTML gemäß der [[mw:Specs/HTML|MediaWiki-DOM-Spezifikation]] mittels [[mw:Parsoid|Parsoid]].",
 	"apihelp-parse-param-pst": "Führt eine Vorabtransformation der Eingabe durch, bevor sie geparst wird. Nur gültig bei der Verwendung mit Text.",
 	"apihelp-parse-param-onlypst": "Führt eine Pre-Save-Transformation (PST) an der Eingabe durch, parst sie aber nicht. Gibt denselben Wikitext zurück, nachdem eine PST angewendet wurde. Nur gültig bei Verwendung mit <var>$1text</var>.",
@@ -509,6 +513,7 @@
 	"apihelp-query+alldeletedrevisions-param-user": "Nur Versionen von diesem Benutzer auflisten.",
 	"apihelp-query+alldeletedrevisions-param-excludeuser": "Schließt Bearbeitungen des angegebenen Benutzers aus.",
 	"apihelp-query+alldeletedrevisions-param-namespace": "Nur Seiten in diesem Namensraum auflisten.",
+	"apihelp-query+alldeletedrevisions-param-miser-user-namespace": "<strong>Hinweis:</strong> Die gemeinsame Verwendung von <var>$1user</var> und <var>$1namespace</var> in [[mw:Special:MyLanguage/Manual:$wgMiserMode|miser mode]] kann dazu führen, dass weniger als <var>$1limit</var> Ergebnisse zurückgegeben werden, bevor fortgefahren wird; in extremen Fällen können auch keine Ergebnisse zurückgegeben werden.",
 	"apihelp-query+alldeletedrevisions-param-generatetitles": "Wenn als Generator verwendet, werden eher Titel als Bearbeitungs-IDs erzeugt.",
 	"apihelp-query+alldeletedrevisions-example-user": "Liste die letzten 50 gelöschten Beiträge, sortiert nach Benutzer <kbd>Beispiel</kbd>.",
 	"apihelp-query+alldeletedrevisions-example-ns-main": "Liste die ersten 50 gelöschten Bearbeitungen im Hauptnamensraum.",
