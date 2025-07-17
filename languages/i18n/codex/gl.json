@@ -4,6 +4,8 @@
 			"Toliño"
 		]
 	},
+	"cdx-breadcrumb-navigation-label": "Migalla de pan",
+	"cdx-breadcrumb-overflow-label": "Máis opcións de navegación",
 	"cdx-chip-input-chip-added": "Engadiuse a tarxeta $1.",
 	"cdx-chip-input-chip-removed": "Eliminouse a tarxeta $1.",
 	"cdx-input-chip-aria-description": "Preme Intro para editar ou Supr para eliminar.",

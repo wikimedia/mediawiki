@@ -237,7 +237,7 @@
 	"rest-endpoint-desc-get-revision-id-with-html": "Retourneert metagegevens voor een versie, waaronder de inhoud in HTML.",
 	"rest-endpoint-desc-get-revision-id-bare": "Geeft details terug voor een individuele versie.",
 	"rest-endpoint-desc-get-page-history": "Geeft informatie terug over de laatste versies van een wikipagina.",
-	"rest-endpoint-desc-get-page-history-counts": "Geft gegevens over de geschiedenis van een pagina terug.",
+	"rest-endpoint-desc-get-page-history-counts": "Geeft gegevens over de geschiedenis van een pagina terug, zoals het aantal bewerkingen van verschillende typen gebruikers. Zie de [analyse-API](https://doc.wikimedia.org/generated-data-platform/aqs/analytics-api/) voor meer informatie over hoe lezers en redacteuren omgaan met Wikimedia-projecten.",
 	"rest-endpoint-desc-get-revision-compare": "Geeft gegevens terug waarmee u een vergelijking van twee versies regel voor regel kunt weergeven. Alleen op tekst gebaseerde wiki-pagina’s kunnen worden vergeleken.",
 	"rest-endpoint-desc-get-search": "Retourneert een gegenereerd OpenSearch-beschrijvingdocument.",
 	"rest-endpoint-desc-get-search-page": "Zoekt in wikipagina’s naar de gegeven zoektermen en geeft overeenkomende pagina’s terug.",

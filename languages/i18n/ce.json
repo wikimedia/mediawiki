@@ -3482,7 +3482,7 @@
 	"logentry-delete-delete": "$1 {{GENDER:$2|дӀайаьккхина}} агӀо $3",
 	"logentry-delete-delete_redir": "$1 {{GENDER:$2|дӀайаьккхина}} $3 дӀасахьажорг тӀехула дӀайазйина",
 	"logentry-delete-delete_redir2": "ДӀасахьажорг $3 {{GENDER:$2|дӀайаьккхина}} $1 йуха йаздаран гӀоьнца",
-	"logentry-delete-restore": "$1 {{GENDER:$2|меттахӀоттайина|меттахӀоттайина}} агӀо $3",
+	"logentry-delete-restore": "$1 {{GENDER:$2|меттахӀоттина}} агӀо $3",
 	"logentry-delete-restore-nocount": "$1 {{GENDER:$2|кхоьллина}} $3 агӀо",
 	"restore-count-revisions": "$1 {{PLURAL:$1|верси|версеш}}",
 	"restore-count-files": "{{PLURAL: $1|Файл|$1 файлан}}",

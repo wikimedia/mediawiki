@@ -7,6 +7,8 @@
 			"SleaY"
 		]
 	},
+	"cdx-breadcrumb-navigation-label": "Fil d’Ariane",
+	"cdx-breadcrumb-overflow-label": "Plus d'options de navigation",
 	"cdx-chip-input-chip-added": "Le jeton $1 a été ajouté.",
 	"cdx-chip-input-chip-removed": "Le jeton $1 a été retiré.",
 	"cdx-input-chip-aria-description": "Appuyez sur Entrée pour modifier ou sur Supprimer pour supprimer.",

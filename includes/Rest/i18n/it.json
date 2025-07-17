@@ -52,5 +52,5 @@
 	"rest-param-desc-transform-revision": "Trasforma versione",
 	"rest-property-desc-revision-id": "ID versione",
 	"rest-property-desc-user-name": "Nome utente o indirizzo IP di origine per utenti anonimi",
-	"rest-endpoint-desc-post-page": "Crea una pagina wiki."
+	"rest-endpoint-desc-post-page": "Crea una pagina."
 }

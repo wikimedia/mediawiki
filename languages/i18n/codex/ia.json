@@ -4,6 +4,8 @@
 			"McDutchie"
 		]
 	},
+	"cdx-breadcrumb-navigation-label": "Pista de paginas visitate",
+	"cdx-breadcrumb-overflow-label": "Altere optiones de navigation",
 	"cdx-chip-input-chip-added": "Le parola clave $1 ha essite addite.",
 	"cdx-chip-input-chip-removed": "Le parola clave $1 ha essite removite.",
 	"cdx-input-chip-aria-description": "Preme ‘Enter’ pro modificar o ‘Delete’ pro eliminar.",

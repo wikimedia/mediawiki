@@ -23,7 +23,7 @@
 	"rest-param-desc-media-file-title": "Titel vum Fichier",
 	"rest-param-desc-media-mediatype": "Den Typ vum Fichier",
 	"rest-param-desc-media-url": "URL fir de Fichier erofzelueden",
-	"rest-param-desc-media-thumbnail": "Miniaturbildinformatiounen",
+	"rest-param-desc-media-thumbnail": "Informatiounen iwwer d'Miniaturbildformat vum Fichier",
 	"rest-param-desc-search-q": "Sichbegrëffer",
 	"rest-property-desc-revision-id": "Versiouns-ID",
 	"rest-property-desc-page-language-code": "Sproochcode",
@@ -32,5 +32,10 @@
 	"rest-schema-desc-bare-page": "Säit ouni Inhalt",
 	"rest-schema-desc-media-file": "Informatiounen iwwer de Fichier",
 	"rest-schema-desc-search-results": "Sichresultater",
-	"rest-endpoint-desc-post-page": "Leet eng Wiki-Säit un."
+	"rest-endpoint-desc-post-page": "Leet eng Säit un.",
+	"rest-endpoint-desc-get-page-title-html": "Gëtt den Inhalt vun enger Säit an HTML zréck.",
+	"rest-endpoint-desc-get-page-title-bare": "Gëtt Informatiounen iwwer eng Säit zréck.",
+	"rest-endpoint-desc-get-revision-id-bare": "Gëtt Informatiounen iwwer eng Versioun zréck.",
+	"rest-endpoint-desc-post-transform-wikitext-to-html": "Konvertéiert Wikitext an HTML.",
+	"rest-endpoint-desc-post-transform-html-to-wikitext": "Konvertéiert HTML a Wikitext."
 }

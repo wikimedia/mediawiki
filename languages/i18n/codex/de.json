@@ -2,6 +2,8 @@
 	"@metadata": {
 		"authors": []
 	},
+	"cdx-breadcrumb-navigation-label": "Brotkrumen",
+	"cdx-breadcrumb-overflow-label": "Weitere Navigationsoptionen",
 	"cdx-chip-input-chip-added": "Chip $1 wurde hinzugefügt.",
 	"cdx-chip-input-chip-removed": "Chip $1 wurde entfernt.",
 	"cdx-input-chip-aria-description": "Drücke die Eingabetaste zum Bearbeiten oder die Löschtaste zum Entfernen.",
