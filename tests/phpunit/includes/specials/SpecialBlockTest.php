@@ -72,6 +72,107 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	}
 
 	/**
+	 * @covers ::getFormFields
+	 * @dataProvider provideGetFormFieldsForDefaultExpiry
+	 */
+	public function testGetFormFieldsForDefaultExpiry( $defaultExpiryMessageText, $expectedDefaultExpiry ) {
+		// Define an override for the ipb-default-expiry message
+		$this->overrideConfigValue( MainConfigNames::UseDatabaseMessages, true );
+		$this->editPage( Title::newFromText( 'ipb-default-expiry', NS_MEDIAWIKI ), $defaultExpiryMessageText );
+
+		// Execute the special page and check the default expiry is as expected
+		$page = $this->newSpecialPage();
+		$wrappedPage = TestingAccessWrapper::newFromObject( $page );
+		$fields = $wrappedPage->getFormFields();
+		$this->assertArrayHasKey( 'Expiry', $fields );
+		$this->assertArrayHasKey( 'default', $fields['Expiry'] );
+		$this->assertSame( $expectedDefaultExpiry, $fields['Expiry']['default'] );
+		$this->assertSame( $expectedDefaultExpiry, $wrappedPage->codexFormData['blockExpiryDefault'] );
+	}
+
+	public static function provideGetFormFieldsForDefaultExpiry(): array {
+		return [
+			'The expiry default is empty' => [ '', '' ],
+			'The expiry default is infinite' => [ 'infinite', 'infinite' ],
+		];
+	}
+
+	/**
+	 * @covers ::getFormFields
+	 * @dataProvider provideGetFormFieldsForDefaultExpiryWhenTargetIsIP
+	 */
+	public function testGetFormFieldsForDefaultExpiryWhenTargetIsIP(
+		$defaultExpiryMessageText, $defaultIPExpiryMessage, $expectedDefaultExpiry
+	) {
+		$this->overrideConfigValue( MainConfigNames::UseCodexSpecialBlock, true );
+		$context = RequestContext::getMain();
+		$context->setTitle( Title::newFromText( 'Block', NS_SPECIAL ) );
+		$context->setUser( $this->getTestSysop()->getUser() );
+
+		// Define an override for the ipb-default-expiry and ipb-default-expiry-ip messages
+		// We have to do this by editing a MediaWiki page because there isn't an easier way to override message
+		// text for a test.
+		$this->overrideConfigValue( MainConfigNames::UseDatabaseMessages, true );
+		$this->editPage( Title::newFromText( 'ipb-default-expiry', NS_MEDIAWIKI ), $defaultExpiryMessageText );
+		$this->editPage( Title::newFromText( 'ipb-default-expiry-ip', NS_MEDIAWIKI ), $defaultIPExpiryMessage );
+
+		// Execute the special page and check the default expiry is as expected in the codex data (we checked that
+		// the non-codex field has the correct expiry set in other situations above).
+		$page = $this->newSpecialPage();
+		$wrappedPage = TestingAccessWrapper::newFromObject( $page );
+		$wrappedPage->execute( '1.2.3.4' );
+		$actualJsConfigVars = $wrappedPage->getOutput()->getJsConfigVars();
+		$this->assertSame( $expectedDefaultExpiry, $actualJsConfigVars['blockExpiryDefault'] );
+	}
+
+	public static function provideGetFormFieldsForDefaultExpiryWhenTargetIsIP(): array {
+		return [
+			'All default expiries are empty' => [ '', '-', '' ],
+			'The default IP expiry is empty' => [ '3 days', '-', '3 days' ],
+			'The default IP expiry is defined' => [ '3 days', '5 days', '5 days' ],
+		];
+	}
+
+	/**
+	 * @covers ::getFormFields
+	 * @dataProvider provideGetFormFieldsForDefaultExpiryWhenTargetIsTemporaryAccount
+	 */
+	public function testGetFormFieldsForDefaultExpiryWhenTargetIsTemporaryAccount(
+		$defaultExpiryMessageText, $defaultTemporaryAccountExpiryMessage, $expectedDefaultExpiry
+	) {
+		$this->overrideConfigValue( MainConfigNames::UseCodexSpecialBlock, true );
+		$context = RequestContext::getMain();
+		$context->setTitle( Title::newFromText( 'Block', NS_SPECIAL ) );
+		$context->setUser( $this->getTestSysop()->getUser() );
+
+		// Define an override for the ipb-default-expiry and ipb-default-expiry-temporary-account messages
+		// We have to do this by editing a MediaWiki page because there isn't an easier way to override message
+		// text for a test.
+		$this->overrideConfigValue( MainConfigNames::UseDatabaseMessages, true );
+		$this->editPage( Title::newFromText( 'ipb-default-expiry', NS_MEDIAWIKI ), $defaultExpiryMessageText );
+		$this->editPage(
+			Title::newFromText( 'ipb-default-expiry-temporary-account', NS_MEDIAWIKI ),
+			$defaultTemporaryAccountExpiryMessage
+		);
+
+		// Execute the special page and check the default expiry is as expected in the codex data (we checked that
+		// the non-codex field has the correct expiry set in other situations above).
+		$page = $this->newSpecialPage();
+		$wrappedPage = TestingAccessWrapper::newFromObject( $page );
+		$wrappedPage->execute( '~2025-1' );
+		$actualJsConfigVars = $wrappedPage->getOutput()->getJsConfigVars();
+		$this->assertSame( $expectedDefaultExpiry, $actualJsConfigVars['blockExpiryDefault'] );
+	}
+
+	public static function provideGetFormFieldsForDefaultExpiryWhenTargetIsTemporaryAccount(): array {
+		return [
+			'All default expiries are empty' => [ '', '', '' ],
+			'The default Temporary Account expiry is empty' => [ '3 days', '', '3 days' ],
+			'The default Temporary Account expiry is defined' => [ 'infinite', '5 days', '5 days' ],
+		];
+	}
+
+	/**
 	 * @dataProvider provideGetFormFieldsCodex
 	 * @covers ::getFormFields
 	 * @covers ::execute

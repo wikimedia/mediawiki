@@ -2770,6 +2770,7 @@
 	"ipbnounblockself": "You are not allowed to unblock yourself.",
 	"ipb-default-expiry": "",
 	"ipb-default-expiry-ip": "",
+	"ipb-default-expiry-temporary-account": "",
 	"lockdb": "Lock database",
 	"unlockdb": "Unlock database",
 	"lockdbtext": "Locking the database will suspend the ability of all users to edit pages, change their preferences, edit their watchlists, and other things requiring changes in the database.\nPlease confirm that this is what you intend to do, and that you will unlock the database when your maintenance is done.",

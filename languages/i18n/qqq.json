@@ -3043,6 +3043,7 @@
 	"ipbnounblockself": "Error message shown when a user without the <code>unblockself</code> right tries to unblock themself.",
 	"ipb-default-expiry": "{{ignored}}The default block expiry on the block form on [[Special:Block]] when blocking users.",
 	"ipb-default-expiry-ip": "{{ignored}}The default block expiry on the block form on [[Special:Block]] when blocking IP addresses or IP ranges.",
+	"ipb-default-expiry-temporary-account": "{{ignored}}The default block expiry on the block form on [[Special:Block]] when blocking a temporary account.",
 	"lockdb": "The title of the special page [[Special:LockDB]].\n\nAlso used as the title of the error message {{msg-mw|Databasenotlocked}} in [[Special:UnlockDB]].\n\nSee also:\n* {{msg-mw|Lockdb}}\n* {{msg-mw|Unlockdb}}\n* {{msg-mw|Lockfilenotwritable|error in Special:LockDB}}\n* {{msg-mw|Databasenotlocked|error in Special:UnlockDB}}\n{{Identical|Lock database}}",
 	"unlockdb": "The title of the special page [[Special:UnlockDB]].\n\n{{Identical|Unlock database}}",
 	"lockdbtext": "Used in the Lock form on [[Special:LockDB]].\n\nSee also:\n* {{msg-mw|Lockbtn}}\n* {{msg-mw|Unlockbtn}}\n* {{msg-mw|Lockdbtext}}\n* {{msg-mw|Unlockdbtext}}",

@@ -510,6 +510,15 @@ class SpecialBlock extends FormSpecialPage {
 			if ( !$defaultExpiryIP->isDisabled() ) {
 				$defaultExpiry = $defaultExpiryIP;
 			}
+		} elseif (
+			$this->target instanceof UserBlockTarget &&
+			$this->userNameUtils->isTemp( $this->target->getUserIdentity()->getName() )
+		) {
+			$defaultExpiryTemporaryAccount = $this->msg( 'ipb-default-expiry-temporary-account' )
+				->inContentLanguage();
+			if ( !$defaultExpiryTemporaryAccount->isDisabled() ) {
+				$defaultExpiry = $defaultExpiryTemporaryAccount;
+			}
 		}
 
 		$a['Expiry'] = [

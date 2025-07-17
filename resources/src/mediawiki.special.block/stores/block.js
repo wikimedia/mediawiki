@@ -70,7 +70,8 @@ module.exports = exports = defineStore( 'block', () => {
 	const expiry = ref(
 		// From URL, ?wpExpiry=...
 		mw.config.get( 'blockExpiryPreset' ) ||
-		// From [[MediaWiki:ipb-default-expiry]] or [[MediaWiki:ipb-default-expiry-ip]].
+		// From [[MediaWiki:ipb-default-expiry]], [[MediaWiki:ipb-default-expiry-ip]],
+		// or [[MediaWiki:ipb-default-expiry-temporary-account]]
 		mw.config.get( 'blockExpiryDefault' ) ||
 		''
 	);
