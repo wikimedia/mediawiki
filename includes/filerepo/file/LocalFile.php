@@ -205,7 +205,7 @@ class LocalFile extends File {
 	private $descriptionTouched;
 
 	/** @var bool Whether the row was upgraded on load */
-	private $upgraded;
+	private $upgraded = false;
 
 	/** @var bool Whether the row was scheduled to upgrade on load */
 	private $upgrading;
