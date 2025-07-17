@@ -363,7 +363,7 @@ class CommentFormatter {
 				$comment ? $comment->text : '',
 				$revRecord->getPageAsLinkTarget(),
 				$samePage,
-				null,
+				$revRecord->getWikiId(),
 				true
 			);
 			$block = $this->wrapCommentWithBlock( $block, $useParentheses );

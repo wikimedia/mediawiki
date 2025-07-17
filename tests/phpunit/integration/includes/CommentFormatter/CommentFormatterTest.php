@@ -186,43 +186,50 @@ class CommentFormatterTest extends MediaWikiIntegrationTestCase {
 
 	public static function provideFormatRevision() {
 		$normal = ' <span class="comment">(' .
-			'comment=hello, selfLinkTarget=0:Page, !samePage, enableSectionLinks' .
+			'comment=hello, selfLinkTarget=0:Page, !samePage, !wikiId, enableSectionLinks' .
+			')</span>';
+		$external = ' <span class="comment">(' .
+			'comment=hello, selfLinkTarget=0:Page, !samePage, wikiId=otherwiki, enableSectionLinks' .
 			')</span>';
 		$deleted = ' <span class="history-deleted comment"> ' .
 			'<span class="comment">(edit summary removed)</span></span>';
 		$deletedAllowed = ' <span class="history-deleted comment"> ' .
 			'<span class="comment">(' .
-			'comment=hello, selfLinkTarget=0:Page, !samePage, enableSectionLinks' .
+			'comment=hello, selfLinkTarget=0:Page, !samePage, !wikiId, enableSectionLinks' .
 			')</span></span>';
 
 		return [
 			'not deleted' => [
-				'hello', false, false, false, true,
+				'hello', false, false, false, true, false,
 				$normal,
 			],
 			'deleted, for public, not allowed' => [
-				'hello', true, true, false, true,
+				'hello', true, true, false, true, false,
 				$deleted
 			],
 			'deleted, for public, allowed' => [
-				'hello', true, true, true, true,
+				'hello', true, true, true, true, false,
 				$deleted
 			],
 			'deleted, for private, not allowed' => [
-				'hello', false, true, false, true,
+				'hello', false, true, false, true, false,
 				$deleted
 			],
 			'deleted, for private, allowed' => [
-				'hello', false, true, true, true,
+				'hello', false, true, true, true, false,
 				$deletedAllowed,
 			],
 			'empty' => [
-				'', false, false, false, true,
+				'', false, false, false, true, false,
 				''
 			],
 			'asterisk' => [
-				'*', false, false, false, true,
+				'*', false, false, false, true, false,
 				''
+			],
+			'external wiki link' => [
+				'hello', false, false, false, true, 'otherwiki',
+				$external
 			]
 		];
 	}
@@ -231,11 +238,16 @@ class CommentFormatterTest extends MediaWikiIntegrationTestCase {
 	 * @param string $text
 	 * @param bool $isDeleted
 	 * @param bool $isAllowed
+	 * @param string|bool $wikiId
 	 * @return array<RevisionRecord|Authority>
 	 */
-	private function makeRevisionAndAuthority( $text, $isDeleted, $isAllowed ) {
-		$page = PageIdentityValue::localIdentity( 1, 0, 'Page' );
-		$rev = new MutableRevisionRecord( $page );
+	private function makeRevisionAndAuthority( $text, $isDeleted, $isAllowed, $wikiId = false ) {
+		if ( $wikiId ) {
+			$page = new PageIdentityValue( 1, 0, 'Page', $wikiId );
+		} else {
+			$page = PageIdentityValue::localIdentity( 1, 0, 'Page' );
+		}
+		$rev = new MutableRevisionRecord( $page, $wikiId );
 		$comment = new CommentStoreComment( 1, $text );
 		$rev->setId( 100 );
 		$rev->setComment( $comment );
@@ -247,11 +259,11 @@ class CommentFormatterTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/** @dataProvider provideFormatRevision */
-	public function testFormatRevision( $comment, $isPublic, $isDeleted, $isAllowed, $useParentheses,
+	public function testFormatRevision( $comment, $isPublic, $isDeleted, $isAllowed, $useParentheses, $wikiId,
 		$expected
 	) {
 		[ $rev, $authority ] = $this->makeRevisionAndAuthority(
-			$comment, $isDeleted, $isAllowed );
+			$comment, $isDeleted, $isAllowed, $wikiId );
 		$formatter = $this->newCommentFormatter();
 		$result = $formatter->formatRevision(
 			$rev,
@@ -266,11 +278,11 @@ class CommentFormatterTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/** @dataProvider provideFormatRevision */
-	public function testFormatRevisions( $comment, $isPublic, $isDeleted, $isAllowed, $useParentheses,
+	public function testFormatRevisions( $comment, $isPublic, $isDeleted, $isAllowed, $useParentheses, $wikiId,
 		$expected
 	) {
 		[ $rev, $authority ] = $this->makeRevisionAndAuthority(
-			$comment, $isDeleted, $isAllowed );
+			$comment, $isDeleted, $isAllowed, $wikiId );
 		$formatter = $this->newCommentFormatter();
 		$result = $formatter->formatRevisions(
 			[ 'key' => $rev ],
@@ -298,7 +310,7 @@ class CommentFormatterTest extends MediaWikiIntegrationTestCase {
 		);
 		$this->assertSame(
 			[ 100 => ' <span class="comment">(' .
-				'comment=hello, selfLinkTarget=0:Page, !samePage, enableSectionLinks' .
+				'comment=hello, selfLinkTarget=0:Page, !samePage, !wikiId, enableSectionLinks' .
 				')</span>'
 			],
 			$result
@@ -306,11 +318,11 @@ class CommentFormatterTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/** @dataProvider provideFormatRevision */
-	public function testCreateRevisionBatch( $comment, $isPublic, $isDeleted, $isAllowed, $useParentheses,
+	public function testCreateRevisionBatch( $comment, $isPublic, $isDeleted, $isAllowed, $useParentheses, $wikiId,
 		$expected
 	) {
 		[ $rev, $authority ] = $this->makeRevisionAndAuthority(
-			$comment, $isDeleted, $isAllowed );
+			$comment, $isDeleted, $isAllowed, $wikiId );
 		$formatter = $this->newCommentFormatter();
 		$result = $formatter->createRevisionBatch()
 			->authority( $authority )
@@ -336,7 +348,7 @@ class CommentFormatterTest extends MediaWikiIntegrationTestCase {
 			->execute();
 		$this->assertSame(
 			[ 100 => ' <span class="comment">(' .
-				'comment=hello, selfLinkTarget=0:Page, !samePage, enableSectionLinks' .
+				'comment=hello, selfLinkTarget=0:Page, !samePage, !wikiId, enableSectionLinks' .
 				')</span>'
 			],
 			$result
