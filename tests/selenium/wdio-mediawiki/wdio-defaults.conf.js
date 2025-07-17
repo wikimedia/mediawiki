@@ -153,7 +153,7 @@ export const config = {
 			tags: {
 				project: process.env.npm_package_name || process.env.ZUUL_PROJECT || 'test',
 				// eslint-disable-next-line camelcase
-				test_run: process.env.WDIO_TARGET || 'ci'
+				wdio_target: process.env.WDIO_TARGET || 'ci'
 			}
 		} ]
 	],
