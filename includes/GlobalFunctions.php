@@ -1925,7 +1925,7 @@ function wfShorthandToInteger( ?string $string = '', int $default = -1 ): int {
 	if ( $string === '' ) {
 		return $default;
 	}
-	$last = $string[strlen( $string ) - 1];
+	$last = substr( $string, -1 );
 	$val = intval( $string );
 	switch ( $last ) {
 		case 'g':

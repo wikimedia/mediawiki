@@ -3857,7 +3857,7 @@ class Language implements Bcp47Code {
 	 */
 	protected function removeBadCharLast( $string ) {
 		if ( $string != '' ) {
-			$char = ord( $string[strlen( $string ) - 1] );
+			$char = ord( substr( $string, -1 ) );
 			$m = [];
 			if ( $char >= 0xc0 ) {
 				# We got the first byte only of a multibyte char; remove it.

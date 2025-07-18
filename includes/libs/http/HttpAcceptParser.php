@@ -53,8 +53,8 @@ class HttpAcceptParser {
 						// FIXME: Spec is stricter about this
 						$q = (float)$val;
 					} else {
-						if ( $val && $val[0] === '"' && $val[ strlen( $val ) - 1 ] === '"' ) {
-							$val = substr( $val, 1, strlen( $val ) - 2 );
+						if ( $val && $val[0] === '"' && str_ends_with( $val, '"' ) ) {
+							$val = substr( $val, 1, -1 );
 						}
 						$params[$key] = $val;
 					}
