@@ -284,6 +284,22 @@ class WebPHandlerTest extends MediaWikiIntegrationTestCase {
 					]
 				]
 			],
+			// Lossless red square at max resolution to confirm height decoding
+			[
+				__DIR__ . '/../../data/media/webp_ll_large.webp',
+				[
+					'width' => 16383,
+					'height' => 16383,
+					'metadata' => [
+						'compression' => 'lossless',
+						'width' => 16383,
+						'height' => 16383,
+						'metadata' => [
+							'_MW_WEBP_VERSION' => 2,
+						],
+					],
+				]
+			],
 
 			// Error cases
 			[

@@ -278,13 +278,13 @@ class WebPHandler extends BitmapHandler {
 			return [];
 		}
 		// Bytes 9-12 contain the image size
-		// Bits 0-13 are width-1; bits 15-27 are height-1
+		// Bits 0-13 are width-1; bits 14-27 are height-1
 		$imageSize = unpack( 'C4', substr( $header, 9, 4 ) );
 		return [
 				'compression' => 'lossless',
 				'width' => ( $imageSize[1] | ( ( $imageSize[2] & 0x3F ) << 8 ) ) + 1,
 				'height' => ( ( ( $imageSize[2] & 0xC0 ) >> 6 ) |
-						( $imageSize[3] << 2 ) | ( ( $imageSize[4] & 0x03 ) << 10 ) ) + 1
+						( $imageSize[3] << 2 ) | ( ( $imageSize[4] & 0x0F ) << 10 ) ) + 1
 		];
 	}
 
