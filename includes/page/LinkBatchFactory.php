@@ -18,12 +18,12 @@
  * @file
  */
 
-namespace MediaWiki\Cache;
+namespace MediaWiki\Page;
 
+use MediaWiki\Cache\GenderCache;
 use MediaWiki\Language\Language;
 use MediaWiki\Linker\LinksMigration;
 use MediaWiki\Linker\LinkTarget;
-use MediaWiki\Page\PageReference;
 use MediaWiki\Title\TitleFormatter;
 use MediaWiki\User\TempUser\TempUserDetailsLookup;
 use Psr\Log\LoggerInterface;
@@ -36,9 +36,9 @@ use Wikimedia\Rdbms\IConnectionProvider;
  * then call LinkBatch::execute().
  *
  * @see docs/LinkCache.md
- * @see MediaWiki\Cache\LinkCache
+ * @see MediaWiki\Page\LinkCache
  * @since 1.35
- * @ingroup Cache
+ * @ingroup Page
  */
 class LinkBatchFactory {
 
@@ -113,3 +113,6 @@ class LinkBatchFactory {
 		);
 	}
 }
+
+/** @deprecated class alias since 1.45 */
+class_alias( LinkBatchFactory::class, 'MediaWiki\Cache\LinkBatchFactory' );

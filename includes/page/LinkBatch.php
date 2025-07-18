@@ -18,15 +18,13 @@
  * @file
  */
 
-namespace MediaWiki\Cache;
+namespace MediaWiki\Page;
 
 use InvalidArgumentException;
+use MediaWiki\Cache\GenderCache;
 use MediaWiki\Language\Language;
 use MediaWiki\Linker\LinksMigration;
 use MediaWiki\Linker\LinkTarget;
-use MediaWiki\Page\PageIdentityValue;
-use MediaWiki\Page\PageReference;
-use MediaWiki\Page\ProperPageIdentity;
 use MediaWiki\Title\TitleFormatter;
 use MediaWiki\Title\TitleValue;
 use MediaWiki\User\TempUser\TempUserDetailsLookup;
@@ -45,9 +43,9 @@ use Wikimedia\Rdbms\Platform\ISQLPlatform;
  * then call LinkBatch::execute().
  *
  * @see docs/LinkCache.md
- * @see MediaWiki\Cache\LinkCache
+ * @see MediaWiki\Page\LinkCache
  * @since 1.6
- * @ingroup Cache
+ * @ingroup Page
  */
 class LinkBatch {
 	/**
@@ -418,3 +416,6 @@ class LinkBatch {
 
 /** @deprecated class alias since 1.42 */
 class_alias( LinkBatch::class, 'LinkBatch' );
+
+/** @deprecated class alias since 1.45 */
+class_alias( LinkBatch::class, 'MediaWiki\Cache\LinkBatch' );

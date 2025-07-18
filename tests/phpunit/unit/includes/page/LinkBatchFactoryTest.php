@@ -1,12 +1,12 @@
 <?php
 
 use MediaWiki\Cache\GenderCache;
-use MediaWiki\Cache\LinkBatch;
-use MediaWiki\Cache\LinkBatchFactory;
-use MediaWiki\Cache\LinkCache;
 use MediaWiki\Language\Language;
 use MediaWiki\Linker\LinksMigration;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\Page\LinkBatch;
+use MediaWiki\Page\LinkBatchFactory;
+use MediaWiki\Page\LinkCache;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Title\TitleFormatter;
 use MediaWiki\Title\TitleValue;
@@ -14,8 +14,8 @@ use MediaWiki\User\TempUser\TempUserDetailsLookup;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
- * @group Cache
- * @covers \MediaWiki\Cache\LinkBatchFactory
+ * @group Page
+ * @covers \MediaWiki\Page\LinkBatchFactory
  */
 class LinkBatchFactoryTest extends MediaWikiUnitTestCase {
 	use FactoryArgTestTrait;

@@ -20,7 +20,6 @@
 
 namespace MediaWiki\Page;
 
-use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleArrayFromResult;
 use Wikimedia\MapCacheLRU\MapCacheLRU;

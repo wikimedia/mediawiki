@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Page;
 
-use MediaWiki\Cache\LinkCache;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\Title\NamespaceInfo;

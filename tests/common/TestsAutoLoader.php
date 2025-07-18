@@ -108,9 +108,6 @@ $wgAutoloadClasses += [
 	# tests/phpunit/includes/block
 	'MediaWiki\\Tests\\Block\\Restriction\\RestrictionTestCase' => "$testDir/phpunit/includes/block/Restriction/RestrictionTestCase.php",
 
-	# tests/phpunit/includes/cache
-	'LinkCacheTestTrait' => "$testDir/phpunit/includes/cache/LinkCacheTestTrait.php",
-
 	# tests/phpunit/includes/recentchanges
 	'TestRecentChangesHelper' => "$testDir/phpunit/includes/recentchanges/TestRecentChangesHelper.php",
 	'MediaWiki\Tests\recentchanges\ChangeTrackingUpdateSpyTrait' => "$testDir/phpunit/includes/recentchanges/ChangeTrackingUpdateSpyTrait.php",
@@ -153,6 +150,9 @@ $wgAutoloadClasses += [
 	'MediaWiki\\Tests\\OutputTransform\\DummyDOMTransformStage' => "$testDir/phpunit/includes/OutputTransform/DummyDOMTransformStage.php",
 	'MediaWiki\\Tests\\OutputTransform\\TestUtils' => "$testDir/phpunit/includes/OutputTransform/TestUtils.php",
 	'MediaWiki\\Tests\\OutputTransform\\OutputTransformStageTestBase' => "$testDir/phpunit/includes/OutputTransform/OutputTransformStageTestBase.php",
+
+	# tests/phpunit/includes/page
+	'LinkCacheTestTrait' => "$testDir/phpunit/includes/page/LinkCacheTestTrait.php",
 
 	# tests/phpunit/includes/parser
 	'MediaWiki\\Tests\\Parser\\CacheTimeTest' => "$testDir/phpunit/includes/parser/CacheTimeTest.php",

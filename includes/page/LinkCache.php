@@ -18,14 +18,11 @@
  * @file
  */
 
-namespace MediaWiki\Cache;
+namespace MediaWiki\Page;
 
 use InvalidArgumentException;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Page\PageIdentity;
-use MediaWiki\Page\PageReference;
-use MediaWiki\Page\PageStoreRecord;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\TitleFormatter;
 use MediaWiki\Title\TitleValue;
@@ -62,10 +59,10 @@ use Wikimedia\Rdbms\IReadableDatabase;
  * @encode
  *
  * @see docs/LinkCache.md
- * @see MediaWiki\Cache\LinkBatchFactory
- * @see MediaWiki\Cache\LinkBatch
+ * @see MediaWiki\Page\LinkBatchFactory
+ * @see MediaWiki\Page\LinkBatch
  * @since 1.1
- * @ingroup Cache
+ * @ingroup Page
  */
 class LinkCache implements LoggerAwareInterface {
 	/** @var MapCacheLRU */
@@ -603,3 +600,6 @@ class LinkCache implements LoggerAwareInterface {
 
 /** @deprecated class alias since 1.42 */
 class_alias( LinkCache::class, 'LinkCache' );
+
+/** @deprecated class alias since 1.45 */
+class_alias( LinkCache::class, 'MediaWiki\Cache\LinkCache' );

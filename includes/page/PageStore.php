@@ -5,7 +5,6 @@ namespace MediaWiki\Page;
 use EmptyIterator;
 use InvalidArgumentException;
 use Iterator;
-use MediaWiki\Cache\LinkCache;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\MainConfigNames;

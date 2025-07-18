@@ -1,13 +1,13 @@
 <?php
 
-use MediaWiki\Cache\CacheKeyHelper;
 use MediaWiki\Cache\GenderCache;
-use MediaWiki\Cache\LinkBatch;
-use MediaWiki\Cache\LinkCache;
 use MediaWiki\Language\Language;
 use MediaWiki\Linker\LinksMigration;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\Page\CacheKeyHelper;
+use MediaWiki\Page\LinkBatch;
+use MediaWiki\Page\LinkCache;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Title\Title;
@@ -19,8 +19,8 @@ use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * @group Database
- * @group Cache
- * @covers \MediaWiki\Cache\LinkBatch
+ * @group Page
+ * @covers \MediaWiki\Page\LinkBatch
  */
 class LinkBatchTest extends MediaWikiIntegrationTestCase {
 

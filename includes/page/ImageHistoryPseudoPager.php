@@ -20,7 +20,6 @@
 
 namespace MediaWiki\Page;
 
-use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\FileRepo\File\File;
 use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;

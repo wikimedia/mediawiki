@@ -3,7 +3,6 @@
 namespace MediaWiki\Page;
 
 use Iterator;
-use MediaWiki\Cache\LinkCache;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\IReadableDatabase;

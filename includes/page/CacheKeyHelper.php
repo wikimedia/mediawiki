@@ -18,44 +18,47 @@
  * @file
  */
 
-namespace MediaWiki\Cache;
+namespace MediaWiki\Page;
 
 use LogicException;
-use MediaWiki\Page\PageReference;
 use Wikimedia\Parsoid\Core\LinkTarget;
 
 /**
- * Helper class for mapping value objects representing basic entities to cache keys.
+ * Helper class for mapping page value objects to a string key.
  *
- * Rationale:
- * The logic for deriving the cache key should not be in the value object themselves for two reasons:
- * Firstly, the value object should not contain knowledge about caching or keys in general.
- * Secondly, all implementations of a given interface must have the exact same logic for deriving
- * the cache key. Otherwise, caches will break when different implementations are used when
- * interacting with a cache.
+ * This logic should not reside in a class like PageStoreRecord or Title, because:
  *
- * Furthermore, the logic for deriving cache keys should not be in a service instance: there can
- * only ever be one implementation, it must not depend on configuration, and it should never change.
+ * 1. These value object should not contain care about caching in other classes.
  *
- * @ingroup Cache
+ * 2. We type against interfaces like PageReference and LinkTarget, and for
+ *    caching to work, all implementations would have to derive cache keys in the
+ *    exact same way. Otherwise, caches will break when different implementations
+ *    are passed to the same cache.
+ *
+ * Furthermore, the logic for deriving cache keys also should not reside in a service class,
+ * because there must only ever be one implementation, it must not depend on configuration,
+ * and it may never change.
+ *
+ * @since 1.37
+ * @ingroup Page
  */
 abstract class CacheKeyHelper {
 
 	/**
-	 * Private constructor to defy instantiation.
 	 * @return never
 	 */
 	private function __construct() {
-		// we should never even get here...
-		throw new LogicException( 'Should not instantiate ' . __CLASS__ );
+		throw new LogicException( 'May not be instantiated' );
 	}
 
 	/**
 	 * @param LinkTarget|PageReference $page
-	 *
 	 * @return string
 	 */
 	public static function getKeyForPage( $page ): string {
 		return 'ns' . $page->getNamespace() . ':' . $page->getDBkey();
 	}
 }
+
+/** @deprecated class alias since 1.45 */
+class_alias( CacheKeyHelper::class, 'MediaWiki\Cache\CacheKeyHelper' );

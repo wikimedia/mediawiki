@@ -1,6 +1,6 @@
 <?php
 
-use MediaWiki\Cache\LinkCache;
+use MediaWiki\Page\LinkCache;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
@@ -11,8 +11,8 @@ use Wikimedia\Rdbms\IDBAccessObject;
 
 /**
  * @group Database
- * @group Cache
- * @covers \MediaWiki\Cache\LinkCache
+ * @group Page
+ * @covers \MediaWiki\Page\LinkCache
  */
 class LinkCacheTest extends MediaWikiIntegrationTestCase {
 	use LinkCacheTestTrait;
