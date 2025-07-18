@@ -4,6 +4,8 @@
 			"Nemoralis"
 		]
 	},
+	"cdx-breadcrumb-navigation-label": "Çörək qırıntısı",
+	"cdx-breadcrumb-overflow-label": "Daha çox naviqasiya seçimləri",
 	"cdx-chip-input-chip-added": "$1 çipi əlavə edildi.",
 	"cdx-chip-input-chip-removed": "$1 çipi silindi.",
 	"cdx-input-chip-aria-description": "Redaktə etmək üçün Enter, silmək üçün Delete düyməsinə basın",

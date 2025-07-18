@@ -2,9 +2,12 @@
 	"@metadata": {
 		"authors": [
 			"Ciencia Al Poder",
+			"JorgeElias2302",
 			"MatyGamingHD"
 		]
 	},
+	"cdx-breadcrumb-navigation-label": "Migaja de pan",
+	"cdx-breadcrumb-overflow-label": "Más opciones de navegación",
 	"cdx-chip-input-chip-added": "Se añadió la pieza $1.",
 	"cdx-chip-input-chip-removed": "Se quitó la pieza $1.",
 	"cdx-input-chip-aria-description": "Pulsa Intro para editar o Suprimir para quitar.",
