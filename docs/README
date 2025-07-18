@@ -1,7 +1,7 @@
 /docs Directory README
 ======================
 
-The 'docs' directory contain various text files that should help you understand
+The 'docs' directory contains various text files that will help you understand
 the most important parts of the code of MediaWiki. More in-depth documentation
 can be found at:
   https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Code
