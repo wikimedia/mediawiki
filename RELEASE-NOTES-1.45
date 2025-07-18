@@ -269,6 +269,8 @@ because of Phabricator reports.
   a deprecation warning.
 * EmailNotification renamed to MediaWiki\RecentChanges\RecentChangeNotifier.
 * EnotifNotifyJob renamed to MediaWiki\RecentChanges\RecentChangeNotifyJob.
+* The SendWatchlistEmailNotification hook has been deprecated, use the
+  Notification Middleware instead.
 * …
 
 === Other changes in 1.45 ===

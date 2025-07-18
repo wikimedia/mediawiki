@@ -10,7 +10,7 @@ use MediaWiki\User\User;
  * This is a hook handler interface, see docs/Hooks.md.
  * Use the hook name "SendWatchlistEmailNotification" to register handlers implementing this interface.
  *
- * @stable to implement
+ * @deprecated since 1.45, use the Notification Middleware to filter/replace Watchlist notifications
  * @ingroup Hooks
  */
 interface SendWatchlistEmailNotificationHook {
