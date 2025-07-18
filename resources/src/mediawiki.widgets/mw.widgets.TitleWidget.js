@@ -41,17 +41,14 @@
 	 */
 	mw.widgets.TitleWidget = function MwWidgetsTitleWidget( config ) {
 		// Config initialization
-		config = Object.assign( {
-			maxLength: 255,
-			limit: 10
-		}, config );
+		config = config || {};
 
 		// Properties
-		this.limit = config.limit;
-		this.maxLength = config.maxLength;
+		this.limit = config.limit || 10;
+		this.maxLength = config.maxLength || 255;
 		this.namespace = config.namespace !== undefined ? config.namespace : null;
-		this.relative = config.relative !== undefined ? config.relative : true;
-		this.suggestions = config.suggestions !== undefined ? config.suggestions : true;
+		this.relative = config.relative !== false;
+		this.suggestions = config.suggestions !== false;
 		this.showRedirectTargets = config.showRedirectTargets !== false;
 		this.showImages = !!config.showImages;
 		this.showDescriptions = !!config.showDescriptions;
@@ -62,8 +59,8 @@
 		this.addQueryInput = config.addQueryInput !== false;
 		this.excludeCurrentPage = !!config.excludeCurrentPage;
 		this.excludeDynamicNamespaces = !!config.excludeDynamicNamespaces;
-		this.validateTitle = config.validateTitle !== undefined ? config.validateTitle : true;
-		this.highlightSearchQuery = config.highlightSearchQuery === undefined ? true : !!config.highlightSearchQuery;
+		this.validateTitle = config.validateTitle !== false;
+		this.highlightSearchQuery = config.highlightSearchQuery !== false;
 		this.cache = config.cache;
 		this.api = config.api || new mw.Api();
 		this.compare = new Intl.Collator(
@@ -123,13 +120,14 @@
 		const key = api.defaults.ajax.url;
 
 		if ( !Object.prototype.hasOwnProperty.call( cache, key ) ) {
+			// Cache client-side for a day since this info is mostly static
+			const oneDay = 60 * 60 * 24;
 			cache[ key ] = api.get( {
 				action: 'query',
 				meta: 'siteinfo',
 				siprop: 'interwikimap',
-				// Cache client-side for a day since this info is mostly static
-				maxage: 60 * 60 * 24,
-				smaxage: 60 * 60 * 24,
+				maxage: oneDay,
+				smaxage: oneDay,
 				// Workaround T97096 by setting uselang=content
 				uselang: 'content'
 			} ).then( ( data ) => data.query.interwikimap.map( ( iw ) => iw.prefix ) );
