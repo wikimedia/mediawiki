@@ -1,6 +1,6 @@
 {
 	"name": "wdio-mediawiki",
-	"version": "5.0.1",
+	"version": "5.1.0",
 	"type": "module",
 	"main": "index.js",
 	"description": "WebdriverIO plugin for testing a MediaWiki site.",

@@ -1,5 +1,12 @@
 # Changelog
 
+## 5.1.0 / 2025-07-18
+
+* Fix how to count number of tests for Prometheus. (T399677)
+* Get spec test retries in Prometheus per project. (T398782)
+* Tag project/test metrics per beta or ci. (T399685)
+* Throw exception when API response lacks expected field. (T393428)
+
 ## 5.0.1 / 2025-07-04
 
 * Use ECMAScript modules in RunJobs.js. (T398046)
