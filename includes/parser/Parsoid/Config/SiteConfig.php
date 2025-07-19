@@ -27,6 +27,7 @@ use MediaWiki\Config\Config;
 use MediaWiki\Config\MutableConfig;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\Debug\MWDebug;
 use MediaWiki\Exception\MWUnknownContentModelException;
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Language\Language;
@@ -885,4 +886,18 @@ class SiteConfig extends ISiteConfig {
 		return $this->getContentModelHandler( $model ) !== null;
 	}
 
+	/** @inheritDoc */
+	public function deprecated( string $function, string $version, int $callerOffset = 2 ): void {
+		MWDebug::deprecated( $function, $version, "Parsoid", $callerOffset + 1 );
+	}
+
+	/** @inheritDoc */
+	public function filterDeprecationForTest( string $regex ): void {
+		MWDebug::filterDeprecationForTest( $regex );
+	}
+
+	/** @inheritDoc */
+	public function clearDeprecationFilters(): void {
+		MWDebug::clearDeprecationFilters();
+	}
 }
