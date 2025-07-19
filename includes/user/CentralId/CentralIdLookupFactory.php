@@ -23,13 +23,19 @@ namespace MediaWiki\User\CentralId;
 use InvalidArgumentException;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
+use MediaWiki\MainConfigSchema;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentityLookup;
 use Wikimedia\ObjectFactory\ObjectFactory;
 
 /**
+ * Factory class for CentralIdLookup. Creates instances based on their definitions in
+ * the CentralIdLookupProviders extension.json field.
+ *
  * @since 1.37
  * @ingroup User
+ * @see CentralIdLookup
+ * @see MainConfigSchema::CentralIdLookupProviders
  */
 class CentralIdLookupFactory {
 
@@ -72,6 +78,7 @@ class CentralIdLookupFactory {
 	 * Get the IDs of the registered central ID lookup providers.
 	 *
 	 * @return string[]
+	 * @see MainConfigSchema::CentralIdLookupProviders
 	 */
 	public function getProviderIds(): array {
 		return array_keys( $this->providers );
@@ -79,6 +86,7 @@ class CentralIdLookupFactory {
 
 	/**
 	 * Get the ID of the default central ID provider.
+	 * @see MainConfigSchema::CentralIdLookupProvider
 	 */
 	public function getDefaultProviderId(): string {
 		return $this->defaultProvider;

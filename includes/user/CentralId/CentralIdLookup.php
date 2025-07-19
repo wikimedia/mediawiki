@@ -27,6 +27,7 @@ use MediaWiki\Permissions\Authority;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityLookup;
+use MediaWiki\WikiMap\WikiMap;
 use Throwable;
 use Wikimedia\Rdbms\IDBAccessObject;
 
@@ -374,6 +375,27 @@ abstract class CentralIdLookup {
 		$name = $user->getName();
 		$nameToId = $this->lookupAttachedUserNames( [ $name => 0 ], $audience, $flags );
 		return $nameToId[$name];
+	}
+
+	/**
+	 * Return a scope that can be used to differentiate the central IDs returned by this object
+	 * from central IDs returned by different CentralIdLookup implementations and/or on
+	 * different wikis of the same farm.
+	 *
+	 * The scope will take the form of `<provider-id>:<instance-id>` where `<provider-id>` is the
+	 * CentralIdLookup provider's ID (as in {@link ::getProviderId()}), and `<instance-id>` is used
+	 * to differentiate between multiple instances of the same provider (e.g. could be a wiki ID
+	 * for farms where each wiki has its own userbase); it is an arbitrary string (possibly empty)
+	 * except it can't contain any more `:` characters.
+	 *
+	 * Most subclasses should override the default implementation.
+	 *
+	 * @stable to override
+	 * @return string
+	 * @since 1.45
+	 */
+	public function getScope(): string {
+		return $this->getProviderId() . ':' . strtr( WikiMap::getCurrentWikiId(), [ ':' => '-' ] );
 	}
 
 }

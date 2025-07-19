@@ -163,6 +163,13 @@ class LocalIdLookup extends CentralIdLookup {
 
 		return $nameToId;
 	}
+
+	/** @inheritDoc */
+	public function getScope(): string {
+		return $this->getProviderId() . ':'
+			. strtr( $this->sharedDB ?? WikiMap::getCurrentWikiId(), [ ':' => '-' ] );
+	}
+
 }
 
 /** @deprecated class alias since 1.41 */

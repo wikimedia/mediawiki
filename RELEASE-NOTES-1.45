@@ -82,6 +82,8 @@ For notes on 1.44.x and older releases, see HISTORY.
 * The SpecialLogResolveLogType hook was added.
 * Domain events modeling changes to pages are now stable for use by extensions.
   See https://www.mediawiki.org/wiki/Manual:Domain_events/Hierarchy#Page_Events
+* CentralIdLookup::getScope() has been added, for easier namespacing of
+  central IDs.
 * …
 
 === External library changes in 1.45 ===

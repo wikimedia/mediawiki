@@ -7,6 +7,7 @@ use MediaWiki\User\CentralId\CentralIdLookup;
 use MediaWiki\User\CentralId\LocalIdLookup;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
+use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\ArrayUtils\ArrayUtils;
 use Wikimedia\Rdbms\IDBAccessObject;
 
@@ -180,6 +181,19 @@ class LocalIdLookupTest extends MediaWikiIntegrationTestCase {
 	public static function provideIsAttachedShared() {
 		$bool = [ false, true ];
 		return ArrayUtils::cartesianProduct( $bool, $bool, $bool );
+	}
+
+	public function testGetScope() {
+		$lookup = $this->newLookup();
+		$wikiId = WikiMap::getCurrentWikiId();
+		$this->assertSame( "test:$wikiId", $lookup->getScope() );
+
+		$lookup = $this->newLookup( [
+			MainConfigNames::SharedDB => 'shared',
+			MainConfigNames::SharedTables => [ 'user' ],
+			MainConfigNames::LocalDatabases => [ 'shared' ],
+		] );
+		$this->assertSame( 'test:shared', $lookup->getScope() );
 	}
 
 }
