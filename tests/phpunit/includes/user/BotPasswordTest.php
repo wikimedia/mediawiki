@@ -39,25 +39,23 @@ class BotPasswordTest extends MediaWikiIntegrationTestCase {
 		$this->testUser = $this->getMutableTestUser();
 		$this->testUserName = $this->testUser->getUser()->getName();
 
-		$mock1 = $this->getMockForAbstractClass( CentralIdLookup::class );
-		$mock1->method( 'isAttached' )
-			->willReturn( true );
-		$mock1->method( 'lookupUserNamesWithFilter' )
-			->willReturn( [ $this->testUserName => 42, 'UTDummy' => 43, 'UTInvalid' => 0 ] );
-		$mock1->expects( $this->never() )->method( 'lookupCentralIds' );
-
-		$mock2 = $this->getMockForAbstractClass( CentralIdLookup::class );
-		$mock2->method( 'isAttached' )
-			->willReturn( false );
-		$mock2->method( 'lookupUserNamesWithFilter' )
-			->willReturnArgument( 0 );
-		$mock2->expects( $this->never() )->method( 'lookupCentralIds' );
-
 		$this->mergeMwGlobalArrayValue( 'wgCentralIdLookupProviders', [
-			'BotPasswordTest OkMock' => [ 'factory' => static function () use ( $mock1 ) {
+			'BotPasswordTest OkMock' => [ 'factory' => function () {
+				$mock1 = $this->getMockForAbstractClass( CentralIdLookup::class );
+				$mock1->method( 'isAttached' )
+					->willReturn( true );
+				$mock1->method( 'lookupUserNamesWithFilter' )
+					->willReturn( [ $this->testUserName => 42, 'UTDummy' => 43, 'UTInvalid' => 0 ] );
+				$mock1->expects( $this->never() )->method( 'lookupCentralIds' );
 				return $mock1;
 			} ],
-			'BotPasswordTest FailMock' => [ 'factory' => static function () use ( $mock2 ) {
+			'BotPasswordTest FailMock' => [ 'factory' => function () {
+				$mock2 = $this->getMockForAbstractClass( CentralIdLookup::class );
+				$mock2->method( 'isAttached' )
+					->willReturn( false );
+				$mock2->method( 'lookupUserNamesWithFilter' )
+					->willReturnArgument( 0 );
+				$mock2->expects( $this->never() )->method( 'lookupCentralIds' );
 				return $mock2;
 			} ],
 		] );
@@ -270,9 +268,11 @@ class BotPasswordTest extends MediaWikiIntegrationTestCase {
 		$manager = new SessionManager(
 			$mainConfig,
 			new Psr\Log\NullLogger,
+			$this->getServiceContainer()->getCentralIdLookup(),
 			$this->getServiceContainer()->getHookContainer(),
 			$this->getServiceContainer()->getObjectFactory(),
 			$this->getServiceContainer()->getProxyLookup(),
+			$this->getServiceContainer()->getUrlUtils(),
 			$this->getServiceContainer()->getUserNameUtils(),
 			$this->getServiceContainer()->getSessionStore()
 		);
@@ -299,9 +299,11 @@ class BotPasswordTest extends MediaWikiIntegrationTestCase {
 		$manager = new SessionManager(
 			new MultiConfig( [ $config, $mainConfig ] ),
 			new Psr\Log\NullLogger,
+			$this->getServiceContainer()->getCentralIdLookup(),
 			$this->getServiceContainer()->getHookContainer(),
 			$this->getServiceContainer()->getObjectFactory(),
 			$this->getServiceContainer()->getProxyLookup(),
+			$this->getServiceContainer()->getUrlUtils(),
 			$this->getServiceContainer()->getUserNameUtils(),
 			$this->getServiceContainer()->getSessionStore()
 		);

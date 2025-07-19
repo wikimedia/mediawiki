@@ -88,6 +88,8 @@ For notes on 1.44.x and older releases, see HISTORY.
   See https://www.mediawiki.org/wiki/Manual:Domain_events/Hierarchy#Page_Events
 * CentralIdLookup::getScope() has been added, for easier namespacing of
   central IDs.
+* SessionManager::getJwtData() has been added, to standardize JWT format
+  for session providers which use a JWT.
 * …
 
 === External library changes in 1.45 ===

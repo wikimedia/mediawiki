@@ -221,6 +221,7 @@ class HookRunner implements
 	\MediaWiki\Hook\GetMetadataVersionHook,
 	\MediaWiki\Hook\GetNewMessagesAlertHook,
 	\MediaWiki\Hook\GetSecurityLogContextHook,
+	\MediaWiki\Hook\GetSessionJwtDataHook,
 	\MediaWiki\Hook\GetRelativeTimestampHook,
 	\MediaWiki\Hook\GitViewersHook,
 	\MediaWiki\Hook\HistoryPageToolLinksHook,
@@ -2234,6 +2235,15 @@ class HookRunner implements
 		$this->container->run(
 			'GetSecurityLogContext',
 			[ $info, &$context ],
+			[ 'abortable' => false ]
+		);
+	}
+
+	/** @inheritDoc */
+	public function onGetSessionJwtData( ?UserIdentity $user, array &$jwtData ): void {
+		$this->container->run(
+			'GetSessionJwtData',
+			[ $user, &$jwtData ],
 			[ 'abortable' => false ]
 		);
 	}

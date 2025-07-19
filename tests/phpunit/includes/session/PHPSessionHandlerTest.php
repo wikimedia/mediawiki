@@ -83,9 +83,11 @@ class PHPSessionHandlerTest extends MediaWikiIntegrationTestCase {
 		$manager = new SessionManager(
 			$services->getMainConfig(),
 			$logger,
+			$services->getCentralIdLookup(),
 			$services->getHookContainer(),
 			$services->getObjectFactory(),
 			$services->getProxyLookup(),
+			$services->getUrlUtils(),
 			$services->getUserNameUtils(),
 			$services->getSessionStore()
 		);
@@ -128,9 +130,11 @@ class PHPSessionHandlerTest extends MediaWikiIntegrationTestCase {
 		$manager = new SessionManager(
 			$services->getMainConfig(),
 			$logger,
+			$services->getCentralIdLookup(),
 			$services->getHookContainer(),
 			$services->getObjectFactory(),
 			$services->getProxyLookup(),
+			$services->getUrlUtils(),
 			$services->getUserNameUtils(),
 			$services->getSessionStore()
 		);

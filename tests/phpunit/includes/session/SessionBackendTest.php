@@ -81,9 +81,11 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 			$this->manager = new SessionManager(
 				$this->config,
 				$logger,
+				$this->getServiceContainer()->getCentralIdLookup(),
 				$hookContainer,
 				$this->getServiceContainer()->getObjectFactory(),
 				$this->getServiceContainer()->getProxyLookup(),
+				$this->getServiceContainer()->getUrlUtils(),
 				$this->getServiceContainer()->getUserNameUtils(),
 				$this->store
 			);

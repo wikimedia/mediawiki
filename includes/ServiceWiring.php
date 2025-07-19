@@ -2138,9 +2138,11 @@ return [
 		return new SessionManager(
 			$services->getMainConfig(),
 			LoggerFactory::getInstance( 'session' ),
+			$services->getCentralIdLookup(),
 			$services->getHookContainer(),
 			$services->getObjectFactory(),
 			$services->getProxyLookup(),
+			$services->getUrlUtils(),
 			$services->getUserNameUtils(),
 			$services->getSessionStore()
 		);

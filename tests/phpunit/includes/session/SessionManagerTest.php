@@ -3,6 +3,7 @@
 namespace MediaWiki\Tests\Session;
 
 use DummySessionProvider;
+use IDBAccessObject;
 use InvalidArgumentException;
 use MediaWiki\Config\HashConfig;
 use MediaWiki\Context\RequestContext;
@@ -19,6 +20,10 @@ use MediaWiki\Session\SessionOverflowException;
 use MediaWiki\Session\SessionProvider;
 use MediaWiki\Session\SingleBackendSessionStore;
 use MediaWiki\Session\UserInfo;
+use MediaWiki\User\CentralId\CentralIdLookup;
+use MediaWiki\User\User;
+use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserIdentityValue;
 use MediaWiki\Utils\MWTimestamp;
 use MediaWikiIntegrationTestCase;
 use Psr\Log\LoggerInterface;
@@ -70,9 +75,11 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		return new SessionManager(
 			$this->config,
 			$this->logger,
+			$this->getServiceContainer()->getCentralIdLookup(),
 			$this->getServiceContainer()->getHookContainer(),
 			$this->getServiceContainer()->getObjectFactory(),
 			$this->getServiceContainer()->getProxyLookup(),
+			$this->getServiceContainer()->getUrlUtils(),
 			$this->getServiceContainer()->getUserNameUtils(),
 			new SingleBackendSessionStore( $this->store )
 		);
@@ -1672,5 +1679,51 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 				'expectedLogLevel' => null,
 			],
 		];
+	}
+
+	public function testGetJwtData() {
+		MWTimestamp::setFakeTime( 1234567 );
+		$this->overrideConfigValue( MainConfigNames::CanonicalServer, 'http://example.org' );
+		$this->setService( 'CentralIdLookup', $this->getMockCentralIdLookup( [ 'Foo' => 123 ] ) );
+		$sessionManager = $this->createManager();
+		$this->setTemporaryHook( 'GetSessionJwtData', static function ( ?UserIdentity $user, array &$jwtData ) {
+			$jwtData['customClaim'] = 'foo';
+		} );
+
+		$jwtData = $sessionManager->getJwtData( new User() );
+		$claims = [
+			'iss' => 'http://example.org',
+			'sub' => 'mw:' . SessionManager::JWT_SUB_ANON,
+			'iat' => 1234567,
+			'customClaim' => 'foo',
+		];
+		foreach ( $claims as $key => $expectedValue ) {
+			$this->assertSame( $expectedValue, $jwtData[$key] );
+		}
+
+		$jwtData = $sessionManager->getJwtData( UserIdentityValue::newRegistered( 1, 'Foo' ) );
+		$claims = [
+			'iss' => 'http://example.org',
+			'sub' => 'mw:mock::123',
+			'iat' => 1234567,
+			'customClaim' => 'foo',
+		];
+		foreach ( $claims as $key => $expectedValue ) {
+			$this->assertSame( $expectedValue, $jwtData[$key] );
+		}
+	}
+
+	private function getMockCentralIdLookup( array $userNameToCentralIdMap ): CentralIdLookup {
+		$lookup = $this->createNoOpMock( CentralIdLookup::class, [ 'getScope', 'lookupOwnedUserNames' ] );
+		$lookup->method( 'getScope' )->willReturn( 'mock:' );
+		$lookup->method( 'lookupOwnedUserNames' )->willReturnCallback(
+			static function ( $nameToIdMap, $audience, $flags ) use ( $userNameToCentralIdMap ) {
+				if ( !( $flags & IDBAccessObject::READ_LATEST ) ) {
+					return [ key( $nameToIdMap ) => 0 ];
+				}
+				return $userNameToCentralIdMap;
+			}
+		);
+		return $lookup;
 	}
 }

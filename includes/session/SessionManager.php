@@ -20,10 +20,12 @@
 
 namespace MediaWiki\Session;
 
+use IDBAccessObject;
 use InvalidArgumentException;
 use MediaWiki\Config\Config;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Exception\MWException;
+use MediaWiki\Hook\GetSessionJwtDataHook;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Logger\LoggerFactory;
@@ -32,8 +34,12 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Request\ProxyLookup;
 use MediaWiki\Request\WebRequest;
+use MediaWiki\User\CentralId\CentralIdLookup;
 use MediaWiki\User\User;
+use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNameUtils;
+use MediaWiki\Utils\MWTimestamp;
+use MediaWiki\Utils\UrlUtils;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
 use Wikimedia\ObjectCache\BagOStuff;
@@ -82,6 +88,8 @@ class SessionManager implements SessionManagerInterface {
 	private HookContainer $hookContainer;
 	private HookRunner $hookRunner;
 	private Config $config;
+	private CentralIdLookup $centralIdLookup;
+	private UrlUtils $urlUtils;
 	private UserNameUtils $userNameUtils;
 	private SessionStore $sessionStore;
 	private ObjectFactory $objectFactory;
@@ -101,6 +109,9 @@ class SessionManager implements SessionManagerInterface {
 
 	/** @var true[] */
 	private $preventUsers = [];
+
+	/** @var string */
+	public const JWT_SUB_ANON = 'anon';
 
 	/**
 	 * Get the global SessionManager
@@ -122,19 +133,23 @@ class SessionManager implements SessionManagerInterface {
 	public function __construct(
 		Config $config,
 		LoggerInterface $logger,
+		CentralIdLookup $centralIdLookup,
 		HookContainer $hookContainer,
 		ObjectFactory $objectFactory,
 		ProxyLookup $proxyLookup,
+		UrlUtils $urlUtils,
 		UserNameUtils $userNameUtils,
 		SessionStore $sessionStore
 	) {
 		$this->config = $config;
 		$this->setLogger( $logger );
+		$this->centralIdLookup = $centralIdLookup;
 		$this->setHookContainer( $hookContainer );
 		$this->objectFactory = $objectFactory;
 		$this->sessionStore = $sessionStore;
 
 		$this->proxyLookup = $proxyLookup;
+		$this->urlUtils = $urlUtils;
 		$this->userNameUtils = $userNameUtils;
 	}
 
@@ -343,6 +358,60 @@ class SessionManager implements SessionManagerInterface {
 			$this->varyCookies = array_values( array_unique( $cookies ) );
 		}
 		return $this->varyCookies;
+	}
+
+	/**
+	 * Return a set of key-value pairs applicable for use as claims in a JSON Web Token.
+	 *
+	 * This can be used to standardize some session credentials as JWTs. It is up to individual
+	 * session providers whether and how to use JWTs, but if they use them, they should make use
+	 * of this mechanism so that infrastructure outside MediaWiki that makes use of such JWTs
+	 * can be standardized.
+	 *
+	 * Providers which call this method are free to extend or replace the values whenever that
+	 * makes sense, but are encouraged to add at least the following fields:
+	 *   - exp: hard expiry (as a UNIX timestamp), requests using this session token should be
+	 *     rejected after this point in time.
+	 *   - sxp: soft expiry (if different from hard expiry), the session token should be ignored
+	 *     and the session treated as anonymous after this point.
+	 *
+	 * @param UserIdentity $user The user who is the subject of the claim.
+	 * @return array A set of JWT claims (key-value pairs) as a JSON array.
+	 *
+	 * @since 1.45
+	 * @see GetSessionJwtDataHook
+	 */
+	public function getJwtData( UserIdentity $user ): array {
+		$centralId = null;
+		$userName = $this->userNameUtils->getCanonical( $user->getName() );
+		if ( $userName === false ) {
+			$user = null;
+		} else {
+			$nameToId = [ $userName => 0 ];
+			[ $userName => $centralId ] = $this->centralIdLookup->lookupOwnedUserNames( $nameToId,
+				CentralIdLookup::AUDIENCE_RAW );
+			if ( !$centralId ) {
+				[ $userName => $centralId ] = $this->centralIdLookup->lookupOwnedUserNames( $nameToId,
+					CentralIdLookup::AUDIENCE_RAW, IDBAccessObject::READ_LATEST );
+			}
+		}
+		// Use a fake scheme for 'sub' since the spec says it should be an URI or a string that
+		// cannot be mistaken for an URI, and the first seems less hassle
+		$scheme = 'mw:';
+		$userValue = $centralId
+			? $this->centralIdLookup->getScope() . ':' . $centralId
+			: self::JWT_SUB_ANON;
+		$jwtData = [
+			'iss' => $this->urlUtils->getCanonicalServer(),
+			'sub' => $scheme . $userValue,
+			// Omit 'exp', it depends on the provider.
+			// Omit 'nbf', no different from 'iat' and RFC 7519 doesn't require it.
+			'iat' => MWTimestamp::time(),
+			'jti' => base64_encode( random_bytes( 16 ) ),
+		];
+
+		$this->hookRunner->onGetSessionJwtData( $user, $jwtData );
+		return $jwtData;
 	}
 
 	/**

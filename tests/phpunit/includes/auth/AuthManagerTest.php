@@ -339,9 +339,11 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		$manager = new SessionManager(
 			$this->config,
 			new NullLogger(),
+			$this->getServiceContainer()->getCentralIdLookup(),
 			$this->getServiceContainer()->getHookContainer(),
 			$this->getServiceContainer()->getObjectFactory(),
 			$this->getServiceContainer()->getProxyLookup(),
+			$this->getServiceContainer()->getUrlUtils(),
 			$this->getServiceContainer()->getUserNameUtils(),
 			$this->getServiceContainer()->getSessionStore()
 		);
