@@ -40,24 +40,6 @@ use UnexpectedValueException;
  */
 class RecentChangeNotifier {
 
-	protected string $pageStatus = '';
-
-	/**
-	 * Extensions that have hooks for
-	 * UpdateUserMailerFormattedPageStatus (to provide additional
-	 * pageStatus indicators) need a way to make sure that, when their
-	 * hook is called in SendWatchlistemailNotification, they only
-	 * handle notifications using their pageStatus indicator.
-	 *
-	 * @deprecated since 1.45 No longer needed by anything else except these hooks
-	 * @since 1.33
-	 * @return string
-	 */
-	public function getPageStatus() {
-		wfDeprecated( __METHOD__, '1.45' );
-		return $this->pageStatus;
-	}
-
 	/**
 	 * Send emails corresponding to the user $editor editing the page $title.
 	 *
@@ -178,11 +160,8 @@ class RecentChangeNotifier {
 		# The following code is only run, if several conditions are met:
 		# 1. RecentChangeNotifier for pages (other than user_talk pages) must be enabled
 		# 2. minor edits (changes) are only regarded if the global flag indicates so
-		$this->pageStatus = $pageStatus;
 		$formattedPageStatus = [ 'deleted', 'created', 'moved', 'restored', 'changed' ];
-
-		$hookRunner->onUpdateUserMailerFormattedPageStatus( $formattedPageStatus );
-		if ( !in_array( $this->pageStatus, $formattedPageStatus ) ) {
+		if ( !in_array( $pageStatus, $formattedPageStatus ) ) {
 			throw new UnexpectedValueException( 'Not a valid page status!' );
 		}
 		$agent = $mwServices->getUserFactory()->newFromAuthority( $editor );
@@ -226,7 +205,6 @@ class RecentChangeNotifier {
 						//       see: https://phabricator.wikimedia.org/T208895
 						&& !( $config->get( MainConfigNames::BlockDisablesLogin ) &&
 							$watchingUser->getBlock() )
-						&& $hookRunner->onSendWatchlistEmailNotification( $watchingUser, $title, $this )
 					) {
 						$recipients->addRecipient( $watchingUser );
 					}
@@ -300,14 +278,8 @@ class RecentChangeNotifier {
 		} elseif ( $userOptionsLookup->getOption( $targetUser, 'enotifusertalkpages' )
 			&& ( !$minorEdit || $userOptionsLookup->getOption( $targetUser, 'enotifminoredits' ) )
 		) {
-			if ( !( new HookRunner( $services->getHookContainer() ) )
-				->onAbortTalkPageEmailNotification( $targetUser, $title )
-			) {
-				wfDebug( __METHOD__ . ": talk page update notification is aborted for this user" );
-			} else {
-				wfDebug( __METHOD__ . ": sending talk page update notification" );
-				return true;
-			}
+			wfDebug( __METHOD__ . ": sending talk page update notification" );
+			return true;
 		} else {
 			wfDebug( __METHOD__ . ": talk page owner doesn't want notifications" );
 		}

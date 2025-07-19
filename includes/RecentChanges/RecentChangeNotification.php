@@ -54,9 +54,8 @@ class RecentChangeNotification extends WikiNotification {
 	}
 
 	/**
-	 * Retrieve page state, list provided by MediaWiki is
+	 * Retrieve page state, one of:
 	 * [ 'deleted', 'created', 'moved', 'restored', 'changed' ]
-	 * but additionally extensions can add their own states.
 	 */
 	public function getPageStatus(): string {
 		return $this->pageStatus;

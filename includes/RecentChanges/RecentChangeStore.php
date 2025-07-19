@@ -246,8 +246,7 @@ class RecentChangeStore implements RecentChangeFactory, RecentChangeLookup {
 			$editor = $this->userFactory->newFromUserIdentity( $recentChange->getPerformerIdentity() );
 			$title = Title::castFromPageReference( $recentChange->getPage() );
 
-			if ( $title && $hookRunner->onAbortEmailNotification( $editor, $title, $recentChange ) ) {
-				// @FIXME: This would be better as an extension hook
+			if ( $title ) {
 				// Send emails or email jobs once this row is safely committed
 				$dbw->onTransactionCommitOrIdle(
 					static function () use ( $recentChange ) {

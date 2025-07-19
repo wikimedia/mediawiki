@@ -117,8 +117,6 @@ class HookRunner implements
 	\MediaWiki\Diff\Hook\DifferenceEngineViewHeaderHook,
 	\MediaWiki\Diff\Hook\DiffToolsHook,
 	\MediaWiki\Diff\Hook\NewDifferenceEngineHook,
-	\MediaWiki\RecentChanges\Hook\AbortEmailNotificationHook,
-	\MediaWiki\Mail\Hook\AbortTalkPageEmailNotificationHook,
 	\MediaWiki\Actions\Hook\ActionBeforeFormDisplayHook,
 	\MediaWiki\Actions\Hook\ActionModifyFormFieldsHook,
 	\MediaWiki\Specials\Hook\AddNewAccountHook,
@@ -340,7 +338,6 @@ class HookRunner implements
 	\MediaWiki\Parser\Hook\RejectParserCacheValueHook,
 	\MediaWiki\Context\Hook\RequestContextCreateSkinHook,
 	\MediaWiki\Hook\SelfLinkBeginHook,
-	\MediaWiki\Mail\Hook\SendWatchlistEmailNotificationHook,
 	\MediaWiki\Hook\SetupAfterCacheHook,
 	\MediaWiki\Hook\SpecialLogGetSubpagesForPrefixSearchHook,
 	\MediaWiki\Specials\Hook\ShortPagesQueryHook,
@@ -414,7 +411,6 @@ class HookRunner implements
 	\MediaWiki\Hook\UnitTestsListHook,
 	\MediaWiki\Actions\Hook\UnwatchArticleCompleteHook,
 	\MediaWiki\Actions\Hook\UnwatchArticleHook,
-	\MediaWiki\Mail\Hook\UpdateUserMailerFormattedPageStatusHook,
 	\MediaWiki\Upload\Hook\UploadCompleteHook,
 	\MediaWiki\Upload\Hook\UploadCreateFromRequestHook,
 	\MediaWiki\Specials\Hook\UploadFormInitDescriptorHook,
@@ -613,22 +609,6 @@ class HookRunner implements
 		return $this->container->run(
 			'AbortDiffCache',
 			[ $diffEngine ]
-		);
-	}
-
-	/** @inheritDoc */
-	public function onAbortEmailNotification( $editor, $title, $rc ) {
-		return $this->container->run(
-			'AbortEmailNotification',
-			[ $editor, $title, $rc ]
-		);
-	}
-
-	/** @inheritDoc */
-	public function onAbortTalkPageEmailNotification( $targetUser, $title ) {
-		return $this->container->run(
-			'AbortTalkPageEmailNotification',
-			[ $targetUser, $title ]
 		);
 	}
 
@@ -3893,14 +3873,6 @@ class HookRunner implements
 	}
 
 	/** @inheritDoc */
-	public function onSendWatchlistEmailNotification( $targetUser, $title, $enotif ) {
-		return $this->container->run(
-			'SendWatchlistEmailNotification',
-			[ $targetUser, $title, $enotif ]
-		);
-	}
-
-	/** @inheritDoc */
 	public function onSessionCheckInfo( &$reason, $info, $request, $metadata,
 		$data
 	) {
@@ -4676,14 +4648,6 @@ class HookRunner implements
 		return $this->container->run(
 			'UnwatchArticleComplete',
 			[ $user, $page ]
-		);
-	}
-
-	/** @inheritDoc */
-	public function onUpdateUserMailerFormattedPageStatus( &$formattedPageStatus ) {
-		return $this->container->run(
-			'UpdateUserMailerFormattedPageStatus',
-			[ &$formattedPageStatus ]
 		);
 	}
 

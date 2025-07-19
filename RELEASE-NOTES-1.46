@@ -189,6 +189,11 @@ because of Phabricator reports.
 * DatabaseBlock::delete, deprecated in 1.36, has been removed. Please use
   DatabaseBlockStore::deleteBlock instead.
 * The UserIsBlockedGlobally hook, deprecated in 1.40, has been removed
+* The hooks 'AbortTalkPageEmailNotification' and 'AbortEmailNotification'
+  (deprecated in 1.44 and 1.45) have been removed.
+* The hooks 'UpdateUserMailerFormattedPageStatus' and
+  'SendWatchlistEmailNotification' (deprecated in 1.45) have been removed.
+* The related method RecentChangeNotifier::getPageStatus() has been removed.
 * …
 
 === Deprecations in 1.46 ===

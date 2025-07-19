@@ -21,8 +21,6 @@ class DeprecatedHooks {
 	 * @phpcs-require-sorted-array
 	 */
 	private $deprecatedHooks = [
-		'AbortEmailNotification' => [ 'deprecatedVersion' => '1.45' ],
-		'AbortTalkPageEmailNotification' => [ 'deprecatedVersion' => '1.44' ],
 		'AddNewAccount' => [ 'deprecatedVersion' => '1.27' ],
 		'ArticleDelete' => [ 'deprecatedVersion' => '1.37', 'silent' => true ],
 		'ArticleDeleteComplete' => [ 'deprecatedVersion' => '1.37', 'silent' => true ],
@@ -41,8 +39,6 @@ class DeprecatedHooks {
 		'RecentChangesPurgeRows' => [ 'deprecatedVersion' => '1.45', 'silent' => true ],
 		'RollbackComplete' => [ 'deprecatedVersion' => '1.36', 'silent' => true ],
 		'SearchDataForIndex' => [ 'deprecatedVersion' => '1.40', 'silent' => true ],
-		'SendWatchlistEmailNotification' => [ 'deprecatedVersion' => '1.45' ],
-		'UpdateUserMailerFormattedPageStatus' => [ 'deprecatedVersion' => '1.45' ],
 		'userCan' => [ 'deprecatedVersion' => '1.37' ],
 		'UserCanSendEmail' => [ 'deprecatedVersion' => '1.41', 'silent' => true ],
 		'WatchedItemQueryServiceExtensionsHook' => [ 'deprecatedVersion' => '1.46' ],
