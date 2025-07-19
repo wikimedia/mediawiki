@@ -334,6 +334,8 @@ because of Phabricator reports.
 * The RecentChangeNotifier::getPageStatus() method has been deprecated.
 * The SendWatchlistEmailNotification and UpdateUserMailerFormattedPageStatus
   hooks have been deprecated, use the Notification Middleware instead.
+* The AbortEmailNotification hook has been deprecated, use the Notification
+  Middleware instead.
 * UploadBase::verifyExtension, UploadBase::detectScript, UploadBase::detectVirus
   have been deprecated. In most cases callers should use the verifyFile
   method of UploadVerification service.
