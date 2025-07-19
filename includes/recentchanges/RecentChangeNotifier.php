@@ -62,10 +62,12 @@ class RecentChangeNotifier {
 	 * hook is called in SendWatchlistemailNotification, they only
 	 * handle notifications using their pageStatus indicator.
 	 *
+	 * @deprecated since 1.45 No longer needed by anything else except these hooks
 	 * @since 1.33
 	 * @return string
 	 */
 	public function getPageStatus() {
+		wfDeprecated( __METHOD__, '1.45' );
 		return $this->pageStatus;
 	}
 

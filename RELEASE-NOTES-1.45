@@ -268,10 +268,11 @@ because of Phabricator reports.
   ::createFromParserOptions() instead.
 * Calling MessageCache::get with a Language object is now deprecated and emits
   a deprecation warning.
-* EmailNotification renamed to MediaWiki\RecentChanges\RecentChangeNotifier.
 * EnotifNotifyJob renamed to MediaWiki\RecentChanges\RecentChangeNotifyJob.
-* The SendWatchlistEmailNotification hook has been deprecated, use the
-  Notification Middleware instead.
+* EmailNotification renamed to MediaWiki\RecentChanges\RecentChangeNotifier.
+* The RecentChangeNotifier::getPageStatus() method has been deprecated.
+* The SendWatchlistEmailNotification and UpdateUserMailerFormattedPageStatus
+  hooks have been deprecated, use the Notification Middleware instead.
 * …
 
 === Other changes in 1.45 ===
