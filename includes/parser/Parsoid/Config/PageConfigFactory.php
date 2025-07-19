@@ -80,7 +80,7 @@ class PageConfigFactory extends \Wikimedia\Parsoid\Config\PageConfigFactory {
 	 *   RevisionAccessException if not.
 	 * @return \Wikimedia\Parsoid\Config\PageConfig
 	 * @throws RevisionAccessException
-	 * @deprecated since 1.44; use ::createFromParserOptions() instead
+	 * @deprecated since 1.45; use ::createFromParserOptions() instead
 	 */
 	public function create(
 		PageIdentity $pageId,
@@ -90,6 +90,7 @@ class PageConfigFactory extends \Wikimedia\Parsoid\Config\PageConfigFactory {
 		?Bcp47Code $pageLanguageOverride = null,
 		bool $ensureAccessibleContent = false
 	): \Wikimedia\Parsoid\Config\PageConfig {
+		wfDeprecated( __METHOD__, '1.45' );
 		if ( $unused !== null ) {
 			wfDeprecated( __METHOD__ . ' with non-null 4th arg', '1.40' );
 		}
