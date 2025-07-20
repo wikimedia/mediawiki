@@ -194,14 +194,12 @@ class XmlTypeCheck {
 				// Calling this malformed, because we didn't parse the whole
 				// thing. Maybe just an external entity refernce.
 				$this->wellFormed = false;
+				throw $e;
+			} finally {
 				$reader->close();
 				// phpcs:ignore Generic.PHP.NoSilencedErrors
 				@libxml_disable_entity_loader( $oldDisable );
-				throw $e;
 			}
-			$reader->close();
-			// phpcs:ignore Generic.PHP.NoSilencedErrors
-			@libxml_disable_entity_loader( $oldDisable );
 		}
 	}
 
