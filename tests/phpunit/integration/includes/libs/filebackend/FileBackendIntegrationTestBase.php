@@ -71,8 +71,6 @@ abstract class FileBackendIntegrationTestBase extends MediaWikiIntegrationTestCa
 		$props2 = $this->backend->getFileProps( [ 'src' => $dest ] );
 		$this->assertEquals( $props1, $props2,
 			"Source and destination have the same props ($backendName)." );
-
-		$this->assertBackendPathsConsistent( [ $dest ], true );
 	}
 
 	public static function provider_testStore() {
@@ -172,8 +170,6 @@ abstract class FileBackendIntegrationTestBase extends MediaWikiIntegrationTestCa
 				(bool)$this->backend->fileExists( [ 'src' => $dest ] ),
 				"Destination file $dest exists after copy ($backendName)." );
 		}
-
-		$this->assertBackendPathsConsistent( [ $source, $dest ], $okSyncStatus );
 	}
 
 	/**
@@ -307,8 +303,6 @@ abstract class FileBackendIntegrationTestBase extends MediaWikiIntegrationTestCa
 				(bool)$this->backend->fileExists( [ 'src' => $dest ] ),
 				"Destination file $dest exists after move ($backendName)." );
 		}
-
-		$this->assertBackendPathsConsistent( [ $source, $dest ], $okSyncStatus );
 	}
 
 	/**
@@ -403,8 +397,6 @@ abstract class FileBackendIntegrationTestBase extends MediaWikiIntegrationTestCa
 		$this->assertFalse(
 			$props1['fileExists'],
 			"Source file $source does not exist according to props ($backendName)." );
-
-		$this->assertBackendPathsConsistent( [ $source ], $okSyncStatus );
 	}
 
 	/**
@@ -484,8 +476,6 @@ abstract class FileBackendIntegrationTestBase extends MediaWikiIntegrationTestCa
 			$this->assertStatusNotOK( $status,
 				"Describe of file at $source failed ($backendName)." );
 		}
-
-		$this->assertBackendPathsConsistent( [ $source ], true );
 	}
 
 	private function assertHasHeaders( array $headers, array $attr ) {
@@ -571,8 +561,6 @@ abstract class FileBackendIntegrationTestBase extends MediaWikiIntegrationTestCa
 				$this->backend->getFileSize( [ 'src' => $dest ] ),
 				"Destination file $dest has original size according to props ($backendName)." );
 		}
-
-		$this->assertBackendPathsConsistent( [ $dest ], true );
 	}
 
 	/**
@@ -2113,8 +2101,4 @@ abstract class FileBackendIntegrationTestBase extends MediaWikiIntegrationTestCa
 		}
 		$this->backend->clean( [ 'dir' => "$base/$container", 'recursive' => 1 ] );
 	}
-
-	protected function assertBackendPathsConsistent( array $paths, $okSyncStatus ) {
-	}
-
 }

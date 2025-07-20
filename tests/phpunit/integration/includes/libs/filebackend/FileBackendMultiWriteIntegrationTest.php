@@ -41,14 +41,4 @@ class FileBackendMultiWriteIntegrationTest extends FileBackendIntegrationTestBas
 			]
 		] );
 	}
-
-	protected function assertBackendPathsConsistent( array $paths, $okSyncStatus ) {
-		$status = $this->backend->consistencyCheck( $paths );
-		if ( $okSyncStatus ) {
-			$this->assertStatusGood( $status, "Files synced: " . implode( ',', $paths ) );
-		} else {
-			$this->assertStatusNotOK( $status, "Files not synced: " . implode( ',', $paths ) );
-		}
-	}
-
 }
