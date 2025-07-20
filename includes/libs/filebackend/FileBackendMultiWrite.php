@@ -15,7 +15,6 @@ use LogicException;
 use Shellbox\Command\BoxedCommand;
 use StatusValue;
 use Wikimedia\StringUtils\StringUtils;
-use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * @brief Proxy backend that mirrors writes to several internal backends.
@@ -30,9 +29,7 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  * Read operations are only done on the 'master' backend for consistency.
  * Except on getting list of thumbnails for write operations.
  * Write operations are performed on all backends, starting with the master.
- * This makes a best-effort to have transactional semantics, but since requests
- * may sometimes fail, the use of "autoResync" or background scripts to fix
- * inconsistencies is important.
+ * This makes a best-effort to have transactional semantics.
  *
  * @ingroup FileBackend
  * @since 1.19
@@ -45,11 +42,6 @@ class FileBackendMultiWrite extends FileBackend {
 	protected $masterIndex = -1;
 	/** @var int Index of read affinity backend */
 	protected $readIndex = -1;
-
-	/** @var int Bitfield */
-	protected $syncChecks = 0;
-	/** @var string|bool */
-	protected $autoResync = false;
 
 	/** @var bool */
 	protected $asyncWrites = false;
@@ -72,24 +64,11 @@ class FileBackendMultiWrite extends FileBackend {
 	 *                        - class         : The name of the backend class
 	 *                        - isMultiMaster : This must be set for one backend.
 	 *                        - readAffinity  : Use this for reads without 'latest' set.
-	 *   - syncChecks     : Integer bitfield of internal backend sync checks to perform.
-	 *                      Possible bits include the FileBackendMultiWrite::CHECK_* constants.
-	 *                      There are constants for SIZE, TIME, and SHA1.
-	 *                      The checks are done before allowing any file operations.
-	 *   - autoResync     : Automatically resync the clone backends to the master backend
-	 *                      when pre-operation sync checks fail. This should only be used
-	 *                      if the master backend is stable and not missing any files.
-	 *                      Use "conservative" to limit resyncing to copying newer master
-	 *                      backend files over older (or non-existing) clone backend files.
-	 *                      Cases that cannot be handled will result in operation abortion.
 	 *   - replication    : Set to 'async' to defer file operations on the non-master backends.
-	 *                      This will apply such updates post-send for web requests. Note that
-	 *                      any checks from "syncChecks" are still synchronous.
+	 *                      This will apply such updates post-send for web requests.
 	 */
 	public function __construct( array $config ) {
 		parent::__construct( $config );
-		$this->syncChecks = $config['syncChecks'] ?? self::CHECK_SIZE;
-		$this->autoResync = $config['autoResync'] ?? false;
 		$this->asyncWrites = isset( $config['replication'] ) && $config['replication'] === 'async';
 		// Construct backends here rather than via registration
 		// to keep these backends hidden from outside the proxy.
@@ -154,22 +133,6 @@ class FileBackendMultiWrite extends FileBackend {
 		if ( !$status->isOK() ) {
 			return $status; // abort
 		}
-		// Do a consistency check to see if the backends are consistent
-		$syncStatus = $this->consistencyCheck( $relevantPaths );
-		if ( !$syncStatus->isOK() ) {
-			$this->logger->error(
-				"$fname: failed sync check: " . implode( ', ', $relevantPaths )
-			);
-			// Try to resync the clone backends to the master on the spot
-			if (
-				$this->autoResync === false ||
-				!$this->resyncFiles( $relevantPaths, $this->autoResync )->isOK()
-			) {
-				$status->merge( $syncStatus );
-
-				return $status; // abort
-			}
-		}
 		// Actually attempt the operation batch on the master backend
 		$realOps = $this->substOpBatchPaths( $ops, $mbe );
 		$masterStatus = $mbe->doOperations( $realOps, $opts );
@@ -213,97 +176,6 @@ class FileBackendMultiWrite extends FileBackend {
 		$status->success = $masterStatus->success;
 		$status->successCount = $masterStatus->successCount;
 		$status->failCount = $masterStatus->failCount;
-
-		return $status;
-	}
-
-	/**
-	 * Check that a set of files are consistent across all internal backends
-	 *
-	 * This method should only be called if the files are locked or the backend
-	 * is in read-only mode
-	 *
-	 * @param string[] $paths List of storage paths
-	 * @return StatusValue
-	 */
-	public function consistencyCheck( array $paths ) {
-		$status = $this->newStatus();
-		if ( $this->syncChecks == 0 || count( $this->backends ) <= 1 ) {
-			return $status; // skip checks
-		}
-
-		// Preload all of the stat info in as few round trips as possible
-		foreach ( $this->backends as $backend ) {
-			$realPaths = $this->substPaths( $paths, $backend );
-			$backend->preloadFileStat( [ 'srcs' => $realPaths, 'latest' => true ] );
-		}
-
-		foreach ( $paths as $path ) {
-			$params = [ 'src' => $path, 'latest' => true ];
-			// Get the state of the file on the master backend
-			$masterBackend = $this->backends[$this->masterIndex];
-			$masterParams = $this->substOpPaths( $params, $masterBackend );
-			$masterStat = $masterBackend->getFileStat( $masterParams );
-			if ( $masterStat === self::STAT_ERROR ) {
-				$status->fatal( 'backend-fail-stat', $path );
-				continue;
-			}
-			if ( $this->syncChecks & self::CHECK_SHA1 ) {
-				$masterSha1 = $masterBackend->getFileSha1Base36( $masterParams );
-				if ( ( $masterSha1 !== false ) !== (bool)$masterStat ) {
-					$status->fatal( 'backend-fail-hash', $path );
-					continue;
-				}
-			} else {
-				$masterSha1 = null; // unused
-			}
-
-			// Check if all clone backends agree with the master...
-			foreach ( $this->backends as $index => $cloneBackend ) {
-				if ( $index === $this->masterIndex ) {
-					continue; // master
-				}
-
-				// Get the state of the file on the clone backend
-				$cloneParams = $this->substOpPaths( $params, $cloneBackend );
-				$cloneStat = $cloneBackend->getFileStat( $cloneParams );
-
-				if ( $masterStat ) {
-					// File exists in the master backend
-					if ( !$cloneStat ) {
-						// File is missing from the clone backend
-						$status->fatal( 'backend-fail-synced', $path );
-					} elseif (
-						( $this->syncChecks & self::CHECK_SIZE ) &&
-						$cloneStat['size'] !== $masterStat['size']
-					) {
-						// File in the clone backend is different
-						$status->fatal( 'backend-fail-synced', $path );
-					} elseif (
-						( $this->syncChecks & self::CHECK_TIME ) &&
-						abs(
-							(int)ConvertibleTimestamp::convert( TS_UNIX, $masterStat['mtime'] ) -
-							(int)ConvertibleTimestamp::convert( TS_UNIX, $cloneStat['mtime'] )
-						) > 30
-					) {
-						// File in the clone backend is significantly newer or older
-						$status->fatal( 'backend-fail-synced', $path );
-					} elseif (
-						( $this->syncChecks & self::CHECK_SHA1 ) &&
-						$cloneBackend->getFileSha1Base36( $cloneParams ) !== $masterSha1
-					) {
-						// File in the clone backend is different
-						$status->fatal( 'backend-fail-synced', $path );
-					}
-				} else {
-					// File does not exist in the master backend
-					if ( $cloneStat ) {
-						// Stray file exists in the clone backend
-						$status->fatal( 'backend-fail-synced', $path );
-					}
-				}
-			}
-		}
 
 		return $status;
 	}
