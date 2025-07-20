@@ -8,6 +8,7 @@ use MediaWiki\Config\MultiConfig;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Session\BotPasswordSessionProvider;
+use MediaWiki\Session\CookieSessionProvider;
 use MediaWiki\Session\Session;
 use MediaWiki\Session\SessionInfo;
 use MediaWiki\Session\SessionManager;
@@ -45,13 +46,17 @@ class BotPasswordSessionProviderTest extends MediaWikiIntegrationTestCase {
 			$params['sessionCookieOptions']['prefix'] = $prefix;
 		}
 
-		$sessionProviders = array_merge( $wgSessionProviders, [
+		$emptySessionProvider = array_filter(
+			$wgSessionProviders,
+			static fn ( $spec ) => $spec['class'] === CookieSessionProvider::class
+		);
+		$sessionProviders = [
 			BotPasswordSessionProvider::class => [
 				'class' => BotPasswordSessionProvider::class,
 				'args' => [ $params ],
 				'services' => [ 'GrantsInfo' ],
-			]
-		] );
+			],
+		] + $emptySessionProvider;
 
 		$configHash = json_encode( [ $name, $prefix, $isApiRequest ] );
 		if ( !$this->config || $this->configHash !== $configHash ) {
@@ -253,7 +258,7 @@ class BotPasswordSessionProviderTest extends MediaWikiIntegrationTestCase {
 	public function testCheckSessionInfo() {
 		$logger = new TestLogger( true );
 		$provider = $this->getProvider();
-		$this->initProvider( $provider, $logger );
+		$this->initProvider( $provider, $logger, $this->config );
 
 		$user = static::getTestSysop()->getUser();
 		$request = new FauxRequest();

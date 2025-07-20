@@ -1590,6 +1590,12 @@ class MainConfigNames {
 	public const SessionPbkdf2Iterations = 'SessionPbkdf2Iterations';
 
 	/**
+	 * Name constant for the UseSessionCookieJwt setting, for use with Config::get()
+	 * @see MainConfigSchema::UseSessionCookieJwt
+	 */
+	public const UseSessionCookieJwt = 'UseSessionCookieJwt';
+
+	/**
 	 * Name constant for the MemCachedServers setting, for use with Config::get()
 	 * @see MainConfigSchema::MemCachedServers
 	 */

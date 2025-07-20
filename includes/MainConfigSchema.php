@@ -81,6 +81,7 @@ use MediaWiki\RecentChanges\RecentChangesUpdateJob;
 use MediaWiki\RenameUser\Job\RenameUserDerivedJob;
 use MediaWiki\RenameUser\Job\RenameUserTableJob;
 use MediaWiki\Request\WebRequest;
+use MediaWiki\Session\SessionManager;
 use MediaWiki\Settings\Source\JsonSchemaTrait;
 use MediaWiki\Site\MediaWikiSite;
 use MediaWiki\Storage\SqlBlobStore;
@@ -4354,6 +4355,20 @@ class MainConfigSchema {
 	];
 
 	/**
+	 * Include a JWT alongside the session cookie when using cookie-based sessions.
+	 *
+	 * @note The JWT cookie intentionally has the same name on all wikis, to make it easier for
+	 *   edge infrastructure to handle it. If multiple wikis use the same domain, without
+	 *   appropriate $wgCookieDomain settings, enabling this will break session handling.
+	 *
+	 * @since 1.45
+	 * @see SessionManager::getJwtData()
+	 */
+	public const UseSessionCookieJwt = [
+		'default' => false,
+	];
+
+	/**
 	 * The list of MemCached servers and port numbers
 	 */
 	public const MemCachedServers = [
@@ -7727,6 +7742,10 @@ class MainConfigSchema {
 				'args' => [ [
 					'priority' => 30,
 				] ],
+				'services' => [
+					'JwtCodec',
+					'UrlUtils',
+				],
 			],
 			\MediaWiki\Session\BotPasswordSessionProvider::class => [
 				'class' => \MediaWiki\Session\BotPasswordSessionProvider::class,

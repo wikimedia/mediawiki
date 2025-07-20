@@ -1575,6 +1575,12 @@ $wgSuspiciousIpExpiry = null;
 $wgSessionPbkdf2Iterations = null;
 
 /**
+ * Config variable stub for the UseSessionCookieJwt setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::UseSessionCookieJwt
+ */
+$wgUseSessionCookieJwt = null;
+
+/**
  * Config variable stub for the MemCachedServers setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::MemCachedServers
  */

@@ -296,6 +296,7 @@ $wgAutoloadClasses += [
 	'MediaWiki\\Tests\\Json\\JsonDeserializableSuperClass' => "$testDir/phpunit/mocks/json/JsonDeserializableSuperClass.php",
 	'MediaWiki\\Tests\\Json\\ManagedObject' => "$testDir/phpunit/mocks/json/ManagedObject.php",
 	'MediaWiki\\Tests\\Json\\ManagedObjectFactory' => "$testDir/phpunit/mocks/json/ManagedObjectFactory.php",
+	'MediaWiki\\Tests\\Json\\PlainJsonJwtCodec' => "$testDir/phpunit/mocks/json/PlainJsonJwtCodec.php",
 	'MediaWiki\\Tests\\Json\\SampleContainerObject' => "$testDir/phpunit/mocks/json/SampleContainerObject.php",
 	'MediaWiki\\Tests\\Json\\SampleObject' => "$testDir/phpunit/mocks/json/SampleObject.php",
 	'MediaWiki\\Tests\\Json\\SampleObjectAlias' => "$testDir/phpunit/mocks/json/SampleObject.php",

@@ -121,6 +121,10 @@ class TestSetup {
 				'args' => [ [
 					'priority' => 30,
 				] ],
+				'services' => [
+					'JwtCodec',
+					'UrlUtils',
+				],
 			],
 		];
 

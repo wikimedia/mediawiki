@@ -21,10 +21,14 @@
 namespace MediaWiki\Session;
 
 use InvalidArgumentException;
+use MediaWiki\Json\JwtCodec;
+use MediaWiki\Json\JwtException;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\User\User;
 use MediaWiki\User\UserRigorOptions;
+use MediaWiki\Utils\UrlUtils;
+use Wikimedia\LightweightObjectStore\ExpirationAwareness;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
@@ -35,6 +39,11 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  */
 class CookieSessionProvider extends SessionProvider {
 
+	/**
+	 * Name of the JWT cookie, when enabled. Ignores $wgCookiePrefix.
+	 */
+	protected const JWT_COOKIE_NAME = 'sessionJwt';
+
 	/** @var mixed[] */
 	protected $params = [];
 
@@ -42,6 +51,8 @@ class CookieSessionProvider extends SessionProvider {
 	protected $cookieOptions = [];
 
 	/**
+	 * @param JwtCodec $jwtCodec
+	 * @param UrlUtils $urlUtils
 	 * @param array $params Keys include:
 	 *  - priority: (required) Priority of the returned sessions
 	 *  - sessionName: Session cookie name. Doesn't honor 'prefix'. Defaults to
@@ -54,7 +65,11 @@ class CookieSessionProvider extends SessionProvider {
 	 *    - httpOnly: Cookie httpOnly flag, defaults to $wgCookieHttpOnly
 	 *    - sameSite: Cookie SameSite attribute, defaults to $wgCookieSameSite
 	 */
-	public function __construct( $params = [] ) {
+	public function __construct(
+		private JwtCodec $jwtCodec,
+		private UrlUtils $urlUtils,
+		$params = []
+	) {
 		parent::__construct();
 
 		$params += [
@@ -177,7 +192,18 @@ class CookieSessionProvider extends SessionProvider {
 			return null;
 		}
 
-		return new SessionInfo( $this->priority, $info );
+		$sessionInfo = new SessionInfo( $this->priority, $info );
+
+		if ( $this->useJwtCookie() ) {
+			try {
+				$this->verifyJwtCookie( $request, $sessionInfo );
+			} catch ( JwtException $e ) {
+				$this->logger->info( 'JWT validation failed: ' . $e->getNormalizedMessage(), $e->getMessageContext() );
+				return null;
+			}
+		}
+
+		return $sessionInfo;
 	}
 
 	/** @inheritDoc */
@@ -227,6 +253,9 @@ class CookieSessionProvider extends SessionProvider {
 
 		$this->setForceHTTPSCookie( $forceHTTPS, $session, $request );
 		$this->setLoggedOutCookie( $session->getLoggedOutTimestamp(), $request );
+		if ( $this->useJwtCookie() ) {
+			$this->setJwtCookie( $session, $request );
+		}
 
 		if ( $sessionData ) {
 			$session->addData( $sessionData );
@@ -255,6 +284,10 @@ class CookieSessionProvider extends SessionProvider {
 
 		foreach ( $cookies as $key => $value ) {
 			$response->clearCookie( $key, $this->cookieOptions );
+		}
+
+		if ( $this->useJwtCookie() ) {
+			$response->clearCookie( self::JWT_COOKIE_NAME, $this->getJwtCookieOptions() );
 		}
 
 		$this->setForceHTTPSCookie( false, null, $request );
@@ -306,7 +339,7 @@ class CookieSessionProvider extends SessionProvider {
 
 	/** @inheritDoc */
 	public function getVaryCookies() {
-		return [
+		$cookies = [
 			// Vary on token and session because those are the real authn
 			// determiners. UserID and UserName don't matter without those.
 			$this->cookieOptions['prefix'] . 'Token',
@@ -314,6 +347,10 @@ class CookieSessionProvider extends SessionProvider {
 			$this->params['sessionName'],
 			'forceHTTPS',
 		];
+		if ( $this->useJwtCookie() ) {
+			$cookies[] = $this->getJwtCookieOptions()['prefix'] . self::JWT_COOKIE_NAME;
+		}
+		return $cookies;
 	}
 
 	/** @inheritDoc */
@@ -437,4 +474,89 @@ class CookieSessionProvider extends SessionProvider {
 			return (int)$normalExpiration;
 		}
 	}
+
+	/**
+	 * Tells whether the provider should emit session data as a JWT cookie, alongside of (in the
+	 * future, possibly instead of) the normal session cookies.
+	 */
+	protected function useJwtCookie(): bool {
+		return $this->config->get( MainConfigNames::UseSessionCookieJwt );
+	}
+
+	/**
+	 * Emit a JWT cookie containing the user ID, token and other information.
+	 */
+	protected function setJwtCookie( SessionBackend $session, WebRequest $request ): void {
+		$response = $request->response();
+		$user = $session->getUser();
+		$expirationDuration = $this->getLoginCookieExpiration( self::JWT_COOKIE_NAME, $session->shouldRememberUser() );
+		$expiration = $expirationDuration ? $expirationDuration + ConvertibleTimestamp::time() : null;
+
+		$jwtData = $this->getManager()->getJwtData( $user );
+		$jwtData = $this->getJwtClaimOverrides( $expirationDuration ) + $jwtData;
+		$jwt = $this->jwtCodec->create( $jwtData );
+		$response->setCookie( self::JWT_COOKIE_NAME, $jwt, $expiration,
+			$this->getJwtCookieOptions() );
+	}
+
+	/**
+	 * @throws JwtException on error
+	 */
+	protected function verifyJwtCookie( WebRequest $request, SessionInfo $sessionInfo ): void {
+		$jwt = $this->getCookie( $request, self::JWT_COOKIE_NAME, $this->getJwtCookieOptions()['prefix'] );
+		if ( $jwt === null ) {
+			// The JWT cookie might have a different lifetime and expire before the other cookies.
+			return;
+		}
+
+		$data = $this->jwtCodec->parse( $jwt );
+		$expectedUser = ( $sessionInfo->getUserInfo() ?? UserInfo::newAnonymous() )->getUser();
+		$this->manager->validateJwtSubject( $data, $expectedUser );
+
+		[ 'iss' => $issuer, 'sxp' => $expiry ] = $data;
+		[ 'iss' => $expectedIssuer ] = $this->getJwtClaimOverrides( 0 );
+		if ( $issuer !== $expectedIssuer ) {
+			throw new JwtException( 'JWT error: wrong issuer', [
+				'expected_issuer' => $expectedIssuer,
+				'issuer' => $issuer,
+			] );
+		}
+
+		// TODO if the JWT is near expiry, we should probably refresh it.
+		if ( $expiry < ConvertibleTimestamp::time() ) {
+			throw new JwtException( 'JWT error: expired', [
+				'expiry' => $expiry,
+				'expired_by' => ConvertibleTimestamp::time() - $expiry,
+			] );
+		}
+
+		// Valid JWT. We could use this to make the UserInfo in the SessionInfo verified if it
+		// isn't already, or to make a SessionInfo in the first place if the other cookies weren't
+		// sufficient for a valid session, but for now we avoid using the JWT to make a session
+		// valid if it wouldn't be without it.
+	}
+
+	/**
+	 * Helper method to make it easy for subclasses to alter claims.
+	 * @param int $expirationDuration Session lifetime in seconds.
+	 */
+	protected function getJwtClaimOverrides( int $expirationDuration ): array {
+		return [
+			'iss' => $this->urlUtils->getCanonicalServer(),
+			'exp' => ConvertibleTimestamp::time() + $expirationDuration + ExpirationAwareness::TTL_DAY,
+			// TODO this uses the normal session cookie expiration, which defaults to 30 days.
+			//   We might want to set it to something short instead (e.g. a day) so we don't need to
+			//   worry about the contents being outdated, but then we need a mechanism to refresh it.
+			'sxp' => ConvertibleTimestamp::time() + $expirationDuration,
+		];
+	}
+
+	/**
+	 * Helper method to make it easy for subclasses to alter JWT cookie options (as multiple wikis
+	 * are expected to share the same cookie for some providers).
+	 */
+	protected function getJwtCookieOptions(): array {
+		return [ 'prefix' => '' ] + $this->cookieOptions;
+	}
+
 }

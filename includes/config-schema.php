@@ -565,6 +565,7 @@ return [
 			'PHPSessionHandling' => 'enable',
 			'SuspiciousIpExpiry' => false,
 			'SessionPbkdf2Iterations' => 10001,
+			'UseSessionCookieJwt' => false,
 			'MemCachedServers' => [
 				'127.0.0.1:11211',
 			],
@@ -1168,6 +1169,10 @@ return [
 						[
 							'priority' => 30,
 						],
+					],
+					'services' => [
+						'JwtCodec',
+						'UrlUtils',
 					],
 				],
 				'MediaWiki\\Session\\BotPasswordSessionProvider' => [

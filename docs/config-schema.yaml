@@ -2700,6 +2700,15 @@ config-schema:
         description: |-
             Number of internal PBKDF2 iterations to use when deriving session secrets.
             @since 1.28
+    UseSessionCookieJwt:
+        default: false
+        description: |-
+            Include a JWT alongside the session cookie when using cookie-based sessions.
+            @note The JWT cookie intentionally has the same name on all wikis, to make it easier for
+              edge infrastructure to handle it. If multiple wikis use the same domain, without
+              appropriate $wgCookieDomain settings, enabling this will break session handling.
+            @since 1.45
+            @see SessionManager::getJwtData()
     MemCachedServers:
         default:
             - '127.0.0.1:11211'
@@ -4904,7 +4913,7 @@ config-schema:
     SessionProviders:
         type: object
         default:
-            MediaWiki\Session\CookieSessionProvider: { class: MediaWiki\Session\CookieSessionProvider, args: [{ priority: 30 }] }
+            MediaWiki\Session\CookieSessionProvider: { class: MediaWiki\Session\CookieSessionProvider, args: [{ priority: 30 }], services: [JwtCodec, UrlUtils] }
             MediaWiki\Session\BotPasswordSessionProvider: { class: MediaWiki\Session\BotPasswordSessionProvider, args: [{ priority: 75 }], services: [GrantsInfo] }
         description: |-
             MediaWiki\Session\SessionProvider configuration.
