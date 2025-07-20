@@ -92,7 +92,7 @@ class ValidateMessageTestData extends Maintenance {
 		}
 	}
 
-	private function validateSerializationData( array $data, \stdClass $fileInfo ): bool {
+	private function validateSerializationData( string $data, \stdClass $fileInfo ): bool {
 		if ( !$fileInfo->data ) {
 			if ( $this->hasOption( 'create' ) ) {
 				$this->output( 'Creating file: ' . $fileInfo->path . "\n" );
