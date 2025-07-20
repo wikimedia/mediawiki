@@ -1272,7 +1272,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 
 		// TODO: ResourceLimitExceededException from $parsoid->dom2wikitext -> 413
 		// TODO: ClientError from $parsoid->dom2wikitext -> 413
-		// TODO: Errors from PageBundle->validate
+		// TODO: Errors from HtmlPageBundle->validate
 	}
 
 	/**

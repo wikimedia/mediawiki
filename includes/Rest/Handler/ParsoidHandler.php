@@ -59,7 +59,7 @@ use Wikimedia\Parsoid\Config\DataAccess;
 use Wikimedia\Parsoid\Config\PageConfig;
 use Wikimedia\Parsoid\Config\PageConfigFactory;
 use Wikimedia\Parsoid\Core\ClientError;
-use Wikimedia\Parsoid\Core\PageBundle;
+use Wikimedia\Parsoid\Core\HtmlPageBundle;
 use Wikimedia\Parsoid\Core\ResourceLimitExceededException;
 use Wikimedia\Parsoid\DOM\Document;
 use Wikimedia\Parsoid\Parsoid;
@@ -950,7 +950,7 @@ abstract class ParsoidHandler extends Handler {
 			$attribs['envOptions']['outputContentVersion']
 		);
 		if ( $downgrade ) {
-			$pb = new PageBundle(
+			$pb = new HtmlPageBundle(
 				$revision['html']['body'],
 				$revision['data-parsoid']['body'] ?? null,
 				$revision['data-mw']['body'] ?? null
@@ -992,7 +992,7 @@ abstract class ParsoidHandler extends Handler {
 	) {
 		$parsoid = $this->newParsoid();
 
-		$pb = new PageBundle(
+		$pb = new HtmlPageBundle(
 			$revision['html']['body'],
 			$revision['data-parsoid']['body'] ?? null,
 			$revision['data-mw']['body'] ?? null,
@@ -1035,7 +1035,7 @@ abstract class ParsoidHandler extends Handler {
 
 		$pageIdentity = $this->tryToCreatePageIdentity( $attribs );
 
-		$pb = new PageBundle(
+		$pb = new HtmlPageBundle(
 			$revision['html']['body'],
 			$revision['data-parsoid']['body'] ?? null,
 			$revision['data-mw']['body'] ?? null,
@@ -1075,13 +1075,13 @@ abstract class ParsoidHandler extends Handler {
 	abstract public function execute(): Response;
 
 	/**
-	 * Validate a PageBundle against the given contentVersion, and throw
+	 * Validate a HtmlPageBundle against the given contentVersion, and throw
 	 * an HttpException if it does not match.
-	 * @param PageBundle $pb
+	 * @param HtmlPageBundle $pb
 	 * @param string $contentVersion
 	 * @throws HttpException
 	 */
-	private function validatePb( PageBundle $pb, string $contentVersion ): void {
+	private function validatePb( HtmlPageBundle $pb, string $contentVersion ): void {
 		$errorMessage = '';
 		if ( !$pb->validate( $contentVersion, $errorMessage ) ) {
 			throw new LocalizedHttpException(

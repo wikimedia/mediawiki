@@ -22,7 +22,7 @@ use Wikimedia\Message\MessageValue;
 use Wikimedia\Parsoid\Config\PageConfig;
 use Wikimedia\Parsoid\Core\ClientError;
 use Wikimedia\Parsoid\Core\DomPageBundle;
-use Wikimedia\Parsoid\Core\PageBundle;
+use Wikimedia\Parsoid\Core\HtmlPageBundle;
 use Wikimedia\Parsoid\Core\ResourceLimitExceededException;
 use Wikimedia\Parsoid\Core\SelserData;
 use Wikimedia\Parsoid\DOM\Document;
@@ -47,14 +47,14 @@ class HtmlToContentTransform {
 	private ?RevisionRecord $originalRevision = null;
 	/**
 	 * Whether $this->doc has had any necessary processing applied,
-	 * such as injecting data-parsoid attributes from a PageBundle.
+	 * such as injecting data-parsoid attributes from a HtmlPageBundle.
 	 */
 	private bool $docHasBeenProcessed = false;
 	private ?Document $doc = null;
 	private ?Element $originalBody = null;
 	protected ?StatsFactory $metrics = null;
-	private PageBundle $modifiedPageBundle;
-	private PageBundle $originalPageBundle;
+	private HtmlPageBundle $modifiedPageBundle;
+	private HtmlPageBundle $originalPageBundle;
 	private ?PageConfig $pageConfig = null;
 	private Parsoid $parsoid;
 	private array $parsoidSettings;
@@ -80,8 +80,8 @@ class HtmlToContentTransform {
 	) {
 		$this->parsoid = $parsoid;
 		$this->parsoidSettings = $parsoidSettings;
-		$this->modifiedPageBundle = new PageBundle( $modifiedHTML );
-		$this->originalPageBundle = new PageBundle( '' );
+		$this->modifiedPageBundle = new HtmlPageBundle( $modifiedHTML );
+		$this->originalPageBundle = new HtmlPageBundle( '' );
 		$this->page = $page;
 		$this->pageConfigFactory = $pageConfigFactory;
 		$this->contentHandlerFactory = $contentHandlerFactory;
@@ -162,7 +162,7 @@ class HtmlToContentTransform {
 		$this->originalContent = $content;
 	}
 
-	private function validatePageBundle( PageBundle $pb ) {
+	private function validatePageBundle( HtmlPageBundle $pb ) {
 		if ( !$pb->version ) {
 			return;
 		}
@@ -436,7 +436,7 @@ class HtmlToContentTransform {
 		return $this->options['offsetType'] ?? 'byte';
 	}
 
-	private function needsDowngrade( PageBundle $pb ): bool {
+	private function needsDowngrade( HtmlPageBundle $pb ): bool {
 		$vOriginal = $pb->version;
 		$vEdited = $this->getSchemaVersion();
 
@@ -453,7 +453,7 @@ class HtmlToContentTransform {
 		return $vOriginal !== null && !Semver::satisfies( $vOriginal, "^{$vEdited}" );
 	}
 
-	private function downgradeOriginalData( PageBundle $pb, string $targetSchemaVersion ) {
+	private function downgradeOriginalData( HtmlPageBundle $pb, string $targetSchemaVersion ) {
 		if ( $pb->version === null ) {
 			throw new ClientError( 'Missing schema version' );
 		}
@@ -501,11 +501,11 @@ class HtmlToContentTransform {
 
 	/**
 	 * @param Document $doc
-	 * @param PageBundle $pb
+	 * @param HtmlPageBundle $pb
 	 *
 	 * @throws ClientError
 	 */
-	private function applyPageBundle( Document $doc, PageBundle $pb ): void {
+	private function applyPageBundle( Document $doc, HtmlPageBundle $pb ): void {
 		if ( $pb->parsoid === null && $pb->mw === null ) {
 			return;
 		}

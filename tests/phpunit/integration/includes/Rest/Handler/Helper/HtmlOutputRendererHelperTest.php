@@ -48,7 +48,7 @@ use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\ObjectCache\EmptyBagOStuff;
 use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\Parsoid\Core\ClientError;
-use Wikimedia\Parsoid\Core\PageBundle;
+use Wikimedia\Parsoid\Core\HtmlPageBundle;
 use Wikimedia\Parsoid\Core\ResourceLimitExceededException;
 use Wikimedia\Parsoid\Parsoid;
 use Wikimedia\Stats\StatsFactory;
@@ -821,7 +821,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 			] );
 			$mockParsoid
 				->method( 'wikitext2html' )
-				->willReturn( new PageBundle(
+				->willReturn( new HtmlPageBundle(
 					$options['expectedHtml'] ?? 'This is HTML'
 				) );
 		}

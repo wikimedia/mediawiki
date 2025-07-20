@@ -4,7 +4,7 @@ namespace MediaWiki\Edit;
 
 use MediaWiki\Content\IContentHandlerFactory;
 use Wikimedia\ObjectCache\BagOStuff;
-use Wikimedia\Parsoid\Core\PageBundle;
+use Wikimedia\Parsoid\Core\HtmlPageBundle;
 
 /**
  * @internal
@@ -81,7 +81,7 @@ class SimpleParsoidOutputStash implements ParsoidOutputStash {
 		}
 
 		// TODO: should use proper JsonCodec for this
-		$pb = PageBundle::newFromJsonArray( $json['pb'] );
+		$pb = HtmlPageBundle::newFromJsonArray( $json['pb'] );
 
 		$revId = (int)$json['revId'];
 

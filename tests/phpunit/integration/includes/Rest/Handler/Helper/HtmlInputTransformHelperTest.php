@@ -31,7 +31,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\Bcp47Code\Bcp47Code;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Parsoid\Core\ClientError;
-use Wikimedia\Parsoid\Core\PageBundle;
+use Wikimedia\Parsoid\Core\HtmlPageBundle;
 use Wikimedia\Parsoid\Core\ResourceLimitExceededException;
 use Wikimedia\Parsoid\Parsoid;
 use Wikimedia\Parsoid\Utils\ContentUtils;
@@ -742,7 +742,7 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public static function provideOriginal() {
-		$unchangedPB = new PageBundle(
+		$unchangedPB = new HtmlPageBundle(
 			self::getTextFromFile( 'MainPage-original.html' ),
 			self::getJsonFromFile( 'MainPage-original.data-parsoid' ),
 			null,
@@ -796,7 +796,7 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 	 *
 	 * @param SelserContext|null $stashed
 	 * @param RevisionRecord|int|null $rev
-	 * @param ParsoidRenderID|PageBundle|ParserOutput|null $originalRendering
+	 * @param ParsoidRenderID|HtmlPageBundle|ParserOutput|null $originalRendering
 	 * @param string|string[]|null $expectedText Null means use the original content
 	 *
 	 * @covers \MediaWiki\Rest\Handler\Helper\HtmlInputTransformHelper::setOriginal
@@ -948,7 +948,7 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 		$html = self::getTextFromFile( 'MainPage-original.html' );
 		$dataParsoid = self::getJsonFromFile( 'MainPage-original.data-parsoid' );
 
-		$pb = new PageBundle(
+		$pb = new HtmlPageBundle(
 			$html,
 			$dataParsoid,
 			[],
@@ -995,7 +995,7 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 		$oldWikitext = 'Fake old wikitext';
 
 		$content = new WikitextContent( $oldWikitext );
-		$pb = new PageBundle(
+		$pb = new HtmlPageBundle(
 			$html,
 			$dataParsoid,
 			[],

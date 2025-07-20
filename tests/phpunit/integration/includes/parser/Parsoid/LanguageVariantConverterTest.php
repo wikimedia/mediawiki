@@ -11,7 +11,7 @@ use MediaWiki\Parser\Parsoid\LanguageVariantConverter;
 use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWikiIntegrationTestCase;
 use Wikimedia\Bcp47Code\Bcp47CodeValue;
-use Wikimedia\Parsoid\Core\PageBundle;
+use Wikimedia\Parsoid\Core\HtmlPageBundle;
 use Wikimedia\Parsoid\Parsoid;
 
 /**
@@ -25,7 +25,7 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 
 	public static function provideConvertPageBundleVariant() {
 		yield 'No source or base, rely on page language (en)' => [
-			new PageBundle(
+			new HtmlPageBundle(
 				'<p>test language conversion</p>',
 				[ 'parsoid-data' ],
 				[ 'mw-data' ],
@@ -38,7 +38,7 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 			'>esttay anguagelay onversioncay<'
 		];
 		yield 'Source variant is base language' => [
-			new PageBundle(
+			new HtmlPageBundle(
 				'<p>test language conversion</p>',
 				[ 'parsoid-data' ],
 				[ 'mw-data' ],
@@ -51,7 +51,7 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 			'>esttay anguagelay onversioncay<'
 		];
 		yield 'Source language is null' => [
-			new PageBundle(
+			new HtmlPageBundle(
 				'<p>Бутун инсанлар сербестлик, менлик ве укъукъларда мусавий олып дунйагъа келелер.</p>',
 				[ 'parsoid-data' ],
 				[ 'mw-data' ],
@@ -64,7 +64,7 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 			'>Butun insanlar serbestlik, menlik ve uquqlarda musaviy olıp dunyağa keleler.</'
 		];
 		yield 'Source language is explicit' => [
-			new PageBundle(
+			new HtmlPageBundle(
 				'<p>Бутун инсанлар сербестлик, менлик ве укъукъларда мусавий олып дунйагъа келелер.</p>',
 				[ 'parsoid-data' ],
 				[ 'mw-data' ],
@@ -77,7 +77,7 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 			'>Butun insanlar serbestlik, menlik ve uquqlarda musaviy olıp dunyağa keleler.</'
 		];
 		yield 'Content language is provided via HTTP header' => [
-			new PageBundle(
+			new HtmlPageBundle(
 				'<p>Бутун инсанлар сербестлик, менлик ве укъукъларда мусавий олып дунйагъа келелер.</p>',
 				[ 'parsoid-data' ],
 				[ 'mw-data' ],
@@ -90,7 +90,7 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 			'>Butun insanlar serbestlik, menlik ve uquqlarda musaviy olıp dunyağa keleler.</'
 		];
 		yield 'Content language is variant' => [
-			new PageBundle(
+			new HtmlPageBundle(
 				'<p>Бутун инсанлар сербестлик, менлик ве укъукъларда мусавий олып дунйагъа келелер.</p>',
 				[ 'parsoid-data' ],
 				[ 'mw-data' ],
@@ -103,7 +103,7 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 			'>Butun insanlar serbestlik, menlik ve uquqlarda musaviy olıp dunyağa keleler.</'
 		];
 		yield 'No content-language, but source variant provided' => [
-			new PageBundle(
+			new HtmlPageBundle(
 				'<p>Бутун инсанлар сербестлик, менлик ве укъукъларда мусавий олып дунйагъа келелер.</p>',
 				[ 'parsoid-data' ],
 				[ 'mw-data' ],
@@ -116,7 +116,7 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 			'>Butun insanlar serbestlik, menlik ve uquqlarda musaviy olıp dunyağa keleler.</'
 		];
 		yield 'Source variant is a base language code' => [
-			new PageBundle(
+			new HtmlPageBundle(
 				'<p>Бутун инсанлар сербестлик, менлик ве укъукъларда мусавий олып дунйагъа келелер.</p>',
 				[ 'parsoid-data' ],
 				[ 'mw-data' ],
@@ -129,7 +129,7 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 			'>Butun insanlar serbestlik, menlik ve uquqlarda musaviy olıp dunyağa keleler.</'
 		];
 		yield 'Base language does not support variants' => [
-			new PageBundle(
+			new HtmlPageBundle(
 				'<p>Hallo Wereld</p>',
 				[ 'parsoid-data' ],
 				[ 'mw-data' ],
@@ -148,7 +148,7 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideConvertPageBundleVariant
 	 */
 	public function testConvertPageBundleVariant(
-		PageBundle $pageBundle,
+		HtmlPageBundle $pageBundle,
 		$contentLanguage,
 		$target,
 		$source,

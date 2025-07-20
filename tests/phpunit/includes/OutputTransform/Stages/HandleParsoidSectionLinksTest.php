@@ -13,7 +13,7 @@ use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWiki\Skin\Skin;
 use MediaWiki\Tests\OutputTransform\OutputTransformStageTestBase;
 use Psr\Log\NullLogger;
-use Wikimedia\Parsoid\Core\PageBundle;
+use Wikimedia\Parsoid\Core\HtmlPageBundle;
 use Wikimedia\Parsoid\Core\TOCData;
 
 /** @covers \MediaWiki\OutputTransform\Stages\HandleParsoidSectionLinks */
@@ -44,7 +44,7 @@ class HandleParsoidSectionLinksTest extends OutputTransformStageTestBase {
 		$po = new ParserOutput();
 		if ( $rawText !== null ) {
 			$po = PageBundleParserOutputConverter::parserOutputFromPageBundle(
-				new PageBundle( $rawText )
+				new HtmlPageBundle( $rawText )
 			);
 		}
 		if ( $parserOptions !== null ) {

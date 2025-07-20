@@ -8,7 +8,7 @@ use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWikiIntegrationTestCase;
 use Wikimedia\Assert\InvariantException;
 use Wikimedia\Parsoid\Core\DomPageBundle;
-use Wikimedia\Parsoid\Core\PageBundle;
+use Wikimedia\Parsoid\Core\HtmlPageBundle;
 use Wikimedia\Parsoid\DOM\Document;
 use Wikimedia\Parsoid\DOM\DocumentFragment;
 use Wikimedia\Parsoid\Mocks\MockSiteConfig;
@@ -84,7 +84,7 @@ EOD;
 	 * @covers ::setAsHtmlString
 	 */
 	public function testShouldSetHtmlStringParsoid( array $parsoidData ): void {
-		$ch = ContentHolder::createFromParsoidPageBundle( new PageBundle( '' ) );
+		$ch = ContentHolder::createFromParsoidPageBundle( new HtmlPageBundle( '' ) );
 		$ch->setAsHtmlString( ContentHolder::BODY_FRAGMENT, $parsoidData['html'] );
 		self::assertEquals( $parsoidData['html'], $ch->getAsHtmlString( ContentHolder::BODY_FRAGMENT ) );
 	}
@@ -121,7 +121,7 @@ EOD;
 		$dpb = DomPageBundle::fromLoadedDocument( $parsoidData['dom'], [
 			'siteConfig' => new MockSiteConfig( [] ),
 		] );
-		$pb = PageBundle::fromDomPageBundle( $dpb );
+		$pb = HtmlPageBundle::fromDomPageBundle( $dpb );
 		$ch = ContentHolder::createFromParsoidPageBundle( $pb );
 
 		$frag = $ch->createFragment( $parsoidData['body'] );
@@ -153,7 +153,7 @@ EOD;
 		$dpb = DomPageBundle::fromLoadedDocument( $parsoidData['dom'], [
 			'siteConfig' => new MockSiteConfig( [] ),
 		] );
-		$pb = PageBundle::fromDomPageBundle( $dpb );
+		$pb = HtmlPageBundle::fromDomPageBundle( $dpb );
 		$ch = ContentHolder::createFromParsoidPageBundle( $pb );
 		self::assertEquals( $parsoidData['htmlFiltered'], $ch->getAsHtmlString( ContentHolder::BODY_FRAGMENT ) );
 	}
@@ -167,7 +167,7 @@ EOD;
 		$dpb = DomPageBundle::fromLoadedDocument( $parsoidData['dom'], [
 			'siteConfig' => new MockSiteConfig( [] ),
 		] );
-		$pb = PageBundle::fromDomPageBundle( $dpb, [ 'body_only' => true ] );
+		$pb = HtmlPageBundle::fromDomPageBundle( $dpb, [ 'body_only' => true ] );
 		$ch = ContentHolder::createFromParsoidPageBundle( $pb );
 		self::assertEquals( $parsoidData['bodyFiltered'], $ch->getAsHtmlString( ContentHolder::BODY_FRAGMENT ) );
 	}
@@ -207,7 +207,7 @@ EOD;
 		$dpb = DomPageBundle::fromLoadedDocument( $input, [
 			'siteConfig' => new MockSiteConfig( [] ),
 		] );
-		$pb = PageBundle::fromDomPageBundle( $dpb );
+		$pb = HtmlPageBundle::fromDomPageBundle( $dpb );
 		$ch = ContentHolder::createFromParsoidPageBundle( $pb );
 
 		$res = $ch->getAsDom( ContentHolder::BODY_FRAGMENT );
@@ -223,7 +223,7 @@ EOD;
 		$dpb = DomPageBundle::fromLoadedDocument( $parsoidData[ 'dom' ], [
 			'siteConfig' => new MockSiteConfig( [] ),
 		] );
-		$pb = PageBundle::fromDomPageBundle( $dpb );
+		$pb = HtmlPageBundle::fromDomPageBundle( $dpb );
 		$ch = ContentHolder::createFromParsoidPageBundle( $pb );
 		$ch->getAsDom( ContentHolder::BODY_FRAGMENT );
 		$res = $ch->getAsHtmlString( ContentHolder::BODY_FRAGMENT );
@@ -241,7 +241,7 @@ EOD;
 		$dpb = DomPageBundle::fromLoadedDocument( $parsoidData['dom'], [
 			'siteConfig' => new MockSiteConfig( [] ),
 		] );
-		$pb = PageBundle::fromDomPageBundle( $dpb, [ 'body_only', true ] );
+		$pb = HtmlPageBundle::fromDomPageBundle( $dpb, [ 'body_only', true ] );
 		$ch = ContentHolder::createFromParsoidPageBundle( $pb );
 		$ch->getAsDom( ContentHolder::BODY_FRAGMENT );
 		$res = $ch->getAsHtmlString( ContentHolder::BODY_FRAGMENT );
@@ -270,7 +270,7 @@ EOD;
 		$dpb = DomPageBundle::fromLoadedDocument( $parsoidData['dom'], [
 			'siteConfig' => new MockSiteConfig( [] ),
 		] );
-		$pb = PageBundle::fromDomPageBundle( $dpb );
+		$pb = HtmlPageBundle::fromDomPageBundle( $dpb );
 		$ch = ContentHolder::createFromParsoidPageBundle( $pb );
 		$this->checkBundle( $ch, $parsoidData['bodyFiltered'] );
 	}

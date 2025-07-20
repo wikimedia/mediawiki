@@ -14,7 +14,7 @@ use Wikimedia\Bcp47Code\Bcp47CodeValue;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Message\ParamType;
 use Wikimedia\Message\ScalarParam;
-use Wikimedia\Parsoid\Core\PageBundle;
+use Wikimedia\Parsoid\Core\HtmlPageBundle;
 use Wikimedia\Parsoid\ParserTests\TestUtils;
 use Wikimedia\Parsoid\Utils\ContentUtils;
 use Wikimedia\Parsoid\Utils\DOMCompat;
@@ -50,7 +50,7 @@ class ParsoidLocalizationTest extends MediaWikiIntegrationTestCase {
 	) {
 		$this->setUserLang( $userlang );
 		$loc = $this->createStage();
-		$po = PageBundleParserOutputConverter::parserOutputFromPageBundle( new PageBundle( $input ) );
+		$po = PageBundleParserOutputConverter::parserOutputFromPageBundle( new HtmlPageBundle( $input ) );
 		$po->setLanguage( new Bcp47CodeValue( $pagelang ) );
 		$po->setExtensionData( ParsoidParser::PARSOID_TITLE_KEY, 'Test_page' );
 		$opts = [ 'isParsoidContent' => true ];
@@ -70,7 +70,7 @@ class ParsoidLocalizationTest extends MediaWikiIntegrationTestCase {
 		$p = DOMCompat::querySelector( $doc, 'p' );
 		$p->appendChild( WTUtils::createInterfaceI18nFragment( $doc, $key, $params ) );
 		$po = PageBundleParserOutputConverter::parserOutputFromPageBundle(
-			new PageBundle( ContentUtils::ppToXML( $doc ) ) );
+			new HtmlPageBundle( ContentUtils::ppToXML( $doc ) ) );
 		$po->setLanguage( new Bcp47CodeValue( 'en' ) );
 		$po->setExtensionData( ParsoidParser::PARSOID_TITLE_KEY, 'Test_page' );
 		$opts = [ 'isParsoidContent' => true ];
@@ -89,7 +89,7 @@ class ParsoidLocalizationTest extends MediaWikiIntegrationTestCase {
 		WTUtils::addInterfaceI18nAttribute( $a, 'title', $key, $params );
 
 		$po = PageBundleParserOutputConverter::parserOutputFromPageBundle(
-			new PageBundle( ContentUtils::ppToXML( $doc ) ) );
+			new HtmlPageBundle( ContentUtils::ppToXML( $doc ) ) );
 		$po->setLanguage( new Bcp47CodeValue( 'fr' ) );
 		$po->setExtensionData( ParsoidParser::PARSOID_TITLE_KEY, 'Test_page' );
 		$opts = [ 'isParsoidContent' => true ];

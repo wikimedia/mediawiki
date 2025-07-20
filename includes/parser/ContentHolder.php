@@ -27,7 +27,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Parsoid\Core\DomPageBundle;
-use Wikimedia\Parsoid\Core\PageBundle;
+use Wikimedia\Parsoid\Core\HtmlPageBundle;
 use Wikimedia\Parsoid\DOM\Document;
 use Wikimedia\Parsoid\DOM\DocumentFragment;
 use Wikimedia\Parsoid\Utils\ContentUtils;
@@ -54,7 +54,7 @@ class ContentHolder {
 
 	private function __construct(
 		private Document $ownerDocument,
-		private ?PageBundle $pageBundle = null,
+		private ?HtmlPageBundle $pageBundle = null,
 		/**
 		 * Contains the string representation of the fragments.
 		 * $htmlMap[BODY_FRAGMENT] might contain the full document
@@ -83,7 +83,7 @@ class ContentHolder {
 		return $ch;
 	}
 
-	public static function createFromParsoidPageBundle( PageBundle $pb ): ContentHolder {
+	public static function createFromParsoidPageBundle( HtmlPageBundle $pb ): ContentHolder {
 		$ch = new ContentHolder(
 			ownerDocument: ContentUtils::createAndLoadDocument( '' ),
 			pageBundle: $pb,
@@ -237,7 +237,7 @@ class ContentHolder {
 		if ( $this->isParsoidContent() && $this->has( self::BODY_FRAGMENT ) ) {
 			$html = $this->htmlMap[ self::BODY_FRAGMENT ] ?? '';
 			$this->pageBundle->html = $html;
-			$dpb = DomPageBundle::fromPageBundle( $this->pageBundle );
+			$dpb = DomPageBundle::fromHtmlPageBundle( $this->pageBundle );
 			$this->ownerDocument = $dpb->toDom();
 			$frag = $this->ownerDocument->createDocumentFragment();
 			DOMUtils::migrateChildren( DOMCompat::getBody( $this->ownerDocument ), $frag );
@@ -268,7 +268,7 @@ class ContentHolder {
 			if ( $this->isParsoidContent() ) {
 				if ( $name === self::BODY_FRAGMENT ) {
 					DOMCompat::getBody( $this->ownerDocument )->appendChild( $dom );
-					$this->pageBundle = PageBundle::fromDomPageBundle(
+					$this->pageBundle = HtmlPageBundle::fromDomPageBundle(
 						DomPageBundle::fromLoadedDocument( $this->ownerDocument ), [
 							'body_only' => true,
 							'siteConfig' => $services->getParsoidSiteConfig(),

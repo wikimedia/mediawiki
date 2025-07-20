@@ -5,10 +5,10 @@ namespace MediaWiki\Parser\Parsoid;
 
 use MediaWiki\Language\LanguageCode;
 use MediaWiki\Parser\ParserOutput;
-use Wikimedia\Parsoid\Core\PageBundle;
+use Wikimedia\Parsoid\Core\HtmlPageBundle;
 
 /**
- * Provides methods for conversion between PageBundle and ParserOutput
+ * Provides methods for conversion between HtmlPageBundle and ParserOutput
  * TODO: Convert to a trait once we drop support for PHP < 8.2 since
  * support for constants in traits was added in PHP 8.2
  * @since 1.40
@@ -29,20 +29,20 @@ final class PageBundleParserOutputConverter {
 
 	/**
 	 * Creates a ParserOutput object containing the relevant data from
-	 * the given PageBundle object.
+	 * the given HtmlPageBundle object.
 	 *
 	 * We need to inject data-parsoid and other properties into the
 	 * parser output object for caching, so we can use it for VE edits
 	 * and transformations.
 	 *
-	 * @param PageBundle $pageBundle
+	 * @param HtmlPageBundle $pageBundle
 	 * @param ?ParserOutput $originalParserOutput Any non-parsoid metadata
 	 *  from $originalParserOutput will be copied into the new ParserOutput object.
 	 *
 	 * @return ParserOutput
 	 */
 	public static function parserOutputFromPageBundle(
-		PageBundle $pageBundle, ?ParserOutput $originalParserOutput = null
+		HtmlPageBundle $pageBundle, ?ParserOutput $originalParserOutput = null
 	): ParserOutput {
 		$parserOutput = new ParserOutput( $pageBundle->html );
 		if ( $originalParserOutput ) {
@@ -55,11 +55,11 @@ final class PageBundleParserOutputConverter {
 	}
 
 	/**
-	 * Given an existing ParserOutput and a PageBundle, applies the PageBundle data to the ParserOutput.
+	 * Given an existing ParserOutput and a HtmlPageBundle, applies the HtmlPageBundle data to the ParserOutput.
 	 * NOTE: it does NOT apply the text of said pageBundle - this should be done by the calling method, if desired.
 	 * This way, we can modify a ParserOutput's associated bundle without creating a new ParserOutput,
 	 * which makes it easier to deal with in the OutputTransformPipeline.
-	 * @param PageBundle|\stdClass $pageBundle
+	 * @param HtmlPageBundle|\stdClass $pageBundle
 	 * @param ParserOutput $parserOutput
 	 * @internal
 	 */
@@ -89,13 +89,13 @@ final class PageBundleParserOutputConverter {
 	}
 
 	/**
-	 * Returns a Parsoid PageBundle equivalent to the given ParserOutput.
+	 * Returns a Parsoid HtmlPageBundle equivalent to the given ParserOutput.
 	 *
 	 * @param ParserOutput $parserOutput
 	 *
-	 * @return PageBundle
+	 * @return HtmlPageBundle
 	 */
-	public static function pageBundleFromParserOutput( ParserOutput $parserOutput ): PageBundle {
+	public static function pageBundleFromParserOutput( ParserOutput $parserOutput ): HtmlPageBundle {
 		$pageBundleData = $parserOutput->getExtensionData( self::PARSOID_PAGE_BUNDLE_KEY );
 		$lang = $parserOutput->getLanguage();
 
@@ -105,12 +105,12 @@ final class PageBundleParserOutputConverter {
 			$headers['content-language'] = $lang->toBcp47Code();
 		}
 
-		return new PageBundle(
+		return new HtmlPageBundle(
 			$parserOutput->getRawText(),
 			$pageBundleData['parsoid'] ?? [ 'ids' => [] ],
 			$pageBundleData['mw'] ?? null,
-			// It would be nice to have this be "null", but PageBundle::responseData()
-			// chocks on that: T325137.
+			// It would be nice to have this be "null", but HtmlPageBundle::responseData()
+			// chokes on that: T325137.
 			$pageBundleData['version'] ?? '0.0.0',
 			$pageBundleData['headers'] ?? $headers,
 			$pageBundleData['contentmodel'] ?? null

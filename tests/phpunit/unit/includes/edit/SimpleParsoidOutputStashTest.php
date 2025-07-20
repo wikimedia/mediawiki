@@ -9,7 +9,7 @@ use MediaWiki\Edit\SelserContext;
 use MediaWiki\Edit\SimpleParsoidOutputStash;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use Wikimedia\ObjectCache\HashBagOStuff;
-use Wikimedia\Parsoid\Core\PageBundle;
+use Wikimedia\Parsoid\Core\HtmlPageBundle;
 
 /**
  * @covers \MediaWiki\Edit\SimpleParsoidOutputStash
@@ -23,7 +23,7 @@ class SimpleParsoidOutputStashTest extends \MediaWikiUnitTestCase {
 		$stash = new SimpleParsoidOutputStash( $chFactory, new HashBagOStuff(), 12 );
 
 		$key = new ParsoidRenderID( 7, 'acme' );
-		$pageBundle = new PageBundle( '<p>Hello World</p>' );
+		$pageBundle = new HtmlPageBundle( '<p>Hello World</p>' );
 		$selserContext = new SelserContext( $pageBundle, 7 );
 
 		$stash->set( $key, $selserContext );
@@ -43,7 +43,7 @@ class SimpleParsoidOutputStashTest extends \MediaWikiUnitTestCase {
 		$stash = new SimpleParsoidOutputStash( $chFactory, new HashBagOStuff(), 12 );
 
 		$key = new ParsoidRenderID( 7, 'acme' );
-		$pageBundle = new PageBundle( '<p>Hello World</p>' );
+		$pageBundle = new HtmlPageBundle( '<p>Hello World</p>' );
 
 		$content = $this->createNoOpMock( WikitextContent::class, [ 'getModel', 'serialize' ] );
 		$content->method( 'getModel' )->willReturn( CONTENT_MODEL_WIKITEXT );

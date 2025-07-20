@@ -8,14 +8,14 @@ use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWikiUnitTestCase;
 use Wikimedia\Bcp47Code\Bcp47CodeValue;
-use Wikimedia\Parsoid\Core\PageBundle;
+use Wikimedia\Parsoid\Core\HtmlPageBundle;
 
 /**
  * @covers \MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter
  */
 class PageBundleParserOutputConverterTest extends MediaWikiUnitTestCase {
 	/** @dataProvider provideParserOutputFromPageBundle */
-	public function testParserOutputFromPageBundle( PageBundle $pageBundle ) {
+	public function testParserOutputFromPageBundle( HtmlPageBundle $pageBundle ) {
 		$output = PageBundleParserOutputConverter::parserOutputFromPageBundle( $pageBundle );
 		$this->assertSame( $pageBundle->html, $output->getRawText() );
 
@@ -34,7 +34,7 @@ class PageBundleParserOutputConverterTest extends MediaWikiUnitTestCase {
 	}
 
 	/** @dataProvider provideParserOutputFromPageBundle */
-	public function testParserOutputFromPageBundleShouldPreserveMetadata( PageBundle $pageBundle ) {
+	public function testParserOutputFromPageBundleShouldPreserveMetadata( HtmlPageBundle $pageBundle ) {
 		// Create a ParserOutput with some metadata properties already set.
 		$original = new ParserOutput();
 		$original->setExtensionData( 'test-key', 'test-data' );
@@ -79,8 +79,8 @@ class PageBundleParserOutputConverterTest extends MediaWikiUnitTestCase {
 	}
 
 	public static function provideParserOutputFromPageBundle() {
-		yield 'should convert PageBundle containing data-parsoid and data-mw' => [
-			new PageBundle(
+		yield 'should convert HtmlPageBundle containing data-parsoid and data-mw' => [
+			new HtmlPageBundle(
 				'html content',
 				[ 'ids' => '1.33' ],
 				[ 'ids' => '1.33' ],
@@ -90,8 +90,8 @@ class PageBundleParserOutputConverterTest extends MediaWikiUnitTestCase {
 			)
 		];
 
-		yield 'should convert PageBundle that contains no data-parsoid or data-mw' => [
-			new PageBundle(
+		yield 'should convert HtmlPageBundle that contains no data-parsoid or data-mw' => [
+			new HtmlPageBundle(
 				'html content',
 				[],
 				[],
@@ -115,7 +115,7 @@ class PageBundleParserOutputConverterTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $extensionData['mw'] ?? null, $pageBundle->mw );
 
 		// NOTE: We default to "0.0.0" as a fix for T325137. We can go back to null
-		//       once PageBundle::responseData is more robust.
+		//       once HtmlPageBundle::responseData is more robust.
 		$this->assertSame( $extensionData['version'] ?? '0.0.0', $pageBundle->version );
 
 		$this->assertSame( $extensionData['headers'] ?? [], $pageBundle->headers );

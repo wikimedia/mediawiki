@@ -4,7 +4,7 @@ namespace MediaWiki\Edit;
 
 use MediaWiki\Content\Content;
 use UnexpectedValueException;
-use Wikimedia\Parsoid\Core\PageBundle;
+use Wikimedia\Parsoid\Core\HtmlPageBundle;
 use Wikimedia\Parsoid\Core\SelserData;
 
 /**
@@ -16,18 +16,18 @@ use Wikimedia\Parsoid\Core\SelserData;
  * @since 1.40
  */
 class SelserContext {
-	private PageBundle $pageBundle;
+	private HtmlPageBundle $pageBundle;
 
 	private int $revId;
 
 	private ?Content $content;
 
 	/**
-	 * @param PageBundle $pageBundle
+	 * @param HtmlPageBundle $pageBundle
 	 * @param int $revId
 	 * @param Content|null $content
 	 */
-	public function __construct( PageBundle $pageBundle, int $revId, ?Content $content = null ) {
+	public function __construct( HtmlPageBundle $pageBundle, int $revId, ?Content $content = null ) {
 		if ( !$revId && !$content ) {
 			throw new UnexpectedValueException(
 				'If $revId is 0, $content must be given. ' .
@@ -40,7 +40,7 @@ class SelserContext {
 		$this->content = $content;
 	}
 
-	public function getPageBundle(): PageBundle {
+	public function getPageBundle(): HtmlPageBundle {
 		return $this->pageBundle;
 	}
 

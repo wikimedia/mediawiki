@@ -10,7 +10,7 @@ use MediaWiki\Edit\SelserContext;
 use MediaWiki\Edit\SimpleParsoidOutputStash;
 use MediaWikiIntegrationTestCase;
 use Wikimedia\ObjectCache\HashBagOStuff;
-use Wikimedia\Parsoid\Core\PageBundle;
+use Wikimedia\Parsoid\Core\HtmlPageBundle;
 use Wikimedia\TestingAccessWrapper;
 use Wikimedia\Tests\SerializationTestTrait;
 
@@ -33,7 +33,7 @@ class SimpleParsoidOutputStashSerializationTest extends MediaWikiIntegrationTest
 		return [
 			'basic' => [
 				'instance' => new SelserContext(
-					new PageBundle(
+					new HtmlPageBundle(
 						'<b>html</b>',
 						[
 							'counter' => 1234,

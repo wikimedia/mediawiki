@@ -59,7 +59,7 @@ use Wikimedia\Bcp47Code\Bcp47CodeValue;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\Parsoid\Core\ClientError;
-use Wikimedia\Parsoid\Core\PageBundle;
+use Wikimedia\Parsoid\Core\HtmlPageBundle;
 use Wikimedia\Parsoid\Core\ResourceLimitExceededException;
 use Wikimedia\Parsoid\DOM\Element;
 use Wikimedia\Parsoid\Parsoid;
@@ -748,10 +748,10 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 	}
 
 	/**
-	 * Returns the rendered HTML as a PageBundle object.
+	 * Returns the rendered HTML as a HtmlPageBundle object.
 	 */
-	public function getPageBundle(): PageBundle {
-		// XXX: converting between PageBundle and ParserOutput is inefficient!
+	public function getPageBundle(): HtmlPageBundle {
+		// XXX: converting between HtmlPageBundle and ParserOutput is inefficient!
 		$parserOutput = $this->getParserOutput();
 		$pb = PageBundleParserOutputConverter::pageBundleFromParserOutput( $parserOutput );
 
