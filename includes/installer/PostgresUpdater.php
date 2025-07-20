@@ -442,7 +442,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'renameIndex', 'user_properties', 'user_properties_property', 'up_property' ],
 			[ 'renameIndex', 'sites', 'sites_global_key', 'site_global_key' ],
 			[ 'renameIndex', 'sites', 'sites_type', 'site_type' ],
-			[ 'renameIndex', 'sites', 'sites_group, ', 'site_group' ],
+			[ 'renameIndex', 'sites', 'sites_group', 'site_group' ],
 			[ 'renameIndex', 'sites', 'sites_source', 'site_source' ],
 			[ 'renameIndex', 'sites', 'sites_language', 'site_language' ],
 			[ 'renameIndex', 'sites', 'sites_protocol', 'site_protocol' ],
