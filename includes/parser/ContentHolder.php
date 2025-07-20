@@ -23,6 +23,7 @@ declare( strict_types = 1 );
 namespace MediaWiki\Parser;
 
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Parsoid\Core\DomPageBundle;
@@ -262,12 +263,16 @@ class ContentHolder {
 		if ( !$this->domFormat ) {
 			return;
 		}
+		$services = MediaWikiServices::getInstance();
 		foreach ( $this->domMap as $name => $dom ) {
 			if ( $this->isParsoidContent() ) {
 				if ( $name === self::BODY_FRAGMENT ) {
 					DOMCompat::getBody( $this->ownerDocument )->appendChild( $dom );
 					$this->pageBundle = PageBundle::fromDomPageBundle(
-						DomPageBundle::fromLoadedDocument( $this->ownerDocument ), [ 'body_only' => true ]
+						DomPageBundle::fromLoadedDocument( $this->ownerDocument ), [
+							'body_only' => true,
+							'siteConfig' => $services->getParsoidSiteConfig(),
+						]
 					);
 					$this->htmlMap[self::BODY_FRAGMENT] = $this->pageBundle->html;
 				} else {
