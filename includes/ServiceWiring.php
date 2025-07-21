@@ -1724,7 +1724,7 @@ return [
 			: $services->getMainObjectStash();
 
 		return new SimpleParsoidOutputStash(
-			$services->getContentHandlerFactory(),
+			$services->getJsonCodec(),
 			$backend,
 			$config['StashDuration']
 		);

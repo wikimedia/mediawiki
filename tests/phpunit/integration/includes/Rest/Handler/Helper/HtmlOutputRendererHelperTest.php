@@ -4,7 +4,6 @@ namespace MediaWiki\Tests\Rest\Handler\Helper;
 
 use Exception;
 use MediaWiki\Content\CssContent;
-use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\WikitextContent;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Edit\ParsoidRenderID;
@@ -226,9 +225,9 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		$revision = null,
 		bool $lenientRevHandling = false
 	): HtmlOutputRendererHelper {
-		$chFactory = $this->getServiceContainer()->getContentHandlerFactory();
+		$jsonCodec = $this->getServiceContainer()->getJsonCodec();
 		$cache = $options['cache'] ?? new EmptyBagOStuff();
-		$stash = new SimpleParsoidOutputStash( $chFactory, $cache, 1 );
+		$stash = new SimpleParsoidOutputStash( $jsonCodec, $cache, 1 );
 
 		$services = $this->getServiceContainer();
 
@@ -424,8 +423,8 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		$eTag = $helper->getETag();
 		$parsoidStashKey = ParsoidRenderID::newFromETag( $eTag );
 
-		$chFactory = $this->createNoOpMock( IContentHandlerFactory::class );
-		$stash = new SimpleParsoidOutputStash( $chFactory, $cache, 1 );
+		$jsonCodec = $this->getServiceContainer()->getJsonCodec();
+		$stash = new SimpleParsoidOutputStash( $jsonCodec, $cache, 1 );
 		$this->assertNotNull( $stash->get( $parsoidStashKey ) );
 	}
 
@@ -446,8 +445,8 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		$eTag = $helper->getETag();
 		$parsoidStashKey = ParsoidRenderID::newFromETag( $eTag );
 
-		$chFactory = $this->getServiceContainer()->getContentHandlerFactory();
-		$stash = new SimpleParsoidOutputStash( $chFactory, $cache, 1 );
+		$jsonCodec = $this->getServiceContainer()->getJsonCodec();
+		$stash = new SimpleParsoidOutputStash( $jsonCodec, $cache, 1 );
 
 		$selserContext = $stash->get( $parsoidStashKey );
 		$this->assertNotNull( $selserContext );
