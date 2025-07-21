@@ -6,6 +6,8 @@
 			"Siebrand"
 		]
 	},
+	"cdx-breadcrumb-navigation-label": "Broodkruimels",
+	"cdx-breadcrumb-overflow-label": "Meer navigatieopties",
 	"cdx-chip-input-chip-added": "Het trefwoord $1 is toegevoegd.",
 	"cdx-chip-input-chip-removed": "Het trefwoord $1 is verwijderd.",
 	"cdx-input-chip-aria-description": "Druk op Enter om te bewerken of op Delete om te verwijderen.",

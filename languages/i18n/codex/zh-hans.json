@@ -4,10 +4,13 @@
 			"GuoPC",
 			"Lakejason0",
 			"LittlePaw365",
+			"Peterxy12",
 			"Winston Sung",
 			"沈澄心"
 		]
 	},
+	"cdx-breadcrumb-navigation-label": "面包屑",
+	"cdx-breadcrumb-overflow-label": "更多导航选项",
 	"cdx-chip-input-chip-added": "已添加标签$1。",
 	"cdx-chip-input-chip-removed": "已移除标签$1。",
 	"cdx-input-chip-aria-description": "按Enter键可编辑，按Delete键可删除。",

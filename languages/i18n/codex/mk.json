@@ -4,6 +4,8 @@
 			"Bjankuloski06"
 		]
 	},
+	"cdx-breadcrumb-navigation-label": "Трошка",
+	"cdx-breadcrumb-overflow-label": "Повеќе можности за прегледен преод",
 	"cdx-chip-input-chip-added": "Додаден е чипот $1.",
 	"cdx-chip-input-chip-removed": "Отстранет е чипот $1.",
 	"cdx-input-chip-aria-description": "Стиснете на Enter за да уредите или Delete за да отстраните.",

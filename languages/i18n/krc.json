@@ -115,6 +115,7 @@
 	"redirectpagesub": "Джолландырыу бет",
 	"redirectto": "Бу бетге джоллау:",
 	"lastmodifiedat": "Бу бетни ахыр тюрленнгени: $2, $1.",
+	"renderedwith-parsoid": "Бет [[mw:Special:MyLanguage/Parsoid|Parsoid]] бла ишленнгенди.",
 	"viewcount": "Бу бетге {{PLURAL:$1|бир|$1}} кере киргендиле.",
 	"protectedpage": "Джакъланнган бет",
 	"jumpto": "Бери кёч:",
