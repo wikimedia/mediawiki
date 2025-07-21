@@ -94,7 +94,7 @@ class Cookie {
 		$dc = explode( ".", $domain );
 
 		// Don't allow a trailing dot or addresses without a or just a leading dot
-		if ( substr( $domain, -1 ) == '.' ||
+		if ( str_ends_with( $domain, '.' ) ||
 			count( $dc ) <= 1 ||
 			( count( $dc ) == 2 && $dc[0] === '' )
 		) {
@@ -125,11 +125,11 @@ class Cookie {
 		}
 
 		if ( $originDomain != null ) {
-			if ( substr( $domain, 0, 1 ) != '.' && $domain != $originDomain ) {
+			if ( !str_starts_with( $domain, '.' ) && $domain != $originDomain ) {
 				return false;
 			}
 
-			if ( substr( $domain, 0, 1 ) == '.'
+			if ( str_starts_with( $domain, '.' )
 				&& substr_compare(
 					$originDomain,
 					$domain,

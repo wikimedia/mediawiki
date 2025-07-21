@@ -887,7 +887,7 @@ class ParamValidator {
 		}
 
 		foreach ( $value as $v ) {
-			if ( strpos( $v, '|' ) !== false ) {
+			if ( str_contains( $v, '|' ) ) {
 				return "\x1f" . implode( "\x1f", $value );
 			}
 		}

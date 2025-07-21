@@ -245,7 +245,7 @@ class RedisConnectionPool implements LoggerAwareInterface {
 				// (ip, uri or path, port)
 				[ $host, $port ] = [ $m[1], (int)$m[2] ];
 				if (
-					substr( $host, 0, 6 ) === 'tls://'
+					str_starts_with( $host, 'tls://' )
 					&& version_compare( phpversion( 'redis' ), '5.0.0' ) < 0
 				) {
 					throw new RuntimeException(

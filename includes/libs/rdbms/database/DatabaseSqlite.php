@@ -640,7 +640,7 @@ class DatabaseSqlite extends Database {
 			return (string)(int)$s;
 		} elseif ( is_int( $s ) ) {
 			return (string)$s;
-		} elseif ( strpos( (string)$s, "\0" ) !== false ) {
+		} elseif ( str_contains( (string)$s, "\0" ) ) {
 			// SQLite doesn't support \0 in strings, so use the hex representation as a workaround.
 			// This is a known limitation of SQLite's mprintf function which PDO
 			// should work around, but doesn't. I have reported this to php.net as bug #63419:
@@ -806,7 +806,7 @@ class DatabaseSqlite extends Database {
 			$vars = get_object_vars( $table );
 			$table = array_pop( $vars );
 
-			if ( !$prefix || strpos( $table, $prefix ) === 0 ) {
+			if ( !$prefix || str_starts_with( $table, $prefix ) ) {
 				if ( !str_starts_with( $table, 'sqlite_' ) ) {
 					$endArray[] = $table;
 				}

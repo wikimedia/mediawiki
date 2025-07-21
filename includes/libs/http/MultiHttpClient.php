@@ -403,7 +403,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 		$url = $req['url'];
 		$query = http_build_query( $req['query'], '', '&', PHP_QUERY_RFC3986 );
 		if ( $query != '' ) {
-			$url .= strpos( $req['url'], '?' ) === false ? "?$query" : "&$query";
+			$url .= !str_contains( $req['url'], '?' ) ? "?$query" : "&$query";
 		}
 		curl_setopt( $ch, CURLOPT_URL, $url );
 		curl_setopt( $ch, CURLOPT_CUSTOMREQUEST, $req['method'] );
@@ -456,7 +456,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 
 		$headers = [];
 		foreach ( $req['headers'] as $name => $value ) {
-			if ( strpos( $name, ':' ) !== false ) {
+			if ( str_contains( $name, ':' ) ) {
 				throw new InvalidArgumentException( "Header name must not contain colon-space." );
 			}
 			$headers[] = $name . ': ' . trim( $value );
@@ -478,7 +478,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 					$req['response']['headers'] = [];
 					return $length;
 				}
-				if ( strpos( $header, ":" ) === false ) {
+				if ( !str_contains( $header, ":" ) ) {
 					return $length;
 				}
 				[ $name, $value ] = explode( ":", $header, 2 );
@@ -606,7 +606,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 			$url = $req['url'];
 			$query = http_build_query( $req['query'], '', '&', PHP_QUERY_RFC3986 );
 			if ( $query != '' ) {
-				$url .= strpos( $req['url'], '?' ) === false ? "?$query" : "&$query";
+				$url .= !str_contains( $req['url'], '?' ) ? "?$query" : "&$query";
 			}
 
 			$httpRequest = MediaWikiServices::getInstance()->getHttpRequestFactory()->create(

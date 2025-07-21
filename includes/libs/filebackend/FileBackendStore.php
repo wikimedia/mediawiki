@@ -1661,7 +1661,7 @@ abstract class FileBackendStore extends FileBackend {
 	 */
 	final protected function resolveStoragePathReal( $storagePath ) {
 		[ $container, $relPath, $cShard ] = $this->resolveStoragePath( $storagePath );
-		if ( $cShard !== null && substr( $relPath, -1 ) !== '/' ) {
+		if ( $cShard !== null && !str_ends_with( $relPath, '/' ) ) {
 			return [ $container, $relPath ];
 		}
 

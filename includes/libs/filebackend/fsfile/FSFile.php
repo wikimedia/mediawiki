@@ -125,7 +125,7 @@ class FSFile {
 			# logical MIME type
 			$info['mime'] = $mime;
 
-			if ( strpos( $mime, '/' ) !== false ) {
+			if ( str_contains( $mime, '/' ) ) {
 				[ $info['major_mime'], $info['minor_mime'] ] = explode( '/', $mime, 2 );
 			} else {
 				[ $info['major_mime'], $info['minor_mime'] ] = [ $mime, 'unknown' ];

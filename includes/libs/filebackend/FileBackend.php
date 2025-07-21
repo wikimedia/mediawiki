@@ -1714,14 +1714,14 @@ abstract class FileBackend implements LoggerAwareInterface {
 		// Remove any leading directory separator
 		$path = ltrim( $path, '/' );
 		// Use the same traversal protection as Title::secureAndSplit()
-		if ( strpos( $path, '.' ) !== false ) {
+		if ( str_contains( $path, '.' ) ) {
 			if (
 				$path === '.' ||
 				$path === '..' ||
-				strpos( $path, './' ) === 0 ||
-				strpos( $path, '../' ) === 0 ||
-				strpos( $path, '/./' ) !== false ||
-				strpos( $path, '/../' ) !== false
+				str_starts_with( $path, './' ) ||
+				str_starts_with( $path, '../' ) ||
+				str_contains( $path, '/./' ) ||
+				str_contains( $path, '/../' )
 			) {
 				return null;
 			}

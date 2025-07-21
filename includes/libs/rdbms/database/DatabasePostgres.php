@@ -554,7 +554,7 @@ __INDEXATTR__;
 		foreach ( $result as $table ) {
 			$vars = get_object_vars( $table );
 			$table = array_pop( $vars );
-			if ( $prefix == '' || strpos( $table, $prefix ) === 0 ) {
+			if ( $prefix == '' || str_starts_with( $table, $prefix ) ) {
 				$endArray[] = $table;
 			}
 		}

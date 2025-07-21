@@ -55,7 +55,7 @@ class HttpAcceptNegotiator {
 		foreach ( $weights as $name => &$weight ) {
 			if ( $name === '*' || $name === '*/*' ) {
 				$weight -= 0.000002;
-			} elseif ( substr( $name, -2 ) === '/*' ) {
+			} elseif ( str_ends_with( $name, '/*' ) ) {
 				$weight -= 0.000001;
 			}
 		}
@@ -126,7 +126,7 @@ class HttpAcceptNegotiator {
 		}
 
 		// wildcard match (HTTP/1.1 section 14.1)
-		if ( substr( $accepted, -2 ) === '/*'
+		if ( str_ends_with( $accepted, '/*' )
 			&& strncasecmp( $accepted, $supported, strlen( $accepted ) - 2 ) === 0
 		) {
 			return true;

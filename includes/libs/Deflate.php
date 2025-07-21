@@ -31,7 +31,7 @@ class Deflate {
 	 * @return bool
 	 */
 	public static function isDeflated( string $data ): bool {
-		return substr( $data, 0, 11 ) === 'rawdeflate,';
+		return str_starts_with( $data, 'rawdeflate,' );
 	}
 
 	/**

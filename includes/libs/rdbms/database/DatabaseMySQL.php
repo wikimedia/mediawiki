@@ -411,7 +411,7 @@ class DatabaseMySQL extends Database {
 		$parts = explode( '-', $version, 2 );
 		$number = $parts[0];
 		$suffix = $parts[1] ?? '';
-		if ( strpos( $suffix, 'MariaDB' ) !== false || strpos( $suffix, '-maria-' ) !== false ) {
+		if ( str_contains( $suffix, 'MariaDB' ) || str_contains( $suffix, '-maria-' ) ) {
 			$vendor = 'MariaDB';
 		} else {
 			$vendor = 'MySQL';

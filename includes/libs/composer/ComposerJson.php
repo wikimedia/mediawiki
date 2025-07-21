@@ -32,7 +32,7 @@ class ComposerJson {
 			foreach ( $this->contents['require'] as $package => $version ) {
 				// Examples of package dependencies that don't have a / in the name:
 				// php, ext-xml, composer-plugin-api
-				if ( strpos( $package, '/' ) !== false ) {
+				if ( str_contains( $package, '/' ) ) {
 					$deps[$package] = self::normalizeVersion( $version );
 				}
 			}

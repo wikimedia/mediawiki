@@ -1059,7 +1059,7 @@ class MemcachedClient {
 				 * meaningful return values.
 				 */
 				foreach ( $results as [ $rkey, $flags, /* length */, $casToken, $data ] ) {
-					if ( $data === false || substr( $data, -2 ) !== "\r\n" ) {
+					if ( $data === false || !str_ends_with( $data, "\r\n" ) ) {
 						$this->_handle_error( $sock,
 							'line ending missing from data block from $1' );
 						return false;
@@ -1352,9 +1352,9 @@ class MemcachedClient {
 			$this->_handle_error( $sock, 'error reading line from $1' );
 			return false;
 		}
-		if ( substr( $result, -2 ) === "\r\n" ) {
+		if ( str_ends_with( $result, "\r\n" ) ) {
 			$result = substr( $result, 0, -2 );
-		} elseif ( substr( $result, -1 ) === "\n" ) {
+		} elseif ( str_ends_with( $result, "\n" ) ) {
 			$result = substr( $result, 0, -1 );
 		} else {
 			$this->_handle_error( $sock, 'line ending missing in response from $1' );

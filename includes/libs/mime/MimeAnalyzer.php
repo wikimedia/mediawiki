@@ -679,12 +679,12 @@ class MimeAnalyzer implements LoggerAwareInterface {
 		 * 16583).  The heuristic has been cut down to exclude three-character
 		 * strings like "<? ", but should it be axed completely?
 		 */
-		if ( ( strpos( $head, '<?php' ) !== false ) ||
-			( strpos( $head, "<\x00?\x00p\x00h\x00p" ) !== false ) ||
-			( strpos( $head, "<\x00?\x00 " ) !== false ) ||
-			( strpos( $head, "<\x00?\x00\n" ) !== false ) ||
-			( strpos( $head, "<\x00?\x00\t" ) !== false ) ||
-			( strpos( $head, "<\x00?\x00=" ) !== false )
+		if ( str_contains( $head, '<?php' ) ||
+			str_contains( $head, "<\x00?\x00p\x00h\x00p" ) ||
+			str_contains( $head, "<\x00?\x00 " ) ||
+			str_contains( $head, "<\x00?\x00\n" ) ||
+			str_contains( $head, "<\x00?\x00\t" ) ||
+			str_contains( $head, "<\x00?\x00=" )
 		) {
 			$this->logger->info( __METHOD__ . ": recognized $file as application/x-php" );
 			return 'application/x-php';
@@ -975,15 +975,15 @@ class MimeAnalyzer implements LoggerAwareInterface {
 			$head = str_replace( 'ffmpeg2theora', '', strtolower( $head ) );
 
 			// This is an UGLY HACK, file should be parsed correctly
-			if ( strpos( $head, 'theora' ) !== false ) {
+			if ( str_contains( $head, 'theora' ) ) {
 				return MEDIATYPE_VIDEO;
-			} elseif ( strpos( $head, 'vorbis' ) !== false ) {
+			} elseif ( str_contains( $head, 'vorbis' ) ) {
 				return MEDIATYPE_AUDIO;
-			} elseif ( strpos( $head, 'flac' ) !== false ) {
+			} elseif ( str_contains( $head, 'flac' ) ) {
 				return MEDIATYPE_AUDIO;
-			} elseif ( strpos( $head, 'speex' ) !== false ) {
+			} elseif ( str_contains( $head, 'speex' ) ) {
 				return MEDIATYPE_AUDIO;
-			} elseif ( strpos( $head, 'opus' ) !== false ) {
+			} elseif ( str_contains( $head, 'opus' ) ) {
 				return MEDIATYPE_AUDIO;
 			} else {
 				return MEDIATYPE_MULTIMEDIA;

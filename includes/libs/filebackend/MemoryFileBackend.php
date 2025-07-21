@@ -209,7 +209,7 @@ class MemoryFileBackend extends FileBackendStore {
 	protected function doDirectoryExists( $container, $dir, array $params ) {
 		$prefix = rtrim( "$container/$dir", '/' ) . '/';
 		foreach ( $this->files as $path => $data ) {
-			if ( strpos( $path, $prefix ) === 0 ) {
+			if ( str_starts_with( $path, $prefix ) ) {
 				return true;
 			}
 		}
@@ -222,9 +222,9 @@ class MemoryFileBackend extends FileBackendStore {
 		$prefix = rtrim( "$container/$dir", '/' ) . '/';
 		$prefixLen = strlen( $prefix );
 		foreach ( $this->files as $path => $data ) {
-			if ( strpos( $path, $prefix ) === 0 ) {
+			if ( str_starts_with( $path, $prefix ) ) {
 				$relPath = substr( $path, $prefixLen );
-				if ( strpos( $relPath, '/' ) === false ) {
+				if ( !str_contains( $relPath, '/' ) ) {
 					continue; // just a file
 				}
 				$parts = array_slice( explode( '/', $relPath ), 0, -1 ); // last part is file name
@@ -249,11 +249,11 @@ class MemoryFileBackend extends FileBackendStore {
 		$prefix = rtrim( "$container/$dir", '/' ) . '/';
 		$prefixLen = strlen( $prefix );
 		foreach ( $this->files as $path => $data ) {
-			if ( strpos( $path, $prefix ) === 0 ) {
+			if ( str_starts_with( $path, $prefix ) ) {
 				$relPath = substr( $path, $prefixLen );
 				if (
 					$relPath === '' ||
-					( !empty( $params['topOnly'] ) && strpos( $relPath, '/' ) !== false )
+					( !empty( $params['topOnly'] ) && str_contains( $relPath, '/' ) )
 				) {
 					continue;
 				}

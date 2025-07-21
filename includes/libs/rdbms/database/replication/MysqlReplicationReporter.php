@@ -273,7 +273,7 @@ class MysqlReplicationReporter extends ReplicationReporter {
 			}
 			// Wait on the GTID set
 			$gtidArg = $conn->addQuotes( implode( ',', $gtidsWait ) );
-			if ( strpos( $gtidArg, ':' ) !== false ) {
+			if ( str_contains( $gtidArg, ':' ) ) {
 				// MySQL GTIDs, e.g "source_id:transaction_id"
 				$query = new Query(
 					"SELECT WAIT_FOR_EXECUTED_GTID_SET($gtidArg, $timeout)",

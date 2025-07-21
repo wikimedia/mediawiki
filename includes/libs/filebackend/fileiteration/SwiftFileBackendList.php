@@ -74,7 +74,7 @@ abstract class SwiftFileBackendList implements Iterator {
 		$this->backend = $backend;
 		$this->container = $fullCont;
 		$this->dir = $dir;
-		if ( substr( $this->dir, -1 ) === '/' ) {
+		if ( str_ends_with( $this->dir, '/' ) ) {
 			$this->dir = substr( $this->dir, 0, -1 ); // remove trailing slash
 		}
 		if ( $this->dir == '' ) { // whole container

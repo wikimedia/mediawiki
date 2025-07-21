@@ -90,7 +90,7 @@ class UDPTransport {
 				$text = substr( $text, 0, self::MAX_PAYLOAD_SIZE - 1 );
 			}
 
-			if ( substr( $text, -1 ) != "\n" ) {
+			if ( !str_ends_with( $text, "\n" ) ) {
 				$text .= "\n";
 			}
 		} elseif ( strlen( $text ) > self::MAX_PAYLOAD_SIZE ) {
