@@ -7,11 +7,10 @@ use MediaWiki\Content\ContentHandler;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\WikitextContent;
 use MediaWiki\Edit\SelserContext;
-use MediaWiki\Edit\SimpleParsoidOutputStash;
+use MediaWiki\Json\JsonCodec;
 use MediaWikiIntegrationTestCase;
-use Wikimedia\ObjectCache\HashBagOStuff;
+use Psr\Container\ContainerInterface;
 use Wikimedia\Parsoid\Core\PageBundle;
-use Wikimedia\TestingAccessWrapper;
 use Wikimedia\Tests\SerializationTestTrait;
 
 /**
@@ -21,26 +20,14 @@ use Wikimedia\Tests\SerializationTestTrait;
 class SimpleParsoidOutputStashSerializationTest extends MediaWikiIntegrationTestCase {
 	use SerializationTestTrait;
 
-	/**
-	 * Overrides SerializationTestTrait::getClassToTest
-	 * @return string
-	 */
 	public static function getClassToTest(): string {
 		return SelserContext::class;
 	}
 
-	/**
-	 * Overrides SerializationTestTrait::getSerializedDataPath
-	 * @return string
-	 */
 	public static function getSerializedDataPath(): string {
 		return __DIR__ . '/../../../data/SelserContext';
 	}
 
-		/**
-		 * Overrides SerializationTestTrait::getTestInstancesAndAssertions
-		 * @return array
-		 */
 	public static function getTestInstancesAndAssertions(): array {
 		return [
 			'basic' => [
@@ -99,62 +86,80 @@ class SimpleParsoidOutputStashSerializationTest extends MediaWikiIntegrationTest
 		];
 	}
 
-	/**
-	 * Overrides SerializationTestTrait::getSupportedSerializationFormats
-	 * @return array
-	 */
 	public static function getSupportedSerializationFormats(): array {
-		$stash = new SimpleParsoidOutputStash(
-			new class implements IContentHandlerFactory {
-				public function getContentHandler( string $modelID ): ContentHandler {
-					return new class( CONTENT_MODEL_WIKITEXT, [ CONTENT_FORMAT_WIKITEXT ] ) extends ContentHandler {
-						public function serializeContent( Content $content, $format = null ) {
-							return $content->getText();
-						}
+		$mockServices = new class implements ContainerInterface {
+			private $contents = [];
 
-						public function unserializeContent( $blob, $format = null ) {
-							return new WikitextContent( $blob );
-						}
+			public function get( $id ) {
+				return $this->contents[$id] ?? null;
+			}
 
-						public function makeEmptyContent() {
-							throw new \Error( "unimplemented" );
-						}
-					};
-				}
+			public function has( $id ): bool {
+				return isset( $this->contents[$id] );
+			}
 
-				public function getContentModels(): array {
-					return [ CONTENT_MODEL_WIKITEXT ];
-				}
+			public function set( $id, $value ) {
+				$this->contents[$id] = $value;
+			}
+		};
+		$chFactory = new class implements IContentHandlerFactory {
+			public function getContentHandler( string $modelID ): ContentHandler {
+				return new class( CONTENT_MODEL_WIKITEXT, [ CONTENT_FORMAT_WIKITEXT ] ) extends ContentHandler {
+					public function serializeContent( Content $content, $format = null ) {
+						return $content->getText();
+					}
 
-				public function getAllContentFormats(): array {
-					return [ CONTENT_FORMAT_WIKITEXT ];
-				}
+					public function unserializeContent( $blob, $format = null ) {
+						return new WikitextContent( $blob );
+					}
 
-				public function isDefinedModel( string $modelId ): bool {
-					return $modelId === CONTENT_MODEL_WIKITEXT;
-				}
-			},
-			new HashBagOStuff(),
-			10000
+					public function makeEmptyContent() {
+						throw new \Error( "unimplemented" );
+					}
+				};
+			}
+
+			public function getContentModels(): array {
+				return [ CONTENT_MODEL_WIKITEXT ];
+			}
+
+			public function getAllContentFormats(): array {
+				return [ CONTENT_FORMAT_WIKITEXT ];
+			}
+
+			public function isDefinedModel( string $modelId ): bool {
+				return $modelId === CONTENT_MODEL_WIKITEXT;
+			}
+		};
+		$mockServices->set(
+			'ContentHandlerFactory', $chFactory
 		);
-		$wrapper = TestingAccessWrapper::newFromObject( $stash );
+		$jsonCodec = new JsonCodec( $mockServices );
 		return [
 			[
 				'ext' => 'serialized',
-				'serializer' => static function ( $obj ) use ( $wrapper ) {
-					return serialize( $wrapper->selserContextToJsonArray( $obj ) );
+				'serializer' => static function ( $obj ) use ( $jsonCodec ) {
+					return serialize(
+						$jsonCodec->toJsonArray( $obj, SelserContext::class )
+					);
 				},
-				'deserializer' => static function ( $data ) use ( $wrapper ) {
-					return $wrapper->newSelserContextFromJson( unserialize( $data ) );
+				'deserializer' => static function ( $data ) use ( $jsonCodec ) {
+					return $jsonCodec->newFromJsonArray(
+						unserialize( $data ), SelserContext::class
+					);
 				},
 			],
 			[
 				'ext' => 'json',
-				'serializer' => static function ( $obj ) use ( $wrapper ) {
-					return json_encode( $wrapper->selserContextToJsonArray( $obj ) );
+				'serializer' => static function ( $obj ) use ( $jsonCodec ) {
+					return json_encode(
+						$jsonCodec->toJsonArray( $obj, SelserContext::class )
+					);
 				},
-				'deserializer' => static function ( $data ) use ( $wrapper ) {
-					return $wrapper->newSelserContextFromJson( json_decode( $data, true ) );
+				'deserializer' => static function ( $data ) use ( $jsonCodec ) {
+					return $jsonCodec->newFromJsonArray(
+						json_decode( $data, true ), SelserContext::class
+					);
 				},
 			],
 		];

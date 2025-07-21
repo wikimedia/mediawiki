@@ -30,6 +30,7 @@ use stdClass;
 use Wikimedia\Assert\Assert;
 use Wikimedia\JsonCodec\JsonClassCodec;
 use Wikimedia\JsonCodec\JsonCodecable;
+use Wikimedia\Parsoid\Core\PageBundle;
 
 /**
  * Helper class to serialize/deserialize things to/from JSON.
@@ -55,6 +56,40 @@ class JsonCodec
 	 */
 	public function __construct( ?ContainerInterface $services = null ) {
 		parent::__construct( $services );
+		// Forward-compatibility with MW 1.44: ensure Parsoid PageBundle is
+		// codecable
+		$this->addCodecFor( PageBundle::class, new class implements JsonClassCodec {
+			/** @inheritDoc */
+			public function toJsonArray( $obj ): array {
+				'@phan-var PageBundle $obj'; /** @var PageBundle $obj */
+				return [
+					'html' => $obj->html,
+					'parsoid' => $obj->parsoid,
+					'mw' => $obj->mw,
+					'version' => $obj->version,
+					'headers' => $obj->headers,
+					'contentmodel' => $obj->contentmodel,
+				];
+			}
+
+			/** @inheritDoc */
+			public function newFromJsonArray( string $className, array $json ) {
+				// @phan-suppress-next-line PhanTypeMismatchReturn
+				return new PageBundle(
+					$json['html'] ?? '',
+					$json['parsoid'] ?? null,
+					$json['mw'] ?? null,
+					$json['version'] ?? null,
+					$json['headers'] ?? null,
+					$json['contentmodel'] ?? null
+				);
+			}
+
+			/** @inheritDoc */
+			public function jsonClassHintFor( string $className, string $keyName ) {
+				return null;
+			}
+		} );
 	}
 
 	/**
