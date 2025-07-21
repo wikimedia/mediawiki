@@ -90,7 +90,7 @@ class TempUserDetailsLookup {
 	 * May be `null` or `false` if not known.
 	 * @return bool `true` if the account is expired, `false` otherwise.
 	 */
-	private function getExpirationState( $registration ): bool {
+	public function getExpirationState( $registration ): bool {
 		if ( !is_string( $registration ) ) {
 			return false;
 		}
