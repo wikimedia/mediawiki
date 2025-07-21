@@ -338,6 +338,20 @@ class AuthManager implements LoggerAwareInterface {
 			throw new LogicException( 'Authentication is not possible now' );
 		}
 
+		// If the session is associated with a temporary account user, invalidate its
+		// session, remove the TempUser:name property from the session, and reset the
+		// session state to a new, anonymous user. This means that if the login fails,
+		// the user is no longer authenticated to the temporary account. This is necessary
+		// in order to provide guarantees for avoiding a linkage between temporary
+		// account users and named users.
+		if ( $session->getUser()->isTemp() && $this->request->wasPosted() ) {
+			SessionManager::singleton()->invalidateSessionsForUser( $session->getUser() );
+			$session->setUser( $this->userFactory->newAnonymous() );
+			$session->remove( 'TempUser:name' );
+			$session->save();
+			$this->setRequestContextUserFromSessionUser();
+		}
+
 		$guessUserName = null;
 		foreach ( $reqs as $req ) {
 			$req->returnToUrl = $returnToUrl;

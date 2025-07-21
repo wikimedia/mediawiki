@@ -4383,4 +4383,34 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		$this->assertNotEquals( $initialToken, $tempAccount->getToken() );
 		$this->assertSame( null, $this->request->getSession()->get( 'TempUser:name' ) );
 	}
+
+	public function testTemporaryAccountLoginToNamedAccount() {
+		$this->overrideConfigValue( MainConfigNames::SessionProviders, [ [ 'class' => DummySessionProvider::class ] ] );
+		$this->request = new FauxRequest( [], true );
+		$tempAccount = $this->getServiceContainer()->getTempUserCreator()->create( null, new FauxRequest() )->getUser();
+		$preAuthMock = $this->createMock( AbstractPreAuthenticationProvider::class );
+		$preAuthMock->method( 'getUniqueId' )->willReturn( 'mockLoginProvider' );
+		$preAuthMock->method( 'testForAuthentication' )->willReturn( StatusValue::newFatal(
+			wfMessage( 'foo' )
+		) );
+		$this->preauthMocks = [ $preAuthMock ];
+		$this->logger = new TestLogger( true, static function ( $message, $level ) {
+			return $message;
+		} );
+		$this->initializeManager();
+		$this->logger->setCollectContext( true );
+		$this->logger->setCollect( true );
+		$session = $this->request->getSession();
+		$session->setUser( $tempAccount );
+		$this->manager->setRequestContextUserFromSessionUser();
+		$session->set( 'TempUser:name', $tempAccount->getName() );
+		$this->assertTrue( $this->request->getSession()->getUser()->isTemp() );
+		$this->assertEquals( $tempAccount->getName(), $session->get( 'TempUser:name' ) );
+		$this->assertTrue( RequestContext::getMain()->getUser()->isTemp() );
+		$this->manager->beginAuthentication( [], '' );
+		$session = $this->request->getSession();
+		$this->assertFalse( $session->getUser()->isTemp() );
+		$this->assertTrue( $session->getUser()->isAnon() );
+		$this->assertNull( $session->get( 'TempUser:name' ) );
+	}
 }
