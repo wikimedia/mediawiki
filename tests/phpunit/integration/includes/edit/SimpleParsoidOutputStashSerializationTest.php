@@ -4,6 +4,7 @@ namespace MediaWiki\Tests\Integration\Edit;
 
 use MediaWiki\Content\Content;
 use MediaWiki\Content\ContentHandler;
+use MediaWiki\Content\ContentJsonCodec;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\WikitextContent;
 use MediaWiki\Edit\SelserContext;
@@ -133,6 +134,9 @@ class SimpleParsoidOutputStashSerializationTest extends MediaWikiIntegrationTest
 		};
 		$mockServices->set(
 			'ContentHandlerFactory', $chFactory
+		);
+		$mockServices->set(
+			'ContentJsonCodec', new ContentJsonCodec( $chFactory )
 		);
 		$jsonCodec = new JsonCodec( $mockServices );
 		return [
