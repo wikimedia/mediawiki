@@ -2,9 +2,13 @@
 	"@metadata": {
 		"authors": [
 			"ToprakM",
-			"Joseph"
+			"Joseph",
+			"Sümeyye",
+			"Andac"
 		]
 	},
+	"cdx-chip-input-chip-added": "$1 fiş eklendi.",
+	"cdx-chip-input-chip-removed": "Çip $1 kaldırıldı.",
 	"cdx-input-chip-aria-description": "Düzenlemek için Enter, kaldırmak için Delete tuşuna basın",
 	"cdx-dialog-close-button-label": "Kapat",
 	"cdx-label-optional-flag": "(isteğe bağlı)",

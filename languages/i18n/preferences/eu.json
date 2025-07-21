@@ -45,7 +45,7 @@
 	"password-substring-username-match": "Zure pasahitza ez da agertuko zure erabiltzaile-izena gabe",
 	"password-name-match": "Zure pasahitza ezin da zure erabiltzaile-izen bera izan.",
 	"password-login-forbidden": "Erabiltzaile izen eta pasahitz hau erabiltzea debekaturik dago.",
-	"passwordincommonlist": "Sartu duzun pasahitza pasahitza oso erabilien zerrenda batean dago. Mesedez, erabili ezazu hain ohikoa ez den bat.",
+	"passwordincommonlist": "Sartu duzun pasahitza, gehiegi erabiltzen diren pasahitzen zerrenda batean dago. Mesedez, erabili ezazu hain ohikoa ez den beste bat.",
 	"prefs-help-yourpassword": "Kontuaren berreskuratzea gaituta dago. Ikusi $1 aldaketa gehiagotarako.",
 	"tog-prefershttps": "Erabili beti konexio seguru bat sartzerakoan",
 	"prefs-help-prefershttps": "Hobespen hauek eragina izango dute sartzen zaren hurrengoan.",

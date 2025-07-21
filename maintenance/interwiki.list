@@ -27,7 +27,7 @@ mw|https://www.mediawiki.org/wiki/$1|0|https://www.mediawiki.org/w/api.php
 oeis|https://oeis.org/$1|0|
 pmid|https://www.ncbi.nlm.nih.gov/pubmed/$1?dopt=Abstract|0|
 pythoninfo|https://wiki.python.org/moin/$1|0|
-rfc|https://tools.ietf.org/html/rfc$1|0|
+rfc|https://datatracker.ietf.org/doc/html/rfc$1|0|
 senseislibrary|https://senseis.xmp.net/?$1|0|
 shoutwiki|https://www.shoutwiki.com/wiki/$1|0|https://www.shoutwiki.com/w/api.php
 tmbw|https://www.tmbw.net/wiki/$1|0|https://tmbw.net/wiki/api.php

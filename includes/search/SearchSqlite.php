@@ -38,7 +38,7 @@ class SearchSqlite extends SearchDatabase {
 		$dbr = $this->dbProvider->getReplicaDatabase();
 		$sql = (string)$dbr->newSelectQueryBuilder()
 			->select( 'sql' )
-			->from( $dbr->addIdentifierQuotes( 'sqlite_master' ) )
+			->from( 'sqlite_master' )
 			->where( [ 'tbl_name' => $dbr->tableName( 'searchindex', 'raw' ) ] )
 			->caller( __METHOD__ )->fetchField();
 

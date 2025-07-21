@@ -216,7 +216,7 @@ class PostgresInstaller extends DatabaseInstaller {
 		$conn = $status->getDB();
 		$superuser = $this->getVar( '_InstallUser' );
 
-		$row = $conn->selectRow( '"pg_catalog"."pg_roles"', '*',
+		$row = $conn->selectRow( 'pg_catalog.pg_roles', '*',
 			[ 'rolname' => $superuser ], __METHOD__ );
 
 		return $row;
@@ -247,9 +247,9 @@ class PostgresInstaller extends DatabaseInstaller {
 			return false;
 		}
 		$conn = $status->getDB();
-		$installerId = $conn->selectField( '"pg_catalog"."pg_roles"', 'oid',
+		$installerId = $conn->selectField( 'pg_catalog.pg_roles', 'oid',
 			[ 'rolname' => $this->getVar( '_InstallUser' ) ], __METHOD__ );
-		$webId = $conn->selectField( '"pg_catalog"."pg_roles"', 'oid',
+		$webId = $conn->selectField( 'pg_catalog.pg_roles', 'oid',
 			[ 'rolname' => $this->getVar( 'wgDBuser' ) ], __METHOD__ );
 
 		return $this->isRoleMember( $conn, $installerId, $webId, $this->maxRoleSearchDepth );
@@ -269,7 +269,7 @@ class PostgresInstaller extends DatabaseInstaller {
 			return true;
 		}
 		// Get all members of the given group
-		$res = $conn->select( '"pg_catalog"."pg_auth_members"', [ 'member' ],
+		$res = $conn->select( 'pg_catalog.pg_auth_members', [ 'member' ],
 			[ 'roleid' => $group ], __METHOD__ );
 		foreach ( $res as $row ) {
 			if ( $row->member == $targetMember ) {
@@ -319,7 +319,7 @@ class PostgresInstaller extends DatabaseInstaller {
 		$conn = $status->getDB();
 		$dbName = $this->getVar( 'wgDBname' );
 
-		$exists = (bool)$conn->selectField( '"pg_catalog"."pg_database"', '1',
+		$exists = (bool)$conn->selectField( 'pg_catalog.pg_database', '1',
 			[ 'datname' => $dbName ], __METHOD__ );
 		if ( !$exists ) {
 			$safedb = $conn->addIdentifierQuotes( $dbName );

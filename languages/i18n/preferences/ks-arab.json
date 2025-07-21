@@ -8,8 +8,10 @@
 		]
 	},
 	"preferences": "ترجِیحات",
+	"searchprefs": "تَرجیحات مَنٛز کٔرِو تَلاش",
 	"searchprefs-noresults": "بے نٕتیٖجہٕ",
 	"saveprefs": "مَحفوٗظ",
+	"tooltip-preferences-save": "تَرجیحات کٔرِو محفوظ",
 	"prefs-back-title": "ترجیین کُن واپس",
 	"prefs-personal": "رُکُن پروفائل",
 	"prefs-description-personal": "اِختیار تھٲوِو زِ تُہہ کِتھ آیوٗ، رلییُو، تہٕ مِلییِیو.",

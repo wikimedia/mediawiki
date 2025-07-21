@@ -102,6 +102,7 @@
 	"emailauthenticated": "E-postadressen din ble bekreftet $2 kl. $3.",
 	"allowemail": "Tillat andre å sende meg e-post",
 	"email-allow-new-users-label": "Tillat e-poster fra helt nyregistrerte brukere",
+	"prefs-help-email-allow-new-users": "Ved å aktivere dette alternativet vil brukere som ikke er [[{{MediaWiki:grouppage-autoconfirmed}}|autobekreftet]] kunne sende deg e-post.",
 	"tog-ccmeonemails": "Send meg kopier av e-poster jeg sender til andre brukere",
 	"email-mutelist-label": "Forhindre disse brukerne fra å sende meg e-post:",
 	"tog-enotifwatchlistpages": "Send meg en e-post når en side eller en fil på overvåkningslisten min blir endret",

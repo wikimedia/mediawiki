@@ -1,0 +1,30 @@
+{
+	"@metadata": {
+		"authors": [
+			"Умар"
+		]
+	},
+	"cdx-chip-input-chip-added": "Чип $1 тӀетоьхна.",
+	"cdx-chip-input-chip-removed": "Чип $1 дӀайаьккхина.",
+	"cdx-input-chip-aria-description": "Enter тӀе а таӀийна, хийцамаш бан йа Delete тӀе а таӀийна, дӀадаккха.",
+	"cdx-dialog-close-button-label": "ДӀачӀагӀа",
+	"cdx-label-optional-flag": "(тӀехь дац)",
+	"cdx-message-dismiss-button-label": "ДӀачӀагӀа",
+	"cdx-search-input-search-button-label": "Лаха",
+	"cdx-table-select-all-label": "Харжа массо могӀанаш",
+	"cdx-table-select-row-label": "$2 могӀанах $1 харжа",
+	"cdx-table-sort-caption": "$1 (нуьйданаш йолу бӀогӀамийн кортош дӀасакъасто йиш йу).",
+	"cdx-typeahead-search-search-results-label": "Карийнарш",
+	"cdx-table-pager-button-first-page": "Хьалхара агӀо",
+	"cdx-table-pager-button-last-page": "ТӀаьххьра агӀо",
+	"cdx-table-pager-button-next-page": "РогӀера агӀо",
+	"cdx-table-pager-button-prev-page": "Хьалхара агӀо",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 могӀа}}",
+	"cdx-table-pager-items-per-page-default": "ХӀора агӀонан жамӀаш",
+	"cdx-table-pagination-status-message-determinate-long": "ЖамӀаш гайтар $1—$2, $3 чуьра",
+	"cdx-table-pagination-status-message-determinate-short": "$1—$2, $3 чуьра",
+	"cdx-table-pagination-status-message-indeterminate-long": "ЖамӀаш гайтар $1—$2 дуккхачарех",
+	"cdx-table-pagination-status-message-indeterminate-short": "$1—$2 дуккхачарех",
+	"cdx-table-pagination-status-message-indeterminate-final": "Гойтуш ду {{PLURAL:$1|тӀаьххьара $1 жамӀ|тӀаьххьара $1 жамӀаш}}",
+	"cdx-table-pagination-status-message-pending": "ЖамӀаш чудохуш..."
+}

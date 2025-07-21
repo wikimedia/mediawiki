@@ -20,6 +20,7 @@
 
 namespace MediaWiki\Debug;
 
+use Error;
 use ReflectionFunction;
 use ReflectionProperty;
 
@@ -217,7 +218,7 @@ trait DeprecationHelper {
 		$qualifiedName = ( $ownerClass ?: get_class( $this ) ) . '::$' . $name;
 		if ( $ownerClass ) {
 			// Someone tried to access a normal non-public property. Try to behave like PHP would.
-			trigger_error( "Cannot access non-public property $qualifiedName", E_USER_ERROR );
+			throw new Error( "Cannot access non-public property $qualifiedName" );
 		} elseif ( property_exists( $this, $name ) ) {
 			// Normally __get method will not be even called if the property exists,
 			// but in tests if we mock an object that uses DeprecationHelper,
@@ -249,7 +250,7 @@ trait DeprecationHelper {
 			} elseif ( property_exists( $this, $name ) ) {
 				$this->$name = $value;
 			} else {
-				trigger_error( "Cannot access non-public property $qualifiedName", E_USER_ERROR );
+				throw new Error( "Cannot access non-public property $qualifiedName" );
 			}
 			return;
 		}
@@ -258,7 +259,7 @@ trait DeprecationHelper {
 		$qualifiedName = ( $ownerClass ?: get_class( $this ) ) . '::$' . $name;
 		if ( $ownerClass ) {
 			// Someone tried to access a normal non-public property. Try to behave like PHP would.
-			trigger_error( "Cannot access non-public property $qualifiedName", E_USER_ERROR );
+			throw new Error( "Cannot access non-public property $qualifiedName" );
 		} else {
 			if ( $this->dynamicPropertiesAccessDeprecated ) {
 				[ $version, $class, $component ] = $this->dynamicPropertiesAccessDeprecated;

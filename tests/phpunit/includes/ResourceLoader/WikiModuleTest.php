@@ -448,11 +448,6 @@ class WikiModuleTest extends ResourceLoaderTestCase {
 			'Redirect resolved by getContent'
 		);
 	}
-
-	protected function tearDown(): void {
-		Title::clearCaches();
-		parent::tearDown();
-	}
 }
 
 class TestResourceLoaderWikiModule extends WikiModule {

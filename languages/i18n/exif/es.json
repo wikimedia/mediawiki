@@ -15,7 +15,8 @@
 			"Macofe",
 			"MarcoAurelio",
 			"Sanbec",
-			"Vivaelcelta"
+			"Vivaelcelta",
+			"JaimeDes"
 		]
 	},
 	"exif-imagewidth": "Anchura",
@@ -209,6 +210,7 @@
 	"exif-photometricinterpretation-9": "CIE L*a*b* (codificación ICC)",
 	"exif-photometricinterpretation-10": "CIE L*a*b* (codificación ITU)",
 	"exif-photometricinterpretation-32803": "Matriz de filtro de color",
+	"exif-photometricinterpretation-34892": "raw lineal",
 	"exif-unknowndate": "Fecha desconocida",
 	"exif-orientation-1": "Normal",
 	"exif-orientation-2": "Volteada horizontalmente",
@@ -396,5 +398,7 @@
 	"exif-fullpanowidthpixels": "Anchura total del panorama",
 	"exif-fullpanoheightpixels": "Altura total del panorama",
 	"exif-croppedarealeftpixels": "Recorte izquierdo del panorama",
-	"exif-croppedareatoppixels": "Recorte superior del panorama"
+	"exif-croppedareatoppixels": "Recorte superior del panorama",
+	"exif-initialcameradolly": "Cámara dolly inicial",
+	"exif-stitchingsoftware": "Software para panorámicas (stitching)"
 }

@@ -33,7 +33,7 @@ class JsonSchemaAssertionTraitTest extends MediaWikiUnitTestCase {
 		$dir = __DIR__ . '/json';
 		// T391586 - Malformed JSON doesn't pass linting while making releases, so
 		// to have a txt file extension.
-		foreach ( glob( __DIR__ . '/json/invalid*.{txt,json}' ) as $file ) {
+		foreach ( glob( __DIR__ . '/json/invalid*.{txt,json}', GLOB_BRACE ) as $file ) {
 			yield $file => [ $file, "$dir/schema1.json" ];
 		}
 	}

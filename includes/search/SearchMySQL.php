@@ -162,6 +162,17 @@ class SearchMySQL extends SearchDatabase {
 
 	public function legalSearchChars( $type = self::CHARS_ALL ) {
 		$searchChars = parent::legalSearchChars( $type );
+
+		// In the MediaWiki UI, search strings containing (just) a hyphen are translated into
+		//     MATCH(si_title) AGAINST('+- ' IN BOOLEAN MODE)
+		// which is not valid.
+
+		// From <https://dev.mysql.com/doc/refman/8.0/en/fulltext-boolean.html>:
+		// "InnoDB full-text search does not support... a plus and minus sign combination ('+-')"
+
+		// See also https://phabricator.wikimedia.org/T221560
+		$searchChars = preg_replace( '/\\\\-/', '', $searchChars );
+
 		if ( $type === self::CHARS_ALL ) {
 			// " for phrase, * for wildcard
 			$searchChars = "\"*" . $searchChars;
