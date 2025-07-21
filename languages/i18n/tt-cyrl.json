@@ -2841,7 +2841,7 @@
 	"import-interwiki-sourcepage": "Беренчел бит:",
 	"import-interwiki-history": "Бу бит өчен барлык үзгәрешләрне күчерегез",
 	"import-interwiki-templates": "Барлык калыпларны һәм тәрҗемә ителгән битләрне кертегез",
-	"import-interwiki-submit": "Кертү",
+	"import-interwiki-submit": "Импортла",
 	"import-mapping-default": "Исемнәрнең башлангыч пространствосына импортлау",
 	"import-mapping-namespace": "Исемнәр пространствосына импортлау",
 	"import-mapping-subpage": "Киләсе битнең асбитләре буларак импортлау:",

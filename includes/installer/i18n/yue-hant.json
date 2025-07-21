@@ -6,12 +6,23 @@
 			"Winston Sung",
 			"Z423x5c6",
 			"捍粵者",
-			"H78c67c"
+			"H78c67c",
+			"JeffreyKim"
 		]
 	},
 	"config-desc": "MediaWiki安裝程式",
 	"config-title": "安裝MediaWiki$1",
 	"config-information": "資訊",
+	"config-localsettings-upgrade": "<code>LocalSettings.php</code> 快勞已經被偵測到。\n如果要升級呢個安裝，請輸入值 <code>$wgUpgradeKey</code> 喺下面個框入面。\n你會喺<code>LocalSettings.php</code>入面搵到佢。",
+	"config-localsettings-cli-upgrade": "<code>LocalSettings.php</code> 快勞已經被偵測到。\n如果要升級呢個安裝，請執行 <code>update.php</code> 取代",
+	"config-localsettings-key": "升級鍵：",
+	"config-localsettings-badkey": "你提供嘅升級鍵唔啱。",
+	"config-upgrade-key-missing": "偵測到現有嘅 MediaWiki 安裝。\n如果要升級呢個安裝，請將以下一行放喺你嘅 <code>LocalSettings.php</code>嘅底部:\n\n$1",
+	"config-localsettings-incomplete": "現有嘅 <code>LocalSettings.php</code>好似唔完整噉。\n$1變數未設定。\n唔該改 <code>LocalSettings.php</code> 噉樣呢個變數就會被設定，然後撳一下 \"{{int:Config-continue}}\"。",
+	"config-localsettings-connection-error": "使用指定嘅<code>LocalSettings.php</code>設定連接到資料庫嗰陣遇到錯誤。 請修正呢啲設定，然後重試。\n\n$1",
+	"config-session-error": "開始工作階段出錯：$1",
+	"config-session-expired": "你嘅工作階段數據似乎已經過期。\n工作階段嘅設定壽命係$1。\n你可以透過喺 php.ini 入面設定<code>session.gc_maxlifetime</code>嚟增加呢個數字。\n重新開始安裝過程。",
+	"config-no-session": "你嘅工作階段資料丟失咗！\n檢查你嘅 php.ini 同埋確保<code>session.save_path</code>設定咗去適當嘅目錄。",
 	"config-your-language": "你嘅語言",
 	"config-your-language-help": "揀安裝程序入面用嘅語言。",
 	"config-wiki-language": "Wiki語言：",
@@ -32,7 +43,11 @@
 	"config-page-copying": "複製緊",
 	"config-page-upgradedoc": "升級緊",
 	"config-page-existingwiki": "現有wiki",
+	"config-help-restart": "你想唔想清除所有你輸入咗嘅儲存咗嘅數據，然後重新啟動安裝過程？",
 	"config-restart": "係，重新開始",
+	"config-welcome": "MediaWiki 係一個用 PHP 寫嘅免費同開放源碼嘅維基軟件包。 佢係維基百科同其他維基媒體項目嘅平台，每個月有幾千萬人使用。 MediaWiki 本地化咗超過 350 種語言，佢嘅可靠性同強大嘅功能集令佢成為咗一個由第三方用戶同開發人員組成嘅大型同充滿活力嘅社群。\n=== 環境檢查 ===\n而家會執行基本檢查，睇吓呢個環境係咪適合安裝 MediaWiki 。\n如果你尋求有關點樣完成安裝嘅支援，記得加入呢啲資料。",
+	"config-welcome-section-copyright": "=== 版權同條款 ===\n\n$1\n\n呢個程式係自由軟件；你可以根據自由軟件基金會發佈嘅 GNU 一般公共授權條款，或者（你可以選擇）任何後期版本，重新發行同/或者修改佢。\n呢個程式係為咗希望佢有用，但係<strong>冇任何控罪令y</strong>; 連隱含保養都冇<strong>商業性</strong> 定係 <strong>為特定目的而健身</strong>.\n睇吓 GNU 一般公共授權嚟了解更多詳情。\n\n你應該同呢個計劃一齊收到［ $2 一份 GNU 一般公共授權副本］；如果唔係，寫信去自由軟件基金會，公司，富蘭克林街，五樓，波士頓，馬薩諸塞州，馬薩斯州02110-1301，或者[https://www.gnu.org/copyleft/gpl.html 喺網上睇吓]。",
+	"config-sidebar": "* [https://www.mediawiki.org MediaWiki home]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents User's Guide]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Contents Administrator's Guide]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ FAQ]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Communication Seek help]\n* [https://phabricator.wikimedia.org/ Bug tracker]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/How_to_contribute Contribute]",
 	"config-env-php": "安裝咗PHP$1",
 	"config-outdated-sqlite": "<strong>警告：</strong>你安裝咗SQLite $2，低過最低要求版本 $1。你將會用唔到SQLite。",
 	"config-apc": "[https://www.php.net/apc APC]安裝咗",
@@ -64,5 +79,5 @@
 	"config-skins-screenshots": "$1（螢幕截圖： $2）",
 	"config-screenshot": "螢幕截圖",
 	"mainpagetext": "<strong>MediaWiki已經裝好。</strong>",
-	"mainpagedocfooter": "請睇[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents 用戶指引]（英文），裏面有資料講點用wiki軟件。\n\n==開始使用==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings 配置設定清單]（英文）\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki 常見問題]（英文）\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ MediaWiki 發佈郵件名單]（英文）\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources 用你講嘅文來本地化MediaWiki]\t\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam 學下點樣喺你嘅wiki度對付破壞]"
+	"mainpagedocfooter": "諮詢吓[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents User's Guide]有關使用 wiki 軟件嘅資訊。\n\n==開始使用==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings 配置設定清單]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki 常見問題]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ MediaWiki 發佈郵件名單]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources 為你嘅語言本地化 MediaWiki]\t\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam 喺你嘅 wiki 上面學習點樣打擊垃圾郵件]"
 }

@@ -3847,7 +3847,7 @@
 	"logentry-partialblock-reblock": "$1 が {{GENDER:$4|$3}} に対する $7 のブロックの期限を $5 に{{GENDER:$2|変更しました}} $6",
 	"logentry-non-editing-block-block": "$1 が {{GENDER:$4|$3}} に対して編集以外の処理を $5 $6 {{GENDER:$2|ブロックしました}}",
 	"logentry-non-editing-block-reblock": "$1 が {{GENDER:$4|$3}} に対する特定の編集以外の処理のブロックの期限を $5 $6 に{{GENDER:$2|変更しました}}",
-	"logentry-suppress-block": "$1 が {{GENDER:$4|$3}} を$5で{{GENDER:$2|ブロックしました}} $6",
+	"logentry-suppress-block": "$1 が {{GENDER:$4|$3}} を$5{{GENDER:$2|ブロックしました}} $6",
 	"logentry-suppress-reblock": "$1 が {{GENDER:$4|$3}} のブロックの期限を$5に{{GENDER:$2|変更しました}} $6",
 	"logentry-import-upload": "$1 がファイルをアップロードして $3 を{{GENDER:$2|インポートしました}}",
 	"logentry-import-upload-details": "$1 がファイルのアップロードにより、$3 を{{GENDER:$2|インポートしました}} ({{PLURAL:$4|版}} $4)",
