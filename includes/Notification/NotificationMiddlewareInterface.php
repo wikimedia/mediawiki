@@ -2,8 +2,8 @@
 namespace MediaWiki\Notification;
 
 /**
- * @since 1.44
- * @unstable
+ * @stable to implement
+ * @since 1.45
  */
 interface NotificationMiddlewareInterface {
 

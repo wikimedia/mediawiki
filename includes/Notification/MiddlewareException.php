@@ -4,8 +4,7 @@ namespace MediaWiki\Notification;
 use RuntimeException;
 
 /**
- * @since 1.44
- * @unstable
+ * @internal
  */
 class MiddlewareException extends RuntimeException {
 }

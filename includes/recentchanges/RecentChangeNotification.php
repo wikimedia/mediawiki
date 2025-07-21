@@ -28,8 +28,8 @@ use MediaWiki\User\UserIdentity;
  * Notification representing a Recent change. Used as base to transport Watchlist, UserTalk and
  * Administrator recent changes notifications
  *
- * @since 1.44
- * @unstable
+ * @newable
+ * @since 1.45
  */
 class RecentChangeNotification extends WikiNotification {
 

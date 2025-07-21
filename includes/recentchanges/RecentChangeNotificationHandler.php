@@ -12,8 +12,7 @@ use MediaWiki\User\UserFactory;
 /**
  * Accept notification events and notify users about them.
  *
- * @since 1.44
- * @unstable
+ * @internal
  */
 class RecentChangeNotificationHandler implements NotificationHandler {
 

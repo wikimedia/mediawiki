@@ -3,8 +3,8 @@ namespace MediaWiki\Notification;
 
 /**
  * An object representing notification with list of recipients
- * @since 1.44
- * @unstable
+ * @newable
+ * @since 1.45
  * @template T of Notification
  */
 class NotificationEnvelope {

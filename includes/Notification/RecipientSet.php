@@ -9,8 +9,8 @@ use MediaWiki\User\UserIdentity;
 use Wikimedia\Assert\Assert;
 
 /**
- * @since 1.44
- * @unstable
+ * @newable
+ * @since 1.45
  */
 class RecipientSet implements IteratorAggregate, Countable {
 

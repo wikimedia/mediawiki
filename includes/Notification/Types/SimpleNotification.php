@@ -7,8 +7,8 @@ use Wikimedia\Message\MessageSpecifier;
 /**
  * A simple notification that has only a message presented to a user
  *
- * @since 1.44
- * @unstable
+ * @newable
+ * @since 1.45
  */
 class SimpleNotification extends Notification {
 

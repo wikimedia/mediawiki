@@ -4,8 +4,7 @@ namespace MediaWiki\Notification;
 use Wikimedia\ObjectFactory\ObjectFactory;
 
 /**
- * @since 1.44
- * @unstable
+ * @since 1.45
  */
 class MiddlewareChain {
 	/**

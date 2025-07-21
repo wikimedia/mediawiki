@@ -12,13 +12,13 @@ use Wikimedia\ObjectFactory\ObjectFactory;
 /**
  * Notify users about things occurring.
  *
- * @since 1.44
- * @unstable
+ * @since 1.45
  */
 class NotificationService {
 
 	/**
 	 * MediaWiki's notification handler for watchlist, talk page, and admin notification
+	 * @internal
 	 */
 	public const RECENT_CHANGE_HANDLER_SPEC = [
 		'class' => RecentChangeNotificationHandler::class,

@@ -6,8 +6,9 @@ use Wikimedia\JsonCodec\JsonCodecable;
 use Wikimedia\NonSerializable\NonSerializableTrait;
 
 /**
- * @since 1.44
- * @unstable
+ * @newable
+ * @stable to extend
+ * @since 1.45
  */
 class Notification {
 

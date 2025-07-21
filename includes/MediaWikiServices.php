@@ -1546,7 +1546,7 @@ class MediaWikiServices extends ServiceContainer {
 	}
 
 	/**
-	 * @since 1.44
+	 * @since 1.45
 	 */
 	public function getNotificationService(): NotificationService {
 		return $this->getService( 'NotificationService' );

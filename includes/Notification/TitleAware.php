@@ -7,8 +7,8 @@ use MediaWiki\Page\PageIdentity;
 /**
  * Marker interface for Notifications aware of the PageIdentity those refer to
  *
- * @since 1.44
- * @unstable
+ * @stable to implement
+ * @since 1.45
  */
 interface TitleAware {
 

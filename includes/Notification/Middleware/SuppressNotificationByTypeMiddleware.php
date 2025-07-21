@@ -7,8 +7,7 @@ use MediaWiki\Notification\NotificationEnvelope;
 /**
  * An example Middleware that allows to remove notifications of specific types
  *
- * @since 1.44
- * @unstable
+ * @since 1.45
  */
 class SuppressNotificationByTypeMiddleware extends FilterMiddleware {
 

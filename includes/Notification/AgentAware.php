@@ -7,8 +7,8 @@ use MediaWiki\User\UserIdentity;
 /**
  * Marker interface for Notifications aware of the agent who triggered the notification
  *
- * @since 1.44
- * @unstable
+ * @stable to implement
+ * @since 1.45
  */
 interface AgentAware {
 

@@ -7,8 +7,8 @@ use IteratorAggregate;
 
 /**
  * An object representing notification with list of recipients
- * @since 1.44
- * @unstable
+ * @newable
+ * @since 1.45
  */
 class NotificationsBatch implements Countable, IteratorAggregate {
 

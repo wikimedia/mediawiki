@@ -9,8 +9,8 @@ use MediaWiki\Notification\NotificationsBatch;
 /**
  * Middleware that allows to filter notifications
  *
- * @since 1.44
- * @unstable
+ * @stable to extend
+ * @since 1.45
  */
 abstract class FilterMiddleware implements NotificationMiddlewareInterface {
 

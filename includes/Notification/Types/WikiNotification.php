@@ -15,8 +15,8 @@ use Wikimedia\JsonCodec\JsonCodecable;
  * In case you require a notification that doesn't provide both Agent and Title please
  * provide your own Notification implementation.
  *
- * @since 1.44
- * @unstable
+ * @newable
+ * @since 1.45
  */
 class WikiNotification extends Notification implements AgentAware, TitleAware {
 
