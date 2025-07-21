@@ -37,7 +37,15 @@ class ExpireTemporaryAccounts extends Maintenance {
 		parent::__construct();
 
 		$this->addDescription( 'Expire temporary accounts that exist for more than N days' );
-		$this->addOption( 'frequency', 'How frequently the script runs [days]', true, true );
+		$this->addOption(
+			'frequency',
+			'How frequently the script runs [days]. When used with "expiry", determines the ' .
+			'cutoff for registration of accounts to be expired. For example, if "expiry" is 90 ' .
+			'days and "frequency" is 1 day, then the script will expire accounts that ' .
+			'registered more than 90 days ago but not more than 90 + 1 days ago.',
+			true,
+			true
+		);
 		$this->addOption(
 			'expiry',
 			'Expire accounts older than this number of days. Use 0 to expire all temporary accounts',
