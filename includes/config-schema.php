@@ -239,7 +239,7 @@ return [
 			'SVGConverterPath' => '',
 			'SVGMaxSize' => 5120,
 			'SVGMetadataCutoff' => 5242880,
-			'SVGNativeRendering' => false,
+			'SVGNativeRendering' => true,
 			'SVGNativeRenderingSizeLimit' => 51200,
 			'MediaInTargetLanguage' => true,
 			'MaxImageArea' => 12500000,

@@ -1940,15 +1940,15 @@ class MainConfigSchema {
 	/**
 	 * Whether native rendering by the browser agent is allowed
 	 *
-	 * Default is false. Setting it to true disables all SVG conversion.
-	 * Setting to the string 'partial' will only allow native rendering
+	 * Default is true, which disables all SVG conversion.
+	 * Setting it to the string 'partial' will only allow native rendering
 	 * when the filesize is below SVGNativeRenderingSizeLimit and if the
 	 * file contains at most 1 language.
 	 *
 	 * @since 1.41
 	 */
 	public const SVGNativeRendering = [
-		'default' => false,
+		'default' => true,
 		'type' => 'string|boolean',
 	];
 

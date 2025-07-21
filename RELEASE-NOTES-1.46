@@ -44,6 +44,12 @@ For notes on 1.45.x and older releases, see HISTORY.
 
 ==== Changed configuration ====
 
+* $wgSVGNativeRendering now defaults to true. This means that uploaded SVGs are
+  rendered directly by the browser most of the time. MediaWiki applies several
+  filters on uploaded SVGs to protect against malicious SVGs.
+  The browser adds restrictions on the SVG when included as an <img> for
+  additional protection. We do advise configuring CSP headers to protect users
+  in case they open a SVG file directly in the browser.
 * …
 
 ==== Removed configuration ====
