@@ -50,12 +50,7 @@ class SelserContext implements JsonCodecable {
 		return [
 			'revId' => $this->revId,
 			'pb' => $this->pageBundle,
-			// After I544625136088164561b9169a63aed7450cce82f5 this can be:
-			// 'c' => $this->content,
-			'content' => $this->content ? [
-				'model' => $this->content->getModel(),
-				'data' => $this->content->serialize(),
-			] : null,
+			'c' => $this->content,
 		];
 	}
 
