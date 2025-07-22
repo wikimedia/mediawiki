@@ -31,7 +31,7 @@ use MediaWiki\Skin\Skin;
 use MediaWiki\Title\Title;
 use stdClass;
 use Wikimedia\HtmlArmor\HtmlArmor;
-use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
@@ -52,7 +52,7 @@ abstract class PageQueryPage extends QueryPage {
 	 *
 	 * @stable to override
 	 *
-	 * @param IDatabase $db
+	 * @param IReadableDatabase $db
 	 * @param IResultWrapper $res
 	 */
 	public function preprocessResults( $db, $res ) {

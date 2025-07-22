@@ -23,7 +23,7 @@ namespace MediaWiki\SpecialPage;
 use MediaWiki\Skin\Skin;
 use MediaWiki\Title\Title;
 use stdClass;
-use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
@@ -44,7 +44,7 @@ abstract class WantedQueryPage extends QueryPage {
 	/**
 	 * Cache page existence for performance
 	 * @stable to override
-	 * @param IDatabase $db
+	 * @param IReadableDatabase $db
 	 * @param IResultWrapper $res
 	 */
 	protected function preprocessResults( $db, $res ) {

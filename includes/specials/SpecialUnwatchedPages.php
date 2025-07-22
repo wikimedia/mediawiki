@@ -33,7 +33,7 @@ use MediaWiki\Title\Title;
 use stdClass;
 use Wikimedia\HtmlArmor\HtmlArmor;
 use Wikimedia\Rdbms\IConnectionProvider;
-use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
@@ -69,7 +69,7 @@ class SpecialUnwatchedPages extends QueryPage {
 	/**
 	 * Pre-cache page existence to speed up link generation
 	 *
-	 * @param IDatabase $db
+	 * @param IReadableDatabase $db
 	 * @param IResultWrapper $res
 	 */
 	public function preprocessResults( $db, $res ) {

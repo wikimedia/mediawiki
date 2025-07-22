@@ -30,7 +30,6 @@ use MediaWiki\SpecialPage\QueryPage;
 use MediaWiki\SpecialPage\SpecialPage;
 use Wikimedia\Mime\MimeAnalyzer;
 use Wikimedia\Rdbms\IConnectionProvider;
-use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 
@@ -431,7 +430,7 @@ class SpecialMediaStatistics extends QueryPage {
 	/**
 	 * Initialize total values so we can figure out percentages later.
 	 *
-	 * @param IDatabase $dbr
+	 * @param IReadableDatabase $dbr
 	 * @param IResultWrapper $res
 	 */
 	public function preprocessResults( $dbr, $res ) {

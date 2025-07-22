@@ -32,7 +32,7 @@ use MediaWiki\Title\Title;
 use stdClass;
 use Wikimedia\HtmlArmor\HtmlArmor;
 use Wikimedia\Rdbms\IConnectionProvider;
-use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
@@ -129,7 +129,7 @@ class SpecialFewestRevisions extends QueryPage {
 	/**
 	 * Cache page existence for performance
 	 *
-	 * @param IDatabase $db
+	 * @param IReadableDatabase $db
 	 * @param IResultWrapper $res
 	 */
 	protected function preprocessResults( $db, $res ) {

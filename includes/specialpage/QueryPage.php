@@ -473,11 +473,10 @@ abstract class QueryPage extends SpecialPage {
 	/**
 	 * Get a DB connection to be used for slow recache queries
 	 * @stable to override
-	 * @return IDatabase
+	 * @return IReadableDatabase
 	 */
 	protected function getRecacheDB() {
-		return $this->getDBLoadBalancer()
-			->getConnection( ILoadBalancer::DB_REPLICA, 'vslow' );
+		return $this->getDatabaseProvider()->getReplicaDatabase( false, 'vslow' );
 	}
 
 	/**
@@ -886,7 +885,7 @@ abstract class QueryPage extends SpecialPage {
 	/**
 	 * Do any necessary preprocessing of the result object.
 	 * @stable to override
-	 * @param IDatabase $db
+	 * @param IReadableDatabase $db
 	 * @param IResultWrapper $res
 	 */
 	protected function preprocessResults( $db, $res ) {

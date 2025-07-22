@@ -31,8 +31,8 @@ use MediaWiki\Title\TitleValue;
 use MediaWiki\Utils\UrlUtils;
 use stdClass;
 use Wikimedia\Rdbms\IConnectionProvider;
-use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IExpression;
+use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\LikeValue;
 
@@ -231,7 +231,7 @@ class SpecialLinkSearch extends QueryPage {
 	/**
 	 * Pre-fill the link cache
 	 *
-	 * @param IDatabase $db
+	 * @param IReadableDatabase $db
 	 * @param IResultWrapper $res
 	 */
 	public function preprocessResults( $db, $res ) {
