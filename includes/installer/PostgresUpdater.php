@@ -84,7 +84,24 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'addTable', 'block_target', 'patch-block_target.sql' ],
 			[ 'dropIndex', 'categorylinks', 'cl_collation_ext', 'patch-drop-cl_collation_ext.sql' ],
 			[ 'runMaintenance', PopulateUserIsTemp::class ],
+			// Attempt a rename from `site_groups` to `site_group` prior to dropping the `sites` indexes,
+			// due to a typo in the original index-renaming database update from MW 1.36. (T374042)
+			[ 'renameIndex', 'sites', 'sites_group', 'site_group' ],
 			[ 'dropIndex', 'sites', 'site_type', 'patch-sites-drop_indexes.sql' ],
+			// Re-attempt to drop most of the dropped `sites`-table indexes:
+			// If a Postgres wiki previously ran `update.php` on MW 1.42 or above, the script would have errored after
+			// reaching the "DROP INDEX site_group;" line of `patch-sites-drop_indexes.sql` (due to a previous
+			// index-renaming typo from MW 1.36).
+			// However, as the `site_type` index itself _would_ have been successfully dropped, the `.sql` file listed
+			// in the `dropIndex` line above will not be re-applied on any future runs of `update.php`.
+			// Therefore, to ensure that the remaining indexes are definitely dropped on these wikis, we need to
+			// separately attempt to drop them again. (T374042; T374042#11017896)
+			[ 'dropIndex', 'sites', 'site_group', 'patch-sites-drop_site_group_index.sql' ],
+			[ 'dropIndex', 'sites', 'site_source', 'patch-sites-drop_site_source_index.sql' ],
+			[ 'dropIndex', 'sites', 'site_language', 'patch-sites-drop_site_language_index.sql' ],
+			[ 'dropIndex', 'sites', 'site_protocol', 'patch-sites-drop_site_protocol_index.sql' ],
+			[ 'dropIndex', 'sites', 'site_domain', 'patch-sites-drop_site_domain_index.sql' ],
+			[ 'dropIndex', 'sites', 'site_forward', 'patch-sites-drop_site_forward_index.sql' ],
 			[ 'dropIndex', 'iwlinks', 'iwl_prefix_from_title', 'patch-iwlinks-drop-iwl_prefix_from_title.sql' ],
 
 			// 1.43
