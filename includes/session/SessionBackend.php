@@ -36,6 +36,7 @@ use MediaWiki\User\User;
 use MWRestrictions;
 use Psr\Log\LoggerInterface;
 use Wikimedia\AtEase\AtEase;
+use Wikimedia\IPUtils;
 use Wikimedia\ObjectCache\CachedBagOStuff;
 
 /**
@@ -791,12 +792,12 @@ final class SessionBackend {
 		}
 
 		// Save session data to store, if necessary
+		$userName = $this->user->getName();
 		$metadata = $origMetadata = [
 			'provider' => (string)$this->provider,
 			'providerMetadata' => $this->providerMetadata,
 			'userId' => $anon ? 0 : $this->user->getId(),
-			'userName' => MediaWikiServices::getInstance()->getUserNameUtils()
-				->isValid( $this->user->getName() ) ? $this->user->getName() : null,
+			'userName' => IPUtils::isIPAddress( $userName ) ? null : $userName,
 			'userToken' => $anon ? null : $this->user->getToken(),
 			'remember' => !$anon && $this->remember,
 			'forceHTTPS' => $this->forceHTTPS,
