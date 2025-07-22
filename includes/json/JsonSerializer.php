@@ -29,6 +29,7 @@ use JsonException;
  * @stable to type
  * @since 1.36
  * @package MediaWiki\Json
+ * @deprecated since 1.45; use JsonCodecInterface
  */
 interface JsonSerializer {
 

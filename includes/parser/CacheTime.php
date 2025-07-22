@@ -23,20 +23,19 @@
 
 namespace MediaWiki\Parser;
 
-use MediaWiki\Json\JsonDeserializable;
-use MediaWiki\Json\JsonDeserializableTrait;
-use MediaWiki\Json\JsonDeserializer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Utils\MWTimestamp;
+use Wikimedia\JsonCodec\JsonCodecable;
+use Wikimedia\JsonCodec\JsonCodecableTrait;
 
 /**
  * Parser cache specific expiry check.
  *
  * @ingroup Parser
  */
-class CacheTime implements ParserCacheMetadata, JsonDeserializable {
-	use JsonDeserializableTrait;
+class CacheTime implements ParserCacheMetadata, JsonCodecable {
+	use JsonCodecableTrait;
 
 	/**
 	 * @var true[] ParserOptions which have been taken into account
@@ -244,11 +243,11 @@ class CacheTime implements ParserCacheMetadata, JsonDeserializable {
 
 	/**
 	 * Returns a JSON serializable structure representing this CacheTime instance.
-	 * @see newFromJson()
+	 * @see ::newFromJsonArray()
 	 *
 	 * @return array
 	 */
-	protected function toJsonArray(): array {
+	public function toJsonArray(): array {
 		// WARNING: When changing how this class is serialized, follow the instructions
 		// at <https://www.mediawiki.org/wiki/Manual:Parser_cache/Serialization_compatibility>!
 
@@ -260,18 +259,17 @@ class CacheTime implements ParserCacheMetadata, JsonDeserializable {
 		];
 	}
 
-	public static function newFromJsonArray( JsonDeserializer $deserializer, array $json ): self {
+	public static function newFromJsonArray( array $json ): self {
 		$cacheTime = new CacheTime();
-		$cacheTime->initFromJson( $deserializer, $json );
+		$cacheTime->initFromJson( $json );
 		return $cacheTime;
 	}
 
 	/**
-	 * Initialize member fields from an array returned by jsonSerialize().
-	 * @param JsonDeserializer $deserializer Unused
+	 * Initialize member fields from an array returned by toJsonArray().
 	 * @param array $jsonData
 	 */
-	protected function initFromJson( JsonDeserializer $deserializer, array $jsonData ) {
+	protected function initFromJson( array $jsonData ) {
 		// WARNING: When changing how this class is serialized, follow the instructions
 		// at <https://www.mediawiki.org/wiki/Manual:Parser_cache/Serialization_compatibility>!
 

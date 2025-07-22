@@ -367,6 +367,14 @@ because of Phabricator reports.
   emits deprecation warnings. Use ::getReadOnlyMode() service together
   with ::getConfiguredReason() and ::isConfiguredReadOnly() to check
   when a site is set to read-only mode.
+* JsonCodec::unserialize() and ::unserializeArray(), deprecated in 1.43,
+  now emits deprecation warnings.  Use ::deserialize/::deserializeArray()
+  instead.
+* JsonDeserializable and JsonDeserializableTrait have been deprecated; use
+  JsonCodecable and JsonCodecableTrait from the wikimedia/json-codec library
+  in new code.
+* The JsonSerializer and JsonDeserializer interfaces have been deprecated,
+  use JsonCodecInterface from the wikimedia/json-codec library in new code.
 * Parser::guessLegacySectionNameFromWikiText() has been deprecated.
 * OutputPage::wrapWikiTextAsInterface() has been deprecated.
 * Passing a string or UserIdentity object to DatabaseBlock::setTarget() or

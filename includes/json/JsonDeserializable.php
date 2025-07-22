@@ -34,6 +34,7 @@ use JsonSerializable;
  * @see JsonDeserializableTrait
  * @since 1.36
  * @package MediaWiki\Json
+ * @deprecated since 1.45; use JsonCodecable in new code
  */
 interface JsonDeserializable extends JsonSerializable {
 

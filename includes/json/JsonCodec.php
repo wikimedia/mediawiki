@@ -41,7 +41,7 @@ use Wikimedia\JsonCodec\JsonCodecable;
  */
 class JsonCodec
 	extends \Wikimedia\JsonCodec\JsonCodec
-	implements JsonDeserializer, JsonSerializer
+	implements JsonDeserializer
 {
 
 	/**
@@ -143,6 +143,7 @@ class JsonCodec
 
 	/** @deprecated since 1.43; use ::deserialize() */
 	public function unserialize( $json, ?string $expectedClass = null ) {
+		wfDeprecated( __METHOD__, '1.43' );
 		return $this->deserialize( $json, $expectedClass );
 	}
 
@@ -195,6 +196,7 @@ class JsonCodec
 
 	/** @deprecated since 1.43; use ::deserializeArray() */
 	public function unserializeArray( array $array ): array {
+		wfDeprecated( __METHOD__, '1.43' );
 		return $this->deserializeArray( $array );
 	}
 

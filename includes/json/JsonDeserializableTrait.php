@@ -21,6 +21,7 @@
 
 namespace MediaWiki\Json;
 
+/** @deprecated since 1.45; use JsonCodecableTrait in new code. */
 trait JsonDeserializableTrait {
 
 	public function jsonSerialize(): array {

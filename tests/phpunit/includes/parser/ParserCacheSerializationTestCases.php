@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Tests\Parser;
 
-use JsonSerializable;
 use MediaWiki\Debug\MWDebug;
 use MediaWiki\Json\JsonCodec;
 use MediaWiki\Parser\CacheTime;
@@ -608,7 +607,7 @@ abstract class ParserCacheSerializationTestCases {
 		$serializationFormats = [
 			[
 				'ext' => 'json',
-				'serializer' => static fn ( JsonSerializable $obj ) =>
+				'serializer' => static fn ( $obj ) =>
 					$jsonCodec->serialize( $obj ),
 				'deserializer' => static fn ( $data ) =>
 					$jsonCodec->deserialize( $data ),
