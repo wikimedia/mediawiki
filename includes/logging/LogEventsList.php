@@ -52,6 +52,7 @@ use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
+use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\UserIdentity;
 use MessageLocalizer;
 use stdClass;
@@ -83,6 +84,8 @@ class LogEventsList extends ContextSource {
 	/** @var MapCacheLRU */
 	private $tagsCache;
 
+	private TempUserConfig $tempUserConfig;
+
 	/**
 	 * @param IContextSource $context
 	 * @param LinkRenderer|null $linkRenderer
@@ -100,6 +103,7 @@ class LogEventsList extends ContextSource {
 		$this->hookRunner = new HookRunner( $services->getHookContainer() );
 		$this->logFormatterFactory = $services->getLogFormatterFactory();
 		$this->tagsCache = new MapCacheLRU( 50 );
+		$this->tempUserConfig = $services->getTempUserConfig();
 	}
 
 	/**
@@ -156,8 +160,18 @@ class LogEventsList extends ContextSource {
 
 		// Add extra inputs if any
 		$extraInputsDescriptor = $this->getExtraInputsDesc( $type );
+
+		// Single inputs (array of attributes) and multiple inputs (array of arrays)
+		// are supported. Distinguish between the two by checking if the first element
+		// is an array or not.
 		if ( $extraInputsDescriptor ) {
-			$formDescriptor[ 'extra' ] = $extraInputsDescriptor;
+			if ( isset( $extraInputsDescriptor[0] ) && is_array( $extraInputsDescriptor[0] ) ) {
+				foreach ( $extraInputsDescriptor as $i => $input ) {
+					$formDescriptor[ 'extra_' . $i ] = $input;
+				}
+			} else {
+				$formDescriptor[ 'extra' ] = $extraInputsDescriptor;
+			}
 		}
 
 		// Date menu
@@ -275,20 +289,44 @@ class LogEventsList extends ContextSource {
 	 * @return array Form descriptor
 	 */
 	private function getExtraInputsDesc( $type ) {
+		// By default, expose if the form was submitted by passing along a hidden input.
+		// This is useful for extra inputs that check checkboxes by default on load and have to pass
+		// along that modifier to the pager (eg. `newusers`'s temporary account creation exclusions)
+		$formDescriptor = [
+			[
+				'type' => 'hidden',
+				'name' => 'issubmitted',
+				'default' => true,
+			]
+		];
+
 		if ( $type === 'suppress' ) {
-			return [
+			$formDescriptor[] = [
 				'type' => 'text',
 				'label-message' => 'revdelete-offender',
 				'name' => 'offender',
 			];
-		} else {
-			// Allow extensions to add an extra input into the descriptor array.
-			$unused = ''; // Deprecated since 1.32, removed in 1.41
-			$formDescriptor = [];
-			$this->hookRunner->onLogEventsListGetExtraInputs( $type, $this, $unused, $formDescriptor );
-
 			return $formDescriptor;
 		}
+
+		if ( $type === 'newusers' || $type === '' ) {
+			// Add option to exclude/include temporary account creations in results,
+			// excluding them by default.
+			if ( $this->tempUserConfig->isKnown() ) {
+				$formDescriptor[] = [
+						'type' => 'check',
+						'label-message' => 'newusers-excludetempacct',
+						'name' => 'excludetempacct',
+						'default' => true,
+					];
+			}
+		}
+
+		// Allow extensions to add an extra input into the descriptor array.
+		$unused = ''; // Deprecated since 1.32, removed in 1.41
+		$this->hookRunner->onLogEventsListGetExtraInputs( $type, $this, $unused, $formDescriptor );
+
+		return $formDescriptor;
 	}
 
 	/**

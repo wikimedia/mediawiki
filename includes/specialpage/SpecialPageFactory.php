@@ -717,6 +717,7 @@ class SpecialPageFactory {
 				'UserIdentityLookup',
 				'UserNameUtils',
 				'LogFormatterFactory',
+				'TempUserConfig',
 			]
 		],
 		'Watchlist' => [

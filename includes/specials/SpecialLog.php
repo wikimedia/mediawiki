@@ -36,11 +36,13 @@ use MediaWiki\Pager\LogPager;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 use MediaWiki\User\ActorNormalization;
+use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\Utils\MWTimestamp;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\IConnectionProvider;
+use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Timestamp\TimestampException;
 
 /**
@@ -62,13 +64,16 @@ class SpecialLog extends SpecialPage {
 
 	private LogFormatterFactory $logFormatterFactory;
 
+	private TempUserConfig $tempUserConfig;
+
 	public function __construct(
 		LinkBatchFactory $linkBatchFactory,
 		IConnectionProvider $dbProvider,
 		ActorNormalization $actorNormalization,
 		UserIdentityLookup $userIdentityLookup,
 		UserNameUtils $userNameUtils,
-		LogFormatterFactory $logFormatterFactory
+		LogFormatterFactory $logFormatterFactory,
+		?TempUserConfig $tempUserConfig = null
 	) {
 		parent::__construct( 'Log' );
 		$this->linkBatchFactory = $linkBatchFactory;
@@ -77,6 +82,11 @@ class SpecialLog extends SpecialPage {
 		$this->userIdentityLookup = $userIdentityLookup;
 		$this->userNameUtils = $userNameUtils;
 		$this->logFormatterFactory = $logFormatterFactory;
+		if ( $tempUserConfig instanceof TempUserConfig ) {
+			$this->tempUserConfig = $tempUserConfig;
+		} else {
+			$this->tempUserConfig = MediaWikiServices::getInstance()->getTempUserConfig();
+		}
 	}
 
 	public function execute( $par ) {
@@ -149,6 +159,43 @@ class SpecialLog extends SpecialPage {
 				$qc = [ '1=0' ];
 			}
 		} else {
+			if ( $this->tempUserConfig->isKnown() ) {
+				// See T398423
+				// Three cases possible:
+				// 1. Special:Log/newusers is loaded as-is. The checkbox will be shown checked by default
+				// but have no value and is expected to exclude temporary accounts
+				// 2. form submitted, exclude temp accounts
+				// 3. form submitted, include temp accounts
+				// Check for cases 1 and 2 and omit temporary accounts in the pager query.
+				if (
+					(
+						!$this->getRequest()->getVal( 'issubmitted' ) &&
+						!$this->getRequest()->getVal( 'excludetempacct' )
+					) ||
+					(
+						$this->getRequest()->getVal( 'issubmitted' ) &&
+						$this->getRequest()->getVal( 'excludetempacct' )
+					)
+				) {
+					$dbr = $this->dbProvider->getReplicaDatabase();
+					if ( $opts->getValue( 'type' ) === '' ) {
+						// Support excluding temporary account creations on Special:Log
+						$qc = [
+							$dbr->expr( 'log_type', '!=', 'newusers' )->orExpr(
+								$dbr->expr( 'log_type', '=', 'newusers' )
+									->andExpr( $this->tempUserConfig
+									->getMatchCondition( $dbr, 'logging_actor.actor_name', IExpression::NOT_LIKE ) )
+							)
+						];
+					} elseif ( $opts->getValue( 'type' ) === 'newusers' ) {
+						$qc = [
+							$this->tempUserConfig
+								->getMatchCondition( $dbr, 'logging_actor.actor_name', IExpression::NOT_LIKE )
+						];
+					}
+				}
+			}
+
 			// Allow extensions to add relations to their search types
 			$this->getHookRunner()->onSpecialLogAddLogSearchRelations(
 				$opts->getValue( 'type' ), $this->getRequest(), $qc );

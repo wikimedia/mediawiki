@@ -2372,6 +2372,7 @@
 	"logeventslist-tag-log": "Tag log option label on [[Special:Log]]",
 	"logeventslist-newusers-log": "New users log option on [[Special:Log]]",
 	"all-logs-page": "{{doc-logpage}}\nTitle of [[Special:Log]].",
+	"newusers-excludetempacct": "Used as label for input box in the form on [[Special:Log/newusers]].",
 	"alllogstext": "Header of [[Special:Log]]",
 	"logempty": "Used as warning when there are no items to show.",
 	"log-title-wildcard": "* Appears in: [[Special:Log]]\n* Description: A check box to enable prefix search option",

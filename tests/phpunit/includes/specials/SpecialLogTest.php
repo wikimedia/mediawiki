@@ -11,12 +11,14 @@ use MediaWiki\Request\FauxRequest;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Specials\SpecialLog;
+use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 
 /**
  * @group Database
  * @covers \MediaWiki\Specials\SpecialLog
  */
 class SpecialLogTest extends SpecialPageTestBase {
+	use TempUserTestTrait;
 
 	/**
 	 * Returns a new instance of the special page under test.
@@ -31,7 +33,8 @@ class SpecialLogTest extends SpecialPageTestBase {
 			$services->getActorNormalization(),
 			$services->getUserIdentityLookup(),
 			$services->getUserNameUtils(),
-			$services->getLogFormatterFactory()
+			$services->getLogFormatterFactory(),
+			$services->getTempUserConfig(),
 		);
 	}
 
@@ -102,6 +105,89 @@ class SpecialLogTest extends SpecialPageTestBase {
 		);
 		$this->assertStringContainsString( '(logempty)', $html );
 		$this->assertStringNotContainsString( '(logentry-suppress-revision', $html );
+	}
+
+	public static function provideLogPagesToTestNewUsersLogOn() {
+		return [
+			'Special:Log' => [ '' ],
+			'Special:Log/newusers' => [ 'newusers' ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideLogPagesToTestNewUsersLogOn
+	 */
+	public function testNewUsersLog( $page ) {
+		// Assert log is empty to begin with and that the option
+		// to include temporary accounts exists if they're enabled
+		$this->enableAutoCreateTempUser();
+		[ $html, ] = $this->executeSpecialPage(
+			$page,
+			new FauxRequest(),
+			'qqx'
+		);
+		$this->assertStringContainsString( '(logempty)', $html );
+		$this->assertStringContainsString( 'excludetempacct', $html );
+
+		// Create a new temporary user and simulate logging it
+		$user = $this->getServiceContainer()
+			->getTempUserCreator()
+			->create( '~user-test-01', new FauxRequest() )->getUser();
+		$user->addToDatabase();
+
+		$logEntry = new ManualLogEntry(
+			'newusers',
+			'autocreate'
+		);
+		$logEntry->setPerformer( $user );
+		$logEntry->setTarget( $user->getUserPage() );
+		$logEntry->setParameters( [
+			'4::userid' => $user->getId(),
+		] );
+		$logId = $logEntry->insert();
+		$logEntry->publish( $logId );
+
+		// Temporary accounts are excluded by default, assert that log remains empty
+		[ $html, ] = $this->executeSpecialPage(
+			$page,
+			new FauxRequest(),
+			'qqx'
+		);
+		$this->assertStringContainsString( '(logempty)', $html );
+
+		// Include temporary accounts in results, assert that the log is no longer empty
+		[ $html, ] = $this->executeSpecialPage(
+			$page,
+			new FauxRequest( [ 'excludetempacct' => 0, 'issubmitted' => 1 ] ),
+			'qqx'
+		);
+		$this->assertStringNotContainsString( '(logempty)', $html );
+		$this->assertStringContainsString( $user->getName(), $html );
+	}
+
+	/**
+	 * @dataProvider provideLogPagesToTestNewUsersLogOn
+	 */
+	public function testNewUsersLogTempAccountsUnknown( $page ) {
+		// Pretend like temporary accounts don't exist and confirm that the option isn't available
+		$this->disableAutoCreateTempUser();
+		[ $html, ] = $this->executeSpecialPage(
+			$page,
+			new FauxRequest(),
+			'qqx'
+		);
+		$this->assertStringNotContainsString( 'excludetempacct', $html );
+	}
+
+	public function testTempAccountsExclusionNotShown() {
+		// On pages that don't show account creation logs,
+		// the temporary account exclusion option shouldn't be displayed
+		[ $html, ] = $this->executeSpecialPage(
+			'block',
+			new FauxRequest(),
+			'qqx'
+		);
+		$this->assertStringNotContainsString( 'excludetempacct', $html );
 	}
 
 	/**

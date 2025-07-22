@@ -2098,6 +2098,7 @@
 	"logeventslist-patrol-log": "Patrol log",
 	"logeventslist-tag-log": "Tag log",
 	"logeventslist-newusers-log": "User creation log",
+	"newusers-excludetempacct": "Exclude temporary account creations",
 	"all-logs-page": "Main public logs",
 	"alllogstext": "Combined display of all available logs of {{SITENAME}}.\nYou can narrow down the view by selecting a log type, the username (case-sensitive), or the affected page (also case-sensitive).",
 	"logempty": "No matching items in log.",
