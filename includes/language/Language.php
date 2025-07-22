@@ -2931,9 +2931,10 @@ class Language implements Bcp47Code {
 			??= $this->config->get( MainConfigNames::OverrideUcfirstCharacters );
 
 		// Use the config table and fall back to MB_CASE_TITLE
-		$ucFirst = $overrides[$first] ?? mb_convert_case( $first, MB_CASE_TITLE );
+		$ucFirst = $overrides[$first] ??
+			 mb_convert_case( $first, MB_CASE_TITLE );
 		if ( $ucFirst !== $first ) {
-			return $ucFirst . mb_substr( $str, 1 );
+			return UtfNormalValidator::toNFC( $ucFirst . mb_substr( $str, 1 ) );
 		} else {
 			return $str;
 		}
@@ -2948,7 +2949,7 @@ class Language implements Bcp47Code {
 		if ( $first ) {
 			return $this->ucfirst( $str );
 		} else {
-			return $this->isMultibyte( $str ) ? mb_strtoupper( $str ) : strtoupper( $str );
+			return $this->isMultibyte( $str ) ? UtfNormalValidator::toNFC( mb_strtoupper( $str ) ) : strtoupper( $str );
 		}
 	}
 
@@ -2969,7 +2970,7 @@ class Language implements Bcp47Code {
 
 		return $this->isMultibyte( $str )
 			// Assume this is a multibyte character and mb_internal_encoding() is appropriate
-			? mb_strtolower( mb_substr( $str, 0, 1 ) ) . mb_substr( $str, 1 )
+			? UtfNormalValidator::toNFC( mb_strtolower( mb_substr( $str, 0, 1 ) ) . mb_substr( $str, 1 ) )
 			// Assume this is a non-multibyte character and LC_CASE is appropriate
 			: lcfirst( $str );
 	}
@@ -2983,7 +2984,7 @@ class Language implements Bcp47Code {
 		if ( $first ) {
 			return $this->lcfirst( $str );
 		} else {
-			return $this->isMultibyte( $str ) ? mb_strtolower( $str ) : strtolower( $str );
+			return $this->isMultibyte( $str ) ? UtfNormalValidator::toNFC( mb_strtolower( $str ) ) : strtolower( $str );
 		}
 	}
 
@@ -3007,13 +3008,15 @@ class Language implements Bcp47Code {
 			$replaceRegexp = "/^([a-z]|[\\xc0-\\xff][\\x80-\\xbf]*)| ([a-z]|[\\xc0-\\xff][\\x80-\\xbf]*)/";
 
 			// function to use to capitalize a single char
-			return preg_replace_callback(
+			// Safer to normalize *after* concatenation of words, see
+			// https://unicode.org/reports/tr15/#Concatenation
+			return UtfNormalValidator::toNFC( preg_replace_callback(
 				$replaceRegexp,
 				static function ( $matches ) {
-					return mb_strtoupper( $matches[0] );
+					return mb_convert_case( $matches[0], MB_CASE_TITLE );
 				},
 				$str
-			);
+			) );
 		} else {
 			return ucwords( strtolower( $str ) );
 		}
@@ -3036,13 +3039,15 @@ class Language implements Bcp47Code {
 			$replaceRegexp = "/^([a-z]|[\\xc0-\\xff][\\x80-\\xbf]*)|" .
 				"$breaks([a-z]|[\\xc0-\\xff][\\x80-\\xbf]*)/";
 
-			return preg_replace_callback(
+			// Safer to normalize *after* concatenation of words, see
+			// https://unicode.org/reports/tr15/#Concatenation
+			return UtfNormalValidator::toNFC( preg_replace_callback(
 				$replaceRegexp,
 				static function ( $matches ) {
-					return mb_strtoupper( $matches[0] );
+					return mb_convert_case( $matches[0], MB_CASE_TITLE );
 				},
 				$str
-			);
+			) );
 		} else {
 			return preg_replace_callback(
 				'/\b([\w\x80-\xff]+)\b/',
@@ -3187,6 +3192,8 @@ class Language implements Bcp47Code {
 	 * @return string
 	 */
 	public function firstChar( $s ) {
+		// T400215: this won't include combining characters after the base,
+		// so ṩ will be fine but ḍ̇ and q̣̇ will lose 1 and 2 of their accents.
 		$firstChar = mb_substr( $s, 0, 1 );
 
 		if ( $firstChar === '' || strlen( $firstChar ) != 3 ) {

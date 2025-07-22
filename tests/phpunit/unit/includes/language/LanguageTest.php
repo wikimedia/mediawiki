@@ -31,7 +31,7 @@ class LanguageTest extends MediaWikiUnitTestCase {
 			$this->createNoOpMock( LanguageFallback::class ),
 			$this->createNoOpMock( LanguageConverterFactory::class ),
 			$this->createHookContainer(),
-			new HashConfig( [] )
+			new HashConfig( [ 'OverrideUcfirstCharacters' => [], ] )
 		);
 	}
 
@@ -136,6 +136,10 @@ class LanguageTest extends MediaWikiUnitTestCase {
 			'ASCII words' => [ 'TeSt 123 test foo-bar', 'Test 123 Test Foo-bar' ],
 			'Single multibyte word' => [ 'теСт', 'Тест' ],
 			'Multibyte words' => [ 'ТесТ 123, тест 测试 test раз-два', 'Тест 123, Тест 测试 Test Раз-два' ],
+			'Maintain NFC and Title case' => [
+				"\u{1FF7}oo, \u{1FF7}ee \u{1FF7}aa",
+				"\u{1FFC}\u{0342}oo, \u{1FFC}\u{0342}ee \u{1FFC}\u{0342}aa"
+			],
 		];
 	}
 
@@ -158,6 +162,13 @@ class LanguageTest extends MediaWikiUnitTestCase {
 			'Single multibyte word' => [ 'теСт', 'Тест' ],
 			'Single multibyte word, prefixed' => [ '-теСт', '-Тест' ],
 			'Multibyte words' => [ 'ТесТ 123, тест 测试 test раз-два', 'Тест 123, Тест 测试 Test Раз-Два' ],
+			'Title case' => [
+				"\u{01F3}oo \u{01F1}oo", "\u{01F2}oo \u{01F2}oo"
+			],
+			'Maintain NFC and Title case' => [
+				"\u{1FF7}oo, \u{1FF7}ee \u{1FF7}aa",
+				"\u{1FFC}\u{0342}oo, \u{1FFC}\u{0342}ee \u{1FFC}\u{0342}aa"
+			],
 		];
 	}
 
@@ -179,6 +190,66 @@ class LanguageTest extends MediaWikiUnitTestCase {
 			'Emoji' => [ '😂💀☢️', '😂' ],
 			// Korean is special-cased to remove single letters from syllables
 			'Korean' => [ '위키백과', 'ㅇ' ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideUcfirst
+	 */
+	public function testUcfirst( string $input, string $expected ) {
+		$lang = $this->getObj();
+		$this->assertSame( $expected, $lang->ucfirst( $input ) );
+	}
+
+	/**
+	 * @dataProvider provideUcfirst
+	 */
+	public function testLcfirst( string $expected, string $input ) {
+		$lang = $this->getObj();
+		$this->assertSame( $expected, $lang->lcfirst( $input ) );
+	}
+
+	public static function provideUcfirst() {
+		return [
+			'Empty string' => [ '', '' ],
+			'ASCII' => [ 'hello', 'Hello' ],
+			'Titlecase' => [ "\u{01F3}oo", "\u{01F2}oo" ],
+			'Maintain NFC' => [ "\u{1FF7}oo", "\u{1FFC}\u{0342}oo" ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideUcLc
+	 */
+	public function testUc( string $lower, string $upper ) {
+		$lang = $this->getObj();
+		$this->assertSame( $upper, $lang->uc( $lower ) );
+		$this->assertSame( $upper, $lang->uc( $upper ) );
+	}
+
+	/**
+	 * @dataProvider provideUcLc
+	 */
+	public function testLc( string $lower, string $upper, ?string $alt = null ) {
+		$lang = $this->getObj();
+		$this->assertSame( $lower, $lang->lc( $lower ) );
+		$this->assertSame( $alt ?? $lower, $lang->lc( $upper ) );
+	}
+
+	public static function provideUcLc() {
+		return [
+			'Empty string' => [ '', '' ],
+			'ASCII' => [ 'hello', 'HELLO' ],
+			'Uppercase not titlecase' => [ "\u{01F3}oo", "\u{01F1}OO" ],
+			'Initial and final sigma' => [
+				"σς", "ΣΣ",
+				// Before PHP 8.3 word-final sigma aren't lowercased correctly
+				version_compare( PHP_VERSION, "8.3" ) >= 0 ? null : "σσ"
+			],
+			// Some transformations are not reversible:
+			'Small sharp s' => [ "\u{00DF}", "SS", "ss" ],
+			'Turkish dotless i' => [ "\u{0131}", "I", "i" ],
+			'Maintain NFC' => [ "\u{1FF7}oo", "\u{03A9}\u{0342}\u{0399}OO", "\u{1FF6}\u{03B9}oo" ],
 		];
 	}
 
