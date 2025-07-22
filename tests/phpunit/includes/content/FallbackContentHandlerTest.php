@@ -37,7 +37,6 @@ class FallbackContentHandlerTest extends MediaWikiLangTestCase {
 		$context->setRequest( new FauxRequest() );
 
 		$handler = new FallbackContentHandler( 'horkyporky' );
-		$this->hideDeprecated( 'ContentHandler::getSlotDiffRendererInternal' );
 		$slotDiffRenderer = $handler->getSlotDiffRenderer( $context );
 
 		$oldContent = $handler->unserializeContent( 'Foo' );

@@ -130,10 +130,11 @@ class FallbackContentHandler extends ContentHandler {
 
 	/**
 	 * @param IContextSource $context
+	 * @param array $options See getSlotDiffRenderer()
 	 *
 	 * @return SlotDiffRenderer
 	 */
-	protected function getSlotDiffRendererInternal( IContextSource $context ) {
+	protected function getSlotDiffRendererWithOptions( IContextSource $context, $options = [] ) {
 		return new UnsupportedSlotDiffRenderer( $context );
 	}
 }
