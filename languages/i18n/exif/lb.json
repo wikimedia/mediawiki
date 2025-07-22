@@ -355,8 +355,8 @@
 	"exif-projectiontype": "Projektiounstyp",
 	"exif-projectiontype-equirectangular": "Equirektangulär",
 	"exif-usepanoramaviewer-true": "Jo",
-	"exif-usepanoramaviewer-false": "Neen",
+	"exif-usepanoramaviewer-false": "Nee",
 	"exif-exposurelockused-true": "Jo",
-	"exif-exposurelockused-false": "Neen",
+	"exif-exposurelockused-false": "Nee",
 	"exif-stitchingsoftware": "Stitching-Software"
 }

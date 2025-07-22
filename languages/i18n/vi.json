@@ -76,7 +76,8 @@
 			"Quangquy322",
 			"Chaiwan2009",
 			"Noeruchan",
-			"Nvdtn19"
+			"Nvdtn19",
+			"NgocAnMaster"
 		]
 	},
 	"sunday": "Chủ nhật",
@@ -444,7 +445,7 @@
 	"notloggedin": "Chưa đăng nhập",
 	"userlogin-noaccount": "Bạn chưa có tài khoản?",
 	"userlogin-joinproject": "Tham gia {{SITENAME}}",
-	"createaccount": "Mở tài khoản",
+	"createaccount": "Tạo tài khoản",
 	"userlogin-resetpassword-link": "Quên mật khẩu?",
 	"userlogin-helplink2": "Trợ giúp đăng nhập",
 	"userlogin-loggedin": "Bạn đã đăng nhập với tên {{GENDER:$1}}$1.\nHãy sử dụng biểu mẫu ở dưới để đăng nhập với tài khoản người dùng khác.",
@@ -474,7 +475,7 @@
 	"userexists": "Tên người dùng được nhập đã có người lấy.\nHãy chọn một tên khác.",
 	"createacct-normalization": "Tên người dùng của bạn sẽ bị chỉnh lại thành “$2” do hạn chế kỹ thuật.",
 	"loginerror": "Lỗi đăng nhập",
-	"createacct-error": "Lỗi mở tài khoản",
+	"createacct-error": "Lỗi tạo tài khoản",
 	"createaccounterror": "Không thể mở tài khoản: $1",
 	"nocookiesnew": "Bạn đã tạo tài khoản thành công, nhưng bạn chưa đăng nhập. {{SITENAME}} sử dụng cookie để đăng nhập vào tài khoản. Bạn đã tắt cookie. Xin hãy bật cookie lên, rồi đăng nhập lại với tên người dùng và mật khẩu mới.",
 	"nocookieslogin": "{{SITENAME}} sử dụng cookie để đăng nhập thành viên. Bạn đã tắt cookie. Xin hãy kích hoạt rồi thử lại.",

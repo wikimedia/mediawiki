@@ -2556,7 +2556,7 @@
 	"blockipsuccesssub": "Sikeres blokkolás",
 	"blockipsuccesstext": "„[[Special:Contributions/$1|$1]]” felhasználót blokkoltad.\n<br />Lásd a [[Special:BlockList|blokkolt IP-címek listáját]] az érvényben lévő blokkok áttekintéséhez.",
 	"ipb-empty-block": "A megadott blokk nem tartalmaz korlátozást.",
-	"ipb-block-not-found": "A blokkot nem lehetett létrehozni, de létező blokkot sem lehetett találni „$1” céllal. Ha ez a probléma továbbra is fönnáll, kérjük, [https://www.mediawiki.org/wiki/Special:MyLanguage/Help_talk:Blocking_users jelentsd a hibát].",
+	"ipb-block-not-found": "A blokkot nem lehetett létrehozni, valószínűleg azért, mert egy másik adminisztrátor párhuzamosan megpróbálta blokkolni ugyanezt a felhasználót. Ellenőrizd a blokkstátuszt, és próbáld újra.",
 	"ipb-blockingself": "Saját magad blokkolására készülsz! Biztos, hogy ezt szeretnéd tenni?",
 	"ipb-confirmhideuser": "Egy felhasználó blokkolására készülsz, úgy, hogy a „felhasználó elrejtése” funkció be van kapcsolva. Ez elrejti a felhasználó nevét az összes listában és naplóbejegyzésben. Biztosan ezt szeretnéd tenni?",
 	"ipb-confirmaction": "Ha biztos vagy benne, hogy tényleg ezt akarod csinálni, akkor jelöld be alul a {{int:ipb-confirm}} dobozt!",

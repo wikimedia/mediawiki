@@ -127,7 +127,8 @@
 			"아라",
 			"Leo",
 			"Pedian4169",
-			"Karacehennem"
+			"Karacehennem",
+			"Wooze"
 		]
 	},
 	"sunday": "Pazar",
@@ -944,7 +945,7 @@
 	"rev-suppressed-text-view": "Bu sayfa revizyonu gözetmenler$1 tarafından <strong>gizlenmiştir</strong>. Ayrıntılar [{{fullurl:{{#Special:Log}}/suppress|page=$1}} bastırma günlüğünde] yer almaktadır.",
 	"rev-deleted-no-diff": "Revizyonlardan biri hizmetliler tarafından <strong>silinmiş</strong> olduğu için bu farkı görüntüleyemezsiniz.\nAyrıntılar [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} silme günlüğünde] yer almaktadır.",
 	"rev-suppressed-no-diff": "Revizyonlardan biri gözetmenler tarafından <strong>bastırılmış</strong> olduğu için bu farkı görüntüleyemezsiniz.",
-	"rev-deleted-unhide-diff": "Bu değişikliğinin revizyonlarından birisi <strong>silinmiş</strong>.\nAyrıntılar [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} silme kayıtında] bulunabilir.\nBir hizmetli olarak eğer devam ederseniz [$1 bu farkı hala görebilirsiniz].",
+	"rev-deleted-unhide-diff": "Bu değişikliğin revizyonlarından biri <strong>silinmiş</strong>.\nAyrıntılar [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} silme kaydında] bulunabilir.\nBir hizmetli olarak eğer devam ederseniz [$1 bu farkı hala görebilirsiniz].",
 	"rev-suppressed-unhide-diff": "Revizyonlardan biri gözetmenler tarafından <strong>bastırılmış</strong>. Ayrıntılar [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} bastırma günlüğünde] yer almaktadır. Eğer bir hizmetli olarak devam ederseniz, [$1 bu farkı görebilirsiniz].",
 	"rev-deleted-diff-view": "Bu değişikliğinin revizyonlarından birisi <strong>silinmiş</strong>.\nBir hizmetli olarak bu değişikliği görebilirsiniz; [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} silme kayıtlarında] bulunabilir.",
 	"rev-suppressed-diff-view": "Revizyonlardan biri gözetmenler tarafından <strong>bastırılmış</strong>.\nBir hizmetli olarak bu değişikliği görebilirsiniz. Ayrıntılar [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} bastırma günlüğünde] yer almaktadır.",
@@ -3728,7 +3729,7 @@
 	"logentry-partialblock-block-page": "$2 {{PLURAL:$1|sayfası}}",
 	"logentry-partialblock-block-ns": "$2 {{PLURAL:$1|ad alanı|ad alanları}}",
 	"logentry-partialblock-block-action": "$2 {{PLURAL:$1|eylemi|eylemleri}}",
-	"logentry-partialblock-block": "$1, {{GENDER:$4|$3}} kullanıcısını $7 üzerinde $5 süreyle {{GENDER:$2|engelledi}} $6",
+	"logentry-partialblock-block": "$1, {{GENDER:$4|$3}} kullanıcısını $7 üzerinde $5 {{GENDER:$2|engelledi}} $6",
 	"logentry-partialblock-reblock": "$1 adlı kullanıcı {{GENDER:$4|$3}} adlı kullanıcının engellenme ayarlarını $5 süreyle $7 sayfası düzenlemelerini önleyecek şekilde {{GENDER:$2|değiştirdi}} $6",
 	"logentry-non-editing-block-block": "$1, {{GENDER:$4|$3}} kullanıcıya $5 bir bitiş tarihi süresiyle belirtilen düzenleme dışı işlemlerden {{GENDER:$2|engellendi}} $6",
 	"logentry-non-editing-block-reblock": "$1, $5 bitiş tarihi süresi olan belirli düzenleme dışı eylemler için {{GENDER:$4|$3}} için engel ayarlarını {{GENDER:$2|değiştirdi}} $6",
