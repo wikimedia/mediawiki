@@ -14,6 +14,7 @@ use MediaWiki\Title\TitleValue;
 use MediaWiki\Utils\MWTimestamp;
 use MediaWikiIntegrationTestCase;
 use stdClass;
+use Wikimedia\JsonCodec\JsonCodecable;
 use Wikimedia\TestingAccessWrapper;
 use Wikimedia\Tests\SerializationTestUtils;
 
@@ -777,11 +778,14 @@ abstract class ParserCacheSerializationTestCases {
 			'serializer' => 'serialize',
 			'deserializer' => 'unserialize'
 		] ];
-		if ( is_subclass_of( $class, JsonSerializable::class ) ) {
+		if (
+			is_subclass_of( $class, JsonSerializable::class ) ||
+			is_subclass_of( $class, JsonCodecable::class )
+		) {
 			$jsonCodec = new JsonCodec();
 			$serializationFormats[] = [
 				'ext' => 'json',
-				'serializer' => static function ( JsonSerializable $obj ) use ( $jsonCodec ) {
+				'serializer' => static function ( $obj ) use ( $jsonCodec ) {
 					return $jsonCodec->serialize( $obj );
 				},
 				'deserializer' => static function ( $data ) use ( $jsonCodec ) {
