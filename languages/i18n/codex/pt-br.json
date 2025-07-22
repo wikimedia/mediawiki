@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
+			"Eduardoaddad",
 			"Felipe L. Ewald"
 		]
 	},
+	"cdx-breadcrumb-overflow-label": "Mais opções de navegação",
 	"cdx-chip-input-chip-added": "Foi adicionado um chip $1.",
 	"cdx-chip-input-chip-removed": "Foi removido um chip $1.",
 	"cdx-input-chip-aria-description": "Pressione Enter para editar ou Delete para remover.",
