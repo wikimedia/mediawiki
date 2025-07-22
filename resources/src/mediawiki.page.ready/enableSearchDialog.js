@@ -6,9 +6,10 @@ let tempInput = null;
 
 /**
  * @param {module:mediawiki.router} router
+ * @param {HTMLButtonElement} trigger
  * @ignore
  */
-function addRoutes( router ) {
+function addRoutes( router, trigger ) {
 	clearAddressBar( router, searchRoute );
 	router.addRoute( searchRoute, () => {
 		const searchModuleName = config.searchModule;
@@ -22,6 +23,13 @@ function addRoutes( router ) {
 					transferFocusToRealInput();
 				}
 			}
+		} );
+	} );
+
+	router.addRoute( /$/, () => {
+		// Return focus to the search button after exiting the search overlay
+		requestAnimationFrame( () => {
+			trigger.focus();
 		} );
 	} );
 }
@@ -71,14 +79,14 @@ function transferFocusToRealInput() {
  * Associates a given element with the display of a search
  * dialog.
  *
- * @param {Element} trigger that will launch the search dialog.
+ * @param {HTMLButtonElement} trigger that will launch the search dialog.
  * @namespace loadSearchModule
  * @memberof module:mediawiki.page.ready
  */
 module.exports = function ( trigger ) {
 	mw.loader.using( 'mediawiki.router' ).then( () => {
 		const router = require( 'mediawiki.router' );
-		addRoutes( router );
+		addRoutes( router, trigger );
 	} );
 
 	trigger.addEventListener( 'click', ( ev ) => {
