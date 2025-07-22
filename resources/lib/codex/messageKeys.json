@@ -1,4 +1,6 @@
 [
+	"cdx-breadcrumb-navigation-label",
+	"cdx-breadcrumb-overflow-label",
 	"cdx-chip-input-chip-added",
 	"cdx-chip-input-chip-removed",
 	"cdx-dialog-close-button-label",

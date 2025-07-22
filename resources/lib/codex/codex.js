@@ -325,7 +325,7 @@ const _export_sfc = (sfc, props) => {
 };
 const _hoisted_1$y = ["aria-hidden"];
 const _hoisted_2$l = { key: 0 };
-const _hoisted_3$d = ["innerHTML"];
+const _hoisted_3$e = ["innerHTML"];
 const _hoisted_4$b = ["d"];
 function _sfc_render$B(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock(
@@ -352,7 +352,7 @@ function _sfc_render$B(_ctx, _cache, $props, $setup, $data, $options) {
         _ctx.iconSvg ? (openBlock(), createElementBlock("g", {
           key: 1,
           innerHTML: _ctx.iconSvg
-        }, null, 8, _hoisted_3$d)) : (openBlock(), createElementBlock("path", {
+        }, null, 8, _hoisted_3$e)) : (openBlock(), createElementBlock("path", {
           key: 2,
           d: _ctx.iconPath
         }, null, 8, _hoisted_4$b))
@@ -654,7 +654,7 @@ const _sfc_main$z = defineComponent({
 });
 const _hoisted_1$x = ["open"];
 const _hoisted_2$k = { class: "cdx-accordion__header__title" };
-const _hoisted_3$c = { class: "cdx-accordion__header__description" };
+const _hoisted_3$d = { class: "cdx-accordion__header__description" };
 function _sfc_render$z(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_cdx_icon = resolveComponent("cdx-icon");
   const _component_cdx_button = resolveComponent("cdx-button");
@@ -669,7 +669,7 @@ function _sfc_render$z(_ctx, _cache, $props, $setup, $data, $options) {
           createElementVNode("span", _hoisted_2$k, [
             renderSlot(_ctx.$slots, "title")
           ]),
-          createElementVNode("span", _hoisted_3$c, [
+          createElementVNode("span", _hoisted_3$d, [
             renderSlot(_ctx.$slots, "description")
           ])
         ]),
@@ -1056,7 +1056,7 @@ const _sfc_main$w = defineComponent({
 });
 const _hoisted_1$u = { class: "cdx-card__text" };
 const _hoisted_2$i = { class: "cdx-card__text__title" };
-const _hoisted_3$b = {
+const _hoisted_3$c = {
   key: 0,
   class: "cdx-card__text__description"
 };
@@ -1090,7 +1090,7 @@ function _sfc_render$w(_ctx, _cache, $props, $setup, $data, $options) {
         createElementVNode("span", _hoisted_2$i, [
           renderSlot(_ctx.$slots, "title")
         ]),
-        _ctx.$slots.description ? (openBlock(), createElementBlock("span", _hoisted_3$b, [
+        _ctx.$slots.description ? (openBlock(), createElementBlock("span", _hoisted_3$c, [
           renderSlot(_ctx.$slots, "description")
         ])) : createCommentVNode("v-if", true),
         _ctx.$slots["supporting-text"] ? (openBlock(), createElementBlock("span", _hoisted_4$a, [
@@ -1283,7 +1283,7 @@ const _sfc_main$v = defineComponent({
 });
 const _hoisted_1$t = ["for"];
 const _hoisted_2$h = { class: "cdx-label__label__text" };
-const _hoisted_3$a = {
+const _hoisted_3$b = {
   key: 1,
   class: "cdx-label__label__optional-flag"
 };
@@ -1322,7 +1322,7 @@ function _sfc_render$v(_ctx, _cache, $props, $setup, $data, $options) {
         ]),
         _ctx.optionalFlag || _ctx.optional ? (openBlock(), createElementBlock(
           "span",
-          _hoisted_3$a,
+          _hoisted_3$b,
           toDisplayString(" ") + " " + toDisplayString(_ctx.translatedOptionalFlag),
           1
           /* TEXT */
@@ -3906,7 +3906,7 @@ const _hoisted_1$q = {
   "aria-orientation": "horizontal"
 };
 const _hoisted_2$e = ["readonly", "disabled"];
-const _hoisted_3$9 = {
+const _hoisted_3$a = {
   key: 0,
   ref: "separateInputWrapper",
   class: "cdx-chip-input__separate-input"
@@ -3987,7 +3987,7 @@ function _sfc_render$s(_ctx, _cache, $props, $setup, $data, $options) {
       ),
       _ctx.separateInput ? (openBlock(), createElementBlock(
         "div",
-        _hoisted_3$9,
+        _hoisted_3$a,
         [
           withDirectives(createElementVNode("input", mergeProps({
             ref: "input",
@@ -4319,7 +4319,7 @@ const _sfc_main$q = defineComponent({
 });
 const _hoisted_1$o = ["id", "aria-disabled", "aria-selected", "aria-checked"];
 const _hoisted_2$c = { class: "cdx-menu-item__text" };
-const _hoisted_3$8 = ["lang"];
+const _hoisted_3$9 = ["lang"];
 const _hoisted_4$7 = ["lang"];
 const _hoisted_5$7 = ["lang"];
 const _hoisted_6$6 = ["lang"];
@@ -4374,7 +4374,7 @@ function _sfc_render$q(_ctx, _cache, $props, $setup, $data, $options) {
                   1
                   /* TEXT */
                 )
-              ], 8, _hoisted_3$8)),
+              ], 8, _hoisted_3$9)),
               _ctx.match ? (openBlock(), createElementBlock(
                 Fragment,
                 { key: 2 },
@@ -5310,7 +5310,7 @@ const _hoisted_2$b = {
   key: 0,
   class: "cdx-menu__pending cdx-menu-item"
 };
-const _hoisted_3$7 = {
+const _hoisted_3$8 = {
   key: 1,
   class: "cdx-menu__no-results cdx-menu-item",
   role: "option"
@@ -5347,7 +5347,7 @@ function _sfc_render$o(_ctx, _cache, $props, $setup, $data, $options) {
         _ctx.showPending && _ctx.computedMenuItems.length === 0 && _ctx.$slots.pending ? (openBlock(), createElementBlock("li", _hoisted_2$b, [
           renderSlot(_ctx.$slots, "pending")
         ])) : createCommentVNode("v-if", true),
-        _ctx.computedShowNoResultsSlot ? (openBlock(), createElementBlock("li", _hoisted_3$7, [
+        _ctx.computedShowNoResultsSlot ? (openBlock(), createElementBlock("li", _hoisted_3$8, [
           renderSlot(_ctx.$slots, "no-results")
         ])) : createCommentVNode("v-if", true),
         (openBlock(true), createElementBlock(
@@ -6532,7 +6532,7 @@ const _hoisted_2$a = {
   key: 0,
   class: "cdx-dialog__header__title-group"
 };
-const _hoisted_3$6 = ["id"];
+const _hoisted_3$7 = ["id"];
 const _hoisted_4$5 = {
   key: 0,
   class: "cdx-dialog__header__subtitle"
@@ -6607,7 +6607,7 @@ function _sfc_render$l(_ctx, _cache, $props, $setup, $data, $options) {
                       createElementVNode("h2", {
                         id: _ctx.labelId,
                         class: "cdx-dialog__header__title"
-                      }, toDisplayString(_ctx.title), 9, _hoisted_3$6),
+                      }, toDisplayString(_ctx.title), 9, _hoisted_3$7),
                       _ctx.subtitle ? (openBlock(), createElementBlock(
                         "p",
                         _hoisted_4$5,
@@ -7051,7 +7051,7 @@ const _sfc_main$j = defineComponent({
 });
 const _hoisted_1$h = { class: "cdx-field__control" };
 const _hoisted_2$8 = { class: "cdx-field__help-text" };
-const _hoisted_3$5 = {
+const _hoisted_3$6 = {
   key: 0,
   class: "cdx-field__validation-message"
 };
@@ -7095,7 +7095,7 @@ function _sfc_render$j(_ctx, _cache, $props, $setup, $data, $options) {
       createElementVNode("div", _hoisted_2$8, [
         renderSlot(_ctx.$slots, "help-text")
       ]),
-      !_ctx.computedDisabled && _ctx.validationMessage || _ctx.$slots[_ctx.validationMessageType] ? (openBlock(), createElementBlock("div", _hoisted_3$5, [
+      !_ctx.computedDisabled && _ctx.validationMessage || _ctx.$slots[_ctx.validationMessageType] ? (openBlock(), createElementBlock("div", _hoisted_3$6, [
         createVNode(_component_cdx_message, {
           type: _ctx.validationMessageType,
           inline: true
@@ -7880,7 +7880,7 @@ const _sfc_main$e = defineComponent({
     const { computedDisabled } = useFieldData(toRef(props, "disabled"));
     const { rootClasses, rootStyle, otherAttrs } = useSplitAttributes(attrs);
     function onKeydown(e) {
-      if (!menu.value || computedDisabled.value || props.menuItems.length === 0 || e.key === " ") {
+      if (!menu.value || computedDisabled.value || props.menuItems.length === 0 || e.key === " " || e.key === "Enter") {
         return;
       }
       menu.value.delegateKeyNavigation(e);
@@ -8509,7 +8509,12 @@ const _sfc_main$c = defineComponent({
     }
     function onFocusOut(event) {
       const referenceEl = unwrapElement(reference.value);
-      const isOutsidePopoverAndTrigger = floating.value && !floating.value.contains(event.target) && !(referenceEl == null ? void 0 : referenceEl.contains(event.target));
+      const isOutsidePopoverAndTrigger = (
+        // Don't close the popover when the viewport's native scrollbar is clicked (T388302)
+        event.target !== document.documentElement && // ...or when the popover or something inside it is clicked
+        (floating.value && !floating.value.contains(event.target)) && // ...or when the trigger or something inside it is clicked
+        !(referenceEl == null ? void 0 : referenceEl.contains(event.target))
+      );
       if (isOutsidePopoverAndTrigger) {
         close();
       }
@@ -8564,7 +8569,7 @@ const _hoisted_2$7 = {
   key: 1,
   class: "cdx-popover__header__title"
 };
-const _hoisted_3$4 = { class: "cdx-popover__header__button-wrapper" };
+const _hoisted_3$5 = { class: "cdx-popover__header__button-wrapper" };
 const _hoisted_4$4 = { class: "cdx-popover__body" };
 const _hoisted_5$4 = {
   key: 1,
@@ -8600,7 +8605,7 @@ function _sfc_render$c(_ctx, _cache, $props, $setup, $data, $options) {
               1
               /* TEXT */
             )) : createCommentVNode("v-if", true),
-            createElementVNode("div", _hoisted_3$4, [
+            createElementVNode("div", _hoisted_3$5, [
               _ctx.useCloseButton ? (openBlock(), createBlock(_component_cdx_button, {
                 key: 0,
                 class: "cdx-popover__header__close-button",
@@ -9186,6 +9191,13 @@ const _sfc_main$8 = defineComponent({
       default: ""
     },
     /**
+     * Name of the input, used for forms.
+     */
+    name: {
+      type: String,
+      default: void 0
+    },
+    /**
      * Whether the dropdown is disabled.
      */
     disabled: {
@@ -9339,6 +9351,7 @@ const _sfc_main$8 = defineComponent({
 });
 const _hoisted_1$8 = ["aria-disabled"];
 const _hoisted_2$4 = ["id", "aria-controls", "aria-activedescendant", "aria-expanded", "aria-describedby"];
+const _hoisted_3$4 = ["name", "value"];
 function _sfc_render$8(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_cdx_icon = resolveComponent("cdx-icon");
   const _component_cdx_menu = resolveComponent("cdx-menu");
@@ -9398,7 +9411,13 @@ function _sfc_render$8(_ctx, _cache, $props, $setup, $data, $options) {
       ]),
       _: 3
       /* FORWARDED */
-    }, 16, ["id", "selected", "expanded", "menu-items"])
+    }, 16, ["id", "selected", "expanded", "menu-items"]),
+    _ctx.name ? (openBlock(), createElementBlock("input", {
+      key: 0,
+      type: "hidden",
+      name: _ctx.name,
+      value: _ctx.selected
+    }, null, 8, _hoisted_3$4)) : createCommentVNode("v-if", true)
   ], 14, _hoisted_1$8);
 }
 const CdxSelect = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["render", _sfc_render$8]]);
@@ -9824,13 +9843,7 @@ const _sfc_main$6 = defineComponent({
      * @property {number} offset Index of the first visible row on the new page.
      * @property {number} rows Number of rows to display.
      */
-    "load-more",
-    /**
-     * When the user requests the last page of data from the server.
-     *
-     * @property {number} rows Number of rows to display.
-     */
-    "last"
+    "load-more"
   ],
   setup(props, { emit }) {
     const offset2 = ref(0);
@@ -11718,9 +11731,8 @@ const _sfc_main = defineComponent({
     );
     const internalClasses = computed(() => ({
       "cdx-typeahead-search--expanded": expanded.value,
-      // isMobileView will override thumbnail and autoExpandWidth classes because the
-      // search input on mobile views shouldnt have extra space for thumbnails to save space
-      "cdx-typeahead-search--show-thumbnail": props.showThumbnail && !props.isMobileView,
+      "cdx-typeahead-search--is-mobile-view": props.isMobileView,
+      "cdx-typeahead-search--show-thumbnail": props.showThumbnail,
       "cdx-typeahead-search--auto-expand-width": props.showThumbnail && props.autoExpandWidth && !props.isMobileView
     }));
     const {

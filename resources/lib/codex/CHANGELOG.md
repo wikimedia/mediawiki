@@ -1,3 +1,51 @@
+# 2.2.1 / 2025-07-22
+
+## Features
+- Select: Add hidden HTML form element when a name is provided (Nick Garnsworthy)
+
+## Styles
+- Button, styles: Remove padding for icon-only Buttons (Derek Torsani)
+- Message, styles: Ensure icon never shrinks (Anne Tomasevich)
+- styles: Add WIP responsive Grid layout system with Less mixins (Volker E.)
+- styles, sandbox: apply typography mixin to Sandbox demo pages (Lauralyn Watson)
+- styles: add responsive styles to the Sandbox (Lauralyn Watson)
+- styles: Simplify calcs introduced in font modes (Derek Torsani)
+- TypeaheadSearch, styles: Improve footer styles for mobile view (Anne Tomasevich)
+- docs, styles: remove unused custom styles in contributing-icons.md (Lauralyn Watson)
+- TypeaheadSearch: Fix spacing in footer without thumbnails (Formasitchijoh)
+- Message: Update line-height of content (Derek Torsani)
+
+## Tokens
+- InputChip, tokens: Update max-height of chips (Derek Torsani)
+
+## Code
+- demo, sandbox: fix console warnings in the Sandbox (Lauralyn Watson)
+- demo: add Select with hidden input for forms to Sandbox (Lauralyn Watson)
+- Breadcrumb: Add WIP Breadcrumb component (Doğu Abaris)
+- Breadcrumb: Standardize and simplify code and docs (Anne Tomasevich)
+- Breadcrumb, demo: add demos and i18n translatable string (Lauralyn Watson)
+- Popover: Don't close when viewport scrollbar is clicked (Roan Kattouw)
+- Table: Remove nonexistent 'last' event (Roan Kattouw)
+- MenuButton: Enter key should expand the menu (Lauralyn Watson)
+
+## Build
+- build: Update build-if-missing script in icons package (Anne Tomasevich)
+- build: Set "moduleResolution" TypeScript config to "bundler" (Roan Kattouw)
+- build: Update 'stylelint' dependencies (Volker E.)
+- build: Update 'svglint' and 'svgo' dependencies (Volker E.)
+
+## Documentation
+- docs: Improve Lookup and MultiselectLookup demos with fetching (Anne Tomasevich)
+- docs: add favicon (Lauralyn Watson)
+- docs: Fix broken link to Wikifunctions (Timo Tijhof)
+- docs: Fix display of example icons on "Contibuting icons" page (Roan Kattouw)
+- docs: add favicon types (Lauralyn Watson)
+- docs: Minor optimizations to new favicon files (Thiemo Kreuz)
+- docs: Fix typo and use default fill shorthand color for icon example (Volker E.)
+- docs: Fix number props and type links with brackets (Anne Tomasevich)
+- docs: Expand on NVM for simpler onboarding and unify on "npm" term (Volker E.)
+- docs: Consolidate imports in contributing-icons.md (Roan Kattouw)
+
 # 2.2.0 / 2025-06-24
 
 ## Deprecating changes
