@@ -23,7 +23,8 @@
 		mw.notify( $content, {
 			title: title,
 			classes: [ 'postedit-tempuserpopup' ],
-			autoHide: false
+			autoHide: true,
+			autoHideSeconds: 'long'
 		} );
 	};
 
