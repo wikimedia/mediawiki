@@ -3,7 +3,7 @@
 namespace Wikimedia\Message;
 
 use InvalidArgumentException;
-use Wikimedia\JsonCodec\JsonCodecableTrait;
+use Wikimedia\JsonCodec\Hint;
 
 /**
  * Value object representing a message parameter that consists of a list of values.
@@ -13,7 +13,6 @@ use Wikimedia\JsonCodec\JsonCodecableTrait;
  * @newable
  */
 class ListParam extends MessageParam {
-	use JsonCodecableTrait;
 
 	private string $listType;
 
@@ -81,6 +80,20 @@ class ListParam extends MessageParam {
 			),
 			'type' => $this->listType,
 		];
+	}
+
+	/** @inheritDoc */
+	public static function jsonClassHintFor( string $keyName ) {
+		// Reduce serialization overhead by eliminating the type information
+		// when the list consists of MessageParam instances
+		if ( $keyName === ParamType::LIST ) {
+			return Hint::build(
+				MessageParam::class, Hint::INHERITED,
+				Hint::LIST, Hint::USE_SQUARE,
+				Hint::ONLY_FOR_DECODE
+			);
+		}
+		return null;
 	}
 
 	public static function newFromJsonArray( array $json ): ListParam {

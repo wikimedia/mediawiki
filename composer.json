@@ -65,7 +65,7 @@
 		"wikimedia/cssjanus": "2.3.0",
 		"wikimedia/html-formatter": "4.1.0",
 		"wikimedia/ip-utils": "5.0.0",
-		"wikimedia/json-codec": "3.0.3 || 4.0.0",
+		"wikimedia/json-codec": "4.0.0",
 		"wikimedia/less.php": "5.2.1",
 		"wikimedia/minify": "2.9.0",
 		"wikimedia/normalized-exception": "2.1.1",

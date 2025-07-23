@@ -4,7 +4,6 @@ namespace Wikimedia\Message;
 
 use InvalidArgumentException;
 use Stringable;
-use Wikimedia\JsonCodec\JsonCodecableTrait;
 
 /**
  * Value object representing a message parameter holding a single value.
@@ -14,7 +13,6 @@ use Wikimedia\JsonCodec\JsonCodecableTrait;
  * @newable
  */
 class ScalarParam extends MessageParam {
-	use JsonCodecableTrait;
 
 	/**
 	 * Construct a text parameter
@@ -83,6 +81,14 @@ class ScalarParam extends MessageParam {
 		return [
 			$this->type => $this->value,
 		];
+	}
+
+	/** @inheritDoc */
+	public static function jsonClassHintFor( string $keyName ) {
+		// If this is not a scalar value (string|int|float) then it's
+		// probably a MessageValue, and we can hint it as such to
+		// reduce serialization overhead.
+		return MessageValue::hint();
 	}
 
 	public static function newFromJsonArray( array $json ): ScalarParam {
