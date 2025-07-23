@@ -173,6 +173,10 @@ class QueryBuilderFromRawSqlTest extends MediaWikiUnitTestCase {
 				'SELECT * FROM t1 WHERE c1 IN (N,...,N)'
 			],
 			[
+				'INSERT INTO t1 (1,2,\'3\',\'four\')',
+				'INSERT INTO t1 (N,...,N,\'X\')'
+			],
+			[
 				'SELECT * FROM t1 WHERE c1 IN ("A","B")',
 				'SELECT * FROM t1 WHERE c1 IN (\'X\')'
 			],
@@ -182,6 +186,11 @@ class QueryBuilderFromRawSqlTest extends MediaWikiUnitTestCase {
 			],
 			[
 				'SELECT * FROM t3 WHERE c1 IN (' . implode( ',', range( -1, -5000 ) ) . ')',
+				'SELECT * FROM t3 WHERE c1 IN (N,...,N)'
+			],
+			[
+				// High range to test against backtrack limits - T391874
+				'SELECT * FROM t3 WHERE c1 IN (' . implode( ',', range( 1, 10000 ) ) . ')',
 				'SELECT * FROM t3 WHERE c1 IN (N,...,N)'
 			]
 		];

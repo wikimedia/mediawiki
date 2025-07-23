@@ -198,7 +198,7 @@ class QueryBuilderFromRawSql {
 
 		# All numbers => N,
 		# except the ones surrounded by characters, e.g. l10n
-		$sql = preg_replace( '/-?\d++(,-?\d++)+/', 'N,...,N', $sql );
+		$sql = preg_replace( '/-?\d++(,-?\d++)++/', 'N,...,N', $sql );
 		$sql = preg_replace( '/(?<![a-zA-Z])-?\d+(?![a-zA-Z])/', 'N', $sql );
 
 		return $sql;
