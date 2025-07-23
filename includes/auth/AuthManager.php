@@ -338,20 +338,6 @@ class AuthManager implements LoggerAwareInterface {
 			throw new LogicException( 'Authentication is not possible now' );
 		}
 
-		// If the session is associated with a temporary account user, invalidate its
-		// session, remove the TempUser:name property from the session, and reset the
-		// session state to a new, anonymous user. This means that if the login fails,
-		// the user is no longer authenticated to the temporary account. This is necessary
-		// in order to provide guarantees for avoiding a linkage between temporary
-		// account users and named users.
-		if ( $session->getUser()->isTemp() && $this->request->wasPosted() ) {
-			SessionManager::singleton()->invalidateSessionsForUser( $session->getUser() );
-			$session->setUser( $this->userFactory->newAnonymous() );
-			$session->remove( 'TempUser:name' );
-			$session->save();
-			$this->setRequestContextUserFromSessionUser();
-		}
-
 		$guessUserName = null;
 		foreach ( $reqs as $req ) {
 			$req->returnToUrl = $returnToUrl;
@@ -868,6 +854,15 @@ class AuthManager implements LoggerAwareInterface {
 					$this->getAuthenticationSessionData( self::REMEMBER_ME );
 			}
 			$loginWasInteractive = $this->getAuthenticationSessionData( self::LOGIN_WAS_INTERACTIVE, true );
+			// If the session is associated with a temporary account user, invalidate its
+			// session and remove the TempUser:name property from the session
+			// This is necessary in order to ensure that the temporary account session is exited
+			// when the user transitions to a logged-in named account
+			if ( $session->getUser()->isTemp() ) {
+				SessionManager::singleton()->invalidateSessionsForUser( $session->getUser() );
+				$session->remove( 'TempUser:name' );
+				$session->save();
+			}
 			$this->setSessionDataForUser( $user, $rememberMe, $loginWasInteractive );
 			$this->callMethodOnProviders( self::CALL_ALL, 'postAuthentication', [ $user, $response ] );
 			$performer = $session->getUser();
