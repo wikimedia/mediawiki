@@ -251,7 +251,7 @@ define( 'CONTENT_MODEL_JAVASCRIPT', 'javascript' );
 define( 'CONTENT_MODEL_CSS', 'css' );
 define( 'CONTENT_MODEL_TEXT', 'text' );
 define( 'CONTENT_MODEL_JSON', 'json' );
-/** @since 1.44 */
+/** @since 1.45 */
 define( 'CONTENT_MODEL_VUE', 'vue' );
 define( 'CONTENT_MODEL_UNKNOWN', 'unknown' );
 /** @} */
