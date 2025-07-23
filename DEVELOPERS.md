@@ -252,6 +252,9 @@ To install the EventLogging extension:
      mediawiki:
        volumes:
          - ~/Code/EventLogging:/var/www/html/w/extensions/EventLogging:cached
+     mediawiki-jobrunner:
+       volumes:
+         - ~/Code/EventLogging:/var/www/html/w/extensions/EventLogging:cached
     ```
 
 2. Enable the extension, by adding the following to `LocalSettings.php`:
