@@ -88,11 +88,7 @@ class ExtensionProcessorTest extends MediaWikiUnitTestCase {
 		$processor = new ExtensionProcessor();
 		$processor->extractInfo( $this->extensionPath, self::$default + [
 			'AutoloadClasses' => [ 'FooBar' => 'includes/FooBar.php' ],
-			'AutoloadNamespaces' => [
-				'\Foo\Bar\\' => 'includes/foo/bar/',
-				// Test case to ensure a missing / is added
-				'\Foo\Bar2\\' => 'includes/foo/bar2',
-			],
+			'AutoloadNamespaces' => [ '\Foo\Bar\\' => 'includes/foo/bar/' ],
 			'TestAutoloadClasses' => [ 'FooBarTest' => 'tests/FooBarTest.php' ],
 			'TestAutoloadNamespaces' => [ '\Foo\Bar\Test\\' => 'tests/foo/bar/' ],
 			'load_composer_autoloader' => true,
@@ -107,10 +103,7 @@ class ExtensionProcessorTest extends MediaWikiUnitTestCase {
 			$extracted['autoloaderClasses']
 		);
 		$this->assertSame(
-			[
-				'\Foo\Bar\\' => $this->dirname . '/includes/foo/bar/',
-				'\Foo\Bar2\\' => $this->dirname . '/includes/foo/bar2/',
-			],
+			[ '\Foo\Bar\\' => $this->dirname . '/includes/foo/bar/' ],
 			$extracted['autoloaderNS']
 		);
 		$this->assertSame(
@@ -132,7 +125,6 @@ class ExtensionProcessorTest extends MediaWikiUnitTestCase {
 		$this->assertSame(
 			[
 				'\Foo\Bar\\' => $this->dirname . '/includes/foo/bar/',
-				'\Foo\Bar2\\' => $this->dirname . '/includes/foo/bar2/',
 				'\Foo\Bar\Test\\' => $this->dirname . '/tests/foo/bar/'
 			],
 			$extracted['autoloaderNS']

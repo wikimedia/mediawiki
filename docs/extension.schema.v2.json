@@ -1086,8 +1086,7 @@
 			"description": "Mapping of PSR-4 compliant namespace to directory for autoloading",
 			"patternProperties": {
 				"^[A-Za-z0-9\\\\]+\\\\$": {
-					"type": "string",
-					"pattern": "/$"
+					"type": "string"
 				}
 			},
 			"additionalProperties": false
@@ -1100,8 +1099,7 @@
 			"description": "Mapping of PSR-4 compliant namespace to directory for autoloading to be used in tests",
 			"patternProperties": {
 				"^[A-Za-z0-9\\\\]+\\\\$": {
-					"type": "string",
-					"pattern": "/$"
+					"type": "string"
 				}
 			},
 			"additionalProperties": false

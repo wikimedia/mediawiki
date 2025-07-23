@@ -140,8 +140,6 @@ because of Phabricator reports.
 
 === Breaking changes in 1.45 ===
 
-* PSR-4 namespace loading via Autoloader requires trailing slash at the path,
-  an extra slash is no longer added unconditionally.
 * SessionProvider::setLogger(), setConfig(), setManager(), setHookContainer()
   methods deprecated in 1.37, have been removed.
 * SqlBagOStuff::expireAll() and ::deleteAll(), deprecated in 1.41 have been
