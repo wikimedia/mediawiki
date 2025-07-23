@@ -10,6 +10,7 @@
 	"cdx-dialog-close-button-label": "Джаб",
 	"cdx-label-optional-flag": "(амалсыз тюлдю)",
 	"cdx-message-dismiss-button-label": "Джаб",
+	"cdx-popover-close-button-label": "Джаб",
 	"cdx-search-input-search-button-label": "Изле",
 	"cdx-table-select-all-label": "Бютеу тизгинлени сайла",
 	"cdx-table-select-row-label": "$2 тизгинден $1 сайла",
@@ -26,5 +27,6 @@
 	"cdx-table-pagination-status-message-indeterminate-long": "Кёб эсебден $1-$2 кёргюзюледи",
 	"cdx-table-pagination-status-message-indeterminate-short": "Кёб эсебден $1-$2",
 	"cdx-table-pagination-status-message-indeterminate-final": "Ахыр {{PLURAL:$1|$1 эсеб}} кёргюзюледи",
-	"cdx-table-pagination-status-message-pending": "Эсебле джюкленедиле..."
+	"cdx-table-pagination-status-message-pending": "Эсебле джюкленедиле...",
+	"cdx-table-no-data-message": "Билгиле джокъдула."
 }

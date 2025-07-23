@@ -7,7 +7,8 @@
 			"Piramidion",
 			"Vlad5250",
 			"Ата",
-			"Пан Хаунд"
+			"Пан Хаунд",
+			"METROKOP228 UA"
 		]
 	},
 	"rest-prefix-mismatch": "Зазначений шлях ($1) не знайдено всередині базового шляху REST API ($2)",
@@ -54,5 +55,16 @@
 	"rest-cannot-load-file": "Файл з назвою «$1» неможливо завантажити.",
 	"rest-cross-origin-anon-write": "Анонімні cross-origin запити на запис не дозволені",
 	"rest-requires-safe-against-csrf": "Для цієї кінцевої точки потрібен безпечний для CSRF постачальник сеансу.",
-	"rest-badtoken": "Наданий маркер CSRF недійсний."
+	"rest-badtoken": "Наданий маркер CSRF недійсний.",
+	"rest-module": "Модуль",
+	"rest-module-default": "Усталений модуль",
+	"rest-param-desc-media-links-title": "Назва сторінки",
+	"rest-param-desc-media-file-title": "Назва файлу",
+	"rest-param-desc-media-mediatype": "Тип файлу",
+	"rest-property-desc-revision-id": "ID версії",
+	"rest-property-desc-revision-timestamp": "Мітка часу версії",
+	"rest-property-desc-revision-array": "Список версій сторінки",
+	"rest-property-desc-page-id": "Ідентифікатор сторінки",
+	"rest-property-desc-page-title": "Назва сторінки",
+	"rest-property-desc-page-language-code": "Код мови"
 }

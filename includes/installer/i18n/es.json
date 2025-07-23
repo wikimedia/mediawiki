@@ -55,7 +55,8 @@
 			"Translationista",
 			"Vivaelcelta",
 			"아라",
-			"JaimeDes"
+			"JaimeDes",
+			"Diegodlh"
 		]
 	},
 	"config-desc": "El instalador de MediaWiki",
@@ -158,7 +159,7 @@
 	"config-type-postgres": "PostgreSQL",
 	"config-type-sqlite": "SQLite",
 	"config-support-info": "MediaWiki es compatible con los siguientes sistemas de bases de datos:\n\n$1\n\nSi no encuentras en el listado el sistema de base de datos que estás intentando utilizar, sigue las instrucciones enlazadas arriba para activar la compatibilidad.",
-	"config-dbsupport-mysql": "* [{{int:version-db-mariadb-url}} MariaDB] es la base de datos mayoritaria para MediaWiki y la que goza de mayor compatibilidad. MediaWiki también funciona con [{{int:version-db-myslql-url}} MySQL] y [{{int:version-db-percona-url}} Percona Server], que son compatibles con MariaDB. ([https://www.php.net/manual/es/mysql.installation.php Cómo compilar PHP con compatibilidad MySQL])",
+	"config-dbsupport-mysql": "* [{{int:version-db-mariadb-url}} MariaDB] es la base de datos mayoritaria para MediaWiki y la que goza de mayor compatibilidad. MediaWiki también funciona con [{{int:version-db-mysql-url}} MySQL] y [{{int:version-db-percona-url}} Percona Server], que son compatibles con MariaDB. ([https://www.php.net/manual/es/mysql.installation.php Cómo compilar PHP con compatibilidad MySQL])",
 	"config-dbsupport-postgres": "* [{{int:version-db-postgres-url}} PostgreSQL] es un sistema de base de datos popular de código abierto, alternativa a MySQL. ([https://www.php.net/manual/es/pgsql.installation.php Cómo compilar PHP con compatibilidad PostgreSQL]).",
 	"config-dbsupport-sqlite": "* [{{int:version-db-sqlite-url}} SQLite] es un sistema de base de datos ligero con gran compatibilidad con MediaWiki. ([https://www.php.net/manual/en/pdo.installation.php Cómo compilar PHP con compatibilidad SQLite] mediante PDO)",
 	"config-header-mysql": "Configuración de MariaDB/MySQL",

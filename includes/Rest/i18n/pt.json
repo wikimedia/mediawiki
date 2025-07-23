@@ -87,5 +87,6 @@
 	"rest-target-variant-required": "A variante de destino é obrigatória.",
 	"rest-unsupported-language-conversion": "Conversão de língua não suportada: $1 para $2",
 	"rest-unknown-content-model": "Modelo de conteúdo desconhecido: $1",
-	"rest-page-bundle-validation-error": "PageBundle não coincide com contentVersion: $1"
+	"rest-page-bundle-validation-error": "PageBundle não coincide com contentVersion: $1",
+	"rest-param-desc-media-links-title": "Título da página"
 }

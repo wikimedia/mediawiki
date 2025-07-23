@@ -125,6 +125,7 @@
 	"timezoneuseserverdefault": "Koristi postavke wikija ($1)",
 	"timezoneuseoffset": "Drugo (vremensko odstupanje od KSV/UTC)",
 	"timezone-useoffset-placeholder": "Primjer vrijednosti: „-07:00” ili „01:00”",
+	"timezone-invalid": "Nevažeća vremenska zona ili vremensko odstupanje.",
 	"guesstimezone": "Vrijeme dobiveno od preglednika",
 	"timezoneregion-africa": "Afrika",
 	"timezoneregion-america": "Amerika",

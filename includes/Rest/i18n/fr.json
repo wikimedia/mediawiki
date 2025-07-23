@@ -10,7 +10,10 @@
 			"Méthodes Bulebe Hangi",
 			"Thibaut120094",
 			"Verdy p",
-			"Wladek92"
+			"Wladek92",
+			"Bananax47",
+			"Derugon",
+			"Goombiis"
 		]
 	},
 	"rest-prefix-mismatch": "Le chemin demandé ($1) n’était pas dans le chemin de base de l’API REST ($2)",
@@ -138,7 +141,7 @@
 	"rest-param-desc-compare-to-section-offset": "Offset en octets dans le wikitexte où la section commence",
 	"rest-param-desc-compare-diff": "Différences entre les versions",
 	"rest-param-desc-language-links-title": "Titre de la page wiki",
-	"rest-param-desc-media-links-title": "Titre du fichier",
+	"rest-param-desc-media-links-title": "Titre de la page",
 	"rest-param-desc-media-file-title": "Titre du fichier",
 	"rest-param-desc-media-description-url": "URL de la page décrivant le fichier, y compris les informations de licence et d'autres métadonnées",
 	"rest-param-desc-media-latest": "Informations sur la dernière révision du fichier",
@@ -151,8 +154,8 @@
 	"rest-param-desc-media-height": "Hauteur d'image maximale recommandée en pixels ou nulle si non disponible",
 	"rest-param-desc-media-duration": "La longueur du fichier vidéo, audio ou multimédia ou nulle pour les autres types de médias",
 	"rest-param-desc-media-url": "URL pour télécharger le fichier",
-	"rest-param-desc-media-original": "Détails du fichier original",
-	"rest-param-desc-media-thumbnail": "Informations sur les vignettes",
+	"rest-param-desc-media-original": "Informations sur le format original du fichier",
+	"rest-param-desc-media-thumbnail": "Informations sur le format de la miniature du fichier vignettes",
 	"rest-param-desc-media-links-array": "Tableau des médias utilisés sur la page",
 	"rest-param-desc-module-spec-module": "Module des spécifications du module",
 	"rest-param-desc-module-spec-version": "Version des spécifications du module",

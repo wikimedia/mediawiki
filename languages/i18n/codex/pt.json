@@ -1,12 +1,14 @@
 {
 	"@metadata": {
 		"authors": [
-			"Mbs262"
+			"Mbs262",
+			"Mansil alfalb"
 		]
 	},
 	"cdx-dialog-close-button-label": "Fechar",
 	"cdx-label-optional-flag": "(opcional)",
 	"cdx-message-dismiss-button-label": "Fechar",
+	"cdx-popover-close-button-label": "Fechar",
 	"cdx-search-input-search-button-label": "Pesquisar",
 	"cdx-typeahead-search-search-results-label": "Resultados da pesquisa",
 	"cdx-table-pager-button-first-page": "Primeira página",

@@ -4,7 +4,8 @@
 			"Bluehill",
 			"Suleiman the Magnificent Television",
 			"Tensama0415",
-			"Ykhwong"
+			"Ykhwong",
+			"YeBoy371"
 		]
 	},
 	"rest-prefix-mismatch": "요청한 경로($1)가 REST API 기본 경로($2) 안에 없었습니다",
@@ -94,7 +95,7 @@
 	"rest-param-desc-compare-from-section-level": "문단 수준",
 	"rest-param-desc-compare-to-section-level": "문단 수준",
 	"rest-param-desc-language-links-title": "위키 문서 제목",
-	"rest-param-desc-media-links-title": "파일 제목",
+	"rest-param-desc-media-links-title": "문서 제목",
 	"rest-param-desc-media-file-title": "파일 제목",
 	"rest-param-desc-media-mediatype": "파일 유형",
 	"rest-param-desc-media-url": "파일을 다운로드할 URL",

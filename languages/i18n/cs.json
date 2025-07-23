@@ -622,6 +622,7 @@
 	"selfredirect": "<strong>Upozornění:</strong> Pokoušíte se tuto stránku přesměrovat na sebe samu.\nMožná jste zadali chybný cíl přesměrování, nebo editujete špatnou stránku.\nPokud ještě jednou kliknete na „$1“, bude i přesto přesměrování vytvořeno.",
 	"edit-constraint-brokenredirect": "<strong>Upozornění:</strong> Přesměrováváte tuto stránku na stránku, která neexistuje.\nMožná jste pro přesměrování zadali špatný cíl.\nPokud ještě jednou kliknete na „$1“, bude přesměrování vytvořeno i tak.",
 	"edit-constraint-doubleredirect": "<strong>Upozornění:</strong> Snažíte se přesměrovat tuto stránku na další přesměrování, čímž vytváříte dvojité přesměrování.\nVaše cílová stránka aktuálně přesměrovává na [[$2]].\n\nZvažte prosím úpravu obsahu tohoto přesměrování následujícím způsobem:\n$3\n\nPoznámka: Pokud znovu kliknete na „$1“, bude dvojité přesměrování vytvořeno i tak.",
+	"edit-constraint-doubleredirect-loop": "<strong>Upozornění:</strong> Pokoušíte se tuto stránku přesměrovat zpět na sebe, čímž vznikne nefunkční smyčka přesměrování. Zvažte prosím, co děláte. Pokud znovu kliknete na „$1“, bude přesměrování i tak vytvořeno.",
 	"missingcommenttext": "Prosím, zadejte komentář.",
 	"missingcommentheader": "<strong>Připomenutí:</strong> Nezadali jste předmět pro tento komentář.\nPokud ještě jednou kliknete na „$1“, bude vaše editace zveřejněna bez něj.",
 	"summary-preview": "Náhled shrnutí:",

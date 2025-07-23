@@ -723,6 +723,7 @@
 	"apihelp-query+categorymembers-param-endsortkey": "Em vez dele, usar $1endhexsortkey.",
 	"apihelp-query+categorymembers-example-simple": "Obter as primeiras 10 páginas na categoria <kbd>Category:Physics</kbd>.",
 	"apihelp-query+categorymembers-example-generator": "Obter informações sobre as primeiras 10 páginas na categoria <kbd>Category:Physics</kbd>.",
+	"apihelp-query+codexicons-param-names": "Nomes dos ícones",
 	"apihelp-query+contributors-summary": "Obter a lista dos contribuidores autenticados e o número de contribuidores não autenticados de uma página.",
 	"apihelp-query+contributors-summary-tempusers-enabled": "Obter a lista dos contribuidores autenticados (incluindo utilizadores temporários) e o número de contribuidores não autenticados de uma página.",
 	"apihelp-query+contributors-param-group": "Incluir só os utilizadores nos grupos indicados. Não inclui os grupos implícitos ou de promoção automática como *, utilizador, ou autoconfirmado.",

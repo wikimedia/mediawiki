@@ -1708,6 +1708,7 @@
 	"autosumm-replace": "بدل الصفحة ب'$1'",
 	"autoredircomment": "حوّل صفحة ل [[$1]]",
 	"autosumm-new": "تدارت صفحة ب\"$1\"",
+	"size-megabytes": "$1 ميڭابايت",
 	"lag-warn-normal": "tghiyrat jdad y3ni aqal mn  $1 {{PLURAL:$1|taniya|tawani}} iqdr matbanch lik flista",
 	"watchlistedit-normal-title": "ĝddel qa'imaṫ l-moṛaqaḅa",
 	"watchlistedit-normal-legend": "Mmḫiya men l-lista dyal s-suivi",
