@@ -754,6 +754,8 @@
 	"content-failed-to-parse": "Format zawartości typu $2 (dla modelu: $1) nieprawidłowy: $3",
 	"invalid-content-data": "Zawartość strony zawiera nieprawidłowe dane",
 	"invalid-json-data": "Nieprawidłowa składnia JSON: $1",
+	"vue-invalid-content": "Nieprawidłowa zawartość Vue: <code>$1</code>",
+	"vue-less-notsupported": "Nieprawidłowa zawartość Vue: wykorzystywanie LESS w tagach &lt;style&gt; nie jest obsługiwane.",
 	"content-not-allowed-here": "Zawartość tego typu ($1) nie jest dozwolona na stronie [[:$2]] w slocie „$3”",
 	"confirmleave-warning": "Opuszczenie tej strony może spowodować utratę wprowadzonych przez Ciebie zmian.",
 	"editpage-invalidcontentmodel-title": "Model zawartości nie jest obsługiwany",

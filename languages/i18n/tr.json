@@ -766,6 +766,8 @@
 	"content-failed-to-parse": "$1 modeli için $2 içerik türü çözümlenemedi: $3",
 	"invalid-content-data": "Geçersiz içerik verisi",
 	"invalid-json-data": "Geçersiz JSON: $1",
+	"vue-invalid-content": "Geçersiz Vue içeriği: <code>$1</code>",
+	"vue-less-notsupported": "Geçersiz Vue içeriği: &lt;style&gt; etiketinde LESS kullanımı desteklenmiyor.",
 	"content-not-allowed-here": "\"$1\" içeriğine, [[:$2]] sayfasının \"$3\" bölümünde izin verilmemekte.",
 	"confirmleave-warning": "Bu sayfadan ayrılmak yaptığınız değişiklikleri kaybetmenize neden olabilir.",
 	"editpage-invalidcontentmodel-title": "İçerik modeli desteklenmiyor",

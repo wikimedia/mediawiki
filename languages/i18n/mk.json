@@ -670,6 +670,8 @@
 	"content-failed-to-parse": "Не успеав да ја предадам содржината од типот $2 за моделот $1: $3",
 	"invalid-content-data": "Неважечки податоци од содржината",
 	"invalid-json-data": "Неважечки JSON: $1",
+	"vue-invalid-content": "Неважечка содржина на Vue: <code>$1</code>",
+	"vue-less-notsupported": "Неважечка содржина на Vue: употребата на LESS не е поддржана во ознаката &lt;style&gt;.",
 	"content-not-allowed-here": "Содржините од „$1“ не се допуштени на страницата [[:$2]] во местото „$3“",
 	"confirmleave-warning": "Ако ја напуштите страницава, ќе ги изгувите и направените промени.",
 	"editpage-invalidcontentmodel-title": "Содржинскиот модел не е поддржан",

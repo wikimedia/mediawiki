@@ -1015,7 +1015,7 @@
 	"apihelp-query+langlinks-param-title": "Zu suchender Link. Muss mit <var>$1lang</var> verwendet werden.",
 	"apihelp-query+langlinks-param-dir": "Die Auflistungsrichtung.",
 	"apihelp-query+langlinks-param-inlanguagecode": "Sprachcode für lokalisierte Sprachnamen.",
-	"apihelp-query+langlinks-example-simple": "Holt die Links zwischen den Sprachen von der Seite [[{{MediaWiki:Hauptseite}}]].",
+	"apihelp-query+langlinks-example-simple": "Holt die Sprach-Links von der Seite [[{{MediaWiki:Mainpage}}]].",
 	"apihelp-query+languageinfo-summary": "Gibt Informationen über verfügbare Sprachen zurück.",
 	"apihelp-query+languageinfo-extended-description": "[[mw:Special:MyLanguage/API:Continue|Continuation]] kann angewendet werden, wenn das Abrufen der Informationen für eine Anfrage zu lange dauert.",
 	"apihelp-query+languageinfo-param-prop": "Welche Informationen für jede Sprache zu erhalten sind.",

@@ -834,6 +834,8 @@
 	"content-failed-to-parse": "Содержимое $2 не соответствует типу $1: $3.",
 	"invalid-content-data": "Недопустимые данные",
 	"invalid-json-data": "Неверный JSON: $1",
+	"vue-invalid-content": "Недопустимое содержимое Vue: <code>$1</code>",
+	"vue-less-notsupported": "Недопустимое содержимое Vue: использование LESS не поддерживается в теге &lt;style&gt.",
 	"content-not-allowed-here": "Содержимое «$1» недопустимо на странице [[:$2]] в месте «$3»",
 	"confirmleave-warning": "Покидая эту страницу, вы можете потерять все внесенные вами изменения.",
 	"editpage-invalidcontentmodel-title": "Модель содержимого не поддерживается",

@@ -768,6 +768,8 @@
 	"content-failed-to-parse": "Parsen des Inhalts $2 für Modell $1 fehlgeschlagen: $3",
 	"invalid-content-data": "Ungültige Inhaltsdaten",
 	"invalid-json-data": "Ungültiges JSON: $1",
+	"vue-invalid-content": "Ungültiger Vue-Inhalt: <code>$1</code>",
+	"vue-less-notsupported": "Ungültiger Vue-Inhalt: Die Verwendung von LESS wird im  &lt;style&gt;-Tag nicht unterstützt.",
 	"content-not-allowed-here": "Der Inhalt „$1“ ist auf der Seite [[:$2]] im Schlitz „$3“ nicht erlaubt",
 	"confirmleave-warning": "Das Verlassen dieser Seite kann dazu führen, dass du alle deine Änderungen verlierst.",
 	"editpage-invalidcontentmodel-title": "Das Inhaltsmodell wird nicht unterstützt.",

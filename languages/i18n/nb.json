@@ -702,6 +702,8 @@
 	"content-failed-to-parse": "Klarte ikke å tolke innholdet $2 for innholdsmodellen $1: $3",
 	"invalid-content-data": "Ugyldig innhold",
 	"invalid-json-data": "Ugyldig JSON: $1",
+	"vue-invalid-content": "Ugyldig Vue-innhold: <code>$1</code>",
+	"vue-less-notsupported": "Ugyldig Vue-innhold: bruk av LESS støttes ikke i &lt;style&gt;-taggen.",
 	"content-not-allowed-here": "Innholdsmodellen «$1» er ikke tillatt på siden [[:$2]] i spalten «$3»",
 	"confirmleave-warning": "Å forlate denne siden vil gjøre at du mister endringer du har gjort.",
 	"editpage-invalidcontentmodel-title": "Innholdsmodellen støttes ikke",
