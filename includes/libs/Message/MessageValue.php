@@ -364,7 +364,14 @@ class MessageValue implements MessageSpecifier, JsonCodecable {
 		// at <https://www.mediawiki.org/wiki/Manual:Parser_cache/Serialization_compatibility>!
 		return [
 			'key' => $this->key,
-			'params' => $this->params,
+			'params' => array_map(
+				/**
+				 * Serialize trivial parameters as scalar values to minimize the footprint. Full
+				 * round-trip compatibility is guaranteed via the constructor and {@see params}.
+				 */
+				static fn ( $p ) => $p->getType() === ParamType::TEXT ? $p->getValue() : $p,
+				$this->params
+			),
 		];
 	}
 

@@ -71,7 +71,14 @@ class ListParam extends MessageParam {
 		// WARNING: When changing how this class is serialized, follow the instructions
 		// at <https://www.mediawiki.org/wiki/Manual:Parser_cache/Serialization_compatibility>!
 		return [
-			$this->type => $this->value,
+			$this->type => array_map(
+				/**
+				 * Serialize trivial parameters as scalar values to minimize the footprint. Full
+				 * round-trip compatibility is guaranteed via the constructor.
+				 */
+				static fn ( $p ) => $p->getType() === ParamType::TEXT ? $p->getValue() : $p,
+				$this->value
+			),
 			'type' => $this->listType,
 		];
 	}
