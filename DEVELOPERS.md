@@ -33,6 +33,8 @@ You'll need to have Docker installed:
 [docker-install]: https://docs.docker.com/get-docker/
 [docker-linux]: https://docs.docker.com/engine/install/
 
+The container images provided by Wikimedia use an AMD64 Debian runtime and are not currently available in ARM64 or any 32-bit processor variants. ARM64 MacOS computers have been reported to work with these images via Rosetta AMD64 emulation.
+
 **Linux users**:
 
 * We recommend installing `docker-ce`, `docker-ce-cli`, `containerd.io`, and `docker-compose-plugin` by [downloading the server
@@ -46,10 +48,6 @@ You'll need to have Docker installed:
 **Windows users**:
 
 Running Docker from a Windows terminal and using the Windows file system will result in MediaWiki being very slow. For Windows 10 and higher, we recommend configuring Docker and Windows to use the [Windows Subsystem for Linux (WSL)](https://en.wikipedia.org/wiki/Windows_Subsystem_for_Linux). Turn on WSL in your Windows settings, then run the following commands: `wsl --install -d ubuntu` and `wsl --set-version ubuntu 2`. Then go into Docker -> Settings -> General -> tick "Use the WSL 2 based engine", then go into Docker -> Settings -> Resources -> WSL Integration -> tick "Ubuntu". `git clone` the mediawiki repository into a WSL folder such as `home/yourusername/mediawiki` so that the files are inside WSL. Then you can run most of the commands in this tutorial outside of WSL, by opening PowerShell, navigating to the WSL directory with `cd \\wsl.localhost\Ubuntu\home\yourusername\mediawiki`, and executing shell commands as normal. To access WSL from PowerShell (rare but may be needed sometimes), you can use the command `ubuntu` to turn a PowerShell console into a WSL console. To navigate to WSL folders in [File Explorer](https://en.wikipedia.org/wiki/File_Explorer), show the Navigation Pane, then towards the bottom, look for "Linux" (it will be close to "This PC").
-
-**Mac users**:
-
-If you're using Docker Desktop and have the `Use Rosetta for x86/amd64 emulation on Apple Silicon` setting enabled, you may encounter an issue where loading the wiki results in a blank page or a 503 error. To resolve this, disable the setting and restart Docker Desktop. See [this page](https://phabricator.wikimedia.org/P49617) for more information.
 
 ### 2. Download MediaWiki files
 
