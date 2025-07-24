@@ -18,7 +18,7 @@
  * @file
  */
 
-namespace MediaWiki\JobQueue\Jobs;
+namespace MediaWiki\Page;
 
 use MediaWiki\Deferred\LinksUpdate\LinksDeletionUpdate;
 use MediaWiki\Deferred\LinksUpdate\LinksUpdate;
@@ -32,7 +32,7 @@ use Wikimedia\Rdbms\IDBAccessObject;
  *
  * @internal For use by core in LinksDeletionUpdate only.
  * @since 1.27
- * @ingroup JobQueue
+ * @ingroup Page
  */
 class DeleteLinksJob extends Job {
 	public function __construct( Title $title, array $params ) {
@@ -76,6 +76,3 @@ class DeleteLinksJob extends Job {
 		return true;
 	}
 }
-
-/** @deprecated class alias since 1.44 */
-class_alias( DeleteLinksJob::class, 'DeleteLinksJob' );

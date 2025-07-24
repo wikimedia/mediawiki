@@ -19,7 +19,6 @@ use MediaWiki\DomainEvent\DomainEventDispatcher;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\JobQueue\JobQueueGroup;
-use MediaWiki\JobQueue\Jobs\DeletePageJob;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Logging\ManualLogEntry;
 use MediaWiki\MainConfigNames;
@@ -47,6 +46,7 @@ use Wikimedia\RequestTimeout\TimeoutException;
  * Backend logic for performing a page delete action.
  *
  * @since 1.37
+ * @ingroup Page
  */
 class DeletePage {
 	/**

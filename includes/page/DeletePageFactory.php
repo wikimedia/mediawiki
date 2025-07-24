@@ -10,6 +10,7 @@ use MediaWiki\Permissions\Authority;
  * Default implementation is MediaWiki\Page\PageCommandFactory.
  *
  * @since 1.37
+ * @ingroup Page
  */
 interface DeletePageFactory {
 

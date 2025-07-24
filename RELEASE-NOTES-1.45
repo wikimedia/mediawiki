@@ -263,6 +263,8 @@ because of Phabricator reports.
     - LinkBatch
     - LinkBatchFactory
     - LinkCache
+  - Page related jobs: MediaWiki\JobQueue\Jobs => MediaWiki\Page
+    - DeletePageJob
   - Wikimedia:
     - ReplacementArray (was MediaWiki\Language\ReplacementArray)
     - Emptiable (was Wikimedia\Libs\Emptiable)

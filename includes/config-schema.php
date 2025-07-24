@@ -2137,9 +2137,9 @@ return [
 			'ServiceWiringFiles' => [
 			],
 			'JobClasses' => [
-				'deletePage' => 'MediaWiki\\JobQueue\\Jobs\\DeletePageJob',
+				'deletePage' => 'MediaWiki\\Page\\DeletePageJob',
 				'refreshLinks' => 'MediaWiki\\JobQueue\\Jobs\\RefreshLinksJob',
-				'deleteLinks' => 'MediaWiki\\JobQueue\\Jobs\\DeleteLinksJob',
+				'deleteLinks' => 'MediaWiki\\Page\\DeleteLinksJob',
 				'htmlCacheUpdate' => 'MediaWiki\\JobQueue\\Jobs\\HTMLCacheUpdateJob',
 				'sendMail' => [
 					'class' => 'MediaWiki\\Mail\\EmaillingJob',

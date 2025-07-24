@@ -1,9 +1,9 @@
 <?php
 
 use MediaWiki\JobQueue\JobFactory;
-use MediaWiki\JobQueue\Jobs\DeleteLinksJob;
 use MediaWiki\JobQueue\Jobs\NullJob;
 use MediaWiki\JobQueue\Jobs\ParsoidCachePrewarmJob;
+use MediaWiki\Page\DeleteLinksJob;
 use MediaWiki\Title\Title;
 
 /**
