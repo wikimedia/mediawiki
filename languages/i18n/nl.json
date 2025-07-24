@@ -753,6 +753,8 @@
 	"content-failed-to-parse": "Het was niet mogelijk de inhoud van het MIME-type $2 voor het model $1 te verwerken: $3.",
 	"invalid-content-data": "Ongeldige inhoudsgegevens",
 	"invalid-json-data": "Ongeldige JSON: $1",
+	"vue-invalid-content": "Onjuiste Vue-code: <code>$1</code>",
+	"vue-less-notsupported": "Onjuiste Vue-code: het gebruik van LESS wordt niet ondersteund in de &lt;style&gt;-tag.",
 	"content-not-allowed-here": "De inhoud “$1” is niet toegestaan op de pagina [[:$2]] in het segment “$3”.",
 	"confirmleave-warning": "Als u deze pagina verlaat, verliest u mogelijk de wijzigingen die u nog niet hebt opgeslagen.",
 	"editpage-invalidcontentmodel-title": "Inhoudsmodel wordt niet ondersteund",

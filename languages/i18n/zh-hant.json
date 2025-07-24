@@ -785,6 +785,8 @@
 	"content-failed-to-parse": "解析 $2 格式的 $1 語法內容失敗：$3",
 	"invalid-content-data": "內容資料無效",
 	"invalid-json-data": "無效的 JSON：$1",
+	"vue-invalid-content": "無效的Vue內容：<code>$1</code>",
+	"vue-less-notsupported": "無效的Vue內容：&lt;style&gt;標籤內無法使用LESS。",
 	"content-not-allowed-here": "頁面[[:$2]]在「$3」插槽不允許「$1」內容",
 	"confirmleave-warning": "離開此頁面可能會導致捨棄掉您更改過的任何內容。",
 	"editpage-invalidcontentmodel-title": "不支援的內容模型",

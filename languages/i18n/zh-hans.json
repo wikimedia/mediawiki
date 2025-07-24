@@ -856,6 +856,8 @@
 	"content-failed-to-parse": "无法解析$1模型的$2内容：$3",
 	"invalid-content-data": "无效的内容数据",
 	"invalid-json-data": "无效的JSON：$1",
+	"vue-invalid-content": "无效的Vue内容：<code>$1</code>",
+	"vue-less-notsupported": "无效的Vue内容：&lt;style&gt;标签内不支持使用LESS。",
 	"content-not-allowed-here": "[[:$2]]页面的“$3”位置上不允许“$1”内容",
 	"confirmleave-warning": "离开本页面可能会使您丢失所做的任何更改。",
 	"editpage-invalidcontentmodel-title": "内容模型不支持",

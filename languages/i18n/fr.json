@@ -859,6 +859,8 @@
 	"content-failed-to-parse": "Échec de l’analyse syntaxique du contenu de $2 pour le modèle $1 : $3",
 	"invalid-content-data": "Données du contenu non valides",
 	"invalid-json-data": "JSON non valide : $1",
+	"vue-invalid-content": "Code Vue invalide : <code>$1</code>",
+	"vue-less-notsupported": "Contenu Vue invalide : l'utilisation de LESS dans les balises &lt;style&gt n'est pas permise.",
 	"content-not-allowed-here": "Le contenu « $1 » n’est pas autorisé sur la page [[:$2]] dans l’emplacement « $3 ».",
 	"confirmleave-warning": "Quitter cette page peut vous faire perdre toutes les modifications que vous avez effectuées.",
 	"editpage-invalidcontentmodel-title": "Modèle de contenu non pris en charge",

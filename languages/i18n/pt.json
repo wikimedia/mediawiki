@@ -2412,7 +2412,7 @@
 	"blanknamespace": "(Principal)",
 	"contributions": "Contribuições do utilizador",
 	"tool-link-contributions": "Contribuições {{GENDER:$1|do utilizador|da utilizadora}}",
-	"contributions-title": "Contribuições {{GENDER:$2|do utilizador|da utilizadora}} $1",
+	"contributions-title": "Contribuições {{GENDER:$2|do utilizador|da utilizadora|do(a) utilizador(a)}} $1",
 	"contributions-title-for-ip-when-temporary-accounts-enabled": "Contribuições antigas de IP por $1",
 	"contribute-title": "Contribuições do utilizador",
 	"mycontris": "Contribuições",
