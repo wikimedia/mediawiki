@@ -2,7 +2,7 @@
 
 namespace Wikimedia\Tests\Message;
 
-use InvalidArgumentException;
+use MediaWiki\Debug\MWDebug;
 use MediaWiki\Json\JsonCodec;
 use MediaWikiUnitTestCase;
 use Wikimedia\Message\ListParam;
@@ -65,8 +65,9 @@ class ListParamTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testConstruct_badTypeConst() {
-		$this->expectException( InvalidArgumentException::class );
-		$this->expectExceptionMessage( '$listType must be one of the ListType constants' );
+		MWDebug::filterDeprecationForTest( '/with string listType/' );
+		$this->expectException( \ValueError::class );
+		$this->expectExceptionMessage( '"invalid" is not a valid backing value for enum' );
 		new ListParam( 'invalid', [] );
 	}
 

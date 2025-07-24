@@ -103,11 +103,15 @@ class MessageValue implements MessageSpecifier, JsonCodecable {
 	/**
 	 * Chainable mutator which adds text parameters with a common type
 	 *
-	 * @param string $type One of the ParamType constants
+	 * @param string|ParamType $type One of the ParamType constants
 	 * @param MessageSpecifier|string|int|float ...$values Scalar values
 	 * @return $this
 	 */
-	public function textParamsOfType( string $type, ...$values ): MessageValue {
+	public function textParamsOfType( string|ParamType $type, ...$values ): MessageValue {
+		if ( is_string( $type ) ) {
+			wfDeprecated( __METHOD__ . ' with string type', '1.45' );
+			$type = ParamType::from( $type );
+		}
 		foreach ( $values as $value ) {
 			$this->params[] = new ScalarParam( $type, $value );
 		}
@@ -117,12 +121,16 @@ class MessageValue implements MessageSpecifier, JsonCodecable {
 	/**
 	 * Chainable mutator which adds list parameters with a common type
 	 *
-	 * @param string $listType One of the ListType constants
+	 * @param string|ListType $listType One of the ListType constants
 	 * @param (MessageParam|MessageSpecifier|string|int|float)[] ...$values Each value
 	 *  is an array of items suitable to pass as $params to ListParam::__construct()
 	 * @return $this
 	 */
-	public function listParamsOfType( string $listType, ...$values ): MessageValue {
+	public function listParamsOfType( string|ListType $listType, ...$values ): MessageValue {
+		if ( is_string( $listType ) ) {
+			wfDeprecated( __METHOD__ . ' with string listType', '1.45' );
+			$listType = ListType::from( $listType );
+		}
 		foreach ( $values as $value ) {
 			$this->params[] = new ListParam( $listType, $value );
 		}

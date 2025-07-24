@@ -6,25 +6,24 @@ namespace Wikimedia\Message;
  * The constants used to specify list types. The values of the constants are an
  * unstable implementation detail.
  */
-class ListType {
+enum ListType: string {
 	/** A comma-separated list */
-	public const COMMA = 'comma';
+	case COMMA = 'comma';
 
 	/** A semicolon-separated list */
-	public const SEMICOLON = 'semicolon';
+	case SEMICOLON = 'semicolon';
 
 	/** A pipe-separated list */
-	public const PIPE = 'pipe';
+	case PIPE = 'pipe';
 
 	/** A natural-language list separated by "and" */
-	public const AND = 'text';
+	case AND = 'text';
 
-	public static function cases(): array {
-		return [
-			self::COMMA,
-			self::SEMICOLON,
-			self::PIPE,
-			self::AND,
-		];
+	/**
+	 * Return the ListTypes, as an array of string flag values.
+	 * @return list<string>
+	 */
+	public static function values(): array {
+		return array_column( self::cases(), 'value' );
 	}
 }

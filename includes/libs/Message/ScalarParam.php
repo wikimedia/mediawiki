@@ -19,12 +19,13 @@ class ScalarParam extends MessageParam {
 	 *
 	 * @stable to call.
 	 *
-	 * @param string $type One of the ParamType constants.
+	 * @param string|ParamType $type One of the ParamType constants.
 	 * @param string|int|float|MessageSpecifier|Stringable $value
 	 */
-	public function __construct( string $type, $value ) {
-		if ( !in_array( $type, ParamType::cases() ) ) {
-			throw new InvalidArgumentException( '$type must be one of the ParamType constants' );
+	public function __construct( string|ParamType $type, $value ) {
+		if ( is_string( $type ) ) {
+			wfDeprecated( __METHOD__ . ' with string type', '1.45' );
+			$type = ParamType::from( $type );
 		}
 		if ( $type === ParamType::LIST ) {
 			throw new InvalidArgumentException(
@@ -61,7 +62,7 @@ class ScalarParam extends MessageParam {
 		} else {
 			$contents = htmlspecialchars( (string)$this->value );
 		}
-		return "<$this->type>" . $contents . "</$this->type>";
+		return "<{$this->type->value}>" . $contents . "</{$this->type->value}>";
 	}
 
 	public function isSameAs( MessageParam $mp ): bool {
@@ -79,7 +80,7 @@ class ScalarParam extends MessageParam {
 		// WARNING: When changing how this class is serialized, follow the instructions
 		// at <https://www.mediawiki.org/wiki/Manual:Parser_cache/Serialization_compatibility>!
 		return [
-			$this->type => $this->value,
+			$this->type->value => $this->value,
 		];
 	}
 
@@ -101,6 +102,6 @@ class ScalarParam extends MessageParam {
 		$type = key( $json );
 		$value = current( $json );
 
-		return new self( $type, $value );
+		return new self( ParamType::from( $type ), $value );
 	}
 }

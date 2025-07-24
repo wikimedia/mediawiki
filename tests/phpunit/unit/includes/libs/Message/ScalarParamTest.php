@@ -3,6 +3,7 @@
 namespace Wikimedia\Tests\Message;
 
 use InvalidArgumentException;
+use MediaWiki\Debug\MWDebug;
 use MediaWiki\Json\JsonCodec;
 use MediaWikiUnitTestCase;
 use stdClass;
@@ -72,8 +73,9 @@ class ScalarParamTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testConstruct_badTypeConst() {
-		$this->expectException( InvalidArgumentException::class );
-		$this->expectExceptionMessage( '$type must be one of the ParamType constants' );
+		MWDebug::filterDeprecationForTest( '/with string type was deprecated/' );
+		$this->expectException( \ValueError::class );
+		$this->expectExceptionMessage( '"invalid" is not a valid backing value for enum' );
 		new ScalarParam( 'invalid', '' );
 	}
 
