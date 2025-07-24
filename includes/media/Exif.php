@@ -108,6 +108,13 @@ class Exif {
 	 *   Possibly should treat 0/0 = 0. need to read exif spec on that.
 	 */
 	public function __construct( $file, $byteOrder = '' ) {
+		if ( !function_exists( 'exif_read_data' ) ) {
+			throw new ConfigException(
+				"Internal error: exif_read_data not present. " .
+				"\$wgShowEXIF may be incorrectly set or not checked by an extension."
+			);
+		}
+
 		/**
 		 * Page numbers here refer to pages in the Exif 2.2 standard
 		 *
@@ -411,14 +418,11 @@ class Exif {
 		}
 
 		$this->debugFile( __FUNCTION__, true );
-		if ( function_exists( 'exif_read_data' ) ) {
-			AtEase::suppressWarnings();
-			$data = exif_read_data( $this->file, '', true );
-			AtEase::restoreWarnings();
-		} else {
-			throw new ConfigException( "Internal error: exif_read_data not present. " .
-				"\$wgShowEXIF may be incorrectly set or not checked by an extension." );
-		}
+
+		AtEase::suppressWarnings();
+		$data = exif_read_data( $this->file, '', true );
+		AtEase::restoreWarnings();
+
 		/**
 		 * exif_read_data() will return false on invalid input, such as
 		 * when somebody uploads a file called something.jpeg
