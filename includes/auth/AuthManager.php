@@ -863,6 +863,7 @@ class AuthManager implements LoggerAwareInterface {
 					$this->getAuthenticationSessionData( self::REMEMBER_ME );
 			}
 			$loginWasInteractive = $this->getAuthenticationSessionData( self::LOGIN_WAS_INTERACTIVE, true );
+			$performer = $session->getUser();
 			// If the session is associated with a temporary account user, invalidate its
 			// session and remove the TempUser:name property from the session
 			// This is necessary in order to ensure that the temporary account session is exited
@@ -870,10 +871,10 @@ class AuthManager implements LoggerAwareInterface {
 			if ( $session->getUser()->isTemp() ) {
 				$this->sessionManager->invalidateSessionsForUser( $session->getUser() );
 				$session->remove( 'TempUser:name' );
+				$performer = new User();
 			}
 			$this->setSessionDataForUser( $user, $rememberMe, $loginWasInteractive );
 			$this->callMethodOnProviders( self::CALL_ALL, 'postAuthentication', [ $user, $response ] );
-			$performer = $session->getUser();
 			$session->remove( self::AUTHN_STATE );
 			$this->removeAuthenticationSessionData( null );
 			$this->getHookRunner()->onAuthManagerLoginAuthenticateAudit(
