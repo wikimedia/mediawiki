@@ -39,4 +39,9 @@ abstract class MessageParam implements JsonCodecable {
 	 * @return string
 	 */
 	abstract public function dump(): string;
+
+	/**
+	 * Equality testing.
+	 */
+	abstract public function isSameAs( MessageParam $mp ): bool;
 }

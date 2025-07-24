@@ -45,8 +45,7 @@ class MessageValueTest extends MediaWikiUnitTestCase {
 		$serialized = $codec->serialize( $obj );
 		$newObj = $codec->deserialize( $serialized );
 
-		// XXX: would be nice to have a proper ::equals() method.
-		$this->assertEquals( $obj->dump(), $newObj->dump() );
+		$this->assertTrue( $obj->isSameAs( $newObj ), $newObj->dump() );
 	}
 
 	/** @dataProvider provideConstruct */

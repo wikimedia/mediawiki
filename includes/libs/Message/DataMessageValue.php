@@ -99,6 +99,13 @@ class DataMessageValue extends MessageValue {
 			. '</datamessage>';
 	}
 
+	public function isSameAs( MessageValue $mv ): bool {
+		return parent::isSameAs( $mv ) &&
+			$mv instanceof DataMessageValue &&
+			$this->code === $mv->code &&
+			$this->data === $mv->data;
+	}
+
 	public function toJsonArray(): array {
 		// WARNING: When changing how this class is serialized, follow the instructions
 		// at <https://www.mediawiki.org/wiki/Manual:Parser_cache/Serialization_compatibility>!

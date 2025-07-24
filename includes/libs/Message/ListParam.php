@@ -57,6 +57,16 @@ class ListParam extends MessageParam {
 		return "<$this->type listType=\"$this->listType\">$contents</$this->type>";
 	}
 
+	public function isSameAs( MessageParam $mp ): bool {
+		return $mp instanceof ListParam &&
+			$this->listType === $mp->listType &&
+			count( $this->value ) === count( $mp->value ) &&
+			array_all(
+				$this->value,
+				static fn ( $v, $k ) => $v->isSameAs( $mp->value[$k] )
+			);
+	}
+
 	public function toJsonArray(): array {
 		// WARNING: When changing how this class is serialized, follow the instructions
 		// at <https://www.mediawiki.org/wiki/Manual:Parser_cache/Serialization_compatibility>!

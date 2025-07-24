@@ -66,6 +66,17 @@ class ScalarParam extends MessageParam {
 		return "<$this->type>" . $contents . "</$this->type>";
 	}
 
+	public function isSameAs( MessageParam $mp ): bool {
+		if ( !( $mp instanceof ScalarParam && $this->type === $mp->type ) ) {
+			return false;
+		}
+		if ( $this->value instanceof MessageValue ) {
+			return $mp->value instanceof MessageValue &&
+				$this->value->isSameAs( $mp->value );
+		}
+		return $this->value === $mp->value;
+	}
+
 	public function toJsonArray(): array {
 		// WARNING: When changing how this class is serialized, follow the instructions
 		// at <https://www.mediawiki.org/wiki/Manual:Parser_cache/Serialization_compatibility>!

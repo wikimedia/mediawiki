@@ -2,6 +2,7 @@
 
 namespace Wikimedia\Message;
 
+use Wikimedia\Assert\Assert;
 use Wikimedia\JsonCodec\JsonCodecable;
 use Wikimedia\JsonCodec\JsonCodecableTrait;
 
@@ -21,7 +22,7 @@ class MessageValue implements MessageSpecifier, JsonCodecable {
 
 	private string $key;
 
-	/** @var MessageParam[] */
+	/** @var list<MessageParam> */
 	private array $params;
 
 	/**
@@ -35,6 +36,8 @@ class MessageValue implements MessageSpecifier, JsonCodecable {
 		$this->key = $key;
 		$this->params = [];
 		$this->params( ...$params );
+		// @phan-suppress-next-line PhanRedundantCondition phan doesn't see side-effects on $this->params
+		Assert::invariant( array_is_list( $this->params ), "should be list" );
 	}
 
 	/**
@@ -345,6 +348,15 @@ class MessageValue implements MessageSpecifier, JsonCodecable {
 		}
 		return '<message key="' . htmlspecialchars( $this->key ) . '">' .
 			$contents . '</message>';
+	}
+
+	public function isSameAs( MessageValue $mv ): bool {
+		return $this->key === $mv->key &&
+			count( $this->params ) === count( $mv->params ) &&
+			array_all(
+				$this->params,
+				static fn ( $v, $k ) => $v->isSameAs( $mv->params[$k] )
+			);
 	}
 
 	public function toJsonArray(): array {
