@@ -861,7 +861,6 @@ class AuthManager implements LoggerAwareInterface {
 			if ( $session->getUser()->isTemp() ) {
 				SessionManager::singleton()->invalidateSessionsForUser( $session->getUser() );
 				$session->remove( 'TempUser:name' );
-				$session->save();
 			}
 			$this->setSessionDataForUser( $user, $rememberMe, $loginWasInteractive );
 			$this->callMethodOnProviders( self::CALL_ALL, 'postAuthentication', [ $user, $response ] );
