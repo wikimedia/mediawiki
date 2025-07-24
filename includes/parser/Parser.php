@@ -6531,21 +6531,23 @@ class Parser {
 	 * @unstable
 	 */
 	public static function extractBody( string $text ): string {
-		$pos = strpos( $text, '<body' );
-		if ( $pos === false ) {
+		$posStart = strpos( $text, '<body' );
+		if ( $posStart === false ) {
 			return $text;
 		}
-		$pos = strpos( $text, '>', $pos );
-		if ( $pos === false ) {
+		$posStart = strpos( $text, '>', $posStart );
+		if ( $posStart === false ) {
 			return $text;
 		}
 		// Skip past the > character
-		$text = substr( $text, $pos + 1 );
-		$pos = strrpos( $text, '</body>' );
-		if ( $pos === false ) {
-			return $text;
+		$posStart += 1;
+		$posEnd = strrpos( $text, '</body>', $posStart );
+		if ( $posEnd === false ) {
+			// Strip <body> wrapper even if input was truncated (i.e. missing close tag)
+			return substr( $text, $posStart );
+		} else {
+			return substr( $text, $posStart, $posEnd - $posStart );
 		}
-		return substr( $text, 0, $pos );
 	}
 
 	/**
