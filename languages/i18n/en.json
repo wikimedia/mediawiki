@@ -2533,6 +2533,7 @@
 	"sp-contributions-footer": "-",
 	"sp-contributions-footer-anon": "-",
 	"sp-contributions-footer-anon-range": "-",
+	"sp-contributions-footer-temp": "-",
 	"sp-contributions-outofrange": "Unable to show any results. The requested IP range is larger than the CIDR limit of /$1.",
 	"sp-contributions-concurrency-user": "Sorry, too many requests are being made from your user account. Please try again later.",
 	"sp-contributions-concurrency-ip": "Sorry, too many requests are being made from your IP address. Please try again later.",

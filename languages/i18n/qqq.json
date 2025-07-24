@@ -2806,6 +2806,7 @@
 	"sp-contributions-footer": "{{ignored}}This is the footer for users that are not anonymous or newbie on [[Special:Contributions]].",
 	"sp-contributions-footer-anon": "{{ignored}}This is the footer for anonymous users on [[Special:Contributions]].",
 	"sp-contributions-footer-anon-range": "{{ignored}}This is the footer for IP ranges on [[Special:Contributions]].",
+	"sp-contributions-footer-temp": "{{ignored}}This is the footer for temporary accounts on [[Special:Contributions]].",
 	"sp-contributions-outofrange": "Message shown when a user tries to view contributions of an IP range that's too large. $1 is the numerical limit imposed on the CIDR range.",
 	"sp-contributions-concurrency-user": "Message shown when a logged-in user tries to load [[Special:Contributions]] too many times at once.",
 	"sp-contributions-concurrency-ip": "Message shown when a logged-out user tries to load [[Special:Contributions]] too many times at once.",

@@ -407,6 +407,8 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 				$message = 'sp-contributions-footer-anon-range';
 			} elseif ( IPUtils::isIPAddress( $target ) ) {
 				$message = 'sp-contributions-footer-anon';
+			} elseif ( $userObj->isTemp() ) {
+				$message = 'sp-contributions-footer-temp';
 			} elseif ( $userObj->isAnon() ) {
 				// No message for non-existing users
 				$message = '';
