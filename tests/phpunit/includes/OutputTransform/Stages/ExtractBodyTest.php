@@ -13,6 +13,7 @@ use Psr\Log\NullLogger;
 
 /**
  * @covers \MediaWiki\OutputTransform\Stages\ExtractBody
+ * @covers \MediaWiki\Parser\Parser::extractBody
  */
 class ExtractBodyTest extends OutputTransformStageTestBase {
 
