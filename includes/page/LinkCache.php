@@ -45,7 +45,7 @@ use Wikimedia\Rdbms\IReadableDatabase;
  * rendering each individual outgoing link and template transclusion when
  * parsing wikitext.
  *
- * See [the architecture doc](@ref linkcache) for more information.
+ * See [the architecture doc](@ref linkcache) at docs/LinkCache.md for more information.
  *
  * To create a batch, you can use the following code:
  *
@@ -56,9 +56,8 @@ use Wikimedia\Rdbms\IReadableDatabase;
  *   }
  *   $linkBatchFactory = MediaWikiServices::getInstance()->getLinkBatchFactory();
  *   $linkBatchFactory->newLinkBatch( $titles )->setCaller( __METHOD__ )->execute();
- * @encode
+ * @endcode
  *
- * @see docs/LinkCache.md
  * @see MediaWiki\Page\LinkBatchFactory
  * @see MediaWiki\Page\LinkBatch
  * @since 1.1

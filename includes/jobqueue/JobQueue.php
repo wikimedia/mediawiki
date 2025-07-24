@@ -35,13 +35,13 @@ use Wikimedia\UUID\GlobalIdGenerator;
  * @defgroup JobQueue JobQueue
  *
  *
- * See [the architecture doc](@ref jobqueuearch) for more information.
+ * See [the architecture doc](@ref jobqueuearch) at jobqueue/README.md for more information.
  */
 
 /**
  * Base class for queueing and running background jobs from a storage backend.
  *
- * See [the architecture doc](@ref jobqueuearch) for more information.
+ * See [the architecture doc](@ref jobqueuearch) at jobqueue/README.md for more information.
  *
  * @ingroup JobQueue
  * @since 1.21
