@@ -16,6 +16,14 @@ use Wikimedia\Parsoid\Parsoid;
 class TransformHandlerTest extends MediaWikiIntegrationTestCase {
 	use HandlerTestTrait;
 
+	public function setUp(): void {
+		parent::setUp();
+		$this->editPage(
+			'wikitext_lint_page',
+			"intro\n== h2 ==\ndetails== h2 ==\nmore\n<code>foo<code>\nend"
+		);
+	}
+
 	public static function provideRequest() {
 		$profileVersion = Parsoid::AVAILABLE_VERSIONS[0];
 		$htmlProfileUri = 'https://www.mediawiki.org/wiki/Specs/HTML/' . $profileVersion;
@@ -32,7 +40,7 @@ class TransformHandlerTest extends MediaWikiIntegrationTestCase {
 			],
 		];
 
-		// Convert wikitext to HTML ////////////////////////////////////////////////////////////////
+		// Convert wikitext to HTML //////////////////////////////////////////////////////
 		$request = new RequestData( [
 			'pathParams' => [
 				'from' => ParsoidFormatHelper::FORMAT_WIKITEXT,
@@ -50,7 +58,7 @@ class TransformHandlerTest extends MediaWikiIntegrationTestCase {
 			[ 'format' => ParsoidFormatHelper::FORMAT_HTML ]
 		];
 
-		// Convert HTML to wikitext ////////////////////////////////////////////////////////////////
+		// Convert HTML to wikitext //////////////////////////////////////////////////////
 		$request = new RequestData( [
 				'pathParams' => [
 					'from' => ParsoidFormatHelper::FORMAT_HTML,
@@ -68,7 +76,50 @@ class TransformHandlerTest extends MediaWikiIntegrationTestCase {
 			[ 'format' => ParsoidFormatHelper::FORMAT_WIKITEXT ]
 		];
 
-		// Perform language variant conversion //////////////////////////////////////////////////////
+		// Convert wikitext to lint errors (POST) //////////////////////////////////////////////////
+		$request = new RequestData( [
+				'pathParams' => [
+					'from' => ParsoidFormatHelper::FORMAT_WIKITEXT,
+				],
+				'bodyContents' => json_encode( [
+					'wikitext' => "intro\n== h2 ==\ndetails== h2 ==\nmore\n<code>foo<code>\nend",
+				] )
+			] + $defaultParams );
+
+		yield 'should transform wikitext to lint errors (POST)' => [
+			$request,
+			'[' .
+			'{"type":"missing-end-tag","dsr":[36,55,6,0],"templateInfo":null,"params":{"name":"code","inTable":false}},' .
+			'{"type":"multiple-unclosed-formatting-tags","dsr":[36,55,6,0],"templateInfo":null,"params":{"name":"code","inTable":false}},' .
+			'{"type":"missing-end-tag","dsr":[45,55,6,0],"templateInfo":null,"params":{"name":"code","inTable":false}}' .
+			']',
+			200,
+			[ 'content-type' => 'application/json' ],
+			[ 'format' => ParsoidFormatHelper::FORMAT_LINT ]
+		];
+
+		// Convert wikitext to lint errors (GET) //////////////////////////////////////////////////
+		$request = new RequestData( [
+			'method' => 'GET',
+			'pathParams' => [
+				'from' => ParsoidFormatHelper::FORMAT_WIKITEXT,
+				'title' => 'wikitext_lint_page'
+			]
+		] + $defaultParams );
+
+		yield 'should transform wikitext to lint errors (GET)' => [
+			$request,
+			'[' .
+			'{"type":"missing-end-tag","dsr":[36,55,6,0],"templateInfo":null,"params":{"name":"code","inTable":false}},' .
+			'{"type":"multiple-unclosed-formatting-tags","dsr":[36,55,6,0],"templateInfo":null,"params":{"name":"code","inTable":false}},' .
+			'{"type":"missing-end-tag","dsr":[45,55,6,0],"templateInfo":null,"params":{"name":"code","inTable":false}}' .
+			']',
+			200,
+			[ 'content-type' => 'application/json' ],
+			[ 'format' => ParsoidFormatHelper::FORMAT_LINT ]
+		];
+
+		// Perform language variant conversion //////////////////////////////////////////////////
 		$request = new RequestData( [
 				'pathParams' => [
 					'from' => ParsoidFormatHelper::FORMAT_PAGEBUNDLE,

@@ -548,9 +548,36 @@ describe( '/transform/ endpoint', () => {
 				.end( done );
 		} );
 
+		it( 'should lint the given revision, transform (GET)', ( done ) => {
+			client.req
+				.get( `${ endpointPrefix }/v1/transform/wikitext/to/lint/${ pageEncoded }/${ revid }` )
+				.expect( status200 )
+				.expect( ( res ) => {
+					res.body.should.be.instanceof( Array );
+					res.body.length.should.equal( 1 );
+					res.body[ 0 ].type.should.equal( 'fostered' );
+					validateSpec( res );
+				} )
+				.end( done );
+		} );
+
 		it( 'should lint the given page, transform', ( done ) => {
 			client.req
 				.post( `${ endpointPrefix }/v1/transform/wikitext/to/lint/${ pageEncoded }` )
+				.send( {} )
+				.expect( status200 )
+				.expect( ( res ) => {
+					res.body.should.be.instanceof( Array );
+					res.body.length.should.equal( 1 );
+					res.body[ 0 ].type.should.equal( 'fostered' );
+					validateSpec( res );
+				} )
+				.end( done );
+		} );
+
+		it( 'should lint the given page, transform (GET)', ( done ) => {
+			client.req
+				.get( `${ endpointPrefix }/v1/transform/wikitext/to/lint/${ pageEncoded }` )
 				.send( {} )
 				.expect( status200 )
 				.expect( ( res ) => {

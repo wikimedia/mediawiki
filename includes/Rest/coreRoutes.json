@@ -271,7 +271,7 @@
 		}
 	},
 	{
-		"method": "POST",
+		"method": [ "GET", "POST" ],
 		"path": "/v1/transform/wikitext/to/lint/{title}/{revision}",
 		"class": "MediaWiki\\Rest\\Handler\\TransformHandler",
 		"factory": "MediaWiki\\Rest\\Handler\\TransformHandler::factory",
@@ -337,7 +337,7 @@
 		}
 	},
 	{
-		"method": "POST",
+		"method": [ "GET", "POST" ],
 		"path": "/v1/transform/wikitext/to/lint/{title}",
 		"class": "MediaWiki\\Rest\\Handler\\TransformHandler",
 		"factory": "MediaWiki\\Rest\\Handler\\TransformHandler::factory",

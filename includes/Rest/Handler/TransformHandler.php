@@ -31,13 +31,22 @@ use Wikimedia\ParamValidator\ParamValidator;
 
 /**
  * Handler for transforming content given in the request.
- * - /v1/transform/{from}/to/html
- * - /v1/transform/{from}/to/wikitext
- * - /v1/transform/{from}/to/html/{title}
- * - /v1/transform/{from}/to/wikitext/{title}
- * - /v1/transform/{from}/to/html/{title}/{revision}
- * - /v1/transform/{from}/to/wikitext/{title}/{revision}
  *
+ * This handler can provide the intended APIs of restbase V1 routes, such as:
+ * - POST /v1/transform/wikitext/to/html
+ * - POST /v1/transform/html/to/wikitext
+ * - POST /v1/transform/wikitext/to/lint
+ * - POST /v1/transform/wikitext/to/html/{title}
+ * - POST /v1/transform/html/to/wikitext/{title}
+ * - (GET|POST) /v1/transform/wikitext/to/lint/{title}
+ * - POST /v1/transform/wikitext/to/html/{title}/{revision}
+ * - POST /v1/transform/html/to/wikitext/{title}/{revision}
+ * - (GET|POST) /v1/transform/wikitext/to/lint/{title}/{revision}
+ *
+ * This handler can also provide the intended APIs of Parsoid V3 routes.
+ * These routes are mentioned in the relevant links below.
+ *
+ * @see https://www.mediawiki.org/wiki/Parsoid/API#GET
  * @see https://www.mediawiki.org/wiki/Parsoid/API#POST
  */
 class TransformHandler extends ParsoidHandler {
