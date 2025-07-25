@@ -147,7 +147,7 @@ class ApiWatchTest extends ApiTestCase {
 		}
 		$data = $this->doApiRequest( [
 			'action' => 'query',
-			'list' => 'watchlist' ], $data );
+			'list' => 'watchlist' ] );
 		$this->assertArrayHasKey( 'query', $data[0] );
 		$this->assertArrayHasKey( 'watchlist', $data[0]['query'] );
 		foreach ( $data[0]['query']['watchlist'] as $index => $item ) {

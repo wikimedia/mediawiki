@@ -277,6 +277,8 @@ because of Phabricator reports.
   hook runner. Migrate to the GetMagicVariableIDsHook instead.
 * SessionManager::singleton() is deprecated, use
   MediaWikiServices::getSessionManager() instead.
+* SessionManager::getGlobalSession() is deprecated, use
+  WebRequest::getSession() instead.
 * PageConfigFactory::create() is now deprecated and emits warnings; use
   ::createFromParserOptions() instead.
 * Calling MessageCache::get with a Language object is now deprecated and emits

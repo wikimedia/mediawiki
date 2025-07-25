@@ -980,8 +980,6 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 
 		$manager = TestingAccessWrapper::newFromObject( $this->manager );
 		$request = RequestContext::getMain()->getRequest();
-		$manager->globalSession = $backend->getSession( $request );
-		$manager->globalSessionRequest = $request;
 
 		session_id( '' );
 		TestingAccessWrapper::newFromObject( $backend )->checkPHPSession();
@@ -1019,8 +1017,6 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 
 		$manager = TestingAccessWrapper::newFromObject( $this->manager );
 		$request = RequestContext::getMain()->getRequest();
-		$manager->globalSession = $backend->getSession( $request );
-		$manager->globalSessionRequest = $request;
 
 		session_id( self::SESSIONID );
 		@session_start();
@@ -1056,8 +1052,6 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 
 		$manager = TestingAccessWrapper::newFromObject( $this->manager );
 		$request = RequestContext::getMain()->getRequest();
-		$manager->globalSession = $backend->getSession( $request );
-		$manager->globalSessionRequest = $request;
 
 		session_id( self::SESSIONID . 'x' );
 		@session_start();

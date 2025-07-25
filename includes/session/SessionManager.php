@@ -24,7 +24,6 @@
 namespace MediaWiki\Session;
 
 use InvalidArgumentException;
-use LogicException;
 use MediaWiki\Config\Config;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Exception\MWException;
@@ -48,8 +47,9 @@ use Wikimedia\ObjectFactory\ObjectFactory;
  * This serves as the entry point to the MediaWiki session handling system.
  *
  * Most methods here are for internal use by session handling code. Other callers
- * should only use getGlobalSession and the methods of SessionManagerInterface;
- * the rest of the functionality is exposed via MediaWiki\Session\Session methods.
+ * should only use the methods of SessionManagerInterface;
+ * the rest of the functionality is exposed via MediaWiki\Session\Session methods,
+ * which can be accessed from WebRequest::getSession().
  *
  * To provide custom session handling, implement a MediaWiki\Session\SessionProvider.
  *
@@ -82,9 +82,6 @@ use Wikimedia\ObjectFactory\ObjectFactory;
  * @see https://www.mediawiki.org/wiki/Manual:SessionManager_and_AuthManager
  */
 class SessionManager implements SessionManagerInterface {
-	private static ?Session $globalSession = null;
-	private static ?WebRequest $globalSessionRequest = null;
-
 	private LoggerInterface $logger;
 	private HookContainer $hookContainer;
 	private HookRunner $hookRunner;
@@ -155,42 +152,10 @@ class SessionManager implements SessionManagerInterface {
 	}
 
 	/**
-	 * If PHP's session_id() has been set, returns that session. Otherwise
-	 * returns the session for RequestContext::getMain()->getRequest().
+	 * @deprecated since 1.45 Use RequestContext::getMain()->getRequest()->getSession() instead
 	 */
 	public static function getGlobalSession(): Session {
-		if ( !PHPSessionHandler::isEnabled() ) {
-			$id = '';
-		} else {
-			$id = session_id();
-		}
-
-		$request = RequestContext::getMain()->getRequest();
-		if (
-			!self::$globalSession // No global session is set up yet
-			|| self::$globalSessionRequest !== $request // The global WebRequest changed
-			|| ( $id !== '' && self::$globalSession->getId() !== $id ) // Someone messed with session_id()
-		) {
-			self::$globalSessionRequest = $request;
-			if ( $id === '' ) {
-				// session_id() wasn't used, so fetch the Session from the WebRequest.
-				// We use $request->getSession() instead of $singleton->getSessionForRequest()
-				// because doing the latter would require a public
-				// "$request->getSessionId()" method that would confuse end
-				// users by returning SessionId|null where they'd expect it to
-				// be short for $request->getSession()->getId(), and would
-				// wind up being a duplicate of the code in
-				// $request->getSession() anyway.
-				self::$globalSession = $request->getSession();
-			} else {
-				// Someone used session_id(), so we need to follow suit.
-				// Note this overwrites whatever session might already be
-				// associated with $request with the one for $id.
-				self::$globalSession = self::singleton()->getSessionById( $id, true, $request )
-					?: $request->getSession();
-			}
-		}
-		return self::$globalSession;
+		return RequestContext::getMain()->getRequest()->getSession();
 	}
 
 	public function __construct(
@@ -1004,22 +969,6 @@ class SessionManager implements SessionManagerInterface {
 	 */
 	public function setupPHPSessionHandler( PHPSessionHandler $handler ) {
 		$handler->setManager( $this, $this->store, $this->logger );
-	}
-
-	/**
-	 * Reset the internal caching for unit testing
-	 * @note Unit tests only
-	 * @internal
-	 */
-	public static function resetCache() {
-		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
-			// @codeCoverageIgnoreStart
-			throw new LogicException( __METHOD__ . ' may only be called from unit tests!' );
-			// @codeCoverageIgnoreEnd
-		}
-
-		self::$globalSession = null;
-		self::$globalSessionRequest = null;
 	}
 
 	private function logUnpersist( SessionInfo $info, WebRequest $request ) {

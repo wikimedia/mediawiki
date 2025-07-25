@@ -542,7 +542,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		}
 
 		$wgRequest = RequestContext::getMain()->getRequest();
-		MediaWiki\Session\SessionManager::resetCache();
 
 		TestUserRegistry::clear();
 		LoggerFactory::setContext( new LoggingContext() );
@@ -784,7 +783,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			session_id( '' );
 		}
 		$wgRequest = RequestContext::getMain()->getRequest();
-		MediaWiki\Session\SessionManager::resetCache();
 		ProfilingContext::destroySingleton();
 
 		// If anything changed the content language, we need to

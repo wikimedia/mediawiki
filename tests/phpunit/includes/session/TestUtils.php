@@ -28,27 +28,17 @@ class TestUtils {
 		$services = MediaWikiServices::getInstance();
 		session_write_close();
 
-		$staticAccess = TestingAccessWrapper::newFromClass( SessionManager::class );
 		$oldInstance = $services->getSessionManager();
-		$reset = [
-			[ 'globalSession', $staticAccess->globalSession ],
-			[ 'globalSessionRequest', $staticAccess->globalSessionRequest ],
-		];
 
 		$services->resetServiceForTesting( 'SessionManager' );
 		if ( $manager ) {
 			$services->redefineService( 'SessionManager', static fn () => $manager );
 		}
-		$staticAccess->globalSession = null;
-		$staticAccess->globalSessionRequest = null;
 		if ( $manager && PHPSessionHandler::isInstalled() ) {
 			PHPSessionHandler::install( $manager );
 		}
 
-		return new ScopedCallback( static function () use ( $services, $reset, $staticAccess, $oldInstance ) {
-			foreach ( $reset as [ $property, $oldValue ] ) {
-				$staticAccess->$property = $oldValue;
-			}
+		return new ScopedCallback( static function () use ( $services, $oldInstance ) {
 			if ( $oldInstance ) {
 				$services->resetServiceForTesting( 'SessionManager' );
 				$services->redefineService( 'SessionManager', static fn () => $oldInstance );

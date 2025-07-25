@@ -26,6 +26,7 @@
 namespace MediaWiki\Request;
 
 use HashBagOStuff;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Exception\FatalError;
 use MediaWiki\Exception\MWException;
 use MediaWiki\Hook\GetSecurityLogContextHook;
@@ -33,6 +34,7 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Http\Telemetry;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Session\PHPSessionHandler;
 use MediaWiki\Session\Session;
 use MediaWiki\Session\SessionId;
 use MediaWiki\Session\SessionManager;
@@ -107,14 +109,13 @@ class WebRequest {
 	protected $protocol;
 
 	/**
-	 * @var SessionId|null Session ID to use for this
-	 *  request. We can't save the session directly due to reference cycles not
-	 *  working too well (slow GC).
-	 *
-	 * TODO: Investigate whether this GC slowness concern (added in a73c5b7395 with regard to
-	 * PHP 5.6) still applies in PHP 7.2+.
+	 * @var SessionId|null Session ID to use for this request.
 	 */
-	protected $sessionId = null;
+	protected ?SessionId $sessionId = null;
+	/**
+	 * @var Session|null Session to use for this request.
+	 */
+	protected ?Session $session = null;
 
 	/** @var bool Whether this HTTP request is "safe" (even if it is an HTTP post) */
 	protected $markedAsSafe = false;
@@ -853,21 +854,27 @@ class WebRequest {
 	 * This might unpersist an existing session if it was invalid.
 	 *
 	 * @since 1.27
-	 * @note For performance, keep the session locally if you will be making
-	 *  much use of it instead of calling this method repeatedly.
 	 * @return Session
 	 */
 	public function getSession(): Session {
-		if ( $this->sessionId !== null ) {
-			$session = SessionManager::singleton()->getSessionById( (string)$this->sessionId, true, $this );
-			if ( $session ) {
-				return $session;
-			}
+		$sessionId = $this->getSessionId();
+
+		// Destroy the old session if someone has set a new session ID
+		if ( $this->session && $sessionId && $this->session->getId() !== $sessionId->getId() ) {
+			$this->session = null;
 		}
 
-		$session = SessionManager::singleton()->getSessionForRequest( $this );
-		$this->sessionId = $session->getSessionId();
-		return $session;
+		// Look up session by ID if provided
+		if ( !$this->session && $sessionId ) {
+			$this->session = SessionManager::singleton()->getSessionById( $sessionId->getId(), true, $this );
+		}
+
+		// If it was not provided, or a session with that ID doesn't exist, create a new one
+		if ( !$this->session ) {
+			$this->session = SessionManager::singleton()->getSessionForRequest( $this );
+			$this->sessionId = $this->session->getSessionId();
+		}
+		return $this->session;
 	}
 
 	/**
@@ -887,6 +894,17 @@ class WebRequest {
 	 * @return SessionId|null
 	 */
 	public function getSessionId() {
+		// If this is the main request, and we're using built-in PHP session handling,
+		// and the session ID wasn't overridden, return the PHP session's ID.
+		if ( PHPSessionHandler::isEnabled() && $this === RequestContext::getMain()->getRequest() ) {
+			$id = session_id();
+			if ( $id !== '' ) {
+				// Someone used session_id(), so we need to follow suit.
+				// We can't even cache this in $this->sessionId.
+				return new SessionId( $id );
+			}
+		}
+
 		return $this->sessionId;
 	}
 

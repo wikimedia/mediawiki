@@ -66,9 +66,11 @@ class FauxRequest extends WebRequest {
 		$this->data = $data;
 		$this->wasPosted = $wasPosted;
 		if ( $session instanceof MediaWiki\Session\Session ) {
+			$this->session = $session;
 			$this->sessionId = $session->getSessionId();
 		} elseif ( is_array( $session ) ) {
 			$mwsession = SessionManager::singleton()->getEmptySession( $this );
+			$this->session = $mwsession;
 			$this->sessionId = $mwsession->getSessionId();
 			foreach ( $session as $key => $value ) {
 				$mwsession->set( $key, $value );
