@@ -227,38 +227,14 @@ $specialPageAliases = [
 $datePreferences = [
 	'default',
 	'hh:mm d. month y.',
-	'hh:mm d month y',
-	'hh:mm dd.mm.yyyy',
-	'hh:mm d.m.yyyy',
 	'hh:mm d. mon y.',
-	'hh:mm d mon y',
-	'h:mm d. month y.',
-	'h:mm d month y',
-	'h:mm dd.mm.yyyy',
-	'h:mm d.m.yyyy',
-	'h:mm d. mon y.',
-	'h:mm d mon y',
+	'hh:mm d.m.yyyy',
+	'hh:mm dd.mm.yyyy',
 ];
 
 $defaultDateFormat = 'hh:mm d. month y.';
 
 $dateFormats = [
-	/*
-	'Није битно',
-	'06:12, 5. јануар 2001.',
-	'06:12, 5 јануар 2001',
-	'06:12, 05.01.2001.',
-	'06:12, 5.1.2001.',
-	'06:12, 5. јан 2001.',
-	'06:12, 5 јан 2001',
-	'6:12, 5. јануар 2001.',
-	'6:12, 5 јануар 2001',
-	'6:12, 05.01.2001.',
-	'6:12, 5.1.2001.',
-	'6:12, 5. јан 2001.',
-	'6:12, 5 јан 2001',
-	 */
-
 	'hh:mm d. month y. time'    => 'H:i',
 	'hh:mm d month y time'      => 'H:i',
 	'hh:mm dd.mm.yyyy time'     => 'H:i',
@@ -273,30 +249,30 @@ $dateFormats = [
 	'h:mm d mon y time'         => 'G:i',
 
 	'hh:mm d. month y. date'    => 'j. F Y.',
-	'hh:mm d month y date'      => 'j F Y',
-	'hh:mm dd.mm.yyyy date'     => 'd.m.Y',
-	'hh:mm d.m.yyyy date'       => 'j.n.Y',
-	'hh:mm d. mon y. date'      => 'j. M Y.',
-	'hh:mm d mon y date'        => 'j M Y',
+	'hh:mm d month y date'      => 'j. F Y.',
+	'hh:mm dd.mm.yyyy date'     => 'd. m. Y.',
+	'hh:mm d.m.yyyy date'       => 'j. n. Y.',
+	'hh:mm d. mon y. date'      => 'j. M. Y.',
+	'hh:mm d mon y date'        => 'j. M. Y.',
 	'h:mm d. month y. date'     => 'j. F Y.',
-	'h:mm d month y date'       => 'j F Y',
-	'h:mm dd.mm.yyyy date'      => 'd.m.Y',
-	'h:mm d.m.yyyy date'        => 'j.n.Y',
-	'h:mm d. mon y. date'       => 'j. M Y.',
-	'h:mm d mon y date'         => 'j M Y',
+	'h:mm d month y date'       => 'j. F Y.',
+	'h:mm dd.mm.yyyy date'      => 'd. m. Y.',
+	'h:mm d.m.yyyy date'        => 'j. n. Y.',
+	'h:mm d. mon y. date'       => 'j. M. Y.',
+	'h:mm d mon y date'         => 'j. M. Y.',
 
 	'hh:mm d. month y. both'    => 'H:i, j. F Y.',
-	'hh:mm d month y both'      => 'H:i, j F Y',
-	'hh:mm dd.mm.yyyy both'     => 'H:i, d.m.Y',
-	'hh:mm d.m.yyyy both'       => 'H:i, j.n.Y',
-	'hh:mm d. mon y. both'      => 'H:i, j. M Y.',
-	'hh:mm d mon y both'        => 'H:i, j M Y',
+	'hh:mm d month y both'      => 'H:i, j. F Y.',
+	'hh:mm dd.mm.yyyy both'     => 'H:i, d. m. Y.',
+	'hh:mm d.m.yyyy both'       => 'H:i, j. n. Y.',
+	'hh:mm d. mon y. both'      => 'H:i, j. M. Y.',
+	'hh:mm d mon y both'        => 'H:i, j. M. Y.',
 	'h:mm d. month y. both'     => 'G:i, j. F Y.',
-	'h:mm d month y both'       => 'G:i, j F Y',
-	'h:mm dd.mm.yyyy both'      => 'G:i, d.m.Y',
-	'h:mm d.m.yyyy both'        => 'G:i, j.n.Y',
-	'h:mm d. mon y. both'       => 'G:i, j. M Y.',
-	'h:mm d mon y both'         => 'G:i, j M Y',
+	'h:mm d month y both'       => 'G:i, j. F Y.',
+	'h:mm dd.mm.yyyy both'      => 'G:i, d. m. Y.',
+	'h:mm d.m.yyyy both'        => 'G:i, j. n. Y.',
+	'h:mm d. mon y. both'       => 'G:i, j. M. Y.',
+	'h:mm d mon y both'         => 'G:i, j. M. Y.',
 ];
 
 /* NOT USED IN STABLE VERSION */
@@ -453,4 +429,5 @@ $magicWords = [
 	'url_query'                 => [ '0', 'УПИТ', 'РЕДОСЛЕД', 'РЕДОСЛИЈЕД', 'РЕДОСЉЕД', 'QUERY' ],
 	'url_wiki'                  => [ '0', 'ВИКИ', 'WIKI' ],
 ];
+
 $separatorTransformTable = [ ',' => '.', '.' => ',' ];
