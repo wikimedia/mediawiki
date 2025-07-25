@@ -34,6 +34,7 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\FauxRequest;
+use MediaWiki\Request\ProxyLookup;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\User\User;
 use MediaWiki\User\UserNameUtils;
@@ -41,6 +42,7 @@ use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
 use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\ObjectCache\CachedBagOStuff;
+use Wikimedia\ObjectFactory\ObjectFactory;
 
 /**
  * This serves as the entry point to the MediaWiki session handling system.
@@ -89,6 +91,8 @@ class SessionManager implements SessionManagerInterface {
 	private Config $config;
 	private UserNameUtils $userNameUtils;
 	private CachedBagOStuff $store;
+	private ObjectFactory $objectFactory;
+	private ProxyLookup $proxyLookup;
 
 	/** @var SessionProvider[] */
 	private $sessionProviders = null;
@@ -194,6 +198,8 @@ class SessionManager implements SessionManagerInterface {
 		LoggerInterface $logger,
 		BagOStuff $store,
 		HookContainer $hookContainer,
+		ObjectFactory $objectFactory,
+		ProxyLookup $proxyLookup,
 		UserNameUtils $userNameUtils
 	) {
 		$this->config = $config;
@@ -203,6 +209,8 @@ class SessionManager implements SessionManagerInterface {
 		$logger->debug( 'SessionManager using store ' . get_class( $store ) );
 		$this->store = $store instanceof CachedBagOStuff ? $store : new CachedBagOStuff( $store );
 
+		$this->objectFactory = $objectFactory;
+		$this->proxyLookup = $proxyLookup;
 		$this->userNameUtils = $userNameUtils;
 
 		register_shutdown_function( $this->shutdown( ... ) );
@@ -453,10 +461,9 @@ class SessionManager implements SessionManagerInterface {
 	protected function getProviders() {
 		if ( $this->sessionProviders === null ) {
 			$this->sessionProviders = [];
-			$objectFactory = MediaWikiServices::getInstance()->getObjectFactory();
 			foreach ( $this->config->get( MainConfigNames::SessionProviders ) as $spec ) {
 				/** @var SessionProvider $provider */
-				$provider = $objectFactory->createObject( $spec );
+				$provider = $this->objectFactory->createObject( $spec );
 				$provider->init(
 					$this->logger,
 					$this->config,
@@ -1044,7 +1051,6 @@ class SessionManager implements SessionManagerInterface {
 	 * @param Session|null $session For testing only
 	 */
 	public function logPotentialSessionLeakage( ?Session $session = null ) {
-		$proxyLookup = MediaWikiServices::getInstance()->getProxyLookup();
 		$session = $session ?: self::getGlobalSession();
 		$suspiciousIpExpiry = $this->config->get( MainConfigNames::SuspiciousIpExpiry );
 
@@ -1061,7 +1067,7 @@ class SessionManager implements SessionManagerInterface {
 		} catch ( MWException ) {
 			return;
 		}
-		if ( $ip === '127.0.0.1' || $proxyLookup->isConfiguredProxy( $ip ) ) {
+		if ( $ip === '127.0.0.1' || $this->proxyLookup->isConfiguredProxy( $ip ) ) {
 			return;
 		}
 		$mwuser = $session->getRequest()->getCookie( 'mwuser-sessionId' );

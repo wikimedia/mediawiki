@@ -80,6 +80,8 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 				$logger,
 				$this->store,
 				$hookContainer,
+				$this->getServiceContainer()->getObjectFactory(),
+				$this->getServiceContainer()->getProxyLookup(),
 				$this->getServiceContainer()->getUserNameUtils()
 			);
 		}

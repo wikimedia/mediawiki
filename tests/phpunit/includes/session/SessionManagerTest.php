@@ -71,6 +71,8 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 			$this->logger,
 			$this->store,
 			$this->getServiceContainer()->getHookContainer(),
+			$this->getServiceContainer()->getObjectFactory(),
+			$this->getServiceContainer()->getProxyLookup(),
 			$this->getServiceContainer()->getUserNameUtils()
 		);
 	}
@@ -151,6 +153,8 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 			$this->logger,
 			$this->store,
 			$this->getServiceContainer()->getHookContainer(),
+			$this->getServiceContainer()->getObjectFactory(),
+			$this->getServiceContainer()->getProxyLookup(),
 			$this->getServiceContainer()->getUserNameUtils()
 		) );
 		$this->assertSame( $this->store, $manager->store );
@@ -1565,18 +1569,19 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 	) {
 		MWTimestamp::setFakeTime( 1234567 );
 		$this->overrideConfigValue( MainConfigNames::SuspiciousIpExpiry, 600 );
-		$manager = $this->getServiceContainer()->getSessionManager();
-		$logger = $this->createMock( LoggerInterface::class );
-		$this->setLogger( 'session-ip', $logger );
-		$request = new FauxRequest();
-		$request->setIP( $ip );
-		$request->setCookie( 'mwuser-sessionId', $mwuser );
 
 		$proxyLookup = $this->createMock( ProxyLookup::class );
 		$proxyLookup->method( 'isConfiguredProxy' )->willReturnCallback( static function ( $ip ) {
 			return $ip === '11.22.33.44';
 		} );
 		$this->setService( 'ProxyLookup', $proxyLookup );
+
+		$manager = $this->getServiceContainer()->getSessionManager();
+		$logger = $this->createMock( LoggerInterface::class );
+		$this->setLogger( 'session-ip', $logger );
+		$request = new FauxRequest();
+		$request->setIP( $ip );
+		$request->setCookie( 'mwuser-sessionId', $mwuser );
 
 		$session = $this->createMock( Session::class );
 		$session->method( 'isPersistent' )->willReturn( true );

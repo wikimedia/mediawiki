@@ -66,6 +66,8 @@ class BotPasswordSessionProviderTest extends MediaWikiIntegrationTestCase {
 			new NullLogger,
 			new TestBagOStuff,
 			$this->getServiceContainer()->getHookContainer(),
+			$this->getServiceContainer()->getObjectFactory(),
+			$this->getServiceContainer()->getProxyLookup(),
 			$this->getServiceContainer()->getUserNameUtils()
 		);
 

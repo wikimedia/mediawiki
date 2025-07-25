@@ -2134,6 +2134,8 @@ return [
 			LoggerFactory::getInstance( 'session' ),
 			$objectCacheFactory->getInstance( $mainConfig->get( MainConfigNames::SessionCacheType ) ),
 			$services->getHookContainer(),
+			$services->getObjectFactory(),
+			$services->getProxyLookup(),
 			$services->getUserNameUtils()
 		);
 	},

@@ -340,6 +340,8 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 			new NullLogger(),
 			new HashBagOStuff(),
 			$this->getServiceContainer()->getHookContainer(),
+			$this->getServiceContainer()->getObjectFactory(),
+			$this->getServiceContainer()->getProxyLookup(),
 			$this->getServiceContainer()->getUserNameUtils()
 		);
 		TestingAccessWrapper::newFromObject( $manager )->getProvider( (string)$provider );

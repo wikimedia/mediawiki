@@ -276,6 +276,8 @@ class BotPasswordTest extends MediaWikiIntegrationTestCase {
 			new Psr\Log\NullLogger,
 			new EmptyBagOStuff,
 			$this->getServiceContainer()->getHookContainer(),
+			$this->getServiceContainer()->getObjectFactory(),
+			$this->getServiceContainer()->getProxyLookup(),
 			$this->getServiceContainer()->getUserNameUtils()
 		);
 		$reset = TestUtils::setSessionManagerSingleton( $manager );
@@ -303,6 +305,8 @@ class BotPasswordTest extends MediaWikiIntegrationTestCase {
 			new Psr\Log\NullLogger,
 			new EmptyBagOStuff,
 			$this->getServiceContainer()->getHookContainer(),
+			$this->getServiceContainer()->getObjectFactory(),
+			$this->getServiceContainer()->getProxyLookup(),
 			$this->getServiceContainer()->getUserNameUtils()
 		);
 		$reset = TestUtils::setSessionManagerSingleton( $manager );
