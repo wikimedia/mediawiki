@@ -391,7 +391,6 @@
 	"loginerror": "Login error",
 	"createacct-error": "Account creation error",
 	"createaccounterror": "Could not create account: $1",
-	"nocookiesnew": "The user account was created, but you are not logged in.\n{{SITENAME}} uses cookies to log in users.\nYou have cookies disabled.\nPlease enable them, then log in with your new username and password.",
 	"nocookieslogin": "{{SITENAME}} uses cookies to log in users.\nYou have cookies disabled.\nPlease enable them and try again.",
 	"nocookiesfornew": "The user account was not created, as we could not confirm its source.\nEnsure you have cookies enabled, reload this page and try again.",
 	"nocookiesforlogin": "{{int:nocookieslogin}}",

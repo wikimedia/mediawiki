@@ -1213,22 +1213,6 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	}
 
 	/**
-	 * Check if a session cookie is present.
-	 *
-	 * This will not pick up a cookie set during _this_ request, but is meant
-	 * to ensure that the client is returning the cookie which was set on a
-	 * previous pass through the system.
-	 *
-	 * @return bool
-	 */
-	protected function hasSessionCookie() {
-		global $wgInitialSessionId;
-
-		return $wgInitialSessionId &&
-			$this->getRequest()->getSession()->getId() === (string)$wgInitialSessionId;
-	}
-
-	/**
 	 * Whether the login/create account form should display a link to the
 	 * other form (in addition to whatever the skin provides).
 	 * @return bool

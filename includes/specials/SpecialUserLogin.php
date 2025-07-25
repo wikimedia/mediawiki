@@ -138,14 +138,6 @@ class SpecialUserLogin extends LoginSignupSpecialPage {
 			}
 			$session->setForceHTTPS( $secureLogin && $this->mStickHTTPS );
 
-			// If the user does not have a session cookie at this point, they probably need to
-			// do something to their browser.
-			if ( !$this->hasSessionCookie() ) {
-				$this->mainLoginForm( [ /*?*/ ], $session->getProvider()->whyNoSession() );
-				// TODO something more specific? This used to use nocookieslogin
-				return;
-			}
-
 			# Run any hooks; display injected HTML if any, else redirect
 			$this->getHookRunner()->onUserLoginComplete(
 				$user, $injected_html, $direct );

@@ -666,7 +666,6 @@
 	"loginerror": "Used as title of error message.\n{{Identical|Login error}}",
 	"createacct-error": "Used as heading for the error message.",
 	"createaccounterror": "Parameters:\n* $1 - an error message",
-	"nocookiesnew": "This message is displayed when a new account was successfully created, but the browser doesn't accept cookies.",
 	"nocookieslogin": "This message is displayed when someone tried to login, but the browser doesn't accept cookies.",
 	"nocookiesfornew": "This message is displayed when the user tried to create a new account, but it failed the cross-site request forgery (CSRF) check. It could be blocking an attack, but most likely, the browser isn't  accepting cookies.",
 	"nocookiesforlogin": "{{optional}}\nThis message is displayed when someone tried to login and the CSRF failed (most likely, the browser doesn't accept cookies).\n\nDefault:\n* {{msg-mw|Nocookieslogin}}",

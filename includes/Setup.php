@@ -445,7 +445,7 @@ if ( $wgSharedDB && $wgSharedTables ) {
 wfMemoryLimit( $wgMemoryLimit );
 
 // Explicit globals, so this works with bootstrap.php
-global $wgRequest, $wgInitialSessionId;
+global $wgRequest;
 
 // Initialize the request object in $wgRequest
 $wgRequest = RequestContext::getMain()->getRequest(); // BackCompat
@@ -494,10 +494,6 @@ if ( MW_ENTRY_POINT === 'index' ) {
 	$wgRequest->interpolateTitle();
 }
 
-/**
- * @var MediaWiki\Session\SessionId|null $wgInitialSessionId The persistent session ID (if any) loaded at startup
- */
-$wgInitialSessionId = null;
 if ( !defined( 'MW_NO_SESSION' ) && MW_ENTRY_POINT !== 'cli' ) {
 	// If session.auto_start is there, we can't touch session name
 	if ( $wgPHPSessionHandling !== 'disable' && !wfIniGetBool( 'session.auto_start' ) ) {
@@ -532,10 +528,6 @@ if ( !defined( 'MW_NO_SESSION' ) && MW_ENTRY_POINT !== 'cli' ) {
 	}
 
 	unset( $contLang );
-
-	if ( $session->isPersistent() ) {
-		$wgInitialSessionId = $session->getSessionId();
-	}
 
 	$session->renew();
 	if ( MediaWiki\Session\PHPSessionHandler::isEnabled() &&

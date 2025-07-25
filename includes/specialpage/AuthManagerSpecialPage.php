@@ -467,6 +467,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 			$requestTokenValue = $this->getRequest()->getVal( $this->getTokenName() );
 			$sessionToken = $this->getToken();
 			if ( $sessionToken->wasNew() && ( !$this->isFakePostRequest || $this->isReturn ) ) {
+				// TODO: This should use `$this->getRequest()->getSession()->getProvider()->whyNoSession()`.
 				return Status::newFatal( $this->messageKey( 'authform-newtoken' ) );
 			} elseif ( !$requestTokenValue ) {
 				return Status::newFatal( $this->messageKey( 'authform-notoken' ) );

@@ -126,15 +126,6 @@ class SpecialCreateAccount extends LoginSignupSpecialPage {
 			# Only save preferences if the user is not creating an account for someone else.
 			if ( !$this->proxyAccountCreation ) {
 				$this->getHookRunner()->onAddNewAccount( $user, false );
-
-				// If the user does not have a session cookie at this point, they probably need to
-				// do something to their browser.
-				if ( !$this->hasSessionCookie() ) {
-					$this->mainLoginForm( [ /*?*/ ], $session->getProvider()->whyNoSession() );
-					// TODO something more specific? This used to use nocookiesnew
-					// FIXME should redirect to login page instead?
-					return;
-				}
 			} else {
 				$byEmail = false; // FIXME no way to set this
 
