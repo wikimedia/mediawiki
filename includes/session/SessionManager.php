@@ -119,39 +119,6 @@ class SessionManager implements SessionManagerInterface {
 	}
 
 	/**
-	 * @note Temporary setter to prepare SessionManager for proper
-	 *   DI with service objects.
-	 *
-	 * @param Config $config
-	 * @internal temporary method for refactoring
-	 */
-	public function setConfig( Config $config ): void {
-		$this->config = $config;
-	}
-
-	/**
-	 * @note Temporary setter to prepare SessionManager for proper
-	 *   DI with service objects.
-	 *
-	 * @param CachedBagOStuff $store
-	 * @internal temporary method for refactoring
-	 */
-	public function setSessionStore( $store ): void {
-		$this->store = $store;
-	}
-
-	/**
-	 * @note Temporary setter to prepare SessionManager for proper
-	 *   DI with service objects.
-	 *
-	 * @param UserNameUtils $userNameUtils
-	 * @internal temporary method for refactoring
-	 */
-	public function setUsernameUtils( $userNameUtils ): void {
-		$this->userNameUtils = $userNameUtils;
-	}
-
-	/**
 	 * @deprecated since 1.45 Use RequestContext::getMain()->getRequest()->getSession() instead
 	 */
 	public static function getGlobalSession(): Session {
