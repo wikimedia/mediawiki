@@ -320,12 +320,17 @@ class WikiModuleTest extends ResourceLoaderTestCase {
 		//   were made.
 
 		// Arrange: Warm up
+
 		$this->setFakeTime( '20110401090200' );
 		WikiModule::preloadTitleInfo( $context, [ 'testmodule1', 'testmodule2' ] );
 		// Arrange: Edit without with a temp cache (discard purge)
 		$this->setMainCache( new HashBagOStuff() );
 		$this->setFakeTime( '20110401091500' );
 		$this->editPage( 'MediaWiki:TestA.css', '.mw-a-second {}', 'Second' );
+
+		// getLength() returns the updated length, clear the cache to use linkCache
+		Title::clearCaches();
+
 		// Arrange: Reinstate the cache
 		$this->setMainCache( $cache1 );
 		$this->setFakeTime( '20110401090200' );

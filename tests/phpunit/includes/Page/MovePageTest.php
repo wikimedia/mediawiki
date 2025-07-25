@@ -16,7 +16,6 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Tests\ExpectCallbackTrait;
 use MediaWiki\Tests\Language\LocalizationUpdateSpyTrait;
 use MediaWiki\Tests\Recentchanges\ChangeTrackingUpdateSpyTrait;
-use MediaWiki\Tests\ResourceLoader\ResourceLoaderUpdateSpyTrait;
 use MediaWiki\Tests\Rest\Handler\MediaTestTrait;
 use MediaWiki\Tests\Search\SearchUpdateSpyTrait;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
@@ -38,7 +37,6 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 	use ChangeTrackingUpdateSpyTrait;
 	use SearchUpdateSpyTrait;
 	use LocalizationUpdateSpyTrait;
-	use ResourceLoaderUpdateSpyTrait;
 	use ExpectCallbackTrait;
 
 	/**
@@ -822,12 +820,6 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 		$this->expectLocalizationUpdate(
 			( $old->getNamespace() === NS_MEDIAWIKI ? 1 : 0 )
 			+ ( $new->getNamespace() === NS_MEDIAWIKI ? 1 : 0 )
-		);
-
-		// If the content model is JS, the module cache should be reset for the
-		// old and the new title.
-		$this->expectResourceLoaderUpdates(
-			$content->getModel() === CONTENT_MODEL_JAVASCRIPT ? 2 : 0
 		);
 
 		// Now move the page

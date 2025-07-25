@@ -19,7 +19,6 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Tests\Language\LocalizationUpdateSpyTrait;
 use MediaWiki\Tests\Recentchanges\ChangeTrackingUpdateSpyTrait;
-use MediaWiki\Tests\ResourceLoader\ResourceLoaderUpdateSpyTrait;
 use MediaWiki\Tests\Search\SearchUpdateSpyTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
@@ -36,7 +35,6 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 	use ChangeTrackingUpdateSpyTrait;
 	use SearchUpdateSpyTrait;
 	use LocalizationUpdateSpyTrait;
-	use ResourceLoaderUpdateSpyTrait;
 
 	private const PAGE_TEXT = "[[Stuart Little]]\n" .
 		"{{Multiple issues}}\n" .
@@ -529,9 +527,6 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 		$this->expectSearchUpdates( 1 );
 
 		$this->expectLocalizationUpdate( $page->getNamespace() === NS_MEDIAWIKI ? 1 : 0 );
-		$this->expectResourceLoaderUpdates(
-			$content->getModel() === CONTENT_MODEL_JAVASCRIPT ? 1 : 0
-		);
 
 		// Now delete the page
 		$this->getDeletePage( $page, $deleter )

@@ -26,7 +26,6 @@ use MediaWiki\Storage\RevisionSlotsUpdate;
 use MediaWiki\Tests\ExpectCallbackTrait;
 use MediaWiki\Tests\Language\LocalizationUpdateSpyTrait;
 use MediaWiki\Tests\Recentchanges\ChangeTrackingUpdateSpyTrait;
-use MediaWiki\Tests\ResourceLoader\ResourceLoaderUpdateSpyTrait;
 use MediaWiki\Tests\Search\SearchUpdateSpyTrait;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
@@ -50,7 +49,6 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 	use ChangeTrackingUpdateSpyTrait;
 	use SearchUpdateSpyTrait;
 	use LocalizationUpdateSpyTrait;
-	use ResourceLoaderUpdateSpyTrait;
 	use ExpectCallbackTrait;
 
 	protected function tearDown(): void {
@@ -1798,9 +1796,6 @@ more stuff
 
 		// Expect only non-edit recent changes entry
 		$this->expectChangeTrackingUpdates( 0, 1, 0, 0, 0 );
-
-		// Expect no resource module purges on protection
-		$this->expectResourceLoaderUpdates( 0 );
 
 		// Expect no additional updates, since content didn't change
 		$this->expectSearchUpdates( 0 );

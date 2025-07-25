@@ -196,7 +196,6 @@ use MediaWiki\Request\ProxyLookup;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\ResourceLoader\MessageBlobStore;
 use MediaWiki\ResourceLoader\ResourceLoader;
-use MediaWiki\ResourceLoader\ResourceLoaderEventIngress;
 use MediaWiki\Rest\Handler\Helper\PageRestHelperFactory;
 use MediaWiki\Revision\ArchivedRevisionLookup;
 use MediaWiki\Revision\MainSlotRoleHandler;
@@ -3018,7 +3017,6 @@ return [
 		$dispatcher->registerSubscriber( ChangeTrackingEventIngress::OBJECT_SPEC );
 		$dispatcher->registerSubscriber( SearchEventIngress::OBJECT_SPEC );
 		$dispatcher->registerSubscriber( LanguageEventIngress::OBJECT_SPEC );
-		$dispatcher->registerSubscriber( ResourceLoaderEventIngress::OBJECT_SPEC );
 
 		$extensionRegistry = $services->getExtensionRegistry();
 		$dispatcher->registerSubscriber( $extensionRegistry );

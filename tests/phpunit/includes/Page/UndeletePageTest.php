@@ -14,7 +14,6 @@ use MediaWiki\Storage\PageUpdateCauses;
 use MediaWiki\Tests\ExpectCallbackTrait;
 use MediaWiki\Tests\Language\LocalizationUpdateSpyTrait;
 use MediaWiki\Tests\Recentchanges\ChangeTrackingUpdateSpyTrait;
-use MediaWiki\Tests\ResourceLoader\ResourceLoaderUpdateSpyTrait;
 use MediaWiki\Tests\Search\SearchUpdateSpyTrait;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\Title;
@@ -34,7 +33,6 @@ class UndeletePageTest extends MediaWikiIntegrationTestCase {
 	use ChangeTrackingUpdateSpyTrait;
 	use SearchUpdateSpyTrait;
 	use LocalizationUpdateSpyTrait;
-	use ResourceLoaderUpdateSpyTrait;
 	use ExpectCallbackTrait;
 
 	/**
@@ -341,9 +339,6 @@ class UndeletePageTest extends MediaWikiIntegrationTestCase {
 
 		$this->expectSearchUpdates( 1 );
 		$this->expectLocalizationUpdate( $page->getNamespace() === NS_MEDIAWIKI ? 1 : 0 );
-		$this->expectResourceLoaderUpdates(
-			$content->getModel() === CONTENT_MODEL_JAVASCRIPT ? 1 : 0
-		);
 
 		// Now undelete the page
 		$undeletePage = $this->getServiceContainer()->getUndeletePageFactory()->newUndeletePage(

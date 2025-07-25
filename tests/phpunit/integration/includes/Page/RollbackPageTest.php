@@ -21,7 +21,6 @@ use MediaWiki\Storage\EditResult;
 use MediaWiki\Tests\ExpectCallbackTrait;
 use MediaWiki\Tests\Language\LocalizationUpdateSpyTrait;
 use MediaWiki\Tests\Recentchanges\ChangeTrackingUpdateSpyTrait;
-use MediaWiki\Tests\ResourceLoader\ResourceLoaderUpdateSpyTrait;
 use MediaWiki\Tests\Search\SearchUpdateSpyTrait;
 use MediaWiki\Tests\Unit\MockServiceDependenciesTrait;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
@@ -46,7 +45,6 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 	use LocalizationUpdateSpyTrait;
 	use MockAuthorityTrait;
 	use MockServiceDependenciesTrait;
-	use ResourceLoaderUpdateSpyTrait;
 	use SearchUpdateSpyTrait;
 	use TempUserTestTrait;
 
@@ -612,9 +610,6 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 
 		$this->expectSearchUpdates( 1 );
 		$this->expectLocalizationUpdate( $page->getNamespace() === NS_MEDIAWIKI ? 1 : 0 );
-		$this->expectResourceLoaderUpdates(
-			$content1 && ( $content1->getModel() === CONTENT_MODEL_JAVASCRIPT ? 1 : 0 )
-		);
 
 		// Now do the rollback
 		$rollbackResult = $this->getServiceContainer()

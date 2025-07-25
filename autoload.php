@@ -2729,7 +2729,6 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\ResourceLoader\\ReplayMinifierState' => __DIR__ . '/includes/ResourceLoader/ReplayMinifierState.php',
 	'MediaWiki\\ResourceLoader\\ResourceLoader' => __DIR__ . '/includes/ResourceLoader/ResourceLoader.php',
 	'MediaWiki\\ResourceLoader\\ResourceLoaderEntryPoint' => __DIR__ . '/includes/ResourceLoader/ResourceLoaderEntryPoint.php',
-	'MediaWiki\\ResourceLoader\\ResourceLoaderEventIngress' => __DIR__ . '/includes/ResourceLoader/ResourceLoaderEventIngress.php',
 	'MediaWiki\\ResourceLoader\\SiteModule' => __DIR__ . '/includes/ResourceLoader/SiteModule.php',
 	'MediaWiki\\ResourceLoader\\SiteStylesModule' => __DIR__ . '/includes/ResourceLoader/SiteStylesModule.php',
 	'MediaWiki\\ResourceLoader\\SkinModule' => __DIR__ . '/includes/ResourceLoader/SkinModule.php',

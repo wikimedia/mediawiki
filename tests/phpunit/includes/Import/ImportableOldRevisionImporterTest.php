@@ -11,7 +11,6 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Tests\ExpectCallbackTrait;
 use MediaWiki\Tests\Language\LocalizationUpdateSpyTrait;
 use MediaWiki\Tests\Recentchanges\ChangeTrackingUpdateSpyTrait;
-use MediaWiki\Tests\ResourceLoader\ResourceLoaderUpdateSpyTrait;
 use MediaWiki\Tests\Search\SearchUpdateSpyTrait;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\Title;
@@ -28,7 +27,6 @@ class ImportableOldRevisionImporterTest extends MediaWikiIntegrationTestCase {
 	use ChangeTrackingUpdateSpyTrait;
 	use SearchUpdateSpyTrait;
 	use LocalizationUpdateSpyTrait;
-	use ResourceLoaderUpdateSpyTrait;
 	use ExpectCallbackTrait;
 
 	protected function setUp(): void {
@@ -211,10 +209,6 @@ class ImportableOldRevisionImporterTest extends MediaWikiIntegrationTestCase {
 
 		$this->expectSearchUpdates( 1 );
 		$this->expectLocalizationUpdate( $title->getNamespace() === NS_MEDIAWIKI ? 1 : 0 );
-
-		$this->expectResourceLoaderUpdates(
-			$revision->getContent()->getModel() === CONTENT_MODEL_JAVASCRIPT ? 1 : 0
-		);
 
 		// Now perform the import
 		$importer = $this->getImporter();

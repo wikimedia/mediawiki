@@ -10,6 +10,7 @@ use InvalidArgumentException;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\NamespaceInfo;
+use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFormatter;
 use MediaWiki\Title\TitleValue;
 use Psr\Log\LoggerAwareInterface;
@@ -522,7 +523,6 @@ class LinkCache implements LoggerAwareInterface {
 		if ( $this->getCacheKey( $page ) === null || !$this->usePersistentCache( $page ) ) {
 			return null;
 		}
-
 		return $this->wanCache->makeKey( 'page', $page->getNamespace(), sha1( $page->getDBkey() ) );
 	}
 
@@ -532,7 +532,11 @@ class LinkCache implements LoggerAwareInterface {
 	 */
 	private function usePersistentCache( $pageOrNamespace ) {
 		$ns = is_int( $pageOrNamespace ) ? $pageOrNamespace : $pageOrNamespace->getNamespace();
-		if ( in_array( $ns, [ NS_TEMPLATE, NS_FILE, NS_CATEGORY, NS_MEDIAWIKI ] ) ) {
+
+		if ( in_array( $ns, [ NS_TEMPLATE, NS_FILE, NS_CATEGORY, NS_MEDIAWIKI ] ) ||
+			( !is_int( $pageOrNamespace ) &&
+				( str_ends_with( $pageOrNamespace->getDBkey(), '.css' ) ||
+					str_ends_with( $pageOrNamespace->getDBkey(), '.js' ) ) ) ) {
 			return true;
 		}
 		// Focus on transcluded pages more than the main content
@@ -561,6 +565,60 @@ class LinkCache implements LoggerAwareInterface {
 	}
 
 	/**
+	 * @param string[] $pages
+	 * @param string $fname
+	 * @return void
+	 */
+	public function executeBatch( array $pages, $fname ) {
+		$pageObject = [];
+		$result = [];
+
+		foreach ( $pages as $page ) {
+			$title = Title::newFromText( $page );
+			if ( $title ) {
+				$cacheKey = $this->getPersistentCacheKey( $title );
+				$pageObject[$cacheKey] = $title;
+			}
+		}
+
+		$rows = $this->wanCache->getMulti( array_keys( $pageObject ) );
+		foreach ( $rows as $key => $row ) {
+			if ( $row ) {
+				$title = TitleValue::tryNew( (int)$row->page_namespace, $row->page_title );
+				$this->addGoodLinkObjFromRow( $title, $row );
+			} else {
+				$this->addBadLinkObj( $pageObject[$key] );
+			}
+			unset( $pageObject[$key] );
+		}
+
+		$linkBatchFactory = MediaWikiServices::getInstance()->getLinkBatchFactory();
+
+		if ( count( $pageObject ) > 0 ) {
+			$linkBatch = $linkBatchFactory->newLinkBatch( array_values( $pageObject ) );
+			$linkBatch->setCaller( $fname );
+			$result = $linkBatch->doQuery();
+			$linkBatch->doGenderQuery();
+		}
+
+		foreach ( $result as $row ) {
+			$title = TitleValue::tryNew( (int)$row->page_namespace, $row->page_title );
+			$cacheKey = $this->getPersistentCacheKey( $title );
+			$this->addGoodLinkObjFromRow( $title, $row );
+			$pageObject[$cacheKey] = $row;
+		}
+
+		foreach ( $pageObject as $key => $row ) {
+			if ( !$row instanceof Title ) {
+				$this->wanCache->set( $key, $row, WANObjectCache::TTL_DAY );
+			} else {
+				$this->wanCache->set( $key, null, WANObjectCache::TTL_DAY );
+				$this->addBadLinkObj( $row );
+			}
+		}
+	}
+
+	/**
 	 * Purge the persistent link cache for a title
 	 *
 	 * @param LinkTarget|PageReference $page
@@ -568,6 +626,7 @@ class LinkCache implements LoggerAwareInterface {
 	 * @since 1.28
 	 */
 	public function invalidateTitle( $page ) {
+		// for use by ResourceLoader Wikimodule
 		$wanCacheKey = $this->getPersistentCacheKey( $page );
 		if ( $wanCacheKey !== null ) {
 			$this->wanCache->delete( $wanCacheKey );

@@ -181,8 +181,6 @@ $wgAutoloadClasses += [
 		"$testDir/phpunit/includes/ResourceLoader/ImageModuleTest.php",
 	'MediaWiki\\Tests\\ResourceLoader\\ImageModuleTestable' =>
 		"$testDir/phpunit/includes/ResourceLoader/ImageModuleTest.php",
-	'MediaWiki\Tests\ResourceLoader\ResourceLoaderUpdateSpyTrait' =>
-		"$testDir/phpunit/includes/ResourceLoader/ResourceLoaderUpdateSpyTrait.php",
 
 	# tests/phpunit/includes/Session
 	'MediaWiki\\Session\\TestBagOStuff' => "$testDir/phpunit/includes/Session/TestBagOStuff.php",

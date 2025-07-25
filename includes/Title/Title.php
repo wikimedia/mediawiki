@@ -41,7 +41,6 @@ use MediaWiki\Page\ProperPageIdentity;
 use MediaWiki\Page\WikiPage;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Request\PathRouter;
-use MediaWiki\ResourceLoader\WikiModule;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Utils\MWTimestamp;
 use MessageLocalizer;
@@ -3332,9 +3331,6 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 					$update->caller( $fname )->execute();
 
 					MediaWikiServices::getInstance()->getLinkCache()->invalidateTitle( $this );
-
-					WikiModule::invalidateModuleCache(
-						$this, null, null, $dbw->getDomainID() );
 				}
 			),
 			DeferredUpdates::PRESEND

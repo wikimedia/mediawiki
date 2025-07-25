@@ -28,7 +28,6 @@ use MediaWiki\Storage\EditResult;
 use MediaWiki\Tests\ExpectCallbackTrait;
 use MediaWiki\Tests\Language\LocalizationUpdateSpyTrait;
 use MediaWiki\Tests\Recentchanges\ChangeTrackingUpdateSpyTrait;
-use MediaWiki\Tests\ResourceLoader\ResourceLoaderUpdateSpyTrait;
 use MediaWiki\Tests\Search\SearchUpdateSpyTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
@@ -45,7 +44,6 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 	use ChangeTrackingUpdateSpyTrait;
 	use SearchUpdateSpyTrait;
 	use LocalizationUpdateSpyTrait;
-	use ResourceLoaderUpdateSpyTrait;
 	use ExpectCallbackTrait;
 
 	protected function setUp(): void {
@@ -777,9 +775,6 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 
 		$this->expectSearchUpdates( 1 );
 		$this->expectLocalizationUpdate( $page->getNamespace() === NS_MEDIAWIKI ? 1 : 0 );
-		$this->expectResourceLoaderUpdates(
-			$content->getModel() === CONTENT_MODEL_JAVASCRIPT ? 1 : 0
-		);
 
 		// Perform edit
 		$updater = $page->newPageUpdater( $user );
@@ -824,12 +819,6 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 			$page->getNamespace() === NS_MEDIAWIKI ? 1 : 0
 		);
 
-		// NOTE: The resource loader cache is currently purged *twice*
-		// for null edits. That's not necessary and may change.
-		$this->expectResourceLoaderUpdates(
-			$content->getModel() === CONTENT_MODEL_JAVASCRIPT ? 2 : 0
-		);
-
 		// Do null edit
 		$updater = $page->newPageUpdater( $user );
 		$summary = CommentStoreComment::newUnsavedComment( 'Just a test' );
@@ -866,7 +855,6 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		// Do not update derived data on dummy revisions!
 		$this->expectSearchUpdates( 0 );
 		$this->expectLocalizationUpdate( 0 );
-		$this->expectResourceLoaderUpdates( 0 );
 
 		// Create dummy revision
 		$updater = $page->newPageUpdater( $user );

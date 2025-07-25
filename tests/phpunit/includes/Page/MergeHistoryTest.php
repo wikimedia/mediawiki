@@ -17,7 +17,6 @@ use MediaWiki\Tests\Language\LocalizationUpdateSpyTrait;
 use MediaWiki\Tests\Mocks\Content\DummyContentForTesting;
 use MediaWiki\Tests\Mocks\Content\DummyContentHandlerForTesting;
 use MediaWiki\Tests\Recentchanges\ChangeTrackingUpdateSpyTrait;
-use MediaWiki\Tests\ResourceLoader\ResourceLoaderUpdateSpyTrait;
 use MediaWiki\Tests\Search\SearchUpdateSpyTrait;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\Title\Title;
@@ -34,7 +33,6 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 	use ChangeTrackingUpdateSpyTrait;
 	use SearchUpdateSpyTrait;
 	use LocalizationUpdateSpyTrait;
-	use ResourceLoaderUpdateSpyTrait;
 	use ExpectCallbackTrait;
 
 	private const NS_WITHOUT_REDIRECTS = 2030;
@@ -572,12 +570,6 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 		// namespace.
 		$this->expectLocalizationUpdate(
 			$old->getNamespace() === NS_MEDIAWIKI ? 1 : 0
-		);
-
-		// If the content model is JS, the module cache should be reset for the
-		// source page.
-		$this->expectResourceLoaderUpdates(
-			$oldContent->getModel() === CONTENT_MODEL_JAVASCRIPT ? 1 : 0
 		);
 
 		// Now merge the pages
