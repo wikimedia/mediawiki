@@ -32,9 +32,10 @@ class ApiQueryCodexIcons extends ApiQueryBase {
 	public function getAllowedParams() {
 		return [
 			'names' => [
-				ParamValidator::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_TYPE => array_keys( CodexModule::getIcons( null, $this->getConfig() ) ),
 				ParamValidator::PARAM_REQUIRED => true,
 				ParamValidator::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_ALL => true,
 			]
 		];
 	}

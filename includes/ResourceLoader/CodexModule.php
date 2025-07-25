@@ -157,10 +157,10 @@ class CodexModule extends FileModule {
 	 *
 	 * @param Context|null $context
 	 * @param Config $config
-	 * @param string[] $iconNames Names of icons to fetch
+	 * @param string[]|null $iconNames Names of icons to fetch, or null to fetch all icons
 	 * @return array
 	 */
-	public static function getIcons( ?Context $context, Config $config, array $iconNames = [] ): array {
+	public static function getIcons( ?Context $context, Config $config, ?array $iconNames = null ): array {
 		static $cachedIcons = null;
 		static $cachedIconFilePath = null;
 
@@ -170,6 +170,9 @@ class CodexModule extends FileModule {
 			$cachedIconFilePath = $iconFile;
 		}
 
+		if ( $iconNames === null ) {
+			return $cachedIcons;
+		}
 		return array_intersect_key( $cachedIcons, array_flip( $iconNames ) );
 	}
 
