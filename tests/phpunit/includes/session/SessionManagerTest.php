@@ -83,22 +83,14 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		} ];
 	}
 
-	public function testSingleton() {
-		$reset = TestUtils::setSessionManagerSingleton( null );
-
-		$singleton = SessionManager::singleton();
-		$this->assertInstanceOf( SessionManager::class, $singleton );
-		$this->assertSame( $singleton, SessionManager::singleton() );
-	}
-
 	public function testGetGlobalSession() {
 		$context = RequestContext::getMain();
 
-		if ( !PHPSessionHandler::isInstalled() ) {
-			PHPSessionHandler::install( SessionManager::singleton() );
-		}
+		$this->setService( 'SessionManager', $this->getManager() );
+		PHPSessionHandler::install( SessionManager::singleton() );
 		$staticAccess = TestingAccessWrapper::newFromClass( PHPSessionHandler::class );
 		$handler = TestingAccessWrapper::newFromObject( $staticAccess->instance );
+
 		$oldEnable = $handler->enable;
 		$reset[] = new ScopedCallback( static function () use ( $handler, $oldEnable ) {
 			if ( $handler->enable ) {
@@ -106,7 +98,6 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 			}
 			$handler->enable = $oldEnable;
 		} );
-		$reset[] = TestUtils::setSessionManagerSingleton( $this->getManager() );
 
 		$handler->enable = true;
 		$request = new FauxRequest();

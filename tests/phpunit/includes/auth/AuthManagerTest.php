@@ -53,7 +53,6 @@ use MediaWiki\Session\SessionInfo;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\Session\UserInfo;
 use MediaWiki\Status\Status;
-use MediaWiki\Tests\Session\TestUtils;
 use MediaWiki\User\BotPasswordStore;
 use MediaWiki\User\Options\UserOptionsManager;
 use MediaWiki\User\User;
@@ -304,7 +303,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 	 * Setup SessionManager with a mock session provider
 	 * @param bool|null $canChangeUser If non-null, canChangeUser will be mocked to return this
 	 * @param array $methods Additional methods to mock
-	 * @return array (MediaWiki\Session\SessionProvider, ScopedCallback)
+	 * @return MediaWiki\Session\SessionProvider
 	 */
 	protected function getMockSessionProvider( $canChangeUser = null, array $methods = [] ) {
 		if ( !isset( $this->config ) ) {
@@ -346,25 +345,25 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		);
 		TestingAccessWrapper::newFromObject( $manager )->getProvider( (string)$provider );
 
-		$reset = TestUtils::setSessionManagerSingleton( $manager );
+		$this->setService( 'SessionManager', $manager );
 
 		if ( isset( $this->request ) ) {
 			$manager->getSessionForRequest( $this->request );
 		}
 
-		return [ $provider, $reset ];
+		return $provider;
 	}
 
-	public function testCanAuthenticateNow() {
+	public function testCanAuthenticateNow_False() {
 		$this->initializeManager();
-
-		[ $provider, $reset ] = $this->getMockSessionProvider( false );
+		$provider = $this->getMockSessionProvider( false );
 		$this->assertFalse( $this->manager->canAuthenticateNow() );
-		ScopedCallback::consume( $reset );
+	}
 
-		[ $provider, $reset ] = $this->getMockSessionProvider( true );
+	public function testCanAuthenticateNow_True() {
+		$this->initializeManager();
+		$provider = $this->getMockSessionProvider( true );
 		$this->assertTrue( $this->manager->canAuthenticateNow() );
-		ScopedCallback::consume( $reset );
 	}
 
 	public function testNormalizeUsername() {
@@ -407,7 +406,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		$provideUser = null;
 		$reauth = $mutableSession ? AuthManager::SEC_REAUTH : AuthManager::SEC_FAIL;
 
-		[ $provider, $reset ] = $this->getMockSessionProvider(
+		$provider = $this->getMockSessionProvider(
 			$mutableSession, [ 'provideSessionInfo' ]
 		);
 		$provider->method( 'provideSessionInfo' )
@@ -547,8 +546,6 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 			);
 			$this->unhook( 'SecuritySensitiveOperationStatus' );
 		}
-
-		ScopedCallback::consume( $reset );
 	}
 
 	public static function provideSecuritySensitiveOperationStatus() {
@@ -811,11 +808,11 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
-	public function testBeginAuthentication() {
+	public function testBeginAuthentication_Immutable() {
 		$this->initializeManager();
 
 		// Immutable session
-		[ $provider, $reset ] = $this->getMockSessionProvider( false );
+		$provider = $this->getMockSessionProvider( false );
 		$this->hook( 'UserLoggedIn', UserLoggedInHook::class, $this->never() );
 		$this->request->getSession()->setSecret( AuthManager::AUTHN_STATE, 'test' );
 		try {
@@ -826,10 +823,10 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		}
 		$this->unhook( 'UserLoggedIn' );
 		$this->assertNull( $this->request->getSession()->getSecret( AuthManager::AUTHN_STATE ) );
-		ScopedCallback::consume( $reset );
-		$this->initializeManager( true );
+	}
 
-		// CreatedAccountAuthenticationRequest
+	public function testBeginAuthentication_CreatedAccountAuthenticationRequest() {
+		$this->initializeManager( true );
 		$user = $this->getTestSysop()->getUser();
 		$reqs = [
 			new CreatedAccountAuthenticationRequest( $user->getId(), $user->getName() )

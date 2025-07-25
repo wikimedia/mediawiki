@@ -8,12 +8,10 @@ use MediaWiki\Password\Password;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\Status\Status;
-use MediaWiki\Tests\Session\TestUtils;
 use MediaWiki\User\BotPassword;
 use MediaWiki\User\CentralId\CentralIdLookup;
 use Wikimedia\ObjectCache\EmptyBagOStuff;
 use Wikimedia\Rdbms\IDBAccessObject;
-use Wikimedia\ScopedCallback;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -261,8 +259,7 @@ class BotPasswordTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
-	public function testLogin() {
-		// Test failure when bot passwords aren't enabled
+	public function testLoginFailure() {
 		$this->overrideConfigValue( MainConfigNames::EnableBotPasswords, false );
 		$status = BotPassword::login( "{$this->testUserName}@BotPassword", 'foobaz', new FauxRequest );
 		$this->assertEquals( Status::newFatal( 'botpasswords-disabled' ), $status );
@@ -280,16 +277,16 @@ class BotPasswordTest extends MediaWikiIntegrationTestCase {
 			$this->getServiceContainer()->getProxyLookup(),
 			$this->getServiceContainer()->getUserNameUtils()
 		);
-		$reset = TestUtils::setSessionManagerSingleton( $manager );
+		$this->setService( 'SessionManager', $manager );
 		$this->assertNull(
 			$manager->getProvider( MediaWiki\Session\BotPasswordSessionProvider::class )
 		);
 		$status = BotPassword::login( "{$this->testUserName}@BotPassword", 'foobaz', new FauxRequest );
 		$this->assertEquals( Status::newFatal( 'botpasswords-no-provider' ), $status );
-		ScopedCallback::consume( $reset );
+	}
 
-		// Now configure BotPasswordSessionProvider for further tests...
-
+	public function testLogin() {
+		$mainConfig = $this->getServiceContainer()->getMainConfig();
 		$config = new HashConfig( [
 			MainConfigNames::SessionProviders => $mainConfig->get( MainConfigNames::SessionProviders ) + [
 				MediaWiki\Session\BotPasswordSessionProvider::class => [
@@ -309,7 +306,7 @@ class BotPasswordTest extends MediaWikiIntegrationTestCase {
 			$this->getServiceContainer()->getProxyLookup(),
 			$this->getServiceContainer()->getUserNameUtils()
 		);
-		$reset = TestUtils::setSessionManagerSingleton( $manager );
+		$this->setService( 'SessionManager', $manager );
 
 		// No "@"-thing in the username
 		$status = BotPassword::login( $this->testUserName, 'foobaz', new FauxRequest );
@@ -352,8 +349,6 @@ class BotPasswordTest extends MediaWikiIntegrationTestCase {
 			MediaWiki\Session\BotPasswordSessionProvider::class, $session->getProvider()
 		);
 		$this->assertSame( $session->getId(), $request->getSession()->getId() );
-
-		ScopedCallback::consume( $reset );
 	}
 
 	/**

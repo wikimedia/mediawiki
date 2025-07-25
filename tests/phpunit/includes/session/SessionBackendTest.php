@@ -834,7 +834,6 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		TestingAccessWrapper::newFromObject( $backend )->dataDirty = true;
 		$backend->save();
 		$this->assertFalse( $this->store->getSession( self::SESSIONID ), 'making sure it didn\'t save' );
-		$this->clearHook( 'SessionMetadata' );
 	}
 
 	public function testRenew() {
@@ -959,24 +958,28 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $expires, $wrap->expires );
 	}
 
-	public function testTakeOverGlobalSession() {
-		if ( !PHPSessionHandler::isInstalled() ) {
-			PHPSessionHandler::install( SessionManager::singleton() );
-		}
+	private function ensurePHPSessionHandlerEnabled(): ?ScopedCallback {
+		$scope = null;
 		if ( !PHPSessionHandler::isEnabled() ) {
 			$staticAccess = TestingAccessWrapper::newFromClass( PHPSessionHandler::class );
 			$handler = TestingAccessWrapper::newFromObject( $staticAccess->instance );
-			$resetHandler = new ScopedCallback( static function () use ( $handler ) {
+			$scope = new ScopedCallback( static function () use ( $handler ) {
 				session_write_close();
 				$handler->enable = false;
 			} );
 			$handler->enable = true;
 		}
+		return $scope;
+	}
+
+	public function testTakeOverGlobalSession() {
+		$scope = $this->ensurePHPSessionHandlerEnabled();
 
 		$backend = $this->getBackend( static::getTestSysop()->getUser() );
 		TestingAccessWrapper::newFromObject( $backend )->usePhpSessionHandling = true;
 
-		$resetSingleton = TestUtils::setSessionManagerSingleton( $this->manager );
+		$this->setService( 'SessionManager', $this->manager );
+		PHPSessionHandler::install( SessionManager::singleton() );
 
 		$manager = TestingAccessWrapper::newFromObject( $this->manager );
 		$request = RequestContext::getMain()->getRequest();
@@ -997,23 +1000,13 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testResetIdOfGlobalSession() {
-		if ( !PHPSessionHandler::isInstalled() ) {
-			PHPSessionHandler::install( SessionManager::singleton() );
-		}
-		if ( !PHPSessionHandler::isEnabled() ) {
-			$staticAccess = TestingAccessWrapper::newFromClass( PHPSessionHandler::class );
-			$handler = TestingAccessWrapper::newFromObject( $staticAccess->instance );
-			$resetHandler = new ScopedCallback( static function () use ( $handler ) {
-				session_write_close();
-				$handler->enable = false;
-			} );
-			$handler->enable = true;
-		}
+		$scope = $this->ensurePHPSessionHandlerEnabled();
 
 		$backend = $this->getBackend( User::newFromName( 'TestResetIdOfGlobalSession' ) );
 		TestingAccessWrapper::newFromObject( $backend )->usePhpSessionHandling = true;
 
-		$resetSingleton = TestUtils::setSessionManagerSingleton( $this->manager );
+		$this->setService( 'SessionManager', $this->manager );
+		PHPSessionHandler::install( SessionManager::singleton() );
 
 		$manager = TestingAccessWrapper::newFromObject( $this->manager );
 		$request = RequestContext::getMain()->getRequest();
@@ -1030,25 +1023,15 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testUnpersistOfGlobalSession() {
-		if ( !PHPSessionHandler::isInstalled() ) {
-			PHPSessionHandler::install( SessionManager::singleton() );
-		}
-		if ( !PHPSessionHandler::isEnabled() ) {
-			$staticAccess = TestingAccessWrapper::newFromClass( PHPSessionHandler::class );
-			$handler = TestingAccessWrapper::newFromObject( $staticAccess->instance );
-			$resetHandler = new ScopedCallback( static function () use ( $handler ) {
-				session_write_close();
-				$handler->enable = false;
-			} );
-			$handler->enable = true;
-		}
+		$scope = $this->ensurePHPSessionHandlerEnabled();
 
 		$backend = $this->getBackend( User::newFromName( 'TestUnpersistOfGlobalSession' ) );
 		$wrap = TestingAccessWrapper::newFromObject( $backend );
 		$wrap->usePhpSessionHandling = true;
 		$wrap->persist = true;
 
-		$resetSingleton = TestUtils::setSessionManagerSingleton( $this->manager );
+		$this->setService( 'SessionManager', $this->manager );
+		PHPSessionHandler::install( SessionManager::singleton() );
 
 		$manager = TestingAccessWrapper::newFromObject( $this->manager );
 		$request = RequestContext::getMain()->getRequest();

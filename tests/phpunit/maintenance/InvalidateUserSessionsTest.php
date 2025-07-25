@@ -4,7 +4,6 @@ namespace MediaWiki\Tests\Maintenance;
 
 use InvalidateUserSessions;
 use MediaWiki\Session\SessionManager;
-use MediaWiki\Tests\Session\TestUtils;
 use RuntimeException;
 
 /**
@@ -49,7 +48,7 @@ class InvalidateUserSessionsTest extends MaintenanceBaseTestCase {
 			->willReturnCallback( function ( $actualUser ) use ( $expectedUsernames ) {
 				$this->assertContains( $actualUser->getName(), $expectedUsernames );
 			} );
-		$resetSingleton = TestUtils::setSessionManagerSingleton( $mockSessionManager );
+		$this->setService( 'SessionManager', $mockSessionManager );
 		// Run the maintenance script
 		foreach ( $options as $name => $value ) {
 			$this->maintenance->setOption( $name, $value );
@@ -86,7 +85,7 @@ class InvalidateUserSessionsTest extends MaintenanceBaseTestCase {
 		$mockSessionManager = $this->createMock( SessionManager::class );
 		$mockSessionManager->method( 'invalidateSessionsForUser' )
 			->willThrowException( new RuntimeException( "Testing\nTest" ) );
-		$resetSingleton = TestUtils::setSessionManagerSingleton( $mockSessionManager );
+		$this->setService( 'SessionManager', $mockSessionManager );
 		// Run the maintenance script
 		$this->maintenance->setOption( 'user', 'Testing' );
 		$this->maintenance->execute();

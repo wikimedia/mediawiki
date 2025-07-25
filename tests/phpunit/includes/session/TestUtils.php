@@ -2,52 +2,18 @@
 
 namespace MediaWiki\Tests\Session;
 
-use MediaWiki\MediaWikiServices;
-use MediaWiki\Session\PHPSessionHandler;
 use MediaWiki\Session\Session;
 use MediaWiki\Session\SessionBackend;
-use MediaWiki\Session\SessionManager;
 use PHPUnit\Framework\Assert;
 use Psr\Log\LoggerInterface;
 use ReflectionClass;
 use TestLogger;
-use Wikimedia\ScopedCallback;
 use Wikimedia\TestingAccessWrapper;
 
 /**
  * Utility functions for Session unit tests
  */
 class TestUtils {
-
-	/**
-	 * Override the singleton for unit testing
-	 * @param SessionManager|null $manager
-	 * @return ScopedCallback|null
-	 */
-	public static function setSessionManagerSingleton( ?SessionManager $manager = null ) {
-		$services = MediaWikiServices::getInstance();
-		session_write_close();
-
-		$oldInstance = $services->getSessionManager();
-
-		$services->resetServiceForTesting( 'SessionManager' );
-		if ( $manager ) {
-			$services->redefineService( 'SessionManager', static fn () => $manager );
-		}
-		if ( $manager && PHPSessionHandler::isInstalled() ) {
-			PHPSessionHandler::install( $manager );
-		}
-
-		return new ScopedCallback( static function () use ( $services, $oldInstance ) {
-			if ( $oldInstance ) {
-				$services->resetServiceForTesting( 'SessionManager' );
-				$services->redefineService( 'SessionManager', static fn () => $oldInstance );
-			}
-			if ( $oldInstance && PHPSessionHandler::isInstalled() ) {
-				PHPSessionHandler::install( $oldInstance );
-			}
-		} );
-	}
 
 	/**
 	 * If you need a SessionBackend for testing but don't want to create a real
