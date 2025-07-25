@@ -187,6 +187,7 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 	 * @param string $newText
 	 * @return string
 	 * @throws Exception
+	 * @suppress PhanParamTooManyInternal,UnusedSuppression Spurious Phan warning with wikidiff <1.5.0 or >=1.8.0
 	 */
 	protected function getTextDiffInternal( $oldText, $newText ) {
 		// TODO move most of this into three parallel implementations of a text diff generator
