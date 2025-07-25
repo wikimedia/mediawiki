@@ -524,7 +524,6 @@ class CommentParserTest extends \MediaWikiIntegrationTestCase {
 			$parser->preprocess( "[[interwiki:$present]] [[$present]]" )
 		);
 		$this->assertSame(
-			// phpcs:ignore Generic.Files.LineLength
 			"<a href=\"https://interwiki/$present\" class=\"extiw\" title=\"interwiki:$present\">interwiki:$present</a> <a href=\"/wiki/$present\" title=\"$present\">$present</a>",
 			$result
 		);

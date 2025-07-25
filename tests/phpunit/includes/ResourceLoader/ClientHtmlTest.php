@@ -83,7 +83,6 @@ class ClientHtmlTest extends TestCase {
 				],
 			],
 			'styleDeprecations' => [
-				// phpcs:ignore Generic.Files.LineLength.TooLong
 				"This page is using the deprecated ResourceLoader module \"test.styles.deprecated\".\nDeprecation message."
 			],
 		];
