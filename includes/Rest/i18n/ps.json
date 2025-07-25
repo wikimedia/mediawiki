@@ -23,12 +23,12 @@
 	"rest-param-desc-compare-from-section-level": "برخې کچه",
 	"rest-param-desc-compare-to-section-level": "برخې کچه",
 	"rest-param-desc-language-links-title": "ويکي مخ سرليک",
-	"rest-param-desc-media-links-title": "دوتنې سرليک",
+	"rest-param-desc-media-links-title": "مخ سرليک",
 	"rest-param-desc-media-file-title": "دوتنې سرليک",
 	"rest-param-desc-media-mediatype": "د دوتنې ډول",
 	"rest-param-desc-media-url": "د دوتنې راکښته‌کولو وېبتړ",
-	"rest-param-desc-media-original": "ارې دوتنې سپيناوي",
-	"rest-param-desc-media-thumbnail": "بټنوک مالومات",
+	"rest-param-desc-media-original": "د دوتنې ارې بڼې په اړه مالومات",
+	"rest-param-desc-media-thumbnail": "د دوتنې د بټنوک بڼې په اړه مالومات",
 	"rest-param-desc-module-spec-module": "چلنوال ځانگړنه چلنوال",
 	"rest-param-desc-module-spec-version": "چلنوال ځانگړنې بل‌بڼه",
 	"rest-param-desc-pagehistory-count-title": "ويکي مخ سرليک",
@@ -63,5 +63,5 @@
 	"rest-schema-desc-search-results": "پلټنې پايلې",
 	"rest-schema-desc-revision-compare": "بیاکتنې پرتلنه",
 	"rest-endpoint-desc-mock-desc": "خيالي څرگنداوی.",
-	"rest-endpoint-desc-post-page": "يو ويکي مخ جوړول."
+	"rest-endpoint-desc-post-page": "ويکي مخ جوړوي."
 }

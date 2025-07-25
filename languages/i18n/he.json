@@ -695,6 +695,8 @@
 	"content-failed-to-parse": "פענוח $2 כתוכן מסוג $1 נכשל: $3",
 	"invalid-content-data": "מידע שגוי על התוכן",
 	"invalid-json-data": "JSON בלתי־תקין: $1",
+	"vue-invalid-content": "תוכן Vue בלתי־תקין: <code>$1</code>",
+	"vue-less-notsupported": "תוכן Vue בלתי־תקין: השימוש ב־LESS אינו נתמך בתג &lt;style&gt;.",
 	"content-not-allowed-here": "תוכן מסוג \"$1\" אינו מותר בדף [[:$2]] במשבצת \"$3\"",
 	"confirmleave-warning": "עזיבת הדף הזה יכולה לגרום לאובדן השינויים שעשית.",
 	"editpage-invalidcontentmodel-title": "מודל התוכן אינו נתמך",

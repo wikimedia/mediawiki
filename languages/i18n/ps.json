@@ -1119,6 +1119,7 @@
 	"rcfilters-filter-categorization-description": "د مخونو ریکارډونه چي وېشنيزې ورڅخه اضافه یا لرې شوي وي.",
 	"rcfilters-filter-logactions-label": "ننوتلي کړنې",
 	"rcfilters-filter-logactions-description": "اداري فعالیتونه، مخ‌ړنگونې، راپورته کول...",
+	"rcfilters-filter-accountcreations-label": "گڼون جوړونې",
 	"rcfilters-hideminor-conflicts-typeofchange-global": "\"کوچني سمونونه\" چاڼگر د یو یا څو ډوله چاڼگرو سره ټکر کې دی، ځکه چې د بدلون ځینې ډولونه د \"کوچني\" نښه کېدای نشي. ټکر لرونکي چاڼگر پورته د کارنده چاڼگرو برخه کې نښه شوي.",
 	"rcfilters-hideminor-conflicts-typeofchange": "د بدلون ځینې ډولونه نشي کولی \"لږ\" په توګه وټاکل شي، نو دا فلټر د لاندې ډول بدلون سره شخړې لري: $1",
 	"rcfilters-typeofchange-conflicts-hideminor": "د بدلون ډول فلټر شخړې د \"کوچنیو ترمیم\" فلټر سره. د بدلون ځینې ډولونه \"کوچنی\" په توګه ندی مشخص کیدی.",

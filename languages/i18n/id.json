@@ -3763,7 +3763,7 @@
 	"logentry-protect-protect-cascade": "$1 {{GENDER:$2|melindungi}} $3 $4 [runtun]",
 	"logentry-protect-modify": "$1 {{GENDER:$2|mengubah}} pengaturan perlindungan pada $3 $4",
 	"logentry-protect-modify-cascade": "$1 {{GENDER:$2|mengubah}} pengaturan perlindungan pada $3 $4 [runtun]",
-	"logentry-rights-rights": "Keanggotaan kelompok $1 {{GENDER:$2|diubah}} untuk {{GENDER:$6|$3 }}: $7",
+	"logentry-rights-rights": "$1 mengubah keanggotaan kelompok untuk $3: $7",
 	"logentry-rights-rights-granted": "{{GENDER:$2|memberikan}} hak $1",
 	"logentry-rights-rights-revoked": "{{GENDER:$2|mencabut}} hak $1",
 	"logentry-rights-rights-expiry-changed": "{{GENDER:$2|mengubah}} kedaluwarsa $1",

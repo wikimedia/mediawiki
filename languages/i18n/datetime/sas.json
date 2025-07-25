@@ -1,0 +1,21 @@
+{
+	"@metadata": {
+		"authors": [
+			"NikolasKHF"
+		]
+	},
+	"monday": "Senén",
+	"tuesday": "Selasa",
+	"wednesday": "Rebo",
+	"thursday": "Kemis",
+	"friday": "Jumat",
+	"saturday": "Sabtu",
+	"sunday": "Minggu",
+	"mon": "Sen",
+	"tue": "Sel",
+	"wed": "Reb",
+	"thu": "Kam",
+	"fri": "Jum",
+	"sat": "Sab",
+	"sun": "Min"
+}
