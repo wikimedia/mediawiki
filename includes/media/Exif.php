@@ -651,15 +651,21 @@ class Exif {
 		$dir = $this->mFilteredExifData[$prop . 'Ref'] ?? null;
 		$res = false;
 
-		if ( $loc !== null && ( $dir === 'N' || $dir === 'S' || $dir === 'E' || $dir === 'W' ) ) {
-			[ $num, $denom ] = explode( '/', $loc[0], 2 );
-			$res = (int)$num / (int)$denom;
-			[ $num, $denom ] = explode( '/', $loc[1], 2 );
-			$res += ( (int)$num / (int)$denom ) * ( 1 / 60 );
-			[ $num, $denom ] = explode( '/', $loc[2], 2 );
-			$res += ( (int)$num / (int)$denom ) * ( 1 / 3600 );
+		if ( $loc !== null && in_array( $dir, [ 'N', 'S', 'E', 'W' ] ) ) {
+			if ( is_array( $loc ) && count( $loc ) === 3 ) {
+				[ $num, $denom ] = explode( '/', $loc[0], 2 );
+				$res = (int)$num / (int)$denom;
+				[ $num, $denom ] = explode( '/', $loc[1], 2 );
+				$res += ( (int)$num / (int)$denom ) * ( 1 / 60 );
+				[ $num, $denom ] = explode( '/', $loc[2], 2 );
+				$res += ( (int)$num / (int)$denom ) * ( 1 / 3600 );
+			} elseif ( is_string( $loc ) ) {
+				// This is non-standard, but occurs in the wild (T386208)
+				[ $num, $denom ] = explode( '/', $loc, 2 );
+				$res = (int)$num / (int)$denom;
+			}
 
-			if ( $dir === 'S' || $dir === 'W' ) {
+			if ( $res && ( $dir === 'S' || $dir === 'W' ) ) {
 				// make negative
 				$res *= -1;
 			}
