@@ -2,7 +2,7 @@
 
 declare( strict_types = 1 );
 
-namespace MediaWiki\Tests\Unit\composer\PhpUnitSplitter;
+namespace MediaWiki\Tests\Unit\Composer\PhpUnitSplitter;
 
 use MediaWiki\Composer\ComposerSystemInterface;
 use MediaWiki\Composer\PhpUnitSplitter\SplitGroupExecutor;

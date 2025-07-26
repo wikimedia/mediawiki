@@ -2,7 +2,7 @@
 
 declare( strict_types = 1 );
 
-namespace MediaWiki\Tests\Unit\composer;
+namespace MediaWiki\Tests\Unit\Composer;
 
 use MediaWiki\Composer\ComposerLaunchParallel;
 use MediaWiki\Composer\ComposerSystemInterface;
