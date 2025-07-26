@@ -5,7 +5,7 @@ namespace MediaWiki\Tests\Api;
 use MediaWiki\Page\Event\PageCreatedEvent;
 use MediaWiki\Page\Event\PageLatestRevisionChangedEvent;
 use MediaWiki\Tests\ExpectCallbackTrait;
-use MediaWiki\Tests\recentchanges\ChangeTrackingUpdateSpyTrait;
+use MediaWiki\Tests\Recentchanges\ChangeTrackingUpdateSpyTrait;
 use MediaWiki\Tests\Search\SearchUpdateSpyTrait;
 use PHPUnit\Framework\Assert;
 

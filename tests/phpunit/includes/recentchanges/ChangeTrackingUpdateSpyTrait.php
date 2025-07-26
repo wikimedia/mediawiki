@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Tests\recentchanges;
+namespace MediaWiki\Tests\Recentchanges;
 
 use MediaWiki\JobQueue\JobQueueGroup;
 use MediaWiki\MainConfigNames;
