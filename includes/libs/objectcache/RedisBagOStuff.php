@@ -1,4 +1,7 @@
 <?php
+
+// @phan-file-suppress PhanTypeComparisonFromArray It's unclear whether exec() can return false
+
 /**
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -37,7 +40,6 @@ use Wikimedia\ArrayUtils\ArrayUtils;
  *
  * @ingroup Cache
  * @ingroup Redis
- * @phan-file-suppress PhanTypeComparisonFromArray It's unclear whether exec() can return false
  */
 class RedisBagOStuff extends MediumSpecificBagOStuff {
 	/** @var RedisConnectionPool */

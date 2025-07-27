@@ -1,5 +1,7 @@
 <?php
 
+// @phan-file-suppress PhanTraitParentReference
+
 namespace MediaWiki\Html;
 
 use Wikimedia\Assert\Assert;
@@ -10,8 +12,6 @@ use Wikimedia\RemexHtml\Serializer\SerializerNode;
  * Internal helper trait for HtmlHelper::modifyHtml.
  *
  * This is designed to extend a HtmlFormatter.
- *
- * @phan-file-suppress PhanTraitParentReference
  */
 trait HtmlHelperTrait {
 	/** @var callable */

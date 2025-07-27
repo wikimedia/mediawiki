@@ -1,5 +1,7 @@
 <?php
 
+// @phan-file-suppress PhanPluginNeverReturnMethod -- for getNamespaceField
+
 namespace MediaWiki\Deferred\LinksUpdate;
 
 use MediaWiki\Parser\ParserOutput;
@@ -11,7 +13,6 @@ use MediaWiki\Parser\ParserOutputLinkTypes;
  * Special:WhatLinksHere.
  *
  * @since 1.45
- * @phan-file-suppress PhanPluginNeverReturnMethod -- for getNamespaceField
  */
 class ExistenceLinksTable extends GenericPageLinksTable {
 

@@ -1,4 +1,7 @@
 <?php
+
+// @phan-file-suppress PhanUndeclaredMethod Undeclared methods in IApiMessage
+
 /**
  * This file contains the ApiErrorFormatter definition, plus implementations of
  * specific formatters.
@@ -39,7 +42,6 @@ use Wikimedia\Message\MessageSpecifier;
  * ApiResult.
  * @since 1.25
  * @ingroup API
- * @phan-file-suppress PhanUndeclaredMethod Undeclared methods in IApiMessage
  */
 class ApiErrorFormatter {
 	/** @var PageReference Dummy title to silence warnings from MessageCache::parse() */

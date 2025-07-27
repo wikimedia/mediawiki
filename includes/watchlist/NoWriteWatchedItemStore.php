@@ -1,4 +1,7 @@
 <?php
+
+// @phan-file-suppress PhanPluginNeverReturnMethod
+
 /**
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,7 +30,6 @@ use Wikimedia\Rdbms\DBReadOnlyError;
 /**
  * @internal
  * @since 1.31
- * @phan-file-suppress PhanPluginNeverReturnMethod
  */
 class NoWriteWatchedItemStore implements WatchedItemStoreInterface {
 

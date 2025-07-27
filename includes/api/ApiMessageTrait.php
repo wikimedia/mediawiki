@@ -1,4 +1,7 @@
 <?php
+
+// @phan-file-suppress PhanTraitParentReference,PhanUndeclaredMethod
+
 /**
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,8 +29,6 @@ use InvalidArgumentException;
  * Trait to implement the IApiMessage interface for Message subclasses
  * @since 1.27
  * @ingroup API
- * @phan-file-suppress PhanTraitParentReference
- * @phan-file-suppress PhanUndeclaredMethod
  */
 trait ApiMessageTrait {
 

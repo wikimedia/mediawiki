@@ -1,5 +1,7 @@
 <?php
 
+// @phan-file-suppress PhanUndeclaredMethod
+
 /**
  * Trait useful for SearchResultSet implementations.
  * It holds the functions that are rarely needed to be overridden.
@@ -7,7 +9,6 @@
  * This trait can be used directly by extensions providing a SearchEngine.
  *
  * @ingroup Search
- * @phan-file-suppress PhanUndeclaredMethod
  */
 trait SearchResultSetTrait {
 	/**

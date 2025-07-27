@@ -1,5 +1,7 @@
 <?php
 
+// @phan-file-suppress PhanPluginNeverReturnMethod
+
 namespace MediaWiki\ResourceLoader;
 
 use LogicException;
@@ -13,7 +15,6 @@ use Wikimedia\Minify\MinifierState;
  * without building the same module twice.
  *
  * @internal
- * @phan-file-suppress PhanPluginNeverReturnMethod
  */
 class ReplayMinifierState extends MinifierState {
 

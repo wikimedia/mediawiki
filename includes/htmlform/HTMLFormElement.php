@@ -1,5 +1,7 @@
 <?php
 
+// @phan-file-suppress PhanUndeclaredMethod
+
 namespace MediaWiki\HTMLForm;
 
 /**
@@ -7,7 +9,6 @@ namespace MediaWiki\HTMLForm;
  * (defined in htmlform.Element.js) picks up the extra config when constructed using OO.ui.infuse().
  *
  * Currently only supports passing 'hide-if' and 'disable-if' data.
- * @phan-file-suppress PhanUndeclaredMethod
  *
  * @stable to extend
  */
