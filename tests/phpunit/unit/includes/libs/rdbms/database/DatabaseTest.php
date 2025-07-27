@@ -35,7 +35,6 @@ use Wikimedia\Telemetry\NoopTracer;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @dataProvider provideAddQuotes
  * @covers \Wikimedia\Rdbms\Database
  * @covers \Wikimedia\Rdbms\Database\DatabaseFlags
  * @covers \Wikimedia\Rdbms\Platform\SQLPlatform
