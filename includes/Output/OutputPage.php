@@ -4881,7 +4881,7 @@ class OutputPage extends ContextSource {
 		// supported dir/path pair in the configuration (wgUploadDirectory, wgUploadPath)
 		// which is not expected to be in wgResourceBasePath on CDNs. (T155146)
 		$uploadPath = $config->get( MainConfigNames::UploadPath );
-		if ( strpos( $path, $uploadPath ) === 0 ) {
+		if ( str_starts_with( $path, $uploadPath ) ) {
 			$localDir = $config->get( MainConfigNames::UploadDirectory );
 			$remotePathPrefix = $remotePath = $uploadPath;
 		}

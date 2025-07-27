@@ -110,7 +110,7 @@ class ApiParseTest extends ApiTestCase {
 		$html = $res[0]['parse']['text'];
 
 		$expectedStart = '<div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"';
-		$this->assertSame( $expectedStart, substr( $html, 0, strlen( $expectedStart ) ) );
+		$this->assertStringStartsWith( $expectedStart, $html );
 
 		$html = substr( $html, strlen( $expectedStart ) );
 

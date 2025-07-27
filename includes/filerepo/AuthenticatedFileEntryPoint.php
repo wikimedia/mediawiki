@@ -80,7 +80,7 @@ class AuthenticatedFileEntryPoint extends MediaWikiEntryPoint {
 		$pathMap = $this->getConfig( MainConfigNames::ImgAuthUrlPathMap );
 		foreach ( $pathMap as $prefix => $storageDir ) {
 			$prefix = rtrim( $prefix, '/' ) . '/'; // implicit trailing slash
-			if ( strpos( $path, $prefix ) === 0 ) {
+			if ( str_starts_with( $path, $prefix ) ) {
 				$be = $services->getFileBackendGroup()->backendFromPath( $storageDir );
 				$filename = $storageDir . substr( $path, strlen( $prefix ) ); // strip prefix
 				// Check basic user authorization

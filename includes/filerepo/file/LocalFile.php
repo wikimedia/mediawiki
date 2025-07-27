@@ -611,7 +611,7 @@ class LocalFile extends File {
 		$prefixLength = strlen( $prefix );
 
 		// Double check prefix once
-		if ( substr( array_key_first( $array ), 0, $prefixLength ) !== $prefix ) {
+		if ( !str_starts_with( array_key_first( $array ), $prefix ) ) {
 			throw new InvalidArgumentException( __METHOD__ . ': incorrect $prefix parameter' );
 		}
 

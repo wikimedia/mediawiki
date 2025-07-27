@@ -73,7 +73,7 @@ class Sqlite {
 
 			$tables = $db->query( "SELECT name FROM sqlite_master WHERE type='table'", __METHOD__ );
 			foreach ( $tables as $table ) {
-				if ( strpos( $table->name, 'sqlite_' ) === 0 ) {
+				if ( str_starts_with( $table->name, 'sqlite_' ) ) {
 					continue;
 				}
 

@@ -123,7 +123,7 @@ class ConvertExtensionToRegistration extends Maintenance {
 					self::NO_LONGER_SUPPORTED_GLOBALS[$realName] . '). ' .
 					"Please update the entry point before convert to registration.\n" );
 				$this->hasWarning = true;
-			} elseif ( strpos( $name, $configPrefix ) === 0 ) {
+			} elseif ( str_starts_with( $name, $configPrefix ) ) {
 				$configName = substr( $name, strlen( $configPrefix ) );
 
 				$isPath = false;
@@ -145,7 +145,7 @@ class ConvertExtensionToRegistration extends Maintenance {
 				if ( $isPath ) {
 					$this->json['config'][$configName]['path'] = true;
 				}
-			} elseif ( $configPrefix !== 'wg' && strpos( $name, 'wg' ) === 0 ) {
+			} elseif ( $configPrefix !== 'wg' && str_starts_with( $name, 'wg' ) ) {
 				// Warn about this
 				$this->output( 'Warning: Skipped global "' . $name . '" (' .
 					'config prefix is "' . $configPrefix . '"). ' .
@@ -229,7 +229,7 @@ class ConvertExtensionToRegistration extends Maintenance {
 	private function stripPath( string $val, string $dir ): string {
 		if ( $val === $dir ) {
 			$val = '';
-		} elseif ( strpos( $val, $dir ) === 0 ) {
+		} elseif ( str_starts_with( $val, $dir ) ) {
 			// +1 is for the trailing / that won't be in $this->dir
 			$val = substr( $val, strlen( $dir ) + 1 );
 		}

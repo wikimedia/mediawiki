@@ -2424,13 +2424,13 @@ class Parser {
 		if ( $imagesexception && is_array( $imagesfrom ) ) {
 			$imagematch = false;
 			foreach ( $imagesfrom as $match ) {
-				if ( strpos( $url, $match ) === 0 ) {
+				if ( str_starts_with( $url, $match ) ) {
 					$imagematch = true;
 					break;
 				}
 			}
 		} elseif ( $imagesexception ) {
-			$imagematch = ( strpos( $url, $imagesfrom ) === 0 );
+			$imagematch = str_starts_with( $url, $imagesfrom );
 		} else {
 			$imagematch = false;
 		}
@@ -2453,7 +2453,7 @@ class Parser {
 
 			foreach ( $whitelist as $entry ) {
 				# Sanitize the regex fragment, make it case-insensitive, ignore blank entries/comments
-				if ( strpos( $entry, '#' ) === 0 || $entry === '' ) {
+				if ( $entry === '' || str_starts_with( $entry, '#' ) ) {
 					continue;
 				}
 				// @phan-suppress-next-line SecurityCheck-ReDoS preg_quote is not wanted here

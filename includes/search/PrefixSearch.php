@@ -214,7 +214,7 @@ abstract class PrefixSearch {
 
 		$matches = [];
 		foreach ( $keys as $pageKey => $page ) {
-			if ( $searchKey === '' || strpos( $pageKey, $searchKey ) === 0 ) {
+			if ( $searchKey === '' || str_starts_with( $pageKey, $searchKey ) ) {
 				// T29671: Don't use SpecialPage::getTitleFor() here because it
 				// localizes its input leading to searches for e.g. Special:All
 				// returning Spezial:MediaWiki-Systemnachrichten and returning
