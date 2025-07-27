@@ -336,7 +336,8 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 		return array_diff(
 			array_keys( get_object_vars( $this ) ),
 			[
-				'mThisAsAuthority' // memoization, will be recreated on demand.
+				'mThisAsAuthority', // memoization, will be recreated on demand.
+				'mRequest', // contains Session, reloaded when needed, T400549
 			]
 		);
 	}
