@@ -41,7 +41,7 @@ class InvalidateUserSessionsTest extends MaintenanceBaseTestCase {
 
 	/** @dataProvider provideExecute */
 	public function testExecute( $options, $expectedUsernames, $expectedOutputString ) {
-		// Mock the SessionManager::singleton() instance to expect calls to ::invalidateSessionsForUser
+		// Mock the SessionManager service to expect calls to ::invalidateSessionsForUser
 		$mockSessionManager = $this->createMock( SessionManager::class );
 		$mockSessionManager->expects( $this->exactly( count( $expectedUsernames ) ) )
 			->method( 'invalidateSessionsForUser' )
@@ -81,7 +81,7 @@ class InvalidateUserSessionsTest extends MaintenanceBaseTestCase {
 	}
 
 	public function testExecuteForThrownException() {
-		// Mock the SessionManager::singleton() instance to throw an error when ::invalidateSessionsForUser is called.
+		// Mock the SessionManager service to throw an error when ::invalidateSessionsForUser is called.
 		$mockSessionManager = $this->createMock( SessionManager::class );
 		$mockSessionManager->method( 'invalidateSessionsForUser' )
 			->willThrowException( new RuntimeException( "Testing\nTest" ) );

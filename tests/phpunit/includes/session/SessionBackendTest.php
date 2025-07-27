@@ -979,7 +979,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		TestingAccessWrapper::newFromObject( $backend )->usePhpSessionHandling = true;
 
 		$this->setService( 'SessionManager', $this->manager );
-		PHPSessionHandler::install( SessionManager::singleton() );
+		PHPSessionHandler::install( $this->manager );
 
 		$manager = TestingAccessWrapper::newFromObject( $this->manager );
 		$request = RequestContext::getMain()->getRequest();
@@ -1006,7 +1006,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		TestingAccessWrapper::newFromObject( $backend )->usePhpSessionHandling = true;
 
 		$this->setService( 'SessionManager', $this->manager );
-		PHPSessionHandler::install( SessionManager::singleton() );
+		PHPSessionHandler::install( $this->manager );
 
 		$manager = TestingAccessWrapper::newFromObject( $this->manager );
 		$request = RequestContext::getMain()->getRequest();
@@ -1031,7 +1031,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		$wrap->persist = true;
 
 		$this->setService( 'SessionManager', $this->manager );
-		PHPSessionHandler::install( SessionManager::singleton() );
+		PHPSessionHandler::install( $this->manager );
 
 		$manager = TestingAccessWrapper::newFromObject( $this->manager );
 		$request = RequestContext::getMain()->getRequest();
