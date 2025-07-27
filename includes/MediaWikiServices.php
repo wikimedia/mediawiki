@@ -173,6 +173,7 @@ use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\TitleFactory;
 use MediaWiki\Title\TitleFormatter;
 use MediaWiki\Title\TitleParser;
+use MediaWIki\Upload\UploadVerification;
 use MediaWiki\User\ActorMigration;
 use MediaWiki\User\ActorNormalization;
 use MediaWiki\User\ActorStore;
@@ -2109,6 +2110,13 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getUploadRevisionImporter(): UploadRevisionImporter {
 		return $this->getService( 'UploadRevisionImporter' );
+	}
+
+	/**
+	 * @since 1.45
+	 */
+	public function getUploadVerification(): UploadVerification {
+		return $this->getService( 'UploadVerification' );
 	}
 
 	/**

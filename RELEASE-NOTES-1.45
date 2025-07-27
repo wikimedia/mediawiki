@@ -226,6 +226,8 @@ because of Phabricator reports.
 * The UserNamePrefixSearch class, deprecated in 1.41 has been removed,
   the MediaWiki\User\UserNamePrefixSearch service should be used instead.
 * UserMailer::sanitizeHeaderValue, deprecated in 1.44 is now removed.
+* Subclasses of UploadBase must call the parent constructor if they override it
+* …
 
 === Deprecations in 1.45 ===
 
@@ -313,6 +315,9 @@ because of Phabricator reports.
 * The RecentChangeNotifier::getPageStatus() method has been deprecated.
 * The SendWatchlistEmailNotification and UpdateUserMailerFormattedPageStatus
   hooks have been deprecated, use the Notification Middleware instead.
+* UploadBase::verifyExtension, UploadBase::detectScript, UploadBase::detectVirus
+  have been deprecated. In most cases callers should use the verifyFile
+  method of UploadVerification service.
 * …
 
 === Other changes in 1.45 ===

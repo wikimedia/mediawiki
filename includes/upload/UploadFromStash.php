@@ -69,6 +69,7 @@ class UploadFromStash extends UploadBase {
 
 			$this->stash = new UploadStash( $this->repo, $user );
 		}
+		parent::__construct();
 	}
 
 	/**

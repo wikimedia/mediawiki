@@ -85,6 +85,7 @@ class UploadFromChunks extends UploadFromFile {
 		}
 
 		$this->logger = LoggerFactory::getInstance( 'upload' );
+		parent::__construct();
 	}
 
 	/**
