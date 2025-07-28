@@ -1527,6 +1527,17 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		$batchSize = min( $this->writeBatchSize, $limit );
 
 		foreach ( $tableIndexes as $numShardsDone => $tableIndex ) {
+			// don't do more than 10% of tables. To avoid overwhelming
+			// when there are too many of them. Add one to make sure small number
+			// of tables have been taken care of.
+			if (
+				$numShardsDone > ( ( $this->numTableShards / 10 ) + 1 ) &&
+				// running in context of purge maint script. Go through all tables
+				$limit !== INF
+			) {
+				break;
+			}
+
 			// The oldest expiry of a row we have deleted on this shard
 			// (the first row that we deleted)
 			$minExpUnix = null;
