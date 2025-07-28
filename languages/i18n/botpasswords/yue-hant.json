@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Winston Sung"
+			"Winston Sung",
+			"Yueman"
 		]
 	},
 	"botpasswords": "機械人密碼",
@@ -19,7 +20,7 @@
 	"botpasswords-label-delete": "刪除",
 	"botpasswords-label-resetpassword": "改過第個密碼",
 	"botpasswords-label-grants": "啱用嘅授權：",
-	"botpasswords-help-grants": "授權可以畀你用到你嘅戶口已經叫你有嘅權限，即使你喺呢度授權用某啲權限唔會令到你可以用到你本身冇嘅權限。你可以參考[[Special:ListGrants|授權表]]了解更多。",
+	"botpasswords-help-grants": "授權可以畀你用到你嘅戶口已經叫你有嘅權限，即使你喺呢度授權用某啲權限唔會令到你可以用到你本身冇嘅權限。你可以參考[[Special:ListGrants|授權表]]了解更多。\n\n有風險嘅授權做咗標記。未標記嘅授權響機械人被惡意人士騎劫時通常好難濫用。標記做有造成破壞行為風險（<span class=\"mw-grantriskgroup-vandalism\">{{int:grantriskgroup-vandalism}}</span>）嘅授權可以用響造成需要用好多工夫先至清理好嘅破壞行為。標記做有造成安全問題風險（<span class=\"mw-grantriskgroup-security\">{{int:grantriskgroup-security}}</span>）嘅授權可以導致持久嘅危害（例如個人資料洩露）。內部用授權（<span class=\"mw-grantriskgroup-internal\">{{int:grantriskgroup-internal}}</span>）係通常只係俾網站接話事人用嘅授權。如果唔係真係需要用，就請唔好申請有風險嘅授權。",
 	"botpasswords-label-grants-column": "授咗權",
 	"botpasswords-bad-appid": "機械人名 \"$1\" 冇效。",
 	"botpasswords-toolong-restrictions": "入咗太多IP地址或者範圍。",

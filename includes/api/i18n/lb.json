@@ -137,6 +137,7 @@
 	"apihelp-query+recentchanges-param-user": "Nëmmen Ännerunge vun dësem Benotzer opzielen.",
 	"apihelp-query+recentchanges-paramvalue-prop-comment": "Setzt d'Bemierkung vun der Ännerung dobäi.",
 	"apihelp-query+recentchanges-example-simple": "Rezent Ännerunge weisen",
+	"apihelp-query+redirects-paramvalue-prop-pageid": "Säiten-ID vun all Viruleedung.",
 	"apihelp-query+redirects-paramvalue-prop-title": "Titel vun all Viruleedung.",
 	"apihelp-query+revisions-example-last5": "Déi lescht 5 Versioune vun der <kbd>Haaptsäit</kbd> kréien.",
 	"apihelp-query+revisions+base-paramvalue-prop-ids": "D'Nummer vun der Versioun.",

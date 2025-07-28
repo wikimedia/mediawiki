@@ -653,6 +653,8 @@
 	"content-failed-to-parse": "Impossibile processar le contento $2 pro le modello $1: $3",
 	"invalid-content-data": "Datos de contento invalide",
 	"invalid-json-data": "JSON invalide: $1",
+	"vue-invalid-content": "Codice Vue non valide: <code>$1</code>",
+	"vue-less-notsupported": "Codice Vue non valide: le uso de LESS non es supportate in le etiquetta &lt;style&gt;.",
 	"content-not-allowed-here": "Le contento “$1” non es permittite in le pagina [[:$2]] in le segmento “$3”",
 	"confirmleave-warning": "Lassar iste pagina pote causar le perdita de tote le modificationes que tu ha facite.",
 	"editpage-invalidcontentmodel-title": "Modello de contento non supportate",

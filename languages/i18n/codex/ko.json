@@ -4,6 +4,7 @@
 			"Ykhwong"
 		]
 	},
+	"cdx-breadcrumb-overflow-label": "더 많은 둘러보기 옵션",
 	"cdx-chip-input-chip-added": "$1 칩이 추가되었습니다.",
 	"cdx-chip-input-chip-removed": "$1 칩이 제거되었습니다.",
 	"cdx-input-chip-aria-description": "편집하려면 Enter를, 제거하려면 Delete를 누르십시오.",

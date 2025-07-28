@@ -4,6 +4,7 @@
 			"شاه زمان پټان"
 		]
 	},
+	"rest-invalid-user": "ټاکل شوی کارن‌نوم ($1) ناچله دی",
 	"rest-mock-error": "خيالي تېروتنه.",
 	"rest-specified-revision-unavailable": "ځانگړې‌شوې بیاکتنه ړنگه‌شوې يا ځپل‌شوې ده.",
 	"rest-previous-revision-unavailable": "پخوانۍ بیاکتنه ونهٔ موندل شوه. ايا مخ تاله‌شوی يا ړنگ‌شوی دی؟",
@@ -63,5 +64,7 @@
 	"rest-schema-desc-search-results": "پلټنې پايلې",
 	"rest-schema-desc-revision-compare": "بیاکتنې پرتلنه",
 	"rest-endpoint-desc-mock-desc": "خيالي څرگنداوی.",
-	"rest-endpoint-desc-post-page": "ويکي مخ جوړوي."
+	"rest-endpoint-desc-post-page": "ويکي مخ جوړوي.",
+	"rest-endpoint-desc-get-page-title-language": "په بېلابېلو ژبو کې سره ورته سکالوگانې لړليک کوي.",
+	"rest-endpoint-desc-get-page-title-media": "په يو مخ کې کارېدلې تر ۱۰۰ دوتنو پورې رسنيزې دوتنې لړليک کوي."
 }
