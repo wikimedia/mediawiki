@@ -122,7 +122,7 @@ abstract class LinksTable {
 		$batchSize
 	) {
 		$this->lbFactory = $lbFactory;
-		$this->db = $this->lbFactory->getPrimaryDatabase();
+		$this->db = $this->lbFactory->getPrimaryDatabase( $this->virtualDomain() );
 		$this->sourcePage = $sourcePage;
 		$this->batchSize = $batchSize;
 		$this->linkTargetLookup = $linkTargetLookup;
@@ -434,7 +434,6 @@ abstract class LinksTable {
 	protected function doWrites() {
 		$db = $this->getDB();
 		$table = $this->getTableName();
-		$domainId = $db->getDomainID();
 		$batchSize = $this->getBatchSize();
 		$ticket = $this->getTransactionTicket();
 
@@ -521,5 +520,13 @@ abstract class LinksTable {
 	 */
 	protected function linksTargetNormalizationStage(): int {
 		return SCHEMA_COMPAT_OLD;
+	}
+
+	/**
+	 * What virtual domain should be used to read/write from the table
+	 * @return string|bool
+	 */
+	protected function virtualDomain() {
+		return false;
 	}
 }

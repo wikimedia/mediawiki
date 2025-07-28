@@ -13,6 +13,7 @@ use MediaWiki\Parser\ParserOutput;
  * @since 1.38
  */
 class ExternalLinksTable extends LinksTable {
+	public const VIRTUAL_DOMAIN = 'virtual-externallinks';
 	/** @var array<string,array<string,true>> */
 	private $newLinks = [];
 	/** @var array<string,array<string,true>>|null */
@@ -127,5 +128,9 @@ class ExternalLinksTable extends LinksTable {
 			$stringArray[] = LinkFilter::reverseIndexes( $domainIndex ) . $path;
 		}
 		return $stringArray;
+	}
+
+	protected function virtualDomain() {
+		return self::VIRTUAL_DOMAIN;
 	}
 }

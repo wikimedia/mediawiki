@@ -23,6 +23,7 @@
 
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Debug\MWDebug;
+use MediaWiki\Deferred\LinksUpdate\ExternalLinksTable;
 use MediaWiki\Exception\MWExceptionHandler;
 use MediaWiki\Exception\MWExceptionRenderer;
 use MediaWiki\Logger\LoggerFactory;
@@ -52,6 +53,7 @@ class MWLBFactory {
 		'virtual-botpasswords',
 		'virtual-interwiki',
 		'virtual-interwiki-interlanguage',
+		ExternalLinksTable::VIRTUAL_DOMAIN,
 	];
 
 	/**

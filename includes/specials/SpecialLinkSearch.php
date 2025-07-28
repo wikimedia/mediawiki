@@ -21,6 +21,7 @@
 namespace MediaWiki\Specials;
 
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\Deferred\LinksUpdate\ExternalLinksTable;
 use MediaWiki\ExternalLinks\LinkFilter;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\MainConfigNames;
@@ -175,7 +176,7 @@ class SpecialLinkSearch extends QueryPage {
 	}
 
 	public function getQueryInfo() {
-		$dbr = $this->getDatabaseProvider()->getReplicaDatabase();
+		$dbr = $this->getDatabaseProvider()->getReplicaDatabase( ExternalLinksTable::VIRTUAL_DOMAIN );
 
 		$field = 'el_to_domain_index';
 		$extraFields = [
@@ -275,6 +276,13 @@ class SpecialLinkSearch extends QueryPage {
 	 */
 	protected function getMaxResults() {
 		return max( parent::getMaxResults(), 60000 );
+	}
+
+	protected function getRecacheDB() {
+		return $this->getDatabaseProvider()->getReplicaDatabase(
+			ExternalLinksTable::VIRTUAL_DOMAIN,
+			'vslow'
+		);
 	}
 }
 
