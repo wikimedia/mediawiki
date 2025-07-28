@@ -409,6 +409,11 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 				$message = 'sp-contributions-footer-anon';
 			} elseif ( $userObj->isTemp() ) {
 				$message = 'sp-contributions-footer-temp';
+				if ( $this->msg( $message )->isDisabled() ) {
+					// As temp accounts and named accounts have similar properties,
+					// fall back to the "registered" version of the footer
+					$message = 'sp-contributions-footer';
+				}
 			} elseif ( $userObj->isAnon() ) {
 				// No message for non-existing users
 				$message = '';
