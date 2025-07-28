@@ -140,7 +140,7 @@
 	"underline-always": "Always",
 	"tog-showhiddencats": "Show hidden categories",
 	"tog-showrollbackconfirmation": "Show a confirmation prompt when clicking on a rollback link",
-	"tog-forcesafemode": "Always enable [[mw:Manual:Safemode|safe mode]]",
+	"tog-forcesafemode": "Always enable [[mw:Special:MyLanguage/Manual:Safemode|safe mode]]",
 	"prefs-help-forcesafemode": "Disable on-wiki scripts and stylesheets.",
 	"prefs-editing": "Editing",
 	"prefs-description-editing": "Customize how you make, track, and review edits.",
