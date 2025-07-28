@@ -5,7 +5,8 @@
 			"Enolp",
 			"Fitoschido",
 			"Xuacu",
-			"YoaR"
+			"YoaR",
+			"Diegodlh"
 		]
 	},
 	"config-desc": "L'instalador de MediaWiki",
@@ -108,7 +109,7 @@
 	"config-type-postgres": "PostgreSQL",
 	"config-type-sqlite": "SQLite",
 	"config-support-info": "MediaWiki ye compatible colos siguientes sistemes de bases de datos:\n\n$1\n\nSi nun atopes na llista el sistema de base de datos que tas intentando utilizar, sigue les instrucciones enllazaes enriba p'activar la compatibilidá.",
-	"config-dbsupport-mysql": "* [{{int:version-db-mariadb-url}} MariaDB] ye la base de datos primaria pa MediaWiki y la que tien mayor encontu. MediaWiki tamién funciona con [{{int:version-db-myslql-url}} MySQL] y [{{int:version-db-percona-url}} Percona Server], que son compatibles con MariaDB. ([https://www.php.net/manual/en/mysqli.installation.php Cómo compilar PHP con compatibilidá MySQL])",
+	"config-dbsupport-mysql": "* [{{int:version-db-mariadb-url}} MariaDB] ye la base de datos primaria pa MediaWiki y la que tien mayor encontu. MediaWiki tamién funciona con [{{int:version-db-mysql-url}} MySQL] y [{{int:version-db-percona-url}} Percona Server], que son compatibles con MariaDB. ([https://www.php.net/manual/en/mysqli.installation.php Cómo compilar PHP con compatibilidá MySQL])",
 	"config-dbsupport-postgres": "* [{{int:version-db-postgres-url}} PostgreSQL] ye un sistema popular de base de datos de códigu abiertu, como alternativa a MySQL. ([https://www.php.net/manual/en/pgsql.installation.php Cómo compilar PHP con compatibilidá PostgreSQL]).",
 	"config-dbsupport-sqlite": "* [{{int:version-db-sqlite-url}} SQLite] ye un sistema de base de datos llixeru que tien encontu perbonu. ([https://https://www.php.net/manual/en/pdo.installation.php Cómo compilar PHP con encontu pa SQLite], usa PDO)",
 	"config-header-mysql": "Axustes de MariaDB/MySQL",

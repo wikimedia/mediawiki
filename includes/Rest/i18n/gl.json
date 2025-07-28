@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Elisardojm",
-			"Toliño"
+			"Toliño",
+			"Xosecalvo"
 		]
 	},
 	"rest-prefix-mismatch": "O camiño solicitado ($1) non estaba no interior do camiño raíz da API REST ($2)",
@@ -20,7 +21,7 @@
 	"rest-pagehistory-incompatible-params": "Non se poden especificar á vez os parámetros \"older_than\" e \"newer_than\"",
 	"rest-pagehistory-param-range-error": "O identificador da revisión debe ser maior que 0",
 	"rest-pagehistory-timestamp-error": "Non se puido recuperar a marca de tempo para a revisión especificada ($1)",
-	"rest-pagehistorycount-type-unrecognized": "O tipo de reconto especificado ($1) non é válido",
+	"rest-pagehistorycount-type-unrecognized": "O tipo de contaxe especificado ($1) non é válido",
 	"rest-pagehistorycount-parameters-invalid": "Non se admite a combinación de parámetros especificada.",
 	"rest-compare-page-mismatch": "As revisións especificadas pertencen a páxinas diferentes; non se poden comparar.",
 	"rest-compare-permission-denied": "O usuario non ten acceso ás revisións solicitadas",
@@ -28,7 +29,7 @@
 	"rest-compare-inaccessible": "A revisión especificada polo parámetro \"$1\" non é de acceso público.",
 	"rest-compare-wrong-content": "O espazo \"$1\" da revisión especificada polo parámetro \"$2\" ten un tipo de contido que non se pode converter a texto.",
 	"rest-compare-wikidiff2": "Este extremo necesita wikidiff2 1.9.0 ou posterior.",
-	"rest-pagehistorycount-too-many-revisions": "O título especificado contén demasiadas revisións para recuperar este reconto.",
+	"rest-pagehistorycount-too-many-revisions": "O título especificado contén demasiadas revisións para recuperar esta contaxe.",
 	"rest-search-error": "Erro ao devolver os resultados da busca: $1",
 	"rest-page-source-type-error": "O tipo de contido da páxina fonte solicitada non é compatible",
 	"rest-no-revision": "Non se puido recuperar a revisión do título $1",

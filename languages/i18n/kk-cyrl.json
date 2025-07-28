@@ -138,7 +138,7 @@
 	"period-pm": "ТК",
 	"pagecategories": "{{PLURAL:$1|Санат|Санаттар}}",
 	"category_header": "«$1» санатындағы беттер",
-	"subcategories": "Субсанаттар",
+	"subcategories": "Санатшалар",
 	"category-media-header": "«$1» санатындағы медиа",
 	"category-empty": "<em>Бұл санатта қазіргі уақытта бет немесе медиа жоқ.</em>",
 	"hidden-categories": "{{PLURAL:$1|Жасырын санат}}",

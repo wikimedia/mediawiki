@@ -2857,6 +2857,7 @@
 	"markedaspatrollederror": "Ne povas patroliigar",
 	"markedaspatrollederrortext": "Vu devas mencionar quala revizuro patroliesos.",
 	"markedaspatrollederror-noautopatrol": "Vu ne povas patroliar vua propra modifikuri.",
+	"markedaspatrollednotify": "Ta modifikuro en l'artiklo $1 indikesis kom patroliata.",
 	"patrol-log-page": "Protokolo pri patroliado",
 	"confirm-markpatrolled-button": "O.K.",
 	"filedeleteerror-short": "Eventis eroro dum efaco di pagino: $1",

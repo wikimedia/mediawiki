@@ -355,7 +355,7 @@
 	"apihelp-unblock-param-reason": "Atblokavimo priežastis.",
 	"apihelp-unblock-example-id": "Atblokuoti blokavimo ID #<kbd>105</kbd>.",
 	"apihelp-unblock-example-user": "Atblokuoti vartoją <kbd>Bob</kbd> su priežastimi <kbd>Sorry Bob</kbd>.",
-	"apihelp-undelete-param-title": "Atkuriamo puslapio pavadinimas.",
+	"apihelp-undelete-param-title": "Puslapio, kurio ištrynimą norite atšaukti, pavadinimas.",
 	"apihelp-undelete-param-reason": "Atkūrimo priežastis.",
 	"apihelp-undelete-example-page": "Atkurti puslapį <kbd>Main Page</kbd>.",
 	"apihelp-upload-param-watch": "Stebėti šį puslapį.",

@@ -53,7 +53,8 @@
 			"Martin Urbanec",
 			"Oujon",
 			"Paskooda",
-			"TreeIsLife"
+			"TreeIsLife",
+			"Spider 001757"
 		]
 	},
 	"tog-underline": "Podčiarkovať odkazy:",
@@ -1166,8 +1167,8 @@
 	"userrights-lookup-user": "Vybrať používateľa",
 	"userrights-user-editname": "Zadajte meno používateľa:",
 	"editusergroup": "Načítať skupiny používateľov",
-	"editinguser": "Zmena práv {{GENDER:$1|používateľa|používateľky}} <strong>[[User:$1|$1]]</strong> $2",
-	"viewinguserrights": "Prehliadanie práv {{GENDER:$1|používateľa|používateľky}} <strong>[[User:$1|$1]]</strong> $2",
+	"editinguser": "Zmena skupín {{GENDER:$1|používateľa|používateľky}} <strong>[[User:$1|$1]]</strong> $2",
+	"viewinguserrights": "Zobrazujú sa skupiny {{GENDER:$1|používateľa|používateľky}} <strong>[[User:$1|$1]]</strong> $2",
 	"userrights-editusergroup": "Upraviť skupiny {{GENDER:$1|používateľa|používateľky}}",
 	"userrights-viewusergroup": "Zobraziť {{GENDER:$1|používateľské}} skupiny",
 	"saveusergroups": "Uložiť skupiny {{GENDER:$1|používateľa|používateľky}}",
@@ -2257,6 +2258,7 @@
 	"nowatchlist": "V zozname sledovaných stránok nemáte žiadne položky.",
 	"watchlistanontext": "Prihláste sa, prosím, ak chcete prezerať alebo upravovať váš zoznam sledovaných stránok.",
 	"watchnologin": "Nie ste prihlásený/á",
+	"watchlistnotwatchable": "Stránka sa nedá sledovať.",
 	"addwatch": "Pridať do zoznamu sledovaných stránok",
 	"updatewatchlist": "Aktualizovať zoznam sledovaných stránok",
 	"addedwatchtext": "Stránka „[[:$1]]“ a jej diskusná stránka boli pridané do vášho zoznamu [[Special:Watchlist|sledovaných stránok]].",
@@ -2455,6 +2457,7 @@
 	"undeletebtn": "Obnoviť!",
 	"undeletelink": "zobraziť/obnoviť",
 	"undeleteviewlink": "zobraziť",
+	"undelete-undeletetalk": "Obnoviť všetky revízie súvisiacej diskusnej stránky",
 	"undeleteinvert": "Invertovať výber",
 	"undeletecomment": "Dôvod:",
 	"cannotundelete": "Časť alebo celé obnovenie sa nepodarilo:\n$1",

@@ -4,7 +4,8 @@
 			"Ykhwong",
 			"Bluehill",
 			"Suleiman the Magnificent Television",
-			"Tensama0415"
+			"Tensama0415",
+			"YeBoy371"
 		]
 	},
 	"rest-wrong-method": "요청 메소드($1)는 {{PLURAL:$3|이 경로에 대해 허용되는 메소드|이 경로에 대해 허용되는 메소드 중 하나}}가 아닙니다 ($2)",
