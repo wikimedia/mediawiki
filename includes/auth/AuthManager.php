@@ -26,6 +26,7 @@ namespace MediaWiki\Auth;
 use InvalidArgumentException;
 use LogicException;
 use MediaWiki\Auth\Hook\AuthManagerVerifyAuthenticationHook;
+use MediaWiki\Block\AbstractBlock;
 use MediaWiki\Block\BlockManager;
 use MediaWiki\Config\Config;
 use MediaWiki\Context\RequestContext;
@@ -1897,6 +1898,33 @@ class AuthManager implements LoggerAwareInterface {
 	}
 
 	/**
+	 * Determine whether the attempted autocreation is of a temporary user from Special:MyTalk
+	 * using a blocked IP that is allowed to edit their own talk page. This is a legitimate
+	 * avenue to appeal a block, so allow temporary user creation in this situation.
+	 *
+	 * @param StatusValue $status
+	 * @param string $source
+	 * @param User $performer
+	 * @return bool
+	 */
+	private function autocreatingTempUserToAppealBlock(
+		StatusValue $status,
+		string $source,
+		User $performer
+	): bool {
+		$block = $status instanceof PermissionStatus ? $status->getBlock() : null;
+		if ( !( $block instanceof AbstractBlock ) ) {
+			return false;
+		}
+		$title = RequestContext::getMain()->getTitle();
+		return $title && $title->isSpecial( 'Mytalk' ) &&
+			$source === self::AUTOCREATE_SOURCE_TEMP &&
+			$performer->isAnon() &&
+			count( $status->getErrors() ) === 1 &&
+			!$block->appliesToUsertalk();
+	}
+
+	/**
 	 * Auto-create an account, and optionally log into that account
 	 *
 	 * PrimaryAuthenticationProviders can invoke this method by returning a PASS from
@@ -2026,20 +2054,27 @@ class AuthManager implements LoggerAwareInterface {
 		$bypassAuthorization = $session ? $session->getProvider()->canAlwaysAutocreate() : false;
 		if ( $source !== self::AUTOCREATE_SOURCE_MAINT && !$bypassAuthorization ) {
 			$status = $this->authorizeAutoCreateAccount( $performer );
-			if ( !$status->isOK() ) {
-				$this->logger->debug( __METHOD__ . ': cannot create or autocreate accounts', [
-					'username' => $username,
-					'creator' => $performer->getUser()->getName(),
-				] );
-				if ( $session ) {
-					$session->set( self::AUTOCREATE_BLOCKLIST, $status );
-					$session->persist();
+			if ( !$status->isOk() ) {
+				if ( $this->autocreatingTempUserToAppealBlock( $status, $source, $performer ) ) {
+					$this->logger->info( __METHOD__ . ': autocreating temporary user to appeal a block', [
+						'username' => $username,
+						'creator' => $performer->getUser()->getName(),
+					] );
+				} else {
+					$this->logger->debug( __METHOD__ . ': cannot create or autocreate accounts', [
+						'username' => $username,
+						'creator' => $performer->getUser()->getName(),
+					] );
+					if ( $session ) {
+						$session->set( self::AUTOCREATE_BLOCKLIST, $status );
+						$session->persist();
+					}
+					$user->setId( 0 );
+					$user->loadFromId();
+					$statusWrapped = Status::wrap( $status );
+					$this->logAutocreationAttempt( $statusWrapped, $user, $source, $login );
+					return $statusWrapped;
 				}
-				$user->setId( 0 );
-				$user->loadFromId();
-				$statusWrapped = Status::wrap( $status );
-				$this->logAutocreationAttempt( $statusWrapped, $user, $source, $login );
-				return $statusWrapped;
 			}
 		}
 

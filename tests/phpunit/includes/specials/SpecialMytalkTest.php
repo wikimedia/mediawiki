@@ -1,15 +1,19 @@
 <?php
 
+use MediaWiki\Block\AnonIpBlockTarget;
+use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Exception\UserNotLoggedIn;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Specials\Redirects\SpecialMytalk;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
+use MediaWiki\User\UserIdentityValue;
 
 /**
  * @group SpecialPage
  * @group Database
  * @covers \MediaWiki\Specials\Redirects\SpecialMytalk
+ * @covers \MediaWiki\Auth\AuthManager
  */
 class SpecialMytalkTest extends SpecialPageTestBase {
 	use TempUserTestTrait;
@@ -57,5 +61,28 @@ class SpecialMytalkTest extends SpecialPageTestBase {
 		$this->enableAutoCreateTempUser();
 		$this->expectException( UserNotLoggedIn::class );
 		$this->executeSpecialPage();
+	}
+
+	public function testLoggedOutAndBlockedWithTempAccountsEnabled() {
+		$this->enableAutoCreateTempUser();
+
+		$user = new UserIdentityValue( 0, '127.0.0.1' );
+		$block = new DatabaseBlock( [
+			'target' => new AnonIpBlockTarget( '127.0.0.1' ),
+			'by' => $this->getTestSysop()->getUser(),
+			'allowUsertalk' => true,
+		] );
+		$this->getServiceContainer()
+			->getDatabaseBlockStoreFactory()
+			->getDatabaseBlockStore( $block->getWikiId() )
+			->insertBlock( $block );
+
+		[ $html, ] = $this->executeSpecialPage(
+			'',
+			null,
+			null,
+			$this->mockUserAuthorityWithBlock( $user, $block )
+		);
+		$this->assertStringContainsString( 'mytalk-appeal-submit', $html );
 	}
 }

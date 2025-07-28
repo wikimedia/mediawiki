@@ -1186,6 +1186,8 @@ class SpecialPageFactory {
 			'class' => SpecialMytalk::class,
 			'services' => [
 				'TempUserConfig',
+				'TempUserCreator',
+				'AuthManager',
 			],
 		],
 		'PageHistory' => [
