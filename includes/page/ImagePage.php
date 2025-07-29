@@ -404,22 +404,27 @@ class ImagePage extends Article {
 			$this->getHookRunner()->onImageOpenShowImageInlineBefore( $this, $out );
 
 			if ( $this->displayImg->allowInlineDisplay() ) {
-				# image
-				# "Download high res version" link below the image
-				# $msgsize = $this->getContext()->msg( 'file-info-size', $width_orig, $height_orig,
-				#   Language::formatSize( $this->displayImg->getSize() ), $mime )->escaped();
-				# We'll show a thumbnail of this image
-				if ( $width > $maxWidth ||
+				if (
+					$this->displayImg->isVectorized() &&
+					$mainConfig->get( MainConfigNames::SVGNativeRendering ) === true
+				) {
+					// SVG that is rendered native doesn't need these links
+					$msgsmall = '';
+				} elseif ( $width > $maxWidth ||
 					$height > $maxHeight ||
 					$this->displayImg->isVectorized()
 				) {
+					// "Download high res version" link below the image
+					// $msgsize = $this->getContext()->msg( 'file-info-size', $width_orig, $height_orig,
+					//   Language::formatSize( $this->displayImg->getSize() ), $mime )->escaped();
+					// We'll show a thumbnail of this image
 					[ $width, $height ] = $this->displayImg->getDisplayWidthHeight(
 						$maxWidth, $maxHeight, $page
 					);
 					$linktext = $context->msg( 'show-big-image' )->escaped();
 
 					$thumbSizes = $this->getThumbSizes( $width_orig, $height_orig );
-					# Generate thumbnails or thumbnail links as needed...
+					// Generate thumbnails or thumbnail links as needed...
 					$otherSizes = [];
 					foreach ( $thumbSizes as $size ) {
 						// We include a thumbnail size in the list, if it is
