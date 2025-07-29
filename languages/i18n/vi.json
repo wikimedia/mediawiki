@@ -715,6 +715,7 @@
 	"content-failed-to-parse": "Thất bại phân tích nội dung $2 cho kiểu $1: $3",
 	"invalid-content-data": "Dữ liệu nội dung không hợp lệ",
 	"invalid-json-data": "JSON không hợp lệ: $1",
+	"vue-invalid-content": "Nội dung Vue không hợp lệ: <code>$1</code>",
 	"content-not-allowed-here": "Nội dung “$1” không được phép đưa vào trang [[:$2]] tại vị trí “$3”",
 	"confirmleave-warning": "Nếu rời bỏ trang này, bạn có thể mất thay đổi nào mà bạn đã thực hiện.",
 	"editpage-invalidcontentmodel-title": "Không hỗ trợ kiểu nội dung",

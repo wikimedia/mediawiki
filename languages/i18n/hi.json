@@ -3194,7 +3194,7 @@
 	"revdelete-restricted": "प्रबंधकोंको प्रतिबंधित किया",
 	"revdelete-unrestricted": "प्रबंधकोंके प्रबंधन हटायें",
 	"logentry-block-block": "$1 ने {{GENDER:$4|$3}} को $5 के लिए {{GENDER:$2|अवरोधित}} कर दिया। $6",
-	"logentry-block-unblock": "$1 {{GENDER:$2|प्रतिबंधित}} {{GENDER:$4|$3}}",
+	"logentry-block-unblock": "$1 ने {{GENDER:$4|$3}} को {{GENDER:$2|अवरोध मुक्त}} किया।",
 	"logentry-block-reblock": "$1 ने {{GENDER:$4|$3}} के अवरोध में {{GENDER:$2|बदलाव}} कर दिया और यह अवरोध $5 रहेगा। $6",
 	"logentry-partialblock-block-page": "{{PLURAL:$1|पृष्ठ}} $2",
 	"logentry-partialblock-block-ns": "{{PLURAL:$1|नामस्थान}} $2",

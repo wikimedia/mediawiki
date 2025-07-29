@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
+			"EdoAug",
 			"Jon Harald Søby"
 		]
 	},
+	"cdx-breadcrumb-overflow-label": "Flere navigeringsalternativ",
 	"cdx-chip-input-chip-added": "Chippen $1 ble lagt til.",
 	"cdx-chip-input-chip-removed": "Chippen $1 ble fjernet.",
 	"cdx-input-chip-aria-description": "Trykk Enter for å redigere eller Delete for å fjerne.",

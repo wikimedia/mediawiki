@@ -1288,6 +1288,7 @@
 	"apihelp-query+tokens-param-type": "Typene nøkler det skal bes om.",
 	"apihelp-query+tokens-example-simple": "Hent en csrf-nøkkel (standard).",
 	"apihelp-query+tokens-example-types": "Hent en overvåkningsnøkkel og en patruljeringsnøkkel.",
+	"apihelp-query+trackingcategories-param-prop": "Hvilke egenskaper å hente:",
 	"apihelp-query+transcludedin-summary": "Finn alle sider som transkluderer de gitte sidene.",
 	"apihelp-query+transcludedin-param-prop": "Hvilke egenskaper som skal hentes:",
 	"apihelp-query+transcludedin-paramvalue-prop-pageid": "Side-ID-en til hver side.",
