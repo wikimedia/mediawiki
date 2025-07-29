@@ -4,7 +4,8 @@
 			"Bluehill",
 			"Suleiman the Magnificent Television",
 			"Ykhwong",
-			"Tensama0415"
+			"Tensama0415",
+			"YeBoy371"
 		]
 	},
 	"rest-prefix-mismatch": "요청한 경로($1)가 REST API 기본 경로($2) 안에 없었습니다",

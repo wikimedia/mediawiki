@@ -2197,7 +2197,7 @@
 	"activeusers-submit": "Tampilkan pengguna aktif",
 	"listgrouprights": "Daftar hak kelompok",
 	"listgrouprights-summary": "Berikut adalah daftar kelompok pengguna yang terdapat di wiki ini, dengan daftar hak akses mereka masing-masing. Informasi lebih lanjut mengenai hak masing-masing dapat ditemukan di [[{{MediaWiki:Listgrouprights-helppage}}|halaman bantuan hak pengguna]].",
-	"listgrouprights-key": "* <span class=\"listgrouprights-granted\">Hak yang diberikan</span>\n* <span class=\"listgrouprights-revoked\">Hak yang dicabut</span>",
+	"listgrouprights-key": "Legenda:\n* <span class=\"listgrouprights-granted\">Hak diberikan</span> \n* <span class=\"listgrouprights-revoked\">Hak dicabut</span>",
 	"listgrouprights-group": "Kelompok",
 	"listgrouprights-rights": "Hak",
 	"listgrouprights-helppage": "Help:Hak akses",

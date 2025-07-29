@@ -471,6 +471,7 @@
 	"recreate-moveddeleted-warn": "<strong>Jaku tangkan: Nuan ngaga baru lambar ti udah dipadam sebedau tu.</strong>\n\nNuan patut berunding sekalika patut terus ngedit lambar tu.\nLog pemadam enggau pemindah kena lambar tu disediaka ditu:",
 	"moveddeleted-notice": "Lambar tu udah nadai.\nLog pemuai, pelindung, enggau pengalih kena lambar tu disediaka ba baru nyadi referens.",
 	"edit-conflict": "Konflik edit.",
+	"postedit-confirmation-created": "Lambar tu udah [[Special:Diff/$2|digaga]].",
 	"invalid-content-data": "Data isi enda sah",
 	"editpage-invalidcontentmodel-title": "Model isi enda disukung",
 	"slot-name-main": "Batang",

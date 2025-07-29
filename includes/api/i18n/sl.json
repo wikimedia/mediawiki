@@ -1103,6 +1103,7 @@
 	"apierror-parsetree-notwikitext-title": "Parameter <kbd>prop=parsetree</kbd> je podprt samo za vikibesedilo. $1 uporablja vsebinski model $2.",
 	"apierror-pastexpiry": "Čas preteka »$1« je v preteklosti.",
 	"apierror-permissiondenied": "Nimate dovoljenja za $1.",
+	"apierror-permissiondenied-generic": "Dovoljenje zavrnjeno.",
 	"apierror-sectionsnotsupported": "Za vsebinski model $1 razdelki niso podprti.",
 	"apierror-sectionsnotsupported-what": "$1 ne podpira razdelkov.",
 	"apierror-stashfailed-nosession": "Ne obstaja nobena razdeljena seja nalaganja s tem ključem.",

@@ -4,6 +4,7 @@
 			"شاه زمان پټان"
 		]
 	},
+	"rest-invalid-user": "ټاکل شوی کارن‌نوم ($1) ناچله دی",
 	"rest-mock-error": "خيالي تېروتنه.",
 	"rest-specified-revision-unavailable": "ځانگړې‌شوې بیاکتنه ړنگه‌شوې يا ځپل‌شوې ده.",
 	"rest-previous-revision-unavailable": "پخوانۍ بیاکتنه ونهٔ موندل شوه. ايا مخ تاله‌شوی يا ړنگ‌شوی دی؟",

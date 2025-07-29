@@ -1046,7 +1046,7 @@
 	"diff-inline-tooltip-ins": "Toegevoegde inhoud",
 	"diff-inline-tooltip-del": "Verwijderde inhoud",
 	"diff-inline-format-label": "In de regel",
-	"diff-inline-switch-desc": "Schakelt tussen inline- en tweekolomsindeling",
+	"diff-inline-switch-desc": "Schakelt tussen invoegen en tweekolomsindeling",
 	"diff-line-deleted": "⟵ verwijderen",
 	"diff-newline": "↲ nieuwe regel",
 	"difference-missing-revision": "{{PLURAL:$2|Eén versie|$2 versies}} van deze verschillen ($1) {{PLURAL:$2|is|zijn}} niet aangetroffen.\n\nDit wordt meestal veroorzaakt door het volgen van een verouderde koppeling verschillen voor een pagina die is verwijderd.\nMeer gegevens zijn mogelijk te vinden in het [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} verwijderingslogboek].",
