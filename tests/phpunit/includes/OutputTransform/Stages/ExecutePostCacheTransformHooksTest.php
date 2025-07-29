@@ -90,7 +90,7 @@ class ExecutePostCacheTransformHooksTest extends \MediaWikiIntegrationTestCase {
 	 */
 	public function testShouldNotRun() {
 		$transform = $this->createStage();
-		$this->getServiceContainer()->getHookContainer()->clear( 'ParserOutputPostCacheTransform' );
+		$this->clearHook( 'ParserOutputPostCacheTransform' );
 		$options = [];
 		self::assertFalse( $transform->shouldRun( new ParserOutput(), null, $options ) );
 	}
