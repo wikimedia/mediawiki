@@ -2,7 +2,7 @@
 
 namespace MediaWiki\HTMLForm;
 
-/*
+/**
  * @stable to extend
  */
 class CollapsibleFieldsetLayout extends \OOUI\FieldsetLayout {

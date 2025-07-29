@@ -24,7 +24,7 @@ use MediaWiki\Maintenance\Maintenance;
 require_once __DIR__ . '/Maintenance.php';
 // @codeCoverageIgnoreEnd
 
-/*
+/**
  * Remove expired blocks from the block and ipblocks_restrictions tables
  *
  * @since 1.35

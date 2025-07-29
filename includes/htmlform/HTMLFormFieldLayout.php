@@ -2,7 +2,7 @@
 
 namespace MediaWiki\HTMLForm;
 
-/*
+/**
  * @stable to extend
  */
 class HTMLFormFieldLayout extends \OOUI\FieldLayout {

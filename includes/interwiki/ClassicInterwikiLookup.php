@@ -239,12 +239,12 @@ class ClassicInterwikiLookup implements InterwikiLookup {
 		return is_array( $iwData ) ? $this->makeFromRow( $iwData ) : false;
 	}
 
-	/*
+	/**
 	 * Fetch interwiki data from a DB query.
 	 *
 	 * @param string $prefix The interwiki prefix
 	 * @param string|false $domain Domain ID, or false for the current domain
-	 * @return stdClass|false interwiki data
+	 * @return \stdClass|false interwiki data
 	 */
 	private function loadFromDB( $prefix, $domain = false ) {
 		$dbr = $this->dbProvider->getReplicaDatabase( $domain );

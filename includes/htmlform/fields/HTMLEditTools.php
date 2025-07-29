@@ -5,7 +5,7 @@ namespace MediaWiki\HTMLForm\Field;
 use MediaWiki\HTMLForm\HTMLFormField;
 use MediaWiki\Message\Message;
 
-/*
+/**
  * @stable to extend
  */
 class HTMLEditTools extends HTMLFormField {

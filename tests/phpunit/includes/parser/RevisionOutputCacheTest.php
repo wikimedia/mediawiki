@@ -126,7 +126,7 @@ class RevisionOutputCacheTest extends MediaWikiIntegrationTestCase {
 		$this->assertNotSame( $key1, $key2 );
 	}
 
-	/*
+	/**
 	 * Test that fetching without storing first returns false.
 	 * @covers \MediaWiki\Parser\RevisionOutputCache::get
 	 */

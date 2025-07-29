@@ -4,7 +4,7 @@ namespace MediaWiki\HTMLForm\Field;
 
 use MediaWiki\HTMLForm\HTMLFormField;
 
-/*
+/**
  * @stable to extend
  */
 class HTMLHiddenField extends HTMLFormField {

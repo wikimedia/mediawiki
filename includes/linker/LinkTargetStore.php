@@ -213,7 +213,7 @@ class LinkTargetStore implements LinkTargetLookup {
 		$this->byTitleCache[(string)$linkTarget] = $id;
 	}
 
-	/*
+	/**
 	 * @internal use by tests only
 	 */
 	public function clearClassCache() {

@@ -24,7 +24,7 @@ use MediaWiki\Maintenance\Maintenance;
 require_once __DIR__ . '/Maintenance.php';
 // @codeCoverageIgnoreEnd
 
-/*
+/**
  * Remove expired userrights from user_groups table and move them to former_user_groups.
  *
  * By default, this does not need to be run. The UserGroupManager service naturally

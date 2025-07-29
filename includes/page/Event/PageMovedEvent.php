@@ -113,7 +113,7 @@ class PageMovedEvent extends PageRecordChangedEvent {
 		return $this->reason;
 	}
 
-	/*
+	/**
 	 * Returns a PageRecord representing the page redirect at
 	 * the old title, if one was created during the move.
 	 *

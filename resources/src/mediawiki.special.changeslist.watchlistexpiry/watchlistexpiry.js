@@ -1,6 +1,6 @@
 ( function () {
 
-	/*
+	/**
 	 * On touch devices, make it possible to click on the watchlist expiry clock icon
 	 * and get a text display of the remaining days or hours for that watchlist item.
 	 *
