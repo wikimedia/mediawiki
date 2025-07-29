@@ -115,7 +115,7 @@ module.exports = exports = defineComponent( {
 				margin-top: -1px;
 				overflow-y: auto;
 				// Always show the menu on mobile even when the input is unfocused
-				display: block !important; /* stylelint-disable-line declaration-no-important */
+				display: flex !important; /* stylelint-disable-line declaration-no-important */
 			}
 
 			.cdx-menu-item {
