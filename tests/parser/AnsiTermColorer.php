@@ -29,15 +29,15 @@ class AnsiTermColorer {
 	/**
 	 * Return ANSI terminal escape code for changing text attribs/color
 	 *
-	 * @param string|int $color Semicolon-separated list of attribute/color codes
+	 * @param string|int $color Semicolon-separated list of attribute/color codes, e.g. 4 for
+	 *  underline, 30 to 37 for 3-bit foreground colors
 	 * @return string
 	 */
-	public function color( $color ) {
+	public function color( string|int $color ): string {
 		global $wgCommandLineDarkBg;
 
-		$light = $wgCommandLineDarkBg ? "1;" : "0;";
-
-		return "\x1b[{$light}{$color}m";
+		// 1 for increased intensity, 0 to reset all previous attributes
+		return "\x1b[" . ( $wgCommandLineDarkBg ? '1' : '0' ) . ";{$color}m";
 	}
 
 	/**
@@ -45,7 +45,7 @@ class AnsiTermColorer {
 	 *
 	 * @return string
 	 */
-	public function reset() {
-		return $this->color( '0' );
+	public function reset(): string {
+		return "\x1b[0m";
 	}
 }

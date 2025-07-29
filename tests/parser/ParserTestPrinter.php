@@ -153,7 +153,7 @@ class ParserTestPrinter extends TestRecorder {
 				$this->showTesting( $testResult->getDescription() );
 			}
 
-			print $this->term->color( '31' ) . 'FAILED!' . $this->term->reset() . "\n";
+			print $this->term->color( 31 ) . 'FAILED!' . $this->term->reset() . "\n";
 
 			print "{$testResult->test->filename}:{$testResult->test->lineNumStart}\n";
 
@@ -239,24 +239,22 @@ class ParserTestPrinter extends TestRecorder {
 	/**
 	 * Colorize unified diff output if set for ANSI color output.
 	 * Subtractions are colored blue, additions red.
-	 *
-	 * @param string $text
-	 * @return string
 	 */
-	private function colorDiff( $text ) {
+	private function colorDiff( string $text ): string {
 		return preg_replace(
-			[ '/^(-.*)$/m', '/^(\+.*)$/m' ],
-			[ $this->term->color( '34' ) . '$1' . $this->term->reset(),
-				$this->term->color( '31' ) . '$1' . $this->term->reset() ],
-			$text );
+			[ '/^-.*/m', '/^\+.*/m' ],
+			[
+				// 34 is blue
+				$this->term->color( 34 ) . '$0' . $this->term->reset(),
+				// 31 is red
+				$this->term->color( 31 ) . '$0' . $this->term->reset()
+			],
+			$text
+		);
 	}
 
 	private function wellFormed( string $text ): bool {
-		$html =
-			Sanitizer::hackDocType() .
-				'<html>' .
-				$text .
-				'</html>';
+		$html = Sanitizer::hackDocType() . "<html>$text</html>";
 
 		$parser = xml_parser_create( "UTF-8" );
 
@@ -282,23 +280,20 @@ class ParserTestPrinter extends TestRecorder {
 		$start = max( 0, $position - 10 );
 		$before = $position - $start;
 		$fragment = '...' .
-			$this->term->color( '34' ) .
+			$this->term->color( 34 ) .
 			substr( $text, $start, $before ) .
-			$this->term->color( '0' ) .
-			$this->term->color( '31' ) .
-			$this->term->color( '1' ) .
+			$this->term->color( '1;31' ) .
 			substr( $text, $position, 1 ) .
-			$this->term->color( '0' ) .
-			$this->term->color( '34' ) .
+			$this->term->color( 34 ) .
 			substr( $text, $position + 1, 9 ) .
-			$this->term->color( '0' ) .
+			$this->term->reset() .
 			'...';
 		$display = str_replace( "\n", ' ', $fragment );
 		$caret = '   ' .
 			str_repeat( ' ', $before ) .
-			$this->term->color( '31' ) .
+			$this->term->color( 31 ) .
 			'^' .
-			$this->term->color( '0' );
+			$this->term->reset();
 
 		return "$display\n$caret";
 	}
@@ -327,7 +322,7 @@ class ParserTestPrinter extends TestRecorder {
 		if ( $this->total > 0 ) {
 			$this->reportPercentage( $this->success, $this->total );
 		} else {
-			print $this->term->color( '31' ) . "No tests found." . $this->term->reset() . "\n";
+			print $this->term->color( 31 ) . "No tests found." . $this->term->reset() . "\n";
 		}
 	}
 
@@ -338,17 +333,17 @@ class ParserTestPrinter extends TestRecorder {
 	 */
 	private function reportPercentage( $success, $total ) {
 		$ratio = wfPercent( 100 * $success / $total );
-		self::print( $this->term->color( '1' ) . "Passed $success of $total tests ($ratio)" );
+		self::print( $this->term->color( 1 ) . "Passed $success of $total tests ($ratio)" );
 		if ( $this->skipped ) {
 			self::print( ", skipped {$this->skipped}" );
 		}
 		print "... ";
 
 		if ( $success == $total ) {
-			print $this->term->color( '32' ) . "ALL TESTS PASSED!";
+			print $this->term->color( 32 ) . "ALL TESTS PASSED!";
 		} else {
 			$failed = $total - $success;
-			self::print( $this->term->color( '31' ) . "$failed tests failed!" );
+			self::print( $this->term->color( 31 ) . "$failed tests failed!" );
 		}
 
 		print $this->term->reset() . "\n";

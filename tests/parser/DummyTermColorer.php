@@ -21,7 +21,7 @@
 namespace MediaWiki\Tests;
 
 /**
- * A colour-less terminal, drop-in replacement for AnsiTermColorer.
+ * A colour-less terminal, drop-in replacement for {@link AnsiTermColorer}.
  *
  * @ingroup Testing
  */
