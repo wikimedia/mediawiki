@@ -162,16 +162,7 @@ class OutputHandler {
 		}
 
 		// Set vary header if it hasn't been set already
-		$headers = headers_list();
-		$foundVary = false;
-		foreach ( $headers as $header ) {
-			$headerName = strtolower( substr( $header, 0, 5 ) );
-			if ( $headerName == 'vary:' ) {
-				$foundVary = true;
-				break;
-			}
-		}
-		if ( !$foundVary ) {
+		if ( !preg_grep( '/^Vary:/i', headers_list() ) ) {
 			header( 'Vary: Accept-Encoding' );
 		}
 		return $s;
