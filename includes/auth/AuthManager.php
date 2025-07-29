@@ -751,8 +751,15 @@ class AuthManager implements LoggerAwareInterface {
 					);
 					$this->callMethodOnProviders( self::CALL_ALL, 'postAuthentication', [ $user, $response ] );
 					$session->remove( self::AUTHN_STATE );
+
+					// T390051: Don't use the $user provided to ::autoCreateUser for the "user being authenticated
+					// against" for the user provided in the AuthManagerLoginAuthenticateAudit hook run, as
+					// ::autoCreateUser may reset $user to an anon user.
+					$userForHook = $this->userFactory->newFromName(
+						(string)$res->username, UserRigorOptions::RIGOR_USABLE
+					);
 					$this->getHookRunner()->onAuthManagerLoginAuthenticateAudit(
-						$response, $user, $user->getName(), [
+						$response, $userForHook, $userForHook->getName(), [
 							'performer' => $session->getUser()
 						] );
 					return $response;

@@ -3812,11 +3812,30 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 0, $session->getUser()->getId() );
 		$this->assertSame( 0, User::newFromName( $username )->getId() );
 
+		// Check that the AuthManagerLoginAuthenticateAudit hook is called with the correct arguments (T390051)
+		$authenticateAuditHookCalled = false;
+		$this->hookContainer->register(
+			'AuthManagerLoginAuthenticateAudit',
+			function ( AuthenticationResponse $response, $actualUser, $actualUsername ) use (
+				&$authenticateAuditHookCalled, $username
+			) {
+				$authenticateAuditHookCalled = true;
+
+				$this->assertSame( AuthenticationResponse::FAIL, $response->status );
+				$this->assertSame( 'authmanager-authn-autocreate-failed', $response->message->getKey() );
+
+				$this->assertSame( $username, $actualUsername );
+				$this->assertSame( $username, $actualUser->getName() );
+			}
+		);
+
 		$this->hook( 'UserLoggedIn', UserLoggedInHook::class, $this->never() );
 		$this->hook( 'LocalUserCreated', LocalUserCreatedHook::class, $this->never() );
 		$ret = $this->manager->beginAuthentication( [], 'http://localhost/' );
 		$this->unhook( 'LocalUserCreated' );
 		$this->unhook( 'UserLoggedIn' );
+		$this->assertTrue( $authenticateAuditHookCalled );
+
 		$this->assertSame( AuthenticationResponse::FAIL, $ret->status );
 		$this->assertSame( 'authmanager-authn-autocreate-failed', $ret->message->getKey() );
 
