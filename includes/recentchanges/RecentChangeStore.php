@@ -441,7 +441,8 @@ class RecentChangeStore implements RecentChangeFactory, RecentChangeLookup {
 		string $actionCommentIRC = '',
 		int $revId = 0,
 		bool $isPatrollable = false,
-		?bool $forceBotFlag = null
+		?bool $forceBotFlag = null,
+		int $deleted = 0
 	): RecentChange {
 		// Get pageStatus for email notification
 		switch ( $type . '-' . $action ) {
@@ -504,7 +505,7 @@ class RecentChangeStore implements RecentChangeFactory, RecentChangeLookup {
 			'rc_patrolled' => $markPatrolled ? RecentChange::PRC_AUTOPATROLLED : RecentChange::PRC_UNPATROLLED,
 			'rc_old_len' => null,
 			'rc_new_len' => null,
-			'rc_deleted' => 0,
+			'rc_deleted' => $deleted,
 			'rc_logid' => $newId,
 			'rc_log_type' => $type,
 			'rc_log_action' => $action,

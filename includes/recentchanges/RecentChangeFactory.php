@@ -123,6 +123,7 @@ interface RecentChangeFactory {
 	 * @param bool $isPatrollable Whether this log entry is patrollable
 	 * @param bool|null $forceBotFlag Override the default behavior and set bot flag to
 	 * 	the value of the argument. When omitted or null, it falls back to the global state.
+	 * @param int $deleted
 	 *
 	 * @return RecentChange
 	 */
@@ -141,7 +142,8 @@ interface RecentChangeFactory {
 		string $actionCommentIRC = '',
 		int $revId = 0,
 		bool $isPatrollable = false,
-		?bool $forceBotFlag = null
+		?bool $forceBotFlag = null,
+		int $deleted = 0
 	): RecentChange;
 
 	/**
