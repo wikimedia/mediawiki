@@ -329,6 +329,7 @@
 	"apihelp-mergehistory-param-to": "{{doc-apihelp-param|mergehistory|to}}",
 	"apihelp-mergehistory-param-toid": "{{doc-apihelp-param|mergehistory|toid}}",
 	"apihelp-mergehistory-param-timestamp": "{{doc-apihelp-param|mergehistory|timestamp}}",
+	"apihelp-mergehistory-param-starttimestamp": "{{doc-apihelp-param|mergehistory|starttimestamp}}",
 	"apihelp-mergehistory-param-reason": "{{doc-apihelp-param|mergehistory|reason}}",
 	"apihelp-mergehistory-example-merge": "{{doc-apihelp-example|mergehistory}}",
 	"apihelp-mergehistory-example-merge-timestamp": "{{doc-apihelp-example|mergehistory}}",

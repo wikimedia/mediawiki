@@ -73,6 +73,10 @@ class MergeLogFormatter extends LogFormatter {
 		$params[4] = $this->context->getLanguage()
 			->userTimeAndDate( $params[4], $this->context->getUser() );
 
+		if ( isset( $params[6] ) ) {
+			$params[6] = $this->context->getLanguage()
+				->userTimeAndDate( $params[6], $this->context->getUser() );
+		}
 		return $params;
 	}
 
@@ -103,6 +107,11 @@ class MergeLogFormatter extends LogFormatter {
 			// This is an old log entry from before we recorded the revid separately
 			$mergePoint = $params[4];
 		}
+		if ( isset( $params[6] ) ) {
+			$start = $params[6] . "|" . $params[7];
+		} else {
+			$start = "";
+		}
 		$revert = $this->getLinkRenderer()->makeKnownLink(
 			SpecialPage::getTitleFor( 'MergeHistory' ),
 			$this->msg( 'revertmerge' )->text(),
@@ -111,6 +120,7 @@ class MergeLogFormatter extends LogFormatter {
 				'target' => $target,
 				'dest' => $dest,
 				'mergepoint' => $mergePoint,
+				'mergepointold' => $start,
 				'submitted' => 1 // show the revisions immediately
 			]
 		);
@@ -130,6 +140,8 @@ class MergeLogFormatter extends LogFormatter {
 			'4::dest'				=> '4:title:dest',
 			'5::mergepoint'  => '5:timestamp:mergepoint',
 			'6::mergerevid',
+			'7::mergestart'  => '7:timestamp:mergestart',
+			'8::mergestartid'
 		];
 		static $mapMergeInto = [
 			'4:title:src',
@@ -137,6 +149,8 @@ class MergeLogFormatter extends LogFormatter {
 			'4::src'				 => '4:title:src',
 			'5::mergepoint'  => '5:timestamp:mergepoint',
 			'6::mergerevid',
+			'7::mergestart'  => '7:timestamp:mergestartid',
+			'8::mergestartid'
 		];
 
 		$map = $entry->getSubtype() === 'merge-into' ? $mapMergeInto : $mapMerge;
@@ -149,6 +163,15 @@ class MergeLogFormatter extends LogFormatter {
 		}
 
 		return $params;
+	}
+
+	/** @inheritDoc */
+	protected function getMessageKey() {
+		if ( isset( $this->extractParameters()[6] ) ) {
+			return parent::getMessageKey() . "-partial";
+		} else {
+			return parent::getMessageKey();
+		}
 	}
 }
 

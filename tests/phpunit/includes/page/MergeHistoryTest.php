@@ -20,6 +20,7 @@ use MediaWiki\Tests\Search\SearchUpdateSpyTrait;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\Utils\MWTimestamp;
+use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -64,6 +65,11 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 	 * Make some pages to work with
 	 */
 	public function addDBDataOnce() {
+		// Use fake time to make sure that the test pages don't have the same timestamp
+		// except for the tests that expect that, which either manually munge the database
+		// or set different fake times
+		MWTimestamp::setFakeTime( '20250101223344', 1 );
+
 		// Pages that won't actually be merged
 		$this->insertPage( 'Test' );
 		$this->insertPage( 'Test2' );
@@ -71,6 +77,7 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 		// Pages that will be merged
 		$this->insertPage( 'Merge1' );
 		$this->insertPage( 'Merge2' );
+		MWTimestamp::setFakeTime( false );
 	}
 
 	/**
@@ -79,20 +86,25 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 	 * @param string $source Source page
 	 * @param string $dest Destination page
 	 * @param string|bool $timestamp Timestamp up to which revisions are merged (or false for all)
+	 * @param string|bool $startTimestamp Timestamp after which revisions are merged (or false for all)
 	 * @param string|bool $error Expected error for test (or true for no error)
 	 */
-	public function testIsValidMerge( $source, $dest, $timestamp, $error ) {
+	public function testIsValidMerge( $source, $dest, $timestamp, $startTimestamp, $error ) {
 		if ( $timestamp === true ) {
 			// Although this timestamp is after the latest timestamp of both pages,
 			// MergeHistory should select the latest source timestamp up to this which should
 			// still work for the merge.
 			$timestamp = time() + ( 24 * 3600 );
 		}
+		if ( $startTimestamp === true ) {
+			$startTimestamp = time() + ( 24 * 3600 );
+		}
 		$factory = $this->getServiceContainer()->getMergeHistoryFactory();
 		$mh = $factory->newMergeHistory(
 			Title::newFromText( $source ),
 			Title::newFromText( $dest ),
-			$timestamp
+			$timestamp,
+			$startTimestamp
 		);
 		$status = $mh->isValidMerge();
 		if ( $error === true ) {
@@ -105,18 +117,36 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 	public static function provideIsValidMerge() {
 		return [
 			// for MergeHistory::isValidMerge
-			[ 'Test', 'Test2', false, true ],
+			[ 'Test', 'Test2', false, null, true ],
 			// Timestamp of `true` is a placeholder for "in the future""
-			[ 'Test', 'Test2', true, true ],
-			[ 'Test', 'Test', false, 'mergehistory-fail-self-merge' ],
-			[ 'Nonexistant', 'Test2', false, 'mergehistory-fail-invalid-source' ],
-			[ 'Test', 'Nonexistant', false, 'mergehistory-fail-invalid-dest' ],
+			[ 'Test', 'Test2', true, null, true ],
+			[ 'Test', 'Test', false, null, 'mergehistory-fail-self-merge' ],
+			[ 'Nonexistant', 'Test2', false, null, 'mergehistory-fail-invalid-source' ],
+			[ 'Test', 'Nonexistant', false, null, 'mergehistory-fail-invalid-dest' ],
+			// Invalid end timestamp
 			[
 				'Test',
 				'Test2',
 				'This is obviously an invalid timestamp',
+				null,
 				'mergehistory-fail-bad-timestamp'
 			],
+			// Start timestamp in future
+			[
+				'Test',
+				'Test2',
+				true,
+				true,
+				'mergehistory-fail-start-after-end'
+			],
+			// Invalid start timestamp
+			[
+				'Test',
+				'Test2',
+				true,
+				'This is obviously an invalid timestamp',
+				'mergehistory-fail-bad-timestamp'
+			]
 		];
 	}
 
@@ -131,6 +161,7 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 			->setConstructorArgs( [
 				Title::makeTitle( NS_MAIN, 'Test' ),
 				Title::makeTitle( NS_MAIN, 'Test2' ),
+				null,
 				null,
 				$this->getServiceContainer()->getConnectionProvider(),
 				$this->getServiceContainer()->getContentHandlerFactory(),
@@ -556,5 +587,85 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 		$this->assertStatusOK( $status ); // sanity
 
 		$this->runDeferredUpdates();
+	}
+
+	private function getRevData( $title ) {
+		return $this->getDb()->newSelectQueryBuilder()
+			->select( [ 'rev_id', 'rev_timestamp' ] )
+			->from( 'page' )
+			->join( 'revision', null, 'page_latest = rev_id' )
+			->where( [ 'page_id' => $title->getId() ] )
+			->caller( __METHOD__ )->fetchRow();
+	}
+
+	private function checkMergeComplex( $title1, $title2, $rev1, $rev2, $useId ) {
+		$factory = $this->getServiceContainer()->getMergeHistoryFactory();
+		if ( $useId ) {
+			$ts1 = $rev1->rev_timestamp . "|" . $rev1->rev_id;
+			$ts2 = $rev2->rev_timestamp . "|" . $rev2->rev_id;
+		} else {
+			$ts1 = $rev1->rev_timestamp;
+			$ts2 = $rev2->rev_timestamp;
+		}
+		$mh = $factory->newMergeHistory( $title1, $title2, $ts1, $ts2 );
+		return $mh;
+	}
+
+	public static function provideTimeSteps() {
+		return [ [ 1 ], [ 0 ] ];
+	}
+
+	/**
+	 * @dataProvider provideTimeSteps
+	 * @covers \MediaWiki\Page\MergeHistory::isValidMerge
+	 * @covers \MediaWiki\Page\MergeHistory::initTimestampLimits
+	 */
+	public function testRevisionMoves( $timeStep ) {
+		// This test is done twice, once where all revs have a different timestamp
+		// and once where they all have the same timestamp, to test both scenarios
+		MWTimestamp::setFakeTime( '20220101223344', $timeStep );
+		$revisions = [];
+		$src = $this->insertPage( $timeStep ? 'SourcePage1' : 'SourcePage2' )["title"];
+		$revisions[1] = $this->getRevData( $src );
+		$dest = $this->insertPage( $timeStep ? 'DestPage1' : 'DestPage2' )["title"];
+		$revisions[2] = $this->getRevData( $dest );
+		$this->editPage( $src, new WikitextContent( "3" ) );
+		$revisions[3] = $this->getRevData( $src );
+		$this->editPage( $src, new WikitextContent( "4" ) );
+		$revisions[4] = $this->getRevData( $src );
+		$this->editPage( $dest, new WikitextContent( "5" ) );
+		$revisions[5] = $this->getRevData( $dest );
+		$this->editPage( $src, new WikitextContent( "6" ) );
+		$revisions[6] = $this->getRevData( $src );
+		$this->editPage( $dest, new WikitextContent( "7" ) );
+		$revisions[7] = $this->getRevData( $dest );
+		$this->editPage( $dest, new WikitextContent( "8" ) );
+		$revisions[8] = $this->getRevData( $dest );
+
+		// Test 1: Make sure you can't move the top revision of a page
+		$mh = $this->checkMergeComplex( $dest, $src, $revisions[8], $revisions[8], !$timeStep );
+		$this->assertStatusError( "mergehistory-fail-change-current-revision", $mh->isValidMerge() );
+		$mh = $this->checkMergeComplex( $dest, $src, $revisions[7], $revisions[7], !$timeStep );
+		$this->assertStatusError( "mergehistory-fail-change-current-revision", $mh->isValidMerge() );
+
+		// Test 2: Check overlapping timestamps are detected when they actually overlap
+		$mh = $this->checkMergeComplex( $dest, $src, $revisions[5], $revisions[2], !$timeStep );
+		$this->assertStatusError( "mergehistory-fail-timestamps-overlap", $mh->isValidMerge() );
+
+		// Test 3: Check a multi-revision merge that inserts a chunk into the middle works
+		$mh = $this->checkMergeComplex( $src, $dest, $revisions[4], $revisions[3], !$timeStep );
+		$this->assertStatusGood( $mh->isValidMerge() );
+
+		// More normal merges (i.e inserting at the end) are tested by the main tests above
+
+		// Now do that merge ...
+		$this->assertStatusGood( $mh->merge( static::getTestSysop()->getUser() ) );
+
+		$this->assertSame( 2, $mh->getMergedRevisionCount() );
+		$store = $this->getServiceContainer()->getRevisionStore();
+		$this->assertNotNull( $store->getRevisionByPageId( $dest->getId(), $revisions[3]->rev_id ) );
+		$this->assertNotNull( $store->getRevisionByPageId( $dest->getId(), $revisions[4]->rev_id ) );
+		$this->assertNotNull( $store->getRevisionByPageId( $src->getId(), $revisions[1]->rev_id ) );
+		$this->assertNotNull( $store->getRevisionByPageId( $src->getId(), $revisions[6]->rev_id ) );
 	}
 }

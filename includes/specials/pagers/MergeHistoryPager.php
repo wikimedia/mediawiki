@@ -31,9 +31,8 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 
 	public array $mConds;
 	private int $articleID;
-	private string $maxTimestamp;
-	private int $maxRevId;
 	private string $mergePointTimestamp;
+	private string $mergePointTimestampOld;
 
 	/** @var int[] */
 	public array $prevId;
@@ -54,26 +53,15 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 		array $conds,
 		PageIdentity $source,
 		PageIdentity $dest,
-		string $mergePointTimestamp
+		string $mergePointTimestamp,
+		string $mergePointTimestampOld
 	) {
 		$this->mConds = $conds;
 		$this->articleID = $source->getId();
 
 		$dbr = $dbProvider->getReplicaDatabase();
-		$maxtimestamp = $dbr->newSelectQueryBuilder()
-			->select( 'MIN(rev_timestamp)' )
-			->from( 'revision' )
-			->where( [ 'rev_page' => $dest->getId() ] )
-			->caller( __METHOD__ )->fetchField();
-		$maxRevId = $dbr->newSelectQueryBuilder()
-			->select( "MIN(rev_id)" )
-			->from( 'revision' )
-			->where( [ 'rev_page' => $dest->getId() ] )
-			->where( [ 'rev_timestamp' => $maxtimestamp ] )
-			->caller( __METHOD__ )->fetchField();
-		$this->maxTimestamp = $maxtimestamp;
-		$this->maxRevId = (int)$maxRevId;
 		$this->mergePointTimestamp = $mergePointTimestamp;
+		$this->mergePointTimestampOld = $mergePointTimestampOld;
 
 		// Set database before parent constructor to avoid setting it there
 		$this->mDb = $dbr;
@@ -114,7 +102,7 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 	 * @inheritDoc
 	 */
 	protected function getStartBody() {
-		return "<section class='mw-pager-body'>\n";
+		return "<section id='mw-mergehistory-list' class='mw-pager-body'>\n";
 	}
 
 	/**
@@ -135,11 +123,17 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 
 		$ts = wfTimestamp( TS_MW, $row->rev_timestamp );
 		$tsWithId = $ts . "|" . $row->rev_id;
-		$checkBox = Html::radio(
-			'mergepoint',
-			$this->mergePointTimestamp === $ts || $this->mergePointTimestamp === $tsWithId,
+		$oldCheckBox = Html::radio(
+			'mergepointold',
+			$this->mergePointTimestampOld === $tsWithId,
 			[ 'value' => $tsWithId ]
 		);
+		$newCheckBox = Html::radio(
+				'mergepoint',
+				$this->mergePointTimestamp === $ts || $this->mergePointTimestamp === $tsWithId,
+				[ 'value' => $tsWithId ]
+		);
+		$cbs = $oldCheckBox . $newCheckBox;
 
 		$user = $this->getUser();
 
@@ -186,7 +180,7 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 
 		return Html::rawElement( 'li', $classes,
 			$this->msg( 'mergehistory-revisionrow' )
-				->rawParams( $checkBox, $last, $pageLink, $userLink, $stxt, $comment, $tagSummary )->escaped() );
+				->rawParams( $cbs, $last, $pageLink, $userLink, $stxt, $comment, $tagSummary )->escaped() );
 	}
 
 	/** @inheritDoc */
@@ -199,12 +193,6 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 			->where( $this->mConds )
 			->andWhere( [
 				'rev_page' => $this->articleID,
-				$dbr->buildComparison( "<",
-					[
-						"rev_timestamp" => $this->maxTimestamp,
-						"rev_id" => $this->maxRevId
-					]
-				)
 			] );
 		$this->changeTagsStore->modifyDisplayQueryBuilder( $queryBuilder, 'revision' );
 

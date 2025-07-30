@@ -2594,6 +2594,10 @@ return [
 			'edit-recovery-special-recovered-on-tooltip',
 		],
 	],
+	'mediawiki.special.mergeHistory' => [
+		'scripts' => 'resources/src/mediawiki.special.mergeHistory/mergeHistory.js',
+		'styles' => 'resources/src/mediawiki.special.mergeHistory/mergeHistory.css',
+	],
 	'mediawiki.special.search' => [
 		'scripts' => 'resources/src/mediawiki.special.search/search.js',
 		'dependencies' => 'mediawiki.widgets.SearchInputWidget',

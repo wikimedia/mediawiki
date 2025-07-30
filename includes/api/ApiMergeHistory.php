@@ -65,11 +65,12 @@ class ApiMergeHistory extends ApiBase {
 		}
 
 		$reason = $params['reason'];
-		$timestamp = $params['timestamp'];
+		$timestamp = $params['timestamp'] ?? '';
+		$startTimestamp = $params['starttimestamp'] ?? '';
 
 		// Merge!
 		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable,PhanPossiblyUndeclaredVariable T240141
-		$status = $this->merge( $fromTitle, $toTitle, $timestamp, $reason );
+		$status = $this->merge( $fromTitle, $toTitle, $timestamp, $reason, $startTimestamp );
 		if ( !$status->isOK() ) {
 			$this->dieStatus( $status );
 		}
@@ -79,7 +80,7 @@ class ApiMergeHistory extends ApiBase {
 			'from' => $fromTitle->getPrefixedText(),
 			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable T240141
 			'to' => $toTitle->getPrefixedText(),
-			'timestamp' => wfTimestamp( TS_ISO_8601, $params['timestamp'] ),
+			'timestamp' => $params['timestamp'],
 			'reason' => $params['reason']
 		];
 		$result = $this->getResult();
@@ -92,10 +93,11 @@ class ApiMergeHistory extends ApiBase {
 	 * @param PageIdentity $to
 	 * @param string $timestamp
 	 * @param string $reason
+	 * @param string $startTimestamp
 	 * @return Status
 	 */
-	protected function merge( PageIdentity $from, PageIdentity $to, $timestamp, $reason ) {
-		$mh = $this->mergeHistoryFactory->newMergeHistory( $from, $to, $timestamp );
+	protected function merge( PageIdentity $from, PageIdentity $to, $timestamp, $reason, $startTimestamp ) {
+		$mh = $this->mergeHistoryFactory->newMergeHistory( $from, $to, $timestamp, $startTimestamp );
 
 		return $mh->merge( $this->getAuthority(), $reason );
 	}
@@ -121,10 +123,10 @@ class ApiMergeHistory extends ApiBase {
 			'toid' => [
 				ParamValidator::PARAM_TYPE => 'integer'
 			],
-			'timestamp' => [
-				ParamValidator::PARAM_TYPE => 'timestamp'
-			],
+			// This can either be a timestamp or a timestamp-with-ID pair; don't reject the latter in validation
+			'timestamp' => null,
 			'reason' => '',
+			'starttimestamp' => null
 		];
 	}
 

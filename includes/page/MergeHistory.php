@@ -56,15 +56,11 @@ class MergeHistory {
 
 	/** @var ?string Timestamp up to which history from the source will be merged */
 	private $timestamp;
+	/** @var ?string Timestamp from which history from the source will be merged */
+	private $timestampStart;
 
 	/**
-	 * @var MWTimestamp|false Maximum timestamp that we can use (oldest timestamp of dest).
-	 * Use ::getMaxTimestamp to lazily initialize.
-	 */
-	protected $maxTimestamp = false;
-
-	/**
-	 * @var string|false|null SQL WHERE condition that selects source revisions
+	 * @var array|false|null SQL WHERE condition that selects source revisions
 	 * to insert into destination. Use ::getTimeWhere to lazy-initialize.
 	 */
 	protected $timeWhere = false;
@@ -76,9 +72,19 @@ class MergeHistory {
 	protected $timestampLimit = false;
 
 	/**
+	 * @var MWTimestamp|false|null Timestamp upto which history from the source will be merged.
+	 * Use getTimestampLimit to lazily initialize.
+	 */
+	protected $timestampStartLimit = false;
+
+	/**
 	 * @var string|null
 	 */
 	private $revidLimit = null;
+	/**
+	 * @var string|null
+	 */
+	private $revidStart = null;
 
 	/** @var int Number of revisions merged (for Special:MergeHistory success message) */
 	protected $revisionsMerged;
@@ -96,6 +102,7 @@ class MergeHistory {
 	 * @param PageIdentity $source Page from which history will be merged
 	 * @param PageIdentity $dest Page to which history will be merged
 	 * @param ?string $timestamp Timestamp up to which history from the source will be merged
+	 * @param ?string $timestampStart Timestamp after which history from the source will be merged
 	 * @param IConnectionProvider $dbProvider
 	 * @param IContentHandlerFactory $contentHandlerFactory
 	 * @param WatchedItemStoreInterface $watchedItemStore
@@ -110,6 +117,7 @@ class MergeHistory {
 		PageIdentity $source,
 		PageIdentity $dest,
 		?string $timestamp,
+		?string $timestampStart,
 		IConnectionProvider $dbProvider,
 		IContentHandlerFactory $contentHandlerFactory,
 		WatchedItemStoreInterface $watchedItemStore,
@@ -124,6 +132,7 @@ class MergeHistory {
 		$this->source = self::toProperPageIdentity( $source, '$source' );
 		$this->dest = self::toProperPageIdentity( $dest, '$dest' );
 		$this->timestamp = $timestamp;
+		$this->timestampStart = $timestampStart;
 
 		// Get the database
 		$this->dbw = $dbProvider->getPrimaryDatabase();
@@ -165,7 +174,7 @@ class MergeHistory {
 		$count = $this->dbw->newSelectQueryBuilder()
 			->select( '1' )
 			->from( 'revision' )
-			->where( [ 'rev_page' => $this->source->getId(), $this->getTimeWhere() ] )
+			->where( [ 'rev_page' => $this->source->getId(), ...$this->getTimeWhere() ] )
 			->limit( self::REVISION_LIMIT + 1 )
 			->caller( __METHOD__ )->fetchRowCount();
 
@@ -277,21 +286,92 @@ class MergeHistory {
 		}
 
 		// Make sure the timestamp is valid
-		if ( !$this->getTimestampLimit() ) {
+		$ts = $this->getTimestampLimit();
+		if ( !$ts ) {
 			$status->fatal( 'mergehistory-fail-bad-timestamp' );
 		}
-
-		// $this->timestampLimit must be older than $this->maxTimestamp
-		if ( $this->getTimestampLimit() > $this->getMaxTimestamp() ) {
-			$status->fatal( 'mergehistory-fail-timestamps-overlap' );
+		// Now all of the required params are correctly specified so test the trickier cases
+		if ( $status->isGood() ) {
+			$tss = $this->timestampStartLimit;
+			if ( $tss && $tss > $ts ) {
+				$status->fatal( 'mergehistory-fail-start-after-end', );
+			} elseif ( $tss == $ts && $this->revidStart > $this->revidLimit ) {
+				$status->fatal( 'mergehistory-fail-start-after-end' );
+			}
+			// Check that there are not too many revisions to move
+			if ( $this->getRevisionCount() > self::REVISION_LIMIT ) {
+				$status->fatal( 'mergehistory-fail-toobig', Message::numParam( self::REVISION_LIMIT ) );
+			}
+			// Don't allow overlapping timestamps (destination page revisions that meet the timeWhere )
+			if ( $this->hasOverlappingTimestamps() ) {
+				$status->fatal( 'mergehistory-fail-timestamps-overlap' );
+			}
+			// Don't allow changing the current revision of a page via a merge
+			// (except for a full merge of the entire history)
+			// as that would require reparsing the page etc. and it's easier to not deal
+			if ( $this->wouldClobberDestLatest() ) {
+				$status->fatal( 'mergehistory-fail-change-current-revision' );
+			}
+			if ( $this->wouldClobberSourceLatest() ) {
+				$status->fatal( 'mergehistory-fail-change-current-revision' );
+			}
 		}
-
-		// Check that there are not too many revisions to move
-		if ( $this->getTimestampLimit() && $this->getRevisionCount() > self::REVISION_LIMIT ) {
-			$status->fatal( 'mergehistory-fail-toobig', Message::numParam( self::REVISION_LIMIT ) );
-		}
-
 		return $status;
+	}
+
+	private function hasOverlappingTimestamps(): bool {
+		return $this->dbw->newSelectQueryBuilder()
+			->select( '1' )
+			->from( 'revision' )
+			->where( [ 'rev_page' => $this->dest->getId(), ...$this->getTimeWhere() ] )
+			->caller( __METHOD__ )->fetchField();
+	}
+
+	private function wouldClobberDestLatest(): bool {
+		// Return whether page_latest of the source page meets the conditions to move
+		$row = $this->dbw->newSelectQueryBuilder()
+			->select( [ 'rev_id', 'rev_timestamp' ] )
+			->from( 'page' )
+			->join( 'revision', null, 'rev_id = page_latest' )
+			->where( [ 'page_id' => $this->dest->getId() ] )
+			->caller( __METHOD__ )->fetchRow();
+		$destTs = new MWTimestamp( $row->rev_timestamp );
+		if ( $this->timestampLimit > $destTs ) {
+			// Easy case
+			return true;
+		} elseif ( $this->timestampLimit == $destTs ) {
+			// Life is full of suffering; fetch the maximum rev ID that would be merged
+			$maxRevidMerged = $this->dbw->newSelectQueryBuilder()
+				->select( 'MAX(rev_id)' )
+				->from( 'page' )
+				->join( 'revision', null, 'rev_page = page_id' )
+				->where( [
+					 'page_id' => $this->source->getId(),
+					 ...$this->getTimeWhere(),
+					 'rev_timestamp' => $this->dbw->timestamp( $destTs )
+				] )
+				->caller( __METHOD__ )->fetchField();
+			return $maxRevidMerged > $row->rev_id;
+		} else {
+			// Easy case
+			return false;
+		}
+	}
+
+	private function wouldClobberSourceLatest(): bool {
+		if ( !$this->timestampStartLimit ) {
+			// We don't care; it would merge the entire history
+			return false;
+		}
+		// Return whether page_latest of the source page meets the conditions to move
+		return $this->dbw->newSelectQueryBuilder()
+			->select( 'rev_id' )
+			->from( 'page' )
+			->join( 'revision', null, 'rev_id = page_latest' )
+			->where( [ 'page_id' => $this->source->getId(),
+					  ...$this->getTimeWhere()
+		] )
+			->caller( __METHOD__ )->fetchField();
 	}
 
 	/**
@@ -332,7 +412,7 @@ class MergeHistory {
 		$this->dbw->newUpdateQueryBuilder()
 			->update( 'revision' )
 			->set( [ 'rev_page' => $this->dest->getId() ] )
-			->where( [ 'rev_page' => $this->source->getId(), $this->getTimeWhere() ] )
+			->where( [ 'rev_page' => $this->source->getId(), ...$this->getTimeWhere() ] )
 			->caller( __METHOD__ )->execute();
 
 		// Check if this did anything
@@ -384,11 +464,16 @@ class MergeHistory {
 		$logEntry->setPerformer( $performer->getUser() );
 		$logEntry->setComment( $reason );
 		$logEntry->setTarget( $this->source );
-		$logEntry->setParameters( [
+		$srcParams = [
 			'4::dest' => $this->titleFormatter->getPrefixedText( $this->dest ),
 			'5::mergepoint' => $this->getTimestampLimit()->getTimestamp( TS_MW ),
 			'6::mergerevid' => $this->revidLimit
-		] );
+		];
+		if ( $this->timestampStartLimit ) {
+			$srcParams['7::mergestart'] = $this->timestampStartLimit->getTimestamp( TS_MW );
+			$srcParams['8::mergestartid'] = $this->revidStart;
+		}
+		$logEntry->setParameters( $srcParams );
 		$logId = $logEntry->insert();
 		$logEntry->publish( $logId );
 
@@ -402,9 +487,11 @@ class MergeHistory {
 		$destParams = [
 			'4::src'        => $this->titleFormatter->getPrefixedText( $this->source ),
 			'5::mergepoint' => $this->getTimestampLimit()->getTimestamp( TS_MW ),
+			'6::mergerevid' => $this->revidLimit
 		];
-		if ( $this->revidLimit !== null ) {
-			$destParams['6::mergerevid'] = $this->revidLimit;
+		if ( $this->timestampStartLimit ) {
+			$destParams['7::mergestart'] = $this->timestampStartLimit->getTimestamp( TS_MW );
+			$destParams['8::mergestartid'] = $this->revidStart;
 		}
 
 		$destLog->setParameters( $destParams );
@@ -509,16 +596,6 @@ class MergeHistory {
 	}
 
 	/**
-	 * Get the maximum timestamp that we can use (oldest timestamp of dest)
-	 */
-	private function getMaxTimestamp(): MWTimestamp {
-		if ( $this->maxTimestamp === false ) {
-			$this->initTimestampLimits();
-		}
-		return $this->maxTimestamp;
-	}
-
-	/**
 	 * Get the timestamp upto which history from the source will be merged,
 	 * or null if something went wrong
 	 */
@@ -533,7 +610,7 @@ class MergeHistory {
 	 * Get the SQL WHERE condition that selects source revisions to insert into destination,
 	 * or null if something went wrong
 	 */
-	private function getTimeWhere(): ?string {
+	private function getTimeWhere(): array {
 		if ( $this->timeWhere === false ) {
 			$this->initTimestampLimits();
 		}
@@ -544,13 +621,6 @@ class MergeHistory {
 	 * Lazily initializes timestamp (and possibly revid) limits and conditions.
 	 */
 	private function initTimestampLimits() {
-		// Max timestamp should be min of destination page
-		$firstDestTimestamp = $this->dbw->newSelectQueryBuilder()
-			->select( 'MIN(rev_timestamp)' )
-			->from( 'revision' )
-			->where( [ 'rev_page' => $this->dest->getId() ] )
-			->caller( __METHOD__ )->fetchField();
-		$this->maxTimestamp = new MWTimestamp( $firstDestTimestamp );
 		$this->revidLimit = null;
 		// Get the timestamp pivot condition
 		try {
@@ -581,7 +651,11 @@ class MergeHistory {
 			} else {
 				// If we don't, merge entire source page history into the
 				// beginning of destination page history
-
+				$firstDestTimestamp = $this->dbw->newSelectQueryBuilder()
+					->select( 'MIN(rev_timestamp)' )
+					->from( 'revision' )
+					->where( [ 'rev_page' => $this->dest->getId() ] )
+					->caller( __METHOD__ )->fetchField();
 				// Get the latest timestamp of the source
 				$row = $this->dbw->newSelectQueryBuilder()
 					->select( [ 'rev_timestamp', 'rev_id' ] )
@@ -589,7 +663,7 @@ class MergeHistory {
 					->join( 'revision', null, 'page_latest = rev_id' )
 					->where( [ 'page_id' => $this->source->getId() ] )
 					->caller( __METHOD__ )->fetchRow();
-				$timeInsert = $this->maxTimestamp;
+				$timeInsert = new MWTimestamp( $firstDestTimestamp );
 				if ( $row ) {
 					$lasttimestamp = new MWTimestamp( $row->rev_timestamp );
 					$this->timestampLimit = $lasttimestamp;
@@ -598,21 +672,63 @@ class MergeHistory {
 					$this->timestampLimit = null;
 				}
 			}
+			// Now parse start time
+			if ( $this->timestampStart ) {
+				$parts = explode( '|', $this->timestampStart );
+				if ( count( $parts ) == 2 ) {
+					$timestampStart = $parts[0];
+					$this->revidStart = $parts[1];
+				} else {
+					$timestampStart = $this->timestampStart;
+				}
+				// If we have a requested timestamp, use the
+				// earliest revision after that point as the insertion point
+				$mwTimestamp = new MWTimestamp( $timestampStart );
+				$lastWorkingTimestamp = $this->dbw->newSelectQueryBuilder()
+					->select( 'MIN(rev_timestamp)' )
+					->from( 'revision' )
+					->where( [
+						$this->dbw->expr( 'rev_timestamp', '>=', $this->dbw->timestamp( $mwTimestamp ) ),
+						'rev_page' => $this->source->getId()
+					] )
+					->caller( __METHOD__ )->fetchField();
+				// If there is no such revision, then this returns the current time
+				// which eventually fails with "start-after-end"; not ideal but workable
+				$this->timestampStartLimit = new MWTimestamp( $lastWorkingTimestamp );
+			} else {
+				$this->timestampStartLimit = null;
+			}
 			$dbLimit = $this->dbw->timestamp( $timeInsert );
 			if ( $this->revidLimit ) {
-				$this->timeWhere = $this->dbw->buildComparison( '<=',
+				$endQuery = $this->dbw->buildComparison( '<=',
 					[ 'rev_timestamp' => $dbLimit, 'rev_id' => $this->revidLimit ]
 				);
 			} else {
-				$this->timeWhere = $this->dbw->buildComparison( '<=',
+				$endQuery = $this->dbw->buildComparison( '<=',
 					[ 'rev_timestamp' => $dbLimit ]
 				);
+			}
+			if ( $this->timestampStartLimit ) {
+				$dbLimitStart = $this->dbw->timestamp( $this->timestampStartLimit );
+				if ( $this->revidStart ) {
+					$startQuery = $this->dbw->buildComparison( '>=',
+						[ 'rev_timestamp' => $dbLimitStart, 'rev_id' => $this->revidStart ]
+					);
+				} else {
+					$startQuery = $this->dbw->buildComparison( '>=',
+						[ 'rev_timestamp' => $dbLimitStart ]
+					);
+				}
+				$this->timeWhere = [ $endQuery, $startQuery ];
+			} else {
+				$this->timeWhere = [ $endQuery ];
 			}
 		} catch ( TimestampException ) {
 			// The timestamp we got is screwed up and merge cannot continue
 			// This should be detected by $this->isValidMerge()
 			$this->timestampLimit = null;
 			$this->timeWhere = null;
+			$this->timestampStartLimit = null;
 		}
 	}
 }

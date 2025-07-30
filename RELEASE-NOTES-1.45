@@ -97,6 +97,10 @@ For notes on 1.44.x and older releases, see HISTORY.
 * (T328254) A new parser function has been added, {{#contentmodel}}, which
   returns the localized name of the contentmodel of the current page.  This
   is primarily meant for use in system messages.
+* (T382958) [[Special:MergeHistory]] is now significantly more flexible about
+  what it can merge. It can now merge sections taken from the middle of the
+  history of the source (rather than only the start) and insert revisions
+  anywhere in the history of the destination page (rather than only the start)
 * …
 
 === New features for sysadmins in 1.45 ===

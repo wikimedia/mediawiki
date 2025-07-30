@@ -1,0 +1,5 @@
+/* Styles for the JavaScript enhancements of the MergeHistory page */
+
+#mw-mergehistory-list input[ disabled ] {
+	visibility: hidden;
+}

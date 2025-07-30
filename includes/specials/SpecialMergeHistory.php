@@ -42,6 +42,9 @@ class SpecialMergeHistory extends SpecialPage {
 	/** @var string */
 	protected $mTimestamp;
 
+	/** @var string */
+	protected $mTimestampOld;
+
 	/** @var int */
 	protected $mTargetID;
 
@@ -110,6 +113,10 @@ class SpecialMergeHistory extends SpecialPage {
 		$this->mTimestamp = $request->getVal( 'mergepoint' );
 		if ( $this->mTimestamp === null || !preg_match( '/[0-9]{14}(\|[0-9]+)?/', $this->mTimestamp ) ) {
 			$this->mTimestamp = '';
+		}
+		$this->mTimestampOld = $request->getVal( 'mergepointold' );
+		if ( $this->mTimestampOld === null || !preg_match( '/[0-9]{14}(\|[0-9]+)?/', $this->mTimestamp ) ) {
+			$this->mTimestampOld = '';
 		}
 		$this->mComment = $request->getText( 'wpComment' );
 
@@ -202,6 +209,11 @@ class SpecialMergeHistory extends SpecialPage {
 				'default' => $this->mTimestamp,
 				'name' => 'mergepoint'
 			],
+			'mergepointold' => [
+				'type' => 'hidden',
+				'default' => $this->mTimestampOld,
+				'name' => 'mergepointold'
+			],
 			'target' => [
 				'type' => 'title',
 				'label-message' => 'mergehistory-from',
@@ -241,7 +253,8 @@ class SpecialMergeHistory extends SpecialPage {
 			[],
 			$this->mTargetObj,
 			$this->mDestObj,
-			$this->mTimestamp
+			$this->mTimestamp,
+			$this->mTimestampOld
 		);
 		$haveRevisions = $revisions->getNumRows() > 0;
 
@@ -250,6 +263,7 @@ class SpecialMergeHistory extends SpecialPage {
 			'mediawiki.interface.helpers.styles',
 			'mediawiki.special'
 		] );
+		$out->addModules( 'mediawiki.special.mergeHistory' );
 		$titleObj = $this->getPageTitle();
 		$action = $titleObj->getLocalURL( [ 'action' => 'submit' ] );
 		# Start the form here
@@ -353,7 +367,12 @@ class SpecialMergeHistory extends SpecialPage {
 		}
 
 		// MergeHistory object
-		$mh = $this->mergeHistoryFactory->newMergeHistory( $targetTitle, $destTitle, $this->mTimestamp );
+		$mh = $this->mergeHistoryFactory->newMergeHistory(
+			$targetTitle,
+			$destTitle,
+			$this->mTimestamp,
+			$this->mTimestampOld
+		);
 
 		// Merge!
 		$mergeStatus = $mh->merge( $this->getAuthority(), $this->mComment );

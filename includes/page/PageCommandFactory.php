@@ -206,12 +206,14 @@ class PageCommandFactory implements
 	public function newMergeHistory(
 		PageIdentity $source,
 		PageIdentity $destination,
-		?string $timestamp = null
+		?string $timestamp = null,
+		?string $timestampOld = null
 	): MergeHistory {
 		return new MergeHistory(
 			$source,
 			$destination,
 			$timestamp,
+			$timestampOld,
 			$this->lbFactory,
 			$this->contentHandlerFactory,
 			$this->watchedItemStore,
