@@ -22,7 +22,6 @@
 	"prefer-stable": true,
 	"require": {
 		"composer/semver": "3.4.3",
-		"cssjanus/cssjanus": "2.3.0",
 		"ext-calendar": "*",
 		"ext-ctype": "*",
 		"ext-dom": "*",
@@ -63,6 +62,7 @@
 		"wikimedia/common-passwords": "0.5.1",
 		"wikimedia/composer-merge-plugin": "2.1.0",
 		"wikimedia/css-sanitizer": "5.5.0",
+		"wikimedia/cssjanus": "2.3.0",
 		"wikimedia/html-formatter": "4.1.0",
 		"wikimedia/ip-utils": "5.0.0",
 		"wikimedia/json-codec": "3.0.3",
