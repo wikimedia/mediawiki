@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"H78c67c",
-			"Winston Sung"
+			"Winston Sung",
+			"Yueman"
 		]
 	},
 	"january": "1月",
@@ -70,6 +71,7 @@
 	"duration-centuries": "$1{{PLURAL:$1|個世紀}}",
 	"duration-decades": "$1{{PLURAL:$1|0年}}",
 	"duration-years": "$1{{PLURAL:$1|年}}",
+	"duration-months": "$1{{PLURAL:$1|個月}}",
 	"duration-weeks": "$1{{PLURAL:$1|個禮拜}}",
 	"duration-days": "$1{{PLURAL:$1|日}}",
 	"duration-hours": "$1{{PLURAL:$1|個鐘頭}}",

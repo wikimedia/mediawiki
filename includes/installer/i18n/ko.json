@@ -20,7 +20,8 @@
 			"Ykhwong",
 			"Yunbj",
 			"렌즈",
-			"아라"
+			"아라",
+			"YeBoy371"
 		]
 	},
 	"config-desc": "미디어위키를 위한 설치 관리자",
@@ -168,7 +169,7 @@
 	"config-ns-generic": "프로젝트",
 	"config-ns-site-name": "위키 이름과 같은 이름: $1",
 	"config-ns-other": "기타 (지정)",
-	"config-ns-other-default": "내위키",
+	"config-ns-other-default": "내 위키",
 	"config-project-namespace-help": "위키백과의 예에 따르면, 많은 위키는 정책 문서를 일반 문서와는 별도로 '''프로젝트 이름공간'''에 보관합니다.\n이 이름공간에 있는 모든 문서의 제목은 여기서 지정할 수 있는 특정 접두어로 시작합니다.\n보통 이 접두어는 위키의 이름에서 파생되지만, \"#\" 또는 \":\"와 같은 특수 문자를 포함할 수 없습니다.",
 	"config-ns-invalid": "특정 \"<nowiki>$1</nowiki>\" 이름공간이 잘못되었습니다.\n다른 프로젝트 이름공간을 지정하세요.",
 	"config-ns-conflict": "특정 \"<nowiki>$1</nowiki>\" 이름공간이 기본 미디어위키 이름공간과 충돌합니다.\n다른 프로젝트 이름공간을 지정하세요.",

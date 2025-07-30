@@ -3,7 +3,8 @@
 		"authors": [
 			"Aefgh39622",
 			"Lookruk",
-			"Tuinui"
+			"Tuinui",
+			"RenKtv"
 		]
 	},
 	"january": "ມັງກອນ",
@@ -57,5 +58,9 @@
 	"sat": "ເສົາ",
 	"sun": "ອາທິດ",
 	"period-am": "ກ່ອນທ່ຽງ",
-	"period-pm": "ຫຼັງທ່ຽງ"
+	"period-pm": "ຫຼັງທ່ຽງ",
+	"timezone-local": "ທ້ອງຖິ່ນ",
+	"years": "{{PLURAL:$1| $1 ປີ| $1 ປີ}}",
+	"months": "{{PLURAL:$1| $1 ເດືອນ| $1 ເດືອນ}}",
+	"ago": "$1 ກ່ອນຫນ້ານີ້"
 }

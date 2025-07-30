@@ -773,6 +773,8 @@
 	"apihelp-query+categorymembers-param-endsortkey": "Используйте вместо этого $1endhexsortkey.",
 	"apihelp-query+categorymembers-example-simple": "Получить первые 10 страниц в <kbd>Category:Physics</kbd>.",
 	"apihelp-query+categorymembers-example-generator": "Получить информацию о первых 10 страницах в <kbd>Category:Physics</kbd>.",
+	"apihelp-query+codexicons-summary": "Получить иконки Codex",
+	"apihelp-query+codexicons-param-names": "Названия иконок",
 	"apihelp-query+contributors-summary": "Получение списка зарегистрированных и количества анонимных редакторов страницы.",
 	"apihelp-query+contributors-param-group": "Включать только участников из данных групп. Неявные или автоматически присваиваемые группы, вроде *, user или autoconfirmed, не считаются.",
 	"apihelp-query+contributors-param-excludegroup": "Исключать участников из заданных групп. Неявные или автоматически присваиваемые группы, вроде *, user или autoconfirmed, не считаются.",

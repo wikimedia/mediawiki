@@ -3262,6 +3262,7 @@
 	"logentry-rights-autopromote": "{{GENDER:$2|De(n) $1|D'$1}} huet d'Gruppen, zu deenen {{GENDER:$2|hie|si}} gehéiert, automatesch geännert: $7",
 	"logentry-rights-autopromote-granted": "{{GENDER:$2|krut}} $1",
 	"logentry-rights-autopromote-revoked": "{{GENDER:$2|verluer}} $1",
+	"logentry-rights-autopromote-kept": "huet $1 {{GENDER:$2|onverännert}} gelooss",
 	"logentry-upload-upload": "{{GENDER:$2|De(n) $1|D'$1}} huet $3 eropgelueden",
 	"logentry-upload-overwrite": "{{GENDER:$2|De(n) $1|D'$1}} huet eng nei Versioun vu(n) $3 eropgelueden",
 	"logentry-upload-revert": "{{GENDER:$2|De(n) $1|D'$1}} huet $3 op eng al Versioun zréckgesat",

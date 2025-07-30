@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Bidumsábme",
-			"Olve Utne"
+			"Olve Utne",
+			"Yupik"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Kategorija}}",
@@ -1109,6 +1110,7 @@
 	"skin-action-move": "Sirde",
 	"newpages-showhide-bots": "$1 båhtå",
 	"blockedtext-block-ip": "Duv dálatj IP-adrässa lä $1.",
+	"renameusernew": "Åđđå adnejnamma:",
 	"interwiki": "Vuosedä ja rävvdadä wikigasskajdáhtájt",
 	"interwiki-logtext": "Vuosedä låggåv",
 	"log-name-interwiki": "Wikigasskajtabällalåggå",

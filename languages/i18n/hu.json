@@ -69,10 +69,11 @@
 			"Wolf Rex",
 			"Xbspiro",
 			"아라",
-			"Krisztina"
+			"Krisztina",
+			"Boro"
 		]
 	},
-	"pagecategories": "{{PLURAL:$1|Kategória}}",
+	"pagecategories": "{{PLURAL:$1|Kategória|Kategóriák}}",
 	"category_header": "A(z) „$1” kategóriába tartozó lapok",
 	"subcategories": "Alkategóriák",
 	"category-media-header": "A(z) „$1” kategóriába tartozó médiafájlok",
@@ -92,7 +93,7 @@
 	"article": "Szócikk",
 	"newwindow": "(új ablakban nyílik meg)",
 	"cancel": "Mégse",
-	"moredotdotdot": "Tovább...",
+	"moredotdotdot": "Továbbiak...",
 	"morenotlisted": "A lista hiányos lehet.",
 	"mypage": "Lapom",
 	"mytalk": "Vitalap",

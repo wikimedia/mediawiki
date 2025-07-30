@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Noeruchan"
+		]
+	},
+	"cdx-search-input-search-button-label": "Tìm kiếm",
+	"cdx-table-select-all-label": "Chọn tất cả các hàng",
+	"cdx-table-select-row-label": "Chọn hàng $1 trong tổng số $2",
+	"cdx-table-sort-caption": "$1 (các tiêu đề cột có nút có thể sắp xếp được).",
+	"cdx-typeahead-search-search-results-label": "Kết quả tìm kiếm",
+	"cdx-table-pager-button-first-page": "Trang đầu",
+	"cdx-table-pager-button-last-page": "Trang cuối",
+	"cdx-table-pager-button-next-page": "Trang sau",
+	"cdx-table-pager-button-prev-page": "Trang trước",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 cột|$1 hàng}}",
+	"cdx-table-pager-items-per-page-default": "Kết quả trên mỗi trang",
+	"cdx-table-pagination-status-message-determinate-long": "Hiển thị kết quả $1–$2 trong tổng số $3",
+	"cdx-table-pagination-status-message-determinate-short": "$1–$2 trong tổng số $3"
+}

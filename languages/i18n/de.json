@@ -131,7 +131,8 @@
 			"Ziko",
 			"Zylbath",
 			"לערי ריינהארט",
-			"✓"
+			"✓",
+			"IWL04"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Kategorie|Kategorien}}",
@@ -4151,7 +4152,7 @@
 	"createacct-benefit-heading-temp-user": "Vielen Dank für deinen Beitrag zu {{SITENAME}}.\nErstelle ein Konto, um auf weitere Funktionen zuzugreifen.",
 	"createacct-benefit-subheading-temp-user": "{{SITENAME}} wird von Leuten wie dir erstellt. Mit einem Konto erhältst du eine dauerhafte und sichere Identität mit Zugriff auf Funktionen wie:",
 	"benefit-1-description": "Beobachtungslisten, mit denen du den Überblick über die Seiten behältst, die dich interessieren.",
-	"benefit-2-description": "Permanente Liste deine Beiträge zum Projekt.",
+	"benefit-2-description": "Permanente Liste deiner Beiträge zum Projekt.",
 	"benefit-3-description": "Voreinstellungen, mit denen du dein Konto individuell gestalten kannst.",
 	"temp-user-unable-to-acquire": "Es ist nicht möglich, einen temporären Benutzernamen für das Konto zu erstellen. Bitte versuche es erneut.",
 	"table-of-contents-show-button-aria-label": "Inhaltsverzeichnis anzeigen",
