@@ -89,7 +89,7 @@ GroupByToggleWidget.prototype.onGroupByPageChange = function ( isSelected ) {
  * Respond to user explicitly clicking the Group by page toggle
  */
 GroupByToggleWidget.prototype.onGroupByPageUserClick = function () {
-	const isSelected = event.target.ariaChecked;
+	const isSelected = event.target.ariaChecked ? 1 : 0;
 	this.controller.updateGroupByPageDefault( isSelected );
 	this.emit( 'groupByPageUserClick', isSelected );
 	mw.hook( 'rcfilters.groupbytogglewidget.click' ).fire( this );
