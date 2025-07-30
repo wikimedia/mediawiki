@@ -247,6 +247,11 @@ because of Phabricator reports.
     - LanguageGetNamespacesHook
     - LocalisationCacheRecacheFallbackHook
     - LocalisationCacheRecacheHook
+  - MediaWiki\Cache => MediaWiki\Page
+    - CacheKeyHelper
+    - LinkBatch
+    - LinkBatchFactory
+    - LinkCache
   - Wikimedia:
     - ReplacementArray (was MediaWiki\Language\ReplacementArray)
     - Emptiable (was Wikimedia\Libs\Emptiable)
