@@ -174,6 +174,15 @@ class LogEventsList extends ContextSource {
 			}
 		}
 
+		// By default, expose if the form was submitted by passing along a hidden input.
+		// This is useful for extra inputs that check checkboxes by default on load and have to pass
+		// along that modifier to the pager (eg. `newusers`'s temporary account creation exclusions)
+		$formDescriptor['issubmitted'] = [
+			'type' => 'hidden',
+			'name' => 'issubmitted',
+			'default' => true,
+		];
+
 		// Date menu
 		$formDescriptor['date'] = [
 			'type' => 'date',
@@ -289,16 +298,7 @@ class LogEventsList extends ContextSource {
 	 * @return array Form descriptor
 	 */
 	private function getExtraInputsDesc( $type ) {
-		// By default, expose if the form was submitted by passing along a hidden input.
-		// This is useful for extra inputs that check checkboxes by default on load and have to pass
-		// along that modifier to the pager (eg. `newusers`'s temporary account creation exclusions)
-		$formDescriptor = [
-			[
-				'type' => 'hidden',
-				'name' => 'issubmitted',
-				'default' => true,
-			]
-		];
+		$formDescriptor = [];
 
 		if ( $type === 'suppress' ) {
 			$formDescriptor[] = [
