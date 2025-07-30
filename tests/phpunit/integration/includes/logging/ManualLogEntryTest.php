@@ -87,6 +87,7 @@ class ManualLogEntryTest extends MediaWikiIntegrationTestCase {
 				// The RecentChanges object stores the timestamp as TS_MW, even if DB stores it in a different
 				// format.
 				'rc_timestamp' => '20300405060708',
+				'rc_deleted' => (string)LogPage::DELETED_ACTION,
 			],
 			$actualRecentChangeObject->getAttributes()
 		);

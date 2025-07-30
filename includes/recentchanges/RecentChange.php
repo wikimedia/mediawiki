@@ -937,13 +937,14 @@ class RecentChange implements Taggable {
 	 * @param bool $isPatrollable Whether this log entry is patrollable
 	 * @param bool|null $forceBotFlag Override the default behavior and set bot flag to
 	 * 	the value of the argument. When omitted or null, it falls back to the global state.
+	 * @param int|null $deleted Value to set as rc_deleted (one of the LogPage::DELETED_* constants or 0)
 	 *
 	 * @return RecentChange
 	 */
 	public static function newLogEntry( $timestamp,
 		$logPage, $user, $actionComment, $ip,
 		$type, $action, $target, $logComment, $params, $newId = 0, $actionCommentIRC = '',
-		$revId = 0, $isPatrollable = false, $forceBotFlag = null
+		$revId = 0, $isPatrollable = false, $forceBotFlag = null, $deleted = 0
 	) {
 		global $wgRequest;
 
@@ -1013,7 +1014,7 @@ class RecentChange implements Taggable {
 			'rc_new' => 0, # obsolete
 			'rc_old_len' => null,
 			'rc_new_len' => null,
-			'rc_deleted' => 0,
+			'rc_deleted' => $deleted,
 			'rc_logid' => $newId,
 			'rc_log_type' => $type,
 			'rc_log_action' => $action,
