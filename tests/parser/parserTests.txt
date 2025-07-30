@@ -17406,3 +17406,49 @@ added between the divtags:
 </div>
 </b>
 !! end
+
+!! test
+{{#contentmodel}} parser function
+!! wikitext
+{{#contentmodel}}
+
+{{#contentmodel:}}
+
+{{#contentmodel:canonical}}
+!! html
+<p>wikitext
+</p><p>wikitext
+</p><p>wikitext
+</p>
+!! end
+
+!! test
+{{#contentmodel}} parser function on a CSS page
+!! options
+title=MediaWiki:Common.css
+!! wikitext
+{{#contentmodel}}
+!! html
+<p>CSS
+</p>
+!! end
+
+!! test
+{{#contentmodel:}} parser function on a CSS page (canonical)
+!! options
+title=MediaWiki:Common.css
+!! wikitext
+{{#contentmodel: canonical}}
+!! html/*
+<p>css
+</p>
+!! end
+
+!! test
+{{#contentmodel:}} parser function for a JS page using the title argument
+!! wikitext
+{{#contentmodel: canonical | MediaWiki:Common.js}}
+!! html
+<p>javascript
+</p>
+!! end

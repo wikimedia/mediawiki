@@ -67,6 +67,9 @@ For notes on 1.44.x and older releases, see HISTORY.
 * (T280531) Partial action blocks is now enabled by default. This feature
   allows administrators to block users from performing certain actions (such
   as moving pages) without blocking them from editing pages.
+* (T328254) A new parser function has been added, {{#contentmodel}}, which
+  returns the localized name of the contentmodel of the current page.  This
+  is primarily meant for use in system messages.
 * …
 
 === New features for sysadmins in 1.45 ===

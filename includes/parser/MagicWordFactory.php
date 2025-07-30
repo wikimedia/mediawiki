@@ -123,6 +123,7 @@ class MagicWordFactory {
 		'numberofadmins',
 		'cascadingsources',
 		'bcp47',
+		'contentmodel',
 		'dir',
 		'language',
 	];

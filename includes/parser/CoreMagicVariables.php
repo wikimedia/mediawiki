@@ -312,6 +312,7 @@ class CoreMagicVariables {
 					return $pageLang->getCode();
 				}
 			case 'bcp47':
+			case 'contentmodel':
 			case 'dir':
 			case 'language':
 				# magic variables are the same as empty/default first argument

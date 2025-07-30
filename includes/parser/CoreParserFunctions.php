@@ -26,6 +26,7 @@ namespace MediaWiki\Parser;
 use InvalidArgumentException;
 use MediaWiki\Category\Category;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Content\ContentHandler;
 use MediaWiki\Language\Language;
 use MediaWiki\Language\LanguageCode;
 use MediaWiki\Languages\LanguageNameUtils;
@@ -128,6 +129,7 @@ class CoreParserFunctions {
 			'dir',
 			'interwikilink',
 			'interlanguagelink',
+			'contentmodel',
 		];
 		foreach ( $noHashFunctions as $func ) {
 			$parser->setFunctionHook( $func, [ self::class, $func ], Parser::SFH_NO_HASH );
@@ -1948,6 +1950,37 @@ class CoreParserFunctions {
 			return implode( '|', $names );
 		}
 		return '';
+	}
+
+	/**
+	 * @param Parser $parser
+	 * @param ?string $format
+	 * @param ?string $title
+	 * @return string
+	 * @since 1.45
+	 */
+	public static function contentmodel( Parser $parser, ?string $format = null, ?string $title = null ) {
+		static $magicWords = null;
+		if ( $magicWords === null ) {
+			$magicWords = $parser->getMagicWordFactory()->newArray( [
+				'contentmodel_canonical',
+			] );
+		}
+
+		$formatType = $magicWords->matchStartToEnd( $format ?? '' );
+
+		$t = self::makeTitle( $parser, $title );
+		if ( $t === null ) {
+			return '';
+		}
+
+		$contentModel = $t->getContentModel();
+		if ( $formatType === 'contentmodel_canonical' ) {
+			return wfEscapeWikiText( $contentModel );
+		}
+
+		$localizedContentModel = ContentHandler::getLocalizedName( $contentModel, $parser->getTargetLanguage() );
+		return wfEscapeWikiText( $localizedContentModel );
 	}
 
 	/**
