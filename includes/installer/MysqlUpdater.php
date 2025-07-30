@@ -107,6 +107,8 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'migrateCategorylinks' ],
 			[ 'normalizeCollation' ],
 			[ 'addIndex', 'categorylinks', 'cl_pkey', 'patch-categorylinks-pk.sql' ],
+			[ 'addIndex', 'recentchanges', 'rc_source_name_timestamp',
+				'patch-recentchanges-rc_source_name_timestamp.sql' ],
 		];
 	}
 

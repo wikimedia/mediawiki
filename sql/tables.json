@@ -3894,11 +3894,10 @@
 			},
 			{
 				"name": "rc_source",
-				"comment": "The source of the change entry (replaces rc_type) default of '' is temporary, needed for initial migration",
+				"comment": "The source of the change entry (replaces rc_type)",
 				"type": "binary",
 				"options": {
 					"notnull": true,
-					"default": "",
 					"length": 16
 				}
 			},
@@ -4020,6 +4019,16 @@
 				"comment": "Special:Newpages",
 				"columns": [
 					"rc_new",
+					"rc_namespace",
+					"rc_timestamp"
+				],
+				"unique": false
+			},
+			{
+				"name": "rc_source_name_timestamp",
+				"comment": "Special:Newpages",
+				"columns": [
+					"rc_source",
 					"rc_namespace",
 					"rc_timestamp"
 				],
