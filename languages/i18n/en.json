@@ -105,7 +105,7 @@
 	"redirectto": "Redirect to:",
 	"subjectpageheader": "-",
 	"talkpageheader": "-",
-	"lastmodifiedat": "This page was last edited on $1, at $2.",
+	"lastmodifiedat": "This page was last edited on $1, at $2 UTC.",
 	"renderedwith-parsoid": "Page was rendered with [[mw:Special:MyLanguage/Parsoid|Parsoid]].",
 	"renderedwith-legacy": "-",
 	"viewcount": "This page has been accessed {{PLURAL:$1|once|$1 times}}.",
