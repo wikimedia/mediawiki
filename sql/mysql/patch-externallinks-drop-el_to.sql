@@ -3,9 +3,13 @@
 -- Do not modify this file directly.
 -- See https://www.mediawiki.org/wiki/Manual:Schema_changes
 DROP INDEX el_to ON /*_*/externallinks;
+
 DROP INDEX el_index ON /*_*/externallinks;
+
 DROP INDEX el_index_60 ON /*_*/externallinks;
+
 DROP INDEX el_from_index_60 ON /*_*/externallinks;
+
 ALTER TABLE /*_*/externallinks
   DROP el_to,
   DROP el_index,

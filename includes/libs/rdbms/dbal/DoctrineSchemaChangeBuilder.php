@@ -33,11 +33,11 @@ class DoctrineSchemaChangeBuilder implements SchemaChangeBuilder {
 	}
 
 	public function getSchemaChangeSql( array $schemaChangeSpec ): array {
-		$comparator = new Comparator();
-		$schemaDiff = $comparator->compare(
+		$comparator = new Comparator( $this->platform );
+		$schemaDiff = $comparator->compareSchemas(
 			$this->getTableSchema( $schemaChangeSpec['before'] ),
 			$this->getTableSchema( $schemaChangeSpec['after'] )
 		);
-		return $schemaDiff->toSql( $this->platform );
+		return $this->platform->getAlterSchemaSQL( $schemaDiff );
 	}
 }

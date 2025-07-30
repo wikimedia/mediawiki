@@ -105,14 +105,7 @@
 								"properties": {
 									"version": {
 										"type": "boolean"
-									}
-								}
-							},
-							"CustomSchemaOptions": {
-								"type": "object",
-								"description": "Custom schema options",
-								"additionalProperties": false,
-								"properties": {
+									},
 									"allowInfinite": {
 										"type": "boolean"
 									},

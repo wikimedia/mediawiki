@@ -3,10 +3,13 @@
 -- Do not modify this file directly.
 -- See https://www.mediawiki.org/wiki/Manual:Schema_changes
 DROP INDEX si_page;
+
 ALTER TABLE searchindex
   ALTER si_title
   DROP DEFAULT;
+
 ALTER TABLE searchindex
   ALTER si_title TYPE TEXT;
+
 ALTER TABLE searchindex
   ADD PRIMARY KEY (si_page);

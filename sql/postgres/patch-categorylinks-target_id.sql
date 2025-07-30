@@ -4,6 +4,7 @@
 -- See https://www.mediawiki.org/wiki/Manual:Schema_changes
 ALTER TABLE categorylinks
   ADD cl_collation_id SMALLINT DEFAULT 0 NOT NULL;
+
 ALTER TABLE categorylinks
   ADD cl_target_id BIGINT DEFAULT NULL;
 

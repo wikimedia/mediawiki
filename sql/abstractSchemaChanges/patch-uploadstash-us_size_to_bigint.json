@@ -125,7 +125,7 @@
 				"type": "mwenum",
 				"options": { "notnull": false, "default": null,
 					"fixed": true,
-					"CustomSchemaOptions": {
+					"PlatformOptions": {
 						"enum_values": [ "UNKNOWN", "BITMAP", "DRAWING", "AUDIO", "VIDEO", "MULTIMEDIA", "OFFICE", "TEXT", "EXECUTABLE", "ARCHIVE", "3D" ]
 					}
 				}
@@ -311,7 +311,7 @@
 				"type": "mwenum",
 				"options": { "notnull": false, "default": null,
 					"fixed": true,
-					"CustomSchemaOptions": {
+					"PlatformOptions": {
 						"enum_values": [ "UNKNOWN", "BITMAP", "DRAWING", "AUDIO", "VIDEO", "MULTIMEDIA", "OFFICE", "TEXT", "EXECUTABLE", "ARCHIVE", "3D" ]
 					}
 				}

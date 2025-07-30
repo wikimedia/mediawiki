@@ -7,19 +7,22 @@ SELECT
   uas_shard,
   uas_value
 FROM /*_*/user_autocreate_serial;
+
 DROP TABLE /*_*/user_autocreate_serial;
 
 
 CREATE TABLE /*_*/user_autocreate_serial (
-    uas_shard INTEGER UNSIGNED NOT NULL,
-    uas_year SMALLINT UNSIGNED NOT NULL,
-    uas_value INTEGER UNSIGNED NOT NULL,
-    PRIMARY KEY(uas_shard, uas_year)
-  );
+  uas_shard INTEGER UNSIGNED NOT NULL,
+  uas_year SMALLINT UNSIGNED NOT NULL,
+  uas_value INTEGER UNSIGNED NOT NULL,
+  PRIMARY KEY(uas_shard, uas_year)
+);
+
 INSERT INTO /*_*/user_autocreate_serial (uas_shard, uas_value)
 SELECT
   uas_shard,
   uas_value
 FROM
   /*_*/__temp__user_autocreate_serial;
+
 DROP TABLE /*_*/__temp__user_autocreate_serial;

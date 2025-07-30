@@ -16,28 +16,30 @@ SELECT
   site_forward,
   site_config
 FROM /*_*/sites;
+
 DROP TABLE /*_*/sites;
 
 
 CREATE TABLE /*_*/sites (
-    site_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-    site_global_key BLOB NOT NULL,
-    site_type BLOB NOT NULL,
-    site_group BLOB NOT NULL,
-    site_source BLOB NOT NULL,
-    site_language BLOB NOT NULL,
-    site_protocol BLOB NOT NULL,
-    site_domain VARCHAR(255) NOT NULL,
-    site_data BLOB NOT NULL,
-    site_forward SMALLINT NOT NULL,
-    site_config BLOB NOT NULL
-  );
+  site_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  site_global_key BLOB NOT NULL,
+  site_type BLOB NOT NULL,
+  site_group BLOB NOT NULL,
+  site_source BLOB NOT NULL,
+  site_language BLOB NOT NULL,
+  site_protocol BLOB NOT NULL,
+  site_domain VARCHAR(255) NOT NULL,
+  site_data BLOB NOT NULL,
+  site_forward SMALLINT NOT NULL,
+  site_config BLOB NOT NULL
+);
+
 INSERT INTO /*_*/sites (
-    site_id, site_global_key, site_type,
-    site_group, site_source, site_language,
-    site_protocol, site_domain, site_data,
-    site_forward, site_config
-  )
+  site_id, site_global_key, site_type,
+  site_group, site_source, site_language,
+  site_protocol, site_domain, site_data,
+  site_forward, site_config
+)
 SELECT
   site_id,
   site_global_key,
@@ -52,6 +54,7 @@ SELECT
   site_config
 FROM
   /*_*/__temp__sites;
+
 DROP TABLE /*_*/__temp__sites;
 
 CREATE UNIQUE INDEX site_global_key ON /*_*/sites (site_global_key);

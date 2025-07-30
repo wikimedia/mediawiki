@@ -3,12 +3,18 @@
 -- Do not modify this file directly.
 -- See https://www.mediawiki.org/wiki/Manual:Schema_changes
 DROP INDEX el_to;
+
 DROP INDEX el_index;
+
 DROP INDEX el_index_60;
+
 DROP INDEX el_from_index_60;
+
 ALTER TABLE externallinks
   DROP el_to;
+
 ALTER TABLE externallinks
   DROP el_index;
+
 ALTER TABLE externallinks
   DROP el_index_60;

@@ -3,9 +3,15 @@
 -- Do not modify this file directly.
 -- See https://www.mediawiki.org/wiki/Manual:Schema_changes
 DROP INDEX site_type ON /*_*/sites;
+
 DROP INDEX site_group ON /*_*/sites;
+
 DROP INDEX site_source ON /*_*/sites;
+
 DROP INDEX site_language ON /*_*/sites;
+
 DROP INDEX site_protocol ON /*_*/sites;
+
 DROP INDEX site_domain ON /*_*/sites;
+
 DROP INDEX site_forward ON /*_*/sites;

@@ -9,7 +9,7 @@ class MWMySQLPlatform extends MySQLPlatform {
 	/**
 	 * @inheritDoc
 	 */
-	public function getFloatDeclarationSQL( array $column ) {
+	public function getFloatDeclarationSQL( array $column ): string {
 		$double = $column['doublePrecision'] ?? false;
 		$unsigned = $column['unsigned'] ?? false;
 

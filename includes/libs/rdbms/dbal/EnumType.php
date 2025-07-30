@@ -3,6 +3,9 @@
 namespace Wikimedia\Rdbms;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
+use Doctrine\DBAL\Platforms\MySQLPlatform;
+use Doctrine\DBAL\Platforms\PostgreSQLPlatform;
+use Doctrine\DBAL\Platforms\SQLitePlatform;
 use Doctrine\DBAL\Types\Type;
 use InvalidArgumentException;
 
@@ -26,9 +29,9 @@ class EnumType extends Type {
 	 *
 	 * @return string
 	 */
-	public function getSQLDeclaration( array $column, AbstractPlatform $platform ) {
+	public function getSQLDeclaration( array $column, AbstractPlatform $platform ): string {
 		// SQLite does not support ENUM type
-		if ( $platform->getName() == 'sqlite' ) {
+		if ( $platform instanceof SQLitePlatform ) {
 			return 'TEXT';
 		}
 
@@ -36,7 +39,7 @@ class EnumType extends Type {
 		// This just returns a string name that references the
 		// actual ENUM which will be created by CREATE TYPE command
 		// If 'fixed' option is not passed, this field will use TEXT
-		if ( $platform->getName() == 'postgresql' ) {
+		if ( $platform instanceof PostgreSQLPlatform ) {
 			if ( !$column['fixed'] ) {
 				return 'TEXT';
 			}
@@ -44,7 +47,7 @@ class EnumType extends Type {
 			return strtoupper( $column['name'] . '_enum' );
 		}
 
-		if ( $platform->getName() == 'mysql' ) {
+		if ( $platform instanceof MySQLPlatform ) {
 			$enumValues = $this->formatValues( $column['enum_values'] );
 			return "ENUM( $enumValues )";
 		}
@@ -60,8 +63,8 @@ class EnumType extends Type {
 	 * @throws \InvalidArgumentException
 	 * @return string
 	 */
-	public function makeEnumTypeSql( $column, $platform ) {
-		if ( $platform->getName() !== 'postgresql' ) {
+	public function makeEnumTypeSql( $column, $platform ): string {
+		if ( !( $platform instanceof PostgreSQLPlatform ) ) {
 			throw new InvalidArgumentException(
 				__METHOD__ . ' can only be called on Postgres platform'
 			);
@@ -80,14 +83,14 @@ class EnumType extends Type {
 	 * @param string[] $values
 	 * @return string
 	 */
-	public function formatValues( $values ) {
+	public function formatValues( $values ): string {
 		$values = implode( "','", $values );
 		$enumValues = "'" . $values . "'";
 
 		return $enumValues;
 	}
 
-	public function getName() {
+	public function getName(): string {
 		return self::ENUM;
 	}
 }

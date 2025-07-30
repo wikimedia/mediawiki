@@ -6,16 +6,20 @@ ALTER TABLE externallinks
   ALTER el_to
 SET
   DEFAULT '';
+
 ALTER TABLE externallinks
   ALTER el_to
   DROP NOT NULL;
+
 ALTER TABLE externallinks
   ALTER el_index
 SET
   DEFAULT '';
+
 ALTER TABLE externallinks
   ALTER el_index
   DROP NOT NULL;
+
 ALTER TABLE externallinks
   ALTER el_index_60
 SET

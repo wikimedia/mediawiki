@@ -3,16 +3,22 @@
 -- Do not modify this file directly.
 -- See https://www.mediawiki.org/wiki/Manual:Schema_changes
 DROP INDEX pl_namespace;
+
 DROP INDEX pl_backlinks_namespace;
+
 ALTER TABLE pagelinks
   DROP CONSTRAINT pagelinks_pkey;
+
 ALTER TABLE pagelinks
   DROP pl_namespace;
+
 ALTER TABLE pagelinks
   DROP pl_title;
+
 ALTER TABLE pagelinks
   ALTER pl_target_id
 SET
   NOT NULL;
+
 ALTER TABLE pagelinks
   ADD PRIMARY KEY (pl_from, pl_target_id);

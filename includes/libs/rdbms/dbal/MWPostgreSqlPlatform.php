@@ -13,7 +13,7 @@ class MWPostgreSqlPlatform extends PostgreSQLPlatform {
 	 * @param mixed[] $column The column definition array.
 	 * @return string Postgres specific SQL code portion needed to set a default value.
 	 */
-	public function getDefaultValueDeclarationSQL( $column ) {
+	public function getDefaultValueDeclarationSQL( $column ): string {
 		$type = $column['type'];
 		$default = $column['default'] ?? null;
 
@@ -38,7 +38,7 @@ class MWPostgreSqlPlatform extends PostgreSQLPlatform {
 	 * @inheritDoc
 	 * phpcs:disable PSR2.Methods.MethodDeclaration.Underscore
 	 */
-	protected function _getCreateTableSQL( $name, $columns, array $options = [] ) {
+	protected function _getCreateTableSQL( $name, $columns, array $options = [] ): array {
 		// phpcs:enable
 		$tableSql = parent::_getCreateTableSQL( $name, $columns, $options );
 		foreach ( $columns as $column ) {
@@ -58,7 +58,7 @@ class MWPostgreSqlPlatform extends PostgreSQLPlatform {
 	/**
 	 * @inheritDoc
 	 */
-	public function getBlobTypeDeclarationSQL( array $column ) {
+	public function getBlobTypeDeclarationSQL( array $column ): string {
 		// MySQL goes with varbinary for collation reasons, but postgres can't
 		// properly understand BYTEA type and works just fine with TEXT type
 		// FIXME: This should be fixed at some point (T257755)
@@ -68,7 +68,7 @@ class MWPostgreSqlPlatform extends PostgreSQLPlatform {
 	/**
 	 * @inheritDoc
 	 */
-	public function getBinaryTypeDeclarationSQL( array $column ) {
+	public function getBinaryTypeDeclarationSQL( array $column ): string {
 		// MySQL goes with varbinary for collation reasons, but postgres can't
 		// properly understand BYTEA type and works just fine with TEXT type
 		// FIXME: This should be fixed at some point (T257755)
@@ -78,14 +78,14 @@ class MWPostgreSqlPlatform extends PostgreSQLPlatform {
 	/**
 	 * @inheritDoc
 	 */
-	public function getFloatDeclarationSQL( array $column ) {
+	public function getFloatDeclarationSQL( array $column ): string {
 		return 'FLOAT';
 	}
 
 	/**
 	 * @inheritDoc
 	 */
-	public function getDateTimeTzTypeDeclarationSQL( array $column ) {
+	public function getDateTimeTzTypeDeclarationSQL( array $column ): string {
 		return 'TIMESTAMPTZ';
 	}
 }

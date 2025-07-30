@@ -20,6 +20,7 @@
 namespace Wikimedia\Rdbms;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
+use Doctrine\DBAL\Platforms\PostgreSQLPlatform;
 use Doctrine\DBAL\Schema\Schema;
 
 /**
@@ -32,7 +33,7 @@ trait DoctrineAbstractSchemaTrait {
 	private AbstractPlatform $platform;
 
 	private function addTableToSchema( Schema $schema, array $schemaSpec ): Schema {
-		$prefix = $this->platform->getName() === 'postgresql' ? '' : '/*_*/';
+		$prefix = ( $this->platform instanceof PostgreSQLPlatform ) ? '' : '/*_*/';
 
 		$table = $schema->createTable( $prefix . $schemaSpec['name'] );
 		foreach ( $schemaSpec['columns'] as $column ) {

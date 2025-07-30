@@ -296,7 +296,7 @@
 				"type": "mwtimestamp",
 				"options": {
 					"notnull": true,
-					"CustomSchemaOptions": {
+					"PlatformOptions": {
 						"allowInfinite": true
 					}
 				}
@@ -752,7 +752,7 @@
 				"options": {
 					"notnull": true,
 					"default": "page",
-					"CustomSchemaOptions": {
+					"PlatformOptions": {
 						"enum_values": [
 							"page",
 							"subcat",
@@ -1479,7 +1479,7 @@
 				"options": {
 					"notnull": false,
 					"default": null,
-					"CustomSchemaOptions": {
+					"PlatformOptions": {
 						"enum_values": [
 							"UNKNOWN",
 							"BITMAP",
@@ -1502,7 +1502,7 @@
 				"options": {
 					"notnull": false,
 					"default": "unknown",
-					"CustomSchemaOptions": {
+					"PlatformOptions": {
 						"enum_values": [
 							"unknown",
 							"application",
@@ -1929,7 +1929,7 @@
 				"options": {
 					"notnull": false,
 					"default": null,
-					"CustomSchemaOptions": {
+					"PlatformOptions": {
 						"enum_values": [
 							"UNKNOWN",
 							"BITMAP",
@@ -1953,7 +1953,7 @@
 				"options": {
 					"notnull": true,
 					"default": "unknown",
-					"CustomSchemaOptions": {
+					"PlatformOptions": {
 						"enum_values": [
 							"unknown",
 							"application",
@@ -3025,7 +3025,7 @@
 				"options": {
 					"notnull": false,
 					"default": null,
-					"CustomSchemaOptions": {
+					"PlatformOptions": {
 						"enum_values": [
 							"UNKNOWN",
 							"BITMAP",
@@ -3048,7 +3048,7 @@
 				"options": {
 					"notnull": true,
 					"default": "unknown",
-					"CustomSchemaOptions": {
+					"PlatformOptions": {
 						"enum_values": [
 							"unknown",
 							"application",
@@ -3204,7 +3204,7 @@
 				"options": {
 					"notnull": true,
 					"unsigned": true,
-					"CustomSchemaOptions": {
+					"PlatformOptions": {
 						"doublePrecision": true
 					}
 				}
@@ -3421,7 +3421,7 @@
 				"type": "mwtimestamp",
 				"options": {
 					"notnull": false,
-					"CustomSchemaOptions": {
+					"PlatformOptions": {
 						"allowInfinite": true
 					}
 				}
@@ -3569,7 +3569,7 @@
 				"type": "mwtimestamp",
 				"options": {
 					"notnull": true,
-					"CustomSchemaOptions": {
+					"PlatformOptions": {
 						"allowInfinite": true
 					}
 				}
@@ -4946,7 +4946,7 @@
 					"notnull": false,
 					"default": null,
 					"fixed": true,
-					"CustomSchemaOptions": {
+					"PlatformOptions": {
 						"enum_values": [
 							"UNKNOWN",
 							"BITMAP",
@@ -5155,7 +5155,7 @@
 				"type": "mwtimestamp",
 				"options": {
 					"notnull": false,
-					"CustomSchemaOptions": {
+					"PlatformOptions": {
 						"allowInfinite": true
 					}
 				}
@@ -5304,7 +5304,7 @@
 				"options": {
 					"notnull": false,
 					"default": null,
-					"CustomSchemaOptions": {
+					"PlatformOptions": {
 						"allowInfinite": true
 					}
 				}

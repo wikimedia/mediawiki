@@ -68,7 +68,7 @@
 				"options": {
 					"notnull": false,
 					"default": null,
-					"CustomSchemaOptions": {
+					"PlatformOptions": {
 						"enum_values": [ "UNKNOWN", "BITMAP", "DRAWING", "AUDIO", "VIDEO", "MULTIMEDIA", "OFFICE", "TEXT", "EXECUTABLE", "ARCHIVE", "3D" ]
 					}
 				}
@@ -80,7 +80,7 @@
 				"options": {
 					"notnull": true,
 					"default": "unknown",
-					"CustomSchemaOptions": {
+					"PlatformOptions": {
 						"enum_values": [ "unknown", "application", "audio", "image", "text", "video", "message", "model", "multipart", "chemical" ]
 					}
 				}
@@ -250,7 +250,7 @@
 				"options": {
 					"notnull": false,
 					"default": null,
-					"CustomSchemaOptions": {
+					"PlatformOptions": {
 						"enum_values": [ "UNKNOWN", "BITMAP", "DRAWING", "AUDIO", "VIDEO", "MULTIMEDIA", "OFFICE", "TEXT", "EXECUTABLE", "ARCHIVE", "3D" ]
 					}
 				}
@@ -262,7 +262,7 @@
 				"options": {
 					"notnull": true,
 					"default": "unknown",
-					"CustomSchemaOptions": {
+					"PlatformOptions": {
 						"enum_values": [ "unknown", "application", "audio", "image", "text", "video", "message", "model", "multipart", "chemical" ]
 					}
 				}

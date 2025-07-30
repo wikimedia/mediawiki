@@ -9,20 +9,22 @@ SELECT
   pl_title,
   pl_from_namespace
 FROM /*_*/pagelinks;
+
 DROP TABLE /*_*/pagelinks;
 
 
 CREATE TABLE /*_*/pagelinks (
-    pl_from INTEGER UNSIGNED DEFAULT 0 NOT NULL,
-    pl_namespace INTEGER DEFAULT 0 NOT NULL,
-    pl_title BLOB DEFAULT '' NOT NULL,
-    pl_from_namespace INTEGER DEFAULT 0 NOT NULL,
-    pl_target_id BIGINT UNSIGNED DEFAULT NULL,
-    PRIMARY KEY(pl_from, pl_namespace, pl_title)
-  );
+  pl_from INTEGER UNSIGNED DEFAULT 0 NOT NULL,
+  pl_namespace INTEGER DEFAULT 0 NOT NULL,
+  pl_title BLOB DEFAULT '' NOT NULL,
+  pl_from_namespace INTEGER DEFAULT 0 NOT NULL,
+  pl_target_id BIGINT UNSIGNED DEFAULT NULL,
+  PRIMARY KEY(pl_from, pl_namespace, pl_title)
+);
+
 INSERT INTO /*_*/pagelinks (
-    pl_from, pl_namespace, pl_title, pl_from_namespace
-  )
+  pl_from, pl_namespace, pl_title, pl_from_namespace
+)
 SELECT
   pl_from,
   pl_namespace,
@@ -30,18 +32,19 @@ SELECT
   pl_from_namespace
 FROM
   /*_*/__temp__pagelinks;
+
 DROP TABLE /*_*/__temp__pagelinks;
 
 CREATE INDEX pl_namespace ON /*_*/pagelinks (pl_namespace, pl_title, pl_from);
 
 CREATE INDEX pl_backlinks_namespace ON /*_*/pagelinks (
-    pl_from_namespace, pl_namespace,
-    pl_title, pl_from
-  );
+  pl_from_namespace, pl_namespace,
+  pl_title, pl_from
+);
 
 CREATE INDEX pl_target_id ON /*_*/pagelinks (pl_target_id, pl_from);
 
 CREATE INDEX pl_backlinks_namespace_target_id ON /*_*/pagelinks (
-    pl_from_namespace, pl_target_id,
-    pl_from
-  );
+  pl_from_namespace, pl_target_id,
+  pl_from
+);

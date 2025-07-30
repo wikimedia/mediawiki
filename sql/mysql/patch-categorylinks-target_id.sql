@@ -7,6 +7,6 @@ ALTER TABLE /*_*/categorylinks
   ADD cl_target_id BIGINT UNSIGNED DEFAULT NULL;
 
 CREATE INDEX cl_sortkey_id ON /*_*/categorylinks (
-    cl_target_id, cl_type, cl_sortkey,
-    cl_from
-  );
+  cl_target_id, cl_type, cl_sortkey,
+  cl_from
+);

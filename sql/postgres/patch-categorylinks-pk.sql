@@ -4,9 +4,11 @@
 -- See https://www.mediawiki.org/wiki/Manual:Schema_changes
 ALTER TABLE categorylinks
   DROP CONSTRAINT categorylinks_pkey;
+
 ALTER TABLE categorylinks
   ALTER cl_target_id
 SET
   NOT NULL;
+
 ALTER TABLE categorylinks
   ADD PRIMARY KEY (cl_from, cl_target_id);

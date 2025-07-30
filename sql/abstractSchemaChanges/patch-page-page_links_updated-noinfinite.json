@@ -41,7 +41,7 @@
 				"options": {
 					"notnull": true,
 					"unsigned": true,
-					"CustomSchemaOptions": {
+					"PlatformOptions": {
 						"doublePrecision": true
 					}
 				}
@@ -59,7 +59,7 @@
 				"options": {
 					"notnull": false,
 					"default": null,
-					"CustomSchemaOptions": {
+					"PlatformOptions": {
 						"allowInfinite": true
 					}
 				}
@@ -158,7 +158,7 @@
 				"options": {
 					"notnull": true,
 					"unsigned": true,
-					"CustomSchemaOptions": {
+					"PlatformOptions": {
 						"doublePrecision": true
 					}
 				}

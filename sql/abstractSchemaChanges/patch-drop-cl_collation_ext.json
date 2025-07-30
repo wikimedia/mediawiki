@@ -45,7 +45,7 @@
 				"comment": "Stores whether cl_from is a category, file, or other page, so we can paginate the three categories separately.  This only has to be updated when moving pages into or out of the category namespace, since file pages cannot be moved to other namespaces, nor can non-files be moved into the file namespace.",
 				"type": "mwenum",
 				"options": { "notnull": true, "default": "page",
-					"CustomSchemaOptions": {
+					"PlatformOptions": {
 						"enum_values": [ "page", "subcat", "file" ]
 					}
 				}
@@ -118,7 +118,7 @@
 				"comment": "Stores whether cl_from is a category, file, or other page, so we can paginate the three categories separately.  This only has to be updated when moving pages into or out of the category namespace, since file pages cannot be moved to other namespaces, nor can non-files be moved into the file namespace.",
 				"type": "mwenum",
 				"options": { "notnull": true, "default": "page",
-					"CustomSchemaOptions": {
+					"PlatformOptions": {
 						"enum_values": [ "page", "subcat", "file" ]
 					}
 				}

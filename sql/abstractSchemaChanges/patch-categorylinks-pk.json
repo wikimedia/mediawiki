@@ -71,7 +71,7 @@
 				"options": {
 					"notnull": true,
 					"default": "page",
-					"CustomSchemaOptions": {
+					"PlatformOptions": {
 						"enum_values": [
 							"page",
 							"subcat",
@@ -219,7 +219,7 @@
 				"options": {
 					"notnull": true,
 					"default": "page",
-					"CustomSchemaOptions": {
+					"PlatformOptions": {
 						"enum_values": [
 							"page",
 							"subcat",

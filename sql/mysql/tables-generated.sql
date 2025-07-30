@@ -731,7 +731,7 @@ CREATE TABLE /*_*/searchindex (
   FULLTEXT INDEX si_title (si_title),
   FULLTEXT INDEX si_text (si_text),
   PRIMARY KEY(si_page)
-) ENGINE = MYISAM DEFAULT CHARSET = utf8mb4;
+) ENGINE = MyISAM DEFAULT CHARSET = utf8mb4;
 
 
 CREATE TABLE /*_*/site_identifiers (

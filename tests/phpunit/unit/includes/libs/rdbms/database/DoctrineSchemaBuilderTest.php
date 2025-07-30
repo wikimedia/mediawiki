@@ -40,17 +40,17 @@ class DoctrineSchemaBuilderTest extends MediaWikiUnitTestCase {
 	public static function provideTestGetResultAllTables() {
 		yield 'MySQL schema tables' => [
 			new MWMySQLPlatform,
-			'/data/db/mysql/tables.sql',
+			'/data/db/mysql/tables-generated.sql',
 		];
 
 		yield 'PostgreSQL schema tables' => [
 			new MWPostgreSqlPlatform,
-			'/data/db/postgres/tables.sql'
+			'/data/db/postgres/tables-generated.sql'
 		];
 
 		yield 'SQLite schema tables' => [
 			new SqlitePlatform,
-			'/data/db/sqlite/tables.sql'
+			'/data/db/sqlite/tables-generated.sql'
 		];
 	}
 }

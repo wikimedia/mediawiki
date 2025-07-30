@@ -3,13 +3,14 @@
 -- Do not modify this file directly.
 -- See https://www.mediawiki.org/wiki/Manual:Schema_changes
 DROP INDEX el_from ON /*_*/externallinks;
+
 ALTER TABLE /*_*/externallinks
   ADD el_to_domain_index VARBINARY(255) DEFAULT '' NOT NULL,
   ADD el_to_path BLOB DEFAULT NULL;
 
 CREATE INDEX el_to_domain_index_to_path ON /*_*/externallinks (
-    el_to_domain_index,
-    el_to_path(60)
-  );
+  el_to_domain_index,
+  el_to_path(60)
+);
 
 CREATE INDEX el_from ON /*_*/externallinks (el_from);

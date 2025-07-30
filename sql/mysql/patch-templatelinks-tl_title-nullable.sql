@@ -3,7 +3,9 @@
 -- Do not modify this file directly.
 -- See https://www.mediawiki.org/wiki/Manual:Schema_changes
 DROP INDEX `primary` ON /*_*/templatelinks;
+
 ALTER TABLE /*_*/templatelinks
   CHANGE tl_target_id tl_target_id BIGINT UNSIGNED NOT NULL;
+
 ALTER TABLE /*_*/templatelinks
   ADD PRIMARY KEY (tl_from, tl_target_id);

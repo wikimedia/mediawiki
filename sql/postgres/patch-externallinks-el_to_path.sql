@@ -3,8 +3,10 @@
 -- Do not modify this file directly.
 -- See https://www.mediawiki.org/wiki/Manual:Schema_changes
 DROP INDEX el_from;
+
 ALTER TABLE externallinks
   ADD el_to_domain_index TEXT DEFAULT '' NOT NULL;
+
 ALTER TABLE externallinks
   ADD el_to_path TEXT DEFAULT NULL;
 

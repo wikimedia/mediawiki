@@ -3,9 +3,13 @@
 -- Do not modify this file directly.
 -- See https://www.mediawiki.org/wiki/Manual:Schema_changes
 DROP INDEX change_tag_rc_tag_nonuniq ON /*_*/change_tag;
+
 DROP INDEX change_tag_log_tag_nonuniq ON /*_*/change_tag;
+
 DROP INDEX change_tag_rev_tag_nonuniq ON /*_*/change_tag;
+
 DROP INDEX change_tag_tag_id ON /*_*/change_tag;
+
 ALTER TABLE /*_*/change_tag
   DROP ct_tag,
   CHANGE ct_tag_id ct_tag_id INT UNSIGNED NOT NULL;

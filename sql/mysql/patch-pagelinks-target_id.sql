@@ -8,6 +8,6 @@ ALTER TABLE /*_*/pagelinks
 CREATE INDEX pl_target_id ON /*_*/pagelinks (pl_target_id, pl_from);
 
 CREATE INDEX pl_backlinks_namespace_target_id ON /*_*/pagelinks (
-    pl_from_namespace, pl_target_id,
-    pl_from
-  );
+  pl_from_namespace, pl_target_id,
+  pl_from
+);

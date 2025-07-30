@@ -3,8 +3,11 @@
 -- Do not modify this file directly.
 -- See https://www.mediawiki.org/wiki/Manual:Schema_changes
 DROP INDEX tl_namespace;
+
 DROP INDEX tl_backlinks_namespace;
+
 ALTER TABLE templatelinks
   DROP tl_namespace;
+
 ALTER TABLE templatelinks
   DROP tl_title;

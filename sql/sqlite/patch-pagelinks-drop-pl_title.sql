@@ -8,29 +8,32 @@ SELECT
   pl_from_namespace,
   pl_target_id
 FROM /*_*/pagelinks;
+
 DROP TABLE /*_*/pagelinks;
 
 
 CREATE TABLE /*_*/pagelinks (
-    pl_from INTEGER UNSIGNED DEFAULT 0 NOT NULL,
-    pl_target_id BIGINT UNSIGNED NOT NULL,
-    pl_from_namespace INTEGER DEFAULT 0 NOT NULL,
-    PRIMARY KEY(pl_from, pl_target_id)
-  );
+  pl_from INTEGER UNSIGNED DEFAULT 0 NOT NULL,
+  pl_target_id BIGINT UNSIGNED NOT NULL,
+  pl_from_namespace INTEGER DEFAULT 0 NOT NULL,
+  PRIMARY KEY(pl_from, pl_target_id)
+);
+
 INSERT INTO /*_*/pagelinks (
-    pl_from, pl_from_namespace, pl_target_id
-  )
+  pl_from, pl_from_namespace, pl_target_id
+)
 SELECT
   pl_from,
   pl_from_namespace,
   pl_target_id
 FROM
   /*_*/__temp__pagelinks;
+
 DROP TABLE /*_*/__temp__pagelinks;
 
 CREATE INDEX pl_target_id ON /*_*/pagelinks (pl_target_id, pl_from);
 
 CREATE INDEX pl_backlinks_namespace_target_id ON /*_*/pagelinks (
-    pl_from_namespace, pl_target_id,
-    pl_from
-  );
+  pl_from_namespace, pl_target_id,
+  pl_from
+);

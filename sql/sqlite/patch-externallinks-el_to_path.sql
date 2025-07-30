@@ -10,19 +10,21 @@ SELECT
   el_index,
   el_index_60
 FROM /*_*/externallinks;
+
 DROP TABLE /*_*/externallinks;
 
 
 CREATE TABLE /*_*/externallinks (
-    el_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-    el_from INTEGER UNSIGNED DEFAULT 0 NOT NULL,
-    el_to BLOB NOT NULL, el_index BLOB NOT NULL,
-    el_index_60 BLOB NOT NULL, el_to_domain_index BLOB DEFAULT '' NOT NULL,
-    el_to_path BLOB DEFAULT NULL
-  );
+  el_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  el_from INTEGER UNSIGNED DEFAULT 0 NOT NULL,
+  el_to BLOB NOT NULL, el_index BLOB NOT NULL,
+  el_index_60 BLOB NOT NULL, el_to_domain_index BLOB DEFAULT '' NOT NULL,
+  el_to_path BLOB DEFAULT NULL
+);
+
 INSERT INTO /*_*/externallinks (
-    el_id, el_from, el_to, el_index, el_index_60
-  )
+  el_id, el_from, el_to, el_index, el_index_60
+)
 SELECT
   el_id,
   el_from,
@@ -31,6 +33,7 @@ SELECT
   el_index_60
 FROM
   /*_*/__temp__externallinks;
+
 DROP TABLE /*_*/__temp__externallinks;
 
 CREATE INDEX el_from ON /*_*/externallinks (el_from);
