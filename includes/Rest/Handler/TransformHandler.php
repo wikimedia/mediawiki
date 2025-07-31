@@ -43,6 +43,9 @@ use Wikimedia\ParamValidator\ParamValidator;
  * - POST /v1/transform/html/to/wikitext/{title}/{revision}
  * - (GET|POST) /v1/transform/wikitext/to/lint/{title}/{revision}
  *
+ * This class is extended by the Parsoid extension, as CoreTransformHandler.
+ * Be careful with changes, in order to not break Parsoid.
+ *
  * This handler can also provide the intended APIs of Parsoid V3 routes.
  * These routes are mentioned in the relevant links below.
  *
