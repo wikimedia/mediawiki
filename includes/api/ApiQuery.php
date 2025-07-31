@@ -254,6 +254,7 @@ class ApiQuery extends ApiBase {
 				'NamespaceInfo',
 				'GenderCache',
 				'LinksMigration',
+				'ConnectionProvider',
 			]
 		],
 		'allimages' => [
@@ -270,6 +271,7 @@ class ApiQuery extends ApiBase {
 				'NamespaceInfo',
 				'GenderCache',
 				'LinksMigration',
+				'ConnectionProvider',
 			]
 		],
 		'allpages' => [
@@ -287,6 +289,7 @@ class ApiQuery extends ApiBase {
 				'NamespaceInfo',
 				'GenderCache',
 				'LinksMigration',
+				'ConnectionProvider',
 			]
 		],
 		'allrevisions' => [
@@ -316,6 +319,7 @@ class ApiQuery extends ApiBase {
 				'NamespaceInfo',
 				'GenderCache',
 				'LinksMigration',
+				'ConnectionProvider',
 			]
 		],
 		'allusers' => [
@@ -332,6 +336,7 @@ class ApiQuery extends ApiBase {
 			'class' => ApiQueryBacklinks::class,
 			'services' => [
 				'LinksMigration',
+				'ConnectionProvider',
 			]
 		],
 		'blocks' => [
@@ -369,6 +374,7 @@ class ApiQuery extends ApiBase {
 			'class' => ApiQueryBacklinks::class,
 			'services' => [
 				'LinksMigration',
+				'ConnectionProvider',
 			]
 		],
 		'exturlusage' => [
@@ -388,6 +394,7 @@ class ApiQuery extends ApiBase {
 			'class' => ApiQueryBacklinks::class,
 			'services' => [
 				'LinksMigration',
+				'ConnectionProvider',
 			]
 		],
 		'iwbacklinks' => [

@@ -24,6 +24,7 @@
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Debug\MWDebug;
 use MediaWiki\Deferred\LinksUpdate\ExternalLinksTable;
+use MediaWiki\Deferred\LinksUpdate\TemplateLinksTable;
 use MediaWiki\Exception\MWExceptionHandler;
 use MediaWiki\Exception\MWExceptionRenderer;
 use MediaWiki\Logger\LoggerFactory;
@@ -54,6 +55,7 @@ class MWLBFactory {
 		'virtual-interwiki',
 		'virtual-interwiki-interlanguage',
 		ExternalLinksTable::VIRTUAL_DOMAIN,
+		TemplateLinksTable::VIRTUAL_DOMAIN
 	];
 
 	/**

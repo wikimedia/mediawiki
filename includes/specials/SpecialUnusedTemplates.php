@@ -22,6 +22,7 @@
 
 namespace MediaWiki\Specials;
 
+use MediaWiki\Deferred\LinksUpdate\TemplateLinksTable;
 use MediaWiki\Linker\LinksMigration;
 use MediaWiki\Skin\Skin;
 use MediaWiki\SpecialPage\QueryPage;
@@ -126,6 +127,13 @@ class SpecialUnusedTemplates extends QueryPage {
 
 	protected function getGroupName() {
 		return 'maintenance';
+	}
+
+	protected function getRecacheDB() {
+		return $this->getDatabaseProvider()->getReplicaDatabase(
+			TemplateLinksTable::VIRTUAL_DOMAIN,
+			'vslow'
+		);
 	}
 }
 

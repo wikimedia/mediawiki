@@ -30,6 +30,7 @@ use MediaWiki\Context\RequestContext;
 use MediaWiki\DAO\WikiAwareEntityTrait;
 use MediaWiki\Deferred\AutoCommitUpdate;
 use MediaWiki\Deferred\DeferredUpdates;
+use MediaWiki\Deferred\LinksUpdate\TemplateLinksTable;
 use MediaWiki\Exception\MWException;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
@@ -2786,10 +2787,15 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 	 * @return Title[]
 	 */
 	public function getLinksTo( $options = [], $table = 'pagelinks', $prefix = 'pl' ) {
-		if ( count( $options ) > 0 ) {
-			$db = $this->getDbProvider()->getPrimaryDatabase();
+		if ( $table === 'templatelinks' ) {
+			$domain = TemplateLinksTable::VIRTUAL_DOMAIN;
 		} else {
-			$db = $this->getDbProvider()->getReplicaDatabase();
+			$domain = false;
+		}
+		if ( count( $options ) > 0 ) {
+			$db = $this->getDbProvider()->getPrimaryDatabase( $domain );
+		} else {
+			$db = $this->getDbProvider()->getReplicaDatabase( $domain );
 		}
 
 		$linksMigration = MediaWikiServices::getInstance()->getLinksMigration();

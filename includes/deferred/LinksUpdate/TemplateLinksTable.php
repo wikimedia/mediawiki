@@ -12,6 +12,8 @@ use MediaWiki\Parser\ParserOutputLinkTypes;
  * @since 1.38
  */
 class TemplateLinksTable extends GenericPageLinksTable {
+	public const VIRTUAL_DOMAIN = 'virtual-templatelinks';
+
 	public function setParserOutput( ParserOutput $parserOutput ) {
 		// Convert the format of the template links
 		$this->newLinks = [];
@@ -60,5 +62,9 @@ class TemplateLinksTable extends GenericPageLinksTable {
 	 */
 	protected function linksTargetNormalizationStage(): int {
 		return MIGRATION_NEW;
+	}
+
+	protected function virtualDomain() {
+		return self::VIRTUAL_DOMAIN;
 	}
 }

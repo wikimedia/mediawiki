@@ -22,6 +22,7 @@ namespace MediaWiki\Specials;
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\Deferred\LinksUpdate\TemplateLinksTable;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Linker\LinksMigration;
@@ -304,7 +305,12 @@ class SpecialWhatLinksHere extends FormSpecialPage {
 		}
 
 		if ( !$hidetrans ) {
-			$tlRes = $queryFunc( $dbr, 'templatelinks', 'tl_from' );
+
+			$tlRes = $queryFunc(
+				$this->dbProvider->getReplicaDatabase( TemplateLinksTable::VIRTUAL_DOMAIN ),
+				'templatelinks',
+				'tl_from'
+			);
 		}
 
 		if ( !$hideimages ) {

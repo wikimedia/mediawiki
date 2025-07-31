@@ -22,10 +22,12 @@
 
 namespace MediaWiki\Api;
 
+use MediaWiki\Deferred\LinksUpdate\TemplateLinksTable;
 use MediaWiki\Linker\LinksMigration;
 use MediaWiki\Title\Title;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * This is a three-in-one module to query:
@@ -42,10 +44,8 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 	 */
 	private $rootTitle;
 
-	/**
-	 * @var LinksMigration
-	 */
-	private $linksMigration;
+	private LinksMigration $linksMigration;
+	private IConnectionProvider $dbProvider;
 
 	/** @var array */
 	private $params;
@@ -60,6 +60,8 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 	private string $bl_table;
 	private string $bl_code;
 	private string $bl_title;
+	/** @var string|false */
+	private $virtual_domain;
 	private bool $hasNS;
 
 	/** @var string */
@@ -92,6 +94,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 			'prefix' => 'tl',
 			'linktbl' => 'templatelinks',
 			'helpurl' => 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Embeddedin',
+			'virtualdomain' => TemplateLinksTable::VIRTUAL_DOMAIN,
 		],
 		'imageusage' => [
 			'code' => 'iu',
@@ -101,7 +104,12 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		]
 	];
 
-	public function __construct( ApiQuery $query, string $moduleName, LinksMigration $linksMigration ) {
+	public function __construct(
+		ApiQuery $query,
+		string $moduleName,
+		LinksMigration $linksMigration,
+		IConnectionProvider $dbProvider,
+	) {
 		$settings = $this->backlinksSettings[$moduleName];
 		$prefix = $settings['prefix'];
 		$code = $settings['code'];
@@ -125,6 +133,8 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		$this->bl_from_ns = $prefix . '_from_namespace';
 		$this->bl_code = $code;
 		$this->helpUrl = $settings['helpurl'];
+		$this->virtual_domain = $settings['virtual_domain'] ?? false;
+		$this->dbProvider = $dbProvider;
 	}
 
 	public function execute() {
@@ -196,7 +206,11 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		$this->addOption( 'ORDER BY', $orderBy );
 		$this->addOption( 'STRAIGHT_JOIN' );
 
+		$this->getQueryBuilder()->connection(
+			$this->dbProvider->getReplicaDatabase( $this->virtual_domain, 'api' )
+		);
 		$res = $this->select( __METHOD__ );
+		$this->getQueryBuilder()->connection( $this->getDB() );
 
 		if ( $resultPageSet === null ) {
 			$this->executeGenderCacheFromResultWrapper( $res, __METHOD__ );

@@ -28,6 +28,7 @@ use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Category\Category;
 use MediaWiki\Content\ContentHandler;
 use MediaWiki\Context\IContextSource;
+use MediaWiki\Deferred\LinksUpdate\TemplateLinksTable;
 use MediaWiki\EditPage\TemplatesOnThisPageFormatter;
 use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\Html\Html;
@@ -970,11 +971,12 @@ class InfoAction extends FormlessAction {
 						+ $result['subpages']['nonredirects'];
 				}
 
+				$dbrTemplateLinks = $this->dbProvider->getReplicaDatabase( TemplateLinksTable::VIRTUAL_DOMAIN );
 				// Counts for the number of transclusion links (to/from)
 				if ( $config->get( MainConfigNames::MiserMode ) ) {
 					$result['transclusion']['to'] = 0;
 				} else {
-					$result['transclusion']['to'] = (int)$dbr->newSelectQueryBuilder()
+					$result['transclusion']['to'] = (int)$dbrTemplateLinks->newSelectQueryBuilder()
 						->select( 'COUNT(tl_from)' )
 						->from( 'templatelinks' )
 						->where( $this->linksMigration->getLinksConditions( 'templatelinks', $title ) )
@@ -982,7 +984,7 @@ class InfoAction extends FormlessAction {
 						->fetchField();
 				}
 
-				$result['transclusion']['from'] = (int)$dbr->newSelectQueryBuilder()
+				$result['transclusion']['from'] = (int)$dbrTemplateLinks->newSelectQueryBuilder()
 					->select( 'COUNT(*)' )
 					->from( 'templatelinks' )
 					->where( [ 'tl_from' => $title->getArticleID() ] )
