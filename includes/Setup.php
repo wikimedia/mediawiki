@@ -308,13 +308,22 @@ if ( defined( 'MW_FINAL_SETUP_CALLBACK' ) ) {
 // Config can no longer be changed.
 $wgSettings->enterReadOnlyStage();
 
-// Set an appropriate locale (T291234)
-// setlocale() will return the locale name actually set.
+// Determine an appropriate locale (T291234)
+// As of version 8, php no longer inherits the platform's locale so there
+// shouldn't be a need to set a locale.  However, setlocale is used to
+// determine if the locale is available.  macOS is avoided because setting
+// it to C.UTF-8 changes pcre character classes on that platform.
+if ( PHP_OS_FAMILY !== 'Darwin' && setlocale( LC_ALL, 'C.UTF-8' ) ) {
+	$locale = 'C.UTF-8';
+} else {
+	$locale = 'C';
+}
 // The putenv() is meant to propagate the choice of locale to shell commands
 // so that they will interpret UTF-8 correctly. If you have a problem with a
 // shell command and need to send a special locale, you can override the locale
 // with Command::environment().
-putenv( "LC_ALL=" . setlocale( LC_ALL, 'C.UTF-8', 'C' ) );
+putenv( "LC_ALL={$locale}" );
+unset( $locale );
 
 // Set PHP runtime to the desired timezone
 date_default_timezone_set( $wgLocaltimezone );
