@@ -160,7 +160,7 @@
 	"underline-always": "همیشه",
 	"tog-showhiddencats": "رده‌های پنهان نمایش داده شود",
 	"tog-showrollbackconfirmation": "نمایش یک هشدار در هنگام کلیک بر دکمه واگردانی",
-	"tog-forcesafemode": "فعال‌سازی دائمی [[mw:Manual:Safemode|حالت ایمن]]",
+	"tog-forcesafemode": "فعال‌سازی دائمی [[mw:Special:MyLanguage/Manual:Safemode|حالت ایمن]]",
 	"prefs-help-forcesafemode": "غیرفعال‌سازی اسکریپت‌ها و شیوه‌نامه‌های موجود در ویکی.",
 	"prefs-editing": "ویرایش",
 	"prefs-description-editing": "نحوهٔ انجام، رهگیری و بازبینی ویرایش‌ها را برای خود سفارشی‌سازی کنید.",

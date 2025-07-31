@@ -149,7 +149,7 @@
 	"underline-always": "সবসময়",
 	"tog-showhiddencats": "লুকানো বিষয়শ্রেণীসমূহ দেখান",
 	"tog-showrollbackconfirmation": "একটি রোলব্যাক লিঙ্কে ক্লিক করার সময় একটি নিশ্চিতকরণ বার্তা দেখান",
-	"tog-forcesafemode": "সর্বদা [[mw:Manual:Safemode|নিরাপদ মোড]] সক্রিয় করুন",
+	"tog-forcesafemode": "সর্বদা [[mw:Special:MyLanguage/Manual:Safemode|নিরাপদ মোড]] সক্রিয় করুন",
 	"prefs-help-forcesafemode": "অন-উইকি স্ক্রিপ্ট ও স্টাইলশীট নিস্ক্রিয় করুন।",
 	"prefs-editing": "সম্পাদনা",
 	"prefs-description-editing": "আপনি কীভাবে সম্পাদনা করেন, অনুসরণ করেন ও পর্যালোচনা করেন তা স্বনির্ধারণ করুন।",

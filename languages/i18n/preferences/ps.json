@@ -141,7 +141,7 @@
 	"underline-always": "تل",
 	"tog-showhiddencats": "پټې وېشنيزې ښکاره کول",
 	"tog-showrollbackconfirmation": "د شاگرځ تړي باندې کليک کولو پرمهال د تاييد غوښتنه وښاياست",
-	"tog-forcesafemode": "[[mw:Manual:Safemode|خوندي ونگ‌ډول]] تل چارنول",
+	"tog-forcesafemode": "تل [[mw:Special:MyLanguage/Manual:Safemode|خوندي ونگ‌ډول]] چارنول",
 	"prefs-help-forcesafemode": "د ويکي سکريپټونو او ښودنپاڼو ناچارنول.",
 	"prefs-editing": "سمول",
 	"prefs-description-editing": "د سمونونو جوړولو، څارلو او بياکتلو تگلاره مو وټاکئ.",

@@ -240,5 +240,7 @@
 	"rest-endpoint-desc-get-page-title-language": "Тайп-тайпанчу меттанашкахь цхьа тема йолу агӀонаш лоьху. Меттан объектийн массив йухайерзайо, шайна йукъахь меттан цӀе а, меттан код а, гочйина агӀонан цӀе а йолуш.",
 	"rest-endpoint-desc-get-page-title-media": "Вики агӀонан тӀехь лелош йолу медиа-файлех лаьцна информаци йухайерзайо, 100 файле кхаччалц.",
 	"rest-endpoint-desc-get-file-title": "Файлах лаьцна информаци йухайерзайо, цу йукъахь хьажоргаш йу миниатюран форматехь файл чуйоккху, хьалха хьажа, йуьхьанцара форматашца.",
-	"rest-endpoint-desc-post-transform-wikitext-to-html": "Викитекст HTML тӀе хийца"
+	"rest-endpoint-desc-post-transform-wikitext-to-html": "Викитекст HTML тӀе хийца",
+	"rest-endpoint-desc-post-transform-wikitext-to-lint": "Викитекстан линт гӀалаташ йухадерзадо",
+	"rest-endpoint-desc-post-transform-html-to-wikitext": "HTML викитексте йерзайо."
 }

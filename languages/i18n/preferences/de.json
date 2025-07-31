@@ -162,7 +162,7 @@
 	"underline-always": "Immer",
 	"tog-showhiddencats": "Versteckte Kategorien anzeigen",
 	"tog-showrollbackconfirmation": "Bei Klick auf „kommentarlos zurücksetzen“ eine Sicherheitsabfrage anzeigen",
-	"tog-forcesafemode": "Immer den [[mw:Manual:Safemode|abgesicherten Modus]] aktivieren",
+	"tog-forcesafemode": "Immer den [[mw:Special:MyLanguage/Manual:Safemode|abgesicherten Modus]] aktivieren",
 	"prefs-help-forcesafemode": "Deaktivierung von On-Wiki-Skripten und Stylesheets.",
 	"prefs-editing": "Bearbeiten",
 	"prefs-description-editing": "Passe an, wie du Änderungen vornimmst, nachverfolgst und überprüfst.",

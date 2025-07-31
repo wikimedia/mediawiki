@@ -161,7 +161,7 @@
 	"underline-always": "Selalu",
 	"tog-showhiddencats": "Tampilkan kategori tersembunyi",
 	"tog-showrollbackconfirmation": "Tampilkan konfirmasi ketika mengeklik pranala pengembalian",
-	"tog-forcesafemode": "Selalu aktifkan [[mw:Manual:Safemode|mode aman]]",
+	"tog-forcesafemode": "Selalu aktifkan [[mw:Special:MyLanguage/Manual:Safemode|mode aman]]",
 	"prefs-help-forcesafemode": "Menonaktifkan skrip dan lembar gaya di dalam wiki.",
 	"prefs-editing": "Penyuntingan",
 	"prefs-description-editing": "Kustomisasi cara Anda membuat, melacak, dan meninjau hasil edit.",

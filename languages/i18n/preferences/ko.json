@@ -158,7 +158,7 @@
 	"underline-always": "항상",
 	"tog-showhiddencats": "숨은 분류 보이기",
 	"tog-showrollbackconfirmation": "되돌리기 링크를 클릭할 때 확인창을 표시",
-	"tog-forcesafemode": "항상 [[mw:Manual:Safemode|안전 모드]] 활성화",
+	"tog-forcesafemode": "항상 [[mw:Special:MyLanguage/Manual:Safemode|안전 모드]] 활성화",
 	"prefs-help-forcesafemode": "위키의 스크립트와 스타일시트를 비활성화합니다.",
 	"prefs-editing": "편집",
 	"prefs-description-editing": "편집의 생성, 추적, 검토 방법을 사용자에 맞게 지정합니다.",

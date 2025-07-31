@@ -169,7 +169,7 @@
 	"underline-always": "始终",
 	"tog-showhiddencats": "显示隐藏分类",
 	"tog-showrollbackconfirmation": "当点击回退链接时显示确认提示",
-	"tog-forcesafemode": "始终启用[[mw:Manual:Safemode|安全模式]]",
+	"tog-forcesafemode": "始终启用[[mw:Special:MyLanguage/Manual:Safemode|安全模式]]",
 	"prefs-help-forcesafemode": "禁用通过站点内容提供的脚本和样式表。",
 	"prefs-editing": "编辑",
 	"prefs-description-editing": "自定义您做出、跟踪、审核编辑的方式。",

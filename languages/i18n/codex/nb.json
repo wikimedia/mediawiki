@@ -5,6 +5,7 @@
 			"Jon Harald Søby"
 		]
 	},
+	"cdx-breadcrumb-navigation-label": "Navigasjonssti",
 	"cdx-breadcrumb-overflow-label": "Flere navigeringsalternativ",
 	"cdx-chip-input-chip-added": "Chippen $1 ble lagt til.",
 	"cdx-chip-input-chip-removed": "Chippen $1 ble fjernet.",

@@ -151,7 +151,7 @@
 	"underline-always": "Sempre",
 	"tog-showhiddencats": "Mostrar categorias ocultas",
 	"tog-showrollbackconfirmation": "Mostrar um pedido de confirmação ao clicar numa hiperligação de reversão",
-	"tog-forcesafemode": "Ativar sempre o [[mw:Manual:Safemode|modo seguro]]",
+	"tog-forcesafemode": "Ativar sempre o [[mw:Special:MyLanguage/Manual:Safemode|modo seguro]]",
 	"prefs-help-forcesafemode": "Desativar ''scripts'' e folhas de estilo do utilizador.",
 	"prefs-editing": "Edição",
 	"prefs-description-editing": "Personalizar a forma como faz, acompanha e revê edições.",

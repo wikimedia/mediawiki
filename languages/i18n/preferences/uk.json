@@ -164,7 +164,7 @@
 	"underline-always": "Завжди",
 	"tog-showhiddencats": "Показувати приховані категорії",
 	"tog-showrollbackconfirmation": "Показувати запит на підтвердження при натисканні на посилання швидкого відкоту",
-	"tog-forcesafemode": "Завжди вмикати [[mw:Manual:Safemode|безпечний режим]]",
+	"tog-forcesafemode": "Завжди вмикати [[mw:Special:MyLanguage/Manual:Safemode|безпечний режим]]",
 	"prefs-help-forcesafemode": "Вимкнути сценарії та таблиці стилів у вікі.",
 	"prefs-editing": "Редагування",
 	"prefs-description-editing": "Налаштуйте спосіб внесення, відстеження та перегляду редагувань.",

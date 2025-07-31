@@ -137,7 +137,7 @@
 	"underline-always": "Даңгин",
 	"tog-showhiddencats": "Нуугдсн әңгллмүдиг үзүлх",
 	"tog-showrollbackconfirmation": "Буцах холвасиг дарх цагт батлх күслтиг күсх",
-	"tog-forcesafemode": "Асах [[mw:Manual:Safemode|аюл уга җурм]]",
+	"tog-forcesafemode": "Асах [[mw:Special:MyLanguage/Manual:Safemode|аюл уга җурм]]",
 	"prefs-help-forcesafemode": "Вики скрипт болн CSS күчн уга болһх.",
 	"prefs-editing": "Ясврлх",
 	"prefs-description-editing": "Та яһҗ ясвр кедгән, тедниг киндгән болн үздгән тохрултн.",

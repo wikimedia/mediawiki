@@ -144,7 +144,7 @@
 	"underline-always": "uvek",
 	"tog-showhiddencats": "Prikazuj skrivene kategorije",
 	"tog-showrollbackconfirmation": "Zahtevaj potvrdu za vraćanje izmena",
-	"tog-forcesafemode": "[[mw:Manual:Safemode|Bezbedni režim]]",
+	"tog-forcesafemode": "[[mw:Special:MyLanguage/Manual:Safemode|Bezbedni režim]]",
 	"prefs-help-forcesafemode": "Onemogućava na vikiju prilagođeni JavaScript i CSS",
 	"prefs-editing": "Uređivanje",
 	"prefs-description-editing": "Upravljate kako pravite, pratite i pregledate izmene.",

@@ -4,6 +4,8 @@
 			"Eleassar"
 		]
 	},
+	"cdx-breadcrumb-navigation-label": "Navigacijska sled",
+	"cdx-breadcrumb-overflow-label": "Več možnosti navigacije",
 	"cdx-chip-input-chip-added": "Čip $1 je dodan.",
 	"cdx-chip-input-chip-removed": "Čip $1 je odstranjen.",
 	"cdx-input-chip-aria-description": "Pritisnite Enter za urejanje ali Delete za odstranitev.",

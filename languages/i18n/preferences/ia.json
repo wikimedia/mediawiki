@@ -137,7 +137,7 @@
 	"underline-always": "Sempre",
 	"tog-showhiddencats": "Monstrar categorias celate",
 	"tog-showrollbackconfirmation": "Monstrar un demanda de confirmation al cliccar sur un ligamine de revocation",
-	"tog-forcesafemode": "Sempre activar le [[mw:Manual:Safemode|modo secur]]",
+	"tog-forcesafemode": "Sempre activar le [[mw:Special:MyLanguage/Manual:Safemode|modo secur]]",
 	"prefs-help-forcesafemode": "Disactivar scripts e folios de stilo sur wiki.",
 	"prefs-editing": "Modification",
 	"prefs-description-editing": "Adjusta le maniera in que tu face, tracia e revide modificationes.",

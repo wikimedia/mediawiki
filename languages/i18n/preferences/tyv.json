@@ -136,7 +136,7 @@
 	"underline-always": "Кезээде",
 	"tog-showhiddencats": "Чажыт аңгылалдарны көргүзер",
 	"tog-showrollbackconfirmation": "Дедирлээшкин шөлүүн базарга, бадыткал негээр",
-	"tog-forcesafemode": "[[mw:Manual:Safemode|Айыыл чок режимни]] үргүлчү турар кылдыр кыпсыр",
+	"tog-forcesafemode": "[[mw:Special:MyLanguage/Manual:Safemode|Айыыл чок режимни]] үргүлчү турар кылдыр кыпсыр",
 	"prefs-help-forcesafemode": "Викиде скриптилерни база ажыглакчы CSS-ти өжүрер.",
 	"prefs-editing": "Эдилге",
 	"prefs-description-editing": "Эдилгелерни канчаар киирип, хайгаарап база көрүп турарыңарны өйлеп алыңар.",

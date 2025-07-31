@@ -151,7 +151,7 @@
 	"underline-always": "Întotdeauna",
 	"tog-showhiddencats": "Arată categoriile ascunse",
 	"tog-showrollbackconfirmation": "Cere confirmarea când se face click pe o legătură de revenire",
-	"tog-forcesafemode": "Activează întotdeauna [[mw:Manual:Safemode|modul sigur]]",
+	"tog-forcesafemode": "Activează întotdeauna [[mw:Special:MyLanguage/Manual:Safemode|modul sigur]]",
 	"prefs-help-forcesafemode": "Dezactivează script-urile și foile de stil de pe wiki.",
 	"prefs-editing": "Modificare",
 	"prefs-description-editing": "Personalizați cum efectuați, urmăriți și revizuiți modificări.",

@@ -89,7 +89,7 @@
 	"rest-param-desc-compare-to-section-level": "Уровень раздела",
 	"rest-param-desc-compare-diff": "Различия между версиями",
 	"rest-param-desc-language-links-title": "Заголовок вики-страницы",
-	"rest-param-desc-media-links-title": "Название файла",
+	"rest-param-desc-media-links-title": "Заголовок страницы",
 	"rest-param-desc-media-file-title": "Название файла",
 	"rest-param-desc-media-latest": "Информация о последней версии файла",
 	"rest-param-desc-media-mediatype": "Тип файла",

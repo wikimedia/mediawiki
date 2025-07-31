@@ -139,7 +139,7 @@
 	"underline-always": "Uvijek",
 	"tog-showhiddencats": "Prikaži skrivene kategorije",
 	"tog-showrollbackconfirmation": "Zahtijevaj potvrdu za vraćanje izmjena",
-	"tog-forcesafemode": "Uvijek uključi [[mw:Manual:Safemode|sigurni režim]]",
+	"tog-forcesafemode": "Uvijek uključi [[mw:Special:MyLanguage/Manual:Safemode|sigurni režim]]",
 	"prefs-help-forcesafemode": "Isključuje JS i CSS projekta.",
 	"prefs-editing": "Uređivanje",
 	"prefs-description-editing": "Prilagodite kako pravite, pratite i pregledate izmjene.",

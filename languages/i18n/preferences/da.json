@@ -146,7 +146,7 @@
 	"underline-always": "Altid",
 	"tog-showhiddencats": "Vis skjulte kategorier",
 	"tog-showrollbackconfirmation": "Bed om bekræftelse når der bliver klikket på et tilbagerulningslink",
-	"tog-forcesafemode": "Aktiver altid [[mw:Manual:Safemode|safe mode]]",
+	"tog-forcesafemode": "Aktiver altid [[mw:Special:MyLanguage/Manual:Safemode|safe mode]]",
 	"prefs-editing": "Redigering",
 	"prefs-description-editing": "Tilpas, hvordan du foretager, sporer og gennemgår redigeringer.",
 	"prefs-advancedediting": "Generelle indstillinger",
