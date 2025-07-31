@@ -2,9 +2,10 @@
 
 namespace MediaWiki\Content;
 
-use HtmlFormatter\HtmlFormatter;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\Sanitizer;
+use Wikimedia\Parsoid\Utils\DOMCompat;
+use Wikimedia\Parsoid\Utils\DOMUtils;
 
 /**
  * Class allowing to explore the structure of parsed wikitext.
@@ -164,22 +165,26 @@ class WikiTextStructure {
 
 		$this->openingText = $this->extractTextBeforeFirstHeading( $text );
 
-		$formatter = new HtmlFormatter( $text );
+		$doc = DOMUtils::parseHTML( $text );
 
 		// Strip elements from the page that we never want in the search text.
-		$formatter->remove( self::EXCLUDED_ELEMENT_SELECTORS );
-		$formatter->filterContent();
+		foreach ( self::EXCLUDED_ELEMENT_SELECTORS as $selector ) {
+			foreach ( DOMCompat::querySelectorAll( $doc, $selector ) as $element ) {
+				$element->parentNode->removeChild( $element );
+			}
+		}
 
 		// Strip elements from the page that are auxiliary text.  These will still be
 		// searched, but matches will be ranked lower and non-auxiliary matches will be
 		// preferred in highlighting.
-		$formatter->remove( self::AUXILIARY_ELEMENT_SELECTORS );
-		$auxiliaryElements = $formatter->filterContent();
-		$this->allText = trim( Sanitizer::stripAllTags( $formatter->getText() ) );
-		foreach ( $auxiliaryElements as $auxiliaryElement ) {
-			$this->auxText[] =
-				trim( Sanitizer::stripAllTags( $formatter->getText( $auxiliaryElement ) ) );
+		foreach ( self::AUXILIARY_ELEMENT_SELECTORS as $selector ) {
+			foreach ( DOMCompat::querySelectorAll( $doc, $selector ) as $element ) {
+				$this->auxText[] = trim( Sanitizer::stripAllTags( DOMCompat::getInnerHTML( $element ) ) );
+				$element->parentNode->removeChild( $element );
+			}
 		}
+
+		$this->allText = trim( Sanitizer::stripAllTags( DOMCompat::getInnerHTML( DOMCompat::getBody( $doc ) ) ) );
 	}
 
 	/**
@@ -203,11 +208,14 @@ class WikiTextStructure {
 			return null;
 		}
 
-		$formatter = new HtmlFormatter( $text );
-		$formatter->remove( self::EXCLUDED_ELEMENT_SELECTORS );
-		$formatter->remove( self::AUXILIARY_ELEMENT_SELECTORS );
-		$formatter->filterContent();
-		$text = trim( Sanitizer::stripAllTags( $formatter->getText() ) );
+		$doc = DOMUtils::parseHTML( $text );
+		foreach ( array_merge( self::EXCLUDED_ELEMENT_SELECTORS, self::AUXILIARY_ELEMENT_SELECTORS ) as $selector ) {
+			foreach ( DOMCompat::querySelectorAll( $doc, $selector ) as $element ) {
+				$element->parentNode->removeChild( $element );
+			}
+		}
+
+		$text = trim( Sanitizer::stripAllTags( DOMCompat::getInnerHTML( DOMCompat::getBody( $doc ) ) ) );
 
 		if ( !$text ) {
 			// There isn't any text after filtering before the first heading, so we declare
