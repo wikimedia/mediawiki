@@ -776,7 +776,7 @@ class WebInstaller extends Installer {
 			Html::input(
 				$params['controlName'],
 				$params['value'],
-				'text',
+				$params['attribs']['type'] ?? 'text',
 				$params['attribs'] + [
 					'id' => $params['controlName'],
 					'size' => 30, // intended to be overridden by CSS
