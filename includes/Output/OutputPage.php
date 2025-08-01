@@ -355,7 +355,7 @@ class OutputPage extends ContextSource {
 	private $mRobotsOptions = [ 'max-image-preview' => 'standard' ];
 
 	/**
-	 * @var array Headers that cause the cache to vary.  Key is header name,
+	 * @var array<string,null> Headers that cause the cache to vary. Key is header name,
 	 * value should always be null.  (Value was an array of options for
 	 * the `Key` header, which was deprecated in 1.32 and removed in 1.34.)
 	 */

@@ -372,7 +372,7 @@ class NamespaceInfo {
 	 * Returns array of all defined namespaces with their canonical
 	 * (English) names.
 	 *
-	 * @return string[]
+	 * @return array<int,string>
 	 */
 	public function getCanonicalNamespaces() {
 		if ( $this->canonicalNamespaces === null ) {

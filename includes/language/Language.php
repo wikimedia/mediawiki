@@ -4305,7 +4305,7 @@ class Language implements Bcp47Code {
 	 * @since 1.42
 	 * @param bool $includeOther Whether to include the 'other' option in the list of
 	 *     suggestions
-	 * @return string[]
+	 * @return array<string,string>
 	 */
 	public function getBlockDurations( $includeOther = true ): array {
 		$msg = $this->msg( 'ipboptions' )->text();
