@@ -498,7 +498,7 @@
 	"temp-user-banner-tooltip-title": "Akɔnti din ku yuui",
 	"temp-user-banner-tooltip-description-expiration-soon": "<strong>Your temporary account expires in {{PLURAL:$1|1 day|$1 days}}</strong>. Di yi niŋ ka ŋa saha yi gari, zaɣ' pala n-yɛn nam di yi ti niŋ ka a niŋ maliniŋ ka bɛ kpɛna.",
 	"temp-user-banner-tooltip-description-expiration-soon-day": "<strong>adaacounti din kayaa maa ynɛla dini yanzo poi kadabsili maa nanyiyi.</strong> Di yi niŋ ka ŋa saha yi gari, zaɣ' pala n-yɛn nam di yi ti niŋ ka a niŋ maliniŋ ka bɛ kpɛna",
-	"temp-user-banner-tooltip-description-learn-more": "Akunti shɛli din bɛn yuugi ŋɔ daa nammi din daa niŋ ka maliniŋ daa niŋ zaŋ n-ti din ka akunti. [[mw:Help:Temporary_accounts|Bɔhimi pam]].",
+	"temp-user-banner-tooltip-description-learn-more": "Akunti shɛli din bɛn yuugi ŋɔ daa nammi din daa niŋ ka maliniŋ daa niŋ zaŋ n-ti din ka akunti. [[mw:Special:MyLanguage/Help:Temporary_accounts|Bɔhimi pam]].",
 	"temp-user-banner-tooltip-description-login": "[[Special:UserLogin|Log in]] or [[Special:CreateAccount|create an account]] ka a tooi nya kpaŋmaŋ zaŋ chaŋ saha ŋan kanna maliniŋ nahingbana.",
 	"blankarticle": "<strong>Kamira:</strong> Yaɣi shɛli a ni namdi ŋɔ nyɛla zaɣi kuŋ.\nA yi lan dihi \"$1\" yaha, di yan namla yaɣi shɛli din ka sabiri shɛli.",
 	"anoneditwarning": "<strong>Niŋmi zaɣa:</strong> Anabi kpe. A IP namber maa kuyan dola poloni diyi niŋ ka a niŋ taɣibu shɛli. Di yi niŋ ka a <strong>[$1 log in]</strong> bee <strong>[$2 create an account]</strong>, taɣabu kam ani niŋ yan bela a yuli ni ni aliheri shɛŋa din kam pahi.",

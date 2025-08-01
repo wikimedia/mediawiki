@@ -525,7 +525,7 @@
 	"temp-user-banner-tooltip-title": "Tempala konto",
 	"temp-user-banner-tooltip-description-expiration-soon": "<strong>Vua tempala konto expiros en {{PLURAL:$1|1 dio|$1 dii}}.</strong> Pos ke ol expiros, nova konto kreesos kande vu facos irga nova redakturo, sen facar ''log in''.",
 	"temp-user-banner-tooltip-description-expiration-soon-day": "<strong>La valideso di vua tempala konto extingesos en min kam 1 dio.</strong> Pos ke ol expiros, nova tempala konto kreesos kande vu facos nova redakturo sen facar ''log in''.",
-	"temp-user-banner-tooltip-description-learn-more": "Ca tempala konto kreesi pos ke redakto facesis sen irga konto en ca ''browser'' ed utensilo [[mw:Help:Temporary_accounts|Savez pluse]].",
+	"temp-user-banner-tooltip-description-learn-more": "Ca tempala konto kreesi pos ke redakto facesis sen irga konto en ca ''browser'' ed utensilo [[mw:Special:MyLanguage/Help:Temporary_accounts|Savez pluse]].",
 	"temp-user-banner-tooltip-description-login": "[[Special:UserLogin|Enirez]] o [[Special:CreateAccount|kreez konto]] por esar konocata por vua redakturi futura, e por uzar altra resursi.",
 	"blankarticle": "<strong>Averto:</strong> La pagino quon vu kreis es vakua.\nSe vu ri-selektos \"$1\", la pagino kreesos sen irga kontenajo.",
 	"anoneditwarning": "<strong>Averto:</strong> Vu ne eniris.\nVua IP-adreso esos videbla publike se vu redaktos. Se vu <strong>[$1 enirus]</strong> od <strong>[$2 kreus konto]</strong>, vua redakti atribuesos a vua uzeronomo, kune kun altra bonaji.",

@@ -508,7 +508,7 @@
 	"temp-user-banner-tooltip-title": "حساب مؤقت",
 	"temp-user-banner-tooltip-description-expiration-soon": "<strong>حسابك المؤقت راح يكضي ب{{PLURAL:$1||يوم واحد|يومين|$1 أيام|$1 يوم}}.</strong> بعد ما يكضي، راح نسوي حساب جديد بعدين من تسوي تعديل بدون ما تسجل دخول.",
 	"temp-user-banner-tooltip-description-expiration-soon-day": "<strong>حسابك المؤقت بعدله أقل من يوم ويكضي.</strong> بعد ما يكضي، راح نسوي حساب جديد بعدين من تسوي تعديل بدون ما تسجل دخول.",
-	"temp-user-banner-tooltip-description-learn-more": "هاذه الحساب المؤقت صار من عدلت بدون حساب عله هاذ المتصفح والجهاز. [[mw:Help:Temporary_accounts|افتهم زياده]]",
+	"temp-user-banner-tooltip-description-learn-more": "هاذه الحساب المؤقت صار من عدلت بدون حساب عله هاذ المتصفح والجهاز. [[mw:Special:MyLanguage/Help:Temporary_accounts|افتهم زياده]]",
 	"temp-user-banner-tooltip-description-login": "[[Special:UserLogin|سجل دخول]] لو [[Special:CreateAccount|سوي حساب]] حته تحصل رصيد بعدين تعدل بيه وتجيك ميزات ثانيه.",
 	"blankarticle": "<strong>دير بالك:</strong> الصفحه اللي تريد تسويها فارغه. إذا دست \"$1\" مره ثانيه راح تسوي الصفحه بدون محتوى.",
 	"anoneditwarning": "<strong>دير بالك:</strong> أنته ما مسجل دخول. الآيبي مالك راح يطلع عام إذا عدلت أي شي. لو انته<strong>[$1 سجلت الدخول]</strong> لو <strong>[$2 سويت حساب]</strong>، تعديلاتك راح تروح لإسم حسابك، ويه فوائد غيرهن.",

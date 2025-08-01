@@ -7,6 +7,8 @@
 			"Mohammed Qays"
 		]
 	},
+	"cdx-breadcrumb-navigation-label": "فتات الخبز",
+	"cdx-breadcrumb-overflow-label": "مزيد من خيارات التنقل",
 	"cdx-chip-input-chip-added": "تمت إضافة الشريحة $1.",
 	"cdx-chip-input-chip-removed": "تمت إزالة الشريحة $1.",
 	"cdx-input-chip-aria-description": "الضغط على إدخال للتعديل أو على حذف للإزالة",

@@ -203,6 +203,8 @@
 	"rcfilters-watchlist-preference-label": "Kasuta JavaScripti-vaba liidest",
 	"rcfilters-watchlist-preference-help": "Laadib [[{{#special:Watchlist}}|jälgimisloendi]] ilma filtrite otsimise ja esiletõstmise võimaluseta.",
 	"prefs-changeswatchlist": "Näidatavad muudatused",
+	"tog-watchstar-expiry": "Perioodi, milleks käsitsi lisatud leheküljed vaikimisi jälgimisloendisse arvatakse:",
+	"tog-watch-expiry": "Vaikeperiood:",
 	"tog-watchlisthideminor": "Peida pisiparandused jälgimisloendist",
 	"tog-watchlisthidebots": "Peida robotiparandused jälgimisloendist",
 	"tog-watchlisthideown": "Peida minu parandused jälgimisloendist",

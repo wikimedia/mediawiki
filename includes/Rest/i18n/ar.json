@@ -121,10 +121,10 @@
 	"rest-param-desc-compare-from-section-heading": "عنوان القسم على سبيل المثال. 1 ل <h1>",
 	"rest-param-desc-compare-to": "معرف المراجعة للمقارنة بالقاعدة",
 	"rest-param-desc-language-links-title": "عنوان صفحة الويكي",
-	"rest-param-desc-media-links-title": "عنوان الملف",
+	"rest-param-desc-media-links-title": "عنوان الصفحة",
 	"rest-param-desc-media-file-title": "عنوان الملف",
 	"rest-param-desc-media-mediatype": "نوع الملف",
-	"rest-param-desc-media-original": "تفاصيل الملف الأصلي",
+	"rest-param-desc-media-original": "معلومات حول تنسيق الملف الأصلي",
 	"rest-param-desc-module-spec-module": "مواصفات الوحدة الوحدة",
 	"rest-param-desc-module-spec-version": "إصدار مواصفات الوحدة",
 	"rest-param-desc-opensearch-ctype": "افتح وصف البحث ctype",
@@ -149,6 +149,7 @@
 	"rest-property-desc-page-title": "عنوان الصفحة",
 	"rest-property-desc-page-language-code": "رمز اللغة",
 	"rest-property-desc-page-language-name": "اسم اللغة المترجمة",
+	"rest-property-desc-page-contentmodel": "نوع محتوى الصفحة",
 	"rest-property-desc-revision-content-model": "نوع المحتوى",
 	"rest-schema-desc-mock-desc": "وصف وهمي.",
 	"rest-schema-desc-revision-metadata": "مراجعة بيانات التعريف",
@@ -158,7 +159,7 @@
 	"rest-schema-desc-page-history-count": "عدد تعديلات تاريخ الصفحة",
 	"rest-schema-desc-search-results": "نتائج البحث",
 	"rest-endpoint-desc-mock-desc": "وصف وهمي.",
-	"rest-endpoint-desc-post-page": "إنشاء صفحة ويكي.",
-	"rest-endpoint-desc-get-revision-id": "إرجاع البيانات الوصفية للمراجعة، بما في ذلك المصدر",
-	"rest-endpoint-desc-get-revision-id-with-html": "إرجاع البيانات الوصفية للمراجعة، بما في ذلك المحتوى الموجود في HTML"
+	"rest-endpoint-desc-post-page": "إنشاء صفحة.",
+	"rest-endpoint-desc-get-revision-id": "يقوم بإرجاع معلومات حول المراجعة، بما في ذلك مصدر المراجعة، عادةً في wikitext.",
+	"rest-endpoint-desc-get-revision-id-with-html": "إرجاع معلومات حول المراجعة، بما في ذلك محتوى المراجعة في HTML."
 }
