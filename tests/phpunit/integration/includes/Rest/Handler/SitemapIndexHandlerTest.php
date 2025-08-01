@@ -66,7 +66,7 @@ XML
 			$response->getHeaderLine( 'Content-Type' )
 		);
 		$this->assertSame(
-			'',
+			'public',
 			$response->getHeaderLine( 'Cache-Control' )
 		);
 		$this->assertSame(
