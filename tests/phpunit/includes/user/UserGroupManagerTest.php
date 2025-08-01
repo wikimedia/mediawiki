@@ -29,7 +29,7 @@ use MediaWiki\Context\RequestContext;
 use MediaWiki\Logging\LogEntryBase;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\SimpleAuthority;
-use MediaWiki\Request\WebRequest;
+use MediaWiki\Request\FauxRequest;
 use MediaWiki\Session\PHPSessionHandler;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\User\TempUser\RealTempUserConfig;
@@ -816,15 +816,13 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 		$manager = $this->getManager( [
 			MainConfigNames::Autopromote => [ 'test_autoconfirmed' => $condition ]
 		] );
-		$requestMock = $this->createNoOpMock( WebRequest::class, [ 'getIP' ] );
-		$requestMock->expects( $this->once() )
-			->method( 'getIP' )
-			->willReturn( $userIp );
+		$request = new FauxRequest();
+		$request->setIP( $userIp );
 		$user = $this->createNoOpMock( User::class, [ 'getRequest', 'isTemp', 'assertWiki' ] );
 		$user->method( 'assertWiki' )->willReturn( true );
 		$user->expects( $this->once() )
 			->method( 'getRequest' )
-			->willReturn( $requestMock );
+			->willReturn( $request );
 		$this->assertArrayEquals( $expected, $manager->getUserAutopromoteGroups( $user ) );
 	}
 

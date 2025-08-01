@@ -94,10 +94,8 @@ class CheckBlocksSecondaryAuthenticationProviderTest extends MediaWikiIntegratio
 		if ( $block->getType() === DatabaseBlock::TYPE_IP ) {
 			// When an ip is blocked, the provided user object needs to know the ip
 			// That allows BlockManager::getUserBlock to load the ip block for this user
-			$request = $this->getMockBuilder( FauxRequest::class )
-				->onlyMethods( [ 'getIP' ] )->getMock();
-			$request->method( 'getIP' )
-				->willReturn( $blockOptions['address'] );
+			$request = new FauxRequest();
+			$request->setIP( $blockOptions['address'] );
 			// The global request is used by User::getRequest
 			RequestContext::getMain()->setRequest( $request );
 			// The ip from request is only used for the global user

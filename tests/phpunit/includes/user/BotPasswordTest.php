@@ -321,11 +321,8 @@ class BotPasswordTest extends MediaWikiIntegrationTestCase {
 		$this->assertStatusError( 'botpasswords-not-exist', $status );
 
 		// Failed restriction
-		$request = $this->getMockBuilder( FauxRequest::class )
-			->onlyMethods( [ 'getIP' ] )
-			->getMock();
-		$request->method( 'getIP' )
-			->willReturn( '10.0.0.1' );
+		$request = new FauxRequest();
+		$request->setIP( '10.0.0.1' );
 		$status = BotPassword::login( "{$this->testUserName}@BotPassword", 'foobaz', $request );
 		$this->assertStatusError( 'botpasswords-restriction-failed', $status );
 

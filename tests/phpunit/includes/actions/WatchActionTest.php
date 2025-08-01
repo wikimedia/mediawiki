@@ -11,7 +11,7 @@ use MediaWiki\Message\Message;
 use MediaWiki\Page\Article;
 use MediaWiki\Page\WikiPage;
 use MediaWiki\Permissions\PermissionManager;
-use MediaWiki\Request\WebRequest;
+use MediaWiki\Request\FauxRequest;
 use MediaWiki\Status\Status;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
@@ -120,11 +120,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 		$userFactory->method( 'newFromUserIdentity' )->willReturn( $this->createMock( User::class ) );
 		$this->setService( 'UserFactory', $userFactory );
 
-		/** @var MockObject|WebRequest $testRequest */
-		$testRequest = $this->createMock( WebRequest::class );
-		$testRequest->expects( $this->once() )
-			->method( 'getVal' )
-			->willReturn( '6 months' );
+		$testRequest = new FauxRequest( [ 'wpexpiry' => '6 months' ] );
 		$testContext->method( 'getRequest' )->willReturn( $testRequest );
 
 		$this->setService( 'WatchedItemStore', $this->getDummyWatchedItemStore() );

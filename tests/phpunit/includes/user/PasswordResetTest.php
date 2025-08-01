@@ -7,7 +7,7 @@ use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\SystemBlock;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
-use MediaWiki\Request\WebRequest;
+use MediaWiki\Request\FauxRequest;
 use MediaWiki\Status\Status;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\User\Options\StaticUserOptionsLookup;
@@ -524,9 +524,8 @@ class PasswordResetTest extends MediaWikiIntegrationTestCase {
 	 * @return User
 	 */
 	private function makePerformingUser( string $ip, $pingLimited ): User {
-		$request = $this->createMock( WebRequest::class );
-		$request->method( 'getIP' )
-			->willReturn( $ip );
+		$request = new FauxRequest();
+		$request->setIP( $ip );
 
 		$user = $this->getMockBuilder( User::class )
 			->onlyMethods( [ 'getName', 'pingLimiter', 'getRequest', 'isAllowed' ] )

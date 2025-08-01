@@ -188,13 +188,9 @@ class MWRestrictionsTest extends MediaWikiUnitTestCase {
 	 * @dataProvider provideCheckIP
 	 */
 	public function testCheck( $ip, $pass ) {
-		$ok = [];
-		$request = $this->getMockBuilder( FauxRequest::class )
-			->onlyMethods( [ 'getIP' ] )->getMock();
-
-		$request->method( 'getIP' )
-			->willReturn( $ip );
-		$ok['ip'] = $pass;
+		$request = new FauxRequest();
+		$request->setIP( $ip );
+		$ok = [ 'ip' => $pass ];
 
 		/* If we ever add more restrictions, add nested for loops here:
 		 *  foreach ( self::provideCheckFoo() as $checkFoo ) {

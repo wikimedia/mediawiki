@@ -4,7 +4,7 @@ namespace MediaWiki\Tests\Api;
 
 use MediaWiki\Api\ApiCreateTempUserTrait;
 use MediaWiki\HookContainer\HookRunner;
-use MediaWiki\Request\WebRequest;
+use MediaWiki\Request\FauxRequest;
 use MediaWiki\User\User;
 use MediaWikiIntegrationTestCase;
 use Wikimedia\TestingAccessWrapper;
@@ -37,7 +37,7 @@ class ApiCreateTempUserTraitTest extends MediaWikiIntegrationTestCase {
 		$mock->method( 'getHookRunner' )
 			->willReturn( new HookRunner( $this->getServiceContainer()->getHookContainer() ) );
 		$mock->method( 'getRequest' )
-			->willReturn( $this->createMock( WebRequest::class ) );
+			->willReturn( new FauxRequest() );
 
 		$url = TestingAccessWrapper::newFromObject( $mock )
 			->getTempUserRedirectUrl( $params, $this->createMock( User::class ) );
