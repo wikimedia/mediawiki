@@ -298,14 +298,12 @@ class RecentChange implements Taggable {
 	 * @phan-return array{tables:string[],fields:string[],joins:array}
 	 */
 	public static function getQueryInfo() {
-		$commentQuery = MediaWikiServices::getInstance()->getCommentStore()->getJoin( 'rc_comment' );
-		// Optimizer sometimes refuses to pick up the correct join order (T311360)
-		$commentQuery['joins']['comment_rc_comment'][0] = 'STRAIGHT_JOIN';
 		return [
 			'tables' => [
 				'recentchanges',
-				'recentchanges_actor' => 'actor'
-			] + $commentQuery['tables'],
+				'recentchanges_actor' => 'actor',
+				'recentchanges_comment' => 'comment',
+			],
 			'fields' => [
 				'rc_id',
 				'rc_timestamp',
@@ -331,10 +329,15 @@ class RecentChange implements Taggable {
 				'rc_actor',
 				'rc_user' => 'recentchanges_actor.actor_user',
 				'rc_user_text' => 'recentchanges_actor.actor_name',
-			] + $commentQuery['fields'],
+				'rc_comment_text' => 'recentchanges_comment.comment_text',
+				'rc_comment_data' => 'recentchanges_comment.comment_data',
+				'rc_comment_id' => 'recentchanges_comment.comment_id',
+			],
 			'joins' => [
-				'recentchanges_actor' => [ 'STRAIGHT_JOIN', 'actor_id=rc_actor' ]
-			] + $commentQuery['joins'],
+				// Optimizer sometimes refuses to pick up the correct join order (T311360)
+				'recentchanges_actor' => [ 'STRAIGHT_JOIN', 'actor_id=rc_actor' ],
+				'recentchanges_comment' => [ 'STRAIGHT_JOIN', 'comment_id=rc_comment_id' ],
+			],
 		];
 	}
 
