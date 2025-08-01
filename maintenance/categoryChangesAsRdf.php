@@ -272,7 +272,7 @@ SPARQL;
 		$it = $this->setupChangesIterator( $dbr, [], $fname );
 		$it->sqb->conds( [
 			'rc_namespace' => NS_CATEGORY,
-			'rc_new' => 1,
+			'rc_source' => RecentChange::SRC_NEW,
 		] );
 		return $it;
 	}
@@ -291,7 +291,7 @@ SPARQL;
 		);
 		$it->sqb->conds( [
 			'rc_namespace' => NS_CATEGORY,
-			'rc_new' => 0,
+			'rc_source' => RecentChange::SRC_LOG,
 			'rc_log_type' => 'move',
 			'rc_type' => RC_LOG,
 		] );
@@ -313,7 +313,7 @@ SPARQL;
 				->select( [ 'rc_cur_id', 'rc_title' ] )
 				->where( [
 					'rc_namespace' => NS_CATEGORY,
-					'rc_new' => 0,
+					'rc_source' => RecentChange::SRC_LOG,
 					'rc_log_type' => 'delete',
 					'rc_log_action' => 'delete',
 					'rc_type' => RC_LOG,
@@ -340,7 +340,7 @@ SPARQL;
 		$it = $this->setupChangesIterator( $dbr, [], $fname );
 		$it->sqb->conds( [
 			'rc_namespace' => NS_CATEGORY,
-			'rc_new' => 0,
+			'rc_source' => RecentChange::SRC_LOG,
 			'rc_log_type' => 'delete',
 			'rc_log_action' => 'restore',
 			'rc_type' => RC_LOG,
@@ -354,16 +354,15 @@ SPARQL;
 	/**
 	 * Fetch categorization changes or edits
 	 * @param IReadableDatabase $dbr
-	 * @param int $type
+	 * @param string $source
 	 * @param string $fname Name of the calling function
 	 * @return BatchRowIterator
 	 */
-	protected function getChangedCatsIterator( IReadableDatabase $dbr, $type, $fname ) {
+	protected function getChangedCatsIterator( IReadableDatabase $dbr, $source, $fname ) {
 		$it = $this->setupChangesIterator( $dbr, [], $fname );
 		$it->sqb->conds( [
 			'rc_namespace' => NS_CATEGORY,
-			'rc_new' => 0,
-			'rc_type' => $type,
+			'rc_source' => $source,
 		] );
 		$this->addIndex( $it );
 		return $it;
@@ -386,7 +385,7 @@ SPARQL;
 	 */
 	private function addIndex( BatchRowIterator $it ) {
 		$it->sqb->options( [
-			'USE INDEX' => [ 'recentchanges' => 'rc_new_name_timestamp' ]
+			'USE INDEX' => [ 'recentchanges' => 'rc_source_name_timestamp' ]
 		] );
 	}
 
@@ -573,7 +572,7 @@ SPARQL;
 		// aren't actually interesting for us. Some way to know which are interesting?
 		// We can capture recategorization on the next step, but not change in hidden status.
 
-		foreach ( $this->getChangedCatsIterator( $dbr, RC_EDIT, __METHOD__ ) as $batch ) {
+		foreach ( $this->getChangedCatsIterator( $dbr, RecentChange::SRC_EDIT, __METHOD__ ) as $batch ) {
 			$pages = [];
 			$deleteUrls = [];
 			foreach ( $batch as $row ) {
@@ -604,7 +603,7 @@ SPARQL;
 		// Categorization change can add new parents and change counts
 		// for the parent category.
 
-		foreach ( $this->getChangedCatsIterator( $dbr, RC_CATEGORIZE, __METHOD__ ) as $batch ) {
+		foreach ( $this->getChangedCatsIterator( $dbr, RecentChange::SRC_CATEGORIZE, __METHOD__ ) as $batch ) {
 			/*
 			 * Note that on categorization event, cur_id points to
 			 * the child page, not the parent category!

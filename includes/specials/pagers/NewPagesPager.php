@@ -104,7 +104,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 		$rcQuery = RecentChange::getQueryInfo();
 
 		$conds = [];
-		$conds['rc_new'] = 1;
+		$conds['rc_source'] = RecentChange::SRC_NEW;
 
 		$username = $this->opts->getValue( 'username' );
 		$user = Title::makeTitleSafe( NS_USER, $username );

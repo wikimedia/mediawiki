@@ -422,10 +422,6 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			$orderByAndLimit['GROUP BY'] = 'rc_timestamp, rc_id';
 		}
 
-		// rc_new is not an ENUM, but adding a redundant rc_new IN (0,1) gives mysql enough
-		// knowledge to use an index merge if it wants (it may use some other index though).
-		$conds += [ 'rc_new' => [ 0, 1 ] ];
-
 		// array_merge() is used intentionally here so that hooks can, should
 		// they so desire, override the ORDER BY / LIMIT condition(s); prior to
 		// MediaWiki 1.26 this used to use the plus operator instead, which meant
