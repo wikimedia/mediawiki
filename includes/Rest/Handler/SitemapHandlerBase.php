@@ -58,6 +58,7 @@ abstract class SitemapHandlerBase extends Handler {
 				( $this->getLastModified() ?? ConvertibleTimestamp::time() ) + $this->expiry
 			)
 		);
+		$response->setHeader( 'Cache-Control', 'public' );
 		$response->setBody( new StringStream( $xml ) );
 		return $response;
 	}
