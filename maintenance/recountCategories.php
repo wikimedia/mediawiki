@@ -23,6 +23,7 @@
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\Maintenance\Maintenance;
+use Wikimedia\Rdbms\RawSQLExpression;
 
 // @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
@@ -153,7 +154,7 @@ TEXT
 				->from( 'categorylinks' )
 				->join( 'linktarget', null, 'cl_target_id = lt_id' )
 				->where( [
-					'lt_title' => 'cat_title',
+					new RawSQLExpression( 'lt_title = cat_title' ),
 					'lt_namespace' => NS_CATEGORY,
 				] );
 		}
