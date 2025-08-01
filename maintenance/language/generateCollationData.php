@@ -143,19 +143,16 @@ class GenerateCollationData extends Maintenance {
 			return;
 		}
 
-		// Calculate implicit weight per UTS #10 v6.0.0, sec 7.1.3
-		if ( $data['UIdeo'] === 'Y' ) {
-			if ( $data['block'] == 'CJK Unified Ideographs'
-				|| $data['block'] == 'CJK Compatibility Ideographs'
-			) {
-				$base = 0xFB40;
-			} else {
-				$base = 0xFB80;
-			}
-		} else {
-			$base = 0xFBC0;
+		// Skip characters that mapped to a single character we skipped above.
+		// e.g. U+2329 -> U+3008 (from CJK Symbols and Punctuation)
+		if ( $data['dm'] !== '#' && !str_contains( $data['dm'], ' ' ) &&
+			!isset( $this->weights[ hexdec( $data['dm'] ) ] )
+		) {
+			return;
 		}
-		$a = $base + ( $cp >> 15 );
+
+		// Calculate implicit weight per UTS #10 v6.0.0, sec 7.1.3
+		$a = 0xFBC0 + ( $cp >> 15 );
 		$b = ( $cp & 0x7fff ) | 0x8000;
 
 		$this->weights[$cp] = sprintf( ".%04X.%04X", $a, $b );

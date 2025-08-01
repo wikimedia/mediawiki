@@ -117,6 +117,30 @@ class CollationTest extends MediaWikiLangTestCase {
 			[ 'uca-fi', 'Ŋ', 'N' ],
 			[ 'uppercase-ba', 'в', 'В' ],
 			[ 'uppercase-smn', 'đ', 'Đ' ],
+
+			[ 'uca-zh@collation=unihan', '测试', '⽔' ],
+			[ 'uca-zh@collation=unihan', '瀑布', '⽔' ],
+			[ 'uca-zh@collation=unihan', '安全', '⼧' ],
+			[ 'uca-zh@collation=unihan', '首页', '⾸' ],
+			[ 'uca-zh@collation=unihan', '馗龙', '⾸' ],
+			[ 'uca-zh@collation=unihan', 'Test', 'T' ],
+
+			[ 'uca-zh@collation=zhuyin', '测试', 'ㄘ' ],
+			[ 'uca-zh@collation=zhuyin', '重要', 'ㄓ' ],
+			[ 'uca-zh@collation=zhuyin', '重庆', 'ㄓ' ], // Should be `ㄔ`, incorrect due to the ICU implementation.
+			[ 'uca-zh@collation=zhuyin', 'Test', 'T' ],
+
+			[ 'uca-zh@collation=pinyin', '测试', 'C' ],
+			[ 'uca-zh@collation=pinyin', '重要', 'Z' ],
+			[ 'uca-zh@collation=pinyin', '重阳', 'Z' ], // Should be `C`, incorrect due to the ICU implementation.
+			[ 'uca-zh@collation=pinyin', '重庆', 'C' ], // With a special handling ("&虫<重庆/庆") in the ICU implementation.
+			[ 'uca-zh@collation=pinyin', 'Test', 'T' ],
+
+			[ 'uca-zh@collation=stroke', '测试', '⠉' ],
+			[ 'uca-zh@collation=stroke', '重要', '⠉' ],
+			[ 'uca-zh@collation=stroke', '安全', '⠆' ],
+			[ 'uca-zh@collation=stroke', '馗龙', '⠋' ],
+			[ 'uca-zh@collation=stroke', 'Test', 'T' ],
 		];
 	}
 }

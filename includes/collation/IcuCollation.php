@@ -27,7 +27,7 @@ use Wikimedia\ArrayUtils\ArrayUtils;
  * @since 1.16.3
  */
 class IcuCollation extends Collation {
-	private const FIRST_LETTER_VERSION = 4;
+	private const FIRST_LETTER_VERSION = 5;
 
 	/** @var Collator */
 	private $primaryCollator;
@@ -50,11 +50,13 @@ class IcuCollation extends Collation {
 	/**
 	 * Unified CJK blocks.
 	 *
-	 * The same definition of a CJK block must be used for both Collation and
-	 * generateCollationData.php. These blocks are omitted from the first
-	 * letter data, as an optimisation measure and because the default UCA table
-	 * is pretty useless for sorting Chinese text anyway. Japanese and Korean
-	 * blocks are not included here, because they are smaller and more useful.
+	 * This definition should not be left behind the Unicode version used for
+	 * the php-intl extension, especially when generating the first letter data.
+	 *
+	 * These blocks are omitted from the first letter data, as an optimisation
+	 * measure and because the default UCA table is pretty useless for sorting
+	 * Chinese text anyway. Japanese and Korean blocks are not included here,
+	 * because they are smaller and more useful.
 	 */
 	private const CJK_BLOCKS = [
 		[ 0x2E80, 0x2EFF ], // CJK Radicals Supplement
@@ -68,10 +70,19 @@ class IcuCollation extends Collation {
 		[ 0x4E00, 0x9FFF ], // CJK Unified Ideographs
 		[ 0xF900, 0xFAFF ], // CJK Compatibility Ideographs
 		[ 0xFE30, 0xFE4F ], // CJK Compatibility Forms
+		[ 0x1F200, 0x1F2FF ], // Enclosed Ideographic Supplement
 		[ 0x20000, 0x2A6DF ], // CJK Unified Ideographs Extension B
 		[ 0x2A700, 0x2B73F ], // CJK Unified Ideographs Extension C
 		[ 0x2B740, 0x2B81F ], // CJK Unified Ideographs Extension D
+		[ 0x2B820, 0x2CEAF ], // CJK Unified Ideographs Extension E (added in Unicode 8.0)
+		[ 0x2CEB0, 0x2EBEF ], // CJK Unified Ideographs Extension F (added in Unicode 10.0)
+		[ 0x2EBF0, 0x2EE5F ], // CJK Unified Ideographs Extension I (added in Unicode 15.1)
 		[ 0x2F800, 0x2FA1F ], // CJK Compatibility Ideographs Supplement
+		[ 0x30000, 0x3134F ], // CJK Unified Ideographs Extension G (added in Unicode 13.0)
+		[ 0x31350, 0x323AF ], // CJK Unified Ideographs Extension H (added in Unicode 15.0)
+
+		// With the same weight as their decomposition characters listed above
+		[ 0x3190, 0x319F ], // Kanbun
 	];
 
 	/**
@@ -242,6 +253,67 @@ class IcuCollation extends Collation {
 		],
 		'yo' => [ "Ẹ", "Gb", "Ọ", "Ṣ" ],
 		'zu' => [],
+
+		// Kangxi Radicals, listed here instead of included in the
+		// first letter data, to avoid messing up other collations.
+		'zh@collation=unihan' => [
+			'⼀', '⼁', '⼂', '⼃', '⼄', '⼅', '⼆', '⼇', '⼈', '⼉',
+			'⼊', '⼋', '⼌', '⼍', '⼎', '⼏', '⼐', '⼑', '⼒', '⼓',
+			'⼔', '⼕', '⼖', '⼗', '⼘', '⼙', '⼚', '⼛', '⼜', '⼝',
+			'⼞', '⼟', '⼠', '⼡', '⼢', '⼣', '⼤', '⼥', '⼦', '⼧',
+			'⼨', '⼩', '⼪', '⼫', '⼬', '⼭', '⼮', '⼯', '⼰', '⼱',
+			'⼲', '⼳', '⼴', '⼵', '⼶', '⼷', '⼸', '⼹', '⼺', '⼻',
+			'⼼', '⼽', '⼾', '⼿', '⽀', '⽁', '⽂', '⽃', '⽄', '⽅',
+			'⽆', '⽇', '⽈', '⽉', '⽊', '⽋', '⽌', '⽍', '⽎', '⽏',
+			'⽐', '⽑', '⽒', '⽓', '⽔', '⽕', '⽖', '⽗', '⽘', '⽙',
+			'⽚', '⽛', '⽜', '⽝', '⽞', '⽟', '⽠', '⽡', '⽢', '⽣',
+			'⽤', '⽥', '⽦', '⽧', '⽨', '⽩', '⽪', '⽫', '⽬', '⽭',
+			'⽮', '⽯', '⽰', '⽱', '⽲', '⽳', '⽴', '⽵', '⽶', '⽷',
+			'⽸', '⽹', '⽺', '⽻', '⽼', '⽽', '⽾', '⽿', '⾀', '⾁',
+			'⾂', '⾃', '⾄', '⾅', '⾆', '⾇', '⾈', '⾉', '⾊', '⾋',
+			'⾌', '⾍', '⾎', '⾏', '⾐', '⾑', '⾒', '⾓', '⾔', '⾕',
+			'⾖', '⾗', '⾘', '⾙', '⾚', '⾛', '⾜', '⾝', '⾞', '⾟',
+			'⾠', '⾡', '⾢', '⾣', '⾤', '⾥', '⾦', '⾧', '⾨', '⾩',
+			'⾪', '⾫', '⾬', '⾭', '⾮', '⾯', '⾰', '⾱', '⾲', '⾳',
+			'⾴', '⾵', '⾶', '⾷', '⾸', '⾹', '⾺', '⾻', '⾼', '⾽',
+			'⾾', '⾿', '⿀', '⿁', '⿂', '⿃', '⿄', '⿅', '⿆', '⿇',
+			'⿈', '⿉', '⿊', '⿋', '⿌', '⿍', '⿎', '⿏', '⿐', '⿑',
+			'⿒', '⿓', '⿔', '⿕',
+		],
+		// Compiled from https://raw.githubusercontent.com/unicode-org/icu/main/icu4c/source/data/coll/zh.txt
+		'zh@collation=pinyin' => [
+			"\u{FDD0}A", "\u{FDD0}B", "\u{FDD0}C", "\u{FDD0}D", "\u{FDD0}E",
+			"\u{FDD0}F", "\u{FDD0}G", "\u{FDD0}H", "\u{FDD0}J", "\u{FDD0}K",
+			"\u{FDD0}L", "\u{FDD0}M", "\u{FDD0}N", "\u{FDD0}O", "\u{FDD0}P",
+			"\u{FDD0}Q", "\u{FDD0}R", "\u{FDD0}S", "\u{FDD0}T", "\u{FDD0}W",
+			"\u{FDD0}X", "\u{FDD0}Y", "\u{FDD0}Z",
+		],
+		'zh@collation=zhuyin' => [
+			"\u{FDD0}ㄅ", "\u{FDD0}ㄆ", "\u{FDD0}ㄇ", "\u{FDD0}ㄈ", "\u{FDD0}ㄪ",
+			"\u{FDD0}ㄉ", "\u{FDD0}ㄊ", "\u{FDD0}ㄋ", "\u{FDD0}ㄌ", "\u{FDD0}ㄍ",
+			"\u{FDD0}ㄎ", "\u{FDD0}ㄏ", "\u{FDD0}ㄐ", "\u{FDD0}ㄑ", "\u{FDD0}ㄒ",
+			"\u{FDD0}ㄬ", "\u{FDD0}ㄓ", "\u{FDD0}ㄔ", "\u{FDD0}ㄕ", "\u{FDD0}ㄖ",
+			"\u{FDD0}ㄗ", "\u{FDD0}ㄘ", "\u{FDD0}ㄙ", "\u{FDD0}ㄚ", "\u{FDD0}ㄛ",
+			"\u{FDD0}ㄜ", "\u{FDD0}ㄞ", "\u{FDD0}ㄟ", "\u{FDD0}ㄠ", "\u{FDD0}ㄡ",
+			"\u{FDD0}ㄢ", "\u{FDD0}ㄣ", "\u{FDD0}ㄤ", "\u{FDD0}ㄥ", "\u{FDD0}ㄦ",
+			"\u{FDD0}ㄧ", "\u{FDD0}ㄨ", "\u{FDD0}ㄩ",
+		],
+		'zh@collation=stroke' => [
+			"\u{FDD0}\u{2801}", "\u{FDD0}\u{2802}", "\u{FDD0}\u{2803}",
+			"\u{FDD0}\u{2804}", "\u{FDD0}\u{2805}", "\u{FDD0}\u{2806}",
+			"\u{FDD0}\u{2807}", "\u{FDD0}\u{2808}", "\u{FDD0}\u{2809}",
+			"\u{FDD0}\u{280A}", "\u{FDD0}\u{280B}", "\u{FDD0}\u{280C}",
+			"\u{FDD0}\u{280D}", "\u{FDD0}\u{280E}", "\u{FDD0}\u{280F}",
+			"\u{FDD0}\u{2810}", "\u{FDD0}\u{2811}", "\u{FDD0}\u{2812}",
+			"\u{FDD0}\u{2813}", "\u{FDD0}\u{2814}", "\u{FDD0}\u{2815}",
+			"\u{FDD0}\u{2816}", "\u{FDD0}\u{2817}", "\u{FDD0}\u{2818}",
+			"\u{FDD0}\u{2819}", "\u{FDD0}\u{281A}", "\u{FDD0}\u{281B}",
+			"\u{FDD0}\u{281C}", "\u{FDD0}\u{281D}", "\u{FDD0}\u{281E}",
+			"\u{FDD0}\u{281F}", "\u{FDD0}\u{2820}", "\u{FDD0}\u{2821}",
+			// Not every possible stroke count is used in Chinese characters
+			"\u{FDD0}\u{2823}", "\u{FDD0}\u{2824}", "\u{FDD0}\u{2827}",
+			"\u{FDD0}\u{2830}",
+		]
 	];
 
 	/**
@@ -289,10 +361,11 @@ class IcuCollation extends Collation {
 			return '';
 		}
 
+		$langCode = explode( '@', $this->locale )[0];
 		$firstChar = mb_substr( $string, 0, 1, 'UTF-8' );
 
 		// If the first character is a CJK character, just return that character.
-		if ( ord( $firstChar ) > 0x7f && self::isCjk( mb_ord( $firstChar ) ) ) {
+		if ( $langCode !== 'zh' && ord( $firstChar ) > 0x7f && self::isCjk( mb_ord( $firstChar ) ) ) {
 			return $firstChar;
 		}
 
@@ -316,6 +389,9 @@ class IcuCollation extends Collation {
 		}
 
 		$sortLetter = $letters[$min];
+		if ( str_starts_with( $sortLetter, "\u{FDD0}" ) ) {
+			$sortLetter = substr( $sortLetter, strlen( "\u{FDD0}" ) );
+		}
 
 		if ( $this->useNumericCollation ) {
 			// If the sort letter is a number, return '0–9' (or localized equivalent).
