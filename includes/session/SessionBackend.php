@@ -230,6 +230,7 @@ final class SessionBackend {
 	 */
 	public function deregisterSession( $index ) {
 		if ( !$this->shutdown && count( $this->requests ) <= 1 ) {
+			$this->sessionWriteReason = '__destruct()';
 			$this->save( true );
 			$this->provider->getManager()->deregisterSessionBackend( $this );
 		}
@@ -241,6 +242,7 @@ final class SessionBackend {
 	 * @internal For use by \MediaWiki\Session\SessionManager::shutdown() only
 	 */
 	public function shutdown() {
+		$this->sessionWriteReason = 'shutdown';
 		$this->save( true );
 		$this->shutdown = true;
 	}
