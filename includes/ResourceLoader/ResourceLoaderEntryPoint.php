@@ -50,8 +50,13 @@ class ResourceLoaderEntryPoint extends MediaWikiEntryPoint {
 			array_keys( $services->getSkinFactory()->getInstalledSkins() )
 		);
 
+		// T390929
+		$extraHeaders = [];
+		$hookRunner = new HookRunner( $services->getHookContainer() );
+		$hookRunner->onResourceLoaderBeforeResponse( $context, $extraHeaders );
+
 		// Respond to ResourceLoader request
-		$resourceLoader->respond( $context );
+		$resourceLoader->respond( $context, $extraHeaders );
 
 		// Append any visible profiling data in a manner appropriate for the Content-Type
 		$profiler = Profiler::instance();

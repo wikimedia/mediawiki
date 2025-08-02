@@ -660,8 +660,10 @@ class ResourceLoader implements LoggerAwareInterface {
 	 * Output a response to a load request, including the content-type header.
 	 *
 	 * @param Context $context Context in which a response should be formed
+	 * @param string[] $extraHeaders HTTP response headers to send regardless of
+	 * status (200 OK, or 304 Not Modified) and content type (CSS, JS, Image, SourceMap)
 	 */
-	public function respond( Context $context ) {
+	public function respond( Context $context, array $extraHeaders = [] ) {
 		// Buffer output to catch warnings. Normally we'd use ob_clean() on the
 		// top-level output buffer to clear warnings, but that breaks when ob_gzhandler
 		// is used: ob_clean() will clear the GZIP header in that case and it won't come
@@ -672,6 +674,7 @@ class ResourceLoader implements LoggerAwareInterface {
 		ob_start();
 
 		$this->errors = [];
+		$this->extraHeaders = $extraHeaders;
 		$responseTime = $this->measureResponseTime();
 		ProfilingContext::singleton()->init( MW_ENTRY_POINT, 'respond' );
 
@@ -755,7 +758,7 @@ class ResourceLoader implements LoggerAwareInterface {
 			}
 		}
 
-		$this->sendResponseHeaders( $context, $etag, (bool)$this->errors, $this->extraHeaders );
+		$this->sendResponseHeaders( $context, $etag, (bool)$this->errors );
 
 		// Remove the output buffer and output the response
 		ob_end_clean();
@@ -805,10 +808,9 @@ class ResourceLoader implements LoggerAwareInterface {
 	 * @param Context $context
 	 * @param string $etag ETag header value
 	 * @param bool $errors Whether there are errors in the response
-	 * @param string[] $extra Array of extra HTTP response headers
 	 */
 	protected function sendResponseHeaders(
-		Context $context, $etag, $errors, array $extra = []
+		Context $context, $etag, $errors
 	): void {
 		HeaderCallback::warnIfHeadersSent();
 
@@ -865,7 +867,8 @@ class ResourceLoader implements LoggerAwareInterface {
 			header( "Cache-Control: public, max-age=$maxage, s-maxage=$maxage" . $staleDirective );
 			header( 'Expires: ' . ConvertibleTimestamp::convert( TS_RFC2822, time() + $maxage ) );
 		}
-		foreach ( $extra as $header ) {
+
+		foreach ( $this->extraHeaders as $header ) {
 			header( $header );
 		}
 	}
@@ -898,7 +901,6 @@ class ResourceLoader implements LoggerAwareInterface {
 			wfResetOutputBuffers( /* $resetGzipEncoding = */ true );
 
 			HttpStatus::header( 304 );
-
 			$this->sendResponseHeaders( $context, $etag, false );
 			return true;
 		}

@@ -11,6 +11,7 @@ use MediaWiki\HookContainer\HookContainer;
  * @ingroup ResourceLoader
  */
 class HookRunner implements
+	\MediaWiki\ResourceLoader\Hook\ResourceLoaderBeforeResponseHook,
 	\MediaWiki\ResourceLoader\Hook\ResourceLoaderExcludeUserOptionsHook,
 	\MediaWiki\ResourceLoader\Hook\ResourceLoaderForeignApiModulesHook,
 	\MediaWiki\ResourceLoader\Hook\ResourceLoaderModifyEmbeddedSourceUrlsHook,
@@ -93,6 +94,14 @@ class HookRunner implements
 		$this->container->run(
 			'ResourceLoaderJqueryMsgModuleMagicWords',
 			[ $context, &$magicWords ],
+			[ 'abortable' => false ]
+		);
+	}
+
+	public function onResourceLoaderBeforeResponse( Context $context, array &$extraHeaders ): void {
+		$this->container->run(
+			'ResourceLoaderBeforeResponse',
+			[ $context, &$extraHeaders ],
 			[ 'abortable' => false ]
 		);
 	}

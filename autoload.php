@@ -2447,6 +2447,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\ResourceLoader\\ForeignResourceManager' => __DIR__ . '/includes/ResourceLoader/ForeignResourceManager.php',
 	'MediaWiki\\ResourceLoader\\ForeignResourceNetworkException' => __DIR__ . '/includes/ResourceLoader/ForeignResourceNetworkException.php',
 	'MediaWiki\\ResourceLoader\\HookRunner' => __DIR__ . '/includes/ResourceLoader/HookRunner.php',
+	'MediaWiki\\ResourceLoader\\Hook\\ResourceLoaderBeforeResponseHook' => __DIR__ . '/includes/ResourceLoader/Hook/ResourceLoaderBeforeResponseHook.php',
 	'MediaWiki\\ResourceLoader\\Hook\\ResourceLoaderExcludeUserOptionsHook' => __DIR__ . '/includes/ResourceLoader/Hook/ResourceLoaderExcludeUserOptionsHook.php',
 	'MediaWiki\\ResourceLoader\\Hook\\ResourceLoaderForeignApiModulesHook' => __DIR__ . '/includes/ResourceLoader/Hook/ResourceLoaderForeignApiModulesHook.php',
 	'MediaWiki\\ResourceLoader\\Hook\\ResourceLoaderGetConfigVarsHook' => __DIR__ . '/includes/ResourceLoader/Hook/ResourceLoaderGetConfigVarsHook.php',

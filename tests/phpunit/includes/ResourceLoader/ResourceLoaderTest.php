@@ -1205,6 +1205,53 @@ END
 		$rl->respond( $context );
 	}
 
+	public function testRespondExtraHeaders() {
+		$rl = $this->getMockBuilder( EmptyResourceLoader::class )
+			->onlyMethods( [
+				'tryRespondNotModified',
+				'sendResponseHeaders',
+				'measureResponseTime',
+			] )
+			->getMock();
+		$rlPriv = TestingAccessWrapper::newFromObject( $rl );
+
+		$context = $this->getResourceLoaderContext( [ 'modules' => '' ], $rl );
+		$rl->respond( $context );
+		$this->expectOutputRegex( '/no modules were requested/' );
+		$this->assertSame( [], $rlPriv->extraHeaders, 'Stub without extra headers' );
+
+		$rl->respond( $context, [ 'X-Example: Hi' ] );
+		$this->expectOutputRegex( '/no modules were requested/' );
+		$this->assertSame( [ 'X-Example: Hi' ], $rlPriv->extraHeaders, 'Stub with extra headers' );
+
+		$context = $this->getResourceLoaderContext( [ 'modules' => 'foo' ], $rl );
+		$module = $this->getMockBuilder( ResourceLoaderTestModule::class )
+			->onlyMethods( [ 'getPreloadLinks', 'getName' ] )->getMock();
+		$module->method( 'getPreloadLinks' )->willReturn( [
+			'https://example.org/script.js' => [ 'as' => 'script' ],
+		] );
+		$module->method( 'getName' )->willReturn( 'foo' );
+		$rl->register( 'foo', [ 'factory' => static fn () => $module ] );
+		$rl->respond( $context );
+		$this->assertSame(
+			[
+				'Link: <https://example.org/script.js>;rel=preload;as=script'
+			],
+			$rlPriv->extraHeaders,
+			'Module without extra headers'
+		);
+
+		$rl->respond( $context, [ 'X-Example: World' ] );
+		$this->assertSame(
+			[
+				'X-Example: World',
+				'Link: <https://example.org/script.js>;rel=preload;as=script'
+			],
+			$rlPriv->extraHeaders,
+			'Module with extra headers'
+		);
+	}
+
 	private function getResourceLoaderWithTestModules( ?Config $config = null ) {
 		$localBasePath = __DIR__ . '/../../data/resourceloader';
 		$remoteBasePath = '/w';
