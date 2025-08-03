@@ -33,28 +33,33 @@ use MediaWiki\Title\Title;
 class BrokenRedirectConstraintTest extends MediaWikiUnitTestCase {
 	use EditConstraintTestTrait;
 
-	private function getContent( $isBrokenRedirect ) {
+	private function getContent( bool $isBrokenRedirect, ?Title $target = null ) {
 		$content = $this->createMock( Content::class );
-		$contentRedirectTarget = $this->createMock( Title::class );
+		$contentRedirectTarget = $target ?? $this->createMock( Title::class );
 		// No $this->once() since only called for the new content
 		$content->method( 'isRedirect' )
 			->willReturn( true );
 		$content->expects( $this->atLeastOnce() )
 			->method( 'getRedirectTarget' )
 			->willReturn( $contentRedirectTarget );
-		$contentRedirectTarget->expects( $this->once() )
+		$contentRedirectTarget
 			->method( 'isKnown' )
 			->willReturn( !$isBrokenRedirect );
 		return $content;
 	}
 
 	public function testPass() {
-		// both the old and the new content have a broken redirect, so no warning
+		// both the old and the new content have a broken redirect pointing to the same title, so no warning
+		$target = $this->createMock( Title::class );
+		$target->expects( $this->atLeastOnce() )
+			->method( 'equals' )
+			->willReturnCallback( static fn ( $otherTitle ) => $otherTitle === $target );
+
 		$title = $this->createMock( Title::class );
 		$constraint = new BrokenRedirectConstraint(
-			false, // $allowBrokenRedirects
-			$this->getContent( true ),
-			$this->getContent( true ),
+			null,
+			$this->getContent( true, $target ),
+			$this->getContent( true, $target ),
 			$title,
 			''
 		);
@@ -63,11 +68,14 @@ class BrokenRedirectConstraintTest extends MediaWikiUnitTestCase {
 
 	public function testFailure() {
 		// New content is a broken redirect, but existing content is not
+		$currentTarget = $this->createMock( Title::class );
+		$currentTarget->method( 'equals' )->willReturn( false );
+
 		$title = $this->createMock( Title::class );
 		$constraint = new BrokenRedirectConstraint(
-			false, // $allowBrokenRedirects
+			null,
 			$this->getContent( true ),
-			$this->getContent( false ),
+			$this->getContent( false, $currentTarget ),
 			$title,
 			''
 		);

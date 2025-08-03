@@ -22,6 +22,7 @@ namespace MediaWiki\EditPage\Constraint;
 
 use MediaWiki\Content\Content;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Title\Title;
 use StatusValue;
 use Wikimedia\Message\MessageValue;
 
@@ -35,27 +36,29 @@ use Wikimedia\Message\MessageValue;
  */
 class BrokenRedirectConstraint implements IEditConstraint {
 
-	private bool $allowBrokenRedirects;
+	private ?Title $allowedBrokenTarget;
 	private Content $newContent;
 	private Content $originalContent;
 	private LinkTarget $title;
 	private string $submitButtonLabel;
 	private string $result;
+	public ?Title $brokenRedirectTarget;
 
 	/**
-	 * @param bool $allowBrokenRedirects
+	 * @param ?Title $allowedBrokenTarget
 	 * @param Content $newContent
 	 * @param Content $originalContent
 	 * @param LinkTarget $title
+	 * @param string $submitButtonLabel
 	 */
 	public function __construct(
-		bool $allowBrokenRedirects,
+		?Title $allowedBrokenTarget,
 		Content $newContent,
 		Content $originalContent,
 		LinkTarget $title,
 		string $submitButtonLabel
 	) {
-		$this->allowBrokenRedirects = $allowBrokenRedirects;
+		$this->allowedBrokenTarget = $allowedBrokenTarget;
 		$this->newContent = $newContent;
 		$this->originalContent = $originalContent;
 		$this->title = $title;
@@ -63,17 +66,23 @@ class BrokenRedirectConstraint implements IEditConstraint {
 	}
 
 	public function checkConstraint(): string {
-		if ( !$this->allowBrokenRedirects ) {
-			$newRedirectTarget = $this->newContent->getRedirectTarget();
+		$newRedirectTarget = $this->newContent->getRedirectTarget();
 
-			if ( $newRedirectTarget !== null && !$newRedirectTarget->isKnown() &&
-				!$newRedirectTarget->equals( $this->title ) ) {
+		// the constraint should only be checked if there is a redirect in the new content, and either
+		// - $allowedBrokenTarget is null (the last save attempt didn't contain a broken redirect)
+		// - the last save attempt contained a broken redirect, and the non-existent target is not the same as
+		//   the one in this save attempt (T395767)
+		if ( $newRedirectTarget !== null && !$this->allowedBrokenTarget?->equals( $newRedirectTarget ) ) {
+			if ( !$newRedirectTarget->isKnown()
+				&& !$newRedirectTarget->equals( $this->title )
+			) {
 				$currentTarget = $this->originalContent->getRedirectTarget();
 
 				// fail if there was no previous content or the previous content contained
-				// a redirect to a known page
-				if ( !$currentTarget || $currentTarget->isKnown() ) {
+				// a redirect to a different page
+				if ( !$currentTarget?->equals( $newRedirectTarget ) ) {
 					$this->result = self::CONSTRAINT_FAILED;
+					$this->brokenRedirectTarget = $newRedirectTarget;
 
 					return self::CONSTRAINT_FAILED;
 				}

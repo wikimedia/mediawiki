@@ -268,11 +268,12 @@ describe( 'Search', () => {
 			const redirectTarget = utils.title( 'redirect_target_' );
 			const anchor = 'Test anchor';
 
+			const { title: redirectTargetTitle } = await alice.edit( redirectTarget, { text: 'foo' } );
+
 			const { title: redirectSourceTitle } = await alice.edit( redirectSource,
 				{ text: `#REDIRECT [[ ${ redirectTarget }#${ anchor } ]]` }
 			);
 
-			const { title: redirectTargetTitle } = await alice.edit( redirectTarget, { text: 'foo' } );
 			await wiki.runAllJobs();
 
 			const res = await client.get( `/v1/search/title?q=${ redirectSourceTitle }` );

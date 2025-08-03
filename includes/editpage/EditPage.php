@@ -265,11 +265,11 @@ class EditPage implements IEditObject {
 	/** @var bool */
 	private $allowSelfRedirect = false;
 
-	/** @var bool */
-	private $brokenRedirect = false;
+	/** @var ?Title */
+	private $brokenRedirectTarget = null;
 
-	/** @var bool */
-	private $allowBrokenRedirects = false;
+	/** @var ?Title */
+	private $allowedBrokenRedirectTarget = null;
 
 	/** @var bool */
 	private $doubleRedirect = false;
@@ -1374,7 +1374,9 @@ class EditPage implements IEditObject {
 
 		$this->allowBlankArticle = $request->getBool( 'wpIgnoreBlankArticle' );
 		$this->allowSelfRedirect = $request->getBool( 'wpIgnoreSelfRedirect' );
-		$this->allowBrokenRedirects = $request->getBool( 'wpIgnoreBrokenRedirects' );
+		$allowedBrokenRedirectTargetText = $request->getText( 'wpAllowedBrokenRedirectTarget' );
+		$this->allowedBrokenRedirectTarget = $allowedBrokenRedirectTargetText === ''
+			? null : Title::newFromText( $allowedBrokenRedirectTargetText );
 		$this->allowDoubleRedirects = $request->getBool( 'wpIgnoreDoubleRedirects' );
 
 		$changeTags = $request->getVal( 'wpChangeTags' );
@@ -2539,7 +2541,7 @@ class EditPage implements IEditObject {
 		);
 		$constraintRunner->addConstraint(
 			new BrokenRedirectConstraint(
-				$this->allowBrokenRedirects,
+				$this->allowedBrokenRedirectTarget,
 				$content,
 				$this->getCurrentContent(),
 				$this->getTitle(),
@@ -2677,7 +2679,7 @@ class EditPage implements IEditObject {
 		} elseif ( $failed instanceof SelfRedirectConstraint ) {
 			$this->selfRedirect = true;
 		} elseif ( $failed instanceof BrokenRedirectConstraint ) {
-			$this->brokenRedirect = true;
+			$this->brokenRedirectTarget = $failed->brokenRedirectTarget;
 		} elseif ( $failed instanceof DoubleRedirectConstraint ) {
 			$this->doubleRedirect = true;
 			$this->doubleRedirectLoop = $failed->willCreateSelfRedirect;
@@ -3212,8 +3214,13 @@ class EditPage implements IEditObject {
 			$out->addHTML( Html::hidden( 'wpIgnoreSelfRedirect', true ) );
 		}
 
-		if ( $this->brokenRedirect ) {
-			$out->addHTML( Html::hidden( 'wpIgnoreBrokenRedirects', true ) );
+		if ( $this->brokenRedirectTarget !== null ) {
+			// T395767: Save the target to a variable so the constraint can fail again if the redirect is still
+			// broken but has changed between two save attempts
+			$out->addHTML( Html::hidden(
+				'wpAllowedBrokenRedirectTarget',
+				$this->brokenRedirectTarget->getFullText()
+			) );
 		}
 
 		if ( $this->doubleRedirect ) {
