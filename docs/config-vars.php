@@ -3034,6 +3034,18 @@ $wgBotPasswordsDatabase = null;
 $wgSecretKey = null;
 
 /**
+ * Config variable stub for the JwtPrivateKey setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::JwtPrivateKey
+ */
+$wgJwtPrivateKey = null;
+
+/**
+ * Config variable stub for the JwtPublicKey setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::JwtPublicKey
+ */
+$wgJwtPublicKey = null;
+
+/**
  * Config variable stub for the AllowUserJs setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::AllowUserJs
  */

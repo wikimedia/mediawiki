@@ -48,6 +48,7 @@ use MediaWiki\JobQueue\Jobs\RefreshLinksJob;
 use MediaWiki\JobQueue\Jobs\RevertedTagUpdateJob;
 use MediaWiki\JobQueue\Jobs\ThumbnailRenderJob;
 use MediaWiki\JobQueue\Jobs\UploadFromUrlJob;
+use MediaWiki\Json\RsaJwtCodec;
 use MediaWiki\Logging\BlockLogFormatter;
 use MediaWiki\Logging\ContentModelLogFormatter;
 use MediaWiki\Logging\DeleteLogFormatter;
@@ -9309,6 +9310,26 @@ class MainConfigSchema {
 	 * This should always be customised in LocalSettings.php
 	 */
 	public const SecretKey = [
+		'default' => false,
+	];
+
+	/**
+	 * RSA private key for issuing JWTs, as a PEM string.
+	 * Experimental, will probably be replaced by something more flexible.
+	 * @since 1.45
+	 * @see RsaJwtCodec
+	 */
+	public const JwtPrivateKey = [
+		'default' => false,
+	];
+
+	/**
+	 * RSA private key for verifying JWTs, as a PEM string.
+	 * Experimental, will probably be replaced by something more flexible.
+	 * @since 1.45
+	 * @see RsaJwtCodec
+	 */
+	public const JwtPublicKey = [
 		'default' => false,
 	];
 

@@ -5840,6 +5840,20 @@ config-schema:
     SecretKey:
         default: false
         description: 'This should always be customised in LocalSettings.php'
+    JwtPrivateKey:
+        default: false
+        description: |-
+            RSA private key for issuing JWTs, as a PEM string.
+            Experimental, will probably be replaced by something more flexible.
+            @since 1.45
+            @see RsaJwtCodec
+    JwtPublicKey:
+        default: false
+        description: |-
+            RSA private key for verifying JWTs, as a PEM string.
+            Experimental, will probably be replaced by something more flexible.
+            @since 1.45
+            @see RsaJwtCodec
     AllowUserJs:
         default: false
         description: |-

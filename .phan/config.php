@@ -102,6 +102,7 @@ $indirectDeps = [
 	'doctrine/dbal',
 	'doctrine/sql-formatter',
 	'guzzlehttp/psr7',
+	'lcobucci/clock',
 	'pear/net_url2',
 	'pear/pear-core-minimal',
 	'phpunit/phpunit',

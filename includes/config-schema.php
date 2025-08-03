@@ -1843,6 +1843,8 @@ return [
 			'BotPasswordsCluster' => false,
 			'BotPasswordsDatabase' => false,
 			'SecretKey' => false,
+			'JwtPrivateKey' => false,
+			'JwtPublicKey' => false,
 			'AllowUserJs' => false,
 			'AllowUserCss' => false,
 			'AllowUserCssPrefs' => true,

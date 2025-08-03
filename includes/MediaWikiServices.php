@@ -86,6 +86,7 @@ use MediaWiki\JobQueue\JobQueueGroup;
 use MediaWiki\JobQueue\JobQueueGroupFactory;
 use MediaWiki\JobQueue\JobRunner;
 use MediaWiki\Json\JsonCodec;
+use MediaWiki\Json\JwtCodec;
 use MediaWiki\Language\FormatterFactory;
 use MediaWiki\Language\Language;
 use MediaWiki\Language\LanguageCode;
@@ -1334,6 +1335,13 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getJsonCodec(): JsonCodec {
 		return $this->getService( 'JsonCodec' );
+	}
+
+	/**
+	 * @since 1.45
+	 */
+	public function getJwtCodec(): JwtCodec {
+		return $this->getService( 'JwtCodec' );
 	}
 
 	/**

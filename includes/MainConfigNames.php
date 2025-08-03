@@ -3049,6 +3049,18 @@ class MainConfigNames {
 	public const SecretKey = 'SecretKey';
 
 	/**
+	 * Name constant for the JwtPrivateKey setting, for use with Config::get()
+	 * @see MainConfigSchema::JwtPrivateKey
+	 */
+	public const JwtPrivateKey = 'JwtPrivateKey';
+
+	/**
+	 * Name constant for the JwtPublicKey setting, for use with Config::get()
+	 * @see MainConfigSchema::JwtPublicKey
+	 */
+	public const JwtPublicKey = 'JwtPublicKey';
+
+	/**
 	 * Name constant for the AllowUserJs setting, for use with Config::get()
 	 * @see MainConfigSchema::AllowUserJs
 	 */

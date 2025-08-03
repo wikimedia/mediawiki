@@ -119,6 +119,8 @@ use MediaWiki\JobQueue\JobQueueGroup;
 use MediaWiki\JobQueue\JobQueueGroupFactory;
 use MediaWiki\JobQueue\JobRunner;
 use MediaWiki\Json\JsonCodec;
+use MediaWiki\Json\JwtCodec;
+use MediaWiki\Json\RsaJwtCodec;
 use MediaWiki\Language\FormatterFactory;
 use MediaWiki\Language\Language;
 use MediaWiki\Language\LanguageCode;
@@ -1116,6 +1118,12 @@ return [
 
 	'JsonCodec' => static function ( MediaWikiServices $services ): JsonCodec {
 		return new JsonCodec( $services );
+	},
+
+	'JwtCodec' => static function ( MediaWikiServices $services ): JwtCodec {
+		return new RsaJwtCodec(
+			new ServiceOptions( RsaJwtCodec::CONSTRUCTOR_OPTIONS, $services->getMainConfig() )
+		);
 	},
 
 	'LanguageConverterFactory' => static function ( MediaWikiServices $services ): LanguageConverterFactory {
