@@ -256,7 +256,7 @@ class Parser {
 	// Initialised in constructor
 	/** @var string */
 	private string $mExtLinkBracketedRegex;
-	private UrlUtils $urlUtils;
+	private HookRunner $hookRunner;
 	private Preprocessor $mPreprocessor;
 
 	// Cleared with clearState():
@@ -375,33 +375,6 @@ class Parser {
 	private SectionProfiler $mProfiler;
 	private ?LinkRenderer $mLinkRenderer = null;
 
-	private MagicWordFactory $magicWordFactory;
-	private Language $contLang;
-	private LanguageConverterFactory $languageConverterFactory;
-	private LanguageNameUtils $languageNameUtils;
-	private SpecialPageFactory $specialPageFactory;
-	private TitleFormatter $titleFormatter;
-	/**
-	 * This is called $svcOptions instead of $options like elsewhere to avoid confusion with
-	 * $mOptions, which is public and widely used, and also with the local variable $options used
-	 * for ParserOptions throughout this file.
-	 */
-	private ServiceOptions $svcOptions;
-	private LinkRendererFactory $linkRendererFactory;
-	private NamespaceInfo $nsInfo;
-	private LoggerInterface $logger;
-	private BadFileLookup $badFileLookup;
-	private HookContainer $hookContainer;
-	private HookRunner $hookRunner;
-	private TidyDriverBase $tidy;
-	private WANObjectCache $wanCache;
-	private UserOptionsLookup $userOptionsLookup;
-	private UserFactory $userFactory;
-	private HttpRequestFactory $httpRequestFactory;
-	private TrackingCategories $trackingCategories;
-	private SignatureValidatorFactory $signatureValidatorFactory;
-	private UserNameUtils $userNameUtils;
-
 	/**
 	 * @internal For use by ServiceWiring
 	 */
@@ -436,51 +409,32 @@ class Parser {
 	/**
 	 * Constructing parsers directly is not allowed! Use a ParserFactory.
 	 * @internal
-	 *
-	 * @param ServiceOptions $svcOptions
-	 * @param MagicWordFactory $magicWordFactory
-	 * @param Language $contLang Content language
-	 * @param UrlUtils $urlUtils
-	 * @param SpecialPageFactory $spFactory
-	 * @param LinkRendererFactory $linkRendererFactory
-	 * @param NamespaceInfo $nsInfo
-	 * @param LoggerInterface $logger
-	 * @param BadFileLookup $badFileLookup
-	 * @param LanguageConverterFactory $languageConverterFactory
-	 * @param LanguageNameUtils $languageNameUtils
-	 * @param HookContainer $hookContainer
-	 * @param TidyDriverBase $tidy
-	 * @param WANObjectCache $wanCache
-	 * @param UserOptionsLookup $userOptionsLookup
-	 * @param UserFactory $userFactory
-	 * @param TitleFormatter $titleFormatter
-	 * @param HttpRequestFactory $httpRequestFactory
-	 * @param TrackingCategories $trackingCategories
-	 * @param SignatureValidatorFactory $signatureValidatorFactory
-	 * @param UserNameUtils $userNameUtils
 	 */
 	public function __construct(
-		ServiceOptions $svcOptions,
-		MagicWordFactory $magicWordFactory,
-		Language $contLang,
-		UrlUtils $urlUtils,
-		SpecialPageFactory $spFactory,
-		LinkRendererFactory $linkRendererFactory,
-		NamespaceInfo $nsInfo,
-		LoggerInterface $logger,
-		BadFileLookup $badFileLookup,
-		LanguageConverterFactory $languageConverterFactory,
-		LanguageNameUtils $languageNameUtils,
-		HookContainer $hookContainer,
-		TidyDriverBase $tidy,
-		WANObjectCache $wanCache,
-		UserOptionsLookup $userOptionsLookup,
-		UserFactory $userFactory,
-		TitleFormatter $titleFormatter,
-		HttpRequestFactory $httpRequestFactory,
-		TrackingCategories $trackingCategories,
-		SignatureValidatorFactory $signatureValidatorFactory,
-		UserNameUtils $userNameUtils
+		// This is called $svcOptions instead of $options like elsewhere to avoid confusion with
+		// $mOptions, which is public and widely used, and also with the local variable $options used
+		// for ParserOptions throughout this file.
+		private ServiceOptions $svcOptions,
+		private MagicWordFactory $magicWordFactory,
+		private Language $contLang,
+		private UrlUtils $urlUtils,
+		private SpecialPageFactory $specialPageFactory,
+		private LinkRendererFactory $linkRendererFactory,
+		private NamespaceInfo $nsInfo,
+		private LoggerInterface $logger,
+		private BadFileLookup $badFileLookup,
+		private LanguageConverterFactory $languageConverterFactory,
+		private LanguageNameUtils $languageNameUtils,
+		private HookContainer $hookContainer,
+		private TidyDriverBase $tidy,
+		private WANObjectCache $wanCache,
+		private UserOptionsLookup $userOptionsLookup,
+		private UserFactory $userFactory,
+		private TitleFormatter $titleFormatter,
+		private HttpRequestFactory $httpRequestFactory,
+		private TrackingCategories $trackingCategories,
+		private SignatureValidatorFactory $signatureValidatorFactory,
+		private UserNameUtils $userNameUtils,
 	) {
 		$this->deprecateDynamicPropertiesAccess( '1.42', __CLASS__ );
 		$this->deprecatePublicProperty( 'ot', '1.35', __CLASS__ );
@@ -493,32 +447,13 @@ class Parser {
 			throw new BadMethodCallException( 'Direct construction of Parser not allowed' );
 		}
 		$svcOptions->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
-		$this->svcOptions = $svcOptions;
 
-		$this->urlUtils = $urlUtils;
 		$this->mExtLinkBracketedRegex = '/\[(((?i)' . $this->urlUtils->validProtocols() . ')' .
 			self::EXT_LINK_ADDR .
 			self::EXT_LINK_URL_CLASS . '*)\p{Zs}*([^\]\\x00-\\x08\\x0a-\\x1F\\x{FFFD}]*)\]/Su';
 
-		$this->magicWordFactory = $magicWordFactory;
-
-		$this->contLang = $contLang;
-
-		$this->specialPageFactory = $spFactory;
-		$this->linkRendererFactory = $linkRendererFactory;
-		$this->nsInfo = $nsInfo;
-		$this->logger = $logger;
-		$this->badFileLookup = $badFileLookup;
-
-		$this->languageConverterFactory = $languageConverterFactory;
-		$this->languageNameUtils = $languageNameUtils;
-
-		$this->hookContainer = $hookContainer;
 		$this->hookRunner = new HookRunner( $hookContainer );
 
-		$this->tidy = $tidy;
-
-		$this->wanCache = $wanCache;
 		$this->mPreprocessor = new Preprocessor_Hash(
 			$this,
 			$this->wanCache,
@@ -527,14 +462,6 @@ class Parser {
 				'disableLangConversion' => $languageConverterFactory->isConversionDisabled(),
 			]
 		);
-
-		$this->userOptionsLookup = $userOptionsLookup;
-		$this->userFactory = $userFactory;
-		$this->titleFormatter = $titleFormatter;
-		$this->httpRequestFactory = $httpRequestFactory;
-		$this->trackingCategories = $trackingCategories;
-		$this->signatureValidatorFactory = $signatureValidatorFactory;
-		$this->userNameUtils = $userNameUtils;
 
 		// These steps used to be done in "::firstCallInit()"
 		// (if you're chasing a reference from some old code)
