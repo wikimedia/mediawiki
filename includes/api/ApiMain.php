@@ -2085,7 +2085,6 @@ class ApiMain extends ApiBase {
 				'request_id' => WebRequest::getRequestId(),
 				'id' => MediaWikiServices::getInstance()
 					->getGlobalIdGenerator()->newUUIDv4(),
-				'dt' => wfTimestamp( TS_ISO_8601 ),
 				'domain' => $this->getConfig()->get( MainConfigNames::ServerName ),
 				// If using the EventBus extension (as intended) with this log channel,
 				// this stream name will map to a Kafka topic.
