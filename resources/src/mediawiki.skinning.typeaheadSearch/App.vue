@@ -349,7 +349,7 @@ module.exports = exports = defineComponent( {
 		} );
 
 		if ( props.supportsMobileExperience && router ) {
-			router.addRoute( /.*$/, () => {
+			router.on( 'route', () => {
 				exitSearchDialog();
 			} );
 

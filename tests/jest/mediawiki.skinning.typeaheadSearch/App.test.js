@@ -66,7 +66,8 @@ describe( 'App (mobile mode)', () => {
 		const wrapper = mount( {
 			supportsMobileExperience: true,
 			router: {
-				addRoute: jest.fn()
+				addRoute: jest.fn(),
+				on: jest.fn()
 			}
 		} );
 		expect(
