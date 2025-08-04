@@ -5,6 +5,8 @@
 			"Tofeiku"
 		]
 	},
+	"cdx-breadcrumb-navigation-label": "Tinggalan",
+	"cdx-breadcrumb-overflow-label": "Lebih banyak pilihan navigasi",
 	"cdx-chip-input-chip-added": "Cip $1 telah ditambahkan.",
 	"cdx-chip-input-chip-removed": "Cip $1 telah dibuang.",
 	"cdx-input-chip-aria-description": "Tekan Enter untuk menyunting atau Padam untuk mengalih keluar.",
