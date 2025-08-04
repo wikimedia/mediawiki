@@ -47,7 +47,6 @@ class FindMissingFiles extends Maintenance {
 		$queryBuilder = $dbr->newSelectQueryBuilder()
 			->select( [ 'name' => 'img_name' ] )
 			->from( 'image' )
-			->where( $dbr->expr( 'img_name', '>', $lastName ) )
 			->groupBy( 'name' )
 			->orderBy( 'name' )
 			->limit( $batchSize );
@@ -67,7 +66,9 @@ class FindMissingFiles extends Maintenance {
 		}
 
 		do {
-			$res = $queryBuilder->caller( __METHOD__ )->fetchResultSet();
+			$res = ( clone $queryBuilder )
+				->where( $dbr->expr( 'img_name', '>', $lastName ) )
+				->caller( __METHOD__ )->fetchResultSet();
 
 			// Check if any of these files are missing...
 			$pathsByName = [];
