@@ -10,8 +10,10 @@ let tempInput = null;
  * @ignore
  */
 function addRoutes( router, trigger ) {
+	let searchOpen = false;
 	clearAddressBar( router, searchRoute );
 	router.addRoute( searchRoute, () => {
+		searchOpen = true;
 		const searchModuleName = config.searchModule;
 		mw.loader.using( searchModuleName ).then( () => {
 			const { init } = require( searchModuleName );
@@ -26,11 +28,14 @@ function addRoutes( router, trigger ) {
 		} );
 	} );
 
-	router.addRoute( /$/, () => {
-		// Return focus to the search button after exiting the search overlay
-		requestAnimationFrame( () => {
-			trigger.focus();
-		} );
+	router.on( 'route', ( ev ) => {
+		if ( searchOpen && !ev.path.match( searchRoute ) ) {
+			searchOpen = false;
+			// Return focus to the search button after exiting the search overlay
+			requestAnimationFrame( () => {
+				trigger.focus();
+			} );
+		}
 	} );
 }
 
