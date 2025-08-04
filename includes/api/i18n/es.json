@@ -60,7 +60,8 @@
 			"Danielyepezgarces",
 			"JaimeDes",
 			"JorgeElias2302",
-			"Anita"
+			"Anita",
+			"Aegis1009"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Documentación]]\n* [[mw:Special:MyLanguage/API:Etiquette|Pautas de etiqueta y uso]]\n* [[mw:Special:MyLanguage/API:FAQ|Preguntas frecuentes]]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api.lists.wikimedia.org/ Lista de correo]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/ Anuncios de API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Errores y solicitudes]\n</div>\n<strong>Status:</strong> La API de MediaWiki es una interfaz madura y estable que recibe soporte y mejoras constantes. Aunque intentamos evitarlo, ocasionalmente podemos necesitar realizar cambios importantes; suscríbete a la [https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ lista de correo mediawiki-api-announce] para recibir actualizaciones.\n\n<strong>Solicitudes erróneas:</strong> Cuando se envían solicitudes erróneas a la API, se envía un encabezado HTTP con la clave \"MediaWiki-API-Error\" y, a continuación, tanto el valor del encabezado como el del código de error devuelto se establecen con el mismo valor. Para más información, consulte [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Errores y advertencias]].\n\n<p class=\"mw-apisandbox-link\"><strong>Pruebas:</strong> Para facilitar la prueba de solicitudes de API, consulte [[Special:ApiSandbox]].</p>",
@@ -1217,7 +1218,7 @@
 	"apihelp-query+search-paramvalue-prop-titlesnippet": "Añade un fragmento analizado del título de la página.",
 	"apihelp-query+search-paramvalue-prop-redirectsnippet": "Añade un fragmento analizado del título de la redirección.",
 	"apihelp-query+search-paramvalue-prop-redirecttitle": "Añade el título de la redirección coincidente.",
-	"apihelp-query+search-paramvalue-prop-sectionsnippet": "Añade un fragmento analizado del título de la sección correspondiente.",
+	"apihelp-query+search-paramvalue-prop-sectionsnippet": "Añade el título de la sección en coincidencia, con el término de consulta destacando el marcador.",
 	"apihelp-query+search-paramvalue-prop-sectiontitle": "Añade el título de la sección correspondiente.",
 	"apihelp-query+search-paramvalue-prop-categorysnippet": "Añade un fragmento analizado de la categoría correspondiente.",
 	"apihelp-query+search-paramvalue-prop-isfilematch": "Añade un booleano que indica si la búsqueda corresponde al contenido del archivo.",

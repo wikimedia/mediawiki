@@ -25,7 +25,8 @@
 			"Zolgoyo",
 			"ZulfiqorF",
 			"Фарангис Курбонова",
-			"Jaloliddin Madaminov"
+			"Jaloliddin Madaminov",
+			"Darafsh"
 		]
 	},
 	"tog-underline": "Пайвандҳо хаткашида:",
@@ -2144,6 +2145,7 @@
 	"htmlform-no": "На",
 	"htmlform-yes": "Бале",
 	"logentry-delete-restore": "$1 саҳифаро $3 ($4) {{GENDER:$2|барқарор намуд}}",
+	"revdelete-content-hid": "мӯҳтаво пинҳон шуд",
 	"revdelete-restricted": "маҳдудиятҳо ба мудирон амалӣ шуданд",
 	"revdelete-unrestricted": "маҳдудиятҳо аз мудирон бардошта шуданд",
 	"logentry-newusers-create": "Ҳисоби корбарии $1 {{GENDER:$2|эҷод шуд}}",

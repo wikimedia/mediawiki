@@ -11,7 +11,8 @@
 			"Protnet",
 			"Sarri.greek",
 			"Stam.nikos",
-			"McDutchie"
+			"McDutchie",
+			"Warudo"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Τεκμηρίωση]]\n* [[mw:API:FAQ|Συχνές ερωτήσεις]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Λίστα αλληλογραφίας]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Ανακοινώσεις API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Σφάλματα & αιτήματα]\n</div>\n<strong>Κατάσταση:</strong> Όλα τα χαρακτηριστικά που εμφανίζονται σε αυτή τη σελίδα πρέπει να λειτουργούν, αλλά το API είναι ακόμα σε ενεργό ανάπτυξη, και μπορεί να αλλάξει ανά πάσα στιγμή. Εγγραφείτε στη [https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ the mediawiki-api-announce λίστα αλληλογραφίας] για να ειδοποιείστε για ενημερώσεις.\n\n<strong>Εσφαλμένα αιτήματα:</strong> Όταν στέλνονται εσφαλμένα αιτήματα στο API, επιστρέφεται μία κεφαλίδα HTTP (header) με το κλειδί \"MediaWiki-API-Error\" κι έπειτα η τιμή της κεφαλίδας και ο κωδικός σφάλματος που επιστρέφονται ορίζονται στην ίδια τιμή. Για περισσότερες πληροφορίες, δείτε [[mw:API:Errors_and_warnings|API: Σφάλματα και προειδοποιήσεις]].",

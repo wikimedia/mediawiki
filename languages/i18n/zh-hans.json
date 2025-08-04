@@ -217,7 +217,9 @@
 			"Kcx36",
 			"Zorua Fox",
 			"Dabao qian",
-			"1F616EMO"
+			"1F616EMO",
+			"Peterxy12",
+			"Teetrition"
 		]
 	},
 	"tog-underline": "链接下划线：",
@@ -554,7 +556,7 @@
 	"querypage-updates-periodical": "本页定期更新。",
 	"viewsource": "查看源代码",
 	"skin-action-viewsource": "查看源代码",
-	"viewsource-title": "查看“︁$1”︁的源代码",
+	"viewsource-title": "查看“$1”的源代码",
 	"actionthrottled": "操作受限",
 	"actionthrottledtext": "作为反滥用措施，您在短时间段内执行该操作的次数有一个限制，并且您已超过此限制。\n请在数分钟后重试。",
 	"protectedpagetext": "此页面已受到保护，以防止编辑或其他操作。",
@@ -2187,6 +2189,7 @@
 	"doubleredirectstext": "本页列出重定向至另一个重定向页的页面。\n每行包含指向第一个和第二个重定向的链接，以及第二个重定向的目标，这通常是第一个重定向应该指向的“真实”目标页面。\n<del>划掉</del>的项目已解决。",
 	"double-redirect-fixed-move": "[[$1]]已被移动。\n它已自动更新，并且现在重定向至[[$2]]。",
 	"double-redirect-fixed-maintenance": "在维护作业中自动修复双重重定向自[[$1]]至[[$2]]",
+	"double-redirect-fixer": "重定向修复器",
 	"brokenredirects": "受损重定向",
 	"brokenredirectstext": "以下重定向链接至不存在的页面：",
 	"brokenredirects-edit": "编辑",
@@ -4240,7 +4243,7 @@
 	"passwordpolicies-group": "用户组",
 	"passwordpolicies-policies": "策略",
 	"passwordpolicies-policy-minimalpasswordlength": "密码长度必须至少$1个{{PLURAL:$1|字符}}",
-	"passwordpolicies-policy-minimumpasswordlengthtologin": "密码长度必须至少$1个{{PLURAL:$1|字符}}才能登陆",
+	"passwordpolicies-policy-minimumpasswordlengthtologin": "密码长度必须至少$1个{{PLURAL:$1|字符}}才能登录",
 	"passwordpolicies-policy-passwordcannotbesubstringinusername": "密码不能是用户名中含有的子字符串",
 	"passwordpolicies-policy-passwordcannotmatchdefaults": "密码不能在特定的默认密码列表中",
 	"passwordpolicies-policy-maximalpasswordlength": "密码长度必须少于$1个{{PLURAL:$1|字符}}",

@@ -12,7 +12,8 @@
 			"Vlad5250",
 			"Wladek92",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"L'Arpetani"
 		]
 	},
 	"tog-underline": "Solegnér los lims :",
@@ -133,7 +134,7 @@
 	"category-file-count-limited": "{{PLURAL:$1|Ceti fichiér est|Cetos $1 fichiérs sont}} dedens la presenta catègoria.",
 	"index-category": "Pâges endèxâyes",
 	"noindex-category": "Pâges pas endèxâyes",
-	"broken-file-category": "Pâges avouéc lims de fichiérs câssos",
+	"broken-file-category": "Pâges avouéc lims de fichiérs rompus",
 	"about": "A propôs",
 	"article": "Pâge de contegnu",
 	"newwindow": "(s’ôvre dedens na fenétra novèla)",
@@ -145,7 +146,7 @@
 	"anontalk": "Discussion",
 	"navigation": "Navegacion",
 	"and": "&#32;et",
-	"faq": "Quèstions sovent pôses",
+	"faq": "FAQ",
 	"actions": "Accions",
 	"namespaces": "Èspâços de noms",
 	"variants": "Variantes",
