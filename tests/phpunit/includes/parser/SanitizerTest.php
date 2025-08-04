@@ -160,6 +160,27 @@ class SanitizerTest extends MediaWikiIntegrationTestCase {
 				[ 'role' => 'menuitem', 'aria-hidden' => 'false' ],
 				[ 'role' => 'menuitem', 'aria-hidden' => 'false' ],
 			],
+			[ 'div',
+				[
+					'data-wikitext' => 'wikitext',
+					'DATA-WIKITEXT-2' => 'WIKITEXT-2',
+					'data-wikitext-ĳ' => 'wikitext-Ĳ',
+					'data-mw' => 'disallow impersonating parsoid',
+					'DATA-mw' => 'disallow impersonating PARSOID',
+					'data-mw-extension' => 'disallow impersonating extension',
+					'data-:namespaced' => 'disallow namespace',
+					'data- invalid' => 'disallow XSS',
+					'data-/invalid' => 'disallow XSS',
+					'data->invalid' => 'disallow XSS',
+					'data-=invalid' => 'disallow XSS',
+				],
+				[
+					'data-wikitext' => 'wikitext',
+					'DATA-WIKITEXT-2' => 'WIKITEXT-2',
+					'data-wikitext-ĳ' => 'wikitext-Ĳ',
+					# other attributes removed
+				]
+			],
 		];
 	}
 
