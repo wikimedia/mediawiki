@@ -398,17 +398,37 @@ SPARQL;
 	 * @return Traversable
 	 */
 	protected function getCategoryLinksIterator( IReadableDatabase $dbr, array $ids, $fname ) {
-		$it = new BatchRowIterator(
-			$dbr,
-			$dbr->newSelectQueryBuilder()
-				->from( 'categorylinks' )
+		$migrationStage = $this->getServiceContainer()->getMainConfig()->get(
+			MainConfigNames::CategoryLinksSchemaMigrationStage
+		);
+
+		if ( $migrationStage & SCHEMA_COMPAT_READ_OLD ) {
+			$qb = $dbr->newSelectQueryBuilder()
 				->select( [ 'cl_from', 'cl_to' ] )
+				->from( 'categorylinks' )
 				->where( [
 					'cl_type' => 'subcat',
 					'cl_from' => $ids
 				] )
-				->caller( $fname ),
-			[ 'cl_from', 'cl_to' ],
+				->caller( $fname );
+				$primaryKey = [ 'cl_from', 'cl_to' ];
+		} else {
+			$qb = $dbr->newSelectQueryBuilder()
+				->select( [ 'cl_from', 'cl_to' => 'lt_title' ] )
+				->from( 'categorylinks' )
+				->join( 'linktarget', null, 'cl_target_id=lt_id' )
+				->where( [
+					'cl_type' => 'subcat',
+					'cl_from' => $ids
+				] )
+				->caller( $fname );
+				$primaryKey = [ 'cl_from', 'cl_target_id' ];
+		}
+
+		$it = new BatchRowIterator(
+			$dbr,
+			$qb,
+			$primaryKey,
 			$this->mBatchSize
 		);
 		return new RecursiveIteratorIterator( $it );
