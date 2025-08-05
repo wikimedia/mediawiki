@@ -145,8 +145,6 @@ class SessionManager implements SessionManagerInterface {
 		$this->objectFactory = $objectFactory;
 		$this->proxyLookup = $proxyLookup;
 		$this->userNameUtils = $userNameUtils;
-
-		register_shutdown_function( $this->shutdown( ... ) );
 	}
 
 	public function setLogger( LoggerInterface $logger ): void {
@@ -435,8 +433,9 @@ class SessionManager implements SessionManagerInterface {
 
 	/**
 	 * Save all active sessions on shutdown
+	 * @internal Public for call from shutdown function
 	 */
-	private function shutdown() {
+	public function shutdown() {
 		if ( $this->allSessionBackends ) {
 			$this->logger->debug( 'Saving all sessions on shutdown' );
 			if ( session_id() !== '' ) {
