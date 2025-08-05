@@ -3,6 +3,11 @@ const midnightZulu = new Date( '2025-01-01T00:00:00Z' );
 const oneZulu = new Date( '2025-01-01T01:00:00Z' );
 const nextDay = new Date( '2025-01-02T00:00:00Z' );
 
+// Output of Intl.DateTimeFormat#formatRange varies across browsers.
+// Firefox 139+ outputs "x - y" with regular spaces around the en-dash.
+// Chrome 135+ outputs it with U+2009 (THIN SPACE) around the en-dash.
+const norm = ( str ) => typeof str === 'string' ? str.replaceAll( '\u2009', ' ' ) : str;
+
 QUnit.module( 'mediawiki.DateFormatter static functions', ( hooks ) => {
 	let userOptions;
 
@@ -117,7 +122,7 @@ QUnit.module( 'mediawiki.DateFormatter static functions', ( hooks ) => {
 	QUnit.test( 'formatTimeAndDateRange', ( assert ) => {
 		const { formatTimeAndDateRange } = DateFormatter;
 		assert.strictEqual(
-			formatTimeAndDateRange( midnightZulu, oneZulu ),
+			norm( formatTimeAndDateRange( midnightZulu, oneZulu ) ),
 			// Just descriptive, we don't supply fixed patterns for ranges
 			// Ideally it would at least use our month name "(january)"
 			'January 1, 2025, 01:00 – 02:00'
@@ -127,7 +132,7 @@ QUnit.module( 'mediawiki.DateFormatter static functions', ( hooks ) => {
 	QUnit.test( 'formatTimeRange', ( assert ) => {
 		const { formatTimeRange } = DateFormatter;
 		assert.strictEqual(
-			formatTimeRange( midnightZulu, oneZulu ),
+			norm( formatTimeRange( midnightZulu, oneZulu ) ),
 			// Just descriptive
 			'01:00 – 02:00'
 		);
@@ -136,7 +141,7 @@ QUnit.module( 'mediawiki.DateFormatter static functions', ( hooks ) => {
 	QUnit.test( 'formatDateRange', ( assert ) => {
 		const { formatDateRange } = DateFormatter;
 		assert.strictEqual(
-			formatDateRange( midnightZulu, nextDay ),
+			norm( formatDateRange( midnightZulu, nextDay ) ),
 			// Just descriptive
 			'January 1 – 2, 2025'
 		);
@@ -323,7 +328,7 @@ QUnit.module( 'mediawiki.DateFormatter instance methods', ( hooks ) => {
 
 	QUnit.test( 'formatTimeAndDateRange', ( assert ) => {
 		assert.strictEqual(
-			getInstance().formatTimeAndDateRange( midnightZulu, oneZulu ),
+			norm( getInstance().formatTimeAndDateRange( midnightZulu, oneZulu ) ),
 			// Just descriptive, we don't supply fixed patterns for ranges
 			'January 1, 2025, 00:00 – 01:00'
 		);
@@ -331,7 +336,7 @@ QUnit.module( 'mediawiki.DateFormatter instance methods', ( hooks ) => {
 
 	QUnit.test( 'formatTimeRange', ( assert ) => {
 		assert.strictEqual(
-			getInstance().formatTimeRange( midnightZulu, oneZulu ),
+			norm( getInstance().formatTimeRange( midnightZulu, oneZulu ) ),
 			// Just descriptive
 			'00:00 – 01:00'
 		);
@@ -339,7 +344,7 @@ QUnit.module( 'mediawiki.DateFormatter instance methods', ( hooks ) => {
 
 	QUnit.test( 'formatDateRange', ( assert ) => {
 		assert.strictEqual(
-			getInstance().formatDateRange( midnightZulu, nextDay ),
+			norm( getInstance().formatDateRange( midnightZulu, nextDay ) ),
 			// Just descriptive
 			'January 1 – 2, 2025'
 		);

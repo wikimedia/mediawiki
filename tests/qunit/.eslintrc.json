@@ -2,7 +2,7 @@
 	"root": true,
 	"extends": [
 		"wikimedia/client/common",
-		"wikimedia/language/es2020",
+		"wikimedia/language/es2021",
 		"wikimedia/jquery",
 		"wikimedia/mediawiki",
 		"wikimedia/qunit"
