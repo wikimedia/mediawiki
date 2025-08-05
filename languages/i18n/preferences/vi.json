@@ -161,7 +161,7 @@
 	"underline-always": "Luôn luôn",
 	"tog-showhiddencats": "Hiển thị thể loại ẩn",
 	"tog-showrollbackconfirmation": "Yêu cầu xác nhận khi bấm nút lùi hàng loạt sửa đổi",
-	"tog-forcesafemode": "Luôn bật [[mw:Manual:Safemode|chế độ an toàn]]",
+	"tog-forcesafemode": "Luôn bật [[mw:Special:MyLanguage/Manual:Safemode|chế độ an toàn]]",
 	"prefs-help-forcesafemode": "Tắt tập lệnh và bảng định kiểu trên wiki.",
 	"prefs-editing": "Sửa đổi",
 	"prefs-description-editing": "Tùy chỉnh cách bạn thực hiện, theo dõi và đánh giá các chỉnh sửa.",

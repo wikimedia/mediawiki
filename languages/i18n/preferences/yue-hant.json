@@ -6,7 +6,8 @@
 			"Winston Sung",
 			"Yueman",
 			"Z423x5c6",
-			"Juwan"
+			"Juwan",
+			"JeffreyKim"
 		]
 	},
 	"preferences": "喜好設定",
@@ -141,7 +142,7 @@
 	"underline-always": "全部",
 	"tog-showhiddencats": "顯示隱藏類",
 	"tog-showrollbackconfirmation": "撳「反轉」掣嘅時候要撳確認",
-	"tog-forcesafemode": "一定啟用[[mw:Manual:Safemode|安全模式]]",
+	"tog-forcesafemode": "永遠啟用[[mw:Special:MyLanguage/Manual:Safemode|安全模式]]",
 	"prefs-help-forcesafemode": "停用網站本身嘅指令碼同樣式表。",
 	"prefs-editing": "改嘢",
 	"prefs-description-editing": "自訂你點樣去做、追蹤同覆核編輯。",

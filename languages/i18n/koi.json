@@ -579,7 +579,7 @@
 	"temp-user-banner-tooltip-title": "Недырся аккаунт",
 	"temp-user-banner-tooltip-description-expiration-soon": "<strong> Недырся аккаунтнытлӧн уджалан кадыс бырас {{PLURAL:$1|1 лун}} бӧрын </strong>. Кад бырӧм бӧрас, системаӧ пыртӧг, мӧд вильмӧтӧм дырни лоас лӧсьӧтӧма виль.",
 	"temp-user-banner-tooltip-description-expiration-soon-day": "<strong> Недырся аккаунтнытлӧн уджалан кадыс бырас лунісь одзжык  </strong>. Кад бырӧм бӧрас, системаӧ пыртӧг, мӧд вильмӧтӧм дырни лоас лӧсьӧтӧма виль.",
-	"temp-user-banner-tooltip-description-learn-more": "Эта недырся аккаунт вӧлі лӧсьӧтӧма  эта браузерын и устройствоын аккаунттӧг вильмӧтӧммез пыртӧм бӧрын.[[mw:Help:Temporary_accounts|Learn more]].",
+	"temp-user-banner-tooltip-description-learn-more": "Эта недырся аккаунт вӧлі лӧсьӧтӧма  эта браузерын и устройствоын аккаунттӧг вильмӧтӧммез пыртӧм бӧрын.[[mw:Special:MyLanguage/Help:Temporary_accounts|Learn more]].",
 	"temp-user-banner-tooltip-description-login": "[[Special:UserLogin|пырӧ]] или [[Special:CreateAccount|лӧсьӧтӧ аккаунт]], медбы кутны вильмӧтӧммез керисьлісь ним и судзӧтны мӧдік функцияэз.",
 	"blankarticle": "<strong>Тӧдмӧтӧм:</strong> лӧсьӧтӧм листбокныт тырттӧм.Ті кӧ вились личкатӧ \"$1\" ,листбокыс лоас лӧсьӧтӧма пытшкӧстӧг.",
 	"anoneditwarning": "'<strong>Тöд:</strong>Ті эдӧ пырӧ системаӧ.Тіян IP-адрес лоас тыдалана быдӧнныслӧ, гижатӧ кӧ кытшӧмкӧ вежсьӧммез. Ті кӧ <strong>[$1 пыратӧ]</strong> нето <strong>[$2 лӧсьӧтатӧ аккаунт]</strong> сія лоас пыртӧма IP-адрес пыдди, ӧтлаын мӧдік бур торрезӧн",

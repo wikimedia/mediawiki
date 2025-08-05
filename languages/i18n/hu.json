@@ -659,7 +659,7 @@
 	"temp-user-banner-tooltip-title": "Ideiglenes fiók",
 	"temp-user-banner-tooltip-description-expiration-soon": "<strong>Ideiglenes felhasználói fiókod {{PLURAL:$1|1 nap|$1 nap}} múlva lejár.</strong> Miután lejár, egy új fiók jön létre, amikor legközelebb bejelentkezés nélkül végzel szerkesztést.",
 	"temp-user-banner-tooltip-description-expiration-soon-day": "<strong>Ideiglenes fiókod kevesebb mint egy nap múlva lejár.</strong> Miután lejár, egy új jön létre, amikor legközelebb bejelentkezés nélkül végzel szerkesztést.",
-	"temp-user-banner-tooltip-description-learn-more": "Ez az ideiglenes fiók azután került létrehozásra, hogy egy szerkesztést felhasználói fiók nélkül hajtottak végre ezen a böngészőn és eszközön. [[mw:Help:Temporary_accounts|Tudj meg többet]].",
+	"temp-user-banner-tooltip-description-learn-more": "Ez az ideiglenes fiók azután jött létre, hogy egy szerkesztést felhasználói fiók nélkül hajtottak végre ezen a böngészőn és eszközön. [[mw:Special:MyLanguage/Help:Temporary_accounts|Tudj meg többet]].",
 	"temp-user-banner-tooltip-description-login": "[[Special:UserLogin|Jelentkezz be]] vagy [[Special:CreateAccount|hozz létre egy fiókot]], hogy a jövőbeli közreműködéseid a felhasználóneved alatt jelenhessenek meg, illetve, hogy hozzáférj további funkciókhoz.",
 	"blankarticle": "<strong>Figyelem:</strong> A létrehozandó lap üres.\nHa ismét a „$1” gombra kattintasz, a lapot tartalom nélkül fogod létrehozni.",
 	"anoneditwarning": "<strong>Figyelem:</strong> Nem vagy bejelentkezve. Ha szerkesztesz, az IP-címed nyilvánosan látható lesz a laptörténetben. Ha <strong>[$1 bejelentkezel]</strong> vagy <strong>[$2 regisztrálsz]</strong>, a szerkesztéseid a felhasználónevedhez lesznek társítva, egyéb hasznos dolgok mellett.",

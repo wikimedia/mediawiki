@@ -610,7 +610,7 @@
 	"temp-user-banner-tooltip-title": "Ханна аккаунт",
 	"temp-user-banner-tooltip-description-expiration-soon": "<strong>Хьан ханна йолу аккаунтан хан чекхйолу {{PLURAL:$1|$1 де}} даьлча.</strong> И хан чекхйаьлча системин чу ца гӀош хийцамаш болийча кхуллура йу керла аккаунт.",
 	"temp-user-banner-tooltip-description-expiration-soon-day": "<strong>Хьан ханна йолу аккаунт цхьа де далале чекхйолу.</strong> Цуьнан хан чекхйаьлча, авторизаци ца йеш рогӀера ахьа хийцамаш бича, керла кхоллалур йу.",
-	"temp-user-banner-tooltip-description-learn-more": "И ханна йолу аккаунт йинера, аккаунт йоцучу хенахь нисдар динчул тӀаьхьа оцу браузерехь а, гӀирсехь а. [[mw:Help:Temporary_accounts|Биллгала]].",
+	"temp-user-banner-tooltip-description-learn-more": "И ханна йолу аккаунт йинера, аккаунт йоцучу хенахь нисдар динчул тӀаьхьа оцу браузерехь а, гӀирсехь а. [[mw:Special:MyLanguage/Help:Temporary_accounts|Биллгала]].",
 	"temp-user-banner-tooltip-description-login": "[[Special:UserLogin|ЧугӀо]] йа [[Special:CreateAccount|кхолла аккаунт]], дийр долчу нисдарийн, кхечу функцешна тӀекхачийта авторалла Ӏалашдан.",
 	"blankarticle": "<strong>ДӀахьедар:</strong> Ахьа кхуллуш йолу агӀо йаьсса йу.\nЙуха нуьйда «$1» тӀетаӀайахь, агӀо цхьа чулацам боцуш кхуллур йу.",
 	"anoneditwarning": "<strong>Тергам бе:</strong> Системин чугӀо. Ахьа муьлха а хийцамаш бахь хьан IP-адрес берриге тӀекхочуш хира ду. Хьо <strong>[$1 системин чохь хилча]</strong> йа ахьа <strong>[$2 аккаунт кхоллахь]</strong>, цуьна цӀе лелора йу IP-адресан метта, кхичу таранийн могӀаца.",

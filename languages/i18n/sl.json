@@ -612,7 +612,7 @@
 	"temp-user-banner-tooltip-title": "Začasni račun",
 	"temp-user-banner-tooltip-description-expiration-soon": "<strong>Vaš začasni račun bo potekel čez manj kot {{PLURAL:$1|one=en dan|two=dva dni|few=$1 dni|$1 dni}}.</strong> Ko bo potekel, bo ob vašem naslednjem urejanju brez prijave ustvarjen nov.",
 	"temp-user-banner-tooltip-description-expiration-soon-day": "<strong>Vaš začasni račun bo potekel prej kot v enem dnevu.</strong> Ko bo potekel, bo ob vašem naslednjem urejanju brez prijave ustvarjen nov.",
-	"temp-user-banner-tooltip-description-learn-more": "Ta začasni račun je bil ustvarjen po urejanju brez računa v tem brskalniku in napravi. [[mw:Help:Temporary_accounts|Več o tem]].",
+	"temp-user-banner-tooltip-description-learn-more": "Ta začasni račun je bil ustvarjen po urejanju brez računa v tem brskalniku in napravi. [[mw:Special:MyLanguage/Help:Temporary_accounts|Več o tem]].",
 	"temp-user-banner-tooltip-description-login": "[[Special:UserLogin|Prijavite se]] ali si [[Special:CreateAccount|ustvarite račun]], da se vam priznajo prihodnja urejanja in dostop do drugih funkcij.",
 	"blankarticle": "<strong>Opozorilo:</strong> Stran, ki jo ustvarjate, je prazna.\nČe znova kliknete »$1«, bomo stran ustvarili brez kakršne koli vsebine.",
 	"anoneditwarning": "<strong>Opozorilo:</strong> Niste prijavljeni. Če boste opravili kakršno koli urejanje, bo vaš IP-naslov javno viden. Če se boste <strong>[$1 prijavili]</strong> ali če si boste <strong>[$2 ustvarili račun]</strong>, bodo poleg drugih prednosti vaša urejanja pripisana vašemu uporabniškemu imenu.",

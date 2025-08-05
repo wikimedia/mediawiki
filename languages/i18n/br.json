@@ -601,7 +601,7 @@
 	"temp-user-banner-tooltip-title": "Kont berrbad",
 	"temp-user-banner-tooltip-description-expiration-soon": "<strong>Mont a ra ho kont berrbad da dermen a-benn {{PLURAL:$1|$1 deiz}}.</strong> Goude ma vo echuet e vo krouet unan nevez ar c’hentañ gwech ma rit c'hemm hep kevreañ.",
 	"temp-user-banner-tooltip-description-expiration-soon-day": "<strong>Mont a ra ho kont berrbad a-benn nebeutoc'h eget un devezh.</strong> Goude ma vo echuet e vo krouet unan nevez ar c’hentañ gwech ma rit ur c'hemm hep kevreañ.",
-	"temp-user-banner-tooltip-description-learn-more": "Krouet eo bet ar gont berrbad-mañ goude ma oa bet graet ur c'hemm hep kont ebet war ar merdeer hag an ardivink-mañ. [[mw:Help:Temporary_accounts|Gouzout hiroc'h]].",
+	"temp-user-banner-tooltip-description-learn-more": "Krouet eo bet ar gont berrbad-mañ goude ma oa bet graet ur c'hemm hep kont ebet war ar merdeer hag an ardivink-mañ. [[mw:Special:MyLanguage/Help:Temporary_accounts|Gouzout hiroc'h]].",
 	"temp-user-banner-tooltip-description-login": "[[Special:UserLogin|Kevreit]] pe [[Special:CreateAccount|krouit ur gont]] evit ma vo staget ho kemmoù da zont outi ha gallout ober gant arc'hweladurioù all.",
 	"blankarticle": "<strong>Taolit evezh :</strong> Goullo eo ar bajenn emaoc'h o krouiñ.\nMar klikit war \"$1\" en-dro e vo krouet hep netra ebet e-barzh.",
 	"anoneditwarning": "<strong>Diwallit :</strong> N'oc'h ket kevreet. Gallout a raio an holl dud gwelet ho chomlec'h IP ma rit kemmoù. Ma <strong>[$1 kevreit]</strong> pe <strong>[$2 krouit ur gont]</strong>, e vo deroet ho kemmoù d'hoc'h anv-implijer, e-touez spletoù all.",

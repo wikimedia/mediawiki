@@ -145,7 +145,7 @@
 	"underline-always": "Alati",
 	"tog-showhiddencats": "Kuva peidetud kategooriad",
 	"tog-showrollbackconfirmation": "Küsi tühistamislingile klõpsamise järel kinnitust",
-	"tog-forcesafemode": "Luba alati [[mw:Manual:Safemode|turvarežiim]]",
+	"tog-forcesafemode": "Luba alati [[mw:Special:MyLanguage/Manual:Safemode|turvarežiim]]",
 	"prefs-help-forcesafemode": "Keelatakse kohandatud skriptid ja laadilehed.",
 	"prefs-editing": "Toimetamine",
 	"prefs-description-editing": "Kohanda, kuidas muudatusi teed, jälgid ja üle vaatad.",

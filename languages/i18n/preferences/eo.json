@@ -158,7 +158,7 @@
 	"underline-always": "Ĉiam",
 	"tog-showhiddencats": "Montri kaŝitajn kategoriojn",
 	"tog-showrollbackconfirmation": "Montri konfirman dialogon kiam malfariga ligilo alklakiĝas",
-	"tog-forcesafemode": "Ĉiam ebligi [[mw:Manual:Safemode|sekuran reĝimon]]",
+	"tog-forcesafemode": "Ĉiam ebligi [[mw:Special:MyLanguage/Manual:Safemode|sekuran reĝimon]]",
 	"prefs-help-forcesafemode": "Malebligu envikiajn skriptojn kaj stilfoliojn.",
 	"prefs-editing": "Redaktado",
 	"prefs-description-editing": "Agordu kiel vi faras, spuras kaj revizias redaktojn.",

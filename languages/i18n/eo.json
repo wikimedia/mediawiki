@@ -636,7 +636,7 @@
 	"temp-user-banner-tooltip-title": "Provizora konto",
 	"temp-user-banner-tooltip-description-expiration-soon": "Via portempa konto eksvalidiĝos post {{PLURAL:$1|1 tago|$1 tagoj}}</strong>. Post kiam ĝi eksvalidiĝos, nova estos kreita la venontan fojon kiam vi faros redakton sen ensaluti.",
 	"temp-user-banner-tooltip-description-expiration-soon-day": "<strong>Via portempa konto eksvalidiĝos en malpli ol tago.</strong>. Post kiam ĝi eksvalidiĝos, nova estos kreita la venontan fojon kiam vi faros redakton sen ensaluti.",
-	"temp-user-banner-tooltip-description-learn-more": "Ĉi tiu provizora konto estis kreita post kiam redakto estis farita sen konto en ĉi tiu retumilo kaj aparato. [[mw:Help:Temporary_accounts|Lernu pli]].",
+	"temp-user-banner-tooltip-description-learn-more": "Ĉi tiu provizora konto estis kreita post kiam redakto estis farita sen konto en ĉi tiu retumilo kaj aparato. [[mw:Special:MyLanguage/Help:Temporary_accounts|Lernu pli]].",
 	"temp-user-banner-tooltip-description-login": "[[Special:UserLogin|Ensalutu]] aŭ [[Special:CreateAccount|kreu konton]] por ricevi krediton por estontaj redaktoj kaj aliri aliajn funkciojn.",
 	"blankarticle": "<strong>Atentigo:</strong> la paĝo kiun vi kreas estas malplena.\nSe vi denove alklakos \"$1\", la paĝo estos konservita sen enhavo.",
 	"anoneditwarning": "<strong>Averto:</strong> vi ne estas ensalutinta.\nVia IP-adreso enregistriĝos en la redakta historio de tiu ĉi paĝo. Se vi <strong>[$1 ensalutas]</strong> aŭ <strong>[$2 kreas konton]</strong>, viaj redaktoj estos atribuitaj al via uzantnomo, kune kun aliaj bonaĵoj.",

@@ -12,7 +12,8 @@
 			"Vlad5250",
 			"Wladek92",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"L'Arpetani"
 		]
 	},
 	"sunday": "demenge",
@@ -82,7 +83,7 @@
 	"category-file-count-limited": "{{PLURAL:$1|Ceti fichiér est|Cetos $1 fichiérs sont}} dedens la presenta catègoria.",
 	"index-category": "Pâges endèxâyes",
 	"noindex-category": "Pâges pas endèxâyes",
-	"broken-file-category": "Pâges avouéc lims de fichiérs câssos",
+	"broken-file-category": "Pâges avouéc lims de fichiérs rompus",
 	"about": "A propôs",
 	"article": "Pâge de contegnu",
 	"newwindow": "(s’ôvre dedens na fenétra novèla)",
@@ -94,7 +95,7 @@
 	"anontalk": "Discussion",
 	"navigation": "Navegacion",
 	"and": "&#32;et",
-	"faq": "Quèstions sovent pôses",
+	"faq": "FAQ",
 	"actions": "Accions",
 	"namespaces": "Èspâços de noms",
 	"variants": "Variantes",
@@ -594,7 +595,7 @@
 	"temp-user-banner-tooltip-title": "Comptio temporèro",
 	"temp-user-banner-tooltip-description-expiration-soon": "<strong>Voutron comptio temporèro èxpire dens {{PLURAL:$1|1 jorn|$1 jorns}}.</strong> Aprés son èxpiracion, un comptio novél serat fêt lo prochen côp que vos faréd un changement sen vos branchiér.",
 	"temp-user-banner-tooltip-description-expiration-soon-day": "<strong>Voutron comptio temporèro èxpire dens muens d’un jorn.</strong> Aprés son èxpiracion, un comptio novél serat fêt lo prochen côp que vos faréd un changement sen vos branchiér.",
-	"temp-user-banner-tooltip-description-learn-more": "Cél comptio temporèro est étâ fêt aprés qu’un changement seye étâ fêt sen comptio sus cél navegator et cél aparèly. [[mw:Help:Temporary_accounts|Nen savêr més]].",
+	"temp-user-banner-tooltip-description-learn-more": "Cél comptio temporèro est étâ fêt aprés qu’un changement seye étâ fêt sen comptio sus cél navegator et cél aparèly. [[mw:Special:MyLanguage/Help:Temporary_accounts|Nen savêr més]].",
 	"temp-user-banner-tooltip-description-login": "[[Special:UserLogin|Sè branchiér]] ou ben [[Special:CreateAccount|fâre un comptio]] por arrevar a avêr lo crèdit de changements que vindront ples târd et pués a d’ôtres fonccionalitâts.",
 	"blankarticle": "<strong>Atencion :</strong> la pâge que vos éte aprés fâre est voueda.\nSe vos tornâd cllicar dessus « $1 », la pâge serat fêta sen gins de contegnu.",
 	"anoneditwarning": "<strong>Atencion :</strong> vos éte pas branchiê. Voutron adrèce IP serat visibla devant tot lo mondo se vos féte de changements. Se vos <strong>[$1 vos branchiéd]</strong> ou ben <strong>[$2 féte un comptio]</strong>, voutros changements seront atribuâs a voutron nom d’utilisator, ensemblo avouéc d’ôtros avantâjos.",

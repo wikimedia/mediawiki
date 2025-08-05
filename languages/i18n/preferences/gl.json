@@ -143,7 +143,7 @@
 	"underline-always": "Sempre",
 	"tog-showhiddencats": "Amosar as categorías agochadas",
 	"tog-showrollbackconfirmation": "Amosar unha mensaxe de confirmación ao facer clic nunha ligazón de reversión",
-	"tog-forcesafemode": "Activar sempre o [[mw:Manual:Safemode|modo seguro]]",
+	"tog-forcesafemode": "Activar sempre o [[mw:Special:MyLanguage/Manual:Safemode|modo seguro]]",
 	"prefs-help-forcesafemode": "Desactivar as escrituras e as follas de estilo do wiki.",
 	"prefs-editing": "Edición",
 	"prefs-description-editing": "Personaliza como realizas, fas seguimento e revisas as edicións.",

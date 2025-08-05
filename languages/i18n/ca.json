@@ -669,7 +669,7 @@
 	"temp-user-banner-tooltip-title": "Compte provisional",
 	"temp-user-banner-tooltip-description-expiration-soon": "<strong>El vostre compte temporal caduca en {{PLURAL:$1|1 dia|$1 dies}}.</strong> Després que caduqui, se'n crearà un de nou la propera vegada que feu una edició sense iniciar la sessió.",
 	"temp-user-banner-tooltip-description-expiration-soon-day": "<strong>El vostre compte temporal caduca en menys d'un dia.</strong> Després que caduqui, se'n crearà un de nou la propera vegada que feu una edició sense iniciar la sessió.",
-	"temp-user-banner-tooltip-description-learn-more": "Aquest compte temporal s'ha creat després d'una edició que es va fer sense compte en aquest navegador i dispositiu. [[mw:Help:Temporary_accounts|Més informació]].",
+	"temp-user-banner-tooltip-description-learn-more": "Aquest compte temporal s'ha creat després d'una edició que es va fer sense compte en aquest navegador i dispositiu. [[mw:Special:MyLanguage/Help:Temporary_accounts|Més informació]].",
 	"temp-user-banner-tooltip-description-login": "[[Special:UserLogin|Inicieu la sessió]] o [[Special:CreateAccount|creeu un compte]] per obtenir reconeixement en futures edicions i accedir a altres funcions.",
 	"blankarticle": "<strong>Avís:</strong> La pàgina que esteu creant és en blanc.\nSi feu clic a «$1» un altre cop, la pàgina es crearà sense cap contingut.",
 	"anoneditwarning": "<strong>Avís</strong>: No heu iniciat cap sessió. Per tant, la vostra adreça IP serà visible públicament si feu qualsevol modificació. Si <strong>[$1 inicieu una sessió]</strong> o <strong>[$2 creeu un compte]</strong>, les vostres edicions s'atribuiran al vostre nom d'usuari, juntament amb altres beneficis.",

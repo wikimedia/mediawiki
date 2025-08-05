@@ -709,7 +709,7 @@
 	"temp-user-banner-tooltip-title": "حساب مؤقت",
 	"temp-user-banner-tooltip-description-expiration-soon": "<strong>تنتهي صلاحية حسابك المؤقت في {{PLURAL:$1|| يوم واحد| يومين| $1 أيام| $1 يومًا|$1 يوم}}.</strong> بعد انتهاء صلاحيته، سيتم إنشاء حساب جديد في المرة التالية التي تقوم فيها بإجراء تعديل دون تسجيل الدخول.",
 	"temp-user-banner-tooltip-description-expiration-soon-day": "<strong>تنتهي صلاحية حسابك المؤقت في أقل من يوم واحد.</strong> بعد انتهاء صلاحيته، سيتم إنشاء حساب جديد في المرة التالية التي تقوم فيها بإجراء تعديل دون تسجيل الدخول.",
-	"temp-user-banner-tooltip-description-learn-more": "أنشئ هذا الحساب المؤقت بعد إجراء تعديل دون حساب عبر هذا المتصفح والجهاز.  [[mw:Help:Temporary_accounts|تعلم المزيد]].",
+	"temp-user-banner-tooltip-description-learn-more": "تم إنشاء هذا الحساب المؤقت بعد إجراء تعديل بدون حساب على هذا المتصفح والجهاز. [[mw:Special:MyLanguage/Help:Temporary_accounts|تعرف على المزيد]].",
 	"temp-user-banner-tooltip-description-login": "[[Special:UserLogin|سجل الدخول]] أو [[Special:CreateAccount|أنشئ حسابًا]] للحصول على رصيد للتعديلات المستقبلية والوصول إلى الميزات الأخرى.",
 	"blankarticle": "<strong>تنبيه:</strong> الصفحة التي تريد إنشاءها فارغة. إذا نقرت \"$1\" ثانية فستنشأ الصفحة بدون محتوى.",
 	"anoneditwarning": "<strong>تحذير:</strong> أنت غير مسجل الدخول. عنوان الأيبي الخاص بك سيكون معروضا بشكل علني لو قمت بأي تعديلات. لو أنك <strong>[$1 سجلت الدخول]</strong> أو <strong>[$2 أنشأت حسابا]</strong>، فتعديلاتك ستنسب لاسم المستخدم الخاص بك، بالإضافة إلى فوائد أخرى.",

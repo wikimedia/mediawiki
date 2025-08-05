@@ -706,7 +706,7 @@
 	"temp-user-banner-tooltip-title": "Konto tymczasowe",
 	"temp-user-banner-tooltip-description-expiration-soon": "<strong>Twoje konto tymczasowe wygaśnie za {{PLURAL:$1|jeden dzień|$1 dni}}.</strong> Po wygaśnięciu utworzone zostanie nowe, gdy tylko dokonasz edycji bez logowania się.",
 	"temp-user-banner-tooltip-description-expiration-soon-day": "<strong>Twoje konto tymczasowe wygaśnie za mniej niż dobę.</strong> Po wygaśnięciu utworzone zostanie nowe, gdy tylko dokonasz edycji bez logowania się.",
-	"temp-user-banner-tooltip-description-learn-more": "To konto tymczasowe zostało utworzone po wykonaniu edycji bez posiadania konta w tej przeglądarce bądź na tym urządzeniu. [[mw:Help:Temporary_accounts|Dowiedz się więcej]].",
+	"temp-user-banner-tooltip-description-learn-more": "To konto tymczasowe zostało utworzone po wykonaniu edycji bez posiadania konta w tej przeglądarce bądź na tym urządzeniu. [[mw:Special:MyLanguage/Help:Temporary_accounts|Dowiedz się więcej]].",
 	"temp-user-banner-tooltip-description-login": "[[Special:UserLogin|Zaloguj się]] bądź [[Special:CreateAccount|załóż konto]], aby twoje przyszłe edycje były Ci przypisywane oraz aby uzyskać dostęp do pozostałych funkcji.",
 	"blankarticle": "<strong>Uwaga:</strong> Strona, którą masz zamiar utworzyć jest pusta.\nJeżeli klikniesz \"$1\" ponownie, strona zostanie utworzona bez jakiejkolwiek treści.",
 	"anoneditwarning": "<strong>Uwaga:</strong> Nie jesteś zalogowany. Jeśli wykonasz jakąkolwiek zmianę, Twój adres IP będzie widoczny publicznie. Jeśli <strong>[$1 zalogujesz się]</strong> lub <strong>[$2 utworzysz konto]</strong>, Twoje zmiany zostaną przypisane do konta, wraz z innymi korzyściami.",

@@ -600,7 +600,7 @@
 	"temp-user-banner-tooltip-title": "Be kukuoo mli akauntu",
 	"temp-user-banner-tooltip-description-expiration-soon": "<strong>O be kukuoo mli akauntu lɛ baaho yɛ {{PLURAL:$1| Gbi kome| $1 gbii}}.</strong> Kɛji esɛɛ efo lɛ, abaafee ehee be kroko ni obaafee tsakemɔ ni okɛ ohe wooo mli.",
 	"temp-user-banner-tooltip-description-expiration-soon-day": "<strong>O be kukuoo mli akauntu lɛ baagbe naa yɛ nɔ ni shɛɛɛ gbi kome mli.</strong> Kɛji esɛɛ efo lɛ, abaafee ehee be kroko ni obaafee tsakemɔ ni okɛ ohe wooo mli.",
-	"temp-user-banner-tooltip-description-learn-more": "Afee be kukuoo mli akauntu nɛɛ beni afee tsakemɔ ko ni akauntu bɛ brauza kɛ kɔmpiuta nɛɛ nɔ lɛ sɛɛ. [[mw:Help:Temporary_accounts|Le nɔ hewɔ]].",
+	"temp-user-banner-tooltip-description-learn-more": "Afee be kukuoo mli akauntu nɛɛ beni afee tsakemɔ ko ni akauntu bɛ brauza kɛ kɔmpiuta nɛɛ nɔ lɛ sɛɛ. [[mw:Special:MyLanguage/Help:Temporary_accounts|Le nɔ hewɔ]].",
 	"temp-user-banner-tooltip-description-login": "[[Special:UserLogin| Botemɔ akauntu lɛ mli]] aloo [[Special:CreateAccount|Feemɔ akauntu]] koni ona wɔsɛɛ tsakemɔi ni obaafee lɛ hesɛɛ, ni onyɛ ona nibii kroko hu ahegbɛ.",
 	"anoneditwarning": "<strong>Kɔkɔbɔɔ:</strong> Oboteee mli. O IP adrɛs lɛ baaje kpo kɛji ofee tsakemɔi komɛi. Kɛji <strong>[ $1 obote mli]</strong> loo <strong>[ $2 fee akauntu]</strong> , otsakemɔi lɛ baafata ogbɛi ni akɛtsuɔ nii lɛ he, kɛ sɛɛnamɔi krokomɛi.",
 	"autocreate-edit-warning": "<strong>Kɔkɔbɔɔ:</strong> Oboteee mli. Kɛji otsake nɔ ko lɛ, abaafee be kukuoo mli akaunt aha bo. [[{{MediaWiki:tempuser-helppage}}|Learn more]]. <strong>[ $1 Botemɔ mli]</strong> loo <strong>[ $2 feemɔ akauntu]</strong> koni oya nɔ onine ashɛ adafitswaa nɔ beni akaunt nɛɛ be eho, ni onyɛ oya nibii krokomɛi anɔ.",

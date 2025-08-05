@@ -605,7 +605,7 @@
 	"temp-user-banner-tooltip-title": "Conto temporari",
 	"temp-user-banner-tooltip-description-expiration-soon": "<strong>Tu conto temporari expirara in {{PLURAL:$1|un die|$1 dies}}.</strong> Post su expiration, un nove conto temporari essera create le proxime vice que tu apporta un modification sin aperir session.",
 	"temp-user-banner-tooltip-description-expiration-soon-day": "<strong>Tu conto temporari expirara in minus de un die.</strong> Post su expiration, un nove conto temporari essera create le proxime vice que tu apporta un modification sin aperir session.",
-	"temp-user-banner-tooltip-description-learn-more": "Iste conto temporari ha essite create post que un modification ha essite facite sin conto sur iste navigator e apparato. [[mw:Help:Temporary_accounts|Saper plus]].",
+	"temp-user-banner-tooltip-description-learn-more": "Iste conto temporari ha essite create post que un modification ha essite facite sin conto sur iste navigator e apparato. [[mw:Special:MyLanguage/Help:Temporary_accounts|Saper plus]].",
 	"temp-user-banner-tooltip-description-login": "[[Special:UserLogin|Aperi session]] o [[Special:CreateAccount|crea un conto]] pro esser recognoscite pro futur modificationes e acceder a altere functiones.",
 	"blankarticle": "<strong>Advertimento:</strong> Le pagina que tu vole crear es vacue.\nSi tu clicca de novo sur “$1”, le pagina essera create sin contento.",
 	"anoneditwarning": "<strong>Attention:</strong> Tu non ha aperite session. Tu adresse IP essera publicamente visibile si tu face modificationes. Si tu <strong>[$1 aperi session]</strong> o <strong>[$2 crea un conto]</strong>, le modificationes essera attribuite a tu nomine de usator, inter altere avantages.",

@@ -634,7 +634,7 @@
 	"temp-user-banner-tooltip-title": "Laikina paskyra",
 	"temp-user-banner-tooltip-description-expiration-soon": "<strong>Jūsų laikinoji paskyra baigs galioti po {{PLURAL:$1|1 dienos|$1 dienų}}.</strong> Pasibaigus jos galiojimo laikui bus sukurtas nauja, kai kitą kartą redaguosite neprisijungę.",
 	"temp-user-banner-tooltip-description-expiration-soon-day": "<strong>Jūsų laikinoji paskyra baigs galioti greičiau nei po dienos.</strong> Pasibaigus jos galiojimo laikui kitą kartą, kai redaguosite neprisijungę, bus sukurta nauja.",
-	"temp-user-banner-tooltip-description-learn-more": "Ši laikina paskyra buvo sukurta po to, kai be paskyros buvo atliktas keitimas šioje naršyklėje ir įrenginyje. [[mw:Help:Temporary_accounts|Sužinokite daugiau]].",
+	"temp-user-banner-tooltip-description-learn-more": "Ši laikina paskyra buvo sukurta po to, kai be paskyros buvo atliktas keitimas šioje naršyklėje ir įrenginyje. [[mw:Special:MyLanguage/Help:Temporary_accounts|Sužinokite daugiau]].",
 	"temp-user-banner-tooltip-description-login": "[[Special:UserLogin|Prisijunkite]] arba [[Special:CreateAccount|sukurkite paskyrą]], kad jums būtų priskirti būsimi keitimai ir galėtumėte naudotis kitomis funkcijomis.",
 	"blankarticle": "<strong>Dėmesio:</strong> Jūsų kuriamas straipsnis yra tuščias. Jei vėl paspausite \"$1\", puslapis bus sukurtas be jokio turinio.",
 	"anoneditwarning": "<strong>Dėmesio:</strong> Jūs nesate prisijungęs. Jūsų IP adresas bus viešai matomas, jei atliksite kokius nors keitimus. Jeigu <strong>[$1 prisijungsite]</strong> arba <strong>[$2 sukursite paskyrą]</strong>, jūsų keitimai bus priskirti jūsų naudotojo vardui; drauge įgysite naujų galimybių.",

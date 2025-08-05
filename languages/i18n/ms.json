@@ -629,7 +629,7 @@
 	"temp-user-banner-tooltip-title": "Akaun sementara",
 	"temp-user-banner-tooltip-description-expiration-soon": "<strong>Akaun sementara anda tamat tempoh dalam {{PLURAL:$1|1 hari|$1 hari}}.</strong> Selepas tamat tempoh, akaun baharu akan dibuat pada kali seterusnya anda membuat penyuntingan tanpa log masuk.",
 	"temp-user-banner-tooltip-description-expiration-soon-day": "<strong>Akaun sementara anda akan tamat tempoh dalam masa kurang daripada sehari.</strong> Selepas tamat tempoh, akaun baharu akan dibuat pada kali seterusnya anda membuat penyuntingan tanpa log masuk.",
-	"temp-user-banner-tooltip-description-learn-more": "Akaun sementara ini dicipta selepas suntingan yang dibuat tanpa akaun di pelayar dan peranti ini. [[mw:Help:Temporary_accounts|Ketahui lebih lanjut]].",
+	"temp-user-banner-tooltip-description-learn-more": "Akaun sementara ini dicipta selepas suntingan yang dibuat tanpa akaun di pelayar dan peranti ini. [[mw:Special:MyLanguage/Help:Temporary_accounts|Ketahui lebih lanjut]].",
 	"temp-user-banner-tooltip-description-login": "[[Special:UserLogin|Log masuk]] atau [[Special:CreateAccount|buka akaun]] untuk mendapatkan penghargaan untuk suntingan akan datang dan mencapai ciri lain.",
 	"blankarticle": "<strong>Amaran:</strong> Laman yang anda sedang cipta adalah kosong.\nJika anda mengklik \"$1\" sekali lagi, laman ini akan dicipta tanpa sebarang kandungan.",
 	"anoneditwarning": "<strong>Amaran:</strong> Anda tidak log masuk. Alamat IP anda akan disiarkan kepada umum jika anda membuat sebarang suntingan. Jika anda <strong>[$1 log masuk]</strong> atau <strong>[$2 membuka akaun]</strong>, suntingan anda akan diatribusikan kepada nama pengguna anda di samping manfaat-manfaat lain.",

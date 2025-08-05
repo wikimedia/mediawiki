@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Bidumsábme",
-			"Olve Utne"
+			"Olve Utne",
+			"Yupik"
 		]
 	},
 	"sunday": "ájjlek",
@@ -1168,5 +1169,6 @@
 	"skin-action-delete": "Gádodä",
 	"skin-action-move": "Sirde",
 	"newpages-showhide-bots": "$1 båhtå",
-	"blockedtext-block-ip": "Duv dálatj IP-adrässa lä $1."
+	"blockedtext-block-ip": "Duv dálatj IP-adrässa lä $1.",
+	"renameusernew": "Åđđå adnejnamma:"
 }

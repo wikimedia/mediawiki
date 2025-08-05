@@ -737,7 +737,7 @@
 	"temp-user-banner-tooltip-title": "臨時帳號",
 	"temp-user-banner-tooltip-description-expiration-soon": "<strong>您的臨時帳號將於{{PLURAL:$1|$1天後}}過期</strong>。此臨時帳號過期後，下一次您在未登入狀態下編輯時將建立新的臨時帳號。",
 	"temp-user-banner-tooltip-description-expiration-soon-day": "<strong>您的臨時帳號將於1天之內過期</strong>。此臨時帳號過期後，下一次您在未登入狀態下編輯時將建立新的臨時帳號。",
-	"temp-user-banner-tooltip-description-learn-more": "由於此瀏覽器及裝置上在您做出編輯時沒有登入任何帳號，已為您自動建立臨時帳號。[[mw:Help:Temporary_accounts|了解詳細資訊]]。",
+	"temp-user-banner-tooltip-description-learn-more": "由於此瀏覽器及裝置上在您做出編輯時沒有登入任何帳號，已為您自動建立臨時帳號。[[mw:Special:MyLanguage/Help:Temporary_accounts|了解詳細資訊]]。",
 	"temp-user-banner-tooltip-description-login": "請[[Special:UserLogin|登入]]或[[Special:CreateAccount|建立帳號]]，這樣一來之後的編輯將歸於您的名下，且您將可以使用更多功能。",
 	"blankarticle": "<strong>警告：</strong>您正在建立的頁面是空白的。如果您再按一下「$1」，將建立沒有任何內容的頁面。",
 	"anoneditwarning": "<strong>警告：</strong>您尚未登入。 若您進行任何的編輯您的 IP 位址將會被公開。 若您 <strong>[$1 登入]</strong> 或 <strong>[$2 建立帳號]</strong>，您的編輯將會以您的使用者名稱標示，並能擁有另外的益處。",

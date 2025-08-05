@@ -19,7 +19,8 @@
 			"Olsi",
 			"Puntori",
 			"Vanished 456321456",
-			"Vinie007"
+			"Vinie007",
+			"Xhulianoo"
 		]
 	},
 	"preferences": "Parapëlqimet",
@@ -76,7 +77,7 @@
 	"tog-requireemail": "Dërgo mesazh elektronik për rivendosjen e fjalëkalimit vetëm kur vendosen dhe adresa e mesazheve elektronike, dhe emri i përdoruesit njëkohësisht.",
 	"noemailprefs": "Detyrohet një adresë email-i për të përdorur këtë mjet.",
 	"emailnotauthenticated": "Adresa juaj email nuk është  konfirmuar ende.\nAsnjë email nuk do të dërgohet për ndonjë nga karakteristikat e mëposhtme.",
-	"emailconfirmlink": "Vërtetoni adresën tuaj",
+	"emailconfirmlink": "Konfirmo adresën tënde të email-it",
 	"prefs-emailconfirm-label": "Konfirmimi i emailit:",
 	"emailauthenticated": "Adresa juaj është vërtetuar më $2 $3.",
 	"allowemail": "Lejoji përdoruesit e tjerë të më dërgojnë email",
@@ -154,7 +155,7 @@
 	"tog-hidepatrolled": "Fshih redaktimet e kontrolluara nga ndryshimet më të fundit",
 	"tog-newpageshidepatrolled": "Fshih faqet e kontrolluara nga lista e faqeve të reja",
 	"tog-shownumberswatching": "Trego numrin e përdoruesve që vëzhgojnë këtë faqe",
-	"prefs-watchlist": "Lista mbikqyrëse",
+	"prefs-watchlist": "Lista mbikëqyrëse",
 	"prefs-editwatchlist": "Redakto listën mbikqyrëse",
 	"prefs-editwatchlist-label": "Ndrysho listën tuaj mbikëqyrëse:",
 	"prefs-editwatchlist-edit": "Shiko dhe hiq tituj në listë tuaj mbikëqyrëse",
@@ -182,7 +183,7 @@
 	"tog-watchdeletion": "Shto faqet dhe materialet multimedialë që fshij në listën time të mbikqyrjes",
 	"tog-watchcreations": "Shto faqet e krijuara nga unë dhe materialet multimedialë të ngarkuar nga unë në listën time të mbikqyrjes",
 	"tog-watchuploads": "Shto materialet multimedialë të rinj që ngarkoj në listën time të mbikëqyrjes",
-	"tog-watchrollback": "Shto faqet ku unë kam kryer një rikthim te lista ime mbikqyrëse",
+	"tog-watchrollback": "Shto faqet ku kam kryer një rikthim në listën time mbikëqyrëse",
 	"prefs-tokenwatchlist": "Tokeni",
 	"prefs-watchlist-token": "Lista mbikqyrëse shenjë:",
 	"prefs-searchoptions": "Kërko",

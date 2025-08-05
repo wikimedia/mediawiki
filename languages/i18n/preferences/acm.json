@@ -133,7 +133,7 @@
 	"underline-always": "دائما",
 	"tog-showhiddencats": "طلع التصنيفات المخفيه",
 	"tog-showrollbackconfirmation": "طلع رسالة تأكيد من أدوس رابط الاسترجاع",
-	"tog-forcesafemode": "فعل [[mw:Manual:Safemode|الوضع الآمن]] دوم",
+	"tog-forcesafemode": "فعل [[mw:Special:MyLanguage/Manual:Safemode|الوضع الآمن]] دوم",
 	"prefs-editing": "التعديل",
 	"prefs-description-editing": "خصص طريقة إجراء التعديلات وتتبعها ومراجعتها.",
 	"prefs-advancedediting": "خيارات عامه",

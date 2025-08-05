@@ -640,7 +640,7 @@
 	"temp-user-banner-tooltip-title": "Временна сметка",
 	"temp-user-banner-tooltip-description-expiration-soon": "<strong>Вашата временна сметка изтича след {{PLURAL:$1|един ден|$1 дни}}.</strong> Следващият път, когато направите редакция без да сте влезли, ще бъде създадена нова сметка.",
 	"temp-user-banner-tooltip-description-expiration-soon-day": "<strong>Вашата временна сметка изтича след по-малко от ден.</strong> Следващият път, когато направите редакция без да сте влезли, ще бъде създадена нова сметка.",
-	"temp-user-banner-tooltip-description-learn-more": "Тази временна сметка е създадена след направена редакция без сметка чрез този браузър и устройство. [[mw:Help:Temporary_accounts|Научете повече]].",
+	"temp-user-banner-tooltip-description-learn-more": "Тази временна сметка е създадена след направена редакция без сметка чрез този браузър и устройство. [[mw:Special:MyLanguage/Help:Temporary_accounts|Научете повече]].",
 	"temp-user-banner-tooltip-description-login": "[[Special:UserLogin|Влезте]] или си [[Special:CreateAccount|създайте сметка]], за да запазите авторството над бъдещите си редакции и за да имате достъп до повече възможности.",
 	"blankarticle": "<strong>Предупреждение:</strong> Статията, която създавате е празна.\nАко щракнете на „$1“ отново, статията ще бъде създадена без никакво съдържание.",
 	"anoneditwarning": "<strong>Внимание:</strong> Не сте влезли в системата. Ако направите редакция IP-адресът Ви ще бъде публично видим. Ако <strong>[$1 влезете]</strong> или си <strong>[$2 създадете акаунт]</strong>, редакциите Ви ще бъдат свързани с потребителското Ви име, заедно с други преимущества.",

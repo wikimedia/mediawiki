@@ -647,7 +647,7 @@
 	"temp-user-banner-tooltip-title": "חשבון חולף",
 	"temp-user-banner-tooltip-description-expiration-soon": "<strong>החשבון החולף שלך יפוג {{PLURAL:$1|מחר|2=מוחרתיים|3=בעוד יומיים|בעוד $1 ימים}}.</strong> לאחר שיפוג, ייווצר אחד חדש בפעם הבאה שתבצע עריכה מבלי להתחבר.",
 	"temp-user-banner-tooltip-description-expiration-soon-day": "<strong>החשבון החולף שלך יפוג בעוד פחות מיום.</strong> לאחר שיפוג, ייווצר אחד חדש בפעם הבאה שתבצע עריכה מבלי להתחבר.",
-	"temp-user-banner-tooltip-description-learn-more": "החשבון החולף הזה נוצר אחרי שנעשתה עריכה ללא חשבון בדפדפן הזה במכשיר הזה. [[mw:Help:Temporary_accounts|מידע נוסף]].",
+	"temp-user-banner-tooltip-description-learn-more": "החשבון החולף הזה נוצר אחרי שנעשתה עריכה ללא חשבון בדפדפן הזה במכשיר הזה. [[mw:Special:MyLanguage/Help:Temporary_accounts|מידע נוסף]].",
 	"temp-user-banner-tooltip-description-login": "נא [[Special:UserLogin|להיכנס לחשבון]] או [[Special:CreateAccount|ליצור חשבון]] כדי לקבל קרדיט על עריכות עתידיות ולגשת לאפשרויות אחרות.",
 	"blankarticle": "<strong>אזהרה:</strong> הדף הזה ריק.\nלחיצה חוזרת על \"$1\" תגרום לדף להיווצר ללא כל תוכן.",
 	"anoneditwarning": "<strong>אזהרה:</strong> אינכם מחוברים לחשבון. כתובת ה־IP שלכם תוצג בפומבי אם תבצעו עריכות כלשהן. אם <strong>[$1 תיכנסו לחשבון]</strong> או <strong>[$2 תיצרו חשבון]</strong>, העריכות שלכם תיוחסנה לשם המשתמש שלכם ותקבלו גם יתרונות אחרים.",

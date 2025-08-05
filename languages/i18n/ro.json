@@ -648,7 +648,7 @@
 	"temp-user-banner-tooltip-title": "Cont temporar",
 	"temp-user-banner-tooltip-description-expiration-soon": "<strong>Contul dvs. temporar expiră în {{PLURAL:$1|1 zi|$1 zile}}.</strong> După expirare, va fi creat unul nou data viitoare când faceți o modificare fără a vă conecta.",
 	"temp-user-banner-tooltip-description-expiration-soon-day": "<strong>Contul dvs. temporar expiră în mai puțin de o zi.</strong> După expirare, va fi creat unul nou data viitoare când faceți o modificare fără a vă conecta.",
-	"temp-user-banner-tooltip-description-learn-more": "Acest cont temporar a fost creat după ce a fost efectuată o modificare fără un cont de pe cest browser și dispozitiv. [[mw:Help:Temporary_accounts|Aflați mai mult]].",
+	"temp-user-banner-tooltip-description-learn-more": "Acest cont temporar a fost creat după ce a fost efectuată o modificare fără un cont de pe cest browser și dispozitiv. [[mw:Special:MyLanguage/Help:Temporary_accounts|Aflați mai mult]].",
 	"temp-user-banner-tooltip-description-login": "[[Special:UserLogin|Autentificați-vă]] sau [[Special:CreateAccount|creați un cont]] pentru a primi credit pentru modificări ulterioare și accesa alte funcții.",
 	"blankarticle": "<strong>Atenție:</strong> Pagina pe care o creați este goală.\nDacă faceți din nou clic pe „$1”, pagina va fi creată fără niciun conținut.",
 	"anoneditwarning": "<strong>Atenție:</strong> Nu v-ați autentificat. Adresa dumneavoastră IP va fi vizibilă în mod public dacă efectuați modificări. Dacă vă <strong>[$1 autentificați]</strong> sau vă <strong>[$2 creați un cont]</strong>, modificările dumneavoastră vor fi asociate numelui de utilizator, pe lângă alte beneficii.",

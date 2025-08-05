@@ -579,7 +579,7 @@
 	"temp-user-banner-description": "Быстах бэлиэтэниини туттаҕын",
 	"temp-user-banner-tooltip-label": "Быстах бэлиэтэниилэр туһунан сиһилии",
 	"temp-user-banner-tooltip-title": "Быстах кэмнээх бэлиэтэнии",
-	"temp-user-banner-tooltip-description-learn-more": "Бу быстах бэлиэтэнии бу браузерга уонна оҥоһукка бэлиэтэниитэ суох уларытыы киирбитин кэннэ оҥоһуллубута. [[mw:Help:Temporary_accounts|Бу туһунан сиһилии]].",
+	"temp-user-banner-tooltip-description-learn-more": "Бу быстах бэлиэтэнии бу браузерга уонна оҥоһукка бэлиэтэниитэ суох уларытыы киирбитин кэннэ оҥоһуллубута. [[mw:Special:MyLanguage/Help:Temporary_accounts|Бу туһунан сиһилии]].",
 	"temp-user-banner-tooltip-description-login": "Кэлэр уларытыыларгар эн ааптарстваҥ уонна атын туруорууларга көҥүл баар буолуон баҕарар буоллаххына, [[Special:UserLogin|киир]] эбэтэр [[Special:CreateAccount|бэлиэтэн]].",
 	"blankarticle": "<strong>Сэрэтии:</strong> Оҥорор сирэйиҥ кураанах.\nБу тимэҕи «$1» хос баттаатаххына кураанах сирэй оҥоһуллуо.",
 	"anoneditwarning": "<strong>Болҕой:</strong> Киирбэтэххин. Онон тугу эрэ уларытар түгэҥҥэр аатыҥ оннугар IP аадырыһыҥ барыларыгар көстүө. бу сирэй историятыгар киириэ. Өскөтүн strong>[$1 киирдэххинэ]</strong> эбэтэр <strong>[$2 бэлиэтэннэххинэ]</strong>, торумнарырыҥ таллыллыбыт ааккар ситимнэһиэхтэрэ уонна атын да туруоруулар.",

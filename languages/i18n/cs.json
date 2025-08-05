@@ -659,7 +659,7 @@
 	"temp-user-banner-tooltip-title": "Dočasný účet",
 	"temp-user-banner-tooltip-description-expiration-soon": "<strong>Váš dočasný uživatelský účet vyprší za {{PLURAL:$1|den|dny|dní}}.</strong> Jakmile vyprší, pro vaši další editaci vám vytvoříme další.",
 	"temp-user-banner-tooltip-description-expiration-soon-day": "<strong>Váš dočasný uživatelský účet vyprší za méně, než den.</strong> Jakmile vyprší, pro vaši další editaci vám vytvoříme další.",
-	"temp-user-banner-tooltip-description-learn-more": "Tento dočasný účet byl vytvořen poté, co byla na tomto prohlížeči a zařízení provedena editace bez uživatelského účtu. [[mw:Help:Temporary_accounts|Více informací]].",
+	"temp-user-banner-tooltip-description-learn-more": "Tento dočasný účet byl vytvořen poté, co byla na tomto prohlížeči a zařízení provedena editace bez uživatelského účtu. [[mw:Special:MyLanguage/Help:Temporary_accounts|Více informací]].",
 	"temp-user-banner-tooltip-description-login": "[[Special:UserLogin|Přihlaste se]] nebo si [[Special:CreateAccount|založte účet]], aby vám byly připsány budoucí editace a získali jste přístup k dalším funkcím.",
 	"blankarticle": "<strong>Upozornění:</strong> Stránka, kterou se chystáte založit, je prázdná. Pokud ještě jednou kliknete na „$1“, bude založena zcela bez obsahu.",
 	"anoneditwarning": "<strong>Varování:</strong> Nejste přihlášen(a). Pokud uložíte jakoukoli editaci, vaše IP adresa bude zveřejněna v historii této stránky. Pokud se <strong>[$1 přihlásíte]</strong> nebo si <strong>[$2 vytvoříte účet]</strong>, vaše editace budou připsány vašemu uživatelskému jménu a získáte i další výhody.",

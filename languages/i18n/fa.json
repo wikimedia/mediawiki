@@ -691,7 +691,7 @@
 	"temp-user-banner-tooltip-title": "حساب موقت",
 	"temp-user-banner-tooltip-description-expiration-soon": "<strong>حساب کاربری موقت شما در {{PLURAL:$1|$1 روز}} منقضی می‌شود.</strong> پس از انقضای آن حساب، دفعهٔ بعدی که بدون وارد شدن به سامانه ویرایش کنید حساب جدیدی برایتان ساخته می‌شود.",
 	"temp-user-banner-tooltip-description-expiration-soon-day": "<strong>حساب کاربری موقت شما در کمتر از یک روز منقضی می‌شود.</strong> پس از انقضای آن حساب، دفعهٔ بعدی که بدون وارد شدن به سامانه ویرایش کنید حساب جدیدی برایتان ساخته می‌شود.",
-	"temp-user-banner-tooltip-description-learn-more": "این حساب موقت پس از انجام یک ویرایش بدون حساب کاربری در این مرورگر و دستگاه ایجاد شده است. [[mw:Help:Temporary_accounts|بیشتر بدانید]].",
+	"temp-user-banner-tooltip-description-learn-more": "این حساب موقت پس از انجام ویرایشی بدون حساب کاربری در این مرورگر و دستگاه ایجاد شد. [[mw:Special:MyLanguage/Help:Temporary_accounts|بیشتر بدانید]].",
 	"temp-user-banner-tooltip-description-login": "برای دریافت اعتبار در ویرایش‌های بعدی و دسترسی داشتن به ویژگی‌های دیگر، [[Special:UserLogin|وارد سامانه شوید]] یا [[Special:CreateAccount|یک حساب کاربری بسازید]].",
 	"blankarticle": "<strong>هشدار:</strong> شما در حال ایجاد صفحه خالی هستید.\nاگر «$1» را دوباره کلیک کنید، صفحه بدون محتوا ایجاد می‌شود.",
 	"anoneditwarning": "<strong>هشدار:</strong> شما وارد نشده‌اید. نشانی آی‌پی شما برای عموم قابل مشاهده خواهد بود اگر هر تغییری ایجاد کنید. اگر <strong>[$1 وارد شوید]</strong> یا <strong>[$2 یک حساب کاربری بسازید]</strong>، ویرایش‌هایتان به نام کاربری‌تان نسبت داده خواهد شد، همراه با مزایای دیگر.",

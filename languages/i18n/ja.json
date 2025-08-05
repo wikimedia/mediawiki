@@ -746,7 +746,7 @@
 	"temp-user-banner-tooltip-title": "仮アカウント",
 	"temp-user-banner-tooltip-description-expiration-soon": "<strong>仮アカウントの有効期限はあと{{PLURAL:$1|1日|$1日}}です。</strong> 有効期限が切れると、次回ログインせずに編集したときに新規にアカウントが作成されます。",
 	"temp-user-banner-tooltip-description-expiration-soon-day": "<strong>仮アカウントは 1 日以内に期限切れになります。</strong>有効期限が切れると、次回ログインせずに編集したときに新規にアカウントが作成されます。",
-	"temp-user-banner-tooltip-description-learn-more": "この仮アカウントはこのブラウザとデバイスでアカウントを使わず編集を投稿することによって作成されました。[[mw:Help:Temporary_accounts|もっと詳しくはこちら]]。",
+	"temp-user-banner-tooltip-description-learn-more": "この仮アカウントはこのブラウザとデバイスでアカウントを使わず編集を投稿することによって作成されました。[[mw:Special:MyLanguage/Help:Temporary_accounts|もっと詳しくはこちら]]。",
 	"temp-user-banner-tooltip-description-login": "[[Special:UserLogin|ログイン]]もしくは[[Special:CreateAccount|アカウントを作成]]して、これからの編集をそのアカウントに関連付けし、その他の機能にもアクセスできます。",
 	"blankarticle": "<strong>警告:</strong> 作成しようとしているページの内容がありません。「$1」をもう一度クリックすると、中身の無いページが作成されます。",
 	"anoneditwarning": "<strong>警告:</strong> ログインしていません。編集を行うと、あなたの IP アドレスが公開されます。<strong>[$1 ログイン]</strong>または<strong>[$2 アカウントを作成]</strong>すれば、あなたの編集はその利用者名とともに表示されるほか、さまざまなメリットもあります。",

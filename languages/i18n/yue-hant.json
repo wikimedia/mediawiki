@@ -642,7 +642,7 @@
 	"temp-user-banner-tooltip-title": "臨時戶口",
 	"temp-user-banner-tooltip-description-expiration-soon": "<strong>你個臨時帳戶會喺{{PLURAL:$1|1 day|$1 days}}。</strong>喺佢到期之後，下次你喺唔使登入嘅情況下編輯嗰陣，系統會建立一個新嘅。",
 	"temp-user-banner-tooltip-description-expiration-soon-day": "<strong>你嘅臨時帳戶唔夠一日就會到期。</strong> 喺佢到期之後，下次你喺唔使登入嘅情況下編輯嗰陣，系統會建立一個新嘅。",
-	"temp-user-banner-tooltip-description-learn-more": "有人冇登入而喺呢個瀏覽器同裝置上作出修改之後，系統自動開咗呢個臨時戶口。[[mw:Help:Temporary_accounts|知多啲]]。",
+	"temp-user-banner-tooltip-description-learn-more": "有人冇登入而喺呢個瀏覽器同裝置上作出修改之後，系統自動開咗呢個臨時戶口。[[mw:Special:MyLanguage/Help:Temporary_accounts|知多啲]]。",
 	"temp-user-banner-tooltip-description-login": "[[Special:UserLogin|登入]] 定係[[Special:CreateAccount|建立個帳戶]]為咗日後嘅編輯同埋存取其他功能而獲得信用。",
 	"blankarticle": "<strong>警告</strong>：閣下開緊爾頁吉嘅。\n撳多次「$1」就會開版吉頁（可能被視為破壞）。",
 	"anoneditwarning": "'''警告：'''閣下重未登入。閣下嘅 IP 地址會喺爾一版嘅修訂歷史裡邊記錄落嚟。",

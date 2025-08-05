@@ -148,7 +148,7 @@
 	"underline-always": "ทุกครั้ง",
 	"tog-showhiddencats": "แสดงหมวดหมู่ซ่อน",
 	"tog-showrollbackconfirmation": "แสดงพรอมต์ยืนยันเมื่อกดที่ลิงก์ย้อนรวดเดียว",
-	"tog-forcesafemode": "เปิดใช้งาน[[mw:Manual:Safemode|โหมดที่ปลอดภัย]]เสมอ",
+	"tog-forcesafemode": "เปิดใช้งาน[[mw:Special:MyLanguage/Manual:Safemode|โหมดที่ปลอดภัย]]เสมอ",
 	"prefs-help-forcesafemode": "ปิดการใช้งานสคริปต์และสไตล์ชีทบนวิกิ",
 	"prefs-editing": "การแก้ไข",
 	"prefs-description-editing": "ปรับแต่งวิธีที่คุณสร้าง ติดตาม และตรวจทานการแก้ไข",

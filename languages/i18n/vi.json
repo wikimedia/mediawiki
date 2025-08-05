@@ -667,7 +667,7 @@
 	"temp-user-banner-tooltip-title": "Tài khoản tạm thời",
 	"temp-user-banner-tooltip-description-expiration-soon": "<strong>Tài khoản tạm thời của bạn sẽ hết hạn sau {{PLURAL:$1|1 ngày|$1 ngày}}.</strong> Sau khi hết hạn, một cái mới sẽ được tạo vào lần tiếp theo bạn thực hiện chỉnh sửa mà không cần đăng nhập.",
 	"temp-user-banner-tooltip-description-expiration-soon-day": "<strong>Tài khoản tạm thời của bạn sẽ hết hạn sau chưa đầy một ngày.</strong> Sau khi hết hạn, một cái mới sẽ được tạo vào lần tiếp theo bạn thực hiện chỉnh sửa mà không cần đăng nhập.",
-	"temp-user-banner-tooltip-description-learn-more": "Tài khoản tạm thời này được tạo sau khi thực hiện sửa đổi mà không có tài khoản trên trình duyệt và thiết bị này. [[mw:Help:Temporary_accounts|Tìm hiểu thêm]].",
+	"temp-user-banner-tooltip-description-learn-more": "Tài khoản tạm thời này được tạo sau khi thực hiện sửa đổi mà không có tài khoản trên trình duyệt và thiết bị này. [[mw:Special:MyLanguage/Help:Temporary_accounts|Tìm hiểu thêm]].",
 	"temp-user-banner-tooltip-description-login": "[[Special:UserLogin|Đăng nhập]] hoặc [[Special:CreateAccount|mở tài khoản]] để được ghi công cho các sửa đổi trong tương lai và truy cập các tính năng khác.",
 	"blankarticle": "<strong>Cảnh báo:</strong> Bạn sẽ tạo ra một trang trống.\nNếu bấm “$1” lần nữa, một trang không có nội dung sẽ được tạo ra.",
 	"anoneditwarning": "<strong>Cảnh báo:</strong> Bạn chưa đăng nhập. Địa chỉ IP của bạn sẽ bị hiển thị công khai nếu bạn thực hiện bất kỳ sửa đổi nào. Nếu bạn <strong>[$1 đăng nhập]</strong> hoặc <strong>[$2 mở tài khoản]</strong>, sửa đổi của bạn sẽ được gán vào tên đăng nhập của bạn, cùng với nhiều lợi ích khác.",

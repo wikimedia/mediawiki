@@ -587,7 +587,7 @@
 	"temp-user-banner-tooltip-label": "Egan yekpe eti gbami eka tetengi'o",
 	"temp-user-banner-tooltip-title": "Gbami eka tetengi",
 	"temp-user-banner-tooltip-description-expiration-soon": "<strong>gbami eka tetengi wo'e ga zo tun dan {{PLURAL:$1|efo nini|$1 efozhi}}.</strong> wunga zo tun nan,woro ga de tswitswa kamina wo'e ga zhe nyan ban wo'e man gandan nan.",
-	"temp-user-banner-tooltip-description-learn-more": "ah tswa gbami nana tswa kamina ah zhe nyanzhi ban gbami man dan nyanga nana bo'a nan. [[mw:Help:Temporary_accounts|Learn more]].‎",
+	"temp-user-banner-tooltip-description-learn-more": "ah tswa gbami nana tswa kamina ah zhe nyanzhi ban gbami man dan nyanga nana bo'a nan. [[mw:Special:MyLanguage/Help:Temporary_accounts|Learn more]].‎",
 	"temp-user-banner-tooltip-description-login": "[[Special:UserLogin|Log in]] or [[Special:CreateAccount|create an account]]ebo wo'e de egwadu ya ebanzhe yigboro zhi toh nyangagi sashi zhi.‎",
 	"blankarticle": "<strong>tukpapa:</strong> fere nan wo'e tswa nan yi kokoro. Wo'e ga yi \"$1\" gwa be, fere ga de tswitswa babu nyandondo .‎",
 	"anoneditwarning": "<strong>tukpapa:</strong>wo'e la gandan'a. IP address wo'e ga tinya ta fili'o wo ga zhe nyandondo ban nan.\nwo'e ga<strong>[$1 gan dan]</strong>koma <strong>[$2 kpe gbami]</strong>,ebanzhe wo'e zhi'a ladaku sunna loci wo'e ,keba be ele nakena zhi.",

@@ -159,7 +159,8 @@
 			"Vanished 345490135",
 			"EGobi",
 			"Jessicamss93",
-			"BraunOBruno"
+			"BraunOBruno",
+			"ACheJu"
 		]
 	},
 	"sunday": "domingo",
@@ -750,7 +751,7 @@
 	"temp-user-banner-tooltip-title": "Conta temporária",
 	"temp-user-banner-tooltip-description-expiration-soon": "<strong>A sua conta temporária expira em {{PLURAL:$1|1 dia|$1 dias}}.</strong> Depois que expira, uma nova será criada a próxima vez que faça uma edição sem iniciar sessão.",
 	"temp-user-banner-tooltip-description-expiration-soon-day": "<strong>Sua conta temporária expira em menos de um dia.</strong> Depois que expira, uma nova será criada a próxima vez que faça uma edição sem iniciar sessão.",
-	"temp-user-banner-tooltip-description-learn-more": "Essa conta temporária foi criada depois que uma edição foi feita sem uma conta neste navegador e dispositivo. [[mw:Help:Temporary_accounts|Saiba mais]].",
+	"temp-user-banner-tooltip-description-learn-more": "Essa conta temporária foi criada depois que uma edição foi feita sem uma conta neste navegador e dispositivo. [[mw:Special:MyLanguage/Help:Temporary_accounts|Saiba mais]].",
 	"temp-user-banner-tooltip-description-login": "[[Special:UserLogin|Entre]] ou [[Special:CreateAccount|crie uma conta]] para ser creditado em edições futuras e acessar outros recursos.",
 	"blankarticle": "<strong>Aviso:</strong> A página que está prestes a criar está em branco. \nSe clicar \"$1\" outra vez, a página será criada sem qualquer conteúdo.",
 	"anoneditwarning": "<strong>Aviso:</strong> Você não está conectado. Seu endereço IP será visível publicamente se você fizer alguma edição. Se você <strong>[$1 fizer login]</strong> ou <strong>[$2 criar uma conta]</strong>, suas edições serão atribuídas ao seu nome de usuário, juntamente com outros benefícios.",

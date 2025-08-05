@@ -579,7 +579,7 @@
 	"temp-user-banner-tooltip-title": "Түр-зуурин бүрткл",
 	"temp-user-banner-tooltip-description-expiration-soon": "<strong>Тана түр-зуурин бүртклин хуһцан {{PLURAL:$1|1 өдр|$1 өдрин}} дару дуусна.</strong> Хуһцан дууссна дару та эс невтрхлә, хөөннь ясврлх цагт шиниг үүскҗ болна.",
 	"temp-user-banner-tooltip-description-expiration-soon-day": "<strong>Тана түр-зуурин бүртклин хуһцан нег хонг күрәд уга хуһцанд дуусх.</strong> Хуһцан дууссна дару та эс невтрхлә, хөөннь ясврлх цагт шиниг үүскҗ болна.",
-	"temp-user-banner-tooltip-description-learn-more": "Эн көтч болн төкәрмҗ бүрткл угаһар ясвр кесн дару эн түр-зуурин бүрткл үүскв. [[mw:Help:Temporary_accounts|Делгрңгү үзх]].",
+	"temp-user-banner-tooltip-description-learn-more": "Эн көтч болн төкәрмҗ бүрткл угаһар ясвр кесн дару эн түр-зуурин бүрткл үүскв. [[mw:Special:MyLanguage/Help:Temporary_accounts|Делгрңгү үзх]].",
 	"temp-user-banner-tooltip-description-login": "[[Special:UserLogin|Невтрх]] or [[Special:CreateAccount|бүрткл үүскнә]] Иргчд ясврлхин зокагчин эрк хадһлх болн оңдан онцлгт хандх.",
 	"blankarticle": "<strong>Аңхартн:</strong> Тана үүскчәх халх хоосн бәәнә.\nКемр та \"$1\" деер дәкн дархла, халх ямаран чигн аһулһ угаһар үүснә.",
 	"anoneditwarning": "<strong>Аңхартн:</strong> Та невтрәд уга бәәсн төлә ямаран чигн ясвр кехлә, тана IP хайг олн-ниитд ил үзгдх. <strong>[$1 Невтрҗ орх]</strong> эс гиҗ <strong>[$2шинәр бүрткүлхлә]</strong>, Тана орулсн ясврмуд Тана нерн дор бүрткгддг даву талта.",

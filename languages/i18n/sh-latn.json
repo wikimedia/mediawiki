@@ -584,7 +584,7 @@
 	"showdiff": "Prikaži izmjene",
 	"temp-user-banner-description": "Koristite privremeni račun",
 	"temp-user-banner-tooltip-title": "Privremeni račun",
-	"temp-user-banner-tooltip-description-learn-more": "Ovaj privremeni račun izrađen je nakon uređivanja bez računa na ovom pregledniku i uređaju. [[mw:Help:Temporary_accounts|Detaljnije]].",
+	"temp-user-banner-tooltip-description-learn-more": "Ovaj privremeni račun izrađen je nakon uređivanja bez računa na ovom pregledniku i uređaju. [[mw:Special:MyLanguage/Help:Temporary_accounts|Detaljnije]].",
 	"temp-user-banner-tooltip-description-login": "[[Special:UserLogin|Prijavite se]] ili [[Special:CreateAccount|izradite račun]] da biste dobili zasluge za buduće izmjene i pristupili ostalim mogućnostima.",
 	"blankarticle": "<strong>Napomena:</strong> Stranica koju izrađujete je prazna.\nAko ponovno kliknete na „$1”, stranica će biti izrađena bez ikakve sadržine.",
 	"anoneditwarning": "<strong>Napomena:</strong> Niste prijavljeni. Vaša IP adresa bit će javno vidljiva ako napravite neku izmjenu. Ako se <strong>[$1 prijavite]</strong> ili <strong>[$2 izradite račun]</strong>, Vaše izmjene bit će pripisane Vašem korisničkom imenu, pored drugih pogodnosti.",

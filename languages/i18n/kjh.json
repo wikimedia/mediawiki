@@ -579,7 +579,7 @@
 	"temp-user-banner-tooltip-title": "Ӱр нимеске иділген аккаунт",
 	"temp-user-banner-tooltip-description-expiration-soon": "<strong>Ӱр нимеске идiлген аккаунтнаң тузаланар тус {{PLURAL:$1|1 кӱн}} пазынаң ирт парар.</strong> Аның тоғынар тузы ирт парза, системаа кiрбин, пазағы тӱзедіг иділзе, наа аккаунт иділер.",
 	"temp-user-banner-tooltip-description-expiration-soon-day": "<strong>Ӱр нимеске идiлген аккаунтнаң тузаланар тус пiр кӱнге дее читпес.</strong> Аның тоғынар тузы ирт парза, системаа кiрбин, пазағы тӱзедіг иділзе, наа аккаунт иділер.",
-	"temp-user-banner-tooltip-description-learn-more": "Пу браузерде аккаунт чох тӱзедіглер кирілген соонда, ӱр нимеске пу аккаунт иділген.[[mw:Help:Temporary_accounts|Аннаңар толдыразынаң]].",
+	"temp-user-banner-tooltip-description-learn-more": "Пу браузерде аккаунт чох тӱзедіглер кирілген соонда, ӱр нимеске пу аккаунт иділген.[[mw:Special:MyLanguage/Help:Temporary_accounts|Аннаңар толдыразынаң]].",
 	"temp-user-banner-tooltip-description-login": "Соондағы тӱзедіглер сірерни полчатханын кӧзідер ӱчӱн, ідӧк пасха функцияларнаң тузаланар пӧгіннең [[Special:UserLogin|системаа кіріңер]] алай [[Special:CreateAccount|аккаунт идіңер]].",
 	"blankarticle": "<strong>Сизіндіріг:</strong> Сірер итчеткен страница хуруғ.\n$1 тiп танығны пазох пасса, страница iстi хуруғ полар.",
 	"anoneditwarning": "<strong>Сизiктiг полыңар:</strong> Система азылбинча. IP-адреске кiрiп алар ӱчӱн, пiрее алызығлар киріңер. <strong>[$1кіріп алзар]</strong> алай <strong>[$2 наа аккаунт ит салзар]</strong>, анынаң IP-адрес орнына тузаланарзар.",

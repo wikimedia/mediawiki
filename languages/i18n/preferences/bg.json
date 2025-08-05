@@ -138,7 +138,7 @@
 	"underline-always": "Винаги",
 	"tog-showhiddencats": "Показване на скритите категории",
 	"tog-showrollbackconfirmation": "Показване на диалогов прозорец за потвърждение при кликване върху препратката „Отмяна“",
-	"tog-forcesafemode": "Винаги да се активира [[mw:Manual:Safemode|защитения режим]]",
+	"tog-forcesafemode": "Винаги да се активира [[mw:Special:MyLanguage/Manual:Safemode|защитения режим]]",
 	"prefs-help-forcesafemode": "Изключване на локалните за това уики скриптове и стилови множества.",
 	"prefs-editing": "Редактиране",
 	"prefs-advancedediting": "Основни настройки",
