@@ -63,7 +63,8 @@ $cfg['autoload_internal_extension_signatures'] = [
 	'redis' => '.phan/internal_stubs/redis.phan_php',
 	'sockets' => '.phan/internal_stubs/sockets.phan_php',
 	'tideways_xhprof' => '.phan/internal_stubs/tideways_xhprof.phan_php',
-	'wikidiff2' => '.phan/internal_stubs/wikidiff.php'
+	'wikidiff2' => '.phan/internal_stubs/wikidiff.php',
+	'xhprof' => '.phan/internal_stubs/xhprof.phan_php',
 ];
 
 $cfg['directory_list'] = [
