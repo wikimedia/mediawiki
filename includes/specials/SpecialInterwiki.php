@@ -32,8 +32,6 @@ class SpecialInterwiki extends SpecialPage {
 	private LanguageNameUtils $languageNameUtils;
 	private UrlUtils $urlUtils;
 	private IConnectionProvider $dbProvider;
-	private array $virtualDomainsMapping;
-	private bool $interwikiMagic;
 
 	public function __construct(
 		Language $contLang,
@@ -49,8 +47,6 @@ class SpecialInterwiki extends SpecialPage {
 		$this->languageNameUtils = $languageNameUtils;
 		$this->urlUtils = $urlUtils;
 		$this->dbProvider = $dbProvider;
-		$this->virtualDomainsMapping = $this->getConfig()->get( MainConfigNames::VirtualDomainsMapping ) ?? [];
-		$this->interwikiMagic = $this->getConfig()->get( MainConfigNames::InterwikiMagic ) ?? true;
 	}
 
 	/** @inheritDoc */
@@ -288,11 +284,12 @@ class SpecialInterwiki extends SpecialPage {
 			$status->fatal( 'interwiki-badprefix', htmlspecialchars( $prefix ) );
 			return $status;
 		}
+		$virtualDomainsMapping = $this->getConfig()->get( MainConfigNames::VirtualDomainsMapping ) ?? [];
 		// Disallow adding local interlanguage definitions if using global
 		if (
 			$do === 'add'
 			&& $this->isLanguagePrefix( $prefix )
-			&& isset( $this->virtualDomainsMapping['virtual-interwiki-interlanguage'] )
+			&& isset( $virtualDomainsMapping['virtual-interwiki-interlanguage'] )
 		) {
 			$status->fatal( 'interwiki-cannotaddlocallanguage', htmlspecialchars( $prefix ) );
 			return $status;
@@ -403,7 +400,7 @@ class SpecialInterwiki extends SpecialPage {
 	 * @return bool
 	 */
 	private function isLanguagePrefix( $prefix ) {
-		return $this->interwikiMagic
+		return $this->getConfig()->get( MainConfigNames::InterwikiMagic )
 			&& $this->languageNameUtils->getLanguageName( $prefix );
 	}
 
@@ -414,7 +411,8 @@ class SpecialInterwiki extends SpecialPage {
 		$iwPrefixes = $this->interwikiLookup->getAllPrefixes( null );
 		$iwGlobalPrefixes = [];
 		$iwGlobalLanguagePrefixes = [];
-		if ( isset( $this->virtualDomainsMapping['virtual-interwiki'] ) ) {
+		$virtualDomainsMapping = $this->getConfig()->get( MainConfigNames::VirtualDomainsMapping ) ?? [];
+		if ( isset( $virtualDomainsMapping['virtual-interwiki'] ) ) {
 			// Fetch list from global table
 			$dbrCentralDB = $this->dbProvider->getReplicaDatabase( 'virtual-interwiki' );
 			$res = $dbrCentralDB->newSelectQueryBuilder()
@@ -433,7 +431,7 @@ class SpecialInterwiki extends SpecialPage {
 
 		// Almost the same loop as above, but for global inter*language* links, whereas the above is for
 		// global inter*wiki* links
-		$usingGlobalLanguages = isset( $this->virtualDomainsMapping['virtual-interwiki-interlanguage'] );
+		$usingGlobalLanguages = isset( $virtualDomainsMapping['virtual-interwiki-interlanguage'] );
 		if ( $usingGlobalLanguages ) {
 			// Fetch list from global table
 			$dbrCentralLangDB = $this->dbProvider->getReplicaDatabase( 'virtual-interwiki-interlanguage' );

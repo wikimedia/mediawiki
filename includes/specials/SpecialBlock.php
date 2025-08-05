@@ -101,9 +101,6 @@ class SpecialBlock extends FormSpecialPage {
 	 */
 	protected $preErrors = [];
 
-	protected bool $useCodex = false;
-	protected bool $useMultiblocks = false;
-
 	/**
 	 * @var array <mixed,mixed> An associative array used to pass vars to Codex form
 	 */
@@ -135,14 +132,11 @@ class SpecialBlock extends FormSpecialPage {
 		$this->namespaceInfo = $namespaceInfo;
 		$this->userOptionsLookup = $userOptionsLookup;
 		$this->watchlistManager = $watchlistManager;
-		$this->useCodex = $this->getConfig()->get( MainConfigNames::UseCodexSpecialBlock ) ||
-			$this->getRequest()->getBool( 'usecodex' );
-		$this->useMultiblocks = $this->getConfig()->get( MainConfigNames::EnableMultiBlocks ) ||
-			$this->getRequest()->getBool( 'multiblocks' );
 	}
 
 	public function getDescription(): Message {
-		return $this->msg( $this->useMultiblocks ? 'block-manage-blocks' : 'block' );
+		return $this->msg( $this->getConfig()->get( MainConfigNames::EnableMultiBlocks )
+			? 'block-manage-blocks' : 'block' );
 	}
 
 	/**
@@ -151,10 +145,14 @@ class SpecialBlock extends FormSpecialPage {
 	public function execute( $par ) {
 		parent::execute( $par );
 
-		if ( $this->useCodex ) {
+		if ( $this->getConfig()->get( MainConfigNames::UseCodexSpecialBlock )
+			|| $this->getRequest()->getBool( 'usecodex' )
+		) {
 			// Ensure wgUseCodexSpecialBlock is set when ?usecodex=1 is used.
 			$this->codexFormData[ 'wgUseCodexSpecialBlock' ] = true;
-			$this->codexFormData[ 'blockEnableMultiblocks' ] = $this->useMultiblocks;
+			$this->codexFormData[ 'blockEnableMultiblocks' ] =
+				$this->getConfig()->get( MainConfigNames::EnableMultiBlocks ) ||
+				$this->getRequest()->getBool( 'multiblocks' );
 			$this->codexFormData[ 'blockTargetUser' ] =
 				$this->target ? $this->target->toString() : null;
 			$this->codexFormData[ 'blockId' ] =
@@ -224,7 +222,7 @@ class SpecialBlock extends FormSpecialPage {
 			->newFromString( $request->getVal( 'wpPreviousTarget' ) );
 		$this->requestedHideUser = $request->getBool( 'wpHideUser' );
 
-		if ( $this->useCodex ) {
+		if ( $this->getConfig()->get( MainConfigNames::UseCodexSpecialBlock ) || $request->getBool( 'usecodex' ) ) {
 			// Parse wpExpiry param
 			$givenExpiry = $request->getVal( 'wpExpiry', '' );
 			if ( wfIsInfinity( $givenExpiry ) ) {
@@ -303,14 +301,17 @@ class SpecialBlock extends FormSpecialPage {
 		$msg = $this->alreadyBlocked ? 'ipb-change-block' : 'ipbsubmit';
 		$form->setSubmitTextMsg( $msg );
 
-		$this->addHelpLink( $this->useCodex ? 'Help:Manage blocks' : 'Help:Blocking users' );
+		$useCodex = $this->getConfig()->get( MainConfigNames::UseCodexSpecialBlock )
+			|| $this->getRequest()->getBool( 'usecodex' );
+
+		$this->addHelpLink( $useCodex ? 'Help:Manage blocks' : 'Help:Blocking users' );
 
 		// Don't need to do anything if the form has been posted, or if there were no pre-errors.
 		if ( $this->getRequest()->wasPosted() || !$this->preErrors ) {
 			return;
 		}
 
-		if ( $this->useCodex ) {
+		if ( $useCodex ) {
 			$this->codexFormData[ 'blockPreErrors' ] = array_map( function ( $errMsg ) {
 				return $this->msg( $errMsg )->parse();
 			}, $this->preErrors );
@@ -347,7 +348,8 @@ class SpecialBlock extends FormSpecialPage {
 	 * @inheritDoc
 	 */
 	protected function getDisplayFormat() {
-		return $this->useCodex ? 'codex' : 'ooui';
+		return $this->getConfig()->get( MainConfigNames::UseCodexSpecialBlock ) ||
+			$this->getRequest()->getBool( 'usecodex' ) ? 'codex' : 'ooui';
 	}
 
 	/**
@@ -357,8 +359,9 @@ class SpecialBlock extends FormSpecialPage {
 	protected function getFormFields() {
 		$conf = $this->getConfig();
 		$blockAllowsUTEdit = $conf->get( MainConfigNames::BlockAllowsUTEdit );
+		$useCodex = $conf->get( MainConfigNames::UseCodexSpecialBlock ) || $this->getRequest()->getBool( 'usecodex' );
 
-		if ( !$this->useCodex ) {
+		if ( !$useCodex ) {
 			$this->getOutput()->enableOOUI();
 		}
 
@@ -388,7 +391,7 @@ class SpecialBlock extends FormSpecialPage {
 			'section' => 'target',
 		];
 
-		$editingRestrictionOptions = $this->useCodex ?
+		$editingRestrictionOptions = $useCodex ?
 			// If we're using Codex, use the option-descriptions feature, which is only supported by Codex
 			[
 				'options-messages' => [
@@ -543,7 +546,7 @@ class SpecialBlock extends FormSpecialPage {
 			'help-message' => 'block-reason-help',
 		];
 
-		if ( $this->useCodex ) {
+		if ( $useCodex ) {
 			$blockReasonOptions = Html::listDropdownOptionsCodex(
 				Html::listDropdownOptions( $this->msg( 'ipbreason-dropdown' )->inContentLanguage()->plain(),
 					[ 'other' => $this->msg( 'htmlform-selectorother-other' )->text() ]
@@ -611,14 +614,16 @@ class SpecialBlock extends FormSpecialPage {
 
 		// (T382496) Only load the modified defaults from a previous
 		// block if multiblocks are not enabled
-		if ( !$this->useMultiblocks ) {
+		if ( !$this->getConfig()->get( MainConfigNames::EnableMultiBlocks )
+			|| $this->getRequest()->getBool( 'multiblocks' )
+		) {
 			$this->maybeAlterFormDefaults( $a );
 		}
 
 		// Allow extensions to add more fields
 		$this->getHookRunner()->onSpecialBlockModifyFormFields( $this, $a );
 
-		if ( $this->useCodex ) {
+		if ( $useCodex ) {
 			$default = (string)$this->target;
 			$a['Target']['default'] = $default;
 			$a['Target']['disabled'] = true;
@@ -652,7 +657,7 @@ class SpecialBlock extends FormSpecialPage {
 			$this->preErrors = array_merge( $this->preErrors, $errors );
 
 			// Remove top-level errors that are later handled per-field in Codex.
-			if ( $this->useCodex ) {
+			if ( $this->getConfig()->get( MainConfigNames::UseCodexSpecialBlock ) || $request->getBool( 'usecodex' ) ) {
 				$this->preErrors = array_filter( $this->preErrors, function ( $error ) {
 					if ( $error->getKey() === 'nosuchusershort' || $error->getKey() === 'ip_range_toolarge' ) {
 						// Avoids us having to re-query the API to validate the user.
@@ -819,7 +824,9 @@ class SpecialBlock extends FormSpecialPage {
 	 */
 	protected function preHtml() {
 		$this->getOutput()->addModuleStyles( [ 'mediawiki.special' ] );
-		if ( $this->useCodex ) {
+		if ( $this->getConfig()->get( MainConfigNames::UseCodexSpecialBlock )
+			|| $this->getRequest()->getBool( 'usecodex' )
+		) {
 			$this->getOutput()->addModules( [ 'mediawiki.special.block.codex' ] );
 			$this->getOutput()->addElement( 'noscript', [],
 				$this->msg( 'block-javascript-required' )->text()
@@ -1012,7 +1019,9 @@ class SpecialBlock extends FormSpecialPage {
 	 * @return bool|string|array|Status As documented for HTMLForm::trySubmit.
 	 */
 	public function onSubmit( array $data, ?HTMLForm $form = null ) {
-		if ( $this->useCodex ) {
+		if ( $this->getConfig()->get( MainConfigNames::UseCodexSpecialBlock )
+			|| $this->getRequest()->getBool( 'usecodex' )
+		) {
 			// Treat as no submission for the JS-only Codex form.
 			// This happens if the form is submitted before any JS is loaded.
 			return false;

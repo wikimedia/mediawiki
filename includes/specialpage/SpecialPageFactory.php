@@ -1606,14 +1606,16 @@ class SpecialPageFactory {
 	 * that the current user has the required permissions for.
 	 *
 	 * @param User $user User object to check permissions provided
+	 * @param IContextSource|null $context Context object, since 1.45
 	 * @return SpecialPage[]
 	 */
-	public function getUsablePages( User $user ): array {
+	public function getUsablePages( User $user, ?IContextSource $context = null ): array {
 		$pages = [];
+		$context ??= RequestContext::getMain();
 		foreach ( $this->getPageList() as $name => $rec ) {
 			$page = $this->getPage( $name );
 			if ( $page ) { // not null
-				$page->setContext( RequestContext::getMain() );
+				$page->setContext( $context );
 				if ( $page->isListed()
 					&& ( !$page->isRestricted() || $page->userCanExecute( $user ) )
 				) {
