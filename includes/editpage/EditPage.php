@@ -37,11 +37,9 @@ use MediaWiki\Context\IContextSource;
 use MediaWiki\Debug\DeprecationHelper;
 use MediaWiki\EditPage\Constraint\AccidentalRecreationConstraint;
 use MediaWiki\EditPage\Constraint\AuthorizationConstraint;
-use MediaWiki\EditPage\Constraint\BrokenRedirectConstraint;
 use MediaWiki\EditPage\Constraint\ChangeTagsConstraint;
 use MediaWiki\EditPage\Constraint\ContentModelChangeConstraint;
 use MediaWiki\EditPage\Constraint\DefaultTextConstraint;
-use MediaWiki\EditPage\Constraint\DoubleRedirectConstraint;
 use MediaWiki\EditPage\Constraint\EditConstraintFactory;
 use MediaWiki\EditPage\Constraint\EditConstraintRunner;
 use MediaWiki\EditPage\Constraint\EditFilterMergedContentHookConstraint;
@@ -51,7 +49,7 @@ use MediaWiki\EditPage\Constraint\ImageRedirectConstraint;
 use MediaWiki\EditPage\Constraint\MissingCommentConstraint;
 use MediaWiki\EditPage\Constraint\NewSectionMissingSubjectConstraint;
 use MediaWiki\EditPage\Constraint\PageSizeConstraint;
-use MediaWiki\EditPage\Constraint\SelfRedirectConstraint;
+use MediaWiki\EditPage\Constraint\RedirectConstraint;
 use MediaWiki\EditPage\Constraint\SpamRegexConstraint;
 use MediaWiki\EditPage\Constraint\UnicodeConstraint;
 use MediaWiki\Exception\ErrorPageError;
@@ -259,26 +257,14 @@ class EditPage implements IEditObject {
 	/** @var bool */
 	private $allowBlankArticle = false;
 
-	/** @var bool */
-	private $selfRedirect = false;
-
-	/** @var bool */
-	private $allowSelfRedirect = false;
+	/** @var ?Title */
+	private $problematicRedirectTarget = null;
 
 	/** @var ?Title */
-	private $brokenRedirectTarget = null;
-
-	/** @var ?Title */
-	private $allowedBrokenRedirectTarget = null;
+	private $allowedProblematicRedirectTarget = null;
 
 	/** @var bool */
-	private $doubleRedirect = false;
-
-	/** @var bool */
-	private $doubleRedirectLoop = false;
-
-	/** @var bool */
-	private $allowDoubleRedirects = false;
+	private $ignoreProblematicRedirects = false;
 
 	/** @var string */
 	private $autoSumm = '';
@@ -1373,11 +1359,10 @@ class EditPage implements IEditObject {
 		$this->autoSumm = $request->getText( 'wpAutoSummary' );
 
 		$this->allowBlankArticle = $request->getBool( 'wpIgnoreBlankArticle' );
-		$this->allowSelfRedirect = $request->getBool( 'wpIgnoreSelfRedirect' );
-		$allowedBrokenRedirectTargetText = $request->getText( 'wpAllowedBrokenRedirectTarget' );
-		$this->allowedBrokenRedirectTarget = $allowedBrokenRedirectTargetText === ''
-			? null : Title::newFromText( $allowedBrokenRedirectTargetText );
-		$this->allowDoubleRedirects = $request->getBool( 'wpIgnoreDoubleRedirects' );
+		$allowedProblematicRedirectTargetText = $request->getText( 'wpAllowedProblematicRedirectTarget' );
+		$this->allowedProblematicRedirectTarget = $allowedProblematicRedirectTargetText === ''
+			? null : Title::newFromText( $allowedProblematicRedirectTargetText );
+		$this->ignoreProblematicRedirects = $request->getBool( 'wpIgnoreProblematicRedirects' );
 
 		$changeTags = $request->getVal( 'wpChangeTags' );
 		$changeTagsAfterPreview = $request->getVal( 'wpChangeTagsAfterPreview' );
@@ -1918,8 +1903,6 @@ class EditPage implements IEditObject {
 			case self::AS_TEXTBOX_EMPTY:
 			case self::AS_END:
 			case self::AS_BLANK_ARTICLE:
-			case self::AS_SELF_REDIRECT:
-			case self::AS_DOUBLE_REDIRECT:
 			case self::AS_REVISION_WAS_DELETED:
 				return true;
 
@@ -1929,9 +1912,12 @@ class EditPage implements IEditObject {
 			// Status codes that provide their own error/warning messages. Most error scenarios that don't
 			// need custom user interface (e.g. edit conflicts) should be handled here, one day (T384399).
 			case self::AS_BROKEN_REDIRECT:
+			case self::AS_DOUBLE_REDIRECT:
+			case self::AS_DOUBLE_REDIRECT_LOOP:
 			case self::AS_CONTENT_TOO_BIG:
 			case self::AS_MAX_ARTICLE_SIZE_EXCEEDED:
 			case self::AS_PARSE_ERROR:
+			case self::AS_SELF_REDIRECT:
 			case self::AS_UNABLE_TO_ACQUIRE_TEMP_ACCOUNT:
 			case self::AS_UNICODE_NOT_SUPPORTED:
 				foreach ( $status->getMessages() as $msg ) {
@@ -2531,32 +2517,19 @@ class EditPage implements IEditObject {
 		// BEGINNING OF MIGRATION TO EDITCONSTRAINT SYSTEM (see T157658)
 		// Create a new runner to avoid rechecking the prior constraints, use the same factory
 		$constraintRunner = new EditConstraintRunner();
-		$constraintRunner->addConstraint(
-			new SelfRedirectConstraint(
-				$this->allowSelfRedirect,
-				$content,
-				$this->getCurrentContent(),
-				$this->getTitle()
-			)
-		);
-		$constraintRunner->addConstraint(
-			new BrokenRedirectConstraint(
-				$this->allowedBrokenRedirectTarget,
-				$content,
-				$this->getCurrentContent(),
-				$this->getTitle(),
-				$submitButtonLabel
-			)
-		);
-		$constraintRunner->addConstraint(
-			new DoubleRedirectConstraint(
-				$this->allowDoubleRedirects,
-				$content,
-				$this->getCurrentContent(),
-				$this->getTitle(),
-				$this->redirectLookup
-			)
-		);
+		if ( !$this->ignoreProblematicRedirects ) {
+			$constraintRunner->addConstraint(
+				new RedirectConstraint(
+					$this->allowedProblematicRedirectTarget,
+					$content,
+					$this->getCurrentContent(),
+					$this->getTitle(),
+					$submitButtonLabel,
+					$this->contentFormat,
+					$this->redirectLookup
+				)
+			);
+		}
 		$constraintRunner->addConstraint(
 			// Same constraint is used to check size before and after merging the
 			// edits, which use different failure codes
@@ -2676,13 +2649,8 @@ class EditPage implements IEditObject {
 			$this->missingSummary = true;
 		} elseif ( $failed instanceof MissingCommentConstraint ) {
 			$this->missingComment = true;
-		} elseif ( $failed instanceof SelfRedirectConstraint ) {
-			$this->selfRedirect = true;
-		} elseif ( $failed instanceof BrokenRedirectConstraint ) {
-			$this->brokenRedirectTarget = $failed->brokenRedirectTarget;
-		} elseif ( $failed instanceof DoubleRedirectConstraint ) {
-			$this->doubleRedirect = true;
-			$this->doubleRedirectLoop = $failed->willCreateSelfRedirect;
+		} elseif ( $failed instanceof RedirectConstraint ) {
+			$this->problematicRedirectTarget = $failed->problematicTarget;
 		}
 	}
 
@@ -3210,21 +3178,13 @@ class EditPage implements IEditObject {
 			$out->addHTML( Html::hidden( 'wpUndoAfter', $this->undoAfter ) );
 		}
 
-		if ( $this->selfRedirect ) {
-			$out->addHTML( Html::hidden( 'wpIgnoreSelfRedirect', true ) );
-		}
-
-		if ( $this->brokenRedirectTarget !== null ) {
-			// T395767: Save the target to a variable so the constraint can fail again if the redirect is still
-			// broken but has changed between two save attempts
+		if ( $this->problematicRedirectTarget !== null ) {
+			// T395767, T395768: Save the target to a variable so the constraint can fail again if the redirect is
+			// still problematic but has changed between two save attempts
 			$out->addHTML( Html::hidden(
-				'wpAllowedBrokenRedirectTarget',
-				$this->brokenRedirectTarget->getFullText()
+				'wpAllowedProblematicRedirectTarget',
+				$this->problematicRedirectTarget->getFullText()
 			) );
-		}
-
-		if ( $this->doubleRedirect ) {
-			$out->addHTML( Html::hidden( 'wpIgnoreDoubleRedirects', true ) );
 		}
 
 		$autosumm = $this->autoSumm !== '' ? $this->autoSumm : md5( $this->summary );
@@ -3434,40 +3394,6 @@ class EditPage implements IEditObject {
 					"<div id='mw-blankarticle'>\n$1\n</div>",
 					[ 'blankarticle', $buttonLabel ]
 				);
-			}
-
-			if ( $this->selfRedirect ) {
-				$out->wrapWikiMsg(
-					"<div id='mw-selfredirect'>\n$1\n</div>",
-					[ 'selfredirect', $buttonLabel ]
-				);
-			}
-
-			if ( $this->doubleRedirect ) {
-				if ( $this->doubleRedirectLoop ) {
-					$out->wrapWikiMsg(
-						"<div id='mw-doubleredirectloop'>\n$1\n</div>",
-						[ 'edit-constraint-doubleredirect-loop', $buttonLabel ]
-					);
-				} else {
-					$editContent = $this->toEditContent( $this->textbox1 );
-					$redirectTarget = $editContent->getRedirectTarget();
-
-					$doubleRedirectTarget = $this->redirectLookup->getRedirectTarget( $redirectTarget );
-					$doubleRedirectTargetTitle = Title::castFromLinkTarget( $doubleRedirectTarget );
-
-					$suggestedRedirectContent =
-						$editContent->getContentHandler()->makeRedirectContent( $doubleRedirectTargetTitle );
-					$suggestedRedirectCode =
-						Html::element( 'pre', [], $this->toEditText( $suggestedRedirectContent ) );
-
-					$out->wrapWikiMsg( "<div id='mw-doubleredirect'>\n$1\n</div>", [
-						'edit-constraint-doubleredirect',
-						$buttonLabel,
-						wfEscapeWikiText( $doubleRedirectTargetTitle->getPrefixedText() ),
-						$suggestedRedirectCode,
-					] );
-				}
 			}
 
 			if ( $this->hookError !== '' ) {

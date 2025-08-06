@@ -595,7 +595,7 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\EditPage\Constraint\SelfRedirectConstraint
+	 * @covers \MediaWiki\EditPage\Constraint\RedirectConstraint
 	 */
 	public function testSelfRedirectConstraint() {
 		// Use a page that does not exist to be sure that it is not already a self redirect

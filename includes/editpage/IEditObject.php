@@ -118,9 +118,13 @@ interface IEditObject {
 	/** Status: edit rejected because server was unable to acquire a temporary account name for this user */
 	public const AS_UNABLE_TO_ACQUIRE_TEMP_ACCOUNT = 243;
 
-	/** Status: user tried to create a redirect to a nonexistent page and wpIgnoreBrokenRedirects is false */
+	/** Status: user tried to create a redirect to a nonexistent page */
 	public const AS_BROKEN_REDIRECT = 244;
 
-	/** Status: user tried to create a redirect to another redirect and wpIgnoreDoubleRedirects is false */
+	/** Status: user tried to create a redirect to another redirect */
 	public const AS_DOUBLE_REDIRECT = 245;
+
+	/** Status: user tried to create a redirect to another redirect that is pointing to the current page */
+	public const AS_DOUBLE_REDIRECT_LOOP = 246;
+
 }
