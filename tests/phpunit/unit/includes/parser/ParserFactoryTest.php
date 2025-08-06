@@ -87,8 +87,5 @@ class ParserFactoryTest extends MediaWikiUnitTestCase {
 		$this->assertSame(
 			$factoryWrapper->languageConverterFactory, $parserWrapper->languageConverterFactory
 		);
-		$this->assertSame(
-			$factory, $parserWrapper->factory
-		);
 	}
 }

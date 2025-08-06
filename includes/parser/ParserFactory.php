@@ -214,7 +214,6 @@ class ParserFactory {
 				$this->svcOptions,
 				$this->magicWordFactory,
 				$this->contLang,
-				$this,
 				$this->urlUtils,
 				$this->specialPageFactory,
 				$this->linkRendererFactory,

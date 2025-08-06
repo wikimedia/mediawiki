@@ -379,7 +379,6 @@ class Parser {
 	private Language $contLang;
 	private LanguageConverterFactory $languageConverterFactory;
 	private LanguageNameUtils $languageNameUtils;
-	private ParserFactory $factory;
 	private SpecialPageFactory $specialPageFactory;
 	private TitleFormatter $titleFormatter;
 	/**
@@ -441,7 +440,6 @@ class Parser {
 	 * @param ServiceOptions $svcOptions
 	 * @param MagicWordFactory $magicWordFactory
 	 * @param Language $contLang Content language
-	 * @param ParserFactory $factory
 	 * @param UrlUtils $urlUtils
 	 * @param SpecialPageFactory $spFactory
 	 * @param LinkRendererFactory $linkRendererFactory
@@ -465,7 +463,6 @@ class Parser {
 		ServiceOptions $svcOptions,
 		MagicWordFactory $magicWordFactory,
 		Language $contLang,
-		ParserFactory $factory,
 		UrlUtils $urlUtils,
 		SpecialPageFactory $spFactory,
 		LinkRendererFactory $linkRendererFactory,
@@ -507,7 +504,6 @@ class Parser {
 
 		$this->contLang = $contLang;
 
-		$this->factory = $factory;
 		$this->specialPageFactory = $spFactory;
 		$this->linkRendererFactory = $linkRendererFactory;
 		$this->nsInfo = $nsInfo;

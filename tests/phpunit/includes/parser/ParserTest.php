@@ -58,7 +58,6 @@ class ParserTest extends MediaWikiIntegrationTestCase {
 			$options,
 			$mwFactory,
 			$contLang,
-			$this->createNoOpMock( ParserFactory::class ),
 			$urlUtils,
 			$this->createNoOpMock( SpecialPageFactory::class ),
 			$this->createNoOpMock( LinkRendererFactory::class ),
