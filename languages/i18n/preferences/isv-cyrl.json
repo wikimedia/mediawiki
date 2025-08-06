@@ -135,7 +135,7 @@
 	"underline-always": "Всегда",
 	"tog-showhiddencats": "Показывати скрыте категорије",
 	"tog-showrollbackconfirmation": "Изображати просбу потврдженја послє накликнутја линка за брзо одчињенје правкы",
-	"tog-forcesafemode": "Всегда вкључати [[mw:Manual:Safemode|безпечны режим]]",
+	"tog-forcesafemode": "Всегда вкључати [[mw:Special:MyLanguage/Manual:Safemode|безпечны режим]]",
 	"prefs-help-forcesafemode": "Изкључити скрипты и користничске CSS-стилы в вики.",
 	"prefs-editing": "Правјенје",
 	"prefs-description-editing": "Приспособите собє, како вы дєлајете, слєдујете и прєгледајете правкы.",

@@ -539,7 +539,7 @@
 	"temp-user-banner-tooltip-title": "Akun gasa-gasa",
 	"temp-user-banner-tooltip-description-expiration-soon": "<strong>Akun gasa-gasa khöu edöna mubatogö ba {{PLURAL:$1|ma'ökhö|$1 ngaluo}}.</strong> Aefa da'ö, tefazökhi akun sibohou ba ginötö öbulö'ö hadia ia ba zi lö si möi'ö bakha.",
 	"temp-user-banner-tooltip-description-expiration-soon-day": "<strong>Ambö ma'ökhö tö ba tebatogö akun gasa-gasa khöu.</strong> Aefa da'ö, tefazökhi akun sibohou dania na öbulö'ö hadia ia ba zilö möi'o si bakha.",
-	"temp-user-banner-tooltip-description-learn-more": "Tefazökhi akun gasa-gasa andre aefa mufalua wamulö'ö ba zi lö möi si bakha. [[mw:Help:Temporary_accounts|Baso nasa]].",
+	"temp-user-banner-tooltip-description-learn-more": "Tefazökhi akun gasa-gasa andre aefa mufalua wamulö'ö ba zi lö möi si bakha. [[mw:Special:MyLanguage/Help:Temporary_accounts|Baso nasa]].",
 	"temp-user-banner-tooltip-description-login": "[[Special:UserLogin|Ae bakha]] ma [[Special:CreateAccount|fazökhi akun]] ena'ö tefakhai fefu nibulö'ömö ba döimö awö wa tola ösöndra fitur bö'ö.",
 	"blankarticle": "<strong>Faigi ua:</strong> Lö ösi nga'örö nifazökhimö.\nNa öfuli öhöndrögö \"$1\", tefazökhi dania nga'öro si lö ösi.",
 	"anoneditwarning": "<strong>Nitöngöni:</strong> Lö si möi ndra'ugö bakha ba gu'ö. Te'oroma'ö dania ba zato alamat IP-mö na öbulö'ö sambua zura. Na <strong>[$1 möi'ö bakha]</strong> ma <strong>[$2 öfazökhi akun]</strong>, fefu nibulö'ömö tefakhai ia ba döi zangoguna khöu, ba so nasa hare tanö bö'ö.",

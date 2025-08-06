@@ -140,7 +140,7 @@
 	"underline-always": "Гуттар",
 	"tog-showhiddencats": "Гайта къайлаха йолу категореш",
 	"tog-showrollbackconfirmation": "Йухайоккхуш дӀахьедарде",
-	"tog-forcesafemode": "Латайе [[mw:Manual:Safemode|кхерамзаллин раж]] даиман",
+	"tog-forcesafemode": "Латайе [[mw:Special:MyLanguage/Manual:Safemode|кхерамзаллин раж]] даиман",
 	"prefs-help-forcesafemode": "ДӀайайъа скрипташ а, викера лелоран CSS а.",
 	"prefs-editing": "Хийцам",
 	"prefs-description-editing": "Муха чудоху, толлу, хьовсу нисдаршка.",

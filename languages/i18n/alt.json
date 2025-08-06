@@ -560,7 +560,7 @@
 	"temp-user-banner-tooltip-title": "Бир канча ӧйгӧ эдилген аккаунт",
 	"temp-user-banner-tooltip-description-expiration-soon": "<strong>Слердиҥ удурум аккаунттардыҥ ӧдӧтӧн ӧйи {{PLURAL:$1|1 кӱннеҥ}} ӧдӱп калар.</strong> Эдинетен ӧйинеҥ ӧдӱп калган кийнинеҥ, ээчиде системага кирбестеҥ тӱзедиш этсе јаҥызы эдилер.",
 	"temp-user-banner-tooltip-description-expiration-soon-day": "<strong>Слердиҥ удурум аккаунттардыҥ ӧдӱп калатан ӧйи 1 кӱннеҥ ас.</strong> Эдинетен ӧйинеҥ ӧдӱп калган кийнинеҥ, ээчиде системага кирбестеҥ тӱзедиш этсе јаҥызы эдилер.",
-	"temp-user-banner-tooltip-description-learn-more": "Бу удурум аккаунт тÿзедÿлердиҥ кийнинде браузерде ле бу устройстводо аккаунт jокко эдилген.\n[[mw:Help:Temporary_accounts|Подробнее]].",
+	"temp-user-banner-tooltip-description-learn-more": "Бу удурум аккаунт тÿзедÿлердиҥ кийнинде браузерде ле бу устройстводо аккаунт jокко эдилген.\n[[mw:Special:MyLanguage/Help:Temporary_accounts|Подробнее]].",
 	"temp-user-banner-tooltip-description-login": "[[Special:UserLogin|Кирер]] эмезе, [[Special:CreateAccount|Јаҥы аккаунт ачкар]], эдилген тӱзедӱлер слердиҥ адарда артсын деп, база ӧскӧ функцияларга кирерге.",
 	"blankarticle": "<strong>Ајару:</strong>Баштап јаткан бӱк куру.\nОйто катап \"$1\" былчышты былчып ийзер куру бӱк артып калар.",
 	"anoneditwarning": "<strong>Ајару:</strong> Слер кирбегенер сайтка. Солынтылар этсер слердиҥ IP адрезер ончозына кӧрӱне берер.<strong>[$1 Кирип ийзер]</strong> эмезе <strong>[$2 јаҥы аккаунт эдип алзар]</strong>, тӱзедӱ ижер слердиҥ туружаачыныҥ адынаҥ болор, анайда ок слерге ӧскӧ аргалар кожылар.",

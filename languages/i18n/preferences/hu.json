@@ -156,7 +156,7 @@
 	"underline-always": "mindig",
 	"tog-showhiddencats": "Rejtett kategóriák megjelenítése",
 	"tog-showrollbackconfirmation": "Megerősítés kérése, amikor a visszaállítás linkre kattintasz",
-	"tog-forcesafemode": "Mindig engedélyezze a [[mw:Manual:Safemode|biztonságos módot]]",
+	"tog-forcesafemode": "Mindig engedélyezze a [[mw:Special:MyLanguage/Manual:Safemode|biztonságos módot]]",
 	"prefs-help-forcesafemode": "A wiki-szkriptek és stíluslapok letiltása.",
 	"prefs-editing": "Szerkesztés",
 	"prefs-description-editing": "A szerkesztések végzésének, követésének és ellenőrzésének testreszabása.",

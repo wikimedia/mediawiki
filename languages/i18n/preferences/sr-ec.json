@@ -150,7 +150,7 @@
 	"underline-always": "увек",
 	"tog-showhiddencats": "Приказуј скривене категорије",
 	"tog-showrollbackconfirmation": "Захтевај потврду за враћање измена",
-	"tog-forcesafemode": "[[mw:Manual:Safemode|Безбедни режим]]",
+	"tog-forcesafemode": "[[mw:Special:MyLanguage/Manual:Safemode|Безбедни режим]]",
 	"prefs-help-forcesafemode": "Онемогућава на викију прилагођени JavaScript и CSS",
 	"prefs-editing": "Уређивање",
 	"prefs-description-editing": "Управљате како правите, пратите и прегледате измене.",

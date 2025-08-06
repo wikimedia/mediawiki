@@ -158,7 +158,7 @@
 	"underline-always": "Alltid",
 	"tog-showhiddencats": "Visa dolda kategorier",
 	"tog-showrollbackconfirmation": "Visa en bekräftelsedialog när man klickar på en tillbakarullningslänk",
-	"tog-forcesafemode": "Aktivera alltid [[mw:Manual:Safemode|säkert läge]]",
+	"tog-forcesafemode": "Aktivera alltid [[mw:Special:MyLanguage/Manual:Safemode|säkert läge]]",
 	"prefs-help-forcesafemode": "Inaktivera skript och stilmallar på wikin.",
 	"prefs-editing": "Redigering",
 	"prefs-description-editing": "Anpassa hur du genomför, spårar och granskar redigeringar.",

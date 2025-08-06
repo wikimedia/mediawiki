@@ -568,7 +568,7 @@
 	"temp-user-banner-description": "Aldi baterako kontu bat erabiltzen ari zara",
 	"temp-user-banner-tooltip-label": "Aldi baterako kontuei buruzko informazio gehiago",
 	"temp-user-banner-tooltip-title": "Aldi baterako kontuak",
-	"temp-user-banner-tooltip-description-learn-more": "Aldi baterako kontu hau arakatzaile eta gailu honetan konturik gabe aldaketa bat egin ondoren sortu da. [[mw:Help:Temporary_accounts|Lortu informazio gehiago]].",
+	"temp-user-banner-tooltip-description-learn-more": "Aldi baterako kontu hau arakatzaile eta gailu honetan konturik gabe aldaketa bat egin ondoren sortu da. [[mw:Special:MyLanguage/Help:Temporary_accounts|Lortu informazio gehiago]].",
 	"blankarticle": "<strong>Oharra:</strong> sortzen ari zaren orria hutsik dago.\n\"$1\" berriro sakatzen baduzu, orrialdea edukirik gabe sortuko da.",
 	"anoneditwarning": "'''Oharra:''' Ez duzu saioa hasi. Aldaketak egiten badituzu, zure IP helbidea ikusgai geratuko da. <strong>[$1 Saioa hasi]</strong> edo <strong>[$2 kontu bat sortzen]</strong> baduzu, zure aldaketak lankide izenari egotziko zaizkio, eta beste abantaila batzuk ere izango dituzu.",
 	"anonpreviewwarning": "<em>Ez duzu saioa hasi. Argitaratuz gero, zure IP helbidea grabatuko da orri honi lotutako historia-orrian.</em>",

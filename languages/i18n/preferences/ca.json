@@ -156,7 +156,7 @@
 	"underline-always": "Sempre",
 	"tog-showhiddencats": "Mostra les categories ocultes",
 	"tog-showrollbackconfirmation": "Mostra una petició de confirmació en clicar un enllaç de reversió",
-	"tog-forcesafemode": "Habilita sempre el [[mw:Manual:Safemode|mode segur]]",
+	"tog-forcesafemode": "Habilita sempre el [[mw:Special:MyLanguage/Manual:Safemode|mode segur]]",
 	"prefs-help-forcesafemode": "Desactivar als scripts i pàgines d'estil dins del wiki.",
 	"prefs-editing": "Caixa d'edició",
 	"prefs-description-editing": "Personalitzeu com feu, seguiu i reviseu les edicions.",

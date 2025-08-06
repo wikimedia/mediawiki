@@ -8,7 +8,8 @@
 			"Reza1615",
 			"Surena",
 			"ZxxZxxZ",
-			"محک"
+			"محک",
+			"Darafsh"
 		]
 	},
 	"january": "ژانویه",
@@ -129,13 +130,13 @@
 	"seconds-abbrev": "$1 ثانیه",
 	"ago": "$1 پیش",
 	"duration-millennia": "{{PLURAL:$1|هزار سال|$1 هزار سال}}",
-	"duration-centuries": "$1 قرن",
-	"duration-decades": "$1 دهه",
-	"duration-years": "$1 سال",
-	"duration-months": "$1 {{PLURAL:$1|ماه|ماه}}",
-	"duration-weeks": "$1 هفته",
+	"duration-centuries": "$1 {{PLURAL:$1|قرن}}",
+	"duration-decades": "$1 {{PLURAL:$1|دهه}}",
+	"duration-years": "$1 {{PLURAL:$1|سال}}",
+	"duration-months": "$1 {{PLURAL:$1|ماه}}",
+	"duration-weeks": "$1 {{PLURAL:$1|هفته}}",
 	"duration-days": "$1 {{PLURAL:$1|روز}}",
-	"duration-hours": "$1 ساعت",
+	"duration-hours": "$1 {{PLURAL:$1|ساعت}}",
 	"duration-minutes": "$1 دقیقه",
 	"duration-seconds": "$1 ثانیه",
 	"monday-at": "دوشنبهٔ $1",
@@ -146,8 +147,8 @@
 	"saturday-at": "شنبهٔ $1",
 	"sunday-at": "یک‌شنبهٔ $1",
 	"yesterday-at": "دیروز در $1",
-	"hours-ago": "$1 ساعت قبل",
-	"minutes-ago": "$1 دقیقه قبل",
-	"seconds-ago": "$1 {{PLURAL:$1|ثانیه|ثانیه}} قبل",
+	"hours-ago": "$1 {{PLURAL:$1|ساعت}} پیش",
+	"minutes-ago": "$1 {{PLURAL:$1|دقیقه}} پیش",
+	"seconds-ago": "$1 {{PLURAL:$1|ثانیه}} پیش",
 	"just-now": "هم‌اکنون"
 }

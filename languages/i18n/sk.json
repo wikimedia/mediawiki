@@ -579,6 +579,7 @@
 	"temp-user-banner-tooltip-title": "Dočasný účet",
 	"temp-user-banner-tooltip-description-expiration-soon": "<strong>Váš dočasný účet vyprší o {{PLURAL:$1|deň|dni|$1 dní}}.</strong> Po jeho vypršaní bude pri ďalšej úprave bez prihlásenia vytvorený nový.",
 	"temp-user-banner-tooltip-description-expiration-soon-day": "<strong>Váš dočasný účet vyprší o menej ako deň.</strong> Po jeho vypršaní bude pri ďalšej úprave bez prihlásenia vytvorený nový.",
+	"temp-user-banner-tooltip-description-learn-more": "Tento dočasný účet bol vytvorený po úprave vykonanej bez účtu v tomto prehliadači a zariadení. [[mw:Special:MyLanguage/Help:Temporary_accounts|Learn more]].",
 	"blankarticle": "<strong>Upozornenie:</strong> Stránka, ktorú sa chystáte založiť, je prázdna.\nPokiaľ ešte raz kliknete na „$1“, bude založená úplne bez obsahu.",
 	"anoneditwarning": "<strong>Upozornenie:</strong> Nie ste prihlásený.\nAk uložíte akúkoľvek úpravu, vaša IP adresa bude zverejnená v histórii tejto stránky. Ak sa <strong>[$1 prihlásite]</strong> alebo si <strong>[$2 vytvoríte účet]</strong>, budú vaše úpravy priradené k vášmu používateľskému menu a získate i ďalšie výhody.",
 	"anonpreviewwarning": "<em>Nie ste prihlásený/á. Zverejnenie zaregistruje Vašu IP adresu do histórie úprav stránky.</em>",

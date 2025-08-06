@@ -670,7 +670,7 @@
 	"temp-user-banner-tooltip-title": "Geçici hesap",
 	"temp-user-banner-tooltip-description-expiration-soon": "<strong>Geçici hesabınızın süresi {{PLURAL:$1|$1 gün}} sonra dolacak.</strong> Süresi dolduktan sonra, giriş yapmadan bir düzenleme yaptığınızda yeni bir tane oluşturulacaktır.",
 	"temp-user-banner-tooltip-description-expiration-soon-day": "<strong>Geçici hesabınızın süresi bir günden daha az süre sonra dolacak.</strong> Süresi dolduktan sonra, giriş yapmadan bir düzenleme yaptığınızda yeni bir tane oluşturulacaktır.",
-	"temp-user-banner-tooltip-description-learn-more": "Bu geçici hesap, bu tarayıcı ve aygıtta hesap olmadan yapılan bir değişiklik sonrasında oluşturulmuştur. [[mw:Help:Temporary_accounts|Daha fazla bilgi edinin]].",
+	"temp-user-banner-tooltip-description-learn-more": "Bu geçici hesap, bu tarayıcı ve aygıtta hesap olmadan yapılan bir değişiklik sonrasında oluşturulmuştur. [[mw:Special:MyLanguage/Help:Temporary_accounts|Daha fazla bilgi edinin]].",
 	"temp-user-banner-tooltip-description-login": "Gelecekteki değişiklikler için atıf almak ve başka özelliklere erişmek için [[Special:UserLogin|giriş yapın]] ya da [[Special:CreateAccount|bir hesap oluşturun]].",
 	"blankarticle": "<strong>Uyarı:</strong> Oluşturduğunuz sayfa boş.\nEğer \"$1\" düğmesine tekrar tıklarsanız, sayfa içerik olmadan oluşturulacaktır.",
 	"anoneditwarning": "<strong>Uyarı:</strong> Giriş yapmadınız. Herhangi bir değişiklik yapmanız durumunda IP adresiniz herkese görünecektir. Eğer <strong>[$1 giriş yaparsanız]</strong> veya <strong>[$2 bir hesap oluşturursanız]</strong>, edineceğiniz çeşitli yararların yanı sıra yaptığınız değişiklikler de kullanıcı adınıza atfedilecektir.",

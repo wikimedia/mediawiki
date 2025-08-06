@@ -170,7 +170,7 @@
 	"underline-always": "Всегда",
 	"tog-showhiddencats": "Показывать скрытые категории",
 	"tog-showrollbackconfirmation": "Запрашивать подтверждение при нажатии ссылки для отката",
-	"tog-forcesafemode": "Всегда использовать [[mw:Manual:Safemode|безопасный режим]]",
+	"tog-forcesafemode": "Всегда использовать [[mw:Special:MyLanguage/Manual:Safemode|безопасный режим]]",
 	"prefs-help-forcesafemode": "Отключить скрипты и пользовательские CSS в вики.",
 	"prefs-editing": "Редактирование",
 	"prefs-description-editing": "Настройте, как вы вносите, отслеживаете и просматриваете правки.",

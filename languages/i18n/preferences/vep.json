@@ -136,7 +136,7 @@
 	"underline-always": "Kaiken",
 	"tog-showhiddencats": "Ozuta peittud kategorijad",
 	"tog-showrollbackconfirmation": "Ozuta, midä pidab vahvištoitta, konz minä tahtoin heitta tehtud azjad",
-	"tog-forcesafemode": "Tege kaiken [[mw:Manual:Safemode|varumatomaks režimaks]]",
+	"tog-forcesafemode": "Tege kaiken [[mw:Special:MyLanguage/Manual:Safemode|varumatomaks režimaks]]",
 	"prefs-help-forcesafemode": "Saupta viki-skriptad da stiliden lugetišed.",
 	"prefs-editing": "Vajehtamine",
 	"prefs-description-editing": "Ladi, kut sinä teged, tarkištad da kacud vajehtusid.",

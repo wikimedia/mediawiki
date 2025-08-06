@@ -179,7 +179,7 @@
 	"underline-always": "常に付ける",
 	"tog-showhiddencats": "隠しカテゴリを表示",
 	"tog-showrollbackconfirmation": "巻き戻しリンクをクリックした際に確認画面を表示する",
-	"tog-forcesafemode": "[[mw:Manual:Safemode|セーフモード]]を常に有効にする",
+	"tog-forcesafemode": "[[mw:Special:MyLanguage/Manual:Safemode|セーフモード]]を常に有効にする",
 	"prefs-help-forcesafemode": "ウィキ上のスクリプトとスタイルシートを無効にします。",
 	"prefs-editing": "編集",
 	"prefs-description-editing": "編集の投稿、追跡とレビューの仕方をカスタマイズします。",

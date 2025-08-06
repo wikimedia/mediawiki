@@ -53,5 +53,6 @@
 	"thu": "Kam",
 	"fri": "Jum",
 	"sat": "Sap",
-	"sun": "Min"
+	"sun": "Min",
+	"duration-days": "$1 {{PLURAL:$1|jelo}}"
 }

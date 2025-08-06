@@ -139,7 +139,7 @@
 	"underline-always": "Firme",
 	"tog-showhiddencats": "Dale mira maga categoria escondido",
 	"tog-showrollbackconfirmation": "Dale mira un prompt de  confirmacion cuando ta'n click na un rollback link",
-	"tog-forcesafemode": "Firme hace activa [[mw:Manual:Safemode|safe mode]]",
+	"tog-forcesafemode": "Firme hace activa [[mw:Special:MyLanguage/Manual:Safemode|safe mode]]",
 	"prefs-help-forcesafemode": "Hace desactiva maga on wiki scripts y pojas de estilo.",
 	"prefs-editing": "Editada",
 	"prefs-description-editing": "Personaliza que laya hace, man track, y revisa maga edits.",

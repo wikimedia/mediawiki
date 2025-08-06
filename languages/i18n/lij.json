@@ -564,7 +564,7 @@
 	"temp-user-banner-tooltip-title": "Uténsa tenporània",
 	"temp-user-banner-tooltip-description-expiration-soon": "<strong>A tò uténsa tenporània a descàzze tra {{PLURAL:$1|1 giórno|$1 giórni}}.</strong> Dòppo ch'a l'é deschéita, unn-a nêuva a saiâ creâ cómme ti ti faiæ 'na modìfica sénsa intrâ co-in'uténsa registrâ.",
 	"temp-user-banner-tooltip-description-expiration-soon-day": "<strong>A tò uténsa tenporània a descàzze tra mêno de 'n giórno.</strong> Dòppo ch'a l'é deschéita, unn-a nêuva a saiâ creâ cómme ti ti faiæ 'na modìfica sénsa intrâ co-in'uténsa registrâ.",
-	"temp-user-banner-tooltip-description-learn-more": "Quest'uténte tenporànio o l'é stæto creòu comm'o l'à fæto 'na modìfica sénsa uténsa in sce sto browser e sto dispoxitîvo chi.\n[[mw:Help:Temporary_accounts|Ciù informaçioìn]].",
+	"temp-user-banner-tooltip-description-learn-more": "Quest'uténte tenporànio o l'é stæto creòu comm'o l'à fæto 'na modìfica sénsa uténsa in sce sto browser e sto dispoxitîvo chi.\n[[mw:Special:MyLanguage/Help:Temporary_accounts|Ciù informaçioìn]].",
 	"temp-user-banner-tooltip-description-login": "[[Special:UserLogin|Ìntra]] ò [[Special:CreateAccount|crêa 'n'uténsa]] p'êse acreditòu pe-e tò modìfiche futûre e p'òtegnî de âtre fonçioìn.",
 	"blankarticle": "<strong>Atençión:</strong> a pàgina che ti çèrchi a l'é vêua.\nSe ti sciàcchi tórna in sce \"$1\", a pàgina a saiâ creâ sénsa contegnûi.",
 	"anoneditwarning": "<strong>Atençión:</strong> ti no t'ê intròu. Se ti ti fæ di cangiaménti o tò indirìsso IP o saiâ vixìbile publicaménte. Se ti <strong>[$1 ti gh'ìntri]</strong> ò <strong>[$2 ti crêi 'n'uténsa]</strong>, e tò modìfiche saiàn atriboîe a-o tò nómme uténte, tra i âtri benefìççi.",

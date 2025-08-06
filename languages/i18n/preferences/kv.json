@@ -135,7 +135,7 @@
 	"underline-always": "Пыр",
 	"tog-showhiddencats": "Петкӧдлыны сайӧдӧм категорияяссӧ",
 	"tog-showrollbackconfirmation": "Корны эскӧдӧм косӧдан ыстӧг вылӧ личкигӧн",
-	"tog-forcesafemode": "Пыр лэдзны [[mw:Manual:Safemode|ӧпастӧм режим]]",
+	"tog-forcesafemode": "Пыр лэдзны [[mw:Special:MyLanguage/Manual:Safemode|ӧпастӧм режим]]",
 	"prefs-help-forcesafemode": "Викиысь скриптъяс да стиль табличаяс тупкӧмаӧсь.",
 	"prefs-editing": "Вежӧм",
 	"prefs-description-editing": "Ладмӧдӧй, кыдзи ті пыртанныд, видзӧданныд да видлаланныд вежӧмъяссӧ.",

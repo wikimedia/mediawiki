@@ -556,7 +556,7 @@
 	"temp-user-banner-description": "Rydych chi'n defnyddio cyfrif dros dro",
 	"temp-user-banner-tooltip-label": "Mwy o wybodaeth am gyfrifon dros dro",
 	"temp-user-banner-tooltip-title": "Cyfrif dros dro",
-	"temp-user-banner-tooltip-description-learn-more": "Crëwyd y cyfrif dros dro hwn ar ôl i olygiad gael ei wneud heb gyfrif ar y porwr a'r ddyfais hon. [[mw:Help:Temporary_accounts|Darllen mwy]].",
+	"temp-user-banner-tooltip-description-learn-more": "Crëwyd y cyfrif dros dro hwn ar ôl i olygiad gael ei wneud heb gyfrif ar y porwr a'r ddyfais hon. [[mw:Special:MyLanguage/Help:Temporary_accounts|Darllen mwy]].",
 	"temp-user-banner-tooltip-description-login": "[[Special:UserLogin|Mewngofnodi]] neu [[Special:CreateAccount|greu cyfrif]] i gael cydnabyddiaeth am olygiadau yn y dyfodol a chael mynediad at nodweddion eraill.",
 	"blankarticle": "<strong>Rhybudd:</strong> Rydych chi am greu tudalen wag.\nOs cliciwch \"$1\" eto, bydd y dudalen yn cael ei chreu heb gynnwys.",
 	"anoneditwarning": "<strong>Rhybudd</strong>: Nid ydych wedi mewngofnodi. Fe fydd eich cyfeiriad IP yn ymddangos ar hanes golygu cyhoeddus y dudalen hon. Gallwch ddewis cuddio'ch cyfeiriad IP drwy <strong>[$1 fewngofnodi]</strong> neu <strong>[$2 greu cyfrif]</strong> cyn golygu.",

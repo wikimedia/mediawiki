@@ -546,7 +546,7 @@
 	"temp-user-banner-tooltip-title": "Жаплан ыштыме аккаунт",
 	"temp-user-banner-tooltip-description-expiration-soon": "<strong>Тыйын жаплан ыштыме возалтше лӱмет{{PLURAL:$1|1 кече|$1 кече}}гыч чарыме лиеш.</strong> Паша ыштыме жаап эртымеке,системыш пурымо деч посна вес гана тӧрлатыме годым у ышталтеш.",
 	"temp-user-banner-tooltip-description-expiration-soon-day": "<strong>Тыйын возалтше лӱмет сутка деч шагалрак жап гыч пашам ыштымым чарна.</strong> Тиде жап эртымеке, системыш пурыде вес гана тӧрлатыме годым у ыштыме лиеш.",
-	"temp-user-banner-tooltip-description-learn-more": "Тиде жаплан лийше аккаунт саде браузерыште да арверыште аккаунт деч посна тӧрлымашым пуртымо деч вара ышталтын. [[mw:Help:Temporary_accounts|Кумданрак]].",
+	"temp-user-banner-tooltip-description-learn-more": "Тиде жаплан лийше аккаунт саде браузерыште да арверыште аккаунт деч посна тӧрлымашым пуртымо деч вара ышталтын. [[mw:Special:MyLanguage/Help:Temporary_accounts|Кумданрак]].",
 	"temp-user-banner-tooltip-description-login": "Ончыкылык тӧрлымашлан автор семын кодаш да моло функций-влакым кучылтын керташ манын, [[Special:UserLogin|Системыш пуро]] але [[Special:CreateAccount|аккаунтым ыште]].",
 	"blankarticle": "<strong>Тӱткӧ лий:</strong> Тыйын ыштыме велыжет яра.\nУэш «$1» кнопкым темдалат гын, кеч-могай контент деч посна велыж ыштыме лиеш.",
 	"anoneditwarning": "<strong>Тӱткӧ лий:</strong> Тый системыш пурен отыл. Иктаж вашталтышым аралет гын, тыйын IP адресет калыклан койшо лиеш. Тый <strong>[$1 пурет]</strong> але <strong>[$2 аккаунтым ыштет]</strong> гын, чыла вашталтышет да молыжат аккаунтет дене кылдалтше лиеш.",

@@ -578,7 +578,7 @@
 	"temp-user-banner-tooltip-title": "Privremeni nalog",
 	"temp-user-banner-tooltip-description-expiration-soon": "<strong>Vaš privremeni nalog ističe za {{PLURAL:$1|1 dan|$1 dana}}.</strong> Pošto istekne, novi će biti napravljen sledeći put kada budete neprijavljeni uređivali.",
 	"temp-user-banner-tooltip-description-expiration-soon-day": "<strong>Vaš privremeni nalog ističe za manje od jednog dana.</strong> Pošto istekne, novi će biti napravljen sledeći put kada budete neprijavljeni uređivali.",
-	"temp-user-banner-tooltip-description-learn-more": "Ovaj privremeni nalog je napravljen pošto je načinjena izmena iz ovog veb-pregledača i sa ovog uređaja. [[mw:Help:Temporary_accounts|Saznajte više]].",
+	"temp-user-banner-tooltip-description-learn-more": "Ovaj privremeni nalog je napravljen pošto je načinjena izmena iz ovog veb-pregledača i sa ovog uređaja. [[mw:Special:MyLanguage/Help:Temporary_accounts|Saznajte više]].",
 	"temp-user-banner-tooltip-description-login": "[[Special:UserLogin|Prijavite se]] ili \n[[Special:CreateAccount|otvorite nalog]]. Time će vaši doprinosi biti pripisivani korisničkom imenu koje odaberete i steći ćete mnoge pogodnosti.",
 	"blankarticle": "<strong>Upozorenje:</strong> Stranica koju pravite je prazna.\nAko ponovo kliknete na „$1”, stranica će biti napravljena bez ikakve sadržine.",
 	"anoneditwarning": "<strong>Upozorenje:</strong> Niste prijavljeni. Vaša IP adresa biće javno vidljiva ako uredite ili napravite neku stranicu. <strong>[$1 Prijavite se]</strong> ili <strong>[$2 otvorite nalog]</strong>. Time će vaši doprinosi biti pripisivani korisničkom imenu koje izaberete i steći ćete mnoge pogodnosti.",

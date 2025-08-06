@@ -23,7 +23,8 @@
 			"Ykhwong",
 			"렌즈",
 			"밝은소년",
-			"아라"
+			"아라",
+			"YeBoy371"
 		]
 	},
 	"preferences": "환경 설정",
@@ -66,7 +67,7 @@
 	"prefs-i18n": "국제화",
 	"yourlanguage": "언어:",
 	"yourgender": "어느 성별로 묘사하기를 원하십니까?",
-	"gender-notknown": "누군가 위키 문서를 편집합니다",
+	"gender-notknown": "위키 문서를 편집하지만, 성별을 알리고 싶지 않습니다",
 	"gender-unknown": "언급할 때 소프트웨어는 가능한 항상 중성적인 단어를 사용합니다.",
 	"gender-female": "여성이 위키 문서를 편집합니다",
 	"gender-male": "남성이 위키 문서를 편집합니다",
@@ -158,7 +159,7 @@
 	"underline-always": "항상",
 	"tog-showhiddencats": "숨은 분류 보이기",
 	"tog-showrollbackconfirmation": "되돌리기 링크를 클릭할 때 확인창을 표시",
-	"tog-forcesafemode": "항상 [[mw:Manual:Safemode|안전 모드]] 활성화",
+	"tog-forcesafemode": "항상 [[mw:Special:MyLanguage/Manual:Safemode|안전 모드]] 활성화",
 	"prefs-help-forcesafemode": "위키의 스크립트와 스타일시트를 비활성화합니다.",
 	"prefs-editing": "편집",
 	"prefs-description-editing": "편집의 생성, 추적, 검토 방법을 사용자에 맞게 지정합니다.",

@@ -55,5 +55,6 @@
 	"sat": "Mim",
 	"sun": "Kua",
 	"period-am": "ANƆPA",
-	"period-pm": "ANADWO"
+	"period-pm": "ANADWO",
+	"duration-days": "$1 {{PLURAL:$1|da|nna}}"
 }

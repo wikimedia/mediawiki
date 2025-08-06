@@ -140,7 +140,7 @@
 	"underline-always": "Sempe",
 	"tog-showhiddencats": "Smon-e le categorìe stërmà",
 	"tog-showrollbackconfirmation": "Smon-e n'arcesta 'd conferma quand a së sgnaca an sn'anliura 'd révoca",
-	"tog-forcesafemode": "Ativa sèmper [[mw:Manual:Safemode|la modalità provisòria]]",
+	"tog-forcesafemode": "Ativa sèmper [[mw:Special:MyLanguage/Manual:Safemode|la modalità provisòria]]",
 	"prefs-help-forcesafemode": "Disativé ij copio e ij feuj dë stil ant la wiki.",
 	"prefs-editing": "Quàder ëd modìfica dël test",
 	"prefs-description-editing": "Përsonalisé com as fan, as trasso e as arvëddu le modìfiche.",

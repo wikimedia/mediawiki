@@ -8,7 +8,8 @@
 			"Hakim1bal",
 			"Ya2sine",
 			"YesIn",
-			"ⵕⴰⵊⵉ"
+			"ⵕⴰⵊⵉ",
+			"Lhoussine AIT TAYFST"
 		]
 	},
 	"january": "ⵉⵏⵏⴰⵢⵔ",
@@ -63,6 +64,7 @@
 	"sun": "ⴰⵙⴰ",
 	"period-am": "ⴼⵡ",
 	"period-pm": "ⵣⵡ",
+	"timezone-local": "ⴰⴷⵖⵔⴰⵏ",
 	"days": "{{PLURAL:$1|$1 ⵡⴰⵙⵙ|$1 ⵡⵓⵙⵙⴰⵏ}}",
 	"duration-days": "$1 ⵏ {{PLURAL:$1|ⵡⴰⵙⵙ|ⵡⵓⵙⵙⴰⵏ}}",
 	"saturday-at": "ⴰⵙⵉⴹⵢⴰⵙ ⴳ $1"

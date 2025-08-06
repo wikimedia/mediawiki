@@ -543,7 +543,7 @@
 	"temp-user-banner-tooltip-title": "Дочасови налог",
 	"temp-user-banner-tooltip-description-expiration-soon": "<strong>Ваш дочасови налог ше закончує о {{PLURAL:$1|1 дзень|$1 днї}}.</strong> Кед ше закончи, нови будзе направени шлїдуюци раз кед будзеце нєприявени ушорйовали.",
 	"temp-user-banner-tooltip-description-expiration-soon-day": "<strong>Ваш дочасови налог ше закончує за менєй як єден дзень.</strong> Кед ше закончи, нови будзе направени шлїдуюци раз кед будзеце нєприявени ушорйовали.",
-	"temp-user-banner-tooltip-description-learn-more": "Тот дочасови налог направени понеже направена пременка з того веб преглєдовача и софтвера [[mw:Help:Temporary_accounts|Дознайце вецей]].",
+	"temp-user-banner-tooltip-description-learn-more": "Тот дочасови налог направени понеже направена пременка з того веб преглєдовача и софтвера [[mw:Special:MyLanguage/Help:Temporary_accounts|Дознайце вецей]].",
 	"temp-user-banner-tooltip-description-login": "[[Special:UserLogin|Приявце ше]] або \n[[Special:CreateAccount|отворце налог]]. З тим  вашо доприношеня буду приписовани хасновательскому мену хторе вибереце и ви здобудзеце велї вигодносци.",
 	"blankarticle": "<strong>Спозоренє:</strong> Бок хтори правице празни.\nКед ознова кликнєце на „$1”, бок будзе направени без було якого змисту.",
 	"anoneditwarning": "<strong>Увага:</strong> Ви нє приявени. Вашу IP адресу ше годно явно видзиц кед ушорице або направице нови бок. <strong>[$1 Приявце ше]</strong> або <strong>[$2 отворце налоґ]</strong>. З тим вашо доприношеня буду уписовани ґу вашому хасновательскому мену хторе виберец и так здобудзеце вецей вигодносци.",

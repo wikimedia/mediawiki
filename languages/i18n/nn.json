@@ -509,7 +509,7 @@
 	"showdiff": "Sjå skilnader",
 	"temp-user-banner-description": "Du bruker eit mellombels konto",
 	"temp-user-banner-tooltip-title": "Mellombels konto",
-	"temp-user-banner-tooltip-description-learn-more": "Dette mellombels kontoet blei oppretta etter at ei endring blei urført utan konto på denne nettlesaren og eininga.[[mw:Help:Temporary_accounts|Lær meir]].",
+	"temp-user-banner-tooltip-description-learn-more": "Dette mellombels kontoet blei oppretta etter at ei endring blei urført utan konto på denne nettlesaren og eininga.[[mw:Special:MyLanguage/Help:Temporary_accounts|Lær meir]].",
 	"temp-user-banner-tooltip-description-login": "[[Special:UserLogin|Logg inn]] eller [[Special:CreateAccount|opprett ein konto]] for å få godskriven framtidige endringar og få tilgjenge til andre funksjonar.",
 	"blankarticle": "<strong>Åtvaring:</strong> Sida du er i ferd med å oppretta er tom.\nKlikkar du på «$1» ein gong til vil sida opprettast utan innhald.",
 	"anoneditwarning": "'''Åtvaring:''' Du er ikkje innlogga.\nIP-adressa di vil verta lagra i den offentlege endringshistorikken til sida. Om du <strong>[$1 loggar inn]</strong> eller <strong>[$2 lagar ein konto]</strong>, vil endringane dine knytast til brukarnamnet ditt, saman med andre fordelar.",

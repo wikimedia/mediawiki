@@ -577,7 +577,7 @@
 	"temp-user-banner-tooltip-title": "తాత్కాలిక ఖాతా",
 	"temp-user-banner-tooltip-description-expiration-soon": "<strong>మీ తాత్కాలిక ఖాతాకు {{PLURAL:$1|1 రోజులో|$1 రోజుల్లో}} కాలం చెల్లుతుంది.</strong> ఆ తరువాత, మీరు లాగినవకుండా దిద్దుబాటు చేసినపుడు ఓ కొత్త ఖాతా సృష్టించబడుతుంది.",
 	"temp-user-banner-tooltip-description-expiration-soon-day": "<strong>మీ తాత్కాలిక ఖాతాకు ఒకరోజు లోపే కాలం చెల్లుతుంది.</strong> ఆ తరువాత, మీరు లాగినవకుండా దిద్దుబాటు చేసినపుడు ఓ కొత్త ఖాతా సృష్టించబడుతుంది.",
-	"temp-user-banner-tooltip-description-learn-more": "ఈ బ్రౌజరులో, ఈ పరికరంలో ఖాతా లేకుండా సవరణ చేసిన తర్వాత ఈ తాత్కాలిక ఖాతాను సృష్టించారు. [[mw:Help:Temporary_accounts|మరింత తెలుసుకోండి]].",
+	"temp-user-banner-tooltip-description-learn-more": "ఈ బ్రౌజరులో, ఈ పరికరంలో ఖాతా లేకుండా సవరణ చేసిన తర్వాత ఈ తాత్కాలిక ఖాతాను సృష్టించారు. [[mw:Special:MyLanguage/Help:Temporary_accounts|మరింత తెలుసుకోండి]].",
 	"temp-user-banner-tooltip-description-login": "ఇకపై మీరు చేసే దిద్దుబాట్ల శ్రేయస్సు పొందడానికీ, ఇతర విశేషాలను వాడుకోడానికీ [[Special:UserLogin|లాగినవండి]] లేదా [[Special:CreateAccount|ఖాతా సృష్టించుకోండి]].",
 	"blankarticle": "<strong>హెచ్చరిక:</strong> మీరు సృష్టిస్తున్న పేజీ ఖాళీగా ఉంది. \nమళ్ళీ \"$1\" ను నొక్కితే ఖాళీ పేజీనే సృష్టిస్తాం.",
 	"anoneditwarning": "<strong>హెచ్చరిక:</strong> మీరు లాగినవలేదు. మీరు ఏమైనా మార్పులు చేస్తే మీ ఐపీ చిరునామా బహిరంగంగా అందరికీ కనిపిస్తుంది. మీరు <strong>[$1 లాగినైనా]</strong> లేక <strong>[$2 ఖాతా సృష్టించినా]</strong> మీ మార్పులు మీ పేరుతో ఉండటమే కాకుండా మరెన్నో సదుపాయాలుంటాయి.",

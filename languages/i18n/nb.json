@@ -606,7 +606,7 @@
 	"temp-user-banner-tooltip-title": "Midlertidig konto",
 	"temp-user-banner-tooltip-description-expiration-soon": "<strong>Den midlertidige kontoen din utløper om $1 {{PLURAL:$1|dag|dager}}.</strong> Etter at det utløper vil en ny midlertidig konto bli opprettet neste gang du redigerer uinnlogget.",
 	"temp-user-banner-tooltip-description-expiration-soon-day": "<strong>Den midlertidige kontoen din utløper om mindre enn én dag.</strong> Etter at den utløper blir en ny midlertidig konto opprettet neste gang du redigerer uinnlogget.",
-	"temp-user-banner-tooltip-description-learn-more": "Denne midlertidige kontoen ble opprettet etter en redigering ble utført uten en konto i denne nettleseren eller på denne enheten. [[mw:Help:Temporary_accounts|Lær mer]].",
+	"temp-user-banner-tooltip-description-learn-more": "Denne midlertidige kontoen ble opprettet etter en redigering ble utført uten en konto i denne nettleseren eller på denne enheten. [[mw:Special:MyLanguage/Help:Temporary_accounts|Lær mer]].",
 	"temp-user-banner-tooltip-description-login": "[[Special:UserLogin|Logg inn]] eller [[Special:CreateAccount|opprett en konto]] for å attribuere framtidige redigeringer til deg og få tilgang til andre funksjoner.",
 	"blankarticle": "<strong>Advarsel:</strong> Siden du er i ferd med å opprette er tom.\nHvis du trykker «$1» en gang til, vil siden opprettes uten innhold.",
 	"anoneditwarning": "<strong>Advarsel:</strong> Du er ikke innlogget. IP-adressen din vil bli vist offentlig om du redigerer. Hvis du <strong>[$1 logger inn]</strong> eller <strong>[$2 oppretter en konto]</strong> vil redigeringene dine tilskrives brukernavnet ditt, og du vil få flere andre fordeler.",

@@ -167,7 +167,7 @@
 	"underline-always": "دائما",
 	"tog-showhiddencats": "أظهر التصنيفات المخفية",
 	"tog-showrollbackconfirmation": "إظهار رسالة تأكيد عند النقر على رابط الاسترجاع",
-	"tog-forcesafemode": "فعل [[mw:Manual:Safemode|الوضع الآمن]] دائمًا",
+	"tog-forcesafemode": "قم دائمًا بتمكين [[mw:Special:MyLanguage/Manual:Safemode|الوضع الآمن]]",
 	"prefs-help-forcesafemode": "عطّل البرامج النصية وأوراق الأنماط الموجودة على الويكي.",
 	"prefs-editing": "التحرير",
 	"prefs-description-editing": "تخصيص طريقة إجراء التعديلات وتتبعها ومراجعتها.",

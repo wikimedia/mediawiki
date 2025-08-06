@@ -172,7 +172,7 @@
 	"underline-always": "Toujours",
 	"tog-showhiddencats": "Afficher les catégories cachées",
 	"tog-showrollbackconfirmation": "Afficher une demande de confirmation quand je clique sur un lien de révocation",
-	"tog-forcesafemode": "Toujours activer le [[mw:Manual:Safemode|mode sûreté]]",
+	"tog-forcesafemode": "Toujours activer le [[mw:Special:MyLanguage/Manual:Safemode|mode sûreté]]",
 	"prefs-help-forcesafemode": "Désactiver sur les scripts et pages de style dans le wiki.",
 	"prefs-editing": "Modification",
 	"prefs-description-editing": "Personnalisez la façon dont vous effectuez, suivez et révisez les modifications.",

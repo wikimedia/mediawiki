@@ -10,7 +10,8 @@
 			"REO2248",
 			"Stephanecbisson",
 			"Ykhwong",
-			"孟天皓"
+			"孟天皓",
+			"YeBoy371"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|분류}}",
@@ -344,6 +345,7 @@
 	"nocookiesfornew": "요청의 발기자를 확인할수 없기 때문에 사용자 계산자리가 만들어지지 않았습니다.\n쿠키를 허가한것을 확인하고, 이 문서를 재적재하고나서 다시 시도하세요.",
 	"createacct-loginerror": "계산자리 만들기는 성공했으나 자동으로 가입하지 못했습니다. [[Special:UserLogin|수동으로 가입]]해 주십시오.",
 	"noname": "사용자 이름이 옳바르지 않습니다.",
+	"userlogin-authpopup-loggingin-title": "가입 중…",
 	"loginsuccesstitle": "가입함",
 	"loginsuccess": "<strong>{{SITENAME}}에 《$1》님으로 가입했습니다.</strong>",
 	"nosuchuser": "이름이 《$1》인 사용자는 없습니다.\n사용자 이름은 대소문자를 구별합니다.\n철자가 맞는지 확인하시거나 [[Special:CreateAccount|새 계산자리를 만들수도 있습니다]].",

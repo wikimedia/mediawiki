@@ -483,7 +483,7 @@
 	"temp-user-banner-tooltip-title": "sijelo pi awen ala",
 	"temp-user-banner-tooltip-description-expiration-soon": "<strong>sijelo sina li weka lon {{PLURAL:$1|suno $1}}.</strong> ona li weka la, sijelo sin li kama lon tawa ni: sina ante kepeken sijelo ala.",
 	"temp-user-banner-tooltip-description-expiration-soon-day": "<strong>sijelo sina li weka lon suno ni.</strong> ona li weka la, sijelo sin li kama lon tawa ni: sina ante kepeken sijelo ala.",
-	"temp-user-banner-tooltip-description-learn-more": "sijelo ni li awen ala li kama lon tan ni: sina pana e ante tawa pali lon ilo ni. [[mw:Help:Temporary_accounts|o sona]].",
+	"temp-user-banner-tooltip-description-learn-more": "sijelo ni li awen ala li kama lon tan ni: sina pana e ante tawa pali lon ilo ni. [[mw:Special:MyLanguage/Help:Temporary_accounts|o sona]].",
 	"blankarticle": "<strong>o lukin:</strong> sina alasa pali e lipu pi sitelen ala. \n\nsina luka sin e nena \"$1\" la lipu pi sitelen ala li kama lon.",
 	"anoneditwarning": "<strong>suli a la</strong> sina kepeken ala sijelo. sina ante e lipu la, jan li ken lukin e nanpa IP sina. sina <strong>[$1 lon sijelo]</strong> anu <strong>[$2 pali e sijelo]</strong> la, jan li lukin e nimi sina lon poka pi ante sina. pona ante li kama.",
 	"missingsummary": "<strong>o sona:</strong> sina toki ala e tan ante.\nsina luka e nena \"$1\" la, mi pana e ante sina kepeken tan ala.",

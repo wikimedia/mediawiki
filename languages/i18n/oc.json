@@ -532,7 +532,7 @@
 	"temp-user-banner-description": "Utilizatz un còmpte temporari",
 	"temp-user-banner-tooltip-label": "Mai d'informacions sus lei còmptes temporaris",
 	"temp-user-banner-tooltip-title": "Còmpte temporari",
-	"temp-user-banner-tooltip-description-learn-more": "Aquest còmpte temporari es estat creat après una modificacion enregistrat sensa còmpte sus aquest navegaire e aquest aparelh. [[mw:Help:Temporary_accounts|Ne'n saber mai]].",
+	"temp-user-banner-tooltip-description-learn-more": "Aquest còmpte temporari es estat creat après una modificacion enregistrat sensa còmpte sus aquest navegaire e aquest aparelh. [[mw:Special:MyLanguage/Help:Temporary_accounts|Ne'n saber mai]].",
 	"temp-user-banner-tooltip-description-login": "[[Special:UserLogin|Se connectar]] ò [[Special:CreateAccount|crear un còmte]] per obtenir lo credit dei vòstrei modificacions ulterioras e accedir a d'autrei foncionalitats.",
 	"blankarticle": "<strong>Atencion :</strong> La pagina que creatz es voida.\nSe clicatz tornarmai sus « $1 », la pagina serà creada sens cap de contengut.",
 	"anoneditwarning": "<strong>Atencion:</strong> Non avètz obèrt cap de session. Vòstra adreça IP serà visibla publicament se fasètz quina que siá modificacion. Se <strong>[$1 vos connectatz]</strong> o <strong>[$2 creatz un compte]</strong>, vòstras modificacions seràn atribuidas a vòstre nom d'utilizator, entre autres avantatges.",

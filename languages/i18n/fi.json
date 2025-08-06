@@ -630,7 +630,7 @@
 	"temp-user-banner-tooltip-title": "Tilapäinen tunnus",
 	"temp-user-banner-tooltip-description-expiration-soon": "<strong>Tilapäinen tunnuksesi vanhenee {{PLURAL:$1|$1 päivän}} kuluttua.</strong> Vanhenemisen jälkeen uusi tunnus luodaan seuraavalla kerralla, kun teet muokkauksen kirjautumatta sisään.",
 	"temp-user-banner-tooltip-description-expiration-soon-day": "<strong>Tilapäinen tunnuksesi vanhenee alle päivän kuluttua.</strong> Vanhenemisen jälkeen uusi tunnus luodaan seuraavalla kerralla, kun teet muokkauksen kirjautumatta sisään.",
-	"temp-user-banner-tooltip-description-learn-more": "Tämä tilapäinen tunnus luotiin sen jälkeen, kun tällä selaimella ja laitteella tehtiin muokkaus ilman käyttäjätunnusta. [[mw:Help:Temporary_accounts|Lisätietoja]].",
+	"temp-user-banner-tooltip-description-learn-more": "Tämä tilapäinen tunnus luotiin sen jälkeen, kun tällä selaimella ja laitteella tehtiin muokkaus ilman käyttäjätunnusta. [[mw:Special:MyLanguage/Help:Temporary_accounts|Lisätietoja]].",
 	"temp-user-banner-tooltip-description-login": "[[Special:UserLogin|Kirjaudu sisään]] tai [[Special:CreateAccount|luo tunnus]] saadaksesi tulevat muokkauksesi oman tunnuksesi nimiin sekä päästäksesi käyttämään lisäominaisuuksia.",
 	"blankarticle": "<strong>Varoitus:</strong> Sivu, jota olet luomassa on tyhjä.\nJos napsautat ”$1” uudelleen, sivu luodaan ilman sisältöä.",
 	"anoneditwarning": "<strong>Varoitus:</strong> Et ole kirjautunut sisään. IP-osoitteesi tulee näkymään julkisesti, jos teet muokkauksia. Mikäli <strong>[$1 kirjaudut sisään]</strong> tai <strong>[$2 luot tunnuksen]</strong>, muokkauksesi yhdistetään käyttäjänimeesi ja saat paremman käyttökokemuksen.",
