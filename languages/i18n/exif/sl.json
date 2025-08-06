@@ -245,7 +245,7 @@
 	"exif-subjectdistance-value": "$1 {{PLURAL:$1|meter|metra|metre|metrov|metrov}}",
 	"exif-meteringmode-0": "Neznan",
 	"exif-meteringmode-1": "Povprečno",
-	"exif-meteringmode-2": "Središčno obteženo povprečno",
+	"exif-meteringmode-2": "Središčno uteženo povprečno",
 	"exif-meteringmode-3": "Točkovno",
 	"exif-meteringmode-4": "Večtočkovno",
 	"exif-meteringmode-5": "Vzorčno",

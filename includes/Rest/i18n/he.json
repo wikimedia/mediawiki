@@ -3,6 +3,7 @@
 		"authors": [
 			"Amire80",
 			"Guycn2",
+			"Neriah",
 			"Rotemliss",
 			"יוסף בן מלמד"
 		]
@@ -132,13 +133,13 @@
 	"rest-param-desc-compare-to-section-offset": "היסט בבתים בתוך קוד הוויקי שהפרק מתחיל בו",
 	"rest-param-desc-compare-diff": "הבדלים בין גרסאות",
 	"rest-param-desc-language-links-title": "כותרת דף ויקי",
-	"rest-param-desc-media-links-title": "כותרת קובץ",
+	"rest-param-desc-media-links-title": "כותרת הדף",
 	"rest-param-desc-media-file-title": "כותרת קובץ",
 	"rest-param-desc-media-description-url": "כתובת ה־URL של הדף שמתאר את הקובץ, כולל פרטי רישיון ומטא־נתונים אחרים",
 	"rest-param-desc-media-latest": "מידע על הגרסה האחרונה של הקובץ",
 	"rest-param-desc-media-latest-timestamp": "חותם־זמן של השינוי האחרון בתסדיר ISO 8601",
 	"rest-param-desc-media-latest-user": "מידע על המשתמש שהעלה את הקובץ",
-	"rest-param-desc-media-preferred": "מידע על תסדיר התצוגה המקדימה המועדף של הקובץ, התסדיר המקורי ותסדיר התמונות הממוזערות",
+	"rest-param-desc-media-preferred": "מידע על תסדיר התצוגה המקדימה המועדף של הקובץ",
 	"rest-param-desc-media-mediatype": "סוג הקובץ",
 	"rest-param-desc-media-size": "גודל הקובץ בבתים או ערך ריק אם זה לא זמין",
 	"rest-param-desc-media-width": "רוחב תמונה המרבי המומלץ בפיקסלים או ערך ריק אם זה לא זמין",
@@ -229,7 +230,7 @@
 	"rest-endpoint-desc-put-page-title": "עריכת דף על סמך מזהה הגרסה האחרון של הדף, או יצירת הדף אם לא ניתן מזהה גרסה.",
 	"rest-endpoint-desc-get-page-title-html": "מחזירה את התוכן העדכני ביותר של דף ויקי ב־HTML. נקודת הקצה הזאת מחזירה תוכן מסוג text/html.",
 	"rest-endpoint-desc-get-page-title-with-html": "מחזירה מידע על דף ויקי, כולל הרישיון, הגרסה האחרונה והתוכן העדכני ביותר ב־HTML.",
-	"rest-endpoint-desc-get-page-title-bare": "מחזירה את עצם הדף התקני עבור דף ויקי, כולל נתיב ה־API לאחזור התוכן העדכני ביותר ב־HTML, הרישיון ומידע על הגרסה האחרונה.",
+	"rest-endpoint-desc-get-page-title-bare": "מחזירה מידע על דף",
 	"rest-endpoint-desc-get-revision-id": "מחזירה מטא־נתונים עבור גרסה, כולל מקור",
 	"rest-endpoint-desc-get-revision-id-html": "מחזירה את התוכן של הגרסה ב־HTML. נקודת הקצה הזאת מחזירה תוכן מסוג text/html.",
 	"rest-endpoint-desc-get-revision-id-with-html": "מחזירה מטא־נתונים עבור גרסה, כולל התוכן ב־HTML",

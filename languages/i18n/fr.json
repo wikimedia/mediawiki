@@ -3,6 +3,7 @@
 		"authors": [
 			"0x010C",
 			"Aaribaud",
+			"Abakar B",
 			"Agzennay",
 			"Ajeje Brazorf",
 			"Akeron",
@@ -248,6 +249,9 @@
 	"morenotlisted": "Cette liste peut être incomplète.",
 	"mypage": "Page",
 	"mytalk": "Discussion",
+	"mytalk-appeal": "Demander un déblocage de cette adresse IP",
+	"mytalk-appeal-summary": "Votre adresse IP est bloquée en édition. Cliquer sur continuer entraînera la création d'un [[mw:Special:MyLanguage/Help:Temporary_accounts|compte temporaire]]. Vous pourrez alors éditer votre page de discussion temporaire pour demander un déblocage de cette IP.",
+	"mytalk-appeal-submit": "Continuer",
 	"anontalk": "Discussion",
 	"navigation": "Navigation",
 	"and": "&#32;et",
