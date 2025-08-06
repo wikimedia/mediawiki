@@ -392,6 +392,8 @@ because of Phabricator reports.
   - markPatrolled()
   - reallyMarkPatrolled()
 * XmlSelect::setTagName() is deprecated, use the Html class instead.
+* CategoryViewer::getSubcategorySortChar() is deprecated, treat sortkey for
+  sub-category the same as for others instead.
 * The UserIsBlockedGlobally hook has been hard deprecated and now emits
   deprecation warnings. The hook has been deprecated since 1.40.
 * …

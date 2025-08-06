@@ -241,7 +241,7 @@ class CategoryViewer extends ContextSource {
 		);
 
 		$this->children_start_char[] =
-			$this->getSubcategorySortChar( $page, $sortkey );
+			$this->languageConverter->convert( $this->collation->getFirstLetter( $sortkey ) );
 	}
 
 	/**
@@ -283,25 +283,15 @@ class CategoryViewer extends ContextSource {
 
 	/**
 	 * Get the character to be used for sorting subcategories.
-	 * If there's a link from Category:A to Category:B, the sortkey of the resulting
-	 * entry in the categorylinks table is Category:A, not A, which it SHOULD be.
-	 * Workaround: If sortkey == "Category:".$title, than use $title for sorting,
-	 * else use sortkey...
 	 *
+	 * @deprecated since 1.45, treat sortkey for sub-category the same as for others instead.
 	 * @param PageIdentity $page
 	 * @param string $sortkey The human-readable sortkey (before transforming to icu or whatever).
 	 * @return string
 	 */
 	public function getSubcategorySortChar( PageIdentity $page, string $sortkey ): string {
-		$titleText = MediaWikiServices::getInstance()->getTitleFormatter()
-			->getPrefixedText( $page );
-		if ( $titleText === $sortkey ) {
-			$word = $page->getDBkey();
-		} else {
-			$word = $sortkey;
-		}
-
-		$firstChar = $this->collation->getFirstLetter( $word );
+		wfDeprecated( __METHOD__, '1.45' );
+		$firstChar = $this->collation->getFirstLetter( $sortkey );
 
 		return $this->languageConverter->convert( $firstChar );
 	}
@@ -447,15 +437,7 @@ class CategoryViewer extends ContextSource {
 			foreach ( $res as $row ) {
 				$title = Title::newFromRow( $row );
 				$linkCache->addGoodLinkObjFromRow( $title, $row );
-
-				if ( $row->collation_name === '' ) {
-					// Hack to make sure that while updating from 1.16 schema
-					// and db is inconsistent, that the sky doesn't fall.
-					// See r83544. Could perhaps be removed in a couple decades...
-					$humanSortkey = $row->cl_sortkey;
-				} else {
-					$humanSortkey = $title->getCategorySortkey( $row->cl_sortkey_prefix );
-				}
+				$humanSortkey = $title->getCategorySortkey( $row->cl_sortkey_prefix );
 
 				if ( ++$count > $this->limit ) {
 					# We've reached the one extra which shows that there
