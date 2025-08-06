@@ -757,33 +757,25 @@ abstract class LanguageConverter implements ILanguageConverter {
 
 	/**
 	 * @param int $index
-	 * @param string|null $variant
+	 * @param string $variant
 	 * @return string
 	 */
-	private function computeNsVariantText( int $index, ?string $variant ): string {
+	private function computeNsVariantText( int $index, string $variant ): string {
 		$nsVariantText = false;
 
-		// First check if a message gives a converted name in the target variant.
+		// Check if a message for this namespace exists. Note that this would follow
+		// the fallback chain, and the site's content language as the last resort.
 		$nsConvMsg = wfMessage( 'conversion-ns' . $index )->inLanguage( $variant );
 		if ( $nsConvMsg->exists() ) {
 			$nsVariantText = $nsConvMsg->plain();
 		}
 
-		// Then check if a message gives a converted name in content language
-		// which needs extra translation to the target variant.
-		if ( $nsVariantText === false ) {
-			$nsConvMsg = wfMessage( 'conversion-ns' . $index )->inContentLanguage();
-			if ( $nsConvMsg->exists() ) {
-				$nsVariantText = $this->translate( $nsConvMsg->plain(), $variant );
-			}
-		}
-
 		if ( $nsVariantText === false ) {
 			// No message exists, retrieve it from the target variant's namespace names.
-			$mLangObj = MediaWikiServices::getInstance()
+			$langObj = MediaWikiServices::getInstance()
 				->getLanguageFactory()
 				->getLanguage( $variant );
-			$nsVariantText = $mLangObj->getFormattedNsText( $index );
+			$nsVariantText = $langObj->getFormattedNsText( $index );
 		}
 		return $nsVariantText;
 	}
