@@ -103,14 +103,10 @@ trait DummyServicesTrait {
 		CommentParser $parser
 	): CommentParserFactory {
 		return new class( $parser ) extends CommentParserFactory {
-			private $parser;
-
-			public function __construct( CommentParser $parser ) {
-				$this->parser = $parser;
+			public function __construct( private readonly CommentParser $parser ) {
 			}
 
-			/** @inheritDoc */
-			public function create() {
+			public function create(): CommentParser {
 				return $this->parser;
 			}
 		};
