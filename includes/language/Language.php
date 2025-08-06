@@ -436,7 +436,10 @@ class Language implements Bcp47Code {
 
 	/**
 	 * A convenience function that returns getNamespaces() with spaces instead of underscores
-	 * in values. Useful for producing output to be displayed e.g. in `<select>` forms.
+	 * in values.
+	 *
+	 * NOTE: This is not suitable for UI text, as language variants of namespace names
+	 * defined via system messages are ignored. Use LanguageConverter::convertNamespace() instead.
 	 *
 	 * @return string[]
 	 */

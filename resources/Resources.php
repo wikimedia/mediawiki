@@ -2921,9 +2921,18 @@ return [
 				$userLang = $services->getLanguageFactory()->getLanguage( $langCode );
 				$converter = $services->getLanguageConverterFactory()
 					->getLanguageConverter( $services->getContentLanguage() );
+
+				$isContLangVariant = $converter->hasVariant( $langCode );
+				$namespaces = $userLang->getFormattedNamespaces();
+				if ( $isContLangVariant ) {
+					foreach ( $namespaces as $nsId => $_ ) {
+						$namespaces[$nsId] = $converter->convertNamespace( $nsId, $langCode );
+					}
+				}
+
 				return [
-					'isContLangVariant' => $converter->hasVariant( $langCode ),
-					'formattedNamespaces' => $userLang->getFormattedNamespaces(),
+					'isContLangVariant' => $isContLangVariant,
+					'formattedNamespaces' => $namespaces,
 				];
 			} ],
 			'mw.widgets.NamespaceInputWidget.js',
