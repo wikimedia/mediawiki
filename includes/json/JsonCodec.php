@@ -127,7 +127,6 @@ class JsonCodec
 		) {
 			$classHint = 'array';
 		}
-		// @phan-suppress-next-line PhanUndeclaredClassReference 'array'
 		$className = parent::unmarkArray( $value, $classHint );
 		// Remove the temporarily added COMPLEX_ANNOTATION
 		if ( $this->backCompat ) {

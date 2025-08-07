@@ -81,9 +81,11 @@ abstract class LanguageConverterIcu extends LanguageConverterSpecific {
 		if ( $this->mTransliterators === null ) {
 			$this->mTransliterators = [];
 			foreach ( $this->getIcuRules() as $variant => $rule ) {
+				// @phan-suppress-next-line PhanTypeMismatchProperty
 				$this->mTransliterators[$variant] = Transliterator::createFromRules( $rule );
 			}
 			foreach ( $this->getTransliteratorAliases() as $alias => $variant ) {
+				// @phan-suppress-next-line PhanTypeMismatchProperty
 				$this->mTransliterators[$alias] = $this->mTransliterators[$variant];
 			}
 		}

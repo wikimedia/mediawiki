@@ -1170,7 +1170,6 @@ class AuthManager implements LoggerAwareInterface {
 			'flags' => IDBAccessObject::READ_NORMAL,
 			'creating' => false,
 		];
-		// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
 		$flags = $options['flags'];
 
 		if ( !$this->canCreateAccounts() ) {

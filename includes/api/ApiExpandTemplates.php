@@ -118,7 +118,6 @@ class ApiExpandTemplates extends ApiBase {
 			$parser = $this->parserFactory->getInstance();
 			$parser->startExternalParse( $titleObj, $options, Parser::OT_PREPROCESS );
 			$dom = $parser->preprocessToDom( $params['text'] );
-			// @phan-suppress-next-line PhanUndeclaredMethodInCallable
 			if ( is_callable( [ $dom, 'saveXML' ] ) ) {
 				// @phan-suppress-next-line PhanUndeclaredMethod
 				$xml = $dom->saveXML();

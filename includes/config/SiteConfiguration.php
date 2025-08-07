@@ -565,7 +565,6 @@ class SiteConfiguration {
 		// Optimization: For hot getAll() code path, precompute replacements to re-use
 		// over hundreds of processSetting() calls.
 		$ret['replacements'] = [];
-		// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
 		foreach ( $ret['params'] as $key => $value ) {
 			$ret['replacements']['$' . $key] = $value;
 		}

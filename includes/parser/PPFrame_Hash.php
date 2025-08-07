@@ -342,14 +342,11 @@ class PPFrame_Hash implements Stringable, PPFrame {
 					[ 'attr' => null, 'inner' => null, 'close' => null ];
 				if ( $flags & PPFrame::NO_TAGS ) {
 					$s = '<' . $bits['name']->getFirstChild()->value;
-					// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 					if ( $bits['attr'] ) {
 						$s .= $bits['attr']->getFirstChild()->value;
 					}
-					// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 					if ( $bits['inner'] ) {
 						$s .= '>' . $bits['inner']->getFirstChild()->value;
-						// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 						if ( $bits['close'] ) {
 							$s .= $bits['close']->getFirstChild()->value;
 						}

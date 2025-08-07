@@ -836,7 +836,6 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 		];
 		$validate = $options['validate'];
 
-		// @phan-suppress-next-line PhanSuspiciousValueComparison
 		if ( $validate === false ) {
 			$validation = UserRigorOptions::RIGOR_NONE;
 		} elseif ( array_key_exists( $validate, $validationLevels ) ) {
@@ -878,7 +877,6 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 
 		if ( !$row ) {
 			// No user. Create it?
-			// @phan-suppress-next-line PhanImpossibleCondition
 			if ( !$options['create'] ) {
 				// No.
 				return null;
@@ -896,7 +894,6 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 
 		if ( !$user->isSystemUser() ) {
 			// User exists. Steal it?
-			// @phan-suppress-next-line PhanRedundantCondition
 			if ( !$options['steal'] ) {
 				return null;
 			}

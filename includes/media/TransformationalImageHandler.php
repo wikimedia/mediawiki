@@ -641,9 +641,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 			return true;
 		}
 
-		// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset Checked by normaliseParams
 		$srcWidth = $file->getWidth( $params['page'] );
-		// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset Checked by normaliseParams
 		$srcHeight = $file->getHeight( $params['page'] );
 
 		if ( $srcWidth * $srcHeight > $maxImageArea

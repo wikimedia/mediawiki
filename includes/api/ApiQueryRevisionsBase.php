@@ -651,7 +651,6 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 					Parser::OT_PREPROCESS
 				);
 				$dom = $parser->preprocessToDom( $t );
-				// @phan-suppress-next-line PhanUndeclaredMethodInCallable
 				if ( is_callable( [ $dom, 'saveXML' ] ) ) {
 					// @phan-suppress-next-line PhanUndeclaredMethod
 					$xml = $dom->saveXML();

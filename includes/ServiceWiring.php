@@ -2204,7 +2204,6 @@ return [
 		return new CachingSiteStore( $rawSiteStore, $cache );
 	},
 
-	/** @suppress PhanTypeInvalidCallableArrayKey */
 	'SkinFactory' => static function ( MediaWikiServices $services ): SkinFactory {
 		$factory = new SkinFactory(
 			$services->getObjectFactory(),

@@ -635,7 +635,6 @@ class LogEventsList extends ContextSource {
 		$extraUrlParams = $param['extraUrlParams'];
 
 		$useRequestParams = $param['useRequestParams'];
-		// @phan-suppress-next-line PhanRedundantCondition
 		if ( !is_array( $msgKey ) ) {
 			$msgKey = [ $msgKey ];
 		}
@@ -686,12 +685,11 @@ class LogEventsList extends ContextSource {
 		if ( $param['useMaster'] ) {
 			$pager->mDb = $services->getConnectionProvider()->getPrimaryDatabase();
 		}
-		// @phan-suppress-next-line PhanImpossibleCondition
+
 		if ( isset( $param['offset'] ) ) { # Tell pager to ignore WebRequest offset
 			$pager->setOffset( $param['offset'] );
 		}
 
-		// @phan-suppress-next-line PhanSuspiciousValueComparison
 		if ( $lim > 0 ) {
 			$pager->mLimit = $lim;
 		}
@@ -750,7 +748,6 @@ class LogEventsList extends ContextSource {
 				$urlParam['type'] = $types[0];
 			}
 
-			// @phan-suppress-next-line PhanSuspiciousValueComparison
 			if ( $extraUrlParams !== false ) {
 				$urlParam = array_merge( $urlParam, $extraUrlParams );
 			}
@@ -795,7 +792,6 @@ class LogEventsList extends ContextSource {
 			$context->getOutput()->addModuleStyles( 'mediawiki.codex.messagebox.styles' );
 		}
 
-		// @phan-suppress-next-line PhanSuspiciousValueComparison
 		if ( $wrap != '' ) { // Wrap message in html
 			$s = str_replace( '$1', $s, $wrap );
 		}

@@ -199,6 +199,7 @@ class ParserEditTests extends Maintenance {
 			print "Could not find the test after a restart, did you rename it?";
 			unset( $this->session['startFile'] );
 			unset( $this->session['startTest'] );
+			// @phan-suppress-next-line PhanPossiblyInfiniteRecursionSameParams We've changed the data before re-calling ourselves
 			$this->showResults();
 		}
 		print "All done\n";

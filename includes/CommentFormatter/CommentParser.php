@@ -386,7 +386,6 @@ class CommentParser {
 					if ( isset( $match[1][0] ) && $match[1][0] == ':' ) {
 						$match[1] = substr( $match[1], 1 );
 					}
-					// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
 					if ( $match[1] !== false && $match[1] !== null && $match[1] !== '' ) {
 						if ( preg_match(
 							$this->contLang->linkTrail(),

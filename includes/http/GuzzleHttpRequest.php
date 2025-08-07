@@ -167,7 +167,6 @@ class GuzzleHttpRequest extends MWHttpRequest {
 		// which is in MediaWiki CookieJar format, not in Guzzle-specific CookieJar format.
 		// Note: received cookies (from HTTP response) don't need to be handled here,
 		// they will be added back into the CookieJar by MWHttpRequest::parseCookies().
-		// @phan-suppress-next-line PhanUndeclaredFunctionInCallable
 		$stack->remove( 'cookies' );
 		$mwCookieJar = $this->getCookieJar();
 		$stack->push( Middleware::mapRequest(

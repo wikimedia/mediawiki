@@ -843,7 +843,6 @@ abstract class ApiBase extends ContextSource {
 			'safeMode' => false,
 		];
 
-		// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
 		$parseLimit = (bool)$options['parseLimit'];
 		$cacheKey = (int)$parseLimit;
 

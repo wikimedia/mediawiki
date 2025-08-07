@@ -301,7 +301,6 @@ class ApiParamInfo extends ApiBase {
 		if ( isset( $ret['helpurls'][0] ) && $ret['helpurls'][0] === false ) {
 			$ret['helpurls'] = [];
 		}
-		// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
 		ApiResult::setIndexedTagName( $ret['helpurls'], 'helpurl' );
 
 		if ( $this->helpFormat !== 'none' ) {

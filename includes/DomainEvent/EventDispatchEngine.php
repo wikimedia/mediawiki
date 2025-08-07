@@ -158,6 +158,7 @@ class EventDispatchEngine implements DomainEventDispatcher, DomainEventSource {
 
 		if ( $this->pendingSubscribers[$eventType] ) {
 			// If more pending subscribers got added, recurse!
+			// @phan-suppress-next-line PhanPossiblyInfiniteRecursionSameParams We've changed the data
 			$this->resolveSubscribers( $eventType );
 		}
 	}

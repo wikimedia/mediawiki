@@ -357,7 +357,6 @@ class HookContainer implements SalvageableService {
 		if ( is_object( $handler[0] ) && is_string( $handler[1] ?? false ) && array_key_exists( 2, $handler ) ) {
 			$obj = $handler[0];
 			if ( !$obj instanceof Closure ) {
-				// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset
 				$method = $handler[1];
 				$handler = array_merge(
 					[ [ $obj, $method ] ],

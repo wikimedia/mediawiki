@@ -5521,9 +5521,7 @@ class Parser {
 		# Will the image be presented in a frame, with the caption below?
 		// @phan-suppress-next-line PhanImpossibleCondition
 		$hasVisibleCaption = isset( $params['frame']['framed'] )
-			// @phan-suppress-next-line PhanImpossibleCondition
 			|| isset( $params['frame']['thumbnail'] )
-			// @phan-suppress-next-line PhanImpossibleCondition
 			|| isset( $params['frame']['manualthumb'] );
 
 		# In the old days, [[Image:Foo|text...]] would set alt text.  Later it
