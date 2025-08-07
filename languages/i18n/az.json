@@ -76,7 +76,7 @@
 	"mypage": "Səhifə",
 	"mytalk": "Müzakirə",
 	"mytalk-appeal": "Bu IP blokuna etiraz et",
-	"mytalk-appeal-summary": "IP ünvanınız bloklanıb. Davam et düyməsini basmaq [[mw:Special:MyLanguage/Help:Temporary_accounts|müvəqqəti hesab]] yaradacaq. Daha sonra bu bloka etiraz etmək üçün müvəqqəti müzakirə səhifənizi redaktə edə biləcəksiniz.",
+	"mytalk-appeal-summary": "IP ünvanınız bloklanıb. \"{{int:mytalk-appeal-submit}}\" düyməsini basmaq [[mw:Special:MyLanguage/Help:Temporary_accounts|müvəqqəti hesab]] yaradacaq. Daha sonra bu bloka etiraz etmək üçün müvəqqəti müzakirə səhifənizi redaktə edə biləcəksiniz.",
 	"mytalk-appeal-submit": "Davam et",
 	"anontalk": "Müzakirə",
 	"navigation": "Naviqasiya",

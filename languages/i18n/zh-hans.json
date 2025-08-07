@@ -248,6 +248,8 @@
 	"morenotlisted": "此列表可能不完整。",
 	"mypage": "页面",
 	"mytalk": "讨论",
+	"mytalk-appeal": "就此次IP封禁提出申诉",
+	"mytalk-appeal-summary": "您的IP地址已被封禁，目前无法编辑。点击“{{int:mytalk-appeal-submit}}”将为您创建[[mw:Special:MyLanguage/Help:Temporary_accounts|临时账号]]，而后您便可以使用临时讨论页就此次封禁提出申诉。",
 	"mytalk-appeal-submit": "继续",
 	"anontalk": "讨论",
 	"navigation": "导航",

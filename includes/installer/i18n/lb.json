@@ -80,7 +80,7 @@
 	"config-type-mysql": "MariaDB, MySQL, oder kompatibel",
 	"config-type-postgres": "PostgreSQL",
 	"config-type-sqlite": "SQLite",
-	"config-dbsupport-postgres": "* [{{int:version-db-postgres-url}} PostgreSQL] ass e beléiften Open-Source-Datebanksystem an eng Alternativ zu MySQL. ([https://www.php.net/manual/en/pgsql.installation.php Uleedung fir d'Kompilatoun vu PHP mat PostgreSQL-Ënnerstëtzung])",
+	"config-dbsupport-postgres": "* [{{int:version-db-postgres-url}} PostgreSQL] ass e beléiften Open-Source-Datebanksystem an eng Alternativ zu MySQL. ([https://www.php.net/pgsql.installation Uleedung fir d'Kompilatoun vu PHP mat PostgreSQL-Ënnerstëtzung])",
 	"config-header-mysql": "MariaDB/MySQL-Astellungen",
 	"config-header-postgres": "PostgreSQL-Astellungen",
 	"config-header-sqlite": "SQLite-Astellungen",

@@ -92,6 +92,8 @@
 	"morenotlisted": "Denne lista er muligens ufullstendig.",
 	"mypage": "Min brukerside",
 	"mytalk": "Diskusjon",
+	"mytalk-appeal": "Klag på denne IP-blokkeringen",
+	"mytalk-appeal-summary": "IP-adressen din er blokkert fra redigering. Trykk på \"{{int:mytalk-appeal-submit}}\" vil opprette en [[mw:Special:MyLanguage/Help:Temporary_accounts|midlertidig konto]]. Du kan deretter redigere din midlertidige diskusjonsside for å klage på denne blokkeringen.",
 	"mytalk-appeal-submit": "Fortsett",
 	"anontalk": "Brukerdiskusjon",
 	"navigation": "Navigasjon",

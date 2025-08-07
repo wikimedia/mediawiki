@@ -81,7 +81,7 @@
 	"config-sqlite-dir": "SQLite డేటా డైరెక్టరీ:",
 	"config-type-mysql": "MySQL (లేదా సరిపోయేది)",
 	"config-support-info": "MediaWiki కింది డేటాబేసు వ్యవస్థలకు అనుకూలిస్తుంది:\n\n$1\n\nమీరు వాడదలచిన డేటాబేసు వ్యవస్ కింది జాబితాలో లేకపోతే, పైన లింకు ద్వారా ఇచ్చిన సూచనలను పాటించి, అనుకూలతలను సాధించండి.",
-	"config-dbsupport-postgres": "* MySQL కు ప్రత్యామ్నాయంగా [{{int:version-db-postgres-url}} PostgreSQL] ప్రజామోదం పొందిన ఓపెన్‍సోర్సు డేటాబేసు వ్యవస్థ. దానిలో చిన్న చితకా లోపాలుండే అవకాశం ఉంది. అందుచేత దాన్ని ఉత్పాదక రంగంలో వాడవచ్చని చెప్పలేం.  ([https://www.php.net/manual/en/pgsql.installation.php How to compile PHP with PostgreSQL support])",
+	"config-dbsupport-postgres": "* MySQL కు ప్రత్యామ్నాయంగా [{{int:version-db-postgres-url}} PostgreSQL] ప్రజామోదం పొందిన ఓపెన్‍సోర్సు డేటాబేసు వ్యవస్థ. దానిలో చిన్న చితకా లోపాలుండే అవకాశం ఉంది. అందుచేత దాన్ని ఉత్పాదక రంగంలో వాడవచ్చని చెప్పలేం.  ([https://www.php.net/pgsql.installation How to compile PHP with PostgreSQL support])",
 	"config-dbsupport-sqlite": "* [{{int:version-db-sqlite-url}} SQLite] ఓ తేలికైన డేటాబేసు వ్యవస్థ. దానికి చక్కటి అనుకూలతలున్నాయి. ([http://www.php.net/manual/en/pdo.installation.php How to compile PHP with SQLite support], uses PDO)",
 	"config-header-mysql": "MySQL అమరికలు",
 	"config-header-postgres": "PostgreSQL అమరికలు",

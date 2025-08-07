@@ -73,7 +73,7 @@
 	"config-profile-fishbowl": "Otorisado nga mga editor la",
 	"config-profile-private": "Pribado nga wiki",
 	"config-license-pd": "Dominyo Publiko",
-	"config-enable-email-help": "Kun naruruyag ka nga gumana an email, an [https://www.php.net/manual/en/mail.configuration.php mail settings nga PHP] in kinahanglan nga mai-configure hin asya.\nKun diri ka naruruyag hin bisan ano nga mga email feature, puydi nim igparong dinhi.",
+	"config-enable-email-help": "Kun naruruyag ka nga gumana an email, an [https://www.php.net/mail.configuration mail settings nga PHP] in kinahanglan nga mai-configure hin asya.\nKun diri ka naruruyag hin bisan ano nga mga email feature, puydi nim igparong dinhi.",
 	"config-email-user": "Igpaandar an gumaramit-ha-gumaramit nga email",
 	"config-email-user-help": "Igtugot an ngatanan nga mga gumaramit nga magpadangat hin email ha tagsa-tagsa kun ira ginpaandar ini ha ira karuyagon.",
 	"config-email-usertalk": "Igpaandar an pagpasabot ha pakli han hiruhimangraw han gumaramit",

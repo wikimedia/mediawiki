@@ -3,6 +3,7 @@
 		"authors": [
 			"August.C",
 			"Kly",
+			"Peterxy12",
 			"Xiplus",
 			"列维劳德",
 			"捍粵者"
@@ -68,6 +69,7 @@
 	"rest-unsupported-target-format": "不支援的請求目標格式。",
 	"rest-parsoid-resource-exceeded": "超出資源限制",
 	"rest-parsoid-error": "Parsoid 錯誤。",
+	"rest-parsoid-bad-render-id": "错误的Parsoid渲染ID：$1",
 	"rest-bad-stash-key": "錯誤的 stash key。",
 	"rest-html-key-expected": "正文裡預期的 <var>html</var> 鍵",
 	"rest-invalid-transform": "無效轉換：$1成$2",
@@ -89,5 +91,18 @@
 	"rest-unsupported-language-conversion": "不支援的語言轉換：從$1到$2",
 	"rest-unknown-content-model": "未知的內容模型：$1",
 	"rest-page-bundle-validation-error": "PageBundle 與 contentVersion 不相符：$1",
-	"rest-param-desc-revision-id": "修訂版本 ID"
+	"rest-module": "模組",
+	"rest-module-default": "預設模組",
+	"rest-module-extra-routes-title": "MediaWiki REST API",
+	"rest-module-extra-routes-desc": "與模組不關聯的REST端點",
+	"rest-module-specs.v0-title": "規格",
+	"rest-module-specs.v0-desc": "自文檔模組為所有可用模組提供發現、規格和模式。",
+	"rest-module-content.v1-title": "頁面內容",
+	"rest-module-content.v1-desc": "提供對頁面和修訂內容和元資料的訪問",
+	"rest-param-desc-mock-desc": "模拟描述",
+	"rest-param-desc-revision-id": "修訂版本 ID",
+	"rest-param-desc-html-input-title": "HTML輸入轉換標題",
+	"rest-param-desc-html-input-oldid": "HTML輸入轉換oldid",
+	"rest-param-desc-html-input-from": "HTML輸入轉換自",
+	"rest-param-desc-html-input-format": "HTML輸入轉換格式"
 }

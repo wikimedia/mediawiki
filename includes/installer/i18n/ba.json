@@ -116,7 +116,7 @@
 	"config-type-mysql": "MariaDB, MySQL йәки яраҡлы",
 	"config-support-info": "MediaWiki түбәндәге мәғлүмәт базаһы системаларын ҡуллана:\n\n$1\n\nӘгәр ҡулланырға теләгән мәғлүмәт һаҡлау системаһын исемлектә күрмәһәгеҙ, рөхсәт алыу өсөн өҫтәге һылтанмалағы инструкция буйынса эш итегеҙ.",
 	"config-dbsupport-mysql": "* [{{int:version-db-mysql-url}} MySQL] — MediaWiki өсөн иң яҡшы ҡулланылған төп мәғлүмәттәр базаһы.  MediaWiki шулай уҡ MariaDB менән тап килгән [{{int:version-db-mariadb-url}} MariaDB] һәм [{{int:version-db-percona-url}} Percona Server] менән эшләй. ([https://www.php.net/manual/ru/mysql.installation.php MySQL ярҙамында нисек PHP тупларға])",
-	"config-dbsupport-postgres": "* [{{int:version-db-postgres-url}} PostgreSQL] —  MySQL өсөн альтернатива булараҡ, асыҡ сығанаҡ кодлы мәғлүмәттәр база?ы системаһы.\nТөҙәтелмәгән хаталар булыуы мөмкин, эш схемаһында ҡулланыу тәҡдим ителмәй. ([https://www.php.net/manual/en/pgsql.installation.php  PostgreSQL рөхсәт ителгән РНР йыйыу инструкцияһы]).",
+	"config-dbsupport-postgres": "* [{{int:version-db-postgres-url}} PostgreSQL] —  MySQL өсөн альтернатива булараҡ, асыҡ сығанаҡ кодлы мәғлүмәттәр база?ы системаһы.\nТөҙәтелмәгән хаталар булыуы мөмкин, эш схемаһында ҡулланыу тәҡдим ителмәй. ([https://www.php.net/pgsql.installation  PostgreSQL рөхсәт ителгән РНР йыйыу инструкцияһы]).",
 	"config-dbsupport-sqlite": "* [{{int:version-db-sqlite-url}} SQLite] — яҡшы ҡулланылған ябайлаштырылған мәғлүмәт базаһы системаһы. ([http://www.php.net/manual/ru/pdo.installation.php  Нисек SQLite ярҙамында PHP йыйырға],  PDO менән эшләй торған инструкция)",
 	"config-header-mysql": "MariaDB/MySQL көйләүҙәре",
 	"config-header-postgres": "PostgreSQL көйләүҙәре",

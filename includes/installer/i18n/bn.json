@@ -74,7 +74,7 @@
 	"config-pg-test-error": "ডাটাবেজ <strong>$1</strong>-এর সাথে সংযোগ দেওয়া সম্ভব হয়নি: $2",
 	"config-sqlite-dir": "SQLite উপাত্ত ডিরেক্টরি:",
 	"config-type-mysql": "MariaDB, MySQL, বা উপযুক্তগুলি",
-	"config-dbsupport-postgres": "* MySQL-এর বিকল্প হিসেবে [{{int:version-db-postgres-url}} PostgreSQL] হচ্ছে একটি জনপ্রিয় মুক্ত উৎসের ডাটাবেস ব্যবস্থা। ([https://www.php.net/manual/en/pgsql.installation.php PostgreSQL সমর্থনসহ কিভাবে PHP সঙ্কলন করবেন])",
+	"config-dbsupport-postgres": "* MySQL-এর বিকল্প হিসেবে [{{int:version-db-postgres-url}} PostgreSQL] হচ্ছে একটি জনপ্রিয় মুক্ত উৎসের ডাটাবেস ব্যবস্থা। ([https://www.php.net/pgsql.installation PostgreSQL সমর্থনসহ কিভাবে PHP সঙ্কলন করবেন])",
 	"config-header-mysql": "MariaDB/MySQL সেটিং",
 	"config-header-postgres": "PostgreSQL সেটিংস",
 	"config-header-sqlite": "SQLite সেটিংস",

@@ -9,6 +9,7 @@
 			"Jeblad",
 			"Jon Harald Søby",
 			"Kingu",
+			"Laaknor",
 			"Macofe",
 			"Matma Rex",
 			"Telaneo"
@@ -1253,6 +1254,7 @@
 	"apihelp-query+siteinfo-paramvalue-prop-uploaddialog": "Returnerer bekreftelsen på opplastingsdialogvinduet.",
 	"apihelp-query+siteinfo-paramvalue-prop-autopromote": "Returnerer konfigurasjonen for automatisk forfremming.",
 	"apihelp-query+siteinfo-paramvalue-prop-autopromoteonce": "Returnerer konfigurasjonen for automatisk forfremming som kun utføres én gang.",
+	"apihelp-query+siteinfo-paramvalue-prop-copyuploaddomains": "Gir liste over tillatte domener for kopiopplastning",
 	"apihelp-query+siteinfo-param-filteriw": "Returnerer bare lokale eller ikke-lokale oppføringer i interwikikartet.",
 	"apihelp-query+siteinfo-param-showalldb": "Lister opp alle databasetjenere, ikke bare den som har størst forsinkelse.",
 	"apihelp-query+siteinfo-param-numberingroup": "Lister opp antall brukere i brukergrupper.",
