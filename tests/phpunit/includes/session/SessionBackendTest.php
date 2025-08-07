@@ -256,7 +256,6 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 
 		$session2 = null;
 		$this->assertSame( [], $priv->requests );
-		$this->assertArrayNotHasKey( $backend->getId(), $manager->allSessionBackends );
 		$this->assertArrayHasKey( $backend->getId(), $manager->allSessionIds );
 	}
 

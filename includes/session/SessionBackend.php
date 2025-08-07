@@ -132,9 +132,6 @@ final class SessionBackend {
 	/** @var bool */
 	private $checkPHPSessionRecursionGuard = false;
 
-	/** @var bool */
-	private $shutdown = false;
-
 	/**
 	 * @param SessionId $id
 	 * @param SessionInfo $info Session info to populate from
@@ -229,11 +226,6 @@ final class SessionBackend {
 	 * @param int $index
 	 */
 	public function deregisterSession( $index ) {
-		if ( !$this->shutdown && count( $this->requests ) <= 1 ) {
-			$this->sessionWriteReason = '__destruct()';
-			$this->save( true );
-			$this->provider->getManager()->deregisterSessionBackend( $this );
-		}
 		unset( $this->requests[$index] );
 	}
 
@@ -244,7 +236,6 @@ final class SessionBackend {
 	public function shutdown() {
 		$this->sessionWriteReason = 'shutdown';
 		$this->save( true );
-		$this->shutdown = true;
 	}
 
 	/**

@@ -309,7 +309,6 @@ class PHPSessionHandlerTest extends MediaWikiIntegrationTestCase {
 				return false;
 			}
 		);
-		$this->assertNull( $manager->getSessionById( $id, true ) );
 		session_write_close();
 
 		$this->clearHook( 'SessionCheckInfo' );

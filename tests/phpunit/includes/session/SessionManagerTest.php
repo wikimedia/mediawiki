@@ -419,8 +419,6 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $id, $session2->getId() );
 		// Unset all Session objects, which will deregister the session backend and trigger a load next time
 		unset( $session, $session2 );
-		$this->logger->setCollect( true );
-		$this->assertNull( $manager->getSessionById( $id, true ) );
 		$this->logger->setCollect( false );
 
 		// Failure to create an empty session
@@ -862,27 +860,6 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		$id = (string)$sessionId;
 
 		$this->assertSame( $sessionId, $manager->getSessionById( $id, true )->getSessionId() );
-
-		// Destruction of the session here causes the backend to be deregistered
-		$session = null;
-
-		try {
-			$manager->changeBackendId( $backend );
-			$this->fail( 'Expected exception not thrown' );
-		} catch ( InvalidArgumentException $ex ) {
-			$this->assertSame(
-				'Backend was not registered with this SessionManager', $ex->getMessage()
-			);
-		}
-
-		try {
-			$manager->deregisterSessionBackend( $backend );
-			$this->fail( 'Expected exception not thrown' );
-		} catch ( InvalidArgumentException $ex ) {
-			$this->assertSame(
-				'Backend was not registered with this SessionManager', $ex->getMessage()
-			);
-		}
 
 		$session = $manager->getSessionById( $id, true );
 		$this->assertSame( $sessionId, $session->getSessionId() );

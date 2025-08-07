@@ -882,24 +882,6 @@ class SessionManager implements SessionManagerInterface {
 	}
 
 	/**
-	 * Deregister a SessionBackend
-	 * @internal For use from \MediaWiki\Session\SessionBackend only
-	 * @param SessionBackend $backend
-	 */
-	public function deregisterSessionBackend( SessionBackend $backend ) {
-		$id = $backend->getId();
-		if ( !isset( $this->allSessionBackends[$id] ) || !isset( $this->allSessionIds[$id] ) ||
-			$this->allSessionBackends[$id] !== $backend ||
-			$this->allSessionIds[$id] !== $backend->getSessionId()
-		) {
-			throw new InvalidArgumentException( 'Backend was not registered with this SessionManager' );
-		}
-
-		unset( $this->allSessionBackends[$id] );
-		// Explicitly do not unset $this->allSessionIds[$id]
-	}
-
-	/**
 	 * Change a SessionBackend's ID
 	 * @internal For use from \MediaWiki\Session\SessionBackend only
 	 * @param SessionBackend $backend
