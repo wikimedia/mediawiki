@@ -113,6 +113,7 @@ class SessionManager implements SessionManagerInterface {
 	 * Get the global SessionManager
 	 * @deprecated since 1.45 Use MediaWikiServices::getInstance()->getSessionManager() instead
 	 * @return self
+	 * @suppress PhanTypeMismatchReturnSuperType
 	 */
 	public static function singleton() {
 		return MediaWikiServices::getInstance()->getSessionManager();

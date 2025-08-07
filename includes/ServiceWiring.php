@@ -211,6 +211,7 @@ use MediaWiki\Search\SearchEventIngress;
 use MediaWiki\Search\SearchResultThumbnailProvider;
 use MediaWiki\Search\TitleMatcher;
 use MediaWiki\Session\SessionManager;
+use MediaWiki\Session\SessionManagerInterface;
 use MediaWiki\Settings\Config\ConfigSchema;
 use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\Shell\CommandFactory;
@@ -2124,7 +2125,7 @@ return [
 		);
 	},
 
-	'SessionManager' => static function ( MediaWikiServices $services ): SessionManager {
+	'SessionManager' => static function ( MediaWikiServices $services ): SessionManagerInterface {
 		$objectCacheFactory = $services->getObjectCacheFactory();
 		$mainConfig = $services->getMainConfig();
 

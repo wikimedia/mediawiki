@@ -153,7 +153,7 @@ use MediaWiki\Revision\RevisionStoreFactory;
 use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\Search\SearchResultThumbnailProvider;
 use MediaWiki\Search\TitleMatcher;
-use MediaWiki\Session\SessionManager;
+use MediaWiki\Session\SessionManagerInterface;
 use MediaWiki\Settings\Config\ConfigSchema;
 use MediaWiki\Shell\CommandFactory;
 use MediaWiki\Shell\ShellboxClientFactory;
@@ -1921,7 +1921,7 @@ class MediaWikiServices extends ServiceContainer {
 	/**
 	 * @since 1.44
 	 */
-	public function getSessionManager(): SessionManager {
+	public function getSessionManager(): SessionManagerInterface {
 		return $this->getService( 'SessionManager' );
 	}
 
