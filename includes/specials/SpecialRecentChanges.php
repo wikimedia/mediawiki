@@ -883,6 +883,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		return $this->getLinkRenderer()->makeKnownLink( $this->getPageTitle(), $title, [
 			'data-params' => json_encode( $override ),
 			'data-keys' => implode( ',', array_keys( $override ) ),
+			'title' => false
 		], $params );
 	}
 
