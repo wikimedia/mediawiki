@@ -244,7 +244,7 @@ class MWDebug {
 	 * @since 1.36
 	 * @see deprecatedMsg()
 	 *
-	 * phpcs:ignore MediaWiki.Commenting.FunctionComment.ObjectTypeHintParam
+	 * @phpcs:ignore MediaWiki.Commenting.FunctionComment.ObjectTypeHintParam
 	 * @param object $instance Object on which to detect deprecated overrides (typically $this).
 	 * @param string $class Class declaring the deprecated method (typically __CLASS__ )
 	 * @param string $method The name of the deprecated method.

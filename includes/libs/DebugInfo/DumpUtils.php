@@ -10,7 +10,7 @@ class DumpUtils {
 	 * Convert an object to an array by casting, but filter the properties
 	 * to make recursive dumping more feasible.
 	 *
-	 * phpcs:ignore MediaWiki.Commenting.FunctionComment.ObjectTypeHintParam
+	 * @phpcs:ignore MediaWiki.Commenting.FunctionComment.ObjectTypeHintParam
 	 * @param object $object
 	 * @return array
 	 * @throws \ReflectionException

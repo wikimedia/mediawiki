@@ -59,8 +59,7 @@ ALIASES                = "type{1}=<b> \1 </b>:" \
                          "license=\note" \
                          "inheritDoc=\inheritdoc" \
                          "codeCoverageIgnore=\noop" \
-                         "codingStandardsIgnoreEnd=\noop" \
-                         "codingStandardsIgnoreStart=\noop" \
+                         "phpcs=\noop" \
                          "phan=\noop" \
                          "param-taint=\noop" \
                          "return-taint=\noop" \

@@ -36,7 +36,7 @@ class MWPostgreSqlPlatform extends PostgreSQLPlatform {
 
 	/**
 	 * @inheritDoc
-	 * phpcs:disable PSR2.Methods.MethodDeclaration.Underscore
+	 * @phpcs:disable PSR2.Methods.MethodDeclaration.Underscore
 	 */
 	protected function _getCreateTableSQL( $name, $columns, array $options = [] ): array {
 		// phpcs:enable

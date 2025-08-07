@@ -187,7 +187,7 @@ TEXT;
 	 * Helper function for testGetRedactedTrace
 	 *
 	 * @param array $a
-	 * phpcs:disable MediaWiki.Commenting.FunctionComment.ObjectTypeHintParam
+	 * @phpcs:disable MediaWiki.Commenting.FunctionComment.ObjectTypeHintParam
 	 * @param object $b
 	 * @param mixed &$c
 	 * @throws Exception
