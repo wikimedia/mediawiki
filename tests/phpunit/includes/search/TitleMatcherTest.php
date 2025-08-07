@@ -23,23 +23,30 @@ class TitleMatcherTest extends MediaWikiIntegrationTestCase {
 		return [
 			'empty request returns nothing' => [ null, 'en', '', 'Near Match Test' ],
 			'with a hash returns nothing' => [ null, 'en', '#near match test', 'Near Match Test' ],
-			'wrong seach string returns nothing' => [
-				null, 'en', ':', 'Near Match Test'
-			],
+			'wrong seach string returns nothing' => [ null, 'en', ':', 'Near Match Test' ],
 			'default behaviour exact' => [
-				'Near Match Test', 'en', 'Near Match Test', 'Near Match Test'
+				'Near Match Test', 'en', 'Near Match Test', 'Near Match Test', 'NEAR MATCH TEST'
 			],
-			'default behaviour uppercased' => [
-				'NEAR MATCH TEST', 'en', 'near match test', 'NEAR MATCH TEST'
-			],
-			'default behaviour first capitalized' => [
-				'Near match test', 'en', 'near match test', 'Near match test'
-			],
-			'default behaviour capitalized' => [
-				'Near Match Test', 'en', 'near match test', 'Near Match Test'
+			'default behaviour uppercase' => [
+				'NEAR MATCH TEST', 'en', 'NEAR MATCH TEST', 'NEAR MATCH TEST', 'Near match test'
 			],
 			'default behaviour lowercased' => [
 				'Near match test', 'en', 'NEAR MATCH TEST', 'Near match test'
+			],
+			'default behaviour normalized lowercase' => [
+				'Near match test', 'en', 'Near match teﬆ', 'Near match test', 'NEAR MATCH TEST'
+			],
+			'default behaviour first capitalized' => [
+				'Near match test', 'en', 'near match test', 'Near match test', 'Near Match Test'
+			],
+			'default behaviour capitalized' => [
+				'Near Match Test', 'en', 'near match test', 'Near Match Test', 'NEAR MATCH TEST'
+			],
+			'default behaviour normalized capitalized' => [
+				'Near Match Test', 'en', 'near match teﬆ', 'Near Match Test', 'NEAR MATCH TEST'
+			],
+			'default behaviour uppercased' => [
+				'NEAR MATCH TEST', 'en', 'near match test', 'NEAR MATCH TEST'
 			],
 			'default behaviour hyphenated' => [
 				'Near-Match-Test', 'en', 'near-match-test', 'Near-Match-Test'
@@ -47,8 +54,10 @@ class TitleMatcherTest extends MediaWikiIntegrationTestCase {
 			'default behaviour quoted' => [
 				'Near Match Test', 'en', '"Near Match Test"', 'Near Match Test'
 			],
-			'check language with variants direct' => [ 'Near', 'tg', 'near', 'Near' ],
-			'check language with variants converted' => [ 'Near', 'tg', 'неар', 'Near' ],
+			'check language with variants direct Latin' => [ 'Near', 'sr', 'near', 'Near', 'Неар' ],
+			'check language with variants direct Cyrillic ' => [ 'Неар', 'sr', 'неар', 'Неар', 'Near' ],
+			'check language with variants converted Cyr/Lat' => [ 'Near', 'sr', 'неар', 'Near' ],
+			'check language with variants converted Lat/Cyr' => [ 'Неар', 'sr', 'near', 'Неар' ],
 			'no matching' => [ null, 'en', 'near match test', 'Far Match Test' ],
 			// Special cases: files
 			'file ok' => [ 'File:Example.svg', 'en', 'File:Example.svg', 'File:Example.svg' ],
@@ -59,17 +68,18 @@ class TitleMatcherTest extends MediaWikiIntegrationTestCase {
 				'User:SuperuserNew', 'en', 'User:SuperuserNew', 'User:Superuser'
 			],
 			'user search use by IP' => [
-				'Special:Contributions/132.17.48.1', 'en', 'User:132.17.48.1', 'User:Superuser', true,
+				'Special:Contributions/132.17.48.1', 'en', 'User:132.17.48.1', 'User:Superuser',
+					null, true,
 			],
 			// Special cases: other content types
 			'mediawiki ok even if no page' => [
 				'MediaWiki:Add New Page', 'en', 'MediaWiki:Add New Page', 'MediaWiki:Add Old Page'
 			],
 			'Media ok' => [
-				'File:Text', 'en', 'Media:Text', 'File:Text', true,
+				'File:Text', 'en', 'Media:Text', 'File:Text', null, true,
 			],
 			'Media not ok' => [
-				null, 'en', 'Media:Text', 'Media:Text', true,
+				null, 'en', 'Media:Text', 'Media:Text', null, true,
 			],
 		];
 	}
@@ -104,10 +114,15 @@ class TitleMatcherTest extends MediaWikiIntegrationTestCase {
 		$langCode,
 		$searchterm,
 		$titleText,
+		$distractor = null,
 		$enableSearchContributorsByIP = false
 	) {
 		$this->overrideConfigValue( MainConfigNames::LanguageCode, 'en' );
 		$this->addGoodLinkObject( 42, Title::newFromText( $titleText ) );
+
+		if ( $distractor ) {
+			$this->addGoodLinkObject( 43, Title::newFromText( $distractor ) );
+		}
 
 		$config = new HashConfig( [
 			MainConfigNames::EnableSearchContributorsByIP => $enableSearchContributorsByIP,

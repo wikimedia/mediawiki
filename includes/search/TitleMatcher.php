@@ -16,6 +16,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
 use MediaWiki\User\UserNameUtils;
 use SearchNearMatchResultSet;
+use UtfNormal\Validator;
 
 /**
  * Service implementation of near match title search.
@@ -139,16 +140,34 @@ class TitleMatcher {
 				return $title;
 			}
 
-			# Now try all lower case (i.e. first letter capitalized)
+			# Now try all lower case (=> first letter capitalized on some wikis)
 			$title = $this->titleFactory->newFromText( $this->language->lc( $term ) );
 			if ( $title && $title->exists() ) {
 				return $title;
+			}
+
+			# Now try normalized lowercase (if it's different)
+			$normTerm = Validator::toNFKC( $term );
+			$normDiff = $normTerm !== $term;
+			if ( $normDiff ) {
+				$title = $this->titleFactory->newFromText( $this->language->lc( $normTerm ) );
+				if ( $title && $title->exists() ) {
+					return $title;
+				}
 			}
 
 			# Now try capitalized string
 			$title = $this->titleFactory->newFromText( $this->language->ucwords( $term ) );
 			if ( $title && $title->exists() ) {
 				return $title;
+			}
+
+			# Now try normalized capitalized (if it's different)
+			if ( $normDiff ) {
+				$title = $this->titleFactory->newFromText( $this->language->ucwords( $normTerm ) );
+				if ( $title && $title->exists() ) {
+					return $title;
+				}
 			}
 
 			# Now try all upper case
