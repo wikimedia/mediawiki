@@ -238,6 +238,23 @@ class Router extends OO.Registry {
 	isSupported() {
 		return true;
 	}
+
+	/**
+	 * Allow tests to reset, so that event handlers don't leak and routes don't pile up.
+	 *
+	 * @ignore
+	 */
+	resetForTest() {
+		if ( window.QUnit ) {
+			// Reset OO.EventEmitter
+			this.bindings = {};
+			// Reset OO.Registry
+			this.registry = {};
+			// Restore the one from the constructor
+			this.enabled = true;
+			this.connect( this, { hashchange: 'onRouterHashChange' } );
+		}
+	}
 }
 
 OO.Router = Router;
