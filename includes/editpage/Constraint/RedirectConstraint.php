@@ -21,6 +21,7 @@
 namespace MediaWiki\EditPage\Constraint;
 
 use MediaWiki\Content\Content;
+use MediaWiki\Content\WikitextContent;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\RedirectLookup;
@@ -67,14 +68,14 @@ class RedirectConstraint implements IEditConstraint {
 	 * @inheritDoc
 	 */
 	public function checkConstraint(): string {
-		$newRedirectTarget = $this->newContent->getRedirectTarget();
+		$newRedirectTarget = $this->getRedirectTarget( $this->newContent );
 
 		// the constraint should only be checked if there is a redirect in the new content, and either
 		// - $allowedProblematicRedirect is null (the last save attempt didn't contain a problematic redirect)
 		// - the last save attempt contained a problematic redirect, and the target is not the same as the one in this
 		//   save attempt (T395767, T395768)
 		if ( $newRedirectTarget !== null && !$this->allowedProblematicRedirectTarget?->equals( $newRedirectTarget ) ) {
-			$currentTarget = $this->originalContent->getRedirectTarget();
+			$currentTarget = $this->getRedirectTarget( $this->originalContent );
 
 			// the constraint should only fail if there was no previous content or the previous content contained
 			// a problematic redirect to a different page
@@ -101,6 +102,10 @@ class RedirectConstraint implements IEditConstraint {
 						$this->status = self::AS_DOUBLE_REDIRECT_LOOP;
 					}
 
+					return self::CONSTRAINT_FAILED;
+				} elseif ( !$newRedirectTarget->isValidRedirectTarget() ) {
+					// redirect target is not a valid redirect target
+					$this->status = self::AS_INVALID_REDIRECT_TARGET;
 					return self::CONSTRAINT_FAILED;
 				}
 			}
@@ -144,6 +149,12 @@ class RedirectConstraint implements IEditConstraint {
 					MessageValue::new( $this->submitButtonLabel )
 				);
 				break;
+			case self::AS_INVALID_REDIRECT_TARGET:
+				$statusValue->fatal(
+					'edit-constraint-invalidredirecttarget',
+					MessageValue::new( $this->submitButtonLabel )
+				);
+				break;
 			case self::AS_SELF_REDIRECT:
 				$statusValue->fatal(
 					'selfredirect',
@@ -153,6 +164,15 @@ class RedirectConstraint implements IEditConstraint {
 		}
 
 		return $statusValue;
+	}
+
+	private function getRedirectTarget( Content $content ): ?Title {
+		if ( $content instanceof WikitextContent ) {
+			// specify $allowInvalidTarget since the WikitextContentHandler won't return invalid targets otherwise
+			[ $target, ] = $content->getContentHandler()->extractRedirectTargetAndText( $content, true );
+			return Title::castFromLinkTarget( $target );
+		}
+		return $content->getRedirectTarget();
 	}
 
 }

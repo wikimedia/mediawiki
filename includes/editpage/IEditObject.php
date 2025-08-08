@@ -127,4 +127,6 @@ interface IEditObject {
 	/** Status: user tried to create a redirect to another redirect that is pointing to the current page */
 	public const AS_DOUBLE_REDIRECT_LOOP = 246;
 
+	/** Status: user tried to create a redirect to an invalid redirect target */
+	public const AS_INVALID_REDIRECT_TARGET = 247;
 }

@@ -66,13 +66,14 @@ class RedirectConstraintTest extends MediaWikiUnitTestCase {
 		return $content;
 	}
 
-	private function createTargetTitle( bool $exists, bool $isRedirect ): Title {
+	private function createTargetTitle( bool $exists, bool $isRedirect, bool $isValidRedirectTarget = true ): Title {
 		$target = $this->createMock( Title::class );
 		$target->expects( $this->atLeastOnce() )
 			->method( 'equals' )
 			->willReturnCallback( static fn ( $otherTitle ) => $otherTitle === $target );
 		$target->method( 'isKnown' )->willReturn( $exists );
 		$target->method( 'isRedirect' )->willReturn( $isRedirect );
+		$target->method( 'isValidRedirectTarget' )->willReturn( $isValidRedirectTarget );
 		return $target;
 	}
 
@@ -167,6 +168,28 @@ class RedirectConstraintTest extends MediaWikiUnitTestCase {
 		$this->assertRedirectConstraintFailed(
 			$constraint,
 			IEditObject::AS_SELF_REDIRECT
+		);
+	}
+
+	public function testInvalidRedirectTargetPass() {
+		// both the old and the new content have a redirect pointing to an invalid redirect target, so no warning
+		$target = $this->createTargetTitle( true, false, false );
+		$constraint = $this->createRedirectConstraint(
+			$this->getContent( $target ),
+			$this->getContent( $target )
+		);
+		$this->assertConstraintPassed( $constraint );
+	}
+
+	public function testInvalidRedirectTargetFailure() {
+		// new content is a redirect pointing to an invalid redirect target, but existing content is not
+		$constraint = $this->createRedirectConstraint(
+			$this->getContent(),
+			$this->getContent( $this->createTargetTitle( true, false, false ) )
+		);
+		$this->assertRedirectConstraintFailed(
+			$constraint,
+			IEditObject::AS_INVALID_REDIRECT_TARGET
 		);
 	}
 

@@ -1915,6 +1915,7 @@ class EditPage implements IEditObject {
 			case self::AS_DOUBLE_REDIRECT:
 			case self::AS_DOUBLE_REDIRECT_LOOP:
 			case self::AS_CONTENT_TOO_BIG:
+			case self::AS_INVALID_REDIRECT_TARGET:
 			case self::AS_MAX_ARTICLE_SIZE_EXCEEDED:
 			case self::AS_PARSE_ERROR:
 			case self::AS_SELF_REDIRECT:

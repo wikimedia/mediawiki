@@ -300,9 +300,15 @@ class WikitextContentHandler extends TextContentHandler {
 	 *
 	 * @since 1.41 (used to be a method on WikitextContent since 1.23)
 	 *
+	 * @param WikitextContent $content
+	 * @param bool $allowInvalidTarget Whether to return the target even if it is invalid
+	 *
 	 * @return array List of two elements: LinkTarget|null and WikitextContent object.
 	 */
-	public function extractRedirectTargetAndText( WikitextContent $content ): array {
+	public function extractRedirectTargetAndText(
+		WikitextContent $content,
+		bool $allowInvalidTarget = false
+	): array {
 		$redir = $this->magicWordFactory->get( 'redirect' );
 		$text = ltrim( $content->getText() );
 
@@ -325,8 +331,9 @@ class WikitextContentHandler extends TextContentHandler {
 			// TODO: Move isValidRedirectTarget() out Title, so we can use a TitleValue here.
 			$title = $this->titleFactory->newFromText( $m[1] );
 
-			// If the title is a redirect to bad special pages or is invalid, return null
-			if ( !$title instanceof Title || !$title->isValidRedirectTarget() ) {
+			// If the title is a redirect to bad special pages
+			// or is invalid and $allowInvalidTarget is false, return null
+			if ( !$title instanceof Title || ( !$allowInvalidTarget && !$title->isValidRedirectTarget() ) ) {
 				return [ null, $content ];
 			}
 
