@@ -171,8 +171,6 @@ return [
 			'mediawiki.base.js',
 			'log.js',
 			'errorLogger.js',
-
-			// (not this though)
 			[ 'name' => 'config.json', 'callback' => [ ResourceLoader::class, 'getSiteConfigSettings' ] ],
 			[
 				'name' => 'user.json',
@@ -2838,13 +2836,6 @@ return [
 			'mediawiki.util',
 		],
 	],
-	/* MediaWiki Installer */
-
-	// Used in the web installer. Test it after modifying this definition!
-
-	/* MediaWiki Legacy */
-
-	// Used in the web installer. Test it after modifying this definition!
 
 	/* MediaWiki UI */
 
