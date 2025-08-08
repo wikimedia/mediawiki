@@ -48,9 +48,6 @@ use Wikimedia\Message\MessageValue;
  * @newable
  * @stable to extend
  * @since 1.25
- * @template T Type of the value stored in the status when the operation result is OK.
- *   May be 'never' to indicate that there's no meaningful value, and that
- *   this status is only used to keep track of errors and warnings.
  */
 class StatusValue implements Stringable {
 
@@ -68,7 +65,7 @@ class StatusValue implements Stringable {
 	 */
 	protected $errors = [];
 
-	/** @var T */
+	/** @var mixed */
 	public $value;
 
 	/** @var bool[] Map of (key => bool) to indicate success of each part of batch operations */
@@ -82,12 +79,6 @@ class StatusValue implements Stringable {
 
 	/** @var mixed arbitrary extra data about the operation */
 	public $statusData;
-
-	/**
-	 * @suppress PhanGenericConstructorTypes
-	 */
-	public function __construct() {
-	}
 
 	/**
 	 * Factory function for fatal errors
@@ -164,7 +155,7 @@ class StatusValue implements Stringable {
 	}
 
 	/**
-	 * @return T
+	 * @return mixed
 	 */
 	public function getValue() {
 		return $this->value;
@@ -198,9 +189,7 @@ class StatusValue implements Stringable {
 	 * Change operation result
 	 *
 	 * @param bool $ok Whether the operation completed
-	 * @phpcs:ignore MediaWiki.Commenting.FunctionComment.DefaultNullTypeParam -- `T|null` causes false Phan warnings
-	 * @param T $value If `$ok` is true, this should be a value of the template type `T`.
-	 *   Otherwise it may be null or omitted.
+	 * @param mixed|null $value
 	 * @return $this
 	 */
 	public function setResult( $ok, $value = null ) {

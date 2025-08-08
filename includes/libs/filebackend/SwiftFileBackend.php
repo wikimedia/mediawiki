@@ -997,6 +997,7 @@ class SwiftFileBackend extends FileBackendStore {
 				throw new FileBackendError( "Iterator page I/O error." );
 			}
 			$objects = $status->value;
+			// @phan-suppress-next-line PhanTypeSuspiciousNonTraversableForeach
 			foreach ( $objects as $object ) { // files and directories
 				if ( str_ends_with( $object, '/' ) ) {
 					$dirs[] = $object; // directories end in '/'
@@ -1018,6 +1019,7 @@ class SwiftFileBackend extends FileBackendStore {
 
 			$objects = $status->value;
 
+			// @phan-suppress-next-line PhanTypeSuspiciousNonTraversableForeach
 			foreach ( $objects as $object ) { // files
 				$objectDir = $getParentDir( $object ); // directory of object
 

@@ -10,7 +10,6 @@ use MediaWiki\User\User;
  *
  * @since 1.39
  * @internal
- * @extends Status<User>
  */
 class CreateStatus extends Status {
 

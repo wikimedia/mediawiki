@@ -7,7 +7,6 @@ use Wikimedia\Rdbms\IMaintainableDatabase;
 
 /**
  * @internal
- * @extends Status<?IMaintainableDatabase>
  */
 class ConnectionStatus extends Status {
 	public function __construct( ?IMaintainableDatabase $db = null ) {

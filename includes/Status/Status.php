@@ -50,10 +50,6 @@ use StatusValue;
  * so that a lack of error-handling will be explicit.
  *
  * @newable
- * @template T Type of the value stored in the status when the operation result is OK.
- *   May be 'never' to indicate that there's no meaningful value, and that
- *   this status is only used to keep track of errors and warnings.
- * @extends StatusValue<T>
  */
 class Status extends StatusValue {
 	/** @var callable|false */
@@ -63,12 +59,6 @@ class Status extends StatusValue {
 	protected $messageLocalizer;
 
 	private ?StatusFormatter $formatter = null;
-
-	/**
-	 * @suppress PhanGenericConstructorTypes
-	 */
-	public function __construct() {
-	}
 
 	/**
 	 * Succinct helper method to wrap a StatusValue

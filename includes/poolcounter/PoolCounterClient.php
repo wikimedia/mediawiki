@@ -55,7 +55,9 @@ class PoolCounterClient extends PoolCounter {
 			if ( !$status->isOK() ) {
 				return $status;
 			}
+			// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 			$this->conn = $status->value['conn'];
+			// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 			$this->hostName = $status->value['hostName'];
 
 			// Set the read timeout to be 1.5 times the pool timeout.

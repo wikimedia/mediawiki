@@ -2584,7 +2584,6 @@ class EditPage implements IEditObject {
 			) {
 				$this->isConflict = true;
 				// Destroys data doEdit() put in $status->value but who cares
-				// @phan-suppress-next-line PhanTypeMismatchPropertyProbablyReal
 				$doEditStatus->value = self::AS_END;
 			}
 			return $doEditStatus;

@@ -24,11 +24,8 @@ use MediaWiki\Api\IApiMessage;
 /**
  * A StatusValue for upload verification errors.
  *
- * This status will never have a value. It's only used to keep track of errors.
- *
  * @unstable
  * @since 1.44
- * @extends StatusValue<never>
  */
 class UploadVerificationStatus extends StatusValue {
 

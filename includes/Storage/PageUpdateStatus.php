@@ -31,8 +31,6 @@ use MediaWiki\Status\Status;
  * @since 1.40
  * @ingroup Page
  * @author Daniel Kinzler
- * @extends Status<array>
- * TODO: Document the exact shape of this array, it's created with different keys in different places
  */
 class PageUpdateStatus extends Status {
 
