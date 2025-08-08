@@ -9,8 +9,7 @@ can be found at:
 API documentation is automatically generated and updated daily at:
   https://doc.wikimedia.org/mediawiki-core/master/php/
 
-You can get a fresh version using 'make doc' or mwdocgen.php in the
-../maintenance/ directory.
+You can get a fresh version by running 'php maintenance/mwdocgen.php'.
 
 
 For end users, most of the documentation is located online at:
