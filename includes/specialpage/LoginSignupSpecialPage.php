@@ -694,20 +694,21 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		if ( $this->isSignup() && $this->showExtraInformation() ) {
 			if ( !$this->getUser()->isTemp() ) {
 				// The following messages are used here:
-				// * createacct-benefit-icon1 createacct-benefit-head1 createacct-benefit-body1
-				// * createacct-benefit-icon2 createacct-benefit-head2 createacct-benefit-body2
-				// * createacct-benefit-icon3 createacct-benefit-head3 createacct-benefit-body3
+				// * createacct-benefit-icon1 createacct-benefit-head1 createacct-benefit-text1
+				// * createacct-benefit-icon2 createacct-benefit-head2 createacct-benefit-text2
+				// * createacct-benefit-icon3 createacct-benefit-head3 createacct-benefit-text3
 				$benefitCount = 3;
 				$benefitList = '';
 				for ( $benefitIdx = 1; $benefitIdx <= $benefitCount; $benefitIdx++ ) {
-					$headUnescaped = $this->msg( "createacct-benefit-head$benefitIdx" )->text();
+					$numberUnescaped = $this->msg( "createacct-benefit-head$benefitIdx" )->text();
+					$numberHtml = Html::rawElement( 'strong', [], $numberUnescaped );
 					$iconClass = $this->msg( "createacct-benefit-icon$benefitIdx" )->text();
 					$benefitList .= Html::rawElement( 'div', [ 'class' => "mw-number-text $iconClass" ],
-						Html::rawElement( 'span', [],
-							$this->msg( "createacct-benefit-head$benefitIdx" )->escaped()
-						)
-						. Html::rawElement( 'p', [],
-							$this->msg( "createacct-benefit-body$benefitIdx" )->params( $headUnescaped )->escaped()
+						Html::rawElement( 'p', [],
+							$this->msg( "createacct-benefit-text$benefitIdx" )->params(
+								$numberUnescaped,
+								$numberHtml
+							)->parse()
 						)
 					);
 				}
