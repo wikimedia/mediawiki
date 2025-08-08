@@ -232,7 +232,7 @@ describe( 'Page History', () => {
 		it( 'Should return 400 for invalid parameter', async () => {
 			const res = await client.get( `/v1/page/${ title }/history/counts/editts` );
 			assert.equal( res.status, 400 );
-			// eslint-disable-next-line no-unused-expressions
+
 			expect( res.text ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
 		} );
 
@@ -241,7 +241,7 @@ describe( 'Page History', () => {
 			const res = await client.get( `/v1/page/${ title2 }/history/counts/edits` );
 
 			assert.equal( res.status, 404 );
-			// eslint-disable-next-line no-unused-expressions
+
 			expect( res.text ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
 
 		} );
@@ -274,7 +274,7 @@ describe( 'Page History', () => {
 			await mindy.action( 'delete', { title: titleToDelete, token: await mindy.token() }, 'POST' );
 			const res = await client.get( `/v1/page/${ titleToDelete }/history/counts/edits` );
 			assert.equal( res.status, 404 );
-			// eslint-disable-next-line no-unused-expressions
+
 			expect( res.text ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
 		} );
 	} );
@@ -335,7 +335,7 @@ describe( 'Page History', () => {
 			const { status: editorsStatus, header: editorsHeader } = res;
 			assert.equal( editorsStatus, 404 );
 			assert.match( editorsHeader[ 'content-type' ], /^application\/json/ );
-			// eslint-disable-next-line no-unused-expressions
+
 			expect( res.text ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
 		} );
 
@@ -436,7 +436,7 @@ describe( 'Page History', () => {
 			const res = await client.get( `/v1/page/${ title }/history`, { filter: 'anon' } );
 
 			assert.equal( res.status, 400 );
-			// eslint-disable-next-line no-unused-expressions
+
 			expect( res.text ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
 		} );
 
@@ -445,7 +445,7 @@ describe( 'Page History', () => {
 			const res = await client.get( `/v1/page/${ title2 }/history`, { filter: 'bot' } );
 
 			assert.equal( res.status, 404 );
-			// eslint-disable-next-line no-unused-expressions
+
 			expect( res.text ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
 		} );
 
@@ -533,7 +533,7 @@ describe( 'Page History', () => {
 			const res = await client.get( `/v1/page/${ title }/history`, { newer_than: -1 } );
 
 			assert.equal( res.status, 400 );
-			// eslint-disable-next-line no-unused-expressions
+
 			expect( res.text ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
 		} );
 
@@ -543,7 +543,7 @@ describe( 'Page History', () => {
 			const res = await client.get( `/v1/page/${ title }/history`, { newer_than: id1, older_than: id2 } );
 
 			assert.equal( res.status, 400 );
-			// eslint-disable-next-line no-unused-expressions
+
 			expect( res.text ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
 		} );
 
@@ -554,7 +554,7 @@ describe( 'Page History', () => {
 			const res = await client.get( `/v1/page/${ title }/history`, { newer_than: edit.newrevid } );
 
 			assert.equal( res.status, 404 );
-			// eslint-disable-next-line no-unused-expressions
+
 			expect( res.text ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
 		} );
 	} );

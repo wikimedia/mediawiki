@@ -49,9 +49,9 @@ function isCompatible() {
 		// https://caniuse.com/mdn-javascript_builtins_regexp_flags
 		// Edge 79+ (Chromium-based, rejects MSEdgeHTML-based Edge <= 18)
 		//
-		// eslint-disable-next-line es-x/no-promise, es-x/no-promise-prototype-finally, dot-notation
+		// eslint-disable-next-line es-x/no-promise-prototype-finally, dot-notation
 		typeof Promise === 'function' && Promise.prototype[ 'finally' ] &&
-		// eslint-disable-next-line es-x/no-regexp-prototype-flags
+
 		/./g.flags === 'g' &&
 
 		// Ensure ES2017 grammar and syntax support, including:

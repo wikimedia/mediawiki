@@ -31,7 +31,7 @@ describe( 'Revision Compare', () => {
 		it( 'should return 400 if revision id is not an integer', async () => {
 			const { status, text } = await client.get( `/v1/revision/${ validRevId }/compare/${ invalidRevId }` );
 			assert.equal( status, 400 );
-			// eslint-disable-next-line no-unused-expressions
+
 			expect( text ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
 		} );
 
@@ -54,7 +54,7 @@ describe( 'Revision Compare', () => {
 		it( 'should return 404 for revision that does not exist', async () => {
 			const { status, text } = await client.get( `/v1/revision/${ validRevId }/compare/${ nonExistentRevId }` );
 			assert.strictEqual( status, 404 );
-			// eslint-disable-next-line no-unused-expressions
+
 			expect( text ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
 		} );
 
@@ -63,7 +63,7 @@ describe( 'Revision Compare', () => {
 			const { newrevid: pageTwoRev } = await mindy.edit( pageTwo, { text: 'Page 2 edit' } );
 			const { status, text } = await client.get( `/v1/revision/${ pageOneRev }/compare/${ pageTwoRev }` );
 			assert.strictEqual( status, 400 );
-			// eslint-disable-next-line no-unused-expressions
+
 			expect( text ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
 		} );
 	} );

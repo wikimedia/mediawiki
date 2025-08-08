@@ -39,7 +39,7 @@ describe( 'Page media links', () => {
 			const dummyPageTitle = utils.title( 'DummyPage_' );
 			const { status, text } = await client.get( `/v1/page/${ dummyPageTitle }/links/media` );
 			assert.deepEqual( status, 404 );
-			// eslint-disable-next-line no-unused-expressions
+
 			expect( text ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
 		} );
 	} );

@@ -10,13 +10,15 @@
 	const preReadyNotifQueue = [];
 
 	/**
-	* @typedef {Object} mw.notification~Notification
-	* @property {mw.Message|jQuery|HTMLElement|string} message
-	* @property {mw.notification.NotificationOptions} options
-	*/
+	 * @typedef {Object} mw.notification~Notification
+	 * @property {mw.Message|jQuery|HTMLElement|string} message
+	 * @property {mw.notification.NotificationOptions} options
+	 */
 
 	/**
 	 * @classdesc Describes a notification. See [mw.notification module]{@link mw.notification}. A Notification object for 1 message.
+	 * @param message
+	 * @param options
 	 *
 	 * The constructor is not publicly accessible; use [mw.notification.notify]{@link mw.notification} instead.
 	 * This does not insert anything into the document. To add to document use

@@ -90,7 +90,7 @@ function validateSpec( response ) {
 }
 
 function validateDefaultSpec( response ) {
-	// eslint-disable-next-line no-unused-expressions
+
 	expect( response.text ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
 }
 

@@ -222,7 +222,7 @@ describe( 'PUT /page/{title}', () => {
 				assert.equal( editStatus, 400 );
 				assert.match( editHeader[ 'content-type' ], /^application\/json/ );
 				assert.nestedProperty( editBody, 'messageTranslations' );
-				// eslint-disable-next-line no-unused-expressions
+
 				expect( res.text ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
 			} );
 		} );
@@ -241,7 +241,7 @@ describe( 'PUT /page/{title}', () => {
 			assert.equal( editStatus, 403 );
 			assert.match( editHeader[ 'content-type' ], /^application\/json/ );
 			assert.nestedProperty( editBody, 'messageTranslations' );
-			// eslint-disable-next-line no-unused-expressions
+
 			expect( res.text ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
 		} );
 
@@ -259,7 +259,7 @@ describe( 'PUT /page/{title}', () => {
 			assert.equal( editStatus, 403 );
 			assert.match( editHeader[ 'content-type' ], /^application\/json/ );
 			assert.nestedProperty( editBody, 'messageTranslations' );
-			// eslint-disable-next-line no-unused-expressions
+
 			expect( res.text ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
 		} );
 
@@ -279,7 +279,7 @@ describe( 'PUT /page/{title}', () => {
 			assert.equal( editStatus, 400 );
 			assert.match( editHeader[ 'content-type' ], /^application\/json/ );
 			assert.nestedProperty( editBody, 'messageTranslations' );
-			// eslint-disable-next-line no-unused-expressions
+
 			expect( res.text ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
 		} );
 
@@ -299,7 +299,7 @@ describe( 'PUT /page/{title}', () => {
 			assert.equal( editStatus, 400 );
 			assert.match( editHeader[ 'content-type' ], /^application\/json/ );
 			assert.nestedProperty( editBody, 'messageTranslations' );
-			// eslint-disable-next-line no-unused-expressions
+
 			expect( res.text ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
 		} );
 
@@ -317,7 +317,7 @@ describe( 'PUT /page/{title}', () => {
 			assert.equal( editStatus, 400 );
 			assert.match( editHeader[ 'content-type' ], /^application\/json/ );
 			assert.nestedProperty( editBody, 'messageTranslations' );
-			// eslint-disable-next-line no-unused-expressions
+
 			expect( res.text ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
 		} );
 	} );
@@ -338,7 +338,7 @@ describe( 'PUT /page/{title}', () => {
 			assert.equal( editStatus, 404 );
 			assert.match( editHeader[ 'content-type' ], /^application\/json/ );
 			assert.nestedProperty( editBody, 'messageTranslations' );
-			// eslint-disable-next-line no-unused-expressions
+
 			expect( res.text ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
 		} );
 
@@ -360,7 +360,7 @@ describe( 'PUT /page/{title}', () => {
 			assert.equal( editStatus, 409 );
 			assert.match( editHeader[ 'content-type' ], /^application\/json/ );
 			assert.nestedProperty( editBody, 'messageTranslations' );
-			// eslint-disable-next-line no-unused-expressions
+
 			expect( res.text ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
 		} );
 
@@ -383,7 +383,7 @@ describe( 'PUT /page/{title}', () => {
 			assert.equal( editStatus, 409 );
 			assert.match( editHeader[ 'content-type' ], /^application\/json/ );
 			assert.nestedProperty( editBody, 'messageTranslations' );
-			// eslint-disable-next-line no-unused-expressions
+
 			expect( res.text ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
 		} );
 	} );
@@ -413,7 +413,7 @@ describe( 'PUT /page/{title}', () => {
 			assert.equal( editStatus, 403 );
 			assert.match( editHeader[ 'content-type' ], /^application\/json/ );
 			assert.nestedProperty( editBody, 'messageTranslations' );
-			// eslint-disable-next-line no-unused-expressions
+
 			expect( res.text ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
 		} );
 	} );
