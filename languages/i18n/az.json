@@ -3142,7 +3142,7 @@
 	"table_pager_first": "İlk səhifə",
 	"table_pager_last": "Son səhifə",
 	"table_pager_limit": "Səhifədə $1 mövqe sərgilə",
-	"table_pager_limit_label": "Səhifə üzrə:",
+	"table_pager_limit_label": "Səhifə üzrə element:",
 	"table_pager_limit_submit": "Seç",
 	"table_pager_empty": "Nəticə yoxdur",
 	"autosumm-blank": "Səhifənin bütün məzmunu silindi",

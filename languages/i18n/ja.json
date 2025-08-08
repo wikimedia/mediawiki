@@ -2113,6 +2113,7 @@
 	"logeventslist-patrol-log": "巡回記録",
 	"logeventslist-tag-log": "タグ記録",
 	"logeventslist-newusers-log": "アカウント作成記録",
+	"newusers-excludetempacct": "仮アカウントの作成記録を除外",
 	"all-logs-page": "主な公開記録",
 	"alllogstext": "{{SITENAME}}の取得できる記録をまとめて表示しています。\n記録の種類、実行した利用者 (大文字小文字は区別)、影響を受けたページ (大文字小文字は区別) による絞り込みができます。",
 	"logempty": "該当する記録はありません。",
