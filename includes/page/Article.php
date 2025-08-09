@@ -173,9 +173,8 @@ class Article implements Page {
 	/**
 	 * Constructor from a page id
 	 * @param int $id Article ID to load
-	 * @return Article|null
 	 */
-	public static function newFromID( $id ) {
+	public static function newFromID( $id ): ?static {
 		$t = Title::newFromID( $id );
 		return $t === null ? null : new static( $t );
 	}
@@ -185,9 +184,8 @@ class Article implements Page {
 	 *
 	 * @param Title $title
 	 * @param IContextSource $context
-	 * @return Article
 	 */
-	public static function newFromTitle( $title, IContextSource $context ): self {
+	public static function newFromTitle( $title, IContextSource $context ): static {
 		if ( $title->getNamespace() === NS_MEDIA ) {
 			// XXX: This should not be here, but where should it go?
 			$title = Title::makeTitle( NS_FILE, $title->getDBkey() );

@@ -50,9 +50,8 @@ class MWTimestamp extends ConvertibleTimestamp {
 	 * Get a timestamp instance in GMT
 	 *
 	 * @param bool|string $ts Timestamp to set, or false for current time
-	 * @return MWTimestamp The instance
 	 */
-	public static function getInstance( $ts = false ) {
+	public static function getInstance( $ts = false ): static {
 		return new static( $ts );
 	}
 

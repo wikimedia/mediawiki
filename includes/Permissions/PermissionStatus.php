@@ -83,10 +83,7 @@ class PermissionStatus extends StatusValue {
 		$this->setOK( false );
 	}
 
-	/**
-	 * @return static
-	 */
-	public static function newEmpty() {
+	public static function newEmpty(): static {
 		return new static();
 	}
 

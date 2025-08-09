@@ -92,10 +92,7 @@ abstract class ParsoidHandler extends Handler {
 	/** @var array */
 	private $requestAttributes;
 
-	/**
-	 * @return static
-	 */
-	public static function factory(): ParsoidHandler {
+	public static function factory(): static {
 		$services = MediaWikiServices::getInstance();
 		// @phan-suppress-next-line PhanTypeInstantiateAbstractStatic
 		return new static(

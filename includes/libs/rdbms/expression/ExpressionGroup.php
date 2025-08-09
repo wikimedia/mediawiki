@@ -35,9 +35,8 @@ abstract class ExpressionGroup implements IExpression {
 	 * @phpcs:ignore Generic.Files.LineLength
 	 * @param non-empty-array<string,?scalar|RawSQLValue|Blob|LikeValue|non-empty-list<scalar|Blob>>|non-empty-array<int,IExpression> $conds
 	 * @param-taint $conds exec_sql_numkey
-	 * @return static
 	 */
-	public static function newFromArray( array $conds ) {
+	public static function newFromArray( array $conds ): static {
 		if ( !$conds ) {
 			throw new InvalidArgumentException( "The array of conditions can't be empty." );
 		}

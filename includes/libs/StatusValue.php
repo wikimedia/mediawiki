@@ -87,9 +87,8 @@ class StatusValue implements Stringable {
 	 * @phpcs:ignore Generic.Files.LineLength
 	 * @param MessageParam|MessageSpecifier|string|int|float|list<MessageParam|MessageSpecifier|string|int|float> ...$parameters
 	 *   See Message::params()
-	 * @return static
 	 */
-	public static function newFatal( $message, ...$parameters ) {
+	public static function newFatal( $message, ...$parameters ): static {
 		$result = new static();
 		$result->fatal( $message, ...$parameters );
 		return $result;
@@ -99,9 +98,8 @@ class StatusValue implements Stringable {
 	 * Factory function for good results
 	 *
 	 * @param mixed|null $value
-	 * @return static
 	 */
-	public static function newGood( $value = null ) {
+	public static function newGood( $value = null ): static {
 		$result = new static();
 		$result->value = $value;
 		return $result;

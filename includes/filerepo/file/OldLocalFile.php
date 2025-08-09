@@ -57,9 +57,8 @@ class OldLocalFile extends LocalFile {
 	 * @param Title $title
 	 * @param LocalRepo $repo
 	 * @param string|int|null $time
-	 * @return static
 	 */
-	public static function newFromTitle( $title, $repo, $time = null ) {
+	public static function newFromTitle( $title, $repo, $time = null ): static {
 		# The null default value is only here to avoid an E_STRICT
 		if ( $time === null ) {
 			throw new InvalidArgumentException( __METHOD__ . ' got null for $time parameter' );
@@ -74,9 +73,8 @@ class OldLocalFile extends LocalFile {
 	 * @param Title $title
 	 * @param LocalRepo $repo
 	 * @param string $archiveName
-	 * @return static
 	 */
-	public static function newFromArchiveName( $title, $repo, $archiveName ) {
+	public static function newFromArchiveName( $title, $repo, $archiveName ): static {
 		return new static( $title, $repo, null, $archiveName );
 	}
 
@@ -85,9 +83,8 @@ class OldLocalFile extends LocalFile {
 	 *
 	 * @param stdClass $row
 	 * @param LocalRepo $repo
-	 * @return static
 	 */
-	public static function newFromRow( $row, $repo ) {
+	public static function newFromRow( $row, $repo ): static {
 		$title = Title::makeTitle( NS_FILE, $row->oi_name );
 		$file = new static( $title, $repo, null, $row->oi_archive_name );
 		$file->loadFromRow( $row, 'oi_' );
@@ -104,10 +101,8 @@ class OldLocalFile extends LocalFile {
 	 * @param string $sha1 Base-36 SHA-1
 	 * @param LocalRepo $repo
 	 * @param string|false $timestamp MW_timestamp (optional)
-	 *
-	 * @return static|false
 	 */
-	public static function newFromKey( $sha1, $repo, $timestamp = false ) {
+	public static function newFromKey( $sha1, $repo, $timestamp = false ): static|false {
 		$dbr = $repo->getReplicaDB();
 		$queryBuilder = FileSelectQueryBuilder::newForOldFile( $dbr );
 

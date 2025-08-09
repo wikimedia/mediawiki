@@ -75,11 +75,10 @@ class ApiUsageException extends MWException implements Stringable, ILocalizedExc
 	 * @param array|null $data See ApiMessage::create()
 	 * @param int $httpCode HTTP error code to use
 	 * @param Throwable|null $previous Previous exception
-	 * @return static
 	 */
 	public static function newWithMessage(
 		?ApiBase $module, $msg, $code = null, $data = null, $httpCode = 0, ?Throwable $previous = null
-	) {
+	): static {
 		return new static(
 			$module,
 			StatusValue::newFatal( ApiMessage::create( $msg, $code, $data ) ),

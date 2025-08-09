@@ -58,10 +58,8 @@ class PageIdentityValue extends PageReferenceValue implements ProperPageIdentity
 	 * @param string|false $wikiId The Id of the wiki this page belongs to,
 	 *        or self::LOCAL for the local wiki. The method {@link PageIdentityValue::localIdentity}
 	 *        is available as a shorthand for local wikis (only requires 3 parameters).
-	 *
-	 * @return PageIdentityValue|null
 	 */
-	public static function tryNew( int $pageId, int $namespace, string $dbKey, $wikiId ) {
+	public static function tryNew( int $pageId, int $namespace, string $dbKey, $wikiId ): ?static {
 		try {
 			return new static( $pageId, $namespace, $dbKey, $wikiId );
 		} catch ( InvalidArgumentException ) {

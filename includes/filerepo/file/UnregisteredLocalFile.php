@@ -63,18 +63,16 @@ class UnregisteredLocalFile extends File {
 	/**
 	 * @param string $path Storage path
 	 * @param string $mime
-	 * @return static
 	 */
-	public static function newFromPath( $path, $mime ) {
+	public static function newFromPath( $path, $mime ): static {
 		return new static( false, false, $path, $mime );
 	}
 
 	/**
 	 * @param Title $title
 	 * @param FileRepo $repo
-	 * @return static
 	 */
-	public static function newFromTitle( $title, $repo ) {
+	public static function newFromTitle( $title, $repo ): static {
 		return new static( $title, $repo, false, false );
 	}
 

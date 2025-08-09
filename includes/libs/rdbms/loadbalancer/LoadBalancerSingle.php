@@ -68,10 +68,9 @@ class LoadBalancerSingle extends LoadBalancer {
 	/**
 	 * @param IDatabase $db Live connection handle
 	 * @param array $params Parameter map to LoadBalancerSingle::__constructs()
-	 * @return LoadBalancerSingle
 	 * @since 1.28
 	 */
-	public static function newFromConnection( IDatabase $db, array $params = [] ) {
+	public static function newFromConnection( IDatabase $db, array $params = [] ): static {
 		return new static( array_merge(
 			[ 'localDomain' => $db->getDomainID() ],
 			$params,

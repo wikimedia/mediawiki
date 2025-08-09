@@ -66,10 +66,9 @@ class LBFactorySingle extends LBFactory {
 	/**
 	 * @param IDatabase $db Live connection handle
 	 * @param array $params Parameter map to LBFactorySingle::__construct()
-	 * @return LBFactorySingle
 	 * @since 1.28
 	 */
-	public static function newFromConnection( IDatabase $db, array $params = [] ) {
+	public static function newFromConnection( IDatabase $db, array $params = [] ): static {
 		return new static( array_merge(
 			[ 'localDomain' => $db->getDomainID() ],
 			$params,
@@ -79,10 +78,9 @@ class LBFactorySingle extends LBFactory {
 
 	/**
 	 * @param array $params Parameter map to LBFactorySingle::__construct()
-	 * @return LBFactorySingle
 	 * @since 1.40
 	 */
-	public static function newDisabled( array $params = [] ) {
+	public static function newDisabled( array $params = [] ): static {
 		return new static( array_merge(
 			$params,
 			[ 'connection' => null ]

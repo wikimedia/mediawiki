@@ -390,10 +390,8 @@ class WANObjectCache implements
 
 	/**
 	 * Get an instance that wraps EmptyBagOStuff
-	 *
-	 * @return WANObjectCache
 	 */
-	public static function newEmpty() {
+	public static function newEmpty(): static {
 		return new static( [ 'cache' => new EmptyBagOStuff() ] );
 	}
 

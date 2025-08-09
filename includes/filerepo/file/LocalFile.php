@@ -241,10 +241,8 @@ class LocalFile extends File {
 	 * @param Title $title
 	 * @param LocalRepo $repo
 	 * @param null $unused
-	 *
-	 * @return static
 	 */
-	public static function newFromTitle( $title, $repo, $unused = null ) {
+	public static function newFromTitle( $title, $repo, $unused = null ): static {
 		return new static( $title, $repo );
 	}
 
@@ -256,10 +254,8 @@ class LocalFile extends File {
 	 *
 	 * @param stdClass $row
 	 * @param LocalRepo $repo
-	 *
-	 * @return static
 	 */
-	public static function newFromRow( $row, $repo ) {
+	public static function newFromRow( $row, $repo ): static {
 		$title = Title::makeTitle( NS_FILE, $row->img_name );
 		$file = new static( $title, $repo );
 		$file->loadFromRow( $row );
@@ -278,7 +274,7 @@ class LocalFile extends File {
 	 * @param string|false $timestamp MW_timestamp (optional)
 	 * @return static|false
 	 */
-	public static function newFromKey( $sha1, $repo, $timestamp = false ) {
+	public static function newFromKey( $sha1, $repo, $timestamp = false ): static|false {
 		$dbr = $repo->getReplicaDB();
 		$queryBuilder = FileSelectQueryBuilder::newForFile( $dbr );
 
