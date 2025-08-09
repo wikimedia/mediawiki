@@ -1902,7 +1902,6 @@ class EditPage implements IEditObject {
 			case self::AS_SUMMARY_NEEDED:
 			case self::AS_TEXTBOX_EMPTY:
 			case self::AS_END:
-			case self::AS_BLANK_ARTICLE:
 			case self::AS_REVISION_WAS_DELETED:
 				return true;
 
@@ -1911,6 +1910,7 @@ class EditPage implements IEditObject {
 
 			// Status codes that provide their own error/warning messages. Most error scenarios that don't
 			// need custom user interface (e.g. edit conflicts) should be handled here, one day (T384399).
+			case self::AS_BLANK_ARTICLE:
 			case self::AS_BROKEN_REDIRECT:
 			case self::AS_DOUBLE_REDIRECT:
 			case self::AS_DOUBLE_REDIRECT_LOOP:
@@ -2172,6 +2172,9 @@ class EditPage implements IEditObject {
 		$constraintFactory = MediaWikiServices::getInstance()->getService( '_EditConstraintFactory' );
 		$constraintRunner = new EditConstraintRunner();
 
+		// Message key of the label of the submit button - used by some constraint error messages
+		$submitButtonLabel = $this->getSubmitButtonLabel();
+
 		// UnicodeConstraint: ensure that `$this->unicodeCheck` is the correct unicode
 		$constraintRunner->addConstraint(
 			new UnicodeConstraint( $this->unicodeCheck )
@@ -2303,7 +2306,8 @@ class EditPage implements IEditObject {
 				new DefaultTextConstraint(
 					$this->mTitle,
 					$this->allowBlankArticle,
-					$this->textbox1
+					$this->textbox1,
+					$submitButtonLabel
 				)
 			);
 
@@ -2511,9 +2515,6 @@ class EditPage implements IEditObject {
 
 		// Check for length errors again now that the section is merged in
 		$this->contentLength = strlen( $this->toEditText( $content ) );
-
-		// Message key of the label of the submit button - used by some constraint error messages
-		$submitButtonLabel = $this->getSubmitButtonLabel();
 
 		// BEGINNING OF MIGRATION TO EDITCONSTRAINT SYSTEM (see T157658)
 		// Create a new runner to avoid rechecking the prior constraints, use the same factory
@@ -3387,13 +3388,6 @@ class EditPage implements IEditObject {
 				$out->wrapWikiMsg(
 					"<div id='mw-missingcommentheader'>\n$1\n</div>",
 					[ 'missingcommentheader', $buttonLabel ]
-				);
-			}
-
-			if ( $this->blankArticle ) {
-				$out->wrapWikiMsg(
-					"<div id='mw-blankarticle'>\n$1\n</div>",
-					[ 'blankarticle', $buttonLabel ]
 				);
 			}
 

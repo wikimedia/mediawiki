@@ -43,7 +43,8 @@ class DefaultTextConstraintTest extends MediaWikiUnitTestCase {
 		$constraint = new DefaultTextConstraint(
 			$this->getTitle( 'DefaultMessageTextGoesHere' ),
 			false, // Allow blank
-			'User provided text goes here'
+			'User provided text goes here',
+			''
 		);
 		$this->assertConstraintPassed( $constraint );
 	}
@@ -57,7 +58,8 @@ class DefaultTextConstraintTest extends MediaWikiUnitTestCase {
 		$constraint = new DefaultTextConstraint(
 			$this->getTitle( $defaultText ),
 			false, // Allow blank
-			$userInput
+			$userInput,
+			''
 		);
 		$this->assertConstraintFailed( $constraint, IEditConstraint::AS_BLANK_ARTICLE );
 	}
