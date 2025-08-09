@@ -34,15 +34,19 @@ function getAccessKeyModifiers( nav ) {
 		// and matches Chromium behaviour.
 		case 'opera':
 		case 'chrome':
+			// Edge is also included here now, as profile reports it as 'chrome'
 			if ( profile.platform === 'mac' ) {
 				// Chromium on macOS
 				accessKeyModifiers = 'ctrl-option';
 			} else {
 				// Chromium on Windows or Linux
-				// (both alt- and alt-shift work, but alt with E, D, F etc does not
-				// work since they are native browser shortcuts as well, so advertise
-				// alt-shift- instead)
-				accessKeyModifiers = 'alt-shift';
+				// Alt works, unless it conflicts with native browser
+				// shortcuts (e.g. E, D, F), at which point alt-shift is
+				// required. Unfortunately, alt-shift now *only* works if
+				// there's a conflict, so we can't just show that. We'll
+				// advertise just alt, and hope that Chromium will eventually
+				// support accessKeyLabel.
+				accessKeyModifiers = 'alt';
 			}
 			break;
 		// Historical: Firefox 1.x used alt- (no longer supported).
