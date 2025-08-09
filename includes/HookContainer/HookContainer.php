@@ -25,12 +25,10 @@ use Wikimedia\Services\SalvageableService;
 use function array_filter;
 use function array_keys;
 use function array_merge;
-use function array_shift;
 use function array_unique;
 use function is_array;
 use function is_object;
 use function is_string;
-use function strpos;
 use function strtr;
 
 /**
@@ -51,6 +49,7 @@ class HookContainer implements SalvageableService {
 	 * - the second is a list of handlers
 	 * - each handler is an associative array with some well known keys, as returned by normalizeHandler()
 	 * @var array<array>
+	 * @phan-var array<string,array<string|int,array{callback:callable,functionName:string}>>
 	 */
 	private $handlers = [];
 
@@ -130,15 +129,9 @@ class HookContainer implements SalvageableService {
 				$this->checkDeprecation( $hook, $handler, $options );
 			}
 
-			// Compose callback arguments.
-			if ( !empty( $handler['args'] ) ) {
-				$callbackArgs = array_merge( $handler['args'], $args );
-			} else {
-				$callbackArgs = $args;
-			}
 			// Call the handler.
 			$callback = $handler['callback'];
-			$return = $callback( ...$callbackArgs );
+			$return = $callback( ...$args );
 
 			// Handler returned false, signal abort to caller
 			if ( $return === false ) {
@@ -248,48 +241,24 @@ class HookContainer implements SalvageableService {
 	 * Normalize/clean up format of argument passed as hook handler
 	 *
 	 * @param string $hook Hook name
-	 * @param string|array|callable $handler Executable handler function. See register() for supported structures.
+	 * @param string|callable|array{handler:array} $handler Executable handler function. See {@link self::register()}
+	 * for supported structures.
 	 * @param array $options see makeExtensionHandlerCallback()
 	 *
 	 * @return array|false
 	 *  - callback: (callable) Executable handler function
 	 *  - functionName: (string) Handler name for passing to wfDeprecated() or Exceptions thrown
 	 *  - args: (array) Extra handler function arguments (omitted when not needed)
+	 * @phan-return array{callback:callable,functionName:string}|false
 	 */
 	private function normalizeHandler( string $hook, $handler, array $options = [] ) {
+		// 1 - Class instance with `on$hook` method.
 		if ( is_object( $handler ) && !$handler instanceof Closure ) {
 			$handler = [ $handler, $this->getHookMethodName( $hook ) ];
 		}
 
-		// Backwards compatibility with old-style callable that uses a qualified method name.
-		if ( is_array( $handler ) && is_object( $handler[0] ?? false ) && is_string( $handler[1] ?? false ) ) {
-			$ofs = strpos( $handler[1], '::' );
-
-			if ( $ofs !== false ) {
-				$msg = self::callableToString( $handler );
-				wfDeprecatedMsg( "Deprecated handler style for hook '$hook': " .
-					"callable using qualified method name ($msg)" );
-				$handler[1] = substr( $handler[1], $ofs + 2 );
-			}
-		}
-
-		// Backwards compatibility: support objects wrapped in an array but no method name.
-		if ( is_array( $handler ) && is_object( $handler[0] ?? false ) && !isset( $handler[1] ) ) {
-			if ( !$handler[0] instanceof Closure ) {
-				$handler[1] = $this->getHookMethodName( $hook );
-				$msg = self::callableToString( $handler );
-				wfDeprecatedMsg( "Deprecated handler style for hook '$hook': object wrapped in array ($msg)" );
-			}
-		}
-
-		// The empty callback is used to represent a no-op handler in some test cases.
-		if ( $handler === [] || $handler === null || $handler === false || $handler === self::NOOP ) {
-			if ( $handler !== self::NOOP ) {
-				wfDeprecatedMsg(
-					"Deprecated handler style for hook '$hook': falsy value, use HookContainer::NOOP instead."
-				);
-			}
-
+		// 2 - No-op
+		if ( $handler === self::NOOP ) {
 			return [
 				'callback' => static function () {
 					// no-op
@@ -298,7 +267,7 @@ class HookContainer implements SalvageableService {
 			];
 		}
 
-		// Plain callback
+		// 3 - Plain callback
 		if ( self::mayBeCallable( $handler ) ) {
 			return [
 				'callback' => $handler,
@@ -306,18 +275,8 @@ class HookContainer implements SalvageableService {
 			];
 		}
 
-		// Not callable and not an array. Something is wrong.
-		if ( !is_array( $handler ) ) {
-			return false;
-		}
-
-		// Empty array or array filled with null/false/empty.
-		if ( !array_filter( $handler ) ) {
-			return false;
-		}
-
-		// ExtensionRegistry style handler
-		if ( isset( $handler['handler'] ) ) {
+		// 4 - ExtensionRegistry style handler
+		if ( is_array( $handler ) && !empty( $handler['handler'] ) ) {
 			// Skip hooks that both acknowledge deprecation and are deprecated in core
 			if ( $handler['deprecated'] ?? false ) {
 				$deprecatedHooks = $this->registry->getDeprecatedHooks();
@@ -334,43 +293,8 @@ class HookContainer implements SalvageableService {
 			];
 		}
 
-		// Not an indexed array, something is wrong.
-		if ( !isset( $handler[0] ) ) {
-			return false;
-		}
-
-		// Backwards compatibility: support for arrays of the form [ $object, $method, $data... ]
-		if ( is_object( $handler[0] ) && is_string( $handler[1] ?? false ) && array_key_exists( 2, $handler ) ) {
-			$obj = $handler[0];
-			if ( !$obj instanceof Closure ) {
-				$method = $handler[1];
-				$handler = [ [ $obj, $method ], ...array_slice( $handler, 2 ) ];
-				$msg = self::callableToString( $handler[1] );
-				wfDeprecatedMsg( "Deprecated handler style for hook '$hook': callable array with extra data ($msg)" );
-			}
-		}
-
-		// The only option left is an array of the form [ $callable, $data... ]
-		$callback = array_shift( $handler );
-
-		// Backwards-compatibility for callbacks in the form [ [ $function ], $data ]
-		if ( is_array( $callback ) && count( $callback ) === 1 && is_string( $callback[0] ?? null ) ) {
-			$callback = $callback[0];
-			$msg = self::callableToString( $callback );
-			wfDeprecatedMsg( "Deprecated handler style for hook '$hook': function wrapped in array ($msg)" );
-		}
-
-		if ( !self::mayBeCallable( $callback ) ) {
-			return false;
-		}
-
-		$msg = self::callableToString( $callback );
-		wfDeprecatedMsg( "Deprecated handler style for hook '$hook': callable wrapped in array ($msg)" );
-		return [
-			'callback' => $callback,
-			'functionName' => self::callableToString( $callback ),
-			'args' => $handler,
-		];
+		// Something invalid
+		return false;
 	}
 
 	/**
@@ -392,6 +316,8 @@ class HookContainer implements SalvageableService {
 	 * 1) A callable (string, array, or closure)
 	 * 2) An extension hook handler spec in the form returned by
 	 *    HookRegistry::getExtensionHooks
+	 * 3) A class instance with an `on$hook` method (see {@link self::getHookMethodName} for normalizations applied)
+	 * 4) {@link self::NOOP} as a no-op handler
 	 *
 	 * Several other forms are supported for backwards compatibility, but
 	 * should not be used when calling this method directly.
@@ -436,31 +362,14 @@ class HookContainer implements SalvageableService {
 	 * Get handler callbacks.
 	 *
 	 * @deprecated since 1.41.
-	 * @internal For use by FauxHookHandlerArray. Delete when no longer needed.
+	 * @internal For use by HookContainerTest. Delete when no longer needed.
 	 * @param string $hook Name of hook
 	 * @return callable[]
 	 */
 	public function getHandlerCallbacks( string $hook ): array {
 		wfDeprecated( __METHOD__, '1.41' );
 		$handlers = $this->getHandlers( $hook );
-
-		$callbacks = [];
-		foreach ( $handlers as $h ) {
-			$callback = $h['callback'];
-
-			if ( isset( $h['args'] ) ) {
-				// Needs curry in order to pass extra arguments.
-				// NOTE: This does not support reference parameters!
-				$extraArgs = $h['args'];
-				$callbacks[] = static function ( ...$hookArgs ) use ( $callback, $extraArgs ) {
-					return $callback( ...$extraArgs, ...$hookArgs );
-				};
-			} else {
-				$callbacks[] = $callback;
-			}
-		}
-
-		return $callbacks;
+		return array_column( $handlers, 'callback' );
 	}
 
 	/**
@@ -485,6 +394,7 @@ class HookContainer implements SalvageableService {
 	 * @param array $options Handler options, which may include:
 	 *   - noServices: Do not allow hook handlers with service dependencies
 	 * @return array[] A list of handler entries
+	 * @phan-return array<string|int,array{callback:callable,functionName:string}>
 	 */
 	private function getHandlers( string $hook, array $options = [] ): array {
 		if ( !isset( $this->handlers[$hook] ) ) {
