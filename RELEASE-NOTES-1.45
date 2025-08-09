@@ -270,6 +270,8 @@ because of Phabricator reports.
  - ISQLPlatform
 * Some undocumented behaviors of ParserOptions::setInterfaceMessage() have
   been moved to a new method ParserOptions::setIsMessage(). (T393601, T395589)
+* Old hook handler styles, deprecated in 1.41, have been removed. See
+  `HookContainer::register` for the accepted formats. (T401532)
 * The ParserOutput constructor now enforces strict type hints on its arguments.
   Passing null as the $languageLinks parameter was deprecated in 1.43.
 * ParserOutput::addTemplate() now throws an InvalidArgumentException if an

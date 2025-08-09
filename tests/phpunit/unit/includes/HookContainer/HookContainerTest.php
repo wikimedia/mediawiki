@@ -369,66 +369,6 @@ namespace MediaWiki\Tests\HookContainer {
 			$this->assertSame( $expectedCount, $count );
 		}
 
-		public static function provideRunDeprecatedStyle() {
-			$fooObj = new FooClass();
-			$closure = static function ( &$count ) {
-				$count++;
-			};
-			$extra	= 10;
-			return [
-				// Handlers with extra data attached
-				'static method with extra data' => [
-					[ 'MediaWiki\Tests\HookContainer\FooClass::fooStaticMethodWithExtra', $extra ],
-					11
-				],
-				'Object and method with extra data' => [ [ [ $fooObj, 'fooMethodWithExtra' ], $extra ], 11 ],
-				'Function extra data' => [ [ 'fooGlobalFunctionWithExtra', $extra ], 11 ],
-				'Closure with extra data' => [
-					[
-						static function ( int $inc, &$count ) {
-							$count += $inc;
-						},
-						10
-					],
-					11
-				],
-
-				// No-ops
-				'empty array' => [ [], 1 ],
-				'null' => [ null, 1 ],
-				'false' => [ false, 1 ],
-
-				// Strange edge cases
-				'Object in array without method' => [ [ $fooObj ] ],
-				'Callable in array' => [ [ [ $fooObj, 'fooMethod' ] ] ],
-				'Closure in array with no extra data' => [ [ $closure ] ],
-				'Function in array' => [ [ 'fooGlobalFunction' ] ],
-				'Function in array in array' => [ [ [ 'fooGlobalFunction' ] ] ],
-				'static method as array in array' => [
-					[ [ 'MediaWiki\Tests\HookContainer\FooClass', 'fooStaticMethod' ] ]
-				],
-				'Object and fully-qualified non-static method' => [
-					[ $fooObj, 'MediaWiki\Tests\HookContainer\FooClass::fooMethod' ]
-				]
-			];
-		}
-
-		/**
-		 * @covers \MediaWiki\HookContainer\HookContainer::run
-		 * @covers \MediaWiki\HookContainer\HookContainer::normalizeHandler
-		 * @dataProvider provideRunDeprecatedStyle
-		 */
-		public function testRunDeprecatedStyle( $handler, $expectedCount = 2 ) {
-			$hookContainer = $this->newHookContainer( [ 'Increment' => [ $handler ] ] );
-
-			$this->expectDeprecationAndContinue( '/Deprecated handler style/' );
-
-			$count = 1;
-			$hookValue = $hookContainer->run( 'Increment', [ &$count ] );
-			$this->assertTrue( $hookValue );
-			$this->assertSame( $expectedCount, $count );
-		}
-
 		/**
 		 * @covers \MediaWiki\HookContainer\HookContainer::run
 		 * @covers \MediaWiki\HookContainer\HookContainer::normalizeHandler
@@ -443,21 +383,6 @@ namespace MediaWiki\Tests\HookContainer {
 			$hookValue = $hookContainer->run( 'Increment', [ &$count ] );
 			$this->assertTrue( $hookValue );
 			$this->assertSame( $expectedCount, $count );
-		}
-
-		/**
-		 * @covers \MediaWiki\HookContainer\HookContainer::run
-		 * @covers \MediaWiki\HookContainer\HookContainer::normalizeHandler
-		 * @dataProvider provideRunDeprecatedStyle
-		 */
-		public function testRegisterDeprecatedStyle( $handler ) {
-			$hookContainer = $this->newHookContainer( [], [] );
-
-			// Force the handler list to be initialized, so register() will normalize the handler immediately.
-			$hookContainer->run( 'Increment' );
-
-			$this->expectDeprecationAndContinue( '/Deprecated handler style for hook/' );
-			$hookContainer->register( 'Increment', $handler );
 		}
 
 		/**
