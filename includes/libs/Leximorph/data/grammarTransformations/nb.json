@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Jon Harald Søby (jhsoby@gmail.com)"
+		],
+		"comment": "Rule for genitive in Norwegian"
+	},
+	"genitive": [
+		[ "([SsXxZz])(\\]\\])?$", "$1$2’" ],
+		[ "$", "s" ]
+	]
+}

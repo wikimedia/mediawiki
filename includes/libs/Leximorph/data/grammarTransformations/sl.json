@@ -1,0 +1,17 @@
+{
+	"@metadata": {
+		"authors": [
+			"Doğu Abaris (abaris@null.net)"
+		],
+		"comment": "These rules don't cover the whole grammar of the language, and are intended only for names of languages and Wikimedia projects."
+	},
+	"mestnik": [
+		[ "^(.*)$", "o $1" ]
+	],
+	"orodnik": [
+		[ "^(.*)$", "z $1" ]
+	],
+	"imenovalnik": [
+		[ "^(.*)$", "$1" ]
+	]
+}

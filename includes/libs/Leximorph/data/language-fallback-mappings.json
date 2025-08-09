@@ -1,0 +1,1780 @@
+{
+	"aae": {
+		"values": [
+			"it"
+		]
+	},
+	"ab": {
+		"values": [
+			"ru"
+		]
+	},
+	"abs": {
+		"values": [
+			"id"
+		]
+	},
+	"ace": {
+		"values": [
+			"id"
+		]
+	},
+	"acm": {
+		"values": [
+			"ar"
+		]
+	},
+	"ady": {
+		"values": [
+			"ady-cyrl"
+		]
+	},
+	"aeb-arab": {
+		"values": [
+			"ar"
+		]
+	},
+	"aeb": {
+		"values": [
+			"aeb-arab"
+		]
+	},
+	"aln": {
+		"values": [
+			"sq"
+		]
+	},
+	"alt": {
+		"values": [
+			"ru"
+		]
+	},
+	"ami": {
+		"values": [
+			"zh-tw",
+			"zh-hant",
+			"zh",
+			"zh-hans"
+		]
+	},
+	"an": {
+		"values": [
+			"es"
+		]
+	},
+	"anp": {
+		"values": [
+			"hi"
+		]
+	},
+	"apc": {
+		"values": [
+			"ar"
+		]
+	},
+	"arn": {
+		"values": [
+			"es"
+		]
+	},
+	"arq": {
+		"values": [
+			"ar"
+		]
+	},
+	"ary": {
+		"values": [
+			"ar"
+		]
+	},
+	"arz": {
+		"values": [
+			"ar"
+		]
+	},
+	"ast": {
+		"values": [
+			"es"
+		]
+	},
+	"atj": {
+		"values": [
+			"fr"
+		]
+	},
+	"avk": {
+		"values": [
+			"fr",
+			"es",
+			"ru"
+		]
+	},
+	"av": {
+		"values": [
+			"ru"
+		]
+	},
+	"awa": {
+		"values": [
+			"hi"
+		]
+	},
+	"ay": {
+		"values": [
+			"es"
+		]
+	},
+	"azb": {
+		"values": [
+			"fa"
+		]
+	},
+	"ban-bali": {
+		"values": [
+			"ban"
+		]
+	},
+	"ban": {
+		"values": [
+			"id"
+		]
+	},
+	"ba": {
+		"values": [
+			"ru"
+		]
+	},
+	"bar": {
+		"values": [
+			"de"
+		]
+	},
+	"bbc-latn": {
+		"values": [
+			"id"
+		]
+	},
+	"bbc": {
+		"values": [
+			"bbc-latn"
+		]
+	},
+	"bcc": {
+		"values": [
+			"fa"
+		]
+	},
+	"bci": {
+		"values": [
+			"fr"
+		]
+	},
+	"bdr": {
+		"values": [
+			"ms"
+		]
+	},
+	"be-tarask": {
+		"values": [
+			"be"
+		]
+	},
+	"bew": {
+		"values": [
+			"id"
+		]
+	},
+	"bgn": {
+		"values": [
+			"fa"
+		]
+	},
+	"bh": {
+		"values": [
+			"bho"
+		]
+	},
+	"bi": {
+		"values": [
+			"en"
+		]
+	},
+	"bjn": {
+		"values": [
+			"id"
+		]
+	},
+	"blk": {
+		"values": [
+			"my"
+		]
+	},
+	"bm": {
+		"values": [
+			"fr"
+		]
+	},
+	"bpy": {
+		"values": [
+			"bn"
+		]
+	},
+	"bqi": {
+		"values": [
+			"fa"
+		]
+	},
+	"btm": {
+		"values": [
+			"id"
+		]
+	},
+	"bug": {
+		"values": [
+			"id"
+		]
+	},
+	"bxr": {
+		"values": [
+			"ru"
+		]
+	},
+	"ca": {
+		"values": [
+			"oc"
+		]
+	},
+	"cbk-zam": {
+		"values": [
+			"es"
+		]
+	},
+	"cdo-hant": {
+		"values": [
+			"cdo",
+			"cdo-latn",
+			"nan-hant",
+			"zh-hant",
+			"zh",
+			"zh-hans"
+		]
+	},
+	"cdo-latn": {
+		"values": [
+			"cdo",
+			"cdo-hant",
+			"nan-hant",
+			"zh-hant",
+			"zh",
+			"zh-hans"
+		]
+	},
+	"cdo": {
+		"values": [
+			"cdo-latn",
+			"cdo-hant",
+			"nan-hant",
+			"zh-hant",
+			"zh",
+			"zh-hans"
+		]
+	},
+	"ce": {
+		"values": [
+			"ru"
+		]
+	},
+	"co": {
+		"values": [
+			"it"
+		]
+	},
+	"cpx-hans": {
+		"values": [
+			"cpx",
+			"cpx-hant",
+			"cpx-latn",
+			"cdo",
+			"zh-hans",
+			"zh",
+			"zh-hant"
+		]
+	},
+	"cpx-hant": {
+		"values": [
+			"cpx",
+			"cpx-hans",
+			"cpx-latn",
+			"cdo",
+			"zh-hant",
+			"zh",
+			"zh-hans"
+		]
+	},
+	"cpx": {
+		"values": [
+			"cpx-hant",
+			"cpx-hans",
+			"cpx-latn",
+			"cdo",
+			"zh-hant",
+			"zh",
+			"zh-hans"
+		]
+	},
+	"crh-cyrl": {
+		"values": [
+			"tr"
+		]
+	},
+	"crh-latn": {
+		"values": [
+			"tr"
+		]
+	},
+	"crh": {
+		"values": [
+			"crh-latn",
+			"tr"
+		]
+	},
+	"csb": {
+		"values": [
+			"pl"
+		]
+	},
+	"cs": {
+		"values": [
+			"sk"
+		]
+	},
+	"cv": {
+		"values": [
+			"ru"
+		]
+	},
+	"de-at": {
+		"values": [
+			"de"
+		]
+	},
+	"de-ch": {
+		"values": [
+			"de"
+		]
+	},
+	"de-formal": {
+		"values": [
+			"de"
+		]
+	},
+	"dsb": {
+		"values": [
+			"hsb",
+			"de"
+		]
+	},
+	"dtp": {
+		"values": [
+			"ms"
+		]
+	},
+	"dty": {
+		"values": [
+			"ne"
+		]
+	},
+	"dua": {
+		"values": [
+			"fr"
+		]
+	},
+	"egl": {
+		"values": [
+			"it"
+		]
+	},
+	"eml": {
+		"values": [
+			"it"
+		]
+	},
+	"en-ca": {
+		"values": [
+			"en"
+		]
+	},
+	"en-gb": {
+		"values": [
+			"en"
+		]
+	},
+	"es-formal": {
+		"values": [
+			"es"
+		]
+	},
+	"ext": {
+		"values": [
+			"es"
+		]
+	},
+	"fit": {
+		"values": [
+			"fi"
+		]
+	},
+	"fon": {
+		"values": [
+			"fr"
+		]
+	},
+	"frc": {
+		"values": [
+			"fr"
+		]
+	},
+	"frp": {
+		"values": [
+			"fr"
+		]
+	},
+	"frr": {
+		"values": [
+			"de"
+		]
+	},
+	"fur": {
+		"values": [
+			"it"
+		]
+	},
+	"gag": {
+		"values": [
+			"tr"
+		]
+	},
+	"gan-hans": {
+		"values": [
+			"gan",
+			"gan-hant",
+			"zh-hans",
+			"zh",
+			"zh-hant"
+		]
+	},
+	"gan-hant": {
+		"values": [
+			"gan",
+			"gan-hans",
+			"zh-hant",
+			"zh",
+			"zh-hans"
+		]
+	},
+	"gan": {
+		"values": [
+			"gan-hant",
+			"gan-hans",
+			"zh-hant",
+			"zh",
+			"zh-hans"
+		]
+	},
+	"gcf": {
+		"values": [
+			"fr"
+		]
+	},
+	"gcr": {
+		"values": [
+			"fr"
+		]
+	},
+	"gld": {
+		"values": [
+			"ru"
+		]
+	},
+	"glk": {
+		"values": [
+			"fa"
+		]
+	},
+	"gl": {
+		"values": [
+			"pt"
+		]
+	},
+	"gn": {
+		"values": [
+			"es"
+		]
+	},
+	"gom-deva": {
+		"values": [
+			"gom-latn"
+		]
+	},
+	"gom": {
+		"values": [
+			"gom-deva",
+			"gom-latn"
+		]
+	},
+	"gor": {
+		"values": [
+			"id"
+		]
+	},
+	"gpe": {
+		"values": [
+			"en"
+		]
+	},
+	"gsw": {
+		"values": [
+			"de"
+		]
+	},
+	"guc": {
+		"values": [
+			"es"
+		]
+	},
+	"hak-hans": {
+		"values": [
+			"hak",
+			"hak-hant",
+			"hak-latn",
+			"zh-hant",
+			"zh",
+			"zh-hans"
+		]
+	},
+	"hak-hant": {
+		"values": [
+			"hak",
+			"hak-hans",
+			"hak-latn",
+			"zh-hant",
+			"zh",
+			"zh-hans"
+		]
+	},
+	"hak-latn": {
+		"values": [
+			"hak",
+			"hak-hant",
+			"hak-hans",
+			"zh-hant",
+			"zh",
+			"zh-hans"
+		]
+	},
+	"hak": {
+		"values": [
+			"hak-latn",
+			"hak-hant",
+			"hak-hans",
+			"zh-hant",
+			"zh",
+			"zh-hans"
+		]
+	},
+	"hif": {
+		"values": [
+			"hif-latn"
+		]
+	},
+	"hrx": {
+		"values": [
+			"de"
+		]
+	},
+	"hsb": {
+		"values": [
+			"dsb",
+			"de"
+		]
+	},
+	"hsn": {
+		"values": [
+			"zh-hant",
+			"zh",
+			"zh-hans"
+		]
+	},
+	"ht": {
+		"values": [
+			"fr"
+		]
+	},
+	"hu-formal": {
+		"values": [
+			"hu"
+		]
+	},
+	"hyw": {
+		"values": [
+			"hy"
+		]
+	},
+	"iba": {
+		"values": [
+			"ms"
+		]
+	},
+	"ii": {
+		"values": [
+			"zh-cn",
+			"zh-hans",
+			"zh",
+			"zh-hant"
+		]
+	},
+	"ike-cans": {
+		"values": [
+			"iu"
+		]
+	},
+	"ike-latn": {
+		"values": [
+			"iu"
+		]
+	},
+	"inh": {
+		"values": [
+			"ru"
+		]
+	},
+	"io": {
+		"values": [
+			"eo"
+		]
+	},
+	"iu": {
+		"values": [
+			"ike-cans"
+		]
+	},
+	"jam": {
+		"values": [
+			"en"
+		]
+	},
+	"jut": {
+		"values": [
+			"da"
+		]
+	},
+	"jv": {
+		"values": [
+			"id"
+		]
+	},
+	"kab": {
+		"values": [
+			"fr"
+		]
+	},
+	"kbd": {
+		"values": [
+			"kbd-cyrl"
+		]
+	},
+	"kbp": {
+		"values": [
+			"fr"
+		]
+	},
+	"kea": {
+		"values": [
+			"pt"
+		]
+	},
+	"kge": {
+		"values": [
+			"id"
+		]
+	},
+	"khw": {
+		"values": [
+			"ur"
+		]
+	},
+	"kiu": {
+		"values": [
+			"tr"
+		]
+	},
+	"kjh": {
+		"values": [
+			"ru"
+		]
+	},
+	"kjp": {
+		"values": [
+			"my"
+		]
+	},
+	"kk-arab": {
+		"values": [
+			"kk",
+			"kk-cyrl"
+		]
+	},
+	"kk-cn": {
+		"values": [
+			"kk-arab",
+			"kk",
+			"kk-cyrl"
+		]
+	},
+	"kk-cyrl": {
+		"values": [
+			"kk"
+		]
+	},
+	"kk-kz": {
+		"values": [
+			"kk-cyrl",
+			"kk"
+		]
+	},
+	"kk-latn": {
+		"values": [
+			"kk",
+			"kk-cyrl"
+		]
+	},
+	"kk": {
+		"values": [
+			"kk-cyrl"
+		]
+	},
+	"kk-tr": {
+		"values": [
+			"kk-latn",
+			"kk",
+			"kk-cyrl"
+		]
+	},
+	"kl": {
+		"values": [
+			"da"
+		]
+	},
+	"koi": {
+		"values": [
+			"ru"
+		]
+	},
+	"ko-kp": {
+		"values": [
+			"ko"
+		]
+	},
+	"krc": {
+		"values": [
+			"ru"
+		]
+	},
+	"krl": {
+		"values": [
+			"fi"
+		],
+		"@comments": [
+			"T137415"
+		]
+	},
+	"kr": {
+		"values": [
+			"knc"
+		]
+	},
+	"ksh": {
+		"values": [
+			"de"
+		]
+	},
+	"ks": {
+		"values": [
+			"ks-arab"
+		]
+	},
+	"ksw": {
+		"values": [
+			"my"
+		]
+	},
+	"ku-arab": {
+		"values": [
+			"ku",
+			"ckb"
+		]
+	},
+	"ku-latn": {
+		"values": [
+			"ku"
+		]
+	},
+	"kum": {
+		"values": [
+			"ru"
+		]
+	},
+	"ku": {
+		"values": [
+			"ku-latn"
+		]
+	},
+	"kv": {
+		"values": [
+			"ru"
+		]
+	},
+	"kaa": {
+		"values": [
+			"kk-latn",
+			"kk-cyrl"
+		]
+	},
+	"lad": {
+		"values": [
+			"es"
+		]
+	},
+	"lbe": {
+		"values": [
+			"ru"
+		]
+	},
+	"lb": {
+		"values": [
+			"de"
+		]
+	},
+	"lez": {
+		"values": [
+			"ru",
+			"az"
+		]
+	},
+	"lij": {
+		"values": [
+			"it"
+		]
+	},
+	"li": {
+		"values": [
+			"nl"
+		]
+	},
+	"liv": {
+		"values": [
+			"et"
+		]
+	},
+	"ljp": {
+		"values": [
+			"id"
+		]
+	},
+	"lki": {
+		"values": [
+			"fa"
+		]
+	},
+	"lld": {
+		"values": [
+			"it",
+			"rm",
+			"fur"
+		]
+	},
+	"lmo": {
+		"values": [
+			"pms",
+			"eml",
+			"lij",
+			"vec",
+			"it"
+		]
+	},
+	"ln": {
+		"values": [
+			"fr"
+		]
+	},
+	"lrc": {
+		"values": [
+			"fa"
+		]
+	},
+	"ltg": {
+		"values": [
+			"lv"
+		]
+	},
+	"lua": {
+		"values": [
+			"fr"
+		]
+	},
+	"luz": {
+		"values": [
+			"fa"
+		]
+	},
+	"lzh": {
+		"values": [
+			"zh-hant",
+			"zh",
+			"zh-hans"
+		],
+		"@comments": [
+			"T125373, T278639, T286291"
+		]
+	},
+	"lzz": {
+		"values": [
+			"tr"
+		]
+	},
+	"mad": {
+		"values": [
+			"id"
+		]
+	},
+	"mag": {
+		"values": [
+			"hi"
+		]
+	},
+	"mai": {
+		"values": [
+			"hi"
+		]
+	},
+	"map-bms": {
+		"values": [
+			"jv",
+			"id"
+		]
+	},
+	"mdf": {
+		"values": [
+			"myv",
+			"ru"
+		]
+	},
+	"mg": {
+		"values": [
+			"fr"
+		]
+	},
+	"mhr": {
+		"values": [
+			"mrj",
+			"ru"
+		]
+	},
+	"min": {
+		"values": [
+			"id"
+		]
+	},
+	"mnc-latn": {
+		"values": [
+			"mnc"
+		]
+	},
+	"mnc-mong": {
+		"values": [
+			"mnc"
+		]
+	},
+	"mnw": {
+		"values": [
+			"my"
+		]
+	},
+	"mo": {
+		"values": [
+			"ro"
+		]
+	},
+	"mrj": {
+		"values": [
+			"mhr",
+			"ru"
+		]
+	},
+	"ms-arab": {
+		"values": [
+			"ms"
+		]
+	},
+	"mui": {
+		"values": [
+			"id"
+		]
+	},
+	"mwl": {
+		"values": [
+			"pt"
+		]
+	},
+	"myv": {
+		"values": [
+			"mdf",
+			"ru"
+		]
+	},
+	"mzn": {
+		"values": [
+			"fa"
+		]
+	},
+	"nah": {
+		"values": [
+			"es"
+		]
+	},
+	"nan-hant": {
+		"values": [
+			"nan",
+			"nan-latn-pehoeji",
+			"nan-latn-tailo",
+			"cdo",
+			"zh-hant",
+			"zh",
+			"zh-hans"
+		]
+	},
+	"nan-latn-pehoeji": {
+		"values": [
+			"nan-latn",
+			"nan-latn-tailo",
+			"nan",
+			"nan-hant",
+			"cdo",
+			"zh-hant",
+			"zh",
+			"zh-hans"
+		]
+	},
+	"nan-latn-tailo": {
+		"values": [
+			"nan-latn",
+			"nan-latn-pehoeji",
+			"nan",
+			"nan-hant",
+			"cdo",
+			"zh-hant",
+			"zh",
+			"zh-hans"
+		]
+	},
+	"nan": {
+		"values": [
+			"nan-latn-pehoeji",
+			"nan-latn-tailo",
+			"nan-hant",
+			"cdo",
+			"zh-hant",
+			"zh",
+			"zh-hans"
+		]
+	},
+	"nap": {
+		"values": [
+			"it"
+		]
+	},
+	"nb": {
+		"values": [
+			"no",
+			"nn"
+		]
+	},
+	"nds-nl": {
+		"values": [
+			"nl"
+		]
+	},
+	"nds": {
+		"values": [
+			"de"
+		]
+	},
+	"nia": {
+		"values": [
+			"id"
+		]
+	},
+	"nl-informal": {
+		"values": [
+			"nl"
+		]
+	},
+	"nn": {
+		"values": [
+			"no",
+			"nb"
+		]
+	},
+	"no": {
+		"values": [
+			"nb",
+			"nn"
+		]
+	},
+	"nrm": {
+		"values": [
+			"nrf",
+			"fr"
+		]
+	},
+	"nyo": {
+		"values": [
+			"ttj",
+			"nyn",
+			"lg",
+			"sw"
+		]
+	},
+	"oc": {
+		"values": [
+			"ca",
+			"fr"
+		]
+	},
+	"olo": {
+		"values": [
+			"fi"
+		],
+		"@comments": [
+			"T146744#2678472"
+		]
+	},
+	"os": {
+		"values": [
+			"ru"
+		]
+	},
+	"pap-aw": {
+		"values": [
+			"pap"
+		]
+	},
+	"pcd": {
+		"values": [
+			"fr"
+		]
+	},
+	"pdc": {
+		"values": [
+			"de"
+		]
+	},
+	"pdt": {
+		"values": [
+			"de"
+		]
+	},
+	"pfl": {
+		"values": [
+			"de"
+		]
+	},
+	"pih": {
+		"values": [
+			"en"
+		]
+	},
+	"pms": {
+		"values": [
+			"it"
+		]
+	},
+	"pnt": {
+		"values": [
+			"el"
+		]
+	},
+	"pt-br": {
+		"values": [
+			"pt"
+		]
+	},
+	"pt": {
+		"values": [
+			"pt-br"
+		]
+	},
+	"pwn": {
+		"values": [
+			"zh-tw",
+			"zh-hant",
+			"zh",
+			"zh-hans"
+		]
+	},
+	"qug": {
+		"values": [
+			"qu",
+			"es"
+		]
+	},
+	"qu": {
+		"values": [
+			"qug",
+			"es"
+		]
+	},
+	"rgn": {
+		"values": [
+			"it"
+		]
+	},
+	"rm": {
+		"values": [
+			"de"
+		]
+	},
+	"rmy": {
+		"values": [
+			"ro"
+		]
+	},
+	"roa-tara": {
+		"values": [
+			"it"
+		]
+	},
+	"rsk": {
+		"values": [
+			"sr-ec",
+			"sr-cyrl"
+		]
+	},
+	"rue": {
+		"values": [
+			"uk",
+			"ru"
+		]
+	},
+	"rup": {
+		"values": [
+			"ro"
+		]
+	},
+	"ruq-cyrl": {
+		"values": [
+			"mk"
+		]
+	},
+	"ruq-latn": {
+		"values": [
+			"ro"
+		]
+	},
+	"ruq": {
+		"values": [
+			"ruq-latn",
+			"ro"
+		]
+	},
+	"rut": {
+		"values": [
+			"ru"
+		]
+	},
+	"sah": {
+		"values": [
+			"ru"
+		]
+	},
+	"sa": {
+		"values": [
+			"hi"
+		]
+	},
+	"scn": {
+		"values": [
+			"it"
+		]
+	},
+	"sco": {
+		"values": [
+			"en"
+		]
+	},
+	"sdc": {
+		"values": [
+			"it"
+		]
+	},
+	"sdh": {
+		"values": [
+			"ckb",
+			"fa"
+		]
+	},
+	"se-fi": {
+		"values": [
+			"se",
+			"fi",
+			"sv"
+		]
+	},
+	"se-no": {
+		"values": [
+			"se",
+			"nb",
+			"nn"
+		]
+	},
+	"se": {
+		"values": [
+			"nb",
+			"fi"
+		]
+	},
+	"se-se": {
+		"values": [
+			"se",
+			"sv"
+		]
+	},
+	"ses": {
+		"values": [
+			"fr"
+		]
+	},
+	"sg": {
+		"values": [
+			"fr"
+		]
+	},
+	"sgs": {
+		"values": [
+			"lt"
+		]
+	},
+	"sh-cyrl": {
+		"values": [
+			"sr-cyrl",
+			"sr-ec",
+			"sh",
+			"sh-latn"
+		]
+	},
+	"shi": {
+		"values": [
+			"shi-latn",
+			"fr"
+		]
+	},
+	"sh-latn": {
+		"values": [
+			"sh",
+			"sh-cyrl",
+			"bs",
+			"sr-el",
+			"sr-latn",
+			"hr"
+		]
+	},
+	"sh": {
+		"values": [
+			"sh-latn",
+			"sh-cyrl",
+			"bs",
+			"sr-el",
+			"sr-latn",
+			"hr"
+		]
+	},
+	"shy-latn": {
+		"values": [
+			"fr"
+		]
+	},
+	"shy": {
+		"values": [
+			"shy-latn"
+		]
+	},
+	"sjd": {
+		"values": [
+			"ru"
+		]
+	},
+	"sk": {
+		"values": [
+			"cs"
+		]
+	},
+	"skr-arab": {
+		"values": [
+			"skr"
+		]
+	},
+	"skr": {
+		"values": [
+			"skr-arab"
+		]
+	},
+	"sli": {
+		"values": [
+			"de"
+		]
+	},
+	"sma": {
+		"values": [
+			"sv",
+			"nb"
+		]
+	},
+	"smn": {
+		"values": [
+			"fi"
+		]
+	},
+	"sr-ec": {
+		"values": [
+			"sr-cyrl",
+			"sr"
+		]
+	},
+	"sr-el": {
+		"values": [
+			"sr-latn",
+			"sr"
+		]
+	},
+	"srn": {
+		"values": [
+			"nl"
+		]
+	},
+	"sro": {
+		"values": [
+			"it"
+		]
+	},
+	"sr": {
+		"values": [
+			"sr-ec",
+			"sr-cyrl",
+			"sr-el",
+			"sr-latn"
+		]
+	},
+	"stq": {
+		"values": [
+			"de"
+		]
+	},
+	"sty": {
+		"values": [
+			"ru"
+		]
+	},
+	"su": {
+		"values": [
+			"id"
+		]
+	},
+	"szl": {
+		"values": [
+			"pl"
+		]
+	},
+	"szy": {
+		"values": [
+			"zh-tw",
+			"zh-hant",
+			"zh",
+			"zh-hans"
+		]
+	},
+	"tay": {
+		"values": [
+			"zh-tw",
+			"zh-hant",
+			"zh",
+			"zh-hans"
+		]
+	},
+	"tcy": {
+		"values": [
+			"kn"
+		]
+	},
+	"tet": {
+		"values": [
+			"pt"
+		]
+	},
+	"tg-cyrl": {
+		"values": [
+			"tg"
+		]
+	},
+	"tg-latn": {
+		"values": [
+			"tg"
+		]
+	},
+	"tg": {
+		"values": [
+			"tg-cyrl"
+		]
+	},
+	"trv": {
+		"values": [
+			"zh-tw",
+			"zh-hant",
+			"zh",
+			"zh-hans"
+		]
+	},
+	"tt-cyrl": {
+		"values": [
+			"ru"
+		]
+	},
+	"ttj": {
+		"values": [
+			"nyo",
+			"nyn",
+			"lg",
+			"sw"
+		]
+	},
+	"tt": {
+		"values": [
+			"tt-cyrl",
+			"ru"
+		]
+	},
+	"ty": {
+		"values": [
+			"fr"
+		]
+	},
+	"tyv": {
+		"values": [
+			"ru"
+		]
+	},
+	"udm": {
+		"values": [
+			"ru"
+		]
+	},
+	"ug": {
+		"values": [
+			"ug-arab"
+		]
+	},
+	"vec": {
+		"values": [
+			"it"
+		]
+	},
+	"vep": {
+		"values": [
+			"et"
+		]
+	},
+	"vls": {
+		"values": [
+			"nl"
+		]
+	},
+	"vmf": {
+		"values": [
+			"de"
+		]
+	},
+	"vmw": {
+		"values": [
+			"pt"
+		]
+	},
+	"vot": {
+		"values": [
+			"fi"
+		]
+	},
+	"vro": {
+		"values": [
+			"et"
+		]
+	},
+	"wa": {
+		"values": [
+			"fr"
+		]
+	},
+	"wls": {
+		"values": [
+			"fr"
+		]
+	},
+	"wo": {
+		"values": [
+			"fr"
+		]
+	},
+	"wuu-hans": {
+		"values": [
+			"wuu",
+			"wuu-hant",
+			"zh-hans",
+			"zh",
+			"zh-hant"
+		]
+	},
+	"wuu-hant": {
+		"values": [
+			"wuu",
+			"wuu-hans",
+			"zh-hant",
+			"zh",
+			"zh-hans"
+		]
+	},
+	"wuu": {
+		"values": [
+			"wuu-hans",
+			"wuu-hant",
+			"zh-hans",
+			"zh",
+			"zh-hant"
+		]
+	},
+	"xal": {
+		"values": [
+			"ru"
+		]
+	},
+	"xmf": {
+		"values": [
+			"ka"
+		]
+	},
+	"yi": {
+		"values": [
+			"he"
+		]
+	},
+	"yue-hans": {
+		"values": [
+			"yue",
+			"yue-hant"
+		]
+	},
+	"yue-hant": {
+		"values": [
+			"yue",
+			"yue-hans"
+		]
+	},
+	"yue": {
+		"values": [
+			"yue-hant",
+			"yue-hans"
+		]
+	},
+	"za": {
+		"values": [
+			"zh-hans",
+			"zh",
+			"zh-hant"
+		]
+	},
+	"zea": {
+		"values": [
+			"nl"
+		]
+	},
+	"zh-cn": {
+		"values": [
+			"zh-hans",
+			"zh",
+			"zh-hant"
+		]
+	},
+	"zh-hans": {
+		"values": [
+			"zh-cn",
+			"zh",
+			"zh-hant"
+		]
+	},
+	"zh-hant": {
+		"values": [
+			"zh-tw",
+			"zh-hk",
+			"zh",
+			"zh-hans"
+		]
+	},
+	"zh-hk": {
+		"values": [
+			"zh-hant",
+			"zh-tw",
+			"zh",
+			"zh-hans"
+		]
+	},
+	"zh-mo": {
+		"values": [
+			"zh-hk",
+			"zh-hant",
+			"zh-tw",
+			"zh",
+			"zh-hans"
+		]
+	},
+	"zh-my": {
+		"values": [
+			"zh-sg",
+			"zh-hans",
+			"zh-cn",
+			"zh",
+			"zh-hant"
+		]
+	},
+	"zh": {
+		"values": [
+			"zh-hans",
+			"zh-hant",
+			"zh-cn",
+			"zh-tw",
+			"zh-hk"
+		]
+	},
+	"zh-sg": {
+		"values": [
+			"zh-hans",
+			"zh-cn",
+			"zh",
+			"zh-hant"
+		]
+	},
+	"zh-tw": {
+		"values": [
+			"zh-hant",
+			"zh-hk",
+			"zh",
+			"zh-hans"
+		]
+	}
+}

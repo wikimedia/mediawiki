@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"Jon Harald Søby (jhsoby@gmail.com)"
+		],
+		"comment": "Rule for cases in (Northern) Kurdish. Primarily meant for sitenames, so plural inflections are not included."
+	},
+	"oblique": [
+		[ "î$", "iyê" ],
+		[ "([aeêiouûü])$", "$1yê" ],
+		[ "(11|[02-9])$", "$1an" ],
+		[ "(\\w)$", "$1ê" ]
+	]
+}

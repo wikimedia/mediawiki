@@ -1,0 +1,61 @@
+{
+	"@metadata": {
+		"authors": [
+			"Doğu Abaris (abaris@null.net)"
+		],
+		"comment": "These rules don't cover the whole grammar of the language, and are intended only for names of languages and Wikimedia projects."
+	},
+	"genitive": [
+		[ "^(.*)u[ms]$", "$1i" ],
+		[ "^(.*)ommunia$", "$1ommunium" ],
+		[ "^(.*)a$", "$1ae" ],
+		[ "^(.*)libri$", "$1librorum" ],
+		[ "^(.*)nuntii$", "$1nuntiorum" ],
+		[ "^(.*)datae$", "$1datorum" ],
+		[ "^(.*)tio$", "$1tionis" ],
+		[ "^(.*)ns$", "$1ntis" ],
+		[ "^(.*)as$", "$1atis" ],
+		[ "^(.*)es$", "$1ei" ],
+		[ "^(.*)$", "$1is" ]
+	],
+	"accusative": [
+		[ "^(communia)$", "$1" ],
+		[ "^(.*)u[ms]$", "$1um" ],
+		[ "^(.*)a$", "$1am" ],
+		[ "^(.*)ommuniam$", "$1ommunia" ],
+		[ "^(.*)libri$", "$1libros" ],
+		[ "^(.*)nuntii$", "$1nuntios" ],
+		[ "^(.*)datam$", "$1data" ],
+		[ "^(.*)tio$", "$1tionem" ],
+		[ "^(.*)ns$", "$1ntem" ],
+		[ "^(.*)as$", "$1atem" ],
+		[ "^(.*)es$", "$1em" ],
+		[ "^(.*)$", "$1" ]
+	],
+	"ablative": [
+		[ "^(.*)u[ms]$", "$1o" ],
+		[ "^(.*)ommunia$", "$1ommunibus" ],
+		[ "^(.*)a$", "$1a" ],
+		[ "^(.*)libri$", "$1libris" ],
+		[ "^(.*)nuntii$", "$1nuntiis" ],
+		[ "^(.*)data$", "$1datis" ],
+		[ "^(.*)tio$", "$1tione" ],
+		[ "^(.*)ns$", "$1nte" ],
+		[ "^(.*)as$", "$1ate" ],
+		[ "^(.*)es$", "$1e" ],
+		[ "^(.*)$", "$1e" ]
+	],
+	"dative": [
+		[ "^(.*)us$", "$1uo" ],
+		[ "^(.*)a$", "$1ae" ],
+		[ "^(.*)liber$", "$1libro" ],
+		[ "^(.*)tio$", "$1tioni" ],
+		[ "^(.*)$", "$1i" ]
+	],
+	"vocative": [
+		[ "^(.*)ius$", "$1i" ],
+		[ "^(.*)us$", "$1e" ],
+		[ "^(.*)a$", "$1a" ],
+		[ "^(.*)$", "$1" ]
+	]
+}
