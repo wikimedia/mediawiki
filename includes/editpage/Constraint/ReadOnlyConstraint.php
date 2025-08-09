@@ -32,11 +32,11 @@ use Wikimedia\Rdbms\ReadOnlyMode;
  */
 class ReadOnlyConstraint implements IEditConstraint {
 
-	private ReadOnlyMode $readOnlyMode;
 	private string $result;
 
-	public function __construct( ReadOnlyMode $readOnlyMode ) {
-		$this->readOnlyMode = $readOnlyMode;
+	public function __construct(
+		private readonly ReadOnlyMode $readOnlyMode,
+	) {
 	}
 
 	public function checkConstraint(): string {

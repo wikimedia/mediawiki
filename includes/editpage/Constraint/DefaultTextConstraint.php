@@ -34,9 +34,6 @@ use StatusValue;
  */
 class DefaultTextConstraint implements IEditConstraint {
 
-	private Title $title;
-	private bool $allowBlank;
-	private string $userProvidedText;
 	private string $result;
 
 	/**
@@ -45,13 +42,10 @@ class DefaultTextConstraint implements IEditConstraint {
 	 * @param string $userProvidedText
 	 */
 	public function __construct(
-		Title $title,
-		bool $allowBlank,
-		string $userProvidedText
+		private readonly Title $title,
+		private readonly bool $allowBlank,
+		private readonly string $userProvidedText,
 	) {
-		$this->title = $title;
-		$this->allowBlank = $allowBlank;
-		$this->userProvidedText = $userProvidedText;
 	}
 
 	public function checkConstraint(): string {

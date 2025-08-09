@@ -35,18 +35,11 @@ class AuthorizationConstraint implements IEditConstraint {
 
 	private PermissionStatus $status;
 
-	private Authority $performer;
-	private PageIdentity $target;
-	private bool $new;
-
 	public function __construct(
-		Authority $performer,
-		PageIdentity $target,
-		bool $new
+		private readonly Authority $performer,
+		private readonly PageIdentity $target,
+		private readonly bool $new,
 	) {
-		$this->performer = $performer;
-		$this->target = $target;
-		$this->new = $new;
 	}
 
 	public function checkConstraint(): string {

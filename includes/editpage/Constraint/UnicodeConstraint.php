@@ -36,12 +36,11 @@ class UnicodeConstraint implements IEditConstraint {
 	public const VALID_UNICODE = 'ℳ𝒲♥𝓊𝓃𝒾𝒸ℴ𝒹ℯ';
 
 	/**
-	 * Unicode string provided, to compare
+	 * @param string $input Unicode string provided, to compare
 	 */
-	private string $input;
-
-	public function __construct( string $inputUnicode ) {
-		$this->input = $inputUnicode;
+	public function __construct(
+		private readonly string $input,
+	) {
 	}
 
 	public function checkConstraint(): string {

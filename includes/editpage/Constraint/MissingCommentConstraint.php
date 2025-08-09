@@ -31,12 +31,10 @@ use StatusValue;
  */
 class MissingCommentConstraint implements IEditConstraint {
 
-	private string $section;
-	private string $userComment;
-
-	public function __construct( string $section, string $userComment ) {
-		$this->section = $section;
-		$this->userComment = $userComment;
+	public function __construct(
+		private readonly string $section,
+		private readonly string $userComment,
+	) {
 	}
 
 	public function checkConstraint(): string {

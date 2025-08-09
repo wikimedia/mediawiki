@@ -47,12 +47,6 @@ use StatusValue;
  */
 class ExistingSectionEditConstraint implements IEditConstraint {
 
-	private string $section;
-	private string $userSummary;
-	private string $autoSummary;
-	private bool $allowBlankSummary;
-	private Content $newContent;
-	private ?Content $originalContent;
 	private string $result;
 
 	/**
@@ -64,19 +58,13 @@ class ExistingSectionEditConstraint implements IEditConstraint {
 	 * @param ?Content $originalContent
 	 */
 	public function __construct(
-		string $section,
-		string $userSummary,
-		string $autoSummary,
-		bool $allowBlankSummary,
-		Content $newContent,
-		?Content $originalContent
+		private readonly string $section,
+		private readonly string $userSummary,
+		private readonly string $autoSummary,
+		private readonly bool $allowBlankSummary,
+		private readonly Content $newContent,
+		private readonly ?Content $originalContent,
 	) {
-		$this->section = $section;
-		$this->userSummary = $userSummary;
-		$this->autoSummary = $autoSummary;
-		$this->allowBlankSummary = $allowBlankSummary;
-		$this->newContent = $newContent;
-		$this->originalContent = $originalContent;
 	}
 
 	public function checkConstraint(): string {

@@ -39,23 +39,16 @@ class ContentModelChangeConstraint implements IEditConstraint {
 
 	private PermissionStatus $status;
 
-	private Authority $performer;
-	private Title $title;
-	private string $newContentModel;
-
 	/**
 	 * @param Authority $performer
 	 * @param Title $title
 	 * @param string $newContentModel
 	 */
 	public function __construct(
-		Authority $performer,
-		Title $title,
-		string $newContentModel
+		private readonly Authority $performer,
+		private readonly Title $title,
+		private readonly string $newContentModel,
 	) {
-		$this->performer = $performer;
-		$this->title = $title;
-		$this->newContentModel = $newContentModel;
 	}
 
 	public function checkConstraint(): string {

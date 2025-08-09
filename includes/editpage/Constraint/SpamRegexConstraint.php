@@ -34,13 +34,6 @@ use StatusValue;
  */
 class SpamRegexConstraint implements IEditConstraint {
 
-	private LoggerInterface $logger;
-	private SpamChecker $spamChecker;
-	private string $summary;
-	private ?string $sectionHeading;
-	private string $text;
-	private string $reqIP;
-	private Title $title;
 	private string $match = '';
 
 	/**
@@ -53,21 +46,14 @@ class SpamRegexConstraint implements IEditConstraint {
 	 * @param Title $title for logging hits
 	 */
 	public function __construct(
-		LoggerInterface $logger,
-		SpamChecker $spamChecker,
-		string $summary,
-		?string $sectionHeading,
-		string $text,
-		string $reqIP,
-		Title $title
+		private readonly LoggerInterface $logger,
+		private readonly SpamChecker $spamChecker,
+		private readonly string $summary,
+		private readonly ?string $sectionHeading,
+		private readonly string $text,
+		private readonly string $reqIP,
+		private readonly Title $title,
 	) {
-		$this->logger = $logger;
-		$this->spamChecker = $spamChecker;
-		$this->summary = $summary;
-		$this->sectionHeading = $sectionHeading;
-		$this->text = $text;
-		$this->reqIP = $reqIP;
-		$this->title = $title;
 	}
 
 	public function checkConstraint(): string {

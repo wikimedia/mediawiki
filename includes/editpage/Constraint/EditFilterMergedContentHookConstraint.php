@@ -40,13 +40,7 @@ use StatusValue;
  */
 class EditFilterMergedContentHookConstraint implements IEditConstraint {
 
-	private HookRunner $hookRunner;
-	private Content $content;
-	private IContextSource $hookContext;
-	private string $summary;
-	private bool $minorEdit;
-	private Language $language;
-	private User $hookUser;
+	private readonly HookRunner $hookRunner;
 	private Status $status;
 	private string $hookError = '';
 
@@ -61,20 +55,14 @@ class EditFilterMergedContentHookConstraint implements IEditConstraint {
 	 */
 	public function __construct(
 		HookContainer $hookContainer,
-		Content $content,
-		IContextSource $hookContext,
-		string $summary,
-		bool $minorEdit,
-		Language $language,
-		User $hookUser
+		private readonly Content $content,
+		private readonly IContextSource $hookContext,
+		private readonly string $summary,
+		private readonly bool $minorEdit,
+		private readonly Language $language,
+		private readonly User $hookUser,
 	) {
 		$this->hookRunner = new HookRunner( $hookContainer );
-		$this->content = $content;
-		$this->hookContext = $hookContext;
-		$this->summary = $summary;
-		$this->minorEdit = $minorEdit;
-		$this->language = $language;
-		$this->hookUser = $hookUser;
 		$this->status = Status::newGood();
 	}
 

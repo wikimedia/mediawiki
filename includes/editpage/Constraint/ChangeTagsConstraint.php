@@ -33,9 +33,6 @@ use StatusValue;
  */
 class ChangeTagsConstraint implements IEditConstraint {
 
-	private Authority $performer;
-	/** @var array */
-	private $tags;
 	/** @var StatusValue|string */
 	private $result;
 
@@ -44,11 +41,9 @@ class ChangeTagsConstraint implements IEditConstraint {
 	 * @param string[] $tags
 	 */
 	public function __construct(
-		Authority $performer,
-		array $tags
+		private readonly Authority $performer,
+		private readonly array $tags,
 	) {
-		$this->performer = $performer;
-		$this->tags = $tags;
 	}
 
 	public function checkConstraint(): string {

@@ -43,10 +43,8 @@ class PageSizeConstraint implements IEditConstraint {
 	public const BEFORE_MERGE = 'check-before-edit-merge';
 	public const AFTER_MERGE = 'check-after-edit-merge';
 
-	private int $contentSize;
-	private int $maxSize;
-	private int $errorCode;
-	private string $type;
+	private readonly int $maxSize;
+	private readonly int $errorCode;
 
 	/**
 	 * @param int $maxSize In kilobytes, from $wgMaxArticleSize
@@ -55,11 +53,10 @@ class PageSizeConstraint implements IEditConstraint {
 	 */
 	public function __construct(
 		int $maxSize,
-		int $contentSize,
-		string $type
+		private readonly int $contentSize,
+		private readonly string $type,
 	) {
 		$this->maxSize = $maxSize * 1024; // Convert from kilobytes
-		$this->contentSize = $contentSize;
 
 		if ( $type === self::BEFORE_MERGE ) {
 			$this->errorCode = self::AS_CONTENT_TOO_BIG;
@@ -68,8 +65,6 @@ class PageSizeConstraint implements IEditConstraint {
 		} else {
 			throw new InvalidArgumentException( "Invalid type: $type" );
 		}
-
-		$this->type = $type;
 	}
 
 	public function checkConstraint(): string {

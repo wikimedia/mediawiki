@@ -34,17 +34,12 @@ use StatusValue;
  */
 class LinkPurgeRateLimitConstraint implements IEditConstraint {
 
-	private RateLimitSubject $subject;
-	private RateLimiter $limiter;
-
 	private string $result;
 
 	public function __construct(
-		RateLimiter $limiter,
-		RateLimitSubject $subject
+		private readonly RateLimiter $limiter,
+		private readonly RateLimitSubject $subject,
 	) {
-		$this->limiter = $limiter;
-		$this->subject = $subject;
 	}
 
 	private function limit( string $action, int $inc = 1 ): bool {

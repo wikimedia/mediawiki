@@ -31,15 +31,10 @@ use StatusValue;
  */
 class AccidentalRecreationConstraint implements IEditConstraint {
 
-	private bool $deletedSinceLastEdit;
-	private bool $allowRecreation;
-
 	public function __construct(
-		bool $deletedSinceLastEdit,
-		bool $allowRecreation
+		private readonly bool $deletedSinceLastEdit,
+		private readonly bool $allowRecreation,
 	) {
-		$this->deletedSinceLastEdit = $deletedSinceLastEdit;
-		$this->allowRecreation = $allowRecreation;
 	}
 
 	public function checkConstraint(): string {

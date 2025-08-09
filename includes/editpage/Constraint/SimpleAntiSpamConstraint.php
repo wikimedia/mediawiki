@@ -33,27 +33,18 @@ use StatusValue;
  */
 class SimpleAntiSpamConstraint implements IEditConstraint {
 
-	private LoggerInterface $logger;
-	private string $input;
-	private UserIdentity $user;
-	private Title $title;
-
 	/**
 	 * @param LoggerInterface $logger for logging hits
-	 * @param string $inputText
+	 * @param string $input
 	 * @param UserIdentity $user for logging hits
 	 * @param Title $title for logging hits
 	 */
 	public function __construct(
-		LoggerInterface $logger,
-		string $inputText,
-		UserIdentity $user,
-		Title $title
+		private readonly LoggerInterface $logger,
+		private readonly string $input,
+		private readonly UserIdentity $user,
+		private readonly Title $title,
 	) {
-		$this->logger = $logger;
-		$this->input = $inputText;
-		$this->user = $user;
-		$this->title = $title;
 	}
 
 	public function checkConstraint(): string {

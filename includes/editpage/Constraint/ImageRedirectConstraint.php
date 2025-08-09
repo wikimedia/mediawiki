@@ -35,9 +35,6 @@ use StatusValue;
  */
 class ImageRedirectConstraint implements IEditConstraint {
 
-	private Content $newContent;
-	private LinkTarget $title;
-	private Authority $performer;
 	private string $result;
 
 	/**
@@ -46,13 +43,10 @@ class ImageRedirectConstraint implements IEditConstraint {
 	 * @param Authority $performer
 	 */
 	public function __construct(
-		Content $newContent,
-		LinkTarget $title,
-		Authority $performer
+		private readonly Content $newContent,
+		private readonly LinkTarget $title,
+		private readonly Authority $performer,
 	) {
-		$this->newContent = $newContent;
-		$this->title = $title;
-		$this->performer = $performer;
 	}
 
 	public function checkConstraint(): string {

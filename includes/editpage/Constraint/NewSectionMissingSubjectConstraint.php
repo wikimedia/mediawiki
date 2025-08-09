@@ -31,9 +31,6 @@ use StatusValue;
  */
 class NewSectionMissingSubjectConstraint implements IEditConstraint {
 
-	private string $section;
-	private string $subject;
-	private bool $allowBlankSubject;
 	private string $result;
 
 	/**
@@ -42,13 +39,10 @@ class NewSectionMissingSubjectConstraint implements IEditConstraint {
 	 * @param bool $allowBlankSubject
 	 */
 	public function __construct(
-		string $section,
-		string $subject,
-		bool $allowBlankSubject
+		private readonly string $section,
+		private readonly string $subject,
+		private readonly bool $allowBlankSubject,
 	) {
-		$this->section = $section;
-		$this->subject = $subject;
-		$this->allowBlankSubject = $allowBlankSubject;
 	}
 
 	public function checkConstraint(): string {
