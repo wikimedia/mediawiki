@@ -488,8 +488,10 @@ class ForeignAPIRepo extends FileRepo implements IForeignRepoWithMWApi {
 	 * @return string
 	 */
 	public static function getUserAgent() {
-		return MediaWikiServices::getInstance()->getHttpRequestFactory()->getUserAgent() .
-			" ForeignAPIRepo/" . self::VERSION;
+		$mediaWikiVersion = MediaWikiServices::getInstance()->getHttpRequestFactory()->getUserAgent();
+		$classVersion = self::VERSION;
+		$contactUrl = MediaWikiServices::getInstance()->getUrlUtils()->getCanonicalServer();
+		return "$mediaWikiVersion ($contactUrl) ForeignAPIRepo/$classVersion";
 	}
 
 	/**
@@ -535,9 +537,11 @@ class ForeignAPIRepo extends FileRepo implements IForeignRepoWithMWApi {
 	public static function httpGet(
 		$url, $timeout = 'default', $options = [], &$mtime = false
 	) {
+		$urlUtils = MediaWikiServices::getInstance()->getUrlUtils();
+		$requestFactory = MediaWikiServices::getInstance()->getHttpRequestFactory();
+
 		$options['timeout'] = $timeout;
-		$url = MediaWikiServices::getInstance()->getUrlUtils()
-			->expand( $url, PROTO_HTTP );
+		$url = $urlUtils->expand( $url, PROTO_HTTP );
 		wfDebug( "ForeignAPIRepo: HTTP GET: $url" );
 		if ( !$url ) {
 			return false;
@@ -550,8 +554,8 @@ class ForeignAPIRepo extends FileRepo implements IForeignRepoWithMWApi {
 
 		$options['userAgent'] = self::getUserAgent();
 
-		$req = MediaWikiServices::getInstance()->getHttpRequestFactory()
-			->create( $url, $options, __METHOD__ );
+		$req = $requestFactory->create( $url, $options, __METHOD__ );
+		$req->setHeader( 'Referer', $urlUtils->getCanonicalServer() );
 		$status = $req->execute();
 
 		if ( $status->isOK() ) {
