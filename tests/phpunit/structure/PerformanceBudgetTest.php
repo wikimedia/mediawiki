@@ -150,11 +150,9 @@ class PerformanceBudgetTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @param string $skinName
 	 * @param array $moduleNames
-	 * @param bool $isScripts
 	 */
-	private function testForUnexpectedModules( $skinName, $moduleNames, $isScripts = false ) {
+	private function testForUnexpectedModules( $moduleNames ) {
 		$budgetConfig = $this->getBudgetConfig();
 		$undefinedModules = [];
 		foreach ( $moduleNames as $moduleName ) {
@@ -187,8 +185,8 @@ class PerformanceBudgetTest extends MediaWikiIntegrationTestCase {
 		$skin = $this->prepareSkin( $skinName );
 		$moduleStyles = $skin->getOutput()->getModuleStyles();
 		$moduleScripts = $skin->getOutput()->getModules();
-		$this->testForUnexpectedModules( $skinName, $moduleStyles );
-		$this->testForUnexpectedModules( $skinName, $moduleScripts, true );
+		$this->testForUnexpectedModules( $moduleStyles );
+		$this->testForUnexpectedModules( $moduleScripts );
 		$this->testModuleSizes( $skinName, $moduleStyles );
 		$this->testModuleSizes( $skinName, $moduleScripts, true );
 		$this->markTestSkipped( 'Tests are non-blocking for now.' );
