@@ -27,6 +27,10 @@ For notes on 1.44.x and older releases, see HISTORY.
 
 ==== New configuration ====
 
+* (T389281) $wgUseLeximorph - Defaults to false. When enabled, core parser
+  functions for grammar, plural, gender, formality, and bidi use the
+  Leximorph library’s modular handlers instead of the legacy Language methods.
+  When disabled, the legacy methods are used.
 * …
 
 ==== Changed configuration ====

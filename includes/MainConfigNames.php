@@ -4510,4 +4510,10 @@ class MainConfigNames {
 	 */
 	public const FeatureShutdown = 'FeatureShutdown';
 
+	/**
+	 * Name constant for the UseLeximorph setting, for use with Config::get()
+	 * @see MainConfigSchema::UseLeximorph
+	 */
+	public const UseLeximorph = 'UseLeximorph';
+
 }

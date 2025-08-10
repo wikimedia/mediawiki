@@ -4494,3 +4494,9 @@ $wgOutputPipelineStages = null;
  * @see MediaWiki\MainConfigSchema::FeatureShutdown
  */
 $wgFeatureShutdown = null;
+
+/**
+ * Config variable stub for the UseLeximorph setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::UseLeximorph
+ */
+$wgUseLeximorph = null;

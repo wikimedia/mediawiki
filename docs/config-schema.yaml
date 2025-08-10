@@ -8241,3 +8241,10 @@ config-schema:
             ];
             @encdode
             @since 1.44
+    UseLeximorph:
+        default: false
+        type: boolean
+        description: |-
+            Whether parser functions should use Leximorph handlers instead of Language methods.
+            @unstable Temporary feature flag, T389281
+            @since 1.45

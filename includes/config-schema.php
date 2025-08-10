@@ -2675,6 +2675,7 @@ return [
 			],
 			'FeatureShutdown' => [
 			],
+			'UseLeximorph' => false,
 		],
 		'type' => [
 			'ConfigRegistry' => 'object',
@@ -3181,6 +3182,7 @@ return [
 			'EnableProtectionIndicators' => 'boolean',
 			'OutputPipelineStages' => 'object',
 			'FeatureShutdown' => 'array',
+			'UseLeximorph' => 'boolean',
 		],
 		'mergeStrategy' => [
 			'TiffThumbnailType' => 'replace',

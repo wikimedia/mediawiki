@@ -13241,4 +13241,14 @@ class MainConfigSchema {
 	];
 	// endregion -- End Miscellaneous
 
+	/**
+	 * Whether parser functions should use Leximorph handlers instead of Language methods.
+	 *
+	 * @unstable Temporary feature flag, T389281
+	 * @since 1.45
+	 */
+	public const UseLeximorph = [
+		'default' => false,
+		'type' => 'boolean',
+	];
 }
