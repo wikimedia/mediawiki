@@ -558,7 +558,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	}
 
 	/**
-	 * @param AuthenticationRequest[] $requests A list of AuthorizationRequest objects,
+	 * @param AuthenticationRequest[] $requests A list of AuthenticationRequest objects,
 	 *   used to generate the form fields. An empty array means a fatal error
 	 *   (authentication cannot continue).
 	 * @param string|Message $msg
