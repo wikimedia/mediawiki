@@ -877,7 +877,7 @@ abstract class DatabaseMysqlBase extends Database {
 		$res = $this->query( "SELECT @@GLOBAL.read_only AS Value", __METHOD__, $flags );
 		$row = $res->fetchObject();
 
-		return $row ? (bool)$row->Value : false;
+		return $row && $row->Value && $row->Value !== 'OFF';
 	}
 
 	/**
