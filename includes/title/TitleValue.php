@@ -82,7 +82,7 @@ class TitleValue implements Stringable, LinkTarget {
 	 *   No validation or normalization is applied.
 	 * @param string $interwiki The interwiki component.
 	 *   No validation or normalization is applied.
-	 * @return TitleValue|null
+	 * @return static|null
 	 */
 	public static function tryNew( $namespace, $title, $fragment = '', $interwiki = '' ) {
 		if ( !is_int( $namespace ) ) {

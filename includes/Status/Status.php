@@ -69,7 +69,7 @@ class Status extends StatusValue {
 	 * @endcode
 	 *
 	 * @param StatusValue|Status $sv
-	 * @return Status
+	 * @return static
 	 */
 	public static function wrap( $sv ) {
 		if ( $sv instanceof static ) {

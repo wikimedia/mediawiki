@@ -28,7 +28,7 @@ class MergeStrategy {
 
 	/**
 	 * @param string $name
-	 * @return static
+	 * @return self
 	 */
 	public static function newFromName( string $name ): self {
 		if ( !array_key_exists( $name, self::$strategies ) ) {
