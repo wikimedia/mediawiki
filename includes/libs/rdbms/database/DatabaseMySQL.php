@@ -391,7 +391,7 @@ class DatabaseMySQL extends Database {
 		$res = $this->query( $query, __METHOD__ );
 		$row = $res->fetchObject();
 
-		return $row && (bool)$row->Value;
+		return $row && $row->Value && $row->Value !== 'OFF';
 	}
 
 	/**
