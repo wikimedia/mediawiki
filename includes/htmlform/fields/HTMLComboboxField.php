@@ -2,6 +2,7 @@
 
 namespace MediaWiki\HTMLForm\Field;
 
+use MediaWiki\Html\Html;
 use MediaWiki\Xml\XmlSelect;
 
 /**
@@ -34,11 +35,14 @@ class HTMLComboboxField extends HTMLTextField {
 
 	/** @inheritDoc */
 	public function getInputHTML( $value ) {
-		$datalist = new XmlSelect( false, $this->mName . '-datalist' );
-		$datalist->setTagName( 'datalist' );
-		$datalist->addOptions( $this->getOptions() );
+		$datalist = '';
+		foreach ( $this->getOptions() as $value ) {
+			// Recursively create nested <optgroup> or individual <option> elements
+			$datalist .= XmlSelect::formatOptions( $value );
+		}
 
-		return parent::getInputHTML( $value ) . $datalist->getHTML();
+		return parent::getInputHTML( $value ) .
+			Html::rawElement( 'datalist', [ 'id' => $this->mName . '-datalist' ], $datalist );
 	}
 
 	/** @inheritDoc */
