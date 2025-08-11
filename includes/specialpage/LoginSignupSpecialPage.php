@@ -1121,7 +1121,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			} elseif ( $this->mEntryErrorType === 'warning' ) {
 				$defaultHtml = Html::warningBox( $this->mEntryError );
 			} elseif ( $this->mEntryErrorType === 'notice' ) {
-				$defaultHtml = Html::noticeBox( $this->mEntryError, '' );
+				$defaultHtml = Html::noticeBox( $this->mEntryError );
 			}
 			$fieldDefinitions['entryError'] = [
 				'type' => 'info',

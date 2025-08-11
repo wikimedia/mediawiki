@@ -109,7 +109,7 @@ class SpecialRestSandbox extends SpecialPage {
 		}
 
 		if ( $out->getLanguage()->getCode() !== 'en' ) {
-			$out->addHTML( Html::noticeBox( $out->msg( 'restsandbox-disclaimer' )->parse(), '' ) );
+			$out->addHTML( Html::noticeBox( $out->msg( 'restsandbox-disclaimer' )->parse() ) );
 		}
 
 		$this->showForm( $apiSpecs );

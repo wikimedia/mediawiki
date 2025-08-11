@@ -768,7 +768,7 @@ class Html {
 	 * @param string|array $iconClassName (optional) corresponding to notice icon
 	 * @return string of HTML representing the notice
 	 */
-	public static function noticeBox( $html, $className, $heading = '', $iconClassName = '' ) {
+	public static function noticeBox( $html, $className = '', $heading = '', $iconClassName = '' ) {
 		return self::messageBox( $html, [
 			'cdx-message--notice',
 			$className
