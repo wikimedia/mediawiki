@@ -103,9 +103,6 @@ class SessionManager implements SessionManagerInterface {
 	/** @var SessionBackend[] */
 	private $allSessionBackends = [];
 
-	/** @var SessionId[] */
-	private $allSessionIds = [];
-
 	/** @var true[] */
 	private $preventUsers = [];
 
@@ -845,11 +842,8 @@ class SessionManager implements SessionManagerInterface {
 		$id = $info->getId();
 
 		if ( !isset( $this->allSessionBackends[$id] ) ) {
-			if ( !isset( $this->allSessionIds[$id] ) ) {
-				$this->allSessionIds[$id] = new SessionId( $id );
-			}
 			$backend = new SessionBackend(
-				$this->allSessionIds[$id],
+				new SessionId( $id ),
 				$info,
 				$this->store,
 				$this->logger,
@@ -888,19 +882,17 @@ class SessionManager implements SessionManagerInterface {
 	public function changeBackendId( SessionBackend $backend ) {
 		$sessionId = $backend->getSessionId();
 		$oldId = (string)$sessionId;
-		if ( !isset( $this->allSessionBackends[$oldId] ) || !isset( $this->allSessionIds[$oldId] ) ||
-			$this->allSessionBackends[$oldId] !== $backend ||
-			$this->allSessionIds[$oldId] !== $sessionId
+		if ( !isset( $this->allSessionBackends[$oldId] ) ||
+			$this->allSessionBackends[$oldId] !== $backend
 		) {
 			throw new InvalidArgumentException( 'Backend was not registered with this SessionManager' );
 		}
 
 		$newId = $this->generateSessionId();
 
-		unset( $this->allSessionBackends[$oldId], $this->allSessionIds[$oldId] );
+		unset( $this->allSessionBackends[$oldId] );
 		$sessionId->setId( $newId );
 		$this->allSessionBackends[$newId] = $backend;
-		$this->allSessionIds[$newId] = $sessionId;
 	}
 
 	/**

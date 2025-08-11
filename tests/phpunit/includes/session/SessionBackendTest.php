@@ -109,7 +109,6 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 
 		$manager = TestingAccessWrapper::newFromObject( $this->manager );
 		$manager->allSessionBackends = [ $backend->getId() => $backend ] + $manager->allSessionBackends;
-		$manager->allSessionIds = [ $backend->getId() => $id ] + $manager->allSessionIds;
 		$manager->sessionProviders = [ (string)$this->provider => $this->provider ];
 
 		return $backend;
@@ -256,7 +255,6 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 
 		$session2 = null;
 		$this->assertSame( [], $priv->requests );
-		$this->assertArrayHasKey( $backend->getId(), $manager->allSessionIds );
 	}
 
 	public function testSetProviderMetadata() {
