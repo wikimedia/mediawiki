@@ -1572,7 +1572,7 @@ class MainConfigSchema {
 	 * in the images directory which will add a CSP header in some web server
 	 * configurations
 	 *
-	 * @since 1.42
+	 * @since 1.45
 	 */
 	public const CSPUploadEntryPoint = [
 		'default' => true,

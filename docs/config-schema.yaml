@@ -869,7 +869,7 @@ config-schema:
             Note: This does not control general uploads. There is a .htaccess
             in the images directory which will add a CSP header in some web server
             configurations
-            @since 1.42
+            @since 1.45
     FileExtensions:
         default:
             - png
