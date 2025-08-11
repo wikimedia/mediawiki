@@ -29,12 +29,12 @@ use MediaWiki\Html\Html;
  */
 class XmlSelect {
 	/** @var array<array<string,string|int|float|array>> */
-	protected array $options = [];
+	private array $options = [];
 	/** @var string|int|float|array|false */
-	protected $default = false;
-	protected string $tagName = 'select';
+	private $default;
+	private string $tagName = 'select';
 	/** @var (string|int)[] */
-	protected array $attributes = [];
+	private array $attributes = [];
 
 	/**
 	 * @param string|false $name
@@ -50,9 +50,7 @@ class XmlSelect {
 			$this->setAttribute( 'id', $id );
 		}
 
-		if ( $default !== false ) {
-			$this->default = $default;
-		}
+		$this->default = $default;
 	}
 
 	/**
@@ -113,7 +111,7 @@ class XmlSelect {
 	 *
 	 * @param array<string,string|int|float|array> $options
 	 * @param string|int|float|array|false $default
-	 * @return string
+	 * @return string HTML
 	 */
 	public static function formatOptions( array $options, $default = false ): string {
 		$data = '';
