@@ -243,9 +243,6 @@ class EditPage implements IEditObject {
 	private $incompleteForm = false;
 
 	/** @var bool */
-	private $missingComment = false;
-
-	/** @var bool */
 	private $missingSummary = false;
 
 	/** @var bool */
@@ -1900,7 +1897,6 @@ class EditPage implements IEditObject {
 			case self::AS_ARTICLE_WAS_DELETED:
 			case self::AS_CONFLICT_DETECTED:
 			case self::AS_SUMMARY_NEEDED:
-			case self::AS_TEXTBOX_EMPTY:
 			case self::AS_END:
 			case self::AS_REVISION_WAS_DELETED:
 				return true;
@@ -1919,6 +1915,7 @@ class EditPage implements IEditObject {
 			case self::AS_MAX_ARTICLE_SIZE_EXCEEDED:
 			case self::AS_PARSE_ERROR:
 			case self::AS_SELF_REDIRECT:
+			case self::AS_TEXTBOX_EMPTY:
 			case self::AS_UNABLE_TO_ACQUIRE_TEMP_ACCOUNT:
 			case self::AS_UNICODE_NOT_SUPPORTED:
 				foreach ( $status->getMessages() as $msg ) {
@@ -2649,8 +2646,6 @@ class EditPage implements IEditObject {
 			$failed instanceof NewSectionMissingSubjectConstraint
 		) {
 			$this->missingSummary = true;
-		} elseif ( $failed instanceof MissingCommentConstraint ) {
-			$this->missingComment = true;
 		} elseif ( $failed instanceof RedirectConstraint ) {
 			$this->problematicRedirectTarget = $failed->problematicTarget;
 		}
@@ -3372,10 +3367,6 @@ class EditPage implements IEditObject {
 			}
 
 			$buttonLabel = $this->context->msg( $this->getSubmitButtonLabel() )->text();
-
-			if ( $this->missingComment ) {
-				$out->wrapWikiMsg( "<div id='mw-missingcommenttext'>\n$1\n</div>", 'missingcommenttext' );
-			}
 
 			if ( $this->missingSummary && $this->section !== 'new' ) {
 				$out->wrapWikiMsg(
