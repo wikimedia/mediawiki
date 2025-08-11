@@ -112,7 +112,7 @@
 	"notloggedin": "Maengx laezhaej",
 	"createaccount": "Laeb bouxdeiz",
 	"createacct-another-submit": "Laeb bouxdeiz",
-	"createacct-benefit-body2": "{{PLURAL:$1|yieb}}",
+	"createacct-benefit-text2": "$2 {{PLURAL:$1|yieb}}",
 	"loginlanguagelabel": "Vah: $1",
 	"pt-login": "Daengh haeuj",
 	"pt-login-button": "Dwnghluz",

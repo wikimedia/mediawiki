@@ -128,7 +128,7 @@
 	"userlogout": "Paway",
 	"createaccount": "Mangawa na account",
 	"createacct-reason": "Katonongan",
-	"createacct-benefit-body2": "{{PLURAL:$1|bolong|bolobolong}}",
+	"createacct-benefit-text2": "$2 {{PLURAL:$1|bolong|bolobolong}}",
 	"badretype": "Aga parehas so en-type mo ran password.",
 	"acct_creation_throttle_hit": "Masayem, nangawa ka la na $1 account. Agka la makapangawa na account.",
 	"accountcreated": "Agawa so account",

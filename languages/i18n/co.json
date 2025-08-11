@@ -177,7 +177,7 @@
 	"createacct-reason": "Mutivu (registratu publicamente)",
 	"createacct-submit": "Registramentu",
 	"createacct-benefit-heading": "Sò ghjente cum'è tè chi fàcenu {{SITENAME}}.",
-	"createacct-benefit-body2": "$1 {{PLURAL:$1|pàgina|pàgine}}",
+	"createacct-benefit-text2": "$1 $2 {{PLURAL:$1|pàgina|pàgine}}",
 	"loginsuccesstitle": "Cunnessione fatta",
 	"acct_creation_throttle_hit": "I visitadori di stu wiki chì utilizanu u vostru indirizzu IP anu digià fattu {{PLURAL:$1|1 registramentu|$1 registramenti}} in l'ultimi $2, chì hè u massimu permessu in stu periodu di tempu.\n\nDunque, i visitanti chì utilizanu stu indirizzu IP ùn ne ponu micca fà d'altri pè u mumentu.",
 	"accountcreated": "Registramentu fattu",

@@ -127,7 +127,7 @@
 	"hours-abbrev": "$1 j",
 	"minutes-abbrev": "$1 mnt",
 	"seconds-abbrev": "$1 d",
-	"ago": "$1 sané ungkur",
+	"ago": "$1 sané lintang",
 	"duration-millennia": "{{PLURAL:$1|amilénium|$1 milénium}}",
 	"duration-centuries": "{{PLURAL:$1|aabad|$1 abad}}",
 	"duration-decades": "{{PLURAL:$1|adasawarsa|$1 dasawarsa}}",

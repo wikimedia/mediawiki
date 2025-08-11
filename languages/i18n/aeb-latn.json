@@ -156,7 +156,7 @@
 	"createacct-emailoptional": "Imēylik (Ixtiyērī)",
 	"createacct-email-ph": "Dexxil imēylik:",
 	"createacct-submit": "Aģmil il-koñt mtēģik",
-	"createacct-benefit-body1": "{{PLURAL:$1|tabdīle|tabdīlēt}}",
+	"createacct-benefit-text1": "$2 {{PLURAL:$1|tabdīle|tabdīlēt}}",
 	"loginlanguagelabel": "Il-lūğa: $1",
 	"pt-login": "Udxul",
 	"pt-login-button": "Udxul",

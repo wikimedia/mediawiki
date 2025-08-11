@@ -7,6 +7,8 @@
 			"Ата"
 		]
 	},
+	"cdx-breadcrumb-navigation-label": "Навігаційна стежка",
+	"cdx-breadcrumb-overflow-label": "Більше опцій навігації",
 	"cdx-chip-input-chip-added": "Додано чіп $1.",
 	"cdx-chip-input-chip-removed": "Вилучено чіп $1.",
 	"cdx-input-chip-aria-description": "Натисніть Enter для редагування або Delete для вилучення.",

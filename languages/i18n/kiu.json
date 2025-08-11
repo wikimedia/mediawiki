@@ -215,7 +215,7 @@
 	"notloggedin": "Cı nêkota",
 	"createaccount": "Hesab vıraze",
 	"createaccountmail": "e-poste sera",
-	"createacct-benefit-body2": "{{PLURAL:$1|pele|peli}}",
+	"createacct-benefit-text2": "$2 {{PLURAL:$1|pele|peli}}",
 	"badretype": "Parola sıma nêvêrena.",
 	"userexists": "No namê karberi guretiyo.\nKerem ke, namêna weçine.",
 	"loginerror": "Xeta cıkotene",

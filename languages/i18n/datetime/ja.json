@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Ant176",
+			"Dragoniez",
 			"Foomin10",
 			"Fryed-peach",
 			"Otokoume",
@@ -117,7 +118,7 @@
 	"years": "{{PLURAL:$1|$1 年}}",
 	"months": "{{PLURAL:$1|$1 か月}}",
 	"weeks": "{{PLURAL:$1|$1 週間}}",
-	"days": "{{PLURAL:$1|$1 日}}",
+	"days": "{{PLURAL:$1|$1日}}",
 	"hours": "{{PLURAL:$1|$1 時間}}",
 	"minutes": "{{PLURAL:$1|$1 分}}",
 	"seconds": "{{PLURAL:$1|$1 秒}}",

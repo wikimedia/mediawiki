@@ -252,7 +252,7 @@
 	"createacct-another-submit": "開新口座",
 	"createacct-continue-submit": "繼續開新口座",
 	"createacct-another-continue-submit": "繼續開新口座",
-	"createacct-benefit-body2": "{{PLURAL:$1|頁}}",
+	"createacct-benefit-text2": "$2 {{PLURAL:$1|頁}}",
 	"loginerror": "登入錯誤",
 	"createacct-error": "開新口座錯誤",
 	"createaccounterror": "無法度開口座：$1",

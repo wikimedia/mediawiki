@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"13244Pagines",
 			"Fanjiayi",
 			"Fitoschido",
 			"Jmb",
@@ -49,6 +50,7 @@
 	"morenotlisted": "Ti liste posse esser íncomplet.",
 	"mypage": "Págine",
 	"mytalk": "Discussion",
+	"mytalk-appeal": "Apellar ti ''IP'' bann.",
 	"anontalk": "Discussion",
 	"navigation": "Navigation",
 	"and": "&#32;e",
@@ -94,7 +96,7 @@
 	"skin-action-unprotect": "Changear protection",
 	"unprotect": "Changear protection",
 	"newpage": "Nov págine",
-	"view-missing-pages": "Vider mancant págines",
+	"view-missing-pages": "Vider un págine nu.",
 	"talkpagelinktext": "discussion",
 	"specialpage": "Págine special",
 	"personaltools": "Mi utensiles",
@@ -318,9 +320,8 @@
 	"createacct-continue-submit": "Continuar creation de conto",
 	"createacct-another-continue-submit": "Continuar creation de conto",
 	"createacct-benefit-heading": "{{SITENAME}} es fat per persones quam vu.",
-	"createacct-benefit-body1": "{{PLURAL:$1|redaction|redactiones}}",
-	"createacct-benefit-body2": "{{PLURAL:$1|págine|págines}}",
-	"createacct-benefit-body3": "recent {{PLURAL:$1|contributor|contributores}}",
+	"createacct-benefit-text1": "$2 {{PLURAL:$1|redaction|redactiones}}",
+	"createacct-benefit-text2": "$2 {{PLURAL:$1|págine|págines}}",
 	"badretype": "Li passa-paroles queles vu tippat ne es identic.",
 	"userexists": "Nómine de usator ja in usu.\nPleser opta por un nómine diferent.",
 	"loginerror": "Errore in apertura de session",

@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"JeffreyKim"
+			"JeffreyKim",
+			"Ktchankt"
 		]
 	},
 	"cdx-breadcrumb-navigation-label": "麵包糠",
@@ -29,6 +30,6 @@
 	"cdx-table-pagination-status-message-indeterminate-long": "顯示緊好多結果入面嘅 $1 – $2",
 	"cdx-table-pagination-status-message-indeterminate-short": "好多入面嘅 $1 – $2",
 	"cdx-table-pagination-status-message-indeterminate-final": "顯示緊最後一個{{PLURAL:$1|$1 result|$1 結果}}",
-	"cdx-table-pagination-status-message-pending": "撈緊個結果 ...",
+	"cdx-table-pagination-status-message-pending": "載入緊結果...",
 	"cdx-table-no-data-message": "冇任何數據可用。"
 }

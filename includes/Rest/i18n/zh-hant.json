@@ -4,6 +4,7 @@
 			"August.C",
 			"Kly",
 			"Peterxy12",
+			"Taiwania Justo",
 			"Xiplus",
 			"列维劳德",
 			"捍粵者"
@@ -104,5 +105,8 @@
 	"rest-param-desc-html-input-title": "HTML輸入轉換標題",
 	"rest-param-desc-html-input-oldid": "HTML輸入轉換oldid",
 	"rest-param-desc-html-input-from": "HTML輸入轉換自",
-	"rest-param-desc-html-input-format": "HTML輸入轉換格式"
+	"rest-param-desc-html-input-format": "HTML輸入轉換格式",
+	"rest-property-desc-page-language-code": "語言代碼",
+	"rest-property-desc-page-language-name": "翻譯語言名稱",
+	"rest-property-desc-page-language-key": "以 URL 友善格式翻譯頁面標題"
 }

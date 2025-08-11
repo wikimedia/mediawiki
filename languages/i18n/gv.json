@@ -177,7 +177,7 @@
 	"notloggedin": "Cha nel ou loggit stiagh",
 	"createaccount": "Croo coontys",
 	"createaccountmail": "Croo fockle arrey shallidagh gyn tort as cur eh da'n post-l reiht ayd",
-	"createacct-benefit-body2": "{{PLURAL:$1|duillag|duillagyn}}",
+	"createacct-benefit-text2": "$2 {{PLURAL:$1|duillag|duillagyn}}",
 	"loginerror": "Marranys loggal stiagh",
 	"createaccounterror": "Cha nod shin croo coontys: $1",
 	"noname": "Cha honree uss ennym ymmydeyr fondagh.",

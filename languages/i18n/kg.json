@@ -7,7 +7,9 @@
 			"Cgmbo",
 			"DannyS712",
 			"Irus",
+			"McDutchie",
 			"Mouse21",
+			"Nzinga11",
 			"Rkupsala",
 			"לערי ריינהארט"
 		]
@@ -163,9 +165,9 @@
 	"createacct-reason-ph": "Samu na yinki nge ke na sala konti ya nkaka",
 	"createacct-submit": "Sala konti ya nge",
 	"createacct-benefit-heading": "{{SITENAME}} me salama na bantu na mutîndu ya nge.",
-	"createacct-benefit-body1": "{{PLURAL:$1|nsoba|bansoba}}",
-	"createacct-benefit-body2": "{{PLURAL:$1|mukânda|mikânda}}",
-	"createacct-benefit-body3": "{{PLURAL:$1|kisoniki|bisoniki}} ya malu-malu",
+	"createacct-benefit-text1": "$2 {{PLURAL:$1|nsoba|bansoba}}",
+	"createacct-benefit-text2": "$2 {{PLURAL:$1|mukânda|mikânda}}",
+	"createacct-benefit-text3": "$2 recent {{PLURAL:$1|contributor|contributors}}",
 	"badretype": "Bampôva ya nkota kele mutîndu mosi ve.",
 	"userexists": "Muntu ya nkaka kele na nkûmbu ya kisadi yangó.\nPesa nkûmbu ya nkaka.",
 	"loginerror": "Fôti na kukota",
