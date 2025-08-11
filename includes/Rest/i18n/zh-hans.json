@@ -8,7 +8,19 @@
 			"SomeyaMako",
 			"Tr jason",
 			"VulpesVulpes825",
-			"铁桶"
+			"铁桶",
+			"Administrator66",
+			"Anterdc99",
+			"GuoPC",
+			"Huajing",
+			"Kcx36",
+			"Lakejason0",
+			"Lily9814",
+			"LittlePaw365",
+			"Mishidexfc",
+			"Peterxy12",
+			"WaitSpring",
+			"沈澄心"
 		]
 	},
 	"rest-prefix-mismatch": "请求的路径($1)不在REST API根路径($2)中",
@@ -40,14 +52,14 @@
 	"rest-no-revision": "无法检索标题$1的修订",
 	"rest-media-too-many-links": "标题$1有过多媒体链接（允许$2个）",
 	"rest-html-backend-error": "无法抓取 Parsoid HTML",
-	"rest-bad-json-body": "无效请求正文，其必须是 JSON 对象。",
-	"rest-json-body-parse-error": "将请求正文解析成 JSON 时失败：$1",
+	"rest-bad-json-body": "无效请求正文，其必须是JSON对象。",
+	"rest-json-body-parse-error": "将请求正文解析成JSON时失败：$1",
 	"rest-missing-body-field": "请求正文缺失必填变量“$1”。",
 	"rest-bad-content-model": "无效内容模块：$1",
-	"rest-update-cannot-create-page": "页面“$1”已存在，无法创建。要更新现有页面，请在请求正文的“latest”键中的结构中提供基础修订 ID。",
-	"rest-extraneous-csrf-token": "发现外来的 CSRF 令牌。当使用如 OAuth 之类的抵抗 CSRF 攻击的验证机制时不能使用 CSRF 令牌。",
+	"rest-update-cannot-create-page": "页面“$1”已存在，无法创建。要更新现有页面，请在请求正文的“latest”键中的结构中提供基础修订ID。",
+	"rest-extraneous-csrf-token": "发现外来的CSRF令牌。当使用如OAuth之类的抵抗CSRF攻击的验证机制时不能使用CSRF令牌。",
 	"rest-cannot-load-file": "无法加载标题为“$1”的文件。",
 	"rest-cross-origin-anon-write": "不允许匿名跨域写请求",
 	"rest-requires-safe-against-csrf": "此端点需要CSRF安全的会话提供者。",
-	"rest-badtoken": "提供的 CSRF 令牌无效。"
+	"rest-badtoken": "提供的CSRF令牌无效。"
 }

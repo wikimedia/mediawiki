@@ -315,6 +315,7 @@
 	"missingarticle-rev": "(تۈزىتىش#: $1)",
 	"missingarticle-diff": "(پەرق: $1، $2)",
 	"readonly_lag": "كۆپەيتىلگەن ساندان مۇلازىمېتىرى غەملەكنى ئاساسىي مۇلازىمېتىرغا يېڭىلاۋاتقاندا ساندان ئۆزلۈكىدىن قۇلۇپلاندى",
+	"timeouterror": "مۇلازىمېتىر ۋاقىت ھالقىدى",
 	"internalerror": "ئىچكى خاتالىق",
 	"internalerror_info": "ئىچكى خاتالىق: $1",
 	"internalerror-fatal-exception": "تىپ \"$1\" نىڭ ئەجەللىك خاتالىقى",

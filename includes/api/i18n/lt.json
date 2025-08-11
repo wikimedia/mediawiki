@@ -382,7 +382,7 @@
 	"api-help-license": "Licencija: [[$1|$2]]",
 	"api-help-license-noname": "Licencija: [[$1|Žiūrėti nuorodą]]",
 	"api-help-license-unknown": "Licencija: <span class=\"apihelp-unknown\">nežinoma</span>",
-	"api-help-parameters": "{{PLURAL:$1|Parametras|Parametrai}}:",
+	"api-help-parameters": "{{PLURAL:$1|Konkretus parametras|Konkretūs parametrai}}:",
 	"api-help-datatypes-header": "Duomenų tipai",
 	"api-help-param-default-empty": "Numatytasis: <span class=\"apihelp-empty\">(tuščia)</span>",
 	"api-help-param-no-description": "<span class=\"apihelp-empty\">(nėra aprašymo)</span>",

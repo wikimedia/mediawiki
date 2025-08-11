@@ -556,7 +556,7 @@
 	"querypage-updates-periodical": "本页定期更新。",
 	"viewsource": "查看源代码",
 	"skin-action-viewsource": "查看源代码",
-	"viewsource-title": "查看“$1”的源代码",
+	"viewsource-title": "查看“︁$1”︁的源代码",
 	"actionthrottled": "操作受限",
 	"actionthrottledtext": "作为反滥用措施，您在短时间段内执行该操作的次数有一个限制，并且您已超过此限制。\n请在数分钟后重试。",
 	"protectedpagetext": "此页面已受到保护，以防止编辑或其他操作。",

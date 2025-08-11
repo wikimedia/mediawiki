@@ -7,14 +7,15 @@
 			"Z423x5c6",
 			"捍粵者",
 			"H78c67c",
-			"JeffreyKim"
+			"JeffreyKim",
+			"Ktchankt"
 		]
 	},
 	"config-desc": "MediaWiki安裝程式",
 	"config-title": "安裝MediaWiki$1",
 	"config-information": "資訊",
-	"config-localsettings-upgrade": "<code>LocalSettings.php</code> 快勞已經被偵測到。\n如果要升級呢個安裝，請輸入值 <code>$wgUpgradeKey</code> 喺下面個框入面。\n你會喺<code>LocalSettings.php</code>入面搵到佢。",
-	"config-localsettings-cli-upgrade": "<code>LocalSettings.php</code> 快勞已經被偵測到。\n如果要升級呢個安裝，請執行 <code>update.php</code> 取代",
+	"config-localsettings-upgrade": "<code>LocalSettings.php</code> 檔案已經被偵測到。\n如果要升級呢個安裝，請輸入值 <code>$wgUpgradeKey</code> 喺下面個框入面。\n你會喺<code>LocalSettings.php</code>入面搵到佢。",
+	"config-localsettings-cli-upgrade": "<code>LocalSettings.php</code> 檔案已經被偵測到。\n如果要升級呢個安裝，請執行 <code>update.php</code> 取代",
 	"config-localsettings-key": "升級鍵：",
 	"config-localsettings-badkey": "你提供嘅升級鍵唔啱。",
 	"config-upgrade-key-missing": "偵測到現有嘅 MediaWiki 安裝。\n如果要升級呢個安裝，請將以下一行放喺你嘅 <code>LocalSettings.php</code>嘅底部:\n\n$1",
