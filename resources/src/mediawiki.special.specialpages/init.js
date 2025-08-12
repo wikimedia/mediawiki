@@ -5,6 +5,9 @@ function buildIndex() {
 	$items.each( function () {
 		const $item = $( this );
 		const $group = $item.closest( '.mw-specialpages-list' ).prev( '.mw-specialpagesgroup' );
+		const $toc = $( '#toc .toclevel-1, #mw-panel-toc-list > li:not(:first-child)' ).filter( ( i, el ) => (
+			el.textContent.trim().replace( /^\d+/, '' ).replace( /\s+/, ' ' ).trim() === $group.text()
+		) );
 
 		function addToIndex( $label ) {
 			const text = $label.val() || $label[ 0 ].textContent.toLowerCase().trim().replace( /\s+/, ' ' );
@@ -12,7 +15,8 @@ function buildIndex() {
 				index[ text ] = index[ text ] || [];
 				index[ text ].push( {
 					$item: $item,
-					$group: $group
+					$group: $group,
+					$toc: $toc
 				} );
 			}
 		}
@@ -29,7 +33,8 @@ function buildIndex() {
 					index[ text ] = index[ text ] || [];
 					index[ text ].push( {
 						$item: $item,
-						$group: $group
+						$group: $group,
+						$toc: $toc
 					} );
 				}
 			}
@@ -52,7 +57,7 @@ search.on( 'change', ( val ) => {
 	}
 	const isSearching = !!val;
 
-	const $content = $( '#mw-content-text' );
+	const $content = $( '#mw-content-text, #vector-toc' );
 	$( '.mw-special-pages-search-highlight' ).removeClass( 'mw-special-pages-search-highlight' );
 	if ( isSearching ) {
 		$content.addClass( 'mw-special-pages-is-searching' );
@@ -62,6 +67,7 @@ search.on( 'change', ( val ) => {
 				index[ text ].forEach( ( item ) => {
 					item.$item.addClass( 'mw-special-pages-search-highlight' );
 					item.$group.addClass( 'mw-special-pages-search-highlight' );
+					item.$toc.addClass( 'mw-special-pages-search-highlight' );
 				} );
 			}
 		} );
