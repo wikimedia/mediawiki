@@ -2048,10 +2048,7 @@ abstract class Skin extends ContextSource {
 		$result = Html::openElement( 'span', [ 'class' => 'mw-editsection' ] );
 		$result .= Html::rawElement( 'span', [ 'class' => 'mw-editsection-bracket' ], '[' );
 
-		$linksHtml = [];
-		foreach ( $links as $linkDetails ) {
-			$linksHtml[] = $linkDetails['html'];
-		}
+		$linksHtml = array_column( $links, 'html' );
 
 		if ( count( $linksHtml ) === 1 ) {
 			$result .= $linksHtml[0];

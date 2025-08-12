@@ -105,10 +105,7 @@ class ApiQuerySearchTest extends ApiTestCase {
 		$results = [];
 		$this->assertArrayHasKey( 'interwikisearchinfo', $response['query'] );
 		foreach ( $response['query']['interwikisearch'] as $wiki => $wikiResults ) {
-			$results[$wiki] = [];
-			foreach ( $wikiResults as $wikiResult ) {
-				$results[$wiki][] = $wikiResult['title'];
-			}
+			$results[$wiki] = array_column( $wikiResults, 'title' );
 		}
 		$this->assertEquals( $expect, $results );
 	}

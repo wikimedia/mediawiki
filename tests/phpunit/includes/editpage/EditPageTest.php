@@ -1026,11 +1026,8 @@ hello
 
 		// Test selected and available options.
 		$this->assertSame( $expectedSelection, $def['default'] );
-		$dropdownOptions = [];
-		foreach ( $def['options'] as $option ) {
-			// Reformat dropdown options for easier test comparison.
-			$dropdownOptions[] = $option['data'];
-		}
+		// Reformat dropdown options for easier test comparison.
+		$dropdownOptions = array_column( $def['options'], 'data' );
 		$this->assertSame( $expectedOptions, $dropdownOptions );
 	}
 
