@@ -1,7 +1,5 @@
 <?php
 /**
- * MediaWiki session provider base class
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Session
  */
 
 namespace MediaWiki\Session;
@@ -89,10 +86,10 @@ use Wikimedia\Message\MessageValue;
  * session cookie names should be used for different providers to avoid
  * collisions.
  *
- * @stable to extend
- * @ingroup Session
- * @since 1.27
  * @see https://www.mediawiki.org/wiki/Manual:SessionManager_and_AuthManager
+ * @stable to extend
+ * @since 1.27
+ * @ingroup Session
  */
 abstract class SessionProvider implements Stringable, SessionProviderInterface {
 
@@ -482,6 +479,16 @@ abstract class SessionProvider implements Stringable, SessionProviderInterface {
 
 	/**
 	 * Get a suggested username for the login form
+	 *
+	 * This is usually null, but may return the user name of a previous login session
+	 * from the same device. This is meant to reduce login friction by reminding
+	 * infrequent editors about their chosen username.
+	 *
+	 * The default CookieSessionProvider stores the last username in a dedicated cookie
+	 * that, unlike the "Token" session ID cookie, is not removed during logout
+	 * (via User::doLogout, SessionBackend::unpersist, SessionBackedn::save,
+	 * and finally  CookieSessionProvider::unpersistSession).
+	 *
 	 * @stable to override
 	 * @note For use by \MediaWiki\Session\SessionBackend only
 	 * @param WebRequest $request

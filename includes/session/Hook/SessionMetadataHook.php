@@ -11,6 +11,7 @@ use MediaWiki\Session\SessionBackend;
  *
  * @stable to implement
  * @ingroup Hooks
+ * @ingroup Session
  */
 interface SessionMetadataHook {
 	/**

@@ -1,6 +1,5 @@
 <?php
 /**
- * @section LICENSE
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -16,9 +15,7 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
- * @copyright © 2016 Wikimedia Foundation and contributors
  * @file
- * @ingroup Session
  */
 
 namespace MediaWiki\Session;
@@ -27,11 +24,12 @@ use Exception;
 use UnexpectedValueException;
 
 /**
- * Subclass of UnexpectedValueException that can be annotated with additional
- * data for debug logging.
+ * Subclass of UnexpectedValueException annotated with data for debug logs.
  *
  * @newable
  * @since 1.27
+ * @ingroup Session
+ * @copyright © 2016 Wikimedia Foundation and contributors
  */
 class MetadataMergeException extends UnexpectedValueException {
 	/** @var array */

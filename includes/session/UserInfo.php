@@ -1,7 +1,5 @@
 <?php
 /**
- * MediaWiki session user info
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Session
  */
 
 namespace MediaWiki\Session;
@@ -49,8 +46,8 @@ use Stringable;
  * cookie isn't. If the Token is available but doesn't match, don't return a
  * UserInfo at all.
  *
- * @ingroup Session
  * @since 1.27
+ * @ingroup Session
  */
 final class UserInfo implements Stringable {
 	/** @var bool */

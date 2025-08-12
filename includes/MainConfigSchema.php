@@ -9523,9 +9523,10 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * Default login cookie lifetime, in seconds. Setting
-	 * $wgExtendLoginCookieExpiration to null will use $wgCookieExpiration to
-	 * calculate the cookie lifetime. As with $wgCookieExpiration, 0 will make
+	 * Default login cookie lifetime, in seconds.
+	 *
+	 * If $wgExtendLoginCookieExpiration is set to null, we use $wgCookieExpiration to
+	 * calculate the cookie lifetime instead. As with $wgCookieExpiration, 0 will make
 	 * login cookies session-only.
 	 */
 	public const ExtendedLoginCookieExpiration = [

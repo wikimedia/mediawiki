@@ -9,6 +9,7 @@ use InvalidArgumentException;
  * sessions tied for top priority.
  *
  * @since 1.34
+ * @ingroup Session
  */
 class SessionOverflowException extends \OverflowException {
 	/** @var SessionInfo[] */

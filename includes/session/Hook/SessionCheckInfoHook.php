@@ -11,6 +11,7 @@ use MediaWiki\Session\SessionInfo;
  *
  * @stable to implement
  * @ingroup Hooks
+ * @ingroup Session
  */
 interface SessionCheckInfoHook {
 	/**

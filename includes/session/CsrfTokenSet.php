@@ -25,8 +25,9 @@ use MediaWiki\User\LoggedOutEditToken;
 
 /**
  * Stores and matches CSRF tokens belonging to a given session user.
+ *
  * @since 1.37
- * @package MediaWiki\Session
+ * @ingroup Session
  */
 class CsrfTokenSet {
 

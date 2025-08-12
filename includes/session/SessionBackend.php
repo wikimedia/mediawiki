@@ -51,8 +51,8 @@ use Wikimedia\ObjectCache\CachedBagOStuff;
  *    SessionManager to hold a reference to every active session so it can be
  *    saved when the request ends.
  *
- * @ingroup Session
  * @since 1.27
+ * @ingroup Session
  */
 final class SessionBackend {
 	private SessionId $id;
@@ -427,7 +427,8 @@ final class SessionBackend {
 	}
 
 	/**
-	 * Fetch the rights allowed the user when this session is active.
+	 * @internal For PermissionManager
+	 * @see SessionProvider::getAllowedUserRights
 	 * @return null|string[] Allowed user rights, or null to allow all.
 	 */
 	public function getAllowedUserRights() {
@@ -435,8 +436,8 @@ final class SessionBackend {
 	}
 
 	/**
-	 * Fetch any restrictions imposed on logins or actions when this
-	 * session is active.
+	 * @internal For PermissionManager
+	 * @see SessionProvider::getRestrictions
 	 * @return MWRestrictions|null
 	 */
 	public function getRestrictions(): ?MWRestrictions {
@@ -480,7 +481,7 @@ final class SessionBackend {
 	}
 
 	/**
-	 * Get a suggested username for the login form
+	 * @see SessionProvider::suggestLoginUsername
 	 * @param int $index Session index
 	 * @return string|null
 	 */
@@ -624,10 +625,11 @@ final class SessionBackend {
 	}
 
 	/**
-	 * Renew the session by resaving everything
+	 * Renew the session by re-saving all data with a new TTL
 	 *
 	 * Resets the TTL in the backend store if the session is near expiring, and
-	 * re-persists the session to any active WebRequests if persistent.
+	 * re-persists the session to any active WebRequests if persistent. No-op
+	 * otherwise to reduce cookie churn in browsers.
 	 */
 	public function renew() {
 		if ( time() + $this->lifetime / 2 > $this->expires ) {

@@ -21,9 +21,10 @@
 namespace MediaWiki\Session;
 
 /**
- * Provides an instance of CsrfTokenSet.
+ * Provide an instance of CsrfTokenSet.
+ *
  * @since 1.37
- * @package MediaWiki\Session
+ * @ingroup Session
  */
 interface CsrfTokenSetProvider {
 

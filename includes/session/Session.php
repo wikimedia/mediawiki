@@ -45,8 +45,8 @@ use RuntimeException;
  * The Session object also serves as a replacement for PHP's $_SESSION,
  * managing access to per-session data.
  *
- * @ingroup Session
  * @since 1.27
+ * @ingroup Session
  */
 class Session implements \Countable, \Iterator, \ArrayAccess {
 	/** @var null|string[] Encryption algorithm to use */
@@ -176,7 +176,7 @@ class Session implements \Countable, \Iterator, \ArrayAccess {
 	}
 
 	/**
-	 * Fetch the rights allowed the user when this session is active.
+	 * @see SessionProvider::getAllowedUserRights
 	 * @return null|string[] Allowed user rights, or null to allow all.
 	 */
 	public function getAllowedUserRights() {
@@ -184,8 +184,7 @@ class Session implements \Countable, \Iterator, \ArrayAccess {
 	}
 
 	/**
-	 * Fetch any restrictions imposed on logins or actions when this
-	 * session is active.
+	 * @see SessionProvider::getRestrictions
 	 * @return MWRestrictions|null
 	 */
 	public function getRestrictions(): ?MWRestrictions {
@@ -214,7 +213,7 @@ class Session implements \Countable, \Iterator, \ArrayAccess {
 	}
 
 	/**
-	 * Get a suggested username for the login form
+	 * @see SessionProvider::suggestLoginUsername
 	 * @return string|null
 	 */
 	public function suggestLoginUsername() {
@@ -222,9 +221,10 @@ class Session implements \Countable, \Iterator, \ArrayAccess {
 	}
 
 	/**
-	 * Get the expected value of the forceHTTPS cookie. This reflects whether
-	 * session cookies were sent with the Secure attribute. If $wgForceHTTPS
-	 * is true, the forceHTTPS cookie is not sent and this value is ignored.
+	 * Get the expected value of the forceHTTPS cookie.
+	 *
+	 * This reflects whether session cookies were sent with the Secure attribute.
+	 * If $wgForceHTTPS is true, the 'forceHTTPS' cookie is not sent and this value is ignored.
 	 *
 	 * @return bool
 	 */
@@ -233,9 +233,10 @@ class Session implements \Countable, \Iterator, \ArrayAccess {
 	}
 
 	/**
-	 * Set the value of the forceHTTPS cookie. This reflects whether session
-	 * cookies were sent with the Secure attribute. If $wgForceHTTPS is true,
-	 * the forceHTTPS cookie is not sent, and this value is ignored.
+	 * Set the value of the forceHTTPS cookie.
+	 *
+	 * This reflects whether session cookies were sent with the Secure attribute.
+	 * If $wgForceHTTPS is true, the forceHTTPS cookie is not sent, and this value is ignored.
 	 *
 	 * @param bool $force
 	 */
@@ -286,8 +287,7 @@ class Session implements \Countable, \Iterator, \ArrayAccess {
 	}
 
 	/**
-	 * Resets the TTL in the backend store if the session is near expiring, and
-	 * re-persists the session to any active WebRequests if persistent.
+	 * @see SessionBackend::renew
 	 */
 	public function renew() {
 		$this->backend->renew();
@@ -333,7 +333,6 @@ class Session implements \Countable, \Iterator, \ArrayAccess {
 	}
 
 	/**
-	 * Set a value in the session
 	 * @param string|int $key
 	 * @param mixed $value
 	 */
@@ -346,7 +345,6 @@ class Session implements \Countable, \Iterator, \ArrayAccess {
 	}
 
 	/**
-	 * Remove a value from the session
 	 * @param string|int $key
 	 */
 	public function remove( $key ) {

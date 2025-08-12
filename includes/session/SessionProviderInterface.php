@@ -1,7 +1,5 @@
 <?php
 /**
- * MediaWiki\Session\Provider interface
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Session
  */
 
 namespace MediaWiki\Session;
@@ -27,11 +24,13 @@ use MediaWiki\Language\Language;
 use MediaWiki\Message\Message;
 
 /**
+ * MediaWiki\Session\Provider interface
+ *
  * This exists to make IDEs happy, so they don't see the
  * internal-but-required-to-be-public methods on SessionProvider.
  *
- * @ingroup Session
  * @since 1.27
+ * @ingroup Session
  */
 interface SessionProviderInterface {
 

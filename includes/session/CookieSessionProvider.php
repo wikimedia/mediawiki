@@ -1,7 +1,5 @@
 <?php
 /**
- * MediaWiki cookie-based session provider interface
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Session
  */
 
 namespace MediaWiki\Session;
@@ -31,10 +28,10 @@ use MediaWiki\User\UserRigorOptions;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
- * A CookieSessionProvider persists sessions using cookies
+ * The default session provider for MediaWiki which persists sessions using cookies.
  *
- * @ingroup Session
  * @since 1.27
+ * @ingroup Session
  */
 class CookieSessionProvider extends SessionProvider {
 
@@ -244,6 +241,9 @@ class CookieSessionProvider extends SessionProvider {
 			return;
 		}
 
+		// This intentionally does not clear the "UserName" cookie,
+		// because it powers SessionProvider::suggestLoginUsername.
+		// See also self::getExtendedLoginCookies, and self::cookieDataToExport.
 		$cookies = [
 			'UserID' => false,
 			'Token' => false,
