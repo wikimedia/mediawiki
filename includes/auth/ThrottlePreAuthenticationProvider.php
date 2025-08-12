@@ -16,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Auth
  */
 
 namespace MediaWiki\Auth;
@@ -33,6 +32,7 @@ use Wikimedia\ObjectCache\BagOStuff;
  * (more specifically, any authentication that returns FAIL on failure). Secondary authentication
  * cannot be easily throttled on a framework level (since it would typically return UI on failure);
  * secondary providers are expected to do their own throttling.
+ *
  * @ingroup Auth
  * @since 1.27
  */

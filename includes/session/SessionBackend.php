@@ -1,7 +1,5 @@
 <?php
 /**
- * MediaWiki session backend
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Session
  */
 
 namespace MediaWiki\Session;
@@ -209,7 +206,8 @@ final class SessionBackend {
 	}
 
 	/**
-	 * Return a new Session for this backend
+	 * Create a new Session for this backend
+	 *
 	 * @param WebRequest $request
 	 * @return Session
 	 */
@@ -222,6 +220,7 @@ final class SessionBackend {
 
 	/**
 	 * Deregister a Session
+	 *
 	 * @internal For use by \MediaWiki\Session\Session::__destruct() only
 	 * @param int $index
 	 */
@@ -231,6 +230,7 @@ final class SessionBackend {
 
 	/**
 	 * Shut down a session
+	 *
 	 * @internal For use by \MediaWiki\Session\SessionManager::shutdown() only
 	 */
 	public function shutdown() {
@@ -239,7 +239,8 @@ final class SessionBackend {
 	}
 
 	/**
-	 * Returns the session ID.
+	 * Return the session ID.
+	 *
 	 * @return string
 	 */
 	public function getId() {
@@ -248,6 +249,7 @@ final class SessionBackend {
 
 	/**
 	 * Fetch the SessionId object
+	 *
 	 * @internal For internal use by WebRequest
 	 * @return SessionId
 	 */
@@ -256,7 +258,8 @@ final class SessionBackend {
 	}
 
 	/**
-	 * Changes the session ID
+	 * Change the session ID
+	 *
 	 * @return string New ID (might be the same as the old)
 	 */
 	public function resetId() {
@@ -303,6 +306,7 @@ final class SessionBackend {
 
 	/**
 	 * Fetch the SessionProvider for this session
+	 *
 	 * @return SessionProviderInterface
 	 */
 	public function getProvider() {
@@ -310,9 +314,7 @@ final class SessionBackend {
 	}
 
 	/**
-	 * Indicate whether this session is persisted across requests
-	 *
-	 * For example, if cookies are set.
+	 * Whether this session is persisted across requests. For example, if cookies are set.
 	 *
 	 * @return bool
 	 */
@@ -323,8 +325,7 @@ final class SessionBackend {
 	/**
 	 * Make this session persisted across requests
 	 *
-	 * If the session is already persistent, equivalent to calling
-	 * $this->renew().
+	 * If the session is already persistent, equivalent to calling `$this->renew()`.
 	 */
 	public function persist() {
 		if ( !$this->persist ) {
@@ -378,8 +379,8 @@ final class SessionBackend {
 	}
 
 	/**
-	 * Indicate whether the user should be remembered independently of the
-	 * session ID.
+	 * Whether the user should be remembered, independently of the session ID.
+	 *
 	 * @return bool
 	 */
 	public function shouldRememberUser() {
@@ -387,8 +388,8 @@ final class SessionBackend {
 	}
 
 	/**
-	 * Set whether the user should be remembered independently of the session
-	 * ID.
+	 * Set whether the user should be remembered, independently of the session ID.
+	 *
 	 * @param bool $remember
 	 */
 	public function setRememberUser( $remember ) {
@@ -406,7 +407,8 @@ final class SessionBackend {
 	}
 
 	/**
-	 * Returns the request associated with a Session
+	 * Return the request associated with a Session
+	 *
 	 * @param int $index Session index
 	 * @return WebRequest
 	 */
@@ -418,7 +420,7 @@ final class SessionBackend {
 	}
 
 	/**
-	 * Returns the authenticated user for this session
+	 * Return the authenticated user for this session
 	 */
 	public function getUser(): User {
 		return $this->user;
@@ -442,7 +444,8 @@ final class SessionBackend {
 	}
 
 	/**
-	 * Indicate whether the session user info can be changed
+	 * Whether the session user info can be changed
+	 *
 	 * @return bool
 	 */
 	public function canSetUser() {
@@ -450,11 +453,13 @@ final class SessionBackend {
 	}
 
 	/**
-	 * Set a new user for this session
+	 * Set a new User object for this session
+	 *
 	 * @note This should only be called when the user has been authenticated via a login process
+	 *
+	 * TODO: Consider changing to a "UserIdentity" instead.
+	 *
 	 * @param User $user User to set on the session.
-	 *   This may become a "UserValue" in the future, or User may be refactored
-	 *   into such.
 	 */
 	public function setUser( $user ) {
 		if ( !$this->canSetUser() ) {
@@ -669,7 +674,8 @@ final class SessionBackend {
 
 	/**
 	 * Save the session, unless delayed
-	 * @see SessionBackend::save()
+	 *
+	 * @see SessionBackend::save
 	 */
 	private function autosave() {
 		if ( $this->delaySave <= 0 ) {
@@ -863,10 +869,10 @@ final class SessionBackend {
 	}
 
 	/**
+	 * @see SessionManager::logSessionWrite
 	 * @param array $data Additional log context. Should have at least the following keys:
 	 *   - action: 'write' or 'delete'.
 	 *   - reason: why the write happened
-	 * @see SessionManager::logSessionWrite()
 	 */
 	private function logSessionWrite( array $data = [] ): void {
 		$id = $this->getId();

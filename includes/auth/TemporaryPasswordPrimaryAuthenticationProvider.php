@@ -16,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Auth
  */
 
 namespace MediaWiki\Auth;
@@ -34,6 +33,7 @@ use Wikimedia\Rdbms\IDBAccessObject;
  *
  * @note For proper operation, this should generally come before any other
  *  password-based authentication providers.
+ *
  * @ingroup Auth
  * @since 1.27
  */

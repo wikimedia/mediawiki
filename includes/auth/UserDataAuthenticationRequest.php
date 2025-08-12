@@ -16,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Auth
  */
 
 namespace MediaWiki\Auth;

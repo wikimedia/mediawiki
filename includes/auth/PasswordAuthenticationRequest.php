@@ -16,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Auth
  */
 
 namespace MediaWiki\Auth;
@@ -25,6 +24,7 @@ use MediaWiki\Language\RawMessage;
 
 /**
  * This is a value object for authentication requests with a username and password
+ *
  * @stable to extend
  * @ingroup Auth
  * @since 1.27

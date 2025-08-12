@@ -1,7 +1,5 @@
 <?php
 /**
- * Secondary authentication provider interface
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Auth
  */
 
 namespace MediaWiki\Auth;
@@ -27,8 +24,7 @@ use MediaWiki\User\User;
 use StatusValue;
 
 /**
- * A secondary provider mostly acts when the submitted authentication data has
- * already been associated to a MediaWiki user account.
+ * Secondary providers act after input data is already associated with a MediaWiki account.
  *
  * For login, a secondary provider performs additional authentication steps
  * after a PrimaryAuthenticationProvider has identified which MediaWiki user is
@@ -72,8 +68,8 @@ interface SecondaryAuthenticationProvider extends AuthenticationProvider {
 
 	/**
 	 * Continue an authentication flow
-	 * @param User $user User being authenticated. This may become a
-	 *   "UserValue" in the future, or User may be refactored into such.
+	 *
+	 * @param User $user User being authenticated. This may become a "UserIdentity" in the future.
 	 * @param AuthenticationRequest[] $reqs
 	 * @return AuthenticationResponse Expected responses:
 	 *  - PASS: The user is authenticated. Additional secondary providers may run.
@@ -91,10 +87,9 @@ interface SecondaryAuthenticationProvider extends AuthenticationProvider {
 	 * login attempts that fail by the session timing out.
 	 *
 	 * @param User|null $user User that was attempted to be logged in, if known.
-	 *   This may become a "UserValue" in the future, or User may be refactored
-	 *   into such.
+	 *  This may become a "UserIdentity" in the future.
 	 * @param AuthenticationResponse $response Authentication response that will be returned
-	 *   (PASS or FAIL)
+	 *  (PASS or FAIL)
 	 */
 	public function postAuthentication( $user, AuthenticationResponse $response );
 
@@ -158,10 +153,8 @@ interface SecondaryAuthenticationProvider extends AuthenticationProvider {
 	 *
 	 * @note No need to test if the account exists, AuthManager checks that
 	 * @param User $user User being created (not added to the database yet).
-	 *   This may become a "UserValue" in the future, or User may be refactored
-	 *   into such.
-	 * @param User $creator User doing the creation. This may become a
-	 *   "UserValue" in the future, or User may be refactored into such.
+	 *  This may become a "UserIdentity" in the future.
+	 * @param User $creator User doing the creation. This may become a "UserIdentity" in the future.
 	 * @param AuthenticationRequest[] $reqs
 	 * @return StatusValue
 	 */
@@ -176,10 +169,8 @@ interface SecondaryAuthenticationProvider extends AuthenticationProvider {
 	 *   account. Be prepared to handle any database inconsistencies that result
 	 *   from this or continueSecondaryAccountCreation() not being called.
 	 * @param User $user User being created (has been added to the database).
-	 *   This may become a "UserValue" in the future, or User may be refactored
-	 *   into such.
-	 * @param User $creator User doing the creation. This may become a
-	 *   "UserValue" in the future, or User may be refactored into such.
+	 *  This may become a "UserIdentity" in the future.
+	 * @param User $creator User doing the creation. This may become a "UserIdentity" in the future.
 	 * @param AuthenticationRequest[] $reqs
 	 * @return AuthenticationResponse Expected responses:
 	 *  - PASS: The user creation is ok. Additional secondary providers may run.
@@ -193,10 +184,8 @@ interface SecondaryAuthenticationProvider extends AuthenticationProvider {
 	 * Continue an authentication flow
 	 *
 	 * @param User $user User being created (has been added to the database).
-	 *   This may become a "UserValue" in the future, or User may be refactored
-	 *   into such.
-	 * @param User $creator User doing the creation. This may become a
-	 *   "UserValue" in the future, or User may be refactored into such.
+	 *  This may become a "UserIdentity" in the future.
+	 * @param User $creator User doing the creation. This may become a "UserIdentity" in the future.
 	 * @param AuthenticationRequest[] $reqs
 	 * @return AuthenticationResponse Expected responses:
 	 *  - PASS: The user creation is ok. Additional secondary providers may run.
@@ -214,10 +203,8 @@ interface SecondaryAuthenticationProvider extends AuthenticationProvider {
 	 * user creation, while a secondary provider is waiting for a response).
 	 *
 	 * @param User $user User that was attempted to be created.
-	 *   This may become a "UserValue" in the future, or User may be refactored
-	 *   into such.
-	 * @param User $creator User doing the creation. This may become a
-	 *   "UserValue" in the future, or User may be refactored into such.
+	 *  This may become a "UserIdentity" in the future.
+	 * @param User $creator User doing the creation. This may become a "UserIdentity" in the future.
 	 * @param AuthenticationResponse $response Authentication response that will be returned
 	 *   (PASS or FAIL)
 	 */
@@ -227,8 +214,7 @@ interface SecondaryAuthenticationProvider extends AuthenticationProvider {
 	 * Determine whether an account may be created
 	 *
 	 * @param User $user User being created (not added to the database yet).
-	 *   This may become a "UserValue" in the future, or User may be refactored
-	 *   into such.
+	 *  This may become a "UserIdentity" in the future.
 	 * @param bool|string $autocreate False if this is not an auto-creation, or
 	 *  the source of the auto-creation passed to AuthManager::autoCreateUser().
 	 * @param array $options
@@ -247,9 +233,9 @@ interface SecondaryAuthenticationProvider extends AuthenticationProvider {
 
 	/**
 	 * Post-auto-creation callback
+	 *
 	 * @param User $user User being created (has been added to the database now).
-	 *   This may become a "UserValue" in the future, or User may be refactored
-	 *   into such.
+	 *  This may become a "UserIdentity" in the future.
 	 * @param string $source The source of the auto-creation passed to
 	 *  AuthManager::autoCreateUser().
 	 */

@@ -4,8 +4,11 @@ namespace MediaWiki\Auth;
 
 /**
  * Authentication request for the reason given for account creation.
- * Used in logs and for notification.
+ *
+ * Used to add entries to Special:Log and for RCFeed notifications.
+ *
  * @stable to extend
+ * @ingroup Auth
  */
 class CreationReasonAuthenticationRequest extends AuthenticationRequest {
 	/** @var string Account creation reason (only used when creating for someone else) */

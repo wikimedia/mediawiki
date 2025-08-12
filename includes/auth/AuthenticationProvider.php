@@ -1,7 +1,5 @@
 <?php
 /**
- * Authentication provider interface
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,13 +16,12 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Auth
  */
 
 namespace MediaWiki\Auth;
 
 /**
- * An AuthenticationProvider is used by AuthManager when authenticating users.
+ * Authentication providers are used by AuthManager when authenticating users.
  *
  * This interface should not be implemented directly; use one of its children.
  *

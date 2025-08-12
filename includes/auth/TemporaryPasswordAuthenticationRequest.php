@@ -16,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Auth
  */
 
 namespace MediaWiki\Auth;
@@ -28,6 +27,7 @@ use MediaWiki\Password\PasswordFactory;
 
 /**
  * This represents the intention to set a temporary password for the user.
+ *
  * @stable to extend
  * @ingroup Auth
  * @since 1.27

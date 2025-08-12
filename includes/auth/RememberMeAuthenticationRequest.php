@@ -16,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Auth
  */
 
 namespace MediaWiki\Auth;
@@ -27,7 +26,9 @@ use UnexpectedValueException;
 
 /**
  * This is an authentication request added by AuthManager to show a "remember me" checkbox.
+ *
  * When checked, it will take more time for the authenticated session to expire.
+ *
  * @stable to extend
  * @ingroup Auth
  * @since 1.27

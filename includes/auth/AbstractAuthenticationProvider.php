@@ -16,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Auth
  */
 
 namespace MediaWiki\Auth;
@@ -29,6 +28,7 @@ use Psr\Log\LoggerInterface;
 
 /**
  * A base class that implements some of the boilerplate for an AuthenticationProvider
+ *
  * @stable to extend
  * @ingroup Auth
  * @since 1.27

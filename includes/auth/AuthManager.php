@@ -1,7 +1,5 @@
 <?php
 /**
- * Authentication (and possibly Authorization in the future) system entry point
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Auth
  */
 
 namespace MediaWiki\Auth;
@@ -74,7 +71,7 @@ use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\ReadOnlyMode;
 
 /**
- * This serves as the entry point to the authentication system.
+ * AuthManager is the authentication system in MediaWiki and serves entry point for authentication.
  *
  * In the future, it may also serve as the entry point to the authorization
  * system.

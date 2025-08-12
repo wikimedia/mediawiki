@@ -16,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Auth
  */
 
 namespace MediaWiki\Auth;
@@ -33,7 +32,7 @@ use Wikimedia\ObjectCache\BagOStuff;
 
 /**
  * A helper class for throttling authentication attempts.
- * @package MediaWiki\Auth
+ *
  * @ingroup Auth
  * @since 1.27
  */

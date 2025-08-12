@@ -16,13 +16,13 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Auth
  */
 
 namespace MediaWiki\Auth;
 
 /**
  * AuthenticationRequest to ensure something with a username is present
+ *
  * @stable to extend
  * @ingroup Auth
  * @since 1.27

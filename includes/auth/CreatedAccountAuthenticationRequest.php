@@ -16,13 +16,13 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Auth
  */
 
 namespace MediaWiki\Auth;
 
 /**
  * Returned from account creation to allow for logging into the created account
+ *
  * @stable to extend
  * @ingroup Auth
  * @since 1.27

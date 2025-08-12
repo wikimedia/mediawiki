@@ -16,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Auth
  */
 
 namespace MediaWiki\Auth;
@@ -25,6 +24,7 @@ use InvalidArgumentException;
 
 /**
  * @stable to extend
+ * @ingroup Auth
  */
 class ConfirmLinkAuthenticationRequest extends AuthenticationRequest {
 	/** @var AuthenticationRequest[] */

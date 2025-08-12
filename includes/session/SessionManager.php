@@ -1,7 +1,5 @@
 <?php
 /**
- * MediaWiki\Session entry point
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Session
  */
 
 namespace MediaWiki\Session;
@@ -430,7 +427,8 @@ class SessionManager implements SessionManagerInterface {
 
 	/**
 	 * Save all active sessions on shutdown
-	 * @internal Public for call from shutdown function
+	 *
+	 * @internal For use by PHPSessionHandler::install
 	 */
 	public function shutdown() {
 		if ( $this->allSessionBackends ) {
@@ -448,6 +446,7 @@ class SessionManager implements SessionManagerInterface {
 
 	/**
 	 * Fetch the SessionInfo(s) for a request
+	 *
 	 * @param WebRequest $request
 	 * @return SessionInfo|null
 	 */
@@ -817,6 +816,7 @@ class SessionManager implements SessionManagerInterface {
 
 	/**
 	 * Create a Session corresponding to the passed SessionInfo
+	 *
 	 * @internal For use by a SessionProvider that needs to specially create its
 	 *  own Session. Most session providers won't need this.
 	 * @param SessionInfo $info
@@ -876,6 +876,7 @@ class SessionManager implements SessionManagerInterface {
 
 	/**
 	 * Change a SessionBackend's ID
+	 *
 	 * @internal For use from \MediaWiki\Session\SessionBackend only
 	 * @param SessionBackend $backend
 	 */
@@ -897,6 +898,7 @@ class SessionManager implements SessionManagerInterface {
 
 	/**
 	 * Generate a new random session ID
+	 *
 	 * @return string
 	 */
 	public function generateSessionId() {
@@ -909,7 +911,8 @@ class SessionManager implements SessionManagerInterface {
 
 	/**
 	 * Call setters on a PHPSessionHandler
-	 * @internal Use PhpSessionHandler::install()
+	 *
+	 * @internal Use PhpSessionHandler::install() instead.
 	 * @param PHPSessionHandler $handler
 	 */
 	public function setupPHPSessionHandler( PHPSessionHandler $handler ) {

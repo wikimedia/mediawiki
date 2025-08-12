@@ -1,7 +1,5 @@
 <?php
 /**
- * Pre-authentication provider interface
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Auth
  */
 
 namespace MediaWiki\Auth;
@@ -27,7 +24,7 @@ use MediaWiki\User\User;
 use StatusValue;
 
 /**
- * A pre-authentication provider can prevent authentication early on.
+ * Pre-authentication providers can prevent authentication early on.
  *
  * A PreAuthenticationProvider is used to supply arbitrary checks to be
  * performed before the PrimaryAuthenticationProviders are consulted during the
@@ -62,8 +59,7 @@ interface PreAuthenticationProvider extends AuthenticationProvider {
 	 * @note Under certain circumstances, this can be called even when testForAuthentication
 	 *   was not; see AuthenticationRequest::$loginRequest.
 	 * @param User|null $user User that was attempted to be logged in, if known.
-	 *   This may become a "UserValue" in the future, or User may be refactored
-	 *   into such.
+	 *   This may become a "UserIdentity" in the future.
 	 * @param AuthenticationResponse $response Authentication response that will be returned
 	 *   (PASS or FAIL)
 	 */
@@ -76,10 +72,8 @@ interface PreAuthenticationProvider extends AuthenticationProvider {
 	 *
 	 * @note No need to test if the account exists, AuthManager checks that
 	 * @param User $user User being created (not added to the database yet).
-	 *   This may become a "UserValue" in the future, or User may be refactored
-	 *   into such.
-	 * @param User $creator User doing the creation. This may become a
-	 *   "UserValue" in the future, or User may be refactored into such.
+	 *   This may become a "UserIdentity" in the future.
+	 * @param User $creator User doing the creation. This may become a "UserIdentity" in the future.
 	 * @param AuthenticationRequest[] $reqs
 	 * @return StatusValue
 	 */
@@ -89,8 +83,7 @@ interface PreAuthenticationProvider extends AuthenticationProvider {
 	 * Determine whether an account may be created
 	 *
 	 * @param User $user User being created (not added to the database yet).
-	 *   This may become a "UserValue" in the future, or User may be refactored
-	 *   into such.
+	 *   This may become a "UserIdentity" in the future.
 	 * @param bool|string $autocreate False if this is not an auto-creation, or
 	 *  the source of the auto-creation passed to AuthManager::autoCreateUser().
 	 * @param array $options
@@ -115,10 +108,8 @@ interface PreAuthenticationProvider extends AuthenticationProvider {
 	 * user creation, while a secondary provider is waiting for a response).
 	 *
 	 * @param User $user User that was attempted to be created.
-	 *   This may become a "UserValue" in the future, or User may be refactored
-	 *   into such.
-	 * @param User $creator User doing the creation. This may become a
-	 *   "UserValue" in the future, or User may be refactored into such.
+	 *   This may become a "UserIdentity" in the future.
+	 * @param User $creator User doing the creation. This may become a "UserIdentity" in the future.
 	 * @param AuthenticationResponse $response Authentication response that will be returned
 	 *   (PASS or FAIL)
 	 */
@@ -128,8 +119,7 @@ interface PreAuthenticationProvider extends AuthenticationProvider {
 	 * Determine whether an account may linked to another authentication method
 	 *
 	 * @param User $user User being linked.
-	 *   This may become a "UserValue" in the future, or User may be refactored
-	 *   into such.
+	 *   This may become a "UserIdentity" in the future.
 	 * @return StatusValue
 	 */
 	public function testForAccountLink( $user );
@@ -140,8 +130,7 @@ interface PreAuthenticationProvider extends AuthenticationProvider {
 	 * This will be called at the end of an account linking attempt.
 	 *
 	 * @param User $user User that was attempted to be linked.
-	 *   This may become a "UserValue" in the future, or User may be refactored
-	 *   into such.
+	 *   This may become a "UserIdentity" in the future.
 	 * @param AuthenticationResponse $response Authentication response that will be returned
 	 *   (PASS or FAIL)
 	 */

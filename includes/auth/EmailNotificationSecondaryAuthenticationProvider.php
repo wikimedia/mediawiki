@@ -10,6 +10,8 @@ use Wikimedia\Rdbms\IConnectionProvider;
  *
  * Set 'no-email' to true (via AuthManager::setAuthenticationSessionData) to skip this provider.
  * Primary providers doing so are expected to take care of email address confirmation.
+ *
+ * @ingroup Auth
  */
 class EmailNotificationSecondaryAuthenticationProvider
 	extends AbstractSecondaryAuthenticationProvider

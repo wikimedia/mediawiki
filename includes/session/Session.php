@@ -1,7 +1,5 @@
 <?php
 /**
- * MediaWiki session
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Session
  */
 
 namespace MediaWiki\Session;
@@ -163,7 +160,8 @@ class Session implements \Countable, \Iterator, \ArrayAccess {
 	}
 
 	/**
-	 * Returns the request associated with this session
+	 * Return the request associated with this session
+	 *
 	 * @return WebRequest
 	 */
 	public function getRequest() {
@@ -171,7 +169,7 @@ class Session implements \Countable, \Iterator, \ArrayAccess {
 	}
 
 	/**
-	 * Returns the authenticated user for this session
+	 * Return the authenticated user for this session
 	 */
 	public function getUser(): User {
 		return $this->backend->getUser();
@@ -204,10 +202,12 @@ class Session implements \Countable, \Iterator, \ArrayAccess {
 
 	/**
 	 * Set a new user for this session
+	 *
 	 * @note This should only be called when the user has been authenticated
+	 *
+	 * TODO: Consider changing this to a "UserIdentity" instead.
+	 *
 	 * @param User $user User to set on the session.
-	 *   This may become a "UserValue" in the future, or User may be refactored
-	 *   into such.
 	 */
 	public function setUser( $user ) {
 		$this->backend->setUser( $user );
@@ -245,6 +245,7 @@ class Session implements \Countable, \Iterator, \ArrayAccess {
 
 	/**
 	 * Fetch the "logged out" timestamp
+	 *
 	 * @return int
 	 */
 	public function getLoggedOutTimestamp() {
@@ -260,7 +261,9 @@ class Session implements \Countable, \Iterator, \ArrayAccess {
 
 	/**
 	 * Fetch provider metadata
+	 *
 	 * @note For use by SessionProvider subclasses only
+	 *
 	 * @return mixed
 	 */
 	public function getProviderMetadata() {
@@ -306,8 +309,9 @@ class Session implements \Countable, \Iterator, \ArrayAccess {
 
 	/**
 	 * Fetch a value from the session
+	 *
 	 * @param string|int $key
-	 * @param mixed|null $default Returned if $this->exists( $key ) would be false
+	 * @param mixed|null $default Returned if `$this->exists( $key )` would be false
 	 * @return mixed
 	 */
 	public function get( $key, $default = null ) {
@@ -317,7 +321,9 @@ class Session implements \Countable, \Iterator, \ArrayAccess {
 
 	/**
 	 * Test if a value exists in the session
+	 *
 	 * @note Unlike isset(), null values are considered to exist.
+	 *
 	 * @param string|int $key
 	 * @return bool
 	 */

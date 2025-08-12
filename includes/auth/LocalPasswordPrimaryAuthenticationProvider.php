@@ -16,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Auth
  */
 
 namespace MediaWiki\Auth;
@@ -35,6 +34,7 @@ use Wikimedia\Rdbms\IDBAccessObject;
 
 /**
  * A primary authentication provider that uses the password field in the 'user' table.
+ *
  * @ingroup Auth
  * @since 1.27
  */

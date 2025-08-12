@@ -16,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Auth
  */
 
 namespace MediaWiki\Auth;
@@ -25,10 +24,13 @@ use MediaWiki\Language\RawMessage;
 use MediaWiki\Message\Message;
 
 /**
- * This is an authentication request that just implements a simple button. Can either be
- * subclassed, or used directly. When used directly, with $required = false in the constructor,
+ * An authentication request that implements a single button.
+ *
+ * This can either be subclassed, or used directly. When used directly, with `$required = false`,
  * the ButtonAuthenticationRequest will only be included in the set of requests when the button
- * was clicked; with $required = true, it will always be included and $button->{$name} can be
+ * was clicked.
+ *
+ * With `$required = true`, it will always be included and `$button->{$name}` can be
  * used to check whether it has been clicked.
  *
  * @stable to extend

@@ -16,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Auth
  */
 
 namespace MediaWiki\Auth;
@@ -26,7 +25,7 @@ use MediaWiki\Message\Message;
 use MediaWiki\User\User;
 
 /**
- * Reset the local password, if signalled via $this->manager->setAuthenticationSessionData()
+ * Reset the local password, if signalled via `$this->manager->setAuthenticationSessionData()`
  *
  * The authentication data key is 'reset-pass'; the data is an object with the
  * following properties:
