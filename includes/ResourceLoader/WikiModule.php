@@ -642,7 +642,7 @@ class WikiModule extends Module {
 	 * @param string[] $moduleNames
 	 */
 	public static function preloadTitleInfo(
-		Context $context, array $moduleNames
+		Context $context, array $moduleNames, ?string $ns = null
 	) {
 		$rl = $context->getResourceLoader();
 		// getDB() can be overridden to point to a foreign database.
@@ -681,15 +681,15 @@ class WikiModule extends Module {
 			sort( $batch['pages'] );
 			$pagesHash = sha1( implode( '|', $batch['pages'] ) );
 			$allInfo = $cache->getWithSetCallback(
-				$cache->makeGlobalKey( 'resourceloader-titleinfo', $domainId, $pagesHash ),
+				$cache->makeGlobalKey( $ns === 'user' ? 'resourceloader-titleinfo-user' : 'resourceloader-titleinfo',
+					$domainId, $pagesHash ),
 				$cache::TTL_HOUR,
 				static function ( $curVal, &$ttl, array &$setOpts ) use ( $batch, $fname ) {
 					$setOpts += Database::getCacheSetOptions( $batch['db'] );
 					return static::fetchTitleInfo( $batch['db'], $batch['pages'], $fname );
 				},
 				[
-					'checkKeys' => [
-						$cache->makeGlobalKey( 'resourceloader-titleinfo', $domainId ) ]
+					'checkKeys' => [ $cache->makeGlobalKey( 'resourceloader-titleinfo', $domainId ) ]
 				]
 			);
 

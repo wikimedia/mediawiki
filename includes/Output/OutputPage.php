@@ -3749,7 +3749,7 @@ class OutputPage extends ContextSource {
 			$userBatch = [ 'user.styles', 'user' ];
 			$siteBatch = array_diff( $moduleStyles, $userBatch );
 			RL\WikiModule::preloadTitleInfo( $context, $siteBatch );
-			RL\WikiModule::preloadTitleInfo( $context, $userBatch );
+			RL\WikiModule::preloadTitleInfo( $context, $userBatch, 'user' );
 
 			// Filter out modules handled by buildExemptModules()
 			$moduleStyles = array_filter( $moduleStyles,
