@@ -2649,8 +2649,6 @@
 	"fileduplicatesearch-result-n": "The file \"$1\" haes {{PLURAL:$2|1 identeecal dupleecation|$2 identeecal dupleecations}}.",
 	"fileduplicatesearch-noresults": "Naw file named \"$1\" foond.",
 	"specialpages": "Byordinar pages",
-	"specialpages-note-top": "The Legend",
-	"specialpages-note-restricted": "* Normal byordinair pages.\n* <span class=\"mw-specialpagerestricted\">Restreected byordinair pages.</span>",
 	"specialpages-group-maintenance": "Maintenance reports",
 	"specialpages-group-other": "Ither byordinair pages",
 	"specialpages-group-login": "Accoont management",

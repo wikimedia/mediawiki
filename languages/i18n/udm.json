@@ -3178,8 +3178,6 @@
 	"fileduplicatesearch-result-n": "\"$1\" файллэн вань {{PLURAL:$2|1 быдэсак сыӵе ик тусъетэз|$2 огкадь тусъетъёсыз\n}}.",
 	"fileduplicatesearch-noresults": "$1 нимо файл шедьтэмын ӧвӧл.",
 	"specialpages": "Юрттӥсь бамъёс",
-	"specialpages-note-top": "мадёс",
-	"specialpages-note-restricted": "* Огшоры нимазъям бамъёс.\n* <span class=\"mw-specialpagerestricted\n\">Сюбегатэм нимазъям бамъёс.</span>",
 	"specialpages-group-maintenance": "Чаклан-эскерон ужъёс сярысь огъянъёс",
 	"specialpages-group-other": "Мукет нимазъям бамъёс",
 	"specialpages-group-login": "Аккаунтэн кивалтон",

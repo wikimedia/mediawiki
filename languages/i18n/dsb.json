@@ -2265,8 +2265,6 @@
 	"fileduplicatesearch-result-n": "Dataja \"$1\" ma {{PLURAL:$2|1 identiski duplikat|$2 identiskej duplikata|$2 identiske duplikaty|$2 identiskich duplikatow}}.",
 	"fileduplicatesearch-noresults": "Žedna dataja z mjenim \"$1\" namakana.",
 	"specialpages": "Specialne boki",
-	"specialpages-note-top": "Legenda",
-	"specialpages-note-restricted": "* Normalne specialne boki.\n* <span class=\"mw-specialpagerestricted\">Specialne boki z wobgranicowanym pśistupom.</span>",
 	"specialpages-group-maintenance": "Wótwardowańske lisćiny",
 	"specialpages-group-other": "Druge specialne boki",
 	"specialpages-group-login": "Pśizjawiś/Konto załožyś",

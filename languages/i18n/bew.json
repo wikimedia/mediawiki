@@ -3142,8 +3142,6 @@
 	"fileduplicatesearch-result-n": "Berekas \"$1\" ada punya {{PLURAL:$2|$2 duplikat nyang percis}}.",
 	"fileduplicatesearch-noresults": "Kaga' ketemu berekas nyang namanya \"$1\".",
 	"specialpages": "Halaman istimèwa",
-	"specialpages-note-top": "Keterangan",
-	"specialpages-note-restricted": "* Halaman istimèwa biasa.\n* <span class=\"mw-specialpagerestricted\">Halaman istimèwa kewates.</span>",
 	"specialpages-group-maintenance": "Laporan pengopèan",
 	"specialpages-group-other": "Halaman istimèwa laènnya",
 	"specialpages-group-login": "Pengelolaan rèkening",

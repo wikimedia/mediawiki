@@ -220,7 +220,8 @@
 			"Rileyblondin",
 			"EmDashUser002",
 			"Wikipucine",
-			"Bananax47"
+			"Bananax47",
+			"Abakar B"
 		]
 	},
 	"sunday": "dimanche",
@@ -3615,8 +3616,6 @@
 	"special-talkpage-target": "Page du sujet",
 	"special-talkpage-submit": "Aller à la page de discussion",
 	"specialpages": "Pages spéciales",
-	"specialpages-note-top": "Légende",
-	"specialpages-note-restricted": "* Pages spéciales normales.\n* <span class=\"mw-specialpagerestricted\">Pages spéciales nécessitant des droits particuliers.</span>",
 	"specialpages-group-maintenance": "Rapports de maintenance",
 	"specialpages-group-other": "Autres pages spéciales",
 	"specialpages-group-login": "Gestion des comptes",

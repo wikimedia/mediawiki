@@ -3139,8 +3139,6 @@
 	"fileduplicatesearch-result-n": "Súbor „$1“ má {{PLURAL:$2|1 identický duplikát|$2 identické duplikáty|$2 identických duplikátov}}.",
 	"fileduplicatesearch-noresults": "Súbor s názvom „$1“ nebol nájdený.",
 	"specialpages": "Špeciálne stránky",
-	"specialpages-note-top": "Legenda",
-	"specialpages-note-restricted": "* Bežné špeciálne stránky.\n* <strong class=\"mw-specialpagerestricted\">Špeciálne stránky s obmedzeným prístupom.</strong>",
 	"specialpages-group-maintenance": "Údržba",
 	"specialpages-group-other": "Iné špeciálne stránky",
 	"specialpages-group-login": "Prihlásenie / registrácia",

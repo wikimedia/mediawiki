@@ -3379,8 +3379,6 @@
 	"special-talkpage-target": "주제 문서",
 	"special-talkpage-submit": "토론 문서로 이동",
 	"specialpages": "특수 문서 목록",
-	"specialpages-note-top": "범례",
-	"specialpages-note-restricted": "* 일반 특수문서.\n* <span class=\"mw-specialpagerestricted\">제한된 특수문서.</span>",
 	"specialpages-group-maintenance": "관리용 목록",
 	"specialpages-group-other": "다른 특수 문서",
 	"specialpages-group-login": "계정 관리",

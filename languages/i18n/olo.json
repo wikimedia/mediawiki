@@ -3158,8 +3158,6 @@
 	"fileduplicatesearch-result-n": "Tiijostol $1 on {{PLURAL:$2|yksi yhtenjyttyine dublikuattu|$2 yhtenjyttymiä dublikuattua}}.",
 	"fileduplicatesearch-noresults": "Tiijostuo nimel $1 ei löydynyh.",
 	"specialpages": "Erillizet sivut",
-	"specialpages-note-top": "Legendu",
-	"specialpages-note-restricted": "* Tavallizet erillizet sivut.\n* <span class=\"mw-specialpagerestricted\">Rajoitetut erillizet sivut.</span>",
 	"specialpages-group-maintenance": "Huollonpidäjien selvitykset",
 	"specialpages-group-other": "Muut erillizet sivut",
 	"specialpages-group-login": "Käyttäjäntunnuksen ohjuamine",

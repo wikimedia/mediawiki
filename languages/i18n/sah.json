@@ -3166,8 +3166,6 @@
 	"fileduplicatesearch-result-n": "\"$1\" билэ {{PLURAL:$2|1 хатылааһыннаах эбит|$2 хатылааһыннардаах эбит}}.",
 	"fileduplicatesearch-noresults": "«$1» диэн билэ суох эбит.",
 	"specialpages": "Анал сирэйдэр",
-	"specialpages-note-top": "Легендата",
-	"specialpages-note-restricted": "* Көннөрү анал сирэйдэр.\n* <span class=\"mw-specialpagerestricted\">Хааччахтаах анал сирэйдэр.</span>",
 	"specialpages-group-maintenance": "Техническэй отчуоттар",
 	"specialpages-group-other": "Атын аналлаах сирэйдэр",
 	"specialpages-group-login": "Бэлиэтэнии салайыыта",

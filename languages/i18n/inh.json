@@ -3181,8 +3181,6 @@
 	"fileduplicatesearch-result-n": "«$1» файлага $2 {{PLURAL:$2|дубликат}} я.",
 	"fileduplicatesearch-noresults": "ЦӀи «$1» йолаш файл кораяьяц.",
 	"specialpages": "ЛаьрххӀа йола оагӀонаш",
-	"specialpages-note-top": "Легенда",
-	"specialpages-note-restricted": "* Массазара гӀулакха оагӀонаш.\n* <span class=\"mw-specialpagerestricted\">ТӀакхоачилга хаьдда дола гӀулакха оагӀонаш.</span>",
 	"specialpages-group-maintenance": "Техникацара гӀулакх дара отчёташ",
 	"specialpages-group-other": "Кхыйола гӀулакха оагӀонаш",
 	"specialpages-group-login": "Аккаунта урхалдар",

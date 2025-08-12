@@ -2262,7 +2262,6 @@
 	"fileduplicatesearch-result-n": "\"$1\" ફાઇલની તેની સમાન {{PLURAL:$2|1 નકલ |$2 નકલો }} છે.",
 	"fileduplicatesearch-noresults": " \"$1\" નામ ધરાવતી કોઇ ફાઇલ ન મળી",
 	"specialpages": "ખાસ પાનાંઓ",
-	"specialpages-note-restricted": "* નિયમિત ખાસ પાનાં.\n* <span class=\"mw-specialpagerestricted\">પ્રતિબંધિત ખાસ પાનાં.</span>",
 	"specialpages-group-maintenance": "સમારકામ અહેવાલ",
 	"specialpages-group-other": "અન્ય ખાસ પાનાઓ",
 	"specialpages-group-login": "પ્રવેશ / ખાતુ બનાવો",

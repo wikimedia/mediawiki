@@ -2021,8 +2021,6 @@
 	"fileduplicatesearch-result-n": "La datoteca \"$1\" ha {{PLURAL:$2|in dublicat identic|$2 dublicats identics}}.",
 	"fileduplicatesearch-noresults": "Betg chattà ina datoteca cun il num \"$1\".",
 	"specialpages": "Paginas spezialas",
-	"specialpages-note-top": "Legenda",
-	"specialpages-note-restricted": "* Paginas spezialas normalas.\n* <span class=\"mw-specialpagerestricted\">Paginas spezialas restrenschidas.</span>",
 	"specialpages-group-maintenance": "Rapports da mantegnamant",
 	"specialpages-group-other": "Autras paginas spezialas",
 	"specialpages-group-login": "S'annunziar / crear in conto",

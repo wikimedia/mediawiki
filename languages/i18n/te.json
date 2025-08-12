@@ -3309,8 +3309,6 @@
 	"fileduplicatesearch-result-n": "\"$1\" అనే పేరుగల ఫైలుకు {{PLURAL:$2|ఒక మారుప్రతి ఉంది|$2 మారుప్రతులున్నాయి}}.",
 	"fileduplicatesearch-noresults": "\"$1\" అనే పేరుగల దస్త్రమేమీ కనబడలేదు.",
 	"specialpages": "ప్రత్యేక పేజీలు",
-	"specialpages-note-top": "సూచిక",
-	"specialpages-note-restricted": "* మామూలు ప్రత్యేక పేజీలు.\n* <span class=\"mw-specialpagerestricted\">నియంత్రిత ప్రత్యేక పేజీలు.</span>",
 	"specialpages-group-maintenance": "నిర్వహణా నివేదికలు",
 	"specialpages-group-other": "ఇతర ప్రత్యేక పేజీలు",
 	"specialpages-group-login": "లాగినవండి / ఖాతా సృష్టించుకోండి",

@@ -2986,8 +2986,6 @@
 	"fileduplicatesearch-result-n": "Datoteka \"$1\" ima {{PLURAL:$2|1 identičnog|$2 identična|$2 identičnih}} dvojnika.",
 	"fileduplicatesearch-noresults": "Nije pronađena datoteka s imenom \"$1\".",
 	"specialpages": "Posebne stranice",
-	"specialpages-note-top": "Legenda",
-	"specialpages-note-restricted": "* Normalne posebne stranice.\n* <strong class=\"mw-specialpagerestricted\">Zaštićene posebne stranice.</strong>",
 	"specialpages-group-maintenance": "Izvještaji za održavanje",
 	"specialpages-group-other": "Ostale posebne stranice",
 	"specialpages-group-login": "Prijava / pravljenje računa",

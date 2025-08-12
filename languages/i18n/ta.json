@@ -2680,8 +2680,6 @@
 	"fileduplicatesearch-result-n": "\"$1\" கோப்பையொத்த {{PLURAL:$2|1 ஒரு நகலொன்று|$2 நகல்கள்}} உண்டு.",
 	"fileduplicatesearch-noresults": "\"$1\" என்ற பெயர் கொண்ட கோப்பு எதுவும் காணப்படவில்லை.",
 	"specialpages": "சிறப்புப் பக்கங்கள்",
-	"specialpages-note-top": "உள்பட்டியல்",
-	"specialpages-note-restricted": " * சராசரி சிறப்புப் பக்கங்கள்.\n * <span class=\"mw-specialpagerestricted\">வரையறுக்கப்பட்ட சிறப்புப் பக்கங்கள்.</span>",
 	"specialpages-group-maintenance": "பராமரிப்பு அறிக்கைகள்",
 	"specialpages-group-other": "ஏனைய சிறப்புப் பக்கங்கள்",
 	"specialpages-group-login": "புகுபதிகை/பயனர் கணக்கு தொடக்கம்",

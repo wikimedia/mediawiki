@@ -2215,8 +2215,6 @@
 	"fileduplicatesearch-result-n": "Die Datei \"$1\" hot {{PLURAL:$2|1 identisches Duplikat|$2 identische Duplikate}}.",
 	"fileduplicatesearch-noresults": "Do woarde keh Datei mit dem Noome \"$1\" gefunn.",
 	"specialpages": "Spezialseite",
-	"specialpages-note-top": "Legende",
-	"specialpages-note-restricted": "* Normal Spezialseite.\n* <span class=\"mw-specialpagerestricted\">Spezialseite mit beschränktem Zugang.</span>",
 	"specialpages-group-maintenance": "Woortungsliste",
 	"specialpages-group-other": "Annre Spezialseite",
 	"specialpages-group-login": "Benutzerkonto",

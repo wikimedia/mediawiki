@@ -2337,8 +2337,6 @@
 	"fileduplicatesearch-result-n": "Der {{PLURAL:$2|is één bestaand|bin $2 bestaanden}} die gelieke bin an \"$1\".",
 	"fileduplicatesearch-noresults": "Der is gien bestaand mit de naam \"$1\" evunnen.",
 	"specialpages": "Speciale syden",
-	"specialpages-note-top": "Legenda",
-	"specialpages-note-restricted": "* Normale speciale syden.\n* <span class=\"mw-specialpagerestricted\">Beparked togangelike speciale syden.</span>",
 	"specialpages-group-maintenance": "Underholdsrapporten",
 	"specialpages-group-other": "Andere speciale syden",
 	"specialpages-group-login": "Anmelden / inskryven",

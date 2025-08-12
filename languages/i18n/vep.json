@@ -3215,8 +3215,6 @@
 	"fileduplicatesearch-result-n": "Failal \"$1\" om {{PLURAL:$2|1 mugoine dublikat|$2 mugoižed dublikatad}}.",
 	"fileduplicatesearch-noresults": "Fail nimenke \"$1\" ei ole löutud.",
 	"specialpages": "Eriližed lehtpoled",
-	"specialpages-note-top": "Sel'genzoituz",
-	"specialpages-note-restricted": "* Jogavuiččed eriližed lehtpoled.\n* <span class=\"mw-specialpagerestricted\">Saubatud eriližed lehtpoled.</span>",
 	"specialpages-group-maintenance": "Tehnižen holitusen tegonsatused",
 	"specialpages-group-other": "Toižed eriližed lehtpoled",
 	"specialpages-group-login": "Lehtpolen ohjandamine",

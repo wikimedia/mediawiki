@@ -18,7 +18,8 @@
 			"Vlad5250",
 			"Wikicology",
 			"아라",
-			"ToluAyo"
+			"ToluAyo",
+			"Ibjaja055"
 		]
 	},
 	"sunday": "Ọjọ́ Àìkú",
@@ -298,6 +299,8 @@
 	"title-invalid-interwiki": "Àkọlé ojúewé ajẹ́títọrọ ní ìjápọ̀ interwiki tí kò ṣe é lò nìnú àkọlé.",
 	"title-invalid-talk-namespace": "Àkọlé ojúewé ajẹ́títọrọ tọ́ka sí ojúewé ọ̀rọ̀ tí kò sí.",
 	"title-invalid-characters": "Àkọlé ojúewé ajẹ́títọrọ ní àwọn àmì-lẹ́tà tí kò yẹ: \"$1\".",
+	"title-invalid-relative": "Akọle ni ojulumo ona. Awọn akọle oju-iwe ibatan (./, ../) jẹ aiṣedeede, nitori wọn kii yoo ṣee ṣe nigbagbogbo nigbati ẹrọ aṣawakiri olumulo ba ni ọwọ.",
+	"title-invalid-magic-tilde": "Akọle oju-iwe ti o beere ni ọkọọkan akole idan ti ko wulo (<nowiki> ~~~</nowiki> ).",
 	"title-invalid-leading-colon": "Àkọ́lé ojú-ìwé tí a béèrè fún ní kólọ́ọ̀mù tí kò wúlò ní ìbẹ̀rẹ̀.",
 	"perfcached": "Ìwònyí jẹ́ dátà láti inú cache nítoríẹ̀ ó le mọ́ jẹ̀ẹ́ tuntun. Ó pọ̀jùlọ {{PLURAL:$1|èsì kan|èsì $1}} wà nínú cache.",
 	"perfcachedts": "Ìwònyí jẹ́ dátà láti inú cache, ọjọ́ tí a ṣe àtúnṣe rẹ̀ gbẹ̀yìn ni $1. Ó pọ̀jùlọ {{PLURAL:$4|èsì kan|èsì $4}} wà nínú cache.",
@@ -2313,7 +2316,6 @@
 	"fileduplicatesearch-result-n": "Fáìlì \"$1\" ní {{PLURAL:$2|ìdáwòkọ jíjọra 1|ìdáwòkọ jíjọra $2}}.",
 	"fileduplicatesearch-noresults": "Kò sí fáìlì tó únjẹ́ \"$1\".",
 	"specialpages": "Àwọn ojúewé pàtàkì",
-	"specialpages-note-restricted": "* Àwọn ojúewé pàtàkì déédé.\n* <span class=\"mw-specialpagerestricted\">Àwọn ojúewé pàtàkì aláìgbàláyè.</span>",
 	"specialpages-group-maintenance": "Àwọn ìjábọ̀ ìtọ́jú",
 	"specialpages-group-other": "Àwọn ojúewé pàtàkì míràn",
 	"specialpages-group-login": "Ìtẹ̀wọlé / ìdá ìforúkọpamọ́",

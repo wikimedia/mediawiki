@@ -2410,8 +2410,6 @@
 	"fileduplicatesearch-result-n": "D Datei „$1“ het {{PLURAL:$2|1 identisch Duplikat|$2 identischi Duplikat}}.",
 	"fileduplicatesearch-noresults": "S isch kei Datei mit em Name „$1“ gfunde wore.",
 	"specialpages": "Spezialsytene",
-	"specialpages-note-top": "Zeichenerklärig:",
-	"specialpages-note-restricted": "* Normali Spezialsyte.\n* <span class=\"mw-specialpagerestricted\">Spezialsyte mit bschränktem Zuegang.</span>",
 	"specialpages-group-maintenance": "Wartigslischte",
 	"specialpages-group-other": "Andri Spezialsyte",
 	"specialpages-group-login": "Aamälde/Konto aalege",

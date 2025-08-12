@@ -2418,8 +2418,6 @@
 	"fileduplicatesearch-result-n": "មាន {{PLURAL:$2|1 ឯកសារដូចគ្នាបេះបិទ|$2 ឯកសារដូចគ្នាបេះបិទ}}ទៅនឹងឯកសារ \"$1\"។",
 	"fileduplicatesearch-noresults": "រកមិនឃើញឯកសារដែលមានឈ្មោះ \"$1\" ទេ។",
 	"specialpages": "ទំព័រ​ពិសេស​ៗ",
-	"specialpages-note-top": "កំណត់សម្គាល់",
-	"specialpages-note-restricted": "* ទំព័រពិសេសៗធម្មតា។\n* <span class=\"mw-specialpagerestricted\">ទំព័រពិសេសៗដែលមានការដាក់កំហិត។</span>",
 	"specialpages-group-maintenance": "របាយការណ៍នានាអំពីតំហែទាំ",
 	"specialpages-group-other": "ទំព័រពិសេសៗផ្សេងៗទៀត",
 	"specialpages-group-login": "ការចាត់ចែងគណនី",

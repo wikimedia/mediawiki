@@ -1385,6 +1385,8 @@
 	"apihelp-rsd-summary": "Ein RSD-Schema (Really Simple Discovery) exportieren.",
 	"apihelp-rsd-example-simple": "Das RSD-Schema exportieren",
 	"apihelp-setnotificationtimestamp-param-entirewatchlist": "An allen beobachteten Seiten arbeiten.",
+	"apihelp-setnotificationtimestamp-example-all": "Setze den Benachrichtigungsstatus der gesamten Beobachtungsliste zurück.",
+	"apihelp-setnotificationtimestamp-example-page": "Setze den Benachrichtigungsstatus für [[{{MediaWiki:Mainpage}}]] zurück.",
 	"apihelp-setpagelanguage-summary": "Ändert die Sprache einer Seite.",
 	"apihelp-setpagelanguage-extended-description-disabled": "Das Ändern der Sprache von Seiten ist auf diesem Wiki nicht erlaubt.\n\nAktiviere <var>[[mw:Special:MyLanguage/Manual:$wgPageLanguageUseDB|$wgPageLanguageUseDB]]</var>, um diese Aktion zu verwenden.",
 	"apihelp-setpagelanguage-param-title": "Titel der Seite, deren Sprache du ändern möchtest. Kann nicht zusammen mit <var>$1pageid</var> verwendet werden.",

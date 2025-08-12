@@ -3170,8 +3170,6 @@
 	"fileduplicatesearch-result-n": "\"$1\" файллӧн эм {{PLURAL:$2|1 дзик ӧткодь дубликат|$2 дзик ӧткодь дубликат}}.",
 	"fileduplicatesearch-noresults": "\"$1\" нима файл абу аддзӧма.",
 	"specialpages": "Торъя лист бокъяс",
-	"specialpages-note-top": "Легенда",
-	"specialpages-note-restricted": "* Пырся торъя мога лист бокъяс.\n* <span class=\"mw-specialpagerestricted\">Абу ставлы судзана торъя мога лист бокъяс.</span>",
 	"specialpages-group-maintenance": "Техника могмӧдан отчёт",
 	"specialpages-group-other": "Мукӧд торъя мога лист бокъяс",
 	"specialpages-group-login": "Аккаунтӧн веськӧдлӧм",

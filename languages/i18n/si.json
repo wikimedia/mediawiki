@@ -2376,8 +2376,6 @@
 	"fileduplicatesearch-result-n": "\"$1\" ගොනුවට {{PLURAL:$2|සර්වසම අනුපිටපතක්|සර්වසම අනුපිටපත් $2 ක්}} ඇත.",
 	"fileduplicatesearch-noresults": "\"$1\" නමින් ගොනුවක් හමු නොවුණි",
 	"specialpages": "විශේෂ පිටු",
-	"specialpages-note-top": "ප්‍රබන්ධය",
-	"specialpages-note-restricted": "* සාමාන්‍ය විශේෂ පිටු.\n* <span class=\"mw-specialpagerestricted\">සීමිත විශේෂ පිටු.</span>\n* <span class=\"mw-specialpagecached\">සීමිත කළ වි‍ශේෂ පිටු.</span>",
 	"specialpages-group-maintenance": "නඩත්තු වාර්තා",
 	"specialpages-group-other": "අනෙකුත් විශේෂ පිටු",
 	"specialpages-group-login": "පිවිසෙන්න / ගිණුමක් තනන්න",

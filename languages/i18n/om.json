@@ -14,7 +14,8 @@
 			"Node ue",
 			"Oromoo",
 			"Oromoom",
-			"Tumsaa"
+			"Tumsaa",
+			"Cherinett"
 		]
 	},
 	"sunday": "Dilbata",
@@ -79,7 +80,11 @@
 	"category-subcat-count": "{{PLURAL:$2|Ramaddiin kun ramaddii armaan gadii qofa qaba.|Ramaddiin kun {{PLURAL:$1|ramaddii jalee|ramaddiiwwan jalee $1}} armaan gadii $2 ofkeessaa qaba.}}",
 	"category-subcat-count-limited": "Ramaddiin kun {{PLURAL:$1|ramaddii jalee|ramaddiiwwan jalee $1}} armaan gadii qaba.",
 	"category-article-count": "{{PLURAL:$2|Ramaddiin kun fuula armaan gadii qofa qaba.|Waliigala $2 keessaa {{PLURAL:$1|Fuulli|Fuulotni $1}} armaan gadii ramaddii kana keessa jiru.}}",
+	"category-article-count-limited": "Kanneen armaan gadii {{PLURAL:$1| fuula jechuun| Fuulonni $1 }} gosa ammaa keessa jiru.",
 	"category-file-count": "{{PLURAL:$2|Ramaddiin kun faayila armaan gadii qofa qaba.|Waliigala $2 keessaa {{PLURAL:$1|Faayiliin|Faayilootni $1}} armaan gadii ramaddii kana keessa jiru.}}",
+	"category-file-count-limited": "Kanneen armaan gadii {{PLURAL:$1| faayilii jechuun| Faayiloonni $1 }} gosa ammaa keessa jiru.",
+	"index-category": "Fuulota indeeksii ta’an",
+	"noindex-category": "Fuulota indeksii hin qabne",
 	"broken-file-category": "Fuulota geessituuwwan faayilaa hin dalagne walinii",
 	"about": "Waa'ee",
 	"article": "Fuula qabiyyee",
@@ -92,6 +97,7 @@
 	"anontalk": "Dubbadhu",
 	"navigation": "Imala",
 	"and": "&#32;fi",
+	"faq": "Gaaffiiwwan yeroo baay’ee gaafataman",
 	"actions": "Gochoota",
 	"namespaces": "Iddoowwan maqaa",
 	"variants": "Akaakuu",
@@ -102,6 +108,7 @@
 	"help": "Gargaarsa",
 	"help-mediawiki": "Gargaarsa waa'ee MiidiyaaWiki",
 	"search": "Barbaadi",
+	"search-ignored-headings": "# # 10<!-- leave this line exactly as it is --><pre> \n# Mata dureewwan barbaachaan tuffataman.\n# Jijjiiramni kanaa akkuma fuul-durri mataduree qabu indeksii ta'een hojiirra oola.\n# Gulaallii null gochuun fuula irra deebi'ee indeksii gochuu dirqisiisuu dandeessa.\n# Gingilchaan akka armaan gadiitti:\n# * Arfii \"#\" irraa kaasee hanga dhuma sararichaa wanti hundi yaada.\n# * Sararri duwwaa hin taane hundi mata duree sirrii ta'eedha bira darbuu, dhimmaa fi waan hunda.\nWabiiwwan\nHidhannoollee alaa\nAkkasumas kana ilaali\n # # 10</pre><!-- leave this line exactly as it is -->",
 	"searchbutton": "Barbaadi",
 	"go": "Itti fufi",
 	"searcharticle": "Itti fufi",

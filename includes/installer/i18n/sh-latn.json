@@ -62,7 +62,7 @@
 	"config-apc": "[https://www.php.net/apc APC] je instaliran",
 	"config-apcu": "[https://www.php.net/apcu APCu] je instaliran",
 	"config-no-cache-apcu": "<strong>Upozorenje:</strong> Nisam mogao naći [https://www.php.net/apcu APCu] ili [https://www.iis.net/downloads/microsoft/wincache-extension WinCache].\nKeširanje objekata nije omogućeno.",
-	"config-mod-security": "'''Upozorenje''': na vašem serveru je omogućen [https://modsecurity.org/ mod_security]. Ako nije postavljeno kako treba, to može uzrokovati probleme s programom MediaWikija i drugim programima koji korisnicima omogućuju objavljivanje proizvoljne sadržine.\nPogledajte [https://modsecurity.org/documentation/ mod_security dokumentaciju] ili kontaktirajte domaćin ako naiđete na slučajne greške.",
+	"config-mod-security": "'''Upozorenje''': na vašem serveru je omogućen [https://modsecurity.org/ mod_security]. Ako nije postavljeno kako treba, to može uzrokovati probleme s programom MediaWikija i drugim programima koji korisnicima omogućuju objavljivanje proizvoljnog sadržaja.\nPogledajte [https://modsecurity.org/documentation/ mod_security dokumentaciju] ili kontaktirajte domaćin ako naiđete na slučajne greške.",
 	"config-diff3-bad": "Nisam pronašao usporednik za tekst GNU razl3 (GNU diff3). Za sada ovo možete zanemariti, ali kontradikcije u uređivanju mogu postati češće.",
 	"config-git": "Pronašao sam Git program za kontrolu verzija: <code>$1</code>.",
 	"config-git-bad": "Nisam pronašao Git-program za kontrolu verzija. Za sada ovo možete zanemariti. Imajte na umu da Posebna:Verzije ne prikazuju krpe u primjenama.",

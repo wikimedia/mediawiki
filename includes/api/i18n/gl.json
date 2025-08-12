@@ -1794,7 +1794,7 @@
 	"apierror-missingparam": "O parámetro <var>$1</var> debe estar definido.",
 	"apierror-missingrev-pageid": "Non hai ningunha revisión actual da páxina con identificador $1.",
 	"apierror-missingrev-title": "Non hai ningunha revisión actual do título $1.",
-	"apierror-missingtitle-createonly": "Os títulos faltantes só se poden protexer con <kbd>create</kbd>.",
+	"apierror-missingtitle-createonly": "Os títulos que faltan só se poden protexer con <kbd>create</kbd>.",
 	"apierror-missingtitle": "A páxina que especificou non existe.",
 	"apierror-missingtitle-byname": "A páxina $1 non existe.",
 	"apierror-moduledisabled": "O módulo <kbd>$1</kbd> foi deshabilitado.",

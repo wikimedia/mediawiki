@@ -2323,8 +2323,6 @@
 	"fileduplicatesearch-submit": "ရှာဖွေရန်",
 	"fileduplicatesearch-noresults": "ဖိုင်အမည် \"$1\" ကို မတွေ့ပါ။",
 	"specialpages": "အထူး စာမျက်နှာများ",
-	"specialpages-note-top": "အညွှန်း",
-	"specialpages-note-restricted": "* ပုံမှန် အထူးစာမျက်နှာများ။\n* <span class=\"mw-specialpagerestricted\">ကန့်သတ်ထားသော အထူးစာမျက်နှာများ။</span>",
 	"specialpages-group-maintenance": "ထိန်းသိမ်းမှု အစီရင်ခံချက်များ",
 	"specialpages-group-other": "အခြားအထူးစာမျက်နှာများ",
 	"specialpages-group-login": "အကောင့်စီမံခန့်ခွဲမှု",

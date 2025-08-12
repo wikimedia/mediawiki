@@ -2394,8 +2394,6 @@
 	"fileduplicatesearch-result-n": "Файл «$1» має {{PLURAL:$2|1 ідентичный дуплікат|$2 ідентичных дуплікатів}}.",
 	"fileduplicatesearch-noresults": "Файл з назвов «$1» ненайдженый.",
 	"specialpages": "Шпеціалны сторінкы",
-	"specialpages-note-top": "Леґенда",
-	"specialpages-note-restricted": "* Звычайны шпеціалны сторінкы.\n* <span class=\"mw-specialpagerestricted\">Шпеціалны сторінкы з&nbsp;обмедженым приступом</span>\n* <span class=\"mw-specialpagecached\">Кешованы шпеціалны сторінкы</span>",
 	"specialpages-group-maintenance": "Технічны репорты",
 	"specialpages-group-other": "Іншы",
 	"specialpages-group-login": "Приголошіня / створїня конта",

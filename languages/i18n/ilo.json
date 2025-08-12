@@ -2849,8 +2849,6 @@
 	"fileduplicatesearch-result-n": "Ti papeles ti \"$1\" ket addaan {{PLURAL:$2|iti 1 nga agpadpada a duplikado|kadagiti $2 nga agpadpada a duplikado}}.",
 	"fileduplicatesearch-noresults": "Awan ti nabirukan a papeles a nanaganan ti \"$1\".",
 	"specialpages": "Espesial a pampanid",
-	"specialpages-note-top": "Leyenda",
-	"specialpages-note-restricted": "* Kadawyan nga espesial a pampanid.\n* <span class=\"mw-specialpagerestricted\">Nagawidan nga espesial a pampanid.</span>",
 	"specialpages-group-maintenance": "Dagiti reporta ti panagtaripato",
 	"specialpages-group-other": "Sabali nga espesial a pampanid",
 	"specialpages-group-login": "Sumrek / agpartuat ti pakabilangan",

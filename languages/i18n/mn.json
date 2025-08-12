@@ -2098,8 +2098,6 @@
 	"fileduplicatesearch-result-n": "\"$1\" файлтай яг ижилхэн, давхардсан {{PLURAL:$2|1 файл|$2 файл}} байна.",
 	"fileduplicatesearch-noresults": "\"$1\" нэртэй файл олдсонгүй.",
 	"specialpages": "Тусгай хуудаснууд",
-	"specialpages-note-top": "Томъёолбор",
-	"specialpages-note-restricted": "* Ердийн тусгай хуудсууд.\n* <strong class=\"mw-specialpagerestricted\">Хориотой тусгай хуудсууд.</strong>",
 	"specialpages-group-maintenance": "Засвар үйлчилгээний тайлангууд",
 	"specialpages-group-other": "Бусад тусгай хуудсууд",
 	"specialpages-group-login": "Нэвтрэх / бүртгүүлэх",

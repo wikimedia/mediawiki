@@ -3219,8 +3219,6 @@
 	"fileduplicatesearch-result-n": "«$1» файлын $2 {{PLURAL:$2|икгай дубликатше}} уло.",
 	"fileduplicatesearch-noresults": "«$1» лӱман файлым мумо огыл.",
 	"specialpages": "Спецвелыж-влак",
-	"specialpages-note-top": "Легенде",
-	"specialpages-note-restricted": "* Тыглай служебный велыж-влак.\n* <span class=\"mw-specialpagerestricted\">Шыгыремден кучылташ лийше служебный велыж-влак.</span>",
 	"specialpages-group-maintenance": "Технике шотышто полыш нерген отчёт-влак",
 	"specialpages-group-other": "Моло спецвелыж-влак",
 	"specialpages-group-login": "Аккаунтым виктарымаш",

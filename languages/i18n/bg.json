@@ -3244,8 +3244,6 @@
 	"fileduplicatesearch-noresults": "Не беше открит файл с име „$1“.",
 	"special-talkpage-submit": "Към беседата",
 	"specialpages": "Специални страници",
-	"specialpages-note-top": "Легенда",
-	"specialpages-note-restricted": "* Обикновени специални страници.\n* <span class=\"mw-specialpagerestricted\">Специални страници с ограничен достъп.</span>",
 	"specialpages-group-maintenance": "Доклади по поддръжката",
 	"specialpages-group-other": "Други специални страници",
 	"specialpages-group-login": "Управление на сметката",

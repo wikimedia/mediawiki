@@ -2616,8 +2616,6 @@
 	"fileduplicatesearch-result-n": "\"$1\" faýlynyň {{PLURAL:$2|1 sany meňzeş dublikaty|$2 sany meňzeş dublikaty}} bar.",
 	"fileduplicatesearch-noresults": "\"$1\" atly faýl tapylmady.",
 	"specialpages": "Ýörite sahypalar",
-	"specialpages-note-top": "Rowaýat",
-	"specialpages-note-restricted": "* Adaty ýörite sahypalar.\n* <strong class=\"mw-specialpagerestricted\">Çäklendirilen ýörite sahypalar.</strong>",
 	"specialpages-group-maintenance": "Tehniki abatlaýyş hasabatlary",
 	"specialpages-group-other": "Başga ýörite sahypalar",
 	"specialpages-group-login": "Hasaba gir / täze hasap aç",
