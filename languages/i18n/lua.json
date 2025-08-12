@@ -169,6 +169,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} bienza kudi bantu bu nenu.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|dishitulula|Matshitulula}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|dibeji|mabeji}}",
+	"createacct-benefit-text3": "$2 {{PLURAL:$1|mufidi wa kakuyi ntanta|bafidi ba kakuyi ntanta}}",
 	"userlogin-authpopup-cancel": "Kwimakija",
 	"nouserspecified": "Udi ne bua kutela dîna dia muntu.",
 	"loginlanguagelabel": "Muakulu: $1",

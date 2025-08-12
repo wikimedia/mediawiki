@@ -180,6 +180,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} сени йимик адамланы ортакъ загьматы.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|тюзлев}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|сагьифа|сагьифалар}}",
+	"createacct-benefit-text3": "$2 артдагъы {{PLURAL:$1|ортакъчы}}",
 	"loginlanguagelabel": "Тил: $1",
 	"pt-login": "Гирмек",
 	"pt-login-button": "Гирмек",

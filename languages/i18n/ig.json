@@ -385,6 +385,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} sì nà aka ndị dị kà gị.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|ḿmezi}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|ihuakwụkwọ|ihuakwụkwọ ndi ọzọ}}",
+	"createacct-benefit-text3": "$2 ọhuru {{PLURAL:$1|onye inyeaka|ndi inyeaka}}",
 	"badretype": "Mkpurụ okwu ejị a gafẹ é jëghị.",
 	"usernameinprogress": "A na-emepụta akaụntụ maka aha njirimara a. Biko chere.",
 	"userexists": "enwela Aha njieme . Biko họrọ aha dị iche",

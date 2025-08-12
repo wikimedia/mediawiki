@@ -299,6 +299,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} تہ غون روئے ایڈٹ کورونیان.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|ترمیم|ترامیم}}",
 	"createacct-benefit-text2": "$1 $2 {{PLURAL:$1|صفحہ|صفحات}}",
+	"createacct-benefit-text3": "$2 حالیہ{{PLURAL:$1|contributor|contributors}}",
 	"badretype": "درج شدہ کلمۂ شناخت اصلو مطابقت نو لاکھویان",
 	"userexists": "تو کہ نامو کہ درج کوری آسوس ھیس پروشٹیاری استعمالہ شیر۔ مختلف نام استعمال کورے",
 	"loginerror": "داخلا غلطی",

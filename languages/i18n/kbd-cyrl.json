@@ -241,6 +241,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} — уэ пхуэдэ цӀыхухэм ящӀащ",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|зэгъэзэхуэжар|зэгъэзэхуэжахэр}}",
 	"createacct-benefit-text2": "‎$2 {{PLURAL:$1|напэкӀуэцӀ|напэкӀуэцӀхэр}}",
+	"createacct-benefit-text3": "$2 иужь зэманым къриубыдэу ‎{{PLURAL:$1|хэтыр|хэтыр|хэтхэр}}",
 	"badretype": "Парол иптхахэр зэтеху щытхэкъым.",
 	"userexists": "ЦыхухэтыцӀэ иптхар пэмыкӀ гуэрэм къегъэсэбэп.\nПэмыкӀ цӀэ къыхэх.",
 	"loginerror": "Логиныр тэрэзкъым",

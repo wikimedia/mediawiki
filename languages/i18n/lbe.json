@@ -129,6 +129,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} — жувагумма халкьуннашалса аьмса захӀмат.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|дакъаву|дакъавуртув}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|чӀапӀи|чӀапӀив}}",
+	"createacct-benefit-text3": "$2 {{PLURAL:$1|укклаккима|букклаккими}} махъса чумал",
 	"loginlanguagelabel": "Маз: $1",
 	"pt-login": "Уххан",
 	"pt-login-button": "Уххан",

@@ -134,6 +134,7 @@
 	"createacct-benefit-heading": "{{SITENAME}}-sí kwa inná bɨ́ káwe",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|jaáŋo|jaáŋoŋa}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|saŋgal|saŋgala}}",
+	"createacct-benefit-text3": "$2 naadakki'ŋ {{PLURAL:$1|dóŋája̠bɨ́dʉŋo|dóŋája̠bɨ́kwǎ}}",
 	"userlogin-authpopup-cancel": "Báásjáa",
 	"loginlanguagelabel": "Belé: $1",
 	"pt-login": "Ja̠rɨ́",

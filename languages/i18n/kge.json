@@ -333,6 +333,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} diguwai jolma cara Niku.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|dandanan}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|halaman}}",
+	"createacct-benefit-text3": "$2 {{PLURAL:$1|panyambay}} tarakhir",
 	"badretype": "Kata sandi say Niku kurukko mak satuluk.",
 	"usernameinprogress": "Pangguwaian akun untuk golar pangguna hasa sodang tilapahko. Tulung ponah pai.",
 	"userexists": "Golar pamakay say tikurukko kok tipakay.\nPayu tamtuko golar say barih.",

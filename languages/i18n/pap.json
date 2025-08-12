@@ -249,6 +249,7 @@
 	"createacct-benefit-heading": "Hende manera abo ta traha {{SITENAME}}.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|edishon}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|página}}",
+	"createacct-benefit-text3": "$2 {{PLURAL:$1|kontribuidó|kontribuidónan}} resien",
 	"badretype": "E kontraseñanan hinká no ta kuadra.",
 	"wrongpassword": "Kontraseña no ta korekto. Por fabor purba atrobe.",
 	"wrongpasswordempty": "Kontraseña tabata bashí. Por fabor purba atrobe.",

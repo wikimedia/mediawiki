@@ -137,6 +137,7 @@
 	"createacct-submit": "Аҳасабрбатә нҵамҭа аԥҵатәуп",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|аредакциазура|аредакциазурақәа}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|адаҟьа|адаҟьақәа}}",
+	"createacct-benefit-text3": "$2 aабыкьатәи {{PLURAL:$1|Алахәыла|Алахәылацәа}}",
 	"loginlanguagelabel": "Абызшәа: $1",
 	"pt-login": "Иҭалатәуп",
 	"pt-login-button": "Иҭалатәуп",

@@ -343,6 +343,7 @@
 	"createacct-benefit-heading": "Lafazökhi {{SITENAME}} ira niha simane ya'ugö",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|nibulö’ö}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|nga'örö}}",
+	"createacct-benefit-text3": "$2 {{PLURAL:$1|kontributor}} safuria",
 	"badretype": "Lö fagölö nono kusi nibe'emö bakha.",
 	"usernameinprogress": "Edöna tefazökhi akun zangoguna andre.\nBaloi.",
 	"userexists": "No lahalö niha döi zangoguna nibe'emö andrö.\nBe döi bö'ö.",

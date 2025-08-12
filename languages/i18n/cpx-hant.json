@@ -193,6 +193,7 @@
 	"createacct-benefit-heading": "{{SITENAME}}是合汝蜀样兮侬做兮。",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|修改}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|頁面}}",
+	"createacct-benefit-text3": "$2 最近兮{{PLURAL:$1|貢獻者}}",
 	"badretype": "汝拍入兮密碼無對。",
 	"loginerror": "躒入錯誤",
 	"loginsuccesstitle": "已經躒入",

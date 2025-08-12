@@ -133,6 +133,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} ఇమ్మోటరి ఇదున్ తయార్ ఇద్దరేకర్.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|బధ్లిప్|బధ్లిప్త}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|పేజి|పేజిక్}}",
+	"createacct-benefit-text3": "$2 ఒకోడ్ అజీర్ {{PLURAL:$1|సమర్పకుడు|సమర్పకులు}}",
 	"loginlanguagelabel": "గొట్టి $1",
 	"pt-login": "లాగిన్ ఎర్",
 	"pt-login-button": "లాగిన్ ఎర్",

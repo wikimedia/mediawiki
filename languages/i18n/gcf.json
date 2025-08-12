@@ -282,6 +282,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} Sé moun kon-w ki fè-y.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|modifikasyon}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|paj}}",
+	"createacct-benefit-text3": "$2 {{PLURAL:$1|dènyé kontribitè}}",
 	"badretype": "Modpas ou maké la yo ka korèsponn ant yo.",
 	"userexists": "Ondòt itilizatè ja sèvi èvè non-lasa.\nSyouplé chwazi on non ki diféran.",
 	"createacct-normalization": "Nou ké modifyé non a itilizatè a-w pou \"$2\", pou réstriksyon téknik.",

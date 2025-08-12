@@ -245,6 +245,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} hi nangmah ang mite siam a ni.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|siamṭhatna|siamṭhatnate}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|phêk|phêkte}}",
+	"createacct-benefit-text3": "$2 tunlai {{PLURAL:$1|thawhkhawmtu|thawhkhawmtute}}",
 	"badretype": "I thurûk ziahte a inmil lo.",
 	"userexists": "Hmangtu hming hman tawh a ni.\nHming dang i thlan a ngai.",
 	"loginerror": "Inziahluh sual",

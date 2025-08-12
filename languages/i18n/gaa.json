@@ -355,6 +355,7 @@
 	"createacct-benefit-heading": "Mɛi komɛi tamɔ bo feɔ {{SITENAME}}.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|tsakemɔ|tsakemɔi}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|plama|plamai}}",
+	"createacct-benefit-text3": "$2 nyɛsɛɛ nɛɛ {{PLURAL:$1|feelɔ|feelɔi}}",
 	"badretype": "Paswɛɛdi ni otswa lɛ bɛ. ekome",
 	"usernameinprogress": "\"Aagbele akauntu aaha nifeelɔgbɛi nɛɛ amrɔ nɛɛ.\nOfainɛ mɛɛ.\"",
 	"userexists": "\"Akɛ nifeelɔgbɛi ni otswa lɛ miitsu nii momo.\nOfainɛ ni okɛ gbɛi kroko atsu nii.\"",

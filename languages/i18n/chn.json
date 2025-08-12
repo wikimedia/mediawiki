@@ -134,6 +134,7 @@
 	"createacct-benefit-heading": "tilixam kakwa mayka ɬaska munk {{SITENAME}}",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|ts'əm-ikta}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|pipa}}",
+	"createacct-benefit-text3": "$2 {{PLURAL:$1|ixt|kanawi}} chxi tilixam ɬaksta mamuk ts'əm yakwa",
 	"loginlanguagelabel": "ləlang: $1",
 	"pt-login": "ɬatwa kʰapa mayka laysins",
 	"pt-login-button": "Ɬatwa kopa maika laysins",

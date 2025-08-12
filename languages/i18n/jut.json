@@ -242,6 +242,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} laws å menske som du.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|redigiireng|redigiirenge}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|siid|side}}",
+	"createacct-benefit-text3": "$2 {{PLURAL:$1|nyli bidrawye|nyli bidrawya}}",
 	"loginsuccesstitle": "Du ä nu loggen på",
 	"loginsuccess": "'''Du ä nu loggen på {{SITENAME}} som \"$1\".'''",
 	"nosuchuser": "Der er ig'n bruger ve navnet \"$1\". Kontrollér æ stavemåde ig'n, æller brug æ formulår herunder til at åprette en ny brugerkonto.",

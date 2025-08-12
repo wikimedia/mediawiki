@@ -255,6 +255,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} es izo por djente komo tu.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|edisyon|edisyones}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|pajina|pajinas}}",
+	"createacct-benefit-text3": "$2 {{PLURAL:$1|ultimo|ultimos}} {{PLURAL:$1|kontribuidor|kontribuidores}}",
 	"userexists": "El nombre de usuario que eskrivites ya se uza.\nEskoje un nombre diferente.",
 	"createacct-error": "Yerro de kreasyon de kuento",
 	"createaccounterror": "No se pudo crear el cuento: $1",

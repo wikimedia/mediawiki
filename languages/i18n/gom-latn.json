@@ -222,6 +222,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} tujea bhaxen lokani kel'la",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|bodol}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|pan|panam}}",
+	"createacct-benefit-text3": "$2 halincheo {{PLURAL:$1|yogdan diupi}}",
 	"badretype": "Tunven ghatlelim gupitutram zullnant.",
 	"userexists": "Boroillem vapurpeachem nanv poilinch vaprant asa.\nUpkar korun dusrem nanv vench.",
 	"loginerror": "Sotrorombhachi truti",

@@ -167,6 +167,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} ekorwa abantu nka iwe.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|ekifooki|ebifooki}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|orupapura|empapura}}",
+	"createacct-benefit-text3": "$2 {{PLURAL:$1|omuhi omukyaka|abahi abahyaka}}",
 	"mailmypassword": "Ragaza ekihinguza",
 	"loginlanguagelabel": "Orulimi: $1",
 	"pt-login": "Yetaahyamu",

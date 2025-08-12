@@ -298,6 +298,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} kuwe digawe nang wong kaya Rika.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|owahan|owahan}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|kaca}}",
+	"createacct-benefit-text3": "$2 {{PLURAL:$1|kontributor}} anyaran",
 	"badretype": "Tembung sandhi sing Rika lebokna ora gathuk.",
 	"userexists": "Jeneng panganggo sing dilebokna uwis ana sing nganggo.\nMonggo pilih jeneng liyane.",
 	"loginerror": "Kasalahan mlebu log",

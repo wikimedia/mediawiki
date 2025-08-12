@@ -252,6 +252,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} ꠀꠙꠘꠣꠞ ꠟꠣꠈꠣꠘ ꠝꠣꠁꠘꠡꠣꠁꠘ꠆ꠔꠦ ꠛꠣꠘꠣꠁꠍꠂꠁꠘ ⁕",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|ꠐꠤꠇꠇꠞꠤ ꠟꠦꠈꠣ|ꠐꠤꠇꠞꠤ ꠟꠦꠈꠣꠁꠘ}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|ꠙꠣꠔꠣ|ꠙꠣꠔꠣꠁꠘ}}",
+	"createacct-benefit-text3": "$2 recent {{PLURAL:$1|ꠡꠣꠗꠖꠦꠅꠞꠣ|ꠡꠣꠗꠖꠦꠅꠞꠣꠅꠇꠟ}}",
 	"loginerror": "ꠢꠣꠝꠣꠘꠤꠔ ꠛꠦꠋꠉꠣ",
 	"createacct-error": "ꠄꠇꠣꠃꠘ ꠛꠣꠘꠣꠘꠤꠔ ꠛꠦꠋꠉꠣ",
 	"createaccounterror": "ꠅꠃ ꠄꠇꠣꠃꠘ ꠛꠣꠘꠣꠘꠤ ꠉꠦꠍꠦꠘꠣ ꠪ $1",

@@ -136,6 +136,7 @@
 	"createacct-another-submit": " paskayzaeh zhanghaw",
 	"createacct-benefit-heading": "{{SITENAME}} hini ’inak So’oan hingha’ kamamobay ka pinatawaw ma’iyaeh nasiya pinaskayzaeh.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1| ’okik miniSa’la’ pinbienji }}",
+	"createacct-benefit-text3": "$2  ray haysani’ ka{{PLURAL:$1| kama mobay }}",
 	"mailmypassword": " ’in’alay naehan paskayzaeh ka mima:",
 	"loginlanguagelabel": " ka:i’ ：$1",
 	"pt-login": "kaS’aboe’",

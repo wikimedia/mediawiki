@@ -152,6 +152,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} fʋ taaba maali li.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|dɛmisʋg|dɛmisa}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|lʋgir|lʋga}}",
+	"createacct-benefit-text3": "$2 nannanna nwa {{PLURAL:$1|onɛ la'asid|banɛ la'asid}}",
 	"mailmypassword": "Maligim maal paaswɛɛd",
 	"loginlanguagelabel": "Buudi pian'ad: $1",
 	"pt-login": "Yɔ'ɔgim",

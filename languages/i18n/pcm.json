@@ -142,6 +142,7 @@
 	"createacct-benefit-heading": "Na pipul like you mek dis {{SITENAME}}.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|chenj|chenj-dem}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|pej|pej-dem}}",
+	"createacct-benefit-text3": "$2 {{PLURAL:$1|kontributo|kontributo-dem}} wey no tey",
 	"loginlanguagelabel": "Langwej: $1",
 	"pt-login": "Enta inside",
 	"pt-login-button": "Enta inside",

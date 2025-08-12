@@ -344,6 +344,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} ibaen ni alak songon kamuon.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|pature}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|alaman}}",
+	"createacct-benefit-text3": "$2 {{PLURAL:$1|kontributor}} na parpudi",
 	"badretype": "Hata sandi na ipamasuk mu inda adong na cocok.",
 	"usernameinprogress": "Pambuatan ni akun tu golar pangguna tu na atia idalankon. iparsilahkon ma painte on.",
 	"userexists": "Gorar pamake na imasudkon atia ipake. Iparsilahkon pili gorar marbeda.",

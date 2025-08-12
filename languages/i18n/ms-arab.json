@@ -181,6 +181,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} دجاياکن اوليه اورڠ راماي سڤرتي اندا.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|سونتيڠن}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|لامن}}",
+	"createacct-benefit-text3": "$2 {{PLURAL:$1|ڤڽومبڠ}} ترکيني",
 	"loginerror": "رالت لوݢ ماسوق",
 	"mailmypassword": "سيت سمولا کات لالوان",
 	"mailerror": "رالت مڠهانتر سورت: $1",

@@ -286,6 +286,7 @@
 	"createacct-benefit-heading": "Se moun tankou w ki fè {{SITENAME}}.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|modifikasyon}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|paj}}",
+	"createacct-benefit-text3": "$2 {{PLURAL:$1|kontribitè resan}}",
 	"badretype": "Mopas ou bay yo pa parèy ditou.",
 	"userexists": "Non itilizatè ou antre a deja itilize pa yon lòt moun. Chwazi yon non ki diferan souple.",
 	"loginerror": "Erè nan idantifikasyon ou an",

@@ -214,6 +214,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} wead vun Laid wie dia gmachd.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|B'waidung|B'waidunge}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|Said|Saide}}",
+	"createacct-benefit-text3": "$2 {{PLURAL:$1|Ledscha|Ledsche}} Middawaida",
 	"badretype": "Kennword bassd nedd",
 	"userexists": "De Middawaida hodds schun.\nNemmen onnare.",
 	"loginerror": "Irrdumm baim Oamelde",

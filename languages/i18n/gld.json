@@ -138,6 +138,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} — гэрэн дёбони, си-мат найсал туй дёбойчи.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|калахан}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|страница|страницасал}}",
+	"createacct-benefit-text3": "$2 хаморан эринду эй {{PLURAL:$1|най}} эйду бичичи",
 	"loginlanguagelabel": "Хэсэ: $1",
 	"pt-login": "Ӣури",
 	"pt-login-button": "Ӣури",

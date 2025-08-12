@@ -331,6 +331,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} रउवें जइसन लोगन द्वारा बनावल गइल बा।",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|संपादन}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|पन्ना}}",
+	"createacct-benefit-text3": "$2 हाल के {{PLURAL:$1|योगदानकर्ता}}",
 	"badretype": "रउआँ जौन गुप्तशब्द डालत बानी उ मेल नइखे खात।",
 	"usernameinprogress": "एही प्रयोगकर्तानाँव खातिर खाता खोले के काम पहिलहीं चालू बा।\nइंतजार करीं।",
 	"userexists": "लिखल गइल प्रयोगकर्तानाँव पहिले से प्रयोग में बा। कौनों दूसर नाम बीछीं।",

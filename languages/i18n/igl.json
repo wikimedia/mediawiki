@@ -190,6 +190,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} abo ki dabu wé ama cheí.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|nwóché|nwá amenwu ché}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|ogbá|amí ogbá}}",
+	"createacct-benefit-text3": "$2 Éwn etitò {{PLURAL:$1|énéukóló|ame énéukóló}}",
 	"loginlanguagelabel": "Íchi: $1",
 	"pt-login": "Tafunn",
 	"pt-login-button": "Tafunn",

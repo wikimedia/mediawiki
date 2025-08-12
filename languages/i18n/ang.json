@@ -347,6 +347,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} is geworht fram mannum swilce þe.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|adihtung|adihtunga}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|tramet|trameta}}",
+	"createacct-benefit-text3": "$2 {{PLURAL:$1|niwe fyrðrend|niwra fyrðrenda}}",
 	"badretype": "Þa leafnessword þe þu write, sindon ungelic.",
 	"userexists": "Se brucendnama is ær gebrocen. Ic bidde þe, ceos oðerne naman.",
 	"loginerror": "Woh on þam fenge to wisbec",

@@ -129,6 +129,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} ayaan aanji' biindig anishinaabe indigo giin.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|aanji'}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|mazina'igan}}",
+	"createacct-benefit-text3": "$2 bijiinag {{PLURAL:$1|wiin aanji'}}",
 	"loginlanguagelabel": "Inwewin: $1",
 	"pt-login": "Biindigaw",
 	"pt-login-button": "Biindigaw",

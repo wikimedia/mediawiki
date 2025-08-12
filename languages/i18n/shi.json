@@ -256,6 +256,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} skrn t middn zun d kyyi/kmmi.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|asnfl|isnfiln}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|tasna|tasniwin}}",
+	"createacct-benefit-text3": "$2 {{PLURAL:$1|amdraw iggʷran|imdrawn ggʷranin}}",
 	"badretype": "Tiguriwin n uzray nna tsskcmt ur tn saswa.",
 	"userexists": "Ism n unsmras lli s tskcmt illa yad\nI ṛbbi ara kra n yan yaḍn",
 	"loginerror": "Azggal ɣ uzday",

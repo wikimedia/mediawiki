@@ -188,6 +188,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} bënet ka gjinde si ti.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|modifika|modifike}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|pagina|pagine}}",
+	"createacct-benefit-text3": " $2 {{PLURAL:$1|kontributur|kontributurët}} të sprasme",
 	"loginlanguagelabel": "Gljuha: $1",
 	"pt-login": "Hi",
 	"pt-login-button": "Hi",

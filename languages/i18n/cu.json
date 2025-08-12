@@ -180,6 +180,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} съꙁьдаѥтъ сѧ чьловѣкꙑ · ижє ꙗко тꙑ сѫтъ",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|мѣна|мѣнꙑ|мѣнъ}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|страница|страници|страницѧ}}",
+	"createacct-benefit-text3": "$2 {{PLURAL:$1|послѣдьн҄ь дѣтєл҄ь|послѣдьнꙗ дѣтєлꙗ|послѣдьни дѣтєлє}}",
 	"userexists": "сѫщє польꙃєватєлꙗ имѧ пьса ⁙\nбѫди добръ · ино сѥ иꙁобрѧщи",
 	"loginerror": "въхода блаꙁна",
 	"createacct-error": "мѣста сътворѥниꙗ блаꙁна",

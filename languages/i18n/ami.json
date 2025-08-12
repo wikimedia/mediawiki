@@ -143,6 +143,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} o nisanga’an no malecaday kiso a nipaini / nipafeli a tamdaw.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|a mikawit}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|a felih}}",
+	"createacct-benefit-text3": "$2 O samangataay no {{PLURAL:$1|painiay palada’}}",
 	"mailmypassword": "misafaeloh patonek to mima’",
 	"loginlanguagelabel": "sowal：$1",
 	"pt-login": "micomod",

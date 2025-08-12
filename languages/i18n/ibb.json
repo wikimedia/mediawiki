@@ -139,6 +139,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} mme owo nte afo enama.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|kpungo}}‎",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|Ikpa nwead}}‎",
+	"createacct-benefit-text3": "$2 udian {{PLURAL:$1|mkpo edi kpeneke}}‎",
 	"loginlanguagelabel": "Ikọ: $1",
 	"pt-login": "Dọñọ",
 	"pt-login-button": "Dọñọ",

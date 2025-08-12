@@ -145,6 +145,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} iskwewok, iriniwok ka orisinihiketcik mitowi kir.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|ki meckotcitakiniwok|ki meckotcitakiniwoki}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|masinhikan|masinahikana}}",
+	"createacct-benefit-text3": "$2 ocki {{PLURAL:$1|ka witcihietc|ka witcihietcik}}",
 	"loginlanguagelabel": "Arimwewin:$1",
 	"pt-login": "Posi",
 	"pt-login-button": "Posi",

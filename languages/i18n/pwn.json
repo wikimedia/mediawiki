@@ -141,6 +141,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} namaya tja nusun a napakaljavut a napakitjuveqac.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|padjaljedjalj a sirasudjan ta vecik}}",
 	"createacct-benefit-text2": "$1 $2 {{PLURAL:$1|lisadayan na sapitj(kainguaqan na sapitj)}}",
+	"createacct-benefit-text3": "$2 tjalja dudutan a {{PLURAL:$1|a napakaljavut }}",
 	"createaccounterror": "kinitjuveqac tu sinansaseqetjan tua banggu: $1",
 	"loginlanguagelabel": "kai: $1",
 	"pt-login": "kipuvecik",

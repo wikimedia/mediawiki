@@ -177,6 +177,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} oci sini adalingga niyalma -i fukjileme ilibuhangge./banjibume arahangge.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|banjibun}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|afaha}}",
+	"createacct-benefit-text3": "$2 Hanciki -i {{PLURAL:$1|alibume jafara niyalma}}",
 	"mailmypassword": "Somimgetu be dahime sindara",
 	"loginlanguagelabel": "Gisun: $1",
 	"pt-login": "Oeon de dosimbi",

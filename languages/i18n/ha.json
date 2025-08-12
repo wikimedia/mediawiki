@@ -243,6 +243,7 @@
 	"createacct-benefit-heading": "Mutane {{GENDER:|irinka|irinki}} ne suka yi {{SITENAME}}.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|gyara|gyararraki}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|shafi|shafuka}}",
+	"createacct-benefit-text3": "$2 na kusa {{PLURAL:$1|mai bada gudunmuwa|masu bada gudunmuwa}}",
 	"badretype": "Lambobin sirrin da kasa basu yi daidai ba.",
 	"loginerror": "Kuskure shiga",
 	"mailmypassword": "Sake lambarsirri",

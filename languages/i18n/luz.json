@@ -255,6 +255,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} ۉا بجلی کپ خۉتۉن راسھ بیه.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|اصلاح|اصلاحل}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|بلگه|بلگه یل}}",
+	"createacct-benefit-text3": "$2 اخیرا {{PLURAL:$1|هۉمیارندھ|هۉمیارندھ یل}}",
 	"badretype": "رمزنه ک وارد کیت وایک جور نیوان",
 	"userexists": "نوم کاروری ک وارد کیت الان در حال استفاده هسس\nلطفا یه نوم دیه انتخاب کیت",
 	"loginerror": "خطا ورود",

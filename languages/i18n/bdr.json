@@ -140,6 +140,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} binuat le' jomo dokon kaam.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|niuba}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|laman}}",
+	"createacct-benefit-text3": "$2 {{PLURAL:$1|Jomo boi muan}} betiru",
 	"loginlanguagelabel": "Ling: $1",
 	"pt-login": "Log posok",
 	"pt-login-button": "Log posok",

@@ -180,6 +180,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} ekorwa abantu nka iwe.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|ekihingisibwa|ebihingisibwa}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|orupapura|empapura}}",
+	"createacct-benefit-text3": "$2 {{PLURAL:$1|omuhi mukyaka|abahi bahyaka}}",
 	"loginerror": "Ensobi y'okwetaahya",
 	"createacct-error": "Ensobi y'okuhanga akaunti",
 	"createaccounterror": "Tikyakuhangire akaunti: $1",

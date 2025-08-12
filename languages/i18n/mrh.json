@@ -232,6 +232,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} cha nâ hawhpa chyhsazy ta ama taopa a châ.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|taopathipa|taopathipazy}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|hmia|hmiazy}}",
+	"createacct-benefit-text3": "$2 atliata {{PLURAL:$1|paduatuhpa|paduatuhpazy}}",
 	"badretype": "Na rohpa bieruchâzy patu vei.",
 	"usernameinprogress": "He Hmâhtuhpa moh châta account taona cha tao hai chypa a châ. Hâ chy bei teih.",
 	"userexists": "Na rohpa Hmâhtuhpa moh cha hmâ cheihpa a châ.\nMoh hropa roh bei teih.",

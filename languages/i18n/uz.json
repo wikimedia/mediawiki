@@ -327,6 +327,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} siz kabi odamlar tomonidan yaratiladi.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|tahrirlar soni}}",
 	"createacct-benefit-text2": "sahifalar soni",
+	"createacct-benefit-text3": "$2 faol {{PLURAL:$1|foydalanuvchilar}} soni",
 	"badretype": "Siz tomondan kiritilgan maxfiy so'zlar mos kelmayapti.",
 	"usernameinprogress": "Ushbu foydalanuvchi uchun hisob yaratish hali davom etmoqda.\nIltimos, kuting.",
 	"userexists": "Bunday foydalanuvchi nomi avvalroq yaratilgan. Iltimos, boshqa nom tanlang.",

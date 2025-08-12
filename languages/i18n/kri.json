@@ -194,6 +194,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} na pipul lɛk yu mek am.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|ɛdit|ɛdit dɛn}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1| pej|pej dɛn}}",
+	"createacct-benefit-text3": "$2 we dɛn jɔs dɔn {{PLURAL:$1| kɔntribyushɔn|kɔntribyushɔn dɛn}}",
 	"badretype": "Dhi passwòrddèm we yu taip nò mach.",
 	"usernameinprogress": "Wan akaunt krieshɔn fɔ dis yuzɛn nem dɔn ɔlrɛdi de go bifo.\nDuya wet.",
 	"userexists": "Odhar pòrsin de yuz dha yuzmannem.\nYu go gèt fòr pik differènt wan.",

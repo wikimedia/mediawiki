@@ -191,6 +191,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} شيمي مۊسؤنچي آدم اۊنه چاگۊدن!",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|دچينواچين}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|ولگ}}",
+	"createacct-benefit-text3": "$2 {{PLURAL:$1|مؤشارکت گۊدنکس}} أخير",
 	"usernameinprogress": "اي کارگيري نؤم ئبه ىکته حساب چاگۊده بؤدره؛ صبر بۊکۊنين.",
 	"loginerror": "ديرين أمأنˇ مئن سأب بۊبؤ",
 	"createacct-error": "سأب، کارگيري حساب چاگۊدنˇ مئن",

@@ -155,6 +155,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} yakozwe n'abantu nkawe.",
 	"createacct-benefit-text1": "impinyanyuro $2 {{PLURAL:$1|}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|urupapuro|impapuro}}",
+	"createacct-benefit-text3": "$2 {{PLURAL:$1|umutanga bufasha aheruka|abatanga bufasha baheruka}}",
 	"loginlanguagelabel": "Ururimi: $1",
 	"pt-login": "Injiramwo",
 	"pt-login-button": "Injira",

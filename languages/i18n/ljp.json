@@ -341,6 +341,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} tiguwai jama jamma gegoh Niku.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|dandanan}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|halaman}}",
+	"createacct-benefit-text3": "$2 {{PLURAL:$1|penyambai}} terakhir",
 	"badretype": "Kata sandi say niku kughukko mak cocok.",
 	"usernameinprogress": "Penyanian akun guwai gelar pemakai hinji lagi tilapahko.\nTulung penah pai.",
 	"userexists": "Gelagh pumakay say tikughukko ghadu tipakay.\nPayu tantuko gelagh baghih.",

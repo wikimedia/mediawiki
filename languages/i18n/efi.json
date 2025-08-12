@@ -132,6 +132,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} mme owo nte ẹnam ikpehe emi.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|ukpụhọde|mme ukpụhọde}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|page|mme page}}",
+	"createacct-benefit-text3": "$2 ndondo\n{{PLURAL:$1|etịp etịbe|mme anditịp etịbe}}",
 	"loginlanguagelabel": "Usem: $1",
 	"pt-login": "Dụk",
 	"pt-login-button": "Dụk",

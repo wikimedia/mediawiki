@@ -305,6 +305,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} njakupangika na ŵanthu nga ndimwe.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|kulemba|volemba}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|jani|majani}}",
+	"createacct-benefit-text3": "$2 mwasono {{PLURAL:$1|mlembi|ŵalembi}}",
 	"badretype": "Mapasiwedi agho mwalemba ghakuyana yayi.",
 	"usernameinprogress": "Pali kale ndondomeko ya kupanga akaunti ya zina ili. Chonde lindizgani.",
 	"userexists": "Zina ili mwanjizga apa lina kale munthu. Chonde sankhani zina linyake.",

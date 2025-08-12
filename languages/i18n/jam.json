@@ -231,6 +231,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} mek bai smadi laka yu.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|edit|edits}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|page|pages}}",
+	"createacct-benefit-text3": "$2 riisent {{PLURAL:$1|kanchribiuta|kanchribiutadem}}",
 	"badretype": "Di paaswod yu enta no mach.",
 	"userexists": "Yuuza niem enta aredi a yuuz.\nBegyu chuuz wahn difrahn niem.",
 	"loginerror": "Lagiin era",

@@ -240,6 +240,7 @@
 	"createacct-benefit-heading": "Ang {{SITENAME}} hinimo sa mga tawo sama kanimo.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1| usba|ilis}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1| panid|panid}}",
+	"createacct-benefit-text3": "$2 labing bag-ong {{PLURAL:$1|ka tampo|ka mga tampo}}",
 	"badretype": "Ang mga pasword nga imong gientra wala mag-match.",
 	"userexists": "Ang ngalan sa tiggamit nga imong gisulat nagamit na.\nPalihug pagpili og lain nga ngalan.",
 	"loginerror": "Sayop sa pagdayon",

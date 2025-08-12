@@ -221,6 +221,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} est òbera de personis che a tui.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|mudàntzia|mudàntzias}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|pàgina|pàginas}}",
+	"createacct-benefit-text3": "$2 {{PLURAL:$1|ùrtimu contribudori|ùrtimus contribudoris}}",
 	"createaccounterror": "Non si podit criai su contu: $1",
 	"loginsuccesstitle": "Intrau",
 	"mailmypassword": "Muda su fueddu-crai",

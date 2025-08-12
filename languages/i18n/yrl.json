@@ -218,6 +218,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} yawá umunhã'ana mira'etá ĩdé yawé.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|murupiawa|murupiawa'etá}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|sowa|sowa'etá}}",
+	"createacct-benefit-text3": "$2 {{PLURAL:$1|pitimũgara kuiriwara|pitimũgara'etá kuiriwara}}",
 	"badretype": "Nhẽẽga'etá kabé ĩdé remupinima waá aĩtá ti yawé.",
 	"loginerror": "Yumũdi yawiçawa",
 	"createacct-error": "Umereçe'ana yepé iwaçuçawa ĩdé remunhã nekũta ramẽ",

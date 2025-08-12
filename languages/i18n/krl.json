@@ -157,6 +157,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} on šiun kaltasien ihmisien luatima.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|kohennuš|kohennukšet}}",
 	"createacct-benefit-text2": "$1 $2 {{PLURAL:$1|šivu|šivuo}}",
+	"createacct-benefit-text3": "$2 {{PLURAL:$1|Jälkimmäini käyttäjä|Jälkimmäistä käyttäjyä}}",
 	"loginlanguagelabel": "Kieli: $1",
 	"pt-login": "Kirjuttauvu",
 	"pt-login-button": "Kirjauvu šiämeh",

@@ -122,6 +122,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} acï looi në kɔc cïmëndu.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|käcïcokic|këcïcokic}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|apäm|apääm}}",
+	"createacct-benefit-text3": "$2 {{PLURAL:$1|dujuër|dujuëër}} kathiöökwɛ̈r",
 	"loginlanguagelabel": "Thok: $1",
 	"pt-login": "Ŋaanythïn",
 	"pt-login-button": "Ŋaanythïn",

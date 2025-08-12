@@ -289,6 +289,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} lii tuulágân ulmui rähtim sijđo.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|hammiittâs|hammiittâs|hammiittâs|hammiittâssâd}}",
 	"createacct-benefit-text2": "$1 $2 {{PLURAL:$1|siijđo|siijđo|siijđo|sijđod}}",
+	"createacct-benefit-text3": "$2 {{PLURAL:$1|majemui aigij hämmejeijee}}",
 	"badretype": "Syelisäänih maid čäällih láá koskânis ereslágáneh.",
 	"usernameinprogress": "Tubdâlduv rähtim taan kevtteenoomân lii jo joođoost.\nVyerdi.",
 	"userexists": "Kevtteenommâ lii jo kiävtust.\nValjii nube kevtteenoomâ.",

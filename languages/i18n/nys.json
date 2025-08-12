@@ -126,6 +126,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} wallak nyungar mokin noonook.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|wallak}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|bibol}}",
+	"createacct-benefit-text3": "$2 yeye {{PLURAL:$1|niall}}",
 	"loginlanguagelabel": "Wanga: $1",
 	"pt-login": "yaarlkoorl",
 	"pt-login-button": "Yaarlkoorl",

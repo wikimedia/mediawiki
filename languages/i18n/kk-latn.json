@@ -1268,6 +1268,7 @@
 	"fileduplicatesearch-result-1": "«$1» faýlına teñ telnusqası joq.",
 	"fileduplicatesearch-result-n": "«$1» faýlına teñ $2 telnusqası bar.",
 	"specialpages": "Arnaiy better",
+	"specialpages-note-restricted": "* Kädimgi arnaýı better.\n* <strong class=\"mw-specialpagerestricted\">Şektelgen arnaýı better.</strong>",
 	"specialpages-group-maintenance": "Baptaw bayanattarı",
 	"specialpages-group-other": "Tağı basqa arnaýı better",
 	"specialpages-group-login": "Kirw / tirkelw",

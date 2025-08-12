@@ -293,6 +293,7 @@
 	"createacct-benefit-heading": "{{SITENAME}}e ne mala asatun giigees.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|goyduwa|goydota}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|sinttaa|sinttata}}",
+	"createacct-benefit-text3": "$2 mata wode {{PLURAL:$1|xaafi shiishshidaagaa|xaafi shiishshidaageeta}}",
 	"badretype": "Ne gelissido geliyoo qaalay gayttenna.",
 	"usernameinprogress": "Ha yaraa akkawunttiyaa meroy polettibeenna. Hayyanaa naaga.",
 	"userexists": "Yaraa sunttay kase de'ees. Hayyanaa dumma sunttaa doora.",

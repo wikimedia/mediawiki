@@ -190,6 +190,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} mek bai peepl laik yuh.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|chienj|chienj dem}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|piej|piej dem}}",
+	"createacct-benefit-text3": "$2 reesen {{PLURAL:$1|kaantribyuuta|kaantribyuuta dem}}",
 	"loginerror": "Laag een era",
 	"createacct-error": "Mek-akoun era",
 	"createaccounterror": "Kyaant mek akoun: $1",

@@ -137,6 +137,7 @@
 	"createacct-benefit-heading": "Nidba wo bena hɛra lagibii {{SITENAME}} jugun.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|manyib}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|wadga|wadii}}",
+	"createacct-benefit-text3": "$2 Kwɛkwɛɛlb{{PLURAL:$1|hewlta|hewltba}}",
 	"loginlanguagelabel": "Laam: $1",
 	"pt-login": "Jib lni",
 	"pt-login-button": "Jib kan",

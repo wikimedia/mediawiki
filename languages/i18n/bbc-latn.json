@@ -199,6 +199,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} dibahen angka jolma songon hamu",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|suntingan}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|alaman}}",
+	"createacct-benefit-text3": "$2 {{PLURAL:$1|kontributor}} parpudi",
 	"createaccounterror": "Ndang boi manompa akun: $1",
 	"nouserspecified": "Ingkon pamasukonmuna goar ni pamangke",
 	"mailmypassword": "Tongoshon hata hincu na imbaru",

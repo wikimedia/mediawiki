@@ -224,6 +224,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} तुमच्या सारख्या लोकांनी केल्लो",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|संपादन|संपादना}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|पान|पानां}}",
+	"createacct-benefit-text3": "$2 सद्याचे{{PLURAL:$1|योगदान करपी|ते योगदान करपी}}",
 	"badretype": "तुवें घातिल्लीं गुपीत उतरां जुळनात",
 	"userexists": "घातिल्लें वापरप्याचें नांव पयलींच वापरांत आसा.\nउपकार करून दुसरें नांव वेंच",
 	"loginerror": "लॉन इन त्रुटी",

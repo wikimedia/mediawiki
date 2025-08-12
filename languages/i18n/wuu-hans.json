@@ -366,6 +366,7 @@
 	"createacct-benefit-heading": "{{SITENAME}}靠像侬一样个人建立。",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|编写}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|页}}",
+	"createacct-benefit-text3": "$2 搿抢{{PLURAL:$1|出力个人}}",
 	"badretype": "侬输入个密码弗匹配。",
 	"usernameinprogress": "迭个用户名个账户创建已经勒了进行。请侬等一等。",
 	"userexists": "输入个用户名有人用哉。请再选个两样个名字。",

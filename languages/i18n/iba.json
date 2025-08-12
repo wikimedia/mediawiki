@@ -284,6 +284,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} digaga orang-orang baka nuan.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|edit}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|lambar}}",
+	"createacct-benefit-text3": "$2 {{PLURAL:$1|kontributor}} kepenudi",
 	"badretype": "Jaku pansa nuan beri nya enda sebaka.",
 	"usernameinprogress": "Pengaga akaun bagi nama pengena tu benung dipejalaika. Pinta nganti",
 	"userexists": "Nama pengena ke diisi udah dikena. Pilih meh nama bukai.",

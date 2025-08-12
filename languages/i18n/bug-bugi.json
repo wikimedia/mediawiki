@@ -203,6 +203,7 @@
 	"createacct-another-continue-submit": "ᨈᨛᨑᨘᨓᨗ ᨄᨀᨙᨅᨘ ᨕᨀᨘ",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|ᨄᨉᨙᨌᨙᨂᨛ}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|ᨒᨛᨇ|ᨒᨛᨇᨑ}}",
+	"createacct-benefit-text3": "$2 {{PLURAL:$1|ᨀᨚᨋᨗᨅᨘᨈᨚᨑᨚ}} ᨅᨑᨘᨅᨑᨘ",
 	"badretype": "ᨒᨗᨓᨛᨂᨉ ᨐᨗ ᨕᨗᨔᨛᨒᨛᨑᨗ ᨉᨙᨊᨔᨗᨌᨚᨌᨚ᨞",
 	"userexists": "ᨕᨔᨛᨄᨁᨘᨊ ᨕᨗᨔᨛᨒᨛᨑᨗ ᨄᨘᨑᨊᨗ ᨑᨄᨀᨙ᨞\nᨒᨒᨚᨀᨗ ᨄᨗᨒᨙ ᨕᨔᨛ ᨐᨗ ᨒᨙᨂᨙ᨞",
 	"loginerror": "ᨒᨚᨈᨆ ᨆᨀᨚᨌ",

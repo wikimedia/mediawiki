@@ -145,6 +145,7 @@
 	"createacct-submit": "Fungura konti",
 	"createacct-benefit-heading": "{{SITENAME}} yandikwa n'abantu nkawe.",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|urupapuro|impapuro}}",
+	"createacct-benefit-text3": "$2 ibiheruka gukorwa {{PLURAL:$1|umukoresha|abakoresha}}",
 	"loginlanguagelabel": "Ururimi: $1",
 	"pt-login": "Injira",
 	"pt-createaccount": "Fungura konti",

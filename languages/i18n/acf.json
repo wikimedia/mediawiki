@@ -161,6 +161,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} sé fèt pa moun kon zòt.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|modifikasyon}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|paj}}",
+	"createacct-benefit-text3": "$2 {{PLURAL:$1|kontwibyitè}} tou fwé",
 	"loginlanguagelabel": "Langaj: $1",
 	"pt-login": "Konèkté",
 	"pt-login-button": "Konèkté",

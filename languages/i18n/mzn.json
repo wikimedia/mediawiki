@@ -351,6 +351,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} ره شِمه واری آدِمون بِساتنه",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|دچی‌ین}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|صفحه}}",
+	"createacct-benefit-text3": "$2 {{PLURAL:$1|کارور}} اخیر",
 	"badretype": "دِتا پسوردی که بنویشتی اتجور نینه",
 	"usernameinprogress": "این کاروری نوم وسه حلا دره حىساب ساجنه؛ ات‌که لس بیرین.",
 	"userexists": "کاروری نومی که بخاستنی وجود داشته.\nخواهشأ ات نوم دیگه انتخاب هاکنین.",

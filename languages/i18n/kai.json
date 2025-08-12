@@ -161,6 +161,7 @@
 	"createacct-another-submit": "Dàgòorīmà akawun",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|yawantu}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|shafi}}",
+	"createacct-benefit-text3": "$2 àndo {{PLURAL:$1|contributor|ba wàano}}",
 	"mailmypassword": "Nguzaa lammba ta asir",
 	"loginlanguagelabel": "Lūsìn: $1",
 	"pt-login": "Raa",

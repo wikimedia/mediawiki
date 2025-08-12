@@ -210,6 +210,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} he yù lâu Ngì khiung-ngióng ke ngìn kien-li̍p.",
 	"createacct-benefit-text1": "$1-chhṳ phiên-siá",
 	"createacct-benefit-text2": "$1-ya̍p",
+	"createacct-benefit-text3": "$2 khiûn-khì $1-chak kung-hien-ngìn",
 	"badretype": "Ngì só khim-ngi̍p ke me̍t-ma pin m̀ siông-thùng.",
 	"loginerror": "Tên-ngi̍p chhâ-chho",
 	"createacct-error": "Khôi fu-thèu chhut chhâ-chho",

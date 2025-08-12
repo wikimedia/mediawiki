@@ -161,6 +161,7 @@
 	"createacct-benefit-heading": "{{SITENAME}}ᨸᩖᩯᨦᨯᩰᩫ᩠ᨿᨤᩫ᩠ᨶᩀ᩵ᩣ᩠ᨦᨴ᩵ᩤ᩠ᨶ",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|ᨠᩣ᩠ᩁᨠᩯ᩶ᨡᩱ}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|ᩉ᩠ᨶ᩶ᩣ}}",
+	"createacct-benefit-text3": "$2 {{PLURAL:$1|ᨹᩪ᩶ᩁ᩠ᩅ᩵ᨾᨩ᩠ᨿᩁ}}ᩃᩪᩁᩈᩩᨯ",
 	"loginlanguagelabel": "ᨽᩣᩈᩣ: $1",
 	"pt-login": "ᨡᩮᩢ᩶ᩣᩁᨷᩫ᩠ᨷ",
 	"pt-login-button": "ᨡᩮᩢ᩶ᩣᩁᨷᩫ᩠ᨷ",

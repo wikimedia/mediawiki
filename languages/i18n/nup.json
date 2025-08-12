@@ -341,6 +341,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} wun e de tsutswa gwata ezazhi dozhi woe.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|edzunta|edzuntazhi}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|kperegi|kperegizhi}}",
+	"createacct-benefit-text3": "$2 tsotso {{PLURAL:$1|ekpasoci|ekpasocizhi}}",
 	"badretype": "Epagigan na wo la danbo na wun man dozhi a.",
 	"usernameinprogress": "Tsutswa dukunsoba ya eyizgizaloci nana lagwa dan ezan bo a ni. Bosoko pabici.",
 	"userexists": "Eyigizaloci na a la danbo na lagwa dan lulo bo a ni.",

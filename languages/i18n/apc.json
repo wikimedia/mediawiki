@@ -289,6 +289,7 @@
 	"createacct-benefit-heading": "عالم متلك بتساهم بـ{{SITENAME}}.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|تحرير|تحريرات}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|مقالة}}",
+	"createacct-benefit-text3": "$2 آخر {{PLURAL:$1|مساهم|مساهمين}}",
 	"badretype": "الباسوورد الأولة غير التانية. لازم يكونو نفس الشي.",
 	"userexists": "اسم الأكونت المحطوط مستعمل.\nپليز نقي غيره.",
 	"createaccounterror": "ما قدرنا نعمل أكونت: $1",

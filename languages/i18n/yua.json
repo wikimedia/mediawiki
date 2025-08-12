@@ -183,6 +183,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} beeta'an tumen máako'ob je'el bixecho'.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|k'eex|k'eexo'ob}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1| wáal|wáalalo'ob}}",
+	"createacct-benefit-text3": "$2 ma' úuchben{{PLURAL:$1|áantaji'|áantajo'obi'}}",
 	"loginlanguagelabel": "T'aanil: $1",
 	"pt-login": "Ooken",
 	"pt-login-button": "Ooken",

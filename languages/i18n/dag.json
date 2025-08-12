@@ -355,6 +355,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} nyɛla a ninsali tabi ni namda.",
 	"createacct-benefit-text1": "{{PLURAL:$1Mali niŋ|Mali niŋ}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|yaɣali|yaɣa}}",
+	"createacct-benefit-text3": "$2 Puunpɔŋ{{PLURAL:$1|tohara|tohariba}}",
 	"badretype": "Paswedi shɛli ani pɛhi maa bi maachi",
 	"usernameinprogress": "Acaunti nambu zaŋti ŋun su yuli pun be tooni. Dimsuɣlo kuhima",
 	"userexists": "ŋunsu yuli shɛli din kpɛhi maa din pu ku bukaata.\nDimsuglo taɣi pii shɛli",

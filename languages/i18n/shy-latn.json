@@ -297,6 +297,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} yetwexdem sɣur medden am kečč/kem.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|abeddel|ibeddilen}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|asebter|isebtar}}",
+	"createacct-benefit-text3": "$2 {{PLURAL:$1|atekki amaynut|ittekkiyen imaynuten}}",
 	"badretype": "Awal n tbaḍnit amezwaru d wis sin mačči d kif-kif.",
 	"userexists": "Isem n wemseqdac yeddem-as amdan wayeḍ. Fren yiwen nniḍen.",
 	"loginerror": "Agul n ukcam",

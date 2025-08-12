@@ -245,6 +245,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} arèya èkaghâbây bi' rèng-orèng sè paḍâ bi' Bâ'na.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|beccè'an}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|kaca}}",
+	"createacct-benefit-text3": "$2 {{PLURAL:$1|padhurrun}} jângkènè",
 	"userlogin-authpopup-retry": "Oddhi polè",
 	"userlogin-authpopup-cancel": "Paburung",
 	"loginlanguagelabel": "Bhâsa: $1",

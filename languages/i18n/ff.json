@@ -184,6 +184,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} waɗi ɗum ko yimɓe hono maa.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|taƴto|taƴte}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|hello|kelle}}",
+	"createacct-benefit-text3": "$2 {{PLURAL:$1|ballitoowo|wallitooɓe}} sakkitiiɓe",
 	"mailmypassword": "Neldu finnde hesere e iimeel",
 	"loginlanguagelabel": "Ɗemngal: $1",
 	"pt-login": "Seŋo",

@@ -191,6 +191,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} لە لایەن کەسانێگ چۊ خۆت درس کریاس.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|دەسکاری}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|پەڕە}}",
+	"createacct-benefit-text3": "$2 دۊایین {{PLURAL:$1|بەشداربۊ|بەشداربۊەیل}}",
 	"nouserspecified": "بایەد ناو ئەوکاربەری دابین بکەی.",
 	"login-userblocked": "ئەێ ئەوکاربەرە بلاک کریاێە. چۊنە ناو قەدەغەنە.",
 	"mailmypassword": "تێپەڕوشەێگ نوو بنارە ئڕاێ ئیمەیلەگەم",

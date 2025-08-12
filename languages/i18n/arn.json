@@ -215,6 +215,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} zewmaeyew che ta eymi reke.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|kümeelkan}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|tapülh}}",
+	"createacct-benefit-text3": "$2 {{PLURAL:$1|we kejufe}}",
 	"mailmypassword": "Zewmatun nülawe",
 	"loginlanguagelabel": "Cezugun: $1",
 	"pt-login": "Konkülen",

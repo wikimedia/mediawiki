@@ -241,6 +241,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} — umumijə əməle žəgo odəmon bənə ty.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|ovaxte|ovaxtyjon}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|səhifə|səhifon}}",
+	"createacct-benefit-text3": "$2 {{PLURAL:$1|ištirokəkə|ištirokəkon}} oxonə vaxtədə",
 	"loginsuccess": "Шымә һәни де ым номи ко кардәјон $1.",
 	"nouserspecified": "Шымә бәпе иштирокәкә номи бынывыштән.",
 	"login-userblocked": "Окоәдә дәбастә быә. Бә система дәше әбыни.",

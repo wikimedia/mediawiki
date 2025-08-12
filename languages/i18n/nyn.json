@@ -172,6 +172,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} ne korwa abantu nka iwe.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|Tereza|ebitereziibwe}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|Orubaju|embaju}}",
+	"createacct-benefit-text3": "$2 obuhererukire {{PLURAL:$1|obeire nakoresa|ababeire nibakoresa}}",
 	"loginlanguagelabel": "Orurimi:$1",
 	"pt-login": "Yeyanjure",
 	"pt-login-button": "Yeyanjuremu",

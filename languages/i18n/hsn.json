@@ -180,6 +180,7 @@
 	"createacct-benefit-heading": "{{SITENAME}}是由像尔一样亇人俚构筑亇。",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|编辑}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|页面}}",
+	"createacct-benefit-text3": "$2 最近亇{{PLURAL:$1|贡献者}}",
 	"loginlanguagelabel": "语言：$1",
 	"pt-login": "登录",
 	"pt-login-button": "登录",

@@ -185,6 +185,7 @@
 	"createacct-another-continue-submit": "Jatka konttun luomista",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|mookkaus|mookkausta}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|sivu|sivua}}",
+	"createacct-benefit-text3": "$2 {{PLURAL:$1|viimisin mookkaaja|viimisimät mookkaajat}}",
 	"loginerror": "Lokkausvirhe",
 	"loginsuccesstitle": "Lokattu sisäle",
 	"mailmypassword": "Uusi salasana",

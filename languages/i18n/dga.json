@@ -154,6 +154,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} noba maŋ maale o aŋa fooŋ",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|maale sɛge}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|gapeɛle|gapeɛlɛ}}",
+	"createacct-benefit-text3": "$2 pampana {{PLURAL:$1|sonna|sonneba}}",
 	"loginlanguagelabel": "Kɔkɔre: $1",
 	"pt-login": "Kpɛ",
 	"pt-login-button": "Kpɛ a vuo poɔ",

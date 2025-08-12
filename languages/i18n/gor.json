@@ -326,6 +326,7 @@
 	"createacct-benefit-heading": "{{SITEMAP}} pilohutu lotawu odelo yi'o",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|momoli'o}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|halaman}}",
+	"createacct-benefit-text3": "$2 {{PLURAL:$1|kontributor}}pulitiyo",
 	"badretype": "Tahe u'unti pilopotuwoto tilala.",
 	"usernameinprogress": "Mohutu akun wolo tanggula botiye donggo na'o-na'o. Wulatipo ngope'e.",
 	"userexists": "Ta ohu'uwo lo tanggulo pilopotuwoto ma pilomake lo tawu. Toduwolo molulawota tanggula uweewo.",

@@ -338,6 +338,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} तोरौ जैसनौ लोग के द्वारा बनैलौ गलौ छै।",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|सम्पादन}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|पृष्ठ}}",
+	"createacct-benefit-text3": "$2 {{PLURAL:$1|योगदानकर्ता}}",
 	"badretype": "तोंय जे कूटशब्द देलौ छौ उ एक दोसरा सँ मेल नाय खाय छौं। यहा ल फेनु सँ लिखौ।",
 	"usernameinprogress": "हैय प्रयोक्ता क खाता निर्माण एखनी चालू छै।\nकृपया प्रतीक्षा करौ।",
 	"userexists": "तोरौ देलौ गेलौ सदस्यनाम पहिने सँ प्रयोग मँ छौं।\nकृपया कोय अन्य सदस्यनाम चुनौ।",

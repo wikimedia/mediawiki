@@ -246,6 +246,7 @@
 	"createacct-benefit-heading": "Hana ʻia ʻo {{SITENAME}} e nā kanaka e like me ʻoe.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|hoʻololi|mau hoʻololi}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|ʻaoʻao|mau ʻaoʻao}}",
+	"createacct-benefit-text3": "$2 {{PLURAL:$1|mea haʻawina|mau mea haʻawina}} hou",
 	"badretype": "ʻAʻole like nā ʻōlelo hūnā āu i hoʻokomo ai",
 	"userexists": "Ua kāinoa ʻia ka inoa mea ho‘ohana.\nE koho i kekahi inoa ʻē aʻe, ke ‘olu‘olu.",
 	"loginerror": "Hewa ʻeʻe",

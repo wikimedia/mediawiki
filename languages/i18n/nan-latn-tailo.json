@@ -210,6 +210,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} sī uī tio̍h tshin-tshiūnn lí--ê lâng tsiah lâi kiàn-li̍p--ê.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|pian-tsip}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|ia̍h}}",
+	"createacct-benefit-text3": "$2 tsuè-kūn {{PLURAL:$1|ê lâng ū kòng-hiàn}}",
 	"loginlanguagelabel": "Gú-giân: $1",
 	"pt-login": "Ting-ji̍p",
 	"pt-login-button": "Ting-ji̍p",

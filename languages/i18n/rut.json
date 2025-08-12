@@ -142,6 +142,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} — вы калды едимиешды саданы голакх.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|правка|правкабыр}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|джар|джарбыр}}",
+	"createacct-benefit-text3": "$2 ахира {{PLURAL:$1|участник|участникбыр}}",
 	"loginlanguagelabel": "ЧIел: $1",
 	"pt-login": "Log-in",
 	"pt-login-button": "Log-in",

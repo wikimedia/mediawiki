@@ -150,6 +150,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} e dirwa ke batho ba go tshwana le wena.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|fetola|diphetolo}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|tsebe|ditsebe}}",
+	"createacct-benefit-text3": "$2 Bošheng {{PLURAL:$1|modirisi|badirisi}}",
 	"pt-login": "Tsena",
 	"pt-login-button": "Tsena",
 	"pt-createaccount": "Bula akaonte",

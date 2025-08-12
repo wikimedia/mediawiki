@@ -339,6 +339,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} winonsoi montok tulun miagal dika.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|monimban}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|bolikan}}",
+	"createacct-benefit-text3": "$2 {{PLURAL:$1|mongunguhup}} kawawagu",
 	"badretype": "Kaatalib pinosuang awu kopisangai.",
 	"usernameinprogress": "Masaan no kapamansayan do akaun montok ngaran momoguno diti. Andado po.",
 	"userexists": "Ngaranmoguno pinosuang noguno no.\nMaai alanai do suai ngaran.",

@@ -273,6 +273,7 @@
 	"createacct-benefit-heading": "{{SITENAME}}nı siziñ kibi adamlar yaza.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|deñiştirme|deñiştirme}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|saife|saife}}",
+	"createacct-benefit-text3": "$2 soñki vaqıtlarda {{PLURAL:$1|issesini qoşqan qullanıcı|issesini qoşqan qullanıcı}}",
 	"badretype": "Kirsetken parolleriñiz aynı degil.",
 	"userexists": "Kirsetken qullanıcı adıñız endi qullanıla.\nLütfen, başqa bir qullanıcı adı saylañız.",
 	"createacct-normalization": "Qullanıcı adıñız tehnikiy sıñırlamalardan sebep \"$2\" olaraq deñiştirilecek.",

@@ -346,6 +346,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} موقع ساهم بيه ناس مثلك.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|تحرير|تحريرات}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|مقالة}}",
+	"createacct-benefit-text3": "$2 آخر {{PLURAL:$1|مساهم|مساهمين}}",
 	"badretype": "الباسوردات اللي كتبتها ما تتطابق.",
 	"usernameinprogress": "عملية إنشاء حساب لاسم المستخدم هاذ جاي تصير. اوكف شويه.",
 	"userexists": "اسم المستخدم اللي كتبته مستعمل.\nرجاءا اختار اسم مختلف.",

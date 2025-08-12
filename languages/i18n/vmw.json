@@ -149,6 +149,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} empakiwa ni atthu ntoko nyuwo",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|ereerihelo|ireerihelo}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|opuro|mapuro}}",
+	"createacct-benefit-text3": "$2 {{PLURAL:$1|namakhaliherya a naanano|anamakhaliherya akhalayi}}",
 	"mailmypassword": "Otthokiha vasya ekootiku",
 	"loginlanguagelabel": "Nttaava: $1",
 	"pt-login": "Otthuniha ovolowa",

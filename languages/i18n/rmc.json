@@ -154,6 +154,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} hiňi kerďi manušendar sar tu.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|pikeriben|pikeribena}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|sera|seri}}",
+	"createacct-benefit-text3": "$2 {{PLURAL:$1|načirlagutno diňardo|načirlagutne diňarde}}",
 	"loginlanguagelabel": "Čhib: $1",
 	"pt-login": "Uštariben",
 	"pt-login-button": "Uštariben",

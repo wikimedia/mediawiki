@@ -242,6 +242,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} e wekabɛ nde ná bato ká wa ná mbá est.",
 	"createacct-benefit-text1": "betúkwan",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|dipapá|mapapá}}",
+	"createacct-benefit-text3": "$2 {{PLURAL:$1|Mutiledi|Ɓatiledi}} bá peńá",
 	"userlogin-authpopup-cancel": "Ɓáŋga",
 	"loginlanguagelabel": "Bwambo: $1",
 	"pt-login": "Ɓetiŋgédi",

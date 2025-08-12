@@ -282,6 +282,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} crès grâsia a persòuni cme té.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|mudéfica|mudéfichi}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|pàgina|pàgini}}",
+	"createacct-benefit-text3": "$2 {{PLURAL:$1|iscrét nōv}}",
 	"badretype": "Al cêvi 'd ingrès scréti an cumbînen tra 'd lōr.",
 	"userexists": "Al nòm utèint scrét l'é bèle druvê.\nSiēlier 'n' êter nòm utèint.",
 	"loginerror": "Erōr 'd ingrès",

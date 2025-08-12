@@ -166,6 +166,7 @@
 	"createacct-benefit-heading": "E fa'u te {{SITENAME}} e te haha'i e hage ko koe.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|fetogi}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|pāsina}}",
+	"createacct-benefit-text3": "$2 {{PLURAL:$1|kaiga tokoni}} fo'ou",
 	"loginsuccesstitle": "I loto",
 	"accountcreated": "Nūmelo ne'e fau",
 	"loginlanguagelabel": "Lea:$1",

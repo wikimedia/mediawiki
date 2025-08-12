@@ -231,6 +231,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} እብ ከምሰልኩም ኣዳም ገብኣት።",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|ቀየሮት|ቀየሮታት}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|ገጽ|አግጸት}}",
+	"createacct-benefit-text3": "$2 ናይ ቅሩብ እዋን {{PLURAL:$1|ለአበርከተ|ለአበርከተው}}",
 	"badretype": "ለእላ ኣቴኩም ክልመት ስር በንበን ገብአት",
 	"userexists": "ለእግላ ስሜት መትንፍዓይ እላ ትነሰአት።\nሐዳስ ስሜት መትንፍዓይ ጀርቦ",
 	"loginerror": "ናይ እትየት ጌጋ",

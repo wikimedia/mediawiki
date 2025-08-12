@@ -186,6 +186,7 @@
 	"createacct-benefit-heading": "ከማኻ ዝኣመሰሉ ሰባት እዮም ን{{SITENAME}} ዝሃንጹ።",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|ኣርትዖት|ኣርትዖታት}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|ገጽ|ገጻት}}",
+	"createacct-benefit-text3": "$2 ናይ ቀረባ ግዜ {{PLURAL:$1|ኣበርካቲ|ኣበርከትቲ}}",
 	"badretype": "እቶም መሕለፊ ቃላት ኣይመሳሰሉን እዮም።",
 	"noname": "ብቑዕ ስም ተጠቃሚ ኣይተነጸረን።",
 	"userlogin-authpopup-retry": "እንደገና ፈትን",

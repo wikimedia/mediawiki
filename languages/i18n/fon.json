@@ -144,6 +144,7 @@
 	"createacct-benefit-heading": "Gbɛtɔ hwi ɖɔwun lɛ wɛ wlán {{SITENAME}}.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|nuwlán gɔ nú nǔ|nuwlán gɔ nú nǔ lɛ}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|wéma|wéma lɛ́}}",
+	"createacct-benefit-text3": "$2 {{PLURAL:$1|alɔgɔnumɛtɔ|alɔgɔnumɛtɔ lɛ}} é wá é ma lin a é",
 	"mailmypassword": "Blo hɔnhunxokwin ɖévo",
 	"loginlanguagelabel": "Gbé: $1",
 	"pt-login": "Sɔ hwiɖé sɔ́ xlɛ",

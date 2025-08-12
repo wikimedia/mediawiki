@@ -222,6 +222,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} ñu mel ni yaw a koy toppatoo.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|Coppite}}",
 	"createacct-benefit-text2": "$1 $2 {{PLURAL:$1|xët}}",
+	"createacct-benefit-text3": "$2 recent {{PLURAL:$1|aji-cëru bi mujj|aji-cëru yi mujj}}",
 	"badretype": "Baatujàll yi nga bind yemuñu.",
 	"userexists": "Turu jëfandikukat bi nga bind am na boroom ba noppi. Tànnal weneen.",
 	"loginerror": "Njuumte ci dugg gi",

@@ -159,6 +159,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} ᠣᠴᡳ ᠰᡳᠨᡳ ᡤᡝᠰᡝ ᡠᡵᠰᡝ ᠠᡵᠠᡥᠠ᠈",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|ᡴᡡᠪᡠᠯᡳᠨ}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|ᡶᡳᠶᡝᠯᡝᠨ}}",
+	"createacct-benefit-text3": "$2 ᡥᠠᠨᠴᡳᡴᡳ {{PLURAL:$1|ᠠᠯᡳᠪᡠᡵᡝ ᠨᡳᠶᠠᠯᠮᠠ}}",
 	"mailmypassword": "ᡳᠴᡝ ᡩᠣᠰᡳᡵᡝ ᡤᡳᠰᡠᠨ ᠪᡝ Tᠵᠠᠰᡳᡤᠠᠨ ᡳ ᠪᡠᡵᡝ",
 	"loginlanguagelabel": "ᡤᡳᠰᡠᠨ᠄ $1",
 	"pt-login": "ᡩᠣᠰᡳᡵᡝ",

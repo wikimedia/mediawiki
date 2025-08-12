@@ -138,6 +138,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} сизинъ кимик кисилерден бар бола.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|оьзгертуьв|оьзгертуьвлер}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|бет|бетлер}}",
+	"createacct-benefit-text3": "$2 сонъкы {{PLURAL:$1|уьлис}}",
 	"loginlanguagelabel": "Тил: $1",
 	"pt-login": "Кируьв",
 	"pt-login-button": "Кируьв",

@@ -219,6 +219,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} namoota akka keen hojjatame.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|gulaala|gulaalliiwwan}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|fuula|fuulota}}",
+	"createacct-benefit-text3": "$2 {{PLURAL:$1|gumaacha}} reefuu",
 	"mailmypassword": "Jecha darbii jijjiiri",
 	"accountcreated": "Eenyummeessaan uumame",
 	"loginlanguagelabel": "Afaan: $1",

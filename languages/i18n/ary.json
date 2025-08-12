@@ -307,6 +307,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} صايبوه ناس بحالك.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|تعديل}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|مقالة}}",
+	"createacct-benefit-text3": "$2 آخر {{PLURAL:$1|مساهم|مساهمين}}",
 	"badretype": "الكودات لي دخلتي ماشي كيف كيف.",
 	"userexists": "هاد سميت لخدايمي لي دخّلتي ديجا خداها شي واحد.\nختار عافاك شي سمية آخرة.",
 	"createacct-normalization": "السمية د لخدايمي ديالك غادي تبدّل ل \"$2\" بسباب تزييرات تقنية.",

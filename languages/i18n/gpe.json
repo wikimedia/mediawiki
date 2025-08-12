@@ -248,6 +248,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} people like you wey dey make am.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|edit|edits}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|page|pages}}",
+	"createacct-benefit-text3": "$2 recent {{PLURAL:$1|contributor|contributors}}",
 	"badretype": "De passwords wey you enter no dey match.",
 	"createacct-error": "Account creation error",
 	"noname": "You no specify username wey be valid.",

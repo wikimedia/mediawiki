@@ -300,6 +300,7 @@
 	"createacct-benefit-heading": "Fu tadaanduma n maalɛ e",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|demese|demesegoduma}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|Pɛgerɛ|Pɛga}}",
+	"createacct-benefit-text3": "$2 nananiwa {{PLURAL:$1|lagesegɔ|lagesegɔduma}}",
 	"loginsuccesstitle": "Lɔgɛ kɛ",
 	"loginlanguagelabel": "Tɔgum: $1",
 	"pt-login": "Lɔɔge kɛ",

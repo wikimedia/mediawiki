@@ -314,6 +314,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} sa marké pa moun kou ou.",
 	"createacct-benefit-text1": "modifikasyon$2 {{PLURAL:$1|}}",
 	"createacct-benefit-text2": "paj$2 {{PLURAL:$1|}}",
+	"createacct-benefit-text3": "$2 {{PLURAL:$1|kontribitò résan}}",
 	"badretype": "Kodsigré-ya ki ou sézi pa ka korèsponn.",
 	"usernameinprogress": "Oun kréyasyon di kont pou sa non di itilizatò sa an kour kaba.\nSouplé, pran pasyans.",
 	"userexists": "Non-an di itilizatò sézi itilizé kaba.\nSouplé, chwézi rounòt non.",

@@ -275,6 +275,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} rinogadzikwa nevanhu vakaita sewe.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|chinjirudzo|zvichinjirudzo}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|zanhi|mazanhi}}",
+	"createacct-benefit-text3": "$2 zvarizvino {{PLURAL:$1|munzati|vanzati}}",
 	"badretype": "Zvizaruriso zvawaisa hazvisikuenderana.",
 	"usernameinprogress": "Kusikwa kweakawundi yezitamushando rino ririmunzira yekusikwa. Tinokumbira mumire.",
 	"userexists": "Zitamushando raiswa rakatorwa kudhara.\nTinokumbirawo kuti usarudze rimwe zita.",

@@ -288,6 +288,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} è criaddu pa jenti cumenti sei tu.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|Mudìfiggu|Mudìfigghi}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|pàgina|pàgini}}",
+	"createacct-benefit-text3": "$2 {{PLURAL:$1|rizzenti autori}}",
 	"badretype": "Li paràuri d'órdhini insiriddi nò cuinzidhini tra èddi.",
 	"userexists": "L'innòmu utenti insiriddu è già utirizaddu. Chirria un'innòmu utenti dibessu.",
 	"loginerror": "Errori i' l'intradda",

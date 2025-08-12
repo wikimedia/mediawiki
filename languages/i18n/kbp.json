@@ -158,6 +158,7 @@
 	"createacct-benefit-heading": "Ɛyaa ɛzɩ ña yɔ maɣna {{SITENAME}}",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|ñɔɔzʋʋ|ñɔɔzɩtʋ}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|takayɩhayʋʋ|takayɩhatʋ}}",
+	"createacct-benefit-text3": "$2 wayɩ wayɩ nesi {{PLURAL:$1|ɖʋyʋ|ɖuyaa}}",
 	"loginlanguagelabel": "Kʋnʋŋ : $1",
 	"pt-login": "Kpɩtɩna",
 	"pt-login-button": "Kpɩtɩna",

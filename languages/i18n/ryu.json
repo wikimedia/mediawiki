@@ -134,6 +134,7 @@
 	"createacct-benefit-heading": "{{SITENAME}}ー、うんじゅがぐとーるッチュぬちゅくとーいびーん。",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|直すん}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|ページ}}",
+	"createacct-benefit-text3": "$2 いまめーぬ{{PLURAL:$1|投稿者ぬかじ}}",
 	"loginlanguagelabel": "口: $1",
 	"pt-login": "ログイン",
 	"pt-login-button": "ログイン",

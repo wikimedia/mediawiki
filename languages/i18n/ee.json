@@ -172,6 +172,7 @@
 	"createacct-benefit-heading": "Ame siwo le abe wò ene koe trɔ asi le {{SITENAME}} la ŋu.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|nugbugbɔŋlɔ|nugbugbɔŋlɔwo}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|axa|axawo}}",
+	"createacct-benefit-text3": "$2 yeyetɔ {{PLURAL:$1|contributor|contributors}}",
 	"loginsuccesstitle": "Ège ɖe eme.",
 	"loginsuccess": "'''Ele {{SITENAME}} me fifia abe \"$1\" ene.'''",
 	"nouserspecified": "Elebe na ŋlɔ wò dzesideŋkɔ",

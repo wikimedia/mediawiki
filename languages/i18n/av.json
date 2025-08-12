@@ -248,6 +248,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} ккола нужго гӀадинал гӀадамазулги нужерги гӀахьалаб хӀалтӀи.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|хиса-баси}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|гьумер|гьумерал}}",
+	"createacct-benefit-text3": "$2 Ахирисеб заманаялда жанив {{PLURAL:$1|гIахьалчи}}",
 	"badretype": "Дуца рихьизарурал паролал данде кколел гьечӀо",
 	"userexists": "Бихьизабураб хӀалтӀизабунцӀар цогиясги хӀалтӀизабулеб буго.\nБегьулеб батани, дуего батӀияб цӀар бище.",
 	"userlogin-authpopup-retry": "Нахъоги хӀалбихье",

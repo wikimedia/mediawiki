@@ -125,6 +125,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} မ့ၢ်တၢ်တ့ဘၢ်အီၤလၢပှၤတ့တၢ်ဖိဒ်သိးနၤလီၤ",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|edit|အဲၣ်ဒံၣ်တဖၣ်}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|page|ကဘျံးပၤတဖၣ်}}",
+	"createacct-benefit-text3": "$2 တယံာ်ဒံးဘၣ် {{PLURAL:$1|ပှၤဟ့ၣ်မၤစၢၤတၢ်ဖိတဖၣ်|}}",
 	"loginlanguagelabel": "ကျိာ်: $1",
 	"pt-login": "ဝၣ်နုၤလီၤ",
 	"pt-login-button": "ဝၣ်နုၤလီၤ",

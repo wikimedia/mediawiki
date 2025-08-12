@@ -168,6 +168,7 @@
 	"createacct-benefit-heading": "Îre ebi ene kire owu erọ {{SITENAME}}",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|ǹnen̄e-ǹge}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|akpọk}}",
+	"createacct-benefit-text3": "$2 {{PLURAL:$1|ogwu òtitip|ebi ìtitip}} me mgburudun̄ yi",
 	"userlogin-authpopup-retry": "Yaka sa lek",
 	"userlogin-authpopup-cancel": "Gwak",
 	"loginsuccesstitle": "Îtibi inin̄",

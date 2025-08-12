@@ -138,6 +138,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} sanajausimajut iliksititut inungnut.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|suqutaunngilaq|aaqqigiaqtauningit}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|mappigaq|makpigait}}",
+	"createacct-benefit-text3": "$2 qangattialisaq {{PLURAL:$1|tunisijuq|tunisijut}}",
 	"mailmypassword": "isirunnautinga asijjiqtauluni",
 	"loginlanguagelabel": "uqausiq: $1",
 	"pt-login": "akunnapuq",

@@ -275,6 +275,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} ⵜⴻⵜⵜⵓⴽ ⵙⴳ ⵎⵉⴷⴷⵏ ⴰⵎ ⴽⵢⵢⵉⵏ",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|ⴰⵙⵏⴼⵍ|ⵉⵙⵏⴼⴰⵍ}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|ⵜⴰⵙⵏⴰ|ⵜⴰⵙⵏⵉⵡⵉⵏ}}",
+	"createacct-benefit-text3": "$2 {{PLURAL:$1|ⴰⵏⴰⵎⵓ ⴰⵏⴳⴳⴰⵔⵓ|ⵉⵏⴰⵎⵓⵜⵏ ⵉⵏⴳⴳⵓⵔⴰ}}",
 	"badretype": "ⵜⴰⴳⵓⵔⵉ ⵏ ⵓⵣⵔⴰⵢ ⵏⵏⴰ ⵜⵙⴽⵛⵎⴷ ⵓⵔ ⵜⵎⵙⴰⵙⴰ",
 	"usernameinprogress": "ⵉⵏⵜⴰ ⵢⴰⴷ ⵢⴰⵏ ⵓⵙⵏⵓⵍⴼⵓ ⵏ ⵓⵎⵉⴹⴰⵏ ⵉ ⵢⵉⵙⵎ ⵏ ⵓⵏⵙⵙⵎⵔⵙ ⴰⴷ. ⴰⵎⵓⵔ ⵏⵏⴽ ⵔⴰⵊⴰ.",
 	"userexists": "ⵉⵙⵎ ⵏ ⵓⵏⵙⵙⵎⵔⵙ ⵉ ⵜⵙⴽⵛⵎⴷ ⵉⵜⵜⵓⵙⵎⵔⵙ ⵢⴰⴷ.\nⴰⵎⵓⵔ ⵏⵏⴽ ⵙⵜⵉ ⵉⵙⵎ ⵢⴰⴹⵏ.",

@@ -148,6 +148,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} amme kilzana ma",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|yasa|yasa'ngwu}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|shafi|shafi wa}}",
+	"createacct-benefit-text3": "$2 ngawo ye {{PLURAL:$1|bana ma|bana ma so}}",
 	"loginsuccesstitle": "Gawo",
 	"accountcreated": "Account kata",
 	"loginlanguagelabel": "Tǝlam: $1",

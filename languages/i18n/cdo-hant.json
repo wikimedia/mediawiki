@@ -226,6 +226,7 @@
 	"createacct-benefit-heading": "{{SITENAME}}是共汝蜀様其儂做其。",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|修改}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|頁面}}",
+	"createacct-benefit-text3": "$2 最近其{{PLURAL:$1|貢獻者}}",
 	"badretype": "汝拍入其密碼𣍐蜀様。",
 	"userexists": "用戶名已經乞別人使去了。\n起動另外再起蜀萆名字。",
 	"loginerror": "登錄有綻",

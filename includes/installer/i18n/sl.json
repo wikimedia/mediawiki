@@ -199,7 +199,7 @@
 	"config-license-help": "Veliko javnih vikijev postavlja vse prispevke pod [https://freedomdefined.org/Definition prosto licenco].\nTo pomaga ustvariti občutek lastništva skupnosti in spodbuja dolgoročne prispevke.\nNa splošno ni potrebno za zasebni ali poslovni viki.\n\nČe želite uporabljati besedilo iz Wikipedije in želite, da lahko Wikipedija sprejme besedilo, kopirano iz vašega vikija, morate izbrati <strong>{{int:config-license-cc-by-sa}}</strong>.\n\nWikipedija je prej uporabljala licenco GNU Free Documentation License (GFDL).\nGFDL je veljavna licenca, vendar jo je težko razumeti.\nTežko je tudi nadalje uporabljati vsebino, licencirano z GFDL.",
 	"config-email-settings": "Nastavitve e-pošte",
 	"config-enable-email": "Omogoči odhodno e-pošto",
-	"config-enable-email-help": "Če želite, da e-pošta deluje, morajo biti pravilno konfigurirane [https://www.php.net/mail.configuration poštne nastavitve PHP].\nČe ne želite nobenih možnosti e-pošte, jih lahko tukaj onemogočite.",
+	"config-enable-email-help": "Če želite, da e-pošta deluje, morajo biti [https://www.php.net/mail.configuration poštne nastavitve PHP] pravilno konfigurirane.\nČe ne želite nobenih možnosti e-pošte, jih lahko tukaj onemogočite.",
 	"config-email-user": "Omogoči e-pošto med uporabniki",
 	"config-email-user-help": "Dovolite vsem uporabnikom, da si pošiljajo e-pošto, če so to omogočili v svojih nastavitvah.",
 	"config-email-usertalk": "Omogoči obveščanje o uporabniški pogovorni strani",

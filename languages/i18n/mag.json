@@ -296,6 +296,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} अपने नियन लोगद्वारा बनावल गेलहे ।",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|सम्पादन}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|पन्ना}}",
+	"createacct-benefit-text3": "$2 हालके {{PLURAL:$1|योगदानकर्ता}}",
 	"badretype": "अपनेद्वारा प्रदान कैल कूटशब्द मेल न खाइतहे ।",
 	"usernameinprogress": "ई प्रयोक्ताला खाता निर्माण अखनि चालुए हे ।\nतनी प्रतीक्षा करी ।",
 	"userexists": "अपनेद्वारा देल सदस्यनाम पहिलेहीँसे प्रयोगमे हे ।\nकृपया कौनो दोसर सदस्यनाम चुनी ।",

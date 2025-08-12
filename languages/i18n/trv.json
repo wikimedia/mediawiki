@@ -153,6 +153,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} paah saw isumdka seejiq suyang qnpahan saw phiyug da.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|smsul smmalu patas}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|ruwahan}}",
+	"createacct-benefit-text3": "$2 Hnigan snii {{PLURAL:$1|seejiq suyang qnpahan}}",
 	"mailmypassword": "psbgurah powsa sspgan lniing",
 	"loginlanguagelabel": "Kari: $1",
 	"pt-login": "Pstmay patas",

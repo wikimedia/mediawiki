@@ -181,6 +181,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} ikolirwe na bandu ngawe.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|kyokyamehingibwa|byobyamehingibwa}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|kashashali|tushashali}}",
+	"createacct-benefit-text3": "$2 {{PLURAL:$1|muandiki muhya|baandiki bahya}}",
 	"loginlanguagelabel": "Muneenere: $1",
 	"pt-login": "Ingira",
 	"pt-login-button": "Ingira",

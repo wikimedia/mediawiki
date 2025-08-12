@@ -191,6 +191,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} do ape lekan ko te ge bai akana.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|Olrunuaa|Olrunuaa ko|2=Olrunuaa kin}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|Sakam|Sakam ko|2=Sakam kin}}",
+	"createacct-benefit-text3": "$2 dárat́aḱ {{PLURAL:$1|OlÈm|OlÈm ko|2=OlÈm kin}}",
 	"badretype": "Ol akan Danaṅolnaḱ mit́ge banoḱa.",
 	"loginerror": "Bolosakam Error",
 	"createacct-error": "Account banai re Error",

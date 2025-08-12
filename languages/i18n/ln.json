@@ -169,6 +169,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} esalemi na bato lokola yo.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1| bobongisi|bobongoli}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1| lokasa|nkasa}}",
+	"createacct-benefit-text3": "$2 ya sika {{PLURAL:$1| mopesi maboko|basali}}",
 	"mailmypassword": "Kotíndisa liloba-nzelá lya sika na mɛ́lɛ",
 	"loginlanguagelabel": "Lokótá: $1",
 	"pt-login": "Komíkitola",

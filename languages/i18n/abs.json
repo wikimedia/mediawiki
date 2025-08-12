@@ -138,6 +138,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} dibiking dar orang-orang macang ale dong.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|parobahan}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|halaman}}",
+	"createacct-benefit-text3": "$2 {{PLURAL:$1|kontributor}} terakhir",
 	"loginlanguagelabel": "Bahasa: $1",
 	"pt-login": "Maso dalang Log",
 	"pt-login-button": "Maso dalang Log",

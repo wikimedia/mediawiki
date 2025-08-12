@@ -290,6 +290,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} está costruíu por pressonas comu tú.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|adición|adicionis}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|página|páginas}}",
+	"createacct-benefit-text3": "$2 {{PLURAL:$1|calavoraol rezienti|calavoraoris rezientis}}",
 	"badretype": "Las consínias nu conciin.",
 	"userexists": "El nombri d'esuariu escrevíu ya está gastau.\nPol favol, Descoja otru nombri.",
 	"loginerror": "Marru d'ativación",

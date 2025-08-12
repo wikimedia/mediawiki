@@ -290,6 +290,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} er gjørd av fólki sum tær.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|rætting|rættingar}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|síða|síður}}",
+	"createacct-benefit-text3": "$2 seinasti/u {{PLURAL:$1|høvundur|høvundar}}",
 	"badretype": "Loyniorðið tú hevur skriva er ikki rætt.",
 	"userexists": "Brúkaranavnið sum tú valdi er longu í nýtslu.\nVinarliga vel eitt annað navn.",
 	"loginerror": "Innritanarbrek",

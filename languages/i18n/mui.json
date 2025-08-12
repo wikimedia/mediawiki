@@ -322,6 +322,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} ni digawé' wong-wong peca' Dûlûr inila.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|dandanan}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|laman}}",
+	"createacct-benefit-text3": "$2 {{PLURAL:$1|pengéjo}} bûncîtan",
 	"badretype": "Kato pengonci yang diisike da'do setulu'an.",
 	"loginerror": "Ngarut pangko cup maso'",
 	"createacct-error": "Ngarut pangko ngawek rekening",

@@ -129,6 +129,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} थारा जैसा लोगां द्वारा बनाई जावै सै।",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|सम्पादन}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|पन्ना|पन्नें}}",
+	"createacct-benefit-text3": "$2 हाल की {{PLURAL:$1|योगदानकर्ता|योगदानकर्ताएँ}}",
 	"loginlanguagelabel": "भाषा: $1",
 	"pt-login": "लॉग-इन",
 	"pt-login-button": "लॉग-इन करैं",

@@ -167,6 +167,7 @@
 	"createacct-benefit-heading": "Nkorɔfo tse dɛ ɔwo na wɔyɛɛ {{SITENAME}}.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|nsesa}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|kratafa|nkratafa}}",
+	"createacct-benefit-text3": "$2 {{PLURAL:$1|aboafo|mboafo}} a wɔnnkyɛree",
 	"loginlanguagelabel": "Kasa: $1",
 	"pt-login": "Kɔ mu",
 	"pt-login-button": "Kɔ mu",

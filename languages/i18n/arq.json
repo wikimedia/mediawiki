@@ -315,6 +315,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} مخلوق من عند شي ناس غير كيفك.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|تحرير|تحريرات}}",
 	"createacct-benefit-text2": "$1 $2 {{PLURAL:$1|صفحة|صفحات}}",
+	"createacct-benefit-text3": "$2 {{PLURAL:$1|مساهم|مساهمين}} توالا",
 	"badretype": "كلمات` السرّ الّي دخّلتها ماشي متشابهة.",
 	"usernameinprogress": "الصنيع تاع الحساب تاع هاد المستعملي راه بادي. اصبر من فضلك.",
 	"userexists": "السميّة تاع المستعملي المدخّل راه كاين مقبل.\nالله يحفضك اختار وحداخُر.",

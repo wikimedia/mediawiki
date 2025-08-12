@@ -282,6 +282,7 @@
 	"createacct-benefit-heading": "Nnipa bi te sɛ wo na ɛyɛ {{SITENAME}}",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|nsesa|nsesae}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|kratafa|nkratafa}}",
+	"createacct-benefit-text3": "$2 nea {{PLURAL:$1|ɔboa}} nkyɛe",
 	"badretype": "Kukuwa mu ahyɛnsode abien no nsɛ",
 	"usernameinprogress": "Obi foforo di din yi reyɛ account. \nYɛsrɛ wo twɛn.",
 	"userexists": "Obi foforo kita din an wo pɛ no.\nYɛsrɛ wo sesa fa foforo.",

@@ -295,6 +295,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} sī uī tio̍h chhin-chhiūⁿ lí--ê lâng chiah lâi kiàn-li̍p--ê.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|pian-chi̍p}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|ia̍h}}",
+	"createacct-benefit-text3": "$2 choè-kīn {{PLURAL:$1|ê lâng ū kòng-hiàn}}",
 	"badretype": "Lí su-ji̍p ê 2-cho· bi̍t-bé bô tùi.",
 	"userexists": "Lí phah ê iōng-chiá miâ-chheng í-keng ū lâng iōng. Chhiáⁿ lí iōng pa̍t-ê miâ.",
 	"loginerror": "Teng-ji̍p chhò-gō·",

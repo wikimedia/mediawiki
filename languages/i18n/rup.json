@@ -227,6 +227,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} s-feasi cu oamińi ca tini.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|alâxiri|alâxiri|di alâxiri}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|frândzâ|frândzâ|de frândzâ}}",
+	"createacct-benefit-text3": "$2 {{PLURAL:$1|contribuitoru proaspitu|contribuitori proaspiț|di contribuitori proaspiț}}",
 	"badretype": "Zboarâli acrifo pi cari lâ bâgaș nu suntu unâ.",
 	"userexists": "Numa di utilizatoru pi cari u bâgaș ari nica aoa. Ti oru, ľea altâ numâ.",
 	"loginerror": "Sfalmâ di ligari",

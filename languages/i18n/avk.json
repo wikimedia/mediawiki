@@ -260,6 +260,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} gan yon korik dum rin zo epur.",
 	"createacct-benefit-text1": "$1 $2 {{PLURAL:$1|betara}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|bu}}",
+	"createacct-benefit-text3": "$2 noeltaf {{PLURAL:$1|webesik}}",
 	"badretype": "Toloy suteyen remravlem tid menuxaf.",
 	"userexists": "Favesikyolt suteyen ixam zo faver.\nVa amidaf yolt vay gonaral.",
 	"loginerror": "Pilkomodajara",

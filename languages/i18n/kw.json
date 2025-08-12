@@ -214,6 +214,7 @@
 	"createacct-benefit-heading": "Gwrys yw {{SITENAME}} gans tus kepar ha hwi.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|golegyans}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|folen}}",
+	"createacct-benefit-text3": "$2 {{PLURAL:$1|gevriyas|kevriyas}} a-dhiwedhes",
 	"badretype": "Ny omdhesedh an geryow-tremena entrys genowgh.",
 	"userexists": "Y tevnydhir an hanow devnydhyer entrys genowgh seulabrys.\nDewisewgh ken hanow mar pleg.",
 	"loginerror": "Gwall omgelmi",
