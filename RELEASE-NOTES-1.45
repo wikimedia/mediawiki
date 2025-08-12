@@ -321,6 +321,7 @@ because of Phabricator reports.
 * UploadBase::verifyExtension, UploadBase::detectScript, UploadBase::detectVirus
   have been deprecated. In most cases callers should use the verifyFile
   method of UploadVerification service.
+* XmlSelect::setTagName() is deprecated, use the Html class instead.
 * …
 
 === Other changes in 1.45 ===

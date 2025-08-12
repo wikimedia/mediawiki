@@ -62,7 +62,11 @@ class XmlSelect {
 		$this->default = $default;
 	}
 
+	/**
+	 * @deprecated since 1.45
+	 */
 	public function setTagName( string $tagName ): void {
+		wfDeprecated( __METHOD__, '1.45' );
 		$this->tagName = $tagName;
 	}
 
