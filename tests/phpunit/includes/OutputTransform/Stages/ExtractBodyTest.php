@@ -141,7 +141,12 @@ HTML;
 				"title" => 'Foo/Bar"Baz',
 				"body" => "<p><a href='./Foo/Bar\"Baz#cite1'>hello</a></p>",
 				"result" => "<p><a href=\"#cite1\">hello</a></p>\n"
-			]
+			],
+			[
+				"title" => "Foo/Bar",
+				"body" => '<figure typeof="mw:File mw:Extension/imagemap"><span><img resource="./File:Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" usemap="#ImageMap_02c94d3ca4bfc187"></span><map name="ImageMap_02c94d3ca4bfc187"><area href="./Main_Page" shape="poly" coords="10,11,10,30,-30,15"></map><figcaption></figcaption></figure>',
+				"result" => "<figure typeof=\"mw:File mw:Extension/imagemap\"><span><img resource=\"https://www.example.com/w/File:Foobar.jpg\" src=\"http://example.com/images/3/3a/Foobar.jpg\" usemap=\"#ImageMap_02c94d3ca4bfc187\"></span><map name=\"ImageMap_02c94d3ca4bfc187\"><area href=\"https://www.example.com/w/Main_Page\" shape=\"poly\" coords=\"10,11,10,30,-30,15\"></map><figcaption></figcaption></figure>\n",
+			],
 		];
 		// Set test title in parser output extension data
 		foreach ( $testData as $label => $t ) {

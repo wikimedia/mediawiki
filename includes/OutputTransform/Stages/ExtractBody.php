@@ -40,7 +40,11 @@ class ExtractBody extends ContentTextTransformStage {
 	}
 
 	private const EXPAND_ELEMENTS = [
-		'a' => true, 'img' => true, 'video' => true, 'audio' => true,
+		'a' => 'href',
+		'area' => 'href',
+		'audio' => 'resource',
+		'img' => 'resource',
+		'video' => 'resource',
 	];
 
 	private static function expandRelativeAttrs(
@@ -55,14 +59,14 @@ class ExtractBody extends ContentTextTransformStage {
 		return HtmlHelper::modifyElements(
 			$text,
 			static function ( SerializerNode $node ): bool {
-				if ( !isset( self::EXPAND_ELEMENTS[$node->name] ) ) {
+				$attr = self::EXPAND_ELEMENTS[$node->name] ?? null;
+				if ( $attr === null ) {
 					return false;
 				}
-				$attr = $node->name === 'a' ? 'href' : 'resource';
 				return str_starts_with( $node->attrs[$attr] ?? '', './' );
 			},
 			static function ( SerializerNode $node ) use ( $baseHref, $pageFragmentPrefix, $urlUtils ): SerializerNode {
-				$attr = $node->name === 'a' ? 'href' : 'resource';
+				$attr = self::EXPAND_ELEMENTS[$node->name];
 				$href = $node->attrs[$attr];
 				// Convert page fragment urls to true fragment urls
 				// This ensures that those fragments include any URL query params
