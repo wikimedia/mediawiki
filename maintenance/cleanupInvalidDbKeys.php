@@ -25,6 +25,7 @@
 require_once __DIR__ . '/Maintenance.php';
 // @codeCoverageIgnoreEnd
 
+use MediaWiki\Deferred\LinksUpdate\TemplateLinksTable;
 use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Title\Title;
 use MediaWiki\WikiMap\WikiMap;
@@ -54,7 +55,7 @@ class CleanupInvalidDbKeys extends Maintenance {
 
 		// Links tables
 		[ 'pagelinks', 'pl', 'idField' => 'pl_from' ],
-		[ 'templatelinks', 'tl', 'idField' => 'tl_from' ],
+		[ 'templatelinks', 'tl', 'idField' => 'tl_from', 'virtualDomain' => TemplateLinksTable::VIRTUAL_DOMAIN ],
 		[ 'categorylinks', 'cl', 'idField' => 'cl_from', 'nsField' => 14, 'titleField' => 'cl_to' ],
 		[ 'imagelinks', 'il', 'idField' => 'il_from', 'nsField' => 6, 'titleField' => 'il_to' ],
 	];
@@ -143,7 +144,15 @@ TEXT
 		// modified after selecting and before deleting/updating, but working on
 		// the hypothesis that invalid rows will be old and in all likelihood
 		// unreferenced, we should be fine to do it like this.
-		$dbr = $this->getDB( DB_REPLICA, 'vslow' );
+		if ( isset( $tableParams['virtualDomain'] ) ) {
+			$dbr = $this->getServiceContainer()->getConnectionProvider()->getReplicaDatabase(
+				$tableParams['virtualDomain'],
+				'vslow'
+			);
+		} else {
+			$dbr = $this->getDB( DB_REPLICA, 'vslow' );
+		}
+
 		$linksMigration = $this->getServiceContainer()->getLinksMigration();
 		$joinConds = [];
 		$tables = [ $table ];
@@ -213,7 +222,14 @@ TEXT
 		$services = $this->getServiceContainer();
 
 		// Fix the bad data, using different logic for the various tables
-		$dbw = $this->getPrimaryDB();
+		if ( isset( $tableParams['virtualDomain'] ) ) {
+			$dbw = $this->getServiceContainer()->getConnectionProvider()->getPrimaryDatabase(
+				$tableParams['virtualDomain']
+			);
+		} else {
+			$dbw = $this->getPrimaryDB();
+		}
+
 		switch ( $table ) {
 			case 'page':
 			case 'redirect':

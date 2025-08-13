@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\Deferred\DeferredUpdates;
+use MediaWiki\Deferred\LinksUpdate\TemplateLinksTable;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\MediaWikiServices;
@@ -314,9 +315,6 @@ class RefreshLinks extends Maintenance {
 	 * @param int $batchSize The size of deletion batches
 	 */
 	private function dfnCheckInterval( $start = null, $end = null, $batchSize = 100 ) {
-		$dbw = $this->getPrimaryDB();
-		$dbr = $this->getDB( DB_REPLICA, [ 'vslow' ] );
-
 		$linksTables = [
 			// table name => page_id field
 			'pagelinks' => 'pl_from',
@@ -331,6 +329,18 @@ class RefreshLinks extends Maintenance {
 		];
 
 		foreach ( $linksTables as $table => $field ) {
+			if ( $table === 'templatelinks' ) {
+				$dbw = $this->getServiceContainer()->getConnectionProvider()->getPrimaryDatabase(
+					TemplateLinksTable::VIRTUAL_DOMAIN
+				);
+				$dbr = $this->getServiceContainer()->getConnectionProvider()->getReplicaDatabase(
+					TemplateLinksTable::VIRTUAL_DOMAIN,
+					'vslow'
+				);
+			} else {
+				$dbw = $this->getPrimaryDB();
+				$dbr = $this->getDB( DB_REPLICA, [ 'vslow' ] );
+			}
 			$this->output( "    $table: 0" );
 			$tableStart = $start;
 			$counter = 0;

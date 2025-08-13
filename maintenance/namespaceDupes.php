@@ -30,6 +30,7 @@ require_once __DIR__ . '/Maintenance.php';
 
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Deferred\LinksUpdate\LinksDeletionUpdate;
+use MediaWiki\Deferred\LinksUpdate\TemplateLinksTable;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Maintenance\Maintenance;
@@ -437,7 +438,13 @@ class NamespaceDupes extends Maintenance {
 	private function checkLinkTable( $table, $fieldPrefix, $ns, $name, $options,
 		$extraConds = []
 	) {
-		$dbw = $this->getPrimaryDB();
+		if ( $table === 'templatelinks' ) {
+			$dbw = $this->getServiceContainer()->getConnectionProvider()->getPrimaryDatabase(
+				TemplateLinksTable::VIRTUAL_DOMAIN
+			);
+		} else {
+			$dbw = $this->getPrimaryDB();
+		}
 
 		$batchConds = [];
 		$fromField = "{$fieldPrefix}_from";
