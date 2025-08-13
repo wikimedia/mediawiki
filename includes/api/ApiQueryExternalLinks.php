@@ -22,12 +22,14 @@
 
 namespace MediaWiki\Api;
 
+use MediaWiki\Deferred\LinksUpdate\ExternalLinksTable;
 use MediaWiki\ExternalLinks\LinkFilter;
 use MediaWiki\Parser\Parser;
 use MediaWiki\Title\Title;
 use MediaWiki\Utils\UrlUtils;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
+use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\LikeValue;
 
@@ -39,11 +41,18 @@ use Wikimedia\Rdbms\LikeValue;
 class ApiQueryExternalLinks extends ApiQueryBase {
 
 	private UrlUtils $urlUtils;
+	private IConnectionProvider $dbProvider;
 
-	public function __construct( ApiQuery $query, string $moduleName, UrlUtils $urlUtils ) {
+	public function __construct(
+		ApiQuery $query,
+		string $moduleName,
+		UrlUtils $urlUtils,
+		IConnectionProvider $dbProvider
+	) {
 		parent::__construct( $query, $moduleName, 'el' );
 
 		$this->urlUtils = $urlUtils;
+		$this->dbProvider = $dbProvider;
 	}
 
 	public function execute() {
@@ -102,7 +111,11 @@ class ApiQueryExternalLinks extends ApiQueryBase {
 			$this->addWhere( $db->buildComparison( '>=', $conds ) );
 		}
 
+		$this->getQueryBuilder()->connection(
+			$this->dbProvider->getReplicaDatabase( ExternalLinksTable::VIRTUAL_DOMAIN, 'api' )
+		);
 		$res = $this->select( __METHOD__ );
+		$this->getQueryBuilder()->connection( $this->getDB() );
 
 		$count = 0;
 		foreach ( $res as $row ) {

@@ -96,6 +96,7 @@ class ApiQuery extends ApiBase {
 			'class' => ApiQueryExternalLinks::class,
 			'services' => [
 				'UrlUtils',
+				'ConnectionProvider',
 			],
 		],
 		'fileusage' => [
@@ -381,6 +382,7 @@ class ApiQuery extends ApiBase {
 			'class' => ApiQueryExtLinksUsage::class,
 			'services' => [
 				'UrlUtils',
+				'ConnectionProvider',
 			],
 		],
 		'filearchive' => [
