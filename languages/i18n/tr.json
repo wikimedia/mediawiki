@@ -2408,7 +2408,7 @@
 	"protect-default": "Tüm kullanıcılara izin ver",
 	"protect-fallback": "Yalnızca \"$1\" yetkisine sahip kullanıcılara izin ver",
 	"protect-level-autoconfirmed": "Yalnızca otomatik onaylanmış kullanıcılara izin verilir",
-	"protect-level-sysop": "Yalnızca hizmetlilere izin ver",
+	"protect-level-sysop": "Yalnızca hizmetlilere izin verilir",
 	"protect-summary-cascade": "kademeli",
 	"protect-expiring": "bitiş tarihi $1 (UTC)",
 	"protect-expiring-local": "$1 tarihinde bitiyor",

@@ -13,7 +13,8 @@
 			"ProtoplasmaKid",
 			"TSolange",
 			"Vicente Canché Móo",
-			"VicenteCancheM"
+			"VicenteCancheM",
+			"Jero"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Kategooriya|Kategooriyasoꞌob}}",
@@ -26,6 +27,7 @@
 	"category-subcat-count": "{{PLURAL:$2| In meyaj ts´íib ich maaya t´áan chen ku bisik {{PLURAL:$1}} ichil jun p´éel u kaabalil $2 p´iisil}}",
 	"category-subcat-count-limited": "Le p´íisila´ku bisík ichil {{PLURAL:$1| le túumben p´íisilo´oba´|o´ob taanilo´oba´$1 kaabal p´íisilo´ob}}.",
 	"category-article-count": "{{PLURAL:$2|Le p´íisila´ku taasik ichil chen le waal ts´íiba´|{{PLURAL:$1|Le waal ts´íibila´ ku bin ichil|Le ujelo´oba´$1 waal ts´íibo´oba´ ku bino´ob ichil}} ti´le p´íisila´ ti´jun much´ti´$2}}",
+	"category-article-count-limited": "Le je'ela' {{PLURAL:$1| linki abas kaambal jach| $1 páginas táan}} ti' le categoría actual.",
 	"category-file-count": "{{PLURAL:$2| Le jaatsa' chéen yaan ti' le archivo je'ela'.| {{PLURAL:$1| Le archivoa' ti'al| Le $1 archivoso'oba ti'al yaan}} le categoría, ti' $2 total.}}",
 	"broken-file-category": "Wáalalo'ob yéetel u enlacesil archivoo'ob ma' ma'alobtaki'",
 	"about": "Yóolal",

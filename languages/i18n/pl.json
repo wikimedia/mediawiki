@@ -4145,6 +4145,8 @@
 	"interwiki_prefix": "Przedrostek",
 	"interwiki-prefix-label": "Przedrostek:",
 	"interwiki_prefix_intro": "Przedrostek interwiki do użycia zgodnie ze składnią wiki <code>[<nowiki />[prefiks:<em>nazwa strony</em>]]</code>.",
+	"interwiki_url": "Adres URL",
+	"interwiki-url-label": "Adres URL:",
 	"interwiki_url_intro": "Szablon dla adresów URL. Symbol $1 zostanie zastąpiony przez <em>nazwę strony</em> w <code>[<nowiki />[prefiks:<em>nazwa strony</em>]]</code>.",
 	"interwiki_local": "Przekazuj",
 	"interwiki-local-label": "Przekazuj",

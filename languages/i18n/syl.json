@@ -830,7 +830,7 @@
 	"namespace": "ꠘꠣꠝꠞ ꠎꠦꠉꠣ ꠪",
 	"blanknamespace": "(ꠝꠥꠟ)",
 	"contributions": "ꠛꠦꠛꠀꠞ ꠈꠞ꠆ꠞꠣꠞ ꠈꠣꠝ",
-	"contributions-title": "$1 ꠅꠞ ꠟꠣꠉꠤ ꠛꠦꠛꠀꠞꠈꠞ꠆ꠞꠣꠅꠈꠟꠞ ꠅꠛꠖꠣꠘ",
+	"contributions-title": "$1 ꠅꠞ ꠟꠣꠉꠤ {{GENDER:$2|ꠛꠦꠛꠀꠞꠇꠞ꠆ꠞꠣꠞ}} ꠅꠛꠖꠣꠘ",
 	"mycontris": "ꠅꠛꠖꠣꠘ",
 	"anoncontribs": "ꠅꠛꠖꠣꠘ",
 	"nocontribs": "ꠁ ꠀꠘꠝꠣꠘ ꠝꠣꠘꠤꠀ ꠍꠟꠦ ꠁꠟꠣꠘ ꠇꠥꠘꠔꠣ ꠝꠤꠟꠍꠦ ꠘꠣ.",

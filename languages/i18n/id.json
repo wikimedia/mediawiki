@@ -3790,7 +3790,7 @@
 	"logentry-rights-rights-granted": "{{GENDER:$2|memberikan}} hak $1",
 	"logentry-rights-rights-revoked": "{{GENDER:$2|mencabut}} hak $1",
 	"logentry-rights-rights-expiry-changed": "{{GENDER:$2|mengubah}} kedaluwarsa $1",
-	"logentry-rights-rights-kept": "{{GENDER:$2|mempertahankan}} hak $1 agar tidak berubah",
+	"logentry-rights-rights-kept": "hak $1 tidak diubah",
 	"logentry-rights-rights-legacy": "$1 {{GENDER:$2|mengubah}} keanggotaan grup $3",
 	"logentry-rights-autopromote": "$1 otomatis mengubah keanggotaan kelompok {{GENDER:$2|dia|dia|mereka}}: $7",
 	"logentry-rights-autopromote-granted": "{{GENDER:$2|mendapat}} hak $1",

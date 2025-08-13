@@ -460,7 +460,7 @@
 	"cannotcreateaccount-text": "La creazione diretta dell'utenza non è attivata su questo wiki.",
 	"yourdomainname": "Specificare il dominio",
 	"password-change-forbidden": "Non è possibile modificare le password su questo wiki.",
-	"error-temporary-accounts-cannot-have-passwords": "Gli account temporanei non possono avere password.",
+	"error-temporary-accounts-cannot-have-passwords": "Le utenze temporanee non possono avere password.",
 	"externaldberror": "Si è verificato un errore con il server di autenticazione esterno, oppure non si dispone delle autorizzazioni necessarie per aggiornare il proprio accesso esterno.",
 	"login": "Entra",
 	"login-security": "Verifica la tua identità",

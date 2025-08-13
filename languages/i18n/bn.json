@@ -1864,7 +1864,7 @@
 	"statistics-header-users": "ব্যবহারকারীর পরিসংখ্যান",
 	"statistics-header-hooks": "অন্য পরিসংখ্যান",
 	"statistics-articles": "বিষয়বস্তুর পাতা",
-	"statistics-articles-desc": "বিস্তারিত জানার জন্য [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgArticleCountMethod article নিবন্ধ গণনা নথি] দেখুন",
+	"statistics-articles-desc": "বিস্তারিত জানার জন্য [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgArticleCountMethod নিবন্ধ গণনা নথি] দেখুন",
 	"statistics-pages": "পাতা",
 	"statistics-pages-desc": "এই উইকির সকল পাতা, আলাপ পাতা, পুনঃনির্দেশিত পাতা, ইত্যাদিও অন্তর্ভুক্ত।",
 	"statistics-files": "আপলোডকৃত ফাইল",

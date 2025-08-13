@@ -11,7 +11,8 @@
 			"Macofe",
 			"Matma Rex",
 			"Telaneo",
-			"EdoAug"
+			"EdoAug",
+			"Laaknor"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Dokumentasjon]]\n* [[mw:Special:MyLanguage/API:Etiquette|Etikette og retningslinjer for bruk]]\n* [[mw:Special:MyLanguage/API:FAQ|Ofte stilte spørsmål]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api E-post-liste]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API-kunngjøringer]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Feil & forespørsler]\n</div>\n<strong>Status:</strong> Alle funksjonene som vises på denne siden skal virke, men API-et er fortsatt i aktiv utvikling, og kan bli endret når som helst. Abonner på [https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ MediaWiki sin API-kunnkjøringsepostliste] for nyheter om oppdateringer.\n\n<strong>Feile kall:</strong> Hvis det blir sendt gale kall til API-et, blir det sendt en HTTP-header med nøkkelen \"MediaWiki-API-Error\" og da blir både header-verdien og feilkoden sendt tilbake med samme verdi. For mer informasjon, se [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Feil og advarsler]].\n\n<p class=\"mw-apisandbox-link\"><strong>Testing:</strong> For enkelt å teste API-kall, se [[Special:ApiSandbox]].</p>",

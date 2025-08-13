@@ -53,5 +53,6 @@
 	"rest-requires-safe-against-csrf": "Ta končna točka zahteva ponudnika, ki zagotavlja zaščito pred ugrabitvijo sej (CSRF).",
 	"rest-badtoken": "Predloženi žeton CSRF je neveljaven.",
 	"rest-badtoken-missing": "Potreben je parameter <var>token</var>, razen če uporabljate CSRF-varen način avtentikacije.",
-	"rest-badtoken-nosession": "Napaka CSRF – ni seje."
+	"rest-badtoken-nosession": "Napaka CSRF – ni seje.",
+	"rest-property-desc-revision-delta": "Razlika v velikosti v primerjavi s prejšnjo redakcijo."
 }

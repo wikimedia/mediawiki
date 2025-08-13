@@ -4,7 +4,8 @@
 			"Amire80",
 			"Guycn2",
 			"Rotemliss",
-			"יוסף בן מלמד"
+			"יוסף בן מלמד",
+			"Neriah"
 		]
 	},
 	"rest-prefix-mismatch": "הנתיב המבוקש ($1) לא היה בתוך נתיב הבסיס ($2) של ה־REST API",
@@ -132,13 +133,13 @@
 	"rest-param-desc-compare-to-section-offset": "היסט בבתים בתוך קוד הוויקי שהפרק מתחיל בו",
 	"rest-param-desc-compare-diff": "הבדלים בין גרסאות",
 	"rest-param-desc-language-links-title": "כותרת דף ויקי",
-	"rest-param-desc-media-links-title": "כותרת קובץ",
+	"rest-param-desc-media-links-title": "כותרת הדף",
 	"rest-param-desc-media-file-title": "כותרת קובץ",
 	"rest-param-desc-media-description-url": "כתובת ה־URL של הדף שמתאר את הקובץ, כולל פרטי רישיון ומטא־נתונים אחרים",
 	"rest-param-desc-media-latest": "מידע על הגרסה האחרונה של הקובץ",
 	"rest-param-desc-media-latest-timestamp": "חותם־זמן של השינוי האחרון בתסדיר ISO 8601",
 	"rest-param-desc-media-latest-user": "מידע על המשתמש שהעלה את הקובץ",
-	"rest-param-desc-media-preferred": "מידע על תסדיר התצוגה המקדימה המועדף של הקובץ, התסדיר המקורי ותסדיר התמונות הממוזערות",
+	"rest-param-desc-media-preferred": "מידע על תסדיר התצוגה המקדימה המועדף של הקובץ",
 	"rest-param-desc-media-mediatype": "סוג הקובץ",
 	"rest-param-desc-media-size": "גודל הקובץ בבתים או ערך ריק אם זה לא זמין",
 	"rest-param-desc-media-width": "רוחב תמונה המרבי המומלץ בפיקסלים או ערך ריק אם זה לא זמין",

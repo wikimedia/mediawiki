@@ -176,7 +176,7 @@
 	"editfont-serif": "Schrift mit Serifen",
 	"tog-minordefault": "Eigene Änderungen standardmäßig als geringfügig markieren",
 	"tog-forceeditsummary": "Warnen, sofern beim Speichern die Zusammenfassung fehlt (oder es sich um die Standardzusammenfassung beim Zurücksetzen handelt)",
-	"tog-editrecovery": "Die Funktion [[Special:EditRecovery|{{int:editrecovery}}]] aktivieren",
+	"tog-editrecovery": "[[Special:EditRecovery|{{int:editrecovery}}]] aktivieren",
 	"tog-editrecovery-help": "Auf der [$1 Diskussionsseite des Projekts] kannst du Feedback geben.",
 	"tog-useeditwarning": "Warnen, sofern eine zur Bearbeitung geöffnete Seite verlassen wird, die nicht gespeicherte Änderungen enthält",
 	"prefs-preview": "Vorschau",

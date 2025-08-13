@@ -484,7 +484,7 @@
 	"searchlimit-label": "Used in [[Special:Preferences]], tab \"Search\".",
 	"searchlimit-help": "Shown as hint in [[Special:Preferences]], tab \"Search\".\nShown under [[Special:Preferences#mw-prefsection-lqt]]. $1 - The current maximum limit",
 	"search-thumbnail-extra-namespaces-label": "Label for user preference to enable thumbnails for additional namespaces",
-	"search-thumbnail-extra-namespaces-message": "{{doc-important|1=Do not translate the <code><nowiki>{{#special:search}}</nowiki></code> parser function in this message.}}\nHelp text for user preference to enable thumbnails for additional namespaces. Parameters:\n* $1 - formatted list of extra namespaces for which thumbnails can be enabled\n* $2 - number of extra namespaces, used for PLURAL",
+	"search-thumbnail-extra-namespaces-message": "{{doc-important|1=Do not translate the <code><nowiki>{{#special:search}}</nowiki></code> parser function in this message.}}\nHelp text for user preference to enable thumbnails for additional namespaces. Parameters:\n* $1 - Formatted list of extra namespaces (other than the File namespace) for which thumbnails can be enabled.\n* $2 - Number of extra namespaces. Used for PLURAL.\n* $3 - The File namespace.\n* $4 - One if thumbnails in the File namespace are enabled, zero otherwise. Used for PLURAL.",
 	"prefs-advancedsearchoptions": "Used in [[Special:Preferences]], tab \"Search options\".\n{{Identical|Advanced options}}",
 	"prefs-misc": "Tab used on the [[Special:Preferences|user preferences]] special page.",
 	"prefs-reset-intro": "Used in [[Special:Preferences/reset]].",

@@ -2341,6 +2341,7 @@
 	"whatlinkshere-submit": "Irez",
 	"autoblockid": "Su-blokuso #$1",
 	"block": "Blokusar uzero",
+	"block-manage-blocks": "Administrar blokusi",
 	"unblock": "Desblokusar uzero",
 	"changeblockip": "Chanjar blokuso",
 	"blockip": "Blokusado di {{GENDER:$1|uzero}}",
