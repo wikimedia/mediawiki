@@ -26,7 +26,7 @@
 	"prefs-edits": "nanpa pi mute ante:",
 	"prefs-registration": "tenpo pi pali sijelo:",
 	"yourrealname": "nimi lawa:",
-	"prefs-help-realname": "sina ken pana ala e nimi lawa. pana la mi ken pana e nimi ni tawa pali ni.",
+	"prefs-help-realname": "nimi ni: sina kepeken lon ma lon, lon ilo taso ala. sina ken pana ala e ni.\nsina pana la, ijo li ken toki e pali sina kepeken nimi sina ni.",
 	"yourpassword": "nimi open:",
 	"prefs-resetpass": "o ante e nimi open",
 	"passwordtooshort": "nimi open li wile e {{PLURAL:$1|sitelen $1}}.",

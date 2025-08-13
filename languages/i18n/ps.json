@@ -2716,6 +2716,7 @@
 	"feedback-useragent": "کارن پلاوی:",
 	"searchsuggest-search": "{{SITENAME}} پلټل",
 	"searchsuggest-containing": "د لاندې سکالوگانو اړوند مخونه پلټل",
+	"api-clientside-error-noconnect": "پالنگر سره نشي نښلېدای. ځان ډاډه کړئ چې تاسو کارنده اينټرنېټ نښلېدا لرئ او بيا هڅه وکړئ.",
 	"api-error-badtoken": "داخلي تېروتنه: خرابه نښه.",
 	"api-error-emptypage": "د نوي تشو مخونو جوړولو پرېښنه نه شته.",
 	"api-error-publishfailed": "داخلي تېروتنه: پالنګر د لنډمهاله دوتنې په خپرولو کې پاتې راغلي.",

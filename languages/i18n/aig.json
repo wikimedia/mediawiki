@@ -563,7 +563,7 @@
 	"searchsuggest-containing": "Sarch fu piej dem weh ha",
 	"nstab-mainpage": "Mien Piej",
 	"blockedtext-made-by": "De blaak min mek bai $1.",
-	"blockedtext-reason-comment": "De reezin a <em>$1</em>.",
+	"blockedtext-reason-comment": "De reezin weh gib a: <em>$1</em>.",
 	"blockedtext-start-time": "Staat a blaak: $1",
 	"blockedtext-expiration-time": "End a blaak: $1",
 	"blockedtext-intended-blockee": "De blaak taagit: $1",

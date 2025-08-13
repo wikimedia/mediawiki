@@ -2133,6 +2133,7 @@
 	"sp-contributions-hideminor": "Sakrij manje izmjene",
 	"sp-contributions-submit": "Traži",
 	"sp-contributions-outofrange": "Nije moguće pokazati rezultate. Traženi raspon IP adresa veći je od CIDR limita /$1.",
+	"sp-contributions-newcontribution": "Novi doprinos",
 	"whatlinkshere": "Što vodi ovamo",
 	"whatlinkshere-count": "{{PLURAL:$1|Prikazana je $1 stavka.|Prikazane su $1 stavke.|Prikazano je $1 stavki.}}",
 	"whatlinkshere-title": "Stranice koje vode na »$1«",

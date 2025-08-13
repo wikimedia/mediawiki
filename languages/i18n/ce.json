@@ -46,7 +46,7 @@
 	"morenotlisted": "ХӀара могӀа буьззина бац.",
 	"mypage": "Долахь йолу агӀо",
 	"mytalk": "Дийцар",
-	"mytalk-appeal": "ХӀара IP-адрес блоктохарна апелляци йан",
+	"mytalk-appeal": "ХӀокху IP-адресна блоктохарна апелляци йан",
 	"mytalk-appeal-summary": "Хьан IP-адресна тӀера хийцамаш барна блоктоьхна. [[mw:Special:MyLanguage/Help:Temporary_accounts|ханна лерина аккаунт]] кхолла «{{int:mytalk-appeal-submit}}» тӀетаӀайе. Хьайн ханна дийцарийн агӀо хийца йиш йу хьан, блокана латкъам бан.",
 	"mytalk-appeal-submit": "Кхин дӀа",
 	"anontalk": "Дийцар",
