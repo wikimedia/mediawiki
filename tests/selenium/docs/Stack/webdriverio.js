@@ -7,26 +7,32 @@
 // const baseUrl = 'http://localhost:8080/wiki/';
 const baseUrl = `${ process.env.MW_SERVER }${ process.env.MW_SCRIPT_PATH }/index.php?title=`;
 
-// TODO T373125 This file still uses require but CI does not fail
-const { remote } = require( 'webdriverio' );
+import { remote } from 'webdriverio';
 
-( async () => {
-	const browser = await remote( {
-		capabilities: {
-			browserName: 'chrome',
-			'goog:chromeOptions': {
-				args: [ 'headless' ]
+const browser = await remote( {
+	capabilities: {
+		browserName: 'chrome',
+		'goog:chromeOptions': {
+			args: [ '--headless', '--no-sandbox' ],
+			...( process.env.CI && {
+				binary: '/usr/bin/chromium'
+			} )
+		},
+		...( process.env.CI && {
+			'wdio:chromedriverOptions': {
+				binary: '/usr/bin/chromedriver'
 			}
-		}
-	} );
-
-	await browser.url( `${ baseUrl }Main_Page` );
-
-	const displayed = await browser.$( 'li#pt-login-2 a' ).isDisplayed();
-	if ( displayed === false ) {
-		throw new Error( 'Log in link not visible' );
-	} else {
-		console.log( 'Log in link visible' );
+		} ),
+		'wdio:enforceWebDriverClassic': true
 	}
-	await browser.deleteSession();
-} )();
+} );
+
+await browser.url( `${ baseUrl }Main_Page` );
+
+const displayed = await browser.$( 'li#pt-login-2 a' ).isDisplayed();
+if ( displayed === false ) {
+	throw new Error( 'Log in link not visible' );
+} else {
+	console.log( 'Log in link visible' );
+}
+await browser.deleteSession();
