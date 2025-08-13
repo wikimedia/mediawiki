@@ -23,7 +23,6 @@ namespace MediaWiki\EditPage;
 use BadMethodCallException;
 use MediaWiki\Actions\WatchAction;
 use MediaWiki\Auth\AuthManager;
-use MediaWiki\Block\BlockErrorFormatter;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\CommentStore\CommentStoreComment;
@@ -78,7 +77,6 @@ use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\RedirectLookup;
 use MediaWiki\Page\WikiPage;
-use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\ParserOutputLinkTypes;
@@ -106,7 +104,6 @@ use MediaWiki\User\TempUser\TempUserCreator;
 use MediaWiki\User\User;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
-use MediaWiki\User\UserNameUtils;
 use MediaWiki\Watchlist\WatchedItem;
 use MediaWiki\Watchlist\WatchedItemStoreInterface;
 use MediaWiki\Watchlist\WatchlistManager;
@@ -456,15 +453,12 @@ class EditPage implements IEditObject {
 	private IContentHandlerFactory $contentHandlerFactory;
 	private PermissionManager $permManager;
 	private RevisionStore $revisionStore;
-	private WikiPageFactory $wikiPageFactory;
 	private WatchlistManager $watchlistManager;
-	private UserNameUtils $userNameUtils;
 	private RedirectLookup $redirectLookup;
 	private UserOptionsLookup $userOptionsLookup;
 	private TempUserCreator $tempUserCreator;
 	private UserFactory $userFactory;
 	private IConnectionProvider $dbProvider;
-	private BlockErrorFormatter $blockErrorFormatter;
 	private AuthManager $authManager;
 	private UserRegistrationLookup $userRegistrationLookup;
 
@@ -524,9 +518,7 @@ class EditPage implements IEditObject {
 		$this->watchlistExpiryEnabled = $this->getContext()->getConfig() instanceof Config
 			&& $this->getContext()->getConfig()->get( MainConfigNames::WatchlistExpiry );
 		$this->watchedItemStore = $services->getWatchedItemStore();
-		$this->wikiPageFactory = $services->getWikiPageFactory();
 		$this->watchlistManager = $services->getWatchlistManager();
-		$this->userNameUtils = $services->getUserNameUtils();
 		$this->redirectLookup = $services->getRedirectLookup();
 		$this->userOptionsLookup = $services->getUserOptionsLookup();
 		$this->tempUserCreator = $services->getTempUserCreator();
@@ -536,8 +528,6 @@ class EditPage implements IEditObject {
 		$this->restrictionStore = $services->getRestrictionStore();
 		$this->commentStore = $services->getCommentStore();
 		$this->dbProvider = $services->getConnectionProvider();
-		$this->blockErrorFormatter = $services->getFormatterFactory()
-			->getBlockErrorFormatter( $this->context );
 		$this->authManager = $services->getAuthManager();
 		$this->userRegistrationLookup = $services->getUserRegistrationLookup();
 
