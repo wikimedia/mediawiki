@@ -18,10 +18,12 @@ use StatusValue;
 class SpecialUnlinkAccounts extends AuthManagerSpecialPage {
 	/** @inheritDoc */
 	protected static $allowedActions = [ AuthManager::ACTION_UNLINK ];
+	private SessionManager $sessionManager;
 
-	public function __construct( AuthManager $authManager ) {
+	public function __construct( AuthManager $authManager, SessionManager $sessionManager ) {
 		parent::__construct( 'UnlinkAccounts' );
 		$this->setAuthManager( $authManager );
+		$this->sessionManager = $sessionManager;
 	}
 
 	/** @inheritDoc */
@@ -96,7 +98,7 @@ class SpecialUnlinkAccounts extends AuthManagerSpecialPage {
 		// log attackers out from sessions obtained via that account.
 		$session = $this->getRequest()->getSession();
 		$user = $this->getUser();
-		SessionManager::singleton()->invalidateSessionsForUser( $user );
+		$this->sessionManager->invalidateSessionsForUser( $user );
 		$session->setUser( $user );
 		$session->resetId();
 

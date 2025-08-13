@@ -120,6 +120,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 	private UserOptionsManager $userOptionsManager;
 	private ObjectCacheFactory $objectCacheFactory;
 	private NotificationService $notificationService;
+	private SessionManager $sessionManager;
 
 	/**
 	 * Registers a mock hook.
@@ -272,6 +273,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		$this->objectCacheFactory ??= $this->getServiceContainer()->getObjectCacheFactory();
 		$this->logger ??= new TestLogger();
 		$this->notificationService ??= $this->getServiceContainer()->getNotificationService();
+		$this->sessionManager ??= $this->getServiceContainer()->getSessionManager();
 
 		if ( $regen || !$this->config->has( MainConfigNames::AuthManagerConfig ) ) {
 			$this->initializeConfig();
@@ -293,7 +295,8 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 			$this->userFactory,
 			$this->userIdentityLookup,
 			$this->userOptionsManager,
-			$this->notificationService
+			$this->notificationService,
+			$this->sessionManager
 		);
 		$this->manager->setLogger( $this->logger );
 		$this->managerPriv = TestingAccessWrapper::newFromObject( $this->manager );

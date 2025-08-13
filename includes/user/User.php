@@ -903,7 +903,10 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 			$user->invalidateEmail();
 			$user->mToken = self::INVALID_TOKEN;
 			$user->saveSettings();
-			SessionManager::singleton()->preventSessionsForUser( $user->getName() );
+			$manager = $services->getSessionManager();
+			if ( $manager instanceof SessionManager ) {
+				$manager->preventSessionsForUser( $user->getName() );
+			}
 		}
 
 		return $user;

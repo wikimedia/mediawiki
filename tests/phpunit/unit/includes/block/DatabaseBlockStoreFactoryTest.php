@@ -14,6 +14,7 @@ use MediaWiki\Config\HashConfig;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\Session\SessionManager;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\User\ActorStoreFactory;
 use MediaWiki\User\TempUser\TempUserConfig;
@@ -67,7 +68,8 @@ class DatabaseBlockStoreFactoryTest extends MediaWikiUnitTestCase {
 			$this->createMock( UserFactory::class ),
 			$this->createMock( TempUserConfig::class ),
 			$crossWikiBlockTargetFactory,
-			$this->createMock( AutoblockExemptionList::class )
+			$this->createMock( AutoblockExemptionList::class ),
+			$this->createMock( SessionManager::class )
 		);
 
 		$databaseBlockStore = $factory->getDatabaseBlockStore( $domain );

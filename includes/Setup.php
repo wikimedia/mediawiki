@@ -69,6 +69,7 @@ use MediaWiki\Message\Message;
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Registration\MissingExtensionException;
 use MediaWiki\Request\HeaderCallback;
+use MediaWiki\Session\SessionManager;
 use MediaWiki\Settings\DynamicDefaultValues;
 use MediaWiki\Settings\LocalSettingsLoader;
 use MediaWiki\Settings\SettingsBuilder;
@@ -508,7 +509,7 @@ if ( !defined( 'MW_NO_SESSION' ) && MW_ENTRY_POINT !== 'cli' ) {
 	// unless we're specifically asked not to.
 	if ( !defined( 'MW_NO_SESSION_HANDLER' ) ) {
 		MediaWiki\Session\PHPSessionHandler::install(
-			MediaWiki\Session\SessionManager::singleton()
+			MediaWikiServices::getInstance()->getSessionManager()
 		);
 	}
 
@@ -559,7 +560,7 @@ if ( !defined( 'MW_NO_SESSION' ) && MW_ENTRY_POINT !== 'cli' ) {
 	// handler unless specifically requested not to.
 	if ( !defined( 'MW_NO_SESSION_HANDLER' ) ) {
 		MediaWiki\Session\PHPSessionHandler::install(
-			MediaWiki\Session\SessionManager::singleton()
+			MediaWikiServices::getInstance()->getSessionManager()
 		);
 	}
 }
@@ -652,5 +653,8 @@ $wgFullyInitialised = true;
 
 // T264370
 if ( !defined( 'MW_NO_SESSION' ) && MW_ENTRY_POINT !== 'cli' ) {
-	MediaWiki\Session\SessionManager::singleton()->logPotentialSessionLeakage();
+	$manager = MediaWikiServices::getInstance()->getSessionManager();
+	if ( $manager instanceof SessionManager ) {
+		$manager->logPotentialSessionLeakage();
+	}
 }

@@ -689,7 +689,8 @@ class RequestContext implements IContextSource, MutableContext {
 			throw new InvalidArgumentException( "Invalid client IP address '{$params['ip']}'." );
 		}
 
-		$userFactory = MediaWikiServices::getInstance()->getUserFactory();
+		$services = MediaWikiServices::getInstance();
+		$userFactory = $services->getUserFactory();
 
 		if ( $params['userId'] ) { // logged-in user
 			$user = $userFactory->newFromId( (int)$params['userId'] );
@@ -701,7 +702,7 @@ class RequestContext implements IContextSource, MutableContext {
 			$user = $userFactory->newFromName( $params['ip'], UserRigorOptions::RIGOR_NONE );
 		}
 
-		$importSessionFunc = static function ( User $user, array $params ) {
+		$importSessionFunc = static function ( User $user, array $params ) use ( $services ) {
 			global $wgRequest;
 
 			$context = RequestContext::getMain();
@@ -716,7 +717,7 @@ class RequestContext implements IContextSource, MutableContext {
 			// Get new session, if applicable
 			$session = null;
 			if ( $params['sessionId'] !== '' ) { // don't make a new random ID
-				$manager = SessionManager::singleton();
+				$manager = $services->getSessionManager();
 				$session = $manager->getSessionById( $params['sessionId'], true )
 					?: $manager->getEmptySession();
 			}

@@ -30,7 +30,6 @@ use MediaWiki;
 use MediaWiki\Exception\MWException;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Session\SessionManager;
 
 /**
  * WebRequest clone which takes values from a provided array.
@@ -69,7 +68,7 @@ class FauxRequest extends WebRequest {
 			$this->session = $session;
 			$this->sessionId = $session->getSessionId();
 		} elseif ( is_array( $session ) ) {
-			$mwsession = SessionManager::singleton()->getEmptySession( $this );
+			$mwsession = MediaWikiServices::getInstance()->getSessionManager()->getEmptySession( $this );
 			$this->session = $mwsession;
 			$this->sessionId = $mwsession->getSessionId();
 			foreach ( $session as $key => $value ) {

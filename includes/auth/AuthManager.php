@@ -47,6 +47,7 @@ use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Session\SessionManager;
+use MediaWiki\Session\SessionManagerInterface;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\StubObject\StubGlobalUser;
@@ -247,6 +248,7 @@ class AuthManager implements LoggerAwareInterface {
 	private UserIdentityLookup $userIdentityLookup;
 	private UserOptionsManager $userOptionsManager;
 	private NotificationService $notificationService;
+	private SessionManagerInterface $sessionManager;
 
 	public function __construct(
 		WebRequest $request,
@@ -264,7 +266,8 @@ class AuthManager implements LoggerAwareInterface {
 		UserFactory $userFactory,
 		UserIdentityLookup $userIdentityLookup,
 		UserOptionsManager $userOptionsManager,
-		NotificationService $notificationService
+		NotificationService $notificationService,
+		SessionManagerInterface $sessionManager
 	) {
 		$this->request = $request;
 		$this->config = $config;
@@ -284,6 +287,7 @@ class AuthManager implements LoggerAwareInterface {
 		$this->userIdentityLookup = $userIdentityLookup;
 		$this->userOptionsManager = $userOptionsManager;
 		$this->notificationService = $notificationService;
+		$this->sessionManager = $sessionManager;
 	}
 
 	public function setLogger( LoggerInterface $logger ): void {
@@ -867,7 +871,7 @@ class AuthManager implements LoggerAwareInterface {
 			// This is necessary in order to ensure that the temporary account session is exited
 			// when the user transitions to a logged-in named account
 			if ( $session->getUser()->isTemp() ) {
-				SessionManager::singleton()->invalidateSessionsForUser( $session->getUser() );
+				$this->sessionManager->invalidateSessionsForUser( $session->getUser() );
 				$session->remove( 'TempUser:name' );
 			}
 			$this->setSessionDataForUser( $user, $rememberMe, $loginWasInteractive );
@@ -1310,7 +1314,7 @@ class AuthManager implements LoggerAwareInterface {
 			// invalidate their sessions, set the session user to a new anonymous user, save it,
 			// set the request context from the new session user account. (T393628)
 			$creatorUser = $this->userFactory->newFromUserIdentity( $creator->getUser() );
-			SessionManager::singleton()->invalidateSessionsForUser( $creatorUser );
+			$this->sessionManager->invalidateSessionsForUser( $creatorUser );
 			$creator = $this->userFactory->newAnonymous();
 			$session->setUser( $creator );
 			// Ensure the temporary account username is also cleared from the session, this is set

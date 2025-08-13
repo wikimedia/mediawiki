@@ -169,7 +169,8 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends MediaWikiIntegratio
 				$mwServices->getUserFactory(),
 				$mwServices->getUserIdentityLookup(),
 				$mwServices->getUserOptionsManager(),
-				$mwServices->getNotificationService()
+				$mwServices->getNotificationService(),
+				$mwServices->getSessionManager()
 			] )
 			->getMock();
 		$manager->method( 'allowsAuthenticationDataChange' )
@@ -277,7 +278,8 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends MediaWikiIntegratio
 			$mwServices->getUserFactory(),
 			$mwServices->getUserIdentityLookup(),
 			$mwServices->getUserOptionsManager(),
-			$mwServices->getNotificationService()
+			$mwServices->getNotificationService(),
+			$mwServices->getSessionManager()
 		);
 		$this->initProvider( $provider, null, null, $manager );
 		$provider = TestingAccessWrapper::newFromObject( $provider );

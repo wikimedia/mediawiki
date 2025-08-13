@@ -482,18 +482,21 @@ class SpecialPageFactory {
 			'class' => SpecialUnlinkAccounts::class,
 			'services' => [
 				'AuthManager',
+				'SessionManager',
 			]
 		],
 		'ChangeCredentials' => [
 			'class' => SpecialChangeCredentials::class,
 			'services' => [
 				'AuthManager',
+				'SessionManager',
 			]
 		],
 		'RemoveCredentials' => [
 			'class' => SpecialRemoveCredentials::class,
 			'services' => [
 				'AuthManager',
+				'SessionManager',
 			]
 		],
 		'AuthenticationPopupSuccess' => [

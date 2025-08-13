@@ -61,6 +61,7 @@ use MediaWiki\Request\WebRequest;
 use MediaWiki\ResourceLoader as RL;
 use MediaWiki\ResourceLoader\ResourceLoader;
 use MediaWiki\Session\SessionManager;
+use MediaWiki\Session\SessionManagerInterface;
 use MediaWiki\Skin\QuickTemplate;
 use MediaWiki\Skin\Skin;
 use MediaWiki\SpecialPage\SpecialPage;
@@ -2882,6 +2883,10 @@ class OutputPage extends ContextSource {
 		$this->cacheIsFinal = true;
 	}
 
+	private function getSessionManager(): SessionManagerInterface {
+		return MediaWikiServices::getInstance()->getSessionManager();
+	}
+
 	/**
 	 * Get the list of cookie names that will influence the cache
 	 *
@@ -2891,7 +2896,7 @@ class OutputPage extends ContextSource {
 		if ( self::$cacheVaryCookies === null ) {
 			$config = $this->getConfig();
 			self::$cacheVaryCookies = array_values( array_unique( array_merge(
-				SessionManager::singleton()->getVaryCookies(),
+				$this->getSessionManager()->getVaryCookies(),
 				[
 					'forceHTTPS',
 				],
@@ -2943,7 +2948,7 @@ class OutputPage extends ContextSource {
 			$this->addVaryHeader( 'Cookie' );
 		}
 
-		foreach ( SessionManager::singleton()->getVaryHeaders() as $header => $_ ) {
+		foreach ( $this->getSessionManager()->getVaryHeaders() as $header => $_ ) {
 			$this->addVaryHeader( $header );
 		}
 		return 'Vary: ' . implode( ', ', array_keys( $this->mVaryHeader ) );

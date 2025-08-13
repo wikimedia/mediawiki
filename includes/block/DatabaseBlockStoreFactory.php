@@ -23,6 +23,7 @@ namespace MediaWiki\Block;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\Session\SessionManagerInterface;
 use MediaWiki\User\ActorStoreFactory;
 use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\UserFactory;
@@ -53,6 +54,7 @@ class DatabaseBlockStoreFactory {
 	private TempUserConfig $tempUserConfig;
 	private CrossWikiBlockTargetFactory $crossWikiBlockTargetFactory;
 	private AutoblockExemptionList $autoblockExemptionList;
+	private SessionManagerInterface $sessionManager;
 
 	/** @var DatabaseBlockStore[] */
 	private array $storeCache = [];
@@ -69,7 +71,8 @@ class DatabaseBlockStoreFactory {
 		UserFactory $userFactory,
 		TempUserConfig $tempUserConfig,
 		CrossWikiBlockTargetFactory $crossWikiBlockTargetFactory,
-		AutoblockExemptionList $autoblockExemptionList
+		AutoblockExemptionList $autoblockExemptionList,
+		SessionManagerInterface $sessionManager
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 
@@ -85,6 +88,7 @@ class DatabaseBlockStoreFactory {
 		$this->tempUserConfig = $tempUserConfig;
 		$this->crossWikiBlockTargetFactory = $crossWikiBlockTargetFactory;
 		$this->autoblockExemptionList = $autoblockExemptionList;
+		$this->sessionManager = $sessionManager;
 	}
 
 	public function getDatabaseBlockStore( string|false $wikiId = DatabaseBlock::LOCAL ): DatabaseBlockStore {
@@ -107,6 +111,7 @@ class DatabaseBlockStoreFactory {
 				$this->tempUserConfig,
 				$this->crossWikiBlockTargetFactory->getFactory( $wikiId ),
 				$this->autoblockExemptionList,
+				$this->sessionManager,
 				$wikiId
 			);
 		}

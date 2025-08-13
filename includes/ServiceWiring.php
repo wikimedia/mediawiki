@@ -379,7 +379,8 @@ return [
 			$services->getUserFactory(),
 			$services->getUserIdentityLookup(),
 			$services->getUserOptionsManager(),
-			$services->getNotificationService()
+			$services->getNotificationService(),
+			$services->getSessionManager()
 		);
 		$authManager->setLogger( LoggerFactory::getInstance( 'authentication' ) );
 		return $authManager;
@@ -730,7 +731,8 @@ return [
 			$services->getUserFactory(),
 			$services->getTempUserConfig(),
 			$services->getCrossWikiBlockTargetFactory(),
-			$services->getAutoblockExemptionList()
+			$services->getAutoblockExemptionList(),
+			$services->getSessionManager()
 		);
 	},
 

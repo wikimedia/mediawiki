@@ -9,7 +9,6 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Logging\ManualLogEntry;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Session\SessionManager;
 use MediaWiki\Specials\SpecialLog;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\TitleFactory;
@@ -257,7 +256,7 @@ class RenameuserSQL {
 		$user = $this->userFactory->newFromId( $this->uid );
 
 		$user->load( IDBAccessObject::READ_LATEST );
-		SessionManager::singleton()->invalidateSessionsForUser( $user );
+		MediaWikiServices::getInstance()->getSessionManager()->invalidateSessionsForUser( $user );
 
 		// Purge user cache
 		$user->invalidateCache();

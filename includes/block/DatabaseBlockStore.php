@@ -30,7 +30,7 @@ use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
-use MediaWiki\Session\SessionManager;
+use MediaWiki\Session\SessionManagerInterface;
 use MediaWiki\User\ActorStoreFactory;
 use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\UserFactory;
@@ -89,6 +89,7 @@ class DatabaseBlockStore {
 	private TempUserConfig $tempUserConfig;
 	private BlockTargetFactory $blockTargetFactory;
 	private AutoblockExemptionList $autoblockExemptionList;
+	private SessionManagerInterface $sessionManager;
 
 	public function __construct(
 		ServiceOptions $options,
@@ -103,6 +104,7 @@ class DatabaseBlockStore {
 		TempUserConfig $tempUserConfig,
 		BlockTargetFactory $blockTargetFactory,
 		AutoblockExemptionList $autoblockExemptionList,
+		SessionManagerInterface $sessionManager,
 		string|false $wikiId = DatabaseBlock::LOCAL
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
@@ -121,6 +123,7 @@ class DatabaseBlockStore {
 		$this->tempUserConfig = $tempUserConfig;
 		$this->blockTargetFactory = $blockTargetFactory;
 		$this->autoblockExemptionList = $autoblockExemptionList;
+		$this->sessionManager = $sessionManager;
 	}
 
 	/***************************************************************************/
@@ -906,7 +909,7 @@ class DatabaseBlockStore {
 				$targetUserIdentity = $block->getTargetUserIdentity();
 				if ( $targetUserIdentity ) {
 					$targetUser = $this->userFactory->newFromUserIdentity( $targetUserIdentity );
-					SessionManager::singleton()->invalidateSessionsForUser( $targetUser );
+					$this->sessionManager->invalidateSessionsForUser( $targetUser );
 				}
 			}
 

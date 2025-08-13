@@ -54,11 +54,13 @@ class PHPSessionHandler implements SessionHandlerInterface {
 	/** @var array Track original session fields for later modification check */
 	protected $sessionFieldCache = [];
 
-	protected function __construct( SessionManager $manager ) {
+	protected function __construct( SessionManagerInterface $manager ) {
 		$this->setEnableFlags(
 			MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::PHPSessionHandling )
 		);
-		$manager->setupPHPSessionHandler( $this );
+		if ( $manager instanceof SessionManager ) {
+			$manager->setupPHPSessionHandler( $this );
+		}
 	}
 
 	/**
@@ -107,7 +109,8 @@ class PHPSessionHandler implements SessionHandlerInterface {
 	/**
 	 * Install a session handler for the current web request
 	 */
-	public static function install( SessionManager $manager ) {
+	public static function install( SessionManagerInterface $manager ) {
+		/* @var SessionManager $manager*/'@phan-var SessionManager $manager';
 		register_shutdown_function( $manager->shutdown( ... ) );
 		if ( self::$instance ) {
 			$manager->setupPHPSessionHandler( self::$instance );

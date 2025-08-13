@@ -461,6 +461,7 @@ class EditPage implements IEditObject {
 	private IConnectionProvider $dbProvider;
 	private AuthManager $authManager;
 	private UserRegistrationLookup $userRegistrationLookup;
+	private SessionManager $sessionManager;
 
 	/** @var User|null */
 	private $placeholderTempUser;
@@ -530,6 +531,7 @@ class EditPage implements IEditObject {
 		$this->dbProvider = $services->getConnectionProvider();
 		$this->authManager = $services->getAuthManager();
 		$this->userRegistrationLookup = $services->getUserRegistrationLookup();
+		$this->sessionManager = $services->getSessionManager();
 
 		$this->deprecatePublicProperty( 'textbox2', '1.44', __CLASS__ );
 		$this->deprecatePublicProperty( 'action', '1.38', __CLASS__ );
@@ -818,7 +820,7 @@ class EditPage implements IEditObject {
 					$session->save();
 
 					// Invalidate any sessions for the expired temporary account
-					SessionManager::singleton()->invalidateSessionsForUser(
+					$this->sessionManager->invalidateSessionsForUser(
 						$this->userFactory->newFromUserIdentity( $user )
 					);
 				}

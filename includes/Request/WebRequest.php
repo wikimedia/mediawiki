@@ -37,7 +37,6 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Session\PHPSessionHandler;
 use MediaWiki\Session\Session;
 use MediaWiki\Session\SessionId;
-use MediaWiki\Session\SessionManager;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\IPUtils;
 
@@ -858,6 +857,7 @@ class WebRequest {
 	 */
 	public function getSession(): Session {
 		$sessionId = $this->getSessionId();
+		$sessionManager = MediaWikiServices::getInstance()->getSessionManager();
 
 		// Destroy the old session if someone has set a new session ID
 		if ( $this->session && $sessionId && $this->session->getId() !== $sessionId->getId() ) {
@@ -866,12 +866,12 @@ class WebRequest {
 
 		// Look up session by ID if provided
 		if ( !$this->session && $sessionId ) {
-			$this->session = SessionManager::singleton()->getSessionById( $sessionId->getId(), true, $this );
+			$this->session = $sessionManager->getSessionById( $sessionId->getId(), true, $this );
 		}
 
 		// If it was not provided, or a session with that ID doesn't exist, create a new one
 		if ( !$this->session ) {
-			$this->session = SessionManager::singleton()->getSessionForRequest( $this );
+			$this->session = $sessionManager->getSessionForRequest( $this );
 			$this->sessionId = $this->session->getSessionId();
 		}
 		return $this->session;

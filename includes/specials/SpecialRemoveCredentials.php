@@ -4,6 +4,7 @@ namespace MediaWiki\Specials;
 
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Session\SessionManager;
 
 /**
  * Special change to remove credentials (such as a two-factor token).
@@ -20,8 +21,8 @@ class SpecialRemoveCredentials extends SpecialChangeCredentials {
 	/** @inheritDoc */
 	protected static $loadUserData = false;
 
-	public function __construct( AuthManager $authManager ) {
-		parent::__construct( $authManager );
+	public function __construct( AuthManager $authManager, SessionManager $sessionManager ) {
+		parent::__construct( $authManager, $sessionManager );
 		$this->mName = 'RemoveCredentials';
 	}
 
