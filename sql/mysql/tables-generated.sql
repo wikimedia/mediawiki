@@ -687,6 +687,10 @@ CREATE TABLE /*_*/recentchanges (
     rc_namespace, rc_type, rc_patrolled,
     rc_timestamp
   ),
+  INDEX rc_name_source_patrolled_timestamp (
+    rc_namespace, rc_source, rc_patrolled,
+    rc_timestamp
+  ),
   INDEX rc_this_oldid (rc_this_oldid),
   PRIMARY KEY(rc_id)
 ) /*$wgDBTableOptions*/;

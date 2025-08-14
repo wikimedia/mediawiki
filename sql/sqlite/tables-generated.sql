@@ -676,6 +676,11 @@ CREATE INDEX rc_name_type_patrolled_timestamp ON /*_*/recentchanges (
   rc_timestamp
 );
 
+CREATE INDEX rc_name_source_patrolled_timestamp ON /*_*/recentchanges (
+  rc_namespace, rc_source, rc_patrolled,
+  rc_timestamp
+);
+
 CREATE INDEX rc_this_oldid ON /*_*/recentchanges (rc_this_oldid);
 
 

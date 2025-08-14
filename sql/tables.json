@@ -4072,6 +4072,17 @@
 				"unique": false
 			},
 			{
+				"name": "rc_name_source_patrolled_timestamp",
+				"comment": "ApiQueryRecentChanges (T140108), using rc_source instead of rc_type (T74157)",
+				"columns": [
+					"rc_namespace",
+					"rc_source",
+					"rc_patrolled",
+					"rc_timestamp"
+				],
+				"unique": false
+			},
+			{
 				"name": "rc_this_oldid",
 				"comment": "Article.php and friends (T139012)",
 				"columns": [
