@@ -53,11 +53,19 @@ class Grammar {
 	 *
 	 * @param string $word The word to transform.
 	 * @param string $case The target grammatical case.
+	 * @param ?array<string, array<string, array<string, string>>> $overrideForms Override rules:
+	 *    $overrideForms[langCode][case][word] = result
 	 *
 	 * @since 1.45
 	 * @return string The transformed word in the specified case.
 	 */
-	public function process( string $word, string $case ): string {
+	public function process( string $word, string $case, ?array $overrideForms = [] ): string {
+		$langCode = $this->provider->getLanguageCode();
+
+		if ( isset( $overrideForms[$langCode][$case][$word] ) ) {
+			return $overrideForms[$langCode][$case][$word];
+		}
+
 		$grammarTransformations = $this->provider->getGrammarTransformationsProvider()->getTransformations();
 
 		if ( array_key_exists( $case, $grammarTransformations ) ) {
