@@ -24,6 +24,7 @@
 namespace MediaWiki\Upload;
 
 use MediaHandler;
+use MediaWiki\Config\ConfigException;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Parser\Sanitizer;
@@ -867,7 +868,6 @@ class UploadVerification {
 	 *   If textual feedback is missing but a virus was found, this function returns true.
 	 */
 	public function detectVirus( $file ) {
-		global $wgOut;
 		$mainConfig = $this->config;
 		$antivirus = $mainConfig->get( MainConfigNames::Antivirus );
 		$antivirusSetup = $mainConfig->get( MainConfigNames::AntivirusSetup );
@@ -878,13 +878,8 @@ class UploadVerification {
 			return null;
 		}
 
-		if ( !$antivirusSetup[$antivirus] ) {
-			// FIXME, we should not directly output in the middle of the page.
-			// And will definitely not work from the API.
-			wfDebug( __METHOD__ . ": unknown virus scanner: {$antivirus}" );
-			$wgOut->wrapWikiMsg( "<div class=\"error\">\n$1\n</div>",
-				[ 'virus-badscanner', $antivirus ] );
-			return wfMessage( 'virus-unknownscanner' )->text() . " {$antivirus}";
+		if ( !( $antivirusSetup[$antivirus] ?? false ) ) {
+			throw new ConfigException( "Unknown virus scanner: $antivirus" );
 		}
 
 		# look up scanner configuration

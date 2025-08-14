@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Config\ConfigException;
 use MediaWiki\Config\HashConfig;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
@@ -578,6 +579,31 @@ class UploadVerificationTest extends MediaWikiIntegrationTestCase {
 			],
 
 		];
+	}
+
+	/**
+	 * Make sure that invalid config leads to exception
+	 *
+	 * @covers MediaWiki\Upload\UploadVerification::detectVirus
+	 */
+	public function testDetectVirusException() {
+		$sc = $this->getServiceContainer();
+		$uv = new UploadVerification(
+			new ServiceOptions(
+				UploadVerification::CONSTRUCTOR_OPTIONS,
+				new HashConfig( [
+					MainConfigNames::VerifyMimeType => true,
+					MainConfigNames::MimeTypeExclusions => [],
+					MainConfigNames::DisableUploadScriptChecks => false,
+					MainConfigNames::AntivirusSetup => [ 'av' => 'true' ],
+					MainConfigNames::Antivirus => 'NOTEXIST',
+					MainConfigNames::AntivirusRequired => true
+				] )
+			),
+			$sc->getMimeAnalyzer()
+		);
+		$this->expectException( ConfigException::class );
+		$uv->detectVirus( 'file.png' );
 	}
 
 	/**
