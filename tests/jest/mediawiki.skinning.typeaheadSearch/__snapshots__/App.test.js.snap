@@ -64,24 +64,8 @@ exports[`App renders a typeahead search component 1`] = `
             <!--v-if-->
           </div>
           
-          <div
-            class="cdx-menu cdx-typeahead-search__menu"
-            style="display: none;"
-          >
-            <ul
-              aria-label="Search results"
-              class="cdx-menu__listbox"
-              id="v-0"
-              role="listbox"
-              tabindex="-1"
-            >
-              <!--v-if-->
-              <!--v-if-->
-              
-              
-              <!--v-if-->
-            </ul>
-          </div>
+          <!--teleport start-->
+          <!--teleport end-->
           
         </div>
         <button
