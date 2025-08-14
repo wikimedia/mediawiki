@@ -448,7 +448,7 @@ class RecentChange implements Taggable {
 		}
 
 		# Strict mode fixups (not-NULL fields)
-		foreach ( [ 'minor', 'bot', 'new', 'patrolled', 'deleted' ] as $field ) {
+		foreach ( [ 'minor', 'bot', 'patrolled', 'deleted' ] as $field ) {
 			$this->mAttribs["rc_$field"] = (int)$this->mAttribs["rc_$field"];
 		}
 		# ...more fixups (NULL fields)
@@ -456,6 +456,11 @@ class RecentChange implements Taggable {
 			$this->mAttribs["rc_$field"] = isset( $this->mAttribs["rc_$field"] )
 				? (int)$this->mAttribs["rc_$field"]
 				: null;
+		}
+
+		// rc_new is deprecated, but we still support it for compatibility reasons.
+		if ( isset( $this->mAttribs['rc_new'] ) ) {
+			$this->mAttribs['rc_new'] = (int)$this->mAttribs['rc_new'];
 		}
 
 		$row = $this->mAttribs;
