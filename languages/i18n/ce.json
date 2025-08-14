@@ -369,7 +369,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} кхоьллина хьо санначу наха.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|нисдар|нисдарш}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|агӀо}}",
-	"createacct-benefit-text3": "$2 тӀаьххьара {{PLURAL:$1|декъашхо|декъашхой}}",
+	"createacct-benefit-text3": "$2 {{PLURAL:$1|автор|авторш}} дукха хан йоццуш",
 	"badretype": "Ахьа йазйина паролаш цхьатерра йац.",
 	"usernameinprogress": "Декъашхочун цӀарца аккаунт хӀинцале кхочушдеш йу. Дехар до, собар дар.",
 	"userexists": "Ахьа йазйина декъашхочун цӀе йолуш йу, дехар до, кхин цӀе харжар.",

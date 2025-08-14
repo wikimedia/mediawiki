@@ -10,7 +10,7 @@
 	"cdx-breadcrumb-overflow-label": "更多導航選項",
 	"cdx-chip-input-chip-added": "加咗晶片$1。",
 	"cdx-chip-input-chip-removed": "晶片 $1 已經移除咗。",
-	"cdx-input-chip-aria-description": "撳 Enter 嚟編輯或者撳 Delete 嚟移除。",
+	"cdx-input-chip-aria-description": "撳 Enter 嚟編輯，或者撳 Delete 嚟剷走。",
 	"cdx-dialog-close-button-label": "閂",
 	"cdx-label-optional-flag": "（可選嘅）",
 	"cdx-message-dismiss-button-label": "閂",

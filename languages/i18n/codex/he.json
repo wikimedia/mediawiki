@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80"
+			"Amire80",
+			"YaronSh"
 		]
 	},
+	"cdx-breadcrumb-overflow-label": "אפשרויות ניווט נוספות",
 	"cdx-chip-input-chip-added": "נוסף השבב $1.",
 	"cdx-chip-input-chip-removed": "הוסר השבב $1.",
 	"cdx-input-chip-aria-description": "יש ללחוץ Enter כדי לערוך או על Delete כדי להסיר.",

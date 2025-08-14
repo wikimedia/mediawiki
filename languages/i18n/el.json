@@ -3139,7 +3139,7 @@
 	"mcrundo-missingparam": "Λείπουν απαιτούμενες παράμετροι από το αίτημα.",
 	"mcrundo-changed": "Η σελίδα έχει αλλάξει από τότε που είδατε τη διαφορά. Ελέγξτε τη νέα αλλαγή.",
 	"mcrundo-parse-failed": "Απέτυχε η συντακτική ανάλυση της νέας αναθεώρησης: $1",
-	"semicolon-separator": "&#x387;&#32;",
+	"semicolon-separator": "·&#32;",
 	"quotation-marks": "«$1»",
 	"formatnum-nan": "Δεν είναι Αριθμός",
 	"imgmultipageprev": "← προηγούμενη σελίδα",

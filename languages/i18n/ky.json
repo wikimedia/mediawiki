@@ -827,7 +827,7 @@
 	"upload-permitted": "Жүктөөгө мүмкүн файл {{PLURAL:$2|форматы|форматтары}}: $1.",
 	"uploadlogpage": "Жүктөөлөр журналы",
 	"filename": "Файл аталышы",
-	"filedesc": "Жыйынтыгы",
+	"filedesc": "Негизги маалымат",
 	"fileuploadsummary": "Сыпаттама:",
 	"filereuploadsummary": "Файлдагы өзгөрүүлөр:",
 	"filesource": "Булак:",

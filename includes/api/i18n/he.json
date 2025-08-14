@@ -1301,6 +1301,7 @@
 	"apihelp-query+tokens-param-type": "סוגי האסימונים לבקש.",
 	"apihelp-query+tokens-example-simple": "אחזור אסימון csrf (ברירת המחדל).",
 	"apihelp-query+tokens-example-types": "אחזור אסימון של רשימת המעקב ואסימון של ניטור.",
+	"apihelp-query+trackingcategories-param-prop": "אילו מאפיינים לקבל:",
 	"apihelp-query+transcludedin-summary": "מציאת כל הדפים שמכלילים את הדפים הנתונים.",
 	"apihelp-query+transcludedin-param-prop": "אילו מאפיינים לקבל:",
 	"apihelp-query+transcludedin-paramvalue-prop-pageid": "מזהה הדף של כל דף.",
