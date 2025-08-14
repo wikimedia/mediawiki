@@ -41,7 +41,10 @@
 
 /** Class is added by UserLinkRenderer::userLink */
 .mw-tempuserlink-expired {
-	text-decoration: line-through 0.075em;
+	text-decoration: line-through;
+	// Safari does not support thickness as a text-decoration shorthand,
+	// but does support it on its own. T401918
+	text-decoration-thickness: 0.075em;
 	position: relative;
 
 	/** Class is added by UserLinkRenderer::userLink */
@@ -59,7 +62,10 @@
 }
 
 a.mw-tempuserlink-expired:hover {
-	text-decoration: line-through underline 0.075em;
+	text-decoration: line-through underline;
+	// Safari does not support thickness as a text-decoration shorthand,
+	// but does support it on its own. T401918
+	text-decoration-thickness: 0.075em;
 }
 
 /* Comment portions of RC entries, also used by MediaWiki\CommentFormatter\CommentFormatter::formatBlock */
