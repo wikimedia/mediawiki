@@ -691,7 +691,6 @@ CREATE TABLE recentchanges (
   rc_comment_id BIGINT NOT NULL,
   rc_minor SMALLINT DEFAULT 0 NOT NULL,
   rc_bot SMALLINT DEFAULT 0 NOT NULL,
-  rc_new SMALLINT DEFAULT 0 NOT NULL,
   rc_cur_id INT DEFAULT 0 NOT NULL,
   rc_this_oldid INT DEFAULT 0 NOT NULL,
   rc_last_oldid INT DEFAULT 0 NOT NULL,
@@ -716,10 +715,6 @@ CREATE INDEX rc_namespace_title_timestamp ON recentchanges (
 );
 
 CREATE INDEX rc_cur_id ON recentchanges (rc_cur_id);
-
-CREATE INDEX rc_new_name_timestamp ON recentchanges (
-  rc_new, rc_namespace, rc_timestamp
-);
 
 CREATE INDEX rc_source_name_timestamp ON recentchanges (
   rc_source, rc_namespace, rc_timestamp

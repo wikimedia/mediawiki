@@ -636,7 +636,6 @@ CREATE TABLE /*_*/recentchanges (
   rc_title BLOB DEFAULT '' NOT NULL, rc_comment_id BIGINT UNSIGNED NOT NULL,
   rc_minor SMALLINT UNSIGNED DEFAULT 0 NOT NULL,
   rc_bot SMALLINT UNSIGNED DEFAULT 0 NOT NULL,
-  rc_new SMALLINT UNSIGNED DEFAULT 0 NOT NULL,
   rc_cur_id INTEGER UNSIGNED DEFAULT 0 NOT NULL,
   rc_this_oldid INTEGER UNSIGNED DEFAULT 0 NOT NULL,
   rc_last_oldid INTEGER UNSIGNED DEFAULT 0 NOT NULL,
@@ -656,10 +655,6 @@ CREATE INDEX rc_namespace_title_timestamp ON /*_*/recentchanges (
 );
 
 CREATE INDEX rc_cur_id ON /*_*/recentchanges (rc_cur_id);
-
-CREATE INDEX rc_new_name_timestamp ON /*_*/recentchanges (
-  rc_new, rc_namespace, rc_timestamp
-);
 
 CREATE INDEX rc_source_name_timestamp ON /*_*/recentchanges (
   rc_source, rc_namespace, rc_timestamp

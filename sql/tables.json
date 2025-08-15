@@ -3843,16 +3843,6 @@
 				}
 			},
 			{
-				"name": "rc_new",
-				"comment": "Set if this change corresponds to a page creation",
-				"type": "mwtinyint",
-				"options": {
-					"unsigned": true,
-					"notnull": true,
-					"default": 0
-				}
-			},
-			{
 				"name": "rc_cur_id",
 				"comment": "Key to page_id (was cur_id prior to 1.5). This will keep links working after moves while retaining the at-the-time name in the changes list.",
 				"type": "integer",
@@ -4011,16 +4001,6 @@
 				"comment": "Special:Recentchangeslinked when finding changes in pages linked from a page",
 				"columns": [
 					"rc_cur_id"
-				],
-				"unique": false
-			},
-			{
-				"name": "rc_new_name_timestamp",
-				"comment": "Special:Newpages",
-				"columns": [
-					"rc_new",
-					"rc_namespace",
-					"rc_timestamp"
 				],
 				"unique": false
 			},

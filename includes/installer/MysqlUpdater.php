@@ -112,6 +112,7 @@ class MysqlUpdater extends DatabaseUpdater {
 				'patch-recentchanges-rc_source_name_timestamp.sql' ],
 			[ 'addIndex', 'recentchanges', 'rc_name_source_patrolled_timestamp',
 				'patch-recentchanges-rc_name_source_patrolled_timestamp.sql' ],
+			[ 'dropField', 'recentchanges', 'rc_new', 'patch-recentchanges-drop-rc_new.sql' ],
 		];
 	}
 
