@@ -71,7 +71,8 @@ class Router extends OO.Registry {
 		if ( this.enabled ) {
 			// event.originalEvent.newURL is undefined on Android 2.x
 			const routeEvent = $.Event( 'route', {
-				path: this.getPath()
+				path: this.getPath(),
+				oldPath: this.oldHash
 			} );
 			this.emit( 'route', routeEvent );
 
@@ -112,6 +113,7 @@ class Router extends OO.Registry {
 	 * ```
 	 * addRoute( 'alert', function () { alert( 'something' ); } );
 	 * addRoute( /hi-(.*)/, function ( name ) { alert( 'Hi ' + name ) } );
+	 * addRoute( /modal/, () => { showModal() }, () => { cleanupModal() } );
 	 * ```
 	 *
 	 * Note that after defining all available routes it is up to the caller
@@ -120,16 +122,27 @@ class Router extends OO.Registry {
 	 * @param {string|RegExp} path Path to match, string or regular expression
 	 * @param {Function} callback Callback to be run when hash changes to one
 	 *  that matches.
+	 * @param {Function} teardownCallback Callback to be run when hash changes
+	 *  from one that matches to one that doesn't.
 	 */
-	addRoute( path, callback ) {
+	addRoute( path, callback, teardownCallback ) {
 		const entry = {
 			path: typeof path === 'string' ?
-
 				new RegExp( '^' + path.replace( /[\\^$*+?.()|[\]{}]/g, '\\$&' ) + '$' ) :
 				path,
 			callback: callback
 		};
 		this.register( entry.path.toString(), entry );
+		if ( teardownCallback ) {
+			this.on( 'route', ( ev ) => {
+				if ( ev.oldPath.match( entry.path ) && !ev.path.match( entry.path ) ) {
+					teardownCallback( entry, ev );
+				}
+			} );
+		}
+		if ( ''.match( entry.path ) || '/'.match( entry.path ) ) {
+			mw.log.warn( 'router.addRoute called with a path that matches an empty route; provide a teardownCallback instead' );
+		}
 	}
 
 	/**
