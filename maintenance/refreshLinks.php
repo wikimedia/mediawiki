@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\Deferred\DeferredUpdates;
+use MediaWiki\Deferred\LinksUpdate\ExternalLinksTable;
 use MediaWiki\Deferred\LinksUpdate\TemplateLinksTable;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Maintenance\Maintenance;
@@ -328,19 +329,16 @@ class RefreshLinks extends Maintenance {
 			'page_props' => 'pp_page',
 		];
 
+		$domains = [
+			'templatelinks' => TemplateLinksTable::VIRTUAL_DOMAIN,
+			'externallinks' => ExternalLinksTable::VIRTUAL_DOMAIN,
+		];
+
 		foreach ( $linksTables as $table => $field ) {
-			if ( $table === 'templatelinks' ) {
-				$dbw = $this->getServiceContainer()->getConnectionProvider()->getPrimaryDatabase(
-					TemplateLinksTable::VIRTUAL_DOMAIN
-				);
-				$dbr = $this->getServiceContainer()->getConnectionProvider()->getReplicaDatabase(
-					TemplateLinksTable::VIRTUAL_DOMAIN,
-					'vslow'
-				);
-			} else {
-				$dbw = $this->getPrimaryDB();
-				$dbr = $this->getDB( DB_REPLICA, [ 'vslow' ] );
-			}
+			$domain = $domains[$table] ?? false;
+			$dbw = $this->getServiceContainer()->getConnectionProvider()->getPrimaryDatabase( $domain );
+			$dbr = $this->getServiceContainer()->getConnectionProvider()->getReplicaDatabase( $domain, 'vslow' );
+
 			$this->output( "    $table: 0" );
 			$tableStart = $start;
 			$counter = 0;

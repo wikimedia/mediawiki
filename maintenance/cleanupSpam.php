@@ -21,6 +21,7 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\Deferred\LinksUpdate\ExternalLinksTable;
 use MediaWiki\ExternalLinks\LinkFilter;
 use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Permissions\Authority;
@@ -111,8 +112,9 @@ class CleanupSpam extends Maintenance {
 			// Clean up spam on this wiki
 
 			$count = 0;
-			/** @var Database $dbr */
-			$dbr = $this->getReplicaDB();
+			$dbr = $this->getServiceContainer()->getConnectionProvider()->getReplicaDatabase(
+				ExternalLinksTable::VIRTUAL_DOMAIN
+			);
 			foreach ( $protConds as $prot => $conds ) {
 				$res = $dbr->newSelectQueryBuilder()
 					->select( 'el_from' )

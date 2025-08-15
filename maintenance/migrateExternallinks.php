@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Deferred\LinksUpdate\ExternalLinksTable;
 use MediaWiki\ExternalLinks\LinkFilter;
 use MediaWiki\Maintenance\LoggedUpdateMaintenance;
 
@@ -35,7 +36,11 @@ class MigrateExternallinks extends LoggedUpdateMaintenance {
 
 	/** @inheritDoc */
 	protected function doDBUpdates() {
-		$dbw = $this->getDB( DB_PRIMARY );
+		/** @var \Wikimedia\Rdbms\Database $dbw */
+		$dbw = $this->getServiceContainer()->getConnectionProvider()->getPrimaryDatabase(
+			ExternalLinksTable::VIRTUAL_DOMAIN
+		);
+		'@phan-var \Wikimedia\Rdbms\Database $dbw';
 		$table = 'externallinks';
 		if ( !$dbw->fieldExists( $table, 'el_to', __METHOD__ ) ) {
 			$this->output( "Old fields don't exist. There is no need to run this script\n" );
@@ -76,7 +81,9 @@ class MigrateExternallinks extends LoggedUpdateMaintenance {
 		$batchSize = $this->getBatchSize();
 		// range is inclusive, let's subtract one.
 		$highId = $lowId + $batchSize - 1;
-		$dbw = $this->getPrimaryDB();
+		$dbw = $this->getServiceContainer()->getConnectionProvider()->getPrimaryDatabase(
+			ExternalLinksTable::VIRTUAL_DOMAIN
+		);
 		$updated = 0;
 		$res = $dbw->newSelectQueryBuilder()
 			->select( [ 'el_id', 'el_to' ] )

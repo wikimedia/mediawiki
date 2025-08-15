@@ -21,6 +21,7 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\Deferred\LinksUpdate\ExternalLinksTable;
 use MediaWiki\ExternalLinks\LinkFilter;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Maintenance\Maintenance;
@@ -51,7 +52,9 @@ class DeleteSelfExternals extends Maintenance {
 		}
 
 		$this->output( "Deleting self externals from $server\n" );
-		$db = $this->getPrimaryDB();
+		$db = $this->getServiceContainer()->getConnectionProvider()->getPrimaryDatabase(
+			ExternalLinksTable::VIRTUAL_DOMAIN
+		);
 
 		// If it's protocol-relative, we need to do both http and https.
 		// Otherwise, just do the specified scheme.
