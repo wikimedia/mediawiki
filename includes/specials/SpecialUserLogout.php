@@ -21,12 +21,15 @@
 namespace MediaWiki\Specials;
 
 use MediaWiki\Exception\ErrorPageError;
+use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\SpecialPage\FormSpecialPage;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\User\TempUser\TempUserConfig;
+use OOUI\HtmlSnippet;
+use OOUI\MessageWidget;
 
 /**
  * Implements Special:Userlogout
@@ -87,9 +90,28 @@ class SpecialUserLogout extends FormSpecialPage {
 
 	public function alterForm( HTMLForm $form ) {
 		$form->setTokenSalt( 'logoutToken' );
-		$form->addHeaderHtml( $this->msg(
-			$this->getUser()->isTemp() ? 'userlogout-temp' : 'userlogout-continue'
-		) );
+		if ( $this->getUser()->isTemp() ) {
+			$form->addHeaderHtml(
+				Html::rawElement( 'p', [], $this->msg( 'userlogout-temp' ) ) .
+				Html::rawElement( 'p', [], $this->msg( 'userlogout-temp-moreinfo' ) ) .
+				new MessageWidget( [
+					'type' => 'notice',
+					'label' => new HtmlSnippet(
+						Html::rawElement(
+							'strong',
+							[],
+							$this->msg( 'userlogout-temp-messagebox-title' )
+						) .
+						Html::element( 'br' ) .
+						$this->msg( 'userlogout-temp-messagebox-body' )
+					),
+				] )
+			);
+		} else {
+			$form->addHeaderHtml(
+				Html::rawElement( 'p', [], $this->msg( 'userlogout-continue' ) )
+			);
+		}
 
 		$form->addHiddenFields( $this->getRequest()->getValues( 'returnto', 'returntoquery' ) );
 	}
