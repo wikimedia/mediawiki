@@ -714,6 +714,7 @@
 	"content-model-javascript": "JavaScript",
 	"content-model-css": "CSS",
 	"content-model-json": "JSON",
+	"content-model-vue": "Vue",
 	"content-json-empty-object": "Empty object",
 	"content-json-empty-array": "Empty array",
 	"unsupported-content-model": "<strong>Warning:</strong> Content model $1 is not supported on this wiki.",
