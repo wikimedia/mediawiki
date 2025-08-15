@@ -125,6 +125,7 @@ use MediaWiki\Language\FormatterFactory;
 use MediaWiki\Language\Language;
 use MediaWiki\Language\LanguageCode;
 use MediaWiki\Language\LazyLocalizationContext;
+use MediaWiki\Language\LeximorphFactory;
 use MediaWiki\Language\MessageParser;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Languages\LanguageEventIngress;
@@ -1164,6 +1165,16 @@ return [
 				$services->getMainConfig()
 			),
 			$services->getHookContainer()
+		);
+	},
+
+	'LeximorphFactory' => static function ( MediaWikiServices $services ): LeximorphFactory {
+		return new LeximorphFactory(
+			new MediaWiki\Config\ServiceOptions(
+				MediaWiki\Language\LeximorphFactory::CONSTRUCTOR_OPTIONS,
+				$services->getMainConfig()
+			),
+			LoggerFactory::getInstance( 'leximorph' )
 		);
 	},
 
