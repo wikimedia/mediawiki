@@ -6,7 +6,7 @@ return [
 	'config-schema-inverse' => [
 		'default' => [
 			'ConfigRegistry' => [
-				'main' => 'GlobalVarConfig::newInstance',
+				'main' => 'MediaWiki\\Config\\GlobalVarConfig::newInstance',
 			],
 			'Sitename' => 'MediaWiki',
 			'Server' => false,

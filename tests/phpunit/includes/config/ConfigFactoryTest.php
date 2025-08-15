@@ -13,7 +13,7 @@ class ConfigFactoryTest extends \MediaWikiIntegrationTestCase {
 
 	public function testRegister() {
 		$factory = new ConfigFactory();
-		$factory->register( 'unittest', 'GlobalVarConfig::newInstance' );
+		$factory->register( 'unittest', 'MediaWiki\\Config\\GlobalVarConfig::newInstance' );
 		$this->assertInstanceOf( GlobalVarConfig::class, $factory->makeConfig( 'unittest' ) );
 	}
 
@@ -38,10 +38,10 @@ class ConfigFactoryTest extends \MediaWikiIntegrationTestCase {
 
 	public function testRegisterAgain() {
 		$factory = new ConfigFactory();
-		$factory->register( 'unittest', 'GlobalVarConfig::newInstance' );
+		$factory->register( 'unittest', 'MediaWiki\\Config\\GlobalVarConfig::newInstance' );
 		$config1 = $factory->makeConfig( 'unittest' );
 
-		$factory->register( 'unittest', 'GlobalVarConfig::newInstance' );
+		$factory->register( 'unittest', 'MediaWiki\\Config\\GlobalVarConfig::newInstance' );
 		$config2 = $factory->makeConfig( 'unittest' );
 
 		$this->assertNotSame( $config1, $config2 );
@@ -49,9 +49,9 @@ class ConfigFactoryTest extends \MediaWikiIntegrationTestCase {
 
 	public function testSalvage() {
 		$oldFactory = new ConfigFactory();
-		$oldFactory->register( 'foo', 'GlobalVarConfig::newInstance' );
-		$oldFactory->register( 'bar', 'GlobalVarConfig::newInstance' );
-		$oldFactory->register( 'quux', 'GlobalVarConfig::newInstance' );
+		$oldFactory->register( 'foo', 'MediaWiki\\Config\\GlobalVarConfig::newInstance' );
+		$oldFactory->register( 'bar', 'MediaWiki\\Config\\GlobalVarConfig::newInstance' );
+		$oldFactory->register( 'quux', 'MediaWiki\\Config\\GlobalVarConfig::newInstance' );
 
 		// instantiate two of the three defined configurations
 		$foo = $oldFactory->makeConfig( 'foo' );
@@ -60,7 +60,7 @@ class ConfigFactoryTest extends \MediaWikiIntegrationTestCase {
 
 		// define new config instance
 		$newFactory = new ConfigFactory();
-		$newFactory->register( 'foo', 'GlobalVarConfig::newInstance' );
+		$newFactory->register( 'foo', 'MediaWiki\\Config\\GlobalVarConfig::newInstance' );
 		$newFactory->register( 'bar', static function () {
 			return new HashConfig();
 		} );
@@ -82,7 +82,7 @@ class ConfigFactoryTest extends \MediaWikiIntegrationTestCase {
 
 	public function testGetConfigNames() {
 		$factory = new ConfigFactory();
-		$factory->register( 'foo', 'GlobalVarConfig::newInstance' );
+		$factory->register( 'foo', 'MediaWiki\\Config\\GlobalVarConfig::newInstance' );
 		$factory->register( 'bar', new HashConfig() );
 
 		$this->assertEquals( [ 'foo', 'bar' ], $factory->getConfigNames() );
@@ -90,7 +90,7 @@ class ConfigFactoryTest extends \MediaWikiIntegrationTestCase {
 
 	public function testMakeConfigWithCallback() {
 		$factory = new ConfigFactory();
-		$factory->register( 'unittest', 'GlobalVarConfig::newInstance' );
+		$factory->register( 'unittest', 'MediaWiki\\Config\\GlobalVarConfig::newInstance' );
 
 		$conf = $factory->makeConfig( 'unittest' );
 		$this->assertInstanceOf( Config::class, $conf );
@@ -106,7 +106,7 @@ class ConfigFactoryTest extends \MediaWikiIntegrationTestCase {
 
 	public function testMakeConfigFallback() {
 		$factory = new ConfigFactory();
-		$factory->register( '*', 'GlobalVarConfig::newInstance' );
+		$factory->register( '*', 'MediaWiki\\Config\\GlobalVarConfig::newInstance' );
 		$conf = $factory->makeConfig( 'unittest' );
 		$this->assertInstanceOf( Config::class, $conf );
 	}

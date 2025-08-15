@@ -3,7 +3,7 @@
 config-schema:
     ConfigRegistry:
         default:
-            main: 'GlobalVarConfig::newInstance'
+            main: 'MediaWiki\Config\GlobalVarConfig::newInstance'
         type: object
         description: |-
             Registry of factory functions to create config objects:

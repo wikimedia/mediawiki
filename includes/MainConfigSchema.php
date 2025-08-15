@@ -216,7 +216,7 @@ class MainConfigSchema {
 	 */
 	public const ConfigRegistry = [
 		'default' => [
-			'main' => 'GlobalVarConfig::newInstance',
+			'main' => 'MediaWiki\\Config\\GlobalVarConfig::newInstance',
 		],
 		'type' => 'map',
 	];
