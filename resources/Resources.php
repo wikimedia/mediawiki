@@ -1725,6 +1725,12 @@ return [
 			'collapsible-collapse-all-tooltip',
 			'collapsible-expand-all-text',
 			'collapsible-expand-all-tooltip',
+			'userlogout-temp',
+			'userlogout-temp-moreinfo',
+			'userlogout-temp-messagebox-title',
+			'userlogout-temp-messagebox-body',
+			'userlogout-submit',
+			'temp-user-logout-confirm-title',
 			'logging-out-notify'
 		],
 		'skinStyles' => [

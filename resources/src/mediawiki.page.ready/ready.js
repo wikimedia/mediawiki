@@ -189,33 +189,76 @@ $( () => {
 	 */
 	const LOGOUT_EVENT = 'skin.logout';
 	function logoutViaPost( href ) {
-		mw.notify(
-			mw.message( 'logging-out-notify' ),
-			{ tag: 'logout', autoHide: false }
-		);
-		const api = new mw.Api();
+		let confirmedPromise;
+
 		if ( mw.user.isTemp() ) {
-			// Indicate to the success page that the user was previously a temporary account, so that the success
-			// message can be customised appropriately.
-			const url = new URL( href );
-			url.searchParams.append( 'wasTempUser', 1 );
-			href = url;
+			// Since temporary accounts cannot be logged into again, show a confirmation dialog.
+			confirmedPromise = mw.loader.using( 'oojs-ui-windows' ).then( () => {
+				const $confirmDialogContent = $( '<div>' ).append(
+					$( '<p>' ).text( mw.msg( 'userlogout-temp' ) ),
+					$( '<p>' ).text( mw.msg( 'userlogout-temp-moreinfo' ) ),
+					new OO.ui.MessageWidget( {
+						type: 'notice',
+						label: $( '<div>' ).append(
+							$( '<strong>' ).text( mw.msg( 'userlogout-temp-messagebox-title' ) ),
+							$( '<br>' ),
+							document.createTextNode( mw.msg( 'userlogout-temp-messagebox-body' ) )
+						)
+					} ).$element
+				);
+				return OO.ui.confirm( $confirmDialogContent, {
+					size: 'medium',
+					title: mw.msg( 'temp-user-logout-confirm-title' ),
+					actions: [
+						{
+							action: 'accept',
+							label: mw.msg( 'userlogout-submit' ),
+							flags: [ 'primary', 'progressive' ]
+						},
+						{
+							action: 'reject',
+							label: mw.msg( 'ooui-dialog-message-reject' ),
+							flags: 'safe'
+						}
+					]
+				} );
+			} );
+		} else {
+			confirmedPromise = $.Deferred().resolve( true ).promise();
 		}
-		// Allow hooks to extend data that is sent along with the logout request.
-		api.prepareExtensibleApiRequest( 'extendLogout' ).then( ( params ) => {
-			// Include any additional params set by implementations of the extendLogout hook
-			const logoutParams = Object.assign( {}, params, { action: 'logout' } );
-			api.postWithToken( 'csrf', logoutParams ).then(
-				() => {
-					location.href = href;
-				},
-				( err, data ) => {
-					mw.notify(
-						api.getErrorMessage( data ),
-						{ type: 'error', tag: 'logout', autoHide: false }
-					);
-				}
+
+		confirmedPromise.then( ( confirmed ) => {
+			if ( !confirmed ) {
+				return;
+			}
+			mw.notify(
+				mw.message( 'logging-out-notify' ),
+				{ tag: 'logout', autoHide: false }
 			);
+			const api = new mw.Api();
+			if ( mw.user.isTemp() ) {
+				// Indicate to the success page that the user was previously a temporary account, so that the success
+				// message can be customised appropriately.
+				const url = new URL( href );
+				url.searchParams.append( 'wasTempUser', 1 );
+				href = url;
+			}
+			// Allow hooks to extend data that is sent along with the logout request.
+			api.prepareExtensibleApiRequest( 'extendLogout' ).then( ( params ) => {
+				// Include any additional params set by implementations of the extendLogout hook
+				const logoutParams = Object.assign( {}, params, { action: 'logout' } );
+				api.postWithToken( 'csrf', logoutParams ).then(
+					() => {
+						location.href = href;
+					},
+					( err, data ) => {
+						mw.notify(
+							api.getErrorMessage( data ),
+							{ type: 'error', tag: 'logout', autoHide: false }
+						);
+					}
+				);
+			} );
 		} );
 	}
 
