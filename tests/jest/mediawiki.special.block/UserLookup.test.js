@@ -4,7 +4,6 @@ const { nextTick } = require( 'vue' );
 const { mount, flushPromises } = require( '@vue/test-utils' );
 const { createTestingPinia } = require( '@pinia/testing' );
 const { getSpecialBlock, mockMwApiGet, mockMwConfigGet } = require( './SpecialBlock.setup.js' );
-const { getMenuRoot } = require( '../utils.js' );
 const UserLookup = require( '../../../resources/src/mediawiki.special.block/components/UserLookup.vue' );
 const useBlockStore = require( '../../../resources/src/mediawiki.special.block/stores/block.js' );
 
@@ -31,7 +30,7 @@ describe( 'UserLookup', () => {
 		const input = wrapper.find( '.cdx-text-input__input' );
 		expect( input.element.value ).toBe( 'ExampleUser' );
 		// "No results"
-		const listBox = getMenuRoot( wrapper ).find( '.cdx-menu__listbox' );
+		const listBox = wrapper.find( '.cdx-menu__listbox' );
 		expect( listBox.element.children ).toHaveLength( 1 );
 		await input.trigger( 'input' );
 		// Ensure that the Lookup menu is populated with API response data
@@ -87,7 +86,7 @@ describe( 'UserLookup', () => {
 		);
 		await wrapper.find( '.cdx-text-input__input' ).setValue( 'Example' );
 		await flushPromises();
-		const listBox = getMenuRoot( wrapper ).find( '.cdx-menu__listbox' );
+		const listBox = wrapper.find( '.cdx-menu__listbox' );
 		expect( listBox.element.children ).toHaveLength( 2 );
 		await listBox.element.children[ 0 ].click();
 		expect( wrapper.vm.messages ).toStrictEqual( {} );
