@@ -262,7 +262,7 @@ class MaintenanceRunner {
 		return $extension;
 	}
 
-	private function loadScriptFile( string $scriptFile ): string {
+	private function loadScriptFile( string $scriptFile ): ?string {
 		$maintClass = null;
 
 		// It's a file, include it
@@ -276,13 +276,7 @@ class MaintenanceRunner {
 			$scriptClass = $maintClass;
 		}
 
-		if ( !is_string( $scriptClass ) ) {
-			$this->error( "ERROR: The script file '{$scriptFile}' cannot be executed using MaintenanceRunner.\n" );
-			$this->error( "It does not set \$maintClass and does not return a class name.\n" );
-			$this->fatalError( "Try running it directly as a php script: php $scriptFile\n" );
-		}
-
-		return $scriptClass;
+		return is_string( $scriptClass ) ? $scriptClass : null;
 	}
 
 	private function splitScript( string $script ): array {
@@ -419,8 +413,19 @@ class MaintenanceRunner {
 		$scriptFile = $this->expandScriptFile( $scriptName, $extension );
 
 		if ( !class_exists( $scriptClass ) && file_exists( $scriptFile ) ) {
+			// The guessed class is not registered with the autoloader.
+			// Let's see if the script defines the class to use in the old way.
 			$scriptFileClass = $this->loadScriptFile( $scriptFile );
-			if ( $scriptFileClass ) {
+			if ( !$scriptFileClass && class_exists( $scriptClass ) ) {
+				// It doesn't, but instead it contains the guessed class, so it should have been autoloaded.
+				$this->error( "WARNING: The script class '{$scriptClass}' is not registered with the autoloader.\n" );
+			} elseif ( !$scriptFileClass ) {
+				// It doesn't.
+				$this->error( "ERROR: The script file '{$scriptFile}' cannot be executed using MaintenanceRunner.\n" );
+				$this->error( "It does not set \$maintClass and does not return a class name.\n" );
+				$this->fatalError( "Try running it directly as a php script: php $scriptFile\n" );
+			} else {
+				// It does! We'll check whether the class really exists below.
 				$scriptClass = $scriptFileClass;
 			}
 		}
