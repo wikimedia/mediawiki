@@ -10,13 +10,10 @@ use Psr\Log\LoggerInterface;
 use Wikimedia\Leximorph\Util\JsonLoader;
 
 /**
- * LanguageFallbacks
- *
  * Provides functionality to retrieve fallback language codes for a given language.
  *
  * @since     1.45
  * @author    Doğu Abaris (abaris@null.net)
- * @license   https://www.gnu.org/copyleft/gpl.html GPL-2.0-or-later
  */
 class LanguageFallbacks {
 
@@ -67,9 +64,30 @@ class LanguageFallbacks {
 	public function getFallbacks(): array {
 		if ( $this->fallbacks === null ) {
 			$allFallbacks = $this->loadFallbacks();
-			$fallbackValues = $allFallbacks[$this->langCode]['values'] ?? [];
 
+			$langNode = $allFallbacks[$this->langCode] ?? null;
 			$this->fallbacks = [];
+
+			if ( !is_array( $langNode ) ) {
+				$this->logger->warning(
+					'Language fallback node missing or invalid.',
+					[ 'langCode' => $this->langCode, 'type' => gettype( $langNode ) ]
+				);
+				return $this->fallbacks;
+			}
+
+			$fallbackValues = $langNode['values'] ?? null;
+
+			if ( !is_array( $fallbackValues ) ) {
+				$this->logger->warning(
+					'Language fallback values missing or invalid.',
+					[
+						'langCode' => $this->langCode,
+						'type' => gettype( $fallbackValues ),
+					]
+				);
+				return $this->fallbacks;
+			}
 
 			foreach ( $fallbackValues as $index => $value ) {
 				if ( is_string( $value ) ) {
