@@ -6,11 +6,12 @@
 			"Denisa",
 			"Klein Muçi",
 			"Kosovastar",
-			"Liridon"
+			"Liridon",
+			"Xhulianoo"
 		]
 	},
 	"botpasswords": "Bot fjalëkalimet",
-	"botpasswords-summary": "<em>Fjalëkalimi Botit</em> mundëson hyrjen në një llogari përdoruesi nëpërmjet API pa përdorur kredencialet kryesore të identifikimit. Të drejtat e përdoruesit janë të kufizuara kur identifikoheni me një fjalëkalim boti.\n\nNëse nuk e dini përse doni ta bëni këtë, më mirë mos e bëni. Asnjë nuk duhet t'iu kërkoj të gjeneroni një nga këto dhe tua dërgoni atyre.",
+	"botpasswords-summary": "<em>Fjalëkalimet e botave</em> lejojnë aksesin në një llogari përdoruesi nëpërmjet API-ve pa përdorur kredencialet kryesore të hyrjes në llogari. Të drejtat e disponueshme të përdoruesit, kur identifikohesh me një fjalëkalim boti, mund të jenë të kufizuara.\n\nNëse nuk e di pse mund të dëshirosh ta bësh këtë, ndoshta nuk duhet ta bësh. Askush nuk duhet të të kërkojë kurrë të gjenerosh një të tillë dhe t'ia japësh atij.",
 	"botpasswords-disabled": "Fjalëkalimet e botit janë të padisponueshme.",
 	"botpasswords-no-central-id": "Për të përdorur fjalëkalimet e botit, duhet të identifikoheni në një llogari të centralizuar.",
 	"botpasswords-existing": "Fjalëkalimet ekzistuese të boteve.",
@@ -24,7 +25,7 @@
 	"botpasswords-label-delete": "Fshi",
 	"botpasswords-label-resetpassword": "Rivendos fjalëkalimin",
 	"botpasswords-label-grants": "Bursa të aplikueshme:",
-	"botpasswords-help-grants": "Bursat lejojnë hyrje në të drejtat e zotëruara nga llogaria juaj e përdoruesit.Mundësimi i një burse këtu nuk mundëson hyrje në asnjë të drejtë që llogaria juaj e përdoruesit nuk mund t'i ketë. Shikoni  [[Special:ListGrants|tabela e bursave]] për më tepër informacion.",
+	"botpasswords-help-grants": "Lejet lejojnë akses në të drejtat e mbajtura tashmë nga llogaria jote e përdoruesit. Aktivizimi i një lejeje këtu nuk ofron akses në asnjë të drejtë që llogaria jote e përdoruesit nuk do ta kishte ndryshe. Shih [[Special:ListGrants|tabelën e lejeve]] për më shumë informacion.\n\nLejet e rrezikshme janë të shënuara. Lejet e pashënuara në përgjithësi janë të vështira për t'u abuzuar kur boti rrëmbehet nga dikush me qëllim dashakeq. Lejet me rrezik vandalizmi (<span class=\"mw-grantriskgroup-vandalism\">{{int:grantriskgroup-vandalism}}</span>) mund të përdoren për të shkaktuar ndërprerje që kërkojnë shumë përpjekje për t'u pastruar. Lejet me rrezik sigurie (<span class=\"mw-grantriskgroup-security\">{{int:grantriskgroup-security}}</span>) mund të shkaktojnë dëme të qëndrueshme (siç është vjedhja e të dhënave private). Lejet e brendshme (<span class=\"mw-grantriskgroup-internal\">{{int:grantriskgroup-internal}}</span>) përdoren zakonisht vetëm nga operatori i faqes. Të lutem, mos kërko leje të rrezikshme nëse nuk ke vërtet nevojë për to.",
 	"botpasswords-label-grants-column": "Lejuar",
 	"botpasswords-bad-appid": "Emri i botit \"$1\" nuk është i vlefshëm.",
 	"botpasswords-insert-failed": "Dështoi për të shtuar emrin e botit \"$1\". është shtuar tashmë?",
@@ -33,7 +34,7 @@
 	"botpasswords-created-body": "Fjalëkalimi i botit për botin me emër \"$1\" të {{GENDER:$2|user}} \"$2\" u krijua.",
 	"botpasswords-updated-title": "Fjalëkalimi i botit u freskua",
 	"botpasswords-updated-body": "Fjalëkalimi i botit për botin me emër \"$1\" {{GENDER:$2|të përdoruesit}} \"$2\" u përditëdsua.",
-	"botpasswords-deleted-title": "Fjalëkalimi i botit u fshih",
+	"botpasswords-deleted-title": "Fjalëkalimi i botit u fshi",
 	"botpasswords-deleted-body": "Fjalëkalimi i botit për botin me emër \"$1\"  {{GENDER:$2|të përdoruesit}} \"$2\" u fshi.",
 	"botpasswords-no-provider": "BotPasswordsSessionProvider nuk është në dispozicion.",
 	"botpasswords-restriction-failed": "Kufizimet e fjalëkalimit të botit pengojnë këtë kyçje.",

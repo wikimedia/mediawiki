@@ -236,6 +236,6 @@
 	"rest-endpoint-desc-get-revision-id-html": "מחזירה את התוכן של הגרסה ב־HTML. נקודת הקצה הזאת מחזירה תוכן מסוג text/html.",
 	"rest-endpoint-desc-get-revision-id-with-html": "מחזירה מטא־נתונים עבור גרסה, כולל התוכן ב־HTML",
 	"rest-endpoint-desc-get-revision-id-bare": "מחזירה פרטים עבור גרסה בודדת.",
-	"rest-endpoint-desc-post-transform-wikitext-to-html": "ממירה טקסט ויקי ל־HTML.",
+	"rest-endpoint-desc-post-transform-wikitext-to-html": "ממירה קוד ויקי ל־HTML.",
 	"rest-endpoint-desc-post-transform-html-to-wikitext": "ממירה HTML לטקסט ויקי."
 }
