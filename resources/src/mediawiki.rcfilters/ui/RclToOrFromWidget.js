@@ -17,11 +17,11 @@ const RclToOrFromWidget = function MwRcfiltersUiRclToOrFromWidget(
 
 	this.showLinkedFrom = new OO.ui.MenuOptionWidget( {
 		data: 'from', // default (showlinkedto=0)
-		label: new OO.ui.HtmlSnippet( mw.msg( 'rcfilters-filter-showlinkedfrom-option-label' ) )
+		label: new OO.ui.HtmlSnippet( mw.message( 'rcfilters-filter-showlinkedfrom-option-label' ).parse() )
 	} );
 	this.showLinkedTo = new OO.ui.MenuOptionWidget( {
 		data: 'to', // showlinkedto=1
-		label: new OO.ui.HtmlSnippet( mw.msg( 'rcfilters-filter-showlinkedto-option-label' ) )
+		label: new OO.ui.HtmlSnippet( mw.message( 'rcfilters-filter-showlinkedto-option-label' ).parse() )
 	} );
 
 	// Parent
