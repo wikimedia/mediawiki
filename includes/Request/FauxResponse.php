@@ -26,6 +26,7 @@ namespace MediaWiki\Request;
 use MediaWiki\Config\Config;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * @ingroup HTTP
@@ -114,10 +115,9 @@ class FauxResponse extends WebResponse {
 	}
 
 	/**
-	 * @param string $name The name of the cookie.
-	 * @param string $value The value to be stored in the cookie.
-	 * @param int|null $expire Ignored in this faux subclass.
-	 * @param array $options Ignored in this faux subclass.
+	 * @inheritDoc
+	 *
+	 * The `sameSite` $options value is ignored (not implemented in this subclass).
 	 */
 	public function setCookie( $name, $value, $expire = 0, $options = [] ) {
 		if ( $this->disableForPostSend ) {
@@ -145,7 +145,7 @@ class FauxResponse extends WebResponse {
 		if ( $expire === null ) {
 			$expire = 0; // Session cookie
 		} elseif ( $expire == 0 && $cookieExpiration != 0 ) {
-			$expire = time() + $cookieExpiration;
+			$expire = ConvertibleTimestamp::time() + $cookieExpiration;
 		}
 
 		$this->cookies[$options['prefix'] . $name] = [

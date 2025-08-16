@@ -28,6 +28,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\User\User;
 use MediaWiki\User\UserRigorOptions;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * A CookieSessionProvider persists sessions using cookies
@@ -222,7 +223,7 @@ class CookieSessionProvider extends SessionProvider {
 				$response->clearCookie( $key, $options );
 			} else {
 				$expirationDuration = $this->getLoginCookieExpiration( $key, $session->shouldRememberUser() );
-				$expiration = $expirationDuration ? $expirationDuration + time() : null;
+				$expiration = $expirationDuration ? $expirationDuration + ConvertibleTimestamp::time() : null;
 				$response->setCookie( $key, (string)$value, $expiration, $options );
 			}
 		}
@@ -278,7 +279,7 @@ class CookieSessionProvider extends SessionProvider {
 					'forceHTTPS',
 					true
 				);
-				$expiration = $expirationDuration ? $expirationDuration + time() : null;
+				$expiration = $expirationDuration ? $expirationDuration + ConvertibleTimestamp::time() : null;
 			} else {
 				$expiration = null;
 			}
@@ -295,7 +296,7 @@ class CookieSessionProvider extends SessionProvider {
 	 * @param WebRequest $request
 	 */
 	protected function setLoggedOutCookie( $loggedOut, WebRequest $request ) {
-		if ( $loggedOut + 86400 > time() &&
+		if ( $loggedOut + 86400 > ConvertibleTimestamp::time() &&
 			$loggedOut !== (int)$this->getCookie( $request, 'LoggedOut', $this->cookieOptions['prefix'] )
 		) {
 			$request->response()->setCookie( 'LoggedOut', (string)$loggedOut, $loggedOut + 86400,

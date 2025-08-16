@@ -27,6 +27,8 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use RuntimeException;
 use Wikimedia\Http\HttpStatus;
+use Wikimedia\LightweightObjectStore\ExpirationAwareness;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * Allow programs to request this object from WebRequest::response()
@@ -176,7 +178,7 @@ class WebResponse {
 		if ( $expire === null ) {
 			$expire = 0; // Session cookie
 		} elseif ( $expire == 0 && $cookieExpiration != 0 ) {
-			$expire = time() + $cookieExpiration;
+			$expire = ConvertibleTimestamp::time() + $cookieExpiration;
 		}
 
 		if ( $this->disableForPostSend ) {
@@ -227,7 +229,11 @@ class WebResponse {
 		}
 
 		// PHP deletes if value is the empty string; also, a past expiry is deleting
-		$deleting = ( $value === '' || ( $setOptions['expires'] > 0 && $setOptions['expires'] <= time() ) );
+		$deleting = ( $value === ''
+			|| ( $setOptions['expires'] > 0
+				 && $setOptions['expires'] <= ConvertibleTimestamp::time()
+			)
+		);
 
 		$logDesc = "$func: \"$prefixedName\", \"$value\", \"" .
 			implode( '", "', array_map( 'strval', $setOptions ) ) . '"';
@@ -262,7 +268,7 @@ class WebResponse {
 	 * @since 1.27
 	 */
 	public function clearCookie( $name, $options = [] ) {
-		$this->setCookie( $name, '', time() - 31_536_000 /* 1 year */, $options );
+		$this->setCookie( $name, '', ConvertibleTimestamp::time() - ExpirationAwareness::TTL_YEAR, $options );
 	}
 
 	/**

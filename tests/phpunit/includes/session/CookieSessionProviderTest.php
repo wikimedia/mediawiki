@@ -19,7 +19,9 @@ use Psr\Log\LogLevel;
 use Psr\Log\NullLogger;
 use TestLogger;
 use Wikimedia\ArrayUtils\ArrayUtils;
+use Wikimedia\LightweightObjectStore\ExpirationAwareness;
 use Wikimedia\TestingAccessWrapper;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * @group Session
@@ -509,10 +511,14 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 	 * @param bool $forceHTTPS
 	 */
 	public function testCookieData( $secure, $remember, $forceHTTPS ) {
+		$startTime = 1_000_000;
+		ConvertibleTimestamp::setFakeTime( $startTime );
 		$this->overrideConfigValues( [
 			MainConfigNames::SecureLogin => false,
 			MainConfigNames::ForceHTTPS => $forceHTTPS,
 		] );
+		// match WebRespose::clearCookie()
+		$deletedTime = $startTime - ExpirationAwareness::TTL_YEAR;
 
 		$provider = new CookieSessionProvider( [
 			'priority' => 1,
@@ -547,11 +553,10 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 		$backend->setRememberUser( $remember );
 		$backend->setForceHTTPS( $secure );
 		$request = new FauxRequest();
-		$time = time();
 		$provider->persistSession( $backend, $request );
 
 		$defaults = [
-			'expire' => (int)100,
+			'expire' => $startTime + 100,
 			'path' => $config->get( MainConfigNames::CookiePath ),
 			'domain' => $config->get( MainConfigNames::CookieDomain ),
 			'secure' => $secure || $forceHTTPS,
@@ -569,30 +574,26 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 			] + $defaults,
 			'xUserID' => [
 				'value' => (string)$user->getId(),
-				'expire' => $remember ? $extendedExpiry : $normalExpiry,
+				'expire' => $startTime + ( $remember ? $extendedExpiry : $normalExpiry ),
 			] + $defaults,
 			'xUserName' => [
 				'value' => $user->getName(),
-				'expire' => $remember ? $extendedExpiry : $normalExpiry
+				'expire' => $startTime + ( $remember ? $extendedExpiry : $normalExpiry )
 			] + $defaults,
 			'xToken' => [
 				'value' => $remember ? $user->getToken() : '',
-				'expire' => $remember ? $extendedExpiry : -31536000,
+				'expire' => $remember ? $startTime + $extendedExpiry : $deletedTime,
 			] + $defaults
 		];
 		if ( !$forceHTTPS ) {
 			$expect['forceHTTPS'] = [
 				'value' => $secure ? 'true' : '',
 				'secure' => false,
-				'expire' => $secure ? ( $remember ? $defaults['expire'] : 0 ) : -31536000,
+				'expire' => $secure ? ( $remember ? $defaults['expire'] : 0 ) : $deletedTime,
 			] + $defaults;
 		}
 		foreach ( $expect as $key => $value ) {
 			$actual = $request->response()->getCookieData( $key );
-			if ( $actual && $actual['expire'] > 0 ) {
-				// Round expiry so we don't randomly fail if the seconds ticked during the test.
-				$actual['expire'] = round( $actual['expire'] - $time, -2 );
-			}
 			$this->assertEquals( $value, $actual, "Cookie $key" );
 		}
 	}
