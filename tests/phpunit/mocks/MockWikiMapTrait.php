@@ -16,13 +16,23 @@ trait MockWikiMapTrait {
 	/**
 	 * Override the SiteLookup service to include the current site.
 	 *
-	 * @return void
+	 * @param string $server Server name to use for the current wiki. Defaults to https://example.com
+	 * @param array[] $extraSites Other wikis. Each is an array with the following keys:
+	 *   - wikiId
+	 *   - server
 	 */
-	private function mockWikiMap() {
+	private function mockWikiMap( string $server = 'https://example.com', array $extraSites = [] ): void {
 		$currentSite = new MediaWikiSite();
 		$currentSite->setGlobalId( WikiMap::getCurrentWikiId() );
-		$currentSite->setPath( MediaWikiSite::PATH_PAGE, 'https://example.com/wiki/$1' );
-		$this->setService( 'SiteLookup', new HashSiteStore( [ $currentSite ] ) );
+		$currentSite->setPath( MediaWikiSite::PATH_PAGE, "$server/wiki/\$1" );
+		$sites = [ $currentSite ];
+		foreach ( $extraSites as $extraSite ) {
+			$site = new MediaWikiSite();
+			$site->setGlobalId( $extraSite['wikiId'] );
+			$site->setPath( MediaWikiSite::PATH_PAGE, "{$extraSite['server']}/wiki/\$1" );
+			$sites[] = $site;
+		}
+		$this->setService( 'SiteLookup', new HashSiteStore( $sites ) );
 	}
 
 }

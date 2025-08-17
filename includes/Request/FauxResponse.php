@@ -172,7 +172,7 @@ class FauxResponse extends WebResponse {
 
 	/**
 	 * @param string $name
-	 * @return array|null
+	 * @return array{value:string,expire:int,domain:string,path:string,secure:bool,httpOnly:bool}|null
 	 */
 	public function getCookieData( $name ) {
 		return $this->cookies[$name] ?? null;
