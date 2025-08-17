@@ -227,6 +227,8 @@ because of Phabricator reports.
   obtain a list of strings.
 * The parameter $default of WebRequest::getRawVal(), deprecated since 1.43,
   is now removed.
+* RecentChange::SRC_EXTERNAL has been removed. Extensions should define their
+  own source constants.
 * The UserNamePrefixSearch class, deprecated in 1.41 has been removed,
   the MediaWiki\User\UserNamePrefixSearch service should be used instead.
 * UserMailer::sanitizeHeaderValue, deprecated in 1.44 is now removed.

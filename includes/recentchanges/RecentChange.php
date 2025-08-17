@@ -120,7 +120,6 @@ class RecentChange implements Taggable {
 	public const SRC_EDIT = 'mw.edit';
 	public const SRC_NEW = 'mw.new';
 	public const SRC_LOG = 'mw.log';
-	public const SRC_EXTERNAL = 'mw.external'; // obsolete
 	public const SRC_CATEGORIZE = 'mw.categorize';
 
 	public const PRC_UNPATROLLED = 0;
