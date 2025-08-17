@@ -137,7 +137,7 @@ class MarkpatrolledAction extends FormAction {
 
 		// Guess where the user came from
 		// TODO: Would be nice to see where the user actually came from
-		if ( $rc->getAttribute( 'rc_type' ) == RC_NEW ) {
+		if ( $rc->getAttribute( 'rc_source' ) === RecentChange::SRC_NEW ) {
 			$returnTo = 'Newpages';
 		} elseif ( $rc->getAttribute( 'rc_log_type' ) == 'upload' ) {
 			$returnTo = 'Newfiles';

@@ -30,6 +30,7 @@ use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\OutputPage;
+use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
@@ -86,7 +87,7 @@ class FeedUtils {
 		$titleObj = Title::makeTitle( $row->rc_namespace, $row->rc_title );
 		$timestamp = wfTimestamp( TS_MW, $row->rc_timestamp );
 		$actiontext = '';
-		if ( $row->rc_type == RC_LOG ) {
+		if ( $row->rc_source === RecentChange::SRC_LOG ) {
 			$rcRow = (array)$row; // newFromRow() only accepts arrays for RC rows
 			$actiontext = MediaWikiServices::getInstance()->getLogFormatterFactory()
 				->newFromRow( $rcRow )->getActionText();

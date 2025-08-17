@@ -392,7 +392,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		/* Add flags, such as new, minor, bot. */
 		if ( $this->fld_flags ) {
 			$vals['bot'] = (bool)$recentChangeInfo['rc_bot'];
-			$vals['new'] = $recentChangeInfo['rc_type'] == RC_NEW;
+			$vals['new'] = $recentChangeInfo['rc_source'] == RecentChange::SRC_NEW;
 			$vals['minor'] = (bool)$recentChangeInfo['rc_minor'];
 		}
 
@@ -442,7 +442,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			$vals['autopatrolled'] = $recentChangeInfo['rc_patrolled'] == RecentChange::PRC_AUTOPATROLLED;
 		}
 
-		if ( $this->fld_loginfo && $recentChangeInfo['rc_type'] == RC_LOG ) {
+		if ( $this->fld_loginfo && $recentChangeInfo['rc_source'] == RecentChange::SRC_LOG ) {
 			if ( $recentChangeInfo['rc_deleted'] & LogPage::DELETED_ACTION ) {
 				$vals['actionhidden'] = true;
 				$anyHidden = true;

@@ -114,7 +114,7 @@ class OldChangesList extends ChangesList {
 			# M, N, b and ! (minor, new, bot and unpatrolled)
 			$html .= $this->recentChangesFlags(
 				[
-					'newpage' => $rc->mAttribs['rc_type'] == RC_NEW,
+					'newpage' => $rc->mAttribs['rc_source'] == RecentChange::SRC_NEW,
 					'minor' => $rc->mAttribs['rc_minor'],
 					'unpatrolled' => $unpatrolled,
 					'bot' => $rc->mAttribs['rc_bot']
@@ -133,7 +133,7 @@ class OldChangesList extends ChangesList {
 			}
 		}
 
-		if ( $rc->mAttribs['rc_type'] == RC_LOG ) {
+		if ( $rc->mAttribs['rc_source'] == RecentChange::SRC_LOG ) {
 			$html .= $this->insertLogEntry( $rc );
 		} elseif ( $this->isCategorizationWithoutRevision( $rc ) ) {
 			$html .= $this->insertComment( $rc );

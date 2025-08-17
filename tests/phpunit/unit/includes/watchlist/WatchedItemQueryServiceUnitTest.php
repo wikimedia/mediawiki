@@ -2,6 +2,7 @@
 
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Logging\LogPage;
+use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Title\TitleValue;
 use MediaWiki\User\Options\UserOptionsLookup;
@@ -184,6 +185,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 					'rc_title',
 					'rc_timestamp',
 					'rc_type',
+					'rc_source',
 					'rc_deleted',
 					'wl_notificationtimestamp',
 					'rc_cur_id',
@@ -219,6 +221,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 					'rc_title' => 'Foo1',
 					'rc_timestamp' => '20151212010101',
 					'rc_type' => RC_NEW,
+					'rc_source' => RecentChange::SRC_NEW,
 					'rc_deleted' => 0,
 					'wl_notificationtimestamp' => '20151212010101',
 				],
@@ -228,6 +231,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 					'rc_title' => 'Foo2',
 					'rc_timestamp' => '20151212010102',
 					'rc_type' => RC_NEW,
+					'rc_source' => RecentChange::SRC_NEW,
 					'rc_deleted' => 0,
 					'wl_notificationtimestamp' => null,
 				],
@@ -237,6 +241,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 					'rc_title' => 'Foo3',
 					'rc_timestamp' => '20151212010103',
 					'rc_type' => RC_NEW,
+					'rc_source' => RecentChange::SRC_NEW,
 					'rc_deleted' => 0,
 					'wl_notificationtimestamp' => null,
 				],
@@ -269,6 +274,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 				'rc_title' => 'Foo1',
 				'rc_timestamp' => '20151212010101',
 				'rc_type' => RC_NEW,
+				'rc_source' => RecentChange::SRC_NEW,
 				'rc_deleted' => 0,
 			],
 			$items[0][1]
@@ -285,6 +291,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 				'rc_title' => 'Foo2',
 				'rc_timestamp' => '20151212010102',
 				'rc_type' => RC_NEW,
+				'rc_source' => RecentChange::SRC_NEW,
 				'rc_deleted' => 0,
 			],
 			$items[1][1]
@@ -305,6 +312,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 					'rc_title',
 					'rc_timestamp',
 					'rc_type',
+					'rc_source',
 					'rc_deleted',
 					'wl_notificationtimestamp',
 					'rc_cur_id',
@@ -343,6 +351,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 					'rc_title' => 'Foo1',
 					'rc_timestamp' => '20151212010101',
 					'rc_type' => RC_NEW,
+					'rc_source' => RecentChange::SRC_NEW,
 					'rc_deleted' => 0,
 					'wl_notificationtimestamp' => '20151212010101',
 				],
@@ -352,6 +361,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 					'rc_title' => 'Foo2',
 					'rc_timestamp' => '20151212010102',
 					'rc_type' => RC_NEW,
+					'rc_source' => RecentChange::SRC_NEW,
 					'rc_deleted' => 0,
 					'wl_notificationtimestamp' => null,
 				],
@@ -428,6 +438,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 				'rc_title' => 'Foo1',
 				'rc_timestamp' => '20151212010101',
 				'rc_type' => RC_NEW,
+				'rc_source' => RecentChange::SRC_NEW,
 				'rc_deleted' => 0,
 				'extension_dummy_field' => 0,
 			],
@@ -445,6 +456,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 				'rc_title' => 'Foo2',
 				'rc_timestamp' => '20151212010102',
 				'rc_type' => RC_NEW,
+				'rc_source' => RecentChange::SRC_NEW,
 				'rc_deleted' => 0,
 				'extension_dummy_field' => 1,
 			],
@@ -617,6 +629,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 					'rc_title',
 					'rc_timestamp',
 					'rc_type',
+					'rc_source',
 					'rc_deleted',
 					'wl_notificationtimestamp',
 
@@ -747,6 +760,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 					'rc_title',
 					'rc_timestamp',
 					'rc_type',
+					'rc_source',
 					'rc_deleted',
 					'wl_notificationtimestamp',
 					'rc_cur_id',
@@ -793,6 +807,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 					'rc_title',
 					'rc_timestamp',
 					'rc_type',
+					'rc_source',
 					'rc_deleted',
 					'wl_notificationtimestamp',
 					'rc_this_oldid',

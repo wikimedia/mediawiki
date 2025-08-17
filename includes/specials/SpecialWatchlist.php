@@ -549,7 +549,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 				$unwatch = $this->msg( 'watchlist-unwatch' )->text();
 				// Don't show unwatch link if the line is a grouped log entry using EnhancedChangesList,
 				// since EnhancedChangesList groups log entries by performer rather than by target article
-				if ( $rc->mAttribs['rc_type'] == RC_LOG && $cl instanceof EnhancedChangesList &&
+				if ( $rc->getAttribute( 'rc_source' ) == RecentChange::SRC_LOG && $cl instanceof EnhancedChangesList &&
 					$grouped ) {
 					return "<span style='visibility:hidden'>$unwatch</span>\u{00A0}";
 				} else {
@@ -594,7 +594,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 
 			// Skip CatWatch entries for hidden cats based on user preference
 			if (
-				$rc->getAttribute( 'rc_type' ) == RC_CATEGORIZE &&
+				$rc->getAttribute( 'rc_source' ) == RecentChange::SRC_CATEGORIZE &&
 				!$userShowHiddenCats &&
 				$rc->getParam( 'hidden-cat' )
 			) {

@@ -50,7 +50,7 @@ class TestRecentChangesHelper {
 				'rc_logid' => 25,
 				'rc_log_type' => $logType,
 				'rc_log_action' => $logAction,
-				'rc_source' => 'mw.log'
+				'rc_source' => RecentChange::SRC_LOG
 			],
 			$additionalAttribs
 		);
@@ -89,7 +89,7 @@ class TestRecentChangesHelper {
 				'rc_cur_id' => $curid,
 				'rc_type' => 1,
 				'rc_bot' => 1,
-				'rc_source' => 'mw.new'
+				'rc_source' => RecentChange::SRC_NEW
 			]
 		);
 
@@ -122,6 +122,7 @@ class TestRecentChangesHelper {
 			$this->getDefaultAttributes( $titleText, $timestamp ),
 			[
 				'rc_type' => RC_CATEGORIZE,
+				'rc_source' => RecentChange::SRC_CATEGORIZE,
 				'rc_user' => $user->getId(),
 				'rc_user_text' => $user->getName(),
 				'rc_this_oldid' => $thisid,
@@ -161,7 +162,7 @@ class TestRecentChangesHelper {
 			'rc_log_type' => null,
 			'rc_log_action' => '',
 			'rc_params' => '',
-			'rc_source' => 'mw.edit'
+			'rc_source' => RecentChange::SRC_EDIT
 		];
 	}
 

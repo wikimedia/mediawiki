@@ -79,18 +79,18 @@ abstract class MachineReadableRCFeedFormatter implements RCFeedFormatter {
 			$packet['channel'] = $feed['channel'];
 		}
 
-		$type = $rc->getAttribute( 'rc_type' );
-		if ( $type == RC_EDIT || $type == RC_NEW ) {
+		$source = $rc->getAttribute( 'rc_source' );
+		if ( $source == RecentChange::SRC_EDIT || $source == RecentChange::SRC_NEW ) {
 			$useRCPatrol = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::UseRCPatrol );
 			$useNPPatrol = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::UseNPPatrol );
 			$packet['minor'] = (bool)$rc->getAttribute( 'rc_minor' );
-			if ( $useRCPatrol || ( $type == RC_NEW && $useNPPatrol ) ) {
+			if ( $useRCPatrol || ( $source == RecentChange::SRC_NEW && $useNPPatrol ) ) {
 				$packet['patrolled'] = (bool)$rc->getAttribute( 'rc_patrolled' );
 			}
 		}
 
-		switch ( $type ) {
-			case RC_EDIT:
+		switch ( $source ) {
+			case RecentChange::SRC_EDIT:
 				$packet['length'] = [
 					'old' => $rc->getAttribute( 'rc_old_len' ),
 					'new' => $rc->getAttribute( 'rc_new_len' )
@@ -101,12 +101,12 @@ abstract class MachineReadableRCFeedFormatter implements RCFeedFormatter {
 				];
 				break;
 
-			case RC_NEW:
+			case RecentChange::SRC_NEW:
 				$packet['length'] = [ 'old' => null, 'new' => $rc->getAttribute( 'rc_new_len' ) ];
 				$packet['revision'] = [ 'old' => null, 'new' => $rc->getAttribute( 'rc_this_oldid' ) ];
 				break;
 
-			case RC_LOG:
+			case RecentChange::SRC_LOG:
 				$packet['log_id'] = $rc->getAttribute( 'rc_logid' );
 				$packet['log_type'] = $rc->getAttribute( 'rc_log_type' );
 				$packet['log_action'] = $rc->getAttribute( 'rc_log_action' );

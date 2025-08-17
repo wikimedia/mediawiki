@@ -313,6 +313,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			'rc_title',
 			'rc_cur_id',
 			'rc_type',
+			'rc_source',
 			'rc_deleted'
 		] );
 
@@ -648,7 +649,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			$vals['autopatrolled'] = $row->rc_patrolled == RecentChange::PRC_AUTOPATROLLED;
 		}
 
-		if ( $this->fld_loginfo && $row->rc_type == RC_LOG ) {
+		if ( $this->fld_loginfo && $row->rc_source == RecentChange::SRC_LOG ) {
 			if ( $row->rc_deleted & LogPage::DELETED_ACTION ) {
 				$vals['actionhidden'] = true;
 				$anyHidden = true;

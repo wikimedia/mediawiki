@@ -55,12 +55,12 @@ class IRCColourfulRCFeedFormatter implements RCFeedFormatter {
 		$useRCPatrol = $mainConfig->get( MainConfigNames::UseRCPatrol );
 		$useNPPatrol = $mainConfig->get( MainConfigNames::UseNPPatrol );
 		$attribs = $rc->getAttributes();
-		if ( $attribs['rc_type'] == RC_CATEGORIZE ) {
-			// Don't send RC_CATEGORIZE events to IRC feed (T127360)
+		if ( $attribs['rc_source'] == RecentChange::SRC_CATEGORIZE ) {
+			// Don't send SRC_CATEGORIZE events to IRC feed (T127360)
 			return null;
 		}
 
-		if ( $attribs['rc_type'] == RC_LOG ) {
+		if ( $attribs['rc_source'] == RecentChange::SRC_LOG ) {
 			// Don't use SpecialPage::getTitleFor, backwards compatibility with
 			// IRC API which expects "Log".
 			$titleObj = Title::newFromText( 'Log/' . $attribs['rc_log_type'], NS_SPECIAL );
@@ -87,7 +87,7 @@ class IRCColourfulRCFeedFormatter implements RCFeedFormatter {
 
 		$user = self::cleanupForIRC( $attribs['rc_user_text'] );
 
-		if ( $attribs['rc_type'] == RC_LOG ) {
+		if ( $attribs['rc_source'] == RecentChange::SRC_LOG ) {
 			$targetText = $rc->getTitle()->getPrefixedText();
 			$comment = self::cleanupForIRC( str_replace(
 				"[[$targetText]]",
@@ -100,11 +100,11 @@ class IRCColourfulRCFeedFormatter implements RCFeedFormatter {
 			$comment = self::cleanupForIRC( $store->getComment( 'rc_comment', $attribs )->text );
 			$flag = '';
 			if ( !$attribs['rc_patrolled']
-				&& ( $useRCPatrol || ( $attribs['rc_type'] == RC_NEW && $useNPPatrol ) )
+				&& ( $useRCPatrol || ( $attribs['rc_source'] == RecentChange::SRC_NEW && $useNPPatrol ) )
 			) {
 				$flag .= '!';
 			}
-			$flag .= ( $attribs['rc_type'] == RC_NEW ? "N" : "" )
+			$flag .= ( $attribs['rc_source'] == RecentChange::SRC_NEW ? "N" : "" )
 				. ( $attribs['rc_minor'] ? "M" : "" ) . ( $attribs['rc_bot'] ? "B" : "" );
 		}
 

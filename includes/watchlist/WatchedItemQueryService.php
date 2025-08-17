@@ -173,6 +173,7 @@ class WatchedItemQueryService {
 	 *         - 'rc_title',
 	 *         - 'rc_timestamp',
 	 *         - 'rc_type',
+	 *         - 'rc_source',
 	 *         - 'rc_deleted',
 	 *         Additional keys could be added by specifying the 'includeFields' option
 	 */
@@ -410,6 +411,7 @@ class WatchedItemQueryService {
 			'rc_title',
 			'rc_timestamp',
 			'rc_type',
+			'rc_source',
 			'rc_deleted',
 			'wl_notificationtimestamp'
 		];

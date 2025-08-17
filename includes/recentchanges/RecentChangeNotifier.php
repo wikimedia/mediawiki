@@ -85,7 +85,7 @@ class RecentChangeNotifier {
 		RecentChange $recentChange
 	): bool {
 		// Never send an RC notification email about categorization changes
-		if ( $recentChange->getAttribute( 'rc_type' ) === RC_CATEGORIZE ) {
+		if ( $recentChange->getAttribute( 'rc_source' ) === RecentChange::SRC_CATEGORIZE ) {
 			return false;
 		}
 		$mwServices = MediaWikiServices::getInstance();

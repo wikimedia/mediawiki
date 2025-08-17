@@ -579,8 +579,8 @@ class ChangesList extends ContextSource {
 	public function insertDiffHist( &$s, &$rc, $unpatrolled = null ) {
 		# Diff link
 		if (
-			$rc->mAttribs['rc_type'] == RC_NEW ||
-			$rc->mAttribs['rc_type'] == RC_LOG
+			$rc->mAttribs['rc_source'] === RecentChange::SRC_NEW ||
+			$rc->mAttribs['rc_source'] === RecentChange::SRC_LOG
 		) {
 			$diffLink = $this->message['diff'];
 		} elseif ( !self::userCan( $rc, RevisionRecord::DELETED_TEXT, $this->getAuthority() ) ) {
@@ -884,7 +884,7 @@ class ChangesList extends ContextSource {
 	public static function userCan( $rc, $field, ?Authority $performer = null ) {
 		$performer ??= RequestContext::getMain()->getAuthority();
 
-		if ( $rc->mAttribs['rc_type'] == RC_LOG ) {
+		if ( $rc->mAttribs['rc_source'] === RecentChange::SRC_LOG ) {
 			return LogEventsList::userCanBitfield( $rc->mAttribs['rc_deleted'], $field, $performer );
 		}
 
@@ -924,7 +924,7 @@ class ChangesList extends ContextSource {
 	 */
 	private function insertPageTools( &$s, &$rc ) {
 		// FIXME Some page tools (e.g. thanks) might make sense for log entries.
-		if ( !in_array( $rc->mAttribs['rc_type'], [ RC_EDIT, RC_NEW ] )
+		if ( !in_array( $rc->mAttribs['rc_source'], [ RecentChange::SRC_EDIT, RecentChange::SRC_NEW ] )
 			// FIXME When would either of these not exist when type is RC_EDIT? Document.
 			|| !$rc->mAttribs['rc_this_oldid']
 			|| !$rc->mAttribs['rc_cur_id']
@@ -948,7 +948,7 @@ class ChangesList extends ContextSource {
 			null,
 			// only show a rollback link on the top-most revision
 			$rc->getAttribute( 'page_latest' ) == $rc->mAttribs['rc_this_oldid']
-				&& $rc->mAttribs['rc_type'] != RC_NEW,
+				&& $rc->mAttribs['rc_source'] !== RecentChange::SRC_NEW,
 			$this->getHookRunner(),
 			$title,
 			$this->getContext(),
@@ -1037,11 +1037,11 @@ class ChangesList extends ContextSource {
 	public static function isUnpatrolled( $rc, User $user ) {
 		if ( $rc instanceof RecentChange ) {
 			$isPatrolled = $rc->mAttribs['rc_patrolled'];
-			$rcType = $rc->mAttribs['rc_type'];
+			$rcSource = $rc->mAttribs['rc_source'];
 			$rcLogType = $rc->mAttribs['rc_log_type'];
 		} else {
 			$isPatrolled = $rc->rc_patrolled;
-			$rcType = $rc->rc_type;
+			$rcSource = $rc->rc_source;
 			$rcLogType = $rc->rc_log_type;
 		}
 
@@ -1050,7 +1050,7 @@ class ChangesList extends ContextSource {
 		}
 
 		return $user->useRCPatrol() ||
-			( $rcType == RC_NEW && $user->useNPPatrol() ) ||
+			( $rcSource === RecentChange::SRC_NEW && $user->useNPPatrol() ) ||
 			( $rcLogType === 'upload' && $user->useFilePatrol() );
 	}
 
@@ -1064,7 +1064,7 @@ class ChangesList extends ContextSource {
 	 * @return bool
 	 */
 	protected function isCategorizationWithoutRevision( $rcObj ) {
-		return intval( $rcObj->getAttribute( 'rc_type' ) ) === RC_CATEGORIZE
+		return $rcObj->getAttribute( 'rc_source' ) === RecentChange::SRC_CATEGORIZE
 			&& intval( $rcObj->getAttribute( 'rc_this_oldid' ) ) === 0;
 	}
 
@@ -1076,8 +1076,8 @@ class ChangesList extends ContextSource {
 	protected function getDataAttributes( RecentChange $rc ) {
 		$attrs = [];
 
-		$type = $rc->getAttribute( 'rc_source' );
-		switch ( $type ) {
+		$source = $rc->getAttribute( 'rc_source' );
+		switch ( $source ) {
 			case RecentChange::SRC_EDIT:
 			case RecentChange::SRC_CATEGORIZE:
 			case RecentChange::SRC_NEW:

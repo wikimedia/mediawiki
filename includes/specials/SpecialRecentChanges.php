@@ -551,7 +551,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 
 			# Skip CatWatch entries for hidden cats based on user preference
 			if (
-				$rc->getAttribute( 'rc_type' ) == RC_CATEGORIZE &&
+				$rc->getAttribute( 'rc_source' ) == RecentChange::SRC_CATEGORIZE &&
 				!$userShowHiddenCats &&
 				$rc->getParam( 'hidden-cat' )
 			) {

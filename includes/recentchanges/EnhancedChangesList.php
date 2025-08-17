@@ -128,8 +128,6 @@ class EnhancedChangesList extends ChangesList {
 	}
 
 	/**
-	 * @todo use rc_source to group, if set; fallback to rc_type
-	 *
 	 * @param RCCacheEntry $cacheEntry
 	 *
 	 * @return string
@@ -138,9 +136,9 @@ class EnhancedChangesList extends ChangesList {
 		$title = $cacheEntry->getTitle();
 		$cacheGroupingKey = $title->getPrefixedDBkey();
 
-		$type = $cacheEntry->mAttribs['rc_type'];
+		$source = $cacheEntry->mAttribs['rc_source'];
 
-		if ( $type == RC_LOG ) {
+		if ( $source == RecentChange::SRC_LOG ) {
 			// Group by log type
 			$cacheGroupingKey = SpecialPage::getTitleFor(
 				'Log',
@@ -212,7 +210,7 @@ class EnhancedChangesList extends ChangesList {
 				$usercounts[$username] = 0;
 				$userlinks[$username] = $userlink;
 			}
-			if ( $rcObj->mAttribs['rc_type'] != RC_LOG ) {
+			if ( $rcObj->mAttribs['rc_source'] !== RecentChange::SRC_LOG ) {
 				$allLogs = false;
 			}
 
@@ -357,7 +355,7 @@ class EnhancedChangesList extends ChangesList {
 	protected function getLineData( array $block, RCCacheEntry $rcObj, array $queryParams = [] ) {
 		$RCShowChangedSize = $this->getConfig()->get( MainConfigNames::RCShowChangedSize );
 
-		$type = $rcObj->mAttribs['rc_type'];
+		$source = $rcObj->mAttribs['rc_source'];
 		$data = [];
 		$lineParams = [ 'targetTitle' => $rcObj->getTitle() ];
 
@@ -370,14 +368,14 @@ class EnhancedChangesList extends ChangesList {
 		$separator = ' <span class="mw-changeslist-separator"></span> ';
 
 		$data['recentChangesFlags'] = [
-			'newpage' => $type == RC_NEW,
+			'newpage' => $source == RecentChange::SRC_NEW,
 			'minor' => $rcObj->mAttribs['rc_minor'],
 			'unpatrolled' => $rcObj->unpatrolled,
 			'bot' => $rcObj->mAttribs['rc_bot'],
 		];
 
 		# Log timestamp
-		if ( $type == RC_LOG ) {
+		if ( $source == RecentChange::SRC_LOG ) {
 			$link = htmlspecialchars( $rcObj->timestamp );
 			# Revision link
 		} elseif ( !ChangesList::userCan( $rcObj, RevisionRecord::DELETED_TEXT, $this->getAuthority() ) ) {
@@ -388,7 +386,7 @@ class EnhancedChangesList extends ChangesList {
 			if ( $rcObj->mAttribs['rc_this_oldid'] != 0 ) {
 				$params['oldid'] = $rcObj->mAttribs['rc_this_oldid'];
 			}
-			// FIXME: The link has incorrect "title=" when rc_type = RC_CATEGORIZE.
+			// FIXME: The link has incorrect "title=" when rc_source = RecentChange::SRC_CATEGORIZE.
 			// rc_cur_id refers to the page that was categorized
 			// whereas RecentChange::getTitle refers to the category.
 			$link = $this->linkRenderer->makeKnownLink(
@@ -404,7 +402,7 @@ class EnhancedChangesList extends ChangesList {
 		$data['timestampLink'] = $link;
 
 		$currentAndLastLinks = '';
-		if ( $type == RC_EDIT || $type == RC_NEW ) {
+		if ( $source == RecentChange::SRC_EDIT || $source == RecentChange::SRC_NEW ) {
 			$currentAndLastLinks .= ' ' . $this->msg( 'parentheses' )->rawParams(
 					$rcObj->curlink .
 					$this->message['pipe-separator'] .
@@ -423,7 +421,7 @@ class EnhancedChangesList extends ChangesList {
 			}
 		}
 
-		if ( $type == RC_LOG ) {
+		if ( $source == RecentChange::SRC_LOG ) {
 			$data['logEntry'] = $this->insertLogEntry( $rcObj );
 		} elseif ( $this->isCategorizationWithoutRevision( $rcObj ) ) {
 			$data['comment'] = $this->insertComment( $rcObj );
@@ -432,7 +430,7 @@ class EnhancedChangesList extends ChangesList {
 			$data['userLink'] = $rcObj->userlink;
 			$data['userTalkLink'] = $rcObj->usertalklink;
 			$data['comment'] = $this->insertComment( $rcObj );
-			if ( $type == RC_CATEGORIZE ) {
+			if ( $source == RecentChange::SRC_CATEGORIZE ) {
 				$data['historyLink'] = $this->getDiffHistLinks( $rcObj, false );
 			}
 			# Rollback, thanks etc...
@@ -512,7 +510,7 @@ class EnhancedChangesList extends ChangesList {
 		foreach ( $block as $rcObj ) {
 			// Fields of categorization entries refer to the changed page
 			// rather than the category for which we are building the log text.
-			if ( $rcObj->mAttribs['rc_type'] == RC_CATEGORIZE ) {
+			if ( $rcObj->mAttribs['rc_source'] == RecentChange::SRC_CATEGORIZE ) {
 				continue;
 			}
 
@@ -618,7 +616,7 @@ class EnhancedChangesList extends ChangesList {
 	protected function recentChangesBlockLine( $rcObj ) {
 		$data = [];
 
-		$type = $rcObj->mAttribs['rc_type'];
+		$source = $rcObj->mAttribs['rc_source'];
 		$logType = $rcObj->mAttribs['rc_log_type'];
 		$classes = $this->getHTMLClasses( $rcObj, $rcObj->watched );
 		$classes[] = 'mw-enhanced-rc';
@@ -635,7 +633,7 @@ class EnhancedChangesList extends ChangesList {
 
 		# Flag and Timestamp
 		$data['recentChangesFlags'] = [
-			'newpage' => $type == RC_NEW,
+			'newpage' => $source == RecentChange::SRC_NEW,
 			'minor' => $rcObj->mAttribs['rc_minor'],
 			'unpatrolled' => $rcObj->unpatrolled,
 			'bot' => $rcObj->mAttribs['rc_bot'],
@@ -657,7 +655,7 @@ class EnhancedChangesList extends ChangesList {
 		}
 
 		# Diff and hist links
-		if ( $type != RC_LOG && $type != RC_CATEGORIZE ) {
+		if ( $source != RecentChange::SRC_LOG && $source != RecentChange::SRC_CATEGORIZE ) {
 			$data['historyLink'] = $this->getDiffHistLinks( $rcObj, false );
 		}
 		$data['separatorAfterLinks'] = ' <span class="mw-changeslist-separator"></span> ';
@@ -671,7 +669,7 @@ class EnhancedChangesList extends ChangesList {
 			}
 		}
 
-		if ( $type == RC_LOG ) {
+		if ( $source == RecentChange::SRC_LOG ) {
 			$data['logEntry'] = $this->insertLogEntry( $rcObj );
 		} elseif ( $this->isCategorizationWithoutRevision( $rcObj ) ) {
 			$data['comment'] = $this->insertComment( $rcObj );
@@ -679,7 +677,7 @@ class EnhancedChangesList extends ChangesList {
 			$data['userLink'] = $rcObj->userlink;
 			$data['userTalkLink'] = $rcObj->usertalklink;
 			$data['comment'] = $this->insertComment( $rcObj );
-			if ( $type == RC_CATEGORIZE ) {
+			if ( $source == RecentChange::SRC_CATEGORIZE ) {
 				$data['historyLink'] = $this->getDiffHistLinks( $rcObj, false );
 			}
 			$data['rollback'] = $this->getRollback( $rcObj );
@@ -767,7 +765,7 @@ class EnhancedChangesList extends ChangesList {
 			wfDeprecated( __METHOD__ . ' with $query parameter', '1.36' );
 		}
 		$pageTitle = $rc->getTitle();
-		if ( $rc->getAttribute( 'rc_type' ) == RC_CATEGORIZE ) {
+		if ( $rc->getAttribute( 'rc_source' ) == RecentChange::SRC_CATEGORIZE ) {
 			// For categorizations we must swap the category title with the page title!
 			$pageTitle = Title::newFromID( $rc->getAttribute( 'rc_cur_id' ) );
 			if ( !$pageTitle ) {

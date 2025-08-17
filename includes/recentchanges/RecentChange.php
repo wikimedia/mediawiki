@@ -73,7 +73,7 @@ use Wikimedia\IPUtils;
  *  rc_timestamp    time the entry was made
  *  rc_namespace    namespace #
  *  rc_title        non-prefixed db key
- *  rc_type         is new entry, used to determine whether updating is necessary
+ *  rc_type         obsolete, use rc_source
  *  rc_source       string representation of change source
  *  rc_minor        is minor
  *  rc_cur_id       page_id of associated page entry
@@ -632,8 +632,8 @@ class RecentChange implements Taggable {
 		$status = PermissionStatus::newEmpty();
 		// If recentchanges patrol is disabled, only new pages or new file versions
 		// can be patrolled, provided the appropriate config variable is set
-		if ( !$useRCPatrol && ( !$useNPPatrol || $this->getAttribute( 'rc_type' ) != RC_NEW ) &&
-			( !$useFilePatrol || !( $this->getAttribute( 'rc_type' ) == RC_LOG &&
+		if ( !$useRCPatrol && ( !$useNPPatrol || $this->getAttribute( 'rc_source' ) != self::SRC_NEW ) &&
+			( !$useFilePatrol || !( $this->getAttribute( 'rc_source' ) == self::SRC_LOG &&
 			$this->getAttribute( 'rc_log_type' ) == 'upload' ) ) ) {
 			$status->fatal( 'rcpatroldisabled' );
 		}
@@ -1216,7 +1216,7 @@ class RecentChange implements Taggable {
 	 * @return string
 	 */
 	public function diffLinkTrail( $forceCur ) {
-		if ( $this->mAttribs['rc_type'] == RC_EDIT ) {
+		if ( $this->mAttribs['rc_source'] == self::SRC_EDIT ) {
 			$trail = "curid=" . (int)( $this->mAttribs['rc_cur_id'] ) .
 				"&oldid=" . (int)( $this->mAttribs['rc_last_oldid'] );
 			if ( $forceCur ) {
@@ -1334,18 +1334,18 @@ class RecentChange implements Taggable {
 		$canonicalServer = $mainConfig->get( MainConfigNames::CanonicalServer );
 		$script = $mainConfig->get( MainConfigNames::Script );
 
-		$type = $this->getAttribute( 'rc_type' );
-		if ( $type == RC_LOG ) {
+		$source = $this->getAttribute( 'rc_source' );
+		if ( $source == self::SRC_LOG ) {
 			$url = null;
 		} else {
 			$url = $canonicalServer . $script;
-			if ( $type == RC_NEW ) {
+			if ( $source == self::SRC_NEW ) {
 				$query = '?oldid=' . $this->getAttribute( 'rc_this_oldid' );
 			} else {
 				$query = '?diff=' . $this->getAttribute( 'rc_this_oldid' )
 					. '&oldid=' . $this->getAttribute( 'rc_last_oldid' );
 			}
-			if ( $useRCPatrol || ( $this->getAttribute( 'rc_type' ) == RC_NEW && $useNPPatrol ) ) {
+			if ( $useRCPatrol || ( $this->getAttribute( 'rc_source' ) == self::SRC_NEW && $useNPPatrol ) ) {
 				$query .= '&rcid=' . $this->getAttribute( 'rc_id' );
 			}
 
