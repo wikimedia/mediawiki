@@ -1,8 +1,11 @@
 <?php
 
+use GuzzleHttp\Exception\ConnectException;
+use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
+use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 
@@ -13,6 +16,7 @@ use GuzzleHttp\Psr7\Response;
  *
  * @covers \GuzzleHttpRequest
  * @covers \MWHttpRequest
+ * @covers \MWCallbackStream
  */
 class GuzzleHttpRequestTest extends MediaWikiIntegrationTestCase {
 	/** @var int[] */
@@ -95,7 +99,7 @@ class GuzzleHttpRequestTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * use a callback stream to pipe the mocked response data to our callback function
+	 * Use a callback stream to pipe the mocked response data to our callback function
 	 */
 	public function testSuccessSink() {
 		$this->bodyTextReceived = '';
@@ -120,7 +124,7 @@ class GuzzleHttpRequestTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testConnectException() {
-		$handler = HandlerStack::create( new MockHandler( [ new GuzzleHttp\Exception\ConnectException(
+		$handler = HandlerStack::create( new MockHandler( [ new ConnectException(
 			'Mock Connection Exception', new Request( 'GET', $this->exampleUrl )
 		) ] ) );
 		$r = new GuzzleHttpRequest( $this->exampleUrl,
@@ -131,7 +135,7 @@ class GuzzleHttpRequestTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testTimeout() {
-		$handler = HandlerStack::create( new MockHandler( [ new GuzzleHttp\Exception\RequestException(
+		$handler = HandlerStack::create( new MockHandler( [ new RequestException(
 			'Connection timed out', new Request( 'GET', $this->exampleUrl )
 		) ] ) );
 		$r = new GuzzleHttpRequest( $this->exampleUrl,
@@ -152,7 +156,7 @@ class GuzzleHttpRequestTest extends MediaWikiIntegrationTestCase {
 		$this->assertStatusMessage( 'http-bad-status', $s );
 	}
 
-	/*
+	/**
 	 * Test of POST requests header
 	 */
 	public function testPostBody() {
@@ -184,7 +188,7 @@ class GuzzleHttpRequestTest extends MediaWikiIntegrationTestCase {
 		$client = new GuzzleHttpRequest( $this->exampleUrl, [
 				'method' => 'POST',
 				'handler' => $stack,
-				'postData' => new \GuzzleHttp\Psr7\MultipartStream( [ [
+				'postData' => new MultipartStream( [ [
 					'name' => 'a',
 					'contents' => 'b'
 				] ] ),
@@ -197,7 +201,7 @@ class GuzzleHttpRequestTest extends MediaWikiIntegrationTestCase {
 			$request->getHeader( 'Content-Type' )[0] );
 	}
 
-	/*
+	/**
 	 * Test that cookies from CookieJar were sent in the outgoing request.
 	 */
 	public function testCookieSent() {
@@ -225,7 +229,7 @@ class GuzzleHttpRequestTest extends MediaWikiIntegrationTestCase {
 			$request->getHeader( 'Cookie' ) );
 	}
 
-	/*
+	/**
 	 * Test that cookies returned by HTTP response were added back into the CookieJar.
 	 */
 	public function testCookieReceived() {

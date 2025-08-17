@@ -19,6 +19,9 @@
  */
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\ConnectException;
+use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Handler\CurlHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\MessageFormatter;
@@ -48,10 +51,8 @@ class GuzzleHttpRequest extends MWHttpRequest {
 
 	/** @var callable|null */
 	protected $handler = null;
-	/** @var StreamInterface|null */
-	protected $sink = null;
-	/** @var array */
-	protected $guzzleOptions = [ 'http_errors' => false ];
+	protected ?StreamInterface $sink = null;
+	protected array $guzzleOptions = [ 'http_errors' => false ];
 
 	/**
 	 * @internal Use HttpRequestFactory
@@ -124,7 +125,8 @@ class GuzzleHttpRequest extends MWHttpRequest {
 		$this->prepare();
 
 		if ( !$this->status->isOK() ) {
-			return Status::wrap( $this->status ); // TODO B/C; move this to callers
+			// TODO B/C; move this to callers
+			return Status::wrap( $this->status );
 		}
 
 		if ( $this->proxy ) {
@@ -143,7 +145,7 @@ class GuzzleHttpRequest extends MWHttpRequest {
 			];
 		}
 
-		if ( $this->method == 'POST' ) {
+		if ( $this->method === 'POST' ) {
 			$postData = $this->postData;
 			if ( is_array( $postData ) ) {
 				$this->guzzleOptions['form_params'] = $postData;
@@ -217,13 +219,13 @@ class GuzzleHttpRequest extends MWHttpRequest {
 
 			$this->respVersion = $response->getProtocolVersion();
 			$this->respStatus = $response->getStatusCode() . ' ' . $response->getReasonPhrase();
-		} catch ( GuzzleHttp\Exception\ConnectException $e ) {
+		} catch ( ConnectException $e ) {
 			// ConnectException is thrown for several reasons besides generic "timeout":
-			//   Connection refused
-			//   couldn't connect to host
-			//   connection attempt failed
-			//   Could not resolve IPv4 address for host
-			//   Could not resolve IPv6 address for host
+			//  - Connection refused
+			//  - couldn't connect to host
+			//  - connection attempt failed
+			//  - Could not resolve IPv4 address for host
+			//  - Could not resolve IPv6 address for host
 			if ( $this->usingCurl() ) {
 				$handlerContext = $e->getHandlerContext();
 				if ( $handlerContext['errno'] == CURLE_OPERATION_TIMEOUTED ) {
@@ -234,7 +236,7 @@ class GuzzleHttpRequest extends MWHttpRequest {
 			} else {
 				$this->status->fatal( 'http-request-error' );
 			}
-		} catch ( GuzzleHttp\Exception\RequestException $e ) {
+		} catch ( RequestException $e ) {
 			if ( $this->usingCurl() ) {
 				$handlerContext = $e->getHandlerContext();
 				$this->status->fatal( 'http-curl-error', $handlerContext['error'] );
@@ -247,7 +249,7 @@ class GuzzleHttpRequest extends MWHttpRequest {
 					$this->status->fatal( 'http-request-error' );
 				}
 			}
-		} catch ( GuzzleHttp\Exception\GuzzleException ) {
+		} catch ( GuzzleException ) {
 			$this->status->fatal( 'http-internal-error' );
 		}
 
@@ -264,7 +266,8 @@ class GuzzleHttpRequest extends MWHttpRequest {
 		$this->parseHeader();
 		$this->setStatus();
 
-		return Status::wrap( $this->status ); // TODO B/C; move this to callers
+		// TODO B/C; move this to callers
+		return Status::wrap( $this->status );
 	}
 
 	protected function prepare() {
