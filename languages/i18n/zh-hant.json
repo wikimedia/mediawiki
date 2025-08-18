@@ -765,7 +765,7 @@
 	"anonpreviewwarning": "您尚未登入。發布頁面會將您的IP位址記錄在此頁面的編輯歷史中。",
 	"autocreate-preview-warning": "<em>警告：您尚未登入。您的編輯將歸於一個自動生成的名稱（透過向您的瀏覽器添加一個Cookie），且管理員可檢視您的IP位址。</em>",
 	"missingsummary": "<strong>提醒：</strong>您未填寫編輯摘要。若您再點選 \"$1\" 一次，將略過摘要直接發布您的編輯。",
-	"selfredirect": "<strong>警告：</strong> 您正建立連結至自己的重新導向。\n您可能指定錯要重新導向的目標頁面或者編輯錯頁面。\n若您再點選 \"$1\" 一次，將會繼續建立重新導向。",
+	"selfredirect": "<strong>警告：</strong> 您正建立連結至自己的重新導向。\n可能是您指定的重新導向目標不正確，或是您不小心編輯到其他頁面。\n如果仍要建立重新導向，請再次點選「$1」。",
 	"missingcommenttext": "請輸入一段評論。",
 	"missingcommentheader": "<strong>提醒：</strong>您未填寫此評論的主旨。\n若您再點選 \"$1\" 一次，將略過主旨/標題直接發布您的評論。",
 	"summary-preview": "編輯摘要預覽：",

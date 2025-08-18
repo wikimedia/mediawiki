@@ -2789,7 +2789,7 @@
 	"ip_range_exceeded": "IP 대역이 최대 대역을 초과했습니다. 허용된 대역: /$1.",
 	"ip_range_toolow": "IP 대역은 효율적으로 허용되지 않습니다.",
 	"proxyblocker": "프록시 차단",
-	"proxyblockreason": "당신의 IP 주소는 공개 프록시로 밝혀져 자동으로 차단됩니다.\n만약 인터넷 사용에 문제가 있다면 인터넷 서비스 공급자나 기술 지원팀에게 문의해주세요.",
+	"proxyblockreason": "당신의 IP 주소는 공개 프록시로 밝혀져 자동으로 차단됩니다.\n만약 인터넷 사용에 문제가 있다면 인터넷 서비스 공급자나 기술 지원팀에게 문의해 주세요.",
 	"sorbsreason": "당신의 IP 주소는 {{SITENAME}}에서 사용하는 DNSBL 공개 프록시 목록에 들어 있습니다.",
 	"sorbs_create_account_reason": "당신의 IP 주소는 {{SITENAME}}에서 사용하는 DNSBL 공개 프록시 목록에 들어 있습니다.\n계정을 만들 수 없습니다.",
 	"softblockrangesreason": "익명 기여가 당신의 IP 주소($1)에서 허용되지 않습니다. 로그인해 주십시오.",

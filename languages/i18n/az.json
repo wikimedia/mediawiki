@@ -3607,7 +3607,7 @@
 	"revdelete-uname-unhid": "istifadəçi adının gizlədilməsi ləğv edildi",
 	"revdelete-restricted": "inzibatçılara da məhdudiyyət tətbiq olundu",
 	"revdelete-unrestricted": "inzibatçılar üçün məhdudiyyətlər ləğv edildi",
-	"logentry-block-block": "$1 {{GENDER:$4|$3}} istifadəçisini $5 $6 bitmə müddətinə {{GENDER:$2|blokladı}}",
+	"logentry-block-block": "$1 {{GENDER:$4|$3}} adlı istifadəçini $5 $6 bitmə müddətinə {{GENDER:$2|blokladı}}",
 	"logentry-block-unblock": "$1 {{GENDER:$4|$3}} istifadəçisinin {{GENDER:$2|blokunu açdı}}",
 	"logentry-block-reblock": "$1 {{GENDER:$4|$3}} istifadəçisinin blokunun parametrlərini {{GENDER:$2|dəyişdirdi}}: $5 $6",
 	"logentry-partialblock-block-page": "$2 {{PLURAL:$1|səhifəsini|səhifələrini}} redaktə etmək hüququ",

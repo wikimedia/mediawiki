@@ -706,7 +706,7 @@
 	"anonpreviewwarning": "''Et ole kirjautunut sisään. Julkaiseminen kirjaa IP-osoitteesi tämän sivun muutoshistoriaan.''",
 	"autocreate-preview-warning": "<em>Et ole kirjautunut sisään. Muokkauksesi yhdistetään koneen keksimään nimeen ja IP-osoitteesi tulee näkymään ylläpitäjille.</em>",
 	"missingsummary": "<strong>Huomautus:</strong> Et ole antanut yhteenvetoa.\nJos painat ”$1” uudelleen, muokkauksesi julkaistaan ilman yhteenvetoa.",
-	"selfredirect": "<strong>Varoitus:</strong> Olet luomassa uudelleenohjausta, joka johtaa tästä sivusta tähän samaan sivuun.\nOlet ehkä määrittänyt ohjauksen kohteen väärin tai kenties muokkaat parhaillaan väärää sivua.\nJos painat ”$1” uudelleen, tämä ohjaussivu luodaan joka tapauksessa.",
+	"selfredirect": "<strong>Varoitus:</strong> Olet luomassa uudelleenohjausta, joka johtaa tästä sivusta tähän samaan sivuun.\nOlet ehkä määrittänyt ohjauksen kohteen väärin tai kenties muokkaat parhaillaan väärää sivua.\nJos napsautat ”$1” uudelleen, ohjaussivu luodaan joka tapauksessa.",
 	"missingcommenttext": "Kirjoita kommentti.",
 	"missingcommentheader": "<strong>Muistutus:</strong> Et ole antanut aiheotsikkoa tälle kommentille. Napsauta ”$1”, jos haluat julkaista kommenttisi ilman sellaista.",
 	"summary-preview": "Yhteenvedon esikatselu:",

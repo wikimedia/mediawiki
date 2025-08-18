@@ -118,7 +118,8 @@
 			"Cabal",
 			"Bunnypranav",
 			"Mithun 477",
-			"DreamRimmer"
+			"DreamRimmer",
+			"Ophyrius"
 		]
 	},
 	"tog-underline": "रेखांकित कड़ियाँ:",
@@ -249,7 +250,7 @@
 	"mypage": "पृष्ठ",
 	"mytalk": "वार्ता",
 	"anontalk": "वार्ता",
-	"navigation": "नैविगेशन",
+	"navigation": "मार्गदर्शन",
 	"and": "&#32;और",
 	"faq": "सामान्य प्रश्न",
 	"actions": "क्रियाएँ",
@@ -316,7 +317,7 @@
 	"viewcount": "यह पृष्ठ {{PLURAL:$1|एक|$1}} बार देखा गया है।",
 	"protectedpage": "सुरक्षित पृष्ठ",
 	"jumpto": "यहाँ जाएँ:",
-	"jumptonavigation": "नेविगेशन",
+	"jumptonavigation": "मार्गदर्शन",
 	"jumptosearch": "खोजें",
 	"view-pool-error": "क्षमा करें, इस समय सर्वरों पर अतिभार है।\nबहुत सारे सदस्य इस पृष्ठ को देखने की कोशिश कर रहे हैं।\nकृपया कुछ समय इंतज़ार करें और फिर से इस पृष्ठ को देखने का प्रयास करें।\n\n$1",
 	"generic-pool-error": "क्षमा करें, इस समय सर्वरों पर अतिभार है।\nबहुत सारे सदस्य इस संसाधन को देखने की कोशिश कर रहे हैं।\nकृपया कुछ समय इंतज़ार करें और फिर से इस संसाधन को देखने का प्रयास करें।",
@@ -1651,7 +1652,7 @@
 	"recentchanges-page-removed-from-category": "[[:$1]] श्रेणी से हटा",
 	"recentchanges-page-removed-from-category-bundled": "[[:$1]] श्रेणी से हटाया गया, [[Special:WhatLinksHere/$1|यह पेज अन्य पृष्ठों में शामिल है]]",
 	"autochange-username": "मीडियाविकि स्वतः परिवर्तन",
-	"upload": "चित्र अपलोड करें",
+	"upload": "फ़ाइल अपलोड करें",
 	"uploadbtn": "फ़ाइल अपलोड करें",
 	"reuploaddesc": "अपलोड रद्द करें और पुनः अपलोड फ़ॉर्म पर जाएँ",
 	"upload-tryagain": "संशोधित फ़ाइल विवरण भेजें",

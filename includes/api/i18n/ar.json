@@ -29,7 +29,8 @@
 			"Cigaryno",
 			"Lolekek",
 			"Mohammed Qays",
-			"JorgeElias2302"
+			"JorgeElias2302",
+			"Mdktb"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|التوثيق]]\n* [[mw:Special:MyLanguage/API:Etiquette|الآداب وإرشادات الاستخدام]]\n* [[mw:Special:MyLanguage/API:FAQ|الأسئلة الأكثر تكرارا]]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api.lists.wikimedia.org/ القائمة البريدية]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/ إعلانات API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R الأخطاء والطلبات]\n</div>\n<strong>الحالة:</strong> API ميدياويكي هي واجهة ناضجة ومستقرة يتم دعمها وتحسينها بشكل نشط، في حين أننا نحاول تجنب ذلك، قد نحتاج في بعض الأحيان إلى إجراء تغييرات في التكسير، اشترك في [https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ القائمة البريدية لإعلان API ميدياويكي] لإشعارات التحديثات.\n\n<strong>الطلبات الخاطئة:</strong>عندما يتم إرسال طلبات خاطئة إلى API، سيتم إرسال رأس HTTP مع مفتاح \"خطأ-API-ميدياويكي\"، وبعد ذلك سترجع قيمة الرأس ورمز الخطأ المرتجع إلى يتم تعيينه على نفس القيمة، لمزيد من المعلومات; راجع [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Errors and warnings]].\n\n<p class=\"mw-apisandbox-link\"><strong>الاختبار:</strong>لسهولة اختبار طلبات API ; انظر [[Special:ApiSandbox]].</p>",
