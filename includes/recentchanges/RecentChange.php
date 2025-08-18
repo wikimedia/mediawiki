@@ -122,6 +122,21 @@ class RecentChange implements Taggable {
 	public const SRC_LOG = 'mw.log';
 	public const SRC_CATEGORIZE = 'mw.categorize';
 
+	/**
+	 * Values of the `rc_source` attribute that may be added by MediaWiki core.
+	 * It can be useful in database queries to exclude extension-added RC entries.
+	 * If you have a RecentChange object, use the isInternal() method on it instead
+	 * of this constant.
+	 *
+	 * @var array<string>
+	 */
+	public const INTERNAL_SOURCES = [
+		self::SRC_EDIT,
+		self::SRC_NEW,
+		self::SRC_LOG,
+		self::SRC_CATEGORIZE,
+	];
+
 	public const PRC_UNPATROLLED = 0;
 	public const PRC_PATROLLED = 1;
 	public const PRC_AUTOPATROLLED = 2;
@@ -1200,6 +1215,17 @@ class RecentChange implements Taggable {
 		}
 
 		return $this->mAttribs[$name] ?? null;
+	}
+
+	/**
+	 * Check if the change is internal (edit, new, log, categorize). External changes are
+	 * those that are defined by external sources, such as extensions.
+	 *
+	 * @since 1.45
+	 * @return bool
+	 */
+	public function isInternal() {
+		return in_array( $this->getAttribute( 'rc_source' ), self::INTERNAL_SOURCES );
 	}
 
 	/**
