@@ -4911,16 +4911,16 @@
         },
         {
             "name": "wikimedia/smash-pig",
-            "version": "v0.9.7.8",
+            "version": "v0.9.7.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wikimedia/wikimedia-fundraising-SmashPig.git",
-                "reference": "b93e5535a454959314166d02b51a5fcfd7eb99f9"
+                "reference": "393c8de76cfa69f1df1c343f9e5bf64db4e31b39"
             },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/wikimedia/wikimedia-fundraising-SmashPig/zipball/b93e5535a454959314166d02b51a5fcfd7eb99f9",
-                "reference": "b93e5535a454959314166d02b51a5fcfd7eb99f9",
+                "reference": "393c8de76cfa69f1df1c343f9e5bf64db4e31b39",
                 "shasum": ""
             },
             "require": {
