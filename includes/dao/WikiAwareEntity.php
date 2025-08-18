@@ -35,8 +35,7 @@ use Wikimedia\Assert\PreconditionException;
 interface WikiAwareEntity {
 
 	/**
-	 * @var bool Wiki ID value to use with instances that are
-	 *      defined relative to the local wiki.
+	 * Wiki ID value to use with instances that are defined relative to the local wiki.
 	 */
 	public const LOCAL = false;
 
