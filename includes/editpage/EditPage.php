@@ -4658,26 +4658,15 @@ class EditPage implements IEditObject {
 	}
 
 	/**
-	 * Turns section name wikitext into anchors for use in HTTP redirects. Various
-	 * versions of Microsoft browsers misinterpret fragment encoding of Location: headers
-	 * resulting in mojibake in address bar. Redirect them to legacy section IDs,
-	 * if possible. All the other browsers get HTML5 if the wiki is configured for it, to
-	 * spread the new style links more efficiently.
+	 * Turns section name wikitext into anchors for use in HTTP redirects.
 	 *
 	 * @param string $text
 	 * @return string
 	 */
 	private function guessSectionName( $text ): string {
-		// Detect Microsoft browsers
-		$userAgent = $this->context->getRequest()->getHeader( 'User-Agent' );
 		$parser = MediaWikiServices::getInstance()->getParser();
-		if ( $userAgent && preg_match( '/MSIE|Edge/', $userAgent ) ) {
-			// ...and redirect them to legacy encoding, if available
-			return $parser->guessLegacySectionNameFromWikiText( $text );
-		}
-		// Meanwhile, real browsers get real anchors
 		$name = $parser->guessSectionNameFromWikiText( $text );
-		// With one little caveat: per T216029, fragments in HTTP redirects need to be urlencoded,
+		// Per T216029, fragments in HTTP redirects need to be urlencoded,
 		// otherwise Chrome double-escapes the rest of the URL.
 		return '#' . urlencode( mb_substr( $name, 1 ) );
 	}

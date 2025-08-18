@@ -6202,8 +6202,10 @@ class Parser {
 	 * @param string $text The section name
 	 * @return string Anchor (starting with '#')
 	 * @since 1.17
+	 * @deprecated since 1.45
 	 */
 	public function guessLegacySectionNameFromWikiText( $text ) {
+		wfDeprecated( __METHOD__, '1.45' );
 		# Strip out wikitext links(they break the anchor)
 		$text = $this->stripSectionName( $text );
 		$sectionName = self::getSectionNameFromStrippedText( $text );

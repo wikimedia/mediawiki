@@ -285,6 +285,7 @@ because of Phabricator reports.
   emits deprecation warnings. Use ::getReadOnlyMode() service together
   with ::getConfiguredReason() and ::isConfiguredReadOnly() to check
   when a site is set to read-only mode.
+* Parser::guessLegacySectionNameFromWikiText() has been deprecated.
 * OutputPage::wrapWikiTextAsInterface() has been deprecated.
 * Passing a string or UserIdentity object to DatabaseBlock::setTarget() or
   the 'address' parameter to DatabaseBlock::__construct() is now deprecated
