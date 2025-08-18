@@ -224,7 +224,6 @@
 	"exception-nologin": "Bedau log tama",
 	"exception-nologin-text": "Log tama meh kena bulih akses ngagai lambar tu tauka pengawa tu.",
 	"virus-scanfailed": "penimpai enda mujur (kod $1)",
-	"virus-unknownscanner": "antivirus enda dikelala:",
 	"logouttext": "<strong>Diatu nuan udah log pansut.</strong>\n\nIngat meh sekeda lambar dipelaba agi nunjukka nuan baka nuan agi log tama, nyentukka nuan meresika cache browser nuan.",
 	"logging-out-notify": "Nuan benung dilog pansut, anti meh.",
 	"logout-failed": "Enda ulih log tama diatu: $1",

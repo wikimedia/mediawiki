@@ -61,9 +61,9 @@
 	"period-am": "د الصباح",
 	"period-pm": "دلعشية",
 	"years": "{{PLURAL:$1||عام|عاماين|$1 سنين|$1 لعام}}",
-	"hours-abbrev": "$1h",
-	"minutes-abbrev": "$1m",
-	"seconds-abbrev": "$1s",
+	"hours-abbrev": "{{PLURAL:$1||ساعة وحدة|ساعتاين|$1 سوايع|$1 ساعة}}",
+	"minutes-abbrev": "{{PLURAL:$1||دقيقة وحدة|جوج دقايق|$1 دقايق|$1 دقيقة}}",
+	"seconds-abbrev": "{{PLURAL:$1|تانية وحدة|$1 تواني}}",
 	"duration-days": "$1 {{PLURAL:$1|نهار|إيام/يوم}}",
 	"just-now": "عاد دابا"
 }

@@ -212,7 +212,6 @@
 	"invalidtitle-knownnamespace": "佇名空間 \"$2\"佮文字\"$3\"的標題袂使得。",
 	"invalidtitle-unknownnamespace": "名空間編號 $1(毋知名)的\"$2\"文字標題袂使用。",
 	"exception-nologin": "無登入",
-	"virus-badscanner": "設定毋著：你的病毒掃描程式阮毋知：<em>$1</em>",
 	"welcomeuser": "歡迎，$1！",
 	"welcomecreation-msg": "你的口座以經開好矣，\n你若有需要，會使去改你佇{{SITENAME}}的設定。",
 	"yourname": "用者名：",

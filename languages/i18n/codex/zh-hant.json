@@ -8,6 +8,8 @@
 			"沈澄心"
 		]
 	},
+	"cdx-breadcrumb-navigation-label": "麵包屑",
+	"cdx-breadcrumb-overflow-label": "更多導覽選項",
 	"cdx-chip-input-chip-added": "已添加標籤塊$1。",
 	"cdx-chip-input-chip-removed": "已移除標籤塊$1。",
 	"cdx-input-chip-aria-description": "請按 Enter 鍵編輯，或是按 Delete 鍵移除。",

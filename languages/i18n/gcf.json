@@ -223,7 +223,6 @@
 	"invalidtitle": "Tit envalid",
 	"exception-nologin": "Ou pa konékté",
 	"exception-nologin-text": "Souplé konékté-w pou ou pé vwè paj-lasa oben aksyon-lasa.",
-	"virus-unknownscanner": "Antivirus nou pa konèt :",
 	"logouttext": "<strong>Konyéla ou dékònékté.</strong>\n\nKouté sa pétèt ou toujou pé vwè kèk paj konsi ou té kònékté jistan ou éfasé kach a navigatè a-w.",
 	"logging-out-notify": "Nou ka dékonnekté-w, atann syouplé.",
 	"logout-failed": "Alèla nou pé pa dékonnékté-w: $1",

@@ -218,7 +218,6 @@
 	"invalidtitle": "Dis title be invalid",
 	"exception-nologin": "You no log insyd",
 	"virus-scanfailed": "scan failed (code $1)",
-	"virus-unknownscanner": "unknown antivirus:",
 	"userlogin-yourname": "Username",
 	"userlogin-yourname-ph": "Enter your username",
 	"createacct-another-username-ph": "Enter de username",

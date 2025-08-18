@@ -190,7 +190,6 @@
 	"namespaceprotected": "Amoo sañ-sañu soppi xët yi ne ci bii barabu tur « '''$1''' ».",
 	"ns-specialprotected": "Xët yi ne ci bii barabu tur « {{ns:special}} » kenn maneesu leen a soppi.",
 	"titleprotected": "Koj bii [[User:$1|$1]] moo ko aar ngir bañ sosteefam.\nNgirte li mu joxe mooy ne <em>$2</em>.",
-	"virus-badscanner": "Tànnéef wu bon: saytukatu wiris bees xamul: ''$1''",
 	"virus-scanfailed": "Saytu gi dog na (code $1)",
 	"logouttext": "Fi mu nekk nii génn nga.'''\n\nMan ngaa wéy di jëfandikoo {{SITENAME}} ci anam buñ la dul xamme walla nga  <span class='plainlinks'>[$1 duggewaat]</span> ak wenn tur wi walla ak weneen.",
 	"yourname": "Sa turu jëfandikukat",

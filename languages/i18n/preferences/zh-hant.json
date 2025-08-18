@@ -217,6 +217,8 @@
 	"rcfilters-watchlist-preference-label": "使用非 JavaScript 介面",
 	"rcfilters-watchlist-preference-help": "載入不帶篩選搜尋或明顯標示功能的[[{{#special:Watchlist}}|監視清單]]。",
 	"prefs-changeswatchlist": "顯示變更",
+	"tog-watchstar-expiry": "手動新增的頁面在監視清單裡的預設時段：",
+	"tog-watch-expiry": "預設時段：",
 	"tog-watchlisthideminor": "在監視清單中隱藏次要修訂",
 	"tog-watchlisthidebots": "在監視清單中隱藏機器人的編輯",
 	"tog-watchlisthideown": "在監視清單中隱藏我自己的編輯",

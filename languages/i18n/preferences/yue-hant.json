@@ -87,7 +87,7 @@
 	"emailconfirmlink": "確認你嘅電郵地址",
 	"prefs-emailconfirm-label": "電郵確認：",
 	"emailauthenticated": "你嘅電郵地址已經喺 $2 $3 確認。",
-	"allowemail": "畀其他用戶寄電郵俾我",
+	"allowemail": "俾其他用戶寄電郵畀我",
 	"email-allow-new-users-label": "接收新簇簇用戶發嘅電郵",
 	"prefs-help-email-allow-new-users": "開着呢個功能會容許唔係[[{{MediaWiki:grouppage-autoconfirmed}}|自動確認]]嘅用戶向你發電郵。",
 	"tog-ccmeonemails": "喺我寄電郵畀其他人嗰陣，寄返封副本畀我。",

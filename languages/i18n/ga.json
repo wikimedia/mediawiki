@@ -224,7 +224,6 @@
 	"ns-specialprotected": "Ní féidir leathanaigh speisialta a chur in eagar.",
 	"titleprotected": "Tá an teideal seo cosanta ar chruthú le [[User:$1|$1]].\nAn fáth ná <em>$2</em>.",
 	"virus-scanfailed": "theip an scan (cód $1)",
-	"virus-unknownscanner": "frithvíreas anaithnid:",
 	"logouttext": "'''Tá tú logáilte amach anois.'''\n\nIs féidir leat an {{SITENAME}} a úsáid fós gan ainm, nó is féidir leat <span class='plainlinks'>[$1 logáil isteach arís]</span> mar an úsáideoir céanna, nó mar úsáideoir eile.\nTabhair faoi deara go taispeáinfear roinnt leathanaigh mar atá tú logáilte isteach fós, go dtí go ghlanfá amach do taisce líonleitheora.",
 	"welcomeuser": "Fáilte, $1!",
 	"welcomecreation-msg": "Cruthaíodh do chuntas.",

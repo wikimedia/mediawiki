@@ -92,7 +92,6 @@
 	"filereadonlyerror": "無辦法修改文件「$1」因為文件庫「$2」處於唯讀模式。 ！\n管理員鎖定其嘅解釋係：「$3」。",
 	"invalidtitle-knownnamespace": "使用名字空間「$2」與文本「$3」嘅無效標題",
 	"invalidtitle-unknownnamespace": "使用未知名字空間編號$1與文本“$2”嘅無效標題",
-	"virus-badscanner": "損壞設定: 未知嘅病毒掃瞄器: ''$1''",
 	"virus-scanfailed": "掃瞄失敗 （代碼 $1）",
 	"welcomecreation-msg": "汝嘅賬號已經建立。\n莫添忘訖設置[[Special:Preferences|{{SITENAME}}嘅個人參數]]。",
 	"createacct-another-username-ph": "輸入用戶名:",

@@ -200,7 +200,6 @@
 	"cascadeprotected": "个页已拖保护，因为佢拖“级联”𠮶{{PLURAL:$1|一只|几只}}拖保护页包到：\n$2",
 	"namespaceprotected": "倷冇权编写'''$1'''空间里度𠮶页面。",
 	"ns-specialprotected": "编写伓正{{ns:special}}空间𠮶页面。",
-	"virus-unknownscanner": "不晓得𠮶防病毒:",
 	"logouttext": "'''汝退出正哩。'''\n\n接到汝得匿名使用{{SITENAME}}，或<span class='plainlinks'>[$1 登入过]</span>。除非汝删吥浏览器缓存，只把子页面可能会接到话汝系登入状态。",
 	"yourname": "用户名：",
 	"yourpasswordagain": "输过道密码：",

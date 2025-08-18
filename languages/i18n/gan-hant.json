@@ -241,7 +241,6 @@
 	"myprivateinfoprotected": "汝冇權限編輯汝嗰私人信息。",
 	"ns-specialprotected": "編寫伓正{{ns:special}}空間嗰頁面。",
 	"titleprotected": "本標題拕[[User:$1|$1]]保護到了不讓建立，係因爲<em>$2</em>。",
-	"virus-unknownscanner": "不曉得嗰防病毒:",
 	"logouttext": "<strong>汝退出正哩。</strong>\n\n除非汝刪吥瀏覽器緩存，隻把子頁面可能會接到話汝係登入狀態。",
 	"logout-failed": "冇辦法登出：$1",
 	"cannotlogoutnow-title": "冇辦法登出",
