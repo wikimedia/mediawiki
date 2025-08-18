@@ -25,6 +25,7 @@ use InvalidArgumentException;
 use MediaWiki\Content\Content;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
+use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Language\Language;
 use MediaWiki\Language\MessageInfo;
 use MediaWiki\Language\RawMessage;
@@ -155,6 +156,8 @@ use Wikimedia\Message\ScalarParam;
  * @ingroup Language
  */
 class Message implements Stringable, MessageSpecifier, Serializable {
+	use ProtectedHookAccessorTrait;
+
 	/** Use message text as-is */
 	public const FORMAT_PLAIN = 'plain';
 	/** Use normal wikitext -> HTML parsing (the result will be wrapped in a block-level HTML tag) */
@@ -1096,6 +1099,16 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 		# Raw parameter replacement
 		$string = $this->replaceParameters( $string, 'after', $format );
 
+		// XXX: Sometimes messages are created prior to MediaWikiServices being
+		// constructed which causes problems when we try to run the hook.
+		// Skip the hook for very early calls.
+		if ( MediaWikiServices::hasInstance() ) {
+			if ( $format === self::FORMAT_TEXT || $format === self::FORMAT_PLAIN ) {
+				$this->getHookRunner()->onMessagePostProcessText( $string, $format, $this->key );
+			} else {
+				$this->getHookRunner()->onMessagePostProcessHtml( $string, $format, $this->key );
+			}
+		}
 		return $string;
 	}
 

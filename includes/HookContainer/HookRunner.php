@@ -73,6 +73,8 @@ class HookRunner implements
 	\MediaWiki\Cache\Hook\MessageCacheFetchOverridesHook,
 	\MediaWiki\Cache\Hook\MessageCacheReplaceHook,
 	\MediaWiki\Cache\Hook\MessageCache__getHook,
+	\MediaWiki\Message\Hook\MessagePostProcessTextHook,
+	\MediaWiki\Message\Hook\MessagePostProcessHtmlHook,
 	\MediaWiki\Cache\Hook\MessagesPreLoadHook,
 	\MediaWiki\Hook\TitleSquidURLsHook,
 	\MediaWiki\ChangeTags\Hook\ChangeTagAfterDeleteHook,
@@ -2901,6 +2903,24 @@ class HookRunner implements
 		return $this->container->run(
 			'MessageCache::get',
 			[ &$key ]
+		);
+	}
+
+	/** @inheritDoc */
+	public function onMessagePostProcessHtml( &$value, $format, $key ): void {
+		$this->container->run(
+			'MessagePostProcessHtml',
+			[ &$value, $format, $key ],
+			[ 'abortable' => false ]
+		);
+	}
+
+	/** @inheritDoc */
+	public function onMessagePostProcessText( &$value, $format, $key ): void {
+		$this->container->run(
+			'MessagePostProcessText',
+			[ &$value, $format, $key ],
+			[ 'abortable' => false ]
 		);
 	}
 

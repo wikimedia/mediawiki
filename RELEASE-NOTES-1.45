@@ -100,6 +100,7 @@ For notes on 1.44.x and older releases, see HISTORY.
 * SessionManager::getJwtData() has been added, to standardize JWT format
   for session providers which use a JWT.
 * The LeximorphFactory service was added.
+* (T402154) MessagePostProcessText and MessagePostProcessHtml hooks were added.
 * …
 
 === External library changes in 1.45 ===
