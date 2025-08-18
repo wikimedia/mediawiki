@@ -164,11 +164,6 @@ class RecentChangeStore implements RecentChangeFactory, RecentChangeLookup {
 				: null );
 		}
 
-		// rc_new is deprecated, but we still support it for compatibility reasons.
-		if ( $recentChange->getAttribute( 'rc_new' ) !== null ) {
-			$recentChange->setAttribute( 'rc_new', (int)$recentChange->getAttribute( 'rc_new' ) );
-		}
-
 		$row = $recentChange->getAttributes();
 
 		// Trim spaces on user supplied text
@@ -347,7 +342,6 @@ class RecentChangeStore implements RecentChangeFactory, RecentChangeLookup {
 			'rc_bot' => $bot ? 1 : 0,
 			'rc_ip' => self::checkIPAddress( $ip ),
 			'rc_patrolled' => intval( $patrol ),
-			'rc_new' => 0, # obsolete
 			'rc_old_len' => $oldSize,
 			'rc_new_len' => $newSize,
 			'rc_deleted' => 0,
@@ -409,7 +403,6 @@ class RecentChangeStore implements RecentChangeFactory, RecentChangeLookup {
 			'rc_bot' => $bot ? 1 : 0,
 			'rc_ip' => self::checkIPAddress( $ip ),
 			'rc_patrolled' => intval( $patrol ),
-			'rc_new' => 1, # obsolete
 			'rc_old_len' => 0,
 			'rc_new_len' => $size,
 			'rc_deleted' => 0,
@@ -512,7 +505,6 @@ class RecentChangeStore implements RecentChangeFactory, RecentChangeLookup {
 			'rc_bot' => $bot,
 			'rc_ip' => self::checkIPAddress( $ip ),
 			'rc_patrolled' => $markPatrolled ? RecentChange::PRC_AUTOPATROLLED : RecentChange::PRC_UNPATROLLED,
-			'rc_new' => 0, # obsolete
 			'rc_old_len' => null,
 			'rc_new_len' => null,
 			'rc_deleted' => 0,
@@ -593,7 +585,6 @@ class RecentChangeStore implements RecentChangeFactory, RecentChangeLookup {
 			'rc_bot' => $bot ? 1 : 0,
 			'rc_ip' => self::checkIPAddress( $ip ),
 			'rc_patrolled' => RecentChange::PRC_AUTOPATROLLED, // Always patrolled, just like log entries
-			'rc_new' => 0, # obsolete
 			'rc_old_len' => null,
 			'rc_new_len' => null,
 			'rc_deleted' => $deleted,

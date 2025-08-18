@@ -1127,7 +1127,6 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 			'rc_bot' => 0,
 			'rc_ip' => '',
 			'rc_patrolled' => 0,
-			'rc_new' => 0,
 			'rc_old_len' => $title->getLength(),
 			'rc_new_len' => $title->getLength(),
 			'rc_deleted' => 0,

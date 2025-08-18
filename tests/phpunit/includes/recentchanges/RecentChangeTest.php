@@ -66,7 +66,6 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 			'rc_bot' => 0,
 			'rc_ip' => '',
 			'rc_patrolled' => 0,
-			'rc_new' => 0,
 			'rc_old_len' => 80,
 			'rc_new_len' => 88,
 			'rc_deleted' => 0,
