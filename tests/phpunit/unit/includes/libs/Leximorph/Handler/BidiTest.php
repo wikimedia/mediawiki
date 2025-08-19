@@ -27,8 +27,6 @@ use Wikimedia\Leximorph\Handler\Bidi;
 use Wikimedia\Leximorph\Provider;
 
 /**
- * BidiTest
- *
  * This test class verifies the functionality of the {@see Bidi} handler.
  * It tests that the class correctly processes bidirectional text handling
  * by applying directional isolation to mixed LTR and RTL content.
@@ -38,17 +36,12 @@ use Wikimedia\Leximorph\Provider;
  *   - Correct wrapping of RTL text with RLE...PDF.
  *   - Handling of text with no strong directional characters.
  *
- * @since     1.45
- * @author    Doğu Abaris (abaris@null.net)
- * @license   https://www.gnu.org/copyleft/gpl.html GPL-2.0-or-later
- *
  * @covers \Wikimedia\Leximorph\Handler\Bidi
+ * @author Doğu Abaris (abaris@null.net)
  */
 class BidiTest extends TestCase {
 
 	/**
-	 * Data provider for testProcess.
-	 *
 	 * Each test case provides:
 	 *  - A text input.
 	 *  - The expected output with proper directionality wrapping.
@@ -70,8 +63,6 @@ class BidiTest extends TestCase {
 	 *
 	 * @param string $text Input string potentially containing directional text.
 	 * @param string $expected Expected string output with correct directional markers.
-	 *
-	 * @since 1.45
 	 */
 	public function testProcess( string $text, string $expected ): void {
 		$provider = new Provider( 'en', new NullLogger() );

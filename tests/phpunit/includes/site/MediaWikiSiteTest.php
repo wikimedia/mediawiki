@@ -1,10 +1,4 @@
 <?php
-
-namespace MediaWiki\Tests\Site;
-
-use MediaWiki\MainConfigNames;
-use MediaWiki\Site\MediaWikiSite;
-
 /**
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,20 +16,19 @@ use MediaWiki\Site\MediaWikiSite;
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @since 1.21
- *
- * @ingroup Site
- * @ingroup Test
- *
+ */
+namespace MediaWiki\Tests\Site;
+
+use MediaWiki\MainConfigNames;
+use MediaWiki\Site\MediaWikiSite;
+
+/**
+ * @covers \MediaWiki\Site\MediaWikiSite
  * @group Site
- *
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
 class MediaWikiSiteTest extends SiteTest {
 
-	/**
-	 * @covers \MediaWiki\Site\MediaWikiSite::normalizePageName
-	 */
 	public function testNormalizePageTitle() {
 		$this->overrideConfigValue( MainConfigNames::CapitalLinks, true );
 
@@ -76,7 +69,6 @@ class MediaWikiSiteTest extends SiteTest {
 
 	/**
 	 * @dataProvider fileUrlProvider
-	 * @covers \MediaWiki\Site\MediaWikiSite::getFileUrl
 	 */
 	public function testGetFileUrl( $url, $filePath, $pathArgument, $expected ) {
 		$site = new MediaWikiSite();
@@ -101,7 +93,6 @@ class MediaWikiSiteTest extends SiteTest {
 
 	/**
 	 * @dataProvider provideGetPageUrl
-	 * @covers \MediaWiki\Site\MediaWikiSite::getPageUrl
 	 */
 	public function testGetPageUrl( $path, $page, $expected ) {
 		$site = new MediaWikiSite();

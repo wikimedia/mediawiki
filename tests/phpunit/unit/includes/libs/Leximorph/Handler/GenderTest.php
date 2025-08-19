@@ -25,8 +25,6 @@ use PHPUnit\Framework\TestCase;
 use Wikimedia\Leximorph\Handler\Gender;
 
 /**
- * GenderTest
- *
  * This test class verifies the functionality of the {@see Gender} handler.
  * It tests that the class correctly processes gender-based selection rules
  * based on various input values and expected outcomes.
@@ -35,17 +33,12 @@ use Wikimedia\Leximorph\Handler\Gender;
  *   - Proper selection of male, female, and other forms.
  *   - Handling of cases where gender value is unexpected.
  *
- * @since     1.45
- * @author    Doğu Abaris (abaris@null.net)
- * @license   https://www.gnu.org/copyleft/gpl.html GPL-2.0-or-later
- *
  * @covers \Wikimedia\Leximorph\Handler\Gender
+ * @author Doğu Abaris (abaris@null.net)
  */
 class GenderTest extends TestCase {
 
 	/**
-	 * Data provider for testProcess.
-	 *
 	 * Each test case provides:
 	 *  - A gender value.
 	 *  - An array of gender-based forms.
@@ -72,8 +65,6 @@ class GenderTest extends TestCase {
 	 * @param string $gender Input gender string (e.g., 'male', 'female', 'other').
 	 * @param array<string> $forms Array of gendered forms in order: [male, female, other].
 	 * @param string $expected Expected result after processing.
-	 *
-	 * @since 1.45
 	 */
 	public function testProcess( string $gender, array $forms, string $expected ): void {
 		$genderHandler = new Gender();

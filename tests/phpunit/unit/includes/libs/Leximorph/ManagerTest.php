@@ -29,8 +29,6 @@ use Wikimedia\Leximorph\Handler\Plural;
 use Wikimedia\Leximorph\Manager;
 
 /**
- * ManagerTest
- *
  * This test class verifies the behavior of the {@see Manager} factory.
  * It ensures that handler getters return instances of the expected classes
  * and that repeated calls return memoized instances where applicable.
@@ -39,13 +37,10 @@ use Wikimedia\Leximorph\Manager;
  *   - Instantiation of Bidi, Plural, Gender, Formal, and Grammar handlers.
  *   - Memoization behavior for handler getters.
  *
- * @since     1.45
- * @author    Doğu Abaris (abaris@null.net)
- * @license   https://www.gnu.org/copyleft/gpl.html GPL-2.0-or-later
- *
  * @covers \Wikimedia\Leximorph\Manager
+ * @author Doğu Abaris (abaris@null.net)
  */
-final class ManagerTest extends TestCase {
+class ManagerTest extends TestCase {
 
 	/**
 	 * Single parametrized test for all handlers.
@@ -62,8 +57,6 @@ final class ManagerTest extends TestCase {
 	 *
 	 * @param string $method Getter method name, such as "getPlural".
 	 * @param class-string $expectedClass Expected concrete handler class.
-	 *
-	 * @since 1.45
 	 */
 	public function testInstantiatesHandlers( string $method, string $expectedClass ): void {
 		$manager = new Manager( 'en' );
@@ -111,8 +104,6 @@ final class ManagerTest extends TestCase {
 	 * @dataProvider provideMemoizedHandlers
 	 *
 	 * @param string $method Getter method name expected to be memoized.
-	 *
-	 * @since 1.45
 	 */
 	public function testHandlersAreMemoized( string $method ): void {
 		$manager = new Manager( 'en' );

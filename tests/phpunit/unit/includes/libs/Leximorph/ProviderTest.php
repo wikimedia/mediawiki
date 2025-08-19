@@ -30,65 +30,35 @@ use Wikimedia\Leximorph\Provider\PluralRules;
 use Wikimedia\Leximorph\Provider\TextDirection;
 
 /**
- * ProviderTest
- *
  * This test class verifies that the {@see Provider} class correctly instantiates
  * and returns the expected provider classes.
  * Each test checks only the type of the returned instance.
  *
- * @since     1.45
- * @author    Doğu Abaris (abaris@null.net)
- * @license   https://www.gnu.org/copyleft/gpl.html GPL-2.0-or-later
- *
  * @covers \Wikimedia\Leximorph\Provider
+ * @author Doğu Abaris (abaris@null.net)
  */
 class ProviderTest extends TestCase {
 
-	/**
-	 * Tests that the provider instantiates the Index provider.
-	 *
-	 * @since 1.45
-	 */
 	public function testProvidesBidiDirection(): void {
 		$provider = new Provider( 'en', new NullLogger() );
 		$this->assertInstanceOf( TextDirection::class, $provider->getBidiProvider() );
 	}
 
-	/**
-	 * Tests that the provider instantiates the Index provider.
-	 *
-	 * @since 1.45
-	 */
 	public function testProvidesFormalityIndex(): void {
 		$provider = new Provider( 'en', new NullLogger() );
 		$this->assertInstanceOf( FormalityIndex::class, $provider->getFormalityIndexProvider() );
 	}
 
-	/**
-	 * Tests that the provider instantiates the GrammarTransformations provider.
-	 *
-	 * @since 1.45
-	 */
 	public function testProvidesGrammarTransformations(): void {
 		$provider = new Provider( 'en', new NullLogger() );
 		$this->assertInstanceOf( GrammarTransformations::class, $provider->getGrammarTransformationsProvider() );
 	}
 
-	/**
-	 * Tests that the provider instantiates the LanguageFallbacks provider.
-	 *
-	 * @since 1.45
-	 */
 	public function testProvidesLanguageFallbacks(): void {
 		$provider = new Provider( 'en', new NullLogger() );
 		$this->assertInstanceOf( LanguageFallbacks::class, $provider->getLanguageFallbacksProvider() );
 	}
 
-	/**
-	 * Tests that the provider instantiates the PluralRules provider.
-	 *
-	 * @since 1.45
-	 */
 	public function testProvidesPluralRules(): void {
 		$provider = new Provider( 'en', new NullLogger() );
 		$this->assertInstanceOf( PluralRules::class, $provider->getPluralProvider() );

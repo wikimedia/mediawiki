@@ -3,12 +3,9 @@
 use MediaWiki\Specials\SpecialRedirect;
 
 /**
- * Test class for SpecialRedirect class
- *
- * @since 1.32
- *
- * @license GPL-2.0-or-later
+ * @covers \MediaWiki\Specials\SpecialRedirect
  * @group Database
+ * @license GPL-2.0-or-later
  */
 class SpecialRedirectTest extends MediaWikiIntegrationTestCase {
 
@@ -16,11 +13,6 @@ class SpecialRedirectTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideDispatch
-	 * @covers \MediaWiki\Specials\SpecialRedirect::dispatchUser
-	 * @covers \MediaWiki\Specials\SpecialRedirect::dispatchFile
-	 * @covers \MediaWiki\Specials\SpecialRedirect::dispatchRevision
-	 * @covers \MediaWiki\Specials\SpecialRedirect::dispatchPage
-	 * @covers \MediaWiki\Specials\SpecialRedirect::dispatchLog
 	 */
 	public function testDispatch( $method, $type, $value, $expectedStatus ) {
 		$userFactory = $this->getServiceContainer()->getUserFactory();

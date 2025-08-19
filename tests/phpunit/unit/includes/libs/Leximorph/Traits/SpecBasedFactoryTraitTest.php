@@ -22,15 +22,12 @@ namespace Wikimedia\Tests\Leximorph\Traits;
 
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
-use ReflectionException;
 use ReflectionMethod;
 use stdClass;
 use UnexpectedValueException;
 use Wikimedia\Leximorph\Traits\SpecBasedFactoryTrait;
 
 /**
- * SpecBasedFactoryTraitTest
- *
  * This test class verifies the functionality of the {@see SpecBasedFactoryTrait} trait.
  *
  * Covered tests include:
@@ -38,11 +35,8 @@ use Wikimedia\Leximorph\Traits\SpecBasedFactoryTrait;
  *   - Ensuring that the created instance is cached on subsequent calls.
  *   - Throwing an exception when an unregistered class is requested.
  *
- * @since     1.45
- * @author    Doğu Abaris (abaris@null.net)
- * @license   https://www.gnu.org/copyleft/gpl.html GPL-2.0-or-later
- *
  * @covers \Wikimedia\Leximorph\Traits\SpecBasedFactoryTrait
+ * @author Doğu Abaris (abaris@null.net)
  */
 class SpecBasedFactoryTraitTest extends TestCase {
 
@@ -66,12 +60,6 @@ class SpecBasedFactoryTraitTest extends TestCase {
 		);
 	}
 
-	/**
-	 * Tests that createFromSpec() creates and caches an instance for a registered class.
-	 *
-	 * @since 1.45
-	 * @throws ReflectionException
-	 */
 	public function testCreateFromSpec(): void {
 		$traitMock = $this->getTraitMock();
 		$traitMock->method( 'getSpecMap' )->willReturn( [
@@ -82,12 +70,6 @@ class SpecBasedFactoryTraitTest extends TestCase {
 		$this->assertInstanceOf( stdClass::class, $instance );
 	}
 
-	/**
-	 * Tests that createFromSpec() throws an exception for an unregistered class.
-	 *
-	 * @since 1.45
-	 * @throws ReflectionException
-	 */
 	public function testUnregisteredClassThrowsException(): void {
 		$traitMock = $this->getTraitMock();
 		$traitMock->method( 'getSpecMap' )->willReturn( [] );

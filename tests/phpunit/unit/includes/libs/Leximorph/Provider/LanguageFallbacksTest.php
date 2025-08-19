@@ -27,19 +27,14 @@ use Wikimedia\Leximorph\Provider\LanguageFallbacks;
 use Wikimedia\Leximorph\Util\JsonLoader;
 
 /**
- * LanguageFallbacksTest
- *
  * This test class verifies the functionality of the {@see LanguageFallbacks} class.
  *
  * Covered tests include:
  *   - Ensuring that known language codes return the expected fallback codes.
  *   - Confirming that unknown language codes return an empty array.
  *
- * @since     1.45
- * @author    Doğu Abaris (abaris@null.net)
- * @license   https://www.gnu.org/copyleft/gpl.html GPL-2.0-or-later
- *
  * @covers \Wikimedia\Leximorph\Provider\LanguageFallbacks
+ * @author Doğu Abaris (abaris@null.net)
  */
 class LanguageFallbacksTest extends TestCase {
 
@@ -67,8 +62,6 @@ class LanguageFallbacksTest extends TestCase {
 	 *
 	 * @param string $langCode The language code.
 	 * @param array<string> $expected The expected fallback language codes.
-	 *
-	 * @since 1.45
 	 */
 	public function testGetFallbacks( string $langCode, array $expected ): void {
 		$fallbackProvider = new LanguageFallbacks( $langCode, new NullLogger(), new JsonLoader( new NullLogger() ) );

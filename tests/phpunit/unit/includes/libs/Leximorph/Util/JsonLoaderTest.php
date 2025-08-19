@@ -27,8 +27,6 @@ use RuntimeException;
 use Wikimedia\Leximorph\Util\JsonLoader;
 
 /**
- * JsonLoaderTest
- *
  * This test class verifies the functionality of the {@see JsonLoader} class.
  *
  * Covered tests include:
@@ -36,11 +34,8 @@ use Wikimedia\Leximorph\Util\JsonLoader;
  *   - Handling invalid JSON.
  *   - Handling missing file scenarios with and without allowing missing files.
  *
- * @since     1.45
- * @author    Doğu Abaris (abaris@null.net)
- * @license   https://www.gnu.org/copyleft/gpl.html GPL-2.0-or-later
- *
  * @covers \Wikimedia\Leximorph\Util\JsonLoader
+ * @author Doğu Abaris (abaris@null.net)
  */
 class JsonLoaderTest extends TestCase {
 
@@ -77,8 +72,6 @@ class JsonLoaderTest extends TestCase {
 
 	/**
 	 * Tests that load() returns the expected array for valid JSON.
-	 *
-	 * @since 1.45
 	 */
 	public function testLoadValidJson(): void {
 		$jsonContent = (string)json_encode(
@@ -106,8 +99,6 @@ class JsonLoaderTest extends TestCase {
 	/**
 	 * Tests that load() returns an empty array when JSON is invalid,
 	 * and that an error is logged.
-	 *
-	 * @since 1.45
 	 */
 	public function testLoadInvalidJson(): void {
 		$invalidJson = "this is not json";
@@ -130,8 +121,6 @@ class JsonLoaderTest extends TestCase {
 	/**
 	 * Tests that load() returns an empty array and logs an error when the file is missing
 	 * and $allowMissing is false.
-	 *
-	 * @since 1.45
 	 */
 	public function testLoadMissingFileWithoutAllowMissing(): void {
 		$nonexistentFile = sys_get_temp_dir() . '/nonexistent_' . uniqid() . '.json';
@@ -157,8 +146,6 @@ class JsonLoaderTest extends TestCase {
 	/**
 	 * Tests that load() returns an empty array without logging an error when the file is missing
 	 * and $allowMissing is true.
-	 *
-	 * @since 1.45
 	 */
 	public function testLoadMissingFileWithAllowMissing(): void {
 		$nonexistentFile = sys_get_temp_dir() . '/nonexistent_' . uniqid() . '.json';

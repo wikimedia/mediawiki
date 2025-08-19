@@ -27,8 +27,6 @@ use Wikimedia\Leximorph\Provider\FormalityIndex;
 use Wikimedia\Leximorph\Util\JsonLoader;
 
 /**
- * FormalityIndexTest
- *
  * This test class verifies the functionality of the {@see FormalityIndex} class.
  *
  * Covered tests include:
@@ -36,11 +34,8 @@ use Wikimedia\Leximorph\Util\JsonLoader;
  *   - Fallback behavior when the language code has a '-formal' or '-informal' suffix.
  *   - Defaulting to 0 when no mapping exists.
  *
- * @since     1.45
- * @author    Doğu Abaris (abaris@null.net)
- * @license   https://www.gnu.org/copyleft/gpl.html GPL-2.0-or-later
- *
  * @covers \Wikimedia\Leximorph\Provider\FormalityIndex
+ * @author Doğu Abaris (abaris@null.net)
  */
 class FormalityIndexTest extends TestCase {
 
@@ -68,8 +63,6 @@ class FormalityIndexTest extends TestCase {
 	 *
 	 * @param string $langCode The language code.
 	 * @param int $expected The expected formality index.
-	 *
-	 * @since 1.45
 	 */
 	public function testGetFormalityIndex( string $langCode, int $expected ): void {
 		$jsonLoaderStub = $this->createStub( JsonLoader::class );

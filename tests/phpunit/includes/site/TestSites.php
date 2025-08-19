@@ -1,14 +1,5 @@
 <?php
-
-namespace MediaWiki\Tests\Site;
-
-use MediaWiki\MediaWikiServices;
-use MediaWiki\Site\MediaWikiSite;
-use MediaWiki\Site\Site;
-
 /**
- * Holds sites for testing purposes.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -25,21 +16,24 @@ use MediaWiki\Site\Site;
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @since 1.21
+ */
+namespace MediaWiki\Tests\Site;
+
+use MediaWiki\MediaWikiServices;
+use MediaWiki\Site\MediaWikiSite;
+use MediaWiki\Site\Site;
+
+/**
+ * Holds sites for testing purposes, re-used in the Wikibase extension.
  *
+ * @since 1.21
  * @ingroup Site
  * @ingroup Test
- *
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
 class TestSites {
 
-	/**
-	 * @since 1.21
-	 *
-	 * @return array
-	 */
-	public static function getSites() {
+	public static function getSites(): array {
 		$sites = [];
 
 		$site = new Site();
@@ -107,8 +101,6 @@ class TestSites {
 
 	/**
 	 * Inserts sites into the database for the unit tests that need them.
-	 *
-	 * @since 0.1
 	 */
 	public static function insertIntoDb() {
 		$sitesTable = MediaWikiServices::getInstance()->getSiteStore();

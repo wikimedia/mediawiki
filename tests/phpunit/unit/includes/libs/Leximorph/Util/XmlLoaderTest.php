@@ -28,8 +28,6 @@ use RuntimeException;
 use Wikimedia\Leximorph\Util\XmlLoader;
 
 /**
- * XmlLoaderTest
- *
  * This test class verifies the functionality of the {@see XmlLoader} class.
  *
  * Covered tests include:
@@ -37,11 +35,8 @@ use Wikimedia\Leximorph\Util\XmlLoader;
  *   - Handling invalid XML.
  *   - Handling missing file scenarios with and without allowing missing files.
  *
- * @since     1.45
- * @author    Doğu Abaris (abaris@null.net)
- * @license   https://www.gnu.org/copyleft/gpl.html GPL-2.0-or-later
- *
  * @covers \Wikimedia\Leximorph\Util\XmlLoader
+ * @author Doğu Abaris (abaris@null.net)
  */
 class XmlLoaderTest extends TestCase {
 
@@ -78,8 +73,6 @@ class XmlLoaderTest extends TestCase {
 
 	/**
 	 * Tests that load() returns a valid DOMDocument for well-formed XML.
-	 *
-	 * @since 1.45
 	 */
 	public function testLoadValidXml(): void {
 		$xmlContent = '<?xml version="1.0" encoding="UTF-8"?><root><key>value</key><num>123</num></root>';
@@ -103,8 +96,6 @@ class XmlLoaderTest extends TestCase {
 
 	/**
 	 * Tests that load() returns null when XML is invalid, and that an error is logged.
-	 *
-	 * @since 1.45
 	 */
 	public function testLoadInvalidXml(): void {
 		$invalidXml = "this is not xml";
@@ -126,8 +117,6 @@ class XmlLoaderTest extends TestCase {
 
 	/**
 	 * Tests that load() returns null and logs an error when the file is missing and $allowMissing is false.
-	 *
-	 * @since 1.45
 	 */
 	public function testLoadMissingFileWithoutAllowMissing(): void {
 		$nonexistentFile = sys_get_temp_dir() . '/nonexistent_' . uniqid() . '.xml';
@@ -150,8 +139,6 @@ class XmlLoaderTest extends TestCase {
 
 	/**
 	 * Tests that load() returns null without logging an error when the file is missing and $allowMissing is true.
-	 *
-	 * @since 1.45
 	 */
 	public function testLoadMissingFileWithAllowMissing(): void {
 		$nonexistentFile = sys_get_temp_dir() . '/nonexistent_' . uniqid() . '.xml';

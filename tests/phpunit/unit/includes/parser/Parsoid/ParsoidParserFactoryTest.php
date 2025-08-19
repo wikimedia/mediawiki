@@ -17,7 +17,6 @@ declare( strict_types = 1 );
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @since 1.42
  */
 
 namespace MediaWiki\Tests\Parser\Parsoid;
@@ -32,7 +31,7 @@ use MediaWikiUnitTestCase;
 use Wikimedia\Parsoid\Config\SiteConfig;
 
 /**
- * $group Parsoid
+ * @group Parsoid
  * @covers \MediaWiki\Parser\Parsoid\ParsoidParserFactory
  */
 class ParsoidParserFactoryTest extends MediaWikiUnitTestCase {

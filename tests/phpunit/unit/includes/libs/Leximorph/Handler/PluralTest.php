@@ -27,8 +27,6 @@ use Wikimedia\Leximorph\Handler\Plural;
 use Wikimedia\Leximorph\Provider;
 
 /**
- * PluralTest
- *
  * This test class verifies the functionality of the {@see Plural} handler.
  * It tests that the class correctly processes pluralization rules based on
  * various input values and expected pluralization outcomes.
@@ -36,17 +34,12 @@ use Wikimedia\Leximorph\Provider;
  * Covered tests include:
  *   - Proper selection of plural forms for various languages.
  *
- * @since     1.45
- * @author    Doğu Abaris (abaris@null.net)
- * @license   https://www.gnu.org/copyleft/gpl.html GPL-2.0-or-later
- *
  * @covers \Wikimedia\Leximorph\Handler\Plural
+ * @author Doğu Abaris (abaris@null.net)
  */
 class PluralTest extends TestCase {
 
 	/**
-	 * Data provider for testProcess.
-	 *
 	 * Each test case provides:
 	 *  - A language code.
 	 *  - A count value.
@@ -505,8 +498,6 @@ class PluralTest extends TestCase {
 	 * @param float $count Numeric value used for plural selection.
 	 * @param array<string> $forms List of plural forms (e.g., ['one', 'few', 'other']).
 	 * @param string $expected Expected output based on pluralization rules.
-	 *
-	 * @since 1.45
 	 */
 	public function testProcess( string $lang, float $count, array $forms, string $expected ): void {
 		$provider = new Provider( $lang, new NullLogger() );

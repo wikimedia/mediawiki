@@ -29,19 +29,14 @@ use Wikimedia\Leximorph\Provider\PluralRules;
 use Wikimedia\Leximorph\Util\XmlLoader;
 
 /**
- * PluralRulesTest
- *
  * This test class verifies the functionality of the {@see PluralRules} class.
  *
  * Covered tests include:
  *   - Returning the expected raw plural rules.
  *   - Returning the expected plural rule types.
  *
- * @since     1.45
- * @author    Doğu Abaris (abaris@null.net)
- * @license   https://www.gnu.org/copyleft/gpl.html GPL-2.0-or-later
- *
  * @covers \Wikimedia\Leximorph\Provider\PluralRules
+ * @author Doğu Abaris (abaris@null.net)
  */
 class PluralRulesTest extends TestCase {
 
@@ -56,18 +51,14 @@ class PluralRulesTest extends TestCase {
 		$property->setValue( null, $data );
 	}
 
-	/**
-	 * Clears the static plural data cache after each test.
-	 */
 	protected function tearDown(): void {
+		// Clears the static plural data cache
 		$this->setPluralData( null );
 		parent::tearDown();
 	}
 
 	/**
 	 * Tests that getPluralRules() returns the expected rules when data exists.
-	 *
-	 * @since 1.45
 	 */
 	public function testGetPluralRulesWithData(): void {
 		$dummyData = [ 'xx' => [ [ 'type' => 'one', 'rule' => 'n is 1', ],
@@ -91,8 +82,6 @@ class PluralRulesTest extends TestCase {
 
 	/**
 	 * Tests that getPluralRules() returns null when no data exists.
-	 *
-	 * @since 1.45
 	 */
 	public function testGetPluralRulesWithNoData(): void {
 		// No data set
@@ -114,8 +103,6 @@ class PluralRulesTest extends TestCase {
 
 	/**
 	 * Tests that getPluralRuleTypes() returns the expected types when data exists.
-	 *
-	 * @since 1.45
 	 */
 	public function testGetPluralRuleTypes(): void {
 		$dummyData = [ 'xx' => [ [ 'type' => 'one', 'rule' => 'n is 1', ],

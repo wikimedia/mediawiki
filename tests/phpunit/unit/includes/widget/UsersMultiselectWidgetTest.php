@@ -16,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @since 1.42
  */
 
 namespace MediaWiki\Tests\Widget;
@@ -41,41 +40,33 @@ class UsersMultiselectWidgetTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testConstruct() {
-		// Define the configuration to pass to the constructor
 		$config = [
 			'ipAllowed' => true,
 			'ipRangeAllowed' => true,
 			'ipRangeLimits' => [ 'min' => 0, 'max' => 32 ],
 		];
 
-		// Create the UsersMultiselectWidget object with the above configuration
 		/** @var UsersMultiselectWidget $widget */
 		$widget = TestingAccessWrapper::newFromObject( new UsersMultiselectWidget( $config ) );
 
-		// Assert that ipAllowed is set correctly
 		$this->assertTrue( $widget->ipAllowed, 'ipAllowed was not set correctly.' );
 
-		// Assert that ipRangeAllowed is set correctly
 		$this->assertTrue( $widget->ipRangeAllowed, 'ipRangeAllowed was not set correctly.' );
 
-		// Assert that ipRangeLimits is set correctly
 		$this->assertSame( $config['ipRangeLimits'], $widget->ipRangeLimits,
 			'ipRangeLimits was not set correctly.' );
 	}
 
 	public function testGetJavaScriptClassName() {
-		// Define the configuration to pass to the constructor
 		$config = [
 			'ipAllowed' => true,
 			'ipRangeAllowed' => true,
 			'ipRangeLimits' => [ 'min' => 0, 'max' => 32 ],
 		];
 
-		// Create the UsersMultiselectWidget object with the above configuration
 		/** @var UsersMultiselectWidget $widget */
 		$widget = TestingAccessWrapper::newFromObject( new UsersMultiselectWidget( $config ) );
 
-		// Assert that ipAllowed is set correctly
 		$this->assertSame( 'mw.widgets.UsersMultiselectWidget', $widget->getJavaScriptClassName(),
 			'getJavaScriptClassName did not return the expected value.' );
 	}
@@ -128,7 +119,6 @@ class UsersMultiselectWidgetTest extends MediaWikiUnitTestCase {
 	 * @dataProvider provideGetConfig
 	 */
 	public function testGetConfig( array $inputConfig, array $expected ) {
-		// Create the UsersMultiselectWidget object with the input configuration
 		/** @var UsersMultiselectWidget $widget */
 		$widget = TestingAccessWrapper::newFromObject( new UsersMultiselectWidget( $inputConfig ) );
 
@@ -144,11 +134,9 @@ class UsersMultiselectWidgetTest extends MediaWikiUnitTestCase {
 		// TestingAccessWrapper cannot pass-by-ref directly - T287318
 		call_user_func_array( [ $widget, 'getConfig' ], [ &$actualConfig ] );
 
-		// Assert that the actualConfig matches the expected configuration
 		foreach ( $expected as $key => $value ) {
 			$this->assertArrayHasKey( $key, $actualConfig, "Config missing expected key '$key'" );
 			$this->assertEquals( $value, $actualConfig[$key], "Mismatch for key '$key'" );
 		}
 	}
-
 }

@@ -16,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @since 1.42
  */
 
 namespace MediaWiki\Tests\Content\Transform;

@@ -16,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @since 1.42
  */
 
 namespace MediaWiki\Tests\Unit\Permissions;
@@ -31,9 +30,6 @@ use MediaWikiUnitTestCase;
  */
 class RateLimitSubjectTest extends MediaWikiUnitTestCase {
 
-	/**
-	 * Provide data for testConstructorAndGetters
-	 */
 	public static function provideIp(): array {
 		return [
 			'null' => [ null, true ],
@@ -44,8 +40,6 @@ class RateLimitSubjectTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * Test that constructing a RateLimitSubject with different IPs and then fetching properties through getters
-	 * returns the values passed to the constructor.
 	 * @dataProvider provideIp
 	 */
 	public function testConstructorAndGetters( $ip, $expected ) {

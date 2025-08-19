@@ -7,7 +7,7 @@ use MediaWiki\Request\WebRequest;
 use MediaWiki\SpecialPage\SpecialPage;
 
 /**
- * Base class for testing special pages.
+ * Base class for testing special pages. Re-used in extension test suites.
  *
  * @since 1.26
  *

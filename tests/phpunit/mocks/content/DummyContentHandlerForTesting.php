@@ -55,8 +55,6 @@ class DummyContentHandlerForTesting extends ContentHandler {
 
 	/**
 	 * @see ContentHandler::fillParserOutput()
-	 *
-	 * @since 1.38
 	 * @param Content $content
 	 * @param ContentParseParams $cpoParams
 	 * @param ParserOutput &$output The output object to fill (reference).

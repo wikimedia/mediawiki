@@ -28,8 +28,6 @@ use Wikimedia\Leximorph\Handler\Overrides\GrammarFallbackRegistry;
 use Wikimedia\Leximorph\Provider;
 
 /**
- * GrammarTest
- *
  * This test class verifies the functionality of the {@see Grammar} handler.
  * It tests that the class correctly processes grammatical transformations
  * based on language-specific rules and transformation mappings.
@@ -39,17 +37,12 @@ use Wikimedia\Leximorph\Provider;
  *   - Handling of cases where no transformation is found.
  *   - Loading grammar rules from JSON files.
  *
- * @since     1.45
- * @author    Doğu Abaris (abaris@null.net)
- * @license   https://www.gnu.org/copyleft/gpl.html GPL-2.0-or-later
- *
  * @covers \Wikimedia\Leximorph\Handler\Grammar
+ * @author Doğu Abaris (abaris@null.net)
  */
 class GrammarTest extends TestCase {
 
 	/**
-	 * Data provider for testProcess.
-	 *
 	 * Each test case provides:
 	 *  - A language code.
 	 *  - A word to transform.
@@ -210,8 +203,6 @@ class GrammarTest extends TestCase {
 	 * @param string $word Word to transform
 	 * @param string $case Grammar case to apply (e.g., "genitive", "ablative")
 	 * @param string $expected Expected transformed output
-	 *
-	 * @since 1.45
 	 */
 	public function testProcess( string $lang, string $word, string $case, string $expected ): void {
 		$provider = new Provider( $lang, new NullLogger() );

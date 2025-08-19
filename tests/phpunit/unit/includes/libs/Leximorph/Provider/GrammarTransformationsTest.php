@@ -25,26 +25,19 @@ use Psr\Log\NullLogger;
 use Wikimedia\Leximorph\Provider as LeximorphProvider;
 
 /**
- * GrammarTransformationsTest
- *
  * This test class verifies the functionality of the {@see GrammarTransformations} class.
  *
  * Covered tests include:
  *   - Injecting a language code and verifying that the grammar transformations match.
  *
- * @since     1.45
- * @author    Doğu Abaris (abaris@null.net)
- * @license   https://www.gnu.org/copyleft/gpl.html GPL-2.0-or-later
- *
  * @covers \Wikimedia\Leximorph\Provider\GrammarTransformations
+ * @author Doğu Abaris (abaris@null.net)
  */
 class GrammarTransformationsTest extends TestCase {
 
 	/**
 	 * Tests that grammar transformations for a given language code are identical
 	 * whether accessed via the Provider or via the language object's method.
-	 *
-	 * @since 1.45
 	 */
 	public function testGrammarTransformationsAreIdentical(): void {
 		$provider = new LeximorphProvider( 'he', new NullLogger() );

@@ -1,7 +1,5 @@
 <?php
 /**
- * Testing framework for the password hashes
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -23,6 +21,8 @@
 use MediaWiki\Password\PasswordFactory;
 
 /**
+ * Testing framework for the password hashes
+ *
  * @since 1.24
  */
 abstract class PasswordTestCase extends MediaWikiUnitTestCase {

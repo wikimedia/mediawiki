@@ -4,17 +4,13 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Specials\SpecialShortPages;
 
 /**
- * Test class for SpecialShortPages class
- *
- * @since 1.30
- *
+ * @covers \MediaWiki\Specials\SpecialShortPages
  * @license GPL-2.0-or-later
  */
 class SpecialShortPagesTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideGetQueryInfoRespectsContentNs
-	 * @covers \MediaWiki\Specials\SpecialShortPages::getQueryInfo
 	 */
 	public function testGetQueryInfoRespectsContentNS( $contentNS, $blacklistNS, $expectedNS ) {
 		$this->overrideConfigValues( [
@@ -47,5 +43,4 @@ class SpecialShortPagesTest extends MediaWikiIntegrationTestCase {
 			[ [], [ NS_FILE ], [ NS_MAIN ] ]
 		];
 	}
-
 }

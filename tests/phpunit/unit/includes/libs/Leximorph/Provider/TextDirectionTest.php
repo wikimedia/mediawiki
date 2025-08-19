@@ -25,8 +25,6 @@ use PHPUnit\Framework\TestCase;
 use Wikimedia\Leximorph\Provider\TextDirection;
 
 /**
- * TextDirectionTest
- *
  * This test class verifies the functionality of the {@see TextDirection} class.
  *
  * Covered tests include:
@@ -35,11 +33,8 @@ use Wikimedia\Leximorph\Provider\TextDirection;
  *   - Handling cases with BIDI control characters.
  *   - Returning null when no strong directional character is found.
  *
- * @since     1.45
- * @author    Doğu Abaris (abaris@null.net)
- * @license   https://www.gnu.org/copyleft/gpl.html GPL-2.0-or-later
- *
  * @covers \Wikimedia\Leximorph\Provider\TextDirection
+ * @author Doğu Abaris (abaris@null.net)
  */
 class TextDirectionTest extends TestCase {
 
@@ -74,8 +69,6 @@ class TextDirectionTest extends TestCase {
 	 *
 	 * @param string $text The input text.
 	 * @param ?string $expected The expected text direction.
-	 *
-	 * @since 1.45
 	 */
 	public function testGetDirection( string $text, ?string $expected ): void {
 		$textDirection = new TextDirection();

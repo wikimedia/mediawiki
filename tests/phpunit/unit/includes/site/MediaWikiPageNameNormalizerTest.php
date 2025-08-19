@@ -1,14 +1,5 @@
 <?php
-
-namespace MediaWiki\Tests\Site;
-
-use MediaWiki\Http\HttpRequestFactory;
-use MediaWiki\Site\MediaWikiPageNameNormalizer;
-use MediaWikiUnitTestCase;
-
 /**
- * @covers \MediaWiki\Site\MediaWikiPageNameNormalizer
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -24,11 +15,18 @@ use MediaWikiUnitTestCase;
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
- * @since 1.27
- *
+ * @file
+ */
+namespace MediaWiki\Tests\Site;
+
+use MediaWiki\Http\HttpRequestFactory;
+use MediaWiki\Site\MediaWikiPageNameNormalizer;
+use MediaWikiUnitTestCase;
+
+/**
+ * @covers \MediaWiki\Site\MediaWikiPageNameNormalizer
  * @group Site
  * @group medium
- *
  * @author Marius Hoch
  */
 class MediaWikiPageNameNormalizerTest extends MediaWikiUnitTestCase {

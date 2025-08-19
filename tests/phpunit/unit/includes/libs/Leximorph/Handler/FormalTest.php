@@ -27,8 +27,6 @@ use Wikimedia\Leximorph\Handler\Formal;
 use Wikimedia\Leximorph\Provider;
 
 /**
- * FormalTest
- *
  * This test class verifies the functionality of the {@see Formal} handler.
  * It tests that the class correctly applies language-specific
  * formal/informal transformations based on rules in data/formal-indexes.json.
@@ -39,11 +37,8 @@ use Wikimedia\Leximorph\Provider;
  *   - Suffix-based logic (`-formal` => 1, `-informal` => 0).
  *   - Behavior when only one form is provided.
  *
- * @since     1.45
- * @author    Doğu Abaris (abaris@null.net)
- * @license   https://www.gnu.org/copyleft/gpl.html GPL-2.0-or-later
- *
  * @covers \Wikimedia\Leximorph\Handler\Formal
+ * @author Doğu Abaris (abaris@null.net)
  */
 class FormalTest extends TestCase {
 

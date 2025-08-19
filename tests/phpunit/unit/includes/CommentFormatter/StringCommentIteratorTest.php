@@ -16,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @since 1.42
  */
 
 namespace MediaWiki\Tests\Unit\CommentFormatter;
@@ -27,31 +26,17 @@ use MediaWikiUnitTestCase;
 
 /**
  * @group CommentFormatter
- * @coversDefaultClass \MediaWiki\CommentFormatter\StringCommentIterator
+ * @covers \MediaWiki\CommentFormatter\StringCommentIterator
  */
 class StringCommentIteratorTest extends MediaWikiUnitTestCase {
 
-	/**
-	 * Test that the StringCommentIterator can be instantiated.
-	 * @covers ::__construct
-	 */
 	public function testConstruct() {
-		// Create an instance of StringCommentIterator with an array of strings
 		$iterator = new StringCommentIterator( [ 'Some comment', 'Another comment' ] );
-
-		// Verify that it is an instance of StringCommentIterator
 		$this->assertInstanceOf( StringCommentIterator::class, $iterator );
 	}
 
-	/**
-	 * Test the current method to ensure it returns CommentItem objects.
-	 * @covers ::current
-	 */
 	public function testCurrent() {
-		// Create an instance of StringCommentIterator with an array of strings
 		$iterator = new StringCommentIterator( [ 'Some comment', 'Another comment' ] );
-
-		// Verify that the current method returns a CommentItem object
 		$this->assertInstanceOf( CommentItem::class, $iterator->current() );
 	}
 }
