@@ -22,6 +22,7 @@ namespace MediaWiki\Specials;
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\Deferred\LinksUpdate\ImageLinksTable;
 use MediaWiki\Deferred\LinksUpdate\TemplateLinksTable;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
@@ -314,7 +315,11 @@ class SpecialWhatLinksHere extends FormSpecialPage {
 		}
 
 		if ( !$hideimages ) {
-			$ilRes = $queryFunc( $dbr, 'imagelinks', 'il_from' );
+			$ilRes = $queryFunc(
+				$this->dbProvider->getReplicaDatabase( ImageLinksTable::VIRTUAL_DOMAIN ),
+				'imagelinks',
+				'il_from'
+			);
 		}
 
 		// @phan-suppress-next-line PhanPossiblyUndeclaredVariable $rdRes is declared when fetching redirs

@@ -23,6 +23,7 @@
 namespace MediaWiki\Api;
 
 use MediaWiki\Cache\GenderCache;
+use MediaWiki\Deferred\LinksUpdate\ImageLinksTable;
 use MediaWiki\Deferred\LinksUpdate\TemplateLinksTable;
 use MediaWiki\Linker\LinksMigration;
 use MediaWiki\ParamValidator\TypeDef\NamespaceDef;
@@ -94,6 +95,7 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 				$this->dfltNamespace = NS_FILE;
 				$this->hasNamespace = false;
 				$this->indexTag = 'f';
+				$this->virtualDomain = ImageLinksTable::VIRTUAL_DOMAIN;
 				break;
 			case 'allredirects':
 				$prefix = 'ar';

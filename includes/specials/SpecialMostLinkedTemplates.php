@@ -21,6 +21,7 @@
 namespace MediaWiki\Specials;
 
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\Deferred\LinksUpdate\TemplateLinksTable;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinksMigration;
@@ -152,6 +153,14 @@ class SpecialMostLinkedTemplates extends QueryPage {
 	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'highuse';
+	}
+
+	/** @inheritDoc */
+	protected function getRecacheDB() {
+		return $this->getDatabaseProvider()->getReplicaDatabase(
+			TemplateLinksTable::VIRTUAL_DOMAIN,
+			'vslow'
+		);
 	}
 }
 

@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Rest\Handler;
 
+use MediaWiki\Deferred\LinksUpdate\ImageLinksTable;
 use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\Page\ExistingPageRecord;
 use MediaWiki\Page\PageLookup;
@@ -90,7 +91,7 @@ class MediaLinksHandler extends SimpleHandler {
 	 * @return array the results
 	 */
 	private function getDbResults( int $pageId ) {
-		return $this->dbProvider->getReplicaDatabase()->newSelectQueryBuilder()
+		return $this->dbProvider->getReplicaDatabase( ImageLinksTable::VIRTUAL_DOMAIN )->newSelectQueryBuilder()
 			->select( 'il_to' )
 			->from( 'imagelinks' )
 			->where( [ 'il_from' => $pageId ] )

@@ -22,6 +22,7 @@
 
 namespace MediaWiki\Api;
 
+use MediaWiki\Deferred\LinksUpdate\ImageLinksTable;
 use MediaWiki\Deferred\LinksUpdate\TemplateLinksTable;
 use MediaWiki\Linker\LinksMigration;
 use MediaWiki\Title\Title;
@@ -101,6 +102,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 			'prefix' => 'il',
 			'linktbl' => 'imagelinks',
 			'helpurl' => 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Imageusage',
+			'virtualdomain' => ImageLinksTable::VIRTUAL_DOMAIN,
 		]
 	];
 

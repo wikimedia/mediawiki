@@ -16,6 +16,7 @@ use MediaWiki\Title\Title;
  * @since 1.38
  */
 class ImageLinksTable extends TitleLinksTable {
+	public const VIRTUAL_DOMAIN = 'virtual-imagelinks';
 	/**
 	 * @var array New links with the name in the key, value arbitrary
 	 */
@@ -147,5 +148,9 @@ class ImageLinksTable extends TitleLinksTable {
 		PurgeJobUtils::invalidatePages(
 			$this->getDB(), NS_FILE,
 			array_merge( $insertedLinks, $deletedLinks ) );
+	}
+
+	protected function virtualDomain() {
+		return self::VIRTUAL_DOMAIN;
 	}
 }

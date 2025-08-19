@@ -20,6 +20,7 @@
 
 namespace MediaWiki\Page;
 
+use MediaWiki\Deferred\LinksUpdate\ImageLinksTable;
 use MediaWiki\FileRepo\File\File;
 use MediaWiki\FileRepo\FileRepo;
 use MediaWiki\Html\Html;
@@ -896,7 +897,7 @@ class ImagePage extends Article {
 	 * @return IResultWrapper
 	 */
 	protected function queryImageLinks( $target, $limit ) {
-		return $this->dbProvider->getReplicaDatabase()->newSelectQueryBuilder()
+		return $this->dbProvider->getReplicaDatabase( ImageLinksTable::VIRTUAL_DOMAIN )->newSelectQueryBuilder()
 			->select( [ 'page_namespace', 'page_title', 'il_to' ] )
 			->from( 'imagelinks' )
 			->join( 'page', null, 'il_from = page_id' )

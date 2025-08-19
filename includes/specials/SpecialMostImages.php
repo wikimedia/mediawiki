@@ -22,6 +22,7 @@
 
 namespace MediaWiki\Specials;
 
+use MediaWiki\Deferred\LinksUpdate\ImageLinksTable;
 use MediaWiki\SpecialPage\ImageQueryPage;
 use Wikimedia\Rdbms\IConnectionProvider;
 
@@ -72,6 +73,14 @@ class SpecialMostImages extends ImageQueryPage {
 	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'highuse';
+	}
+
+	/** @inheritDoc */
+	protected function getRecacheDB() {
+		return $this->getDatabaseProvider()->getReplicaDatabase(
+			ImageLinksTable::VIRTUAL_DOMAIN,
+			'vslow'
+		);
 	}
 }
 

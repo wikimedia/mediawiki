@@ -30,6 +30,7 @@ use MediaWiki\Context\RequestContext;
 use MediaWiki\DAO\WikiAwareEntityTrait;
 use MediaWiki\Deferred\AutoCommitUpdate;
 use MediaWiki\Deferred\DeferredUpdates;
+use MediaWiki\Deferred\LinksUpdate\ImageLinksTable;
 use MediaWiki\Deferred\LinksUpdate\TemplateLinksTable;
 use MediaWiki\Exception\MWException;
 use MediaWiki\HookContainer\HookRunner;
@@ -2789,6 +2790,8 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 	public function getLinksTo( $options = [], $table = 'pagelinks', $prefix = 'pl' ) {
 		if ( $table === 'templatelinks' ) {
 			$domain = TemplateLinksTable::VIRTUAL_DOMAIN;
+		} elseif ( $table === 'imagelinks' ) {
+			$domain = ImageLinksTable::VIRTUAL_DOMAIN;
 		} else {
 			$domain = false;
 		}
