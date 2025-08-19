@@ -211,6 +211,8 @@
 	"rcfilters-watchlist-preference-label": "Používat rozhraní bez JavaScriptu",
 	"rcfilters-watchlist-preference-help": "Načte [[{{#special:Watchlist}}|sledované stránky]] bez vyhledávání filtrů či zvýrazňování.",
 	"prefs-changeswatchlist": "Zobrazené změny",
+	"tog-watchstar-expiry": "Výchozí časové období na seznamu sledovaných u ručně přidaných stránek:",
+	"tog-watch-expiry": "Výchozí časové období:",
 	"tog-watchlisthideminor": "Na seznamu sledovaných stránek skrýt malé editace",
 	"tog-watchlisthidebots": "Na seznamu sledovaných stránek skrýt editace botů",
 	"tog-watchlisthideown": "Na seznamu sledovaných stránek skrýt moje editace",

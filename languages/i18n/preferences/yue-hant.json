@@ -206,7 +206,7 @@
 	"tog-watchlisthidebots": "響監視清單度隱藏機械人嘅編輯",
 	"tog-watchlisthideown": "響監視清單度隱藏我嘅修改",
 	"tog-watchlisthideanons": "響監視清單度隱藏匿名用戶",
-	"tog-watchlisthideliu": "響監視清單度隱藏登入用戶嘅修改",
+	"tog-watchlisthideliu": "響監視清單度隱藏簽到用戶嘅編輯",
 	"tog-watchlistreloadautomatically": "有篩選條件變嘅時候自動重新載入個監視清單（要用JavaScript）",
 	"tog-watchlisthidecategorization": "隱藏頁面分類",
 	"tog-watchlisthidepatrolled": "響監視清單度隱藏巡查過嘅修改",
