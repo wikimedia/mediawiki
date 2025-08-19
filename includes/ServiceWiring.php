@@ -190,7 +190,9 @@ use MediaWiki\Preferences\PreferencesFactory;
 use MediaWiki\Preferences\SignatureValidator;
 use MediaWiki\Preferences\SignatureValidatorFactory;
 use MediaWiki\RecentChanges\ChangeTrackingEventIngress;
-use MediaWiki\RecentChanges\RecentChange;
+use MediaWiki\RecentChanges\RecentChangeFactory;
+use MediaWiki\RecentChanges\RecentChangeLookup;
+use MediaWiki\RecentChanges\RecentChangeStore;
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\RenameUser\RenameUserFactory;
 use MediaWiki\Request\ProxyLookup;
@@ -1930,6 +1932,30 @@ return [
 		);
 	},
 
+	'RecentChangeFactory' => static function ( MediaWikiServices $services ): RecentChangeFactory {
+		return $services->getRecentChangeStore();
+	},
+
+	'RecentChangeLookup' => static function ( MediaWikiServices $services ): RecentChangeLookup {
+		return $services->getRecentChangeStore();
+	},
+
+	'RecentChangeStore' => static function ( MediaWikiServices $services ): RecentChangeStore {
+		return new RecentChangeStore(
+			$services->getActorStoreFactory(),
+			$services->getChangeTagsStore(),
+			$services->getConnectionProvider(),
+			$services->getCommentStore(),
+			$services->getHookContainer(),
+			$services->getJobQueueGroup(),
+			$services->getPermissionManager(),
+			new ServiceOptions( RecentChangeStore::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
+			$services->getTitleFormatter(),
+			$services->getWikiPageFactory(),
+			$services->getUserFactory()
+		);
+	},
+
 	'RedirectLookup' => static function ( MediaWikiServices $services ): RedirectLookup {
 		return $services->getRedirectStore();
 	},
@@ -2713,8 +2739,9 @@ return [
 	'WatchlistManager' => static function ( MediaWikiServices $services ): WatchlistManager {
 		return new WatchlistManager(
 			[
-				WatchlistManager::OPTION_ENOTIF =>
-					RecentChange::isEnotifEnabled( $services->getMainConfig() ),
+				WatchlistManager::OPTION_ENOTIF => RecentChangeStore::isEnotifEnabled(
+					new ServiceOptions( RecentChangeStore::CONSTRUCTOR_OPTIONS, $services->getMainConfig() )
+				),
 			],
 			$services->getHookContainer(),
 			$services->getReadOnlyMode(),

@@ -140,6 +140,9 @@ use MediaWiki\Permissions\RestrictionStore;
 use MediaWiki\PoolCounter\PoolCounterFactory;
 use MediaWiki\Preferences\PreferencesFactory;
 use MediaWiki\Preferences\SignatureValidatorFactory;
+use MediaWiki\RecentChanges\RecentChangeFactory;
+use MediaWiki\RecentChanges\RecentChangeLookup;
+use MediaWiki\RecentChanges\RecentChangeStore;
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\RenameUser\RenameUserFactory;
 use MediaWiki\Request\ProxyLookup;
@@ -1799,6 +1802,27 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getReadOnlyMode(): ReadOnlyMode {
 		return $this->getService( 'ReadOnlyMode' );
+	}
+
+	/**
+	 * @since 1.45
+	 */
+	public function getRecentChangeFactory(): RecentChangeFactory {
+		return $this->getService( 'RecentChangeFactory' );
+	}
+
+	/**
+	 * @since 1.45
+	 */
+	public function getRecentChangeLookup(): RecentChangeLookup {
+		return $this->getService( 'RecentChangeLookup' );
+	}
+
+	/**
+	 * @since 1.45
+	 */
+	public function getRecentChangeStore(): RecentChangeStore {
+		return $this->getService( 'RecentChangeStore' );
 	}
 
 	/**

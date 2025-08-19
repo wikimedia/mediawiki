@@ -238,6 +238,8 @@ because of Phabricator reports.
   is now removed.
 * RecentChange::SRC_EXTERNAL has been removed. Extensions should define their
   own source constants.
+* The following methods in RecentChange have been removed without deprecation:
+  - isEnotifEnabled()
 * The UserNamePrefixSearch class, deprecated in 1.41 has been removed,
   the MediaWiki\User\UserNamePrefixSearch service should be used instead.
 * UserMailer::sanitizeHeaderValue, deprecated in 1.44 is now removed.
@@ -341,6 +343,16 @@ because of Phabricator reports.
 * UploadBase::verifyExtension, UploadBase::detectScript, UploadBase::detectVirus
   have been deprecated. In most cases callers should use the verifyFile
   method of UploadVerification service.
+* The following methods from RecentChange have been deprecated:
+  - newFromRow()
+  - newFromId()
+  - newFromConds()
+  - notifyEdit()
+  - notifyNewPage()
+  - newLogEntry()
+  - notifyLog()
+  - newForCategorization()
+  - save()
 * XmlSelect::setTagName() is deprecated, use the Html class instead.
 * The UserIsBlockedGlobally hook has been hard deprecated and now emits
   deprecation warnings. The hook has been deprecated since 1.40.

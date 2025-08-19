@@ -22,10 +22,8 @@ namespace MediaWiki\RecentChanges;
 
 use InvalidArgumentException;
 use MediaWiki\ChangeTags\Taggable;
-use MediaWiki\Config\Config;
 use MediaWiki\Debug\DeprecationHelper;
 use MediaWiki\HookContainer\HookRunner;
-use MediaWiki\Json\FormatJson;
 use MediaWiki\Logging\PatrolLog;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
@@ -39,11 +37,8 @@ use MediaWiki\Storage\EditResult;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
-use MediaWiki\Utils\MWTimestamp;
 use RuntimeException;
-use Wikimedia\Assert\Assert;
 use Wikimedia\AtEase\AtEase;
-use Wikimedia\IPUtils;
 
 /**
  * @defgroup RecentChanges Recent changes
@@ -141,15 +136,8 @@ class RecentChange implements Taggable {
 	public const PRC_PATROLLED = 1;
 	public const PRC_AUTOPATROLLED = 2;
 
-	/**
-	 * @var bool For save() - save to the database only, without any events.
-	 */
-	public const SEND_NONE = true;
-
-	/**
-	 * @var bool For save() - do emit the change to RCFeeds (usually public).
-	 */
-	public const SEND_FEED = false;
+	public const SEND_NONE = RecentChangeStore::SEND_NONE;
+	public const SEND_FEED = RecentChangeStore::SEND_FEED;
 
 	/** @var array */
 	public $mAttribs = [];
@@ -199,17 +187,38 @@ class RecentChange implements Taggable {
 		'categorize' => RC_CATEGORIZE,
 	];
 
+	public function __construct(
+		?PageReference $page = null,
+		?UserIdentity $performer = null
+	) {
+		$this->deprecatePublicPropertyFallback(
+			'mTitle',
+			'1.37',
+			function () {
+				return Title::castFromPageReference( $this->mPage );
+			},
+			function ( ?Title $title ) {
+				$this->mPage = $title;
+			}
+		);
+
+		$this->mPage = $page;
+		$this->mPerformer = $performer;
+	}
+
 	# Factory methods
 
 	/**
+	 * @deprecated since 1.45, use MediaWikiServices::getInstance()
+	 *   ->getRecentChangeFactory()->newRecentChangeFromRow() instead.
+	 *
 	 * @param mixed $row
 	 * @return RecentChange
 	 */
 	public static function newFromRow( $row ) {
-		$rc = new RecentChange;
-		$rc->loadFromRow( $row );
-
-		return $rc;
+		return MediaWikiServices::getInstance()
+			->getRecentChangeFactory()
+			->newRecentChangeFromRow( $row );
 	}
 
 	/**
@@ -258,15 +267,23 @@ class RecentChange implements Taggable {
 	/**
 	 * Obtain the recent change with a given rc_id value
 	 *
+	 * @deprecated since 1.45, use MediaWikiServices::getInstance()
+	 *   ->getRecentChangeLookup()->getRecentChangeById() instead.
+	 *
 	 * @param int $rcid The rc_id value to retrieve
 	 * @return RecentChange|null
 	 */
 	public static function newFromId( $rcid ) {
-		return self::newFromConds( [ 'rc_id' => $rcid ], __METHOD__ );
+		return MediaWikiServices::getInstance()
+			->getRecentChangeLookup()
+			->getRecentChangeById( $rcid );
 	}
 
 	/**
 	 * Find the first recent change matching some specific conditions
+	 *
+	 * @deprecated since 1.45, use MediaWikiServices::getInstance()
+	 *   ->getRecentChangeLookup()->getRecentChangeByConds() instead.
 	 *
 	 * @param array $conds Array of conditions
 	 * @param mixed $fname Override the method name in profiling/logs @phan-mandatory-param
@@ -279,21 +296,9 @@ class RecentChange implements Taggable {
 		$fname = __METHOD__,
 		$dbType = DB_REPLICA
 	) {
-		$icp = MediaWikiServices::getInstance()->getConnectionProvider();
-
-		$db = ( $dbType === DB_REPLICA ) ? $icp->getReplicaDatabase() : $icp->getPrimaryDatabase();
-
-		$rcQuery = self::getQueryInfo();
-		$row = $db->newSelectQueryBuilder()
-			->queryInfo( $rcQuery )
-			->where( $conds )
-			->caller( $fname )
-			->fetchRow();
-		if ( $row !== false ) {
-			return self::newFromRow( $row );
-		} else {
-			return null;
-		}
+		return MediaWikiServices::getInstance()
+			->getRecentChangeLookup()
+			->getRecentChangeByConds( $conds, $fname, $dbType === DB_PRIMARY );
 	}
 
 	/**
@@ -355,19 +360,6 @@ class RecentChange implements Taggable {
 		];
 	}
 
-	public function __construct() {
-		$this->deprecatePublicPropertyFallback(
-			'mTitle',
-			'1.37',
-			function () {
-				return Title::castFromPageReference( $this->mPage );
-			},
-			function ( ?Title $title ) {
-				$this->mPage = $title;
-			}
-		);
-	}
-
 	# Accessors
 
 	/**
@@ -375,6 +367,15 @@ class RecentChange implements Taggable {
 	 */
 	public function setAttribs( $attribs ) {
 		$this->mAttribs = $attribs;
+	}
+
+	/**
+	 * @since 1.45
+	 * @param string $name
+	 * @param mixed $value
+	 */
+	public function setAttribute( $name, $value ) {
+		$this->mAttribs[$name] = $value;
 	}
 
 	/**
@@ -442,145 +443,12 @@ class RecentChange implements Taggable {
 	/**
 	 * Writes the data in this object to the database
 	 *
-	 * For compatibility reasons, the SEND_ constants internally reference a value
-	 * that may seem negated from their purpose (none=true, feed=false). This is
-	 * because the parameter used to be called "$noudp", defaulting to false.
+	 * @deprecated since 1.45, use RecentChangeFactory::insertRecentChange() instead.
 	 *
 	 * @param bool $send self::SEND_FEED or self::SEND_NONE
 	 */
 	public function save( $send = self::SEND_FEED ) {
-		$services = MediaWikiServices::getInstance();
-		$mainConfig = $services->getMainConfig();
-		$putIPinRC = $mainConfig->get( MainConfigNames::PutIPinRC );
-		$dbw = $services->getConnectionProvider()->getPrimaryDatabase();
-		if ( !is_array( $this->mExtra ) ) {
-			$this->mExtra = [];
-		}
-
-		if ( !$putIPinRC ) {
-			$this->mAttribs['rc_ip'] = '';
-		}
-
-		# Strict mode fixups (not-NULL fields)
-		foreach ( [ 'minor', 'bot', 'patrolled', 'deleted' ] as $field ) {
-			$this->mAttribs["rc_$field"] = (int)$this->mAttribs["rc_$field"];
-		}
-		# ...more fixups (NULL fields)
-		foreach ( [ 'old_len', 'new_len' ] as $field ) {
-			$this->mAttribs["rc_$field"] = isset( $this->mAttribs["rc_$field"] )
-				? (int)$this->mAttribs["rc_$field"]
-				: null;
-		}
-
-		// rc_new is deprecated, but we still support it for compatibility reasons.
-		if ( isset( $this->mAttribs['rc_new'] ) ) {
-			$this->mAttribs['rc_new'] = (int)$this->mAttribs['rc_new'];
-		}
-
-		$row = $this->mAttribs;
-
-		# Trim spaces on user supplied text
-		$row['rc_comment'] = trim( $row['rc_comment'] ?? '' );
-
-		# Fixup database timestamps
-		$row['rc_timestamp'] = $dbw->timestamp( $row['rc_timestamp'] );
-
-		# # If we are using foreign keys, an entry of 0 for the page_id will fail, so use NULL
-		if ( $row['rc_cur_id'] == 0 ) {
-			unset( $row['rc_cur_id'] );
-		}
-
-		# Convert mAttribs['rc_comment'] for CommentStore
-		$comment = $row['rc_comment'];
-		unset( $row['rc_comment'], $row['rc_comment_text'], $row['rc_comment_data'] );
-		$row += $services->getCommentStore()->insert( $dbw, 'rc_comment', $comment );
-
-		# Normalize UserIdentity to actor ID
-		$user = $this->getPerformerIdentity();
-		if ( array_key_exists( 'forImport', $this->mExtra ) && $this->mExtra['forImport'] ) {
-			$actorStore = $services->getActorStoreFactory()->getActorStoreForImport();
-		} else {
-			$actorStore = $services->getActorStoreFactory()->getActorStore();
-		}
-		$row['rc_actor'] = $actorStore->acquireActorId( $user, $dbw );
-		unset( $row['rc_user'], $row['rc_user_text'] );
-
-		# Don't reuse an existing rc_id for the new row, if one happens to be
-		# set for some reason.
-		unset( $row['rc_id'] );
-
-		# Insert new row
-		$dbw->newInsertQueryBuilder()
-			->insertInto( 'recentchanges' )
-			->row( $row )
-			->caller( __METHOD__ )->execute();
-
-		# Set the ID
-		$this->mAttribs['rc_id'] = $dbw->insertId();
-
-		# Notify extensions
-		$hookRunner = new HookRunner( $services->getHookContainer() );
-		$hookRunner->onRecentChange_save( $this );
-
-		// Apply revert tags (if needed)
-		if ( $this->editResult !== null && count( $this->editResult->getRevertTags() ) ) {
-			MediaWikiServices::getInstance()->getChangeTagsStore()->addTags(
-				$this->editResult->getRevertTags(),
-				$this->mAttribs['rc_id'],
-				$this->mAttribs['rc_this_oldid'],
-				$this->mAttribs['rc_logid'],
-				FormatJson::encode( $this->editResult ),
-				$this
-			);
-		}
-
-		if ( count( $this->tags ) ) {
-			// $this->tags may contain revert tags we already applied above, they will
-			// just be ignored.
-			MediaWikiServices::getInstance()->getChangeTagsStore()->addTags(
-				$this->tags,
-				$this->mAttribs['rc_id'],
-				$this->mAttribs['rc_this_oldid'],
-				$this->mAttribs['rc_logid'],
-				null,
-				$this
-			);
-		}
-
-		if ( $send === self::SEND_FEED ) {
-			// Emit the change to external applications via RCFeeds.
-			$this->notifyRCFeeds();
-		}
-
-		# E-mail notifications
-		if ( self::isEnotifEnabled( $mainConfig ) ) {
-			$userFactory = $services->getUserFactory();
-			$editor = $userFactory->newFromUserIdentity( $this->getPerformerIdentity() );
-			$title = Title::castFromPageReference( $this->getPage() );
-
-			if ( $title && $hookRunner->onAbortEmailNotification( $editor, $title, $this ) ) {
-				// @FIXME: This would be better as an extension hook
-				// Send emails or email jobs once this row is safely committed
-				$dbw->onTransactionCommitOrIdle(
-					function () {
-						$notifier = new RecentChangeNotifier();
-						$notifier->notifyOnPageChange( $this );
-					},
-					__METHOD__
-				);
-			}
-		}
-
-		$jobs = [];
-		// Flush old entries from the `recentchanges` table
-		if ( mt_rand( 0, 9 ) == 0 ) {
-			$jobs[] = RecentChangesUpdateJob::newPurgeJob();
-		}
-		// Update the cached list of active users
-		if ( $this->mAttribs['rc_user'] > 0 ) {
-			$jobs[] = RecentChangesUpdateJob::newCacheUpdateJob();
-		}
-		$services->getJobQueueGroup()->lazyPush( $jobs );
+		MediaWikiServices::getInstance()->getRecentChangeFactory()->insertRecentChange( $this, $send );
 	}
 
 	/**
@@ -592,7 +460,6 @@ class RecentChange implements Taggable {
 			MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::RCFeeds );
 
 		$performer = $this->getPerformerIdentity();
-
 		foreach ( $feeds as $params ) {
 			$params += [
 				'omit_bots' => false,
@@ -637,6 +504,7 @@ class RecentChange implements Taggable {
 		$useRCPatrol = $mainConfig->get( MainConfigNames::UseRCPatrol );
 		$useNPPatrol = $mainConfig->get( MainConfigNames::UseNPPatrol );
 		$useFilePatrol = $mainConfig->get( MainConfigNames::UseFilePatrol );
+
 		// Fix up $tags so that the MarkPatrolled hook below always gets an array
 		if ( $tags === null ) {
 			$tags = [];
@@ -732,6 +600,8 @@ class RecentChange implements Taggable {
 	 * Makes an entry in the database corresponding to an edit
 	 *
 	 * @since 1.36 Added $editResult parameter
+	 * @deprecated since 1.45, use RecentChangeFactory::createEditRecentChange() instead to create
+	 * the log entry, then use RecentChangeFactory::insertRecentChange() to insert it into the database.
 	 *
 	 * @param string $timestamp
 	 * @param PageIdentity $page
@@ -757,54 +627,12 @@ class RecentChange implements Taggable {
 		$bot, $ip = '', $oldSize = 0, $newSize = 0, $newId = 0, $patrol = 0,
 		$tags = [], ?EditResult $editResult = null
 	) {
-		Assert::parameter( $page->exists(), '$page', 'must represent an existing page' );
-
-		$rc = new RecentChange;
-		$rc->mPage = $page;
-		$rc->mPerformer = $user;
-		$rc->mAttribs = [
-			'rc_timestamp' => $timestamp,
-			'rc_namespace' => $page->getNamespace(),
-			'rc_title' => $page->getDBkey(),
-			'rc_type' => RC_EDIT,
-			'rc_source' => self::SRC_EDIT,
-			'rc_minor' => $minor ? 1 : 0,
-			'rc_cur_id' => $page->getId(),
-			'rc_user' => $user->getId(),
-			'rc_user_text' => $user->getName(),
-			'rc_comment' => &$comment,
-			'rc_comment_text' => &$comment,
-			'rc_comment_data' => null,
-			'rc_this_oldid' => (int)$newId,
-			'rc_last_oldid' => $oldId,
-			'rc_bot' => $bot ? 1 : 0,
-			'rc_ip' => self::checkIPAddress( $ip ),
-			'rc_patrolled' => intval( $patrol ),
-			'rc_new' => 0, # obsolete
-			'rc_old_len' => $oldSize,
-			'rc_new_len' => $newSize,
-			'rc_deleted' => 0,
-			'rc_logid' => 0,
-			'rc_log_type' => null,
-			'rc_log_action' => '',
-			'rc_params' => ''
-		];
-
-		// TODO: deprecate the 'prefixedDBkey' entry, let callers do the formatting.
-		$formatter = MediaWikiServices::getInstance()->getTitleFormatter();
-
-		$rc->mExtra = [
-			'prefixedDBkey' => $formatter->getPrefixedDBkey( $page ),
-			'lastTimestamp' => $lastTimestamp,
-			'oldSize' => $oldSize,
-			'newSize' => $newSize,
-			'pageStatus' => 'changed'
-		];
-
-		$rc->addTags( $tags );
-		$rc->setEditResult( $editResult );
+		$rc = MediaWikiServices::getInstance()->getRecentChangeFactory()
+			->createEditRecentChange(
+				$timestamp, $page, $minor, $user, $comment, $oldId, $lastTimestamp,
+				$bot, $ip, $oldSize, $newSize, $newId, $patrol, $tags, $editResult
+			);
 		$rc->save();
-
 		return $rc;
 	}
 
@@ -812,6 +640,9 @@ class RecentChange implements Taggable {
 	 * Makes an entry in the database corresponding to page creation
 	 * @note $page must reflect the state of the database after the page creation. In particular,
 	 *       $page->getId() must return the newly assigned page ID.
+	 *
+	 * @deprecated since 1.45, use RecentChangeFactory::createNewPageRecentChange() instead to create
+	 * the log entry, then use RecentChangeFactory::insertRecentChange() to insert it into the database.
 	 *
 	 * @param string $timestamp
 	 * @param PageIdentity $page
@@ -832,57 +663,19 @@ class RecentChange implements Taggable {
 		$page, $minor, $user, $comment, $bot,
 		$ip = '', $size = 0, $newId = 0, $patrol = 0, $tags = []
 	) {
-		Assert::parameter( $page->exists(), '$page', 'must represent an existing page' );
-
-		$rc = new RecentChange;
-		$rc->mPage = $page;
-		$rc->mPerformer = $user;
-		$rc->mAttribs = [
-			'rc_timestamp' => $timestamp,
-			'rc_namespace' => $page->getNamespace(),
-			'rc_title' => $page->getDBkey(),
-			'rc_type' => RC_NEW,
-			'rc_source' => self::SRC_NEW,
-			'rc_minor' => $minor ? 1 : 0,
-			'rc_cur_id' => $page->getId(),
-			'rc_user' => $user->getId(),
-			'rc_user_text' => $user->getName(),
-			'rc_comment' => &$comment,
-			'rc_comment_text' => &$comment,
-			'rc_comment_data' => null,
-			'rc_this_oldid' => (int)$newId,
-			'rc_last_oldid' => 0,
-			'rc_bot' => $bot ? 1 : 0,
-			'rc_ip' => self::checkIPAddress( $ip ),
-			'rc_patrolled' => intval( $patrol ),
-			'rc_new' => 1, # obsolete
-			'rc_old_len' => 0,
-			'rc_new_len' => $size,
-			'rc_deleted' => 0,
-			'rc_logid' => 0,
-			'rc_log_type' => null,
-			'rc_log_action' => '',
-			'rc_params' => ''
-		];
-
-		// TODO: deprecate the 'prefixedDBkey' entry, let callers do the formatting.
-		$formatter = MediaWikiServices::getInstance()->getTitleFormatter();
-
-		$rc->mExtra = [
-			'prefixedDBkey' => $formatter->getPrefixedDBkey( $page ),
-			'lastTimestamp' => 0,
-			'oldSize' => 0,
-			'newSize' => $size,
-			'pageStatus' => 'created'
-		];
-
-		$rc->addTags( $tags );
+		$rc = MediaWikiServices::getInstance()->getRecentChangeFactory()
+			->createNewPageRecentChange(
+				$timestamp, $page, $minor, $user, $comment, $bot,
+				$ip, $size, $newId, $patrol, $tags
+			);
 		$rc->save();
-
 		return $rc;
 	}
 
 	/**
+	 * @deprecated since 1.45, use RecentChangeFactory::createLogRecentChange() instead to create
+	 * the log entry, then use RecentChangeFactory::insertRecentChange() to insert it into the database.
+	 *
 	 * @param string $timestamp
 	 * @param PageReference $logPage
 	 * @param UserIdentity $user
@@ -909,15 +702,20 @@ class RecentChange implements Taggable {
 		if ( isset( $logRestrictions[$type] ) && $logRestrictions[$type] != '*' ) {
 			return false;
 		}
-		$rc = self::newLogEntry( $timestamp,
-			$logPage, $user, $actionComment, $ip, $type, $action,
-			$target, $logComment, $params, $newId, $actionCommentIRC );
-		$rc->save();
+
+		$recentChangeFactory = MediaWikiServices::getInstance()->getRecentChangeFactory();
+		$rc = $recentChangeFactory->createLogRecentChange(
+			$timestamp, $logPage, $user, $actionComment, $ip, $type, $action,
+			$target, $logComment, $params, $newId, $actionCommentIRC
+		);
+		$recentChangeFactory->insertRecentChange( $rc );
 
 		return true;
 	}
 
 	/**
+	 * @deprecated since 1.45, use RecentChangeFactory::createLogRecentChange() instead
+	 *
 	 * @param string $timestamp
 	 * @param PageReference $logPage
 	 * @param UserIdentity $user
@@ -942,103 +740,16 @@ class RecentChange implements Taggable {
 		$type, $action, $target, $logComment, $params, $newId = 0, $actionCommentIRC = '',
 		$revId = 0, $isPatrollable = false, $forceBotFlag = null
 	) {
-		global $wgRequest;
-
-		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
-
-		# # Get pageStatus for email notification
-		switch ( $type . '-' . $action ) {
-			case 'delete-delete':
-			case 'delete-delete_redir':
-			case 'delete-delete_redir2':
-				$pageStatus = 'deleted';
-				break;
-			case 'move-move':
-			case 'move-move_redir':
-				$pageStatus = 'moved';
-				break;
-			case 'delete-restore':
-				$pageStatus = 'restored';
-				break;
-			case 'upload-upload':
-				$pageStatus = 'created';
-				break;
-			case 'upload-overwrite':
-			default:
-				$pageStatus = 'changed';
-				break;
-		}
-
-		// Allow unpatrolled status for patrollable log entries
-		$canAutopatrol = $permissionManager->userHasRight( $user, 'autopatrol' );
-		$markPatrolled = $isPatrollable ? $canAutopatrol : true;
-
-		if ( $target instanceof PageIdentity && $target->canExist() ) {
-			$pageId = $target->getId();
-		} else {
-			$pageId = 0;
-		}
-
-		if ( $forceBotFlag !== null ) {
-			$bot = (int)$forceBotFlag;
-		} else {
-			$bot = $permissionManager->userHasRight( $user, 'bot' ) ?
-				(int)$wgRequest->getBool( 'bot', true ) : 0;
-		}
-
-		$rc = new RecentChange;
-		$rc->mPage = $target;
-		$rc->mPerformer = $user;
-		$rc->mAttribs = [
-			'rc_timestamp' => $timestamp,
-			'rc_namespace' => $target->getNamespace(),
-			'rc_title' => $target->getDBkey(),
-			'rc_type' => RC_LOG,
-			'rc_source' => self::SRC_LOG,
-			'rc_minor' => 0,
-			'rc_cur_id' => $pageId,
-			'rc_user' => $user->getId(),
-			'rc_user_text' => $user->getName(),
-			'rc_comment' => &$logComment,
-			'rc_comment_text' => &$logComment,
-			'rc_comment_data' => null,
-			'rc_this_oldid' => (int)$revId,
-			'rc_last_oldid' => 0,
-			'rc_bot' => $bot,
-			'rc_ip' => self::checkIPAddress( $ip ),
-			'rc_patrolled' => $markPatrolled ? self::PRC_AUTOPATROLLED : self::PRC_UNPATROLLED,
-			'rc_new' => 0, # obsolete
-			'rc_old_len' => null,
-			'rc_new_len' => null,
-			'rc_deleted' => 0,
-			'rc_logid' => $newId,
-			'rc_log_type' => $type,
-			'rc_log_action' => $action,
-			'rc_params' => $params
-		];
-
-		// TODO: deprecate the 'prefixedDBkey' entry, let callers do the formatting.
-		$formatter = MediaWikiServices::getInstance()->getTitleFormatter();
-
-		$rc->mExtra = [
-			// XXX: This does not correspond to rc_namespace/rc_title/rc_cur_id.
-			//      Is that intentional? For all other kinds of RC entries, prefixedDBkey
-			//      matches rc_namespace/rc_title. Do we even need $logPage?
-			'prefixedDBkey' => $formatter->getPrefixedDBkey( $logPage ),
-			'lastTimestamp' => 0,
-			'actionComment' => $actionComment, // the comment appended to the action, passed from LogPage
-			'pageStatus' => $pageStatus,
-			'actionCommentIRC' => $actionCommentIRC
-		];
-
-		return $rc;
+		return MediaWikiServices::getInstance()->getRecentChangeFactory()
+			->createLogRecentChange(
+				$timestamp, $logPage, $user, $actionComment, $ip,
+				$type, $action, $target, $logComment, $params, $newId, $actionCommentIRC,
+				$revId, $isPatrollable, $forceBotFlag
+			);
 	}
 
 	/**
-	 * Constructs a RecentChange object for the given categorization
-	 * This does not call save() on the object and thus does not write to the db
-	 *
-	 * @since 1.27
+	 * @deprecated since 1.45, use RecentChangeFactory::createCategorizationRecentChange() instead
 	 *
 	 * @param string $timestamp Timestamp of the recent change to occur
 	 * @param PageIdentity $categoryTitle the category a page is being added to or removed from
@@ -1071,70 +782,11 @@ class RecentChange implements Taggable {
 		$added = null,
 		bool $forImport = false
 	) {
-		// Done in a backwards compatible way.
-		$categoryWikiPage = MediaWikiServices::getInstance()->getWikiPageFactory()
-			->newFromTitle( $categoryTitle );
-
-		'@phan-var \MediaWiki\Page\WikiCategoryPage $categoryWikiPage';
-		$params = [
-			'hidden-cat' => $categoryWikiPage->isHidden()
-		];
-		if ( $added !== null ) {
-			$params['added'] = $added;
-		}
-
-		if ( !$user ) {
-			// XXX: when and why do we need this?
-			$user = MediaWikiServices::getInstance()->getActorStore()->getUnknownActor();
-		}
-
-		$rc = new RecentChange;
-		$rc->mPage = $categoryTitle;
-		$rc->mPerformer = $user;
-		$rc->mAttribs = [
-			'rc_timestamp' => MWTimestamp::convert( TS_MW, $timestamp ),
-			'rc_namespace' => $categoryTitle->getNamespace(),
-			'rc_title' => $categoryTitle->getDBkey(),
-			'rc_type' => RC_CATEGORIZE,
-			'rc_source' => self::SRC_CATEGORIZE,
-			'rc_minor' => 0,
-			// XXX: rc_cur_id does not correspond to rc_namespace/rc_title.
-			// It's because when the page (rc_cur_id) is deleted, we want
-			// to delete the categorization entries, too (see LinksDeletionUpdate).
-			'rc_cur_id' => $pageTitle->getId(),
-			'rc_user' => $user->getId(),
-			'rc_user_text' => $user->getName(),
-			'rc_comment' => &$comment,
-			'rc_comment_text' => &$comment,
-			'rc_comment_data' => null,
-			'rc_this_oldid' => (int)$newRevId,
-			'rc_last_oldid' => $oldRevId,
-			'rc_bot' => $bot ? 1 : 0,
-			'rc_ip' => self::checkIPAddress( $ip ),
-			'rc_patrolled' => self::PRC_AUTOPATROLLED, // Always patrolled, just like log entries
-			'rc_new' => 0, # obsolete
-			'rc_old_len' => null,
-			'rc_new_len' => null,
-			'rc_deleted' => $deleted,
-			'rc_logid' => 0,
-			'rc_log_type' => null,
-			'rc_log_action' => '',
-			'rc_params' => serialize( $params )
-		];
-
-		// TODO: deprecate the 'prefixedDBkey' entry, let callers do the formatting.
-		$formatter = MediaWikiServices::getInstance()->getTitleFormatter();
-
-		$rc->mExtra = [
-			'prefixedDBkey' => $formatter->getPrefixedDBkey( $categoryTitle ),
-			'lastTimestamp' => $lastTimestamp,
-			'oldSize' => 0,
-			'newSize' => 0,
-			'pageStatus' => 'changed',
-			'forImport' => $forImport,
-		];
-
-		return $rc;
+		return MediaWikiServices::getInstance()->getRecentChangeFactory()
+			->createCategorizationRecentChange(
+				$timestamp, $categoryTitle, $user, $comment, $pageTitle,
+				$oldRevId, $newRevId, $lastTimestamp, $bot, $ip, $deleted, $added, $forImport
+			);
 	}
 
 	/**
@@ -1185,6 +837,17 @@ class RecentChange implements Taggable {
 	}
 
 	/**
+	 * Check if the change is internal (edit, new, log, categorize). External changes are
+	 * those that are defined by external sources, such as extensions.
+	 *
+	 * @since 1.45
+	 * @return bool
+	 */
+	public function isInternal() {
+		return in_array( $this->getAttribute( 'rc_source' ), self::INTERNAL_SOURCES );
+	}
+
+	/**
 	 * Get an attribute value
 	 *
 	 * @param string $name Attribute name
@@ -1218,21 +881,29 @@ class RecentChange implements Taggable {
 	}
 
 	/**
-	 * Check if the change is internal (edit, new, log, categorize). External changes are
-	 * those that are defined by external sources, such as extensions.
-	 *
-	 * @since 1.45
-	 * @return bool
-	 */
-	public function isInternal() {
-		return in_array( $this->getAttribute( 'rc_source' ), self::INTERNAL_SOURCES );
-	}
-
-	/**
 	 * @return array
 	 */
 	public function getAttributes() {
 		return $this->mAttribs;
+	}
+
+	/**
+	 * @internal
+	 *
+	 * @param string $name
+	 * @return mixed
+	 */
+	public function getExtra( $name ) {
+		return $this->mExtra[$name] ?? null;
+	}
+
+	/**
+	 * @internal
+	 *
+	 * @return array
+	 */
+	public function getExtras() {
+		return $this->mExtra;
 	}
 
 	/**
@@ -1278,24 +949,6 @@ class RecentChange implements Taggable {
 		return ChangesList::showCharacterDifference( $old, $new );
 	}
 
-	private static function checkIPAddress( string $ip ): string {
-		global $wgRequest;
-
-		if ( $ip ) {
-			if ( !IPUtils::isIPAddress( $ip ) ) {
-				throw new RuntimeException( "Attempt to write \"" . $ip .
-					"\" as an IP address into recent changes" );
-			}
-		} else {
-			$ip = $wgRequest->getIP();
-			if ( !$ip ) {
-				$ip = '';
-			}
-		}
-
-		return $ip;
-	}
-
 	/**
 	 * Check whether the given timestamp is new enough to have a RC row with a given tolerance
 	 * as the recentchanges table might not be cleared out regularly (so older entries might exist)
@@ -1310,38 +963,6 @@ class RecentChange implements Taggable {
 			MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::RCMaxAge );
 
 		return (int)wfTimestamp( TS_UNIX, $timestamp ) > time() - $tolerance - $rcMaxAge;
-	}
-
-	/**
-	 * Whether e-mail notifications are generally enabled on this wiki.
-	 *
-	 * This is used for:
-	 *
-	 * - performance optimization in RecentChange::save().
-	 *   After an edit, whether or not we need to use the RecentChangeNotifier
-	 *   to determine which RecentChangeNotifyJob to dispatch.
-	 *
-	 * - performance optmization in WatchlistManager.
-	 *   After using reset ("Mark all pages as seen") on Special:Watchlist,
-	 *   whether to only look for user talk data to reset, or whether to look
-	 *   at all possible pages for timestamps to reset.
-	 *
-	 * TODO: Determine whether these optimizations still make sense.
-	 *
-	 * FIXME: The $wgShowUpdatedMarker variable was added to this condtion
-	 * in 2008 (2cf12c973d, SVN r35001) because at the time the per-user
-	 * "last seen" marker for watchlist and page history, was managed by
-	 * the RecentChangeNotifier/UserMailer classes. As of August 2022, this
-	 * appears to no longer be the case.
-	 *
-	 * @since 1.40
-	 * @param Config $conf
-	 * @return bool
-	 */
-	public static function isEnotifEnabled( Config $conf ): bool {
-		return $conf->get( MainConfigNames::EnotifUserTalk ) ||
-			$conf->get( MainConfigNames::EnotifWatchlist ) ||
-			$conf->get( MainConfigNames::ShowUpdatedMarker );
 	}
 
 	/**
@@ -1399,6 +1020,15 @@ class RecentChange implements Taggable {
 	}
 
 	/**
+	 * @internal
+	 *
+	 * @return string[]
+	 */
+	public function getTags(): array {
+		return $this->tags;
+	}
+
+	/**
 	 * Tags to append to the recent change,
 	 * and associated revision/log
 	 *
@@ -1412,6 +1042,15 @@ class RecentChange implements Taggable {
 		} else {
 			$this->tags = array_merge( $tags, $this->tags );
 		}
+	}
+
+	/**
+	 * @internal
+	 *
+	 * @return EditResult|null
+	 */
+	public function getEditResult(): ?EditResult {
+		return $this->editResult;
 	}
 
 	/**
