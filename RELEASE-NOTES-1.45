@@ -352,6 +352,8 @@ because of Phabricator reports.
   - newLogEntry()
   - notifyLog()
   - newForCategorization()
+  - notifyRCFeeds()
+  - getNotifyUrl()
   - save()
 * XmlSelect::setTagName() is deprecated, use the Html class instead.
 * The UserIsBlockedGlobally hook has been hard deprecated and now emits

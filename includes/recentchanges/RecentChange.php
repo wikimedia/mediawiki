@@ -32,7 +32,6 @@ use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
-use MediaWiki\RCFeed\RCFeed;
 use MediaWiki\Storage\EditResult;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
@@ -453,38 +452,13 @@ class RecentChange implements Taggable {
 
 	/**
 	 * Notify all the feeds about the change.
+	 *
+	 * @deprecated since 1.45, use RecentChangeRCFeedNotifier::notifyRCFeeds() instead.
+	 *
 	 * @param array|null $feeds Optional feeds to send to, defaults to $wgRCFeeds
 	 */
 	public function notifyRCFeeds( ?array $feeds = null ) {
-		$feeds ??=
-			MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::RCFeeds );
-
-		$performer = $this->getPerformerIdentity();
-		foreach ( $feeds as $params ) {
-			$params += [
-				'omit_bots' => false,
-				'omit_anon' => false,
-				'omit_user' => false,
-				'omit_minor' => false,
-				'omit_patrolled' => false,
-			];
-
-			if (
-				( $params['omit_bots'] && $this->mAttribs['rc_bot'] ) ||
-				( $params['omit_anon'] && !$performer->isRegistered() ) ||
-				( $params['omit_user'] && $performer->isRegistered() ) ||
-				( $params['omit_minor'] && $this->mAttribs['rc_minor'] ) ||
-				( $params['omit_patrolled'] && $this->mAttribs['rc_patrolled'] ) ||
-				$this->mAttribs['rc_type'] == RC_EXTERNAL
-			) {
-				continue;
-			}
-
-			$actionComment = $this->mExtra['actionCommentIRC'] ?? null;
-
-			$feed = RCFeed::factory( $params );
-			$feed->notify( $this, $actionComment );
-		}
+		MediaWikiServices::getInstance()->getRecentChangeRCFeedNotifier()->notifyRCFeeds( $this, $feeds );
 	}
 
 	/**
@@ -970,37 +944,13 @@ class RecentChange implements Taggable {
 	 *
 	 * This is mainly to facilitate patrolling or other content review.
 	 *
+	 * @deprecated since 1.45, use RecentChangeRCFeedNotifier::getNotifyUrl() instead.
+	 *
 	 * @since 1.40
 	 * @return string|null URL
 	 */
 	public function getNotifyUrl() {
-		$services = MediaWikiServices::getInstance();
-		$mainConfig = $services->getMainConfig();
-		$useRCPatrol = $mainConfig->get( MainConfigNames::UseRCPatrol );
-		$useNPPatrol = $mainConfig->get( MainConfigNames::UseNPPatrol );
-		$canonicalServer = $mainConfig->get( MainConfigNames::CanonicalServer );
-		$script = $mainConfig->get( MainConfigNames::Script );
-
-		$source = $this->getAttribute( 'rc_source' );
-		if ( $source == self::SRC_LOG ) {
-			$url = null;
-		} else {
-			$url = $canonicalServer . $script;
-			if ( $source == self::SRC_NEW ) {
-				$query = '?oldid=' . $this->getAttribute( 'rc_this_oldid' );
-			} else {
-				$query = '?diff=' . $this->getAttribute( 'rc_this_oldid' )
-					. '&oldid=' . $this->getAttribute( 'rc_last_oldid' );
-			}
-			if ( $useRCPatrol || ( $this->getAttribute( 'rc_source' ) == self::SRC_NEW && $useNPPatrol ) ) {
-				$query .= '&rcid=' . $this->getAttribute( 'rc_id' );
-			}
-
-			( new HookRunner( $services->getHookContainer() ) )->onIRCLineURL( $url, $query, $this );
-			$url .= $query;
-		}
-
-		return $url;
+		return MediaWikiServices::getInstance()->getRecentChangeRCFeedNotifier()->getNotifyUrl( $this );
 	}
 
 	/**

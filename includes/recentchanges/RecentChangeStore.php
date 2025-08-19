@@ -64,6 +64,7 @@ class RecentChangeStore implements RecentChangeFactory, RecentChangeLookup {
 	private HookContainer $hookContainer;
 	private JobQueueGroup $jobQueueGroup;
 	private PermissionManager $permissionManager;
+	private RecentChangeRCFeedNotifier $recentChangeRCFeedNotifier;
 	private ServiceOptions $options;
 	private TitleFormatter $titleFormatter;
 	private WikiPageFactory $wikiPageFactory;
@@ -77,6 +78,7 @@ class RecentChangeStore implements RecentChangeFactory, RecentChangeLookup {
 		HookContainer $hookContainer,
 		JobQueueGroup $jobQueueGroup,
 		PermissionManager $permissionManager,
+		RecentChangeRCFeedNotifier $recentChangeRCFeedNotifier,
 		ServiceOptions $options,
 		TitleFormatter $titleFormatter,
 		WikiPageFactory $wikiPageFactory,
@@ -91,6 +93,7 @@ class RecentChangeStore implements RecentChangeFactory, RecentChangeLookup {
 		$this->hookContainer = $hookContainer;
 		$this->jobQueueGroup = $jobQueueGroup;
 		$this->permissionManager = $permissionManager;
+		$this->recentChangeRCFeedNotifier = $recentChangeRCFeedNotifier;
 		$this->options = $options;
 		$this->titleFormatter = $titleFormatter;
 		$this->wikiPageFactory = $wikiPageFactory;
@@ -239,7 +242,7 @@ class RecentChangeStore implements RecentChangeFactory, RecentChangeLookup {
 
 		if ( $send === self::SEND_FEED ) {
 			// Emit the change to external applications via RCFeeds.
-			$recentChange->notifyRCFeeds();
+			$this->recentChangeRCFeedNotifier->notifyRCFeeds( $recentChange );
 		}
 
 		// E-mail notifications

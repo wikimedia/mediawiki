@@ -192,6 +192,7 @@ use MediaWiki\Preferences\SignatureValidatorFactory;
 use MediaWiki\RecentChanges\ChangeTrackingEventIngress;
 use MediaWiki\RecentChanges\RecentChangeFactory;
 use MediaWiki\RecentChanges\RecentChangeLookup;
+use MediaWiki\RecentChanges\RecentChangeRCFeedNotifier;
 use MediaWiki\RecentChanges\RecentChangeStore;
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\RenameUser\RenameUserFactory;
@@ -1940,6 +1941,13 @@ return [
 		return $services->getRecentChangeStore();
 	},
 
+	'RecentChangeRCFeedNotifier' => static function ( MediaWikiServices $services ): RecentChangeRCFeedNotifier {
+		return new RecentChangeRCFeedNotifier(
+			$services->getHookContainer(),
+			new ServiceOptions( RecentChangeRCFeedNotifier::CONSTRUCTOR_OPTIONS, $services->getMainConfig() )
+		);
+	},
+
 	'RecentChangeStore' => static function ( MediaWikiServices $services ): RecentChangeStore {
 		return new RecentChangeStore(
 			$services->getActorStoreFactory(),
@@ -1949,6 +1957,7 @@ return [
 			$services->getHookContainer(),
 			$services->getJobQueueGroup(),
 			$services->getPermissionManager(),
+			$services->getRecentChangeRCFeedNotifier(),
 			new ServiceOptions( RecentChangeStore::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
 			$services->getTitleFormatter(),
 			$services->getWikiPageFactory(),

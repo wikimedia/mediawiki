@@ -2407,6 +2407,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\RecentChanges\\RecentChangeNotificationHandler' => __DIR__ . '/includes/recentchanges/RecentChangeNotificationHandler.php',
 	'MediaWiki\\RecentChanges\\RecentChangeNotifier' => __DIR__ . '/includes/recentchanges/RecentChangeNotifier.php',
 	'MediaWiki\\RecentChanges\\RecentChangeNotifyJob' => __DIR__ . '/includes/recentchanges/RecentChangeNotifyJob.php',
+	'MediaWiki\\RecentChanges\\RecentChangeRCFeedNotifier' => __DIR__ . '/includes/recentchanges/RecentChangeRCFeedNotifier.php',
 	'MediaWiki\\RecentChanges\\RecentChangeStore' => __DIR__ . '/includes/recentchanges/RecentChangeStore.php',
 	'MediaWiki\\RecentChanges\\RecentChangesUpdateJob' => __DIR__ . '/includes/recentchanges/RecentChangesUpdateJob.php',
 	'MediaWiki\\Registration\\ExtensionDependencyError' => __DIR__ . '/includes/registration/ExtensionDependencyError.php',

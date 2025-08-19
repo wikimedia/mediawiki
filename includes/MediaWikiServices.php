@@ -142,6 +142,7 @@ use MediaWiki\Preferences\PreferencesFactory;
 use MediaWiki\Preferences\SignatureValidatorFactory;
 use MediaWiki\RecentChanges\RecentChangeFactory;
 use MediaWiki\RecentChanges\RecentChangeLookup;
+use MediaWiki\RecentChanges\RecentChangeRCFeedNotifier;
 use MediaWiki\RecentChanges\RecentChangeStore;
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\RenameUser\RenameUserFactory;
@@ -1816,6 +1817,13 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getRecentChangeLookup(): RecentChangeLookup {
 		return $this->getService( 'RecentChangeLookup' );
+	}
+
+	/**
+	 * @since 1.45
+	 */
+	public function getRecentChangeRCFeedNotifier(): RecentChangeRCFeedNotifier {
+		return $this->getService( 'RecentChangeRCFeedNotifier' );
 	}
 
 	/**
