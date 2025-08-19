@@ -24,7 +24,15 @@ class HeaderCallback {
 	 * @since 1.29
 	 */
 	public static function register() {
-		header_register_callback( [ __CLASS__, 'callback' ] );
+		// T261260 load some classes which will be needed in callback().
+		// Autoloading seems unreliable in header callbacks, and in the case of a web
+		// request (ie. in all cases where the request might be performance-sensitive)
+		// these classes will have to be loaded at some point anyway.
+		class_exists( WebRequest::class );
+		class_exists( LoggerFactory::class );
+		class_exists( Telemetry::class );
+
+		header_register_callback( self::callback( ... ) );
 	}
 
 	/**
