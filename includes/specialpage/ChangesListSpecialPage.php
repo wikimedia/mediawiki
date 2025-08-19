@@ -35,6 +35,7 @@ use MediaWiki\RecentChanges\ChangesListFilterGroup;
 use MediaWiki\RecentChanges\ChangesListStringOptionsFilterGroup;
 use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\ResourceLoader as RL;
+use MediaWiki\Title\MalformedTitleException;
 use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\UserArray;
 use MediaWiki\User\UserIdentity;
@@ -46,6 +47,8 @@ use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
+use Wikimedia\Rdbms\LikeValue;
+use Wikimedia\Rdbms\Platform\ISQLPlatform;
 use Wikimedia\Rdbms\RawSQLValue;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
@@ -80,7 +83,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 *
 	 * Groups are displayed to the user in the structured UI.  However, if necessary,
 	 * all of the filters in a group can be configured to only display on the
-	 * unstuctured UI, in which case you don't need a group title.
+	 * unstructured UI, in which case you don't need a group title.
 	 *
 	 * @var array
 	 */
@@ -1209,6 +1212,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		}
 
 		$opts->add( 'namespace', '', FormOptions::STRING );
+		$opts->add( 'subpageof', '', FormOptions::STRING );
 		// TODO: Rename this option to 'invertnamespaces'?
 		$opts->add( 'invert', false );
 		$opts->add( 'associated', false );
@@ -1399,6 +1403,12 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			}
 		}
 
+		// Namespace conflicts with subpageof
+		if ( $opts['namespace'] !== '' && $opts['subpageof'] !== '' ) {
+			$opts['namespace'] = '';
+			$fixed = true;
+		}
+
 		return $fixed;
 	}
 
@@ -1537,6 +1547,46 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 				$operator = $opts[ 'invert' ] ? '!=' : '=';
 				sort( $namespaces );
 				$conds[] = $dbr->expr( 'rc_namespace', $operator, $namespaces );
+			}
+		}
+
+		// Filtering for subpages of a given set of pages
+		if ( $opts['subpageof'] !== '' ) {
+			$titleParser = MediaWikiServices::getInstance()->getTitleParser();
+			$basePages = explode( '|', $opts['subpageof'] );
+			$prefixesByNs = [];
+			foreach ( $basePages as $basePageText ) {
+				// Strip any trailing slash
+				$basePageText = rtrim( $basePageText, '/' );
+				try {
+					$basePage = $titleParser->parseTitle( $basePageText );
+				} catch ( MalformedTitleException ) {
+					// Ignore invalid titles
+					continue;
+				}
+				$prefixesByNs[$basePage->getNamespace()][$basePage->getDBkey() . '/'] = true;
+			}
+			$orConds = [];
+			foreach ( $prefixesByNs as $ns => $prefixes ) {
+				$titleExpr = null;
+				foreach ( $prefixes as $prefix => $unused ) {
+					$prefixExpr = $dbr->expr(
+						'rc_title',
+						IExpression::LIKE,
+						new LikeValue(
+							$prefix,
+							$dbr->anyString()
+						)
+					);
+					$titleExpr = $titleExpr ? $titleExpr->orExpr( $prefixExpr ) : $prefixExpr;
+				}
+				if ( $titleExpr ) {
+					$orConds[] = $dbr->expr( 'rc_namespace', '=', $ns )
+						->andExpr( $titleExpr );
+				}
+			}
+			if ( $orConds ) {
+				$conds[] = $dbr->makeList( $orConds, ISQLPlatform::LIST_OR );
 			}
 		}
 

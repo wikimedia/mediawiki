@@ -291,7 +291,21 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	}
 
 	/**
-	 * Process $par and put options found in $opts. Used when including the page.
+	 * Process the subpage $par and put options found in $opts.
+	 *
+	 * This is a legacy feature predating query parameter emulation in the
+	 * Parser which was introduced in MW 1.19. Before that time, it was
+	 * necessary to do something like
+	 *
+	 *   {{Special:RecentChanges/days=3}}
+	 *
+	 * In MediaWiki 1.19+ you can do:
+	 *
+	 *   {{Special:RecentChanges | days=3}}
+	 *
+	 * The latter syntax allows the injection of any query parameter. So it is
+	 * not necessary  to add new options here, users should be encouraged to
+	 * use the latter syntax instead.
 	 *
 	 * @param string $par
 	 * @param FormOptions $opts

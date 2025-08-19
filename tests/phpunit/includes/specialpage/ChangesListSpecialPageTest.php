@@ -295,6 +295,43 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		);
 	}
 
+	public function testRcSubpageofSingle() {
+		$this->assertConditions(
+			[
+				'((rc_namespace = 0 AND rc_title LIKE \'Base/%\' ESCAPE \'`\'))'
+			],
+			[
+				'subpageof' => 'Base',
+			],
+			'rc conditions: subpageof=Base'
+		);
+	}
+
+	public function testRcSubpageofInvalid() {
+		$this->assertConditions(
+			[],
+			[
+				'subpageof' => '__',
+			],
+			'rc conditions with invalid subpageof'
+		);
+	}
+
+	public function testRcSubpageofMulti() {
+		$this->assertConditions(
+			[
+				'((rc_namespace = 0 AND ' .
+				'(rc_title LIKE \'A/%\' ESCAPE \'`\' OR rc_title LIKE \'B/%\' ESCAPE \'`\')))' .
+				' OR ((rc_namespace = 1 AND ' .
+				'(rc_title LIKE \'C/%\' ESCAPE \'`\' OR rc_title LIKE \'D/%\' ESCAPE \'`\')))'
+			],
+			[
+				'subpageof' => 'A|B|Talk:C|Talk:D',
+			],
+			'rc conditions: subpageof with multiple base pages'
+		);
+	}
+
 	public function testRcHidemyselfFilter() {
 		$user = $this->getTestUser()->getUser();
 		$this->assertConditions(
