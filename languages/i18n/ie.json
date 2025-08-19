@@ -1573,6 +1573,8 @@
 	"redirect-not-numeric": "Valore ne numeric",
 	"fileduplicatesearch-filename": "Nómine del file:",
 	"specialpages": "Special págines",
+	"specialpages-note-top": "Legende",
+	"specialpages-note-restricted": "* Normal special págines.\n* <span class=\"mw-specialpagerestricted\">Restrictiv special págines.</span>",
 	"specialpages-group-maintenance": "Raportes de mantenetion",
 	"specialpages-group-other": "Altri págines special",
 	"specialpages-group-login": "Aperter session / crear conto",

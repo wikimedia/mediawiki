@@ -3454,6 +3454,8 @@
 	"special-talkpage-target": "Konu sayfası",
 	"special-talkpage-submit": "Tartışma sayfasına git",
 	"specialpages": "Özel sayfalar",
+	"specialpages-note-top": "Gösterge",
+	"specialpages-note-restricted": "* Normal özel sayfalar.\n* <span class=\"mw-specialpagerestricted\">Kısıtlanmış özel sayfalar.</span>",
 	"specialpages-group-maintenance": "Bakım raporları",
 	"specialpages-group-other": "Diğer özel sayfalar",
 	"specialpages-group-login": "Hesap yönetimi",

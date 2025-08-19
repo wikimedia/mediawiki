@@ -2910,6 +2910,8 @@
 	"fileduplicatesearch-result-n": "Det er {{PLURAL:$2|éin kopi|$2 kopiar}} av fila «$1».",
 	"fileduplicatesearch-noresults": "Fann inga fil med namnet «$1».",
 	"specialpages": "Spesialsider",
+	"specialpages-note-top": "Tyding",
+	"specialpages-note-restricted": "* Vanlege spesialsider.\n* <span class=\"mw-specialpagerestricted\">Spesialsider med avgrensa tilgang.</span>",
 	"specialpages-group-maintenance": "Vedlikehaldsrapportar",
 	"specialpages-group-other": "Andre spesialsider",
 	"specialpages-group-login": "Logga inn / oppretta brukarkonto",

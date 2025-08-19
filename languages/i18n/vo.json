@@ -2860,6 +2860,7 @@
 	"fileduplicatesearch-result-1": "Ragiv: „$1“ no labon telükoti kuratik.",
 	"fileduplicatesearch-result-n": "Ragiv: „$1“ labon {{PLURAL:$2|telükoti kuratik bal|telükotis kuratik $2}}.",
 	"specialpages": "Pads patik",
+	"specialpages-note-restricted": "* Pads patik nomik.\n* <span class=\"mw-specialpagerestricted\">Pads patik pemiedüköl.</span>",
 	"specialpages-group-maintenance": "Nunods tefü kiped",
 	"specialpages-group-other": "Pads patik votik",
 	"specialpages-group-login": "Nunädön oki / jafön kali",

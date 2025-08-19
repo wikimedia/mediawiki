@@ -3557,6 +3557,8 @@
 	"special-talkpage-target": "主題ページ",
 	"special-talkpage-submit": "トークページへ移動",
 	"specialpages": "特別ページ",
+	"specialpages-note-top": "凡例",
+	"specialpages-note-restricted": "* 通常の特別ページ。\n* <span class=\"mw-specialpagerestricted\">制限された特別ページ。</span>",
 	"specialpages-group-maintenance": "メンテナンス報告",
 	"specialpages-group-other": "その他の特別ページ",
 	"specialpages-group-login": "アカウント管理",

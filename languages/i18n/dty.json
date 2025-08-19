@@ -1216,6 +1216,7 @@
 	"redirect-revision": "पन्ना संशोधन",
 	"redirect-file": "फाइलनाउँ",
 	"specialpages": "खास पन्नाअन",
+	"specialpages-note-restricted": "* साधारण खास पानाहरू।\n* <span class=\"mw-specialpagerestricted\">निषेधित खास पानाहरू।</span>",
 	"specialpages-group-changes": "अल्लैका परिवर्तन लगहरू",
 	"tags": "मान्य परिवर्तन ट्यागहरू",
 	"tag-filter": "[[Special:Tags|पुछड]] छानिन्या",

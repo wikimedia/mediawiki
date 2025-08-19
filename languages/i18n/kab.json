@@ -2443,6 +2443,8 @@
 	"fileduplicatesearch-result-n": "Afaylu « $1 » yesɛa {{PLURAL:$2|1 allus|$2 allusen}}.",
 	"fileduplicatesearch-noresults": "Ulac afaylu s isem « $1 ».",
 	"specialpages": "Isebtar uzzigen",
+	"specialpages-note-top": "Aglam",
+	"specialpages-note-restricted": "* Isebtar usligen imugna.\n* <span class=\"mw-specialpagerestricted\">Isebtar usligen ukrifen.</span>",
 	"specialpages-group-maintenance": "Iṛabulen n ibeddi",
 	"specialpages-group-other": "Isebtar usligen nniḍen",
 	"specialpages-group-login": "Asulu / assiggez",

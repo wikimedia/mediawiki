@@ -3279,6 +3279,8 @@
 	"special-talkpage-target": "Pagina de subjecto",
 	"special-talkpage-submit": "Ir al pagina de discussion",
 	"specialpages": "Paginas special",
+	"specialpages-note-top": "Legenda",
+	"specialpages-note-restricted": "* Paginas special normal.\n* <span class=\"mw-specialpagerestricted\">Paginas special restringite.</span>",
 	"specialpages-group-maintenance": "Reportos de mantenentia",
 	"specialpages-group-other": "Altere paginas special",
 	"specialpages-group-login": "Gestion de contos",

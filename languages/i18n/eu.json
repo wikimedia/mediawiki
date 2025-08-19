@@ -3069,6 +3069,8 @@
 	"fileduplicatesearch-result-n": "\"$1\" fitxategiak {{PLURAL:$2|kopia zehatz bakarra du|$2 kopia zehatz ditu}}.",
 	"fileduplicatesearch-noresults": "Ez da aurkitu \"$1\" izeneko fitxategirik.",
 	"specialpages": "Orri bereziak",
+	"specialpages-note-top": "Azalpenak",
+	"specialpages-note-restricted": "* Orrialde arrunt bereziak.\n* <span class=\"mw-specialpagerestricted\">Orrialde berezi mugatuak.</span>",
 	"specialpages-group-maintenance": "Mantentze-oharrak",
 	"specialpages-group-other": "Beste orri berezi batzuk",
 	"specialpages-group-login": "Hasi saioa / sortu kontua",

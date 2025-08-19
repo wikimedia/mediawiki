@@ -2332,6 +2332,7 @@
 	"fileduplicatesearch-result-n": " \"$1\" ھۆججەتنىڭ تامامەن ئوخشاش {{PLURAL:$2|1 تەكرار|$2 تەكرار}} نۇسخىسى بار.",
 	"fileduplicatesearch-noresults": "\"$1\" ئاتلىق ھۆججەت تېپىلمىدى.",
 	"specialpages": "ئالاھىدە بەت",
+	"specialpages-note-restricted": "* ئادەتتىكى ئالاھىدە بەت.\n* <strong class=\"mw-specialpagerestricted\">چەكلىمىلىك ئالاھىدە بەتلەر.</strong>\n* <span class=\"mw-specialpagecached\">غەملەنگەن ئالاھىدە بەتلەر(ۋاقتى ئۆتكەن بولۇشى مۇمكىن).</span>",
 	"specialpages-group-maintenance": "ئاسراش دوكلاتى",
 	"specialpages-group-other": "باشقا ئالاھىدە بەت",
 	"specialpages-group-login": "تىزىملىتىش / كىرىش",

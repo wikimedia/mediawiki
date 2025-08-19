@@ -1014,6 +1014,8 @@
 	"fileduplicatesearch-filename": "Nome de l fexeiro",
 	"fileduplicatesearch-submit": "Percurar",
 	"specialpages": "Páiginas speciales",
+	"specialpages-note-top": "Lhegenda",
+	"specialpages-note-restricted": "* Páiginas speciales normales.\n* <span class=\"mw-specialpagerestricted\">Páiginas speciales restritas.</span>",
 	"specialpages-group-maintenance": "Relatórios de manutençon",
 	"specialpages-group-other": "Outras páiginas speciales",
 	"specialpages-group-login": "Antrar / criar ua cuonta",

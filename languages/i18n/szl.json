@@ -1780,6 +1780,7 @@
 	"fileduplicatesearch-result-1": "Ńy ma duplikatu pliku „$1”.",
 	"fileduplicatesearch-result-n": "We {{GRAMMAR:MS.lp|{{SITENAME}}}} {{PLURAL:$2|je dodatkowo kopia|sům $2 dodatkowe kopje|je $2 dodatkowych kopii}} plika „$1”.",
 	"specialpages": "Ekstra zajty",
+	"specialpages-note-restricted": "* Ekstra zajty uogůlńy dostympne.\n* <strong class=\"mw-specialpagerestricted\">Ekstra zajty do kerych dostymp je uograńiczůny.</strong>",
 	"specialpages-group-maintenance": "Reporty kōnserwacyjne",
 	"specialpages-group-other": "Inksze ekstra strōny",
 	"specialpages-group-login": "Logowanie / registracyjŏ",

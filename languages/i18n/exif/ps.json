@@ -13,6 +13,7 @@
 	"exif-bitspersample": "د هرې برخې ټوټې",
 	"exif-photometricinterpretation": "پېکسل ترکيب",
 	"exif-orientation": "لورموندنه",
+	"exif-samplesperpixel": "د ټوټو شمېر",
 	"exif-planarconfiguration": "اومتوک ترتيب",
 	"exif-xresolution": "څنډيز ژورليد",
 	"exif-yresolution": "ولاړيز ژورليد",

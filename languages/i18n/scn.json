@@ -2573,6 +2573,8 @@
 	"fileduplicatesearch-result-n": "{{PLURAL:$2|C'è ggià nu duppiuni lu stissu|Ci sunnu ggià $2 duppiuni li stissi}} dû file \"$1\".",
 	"fileduplicatesearch-noresults": "Nuḍḍu file chiamatu \"$1\" fu attruvatu.",
 	"specialpages": "Pàggini spiciali",
+	"specialpages-note-top": "Liggenna",
+	"specialpages-note-restricted": "* Pàggini spiciali nurmali.\n* <span class=\"mw-specialpagerestricted\">Pàggini spiciali risirvati.</strong>",
 	"specialpages-group-maintenance": "Resucunti di manutinzioni",
 	"specialpages-group-other": "Àutri pàggini spiciali",
 	"specialpages-group-login": "Trasuta / criazzioni di cunti",

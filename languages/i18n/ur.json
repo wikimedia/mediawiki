@@ -2992,6 +2992,8 @@
 	"fileduplicatesearch-result-n": "فائل «$1» کی {{PLURAL:$2|1 نقل ہے|$2 نقلیں ہیں}}۔",
 	"fileduplicatesearch-noresults": "«$1» کے نام سے کوئی فائل نہیں مل سکی۔",
 	"specialpages": "خصوصی صفحات",
+	"specialpages-note-top": "وضاحت",
+	"specialpages-note-restricted": "* عام خصوصی صفحات\n* <span class=\"mw-specialpagerestricted\">مقید خصوصی صفحات</span>",
 	"specialpages-group-maintenance": "نگہداشت کی رپورٹیں",
 	"specialpages-group-other": "دیگر خصوصی صفحات",
 	"specialpages-group-login": "کھاتے کا انتظام",

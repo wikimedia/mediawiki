@@ -3175,6 +3175,8 @@
 	"fileduplicatesearch-result-n": "Файлть \"$1\" {{PLURAL:$2|1 фкя лаца  кафонзамац|$2 фкя лаца кафонзаманза}}.",
 	"fileduplicatesearch-noresults": "«$1» лем мархта файлась апак мук.",
 	"specialpages": "Башка лопат",
+	"specialpages-note-top": "Легенда",
+	"specialpages-note-restricted": "* Эрьшинь покодемань лопат.\n* <span class=\"mw-specialpagerestricted\">Аф педа песм покодеманди макс лопат.</span>",
 	"specialpages-group-maintenance": "Техникань ширде ванондови отчётт",
 	"specialpages-group-other": "Башка тевонь лия лопатне",
 	"specialpages-group-login": "Учётонь сёрматфксонь вятяма",

@@ -262,7 +262,9 @@
 			"Luigi Nakano",
 			"ProtoplasmaKid",
 			"JorgeElias2302",
-			"Aegis1009"
+			"Aegis1009",
+			"Laranxa",
+			"Sophocrat"
 		]
 	},
 	"sunday": "domingo",
@@ -406,7 +408,7 @@
 	"viewtalkpage": "Ver discusión",
 	"otherlanguages": "En otros idiomas",
 	"redirectedfrom": "(Redirigido desde «$1»)",
-	"redirectpagesub": "Redirige la página a",
+	"redirectpagesub": "Redirige a la página",
 	"redirectto": "Redirige a:",
 	"lastmodifiedat": "Esta página se editó por última vez el $1 a las $2.",
 	"viewcount": "Esta página ha recibido {{PLURAL:$1|una visita|$1 visitas}}.",
@@ -3540,6 +3542,8 @@
 	"special-talkpage-target": "Página de asunto",
 	"special-talkpage-submit": "Ir a la página de discusión",
 	"specialpages": "Páginas especiales",
+	"specialpages-note-top": "Leyenda",
+	"specialpages-note-restricted": "* Páginas especiales ordinarias.\n* <span class=\"mw-specialpagerestricted\">Páginas especiales restringidas.</span>",
 	"specialpages-group-maintenance": "Informes de mantenimiento",
 	"specialpages-group-other": "Otras páginas especiales",
 	"specialpages-group-login": "Administración de la cuenta",

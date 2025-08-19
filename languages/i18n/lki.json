@@ -2456,6 +2456,8 @@
 	"fileduplicatesearch-result-n": "پروندهٔ «$1» دارای {{PLURAL:$2|یک مورد تکراری|$2 مورد تکراری}} است.",
 	"fileduplicatesearch-noresults": "پرونده‌ای با نام «$1» أ دی نؤی /پئا نؤی.",
 	"specialpages": "وەڵگەل(پەڕەل)ویژە",
+	"specialpages-note-top": "شرح علائم",
+	"specialpages-note-restricted": "* صفحه‌های ویژهٔ عادی.\n* <span class=\"mw-specialpagerestricted\">صفحه‌های ویژهٔ محدودشده.</span>",
 	"specialpages-group-maintenance": "گزارش‌های نگهداری",
 	"specialpages-group-other": "سایر وةڵگةل ویژه",
 	"specialpages-group-login": " إ نؤم هةتن سیستم/ حساوو کاربةری سازین",

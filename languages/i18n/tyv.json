@@ -3153,6 +3153,8 @@
 	"fileduplicatesearch-result-n": "«$1» деп файл $2 {{PLURAL:$2|дөмей дубликаттыг|дөмей дубликаттарлыг}}.",
 	"fileduplicatesearch-noresults": "\"$1\" аттыг файл тывылбаан.",
 	"specialpages": "Тускай арыннар",
+	"specialpages-note-top": "Легенда",
+	"specialpages-note-restricted": "* Анаа дузалал арыннар.\n* <span class=\"mw-specialpagerestricted\">Кирери кызыгаарлаашкынныг дузалал арыннар.</span>",
 	"specialpages-group-maintenance": "Техниктиг хандырылга отчёду",
 	"specialpages-group-other": "Өске тускай арыннар",
 	"specialpages-group-login": "Аккаунт башкарары",

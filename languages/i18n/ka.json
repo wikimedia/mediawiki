@@ -3003,6 +3003,8 @@
 	"fileduplicatesearch-result-n": "ფაილს „$1“ გააჩნია {{PLURAL:$2|1 იდენტური დუბლიკატი|$2 იდენტური დუბლიკატი}}.",
 	"fileduplicatesearch-noresults": "ფაილი სახელით \"$1\" ვერ მოიძებნა.",
 	"specialpages": "სპეციალური გვერდები",
+	"specialpages-note-top": "ლეგენდა",
+	"specialpages-note-restricted": "* ჩვეულებრივი სპეციალური გვერდები.\n* <span class=\"mw-specialpagerestricted\">შეზღუდული სპეციალური გვერდები.</span>",
 	"specialpages-group-maintenance": "ტექნიკური მომსახურების ანგარიშები",
 	"specialpages-group-other": "სხვა სპეციალური გვერდები",
 	"specialpages-group-login": "ანგარიშის მართვა",

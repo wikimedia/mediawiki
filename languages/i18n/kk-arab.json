@@ -1358,6 +1358,7 @@
 	"fileduplicatesearch-result-1": "«$1» فايلىنا تەڭ تەلنۇسقاسى جوق.",
 	"fileduplicatesearch-result-n": "«$1» فايلىنا تەڭ $2 تەلنۇسقاسى بار.",
 	"specialpages": "ارنايى بەتتەر",
+	"specialpages-note-restricted": "* كادىمگى ارنايى بەتتەر.\n* <strong class=\"mw-specialpagerestricted\">شەكتەلگەن ارنايى بەتتەر.</strong>",
 	"specialpages-group-maintenance": "باپتاۋ باياناتتارى",
 	"specialpages-group-other": "تاعى باسقا ارنايى بەتتەر",
 	"specialpages-group-login": "كىرۋ / تىركەلۋ",

@@ -2924,6 +2924,8 @@
 	"fileduplicatesearch-filename": "Nomo dil arkivo:",
 	"fileduplicatesearch-submit": "Serchar",
 	"specialpages": "Specala pagini",
+	"specialpages-note-top": "Surskriburo",
+	"specialpages-note-restricted": "* Normala pagini specala.\n* <span class=\"mw-specialpagerestricted\">Pagini specala restriktita.</span>",
 	"specialpages-group-maintenance": "Raporti pri manteno",
 	"specialpages-group-other": "Altra specala pagini",
 	"specialpages-group-login": "Enirar / krear konto",

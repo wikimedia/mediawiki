@@ -3391,6 +3391,8 @@
 	"special-talkpage-target": "Stránka tématu",
 	"special-talkpage-submit": "Přejít na diskusní stránku",
 	"specialpages": "Speciální stránky",
+	"specialpages-note-top": "Legenda",
+	"specialpages-note-restricted": "* Normální speciální stránky\n* <span class=\"mw-specialpagerestricted\">Speciální stránky s&nbsp;vyhrazeným přístupem</span>",
 	"specialpages-group-maintenance": "Údržba",
 	"specialpages-group-other": "Ostatní",
 	"specialpages-group-login": "Správa účtu",

@@ -1115,6 +1115,7 @@
 	"redirect-revision": "Էջի տարբերակներ",
 	"redirect-file": "Նիշքի անունը",
 	"specialpages": "Յատուկ էջեր",
+	"specialpages-note-restricted": "* Հասարակ հատուկ էջեր։\n* <span class=\"mw-specialpagerestricted\">Սահմանափակուած հատուկ էջեր։</span>",
 	"specialpages-group-maintenance": "Շարունակական տեղեկագրեր",
 	"tag-filter": "[[Special:Tags|Պիտակներու]] զտիչ՝",
 	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Պիտակ}}]]: $2",

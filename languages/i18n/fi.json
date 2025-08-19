@@ -3386,6 +3386,8 @@
 	"special-talkpage-target": "Aihesivu",
 	"special-talkpage-submit": "Siirry keskustelusivulle",
 	"specialpages": "Toimintosivut",
+	"specialpages-note-top": "Merkkien selitys",
+	"specialpages-note-restricted": "* Tavalliset toimintosivut.\n* <span class=\"mw-specialpagerestricted\">Rajoitetut toimintosivut.</span>",
 	"specialpages-group-maintenance": "Sivujen huoltaminen",
 	"specialpages-group-other": "Muut",
 	"specialpages-group-login": "Tunnuksen hallinta",

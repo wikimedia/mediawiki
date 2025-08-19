@@ -2728,6 +2728,8 @@
 	"fileduplicatesearch-result-n": "\"$1\" ला {{PLURAL:$2|१ जुळी संचिका आहे|$2 जुळ्या संचिका आहेत}}.",
 	"fileduplicatesearch-noresults": "\"$1\" या नावाची संचिका सापडली नाही.",
 	"specialpages": "विशेष पृष्ठे",
+	"specialpages-note-top": "विवरण",
+	"specialpages-note-restricted": "* सामान्य विशेष पाने.\n* <span class=\"mw-specialpagerestricted\">प्रतिबंधित विशेष पाने.</span>",
 	"specialpages-group-maintenance": "व्यवस्थापन अहवाल",
 	"specialpages-group-other": "इतर विशेष पृष्ठे",
 	"specialpages-group-login": "प्रवेश / नवीन सदस्य नोंदणी",

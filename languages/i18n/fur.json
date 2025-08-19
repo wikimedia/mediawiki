@@ -1159,6 +1159,7 @@
 	"fileduplicatesearch-filename": "Non dal file:",
 	"fileduplicatesearch-submit": "Cîr",
 	"specialpages": "Pagjinis speciâls",
+	"specialpages-note-restricted": "* Pagjinis speciâls no riservadis.\n* <strong class=\"mw-specialpagerestricted\">Pagjinis speciâls a ciertis categoriis di utents.</strong>",
 	"specialpages-group-maintenance": "Rapuarts di manutenzion",
 	"specialpages-group-other": "Altris pagjinis speciâls",
 	"specialpages-group-login": "Jentrade / regjistrazion",

@@ -2559,6 +2559,8 @@
 	"fileduplicatesearch-result-n": "Die lêer \"$1\" het {{PLURAL:$2|een identiese duplikaat|$2 identiese duplikate}}.",
 	"fileduplicatesearch-noresults": "Daar is nie 'n lêer met die naam \"$1\" nie.",
 	"specialpages": "Spesiale bladsye",
+	"specialpages-note-top": "Sleutel",
+	"specialpages-note-restricted": "* Normale spesiale bladsye.\n* <span class=\"mw-specialpagerestricted\">Spesiale bladsye met beperkte toegang.</span>\n* <span class=\"mw-specialpagecached\">Spesiale bladsye met gegewens uit die kas (kan verouderd wees).</span>",
 	"specialpages-group-maintenance": "Onderhoud verslae",
 	"specialpages-group-other": "Ander spesiale bladsye",
 	"specialpages-group-login": "Meld aan / registreer",

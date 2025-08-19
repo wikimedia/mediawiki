@@ -3542,6 +3542,8 @@
 	"special-talkpage-target": "Judul halaman",
 	"special-talkpage-submit": "Pergi ke halaman pembicaraan",
 	"specialpages": "Halaman istimewa",
+	"specialpages-note-top": "Keterangan",
+	"specialpages-note-restricted": "* Halaman istimewa biasa.\n* <span class=\"mw-specialpagerestricted\">Halaman istimewa terbatas.</span>",
 	"specialpages-group-maintenance": "Laporan pemeliharaan",
 	"specialpages-group-other": "Lain-lain",
 	"specialpages-group-login": "Kelola akun",

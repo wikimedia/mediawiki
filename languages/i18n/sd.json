@@ -2133,6 +2133,8 @@
 	"fileduplicatesearch-filename": "فائيل‌نانءُ:",
 	"fileduplicatesearch-submit": "ڳوليو",
 	"specialpages": "خاص صفحا",
+	"specialpages-note-top": "ڪُنجي",
+	"specialpages-note-restricted": "* عمومي خاص صفحا.\n* <span class=\"mw-specialpagerestricted\">روڪ وڌل خاص صفحا.</span>",
 	"specialpages-group-maintenance": "سنڀال رپورٽون",
 	"specialpages-group-other": "ٻيا خاص صفحا",
 	"specialpages-group-login": "کاتي جي سنڀال",

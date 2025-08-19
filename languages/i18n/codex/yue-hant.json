@@ -2,12 +2,13 @@
 	"@metadata": {
 		"authors": [
 			"JeffreyKim",
-			"Ktchankt"
+			"Ktchankt",
+			"Yueman"
 		]
 	},
 	"cdx-chip-input-chip-added": "加咗晶片$1。",
-	"cdx-chip-input-chip-removed": "晶片 $1 已經移除咗。",
-	"cdx-input-chip-aria-description": "撳 Enter 嚟編輯或者撳 Delete 嚟移除。",
+	"cdx-chip-input-chip-removed": "晶片 $1 已經剷走咗。",
+	"cdx-input-chip-aria-description": "撳 Enter 嚟編輯，或者撳 Delete 嚟剷走。",
 	"cdx-dialog-close-button-label": "閂",
 	"cdx-label-optional-flag": "（可選嘅）",
 	"cdx-message-dismiss-button-label": "閂",
@@ -20,12 +21,12 @@
 	"cdx-table-pager-button-last-page": "最後一頁",
 	"cdx-table-pager-button-next-page": "下一版",
 	"cdx-table-pager-button-prev-page": "上一版",
-	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 row|$1 行}}",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1行}}",
 	"cdx-table-pager-items-per-page-default": "每個頁面嘅結果",
-	"cdx-table-pagination-status-message-determinate-long": "顯示結果 $1 – $2，其中 $3",
+	"cdx-table-pagination-status-message-determinate-long": "顯示結果 $1 到 $2，總共 $3 個",
 	"cdx-table-pagination-status-message-determinate-short": "$1 至 $2 嘅 $3",
 	"cdx-table-pagination-status-message-indeterminate-long": "顯示緊好多結果入面嘅 $1 – $2",
 	"cdx-table-pagination-status-message-indeterminate-short": "好多入面嘅 $1 – $2",
-	"cdx-table-pagination-status-message-indeterminate-final": "顯示緊最後一個{{PLURAL:$1|$1 result|$1 結果}}",
+	"cdx-table-pagination-status-message-indeterminate-final": "顯示緊最後{{PLURAL:$1|一個結果|$1個結果}}",
 	"cdx-table-pagination-status-message-pending": "載入緊結果..."
 }

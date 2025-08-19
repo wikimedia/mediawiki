@@ -3411,6 +3411,8 @@
 	"special-talkpage-target": "Betroffene Seite",
 	"special-talkpage-submit": "Zur Diskussionsseite gehen",
 	"specialpages": "Spezialseiten",
+	"specialpages-note-top": "Legende",
+	"specialpages-note-restricted": "* Reguläre Spezialseiten\n* <span class=\"mw-specialpagerestricted\">Zugriffsbeschränkte Spezialseiten</span>",
 	"specialpages-group-maintenance": "Wartungslisten",
 	"specialpages-group-other": "Andere Spezialseiten",
 	"specialpages-group-login": "Kontoverwaltung",

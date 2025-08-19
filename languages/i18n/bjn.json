@@ -2341,6 +2341,7 @@
 	"fileduplicatesearch-noresults": "Kadada barakas bangaran ''$1'' taugai.",
 	"special-talkpage-target": "Judul laman",
 	"specialpages": "Laman istimiwa",
+	"specialpages-note-restricted": "* Laman istimiwa nurmal.* <span class=\"mw-specialpagerestricted\">Laman khusus tawatas.</span>",
 	"specialpages-group-maintenance": "Lapuran pamaliharaan",
 	"specialpages-group-other": "Laman istimiwa lainnya",
 	"specialpages-group-login": "Babuat log / mandaptar",

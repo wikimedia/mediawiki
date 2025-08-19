@@ -2839,6 +2839,8 @@
 	"fileduplicatesearch-result-n": "Lo fichièr « $1 » a {{PLURAL:$2|1 doble identic|$2 dobles identics}}.",
 	"fileduplicatesearch-noresults": "Cap de fichièr nomenat « $1 » es pas estat trobat.",
 	"specialpages": "Paginas especialas",
+	"specialpages-note-top": "Legenda",
+	"specialpages-note-restricted": "* Paginas especialas normalas.\n* <span class=\"mw-specialpagerestricted\">Paginas especialas restrentas.</span>",
 	"specialpages-group-maintenance": "Rapòrts de mantenença",
 	"specialpages-group-other": "Autras paginas especialas",
 	"specialpages-group-login": "Gestion dau còmpte",

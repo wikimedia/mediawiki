@@ -3478,6 +3478,8 @@
 	"special-talkpage-target": "Zadevna stran",
 	"special-talkpage-submit": "Pojdi na pogovorno stran",
 	"specialpages": "Posebne strani",
+	"specialpages-note-top": "Legenda",
+	"specialpages-note-restricted": "* Navadne posebne strani.\n* <span class=\"mw-specialpagerestricted\">Omejene posebne strani.</span>",
 	"specialpages-group-maintenance": "Vzdrževalna poročila",
 	"specialpages-group-other": "Druge posebne strani",
 	"specialpages-group-login": "Upravljanje računov",

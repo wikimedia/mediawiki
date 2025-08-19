@@ -3405,6 +3405,8 @@
 	"special-talkpage-target": "বিষয়য়ের পাতা",
 	"special-talkpage-submit": "আলাপ পাতায় যান",
 	"specialpages": "বিশেষ পাতাসমূহ",
+	"specialpages-note-top": "ব্যাখ্যা",
+	"specialpages-note-restricted": "* সাধারণ বিশেষ পাতাসমূহ।\n* <span class=\"mw-specialpagerestricted\">সীমাবদ্ধ বিশেষ পাতাসমূহ।</span>",
 	"specialpages-group-maintenance": "রক্ষণাবেক্ষণের কার্যবিবরণীসমূহ",
 	"specialpages-group-other": "অন্যান্য বিশেষ পাতাসমূহ",
 	"specialpages-group-login": "অ্যাকাউন্ট ব্যবস্থাপনা",

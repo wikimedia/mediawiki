@@ -3262,6 +3262,8 @@
 	"special-talkpage-target": "Predmetna stranica",
 	"special-talkpage-submit": "Idi na stranicu za razgovor",
 	"specialpages": "Posebne stranice",
+	"specialpages-note-top": "Legenda",
+	"specialpages-note-restricted": "* Normalne posebne stranice.\n* <span class=\"mw-specialpagerestricted\">Ograničene posebne stranice.</span>",
 	"specialpages-group-maintenance": "Izvještaji o održavanju",
 	"specialpages-group-other": "Ostale posebne stranice",
 	"specialpages-group-login": "Upravljanje računom",

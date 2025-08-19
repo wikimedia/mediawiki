@@ -1800,6 +1800,7 @@
 	"fileduplicatesearch-result-n": "Ju Doatäi „$1“ häd {{PLURAL:$2|1 identisk Duplikoat|$2 identiske Duplikoate}}.",
 	"fileduplicatesearch-noresults": "Der wuud neen Doatäi mäd Noome \"$1\" fuunen.",
 	"specialpages": "Spezioalsieden",
+	"specialpages-note-restricted": "* Reguläre Spezioalsieden\n* <span class=\"mw-specialpagerestricted\">Tougriepsbeskränkede Spezioalsieden</span>\n* <span class=\"mw-specialpagecached\">Cachegenerierde Spezioalsieden</span>",
 	"specialpages-group-maintenance": "Fersuurgengsliesten",
 	"specialpages-group-other": "Uur Spezioalsieden",
 	"specialpages-group-login": "Anmäldje",

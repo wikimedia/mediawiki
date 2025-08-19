@@ -61,7 +61,8 @@
 			"JaimeDes",
 			"JorgeElias2302",
 			"Anita",
-			"Aegis1009"
+			"Aegis1009",
+			"Sophocrat"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Documentación]]\n* [[mw:Special:MyLanguage/API:Etiquette|Pautas de etiqueta y uso]]\n* [[mw:Special:MyLanguage/API:FAQ|Preguntas frecuentes]]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api.lists.wikimedia.org/ Lista de correo]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/ Anuncios de API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Errores y solicitudes]\n</div>\n<strong>Status:</strong> La API de MediaWiki es una interfaz madura y estable que recibe soporte y mejoras constantes. Aunque intentamos evitarlo, ocasionalmente podemos necesitar realizar cambios importantes; suscríbete a la [https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ lista de correo mediawiki-api-announce] para recibir actualizaciones.\n\n<strong>Solicitudes erróneas:</strong> Cuando se envían solicitudes erróneas a la API, se envía un encabezado HTTP con la clave \"MediaWiki-API-Error\" y, a continuación, tanto el valor del encabezado como el del código de error devuelto se establecen con el mismo valor. Para más información, consulte [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Errores y advertencias]].\n\n<p class=\"mw-apisandbox-link\"><strong>Pruebas:</strong> Para facilitar la prueba de solicitudes de API, consulte [[Special:ApiSandbox]].</p>",
@@ -1320,6 +1321,8 @@
 	"apihelp-query+transcludedin-param-namespace": "Incluir solo las páginas en estos espacios de nombres.",
 	"apihelp-query+transcludedin-param-limit": "Cuántos se devolverán.",
 	"apihelp-query+transcludedin-param-show": "Muestra solo los elementos que cumplen estos criterios:\n;redirect: Muestra solamente redirecciones.\n;!redirect: Muestra solamente páginas que no son redirecciones.",
+	"apihelp-query+transcludedin-paramvalue-show-redirect": "Mostrar sólo redirecciones.",
+	"apihelp-query+transcludedin-paramvalue-show-!redirect": "Mostrar sólo no redirecciones.",
 	"apihelp-query+transcludedin-example-simple": "Obtener una lista de páginas transcluyendo <kbd>Main Page</kbd>.",
 	"apihelp-query+transcludedin-example-generator": "Obtener información sobre las páginas que transcluyen <kbd>Main Page</kbd>.",
 	"apihelp-query+usercontribs-summary": "Obtener todas las ediciones realizadas por un usuario.",

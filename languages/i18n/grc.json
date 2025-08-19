@@ -1643,6 +1643,7 @@
 	"fileduplicatesearch-result-1": "Τὸ ἀρχεῖον \"$1\" οὐκ ἔχει ταυτοτικὴν διπλοτυπίαν.",
 	"fileduplicatesearch-result-n": "Τὸ ἀρχεῖον \"$1\" ἔχει {{PLURAL:$2|1 ταυτοτικὴν διπλοτυπίαν|$2 ταυτοτικὰς διπλοτυπίας}}.",
 	"specialpages": "Εἰδικαὶ δέλτοι",
+	"specialpages-note-restricted": "* Κανονικαὶ εἰδικαὶ δέλτοι.\n* <strong class=\"mw-specialpagerestricted\">Περιωρισμέναι εἰδικαὶ δἐλτοι.</strong>\n* <span class=\"mw-specialpagecached\">Μόναι δέλτοι ἀποτεταμιευμέναι.</span>",
 	"specialpages-group-maintenance": "Ἀναφοραὶ συντηρήσεως",
 	"specialpages-group-other": "Ἕτεραι εἰδικαὶ δέλτοι",
 	"specialpages-group-login": "Συνδεῖσθαι/λογισμὸν ποιεῖν",

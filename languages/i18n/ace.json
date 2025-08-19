@@ -1181,6 +1181,7 @@
 	"redirect-file": "Nan beureukaih",
 	"fileduplicatesearch-submit": "Mita",
 	"specialpages": "Ôn kusuih",
+	"specialpages-note-restricted": "* Laman kusuih biasa.\n* <span class=\"mw-specialpagerestricted\">Laman kusuih geutheun.</span>",
 	"specialpages-group-maintenance": "Lapuran keumiet",
 	"specialpages-group-other": "La'én-la'én",
 	"specialpages-group-login": "Tamöng / dapeuta",

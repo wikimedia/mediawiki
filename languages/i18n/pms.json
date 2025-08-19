@@ -3074,6 +3074,8 @@
 	"fileduplicatesearch-result-n": "A-i {{PLURAL:$2|é 'n dobion midem|son $2 dobion midem}} ëd l'archivi «$1».",
 	"fileduplicatesearch-noresults": "Gnun archivi ciamà «$1» a l'é stàit trovà.",
 	"specialpages": "Pàgine Speciaj",
+	"specialpages-note-top": "Legenda",
+	"specialpages-note-restricted": "* Pàgine speciaj normaj.\n* <span class=\"mw-specialpagerestricted\">Pàgine speciaj riservà.</span>",
 	"specialpages-group-maintenance": "Rapòrt ëd manutension",
 	"specialpages-group-other": "Àutre pàgine speciaj",
 	"specialpages-group-login": "Intré ant ël sistema / creé un cont",

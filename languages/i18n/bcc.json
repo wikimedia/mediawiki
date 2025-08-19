@@ -2118,6 +2118,7 @@
 	"fileduplicatesearch-result-1": " \"$1\" فایل هچ مشحصین دوبلی نیست.",
 	"fileduplicatesearch-result-n": "فایل \"$1\" has {{PLURAL:$2|1 identical duplication|$2 مشخصین کپی بوتن}}.",
 	"specialpages": "وتیگی تاکان",
+	"specialpages-note-restricted": "* نرمال صفحات حاص.\n*  <strong class=\"mw-specialpagerestricted\">محدودین صفحات حاص.</strong>",
 	"specialpages-group-maintenance": "گزارشات دارگ",
 	"specialpages-group-other": "دگر حاصین صفحات",
 	"specialpages-group-login": "ورود/ثبت نام",

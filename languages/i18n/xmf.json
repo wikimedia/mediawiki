@@ -3369,6 +3369,8 @@
 	"special-talkpage-target": "თარი ხასჷლეფი",
 	"special-talkpage-submit": "სხუნუაშ ხასჷლაშა გინულა",
 	"specialpages": "გჷშაკერძაფილი ხასჷლეფი",
+	"specialpages-note-top": "ლეგენდა",
+	"specialpages-note-restricted": "* რჩქვანელობური სპეცხასჷლეფი.\n* <span class=\"mw-specialpagerestricted\">სპეცხასჷლეფი გოხურგელი ჭირინაფათ.</span>",
 	"specialpages-group-maintenance": "ტექნიკური ნინალაშ ანგარიშეფი",
 	"specialpages-group-other": "შხვა სპეციალური ხასჷლეფი",
 	"specialpages-group-login": "ანგარიშიშ მართუა",

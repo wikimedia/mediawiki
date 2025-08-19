@@ -1863,6 +1863,7 @@
 	"fileduplicatesearch-result-1": "To de Datei „$1“ gifft dat keen Datei, de jüst gliek is.",
 	"fileduplicatesearch-result-n": "To de Datei „$1“ gifft dat {{PLURAL:$2|ene Datei, de jüst gliek is|$2 Datein, de jüst gliek sünd}}.",
 	"specialpages": "Sünnerliche Sieden",
+	"specialpages-note-restricted": "* Normale Spezialsieden\n* <strong class=\"mw-specialpagerestricted\">Spezialsieden för Brukers mit mehr Rechten</strong>",
 	"specialpages-group-maintenance": "Pleeglisten",
 	"specialpages-group-other": "Annere Spezialsieden",
 	"specialpages-group-login": "Anmellen",

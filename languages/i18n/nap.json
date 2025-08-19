@@ -2784,6 +2784,8 @@
 	"fileduplicatesearch-result-n": "'O file \"$1\" tène {{PLURAL:$2|1 dupricazione|$2 dupricaziune}} eguale eguale.",
 	"fileduplicatesearch-noresults": "Nisciuno file chiamato \"$1\" è stato accucchiato.",
 	"specialpages": "Paggene speciale",
+	"specialpages-note-top": "Liggenda",
+	"specialpages-note-restricted": "* Paggene speciale normale.\n* <span class=\"mw-specialpagerestricted\">Paggene speciale ch' 'e restriziune.</span>",
 	"specialpages-group-maintenance": "Report 'e manutenzione",
 	"specialpages-group-other": "Ati paggene speciale",
 	"specialpages-group-login": "Trasite o criate n'acciesso novo",

@@ -2399,6 +2399,8 @@
 	"fileduplicatesearch-result-n": "\"$1\" tukoo goo nda {{PLURAL:$2|1 fillayan himakašine $2}}.",
 	"fileduplicatesearch-noresults": "Tuku kul ši bara nda \"$1\" maa.  \\",
 	"specialpages": "Moo cerecerantey",
+	"specialpages-note-top": "Šilbaymaana",
+	"specialpages-note-restricted": "* Hankul cerecere moɲey.\n* <span class=\"mw-specialpagerestricted\">Fondo-kankamante cerecere moɲey.</span>",
 	"specialpages-group-maintenance": "Alhaadimay bayrandey",
 	"specialpages-group-other": "Cerecere moo taney",
 	"specialpages-group-login": "Huru / kontu tee",

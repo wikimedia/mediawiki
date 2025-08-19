@@ -153,7 +153,8 @@
 			"VittGam",
 			"Gmelfi",
 			"Emabarto01",
-			"JorgeElias2302"
+			"JorgeElias2302",
+			"9Aaron3"
 		]
 	},
 	"sunday": "domenica",
@@ -1160,6 +1161,7 @@
 	"linterror-misc-tidy-replacement-issues": "Vari errori di markup",
 	"linterror-misnested-tag": "Tag annidato male",
 	"linterror-missing-end-tag": "Tag di chiusura mancante",
+	"linterror-missing-end-tag-in-heading": "Tag di chiusura mancante nell'intestazione",
 	"linterror-missing-image-alt-text": "Immagine senza testo alternativo",
 	"linterror-multi-colon-escape": "Escape di due punti multipli",
 	"linterror-multiline-html-table-in-list": "Tabella HTML5 multilinea all'interno di una lista",
@@ -3407,6 +3409,8 @@
 	"special-talkpage-target": "Oggetto della pagina",
 	"special-talkpage-submit": "Vai alla pagina di discussione",
 	"specialpages": "Pagine speciali",
+	"specialpages-note-top": "Legenda",
+	"specialpages-note-restricted": "* Pagine speciali non riservate.\n* <span class=\"mw-specialpagerestricted\">Pagine speciali riservate ad alcune categorie di utenti.</span>",
 	"specialpages-group-maintenance": "Resoconti di manutenzione",
 	"specialpages-group-other": "Altre pagine speciali",
 	"specialpages-group-login": "Gestione utenze",

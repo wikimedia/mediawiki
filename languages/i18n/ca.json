@@ -3343,6 +3343,8 @@
 	"special-talkpage-target": "Pàgines del subjecte",
 	"special-talkpage-submit": "Vés a la pàgina de discussió",
 	"specialpages": "Pàgines especials",
+	"specialpages-note-top": "Llegenda",
+	"specialpages-note-restricted": "* Pàgines especials normals.\n* <span class=\"mw-specialpagerestricted\">Pàgines especials restringides.</span>",
 	"specialpages-group-maintenance": "Informes de manteniment",
 	"specialpages-group-other": "Altres pàgines especials",
 	"specialpages-group-login": "Gestió del compte",

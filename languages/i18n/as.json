@@ -2508,6 +2508,8 @@
 	"fileduplicatesearch-result-n": "\"$1\" ফাইলৰ {{PLURAL:$2|এটা প্ৰতিলিপি|$2টা প্ৰতিলিপি}} আছে ।",
 	"fileduplicatesearch-noresults": "কোনো \"$1\" নামৰ নথিৰ সন্ধান পোৱা নগ’ল ।",
 	"specialpages": "বিশেষ পৃষ্ঠাসমূহ",
+	"specialpages-note-top": "ব্যাখ্যা",
+	"specialpages-note-restricted": "* সাধাৰণ বিশেষ পৃষ্ঠাসমূহ।\n* <span class=\"mw-specialpagerestricted\">সীমাবদ্ধ বিশেষ পৃষ্ঠাসমূহ।</span>",
 	"specialpages-group-maintenance": "তত্বাৱধানৰ কাৰ্যবিৱৰণীসমূহ",
 	"specialpages-group-other": "অন্যান্য বিশেষ পৃষ্ঠাসমূহ",
 	"specialpages-group-login": "প্ৰৱেশ/একাউণ্ট সৃষ্টি কৰক",

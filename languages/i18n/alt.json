@@ -3310,6 +3310,8 @@
 	"special-talkpage": "Шӱӱжетен бӱк",
 	"special-talkpage-submit": "Шӱӱжӱ бӱкке барар",
 	"specialpages": "Аҥылу бӱктер",
+	"specialpages-note-top": "Легенда",
+	"specialpages-note-restricted": "*Тегин аҥылу бӱктер.\n*<span class=\"mw-specialpagerestricted\">Кирелеткен аҥылу бӱктер.</span>",
 	"specialpages-group-maintenance": "Техникалык иштер керегинде јетирӱлер",
 	"specialpages-group-other": "Ӧскӧ аҥылу бӱктер",
 	"specialpages-group-login": "Аккаунтты башкарары",

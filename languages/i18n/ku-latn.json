@@ -1881,6 +1881,7 @@
 	"fileduplicatesearch-filename": "Navê dosyeyê:",
 	"fileduplicatesearch-submit": "Lê bigere",
 	"specialpages": "Rûpelên taybet",
+	"specialpages-note-restricted": "* Rûpelên taybet yên normal.\n* <span class=\"mw-specialpagerestricted\">Rûpelên taybet yên sinorkirî.</span>",
 	"specialpages-group-maintenance": "Raporên çavdêriyê",
 	"specialpages-group-other": "Rûpelên taybetî yên din",
 	"specialpages-group-login": "Îdarekirina hesabê",
