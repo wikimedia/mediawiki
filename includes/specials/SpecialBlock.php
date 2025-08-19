@@ -454,24 +454,22 @@ class SpecialBlock extends FormSpecialPage {
 			'section' => 'actions',
 		];
 
-		if ( $conf->get( MainConfigNames::EnablePartialActionBlocks ) ) {
-			$blockActions = $this->blockActionInfo->getAllBlockActions();
-			$optionMessages = array_combine(
-				array_map( static function ( $action ) {
-					return "ipb-action-$action";
-				}, array_keys( $blockActions ) ),
-				$blockActions
-			);
+		$blockActions = $this->blockActionInfo->getAllBlockActions();
+		$optionMessages = array_combine(
+			array_map( static function ( $action ) {
+				return "ipb-action-$action";
+			}, array_keys( $blockActions ) ),
+			$blockActions
+		);
 
-			$this->codexFormData[ 'partialBlockActionOptions'] = $optionMessages;
+		$this->codexFormData[ 'partialBlockActionOptions'] = $optionMessages;
 
-			$a['ActionRestrictions'] = [
-				'type' => 'multiselect',
-				'cssclass' => 'mw-htmlform-checkradio-indent mw-block-partial-restriction mw-block-action-restriction',
-				'options-messages' => $optionMessages,
-				'section' => 'actions',
-			];
-		}
+		$a['ActionRestrictions'] = [
+			'type' => 'multiselect',
+			'cssclass' => 'mw-htmlform-checkradio-indent mw-block-partial-restriction mw-block-action-restriction',
+			'options-messages' => $optionMessages,
+			'section' => 'actions',
+		];
 
 		$a['CreateAccount'] = [
 			'type' => 'check',
@@ -761,15 +759,13 @@ class SpecialBlock extends FormSpecialPage {
 				$fields['NamespaceRestrictions']['default'] =
 					$this->codexFormData[ 'blockNamespaceRestrictions' ] = implode( "\n", $namespaceRestrictions );
 
-				if ( $this->getConfig()->get( MainConfigNames::EnablePartialActionBlocks ) ) {
-					$actionRestrictions = [];
-					foreach ( $block->getRestrictions() as $restriction ) {
-						if ( $restriction instanceof ActionRestriction ) {
-							$actionRestrictions[] = $restriction->getValue();
-						}
+				$actionRestrictions = [];
+				foreach ( $block->getRestrictions() as $restriction ) {
+					if ( $restriction instanceof ActionRestriction ) {
+						$actionRestrictions[] = $restriction->getValue();
 					}
-					$fields['ActionRestrictions']['default'] = $actionRestrictions;
 				}
+				$fields['ActionRestrictions']['default'] = $actionRestrictions;
 			}
 
 			$this->alreadyBlocked = true;
@@ -1026,9 +1022,6 @@ class SpecialBlock extends FormSpecialPage {
 			// This happens if the form is submitted before any JS is loaded.
 			return false;
 		}
-		// Temporarily access service container until the feature flag is removed: T280532
-		$enablePartialActionBlocks = $this->getConfig()
-			->get( MainConfigNames::EnablePartialActionBlocks );
 
 		$isPartialBlock = isset( $data['EditingRestriction'] ) &&
 			$data['EditingRestriction'] === 'partial';
@@ -1086,11 +1079,7 @@ class SpecialBlock extends FormSpecialPage {
 					return new NamespaceRestriction( 0, (int)$id );
 				}, explode( "\n", $data['NamespaceRestrictions'] ) );
 			}
-			if (
-				$enablePartialActionBlocks &&
-				isset( $data['ActionRestrictions'] ) &&
-				$data['ActionRestrictions'] !== ''
-			) {
+			if ( isset( $data['ActionRestrictions'] ) && $data['ActionRestrictions'] !== '' ) {
 				$actionRestrictions = array_map( static function ( $id ) {
 					return new ActionRestriction( 0, $id );
 				}, $data['ActionRestrictions'] );

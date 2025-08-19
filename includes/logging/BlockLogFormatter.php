@@ -151,9 +151,7 @@ class BlockLogFormatter extends LogFormatter {
 						->numParams( count( $namespaces ) )
 						->rawParams( $this->context->getLanguage()->listToText( $namespaces ) )->escaped();
 				}
-				$enablePartialActionBlocks = $this->context->getConfig()
-					->get( MainConfigNames::EnablePartialActionBlocks );
-				if ( $actions && $enablePartialActionBlocks ) {
+				if ( $actions ) {
 					$restrictions[] = $this->msg( 'logentry-partialblock-block-action' )
 						->numParams( count( $actions ) )
 						->rawParams( $this->context->getLanguage()->listToText( $actions ) )->escaped();

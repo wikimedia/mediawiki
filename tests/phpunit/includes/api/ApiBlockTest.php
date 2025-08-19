@@ -276,11 +276,6 @@ class ApiBlockTest extends ApiTestCase {
 	}
 
 	public function testBlockWithRestrictionsAction() {
-		$this->overrideConfigValue(
-			MainConfigNames::EnablePartialActionBlocks,
-			true
-		);
-
 		$blockActionInfo = $this->getServiceContainer()->getBlockActionInfo();
 		$action = 'upload';
 

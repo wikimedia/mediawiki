@@ -28,7 +28,6 @@ use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\Restriction\Restriction;
 use MediaWiki\Html\Html;
-use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
@@ -614,12 +613,9 @@ class DatabaseBlock extends AbstractBlock {
 	 * @inheritDoc
 	 */
 	public function appliesToRight( $right ) {
-		// Temporarily access service container until the feature flag is removed: T280532
-		$config = MediaWikiServices::getInstance()->getMainConfig();
-
 		$res = parent::appliesToRight( $right );
 
-		if ( !$res && $config->get( MainConfigNames::EnablePartialActionBlocks ) ) {
+		if ( !$res ) {
 			$blockActions = MediaWikiServices::getInstance()->getBlockActionInfo()
 				->getAllBlockActions();
 

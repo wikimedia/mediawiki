@@ -524,7 +524,6 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 	public function testCheckUserBlockActions( $block, $restriction, $expected ) {
 		$this->overrideConfigValues( [
 			MainConfigNames::EmailConfirmToEdit => false,
-			MainConfigNames::EnablePartialActionBlocks => true,
 		] );
 
 		if ( $restriction ) {
@@ -776,9 +775,6 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 	 * A test of the filter() calls in getApplicableBlock()
 	 */
 	public function testGetApplicableBlockCompositeFilter() {
-		$this->overrideConfigValues( [
-			MainConfigNames::EnablePartialActionBlocks => true,
-		] );
 		$blockOptions = [
 			'target' => new AnonIpBlockTarget( '127.0.8.1' ),
 			'by' => UserIdentityValue::newRegistered( 100, 'Test' ),

@@ -2719,12 +2719,6 @@ class MainConfigNames {
 	public const BlockDisablesLogin = 'BlockDisablesLogin';
 
 	/**
-	 * Name constant for the EnablePartialActionBlocks setting, for use with Config::get()
-	 * @see MainConfigSchema::EnablePartialActionBlocks
-	 */
-	public const EnablePartialActionBlocks = 'EnablePartialActionBlocks';
-
-	/**
 	 * Name constant for the EnableMultiBlocks setting, for use with Config::get()
 	 * @see MainConfigSchema::EnableMultiBlocks
 	 */

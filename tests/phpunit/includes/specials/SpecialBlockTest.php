@@ -47,7 +47,6 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	public function testGetFormFields() {
 		$this->overrideConfigValues( [
 			MainConfigNames::BlockAllowsUTEdit => true,
-			MainConfigNames::EnablePartialActionBlocks => true,
 			MainConfigNames::UseCodexSpecialBlock => false,
 		] );
 		$page = $this->newSpecialPage();
@@ -181,7 +180,6 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	public function testCodexFormData( array $params, array $expected, bool $multiblocks = false ): void {
 		$this->overrideConfigValues( [
 			MainConfigNames::BlockAllowsUTEdit => true,
-			MainConfigNames::EnablePartialActionBlocks => true,
 			MainConfigNames::UseCodexSpecialBlock => true,
 			MainConfigNames::EnableMultiBlocks => $multiblocks,
 		] );
@@ -233,17 +231,6 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	}
 
 	/**
-	 * @covers ::getFormFields
-	 */
-	public function testGetFormFieldsActionRestrictionDisabled() {
-		$this->overrideConfigValue( MainConfigNames::EnablePartialActionBlocks, false );
-		$page = $this->newSpecialPage();
-		$wrappedPage = TestingAccessWrapper::newFromObject( $page );
-		$fields = $wrappedPage->getFormFields();
-		$this->assertArrayNotHasKey( 'ActionRestrictions', $fields );
-	}
-
-	/**
 	 * @covers ::maybeAlterFormDefaults
 	 */
 	public function testMaybeAlterFormDefaults() {
@@ -278,7 +265,6 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	 */
 	public function testMaybeAlterFormDefaultsPartial() {
 		$this->overrideConfigValues( [
-			MainConfigNames::EnablePartialActionBlocks => true,
 			MainConfigNames::UseCodexSpecialBlock => false,
 			MainConfigNames::EnableMultiBlocks => false,
 		] );
@@ -411,8 +397,6 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	 * @covers ::onSubmit
 	 */
 	public function testProcessFormRestrictions() {
-		$this->overrideConfigValue( MainConfigNames::EnablePartialActionBlocks, true );
-
 		$badActor = $this->getTestUser()->getUser();
 		$context = RequestContext::getMain();
 		$context->setUser( $this->getTestSysop()->getUser() );

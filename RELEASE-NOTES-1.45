@@ -63,6 +63,9 @@ For notes on 1.44.x and older releases, see HISTORY.
   page. Previously, the merge was only logged for the source page.
 * (T384578) Attempting to create a redirect to an invalid target, such as
   Special:UserLogout, will now result in a warning.
+* (T280531) Partial action blocks is now enabled by default. This feature
+  allows administrators to block users from performing certain actions (such
+  as moving pages) without blocking them from editing pages.
 * …
 
 === New features for sysadmins in 1.45 ===

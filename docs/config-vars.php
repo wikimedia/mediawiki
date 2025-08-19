@@ -2704,12 +2704,6 @@ $wgBlockCIDRLimit = null;
 $wgBlockDisablesLogin = null;
 
 /**
- * Config variable stub for the EnablePartialActionBlocks setting, for use by phpdoc and IDEs.
- * @see MediaWiki\MainConfigSchema::EnablePartialActionBlocks
- */
-$wgEnablePartialActionBlocks = null;
-
-/**
  * Config variable stub for the EnableMultiBlocks setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::EnableMultiBlocks
  */

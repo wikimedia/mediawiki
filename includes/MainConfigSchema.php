@@ -7891,17 +7891,6 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * Flag to enable partial blocks against performing certain actions.
-	 *
-	 * @unstable Temporary feature flag, T280532
-	 * @since 1.37
-	 */
-	public const EnablePartialActionBlocks = [
-		'default' => false,
-		'type' => 'boolean',
-	];
-
-	/**
 	 * If this is false, the number of blocks of a given target is limited to only 1.
 	 *
 	 * @since 1.42

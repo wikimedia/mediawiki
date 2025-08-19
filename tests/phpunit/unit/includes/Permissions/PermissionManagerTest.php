@@ -42,7 +42,6 @@ class PermissionManagerTest extends MediaWikiUnitTestCase {
 			MainConfigNames::WhitelistReadRegexp => false,
 			MainConfigNames::EmailConfirmToEdit => false,
 			MainConfigNames::BlockDisablesLogin => false,
-			MainConfigNames::EnablePartialActionBlocks => false,
 			MainConfigNames::GroupPermissions => [],
 			MainConfigNames::RevokePermissions => [],
 			MainConfigNames::GroupInheritsPermissions => [],

@@ -5017,13 +5017,6 @@ config-schema:
             If true, sitewide blocked users will not be allowed to login. (Direct
             blocks only; IP blocks are ignored.) This can be used to remove users'
             read access on a private wiki.
-    EnablePartialActionBlocks:
-        default: false
-        type: boolean
-        description: |-
-            Flag to enable partial blocks against performing certain actions.
-            @unstable Temporary feature flag, T280532
-            @since 1.37
     EnableMultiBlocks:
         default: false
         type: boolean

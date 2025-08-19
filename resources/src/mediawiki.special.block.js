@@ -139,14 +139,13 @@
 			namespaceRestrictionsWidget = OO.ui.infuse( $( '#mw-input-wpNamespaceRestrictions' ) );
 			editingRestrictionWidget.on( 'change', updateBlockOptions );
 			namespaceRestrictionsWidget.on( 'change', updateBlockOptions );
+			partialActionsRestrictionsWidget = OO.ui.infuse( $( '.mw-block-action-restriction.oo-ui-checkboxMultiselectInputWidget' ) );
 
 			// Present for certain rights
 			hideUserWidget = infuseIfExists( $( '#mw-input-wpHideUser' ) );
 
 			// Present for certain global configs
 			preventTalkPageEditWidget = infuseIfExists( $( '#mw-input-wpDisableUTEdit' ) );
-			// Move up and always infuse when wgEnablePartialActionBlocks gets removed
-			partialActionsRestrictionsWidget = infuseIfExists( $( '.mw-block-action-restriction.oo-ui-checkboxMultiselectInputWidget' ) );
 
 			// When disabling checkboxes, preserve their selected state in case they are re-enabled
 			preserveSelectedStateOnDisable( enableAutoblockWidget );

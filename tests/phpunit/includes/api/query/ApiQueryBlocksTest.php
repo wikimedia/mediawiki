@@ -6,7 +6,6 @@ use MediaWiki\Block\BlockActionInfo;
 use MediaWiki\Block\Restriction\ActionRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
-use MediaWiki\MainConfigNames;
 use MediaWiki\Tests\Api\ApiTestCase;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 
@@ -116,7 +115,6 @@ class ApiQueryBlocksTest extends ApiTestCase {
 	}
 
 	public function testExecuteRestrictions() {
-		$this->overrideConfigValue( MainConfigNames::EnablePartialActionBlocks, true );
 		$badActor = $this->getTestUser()->getUser();
 		$sysop = $this->getTestSysop()->getUser();
 

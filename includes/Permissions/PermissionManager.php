@@ -81,7 +81,6 @@ class PermissionManager {
 		MainConfigNames::WhitelistReadRegexp,
 		MainConfigNames::EmailConfirmToEdit,
 		MainConfigNames::BlockDisablesLogin,
-		MainConfigNames::EnablePartialActionBlocks,
 		MainConfigNames::GroupPermissions,
 		MainConfigNames::RevokePermissions,
 		MainConfigNames::AvailableRights,

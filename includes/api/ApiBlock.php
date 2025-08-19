@@ -199,9 +199,7 @@ class ApiBlock extends ApiBase {
 		$res['partial'] = $params['partial'];
 		$res['pagerestrictions'] = $params['pagerestrictions'];
 		$res['namespacerestrictions'] = $params['namespacerestrictions'];
-		if ( $this->getConfig()->get( MainConfigNames::EnablePartialActionBlocks ) ) {
-			$res['actionrestrictions'] = $params['actionrestrictions'];
-		}
+		$res['actionrestrictions'] = $params['actionrestrictions'];
 
 		$this->getResult()->addValue( null, $this->getModuleName(), $res );
 	}
@@ -242,12 +240,10 @@ class ApiBlock extends ApiBase {
 			}, (array)$params['namespacerestrictions'] );
 			$restrictions = array_merge( $pageRestrictions, $namespaceRestrictions );
 
-			if ( $this->getConfig()->get( MainConfigNames::EnablePartialActionBlocks ) ) {
-				$actionRestrictions = array_map( function ( $action ) {
-					return new ActionRestriction( 0, $this->blockActionInfo->getIdFromAction( $action ) );
-				}, (array)$params['actionrestrictions'] );
-				$restrictions = array_merge( $restrictions, $actionRestrictions );
-			}
+			$actionRestrictions = array_map( function ( $action ) {
+				return new ActionRestriction( 0, $this->blockActionInfo->getIdFromAction( $action ) );
+			}, (array)$params['actionrestrictions'] );
+			$restrictions = array_merge( $restrictions, $actionRestrictions );
 		}
 		return $restrictions;
 	}
@@ -382,18 +378,13 @@ class ApiBlock extends ApiBase {
 				ParamValidator::PARAM_ISMULTI => true,
 				ParamValidator::PARAM_TYPE => 'namespace',
 			],
+			'actionrestrictions' => [
+				ParamValidator::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_TYPE => array_keys(
+					$this->blockActionInfo->getAllBlockActions()
+				),
+			],
 		];
-
-		if ( $this->getConfig()->get( MainConfigNames::EnablePartialActionBlocks ) ) {
-			$params += [
-				'actionrestrictions' => [
-					ParamValidator::PARAM_ISMULTI => true,
-					ParamValidator::PARAM_TYPE => array_keys(
-						$this->blockActionInfo->getAllBlockActions()
-					),
-				],
-			];
-		}
 
 		return $params;
 	}
