@@ -45,11 +45,17 @@ class JsonCodec
 {
 
 	/**
-	 * When true, add extra properties to the serialized output for
-	 * backwards compatibility. This will eventually be made a
-	 * configuration variable and/or removed. (T367584)
+	 * When true, encode extra properties in the serialized output for
+	 * backwards compatibility. This will eventually be turned off
+	 * when rollback compatibility is no longer required. (T367584)
 	 */
-	private bool $backCompat = true;
+	private bool $writeBackCompat = true;
+
+	/**
+	 * When true, decode extra properties which may be present in
+	 * the serialized output for backward compatibility. (T367584)
+	 */
+	private bool $readBackCompat = true;
 
 	/**
 	 * Create a new JsonCodec, with optional access to the provided services.
@@ -95,7 +101,7 @@ class JsonCodec
 	protected function markArray( array &$value, string $className, ?string $classHint ): void {
 		parent::markArray( $value, $className, $classHint );
 		// Temporarily for backward compatibility add COMPLEX_ANNOTATION as well
-		if ( $this->backCompat ) {
+		if ( $this->writeBackCompat ) {
 			$value[JsonConstants::COMPLEX_ANNOTATION] = true;
 			if ( ( $value[JsonConstants::TYPE_ANNOTATION] ?? null ) === 'array' ) {
 				unset( $value[JsonConstants::TYPE_ANNOTATION] );
@@ -106,7 +112,7 @@ class JsonCodec
 	/** @inheritDoc */
 	protected function isArrayMarked( array $value ): bool {
 		// Temporarily for backward compatibility look for COMPLEX_ANNOTATION as well
-		if ( $this->backCompat && array_key_exists( JsonConstants::COMPLEX_ANNOTATION, $value ) ) {
+		if ( $this->readBackCompat && array_key_exists( JsonConstants::COMPLEX_ANNOTATION, $value ) ) {
 			return true;
 		}
 		if ( ( $value['_type_'] ?? null ) === 'string' ) {
@@ -121,7 +127,7 @@ class JsonCodec
 		// Temporarily use the presence of COMPLEX_ANNOTATION as a hint that
 		// the type is 'array'
 		if (
-			$this->backCompat &&
+			$this->readBackCompat &&
 			$classHint === null &&
 			array_key_exists( JsonConstants::COMPLEX_ANNOTATION, $value )
 		) {
@@ -129,7 +135,7 @@ class JsonCodec
 		}
 		$className = parent::unmarkArray( $value, $classHint );
 		// Remove the temporarily added COMPLEX_ANNOTATION
-		if ( $this->backCompat ) {
+		if ( $this->readBackCompat ) {
 			unset( $value[JsonConstants::COMPLEX_ANNOTATION] );
 		}
 		return $className;
