@@ -61,8 +61,7 @@ class SitemapFileHandler extends SitemapHandlerBase {
 		return $this->getData()['timestamp'];
 	}
 
-	/** @inheritDoc */
-	protected function getXml() {
+	protected function getXml(): string {
 		return $this->getData()['xml'];
 	}
 

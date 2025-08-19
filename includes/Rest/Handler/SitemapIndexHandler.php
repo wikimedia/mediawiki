@@ -36,8 +36,7 @@ class SitemapIndexHandler extends SitemapHandlerBase {
 		];
 	}
 
-	/** @inheritDoc */
-	protected function getXml() {
+	protected function getXml(): string {
 		$index = $this->getValidatedParams()['indexId'];
 		$dbr = $this->connectionProvider->getReplicaDatabase();
 

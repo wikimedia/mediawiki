@@ -15,11 +15,11 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 abstract class SitemapHandlerBase extends Handler {
 	protected bool $enabled;
-	/** @var float|int */
+	/** @var int */
 	protected $indexSize;
-	/** @var float|int */
+	/** @var int */
 	protected $sitemapSize;
-	/** @var float|int */
+	/** @var int */
 	protected $expiry;
 
 	protected function __construct(
@@ -30,9 +30,9 @@ abstract class SitemapHandlerBase extends Handler {
 	) {
 		$apiConf = $config->get( MainConfigNames::SitemapApiConfig );
 		$this->enabled = $apiConf['enabled'] ?? false;
-		$this->indexSize = $apiConf['sitemapsPerIndex'] ?? 30_000;
+		$this->indexSize = $apiConf['sitemapsPerIndex'] ?? 50_000;
 		$variants = SitemapGenerator::getVariants( $contLang, $languageConverterFactory );
-		$this->sitemapSize = ( $apiConf['pagesPerSitemap'] ?? 30_000 ) / ( count( $variants ) + 1 );
+		$this->sitemapSize = ( $apiConf['pagesPerSitemap'] ?? 10_000 ) / ( count( $variants ) + 1 );
 		$this->expiry = $apiConf['expiry'] ?? 3600;
 	}
 
@@ -68,8 +68,5 @@ abstract class SitemapHandlerBase extends Handler {
 		return $response;
 	}
 
-	/**
-	 * @return string
-	 */
-	abstract protected function getXml();
+	abstract protected function getXml(): string;
 }

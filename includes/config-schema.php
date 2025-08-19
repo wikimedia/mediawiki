@@ -1980,10 +1980,6 @@ return [
 			'SitemapNamespaces' => false,
 			'SitemapNamespacesPriorities' => false,
 			'SitemapApiConfig' => [
-				'enabled' => false,
-				'sitemapsPerIndex' => 50000,
-				'pagesPerSitemap' => 10000,
-				'expiry' => 3600,
 			],
 			'EnableSearchContributorsByIP' => true,
 			'SpecialSearchFormOptions' => [
@@ -3524,6 +3520,22 @@ return [
 		],
 		'SitemapNamespacesPriorities' => [
 			'deprecated' => 'since 1.45 and ignored',
+		],
+		'SitemapApiConfig' => [
+			'additionalProperties' => [
+				'enabled' => [
+					'type' => 'bool',
+				],
+				'sitemapsPerIndex' => [
+					'type' => 'int',
+				],
+				'pagesPerSitemap' => [
+					'type' => 'int',
+				],
+				'expiry' => [
+					'type' => 'int',
+				],
+			],
 		],
 		'SoftwareTags' => [
 			'additionalProperties' => [

@@ -10273,10 +10273,10 @@ class MainConfigSchema {
 	/**
 	 * Configuration for the sitemaps REST API endpoint /rest.php/site/v1/sitemap/0
 	 *
-	 * To use this API, set $wgSitemapApiConfig['enabled'] = true and then add
+	 * To use this API, set `$wgSitemapApiConfig['enabled'] = true` and then add
 	 * to robots.txt something like:
 	 *
-	 *   Sitemap: http://www.example.com/w/rest.php/site/v1/sitemap/0
+	 *   Sitemap: http://www.example.org/w/rest.php/site/v1/sitemap/0
 	 *
 	 * Search engines like Google will then use the sitemap to efficiently
 	 * discover pages on your site.
@@ -10287,23 +10287,30 @@ class MainConfigSchema {
 	 *
 	 * An associative array with the following keys:
 	 *  - enabled: Whether to deliver sitemaps.
+	 *    Default: false.
 	 *  - sitemapsPerIndex: The maximum number of sitemap files to link to from
 	 *    each index file. This must be 50,000 or less to comply with the
 	 *    protocol.
+	 *    Default: 50,000.
 	 *  - pagesPerSitemap: The maximum number of URLs to link to from each
 	 *    sitemap file. This must be 50,000 or less to comply with the protocol.
 	 *    It might take a few seconds to render a sitemap with 50,000 URLs.
+	 *    Default: 10,000.
 	 *  - expiry: The cache expiry time in seconds.
+	 *    Default: 3600 (1 hour).
 	 *
+	 * @see https://www.sitemaps.org/protocol.html
+	 * @see \MediaWiki\Rest\Handler\SitemapHandlerBase
 	 * @since 1.45
 	 */
 	public const SitemapApiConfig = [
+		'default' => [],
 		'type' => 'object',
-		'properties' => [
-			'enabled' => [ 'type' => 'bool', 'default' => false ],
-			'sitemapsPerIndex' => [ 'type' => 'float|int', 'default' => 50_000 ],
-			'pagesPerSitemap' => [ 'type' => 'float|int', 'default' => 10_000 ],
-			'expiry' => [ 'type' => 'float|int', 'default' => 3600 ],
+		'additionalProperties' => [
+			'enabled' => [ 'type' => 'bool' ],
+			'sitemapsPerIndex' => [ 'type' => 'int' ],
+			'pagesPerSitemap' => [ 'type' => 'int' ],
+			'expiry' => [ 'type' => 'int' ],
 		]
 	];
 
