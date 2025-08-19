@@ -256,7 +256,7 @@
 		"from": "wikitext",
 		"format": "html",
 		"openApiSpec": {
-			"x-i18n-description": "rest-endpoint-desc-post-transform-wikitext-to-html"
+			"x-i18n-description": "rest-endpoint-desc-post-transform-wikitext-to-html-title-revision"
 		}
 	},
 	{
@@ -267,7 +267,7 @@
 		"from": "html",
 		"format": "wikitext",
 		"openApiSpec": {
-			"x-i18n-description": "rest-endpoint-desc-post-transform-html-to-wikitext"
+			"x-i18n-description": "rest-endpoint-desc-post-transform-html-to-wikitext-title-revision"
 		}
 	},
 	{
@@ -388,7 +388,7 @@
 		"from": "html",
 		"format": "wikitext",
 		"openApiSpec": {
-			"x-i18n-description": "rest-endpoint-desc-post-transform-html-to-wikitext"
+			"x-i18n-description": "rest-endpoint-desc-post-transform-html-to-wikitext-title"
 		}
 	},
 	{

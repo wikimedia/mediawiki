@@ -247,6 +247,10 @@
 	"rest-endpoint-desc-get-page-title-media": "{{Experimental}} REST API endpoint description, for the endpoint to get information about media files",
 	"rest-endpoint-desc-get-file-title": "{{Experimental}} REST API endpoint description, for the endpoint to get information about a file",
 	"rest-endpoint-desc-post-transform-wikitext-to-html": "{{Experimental}} REST API endpoint description, for the endpoint transforms wikitext to HTML",
+	"rest-endpoint-desc-post-transform-wikitext-to-html-title": "{{Experimental}} REST API endpoint description, for the endpoint that transforms wikitext to HTML for a given page",
+	"rest-endpoint-desc-post-transform-wikitext-to-html-title-revision": "{{Experimental}} REST API endpoint description, for the endpoint that transforms wikitext to HTML for a given revision",
 	"rest-endpoint-desc-post-transform-wikitext-to-lint": "{{Experimental}} REST API endpoint description, for the endpoint that returns lint errors for wikitext",
-	"rest-endpoint-desc-post-transform-html-to-wikitext": "{{Experimental}} REST API endpoint description, for the endpoint that transforms HTML back into wikitext"
+	"rest-endpoint-desc-post-transform-html-to-wikitext": "{{Experimental}} REST API endpoint description, for the endpoint that transforms HTML back into wikitext",
+	"rest-endpoint-desc-post-transform-html-to-wikitext-title": "{{Experimental}} REST API endpoint description, for the endpoint that transforms HTML to wikitext for a given page.",
+	"rest-endpoint-desc-post-transform-html-to-wikitext-title-revision": "{{Experimental}} REST API endpoint description, for the endpoint that transforms HTML to wikitext for a given revision."
 }

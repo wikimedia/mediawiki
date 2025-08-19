@@ -243,6 +243,10 @@
 	"rest-endpoint-desc-get-page-title-media": "Lists media files used on a page, up to 100 files.",
 	"rest-endpoint-desc-get-file-title": "Returns information about a file, including links to download the file in thumbnail, preview, and original formats.",
 	"rest-endpoint-desc-post-transform-wikitext-to-html": "Converts wikitext into HTML.",
+	"rest-endpoint-desc-post-transform-wikitext-to-html-title": "Converts wikitext into HTML. The wikitext request body parameter must be provided, but can be left empty to receive the full page. The response body contains the rendered HTML of the page.",
+	"rest-endpoint-desc-post-transform-wikitext-to-html-title-revision": "Converts the wikitext of a given revision to HTML. The wikitext request body parameter must be provided, but can be left empty to receive the full revision. The response body contains the rendered HTML of the revision.",
 	"rest-endpoint-desc-post-transform-wikitext-to-lint": "Returns lint errors for wikitext",
-	"rest-endpoint-desc-post-transform-html-to-wikitext": "Converts HTML into wikitext."
+	"rest-endpoint-desc-post-transform-html-to-wikitext": "Converts HTML into wikitext.",
+	"rest-endpoint-desc-post-transform-html-to-wikitext-title": "Converts HTML into wikitext. The html request body parameter must be provided, but can be empty to receive the full page. The response body contains the wikitext of the page.",
+	"rest-endpoint-desc-post-transform-html-to-wikitext-title-revision": "Converts the wikitext of a given revision to HTML. The wikitext request body parameter must be provided, but can be left empty to receive the full revision. The response body contains the rendered HTML of the revision."
 }
