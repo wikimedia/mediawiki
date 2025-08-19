@@ -390,13 +390,15 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 	 * @since 1.23
 	 */
 	public function getRecentChange( $newId = 0 ) {
-		$formatter = MediaWikiServices::getInstance()->getLogFormatterFactory()->newFromEntry( $this );
+		$services = MediaWikiServices::getInstance();
+		$recentChangeStore = $services->getRecentChangeStore();
+		$formatter = $services->getLogFormatterFactory()->newFromEntry( $this );
 		$context = RequestContext::newExtraneousContext( $this->getTarget() );
 		$formatter->setContext( $context );
 
 		$logpage = SpecialPage::getTitleFor( 'Log', $this->getType() );
 
-		return RecentChange::newLogEntry(
+		return $recentChangeStore->createLogRecentChange(
 			$this->getTimestamp(),
 			$logpage,
 			$this->getPerformerIdentity(),

@@ -708,8 +708,9 @@ class ApiQueryRecentChangesIntegrationTest extends ApiTestCase {
 			->getRevisionLookup()
 			->getRevisionByTitle( $title );
 
+		$recentChangeStore = $this->getServiceContainer()->getRecentChangeStore();
 		$comment = $revision->getComment();
-		$rc = RecentChange::newForCategorization(
+		$rc = $recentChangeStore->createCategorizationRecentChange(
 			$revision->getTimestamp(),
 			$titleFactory->newFromLinkTarget( $categoryTarget ),
 			$user,
@@ -720,7 +721,7 @@ class ApiQueryRecentChangesIntegrationTest extends ApiTestCase {
 			null,
 			false
 		);
-		$rc->save();
+		$recentChangeStore->insertRecentChange( $rc );
 
 		$result = $this->doListRecentChangesRequest( [ 'rcprop' => 'title', 'rctype' => 'categorize' ] );
 

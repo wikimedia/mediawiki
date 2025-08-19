@@ -50,6 +50,7 @@ class IRCColourfulRCFeedFormatter implements RCFeedFormatter {
 	 */
 	public function getLine( array $feed, RecentChange $rc, $actionComment ) {
 		$services = MediaWikiServices::getInstance();
+		$recentChangeRCFeedNotifier = $services->getRecentChangeRCFeedNotifier();
 		$mainConfig = $services->getMainConfig();
 		$localInterwikis = $mainConfig->get( MainConfigNames::LocalInterwikis );
 		$useRCPatrol = $mainConfig->get( MainConfigNames::UseRCPatrol );
@@ -70,7 +71,7 @@ class IRCColourfulRCFeedFormatter implements RCFeedFormatter {
 		$title = $titleObj->getPrefixedText();
 		$title = self::cleanupForIRC( $title );
 
-		$notifyUrl = $rc->getNotifyUrl() ?? '';
+		$notifyUrl = $recentChangeRCFeedNotifier->getNotifyUrl( $rc ) ?? '';
 
 		if ( $attribs['rc_old_len'] !== null && $attribs['rc_new_len'] !== null ) {
 			$szdiff = $attribs['rc_new_len'] - $attribs['rc_old_len'];

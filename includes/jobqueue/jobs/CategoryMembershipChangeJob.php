@@ -28,6 +28,7 @@ use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\WikiPage;
 use MediaWiki\RecentChanges\CategoryMembershipChange;
 use MediaWiki\RecentChanges\RecentChange;
+use MediaWiki\RecentChanges\RecentChangeFactory;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStoreRecord;
 use MediaWiki\Title\Title;
@@ -53,6 +54,8 @@ use Wikimedia\Rdbms\SelectQueryBuilder;
 class CategoryMembershipChangeJob extends Job {
 	/** @var int|null */
 	private $ticket;
+
+	private RecentChangeFactory $recentChangeFactory;
 
 	private const ENQUEUE_FUDGE_SEC = 60;
 
@@ -83,9 +86,15 @@ class CategoryMembershipChangeJob extends Job {
 	 * @note Don't call this when queueing a new instance, use newSpec() instead.
 	 * @param PageIdentity $page the categorized page.
 	 * @param array $params Such latest revision instance of the categorized page.
+	 * @param RecentChangeFactory $recentChangeFactory
 	 */
-	public function __construct( PageIdentity $page, array $params ) {
+	public function __construct(
+		PageIdentity $page,
+		array $params,
+		RecentChangeFactory $recentChangeFactory
+	) {
 		parent::__construct( 'categoryMembershipChange', $page, $params );
+		$this->recentChangeFactory = $recentChangeFactory;
 		// Only need one job per page. Note that ENQUEUE_FUDGE_SEC handles races where an
 		// older revision job gets inserted while the newer revision job is de-duplicated.
 		$this->removeDuplicates = true;
@@ -216,7 +225,13 @@ class CategoryMembershipChangeJob extends Job {
 		}
 
 		$blc = $services->getBacklinkCacheFactory()->getBacklinkCache( $title );
-		$catMembChange = new CategoryMembershipChange( $title, $blc, $newRev, $this->params['forImport'] ?? false );
+		$catMembChange = new CategoryMembershipChange(
+			$title,
+			$blc,
+			$newRev,
+			$this->recentChangeFactory,
+			$this->params['forImport'] ?? false
+		);
 		$catMembChange->checkTemplateLinks();
 
 		$batchSize = $services->getMainConfig()->get( MainConfigNames::UpdateRowsPerQuery );

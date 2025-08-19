@@ -64,6 +64,7 @@ class ChangeTrackingEventIngress
 			'MainConfig',
 			'JobQueueGroup',
 			'ContentHandlerFactory',
+			'RecentChangeFactory',
 		],
 		'events' => [ // see registerListeners()
 			PageLatestRevisionChangedEvent::TYPE
@@ -79,6 +80,7 @@ class ChangeTrackingEventIngress
 	private TalkPageNotificationManager $talkPageNotificationManager;
 	private JobQueueGroup $jobQueueGroup;
 	private IContentHandlerFactory $contentHandlerFactory;
+	private RecentChangeFactory $recentChangeFactory;
 	private bool $useRcPatrol;
 	private bool $rcWatchCategoryMembership;
 
@@ -92,7 +94,8 @@ class ChangeTrackingEventIngress
 		TalkPageNotificationManager $talkPageNotificationManager,
 		Config $mainConfig,
 		JobQueueGroup $jobQueueGroup,
-		IContentHandlerFactory $contentHandlerFactory
+		IContentHandlerFactory $contentHandlerFactory,
+		RecentChangeFactory $recentChangeFactory
 	) {
 		// NOTE: keep in sync with self::OBJECT_SPEC
 		$this->changeTagsStore = $changeTagsStore;
@@ -104,6 +107,7 @@ class ChangeTrackingEventIngress
 		$this->talkPageNotificationManager = $talkPageNotificationManager;
 		$this->jobQueueGroup = $jobQueueGroup;
 		$this->contentHandlerFactory = $contentHandlerFactory;
+		$this->recentChangeFactory = $recentChangeFactory;
 
 		$this->useRcPatrol = $mainConfig->get( MainConfigNames::UseRCPatrol );
 		$this->rcWatchCategoryMembership = $mainConfig->get(
@@ -121,7 +125,8 @@ class ChangeTrackingEventIngress
 		TalkPageNotificationManager $talkPageNotificationManager,
 		Config $mainConfig,
 		JobQueueGroup $jobQueueGroup,
-		IContentHandlerFactory $contentHandlerFactory
+		IContentHandlerFactory $contentHandlerFactory,
+		RecentChangeFactory $recentChangeFactory
 	): self {
 		$ingress = new self(
 			$changeTagsStore,
@@ -133,7 +138,8 @@ class ChangeTrackingEventIngress
 			$talkPageNotificationManager,
 			$mainConfig,
 			$jobQueueGroup,
-			$contentHandlerFactory
+			$contentHandlerFactory,
+			$recentChangeFactory
 		);
 		$ingress->initSubscriber( self::OBJECT_SPEC );
 		return $ingress;
@@ -249,9 +255,8 @@ class ChangeTrackingEventIngress
 		array $tags,
 		?EditResult $editResult
 	) {
-		// Update recentchanges
 		if ( !$oldRevisionRecord ) {
-			RecentChange::notifyNew(
+			$recentChange = $this->recentChangeFactory->createNewPageRecentChange(
 				$newRevisionRecord->getTimestamp(),
 				$newRevisionRecord->getPage(),
 				$newRevisionRecord->isMinor(),
@@ -265,8 +270,7 @@ class ChangeTrackingEventIngress
 				$tags
 			);
 		} else {
-			// Add RC row to the DB
-			RecentChange::notifyEdit(
+			$recentChange = $this->recentChangeFactory->createEditRecentChange(
 				$newRevisionRecord->getTimestamp(),
 				$newRevisionRecord->getPage(),
 				$newRevisionRecord->isMinor(),
@@ -284,6 +288,8 @@ class ChangeTrackingEventIngress
 				$editResult
 			);
 		}
+
+		$this->recentChangeFactory->insertRecentChange( $recentChange );
 	}
 
 	private function updateUserEditTrackerAfterPageUpdated( UserIdentity $author ) {

@@ -23,7 +23,6 @@
 
 use MediaWiki\Content\ContentHandler;
 use MediaWiki\Maintenance\Maintenance;
-use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
@@ -109,6 +108,8 @@ class ImportTextFiles extends Maintenance {
 		$skipCount = 0;
 
 		$revLookup = $this->getServiceContainer()->getRevisionLookup();
+		$recentChangeFactory = $this->getServiceContainer()->getRecentChangeFactory();
+
 		foreach ( $files as $file => $text ) {
 			$pageName = $prefix . pathinfo( $file, PATHINFO_FILENAME );
 			$timestamp = $useTimestamp ? wfTimestamp( TS_UNIX, filemtime( $file ) ) : wfTimestampNow();
@@ -176,7 +177,7 @@ class ImportTextFiles extends Maintenance {
 			if ( $rc && $status ) {
 				if ( $exists ) {
 					if ( is_object( $oldRevRecord ) ) {
-						RecentChange::notifyEdit(
+						$recentChange = $recentChangeFactory->createEditRecentChange(
 							$timestamp,
 							$title,
 							$rev->getMinor(),
@@ -192,9 +193,11 @@ class ImportTextFiles extends Maintenance {
 							// the pages don't need to be patrolled
 							1
 						);
+
+						$recentChangeFactory->insertRecentChange( $recentChange );
 					}
 				} else {
-					RecentChange::notifyNew(
+					$recentChange = $recentChangeFactory->createNewPageRecentChange(
 						$timestamp,
 						$title,
 						$rev->getMinor(),
@@ -206,6 +209,8 @@ class ImportTextFiles extends Maintenance {
 						$newId,
 						1
 					);
+
+					$recentChangeFactory->insertRecentChange( $recentChange );
 				}
 			}
 		}

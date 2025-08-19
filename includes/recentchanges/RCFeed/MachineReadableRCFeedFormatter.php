@@ -55,7 +55,9 @@ abstract class MachineReadableRCFeedFormatter implements RCFeedFormatter {
 	 * @return string|null
 	 */
 	public function getLine( array $feed, RecentChange $rc, $actionComment ) {
-		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
+		$services = MediaWikiServices::getInstance();
+		$recentChangeRCFeedNotifier = $services->getRecentChangeRCFeedNotifier();
+		$mainConfig = $services->getMainConfig();
 		$canonicalServer = $mainConfig->get( MainConfigNames::CanonicalServer );
 		$serverName = $mainConfig->get( MainConfigNames::ServerName );
 		$scriptPath = $mainConfig->get( MainConfigNames::ScriptPath );
@@ -72,7 +74,7 @@ abstract class MachineReadableRCFeedFormatter implements RCFeedFormatter {
 			'timestamp' => (int)wfTimestamp( TS_UNIX, $rc->getAttribute( 'rc_timestamp' ) ),
 			'user' => $rc->getAttribute( 'rc_user_text' ),
 			'bot' => (bool)$rc->getAttribute( 'rc_bot' ),
-			'notify_url' => $rc->getNotifyUrl(),
+			'notify_url' => $recentChangeRCFeedNotifier->getNotifyUrl( $rc ),
 		];
 
 		if ( isset( $feed['channel'] ) ) {
@@ -81,8 +83,8 @@ abstract class MachineReadableRCFeedFormatter implements RCFeedFormatter {
 
 		$source = $rc->getAttribute( 'rc_source' );
 		if ( $source == RecentChange::SRC_EDIT || $source == RecentChange::SRC_NEW ) {
-			$useRCPatrol = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::UseRCPatrol );
-			$useNPPatrol = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::UseNPPatrol );
+			$useRCPatrol = $services->getMainConfig()->get( MainConfigNames::UseRCPatrol );
+			$useNPPatrol = $services->getMainConfig()->get( MainConfigNames::UseNPPatrol );
 			$packet['minor'] = (bool)$rc->getAttribute( 'rc_minor' );
 			if ( $useRCPatrol || ( $source == RecentChange::SRC_NEW && $useNPPatrol ) ) {
 				$packet['patrolled'] = (bool)$rc->getAttribute( 'rc_patrolled' );

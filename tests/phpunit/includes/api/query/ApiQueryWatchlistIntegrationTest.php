@@ -1207,7 +1207,8 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 			->getRevisionByTitle( $title );
 
 		$comment = $revision->getComment();
-		$rc = RecentChange::newForCategorization(
+		$recentChangeStore = $this->getServiceContainer()->getRecentChangeStore();
+		$rc = $recentChangeStore->createCategorizationRecentChange(
 			$revision->getTimestamp(),
 			$this->getServiceContainer()->getTitleFactory()->newFromLinkTarget( $categoryTarget ),
 			$user,
@@ -1218,7 +1219,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 			null,
 			false
 		);
-		$rc->save();
+		$recentChangeStore->insertRecentChange( $rc );
 
 		$this->watchPages( $user, [ $subjectTarget, $categoryTarget ] );
 

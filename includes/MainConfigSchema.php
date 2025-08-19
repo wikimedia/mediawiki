@@ -11601,7 +11601,12 @@ class MainConfigSchema {
 			'refreshLinksPrioritized' => RefreshLinksJob::class,
 			'refreshLinksDynamic' => RefreshLinksJob::class,
 			'activityUpdateJob' => ActivityUpdateJob::class,
-			'categoryMembershipChange' => CategoryMembershipChangeJob::class,
+			'categoryMembershipChange' => [
+				'class' => CategoryMembershipChangeJob::class,
+				'services' => [
+					'RecentChangeFactory',
+				],
+			],
 			'clearUserWatchlist' => ClearUserWatchlistJob::class,
 			'watchlistExpiry' => WatchlistExpiryJob::class,
 			'cdnPurge' => CdnPurgeJob::class,

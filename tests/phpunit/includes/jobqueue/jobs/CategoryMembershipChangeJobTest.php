@@ -63,7 +63,7 @@ class CategoryMembershipChangeJobTest extends MediaWikiIntegrationTestCase {
 	 * @return RecentChange|null
 	 */
 	private function getCategorizeRecentChangeForRevId( $revId ) {
-		$rc = RecentChange::newFromConds(
+		$rc = $this->getServiceContainer()->getRecentChangeStore()->getRecentChangeByConds(
 			[
 				'rc_type' => RC_CATEGORIZE,
 				'rc_this_oldid' => $revId,
@@ -93,7 +93,8 @@ class CategoryMembershipChangeJobTest extends MediaWikiIntegrationTestCase {
 		$jobSpec = CategoryMembershipChangeJob::newSpec( $this->title, MWTimestamp::now(), false );
 		$job = new CategoryMembershipChangeJob(
 			$this->title,
-			$jobSpec->getParams()
+			$jobSpec->getParams(),
+			$this->getServiceContainer()->getRecentChangeStore()
 		);
 		$this->assertTrue( $job->ignoreDuplicates() );
 		$this->assertTrue( $jobSpec->ignoreDuplicates() );

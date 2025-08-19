@@ -20,7 +20,6 @@
 
 namespace MediaWiki\RecentChanges;
 
-use LogicException;
 use MediaWiki\Cache\BacklinkCache;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
@@ -67,48 +66,35 @@ class CategoryMembershipChange {
 	 */
 	private $numTemplateLinks = 0;
 
-	/**
-	 * @var callable|null
-	 */
-	private $newForCategorizationCallback = null;
-
-	/** @var BacklinkCache */
-	private $backlinkCache;
+	private BacklinkCache $backlinkCache;
+	private RecentChangeFactory $recentChangeFactory;
 
 	/**
 	 * @param Title $pageTitle Title instance of the categorized page
 	 * @param BacklinkCache $backlinkCache
 	 * @param RevisionRecord $revision Latest revision of the categorized page.
+	 * @param RecentChangeFactory $recentChangeFactory
 	 * @param bool $forImport Whether this was caused by an import
 	 */
 	public function __construct(
-		Title $pageTitle, BacklinkCache $backlinkCache, RevisionRecord $revision, bool $forImport
+		Title $pageTitle,
+		BacklinkCache $backlinkCache,
+		RevisionRecord $revision,
+		RecentChangeFactory $recentChangeFactory,
+		bool $forImport
 	) {
 		$this->pageTitle = $pageTitle;
 		$this->revision = $revision;
+		$this->recentChangeFactory = $recentChangeFactory;
 
 		// Use the current timestamp for creating the RC entry when dealing with imported revisions,
 		// since their timestamp may be significantly older than the current time.
 		// This ensures the resulting RC entry won't be immediately reaped by probabilistic RC purging if
 		// the imported revision is older than $wgRCMaxAge (T377392).
 		$this->timestamp = $forImport ? wfTimestampNow() : $revision->getTimestamp();
-		$this->newForCategorizationCallback = [ RecentChange::class, 'newForCategorization' ];
+
 		$this->backlinkCache = $backlinkCache;
 		$this->forImport = $forImport;
-	}
-
-	/**
-	 * Overrides the default new for categorization callback
-	 * This is intended for use while testing and will fail if MW_PHPUNIT_TEST is not defined.
-	 *
-	 * @param callable $callback
-	 * @see RecentChange::newForCategorization for callback signiture
-	 */
-	public function overrideNewForCategorizationCallback( callable $callback ) {
-		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
-			throw new LogicException( 'Cannot override newForCategorization callback in operation.' );
-		}
-		$this->newForCategorizationCallback = $callback;
 	}
 
 	/**
@@ -199,8 +185,7 @@ class CategoryMembershipChange {
 			$lastRevId = $correspondingRc->getAttribute( 'rc_last_oldid' ) ?: 0;
 		}
 
-		/** @var RecentChange $rc */
-		$rc = ( $this->newForCategorizationCallback )(
+		$rc = $this->recentChangeFactory->createCategorizationRecentChange(
 			$timestamp,
 			$categoryPage,
 			$user,
@@ -215,7 +200,7 @@ class CategoryMembershipChange {
 			$added,
 			$forImport
 		);
-		$rc->save();
+		$this->recentChangeFactory->insertRecentChange( $rc );
 	}
 
 	/**

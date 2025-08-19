@@ -2174,7 +2174,12 @@ return [
 				'refreshLinksPrioritized' => 'MediaWiki\\JobQueue\\Jobs\\RefreshLinksJob',
 				'refreshLinksDynamic' => 'MediaWiki\\JobQueue\\Jobs\\RefreshLinksJob',
 				'activityUpdateJob' => 'MediaWiki\\Watchlist\\ActivityUpdateJob',
-				'categoryMembershipChange' => 'MediaWiki\\JobQueue\\Jobs\\CategoryMembershipChangeJob',
+				'categoryMembershipChange' => [
+					'class' => 'MediaWiki\\JobQueue\\Jobs\\CategoryMembershipChangeJob',
+					'services' => [
+						'RecentChangeFactory',
+					],
+				],
 				'clearUserWatchlist' => 'MediaWiki\\Watchlist\\ClearUserWatchlistJob',
 				'watchlistExpiry' => 'MediaWiki\\Watchlist\\WatchlistExpiryJob',
 				'cdnPurge' => 'MediaWiki\\JobQueue\\Jobs\\CdnPurgeJob',

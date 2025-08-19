@@ -30,7 +30,6 @@ use MediaWiki\Language\Language;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
-use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\Skin\Skin;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\StubObject\StubUserLang;
@@ -108,12 +107,14 @@ class LogPage {
 	 * @return int The log_id of the inserted log entry
 	 */
 	protected function saveContent() {
-		$logRestrictions = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::LogRestrictions );
-
-		$dbw = MediaWikiServices::getInstance()->getConnectionProvider()->getPrimaryDatabase();
+		$services = MediaWikiServices::getInstance();
+		$logRestrictions = $services->getMainConfig()->get( MainConfigNames::LogRestrictions );
+		$recentChangeStore = $services->getRecentChangeStore();
+		$recentChangeRCFeedNotifier = $services->getRecentChangeRCFeedNotifier();
+		$dbw = $services->getConnectionProvider()->getPrimaryDatabase();
 
 		$now = wfTimestampNow();
-		$actorId = MediaWikiServices::getInstance()->getActorNormalization()
+		$actorId = $services->getActorNormalization()
 			->acquireActorId( $this->performer, $dbw );
 		$data = [
 			'log_type' => $this->type,
@@ -125,7 +126,7 @@ class LogPage {
 			'log_page' => $this->target->getArticleID(),
 			'log_params' => $this->params
 		];
-		$data += MediaWikiServices::getInstance()->getCommentStore()->insert(
+		$data += $services->getCommentStore()->insert(
 			$dbw,
 			'log_comment',
 			$this->comment
@@ -136,30 +137,30 @@ class LogPage {
 			->caller( __METHOD__ )->execute();
 		$newId = $dbw->insertId();
 
-		# And update recentchanges
+		// Don't add private logs to RC or send them to UDP
+		if ( isset( $logRestrictions[$this->type] ) && $logRestrictions[$this->type] != '*' ) {
+			return $newId;
+		}
+
 		if ( $this->updateRecentChanges ) {
 			$titleObj = SpecialPage::getTitleFor( 'Log', $this->type );
 
-			RecentChange::notifyLog(
+			$recentChange = $recentChangeStore->createLogRecentChange(
 				$now, $titleObj, $this->performer, $this->getRcComment(), '',
 				$this->type, $this->action, $this->target, $this->comment,
 				$this->params, $newId, $this->getRcCommentIRC()
 			);
+			$recentChangeStore->insertRecentChange( $recentChange );
 		} elseif ( $this->sendToUDP ) {
-			# Don't send private logs to UDP
-			if ( isset( $logRestrictions[$this->type] ) && $logRestrictions[$this->type] != '*' ) {
-				return $newId;
-			}
-
 			// Notify external application via UDP.
 			// We send this to IRC but do not want to add it the RC table.
 			$titleObj = SpecialPage::getTitleFor( 'Log', $this->type );
-			$rc = RecentChange::newLogEntry(
+			$recentChange = $recentChangeStore->createLogRecentChange(
 				$now, $titleObj, $this->performer, $this->getRcComment(), '',
 				$this->type, $this->action, $this->target, $this->comment,
 				$this->params, $newId, $this->getRcCommentIRC()
 			);
-			$rc->notifyRCFeeds();
+			$recentChangeRCFeedNotifier->notifyRCFeeds( $recentChange );
 		}
 
 		return $newId;
