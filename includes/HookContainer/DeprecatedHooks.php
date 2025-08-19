@@ -56,6 +56,7 @@ class DeprecatedHooks {
 		'UpdateUserMailerFormattedPageStatus' => [ 'deprecatedVersion' => '1.45' ],
 		'userCan' => [ 'deprecatedVersion' => '1.37' ],
 		'UserCanSendEmail' => [ 'deprecatedVersion' => '1.41', 'silent' => true ],
+		'UserIsBlockedGlobally' => [ 'deprecatedVersion' => '1.40' ],
 		'WikiPageDeletionUpdates' => [ 'deprecatedVersion' => '1.32', 'silent' => true ],
 	];
 

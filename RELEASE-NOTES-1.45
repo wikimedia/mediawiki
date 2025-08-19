@@ -338,6 +338,8 @@ because of Phabricator reports.
   have been deprecated. In most cases callers should use the verifyFile
   method of UploadVerification service.
 * XmlSelect::setTagName() is deprecated, use the Html class instead.
+* The UserIsBlockedGlobally hook has been hard deprecated and now emits
+  deprecation warnings. The hook has been deprecated since 1.40.
 * …
 
 === Other changes in 1.45 ===
