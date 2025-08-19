@@ -22,7 +22,6 @@
 
 namespace MediaWiki\Api;
 
-use Exception;
 use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\CommentFormatter\RowCommentFormatter;
 use MediaWiki\CommentStore\CommentStore;
@@ -414,7 +413,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		if ( $params['slot'] !== null ) {
 			try {
 				$slotId = $this->slotRoleStore->getId( $params['slot'] );
-			} catch ( Exception ) {
+			} catch ( NameTableAccessException ) {
 				$slotId = null;
 			}
 
