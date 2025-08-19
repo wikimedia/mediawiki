@@ -170,7 +170,8 @@ class Cookie {
 	 */
 	protected function canServeDomain( $domain ) {
 		if ( $domain == $this->domain
-			|| ( strlen( $domain ) > strlen( $this->domain )
+			|| ( $this->domain !== null
+				&& strlen( $domain ) > strlen( $this->domain )
 				&& str_starts_with( $this->domain, '.' )
 				&& substr_compare(
 					$domain,
