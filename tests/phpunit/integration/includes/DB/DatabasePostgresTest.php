@@ -36,9 +36,9 @@ class DatabasePostgresTest extends MediaWikiIntegrationTestCase {
 	 * Temporarily suppress query error logging
 	 *
 	 * @param IDatabase $db
-	 * @return ScopedCallback
 	 */
-	private function scopedDisableErrorLog( IDatabase $db ) {
+	#[\NoDiscard]
+	private function scopedDisableErrorLog( IDatabase $db ): ScopedCallback {
 		if ( $db instanceof DBConnRef ) {
 			$db->ensureConnection();
 			$db = TestingAccessWrapper::newFromObject( $db )->conn;

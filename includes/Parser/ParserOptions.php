@@ -1660,14 +1660,14 @@ class ParserOptions {
 	 * @param UserIdentity $user The user that the fake revision is attributed to
 	 * @param int $currentRevId
 	 *
-	 * @return ScopedCallback to unset the hook
 	 * @internal since 1.44, this method is no longer considered safe to call
 	 * by extensions. It may be removed or changed in a backwards incompatible
 	 * way in 1.45 or later.
 	 *
 	 * @since 1.25
 	 */
-	public function setupFakeRevision( $page, $content, $user, $currentRevId = 0 ) {
+	#[\NoDiscard]
+	public function setupFakeRevision( $page, $content, $user, $currentRevId = 0 ): ScopedCallback {
 		$oldCallback = $this->setCurrentRevisionRecordCallback(
 			function ( $titleToCheck, $parser = null )
 			use ( $page, $content, $user, $currentRevId, &$oldCallback )

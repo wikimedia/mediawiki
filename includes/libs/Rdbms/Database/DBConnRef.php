@@ -4,6 +4,7 @@ namespace Wikimedia\Rdbms;
 
 use InvalidArgumentException;
 use Stringable;
+use Wikimedia\ScopedCallback;
 use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
@@ -859,7 +860,8 @@ class DBConnRef implements Stringable, IMaintainableDatabase, IDatabaseForOwner 
 	}
 
 	/** @inheritDoc */
-	public function getScopedLockAndFlush( $lockKey, $fname, $timeout ) {
+	#[\NoDiscard]
+	public function getScopedLockAndFlush( $lockKey, $fname, $timeout ): ?ScopedCallback {
 		$this->assertRoleAllowsWrites();
 
 		return $this->__call( __FUNCTION__, func_get_args() );

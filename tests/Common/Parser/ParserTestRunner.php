@@ -365,9 +365,9 @@ class ParserTestRunner {
 	 * specified by $nextTeardown.
 	 *
 	 * @param ScopedCallback|null $nextTeardown
-	 * @return ScopedCallback
 	 */
-	public function staticSetup( $nextTeardown = null ) {
+	#[\NoDiscard]
+	public function staticSetup( $nextTeardown = null ): ScopedCallback {
 		// A note on coding style:
 
 		// The general idea here is to keep setup code together with
@@ -687,11 +687,11 @@ class ParserTestRunner {
 	 *
 	 * @param array $teardown The snippet array
 	 * @param ScopedCallback|null $nextTeardown A ScopedCallback to consume
-	 * @return ScopedCallback
 	 */
+	#[\NoDiscard]
 	protected function createTeardownObject(
 		array $teardown, ?ScopedCallback $nextTeardown = null
-	) {
+	): ScopedCallback {
 		return new ScopedCallback( function () use ( $teardown, $nextTeardown ) {
 			// Schedule teardown snippets in reverse order
 			$teardown = array_reverse( $teardown );
@@ -2378,9 +2378,9 @@ class ParserTestRunner {
 	 *
 	 * @param ParserTest $test Test info supplied by TestFileReader
 	 * @param callable|null $nextTeardown
-	 * @return ScopedCallback
 	 */
-	public function perTestSetup( ParserTest $test, $nextTeardown = null ) {
+	#[\NoDiscard]
+	public function perTestSetup( ParserTest $test, $nextTeardown = null ): ScopedCallback {
 		$teardown = [];
 
 		$this->checkSetupDone( 'setupDatabase' );
@@ -2523,9 +2523,9 @@ class ParserTestRunner {
 	 * @see staticSetup() for more information about setup/teardown
 	 *
 	 * @param ScopedCallback|null $nextTeardown The next teardown object
-	 * @return ScopedCallback The teardown object
 	 */
-	public function setupDatabase( $nextTeardown = null ) {
+	#[\NoDiscard]
+	public function setupDatabase( $nextTeardown = null ): ScopedCallback {
 		global $wgDBprefix;
 
 		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
@@ -2573,9 +2573,9 @@ class ParserTestRunner {
 	 * directory. This should be called after setupDatabase().
 	 *
 	 * @param ScopedCallback|null $nextTeardown The next teardown object
-	 * @return ScopedCallback The teardown object
 	 */
-	public function setupUploads( $nextTeardown = null ) {
+	#[\NoDiscard]
+	public function setupUploads( $nextTeardown = null ): ScopedCallback {
 		$teardown = [];
 
 		$this->checkSetupDone( 'setupDatabase' );
@@ -2941,8 +2941,8 @@ class ParserTestRunner {
 	 *
 	 * @param ParserTestArticle[] $articles Article info array from TestFileReader
 	 * @param ?ScopedCallback $nextTeardown The next teardown object
-	 * @return ScopedCallback The teardown object
 	 */
+	#[\NoDiscard]
 	public function addArticles(
 		array $articles, ?ScopedCallback $nextTeardown = null
 	): ScopedCallback {

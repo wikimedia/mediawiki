@@ -54,6 +54,7 @@ class ProfilerExcimer extends Profiler {
 	}
 
 	/** @inheritDoc */
+	#[\NoDiscard]
 	public function scopedProfileIn( $section ): ?SectionProfileCallback {
 		return null;
 	}

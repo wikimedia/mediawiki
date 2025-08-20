@@ -123,6 +123,7 @@ abstract class Profiler {
 	 * @param string $section
 	 * @since 1.25
 	 */
+	#[\NoDiscard]
 	abstract public function scopedProfileIn( $section ): ?SectionProfileCallback;
 
 	/**

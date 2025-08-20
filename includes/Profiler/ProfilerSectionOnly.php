@@ -21,6 +21,7 @@ class ProfilerSectionOnly extends Profiler {
 	}
 
 	/** @inheritDoc */
+	#[\NoDiscard]
 	public function scopedProfileIn( $section ): ?SectionProfileCallback {
 		return $this->sprofiler->scopedProfileIn( $section );
 	}

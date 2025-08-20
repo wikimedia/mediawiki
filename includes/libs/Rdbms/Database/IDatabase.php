@@ -984,11 +984,11 @@ interface IDatabase extends IReadableDatabase {
 	 * @param string $lockKey Name of lock to release
 	 * @param string $fname Name of the calling method
 	 * @param int $timeout Acquisition timeout in seconds
-	 * @return ScopedCallback|null
 	 * @throws DBError If an error occurs, {@see query}
 	 * @since 1.27
 	 */
-	public function getScopedLockAndFlush( $lockKey, $fname, $timeout );
+	#[\NoDiscard]
+	public function getScopedLockAndFlush( $lockKey, $fname, $timeout ): ?ScopedCallback;
 
 	/**
 	 * Check if this DB server is marked as read-only according to load balancer info
