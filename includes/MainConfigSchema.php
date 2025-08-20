@@ -7210,7 +7210,7 @@ class MainConfigSchema {
 	 * @since 1.27
 	 */
 	public const ReauthenticateTime = [
-		'default' => [ 'default' => 300, ],
+		'default' => [ 'default' => 3600, ],
 		'type' => 'map',
 		'additionalProperties' => [ 'type' => 'integer', ],
 	];

@@ -968,7 +968,7 @@ return [
 			],
 			'RememberMe' => 'choose',
 			'ReauthenticateTime' => [
-				'default' => 300,
+				'default' => 3600,
 			],
 			'AllowSecuritySensitiveOperationIfCannotReauthenticate' => [
 				'default' => true,
