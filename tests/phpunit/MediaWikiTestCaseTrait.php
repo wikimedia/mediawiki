@@ -53,12 +53,10 @@ trait MediaWikiTestCaseTrait {
 	 * Return a PHPUnit mock that is expected to never have any methods called on it.
 	 *
 	 * @psalm-template RealInstanceType of object
+	 * @phan-template RealInstanceType
 	 *
-	 * @psalm-param class-string<RealInstanceType> $type
-	 * @psalm-param list<string> $allow Methods to allow
-	 *
-	 * @param string $type
-	 * @param string[] $allow Methods to allow
+	 * @param class-string<RealInstanceType> $type
+	 * @param list<string> $allow Methods to allow
 	 *
 	 * @return MockObject&RealInstanceType
 	 */
@@ -72,12 +70,10 @@ trait MediaWikiTestCaseTrait {
 	 * Return a PHPUnit mock that is expected to never have any methods called on it.
 	 *
 	 * @psalm-template RealInstanceType of object
+	 * @phan-template RealInstanceType
 	 *
-	 * @psalm-param class-string<RealInstanceType> $type
-	 * @psalm-param list<string> $allow Methods to allow
-	 *
-	 * @param string $type
-	 * @param string[] $allow methods to allow
+	 * @param class-string<RealInstanceType> $type
+	 * @param list<string> $allow Methods to allow
 	 *
 	 * @return MockObject&RealInstanceType
 	 */
