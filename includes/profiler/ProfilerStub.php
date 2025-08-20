@@ -24,7 +24,7 @@
  * @ingroup Profiler
  */
 class ProfilerStub extends Profiler {
-	public function scopedProfileIn( $section ) {
+	public function scopedProfileIn( $section ): ?SectionProfileCallback {
 		return null; // no-op
 	}
 
