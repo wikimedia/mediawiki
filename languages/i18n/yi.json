@@ -1941,7 +1941,7 @@
 	"blanknamespace": "(הויפט)",
 	"contributions": "באַניצער־בײַשטײַערונגען",
 	"tool-link-contributions": "{{GENDER:$1|באַניצער|באַניצערין}} ביישטייערונגען",
-	"contributions-title": "בײַשטײַערונגען פֿון באַניצער $1",
+	"contributions-title": "{{GENDER:$2|באַניצער|באַניצערין}} ביישטייערונגען פון $1",
 	"contribute-title": "באַניצער ביישטייערונגען",
 	"mycontris": "בײַשטײַערונגען",
 	"anoncontribs": "בײַשטײַערונגען",

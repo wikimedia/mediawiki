@@ -1673,7 +1673,7 @@
 	"scarytranscludedisabled": "[الليان د لإنترويكي مديزاكتيڤي]",
 	"scarytranscludefailed": "[التقلاب على لموضيل فشل ل $1]",
 	"scarytranscludetoolong": "[الليان طويل بزاف]",
-	"deletedwhileediting": "<strong>حضي:</strong> هاد الصفحة تحيّدات بعدما بديتي كاتبدّل{{GENDER:||ي}} فيها!",
+	"deletedwhileediting": "<strong>حضي:</strong> هاد الصفحة تحيّدات بعدما بديتي كاتبدّل فيها!",
 	"confirmrecreate": "{{GENDER:$1|لخدايمي|لخدايمية}} [[User:$1|$1]] ([[User talk:$1|talk]]) {{GENDER:$1|حدف|حدفات}} هاد صّفحة بعدما بديتي كاتعدّل فيها ل هاد سّبب:\n: <em>$2</em>\nعافاك كونفيرمي بلي بغيتي تعاود تصاوب هاد صّفحة.",
 	"confirmrecreate-noreason": "{{GENDER:$1|لخدايمي|لخدايمية}} [[User:$1|$1]] ([[User talk:$1|talk]]) {{GENDER:$1|حدف|حدفات}} هاد صّفحة بعدما بديتي كاتعدّل فيها. عافاك أكد بلي بغيتي تعاود تصاوب هاد صّفحة.",
 	"recreate": "عود لإنشاء",
