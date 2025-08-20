@@ -370,7 +370,10 @@ class MessageValue implements MessageSpecifier, JsonCodecable {
 				 * Serialize trivial parameters as scalar values to minimize the footprint. Full
 				 * round-trip compatibility is guaranteed via the constructor and {@see params}.
 				 */
-				static fn ( $p ) => $p->getType() === ParamType::TEXT ? $p->getValue() : $p,
+				static fn ( $p ) => (
+					$p->getType() === ParamType::TEXT &&
+					is_scalar( $p->getValue() )
+				) ? $p->getValue() : $p,
 				$this->params
 			),
 		];
@@ -383,8 +386,7 @@ class MessageValue implements MessageSpecifier, JsonCodecable {
 		if ( $keyName === 'params' ) {
 			return Hint::build(
 				MessageParam::class, Hint::INHERITED,
-				Hint::LIST, Hint::USE_SQUARE,
-				Hint::ONLY_FOR_DECODE
+				Hint::LIST, Hint::USE_SQUARE
 			);
 		}
 		return null;
@@ -406,6 +408,6 @@ class MessageValue implements MessageSpecifier, JsonCodecable {
 	 * this JsonCodec hint to suppress unnecessary type information.
 	 */
 	public static function hint(): Hint {
-		return Hint::build( self::class, Hint::INHERITED, Hint::ONLY_FOR_DECODE );
+		return Hint::build( self::class, Hint::INHERITED );
 	}
 }

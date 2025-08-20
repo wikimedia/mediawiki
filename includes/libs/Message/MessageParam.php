@@ -75,6 +75,6 @@ abstract class MessageParam implements JsonCodecable {
 	 * this JsonCodec hint to suppress unnecessary type information.
 	 */
 	public static function hint(): Hint {
-		return Hint::build( self::class, Hint::INHERITED, Hint::ONLY_FOR_DECODE );
+		return Hint::build( self::class, Hint::INHERITED );
 	}
 }

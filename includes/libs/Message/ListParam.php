@@ -89,8 +89,7 @@ class ListParam extends MessageParam {
 		if ( $keyName === ParamType::LIST ) {
 			return Hint::build(
 				MessageParam::class, Hint::INHERITED,
-				Hint::LIST, Hint::USE_SQUARE,
-				Hint::ONLY_FOR_DECODE
+				Hint::LIST, Hint::USE_SQUARE
 			);
 		}
 		return null;
