@@ -2,48 +2,31 @@
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
-use MediaWiki\Page\PageIdentityValue;
-use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\RecentChanges\RecentChange;
-use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
-use MediaWiki\Utils\MWTimestamp;
 
 /**
  * @group Database
  */
 class RecentChangeTest extends MediaWikiIntegrationTestCase {
-	use MockAuthorityTrait;
-	use MockTitleTrait;
 	use TempUserTestTrait;
 
 	protected PageIdentity $title;
 	protected PageIdentity $target;
 	protected UserIdentity $user;
 
-	private const USER_COMMENT = '<User comment about action>';
-
 	protected function setUp(): void {
 		parent::setUp();
-
-		$this->title = PageIdentityValue::localIdentity( 17, NS_MAIN, 'SomeTitle' );
-		$this->target = PageIdentityValue::localIdentity( 78, NS_MAIN, 'TestTarget' );
 
 		$user = $this->getTestUser()->getUser();
 		$this->user = new UserIdentityValue( $user->getId(), $user->getName() );
 
 		$this->overrideConfigValues( [
-			MainConfigNames::CanonicalServer => 'https://example.org',
-			MainConfigNames::ServerName => 'example.org',
-			MainConfigNames::ScriptPath => '/w',
-			MainConfigNames::Script => '/w/index.php',
 			MainConfigNames::UseRCPatrol => false,
 			MainConfigNames::UseNPPatrol => false,
-			MainConfigNames::RCFeeds => [],
-			MainConfigNames::RCEngines => [],
 		] );
 	}
 
@@ -234,87 +217,5 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testParseToRCType( $rcType, $type ) {
 		$this->assertEquals( $rcType, RecentChange::parseToRCType( $type ) );
-	}
-
-	private function getDummyEditRecentChange(): RecentChange {
-		return RecentChange::notifyEdit(
-			MWTimestamp::now(),
-			$this->title,
-			false,
-			$this->user,
-			self::USER_COMMENT,
-			0,
-			MWTimestamp::now(),
-			false
-		);
-	}
-
-	/**
-	 * @covers \MediaWiki\RecentChanges\RecentChange::markPatrolled
-	 */
-	public function testMarkPatrolledPermissions() {
-		$rc = $this->getDummyEditRecentChange();
-		$performer = $this->mockRegisteredAuthority( static function (
-			string $permission,
-			PageIdentity $page,
-			PermissionStatus $status
-		) {
-			if ( $permission === 'patrol' ) {
-				$status->fatal( 'missing-patrol' );
-				return false;
-			}
-			return true;
-		} );
-		$status = $rc->markPatrolled(
-			$performer
-		);
-		$this->assertStatusError( 'missing-patrol', $status );
-	}
-
-	/**
-	 * @covers \MediaWiki\RecentChanges\RecentChange::markPatrolled
-	 */
-	public function testMarkPatrolledPermissions_Hook() {
-		$rc = $this->getDummyEditRecentChange();
-		$this->setTemporaryHook( 'MarkPatrolled', static function () {
-			return false;
-		} );
-		$status = $rc->markPatrolled( $this->mockRegisteredUltimateAuthority() );
-		$this->assertStatusError( 'hookaborted', $status );
-	}
-
-	/**
-	 * @covers \MediaWiki\RecentChanges\RecentChange::markPatrolled
-	 */
-	public function testMarkPatrolledPermissions_Self() {
-		$rc = $this->getDummyEditRecentChange();
-		$status = $rc->markPatrolled(
-			$this->mockUserAuthorityWithoutPermissions( $this->user, [ 'autopatrol' ] )
-		);
-		$this->assertStatusError( 'markedaspatrollederror-noautopatrol', $status );
-	}
-
-	/**
-	 * @covers \MediaWiki\RecentChanges\RecentChange::markPatrolled
-	 */
-	public function testMarkPatrolledPermissions_NoRcPatrol() {
-		$rc = $this->getDummyEditRecentChange();
-		$status = $rc->markPatrolled( $this->mockRegisteredUltimateAuthority() );
-		$this->assertStatusError( 'rcpatroldisabled', $status );
-	}
-
-	/**
-	 * @covers \MediaWiki\RecentChanges\RecentChange::markPatrolled
-	 */
-	public function testMarkPatrolled() {
-		$this->overrideConfigValue( MainConfigNames::UseRCPatrol, true );
-		$rc = $this->getDummyEditRecentChange();
-		$status = $rc->markPatrolled(
-			$this->mockUserAuthorityWithPermissions( $this->user, [ 'patrol', 'autopatrol' ] )
-		);
-		$this->assertStatusGood( $status );
-
-		$reloadedRC = RecentChange::newFromId( $rc->getAttribute( 'rc_id' ) );
-		$this->assertSame( '1', $reloadedRC->getAttribute( 'rc_patrolled' ) );
 	}
 }

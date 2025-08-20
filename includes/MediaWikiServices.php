@@ -140,6 +140,7 @@ use MediaWiki\Permissions\RestrictionStore;
 use MediaWiki\PoolCounter\PoolCounterFactory;
 use MediaWiki\Preferences\PreferencesFactory;
 use MediaWiki\Preferences\SignatureValidatorFactory;
+use MediaWiki\RecentChanges\PatrolManager;
 use MediaWiki\RecentChanges\RecentChangeFactory;
 use MediaWiki\RecentChanges\RecentChangeLookup;
 use MediaWiki\RecentChanges\RecentChangeRCFeedNotifier;
@@ -1730,6 +1731,13 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getPasswordReset(): PasswordReset {
 		return $this->getService( 'PasswordReset' );
+	}
+
+	/**
+	 * @since 1.45
+	 */
+	public function getPatrolManager(): PatrolManager {
+		return $this->getService( 'PatrolManager' );
 	}
 
 	/**

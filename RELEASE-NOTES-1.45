@@ -359,6 +359,8 @@ because of Phabricator reports.
   - newLogEntry()
   - notifyRCFeeds()
   - save()
+  - markPatrolled()
+  - reallyMarkPatrolled()
 * XmlSelect::setTagName() is deprecated, use the Html class instead.
 * The UserIsBlockedGlobally hook has been hard deprecated and now emits
   deprecation warnings. The hook has been deprecated since 1.40.

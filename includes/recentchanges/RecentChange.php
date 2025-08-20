@@ -23,8 +23,6 @@ namespace MediaWiki\RecentChanges;
 use InvalidArgumentException;
 use MediaWiki\ChangeTags\Taggable;
 use MediaWiki\Debug\DeprecationHelper;
-use MediaWiki\HookContainer\HookRunner;
-use MediaWiki\Logging\PatrolLog;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
@@ -130,9 +128,9 @@ class RecentChange implements Taggable {
 		self::SRC_CATEGORIZE,
 	];
 
-	public const PRC_UNPATROLLED = 0;
-	public const PRC_PATROLLED = 1;
-	public const PRC_AUTOPATROLLED = 2;
+	public const PRC_UNPATROLLED = PatrolManager::PRC_UNPATROLLED;
+	public const PRC_PATROLLED = PatrolManager::PRC_PATROLLED;
+	public const PRC_AUTOPATROLLED = PatrolManager::PRC_AUTOPATROLLED;
 
 	public const SEND_NONE = RecentChangeStore::SEND_NONE;
 	public const SEND_FEED = RecentChangeStore::SEND_FEED;
@@ -465,107 +463,31 @@ class RecentChange implements Taggable {
 	 * NOTE: Can also return 'rcpatroldisabled', 'hookaborted' and
 	 * 'markedaspatrollederror-noautopatrol' as errors
 	 *
+	 * @deprecated since 1.45, use PatrolManager::markPatrolled() instead.
+	 *
 	 * @param Authority $performer User performing the action
 	 * @param string|string[]|null $tags Change tags to add to the patrol log entry
 	 *   ($user should be able to add the specified tags before this is called)
 	 * @return PermissionStatus
 	 */
 	public function markPatrolled( Authority $performer, $tags = null ): PermissionStatus {
-		$services = MediaWikiServices::getInstance();
-		$mainConfig = $services->getMainConfig();
-		$useRCPatrol = $mainConfig->get( MainConfigNames::UseRCPatrol );
-		$useNPPatrol = $mainConfig->get( MainConfigNames::UseNPPatrol );
-		$useFilePatrol = $mainConfig->get( MainConfigNames::UseFilePatrol );
-
-		// Fix up $tags so that the MarkPatrolled hook below always gets an array
-		if ( $tags === null ) {
-			$tags = [];
-		} elseif ( is_string( $tags ) ) {
-			$tags = [ $tags ];
-		}
-
-		$status = PermissionStatus::newEmpty();
-		// If recentchanges patrol is disabled, only new pages or new file versions
-		// can be patrolled, provided the appropriate config variable is set
-		if ( !$useRCPatrol && ( !$useNPPatrol || $this->getAttribute( 'rc_source' ) != self::SRC_NEW ) &&
-			( !$useFilePatrol || !( $this->getAttribute( 'rc_source' ) == self::SRC_LOG &&
-			$this->getAttribute( 'rc_log_type' ) == 'upload' ) ) ) {
-			$status->fatal( 'rcpatroldisabled' );
-		}
-		$performer->authorizeWrite( 'patrol', $this->getTitle(), $status );
-		$user = $services->getUserFactory()->newFromAuthority( $performer );
-		$hookRunner = new HookRunner( $services->getHookContainer() );
-		if ( !$hookRunner->onMarkPatrolled(
-			$this->getAttribute( 'rc_id' ), $user, false, false, $tags )
-		) {
-			$status->fatal( 'hookaborted' );
-		}
-		// Users without the 'autopatrol' right can't patrol their own revisions
-		if ( $performer->getUser()->getName() === $this->getAttribute( 'rc_user_text' ) &&
-			!$performer->isAllowed( 'autopatrol' )
-		) {
-			$status->fatal( 'markedaspatrollederror-noautopatrol' );
-		}
-		if ( !$status->isGood() ) {
-			return $status;
-		}
-		// If the change was patrolled already, do nothing
-		if ( $this->getAttribute( 'rc_patrolled' ) ) {
-			return $status;
-		}
-		// Attempt to set the 'patrolled' flag in RC database
-		$affectedRowCount = $this->reallyMarkPatrolled();
-
-		if ( $affectedRowCount === 0 ) {
-			// Query succeeded but no rows change, e.g. another request
-			// patrolled the same change just before us.
-			// Avoid duplicate log entry (T196182).
-			return $status;
-		}
-
-		// Log this patrol event
-		PatrolLog::record( $this, false, $performer->getUser(), $tags );
-
-		$hookRunner->onMarkPatrolledComplete(
-			$this->getAttribute( 'rc_id' ), $user, false, false );
-
-		return $status;
+		return MediaWikiServices::getInstance()
+			->getPatrolManager()
+			->markPatrolled( $this, $performer, $tags );
 	}
 
 	/**
 	 * Mark this RecentChange patrolled, without error checking
 	 *
+	 * @deprecated since 1.45, use PatrolManager::reallyMarkPatrolled() instead.
+	 *
 	 * @return int Number of database rows changed, usually 1, but 0 if
 	 * another request already patrolled it in the mean time.
 	 */
 	public function reallyMarkPatrolled() {
-		$dbw = MediaWikiServices::getInstance()->getConnectionProvider()->getPrimaryDatabase();
-		$dbw->newUpdateQueryBuilder()
-			->update( 'recentchanges' )
-			->set( [ 'rc_patrolled' => self::PRC_PATROLLED ] )
-			->where( [
-				'rc_id' => $this->getAttribute( 'rc_id' ),
-				'rc_patrolled' => self::PRC_UNPATROLLED,
-			] )
-			->caller( __METHOD__ )->execute();
-		$affectedRowCount = $dbw->affectedRows();
-		// The change was patrolled already, do nothing
-		if ( $affectedRowCount === 0 ) {
-			return 0;
-		}
-		// Invalidate the page cache after the page has been patrolled
-		// to make sure that the Patrol link isn't visible any longer!
-		$this->getTitle()->invalidateCache();
-
-		// Enqueue a reverted tag update (in case the edit was a revert)
-		$revisionId = $this->getAttribute( 'rc_this_oldid' );
-		if ( $revisionId ) {
-			$revertedTagUpdateManager =
-				MediaWikiServices::getInstance()->getRevertedTagUpdateManager();
-			$revertedTagUpdateManager->approveRevertedTagForRevision( $revisionId );
-		}
-
-		return $affectedRowCount;
+		return MediaWikiServices::getInstance()
+			->getPatrolManager()
+			->reallyMarkPatrolled( $this );
 	}
 
 	/**

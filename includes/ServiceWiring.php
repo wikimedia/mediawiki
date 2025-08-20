@@ -190,6 +190,7 @@ use MediaWiki\Preferences\PreferencesFactory;
 use MediaWiki\Preferences\SignatureValidator;
 use MediaWiki\Preferences\SignatureValidatorFactory;
 use MediaWiki\RecentChanges\ChangeTrackingEventIngress;
+use MediaWiki\RecentChanges\PatrolManager;
 use MediaWiki\RecentChanges\RecentChangeFactory;
 use MediaWiki\RecentChanges\RecentChangeLookup;
 use MediaWiki\RecentChanges\RecentChangeRCFeedNotifier;
@@ -1806,6 +1807,16 @@ return [
 			$services->getUserFactory(),
 			$services->getUserNameUtils(),
 			$services->getUserOptionsLookup()
+		);
+	},
+
+	'PatrolManager' => static function ( MediaWikiServices $services ): PatrolManager {
+		return new PatrolManager(
+			new ServiceOptions( PatrolManager::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
+			$services->getConnectionProvider(),
+			$services->getUserFactory(),
+			$services->getHookContainer(),
+			$services->getRevertedTagUpdateManager()
 		);
 	},
 

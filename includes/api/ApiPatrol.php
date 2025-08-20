@@ -25,6 +25,7 @@
 namespace MediaWiki\Api;
 
 use MediaWiki\ChangeTags\ChangeTags;
+use MediaWiki\RecentChanges\PatrolManager;
 use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\Revision\RevisionStore;
 use Wikimedia\ParamValidator\ParamValidator;
@@ -35,14 +36,18 @@ use Wikimedia\ParamValidator\ParamValidator;
  */
 class ApiPatrol extends ApiBase {
 	private RevisionStore $revisionStore;
+	private PatrolManager $patrolManager;
 
 	public function __construct(
 		ApiMain $main,
 		string $action,
-		RevisionStore $revisionStore
+		RevisionStore $revisionStore,
+		PatrolManager $patrolManager
 	) {
 		parent::__construct( $main, $action );
+
 		$this->revisionStore = $revisionStore;
+		$this->patrolManager = $patrolManager;
 	}
 
 	/**
@@ -79,7 +84,7 @@ class ApiPatrol extends ApiBase {
 			}
 		}
 
-		$status = $rc->markPatrolled( $user, $tags );
+		$status = $this->patrolManager->markPatrolled( $rc, $user, $tags );
 
 		if ( !$status->isGood() ) {
 			$this->dieStatus( $status );

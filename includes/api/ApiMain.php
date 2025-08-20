@@ -415,6 +415,7 @@ class ApiMain extends ApiBase {
 			'class' => ApiPatrol::class,
 			'services' => [
 				'RevisionStore',
+				'PatrolManager',
 			]
 		],
 		'import' => [

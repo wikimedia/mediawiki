@@ -103,6 +103,7 @@ class ActionFactory {
 			'class' => MarkpatrolledAction::class,
 			'services' => [
 				'LinkRenderer',
+				'PatrolManager',
 			],
 		],
 		'mcrundo' => [

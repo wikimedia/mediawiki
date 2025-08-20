@@ -29,6 +29,7 @@ use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Message\Message;
 use MediaWiki\Page\Article;
+use MediaWiki\RecentChanges\PatrolManager;
 use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\SpecialPage\SpecialPage;
 use StatusValue;
@@ -41,19 +42,24 @@ use StatusValue;
 class MarkpatrolledAction extends FormAction {
 
 	private LinkRenderer $linkRenderer;
+	private PatrolManager $patrolManager;
 
 	/**
 	 * @param Article $article
 	 * @param IContextSource $context
 	 * @param LinkRenderer $linkRenderer
+	 * @param PatrolManager $patrolManager
 	 */
 	public function __construct(
 		Article $article,
 		IContextSource $context,
-		LinkRenderer $linkRenderer
+		LinkRenderer $linkRenderer,
+		PatrolManager $patrolManager
 	) {
 		parent::__construct( $article, $context );
+
 		$this->linkRenderer = $linkRenderer;
+		$this->patrolManager = $patrolManager;
 	}
 
 	/** @inheritDoc */
@@ -129,7 +135,7 @@ class MarkpatrolledAction extends FormAction {
 	 */
 	public function onSubmit( $data ) {
 		$rc = $this->getRecentChange( $data );
-		$status = $rc->markPatrolled( $this->getAuthority() );
+		$status = $this->patrolManager->markPatrolled( $rc, $this->getAuthority() );
 
 		if ( $status->hasMessage( 'rcpatroldisabled' ) ) {
 			throw new ErrorPageError( 'rcpatroldisabled', 'rcpatroldisabledtext' );
