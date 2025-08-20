@@ -2934,7 +2934,8 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		return true; // not implemented
 	}
 
-	public function getScopedLockAndFlush( $lockKey, $fname, $timeout ) {
+	#[\NoDiscard]
+	public function getScopedLockAndFlush( $lockKey, $fname, $timeout ): ?ScopedCallback {
 		$this->transactionManager->onGetScopedLockAndFlush( $this, $fname );
 
 		if ( !$this->lock( $lockKey, $fname, $timeout ) ) {

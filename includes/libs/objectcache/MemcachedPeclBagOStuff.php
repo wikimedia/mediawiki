@@ -166,10 +166,9 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 	 * This makes writes much faster.
 	 *
 	 * @param bool|int $flags
-	 *
-	 * @return ScopedCallback|null
 	 */
-	private function noReplyScope( $flags ) {
+	#[\NoDiscard]
+	private function noReplyScope( $flags ): ?ScopedCallback {
 		if ( $flags !== true && !( $flags & self::WRITE_BACKGROUND ) ) {
 			return null;
 		}

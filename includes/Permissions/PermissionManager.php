@@ -1859,9 +1859,9 @@ class PermissionManager {
 	 * @since 1.34
 	 * @param UserIdentity $user
 	 * @param string|string[] $rights
-	 * @return ScopedCallback
 	 */
-	public function addTemporaryUserRights( UserIdentity $user, $rights ) {
+	#[\NoDiscard]
+	public function addTemporaryUserRights( UserIdentity $user, $rights ): ScopedCallback {
 		$userId = $user->getId();
 		$nextKey = count( $this->temporaryUserRights[$userId] ?? [] );
 		$this->temporaryUserRights[$userId][$nextKey] = (array)$rights;

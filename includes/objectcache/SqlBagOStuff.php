@@ -1829,10 +1829,9 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 
 	/**
 	 * Silence the transaction profiler until the return value falls out of scope
-	 *
-	 * @return ScopedCallback|null
 	 */
-	private function silenceTransactionProfiler() {
+	#[\NoDiscard]
+	private function silenceTransactionProfiler(): ?ScopedCallback {
 		if ( $this->serverInfos ) {
 			return null; // no TransactionProfiler injected anyway
 		}

@@ -364,10 +364,10 @@ abstract class BagOStuff implements
 	 * @param int $exptime Lock time-to-live [optional]; 1 day maximum
 	 * @param string $rclass Allow reentry if set and the current lock used this value
 	 *
-	 * @return ScopedCallback|null Returns null on failure
 	 * @since 1.26
 	 */
-	final public function getScopedLock( $key, $timeout = 6, $exptime = 30, $rclass = '' ) {
+	#[\NoDiscard]
+	final public function getScopedLock( $key, $timeout = 6, $exptime = 30, $rclass = '' ): ?ScopedCallback {
 		$exptime = min( $exptime ?: INF, self::TTL_DAY );
 
 		if ( !$this->lock( $key, $timeout, $exptime, $rclass ) ) {

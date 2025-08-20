@@ -1739,9 +1739,9 @@ abstract class FileBackend implements LoggerAwareInterface {
 
 	/**
 	 * @param string $section
-	 * @return ScopedCallback|null
 	 */
-	protected function scopedProfileSection( $section ) {
+	#[\NoDiscard]
+	protected function scopedProfileSection( $section ): ?ScopedCallback {
 		return $this->profiler ? ( $this->profiler )( $section ) : null;
 	}
 

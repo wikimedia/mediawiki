@@ -4,6 +4,7 @@ namespace Wikimedia\Rdbms;
 
 use InvalidArgumentException;
 use Stringable;
+use Wikimedia\ScopedCallback;
 
 /**
  * Helper class used for automatically re-using IDatabase connections and lazily
@@ -741,7 +742,8 @@ class DBConnRef implements Stringable, IMaintainableDatabase, IDatabaseForOwner 
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function getScopedLockAndFlush( $lockKey, $fname, $timeout ) {
+	#[\NoDiscard]
+	public function getScopedLockAndFlush( $lockKey, $fname, $timeout ): ?ScopedCallback {
 		$this->assertRoleAllowsWrites();
 
 		return $this->__call( __FUNCTION__, func_get_args() );
