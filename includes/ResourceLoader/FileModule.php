@@ -320,19 +320,26 @@ class FileModule extends Module {
 	public function getScript( Context $context ) {
 		$packageFiles = $this->getPackageFiles( $context );
 		if ( $packageFiles !== null ) {
-			foreach ( $packageFiles['files'] as &$file ) {
-				if ( $file['type'] === 'script+style' ) {
-					$file['content'] = $file['content']['script'];
-					$file['type'] = 'script';
-				}
-			}
+			// T402278: use array_map() to avoid &references here
+			$packageFiles['files'] = array_map(
+				static function ( array $file ): array {
+					if ( $file['type'] === 'script+style' ) {
+						$file['content'] = $file['content']['script'];
+						$file['type'] = 'script';
+					}
+					return $file;
+				},
+				$packageFiles['files']
+			);
 			return $packageFiles;
 		}
 
 		$files = $this->getScriptFiles( $context );
-		foreach ( $files as &$file ) {
-			$this->readFileInfo( $context, $file );
-		}
+		// T402278: use array_map() to avoid &references here
+		$files = array_map(
+			fn ( $file ) => $this->readFileInfo( $context, $file ),
+			$files
+		);
 		return [ 'plainScripts' => $files ];
 	}
 
@@ -1378,9 +1385,10 @@ class FileModule extends Module {
 		}
 		$expandedPackageFiles = $this->expandPackageFiles( $context ) ?? [];
 
-		foreach ( $expandedPackageFiles['files'] as &$fileInfo ) {
-			$this->readFileInfo( $context, $fileInfo );
-		}
+		// T402278: use array_map() to avoid &references here
+		$expandedPackageFiles['files'] = array_map( function ( array $fileInfo ) use ( $context ): array {
+			return $this->readFileInfo( $context, $fileInfo );
+		}, $expandedPackageFiles['files'] );
 
 		$this->fullyExpandedPackageFiles[ $hash ] = $expandedPackageFiles;
 		return $expandedPackageFiles;
@@ -1388,13 +1396,14 @@ class FileModule extends Module {
 
 	/**
 	 * Given a file info array as returned by expandFileInfo(), expand the file paths and
-	 * remaining callbacks, ensuring that the 'content' element is populated. Modify
-	 * the array by reference, removing intermediate data such as callback parameters.
+	 * remaining callbacks, ensuring that the 'content' element is populated. Return a
+	 * modified copy of the array, removing intermediate data such as callback parameters.
 	 *
 	 * @param Context $context
-	 * @param array &$fileInfo
+	 * @param array $fileInfo
+	 * @return array
 	 */
-	private function readFileInfo( Context $context, array &$fileInfo ) {
+	private function readFileInfo( Context $context, array $fileInfo ): array {
 		// Turn any 'filePath' or 'callback' key into actual 'content',
 		// and remove the key after that. The callback could return a
 		// FilePath object; if that happens, fall through to the 'filePath'
@@ -1449,6 +1458,8 @@ class FileModule extends Module {
 		unset( $fileInfo['definitionSummary'] );
 		// Not needed for client response, used by callbacks only.
 		unset( $fileInfo['callbackParam'] );
+
+		return $fileInfo;
 	}
 
 	/**
