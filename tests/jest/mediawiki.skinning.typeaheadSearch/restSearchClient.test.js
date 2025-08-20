@@ -136,6 +136,30 @@ describe( 'restApiSearchClient', () => {
 
 	} );
 
+	test( 'redirects are labelled', async () => {
+		mw.msg = jest.fn( ( key, ...params ) => key + ': ' + params.join( '-' ) );
+		fetchMock.mockOnce( JSON.stringify( {
+			pages: [
+				{
+					id: 1,
+					title: 'Target title',
+					// eslint-disable-next-line camelcase
+					matched_title: 'Source title'
+				},
+				{
+					id: 2,
+					title: 'Not a redirect',
+					// eslint-disable-next-line camelcase
+					matched_title: null
+				}
+			]
+		} ) );
+		const searchResult = await restSearchClient( searchApiUrl, urlGenerator, recommendationApiUrl )
+			.fetchRecommendationByTitle( 'source' ).fetch;
+		expect( searchResult.results[ 0 ].supportingText ).toBe( 'redirectedfrom: Source title' );
+		expect( searchResult.results[ 1 ].supportingText ).toBeUndefined();
+	} );
+
 	if ( mockedRequests ) {
 		test( 'network error', async () => {
 			fetchMock.mockRejectOnce( new Error( 'failed' ) );

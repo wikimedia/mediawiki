@@ -48,7 +48,7 @@ function adaptApiResponse( urlGeneratorInstance, query, restResponse, showDescri
 		searchId: restResponse.searchId,
 		results: restResponse.body.pages.map( ( page, index ) => {
 			const thumbnail = page.thumbnail;
-			return {
+			const result = {
 				id: page.id,
 				value: page.id || -( index + 1 ),
 				label: page.title,
@@ -62,6 +62,10 @@ function adaptApiResponse( urlGeneratorInstance, query, restResponse, showDescri
 					height: nullish( thumbnail.height, undefined )
 				} : undefined
 			};
+			if ( page.matched_title && page.title !== page.matched_title ) {
+				result.supportingText = mw.msg( 'redirectedfrom', page.matched_title );
+			}
+			return result;
 		} )
 	};
 }
