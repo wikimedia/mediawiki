@@ -4381,7 +4381,7 @@ config-schema:
             @since 1.36
     ReauthenticateTime:
         default:
-            default: 300
+            default: 3600
         type: object
         additionalProperties:
             type: integer
