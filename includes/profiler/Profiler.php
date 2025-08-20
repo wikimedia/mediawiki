@@ -22,7 +22,6 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\WikiMap\WikiMap;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\TransactionProfiler;
-use Wikimedia\ScopedCallback;
 
 /**
  * @defgroup Profiler Profiler
@@ -136,10 +135,9 @@ abstract class Profiler {
 	 * The frame ends when the result of this method falls out of scope.
 	 *
 	 * @param string $section
-	 * @return ScopedCallback|null
 	 * @since 1.25
 	 */
-	abstract public function scopedProfileIn( $section );
+	abstract public function scopedProfileIn( $section ): ?SectionProfileCallback;
 
 	/**
 	 * @param SectionProfileCallback|null &$section

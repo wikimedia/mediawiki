@@ -25,7 +25,7 @@
  */
 class ProfilerStub extends Profiler {
 	/** @inheritDoc */
-	public function scopedProfileIn( $section ) {
+	public function scopedProfileIn( $section ): ?SectionProfileCallback {
 		return null; // no-op
 	}
 
