@@ -169,9 +169,13 @@ class Cookie {
 	 * @return bool
 	 */
 	protected function canServeDomain( $domain ) {
+		// No valid "domain" attribute was provided on construction time
+		if ( !$this->domain ) {
+			return false;
+		}
+
 		if ( $domain == $this->domain
-			|| ( $this->domain !== null
-				&& strlen( $domain ) > strlen( $this->domain )
+			|| ( strlen( $domain ) > strlen( $this->domain )
 				&& str_starts_with( $this->domain, '.' )
 				&& substr_compare(
 					$domain,
