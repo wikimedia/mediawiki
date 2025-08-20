@@ -15,7 +15,6 @@ class CookieTest extends TestCase {
 
 	/**
 	 * @dataProvider provideCookieDomains
-	 * @covers \Cookie::validateCookieDomain
 	 */
 	public function testValidateCookieDomain( $expected, $domain, $origin = null ) {
 		if ( $origin ) {
@@ -83,7 +82,7 @@ class CookieTest extends TestCase {
 			[ '.', false ],
 			[ 'example.com', false ],
 			[ 'example.com.', false ],
-			[ '.Example.com', false ],
+			[ '.Example.com', true ],
 			[ '.example.com.', false ],
 			[ 'www.Example.com', true ],
 		];

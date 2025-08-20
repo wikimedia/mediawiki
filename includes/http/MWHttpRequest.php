@@ -572,9 +572,7 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 	 * @param array $attr
 	 */
 	public function setCookie( $name, $value, array $attr = [] ) {
-		if ( !$this->cookieJar ) {
-			$this->cookieJar = new CookieJar;
-		}
+		$this->cookieJar ??= new CookieJar;
 
 		if ( $this->parsedUrl && !isset( $attr['domain'] ) ) {
 			$attr['domain'] = $this->parsedUrl['host'];
@@ -587,9 +585,7 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 	 * Parse the cookies in the response headers and store them in the cookie jar.
 	 */
 	protected function parseCookies() {
-		if ( !$this->cookieJar ) {
-			$this->cookieJar = new CookieJar;
-		}
+		$this->cookieJar ??= new CookieJar;
 
 		if ( isset( $this->respHeaders['set-cookie'] ) ) {
 			$url = parse_url( $this->getFinalUrl() );

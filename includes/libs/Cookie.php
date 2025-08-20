@@ -22,22 +22,13 @@
  */
 
 class Cookie {
-	/** @var string */
-	protected $name;
-	/** @var string */
-	protected $value;
-	/** @var int|false */
-	protected $expires;
-	/** @var string|null */
-	protected $path;
-	/** @var string|null */
-	protected $domain;
-	/** @var bool */
-	protected $isSessionKey = true;
-	// TO IMPLEMENT  protected $secure
-	// TO IMPLEMENT? protected $maxAge (add onto expires)
-	// TO IMPLEMENT? protected $version
-	// TO IMPLEMENT? protected $comment
+
+	private string $name;
+	private string $value;
+	/** The "expires" attribute as a unix timestamp, 0 for a session cookie (unset or invalid expiry) */
+	private int $expires = 0;
+	private string $path;
+	private ?string $domain = null;
 
 	public function __construct( string $name, string $value, array $attr ) {
 		$this->name = $name;
@@ -50,17 +41,17 @@ class Cookie {
 	 * Set-Cookie headers.
 	 *
 	 * @param string $value The value of the cookie
-	 * @param array $attr Possible key/values:
+	 * @param string[] $attr Possible key/values:
 	 *        expires A date string
 	 *        path    The path this cookie is used on
 	 *        domain  Domain this cookie is used on
 	 */
-	public function set( $value, $attr ) {
+	public function set( string $value, array $attr ): void {
 		$this->value = $value;
 
 		if ( isset( $attr['expires'] ) ) {
-			$this->isSessionKey = false;
-			$this->expires = strtotime( $attr['expires'] );
+			// Invalid date strings become 0, same as if not specified
+			$this->expires = (int)strtotime( $attr['expires'] );
 		}
 
 		$this->path = $attr['path'] ?? '/';
@@ -88,9 +79,8 @@ class Cookie {
 	 *
 	 * @param string $domain The domain to validate
 	 * @param string|null $originDomain (optional) the domain the cookie originates from
-	 * @return bool
 	 */
-	public static function validateCookieDomain( $domain, $originDomain = null ) {
+	public static function validateCookieDomain( string $domain, ?string $originDomain = null ): bool {
 		$dc = explode( ".", $domain );
 
 		// Don't allow a trailing dot or addresses without a or just a leading dot
@@ -107,39 +97,33 @@ class Cookie {
 				return false;
 			}
 
-			if ( $originDomain == null || $originDomain == $domain ) {
+			if ( $originDomain === null || $originDomain === $domain ) {
 				return true;
 			}
 		}
 
 		// Don't allow cookies for "co.uk" or "gov.uk", etc, but allow "supermarket.uk"
-		if ( strrpos( $domain, "." ) - strlen( $domain ) == -3 ) {
-			if ( ( count( $dc ) == 2 && strlen( $dc[0] ) <= 2 )
-				|| ( count( $dc ) == 3 && strlen( $dc[0] ) == 0 && strlen( $dc[1] ) <= 2 ) ) {
+		if ( strrpos( $domain, "." ) - strlen( $domain ) === -3 ) {
+			if ( ( count( $dc ) === 2 && strlen( $dc[0] ) <= 2 )
+				|| ( count( $dc ) === 3 && $dc[0] === '' && strlen( $dc[1] ) <= 2 )
+			) {
 				return false;
 			}
-			if ( ( count( $dc ) == 2 || ( count( $dc ) == 3 && $dc[0] == '' ) )
-				&& preg_match( '/(com|net|org|gov|edu)\...$/', $domain ) ) {
+			if ( ( count( $dc ) === 2 || ( count( $dc ) === 3 && $dc[0] === '' ) )
+				&& preg_match( '/(com|net|org|gov|edu)\...$/', $domain )
+			) {
 				return false;
 			}
 		}
 
-		if ( $originDomain != null ) {
-			if ( !str_starts_with( $domain, '.' ) && $domain != $originDomain ) {
-				return false;
-			}
-
-			if ( str_starts_with( $domain, '.' )
-				&& substr_compare(
-					$originDomain,
-					$domain,
-					-strlen( $domain ),
-					strlen( $domain ),
-					true
-				) != 0
-			) {
-				return false;
-			}
+		if ( $originDomain !== null ) {
+			return $domain === $originDomain
+				|| (
+					str_starts_with( $domain, '.' )
+					&& substr_compare( $originDomain, $domain, -strlen( $domain ),
+						case_insensitive: true
+					) === 0
+				);
 		}
 
 		return true;
@@ -150,9 +134,8 @@ class Cookie {
 	 *
 	 * @param string $path The path that will be used. Required.
 	 * @param string $domain The domain that will be used. Required.
-	 * @return string
 	 */
-	public function serializeToHttpRequest( $path, $domain ) {
+	public function serializeToHttpRequest( string $path, string $domain ): string {
 		$ret = '';
 
 		if ( $this->canServeDomain( $domain )
@@ -164,46 +147,27 @@ class Cookie {
 		return $ret;
 	}
 
-	/**
-	 * @param string $domain
-	 * @return bool
-	 */
-	protected function canServeDomain( $domain ) {
+	private function canServeDomain( string $domain ): bool {
 		// No valid "domain" attribute was provided on construction time
 		if ( !$this->domain ) {
 			return false;
 		}
 
-		if ( $domain == $this->domain
-			|| ( strlen( $domain ) > strlen( $this->domain )
-				&& str_starts_with( $this->domain, '.' )
-				&& substr_compare(
-					$domain,
-					$this->domain,
-					-strlen( $this->domain ),
-					strlen( $this->domain ),
-					true
-				) == 0
-			)
-		) {
-			return true;
-		}
-
-		return false;
+		return $domain === $this->domain
+			|| (
+				str_starts_with( $this->domain, '.' )
+				&& substr_compare( $domain, $this->domain, -strlen( $this->domain ),
+					case_insensitive: true
+				) === 0
+			);
 	}
 
-	/**
-	 * @param string $path
-	 * @return bool
-	 */
-	protected function canServePath( $path ) {
-		return $this->path && str_starts_with( $path, $this->path );
+	private function canServePath( string $path ): bool {
+		return str_starts_with( $path, $this->path );
 	}
 
-	/**
-	 * @return bool
-	 */
-	protected function isUnExpired() {
-		return $this->isSessionKey || $this->expires > time();
+	private function isUnExpired(): bool {
+		return !$this->expires || $this->expires > time();
 	}
+
 }
