@@ -473,6 +473,7 @@ class Names {
 		'ryu' => 'うちなーぐち', # Okinawan
 		'sa' => 'संस्कृतम्', # Sanskrit
 		'sah' => 'саха тыла', # Sakha
+		'sas' => 'Sasak', # Sasak
 		'sat' => 'ᱥᱟᱱᱛᱟᱲᱤ', # Santali
 		'sc' => 'sardu', # Sardinian
 		'scn' => 'sicilianu', # Sicilian
