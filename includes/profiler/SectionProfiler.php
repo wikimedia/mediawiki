@@ -20,7 +20,6 @@
 
 use MediaWiki\Logger\LoggerFactory;
 use Psr\Log\LoggerInterface;
-use Wikimedia\ScopedCallback;
 
 /**
  * Arbitrary section name based PHP profiling.
@@ -61,18 +60,17 @@ class SectionProfiler {
 
 	/**
 	 * @param string $section
-	 * @return SectionProfileCallback
 	 */
-	public function scopedProfileIn( $section ) {
+	public function scopedProfileIn( $section ): ?SectionProfileCallback {
 		$this->profileInInternal( $section );
 
 		return new SectionProfileCallback( $this, $section );
 	}
 
 	/**
-	 * @param ScopedCallback &$section
+	 * @param ?SectionProfileCallback &$section
 	 */
-	public function scopedProfileOut( ScopedCallback &$section ) {
+	public function scopedProfileOut( ?SectionProfileCallback &$section ) {
 		$section = null;
 	}
 
