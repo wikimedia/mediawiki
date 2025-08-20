@@ -652,8 +652,8 @@ interface IReadableDatabase extends Stringable, ISQLPlatform, DbQuoter, IDatabas
 	 * @param ?scalar|RawSQLValue|Blob|LikeValue|non-empty-list<scalar|Blob> $value
 	 * @param-taint $value escapes_sql
 	 * @return Expression
-	 * @phan-side-effect-free
 	 */
+	#[\NoDiscard]
 	public function expr( string $field, string $op, $value ): Expression;
 
 	/**
@@ -664,8 +664,8 @@ interface IReadableDatabase extends Stringable, ISQLPlatform, DbQuoter, IDatabas
 	 * @param non-empty-array<string,?scalar|RawSQLValue|Blob|LikeValue|non-empty-list<scalar|Blob>>|non-empty-array<int,IExpression> $conds
 	 * @param-taint $conds exec_sql_numkey
 	 * @return AndExpressionGroup
-	 * @phan-side-effect-free
 	 */
+	#[\NoDiscard]
 	public function andExpr( array $conds ): AndExpressionGroup;
 
 	/**
@@ -676,8 +676,8 @@ interface IReadableDatabase extends Stringable, ISQLPlatform, DbQuoter, IDatabas
 	 * @param non-empty-array<string,?scalar|RawSQLValue|Blob|LikeValue|non-empty-list<scalar|Blob>>|non-empty-array<int,IExpression> $conds
 	 * @param-taint $conds exec_sql_numkey
 	 * @return OrExpressionGroup
-	 * @phan-side-effect-free
 	 */
+	#[\NoDiscard]
 	public function orExpr( array $conds ): OrExpressionGroup;
 
 	/**

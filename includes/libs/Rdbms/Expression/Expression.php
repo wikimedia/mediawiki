@@ -74,8 +74,8 @@ class Expression implements IExpression {
 	 * @param-taint $op exec_sql
 	 * @param ?scalar|RawSQLValue|Blob|LikeValue|non-empty-list<scalar|Blob> $value
 	 * @param-taint $value escapes_sql
-	 * @phan-side-effect-free
 	 */
+	#[\NoDiscard]
 	public function and( string $field, string $op, $value ): AndExpressionGroup {
 		$exprGroup = new AndExpressionGroup( $this );
 		return $exprGroup->and( $field, $op, $value );
@@ -89,8 +89,8 @@ class Expression implements IExpression {
 	 * @param-taint $op exec_sql
 	 * @param ?scalar|RawSQLValue|Blob|LikeValue|non-empty-list<scalar|Blob> $value
 	 * @param-taint $value escapes_sql
-	 * @phan-side-effect-free
 	 */
+	#[\NoDiscard]
 	public function or( string $field, string $op, $value ): OrExpressionGroup {
 		$exprGroup = new OrExpressionGroup( $this );
 		return $exprGroup->or( $field, $op, $value );
@@ -99,8 +99,8 @@ class Expression implements IExpression {
 	/**
 	 * @param IExpression $expr
 	 * @return AndExpressionGroup
-	 * @phan-side-effect-free
 	 */
+	#[\NoDiscard]
 	public function andExpr( IExpression $expr ): AndExpressionGroup {
 		$exprGroup = new AndExpressionGroup( $this );
 		return $exprGroup->andExpr( $expr );
@@ -109,8 +109,8 @@ class Expression implements IExpression {
 	/**
 	 * @param IExpression $expr
 	 * @return OrExpressionGroup
-	 * @phan-side-effect-free
 	 */
+	#[\NoDiscard]
 	public function orExpr( IExpression $expr ): OrExpressionGroup {
 		$exprGroup = new OrExpressionGroup( $this );
 		return $exprGroup->orExpr( $expr );

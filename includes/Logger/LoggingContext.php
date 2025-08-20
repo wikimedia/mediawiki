@@ -44,9 +44,8 @@ class LoggingContext {
 	 *
 	 * It is recommended to make sure the fields added this way have a sufficiently unique name,
 	 * and to prefix them with 'context.' (e.g. 'context.special_page_name').
-	 *
-	 * @phan-side-effect-free
 	 */
+	#[\NoDiscard]
 	public function addScoped( array $context ): ScopedCallback {
 		$this->scopedContexts[] = $context;
 		$scopeId = array_key_last( $this->scopedContexts );

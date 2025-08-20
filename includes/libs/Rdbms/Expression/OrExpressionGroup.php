@@ -12,9 +12,6 @@ class OrExpressionGroup extends ExpressionGroup {
 		return 'OR';
 	}
 
-	// While these methods are not actually "side-effect-free" (they mutate the object),
-	// we annotate them with @phan-side-effect-free for consistency with Expression.
-
 	/**
 	 * @param string $field
 	 * @param-taint $field exec_sql
@@ -23,8 +20,8 @@ class OrExpressionGroup extends ExpressionGroup {
 	 * @param-taint $op exec_sql
 	 * @param ?scalar|RawSQLValue|Blob|LikeValue|non-empty-list<scalar|Blob> $value
 	 * @param-taint $value escapes_sql
-	 * @phan-side-effect-free
 	 */
+	#[\NoDiscard]
 	public function or( string $field, string $op, $value ): OrExpressionGroup {
 		$expr = new Expression( $field, $op, $value );
 		$this->add( $expr );
@@ -34,8 +31,8 @@ class OrExpressionGroup extends ExpressionGroup {
 	/**
 	 * @param IExpression $expr
 	 * @return OrExpressionGroup
-	 * @phan-side-effect-free
 	 */
+	#[\NoDiscard]
 	public function orExpr( IExpression $expr ): OrExpressionGroup {
 		$this->add( $expr );
 		return $this;
