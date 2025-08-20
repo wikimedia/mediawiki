@@ -35,7 +35,7 @@ For notes on 1.44.x and older releases, see HISTORY.
 
 ==== Changed configuration ====
 
-* wgCategoryLinksSchemaMigrationStage – (T299951) This temporary setting, which
+* (T299951) $wgCategoryLinksSchemaMigrationStage, a temporary settiing which
   controls the database schema migration for the categorylinks table, is now set
   by default to write to both old and new data and read from the new data.
 * …
