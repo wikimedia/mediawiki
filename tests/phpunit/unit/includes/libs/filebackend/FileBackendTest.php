@@ -1027,6 +1027,7 @@ class FileBackendTest extends MediaWikiUnitTestCase {
 		$scopedCallback = new ScopedCallback( static function () {
 		} );
 		$backend = $this->newMockFileBackend( [ 'profiler' =>
+			#[\NoDiscard]
 			function ( string $section ) use ( $scopedCallback ): ScopedCallback {
 				$this->assertSame( 'mysection', $section );
 				return $scopedCallback;

@@ -188,10 +188,10 @@ class LinksUpdate extends DataUpdate {
 	 * @param IDatabase $dbw
 	 * @param int $pageId
 	 * @param string $why One of (job, atomicity)
-	 * @return ScopedCallback|null
 	 * @since 1.27
 	 */
-	public static function acquirePageLock( IDatabase $dbw, $pageId, $why = 'atomicity' ) {
+	#[\NoDiscard]
+	public static function acquirePageLock( IDatabase $dbw, $pageId, $why = 'atomicity' ): ?ScopedCallback {
 		$key = "{$dbw->getDomainID()}:LinksUpdate:$why:pageid:$pageId"; // per-wiki
 		$scopedLock = $dbw->getScopedLockAndFlush( $key, __METHOD__, 1 );
 		if ( !$scopedLock ) {
