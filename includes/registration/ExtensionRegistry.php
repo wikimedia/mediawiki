@@ -686,10 +686,10 @@ class ExtensionRegistry implements DomainEventSubscriber {
 	 * @param string $name Name of attribute to override
 	 * @param array $value Value to set
 	 *
-	 * @return ScopedCallback to reset
 	 * @since 1.33
 	 */
-	public function setAttributeForTest( $name, array $value ) {
+	#[\NoDiscard]
+	public function setAttributeForTest( $name, array $value ): ScopedCallback {
 		// @codeCoverageIgnoreStart
 		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
 			throw new LogicException( __METHOD__ . ' can only be used in tests' );
