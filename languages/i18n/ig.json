@@ -276,7 +276,7 @@
 	"title-invalid-magic-tilde": "Aha ibe a rịọrọ nwere usoro anwansi na-abaghị uru (<nowiki>~~~</nowiki>).",
 	"title-invalid-too-long": "Aha ibe a rịọrọ toro ogologo. Ọ ga-abụrịrị ihe karịrị $1 {{PLURAL:$1| byte|bytes}} na ntinye koodu UTF-8.isiokwu ị debanyere bụ $2 {{PLURAL:$2| byte|bytes}}.",
 	"title-invalid-leading-colon": "Isi mbido peeji a rịọrọ nwere  Kpọm kpom na-ezighi ezi na mbido.",
-	"perfcached": "Ómárí á kachẹrẹ na o nwẹrẹ ki a kugwaghị ya na ogẹ di nso. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.",
+	"perfcached": "A kachẹrẹ ọmarị ndị a na-eso, o nwekwara ike akugwaghị ya n'ogẹ di nso. ihe na-akarịghị otu rịzọọtụ {{PLURAL:$1|one result is|$1 results are}} dị na kache.",
 	"perfcachedts": "Data ndị a na-eso nwere cache, nke edegharịrị ikpeazụ $1. Ihe bụ o bukarịa ibu {{PLURAL:$4|otu nsonaazụ bụ|$4 nsonaazụ bụ}} ndị dị adị na cache",
 	"querypage-no-updates": "Mmelite maka ibe a nwere nkwarụ ugbu a. A gaghị eme ka ozi dị ọhụrụ ugbu a.",
 	"querypage-updates-periodical": "A na-emelite peeji a kwa oge obula.",

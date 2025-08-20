@@ -4113,6 +4113,6 @@
 	"interwiki-links": "Awalan interwiki",
 	"interwiki-language-links": "Awalan antara bahasa",
 	"interwiki-language-description": "Awalan ini berpadanan dengan kod bahasa yang ditentukan dan akan digunakan untuk membuat penyenaraian \"{{int:otherlanguages}}\" apabila ditambahkan pada laman.",
-	"interwiki-global-language-links": "Awalan antara bahasa global",
+	"interwiki-global-language-links": "Awalan antara bahasa sejagat",
 	"interwiki-global-language-description": "Awalan ini berpadanan dengan kod bahasa yang ditentukan dan akan digunakan untuk membuat penyenaraian \"{{int:otherlanguages}}\" apabila ditambahkan pada laman. Memandangkan ia diwarisi daripada konfigurasi global, ia hanya boleh disunting pada wiki sumber. Takrifan antara bahasa global tidak boleh ditindih dengan tetapan tempatan."
 }

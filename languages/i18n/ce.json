@@ -2202,7 +2202,7 @@
 	"deletepage-submit": "ДӀайаккха агӀо",
 	"confirm": "Бакъдан",
 	"excontent": "чуьраниг: «$1»",
-	"excontentauthor": "чуьраниг: «$1», цхьаъ бен воцу автор хилла [[Special:Contributions/$2|$2]] ([[User talk:$2|дийцар]])",
+	"excontentauthor": "чуьраниг: «$1» дуьххьара кхоьллинарг [[Special:Contributions/$2|$2]] ([[User talk:$2|дийцар]])",
 	"exbeforeblank": "чуьраниг дlацlанйале хьалха: «$1»",
 	"delete-confirm": "$1 — дӀайаккхар",
 	"delete-legend": "ДӀайаккхар",

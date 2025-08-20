@@ -263,7 +263,8 @@
 			"아라",
 			"JorgeElias2302",
 			"Aegis1009",
-			"Sophocrat"
+			"Sophocrat",
+			"Laranxa"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Categoría|Categorías}}",
@@ -357,7 +358,7 @@
 	"viewtalkpage": "Ver discusión",
 	"otherlanguages": "En otros idiomas",
 	"redirectedfrom": "(Redirigido desde «$1»)",
-	"redirectpagesub": "Redirige la página a",
+	"redirectpagesub": "Redirige a la página",
 	"redirectto": "Redirige a:",
 	"lastmodifiedat": "Esta página se editó por última vez el $1 a las $2.",
 	"viewcount": "Esta página ha recibido {{PLURAL:$1|una visita|$1 visitas}}.",

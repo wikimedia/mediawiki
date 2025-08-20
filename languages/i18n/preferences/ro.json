@@ -92,7 +92,7 @@
 	"prefs-help-email-others": "Puteți de asemenea permite altora să vă contacteze prin intermediul paginii dumneavoastră de utilizator fără a vă divulga identitatea.",
 	"tog-requireemail": "Trimite e-mail-uri de resetare a parolei doar atunci când sunt furnizate atât adresa de e-mail cât și numele de utilizator.",
 	"prefs-help-requireemail": "Acest lucru îmbunătățește intimitatea și ajută la prevenirea mesajelor nesolicitate.",
-	"noemailprefs": "Nu a fost specificată o adresă email, următoarele nu vor funcționa.",
+	"noemailprefs": "Nu a fost specificată o adresă de email, următoarele nu vor funcționa.",
 	"emailnotauthenticated": "Adresa dumneavoastră de e-mail nu este autentificată încă. Niciun e-mail nu va fi trimis pentru niciuna din întrebuințările următoare.",
 	"emailconfirmlink": "Confirmați adresa dvs. de email",
 	"prefs-emailconfirm-label": "Confirmare e-mail:",

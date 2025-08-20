@@ -153,7 +153,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"Emabarto01",
-			"JorgeElias2302"
+			"JorgeElias2302",
+			"9Aaron3"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Categoria|Categorie}}",
@@ -1062,6 +1063,7 @@
 	"viewprevnext": "Vedi ($1 {{int:pipe-separator}} $2) ($3).",
 	"searchmenu-exists": "C'è una pagina il cui nome è \"[[:$1]]\" su {{SITENAME}}. {{PLURAL:$2|0=|Vedi anche gli altri risultati trovati.}}",
 	"searchmenu-new": "Crea la pagina \"[[:$1]]\" su questo wiki! {{PLURAL:$2|0=|Vedi anche la pagina trovata con la tua ricerca.|Vedi anche i risultati della ricerca}}",
+	"searchmenu-new-external": "La pagina \"[[:$1]]\" sembra appartenere a un'altra wiki. Puoi visitarla lì. {{PLURAL:$2|0=|Vedi anche la pagina trovata con la tua ricerca.|Vedi anche i risultati di ricerca trovati.}}",
 	"searchprofile-articles": "Pagine di contenuti",
 	"searchprofile-images": "Multimedia",
 	"searchprofile-everything": "Tutto",
@@ -1116,6 +1118,7 @@
 	"linterror-misc-tidy-replacement-issues": "Vari errori di markup",
 	"linterror-misnested-tag": "Tag annidato male",
 	"linterror-missing-end-tag": "Tag di chiusura mancante",
+	"linterror-missing-end-tag-in-heading": "Tag di chiusura mancante nell'intestazione",
 	"linterror-missing-image-alt-text": "Immagine senza testo alternativo",
 	"linterror-multi-colon-escape": "Escape di due punti multipli",
 	"linterror-multiline-html-table-in-list": "Tabella HTML5 multilinea all'interno di una lista",

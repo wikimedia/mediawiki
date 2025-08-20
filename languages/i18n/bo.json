@@ -12,7 +12,8 @@
 			"Zolgoyo",
 			"ཁ་བཏགས་ནག་པོ",
 			"아라",
-			"Pecha-Tsewang"
+			"Pecha-Tsewang",
+			"Tenzin Thoesam"
 		]
 	},
 	"pagecategories": "{{PLURAL:|སྡེ་ཚན་|སྡེ་ཚན་ $1}}",
@@ -250,6 +251,7 @@
 	"loginlanguagelabel": "སྐད་རིགས། $1",
 	"pt-login": "ནང་འཛུ།",
 	"pt-login-button": "ནང་འཛུལ།",
+	"pt-createaccount": "མིང་བཀོད་གསར་བཟོ། / ཐོ་འགོད་གསར་བཟོ།",
 	"changepassword": "ལམ་ཡིག་བརྗེ་བ།",
 	"resetpass_announce": "ནང་འཛུལ་བྱེད་པར། ཁྱེད་ཀྱིས་གསང་བའི་ཨང་གསར་པ་ཞིག་འཇུག་རོགས།",
 	"resetpass_header": "གསང་ཨང་བརྗེ་བ།",
@@ -674,6 +676,7 @@
 	"htmlform-submit": "རྩིས་སྤྲོད།",
 	"rightsnone": "(སྟོང་པ།)",
 	"searchsuggest-search": "འཚོལ། {{SITENAME}}",
+	"searchsuggest-containing": "ཚིག་འདི་འདུག་པའི་ཤོག་ལེབ་འཚོལ།",
 	"skin-view-create-local": "ས་ཁུལ་འགྲེལ་བརྗོད་གསར་སྐྲུན།",
 	"nstab-mainpage": "གཙོ་ངོས།",
 	"skin-view-edit-local": "ས་ཁུལ་གྱི་འགྲེལ་བརྗོད་ལ་རྩོམ་སྒྲིག།",

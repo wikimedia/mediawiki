@@ -1056,6 +1056,7 @@
 	"linterror-multiple-unclosed-formatting-tags": "Flere ikke-lukkede formateringstags på siden",
 	"linterror-night-mode-unaware-background-color": "Indlejret baggrundsfarve kræver tekstfarve",
 	"linterror-obsolete-tag": "Udgået HTML-tag",
+	"linterror-pwrap-bug-workaround": "Løsning om fejl i afsnitombrydning",
 	"linterror-self-closed-tag": "Selvlukket tag",
 	"linterror-tidy-font-bug": "Font-tag forsøger at ændre linkfarve",
 	"linterror-unclosed-quotes-in-heading": "Ikke-lukket citat som siver ud af indholdsfortegnelsen",

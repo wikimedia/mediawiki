@@ -67,7 +67,7 @@
 	"prefs-i18n": "국제화",
 	"yourlanguage": "언어:",
 	"yourgender": "어느 성별로 묘사하기를 원하십니까?",
-	"gender-notknown": "위키 문서를 편집하지만, 성별을 알리고 싶지 않습니다",
+	"gender-notknown": "위키 문서를 편집하지만, 성별은 알 수 없습니다",
 	"gender-unknown": "언급할 때 소프트웨어는 가능한 항상 중성적인 단어를 사용합니다.",
 	"gender-female": "여성이 위키 문서를 편집합니다",
 	"gender-male": "남성이 위키 문서를 편집합니다",

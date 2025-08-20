@@ -25,7 +25,8 @@
 			"לערי ריינהארט",
 			"פוילישער",
 			"පසිඳු කාවින්ද",
-			"아라"
+			"아라",
+			"Shvermer"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|קאַטעגאָריע|קאַטעגאָריעס}}",
@@ -868,7 +869,7 @@
 	"searchrelated": "פארבינדן",
 	"searchall": "אַלע",
 	"showingresultsinrange": "ווײַזן אונטן ביז {{PLURAL:$1|<strong>1</strong> רעזולטאט|<strong>$1</strong> רעזולטאטן}} אין גרייך #<strong>$2</strong> ביז #<strong>$3</strong>.",
-	"search-showingresults": "{{PLURAL:$4|רעזולטאַט <strong>$1</strong> פֿון <strong>$3</strong>|רעזולטאַטן\n<strong>$1 - $2</strong> פֿון <strong>$3</strong>}}",
+	"search-showingresults": "{{PLURAL:$4|1=רעזולטאַט <strong>$1</strong> פֿון <strong>$3</strong>|רעזולטאַטן\n<strong>$1 – $2</strong> פון <strong>$3</strong>}}",
 	"search-nonefound": "נישטא קיין רעזולטאטן פֿאַר דער שאלה.",
 	"search-nonefound-thiswiki": "נישט געווען קיין רעזולטאטן צוגעפאט צו דער שאלה אויף דעם וועבזייטל.",
 	"powersearch-legend": "ווײַטהאלטן זוכן",
@@ -1663,7 +1664,7 @@
 	"speciallogtitlelabel": "ציל (טיטל אדער {{ns:user}}:באניצער־נאמען פאר א באניצער):",
 	"log": "לאגביכער",
 	"logeventslist-submit": "ווייזן",
-	"all-logs-page": "אלע פובליקע לאגביכער",
+	"all-logs-page": "הויפט עפנטליכע לאָגביכער",
 	"alllogstext": "קאמבינירטער אויסשטעל פון אלע לאגביכער פון {{SITENAME}} בנמצא.\nמען קען פֿאַרשמעלרן די אויסוואל דורך אויסוויילן א סארט לאג, באַניצער נאמען אדער אנרירנדע בלעטער.",
 	"logempty": "נישטא קיין פאַסנדיקע זאכן אין לאג.",
 	"log-title-wildcard": "זוכן טיטלען וואס הייבן אָן מיט דעם טעקסט",

@@ -2009,7 +2009,7 @@
 	"categories-submit": "Pokazati",
 	"categoriespagetext": "{{PLURAL:$1|Slědujuča kategorija jestvuje|Slědujuče kategorije jestvujut}} na tutoj viki i {{PLURAL:$1|može byti koristana|mogut byti koristane}}.\nGledite takože [[Special:WantedCategories|potrěbne kategorije]].",
 	"categoriesfrom": "Pokazati kategorije načinajuče se s:",
-	"deletedcontributions": "Odstranjeny vlad koristnika",
+	"deletedcontributions": "Odstranjeny vklad koristnika",
 	"deletedcontributions-title": "Odstranjeny vklad {{GENDER:$1|koristnika|koristnice}} $1",
 	"deletedcontributions-title-for-ip-when-temporary-accounts-enabled": "Odstranjeny stary vklad iz IP-adresa za koristnika $1",
 	"sp-deletedcontributions-contribs": "vklad",

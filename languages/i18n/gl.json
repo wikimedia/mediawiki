@@ -2852,7 +2852,7 @@
 	"import-logentry-upload-detail": "{{PLURAL:$1|Importouse $1 revisión|Importáronse $1 revisións}}",
 	"import-logentry-interwiki-detail": "{{PLURAL:$1|Importouse $1 revisión|Importáronse $1 revisións}} desde $2",
 	"javascripttest": "Proba de JavaScript",
-	"tooltip-pt-userpage": "A súa páxina de {{GENDER:|usuario|usuaria}}",
+	"tooltip-pt-userpage": "A túa páxina de {{GENDER:|usuario|usuaria}}",
 	"tooltip-pt-anonuserpage": "A páxina de usuario do enderezo IP desde o que estás a editar",
 	"tooltip-pt-tmpuserpage": "O seu nome de usuario temporal xerado automaticamente",
 	"tooltip-pt-mytalk": "A súa páxina de conversa",
