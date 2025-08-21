@@ -8,6 +8,7 @@ use MediaWiki\Language\RawMessage;
 use MediaWiki\Message\Message;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiUnitTestCase;
+use Wikimedia\Message\ListType;
 use Wikimedia\Message\MessageValue;
 
 /**
@@ -90,10 +91,10 @@ class NewFromSpecifierTest extends MediaWikiUnitTestCase {
 
 		yield 'listParams' => [
 			Message::newFromKey( 'foobar',
-				Message::listParam( [ 1, 2, 3 ], 'comma' ),
-				Message::listParam( [ 4, 5, 6 ], 'semicolon' ),
-				Message::listParam( [ 7, 8, 9 ], 'pipe' ),
-				Message::listParam( [ 10, 11, 12 ], 'text' )
+				Message::listParam( [ 1, 2, 3 ], ListType::COMMA ),
+				Message::listParam( [ 4, 5, 6 ], ListType::SEMICOLON ),
+				Message::listParam( [ 7, 8, 9 ], ListType::PIPE ),
+				Message::listParam( [ 10, 11, 12 ], ListType::AND )
 			),
 			MessageValue::new( 'foobar' )
 				->commaListParams( [ 1, 2, 3 ] )

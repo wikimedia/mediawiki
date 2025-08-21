@@ -3,6 +3,7 @@
 use MediaWiki\Exception\PermissionsError;
 use MediaWiki\Message\Message;
 use MediaWiki\Permissions\PermissionStatus;
+use Wikimedia\Message\ListType;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -26,7 +27,8 @@ class PermissionsErrorTest extends MediaWikiIntegrationTestCase {
 		yield [ 'testpermission', $array, $status ];
 
 		yield [ 'testpermission', [],
-			PermissionStatus::newEmpty()->fatal( 'badaccess-groups', Message::listParam( [ '*' ], 'comma' ), 1 ) ];
+			PermissionStatus::newEmpty()->fatal( 'badaccess-groups', Message::listParam( [ '*' ], ListType::COMMA ), 1 )
+		];
 	}
 
 	/**

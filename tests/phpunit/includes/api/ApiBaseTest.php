@@ -19,6 +19,7 @@ use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Title\Title;
 use StatusValue;
+use Wikimedia\Message\ListType;
 use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\EnumDef;
@@ -642,7 +643,7 @@ class ApiBaseTest extends ApiTestCase {
 					'paramvalidator-unrecognizedvalues',
 					Message::plaintextParam( 'myParam' ),
 					Message::plaintextParam( '*' ),
-					Message::listParam( [ Message::plaintextParam( '*' ) ], 'comma' ),
+					Message::listParam( [ Message::plaintextParam( '*' ) ], ListType::COMMA ),
 					Message::numParam( 1 ),
 				] ],
 			],
@@ -726,7 +727,7 @@ class ApiBaseTest extends ApiTestCase {
 					'paramvalidator-unrecognizedvalues',
 					Message::plaintextParam( 'myParam' ),
 					Message::plaintextParam( 'x' ),
-					Message::listParam( [ Message::plaintextParam( 'x' ) ], 'comma' ),
+					Message::listParam( [ Message::plaintextParam( 'x' ) ], ListType::COMMA ),
 					Message::numParam( 1 ),
 				] ],
 			],

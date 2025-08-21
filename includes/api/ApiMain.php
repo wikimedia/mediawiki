@@ -53,6 +53,7 @@ use Profiler;
 use Throwable;
 use UnexpectedValueException;
 use Wikimedia\AtEase\AtEase;
+use Wikimedia\Message\ListType;
 use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
@@ -2274,7 +2275,7 @@ class ApiMain extends ApiBase {
 		if ( count( $unusedParams ) ) {
 			$this->addWarning( [
 				'apierror-unrecognizedparams',
-				Message::listParam( array_map( 'wfEscapeWikiText', $unusedParams ), 'comma' ),
+				Message::listParam( array_map( 'wfEscapeWikiText', $unusedParams ), ListType::COMMA ),
 				count( $unusedParams )
 			] );
 		}

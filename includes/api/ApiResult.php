@@ -28,6 +28,7 @@ use RuntimeException;
 use stdClass;
 use UnexpectedValueException;
 use Wikimedia\Message\ListParam;
+use Wikimedia\Message\ParamType;
 use Wikimedia\Message\ScalarParam;
 
 /**
@@ -360,7 +361,7 @@ class ApiResult implements ApiSerializable {
 			} elseif ( $value instanceof ScalarParam || $value instanceof ListParam ) {
 				// HACK Support code that puts $msg->getParams() directly into API responses
 				// (e.g. ApiErrorFormatter::formatRawMessage()).
-				$value = $value->getType() === 'text' ? $value->getValue() : $value->toJsonArray();
+				$value = $value->getType() === ParamType::TEXT ? $value->getValue() : $value->toJsonArray();
 			} elseif ( is_callable( [ $value, '__toString' ] ) ) {
 				$value = (string)$value;
 			} else {

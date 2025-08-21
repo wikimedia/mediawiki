@@ -45,6 +45,7 @@ use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
 use stdClass;
+use Wikimedia\Message\ListType;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
@@ -1590,7 +1591,7 @@ class ApiPageSet extends ApiBase {
 				ParamValidator::PARAM_DEFAULT => false,
 				ApiBase::PARAM_HELP_MSG => [
 					'api-pageset-param-converttitles',
-					Message::listParam( LanguageConverter::$languagesWithVariants, 'text' ),
+					Message::listParam( LanguageConverter::$languagesWithVariants, ListType::AND ),
 				],
 			],
 		];

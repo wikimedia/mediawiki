@@ -53,6 +53,7 @@ use MediaWiki\User\UserGroupMembership;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityLookup;
 use StatusValue;
+use Wikimedia\Message\ListType;
 use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\ScopedCallback;
 
@@ -751,7 +752,7 @@ class PermissionManager {
 		if ( $groups ) {
 			return PermissionStatus::newFatal(
 				'badaccess-groups',
-				Message::listParam( $groups, 'comma' ),
+				Message::listParam( $groups, ListType::COMMA ),
 				count( $groups )
 			);
 		}

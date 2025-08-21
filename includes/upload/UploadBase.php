@@ -728,7 +728,7 @@ abstract class UploadBase {
 			if ( !self::checkFileExtension( $fileExtension, $extensions ) ) {
 				return [
 					$fileExtension,
-					Message::listParam( $extensions, 'comma' ),
+					Message::listParam( $extensions, ListType::COMMA ),
 					count( $extensions )
 				];
 			}

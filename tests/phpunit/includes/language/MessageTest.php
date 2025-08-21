@@ -9,6 +9,7 @@ use MediaWiki\Page\PageReferenceValue;
 use PHPUnit\Framework\TestCase;
 use Wikimedia\Assert\ParameterTypeException;
 use Wikimedia\Bcp47Code\Bcp47CodeValue;
+use Wikimedia\Message\ListType;
 use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\Tests\SerializationTestTrait;
 
@@ -622,77 +623,77 @@ class MessageTest extends MediaWikiLangTestCase {
 		return [
 			'Simple comma list' => [
 				[ 'a', 'b', 'c' ],
-				'comma',
+				ListType::COMMA,
 				'text',
 				'a, b, c'
 			],
 
 			'Simple semicolon list' => [
 				[ 'a', 'b', 'c' ],
-				'semicolon',
+				ListType::SEMICOLON,
 				'text',
 				'a; b; c'
 			],
 
 			'Simple pipe list' => [
 				[ 'a', 'b', 'c' ],
-				'pipe',
+				ListType::PIPE,
 				'text',
 				'a | b | c'
 			],
 
 			'Simple text list' => [
 				[ 'a', 'b', 'c' ],
-				'text',
+				ListType::AND,
 				'text',
 				'a, b and c'
 			],
 
 			'Empty list' => [
 				[],
-				'comma',
+				ListType::COMMA,
 				'text',
 				''
 			],
 
 			'List with all "before" params, ->text()' => [
 				[ "''link''", Message::numParam( 12345678 ) ],
-				'semicolon',
+				ListType::SEMICOLON,
 				'text',
 				'\'\'link\'\'; 12,345,678'
 			],
 
 			'List with all "before" params, ->parse()' => [
 				[ "''link''", Message::numParam( 12345678 ) ],
-				'semicolon',
+				ListType::SEMICOLON,
 				'parse',
 				'<i>link</i>; 12,345,678'
 			],
 
 			'List with all "after" params, ->text()' => [
 				[ $msg1, $msg2, Message::rawParam( '[[foo]]' ) ],
-				'semicolon',
+				ListType::SEMICOLON,
 				'text',
 				'Main Page; \'\'link\'\'; [[foo]]'
 			],
 
 			'List with all "after" params, ->parse()' => [
 				[ $msg1, $msg2, Message::rawParam( '[[foo]]' ) ],
-				'semicolon',
+				ListType::SEMICOLON,
 				'parse',
 				'Main Page; <i>link</i>; [[foo]]'
 			],
 
 			'List with both "before" and "after" params, ->text()' => [
 				[ $msg1, $msg2, Message::rawParam( '[[foo]]' ), "''link''", Message::numParam( 12345678 ) ],
-				'semicolon',
+				ListType::SEMICOLON,
 				'text',
 				'Main Page; \'\'link\'\'; [[foo]]; \'\'link\'\'; 12,345,678'
 			],
 
 			'List with both "before" and "after" params, ->parse()' => [
 				[ $msg1, $msg2, Message::rawParam( '[[foo]]' ), "''link''", Message::numParam( 12345678 ) ],
-				'semicolon',
+				ListType::SEMICOLON,
 				'parse',
 				'Main Page; <i>link</i>; [[foo]]; <i>link</i>; 12,345,678'
 			],

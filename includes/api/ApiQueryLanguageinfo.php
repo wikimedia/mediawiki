@@ -26,6 +26,7 @@ use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Message\Message;
+use Wikimedia\Message\ListType;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
@@ -108,7 +109,7 @@ class ApiQueryLanguageinfo extends ApiQueryBase {
 				$this->addWarning( [
 					'apiwarn-unrecognizedvalues',
 					$this->encodeParamName( 'code' ),
-					Message::listParam( $unrecognizedCodes, 'comma' ),
+					Message::listParam( $unrecognizedCodes, ListType::COMMA ),
 					count( $unrecognizedCodes ),
 				] );
 			}
