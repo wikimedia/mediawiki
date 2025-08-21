@@ -147,7 +147,6 @@ class SessionManager implements SessionManagerInterface {
 		$this->setHookContainer( $hookContainer );
 		$this->objectFactory = $objectFactory;
 		$this->sessionStore = $sessionStore;
-
 		$this->proxyLookup = $proxyLookup;
 		$this->urlUtils = $urlUtils;
 		$this->userNameUtils = $userNameUtils;
@@ -515,14 +514,8 @@ class SessionManager implements SessionManagerInterface {
 			}
 		}
 
-		// https://www.php.net/manual/en/session.configuration.php#ini.session.gc-divisor
-		// Doing this here because of how Session::gc() works in PHP session handler. The
-		// only difference here is that this is done at the end of the request rather than
-		// the beginning. But we want to preserve behavior for 1 in every 100 requests.
-		if ( random_int( 1, 100 ) === 1 ) {
-			// Do any garbage collection if we have expired entries
-			$this->sessionStore->shutdown();
-		}
+		// Do any garbage collection if we have expired entries
+		$this->sessionStore->shutdown();
 	}
 
 	/**
@@ -599,18 +592,17 @@ class SessionManager implements SessionManagerInterface {
 	 */
 	private function loadSessionInfoFromStore( SessionInfo &$info, WebRequest $request ) {
 		$blob = $this->sessionStore->get( $info );
-		$oldInfo = $info;
 
 		// If we got data from the store and the SessionInfo says to force use,
 		// "fail" means to delete the data from the store and retry. Otherwise,
 		// "fail" is just return false.
 		if ( $info->forceUse() && $blob !== false ) {
-			$failHandler = function () use ( $oldInfo, &$info, $request ) {
+			$failHandler = function () use ( &$info, $request ) {
 				$this->logSessionWrite( $request, $info, [
 					'type' => 'delete',
 					'reason' => 'loadSessionInfo fail',
 				] );
-				$this->sessionStore->delete( $oldInfo );
+				$this->sessionStore->delete( $info );
 				return $this->loadSessionInfoFromStore( $info, $request );
 			};
 		} else {

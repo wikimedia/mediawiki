@@ -21,7 +21,8 @@
 
 namespace MediaWiki\Session;
 
-use MediaWiki\Logger\LoggerFactory;
+use Psr\Log\LoggerAwareTrait;
+use Psr\Log\LoggerInterface;
 use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\ObjectCache\CachedBagOStuff;
 
@@ -35,15 +36,22 @@ use Wikimedia\ObjectCache\CachedBagOStuff;
  */
 class SingleBackendSessionStore implements SessionStore {
 
+	use LoggerAwareTrait;
+
 	private CachedBagOStuff $store;
 
 	public function __construct(
 		BagOStuff $store,
+		LoggerInterface $logger
 	) {
+		$this->setLogger( $logger );
 		$this->store = $store instanceof CachedBagOStuff ? $store : new CachedBagOStuff( $store );
-		LoggerFactory::getInstance( 'session' )->debug(
-			'SessionManager using store ' . get_class( $this->store )
-		);
+		$this->logger->debug( 'SessionManager using store ' . get_class( $this->store ) );
+	}
+
+	/** @inheritDoc */
+	public function setLogger( LoggerInterface $logger ): void {
+		$this->logger = $logger;
 	}
 
 	/**
@@ -87,7 +95,13 @@ class SingleBackendSessionStore implements SessionStore {
 	 * @inheritDoc
 	 */
 	public function shutdown(): void {
-		$this->store->deleteObjectsExpiringBefore( wfTimestampNow() );
+		// https://www.php.net/manual/en/session.configuration.php#ini.session.gc-divisor
+		// Doing this here because of how Session::gc() works in PHP session handler. The
+		// only difference here is that this is done at the end of the request rather than
+		// the beginning. But we want to preserve behavior for 1 in every 100 requests.
+		if ( random_int( 1, 100 ) === 1 ) {
+			$this->store->deleteObjectsExpiringBefore( wfTimestampNow() );
+		}
 	}
 
 	/**

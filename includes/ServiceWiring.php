@@ -2188,7 +2188,8 @@ return [
 		$mainConfig = $services->getMainConfig();
 
 		return new SingleBackendSessionStore(
-			$objectCacheFactory->getInstance( $mainConfig->get( MainConfigNames::SessionCacheType ) )
+			$objectCacheFactory->getInstance( $mainConfig->get( MainConfigNames::SessionCacheType ) ),
+			LoggerFactory::getInstance( 'session' ),
 		);
 	},
 

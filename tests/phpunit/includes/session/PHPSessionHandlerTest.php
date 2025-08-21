@@ -7,7 +7,9 @@ use DummySessionProvider;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Session\PHPSessionHandler;
 use MediaWiki\Session\SessionManager;
+use MediaWiki\Session\SingleBackendSessionStore;
 use MediaWikiIntegrationTestCase;
+use Psr\Log\LogLevel;
 use TestLogger;
 use UnexpectedValueException;
 use Wikimedia\ScopedCallback;
@@ -136,7 +138,7 @@ class PHPSessionHandlerTest extends MediaWikiIntegrationTestCase {
 			$services->getProxyLookup(),
 			$services->getUrlUtils(),
 			$services->getUserNameUtils(),
-			$services->getSessionStore()
+			new SingleBackendSessionStore( new TestBagOStuff(), $logger )
 		);
 		PHPSessionHandler::install( $manager );
 		$wrap = TestingAccessWrapper::newFromObject( $staticAccess->instance );
@@ -169,6 +171,10 @@ class PHPSessionHandlerTest extends MediaWikiIntegrationTestCase {
 		$_SESSION['AuthenticationSessionTest'] = $rand;
 		$expect = [ 'AuthenticationSessionTest' => $rand ];
 		session_write_close();
+		$this->assertSame( [
+			[ LogLevel::DEBUG, 'SessionManager using store MediaWiki\Tests\Session\TestBagOStuff' ],
+			[ LogLevel::WARNING, 'Something wrote to $_SESSION!' ],
+		], $logger->getBuffer() );
 
 		// Screw up $_SESSION so we can tell the difference between "this
 		// worked" and "this did nothing"

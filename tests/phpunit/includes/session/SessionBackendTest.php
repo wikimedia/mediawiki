@@ -587,7 +587,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 
 	public function testSave() {
 		$user = static::getTestSysop()->getUser();
-		$this->store = new SingleBackendSessionStore( new TestBagOStuff() );
+		$this->store = new SingleBackendSessionStore( new TestBagOStuff(), new NullLogger() );
 		$testData = [ 'foo' => 'foo!', 'bar', [ 'baz', null ] ];
 
 		$builder = $this->getMockBuilder( DummySessionProvider::class )
@@ -889,7 +889,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 
 	public function testRenew() {
 		$user = static::getTestSysop()->getUser();
-		$this->store = new SingleBackendSessionStore( new TestBagOStuff() );
+		$this->store = new SingleBackendSessionStore( new TestBagOStuff(), new NullLogger() );
 		$testData = [ 'foo' => 'foo!', 'bar', [ 'baz', null ] ];
 
 		// Not persistent, expiring

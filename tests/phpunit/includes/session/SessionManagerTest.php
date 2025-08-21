@@ -81,7 +81,7 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 			$this->getServiceContainer()->getProxyLookup(),
 			$this->getServiceContainer()->getUrlUtils(),
 			$this->getServiceContainer()->getUserNameUtils(),
-			new SingleBackendSessionStore( $this->store )
+			new SingleBackendSessionStore( $this->store, $this->logger ),
 		);
 	}
 
@@ -649,33 +649,6 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 
 		// Session already exists
 		$expectId = 'expected-----------------------3';
-		$sessionStore = $pmanager->sessionStore;
-		$blob = [ 'metadata' => [
-				'provider' => 'MockProvider2',
-				'userId' => 0,
-				'userName' => null,
-				'userToken' => null,
-			]
-		];
-		$blob += [
-			'data' => [],
-			'metadata' => [],
-		];
-		$blob['metadata'] += [
-			'userId' => 0,
-			'userName' => null,
-			'userToken' => null,
-			'provider' => 'DummySessionProvider',
-		];
-		$expiry = $this->getServiceContainer()->getMainConfig()->get( MainConfigNames::ObjectCacheSessionExpiry );
-		$info3 = new SessionInfo( SessionInfo::MIN_PRIORITY, [
-			'provider' => $provider2,
-			'id' => 'empty3--------------------------',
-			'persisted' => true,
-			'userInfo' => UserInfo::newAnonymous(),
-			'idIsSafe' => true,
-		] );
-		$sessionStore->set( $info3, $expectId, $blob, $expiry );
 		$this->store->setSessionMeta( $expectId, [
 			'provider' => 'MockProvider2',
 			'userId' => 0,

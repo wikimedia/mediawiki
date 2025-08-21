@@ -63,12 +63,6 @@ class BotPasswordSessionProviderTest extends MediaWikiIntegrationTestCase {
 			$this->configHash = $configHash;
 		}
 
-		$this->overrideConfigValues( [
-			MainConfigNames::CookiePrefix => 'wgCookiePrefix',
-			MainConfigNames::EnableBotPasswords => true,
-			MainConfigNames::SessionProviders => $sessionProviders,
-		] );
-
 		$manager = new SessionManager(
 			new MultiConfig( [ $this->config, $this->getServiceContainer()->getMainConfig() ] ),
 			new NullLogger,
@@ -80,6 +74,8 @@ class BotPasswordSessionProviderTest extends MediaWikiIntegrationTestCase {
 			$this->getServiceContainer()->getUserNameUtils(),
 			$this->getServiceContainer()->getSessionStore()
 		);
+
+		$this->setService( 'SessionManager', $manager );
 
 		return $manager->getProvider( BotPasswordSessionProvider::class );
 	}

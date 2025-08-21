@@ -296,6 +296,7 @@ final class SessionBackend {
 	 */
 	public function resetId() {
 		if ( $this->provider->persistsSessionId() ) {
+			$oldSessionInfo = $this->getSessionInfo();
 			$oldId = (string)$this->id;
 			$restart = $this->usePhpSessionHandling && $oldId === session_id() &&
 				PHPSessionHandler::isEnabled();
@@ -329,11 +330,6 @@ final class SessionBackend {
 				'action' => 'delete',
 				'reason' => 'ID reset',
 			] );
-
-			// Get session info object of the old session ID
-			$oldSessionInfo = new SessionInfo(
-				SessionInfo::MIN_PRIORITY, [ 'id' => $oldId, 'idIsSafe' => true ]
-			);
 
 			// Delete the data for the old session ID now
 			$this->sessionStore->delete( $oldSessionInfo );
@@ -410,8 +406,7 @@ final class SessionBackend {
 			] );
 			// Delete the session data, so the local cache-only write in
 			// self::save() doesn't get things out of sync with the backend.
-			$info = $this->getSessionInfo();
-			$this->sessionStore->delete( $info );
+			$this->sessionStore->delete( $this->getSessionInfo() );
 
 			$this->autosave();
 		}
@@ -868,9 +863,8 @@ final class SessionBackend {
 		}
 
 		$flags = $this->persist ? 0 : CachedBagOStuff::WRITE_CACHE_ONLY;
-		$info = $this->getSessionInfo();
 		$this->sessionStore->set(
-			$info,
+			$this->getSessionInfo(),
 			[
 				'data' => $this->data,
 				'metadata' => $metadata,

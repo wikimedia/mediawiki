@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Session;
 
+use Psr\Log\LoggerAwareInterface;
+
 /**
  * This is a session store abstraction layer, which can be used to read
  * and write sessions to configured backend(s). Backends can be single or
@@ -12,21 +14,13 @@ namespace MediaWiki\Session;
  * the relevant store to fetch, write, or delete content from. Sessions
  * can be strongly persistent or weakly persistent based on their type.
  *
- * Authenticated sessions have to persist longer based on a TTL, while
- * anonymous sessions are not guaranteed to persist for the duration of
- * the TTL. They'll be regenerated if not available in the backing store.
- *
- * Garbage collection of anonymous sessions is mainly done by the backing
- * store while for authenticated sessions that are expired, it's done when
- * the request is about to be completed by the SessionManager.
- *
  * @ingroup Session
  * @since 1.45
  */
-interface SessionStore {
+interface SessionStore extends LoggerAwareInterface {
 
 	/**
-	 * Retrieves the session data for a given session ID. Can
+	 * Retrieves the session data for a given session ID. Should
 	 * return false if the session is not found.
 	 *
 	 * @param SessionInfo $sessionInfo
@@ -53,9 +47,7 @@ interface SessionStore {
 	public function delete( SessionInfo $sessionInfo ): void;
 
 	/**
-	 * Perform various cleanup and instrumentation activities on the
-	 * session store object like: garbage collection (delete expired
-	 * entries), do logging and monitoring, etc.
+	 * Will be called during shutdown.
 	 *
 	 * @return void
 	 */
