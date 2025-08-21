@@ -2039,7 +2039,7 @@
 	"logeventslist-patrol-log": "Registo de edições patrulhadas",
 	"logeventslist-tag-log": "Registo de etiquetas",
 	"logeventslist-newusers-log": "Registo de criação de utilizadores",
-	"newusers-excludetempacct": "Excluir criação de contas temporárias",
+	"newusers-excludetempacct": "Excluir criações de conta temporária",
 	"all-logs-page": "Registos públicos principais",
 	"alllogstext": "Apresentação combinada de todos os registos disponíveis na wiki {{SITENAME}}.\nPode reduzir a lista escolhendo um tipo de registo, um nome de utilizador ou um título de página. Respeite maiúsculas e minúsculas.",
 	"logempty": "Não existe nenhuma entrada correspondente no registo.",
