@@ -9,6 +9,7 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Logging\ManualLogEntry;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\Specials\SpecialLog;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\TitleFactory;
@@ -303,7 +304,7 @@ class RenameuserSQL {
 				->update( 'recentchanges' )
 				->set( [ 'rc_title' => $newTitle->getDBkey() ] )
 				->where( [
-					'rc_type' => RC_LOG,
+					'rc_source' => RecentChange::SRC_LOG,
 					'rc_log_type' => $logTypesOnUser,
 					'rc_namespace' => NS_USER,
 					'rc_title' => $oldTitle->getDBkey()

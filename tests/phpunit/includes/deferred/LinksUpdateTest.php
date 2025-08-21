@@ -10,6 +10,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Parser\ParserOutput;
+use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -909,7 +910,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			->from( 'recentchanges' )
 			->join( 'comment', null, 'comment_id = rc_comment_id' )
 			->where( [
-				'rc_type' => RC_CATEGORIZE,
+				'rc_source' => RecentChange::SRC_CATEGORIZE,
 				'rc_namespace' => NS_CATEGORY,
 				'rc_title' => $categoryTitle->getDBkey(),
 			] )

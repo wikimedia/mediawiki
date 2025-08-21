@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\Maintenance\Maintenance;
+use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Search\SearchUpdate;
 use MediaWiki\Title\Title;
@@ -108,7 +109,7 @@ class UpdateSearchIndex extends Maintenance {
 			->from( 'recentchanges' )
 			->join( 'page', null, 'rc_cur_id=page_id AND rc_this_oldid=page_latest' )
 			->where( [
-				$dbw->expr( 'rc_type', '!=', RC_LOG ),
+				$dbw->expr( 'rc_source', '!=', RecentChange::SRC_LOG ),
 				$dbw->expr( 'rc_timestamp', '>=', $start ),
 				$dbw->expr( 'rc_timestamp', '<=', $end ),
 			] )

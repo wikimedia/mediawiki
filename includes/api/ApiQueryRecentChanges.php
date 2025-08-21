@@ -257,7 +257,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 					$this->addWhereFld( 'rc_patrolled', RecentChange::PRC_UNPATROLLED );
 				} elseif ( $user->useNPPatrol() ) {
 					$this->addWhereFld( 'rc_patrolled', RecentChange::PRC_UNPATROLLED );
-					$this->addWhereFld( 'rc_type', RC_NEW );
+					$this->addWhereFld( 'rc_source', RecentChange::SRC_NEW );
 				}
 			}
 
@@ -397,7 +397,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			}
 			if ( $bitmask ) {
 				$this->addWhere(
-					$db->expr( 'rc_type', '!=', RC_LOG )
+					$db->expr( 'rc_source', '!=', RecentChange::SRC_LOG )
 						->orExpr( new RawSQLExpression( $db->bitAnd( 'rc_deleted', $bitmask ) . " != $bitmask" ) )
 				);
 			}
@@ -603,7 +603,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		/* Add flags, such as new, minor, bot. */
 		if ( $this->fld_flags ) {
 			$vals['bot'] = (bool)$row->rc_bot;
-			$vals['new'] = $row->rc_type == RC_NEW;
+			$vals['new'] = $row->rc_source == RecentChange::SRC_NEW;
 			$vals['minor'] = (bool)$row->rc_minor;
 		}
 

@@ -293,7 +293,6 @@ SPARQL;
 			'rc_namespace' => NS_CATEGORY,
 			'rc_source' => RecentChange::SRC_LOG,
 			'rc_log_type' => 'move',
-			'rc_type' => RC_LOG,
 		] );
 		$it->sqb->join( 'page', null, 'rc_cur_id = page_id' );
 		$this->addIndex( $it );
@@ -316,7 +315,6 @@ SPARQL;
 					'rc_source' => RecentChange::SRC_LOG,
 					'rc_log_type' => 'delete',
 					'rc_log_action' => 'delete',
-					'rc_type' => RC_LOG,
 					// We will fetch ones that do not have page record. If they do,
 					// this means they were restored, thus restoring handler will pick it up.
 					'NOT EXISTS (SELECT * FROM page WHERE page_id = rc_cur_id)',
@@ -343,7 +341,6 @@ SPARQL;
 			'rc_source' => RecentChange::SRC_LOG,
 			'rc_log_type' => 'delete',
 			'rc_log_action' => 'restore',
-			'rc_type' => RC_LOG,
 			// We will only fetch ones that have page record
 			'EXISTS (SELECT page_id FROM page WHERE page_id = rc_cur_id)',
 		] );

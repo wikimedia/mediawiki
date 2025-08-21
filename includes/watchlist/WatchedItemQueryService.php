@@ -436,7 +436,7 @@ class WatchedItemQueryService {
 		$fields = array_merge( $fields, $rcIdFields );
 
 		if ( in_array( self::INCLUDE_FLAGS, $options['includeFields'] ) ) {
-			$fields = array_merge( $fields, [ 'rc_type', 'rc_minor', 'rc_bot' ] );
+			$fields = array_merge( $fields, [ 'rc_minor', 'rc_bot' ] );
 		}
 		if ( in_array( self::INCLUDE_USER, $options['includeFields'] ) ) {
 			$fields['rc_user_text'] = 'watchlist_actor.actor_name';
@@ -479,7 +479,7 @@ class WatchedItemQueryService {
 
 		if ( !$options['allRevisions'] ) {
 			$conds[] = $db->makeList(
-				[ 'rc_this_oldid=page_latest', 'rc_type=' . RC_LOG ],
+				[ 'rc_this_oldid=page_latest', $db->expr( 'rc_source', '=', RecentChange::SRC_LOG ) ],
 				LIST_OR
 			);
 		}
@@ -647,7 +647,7 @@ class WatchedItemQueryService {
 		}
 		if ( $bitmask ) {
 			return $db->makeList( [
-				'rc_type != ' . RC_LOG,
+				$db->expr( 'rc_source', '!=', RecentChange::SRC_LOG ),
 				$db->bitAnd( 'rc_deleted', $bitmask ) . " != $bitmask",
 			], LIST_OR );
 		}

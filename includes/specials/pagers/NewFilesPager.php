@@ -127,7 +127,7 @@ class NewFilesPager extends RangeChronologicalPager {
 
 		if ( $opts->getValue( 'hidepatrolled' ) ) {
 			$tables[] = 'recentchanges';
-			$conds['rc_type'] = RC_LOG;
+			$conds['rc_source'] = RecentChange::SRC_LOG;
 			$conds['rc_log_type'] = 'upload';
 			$conds['rc_patrolled'] = RecentChange::PRC_UNPATROLLED;
 			$conds['rc_namespace'] = NS_FILE;

@@ -1100,7 +1100,7 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 				// in particular, it is shared with categorization
 				// changes. Prefer the original change because callers
 				// often expect a change for patrolling.
-				'rc_type' => [ RC_EDIT, RC_NEW, RC_LOG ],
+				'rc_source' => [ RecentChange::SRC_EDIT, RecentChange::SRC_NEW, RecentChange::SRC_LOG ],
 			],
 			__METHOD__,
 			( $flags & IDBAccessObject::READ_LATEST ) == IDBAccessObject::READ_LATEST

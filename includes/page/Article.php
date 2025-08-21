@@ -1406,7 +1406,7 @@ class Article implements Page {
 				[
 					'rc_this_oldid' => intval( $oldestRevisionRow->rev_id ),
 					// Avoid selecting a categorization entry
-					'rc_type' => RC_NEW,
+					'rc_source' => RecentChange::SRC_NEW,
 				],
 				__METHOD__
 			);
@@ -1446,7 +1446,7 @@ class Article implements Page {
 				$recentFileUpload = true;
 				$rc = $this->recentChangeLookup->getRecentChangeByConds(
 					[
-						'rc_type' => RC_LOG,
+						'rc_source' => RecentChange::SRC_LOG,
 						'rc_log_type' => 'upload',
 						'rc_timestamp' => $newestUploadTimestamp,
 						'rc_namespace' => NS_FILE,

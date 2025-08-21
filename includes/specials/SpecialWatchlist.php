@@ -446,7 +446,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			$bitmask = 0;
 		}
 		if ( $bitmask ) {
-			$conds[] = $dbr->expr( 'rc_type', '!=', RC_LOG )
+			$conds[] = $dbr->expr( 'rc_source', '!=', RecentChange::SRC_LOG )
 				->orExpr( new RawSQLExpression( $dbr->bitAnd( 'rc_deleted', $bitmask ) . " != $bitmask" ) );
 		}
 

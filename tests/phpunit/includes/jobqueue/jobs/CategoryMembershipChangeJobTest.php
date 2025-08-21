@@ -65,7 +65,7 @@ class CategoryMembershipChangeJobTest extends MediaWikiIntegrationTestCase {
 	private function getCategorizeRecentChangeForRevId( $revId ) {
 		$rc = $this->getServiceContainer()->getRecentChangeStore()->getRecentChangeByConds(
 			[
-				'rc_type' => RC_CATEGORIZE,
+				'rc_source' => RecentChange::SRC_CATEGORIZE,
 				'rc_this_oldid' => $revId,
 			],
 			__METHOD__

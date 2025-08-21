@@ -29,6 +29,7 @@ use MediaWiki\Context\RequestContext;
 use MediaWiki\Logging\LogEntryBase;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\SimpleAuthority;
+use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Session\PHPSessionHandler;
 use MediaWiki\Session\SessionManager;
@@ -1244,7 +1245,7 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 			$this->newSelectQueryBuilder()
 				->select( [ 'rc_logid' ] )
 				->from( 'recentchanges' )
-				->where( [ 'rc_type' => RC_LOG ] )
+				->where( [ 'rc_source' => RecentChange::SRC_LOG ] )
 				->assertEmptyResult();
 			return;
 		}
@@ -1252,7 +1253,7 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 		$this->newSelectQueryBuilder()
 			->select( [ 'rc_logid' ] )
 			->from( 'recentchanges' )
-			->where( [ 'rc_type' => RC_LOG ] )
+			->where( [ 'rc_source' => RecentChange::SRC_LOG ] )
 			->assertFieldValue( $logId );
 	}
 
