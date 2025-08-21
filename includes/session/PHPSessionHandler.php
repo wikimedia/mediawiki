@@ -225,6 +225,25 @@ class PHPSessionHandler implements SessionHandlerInterface {
 	}
 
 	/**
+	 * Check if the value is an object, or is an array that contains an object somewhere inside.
+	 */
+	private function valueContainsAnyObject( mixed $value ): bool {
+		if ( is_object( $value ) ) {
+			return true;
+		}
+		if ( is_array( $value ) ) {
+			$result = false;
+			array_walk_recursive( $value, static function ( $val ) use ( &$result ) {
+				if ( is_object( $val ) ) {
+					$result = true;
+				}
+			} );
+			return $result;
+		}
+		return false;
+	}
+
+	/**
 	 * Write session data
 	 * @internal For internal use only
 	 * @param string $id Session id
@@ -279,6 +298,16 @@ class PHPSessionHandler implements SessionHandlerInterface {
 				}
 			} elseif ( $cache[$key] === $value ) {
 				// Unchanged in $_SESSION, so ignore it
+			} elseif (
+				$this->valueContainsAnyObject( $cache[$key] ) &&
+				$this->valueContainsAnyObject( $value ) &&
+				PhpSessionSerializer::encode( [ $key => $cache[$key] ] ) ===
+					PhpSessionSerializer::encode( [ $key => $value ] )
+			) {
+				// Also unchanged in $_SESSION. The values go through a serialize-and-deserialize
+				// operation before they get here, so if anyone stored any objects in session data,
+				// they will not compare as equal with `===`. Compare their serialized representation
+				// in that case to avoid unnecessary session writes and spurious warnings. (T402602)
 			} elseif ( !$session->exists( $key ) ) {
 				// Deleted in Session, keep but log
 				$this->logger->warning(
