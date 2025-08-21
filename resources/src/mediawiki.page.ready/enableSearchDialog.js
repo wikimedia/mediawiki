@@ -40,7 +40,8 @@ function addRoutes( router, trigger ) {
 }
 
 /**
- * Create a temporary input to open the ios virtual keyboard and maintain keyboard context
+ * Create a temporary input to open the ios virtual keyboard and maintain keyboard context.
+ *
  * @return {void}
  * @ignore
  */
@@ -64,7 +65,8 @@ function createTempInput() {
 }
 
 /**
- * Transfer focus from temp input to real search input after it has been loaded by vue
+ * Transfer focus from temp input to real search input after it has been loaded by Vue.
+ *
  * @return {void}
  * @ignore
  */
