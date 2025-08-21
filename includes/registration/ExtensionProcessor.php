@@ -882,13 +882,17 @@ class ExtensionProcessor implements Processor {
 	 *
 	 * @param string[] $value
 	 * @param string $dir
+	 * @param bool $ensurePathSuffix
 	 *
 	 * @return string[]
 	 */
-	private function applyPath( array $value, string $dir ): array {
+	private function applyPath( array $value, string $dir, bool $ensurePathSuffix = false ): array {
 		$result = [];
 
 		foreach ( $value as $k => $v ) {
+			if ( $ensurePathSuffix && !str_ends_with( $v, '/' ) ) {
+				$v .= '/';
+			}
 			$result[$k] = $dir . '/' . $v;
 		}
 
@@ -1053,7 +1057,7 @@ class ExtensionProcessor implements Processor {
 		}
 
 		if ( isset( $info['AutoloadNamespaces'] ) ) {
-			$paths = $this->applyPath( $info['AutoloadNamespaces'], $dir );
+			$paths = $this->applyPath( $info['AutoloadNamespaces'], $dir, true );
 			$this->autoload['namespaces'] += $paths;
 		}
 
@@ -1063,7 +1067,7 @@ class ExtensionProcessor implements Processor {
 		}
 
 		if ( isset( $info['TestAutoloadNamespaces'] ) ) {
-			$paths = $this->applyPath( $info['TestAutoloadNamespaces'], $dir );
+			$paths = $this->applyPath( $info['TestAutoloadNamespaces'], $dir, true );
 			$this->autoloadDev['namespaces'] += $paths;
 		}
 	}

@@ -170,6 +170,8 @@ because of Phabricator reports.
 * The PermissionErrorAudit hook has been removed.
 * OutputPage::showFatalError() has been removed.
 * OutputPage::showPermissionsErrorPage() has been removed.
+* PSR-4 namespace loading via Autoloader requires trailing slash at the path,
+  an extra slash is no longer added unconditionally.
 * SessionProvider::setLogger(), setConfig(), setManager(), setHookContainer()
   methods deprecated in 1.37, have been removed.
 * SqlBagOStuff::expireAll() and ::deleteAll(), deprecated in 1.41 have been

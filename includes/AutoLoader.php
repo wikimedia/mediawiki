@@ -235,7 +235,6 @@ class AutoLoader {
 					$relativeClass = substr( $className, $pos + 1 );
 					// Build the expected filename, and see if it exists
 					$file = self::$psr4Namespaces[$prefix] .
-						'/' .
 						strtr( $relativeClass, '\\', '/' ) .
 						'.php';
 					if ( is_file( $file ) ) {
