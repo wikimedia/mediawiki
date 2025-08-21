@@ -244,6 +244,9 @@ because of Phabricator reports.
   own source constants.
 * The following methods in RecentChange have been removed without deprecation:
   - isEnotifEnabled()
+  - notifyLog()
+  - newForCategorization()
+  - getNotifyUrl()
 * The UserNamePrefixSearch class, deprecated in 1.41 has been removed,
   the MediaWiki\User\UserNamePrefixSearch service should be used instead.
 * UserMailer::sanitizeHeaderValue, deprecated in 1.44 is now removed.
@@ -354,10 +357,7 @@ because of Phabricator reports.
   - notifyEdit()
   - notifyNewPage()
   - newLogEntry()
-  - notifyLog()
-  - newForCategorization()
   - notifyRCFeeds()
-  - getNotifyUrl()
   - save()
 * XmlSelect::setTagName() is deprecated, use the Html class instead.
 * The UserIsBlockedGlobally hook has been hard deprecated and now emits

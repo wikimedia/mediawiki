@@ -407,8 +407,8 @@ class RecentChange implements Taggable {
 
 			// XXX: We could use rc_cur_id to create a PageIdentityValue,
 			//      at least if it's not a special page.
-			//      However, newForCategorization() puts the ID of the categorized page into
-			//      rc_cur_id, but the title of the category page into rc_title.
+			//      However, RecentChangeFactory::createCategorizationRecentChange() puts the ID of the
+			//      categorized page into rc_cur_id, but the title of the category page into rc_title.
 			$this->mPage = PageReferenceValue::localReference(
 				(int)$this->mAttribs['rc_namespace'],
 				$this->mAttribs['rc_title']
@@ -645,47 +645,6 @@ class RecentChange implements Taggable {
 	}
 
 	/**
-	 * @deprecated since 1.45, use RecentChangeFactory::createLogRecentChange() instead to create
-	 * the log entry, then use RecentChangeFactory::insertRecentChange() to insert it into the database.
-	 *
-	 * @param string $timestamp
-	 * @param PageReference $logPage
-	 * @param UserIdentity $user
-	 * @param string $actionComment
-	 * @param string $ip
-	 * @param string $type
-	 * @param string $action
-	 * @param PageReference $target
-	 * @param string $logComment
-	 * @param string $params
-	 * @param int $newId
-	 * @param string $actionCommentIRC
-	 *
-	 * @return bool
-	 */
-	public static function notifyLog( $timestamp,
-		$logPage, $user, $actionComment, $ip, $type,
-		$action, $target, $logComment, $params, $newId = 0, $actionCommentIRC = ''
-	) {
-		$logRestrictions = MediaWikiServices::getInstance()->getMainConfig()
-			->get( MainConfigNames::LogRestrictions );
-
-		# Don't add private logs to RC!
-		if ( isset( $logRestrictions[$type] ) && $logRestrictions[$type] != '*' ) {
-			return false;
-		}
-
-		$recentChangeFactory = MediaWikiServices::getInstance()->getRecentChangeFactory();
-		$rc = $recentChangeFactory->createLogRecentChange(
-			$timestamp, $logPage, $user, $actionComment, $ip, $type, $action,
-			$target, $logComment, $params, $newId, $actionCommentIRC
-		);
-		$recentChangeFactory->insertRecentChange( $rc );
-
-		return true;
-	}
-
-	/**
 	 * @deprecated since 1.45, use RecentChangeFactory::createLogRecentChange() instead
 	 *
 	 * @param string $timestamp
@@ -717,47 +676,6 @@ class RecentChange implements Taggable {
 				$timestamp, $logPage, $user, $actionComment, $ip,
 				$type, $action, $target, $logComment, $params, $newId, $actionCommentIRC,
 				$revId, $isPatrollable, $forceBotFlag
-			);
-	}
-
-	/**
-	 * @deprecated since 1.45, use RecentChangeFactory::createCategorizationRecentChange() instead
-	 *
-	 * @param string $timestamp Timestamp of the recent change to occur
-	 * @param PageIdentity $categoryTitle the category a page is being added to or removed from
-	 * @param UserIdentity|null $user User object of the user that made the change
-	 * @param string $comment Change summary
-	 * @param PageIdentity $pageTitle the page that is being added or removed
-	 * @param int $oldRevId Parent revision ID of this change
-	 * @param int $newRevId Revision ID of this change
-	 * @param string $lastTimestamp Parent revision timestamp of this change
-	 * @param bool $bot true, if the change was made by a bot
-	 * @param string $ip IP address of the user, if the change was made anonymously
-	 * @param int $deleted Indicates whether the change has been deleted
-	 * @param bool|null $added true, if the category was added, false for removed
-	 * @param bool $forImport Whether the associated revision was imported
-	 *
-	 * @return RecentChange
-	 */
-	public static function newForCategorization(
-		$timestamp,
-		PageIdentity $categoryTitle,
-		?UserIdentity $user,
-		$comment,
-		PageIdentity $pageTitle,
-		$oldRevId,
-		$newRevId,
-		$lastTimestamp,
-		$bot,
-		$ip = '',
-		$deleted = 0,
-		$added = null,
-		bool $forImport = false
-	) {
-		return MediaWikiServices::getInstance()->getRecentChangeFactory()
-			->createCategorizationRecentChange(
-				$timestamp, $categoryTitle, $user, $comment, $pageTitle,
-				$oldRevId, $newRevId, $lastTimestamp, $bot, $ip, $deleted, $added, $forImport
 			);
 	}
 
@@ -935,20 +853,6 @@ class RecentChange implements Taggable {
 			MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::RCMaxAge );
 
 		return (int)wfTimestamp( TS_UNIX, $timestamp ) > time() - $tolerance - $rcMaxAge;
-	}
-
-	/**
-	 * Get the extra URL that is given as part of the notification to RCFeed consumers.
-	 *
-	 * This is mainly to facilitate patrolling or other content review.
-	 *
-	 * @deprecated since 1.45, use RecentChangeRCFeedNotifier::getNotifyUrl() instead.
-	 *
-	 * @since 1.40
-	 * @return string|null URL
-	 */
-	public function getNotifyUrl() {
-		return MediaWikiServices::getInstance()->getRecentChangeRCFeedNotifier()->getNotifyUrl( $this );
 	}
 
 	/**
