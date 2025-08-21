@@ -31,29 +31,29 @@
 // is available; JS is not required.
 
 .cdx-mixin-link-base() {
-	color: @color-progressive;
+	color: @color-link;
 	border-radius: @border-radius-base;
 	text-decoration: @text-decoration-none;
 
 	&:visited {
-		color: @color-visited;
+		color: @color-link--visited;
 
 		&:hover {
-			color: @color-visited--hover;
+			color: @color-link--visited--hover;
 		}
 
 		&:active {
-			color: @color-visited--active;
+			color: @color-link--visited--active;
 		}
 	}
 
 	&:hover {
-		color: @color-progressive--hover;
+		color: @color-link--hover;
 		text-decoration: @text-decoration-underline;
 	}
 
 	&:active {
-		color: @color-progressive--active;
+		color: @color-link--active;
 		text-decoration: @text-decoration-underline;
 	}
 

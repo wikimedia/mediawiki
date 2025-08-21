@@ -1,3 +1,63 @@
+# 2.3.1 / 2025-08-21
+
+## Styles
+- InputChip, styles: Fix horizontal spacing (Volker E.)
+
+## Icons
+- icons: Add 'bookmarkList' icon (Volker E.)
+
+## Code
+- TypeaheadSearch: Fix unavoidable deprecation warning in mobile view mode (Roan Kattouw)
+- TypeaheadSearch: Disable Menu teleportation (Roan Kattouw)
+- Menu: Make teleportation optional, triggered by CdxTeleportMenus (Roan Kattouw)
+
+## Build
+- build: sync node and npm versions across packages with ''.nvmrc' (Volker E.)
+- build: sync node and npm versions across packages with '.nvmrc' II (Volker E.)
+- tests: Remove getMenuRoot helper, no longer needed (Roan Kattouw)
+
+## Documentation
+- docs: Set up teleport target for docs site components (Roan Kattouw)
+- docs: Add support for Matomo pageview analytics (Roan Kattouw)
+- docs: Fix 'ARIA' acronym case in documentation (Volker E.)
+- docs: Better document teleportation and styling pitfalls (Roan Kattouw)
+
+# 2.3.0 / 2025-08-14
+
+## Features
+- Dialog, Popover: Support template ref as teleport target (Roan Kattouw)
+- useFloatingMenu: Pass in reference HTMLElement to autoUpdate() directly (Roan Kattouw)
+- Menu, Dialog: Teleport menus by default (Roan Kattouw)
+
+## Styles
+- Table, MenuButton: Ensure menu can overflow table (Anne Tomasevich)
+- Link, docs: Use new `color-link` token for Links and docs application (Volker E.)
+- tokens, docs: Update Source Serif Pro to Source Serif 4 (Derek Torsani)
+- tokens: Update Yellow and Blue option tokens (Derek Torsani)
+
+### New design tokens
+- tokens: Add default link tokens including all interaction and visited states (lmora)
+- tokens: Add `border-color-warning--*` interaction states (Volker E.)
+- tokens, InputChip: Add clear button component token (Volker E.)
+
+## Build
+- build: Enable ES modules for tests in all packages (Roan Kattouw)
+- build: Remove preserved output comments from types and constants files (Volker E.)
+- eslint: Use modern names for profiles, so this can upgrade (James D. Forrester)
+- build: Upgrade eslint-config-wikimedia from 0.28.2 to 0.31.0 (James D. Forrester)
+- build: Remove superfluous linting override (Volker E.)
+- build: Upgrade Vite to v7.0.4, bump Node requirement to v20.19.0 & upgrade dependencies (Roan Kattouw)
+- build: update browserslist db to v1.0.30001731 (Volker E.)
+
+## Documentation
+- docs: Update link to docs in icons.ts code comment (Roan Kattouw)
+- docs: Replace '/main' with '/latest' in links to Codex documentation (Volker E.)
+- docs: Fix "New components" link on Contributing overview (Derek Torsani)
+- docs: Add quiet progressive link fake button example (Volker E.)
+- docs, Image: Fix class references to proper placeholder image icon sizes (Volker E.)
+- docs: Fix z-index equivalence in comment (Volker E.)
+- docs: Fix internal Slack channel reference and expand Foundation acronym (Volker E.)
+
 # 2.2.1 / 2025-07-22
 
 ## Features
