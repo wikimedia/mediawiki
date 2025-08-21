@@ -212,15 +212,8 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 				->joinConds( $join_conds );
 			$pfx = $prefix[$link_table];
 
-			// imagelinks and categorylinks tables have no xx_namespace field,
-			// and have xx_to instead of xx_title
-			if ( $link_table == 'imagelinks' ) {
-				$link_ns = NS_FILE;
-			} elseif ( $link_table == 'categorylinks' ) {
-				$link_ns = NS_CATEGORY;
-			} else {
-				$link_ns = 0;
-			}
+			// The imagelinks table has no xx_namespace field and has xx_to instead of xx_title
+			$link_ns = $link_table == 'imagelinks' ? NS_FILE : 0;
 
 			if ( $showlinkedto ) {
 				// find changes to pages linking to this page
@@ -240,7 +233,7 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 			} else {
 				// find changes to pages linked from this page
 				$queryBuilder->where( [ "{$pfx}_from" => $id ] );
-				if ( $link_table == 'imagelinks' || $link_table == 'categorylinks' ) {
+				if ( $link_table == 'imagelinks' ) {
 					$queryBuilder->where( [ "rc_namespace" => $link_ns ] );
 					$queryBuilder->join( $link_table, null, "rc_title = {$pfx}_to" );
 				} else {
