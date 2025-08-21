@@ -263,7 +263,7 @@ class PHPSessionHandler implements SessionHandlerInterface {
 		}
 
 		// Now merge the data into the Session object.
-		$changed = false;
+		$changed = [];
 		$cache = $this->sessionFieldCache[$id] ?? [];
 		foreach ( $data as $key => $value ) {
 			if ( !array_key_exists( $key, $cache ) ) {
@@ -275,7 +275,7 @@ class PHPSessionHandler implements SessionHandlerInterface {
 				} else {
 					// New in $_SESSION, keep it
 					$session->set( $key, $value );
-					$changed = true;
+					$changed[] = $key;
 				}
 			} elseif ( $cache[$key] === $value ) {
 				// Unchanged in $_SESSION, so ignore it
@@ -285,11 +285,11 @@ class PHPSessionHandler implements SessionHandlerInterface {
 					__METHOD__ . ": Key \"$key\" deleted in Session and changed in \$_SESSION!"
 				);
 				$session->set( $key, $value );
-				$changed = true;
+				$changed[] = $key;
 			} elseif ( $cache[$key] === $session->get( $key ) ) {
 				// Unchanged in Session, so keep it
 				$session->set( $key, $value );
-				$changed = true;
+				$changed[] = $key;
 			} else {
 				// Changed in both, so ignore and log
 				$this->logger->warning(
@@ -307,7 +307,7 @@ class PHPSessionHandler implements SessionHandlerInterface {
 				if ( $value === $session->get( $key ) ) {
 					// Unchanged in Session, delete it
 					$session->remove( $key );
-					$changed = true;
+					$changed[] = $key;
 				} else {
 					// Changed in Session, ignore deletion and log
 					$this->logger->warning(
@@ -322,7 +322,9 @@ class PHPSessionHandler implements SessionHandlerInterface {
 		if ( $changed ) {
 			if ( $this->warn ) {
 				wfDeprecated( '$_SESSION', '1.27' );
-				$this->logger->warning( 'Something wrote to $_SESSION!' );
+				foreach ( $changed as $key ) {
+					$this->logger->warning( "Something wrote to \$_SESSION['$key']!" );
+				}
 			}
 
 			$session->save();
