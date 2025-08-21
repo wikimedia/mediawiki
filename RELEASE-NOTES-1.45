@@ -242,6 +242,8 @@ because of Phabricator reports.
   the MediaWiki\User\UserNamePrefixSearch service should be used instead.
 * UserMailer::sanitizeHeaderValue, deprecated in 1.44 is now removed.
 * Subclasses of UploadBase must call the parent constructor if they override it
+* User::isBlockedGlobally and User::getGlobalBlock, both deprecated in 1.40,
+  have been removed. Use User::getBlock instead.
 * …
 
 === Deprecations in 1.45 ===

@@ -29,7 +29,6 @@ use MediaWiki\Auth\AuthManager;
 use MediaWiki\Block\AbstractBlock;
 use MediaWiki\Block\Block;
 use MediaWiki\Block\DatabaseBlock;
-use MediaWiki\Block\SystemBlock;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\DAO\WikiAwareEntityTrait;
 use MediaWiki\Deferred\DeferredUpdates;
@@ -1467,57 +1466,6 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 			$request,
 			$fromReplica,
 		);
-	}
-
-	/**
-	 * Check if user is blocked on all wikis.
-	 * Do not use for actual edit permission checks!
-	 * This is intended for quick UI checks.
-	 *
-	 * @param string $ip IP address, uses current client if none given
-	 * @return bool True if blocked, false otherwise
-	 * @deprecated since 1.40, emits deprecation warnings since 1.43. Use getBlock instead.
-	 */
-	public function isBlockedGlobally( $ip = '' ) {
-		wfDeprecated( __METHOD__, '1.40' );
-		return $this->getGlobalBlock( $ip ) instanceof AbstractBlock;
-	}
-
-	/**
-	 * Check if user is blocked on all wikis.
-	 * Do not use for actual edit permission checks!
-	 * This is intended for quick UI checks.
-	 *
-	 * @param string $ip IP address, uses current client if none given
-	 * @return AbstractBlock|null Block object if blocked, null otherwise
-	 * @deprecated since 1.40. Use getBlock instead
-	 */
-	public function getGlobalBlock( $ip = '' ) {
-		wfDeprecated( __METHOD__, '1.40' );
-		if ( $this->mGlobalBlock !== null ) {
-			return $this->mGlobalBlock ?: null;
-		}
-		// User is already an IP?
-		if ( IPUtils::isIPAddress( $this->getName() ) ) {
-			$ip = $this->getName();
-		} elseif ( !$ip ) {
-			$ip = $this->getRequest()->getIP();
-		}
-		$blocked = false;
-		$block = null;
-		$this->getHookRunner()->onUserIsBlockedGlobally( $this, $ip, $blocked, $block );
-
-		if ( $blocked && $block === null ) {
-			// back-compat: UserIsBlockedGlobally didn't have $block param first
-			$block = new SystemBlock( [
-				'target' => MediaWikiServices::getInstance()->getBlockTargetFactory()
-					->newAnonIpBlockTarget( $ip ),
-				'systemBlock' => 'global-block'
-			] );
-		}
-
-		$this->mGlobalBlock = $blocked ? $block : false;
-		return $this->mGlobalBlock ?: null;
 	}
 
 	/**
