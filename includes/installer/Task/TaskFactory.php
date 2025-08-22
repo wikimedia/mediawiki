@@ -131,10 +131,10 @@ class TaskFactory {
 		} else {
 			$allowedParamNames = [ 'factory', 'class', 'args' ];
 			$factorySpec = array_intersect_key( $spec, array_fill_keys( $allowedParamNames, true ) );
-			$task = $this->objectFactory->createObject( $factorySpec );
-			if ( !( $task instanceof Task ) ) {
-				throw new \RuntimeException( 'Invalid task type' );
-			}
+			$task = $this->objectFactory->createObject(
+				$factorySpec,
+				[ 'assertClass' => Task::class ]
+			);
 		}
 
 		$schemaBasePath = $spec['schemaBasePath'] ?? $this->getCoreSchemaBasePath();

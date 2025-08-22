@@ -631,10 +631,10 @@ class UserOptionsManager extends UserOptionsLookup {
 				self::LOCAL_STORE_KEY => new LocalUserOptionsStore( $this->dbProvider, $this->hookRunner )
 			];
 			foreach ( $this->storeProviders as $name => $spec ) {
-				$store = $this->objectFactory->createObject( $spec );
-				if ( !$store instanceof UserOptionsStore ) {
-					throw new \RuntimeException( "Invalid type for extension store \"$name\"" );
-				}
+				$store = $this->objectFactory->createObject(
+					$spec,
+					[ 'assertClass' => UserOptionsStore::class ]
+				);
 				$stores[$name] = $store;
 			}
 			// Query global providers first, preserve keys

@@ -463,7 +463,10 @@ class SessionManager implements SessionManagerInterface {
 			$this->sessionProviders = [];
 			foreach ( $this->config->get( MainConfigNames::SessionProviders ) as $spec ) {
 				/** @var SessionProvider $provider */
-				$provider = $this->objectFactory->createObject( $spec );
+				$provider = $this->objectFactory->createObject(
+					$spec,
+					[ 'assertClass' => SessionProvider::class ]
+				);
 				$provider->init(
 					$this->logger,
 					$this->config,

@@ -256,7 +256,10 @@ class LinksTableGroup {
 				$extraArgs = [];
 			}
 			/** @var LinksTable $table */
-			$table = $this->objectFactory->createObject( $spec, [ 'extraArgs' => $extraArgs ] );
+			$table = $this->objectFactory->createObject(
+				$spec,
+				[ 'extraArgs' => $extraArgs, 'assertClass' => LinksTable::class ]
+			);
 			$table->injectBaseDependencies(
 				$this->lbFactory,
 				$this->linkTargetLookup,
