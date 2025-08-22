@@ -43,6 +43,7 @@ class JsonContentHandler extends CodeContentHandler {
 
 	private ParsoidParserFactory $parsoidParserFactory;
 	private TitleFactory $titleFactory;
+	private const WIKITEXT_SIZE_BYTES = 100000; // 100 KB
 
 	/**
 	 * @stable to call
@@ -150,7 +151,21 @@ class JsonContentHandler extends CodeContentHandler {
 					// we have a new $parserOutput now.
 					$parserOptions->getUseParsoid();
 				} else {
-					$parserOutput->setRawText( $content->rootValueTable( $content->getData()->getValue() ) );
+					$pageText = $content->getText();
+					$pageSize = strlen( $pageText );
+					if ( $pageSize > self::WIKITEXT_SIZE_BYTES ) {
+						// T344505: For big pages, output plain text wrapped in <pre> tags.
+						// Browsers render this quickly, avoiding performance issues.
+						$html = htmlspecialchars( $content->getText(), ENT_COMPAT );
+						$html = "<pre>$html</pre>";
+						$parserOutput->setRawText( $html );
+					} else {
+						// Output an HTML table, which is a little bit easier to read for
+						// non-programmers. Browsers render this slowly, but the page is small
+						// enough that this isn't a problem.
+						$html = $content->rootValueTable( $content->getData()->getValue() );
+						$parserOutput->setRawText( $html );
+					}
 				}
 			} else {
 				$error = wfMessage( 'invalid-json-data' )->parse();
