@@ -107,13 +107,14 @@ describe( '/transform/ endpoint', () => {
 		this.timeout( 30000 );
 
 		const alice = await action.alice();
+		const admin = await action.mindy();
 
 		// Create pages
 		let edit = await alice.edit( page, { text: pageContent } );
 		edit.result.should.equal( 'Success' );
 		revid = edit.newrevid;
 
-		edit = await alice.edit( 'JSON Page', {
+		edit = await admin.edit( 'JSON Page', {
 			text: '[1]', contentmodel: 'json'
 		} );
 		edit.result.should.equal( 'Success' );

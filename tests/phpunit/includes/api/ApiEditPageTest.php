@@ -720,7 +720,6 @@ class ApiEditPageTest extends ApiTestCase {
 	public function testUndoAfterContentModelChange() {
 		$name = 'Help:' . __FUNCTION__;
 		$sysop = $this->getTestSysop()->getUser();
-		$otherUser = $this->getTestUser()->getUser();
 
 		$apiResult = $this->doApiRequestWithToken( [
 			'action' => 'edit',
@@ -742,7 +741,7 @@ class ApiEditPageTest extends ApiTestCase {
 			'title' => $name,
 			'text' => '{}',
 			'contentmodel' => 'json',
-		], null, $otherUser )[0];
+		], null, $sysop )[0];
 
 		// Check success
 		$this->assertArrayHasKey( 'edit', $apiResult );
