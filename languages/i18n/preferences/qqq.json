@@ -260,7 +260,9 @@
 			"គីមស៊្រុន",
 			"捍粵者",
 			"아라",
-			"Nemoralis"
+			"Nemoralis",
+			"Aca",
+			"Foomin10"
 		]
 	},
 	"preferences": "Title of the [[Special:Preferences]] page.\n{{Identical|Preferences}}",
@@ -315,7 +317,7 @@
 	"yourvariant": "Used in [[Special:Preferences]], first tab, when the wiki content language has variants only.",
 	"prefs-help-variant": "Explanation of the LanguageConverter feature. It is shown next to a dropdown box where you can choose a variant to convert content to (e.g. Serbian Latin vs. Serbian Cyrillic, or Chinese Traditional vs. Chinese Simplified).",
 	"prefs-signature": "{{Identical|Signature}}",
-	"tog-oldsig": "Used in [[Special:Preferences]], tab User profile. {{Gender}}",
+	"tog-oldsig": "Used in [[Special:Preferences]], tab User profile. {{Gender}}\n\n{{Identical|Signature}}",
 	"yournick": "Used in [[Special:Preferences]], first tab.\n\n{{Identical|Signature}}",
 	"tog-fancysig": "In user preferences under the signature box.\n\n{{Gender}}",
 	"prefs-help-signature": "Used in [[Special:Preferences]], tab User profile.",

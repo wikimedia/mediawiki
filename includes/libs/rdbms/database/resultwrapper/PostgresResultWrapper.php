@@ -2,24 +2,24 @@
 
 namespace Wikimedia\Rdbms;
 
-// Phan insists these are resources until we drop PHP 7.4
-/* @phan-file-suppress PhanTypeMismatchArgumentInternal */
+use PgSql\Connection;
+use PgSql\Result;
 
+/**
+ * Result wrapper for PostgreSQL database results.
+ *
+ * @since 1.37
+ */
 class PostgresResultWrapper extends ResultWrapper {
 	/** @var DatabasePostgres */
 	private $db;
-	/** @var resource */
-	private $handle;
-	/** @var resource */
-	private $result;
+	private Connection $handle;
+	private Result $result;
 
 	/**
 	 * @internal
-	 * @param DatabasePostgres $db
-	 * @param resource $handle
-	 * @param resource $result
 	 */
-	public function __construct( DatabasePostgres $db, $handle, $result ) {
+	public function __construct( DatabasePostgres $db, Connection $handle, Result $result ) {
 		$this->db = $db;
 		$this->handle = $handle;
 		$this->result = $result;

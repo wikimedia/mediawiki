@@ -34,7 +34,7 @@
 	"prefsnologintext2-for-temp-user": "Maak een account aan om uw voorkeuren te wijzigen.",
 	"searchprefs": "Voorkeuren doorzoeken",
 	"searchprefs-noresults": "Geen resultaten",
-	"searchprefs-results": "$1 {{PLURAL:$1|resulaat|resultaten}}",
+	"searchprefs-results": "$1 {{PLURAL:$1|resultaat|resultaten}}",
 	"saveprefs": "Opslaan",
 	"tooltip-preferences-save": "Voorkeuren opslaan",
 	"savedprefs": "Uw voorkeuren zijn opgeslagen.",

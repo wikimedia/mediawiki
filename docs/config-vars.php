@@ -4233,12 +4233,6 @@ $wgAllowedCorsHeaders = null;
 $wgRestAPIAdditionalRouteFiles = null;
 
 /**
- * Config variable stub for the RestSandboxSpecs setting, for use by phpdoc and IDEs.
- * @see MediaWiki\MainConfigSchema::RestSandboxSpecs
- */
-$wgRestSandboxSpecs = null;
-
-/**
  * Config variable stub for the MaxShellMemory setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::MaxShellMemory
  */
