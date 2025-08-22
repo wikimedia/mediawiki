@@ -229,7 +229,7 @@ class LanguageFactory {
 	/**
 	 * @param string $code
 	 * @param bool $fallback Whether we're going through the language fallback chain
-	 * @return string Name of the language class
+	 * @return class-string<Language> Name of the language class
 	 */
 	private function classFromCode( $code, $fallback = true ) {
 		if ( $fallback && $code == 'en' ) {

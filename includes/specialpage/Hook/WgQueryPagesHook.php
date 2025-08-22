@@ -17,7 +17,7 @@ interface WgQueryPagesHook {
 	 * @since 1.35
 	 *
 	 * @param array[] &$qp List of QueryPages
-	 *  Format: [ string $class, string $specialPageName, ?int $limit (optional) ].
+	 *  Format: [ class-string $class, string $specialPageName, ?int $limit (optional) ].
 	 *  Limit defaults to $wgQueryCacheLimit if not given.
 	 * @return bool|void True or no return value to continue or false to abort
 	 */

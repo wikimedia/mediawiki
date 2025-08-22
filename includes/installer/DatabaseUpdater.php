@@ -97,7 +97,7 @@ abstract class DatabaseUpdater {
 	protected $autoExtensionHookContainer;
 
 	/**
-	 * @var string[] Scripts to run after database update
+	 * @var class-string<Maintenance>[] Scripts to run after database update
 	 * Should be a subclass of LoggedUpdateMaintenance
 	 */
 	protected $postDatabaseUpdateMaintenance = [
@@ -432,7 +432,7 @@ abstract class DatabaseUpdater {
 	 *
 	 * @since 1.19
 	 *
-	 * @param string $class Name of a Maintenance subclass
+	 * @param class-string<Maintenance> $class Name of a Maintenance subclass
 	 */
 	public function addPostDatabaseUpdateMaintenance( $class ) {
 		$this->postDatabaseUpdateMaintenance[] = $class;
@@ -441,7 +441,7 @@ abstract class DatabaseUpdater {
 	/**
 	 * @since 1.17
 	 *
-	 * @return string[]
+	 * @return class-string<Maintenance>[]
 	 */
 	public function getPostDatabaseUpdateMaintenance() {
 		return $this->postDatabaseUpdateMaintenance;

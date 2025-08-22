@@ -54,7 +54,7 @@ class VueContentHandler extends CodeContentHandler {
 	}
 
 	/**
-	 * @return string
+	 * @return class-string<VueContent>
 	 */
 	protected function getContentClass() {
 		return VueContent::class;

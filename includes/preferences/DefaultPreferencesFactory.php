@@ -1931,7 +1931,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	/**
 	 * @param User $user
 	 * @param IContextSource $context
-	 * @param string $formClass
+	 * @param class-string<PreferencesFormOOUI> $formClass
 	 * @param array $remove Array of items to remove
 	 * @return HTMLForm
 	 */

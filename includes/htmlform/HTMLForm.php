@@ -600,7 +600,7 @@ class HTMLForm extends ContextSource {
 	 * @param array &$descriptor Input Descriptor, as described
 	 * 	in the class documentation
 	 *
-	 * @return string Name of a HTMLFormField subclass
+	 * @return class-string<HTMLFormField> Name of a HTMLFormField subclass
 	 */
 	public static function getClassFromDescriptor( $fieldname, &$descriptor ) {
 		if ( isset( $descriptor['class'] ) ) {

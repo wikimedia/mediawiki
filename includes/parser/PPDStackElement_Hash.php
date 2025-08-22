@@ -66,7 +66,7 @@ class PPDStackElement_Hash {
 	 */
 	public $lineStart;
 
-	/** @var string */
+	/** @var class-string<PPDPart_Hash> */
 	public $partClass = PPDPart_Hash::class;
 
 	public function __construct( array $data = [] ) {

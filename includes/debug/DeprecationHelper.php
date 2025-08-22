@@ -159,7 +159,7 @@ trait DeprecationHelper {
 	 * are accessed.
 	 *
 	 * @param string $version MediaWiki version where the property became deprecated.
-	 * @param string|null $class The class which has the deprecated property.
+	 * @param class-string|null $class The class which has the deprecated property.
 	 * @param string|null $component
 	 */
 	protected function deprecateDynamicPropertiesAccess(

@@ -91,7 +91,7 @@ class SkinTemplate extends Skin {
 	 * and eventually it spits out some HTML. Should have interface
 	 * roughly equivalent to PHPTAL 0.7.
 	 *
-	 * @param string $classname
+	 * @param class-string<QuickTemplate> $classname
 	 * @return QuickTemplate
 	 */
 	protected function setupTemplate( $classname ) {

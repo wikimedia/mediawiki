@@ -108,7 +108,7 @@ trait JsonSchemaTrait {
 	 *
 	 * @param array $schema JSON Schema structure with PHPDoc types
 	 * @param array &$defs List of definitions (JSON schemas) referenced in the schema
-	 * @param string $source An identifier for the source schema being reflected, used
+	 * @param class-string $source An identifier for the source schema being reflected, used
 	 * for error descriptions.
 	 * @param string $propertyName The name of the property the schema belongs to, used for error descriptions.
 	 * @return array JSON Schema structure using only proper JSON types
@@ -131,7 +131,7 @@ trait JsonSchemaTrait {
 	 *
 	 * @param array $schema JSON Schema structure with PHPDoc types
 	 * @param array &$defs List of definitions (JSON schemas) referenced in the schema
-	 * @param string $source An identifier for the source schema being reflected, used
+	 * @param class-string $source An identifier for the source schema being reflected, used
 	 * for error descriptions.
 	 * @param string $propertyName The name of the property the schema belongs to, used for error descriptions.
 	 * @param bool $inlineReferences Whether references in the schema should be inlined or not.

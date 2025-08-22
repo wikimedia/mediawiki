@@ -98,7 +98,7 @@ class ObjectCacheFactory {
 	private $dbLoadBalancerFactory;
 	/**
 	 * @internal ObjectCacheFactoryTest only
-	 * @var string
+	 * @var class-string<BagOStuff>
 	 */
 	public static $localServerCacheClass;
 
@@ -328,7 +328,7 @@ class ObjectCacheFactory {
 
 	/**
 	 * Get the class which will be used for the local server cache
-	 * @return string
+	 * @return class-string<BagOStuff>
 	 */
 	private static function getLocalServerCacheClass() {
 		if ( self::$localServerCacheClass !== null ) {

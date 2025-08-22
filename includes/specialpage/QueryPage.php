@@ -129,7 +129,7 @@ abstract class QueryPage extends SpecialPage {
 	 * When changing this list, you should ensure that maintenance/updateSpecialPages.php still works
 	 * including when test data exists.
 	 *
-	 * @return array[] List of [ string $class, string $specialPageName, ?int $limit (optional) ].
+	 * @return array[] List of [ class-string $class, string $specialPageName, ?int $limit (optional) ].
 	 *  Limit defaults to $wgQueryCacheLimit if not given.
 	 */
 	public static function getPages() {

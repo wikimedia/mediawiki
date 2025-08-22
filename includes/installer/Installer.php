@@ -91,14 +91,14 @@ abstract class Installer {
 	/**
 	 * List of detected DBs, access using getCompiledDBs().
 	 *
-	 * @var array
+	 * @var string[]
 	 */
 	protected $compiledDBs;
 
 	/**
 	 * Cached DB installer instances, access using getDBInstaller().
 	 *
-	 * @var array
+	 * @var array<string,DatabaseInstaller>
 	 */
 	protected $dbInstallers = [];
 
@@ -621,7 +621,7 @@ abstract class Installer {
 	/**
 	 * Get a list of DBs supported by current PHP setup
 	 *
-	 * @return array
+	 * @return string[]
 	 */
 	public function getCompiledDBs() {
 		return $this->compiledDBs;
@@ -631,7 +631,7 @@ abstract class Installer {
 	 * Get the DatabaseInstaller class name for this type
 	 *
 	 * @param string $type database type ($wgDBtype)
-	 * @return string Class name
+	 * @return class-string<DatabaseInstaller> Class name
 	 * @since 1.30
 	 */
 	public static function getDBInstallerClass( $type ) {
@@ -641,7 +641,7 @@ abstract class Installer {
 	/**
 	 * Get an instance of DatabaseInstaller for the specified DB type.
 	 *
-	 * @param mixed $type DB installer for which is needed, false to use default.
+	 * @param string|false $type DB installer for which is needed, false to use default.
 	 *
 	 * @return DatabaseInstaller
 	 */

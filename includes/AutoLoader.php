@@ -210,7 +210,7 @@ class AutoLoader {
 	/**
 	 * Find the file containing the given class.
 	 *
-	 * @param string $className Name of class we're looking for.
+	 * @param class-string $className Name of class we're looking for.
 	 * @return string|null The path containing the class, not null if not found
 	 */
 	public static function find( $className ): ?string {
@@ -265,7 +265,7 @@ class AutoLoader {
 	/**
 	 * autoload - take a class name and attempt to load it
 	 *
-	 * @param string $className Name of class we're looking for.
+	 * @param class-string $className Name of class we're looking for.
 	 */
 	public static function autoload( $className ) {
 		$filename = self::find( $className );

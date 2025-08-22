@@ -32,6 +32,7 @@ require_once __DIR__ . '/../Maintenance.php';
 require_once __DIR__ . '/../../includes/export/WikiExporter.php';
 // @codeCoverageIgnoreEnd
 
+use DumpFilter;
 use DumpMultiWriter;
 use DumpOutput;
 use ExportProgressFilter;
@@ -92,9 +93,9 @@ abstract class BackupDumper extends Maintenance {
 	/** @var int */
 	protected $revCountLast = 0;
 
-	/** @var string[] */
+	/** @var array<string,class-string<DumpOutput>> */
 	protected $outputTypes = [];
-	/** @var string[] */
+	/** @var array<string,class-string<DumpFilter>> */
 	protected $filterTypes = [];
 
 	/** @var int */
@@ -190,7 +191,7 @@ abstract class BackupDumper extends Maintenance {
 
 	/**
 	 * @param string $name
-	 * @param string $class Name of output filter plugin class
+	 * @param class-string<DumpOutput> $class Name of output filter plugin class
 	 */
 	public function registerOutput( $name, $class ) {
 		$this->outputTypes[$name] = $class;
@@ -198,7 +199,7 @@ abstract class BackupDumper extends Maintenance {
 
 	/**
 	 * @param string $name
-	 * @param string $class Name of filter plugin class
+	 * @param class-string<DumpFilter> $class Name of filter plugin class
 	 */
 	public function registerFilter( $name, $class ) {
 		$this->filterTypes[$name] = $class;
@@ -207,7 +208,7 @@ abstract class BackupDumper extends Maintenance {
 	/**
 	 * Load a plugin and register it
 	 *
-	 * @param string $class Name of plugin class; must have a static 'register'
+	 * @param class-string $class Name of plugin class; must have a static 'register'
 	 *   method that takes a BackupDumper as a parameter.
 	 * @param string $file Full or relative path to the PHP file to load, or empty
 	 */

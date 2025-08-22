@@ -77,7 +77,7 @@ class LockManagerGroup {
 		// Lazy-load the actual lock manager instance
 		if ( !isset( $this->managers[$name]['instance'] ) ) {
 			$class = $this->managers[$name]['class'];
-			'@phan-var string $class';
+			'@phan-var class-string<LockManager> $class';
 			$config = $this->managers[$name]['config'];
 			$config['logger'] = LoggerFactory::getInstance( 'LockManager' );
 

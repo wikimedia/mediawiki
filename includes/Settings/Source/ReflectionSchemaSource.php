@@ -40,7 +40,7 @@ class ReflectionSchemaSource implements Stringable, SettingsSource {
 
 	/**
 	 * Name of a PHP class
-	 * @var string
+	 * @var class-string
 	 */
 	private $class;
 
@@ -50,7 +50,7 @@ class ReflectionSchemaSource implements Stringable, SettingsSource {
 	private $includeDoc;
 
 	/**
-	 * @param string $class
+	 * @param class-string $class
 	 * @param bool $includeDoc
 	 */
 	public function __construct( string $class, bool $includeDoc = false ) {

@@ -758,7 +758,7 @@ abstract class Maintenance {
 	 *
 	 * Callers are expected to run the returned maintenance script instance by calling {@link Maintenance::execute}
 	 *
-	 * @param string $maintClass A name of a child maintenance class
+	 * @param class-string<Maintenance> $maintClass A name of a child maintenance class
 	 * @param string|null $classFile Full path of where the child is
 	 * @stable to override
 	 * @return Maintenance The created instance, which the caller is expected to run by calling

@@ -31,7 +31,7 @@ use MediaWiki\Title\Title;
  * @method WikiCategoryPage getPage() Set by overwritten newPage() in this class
  */
 class CategoryPage extends Article {
-	/** @var string Subclasses can change this to override the viewer class. */
+	/** @var class-string<CategoryViewer> Subclasses can change this to override the viewer class. */
 	protected $mCategoryViewerClass = CategoryViewer::class;
 
 	/**

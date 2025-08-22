@@ -29,6 +29,7 @@ use MediaWiki\Request\WebRequest;
  * @since 1.20
  */
 class InstallerOverrides {
+	/** @return array<string,class-string> */
 	private static function getOverrides(): array {
 		static $overrides;
 

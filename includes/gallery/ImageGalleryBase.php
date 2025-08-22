@@ -110,7 +110,7 @@ abstract class ImageGalleryBase extends ContextSource {
 	/** @var int */
 	protected $mHeights;
 
-	/** @var array */
+	/** @var array<string,class-string<self>> */
 	private static $modeMapping;
 
 	/**

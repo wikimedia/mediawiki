@@ -71,9 +71,9 @@ class RecompressTracked {
 	public $numProcs = 1;
 	/** @var int */
 	public $numBatches = 0;
-	/** @var string */
+	/** @var class-string<HistoryBlob> */
 	public $pageBlobClass;
-	/** @var string */
+	/** @var class-string<HistoryBlob> */
 	public $orphanBlobClass;
 	/** @var resource[] */
 	public $childPipes;
@@ -709,7 +709,7 @@ class RecompressTracked {
 class CgzCopyTransaction {
 	/** @var RecompressTracked */
 	public $parent;
-	/** @var string */
+	/** @var class-string<HistoryBlob> */
 	public $blobClass;
 	/** @var ConcatenatedGzipHistoryBlob|false */
 	public $cgz;
@@ -721,7 +721,7 @@ class CgzCopyTransaction {
 	/**
 	 * Create a transaction from a RecompressTracked object
 	 * @param RecompressTracked $parent
-	 * @param string $blobClass
+	 * @param class-string<HistoryBlob> $blobClass
 	 */
 	public function __construct( $parent, $blobClass ) {
 		$this->blobClass = $blobClass;

@@ -292,7 +292,7 @@ abstract class AuthenticationRequest {
 	 *
 	 * @phan-template T
 	 * @param AuthenticationRequest[] $reqs
-	 * @param string $class Class name
+	 * @param class-string<AuthenticationRequest> $class Class name
 	 * @phan-param class-string<T> $class
 	 * @param bool $allowSubclasses If true, also returns any request that's a subclass of the given
 	 *   class.

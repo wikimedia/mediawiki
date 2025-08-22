@@ -36,6 +36,7 @@ use Wikimedia\Rdbms\ChronologyProtector;
 use Wikimedia\Rdbms\ConfiguredReadOnlyMode;
 use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\ILBFactory;
+use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\RequestTimeout\CriticalSectionProvider;
 use Wikimedia\Stats\StatsFactory;
 use Wikimedia\Telemetry\TracerInterface;
@@ -367,7 +368,7 @@ class MWLBFactory {
 	 *
 	 * @internal For use by ServiceWiring
 	 * @param array $config (e.g. $wgLBFactoryConf)
-	 * @return string Class name
+	 * @return class-string<LBFactory>
 	 */
 	public function getLBFactoryClass( array $config ): string {
 		$compat = [

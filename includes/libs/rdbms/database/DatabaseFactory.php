@@ -194,7 +194,7 @@ class DatabaseFactory {
 	/**
 	 * @param string $dbType A possible DB type (sqlite, mysql, postgres,...)
 	 * @param string|null $driver Optional name of a specific DB client driver
-	 * @return string Database subclass name to use
+	 * @return class-string<Database> Database subclass name to use
 	 * @throws InvalidArgumentException
 	 */
 	protected function getClass( $dbType, $driver = null ) {

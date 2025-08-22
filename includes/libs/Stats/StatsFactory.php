@@ -190,7 +190,7 @@ class StatsFactory {
 	 * If a metric name collision occurs, returns a NullMetric to suppress runtime exceptions.
 	 *
 	 * @param string $name
-	 * @param string $className
+	 * @param class-string $className
 	 * @return CounterMetric|TimingMetric|GaugeMetric|NullMetric
 	 */
 	private function getMetric( string $name, string $className ) {
