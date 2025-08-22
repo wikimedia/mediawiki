@@ -147,13 +147,13 @@ because of Phabricator reports.
 * (T314476) Make Perso-Arabic the primary writing system for Kashmiri,
   under the language code "ks". "ks-arab" and "ks-deva" are preserved for
   backwards compatibility. "ks-deva" may be removed in a future release.
-* (T395223) Added language support for Yucatec Maya (yua).
-* (T397435) Added language support for Dolgan (dlg).
 * Update language fallback chains for Minnan (nan/nan-*) by changing to only
   fallback to Mindong - Traditional Han script (cdo-hant).
-* (T398790) Added language support for Antigua and Barbuda Creole English (aig).
 * (T296188) Sites using "zh" as site language now using English special page
   name in URL.
+* (T395223) Added language support for Yucatec Maya (yua).
+* (T397435) Added language support for Dolgan (dlg).
+* (T398790) Added language support for Antigua and Barbuda Creole English (aig).
 * (T402159) Added language support for Sasak (sas).
 * …
 
