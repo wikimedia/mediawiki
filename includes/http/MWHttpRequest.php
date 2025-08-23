@@ -339,28 +339,6 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 	}
 
 	/**
-	 * Get an array of the headers
-	 * @return array
-	 */
-	protected function getHeaderList() {
-		$list = [];
-
-		if ( $this->cookieJar ) {
-			$this->reqHeaders['Cookie'] =
-				$this->cookieJar->serializeToHttpRequest(
-					$this->parsedUrl['path'],
-					$this->parsedUrl['host']
-				);
-		}
-
-		foreach ( $this->reqHeaders as $name => $value ) {
-			$list[] = "$name: $value";
-		}
-
-		return $list;
-	}
-
-	/**
 	 * Set a read callback to accept data read from the HTTP request.
 	 * By default, data is appended to an internal buffer which can be
 	 * retrieved through $req->getContent().
