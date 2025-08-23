@@ -164,11 +164,12 @@ class PageEditStash {
 			$output->setCacheTime( $update->getRevision()->getTimestamp() );
 
 			// emulate a cache value that kind of looks like a PreparedEdit, for use below
-			$editInfo = (object)[
-				'pstContent' => $update->getRawContent( SlotRecord::MAIN ),
-				'output'     => $output,
-				'timestamp'  => $output->getCacheTime()
-			];
+			$editInfo = new PageEditStashContents(
+				pstContent: $update->getRawContent( SlotRecord::MAIN ),
+				output:     $output,
+				timestamp:  $output->getCacheTime(),
+				edits:      $this->userEditTracker->getUserEditCount( $user ),
+			);
 
 			$alreadyCached = false;
 		}
@@ -190,9 +191,7 @@ class PageEditStash {
 
 			$code = $this->storeStashValue(
 				$key,
-				$editInfo->pstContent,
-				$editInfo->output,
-				$editInfo->timestamp,
+				$editInfo,
 				$user
 			);
 
@@ -489,19 +488,16 @@ class PageEditStash {
 	 * This makes a simple version of WikiPage::prepareContentForEdit() as stash info
 	 *
 	 * @param string $key
-	 * @param Content $pstContent Pre-Save transformed content
-	 * @param ParserOutput $parserOutput
-	 * @param string $timestamp TS_MW
+	 * @param PageEditStashContents $stashInfo
 	 * @param UserIdentity $user
 	 * @return string|true True or an error code
 	 */
 	private function storeStashValue(
 		string $key,
-		Content $pstContent,
-		ParserOutput $parserOutput,
-		string $timestamp,
+		PageEditStashContents $stashInfo,
 		UserIdentity $user
 	): string|bool {
+		$parserOutput = $stashInfo->output;
 		// If an item is renewed, mind the cache TTL determined by config and parser functions.
 		// Put an upper limit on the TTL to avoid extreme template/file staleness.
 		$age = time() - (int)wfTimestamp( TS_UNIX, $parserOutput->getCacheTime() );
@@ -516,12 +512,6 @@ class PageEditStash {
 		}
 
 		// Store what is actually needed and split the output into another key (T204742)
-		$stashInfo = new PageEditStashContents(
-			pstContent:  $pstContent,
-			output:      $parserOutput,
-			timestamp:   $timestamp,
-			edits:       $this->userEditTracker->getUserEditCount( $user ),
-		);
 		$serial = $this->serializeStashInfo( $stashInfo );
 		if ( $serial === false ) {
 			return 'store_error';
