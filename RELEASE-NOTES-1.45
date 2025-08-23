@@ -209,6 +209,7 @@ because of Phabricator reports.
   getType, getPage, getPattern, getYear, getMonth, getDay, getTagFilter,
   getTagInvert, getAction.
 * The LogEventsListShowLogExtract $page parameter is now an array.
+* ReverseArrayIterator, deprecated in MediaWiki 1.44, has been removed.
 * Command::whitelistPaths, deprecated in 1.36, has been removed.
 * ::setIndexAliases() method in the following classes and interfaces have been
   removed without deprecation as it was completely unused:
