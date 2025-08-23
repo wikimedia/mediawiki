@@ -58,6 +58,9 @@ class Session implements \Countable, \Iterator, \ArrayAccess {
 	/** @var int Session index */
 	private $index;
 
+	/** @var array<string,string> Token secrets that were created during current request */
+	private array $newTokenSecrets = [];
+
 	private LoggerInterface $logger;
 
 	/**
@@ -381,17 +384,18 @@ class Session implements \Countable, \Iterator, \ArrayAccess {
 	 * @return Token
 	 */
 	public function getToken( $salt = '', $key = 'default' ) {
-		$new = false;
 		$secrets = $this->get( 'wsTokenSecrets' );
 		if ( !is_array( $secrets ) ) {
 			$secrets = [];
 		}
 		if ( isset( $secrets[$key] ) && is_string( $secrets[$key] ) ) {
 			$secret = $secrets[$key];
+			$new = ( $this->newTokenSecrets[$key] ?? null ) === $secret;
 		} else {
 			$secret = \MWCryptRand::generateHex( 32 );
 			$secrets[$key] = $secret;
 			$this->set( 'wsTokenSecrets', $secrets );
+			$this->newTokenSecrets[$key] = $secret;
 			$new = true;
 		}
 		if ( is_array( $salt ) ) {
@@ -408,6 +412,7 @@ class Session implements \Countable, \Iterator, \ArrayAccess {
 	 * @param string $key Token key
 	 */
 	public function resetToken( $key = 'default' ) {
+		unset( $this->newTokenSecrets[$key] );
 		$secrets = $this->get( 'wsTokenSecrets' );
 		if ( is_array( $secrets ) && isset( $secrets[$key] ) ) {
 			unset( $secrets[$key] );
@@ -419,6 +424,7 @@ class Session implements \Countable, \Iterator, \ArrayAccess {
 	 * Remove all CSRF tokens from the session
 	 */
 	public function resetAllTokens() {
+		$this->newTokenSecrets = [];
 		$this->remove( 'wsTokenSecrets' );
 	}
 

@@ -123,7 +123,8 @@ class Token implements Stringable {
 	}
 
 	/**
-	 * Indicate whether this token was just created
+	 * Indicate whether this token was created during the current request (true)
+	 * or loaded from existing session data (false)
 	 * @return bool
 	 */
 	public function wasNew() {

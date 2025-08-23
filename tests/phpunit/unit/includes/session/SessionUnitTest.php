@@ -233,12 +233,16 @@ class SessionUnitTest extends MediaWikiUnitTestCase {
 		$this->assertSame( '', $token->salt );
 		$this->assertTrue( $token->wasNew() );
 
+		$token = $session->getToken();
+		$this->assertTrue( $token->wasNew(), 'Same token is still marked as new on second call to getToken()' );
+
 		$token = TestingAccessWrapper::newFromObject( $session->getToken( 'foo' ) );
 		$this->assertSame( $secret, $token->secret );
 		$this->assertSame( 'foo', $token->salt );
-		$this->assertFalse( $token->wasNew() );
+		$this->assertTrue( $token->wasNew(), 'Different salt, but this is the same new token secret' );
 
 		$this->assertFalse( $session->hasToken( 'secret' ) );
+		// Pretend that this secret is created in another request
 		$backend->data['wsTokenSecrets']['secret'] = 'sekret';
 		$token = TestingAccessWrapper::newFromObject(
 			$session->getToken( [ 'bar', 'baz' ], 'secret' )
