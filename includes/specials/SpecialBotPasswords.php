@@ -370,7 +370,7 @@ class SpecialBotPasswords extends FormSpecialPage {
 		}
 
 		if ( $this->operation === 'insert' || !empty( $data['resetPassword'] ) ) {
-			$this->password = BotPassword::generatePassword( $this->getConfig() );
+			$this->password = BotPassword::generatePassword();
 			$password = $this->passwordFactory->newFromPlaintext( $this->password );
 		} else {
 			$password = null;

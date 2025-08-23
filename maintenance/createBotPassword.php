@@ -104,7 +104,7 @@ class CreateBotPassword extends Maintenance {
 		}
 
 		if ( $password === null ) {
-			$password = BotPassword::generatePassword( $this->getConfig() );
+			$password = BotPassword::generatePassword();
 		} else {
 			$passwordLength = strlen( $password );
 			if ( $passwordLength < BotPassword::PASSWORD_MINLENGTH ) {

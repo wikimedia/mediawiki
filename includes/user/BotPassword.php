@@ -22,7 +22,6 @@ namespace MediaWiki\User;
 
 use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\Throttler;
-use MediaWiki\Config\Config;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\MainConfigNames;
@@ -325,10 +324,10 @@ class BotPassword {
 
 	/**
 	 * Returns a (raw, unhashed) random password string.
-	 * @param Config $config
+	 *
 	 * @return string
 	 */
-	public static function generatePassword( $config ) {
+	public static function generatePassword() {
 		return PasswordFactory::generateRandomPasswordString( self::PASSWORD_MINLENGTH );
 	}
 
