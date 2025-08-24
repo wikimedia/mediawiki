@@ -595,18 +595,22 @@ class SessionManager implements SessionManagerInterface {
 	 */
 	private function loadSessionInfoFromStore( SessionInfo &$info, WebRequest $request ) {
 		$blob = $this->sessionStore->get( $info );
+		$oldInfo = $info;
 
 		// If we got data from the store and the SessionInfo says to force use,
 		// "fail" means to delete the data from the store and retry. Otherwise,
 		// "fail" is just return false.
 		if ( $info->forceUse() && $blob !== false ) {
-			$failHandler = function () use ( &$info, $request ) {
+			$failHandler = function () use ( $oldInfo, &$info, $request ) {
 				$this->logSessionWrite( $request, $info, [
 					'type' => 'delete',
 					'reason' => 'loadSessionInfo fail',
 				] );
-				$this->sessionStore->delete( $info );
-				return $this->loadSessionInfoFromStore( $info, $request );
+				$this->sessionStore->delete( $oldInfo );
+				$loaded = $this->loadSessionInfoFromStore( $oldInfo, $request );
+				$info = $oldInfo;
+
+				return $loaded;
 			};
 		} else {
 			$failHandler = static function () {
