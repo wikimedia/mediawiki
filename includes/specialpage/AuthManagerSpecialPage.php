@@ -64,6 +64,9 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 	/** @var WebRequest|null If set, will be used instead of the real request. Used for redirection. */
 	protected $savedRequest;
 
+	/** @var bool Set when we're pretending that we got a POST request during redirect flows. */
+	protected $isFakePostRequest = false;
+
 	/**
 	 * Change the form descriptor that determines how a field will look in the authentication form.
 	 * Called from fieldInfoToFormDescriptor().
@@ -106,6 +109,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 	 */
 	protected function setRequest( array $data, $wasPosted = null ) {
 		$request = $this->getContext()->getRequest();
+		$this->isFakePostRequest = $wasPosted === true && $request->wasPosted() === false;
 		$this->savedRequest = new DerivativeRequest(
 			$request,
 			$data + $request->getQueryValues(),
@@ -462,7 +466,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 			// handle tokens manually; $form->tryAuthorizedSubmit only works for logged-in users
 			$requestTokenValue = $this->getRequest()->getVal( $this->getTokenName() );
 			$sessionToken = $this->getToken();
-			if ( $sessionToken->wasNew() ) {
+			if ( $sessionToken->wasNew() && ( !$this->isFakePostRequest || $this->isReturn ) ) {
 				return Status::newFatal( $this->messageKey( 'authform-newtoken' ) );
 			} elseif ( !$requestTokenValue ) {
 				return Status::newFatal( $this->messageKey( 'authform-notoken' ) );
