@@ -909,7 +909,7 @@
 	"apihelp-query+info-paramvalue-prop-watchers": "O número de vixiantes, se está permitido.",
 	"apihelp-query+info-paramvalue-prop-visitingwatchers": "O nome dos usuarios que vixían cada páxina e que teñen visitado os cambios recentes a esta páxina, se está autorizado.",
 	"apihelp-query+info-paramvalue-prop-notificationtimestamp": "O selo de tempo de notificación da lista de vixilancia de cada páxina.",
-	"apihelp-query+info-paramvalue-prop-subjectid": "O ID de páxina da páxina pai para cada páxina de conversa.",
+	"apihelp-query+info-paramvalue-prop-subjectid": "O ID de páxina da páxina nai para cada páxina de conversa.",
 	"apihelp-query+info-paramvalue-prop-associatedpage": "O título prefixado da [[:mw:Special:MyLanguage/Help:Associated_pages|páxina de contido ou de conversa asociada]].",
 	"apihelp-query+info-paramvalue-prop-url": "Devolve unha URL completa, unha URL de modificación, e a URL canónica de cada páxina.",
 	"apihelp-query+info-paramvalue-prop-readable": "Se o usuario pode ler esta páxina. Usa <kbd>intestactions=read</kbd> no seu lugar.",

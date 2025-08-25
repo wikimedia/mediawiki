@@ -2905,7 +2905,7 @@
 	"delete_and_move_text": "目標頁面「[[:$1]]」已存在。您是否要刪除該頁面以完成移動？",
 	"delete_redirect_and_move_text": "目標頁面「[[:$1]]」已存在作為重新導向。您是否要刪除它以完成移動？",
 	"delete_and_move_confirm": "是的，刪除該頁面",
-	"delete_and_move_reason": "已刪除讓來自 [[$1]] 頁面可移動",
+	"delete_and_move_reason": "刪除以便移動[[$1]]",
 	"selfmove": "標題相同；無法移動頁面到自己本身。",
 	"immobile-source-namespace": "無法移動在命名空間 \"$1\" 中的頁面",
 	"immobile-source-namespace-iw": "在其它 wiki 的頁面無法從此 wiki 移動。",
