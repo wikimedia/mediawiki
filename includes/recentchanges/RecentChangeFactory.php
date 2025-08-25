@@ -47,7 +47,7 @@ interface RecentChangeFactory {
 	 * @param stdClass $row Database row from recentchanges table
 	 * @return RecentChange
 	 */
-	public function newRecentChangeFromRow( $row );
+	public function newRecentChangeFromRow( $row ): RecentChange;
 
 	/**
 	 * Create a RecentChange for an edit
@@ -60,8 +60,8 @@ interface RecentChangeFactory {
 	 * @param int $oldId ID of the previous revision
 	 * @param bool $bot Whether the edit was made by a bot
 	 * @param string $ip IP address of the user, if the edit was made anonymously
-	 * @param int $oldSize Size of the previous revision
-	 * @param int $newSize Size of the new revision
+	 * @param int|null $oldSize Size of the previous revision
+	 * @param int|null $newSize Size of the new revision
 	 * @param int $newId ID of the new revision
 	 * @param int $patrol Whether the edit was patrolled (PRC_UNPATROLLED, PRC_PATROLLED, PRC_AUTOPATROLLED)
 	 * @param string[] $tags
@@ -71,19 +71,19 @@ interface RecentChangeFactory {
 	 * @return RecentChange
 	 */
 	public function createEditRecentChange(
-		$timestamp,
-		$page,
-		$minor,
-		$user,
-		$comment,
-		$oldId,
-		$bot,
-		$ip = '',
-		$oldSize = 0,
-		$newSize = 0,
-		$newId = 0,
-		$patrol = 0,
-		$tags = [],
+		string $timestamp,
+		PageIdentity $page,
+		bool $minor,
+		UserIdentity $user,
+		string $comment,
+		int $oldId,
+		bool $bot,
+		string $ip = '',
+		?int $oldSize = 0,
+		?int $newSize = 0,
+		int $newId = 0,
+		int $patrol = 0,
+		array $tags = [],
 		?EditResult $editResult = null
 	): RecentChange;
 
@@ -97,7 +97,7 @@ interface RecentChangeFactory {
 	 * @param string $comment Summary of the page creation
 	 * @param bool $bot Whether the page creation was made by a bot
 	 * @param string $ip IP address of the user, if the page creation was made anonymously
-	 * @param int $size Size of the new revision
+	 * @param int|null $size Size of the new revision
 	 * @param int $newId ID of the new revision
 	 * @param int $patrol Whether the edit was patrolled (PRC_UNPATROLLED, PRC_PATROLLED, PRC_AUTOPATROLLED)
 	 * @param string[] $tags
@@ -105,17 +105,17 @@ interface RecentChangeFactory {
 	 * @return RecentChange
 	 */
 	public function createNewPageRecentChange(
-		$timestamp,
-		$page,
-		$minor,
-		$user,
-		$comment,
-		$bot,
-		$ip = '',
-		$size = 0,
-		$newId = 0,
-		$patrol = 0,
-		$tags = []
+		string $timestamp,
+		PageIdentity $page,
+		bool $minor,
+		UserIdentity $user,
+		string $comment,
+		bool $bot,
+		string $ip = '',
+		?int $size = 0,
+		int $newId = 0,
+		int $patrol = 0,
+		array $tags = []
 	): RecentChange;
 
 	/**
@@ -141,21 +141,21 @@ interface RecentChangeFactory {
 	 * @return RecentChange
 	 */
 	public function createLogRecentChange(
-		$timestamp,
-		$logPage,
-		$user,
-		$actionComment,
-		$ip,
-		$type,
-		$action,
-		$target,
-		$logComment,
-		$params,
-		$newId = 0,
-		$actionCommentIRC = '',
-		$revId = 0,
-		$isPatrollable = false,
-		$forceBotFlag = null
+		string $timestamp,
+		PageReference $logPage,
+		UserIdentity $user,
+		string $actionComment,
+		string $ip,
+		string $type,
+		string $action,
+		PageReference $target,
+		string $logComment,
+		string $params,
+		int $newId = 0,
+		string $actionCommentIRC = '',
+		int $revId = 0,
+		bool $isPatrollable = false,
+		?bool $forceBotFlag = null
 	): RecentChange;
 
 	/**
@@ -177,18 +177,18 @@ interface RecentChangeFactory {
 	 * @return RecentChange
 	 */
 	public function createCategorizationRecentChange(
-		$timestamp,
+		string $timestamp,
 		PageIdentity $categoryTitle,
 		?UserIdentity $user,
-		$comment,
+		string $comment,
 		PageIdentity $pageTitle,
-		$oldRevId,
-		$newRevId,
-		$bot,
-		$ip = '',
-		$deleted = 0,
-		$added = null,
-		$forImport = false
+		int $oldRevId,
+		int $newRevId,
+		bool $bot,
+		string $ip = '',
+		int $deleted = 0,
+		?bool $added = null,
+		bool $forImport = false
 	): RecentChange;
 
 	/**

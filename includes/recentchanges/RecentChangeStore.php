@@ -30,6 +30,7 @@ use MediaWiki\JobQueue\JobQueueGroup;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\PageReference;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Storage\EditResult;
@@ -103,7 +104,7 @@ class RecentChangeStore implements RecentChangeFactory, RecentChangeLookup {
 	/**
 	 * @inheritDoc
 	 */
-	public function newRecentChangeFromRow( $row ) {
+	public function newRecentChangeFromRow( $row ): RecentChange {
 		$rc = new RecentChange;
 		$rc->loadFromRow( $row );
 		return $rc;
@@ -112,14 +113,18 @@ class RecentChangeStore implements RecentChangeFactory, RecentChangeLookup {
 	/**
 	 * @inheritDoc
 	 */
-	public function getRecentChangeById( $rcid ) {
+	public function getRecentChangeById( int $rcid ): ?RecentChange {
 		return $this->getRecentChangeByConds( [ 'rc_id' => $rcid ], __METHOD__ );
 	}
 
 	/**
 	 * @inheritDoc
 	 */
-	public function getRecentChangeByConds( $conds, $fname = __METHOD__, $fromPrimary = false ) {
+	public function getRecentChangeByConds(
+		array $conds,
+		string $fname = __METHOD__,
+		bool $fromPrimary = false
+	): ?RecentChange {
 		if ( $fromPrimary ) {
 			$db = $this->connectionProvider->getPrimaryDatabase();
 		} else {
@@ -305,19 +310,19 @@ class RecentChangeStore implements RecentChangeFactory, RecentChangeLookup {
 	 * @inheritDoc
 	 */
 	public function createEditRecentChange(
-		$timestamp,
-		$page,
-		$minor,
-		$user,
-		$comment,
-		$oldId,
-		$bot,
-		$ip = '',
-		$oldSize = 0,
-		$newSize = 0,
-		$newId = 0,
-		$patrol = 0,
-		$tags = [],
+		string $timestamp,
+		PageIdentity $page,
+		bool $minor,
+		UserIdentity $user,
+		string $comment,
+		int $oldId,
+		bool $bot,
+		string $ip = '',
+		?int $oldSize = 0,
+		?int $newSize = 0,
+		int $newId = 0,
+		int $patrol = 0,
+		array $tags = [],
 		?EditResult $editResult = null
 	): RecentChange {
 		Assert::parameter( $page->exists(), '$page', 'must represent an existing page' );
@@ -336,11 +341,11 @@ class RecentChangeStore implements RecentChangeFactory, RecentChangeLookup {
 			'rc_comment' => &$comment,
 			'rc_comment_text' => &$comment,
 			'rc_comment_data' => null,
-			'rc_this_oldid' => (int)$newId,
+			'rc_this_oldid' => $newId,
 			'rc_last_oldid' => $oldId,
 			'rc_bot' => $bot ? 1 : 0,
 			'rc_ip' => self::checkIPAddress( $ip ),
-			'rc_patrolled' => intval( $patrol ),
+			'rc_patrolled' => $patrol,
 			'rc_old_len' => $oldSize,
 			'rc_new_len' => $newSize,
 			'rc_deleted' => 0,
@@ -368,17 +373,17 @@ class RecentChangeStore implements RecentChangeFactory, RecentChangeLookup {
 	 * @inheritDoc
 	 */
 	public function createNewPageRecentChange(
-		$timestamp,
-		$page,
-		$minor,
-		$user,
-		$comment,
-		$bot,
-		$ip = '',
-		$size = 0,
-		$newId = 0,
-		$patrol = 0,
-		$tags = []
+		string $timestamp,
+		PageIdentity $page,
+		bool $minor,
+		UserIdentity $user,
+		string $comment,
+		bool $bot,
+		string $ip = '',
+		?int $size = 0,
+		int $newId = 0,
+		int $patrol = 0,
+		array $tags = []
 	): RecentChange {
 		Assert::parameter( $page->exists(), '$page', 'must represent an existing page' );
 
@@ -396,11 +401,11 @@ class RecentChangeStore implements RecentChangeFactory, RecentChangeLookup {
 			'rc_comment' => &$comment,
 			'rc_comment_text' => &$comment,
 			'rc_comment_data' => null,
-			'rc_this_oldid' => (int)$newId,
+			'rc_this_oldid' => $newId,
 			'rc_last_oldid' => 0,
 			'rc_bot' => $bot ? 1 : 0,
 			'rc_ip' => self::checkIPAddress( $ip ),
-			'rc_patrolled' => intval( $patrol ),
+			'rc_patrolled' => $patrol,
 			'rc_old_len' => 0,
 			'rc_new_len' => $size,
 			'rc_deleted' => 0,
@@ -427,21 +432,21 @@ class RecentChangeStore implements RecentChangeFactory, RecentChangeLookup {
 	 * @inheritDoc
 	 */
 	public function createLogRecentChange(
-		$timestamp,
-		$logPage,
-		$user,
-		$actionComment,
-		$ip,
-		$type,
-		$action,
-		$target,
-		$logComment,
-		$params,
-		$newId = 0,
-		$actionCommentIRC = '',
-		$revId = 0,
-		$isPatrollable = false,
-		$forceBotFlag = null
+		string $timestamp,
+		PageReference $logPage,
+		UserIdentity $user,
+		string $actionComment,
+		string $ip,
+		string $type,
+		string $action,
+		PageReference $target,
+		string $logComment,
+		string $params,
+		int $newId = 0,
+		string $actionCommentIRC = '',
+		int $revId = 0,
+		bool $isPatrollable = false,
+		?bool $forceBotFlag = null
 	): RecentChange {
 		// Get pageStatus for email notification
 		switch ( $type . '-' . $action ) {
@@ -497,7 +502,7 @@ class RecentChangeStore implements RecentChangeFactory, RecentChangeLookup {
 			'rc_comment' => &$logComment,
 			'rc_comment_text' => &$logComment,
 			'rc_comment_data' => null,
-			'rc_this_oldid' => (int)$revId,
+			'rc_this_oldid' => $revId,
 			'rc_last_oldid' => 0,
 			'rc_bot' => $bot,
 			'rc_ip' => self::checkIPAddress( $ip ),
@@ -529,18 +534,18 @@ class RecentChangeStore implements RecentChangeFactory, RecentChangeLookup {
 	 * @inheritDoc
 	 */
 	public function createCategorizationRecentChange(
-		$timestamp,
+		string $timestamp,
 		PageIdentity $categoryTitle,
 		?UserIdentity $user,
-		$comment,
+		string $comment,
 		PageIdentity $pageTitle,
-		$oldRevId,
-		$newRevId,
-		$bot,
-		$ip = '',
-		$deleted = 0,
-		$added = null,
-		$forImport = false
+		int $oldRevId,
+		int $newRevId,
+		bool $bot,
+		string $ip = '',
+		int $deleted = 0,
+		?bool $added = null,
+		bool $forImport = false
 	): RecentChange {
 		// Done in a backwards compatible way.
 		$categoryWikiPage = $this->wikiPageFactory->newFromTitle( $categoryTitle );
@@ -575,7 +580,7 @@ class RecentChangeStore implements RecentChangeFactory, RecentChangeLookup {
 			'rc_comment' => &$comment,
 			'rc_comment_text' => &$comment,
 			'rc_comment_data' => null,
-			'rc_this_oldid' => (int)$newRevId,
+			'rc_this_oldid' => $newRevId,
 			'rc_last_oldid' => $oldRevId,
 			'rc_bot' => $bot ? 1 : 0,
 			'rc_ip' => self::checkIPAddress( $ip ),

@@ -30,7 +30,7 @@ interface RecentChangeLookup {
 	 * @param int $rcid The rc_id value to retrieve
 	 * @return RecentChange|null Null if no such recent change exists
 	 */
-	public function getRecentChangeById( $rcid );
+	public function getRecentChangeById( int $rcid ): ?RecentChange;
 
 	/**
 	 * Get the first recent change matching some specific conditions
@@ -40,5 +40,9 @@ interface RecentChangeLookup {
 	 * @param bool $fromPrimary Whether to fetch from the primary database
 	 * @return RecentChange|null
 	 */
-	public function getRecentChangeByConds( $conds, $fname = __METHOD__, $fromPrimary = false );
+	public function getRecentChangeByConds(
+		array $conds,
+		string $fname = __METHOD__,
+		bool $fromPrimary = false
+	): ?RecentChange;
 }
