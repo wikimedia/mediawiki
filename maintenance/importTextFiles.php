@@ -184,7 +184,6 @@ class ImportTextFiles extends Maintenance {
 							$user,
 							$summary,
 							$oldRevID,
-							$oldRevRecord->getTimestamp(),
 							$bot,
 							'',
 							$oldRevRecord->getSize(),

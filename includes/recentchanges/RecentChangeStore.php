@@ -311,7 +311,6 @@ class RecentChangeStore implements RecentChangeFactory, RecentChangeLookup {
 		$user,
 		$comment,
 		$oldId,
-		$lastTimestamp,
 		$bot,
 		$ip = '',
 		$oldSize = 0,
@@ -354,7 +353,6 @@ class RecentChangeStore implements RecentChangeFactory, RecentChangeLookup {
 		$rc->setExtra( [
 			// TODO: deprecate the 'prefixedDBkey' entry, let callers do the formatting.
 			'prefixedDBkey' => $this->titleFormatter->getPrefixedDBkey( $page ),
-			'lastTimestamp' => $lastTimestamp,
 			'oldSize' => $oldSize,
 			'newSize' => $newSize,
 			'pageStatus' => 'changed'
@@ -415,7 +413,6 @@ class RecentChangeStore implements RecentChangeFactory, RecentChangeLookup {
 		$rc->setExtra( [
 			// TODO: deprecate the 'prefixedDBkey' entry, let callers do the formatting.
 			'prefixedDBkey' => $this->titleFormatter->getPrefixedDBkey( $page ),
-			'lastTimestamp' => 0,
 			'oldSize' => 0,
 			'newSize' => $size,
 			'pageStatus' => 'created'
@@ -520,7 +517,6 @@ class RecentChangeStore implements RecentChangeFactory, RecentChangeLookup {
 			//	  matches rc_namespace/rc_title. Do we even need $logPage?
 			// TODO: deprecate the 'prefixedDBkey' entry, let callers do the formatting.
 			'prefixedDBkey' => $this->titleFormatter->getPrefixedDBkey( $logPage ),
-			'lastTimestamp' => 0,
 			'actionComment' => $actionComment, // the comment appended to the action, passed from LogPage
 			'pageStatus' => $pageStatus,
 			'actionCommentIRC' => $actionCommentIRC
@@ -540,7 +536,6 @@ class RecentChangeStore implements RecentChangeFactory, RecentChangeLookup {
 		PageIdentity $pageTitle,
 		$oldRevId,
 		$newRevId,
-		$lastTimestamp,
 		$bot,
 		$ip = '',
 		$deleted = 0,
@@ -597,7 +592,6 @@ class RecentChangeStore implements RecentChangeFactory, RecentChangeLookup {
 		$rc->setExtra( [
 			// TODO: deprecate the 'prefixedDBkey' entry, let callers do the formatting.
 			'prefixedDBkey' => $this->titleFormatter->getPrefixedDBkey( $categoryTitle ),
-			'lastTimestamp' => $lastTimestamp,
 			'oldSize' => 0,
 			'newSize' => 0,
 			'pageStatus' => 'changed',

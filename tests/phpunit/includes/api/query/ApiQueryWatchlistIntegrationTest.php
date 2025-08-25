@@ -1216,7 +1216,6 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 			$title,
 			0,
 			$revision->getId(),
-			null,
 			false
 		);
 		$recentChangeStore->insertRecentChange( $rc );

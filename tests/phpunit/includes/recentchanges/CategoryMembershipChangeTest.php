@@ -64,7 +64,6 @@ class CategoryMembershipChangeTest extends MediaWikiLangTestCase {
 				self::$pageName,
 				self::$pageRev->getParentId(),
 				$revision->getId(),
-				null,
 				0,
 				'127.0.0.1',
 				0

@@ -277,7 +277,6 @@ class ChangeTrackingEventIngress
 				$newRevisionRecord->getUser( RevisionRecord::RAW ),
 				$newRevisionRecord->getComment( RevisionRecord::RAW )->text,
 				$oldRevisionRecord->getId(),
-				$newRevisionRecord->getTimestamp(),
 				$forceBot,
 				'',
 				$oldRevisionRecord->getSize(),

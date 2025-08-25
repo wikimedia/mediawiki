@@ -159,7 +159,6 @@ class RecentChangeStoreTest extends MediaWikiIntegrationTestCase {
 			$this->user,
 			self::USER_COMMENT,
 			0,
-			$now,
 			false
 		);
 		$this->recentChangeStore->insertRecentChange( $rc );
@@ -267,7 +266,6 @@ class RecentChangeStoreTest extends MediaWikiIntegrationTestCase {
 			$this->title,
 			$categoryTitle->getLatestRevID(),
 			$categoryTitle->getLatestRevID(),
-			'0',
 			false
 		);
 		$this->recentChangeStore->insertRecentChange( $rc );

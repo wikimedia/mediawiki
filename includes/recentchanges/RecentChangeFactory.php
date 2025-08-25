@@ -58,7 +58,6 @@ interface RecentChangeFactory {
 	 * @param UserIdentity $user User who made the edit
 	 * @param string $comment Summary of the edit
 	 * @param int $oldId ID of the previous revision
-	 * @param string $lastTimestamp Timestamp of the previous revision
 	 * @param bool $bot Whether the edit was made by a bot
 	 * @param string $ip IP address of the user, if the edit was made anonymously
 	 * @param int $oldSize Size of the previous revision
@@ -78,7 +77,6 @@ interface RecentChangeFactory {
 		$user,
 		$comment,
 		$oldId,
-		$lastTimestamp,
 		$bot,
 		$ip = '',
 		$oldSize = 0,
@@ -170,7 +168,6 @@ interface RecentChangeFactory {
 	 * @param PageIdentity $pageTitle the page that is being added or removed
 	 * @param int $oldRevId Parent revision ID of this change
 	 * @param int $newRevId Revision ID of this change
-	 * @param string $lastTimestamp Parent revision timestamp of this change
 	 * @param bool $bot true, if the change was made by a bot
 	 * @param string $ip IP address of the user, if the change was made anonymously
 	 * @param int $deleted Indicates whether the change has been deleted
@@ -187,7 +184,6 @@ interface RecentChangeFactory {
 		PageIdentity $pageTitle,
 		$oldRevId,
 		$newRevId,
-		$lastTimestamp,
 		$bot,
 		$ip = '',
 		$deleted = 0,

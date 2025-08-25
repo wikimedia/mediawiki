@@ -87,7 +87,6 @@ use Wikimedia\AtEase\AtEase;
  *
  * mExtra:
  *  prefixedDBkey   prefixed db key, used by external app via msg queue
- *  lastTimestamp   timestamp of previous entry, used in WHERE clause during update
  *  oldSize         text size before the change
  *  newSize         text size after the change
  *  pageStatus      status of the page: created, deleted, moved, restored, changed
@@ -523,7 +522,7 @@ class RecentChange implements Taggable {
 	) {
 		$rc = MediaWikiServices::getInstance()->getRecentChangeFactory()
 			->createEditRecentChange(
-				$timestamp, $page, $minor, $user, $comment, $oldId, $lastTimestamp,
+				$timestamp, $page, $minor, $user, $comment, $oldId,
 				$bot, $ip, $oldSize, $newSize, $newId, $patrol, $tags, $editResult
 			);
 		$rc->save();

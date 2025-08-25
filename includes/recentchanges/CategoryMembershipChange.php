@@ -135,7 +135,6 @@ class CategoryMembershipChange {
 				$this->numTemplateLinks
 			),
 			$this->pageTitle,
-			$this->getPreviousRevisionTimestamp(),
 			$this->revision,
 			$this->forImport,
 			$type === self::CATEGORY_ADDITION
@@ -148,7 +147,6 @@ class CategoryMembershipChange {
 	 * @param UserIdentity|null $user User object of the user that made the change
 	 * @param string $comment Change summary
 	 * @param PageIdentity $page Page that is being added or removed
-	 * @param string $lastTimestamp Parent revision timestamp of this change in TS_MW format
 	 * @param RevisionRecord $revision
 	 * @param bool $forImport Whether the associated revision was imported
 	 * @param bool $added true, if the category was added, false for removed
@@ -159,7 +157,6 @@ class CategoryMembershipChange {
 		?UserIdentity $user,
 		$comment,
 		PageIdentity $page,
-		$lastTimestamp,
 		RevisionRecord $revision,
 		bool $forImport,
 		$added
@@ -193,7 +190,6 @@ class CategoryMembershipChange {
 			$page,
 			$lastRevId,
 			$newRevId,
-			$lastTimestamp,
 			$bot,
 			$ip,
 			$deleted,
@@ -243,25 +239,6 @@ class CategoryMembershipChange {
 
 		return wfMessage( $msgKey, $prefixedText )->inContentLanguage()->text();
 	}
-
-	/**
-	 * Returns the timestamp of the page's previous revision or null if the latest revision
-	 * does not refer to a parent revision
-	 *
-	 * @return null|string
-	 */
-	private function getPreviousRevisionTimestamp() {
-		$rl = MediaWikiServices::getInstance()->getRevisionLookup();
-		$latestRev = $rl->getRevisionByTitle( $this->pageTitle );
-		if ( $latestRev ) {
-			$previousRev = $rl->getPreviousRevision( $latestRev );
-			if ( $previousRev ) {
-				return $previousRev->getTimestamp();
-			}
-		}
-		return null;
-	}
-
 }
 
 /** @deprecated class alias since 1.44 */

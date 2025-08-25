@@ -120,7 +120,6 @@ class PatrolManagerTest extends MediaWikiIntegrationTestCase {
 			$this->user,
 			self::USER_COMMENT,
 			0,
-			MWTimestamp::now(),
 			false
 		);
 		$recentChangeStore->insertRecentChange( $rc );
