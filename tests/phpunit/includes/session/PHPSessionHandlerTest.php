@@ -10,6 +10,7 @@ use MediaWiki\Session\SessionManager;
 use MediaWiki\Session\SingleBackendSessionStore;
 use MediaWikiIntegrationTestCase;
 use Psr\Log\LogLevel;
+use stdClass;
 use TestLogger;
 use UnexpectedValueException;
 use Wikimedia\ScopedCallback;
@@ -312,6 +313,18 @@ class PHPSessionHandlerTest extends MediaWikiIntegrationTestCase {
 			}
 		);
 		session_write_close();
+
+		// Object identities change during a serialization roundtrip. This shouldn't trigger a save.
+		$logger->clearBuffer();
+		$session = $manager->getEmptySession();
+		$session->set( 'object in session', new stdClass() );
+		$session->persist();
+		$session->save();
+		session_id( $session->getId() );
+		session_start();
+		session_write_close();
+		// should not log "Something wrote to $_SESSION['object in session']!"
+		$this->assertSame( [], $logger->getBuffer() );
 
 		$this->clearHook( 'SessionCheckInfo' );
 		$this->assertNotNull( $manager->getSessionById( $id, true ) );
