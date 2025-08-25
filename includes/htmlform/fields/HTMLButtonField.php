@@ -132,8 +132,6 @@ class HTMLButtonField extends HTMLFormField {
 			'formnovalidate' => $this->mFormnovalidate,
 		] + $this->getAttributes( [ 'disabled', 'tabindex' ] );
 
-		// T394396 - Needs revisiting. Merged with suppress to match sec release.
-		// @phan-suppress-next-line SecurityCheck-DoubleEscaped
 		return static::buildCodexComponent(
 			$flags,
 			$buttonLabel,
@@ -145,7 +143,8 @@ class HTMLButtonField extends HTMLFormField {
 	 * Build the markup of the Codex component
 	 *
 	 * @param array $flags The button's flag classes.
-	 * @param string $buttonLabel The button's label attribute.
+	 * @param string $buttonLabel The button's label (raw HTML)
+	 * @param-taint $buttonLabel exec_html
 	 * @param array $attribs The button's list of attributes.
 	 * @return string Raw HTML.
 	 */
