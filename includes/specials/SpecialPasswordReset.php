@@ -149,33 +149,36 @@ class SpecialPasswordReset extends FormSpecialPage {
 			throw new ThrottledError;
 		}
 
-		// Show a message on the successful processing of the form.
-		// This doesn't necessarily mean a reset email was sent.
-		if ( $result->isGood() ) {
-			$output = $this->getOutput();
-
-			// Information messages.
-			$output->addWikiMsg( 'passwordreset-success' );
-			$output->addWikiMsg( 'passwordreset-success-details-generic',
-				$this->getConfig()->get( MainConfigNames::PasswordReminderResendTime ) );
-
-			// Confirmation of what the user has just submitted.
-			$info = "\n";
-			if ( $username ) {
-				$info .= "* " . $this->msg( 'passwordreset-username' ) . ' '
-					. wfEscapeWikiText( $username ) . "\n";
-			}
-			if ( $email ) {
-				$info .= "* " . $this->msg( 'passwordreset-email' ) . ' '
-					. wfEscapeWikiText( $email ) . "\n";
-			}
-			$output->addWikiMsg( 'passwordreset-success-info', $info );
-
-			// Add a return to link to the main page.
-			$output->returnToMain();
-		}
-
 		return $result;
+	}
+
+	/**
+	 * Show a message on the successful processing of the form.
+	 * This doesn't necessarily mean a reset email was sent.
+	 */
+	public function onSuccess() {
+		$output = $this->getOutput();
+
+		// Information messages.
+		$output->addWikiMsg( 'passwordreset-success' );
+		$output->addWikiMsg( 'passwordreset-success-details-generic',
+			$this->getConfig()->get( MainConfigNames::PasswordReminderResendTime ) );
+
+		// Confirmation of what the user has just submitted.
+		$info = "\n";
+		$postVals = $this->getRequest()->getPostValues();
+		if ( isset( $postVals['wpUsername'] ) && $postVals['wpUsername'] !== '' ) {
+			$info .= "* " . $this->msg( 'passwordreset-username' ) . ' '
+				. wfEscapeWikiText( $postVals['wpUsername'] ) . "\n";
+		}
+		if ( isset( $postVals['wpEmail'] ) && $postVals['wpEmail'] !== '' ) {
+			$info .= "* " . $this->msg( 'passwordreset-email' ) . ' '
+				. wfEscapeWikiText( $postVals['wpEmail'] ) . "\n";
+		}
+		$output->addWikiMsg( 'passwordreset-success-info', $info );
+
+		// Add a return to link to the main page.
+		$output->returnToMain();
 	}
 
 	/**

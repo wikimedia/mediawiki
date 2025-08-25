@@ -43,7 +43,6 @@ use Wikimedia\AtEase\AtEase;
 use Wikimedia\FileBackend\FileBackend;
 use Wikimedia\FileBackend\FSFile\FSFile;
 use Wikimedia\FileBackend\FSFile\TempFSFile;
-use Wikimedia\Message\MessageParam;
 use Wikimedia\Mime\XmlTypeCheck;
 use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\Rdbms\IDBAccessObject;
@@ -753,9 +752,8 @@ abstract class UploadBase {
 
 	/**
 	 * Convert the warnings array returned by checkWarnings() to something that
-	 * can be serialized, and that is suitable for inclusion directly in action API results.
-	 *
-	 * File objects will be converted to an associative array with the following keys:
+	 * can be serialized. File objects will be converted to an associative array
+	 * with the following keys:
 	 *
 	 *   - fileName: The name of the file
 	 *   - timestamp: The upload timestamp
@@ -770,8 +768,6 @@ abstract class UploadBase {
 					'fileName' => $param->getName(),
 					'timestamp' => $param->getTimestamp()
 				];
-			} elseif ( $param instanceof MessageParam ) {
-				// Do nothing (T390001)
 			} elseif ( is_object( $param ) ) {
 				throw new InvalidArgumentException(
 					'UploadBase::makeWarningsSerializable: ' .

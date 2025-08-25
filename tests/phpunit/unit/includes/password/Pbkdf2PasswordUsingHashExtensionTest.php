@@ -4,8 +4,8 @@ use MediaWiki\Password\Pbkdf2PasswordUsingHashExtension;
 
 /**
  * @group large
- * @covers \MediaWiki\Password\AbstractPbkdf2Password
- * @covers \MediaWiki\Password\Pbkdf2PasswordUsingHashExtension
+ * @covers \Mediawiki\Password\AbstractPbkdf2Password
+ * @covers \Mediawiki\Password\Pbkdf2PasswordUsingHashExtension
  */
 class Pbkdf2PasswordUsingHashExtensionTest extends Pbkdf2PasswordTestCase {
 	protected static function getPbkdf2PasswordClass() {

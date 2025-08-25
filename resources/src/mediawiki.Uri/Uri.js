@@ -94,10 +94,6 @@
 		/**
 		 * @classdesc Create and manipulate MediaWiki URIs.
 		 *
-		 * **DEPRECATED: mw.Uri has been deprecated in MediaWiki 1.43.**
-		 * Please use the browser native {@link URL} class instead.
-		 * See {@link https://www.mediawiki.org/wiki/Migrating_mw.Uri_to_URL migration guide}.
-		 *
 		 * Intended to be minimal, but featureful; do not expect full RFC 3986 compliance. The use cases we
 		 * have in mind are constructing 'next page' or 'previous page' URLs, detecting whether we need to
 		 * use cross-domain proxies for an API, constructing simple URL-based API calls, etc. Parsing here
@@ -143,10 +139,6 @@
 		 *
 		 * Parsing based on parseUri 1.2.2 (c) Steven Levithan <http://stevenlevithan.com>, MIT License.
 		 * <http://stevenlevithan.com/demo/parseuri/js/>
-		 *
-		 * @deprecated since MediaWiki 1.43.
-		 * Please use the browser native {@link URL} class instead.
-		 * See {@link https://www.mediawiki.org/wiki/Migrating_mw.Uri_to_URL migration guide}.
 		 *
 		 * @class
 		 * @name mw.Uri

@@ -274,7 +274,7 @@ class ExtraParserTest extends MediaWikiIntegrationTestCase {
 			MainConfigNames::InterwikiCache,
 			ClassicInterwikiLookup::buildCdbHash( $testInterwikis )
 		);
-
+		Title::clearCaches();
 		$this->parser->startExternalParse(
 			Title::newFromText( __FUNCTION__ ),
 			$this->options,

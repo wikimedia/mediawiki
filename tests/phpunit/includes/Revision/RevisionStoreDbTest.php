@@ -987,11 +987,6 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $revRecord->getId(), $storeRecord->getId() );
 		$this->assertTrue( $storeRecord->getSlot( SlotRecord::MAIN )->getContent()->equals( $content ) );
 		$this->assertSame( __METHOD__, $storeRecord->getComment()->text );
-
-		$storeRecord = $store->getRevisionByPageId( $page->getId(), 0, IDBAccessObject::READ_LOCKING );
-		$this->assertSame( $revRecord->getId(), $storeRecord->getId() );
-		$this->assertTrue( $storeRecord->getSlot( SlotRecord::MAIN )->getContent()->equals( $content ) );
-		$this->assertSame( __METHOD__, $storeRecord->getComment()->text );
 	}
 
 	/**

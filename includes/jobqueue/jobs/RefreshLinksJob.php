@@ -458,9 +458,8 @@ class RefreshLinksJob extends Job {
 		// Collect stats on parses that don't actually change the page content.
 		// In that case, we could abort here, and perhaps we could also avoid
 		// triggering CDN purges (T369898).
-		if ( !$cachedOutput || !$output->hasText() ) {
-			// There was no cached output, or no HTML was generated because
-			// shouldGenerateHTMLOnEdit returned false.
+		if ( !$cachedOutput ) {
+			// There was no cached output
 			$htmlChanged = 'unknown';
 		} elseif ( $cachedOutput->getRawText() === $output->getRawText() ) {
 			// We have cached output, but we couldn't be sure that it was still good.

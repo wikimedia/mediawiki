@@ -1,5 +1,7 @@
 <?php
 /**
+ * Testing logger
+ *
  * Copyright (C) 2015 Wikimedia Foundation and contributors
  *
  * This program is free software; you can redistribute it and/or modify
@@ -19,6 +21,8 @@
  *
  * @file
  */
+
+use Psr\Log\LogLevel;
 
 /**
  * A logger that may be configured to either buffer logs or to print them to
@@ -87,7 +91,7 @@ class TestLogger extends \Psr\Log\AbstractLogger {
 		$this->buffer = [];
 	}
 
-	public function log( $level, $message, array $context = [] ): void {
+	public function log( $level, $message, array $context = [] ) {
 		$message = trim( $message );
 
 		if ( $this->filter ) {
@@ -104,7 +108,24 @@ class TestLogger extends \Psr\Log\AbstractLogger {
 				$this->buffer[] = [ $level, $message ];
 			}
 		} else {
-			echo "LOG[$level]: $message\n";
+			switch ( $level ) {
+				case LogLevel::DEBUG:
+				case LogLevel::INFO:
+				case LogLevel::NOTICE:
+					trigger_error( "LOG[$level]: $message", E_USER_NOTICE );
+					break;
+
+				case LogLevel::WARNING:
+					trigger_error( "LOG[$level]: $message", E_USER_WARNING );
+					break;
+
+				case LogLevel::ERROR:
+				case LogLevel::CRITICAL:
+				case LogLevel::ALERT:
+				case LogLevel::EMERGENCY:
+					trigger_error( "LOG[$level]: $message", E_USER_ERROR );
+					break;
+			}
 		}
 	}
 }

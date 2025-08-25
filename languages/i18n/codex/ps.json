@@ -7,7 +7,7 @@
 	},
 	"cdx-chip-input-chip-added": "چيپ $1 ورگډ شو.",
 	"cdx-chip-input-chip-removed": "چيپ $1 ليرې شو.",
-	"cdx-input-chip-aria-description": "د سمولو لپاره Enter یا د ليرې کولو لپاره Delete کېکاږئ.",
+	"cdx-input-chip-aria-description": "د سمولو لپاره Enter یا د ليرې کولو لپاره Delete کښېکاږئ.",
 	"cdx-dialog-close-button-label": "تړل",
 	"cdx-label-optional-flag": "(اختياري)",
 	"cdx-message-dismiss-button-label": "تړل",

@@ -279,18 +279,9 @@ class ApiComparePages extends ApiBase {
 	 */
 	private function getRevisionById( $id ) {
 		$rev = $this->revisionStore->getRevisionById( $id );
-
-		if ( $rev ) {
-			$this->checkTitleUserPermissions( $rev->getPage(), 'read' );
-		}
-
 		if ( !$rev && $this->getAuthority()->isAllowedAny( 'deletedtext', 'undelete' ) ) {
 			// Try the 'archive' table
 			$rev = $this->archivedRevisionLookup->getArchivedRevisionRecord( null, $id );
-
-			if ( $rev ) {
-				$this->checkTitleUserPermissions( $rev->getPage(), 'deletedtext' );
-			}
 		}
 		return $rev;
 	}

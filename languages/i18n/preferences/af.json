@@ -10,8 +10,7 @@
 			"Naudefj",
 			"Rooiratel",
 			"Slashme",
-			"Winstonza",
-			"Pkeciy"
+			"Winstonza"
 		]
 	},
 	"preferences": "Voorkeure",
@@ -57,7 +56,7 @@
 	"tog-fancysig": "Beskou handtekening as wikiteks (sonder 'n outomatiese skakel na jou gebruikersbladsy)",
 	"prefs-help-signature": "Kommentaar op besprekingsbladsye moet met \"<nowiki>~~~~</nowiki>\" onderteken word.\nDie tildes word in u handtekening omgeskakel en die datum en tyd word insluit.",
 	"prefs-signature-highlight-error": "Wys fout ligging",
-	"prefs-signature-error-details": "Meer inligting",
+	"prefs-signature-error-details": "Leer meer",
 	"badsig": "Ongeldige handtekening; gaan HTML na.",
 	"badsiglength": "U handtekening is te lank.\nDit mag nie meer as $1 {{PLURAL:$1|karakter|karakters}} bevat nie.",
 	"prefs-email": "E-posopsies",

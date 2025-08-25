@@ -193,7 +193,7 @@ class ThumbnailEntryPoint extends MediaWikiEntryPoint {
 
 		// Check the source file storage path
 		if ( !$img->exists() ) {
-			$redirectedHasTarget = $this->maybeDoRedirect(
+			$redirected = $this->maybeDoRedirect(
 				$img,
 				$params,
 				$isTemp,
@@ -201,7 +201,7 @@ class ThumbnailEntryPoint extends MediaWikiEntryPoint {
 				$archiveTimestamp
 			);
 
-			if ( !$redirectedHasTarget ) {
+			if ( !$redirected ) {
 				// If it's not a redirect that has a target as a local file, give 404.
 				$this->thumbErrorText(
 					404,
@@ -611,7 +611,7 @@ EOT;
 	}
 
 	/**
-	 * @return bool true if a redirect target was found, false otherwise.
+	 * @return bool true if redirected
 	 */
 	private function maybeDoRedirect(
 		File $img,
@@ -638,17 +638,7 @@ EOT;
 					)
 				);
 				if ( $targetFile->exists() ) {
-					// Get the normalized thumbnail name from the parameters...
-					try {
-						$newThumbName = $targetFile->thumbName( $params );
-					} catch ( MediaTransformInvalidParametersException $e ) {
-						$this->thumbErrorText(
-							400,
-							'The specified thumbnail parameters are not valid: ' . $e->getMessage()
-						);
-
-						return true;
-					}
+					$newThumbName = $targetFile->thumbName( $params );
 					if ( $isOld ) {
 						$newThumbUrl = $targetFile->getArchiveThumbUrl(
 							$archiveTimestamp . '!' . $targetFile->getName(),

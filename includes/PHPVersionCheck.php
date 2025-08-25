@@ -20,7 +20,6 @@
 
 // phpcs:disable Generic.Arrays.DisallowLongArraySyntax,PSR2.Classes.PropertyDeclaration,MediaWiki.Usage.DirUsage
 // phpcs:disable Squiz.Scope.MemberVarScope.Missing,Squiz.Scope.MethodScope.Missing
-// phpcs:disable MediaWiki.Usage.StaticClosure.StaticClosure
 /**
  * Check PHP Version, as well as for composer dependencies in entry points,
  * and display something vaguely comprehensible in the event of a totally
@@ -79,8 +78,6 @@ class PHPVersionCheck {
 	 * Displays an error, if the installed PHP version does not meet the minimum requirement.
 	 */
 	function checkRequiredPHPVersion() {
-		// This value should match the PHP version specified in composer.json,
-		// .phan/config.php, and ScopeStructureTest.php
 		$minimumVersion = '8.1.0';
 
 		/**
@@ -189,29 +186,18 @@ HTML;
 		$missingExtensions = array();
 		foreach ( $this->functionsExtensionsMapping as $function => $extension ) {
 			if ( !function_exists( $function ) ) {
-				$missingExtensions[] = array( $extension );
+				$missingExtensions[] = $extension;
 			}
-		}
-
-		// Special case: either of those is required, but only on 32-bit systems (T391169)
-		if ( PHP_INT_SIZE < 8 && !extension_loaded( 'gmp' ) && !extension_loaded( 'bcmath' ) ) {
-			$missingExtensions[] = array( 'bcmath', 'gmp' );
 		}
 
 		if ( $missingExtensions ) {
 			$missingExtText = '';
 			$missingExtHtml = '';
 			$baseUrl = 'https://www.php.net';
-			foreach ( $missingExtensions as $extNames ) {
-				$plaintextLinks = array();
-				$htmlLinks = array();
-				foreach ( $extNames as $ext ) {
-					$plaintextLinks[] = "$ext <$baseUrl/$ext>";
-					$htmlLinks[] = "<b>$ext</b> (<a href=\"$baseUrl/$ext\">more information</a>)";
-				}
-
-				$missingExtText .= ' * ' . implode( ' or ', $plaintextLinks ) . "\n";
-				$missingExtHtml .= "<li>" . implode( ' or ', $htmlLinks ) . "</li>";
+			foreach ( $missingExtensions as $ext ) {
+				$missingExtText .= " * $ext <$baseUrl/$ext>\n";
+				$missingExtHtml .= "<li><b>$ext</b> "
+					. "(<a href=\"$baseUrl/$ext\">more information</a>)</li>";
 			}
 
 			$cliText = "Error: Missing one or more required PHP extensions. Please see\n"

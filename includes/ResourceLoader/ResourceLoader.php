@@ -1358,7 +1358,7 @@ MESSAGE;
 	 */
 	public static function ensureNewline( $str ) {
 		$end = substr( $str, -1 );
-		if ( $end === '' || $end === "\n" ) {
+		if ( $end === false || $end === '' || $end === "\n" ) {
 			return $str;
 		}
 		return $str . "\n";

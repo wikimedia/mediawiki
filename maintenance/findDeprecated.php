@@ -165,7 +165,7 @@ class FindDeprecated extends Maintenance {
 		$files = $this->getFiles();
 		$chunkSize = (int)ceil( count( $files ) / 72 );
 
-		$parser = ( new PhpParser\ParserFactory )->createForVersion( PhpParser\PhpVersion::fromComponents( 7, 0 ) );
+		$parser = ( new PhpParser\ParserFactory )->create( PhpParser\ParserFactory::PREFER_PHP7 );
 		$traverser = new PhpParser\NodeTraverser;
 		$finder = new DeprecatedInterfaceFinder;
 		$traverser->addVisitor( $finder );

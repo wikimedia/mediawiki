@@ -1993,7 +1993,6 @@
 	"namespace_association": "Spazju tal-ismijiet assoċjat",
 	"tooltip-namespace_association": "Agħżel din il-kaxxa sabiex tinkludi l-paġna ta' diskussjoni jew l-oġġett tal-ispazju tal-isem assoċjat mal-ispazju tal-isem magħżul",
 	"blanknamespace": "(Prinċipali)",
-	"contributions": "Kontribuzzjonijiet tal-utent",
 	"tool-link-contributions": "Kontributi tal-{{GENDER:$1|utent}}",
 	"contributions-title": "Kontribuzzjonijiet tal-utent għal $1",
 	"mycontris": "Kontributi",

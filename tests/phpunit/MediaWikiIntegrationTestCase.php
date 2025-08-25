@@ -541,9 +541,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		MediaWiki\Session\SessionManager::resetCache();
 
 		TestUserRegistry::clear();
-
-		// Invalidate any Title objects cached by newFromText() or isMainPage() (T395214).
-		Title::clearCaches();
 	}
 
 	/**

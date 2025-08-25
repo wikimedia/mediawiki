@@ -6,8 +6,7 @@
 			"George Animal",
 			"Ghybu",
 			"Gomada",
-			"Guherto",
-			"Balyozxane"
+			"Guherto"
 		]
 	},
 	"exif-imagewidth": "Panbûn",
@@ -27,7 +26,7 @@
 	"exif-pixelxdimension": "Firehiya wêne",
 	"exif-pixelydimension": "Dirêjiya wêne",
 	"exif-usercomment": "Şîroveyên bikarhêner",
-	"exif-datetimeoriginal": "Tarîx û wextê çêkirina daneyê",
+	"exif-datetimeoriginal": "Dîrok û wextê çêkirina daneyê",
 	"exif-datetimedigitized": "Dema pencekîkirinê",
 	"exif-exposuretime-format": "$1 sanî ($2)",
 	"exif-brightnessvalue": "Zelaliya APEX",
@@ -71,7 +70,7 @@
 	"exif-gpsdestdistance-m": "Mîl",
 	"exif-objectcycle-a": "Tenê sibehan",
 	"exif-objectcycle-p": "Tenê êvaran",
-	"exif-dc-date": "Tarîx",
+	"exif-dc-date": "Dîrok",
 	"exif-dc-rights": "Maf",
 	"exif-iimcategory-edu": "Perwerdehî",
 	"exif-iimcategory-evn": "Hawirdor",

@@ -156,7 +156,7 @@ class LegacyLogger extends AbstractLogger {
 	 * @param string $message
 	 * @param array $context
 	 */
-	public function log( $level, $message, array $context = [] ): void {
+	public function log( $level, $message, array $context = [] ) {
 		if ( is_string( $level ) ) {
 			$level = self::$levelMapping[$level];
 		}

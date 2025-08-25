@@ -30,7 +30,7 @@ class SpecialTalkPageTest extends MediaWikiIntegrationTestCase {
 		$context->setRequest( $request );
 		$context->setTitle( Title::newFromText( 'Special:TalkPage' ) );
 		$context->setLanguage( $services->getLanguageFactory()->getLanguage( 'qqx' ) );
-		$page = new SpecialTalkPage( $services->getTitleParser() );
+		$page = new SpecialTalkPage( $services->getMainConfig(), $services->getTitleParser() );
 		$page->setContext( $context );
 
 		$page->execute( $subpage );

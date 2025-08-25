@@ -795,17 +795,6 @@ TXT;
 	 */
 	private static function callLogExceptionHook( Throwable $e, bool $suppressed ) {
 		try {
-			// It's possible for the exception handler to be triggered during service container
-			// initialization, e.g. if an autoloaded file triggers deprecation warnings.
-			// To avoid a difficult-to-debug autoload loop, avoid attempting to initialize the service
-			// container here. (T380456).
-			// The exception handler is also triggered when autoloading of HookRunner class fails,
-			// > Uncaught Error: Class "MediaWiki\HookContainer\HookRunner" not found
-			// Avoid use of the not-loaded class here, as that override the real error.
-			if ( !MediaWikiServices::hasInstance() || !class_exists( HookRunner::class, false ) ) {
-				return;
-			}
-
 			( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )
 				->onLogException( $e, $suppressed );
 		} catch ( RecursiveServiceDependencyException $e ) {

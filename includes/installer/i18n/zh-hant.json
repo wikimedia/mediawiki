@@ -199,7 +199,7 @@
 	"config-subscribe-help": "這是一個用於發佈公告的低郵件量郵寄清單，內容包括重要的安全公告。\n您應該訂閱它並在 MediaWiki 發佈新版的時候更新系統。",
 	"config-subscribe-noemail": "您正嘗試不填寫電子郵件地址訂閱發佈公告郵寄清單。 \n請如果您希望訂閱郵寄清單，請提供一個有效的電子郵件地址。",
 	"config-pingback": "與 MediaWiki 開發人員分享此安裝過程的資料。\n[https://foundation.wikimedia.org/wiki/MediaWiki_Pingback_Privacy_Statement 隱私方針]。",
-	"config-pingback-help": "如果您選擇此項設定，MediaWiki 將會定期把有關本 MediaWiki 實例的基本資料傳送給 https://www.mediawiki.org。資料包括系統類型、PHP 版本、所選的資料庫後端等等。維基媒體基金會會向 MediaWiki 的開發人員分享這組資料，以幫助將來的開發計劃。將會傳送以下有關您系統的資料：\n<pre>$1</pre>\n\n該功能的隱私方針可在 https://foundation.wikimedia.org/wiki/MediaWiki_Pingback_Privacy_Statement 上查詢。\n\n有關該功能的更多一般資訊，請查看 https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgPingback。\n\npingback 的合計資料，請查看 https://pingback.wmcloud.org/。",
+	"config-pingback-help": "如果您選擇此項設定，MediaWiki 將會定期把有關本 MediaWiki 實例的基本資料傳送給 https://www.mediawiki.org。資料包括系統類型、PHP 版本、所選的資料庫後端等等。維基媒體基金會會向 MediaWiki 的開發人員分享這組資料，以幫助將來的開發計劃。將會傳送以下有關您系統的資料：\n<pre>$1</pre>\n\n該功能的隱私方針可在 https://foundation.wikimedia.org/wiki/MediaWiki_Pingback_Privacy_Statement 上查詢。\n\n有關該功能的更多一般資訊，請查看 https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgPingback。\n\npingback 的合計資料，請查看 https://pingback.wmflabs.org/。",
 	"config-almost-done": "您快要完成了!\n您現在可以跳過其餘的設定項目並且立即安裝 wiki。",
 	"config-optional-continue": "多問我一些問題吧。",
 	"config-optional-skip": "我已經不耐煩了，請趕緊安裝 Wiki。",

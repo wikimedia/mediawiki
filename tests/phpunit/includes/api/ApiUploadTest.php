@@ -173,34 +173,6 @@ class ApiUploadTest extends ApiUploadTestCase {
 		$this->assertArrayNotHasKey( 'exists', $result['upload']['warnings'] );
 	}
 
-	public function testUploadSizeWarning() {
-		$this->overrideConfigValues( [
-			MainConfigNames::MaxUploadSize => 500 * 1024,
-			MainConfigNames::UploadSizeWarning => 200 * 1024,
-		] );
-
-		// webp_animated.webp is 372 KB, so it should trigger the warning
-		$filePath = $this->filePath( 'webp_animated.webp' );
-
-		$this->fakeUploadFile( 'file', 'webp_animated.webp', 'image/webp', $filePath );
-
-		[ $result ] = $this->doApiRequestWithToken( [
-			'action' => 'upload',
-			'filename' => 'webp_animated.webp',
-			'file' => 'dummy content',
-			'comment' => 'dummy comment',
-			'text' => "This is the page text",
-		], null, $this->uploader );
-		$this->assertArrayHasKey( 'upload', $result );
-		$this->assertEquals( 'Warning', $result['upload']['result'] );
-		$this->assertArrayHasKey( 'warnings', $result['upload'] );
-		$this->assertArrayHasKey( 'large-file', $result['upload']['warnings'] );
-		$this->assertEquals(
-			[ [ "size" => 200 * 1024 ], [ "size" => filesize( $filePath ) ] ],
-			$result['upload']['warnings']['large-file']
-		);
-	}
-
 	public function testUploadStash() {
 		$fileName = 'TestUploadStash.jpg';
 		$mimeType = 'image/jpeg';

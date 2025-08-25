@@ -139,26 +139,6 @@ class HttpAcceptParserTest extends TestCase {
 					]
 				]
 			],
-			[
-				// Incomplete q - T391867
-				'test/123; q=0.5, test/789; q',
-				[
-					[
-						'type' => 'test',
-						'subtype' => '789',
-						'q' => 1,
-						'i' => 1,
-						'params' => []
-					],
-					[
-						'type' => 'test',
-						'subtype' => '123',
-						'q' => 0.5,
-						'i' => 0,
-						'params' => []
-					],
-				]
-			],
 		];
 	}
 

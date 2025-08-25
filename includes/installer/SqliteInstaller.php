@@ -334,7 +334,7 @@ EOT;
 		$module = DatabaseSqlite::getFulltextSearchModule();
 		$searchIndexSql = (string)$this->db->newSelectQueryBuilder()
 			->select( 'sql' )
-			->from( 'sqlite_master' )
+			->from( $this->db->addIdentifierQuotes( 'sqlite_master' ) )
 			->where( [ 'tbl_name' => $this->db->tableName( 'searchindex', 'raw' ) ] )
 			->caller( __METHOD__ )->fetchField();
 		$fts3tTable = ( stristr( $searchIndexSql, 'fts' ) !== false );

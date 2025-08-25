@@ -56,7 +56,7 @@ class ConsoleLogger extends AbstractLogger {
 	/**
 	 * @inheritDoc
 	 */
-	public function log( $level, $message, array $context = [] ): void {
+	public function log( $level, $message, array $context = [] ) {
 		if ( !$this->minLevel || self::LEVELS[$level] >= self::LEVELS[$this->minLevel] ) {
 			fwrite( STDERR, "[$level] " .
 				LegacyLogger::format( $this->channel, $message, $context ) );

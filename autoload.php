@@ -2569,6 +2569,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Specials\\SpecialRemoveCredentials' => __DIR__ . '/includes/specials/SpecialRemoveCredentials.php',
 	'MediaWiki\\Specials\\SpecialRenameUser' => __DIR__ . '/includes/specials/SpecialRenameUser.php',
 	'MediaWiki\\Specials\\SpecialResetTokens' => __DIR__ . '/includes/specials/SpecialResetTokens.php',
+	'MediaWiki\\Specials\\SpecialRestSandbox' => __DIR__ . '/includes/specials/SpecialRestSandbox.php',
 	'MediaWiki\\Specials\\SpecialRevisionDelete' => __DIR__ . '/includes/specials/SpecialRevisionDelete.php',
 	'MediaWiki\\Specials\\SpecialRunJobs' => __DIR__ . '/includes/specials/SpecialRunJobs.php',
 	'MediaWiki\\Specials\\SpecialSearch' => __DIR__ . '/includes/specials/SpecialSearch.php',

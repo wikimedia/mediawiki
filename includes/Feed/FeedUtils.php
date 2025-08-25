@@ -251,7 +251,7 @@ class FeedUtils {
 				$diffText = Html::rawElement(
 					'p',
 					[],
-					Html::element( 'b', [], wfMessage( 'newpage' )->text() )
+					Html::rawElement( 'b', [], wfMessage( 'newpage' )->text() )
 				);
 				$diffText .= Html::rawElement( 'div', [], $html );
 			}

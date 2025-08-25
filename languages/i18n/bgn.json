@@ -11,8 +11,7 @@
 			"Matma Rex",
 			"Mjbmr",
 			"Rachitrali",
-			"Sultanselim baloch",
-			"شاه زمان پټان"
+			"Sultanselim baloch"
 		]
 	},
 	"sunday": "یکشمی",
@@ -407,7 +406,7 @@
 	"resetpass_submit": "پاسوردی تنظیم و داخل بوتین",
 	"changepassword-success": "شمی پاسوردئ تغیر کامیاب بوت و پاسورد تغیر کورت",
 	"changepassword-throttled": "شما بیخی باز وار په لوگین بوتینا کوشش کورته ایت.\nمهربانئ بکنیت دیم شه آیی که پدا کوشش بکنیت $1 صبر کنیت.",
-	"botpasswords-label-appid": "روباټ نوم:",
+	"botpasswords-label-appid": "رباتء نام:",
 	"botpasswords-label-create": "جوڑ\t کورتین",
 	"botpasswords-label-update": "اپڈیٹ",
 	"botpasswords-label-cancel": "کنسیل",

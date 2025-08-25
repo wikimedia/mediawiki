@@ -1,10 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"RalfX",
-			"WAN233"
+			"RalfX"
 		]
 	},
-	"apihelp-feedcontributions-param-toponly": "僅示至新審之纂",
-	"apihelp-userrights-param-user": "用戶."
+	"apihelp-feedcontributions-param-toponly": "僅示至新審之纂"
 }

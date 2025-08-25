@@ -9,8 +9,7 @@
 			"Okras",
 			"Vlad5250",
 			"Cabadeck",
-			"Yurina Tatiana",
-			"Mitte27"
+			"Yurina Tatiana"
 		]
 	},
 	"rest-prefix-mismatch": "Запрашиваемый путь ($1) не найден внутри базового пути REST API ($2)",
@@ -21,7 +20,6 @@
 	"rest-nonexistent-revision": "Запрошенная редакция ($1) не существует",
 	"rest-nonexistent-user": "Указанный пользователь ($1) не существует",
 	"rest-invalid-user": "Указанное имя участника ($1) некорректно",
-	"rest-invalid-ip": "Указанный IP ($1) некорректен",
 	"rest-invalid-title": "Указанный заголовок ($1) не относится к вики-странице.",
 	"rest-unsupported-content-type": "Неподдерживаемый Content-Type: $1",
 	"rest-permission-error": "Доступ запрещён: $1",

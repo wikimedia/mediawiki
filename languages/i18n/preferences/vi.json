@@ -27,13 +27,12 @@
 			"Vinhtantran",
 			"לערי ריינהארט",
 			"Băng Tỏa",
-			"Doraemonluonbentoi",
-			"Nvdtn19"
+			"Doraemonluonbentoi"
 		]
 	},
 	"preferences": "Tùy chọn",
 	"prefsnologintext2": "Xin vui lòng đăng nhập để thay đổi tùy chọn.",
-	"searchprefs": "Tìm kiếm tùy chọn",
+	"searchprefs": "Tìm kiếm tuỳ chọn",
 	"searchprefs-noresults": "Không có kết quả",
 	"searchprefs-results": "$1 {{PLURAL:$1|kết quả}}",
 	"saveprefs": "Lưu tùy chọn",
@@ -90,7 +89,7 @@
 	"badsig": "Chữ ký không hợp lệ; hãy kiểm tra thẻ HTML.",
 	"badsiglength": "Chữ ký của bạn quá dài.\nNó không được dài quá $1 ký tự.",
 	"badsigsubst": "Chữ ký của bạn nhúng bản mẫu lồng (ví dụ, <code>thế:</code>, <code>subst:</code>, hoặc <code><nowiki>~~~~</nowiki></code>).",
-	"badsightml": "Chữ ký của bạn chứa cú pháp HTML không hợp lệ hoặc không còn dùng:",
+	"badsightml": "Chữ ký của bạn có cú pháp HTML không hợp lệ hoặc lỗi thời:",
 	"badsiglinks": "Chữ ký của bạn phải có liên kết đến trang cá nhân, trang thảo luận cá nhân, hoặc danh sách đóng góp của bạn. Xin hãy đặt liên kết này, ví dụ: <code>$1</code>.",
 	"badsiglinebreak": "Chữ ký của bạn phải là một dòng mã wiki.",
 	"prefs-email": "Tùy chọn thư điện tử",

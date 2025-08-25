@@ -26,10 +26,10 @@ RFC 822
 !! metadata
 cat=Pages_using_RFC_magic_links sort=
 !! html/php
-<p><a class="external mw-magiclink-rfc" rel="nofollow" href="https://datatracker.ietf.org/doc/html/rfc822">RFC 822</a>
+<p><a class="external mw-magiclink-rfc" rel="nofollow" href="https://tools.ietf.org/html/rfc822">RFC 822</a>
 </p>
 !! html/parsoid
-<p><a href="https://datatracker.ietf.org/doc/html/rfc822" rel="mw:ExtLink" class="external mw-magiclink">RFC 822</a></p>
+<p><a href="https://tools.ietf.org/html/rfc822" rel="mw:ExtLink" class="external mw-magiclink">RFC 822</a></p>
 !! end
 
 !! test
@@ -37,10 +37,10 @@ Magic links: RFC (T67278)
 !! wikitext
 This is RFC 822 but thisRFC 822 is not RFC 822linked.
 !! html/php
-<p>This is <a class="external mw-magiclink-rfc" rel="nofollow" href="https://datatracker.ietf.org/doc/html/rfc822">RFC 822</a> but thisRFC 822 is not RFC 822linked.
+<p>This is <a class="external mw-magiclink-rfc" rel="nofollow" href="https://tools.ietf.org/html/rfc822">RFC 822</a> but thisRFC 822 is not RFC 822linked.
 </p>
 !! html/parsoid
-<p>This is <a href="https://datatracker.ietf.org/doc/html/rfc822" rel="mw:ExtLink" class="external mw-magiclink">RFC 822</a> but thisRFC 822 is not RFC 822linked.</p>
+<p>This is <a href="https://tools.ietf.org/html/rfc822" rel="mw:ExtLink" class="external mw-magiclink">RFC 822</a> but thisRFC 822 is not RFC 822linked.</p>
 !! end
 
 !! test
@@ -50,12 +50,12 @@ RFC &nbsp;&#160;&#0160;&#xA0;&#Xa0; 822
 RFC
 822
 !! html/php
-<p><a class="external mw-magiclink-rfc" rel="nofollow" href="https://datatracker.ietf.org/doc/html/rfc822">RFC 822</a>
+<p><a class="external mw-magiclink-rfc" rel="nofollow" href="https://tools.ietf.org/html/rfc822">RFC 822</a>
 RFC
 822
 </p>
 !! html/parsoid
-<p><a href="https://datatracker.ietf.org/doc/html/rfc822" rel="mw:ExtLink" class="external mw-magiclink">RFC <span typeof="mw:Entity" data-parsoid='{"src":"&amp;nbsp;","srcContent":" "}'> </span><span typeof="mw:Entity" data-parsoid='{"src":"&amp;#160;","srcContent":" "}'> </span><span typeof="mw:Entity" data-parsoid='{"src":"&amp;#0160;","srcContent":" "}'> </span><span typeof="mw:Entity" data-parsoid='{"src":"&amp;#xA0;","srcContent":" "}'> </span><span typeof="mw:Entity" data-parsoid='{"src":"&amp;#Xa0;","srcContent":" "}'> </span> 822</a>
+<p><a href="https://tools.ietf.org/html/rfc822" rel="mw:ExtLink" class="external mw-magiclink">RFC <span typeof="mw:Entity" data-parsoid='{"src":"&amp;nbsp;","srcContent":" "}'> </span><span typeof="mw:Entity" data-parsoid='{"src":"&amp;#160;","srcContent":" "}'> </span><span typeof="mw:Entity" data-parsoid='{"src":"&amp;#0160;","srcContent":" "}'> </span><span typeof="mw:Entity" data-parsoid='{"src":"&amp;#xA0;","srcContent":" "}'> </span><span typeof="mw:Entity" data-parsoid='{"src":"&amp;#Xa0;","srcContent":" "}'> </span> 822</a>
 RFC
 822</p>
 !! end
@@ -159,14 +159,14 @@ Magic links: use appropriate serialization for "almost" magic links.
 !! wikitext
 X[[Special:BookSources/0978739256|foo]]
 
-X[https://datatracker.ietf.org/doc/html/rfc1234 foo]
+X[https://tools.ietf.org/html/rfc1234 foo]
 !! html/php
 <p>X<a href="/wiki/Special:BookSources/0978739256" title="Special:BookSources/0978739256">foo</a>
-</p><p>X<a rel="nofollow" class="external text" href="https://datatracker.ietf.org/doc/html/rfc1234">foo</a>
+</p><p>X<a rel="nofollow" class="external text" href="https://tools.ietf.org/html/rfc1234">foo</a>
 </p>
 !! html/parsoid
 <p>X<a rel="mw:WikiLink" href="./Special:BookSources/0978739256" title="Special:BookSources/0978739256">foo</a></p>
-<p>X<a rel="mw:ExtLink" href="https://datatracker.ietf.org/doc/html/rfc1234" class="external text">foo</a></p>
+<p>X<a rel="mw:ExtLink" href="https://tools.ietf.org/html/rfc1234" class="external text">foo</a></p>
 !! end
 
 !! test
@@ -196,11 +196,11 @@ parsoid=html2wt
 !! html/parsoid
 <p><a href="./Special:BookSources/0306406152" rel="mw:WikiLink" data-parsoid='{"stx":"magiclink"}'>ISBN 0-306-40615-2</a>
 <a href="//www.ncbi.nlm.nih.gov/pubmed/1234?dopt=Abstract" rel="mw:ExtLink nofollow" class="external mw-magiclink" data-parsoid='{"stx":"magiclink"}'>PMID 1234</a>
-<a href="https://datatracker.ietf.org/doc/html/rfc4321" rel="mw:ExtLink nofollow" class="external mw-magiclink" data-parsoid='{"stx":"magiclink"}'>RFC 4321</a></p>
+<a href="https://tools.ietf.org/html/rfc4321" rel="mw:ExtLink nofollow" class="external mw-magiclink" data-parsoid='{"stx":"magiclink"}'>RFC 4321</a></p>
 !! wikitext
 [[Special:BookSources/0306406152|ISBN 0-306-40615-2]]
 [//www.ncbi.nlm.nih.gov/pubmed/1234?dopt=Abstract PMID 1234]
-[https://datatracker.ietf.org/doc/html/rfc4321 RFC 4321]
+[https://tools.ietf.org/html/rfc4321 RFC 4321]
 !! end
 
 # PMID has an interwiki setup (if the pmid-interwiki option is set), but RFC
@@ -254,15 +254,15 @@ wgEnableMagicLinks={"PMID":false,"RFC":false}
 !! wikitext
 [[pmid:234|PMID 234]]
 
-[https://datatracker.ietf.org/doc/html/rfc4321 RFC 4321]
+[https://tools.ietf.org/html/rfc4321 RFC 4321]
 !! html/php
 <p><a href="//www.ncbi.nlm.nih.gov/pubmed/234?dopt=Abstract" class="extiw" title="pmid:234">PMID 234</a>
-</p><p><a rel="nofollow" class="external text" href="https://datatracker.ietf.org/doc/html/rfc4321">RFC 4321</a>
+</p><p><a rel="nofollow" class="external text" href="https://tools.ietf.org/html/rfc4321">RFC 4321</a>
 </p>
 !! html/parsoid
 <p><a rel="mw:WikiLink/Interwiki"
 href="//www.ncbi.nlm.nih.gov/pubmed/234?dopt=Abstract" title="pmid:234" class="extiw">PMID 234</a></p>
-<p><a rel="mw:ExtLink" href="https://datatracker.ietf.org/doc/html/rfc4321" class="external text">RFC 4321</a></p>
+<p><a rel="mw:ExtLink" href="https://tools.ietf.org/html/rfc4321" class="external text">RFC 4321</a></p>
 !! end
 
 !! test
@@ -443,10 +443,10 @@ Double RFC
 !! wikitext
 RFC RFC 1234
 !! html/php
-<p>RFC <a class="external mw-magiclink-rfc" rel="nofollow" href="https://datatracker.ietf.org/doc/html/rfc1234">RFC 1234</a>
+<p>RFC <a class="external mw-magiclink-rfc" rel="nofollow" href="https://tools.ietf.org/html/rfc1234">RFC 1234</a>
 </p>
 !! html/parsoid
-<p>RFC <a href="https://datatracker.ietf.org/doc/html/rfc1234" rel="mw:ExtLink" class="external mw-magiclink">RFC 1234</a></p>
+<p>RFC <a href="https://tools.ietf.org/html/rfc1234" rel="mw:ExtLink" class="external mw-magiclink">RFC 1234</a></p>
 !! end
 
 !! test
@@ -465,10 +465,10 @@ RFC code coverage
 !! wikitext
 RFC   983&#x20;987
 !! html/php
-<p><a class="external mw-magiclink-rfc" rel="nofollow" href="https://datatracker.ietf.org/doc/html/rfc983">RFC 983</a>&#x20;987
+<p><a class="external mw-magiclink-rfc" rel="nofollow" href="https://tools.ietf.org/html/rfc983">RFC 983</a>&#x20;987
 </p>
 !! html/parsoid
-<p><a href="https://datatracker.ietf.org/doc/html/rfc983" rel="mw:ExtLink" class="external mw-magiclink" data-parsoid='{"stx":"magiclink"}'>RFC   983</a><span typeof="mw:Entity" data-parsoid='{"src":"&amp;#x20;","srcContent":" "}'> </span>987</p>
+<p><a href="https://tools.ietf.org/html/rfc983" rel="mw:ExtLink" class="external mw-magiclink" data-parsoid='{"stx":"magiclink"}'>RFC   983</a><span typeof="mw:Entity" data-parsoid='{"src":"&amp;#x20;","srcContent":" "}'> </span>987</p>
 !! end
 
 !! test
@@ -566,9 +566,9 @@ Edited RFC links not serializable as RFC links should serialize as extlinks
 !! options
 parsoid=html2wt
 !! html/parsoid
-<a href="https://datatracker.ietf.org/doc/html/rfc123" rel="mw:ExtLink">New RFC</a>
+<a href="https://tools.ietf.org/html/rfc123" rel="mw:ExtLink">New RFC</a>
 !! wikitext
-[https://datatracker.ietf.org/doc/html/rfc123 New RFC]
+[https://tools.ietf.org/html/rfc123 New RFC]
 !! end
 
 !! test

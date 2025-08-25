@@ -564,7 +564,7 @@ class Language implements Bcp47Code {
 			return false;
 		} else {
 			// Check what is in i18n files
-			$aliases = (array)$this->localisationCache->getItem( $this->mCode, 'namespaceGenderAliases' );
+			$aliases = $this->localisationCache->getItem( $this->mCode, 'namespaceGenderAliases' );
 			return count( $aliases ) > 0;
 		}
 	}

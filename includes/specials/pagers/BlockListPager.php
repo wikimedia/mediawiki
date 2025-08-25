@@ -72,9 +72,6 @@ class BlockListPager extends TablePager {
 	/** @var string[] */
 	private $formattedComments = [];
 
-	/** @var string[] Cache of messages to avoid them being recreated for every row of the pager. */
-	private $messages = [];
-
 	/**
 	 * @param IContextSource $context
 	 * @param BlockActionInfo $blockActionInfo
@@ -144,12 +141,13 @@ class BlockListPager extends TablePager {
 	 * @param string $name
 	 * @param string|null $value
 	 * @return string
+	 * @suppress PhanTypeArraySuspicious
 	 */
 	public function formatValue( $name, $value ) {
-		if ( $this->messages === [] ) {
+		static $msg = null;
+		if ( $msg === null ) {
 			$keys = [
 				'anononlyblock',
-				'blanknamespace',
 				'createaccountblock',
 				'noautoblockblock',
 				'emailblock',
@@ -159,13 +157,13 @@ class BlockListPager extends TablePager {
 				'blocklist-editing',
 				'blocklist-editing-sitewide',
 				'blocklist-hidden-param',
-				'blocklist-hidden-placeholder',
 			];
 
 			foreach ( $keys as $key ) {
-				$this->messages[$key] = $this->msg( $key )->text();
+				$msg[$key] = $this->msg( $key )->text();
 			}
 		}
+		'@phan-var string[] $msg';
 
 		/** @var stdClass $row */
 		$row = $this->mCurrentRow;
@@ -202,7 +200,7 @@ class BlockListPager extends TablePager {
 					if ( $row->bt_auto ) {
 						$links[] = $linkRenderer->makeKnownLink(
 							$this->specialPageFactory->getTitleForAlias( 'Unblock' ),
-							$this->messages['unblocklink'],
+							$msg['unblocklink'],
 							[],
 							[ 'wpTarget' => "#{$row->bl_id}" ]
 						);
@@ -210,11 +208,11 @@ class BlockListPager extends TablePager {
 						$target = $row->bt_address ?? $row->bt_user_text;
 						$links[] = $linkRenderer->makeKnownLink(
 							$this->specialPageFactory->getTitleForAlias( "Unblock/$target" ),
-							$this->messages['unblocklink']
+							$msg['unblocklink']
 						);
 						$links[] = $linkRenderer->makeKnownLink(
 							$this->specialPageFactory->getTitleForAlias( "Block/$target" ),
-							$this->messages['change-blocklink']
+							$msg['change-blocklink']
 						);
 					}
 					$formatted .= ' ' . Html::rawElement(
@@ -250,35 +248,35 @@ class BlockListPager extends TablePager {
 				$properties = [];
 
 				if ( $row->bl_deleted ) {
-					$properties[] = htmlspecialchars( $this->messages['blocklist-hidden-param' ] );
+					$properties[] = htmlspecialchars( $msg['blocklist-hidden-param' ] );
 				}
 				if ( $row->bl_sitewide ) {
-					$properties[] = htmlspecialchars( $this->messages['blocklist-editing-sitewide'] );
+					$properties[] = htmlspecialchars( $msg['blocklist-editing-sitewide'] );
 				}
 
 				if ( !$row->bl_sitewide && $this->restrictions ) {
 					$list = $this->getRestrictionListHTML( $row );
 					if ( $list ) {
-						$properties[] = htmlspecialchars( $this->messages['blocklist-editing'] ) . $list;
+						$properties[] = htmlspecialchars( $msg['blocklist-editing'] ) . $list;
 					}
 				}
 
 				if ( $row->bl_anon_only ) {
-					$properties[] = htmlspecialchars( $this->messages['anononlyblock'] );
+					$properties[] = htmlspecialchars( $msg['anononlyblock'] );
 				}
 				if ( $row->bl_create_account ) {
-					$properties[] = htmlspecialchars( $this->messages['createaccountblock'] );
+					$properties[] = htmlspecialchars( $msg['createaccountblock'] );
 				}
 				if ( $row->bt_user && !$row->bl_enable_autoblock ) {
-					$properties[] = htmlspecialchars( $this->messages['noautoblockblock'] );
+					$properties[] = htmlspecialchars( $msg['noautoblockblock'] );
 				}
 
 				if ( $row->bl_block_email ) {
-					$properties[] = htmlspecialchars( $this->messages['emailblock'] );
+					$properties[] = htmlspecialchars( $msg['emailblock'] );
 				}
 
 				if ( !$row->bl_allow_usertalk ) {
-					$properties[] = htmlspecialchars( $this->messages['blocklist-nousertalk'] );
+					$properties[] = htmlspecialchars( $msg['blocklist-nousertalk'] );
 				}
 
 				$formatted = Html::rawElement(
@@ -323,7 +321,7 @@ class BlockListPager extends TablePager {
 			return Html::element(
 				'span',
 				[ 'class' => 'mw-blocklist-hidden' ],
-				$this->messages['blocklist-hidden-placeholder']
+				$this->msg( 'blocklist-hidden-placeholder' )->text()
 			);
 		} elseif ( $target instanceof UserIdentity ) {
 			$userId = $target->getId();
@@ -371,7 +369,7 @@ class BlockListPager extends TablePager {
 					break;
 				case NamespaceRestriction::TYPE:
 					$text = $restriction->getValue() === NS_MAIN
-						? $this->messages['blanknamespace']
+						? $this->msg( 'blanknamespace' )->text()
 						: $this->getLanguage()->getFormattedNsText(
 							$restriction->getValue()
 						);
@@ -398,10 +396,6 @@ class BlockListPager extends TablePager {
 						$items[$restriction->getType()][] = Html::rawElement(
 							'li',
 							[],
-							// The following messages may be used here:
-							// * ipb-action-create
-							// * ipb-action-move
-							// * ipb-action-upload
 							$this->msg( 'ipb-action-' .
 								$this->blockActionInfo->getActionFromId( $restriction->getValue() ) )->escaped()
 						);
@@ -419,11 +413,6 @@ class BlockListPager extends TablePager {
 			$sets[] = Html::rawElement(
 				'li',
 				[],
-				// The following messages may be used here:
-				// * blocklist-editing-sitewide
-				// * blocklist-editing-page
-				// * blocklist-editing-ns
-				// * blocklist-editing-action
 				$this->msg( 'blocklist-editing-' . $key ) . Html::rawElement(
 					'ul',
 					[],
@@ -490,21 +479,16 @@ class BlockListPager extends TablePager {
 		# be private and could be included in block lists and logs for
 		# transparency purposes. Previously, filtering out deleted blocks
 		# was a convenient way to avoid showing the target name.
-		if ( $this->getAuthority()->isAllowed( 'hideuser' ) ) {
-			$info['fields']['hu_deleted'] = $this->hideUserUtils->getExpression(
-				$db,
-				'block_target.bt_user',
-				HideUserUtils::HIDDEN_USERS
-			);
-		} else {
-			$info['fields']['hu_deleted'] = 0;
-			$info['conds'][] = $this->hideUserUtils->getExpression(
-				$db,
-				'block_target.bt_user',
-				HideUserUtils::SHOWN_USERS
-			);
+		if ( !$this->getAuthority()->isAllowed( 'hideuser' ) ) {
 			$info['conds']['bl_deleted'] = 0;
 		}
+
+		# Determine if the user is hidden
+		# With multiblocks we can't just rely on bl_deleted in the row being formatted
+		$info['fields']['hu_deleted'] = $this->hideUserUtils->getExpression(
+			$db,
+			$db->tableName( 'block_target' ) . '.bt_user',
+			HideUserUtils::HIDDEN_USERS );
 		return $info;
 	}
 

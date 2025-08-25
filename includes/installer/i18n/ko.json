@@ -189,7 +189,7 @@
 	"config-subscribe-help": "중요한 보안 발표를 포함한 배포판 발표에 사용되는 저용량 메일링 리스트입니다.\n이 리스트를 구독하고 새 버전이 나올 때 미디어위키 설치를 업데이트해야 합니다.",
 	"config-subscribe-noemail": "이메일 주소를 입력하지 않고 릴리스 발표 메일링 리스트에 가입하려 합니다.\n메일링 리스트에 가입하고자 할 경우 이메일 주소를 입력하세요.",
 	"config-pingback": "본 설치에 관한 데이터를 미디어위키 개발자와 공유합니다.",
-	"config-pingback-help": "이 옵션을 선택하면 미디어위키는 주기적으로 이 미디어위키 인스턴스에 대한 기본 데이터를 가지고 https://www.mediawiki.org에 핑을 합니다. 예를 들면, 이 데이터는 시스템의 종류, PHP 버전, 선택한 데이터베이스 백엔드 정보를 포함합니다. 위키미디어 재단은 이 데이터를 미디어위키 개발자들과 공유하여 향후 개발 활동의 길잡이에 도움을 줍니다. 시스템에 대한 다음의 데이터가 전송될 것입니다:\n<pre>$1</pre>\n\n이 기능의 개인 정보 정책은 \nhttps://foundation.wikimedia.org/wiki/MediaWiki_Pingback_Privacy_Statement 에서 볼 수 있습니다.\n\n이 기능에 대한 일반적인 정보는\nhttps://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgPingback 에서 볼 수 있습니다.\n\n축약된 pingback 데이터는 https://pingback.wmcloud.org/ 에서 확인하세요.",
+	"config-pingback-help": "이 옵션을 선택하면 미디어위키는 주기적으로 이 미디어위키 인스턴스에 대한 기본 데이터를 가지고 https://www.mediawiki.org에 핑을 합니다. 예를 들면, 이 데이터는 시스템의 종류, PHP 버전, 선택한 데이터베이스 백엔드 정보를 포함합니다. 위키미디어 재단은 이 데이터를 미디어위키 개발자들과 공유하여 향후 개발 활동의 길잡이에 도움을 줍니다. 시스템에 대한 다음의 데이터가 전송될 것입니다:\n<pre>$1</pre>\n\n이 기능의 개인 정보 정책은 \nhttps://foundation.wikimedia.org/wiki/MediaWiki_Pingback_Privacy_Statement 에서 볼 수 있습니다.\n\n이 기능에 대한 일반적인 정보는\nhttps://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgPingback 에서 볼 수 있습니다.\n\n축약된 pingback 데이터는 https://pingback.wmflabs.org/ 에서 확인하세요.",
 	"config-almost-done": "거의 다 완료했습니다!\n이제 남은 설정을 생략하고 지금 바로 위키를 설치할 수 있습니다.",
 	"config-optional-continue": "더 많은 질문을 물어보세요.",
 	"config-optional-skip": "지겨워요, 그냥 위키를 설치할래요.",
