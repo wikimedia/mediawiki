@@ -938,7 +938,7 @@
 	"search-thumbnail-alt": "Sličica za $1",
 	"searchrelated": "povezano",
 	"searchall": "vsi",
-	"showingresultsinrange": "Prikazujem <strong>$1</strong> {{PLURAL:$1|one=zadetek|two=zadetka|few=zadetke|zadetkov}} v razponu od št. <strong>$2</strong> do št. <strong>$3</strong>.",
+	"showingresultsinrange": "Prikazujem <strong>$1</strong> {{PLURAL:$1|zadetek|zadetka|zadetke|zadetkov}} v razponu od št. <strong>$2</strong> do št. <strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|1=Zadetek <strong>$1</strong> od <strong>$3</strong>|Zadetki <strong>$1–$2</strong> od <strong>$3</strong>}}",
 	"search-showingresults-approximate": "{{PLURAL:$4|1=Zadetek <strong>$1</strong> od vsaj <strong>$3</strong>|Zadetki <strong>$1 – $2</strong> od vsaj <strong>$3</strong>}}",
 	"search-nonefound": "Ni bilo zadetkov, ki bi ustrezali poizvedbi.",

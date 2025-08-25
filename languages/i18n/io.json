@@ -2148,7 +2148,7 @@
 	"revertpage": "Desfacita redakti da [[Special:Contributions/$2|$2]] ([[User talk:$2|Debato]]) e rekuperita la lasta redakto da [[User:$1|$1]]",
 	"revertpage-anon": "Desfacesis revizi da [[Special:Contributions/$2|$2]] a la lasta revizo da [[User:$1|$1]]",
 	"revertpage-nouser": "Desfacita redakturi da anonima uzero a la lasta revizo da {{GENDER:$1|[[User:$1|$1]]}}",
-	"rollback-success": "Desfacis redakti da {{GENDER:$3|$1}};\nrestauris a lasta versiono da {{GENDER:$4|$2}}.",
+	"rollback-success": "Desfacis redakturi da {{GENDER:$3|$1}};\nrestauris a lasta versiono da {{GENDER:$4|$2}}.",
 	"sessionfailure-title": "Sesiono faliis",
 	"sessionfailure": "Semblas ke eventis problemo kun vua sesiono di 'login';\nta agado abrogesis, quale presorgo kontre sequestro di sesiono ('hijacking').\nVoluntez risendar la formulario, plenigita.",
 	"changecontentmodel": "Chanjar la konteno-modelo di (u)la pagino",

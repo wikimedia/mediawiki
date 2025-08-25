@@ -1897,7 +1897,7 @@
 	"protectedpages": "Mühafizəli səhifələr",
 	"protectedpages-filters": "Filtrlər:",
 	"protectedpages-indef": "Yalnız müddətsiz mühafizələr",
-	"protectedpages-summary": "Bu səhifə hazırda mühafizə olunan mövcud səhifələrin siyahısını verir. Yaradılmaqdan mühafizə olunan başlıqların siyahısı üçün [[{{#special:ProtectedTitles}}|{{int:protectedtitles}}]] baxın.",
+	"protectedpages-summary": "Bu səhifə hazırda mühafizə olunan mövcud səhifələrin siyahısını verir. Yaradılmaqdan mühafizə olunan başlıqların siyahısı üçün [[{{#special:ProtectedTitles}}|mühafizə olunmuş başlıqlar siyahısına]] baxın.",
 	"protectedpages-cascade": "Yalnız kaskad mühafizələr",
 	"protectedpages-noredirect": "Yönləndirmələri gizlət",
 	"cachedspecial-viewing-cached-ttl": "Siz bu səhifənin $1 əvvəlki köhnə ola bilən keşlənmiş versiyasına baxırsınız.",
