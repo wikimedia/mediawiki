@@ -269,9 +269,10 @@ class ContentHolder {
 				if ( $name === self::BODY_FRAGMENT ) {
 					DOMCompat::getBody( $this->ownerDocument )->appendChild( $dom );
 					$this->pageBundle = HtmlPageBundle::fromDomPageBundle(
-						DomPageBundle::fromLoadedDocument( $this->ownerDocument ), [
-							'body_only' => true,
+						DomPageBundle::fromLoadedDocument( $this->ownerDocument, [
 							'siteConfig' => $services->getParsoidSiteConfig(),
+						] ), [
+							'body_only' => true,
 						]
 					);
 					$this->htmlMap[self::BODY_FRAGMENT] = $this->pageBundle->html;
