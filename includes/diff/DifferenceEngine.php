@@ -44,6 +44,7 @@ use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\RecentChanges\ChangesList;
 use MediaWiki\RecentChanges\RecentChange;
+use MediaWiki\RecentChanges\RecentChangeLookup;
 use MediaWiki\Revision\ArchivedRevisionLookup;
 use MediaWiki\Revision\BadRevisionException;
 use MediaWiki\Revision\RevisionRecord;
@@ -258,6 +259,7 @@ class DifferenceEngine extends ContextSource {
 	private UserGroupManager $userGroupManager;
 	private UserEditTracker $userEditTracker;
 	private UserIdentityUtils $userIdentityUtils;
+	private RecentChangeLookup $recentChangeLookup;
 
 	/** @var Message[] */
 	private $revisionLoadErrors = [];
@@ -297,6 +299,7 @@ class DifferenceEngine extends ContextSource {
 		$this->userGroupManager = $services->getUserGroupManager();
 		$this->userEditTracker = $services->getUserEditTracker();
 		$this->userIdentityUtils = $services->getUserIdentityUtils();
+		$this->recentChangeLookup = $services->getRecentChangeLookup();
 	}
 
 	/**
@@ -1140,7 +1143,7 @@ class DifferenceEngine extends ContextSource {
 			RecentChange::isInRCLifespan( $this->mNewRevisionRecord->getTimestamp(), 21600 )
 		) {
 			// Look for an unpatrolled change corresponding to this diff
-			$change = RecentChange::newFromConds(
+			$change = $this->recentChangeLookup->getRecentChangeByConds(
 				[
 					'rc_this_oldid' => $this->mNewid,
 					'rc_patrolled' => RecentChange::PRC_UNPATROLLED

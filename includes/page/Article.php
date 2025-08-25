@@ -49,6 +49,7 @@ use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Permissions\RestrictionStore;
 use MediaWiki\RecentChanges\RecentChange;
+use MediaWiki\RecentChanges\RecentChangeLookup;
 use MediaWiki\Revision\ArchivedRevisionLookup;
 use MediaWiki\Revision\BadRevisionException;
 use MediaWiki\Revision\RevisionRecord;
@@ -127,9 +128,9 @@ class Article implements Page {
 	private WikiPageFactory $wikiPageFactory;
 	private JobQueueGroup $jobQueueGroup;
 	private ArchivedRevisionLookup $archivedRevisionLookup;
+	private RecentChangeLookup $recentChangeLookup;
 	protected IConnectionProvider $dbProvider;
 	protected DatabaseBlockStore $blockStore;
-
 	protected RestrictionStore $restrictionStore;
 
 	/**
@@ -157,6 +158,7 @@ class Article implements Page {
 		$this->wikiPageFactory = $services->getWikiPageFactory();
 		$this->jobQueueGroup = $services->getJobQueueGroup();
 		$this->archivedRevisionLookup = $services->getArchivedRevisionLookup();
+		$this->recentChangeLookup = $services->getRecentChangeLookup();
 		$this->dbProvider = $services->getConnectionProvider();
 		$this->blockStore = $services->getDatabaseBlockStore();
 		$this->restrictionStore = $services->getRestrictionStore();
@@ -1400,7 +1402,7 @@ class Article implements Page {
 		) {
 			// 6h tolerance because the RC might not be cleaned out regularly
 			$recentPageCreation = true;
-			$rc = RecentChange::newFromConds(
+			$rc = $this->recentChangeLookup->getRecentChangeByConds(
 				[
 					'rc_this_oldid' => intval( $oldestRevisionRow->rev_id ),
 					// Avoid selecting a categorization entry
@@ -1442,7 +1444,7 @@ class Article implements Page {
 			) {
 				// 6h tolerance because the RC might not be cleaned out regularly
 				$recentFileUpload = true;
-				$rc = RecentChange::newFromConds(
+				$rc = $this->recentChangeLookup->getRecentChangeByConds(
 					[
 						'rc_type' => RC_LOG,
 						'rc_log_type' => 'upload',

@@ -416,6 +416,7 @@ class ApiMain extends ApiBase {
 			'services' => [
 				'RevisionStore',
 				'PatrolManager',
+				'RecentChangeLookup',
 			]
 		],
 		'import' => [
@@ -466,6 +467,7 @@ class ApiMain extends ApiBase {
 				'DBLoadBalancerFactory',
 				'RevisionStore',
 				'ChangeTagsStore',
+				'RecentChangeLookup',
 			]
 		],
 		'mergehistory' => [

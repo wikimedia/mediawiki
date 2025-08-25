@@ -31,8 +31,16 @@ use MediaWiki\User\User;
  * @ingroup Mail
  */
 class RecentChangeNotifyJob extends Job {
-	public function __construct( Title $title, array $params ) {
+	private RecentChangeLookup $recentChangeLookup;
+
+	public function __construct(
+		Title $title,
+		array $params,
+		RecentChangeLookup $recentChangeLookup
+	) {
 		parent::__construct( 'enotifNotify', $title, $params );
+
+		$this->recentChangeLookup = $recentChangeLookup;
 	}
 
 	public function run() {
@@ -51,7 +59,7 @@ class RecentChangeNotifyJob extends Job {
 			);
 			return true;
 		}
-		$recentChange = RecentChange::newFromId( $this->params['rc_id'] );
+		$recentChange = $this->recentChangeLookup->getRecentChangeById( $this->params['rc_id'] );
 		if ( $recentChange ) {
 			$notifier->actuallyNotifyOnPageChange(
 				$editor,

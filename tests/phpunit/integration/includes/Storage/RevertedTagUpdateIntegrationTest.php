@@ -6,7 +6,6 @@ use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\WikiPage;
-use MediaWiki\RecentChanges\RecentChange;
 use MediaWikiIntegrationTestCase;
 
 /**
@@ -93,8 +92,12 @@ class RevertedTagUpdateIntegrationTest extends MediaWikiIntegrationTestCase {
 		$this->verifyNoRevertedTags( $revertedRevs );
 
 		// approve the edit – this should enqueue the job
-		$rc = RecentChange::newFromConds( [ 'rc_this_oldid' => $revertRevId ] );
-		$rc->reallyMarkPatrolled();
+		$rc = $this->getServiceContainer()
+			->getRecentChangeLookup()
+			->getRecentChangeByConds( [ 'rc_this_oldid' => $revertRevId ] );
+		$this->getServiceContainer()
+			->getPatrolManager()
+			->reallyMarkPatrolled( $rc );
 
 		// run the job
 		$this->runJobs( [ 'numJobs' => 1 ], [
@@ -149,8 +152,12 @@ class RevertedTagUpdateIntegrationTest extends MediaWikiIntegrationTestCase {
 		$this->verifyRevertedTags( [ $revertId1 ], $revertId2 );
 
 		// approve the edit – this should enqueue the job
-		$rc = RecentChange::newFromConds( [ 'rc_this_oldid' => $revertId1 ] );
-		$rc->reallyMarkPatrolled();
+		$rc = $this->getServiceContainer()
+			->getRecentChangeLookup()
+			->getRecentChangeByConds( [ 'rc_this_oldid' => $revertId1 ] );
+		$this->getServiceContainer()
+			->getPatrolManager()
+			->reallyMarkPatrolled( $rc );
 
 		// Run the job.
 		// The job should notice that the revert is reverted and refuse to perform

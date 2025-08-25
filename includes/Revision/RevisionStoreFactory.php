@@ -30,6 +30,7 @@ use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Page\PageStoreFactory;
+use MediaWiki\RecentChanges\RecentChangeLookup;
 use MediaWiki\Storage\BlobStoreFactory;
 use MediaWiki\Storage\NameTableStoreFactory;
 use MediaWiki\Title\TitleFactory;
@@ -55,54 +56,21 @@ use Wikimedia\Rdbms\ILBFactory;
  */
 class RevisionStoreFactory {
 
-	/** @var BlobStoreFactory */
-	private $blobStoreFactory;
-	/** @var ILBFactory */
-	private $dbLoadBalancerFactory;
-	/** @var WANObjectCache */
-	private $cache;
-	/** @var BagOStuff */
-	private $localCache;
-	/** @var LoggerInterface */
-	private $logger;
+	private BlobStoreFactory $blobStoreFactory;
+	private ILBFactory $dbLoadBalancerFactory;
+	private WANObjectCache $cache;
+	private BagOStuff $localCache;
+	private LoggerInterface $logger;
+	private CommentStore $commentStore;
+	private ActorStoreFactory $actorStoreFactory;
+	private NameTableStoreFactory $nameTables;
+	private SlotRoleRegistry $slotRoleRegistry;
+	private IContentHandlerFactory $contentHandlerFactory;
+	private PageStoreFactory $pageStoreFactory;
+	private TitleFactory $titleFactory;
+	private HookContainer $hookContainer;
+	private RecentChangeLookup $recentChangeLookup;
 
-	/** @var CommentStore */
-	private $commentStore;
-	/** @var ActorStoreFactory */
-	private $actorStoreFactory;
-	/** @var NameTableStoreFactory */
-	private $nameTables;
-
-	/** @var SlotRoleRegistry */
-	private $slotRoleRegistry;
-
-	/** @var IContentHandlerFactory */
-	private $contentHandlerFactory;
-
-	/** @var PageStoreFactory */
-	private $pageStoreFactory;
-
-	/** @var TitleFactory */
-	private $titleFactory;
-
-	/** @var HookContainer */
-	private $hookContainer;
-
-	/**
-	 * @param ILBFactory $dbLoadBalancerFactory
-	 * @param BlobStoreFactory $blobStoreFactory
-	 * @param NameTableStoreFactory $nameTables
-	 * @param SlotRoleRegistry $slotRoleRegistry
-	 * @param WANObjectCache $cache
-	 * @param BagOStuff $localCache
-	 * @param CommentStore $commentStore
-	 * @param ActorStoreFactory $actorStoreFactory
-	 * @param LoggerInterface $logger
-	 * @param IContentHandlerFactory $contentHandlerFactory
-	 * @param PageStoreFactory $pageStoreFactory
-	 * @param TitleFactory $titleFactory
-	 * @param HookContainer $hookContainer
-	 */
 	public function __construct(
 		ILBFactory $dbLoadBalancerFactory,
 		BlobStoreFactory $blobStoreFactory,
@@ -116,7 +84,8 @@ class RevisionStoreFactory {
 		IContentHandlerFactory $contentHandlerFactory,
 		PageStoreFactory $pageStoreFactory,
 		TitleFactory $titleFactory,
-		HookContainer $hookContainer
+		HookContainer $hookContainer,
+		RecentChangeLookup $recentChangeLookup
 	) {
 		$this->dbLoadBalancerFactory = $dbLoadBalancerFactory;
 		$this->blobStoreFactory = $blobStoreFactory;
@@ -131,6 +100,7 @@ class RevisionStoreFactory {
 		$this->pageStoreFactory = $pageStoreFactory;
 		$this->titleFactory = $titleFactory;
 		$this->hookContainer = $hookContainer;
+		$this->recentChangeLookup = $recentChangeLookup;
 	}
 
 	/**
@@ -198,6 +168,7 @@ class RevisionStoreFactory {
 			$this->pageStoreFactory->getPageStore( $dbDomain ),
 			$this->titleFactory,
 			$this->hookContainer,
+			$this->recentChangeLookup,
 			$dbDomain
 		);
 

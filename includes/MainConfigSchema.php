@@ -11583,7 +11583,12 @@ class MainConfigSchema {
 					0 => 'Emailer'
 				]
 			],
-			'enotifNotify' => RecentChangeNotifyJob::class,
+			'enotifNotify' => [
+				'class' => RecentChangeNotifyJob::class,
+				'services' => [
+					'RecentChangeLookup',
+				],
+			],
 			'fixDoubleRedirect' => [
 				'class' => DoubleRedirectJob::class,
 				'services' => [

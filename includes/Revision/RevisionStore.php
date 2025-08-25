@@ -44,6 +44,7 @@ use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\PageStore;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\RecentChanges\RecentChange;
+use MediaWiki\RecentChanges\RecentChangeLookup;
 use MediaWiki\Storage\BadBlobException;
 use MediaWiki\Storage\BlobAccessException;
 use MediaWiki\Storage\BlobStore;
@@ -64,6 +65,7 @@ use StatusValue;
 use stdClass;
 use Traversable;
 use Wikimedia\Assert\Assert;
+use Wikimedia\Assert\PreconditionException;
 use Wikimedia\IPUtils;
 use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\ObjectCache\WANObjectCache;
@@ -110,58 +112,20 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	 */
 	private $wikiId;
 
-	/**
-	 * @var ILoadBalancer
-	 */
-	private $loadBalancer;
-
-	/**
-	 * @var WANObjectCache
-	 */
-	private $cache;
-
-	/**
-	 * @var BagOStuff
-	 */
-	private $localCache;
-
-	/**
-	 * @var CommentStore
-	 */
-	private $commentStore;
-
-	/** @var ActorStore */
-	private $actorStore;
-
-	/**
-	 * @var LoggerInterface
-	 */
-	private $logger;
-
-	/**
-	 * @var NameTableStore
-	 */
-	private $contentModelStore;
-
-	/**
-	 * @var NameTableStore
-	 */
-	private $slotRoleStore;
-
-	/** @var SlotRoleRegistry */
-	private $slotRoleRegistry;
-
-	/** @var IContentHandlerFactory */
-	private $contentHandlerFactory;
-
-	/** @var HookRunner */
-	private $hookRunner;
-
-	/** @var PageStore */
-	private $pageStore;
-
-	/** @var TitleFactory */
-	private $titleFactory;
+	private ILoadBalancer $loadBalancer;
+	private WANObjectCache $cache;
+	private BagOStuff $localCache;
+	private CommentStore $commentStore;
+	private ActorStore $actorStore;
+	private LoggerInterface $logger;
+	private NameTableStore $contentModelStore;
+	private NameTableStore $slotRoleStore;
+	private SlotRoleRegistry $slotRoleRegistry;
+	private IContentHandlerFactory $contentHandlerFactory;
+	private HookRunner $hookRunner;
+	private PageStore $pageStore;
+	private TitleFactory $titleFactory;
+	private RecentChangeLookup $recentChangeLookup;
 
 	/**
 	 * @param ILoadBalancer $loadBalancer
@@ -182,6 +146,7 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	 * @param PageStore $pageStore
 	 * @param TitleFactory $titleFactory
 	 * @param HookContainer $hookContainer
+	 * @param RecentChangeLookup $recentChangeLookup
 	 * @param false|string $wikiId Relevant wiki id or WikiAwareEntity::LOCAL for the current one
 	 *
 	 * @todo $blobStore should be allowed to be any BlobStore!
@@ -201,6 +166,7 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 		PageStore $pageStore,
 		TitleFactory $titleFactory,
 		HookContainer $hookContainer,
+		RecentChangeLookup $recentChangeLookup,
 		$wikiId = WikiAwareEntity::LOCAL
 	) {
 		Assert::parameterType( [ 'string', 'false' ], $wikiId, '$wikiId' );
@@ -220,6 +186,7 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 		$this->pageStore = $pageStore;
 		$this->titleFactory = $titleFactory;
 		$this->hookRunner = new HookRunner( $hookContainer );
+		$this->recentChangeLookup = $recentChangeLookup;
 	}
 
 	public function setLogger( LoggerInterface $logger ): void {
@@ -1123,13 +1090,11 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	 * @return null|RecentChange
 	 */
 	public function getRecentChange( RevisionRecord $rev, $flags = 0 ) {
-		if ( ( $flags & IDBAccessObject::READ_LATEST ) == IDBAccessObject::READ_LATEST ) {
-			$dbType = DB_PRIMARY;
-		} else {
-			$dbType = DB_REPLICA;
+		if ( $this->wikiId !== RevisionRecord::LOCAL ) {
+			throw new PreconditionException( 'RecentChangeLookup is only available for the local wiki' );
 		}
 
-		$rc = RecentChange::newFromConds(
+		$rc = $this->recentChangeLookup->getRecentChangeByConds(
 			[
 				'rc_this_oldid' => $rev->getId( $this->wikiId ),
 				// rc_this_oldid does not have to be unique,
@@ -1139,7 +1104,7 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 				'rc_type' => [ RC_EDIT, RC_NEW, RC_LOG ],
 			],
 			__METHOD__,
-			$dbType
+			( $flags & IDBAccessObject::READ_LATEST ) == IDBAccessObject::READ_LATEST
 		);
 
 		// XXX: cache this locally? Glue it to the RevisionRecord?

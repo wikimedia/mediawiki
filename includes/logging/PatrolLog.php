@@ -24,6 +24,7 @@
 
 namespace MediaWiki\Logging;
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\User\UserIdentity;
@@ -52,8 +53,10 @@ class PatrolLog {
 		}
 
 		if ( !$rc instanceof RecentChange ) {
-			$rc = RecentChange::newFromId( $rc );
-			if ( !is_object( $rc ) ) {
+			$rc = MediaWikiServices::getInstance()
+				->getRecentChangeLookup()
+				->getRecentChangeById( $rc );
+			if ( !$rc ) {
 				return false;
 			}
 		}

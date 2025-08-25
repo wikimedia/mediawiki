@@ -2137,7 +2137,8 @@ return [
 			$services->getContentHandlerFactory(),
 			$services->getPageStoreFactory(),
 			$services->getTitleFactory(),
-			$services->getHookContainer()
+			$services->getHookContainer(),
+			$services->getRecentChangeLookup()
 		);
 	},
 

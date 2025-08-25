@@ -2156,7 +2156,12 @@ return [
 						'Emailer',
 					],
 				],
-				'enotifNotify' => 'MediaWiki\\RecentChanges\\RecentChangeNotifyJob',
+				'enotifNotify' => [
+					'class' => 'MediaWiki\\RecentChanges\\RecentChangeNotifyJob',
+					'services' => [
+						'RecentChangeLookup',
+					],
+				],
 				'fixDoubleRedirect' => [
 					'class' => 'MediaWiki\\JobQueue\\Jobs\\DoubleRedirectJob',
 					'services' => [

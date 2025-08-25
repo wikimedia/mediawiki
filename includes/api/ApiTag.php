@@ -23,7 +23,7 @@ namespace MediaWiki\Api;
 
 use MediaWiki\ChangeTags\ChangeTags;
 use MediaWiki\ChangeTags\ChangeTagsStore;
-use MediaWiki\RecentChanges\RecentChange;
+use MediaWiki\RecentChanges\RecentChangeLookup;
 use MediaWiki\Revision\RevisionStore;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\Rdbms\IConnectionProvider;
@@ -40,18 +40,21 @@ class ApiTag extends ApiBase {
 	private IDatabase $dbr;
 	private RevisionStore $revisionStore;
 	private ChangeTagsStore $changeTagsStore;
+	private RecentChangeLookup $recentChangeLookup;
 
 	public function __construct(
 		ApiMain $main,
 		string $action,
 		IConnectionProvider $dbProvider,
 		RevisionStore $revisionStore,
-		ChangeTagsStore $changeTagsStore
+		ChangeTagsStore $changeTagsStore,
+		RecentChangeLookup $recentChangeLookup
 	) {
 		parent::__construct( $main, $action );
 		$this->dbr = $dbProvider->getReplicaDatabase();
 		$this->revisionStore = $revisionStore;
 		$this->changeTagsStore = $changeTagsStore;
+		$this->recentChangeLookup = $recentChangeLookup;
 	}
 
 	public function execute() {
@@ -115,7 +118,7 @@ class ApiTag extends ApiBase {
 		$valid = false;
 		switch ( $type ) {
 			case 'rcid':
-				$valid = RecentChange::newFromId( $id );
+				$valid = $this->recentChangeLookup->getRecentChangeById( $id );
 				// TODO: replace use of PermissionManager
 				if ( $valid && $this->getPermissionManager()->isBlockedFrom( $user, $valid->getTitle() ) ) {
 					$idResult['status'] = 'error';

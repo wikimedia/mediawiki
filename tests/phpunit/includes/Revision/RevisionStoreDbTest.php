@@ -218,6 +218,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 			$this->getServiceContainer()->getPageStore(),
 			$this->getServiceContainer()->getTitleFactory(),
 			$this->getServiceContainer()->getHookContainer(),
+			$this->getServiceContainer()->getRecentChangeLookup(),
 			$dbDomain
 		);
 
@@ -898,6 +899,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 			$services->getPageStoreFactory()->getPageStore( $dbDomain ),
 			$services->getTitleFactory(),
 			$services->getHookContainer(),
+			$services->getRecentChangeLookup(),
 			$dbDomain
 		);
 

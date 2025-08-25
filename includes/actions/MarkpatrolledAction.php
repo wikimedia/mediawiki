@@ -31,6 +31,7 @@ use MediaWiki\Message\Message;
 use MediaWiki\Page\Article;
 use MediaWiki\RecentChanges\PatrolManager;
 use MediaWiki\RecentChanges\RecentChange;
+use MediaWiki\RecentChanges\RecentChangeLookup;
 use MediaWiki\SpecialPage\SpecialPage;
 use StatusValue;
 
@@ -43,23 +44,27 @@ class MarkpatrolledAction extends FormAction {
 
 	private LinkRenderer $linkRenderer;
 	private PatrolManager $patrolManager;
+	private RecentChangeLookup $recentChangeLookup;
 
 	/**
 	 * @param Article $article
 	 * @param IContextSource $context
 	 * @param LinkRenderer $linkRenderer
 	 * @param PatrolManager $patrolManager
+	 * @param RecentChangeLookup $recentChangeLookup
 	 */
 	public function __construct(
 		Article $article,
 		IContextSource $context,
 		LinkRenderer $linkRenderer,
-		PatrolManager $patrolManager
+		PatrolManager $patrolManager,
+		RecentChangeLookup $recentChangeLookup
 	) {
 		parent::__construct( $article, $context );
 
 		$this->linkRenderer = $linkRenderer;
 		$this->patrolManager = $patrolManager;
+		$this->recentChangeLookup = $recentChangeLookup;
 	}
 
 	/** @inheritDoc */
@@ -92,7 +97,7 @@ class MarkpatrolledAction extends FormAction {
 		// Note: This works both on initial GET url and after submitting the form
 		$rcId = $data ? intval( $data['rcid'] ) : $this->getRequest()->getInt( 'rcid' );
 		if ( $rcId ) {
-			$rc = RecentChange::newFromId( $rcId );
+			$rc = $this->recentChangeLookup->getRecentChangeById( $rcId );
 		}
 		if ( !$rc ) {
 			throw new ErrorPageError( 'markedaspatrollederror', 'markedaspatrollederrortext' );

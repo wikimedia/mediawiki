@@ -104,6 +104,7 @@ class ActionFactory {
 			'services' => [
 				'LinkRenderer',
 				'PatrolManager',
+				'RecentChangeLookup',
 			],
 		],
 		'mcrundo' => [

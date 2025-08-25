@@ -26,7 +26,7 @@ namespace MediaWiki\Api;
 
 use MediaWiki\ChangeTags\ChangeTags;
 use MediaWiki\RecentChanges\PatrolManager;
-use MediaWiki\RecentChanges\RecentChange;
+use MediaWiki\RecentChanges\RecentChangeLookup;
 use MediaWiki\Revision\RevisionStore;
 use Wikimedia\ParamValidator\ParamValidator;
 
@@ -37,17 +37,20 @@ use Wikimedia\ParamValidator\ParamValidator;
 class ApiPatrol extends ApiBase {
 	private RevisionStore $revisionStore;
 	private PatrolManager $patrolManager;
+	private RecentChangeLookup $recentChangeLookup;
 
 	public function __construct(
 		ApiMain $main,
 		string $action,
 		RevisionStore $revisionStore,
-		PatrolManager $patrolManager
+		PatrolManager $patrolManager,
+		RecentChangeLookup $recentChangeLookup
 	) {
 		parent::__construct( $main, $action );
 
 		$this->revisionStore = $revisionStore;
 		$this->patrolManager = $patrolManager;
+		$this->recentChangeLookup = $recentChangeLookup;
 	}
 
 	/**
@@ -58,7 +61,7 @@ class ApiPatrol extends ApiBase {
 		$this->requireOnlyOneParameter( $params, 'rcid', 'revid' );
 
 		if ( isset( $params['rcid'] ) ) {
-			$rc = RecentChange::newFromId( $params['rcid'] );
+			$rc = $this->recentChangeLookup->getRecentChangeById( $params['rcid'] );
 			if ( !$rc ) {
 				$this->dieWithError( [ 'apierror-nosuchrcid', $params['rcid'] ] );
 			}

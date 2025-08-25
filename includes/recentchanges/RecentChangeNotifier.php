@@ -123,7 +123,8 @@ class RecentChangeNotifier {
 					'watchers' => $watchers,
 					'pageStatus' => $recentChange->mExtra['pageStatus'] ?? 'changed',
 					'rc_id' => $recentChange->getAttribute( 'rc_id' ),
-				]
+				],
+				$mwServices->getRecentChangeLookup()
 			) );
 		}
 
