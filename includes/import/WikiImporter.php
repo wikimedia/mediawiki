@@ -1293,6 +1293,7 @@ class WikiImporter {
 
 	/**
 	 * Open the XMLReader connected to the source adapter id
+	 * @suppress PhanStaticCallToNonStatic, UnusedSuppression -- for PHP 7.4 support
 	 */
 	private function openReader() {
 		// Enable the entity loader, as it is needed for loading external URLs via

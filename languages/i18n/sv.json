@@ -100,9 +100,7 @@
 			"לערי ריינהארט",
 			"아라",
 			"Anhn",
-			"Zache",
-			"Teaparty",
-			"Gkyziridis"
+			"Zache"
 		]
 	},
 	"sunday": "söndag",
@@ -2589,7 +2587,7 @@
 	"blockipsuccesssub": "Blockeringen är utförd",
 	"blockipsuccesstext": "[[Special:Contributions/$1|$1]] har blockerats.<br />\nFör att se alla aktuella blockeringar, gå till [[Special:BlockList|listan över blockeringar]].",
 	"ipb-empty-block": "Den inskickade blockeringen har inte några aktiverade begränsningar.",
-	"ipb-block-not-found": "Blockeringen kunde inte genomföras, förmodligen eftersom en annan administratör försökte blockera den här användaren samtidigt. Kontrollera blockeringsstatusen och försök igen.",
+	"ipb-block-not-found": "Blockeringen kunde inte genomföras, men ingen befintlig blockering hittades för \"$1\". Om detta problem kvarstår, var god [https://www.mediawiki.org/wiki/Special:MyLanguage/Help_talk:Blocking_users rapportera det].",
 	"ipb-blockingself": "Du håller på att blockera dig själv! Är du säker på att du vill göra det?",
 	"ipb-confirmhideuser": "Du är på väg att blockera en användare med \"dölj användare\" aktiverat. Detta kommer upphäva användarens namn i alla listor och loggar. Är du säker på att du vill göra det?",
 	"ipb-confirmaction": "Markera fältet \"{{int:ipb-confirm}}\" längst ned om du är säker på att du verkligen vill göra det.",
@@ -4081,6 +4079,12 @@
 	"newpages-showhide-patrolled": "$1 patrullerade redigeringar",
 	"newpages-showhide-redirect": "$1 omdirigeringar",
 	"newpages-showhide-registered": "$1 registrerade användare",
+	"restsandbox": "Sandlåda för REST",
+	"restsandbox-text": "Denna sida tillhandahåller en frågebyggare för REST-API:er. Observera att API-anrop kommer att interagera direkt med wiki-innehåll.",
+	"restsandbox-select-api": "Välj ett API att utforska.",
+	"restsandbox-no-specs-configured": "Inget REST-API har konfigurerats för att kunna utforskas. Använd inställningen RestExplorerSpecs.",
+	"restsandbox-no-such-api": "Den angivna API-parametern stöds inte: $1",
+	"restsandbox-jsonly": "JavaScript krävs för att visa REST-specifikationen.",
 	"blockedtext-made-by": "Blockeringen gjordes av $1.",
 	"blockedtext-reason-comment": "Anledningen var <em>$1</em>.",
 	"blockedtext-start-time": "Blockeringen startade: $1",

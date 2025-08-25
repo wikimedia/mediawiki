@@ -52,6 +52,11 @@ class TitleUrlTest extends MediaWikiLangTestCase {
 		] );
 	}
 
+	protected function tearDown(): void {
+		Title::clearCaches();
+		parent::tearDown();
+	}
+
 	public function testUrlsForSimpleTitle() {
 		$title = Title::makeTitle( NS_USER, 'Göatee' );
 		$name = $title->getPrefixedURL();

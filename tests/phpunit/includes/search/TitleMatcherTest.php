@@ -168,4 +168,9 @@ class TitleMatcherTest extends MediaWikiIntegrationTestCase {
 		$result = $matcher->getNearMatchResultSet( 'Test Link Wrong' );
 		$this->assertSame( 0, $result->numRows() );
 	}
+
+	protected function tearDown(): void {
+		Title::clearCaches();
+		parent::tearDown();
+	}
 }

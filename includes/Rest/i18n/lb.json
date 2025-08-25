@@ -7,7 +7,6 @@
 	},
 	"rest-nonexistent-title": "D'Säit „$1“, déi ugi gouf, gëtt et net",
 	"rest-nonexistent-revision": "Déi spezifizéiert Versioun ($1) gëtt et net",
-	"rest-invalid-user": "De Benotzernumm, deen ugi gouf, ass ongülteg ($1)",
 	"rest-permission-denied-title": "De Benotzer huet net d'Rechter fir den Titel ($1) ze liesen",
 	"rest-cannot-load-file": "De Fichier fir den Titel ''$1'' kann net geluede ginn.",
 	"rest-unsupported-transform-input": "Net ënnerstëtzten Input: $1",

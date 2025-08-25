@@ -1,0 +1,38 @@
+/**
+ * Tweaks for the Swagger UI CSS to make it work inside MediaWiki
+ */
+
+/* stylelint-disable selector-class-pattern */
+
+/**
+* Fix title bullet background.
+*/
+.swagger-ui .info .title small pre {
+	background: inherit;
+	border: 0;
+}
+
+/**
+* fix example code light-on-dark.
+*/
+.swagger-ui .code,
+.swagger-ui code {
+	background: inherit;
+	color: #fff;
+	border: 0;
+}
+
+/**
+ * Hide input fields until we are in "try it out" mode.
+ */
+.parameters-col_description input[ disabled ],
+.parameters-col_description select[ disabled ] {
+	display: none;
+}
+
+/**
+ * Hide the no JavaScript error if there is JavaScript
+ */
+.client-js .mw-restsandbox-client-nojs {
+	display: none;
+}

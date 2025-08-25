@@ -7,8 +7,7 @@
 			"Malikxan",
 			"Nataev",
 			"Sociologist",
-			"Таржимон",
-			"Mainculprit"
+			"Таржимон"
 		]
 	},
 	"preferences": "Moslamalar",
@@ -33,8 +32,6 @@
 	"passwordtoolong": "Maxfiy soʻz {{PLURAL:$1|1 belgidan|$1 belgidan}} koʻp boʻlmasligi kerak.",
 	"password-substring-username-match": "Foydalanuvchi nomi maxfiy soʻzni oʻz ichiga olmasligi kerak.",
 	"password-name-match": "Maxfiy soʻz va foydalanuvchi nomi bir xil boʻlmasligi kerak.",
-	"password-login-forbidden": "Ushbu foydalanuvchi nomi va paroldan foydalanish taqiqlangan.",
-	"passwordincommonlist": "Kiritilgan parol juda tez-tez ishlatiladigan parollar ro'yxatida. Iltimos, qiyinroq parol tanlang.",
 	"prefs-help-yourpassword": "Hisobni tiklash yoqilgan. Koʻproq sozlamalar uchun $1ga qarang.",
 	"tog-prefershttps": "Tizimga kirganimdan keyin doim himoyalangan aloqadan foydalanilsin",
 	"prefs-user-downloaddata-label": "Hisob qaydnomasi maʼlumoti",
@@ -58,7 +55,6 @@
 	"badsig": "Yaroqsiz xom imzo.\nHTML tegini tekshirish.",
 	"prefs-email": "Elektron pochta moslamalari",
 	"youremail": "E-pochta:",
-	"prefs-setemail": "Elektron pochta manzilini kiriting",
 	"prefs-changeemail": "Elektron pochta manzilini oʻzgartirish",
 	"prefs-help-email": "Elektron pochta manzilini koʻrsatish majburiy emas, lekin u siz maxfiy soʻzni unutib qoʻysangiz kerak boʻladi.",
 	"prefs-help-email-required": "E-mail manzilni koʻrsatish shart emas",

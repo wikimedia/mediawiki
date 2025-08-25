@@ -438,6 +438,25 @@ sinonjs:
   integrity: sha384-wR63Jwy75KqwBfzCmXd6gYws6uj3qV/XMAybzXrkEYGYG3AQ58ZWwr1fVpkHa5e8
   dest: sinon.js
 
+swagger-ui:
+  license: Apache-2.0
+  homepage: https://swagger.io/tools/swagger-ui/
+  version: 4.15.5
+  authors: Kyle Shockey, Tony Tam, Vladimír Gorej, and others
+  type: tar
+  src: https://codeload.github.com/swagger-api/swagger-ui/tar.gz/refs/tags/v4.15.5
+  integrity: sha384-pOwNNBDnfD+zlf8LtM3994vvCyIaaFpiyRhCRs3FI2GJ/ESZcfZ2YbJ8E4ECf+R7
+  dest:
+    swagger-ui-4.15.5/README.md:
+    swagger-ui-4.15.5/LICENSE:
+    swagger-ui-4.15.5/NOTICE:
+    swagger-ui-4.15.5/dist/swagger-ui-bundle.js:
+    swagger-ui-4.15.5/dist/swagger-ui-bundle.js.map:
+    swagger-ui-4.15.5/dist/swagger-ui-standalone-preset.js:
+    swagger-ui-4.15.5/dist/swagger-ui-standalone-preset.js.map:
+    swagger-ui-4.15.5/dist/swagger-ui.css:
+    swagger-ui-4.15.5/dist/swagger-ui.css.map:
+
 vue-demi:
   license: MIT
   homepage: https://github.com/vueuse/vue-demi/

@@ -223,8 +223,8 @@
 	"exif-orientation-8": "Zaokrenuto 90° u smeru kazaljke",
 	"exif-planarconfiguration-1": "grubi format",
 	"exif-planarconfiguration-2": "planarni format",
-	"exif-xyresolution-i": "$1 t/in",
-	"exif-xyresolution-c": "$1 t/cm",
+	"exif-xyresolution-i": "$1 tpi",
+	"exif-xyresolution-c": "$1 tpc",
 	"exif-colorspace-1": "sRGB",
 	"exif-colorspace-65535": "Deštelovano",
 	"exif-componentsconfiguration-0": "ne postoji",
@@ -358,7 +358,7 @@
 	"exif-ycbcrpositioning-2": "Uporedo",
 	"exif-dc-contributor": "Doprinosioci",
 	"exif-dc-coverage": "Prostorni ili vremenski opseg medija",
-	"exif-dc-date": "Datum(i)",
+	"exif-dc-date": "Datum",
 	"exif-dc-publisher": "Izdavač",
 	"exif-dc-relation": "Srodni mediji",
 	"exif-dc-rights": "Prava",
@@ -394,9 +394,5 @@
 	"exif-usepanoramaviewer-true": "Da",
 	"exif-usepanoramaviewer-false": "Ne",
 	"exif-exposurelockused-true": "Da",
-	"exif-exposurelockused-false": "Ne",
-	"exif-posepitchdegrees": "Ugao po vertikali (stepeni)",
-	"exif-poserolldegrees": "Nagib (stepeni)",
-	"exif-fullpanowidthpixels": "Panorama puna širina",
-	"exif-fullpanoheightpixels": "Panorama puna visina"
+	"exif-exposurelockused-false": "Ne"
 }

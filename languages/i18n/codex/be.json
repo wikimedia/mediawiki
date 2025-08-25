@@ -4,8 +4,6 @@
 			"No Sleep till Krupki"
 		]
 	},
-	"cdx-chip-input-chip-added": "Аскепак $1 быў дададзены.",
-	"cdx-chip-input-chip-removed": "Аскепак $1 быў выдалены.",
 	"cdx-input-chip-aria-description": "Націсніце Enter для праўкі або Delete для выдалення.",
 	"cdx-dialog-close-button-label": "Закрыць",
 	"cdx-label-optional-flag": "(неабавязкова)",
@@ -14,17 +12,5 @@
 	"cdx-table-select-all-label": "Выбраць усе радкі",
 	"cdx-table-select-row-label": "Выбраць радок $1 з $2",
 	"cdx-table-sort-caption": "$1 (загалоўкі слупкоў з кнопкамі можна сартаваць).",
-	"cdx-typeahead-search-search-results-label": "Вынікі пошуку",
-	"cdx-table-pager-button-first-page": "Першая старонка",
-	"cdx-table-pager-button-last-page": "Апошняя старонка",
-	"cdx-table-pager-button-next-page": "Наступная старонка",
-	"cdx-table-pager-button-prev-page": "Папярэдняя старонка",
-	"cdx-table-pager-items-per-page-current": "$1 {{PLURAL:$1|радок|радкі|радкоў}}",
-	"cdx-table-pager-items-per-page-default": "Вынікаў на старонцы",
-	"cdx-table-pagination-status-message-determinate-long": "Паказаны вынікі $1–$2 з $3",
-	"cdx-table-pagination-status-message-determinate-short": "$1–$2 з $3",
-	"cdx-table-pagination-status-message-indeterminate-long": "Паказаны вынікі $1–$2 з многіх",
-	"cdx-table-pagination-status-message-indeterminate-short": "$1–$2 з многіх",
-	"cdx-table-pagination-status-message-indeterminate-final": "Паказаны {{PLURAL:$1|апошні $1 вынік|$1 апошнія вынікі|апошнія $1 вынікаў|1=апошні вынік}}",
-	"cdx-table-pagination-status-message-pending": "Загрузка вынікаў..."
+	"cdx-typeahead-search-search-results-label": "Вынікі пошуку"
 }

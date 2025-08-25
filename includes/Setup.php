@@ -129,17 +129,15 @@ require_once MW_INSTALL_PATH . '/includes/Defines.php';
 // Assert that composer dependencies were successfully loaded
 if ( !interface_exists( LoggerInterface::class ) ) {
 	$message = (
-		'<strong>Error: Missing external libraries.</strong> ' .
-		'MediaWiki depends on external libraries bundled with most MediaWiki distributions. ' .
-		"When installing MediaWiki from its Git reposistory, these must be installed separately.\n\n" .
+		'MediaWiki requires the <a href="https://github.com/php-fig/log">PSR-3 logging ' .
+		"library</a> to be present. This library is not embedded directly in MediaWiki's " .
+		"git repository and must be installed separately by the end user.\n\n" .
 		'Please see the <a href="https://www.mediawiki.org/wiki/Download_from_Git' .
 		'#Fetch_external_libraries">instructions for installing libraries</a> on mediawiki.org ' .
-		'for help on installing the required libraries.'
+		'for help on installing the required components.'
 	);
-	http_response_code( 500 );
 	echo $message;
-	error_log( $message );
-	exit( 1 );
+	trigger_error( $message, E_USER_ERROR );
 }
 
 // Deprecated global variable for backwards-compatibility.

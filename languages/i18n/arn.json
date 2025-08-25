@@ -131,7 +131,7 @@
 	"views": "Pen",
 	"toolbox": "Küdawpeyüm",
 	"cactions": "Zoy peam",
-	"tool-link-userrights": "Kakünun {{GENDER:$1|pünefe}} ñi trokiñ",
+	"tool-link-userrights": "Kakünun {{$1|pünefe}} ñi trokiñ",
 	"tool-link-userrights-readonly": "Pen {{GENDER:$1|user}} ñi trokiñ",
 	"tool-link-emailuser": "Werkülael {{GENDER:$1|user}}",
 	"imagepage": "Adkintun ad wülngiñ",

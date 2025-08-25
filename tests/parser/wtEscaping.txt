@@ -1255,9 +1255,9 @@ Links 8. Add <nowiki/>s between text-nodes and RFC-links when required (T66300)
 !! options
 parsoid=html2wt
 !! html/parsoid
-<p><a href="https://datatracker.ietf.org/doc/html/rfc123" rel="mw:ExtLink" data-parsoid='{"stx":"magiclink"}'>RFC 123</a>4
-<a href="https://datatracker.ietf.org/doc/html/rfc123" rel="mw:ExtLink" data-parsoid='{"stx":"magiclink"}'>RFC 123</a>y
-X<a href="https://datatracker.ietf.org/doc/html/rfc123" rel="mw:ExtLink" data-parsoid='{"stx":"magiclink"}'>RFC 123</a>y</p>
+<p><a href="https://tools.ietf.org/html/rfc123" rel="mw:ExtLink" data-parsoid='{"stx":"magiclink"}'>RFC 123</a>4
+<a href="https://tools.ietf.org/html/rfc123" rel="mw:ExtLink" data-parsoid='{"stx":"magiclink"}'>RFC 123</a>y
+X<a href="https://tools.ietf.org/html/rfc123" rel="mw:ExtLink" data-parsoid='{"stx":"magiclink"}'>RFC 123</a>y</p>
 !! wikitext
 RFC 123<nowiki/>4
 RFC 123<nowiki/>y
@@ -1269,18 +1269,18 @@ Links 9. Don't add spurious <nowiki/>s between text-nodes and RFC-links (T66300)
 !! options
 parsoid=html2wt
 !! html/parsoid
-<p><a href="https://datatracker.ietf.org/doc/html/rfc123" rel="mw:ExtLink" data-parsoid='{"stx":"magiclink"}'>RFC 123</a>?foo
-<a href="https://datatracker.ietf.org/doc/html/rfc123" rel="mw:ExtLink" data-parsoid='{"stx":"magiclink"}'>RFC 123</a>&amp;foo
--<a href="https://datatracker.ietf.org/doc/html/rfc123" rel="mw:ExtLink" data-parsoid='{"stx":"magiclink"}'>RFC 123</a>-
+<p><a href="https://tools.ietf.org/html/rfc123" rel="mw:ExtLink" data-parsoid='{"stx":"magiclink"}'>RFC 123</a>?foo
+<a href="https://tools.ietf.org/html/rfc123" rel="mw:ExtLink" data-parsoid='{"stx":"magiclink"}'>RFC 123</a>&amp;foo
+-<a href="https://tools.ietf.org/html/rfc123" rel="mw:ExtLink" data-parsoid='{"stx":"magiclink"}'>RFC 123</a>-
 </p>
 !! wikitext
 RFC 123?foo
 RFC 123&foo
 -RFC 123-
 !! html/php
-<p><a class="external mw-magiclink-rfc" rel="nofollow" href="https://datatracker.ietf.org/doc/html/rfc123">RFC 123</a>?foo
-<a class="external mw-magiclink-rfc" rel="nofollow" href="https://datatracker.ietf.org/doc/html/rfc123">RFC 123</a>&amp;foo
--<a class="external mw-magiclink-rfc" rel="nofollow" href="https://datatracker.ietf.org/doc/html/rfc123">RFC 123</a>-
+<p><a class="external mw-magiclink-rfc" rel="nofollow" href="https://tools.ietf.org/html/rfc123">RFC 123</a>?foo
+<a class="external mw-magiclink-rfc" rel="nofollow" href="https://tools.ietf.org/html/rfc123">RFC 123</a>&amp;foo
+-<a class="external mw-magiclink-rfc" rel="nofollow" href="https://tools.ietf.org/html/rfc123">RFC 123</a>-
 </p>
 !! end
 

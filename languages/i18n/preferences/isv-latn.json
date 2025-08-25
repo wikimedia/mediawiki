@@ -84,7 +84,6 @@
 	"emailauthenticated": "Vaš adres e-pošty byl potvrdženy v $2 č. $3.",
 	"allowemail": "Dozvoliti drugym koristnikam posylanje mi e-pošty.",
 	"email-allow-new-users-label": "Dozvoliti e-poštu od sovsěm novyh koristnikov",
-	"prefs-help-email-allow-new-users": "Vključenje tutoj opcije pozvoli koristnikam, ktori ne sut [[{{MediaWiki:grouppage-autoconfirmed}}|avtomatično zatvrdženi]], poslati vam e-poštu.",
 	"tog-ccmeonemails": "Posylati mi kopije pism, ktore ja šlju drugym koristnikam",
 	"email-mutelist-label": "Unemožniti slědujučim koristnikam posylanje mi e-pošty",
 	"tog-enotifwatchlistpages": "Poslati mi e-poštu poslě izměny stranice ili fajla v mojem spisku slědovanyh stranic",

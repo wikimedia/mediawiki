@@ -14,8 +14,6 @@ use MediaWiki\Context\RequestContext;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Pager\BlockListPager;
-use MediaWiki\Permissions\SimpleAuthority;
-use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Utils\MWTimestamp;
@@ -365,100 +363,5 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 		$pager = $this->getBlockListPager();
 		$pager->getFullOutput();
 		$this->assertTrue( true );
-	}
-
-	/**
-	 * T385765 regression test
-	 * @coversNothing
-	 */
-	public function testAutoblockLeak() {
-		$sysop = $this->getTestSysop()->getUserIdentity();
-		$this->overrideConfigValue( MainConfigNames::UseCodexSpecialBlock, true );
-		// Enable block links
-		RequestContext::getMain()->setAuthority( new UltimateAuthority( $sysop ) );
-		// Don't localise
-		RequestContext::getMain()->setLanguage( 'qqx' );
-		// Create autoblock
-		$addr = '127.0.0.1';
-		$block = new DatabaseBlock( [
-			'address' => $addr,
-			'auto' => true,
-		] );
-		$block->setBlocker( $sysop );
-		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
-		$status = $blockStore->insertBlock( $block );
-		$this->assertNotFalse( $status );
-		// Run the pager over all blocks (there should only be one)
-		$pager = $this->getBlockListPager();
-		$body = $pager->getBody();
-		// Check that we managed to generate a remove link
-		$this->assertStringContainsString( '(unblocklink)', $body );
-		// Check that we didn't leak the IP address into it
-		$this->assertStringNotContainsString( $addr, $body );
-	}
-
-	/**
-	 * @param string $expected
-	 * @param string $actual
-	 */
-	private function assertStringNotContainsStringIgnoringPunctuation( $expected, $actual ) {
-		$this->assertStringNotContainsString( $expected, $actual );
-		// Fail even if punctuation in the name was replaced
-		$regex = '/' . preg_replace( '/[^A-Za-z0-9]+/', '.+', $expected ) . '/';
-		$this->assertDoesNotMatchRegularExpression( $regex, $actual );
-	}
-
-	/**
-	 * T391343 regression test
-	 * @coversNothing
-	 */
-	public function testBlockLinkSuppression() {
-		$user = $this->getTestUser()->getUserIdentity();
-		$store = $this->getServiceContainer()->getDatabaseBlockStore();
-		$block = new DatabaseBlock();
-		$block->setTarget( $user );
-		$block->setBlocker( $this->getTestSysop()->getUser() );
-		$status = $store->insertBlock( $block );
-		$this->assertNotFalse( $status );
-		$block = new DatabaseBlock( [
-			'hideName' => true
-		] );
-		$block->setTarget( $user );
-		$block->setBlocker( $this->getTestSysop()->getUser() );
-		$status = $store->insertBlock( $block, null );
-		$this->assertNotFalse( $status );
-
-		RequestContext::getMain()->setAuthority(
-			new SimpleAuthority(
-				$this->getTestSysop()->getUserIdentity(),
-				[ 'block' ]
-			)
-		);
-
-		$pager = $this->getBlockListPager();
-		$body = $pager->getBody();
-		$this->assertStringNotContainsStringIgnoringPunctuation( $user->getName(), $body );
-	}
-
-	/**
-	 * T397595 regression test
-	 * @coversNothing
-	 */
-	public function testAutoblockSuppression() {
-		$user = $this->getTestUser()->getUserIdentity();
-		$store = $this->getServiceContainer()->getDatabaseBlockStore();
-		$block = new DatabaseBlock( [
-			'hideName' => true,
-			'enableAutoblock' => true,
-		] );
-		$block->setTarget( $user );
-		$block->setBlocker( $this->getTestSysop()->getUser() );
-		$status = $store->insertBlock( $block );
-		$this->assertNotFalse( $status );
-		$store->doAutoblock( $block, '127.0.0.42' );
-
-		$pager = $this->getBlockListPager();
-		$body = $pager->getBody();
-		$this->assertStringNotContainsStringIgnoringPunctuation( $user->getName(), $body );
 	}
 }

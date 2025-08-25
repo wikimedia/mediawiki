@@ -18,8 +18,7 @@
 			"आलोक",
 			"चक्रपाणी",
 			"रोहित रावत",
-			"संजीव कुमार",
-			"Bunnypranav"
+			"संजीव कुमार"
 		]
 	},
 	"preferences": "मेरी वरीयताएँ",
@@ -97,7 +96,7 @@
 	"prefs-rendering": "दिखावट",
 	"prefs-skin": "त्वचा",
 	"skin-preview": "झलक",
-	"prefs-common-config": "सभी स्किन्स के लिए साँझित CSS/जावास्क्रिप्ट:",
+	"prefs-common-config": "सभी स्किन्स के लिए साँझित CSS/JSON/जावास्क्रिप्ट:",
 	"prefs-custom-css": "अनुकूलित CSS",
 	"prefs-custom-js": "अनुकूलित जावास्क्रिप्ट",
 	"prefs-skin-prefs": "स्किन की वरीयताएँ",
@@ -110,7 +109,7 @@
 	"localtime": "स्थानीय समय:",
 	"timezonelegend": "समय-क्षेत्र:",
 	"timezoneuseserverdefault": "विकि के डिफ़ॉल्ट का उपयोग करें ($1)",
-	"timezoneuseoffset": "अन्य (UTC से समयांतर)",
+	"timezoneuseoffset": "अन्य (समयांतर निर्दिष्ट करें)",
 	"timezone-useoffset-placeholder": "उदाहरण मान: \"-07:00\" या \"01:00\"",
 	"guesstimezone": "ब्राउज़र से भरें",
 	"timezoneregion-africa": "अफ़्रीका",
@@ -209,8 +208,8 @@
 	"prefs-searchoptions": "खोज",
 	"prefs-searchmisc": "सामान्य",
 	"searchlimit-label": "प्रत्येक पृष्ठ पर दिखाने के लिए खोज परिणामों की संख्या:",
-	"searchlimit-help": "अधिकतम संख्या: $1",
+	"searchlimit-help": "अधिकतम संख्या: 500",
 	"prefs-advancedsearchoptions": "उन्नत विकल्प",
 	"prefs-reset-intro": "आप इस पृष्ठ के ज़रिए अपनी वरीयताओं को साइट की मूल वरीयताओं के समान बना सकते हैं।\nइसके बाद आप वापस पुरानी स्थिति पर नहीं आ सकेंगे।",
-	"restoreprefs": "वापिस मूल जमावों पर आ जाएँ"
+	"restoreprefs": "वापिस मूल जमावों पर आ जाएँ (सभी भागों में)"
 }

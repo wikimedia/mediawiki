@@ -24,7 +24,7 @@ use Wikimedia\Tests\SerializationTestTrait;
 
 /**
  * @covers \MediaWiki\Parser\ParserOutput
- * @covers \MediaWiki\Parser\CacheTime
+ * @covers \Mediawiki\Parser\CacheTime
  * @group Database
  *        ^--- trigger DB shadowing because we are using Title magic
  */

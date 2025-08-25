@@ -1969,9 +1969,9 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 
 		$emailAuthentication = $config->get( MainConfigNames::EmailAuthentication );
 
-		if ( $emailAuthentication && $type === 'changed' && $this->isEmailConfirmed() ) {
+		if ( $emailAuthentication && $type === 'changed' ) {
 			// Send the user an email notifying the user of the change in registered
-			// email address on their previous verified email address
+			// email address on their previous email address
 			$change = $str != '' ? 'changed' : 'removed';
 			$notificationResult = $this->sendMail(
 				wfMessage( 'notificationemail_subject_' . $change )->text(),

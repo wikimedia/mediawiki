@@ -422,6 +422,7 @@ $specialPageAliases = [
 	'RemoveCredentials'         => [ 'إزالة_الاعتمادات' ],
 	'Renameuser'                => [ 'إعادة_تسمية_مستخدم' ],
 	'ResetTokens'               => [ 'إعادة_ضبط_المفاتيح' ],
+	'RestSandbox'               => [ 'ملعب_رست' ],
 	'Revisiondelete'            => [ 'حذف_مراجعة', 'حذف_نسخة' ],
 	'RunJobs'                   => [ 'تشغيل_الوظائف' ],
 	'Search'                    => [ 'بحث' ],

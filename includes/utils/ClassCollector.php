@@ -68,7 +68,7 @@ class ClassCollector {
 		$matches = null;
 		preg_match_all(
 			// phpcs:ignore Generic.Files.LineLength.TooLong
-			'#^\t*(?:namespace |(final )?(abstract )?(class|interface|trait|enum) |class_alias\()[^;{]+[;{]\s*\}?#m',
+			'#^\t*(?:namespace |(final )?(abstract )?(class|interface|trait) |class_alias\()[^;{]+[;{]\s*\}?#m',
 			$code,
 			$matches
 		);
@@ -109,7 +109,6 @@ class ClassCollector {
 		switch ( $token[0] ) {
 			case T_NAMESPACE:
 			case T_CLASS:
-			case T_ENUM:
 			case T_INTERFACE:
 			case T_TRAIT:
 			case T_DOUBLE_COLON:
@@ -205,7 +204,6 @@ class ClassCollector {
 				break;
 
 			case T_CLASS:
-			case T_ENUM:
 			case T_INTERFACE:
 			case T_TRAIT:
 				$this->tokens[] = $token;

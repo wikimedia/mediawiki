@@ -4,7 +4,6 @@ use PhpParser\Node;
 use PhpParser\Node\Expr;
 use PhpParser\Node\Stmt;
 use PhpParser\ParserFactory;
-use PhpParser\PhpVersion;
 
 /**
  * @coversNothing
@@ -30,10 +29,7 @@ class ScopeStructureTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideAutoloadNoFileScope
 	 */
 	public function testAutoloadNoFileScope( $file ) {
-		// This value should match the PHP version specified in composer.json,
-		// PHPVersionCheck.php, and .phan/config.php
-		$version = PhpVersion::fromComponents( 8, 1 );
-		$parser = ( new ParserFactory )->createForVersion( $version );
+		$parser = ( new ParserFactory )->create( ParserFactory::ONLY_PHP7 );
 		$ast = $parser->parse( file_get_contents( $file ) );
 		foreach ( $ast as $node ) {
 			if ( $node instanceof Stmt\ClassLike

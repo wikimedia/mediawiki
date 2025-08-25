@@ -10,8 +10,7 @@
 			"Kingu",
 			"Macofe",
 			"Matma Rex",
-			"Telaneo",
-			"EdoAug"
+			"Telaneo"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Dokumentasjon]]\n* [[mw:Special:MyLanguage/API:Etiquette|Etikette og retningslinjer for bruk]]\n* [[mw:Special:MyLanguage/API:FAQ|Ofte stilte spørsmål]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api E-post-liste]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API-kunngjøringer]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Feil & forespørsler]\n</div>\n<strong>Status:</strong> Alle funksjonene som vises på denne siden skal virke, men API-et er fortsatt i aktiv utvikling, og kan bli endret når som helst. Abonner på [https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ MediaWiki sin API-kunnkjøringsepostliste] for nyheter om oppdateringer.\n\n<strong>Feile kall:</strong> Hvis det blir sendt gale kall til API-et, blir det sendt en HTTP-header med nøkkelen \"MediaWiki-API-Error\" og da blir både header-verdien og feilkoden sendt tilbake med samme verdi. For mer informasjon, se [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Feil og advarsler]].\n\n<p class=\"mw-apisandbox-link\"><strong>Testing:</strong> For enkelt å teste API-kall, se [[Special:ApiSandbox]].</p>",
@@ -399,7 +398,6 @@
 	"apihelp-parse-paramvalue-prop-parsewarnings": "Gir advarsler som oppsto under tolkingen av innholdet (som wikitekst).",
 	"apihelp-parse-paramvalue-prop-parsewarningshtml": "Gir advarsler som oppsto under tolkningen av innholdet (som HTML).",
 	"apihelp-parse-param-wrapoutputclass": "CSS-klasse som skal brukes til å omringe tolkingsresultatet.",
-	"apihelp-parse-param-usearticle": "Bruk hooken ArticleParserOptions for å sikre at alternativene som brukes matcher de som brukes for artikkelsidevisninger",
 	"apihelp-parse-param-parsoid": "Generer HTML som samsvarer med [[mw:Specs/HTML|MediaWikis DOM-spesifikasjoner]] med [[mw:Parsoid|Parsoid]].",
 	"apihelp-parse-param-pst": "Gjør en førlagringstransformasjon på inndataene før de tolkes. Kun gyldig når den brukes med tekst.",
 	"apihelp-parse-param-onlypst": "Gjør en førlagringstransformasjon (PST) på inndataene, men ikke tolk dem. Returnerer den samme wikiteksten etter at PST har blitt brukt. Kun gyldig når det brukes med <var>$1text</var>.",
@@ -625,8 +623,6 @@
 	"apihelp-query+allusers-summary": "List opp alle registrerte brukere.",
 	"apihelp-query+allusers-param-from": "Brukernavnet opplistingen skal starte fra.",
 	"apihelp-query+allusers-param-to": "Brukernavnet opplistingen skal slutte ved.",
-	"apihelp-query+allusers-param-excludenamed": "Ekskluder brukere med navngitte kontoer.",
-	"apihelp-query+allusers-param-excludetemp": "Ekskluder brukre med midlertidige kontoer.",
 	"apihelp-query+allusers-param-prefix": "Søk etter alle brukere som begynner med denne verdien.",
 	"apihelp-query+allusers-param-dir": "Retningen det skal sorteres i.",
 	"apihelp-query+allusers-param-group": "Bare inkluder brukere i de gitte gruppene. Inkluderer ikke implisitte grupper eller grupper man forfremmes til automatisk, som *, user eller autoconfirmed.",

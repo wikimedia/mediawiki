@@ -1166,8 +1166,7 @@ return [
 			],
 		],
 		'dependencies' => 'mediawiki.util',
-		'deprecated' =>
-			'[1.43] Please use browser native URL. See https://www.mediawiki.org/wiki/Migrating_mw.Uri_to_URL',
+		'deprecated' => '[1.43] Please use browser native URL.',
 	],
 	'mediawiki.user' => [
 		'scripts' => 'resources/src/mediawiki.user.js',
@@ -2133,6 +2132,30 @@ return [
 			'word-separator',
 			'and'
 		],
+	],
+	'mediawiki.special.restsandbox.styles' => [
+		'styles' => [
+			'resources/src/mediawiki.special.restsandbox/restsandbox.css',
+		],
+	],
+	'mediawiki.special.restsandbox' => [
+		'localBasePath' => MW_INSTALL_PATH . '/resources',
+		'remoteBasePath' => "$wgResourceBasePath/resources",
+		'packageFiles' => [
+			"src/mediawiki.special.restsandbox/restsandbox.js",
+			"lib/swagger-ui/swagger-ui-bundle.js",
+			"lib/swagger-ui/swagger-ui-standalone-preset.js",
+			[
+				'name' => 'src/mediawiki.special.restsandbox/config.json',
+				'config' => [ 'RestSandboxSpecs' ],
+			],
+		],
+		'styles' => [
+			'lib/swagger-ui/swagger-ui.css',
+		],
+		'dependencies' => [
+			'mediawiki.special.restsandbox.styles'
+		]
 	],
 	'mediawiki.special.block' => [
 		'localBasePath' => MW_INSTALL_PATH . '/resources/src',

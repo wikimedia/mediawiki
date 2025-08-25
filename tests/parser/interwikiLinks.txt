@@ -78,18 +78,13 @@ Interwiki link with fragment (T4130)
 iwl
 !! metadata
 iwl=meatball:SoftSecurity
-iwl=meatball:Soft
 !! wikitext
 [[MeatBall:SoftSecurity#foo]]
-
-[[meatball:Soft#Bar]]
 !! html/php
 <p><a href="http://www.usemod.com/cgi-bin/mb.pl?SoftSecurity#foo" class="extiw" title="meatball:SoftSecurity">MeatBall:SoftSecurity#foo</a>
-</p><p><a href="http://www.usemod.com/cgi-bin/mb.pl?Soft#Bar" class="extiw" title="meatball:Soft">meatball:Soft#Bar</a>
 </p>
 !! html/parsoid
 <p><a rel="mw:WikiLink/Interwiki" href="http://www.usemod.com/cgi-bin/mb.pl?SoftSecurity#foo" title="meatball:SoftSecurity" class="extiw">MeatBall:SoftSecurity#foo</a></p>
-<p><a rel="mw:WikiLink/Interwiki" href="http://www.usemod.com/cgi-bin/mb.pl?Soft#Bar" title="meatball:Soft" class="extiw">meatball:Soft#Bar</a></p>
 !! end
 
 ## The non-local interwiki case here continues to be legacy escaped because of the

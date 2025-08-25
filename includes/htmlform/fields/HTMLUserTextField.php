@@ -67,14 +67,14 @@ class HTMLUserTextField extends HTMLTextField {
 				// Treat hidden users as unregistered if current user can't view them (T309894)
 				!( $user->isHidden() && !( $this->mParent && $this->mParent->getUser()->isAllowed( 'hideuser' ) ) )
 			) ) {
-				return $this->msg( 'htmlform-user-not-exists', wfEscapeWikiText( $user->getName() ) );
+				return $this->msg( 'htmlform-user-not-exists', $user->getName() );
 			}
 
 			// check if the user account type matches the account type filter
 			$excludeNamed = $this->mParams['excludenamed'] ?? null;
 			$excludeTemp = $this->mParams['excludetemp'] ?? null;
 			if ( ( $excludeTemp && $user->isTemp() ) || ( $excludeNamed && $user->isNamed() ) ) {
-				return $this->msg( 'htmlform-user-not-valid', wfEscapeWikiText( $user->getName() ) );
+				return $this->msg( 'htmlform-user-not-valid', $user->getName() );
 			}
 		} else {
 			// not a valid username
@@ -102,7 +102,7 @@ class HTMLUserTextField extends HTMLTextField {
 				}
 			}
 			if ( !$valid ) {
-				return $this->msg( 'htmlform-user-not-valid', wfEscapeWikiText( $value ) );
+				return $this->msg( 'htmlform-user-not-valid', $value );
 			}
 		}
 

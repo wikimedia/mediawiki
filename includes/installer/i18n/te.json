@@ -13,7 +13,7 @@
 	"config-localsettings-upgrade": "ఓ <code>LocalSettings.php</code> ఫైలు కనబడింది.\nఈ స్థాపనను ఉన్నతీకరించడానికి, కింద ఇచ్చిన పెట్టెలో <code>$wgUpgradeKey</code> యొక్క విలువను ఇవ్వండి.\nఅది <code>LocalSettings.php</code> లో ఉంటుంది.",
 	"config-localsettings-cli-upgrade": "ఓ <code>LocalSettings.php</code> ఫైలు కనబడింది.\nఈ స్థాపనను ఉన్నతీకరించడానికి, దాని బదులు <code>update.php</code> ను రన్ చెయ్యండి.",
 	"config-localsettings-key": "ఉన్నతీకరణ కీ:",
-	"config-localsettings-badkey": "మీరిచ్చిన అప్‌గ్రేడ్ కీ తప్పు.",
+	"config-localsettings-badkey": "మీరిచ్చిన కీ తప్పు.",
 	"config-upgrade-key-missing": "ఇప్పటికే ఉన్న MediaWiki స్థాపన కనబడింది.\nదాన్ని నవీకరించడానికి, కింది లైనును <code>LocalSettings.php</code> లో అట్టడుగున ఉంచండి:\n\n$1",
 	"config-localsettings-incomplete": "ఇప్పటి <code>LocalSettings.php</code> అసంపూర్తిగా ఉన్నట్లుగా కనబడుతోంది.\n$1 చరరాశిని సెట్ చెయ్యలేదు.\nఈ చరరాశిని సెట్ చేస్తూ <code>LocalSettings.php</code> ను మార్చి, \"{{int:Config-continue}}\" ను నొక్కండి.",
 	"config-localsettings-connection-error": "<code>LocalSettings.php</code> లో ఇచ్చిన సెట్టింగులను వాడుతూ డేటాబేసుకు కనెక్టు కాబోతే, లోపం తలెత్తింది. ఈ సెట్టింగులను సరిచేసి మళ్ళీ ప్రయత్నించండి.\n\n$1",

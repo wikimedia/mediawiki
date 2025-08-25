@@ -2,14 +2,11 @@
 	"@metadata": {
 		"authors": [
 			"Ant176",
-			"Müller857",
-			"Foomin10",
-			"Kokage si",
-			"Waki285"
+			"Müller857"
 		]
 	},
-	"cdx-chip-input-chip-added": "チップス $1 が追加されました。",
-	"cdx-chip-input-chip-removed": "チップス $1 が削除されました。",
+	"cdx-chip-input-chip-added": "チップ$1が追加されました。",
+	"cdx-chip-input-chip-removed": "チップ$1が削除されました。",
 	"cdx-input-chip-aria-description": "編集する場合はEnterを、削除する場合はDeleteを押してください。",
 	"cdx-dialog-close-button-label": "閉じる",
 	"cdx-label-optional-flag": "（省略可）",

@@ -54,8 +54,7 @@
 			"Tinss",
 			"Translationista",
 			"Vivaelcelta",
-			"아라",
-			"JaimeDes"
+			"아라"
 		]
 	},
 	"config-desc": "El instalador de MediaWiki",
@@ -226,7 +225,7 @@
 	"config-subscribe-help": "Esta es una lista de divulgación de bajo volumen para anuncios de lanzamiento de versiones nuevas, incluyendo anuncios de seguridad importantes.\nTe recomendamos suscribirte y actualizar tu instalación MediaWiki cada vez que se lance una nueva versión.",
 	"config-subscribe-noemail": "Has intentado suscribirte a la lista de correo de anuncios de nuevos lanzamientos sin proporcionar una dirección de correo electrónico.\nProporciona una dirección de correo electrónico si quieres suscribirte a la lista de correo.",
 	"config-pingback": "Compartir datos sobre esta instalación con los desarrolladores de MediaWiki. [https://foundation.wikimedia.org/wiki/MediaWiki_Pingback_Privacy_Statement Política de privacidad].",
-	"config-pingback-help": "Si seleccionas esta opción, MediaWiki enviará periódicamente a https://www.mediawiki.org datos básicos sobre esta instancia de MediaWiki. Se trata de datos tales como el tipo de sistema, la versión de PHP y la base de datos elegida. La Fundación Wikimedia comparte estos datos con los desarrolladores de MediaWiki para ayudar a guiar el desarrollo futuro. Se enviarán los siguientes datos para tu sistema:\n<pre>$1</pre>\n\nPuedes leer la política de privacidad de esta función en https://foundation.wikimedia.org/wiki/MediaWiki_Pingback_Privacy_Statement.\n\nPara información más general sobre esta función, consulta https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgPingback.\n\nPara información agregada de datos de pingback, consulta https://pingback.wmcloud.org/.",
+	"config-pingback-help": "Si seleccionas esta opción, MediaWiki enviará periódicamente a https://www.mediawiki.org datos básicos sobre esta instancia de MediaWiki. Se trata de datos tales como el tipo de sistema, la versión de PHP y la base de datos elegida. La Fundación Wikimedia comparte estos datos con los desarrolladores de MediaWiki para ayudar a guiar el desarrollo futuro. Se enviarán los siguientes datos para tu sistema:\n<pre>$1</pre>\n\nPuedes leer la política de privacidad de esta función en https://foundation.wikimedia.org/wiki/MediaWiki_Pingback_Privacy_Statement.\n\nPara información más general sobre esta función, consulta https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgPingback.\n\nPara información agregada de datos de pingback, consulta https://pingback.wmflabs.org/.",
 	"config-almost-done": "¡Ya casi has terminado!\nAhora puedes saltarte el resto de los pasos e instalar ya la wiki.",
 	"config-optional-continue": "Hazme más preguntas.",
 	"config-optional-skip": "Ya me aburrí. Tan solo instala la wiki.",
