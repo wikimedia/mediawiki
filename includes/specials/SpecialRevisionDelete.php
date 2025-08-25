@@ -197,7 +197,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		);
 
 		# We need a target page!
-		if ( $this->targetObj === null ) {
+		if ( $this->targetObj === null || !$this->targetObj->canExist() ) {
 			$output->addWikiMsg( 'undelete-header' );
 
 			return;
@@ -345,6 +345,11 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	 * @param string $archiveName
 	 */
 	protected function tryShowFile( $archiveName ) {
+		if ( $this->targetObj->getNamespace() !== NS_FILE ) {
+			$this->getOutput()->addWikiMsg( 'revdelete-no-file' );
+
+			return;
+		}
 		$repo = $this->repoGroup->getLocalRepo();
 		$oimage = $repo->newFromArchiveName( $this->targetObj, $archiveName );
 		$oimage->load();
