@@ -77,8 +77,8 @@ class UpdateCollation extends Maintenance {
 	/** @var IMaintainableDatabase */
 	private $dbw;
 
-	/** @var NamespaceInfo */
-	private $namespaceInfo;
+	private NamespaceInfo $namespaceInfo;
+	private NameTableStore $collationNameStore;
 
 	public function __construct() {
 		parent::__construct();
@@ -120,6 +120,14 @@ TEXT
 	private function init() {
 		$services = $this->getServiceContainer();
 		$this->namespaceInfo = $services->getNamespaceInfo();
+		$this->collationNameStore = new NameTableStore(
+			$this->getServiceContainer()->getDBLoadBalancer(),
+			$this->getServiceContainer()->getMainWANObjectCache(),
+			LoggerFactory::getInstance( 'SecondaryDataUpdate' ),
+			'collation',
+			'collation_id',
+			'collation_name'
+		);
 
 		if ( $this->hasOption( 'target-collation' ) ) {
 			$this->collationName = $this->getOption( 'target-collation' );
@@ -169,9 +177,9 @@ TEXT
 		$collationConds = [];
 		if ( !$this->force && !$this->targetTable ) {
 			if ( $this->hasOption( 'previous-collation' ) ) {
-				$collationConds['cl_collation'] = $this->getOption( 'previous-collation' );
+				$collationConds['collation_name'] = $this->getOption( 'previous-collation' );
 			} else {
-				$collationConds[] = $this->dbr->expr( 'cl_collation', '!=', $this->collationName );
+				$collationConds[] = $this->dbr->expr( 'collation_name', '!=', $this->collationName );
 			}
 		}
 		$maxPageId = (int)$this->dbr->newSelectQueryBuilder()
@@ -191,11 +199,11 @@ TEXT
 			}
 			$res = $this->dbw->newSelectQueryBuilder()
 				->select( [
-					'cl_from', 'cl_to', 'cl_sortkey_prefix', 'cl_collation',
-					'cl_sortkey', $clType, 'cl_timestamp',
-					'page_namespace', 'page_title'
+					'cl_from', 'cl_target_id', 'cl_sortkey_prefix', 'cl_collation', 'cl_sortkey',
+					$clType, 'cl_timestamp', 'page_namespace', 'page_title'
 				] )
 				->from( 'categorylinks' )
+				->join( 'collation', null, 'cl_collation_id = collation_id' )
 				// per T58041
 				->straightJoin( 'page', null, 'cl_from = page_id' )
 				->where( $collationConds )
@@ -242,7 +250,7 @@ TEXT
 		}
 		foreach ( $res as $row ) {
 			$title = Title::newFromRow( $row );
-			if ( !$row->cl_collation ) {
+			if ( !$row->collation_name ) {
 				# This is an old-style row, so the sortkey needs to be
 				# converted.
 				if ( $row->cl_sortkey === $title->getText()
@@ -270,16 +278,17 @@ TEXT
 				// other fields, if any, those usually only happen when upgrading old MediaWikis.)
 				$this->numRowsProcessed += ( $row->cl_sortkey !== $newSortKey );
 			} else {
+				$collationId = $this->collationNameStore->acquireId( $this->collationName );
 				$this->dbw->newUpdateQueryBuilder()
 					->update( 'categorylinks' )
 					->set( [
 						'cl_sortkey' => $newSortKey,
 						'cl_sortkey_prefix' => $prefix,
-						'cl_collation' => $this->collationName,
+						'cl_collation_id' => $collationId,
 						'cl_type' => $type,
 						'cl_timestamp = cl_timestamp',
 					] )
-					->where( [ 'cl_from' => $row->cl_from, 'cl_to' => $row->cl_to ] )
+					->where( [ 'cl_from' => $row->cl_from, 'cl_target_id' => $row->cl_target_id ] )
 					->caller( __METHOD__ )
 					->execute();
 				$this->numRowsProcessed++;
@@ -310,12 +319,13 @@ TEXT
 			// Truncate to 230 bytes to avoid DB error
 			$newSortKey = substr( $newSortKey, 0, 230 );
 			$type = $this->namespaceInfo->getCategoryLinkType( $row->page_namespace );
+			$collationId = $this->collationNameStore->acquireId( $this->collationName );
 			$rowsToInsert[] = [
 				'cl_from' => $row->cl_from,
-				'cl_to' => $row->cl_to,
+				'cl_target_id' => $row->cl_target_id,
 				'cl_sortkey' => $newSortKey,
 				'cl_sortkey_prefix' => $row->cl_sortkey_prefix,
-				'cl_collation' => $this->collationName,
+				'cl_collation_id' => $collationId,
 				'cl_type' => $type,
 				'cl_timestamp' => $row->cl_timestamp
 			];
@@ -415,14 +425,6 @@ TEXT
 		$batchValue = 0;
 		$batchSize = $this->getBatchSize();
 
-		$collationNameStore = new NameTableStore(
-			$this->getServiceContainer()->getDBLoadBalancer(),
-			$this->getServiceContainer()->getMainWANObjectCache(),
-			LoggerFactory::getInstance( 'SecondaryDataUpdate' ),
-			'collation',
-			'collation_id',
-			'collation_name'
-		);
 		do {
 			$this->output( "Selecting next $batchSize pages from cl_from = $batchValue... " );
 
@@ -441,7 +443,7 @@ TEXT
 			if ( $res->numRows() && !$this->dryRun ) {
 				foreach ( $res as $row ) {
 					$collationName = $row->cl_collation;
-					$collationId = $collationNameStore->acquireId( $collationName );
+					$collationId = $this->collationNameStore->acquireId( $collationName );
 					$this->dbw->newUpdateQueryBuilder()
 						->update( 'categorylinks' )
 						->set( [ 'cl_collation_id' => $collationId ] )
