@@ -1,7 +1,7 @@
 <?php
 /**
  * Find all rows in the categorylinks table whose collation is out-of-date
- * (cl_collation != $wgCategoryCollation) and repopulate cl_sortkey
+ * (collation_name != $wgCategoryCollation) and repopulate cl_sortkey
  * using the page title and cl_sortkey_prefix.
  *
  * This program is free software; you can redistribute it and/or modify
@@ -85,7 +85,7 @@ class UpdateCollation extends Maintenance {
 
 		$this->addDescription( <<<TEXT
 This script will find all rows in the categorylinks table whose collation is
-out-of-date (cl_collation is not the same as \$wgCategoryCollation) and
+out-of-date (collation_name is not the same as \$wgCategoryCollation) and
 repopulate cl_sortkey using the page title and cl_sortkey_prefix. If all
 collations are up-to-date, it will do nothing.
 TEXT
@@ -199,8 +199,8 @@ TEXT
 			}
 			$res = $this->dbw->newSelectQueryBuilder()
 				->select( [
-					'cl_from', 'cl_target_id', 'cl_sortkey_prefix', 'cl_collation', 'cl_sortkey',
-					$clType, 'cl_timestamp', 'page_namespace', 'page_title'
+					'cl_from', 'cl_target_id', 'cl_sortkey_prefix', 'cl_sortkey', $clType,
+					'cl_timestamp', 'collation_name', 'page_namespace', 'page_title'
 				] )
 				->from( 'categorylinks' )
 				->join( 'collation', null, 'cl_collation_id = collation_id' )
