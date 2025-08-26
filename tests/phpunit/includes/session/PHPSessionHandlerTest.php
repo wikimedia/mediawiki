@@ -31,8 +31,7 @@ class PHPSessionHandlerTest extends MediaWikiIntegrationTestCase {
 			$oldManager = $old->manager;
 			$oldLogger = $old->logger;
 			$reset[] = new ScopedCallback(
-				[ PHPSessionHandler::class, 'install' ],
-				[ $oldManager, $oldLogger ]
+				static fn () => PHPSessionHandler::install( $oldManager, $oldLogger )
 			);
 		}
 
@@ -143,9 +142,9 @@ class PHPSessionHandlerTest extends MediaWikiIntegrationTestCase {
 		);
 		PHPSessionHandler::install( $manager );
 		$wrap = TestingAccessWrapper::newFromObject( $staticAccess->instance );
+		$oldFlags = $wrap->enable ? ( $wrap->warn ? 'warn' : 'enable' ) : 'disable';
 		$reset[] = new ScopedCallback(
-			[ $wrap, 'setEnableFlags' ],
-			[ $wrap->enable ? ( $wrap->warn ? 'warn' : 'enable' ) : 'disable' ]
+			static fn () => $wrap->setEnableFlags( $oldFlags )
 		);
 		$wrap->setEnableFlags( 'warn' );
 
