@@ -63,7 +63,7 @@ class LinksMigration {
 			'ns' => 14,
 			'title' => 'cl_to',
 			'target_id' => 'cl_target_id',
-			'deprecated_configs' => [],
+			'deprecated_configs' => [ SCHEMA_COMPAT_READ_OLD ],
 		],
 		'existencelinks' => [
 			'config' => -1,

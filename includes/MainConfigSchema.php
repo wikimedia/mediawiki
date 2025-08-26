@@ -3330,14 +3330,12 @@ class MainConfigSchema {
 	 *
 	 * Use the SCHEMA_COMPAT_XXX flags. Supported values:
 	 *
-	 *   - SCHEMA_COMPAT_WRITE_OLD | SCHEMA_COMPAT_READ_OLD (SCHEMA_COMPAT_OLD)
-	 *   - SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD
 	 *   - SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW
 	 *   - SCHEMA_COMPAT_WRITE_NEW | SCHEMA_COMPAT_READ_NEW (SCHEMA_COMPAT_NEW)
 	 *
 	 * History:
 	 *   - 1.44: Added
-	 *   - 1.45: Added support for _READ_NEW,
+	 *   - 1.45: Added support for _READ_NEW, dropped support for _READ_OLD,
 	 *      changed default to SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW.
 	 */
 	public const CategoryLinksSchemaMigrationStage = [
