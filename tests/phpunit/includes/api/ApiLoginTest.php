@@ -7,12 +7,15 @@ use MediaWiki\Auth\AbstractSecondaryAuthenticationProvider;
 use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\UsernameAuthenticationRequest;
 use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Session\BotPasswordSessionProvider;
+use MediaWiki\Session\PHPSessionHandler;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\Session\Token;
 use MediaWiki\User\BotPassword;
 use MediaWiki\User\User;
 use MWRestrictions;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group API
@@ -22,6 +25,15 @@ use MWRestrictions;
  * @covers \MediaWiki\Api\ApiLogin
  */
 class ApiLoginTest extends ApiTestCase {
+
+	protected function setUp(): void {
+		parent::setUp();
+
+		$this->overrideConfigValue( MainConfigNames::PHPSessionHandling, 'enable' );
+		$handler = TestingAccessWrapper::newFromClass( PHPSessionHandler::class );
+		$handler->instance = null;
+		PHPSessionHandler::install( MediaWikiServices::getInstance()->getSessionManager() );
+	}
 
 	public static function provideEnableBotPasswords() {
 		return [
