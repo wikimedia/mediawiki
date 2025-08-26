@@ -2441,7 +2441,7 @@
 	"anoncontribs": "Кертемнәр",
 	"contribute": "Кертем",
 	"contributions-subtitle": "{{GENDER:$2|$1}} өчен нәтиҗәләр",
-	"contributions-edit-count": "$1 $2 төзәтмә ясаган.",
+	"contributions-edit-count": "{{GENDER:$1|Катнашучы}}$2 төзәтмә ясаган.",
 	"contributions-account-creation-date": "Хисап язмасы $1 датасында төзелгән.",
 	"contributions-userdoesnotexist": "Кулланучының \"$1\" хисап язмасы теркәлмәгән.",
 	"negative-namespace-not-supported": "Тискәре мәгънәле исемнәр пространствосы кулланылмый.",

@@ -3213,7 +3213,7 @@
 	"scarytranscludetoolong": "[Spletni naslov je predolg]",
 	"deletedwhileediting": "<strong>Opozorilo:</strong> Med vašim urejanjem je bila stran izbrisana!",
 	"editedwhiledeleting": "Stran, ki jo brišete, je bila urejena. Posimo, znova potrdite izbris.",
-	"confirmrecreate": "Medtem ko ste stran urejali, jo je {{GENDER:$1|uporabnik|uporabnica|uporabnik_ca}} [[User:$1|$1]] ([[User talk:$1|pogovor]]) {{GENDER:$1|izbrisal|izbrisala|izbrisal_a}} z razlogom:\n: <em>$2</em>\nProsimo, potrdite, da jo resnično želite znova ustvariti.",
+	"confirmrecreate": "Med vašim urejanjem strani jo je {{GENDER:$1|uporabnik|uporabnica|uporabnik_ca}} [[User:$1|$1]] ([[User talk:$1|pogovor]]) {{GENDER:$1|izbrisal|izbrisala|izbrisal_a}} z razlogom:\n: <em>$2</em>\nProsimo, potrdite, da jo res želite znova ustvariti.",
 	"confirmrecreate-noreason": "{{GENDER:$1|Uporabnik|Uporabnica|Uporabnik_ca}} [[User:$1|$1]] ([[User talk:$1|pogovor]]) je to stran {{GENDER:$1|izbrisal|izbrisala|izbrisal_a}} po začetku vašega urejanja. Potrdite, da jo resnično želite znova ustvariti.",
 	"recreate": "Znova ustvari",
 	"unit-pixel": " točk",

@@ -107,7 +107,8 @@
 			"리듬",
 			"Tensama0415",
 			"YeBoy371",
-			"Whatback11"
+			"Whatback11",
+			"Gustmd7410"
 		]
 	},
 	"sunday": "일요일",
@@ -1111,7 +1112,7 @@
 	"default": "기본값",
 	"linterror-bogus-image-options": "무효한 파일 옵션",
 	"linterror-deletable-table-tag": "삭제해야 하는 테이블 태그",
-	"linterror-fostered": "포스터 부모 요소에 상속되는 내용",
+	"linterror-fostered": "포스터 상위 요소에 상속되는 내용",
 	"linterror-html5-misnesting": "잘못 끼워넣음 (현재 깨져있는 상태)",
 	"linterror-inline-media-caption": "보이지 않는 캡션",
 	"linterror-large-tables": "모바일 장치에서 표시가 깨지는 큰 테이블",
@@ -1684,7 +1685,7 @@
 	"uploaded-href-unsafe-target-svg": "안전하지 않은 데이터를 가리키는 href를 발견했습니다: 업로드된 SVG 파일의 URI 대상 <code>&lt;$1 $2=\"$3\"&gt;</code>",
 	"uploaded-animate-svg": "업로드된 SVG 파일에서 \"from\" 특성 <code>&lt;$1 $2=\"$3\"&gt;</code>을 이용 중 \"animate\" 태그가 href를 변경할 수 있음을 발견했습니다.",
 	"uploaded-setting-event-handler-svg": "이벤트 핸들러 속성을 차단으로 설정한 상태에서 <code>&lt;$1 $2=\"$3\"&gt;</code>가 업로드된 SVG 파일에서 발견되었습니다.",
-	"uploaded-setting-href-svg": "부모 요소에 \"href\" 특성을 추가할 목적으로 \"set\" 태그를 사용하는 것은 금지됩니다.",
+	"uploaded-setting-href-svg": "상위 요소에 \"href\" 특성을 추가할 목적으로 \"set\" 태그를 사용하는 것은 금지됩니다.",
 	"uploaded-wrong-setting-svg": "원격/데이터/스크립트 대상을 임의의 특성에 추가할 목적으로 \"set\" 태그를 사용하는 것은 금지됩니다. 업로드된 SVG 파일에 <code>&lt;set to=\"$1\"&gt;</code>를 발견했습니다.",
 	"uploaded-setting-handler-svg": "원격/데이터/스크립트와 함께 \"handler\" 특성을 설정한 SVG는 이용이 금지됩니다. 업로드된 SVG 파일에서 <code>$1=\"$2\"</code>를 발견하였습니다.",
 	"uploaded-remote-url-svg": "원격 URL로 style 특성이 설정된 SVG파일은 금지됩니다. 업로드된 SVG 파일에서 <code>$1=\"$2\"</code>를 발견하였습니다.",

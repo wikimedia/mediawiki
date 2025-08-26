@@ -483,7 +483,7 @@
 	"apihelp-query+allcategories-param-limit": "כמה קטגוריות להחזיר.",
 	"apihelp-query+allcategories-param-prop": "אילו מאפיינים לקבל:",
 	"apihelp-query+allcategories-paramvalue-prop-size": "הוספת מספר הדפים בקטגוריה.",
-	"apihelp-query+allcategories-paramvalue-prop-hidden": "מתייג קטגוריות מוסתרות עם <code>_&#95;HIDDENCAT_&#95;</code>.",
+	"apihelp-query+allcategories-paramvalue-prop-hidden": "תיוג קטגוריות שמוסתרות עם <code>_&#95;HIDDENCAT_&#95;</code>.",
 	"apihelp-query+allcategories-example-size": "רשימת קטגוריות עם מידע על מספר הדפים בכל אחת מהן.",
 	"apihelp-query+allcategories-example-generator": "אחזור מידע על דף הקטגוריה עצמו עבור קטגוריות שמתחילות ב־<kbd>List</kbd>.",
 	"apihelp-query+alldeletedrevisions-summary": "רשימת כל הגרסאות המחוקות על־ידי משתמש או במרחב.",

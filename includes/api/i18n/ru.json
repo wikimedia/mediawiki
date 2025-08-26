@@ -62,7 +62,9 @@
 			"Марио",
 			"Yurina Tatiana",
 			"MidnightLG",
-			"Умар"
+			"Умар",
+			"Dolbaeb",
+			"Engineer56"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Документация]]\n* [[mw:Special:MyLanguage/API:Etiquette|Этикет и руководство по использованию]]\n* [[mw:Special:MyLanguage/API:FAQ|ЧЗВ]]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api.lists.wikimedia.org/ Почтовая рассылка]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/ Новости API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Ошибки и запросы]\n</div>\n<strong>Статус:</strong> MediaWiki API — зрелый и стабильный интерфейс, активно поддерживаемый и улучшаемый. Мы стараемся избегать ломающих изменений, однако изредка они могут быть необходимы. Подпишитесь на [https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ почтовую рассылку mediawiki-api-announce], чтобы быть в курсе обновлений.\n\n<strong>Ошибочные запросы:</strong> Если API получает запрос с ошибкой, вернётся заголовок HTTP с ключом «MediaWiki-API-Error», после чего значение заголовка и код ошибки будут отправлены обратно и установлены в то же значение. Более подробную информацию см. [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Ошибки и предупреждения]].\n\n<p class=\"mw-apisandbox-link\"><strong>Тестирование:</strong> для удобства тестирования API-запросов, см. [[Special:ApiSandbox]].</p>",
@@ -1181,7 +1183,7 @@
 	"apihelp-query+revisions+base-paramvalue-prop-content": "Содержание каждого слота версии. Если редакция содержимого была удалена, будет возвращено свойство <samp>texthidden</samp>.",
 	"apihelp-query+revisions+base-paramvalue-prop-tags": "Метки версии.",
 	"apihelp-query+revisions+base-paramvalue-prop-parsetree": "Используйте <kbd>[[Special:ApiHelp/expandtemplates|action=expandtemplates]]</kbd> или <kbd>[[Special:ApiHelp/parse|action=parse]]</kbd>. Дерево парсинга XML-содержимого версии (требуется модель содержимого <code>$1</code>).",
-	"apihelp-query+revisions+base-param-limit": "Сколько версий вернуть.",
+	"apihelp-query+revisions+base-param-limit": "Ограничьте сколько версий должно возвращаться. Если используется <var>$3prop=content</var>, <var>$3prop=parsetree</var>, <var>$3diffto</var> или <var>$3difftotext</var>, ограничение составляет $1. Если используется <var>$3parse</var>, ограничение составляет $2.",
 	"apihelp-query+revisions+base-param-expandtemplates": "Вместо этого используйте <kbd>[[Special:ApiHelp/expandtemplates|action=expandtemplates]]</kbd>. Раскрыть шаблоны в содержимом версии (требуется $1prop=content).",
 	"apihelp-query+revisions+base-param-generatexml": "Вместо этого используйте <kbd>[[Special:ApiHelp/expandtemplates|action=expandtemplates]]</kbd> или <kbd>[[Special:ApiHelp/parse|action=parse]]</kbd>. Сгенерировать дерево парсинга XML содержимого версии (требуется $1prop=content).",
 	"apihelp-query+revisions+base-param-parse": "Вместо этого используйте <kbd>[[Special:ApiHelp/parse|action=parse]]</kbd>. Распарсить содержимое версии (требуется <var>$2prop=content</var>). Из соображений производительности, при использовании этой опции, в качестве <var>$2limit</var> принудительно устанавливается $1.",

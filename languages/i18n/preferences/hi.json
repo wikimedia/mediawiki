@@ -98,7 +98,7 @@
 	"emailnotauthenticated": "आपके ईमेल पते की पुष्टि नहीं हुई है।\nनीचे दी गई किसी भी सुविधा के लिए आपको कोई भी ईमेल नहीं भेजा जाएगा।",
 	"emailconfirmlink": "अपने ईमेल पते की पुष्टि करें",
 	"prefs-emailconfirm-label": "ईमेल पुष्टीकरण:",
-	"emailauthenticated": "आपका ईमेल पता $2 को $3 बजे पुष्ट किया गया।",
+	"emailauthenticated": "आपका ईमेल पता $2 को $3 बजे पुष्ट किया गया था।",
 	"allowemail": "दूसरे सदस्यों को ईमेल भेजने की अनुमति दें",
 	"email-allow-new-users-label": "एकदम नए सदस्यों को ईमेल भेजने की अनुमति दें",
 	"prefs-help-email-allow-new-users": "इस विकल्प को सक्षम करने पर वे सदस्य आपको ईमेल भेज पाएँगे जो [[{{MediaWiki:grouppage-autoconfirmed}}|स्वतः स्थापित]] समूह में न हों।",
