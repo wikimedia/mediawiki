@@ -310,7 +310,7 @@
 	"createacct-continue-submit": "Kontinwé kréyasyon-an di kont",
 	"createacct-another-continue-submit": "Kontinwé kréyasyon-an di kont",
 	"createacct-benefit-heading": "{{SITENAME}} sa marké pa moun kou ou.",
-	"createacct-benefit-text1": "modifikasyon$2 {{PLURAL:$1|}}",
+	"createacct-benefit-text1": "$2 {{PLURAL:$1|modifikasyon}}",
 	"createacct-benefit-text2": "paj$2 {{PLURAL:$1|}}",
 	"createacct-benefit-text3": "$2 {{PLURAL:$1|kontribitò résan}}",
 	"badretype": "Kodsigré-ya ki ou sézi pa ka korèsponn.",

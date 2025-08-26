@@ -106,7 +106,7 @@
 	"config-type-mysql": "MariaDB, MySQL йа цхьаьнайогӀург",
 	"config-type-sqlite": "SQLite",
 	"config-support-info": "MediaWiki-с гӀо до хӀокху базийн урхаллин системашна:\n\n$1\n\nНагахь санна хьайна хьайн хаамийн лармин система оцу могӀамехь ца гича, лакхахь хьажорг йина тӀедахкарш леладе, гӀо эца.",
-	"config-dbsupport-mysql": "* [{{int:version-db-mysql-url}} MySQL] — MediaWiki коьрта база йу, уггаре а дика гӀо деш йу. MediaWiki иштта болх бо [{{int:version-db-mariadb-url}} MariaDB] а, [{{int:version-db-percona-url}} Percona Server] а, уьш MariaDB-ца йогӀуш йу. (Хьажа [https://www.php.net/manual/ru/mysql.installation.php MySQL гӀоьнца PHP муха кхолла йеза])",
+	"config-dbsupport-mysql": "* [{{int:version-db-mysql-url}} MySQL] — MediaWiki коьрта база йу, уггаре а дика гӀо деш йу. MediaWiki иштта болх бо [{{int:version-db-mariadb-url}} MariaDB] а, [{{int:version-db-percona-url}} Percona Server] а, уьш MariaDB-ца йогӀуш йу. (Хьажа [https://www.php.net/mysqli.installation MySQL гӀоьнца PHP муха кхолла йеза])",
 	"config-dbsupport-postgres": "* [{{int:version-db-postgres-url}} PostgreSQL] — MySQL-на альтернатива санна йевзаш йолу йиллина йуьхьанцара базийн система. ([https://www.php.net/manual/ru/pgsql.installation.php PHP гӀоьнца муха хӀотто йеза])",
 	"config-dbsupport-sqlite": "* [{{int:version-db-sqlite-url}} SQLite] — аттачу базийн система йу, вуно дика гӀоьнца. ([https://www.php.net/manual/ru/pdo.installation.php гӀоьнца PHP муха кхолла йеза], PDO-ца болх беш йолу)",
 	"config-header-mysql": "MariaDB/MySQL нисйар",

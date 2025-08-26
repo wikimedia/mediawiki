@@ -356,7 +356,7 @@
 	"createacct-continue-submit": "Hald fram med kontooppretting",
 	"createacct-another-continue-submit": "Hald fram med kontooppretting",
 	"createacct-benefit-heading": "{{SITENAME}} er laga av folk som deg.",
-	"createacct-benefit-text1": "$2 {{PLURAL:$1|éi endring|$1 endringar}}",
+	"createacct-benefit-text1": "$2 {{PLURAL:$1|endring|endringar}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|éi side|$1 sider}}",
 	"createacct-benefit-text3": "$2 {{PLURAL:$1|nyleg bidragsytar|nylege bidragsytarar}}",
 	"badretype": "Passorda du skreiv inn er ikkje like.",

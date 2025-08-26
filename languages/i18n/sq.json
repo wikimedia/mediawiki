@@ -2636,7 +2636,7 @@
 	"watchlistedit-normal-legend": "Largo titujt nga lista e vëzhgimit",
 	"watchlistedit-normal-explain": "Titujt në listën tënde të vëzhgimit janë të shfaqur më poshtë.\nPër të hequr një titull, shëno kutinë pranë tij dhe kliko \"{{int:Watchlistedit-normal-submit}}\".\nMundesh gjithashtu të [[Special:EditWatchlist/raw|redaktosh drejtpërsëdrejti listën]].",
 	"watchlistedit-normal-submit": "Hiq titujt",
-	"watchlistedit-normal-check-all": "Shëno të gjithë",
+	"watchlistedit-normal-check-all": "Shëno të gjitha",
 	"watchlistedit-normal-done": "{{PLURAL:$1|Një titull i vetëm u hoq|$1 tituj u hoqën}} nga lista jote e vëzhgimit:",
 	"watchlistedit-raw-title": "Redakto drejtpërsëdrejti listën e vëzhgimit",
 	"watchlistedit-raw-legend": "Redakto drejtpërsëdrejti listën e vëzhgimit",
