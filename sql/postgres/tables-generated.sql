@@ -117,21 +117,13 @@ CREATE INDEX cat_pages ON category (cat_pages);
 CREATE TABLE categorylinks (
   cl_from INT DEFAULT 0 NOT NULL,
   cl_target_id BIGINT NOT NULL,
-  cl_to TEXT DEFAULT '' NOT NULL,
   cl_sortkey TEXT DEFAULT '' NOT NULL,
   cl_sortkey_prefix TEXT DEFAULT '' NOT NULL,
   cl_timestamp TIMESTAMPTZ NOT NULL,
-  cl_collation TEXT DEFAULT '' NOT NULL,
   cl_type TEXT DEFAULT 'page' NOT NULL,
   cl_collation_id SMALLINT DEFAULT 0 NOT NULL,
   PRIMARY KEY(cl_from, cl_target_id)
 );
-
-CREATE INDEX cl_sortkey ON categorylinks (
-  cl_to, cl_type, cl_sortkey, cl_from
-);
-
-CREATE INDEX cl_timestamp ON categorylinks (cl_to, cl_timestamp);
 
 CREATE INDEX cl_sortkey_id ON categorylinks (
   cl_target_id, cl_type, cl_sortkey,

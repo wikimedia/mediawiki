@@ -418,6 +418,19 @@ TEXT
 	}
 
 	private function runNormalizationMigration() {
+		if ( !$this->dbw->fieldExists( 'categorylinks', 'cl_collation', __METHOD__ ) ) {
+			$this->output( "The cl_collation column appears to already be normalized. Skipping.\n" );
+			return;
+		}
+		if ( !$this->dbw->fieldExists( 'categorylinks', 'cl_collation_id', __METHOD__ ) ) {
+			$this->output( "The cl_collation_id column doesn't exist. Run update.php to create it.\n" );
+			return;
+		}
+		if ( !$this->dbw->tableExists( 'collation', __METHOD__ ) ) {
+			$this->output( "The collation table doesn't exist. Run update.php to create it.\n" );
+			return;
+		}
+
 		$maxPageId = (int)$this->dbr->newSelectQueryBuilder()
 			->select( 'MAX(page_id)' )
 			->from( 'page' )

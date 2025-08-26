@@ -1444,18 +1444,6 @@ abstract class DatabaseUpdater {
 			$this->output( "...collation table has already been normalized.\n" );
 			return;
 		}
-		if ( !$this->fieldExists( 'categorylinks', 'cl_collation' ) ) {
-			$this->output( "The cl_collation column appears to already be normalized. Skipping.\n" );
-			return;
-		}
-		if ( !$this->fieldExists( 'categorylinks', 'cl_collation_id' ) ) {
-			$this->output( "The cl_collation_id column doesn't exist. Run update.php to create it.\n" );
-			return;
-		}
-		if ( !$this->tableExists( 'collation' ) ) {
-			$this->output( "The collation table doesn't exist. Run update.php to create it.\n" );
-			return;
-		}
 		/**
 		 * @var UpdateCollation $task
 		 */
