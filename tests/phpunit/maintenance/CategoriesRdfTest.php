@@ -50,7 +50,7 @@ class CategoriesRdfTest extends MediaWikiLangTestCase {
 	public function getCategoryLinksIterator( $dbr, array $ids ) {
 		$res = [];
 		foreach ( $ids as $pageid ) {
-			$res[] = (object)[ 'cl_from' => $pageid, 'cl_to' => "Parent of $pageid" ];
+			$res[] = (object)[ 'cl_from' => $pageid, 'lt_title' => "Parent of $pageid" ];
 		}
 		return $res;
 	}

@@ -21,7 +21,6 @@
  * @ingroup Maintenance
  */
 
-use MediaWiki\MainConfigNames;
 use MediaWiki\Maintenance\Maintenance;
 use Wikimedia\Rdbms\RawSQLExpression;
 
@@ -139,25 +138,14 @@ TEXT
 
 		$dbr = $this->getDB( DB_REPLICA, 'vslow' );
 
-		$migrationStage = $this->getServiceContainer()->getMainConfig()->get(
-			MainConfigNames::CategoryLinksSchemaMigrationStage
-		);
-
-		if ( $migrationStage & SCHEMA_COMPAT_READ_OLD ) {
-			$queryBuilder = $dbr->newSelectQueryBuilder()
-				->select( 'COUNT(*)' )
-				->from( 'categorylinks' )
-				->where( 'cl_to = cat_title' );
-		} else {
-			$queryBuilder = $dbr->newSelectQueryBuilder()
-				->select( 'COUNT(*)' )
-				->from( 'categorylinks' )
-				->join( 'linktarget', null, 'cl_target_id = lt_id' )
-				->where( [
-					new RawSQLExpression( 'lt_title = cat_title' ),
-					'lt_namespace' => NS_CATEGORY,
-				] );
-		}
+		$queryBuilder = $dbr->newSelectQueryBuilder()
+			->select( 'COUNT(*)' )
+			->from( 'categorylinks' )
+			->join( 'linktarget', null, 'cl_target_id = lt_id' )
+			->where( [
+				new RawSQLExpression( 'lt_title = cat_title' ),
+				'lt_namespace' => NS_CATEGORY,
+			] );
 
 		if ( $mode === 'subcats' ) {
 			$queryBuilder->andWhere( [ 'cl_type' => 'subcat' ] );

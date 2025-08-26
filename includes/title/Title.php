@@ -2946,29 +2946,20 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 			return $data;
 		}
 
-		$migrationStage = MediaWikiServices::getInstance()->getMainConfig()->get(
-			MainConfigNames::CategoryLinksSchemaMigrationStage
-		);
-
 		$dbr = $this->getDbProvider()->getReplicaDatabase();
-		$queryBuilder = $dbr->newSelectQueryBuilder()
+		$res = $dbr->newSelectQueryBuilder()
+			->select( 'lt_title' )
 			->from( 'categorylinks' )
-			->where( [ 'cl_from' => $titleKey ] );
-
-		if ( $migrationStage & SCHEMA_COMPAT_READ_OLD ) {
-			$queryBuilder->select( 'cl_to' );
-		} else {
-			$queryBuilder->field( 'lt_title', 'cl_to' )
-				->join( 'linktarget', null, 'cl_target_id = lt_id' )
-				->where( [ 'lt_namespace' => NS_CATEGORY ] );
-		}
-		$res = $queryBuilder->caller( __METHOD__ )->fetchResultSet();
+			->join( 'linktarget', null, 'cl_target_id = lt_id' )
+			->where( [ 'cl_from' => $titleKey, 'lt_namespace' => NS_CATEGORY ] )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 
 		if ( $res->numRows() > 0 ) {
 			$contLang = MediaWikiServices::getInstance()->getContentLanguage();
 			foreach ( $res as $row ) {
-				// $data[] = Title::newFromText( $contLang->getNsText ( NS_CATEGORY ).':'.$row->cl_to);
-				$data[$contLang->getNsText( NS_CATEGORY ) . ':' . $row->cl_to] =
+				// $data[] = Title::newFromText( $contLang->getNsText ( NS_CATEGORY ).':'.$row->lt_title);
+				$data[$contLang->getNsText( NS_CATEGORY ) . ':' . $row->lt_title] =
 					$this->getFullText();
 			}
 		}

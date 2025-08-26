@@ -95,32 +95,16 @@ class DumpCategoriesAsRdf extends Maintenance {
 	 * @return Traversable
 	 */
 	public function getCategoryLinksIterator( IReadableDatabase $dbr, array $ids, $fname ) {
-		$migrationStage = $this->getServiceContainer()->getMainConfig()->get(
-			MainConfigNames::CategoryLinksSchemaMigrationStage
-		);
-
-		if ( $migrationStage & SCHEMA_COMPAT_READ_OLD ) {
-			$qb = $dbr->newSelectQueryBuilder()
-				->select( [ 'cl_from', 'cl_to' ] )
-				->from( 'categorylinks' )
-				->where( [
-					'cl_type' => 'subcat',
-					'cl_from' => $ids
-				] )
-				->caller( $fname );
-				$primaryKey = [ 'cl_from', 'cl_to' ];
-		} else {
-			$qb = $dbr->newSelectQueryBuilder()
-				->select( [ 'cl_from', 'cl_to' => 'lt_title' ] )
-				->from( 'categorylinks' )
-				->join( 'linktarget', null, 'cl_target_id=lt_id' )
-				->where( [
-					'cl_type' => 'subcat',
-					'cl_from' => $ids
-				] )
-				->caller( $fname );
-				$primaryKey = [ 'cl_from', 'cl_target_id' ];
-		}
+		$qb = $dbr->newSelectQueryBuilder()
+			->select( [ 'cl_from', 'lt_title' ] )
+			->from( 'categorylinks' )
+			->join( 'linktarget', null, 'cl_target_id=lt_id' )
+			->where( [
+				'cl_type' => 'subcat',
+				'cl_from' => $ids
+			] )
+			->caller( $fname );
+			$primaryKey = [ 'cl_from', 'cl_target_id' ];
 
 		$it = new BatchRowIterator(
 			$dbr,
@@ -185,7 +169,7 @@ class DumpCategoriesAsRdf extends Maintenance {
 			}
 
 			foreach ( $this->getCategoryLinksIterator( $dbr, array_keys( $pages ), __METHOD__ ) as $row ) {
-				$this->categoriesRdf->writeCategoryLinkData( $pages[$row->cl_from], $row->cl_to );
+				$this->categoriesRdf->writeCategoryLinkData( $pages[$row->cl_from], $row->lt_title );
 			}
 			fwrite( $output, $this->rdfWriter->drain() );
 		}

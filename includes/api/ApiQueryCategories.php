@@ -22,7 +22,6 @@
 
 namespace MediaWiki\Api;
 
-use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
@@ -34,13 +33,8 @@ use Wikimedia\ParamValidator\TypeDef\IntegerDef;
  */
 class ApiQueryCategories extends ApiQueryGeneratorBase {
 
-	private int $migrationStage;
-
 	public function __construct( ApiQuery $query, string $moduleName ) {
 		parent::__construct( $query, $moduleName, 'cl' );
-		$this->migrationStage = $query->getConfig()->get(
-			MainConfigNames::CategoryLinksSchemaMigrationStage
-		);
 	}
 
 	public function execute() {
@@ -70,23 +64,16 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 		$prop = array_fill_keys( (array)$params['prop'], true );
 		$show = array_fill_keys( (array)$params['show'], true );
 
+		$this->addFields( [ 'cl_from', 'lt_title' ] );
 		$this->addFieldsIf( [ 'cl_sortkey', 'cl_sortkey_prefix' ], isset( $prop['sortkey'] ) );
 		$this->addFieldsIf( 'cl_timestamp', isset( $prop['timestamp'] ) );
 
 		$this->addTables( 'categorylinks' );
-		if ( $this->migrationStage & SCHEMA_COMPAT_READ_OLD ) {
-			$titleField = 'cl_to';
-		} else {
-			$this->addTables( 'linktarget' );
-			$this->addJoinConds( [ 'linktarget' => [ 'JOIN', 'cl_target_id = lt_id ' ] ] );
-			$this->addWhere( [ 'lt_namespace' => NS_CATEGORY ] );
-			$titleField = 'lt_title';
-		}
-		$this->addFields( [
-			'cl_from',
-			$titleField
-		] );
+		$this->addTables( 'linktarget' );
+		$this->addJoinConds( [ 'linktarget' => [ 'JOIN', 'cl_target_id = lt_id ' ] ] );
+		$this->addWhere( [ 'lt_namespace' => NS_CATEGORY ] );
 		$this->addWhereFld( 'cl_from', array_keys( $pages ) );
+
 		if ( $params['categories'] ) {
 			$cats = [];
 			foreach ( $params['categories'] as $cat ) {
@@ -101,7 +88,7 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 				// No titles so no results
 				return;
 			}
-			$this->addWhereFld( $titleField, $cats );
+			$this->addWhereFld( 'lt_title', $cats );
 		}
 
 		if ( $params['continue'] !== null ) {
@@ -110,7 +97,7 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 			$op = $params['dir'] == 'descending' ? '<=' : '>=';
 			$this->addWhere( $db->buildComparison( $op, [
 				'cl_from' => $cont[0],
-				$titleField => $cont[1],
+				'lt_title' => $cont[1],
 			] ) );
 		}
 
@@ -124,7 +111,7 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 			$this->addJoinConds( [
 				'page' => [ 'LEFT JOIN', [
 					'page_namespace' => NS_CATEGORY,
-					'page_title = ' . $titleField ] ],
+					'page_title = lt_title' ] ],
 				'page_props' => [ 'LEFT JOIN', [
 					'pp_page=page_id',
 					'pp_propname' => 'hiddencat' ] ]
@@ -139,11 +126,11 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 		$sort = ( $params['dir'] == 'descending' ? ' DESC' : '' );
 		// Don't order by cl_from if it's constant in the WHERE clause
 		if ( count( $pages ) === 1 ) {
-			$this->addOption( 'ORDER BY', $titleField . $sort );
+			$this->addOption( 'ORDER BY', 'lt_title' . $sort );
 		} else {
 			$this->addOption( 'ORDER BY', [
 				'cl_from' . $sort,
-				$titleField . $sort
+				'lt_title' . $sort
 			] );
 		}
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
@@ -156,11 +143,11 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 				if ( ++$count > $params['limit'] ) {
 					// We've reached the one extra which shows that
 					// there are additional pages to be had. Stop here...
-					$this->setContinueEnumParameter( 'continue', $row->cl_from . '|' . $row->$titleField );
+					$this->setContinueEnumParameter( 'continue', $row->cl_from . '|' . $row->lt_title );
 					break;
 				}
 
-				$title = Title::makeTitle( NS_CATEGORY, $row->$titleField );
+				$title = Title::makeTitle( NS_CATEGORY, $row->lt_title );
 				$vals = [];
 				ApiQueryBase::addTitleInfo( $vals, $title );
 				if ( isset( $prop['sortkey'] ) ) {
@@ -176,7 +163,7 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 
 				$fit = $this->addPageSubItem( $row->cl_from, $vals );
 				if ( !$fit ) {
-					$this->setContinueEnumParameter( 'continue', $row->cl_from . '|' . $row->$titleField );
+					$this->setContinueEnumParameter( 'continue', $row->cl_from . '|' . $row->lt_title );
 					break;
 				}
 			}
@@ -186,11 +173,11 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 				if ( ++$count > $params['limit'] ) {
 					// We've reached the one extra which shows that
 					// there are additional pages to be had. Stop here...
-					$this->setContinueEnumParameter( 'continue', $row->cl_from . '|' . $row->$titleField );
+					$this->setContinueEnumParameter( 'continue', $row->cl_from . '|' . $row->lt_title );
 					break;
 				}
 
-				$titles[] = Title::makeTitle( NS_CATEGORY, $row->$titleField );
+				$titles[] = Title::makeTitle( NS_CATEGORY, $row->lt_title );
 			}
 			$resultPageSet->populateFromTitles( $titles );
 		}

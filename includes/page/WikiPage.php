@@ -2666,22 +2666,13 @@ class WikiPage implements Stringable, Page, PageRecord {
 		}
 
 		$dbr = $services->getConnectionProvider()->getReplicaDatabase();
-		$qb = $dbr->newSelectQueryBuilder()
-			->from( 'categorylinks' );
-
-		$migrationStage = $services->getMainConfig()->get(
-			MainConfigNames::CategoryLinksSchemaMigrationStage
-		);
-
-		if ( $migrationStage & SCHEMA_COMPAT_READ_OLD ) {
-			$qb->select( [ 'page_title' => 'cl_to', 'page_namespace' => (string)NS_CATEGORY ] );
-		} else {
-			$qb->select( [ 'page_title' => 'lt_title', 'page_namespace' => (string)NS_CATEGORY ] )
-				->join( 'linktarget', null, [ 'cl_target_id = lt_id', 'lt_namespace = ' . NS_CATEGORY ] );
-		}
-
-		$res = $qb->where( [ 'cl_from' => $id ] )
-			->caller( __METHOD__ )->fetchResultSet();
+		$res = $dbr->newSelectQueryBuilder()
+			->select( [ 'page_title' => 'lt_title', 'page_namespace' => (string)NS_CATEGORY ] )
+			->from( 'categorylinks' )
+			->join( 'linktarget', null, [ 'cl_target_id = lt_id', 'lt_namespace = ' . NS_CATEGORY ] )
+			->where( [ 'cl_from' => $id ] )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 
 		return $services->getTitleFactory()->newTitleArrayFromResult( $res );
 	}
@@ -2701,28 +2692,18 @@ class WikiPage implements Stringable, Page, PageRecord {
 		}
 
 		$dbr = $this->getConnectionProvider()->getReplicaDatabase();
-		$qb = $dbr->newSelectQueryBuilder()
-			->from( 'categorylinks' );
-
-		$migrationStage = MediaWikiServices::getInstance()->getMainConfig()->get(
-			MainConfigNames::CategoryLinksSchemaMigrationStage
-		);
-
-		if ( $migrationStage & SCHEMA_COMPAT_READ_OLD ) {
-			$qb->select( [ 'cl_to' ] )
-				->join( 'page', null, 'page_title = cl_to' );
-		} else {
-			$qb->select( [ 'cl_to' => 'lt_title' ] )
-				->join( 'linktarget', null, 'cl_target_id = lt_id' )
-				->join( 'page', null, [ 'page_title = lt_title', 'page_namespace = lt_namespace' ] );
-		}
-
-		$res = $qb->join( 'page_props', null, 'pp_page=page_id' )
+		$res = $dbr->newSelectQueryBuilder()
+			->select( 'lt_title' )
+			->from( 'categorylinks' )
+			->join( 'linktarget', null, 'cl_target_id = lt_id' )
+			->join( 'page', null, [ 'page_title = lt_title', 'page_namespace = lt_namespace' ] )
+			->join( 'page_props', null, 'pp_page=page_id' )
 			->where( [ 'cl_from' => $id, 'pp_propname' => 'hiddencat', 'page_namespace' => NS_CATEGORY ] )
-			->caller( __METHOD__ )->fetchResultSet();
+			->caller( __METHOD__ )
+			->fetchResultSet();
 
 		foreach ( $res as $row ) {
-			$result[] = Title::makeTitle( NS_CATEGORY, $row->cl_to );
+			$result[] = Title::makeTitle( NS_CATEGORY, $row->lt_title );
 		}
 
 		return $result;

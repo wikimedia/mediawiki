@@ -22,8 +22,6 @@ namespace MediaWiki\Specials;
 
 use BadMethodCallException;
 use MediaWiki\HTMLForm\HTMLForm;
-use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\SpecialPage\FormSpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
@@ -219,24 +217,16 @@ class SpecialRandomInCategory extends FormSpecialPage {
 			throw new BadMethodCallException( 'No category set' );
 		}
 		$dbr = $this->dbProvider->getReplicaDatabase();
-		$categoryLinksMigrationStage = MediaWikiServices::getInstance()->getMainConfig()->get(
-			MainConfigNames::CategoryLinksSchemaMigrationStage
-		);
 		$queryBuilder = $dbr->newSelectQueryBuilder()
 			->select( [ 'page_title', 'page_namespace' ] )
 			->from( 'categorylinks' )
+			->join( 'linktarget', null, 'cl_target_id = lt_id' )
 			->join( 'page', null, 'cl_from = page_id' )
-
+			->where( [ 'lt_title' => $this->category->getDBkey(), 'lt_namespace' => NS_CATEGORY ] )
 			->andWhere( $this->extra )
 			->orderBy( 'cl_timestamp', $up ? SelectQueryBuilder::SORT_ASC : SelectQueryBuilder::SORT_DESC )
 			->limit( 1 )
 			->offset( $offset );
-		if ( $categoryLinksMigrationStage & SCHEMA_COMPAT_READ_OLD ) {
-			$queryBuilder->where( [ 'cl_to' => $this->category->getDBkey() ] );
-		} else {
-			$queryBuilder->join( 'linktarget', null, 'cl_target_id = lt_id' )
-				->where( [ 'lt_title' => $this->category->getDBkey(), 'lt_namespace' => NS_CATEGORY ] );
-		}
 
 		$minClTime = $this->getTimestampOffset( $rand );
 		if ( $minClTime ) {
@@ -278,19 +268,14 @@ class SpecialRandomInCategory extends FormSpecialPage {
 	 */
 	protected function getMinAndMaxForCat() {
 		$dbr = $this->dbProvider->getReplicaDatabase();
-		$categoryLinksMigrationStage = MediaWikiServices::getInstance()->getMainConfig()->get(
-			MainConfigNames::CategoryLinksSchemaMigrationStage
-		);
-		$queryBuilder = $dbr->newSelectQueryBuilder()
+		$res = $dbr->newSelectQueryBuilder()
 			->select( [ 'low' => 'MIN( cl_timestamp )', 'high' => 'MAX( cl_timestamp )' ] )
-			->from( 'categorylinks' );
-		if ( $categoryLinksMigrationStage & SCHEMA_COMPAT_READ_OLD ) {
-			$queryBuilder->where( [ 'cl_to' => $this->category->getDBkey(), ] );
-		} else {
-			$queryBuilder->join( 'linktarget', null, 'cl_target_id = lt_id' )
-				->where( [ 'lt_title' => $this->category->getDBkey(), 'lt_namespace' => NS_CATEGORY ] );
-		}
-		$res = $queryBuilder->caller( __METHOD__ )->fetchRow();
+			->from( 'categorylinks' )
+			->join( 'linktarget', null, 'cl_target_id = lt_id' )
+			->where( [ 'lt_title' => $this->category->getDBkey(), 'lt_namespace' => NS_CATEGORY ] )
+			->caller( __METHOD__ )
+			->fetchRow();
+
 		if ( !$res ) {
 			return null;
 		}

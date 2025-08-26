@@ -105,8 +105,6 @@ class CategoryViewer extends ContextSource {
 	/** @var ILanguageConverter */
 	private $languageConverter;
 
-	private int $migrationStage;
-
 	/**
 	 * @since 1.19 $context is a second, required parameter
 	 * @param PageIdentity $page
@@ -139,7 +137,6 @@ class CategoryViewer extends ContextSource {
 		$this->from = $from;
 		$this->until = $until;
 		$this->limit = $context->getConfig()->get( MainConfigNames::CategoryPagingLimit );
-		$this->migrationStage = $context->getConfig()->get( MainConfigNames::CategoryLinksSchemaMigrationStage );
 		$this->cat = Category::newFromTitle( $page );
 		$this->query = $query;
 		$this->collation = MediaWikiServices::getInstance()->getCollationFactory()->getCategoryCollation();
@@ -417,6 +414,7 @@ class CategoryViewer extends ContextSource {
 						'cat_pages',
 						'cat_files',
 						'cl_sortkey_prefix',
+						'collation_name',
 					]
 				) )
 				->from( 'page' )
@@ -430,24 +428,15 @@ class CategoryViewer extends ContextSource {
 
 			$queryBuilder
 				->join( 'categorylinks', null, [ 'cl_from = page_id' ] )
+				->join( 'linktarget', null, 'cl_target_id = lt_id' )
+				->straightJoin( 'collation', null, 'cl_collation_id = collation_id' )
+				->where( [ 'lt_title' => $this->page->getDBkey(), 'lt_namespace' => NS_CATEGORY ] )
 				->leftJoin( 'category', null, [
 					'cat_title = page_title',
 					'page_namespace' => NS_CATEGORY
 				] )
+				->useIndex( [ 'categorylinks' => 'cl_sortkey_id' ] )
 				->limit( $this->limit + 1 );
-			if ( $this->migrationStage & SCHEMA_COMPAT_READ_OLD ) {
-				$queryBuilder->where( [ 'cl_to' => $this->page->getDBkey() ] )
-					->field( 'cl_collation' )
-					->useIndex( [ 'categorylinks' => 'cl_sortkey' ] );
-			} else {
-				$queryBuilder->join( 'linktarget', null, 'cl_target_id = lt_id' )
-					->where( [ 'lt_title' => $this->page->getDBkey(), 'lt_namespace' => NS_CATEGORY ] );
-
-				$queryBuilder->straightJoin( 'collation', null, 'cl_collation_id = collation_id' )
-					->field( 'collation_name', 'cl_collation' );
-
-				$queryBuilder->useIndex( [ 'categorylinks' => 'cl_sortkey_id' ] );
-			}
 
 			$res = $queryBuilder->caller( __METHOD__ )->fetchResultSet();
 
@@ -459,7 +448,7 @@ class CategoryViewer extends ContextSource {
 				$title = Title::newFromRow( $row );
 				$linkCache->addGoodLinkObjFromRow( $title, $row );
 
-				if ( $row->cl_collation === '' ) {
+				if ( $row->collation_name === '' ) {
 					// Hack to make sure that while updating from 1.16 schema
 					// and db is inconsistent, that the sky doesn't fall.
 					// See r83544. Could perhaps be removed in a couple decades...

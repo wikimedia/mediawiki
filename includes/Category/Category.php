@@ -24,7 +24,6 @@
 namespace MediaWiki\Category;
 
 use MediaWiki\Deferred\DeferredUpdates;
-use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Title\Title;
@@ -34,7 +33,6 @@ use RuntimeException;
 use stdClass;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\ReadOnlyMode;
-use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
  * Category objects are immutable, strictly speaking. If you call methods that change the database,
@@ -79,16 +77,11 @@ class Category {
 	/** @var TitleFactory */
 	private $titleFactory;
 
-	private int $migrationStage;
-
 	private function __construct() {
 		$services = MediaWikiServices::getInstance();
 		$this->dbProvider = $services->getConnectionProvider();
 		$this->readOnlyMode = $services->getReadOnlyMode();
 		$this->titleFactory = $services->getTitleFactory();
-		$this->migrationStage = $services->getMainConfig()->get(
-			MainConfigNames::CategoryLinksSchemaMigrationStage
-		);
 	}
 
 	/**
@@ -349,8 +342,9 @@ class Category {
 				'page_is_redirect', 'page_latest' ] )
 			->from( 'categorylinks' )
 			->join( 'page', null, [ 'cl_from = page_id' ] )
+			->join( 'linktarget', null, 'cl_target_id = lt_id' )
+			->where( [ 'lt_title' => $this->getName(), 'lt_namespace' => NS_CATEGORY ] )
 			->orderBy( 'cl_sortkey' );
-		$this->addWhereonCategoryName( $queryBuilder, $this->getName() );
 
 		if ( $limit ) {
 			$queryBuilder->limit( $limit );
@@ -412,40 +406,46 @@ class Category {
 			->forUpdate()
 			->acquireRowLocks();
 
-		$queryBuilder = $dbw->newSelectQueryBuilder()
+		$rowCount = $dbw->newSelectQueryBuilder()
 			->select( '*' )
 			->from( 'categorylinks' )
 			->join( 'page', null, 'page_id = cl_from' )
-			->limit( 110 );
-		$this->addWhereonCategoryName( $queryBuilder, $this->mName );
-		$rowCount = $queryBuilder->caller( __METHOD__ )->fetchRowCount();
+			->join( 'linktarget', null, 'cl_target_id = lt_id' )
+			->where( [ 'lt_title' => $this->mName, 'lt_namespace' => NS_CATEGORY ] )
+			->limit( 110 )
+			->caller( __METHOD__ )
+			->fetchRowCount();
+
 		// Only lock if there are below 100 rows (T352628)
 		if ( $rowCount < 100 ) {
 			// Lock all the `categorylinks` records and gaps for this category;
 			// this is a separate query due to postgres limitations
-			$queryBuilder = $dbw->newSelectQueryBuilder()
+			$dbw->newSelectQueryBuilder()
 				->select( '*' )
 				->from( 'categorylinks' )
+				->join( 'linktarget', null, 'cl_target_id = lt_id' )
 				->join( 'page', null, 'page_id = cl_from' )
-				->lockInShareMode();
-			$this->addWhereonCategoryName( $queryBuilder, $this->mName );
-
-			$queryBuilder->caller( __METHOD__ )->acquireRowLocks();
+				->where( [ 'lt_title' => $this->mName, 'lt_namespace' => NS_CATEGORY ] )
+				->lockInShareMode()
+				->caller( __METHOD__ )
+				->acquireRowLocks();
 		}
 
 		// Get the aggregate `categorylinks` row counts for this category
 		$catCond = $dbw->conditional( [ 'page_namespace' => NS_CATEGORY ], '1', 'NULL' );
 		$fileCond = $dbw->conditional( [ 'page_namespace' => NS_FILE ], '1', 'NULL' );
-		$queryBuilder = $dbw->newSelectQueryBuilder()
+		$result = $dbw->newSelectQueryBuilder()
 			->select( [
 				'pages' => 'COUNT(*)',
 				'subcats' => "COUNT($catCond)",
 				'files' => "COUNT($fileCond)"
 			] )
 			->from( 'categorylinks' )
-			->join( 'page', null, 'page_id = cl_from' );
-		$this->addWhereonCategoryName( $queryBuilder, $this->mName );
-		$result = $queryBuilder->caller( __METHOD__ )->fetchRow();
+			->join( 'linktarget', null, 'cl_target_id = lt_id' )
+			->join( 'page', null, 'page_id = cl_from' )
+			->where( [ 'lt_title' => $this->mName, 'lt_namespace' => NS_CATEGORY ] )
+			->caller( __METHOD__ )
+			->fetchRow();
 
 		$shouldExist = $result->pages > 0 || $this->getPage()->exists();
 
@@ -536,12 +536,14 @@ class Category {
 		$dbw = $this->dbProvider->getPrimaryDatabase();
 		$dbw->startAtomic( __METHOD__ );
 
-		$queryBuilder = $dbw->newSelectQueryBuilder()
+		$typeOccurances = $dbw->newSelectQueryBuilder()
 			->select( 'cl_type' )
 			->from( 'categorylinks' )
-			->limit( $maxSize + 1 );
-		$this->addWhereonCategoryName( $queryBuilder, $this->getName() );
-		$typeOccurances = $queryBuilder->caller( __METHOD__ )->fetchFieldValues();
+			->join( 'linktarget', null, 'cl_target_id = lt_id' )
+			->where( [ 'lt_title' => $this->getName(), 'lt_namespace' => NS_CATEGORY ] )
+			->limit( $maxSize + 1 )
+			->caller( __METHOD__ )
+			->fetchFieldValues();
 
 		if ( !$typeOccurances ) {
 			$doRefresh = true; // delete any category table entry
@@ -570,14 +572,5 @@ class Category {
 		}
 
 		return false;
-	}
-
-	private function addWhereonCategoryName( SelectQueryBuilder $queryBuilder, string $name ) {
-		if ( $this->migrationStage & SCHEMA_COMPAT_READ_OLD ) {
-			$queryBuilder->where( [ 'cl_to' => $name ] );
-		} else {
-			$queryBuilder->join( 'linktarget', null, 'cl_target_id = lt_id' )
-				->where( [ 'lt_title' => $name, 'lt_namespace' => NS_CATEGORY ] );
-		}
 	}
 }

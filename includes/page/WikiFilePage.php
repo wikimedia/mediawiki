@@ -25,7 +25,6 @@ use MediaWiki\FileRepo\File\File;
 use MediaWiki\FileRepo\File\LocalFile;
 use MediaWiki\FileRepo\LocalRepo;
 use MediaWiki\JobQueue\Jobs\HTMLCacheUpdateJob;
-use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleArrayFromResult;
@@ -209,8 +208,7 @@ class WikiFilePage extends WikiPage {
 		$this->loadFile();
 		$title = $this->mTitle;
 		$file = $this->mFile;
-		$services = MediaWikiServices::getInstance();
-		$titleFactory = $services->getTitleFactory();
+		$titleFactory = MediaWikiServices::getInstance()->getTitleFactory();
 
 		if ( !$file instanceof LocalFile ) {
 			wfDebug( __METHOD__ . " is not supported for this file" );
@@ -220,23 +218,14 @@ class WikiFilePage extends WikiPage {
 		/** @var LocalRepo $repo */
 		$repo = $file->getRepo();
 		$dbr = $repo->getReplicaDB();
-		$qb = $dbr->newSelectQueryBuilder()
+		$res = $dbr->newSelectQueryBuilder()
+			->select( [ 'page_title' => 'lt_title', 'page_namespace' => (string)NS_CATEGORY ] )
 			->from( 'page' )
 			->join( 'categorylinks', null, 'page_id = cl_from' )
-			->where( [ 'page_namespace' => $title->getNamespace(), 'page_title' => $title->getDBkey(), ] );
-
-		$migrationStage = $services->getMainConfig()->get(
-			MainConfigNames::CategoryLinksSchemaMigrationStage
-		);
-
-		if ( $migrationStage & SCHEMA_COMPAT_READ_OLD ) {
-			$qb->select( [ 'page_title' => 'cl_to', 'page_namespace' => (string)NS_CATEGORY ] );
-		} else {
-			$qb->select( [ 'page_title' => 'lt_title', 'page_namespace' => (string)NS_CATEGORY ] )
-				->join( 'linktarget', null, 'cl_target_id = lt_id' );
-		}
-
-		$res = $qb->caller( __METHOD__ )->fetchResultSet();
+			->join( 'linktarget', null, 'cl_target_id = lt_id' )
+			->where( [ 'page_namespace' => $title->getNamespace(), 'page_title' => $title->getDBkey(), ] )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 
 		return $titleFactory->newTitleArrayFromResult( $res );
 	}
