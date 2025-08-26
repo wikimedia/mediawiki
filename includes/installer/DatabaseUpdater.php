@@ -1407,8 +1407,20 @@ abstract class DatabaseUpdater {
 	}
 
 	protected function normalizeCollation() {
-		if ( $this->updateRowExists( UpdateCollation::class . 'normalization' ) ) {
+		if ( $this->updateRowExists( 'normalizeCollation' ) ) {
 			$this->output( "...collation table has already been normalized.\n" );
+			return;
+		}
+		if ( !$this->fieldExists( 'categorylinks', 'cl_collation' ) ) {
+			$this->output( "The cl_collation column appears to already be normalized. Skipping.\n" );
+			return;
+		}
+		if ( !$this->fieldExists( 'categorylinks', 'cl_collation_id' ) ) {
+			$this->output( "The cl_collation_id column doesn't exist. Run update.php to create it.\n" );
+			return;
+		}
+		if ( !$this->tableExists( 'collation' ) ) {
+			$this->output( "The collation table doesn't exist. Run update.php to create it.\n" );
 			return;
 		}
 		/**
@@ -1423,6 +1435,7 @@ abstract class DatabaseUpdater {
 		] );
 		$this->output( "Running updateCollation.php --only-migrate-normalization...\n" );
 		$task->execute();
+		$this->insertUpdateRow( 'normalizeCollation' );
 		$this->output( "done.\n" );
 	}
 
