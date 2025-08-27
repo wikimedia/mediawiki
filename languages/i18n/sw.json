@@ -39,7 +39,8 @@
 			"아라",
 			"Zaza3939",
 			"Olimasy",
-			"Samuel Kiongo"
+			"Samuel Kiongo",
+			"Mindofluqman"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Jamii}}",
@@ -80,7 +81,10 @@
 	"help": "Msaada",
 	"help-mediawiki": "Msaada kuhusu MediaWiki",
 	"search": "Tafuta",
+	"search-ignored-headings": "#<!-- leave this line exactly as it is --><pre> \n# Vichwa vya habari vitapuuzwa kwenye utafutaji.\n# Mabadiliko kwa hili yatafanyika mara tu ukurasa wenye kichwa cha habari unapowekwa katika faharasa.\n# Unaweza kulazimisha uwekaji upya wa kurasa katika farhasa kwa kufanya uhariri usio na maana.\n# Sintaksia ni kama ifuatavyo:\n# * Kila kitu kuanzia herufi \"#\" hadi mwisho wa mstari ni maoni.\n# * Kila mstari usio tupu ni kichwa halisi cha kupuuza, kesi na kilakitu.\nMarejeleo\nViungo vya nje\nTazama pia\n #</pre><!-- leave this line exactly as it is -->",
 	"searchbutton": "Tafuta",
+	"searchsuggest-containing-html": "Tafuta kurasa zilizo na <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>",
+	"search-loader": "Inapakia mapendekezo ya utafutaji",
 	"go": "Nenda",
 	"searcharticle": "Nenda",
 	"skin-view-history": "Fungua historia",

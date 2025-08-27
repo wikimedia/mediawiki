@@ -5,7 +5,8 @@
 			"Guycn2",
 			"Rotemliss",
 			"יוסף בן מלמד",
-			"Neriah"
+			"Neriah",
+			"YaronSh"
 		]
 	},
 	"rest-prefix-mismatch": "הנתיב המבוקש ($1) לא היה בתוך נתיב הבסיס ($2) של ה־REST API",
@@ -146,8 +147,8 @@
 	"rest-param-desc-media-height": "גובה תמונה המרבי המומלץ בפיקסלים או ערך ריק אם זה לא זמין",
 	"rest-param-desc-media-duration": "אורך קובץ הווידאו, האודיו או המולטימדיה או ערך ריק עבור סוגי מדיה אחרים",
 	"rest-param-desc-media-url": "כתובת URL להורדת הקובץ",
-	"rest-param-desc-media-original": "פרטי הקובץ המקוריים",
-	"rest-param-desc-media-thumbnail": "מידע על תמונה ממוזערת",
+	"rest-param-desc-media-original": "מידע על התסדיר המקורי של הקובץ",
+	"rest-param-desc-media-thumbnail": "מידע על התסדיר של התמונה הממוזערת של הקובץ",
 	"rest-param-desc-media-links-array": "מערך של מדיה בשימוש בדף",
 	"rest-param-desc-module-spec-module": "פרמטר module של הגדרות מודול",
 	"rest-param-desc-module-spec-version": "פרמטר version של הגדרות מודול",
