@@ -3049,6 +3049,14 @@ class ParserTestRunner {
 		// WikiPages::doEditUpdates randomly adds RC purges
 		$jobQueueGroup->get( 'recentChangesUpdate' )->delete();
 
+		// Update category counts
+		$job = $jobQueueGroup->pop( 'CategoryCountUpdateJob' );
+		while ( $job ) {
+			$job->run();
+			$jobQueueGroup->ack( $job );
+			$job = $jobQueueGroup->pop( 'CategoryCountUpdateJob' );
+		}
+
 		// The RepoGroup cache is invalidated by the creation of file redirects
 		if ( $title->inNamespace( NS_FILE ) ) {
 			$services->getRepoGroup()->clearCache( $title );
