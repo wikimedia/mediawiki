@@ -237,6 +237,15 @@
 	"rest-endpoint-desc-get-revision-id-with-html": "מחזירה מידע על גרסה, כולל תוכן הגרסה ב־HTML.",
 	"rest-endpoint-desc-get-revision-id-bare": "מחזירה מידע על גרסה.",
 	"rest-endpoint-desc-get-page-history": "מחזירה מידע על הגרסאות האחרונות של דף, בחבילות של 20 גרסאות, החל מהגרסה האחרונה. התשובה כוללת כתובות URL כדי לקבל חבילות של הגרסאות הבאות הישנות יותר, הגרסאות הבאות החדשות יותר והגרסאות האחרונות, מה שמאפשר לך לגלול בהיסטוריית הדף.",
+	"rest-endpoint-desc-get-page-history-counts": "מחזירה נתונים על היסטוריית הדף, כגון מספר העריכות שנעשו על־ידי סוגים שונים של משתמשים. למידע נוסף על האופן שבו קוראים ועורכים מתקשרים עם מיזמי ויקימדיה, נא לעיין בדף [Analytics API](https://doc.wikimedia.org/generated-data-platform/aqs/analytics-api/).",
+	"rest-endpoint-desc-get-revision-compare": "מחזירה מידע שמאפשר לך להציג השוואה שורה אחר שורה של שתי גרסאות. ניתן להשוות רק דפי ויקי מבוססי טקסט.",
+	"rest-endpoint-desc-get-search": "מחזירה [מסמך תיאור OpenSearch](https://developer.mozilla.org/en-US/docs/Web/XML/Guides/OpenSearch).",
+	"rest-endpoint-desc-get-search-page": "רושמת דפים שתואמים למונחי החיפוש הנתונים.",
+	"rest-endpoint-desc-get-search-title": "רושמת דפים בעלי כותרות שמתחילות במונחי החיפוש הנתונים. ניתן להשתמש בנקודת הקצה הזאת כחיפוש עם השלמה אוטומטית שמציע דפים רלוונטיים לפי כותרת.",
+	"rest-endpoint-desc-get-page-title-language": "רושמת דפים על אותו נושא בשפות שונות.",
+	"rest-endpoint-desc-get-page-title-media": "רושמת קובצי מדיה שמשמשים בדף, עד 100 קבצים.",
+	"rest-endpoint-desc-get-file-title": "מחזירה מידע על קובץ, כולל קישורים להורדת הקובץ בתור תמונה ממוזערת, תצוגה מקדימה או התסדיר המקורי.",
 	"rest-endpoint-desc-post-transform-wikitext-to-html": "ממירה קוד ויקי ל־HTML.",
+	"rest-endpoint-desc-post-transform-wikitext-to-lint": "מחזירה שגיאות ניקיון של ויקיטקסט",
 	"rest-endpoint-desc-post-transform-html-to-wikitext": "ממירה HTML לטקסט ויקי."
 }
