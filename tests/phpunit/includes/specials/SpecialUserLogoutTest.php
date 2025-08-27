@@ -88,7 +88,7 @@ class SpecialUserLogoutTest extends SpecialPageTestBase {
 		// Check that the page title is as expected for a temporary account and that the submit button is present
 		$this->assertStringContainsString( '(templogout)', $html );
 		$this->assertStringNotContainsString( '(userlogout-continue)', $html );
-		$this->assertStringContainsString( '(htmlform-submit)', $html );
+		$this->assertStringContainsString( '(userlogout-submit)', $html );
 	}
 
 	public function testViewForNamedAccount() {
@@ -98,6 +98,6 @@ class SpecialUserLogoutTest extends SpecialPageTestBase {
 
 		$this->assertStringNotContainsString( '(templogout)', $html );
 		$this->assertStringContainsString( '(userlogout-continue)', $html );
-		$this->assertStringContainsString( '(htmlform-submit)', $html );
+		$this->assertStringContainsString( '(userlogout-submit)', $html );
 	}
 }

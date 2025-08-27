@@ -90,6 +90,7 @@ class SpecialUserLogout extends FormSpecialPage {
 
 	public function alterForm( HTMLForm $form ) {
 		$form->setTokenSalt( 'logoutToken' );
+		$form->setSubmitTextMsg( 'userlogout-submit' );
 		if ( $this->getUser()->isTemp() ) {
 			$form->addHeaderHtml(
 				Html::rawElement( 'p', [], $this->msg( 'userlogout-temp' ) ) .
