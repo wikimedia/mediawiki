@@ -305,6 +305,7 @@ class BacklinkCache {
 		switch ( $table ) {
 			case 'pagelinks':
 			case 'templatelinks':
+			case 'categorylinks':
 			case 'existencelinks':
 				$queryBuilder->where(
 					$this->linksMigration->getLinksConditions( $table, TitleValue::newFromPage( $this->page ) )
@@ -318,7 +319,6 @@ class BacklinkCache {
 				] );
 				break;
 			case 'imagelinks':
-			case 'categorylinks':
 				$queryBuilder->where( [
 					"{$prefix}_to" => $this->page->getDBkey(),
 				] );
