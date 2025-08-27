@@ -21,6 +21,7 @@
 namespace MediaWiki\Session;
 
 use InvalidArgumentException;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
@@ -891,7 +892,7 @@ final class SessionBackend {
 			} );
 
 			if ( $this->usePhpSessionHandling && session_id() === '' && PHPSessionHandler::isEnabled() &&
-				SessionManager::getGlobalSession()->getId() === (string)$this->id
+				RequestContext::getMain()->getRequest()->getSession()->getId() === (string)$this->id
 			) {
 				$this->logger->debug(
 					'SessionBackend "{session}" Taking over PHP session',

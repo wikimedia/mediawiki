@@ -41,7 +41,6 @@ use MediaWiki\Permissions\RestrictionStore;
 use MediaWiki\Request\ContentSecurityPolicy;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\SlotRecord;
-use MediaWiki\Session\SessionManager;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserRigorOptions;
 
@@ -144,7 +143,7 @@ class RawAction extends FormlessAction {
 		// Output may contain user-specific data;
 		// vary generated content for open sessions on private wikis
 		$privateCache = !$this->permissionManager->isEveryoneAllowed( 'read' ) &&
-			( $smaxage === 0 || SessionManager::getGlobalSession()->isPersistent() );
+			( $smaxage === 0 || $request->getSession()->isPersistent() );
 		// Don't accidentally cache cookies if the user is registered (T55032)
 		$privateCache = $privateCache || $this->getUser()->isRegistered();
 		$mode = $privateCache ? 'private' : 'public';

@@ -41,7 +41,6 @@ use MediaWiki\Request\FauxRequest;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Session\CsrfTokenSet;
 use MediaWiki\Session\PHPSessionHandler;
-use MediaWiki\Session\SessionManager;
 use MediaWiki\Skin\Skin;
 use MediaWiki\StubObject\StubGlobalUser;
 use MediaWiki\Title\Title;
@@ -646,7 +645,7 @@ class RequestContext implements IContextSource, MutableContext {
 	 * @since 1.21
 	 */
 	public function exportSession() {
-		$session = SessionManager::getGlobalSession();
+		$session = $this->getRequest()->getSession();
 		return [
 			'ip' => $this->getRequest()->getIP(),
 			'headers' => $this->getRequest()->getAllHeaders(),

@@ -6,11 +6,11 @@ use MediaWiki\Api\ApiErrorFormatter;
 use MediaWiki\Auth\AbstractSecondaryAuthenticationProvider;
 use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\UsernameAuthenticationRequest;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Session\BotPasswordSessionProvider;
 use MediaWiki\Session\PHPSessionHandler;
-use MediaWiki\Session\SessionManager;
 use MediaWiki\Session\Token;
 use MediaWiki\User\BotPassword;
 use MediaWiki\User\User;
@@ -177,7 +177,7 @@ class ApiLoginTest extends ApiTestCase {
 		$this->assertArrayNotHasKey( 'warnings', $ret );
 
 		// Lose the session
-		SessionManager::getGlobalSession()->clear();
+		RequestContext::getMain()->getRequest()->getSession()->clear();
 		$ret[2] = [];
 
 		$ret = $this->doApiRequest( [

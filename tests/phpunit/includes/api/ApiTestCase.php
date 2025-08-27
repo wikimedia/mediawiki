@@ -90,7 +90,7 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 
 	protected function tearDown(): void {
 		// Avoid leaking session over tests
-		SessionManager::getGlobalSession()->clear();
+		RequestContext::getMain()->getRequest()->getSession()->clear();
 
 		ApiBase::clearCacheForTest();
 

@@ -91,7 +91,7 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		} ];
 	}
 
-	public function testGetGlobalSession() {
+	public function testPHPSessionHandler() {
 		$manager = $this->createManager();
 		$this->setService( 'SessionManager', $manager );
 		PHPSessionHandler::install( $manager );
@@ -114,11 +114,11 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 
 		session_write_close();
 		session_id( '' );
-		$session = SessionManager::getGlobalSession();
+		$session = $context->getRequest()->getSession();
 		$this->assertSame( $id, $session->getId() );
 
 		session_id( 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' );
-		$session = SessionManager::getGlobalSession();
+		$session = $context->getRequest()->getSession();
 		$this->assertSame( 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', $session->getId() );
 		$this->assertSame( 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', $request->getSession()->getId() );
 
@@ -129,11 +129,11 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		$id = $request->getSession()->getId();
 
 		session_id( '' );
-		$session = SessionManager::getGlobalSession();
+		$session = $context->getRequest()->getSession();
 		$this->assertSame( $id, $session->getId() );
 
 		session_id( 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' );
-		$session = SessionManager::getGlobalSession();
+		$session = $context->getRequest()->getSession();
 		$this->assertSame( $id, $session->getId() );
 		$this->assertSame( $id, $request->getSession()->getId() );
 	}

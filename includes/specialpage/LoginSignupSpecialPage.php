@@ -44,7 +44,6 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use MediaWiki\Parser\Sanitizer;
-use MediaWiki\Session\SessionManager;
 use MediaWiki\Skin\Skin;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
@@ -301,7 +300,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		}
 
 		$authManager = MediaWikiServices::getInstance()->getAuthManager();
-		$session = SessionManager::getGlobalSession();
+		$session = $this->getRequest()->getSession();
 
 		// Before persisting, set the login token to avoid double writes
 		$this->getToken();

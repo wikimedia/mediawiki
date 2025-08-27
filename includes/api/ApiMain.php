@@ -44,7 +44,6 @@ use MediaWiki\Request\FauxRequest;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Request\WebRequestUpload;
 use MediaWiki\Rest\HeaderParser\Origin;
-use MediaWiki\Session\SessionManager;
 use MediaWiki\StubObject\StubGlobalUser;
 use MediaWiki\User\UserRigorOptions;
 use MediaWiki\Utils\MWTimestamp;
@@ -976,7 +975,7 @@ class ApiMain extends ApiBase {
 			$this->mCacheMode === 'private'
 			|| (
 				$this->mCacheMode === 'anon-public-user-private'
-				&& SessionManager::getGlobalSession()->isPersistent()
+				&& $this->getRequest()->getSession()->isPersistent()
 			)
 		) {
 			$this->getContext()->getOutput()->disableClientCache();
@@ -1335,7 +1334,7 @@ class ApiMain extends ApiBase {
 		if ( $this->mCacheMode == 'anon-public-user-private' ) {
 			$out->addVaryHeader( 'Cookie' );
 			$response->header( $out->getVaryHeader() );
-			if ( SessionManager::getGlobalSession()->isPersistent() ) {
+			if ( $this->getRequest()->getSession()->isPersistent() ) {
 				// Logged in or otherwise has session (e.g. anonymous users who have edited)
 				// Mark request private
 				$response->header( "Cache-Control: $privateCache" );

@@ -513,7 +513,7 @@ if ( !defined( 'MW_NO_SESSION' ) && MW_ENTRY_POINT !== 'cli' ) {
 
 	// Initialize the session
 	try {
-		$session = MediaWiki\Session\SessionManager::getGlobalSession();
+		$session = RequestContext::getMain()->getRequest()->getSession();
 	} catch ( MediaWiki\Session\SessionOverflowException $ex ) {
 		// The exception is because the request had multiple possible
 		// sessions tied for top priority. Report this to the user.
@@ -600,7 +600,7 @@ unset( $func ); // no global pollution; destroy reference
 // If the session user has a 0 id but a valid name, that means we need to
 // autocreate it.
 if ( !defined( 'MW_NO_SESSION' ) && MW_ENTRY_POINT !== 'cli' ) {
-	$sessionUser = MediaWiki\Session\SessionManager::getGlobalSession()->getUser();
+	$sessionUser = RequestContext::getMain()->getRequest()->getSession()->getUser();
 	if ( $sessionUser->getId() === 0 &&
 		MediaWikiServices::getInstance()->getUserNameUtils()->isValid( $sessionUser->getName() )
 	) {

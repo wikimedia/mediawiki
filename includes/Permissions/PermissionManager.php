@@ -39,7 +39,6 @@ use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\RedirectLookup;
 use MediaWiki\Request\WebRequest;
-use MediaWiki\Session\SessionManager;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Title\NamespaceInfo;
@@ -1692,7 +1691,7 @@ class PermissionManager {
 		// unless there are no sessions for this endpoint.
 		if ( !defined( 'MW_NO_SESSION' ) ) {
 			// XXX: think what could be done with the below
-			$allowedRights = SessionManager::getGlobalSession()->getAllowedUserRights();
+			$allowedRights = RequestContext::getMain()->getRequest()->getSession()->getAllowedUserRights();
 			if ( $allowedRights !== null && !in_array( $right, $allowedRights, true ) ) {
 				$this->cachedRights[$right] = false;
 				return false;

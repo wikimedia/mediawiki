@@ -60,7 +60,6 @@ use MediaWiki\Request\FauxRequest;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\ResourceLoader as RL;
 use MediaWiki\ResourceLoader\ResourceLoader;
-use MediaWiki\Session\SessionManager;
 use MediaWiki\Session\SessionManagerInterface;
 use MediaWiki\Skin\QuickTemplate;
 use MediaWiki\Skin\Skin;
@@ -3103,7 +3102,7 @@ class OutputPage extends ContextSource {
 				$privateReason = 'set-cookies';
 			// The client might use methods other than cookies to appear logged-in.
 			// E.g. HTTP headers, or query parameter tokens, OAuth, etc.
-			} elseif ( SessionManager::getGlobalSession()->isPersistent() ) {
+			} elseif ( $this->getRequest()->getSession()->isPersistent() ) {
 				$privateReason = 'session';
 			} elseif ( $this->isPrintable() ) {
 				$privateReason = 'printable';

@@ -1106,7 +1106,7 @@ class SessionManager implements SessionManagerInterface {
 	 * @param Session|null $session For testing only
 	 */
 	public function logPotentialSessionLeakage( ?Session $session = null ) {
-		$session = $session ?: self::getGlobalSession();
+		$session = $session ?: RequestContext::getMain()->getRequest()->getSession();
 		$suspiciousIpExpiry = $this->config->get( MainConfigNames::SuspiciousIpExpiry );
 
 		if ( $suspiciousIpExpiry === false

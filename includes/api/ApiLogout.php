@@ -23,7 +23,6 @@
 namespace MediaWiki\Api;
 
 use MediaWiki\Session\BotPasswordSessionProvider;
-use MediaWiki\Session\SessionManager;
 
 /**
  * API module to allow users to log out of the wiki. API equivalent of
@@ -34,7 +33,7 @@ use MediaWiki\Session\SessionManager;
 class ApiLogout extends ApiBase {
 
 	public function execute() {
-		$session = SessionManager::getGlobalSession();
+		$session = $this->getRequest()->getSession();
 
 		// Handle bot password logout specially
 		if ( $session->getProvider() instanceof BotPasswordSessionProvider ) {

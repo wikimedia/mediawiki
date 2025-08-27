@@ -81,7 +81,7 @@ class ApiEditPage extends ApiBase {
 	 * Sends a cookie so anons get talk message notifications, mirroring SubmitAction (T295910)
 	 */
 	private function persistGlobalSession() {
-		\MediaWiki\Session\SessionManager::getGlobalSession()->persist();
+		$this->getRequest()->getSession()->persist();
 	}
 
 	public function __construct(

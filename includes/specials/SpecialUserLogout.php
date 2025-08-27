@@ -23,7 +23,6 @@ namespace MediaWiki\Specials;
 use MediaWiki\Exception\ErrorPageError;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
-use MediaWiki\Session\SessionManager;
 use MediaWiki\SpecialPage\FormSpecialPage;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Status\Status;
@@ -126,7 +125,7 @@ class SpecialUserLogout extends FormSpecialPage {
 	 */
 	public function onSubmit( array $data ) {
 		// Make sure it's possible to log out
-		$session = SessionManager::getGlobalSession();
+		$session = $this->getRequest()->getSession();
 		if ( !$session->canSetUser() ) {
 			throw new ErrorPageError(
 				'cannotlogoutnow-title',

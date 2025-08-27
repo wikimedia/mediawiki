@@ -147,7 +147,7 @@ abstract class MediaWikiEntryPoint {
 		// TODO: move ob_start( [ MediaWiki\Output\OutputHandler::class, 'handle' ] ) here
 		// TODO: move MW_NO_OUTPUT_COMPRESSION handling here.
 		// TODO: move HeaderCallback::register() here
-		// TODO: move SessionManager::getGlobalSession() here (from Setup.php)
+		// TODO: move RequestContext::getMain()->getRequest()->getSession() here (from Setup.php)
 		// TODO: move AuthManager::autoCreateUser here (from Setup.php)
 		// TODO: move pingback here (from Setup.php)
 	}

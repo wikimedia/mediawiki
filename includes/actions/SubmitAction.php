@@ -37,7 +37,7 @@ class SubmitAction extends EditAction {
 	/** @inheritDoc */
 	public function show() {
 		// Send a cookie so anons get talk message notifications
-		\MediaWiki\Session\SessionManager::getGlobalSession()->persist();
+		$this->getRequest()->getSession()->persist();
 
 		parent::show();
 	}

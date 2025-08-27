@@ -29,7 +29,6 @@ use MediaWiki\Auth\AuthManager;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Message\Message;
-use MediaWiki\Session\SessionManager;
 use MediaWiki\User\BotPassword;
 use MediaWiki\User\UserIdentityUtils;
 use Wikimedia\ParamValidator\ParamValidator;
@@ -130,7 +129,7 @@ class ApiLogin extends ApiBase {
 		$result = [];
 
 		// Make sure session is persisted
-		$session = SessionManager::getGlobalSession();
+		$session = $this->getRequest()->getSession();
 		$session->persist();
 
 		// Make sure it's possible to log in

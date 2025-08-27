@@ -20,7 +20,7 @@
 
 namespace MediaWiki\Auth;
 
-use MediaWiki\Session\SessionManager;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Session\SessionProvider;
 use UnexpectedValueException;
 
@@ -101,7 +101,7 @@ class RememberMeAuthenticationRequest extends AuthenticationRequest {
 	 */
 	public function __construct( string $flag = self::CHOOSE_REMEMBER ) {
 		/** @var SessionProvider $provider */
-		$provider = SessionManager::getGlobalSession()->getProvider();
+		$provider = RequestContext::getMain()->getRequest()->getSession()->getProvider();
 		'@phan-var SessionProvider $provider';
 
 		switch ( $flag ) {

@@ -111,7 +111,7 @@ class McrUndoAction extends FormAction {
 	public function show() {
 		// Send a cookie so anons get talk message notifications
 		// (copied from SubmitAction)
-		\MediaWiki\Session\SessionManager::getGlobalSession()->persist();
+		$this->getRequest()->getSession()->persist();
 
 		// Some stuff copied from EditAction
 		$this->useTransactionalTimeLimit();
