@@ -126,6 +126,7 @@ For notes on 1.44.x and older releases, see HISTORY.
 * Updated wikimedia/request-timeout from 2.0.2 to 3.0.0.
 * Updated wikimedia/shellbox from 4.2.0 to 4.3.0.
 * Updated OOUI from v0.51.7 to v0.53.0.
+* Updated mck89/peast from v1.17.0 to 1.17.2.
 * …
 
 ===== Changed development-only external libraries =====
