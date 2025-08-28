@@ -12,6 +12,8 @@ use MediaWikiIntegrationTestCase;
 use Psr\Log\NullLogger;
 use Wikimedia\Bcp47Code\Bcp47CodeValue;
 use Wikimedia\Message\MessageValue;
+use Wikimedia\Message\ParamType;
+use Wikimedia\Message\ScalarParam;
 use Wikimedia\Parsoid\Core\HtmlPageBundle;
 use Wikimedia\Parsoid\ParserTests\TestUtils;
 use Wikimedia\Parsoid\Utils\ContentUtils;
@@ -61,7 +63,6 @@ class ParsoidLocalizationTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideSpans
 	 */
 	public function testTransformGeneratedSpans( string $key, array $params, string $expected, string $message ) {
-		$this->markTestSkipped( "Temporarily disabled due to cyclic dependency" );
 		// one of the messages we use resolves a link
 		$this->overrideConfigValue( MainConfigNames::ArticlePath, '/wiki/$1' );
 		$loc = $this->createStage();
@@ -82,7 +83,6 @@ class ParsoidLocalizationTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideAttrs
 	 */
 	public function testTransformGeneratedAttrs( string $key, array $params, string $expected, string $message ) {
-		$this->markTestSkipped( "Temporarily disabled due to cyclic dependency" );
 		$loc = $this->createStage();
 		$doc = ContentUtils::createAndLoadDocument( '<a>' );
 		$a = DOMCompat::querySelector( $doc, 'a' );
@@ -146,8 +146,8 @@ class ParsoidLocalizationTest extends MediaWikiIntegrationTestCase {
 			],
 			[
 				'testparam',
-				[ new MessageValue( 'testparam', [ new MessageValue( 'testparam', [ 'hello' ] ) ] ) ],
-				'<p><span typeof="mw:I18n" data-mw-i18n=\'{"/":{"lang":"x-user","key":"testparam","params":{"0":{"key":"testparam","params":[{"text":{"key":"testparam","params":["hello"]}}],"_type_":"Wikimedia\\\\Message\\\\MessageValue"},"_type_":"array"}}}\'>english english english hello</span></p>',
+				[ new ScalarParam( ParamType::TEXT, new MessageValue( 'testparam', [ new MessageValue( 'testparam', [ 'hello' ] ) ] ) ) ],
+				'<p><span typeof="mw:I18n" data-mw-i18n=\'{"/":{"lang":"x-user","key":"testparam","params":[{"text":{"key":"testparam","params":[{"text":{"key":"testparam","params":["hello"]}}]}}]}}\'>english english english hello</span></p>',
 				'Span with nested message'
 			],
 			[
@@ -159,8 +159,8 @@ class ParsoidLocalizationTest extends MediaWikiIntegrationTestCase {
 			],
 			[
 				'testparam',
-				[ new MessageValue( 'testlink', [] ) ],
-				'<p><span typeof="mw:I18n" data-mw-i18n=\'{"/":{"lang":"x-user","key":"testparam","params":{"0":{"key":"testlink","params":[],"_type_":"Wikimedia\\\\Message\\\\MessageValue"},"_type_":"array"}}}\'>english english <a href="/index.php?title=Link&amp;action=edit&amp;redlink=1" class="new" title="Link (page does not exist)">link</a></span></p>',
+				[ new ScalarParam( ParamType::TEXT, new MessageValue( 'testlink', [] ) ) ],
+				'<p><span typeof="mw:I18n" data-mw-i18n=\'{"/":{"lang":"x-user","key":"testparam","params":[{"text":{"key":"testlink","params":[]}}]}}\'>english english <a href="/index.php?title=Link&amp;action=edit&amp;redlink=1" class="new" title="Link (page does not exist)">link</a></span></p>',
 				'span with link in the parameter'
 			],
 			[
@@ -212,8 +212,8 @@ class ParsoidLocalizationTest extends MediaWikiIntegrationTestCase {
 			],
 			[
 				'testparam',
-				[ new MessageValue( 'testparam', [ new MessageValue( 'testparam', [ 'hello' ] ) ] ) ],
-				'<a typeof="mw:LocalizedAttrs" title="english english english hello" data-mw-i18n=\'{"title":{"lang":"x-user","key":"testparam","params":{"0":{"key":"testparam","params":[{"text":{"key":"testparam","params":["hello"]}}],"_type_":"Wikimedia\\\\Message\\\\MessageValue"},"_type_":"array"}}}\'></a>',
+				[ new ScalarParam( ParamType::TEXT, new MessageValue( 'testparam', [ new MessageValue( 'testparam', [ 'hello' ] ) ] ) ) ],
+				'<a typeof="mw:LocalizedAttrs" title="english english english hello" data-mw-i18n=\'{"title":{"lang":"x-user","key":"testparam","params":[{"text":{"key":"testparam","params":[{"text":{"key":"testparam","params":["hello"]}}]}}]}}\'></a>',
 				'Attr with nested message'
 			],
 			[
