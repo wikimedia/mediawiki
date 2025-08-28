@@ -101,8 +101,6 @@ class PatrolManager {
 			$tags = [ $tags ];
 		}
 
-		$status = PermissionStatus::newEmpty();
-
 		// If recentchanges patrol is disabled, only new pages or new file versions
 		// can be patrolled, provided the appropriate config variable is set
 		if ( !$this->useRCPatrol &&
@@ -110,26 +108,27 @@ class PatrolManager {
 			( !$this->useFilePatrol || !( $recentChange->getAttribute( 'rc_source' ) == RecentChange::SRC_LOG &&
 				$recentChange->getAttribute( 'rc_log_type' ) == 'upload' ) )
 		) {
-			$status->fatal( 'rcpatroldisabled' );
-		}
-
-		$performer->authorizeWrite( 'patrol', $recentChange->getTitle(), $status );
-		$user = $this->userFactory->newFromAuthority( $performer );
-		$hookRunner = new HookRunner( $this->hookContainer );
-
-		if ( !$hookRunner->onMarkPatrolled( $recentChange->getAttribute( 'rc_id' ), $user, false, false, $tags ) ) {
-			$status->fatal( 'hookaborted' );
+			return PermissionStatus::newFatal( 'rcpatroldisabled' );
 		}
 
 		// Users without the 'autopatrol' right can't patrol their own revisions
 		if ( $performer->getUser()->getName() === $recentChange->getAttribute( 'rc_user_text' ) &&
 			!$performer->isAllowed( 'autopatrol' )
 		) {
-			$status->fatal( 'markedaspatrollederror-noautopatrol' );
+			return PermissionStatus::newFatal( 'markedaspatrollederror-noautopatrol' );
 		}
 
+		$status = PermissionStatus::newEmpty();
+		$performer->authorizeWrite( 'patrol', $recentChange->getTitle(), $status );
 		if ( !$status->isGood() ) {
 			return $status;
+		}
+
+		$user = $this->userFactory->newFromAuthority( $performer );
+		$hookRunner = new HookRunner( $this->hookContainer );
+
+		if ( !$hookRunner->onMarkPatrolled( $recentChange->getAttribute( 'rc_id' ), $user, false, false, $tags ) ) {
+			return PermissionStatus::newFatal( 'hookaborted' );
 		}
 
 		// If the change was patrolled already, do nothing

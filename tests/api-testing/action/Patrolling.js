@@ -25,7 +25,7 @@ describe( 'The patrol action', () => {
 			},
 			'POST'
 		);
-		assert.equal( error.code, 'permissiondenied' );
+		assert.equal( error.code, 'noautopatrol' );
 
 		rc = await mindy.getChangeEntry(
 			{

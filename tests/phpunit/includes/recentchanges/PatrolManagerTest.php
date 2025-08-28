@@ -26,7 +26,7 @@ class PatrolManagerTest extends MediaWikiIntegrationTestCase {
 		$this->user = $this->getTestUser()->getUser();
 
 		$this->overrideConfigValues( [
-			MainConfigNames::UseRCPatrol => false,
+			MainConfigNames::UseRCPatrol => true,
 			MainConfigNames::UseNPPatrol => false,
 		] );
 	}
@@ -85,6 +85,7 @@ class PatrolManagerTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\RecentChanges\PatrolManager::markPatrolled
 	 */
 	public function testMarkPatrolledPermissions_NoRcPatrol() {
+		$this->overrideConfigValue( MainConfigNames::UseRCPatrol, false );
 		$rc = $this->getDummyEditRecentChange();
 		$status = $this->getServiceContainer()->getPatrolManager()->markPatrolled(
 			$rc,
@@ -97,7 +98,6 @@ class PatrolManagerTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\RecentChanges\PatrolManager::markPatrolled
 	 */
 	public function testMarkPatrolled() {
-		$this->overrideConfigValue( MainConfigNames::UseRCPatrol, true );
 		$rc = $this->getDummyEditRecentChange();
 		$status = $this->getServiceContainer()->getPatrolManager()->markPatrolled(
 			$rc,
