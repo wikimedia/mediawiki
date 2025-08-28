@@ -3994,7 +3994,7 @@
 	"deflate-invaliddeflate": "Il contenuto fornito non è compresso correttamente",
 	"unprotected-js": "Per motivi di sicurezza, non è possibile caricare JavaScript da pagine non protette. Crea javascript solo nel namespace MediaWiki o come sottopagina Utente",
 	"userlogout-continue": "Vuoi davvero uscire?",
-	"userlogout-temp": "Sei sicuro di voler uscire? Non sarà possibile connettersi di nuovo con l'utenza temporanea.",
+	"userlogout-temp": "Se stai modificando da un dispositivo condiviso, come un computer della biblioteca o della scuola, puoi uscire da questa sessione per impedire ad altre persone di utilizzare questa utenza temporanea.",
 	"paramvalidator-baduser": "Valore \"$2\" non valido per il parametro utente <var>$1</var>.",
 	"paramvalidator-help-type-user": "Tipo: {{PLURAL:$1|1=utente|2=elenco di utenti}}, {{PLURAL:$3|da|da uno qualsiasi}} $2",
 	"paramvalidator-help-type-user-subtype-name": "nome utente",

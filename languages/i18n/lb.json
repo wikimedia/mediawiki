@@ -3571,6 +3571,7 @@
 	"passwordpolicies-policy-passwordnotincommonlist": "D'Passwuert däerf net op der Lëscht vun den 100.000 am dackste benotzte Passwierder stoen.",
 	"passwordpolicies-policyflag-forcechange": "muss beim Alogge geännert ginn",
 	"passwordpolicies-policyflag-suggestchangeonlogin": "Ännerung beim Alogge virschloen",
+	"userlogout-submit": "Ausloggen",
 	"userlogout-continue": "Wëllt Dir Iech ausloggen?",
 	"userlogout-temp": "Sidd Dir sécher, datt Dir Iech auslogge wëllt? Et gëtt keng Méiglechkeet fir Iech erëm an Ären temporäre Kont anzeloggen.",
 	"paramvalidator-baduser": "Ongültege Wäert „$2“ fir de Benotzerparameter <var>$1</var>.",

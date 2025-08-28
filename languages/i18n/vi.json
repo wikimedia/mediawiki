@@ -2135,7 +2135,7 @@
 	"usermaildisabledtext": "Bạn không thể gửi thư điện tử cho những người dùng khác trên wiki này.",
 	"noemailtitle": "Không có địa chỉ nhận thư",
 	"noemailtext": "Người này không cung cấp một địa chỉ thư hợp lệ.",
-	"nowikiemailtext": "Thành viên này quyết định không nhận thư từ các thành viên khác.",
+	"nowikiemailtext": "Thành viên này không cho phép thư điện tử từ các thành viên khác.",
 	"emailnotarget": "Người nhận không tồn tại hoặc tên hiệu không hợp lệ.",
 	"emailtarget": "Nhập tên người dùng của người nhận",
 	"emailusername": "Tên người dùng:",

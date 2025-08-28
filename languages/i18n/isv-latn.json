@@ -3874,6 +3874,7 @@
 	"mycustomjsredirectprotected": "Pravjenje tutoj JavaScript-stranice ne jest vam dozvoljeno, zatože ona jest prěnapravjenje i ne napravjaje v vaš koristničsky prostor.",
 	"deflate-invaliddeflate": "Nadano sodržanje ne jest pravilno stisknuto",
 	"unprotected-js": "Iz pričin bezpečnosti včityvanje JavaScript’a s nezaščičenyh stranic jest nemožno. Prosimo, tvorite JavaScript samo v imennom prostoru MediaWiki ili kako koristničsku podstranicu.",
+	"userlogout-submit": "Odjaviti se",
 	"userlogout-continue": "Hočete li odjaviti se?",
 	"userlogout-temp": "Jeste li uvěrjeni, že hočete odjaviti se? Uže ne bude možnosti povrata k vašemu vrěmennomu koristničskomu kontu.",
 	"paramvalidator-baduser": "Nepravilno značenje «$2» za parametr koristnika <var>$1</var>.",

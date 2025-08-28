@@ -5,9 +5,12 @@
 			"Foomin10",
 			"Kokage si",
 			"Müller857",
-			"Waki285"
+			"Waki285",
+			"もなー(偽物)"
 		]
 	},
+	"cdx-breadcrumb-navigation-label": "パンくずリスト",
+	"cdx-breadcrumb-overflow-label": "さらにナビゲーション項目を表示",
 	"cdx-chip-input-chip-added": "チップス $1 が追加されました。",
 	"cdx-chip-input-chip-removed": "チップス $1 が削除されました。",
 	"cdx-input-chip-aria-description": "編集する場合はEnterを、削除する場合はDeleteを押してください。",

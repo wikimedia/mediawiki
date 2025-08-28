@@ -369,7 +369,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} merdumanê zey şımaya ravêr şına",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|vurnayış|vurnayışi}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|pele|peli}}",
-	"createacct-benefit-text3": "$2 {{PLURAL:$1|iştirakwano nıkayên |iştirakwanê nıkayêni}}",
+	"createacct-benefit-text3": "$2 {{PLURAL:$1|iştırakwano nıkayên|iştırakwanê nıkayêni}}",
 	"badretype": "Paroleyê ke şıma nuştê, yewbini nêgênê.",
 	"usernameinprogress": "Qandê nê karberi hesab vıraştışondewamnkeno.  Tay bıpawê",
 	"userexists": "Jewna karber enê nami karneno.\nMara reca xorê jewna name bınusnê.",
