@@ -86,7 +86,7 @@ class PatrolManager {
 	 * @param RecentChange $recentChange
 	 * @param Authority $performer User performing the action
 	 * @param string|string[]|null $tags Change tags to add to the patrol log entry
-	 *   ($user should be able to add the specified tags before this is called)
+	 *   ($performer should be able to add the specified tags before this is called)
 	 * @return PermissionStatus
 	 */
 	public function markPatrolled(
@@ -112,8 +112,8 @@ class PatrolManager {
 		}
 
 		// Users without the 'autopatrol' right can't patrol their own revisions
-		if ( $performer->getUser()->getName() === $recentChange->getAttribute( 'rc_user_text' ) &&
-			!$performer->isAllowed( 'autopatrol' )
+		if ( $performer->getUser()->equals( $recentChange->getPerformerIdentity() )
+			&& !$performer->isAllowed( 'autopatrol' )
 		) {
 			return PermissionStatus::newFatal( 'markedaspatrollederror-noautopatrol' );
 		}
