@@ -332,6 +332,7 @@ class HookRunner implements
 	\MediaWiki\Hook\RandomPageQueryHook,
 	\MediaWiki\Hook\RawPageViewBeforeOutputHook,
 	\MediaWiki\Hook\RecentChangesPurgeRowsHook,
+	\MediaWiki\RecentChanges\Hook\RecentChangesPurgeQueryHook,
 	\MediaWiki\Hook\RecentChange_saveHook,
 	\MediaWiki\Hook\RejectParserCacheValueHook,
 	\MediaWiki\Hook\RequestContextCreateSkinHook,
@@ -3618,6 +3619,14 @@ class HookRunner implements
 		$this->container->run(
 			'RecentChangesPurgeRows',
 			[ $rows ]
+		);
+	}
+
+	/** @inheritDoc */
+	public function onRecentChangesPurgeQuery( $query, &$callbacks ): void {
+		$this->container->run(
+			'RecentChangesPurgeQuery',
+			[ $query, &$callbacks ]
 		);
 	}
 

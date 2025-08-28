@@ -96,28 +96,49 @@ class RecentChangesUpdateJob extends Job {
 			return;
 		}
 		$ticket = $dbProvider->getEmptyTransactionTicket( __METHOD__ );
-		$hookRunner = new HookRunner( $services->getHookContainer() );
+		$hookContainer = $services->getHookContainer();
+		$hookRunner = new HookRunner( $hookContainer );
 		$cutoff = $dbw->timestamp( ConvertibleTimestamp::time() - $rcMaxAge );
-		$rcQuery = RecentChange::getQueryInfo();
-		do {
-			$rcIds = [];
-			$rows = [];
-			$res = $dbw->newSelectQueryBuilder()
-				->queryInfo( $rcQuery )
+		$hasLegacyHook = $hookContainer->isRegistered( 'RecentChangesPurgeRows' );
+		if ( $hasLegacyHook ) {
+			$query = $dbw->newSelectQueryBuilder()
+				->queryInfo( RecentChange::getQueryInfo() )
 				->where( $dbw->expr( 'rc_timestamp', '<', $cutoff ) )
 				->limit( $updateRowsPerQuery )
-				->caller( __METHOD__ )
-				->fetchResultSet();
-			foreach ( $res as $row ) {
-				$rcIds[] = $row->rc_id;
-				$rows[] = $row;
-			}
-			if ( $rcIds ) {
+				->caller( __METHOD__ );
+		} else {
+			$query = $dbw->newSelectQueryBuilder()
+				->select( 'rc_id' )
+				->from( 'recentchanges' )
+				->where( $dbw->expr( 'rc_timestamp', '<', $cutoff ) )
+				->limit( $updateRowsPerQuery )
+				->caller( __METHOD__ );
+		}
+		$callbacks = [];
+		$hookRunner->onRecentChangesPurgeQuery( $query, $callbacks );
+		do {
+			$res = $query->fetchResultSet();
+			$rcIds = [];
+			if ( $res->numRows() ) {
+				$rows = [];
+				foreach ( $res as $row ) {
+					$rcIds[] = $row->rc_id;
+					if ( $hasLegacyHook ) {
+						$rows[] = $row;
+					}
+				}
+
 				$dbw->newDeleteQueryBuilder()
 					->deleteFrom( 'recentchanges' )
 					->where( [ 'rc_id' => $rcIds ] )
 					->caller( __METHOD__ )->execute();
-				$hookRunner->onRecentChangesPurgeRows( $rows );
+
+				foreach ( $callbacks as $callback ) {
+					$callback( $res );
+				}
+				if ( $hasLegacyHook ) {
+					$hookRunner->onRecentChangesPurgeRows( $rows );
+				}
 				// There might be more, so try waiting for replica DBs
 				if ( !$dbProvider->commitAndWaitForReplication(
 					__METHOD__, $ticket, [ 'timeout' => 3 ]

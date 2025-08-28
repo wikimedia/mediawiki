@@ -2397,6 +2397,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\RecentChanges\\ChangesListStringOptionsFilter' => __DIR__ . '/includes/recentchanges/ChangesListStringOptionsFilter.php',
 	'MediaWiki\\RecentChanges\\ChangesListStringOptionsFilterGroup' => __DIR__ . '/includes/recentchanges/ChangesListStringOptionsFilterGroup.php',
 	'MediaWiki\\RecentChanges\\EnhancedChangesList' => __DIR__ . '/includes/recentchanges/EnhancedChangesList.php',
+	'MediaWiki\\RecentChanges\\Hook\\RecentChangesPurgeQueryHook' => __DIR__ . '/includes/recentchanges/Hook/RecentChangesPurgeQueryHook.php',
 	'MediaWiki\\RecentChanges\\OldChangesList' => __DIR__ . '/includes/recentchanges/OldChangesList.php',
 	'MediaWiki\\RecentChanges\\PatrolManager' => __DIR__ . '/includes/recentchanges/PatrolManager.php',
 	'MediaWiki\\RecentChanges\\RCCacheEntry' => __DIR__ . '/includes/recentchanges/RCCacheEntry.php',

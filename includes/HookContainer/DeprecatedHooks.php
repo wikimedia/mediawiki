@@ -51,6 +51,7 @@ class DeprecatedHooks {
 		'PageContentSave' => [ 'deprecatedVersion' => '1.35' ],
 		'PrefixSearchBackend' => [ 'deprecatedVersion' => '1.27' ],
 		'ProtectionForm::buildForm' => [ 'deprecatedVersion' => '1.36', 'silent' => true ],
+		'RecentChangesPurgeRows' => [ 'deprecatedVersion' => '1.45', 'silent' => true ],
 		'RollbackComplete' => [ 'deprecatedVersion' => '1.36', 'silent' => true ],
 		'SearchDataForIndex' => [ 'deprecatedVersion' => '1.40', 'silent' => true ],
 		'SendWatchlistEmailNotification' => [ 'deprecatedVersion' => '1.45' ],

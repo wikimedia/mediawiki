@@ -6,7 +6,7 @@ namespace MediaWiki\Hook;
  * This is a hook handler interface, see docs/Hooks.md.
  * Use the hook name "RecentChangesPurgeRows" to register handlers implementing this interface.
  *
- * @stable to implement
+ * @deprecated since 1.45 use RecentChangesPurgeQuery
  * @ingroup Hooks
  */
 interface RecentChangesPurgeRowsHook {
