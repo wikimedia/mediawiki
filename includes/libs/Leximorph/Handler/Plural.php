@@ -41,19 +41,15 @@ use Wikimedia\Leximorph\Provider;
 class Plural {
 
 	/**
-	 * Provider instance used to provide data.
-	 */
-	private Provider $provider;
-
-	/**
 	 * Initializes the Plural handler with the given language code and provider.
 	 *
 	 * @param Provider $provider The provider instance to use.
 	 *
 	 * @since 1.45
 	 */
-	public function __construct( Provider $provider ) {
-		$this->provider = $provider;
+	public function __construct(
+		private readonly Provider $provider,
+	) {
 	}
 
 	/**
@@ -70,7 +66,7 @@ class Plural {
 	 * @return string The pluralized text corresponding to the count.
 	 */
 	public function process( float $count, array $forms ): string {
-		// For “explicit” forms such as "0=No items", "1=One item", or "other=Items"
+		// For "explicit" forms such as "0=No items", "1=One item", or "other=Items"
 		// we’ll store them in an associative array if we parse them that way.
 		$explicitForms = [];
 

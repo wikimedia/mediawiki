@@ -35,19 +35,15 @@ use Psr\Log\LoggerInterface;
 class XmlLoader {
 
 	/**
-	 * Logger instance used for logging errors.
-	 */
-	private LoggerInterface $logger;
-
-	/**
 	 * Initializes the XmlLoader with a logger.
 	 *
 	 * @param LoggerInterface $logger
 	 *
 	 * @since 1.45
 	 */
-	public function __construct( LoggerInterface $logger ) {
-		$this->logger = $logger;
+	public function __construct(
+		private readonly LoggerInterface $logger,
+	) {
 	}
 
 	/**

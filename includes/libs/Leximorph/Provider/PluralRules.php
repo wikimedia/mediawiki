@@ -49,31 +49,6 @@ class PluralRules {
 	];
 
 	/**
-	 * Language code used for evaluating plural rules.
-	 */
-	private string $langCode;
-
-	/**
-	 * Evaluator instance used to compile and evaluate plural rules.
-	 */
-	private Evaluator $evaluator;
-
-	/**
-	 * Provider instance used to access language-specific services such as fallbacks.
-	 */
-	private Provider $provider;
-
-	/**
-	 * Logger instance used for logging errors.
-	 */
-	private LoggerInterface $logger;
-
-	/**
-	 * XmlLoader instance used for loading xml files.
-	 */
-	private XmlLoader $xmlLoader;
-
-	/**
 	 * Associative array of cached plural data.
 	 *
 	 * The key is the language code, and the value is an array of plural rules.
@@ -97,17 +72,12 @@ class PluralRules {
 	 * @since 1.45
 	 */
 	public function __construct(
-		string $langCode,
-		Evaluator $evaluator,
-		Provider $provider,
-		LoggerInterface $logger,
-		XmlLoader $xmlLoader
+		private readonly string $langCode,
+		private readonly Evaluator $evaluator,
+		private readonly Provider $provider,
+		private readonly LoggerInterface $logger,
+		private readonly XmlLoader $xmlLoader,
 	) {
-		$this->langCode = $langCode;
-		$this->logger = $logger;
-		$this->evaluator = $evaluator;
-		$this->provider = $provider;
-		$this->xmlLoader = $xmlLoader;
 	}
 
 	/**

@@ -39,16 +39,6 @@ class GrammarTransformations {
 	private const TRANSFORMATIONS_PATH = __DIR__ . '/../data/grammarTransformations/';
 
 	/**
-	 * Language code used for evaluating grammar rules.
-	 */
-	private string $langCode;
-
-	/**
-	 * JsonLoader instance for loading grammar transformations.
-	 */
-	private JsonLoader $jsonLoader;
-
-	/**
 	 * Cached grammar transformations indexed by language code.
 	 *
 	 * @var array<string, array<int|string, mixed>>
@@ -63,9 +53,10 @@ class GrammarTransformations {
 	 *
 	 * @since 1.45
 	 */
-	public function __construct( string $langCode, JsonLoader $jsonLoader ) {
-		$this->langCode = $langCode;
-		$this->jsonLoader = $jsonLoader;
+	public function __construct(
+		private readonly string $langCode,
+		private readonly JsonLoader $jsonLoader,
+	) {
 	}
 
 	/**

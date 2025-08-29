@@ -57,19 +57,15 @@ class Bidi {
 	public const PDF = "\xE2\x80\xAC";
 
 	/**
-	 * Provider instance used to provide data.
-	 */
-	private Provider $provider;
-
-	/**
 	 * Initializes the Bidi handler with the provider.
 	 *
 	 * @param Provider $provider The provider instance to use.
 	 *
 	 * @since 1.45
 	 */
-	public function __construct( Provider $provider ) {
-		$this->provider = $provider;
+	public function __construct(
+		private readonly Provider $provider,
+	) {
 	}
 
 	/**

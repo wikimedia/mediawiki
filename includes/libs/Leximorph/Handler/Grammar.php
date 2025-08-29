@@ -43,21 +43,6 @@ use Wikimedia\Leximorph\Provider;
 class Grammar {
 
 	/**
-	 * Provider instance used to provide data.
-	 */
-	protected Provider $provider;
-
-	/**
-	 * PostProcessor registry instance.
-	 */
-	private GrammarFallbackRegistry $postProcessor;
-
-	/**
-	 * Logger instance used for logging errors.
-	 */
-	private LoggerInterface $logger;
-
-	/**
 	 * Initializes the Grammar handler with the given transformations provider and a logger.
 	 *
 	 * @param Provider $provider Provider instance.
@@ -66,10 +51,11 @@ class Grammar {
 	 *
 	 * @since 1.45
 	 */
-	public function __construct( Provider $provider, GrammarFallbackRegistry $postProcessor, LoggerInterface $logger ) {
-		$this->provider = $provider;
-		$this->postProcessor = $postProcessor;
-		$this->logger = $logger;
+	public function __construct(
+		protected readonly Provider $provider,
+		private readonly GrammarFallbackRegistry $postProcessor,
+		private readonly LoggerInterface $logger,
+	) {
 	}
 
 	/**

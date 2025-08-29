@@ -40,21 +40,6 @@ class FormalityIndex {
 	private const FORMALITY_INDEXES_PATH = __DIR__ . '/../data/formal-indexes.json';
 
 	/**
-	 * Language code for formality index lookup.
-	 */
-	private string $langCode;
-
-	/**
-	 * Logger instance used for logging errors.
-	 */
-	private LoggerInterface $logger;
-
-	/**
-	 * JsonLoader instance.
-	 */
-	private JsonLoader $jsonLoader;
-
-	/**
 	 * Cached formality indexes.
 	 *
 	 * @var array<string, int>|null
@@ -70,10 +55,11 @@ class FormalityIndex {
 	 *
 	 * @since 1.45
 	 */
-	public function __construct( string $langCode, LoggerInterface $logger, JsonLoader $jsonLoader ) {
-		$this->langCode = $langCode;
-		$this->logger = $logger;
-		$this->jsonLoader = $jsonLoader;
+	public function __construct(
+		private readonly string $langCode,
+		private readonly LoggerInterface $logger,
+		private readonly JsonLoader $jsonLoader,
+	) {
 	}
 
 	/**

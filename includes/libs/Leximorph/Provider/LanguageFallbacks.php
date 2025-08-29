@@ -40,21 +40,6 @@ class LanguageFallbacks {
 	private const FALLBACKS_PATH = __DIR__ . '/../data/language-fallback-mappings.json';
 
 	/**
-	 * The language code for which fallback mappings should be returned.
-	 */
-	private string $langCode;
-
-	/**
-	 * Logger instance used for logging errors.
-	 */
-	private LoggerInterface $logger;
-
-	/**
-	 * JsonLoader instance used for loading json files.
-	 */
-	private JsonLoader $jsonLoader;
-
-	/**
 	 * The fallback language codes for this instance's language.
 	 *
 	 * @var string[]|null
@@ -70,10 +55,11 @@ class LanguageFallbacks {
 	 *
 	 * @since 1.45
 	 */
-	public function __construct( string $langCode, LoggerInterface $logger, JsonLoader $jsonLoader ) {
-		$this->langCode = $langCode;
-		$this->logger = $logger;
-		$this->jsonLoader = $jsonLoader;
+	public function __construct(
+		private readonly string $langCode,
+		private readonly LoggerInterface $logger,
+		private readonly JsonLoader $jsonLoader,
+	) {
 	}
 
 	/**
