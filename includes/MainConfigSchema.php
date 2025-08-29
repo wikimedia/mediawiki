@@ -13251,7 +13251,6 @@ class MainConfigSchema {
 		'default' => [],
 		'type' => 'list',
 	];
-	// endregion -- End Miscellaneous
 
 	/**
 	 * Whether parser functions should use Leximorph handlers instead of Language methods.
@@ -13263,4 +13262,6 @@ class MainConfigSchema {
 		'default' => false,
 		'type' => 'boolean',
 	];
+
+	// endregion -- End Miscellaneous
 }

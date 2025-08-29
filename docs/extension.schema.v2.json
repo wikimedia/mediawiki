@@ -109,6 +109,9 @@
 		"name"
 	],
 	"properties": {
+		"$comment": "----------------------------------------------------------------------",
+		"$comment": "Extension identification",
+		"$comment": "----------------------------------------------------------------------",
 		"manifest_version": {
 			"type": "integer",
 			"description": "Version of the extension.json schema the extension.json file is in."
@@ -292,6 +295,387 @@
 				}
 			}
 		},
+
+		"$comment": "----------------------------------------------------------------------",
+		"$comment": "Configuration",
+		"$comment": "----------------------------------------------------------------------",
+		"ConfigRegistry": {
+			"type": "object",
+			"description": "Registry of factory functions to create Config objects"
+		},
+		"config_prefix": {
+			"type": "string",
+			"default": "wg",
+			"description": "Prefix to put in front of configuration settings when exporting them to $GLOBALS"
+		},
+		"config": {
+			"type": "object",
+			"description": "Configuration options for this extension",
+			"patternProperties": {
+				"^[a-zA-Z_\u007f-\u00ff][a-zA-Z0-9_\u007f-\u00ff]*$": {
+					"type": "object",
+					"additionalProperties": false,
+					"required": [ "value" ],
+					"properties": {
+						"value": {
+						},
+						"merge_strategy": {
+							"type": "string",
+							"enum": [
+								"array_replace_recursive",
+								"array_plus_2d",
+								"array_plus",
+								"array_merge",
+								"provide_default"
+							],
+							"default": "array_merge"
+						},
+						"path": {
+							"description": "Whether this should be interpreted as a filesystem path, relative to extension directory root",
+							"type": "boolean",
+							"default": false
+						},
+						"description": {
+							"type": [ "string", "array" ],
+							"description": "A description of the config setting, mostly for documentation/developers"
+						},
+						"descriptionmsg": {
+							"type": "string",
+							"description": "The message key which should be used as a description for this configuration option in a user interface. If empty, description will be used."
+						},
+						"public": {
+							"type": "boolean",
+							"default": false,
+							"description": "Whether this configuration option and its value is allowed to be revealed in public or not."
+						}
+					}
+				}
+			}
+		},
+		"attributes": {
+			"description": "Registration information for other extensions",
+			"type": "object",
+			"patternProperties": {
+				".*": {
+					"type": "object",
+					"patternProperties": {
+						".*": {
+							"type": [ "array", "object" ]
+						}
+					}
+				}
+			}
+		},
+
+		"$comment": "----------------------------------------------------------------------",
+		"$comment": "Classes and services",
+		"$comment": "----------------------------------------------------------------------",
+		"AutoloadClasses": {
+			"type": "object"
+		},
+		"AutoloadNamespaces": {
+			"type": "object",
+			"description": "Mapping of PSR-4 compliant namespace to directory for autoloading",
+			"patternProperties": {
+				"^[A-Za-z0-9\\\\]+\\\\$": {
+					"type": "string",
+					"pattern": "/$"
+				}
+			},
+			"additionalProperties": false
+		},
+		"ServiceWiringFiles": {
+			"type": "array",
+			"description": "List of service wiring files to be loaded by the default instance of MediaWikiServices"
+		},
+		"TestAutoloadNamespaces": {
+			"type": "object",
+			"description": "Mapping of PSR-4 compliant namespace to directory for autoloading to be used in tests",
+			"patternProperties": {
+				"^[A-Za-z0-9\\\\]+\\\\$": {
+					"type": "string",
+					"pattern": "/$"
+				}
+			},
+			"additionalProperties": false
+		},
+		"TestAutoloadClasses": {
+			"type": "object"
+		},
+		"load_composer_autoloader": {
+			"type": "boolean",
+			"description": "Load the composer autoloader for this extension, if one is present"
+		},
+
+		"$comment": "----------------------------------------------------------------------",
+		"$comment": "Hooks, events and jobs",
+		"$comment": "----------------------------------------------------------------------",
+		"Hooks": {
+			"type": "object",
+			"description": "Hooks this extension uses (mapping of hook name to callback)",
+			"additionalProperties": {
+				"oneOf": [
+					{
+						"type": "string",
+						"description": "A global function name, static function name, or the name of a property in HookHandlers"
+					},
+					{
+						"type": "object",
+						"description": "A handler specification",
+						"properties": {
+							"handler": {
+								"type": "string",
+								"description": "The name of a property in HookHandlers"
+							},
+							"deprecated": {
+								"type": "boolean",
+								"description": "The deprecation acknowledgement flag for the handler. If this is true, calls will be filtered if the relevant hook is deprecated."
+							}
+						},
+						"required": [
+							"handler"
+						]
+					},
+					{
+						"type": "array",
+						"description": "An ordered array of handlers",
+						"items": {
+							"oneOf": [
+								{
+									"type": "string",
+									"description": "A global function name, static function name, or the name of a property in HookHandlers"
+								},
+								{
+									"type": "object",
+									"description": "A handler specification",
+									"properties": {
+										"handler": {
+											"type": "string",
+											"description": "The name of a property in HookHandlers"
+										},
+										"deprecated": {
+											"type": "boolean",
+											"description": "The deprecation acknowledgement flag for the handler. If this is true, calls will be filtered if the relevant hook is deprecated."
+										}
+									},
+									"required": [
+										"handler"
+									]
+								}
+							]
+						}
+					}
+				]
+			}
+		},
+		"HookHandlers": {
+			"type": "object",
+			"description": "ObjectFactory specifications for new-style hook handlers",
+			"additionalProperties": { "$ref": "#/definitions/ObjectFactorySpec" }
+		},
+		"DeprecatedHooks": {
+			"type": "object",
+			"description": "Hooks which are defined and deprecated by the extension",
+			"additionalProperties": {
+				"type": "object",
+				"properties": {
+					"deprecatedVersion": {
+						"type": "string",
+						"description": "The version in which the hook was deprecated"
+					},
+					"component": {
+						"type": "string",
+						"description": "The component to which the deprecated version relates. If omitted, the extension name will be used."
+					},
+					"silent": {
+						"type": "boolean",
+						"description": "If true, no warning is raised when the hook is called or when a handler is declared. However, call filtering is still activated."
+					}
+				},
+				"required": [
+					"deprecatedVersion"
+				]
+			}
+		},
+		"DomainEventSubscribers": {
+			"type": "array",
+			"description": "Deprecated alias for DomainEventIngresses (T389033)",
+			"items": {
+				"$ref": "#/properties/DomainEventIngresses/items"
+			}
+		},
+		"DomainEventIngresses": {
+			"type": "array",
+			"description": "ObjectFactory specifications for domain event ingress objects. Since MW 1.44. Event ingress objects must extend DomainEventIngress.",
+			"items": {
+				"allOf": [
+					{
+						"type": "object",
+						"required": [ "events" ],
+						"properties": {
+							"events": {
+								"type": "array",
+								"items": {
+									"type": "string"
+								},
+								"description": "A list of events to subscribe to"
+							},
+							"factory": { "description": "See the ObjectFactorySpec definition" },
+							"class": { "description": "See the ObjectFactorySpec definition" },
+							"args": { "description": "See the ObjectFactorySpec definition" },
+							"services": { "description": "See the ObjectFactorySpec definition" },
+							"optional_services": { "description": "See the ObjectFactorySpec definition" }
+						}
+					},
+					{ "$ref": "#/definitions/ObjectFactorySpec" }
+				]
+			}
+		},
+		"callback": {
+			"type": [
+				"array",
+				"string"
+			],
+			"description": "A function to be called right after MediaWiki processes this file"
+		},
+		"ExtensionFunctions": {
+			"type": [
+				"array",
+				"string"
+			],
+			"description": "Function to call after setup has finished",
+			"items": {
+				"type": "string"
+			}
+		},
+		"InstallerTasks": {
+			"type": "array",
+			"description": "Array of specification objects describing tasks to run during installation",
+			"items": {
+				"type": "object",
+				"properties": {
+					"class": {
+						"type": "string",
+						"description": "The class name to create"
+					},
+					"factory": {
+						"type": [ "array", "string" ],
+						"description": "A function to call to create the object"
+					},
+					"args": {
+						"type": "array",
+						"description": "Arguments to pass to the constructor"
+					},
+					"callback": {
+						"type": [ "array", "string" ],
+						"description": "Function to call during installation"
+					},
+					"name": {
+						"type": "string",
+						"description": "The name of the task (with callback only)"
+					},
+					"description": {
+						"type": "string",
+						"description": "A description of the task (with callback only)"
+					},
+					"after": {
+						"type": [ "array", "string" ],
+						"description": "The name of the dependency or provided data, or a list of such names (with callback only)"
+					},
+					"postInstall": {
+						"type": "boolean",
+						"description": "Whether the task should run after all tasks that actually perform installation (with callback only)"
+					},
+					"profile": {
+						"type": "string",
+						"description": "Which installer to run the task under. If unspecified, it runs in both installers.",
+						"enum": [
+							"installer",
+							"installPreConfigured"
+						]
+					}
+				}
+			}
+		},
+		"JobClasses": {
+			"type": "object",
+			"description": "Job types this extension implements (mapping of job type to class name or factory function)"
+		},
+		"NotificationMiddleware": {
+			"type": "array",
+			"description": "List of notification middleware (specs for ObjectFactory). The class should implement the NotificationMiddlewareInterface interface.",
+			"items": {
+				"allOf": [
+					{
+						"type": "object",
+						"properties": {
+							"factory": { "description": "See the ObjectFactorySpec definition" },
+							"class": { "description": "See the ObjectFactorySpec definition" },
+							"args": { "description": "See the ObjectFactorySpec definition" },
+							"services": { "description": "See the ObjectFactorySpec definition" },
+							"optional_services": { "description": "See the ObjectFactorySpec definition" }
+						}
+					},
+					{ "$ref": "#/definitions/ObjectFactorySpec" }
+				]
+			}
+		},
+		"NotificationHandlers": {
+			"type": "array",
+			"description": "List of notification handlers (specs for ObjectFactory). The class should implement the NotificationHandler interface.",
+			"items": {
+				"allOf": [
+					{
+						"type": "object",
+						"properties": {
+							"types": {
+								"type": "array",
+								"description": "Notification types (or wildcards) supported by this handler. Currently, the only supported wildcard is setting the whole type to '*' (no partial matches allowed).",
+								"items": {
+									"type": "string"
+								}
+							},
+							"factory": { "description": "See the ObjectFactorySpec definition" },
+							"class": { "description": "See the ObjectFactorySpec definition" },
+							"args": { "description": "See the ObjectFactorySpec definition" },
+							"services": { "description": "See the ObjectFactorySpec definition" },
+							"optional_services": { "description": "See the ObjectFactorySpec definition" }
+						}
+					},
+					{ "$ref": "#/definitions/ObjectFactorySpec" }
+				]
+			}
+		},
+
+		"$comment": "----------------------------------------------------------------------",
+		"$comment": "Localisation",
+		"$comment": "----------------------------------------------------------------------",
+		"ExtensionMessagesFiles": {
+			"type": "object",
+			"description": "File paths containing PHP internationalization data"
+		},
+		"MessagesDirs": {
+			"type": "object",
+			"description": "Directory paths containing JSON internationalization data"
+		},
+		"TranslationAliasesDirs": {
+			"type": "object",
+			"description": "Message directories containing JSON files for localisation of special page aliases"
+		},
+		"RawHtmlMessages": {
+			"type": "array",
+			"description": "Messages which are rendered as raw HTML",
+			"items": {
+				"type": "string"
+			}
+		},
+		"ExtensionEntryPointListFiles": {
+			"type": "object"
+		},
+
+		"$comment": "----------------------------------------------------------------------",
+		"$comment": "ResourceLoader",
+		"$comment": "----------------------------------------------------------------------",
 		"ResourceFileModulePaths": {
 			"type": "object",
 			"description": "Default paths to use for all ResourceLoader file modules",
@@ -795,10 +1179,141 @@
 				}
 			}
 		},
-		"ConfigRegistry": {
-			"type": "object",
-			"description": "Registry of factory functions to create Config objects"
+		"ForeignResourcesDir": {
+			"type": "string",
+			"description": "The directory holding the foreign-resources.yaml file, relative to the extension root. See https://www.mediawiki.org/wiki/Foreign_resources"
 		},
+		"LateJSConfigVarNames": {
+			"type": "array",
+			"description": "Names of JS config vars (as used in MakeGlobalVariablesScript hook or in ParserOutput::setJsConfigVar) that may be set from the end of the HTML body instead of the HTML head, to improve page load time. In JavaScript, these variables should be accessed via mw.hook('wikipage.content').",
+			"items": {
+				"type": "string"
+			}
+		},
+
+		"$comment": "----------------------------------------------------------------------",
+		"$comment": "Skins",
+		"$comment": "----------------------------------------------------------------------",
+		"ValidSkinNames": {
+			"type": "object",
+			"description": "Mapping of skin canonical names to PHP class name using the Object Factory specification. Or historically, the human readable name of the skin."
+		},
+		"SkinOOUIThemes": {
+			"type": "object",
+			"description": "Map of skin names to OOUI themes to use. Same format as MediaWiki\\ResourceLoader\\OOUIModule::$builtinSkinThemeMap."
+		},
+		"OOUIThemePaths": {
+			"type": "object",
+			"description": "Map of custom OOUI theme names to paths to load them from. Same format as MediaWiki\\ResourceLoader\\OOUIModule::$builtinThemePaths.",
+			"patternProperties": {
+				"^[A-Za-z]+$": {
+					"type": "object",
+					"additionalProperties": false,
+					"properties": {
+						"localBasePath": {
+							"type": "string",
+							"description": "Base path to prepend to all local paths, relative to current directory"
+						},
+						"remoteExtPath": {
+							"type": "string",
+							"description": "Base path to prepend to all remote paths, relative to $wgExtensionAssetsPath"
+						},
+						"remoteSkinPath": {
+							"type": "string",
+							"description": "Base path to prepend to all remote paths, relative to $wgStylePath"
+						},
+						"scripts": {
+							"type": "string",
+							"description": "Path to script file."
+						},
+						"styles": {
+							"type": "string",
+							"description": "Path to style files. '{module}' will be replaced with the module's name."
+						},
+						"images": {
+							"type": "string",
+							"description": "Path to image definition files. '{module}' will be replaced with the module's name. If the files don't exist, default theme's images will be used instead."
+						}
+					}
+				}
+			}
+		},
+		"SkinCodexThemes": {
+			"type": "object",
+			"description": "Name of the Codex theme to use for each skin, keyed by skin name. Skins not specified here default to the wikimedia-ui theme."
+		},
+
+		"$comment": "----------------------------------------------------------------------",
+		"$comment": "APIs and entry points",
+		"$comment": "----------------------------------------------------------------------",
+		"Actions": {
+			"type": "object"
+		},
+		"APIModules": {
+			"type": "object"
+		},
+		"APIFormatModules": {
+			"type": "object"
+		},
+		"APIMetaModules": {
+			"type": "object"
+		},
+		"APIPropModules": {
+			"type": "object"
+		},
+		"APIListModules": {
+			"type": "object"
+		},
+		"RestModuleFiles": {
+			"type": "array",
+			"description": "Paths of REST API module files"
+		},
+		"RestRoutes": {
+			"type": "array",
+			"description": "List of route specifications to be added to the REST API",
+			"items": {
+				"allOf": [
+					{
+						"type": "object",
+						"properties": {
+							"method": {
+								"oneOf": [
+									{
+										"type": "string",
+										"description": "The HTTP method name"
+									},
+									{
+										"type": "array",
+										"items": {
+											"type": "string",
+											"description": "An acceptable HTTP method name"
+										}
+									}
+								]
+							},
+							"path": {
+								"type": "string",
+								"description": "The path template. This should start with an initial slash, designating the root of the REST API. Path parameters are enclosed in braces, for example /endpoint/{param}."
+							},
+							"factory": { "description": "See the ObjectFactorySpec definition" },
+							"class": { "description": "See the ObjectFactorySpec definition" },
+							"args": { "description": "See the ObjectFactorySpec definition" },
+							"services": { "description": "See the ObjectFactorySpec definition" },
+							"optional_services": { "description": "See the ObjectFactorySpec definition" }
+						}
+					},
+					{ "$ref": "#/definitions/ObjectFactorySpec" }
+				]
+			}
+		},
+		"SpecialPages": {
+			"type": "object",
+			"description": "SpecialPages implemented in this extension (mapping of page name to class name or to ObjectFactory spec, or factory callback)"
+		},
+
+		"$comment": "----------------------------------------------------------------------",
+		"$comment": "User accounts and authentication",
+		"$comment": "----------------------------------------------------------------------",
 		"SessionProviders": {
 			"type": "object",
 			"description": "Session providers"
@@ -834,77 +1349,6 @@
 			"type": "object",
 			"description": "AuthenticationRequest classes which can only be used internally for credentials removal"
 		},
-		"namespaces": {
-			"type": "array",
-			"description": "Method to add extra namespaces",
-			"items": {
-				"type": "object",
-				"properties": {
-					"id": {
-						"type": "integer"
-					},
-					"constant": {
-						"type": "string"
-					},
-					"name": {
-						"type": "string"
-					},
-					"gender": {
-						"type": "object",
-						"properties": {
-							"male": {
-								"type": "string"
-							},
-							"female": {
-								"type": "string"
-							}
-						}
-					},
-					"subpages": {
-						"type": "boolean",
-						"default": false
-					},
-					"content": {
-						"type": "boolean",
-						"default": false
-					},
-					"defaultcontentmodel": {
-						"type": "string"
-					},
-					"protection": {
-						"type": [ "string", "array" ],
-						"description": "Userright(s) required to edit in this namespace"
-					},
-					"capitallinkoverride": {
-						"type": "boolean",
-						"description": "Set $wgCapitalLinks on a per-namespace basis"
-					},
-					"conditional": {
-						"type": "boolean",
-						"description": "Whether the namespace is conditional upon configuration and should not be registered (requires separate registration via a hook)",
-						"default": false
-					},
-					"movable": {
-						"type": "boolean",
-						"description": "Whether it is possible to move pages in this namespace",
-						"default": true
-					},
-					"includable": {
-						"type": "boolean",
-						"description": "Whether it is possible to include/transclude pages in this namespace",
-						"default": true
-					}
-				},
-				"required": [ "id", "constant", "name" ]
-			}
-		},
-		"TrackingCategories": {
-			"type": "array",
-			"description": "Tracking category message keys",
-			"items": {
-				"type": "string"
-			}
-		},
 		"DefaultUserOptions": {
 			"type": "object",
 			"description": "Default values of user options"
@@ -920,6 +1364,50 @@
 				"type": "string"
 			}
 		},
+		"TempUserSerialProviders": {
+			"type": "object",
+			"description": "Map of temporary user serial provider type name to ObjectFactory spec",
+			"patternProperties": {
+				".*": { "$ref": "#/definitions/ObjectFactorySpec" }
+			}
+		},
+		"TempUserSerialMappings": {
+			"type": "object",
+			"description": "Map of temporary user serial map type name to ObjectFactory spec",
+			"patternProperties": {
+				".*": { "$ref": "#/definitions/ObjectFactorySpec" }
+			}
+		},
+		"UserRegistrationProviders": {
+			"type": "object",
+			"description": "Map of user registration timestamp providers (specs for ObjectFactory, indexed by provider name)",
+			"patternProperties": {
+				".*": { "$ref": "#/definitions/ObjectFactorySpec" }
+			}
+		},
+		"UserOptionsStoreProviders": {
+			"type": "object",
+			"description": "Map of user options store providers (specs for ObjectFactory, indexed by provider name). The class should implement the UserOptionsStore interface.",
+			"patternProperties": {
+				".*": { "$ref": "#/definitions/ObjectFactorySpec" }
+			}
+		},
+		"PasswordPolicy": {
+			"type": "object",
+			"description": "Password policies"
+		},
+		"ReauthenticateTime": {
+			"type": "object",
+			"patternProperties": {
+				".*": {
+					"type": "integer"
+				}
+			}
+		},
+
+		"$comment": "----------------------------------------------------------------------",
+		"$comment": "User rights, access control and monitoring",
+		"$comment": "----------------------------------------------------------------------",
 		"GroupPermissions": {
 			"type": "object",
 			"description": "Default permissions to give to user groups",
@@ -1014,6 +1502,85 @@
 				"type": "string"
 			}
 		},
+		"RateLimits": {
+			"type": "object",
+			"description": "Rate limits"
+		},
+
+		"$comment": "----------------------------------------------------------------------",
+		"$comment": "Titles, content and parser",
+		"$comment": "----------------------------------------------------------------------",
+		"namespaces": {
+			"type": "array",
+			"description": "Method to add extra namespaces",
+			"items": {
+				"type": "object",
+				"properties": {
+					"id": {
+						"type": "integer"
+					},
+					"constant": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					},
+					"gender": {
+						"type": "object",
+						"properties": {
+							"male": {
+								"type": "string"
+							},
+							"female": {
+								"type": "string"
+							}
+						}
+					},
+					"subpages": {
+						"type": "boolean",
+						"default": false
+					},
+					"content": {
+						"type": "boolean",
+						"default": false
+					},
+					"defaultcontentmodel": {
+						"type": "string"
+					},
+					"protection": {
+						"type": [ "string", "array" ],
+						"description": "Userright(s) required to edit in this namespace"
+					},
+					"capitallinkoverride": {
+						"type": "boolean",
+						"description": "Set $wgCapitalLinks on a per-namespace basis"
+					},
+					"conditional": {
+						"type": "boolean",
+						"description": "Whether the namespace is conditional upon configuration and should not be registered (requires separate registration via a hook)",
+						"default": false
+					},
+					"movable": {
+						"type": "boolean",
+						"description": "Whether it is possible to move pages in this namespace",
+						"default": true
+					},
+					"includable": {
+						"type": "boolean",
+						"description": "Whether it is possible to include/transclude pages in this namespace",
+						"default": true
+					}
+				},
+				"required": [ "id", "constant", "name" ]
+			}
+		},
+		"TrackingCategories": {
+			"type": "array",
+			"description": "Tracking category message keys",
+			"items": {
+				"type": "string"
+			}
+		},
 		"ContentHandlers": {
 			"type": "object",
 			"description": "Mapping of model ID to class name or an ObjectFactory specification.",
@@ -1032,507 +1599,9 @@
 				}
 			}
 		},
-		"RateLimits": {
-			"type": "object",
-			"description": "Rate limits"
-		},
-		"RecentChangesFlags": {
-			"type": "object",
-			"description": "Flags (letter symbols) shown on RecentChanges pages"
-		},
-		"MediaHandlers": {
-			"type": "object",
-			"description": "Plugins for media file type handling. Each entry in the array maps a MIME type to a PHP class name."
-		},
-		"ExtensionFunctions": {
-			"type": [
-				"array",
-				"string"
-			],
-			"description": "Function to call after setup has finished",
-			"items": {
-				"type": "string"
-			}
-		},
-		"ExtensionMessagesFiles": {
-			"type": "object",
-			"description": "File paths containing PHP internationalization data"
-		},
-		"RestModuleFiles": {
-			"type": "array",
-			"description": "Paths of REST API module files"
-		},
-		"MessagesDirs": {
-			"type": "object",
-			"description": "Directory paths containing JSON internationalization data"
-		},
-		"TranslationAliasesDirs": {
-			"type": "object",
-			"description": "Message directories containing JSON files for localisation of special page aliases"
-		},
-		"ExtensionEntryPointListFiles": {
-			"type": "object"
-		},
-		"SpecialPages": {
-			"type": "object",
-			"description": "SpecialPages implemented in this extension (mapping of page name to class name or to ObjectFactory spec, or factory callback)"
-		},
 		"OutputPipelineStages": {
 			"type": "object",
 			"description": "@unstable EXPERIMENTAL: OutputPipelineStages implemented in this extension."
-		},
-		"AutoloadNamespaces": {
-			"type": "object",
-			"description": "Mapping of PSR-4 compliant namespace to directory for autoloading",
-			"patternProperties": {
-				"^[A-Za-z0-9\\\\]+\\\\$": {
-					"type": "string",
-					"pattern": "/$"
-				}
-			},
-			"additionalProperties": false
-		},
-		"AutoloadClasses": {
-			"type": "object"
-		},
-		"TestAutoloadNamespaces": {
-			"type": "object",
-			"description": "Mapping of PSR-4 compliant namespace to directory for autoloading to be used in tests",
-			"patternProperties": {
-				"^[A-Za-z0-9\\\\]+\\\\$": {
-					"type": "string",
-					"pattern": "/$"
-				}
-			},
-			"additionalProperties": false
-		},
-		"TestAutoloadClasses": {
-			"type": "object"
-		},
-		"Hooks": {
-			"type": "object",
-			"description": "Hooks this extension uses (mapping of hook name to callback)",
-			"additionalProperties": {
-				"oneOf": [
-					{
-						"type": "string",
-						"description": "A global function name, static function name, or the name of a property in HookHandlers"
-					},
-					{
-						"type": "object",
-						"description": "A handler specification",
-						"properties": {
-							"handler": {
-								"type": "string",
-								"description": "The name of a property in HookHandlers"
-							},
-							"deprecated": {
-								"type": "boolean",
-								"description": "The deprecation acknowledgement flag for the handler. If this is true, calls will be filtered if the relevant hook is deprecated."
-							}
-						},
-						"required": [
-							"handler"
-						]
-					},
-					{
-						"type": "array",
-						"description": "An ordered array of handlers",
-						"items": {
-							"oneOf": [
-								{
-									"type": "string",
-									"description": "A global function name, static function name, or the name of a property in HookHandlers"
-								},
-								{
-									"type": "object",
-									"description": "A handler specification",
-									"properties": {
-										"handler": {
-											"type": "string",
-											"description": "The name of a property in HookHandlers"
-										},
-										"deprecated": {
-											"type": "boolean",
-											"description": "The deprecation acknowledgement flag for the handler. If this is true, calls will be filtered if the relevant hook is deprecated."
-										}
-									},
-									"required": [
-										"handler"
-									]
-								}
-							]
-						}
-					}
-				]
-			}
-		},
-		"HookHandlers": {
-			"type": "object",
-			"description": "ObjectFactory specifications for new-style hook handlers",
-			"additionalProperties": { "$ref": "#/definitions/ObjectFactorySpec" }
-		},
-		"DeprecatedHooks": {
-			"type": "object",
-			"description": "Hooks which are defined and deprecated by the extension",
-			"additionalProperties": {
-				"type": "object",
-				"properties": {
-					"deprecatedVersion": {
-						"type": "string",
-						"description": "The version in which the hook was deprecated"
-					},
-					"component": {
-						"type": "string",
-						"description": "The component to which the deprecated version relates. If omitted, the extension name will be used."
-					},
-					"silent": {
-						"type": "boolean",
-						"description": "If true, no warning is raised when the hook is called or when a handler is declared. However, call filtering is still activated."
-					}
-				},
-				"required": [
-					"deprecatedVersion"
-				]
-			}
-		},
-		"DomainEventSubscribers": {
-			"type": "array",
-			"description": "Deprecated alias for DomainEventIngresses (T389033)",
-			"items": {
-				"$ref": "#/properties/DomainEventIngresses/items"
-			}
-		},
-		"DomainEventIngresses": {
-			"type": "array",
-			"description": "ObjectFactory specifications for domain event ingress objects. Since MW 1.44. Event ingress objects must extend DomainEventIngress.",
-			"items": {
-				"allOf": [
-					{
-						"type": "object",
-						"required": [ "events" ],
-						"properties": {
-							"events": {
-								"type": "array",
-								"items": {
-									"type": "string"
-								},
-								"description": "A list of events to subscribe to"
-							},
-							"factory": { "description": "See the ObjectFactorySpec definition" },
-							"class": { "description": "See the ObjectFactorySpec definition" },
-							"args": { "description": "See the ObjectFactorySpec definition" },
-							"services": { "description": "See the ObjectFactorySpec definition" },
-							"optional_services": { "description": "See the ObjectFactorySpec definition" }
-						}
-					},
-					{ "$ref": "#/definitions/ObjectFactorySpec" }
-				]
-			}
-		},
-		"JobClasses": {
-			"type": "object",
-			"description": "Job types this extension implements (mapping of job type to class name or factory function)"
-		},
-		"LogTypes": {
-			"type": "array",
-			"description": "List of new log types this extension uses"
-		},
-		"LogRestrictions": {
-			"type": "object"
-		},
-		"FilterLogTypes": {
-			"type": "object"
-		},
-		"ActionFilteredLogs": {
-			"type": "object",
-			"description": "List of log types which can be filtered by log actions",
-			"patternProperties": {
-				"^[a-z-]+$": {
-					"type": "object",
-					"patternProperties": {
-						"^[a-z-]+$": {
-							"type": "array",
-							"items": {
-								"type": "string"
-							}
-						}
-					}
-				}
-			}
-		},
-		"LogNames": {
-			"type": "object"
-		},
-		"LogHeaders": {
-			"type": "object"
-		},
-		"LogActions": {
-			"type": "object"
-		},
-		"LogActionsHandlers": {
-			"type": "object"
-		},
-		"Actions": {
-			"type": "object"
-		},
-		"APIModules": {
-			"type": "object"
-		},
-		"APIFormatModules": {
-			"type": "object"
-		},
-		"APIMetaModules": {
-			"type": "object"
-		},
-		"APIPropModules": {
-			"type": "object"
-		},
-		"APIListModules": {
-			"type": "object"
-		},
-		"ValidSkinNames": {
-			"type": "object",
-			"description": "Mapping of skin canonical names to PHP class name using the Object Factory specification. Or historically, the human readable name of the skin."
-		},
-		"FeedClasses": {
-			"type": "object",
-			"description": "Available feeds objects"
-		},
-		"SkinOOUIThemes": {
-			"type": "object",
-			"description": "Map of skin names to OOUI themes to use. Same format as MediaWiki\\ResourceLoader\\OOUIModule::$builtinSkinThemeMap."
-		},
-		"OOUIThemePaths": {
-			"type": "object",
-			"description": "Map of custom OOUI theme names to paths to load them from. Same format as MediaWiki\\ResourceLoader\\OOUIModule::$builtinThemePaths.",
-			"patternProperties": {
-				"^[A-Za-z]+$": {
-					"type": "object",
-					"additionalProperties": false,
-					"properties": {
-						"localBasePath": {
-							"type": "string",
-							"description": "Base path to prepend to all local paths, relative to current directory"
-						},
-						"remoteExtPath": {
-							"type": "string",
-							"description": "Base path to prepend to all remote paths, relative to $wgExtensionAssetsPath"
-						},
-						"remoteSkinPath": {
-							"type": "string",
-							"description": "Base path to prepend to all remote paths, relative to $wgStylePath"
-						},
-						"scripts": {
-							"type": "string",
-							"description": "Path to script file."
-						},
-						"styles": {
-							"type": "string",
-							"description": "Path to style files. '{module}' will be replaced with the module's name."
-						},
-						"images": {
-							"type": "string",
-							"description": "Path to image definition files. '{module}' will be replaced with the module's name. If the files don't exist, default theme's images will be used instead."
-						}
-					}
-				}
-			}
-		},
-		"SkinCodexThemes": {
-			"type": "object",
-			"description": "Name of the Codex theme to use for each skin, keyed by skin name. Skins not specified here default to the wikimedia-ui theme."
-		},
-		"PasswordPolicy": {
-			"type": "object",
-			"description": "Password policies"
-		},
-		"FileExtensions": {
-			"type": "array",
-			"description": "Preferred file extensions for uploading",
-			"items": {
-				"type": "string"
-			}
-		},
-		"RawHtmlMessages": {
-			"type": "array",
-			"description": "Messages which are rendered as raw HTML",
-			"items": {
-				"type": "string"
-			}
-		},
-		"LateJSConfigVarNames": {
-			"type": "array",
-			"description": "Names of JS config vars (as used in MakeGlobalVariablesScript hook or in ParserOutput::setJsConfigVar) that may be set from the end of the HTML body instead of the HTML head, to improve page load time. In JavaScript, these variables should be accessed via mw.hook('wikipage.content').",
-			"items": {
-				"type": "string"
-			}
-		},
-		"DatabaseVirtualDomains": {
-			"type": "array",
-			"description": "Names of virtual domains that are used to get a db connection.",
-			"items": {
-				"type": "string"
-			}
-		},
-		"ReauthenticateTime": {
-			"type": "object",
-			"patternProperties": {
-				".*": {
-					"type": "integer"
-				}
-			}
-		},
-		"InstallerTasks": {
-			"type": "array",
-			"description": "Array of specification objects describing tasks to run during installation",
-			"items": {
-				"type": "object",
-				"properties": {
-					"class": {
-						"type": "string",
-						"description": "The class name to create"
-					},
-					"factory": {
-						"type": [ "array", "string" ],
-						"description": "A function to call to create the object"
-					},
-					"args": {
-						"type": "array",
-						"description": "Arguments to pass to the constructor"
-					},
-					"callback": {
-						"type": [ "array", "string" ],
-						"description": "Function to call during installation"
-					},
-					"name": {
-						"type": "string",
-						"description": "The name of the task (with callback only)"
-					},
-					"description": {
-						"type": "string",
-						"description": "A description of the task (with callback only)"
-					},
-					"after": {
-						"type": [ "array", "string" ],
-						"description": "The name of the dependency or provided data, or a list of such names (with callback only)"
-					},
-					"postInstall": {
-						"type": "boolean",
-						"description": "Whether the task should run after all tasks that actually perform installation (with callback only)"
-					},
-					"profile": {
-						"type": "string",
-						"description": "Which installer to run the task under. If unspecified, it runs in both installers.",
-						"enum": [
-							"installer",
-							"installPreConfigured"
-						]
-					}
-				}
-			}
-		},
-		"callback": {
-			"type": [
-				"array",
-				"string"
-			],
-			"description": "A function to be called right after MediaWiki processes this file"
-		},
-		"config_prefix": {
-			"type": "string",
-			"default": "wg",
-			"description": "Prefix to put in front of configuration settings when exporting them to $GLOBALS"
-		},
-		"config": {
-			"type": "object",
-			"description": "Configuration options for this extension",
-			"patternProperties": {
-				"^[a-zA-Z_\u007f-\u00ff][a-zA-Z0-9_\u007f-\u00ff]*$": {
-					"type": "object",
-					"additionalProperties": false,
-					"required": [ "value" ],
-					"properties": {
-						"value": {
-						},
-						"merge_strategy": {
-							"type": "string",
-							"enum": [
-								"array_replace_recursive",
-								"array_plus_2d",
-								"array_plus",
-								"array_merge",
-								"provide_default"
-							],
-							"default": "array_merge"
-						},
-						"path": {
-							"description": "Whether this should be interpreted as a filesystem path, relative to extension directory root",
-							"type": "boolean",
-							"default": false
-						},
-						"description": {
-							"type": [ "string", "array" ],
-							"description": "A description of the config setting, mostly for documentation/developers"
-						},
-						"descriptionmsg": {
-							"type": "string",
-							"description": "The message key which should be used as a description for this configuration option in a user interface. If empty, description will be used."
-						},
-						"public": {
-							"type": "boolean",
-							"default": false,
-							"description": "Whether this configuration option and its value is allowed to be revealed in public or not."
-						}
-					}
-				}
-			}
-		},
-		"SearchMappings": {
-			"type": "object",
-			"description": "Mapping of search canonical names (used in $wgSearchType and $wgSearchTypeAlternatives) using the Object Factory specification"
-		},
-		"ServiceWiringFiles": {
-			"type": "array",
-			"description": "List of service wiring files to be loaded by the default instance of MediaWikiServices"
-		},
-		"RestRoutes": {
-			"type": "array",
-			"description": "List of route specifications to be added to the REST API",
-			"items": {
-				"allOf": [
-					{
-						"type": "object",
-						"properties": {
-							"method": {
-								"oneOf": [
-									{
-										"type": "string",
-										"description": "The HTTP method name"
-									},
-									{
-										"type": "array",
-										"items": {
-											"type": "string",
-											"description": "An acceptable HTTP method name"
-										}
-									}
-								]
-							},
-							"path": {
-								"type": "string",
-								"description": "The path template. This should start with an initial slash, designating the root of the REST API. Path parameters are enclosed in braces, for example /endpoint/{param}."
-							},
-							"factory": { "description": "See the ObjectFactorySpec definition" },
-							"class": { "description": "See the ObjectFactorySpec definition" },
-							"args": { "description": "See the ObjectFactorySpec definition" },
-							"services": { "description": "See the ObjectFactorySpec definition" },
-							"optional_services": { "description": "See the ObjectFactorySpec definition" }
-						}
-					},
-					{ "$ref": "#/definitions/ObjectFactorySpec" }
-				]
-			}
 		},
 		"ParsoidModules": {
 			"type": "array",
@@ -1586,100 +1655,82 @@
 				]
 			}
 		},
-		"TempUserSerialProviders": {
-			"type": "object",
-			"description": "Map of temporary user serial provider type name to ObjectFactory spec",
-			"patternProperties": {
-				".*": { "$ref": "#/definitions/ObjectFactorySpec" }
-			}
-		},
-		"TempUserSerialMappings": {
-			"type": "object",
-			"description": "Map of temporary user serial map type name to ObjectFactory spec",
-			"patternProperties": {
-				".*": { "$ref": "#/definitions/ObjectFactorySpec" }
-			}
-		},
-		"UserRegistrationProviders": {
-			"type": "object",
-			"description": "Map of user registration timestamp providers (specs for ObjectFactory, indexed by provider name)",
-			"patternProperties": {
-				".*": { "$ref": "#/definitions/ObjectFactorySpec" }
-			}
-		},
-		"UserOptionsStoreProviders": {
-			"type": "object",
-			"description": "Map of user options store providers (specs for ObjectFactory, indexed by provider name). The class should implement the UserOptionsStore interface.",
-			"patternProperties": {
-				".*": { "$ref": "#/definitions/ObjectFactorySpec" }
-			}
-		},
-		"NotificationMiddleware": {
+		"FileExtensions": {
 			"type": "array",
-			"description": "List of notification middleware (specs for ObjectFactory). The class should implement the NotificationMiddlewareInterface interface.",
+			"description": "Preferred file extensions for uploading",
 			"items": {
-				"allOf": [
-					{
-						"type": "object",
-						"properties": {
-							"factory": { "description": "See the ObjectFactorySpec definition" },
-							"class": { "description": "See the ObjectFactorySpec definition" },
-							"args": { "description": "See the ObjectFactorySpec definition" },
-							"services": { "description": "See the ObjectFactorySpec definition" },
-							"optional_services": { "description": "See the ObjectFactorySpec definition" }
-						}
-					},
-					{ "$ref": "#/definitions/ObjectFactorySpec" }
-				]
+				"type": "string"
 			}
 		},
-		"NotificationHandlers": {
-			"type": "array",
-			"description": "List of notification handlers (specs for ObjectFactory). The class should implement the NotificationHandler interface.",
-			"items": {
-				"allOf": [
-					{
-						"type": "object",
-						"properties": {
-							"types": {
-								"type": "array",
-								"description": "Notification types (or wildcards) supported by this handler. Currently, the only supported wildcard is setting the whole type to '*' (no partial matches allowed).",
-								"items": {
-									"type": "string"
-								}
-							},
-							"factory": { "description": "See the ObjectFactorySpec definition" },
-							"class": { "description": "See the ObjectFactorySpec definition" },
-							"args": { "description": "See the ObjectFactorySpec definition" },
-							"services": { "description": "See the ObjectFactorySpec definition" },
-							"optional_services": { "description": "See the ObjectFactorySpec definition" }
-						}
-					},
-					{ "$ref": "#/definitions/ObjectFactorySpec" }
-				]
-			}
-		},
-		"ForeignResourcesDir": {
-			"type": "string",
-			"description": "The directory holding the foreign-resources.yaml file, relative to the extension root. See https://www.mediawiki.org/wiki/Foreign_resources"
-		},
-		"attributes": {
-			"description": "Registration information for other extensions",
+		"MediaHandlers": {
 			"type": "object",
+			"description": "Plugins for media file type handling. Each entry in the array maps a MIME type to a PHP class name."
+		},
+
+		"$comment": "----------------------------------------------------------------------",
+		"$comment": "Logging",
+		"$comment": "----------------------------------------------------------------------",
+		"LogTypes": {
+			"type": "array",
+			"description": "List of new log types this extension uses"
+		},
+		"LogRestrictions": {
+			"type": "object"
+		},
+		"LogNames": {
+			"type": "object"
+		},
+		"LogHeaders": {
+			"type": "object"
+		},
+		"LogActions": {
+			"type": "object"
+		},
+		"LogActionsHandlers": {
+			"type": "object"
+		},
+		"FilterLogTypes": {
+			"type": "object"
+		},
+		"ActionFilteredLogs": {
+			"type": "object",
+			"description": "List of log types which can be filtered by log actions",
 			"patternProperties": {
-				".*": {
+				"^[a-z-]+$": {
 					"type": "object",
 					"patternProperties": {
-						".*": {
-							"type": [ "array", "object" ]
+						"^[a-z-]+$": {
+							"type": "array",
+							"items": {
+								"type": "string"
+							}
 						}
 					}
 				}
 			}
 		},
-		"load_composer_autoloader": {
-			"type": "boolean",
-			"description": "Load the composer autoloader for this extension, if one is present"
+
+		"$comment": "----------------------------------------------------------------------",
+		"$comment": "Miscellaneous",
+		"$comment": "----------------------------------------------------------------------",
+		"DatabaseVirtualDomains": {
+			"type": "array",
+			"description": "Names of virtual domains that are used to get a db connection.",
+			"items": {
+				"type": "string"
+			}
+		},
+		"FeedClasses": {
+			"type": "object",
+			"description": "Available feeds objects"
+		},
+		"RecentChangesFlags": {
+			"type": "object",
+			"description": "Flags (letter symbols) shown on RecentChanges pages"
+		},
+		"SearchMappings": {
+			"type": "object",
+			"description": "Mapping of search canonical names (used in $wgSearchType and $wgSearchTypeAlternatives) using the Object Factory specification"
 		}
 	}
 }

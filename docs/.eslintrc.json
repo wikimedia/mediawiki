@@ -1,0 +1,10 @@
+{
+	"overrides": [
+		{
+			"files": "extension.schema.v2.json",
+			"rules": {
+				"no-dupe-keys": "off"
+			}
+		}
+	]
+}
