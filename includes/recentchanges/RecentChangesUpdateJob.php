@@ -102,7 +102,7 @@ class RecentChangesUpdateJob extends Job {
 		$hasLegacyHook = $hookContainer->isRegistered( 'RecentChangesPurgeRows' );
 		if ( $hasLegacyHook ) {
 			$query = $dbw->newSelectQueryBuilder()
-				->queryInfo( RecentChange::getQueryInfo() )
+				->queryInfo( RecentChange::getQueryInfo( RecentChange::STRAIGHT_JOIN_ACTOR ) )
 				->where( $dbw->expr( 'rc_timestamp', '<', $cutoff ) )
 				->limit( $updateRowsPerQuery )
 				->caller( __METHOD__ );

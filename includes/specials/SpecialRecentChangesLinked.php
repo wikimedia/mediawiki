@@ -126,7 +126,7 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 		$ns = $title->getNamespace();
 		$dbkey = $title->getDBkey();
 
-		$rcQuery = RecentChange::getQueryInfo();
+		$rcQuery = RecentChange::getQueryInfo( RecentChange::STRAIGHT_JOIN_ACTOR );
 		$tables = array_unique( array_merge( $rcQuery['tables'], $tables ) );
 		$select = array_unique( array_merge( $rcQuery['fields'], $select ) );
 		$join_conds = array_merge( $rcQuery['joins'], $join_conds );

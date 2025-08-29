@@ -407,7 +407,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$dbr = $this->getDB();
 		$user = $this->getUser();
 
-		$rcQuery = RecentChange::getQueryInfo();
+		$rcQuery = RecentChange::getQueryInfo( RecentChange::STRAIGHT_JOIN_ACTOR );
 		$tables = array_merge( $rcQuery['tables'], $tables, [ 'watchlist' ] );
 		$fields = array_merge( $rcQuery['fields'], $fields );
 

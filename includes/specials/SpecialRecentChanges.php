@@ -378,7 +378,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	) {
 		$dbr = $this->getDB();
 
-		$rcQuery = RecentChange::getQueryInfo();
+		$rcQuery = RecentChange::getQueryInfo( RecentChange::STRAIGHT_JOIN_ACTOR );
 		$tables = array_merge( $rcQuery['tables'], $tables );
 		$fields = array_merge( $rcQuery['fields'], $fields );
 		$join_conds = array_merge( $rcQuery['joins'], $join_conds );

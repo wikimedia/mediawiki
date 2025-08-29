@@ -134,6 +134,9 @@ class RecentChange implements Taggable {
 	public const SEND_NONE = RecentChangeStore::SEND_NONE;
 	public const SEND_FEED = RecentChangeStore::SEND_FEED;
 
+	/** Flag for RecentChange::getQueryInfo() */
+	public const STRAIGHT_JOIN_ACTOR = 1;
+
 	/** @var array */
 	public $mAttribs = [];
 	/** @var array */
@@ -305,13 +308,20 @@ class RecentChange implements Taggable {
 	 * aliases.
 	 *
 	 * @since 1.31
+	 * @param int $joinFlags May be STRAIGHT_JOIN_ACTOR to use a straight join
+	 *   on the actor table, preventing the database from placing the actor
+	 *   table first in the join. This is appropriate when there are no
+	 *   restrictive conditions on the actor table, and the conditions are
+	 *   potentially complex and unindexed, and the query is limited and
+	 *   ordered by timestamp. Since 1.45.
+	 *
 	 * @return array[] With three keys:
 	 *   - tables: (string[]) to include in the `$table` to `IDatabase->select()` or `SelectQueryBuilder::tables`
 	 *   - fields: (string[]) to include in the `$vars` to `IDatabase->select()` or `SelectQueryBuilder::fields`
 	 *   - joins: (array) to include in the `$join_conds` to `IDatabase->select()` or `SelectQueryBuilder::joinConds`
 	 * @phan-return array{tables:string[],fields:string[],joins:array}
 	 */
-	public static function getQueryInfo() {
+	public static function getQueryInfo( int $joinFlags = 0 ) {
 		return [
 			'tables' => [
 				'recentchanges',
@@ -348,7 +358,10 @@ class RecentChange implements Taggable {
 			],
 			'joins' => [
 				// Optimizer sometimes refuses to pick up the correct join order (T311360)
-				'recentchanges_actor' => [ 'STRAIGHT_JOIN', 'actor_id=rc_actor' ],
+				'recentchanges_actor' => [
+					( $joinFlags & self::STRAIGHT_JOIN_ACTOR ) ? 'STRAIGHT_JOIN' : 'JOIN',
+					'actor_id=rc_actor'
+				],
 				'recentchanges_comment' => [ 'STRAIGHT_JOIN', 'comment_id=rc_comment_id' ],
 			],
 		];

@@ -101,8 +101,6 @@ class NewPagesPager extends ReverseChronologicalPager {
 
 	/** @inheritDoc */
 	public function getQueryInfo() {
-		$rcQuery = RecentChange::getQueryInfo();
-
 		$conds = [];
 		$conds['rc_source'] = RecentChange::SRC_NEW;
 
@@ -121,6 +119,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 
 		if ( $user ) {
 			$conds['actor_name'] = $user->getText();
+			$joinFlags = 0;
 		} elseif ( $this->opts->getValue( 'hideliu' ) ) {
 			// Only include anonymous users if the 'hideliu' option has been provided.
 			$anonOnlyExpr = $this->getDatabase()->expr( 'actor_user', '=', null );
@@ -130,6 +129,9 @@ class NewPagesPager extends ReverseChronologicalPager {
 				) );
 			}
 			$conds[] = $anonOnlyExpr;
+			$joinFlags = 0;
+		} else {
+			$joinFlags = RecentChange::STRAIGHT_JOIN_ACTOR;
 		}
 
 		$conds = array_merge( $conds, $this->getNamespaceCond() );
@@ -148,6 +150,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 		}
 
 		// Allow changes to the New Pages query
+		$rcQuery = RecentChange::getQueryInfo( $joinFlags );
 		$tables = array_merge( $rcQuery['tables'], [ 'page' ] );
 		$fields = array_merge( $rcQuery['fields'], [
 			'length' => 'page_len', 'rev_id' => 'page_latest', 'page_namespace', 'page_title',
