@@ -4071,7 +4071,7 @@
 	"userlogout-temp-moreinfo": "請注意，使用多個臨時帳號編輯可能違反本wiki的方針政策，倘若此種情況頻繁發生，您有可能遭到封鎖。",
 	"userlogout-temp-messagebox-title": "您確定要登出嗎？",
 	"userlogout-temp-messagebox-body": "一旦登出您便無法再使用此臨時帳號。",
-	"temp-user-logout-confirm-title": "登出連線階段",
+	"temp-user-logout-confirm-title": "登出",
 	"paramvalidator-baduser": "用於使用者參數 <var>$1</var> 的值「$2」無效。",
 	"paramvalidator-help-type-user": "類型：{{PLURAL:$1|1=使用者|2=使用者清單}}，{{PLURAL:$3|按|按任何}}$2",
 	"paramvalidator-help-type-user-subtype-name": "使用者名稱",

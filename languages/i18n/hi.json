@@ -2026,7 +2026,7 @@
 	"listgrouprights-removegroup-self-all": "अपने खाते से सभी समूह हटाना",
 	"listgrouprights-namespaceprotection-header": "नामस्थानों के प्रतिबंध",
 	"listgrouprights-namespaceprotection-namespace": "नामस्थान",
-	"listgrouprights-namespaceprotection-restrictedto": "उपयोगकर्ता को सम्पादन करने में सक्षम करने वाले अधिकार",
+	"listgrouprights-namespaceprotection-restrictedto": "सदस्य को सम्पादन करने में सक्षम करने वाला/वाले अधिकार",
 	"listgrants": "प्रदान",
 	"listgrants-summary": "यह प्रदान की गई सूची है। सदस्य अपने खाते को अनुपयोग के द्वारा उपयोग कर सकते हैं, लेकिन केवल कुछ सीमित अधिकार तक ही। यह अधिकार सदस्य द्वारा दिया गया अधिकार तक ही सीमित रहता है। यहाँ [[{{MediaWiki:Listgrouprights-helppage}}|अन्य जानकारी]] भी है, जो एक अधिकार के बारे में बताता है। \\",
 	"listgrants-grant": "अधिकार",

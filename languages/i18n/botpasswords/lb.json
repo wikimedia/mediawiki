@@ -31,7 +31,7 @@
 	"botpasswords-updated-body": "D'Botpasswuert fir de Botnumm „$1“ {{GENDER:$2|vum Benotzer|vun der Benotzerin}} „$2“ gouf aktualiséiert.",
 	"botpasswords-deleted-title": "Botpasswuert geläscht",
 	"botpasswords-deleted-body": "D'Botpasswuert fir de Botnumm „$1“ {{GENDER:$2|vum Benotzer|vun der Benotzerin}} „$2“ gouf geläscht.",
-	"botpasswords-newpassword": "Dat neit Passwuert fir sech mat <strong>$1</strong> anzeloggen ass <strong>$2</strong>.\n<em>Versuergt dat fir sech spéider dorop ze referéieren.</em><br />(Fir al Botten déi verlaangen datt de Login-Numm d'selwecht ass wéi den spéidere Benotzernumm, kënnt Dir och <strong>$3</strong> als Benotzernumm benotzten a(n) <strong>$4</strong> als Passwuert.)",
+	"botpasswords-newpassword": "Dat neit Passwuert fir sech mat <strong>$1</strong> anzeloggen ass <strong>$2</strong>. <em>Versuergt et fir an Zukunft drop zougräifen ze kënnen.</em> <br> (Fir al Botten, fir déi de Login-Numm d'selwecht si muss wéi de spéidere Benotzernumm, kënnt Dir och <strong>$3</strong> als Benotzernumm a(n) <strong>$4</strong> als Passwuert benotzen.)",
 	"botpasswords-no-provider": "BotPasswordsSessionProvider ass net disponibel.",
 	"botpasswords-not-exist": "De Benotzer „$1“ huet kee Botpasswuert mam Numm „$2“.",
 	"botpasswords-needs-reset": "D'Botpasswuert fir de Botnumm „$2“ {{GENDER:$1|vum Benotzer|vun der Benotzerin}} „$1“ muss zréckgesat ginn.",
