@@ -130,8 +130,8 @@ class FSFileBackend extends FileBackendStore {
 			$this->containerPaths[$container] = rtrim( $fsPath, '/' ); // remove trailing slash
 		}
 
-		$this->fileMode = $config['fileMode'] ?? 0644;
-		$this->dirMode = $config['directoryMode'] ?? 0777;
+		$this->fileMode = $config['fileMode'] ?? 0o644;
+		$this->dirMode = $config['directoryMode'] ?? 0o777;
 		if ( isset( $config['fileOwner'] ) && function_exists( 'posix_getuid' ) ) {
 			$this->fileOwner = $config['fileOwner'];
 			// Cache this, assuming it doesn't change

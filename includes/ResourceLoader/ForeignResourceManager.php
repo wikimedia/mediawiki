@@ -293,7 +293,7 @@ class ForeignResourceManager {
 	 */
 	private function cacheSet( $key, $data ) {
 		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
-		@mkdir( $this->cacheDir, 0777, true );
+		@mkdir( $this->cacheDir, 0o777, true );
 		file_put_contents( "{$this->cacheDir}/$key.data", $data, LOCK_EX );
 	}
 

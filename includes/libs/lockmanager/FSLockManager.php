@@ -125,7 +125,7 @@ class FSLockManager extends LockManager {
 				if ( !$handle && !is_dir( $this->lockDir ) ) {
 					// Create the lock directory and try again
 					// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
-					if ( @mkdir( $this->lockDir, 0777, true ) ) {
+					if ( @mkdir( $this->lockDir, 0o777, true ) ) {
 						// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
 						$handle = @fopen( $this->getLockPath( $path ), 'a+' );
 					} else {

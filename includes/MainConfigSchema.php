@@ -2458,7 +2458,7 @@ class MainConfigSchema {
 	 * Default value for chmod-ing of new directories.
 	 */
 	public const DirectoryMode = [
-		'default' => 0777, // octal!
+		'default' => 0o777,
 	];
 
 	/**
