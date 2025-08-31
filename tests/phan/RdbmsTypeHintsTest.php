@@ -1,6 +1,7 @@
 <?php
 
-// phpcs:disable
+// phpcs:disable MediaWiki.Commenting.MissingCovers
+// phpcs:disable Squiz.Scope.MethodScope
 
 /*
  * Some RDBMS interfaces have methods with rather complicated Phan annotations. This test ensures

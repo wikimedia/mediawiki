@@ -5,7 +5,9 @@ declare( strict_types=1 ); // This helps PhpStorm notice more problems, but has 
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Status\Status;
 
-// phpcs:disable
+// phpcs:disable MediaWiki.Commenting.MissingCovers
+// phpcs:disable Squiz.Scope.MethodScope
+// phpcs:disable Squiz.WhiteSpace.ScopeClosingBrace.ContentBefore
 
 /*
  * The `@template` annotations are kind of a new thing in our codebase, and support for them in Phan
@@ -16,6 +18,7 @@ use MediaWiki\Status\Status;
 
 die( 'This file should never be loaded' );
 
+// phpcs:ignore MediaWiki.Files.ClassMatchesFilename.NotMatch
 class Puppy {
 	function bark() {
 		echo "woof";
@@ -107,13 +110,17 @@ class StatusTypeHintsTest {
 	}
 
 	function acceptMixed( mixed $mixed ) {}
+
 	function acceptFloat( float $float ) {}
+
 	function acceptPuppy( Puppy $puppy ) {}
 
 	/** @param Status<mixed> $mixed */
 	function acceptStatusMixed( Status $mixed ) {}
+
 	/** @param Status<float> $float */
 	function acceptStatusFloat( Status $float ) {}
+
 	/** @param Status<Puppy> $puppy */
 	function acceptStatusPuppy( Status $puppy ) {}
 }
