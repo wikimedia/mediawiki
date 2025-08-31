@@ -21,36 +21,43 @@ class SearchUpdateTest extends MediaWikiIntegrationTestCase {
 		return trim( $this->su->updateText( $text ) );
 	}
 
-	public function testUpdateText() {
-		$this->assertEquals(
-			'test',
-			$this->updateText( '<div>TeSt</div>' ),
-			'HTML stripped, text lowercased'
-		);
+	/**
+	 * @dataProvider provideUpdateTextCases
+	 */
+	public function testUpdateText( string $input, ?string $expected, string $message ) {
+		$result = $this->updateText( $input );
+		$this->assertSame( $expected, $result, $message );
+	}
 
-		$this->assertEquals(
-			'foo bar boz quux',
-			$this->updateText( <<<EOT
+	public function provideUpdateTextCases(): array {
+		return [
+			[ '<div>TeSt</div>', 'test', 'HTML stripped, text lowercased' ],
+			[ <<<EOT
 <table style="color:red; font-size:100px">
 	<tr class="scary"><td><div>foo</div></td><tr>bar</td></tr>
 	<tr><td>boz</td><tr>quux</td></tr>
 </table>
 EOT
-			), 'Stripping HTML tables' );
+			, 'foo bar boz quux', 'Stripping HTML tables' ],
+			[ 'a https://example.com example', 'a example', 'Stripping bare links' ],
+			[ 'a [https://example.com/] example', 'a example', 'External links' ],
+			[ 'a [https://example.com/ weblink] example', 'a weblink example', 'External labeled links' ],
+			[ 'a [[Wikilink]] example', 'a wikilink example', 'Stripping wikilinks' ],
+			[ 'a [[Wikilink|example]] link', 'a wikilink example link', 'Stripping labeled wikilinks' ],
+			[ 'a [[game]]s link', 'a game games link', 'Link trails' ],
+			[ 'a [[testof|game]]s link', 'a testof game games link', 'Link trails with labels' ],
+			[ "dogs' and cat's tails", 'dogs and cat cat\'s tails', 'Possessive apostrophes' ],
+			[ "a ''Wiki'' example", 'a  wiki  example', "Strip wiki '' (italics)" ],
+			[ "a'''Wiki'''example", 'a wiki example', "Strip wiki ''' (bold)" ],
+			[ "a '''''Wiki''''' example", 'a  wiki  example', "Strip wiki ''''' (bold+italics)" ],
+			[ "''''", '', 'Only quotes trimmed to empty' ],
+			[ 'a > b', 'a b', 'Handle unclosed tags' ],
+		];
+	}
 
-		$this->assertEquals(
-			'a b',
-			$this->updateText( 'a > b' ),
-			'Handle unclosed tags'
-		);
-
-		$text = str_pad( "foo <barbarbar \n", 10000, 'x' );
-
-		$this->assertNotEquals(
-			'',
-			$this->updateText( $text ),
-			'T20609'
-		);
+	public function testT20609() {
+		$result = $this->updateText( str_pad( "foo <barbarbar \n", 10000, 'x' ) );
+		$this->assertNotEquals( '', $result, 'T20609' );
 	}
 
 	/**
