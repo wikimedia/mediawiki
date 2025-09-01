@@ -494,7 +494,7 @@ class MergeHistory {
 		// T263340/T93469: Create revision record to also serve as the page revision.
 		// This revision will be used to create page content. If the source page's
 		// content model supports redirects, then it will be the redirect content.
-		// If the content model does not supports redirect, this content will aid
+		// If the content model does not support redirects, this content will aid
 		// proper deletion of the page below.
 
 		$updater->setContent( SlotRecord::MAIN, $newContent )
@@ -505,7 +505,7 @@ class MergeHistory {
 			// T263340/T93469: Delete the source page to prevent errors because its
 			// revisions are now tied to a different title and its content model
 			// does not support redirects, so we cannot leave a new revision on it.
-			// This deletion does not depend on userright but may still fails. If it
+			// This deletion does not depend on userright but may still fail. If it
 			// fails, it will be communicated in the status response.
 			$reason = wfMessage( 'mergehistory-source-deleted-reason' )->inContentLanguage()->plain();
 			$delPage = $this->deletePageFactory->newDeletePage( $this->source, $performer );

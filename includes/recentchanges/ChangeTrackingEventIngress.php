@@ -212,7 +212,7 @@ class ChangeTrackingEventIngress
 		) {
 			// Note: jobs are pushed after deferred updates, so the job should be able to see
 			// the recent change entry (also done via deferred updates) and carry over any
-			// bot/deletion/IP flags, ect.
+			// bot/deletion/IP flags, etc.
 			$this->jobQueueGroup->lazyPush(
 				CategoryMembershipChangeJob::newSpec(
 					$event->getPage(),

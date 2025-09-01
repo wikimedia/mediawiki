@@ -1195,7 +1195,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 * Get a FormOptions object containing the default options. By default, returns
 	 * some basic options.  The filters listed explicitly here are overridden in this
 	 * method, in subclasses, but most filters (e.g. hideminor, userExpLevel filters,
-	 * and more) are structured.  Structured filters are overridden in registerFilters.
+	 * and more) are structured.  Structured filters are overridden in registerFilters,
 	 * not here.
 	 *
 	 * @return FormOptions

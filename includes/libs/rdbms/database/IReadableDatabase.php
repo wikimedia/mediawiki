@@ -237,7 +237,7 @@ interface IReadableDatabase extends Stringable, ISQLPlatform, DbQuoter, IDatabas
 	 *
 	 * Each table reference assigns a table name to a specified collection of rows
 	 * for the context of the query (e.g. field expressions, WHERE clause, GROUP BY
-	 * clause, HAVING clause, ect...). Use of multiple table references implies a JOIN.
+	 * clause, HAVING clause, etc...). Use of multiple table references implies a JOIN.
 	 *
 	 * If a string is given, it must hold the name of the table having the specified
 	 * collection of rows. If an array is given, each entry must be one of the following:

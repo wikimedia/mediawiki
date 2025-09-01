@@ -101,7 +101,7 @@ class SpecialShortPages extends QueryPage {
 			return parent::reallyDoQuery( $limit, $offset );
 		}
 
-		// Optimization: Fix slow query on MySQL the case of multiple content namespaces,
+		// Optimization: Fix slow query on MySQL in the case of multiple content namespaces,
 		// by rewriting this as a UNION of separate single namespace queries (T168010).
 		$sqb = $dbr->newSelectQueryBuilder()
 			->select( isset( $query['fields'] ) ? (array)$query['fields'] : [] )

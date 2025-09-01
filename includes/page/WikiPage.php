@@ -127,7 +127,7 @@ class WikiPage implements Stringable, Page, PageRecord {
 	protected $mLatest = false;
 
 	/**
-	 * @var PreparedEdit|false Map of cache fields (text, parser output, ect) for a proposed/new edit
+	 * @var PreparedEdit|false Map of cache fields (text, parser output, etc.) for a proposed/new edit
 	 * @note for access by subclasses only
 	 */
 	protected $mPreparedEdit = false;

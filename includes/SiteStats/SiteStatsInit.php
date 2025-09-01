@@ -181,7 +181,7 @@ class SiteStatsInit {
 	private function getShardedValue( int $value, int $noShards, int $rowId ): int {
 		$remainder = $value % $noShards;
 		$quotient = (int)( ( $value - $remainder ) / $noShards );
-		// Add the reminder to the first row
+		// Add the remainder to the first row
 		if ( $rowId === 1 ) {
 			return $quotient + $remainder;
 		}

@@ -2575,7 +2575,7 @@ class Language implements Bcp47Code {
 	 */
 	public function getDurationIntervals( $seconds, array $chosenIntervals = [] ) {
 		if ( !$chosenIntervals ) {
-			// Default intervals. Do not include `months` as they were not part of the origional default implementaiton
+			// Default intervals. Do not include `months` as they were not part of the original default implementation
 			$chosenIntervals = [
 				'millennia',
 				'centuries',

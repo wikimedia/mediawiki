@@ -9,7 +9,7 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
 /**
  * Base class for domain event objects to be used with DomainEventDispatcher.
  *
- * Domain events are used to notify other parts of the code (oder "domains")
+ * Domain events are used to notify other parts of the code (or "domains")
  * about a change to the persistent state of the local wiki.
  *
  * The idea of domain events is borrowed from the Domain Driven Design paradigm.
