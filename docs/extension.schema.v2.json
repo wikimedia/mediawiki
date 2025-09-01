@@ -1666,6 +1666,23 @@
 			"type": "object",
 			"description": "Plugins for media file type handling. Each entry in the array maps a MIME type to a PHP class name."
 		},
+		"RecentChangeSources": {
+			"type": "object",
+			"description": "recentchanges.rc_source values which may be added to the database and their associated properties.",
+			"items": {
+				"type": "object",
+				"properties": {
+					"primary": {
+						"type": "boolean",
+						"description": "True if changes with this source are primary user-initiated events, false if they are replicated from somewhere. Default false."
+					},
+					"revision": {
+						"type": "boolean",
+						"description": "True if the event is related to a local revision such that rc_this_oldid and rc_last_oldid are populated. Default false."
+					}
+				}
+			}
+		},
 
 		"$comment": "----------------------------------------------------------------------",
 		"$comment": "Logging",
