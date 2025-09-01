@@ -189,6 +189,14 @@ export const config = {
 	// =====
 
 	/**
+	 * Gets executed once before all workers get launched.
+	 *
+	 * @param {Object} wdioConfig wdio configuration object
+	 */
+	onPrepare: function ( wdioConfig ) {
+		console.log( `Run test targeting ${ wdioConfig.baseUrl }` );
+	},
+	/**
 	 * Gets executed just before initializing the webdriver session and test framework.
 	 * It allows you to manipulate configurations depending on the capability or spec.
 	 *
