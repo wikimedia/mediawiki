@@ -135,7 +135,7 @@ class UserNameUtils implements UserRigorOptions {
 
 		if ( $title === null
 			|| $title->getNamespace()
-			|| strcmp( $name, $title->getText() )
+			|| $name !== $title->getText()
 		) {
 			return false;
 		}
