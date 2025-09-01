@@ -1,0 +1,24 @@
+{
+	"@metadata": {
+		"authors": [
+			"NoiX180"
+		]
+	},
+	"august": "Agustus",
+	"august-gen": "Agustus",
+	"aug": "Agu",
+	"monday": "Senèn",
+	"tuesday": "Selasa",
+	"wednesday": "Rebo",
+	"thursday": "Kemis",
+	"friday": "Jumat",
+	"saturday": "Sabtu",
+	"sunday": "Ahad",
+	"mon": "Sen",
+	"tue": "Sel",
+	"wed": "Rab",
+	"thu": "Kem",
+	"fri": "Jum",
+	"sat": "Sab",
+	"sun": "Aha"
+}

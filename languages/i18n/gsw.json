@@ -335,7 +335,6 @@
 	"loginerror": "Fähler bir Aamäldig",
 	"createacct-error": "Fähler bim Aalege vum Benutzerkonto",
 	"createaccounterror": "Het s Benutzerkonto nit chenne aalege: $1",
-	"nocookiesnew": "Dr Benutzerzuegang isch aaglait wore, aber Du bisch nid yygloggt. {{SITENAME}} brucht fir die Funktion Cookies, bitte tue die aktiviere un logg Di derno mit Dyynem neje Benutzername un em Passwort, wu drzue ghert, yy.",
 	"nocookieslogin": "{{SITENAME}} brucht Cookies fir e Aamäldig. Du hesch d Cookies deaktiviert. Aktivier si bitte un versuech s no mol.",
 	"nocookiesfornew": "S Benutzerkonto isch nit aagleit wore, wel d Datehärchumft nit het chenne uusgmacht wäre.\nS mueß sichergstellt syy, ass Cookies aktiviert sin. Derno ddie Syte nomol lade un s wider versueche.",
 	"createacct-loginerror": "S Benutzerkonto isch erfolgrych aagleit wore, aber du hesch nit chenne automatisch aagmäldet wäre. Bitte mach wyter mit dr [[Special:UserLogin|manuälle Aamäldig]].",

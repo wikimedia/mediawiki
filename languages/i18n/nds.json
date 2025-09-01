@@ -366,7 +366,6 @@
 	"loginerror": "Fehler bi dat Anmellen",
 	"createacct-error": "Fehler bi’t Anleggen vun’t Brukerkonto",
 	"createaccounterror": "Kunn dat Brukerkonto nich opstellen: $1",
-	"nocookiesnew": "De Brukertogang is anleggt, aver du büst nich inloggt. {{SITENAME}} bruukt för disse Funktschoon Cookies, aktiveer de Cookies un logg di denn mit dien nieg Brukernaam un den Password in.",
 	"nocookieslogin": "{{SITENAME}} bruukt Cookies för dat Inloggen vun de Bruker. Du hest Cookies deaktiveert, aktiveer de Cookies un versöök dat noch eenmal.",
 	"nocookiesfornew": "Dat Brukerkonto kunn nich opstellt warrn, vonwegen dat de Born nich wiss maakt warrn kunn.\nSorg dor för, dat Cookies anstellt sünd. Denn laad de Siet noch wedder nee un versöök dat nochmaal.",
 	"createacct-loginerror": "Dat Brukerkonto is spoodriek anleggt worrn, man du kunnst nich automaatsch anmeldt warrn. Föhr man mit de [[Special:UserLogin|manuellen Anmellen]] fort.",

@@ -199,7 +199,6 @@
 	"userexists": "Nomi korbariji doxil kardaşuda mavridi istifoda ast.\nNomi digareroro intixob kuned.",
 	"loginerror": "Iştiboh dar vurud",
 	"createaccounterror": "Imkoni soxtani in hisob vuçud nadorad: $1",
-	"nocookiesnew": "Hisobi korbarī eçod şud, ammo şumo voridi somona naşudaed. {{SITENAME}} baroi vurud kardani korbaron ba somona az kukiho (cookies) istifoda mekunad. Şumo bojad kukihoro fa'ol kuned. Lutfan kukihoro fa'ol kuned, ba'dan ba sistem bo nomi korbariji çadid va kalimai uburaton vurud kuned.",
 	"nocookieslogin": "{{SITENAME}} baroi vorid kardani korbaron ba sistem az kukiho (cookies) istifoda mekunad. Kukiho fa'ol nestand. Lutfan kukihoro fa'ol karda bori digar bisançed.",
 	"noname": "Nomi korbari durustero şumo peşnihod nakarded.",
 	"loginsuccesstitle": "Vurud bo muvaffaqijat",

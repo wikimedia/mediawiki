@@ -356,7 +356,6 @@
 	"loginerror": "Pogrěška pri prijavjenju se",
 	"createacct-error": "Pogrěška pri tvorjenju konta",
 	"createaccounterror": "Stvorjenje konta ne udalo se: $1",
-	"nocookiesnew": "Koristničsko konto jest stvorjeno, ale vy ne jeste prijavjeni.\n{{SITENAME}} upotrěbjaje kuki za prijavjenje koristnikov.\nU vas kuki sut izključene.\nProsimo, vključite jih, a potom prijavite se s svojim novym koristničskym imenem i paroloju.",
 	"nocookieslogin": "{{SITENAME}} upotrěbjaje kuki za prijavjenje koristnikov.\nU vas kuki sut izključene.\nProsimo, vključite jih i poprobujte ponovno.",
 	"nocookiesfornew": "Koristničsko konto ne bylo stvorjeno, zatože ne mogli jesmo potvrditi jego izvor. \nPrověrite, sut li u vas vključene kuki, osvěžite tutu stranicu i poprobujte ponovno.",
 	"createacct-loginerror": "Konto jest uspěšno stvorjeno, ale vy ne mogli jeste prijaviti se avtomatično. Prosimo, [[Special:UserLogin|prijavite se ručno]].",

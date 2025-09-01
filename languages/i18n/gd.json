@@ -323,7 +323,6 @@
 	"loginerror": "Mearachd log a-steach",
 	"createacct-error": "Mearachd le cruthachadh a' chunntais",
 	"createaccounterror": "Cha do ghabh an cunntas a leanas a chruthachadh: $1",
-	"nocookiesnew": "Chaidh an cunntas a chruthachadh ach cha do rinn thu logadh a-steach.\nTha {{SITENAME}} a' cleachdadh briosgaidean gus daoine a logadh a-steach.\nChuir thu na briosgaidean à comas.\nCuir am comas iad agus log a-steach leis an ainm-chleachdaiche 's am facal-faire agad an uairsin.",
 	"nocookieslogin": "Tha {{SITENAME}} a' cleachdadh briosgaidean gus daoine a logadh a-steach.\nChuir thu briosgaidean à comas.\nCuir an comas iad is feuch ris a-rithist.",
 	"nocookiesfornew": "Cha deach an cunntas a chruthachadh oir cha b' urrainn dhuinn a thùs a dhearbhadh.\nDèan cinnteach gu bheil briosgaidean an comas, ath-luchdaich an duilleag seo 's feuch ris a-rithist.",
 	"createacct-loginerror": "Chaidh an cunntas a chruthachadh ach cha b’ urrainn dhuinn do chlàradh a-steach gu fèin-obrachail. Dèan [[Special:UserLogin|clàradh a-steach de làimh]].",

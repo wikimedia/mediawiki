@@ -338,7 +338,6 @@
 	"loginerror": "Kasalahan babuat log",
 	"createacct-error": "Paulahan akun gagal",
 	"createaccounterror": "Kada kawa maulah akun: $1",
-	"nocookiesnew": "Akun pamakai hudah diulah, tagal Pian kada babuat log.\n{{SITENAME}} mamakai ''cookies'' hagan pamakai babuat log.\n''Cookies'' Pian lagi kada kawa.\nMuhun kawa'akan nangitu, hanyar babuat log awan ngaran pamakai hanyar wan katasunduk Pian.",
 	"nocookieslogin": "{{SITENAME}} mangguna'akan ''cookies'' hagan pamakai babuat log.\n''Cookies'' Pian lagi kada kawa.\nMuhun kawa'akan nang itu wan cubai pulang.",
 	"nocookiesfornew": "Akun pamakai kada diulah maraga kami kada kawa mamastiakan asalmulanya.\nPastiakan Pian sudah maaktipakan kuki, imbah tu muat ulang laman ngini wan cubai pulang.",
 	"createacct-loginerror": "Akun sudah bahasil diulah, amun Pian kada kawa langsung babuat log sacara utumatis. Silakan manarusakan ka [[Special:UserLogin|babuat log manual]].",

@@ -372,7 +372,6 @@
 	"loginerror": "Problem mewngofnodi",
 	"createacct-error": "Gwall creu cyfrif",
 	"createaccounterror": "Ni ellir creu cyfrif: $1",
-	"nocookiesnew": "Mae'r cyfrif defnyddiwr wedi cael ei greu, ond nid ydych wedi mewngofnodi. Mae {{SITENAME}} yn defnyddio cwcis wrth i ddefnyddwyr fewngofnodi. Rydych chi wedi analluogi cwcis. Mewngofnodwch eto gyda'ch enw defnyddiwr a'ch cyfrinair newydd os gwelwch yn dda, ar ôl galluogi cwcis.",
 	"nocookieslogin": "Mae {{SITENAME}} yn defnyddio cwcis wrth i ddefnyddwyr fewngofnodi. Rydych chi wedi analluogi cwcis. Trïwch eto os gwelwch yn dda, ar ôl galluogi cwcis.",
 	"nocookiesfornew": "Ni chrëwyd cyfrif defnyddiwr newydd, oherwydd na allem gadarnhau ei ffynhonnell.\nSicrhewch eich bod wedi galluogi cwcis, yna ail-lwythwch y dudalen hon a cheisiwch eto.",
 	"createacct-loginerror": "Crewyd y cyfrif yn llwyddiannus, ond nid oedd yn bosibl i chi fewngofnodi'n otomatig. Ewch i [[Special:UserLogin|fewngofnodi drwy law a llygad]].",

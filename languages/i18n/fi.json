@@ -443,7 +443,6 @@
 	"loginerror": "Sisäänkirjautumisvirhe",
 	"createacct-error": "Virhe tunnuksen luomisessa",
 	"createaccounterror": "Tunnuksen luonti ei onnistunut: $1",
-	"nocookiesnew": "Käyttäjätunnus on luotu, mutta et ole kirjautunut sisään. \n{{SITENAME}} käyttää evästeitä sisäänkirjautumisen yhteydessä. \nSelaimesi ei salli evästeitä. \nSalli evästeiden käyttö, ja sen jälkeen kirjaudu sisään juuri luomallasi käyttäjätunnuksella ja salasanalla.",
 	"nocookieslogin": "{{SITENAME}} käyttää evästeitä sisäänkirjautumisen yhteydessä. Selaimesi ei salli evästeitä. Ota ne käyttöön, ja yritä uudelleen.",
 	"nocookiesfornew": "Tunnusta ei luotu, koska sen lähdettä ei kyetty varmistamaan. Varmista, että selaimessasi on käytössä evästeet, päivitä tämä sivu ja yritä uudelleen.",
 	"createacct-loginerror": "Tunnus luotiin onnistuneesti, mutta automaattista sisäänkirjautumista ei voitu tehdä. Siirry [[Special:UserLogin|manuaaliseen kirjautumiseen]].",

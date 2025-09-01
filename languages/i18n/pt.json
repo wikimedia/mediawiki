@@ -450,7 +450,6 @@
 	"loginerror": "Erro ao iniciar sessão",
 	"createacct-error": "Erro na criação da conta",
 	"createaccounterror": "Não foi possível criar a conta: $1",
-	"nocookiesnew": "A conta de utilizador foi criada, mas neste momento não tem sessão iniciada.\nA wiki {{SITENAME}} utiliza ''cookies'' para autenticar os utilizadores.\nOs ''cookies'' estão desativados no seu navegador.\nAtive-os e inicie sessão com o seu nome de utilizador e a sua palavra-passe, por favor.",
 	"nocookieslogin": "A wiki {{SITENAME}} utiliza ''cookies'' para autenticar os utilizadores.\nOs ''cookies'' estão desativados no seu navegador.\nAtive-os e tente novamente, por favor.",
 	"nocookiesfornew": "A conta de utilizador não foi criada, porque não foi possível confirmar a sua origem.\nCertifique-se de que tem os ''cookies'' ativados, recarregue esta página e tente novamente.",
 	"createacct-loginerror": "A conta foi criada, mas não foi possível iniciar a sessão automaticamente. [[Special:UserLogin|Inicie a sessão manualmente]], por favor.",

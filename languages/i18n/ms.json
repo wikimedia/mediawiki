@@ -394,7 +394,6 @@
 	"loginerror": "Ralat log masuk",
 	"createacct-error": "Ralat pembukaan akaun",
 	"createaccounterror": "Tidak dapat mencipta akaun: $1",
-	"nocookiesnew": "Akaun anda telah dibuka, tetapi anda belum log masuk. {{SITENAME}} menggunakan kuki untuk mencatat status log masuk pengguna. Sila aktifkan sokongan kuki pada pelayar anda, kemudian log masuk dengan nama pengguna dan kata laluan baru anda.",
 	"nocookieslogin": "{{SITENAME}} menggunakan ''cookies'' untuk mencatat status log masuk pengguna. Sila aktifkan sokongan ''cookies'' pada pelayar anda dan cuba lagi.",
 	"nocookiesfornew": "Akaun pengguna tidak dapat dicipta kerana kami tidak dapat sahkan sumbernya.\nPastikan anda telah dayakan kuki, muat semula laman ini dan cuba lagi.",
 	"createacct-loginerror": "Akaun ini telah berjaya dicipta tetapi anda tidak boleh log masuk secara automatik. Sila ke [[Special:UserLogin|log masuk manual]].",

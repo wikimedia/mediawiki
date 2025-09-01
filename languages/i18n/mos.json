@@ -344,7 +344,6 @@
 	"loginerror": "Logg sẽn pa yɩ sõma",
 	"createacct-error": "Dɩlla sẽn na n paam n paam n paama koe-moonegã",
 	"createaccounterror": "Pa tõog n naan sõor ye: $1",
-	"nocookiesnew": "B naan n maana sõssã, la yãmb pa kẽe logtoɛɛg pʋgẽ ye. {{SITENAME}} tũnugda ne cookie-rãmb n logd b sõsdbã. Yãmb basa cookie-rãmbã. Sõng-y tɩ y tõog n kõ-b-la sor n yaool n dɩk y yʋ-peellã la y gom-biisã.",
 	"nocookieslogin": "{{SITENAME}} tũnugda ne cookie-rãmb n logd b sõsdbã. Yãmb basa cookie-rãmbã. Sõng-y tɩ y leoke.",
 	"nocookiesfornew": "D pa tõog n bãng a sẽn yit to-to wã yĩnga, b pa naan naan naan naan kɩt tɩ b sõsd ne tõnd ye. Bao n bãng y sã n tar cookie-bã, bɩ y lebs n tʋm seb-kãngã n bao n leoke.",
 	"createacct-loginerror": "B naan sõorã sõma, la b pa tõog n logg-y tɩ b pa le maand-y woto ye. Sõng-y n kẽng [[Special:UserLogin|manual login]]wã.",

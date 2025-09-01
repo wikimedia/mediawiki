@@ -319,7 +319,6 @@
 	"loginerror": "Lérò di konnègsyon",
 	"createacct-error": "Lérò lò di kréyasyon-an di kont",
 	"createaccounterror": "Enposib di kréyé kont-a : $1",
-	"nocookiesnew": "Kont itilizatò-a sa kréyé, men ou pa konnègté.\n{{SITENAME}} ka itilizé tchèk témwen (''cookies'') pou konsèrvé konnègsyon-an men ou dézagtivé yé.\nSouplé, agtivé yé épi roukonnègté oukò ké menm non-an épi menm kodsigré-a.",
 	"nocookieslogin": "{{SITENAME}} ka itilizé tchèk témwen (''cookies'') pou konsèrvé konnègsyon-an men ou dézagtivé yé.\nSouplé, agtivé yé épi roukonnègté oukò.",
 	"nocookiesfornew": "Kont itilizatò-a pa té fika kréyé, pas nou pa té pouvé idantifyé so lorijin.\nVérifyé ki ou agtivé témwen-yan (''cookies''), rouchajé paj-a épi éséyé òkò.",
 	"createacct-loginerror": "Kont-a byen fika kréyé men ou pa pouvé konnègté oukò otonmatikman.\nSouplé, [[Special:UserLogin|konnègté oukò manniyèlman]].",

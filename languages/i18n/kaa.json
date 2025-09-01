@@ -363,7 +363,6 @@
 	"loginerror": "Kiriwde qátelik",
 	"createacct-error": "Akkaunt jaratıwda qátelik",
 	"createaccounterror": "Akkaunt jaratıw ilajsız: $1",
-	"nocookiesnew": "Paydalanıwshı akkauntı jaratıldı, biraq ele kirmegensiz.\n{{SITENAME}} paydalanıwshılardıń kiriwi ushın kukilerden paydalanadı.\nSizde kukiler óshirilgen.\nKukilerdi qosıp, jańa paydalanıwshı atıńız hám jasırın sózińiz arqalı sistemaǵa kiriń.",
 	"nocookieslogin": "Paydalanıwshılar kiriwi ushın {{SITENAME}} kukilerden paydalanadı.\nSizde kukiler óshirilgen.\nKukilerdi qosıp, qaytadan kóriń.",
 	"nocookiesfornew": "Paydalanıwshı akkauntı jaratılmadı, sebebi onıń deregin tastıyıqlay almadıq.\nCookie faylları qosılǵanına itibar beriń, usı betti qayta júklep, háreketti qaytalań.",
 	"createacct-loginerror": "Akkaunt sátli jaratıldı, biraq siz avtomat túrde kire almaysız. Dawam etiw ushın [[Special:UserLogin|qol menen kiriń]].",

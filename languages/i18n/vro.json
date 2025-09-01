@@ -280,7 +280,6 @@
 	"loginerror": "Sisseminemise viga",
 	"createacct-error": "Pruukjanome luumisõ viga",
 	"createaccounterror": "Pruukjanime luuminõ lää-äs kõrda: $1",
-	"nocookiesnew": "Pruukjakonto om valmis, a sa päse-s sisse, selle et {{SITENAME}} tarvitas pruukjidõ kimmästegemises valmistuisi. Suq võrgokaejan ommaq valmistusõq ärq keeledüq. Säeq valmistusõq lubatus ja mineq sis uma vahtsõ pruukjanime ja salasõnaga sisse.",
 	"nocookieslogin": "{{SITENAME}} tarvitas pruukjidõ kimmästegemises valmistuisi. Suq võrgokaejan ommaq valmistusõq keeledüq. Säeq valmistusõq lubatus ja prooviq vahtsõst.",
 	"nocookiesfornew": "Pruukjanimme saa-as luvvaq, miiq saa-as kinnütüst tuu lätte kotsilõ.\nKaeq üle, kas sul ummaq lisaprogrammiq (cookie'q) lubaduq ja laadiq seo leht vahtsõst.",
 	"noname": "Võlssi kirotõt pruukjanimi.",

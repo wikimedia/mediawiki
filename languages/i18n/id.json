@@ -459,7 +459,6 @@
 	"loginerror": "Galat saat masuk log",
 	"createacct-error": "Pembuatan akun gagal",
 	"createaccounterror": "Tidak dapat membuat akun: $1",
-	"nocookiesnew": "Akun pengguna telah dibuat, tetapi Anda belum masuk log. {{SITENAME}} menggunakan kuki untuk log pengguna. Kuki pada peramban web Anda dinonaktifkan. Silakan aktifkan dan masuk log kembali dengan nama pengguna dan kata sandi Anda.",
 	"nocookieslogin": "{{SITENAME}} menggunakan kuki untuk log penggunanya. Kuki pada peramban web Anda dimatikan. Silakan aktifkan dan coba lagi.",
 	"nocookiesfornew": "Akun pengguna tidak dibuat karena kami tidak dapat memastikan sumbernya.\nPastikan Anda telah mengaktifkan kuki, lalu muat ulang halaman ini dan coba lagi.",
 	"createacct-loginerror": "Akun telah berhasil dibuat, namun Anda tidak dapat langsung masuk log secara otomatis. Silakan meneruskan ke  [[Special:UserLogin|masuk log manual]].",

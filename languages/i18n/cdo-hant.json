@@ -230,7 +230,6 @@
 	"loginerror": "登錄有綻",
 	"createacct-error": "開賬號無成功",
 	"createaccounterror": "無能耐開賬戶：$1",
-	"nocookiesnew": "用戶賬號已經開好了，不過汝固未躒入。\n{{SITENAME}}使cookie來記錄已經躒入其用戶。\n汝其cookie固未開起來。\n起動汝開啟cookie，仱再使汝新其賬號共密碼來躒入。",
 	"nocookieslogin": "{{SITENAME}}使cookies來記錄已經登錄其用戶。\n但是汝禁用了cookie。\n起動汝開起cookie，然後再試蜀試。",
 	"noname": "汝未指定蜀萆合法其用戶名。",
 	"loginsuccess": "'''汝現在已經「$1」其成功躒入{{SITENAME}}了。'''",

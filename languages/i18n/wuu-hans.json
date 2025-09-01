@@ -372,7 +372,6 @@
 	"loginerror": "登录错误",
 	"createacct-error": "建账号出错",
 	"createaccounterror": "无法建立账户：$1",
-	"nocookiesnew": "用户帐号建立好唻，但必过你还朆登录。{{SITENAME}}使用cookie来登录用户。你个cookie禁用落唻。请开开来，再用你个新用户名搭密码登录。",
 	"nocookieslogin": "{{SITENAME}}利用cookie进行用户登录。侬个cookie像煞关拉许。请开开来再试一试。",
 	"nocookiesfornew": "用户账号朆建起，我里确认弗了渠个原因。你要准定cookie是开勒里个，刷新箇页试试凑相。",
 	"createacct-loginerror": "账户已成功创建，但侬弗能自动登录。请继续[[Special:UserLogin|手动登录]]。",

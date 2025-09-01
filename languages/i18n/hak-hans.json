@@ -61,7 +61,6 @@
 	"userlogin-loggedin": "汝已作為{{GENDER:$1|$1}}登錄。\n利用以下表單以作為另一賬戶登錄。",
 	"createacct-reason-ph": "汝做麽嘅愛創建另一隻帳號",
 	"userexists": "汝所填入嘅用戶名稱已經存在。\n請另選一隻名稱。",
-	"nocookiesnew": "本用戶賬號已分建立，但係汝登入失敗。{{SITENAME}}使用cookie登入。汝已停用cookie。請啓用cookie，之後使用汝嘅新用戶名和密碼登入。",
 	"nocookiesfornew": "邇隻用戶嘅賬戶未建立，亻厓兜無法度確認其嘅來源。\n請確定汝已經開啟cookies，重新載入後再試一擺。",
 	"noname": "汝還吂輸入一隻有效嘅用戶名。",
 	"nosuchusershort": "無有喊做“$1”嘅用戶。請檢查汝輸入嘅文字係毋係有差錯。",

@@ -393,7 +393,6 @@
 	"loginerror": "Prisijungimo klaida",
 	"createacct-error": "Paskyros kūrimo klaida",
 	"createaccounterror": "Nepavyko sukurti paskyros: $1",
-	"nocookiesnew": "Naudotojo paskyra buvo sukurta, bet jūs nesate prisijungęs. {{SITENAME}} naudoja slapukus, kad prijungtų naudotojus. Jūs esate išjungę slapukus. Prašome įjungti juos, tada prisijunkite su savo naujuoju naudotojo vardu ir slaptažodžiu.",
 	"nocookieslogin": "{{SITENAME}} naudoja slapukus, kad prijungtų naudotojus. Jūs esate išjungę slapukus. Prašome įjungti juos ir pamėginkite vėl.",
 	"nocookiesfornew": "Paskyra nebuvo sukurta, nes mums nepavyko nustatyti jos šaltinio.\nĮsitikinkite, kad įjungti slapukai (angl. cookies) ir tada bandykite dar kartą.",
 	"createacct-loginerror": "Paskyra buvo sėkmingai sukurta, bet nepavyko jūsų automatiškai prijungti. Prašome tęsti [[Special:UserLogin|prisijungiant rankiniu būdu]].",

@@ -289,7 +289,6 @@
 	"userexists": "Non itilizatè ou antre a deja itilize pa yon lòt moun. Chwazi yon non ki diferan souple.",
 	"loginerror": "Erè nan idantifikasyon ou an",
 	"createaccounterror": "Pa kapab kreye kont: $1",
-	"nocookiesnew": "Kont itilizatè a kreye, men ou pa konekte. {{SITENAME}} ap itilize koukiz (''cookies'') pou konekte l.Li sanble ou dezaktive fonksyon sa. Tanpri, aktive fonksyon sa epi rekonekte ou ak menm non epi mopas ou yo.",
 	"nocookieslogin": "{{SITENAME}} ap itilize koukiz (''cookies'') pou li kapab konekte kò l. Men li sanble ou dezaktive l; tanpri, aktive fonksyon sa epi rekonekte w.",
 	"nocookiesfornew": "Kont itilizatè pa t kreye poutèt nou pa kapab konnen sous li.\nAsire w koukiz (cookies) yo aktive nan navigatè w, chaje paj la ankò epi eseye ankò.",
 	"noname": "Ou pa bay sistèm an yon non itilizatè ki bon.",

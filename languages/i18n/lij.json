@@ -377,7 +377,6 @@
 	"loginerror": "Erô inte l'intrâ",
 	"createacct-error": "Erô inta creaçión de l'uténsa",
 	"createaccounterror": "Inposcìbile creâ l'uténsa: $1",
-	"nocookiesnew": "L'uténsa a l'é stæta creâ, ma ti no t'ê intròu. {{SITENAME}} o dêuvia i cookie pe lasciâ intrâ i utenti e ti ti ghe l'æ dizativæ.\nPrêuva tórna a intrâ co-o tò nómme uténte e paròlla segrétta apénn-a creæ dòppo avéi ativòu i cookie.",
 	"nocookieslogin": "Pe intrâ in {{SITENAME}} bezéugna avéighe i cookie ativæ. Ti ti ghe l'æ dizativæ. Pe piâxéi atîvili e prêuva tórna a intrâ.",
 	"nocookiesfornew": "L'uténsa a no l'é stæta creâ, perché n'émmo posciûo confermâ a sò vivàgna.\nAsegûite d'avéi ativòu i cookie, recàrega sta pàgina chi e prêuva tórna.",
 	"createacct-loginerror": "L'uténsa a l'é stæta creâ coretaménte, ma no l'é stæto poscìbile fâte intrâ in mòddo outomàtico. Procêdi con l'[[Special:UserLogin|intrâ fæta a màn]].",

@@ -278,7 +278,6 @@
 	"loginerror": "Oturım açma hatası",
 	"createacct-error": "Qullanıcı esabı yaratuv hatası",
 	"createaccounterror": "Qullanıcı esabı yaratılıp olamay: $1",
-	"nocookiesnew": "Qullanıcı esabı yaratıldı, amma sistemağa kirmediñiz. {{SITENAME}} qullanıcılar sistemağa kirmek içün \"cookies\" qullana. Şimdilik sizde \"cookies\" qapalıdır. \"Cookies\" funktsiyasını açıp tekrar yañı qullanıcı adıñız ve paroliñiznen kirip baqıñız.",
 	"nocookieslogin": "{{SITENAME}} qullanıcılar sistemağa kirmek içün \"cookies\" qullana. Şimdilik sizde \"cookies\" qapalıdır. \"Cookies\" funktsiyasını açıp bir daa tırışıp baqıñız.",
 	"createacct-loginerror": "Qullanıcı esabı muvafaqiyetli şekilde yaratıldı, lâkin avtomatik olaraq sistemağa kirmediñiz. Lütfen [[Special:UserLogin|qolnen kirseñiz]].",
 	"createacct-temp-warning": "<strong>$1</strong> muvaqqat qullanıcı esabıñıznen yapqan deñiştirmeleriñiz daimiy esabıñızğa avuştırılmaz.",

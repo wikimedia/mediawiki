@@ -367,7 +367,6 @@
 	"loginerror": "Intekenfout",
 	"createacct-error": "Fout tydens skep van gebruiker",
 	"createaccounterror": "Kon nie 'n rekening skep nie: $1",
-	"nocookiesnew": "Die gebruiker is geregistreer, maar is nie aangemeld nie.\n{{SITENAME}} gebruik koekies vir die aanmeld van gebruikers.\nU rekenaar laat tans nie koekies toe nie.\nStel u rekenaar om dit te aanvaar, dan sal u met u nuwe gebruiker en wagwoord kan aanmeld.",
 	"nocookieslogin": "{{SITENAME}} gebruik koekies vir die aanmeld van gebruikers.\nU blaaier laat nie koekies toe nie.\nSkakel dit asseblief aan en probeer weer.",
 	"nocookiesfornew": "Die gebruiker is nie geskep nie omdat die oorsprong nie bevestig kon word nie.\nMaak seker dat u koekies aangeskakel het, herlaai die bladsy en probeer dan weer.",
 	"createacct-temp-warning": "Die wysigings wat jy met jou tydelike rekening gemaak het, sal nie na jou permanente een oorgedra word nie.",

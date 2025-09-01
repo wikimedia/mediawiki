@@ -294,7 +294,6 @@
 	"loginerror": "Marru d'ativación",
 	"createacct-error": "Errol al crial la cuenta",
 	"createaccounterror": "No se púu crial la cuenta d'esuariu: $1",
-	"nocookiesnew": "S'á criau la tu cuenta d'usuáriu, inque nu la tinis abierta. {{SITENAME}} gasta \"cookies\" pa premitil el acesu a los usuárius, i tú las tinis desativás. Pol favol, atívalas i entra ena tu cuenta con el tu nombri d'usuáriu i consínia.",
 	"nocookieslogin": "{{SITENAME}} gasta cookies pa entifical a los usuárius, i tú las tiinis esativás. Pol favol, atívalas i preba otra vezi.",
 	"noname": "Nu as escrebiu un nombri d'usuáriu corretu.",
 	"userlogin-authpopup-loggingin-title": "Acediendu...",

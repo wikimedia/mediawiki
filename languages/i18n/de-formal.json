@@ -137,7 +137,6 @@
 	"createacct-benefit-heading": "{{SITENAME}} wird von Menschen wie Ihnen geschaffen.",
 	"userexists": "Dieser Benutzername ist schon vergeben.\nBitte wählen Sie einen anderen.",
 	"createacct-normalization": "Ihr Benutzername wird aufgrund technischer Beschränkungen zu „$2“ geändert.",
-	"nocookiesnew": "Der Benutzerzugang wurde erstellt, aber Sie sind nicht angemeldet.\n{{SITENAME}} benötigt für diese Funktion Cookies, bitte aktivieren Sie diese und melden sich dann mit Ihrem neuen Benutzernamen und dem zugehörigen Passwort an.",
 	"nocookieslogin": "{{SITENAME}} benutzt Cookies zur Anmeldung der Benutzer.\nSie haben Cookies deaktiviert, bitte aktivieren Sie diese und versuchen Sie es erneut.",
 	"nocookiesfornew": "Das Benutzerkonto wurde nicht erstellt, da die Datenherkunft nicht ermittelt werden konnte.\nBitte stellen Sie sicher, dass Sie Cookies aktiviert haben. Laden Sie diese Seite danach erneut und versuchen Sie es noch einmal.",
 	"createacct-loginerror": "Das Benutzerkonto wurde erfolgreich erstellt, aber Sie konnten nicht automatisch angemeldet werden. Bitte fahren Sie mit der [[Special:UserLogin|manuellen Anmeldung]] fort.",

@@ -338,7 +338,6 @@
 	"loginerror": "Sayop hin pagsakob",
 	"createacct-error": "Pakyas an paghimo han akawnt",
 	"createaccounterror": "Diri makakahimo hin akawnt: $1",
-	"nocookiesnew": "An akawnt han gumaramit hin nahimo, pero diri ka pa nakalog-in.\n{{SITENAME}} in nagamit hin cookies para makalog-in han mga gumaramit.\nAn imo cookies in diri nakaandar.\nAlayon paandara hira, kahuman paglog-in gamit han imo bag-o nga agnay-gumaramit ngan tigaman-pagsakob.",
 	"nocookieslogin": "{{SITENAME}} in nagkikinahanglan hin mga kuki para makapagpalog-in hin mga gumaramit.  An im mga kuki in diri nagana.\nAlayon paganaha hira ngan utro liwat.",
 	"nocookiesfornew": "An imo akawnt han gumaramit in waray nahimo, kay tungod diri kami nakakakompirma han tinikangan.\nSiguradoha nga an mga cookies in nakaandar, igreload ini nga pakli ngan utroha.",
 	"noname": "Waray ka nakahatag hin maupay nga agnay-hit-gumaramit.",

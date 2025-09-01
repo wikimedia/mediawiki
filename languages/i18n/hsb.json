@@ -344,7 +344,6 @@
 	"loginerror": "Zmylk při přizjewjenju",
 	"createacct-error": "Zmylk při załožowanju konta",
 	"createaccounterror": "Wužiwarske konto njeda so załožić: $1",
-	"nocookiesnew": "Wužiwarske konto bu załožene, njejsy pak přizjewjeny. {{SITENAME}} wužiwa placki (cookies), zo bychu so wužiwarjo přizjewili. Sy placki znjemóžnił. Prošu zmóžń je a přizjew so potom ze swojim nowym wužiwarskim mjenom a hesłom.",
 	"nocookieslogin": "{{SITENAME}} wužiwa placki za přizjewjenje wužiwarjow.\nSy placki znjemóžnił. \nProšu zmóžń je a spytaj hišće raz.",
 	"nocookiesfornew": "Wužiwarske konto njeje so załožiło, dokelž njemóžachmy jeho žórło wobkrućić.\nPřeswědč so, zo placki su zmóžnjene, ačitaj tutu stronu znowa a spytaj hišće raz.",
 	"createacct-loginerror": "Wužiwarske konto je so wuspěšnje wutworiło, ale njeje so poradźiło tebje awtomatisce přizjewić. Prošu pokročuj z [[Special:UserLogin|manuelnym přizjewjenjom]].",

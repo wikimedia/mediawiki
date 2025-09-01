@@ -294,7 +294,6 @@
 	"loginerror": "Innritanarbrek",
 	"createacct-error": "Feilur við skapan av konto",
 	"createaccounterror": "Kundi ikki skapa kontu: $1",
-	"nocookiesnew": "Brúkarakontan er nú gjørd, men tú ert ikki loggaður inn. \n{{SITENAME}} brúkar \"cookies\" fyri at innrita brúkarar.\nYou hevur gjørt \"cookies\" óvirkið.\nVinarliga ger \"cookies\" virkið á tínari teldu, rita síðan inn við tínum nýggja brúkaranavni og loyniorði.",
 	"nocookieslogin": "{{SITENAME}} brúkar cookies fyri at innrita brúkarar. \nTú hevur gjørt cookies óvirkið.\nVinarliga ger tað virkið og royn aftur.",
 	"nocookiesfornew": "Brúkarakontan var ikki upprættað, tí vit kundu ikki staðfesta kelduna.\nTryggja tær, at cookies eru virknar á tínari teldu, dagfør (reload) hesa síðuna og royn aftur.",
 	"noname": "Tú hevur ikki skrivað eitt gyldugt brúkaranavn.",

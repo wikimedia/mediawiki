@@ -321,7 +321,6 @@
 	"loginerror": "籍名見誤",
 	"createacct-error": "建簿未成",
 	"createaccounterror": "無增簿：$1",
-	"nocookiesnew": "{{SITENAME}}簿增而未登，惠准存 cookies ，方可登之。",
 	"nocookieslogin": "無簿冊（cookies），無以籍名於{{SITENAME}}。\n請予簿冊，復行籍記。",
 	"nocookiesfornew": "簿未建，眾乃未定源之。\n汝其啟之，重載，繼而予一試。",
 	"noname": "缺簿名，或不格也。",

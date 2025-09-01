@@ -377,7 +377,6 @@
 	"loginerror": "Xetayê hesab ekerdışi",
 	"createacct-error": "Xetay vıraştışê hesabi",
 	"createaccounterror": "Hesab nêvırazyeno: $1",
-	"nocookiesnew": "Hesabê karberi vıraziya, labelê şıma nêşay cı kewê.\nSemedê akerdışê hesabi çerezê {{SITENAME}}i gurêniyenê.\nŞıma çerezi qapan kerdi.\nRavêri inan akerê, dıma be name u parola şımawa newiye cı kewê.",
 	"nocookieslogin": "Semedê akerdışê hesabi çerezê {{SITENAME}}i gurêniyenê.\nŞıma çerezi qapan kerdi.\nRavêri inan akerê u reyna bıcerrebnê.",
 	"nocookiesfornew": "Hesabê karberi nêvıraziya, MA nêzana sebebê cı kotirawo.\nAkerdış dê çerezarê xo emel bê uena pela fına barkerê.",
 	"createacct-loginerror": "Hesabê şıma vıraziya, labelê ronıştışo otomatik anêbiyayo. Kerem ke, şo pela  [[Special:UserLogin|cıkewtışo manuel]].",

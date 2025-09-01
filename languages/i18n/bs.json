@@ -374,7 +374,6 @@
 	"loginerror": "Greška pri prijavljivanju",
 	"createacct-error": "Greška u pravljenju računa",
 	"createaccounterror": "Ne mogu napraviti račun: $1",
-	"nocookiesnew": "Korisnički račun je napravljen, ali niste prijavljeni.\n{{SITENAME}} koristi kolačiće (cookies) za prijavu korisnika.\nVama su kolačići onemogućeni.\nOmogućite ih pa se onda prijavite s novim korisničkim imenom i lozinkom.",
 	"nocookieslogin": "{{SITENAME}} koristi kolačiće (''cookies'') za prijavu korisnika.\nVama su kolačići onemogućeni.\nOmogućite ih i pokušajte ponovo.",
 	"nocookiesfornew": "Korisnički račun nije napravljen, jer nismo mogli da potvrdimo njegov izvor.\nProvjerite da li su cookies omogućeni, ponovo učitajte ovu stranicu i pokušajte ponovo.",
 	"createacct-loginerror": "Račun je uspješno napravljen, ali Vas nije bilo moguće automatski prijaviti. Prijavite se [[Special:UserLogin|ručno]].",

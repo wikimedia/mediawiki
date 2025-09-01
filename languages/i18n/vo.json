@@ -365,7 +365,6 @@
 	"loginerror": "Nunädamapöl",
 	"createacct-error": "Pöl pö jaf lönaspada",
 	"createaccounterror": "Kal no pejafon: $1",
-	"nocookiesnew": "Gebanakal pejafon, ab no enunädol oli. {{SITENAME}} gebon „kekilis“ pö nunädam gebanas. Pö bevüresodanaföm olik ye geb kekilas penemogükon. Mogükolös oni e nunädolös oli me gebananem e letavöd nuliks ola.",
 	"nocookieslogin": "{{SITENAME}} gebon „kekilis“ ad nunädön gebanis. Anu geb kekilas nemögon. Mögükolös onis e steifülolös nogna.",
 	"nocookiesfornew": "Lönaspad gebana no pejafon, bi no kanobs fümükön fonäti tefik.\nSüadikolöd, das nünöm olik ejäfidükon elis ‚cookies’, nulükolöd padi at e steifülolöd nogna.",
 	"createacct-loginerror": "Lönaspad benoplöpo pejafon, ab no dalol nunädön oki ön mod itjäfidik. Gebolös [[Special:UserLogin|nunädi ito dunöli]].",

@@ -451,7 +451,6 @@
 	"loginerror": "Inloggningsproblem",
 	"createacct-error": "Fel när konto skulle skapas",
 	"createaccounterror": "Kunde inte skapa konto: $1",
-	"nocookiesnew": "Användarkontot skapades, men du är inte inloggad.\n{{SITENAME}} använder kakor för att logga in användare.\nDu har kakor inaktiverade.\nAktivera dem, och logga sedan in med ditt nya användarnamn och lösenord.",
 	"nocookieslogin": "{{SITENAME}} använder kakor för att logga in användare. Du har stängt av kakor i din webbläsare. Försök igen med stöd för kakor aktiverat.",
 	"nocookiesfornew": "Användarkontot skapades inte, eftersom vi inte kunde bekräfta dess källa.\nSe till att du har aktiverat kakor, ladda om denna sida och försök igen.",
 	"createacct-loginerror": "Kontot skapades men du kunde inte loggas in automatiskt. Var god [[Special:UserLogin|logga in manuellt]].",

@@ -235,7 +235,6 @@
 	"loginerror": "Erreur d’identification",
 	"createacct-error": "Erreur lors de la création du compte",
 	"createaccounterror": "Impossible de créer le compte : $1",
-	"nocookiesnew": "Ton compte a été créé, mais tu es pas connecté{{GENDER:||e|(e)}}.  {{SITENAME}} use les cookies pour connecter les useurs.  Partes les cookies et connectes avec ton nouveau nom d'useur et ton mot de passe.",
 	"nocookieslogin": "{{SITENAME}} use les cookies pour connecter les useurs.  Partez donc les cookies et assayez encore.",
 	"nocookiesfornew": "Le conte d'useur n'était pas fait, à cause qu'on pouvait pas confirmer la source.  Ensurer que tu as des cookies, reload ce page et essayer encore.",
 	"noname": "Vous avez pas mis un bon nom d'useur.",

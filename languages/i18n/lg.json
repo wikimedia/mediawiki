@@ -226,7 +226,6 @@
 	"userexists": "Ery'obwa memba ly'owandise wali omulala alirina.<br />\nLonda eddala.",
 	"loginerror": "Okuyingira kuzzeko kiremya:",
 	"createaccounterror": "Nemedwa okukolawo akawunti: $1",
-	"nocookiesnew": "Akawunti w'eri, naye sisitemu tekuyingizza.<br />\nOkuyingira {{SITENAME}} nga memba kyesigamizidwa ku bujjukiza.<br />\nKalambulanetti yo kakano etegekedwa butakkiriza obujjukiza obwo.<br />\nOkusobola okuyingira, kyusa entegeka ya yo ebukkirize eryoke okozese ery'obwa memba n'ekigambo ekikuumi byo.",
 	"nocookieslogin": "Okuyingira {{SITENAME}} nga memba kyesigamizidwa ku bujjukiza.<br />\nKalambulanetti yo kakano etegekedwa butakkiriza obujjukiza obwo.<br />\nOkusobola okuyingira, kyusa entegeka ya yo ebukkirize eryoke oddemu okugeza okuyingira.",
 	"nocookiesfornew": "Akawunti ey'obwa memba tekoledwawo, kubanga tetusobodde okutegeera w'oyimye okugikola.<br />\nKalambulanetti yo gitegeke ekkirize obujjukiza, ddamu owange olupapula luno oryoke oddemu okugeza okukolawo akawunti.",
 	"noname": "Towandise linnya ly'obwa memba eriyinz'okukkirizibwa.",

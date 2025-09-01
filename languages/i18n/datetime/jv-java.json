@@ -1,0 +1,23 @@
+{
+	"@metadata": {
+		"authors": [
+			"Sumbukompor"
+		]
+	},
+	"monday": "ꦱꦼꦤꦺꦤ꧀",
+	"tuesday": "ꦱꦭꦱ",
+	"wednesday": "ꦉꦧꦺꦴ",
+	"thursday": "ꦏꦼꦩꦶꦱ꧀",
+	"friday": "ꦗꦸꦩꦸꦮꦃ",
+	"saturday": "ꦱꦼꦠꦸ",
+	"sunday": "ꦔꦲꦢ꧀",
+	"mon": "ꦱꦼꦤ꧀",
+	"tue": "ꦱꦭ꧀",
+	"wed": "ꦉꦧ꧀",
+	"thu": "ꦏꦼꦩ꧀",
+	"fri": "ꦗꦸꦩ꧀",
+	"sat": "ꦱꦼꦠ꧀",
+	"sun": "ꦔ",
+	"period-am": "ꦫꦶꦤ",
+	"period-pm": "ꦫꦠꦿꦶ"
+}

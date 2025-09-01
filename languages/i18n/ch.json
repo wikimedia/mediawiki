@@ -166,7 +166,6 @@
 	"badretype": "Ti parehu i password siha ni un po'lo.",
 	"userexists": "Esta guåha na u'usa enao na nå'an muna'sesetbi.\nAyek fan otru na nå'an.",
 	"loginerror": "Lachi gi login",
-	"nocookiesnew": "Mafa'tinas i kuentan muna'sesetbi, lao ti malogin hao.\nManusa {{SITENAME}} cookies para muna'login muna'sesetbi siha.\nTi mansedi hao ni cookies.\nPot fabot na'sedi ha', pues log in yan i na'an-mu muna'sesetbi yan password.",
 	"nocookieslogin": "Manusa {{SITENAME}} cookies para muna'login muna'sesetbi siha.\nTi mansedi hao ni cookies.\nPot fabot na'sedi ha'.",
 	"noname": "Ti mangge' hao ni na'an muna'sesetbi ni ma'sedi.",
 	"loginsuccesstitle": "Munhåyan i login",

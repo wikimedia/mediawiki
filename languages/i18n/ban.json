@@ -367,7 +367,6 @@
 	"loginerror": "Pikobet manjing log",
 	"createacct-error": "Pikobet ngardi akun",
 	"createaccounterror": "Nénten prasida ngardi akun: $1",
-	"nocookiesnew": "Akun sang anganggé sampun kawedar, menawi ida durung mangjing log.\n{{SITENAME}} nganggén cookie antuk ngadangingin sang anganggé.\nIda ngamademang cookie.\nDurus uripang, selantur nyané manjing antuk wastan sang angangé miwah kruna sandi anyar ida.",
 	"nocookieslogin": "{{SITENAME}} nganggén kuki antuk log sang anganggé. Kuki ring peramban wéb Ida kapademang. Durusang uripang miwah coba malih.",
 	"nocookiesfornew": "Akun sang anganggé nénten kakardi mawinan iraga nénten prasida ngapastika sumber nyané.\nPastika Ida sampun nguripang kuki, salantur nyané muat ulang kaca puniki miwah coba malih.",
 	"createacct-loginerror": "Akun sampun kakardi, menawi Anda nénten prasida langsung manjing log otomatis. Durusang ngalanturang nuju [[Special:UserLogin|manjing log manual]].",

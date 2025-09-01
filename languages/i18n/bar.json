@@ -261,7 +261,6 @@
 	"userexists": "Der Benutzernaum do is schoh vageem. Bittscheh nimm an aundern her.",
 	"loginerror": "Feeler bei da Åmödung",
 	"createaccounterror": "Des Benutzerkonto hod ned erstöd wern kenner: $1",
-	"nocookiesnew": "Da Benytzerzuagång is erstöid worn, du bist ower ned ågmöidt. {{SITENAME}} benedigt fyr de Funkzion Cookies, bittschee aktiviar de und möidt de danoch mid daim naichn Benytzernåm und 'm dazuaghering Posswort å.",
 	"nocookieslogin": "{{SITENAME}} nimmt Cookies zum Ailoggen vo de Benytzer her. Du host Cookies deaktivird, bittschee aktivir de und vasuchs nuamoi.",
 	"nocookiesfornew": "Dés Benutzerkóntó is néd erstöd worn, wei d' Daatenherkumft néd damittelt wern hod kenner.\nEs muass sichergstöd seih, daas Cookies aktivierd san. Danoch bittscheh d' Seiten daneit loon und wieder vasuacher.",
 	"noname": "Du muasst an gyting Benutzernåm ågeem.",

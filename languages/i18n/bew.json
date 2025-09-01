@@ -346,7 +346,6 @@
 	"loginerror": "Ngablu pas masup",
 	"createacct-error": "Ngablu pas bikin rèkening",
 	"createaccounterror": "Kaga' bisa ngeja rèkening: $1",
-	"nocookiesnew": "Nama pemaké udah dikeja, tapi lu belon masup.\n{{SITENAME}} maké kuki bakal masupken pemaké.\nLu punya kuki dimatiin.\nPadol dah, nyalain dulu, terus masup paké lu punya nama pemaké baru èn kata sandinya.",
 	"nocookieslogin": "{{SITENAME}} maké kuki bakal masupken pemaké.\nLu punya kuki dimatiin.\nPadol dah, nyalain dulu, terus masup paké lu punya nama pemaké baru èn kata sandinya.",
 	"nocookiesfornew": "Nama pemaké kaga' dikeja, lantaran kita kaga' bisa mastiin sumbernya.\nPastiin lu punya kuki dinyalain, terus punggah ulang ni halaman èn jajal lagi.",
 	"createacct-loginerror": "Rèkening udah berasil dikeja, cuman lu belon bisa otomatis masup. Padol dah, nuju ke [[Special:UserLogin|masup manual]].",

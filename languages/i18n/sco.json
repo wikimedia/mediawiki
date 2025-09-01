@@ -346,7 +346,6 @@
 	"loginerror": "Login mistak",
 	"createacct-error": "Accoont creation error",
 	"createaccounterror": "Coudna mak accoont: $1",
-	"nocookiesnew": "The uiser accoont wis creatit, but ye'r nae loggit in.\n{{SITENAME}} uises cookies tae log uisers in.\nYe hae cookies disabled.\nPlease enable them, then log in wi yer new uisername an trystwird.",
 	"nocookieslogin": "{{SITENAME}} uises cookies tae log in uisers. Ye hae cookies disabled. Please enable thaim an gie it anither shot.",
 	"nocookiesfornew": "The uiser accoont wisnae made, as we coudnae confirm its soorce.\nMak shuir that ye hae cookies enabled, relaid this page an try again.",
 	"createacct-loginerror": "The accoont wis successfully creatit but ye coudnae be loggit in automatically. Please proceed tae [[Special:UserLogin|manual login]].",

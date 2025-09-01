@@ -296,7 +296,6 @@
 	"loginerror": "Faddina de identificatzione",
 	"createacct-error": "Faddina in sa creatzione de su contu",
 	"createaccounterror": "Impossìbile creare su contu: $1",
-	"nocookiesnew": "Su contu de s'impitadore est istadu creadu, ma no est istadu possìbile fàghere s'atzessu a {{SITENAME}} proite sos \"cookies\" sunt deativados.\nTorra a proare a pustis de los àere ativados.",
 	"nocookieslogin": "{{SITENAME}} imprea is cookies pro identificare is impitadores.\nTue tenes is cookies disativados.\nAtivaddos e prova torra.",
 	"noname": "Su nùmene impitadore insertadu no est vàlidu.",
 	"loginsuccesstitle": "Ti ses identificadu",

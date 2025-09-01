@@ -286,7 +286,6 @@
 	"loginerror": "Pantasqa llamk'apuy tiyaypa qallarisqan",
 	"createacct-error": "Rakiquna kamariy pantasqa",
 	"createaccounterror": "Manam atinichu rakiqunata kamariyta: $1",
-	"nocookiesnew": "Ruraqpa rakiqunaykiqa kichasqañam, ichataq manaraqmi yaykurqankichu. {{SITENAME}}qa <em>kuki</em> nisqakunatam llamk'achin ruraqkunata kikinyachinapaq. Antañiqiqniykipiqa manam <em>kuki</em> nisqakuna atinchu. Ama hina kaspa, atichispa huk kutita yaykuykachay.",
 	"nocookieslogin": "{{SITENAME}} <em>kuki</em> nisqakunata llamk'achin ruraqkunata kikinyachinapaq. Antañiqiqniykipiqa manam <em>kuki</em> nisqakuna atinchu. Ama hina kaspa, atichispa huk kutita ruraykachay.",
 	"nocookiesfornew": "Ruraqpa rakiqunantaqa manam kamariykuchu, pukyunta takyachiyta mana atispaykum.\nQhawariy, ruraykachay ''cookie'' nisqata atichispa kay p'anqata musuqmanta chaqnamuspa.",
 	"noname": "Manam niwarqankichu ruraqpa allin sutinta.",

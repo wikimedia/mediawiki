@@ -369,7 +369,6 @@
 	"loginerror": "Eror in de l'andà dent in del sistema.",
 	"createacct-error": "Eror in del creà l'utenza",
 	"createaccounterror": "A se poeul nò creà el cunt: $1",
-	"nocookiesnew": "El cunt a l'è stad cread, ma t'hee minga podud andà dent in del sistema.\n{{SITENAME}} el dopera i cookies per fà andà i utent in del sistema.\nTì te gh'hee i cookies disabilitad.\nPer piasè, abilita i cookies e prova anmò a andà dent cunt el to nom e la toa parola ciav.",
 	"nocookieslogin": "{{SITENAME}} el dopra i cookies per l'operazzion de entrada di utent. Inveci i to cookies a inn disattivad. Ativei e poeu torna.",
 	"nocookiesfornew": "L'utenza l'è stada minga creada, perchè l'è minga stad possibil possibil confermà la soa font. Dagh un'oggiada e ten i cookies ativ, torna a caregà questa pagina e provegh anmò un'altra volta.",
 	"createacct-loginerror": "El cunt l'è stad cread con success ma te podet minga andà dent in automatich. Per piesè [[Special:UserLogin|và dent manualment]].",

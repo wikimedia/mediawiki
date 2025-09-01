@@ -348,7 +348,6 @@
 	"loginerror": "Errore de collegamende",
 	"createacct-error": "Errore sus 'a ccrejazione d'u cunde",
 	"createaccounterror": "Non ge puè ccrejà 'u cunde utende: $1",
-	"nocookiesnew": "'U cunde utende ha state ccrejete ma angore non g'è trasute jndr'à {{SITENAME}}.\n\n{{SITENAME}} ause le cookie pe fà collegà l'utinde.\nTu tine le cookie disabbilitete.\nPe piacere, ce vuè ccu trase, abilitesce le cookie e pò prueve a mettere 'a ''login'' e 'a password.",
 	"nocookieslogin": "{{SITENAME}} ause le cookie pe fà trasè l'utinde.\n\nTu tine le cookie disabbilitete.\nPe piacere, vide ce l'abilitesce e pò prueve 'n'otra vote a mettere le date tue.",
 	"nocookiesfornew": "'U cunde de l'utende non g'ha state ccrejate, nuje non ge putime confermà da addò avène.\nPe piacere vide ce tine le cookie abbilitate, recareche sta pàgene e pruève arrete.",
 	"createacct-loginerror": "L'utenze ha state ccrejate, ma non g'ha state possibbile trasè cu 'u mode automateche. Pe piacere pruéve a [[Special:UserLogin|trasè a màne]].",

@@ -302,7 +302,6 @@
 	"loginerror": "Kasalahan mlebu log",
 	"createacct-error": "Gole gawe akun gagal",
 	"createaccounterror": "Ora teyeng gawe akun:$1",
-	"nocookiesnew": "Akunpanganggo wis digawe, tapi Rika durung mlebu log.\n{{SITENAME}} nggunakna ''cookies'' kanggo log panganggo.\n''Cookies'' nang panjlajah web Rika dipateni.\nMonggo diaktifna, lan jajal mlebu log maning nganggo jeneng panganggo lan tembung sandhine Rika.",
 	"nocookieslogin": "{{SITENAME}} nggunakna ''cookies'' nggo log panganggone.\n''Cookies'' nang panjlajah web Rika dipateni.\nMonggo diaktfna lan jajal maning.",
 	"nocookiesfornew": "Akun panganggo ora digawe, jalaran inyong ora teyeng mastikna sumbere.\nPastekna Rika uwis ngaktifna ''cookies'', trus baleni muat kaca kiye maning lan jajal sepisan maning.",
 	"noname": "Jeneng panganggo sing Rika lebokna ora sah.",

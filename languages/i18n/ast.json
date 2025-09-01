@@ -346,7 +346,6 @@
 	"loginerror": "Error d'aniciu de sesión",
 	"createacct-error": "Error de creación de cuenta",
 	"createaccounterror": "Nun pudo crease la cuenta: $1",
-	"nocookiesnew": "La cuenta d'usuariu ta creada, pero nun aniciasti sesión.\n{{SITENAME}} usa «cookies» pa identificar a los usuarios.\nTienes les «cookies» desactivaes.\nPor favor actívales y anicia sesión col nuevu nome d'usuariu y contraseña.",
 	"nocookieslogin": "{{SITENAME}} usa «cookies» pa identificar a los usuarios.\nTien les «cookies» desactivaes.\nPor favor actívales y tenta otra vuelta.",
 	"nocookiesfornew": "La cuenta nun se creó porque nun pudimos confirmar l'orixe.\nComprueba que tienes activaes les «cookies», recarga esta páxina y tenta otra vuelta.",
 	"createacct-loginerror": "La cuenta creóse correchamente, pero nun pudo aniciase sesión automáticamente. Sigui col [[Special:UserLogin|accesu manual]].",

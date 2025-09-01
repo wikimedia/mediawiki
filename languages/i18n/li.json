@@ -335,7 +335,6 @@
 	"loginerror": "Inlogfout",
 	"createacct-error": "Fout bie 't aanmake van gebroeker",
 	"createaccounterror": "Kós gebroeker neet aanmake: $1",
-	"nocookiesnew": "De gebroeker is aangemaak mèr neet aangemeld. {{SITENAME}} gebroek cookies veur 't aanmelje van gebroekers. Sjakel die a.u.b. in en meld dao nao aan mèt diene nuje gebroekersnaam en wachwaord.",
 	"nocookieslogin": "{{SITENAME}} gebroek cookies veur 't aanmelje van gebroekers. Doe accepteers gén cookies. Sjakel deze optie a.u.b. in en perbeer 't oppernuuj.",
 	"nocookiesfornew": "De gebroeker is neet aangemaak ómdet de bron neet bevestig kos waere.\nZörg deveur dats te cookies höbs ingesjakeld, herlaaj dees pagina en perbeer 't obbenuuts.",
 	"createacct-loginerror": "De gebroeker is succesvol aangemaak gewaore, meh doe kós dich neet autematis aanmelje. Gank nao [[Special:UserLogin|handjmaesig aanmelje]].",

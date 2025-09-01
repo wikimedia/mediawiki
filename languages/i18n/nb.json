@@ -419,7 +419,6 @@
 	"loginerror": "Innloggingsfeil",
 	"createacct-error": "Feil under kontooppretting",
 	"createaccounterror": "Kunne ikke opprette konto: $1",
-	"nocookiesnew": "Din brukerkonto er nå opprettet, men du har ikke logget på. {{SITENAME}} bruker informasjonskapsler («cookies») for å logge brukere på og du har slått dem av. Slå dem på for å kunne logge på med ditt nye brukernavn og passord.",
 	"nocookieslogin": "{{SITENAME}} bruker informasjonskapsler («cookies») for å logge brukere på og du har slått dem av. Slå dem på og prøv igjen.",
 	"nocookiesfornew": "Brukerkontoen ble ikke opprettet siden vi ikke kunne bekrefte dens kilde.\nKontroller at du har aktivert informasjonskapsler, oppdater siden og prøv igjen.",
 	"createacct-loginerror": "Kontoen ble opprettet, men du kunne ikke logges inn automatisk. Gå videre til [[Special:UserLogin|manuell innlogging]].",

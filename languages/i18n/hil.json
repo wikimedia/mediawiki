@@ -365,7 +365,6 @@
 	"loginerror": "May sala sa pagsulod",
 	"createacct-error": "Sayop sa paghimo sang account",
 	"createaccounterror": "Indi mahimo ang akawnt: $1",
-	"nocookiesnew": "Nahimo ang imo nga akawnt, apang wala ka pa kasulod.\nAng {{SITENAME}} nagagamit sang kokes (cookies) para makasulod ang mga manug-gamit.\nAng imo kokes wala nabuksan.\nPalihog bukas sa ila, dayon magsulod gamit ang imo bag-o nga gamit-pangalan kag pasword.",
 	"nocookieslogin": "Ang {{SITENAME}} nagagamit sang kokes (cookies) para makasulod ang mga manug-gamit.\nAng imo kokes wala nabuksan. \nPalihog bukas sa ila, dayon magsulod gamit ang imo bag-o nga gamit-pangalan kag pasword.",
 	"nocookiesfornew": "Ang akawnt sang manug-gamit wala nabuhat, bangud nga wala namon mahibal-i ang iya ginhalinan.\nPalihog sigurado kon nakabukas ang imo kokes, dayon ipakarga liwat ang ini nga panid kag tilawan mo liwat.",
 	"createacct-loginerror": "Ang account madinalag-on nga nahimo apang indi ka maka-log in sing awtomatiko. Palihog padayon sa [[Special:UserLogin|manual login]].",

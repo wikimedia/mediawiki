@@ -335,7 +335,6 @@
 	"loginerror": "Hasaba girmekde säwlik",
 	"createacct-error": "Hasap döretmek säwligi",
 	"createaccounterror": "Hasaby döredip bolmaýar: $1",
-	"nocookiesnew": "Ulanyjy hasaby döredildi, ýöne sessiýa açmadyňyz.\n{{SITENAME}} sessiýa açmak üçin kukilerden peýdalanýar.\nKukileriňiz togtadylgy dur.\nOlary işletmegiňizi, soňra bolsa täze ulanyjy adyňyz we parolyňyz bilen sessiýa açmagyňyzy haýyş edýäris.",
 	"nocookieslogin": "{{SITENAME}} sessiýa açmak üçin kukilerden peýdalanýar.\nSiziň kukileriňiz togtadylgy dur.\nOlary işletmegiňizi we gaýtadan synanyşyp görmegiňizi haýyş edýäris.",
 	"nocookiesfornew": "Ulanyjy hasaby döredilmedi, sebäbi çeşmesini tassyklap bilmedik. Gutapjyklaryň açykdygyna göz ýetiriň, bu sahypany täzeden açyň we gaýtadan synanyşyň.",
 	"createacct-loginerror": "Hasap üstünlikli döredildi, ýöne awtomatiki usulda girip bilmediňiz. [[Special:UserLogin|El bilen giriş]] dowam etmegiňizi haýyş edýäris.",

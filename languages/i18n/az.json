@@ -403,7 +403,6 @@
 	"loginerror": "Daxil olma xətası",
 	"createacct-error": "Hesab yaratma xətası",
 	"createaccounterror": "Bu istifadəçi adını yaratmaq mümkün olmadı: $1",
-	"nocookiesnew": "İstifadəçi qeydiyyatı yaradıldı, lakin daxil ola bilmədiniz.\n{{SITENAME}} iştirakçıların təqdim olunması üçün kukilərdən istifadə edir.\nSiz kukilərin qəbuluna qadağa qoymusunuz.\nLütfən, onları qəbul etməyə icazə verdikdən sonra yeni istifadəçi adı və parolunuzla daxil olun.",
 	"nocookieslogin": "{{SITENAME}} istifadəçilərin daxil ola bilməsi üçün kukilərdən istifadə edir. Siz kukilərin qəbuluna qadağa qoymusunuz. Lütfən, onların qəbuluna icazə verin və bir daha daxil olmağa cəhd edin.",
 	"nocookiesfornew": "İstifadəçinin hesabı yaradılmayıb, ona görə də biz onun mənbəsini təsdiqləyə bilmədik.\nKukilərin istifadəsinə icazə verildiyinə əmin olduqdan sonra səhifəni yeniləyib bir daha sınayın.",
 	"createacct-loginerror": "Hesab müvəffəqiyyətlə yaradılıb, lakin avtomatik olaraq daxil olma mümkün olmadə. Zəhmət olmasa, [[Special:UserLogin|daxil olma]] səhifəsinə keçin.",

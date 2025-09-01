@@ -349,7 +349,6 @@
 	"loginerror": "Si fasala we'amöi bakha",
 	"createacct-error": "Si fasala wamazökhi akun",
 	"createaccounterror": "Tebai tefazökhi akun: $1",
-	"nocookiesnew": "No tefazökhi akun zangoguna andrö, ba hiza lö si möi'ö bakha..\nI'oguna'ö kuki {{SITENAME}} ba wolohe bakha zangoguna.\nNo öba'agö kuki.\nEfasi womba'agö kuki, awena dania ae bakha faoma töi zangoguna ba nono kusi si bohou.",
 	"nocookieslogin": "I'oguna'ö kuki {{SITENAME}} ba wolohe bakha zangoguna.\nNo öba'agö kuki.\nEfasi ua mba'a-ba'a kuki ba fuli tandraigö.",
 	"nocookiesfornew": "Lö nifazöikhi akun zangoguna, börö me lö ma'ila heza moroi ia.\nFaigi ena'ö tetehegö kuki, awena halö mangawuli nga'örö andre ba tandraigö zui.",
 	"createacct-loginerror": "No tefazökhi akun, ba hiza lö möi'ö bakha otomatis. Ae bakha faoma [[Special:UserLogin|lala bö'ö]].",

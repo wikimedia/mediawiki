@@ -329,7 +329,6 @@
 	"loginerror": "Biddut ti iseserrek",
 	"createacct-error": "Biddut ti panagpartuat iti pakabilangan",
 	"createaccounterror": "Saan a makapartuat iti pakabilangan: $1",
-	"nocookiesnew": "Napartuaten ti pakabilangan ti agar-aramat, ngem saanka a nakastrek.\nTi {{SITENAME}} ket agus-usar kadagiti galietas tapno maiserrek dagiti agar-aramat.\nNabaldado dagiti galietam.\nPangngaasi a pakabaelam ida, ken sumrekka nga agusar iti baro a naganmo ken kontrasenias.",
 	"nocookieslogin": "Ti {{SITENAME}} ket agus-usar kadagiti galietas tapno maiserrek dagiti agar-aramat.\nNabaldado dagiti galietam.\nPangngaasi a pakabaelam ida ken padasem manen ti sumrek.",
 	"nocookiesfornew": "Ti pakabilangan ti agar-aramat ket saan a napartuat, saanmi a mapasingkedan ti taudanna.\nSiguraduem a napakabaelan dagita galietam, ikarga manen daytoy a panid ken padasen manen.",
 	"createacct-loginerror": "Balligi ti pannakapartuat ti pakabilangan ngem saanka a mabalin nga automatiko a maiserrek. Pangngaasi a mapan iti [[Special:UserLogin|manual a panagserrek]].",

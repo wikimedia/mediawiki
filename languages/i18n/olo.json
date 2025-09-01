@@ -347,7 +347,6 @@
 	"loginerror": "Sistiemahpiäzendyhaireh",
 	"createacct-error": "Haireh käyttäjäntunnuksen luadimizes",
 	"createaccounterror": "Ei suannuh luadie käyttäjäntunnustu: $1",
-	"nocookiesnew": "Sinun käyttäjäntunnus on luajittu, ga sinä et ole piässyh sistiemah. \n{{SITENAME}} käyttäy cookie-tiijostoloi sistiemah piästäjes. Sinul cookie-tiijostot ollah kielletty. Ole hyvä, anna luba niilöin käytändäle da sit uvvessah piäze sistiemah oman uvven käyttäjännimenke da peittosananke.",
 	"nocookieslogin": "{{SITENAME}} käyttäy cookie-tiijostoloi sistiemah piästäjes. Olet ottanuh käytöspäi cookie-tiijostoloi. Ota net käyttöh da opi uvvessah.",
 	"nocookiesfornew": "Käyttäjäntunnustu ei luajittu sendäh, ku ei voidu varmistua sen lähtehty. \nVarmista, ku sinul cookie-tiijostot on otettu käyttöh, uvvista tämä sivu da opi uvvessah.",
 	"createacct-loginerror": "Sinun käyttäjäntunnus on luajittu, ga sinä et voinnuh avtomuattizesti piästä sistiemah. Ole hyvä, siirry [[Special:UserLogin|käzil kirjuttamizeh]]",

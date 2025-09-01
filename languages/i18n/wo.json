@@ -226,7 +226,6 @@
 	"userexists": "Turu jëfandikukat bi nga bind am na boroom ba noppi. Tànnal weneen.",
 	"loginerror": "Njuumte ci dugg gi",
 	"createaccounterror": "Sosug sàq mi antuwul: $1",
-	"nocookiesnew": "Sàqum jëfandikukat mi sosu na, waaye dugg gi antuwul. {{SITENAME}} day jëfandikoo ay cookie ngir dugg gi, waaye danga leen doxadil. Doxal leen ci sa joowukaay te duggaat ak sa tur ak sa baatujàll bi nga sos.",
 	"nocookieslogin": "{{SITENAME}} day jëfandikoo ay cookie ngir dugg gi, te yaw say cookies dañoo doxadi. Doxal leen ci sa joowukaay te jéem a duggaat.",
 	"noname": "Bindoo turu jëfandikukat bi baax.",
 	"loginsuccesstitle": "Sag dugg jàll na",

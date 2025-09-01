@@ -366,7 +366,6 @@
 	"loginerror": "Fôta de branchement",
 	"createacct-error": "Fôta pendent la crèacion du comptio",
 	"createaccounterror": "Y at pas moyen de fâre lo comptio : $1",
-	"nocookiesnew": "Lo comptio utilisator est étâ fêt, mas vos éte pas branchiê{{GENDER:||e}}.\n{{SITENAME}} emplèye de raportiors (<em>cookies</em>) por lo branchement mas vos los éd dèsactivâs.\nSe vos plét, activâd-los et pués tornâd-vos branchiér avouéc voutron novél nom d’utilisator et voutron contresegno.",
 	"nocookieslogin": "{{SITENAME}} emplèye de raportiors (<em>cookies</em>) por lo branchement mas vos los éd dèsactivâs.\nSe vos plét, activâd-los et pués tornâd èprovar.",
 	"nocookiesfornew": "Lo comptio utilisator est pas étâ fêt, nos ens pas possu confirmar son origina.\nControlâd que vos éd activâ los raportiors (<em>cookies</em>), rechargiéd la pâge et pués tornâd èprovar.",
 	"createacct-loginerror": "Lo comptio est étâ fêt avouéc reusséta, mas vos vos pouede pas branchiér ôtomaticament. Se vos plét, [[Special:UserLogin|branchiéd-vos a la man]].",

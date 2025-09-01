@@ -511,7 +511,6 @@
 	"loginerror": "ログインのエラー",
 	"createacct-error": "アカウント作成エラー",
 	"createaccounterror": "アカウントを作成できませんでした: $1",
-	"nocookiesnew": "利用者アカウントは作成されましたが、ログインしていません。\n{{SITENAME}}では利用者のログインに Cookie を使用しますが、ご使用のブラウザーでは Cookie が無効になっているようです。\nCookie を有効にしてから、新しい利用者名とパスワードでログインしてください。",
 	"nocookieslogin": "{{SITENAME}}ではログインに Cookie を使用します。\nCookie を無効にしているようです。\nCookie を有効にしてから、もう一度試してください。",
 	"nocookiesfornew": "発信元を確認できなかったため、アカウントは作成されませんでした。\nCookieを有効にしていることを確認の上、このページを再読込してもう一度お試しください。",
 	"createacct-loginerror": "アカウントは作成されましたが、自動的にログインできませんでした。[[Special:UserLogin|手動でログイン]]してください。",

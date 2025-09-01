@@ -339,7 +339,6 @@
 	"loginerror": "Error harak kuruk log",
 	"createacct-error": "Ngguway akun gagal",
 	"createaccounterror": "Mak panday ngguway akun: $1",
-	"nocookiesnew": "Akun pamakay kok tiguway, tapi Niku makkung kuruk log. {{SITENAME}} makay kuki untuk log pamakay. Kuki di paramban web mu tinonaktifko. Payu aktifko rik kuruk log luwot rik golar pamakay rik kata sandi mu.",
 	"nocookiesfornew": "Akun pangguna mak tiguway lah sikam mak panday nyongkiko sumberna.\nCongkiko Niku kok ngaktifko kuki, radu na muak ulang halaman hasa rik cuba luwot.",
 	"createacct-loginerror": "Akun kok buhasil tiguway, tapi Niku mak panday langsung kuruk log. Payu torusko guk  [[Special:UserLogin|kuruk log manual]].",
 	"createacct-temp-warning": "Dandanan say Niku guway makay akun samantara bugolar <strong> $1 </strong> makwat tialihko guk akun parmaninmu.",

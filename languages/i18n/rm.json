@@ -271,7 +271,6 @@
 	"loginerror": "Sbagl cun t'annunziar",
 	"createacct-error": "Errur cun crear il conto",
 	"createaccounterror": "Betg pussaivel da crear in conto: $1",
-	"nocookiesnew": "Il conto da l'utilisader è vegnì creà, ti es dentant betg t'annunzià. \n{{SITENAME}} utilisescha cookies per che utilisaders pon s'annunziar. \nTi has deactivà ils cookies. \nAls activescha per plaschair e lura t'annunzia cun tes nov num d'utilisader e pled-clav.",
 	"nocookieslogin": "{{SITENAME}} utilisescha cookies per ch'utilisaders pon s'annunziar.\nTi has deactivà tes cookies.\nActivescha per plaschair ils cookis en tes navigatur ed emprova danovamain.",
 	"nocookiesfornew": "Quest conto d'utilisader n'ha betg pudì vegnir creà perquai che nus na pudevan betg confermar sia funtauna. \nControllescha che ti has activà ils cookies, rechargia la pagina ed emprova danovamain.",
 	"noname": "Ti n'has betg inditgà in num d'utilisader valid.",

@@ -267,7 +267,6 @@
 	"loginerror": "Aliquis error factus est in nomine dando",
 	"createacct-error": "Aliquid haesit in nomine tibi imponendo",
 	"createaccounterror": "Defecit in nomine imponendo: $1",
-	"nocookiesnew": "Nomen impositum neque datum est.\nNam in nominibus dandis {{SITENAME}} ''Cookies'' utitur.\nQuae apud te vetantur.\nCookies admitte, tum nomen novum cum tessera nova da!",
 	"nocookieslogin": "In nominibus dandis {{SITENAME}} ''cookies'' requirit. \nQuae apud te vetantur.\nCookies admitte, tum denuo tempta!",
 	"noname": "Nomen usoris ratum non designavisti.",
 	"loginsuccesstitle": "Nomen feliciter datum est",

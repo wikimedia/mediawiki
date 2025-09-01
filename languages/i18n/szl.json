@@ -294,7 +294,6 @@
 	"loginerror": "Feler przi logowańu",
 	"createacct-error": "Feler tworzyńo kůnta",
 	"createaccounterror": "Niy idzie stworzić kōnta $1",
-	"nocookiesnew": "Kůnto użytkowńika zostoło utworzůne, nale ńy jeżeś zalůgowany. {{SITENAME}} używo ćosteczek do logůwańo. Mosz wyłůnczone ćosteczka. Coby śe zalůgować, uodymknij ćosteczka a podej mjano a hasło swojigo kůnta.",
 	"nocookieslogin": "{{SITENAME}} używo ćosteczek do logowańo użytkowńikůw. Mosz zablokowano jejich uobsłůga. Sprůbuj zaś kej załůnczysz uobsłůga ćosteczek.",
 	"nocookiesfornew": "Konto sprowjorza ńy uostoło stworzone. Sprawdź, co mosz uodymkńynto uobsługa cookies.",
 	"noname": "To ńy je poprowne mjano użytkowńika.",

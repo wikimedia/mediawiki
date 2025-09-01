@@ -387,7 +387,6 @@
 	"loginerror": "Errorea saioa hastean",
 	"createacct-error": "Kontua sortzerakoan arazoa",
 	"createaccounterror": "Ezin izan da kontua sortu: $1",
-	"nocookiesnew": "Erabiltzaile kontua sortu da, baina ez da saioa hasi. {{SITENAME}}(e)k cookieak erabiltzen ditu saioekin eta ezgaituta dauzkazu. Gaitu itzazu mesedez, eta ondoren saiatu saioa hasten zure erabiltzaile izen eta pasahitz berriak erabiliz.",
 	"nocookieslogin": "{{SITENAME}}(e)k cookieak erabiltzen ditu saioekin eta ezgaituta dauzkazu. Gaitu itzazu mesedez, eta saiatu berriz.",
 	"nocookiesfornew": "Erabiltzaile kontua ez da sortu, bere jatorria ezin delako ziurtatu.\nZiurta ezazu cookiak gaiturik dituzula, birkargatu orrialde hau eta saia saitez berriro ere.",
 	"createacct-loginerror": "Kontua ondo sortu da baina ezin izan duzu saioa hasi automatikoki. Jarraitu hona [[Special:UserLogin|manual login]].",

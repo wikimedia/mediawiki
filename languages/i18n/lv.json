@@ -374,7 +374,6 @@
 	"loginerror": "Neveiksmīga ieiešana",
 	"createacct-error": "Konta izveides kļūda",
 	"createaccounterror": "Neizdevās izveidot kontu: $1",
-	"nocookiesnew": "Lietotājvārds tika izveidots, bet tu neesi iegājis iekšā. {{SITENAME}} izmanto sīkdatnes (<i>cookies</i>), lai lietotāji varētu tajā ieiet. Tavs pārlūks nepieņem tās. Lūdzu, atļauj to pieņemšanu un tad nāc iekšā ar savu lietotājvārdu un paroli.",
 	"nocookieslogin": "{{SITENAME}} izmanto sīkdatnes (<i>cookies</i>), lai lietotāji varētu ieiet tajā. Diemžēl tavs pārlūks tos nepieņem. Lūdzu, atļauj to pieņemšanu un mēģini vēlreiz.",
 	"nocookiesfornew": "Lietotāja konts netika izveidots, jo nevarējām apstiprināt tā avotu.\nPārliecinies, ka ir iespējotas pārlūka sīkdatnes, pārlādē šo lapu un mēģini vēlreiz.",
 	"createacct-loginerror": "Konts tika veiksmīgi izveidots, bet neizdevās automātiski pieslēgties. Lūdzu, dodies uz [[Special:UserLogin|manuālās pieslēgšanās]] lapu.",

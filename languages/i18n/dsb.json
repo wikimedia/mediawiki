@@ -303,7 +303,6 @@
 	"loginerror": "Zmólka pśi pśizjawjenju",
 	"createacct-error": "Zmólka pśi załožowanju konta",
 	"createaccounterror": "Wužywarske konto njejo se napóraś dało: $1",
-	"nocookiesnew": "Wužywarske konto jo se južo wutwóriło, ale wužywaŕ njejo pśizjawjony. {{SITENAME}} wužywa cookije za pśizjawjenja. Jo notne, cookije zmóžniś a se wótnowotki pśizjawiś.",
 	"nocookieslogin": "{{SITENAME}} wužywa cookije za pśizjawjenja. Jo notne, cookije zmóžniś a se wótnowotki pśizjawiś.",
 	"nocookiesfornew": "Wužywarske konto njejo se załožyło, dokulaž njejsmy mógli jogo žrědło wobkšuśiś.\nPśeswědč se, až cookije su zmóžnjone, zacytaj toś ten bok a wopytaj hyšći raz.",
 	"noname": "Njejsy žedno płaśece wužywarske mě zapódał.",

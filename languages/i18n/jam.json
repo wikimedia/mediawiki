@@ -234,7 +234,6 @@
 	"userexists": "Yuuza niem enta aredi a yuuz.\nBegyu chuuz wahn difrahn niem.",
 	"loginerror": "Lagiin era",
 	"createaccounterror": "Kudn kriet akount: $1",
-	"nocookiesnew": "Di yuuza akount kriet, bot yu no lag iin.\n{{SITENAME}} yuuz kuki fi lag iin yuuza.\nYu gat kukidem disiebl.\nBegyu eniebl dem, den lag iin wid yu nyuu yuuzaniem ahn paaswod.",
 	"nocookieslogin": "{{SITENAME}} yuuz kuki fi lag iin yuuza.\nYu gat kukidem disiebl.\nBegyu eniebl dem ahn chrai agen.",
 	"noname": "Yu no spesifai no valid yuuza niem.",
 	"loginsuccesstitle": "Lagiin soksesful",

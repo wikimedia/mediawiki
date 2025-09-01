@@ -286,7 +286,6 @@
 	"loginerror": "Erōr 'd ingrès",
 	"createacct-error": "A gh'é stê un erōr ind al fêr l'utèinsa.",
 	"createaccounterror": "Imposébil fêr l'iscrisiòun: $1",
-	"nocookiesnew": "La registrasiòun  an n' é mìa finîda, e an n'é mìa stê pusébil andêr dèinter a {{SITENAME}} perchè i cookie în blûchê. Tōrna fêr l'ingrès cun al nòm e la cêva 'd ingrès apèina fât dôp avèir şbluchê i cookie int al tó navigadōr.",
 	"nocookieslogin": "Per fêr l'ingrès a {{SITENAME}} a 's dēv druvêr i cookie che rişûlten bluchê. Tōrna fêr l'ingrès dôp avèir şbluchê i cookie int al tó navigadōr.",
 	"nocookiesfornew": "L'iscrisiòun utèint an n'é mìa stêda fâta, perchè òm mìa prû cunfermêr la só urégin. Veréfica 'd avèir şbluchê i cookie, tōrna carghêr cla pàgina ché e prōva incòra.",
 	"noname": "Al nòm utèint scrét an n'é mìa vâlid.",

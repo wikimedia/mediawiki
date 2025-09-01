@@ -392,7 +392,6 @@
 	"loginerror": "Nsogbu ngbe I choro I bata",
 	"createacct-error": "Njehie imepụta akaụntụ",
 	"createaccounterror": "O nweriki ké buwa: $1",
-	"nocookiesnew": "Emepụtara akaụntụ onye ọrụ, mana ịbanyeghị.\n{{SITENAME}} na-eji kuki abanye ndị ọrụ.  Ị nwere nkwarụ kuki.  Biko mee ka ha nwee ike, wee banye na aha njirimara na paswọọdụ ọhụrụ gị.",
 	"nocookieslogin": "{{SITENAME}} na-eji kuki abanye ndị ọrụ.\nỊ nwere nkwarụ kuki.\nBiko mee ka ha nwee ike ma nwaa ọzọ.",
 	"nocookiesfornew": "Emeghị akaụntụ onye ọrụ ahụ, n'ihi na anyị enweghị ike ikwenye na isi iyi ya. Gbaa mbọ hụ na enwere kuki, tinyeghachi ibe a ma nwaa ọzọ.",
 	"createacct-loginerror": "Emepụtara akaụntụ ahụ nke ọma mana enweghị ike ịbanye na akpaghị aka.Biko gaba na [[Special:UserLogin|nbanye aka]].",

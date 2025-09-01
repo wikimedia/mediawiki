@@ -250,7 +250,6 @@
 	"userexists": "O nombre d'usuario que ha escrito ya ye en uso.\nPor favor, trigue-ne uno de diferent.",
 	"loginerror": "Error en encetar a sesión",
 	"createaccounterror": "No s'ha puesto creyar a cuenta: $1",
-	"nocookiesnew": "A cuenta d'usuario s'ha creyata, pero encara no ye indentificato. {{SITENAME}} fa servir <em>cookies</em> ta identificar a os usuario rechistratos, pero pareix que las tiene desactivatas. Por favor, active-las e identifique-se con o suyo nombre d'usuario y a clau d'acceso.",
 	"nocookieslogin": "{{SITENAME}} fa servir <em>cookies</em> ta la identificación d'usuarios. Tiene as <em>cookies</em> desactivatas en o suyo navegador. Por favor, active-las y prebe d'identificar-se de nuevas.",
 	"nocookiesfornew": "No se puet creyar a cuenta d'usuario, porque no hemos puesto confimar o suyo orichen.  Asegure-se que tien as galletas (cookies) activatas, dimpués cargue de nuevas ista pachina y torne a intentar-lo.",
 	"noname": "No ha escrito un nombre d'usuario correcto.",

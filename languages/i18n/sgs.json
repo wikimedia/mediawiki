@@ -268,7 +268,6 @@
 	"loginerror": "Prisėjongėma klaida",
 	"createacct-error": "Paskīruos dėrbėma klaida",
 	"createaccounterror": "Nė̄šiejė padėrbtė paskīruos: $1",
-	"nocookiesnew": "Nauduotuojė paskīra bova sokorta, bet Tamīsta nēsi prīsijongė̄s. {{SITENAME}} nauduoj pakavokus (''cookies''), ka prīkergtom nauduotuojus. Tamīsta esi ėšjongė̄s anūs. Prašuom ijongtė pakavokus, tūmet prīsijonkat so sava naujo nauduotuojė vardo ė slaptažuodio.",
 	"nocookieslogin": "{{SITENAME}} nauduo pakavukus (''cookies''), ka prėkergtom nauduotuojus. Tamsta esat ėšjongis anūs. Prašuom ijongtė pakavukus ė pamiegītė apent.",
 	"noname": "Naožrašėt tinkama nauduotuoja varda!",
 	"loginsuccesstitle": "Prisijongiet gerā",

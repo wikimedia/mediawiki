@@ -360,7 +360,6 @@
 	"loginerror": "Eror ën rintrand ant ël sistema",
 	"createacct-error": "Eror durant la creassion dël cont",
 	"createaccounterror": "A l'é nen podusse creé ël cont: $1",
-	"nocookiesnew": "Sò cont a l'é duvèrt, ma chiel a l'ha nen podù rintré ant ël sistema.\n{{SITENAME}} a deuvra ij bëscotin për fé rintré la gent ant sò sistema. Belavans chiel a l'ha pa ij bëscotin abilità.\nPër piasì, che as j'abìlita e peuj che a preuva torna a rintré con sò stranòm e soa ciav.",
 	"nocookieslogin": "{{SITENAME}} a deuvra ij bëscotin për fé rintré la gent ant sò sistema. Belavans chiel a l'ha pa ij bëscotin abilità. Për piasì, che a j'abìlita e peuj che a preuva torna.",
 	"nocookiesfornew": "Ël cont utent a l'é pa stàit creà, përchè i l'oma pa podù confirmé soa sorgiss.\nCh'a contròla d'avèj ij bëscotin abilità, ch'a caria torna la pàgina e ch'a preuva torna.",
 	"createacct-loginerror": "Ël cont a l'é stàit creà për da bin ma a peul nen intré ant ël sistema an automàtich. Për piasì, ch'a [[Special:UserLogin|intra manualment]].",

@@ -327,7 +327,6 @@
 	"loginerror": "Bi't uunmeldin as wat skiaf gingen",
 	"createacct-error": "Bi't iinrachten faan det brükerkonto as wat skiaf gingen",
 	"createaccounterror": "Brükerkonto küd ei iinracht wurd: $1",
-	"nocookiesnew": "Det brükerkonto as iinracht wurden, oober dü beest ei uunmeldet.\n{{SITENAME}} brükt cookies för detdiar aktjuun.\nWees so gud an aktiwiare jo uun dan browser, an do melde di mä dan nei brükernööm an det nei paaswurd uun.",
 	"nocookieslogin": "{{SITENAME}} brükt cookies för't uunmeldin faan brükern.\nDü heest cookies deaktiwiaret.\nWees so gud an aktiwiare jo uun dan browser, an do ferschük det noch ans.",
 	"nocookiesfornew": "Det brükerkonto as ei iinracht wurden, auer wi ei witj, huar a dooten faan kem.\nÜüb dan kompjuuter skel cookies aktiwiaret wees. Do rep detheer sidj noch ans nei ap.",
 	"createacct-loginerror": "Det brükerkonto as iinracht wurden, oober dü küdst noch ei uunmeldet wurd. Wees so gud an  [[Special:UserLogin|melde di nü uun]].",

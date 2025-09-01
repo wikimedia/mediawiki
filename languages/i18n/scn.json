@@ -336,7 +336,6 @@
 	"loginerror": "Erruri ntâ trasuta",
 	"createacct-error": "Erruri ntâ criazzioni dû cuntu",
 	"createaccounterror": "Nun fu pussìbbili criari lu cuntu: $1",
-	"nocookiesnew": "Lu cuntu utenti fu criatu, ma nun trasisti.\n{{SITENAME}} adòpira li cookie pi gistiri li trasuti.\nTu hai li cookie disattivati.\nPi favuri attìvali, e appoi trasi chî tò nomu utenti e password novi.",
 	"nocookieslogin": "{{SITENAME}} adòpira li cookie pi gistiri li trasuti.\nTu hai li cookie disattivati.\nPi favuri attìvali e prova n'àutra vota.",
 	"nocookiesfornew": "Lu cuntu utenti nun fu criatu, pirchì nun pòttimu cunfirmari la sò orìggini.\nAssicùrati chi hai li ''cookie'' attivati, ricàrrica sta pàggina e prova n'àutra vota.",
 	"noname": "Nun spicificasti nu nomu utenti vàlidu.",

@@ -347,7 +347,6 @@
 	"loginerror": "Cadang pas kughuk log",
 	"createacct-error": "Pengguwayan akun ughung",
 	"createaccounterror": "Mak dapok nyani akun: $1",
-	"nocookiesnew": "Akun pumakay ghadu tisani, kidang Niku mangkung kughuk log.\n{{SITENAME}} makay kuki guway log pumakay. Kuki di peramban web mu tipatiko. Payu hughikko ghik kughuk log luwot jama gelagh pumakay ghik kata sandi mu.",
 	"nocookieslogin": "{{SITENAME}} makay kuki guway log pumakayni.\nKuki lom perambanmu tipatiko. \nPayu hughikko ghik cuba luwot.",
 	"nocookiesfornew": "Akun pumakay mak tisani ulih sikam mak dapok mastiko sumberni.\nPastiko Niku ghadu ngehughikko kuki, lajuni muwat ulang halaman hinji ghik cuba luwot.",
 	"createacct-loginerror": "Akun ghadu buhasil tisani, kidang Niku mak dapok lassung kughuk log. Payu teghusko mit [[Special:UserLogin|kughuk log manuwal]].",

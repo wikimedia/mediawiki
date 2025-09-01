@@ -343,7 +343,6 @@
 	"userexists": "Ngaranmoguno pinosuang noguno no.\nMaai alanai do suai ngaran.",
 	"loginerror": "Nokosilap sumuang log",
 	"createaccounterror": "Awu kowonsoi takaun: $1",
-	"nocookiesnew": "Nowonsoi no takaun momoguno, nga awu ko poinsuang log.\n{{SITENAME}} mongoguno kukis do posuang log.\nPointingkod kukisnu.\nPapanaho ilo, om sumuang log momoguno do ngaranmoguno om kaatalib wagunu.",
 	"nocookieslogin": "{{SITENAME}} mongoguno kukis do sumuang log.\nPointingkod kukis kompiutonu.\nMangai papanaho ilo om umbalan kawagu.",
 	"nocookiesfornew": "Awu po nowonsoi takaun momoguno, tu awu otunudan wowonod dau.\nPosikito no pogogonsoknu, gumulisuang id bolikon diti om umbalan kawagu.",
 	"noname": "Awu nu pinosuang ngaran momomoguno di pasagaon.",

@@ -407,7 +407,6 @@
 	"loginerror": "Ensaluta eraro",
 	"createacct-error": "Eraro pri kreado de konto",
 	"createaccounterror": "Ne eblis krei konton: $1",
-	"nocookiesnew": "La uzantokonto estis kreita, sed vi ne estas ensalutinta. {{SITENAME}} uzas kuketojn por akcepti uzantojn. Kuketoj estas malaktivigitaj ĉe vi. Bonvolu aktivigi ilin kaj ensaluti per viaj novaj uzantnomo kaj pasvorto.",
 	"nocookieslogin": "{{SITENAME}} uzas kuketojn por akcepti uzantojn. Kuketoj estas malaktivigitaj ĉe vi. Bonvolu aktivigi ilin kaj provi denove.",
 	"nocookiesfornew": "La uzantokonto ne estis kreita, ĉar ne konfirmeblas ĝia fonto. Certiginte ke kuketoj estas ebligitaj, aktualigu tiun ĉi paĝon kaj reprovu.",
 	"createacct-loginerror": "La konto estis sukcese kreita, sed vi ne povis esti ensalutita aŭtomate. Bonvolu procedi [[Special:UserLogin|malaŭtomatan ensaluton]].",

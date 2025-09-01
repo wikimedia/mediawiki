@@ -329,7 +329,6 @@
 	"loginerror": "Login me kuchh wrong hae",
 	"createacct-error": "Account ke banae me galti",
 	"createaccounterror": "Account ke nai banae sakaa hae: $1",
-	"nocookiesnew": "Aap ke account banae dewa gais hae lekin aap logged in nai hae.\n{{SITENAME}} me sadasya ke login khatir cookies hae.\nAap cookies ke rok diya hae.\nCookies ke enable kar ke, aapan nawaa username aur password se login karo.",
 	"nocookieslogin": "{{SITENAME}} me sadasya ke login khatir cookies hae.\nAap cookies ke disabled karaa hae.\nCookies ke enable kar ke fir se kosis karo.",
 	"nocookiesfornew": "Sadasya ke account ke nai banawa gais hae, kaahe ki source ke confirm nai karaa jaae sakis hae.\nCookies ke enable kar ke, ii panna ke fir se load karo aur fir se kosis karo.",
 	"createacct-loginerror": "Ii account ke banae dewa gais hai, lekin aap ke automatically login nai karaa jaae sakis hai. Meharbaani kar ke  [[Special:UserLogin|manual login]] me jaao.",

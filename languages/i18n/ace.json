@@ -293,7 +293,6 @@
 	"loginerror": "Salah bak tamöng",
 	"createacct-error": "Peugöt akun hana meuhasé",
 	"createaccounterror": "H'an jeuet peugöt akun: $1",
-	"nocookiesnew": "Akun ureueng ngui nyoe ka geupeugöt, tapi droeneuh goh lom neutamöng.\n{{SITENAME}} jingui kuki keu jipeutamöng ureueng ngui.\nKuki droeneuh hana geupeuudép.\nNeupeuudép kuki dilèe, lheueh nyan neutamöng ngön nan ureueng ngui ngön lageuem tamöng barô droeneuh.",
 	"noname": "Nan ureueng ngui nyang Droenueh peutamöng hana sah.",
 	"loginsuccesstitle": "Meuhasé neutamöng",
 	"loginsuccess": "'''Droeneuh  jinoe ka neutamöng di {{SITENAME}} sibagoe \"$1\".'''",

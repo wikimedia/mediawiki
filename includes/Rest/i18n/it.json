@@ -52,5 +52,8 @@
 	"rest-param-desc-transform-revision": "Trasforma versione",
 	"rest-property-desc-revision-id": "ID versione",
 	"rest-property-desc-user-name": "Nome utente o indirizzo IP di origine per utenti anonimi",
-	"rest-endpoint-desc-post-page": "Crea una pagina."
+	"rest-endpoint-desc-post-page": "Crea una pagina.",
+	"rest-endpoint-desc-post-transform-wikitext-to-html-title-revision": "Converte il wikitesto di una determinata versione in HTML. Il parametro del corpo della richiesta del wikitesto deve essere specificato, ma può essere lasciato vuoto per ricevere la versione completa. Il corpo della risposta contiene il codice HTML renderizzato della versione.",
+	"rest-endpoint-desc-post-transform-html-to-wikitext-title": "Converte l'HTML in wikitesto. Il parametro \"HTML request body\" deve essere specificato, ma può essere vuoto per ricevere la pagina completa. Il corpo della risposta contiene il wikitesto della pagina.",
+	"rest-endpoint-desc-post-transform-html-to-wikitext-title-revision": "Converte il codice HTML di una determinata versione in wikitesto. Il parametro html nel corpo della richiesta deve essere specificato, ma può essere lasciato vuoto per ricevere la versione completa. Il corpo della risposta contiene il wikitesto della versione ."
 }

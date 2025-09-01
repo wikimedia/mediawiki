@@ -306,7 +306,6 @@
 	"loginerror": "Ghyuap mi̱ di̱ nwuai",
 	"createacct-error": "Ghyuap mi̱ di̱ khwuk a̱la̱n",
 	"createaccounterror": "Á̱ si̱ mi̱n khwuk a̱la̱n: $1 ka bah",
-	"nocookiesnew": "Á̱ khwuk a̱la̱n a̱tyunta̱m ka, a̱wot a ka̱n nwuo bah.\n{{SITENAME}} nyian ta̱m ma̱ng a̱yaakuki di̱ nwuai ma̱ng á̱nietnta̱m.\nĀ̱ hyat a̱yaakuki ang ba.\nMa̱sa̱kut khwuk ba, a bu si̱ nnwuo ma̱ng a̱lyoot-a̱tyunta̱m a̱fai ang ka ma̱ng swang-nwuai.",
 	"userlogin-authpopup-retry": "Bu kwan",
 	"userlogin-authpopup-cancel": "Lyang",
 	"userlogin-authpopup-closeme": "Ka̱nang a li ta̱m jini, a maai a nyim zunzwat jini.",

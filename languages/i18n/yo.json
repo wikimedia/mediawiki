@@ -362,7 +362,6 @@
 	"loginerror": "Àsìṣe ìtẹ̀wọlé",
 	"createacct-error": "Àṣìṣe ìdá ìforúkọpamọ́",
 	"createaccounterror": "Kò le dá ìforúkọpamọ́: $1",
-	"nocookiesnew": "A ti dá ìforúkọpamọ́ oníṣe, ṣugbọ́n ẹ kò tíì jẹ́ títẹ̀ wọlé.\n{{SITENAME}} ún lo cookies láti ṣe ìtẹ̀wọlé àwọn oníṣe.\nẸ ti dínà sí cookies.\nẸjọ̀wọ́ ẹ gba cookies láàyè kí ẹ tó ṣe ìtẹ̀wọlé pẹ̀lú orúkọ oníṣe àti ọ̀rọ̀ìpamọ́ tuntun yín.",
 	"nocookieslogin": "{{SITENAME}} ún lo cookies láti ṣe ìtèwọlé àwọn oníṣe.\nẸ ti dínà sí cookies.\nẸjọ̀wọ́ ẹ gbà wọ́n láàyè kí ẹ tún tó gbìyànjú ní ẹ̀ẹ̀kan síi.",
 	"nocookiesfornew": "Ìforúkọpamọ́ oníṣe kò jẹ́ dídá torípé a kò le ṣèmúdájú ibi tó ti wá.\nẸ ríidájú pé ẹ gba cookies láàyè, ẹ tún ojúewé yìí sí, kí ẹ tó tún gbìyànjú.",
 	"createacct-loginerror": "Ìdá ìforúkọpamọ́ jẹ́ sí rere sùgbọ́n ẹ kò tí ì jẹ́ títẹ̀wọlé fúnrara rẹ̀. Ẹ jọ̀ wọ́ ẹ lọ sí [[Special:UserLogin|ìtẹ̀wọlé àfọwọ́ṣe]].",

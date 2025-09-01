@@ -359,7 +359,6 @@
 	"loginerror": "Viga tuldes sistemaha.",
 	"createacct-error": "Lehtpolen tegemižen viga",
 	"createaccounterror": "Ei sa tehta kävutajan lehtpol't: $1",
-	"nocookiesnew": "Kävutajan lehtpol' oli tehtud, no sinä ed tulend sistemaha.\n{{SITENAME}} kävutab kuk-failoid, miše kävutajad tuližiba sistemaha.\nSinun kuk-failad om saubatud.\nOle hüvä, avaida ned, a sid' tule sistemaha kirjutades uz' kävutajan nimi da peitsana.",
 	"nocookieslogin": "{{SITENAME}} kävutab kuk-failoid, konz kävutajad tuleba sistemaha.\nSinun kuk-failad om saubatud.\nOle hüvä, avaida ned da tošta sinun tegend.",
 	"nocookiesfornew": "Kävutajan lehtpol' ei olend tehtud, sikš miše mö em voinugoi vahvištoitta sen lähtked.\nKacu, miše sinun kuk-failad oližiba rados, udištoita nece lehtpol' da tošta völ kerdan.",
 	"createacct-loginerror": "Lehtpol' oli hüvin tehtud, no sinä ed voind avtomatižesti tulda sistemaha. Ole hüvä, tege muga, miše [[Special:UserLogin|kirjutada käzil]].",

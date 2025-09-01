@@ -388,7 +388,6 @@
 	"loginerror": "Greška pri prijavljivanju",
 	"createacct-error": "Došlo je do greške pri otvaranju naloga",
 	"createaccounterror": "Nije moguće otvoriti nalog: $1",
-	"nocookiesnew": "Korisnički nalog je otvoren, ali niste prijavljeni.\n{{SITENAME}} koristi kolačiće za prijavu. Vama su kolačići onemogućeni.\nOmogućite ih, pa se onda prijavite korisničkim imenom i lozinkom.",
 	"nocookieslogin": "{{SITENAME}} koristi kolačiće za prijavljivanje korisnika.\nVama su kolačići onemogućeni. Omogućite ih i pokušajte ponovo.",
 	"nocookiesfornew": "Korisnički nalog nije otvoren jer njegov izvor nije potvrđen.\nOmogućite kolačiće na pregledaču i ponovo učitajte stranicu.",
 	"createacct-loginerror": "Nalog je otvoren, ali automatska prijava nije bila moguća. Prijavite se [[Special:UserLogin|ručno]].",

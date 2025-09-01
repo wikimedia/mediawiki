@@ -319,7 +319,6 @@
 	"loginerror": "Fähler beim Enlogge",
 	"createacct-error": "Fähler beim Zohjang-Aanlääje",
 	"createaccounterror": "Kunnt keine Zohjang för der Metmaacher-Name „$1“ aanlääje.",
-	"nocookiesnew": "Dinge neue Metmaacher Name es enjerich, ävver dat automatisch Enlogge wor dann nix.\nSchad.\n{{ucfirst:{{GRAMMAR:Nom|{{SITENAME}}}}}} bruch Cookies, öm ze merke, wä enjelogg es.\nWann De Cookies avjeschald häs en Dingem Brauser, dann kann dat nit laufe.\nSök Der ene Brauser, dä et kann, dun se enschalte, un dann log Dich noch ens neu en, met Dingem neue Metmaacher Name un Passwood.",
 	"nocookieslogin": "{{ucfirst:{{GRAMMAR:Nominativ|{{SITENAME}}}}}} bruch <i lang=\"en\">cookies</i> för et Enlogge. Et süht esu us, als hätts De de <i lang=\"en\">cookies</i> avjeschalt. Dun se aanschalte un dann versök et noch ens. Odder söök Der ene Brauser, dä et kann.",
 	"nocookiesfornew": "Et wood keine Zohjang opjemaat, weil mer nit jeweß sin künne, woh de Daate her kohme.\nDinge Brauser moß <i lang=\"en\">cookies</i> enjeschalldt han.\nDonn dat prööfe, donn heh di Sigg norr_ens neu laade, un dann versöhk et norr_ens.",
 	"createacct-loginerror": "Dä Zohjang es aanjelaat, ävver mer kunnts Desch nit automattesch  enlogge. Be sesu jood un jangk mohm [[Special:UserLogin|Ennlogge vun Hand]].",

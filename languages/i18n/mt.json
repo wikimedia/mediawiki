@@ -350,7 +350,6 @@
 	"loginerror": "Problemi fil-login",
 	"createacct-error": "Problema fil-ħolqien tal-kont",
 	"createaccounterror": "Il-kont ma jistax jinħoloq: $1",
-	"nocookiesnew": "Ir-reġistrazzjoni ġiet kompluta, imma mhuwiex possibbli li taċċessa {{SITENAME}} minħabba li l-cookies huma diżattivati. Attiva l-cookies, u erġa' pprova idħol bl-isem l-utent u l-password tiegħek.",
 	"nocookieslogin": "L-aċċess għal {{SITENAME}} jagħmel użu minn ''cookies'', li bħalissa huma disattivati. Jekk jogħġbok erġa' prova idħol wara li tkun attivajt il-''cookies'' fil-browser.",
 	"nocookiesfornew": "Il-kont ma ġiex maħluq, minħabba li ma stajniex nikkonfermaw is-sors. Assigura ruħek li l-cookies huma attivati, u erġa' tella' l-paġna biex terġa' tipprova.",
 	"createacct-loginerror": "Il-kont inħoloq b'suċċess iżda ma stajtx tiddaħħal awtomatikament. Jekk jogħġbok kompli billi [[Special:UserLogin|tidħol hawn]].",

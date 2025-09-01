@@ -288,7 +288,6 @@
 	"loginerror": "Érè a konnéksyon",
 	"createacct-error": "Érè a kréyasyon a kont-la",
 	"createaccounterror": "Pé pa kréyé kont-la : $1",
-	"nocookiesnew": "Kont a itilizatè-la kréyé, mè ou pa konnékté. {{SITENAME}} ka sèvi èvè cookies pou sé konnéksyon-la.\nCookies a-w yo dézaktivé. syouplé fo ou aktivé-yo, aprésa konnékté-w èvè nouvo non a itilizatè é modpas a-w.",
 	"noname": "Non a itilizatè ou maké la pa bon.",
 	"loginsuccesstitle": "Konèkté-w",
 	"loginsuccess": "<strong>Konyéla ou konnékté asi {{SITENAME}} kon \"$1\".</strong>",

@@ -349,7 +349,6 @@
 	"loginerror": "An paglaog napasalâ",
 	"createacct-error": "Salâ sa pagmumukna nin account",
 	"createaccounterror": "Dae tabi maimukna an panindog: $1.",
-	"nocookiesnew": "An panindog kan paragamit namukna na, pero ika dae pa tabi nakalaog.\n{{SITENAME}} naggagamit nin cookies tanganing makalaog an mga paragamit.\nIka igwang mga cookies na dae pinagana.\nTabi paganaha sinda, dangan maglaog ka sa saimong baguhon na pangaran kan paragamit asin sekretong panlaog.",
 	"nocookieslogin": "{{SITENAME}} naggagamit nin mga cookies para sa maglaog na mga paragamit.\nIka igwang mga cookies na dae pinagana.\nTabi paganaha sinda asin otroha giraray.",
 	"nocookiesfornew": "An panindog kan paragamit dae pinagmukna, nin huli ta dae nyamo kumpirmado an pinaggikanan kaini.\nPakipaseguro na saimong pinagana an cookies, ikarga giraray ining pahina asin probaran mo otro.",
 	"createacct-loginerror": "Nahaman nin matrayumpo an account alagada dai ka tulos na makakalaog. Magpasiring ka sa [[Special:UserLogin|manual login]].",

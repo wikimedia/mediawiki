@@ -332,7 +332,6 @@
 	"loginerror": "Tilala tumuwato log",
 	"createacct-error": "Tilala lohutu akun",
 	"createaccounterror": "Diya mowali mohutu akun: $1",
-	"nocookiesnew": "Akun pengguna ma pilohutu, dabo Yi'o diipo tilumuwoto. {{SITENAME}} popohunawa kuki log pengguna.\nToduwolo mopo'aktif wawu tumuwota pooli wolo tanggulu ta ohu'uwo wawu tahe u'unti.",
 	"noname": "Tanggulo ta ohu'uwo u pilopotuwotumu ja sah.",
 	"loginsuccesstitle": "Ma tilumuwoto",
 	"loginsuccess": "<strong>Yi'o ma tilumuwoto to {{SITENAME}} odelo \"$1\".</strong>",

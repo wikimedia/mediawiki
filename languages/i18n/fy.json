@@ -289,7 +289,6 @@
 	"loginerror": "Oanmeldflater",
 	"createacct-error": "Flater slein by meitsjen fan akkount",
 	"createaccounterror": "Koe akkount net meitsje: $1",
-	"nocookiesnew": "It meidochakkount is oanmakke, mar jo binne net oanmeld.\n{{GRAMMAR:Lidw|{{SITENAME}}}} brûkt 'koekjes' foar it oanmelden fan meidoggers.\nJo hawwe koekjes útskeakele.\nSkeakelje dy yn, en meld jo dan oan mei jo nije meidochnamme en wachtwurd.",
 	"nocookieslogin": "{{GRAMMAR:Lidw|{{SITENAME}}}} brûkt 'koekjes' foar it oanmelden fan meidoggers.\nJo hawwe koekjes útskeakele.\nSkeakelje dy opsje oan en besykje it nochris.",
 	"noname": "Jo hawwe gjin jildige meidochnamme opjûn.",
 	"loginsuccesstitle": "Oanmelden slagge",

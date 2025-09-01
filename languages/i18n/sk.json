@@ -400,7 +400,6 @@
 	"loginerror": "Chyba pri prihlasovaní",
 	"createacct-error": "Chyba pri vytváraní účtu",
 	"createaccounterror": "Nepodarilo sa vytvoriť účet: $1",
-	"nocookiesnew": "Používateľské konto bolo vytvorené, ale nie ste prihlásený. {{SITENAME}} používa cookies na prihlásenie. Máte cookies vypnuté. Zapnite ich a potom sa prihláste pomocou vášho nového používateľského mena a hesla.",
 	"nocookieslogin": "{{SITENAME}} používa cookies na prihlásenie. Vy máte cookies vypnuté. Prosíme, zapnite ich a skúste znovu.",
 	"nocookiesfornew": "Používateľský účet nebol vytvorený, pretože sme nemohli potvrdiť jeho zdroj. \nUbezpečte sa, že máte povolené cookies, obnovte túto stránku a skúste to znova.",
 	"createacct-loginerror": "Účet bol úspešne vytvorený, ale neboli ste automaticky prihlásený. Prosím, [[Special:UserLogin|prihláste sa]].",

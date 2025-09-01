@@ -350,7 +350,6 @@
 	"loginerror": "Masuk log sega",
 	"createacct-error": "Pambaenan akun indara",
 	"createaccounterror": "Inda bisa mambaen akun: $1",
-	"nocookiesnew": "Akun pangguna mandung ibaen, taitong indape masuk. {{SITENAME}} manggunaon kuki cookies tu alaman pangguna.\nCookies i alaman web mu mandung indaaktif be.\nJadi iparsilahkon ma ma ngaktifkon na dohot masuk mulakan mamake golar pangguna dohot hata kunci nai.",
 	"nocookieslogin": "{{SITENAME}} manggunaon kuki cookies tu alaman pangguna.\nCookies i alaman web mu mandung indaaktif be.\nJadi uparsilahkon ma mangaktifkon mulakan baru cubo sakali nai.",
 	"noname": "Amu inda pedo itontuon gorar pamake na sah.",
 	"userlogin-authpopup-loggingin-title": "Masuk log...",

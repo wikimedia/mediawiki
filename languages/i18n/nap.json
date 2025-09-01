@@ -352,7 +352,6 @@
 	"loginerror": "Probblema 'e accièsso",
 	"createacct-error": "Errore 'e criazione 'e cunto",
 	"createaccounterror": "Nun se può crià nu cunto: $1",
-	"nocookiesnew": "'A riggistrazione è stata completata, ma nun se può accedere a {{SITENAME}} pecché 'e cookie songo disattivate. Prova n'ata vota c' 'o nomme e 'a password quanno 'e cookie sarrann'attivate dint'o navigatore stesso.",
 	"nocookieslogin": "{{SITENAME}} usa cookies pe' putè dà accies'a ll'utente.\n'E cookies vuoste songo stutate.\nPe' piacere appicciate 'e cookies dint'o navigatóre e pruvate n'ata vota.",
 	"nocookiesfornew": "'O cunto utente nu s'è criato, pecché nun s'è potuto confirmà d' 'a fonte suja.\nVide si 'e cookies song'appicciate, ricarreca 'a paggena e prova n'ata vota.",
 	"createacct-loginerror": "'O cunto fuje criato apposto, ma nun fosse stato possibile 'e ve fà trasì in modo automatico. Trasite cu l'[[Special:UserLogin|accesso manuale]].",

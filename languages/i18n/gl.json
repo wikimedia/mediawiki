@@ -390,7 +390,6 @@
 	"loginerror": "Erro ao acceder ao sistema",
 	"createacct-error": "Erro ao crear a conta",
 	"createaccounterror": "Non se puido crear a conta: $1",
-	"nocookiesnew": "A conta de usuario creouse, pero non accediches ao sistema.\n{{SITENAME}} para rexistrar os usuarios.\nTes as cookies deshabilitadas.\nPor favor, habilítaas e logo accede ao sistema co novo nome de usuario e o contrasinal.",
 	"nocookieslogin": "{{SITENAME}} usa cookies para rexistrar os usuario, mais ti tes as cookies deshabilitadas.\nPor favor, habilítaas e téntao de novo.",
 	"nocookiesfornew": "Non se creou a conta de usuario porque non puidemos confirmar a orixe.\nAsegúrate de que tes as cookies habilitadas, recarga a páxina e téntao de novo.",
 	"createacct-loginerror": "A conta creouse correctamente, pero non te puideches conectar de xeito automático. Vai ao [[Special:UserLogin|acceso manual]].",

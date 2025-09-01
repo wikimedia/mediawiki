@@ -287,7 +287,6 @@
 	"userexists": "Il nome utente inserito è già utilizzato.\nScegli un nome utente diverso.",
 	"loginerror": "Erôr te jentrade",
 	"createaccounterror": "No si à podût creâ l'identitât: $1",
-	"nocookiesnew": "L'identitât utent e je stade creade, ma no tu sês jentrât. {{SITENAME}} al dopre i cookies par visâsi dai utents, e tu tu ju âs disabilitâts. Par plasê abilitiju, dopo jentre cul to gnûf non utent e password.",
 	"nocookieslogin": "{{SITENAME}} e dopre i cookies par visâsi dai utents, e tu tu ju âs disabilitâts. Par plasê abilitiju e torne a provâ.",
 	"noname": "No tu âs inserît un non utent valit.",
 	"loginsuccesstitle": "Jentrât cun sucès",

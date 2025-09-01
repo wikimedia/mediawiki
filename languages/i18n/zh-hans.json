@@ -575,7 +575,6 @@
 	"loginerror": "登录错误",
 	"createacct-error": "账号创建出错",
 	"createaccounterror": "无法创建账号：$1",
-	"nocookiesnew": "此用户账号已创建，但登录失败。\n{{SITENAME}}使用Cookie实现用户登录。\n您已禁用Cookie。\n请启用Cookie，然后使用您的新用户名与密码登录。",
 	"nocookieslogin": "{{SITENAME}}使用Cookie实现用户登录。\n您已停用Cookie。\n请启用Cookie后再试。",
 	"nocookiesfornew": "用户账号未创建，因为我们无法确认请求来源。请确保您已启用Cookie，重新加载此页面并重试。",
 	"createacct-loginerror": "账户已成功创建，但您不能自动登录。请继续[[Special:UserLogin|手动登录]]。",

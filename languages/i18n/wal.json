@@ -299,7 +299,6 @@
 	"loginerror": "Geloy bala",
 	"createacct-error": "Akkawunttiyaa meroy bala",
 	"createaccounterror": "Akkawunttiyaa medhanawu danddayettenna: $1",
-	"nocookiesnew": "Yaraa akkawunttee merettiis, shin neeni gelabaakka.\n{{SITENAME}}e yarata gelissanaassi kuukiya go'ettees. Ne kuukiya oosuwaa agissadasa. Hayyanaa eta oosuwaa doomissa, yaatada ne ooratta yaraa sunttaninne geliyoo qaalan gela.",
 	"nocookieslogin": "{{SITENAME}}e yarata gelissanaassi kuukiya go'ettees. Ne kuukiya oosuwaa agissadasa. Hayyanaa eta oosuwaa doomissanne zaara mala.",
 	"nocookiesfornew": "A man\"iyaa boxooxissanawu dandayibeenna gishshawu yaraa akkawunttee merettibeenna. Ne kuukiya oosuwaa doomissoogaa boxooxissa, ha sinttaa zaarada ehanne zaara mala.",
 	"loginsuccesstitle": "Geladasa",

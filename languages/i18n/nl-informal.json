@@ -69,7 +69,6 @@
 	"createacct-benefit-heading": "{{SITENAME}} wordt gemaakt door mensen zoals jij.",
 	"badretype": "De wachtwoorden die je hebt ingevoerd verschillen van elkaar.",
 	"createacct-normalization": "Je gebruikersnaam wordt bijgesteld naar \"$2\" om technische beperkingen.",
-	"nocookiesnew": "Het gebruikersaccount is aangemaakt, maar je bent niet aangemeld.\n{{SITENAME}} gebruikt cookies voor het aanmelden van gebruikers.\nSchakel die in en meld je daarna aan met je nieuwe gebruikersnaam en wachtwoord.",
 	"nocookieslogin": "{{SITENAME}} gebruikt cookies voor het aanmelden van gebruikers.\nCookies zijn uitgeschakeld in jouw browser.\nZet deze optie aan en probeer het dan nog eens.",
 	"nocookiesfornew": "Het gebruikersaccount is niet aangemaakt, omdat de bron niet bevestigd kon worden.\nZorg ervoor dat je cookies hebt ingeschakeld, herlaad deze pagina en probeer het nog eens.",
 	"createacct-loginerror": "Het account is aangemaakt, maar je kon niet automatisch worden aangemeld. Ga naar [[Special:UserLogin|handmatig aanmelden]].",

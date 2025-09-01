@@ -91,7 +91,6 @@
 	"createaccountmail": "palal o e-mail",
 	"badretype": "Le nakhavipnaske lava so lekhavdyan nai myazutne.",
 	"loginerror": "Prinjaripnaski dosh",
-	"nocookiesnew": "O tiro akont sas kerdo, pale tu nai prinjardo/i. {{SITENAME}} labyarel ''cookies'' te astarel le manusha prinjarde. O tiro browser na astarel le cookies. Si mishto te das les drom te astarel le ''cookies'' thai, palal kodya, te zumaves vi ekh var, labyarindoi o nav thai o nakhavipnaso lav.",
 	"nocookieslogin": "{{SITENAME}} labyarel ''cookies'' te prinjaren le manusha so aven kathe. O tiro browser chi astarel len. Si mishto te das les drom te astarel le ''cookies'' thai, palal kodya, te zumaves vi ekh var.",
 	"loginsuccesstitle": "Prinjaripen kerdo",
 	"loginsuccess": "Akana san prijardo kai {{SITENAME}} sar \"$1\".",

@@ -293,7 +293,6 @@
 	"loginerror": "Errori i' l'intradda",
 	"createacct-error": "Errori cu' la criazioni di lu profiru",
 	"createaccounterror": "Impussìbiri crià un profiru: $1",
-	"nocookiesnew": "La registhrazioni di l'utenti pa l'intradda è isthadda criadda, ma nò è isthaddu pussìbiri intrà a {{SITENAME}} parchí li cookie so disattibaddi. Riprubà l'intradda cu l'innòmu utenti e la paràura d'órdhini appèna criaddi daboi abé attibaddu li cookie i lu propriu nabiggadori.",
 	"nocookieslogin": "L'intradda a {{SITENAME}} dumanda l'usu di li cookie, chi risulthani disattibaddi. Riprubà l'intradda daboi abé attibaddu li cookie i' lu propriu nabiggadori.",
 	"noname": "L'innòmu utenti indicaddu nò è vàriddu.",
 	"loginsuccesstitle": "Intraddu/a",

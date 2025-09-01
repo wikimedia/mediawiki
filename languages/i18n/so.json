@@ -241,7 +241,6 @@
 	"loginerror": "Qalad soo galida",
 	"createacct-error": "Qalad dhacay samaynta akoonka",
 	"createaccounterror": "Ma sameeyn karin akoon: $1",
-	"nocookiesnew": "Akoonka isticmaalahaan waa la sameeyay, laakiin adiga ma soo galin.\n{{SITENAME}} wuxuu isticmaalaa cookies si ee u soo galaan isticmaale yaasha.\nAdiga cookies'kaaga wuu dansanyahay .\nFadlan shid, kadib neh ku soo gal magacaaga isticmaalaha cusub iyo ereygaaga sirta.",
 	"nocookieslogin": "{{SITENAME}} wuxuu isticmaalaa cookies si ee isticmaaleyaasha u soo galaan.\nCookies'kaaga wuu dansanyahay.\nFadlan shid markale neh ku noqo.",
 	"nocookiesfornew": "Akoonka isticmaalaha lama abuurin, maaddaama aan xaqiijin karin Isheeda.\nHubi inaad karti u leedahay cookies-ka,  dib u cusbooneysii boggan oo mar kale isku day.",
 	"noname": "Ma jiro magaca isticmaalaha aad qortay",

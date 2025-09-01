@@ -218,7 +218,6 @@
 	"userexists": "No namê karberi guretiyo.\nKerem ke, namêna weçine.",
 	"loginerror": "Xeta cıkotene",
 	"createaccounterror": "Hesab nêvırajino: $1",
-	"nocookiesnew": "Hesabê karberi vıraziya, hama sıma nêşikiyay cı kuyê.\nSerba rakerdena hesabi çerezê {{SITENAME}}i gurêninê.\nSıma çerezi qapan kerdi.\nRavêri ine rakerê, dıma be name u parola sımawa newiye cı kuyê.",
 	"nocookieslogin": "Serba rakerdena hesabi çerezê {{SITENAME}}i gurêninê.\nSıma çerezi qapan kerdi.\nRavêri ine rakerê u reyna bıcerrebnê.",
 	"noname": "Ebe namê do vêrdoği ra cınêkota.",
 	"loginsuccesstitle": "Cıkotene biye ra",

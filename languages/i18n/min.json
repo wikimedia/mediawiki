@@ -349,7 +349,6 @@
 	"loginerror": "Kasalahan masuak log",
 	"createacct-error": "Pambuatan akun gagal",
 	"createaccounterror": "Indak dapek mambuek akun: $1",
-	"nocookiesnew": "Akun pangguno alah dibuek, tapi Sanak alun masuak log.\n{{SITENAME}} manggunokan cookies untuak log pangguno.\nPangaturan cookie Sanak nonaktif.\nAktifan dulu, sasudah tu baru masuak log jo namo pangguno dan kato sandi baru Sanak.",
 	"nocookieslogin": "{{SITENAME}} manggunokan cookies untuak log pangguno.\nPangaturan cookie paramban Sanak nonaktif.\nAktifan dulu dan cubo baliak.",
 	"nocookiesfornew": "Akun pangguno indak dibuek karano kami indak dapek mamastian sumbernyo.\nPastian Sanak alah mangaktifan cokies, lalu muek ulang laman ko dan cubo baliak.",
 	"createacct-loginerror": "Akun alah salasai dibuek tapi Sanak alun dapek langsuang masuak sacaro otomatih. Mohon manuju ka [[Special:UserLogin|manual login]].",

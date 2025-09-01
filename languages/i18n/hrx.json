@@ -282,7 +282,6 @@
 	"loginerror": "Fehler bei der Oonmeldung",
 	"createacct-error": "Fehler beim Erstelle von der Benutzerkonto",
 	"createaccounterror": "Benutzerkonto konnte net erstellt sin: $1",
-	"nocookiesnew": "Der Benutzerzugang woard erstellt, awer du bist net oongemeldt. {{SITENAME}} benöticht für die Funktion Cookies, bitte aktivier die und meld dich dann mit deinem neie Benutzernoome und dem zugehöriche Passwort an.",
 	"nocookieslogin": "{{SITENAME}} benutzt Cookies zur Oonmeldung von der Benutzer. Du host Cookies deaktiviert, bitte aktivier se und versuch das noohmo.",
 	"nocookiesfornew": "Das Benutzerkonto woard net erstellt, weil die Dateherkunft net ermittelt sin konnt.\nDas muss sichergestellt sin, dass Cookies aktiviert sind. Donoh die Seit erneut loode und es wieder versuche.",
 	"noname": "Du musst en gültiche Benutzernoome oongewe.",

@@ -168,7 +168,6 @@
 	"badretype": "Den tu psa wortu no de srefi.",
 	"userexists": "A kebroikiman nen disi de kaba.\nTeki wan tra nen.",
 	"loginerror": "Fowtu na a psa kon",
-	"nocookiesnew": "A account ben meki, ma yu no psa kon.<br />\n{{SITENAME}} e kebroiki cookies fu meki kebroikiman psa kon.<br />\nKenki den seti fu yu browser so dati a kan kisi den cookies disi, dan psa kon baka nanga yu nyun kebroikiman nen nanga psa wortu.",
 	"nocookieslogin": "{{SITENAME}} e kebroiki cookies fu meki kebroikiman psa kon.<br />\nYu browser no man kisi cookies.<br />\nKenki den seti fu yu browser so dati a kan kisi den cookies disi, én pruberi baka.",
 	"noname": "Yu no gi wan bun kebroikiman nen.",
 	"loginsuccesstitle": "Yu psa kon now.",

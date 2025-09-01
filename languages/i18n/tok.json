@@ -384,7 +384,6 @@
 	"loginerror": "lon sijelo la pakala",
 	"createacct-error": "pali sijelo la pakala",
 	"createaccounterror": "mi ken ala pali e sijelo: $1",
-	"nocookiesnew": "mi pali e sijelo sina. taso, sina kama ala lon sijelo. lipu {{SITENAME}} li wile e nanpa sona tawa kama sijelo.\nilo sina li weka e nanpa ni.\nsina ante e wile ilo la, sina ken kama lon sijelo.",
 	"nocookieslogin": "lipu {{SITENAME}} li wile e nanpa sona tawa kama sijelo.\nilo sina li weka e nanpa ni.\nsina ante e wile ilo la, o alasa sin.",
 	"nocookiesfornew": "mi ken ala sona e tan pi wile sijelo la, mi pali ala e sijelo.\nsina kepeken ala nanpa Cookie la, o ni, o sin e lipu ni, o alasa sin.",
 	"createacct-loginerror": "mi pali e sijelo sina. taso, mi ken ala kama e sina tawa sijelo. o kepeken [[Special:UserLogin|lipu ni]].",

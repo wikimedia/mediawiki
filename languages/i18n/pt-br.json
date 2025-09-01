@@ -516,7 +516,6 @@
 	"loginerror": "Erro de autenticação",
 	"createacct-error": "Erro ao criar a conta",
 	"createaccounterror": "Não foi possível criar a conta: $1",
-	"nocookiesnew": "A conta do usuário foi criada, mas você não foi autenticado.\n{{SITENAME}} utiliza ''cookies'' para autenticar os usuários.\nVocê tem os ''cookies'' desativados no seu navegador.\nPor favor ative-os, depois autentique-se com o seu novo nome de usuário e a sua senha.",
 	"nocookieslogin": "Você tem os <i>cookies</i> desativados no seu navegador, e a {{SITENAME}} utiliza <i>cookies</i> para ligar os usuários às suas contas. Por favor os ative e tente novamente.",
 	"nocookiesfornew": "A conta de usuário não foi criada porque não foi possível confirmar a sua origem.\nCertifique-se de que tem os cookies ativados, recarregue esta página e tente novamente.",
 	"createacct-loginerror": "A conta foi criada com êxito, mas não pôde ser autenticado automaticamente. Por favor, faça o [[Special:UserLogin|início de sessão manualmente]].",

@@ -203,7 +203,6 @@
 	"badretype": "De wachtwoôrden die-a je ingegeven typ bin nie eênder.",
 	"userexists": "De hekozen gebrukersnaem is a in gebruuk.\nKies asjeblieft een aore naem.",
 	"loginerror": "Anmeldfout",
-	"nocookiesnew": "De gebruker is anemikt mè nie anemeld.\n{{SITENAME}} gebruuk cookies voe 't anmelden van gebrukers.\nSchaokel die asjeblieft in en meld dinae an mie je nieuwe gebrukersnaem en wachtwoôrd.",
 	"nocookieslogin": "{{SITENAME}} gebruuk cookies voe 't anmelden van gebrukers. Cookies zien uutgeschaokeld in je browser. Schaokel dezen optie asjeblieft an en probeer 't opnieuw.",
 	"noname": "Je ei hin heldihe gebrukersnaem opeheven.",
 	"loginsuccesstitle": "Anmelden geslaegd",

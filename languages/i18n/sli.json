@@ -222,7 +222,6 @@
 	"userexists": "Dar delle Benutzernoame ies schunt vergahn. Bitte wähle enn andern.",
 	"loginerror": "Fahler bei dar Oameldung",
 	"createaccounterror": "Nutzerkonto konnte ne erstellt waan: $1",
-	"nocookiesnew": "Der Nutzerzugang wurde erstellt, oaber du biest ne oagemeldet. {{SITENAME}} beneetigt fier diese Funksjonn Cookies, bitte aktiviere diese und melde diech dann miet demm neua Nutzernoama und damm zugehieriga Poaßwurt oa.",
 	"nocookieslogin": "{{SITENAME}} benutzt Cookies zer Oameldung der Benutzer. Du host Cookies deaktiviert, bitte aktiviere diese und versiche is erneut.",
 	"noname": "Du muußt enn giltiga Nutzernoama oangahn.",
 	"loginsuccesstitle": "Oameldung erfolgreich",

@@ -434,7 +434,6 @@
 	"loginerror": "Error d'inici de sessió",
 	"createacct-error": "Error de creació de compte",
 	"createaccounterror": "No s'ha pogut crear el compte: $1",
-	"nocookiesnew": "S'ha creat el compte d'usuari, però no s'ha iniciat la sessió.\nEl projecte {{SITENAME}} usa galetes per a iniciar la sessió d'usuari. \nTeniu les galetes desactivades. \nActiveu-les per a poder iniciar la sessió amb el nou nom d'usuari i la nova clau.",
 	"nocookieslogin": "{{SITENAME}} utilitza galetes per a enregistrar usuaris. Teniu les galetes desactivades. Activeu-les i torneu a provar.",
 	"nocookiesfornew": "No s'ha creat el compte d'usuari, ja que no es podia confirmar el seu origen.\nVerifiqueu que teniu habilitades les galetes al vostre navegador, torneu a carregar aquesta pàgina i intenteu-lo de nou.",
 	"createacct-loginerror": "S'ha creat correctament el vostre compte, però la vostra sessió podria no iniciar-se automàticament. Si us plau, realitzeu l'inici de [[Special:UserLogin|sessió manual]].",

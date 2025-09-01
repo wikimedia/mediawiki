@@ -198,7 +198,6 @@
 	"usernameinprogress": "Ya está en marcha la creación de una cuenta para este nombre de usuario.\nPor favor, espere.",
 	"userexists": "El nombre de usuario indicado ya está en uso.\nPor favor elija un nombre diferente.",
 	"createacct-normalization": "Su nombre de usuario será \"$2\" debido a restricciones técnicas.",
-	"nocookiesnew": "Se ha creado la cuenta de usuario, pero aún no ha iniciado sesión.\n{{SITENAME}} usa <em>cookies</em> para identificar a los usuarios registrados.\nSu navegador tiene desactivadas las <em>cookies</em>.\nPor favor, actívelas e inicie sesión con su nuevo nombre de usuario y contraseña.",
 	"nocookieslogin": "{{SITENAME}} utiliza <em>cookies</em> para la autenticación de usuarios. Las <em>cookies</em> están desactivadas en su navegador. Por favor, actívelas e inténtelo de nuevo.",
 	"nocookiesfornew": "No se pudo crear la cuenta de usuario, porque no pudimos confirmar su origen.\nAsegúrese de que tiene las <em>cookies</em> activadas, luego recargue esta página e inténtelo de nuevo.",
 	"createacct-loginerror": "La cuenta se ha creado correctamente, pero no se pudo ingresar automáticamente. Proceda al [[Special:UserLogin|acceso manual]].",

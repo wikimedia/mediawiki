@@ -343,7 +343,6 @@
 	"loginerror": "Nuṣiwa ada bibiọ tọn",
 	"createacct-error": "Nuṣiwa ada hùnhun tọn",
 	"createaccounterror": "Ma sọgan hùn adà yọyọ: $1",
-	"nocookiesnew": "Adà mẹdetiti tọn lọ ko yin awuwiwlena, amọ́ a ma ko biọ e mẹ.\n\n{{SITENAME}} nọ yí \"cookies\" zan nado ze omẹ biọ adà mẹdetiti mẹtọn mẹ.\nJaale bo kẹalọyi yé, enẹgodo hùn adà towe gbọn yinkọ zinzántọ tọn towe po họ̀nhungan towe po kinkan dali.",
 	"nocookieslogin": "{{SITENAME}} zan cookies do hùn adà na zinzantọ lẹ.\nA doalọtena cookies.\nJaale bo nagbe yé bo vọ tẹnpọn.",
 	"nocookiesfornew": "Ada zinzantọ tọn ma yin hunhun, na mì ma sọgan mọ asisa etọn. Mọdọ a na dotẹnmẹ cookies, jla ninọmẹ weda lọ tọn dó bo sọ vọ tẹnpọn",
 	"createacct-loginerror": "Ada yọyọ lọ ko yin hunhun ṣigba ada towe ma sọgan hùn na ede. Jaale zindonukọn nado zan [[Special:UserLogin|wekunzínú do hun ada]].",

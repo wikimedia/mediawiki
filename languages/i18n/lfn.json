@@ -346,7 +346,6 @@
 	"loginerror": "Era de autentici",
 	"createacct-error": "Era de crea de conta",
 	"createaccounterror": "La conta no ia pote es creada: $1",
-	"nocookiesnew": "La conta de usor es aora creada, ma tu no ia autentici.\n{{SITENAME}} usa cucis per autentici usores.\nTu ia descomuta cucis.\nPer favore, comuta los e autentici con tua nom de usor nova e tua clave.",
 	"nocookieslogin": "{{SITENAME}} usa cucis per autentici usores.\nTu ia descomuta cucis.\nPer favore, comuta los e atenta denova.",
 	"nocookiesfornew": "La conta de usor no ia es creada, car nos no ia pote confirma sua fonte.\nSerti ce tu ia comuta cucis, recarga esta paje, e atenta denova.",
 	"createacct-loginerror": "La crea de la conta ia susede, ma tu no ia pote es automata autenticida. Per favore, vade a la paje de [[Special:UserLogin|autentici nonautomata]].",

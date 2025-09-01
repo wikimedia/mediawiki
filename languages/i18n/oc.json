@@ -362,7 +362,6 @@
 	"loginerror": "Error d'identificacion",
 	"createacct-error": "Error al moment de la creacion del compte",
 	"createaccounterror": "Impossible de crear lo compte : $1",
-	"nocookiesnew": "Lo compte d'utilizaire es estat creat, mas sètz pas connectat. {{SITENAME}} utiliza de cookies per la connexion mas los avètz desactivats. Activatz-los e reconnectatz-vos amb lo meteis nom e lo meteis senhal.",
 	"nocookieslogin": "{{SITENAME}} utiliza de cookies per la connexion mas avètz los cookies desactivats. Activatz-los e reconnectatz-vos.",
 	"nocookiesfornew": "Lo compte d'utilizaire es pas estat creat, perque avèm pas pogut identificar son origina.\nVerificatz qu'avètz activat los cookies, recargatz la pagina e tornatz ensajar.",
 	"createacct-loginerror": "Lo compte es estat creat corrèctament mas vos podètz pas connectar automaticament. [[Special:UserLogin|Connectatz-vos manualament]].",

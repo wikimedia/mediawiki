@@ -333,7 +333,6 @@
 	"loginerror": "Kasalahan asup log",
 	"createacct-error": "Nyieun akun éror",
 	"createaccounterror": "Teu bisa nyieun akun: $1",
-	"nocookiesnew": "Akun pamaké geus dijieun, tapi anjeun can asup log. {{SITENAME}} maké ''cookies'' pikeun ngalog pamaké. Anjeun boga ''cookies'' nu ditumpurkeun. Mangga fungsikeun, teras asup log migunakeun sandiasma sarta kecap sandi anu anyar.",
 	"nocookieslogin": "{{SITENAME}} migunakeun ''cookies'' pikeun ngasupkeun pamaké kana log. Anjeun boga ''cookies'' nu ditumpurkeun. Mangga pungsikeun sarta cobian deui.",
 	"nocookiesfornew": "Akun pamaké teu bisa dijieun, kusabab sumberna teu bisa dipastikeun.\nPariksa kukisna bisi tumpur, terus cobaan muat ulang ieu kaca.",
 	"createacct-loginerror": "Akun anjeun geu dijieun, ngan anjeun teu bisa langsung asup log sacara otomatis. Pék tuluykeun kana [[Special:UserLogin|asup log manual]].",

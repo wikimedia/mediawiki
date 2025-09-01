@@ -220,7 +220,6 @@
 	"loginerror": "Gwall omgelmi",
 	"createacct-error": "Gwall ow kwruthyl akont",
 	"createaccounterror": "Ny allas gwruthyl an akont: $1",
-	"nocookiesnew": "Gwruthys veu an akont, mes nyns owgh omgelmys.\n{{SITENAME}} a dhevnydh cookies rag omgelmi devnydhyoryon.\nDialosegys yw cookies war agas jynn amontya.\nGalosegewgh i, hag omgelmewgh der agas hanow devnydhyer ha'gas ger-tremena nowyth.",
 	"nocookieslogin": "{{SITENAME}} a dhevnydh cookies rag omgelmi devnydhyoryon.\nDialosegys yw cookies war agas jynn amontya.\nGalosegewgh i hag assayewgh arta.",
 	"noname": "Ny resowgh hanow devnydhyer da.",
 	"loginsuccesstitle": "Omgelmi a sewenis",

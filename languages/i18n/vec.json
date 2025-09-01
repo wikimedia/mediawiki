@@ -357,7 +357,6 @@
 	"loginerror": "Erore ne l'aceso",
 	"createacct-error": "Eror durante la creasion de l'utensa",
 	"createaccounterror": "No se pole crear l'utente: $1",
-	"nocookiesnew": "Ła notasion ła xe sta conpletà, ma no xè sta posibiłe logarse a {{SITENAME}} parché i cookie i xe disativai. Riprovare l'entrada co el nome utente e ła ciave pena creai dopo aver ativà i cookie in tel propio navegadore web.",
 	"nocookieslogin": "L'aceso a {{SITENAME}} richiede l'uso de i cookie, che i risulta disativai. Riprovare l'aceso dopo aver ativà i cookie nel proprio browser.",
 	"nocookiesfornew": "L'account utente no'l xe stà creà, parché no gavemo posudo confermar ƚa so fonte.\nAsicurate de 'ver ativà i cookie, ricarica sta pàgina e riprova.",
 	"createacct-loginerror": "La utensa ła xé sta creada in manjiera coreta, ma no xé sta pusibiłe farte ndar drento automadegamente. \nSèvita co l'[[Special:UserLogin|entrada manuałe]].",

@@ -347,7 +347,6 @@
 	"loginerror": "Bicicin Lulo",
 	"createacct-error": "Bicicin tsutswa dukunsoba",
 	"createaccounterror": "Wun a tswa dukunsoba a: $1",
-	"nocookiesnew": "Dukunsoba ezaloci wun a de tsutswa, anma wode lulo dan ninbo a. {{SITENAME}} lotun be elo gwatu enyaka ya lulo ya ezalocizhi. Wode yekoya ya elo gwatu enyaka a. Bosoko ah yekokpe dan a, gancin wo lotun be eyigizaloci woro toh epagigan e. Wode yekoya ya elo gwatu enyaka a. bosoko ah yekokpe dan a, woman u cinle be.",
 	"nocookieslogin": "{{SITENAME}} Lulozhi elo gwatu ya lulo nin ezalocizhi.",
 	"nocookiesfornew": "Dukunsoba ezaloci de tsutswa a, eba kendo yide nyagbanya be yewa nya wun a na. Ya nyagbanya be yekokpe lulo elo gwatu i, ah kpere nana ye pa woman u cinle.",
 	"createacct-loginerror": "Dukunsoba a de tsutswa gboro a ni anma wo a de lulo dan ninbo gboro a. Bosoko loye benyi lo [[Special:UserLogin|manual Login]].",

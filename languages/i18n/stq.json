@@ -231,7 +231,6 @@
 	"userexists": "Dissen Benutsernoome is al ferroat. Wääl jädden n uur.",
 	"loginerror": "Failer bie ju Anmäldenge",
 	"createaccounterror": "Benutserkonto kuud nit moaked wäide: $1",
-	"nocookiesnew": "Dien Benutsertougong wuude kloor moaked, man du bäst nit anmälded. {{SITENAME}} benutset Cookies toun Anmäldjen fon do Benutsere. Du hääst in dien Browser-Ienstaalengen Cookies deaktivierd. Uum dien näie Benutsertougong tou bruuken, läit jädden dien Browser Cookies foar {{SITENAME}} annieme un mäldje die dan mäd dien juust iengjuchten Benutsernoome un Paaswoud an.",
 	"nocookieslogin": "{{SITENAME}} benutset Cookies toun Anmäldjen fon dän Benutser. Du hääst in dien Browser-Ienstaalengen Cookies deaktivierd, jädden aktivierje do un fersäik et fonnäien.",
 	"nocookiesfornew": "Dät Benutserkonto wuud nit moaked, deer ju Doatenhäärkumst nit uutfuunen wäide kuude.\nDät mout sicher moaked wäide, dät Cookies aktivierd sunt. Deerätter diissen Siede wiere leede un et wier fersäike.",
 	"noname": "Du moast n Benutsernoome anreeke.",

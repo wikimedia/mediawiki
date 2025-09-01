@@ -366,7 +366,6 @@
 	"loginerror": "Hitilafu ya kuingia",
 	"createacct-error": "Hitilafu ya kuunda akaunti",
 	"createaccounterror": "Haikufaulu kuanzisha akaunti: $1",
-	"nocookiesnew": "Umesajiliwa, lakini bado hujaingizwa. {{SITENAME}} inatumia ''kuki'' ili watumiaji waingizwe. Tarakilishi yako inazuia ''kuki''. Tafadhali, ondoa kizuizi hicho halafu uingie kwa kutumia jina jipya na neno la siri.",
 	"nocookieslogin": "{{SITENAME}} inatumia kuki ili watumiaji waweze kuingia.\nTarakilishi yako inakataa kupokea kuki.\nTafadhali, ondoa kizuizi hicho, halafu jaribu tena.",
 	"nocookiesfornew": "Akaunti ya mtumiaji haijaianzishwa,kwa vile hatujaweza kuthibitisha lilitoka wapi.\nHakikisha kwamba kuki zimewezeshwa kwenye tarakalishi yako, fungua upya ukurasa huu na ujaribu tena.",
 	"noname": "Hauja dhihilisha jina la mtumiaji.",

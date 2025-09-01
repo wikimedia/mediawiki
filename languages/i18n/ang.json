@@ -351,7 +351,6 @@
 	"loginerror": "Woh on þam fenge to wisbec",
 	"createacct-error": "Woh on þære scyppunge wisbec",
 	"createaccounterror": "Ne mihte scyppan wisboc: $1",
-	"nocookiesnew": "Seo brucendwisboc wæs gescepen, ac þu ne nafast giet to þære gefangen. {{SITENAME}} brycþ cookie þæt brucendas magen to wisbec fon. Þu ne þafodost cookie. Ic bidde þe þæt þu þafie heora, and þonne foh to þinre wisbec mid þinum niwan brucendnaman and leafnessworde.",
 	"noname": "Þu nafast gewriten gengne brucendnaman.",
 	"loginsuccesstitle": "Þu fenge to wisbec",
 	"loginsuccess": "<strong>'''Þu hafast nu gefangen \"$1\" wisboc on {{SITENAME}}.'''</strong>",

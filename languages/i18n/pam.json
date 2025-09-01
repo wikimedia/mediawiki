@@ -210,7 +210,6 @@
 	"badretype": "Ding password a linub mu ela mibabage.",
 	"userexists": "Atin nang gagamit king lagyung talagamit (username) a misulat.\nMamili kang aliwang lagyu.",
 	"loginerror": "E ustu ing pamag-login",
-	"nocookiesnew": "Melalang ya ing account ning talagamit (user account), oneng e ka makalogin.\nIng {{SITENAME}} mangailangan yang cookie ba lang makalogin deng talagamit.\nMakapatda la reng kekang cookie.\nPakisalangian mu la, at kaibat maglogin ka kayabe ya ing kekang bayung username ampong password.",
 	"nocookieslogin": "Ing {{SITENAME}} gagamit yang cookie ba lang i-login deng talagamit.\nMakapatda (disabled) la reng kekang cookie.\nPakisalangi mu la, at subukan mung pasibayu.",
 	"noname": "Ala kang binieng ustung lagyung talagamit (user name).",
 	"loginsuccesstitle": "Melaus ya ing pamag login",

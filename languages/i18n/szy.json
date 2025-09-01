@@ -310,7 +310,6 @@
 	"userexists": "nasulitan nu misu a misaungayay a kalungangan izaw tu, pipili’ zuma a kalungangan",
 	"loginerror": "patalabu mungangaw",
 	"createacct-error": "canghaw patizeng mungangaw",
-	"nocookiesnew": "misaungayay a canghaw mapatizeng malahci, uyzasa caay henay kisu patalabu.\napatalabu {{SITENAME}} misaungayay maydih pisaungay Cookies, \nCookies nu misu caay henay miwawah.\nnazikuz tu mawawah pisaungay baluhay misaungayay a kalungangan atu mima nu misu patalabu.",
 	"createacct-loginerror": "malahci tu ku pangangan tu canghaw, uyzasa la’cus lunuk sa patalabu.\nkapipalalid [[Special:UserLogin|kaulima ku misaungyay patalabu]].",
 	"noname": "namasuilit numisuay a misaungayay a kalungangan la’cus.",
 	"loginsuccesstitle": "patalabutu",

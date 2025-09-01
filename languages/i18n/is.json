@@ -386,7 +386,6 @@
 	"loginerror": "Innskráningarvilla",
 	"createacct-error": "Stofnun aðgangs mistókst",
 	"createaccounterror": "Gat ekki búið til aðganginn: $1",
-	"nocookiesnew": "Notandaaðgangur var búin til, en þú ert ekki skráð(ur) inn.\n{{SITENAME}} notar vefkökur til að skrá inn notendur.\nÞú hefur lokað fyrir vefkökur.\nVinsamlegast virkjaðu þær, skráðu þig svo inn með nýja notandanafninu og aðgangsorðinu.",
 	"nocookieslogin": "{{SITENAME}} notar vefkökur til innskráningar. Vafrinn þinn er ekki að taka á móti þeim. Virkjaðu móttöku á vefkökum í vafranum þínum til að geta skráð þig inn.",
 	"nocookiesfornew": "Notandaaðgangurinn var ekki búinn til þar sem við gátum ekki staðfest uppruna hans.\nTryggðu að þú hafir vefkökur virkjaðar, endurhladdu þessari síðu og reyndu aftur.",
 	"createacct-loginerror": "Aðgangurinn var giftulega búinn til en það var ekki hægt að skrá þig inn sjálfkrafa. Vinsamlegast farðu í [[Special:UserLogin|handvirka innskráningu]].",

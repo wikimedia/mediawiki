@@ -252,7 +252,6 @@
 	"loginerror": "Hewa ʻeʻe",
 	"createacct-error": "Hewa kāinoa",
 	"createaccounterror": "ʻAʻole hiki ke kāinoa: $1",
-	"nocookiesnew": "Ua haku ʻia ka moʻokāki mea hoʻohana, akā ʻaʻole ʻoe e ʻeʻe nei i kēia manawa.\nHana ʻo {{SITENAME}} i nā makana no ke ʻeʻe ʻana i nā mea hoʻohana.\nUa hoʻā ʻole ʻoe i nā makana.\nE ʻoluʻolu, e hoʻā i nā makana, a laila e ʻeʻe me kāu inoa mea hoʻohana hou a me ka ʻōlelo hūnā hou.",
 	"nocookieslogin": "Hana ʻo {{SITENAME}} i nā makana no ke ʻeʻe ʻana i nā mea hoʻohana.\nUa hoʻā ʻole ʻoe i nā makana.\nE ʻoluʻolu, e hoʻā i nā makana, a hana hou.",
 	"nocookiesfornew": "Ua kāinoa ʻia ka mōʻaukaki mea hoʻohana no ka mea ʻaʻole hiki iā mākou ke hōʻoia i ke kumu.\nE hōʻoia i ka hoʻā ʻana o nā makana, hōʻano hou i kēia ʻaoʻao a hana hou.",
 	"noname": "ʻAʻole hana ʻoe i kekahi inoa mea hoʻohana pono.",

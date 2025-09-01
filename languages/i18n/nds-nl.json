@@ -308,7 +308,6 @@
 	"loginerror": "Anmeldingsfout",
 	"createacct-error": "Fout bie t anmaken van n gebruker",
 	"createaccounterror": "Kon de gebrukersnaam niet anmaken: $1",
-	"nocookiesnew": "De gebrukersnaam is an-emaakt, mer je bin niet an-emeld.\n{{SITENAME}} gebruuk scheumbestaanden (cookies) um gebrukers an te melden.\nJe hebben disse scheumbestaanden uutezet.\nZet ze an, en meld daornao an mit de nieje gegevens.",
 	"nocookieslogin": "t Anmelden is mislokt umdat de webkieker gien scheumbestaanden (cookies) an hef staon. Probeer t aksepteren van scheumbestaanden an te zetten en daornao opniej an te melden.",
 	"nocookiesfornew": "De gebruker is niet an-emaakt, umdat de bron niet bevestigd kon wörden.\nZörg derveur da'j scheumbestaanden (cookies) an hebben staon, herlaoi disse zied en probeer t opniej.",
 	"noname": "Je mutten n gebrukersnaam opgeven.",

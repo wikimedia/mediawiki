@@ -341,7 +341,6 @@
 	"loginerror": "Masalah mlebu log",
 	"createacct-error": "Masalah panggawé akun",
 	"createaccounterror": "Ora bisa gawé akun: $1",
-	"nocookiesnew": "Akun naragunané wis kagawé, nanging kowé durung mlebu log.\n{{SITENAME}} nganggo kuki saperlu nglebokaké naraguna ing log.\nNanging, kukimu kopatèni.\nMangga urubana, banjur mlebua log kanthi nganggo jeneng naraguna lan tembung sandimu kang anyar.",
 	"nocookieslogin": "{{SITENAME}} nganggo kuki saperlu nglebokaké naraguna ing log.\nNanging, kukimu kopatèni.\nMangga urubana lan jajal manèh.",
 	"nocookiesfornew": "Akun naragunané wurung kagawé amarga awak dhéwé ora bisa mesthèkaké sumberé.\nPesthèkaké kowé wis ngurubaké kuki, banjur balènana ngamot kaca iki lan jajalana manèh.",
 	"createacct-loginerror": "Akuné wis kasil kagawe nanging kowé ora bisa otomatis mlebu log. Mangga [[Special:UserLogin|mlebua log kanthi manuwal]].",

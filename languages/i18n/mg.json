@@ -366,7 +366,6 @@
 	"loginerror": "Tsy fetezana teo amin'ny fidirana",
 	"createacct-error": "Hadisoana tam-pamoronana ny kaonty",
 	"createaccounterror": "Tsy afaka mamorona kaonty : $1",
-	"nocookiesnew": "Voasikatra ny kaontim-pikambana, fa tsy tafiditra amin'ny kaontinao ianao.\nMampiasa cookies ny {{SITENAME}} ho an'ny fidirana amin'ny kaonty.\nTsy avelanao mandeha ny cookies.\nAvelao mandeha ny fampidirana cookies, ary midira amin'ny kaontinao.",
 	"nocookieslogin": "Mampiasa cookies i {{SITENAME}} nefa ny mpiteti-tranonkalanao no tsy manaiky na mandà azy. Ovay mba hanaiky cookies aloha ny mpiteti-tranonkalanao dia aveo manandrama mihiditra ato indray.",
 	"nocookiesfornew": "Tsy mbola noforonina ilay kaontim-pikambana, satria tsy afaka marinanay ilay loharanony.\nMarino tsara raha mahazo mametraka cookie ao amin'ny kompioteranao ny sehata, dia havaozy ilay pejy",
 	"createacct-loginerror": "Noforonina soa aman-tsara ity kaonty ity fa tsy tafiditra ho azy ianao. Midira amin'ny alalan'ny [[Special:UserLogin|pejy fidirana]] azafady.",

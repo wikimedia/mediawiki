@@ -252,7 +252,6 @@
 	"userexists": "Kertelgän isem qullanıla.\nZinhar, başqa isem saylağız.",
 	"loginerror": "Kerü xatası",
 	"createaccounterror": "Xisap yazmasın tözep bulmıy: $1",
-	"nocookiesnew": "Qullanuçı terkälgän, läkin üz xisap yazması belän kermägän. {{SITENAME}} qullanuçını tanu öçen «cookies» qullana. Sezdä «cookies» tıyılğan. Zinhar, başta alarnı röxsät itegez, annan isem häm sersüz belän keregez.",
 	"nocookieslogin": "{{SITENAME}} qullanuçını tanu öçen «cookies» qullana. Sez alarnı sündergänsez. Zinhar, alarnı qabızıp, yañadan keregez.",
 	"noname": "Sez qullanuçı isemegezne kürsätergä tieşsez.",
 	"loginsuccesstitle": "Kerü uñışlı ütte",

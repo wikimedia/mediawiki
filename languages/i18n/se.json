@@ -366,7 +366,6 @@
 	"loginerror": "Sisačálihanmeattáhus",
 	"createacct-error": "Dovddaldaga ráhkadeapmi ii lihkostuvvan",
 	"createaccounterror": "Dovddaldaga ráhkadeapmi ii lihkostuvvan: $1",
-	"nocookiesnew": "Dát geavaheaddji ráhkaduvvui, muhto don it leat sisačállojuvvon.\n{{SITENAME}} čáliha sisa geavaheddjiid diehtočoahkuiguin (cookies).\nDus eai leat diehtočoahkut geavahusas.\nVáldde daid atnui, ja dasto čálit sisa iežat ođđa geavaheaddjinamain ja beassansániin.",
 	"nocookieslogin": "{{SITENAME}} geavaha diehtočoahkuid (cookies) sisačáliheami oktavuođas. Leat váldán diehtočoahkuid eret anus. Váldde daid atnui ja geahččal ođđasit.",
 	"nocookiesfornew": "Du geavaheaddjidovddaldat ii ráhkaduvvon, go dan gáldu ii sáhttán duođaštit.\nDárkkis ahte dus leat diehtočoahkut anus, luđe siiddu ođđasit ja geahččal fas.",
 	"createacct-loginerror": "Geavaheaddjidovddaldat ráhkadeapmi lihkostuvvai, muhto it sáhttán automáhtalaččat čálihuvvot sisa. Geahččal mat [[Special:UserLogin|iešalddis sisačálihit]]",

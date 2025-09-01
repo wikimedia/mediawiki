@@ -271,7 +271,6 @@
 	"loginerror": "Fal de culeghamënt",
 	"createacct-error": "Fal a mëter adum la utënza",
 	"createaccounterror": "Nia stat bon de mëter adum l account: $1",
-	"nocookiesnew": "L cont de utënza ie stat metù adum, ma te ne ies nia culegà.\n{{SITENAME}} adroa cookies per culeghé i utënc.\nTe ne es nia mpermetù i cookies.\nPrëibel mpermët i cookies, po culeghete cun ti nuef inuem de utënt y parola tlé.",
 	"loginsuccesstitle": "Culegà",
 	"nouserspecified": "Te mues spezifiché n inuem dl utënt.",
 	"login-userblocked": "{{GENDER:$1|Chësc utënt|Chësta utënta}} ie {{GENDER:$1|blocà|blocheda}}. L ne ie nia cunsentì de se culeghé.",

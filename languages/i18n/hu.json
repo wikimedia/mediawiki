@@ -421,7 +421,6 @@
 	"loginerror": "Hiba történt a bejelentkezés során",
 	"createacct-error": "Fióklétrehozási hiba",
 	"createaccounterror": "Nem sikerült létrehozni a felhasználói fiókot: $1",
-	"nocookiesnew": "A felhasználói fiókod létrejött, de nem vagy bejelentkezve. A wiki sütiket („cookie”) használ a szerkesztők azonosítására. Nálad ezek le vannak tiltva. Kérlek, engedélyezd őket a böngésződben, majd lépj be az új azonosítóddal és jelszavaddal.",
 	"nocookieslogin": "A wiki sütiket („cookie”) használ a szerkesztők azonosításhoz.\nNálad ezek le vannak tiltva.\nEngedélyezd őket a böngésződben, majd próbáld újra.",
 	"nocookiesfornew": "A felhasználói fiók nem lett létrehozva, mivel nem sikerült megerősítenünk a forrását.\nEllenőrizd, hogy a sütik engedélyezve vannak-e, majd frissítsd az oldalt, és próbálkozz újra.",
 	"createacct-loginerror": "A fiók sikeresen létrejött, de nem tudtál automatikusan bejelentkezni. Kérjük, [[Special:UserLogin|jelentkezz be manuálisan]]!",

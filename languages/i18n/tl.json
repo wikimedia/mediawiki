@@ -379,7 +379,6 @@
 	"loginerror": "Kamalian sa pag-login",
 	"createacct-error": "May pagkakamali sa paglikha ng account",
 	"createaccounterror": "Hindi mailikha ang account: $1",
-	"nocookiesnew": "Nalikha ang account ng tagagamit, ngunit hindi ka naka-login.\nGumagamit ang {{SITENAME}} ng cookies upang maka-login ang mga tagagamit.\nHindi pinapagana ng browser mo ang cookies.\nPaganahin ito at subukang mag-login na kasama ang bagong pangalan at password.",
 	"nocookieslogin": "Gumagamit ang {{SITENAME}} ng mga kuki (''cookies'') para mailagda ang mga tagagamit.\nHindi mo pinagagana ang mga kuki.\nPaki-andar mo ang mga ito at sumubok uli.",
 	"nocookiesfornew": "Hindi nalikha ang account ng tagagamit, dahil hindi namin matiyak ang pinagmulan nito. \nTiyaking mayroon kang pinagaganang cookies, ikarga muli ang pahinang ito at subukan muli.",
 	"createacct-loginerror": "Matagumpay na nagawa ang account ngunit hindi ka mai-login ng awtomatiko. Mangyaring pumunta sa [[Special:UserLogin|manu-manong pag-login]].",

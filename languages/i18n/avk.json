@@ -264,7 +264,6 @@
 	"userexists": "Favesikyolt suteyen ixam zo faver.\nVa amidaf yolt vay gonaral.",
 	"loginerror": "Pilkomodajara",
 	"createaccounterror": "Va $1 me ropataredur.",
-	"nocookiesnew": "Le compte utilisateur a été créé, mais vous n'êtes pas connecté. {{SITENAME}} utilise des cookies pour la connexion mais vous avez les cookies désactives. Merci de les activer et de vous reconnecter.",
 	"nocookieslogin": "{{SITENAME}} utilise des cookies pour la connexion mais vous avez les cookies désactives. Merci de les activer et de vous reconnecter.",
 	"noname": "Va favesikyolt gobazel.",
 	"loginsuccesstitle": "Pilkomodanhara.",

@@ -370,7 +370,6 @@
 	"loginerror": "Eroro enirante",
 	"createacct-error": "Eroro pri kontokreado",
 	"createaccounterror": "Ne povis krear konto: $1",
-	"nocookiesnew": "L'uzero-konto esis kreita, ma vu ne esas eniranta.\n{{SITENAME}} uzas \"bisquiti\" ''cookies'' por ke uzeri enirez.\nVu ne permisis ''cookies''.\nVoluntez acendar li, pose enirez per vua nova uzero-nomo e pasovorto.",
 	"nocookieslogin": "{{SITENAME}} uzas ''cookies'' por la registrago dil uzanti. Vu havas la ''cookies'' desaktivigita. Voluntez aktivigar oli e probez altrafoye.",
 	"nocookiesfornew": "La konto dil uzero ne kreesis, nam ni ne povis konfirmar lua fonto. Verifikez ke vua navigilo aceptas 'cookies', ri-apertez ita pagino, e probez itere.",
 	"createacct-loginerror": "Konto kreesis sucesoze ma vu ne eniris la reto. Voluntez vizitar [[Special:UserLogin|manual login]].",

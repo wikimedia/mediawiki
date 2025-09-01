@@ -227,7 +227,6 @@
 	"loginerror": "Bérlurache del intrée",
 	"createacct-error": "Bérlurage pour l'créachon du compte",
 	"createaccounterror": "Impossibe ed créer ch' compte : $1",
-	"nocookiesnew": "Ch' compte d'uzeu il o té créé, mais os n’ètes poin connecté{{GENDER:||e|(e)}}.\n{{SITENAME}} doét implouéyer des ''cookies'' pour warder el connecsion mais os les avez désactivés.\nVoulez les activer pi vos arconnecter aveuc ch' meume nom et pi ch' meume mot d'passe.",
 	"nocookieslogin": "{{SITENAME}} doét implouéyer des ''cookies'' pour warder el connecsion mais os les avez désactivés.\nVoulez les activer pi vos arconnecter.",
 	"nocookiesfornew": "Ch' compte d'uzeu il n'o poin té créé, pasqué os n’avons poin pu idintifier esn origine.\n{{SITENAME}} doét implouéyer des ''cookies'', vérifiez qu'ils sont activés, arquétchez l' pache pi érquérminchez.",
 	"noname": "Os n'avez poin donné un nom d'uzeu valabe.",

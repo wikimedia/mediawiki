@@ -266,7 +266,6 @@
 	"userexists": "Tá an ainm úsáideora sin in úsáid cheana féin.<br />\nRoghnaigh ainm eile agus bain triail eile as.",
 	"loginerror": "Earráid leis an logáil isteach",
 	"createaccounterror": "Theip ar an cuntas a chruthú: $1",
-	"nocookiesnew": "Cruthaíodh an cuntas úsáideora, ach níl tú logáilte isteach.\n\nÚsáideann {{SITENAME}} fianáin chun úsáideoirí a logáil isteach.\nTá fianáin díchumasaithe agat.\nCumasaigh iad le do thoil, agus ansin logáil isteach le d'ainm úsáideora agus d'fhocal faire úrnua.",
 	"nocookieslogin": "Úsáideann {{SITENAME}} fianáin chun úsáideoirí a logáil isteach.\nTá fianáin díchumasaithe agat.\nCumasaigh iad agus bain triail eile as, le do thoil.",
 	"noname": "Níor thug tú ainm úsáideora bailí.",
 	"loginsuccesstitle": "Logáilte isteach",

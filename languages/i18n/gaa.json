@@ -361,7 +361,6 @@
 	"loginerror": "Akauntu mlibotemɔ tɔtɔmɔ",
 	"createacct-error": "Akauntu gbelemɔ tɔtɔmɔ",
 	"createaccounterror": "Nyɛɛɛ agbele akauntu: $1",
-	"nocookiesnew": "Agbele akauntu nɔtsɛ lɛ, shi moŋ olɔgiko\n{{SITENAME}} kɛ kukisi alɔgi nɔtsɛ nɔ lɛ\nagbe okukisi lɛ.\nOfainɛ ni osu, koni obote akauntu lɛ mli kɛ nifeelɔgbɛi kɛ opaswɛdi",
 	"nocookieslogin": "{{SITENAME}} kɛ kukisi alɔgi nɔtsɛ nɔ lɛ\nagbe okukisi lɛ.\n\nOfainɛ koni oŋmɛ gbɛ, ni osaa ofee ekoŋŋ",
 	"nocookiesfornew": "Agbeleee nɔtsɛ akauntu lɛ, ejaakɛ wɔnyɛɛɛ ni wɔyɔse ejɛɛhe lɛ.\n\nFeemɔ klalo akɛ, osu kukisi lɛ, saamɔ ni ogbele plama nɛɛ koni ofee ekoŋŋ.",
 	"createacct-loginerror": "Agbele akauntu lɛ shweshweeshwe shi onyɛɛɛ ni olɔgi nɔŋŋ. Ofainɛ yaanɔ kɛfee\n[[Special:UserLogin|lɔgimɔ nifeemɔ]].",
