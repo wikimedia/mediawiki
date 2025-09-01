@@ -335,17 +335,23 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 	}
 
 	/** @dataProvider provideXssLanguage */
-	public function testXssLanguage( array $config, bool $expectXssMessage ): void {
+	public function testXssLanguage(
+		array $config,
+		string $messageKey,
+		bool $expectXssMessage,
+		string $expectedMessageKeyForAlert = ''
+	): void {
 		$this->overrideConfigValues( $config + [
 			MainConfigNames::UseXssLanguage => false,
 			MainConfigNames::RawHtmlMessages => [],
 		] );
 
 		$message = $this->getServiceContainer()->getMessageCache()
-			->get( 'key', true, 'x-xss' );
+			->get( $messageKey, true, 'x-xss' );
 		if ( $expectXssMessage ) {
 			$this->assertSame(
-				"<script>alert('key')</script>\"><script>alert('key')</script><x y=\"(\$*)",
+				"<img src=\"\" onerror='alert(\"$expectedMessageKeyForAlert\")'/>\">" .
+					"<img src=\"\" onerror='alert(\"$expectedMessageKeyForAlert\")'/><x y=\"(\$*)",
 				$message
 			);
 		} else {
@@ -356,6 +362,7 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 	public static function provideXssLanguage(): iterable {
 		yield 'default' => [
 			'config' => [],
+			'messageKey' => 'key',
 			'expectXssMessage' => false,
 		];
 
@@ -363,7 +370,18 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 			'config' => [
 				MainConfigNames::UseXssLanguage => true,
 			],
+			'messageKey' => 'key',
 			'expectXssMessage' => true,
+			'expectedMessageKeyForAlert' => 'key',
+		];
+
+		yield 'enabled using message key with quote marks' => [
+			'config' => [
+				MainConfigNames::UseXssLanguage => true,
+			],
+			'messageKey' => 'key"abc\'a',
+			'expectXssMessage' => true,
+			'expectedMessageKeyForAlert' => 'key_abc_a',
 		];
 
 		yield 'enabled but message marked as raw' => [
@@ -371,6 +389,7 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 				MainConfigNames::UseXssLanguage => true,
 				MainConfigNames::RawHtmlMessages => [ 'key' ],
 			],
+			'messageKey' => 'key',
 			'expectXssMessage' => false,
 		];
 	}

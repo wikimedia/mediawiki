@@ -1185,7 +1185,8 @@ class MessageCache implements LoggerAwareInterface {
 			$this->useXssLanguage &&
 			!in_array( $lckey, $this->rawHtmlMessages, true )
 		) {
-			$xssViaInnerHtml = "<script>alert('$lckey')</script>";
+			$lcKeyForAlert = str_replace( [ '"', "'" ], '_', $lckey );
+			$xssViaInnerHtml = "<img src=\"\" onerror='alert(\"$lcKeyForAlert\")'/>";
 			$xssViaAttribute = '">' . $xssViaInnerHtml . '<x y="';
 			return $xssViaInnerHtml . $xssViaAttribute . '($*)';
 		}
