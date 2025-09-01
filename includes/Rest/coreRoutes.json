@@ -12,7 +12,8 @@
 			"PageRestHelperFactory"
 		],
 		"openApiSpec": {
-			"x-i18n-description": "rest-endpoint-desc-get-page-history"
+			"x-i18n-description": "rest-endpoint-desc-get-page-history",
+			"x-i18n-summary": "rest-endpoint-summ-get-page-history"
 		}
 	},
 	{
@@ -29,7 +30,8 @@
 			"TempUserConfig"
 		],
 		"openApiSpec": {
-			"x-i18n-description": "rest-endpoint-desc-get-page-history-counts"
+			"x-i18n-description": "rest-endpoint-desc-get-page-history-counts",
+			"x-i18n-summary": "rest-endpoint-summ-get-page-history-counts"
 		}
 	},
 	{
@@ -40,7 +42,8 @@
 			"ParserFactory"
 		],
 		"openApiSpec": {
-			"x-i18n-description": "rest-endpoint-desc-get-revision-compare"
+			"x-i18n-description": "rest-endpoint-desc-get-revision-compare",
+			"x-i18n-summary": "rest-endpoint-summ-get-revision-compare"
 		}
 	},
 	{
@@ -51,7 +54,8 @@
 		],
 		"format": "source",
 		"openApiSpec": {
-			"x-i18n-description": "rest-endpoint-desc-get-revision-id"
+			"x-i18n-description": "rest-endpoint-desc-get-revision-id",
+			"x-i18n-summary": "rest-endpoint-summ-get-revision-id"
 		}
 	},
 	{
@@ -62,7 +66,8 @@
 		],
 		"format": "html",
 		"openApiSpec": {
-			"x-i18n-description": "rest-endpoint-desc-get-revision-id-html"
+			"x-i18n-description": "rest-endpoint-desc-get-revision-id-html",
+			"x-i18n-summary": "rest-endpoint-summ-get-revision-id-html"
 		}
 	},
 	{
@@ -73,7 +78,8 @@
 		],
 		"format": "with_html",
 		"openApiSpec": {
-			"x-i18n-description": "rest-endpoint-desc-get-revision-id-with-html"
+			"x-i18n-description": "rest-endpoint-desc-get-revision-id-with-html",
+			"x-i18n-summary": "rest-endpoint-summ-get-revision-id-with-html"
 		}
 	},
 	{
@@ -84,7 +90,8 @@
 		],
 		"format": "bare",
 		"openApiSpec": {
-			"x-i18n-description": "rest-endpoint-desc-get-revision-id-bare"
+			"x-i18n-description": "rest-endpoint-desc-get-revision-id-bare",
+			"x-i18n-summary": "rest-endpoint-summ-get-revision-id-bare"
 		}
 	},
 	{
@@ -95,7 +102,8 @@
 			"UrlUtils"
 		],
 		"openApiSpec": {
-			"x-i18n-description": "rest-endpoint-desc-get-search"
+			"x-i18n-description": "rest-endpoint-desc-get-search",
+			"x-i18n-summary": "rest-endpoint-summ-get-search"
 		}
 	},
 	{
@@ -113,7 +121,8 @@
 		],
 		"mode": "fulltext",
 		"openApiSpec": {
-			"x-i18n-description": "rest-endpoint-desc-get-search-page"
+			"x-i18n-description": "rest-endpoint-desc-get-search-page",
+			"x-i18n-summary": "rest-endpoint-summ-get-search-page"
 		}
 	},
 	{
@@ -131,7 +140,8 @@
 		],
 		"mode": "completion",
 		"openApiSpec": {
-			"x-i18n-description": "rest-endpoint-desc-get-search-title"
+			"x-i18n-description": "rest-endpoint-desc-get-search-title",
+			"x-i18n-summary": "rest-endpoint-summ-get-search-title"
 		}
 	},
 	{
@@ -146,7 +156,8 @@
 			"PageRestHelperFactory"
 		],
 		"openApiSpec": {
-			"x-i18n-description": "rest-endpoint-desc-get-page-title-language"
+			"x-i18n-description": "rest-endpoint-desc-get-page-title-language",
+			"x-i18n-summary": "rest-endpoint-summ-get-page-title-language"
 		}
 	},
 	{
@@ -158,7 +169,8 @@
 		],
 		"format": "source",
 		"openApiSpec": {
-			"x-i18n-description": "rest-endpoint-desc-get-page-title"
+			"x-i18n-description": "rest-endpoint-desc-get-page-title",
+			"x-i18n-summary": "rest-endpoint-summ-get-page-title"
 		}
 	},
 	{
@@ -170,7 +182,8 @@
 		],
 		"format": "bare",
 		"openApiSpec": {
-			"x-i18n-description": "rest-endpoint-desc-get-page-title-bare"
+			"x-i18n-description": "rest-endpoint-desc-get-page-title-bare",
+			"x-i18n-summary": "rest-endpoint-summ-get-page-title-bare"
 		}
 	},
 	{
@@ -181,7 +194,8 @@
 		],
 		"format": "html",
 		"openApiSpec": {
-			"x-i18n-description": "rest-endpoint-desc-get-page-title-html"
+			"x-i18n-description": "rest-endpoint-desc-get-page-title-html",
+			"x-i18n-summary": "rest-endpoint-summ-get-page-title-html"
 		}
 	},
 	{
@@ -192,7 +206,8 @@
 		],
 		"format": "with_html",
 		"openApiSpec": {
-			"x-i18n-description": "rest-endpoint-desc-get-page-title-with-html"
+			"x-i18n-description": "rest-endpoint-desc-get-page-title-with-html",
+			"x-i18n-summary": "rest-endpoint-summ-get-page-title-with-html"
 		}
 	},
 	{
@@ -204,7 +219,8 @@
 			"PageStore"
 		],
 		"openApiSpec": {
-			"x-i18n-description": "rest-endpoint-desc-get-page-title-media"
+			"x-i18n-description": "rest-endpoint-desc-get-page-title-media",
+			"x-i18n-summary": "rest-endpoint-summ-get-page-title-media"
 		}
 	},
 	{
@@ -215,7 +231,8 @@
 			"PageStore"
 		],
 		"openApiSpec": {
-			"x-i18n-description": "rest-endpoint-desc-get-file-title"
+			"x-i18n-description": "rest-endpoint-desc-get-file-title",
+			"x-i18n-summary": "rest-endpoint-summ-get-file-title"
 		}
 	},
 	{
@@ -230,7 +247,8 @@
 			"RevisionStore"
 		],
 		"openApiSpec": {
-			"x-i18n-description": "rest-endpoint-desc-put-page-title"
+			"x-i18n-description": "rest-endpoint-desc-put-page-title",
+			"x-i18n-summary": "rest-endpoint-summ-put-page-title"
 		}
 	},
 	{
@@ -245,7 +263,8 @@
 			"RevisionStore"
 		],
 		"openApiSpec": {
-			"x-i18n-description": "rest-endpoint-desc-post-page"
+			"x-i18n-description": "rest-endpoint-desc-post-page",
+			"x-i18n-summary": "rest-endpoint-summ-post-page"
 		}
 	},
 	{
@@ -256,7 +275,8 @@
 		"from": "wikitext",
 		"format": "html",
 		"openApiSpec": {
-			"x-i18n-description": "rest-endpoint-desc-post-transform-wikitext-to-html-title-revision"
+			"x-i18n-description": "rest-endpoint-desc-post-transform-wikitext-to-html-title-revision",
+			"x-i18n-summary": "rest-endpoint-summ-post-transform-wikitext-to-html"
 		}
 	},
 	{
@@ -267,7 +287,8 @@
 		"from": "html",
 		"format": "wikitext",
 		"openApiSpec": {
-			"x-i18n-description": "rest-endpoint-desc-post-transform-html-to-wikitext-title-revision"
+			"x-i18n-description": "rest-endpoint-desc-post-transform-html-to-wikitext-title-revision",
+			"x-i18n-summary": "rest-endpoint-summ-post-transform-html-to-wikitext"
 		}
 	},
 	{
@@ -278,7 +299,8 @@
 		"from": "wikitext",
 		"format": "lint",
 		"openApiSpec": {
-			"x-i18n-description": "rest-endpoint-desc-post-transform-wikitext-to-lint"
+			"x-i18n-description": "rest-endpoint-desc-post-transform-wikitext-to-lint",
+			"x-i18n-summary": "rest-endpoint-summ-post-transform-wikitext-to-lint"
 		}
 	},
 	{
@@ -289,7 +311,8 @@
 		"from": "wikitext",
 		"format": "html",
 		"openApiSpec": {
-			"x-i18n-description": "rest-endpoint-desc-post-transform-wikitext-to-html"
+			"x-i18n-description": "rest-endpoint-desc-post-transform-wikitext-to-html",
+			"x-i18n-summary": "rest-endpoint-summ-post-transform-wikitext-to-html"
 		}
 	},
 	{
@@ -300,7 +323,8 @@
 		"from": "wikitext",
 		"format": "html",
 		"openApiSpec": {
-			"x-i18n-description": "rest-endpoint-desc-post-transform-wikitext-to-html"
+			"x-i18n-description": "rest-endpoint-desc-post-transform-wikitext-to-html",
+			"x-i18n-summary": "rest-endpoint-summ-post-transform-wikitext-to-html"
 		}
 	},
 	{
@@ -311,7 +335,8 @@
 		"from": "html",
 		"format": "wikitext",
 		"openApiSpec": {
-			"x-i18n-description": "rest-endpoint-desc-post-transform-html-to-wikitext"
+			"x-i18n-description": "rest-endpoint-desc-post-transform-html-to-wikitext",
+			"x-i18n-summary": "rest-endpoint-summ-post-transform-html-to-wikitext"
 		}
 	},
 	{
@@ -322,7 +347,8 @@
 		"from": "html",
 		"format": "wikitext",
 		"openApiSpec": {
-			"x-i18n-description": "rest-endpoint-desc-post-transform-html-to-wikitext"
+			"x-i18n-description": "rest-endpoint-desc-post-transform-html-to-wikitext",
+			"x-i18n-summary": "rest-endpoint-summ-post-transform-html-to-wikitext"
 		}
 	},
 	{
@@ -333,7 +359,8 @@
 		"from": "wikitext",
 		"format": "lint",
 		"openApiSpec": {
-			"x-i18n-description": "rest-endpoint-desc-post-transform-wikitext-to-lint"
+			"x-i18n-description": "rest-endpoint-desc-post-transform-wikitext-to-lint",
+			"x-i18n-summary": "rest-endpoint-summ-post-transform-wikitext-to-lint"
 		}
 	},
 	{
@@ -344,7 +371,8 @@
 		"from": "wikitext",
 		"format": "lint",
 		"openApiSpec": {
-			"x-i18n-description": "rest-endpoint-desc-post-transform-wikitext-to-lint"
+			"x-i18n-description": "rest-endpoint-desc-post-transform-wikitext-to-lint",
+			"x-i18n-summary": "rest-endpoint-summ-post-transform-wikitext-to-lint"
 		}
 	},
 	{
@@ -355,7 +383,8 @@
 		"from": "wikitext",
 		"format": "html",
 		"openApiSpec": {
-			"x-i18n-description": "rest-endpoint-desc-post-transform-wikitext-to-html"
+			"x-i18n-description": "rest-endpoint-desc-post-transform-wikitext-to-html",
+			"x-i18n-summary": "rest-endpoint-summ-post-transform-wikitext-to-html"
 		}
 	},
 	{
@@ -366,7 +395,8 @@
 		"from": "wikitext",
 		"format": "html",
 		"openApiSpec": {
-			"x-i18n-description": "rest-endpoint-desc-post-transform-wikitext-to-html"
+			"x-i18n-description": "rest-endpoint-desc-post-transform-wikitext-to-html",
+			"x-i18n-summary": "rest-endpoint-summ-post-transform-wikitext-to-html"
 		}
 	},
 	{
@@ -377,7 +407,8 @@
 		"from": "html",
 		"format": "wikitext",
 		"openApiSpec": {
-			"x-i18n-description": "rest-endpoint-desc-post-transform-html-to-wikitext"
+			"x-i18n-description": "rest-endpoint-desc-post-transform-html-to-wikitext",
+			"x-i18n-summary": "rest-endpoint-summ-post-transform-html-to-wikitext"
 		}
 	},
 	{
@@ -388,7 +419,8 @@
 		"from": "html",
 		"format": "wikitext",
 		"openApiSpec": {
-			"x-i18n-description": "rest-endpoint-desc-post-transform-html-to-wikitext-title"
+			"x-i18n-description": "rest-endpoint-desc-post-transform-html-to-wikitext-title",
+			"x-i18n-summary": "rest-endpoint-summ-post-transform-html-to-wikitext"
 		}
 	},
 	{
@@ -399,7 +431,8 @@
 		"from": "wikitext",
 		"format": "lint",
 		"openApiSpec": {
-			"x-i18n-description": "rest-endpoint-desc-post-transform-wikitext-to-lint"
+			"x-i18n-description": "rest-endpoint-desc-post-transform-wikitext-to-lint",
+			"x-i18n-summary": "rest-endpoint-desc-post-transform-wikitext-to-lint"
 		}
 	},
 	{
@@ -410,7 +443,8 @@
 		"from": "wikitext",
 		"format": "lint",
 		"openApiSpec": {
-			"x-i18n-description": "rest-endpoint-desc-post-transform-wikitext-to-lint"
+			"x-i18n-description": "rest-endpoint-desc-post-transform-wikitext-to-lint",
+			"x-i18n-summary": "rest-endpoint-summ-post-transform-wikitext-to-lint"
 		}
 	},
 	{
