@@ -714,7 +714,7 @@ class Sanitizer {
 
 		// Reject problematic keywords and control characters
 		if ( preg_match( '/[\000-\010\013\016-\037\177]/', $value ) ||
-			strpos( $value, \UtfNormal\Constants::UTF8_REPLACEMENT ) !== false ) {
+			str_contains( $value, \UtfNormal\Constants::UTF8_REPLACEMENT ) ) {
 			return '/* invalid control char */';
 		} elseif ( preg_match(
 			'! expression

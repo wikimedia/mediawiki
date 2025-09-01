@@ -171,7 +171,7 @@ abstract class Profiler {
 			// The class may be specified as either the full class name (for
 			// example, 'ProfilerOutputStats') or (for backward compatibility)
 			// the trailing portion of the class name (for example, 'stats').
-			$outputClass = strpos( $outputType, 'ProfilerOutput' ) === false
+			$outputClass = !str_contains( $outputType, 'ProfilerOutput' )
 				? 'ProfilerOutput' . ucfirst( $outputType )
 				: $outputType;
 			if ( !class_exists( $outputClass ) ) {

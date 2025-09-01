@@ -131,7 +131,7 @@ class CleanupUploadStash extends Maintenance {
 			$this->fatalError( "Could not get file listing." );
 		}
 		$this->output( "Deleting orphaned temp files...\n" );
-		if ( strpos( $dir, '/local-temp' ) === false ) {
+		if ( !str_contains( $dir, '/local-temp' ) ) {
 			$this->output( "Temp repo might be misconfigured. It points to directory: '$dir' \n" );
 		}
 

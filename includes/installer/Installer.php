@@ -1171,7 +1171,7 @@ abstract class Installer {
 		phpinfo( INFO_MODULES );
 		$info = ob_get_clean();
 
-		return strpos( $info, $moduleName ) !== false;
+		return str_contains( $info, $moduleName );
 	}
 
 	/**

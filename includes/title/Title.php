@@ -784,7 +784,7 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 				$r0 = sprintf( '\x%02x', $ord0 );
 				$allowUnicode = true;
 				// @phan-suppress-next-line PhanParamSuspiciousOrder false positive
-			} elseif ( strpos( '-\\[]^', $d0 ) !== false ) {
+			} elseif ( str_contains( '-\\[]^', $d0 ) ) {
 				$r0 = '\\' . $d0;
 			} else {
 				$r0 = $d0;

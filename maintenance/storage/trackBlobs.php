@@ -342,7 +342,7 @@ class TrackBlobs extends Maintenance {
 			try {
 				$extDB = $lb->getMaintenanceConnectionRef( DB_REPLICA );
 			} catch ( DBConnectionError $e ) {
-				if ( strpos( $e->getMessage(), 'Unknown database' ) !== false ) {
+				if ( str_contains( $e->getMessage(), 'Unknown database' ) ) {
 					echo "No database on $cluster\n";
 				} else {
 					echo "Error on $cluster: " . $e->getMessage() . "\n";

@@ -167,7 +167,7 @@ class FileDeleteForm {
 	 */
 	public static function isValidOldSpec( $oldimage ) {
 		return strlen( $oldimage ) >= 16
-			&& strpos( $oldimage, '/' ) === false
-			&& strpos( $oldimage, '\\' ) === false;
+			&& !str_contains( $oldimage, '/' )
+			&& !str_contains( $oldimage, '\\' );
 	}
 }

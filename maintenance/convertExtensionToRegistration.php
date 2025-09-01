@@ -129,12 +129,12 @@ class ConvertExtensionToRegistration extends Maintenance {
 				$isPath = false;
 				if ( is_array( $value ) ) {
 					foreach ( $value as $k => $v ) {
-						if ( strpos( $v, $this->dir ) !== false ) {
+						if ( str_contains( $v, $this->dir ) ) {
 							$value[$k] = $this->stripPath( $v, $this->dir );
 							$isPath = true;
 						}
 					}
-				} elseif ( is_string( $value ) && strpos( $value, $this->dir ) !== false ) {
+				} elseif ( is_string( $value ) && str_contains( $value, $this->dir ) ) {
 					$value = $this->stripPath( $value, $this->dir );
 					$isPath = true;
 				}

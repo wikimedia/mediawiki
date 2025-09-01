@@ -716,7 +716,7 @@ TEXT
 	 */
 	private function getTextDb( $id ) {
 		$store = $this->getBlobStore();
-		$address = ( is_int( $id ) || strpos( $id, ':' ) === false )
+		$address = ( is_int( $id ) || !str_contains( $id, ':' ) )
 			? SqlBlobStore::makeAddressFromTextId( (int)$id )
 			: $id;
 
@@ -845,7 +845,7 @@ TEXT
 			return false;
 		}
 		$newAddress = trim( $newAddress );
-		if ( strpos( $newAddress, ':' ) === false ) {
+		if ( !str_contains( $newAddress, ':' ) ) {
 			$newAddress = SqlBlobStore::makeAddressFromTextId( intval( $newAddress ) );
 		}
 

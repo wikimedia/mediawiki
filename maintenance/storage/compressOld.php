@@ -182,8 +182,8 @@ class CompressOld extends Maintenance {
 	 * @return bool
 	 */
 	private function compressPage( $row, $extdb ) {
-		if ( strpos( $row->old_flags, 'gzip' ) !== false
-			|| strpos( $row->old_flags, 'object' ) !== false
+		if ( str_contains( $row->old_flags, 'gzip' )
+			|| str_contains( $row->old_flags, 'object' )
 		) {
 			# print "Already compressed row {$row->old_id}\n";
 			return false;

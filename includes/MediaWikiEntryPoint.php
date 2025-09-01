@@ -346,8 +346,8 @@ abstract class MediaWikiEntryPoint {
 				if ( $output->getRedirect() ) {
 					$url = $output->getRedirect();
 					if ( $lbFactory->hasStreamingReplicaServers() ) {
-						$url = strpos( $url, '?' ) === false
-							? "$url?cpPosIndex=$cpIndex" : "$url&cpPosIndex=$cpIndex";
+						$url .= str_contains( $url, '?' ) ? '&' : '?';
+						$url .= 'cpPosIndex=' . $cpIndex;
 					}
 					$output->redirect( $url );
 				} else {

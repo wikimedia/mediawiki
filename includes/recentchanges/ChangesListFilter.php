@@ -153,7 +153,7 @@ abstract class ChangesListFilter {
 				'ChangesListFilterGroup this filter belongs to' );
 		}
 
-		if ( strpos( $filterDefinition['name'], self::RESERVED_NAME_CHAR ) !== false ) {
+		if ( str_contains( $filterDefinition['name'], self::RESERVED_NAME_CHAR ) ) {
 			throw new InvalidArgumentException( 'Filter names may not contain \'' .
 				self::RESERVED_NAME_CHAR .
 				'\'.  Use the naming convention: \'lowercase\''

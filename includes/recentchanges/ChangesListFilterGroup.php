@@ -158,7 +158,7 @@ abstract class ChangesListFilterGroup {
 	 *     "What's This" popup (optional).
 	 */
 	public function __construct( array $groupDefinition ) {
-		if ( strpos( $groupDefinition['name'], self::RESERVED_NAME_CHAR ) !== false ) {
+		if ( str_contains( $groupDefinition['name'], self::RESERVED_NAME_CHAR ) ) {
 			throw new InvalidArgumentException( 'Group names may not contain \'' .
 				self::RESERVED_NAME_CHAR .
 				'\'.  Use the naming convention: \'camelCase\''

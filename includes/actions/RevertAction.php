@@ -106,8 +106,8 @@ class RevertAction extends FormAction {
 
 		$oldimage = $this->getRequest()->getText( 'oldimage' );
 		if ( strlen( $oldimage ) < 16
-			|| strpos( $oldimage, '/' ) !== false
-			|| strpos( $oldimage, '\\' ) !== false
+			|| str_contains( $oldimage, '/' )
+			|| str_contains( $oldimage, '\\' )
 		) {
 			throw new ErrorPageError( 'internalerror', 'unexpected', [ 'oldimage', $oldimage ] );
 		}

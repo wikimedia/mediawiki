@@ -89,7 +89,7 @@ class FetchText extends Maintenance {
 			$blobAddress = trim( $line );
 
 			// Plain integers are supported for backwards compatibility with pre-MCR dumps.
-			if ( strpos( $blobAddress, ':' ) === false && is_numeric( $blobAddress ) ) {
+			if ( !str_contains( $blobAddress, ':' ) && is_numeric( $blobAddress ) ) {
 				$blobAddress = SqlBlobStore::makeAddressFromTextId( intval( $blobAddress ) );
 			}
 

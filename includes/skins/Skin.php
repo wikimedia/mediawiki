@@ -505,8 +505,8 @@ abstract class Skin extends ContextSource {
 		// means.
 		// For content, this should not be considered stable, and will likely
 		// be removed when https://phabricator.wikimedia.org/T363607 is resolved.
-		$containsUserGeneratedContent = strpos( $bodyHtml, 'mw-parser-output' ) !== false;
-		$containsCodexMessageBox = strpos( $bodyHtml, 'cdx-message' ) !== false;
+		$containsUserGeneratedContent = str_contains( $bodyHtml, 'mw-parser-output' );
+		$containsCodexMessageBox = str_contains( $bodyHtml, 'cdx-message' );
 		if ( $containsCodexMessageBox && $containsUserGeneratedContent && $namespace !== NS_SPECIAL ) {
 			$modules['styles']['content'][] = 'mediawiki.codex.messagebox.styles';
 		}

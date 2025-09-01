@@ -211,7 +211,7 @@ class TitleParser {
 		);
 		$dbkey = trim( $dbkey, '_' );
 
-		if ( strpos( $dbkey, \UtfNormal\Constants::UTF8_REPLACEMENT ) !== false ) {
+		if ( str_contains( $dbkey, \UtfNormal\Constants::UTF8_REPLACEMENT ) ) {
 			# Contained illegal UTF-8 sequences or forbidden Unicode chars.
 			$exception = ( $this->createMalformedTitleException )( 'title-invalid-utf8', $text );
 			throw $exception;

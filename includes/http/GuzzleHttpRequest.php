@@ -243,7 +243,7 @@ class GuzzleHttpRequest extends MWHttpRequest {
 			} else {
 				// Non-ideal, but the only way to identify connection timeout vs other conditions
 				$needle = 'Connection timed out';
-				if ( strpos( $e->getMessage(), $needle ) !== false ) {
+				if ( str_contains( $e->getMessage(), $needle ) ) {
 					$this->status->fatal( 'http-timed-out', $this->url );
 				} else {
 					$this->status->fatal( 'http-request-error' );

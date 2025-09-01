@@ -357,7 +357,7 @@ class UploadVerification {
 		];
 
 		foreach ( $tags as $tag ) {
-			if ( strpos( $chunk, $tag ) !== false ) {
+			if ( str_contains( $chunk, $tag ) ) {
 				wfDebug( __METHOD__ . ": found something that may make it be mistaken for html: $tag" );
 
 				return true;

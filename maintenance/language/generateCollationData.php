@@ -124,7 +124,7 @@ class GenerateCollationData extends Maintenance {
 		// but do not skip a normal space (U+0020) since
 		// people like to use that as a fake no header symbol.
 		$category = substr( $data['gc'], 0, 1 );
-		if ( strpos( 'LNPS', $category ) === false
+		if ( !str_contains( 'LNPS', $category )
 			&& $data['cp'] !== '0020'
 		) {
 			return;

@@ -721,7 +721,7 @@ class MessageCache implements LoggerAwareInterface {
 		}
 
 		[ $msg, $code ] = $this->figureMessage( $title );
-		if ( strpos( $title, '/' ) !== false && $code === $this->contLangCode ) {
+		if ( str_contains( $title, '/' ) && $code === $this->contLangCode ) {
 			// Content language overrides do not use the /<code> suffix
 			return;
 		}

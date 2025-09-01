@@ -2320,7 +2320,7 @@ class Parser {
 		$callback = static function ( $matches ) use ( $unsafe ) {
 			$char = urldecode( $matches[0] );
 			$ord = ord( $char );
-			if ( $ord > 32 && $ord < 127 && strpos( $unsafe, $char ) === false ) {
+			if ( $ord > 32 && $ord < 127 && !str_contains( $unsafe, $char ) ) {
 				# Unescape it
 				return $char;
 			} else {
