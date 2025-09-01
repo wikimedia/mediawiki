@@ -1,0 +1,53 @@
+name: CI MediaWiki DevSecOps
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: mediawiki
+        ports:
+          - 3306:3306
+        options: --health-cmd "mysqladmin ping --silent" --health-interval 10s --health-timeout 5s --health-retries 3
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: mbstring, xml, intl, mysql, gd, curl, zip
+          tools: composer
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress --no-suggest
+
+      - name: Lint PHP files
+        run: |
+          find . -type f -name "*.php" -not -path "./vendor/*" -exec php -l {} \;
+
+      - name: Run MediaWiki maintenance check (if exists)
+        run: |
+          if [ -f maintenance/checkRequirements.php ]; then
+            php maintenance/checkRequirements.php
+          fi
+
+      - name: Upload LocalSettings.php if exists
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: localsettings
+          path: LocalSettings.php
