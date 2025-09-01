@@ -25,6 +25,7 @@ use ExecutableFinder;
 use Generator;
 use MediaWiki;
 use MediaWiki\Config\Config;
+use MediaWiki\Config\ConfigException;
 use MediaWiki\Debug\MWDebug;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\HookContainer\HookContainer;
@@ -1252,6 +1253,28 @@ abstract class Maintenance {
 	}
 
 	/**
+	 * If possible, apply changes to the database configuration.
+	 * The primary use case for this is taking replicas out of rotation.
+	 * Long-running scripts may otherwise keep connections to
+	 * de-pooled database hosts, and may even re-connect to them.
+	 * If no config callback was configured, this has no effect.
+	 */
+	private function autoReconfigure( ILBFactory $lbFactory ): void {
+		static $failedReconfigureCount = 0;
+
+		try {
+			$lbFactory->autoReconfigure();
+			$failedReconfigureCount = 0;
+		} catch ( ConfigException $e ) {
+			$failedReconfigureCount++;
+			if ( $failedReconfigureCount >= 10 ) {
+				throw $e;
+			}
+			// Otherwise, try to keep going with the old config (T346971)
+		}
+	}
+
+	/**
 	 * Wait for replica DB servers to catch up
 	 *
 	 * Use this method after performing a batch of autocommit writes inscripts with direct,
@@ -1271,12 +1294,7 @@ abstract class Maintenance {
 		);
 		$this->lastReplicationWait = microtime( true );
 
-		// If possible, apply changes to the database configuration.
-		// The primary use case for this is taking replicas out of rotation.
-		// Long-running scripts may otherwise keep connections to
-		// de-pooled database hosts, and may even re-connect to them.
-		// If no config callback was configured, this has no effect.
-		$lbFactory->autoReconfigure();
+		$this->autoReconfigure( $lbFactory );
 
 		// Periodically run any deferred updates that accumulate
 		DeferredUpdates::tryOpportunisticExecute();
@@ -1340,12 +1358,7 @@ abstract class Maintenance {
 			$this->getServiceContainer()->getStatsFactory()
 		);
 
-		// If possible, apply changes to the database configuration.
-		// The primary use case for this is taking replicas out of rotation.
-		// Long-running scripts may otherwise keep connections to
-		// de-pooled database hosts, and may even re-connect to them.
-		// If no config callback was configured, this has no effect.
-		$lbFactory->autoReconfigure();
+		$this->autoReconfigure( $lbFactory );
 
 		return $waitSucceeded;
 	}
