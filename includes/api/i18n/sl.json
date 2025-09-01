@@ -1095,6 +1095,7 @@
 	"apihelp-query+redirects-paramvalue-show-!fragment": "Prikazane naj bodo samo preusmeritve brez fragmenta.",
 	"apihelp-query+redirects-example-simple": "Pridobitev seznama preusmeritev na [[{{MediaWiki:Mainpage}}]].",
 	"apihelp-query+redirects-example-generator": "Pridobitev vseh preusmeritev na [[{{MediaWiki:Mainpage}}]].",
+	"apihelp-query+revisions-summary": "Pridobitev podatkov o redakciji.",
 	"apihelp-query+revisions-param-excludeuser": "Izključi redakcije, ki jih je ustvaril uporabnik.",
 	"apihelp-query+revisions-example-content": "Pridobitev podatkov z vsebino za zadnjo redakcijo naslovov <kbd>API</kbd> in [[{{MediaWiki:Mainpage}}]].",
 	"apihelp-query+revisions-example-last5": "Pridobitev zadnjih 5 redakcij za [[{{MediaWiki:Mainpage}}]].",

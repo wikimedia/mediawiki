@@ -2598,7 +2598,7 @@
 	"revertpage-nouser": "已将隐藏用户的编辑还原至最后由{{GENDER:$1|[[User:$1|$1]]}}修订的版本",
 	"rollback-success": "已还原{{GENDER:$3|$1}}的编辑至最后由{{GENDER:$4|$2}}修订的版本。",
 	"sessionfailure-title": "会话无效",
-	"sessionfailure": "似乎您的登录会话有问题；\n为了防止会话劫持，这个操作已经被取消。\n请重新提交表单。",
+	"sessionfailure": "您的登录会话似乎有问题；\n为了防止会话劫持，这个操作已经被取消。\n请重新提交表单。",
 	"changecontentmodel": "更改页面的内容模型",
 	"changecontentmodel-legend": "更改内容模型",
 	"changecontentmodel-title-label": "页面标题：",
