@@ -17,6 +17,7 @@ use MediaWiki\Utils\MWTimestamp;
 use MediaWikiLangTestCase;
 use Wikimedia\Bcp47Code\Bcp47CodeValue;
 use Wikimedia\Message\MessageValue;
+use Wikimedia\Parsoid\Core\MergeStrategy;
 use Wikimedia\Parsoid\Core\SectionMetadata;
 use Wikimedia\TestingAccessWrapper;
 use Wikimedia\Tests\SerializationTestTrait;
@@ -114,12 +115,23 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 
 		$po->setJsConfigVar( 'c', '2' );
 		$po->appendJsConfigVar( 'b', 'b' );
-		$po->appendJsConfigVar( 'b', '1' );
+		$po->appendJsConfigVar( 'b', 1 );
 
 		$this->assertEqualsCanonicalizing( [
 			'a' => 1,
 			'b' => [ 'a' => true, 'b' => true, '0' => true, '1' => true ],
 			'c' => 2,
+		], $po->getJsConfigVars() );
+
+		$po->appendJsConfigVar( 'count', 1, MergeStrategy::SUM );
+		$po->appendJsConfigVar( 'count', 2, MergeStrategy::SUM );
+		$po->appendJsConfigVar( 'count', 3, MergeStrategy::SUM );
+
+		$this->assertEqualsCanonicalizing( [
+			'a' => 1,
+			'b' => [ 'a' => true, 'b' => true, '0' => true, '1' => true ],
+			'c' => 2,
+			'count' => 6,
 		], $po->getJsConfigVars() );
 	}
 
@@ -158,6 +170,11 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 			'abc' => true,
 			'xyz' => true,
 		], $po->getExtensionData( "three" ) );
+
+		$po->appendExtensionData( 'count', 1, MergeStrategy::SUM );
+		$po->appendExtensionData( 'count', 2, MergeStrategy::SUM );
+		$po->appendExtensionData( 'count', 3, MergeStrategy::SUM );
+		$this->assertSame( 6, $po->getExtensionData( 'count' ) );
 	}
 
 	/**
@@ -396,6 +413,7 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 		$a->setJsConfigVar( 'test-config-var-a', 'a' );
 		$a->appendJsConfigVar( 'test-config-var-c', 'abc' );
 		$a->appendJsConfigVar( 'test-config-var-c', 'def' );
+		$a->appendJsConfigVar( 'test-config-var-d', 2, MergeStrategy::SUM );
 		$a->addExtraCSPStyleSrc( 'css.com' );
 		$a->addExtraCSPStyleSrc( 'css2.com' );
 		$a->addExtraCSPScriptSrc( 'js.com' );
@@ -411,6 +429,7 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 		$b->setJsConfigVar( 'test-config-var-a', 'X' );
 		$a->appendJsConfigVar( 'test-config-var-c', 'xyz' );
 		$a->appendJsConfigVar( 'test-config-var-c', 'def' );
+		$a->appendJsConfigVar( 'test-config-var-d', 40, MergeStrategy::SUM );
 		$b->addExtraCSPStyleSrc( 'https://css.ca' );
 		$b->addExtraCSPScriptSrc( 'jscript.com' );
 		$b->addExtraCSPScriptSrc( 'vbscript.com' );
@@ -440,6 +459,7 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 				'test-config-var-c' => [ // merged safely
 					'abc' => true, 'def' => true, 'xyz' => true,
 				],
+				'test-config-var-d' => 42, // merged counters
 			],
 			'getExtraCSPStyleSrcs' => [
 				'css.com',
@@ -486,6 +506,8 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 		$a->setExtensionData( 'foo', 'Foo!' );
 		$a->setExtensionData( 'bar', 'Bar!' );
 		$a->appendExtensionData( 'bat', 'abc' );
+		$a->appendExtensionData( 'count1', 7, MergeStrategy::SUM );
+		$a->appendExtensionData( 'count2', 11, MergeStrategy::SUM );
 
 		$b = new ParserOutput();
 		$b->setNoGallery( true );
@@ -499,6 +521,7 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 		$b->setExtensionData( 'zoo', 'Zoo!' );
 		$b->setExtensionData( 'bar', 'Barrr!' );
 		$b->appendExtensionData( 'bat', 'xyz' );
+		$b->appendExtensionData( 'count2', 13, MergeStrategy::SUM );
 
 		// Note that overwriting extension data during the merge
 		// (as this test case does for 'bar') is deprecated and will eventually
@@ -523,6 +546,8 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 				// internal strategy key is exposed here because we're looking
 				// at the raw property value, not using getExtensionData()
 				'bat' => [ 'abc' => true, 'xyz' => true, '_mw-strategy' => 'union' ],
+				'count1' => [ 'value' => 7, '_mw-strategy' => 'sum' ],
+				'count2' => [ 'value' => 24, '_mw-strategy' => 'sum' ],
 			],
 		] ];
 	}
@@ -540,7 +565,10 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 
 		$this->assertFieldValues( $a, $expected );
 
-		// test twice, to make sure the operation is idempotent (except for the TOC, see below)
+		// test twice, to make sure the operation is idempotent
+		// (except for the TOC, see below)
+		// (and except for counter values)
+		$b->setExtensionData( 'count2', null );
 		$a->mergeHtmlMetaDataFrom( $b );
 
 		// XXX: TOC joining should get smarter. Can we make it idempotent as well?
@@ -834,6 +862,7 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 		$a->setExtensionData( 'foo', 'Foo!' );
 		$a->setExtensionData( 'bar', 'Bar!' );
 		$a->appendExtensionData( 'bat', 'abc' );
+		$a->appendExtensionData( 'counter', 3, MergeStrategy::SUM );
 
 		$b = new ParserOutput();
 
@@ -843,6 +872,7 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 		$b->setExtensionData( 'zoo', 'Zoo!' );
 		$b->setExtensionData( 'bar', 'Barrr!' );
 		$b->appendExtensionData( 'bat', 'xyz' );
+		$b->appendExtensionData( 'counter', 5, MergeStrategy::SUM );
 
 		// Note that overwriting extension data during the merge
 		// (as this test case does for 'bar') is deprecated and will eventually
@@ -861,6 +891,7 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 				// internal strategy key is exposed here because we're looking
 				// at the raw property value, not using getExtensionData()
 				'bat' => [ 'abc' => true, 'xyz' => true, '_mw-strategy' => 'union' ],
+				'counter' => [ 'value' => 8, '_mw-strategy' => 'sum' ],
 			],
 		] ];
 	}
@@ -885,6 +916,8 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 		$this->assertFieldValues( $a, $expected );
 
 		// test twice, to make sure the operation is idempotent
+		// (except for counters!)
+		$b->setExtensionData( 'counter', null );
 		$a->mergeTrackingMetaDataFrom( $b );
 
 		$this->assertFieldValues( $a, $expected );
