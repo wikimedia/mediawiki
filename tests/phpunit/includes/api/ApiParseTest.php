@@ -611,7 +611,26 @@ class ApiParseTest extends ApiTestCase {
 			'action' => 'parse',
 			'text' => "[[Foo]]",
 			'contentmodel' => 'wikitext',
-			'parsoid' => $parsoid ?: null,
+			'disablelimitreport' => true,
+		] + ( $parsoid ? [ 'parsoid' => true ] : [] ) );
+		$warnings = $parsoid ?
+			'The parameter "parsoid" has been deprecated.' : null;
+
+		$this->assertParsedToRegexp( $expected, $res, $warnings );
+	}
+
+	/** @dataProvider providerTestParsoid */
+	public function testParser( $parsoid, $existing, $expected ) {
+		# For simplicity, ensure that [[Foo]] isn't a redlink.
+		$this->editPage( "Foo", __FUNCTION__ );
+		$res = $this->doApiRequest( [
+			# check that we're using the contents of 'text' not the contents of
+			# [[<title>]] by using pre-existing title __CLASS__ sometimes
+			'title' => $existing ? __CLASS__ : 'Bar',
+			'action' => 'parse',
+			'text' => "[[Foo]]",
+			'contentmodel' => 'wikitext',
+			'parser' => $parsoid ? 'parsoid' : 'legacy',
 			'disablelimitreport' => true,
 		] );
 

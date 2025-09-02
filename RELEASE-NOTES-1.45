@@ -140,6 +140,8 @@ For notes on 1.44.x and older releases, see HISTORY.
 === Action API changes in 1.45 ===
 * (T396049) The list of domains supported by the upload-by-URL feature is now
   exposed via meta=siteinfo.
+* (T399897) The `parsoid` parameter to `action=parse` has been deprecated.
+  Use `parser=parsoid` instead.
 * …
 
 === Action API internal changes in 1.45 ===

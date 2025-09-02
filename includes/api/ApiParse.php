@@ -829,8 +829,11 @@ class ApiParse extends ApiBase {
 		if ( $params['wrapoutputclass'] !== '' ) {
 			$popts->setWrapOutputClass( $params['wrapoutputclass'] );
 		}
-		if ( $params['parsoid'] ) {
-			$popts->setUseParsoid();
+		if ( $params['parsoid'] || $params['parser'] === 'parsoid' ) {
+			$popts->setUseParsoid( true );
+		}
+		if ( $params['parser'] === 'legacy' ) {
+			$popts->setUseParsoid( false );
 		}
 
 		$reset = null;
@@ -1174,7 +1177,20 @@ class ApiParse extends ApiBase {
 			],
 			'wrapoutputclass' => 'mw-parser-output',
 			'usearticle' => false, // since 1.43
-			'parsoid' => false, // since 1.41
+			'parsoid' => [ // since 1.41
+				ParamValidator::PARAM_TYPE => 'boolean',
+				ParamValidator::PARAM_DEFAULT => false,
+				ParamValidator::PARAM_DEPRECATED => true,
+			],
+			'parser' => [ // since 1.45
+				ParamValidator::PARAM_TYPE => [
+					'parsoid',
+					'default',
+					'legacy'
+				],
+				ParamValidator::PARAM_DEFAULT => 'default',
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
+			],
 			'pst' => false,
 			'onlypst' => false,
 			'effectivelanglinks' => [

@@ -687,8 +687,8 @@ class ParserOptions {
 	 * @unstable
 	 * @since 1.41
 	 */
-	public function setUseParsoid() {
-		$this->setOption( 'useParsoid', true );
+	public function setUseParsoid( bool $value = true ) {
+		$this->setOption( 'useParsoid', $value );
 	}
 
 	/**
