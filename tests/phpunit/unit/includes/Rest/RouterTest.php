@@ -222,15 +222,29 @@ class RouterTest extends MediaWikiUnitTestCase {
 		$router = $this->createRouter( $request );
 		$router->setStats( $statsHelper->getStatsFactory() );
 
+		ConvertibleTimestamp::setFakeTime( '20110401090000' );
 		$response = $router->execute( $request );
 		$body = $response->getBody();
 		$body->rewind();
 		$data = json_decode( $body->getContents(), true );
 		$this->assertSame( 555, $response->getStatusCode(), (string)$response->getBody() );
 		$this->assertSame( 'Mock error', $data['message'] );
+
+		// Metrics
+		$metrics = $statsHelper->consumeAllFormatted();
 		$this->assertSame(
-			[ 'mediawiki.rest_api_errors_total:1|c|#path:mock_v1_RouterTest_throw,method:GET,status:555' ],
-			$statsHelper->consumeAllFormatted()
+			'mediawiki.rest_api_errors_total:1|c|#path:mock_v1_RouterTest_throw,method:GET,status:555',
+			$metrics[0]
+		);
+
+		// Handler class is mocked so we need to allow for a dynamic class name
+		$this->assertMatchesRegularExpression(
+			'/mediawiki\.rest_api_modules_hit_total:1|c|#api_type:REST_API,api_module:mock_v1,api_endpoint:MediaWiki_Rest_Handler_anonymous_var_www_html_w_tests_phpunit_unit_includes_Rest_MockHandlerFactory_php_(a-Z0-9_)+,path:mock_v1_RouterTest_throw,method:GET,status:555/',
+			$metrics[1]
+		);
+		$this->assertMatchesRegularExpression(
+			'/mediawiki\.rest_api_modules_latency:1|ms|#api_type:REST_API,api_module:mock_v1,api_endpoint:MediaWiki_Rest_Handler_anonymous_var_www_html_w_tests_phpunit_unit_includes_Rest_MockHandlerFactory_php_(a-Z0-9_)+,path:mock_v1_RouterTest_throw,method:GET,status:555/',
+			$metrics[2]
 		);
 	}
 
@@ -257,9 +271,22 @@ class RouterTest extends MediaWikiUnitTestCase {
 		$response = $router->execute( $request );
 		$this->assertSame( 301, $response->getStatusCode(), (string)$response->getBody() );
 		$this->assertSame( 'http://example.com', $response->getHeaderLine( 'Location' ) );
+
+		// Metrics
+		$metrics = $statsHelper->consumeAllFormatted();
 		$this->assertSame(
-			[ 'mediawiki.rest_api_latency_seconds:1|ms|#path:mock_v1_RouterTest_throwRedirect,method:GET,status:301' ],
-			$statsHelper->consumeAllFormatted()
+			'mediawiki.rest_api_latency_seconds:1|ms|#path:mock_v1_RouterTest_throwRedirect,method:GET,status:301',
+			$metrics[0]
+		);
+
+		// Handler class is mocked so we need to allow for a dynamic class name
+		$this->assertMatchesRegularExpression(
+			'/mediawiki\.rest_api_modules_hit_total:1|c|#api_type:REST_API,api_module:mock_v1,api_endpoint:MediaWiki_Rest_Handler_anonymous_var_www_html_w_tests_phpunit_unit_includes_Rest_MockHandlerFactory_php_(a-Z0-9_)+,path:mock_v1_RouterTest_throwRedirect,method:GET,status:301/',
+			$metrics[1]
+		);
+		$this->assertMatchesRegularExpression(
+			'/mediawiki\.rest_api_modules_latency:1|ms|#api_type:REST_API,api_module:mock_v1,api_endpoint:MediaWiki_Rest_Handler_anonymous_var_www_html_w_tests_phpunit_unit_includes_Rest_MockHandlerFactory_php_(a-Z0-9_)+,path:mock_v1_RouterTest_throwRedirect,method:GET,status:301/',
+			$metrics[2]
 		);
 	}
 
@@ -281,9 +308,22 @@ class RouterTest extends MediaWikiUnitTestCase {
 
 		$response = $router->execute( $request );
 		$this->assertSame( 200, $response->getStatusCode(), (string)$response->getBody() );
+
+		// Metrics
+		$metrics = $statsHelper->consumeAllFormatted();
 		$this->assertSame(
-			[ 'mediawiki.rest_api_latency_seconds:1|ms|#path:mock_v1_RouterTest_throwWrapped,method:GET,status:200' ],
-			$statsHelper->consumeAllFormatted()
+			'mediawiki.rest_api_latency_seconds:1|ms|#path:mock_v1_RouterTest_throwWrapped,method:GET,status:200',
+			$metrics[0]
+		);
+
+		// Handler class is mocked so we need to allow for a dynamic class name
+		$this->assertMatchesRegularExpression(
+			'/mediawiki\.rest_api_modules_hit_total:1|c|#api_type:REST_API,api_module:mock_v1,api_endpoint:MediaWiki_Rest_Handler_anonymous_var_www_html_w_tests_phpunit_unit_includes_Rest_MockHandlerFactory_php_(a-Z0-9_)+,path:mock_v1_RouterTest_throwWrapped,method:GET,status:200/',
+			$metrics[1]
+		);
+		$this->assertMatchesRegularExpression(
+			'/mediawiki\.rest_api_modules_latency:1|ms|#api_type:REST_API,api_module:mock_v1,api_endpoint:MediaWiki_Rest_Handler_anonymous_var_www_html_w_tests_phpunit_unit_includes_Rest_MockHandlerFactory_php_(a-Z0-9_)+,path:mock_v1_RouterTest_throwWrapped,method:GET,status:200/',
+			$metrics[2]
 		);
 	}
 

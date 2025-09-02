@@ -109,7 +109,9 @@ class SpecBasedModuleTest extends \MediaWikiUnitTestCase {
 		$data = json_decode( $response->getBody(), true );
 		$this->assertSame( 'hi!', $data['message'] );
 		$this->assertSame( [
-			'mediawiki.rest_api_latency_seconds:1|ms|#path:test_v1_ModuleTest_hello_name,method:GET,status:200'
+			'mediawiki.rest_api_latency_seconds:1|ms|#path:test_v1_ModuleTest_hello_name,method:GET,status:200',
+			'mediawiki.rest_api_modules_hit_total:1|c|#api_type:REST_API,api_module:test_v1,api_endpoint:MediaWiki_Tests_Rest_Handler_HelloHandler,path:test_v1_ModuleTest_hello_name,method:GET,status:200',
+			'mediawiki.rest_api_modules_latency:1|ms|#api_type:REST_API,api_module:test_v1,api_endpoint:MediaWiki_Tests_Rest_Handler_HelloHandler,path:test_v1_ModuleTest_hello_name,method:GET,status:200'
 		], $statsHelper->consumeAllFormatted() );
 	}
 
@@ -163,16 +165,32 @@ class SpecBasedModuleTest extends \MediaWikiUnitTestCase {
 		$statsHelper = StatsFactory::newUnitTestingHelper();
 		$module->setStats( $statsHelper->getStatsFactory() );
 
+		ConvertibleTimestamp::setFakeTime( '20110401090000' );
 		$response = $module->execute( '/ModuleTest/throw', $request );
 		$body = $response->getBody();
 		$body->rewind();
 		$data = json_decode( $body->getContents(), true );
+		ConvertibleTimestamp::setFakeTime( '20110401090000' );
 
 		$this->assertSame( 555, $response->getStatusCode() );
 		$this->assertSame( 'Mock error', $data['message'] );
-		$this->assertSame( [
-			'mediawiki.rest_api_errors_total:1|c|#path:test_v1_ModuleTest_throw,method:GET,status:555'
-		], $statsHelper->consumeAllFormatted() );
+
+		// Metrics
+		$metrics = $statsHelper->consumeAllFormatted();
+		$this->assertSame(
+			'mediawiki.rest_api_errors_total:1|c|#path:test_v1_ModuleTest_throw,method:GET,status:555',
+			$metrics[0]
+		);
+
+		// Handler class is mocked so we need to allow for a dynamic class name
+		$this->assertMatchesRegularExpression(
+			'/mediawiki\.rest_api_modules_hit_total:1|c|#api_type:REST_API,api_module:test_v1,api_endpoint:MediaWiki_Rest_Handler_anonymous_var_www_html_w_tests_phpunit_unit_includes_Rest_MockHandlerFactory_php_(a-Z0-9_)+,path:test_v1_ModuleTest_throw,method:GET,status:555/',
+			$metrics[1]
+		);
+		$this->assertMatchesRegularExpression(
+			'/mediawiki\.rest_api_modules_latency:1|ms|#api_type:REST_API,api_module:test_v1,api_endpoint:MediaWiki_Rest_Handler_anonymous_var_www_html_w_tests_phpunit_unit_includes_Rest_MockHandlerFactory_php_(a-Z0-9_)+,path:test_v1_ModuleTest_throw,method:GET,status:555/',
+			$metrics[2]
+		);
 	}
 
 	public function testFatalException() {

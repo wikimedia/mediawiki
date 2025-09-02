@@ -357,6 +357,42 @@ abstract class Module {
 				->copyToStatsdAt( "rest_api_latency.$pathForMetrics.$requestMethod.$statusCode" )
 				->observeNanoseconds( $latency );
 		}
+
+		// New unified metrics for the API
+		// Only record those if there's a handler
+		if ( !$handler ) {
+			return;
+		}
+		$moduleDescription = $this->getModuleDescription();
+
+		$metricsLabels = [
+			'api_module' => $moduleDescription['moduleId'],
+			// as a starting point, we'll use the Handler class name for the endpoint
+			'api_endpoint' => $handler::class,
+			'path' => $pathForMetrics,
+			'method' => $requestMethod,
+			'status' => "$statusCode",
+		];
+
+		// Hit metrics
+		$metricHitStats = $this->stats->getCounter( 'rest_api_modules_hit_total' )
+			->setLabel( 'api_type', 'REST_API' );
+		foreach ( $metricsLabels as $label => $value ) {
+			if ( $value ) {
+				$metricHitStats->setLabel( $label, $value );
+			}
+		}
+		$metricHitStats->increment();
+
+		// Latency metrics
+		$metricLatencyStats = $this->stats->getTiming( 'rest_api_modules_latency' )
+			->setLabel( 'api_type', 'REST_API' );
+		foreach ( $metricsLabels as $label => $value ) {
+			if ( $value ) {
+				$metricLatencyStats->setLabel( $label, $value );
+			}
+		}
+		$metricLatencyStats->observeNanoseconds( $latency );
 	}
 
 	/**
