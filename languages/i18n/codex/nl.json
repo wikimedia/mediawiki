@@ -28,5 +28,5 @@
 	"cdx-table-pagination-status-message-indeterminate-long": "Resultaten $1-$2 van vele",
 	"cdx-table-pagination-status-message-indeterminate-short": "$1-$2 van vele",
 	"cdx-table-pagination-status-message-indeterminate-final": "{{PLURAL:$1|Het laatste resultaat|De laatste $1 resultaten}}",
-	"cdx-table-pagination-status-message-pending": "Bezig met het laden van resultaten..."
+	"cdx-table-pagination-status-message-pending": "Resultaten worden geladen…"
 }
