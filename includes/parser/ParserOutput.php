@@ -42,6 +42,7 @@ use Wikimedia\Message\MessageValue;
 use Wikimedia\Parsoid\Core\ContentMetadataCollector;
 use Wikimedia\Parsoid\Core\ContentMetadataCollectorCompat;
 use Wikimedia\Parsoid\Core\LinkTarget as ParsoidLinkTarget;
+use Wikimedia\Parsoid\Core\MergeStrategy;
 use Wikimedia\Parsoid\Core\TOCData;
 
 /**
@@ -129,8 +130,9 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * alternative merge strategies for external use.
 	 * @internal
 	 * @since 1.38
+	 * @deprecated since 1.45; use MergeStrategy::UNION
 	 */
-	public const MW_MERGE_STRATEGY_UNION = 'union';
+	public const MW_MERGE_STRATEGY_UNION = MergeStrategy::UNION;
 
 	/**
 	 * @var string|null The output text
@@ -1513,28 +1515,31 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * a single value will be set, you should use ::setJsConfigVar() instead.
 	 *
 	 * @param string $key Key to use under mw.config
-	 * @param string $value Value to append to the configuration variable.
-	 * @param string $strategy Merge strategy:
-	 *  only MW_MERGE_STRATEGY_UNION is currently supported and external callers
-	 *  should treat this parameter as @internal at this time and omit it.
+	 * @param string|int $value Value to append to the configuration variable.
+	 * @param MergeStrategy|string $strategy Merge strategy:
+	 *  only MergeStrategy::UNION is currently supported and external
+	 *  callers should treat this parameter as @internal at this time and omit it.
 	 * @since 1.38
 	 */
 	public function appendJsConfigVar(
 		string $key,
-		string $value,
-		string $strategy = self::MW_MERGE_STRATEGY_UNION
+		$value,
+		MergeStrategy|string $strategy = MergeStrategy::UNION
 	): void {
-		if ( $strategy !== self::MW_MERGE_STRATEGY_UNION ) {
-			throw new InvalidArgumentException( "Unknown merge strategy $strategy." );
+		if ( is_string( $strategy ) ) {
+			$strategy = MergeStrategy::from( $strategy );
+		}
+		if ( $strategy !== MergeStrategy::UNION ) {
+			throw new InvalidArgumentException( "Unknown merge strategy {$strategy->value}." );
 		}
 		if ( !array_key_exists( $key, $this->mJsConfigVars ) ) {
 			$this->mJsConfigVars[$key] = [
 				// Indicate how these values are to be merged.
-				self::MW_MERGE_STRATEGY_KEY => $strategy,
+				self::MW_MERGE_STRATEGY_KEY => $strategy->value,
 			];
 		} elseif ( !is_array( $this->mJsConfigVars[$key] ) ) {
 			throw new InvalidArgumentException( "Mixing set and append for $key" );
-		} elseif ( ( $this->mJsConfigVars[$key][self::MW_MERGE_STRATEGY_KEY] ?? null ) !== $strategy ) {
+		} elseif ( ( $this->mJsConfigVars[$key][self::MW_MERGE_STRATEGY_KEY] ?? null ) !== $strategy->value ) {
 			throw new InvalidArgumentException( "Conflicting merge strategies for $key" );
 		}
 		$this->mJsConfigVars[$key][$value] = true;
@@ -2173,28 +2178,31 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * @param string $key The key for accessing the data. Extensions should take care to avoid
 	 *   conflicts in naming keys. It is suggested to use the extension's name as a prefix.
 	 *
-	 * @param int|string $value The value to append to the list.
-	 * @param string $strategy Merge strategy:
-	 *  only MW_MERGE_STRATEGY_UNION is currently supported and external callers
-	 *  should treat this parameter as @internal at this time and omit it.
+	 * @param string|int $value The value to append to the list.
+	 * @param MergeStrategy|string $strategy Merge strategy:
+	 *  only MergeStrategy::UNION is currently supported and external
+	 *  callers should treat this parameter as @internal at this time and omit it.
 	 * @since 1.38
 	 */
 	public function appendExtensionData(
 		string $key,
 		$value,
-		string $strategy = self::MW_MERGE_STRATEGY_UNION
+		MergeStrategy|string $strategy = MergeStrategy::UNION
 	): void {
-		if ( $strategy !== self::MW_MERGE_STRATEGY_UNION ) {
-			throw new InvalidArgumentException( "Unknown merge strategy $strategy." );
+		if ( is_string( $strategy ) ) {
+			$strategy = MergeStrategy::from( $strategy );
+		}
+		if ( $strategy !== MergeStrategy::UNION ) {
+			throw new InvalidArgumentException( "Unknown merge strategy {$strategy->value}." );
 		}
 		if ( !array_key_exists( $key, $this->mExtensionData ) ) {
 			$this->mExtensionData[$key] = [
 				// Indicate how these values are to be merged.
-				self::MW_MERGE_STRATEGY_KEY => $strategy,
+				self::MW_MERGE_STRATEGY_KEY => $strategy->value,
 			];
 		} elseif ( !is_array( $this->mExtensionData[$key] ) ) {
 			throw new InvalidArgumentException( "Mixing set and append for $key" );
-		} elseif ( ( $this->mExtensionData[$key][self::MW_MERGE_STRATEGY_KEY] ?? null ) !== $strategy ) {
+		} elseif ( ( $this->mExtensionData[$key][self::MW_MERGE_STRATEGY_KEY] ?? null ) !== $strategy->value ) {
 			throw new InvalidArgumentException( "Conflicting merge strategies for $key" );
 		}
 		$this->mExtensionData[$key][$value] = true;
@@ -2815,11 +2823,11 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			// `mJsConfigVars` array as ints; cast back to string.
 			$key = (string)$key;
 			if ( is_array( $value ) && isset( $value[self::MW_MERGE_STRATEGY_KEY] ) ) {
-				$strategy = $value[self::MW_MERGE_STRATEGY_KEY];
+				$strategy = MergeStrategy::from( $value[self::MW_MERGE_STRATEGY_KEY] );
 				foreach ( $value as $item => $ignore ) {
 					$item = (string)$item;
 					if ( $item !== self::MW_MERGE_STRATEGY_KEY ) {
-						$metadata->appendJsConfigVar( $key, $item, $strategy );
+						$metadata->appendJsConfigVar( $key, $item, $strategy->value );
 					}
 				}
 			} elseif ( $metadata instanceof ParserOutput &&
@@ -2840,11 +2848,11 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			// ints, cast back to string.
 			$key = (string)$key;
 			if ( is_array( $value ) && isset( $value[self::MW_MERGE_STRATEGY_KEY] ) ) {
-				$strategy = $value[self::MW_MERGE_STRATEGY_KEY];
+				$strategy = MergeStrategy::from( $value[self::MW_MERGE_STRATEGY_KEY] );
 				foreach ( $value as $item => $ignore ) {
 					$item = (string)$item;
 					if ( $item !== self::MW_MERGE_STRATEGY_KEY ) {
-						$metadata->appendExtensionData( $key, $item, $strategy );
+						$metadata->appendExtensionData( $key, $item, $strategy->value );
 					}
 				}
 			} elseif ( $metadata instanceof ParserOutput &&
@@ -2962,14 +2970,15 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 				if ( $strategy !== $a[$key][self::MW_MERGE_STRATEGY_KEY] ) {
 					throw new InvalidArgumentException( "Conflicting merge strategy for $key" );
 				}
-				if ( $strategy === self::MW_MERGE_STRATEGY_UNION ) {
+				$strategy = MergeStrategy::from( $strategy );
+				if ( $strategy === MergeStrategy::UNION ) {
 					// Note the array_merge is *not* safe to use here, because
 					// the $bValue is expected to be a map from items to `true`.
 					// If the item is a numeric string like '1' then array_merge
 					// will convert it to an integer and renumber the array!
 					$a[$key] = array_replace( $a[$key], $bValue );
 				} else {
-					throw new InvalidArgumentException( "Unknown merge strategy $strategy" );
+					throw new InvalidArgumentException( "Unknown merge strategy {$strategy->value}" );
 				}
 			} else {
 				$valuesSame = ( $a[$key] === $bValue );
