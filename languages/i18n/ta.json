@@ -2865,7 +2865,7 @@
 	"skin-action-delete": "நீக்கு",
 	"skin-action-move": "நகர்த்து",
 	"blockedtext-made-by": "$1 {{GENDER:$1|அவனால்|அவளால்|அவரால்}} தடையிடப்பட்டது",
-	"blockedtext-reason-comment": "கொடுக்கப்பட்ட காரணம் <em>$1</em> தான்.",
+	"blockedtext-reason-comment": "கொடுக்கப்பட்ட காரணம்: <em>$1</em> தான்.",
 	"blockedtext-start-time": "தடை தொடங்கிய நேரம்: $1",
 	"blockedtext-expiration-time": "தடை முடிக்கிய நேரம்: $1",
 	"blockedtext-intended-blockee": "தடை செய்யப்பட்டிருக்க வேண்டிய நபர்: $1",
