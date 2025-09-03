@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.52.0
+ * OOUI v0.53.0
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2025 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2025-06-12T12:46:36Z
+ * Date: 2025-09-03T22:03:22Z
  */
 ( function ( OO ) {
 
@@ -1661,6 +1661,7 @@ OO.inheritClass( OO.ui.ToolGroupFactory, OO.Factory );
 OO.ui.ToolGroupFactory.static.getDefaultClasses = function () {
 	return [
 		OO.ui.BarToolGroup,
+		OO.ui.LabelToolGroup,
 		OO.ui.ListToolGroup,
 		OO.ui.MenuToolGroup
 	];
@@ -2037,6 +2038,69 @@ OO.ui.BarToolGroup.static.accelTooltips = true;
 OO.ui.BarToolGroup.static.name = 'bar';
 
 /**
+ * LabelToolGroup is a non-interactive toolgroup for displaying a label in the toolbar.
+ *
+ * It cannot contain any tools and does not respond to interaction.
+ *
+ * @class
+ * @extends OO.ui.ToolGroup
+ * @mixes OO.ui.mixin.IconElement
+ * @mixes OO.ui.mixin.IndicatorElement
+ * @mixes OO.ui.mixin.LabelElement
+ * @mixes OO.ui.mixin.TitledElement
+ *
+ * @constructor
+ * @param {OO.ui.Toolbar} toolbar
+ * @param {Object} [config] Configuration options
+ */
+OO.ui.LabelToolGroup = function OoUiLabelToolGroup( toolbar, config ) {
+	config = config || {};
+
+	// Parent constructor
+	OO.ui.LabelToolGroup.super.call( this, toolbar, config );
+
+	// Mixin constructors
+	OO.ui.mixin.IconElement.call( this, config );
+	OO.ui.mixin.IndicatorElement.call( this, config );
+	OO.ui.mixin.LabelElement.call( this, config );
+	OO.ui.mixin.TitledElement.call( this, config );
+
+	// LabelToolGroup cannot contain tools.
+	this.$group.remove();
+
+	// Use a $handle like PopupToolGroup so styles can be shared more easily
+	this.$handle = $( '<span>' ).addClass( 'oo-ui-toolGroup-handle oo-ui-labelToolGroup-handle' );
+
+	this.$handle.append( this.$icon, this.$label, this.$indicator );
+	this.$element
+		.addClass( 'oo-ui-labelToolGroup' )
+		.prepend( this.$handle );
+};
+
+OO.inheritClass( OO.ui.LabelToolGroup, OO.ui.ToolGroup );
+OO.mixinClass( OO.ui.LabelToolGroup, OO.ui.mixin.IconElement );
+OO.mixinClass( OO.ui.LabelToolGroup, OO.ui.mixin.IndicatorElement );
+OO.mixinClass( OO.ui.LabelToolGroup, OO.ui.mixin.LabelElement );
+OO.mixinClass( OO.ui.LabelToolGroup, OO.ui.mixin.TitledElement );
+
+/*  Static properties */
+
+/**
+ * @static
+ * @inheritdoc
+ */
+OO.ui.LabelToolGroup.static.name = 'label';
+
+/* Methods */
+
+/**
+ * LabelToolGroup cannot contain tools.
+ *
+ * @inheritdoc
+ */
+OO.ui.LabelToolGroup.prototype.populate = function () {};
+
+/**
  * PopupToolGroup is an abstract base class used by both {@link OO.ui.MenuToolGroup MenuToolGroup}
  * and {@link OO.ui.ListToolGroup ListToolGroup} to provide a popup (an overlaid menu or list of
  * tools with an optional icon and label). This class can be used for other base classes that
@@ -2117,7 +2181,7 @@ OO.ui.PopupToolGroup = function OoUiPopupToolGroup( toolbar, config ) {
 
 	// Initialization
 	this.$handle
-		.addClass( 'oo-ui-popupToolGroup-handle' )
+		.addClass( 'oo-ui-toolGroup-handle oo-ui-popupToolGroup-handle' )
 		.attr( { role: 'button', 'aria-expanded': 'false' } )
 		.append( this.$icon, this.$label, this.$indicator );
 	// If the pop-up should have a header, add it to the top of the toolGroup.

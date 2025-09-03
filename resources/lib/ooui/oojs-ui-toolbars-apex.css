@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.52.0
+ * OOUI v0.53.0
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2025 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2025-06-12T12:46:39Z
+ * Date: 2025-09-03T22:03:24Z
  */
 .oo-ui-tool > .oo-ui-tool-link > .oo-ui-tool-checkIcon {
   display: none;
@@ -178,6 +178,80 @@
   opacity: 0.2;
 }
 
+.oo-ui-labelToolGroup {
+  position: relative;
+  height: 2.5em;
+  min-width: 2.5em;
+}
+.oo-ui-toolbar-narrow .oo-ui-labelToolGroup {
+  min-width: 1.875em;
+}
+.oo-ui-labelToolGroup.oo-ui-iconElement {
+  min-width: 3.125em;
+}
+.oo-ui-toolbar-narrow .oo-ui-labelToolGroup.oo-ui-iconElement {
+  min-width: 2.5em;
+}
+.oo-ui-labelToolGroup.oo-ui-indicatorElement.oo-ui-iconElement {
+  min-width: 4.375em;
+}
+.oo-ui-toolbar-narrow .oo-ui-labelToolGroup.oo-ui-indicatorElement.oo-ui-iconElement {
+  min-width: 3.75em;
+}
+.oo-ui-labelToolGroup.oo-ui-labelElement .oo-ui-toolGroup-handle .oo-ui-labelElement-label {
+  line-height: 2.6em;
+  margin: 0 1em;
+}
+.oo-ui-toolbar-narrow .oo-ui-labelToolGroup.oo-ui-labelElement .oo-ui-toolGroup-handle .oo-ui-labelElement-label {
+  margin: 0 0.5em;
+}
+.oo-ui-labelToolGroup.oo-ui-labelElement.oo-ui-iconElement .oo-ui-toolGroup-handle .oo-ui-labelElement-label {
+  margin-left: 3em;
+}
+.oo-ui-toolbar-narrow .oo-ui-labelToolGroup.oo-ui-labelElement.oo-ui-iconElement .oo-ui-toolGroup-handle .oo-ui-labelElement-label {
+  margin-left: 2.5em;
+}
+.oo-ui-labelToolGroup.oo-ui-labelElement.oo-ui-indicatorElement .oo-ui-toolGroup-handle .oo-ui-labelElement-label {
+  margin-right: 2.25em;
+}
+.oo-ui-toolbar-narrow .oo-ui-labelToolGroup.oo-ui-labelElement.oo-ui-indicatorElement .oo-ui-toolGroup-handle .oo-ui-labelElement-label {
+  margin-right: 1.75em;
+}
+.oo-ui-labelToolGroup .oo-ui-toolGroup-handle {
+  height: 2.5em;
+}
+.oo-ui-labelToolGroup .oo-ui-toolGroup-handle .oo-ui-indicatorElement-indicator,
+.oo-ui-labelToolGroup .oo-ui-toolGroup-handle .oo-ui-iconElement-icon {
+  position: absolute;
+  top: 0;
+}
+.oo-ui-labelToolGroup .oo-ui-toolGroup-handle .oo-ui-indicatorElement-indicator {
+  width: 0.9375em;
+  height: 0.9375em;
+  margin: 0.78125em;
+  right: 0;
+}
+.oo-ui-toolbar-narrow .oo-ui-labelToolGroup .oo-ui-toolGroup-handle .oo-ui-indicatorElement-indicator {
+  right: -0.3125em;
+}
+.oo-ui-labelToolGroup .oo-ui-toolGroup-handle .oo-ui-iconElement-icon {
+  margin: 0.46875em;
+  left: 0.3125em;
+}
+.oo-ui-toolbar-narrow .oo-ui-labelToolGroup .oo-ui-toolGroup-handle .oo-ui-iconElement-icon {
+  left: 0;
+}
+.oo-ui-labelToolGroup.oo-ui-widget-enabled:hover {
+  border-color: transparent;
+}
+.oo-ui-labelToolGroup.oo-ui-widget-disabled {
+  color: #ccc;
+}
+.oo-ui-labelToolGroup.oo-ui-widget-disabled .oo-ui-indicatorElement-indicator,
+.oo-ui-labelToolGroup.oo-ui-widget-disabled .oo-ui-iconElement-icon {
+  opacity: 0.2;
+}
+
 .oo-ui-popupToolGroup {
   position: relative;
   height: 2.5em;
@@ -231,47 +305,47 @@
 .oo-ui-toolbar-narrow .oo-ui-popupToolGroup.oo-ui-indicatorElement.oo-ui-iconElement {
   min-width: 3.75em;
 }
-.oo-ui-popupToolGroup.oo-ui-labelElement .oo-ui-popupToolGroup-handle .oo-ui-labelElement-label {
+.oo-ui-popupToolGroup.oo-ui-labelElement .oo-ui-toolGroup-handle .oo-ui-labelElement-label {
   line-height: 2.6em;
   margin: 0 1em;
 }
-.oo-ui-toolbar-narrow .oo-ui-popupToolGroup.oo-ui-labelElement .oo-ui-popupToolGroup-handle .oo-ui-labelElement-label {
+.oo-ui-toolbar-narrow .oo-ui-popupToolGroup.oo-ui-labelElement .oo-ui-toolGroup-handle .oo-ui-labelElement-label {
   margin: 0 0.5em;
 }
-.oo-ui-popupToolGroup.oo-ui-labelElement.oo-ui-iconElement .oo-ui-popupToolGroup-handle .oo-ui-labelElement-label {
+.oo-ui-popupToolGroup.oo-ui-labelElement.oo-ui-iconElement .oo-ui-toolGroup-handle .oo-ui-labelElement-label {
   margin-left: 3em;
 }
-.oo-ui-toolbar-narrow .oo-ui-popupToolGroup.oo-ui-labelElement.oo-ui-iconElement .oo-ui-popupToolGroup-handle .oo-ui-labelElement-label {
+.oo-ui-toolbar-narrow .oo-ui-popupToolGroup.oo-ui-labelElement.oo-ui-iconElement .oo-ui-toolGroup-handle .oo-ui-labelElement-label {
   margin-left: 2.5em;
 }
-.oo-ui-popupToolGroup.oo-ui-labelElement.oo-ui-indicatorElement .oo-ui-popupToolGroup-handle .oo-ui-labelElement-label {
+.oo-ui-popupToolGroup.oo-ui-labelElement.oo-ui-indicatorElement .oo-ui-toolGroup-handle .oo-ui-labelElement-label {
   margin-right: 2.25em;
 }
-.oo-ui-toolbar-narrow .oo-ui-popupToolGroup.oo-ui-labelElement.oo-ui-indicatorElement .oo-ui-popupToolGroup-handle .oo-ui-labelElement-label {
+.oo-ui-toolbar-narrow .oo-ui-popupToolGroup.oo-ui-labelElement.oo-ui-indicatorElement .oo-ui-toolGroup-handle .oo-ui-labelElement-label {
   margin-right: 1.75em;
 }
-.oo-ui-popupToolGroup-handle {
+.oo-ui-popupToolGroup .oo-ui-toolGroup-handle {
   height: 2.5em;
 }
-.oo-ui-popupToolGroup-handle .oo-ui-indicatorElement-indicator,
-.oo-ui-popupToolGroup-handle .oo-ui-iconElement-icon {
+.oo-ui-popupToolGroup .oo-ui-toolGroup-handle .oo-ui-indicatorElement-indicator,
+.oo-ui-popupToolGroup .oo-ui-toolGroup-handle .oo-ui-iconElement-icon {
   position: absolute;
   top: 0;
 }
-.oo-ui-popupToolGroup-handle .oo-ui-indicatorElement-indicator {
+.oo-ui-popupToolGroup .oo-ui-toolGroup-handle .oo-ui-indicatorElement-indicator {
   width: 0.9375em;
   height: 0.9375em;
   margin: 0.78125em;
   right: 0;
 }
-.oo-ui-toolbar-narrow .oo-ui-popupToolGroup-handle .oo-ui-indicatorElement-indicator {
+.oo-ui-toolbar-narrow .oo-ui-popupToolGroup .oo-ui-toolGroup-handle .oo-ui-indicatorElement-indicator {
   right: -0.3125em;
 }
-.oo-ui-popupToolGroup-handle .oo-ui-iconElement-icon {
+.oo-ui-popupToolGroup .oo-ui-toolGroup-handle .oo-ui-iconElement-icon {
   margin: 0.46875em;
   left: 0.3125em;
 }
-.oo-ui-toolbar-narrow .oo-ui-popupToolGroup-handle .oo-ui-iconElement-icon {
+.oo-ui-toolbar-narrow .oo-ui-popupToolGroup .oo-ui-toolGroup-handle .oo-ui-iconElement-icon {
   left: 0;
 }
 .oo-ui-popupToolGroup-header {

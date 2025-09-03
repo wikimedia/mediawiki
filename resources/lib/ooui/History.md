@@ -1,5 +1,30 @@
 # OOUI Release History
 
+## v0.53.0 / 2025-09-03
+
+### Features
+* Create a LabelToolGroup (Ed Sanders)
+
+### Styles
+* MessageWidget: Improve disabled appearance (Ed Sanders)
+* icons: Update warning color in WikimediaUI theme (Ed Sanders)
+
+### Icons
+* icons: Add 'bookmarkList' icon (aude)
+* icons: Update warning color in WikimediaUI theme (Ed Sanders)
+
+### Code
+* Use php8 functions str_starts_with (Umherirrender)
+* demo: Add a demo that shows overriding ProcessDialog actions (David Lynch)
+* build: Updating brace-expansion to 1.1.12, 2.0.2 ([BOT] libraryupgrader)
+* build: Updating eslint-config-wikimedia to 0.31.0 ([BOT] libraryupgrader)
+* build: Updating mediawiki/mediawiki-phan-config to 0.16.0 ([BOT] libraryupgrader)
+* build: Updating mediawiki/mediawiki-phan-config to 0.17.0 ([BOT] libraryupgrader)
+* build: Updating tmp to 0.2.4 ([BOT] libraryupgrader)
+
+### Documentation
+* README: Update to reflect replacement by Codex (pcoombe)
+
 ## v0.52.0 / 2025-06-11
 
 ### Breaking changes

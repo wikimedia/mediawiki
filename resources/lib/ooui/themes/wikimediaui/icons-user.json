@@ -18,13 +18,19 @@
 			"color": "#d73333"
 		},
 		"warning": {
-			"color": "#edab00"
+			"color": "#ab7f2a"
 		},
 		"success": {
 			"color": "#14866d"
 		}
 	},
 	"images": {
+		"bookmarkList": {
+			"file": {
+				"ltr": "images/icons/bookmarkList-ltr.svg",
+				"rtl": "images/icons/bookmarkList-rtl.svg"
+			}
+		},
 		"userAdd": {
 			"file": {
 				"ltr": "images/icons/userAdd-ltr.svg",

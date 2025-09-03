@@ -2,6 +2,12 @@
 	"prefix": "oo-ui-icon",
 	"intro": "@import '../../../../src/styles/common.less';",
 	"images": {
+		"bookmarkList": {
+			"file": {
+				"ltr": "../wikimediaui/images/icons/bookmarkList-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/bookmarkList-rtl.svg"
+			}
+		},
 		"userAdd": {
 			"file": {
 				"ltr": "../wikimediaui/images/icons/userAdd-ltr.svg",

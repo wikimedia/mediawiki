@@ -10,8 +10,7 @@ OOUI is a component-based JavaScript UI library. Key features:
 * Built-in icons
 * Accessibility features
 
-It is the standard library for Web products at the Wikimedia Foundation, having been originally created for use by [VisualEditor](https://www.mediawiki.org/wiki/VisualEditor).
-
+It was the standard library for Web products at the Wikimedia Foundation, having been originally created for use by [VisualEditor](https://www.mediawiki.org/wiki/VisualEditor). It is now in maintenance mode, and we strongly recommend all new code instead be written using [Codex](https://doc.wikimedia.org/codex/latest/).
 
 Quick start
 ----------
