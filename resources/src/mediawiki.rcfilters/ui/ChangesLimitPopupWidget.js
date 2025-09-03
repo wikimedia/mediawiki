@@ -93,7 +93,6 @@ ChangesLimitPopupWidget.prototype.onGroupByPageModelUpdate = function () {
  */
 ChangesLimitPopupWidget.prototype.onGroupByPageUserClick = function () {
 	this.emit( 'groupByPageUserClick', this.groupByPageCheckbox.isSelected() );
-	mw.hook( 'rcfilters.groupbycheckboxwidget.click' ).fire( this );
 };
 
 module.exports = ChangesLimitPopupWidget;
