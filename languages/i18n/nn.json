@@ -1740,6 +1740,7 @@
 	"listusers": "Brukarliste",
 	"listusers-editsonly": "Vis berre brukarar med endringar",
 	"listusers-temporarygroupsonly": "Berre vis brukarar i mellombels brukargruppar",
+	"listusers-temporaryaccountsonly": "Vis berre mellombels kontoar",
 	"listusers-creationsort": "Sorter etter opprettingsdato",
 	"listusers-desc": "Sorter i minkande rekkjefylgd",
 	"usereditcount": "{{PLURAL:$1|éi endring|$1 endringar}}",

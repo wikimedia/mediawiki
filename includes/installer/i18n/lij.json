@@ -145,7 +145,7 @@
 	"config-mysql-innodb": "InnoDB (consegiòu)",
 	"config-mysql-engine-help": "<strong>InnoDB</strong> o l'é spésse vòtte a mêgio scèlta, in quànte o l'à 'n bón supòrto da concorénsa.\n\n<strong>MyISAM</strong> o poriéiva êse ciù lèsto inte instalaçioîn mono-uténte ò in sôla letûa.\nE bànche dæti MyISAM téndan a danezâse ciù de spésso de bànche dæti InnoDB.",
 	"config-server": "Nómme de l'host URL:",
-	"config-server-help": "O protocòllo e o nómme de l'òspite pàrte de l'URL dêuviòu p'intrâ inta tò wiki. O default relevòu in outomàtico o l'é pò-u sòlito corètto.",
+	"config-server-help": "O protocòllo e o nómme de l'òspite pàrte de l'URL dêuviòu p'intrâ inta tò wiki. O default relevòu in outomàtico o l'é pe-o sòlito corètto.",
 	"config-site-name": "Nómme da wiki:",
 	"config-site-name-help": "Quésto o saiâ vizoalizòu inta bâra do tìtolo do navegatô e in âtri vàrri pòsti.",
 	"config-site-name-blank": "Inserìsci o nómme de 'n scîto.",

@@ -4134,6 +4134,7 @@
 	"interwiki-badprefix": "Valið interwiki-forskeyti „$1“ inniheldur ógilda stafi",
 	"interwiki-cannotaddlocallanguage": "Forskeytið „$1“ stemmir við þekkt tungumálsforskeyti. Ekki er í boði að bæta við staðbundnu tungumálaforskeyti þegar verið er að nota altækan gagnagrunn tungumálatenginga.",
 	"interwiki-submit-empty": "Forskeytið og vefslóð geta ekki verið tóm.",
+	"right-interwiki": "Breyta interwiki gögnum",
 	"interwiki-local-links": "Staðbundin interwiki-forskeyti",
 	"interwiki-local-description": "Þessi forskeyti eru til staðbundið. Ef þau rekast á við altækt skilgreint forskeyti þá munu þau taka yfir altæku skilgreininguna.",
 	"interwiki-links": "Interwiki-forskeyti",

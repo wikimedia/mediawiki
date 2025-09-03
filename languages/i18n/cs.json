@@ -70,7 +70,8 @@
 			"Want",
 			"Woytecr",
 			"YjM",
-			"לערי ריינהארט"
+			"לערי ריינהארט",
+			"WikipedistaOndra"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Kategorie}}",
@@ -2567,6 +2568,8 @@
 	"block-user-no-active-range-blocks": "Nenalezena žádná aktivní blokování rozsahu",
 	"block-user-previous-blocks": "Kniha blokování",
 	"block-user-no-previous-blocks": "Nebyla nalezena žádná předchozí blokování",
+	"block-user-suppressed-blocks": "Utajený protokol bloků",
+	"block-user-no-suppressed-blocks": "Nenalezeny žádné předchozí utajené bloky",
 	"block-item-remove": "Odebrat",
 	"block-item-edit": "Upravit",
 	"block-target": "Cíl",
@@ -2575,11 +2578,15 @@
 	"block-namespaces-placeholder": "Přidat další jmenné prostory…",
 	"block-update": "Aktualizovat blokování",
 	"block-unblock-redirected": "Byli jste přesměrováni ze „Speciální:Odblokování“ na „Speciální:Blokování“, kde administrátoři mohou vytvářet, editovat nebo odstraňovat blokace libovolných cílů.",
+	"block-invalid-id": "Neplatné ID bloku",
 	"block-removal-title": "Potvrdit odblokování",
 	"block-removal-reason-placeholder": "Zadejte důvod",
 	"block-removal-confirm-yes": "Odvolat blokování",
 	"block-removal-confirm-no": "Storno",
+	"block-javascript-required": "Pro použití rozhraní Special:Block je vyžadován JavaScript.",
 	"block-removed": "Blokace byla odstraněna.",
+	"block-reblock-multi-legacy": "Tento uživatel byl již několikrát zablokován a pomocí tohoto formuláře jej nelze znovu zablokovat.",
+	"block-view-target": "Zobrazit",
 	"unblockip": "Odblokovat uživatele",
 	"unblockiptext": "Tímto formulářem je možno obnovit právo blokované IP adresy či uživatele opět přispívat do {{grammar:2sg|{{SITENAME}}}}.",
 	"unblock-target": "Odblokujte cíl",
@@ -4055,6 +4062,7 @@
 	"renameuser-error-same-user": "Nové uživatelské jméno je stejné jako dosavadní.",
 	"renameuser-error-temp-user": "Nemůžete přejmenovat dočasný účet „$1“.",
 	"renameuser-error-temp-user-reserved": "Nemůžete použít „$1“. To je vyhrazeno pro dočasné účty.",
+	"renameuser-error-unexpected-name": "Cílový uživatel nemá očekávané jméno.",
 	"renameuser-error-global-rights": "Nemáte oprávnění přejmenovávat globální uživatele.",
 	"renameusersuccess": "{{GENDER:$2|Uživatel|Uživatelka}} „<nowiki>$1</nowiki>“ {{GENDER:$2|byl úspěšně přejmenován|byla úspěšně přejmenována}} na „<nowiki>$2</nowiki>“",
 	"renameuser-page-exists": "Stránka $1 již existuje a nelze ji automaticky přepsat.",
@@ -4108,6 +4116,8 @@
 	"interwiki-logtext": "Zobrazit protokolovací záznamy",
 	"interwiki_addtext": "Přidat prefix interwiki nebo jazyka",
 	"interwiki-addtext-local": "Přidat místní interwiki nebo jazykový prefix",
+	"interwiki-addtext-nolang": "Přidat prefix interwiki",
+	"interwiki-addtext-local-nolang": "Přidat lokální prefix interwiki",
 	"interwiki_addintro": "Přidáváte nový interwiki prefix.\nMějte na vědomí, že nemůže obsahovat mezery ( ), dvojtečky (:), ampersandy (&), ani rovnítka (=).",
 	"interwiki_addbutton": "Přidat",
 	"interwiki_added": "Prefix „$1“ byl úspěšně přidán do tabulky interwiki.",
@@ -4132,5 +4142,6 @@
 	"interwiki-local-description": "Tyto prefixy jsou definovány lokálně. Jakékoli duplicity vůči globální konfiguraci příslušnou globální definici překryjí.",
 	"interwiki-links": "Interwiki prefixy",
 	"interwiki-language-links": "Mezijazykové prefixy",
-	"interwiki-language-description": "Tyto prefixy odpovídají definovaným jazykovým kódům a použijí se k vytvoření seznamu „{{int:otherlanguages}}“, když se přidají do stránky."
+	"interwiki-language-description": "Tyto prefixy odpovídají definovaným jazykovým kódům a použijí se k vytvoření seznamu „{{int:otherlanguages}}“, když se přidají do stránky.",
+	"interwiki-global-language-links": "Globální mezijazykové prefixy"
 }

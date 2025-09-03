@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"Baba Tabita"
+		]
+	},
+	"monday": "Jumatatʉ",
+	"tuesday": "Jumaine",
+	"sunday": "Jumapɨrɨ",
+	"mon": "J3",
+	"tue": "J4",
+	"wed": "J5",
+	"thu": "Alh",
+	"sat": "J1",
+	"sun": "J2",
+	"months": "{{PLURAL:$1|$1 mweeri|$1 myeeri}}",
+	"duration-months": "$1 {{PLURAL:$1|mweeri|myeeri}}",
+	"duration-days": "{{PLURAL:$1|sikʉ}} $1"
+}
