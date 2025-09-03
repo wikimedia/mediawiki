@@ -253,6 +253,8 @@
 	"rest-endpoint-desc-get-page-title-media": "Répertorie les fichiers multimédias utilisés sur une page, jusqu'à 100 fichiers.",
 	"rest-endpoint-desc-get-file-title": "Renvoie des informations sur un fichier, dont des liens de téléchargement du fichier aux formats miniature, aperçu et original.",
 	"rest-endpoint-desc-post-transform-wikitext-to-html": "Convertit le wikitexte en HTML.",
+	"rest-endpoint-desc-post-transform-wikitext-to-html-title": "Convertit le wikitexte en HTML. Le paramètre « corps de la requête » doit être fourni, mais peut être laissé vide pour recevoir la page complète. Le corps de la réponse contient le code HTML de la page.",
+	"rest-endpoint-desc-post-transform-wikitext-to-html-title-revision": "Convertit le wikitexte d'une version donnée en HTML. Le paramètre « corps de la requête » doit être fourni, mais peut être laissé vide pour recevoir la version complète. Le corps de la réponse contient le HTML rendu de la révision.",
 	"rest-endpoint-desc-post-transform-wikitext-to-lint": "Renvoie les erreurs de l’analyseur syntaxique pour du wikitexte",
 	"rest-endpoint-desc-post-transform-html-to-wikitext": "Convertit le HTML en wikitexte."
 }

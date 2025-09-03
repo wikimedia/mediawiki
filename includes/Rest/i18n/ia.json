@@ -241,6 +241,10 @@
 	"rest-endpoint-desc-get-page-title-media": "Genera un lista del files multimedial usate sur un pagina wiki, usque a 100 files.",
 	"rest-endpoint-desc-get-file-title": "Restitue information sur un file, includente ligamines pro discargar le file in formato de miniatura, previsualisation e original.",
 	"rest-endpoint-desc-post-transform-wikitext-to-html": "Converte wikitexto in HTML.",
+	"rest-endpoint-desc-post-transform-wikitext-to-html-title": "Converte wikitexto in HTML. Le parametro ‘body’ del requesta de wikitexto debe esser fornite, ma pote esser lassate vacue pro reciper le pagina complete. Le texto del responsa contine le codice HTML generate del pagina.",
+	"rest-endpoint-desc-post-transform-wikitext-to-html-title-revision": "Converte le wikitexto de un version date in HTML. Le parametro ‘body’ del requesta de wikitexto debe esser fornite, ma pote esser lassate vacue pro reciper le version complete. Le texto del responsa contine le codice HTML generate del version.",
 	"rest-endpoint-desc-post-transform-wikitext-to-lint": "Restitue errores de lint pro wikitexto",
-	"rest-endpoint-desc-post-transform-html-to-wikitext": "Converte HTML in wikitexto."
+	"rest-endpoint-desc-post-transform-html-to-wikitext": "Converte HTML in wikitexto.",
+	"rest-endpoint-desc-post-transform-html-to-wikitext-title": "Converte HTML in wikitexto. Le parametro ‘body’ del requesta de HTML debe esser fornite, ma pote esser lassate vacue pro reciper le pagina complete. Le texto del responsa contine le wikitexto del pagina.",
+	"rest-endpoint-desc-post-transform-html-to-wikitext-title-revision": "Converte le codice HTML de un version date in wikitexto. Le parametro ‘body’ del requesta de HTML debe esser fornite, ma pote esser lassate vacue pro reciper le version complete. Le texto del responsa contine le wikitexto del version."
 }
