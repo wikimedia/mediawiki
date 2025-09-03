@@ -189,16 +189,13 @@ class DemoService {
 
 	public const CONSTRUCTOR_OPTIONS = [
 		'Foo',
-		'Bar'
+		'Bar',
 	];
 
-	private $options;
-
-	public function __construct( ServiceOptions $options ) {
+	public function __construct( private readonly ServiceOptions $options ) {
 		// ServiceOptions::assertRequiredOptions ensures that all of the
 		// settings listed in CONSTRUCTOR_OPTIONS are available
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
-		$this->options = $options;
 		// $wgFoo is now available with $this->options->get( 'Foo' )
 		// $wgBar is now available with $this->options->get( 'Bar' )
 	}
@@ -209,12 +206,12 @@ class DemoService {
 ServiceOptions objects are constructed within ServiceWiring.php and can also
 be created in tests.
 ```php
-'DemoService' => function ( MediaWikiServices $services ) : DemoService {
+'DemoService' => static function ( MediaWikiServices $services ): DemoService {
 	return new DemoService(
 		new ServiceOptions(
 			DemoService::CONSTRUCTOR_OPTIONS,
 			$services->getMainConfig()
-		)
+		),
 	);
 },
 ```
