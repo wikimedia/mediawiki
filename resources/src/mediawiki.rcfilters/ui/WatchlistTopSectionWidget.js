@@ -21,11 +21,11 @@ const WatchlistTopSectionWidget = function MwRcfiltersUiWatchlistTopSectionWidge
 	WatchlistTopSectionWidget.super.call( this, config );
 	const $editWatchListButtonIcon = $( '<span>' ).append(
 		new OO.ui.IconWidget( { icon: 'edit', classes: [ 'mw-rcfilters-ui-watchlistTopSectionWidget-editWatchlistButtonIcon' ] } ).$element,
-		mw.msg( 'rcfilters-watchlist-edit-watchlist-button' )
+		mw.message( 'rcfilters-watchlist-edit-watchlist-button' ).escaped()
 	);
 	const $editSettingsIcon = $( '<span>' ).append(
 		new OO.ui.IconWidget( { icon: 'settings', classes: [ 'mw-rcfilters-ui-watchlistTopSectionWidget-editWatchlistButtonIcon' ] } ).$element,
-		mw.msg( 'rcfilters-watchlist-edit-watchlist-preferences-button' )
+		mw.message( 'rcfilters-watchlist-edit-watchlist-preferences-button' ).escaped()
 	);
 	const $editWatchlistButtonLink = $( '<a>' ).attr( 'href',
 		require( '../config.json' ).StructuredChangeFiltersEditWatchlistUrl )
