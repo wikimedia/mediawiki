@@ -6,7 +6,7 @@
 	"properties": {
 		"pages": {
 			"type": "array",
-			"x-i18n-description": "List of search result pages",
+			"x-i18n-description": "rest-property-desc-search-pages",
 			"items": {
 				"type": "object",
 				"required": [
@@ -44,7 +44,7 @@
 					"description": {
 						"type": "string",
 						"nullable": true,
-						"x-i18n-description": "The title of a page redirection from, if applicable, or null"
+						"x-i18n-description": "rest-property-desc-search-description"
 					},
 					"thumbnail": {
 						"type": "object",

@@ -68,7 +68,7 @@
 		},
 		"license": {
 			"type": "object",
-			"x-i18n-description": "Information about the wiki's license",
+			"x-i18n-description": "rest-property-desc-page-license",
 			"required": [
 				"url",
 				"title"
@@ -86,7 +86,7 @@
 		},
 		"user": {
 			"type": "object",
-			"x-i18n-description": "",
+			"x-i18n-description": "rest-property-desc-user",
 			"nullable": true,
 			"required": [
 				"id",

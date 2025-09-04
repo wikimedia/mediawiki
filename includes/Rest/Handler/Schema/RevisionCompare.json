@@ -53,7 +53,7 @@
 		},
 		"to": {
 			"type": "object",
-			"x-i18n-description": "Details of the 'to' revision",
+			"x-i18n-description": "rest-param-desc-compare-to-desc",
 			"required": [
 				"id",
 				"slot_role",

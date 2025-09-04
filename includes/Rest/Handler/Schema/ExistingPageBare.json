@@ -56,7 +56,7 @@
 		},
 		"html_url": {
 			"type": "string",
-			"x-i18n-description": "API route to fetch the content of the page in HTML"
+			"x-i18n-description": "rest-property-desc-html-url"
 		}
 	}
 }
