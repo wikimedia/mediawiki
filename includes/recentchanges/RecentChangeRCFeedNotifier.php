@@ -45,6 +45,12 @@ class RecentChangeRCFeedNotifier {
 	 * @param array|null $feeds Optional feeds to send to, defaults to $wgRCFeeds
 	 */
 	public function notifyRCFeeds( RecentChange $recentChange, ?array $feeds = null ) {
+		// T403757: Don't send 'suppressed from creation' recent changes entries to the RCFeeds as they do not
+		// have systems to appropriately redact suppressed / deleted material
+		if ( $recentChange->getAttribute( 'rc_deleted' ) != 0 ) {
+			return;
+		}
+
 		$feeds ??= $this->options->get( MainConfigNames::RCFeeds );
 
 		$performer = $recentChange->getPerformerIdentity();

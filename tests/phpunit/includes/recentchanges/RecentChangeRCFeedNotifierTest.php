@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Logging\LogPage;
 use MediaWiki\MainConfigNames;
 use MediaWiki\RecentChanges\RecentChange;
 
@@ -110,5 +111,37 @@ class RecentChangeRCFeedNotifierTest extends MediaWikiIntegrationTestCase {
 			$this->getServiceContainer()->getRecentChangeRCFeedNotifier()->getNotifyUrl( $rc ),
 			'Notify url'
 		);
+	}
+
+	/**
+	 * @covers \MediaWiki\RecentChanges\RecentChangeRCFeedNotifier::notifyRCFeeds
+	 */
+	public function testNotifyForRCFeedsWhenRecentChangeIsDeleted() {
+		$rc = new RecentChange;
+		$testPerformer = $this->getTestUser()->getUserIdentity();
+		$rc->setAttribs( [
+			'rc_id' => 60,
+			'rc_timestamp' => '20110401090000',
+			'rc_namespace' => NS_MAIN,
+			'rc_title' => 'Example',
+			'rc_type' => RC_LOG,
+			'rc_source' => RecentChange::SRC_LOG,
+			'rc_cur_id' => 42,
+			'rc_this_oldid' => 50,
+			'rc_last_oldid' => 0,
+			'rc_patrolled' => 2,
+			'rc_logid' => 160,
+			'rc_log_type' => 'delete',
+			'rc_log_action' => 'delete',
+			'rc_deleted' => LogPage::SUPPRESSED_ACTION,
+			'rc_user' => $testPerformer->getId(),
+		] );
+
+		// Expect that the mock RCFeed is never interacted with, because we want suppressed from creation
+		// recent change entries to not be sent to RCFeeds
+		$mockRCFeed = $this->createNoOpMock( RCFeed::class );
+		$this->overrideConfigValue( MainConfigNames::RCFeeds, [ [ 'class' => $mockRCFeed ] ] );
+
+		$this->getServiceContainer()->getRecentChangeRCFeedNotifier()->notifyRCFeeds( $rc );
 	}
 }
