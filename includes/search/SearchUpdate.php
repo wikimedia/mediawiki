@@ -85,12 +85,13 @@ class SearchUpdate {
 			if ( $this->getLatestPage() === null ) {
 				$search->delete( $this->id, $normalTitle );
 				continue;
-			} elseif ( $this->content === null ) {
+			}
+			if ( $this->content === null ) {
 				$search->updateTitle( $this->id, $normalTitle );
 				continue;
 			}
 
-			$text = $this->content !== null ? $this->content->getTextForSearchIndex() : '';
+			$text = $this->content->getTextForSearchIndex();
 			$text = $this->updateText( $text, $search );
 
 			# Perform the actual update

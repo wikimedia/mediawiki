@@ -272,6 +272,7 @@ because of Phabricator reports.
   have been removed. Use User::getBlock instead.
 * Title::getTitleProtection() and ::deleteTitleProtection() methods, deprecated
   in 1.37, have been removed.
+* SearchEngine::getTextFromContent(), deprecated in 1.34 is now removed
 * …
 
 === Deprecations in 1.45 ===

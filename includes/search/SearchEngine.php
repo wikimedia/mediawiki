@@ -26,7 +26,6 @@
  */
 
 use MediaWiki\Config\Config;
-use MediaWiki\Content\Content;
 use MediaWiki\Exception\MWUnknownContentModelException;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
@@ -504,33 +503,6 @@ abstract class SearchEngine {
 	 */
 	public function delete( $id, $title ) {
 		// no-op
-	}
-
-	/**
-	 * Get the raw text for updating the index from a content object
-	 * Nicer search backends could possibly do something cooler than
-	 * just returning raw text
-	 *
-	 * @todo This isn't ideal, we'd really like to have content-specific handling here
-	 * @param Title $t Title we're indexing
-	 * @param Content|null $c Content of the page to index
-	 * @return string
-	 * @deprecated since 1.34 use Content::getTextForSearchIndex directly
-	 */
-	public function getTextFromContent( Title $t, ?Content $c = null ) {
-		return $c ? $c->getTextForSearchIndex() : '';
-	}
-
-	/**
-	 * If an implementation of SearchEngine handles all of its own text processing
-	 * in getTextFromContent() and doesn't require SearchUpdate::updateText()'s
-	 * rather silly handling, it should return true here instead.
-	 *
-	 * @return bool
-	 * @deprecated since 1.34 no longer needed since getTextFromContent is being deprecated
-	 */
-	public function textAlreadyUpdatedForIndex() {
-		return false;
 	}
 
 	/**
