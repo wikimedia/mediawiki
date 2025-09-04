@@ -551,6 +551,12 @@ class RecentChange implements Taggable {
 	 * @param array|null $feeds Optional feeds to send to, defaults to $wgRCFeeds
 	 */
 	public function notifyRCFeeds( array $feeds = null ) {
+		// T403757: Don't send 'suppressed from creation' recent changes entries to the RCFeeds as they do not
+		// have systems to appropriately redact suppressed / deleted material
+		if ( $this->mAttribs['rc_deleted'] != 0 ) {
+			return;
+		}
+
 		$rcFeeds =
 			MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::RCFeeds );
 		if ( $feeds === null ) {
