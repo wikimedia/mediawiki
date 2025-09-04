@@ -1,17 +1,5 @@
 <?php
 
-namespace MediaWiki\Tests\Site;
-
-use DOMDocument;
-use InvalidArgumentException;
-use MediaWiki\Site\MediaWikiSite;
-use MediaWiki\Site\Site;
-use MediaWiki\Site\SiteExporter;
-use MediaWiki\Site\SiteImporter;
-use MediaWiki\Site\SiteList;
-use MediaWiki\Site\SiteStore;
-use MediaWikiIntegrationTestCase;
-
 /**
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,7 +17,21 @@ use MediaWikiIntegrationTestCase;
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- *
+ */
+
+namespace MediaWiki\Tests\Site;
+
+use DOMDocument;
+use InvalidArgumentException;
+use MediaWiki\Site\MediaWikiSite;
+use MediaWiki\Site\Site;
+use MediaWiki\Site\SiteExporter;
+use MediaWiki\Site\SiteImporter;
+use MediaWiki\Site\SiteList;
+use MediaWiki\Site\SiteStore;
+use MediaWikiIntegrationTestCase;
+
+/**
  * @ingroup Site
  * @ingroup Test
  *

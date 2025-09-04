@@ -57,7 +57,6 @@ class SkinComponentFooterTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider provideMakeFooterIconHTML
-	 *
 	 */
 	public function testMakeFooterIconHTML( $config, $icon, $withImage, $result ) {
 		$ctx = $this->createMock( SkinComponentRegistryContext::class );

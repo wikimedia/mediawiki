@@ -186,8 +186,6 @@ class ThrottlerTest extends MediaWikiIntegrationTestCase {
 		$throttler->increase( 'SomeUser' );
 	}
 
-	/**
-	 */
 	public function testException() {
 		$throttler = new Throttler( [ [ 'count' => 3, 'seconds' => 10 ] ] );
 		$throttler->setLogger( new NullLogger() );

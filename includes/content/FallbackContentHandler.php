@@ -115,7 +115,6 @@ class FallbackContentHandler extends ContentHandler {
 	 * @param Content $content
 	 * @param ContentParseParams $cpoParams
 	 * @param ParserOutput &$output The output object to fill (reference).
-	 *
 	 */
 	protected function fillParserOutput(
 		Content $content,

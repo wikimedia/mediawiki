@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @license GPL-2.0-or-later
+ */
+
 namespace MediaWiki\Watchlist;
 
 use MediaWiki\Api\ApiUsageException;
@@ -28,10 +32,7 @@ use Wikimedia\Rdbms\SelectQueryBuilder;
  *
  * @since 1.28
  *
- * @file
  * @ingroup Watchlist
- *
- * @license GPL-2.0-or-later
  */
 class WatchedItemQueryService {
 

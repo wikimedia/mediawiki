@@ -12,7 +12,6 @@ use MediaWiki\Page\PageReference;
  * @stable to use
  * @since 1.37
  */
-
 trait LinkCacheTestTrait {
 
 	/**

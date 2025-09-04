@@ -130,6 +130,7 @@ class ExternalLinksTable extends LinksTable {
 		return $stringArray;
 	}
 
+	/** @inheritDoc */
 	protected function virtualDomain() {
 		return self::VIRTUAL_DOMAIN;
 	}

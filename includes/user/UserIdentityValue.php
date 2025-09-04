@@ -121,7 +121,6 @@ class UserIdentityValue implements Stringable, UserIdentity {
 	 *
 	 * @param string|false $wikiId The wiki ID expected by the caller
 	 * @return int The user ID. May be 0 for anonymous users or for users with no local account.
-	 *
 	 */
 	public function getId( $wikiId = self::LOCAL ): int {
 		$this->assertWiki( $wikiId );

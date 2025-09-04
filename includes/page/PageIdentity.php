@@ -94,7 +94,6 @@ interface PageIdentity extends PageReference {
 	 * @see Title::getArticleID()
 	 * @see Title::toPageIdentity()
 	 * @see canExist()
-	 *
 	 */
 	public function getId( $wikiId = self::LOCAL ): int;
 

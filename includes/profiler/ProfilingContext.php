@@ -5,7 +5,7 @@ namespace MediaWiki\Profiler;
 /**
  * Class for tracking request-level classification information for profiling/stats/logging
  *
- * @note: this avoids the use of MediaWikiServices so that shutdown functions can use it
+ * @note this avoids the use of MediaWikiServices so that shutdown functions can use it
  *
  * @since 1.40
  */

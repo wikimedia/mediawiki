@@ -150,8 +150,6 @@ class TextContentTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $expected, $content->getTextForSummary( $maxlength ) );
 	}
 
-	/**
-	 */
 	public function testCopy() {
 		$content = $this->newContent( 'hello world.' );
 		$copy = $content->copy();

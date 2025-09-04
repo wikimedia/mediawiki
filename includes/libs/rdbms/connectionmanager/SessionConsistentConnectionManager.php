@@ -26,7 +26,7 @@ namespace Wikimedia\Rdbms;
  * the replica databases are possibly outdated after a write operation, and thus the primary database
  * should be used for subsequent read operations.
  *
- * @note: Services that access overlapping sets of database tables, or interact with logically
+ * @note Services that access overlapping sets of database tables, or interact with logically
  * related sets of data in the database, should share a SessionConsistentConnectionManager.
  * Services accessing unrelated sets of information may prefer to not share a
  * SessionConsistentConnectionManager, so they can still perform read operations against replica

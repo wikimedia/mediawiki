@@ -1511,7 +1511,6 @@ class DifferenceEngine extends ContextSource {
 	 *
 	 * @param string $headerText The text of the header
 	 * @return string
-	 *
 	 */
 	protected function getSlotHeader( $headerText ) {
 		// The old revision is missing on oldid=<first>&diff=prev; only 2 columns in that case.
@@ -2288,7 +2287,6 @@ class DifferenceEngine extends ContextSource {
 	 *
 	 * @return bool Whether the content of both revisions could be loaded successfully.
 	 *   (When mOldRev is false, that still counts as a success.)
-	 *
 	 */
 	public function loadText() {
 		if ( $this->mTextLoaded == 2 ) {

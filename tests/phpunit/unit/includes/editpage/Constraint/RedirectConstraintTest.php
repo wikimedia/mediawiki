@@ -18,7 +18,7 @@
  * @file
  */
 
-namespace phpunit\unit\includes\editpage\Constraint;
+namespace MediaWiki\Tests\Unit\EditPage\Constraint;
 
 use EditConstraintTestTrait;
 use MediaWiki\Content\Content;

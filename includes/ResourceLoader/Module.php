@@ -687,7 +687,6 @@ abstract class Module implements LoggerAwareInterface {
 	 * @param Context $context
 	 * @return array Keyed by url, values must be an array containing
 	 *  at least an 'as' key. Optionally a 'media' key as well.
-	 *
 	 */
 	protected function getPreloadLinks( Context $context ) {
 		return [];

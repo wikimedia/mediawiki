@@ -84,7 +84,6 @@ class JobQueueGroup {
 	 * @param StatsFactory $statsFactory
 	 * @param WANObjectCache $wanCache
 	 * @param GlobalIdGenerator $globalIdGenerator
-	 *
 	 */
 	public function __construct(
 		$domain,

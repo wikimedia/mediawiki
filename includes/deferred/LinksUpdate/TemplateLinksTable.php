@@ -64,6 +64,7 @@ class TemplateLinksTable extends GenericPageLinksTable {
 		return MIGRATION_NEW;
 	}
 
+	/** @inheritDoc */
 	protected function virtualDomain() {
 		return self::VIRTUAL_DOMAIN;
 	}

@@ -28,7 +28,6 @@ interface ApiFeedContributions__feedItemHook {
 	 *   another callback has already handled the hook.
 	 * @return bool|void True or no return value to continue or false to abort
 	 * @since 1.35
-	 *
 	 */
 	public function onApiFeedContributions__feedItem( $row, $context, &$feedItem );
 }

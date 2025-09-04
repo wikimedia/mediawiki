@@ -17,7 +17,6 @@ use MWRestrictions;
  *
  * The value returned will be an MWRestrictions or the input string if it was not a list of
  * valid IP ranges.
- *
  */
 class HTMLRestrictionsField extends HTMLFormField {
 	protected const DEFAULT_ROWS = 5;

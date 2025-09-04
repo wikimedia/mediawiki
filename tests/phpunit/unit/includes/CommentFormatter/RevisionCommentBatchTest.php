@@ -18,6 +18,7 @@ use MediaWikiUnitTestCase;
 class RevisionCommentBatchTest extends MediaWikiUnitTestCase {
 	private function getFormatter( $callback ) {
 		return new class( $callback ) extends CommentFormatter {
+			/** @var callable */
 			private $callback;
 
 			public function __construct( $callback ) {

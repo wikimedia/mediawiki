@@ -15,7 +15,6 @@ use MediaWiki\Widget\SizeFilterWidget;
  * size limits are represented using a negative integer.
  *
  * @stable to extend
- *
  */
 class HTMLSizeFilterField extends HTMLIntField {
 

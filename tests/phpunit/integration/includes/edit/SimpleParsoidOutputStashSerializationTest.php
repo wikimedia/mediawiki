@@ -89,6 +89,7 @@ class SimpleParsoidOutputStashSerializationTest extends MediaWikiIntegrationTest
 
 	public static function getSupportedSerializationFormats(): array {
 		$mockServices = new class implements ContainerInterface {
+			/** @var array */
 			private $contents = [];
 
 			public function get( $id ) {

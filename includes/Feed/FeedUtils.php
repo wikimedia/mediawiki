@@ -50,7 +50,6 @@ class FeedUtils {
 	 * @param OutputPage|null $output Null falls back to $wgOut
 	 * @return bool
 	 * @since 1.36 $output parameter added
-	 *
 	 */
 	public static function checkFeedOutput( $type, $output = null ) {
 		$feed = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::Feed );
@@ -118,7 +117,6 @@ class FeedUtils {
 	 * @param string $actiontext Text of the action; in case of log event
 	 * @return string
 	 * @deprecated since 1.38 use formatDiffRow2
-	 *
 	 */
 	public static function formatDiffRow( $title, $oldid, $newid, $timestamp,
 		$comment, $actiontext = ''

@@ -55,7 +55,6 @@ require_once __DIR__ . '/Maintenance.php';
 
 /**
  * Interactive shell with completion and global scope.
- *
  */
 class MediaWikiShell extends Maintenance {
 

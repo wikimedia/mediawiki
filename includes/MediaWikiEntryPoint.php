@@ -66,7 +66,7 @@ use Wikimedia\Telemetry\TracerState;
 /**
  * Base class for entry point handlers.
  *
- * @note: This is not stable to extend by extensions, because MediaWiki does not
+ * @note This is not stable to extend by extensions, because MediaWiki does not
  * allow extensions to define new entry points.
  *
  * @ingroup entrypoint

@@ -18,7 +18,6 @@ use Psr\Log\NullLogger;
  *
  * @stable to use
  */
-
 trait AuthenticationProviderTestTrait {
 
 	/**

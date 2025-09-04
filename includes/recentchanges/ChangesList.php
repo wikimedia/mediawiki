@@ -920,7 +920,6 @@ class ChangesList extends ContextSource {
 	 *
 	 * @param string &$s
 	 * @param RecentChange &$rc
-	 *
 	 */
 	private function insertPageTools( &$s, &$rc ) {
 		// FIXME Some page tools (e.g. thanks) might make sense for log entries.

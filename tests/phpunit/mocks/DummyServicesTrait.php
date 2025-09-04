@@ -198,6 +198,7 @@ trait DummyServicesTrait {
 
 		// Actual implementation
 		return new class( $allInterwikiRows ) implements InterwikiLookup {
+			/** @var array */
 			private $allInterwikiRows;
 
 			/** @inheritDoc */

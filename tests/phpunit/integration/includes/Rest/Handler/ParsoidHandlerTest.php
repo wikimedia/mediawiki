@@ -122,6 +122,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 			$dataAccess,
 			$methodOverrides
 		) extends ParsoidHandler {
+			/** @var array */
 			private $overrides;
 
 			public function __construct(

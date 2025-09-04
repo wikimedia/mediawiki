@@ -28,7 +28,6 @@ use UploadFromUrl;
 
 /**
  * Upload a file by URL, via the jobqueue.
- *
  */
 class UploadFromUrlJob extends Job implements GenericParameterJob {
 	use UploadJobTrait;

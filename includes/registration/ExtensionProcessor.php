@@ -972,7 +972,6 @@ class ExtensionProcessor implements Processor {
 	 * @param string $name
 	 * @param array $value
 	 * @param array &$array
-	 *
 	 */
 	protected function storeToArrayRecursive( $path, $name, $value, &$array ) {
 		if ( !is_array( $value ) ) {

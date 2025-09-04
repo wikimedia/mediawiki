@@ -265,7 +265,6 @@ abstract class AbstractContent implements Content, JsonCodecable {
 	 * @since 1.21
 	 * @param Title $target
 	 * @return Content $this
-	 *
 	 */
 	public function updateRedirect( Title $target ) {
 		return $this;
@@ -290,7 +289,6 @@ abstract class AbstractContent implements Content, JsonCodecable {
 	 * @param Content $with
 	 * @param string $sectionTitle
 	 * @return null
-	 *
 	 */
 	public function replaceSection( $sectionId, Content $with, $sectionTitle = '' ) {
 		return null;

@@ -31,6 +31,7 @@ class ConfirmLinkAuthenticationRequestTest extends AuthenticationRequestTestCase
 
 		for ( $i = 1; $i <= 3; $i++ ) {
 			$req = new class( "Request$i" ) extends AuthenticationRequest {
+				/** @var string */
 				private $uniqueId;
 
 				public function __construct( $uniqueId ) {

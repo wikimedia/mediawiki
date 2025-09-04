@@ -1,12 +1,6 @@
 <?php
 
-use MediaWiki\Html\Html;
-use MediaWiki\Parser\Parser;
-
 /**
- * A basic extension that's used by the parser tests to test whether input and
- * arguments are passed to extensions properly.
- *
  * Copyright © 2005, 2006 Ævar Arnfjörð Bjarmason
  *
  * This program is free software; you can redistribute it and/or modify
@@ -24,11 +18,18 @@ use MediaWiki\Parser\Parser;
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
- * @file
- * @ingroup Testing
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  */
 
+use MediaWiki\Html\Html;
+use MediaWiki\Parser\Parser;
+
+/**
+ * A basic extension that's used by the parser tests to test whether input and
+ * arguments are passed to extensions properly.
+ *
+ * @ingroup Testing
+ */
 class ParserTestParserHook {
 
 	/** Set up extension tags and parser functions for parser tests. */

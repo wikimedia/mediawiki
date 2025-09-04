@@ -1,16 +1,5 @@
 <?php
 
-namespace MediaWiki\Tests\Site;
-
-use Exception;
-use MediaWiki\Site\MediaWikiSite;
-use MediaWiki\Site\Site;
-use MediaWiki\Site\SiteImporter;
-use MediaWiki\Site\SiteList;
-use MediaWiki\Site\SiteStore;
-use MediaWikiIntegrationTestCase;
-use Psr\Log\LoggerInterface;
-
 /**
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,7 +17,20 @@ use Psr\Log\LoggerInterface;
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- *
+ */
+
+namespace MediaWiki\Tests\Site;
+
+use Exception;
+use MediaWiki\Site\MediaWikiSite;
+use MediaWiki\Site\Site;
+use MediaWiki\Site\SiteImporter;
+use MediaWiki\Site\SiteList;
+use MediaWiki\Site\SiteStore;
+use MediaWikiIntegrationTestCase;
+use Psr\Log\LoggerInterface;
+
+/**
  * @ingroup Site
  * @ingroup Test
  *

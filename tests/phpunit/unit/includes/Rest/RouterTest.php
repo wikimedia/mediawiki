@@ -512,6 +512,7 @@ class RouterTest extends MediaWikiUnitTestCase {
 	 */
 	public static function oldBodyValidatorFactory(): Handler {
 		return new class extends Handler {
+			/** @var bool */
 			private $postValidationSetupCalled = false;
 
 			public function getBodyValidator( $contentType ) {

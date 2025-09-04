@@ -524,7 +524,9 @@ class AuthenticationRequestTest extends MediaWikiIntegrationTestCase {
 	}
 }
 
-// Dynamic properties from the testLoadFromSubmission not working in php8.2
+/**
+ * Dynamic properties from the testLoadFromSubmission not working in php8.2
+ */
 abstract class AuthenticationRequestForLoadFromSubmission extends AuthenticationRequest {
 	/** @var array */
 	public $choose;

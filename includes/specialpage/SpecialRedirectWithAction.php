@@ -1,17 +1,6 @@
 <?php
 
-namespace MediaWiki\SpecialPage;
-
-use MediaWiki\HTMLForm\HTMLForm;
-use MediaWiki\MediaWikiServices;
-use MediaWiki\Status\Status;
-use MediaWiki\Title\MalformedTitleException;
-use MediaWiki\Title\Title;
-use SearchEngineFactory;
-
 /**
- * Abstract to simplify creation of redirect special pages
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -27,11 +16,23 @@ use SearchEngineFactory;
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
- * @stable to extend
- *
- * @file
- * @ingroup SpecialPage
  * @author DannyS712
+ */
+
+namespace MediaWiki\SpecialPage;
+
+use MediaWiki\HTMLForm\HTMLForm;
+use MediaWiki\MediaWikiServices;
+use MediaWiki\Status\Status;
+use MediaWiki\Title\MalformedTitleException;
+use MediaWiki\Title\Title;
+use SearchEngineFactory;
+
+/**
+ * Abstract to simplify creation of redirect special pages
+ *
+ * @stable to extend
+ * @ingroup SpecialPage
  */
 abstract class SpecialRedirectWithAction extends RedirectSpecialPage {
 	/** @var string */

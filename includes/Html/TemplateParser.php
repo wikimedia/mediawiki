@@ -1,19 +1,6 @@
 <?php
 
-namespace MediaWiki\Html;
-
-use Exception;
-use FileContentsHasher;
-use LightnCandy\LightnCandy;
-use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
-use RuntimeException;
-use UnexpectedValueException;
-use Wikimedia\ObjectCache\BagOStuff;
-
 /**
- * Handles compiling Mustache templates into PHP rendering functions
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -28,8 +15,22 @@ use Wikimedia\ObjectCache\BagOStuff;
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
+ */
+
+namespace MediaWiki\Html;
+
+use Exception;
+use FileContentsHasher;
+use LightnCandy\LightnCandy;
+use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
+use RuntimeException;
+use UnexpectedValueException;
+use Wikimedia\ObjectCache\BagOStuff;
+
+/**
+ * Handles compiling Mustache templates into PHP rendering functions
  *
- * @file
  * @since 1.25
  */
 class TemplateParser {

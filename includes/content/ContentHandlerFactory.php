@@ -95,7 +95,6 @@ final class ContentHandlerFactory implements IContentHandlerFactory {
 	 * @param callable|string $handlerSpec
 	 *
 	 * @internal
-	 *
 	 */
 	public function defineContentHandler( string $modelID, $handlerSpec ): void {
 		if ( !is_callable( $handlerSpec ) && !is_string( $handlerSpec ) ) {

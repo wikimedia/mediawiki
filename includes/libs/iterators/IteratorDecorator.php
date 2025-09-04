@@ -1,8 +1,6 @@
 <?php
+
 /**
- * Allows extending classes to decorate an Iterator with
- * reduced boilerplate.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,8 +16,13 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
+ */
+
+/**
+ * Allows extending classes to decorate an Iterator with
+ * reduced boilerplate.
+ *
  * @stable to extend
- * @file
  * @ingroup Maintenance
  */
 abstract class IteratorDecorator implements Iterator {

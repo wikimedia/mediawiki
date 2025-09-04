@@ -13,7 +13,6 @@ use ThumbnailImage;
 
 /**
  * A trait providing utility functions for mocking media-related objects.
- *
  */
 trait MediaTestTrait {
 

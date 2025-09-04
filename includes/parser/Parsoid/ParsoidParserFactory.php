@@ -20,10 +20,11 @@ use Wikimedia\Parsoid\Parsoid;
  * @since 1.41
  * @internal May be combined with \ParserFactory or otherwise refactored
  *
- * @file
  * @ingroup Parser
+ *
+ * @note Eventually this may extend \ParserFactory
  */
-class ParsoidParserFactory /* eventually this may extend \ParserFactory */ {
+class ParsoidParserFactory {
 	private SiteConfig $siteConfig;
 	private DataAccess $dataAccess;
 	private PageConfigFactory $pageConfigFactory;

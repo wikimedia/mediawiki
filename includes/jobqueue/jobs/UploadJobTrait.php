@@ -163,7 +163,6 @@ trait UploadJobTrait {
 	 * @param string $result
 	 * @param Status|null $status
 	 * @param array $additionalInfo
-	 *
 	 */
 	private function setStatus( $stage, $result = 'Poll', $status = null, $additionalInfo = [] ) {
 		// We're most probably not running in a job.
@@ -269,7 +268,6 @@ trait UploadJobTrait {
 
 	/**
 	 * Set the status at the end or processing
-	 *
 	 */
 	private function setStatusDone() {
 		// Build the image info array while we have the local reference handy

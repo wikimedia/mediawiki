@@ -11,7 +11,6 @@ use SebastianBergmann\FileIterator\Facade;
  * See https://www.mediawiki.org/wiki/Manual:Hooks/UnitTestsList for details of
  * how to register your tests.
  */
-
 class ExtensionsTestSuite extends TestSuite {
 	public function __construct() {
 		parent::__construct();

@@ -81,7 +81,6 @@ class SiteImporter {
 
 	/**
 	 * @param string $xml
-	 *
 	 */
 	public function importFromXML( $xml ) {
 		$document = new DOMDocument();

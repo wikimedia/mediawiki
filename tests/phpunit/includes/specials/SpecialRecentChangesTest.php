@@ -262,6 +262,7 @@ class SpecialRecentChangesTest extends AbstractChangesListSpecialPageTestCase {
 			$this->getServiceContainer()->getMessageParser(),
 			$this->getServiceContainer()->getUserOptionsLookup()
 		)  extends SpecialRecentChanges {
+			/** @var bool */
 			private $dense;
 
 			public function __construct(

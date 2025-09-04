@@ -1,10 +1,5 @@
 <?php
 /**
- * A cryptographic random generator class used for generating secret keys
- *
- * This is based in part on Drupal code as well as what we used in our own code
- * prior to introduction of this class.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -21,9 +16,14 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @author Daniel Friesen
- * @file
  */
 
+/**
+ * A cryptographic random generator class used for generating secret keys
+ *
+ * This is based in part on Drupal code as well as what we used in our own code
+ * prior to introduction of this class.
+ */
 class MWCryptRand {
 
 	/**

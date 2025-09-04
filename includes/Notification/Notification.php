@@ -15,7 +15,7 @@ class Notification {
 	use NonSerializableTrait;
 
 	/**
-	 * @TODO Idea: handle future types in format `namespace.type`, like `mediawiki.message`,
+	 * @todo Idea: handle future types in format `namespace.type`, like `mediawiki.message`,
 	 * `growth.welcome`. This way we can easily "override" some notifications, for example,
 	 * we can have `echo.mention`, and the `echo.mention` could supersede `mediawiki.mention`. Also,
 	 * it will be more difficult for notifications to conflict, and we will be able to easily filter

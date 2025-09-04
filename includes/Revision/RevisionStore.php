@@ -150,7 +150,6 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	 * @param false|string $wikiId Relevant wiki id or WikiAwareEntity::LOCAL for the current one
 	 *
 	 * @todo $blobStore should be allowed to be any BlobStore!
-	 *
 	 */
 	public function __construct(
 		ILoadBalancer $loadBalancer,

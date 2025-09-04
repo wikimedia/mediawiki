@@ -8,7 +8,6 @@ use ReflectionParameter;
 /**
  * Helper trait for instantiating MW service object for testing
  * with mocked dependencies.
- *
  */
 trait MockServiceDependenciesTrait {
 

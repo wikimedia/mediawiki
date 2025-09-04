@@ -323,8 +323,6 @@ class RevisionStoreTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $expect, $this->getRevisionStore()->isRevisionRow( $row ) );
 	}
 
-	/**
-	 */
 	public function testFailOnNull() {
 		$revStore = TestingAccessWrapper::newFromObject( $this->getRevisionStore() );
 		// Success - not null

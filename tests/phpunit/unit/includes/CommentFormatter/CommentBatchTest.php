@@ -21,6 +21,7 @@ class CommentBatchTest extends MediaWikiUnitTestCase {
 
 	private function getFormatter() {
 		return new class( $this->calls ) extends CommentFormatter {
+			/** @var array */
 			private $calls;
 
 			public function __construct( &$calls ) {

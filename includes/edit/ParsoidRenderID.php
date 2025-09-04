@@ -35,7 +35,6 @@ class ParsoidRenderID implements Stringable {
 	 *
 	 * @return self
 	 * @see newFromETag()
-	 *
 	 */
 	public static function newFromKey( string $key ): self {
 		$parts = explode( '/', $key, 2 );
@@ -79,7 +78,6 @@ class ParsoidRenderID implements Stringable {
 	 * @return ParsoidRenderID|null The render ID embedded in the ETag,
 	 *         or null if the ETag was malformed.
 	 * @see newFromKey() if ETag already has outside quotes trimmed
-	 *
 	 */
 	public static function newFromETag( string $eTag ): ?self {
 		if ( !preg_match( '@^(?:W/)?"(\d+)/([^/]+)(:?/.*)?"$@', $eTag, $m ) ) {

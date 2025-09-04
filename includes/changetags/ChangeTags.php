@@ -701,7 +701,6 @@ class ChangeTags {
 	 * @param string|array &$options Options, see Database::select
 	 * @param string|array|false|null $filter_tag Tag(s) to select on (OR)
 	 * @param bool $exclude If true, exclude tag(s) from $filter_tag (NOR)
-	 *
 	 */
 	public static function modifyDisplayQuery( &$tables, &$fields, &$conds,
 		&$join_conds, &$options, $filter_tag = '', bool $exclude = false

@@ -32,6 +32,7 @@ class StatusFormatterTest extends MediaWikiLangTestCase {
 
 	private function getFormatter( $lang = 'en' ) {
 		$localizer = new class() implements MessageLocalizer {
+			/** @var string */
 			public $lang;
 
 			public function msg( $key, ...$params ) {

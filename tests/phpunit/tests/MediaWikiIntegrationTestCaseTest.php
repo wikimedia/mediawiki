@@ -262,8 +262,6 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 		$this->assertNotSame( $mockLogger, $curLogger );
 	}
 
-	/**
-	 */
 	public function testLoggersAreRestoredOnTearDown_replacingNonExistingLogger__before() {
 		$logger = new NullLogger();
 		$this->setLogger( 'foo', $logger );

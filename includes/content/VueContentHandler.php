@@ -60,6 +60,7 @@ class VueContentHandler extends CodeContentHandler {
 		return VueContent::class;
 	}
 
+	/** @inheritDoc */
 	public function makeEmptyContent() {
 		$class = $this->getContentClass();
 		return new $class( "<template>\n</template>\n\n<script>\n</script>\n\n<style>\n</style>\n" );

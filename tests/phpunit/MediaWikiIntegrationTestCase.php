@@ -860,7 +860,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @param object|callable $service The service instance, or a callable that returns the service instance.
 	 *
 	 * @since 1.27
-	 *
 	 */
 	protected function setService( string $name, $service ) {
 		if ( !$this->localServices ) {

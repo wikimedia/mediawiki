@@ -27,6 +27,7 @@ use Wikimedia\JsonCodec\JsonClassCodec;
  * ContentJsonCodec handles serialization of Content objects to/from
  * JSON using methods of the appropriate ContentHandler.
  *
+ * @phpcs:disable MediaWiki.Commenting.ClassAnnotations.UnrecognizedAnnotation
  * @template-implements JsonClassCodec<Content>
  * @internal
  */

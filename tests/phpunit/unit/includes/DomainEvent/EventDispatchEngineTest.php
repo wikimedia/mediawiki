@@ -275,6 +275,7 @@ class EventDispatchEngineTest extends MediaWikiUnitTestCase {
 		$trace = [];
 
 		$subscriber = new class ( $trace ) extends DomainEventIngress {
+			/** @var array */
 			private $trace;
 
 			public function __construct( &$trace ) {

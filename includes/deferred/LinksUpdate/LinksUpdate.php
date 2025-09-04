@@ -49,7 +49,7 @@ use Wikimedia\ScopedCallback;
 /**
  * Class the manages updates of *_link tables as well as similar extension-managed tables
  *
- * @note: LinksUpdate is managed by DeferredUpdates::execute(). Do not run this in a transaction.
+ * @note LinksUpdate is managed by DeferredUpdates::execute(). Do not run this in a transaction.
  *
  * See docs/deferred.txt
  */

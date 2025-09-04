@@ -47,7 +47,6 @@ class MissingExtensionException extends Exception {
 	 *
 	 * Avoid relying on MW stuff, as it might not be setup yet.
 	 * We don't bother translating, as the user may not have even set lang yet.
-	 *
 	 */
 	private function renderHtml() {
 		if ( !headers_sent() ) {

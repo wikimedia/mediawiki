@@ -223,6 +223,7 @@ class TempUserCreatorTest extends \MediaWikiIntegrationTestCase {
 		[ $creator, $scope ] = $this->getTempUserCreatorUnit();
 
 		$session = new class extends Session {
+			/** @var array */
 			private $data = [];
 
 			public function __construct() {

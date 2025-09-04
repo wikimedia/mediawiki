@@ -173,7 +173,6 @@ trait TypeDefTestCaseTrait {
 	 * @param array $settings
 	 * @param array $options
 	 * @dataProvider provideStringifyValue
-	 *
 	 */
 	public function testStringifyValue( $value, $expect, array $settings = [], array $options = [] ) {
 		$typeDef = $this->getInstance( new SimpleCallbacks( [] ), $options );

@@ -17,7 +17,6 @@ interface WebRequestPathInfoRouterHook {
 	 * @param \MediaWiki\Request\PathRouter $router
 	 * @return bool|void True or no return value to continue or false to abort
 	 * @since 1.35
-	 *
 	 */
 	public function onWebRequestPathInfoRouter( $router );
 }

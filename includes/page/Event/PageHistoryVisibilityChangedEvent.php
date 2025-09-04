@@ -132,6 +132,9 @@ class PageHistoryVisibilityChangedEvent extends PageEvent {
 		return array_keys( $this->visibilityChangeMap );
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function wasCurrentRevisionAffected() {
 		return isset( $this->visibilityChangeMap[ $this->currentRevisionId ] );
 	}

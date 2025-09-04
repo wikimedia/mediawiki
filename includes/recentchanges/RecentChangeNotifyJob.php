@@ -43,6 +43,7 @@ class RecentChangeNotifyJob extends Job {
 		$this->recentChangeLookup = $recentChangeLookup;
 	}
 
+	/** @inheritDoc */
 	public function run() {
 		$notifier = new RecentChangeNotifier();
 		// Get the user from ID (rename safe). Anons are 0, so defer to name.

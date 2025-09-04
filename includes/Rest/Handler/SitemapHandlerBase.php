@@ -45,6 +45,7 @@ abstract class SitemapHandlerBase extends Handler {
 		return $this->sitemapSize * ( $indexId * $this->indexSize + $fileId );
 	}
 
+	/** @inheritDoc */
 	public function execute() {
 		if ( !$this->enabled ) {
 			return $this->getResponseFactory()

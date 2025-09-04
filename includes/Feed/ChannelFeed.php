@@ -48,7 +48,6 @@ abstract class ChannelFeed extends FeedItem {
 	 * @param string $date Feed's date
 	 * @param string $author Author's user name
 	 * @param string $comments
-	 *
 	 */
 	public function __construct(
 		$title, $description, $url, $date = '', $author = '', $comments = ''

@@ -14,7 +14,6 @@ require_once __DIR__ . '/Maintenance.php';
  * @since 1.42
  * @ingroup Maintenance
  */
-
 class ConvertExtensionsMessagesToTranslationAlias extends Maintenance {
 	public function __construct() {
 		parent::__construct();

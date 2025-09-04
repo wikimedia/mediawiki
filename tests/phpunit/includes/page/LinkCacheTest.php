@@ -278,8 +278,6 @@ class LinkCacheTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $existing->getId(), $linkCache->addLinkObj( $existing, $flags ) );
 	}
 
-	/**
-	 */
 	public function testAddLinkObjUsesWANCache() {
 		// For some namespaces we cache data (Template, File, etc)
 		$existing = $this->getExistingTestPage( Title::makeTitle( NS_TEMPLATE, __METHOD__ ) );

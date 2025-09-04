@@ -141,6 +141,7 @@ class WikiFarmSettingsLoaderTest extends MediaWikiUnitTestCase {
 	 */
 	private function newLoader( SettingsBuilder $settings, ?string $wikiNameConstantValue = null ) {
 		$loader = new class( $settings, $wikiNameConstantValue ) extends WikiFarmSettingsLoader {
+			/** @var ?string */
 			private $wikiNameConstantValue;
 
 			public function __construct( $settings, $wikiNameConstantValue ) {

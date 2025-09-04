@@ -85,7 +85,6 @@ interface ILoadBalancerForOwner extends ILoadBalancer {
 	 * Close all open connections
 	 *
 	 * @param string $fname Caller name @phan-mandatory-param
-	 *
 	 */
 	public function closeAll( $fname = __METHOD__ );
 

@@ -150,6 +150,7 @@ class ImageLinksTable extends TitleLinksTable {
 			array_merge( $insertedLinks, $deletedLinks ) );
 	}
 
+	/** @inheritDoc */
 	protected function virtualDomain() {
 		return self::VIRTUAL_DOMAIN;
 	}

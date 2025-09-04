@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @license GPL-2.0-or-later
+ */
+
 namespace MediaWiki\Watchlist;
 
 use MediaWiki\User\UserIdentity;
@@ -11,10 +15,7 @@ use Wikimedia\Rdbms\IResultWrapper;
  *
  * @since 1.29
  *
- * @file
  * @ingroup Watchlist
- *
- * @license GPL-2.0-or-later
  */
 interface WatchedItemQueryServiceExtension {
 

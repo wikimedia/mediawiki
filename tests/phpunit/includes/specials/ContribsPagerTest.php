@@ -225,6 +225,7 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 		] );
 
 		$invalidObject = new class() {
+			/** @var string */
 			public $rev_id;
 		};
 		$this->assertNull( $pager->tryCreatingRevisionRecord( $invalidObject, $page ) );

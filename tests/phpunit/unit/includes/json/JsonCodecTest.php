@@ -25,6 +25,7 @@ class JsonCodecTest extends MediaWikiUnitTestCase {
 		static $services = null;
 		if ( !$services ) {
 			$services = new class implements ContainerInterface {
+				/** @var array */
 				private $storage = [];
 
 				public function get( $id ) {

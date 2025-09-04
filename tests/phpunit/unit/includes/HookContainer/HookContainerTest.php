@@ -1080,7 +1080,9 @@ namespace MediaWiki\Tests\HookContainer {
 		}
 	}
 
-	// Mock class for different types of handler functions
+	/**
+	 * Mock class for different types of handler functions
+	 */
 	class FooClass {
 
 		public function fooMethod( &$count ) {

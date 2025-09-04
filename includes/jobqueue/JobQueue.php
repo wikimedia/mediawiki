@@ -94,7 +94,6 @@ abstract class JobQueue {
 	 *   - readOnlyReason : Mark the queue as read-only with this reason [default: false]
 	 *   - typeAgnostic : If the jobqueue should operate agnostic to the job types
 	 * @throws JobQueueError
-	 *
 	 */
 	protected function __construct( array $params ) {
 		$this->domain = $params['domain'] ?? $params['wiki']; // b/c
