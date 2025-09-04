@@ -14,7 +14,7 @@ class LanguageMtTest extends LanguageClassesTestCase {
 	 * @covers \MediaWiki\Language\Language::convertPlural
 	 */
 	public function testPlural( $result, $value ) {
-		$forms = [ 'one', 'few', 'many', 'other' ];
+		$forms = [ 'one', 'two', 'few', 'many', 'other' ];
 		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
@@ -30,7 +30,8 @@ class LanguageMtTest extends LanguageClassesTestCase {
 		return [
 			[ 'few', 0 ],
 			[ 'one', 1 ],
-			[ 'few', 2 ],
+			[ 'two', 2 ],
+			[ 'few', 3 ],
 			[ 'few', 10 ],
 			[ 'many', 11 ],
 			[ 'many', 19 ],
@@ -38,7 +39,7 @@ class LanguageMtTest extends LanguageClassesTestCase {
 			[ 'other', 99 ],
 			[ 'other', 100 ],
 			[ 'other', 101 ],
-			[ 'few', 102 ],
+			[ 'other', 102 ],
 			[ 'few', 110 ],
 			[ 'many', 111 ],
 			[ 'many', 119 ],

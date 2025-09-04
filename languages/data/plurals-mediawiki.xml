@@ -65,5 +65,13 @@
 			<pluralRule count="few">i = 0 or i = 3..6 or i = 2 and v != 0 or i = 1 and t != 0 @integer 0, 3~6 @decimal 0.0, 1.1, 2.0, 3.0, 4.0, 5.0, 6.0, 0.00, 2.00, 3.00, 4.00, 5.00, 6.00, …</pluralRule>
 			<pluralRule count="other"> @integer 7~19, 100, 1000, 10000, 1000000, … @decimal 7.0~9.9, 10.0, 100.0, 1000.0, 10000.0, 100000.0, 1000000.0, …</pluralRule>
 		</pluralRules>
+		<!-- Maltese. Not correct in CLDR. See task T384155 -->
+		<pluralRules locales="mt">
+			<pluralRule count="one">n = 1 @integer 1 @decimal 1.0, 1.00, 1.000, 1.0000</pluralRule>
+			<pluralRule count="two">n = 2 @integer 2 @decimal 2.0, 2.00, 2.000, 2.0000</pluralRule>
+			<pluralRule count="few">n = 0 or n % 100 = 3..10 @integer 0, 3~10, 103~109, 1003, … @decimal 0.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 103.0, 1003.0, …</pluralRule>
+			<pluralRule count="many">n % 100 = 11..19 @integer 11~19, 111~117, 1011, … @decimal 11.0, 12.0, 13.0, 14.0, 15.0, 16.0, 17.0, 18.0, 111.0, 1011.0, …</pluralRule>
+			<pluralRule count="other"> @integer 20~35, 100, 1000, 10000, 100000, 1000000, … @decimal 0.1~0.9, 1.1~1.7, 10.1, 100.0, 1000.0, 10000.0, 100000.0, 1000000.0, …</pluralRule>
+		</pluralRules>
 	</plurals>
 </supplementalData>
