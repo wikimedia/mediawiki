@@ -27,8 +27,7 @@ use Wikimedia\JsonCodec\JsonClassCodec;
  * ContentJsonCodec handles serialization of Content objects to/from
  * JSON using methods of the appropriate ContentHandler.
  *
- * @phpcs:disable MediaWiki.Commenting.ClassAnnotations.UnrecognizedAnnotation
- * @template-implements JsonClassCodec<Content>
+ * @implements JsonClassCodec<Content>
  * @internal
  */
 class ContentJsonCodec implements JsonClassCodec {
@@ -39,15 +38,14 @@ class ContentJsonCodec implements JsonClassCodec {
 	}
 
 	/** @inheritDoc */
-	public function toJsonArray( $content ): array {
-		'@phan-var Content $content'; /** @var Content $content */
+	public function toJsonArray( $obj ): array {
 		// To serialize content we need a handler.
-		$model = $content->getModel();
+		$model = $obj->getModel();
 		$handler = $this->contentHandlerFactory->getContentHandler(
 			$model
 		);
-		return [ 'model' => $model ] +
-			$handler->serializeContentToJsonArray( $content );
+		// @phan-suppress-next-line PhanTypeMismatchArgument -- Phan doesn't support generic interfaces
+		return [ 'model' => $model ] + $handler->serializeContentToJsonArray( $obj );
 	}
 
 	/** @inheritDoc */
@@ -58,8 +56,7 @@ class ContentJsonCodec implements JsonClassCodec {
 			$model
 		);
 		$content = $handler->deserializeContentFromJsonArray( $json );
-		// phan's support for generics is broken :(
-		// @phan-suppress-next-line PhanTypeMismatchReturn
+		// @phan-suppress-next-line PhanTypeMismatchReturn -- Phan doesn't support generic interfaces
 		return $content;
 	}
 
