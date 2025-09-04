@@ -90,13 +90,6 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 		// Hint to some SearchEngines about what snippets we would like returned
 		$search->setFeatureData( 'snippets', $this->decideSnippets( $prop ) );
 
-		$nquery = $search->replacePrefixes( $query );
-		if ( $nquery !== $query ) {
-			$query = $nquery;
-			wfDeprecatedMsg( 'SearchEngine::replacePrefixes() is overridden by ' .
-				get_class( $search ) . ', this was deprecated in MediaWiki 1.32',
-				'1.32' );
-		}
 		// Perform the actual search
 		if ( $what == 'text' ) {
 			$matches = $search->searchText( $query );

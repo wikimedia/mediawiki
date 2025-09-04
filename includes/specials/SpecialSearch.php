@@ -424,16 +424,9 @@ class SpecialSearch extends SpecialPage {
 		$showSuggestion = $title === null || !$title->isKnown();
 		$engine->setShowSuggestion( $showSuggestion );
 
-		$rewritten = $engine->replacePrefixes( $term );
-		if ( $rewritten !== $term ) {
-			wfDeprecatedMsg( 'SearchEngine::replacePrefixes()  was overridden by ' .
-				get_class( $engine ) . ', this is deprecated since MediaWiki 1.32',
-				'1.32', false, false );
-		}
-
 		// fetch search results
-		$titleMatches = $engine->searchTitle( $rewritten );
-		$textMatches = $engine->searchText( $rewritten );
+		$titleMatches = $engine->searchTitle( $term );
+		$textMatches = $engine->searchText( $term );
 
 		$textStatus = null;
 		if ( $textMatches instanceof Status ) {

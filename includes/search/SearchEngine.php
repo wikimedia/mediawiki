@@ -375,19 +375,6 @@ abstract class SearchEngine {
 
 	/**
 	 * Parse some common prefixes: all (search everything)
-	 * or namespace names and set the list of namespaces
-	 * of this class accordingly.
-	 *
-	 * @deprecated since 1.32; should be handled internally by the search engine
-	 * @param string $query
-	 * @return string
-	 */
-	public function replacePrefixes( $query ) {
-		return $query;
-	}
-
-	/**
-	 * Parse some common prefixes: all (search everything)
 	 * or namespace names
 	 *
 	 * @param string $query
