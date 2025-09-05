@@ -1,6 +1,5 @@
 /* Styles for collapsible lists of templates used and hidden categories */
 @import 'mediawiki.skin.variables.less';
-@import 'mediawiki.mixins.less';
 
 .mw-editfooter-toggler {
 	cursor: pointer;
@@ -38,11 +37,6 @@
 .mw-editfooter-list {
 	margin-bottom: 1em;
 	margin-left: 2.5em;
-	.column-width( 27em );
-
-	> * {
-		.column-break-inside-avoid;
-	}
 }
 
 /* Show/hide animation is incorrect if the table has a margin set. Extra
