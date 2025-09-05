@@ -670,7 +670,7 @@ class RequestContext implements IContextSource, MutableContext {
 	 * error conditions arise.
 	 *
 	 * This is useful when background scripts inherit context when acting on
-	 * behalf of a user. In general the 'sessionId' parameter should be set
+	 * behalf of a user. In general, the 'sessionId' parameter should be set
 	 * to an empty string unless session importing is *truly* needed. This
 	 * feature is somewhat deprecated.
 	 *
@@ -680,10 +680,10 @@ class RequestContext implements IContextSource, MutableContext {
 	 */
 	public static function importScopedSession( array $params ) {
 		if ( $params['sessionId'] !== '' &&
-			SessionManager::getGlobalSession()->isPersistent()
+			self::getMain()->getRequest()->getSession()->isPersistent()
 		) {
 			// Check to avoid sending random cookies for the wrong users.
-			// This method should only called by CLI scripts or by HTTP job runners.
+			// This method should only be called by CLI scripts or by HTTP job runners.
 			throw new BadMethodCallException( "Sessions can only be imported when none is active." );
 		} elseif ( !IPUtils::isValid( $params['ip'] ) ) {
 			throw new InvalidArgumentException( "Invalid client IP address '{$params['ip']}'." );
