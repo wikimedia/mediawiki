@@ -105,8 +105,6 @@ export const config = {
 			// If DISPLAY is set, assume developer asked non-headless or CI with Xvfb.
 			// Otherwise, use --headless.
 			args: [
-				// Dismissed Chrome's `Save password?` popup
-				'--enable-automation',
 				...( process.env.DISPLAY ? [] : [ '--headless' ] ),
 				// Chrome sandbox does not work in Docker. Disable GPU to prevent crashes (T389536#10677201)
 				// For disable-dev-shm-usage: We map /tmp to tmpfs for the container in CI
@@ -141,7 +139,19 @@ export const config = {
 				'--propagate-iph-for-testing',
 				// Workaround inputs not working consistently post-navigation on Chrome 90
 				// https://issuetracker.google.com/issues/42322798
-				'--allow-pre-commit-input'
+				'--allow-pre-commit-input',
+				// To disable save password popup together with prefs
+				'--password-store=basic'
+			],
+			prefs: {
+				// These setting disable the password save popup together
+				// with --password-store=basic.
+				// eslint-disable-next-line camelcase
+				credentials_enable_service: false,
+				'profile.password_manager_enabled': false
+			},
+			excludeSwitches: [
+				'enable-automation'
 			]
 		}
 	} ],
