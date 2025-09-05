@@ -71,6 +71,13 @@ class RecentChangeStore implements RecentChangeFactory, RecentChangeLookup {
 	private WikiPageFactory $wikiPageFactory;
 	private UserFactory $userFactory;
 
+	/** @var array|null The merged RecentChangeSources extension attribute */
+	private ?array $extensionSourcesAttr;
+	/** @var array|null All rc_source values (lazy-initialised) */
+	private ?array $allSources = null;
+	/** @var array|null rc_source values for primary events (lazy-initialised) */
+	private ?array $primarySources = null;
+
 	public function __construct(
 		ActorStoreFactory $actorStoreFactory,
 		ChangeTagsStore $changeTagsStore,
@@ -83,7 +90,8 @@ class RecentChangeStore implements RecentChangeFactory, RecentChangeLookup {
 		ServiceOptions $options,
 		TitleFormatter $titleFormatter,
 		WikiPageFactory $wikiPageFactory,
-		UserFactory $userFactory
+		UserFactory $userFactory,
+		?array $extensionSources
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 
@@ -99,6 +107,7 @@ class RecentChangeStore implements RecentChangeFactory, RecentChangeLookup {
 		$this->titleFormatter = $titleFormatter;
 		$this->wikiPageFactory = $wikiPageFactory;
 		$this->userFactory = $userFactory;
+		$this->extensionSourcesAttr = $extensionSources;
 	}
 
 	/**
@@ -620,5 +629,18 @@ class RecentChangeStore implements RecentChangeFactory, RecentChangeLookup {
 		}
 
 		return $ip;
+	}
+
+	public function getPrimarySources(): array {
+		if ( $this->primarySources === null ) {
+			$this->primarySources = array_diff(
+				RecentChange::INTERNAL_SOURCES, [ RecentChange::SRC_CATEGORIZE ] );
+			foreach ( $this->extensionSourcesAttr as $value => $info ) {
+				if ( $info['primary'] ?? false ) {
+					$this->primarySources[] = $value;
+				}
+			}
+		}
+		return $this->primarySources;
 	}
 }

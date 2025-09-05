@@ -29,6 +29,7 @@ use MediaWiki\Html\FormOptions;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
+use MediaWiki\RecentChanges\RecentChangeLookup;
 use MediaWiki\Title\Title;
 use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\UserGroupManager;
@@ -45,6 +46,8 @@ use Wikimedia\Rdbms\Subquery;
  * @ingroup Pager
  */
 class ActiveUsersPager extends UsersPager {
+	private RecentChangeLookup $recentChangeLookup;
+
 	/**
 	 * @var FormOptions
 	 */
@@ -75,6 +78,7 @@ class ActiveUsersPager extends UsersPager {
 		UserIdentityLookup $userIdentityLookup,
 		HideUserUtils $hideUserUtils,
 		TempUserConfig $tempUserConfig,
+		RecentChangeLookup $recentChangeLookup,
 		FormOptions $opts
 	) {
 		parent::__construct(
@@ -90,6 +94,7 @@ class ActiveUsersPager extends UsersPager {
 			null
 		);
 
+		$this->recentChangeLookup = $recentChangeLookup;
 		$this->RCMaxAge = $this->getConfig()->get( MainConfigNames::ActiveUserDays );
 		$this->requestedUser = '';
 
@@ -179,8 +184,7 @@ class ActiveUsersPager extends UsersPager {
 			'conds' => [],
 			'join_conds' => [ 'recentchanges' => [ 'LEFT JOIN', [
 				'rc_actor = actor_id',
-				$dbr->expr( 'rc_type', '!=', RC_EXTERNAL ), // Don't count wikidata.
-				$dbr->expr( 'rc_type', '!=', RC_CATEGORIZE ), // Don't count categorization changes.
+				$dbr->expr( 'rc_source', '=', $this->recentChangeLookup->getPrimarySources() ),
 				$dbr->expr( 'rc_log_type', '=', null )->or( 'rc_log_type', '!=', 'newusers' ),
 				$dbr->expr( 'rc_timestamp', '>=', $timestamp ),
 			] ] ],

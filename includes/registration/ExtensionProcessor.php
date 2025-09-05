@@ -93,6 +93,7 @@ class ExtensionProcessor implements Processor {
 		'UserOptionsStoreProviders',
 		'NotificationHandlers',
 		'NotificationMiddleware',
+		'RecentChangeSources',
 	];
 
 	/**

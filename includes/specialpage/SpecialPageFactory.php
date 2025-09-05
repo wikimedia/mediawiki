@@ -516,6 +516,7 @@ class SpecialPageFactory {
 				'UserIdentityLookup',
 				'HideUserUtils',
 				'TempUserConfig',
+				'RecentChangeLookup',
 			]
 		],
 		'Block' => [

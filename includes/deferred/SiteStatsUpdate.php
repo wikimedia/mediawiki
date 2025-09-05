@@ -189,15 +189,16 @@ class SiteStatsUpdate implements DeferrableUpdate, MergeableUpdate {
 		$services = MediaWikiServices::getInstance();
 		$config = $services->getMainConfig();
 
+		$rcl = $services->getRecentChangeLookup();
 		$dbr = $services->getConnectionProvider()->getReplicaDatabase( false, 'vslow' );
-		# Get non-bot users than did some recent action other than making accounts.
+		# Get non-bot users that did some recent action other than making accounts.
 		# If account creation is included, the number gets inflated ~20+ fold on enwiki.
 		$activeUsers = $dbr->newSelectQueryBuilder()
 			->select( 'COUNT(DISTINCT rc_actor)' )
 			->from( 'recentchanges' )
 			->join( 'actor', 'actor', 'actor_id=rc_actor' )
 			->where( [
-				$dbr->expr( 'rc_type', '!=', RC_EXTERNAL ), // Exclude external (Wikidata)
+				$dbr->expr( 'rc_source', '=', $rcl->getPrimarySources() ),
 				$dbr->expr( 'actor_user', '!=', null ),
 				$dbr->expr( 'rc_bot', '=', 0 ),
 				$dbr->expr( 'rc_log_type', '!=', 'newusers' )->or( 'rc_log_type', '=', null ),

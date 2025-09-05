@@ -25,6 +25,7 @@ namespace MediaWiki\Api;
 use MediaWiki\Language\Language;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\GroupPermissionsLookup;
+use MediaWiki\RecentChanges\RecentChangeLookup;
 use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserGroupManager;
@@ -46,6 +47,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 	private GroupPermissionsLookup $groupPermissionsLookup;
 	private Language $contentLanguage;
 	private TempUserConfig $tempUserConfig;
+	private RecentChangeLookup $recentChangeLookup;
 
 	public function __construct(
 		ApiQuery $query,
@@ -54,7 +56,8 @@ class ApiQueryAllUsers extends ApiQueryBase {
 		UserGroupManager $userGroupManager,
 		GroupPermissionsLookup $groupPermissionsLookup,
 		Language $contentLanguage,
-		TempUserConfig $tempUserConfig
+		TempUserConfig $tempUserConfig,
+		RecentChangeLookup $recentChangeLookup
 	) {
 		parent::__construct( $query, $moduleName, 'au' );
 		$this->userFactory = $userFactory;
@@ -62,6 +65,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 		$this->groupPermissionsLookup = $groupPermissionsLookup;
 		$this->contentLanguage = $contentLanguage;
 		$this->tempUserConfig = $tempUserConfig;
+		$this->recentChangeLookup = $recentChangeLookup;
 	}
 
 	/**
@@ -249,7 +253,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 				->join( 'actor', null, 'rc_actor = actor_id' )
 				->where( [
 					'actor_user = user_id',
-					$db->expr( 'rc_type', '!=', RC_EXTERNAL ), // no wikidata
+					$db->expr( 'rc_source', '=', $this->recentChangeLookup->getPrimarySources() ),
 					$db->expr( 'rc_log_type', '=', null )
 						->or( 'rc_log_type', '!=', 'newusers' ),
 					$db->expr( 'rc_timestamp', '>=', $timestamp ),

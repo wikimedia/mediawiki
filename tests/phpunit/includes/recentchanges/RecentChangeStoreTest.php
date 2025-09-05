@@ -26,13 +26,15 @@ class RecentChangeStoreTest extends MediaWikiIntegrationTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		$this->recentChangeStore = $this->getServiceContainer()->getRecentChangeStore();
-
-		$this->title = PageIdentityValue::localIdentity( 17, NS_MAIN, 'SomeTitle' );
-		$this->target = PageIdentityValue::localIdentity( 78, NS_MAIN, 'TestTarget' );
-
-		$user = $this->getTestUser()->getUser();
-		$this->user = new UserIdentityValue( $user->getId(), $user->getName() );
+		$extRegistry = ExtensionRegistry::getInstance();
+		$reset = $extRegistry->setAttributeForTest(
+			'RecentChangeSources',
+			[
+				'defaults' => [],
+				'primary' => [ 'primary' => true ],
+				'not-primary' => [ 'primary' => false ]
+			]
+		);
 
 		$this->overrideConfigValues( [
 			MainConfigNames::CanonicalServer => 'https://example.org',
@@ -44,6 +46,14 @@ class RecentChangeStoreTest extends MediaWikiIntegrationTestCase {
 			MainConfigNames::RCFeeds => [],
 			MainConfigNames::RCEngines => [],
 		] );
+
+		$this->recentChangeStore = $this->getServiceContainer()->getRecentChangeStore();
+
+		$this->title = PageIdentityValue::localIdentity( 17, NS_MAIN, 'SomeTitle' );
+		$this->target = PageIdentityValue::localIdentity( 78, NS_MAIN, 'TestTarget' );
+
+		$user = $this->getTestUser()->getUser();
+		$this->user = new UserIdentityValue( $user->getId(), $user->getName() );
 	}
 
 	/**
@@ -271,5 +281,14 @@ class RecentChangeStoreTest extends MediaWikiIntegrationTestCase {
 		$this->recentChangeStore->insertRecentChange( $rc );
 
 		$this->assertEquals( $isHidden, $rc->getParam( 'hidden-cat' ) );
+	}
+
+	/**
+	 * @covers \MediaWiki\RecentChanges\RecentChangeStore::getPrimarySources
+	 */
+	public function testGetPrimarySources() {
+		$expected = [ 'mw.edit', 'mw.new', 'mw.log', 'primary' ];
+		$sources = $this->recentChangeStore->getPrimarySources();
+		$this->assertArrayEquals( $expected, $sources );
 	}
 }

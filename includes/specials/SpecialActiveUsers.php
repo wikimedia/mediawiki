@@ -27,6 +27,7 @@ use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Pager\ActiveUsersPager;
+use MediaWiki\RecentChanges\RecentChangeLookup;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\UserGroupManager;
@@ -46,6 +47,7 @@ class SpecialActiveUsers extends SpecialPage {
 	private UserIdentityLookup $userIdentityLookup;
 	private HideUserUtils $hideUserUtils;
 	private TempUserConfig $tempUserConfig;
+	private RecentChangeLookup $recentChangeLookup;
 
 	public function __construct(
 		LinkBatchFactory $linkBatchFactory,
@@ -53,7 +55,8 @@ class SpecialActiveUsers extends SpecialPage {
 		UserGroupManager $userGroupManager,
 		UserIdentityLookup $userIdentityLookup,
 		HideUserUtils $hideUserUtils,
-		TempUserConfig $tempUserConfig
+		TempUserConfig $tempUserConfig,
+		RecentChangeLookup $recentChangeLookup
 	) {
 		parent::__construct( 'Activeusers' );
 		$this->linkBatchFactory = $linkBatchFactory;
@@ -62,6 +65,7 @@ class SpecialActiveUsers extends SpecialPage {
 		$this->userIdentityLookup = $userIdentityLookup;
 		$this->hideUserUtils = $hideUserUtils;
 		$this->tempUserConfig = $tempUserConfig;
+		$this->recentChangeLookup = $recentChangeLookup;
 	}
 
 	/**
@@ -97,6 +101,7 @@ class SpecialActiveUsers extends SpecialPage {
 			$this->userIdentityLookup,
 			$this->hideUserUtils,
 			$this->tempUserConfig,
+			$this->recentChangeLookup,
 			$opts
 		);
 		$usersBody = $pager->getBody();

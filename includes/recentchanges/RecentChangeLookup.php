@@ -45,4 +45,11 @@ interface RecentChangeLookup {
 		string $fname = __METHOD__,
 		bool $fromPrimary = false
 	): ?RecentChange;
+
+	/**
+	 * Get the rc_source values for events that are not replicated from elsewhere
+	 *
+	 * @return string[]
+	 */
+	public function getPrimarySources(): array;
 }

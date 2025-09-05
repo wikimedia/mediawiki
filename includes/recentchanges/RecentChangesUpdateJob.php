@@ -153,7 +153,8 @@ class RecentChangesUpdateJob extends Job {
 	}
 
 	protected function updateActiveUsers() {
-		$activeUserDays = MediaWikiServices::getInstance()->getMainConfig()->get(
+		$services = MediaWikiServices::getInstance();
+		$activeUserDays = $services->getMainConfig()->get(
 			MainConfigNames::ActiveUserDays );
 
 		// Users that made edits at least this many days ago are "active"
@@ -161,7 +162,8 @@ class RecentChangesUpdateJob extends Job {
 		// Pull in the full window of active users in this update
 		$window = $activeUserDays * 86400;
 
-		$dbProvider = MediaWikiServices::getInstance()->getConnectionProvider();
+		$rcLookup = $services->getRecentChangeLookup();
+		$dbProvider = $services->getConnectionProvider();
 		$dbw = $dbProvider->getPrimaryDatabase();
 		$ticket = $dbProvider->getEmptyTransactionTicket( __METHOD__ );
 
@@ -197,7 +199,7 @@ class RecentChangesUpdateJob extends Job {
 			->join( 'actor', null, 'actor_id=rc_actor' )
 			->where( [
 				$dbw->expr( 'actor_user', '!=', null ), // actual accounts
-				$dbw->expr( 'rc_type', '!=', RC_EXTERNAL ), // no wikidata
+				$dbw->expr( 'rc_source', '=', $rcLookup->getPrimarySources() ),
 				$dbw->expr( 'rc_log_type', '=', null )->or( 'rc_log_type', '!=', 'newusers' ),
 				$dbw->expr( 'rc_timestamp', '>=', $dbw->timestamp( $sTimestamp ) ),
 				$dbw->expr( 'rc_timestamp', '<=', $dbw->timestamp( $eTimestamp ) ),
@@ -275,7 +277,7 @@ class RecentChangesUpdateJob extends Job {
 			] )
 			->caller( __METHOD__ )->execute();
 
-		if ( !MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::MiserMode ) ) {
+		if ( !$services->getMainConfig()->get( MainConfigNames::MiserMode ) ) {
 			SiteStatsUpdate::cacheUpdate( $dbw );
 		}
 

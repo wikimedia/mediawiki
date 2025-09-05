@@ -1979,6 +1979,7 @@ return [
 	},
 
 	'RecentChangeStore' => static function ( MediaWikiServices $services ): RecentChangeStore {
+		$extRegistry = ExtensionRegistry::getInstance();
 		return new RecentChangeStore(
 			$services->getActorStoreFactory(),
 			$services->getChangeTagsStore(),
@@ -1991,7 +1992,8 @@ return [
 			new ServiceOptions( RecentChangeStore::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
 			$services->getTitleFormatter(),
 			$services->getWikiPageFactory(),
-			$services->getUserFactory()
+			$services->getUserFactory(),
+			$extRegistry->getAttribute( 'RecentChangeSources' )
 		);
 	},
 
