@@ -3169,6 +3169,12 @@ class MainConfigNames {
 	public const ExtendedLoginCookieExpiration = 'ExtendedLoginCookieExpiration';
 
 	/**
+	 * Name constant for the SessionCookieJwtExpiration setting, for use with Config::get()
+	 * @see MainConfigSchema::SessionCookieJwtExpiration
+	 */
+	public const SessionCookieJwtExpiration = 'SessionCookieJwtExpiration';
+
+	/**
 	 * Name constant for the CookieDomain setting, for use with Config::get()
 	 * @see MainConfigSchema::CookieDomain
 	 */

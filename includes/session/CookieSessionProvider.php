@@ -262,7 +262,7 @@ class CookieSessionProvider extends SessionProvider {
 		$this->setForceHTTPSCookie( $forceHTTPS, $session, $request );
 		$this->setLoggedOutCookie( $session->getLoggedOutTimestamp(), $request );
 		if ( $this->useJwtCookie() ) {
-			$this->setJwtCookie( $session, $request );
+			$this->setJwtCookie( $session->getUser(), $request, $session->shouldRememberUser() );
 		}
 
 		if ( $sessionData ) {
@@ -474,7 +474,9 @@ class CookieSessionProvider extends SessionProvider {
 		$extendedCookies = $this->getExtendedLoginCookies();
 		$normalExpiration = $this->getConfig()->get( MainConfigNames::CookieExpiration );
 
-		if ( $shouldRememberUser && in_array( $cookieName, $extendedCookies, true ) ) {
+		if ( $cookieName === self::JWT_COOKIE_NAME ) {
+			return $this->getConfig()->get( MainConfigNames::SessionCookieJwtExpiration );
+		} elseif ( $shouldRememberUser && in_array( $cookieName, $extendedCookies, true ) ) {
 			$extendedExpiration = $this->getConfig()->get( MainConfigNames::ExtendedLoginCookieExpiration );
 
 			return ( $extendedExpiration !== null ) ? (int)$extendedExpiration : (int)$normalExpiration;
@@ -494,10 +496,13 @@ class CookieSessionProvider extends SessionProvider {
 	/**
 	 * Emit a JWT cookie containing the user ID, token and other information.
 	 */
-	protected function setJwtCookie( SessionBackend $session, WebRequest $request ): void {
+	protected function setJwtCookie(
+		User $user,
+		WebRequest $request,
+		bool $shouldRememberUser
+	): void {
 		$response = $request->response();
-		$user = $session->getUser();
-		$expirationDuration = $this->getLoginCookieExpiration( self::JWT_COOKIE_NAME, $session->shouldRememberUser() );
+		$expirationDuration = $this->getLoginCookieExpiration( self::JWT_COOKIE_NAME, $shouldRememberUser );
 		$expiration = $expirationDuration ? $expirationDuration + ConvertibleTimestamp::time() : null;
 
 		$jwtData = $this->getManager()->getJwtData( $user );
@@ -508,12 +513,25 @@ class CookieSessionProvider extends SessionProvider {
 	}
 
 	/**
+	 * Ensure that the JWT cookie (if it exists) matches the SessionInfo. The SessionInfo must
+	 * contain a non-null UserInfo (anonymous UserInfo is fine).
+	 * A missing JWT cookie is always treated as success.
+	 *
+	 * If necessary, marks the session to be refreshed.
+	 *
 	 * @throws JwtException on error
 	 */
-	protected function verifyJwtCookie( WebRequest $request, SessionInfo $sessionInfo ): void {
+	protected function verifyJwtCookie( WebRequest $request, SessionInfo &$sessionInfo ): void {
 		$jwt = $this->getCookie( $request, self::JWT_COOKIE_NAME, $this->getJwtCookieOptions()['prefix'] );
 		if ( $jwt === null ) {
-			// The JWT cookie might have a different lifetime and expire before the other cookies.
+			// This is normal: the JWT cookie has a shorter lifetime and will expire before the other cookies.
+			if ( $sessionInfo->wasPersisted() ) {
+				// Make sure it's re-persisted so the JWT cookie is updated.
+				$sessionInfo = new SessionInfo( $sessionInfo->getPriority(), [
+					'needsRefresh' => true,
+					'copyFrom' => $sessionInfo,
+				] );
+			}
 			return;
 		}
 
@@ -521,7 +539,7 @@ class CookieSessionProvider extends SessionProvider {
 		$expectedUser = ( $sessionInfo->getUserInfo() ?? UserInfo::newAnonymous() )->getUser();
 		$this->manager->validateJwtSubject( $data, $expectedUser );
 
-		[ 'iss' => $issuer, 'sxp' => $expiry ] = $data;
+		[ 'iss' => $issuer, 'sxp' => $softExpiry, 'exp' => $hardExpiry ] = $data + [ 'exp' => PHP_INT_MAX ];
 		[ 'iss' => $expectedIssuer ] = $this->getJwtClaimOverrides( 0 );
 		if ( $issuer !== $expectedIssuer ) {
 			throw new JwtException( 'JWT error: wrong issuer', [
@@ -530,18 +548,40 @@ class CookieSessionProvider extends SessionProvider {
 			] );
 		}
 
-		// TODO if the JWT is near expiry, we should probably refresh it.
-		if ( $expiry < ConvertibleTimestamp::time() ) {
-			throw new JwtException( 'JWT error: expired', [
-				'expiry' => $expiry,
-				'expired_by' => ConvertibleTimestamp::time() - $expiry,
-			] );
+		if ( $hardExpiry < ConvertibleTimestamp::time() ) {
+			throw new JwtException( 'JWT error: hard-expired', [
+				'jti' => $data['jti'],
+				'expiry' => $hardExpiry,
+				'expired_by' => ConvertibleTimestamp::time() - $hardExpiry,
+			] + $request->getSecurityLogContext( $expectedUser ) );
 		}
 
 		// Valid JWT. We could use this to make the UserInfo in the SessionInfo verified if it
 		// isn't already, or to make a SessionInfo in the first place if the other cookies weren't
 		// sufficient for a valid session, but for now we avoid using the JWT to make a session
 		// valid if it wouldn't be without it.
+
+		// Refresh the JWT cookie if it's about to expire. We can't rely on the normal session refresh
+		// mechanism because the expiry time is different.
+		$expirationDuration = $this->getLoginCookieExpiration( self::JWT_COOKIE_NAME, $sessionInfo->wasRemembered() );
+		if ( $sessionInfo->wasPersisted()
+			&& $softExpiry < ConvertibleTimestamp::time() + 0.75 * $expirationDuration
+		) {
+			$sessionInfo = new SessionInfo( $sessionInfo->getPriority(), [
+				'needsRefresh' => true,
+				'copyFrom' => $sessionInfo,
+			] );
+			if ( $softExpiry < ConvertibleTimestamp::time() - ExpirationAwareness::TTL_MINUTE ) {
+				// Already expired (we add a one-minute fudge factor for slow network etc).
+				// This shouldn't happen since the cookie expiry and the JWT expiry are synced,
+				// but some clients might not honor cookie expiry; we want to know about those.
+				$this->logger->warning( 'Soft-expired JWT cookie', [
+					'jti' => $data['jti'],
+					'expiry' => $softExpiry,
+					'expired_by' => ConvertibleTimestamp::time() - $softExpiry,
+				] + $request->getSecurityLogContext( $expectedUser ) );
+			}
+		}
 	}
 
 	/**
@@ -552,10 +592,11 @@ class CookieSessionProvider extends SessionProvider {
 		$this->jti ??= base64_encode( random_bytes( 16 ) );
 		return [
 			'iss' => $this->urlUtils->getCanonicalServer(),
-			'exp' => ConvertibleTimestamp::time() + $expirationDuration + ExpirationAwareness::TTL_DAY,
-			// TODO this uses the normal session cookie expiration, which defaults to 30 days.
-			//   We might want to set it to something short instead (e.g. a day) so we don't need to
-			//   worry about the contents being outdated, but then we need a mechanism to refresh it.
+			// FIXME Omit 'exp' for now. In theory we could just set it to something larger than
+			//   the cookie expiration, but want to be careful about clients which don't honor
+			//   cookie expiries and the possibility that JWTs with an invalid 'exp' field will be
+			//   hard-rejected at the edge.
+			// 'exp' => ConvertibleTimestamp::time() + $expirationDuration + ExpirationAwareness::TTL_MINUTE,
 			'sxp' => ConvertibleTimestamp::time() + $expirationDuration,
 			'jti' => $this->jti,
 		];

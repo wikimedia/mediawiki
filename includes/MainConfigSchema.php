@@ -9575,6 +9575,17 @@ class MainConfigSchema {
 	];
 
 	/**
+	 * JWT session cookie expiration, in seconds. Used both for cookie expiry and for
+	 * the expiry field inside the JWT object.
+	 *
+	 * @since 1.45
+	 * @see self::UseSessionCookieJwt
+	 */
+	public const SessionCookieJwtExpiration = [
+		'default' => 4 * 3600,
+	];
+
+	/**
 	 * Set to set an explicit domain on the login cookies eg, "justthis.domain.org"
 	 * or ".any.subdomain.net"
 	 */

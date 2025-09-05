@@ -1883,6 +1883,7 @@ return [
 			'SessionSecret' => false,
 			'CookieExpiration' => 2592000,
 			'ExtendedLoginCookieExpiration' => 15552000,
+			'SessionCookieJwtExpiration' => 14400,
 			'CookieDomain' => '',
 			'CookiePath' => '/',
 			'CookieSecure' => 'detect',

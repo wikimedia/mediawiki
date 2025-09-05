@@ -6007,6 +6007,13 @@ config-schema:
             If $wgExtendLoginCookieExpiration is set to null, we use $wgCookieExpiration to
             calculate the cookie lifetime instead. As with $wgCookieExpiration, 0 will make
             login cookies session-only.
+    SessionCookieJwtExpiration:
+        default: 14400
+        description: |-
+            JWT session cookie expiration, in seconds. Used both for cookie expiry and for
+            the expiry field inside the JWT object.
+            @since 1.45
+            @see self::UseSessionCookieJwt
     CookieDomain:
         default: ''
         description: |-
