@@ -3148,6 +3148,12 @@ $wgCookieExpiration = null;
 $wgExtendedLoginCookieExpiration = null;
 
 /**
+ * Config variable stub for the SessionCookieJwtExpiration setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::SessionCookieJwtExpiration
+ */
+$wgSessionCookieJwtExpiration = null;
+
+/**
  * Config variable stub for the CookieDomain setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::CookieDomain
  */
