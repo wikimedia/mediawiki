@@ -161,8 +161,8 @@ class BenchmarkParse extends Maintenance {
 	private function runParser( RevisionRecord $revision ) {
 		$content = $revision->getContent( SlotRecord::MAIN );
 		$contentRenderer = $this->getServiceContainer()->getContentRenderer();
-		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable getId does not return null here
-		$contentRenderer->getParserOutput( $content, $revision->getPage(), $revision->getId() );
+		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable - $content is not null here
+		$contentRenderer->getParserOutput( $content, $revision->getPage(), $revision );
 		if ( $this->clearLinkCache ) {
 			$this->linkCache->clear();
 		}
