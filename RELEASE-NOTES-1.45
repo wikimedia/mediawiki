@@ -225,6 +225,8 @@ because of Phabricator reports.
 * The following LogPager methods are deprecated without replacement:
   getType, getPage, getPattern, getYear, getMonth, getDay, getTagFilter,
   getTagInvert, getAction.
+* ContentRenderer::getParserOutput() with an integer revision ID, deprecated
+  since 1.42, is no longer supported.
 * The LogEventsListShowLogExtract $page parameter is now an array.
 * ReverseArrayIterator, deprecated in MediaWiki 1.44, has been removed.
 * Command::whitelistPaths, deprecated in 1.36, has been removed.
