@@ -3208,7 +3208,7 @@
 	"autoredircomment": "Đổi hướng đến [[$1]]",
 	"autosumm-removed-redirect": "Xóa đổi hướng đến trang [[$1]]",
 	"autosumm-changed-redirect-target": "Thay đổi trang đích của đổi hướng từ [[$1]] sang [[$2]]",
-	"autosumm-new": "Tạo trang mới với nội dung “$1”",
+	"autosumm-new": "Trang mới: “$1”",
 	"autosumm-newblank": "Đã tạo trang trống",
 	"size-bytes": "$1 byte",
 	"size-kilobytes": "$1 kB",

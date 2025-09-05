@@ -424,6 +424,7 @@
 	"apihelp-parse-param-wrapoutputclass": "فئة CSS لاستخدام التفاف إخراج المحلل.",
 	"apihelp-parse-param-usearticle": "استخدم خطاف ArticleParserOptions للتأكد من أن الخيارات المستخدمة تتطابق مع تلك المستخدمة لعرض صفحات المقالة",
 	"apihelp-parse-param-parsoid": "إنشاء HTML يتوافق مع [[mw:Specs/HTML|مواصفات MediaWiki DOM]] باستخدام [[mw:Parsoid|Parsoid]].",
+	"apihelp-parse-param-parser": "أي محلل نصوص ويكي ينبغي استخدامه:",
 	"apihelp-parse-param-pst": "قم بتحويل قبل الحفظ على المدخلات قبل تحليل ذلك. صالح فقط عند استخدامه مع النص.",
 	"apihelp-parse-param-onlypst": "قم بإجراء تحويل ما قبل الحفظ (PST) على الإدخال، ولكن لا تقم بتحليله; لعرض نفس نص الويكي، بعد تطبيق PST، صالح فقط عند استخدامه مع <var>$1text</var>.",
 	"apihelp-parse-param-effectivelanglinks": "يشمل وصلات لغة المقدمة بواسطة ملحقات (للاستخدام مع <kbd>$1prop=langlinks</kbd>).",
