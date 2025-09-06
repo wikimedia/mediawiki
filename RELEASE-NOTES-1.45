@@ -107,6 +107,7 @@ For notes on 1.44.x and older releases, see HISTORY.
 
 ==== New external libraries ====
 
+* Added lcobucci/jwt 4.1.5.
 * Added wikimedia/codex ("Codex-PHP") v0.7.1.
 * …
 
@@ -415,6 +416,7 @@ MediaWiki 1.45 requires PHP 8.1.0 or later and the following PHP extensions:
 * intl
 * json
 * mbstring
+* sodium
 * xml
 
 MariaDB is the recommended database software. MySQL, PostgreSQL, or SQLite can
