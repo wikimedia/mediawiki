@@ -3482,12 +3482,6 @@ class MainConfigNames {
 	public const SitemapApiConfig = 'SitemapApiConfig';
 
 	/**
-	 * Name constant for the EnableSearchContributorsByIP setting, for use with Config::get()
-	 * @see MainConfigSchema::EnableSearchContributorsByIP
-	 */
-	public const EnableSearchContributorsByIP = 'EnableSearchContributorsByIP';
-
-	/**
 	 * Name constant for the SpecialSearchFormOptions setting, for use with Config::get()
 	 * @see MainConfigSchema::SpecialSearchFormOptions
 	 */

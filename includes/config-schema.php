@@ -1988,7 +1988,6 @@ return [
 			'SitemapNamespacesPriorities' => false,
 			'SitemapApiConfig' => [
 			],
-			'EnableSearchContributorsByIP' => true,
 			'SpecialSearchFormOptions' => [
 			],
 			'SearchMatchRedirectPreference' => false,

@@ -68,32 +68,26 @@ class TitleMatcherTest extends MediaWikiIntegrationTestCase {
 				'User:SuperuserNew', 'en', 'User:SuperuserNew', 'User:Superuser'
 			],
 			'user search use by IP' => [
-				'Special:Contributions/132.17.48.1', 'en', 'User:132.17.48.1', 'User:Superuser',
-					null, true,
+				'User:132.17.48.1', 'en', 'User:132.17.48.1', 'User:Superuser',
+					null,
 			],
 			// Special cases: other content types
 			'mediawiki ok even if no page' => [
 				'MediaWiki:Add New Page', 'en', 'MediaWiki:Add New Page', 'MediaWiki:Add Old Page'
 			],
 			'Media ok' => [
-				'File:Text', 'en', 'Media:Text', 'File:Text', null, true,
+				'File:Text', 'en', 'Media:Text', 'File:Text', null,
 			],
 			'Media not ok' => [
-				null, 'en', 'Media:Text', 'Media:Text', null, true,
+				null, 'en', 'Media:Text', 'Media:Text', null,
 			],
 		];
 	}
 
-	/**
-	 * @param HashConfig $config
-	 * @param string $langCode
-	 *
-	 * @return TitleMatcher
-	 */
-	private function getTitleMatcher( HashConfig $config, $langCode ): TitleMatcher {
+	private function getTitleMatcher( string $langCode ): TitleMatcher {
 		$services = $this->getServiceContainer();
 		return new TitleMatcher(
-			new ServiceOptions( TitleMatcher::CONSTRUCTOR_OPTIONS, $config ),
+			new ServiceOptions( TitleMatcher::CONSTRUCTOR_OPTIONS, new HashConfig() ),
 			$services->getLanguageFactory()->getLanguage( $langCode ),
 			$services->getLanguageConverterFactory(),
 			$services->getHookContainer(),
@@ -115,7 +109,6 @@ class TitleMatcherTest extends MediaWikiIntegrationTestCase {
 		$searchterm,
 		$titleText,
 		$distractor = null,
-		$enableSearchContributorsByIP = false
 	) {
 		$this->overrideConfigValue( MainConfigNames::LanguageCode, 'en' );
 		$this->addGoodLinkObject( 42, Title::newFromText( $titleText ) );
@@ -124,11 +117,7 @@ class TitleMatcherTest extends MediaWikiIntegrationTestCase {
 			$this->addGoodLinkObject( 43, Title::newFromText( $distractor ) );
 		}
 
-		$config = new HashConfig( [
-			MainConfigNames::EnableSearchContributorsByIP => $enableSearchContributorsByIP,
-		] );
-
-		$matcher = $this->getTitleMatcher( $config, $langCode );
+		$matcher = $this->getTitleMatcher( $langCode );
 		$title = $matcher->getNearMatch( $searchterm );
 		$this->assertEquals( $expected, $title === null ? null : (string)$title );
 	}
@@ -147,10 +136,6 @@ class TitleMatcherTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Search\TitleMatcher::getNearMatch
 	 */
 	public function testNearMatch_Hooks( $hook ) {
-		$config = new HashConfig( [
-			MainConfigNames::EnableSearchContributorsByIP => false,
-		] );
-
 		$this->setTemporaryHook( $hook, static function ( $term, &$title ) {
 			if ( $term === [ 'Hook' ] || $term === 'Hook' ) {
 				$title = Title::makeTitle( NS_MAIN, 'TitleFromHook' );
@@ -159,7 +144,7 @@ class TitleMatcherTest extends MediaWikiIntegrationTestCase {
 			return null;
 		} );
 
-		$matcher = $this->getTitleMatcher( $config, 'en' );
+		$matcher = $this->getTitleMatcher( 'en' );
 		$title = $matcher->getNearMatch( 'Hook' );
 		$this->assertEquals( 'TitleFromHook', $title );
 
@@ -172,11 +157,7 @@ class TitleMatcherTest extends MediaWikiIntegrationTestCase {
 	public function testGetNearMatchResultSet() {
 		$this->addGoodLinkObject( 42, Title::makeTitle( NS_MAIN, "Test Link" ) );
 
-		$config = new HashConfig( [
-			MainConfigNames::EnableSearchContributorsByIP => false,
-		] );
-
-		$matcher = $this->getTitleMatcher( $config, 'en' );
+		$matcher = $this->getTitleMatcher( 'en' );
 		$result = $matcher->getNearMatchResultSet( 'Test Link' );
 		$this->assertSame( 1, $result->numRows() );
 

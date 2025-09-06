@@ -9,9 +9,7 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Language\ILanguageConverter;
 use MediaWiki\Language\Language;
 use MediaWiki\Languages\LanguageConverterFactory;
-use MediaWiki\MainConfigNames;
 use MediaWiki\Page\WikiPageFactory;
-use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
 use MediaWiki\User\UserNameUtils;
@@ -25,9 +23,7 @@ class TitleMatcher {
 	/**
 	 * @internal For use by ServiceWiring.
 	 */
-	public const CONSTRUCTOR_OPTIONS = [
-		MainConfigNames::EnableSearchContributorsByIP,
-	];
+	public const CONSTRUCTOR_OPTIONS = [];
 
 	private ServiceOptions $options;
 	private Language $language;
@@ -191,14 +187,6 @@ class TitleMatcher {
 		}
 
 		$title = $this->titleFactory->newFromTextThrow( $searchterm );
-
-		# Entering an IP address goes to the contributions page
-		if ( $this->options->get( MainConfigNames::EnableSearchContributorsByIP ) ) {
-			if ( ( $title->getNamespace() === NS_USER && $this->userNameUtils->isIP( $title->getText() ) )
-				|| $this->userNameUtils->isIP( trim( $searchterm ) ) ) {
-				return SpecialPage::getTitleFor( 'Contributions', $title->getDBkey() );
-			}
-		}
 
 		# Entering a user goes to the user page whether it's there or not
 		if ( $title->getNamespace() === NS_USER ) {

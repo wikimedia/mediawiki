@@ -3467,12 +3467,6 @@ $wgSitemapNamespacesPriorities = null;
 $wgSitemapApiConfig = null;
 
 /**
- * Config variable stub for the EnableSearchContributorsByIP setting, for use by phpdoc and IDEs.
- * @see MediaWiki\MainConfigSchema::EnableSearchContributorsByIP
- */
-$wgEnableSearchContributorsByIP = null;
-
-/**
  * Config variable stub for the SpecialSearchFormOptions setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::SpecialSearchFormOptions
  */

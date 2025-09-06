@@ -10354,15 +10354,6 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * If true, searches for IP addresses will be redirected to that IP's
-	 * contributions page. E.g. searching for "1.2.3.4" will redirect to
-	 * [[Special:Contributions/1.2.3.4]]
-	 */
-	public const EnableSearchContributorsByIP = [
-		'default' => true,
-	];
-
-	/**
 	 * Options for Special:Search completion widget form created by SearchFormWidget class.
 	 *
 	 * Settings that can be used:

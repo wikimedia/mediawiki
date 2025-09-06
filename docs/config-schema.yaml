@@ -6483,12 +6483,6 @@ config-schema:
             @see https://www.sitemaps.org/protocol.html
             @see \MediaWiki\Rest\Handler\SitemapHandlerBase
             @since 1.45
-    EnableSearchContributorsByIP:
-        default: true
-        description: |-
-            If true, searches for IP addresses will be redirected to that IP's
-            contributions page. E.g. searching for "1.2.3.4" will redirect to
-            [[Special:Contributions/1.2.3.4]]
     SpecialSearchFormOptions:
         default: {  }
         type: object
