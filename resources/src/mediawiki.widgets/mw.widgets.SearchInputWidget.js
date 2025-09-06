@@ -30,7 +30,11 @@
 
 		config = Object.assign( {
 			icon: 'search',
-			maxLength: undefined,
+			// T297071
+			// Default length of mw.widgets.TitleInputWidget is 255 for input.
+			// CirrusSearch limit is 300 bytes, but it's a runtime check
+			// While other engines have no real limit, it's probably better to have a limit on input.
+			maxLength: 300,
 			showPendingRequest: false,
 			performSearchOnClick: true,
 			dataLocation: 'header'
