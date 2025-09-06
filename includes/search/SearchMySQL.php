@@ -211,15 +211,8 @@ class SearchMySQL extends SearchDatabase {
 		$queryBuilder = $this->getQueryBuilder( $filteredTerm, $fulltext );
 		$resultSet = $queryBuilder->caller( __METHOD__ )->fetchResultSet();
 
-		$total = null;
 		$queryBuilder = $this->getCountQueryBuilder( $filteredTerm, $fulltext );
-		$totalResult = $queryBuilder->caller( __METHOD__ )->fetchResultSet();
-
-		$row = $totalResult->fetchObject();
-		if ( $row ) {
-			$total = intval( $row->c );
-		}
-		$totalResult->free();
+		$total = (int)$queryBuilder->caller( __METHOD__ )->fetchField();
 
 		return new SqlSearchResultSet( $resultSet, $this->searchTerms, $total );
 	}
@@ -318,7 +311,7 @@ class SearchMySQL extends SearchDatabase {
 	private function getCountQueryBuilder( $filteredTerm, $fulltext ): SelectQueryBuilder {
 		$match = $this->parseQuery( $filteredTerm, $fulltext );
 		$queryBuilder = $this->dbProvider->getReplicaDatabase()->newSelectQueryBuilder()
-			->select( [ 'c' => 'COUNT(*)' ] )
+			->select( 'COUNT(*)' )
 			->from( 'page' )
 			->join( 'searchindex', null, 'page_id=si_page' )
 			->where( $match[0] );
