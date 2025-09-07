@@ -15,6 +15,11 @@ class SqliteCreateSearchIndexTask extends Task {
 		return 'search';
 	}
 
+	/** @inheritDoc */
+	public function getDependencies() {
+		return [ 'tables' ];
+	}
+
 	public function execute(): Status {
 		$status = Status::newGood();
 		$db = $this->definitelyGetConnection( ITaskContext::CONN_CREATE_TABLES );
