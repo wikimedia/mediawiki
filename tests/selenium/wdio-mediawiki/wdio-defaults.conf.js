@@ -116,6 +116,7 @@ export const config = {
 				'--disable-features=Translate',
 				'--disable-fetching-hints-at-navigation-start',
 				'--disable-hang-monitor',
+				'--disable-infobars',
 				'--disable-ipc-flooding-protection',
 				'--disable-prompt-on-repost',
 				'--disable-renderer-backgrounding',
