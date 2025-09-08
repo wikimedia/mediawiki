@@ -1,5 +1,8 @@
 <?php
 
+use MediaWiki\Block\BlockUser;
+use MediaWiki\Block\DatabaseBlockStore;
+use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\UltimateAuthority;
@@ -371,6 +374,109 @@ class SpecialContributionsTest extends SpecialPageTestBase {
 			'Invalid prefix' => [ '/', 0 ],
 			'Valid prefix' => [ 'U', 1 ],
 		];
+	}
+
+	public function testShowsOnlyNewestActiveBlockLog() {
+		$this->overrideConfigValue( MainConfigNames::EnableMultiBlocks, true );
+		$services = $this->getServiceContainer();
+		$blockFactory = $services->getBlockUserFactory();
+		$blockedUser = $this->getTestUser()->getUser();
+
+		// Place an infinite sitewide block that should remain active
+		$blockIndef = $blockFactory->newBlockUser(
+			$blockedUser->getName(),
+			self::$admin,
+			'infinity'
+		)->placeBlock( BlockUser::CONFLICT_NEW );
+		$this->assertStatusGood( $blockIndef, 'Failed to place infinite sitewide block' );
+
+		// Place an temporary partial block that should also remain active
+		$blockPartial = $blockFactory->newBlockUser(
+			$blockedUser->getName(),
+			self::$admin,
+			'3 months',
+			'',
+			[ 'isPartial' => true ],
+			[ new NamespaceRestriction( 0, NS_MAIN ) ]
+		)->placeBlock( BlockUser::CONFLICT_NEW );
+		$this->assertStatusGood( $blockPartial, 'Failed to place temporary partial block' );
+
+		// Place a third short block, then immediately remove it to simulate an expired block
+		$symbol = 'This is a symbolic block summary.';
+		$blockTemp = $blockFactory->newBlockUser(
+			$blockedUser->getName(),
+			self::$admin,
+			'1 minute',
+			$symbol
+		)->placeBlock( BlockUser::CONFLICT_NEW );
+		$this->assertStatusGood( $blockTemp, 'Failed to place short-lived block' );
+
+		$blocks = $services->getDatabaseBlockStore()->newListFromTarget(
+			$blockedUser->getName(),
+			null,
+			false,
+			DatabaseBlockStore::AUTO_NONE
+		);
+		$blockToLift = null;
+		foreach ( $blocks as $block ) {
+			if ( $block->getReasonComment()->text === $symbol ) {
+				$blockToLift = $block;
+				break;
+			}
+		}
+		$this->assertNotNull( $blockToLift, 'Short-lived block to remove was not found in database' );
+
+		// Remove the third block (this also creates an unblock log entry)
+		$unblock = $services->getUnblockUserFactory()->newRemoveBlock(
+			$blockToLift,
+			self::$admin,
+			''
+		)->unblock();
+		$this->assertStatusGood( $unblock, 'Failed to remove short-lived block' );
+
+		[ $html ] = $this->executeSpecialPage( $blockedUser->getName() );
+
+		// The page HTML should contain the sitewide block class even if the newest block is partial
+		$this->assertMatchesRegularExpression(
+			'/sp-contributions-blocked-notice(?!-partial)/',
+			$html,
+			'Sitewide block CSS class missing'
+		);
+
+		// The page HTML should not contain the partial block class
+		$this->assertStringNotContainsString(
+			'sp-contributions-blocked-notice-partial',
+			$html,
+			'Partial block CSS class unexpectedly included'
+		);
+
+		// The active sitewide infinite block should not appear because it's older
+		$this->assertStringNotContainsString(
+			'infinity',
+			$html,
+			'Older infinite sitewide block log incorrectly shown'
+		);
+
+		// The active partial block must be visible
+		$this->assertStringContainsString(
+			'3 months',
+			$html,
+			'Active temporary partial block log not shown'
+		);
+
+		// The lifted/expired short block should not appear
+		$this->assertStringNotContainsString(
+			'1 minute',
+			$html,
+			'Expired block log incorrectly shown'
+		);
+
+		// The unblock log itself must not appear
+		$this->assertStringNotContainsString(
+			'logentry-block-unblock',
+			$html,
+			'Unblock log incorrectly shown'
+		);
 	}
 
 	protected function newSpecialPage(): SpecialContributions {

@@ -51,6 +51,9 @@ use MediaWiki\User\UserRigorOptions;
 use OOUI\ButtonWidget;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\IConnectionProvider;
+use Wikimedia\Rdbms\IExpression;
+use Wikimedia\Rdbms\LikeMatch;
+use Wikimedia\Rdbms\LikeValue;
 
 /**
  * Show user contributions in a paged list.
@@ -475,14 +478,28 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 						$userObj, $userObj, false, DatabaseBlockStore::AUTO_NONE );
 				}
 
-				$sitewide = false;
 				$logTargetPages = [];
+				$newestBlockTimestamp = null;
+				$blockId = null;
+				$sitewide = false;
 				foreach ( $blocks as $block ) {
+					$logTargetPages[] =
+						$this->namespaceInfo->getCanonicalName( NS_USER ) . ':' . $block->getTargetName();
 					if ( $block->isSitewide() ) {
 						$sitewide = true;
 					}
-					$logTargetPages[] = $this->namespaceInfo->getCanonicalName( NS_USER ) .
-						':' . $block->getTargetName();
+
+					// Track the most recent active block. Prefer newer timestamps; if two blocks
+					// share the same timestamp, fall back to the larger block ID to break ties.
+					// This avoids issues where overridden blocks may reuse smaller IDs.
+					if (
+						$newestBlockTimestamp === null ||
+						$block->getTimestamp() > $newestBlockTimestamp ||
+						( $block->getTimestamp() === $newestBlockTimestamp && $block->getId() > $blockId )
+					) {
+						$newestBlockTimestamp = $block->getTimestamp();
+						$blockId = $block->getId();
+					}
 				}
 
 				if ( count( $blocks ) ) {
@@ -507,6 +524,29 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 					$class = $sitewide ?
 						'mw-contributions-blocked-notice' :
 						'mw-contributions-blocked-notice-partial';
+
+					// While $blocks already contains only active blocks, LogEventsList::showLogExtract
+					// by default fetches the most recent log entries regardless of block status.
+					// To ensure the newest ACTIVE block log is shown, add explicit LIKE conditions
+					// here to filter block log entries.
+					$dbr = $this->dbProvider->getReplicaDatabase();
+					$orCondsForBlockId = [];
+					$orCondsForBlockId[] = $dbr->expr(
+						// Before MW 1.44, log_params did not contain blockId. Always include such older
+						// log entries for backwards compatibility
+						'log_params',
+						IExpression::NOT_LIKE,
+						new LikeValue( new LikeMatch( '%"blockId"%' ) )
+					);
+					if ( $blockId !== null ) {
+						$orCondsForBlockId[] = $dbr->expr(
+							'log_params',
+							IExpression::LIKE,
+							new LikeValue( new LikeMatch( "%\"blockId\";i:$blockId;%" ) )
+						);
+					}
+					$conds = [ $dbr->makeList( $orCondsForBlockId, LIST_OR ) ];
+
 					LogEventsList::showLogExtract(
 						$out,
 						'block',
@@ -514,6 +554,7 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 						'',
 						[
 							'lim' => 1,
+							'conds' => $conds,
 							'showIfEmpty' => false,
 							'msgKey' => [
 								$msgKey,
