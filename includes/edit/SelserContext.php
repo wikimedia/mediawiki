@@ -65,12 +65,12 @@ class SelserContext implements JsonCodecable {
 		$revId = (int)$json['revId'];
 		$pb = $json['pb'];
 		if ( is_array( $pb ) ) {
-			// Backward compatibility with old serialization format
+			// Backward compatibility with old MW 1.44 serialization format
 			$pb = HtmlPageBundle::newFromJsonArray( $pb );
 		}
 		$content = $json['c'] ?? $json['content'] ?? null;
 		if ( is_array( $content ) ) {
-			// Backward compatibility with old serialization format
+			// Backward compatibility with old MW 1.44 serialization format
 			$contentHandler = MediaWikiServices::getInstance()
 				->getContentHandlerFactory()
 				->getContentHandler( $content['model'] );
