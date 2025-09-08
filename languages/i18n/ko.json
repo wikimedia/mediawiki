@@ -108,7 +108,8 @@
 			"Tensama0415",
 			"YeBoy371",
 			"Whatback11",
-			"Gustmd7410"
+			"Gustmd7410",
+			"Bisang"
 		]
 	},
 	"tog-underline": "링크에 밑줄 긋기:",
@@ -240,7 +241,7 @@
 	"mytalk": "토론",
 	"anontalk": "토론",
 	"navigation": "둘러보기",
-	"and": ",",
+	"and": "&#32;그리고",
 	"faq": "자주 묻는 질문",
 	"actions": "행위",
 	"namespaces": "이름공간",

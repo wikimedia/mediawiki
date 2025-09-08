@@ -4162,7 +4162,7 @@
 	"userlogout-continue": "Se želite odjaviti?",
 	"userlogout-temp": "Ste prepričani, da se želite odjaviti? V svoj začasni račun se nato ne boste mogli več prijaviti.",
 	"paramvalidator-baduser": "Neveljavna vrednosti »$2« za uporabniški parameter <var>$1</var>.",
-	"paramvalidator-help-type-user": "Vrsta: {{PLURAL:$1|1=uporabnik|2=seznam uporabnikov}}, {{PLURAL:$3|ki ustreza|ki ustreza kateremu koli od}} $2",
+	"paramvalidator-help-type-user": "Vrsta: {{PLURAL:$1|1=uporabnik|2=seznam uporabnikov}}, {{PLURAL:$3|ki ustreza|ki ustreza čemur koli od}} $2",
 	"paramvalidator-help-type-user-subtype-name": "uporabniško ime",
 	"paramvalidator-help-type-user-subtype-ip": "IP",
 	"paramvalidator-help-type-user-subtype-cidr": "IP-razpon",

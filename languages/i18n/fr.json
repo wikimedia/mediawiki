@@ -221,7 +221,8 @@
 			"EmDashUser002",
 			"Wikipucine",
 			"Bananax47",
-			"Abakar B"
+			"Abakar B",
+			"Pyschobbens"
 		]
 	},
 	"tog-underline": "Soulignement des liens :",
@@ -1045,7 +1046,7 @@
 	"rev-deleted-event": "(détails de l’historique retirés)",
 	"rev-deleted-user-contribs": "[nom d’utilisateur ou adresse IP retiré – modification masquée dans les contributions]",
 	"rev-deleted-text-permission": "Cette version de la page a été <strong>supprimée</strong>.\nLes détails sont disponibles dans le [{{fullurl:{{#Special:Log}}/delete|page=$1}} journal des suppressions].",
-	"rev-suppressed-text": "Cette révision de page a été <strong>masquée</strong>.",
+	"rev-suppressed-text": "Cette version de page a été <strong>masquée</strong>.",
 	"rev-suppressed-text-permission": "Cette version de la page a été <strong>masquée</strong>.\nLes détails se trouvent dans le [{{fullurl:{{#Special:Log}}/suppress|page=$1}} journal des masquages].",
 	"rev-deleted-text-unhide": "Cette version de la page a été <strong>supprimée</strong>.\nDes détails sont disponibles dans [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} le journal des suppressions].\nVous pouvez toujours [$1 voir cette version] si vous le voulez.",
 	"rev-suppressed-text-unhide": "Cette version de la page a été <strong>masquée</strong>.\nDes détails sont disponibles dans [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} le journal des masquages].\nVous pouvez toujours [$1 voir cette version] si vous le voulez.",
@@ -1215,7 +1216,7 @@
 	"search-external": "Recherche externe",
 	"searchdisabled": "La recherche sur {{SITENAME}} est désactivée.\nEn attendant la réactivation, vous pouvez effectuer une recherche via Google.\nNotez que leur indexation du contenu de {{SITENAME}} peut ne pas être à jour.",
 	"search-error": "Une erreur s’est produite en recherchant : $1",
-	"search-warning": "Un warning s’est produit en recherchant : $1",
+	"search-warning": "Un avertissement s’est produit en recherchant : $1",
 	"preferences": "Préférences",
 	"mypreferences": "Préférences",
 	"prefs-edits": "Nombre de modifications :",

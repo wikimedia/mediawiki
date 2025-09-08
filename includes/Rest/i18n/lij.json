@@ -1,0 +1,43 @@
+{
+	"@metadata": {
+		"authors": [
+			"N. Longo"
+		]
+	},
+	"rest-wrong-method": "O método domandòu ($1) o no l'é {{PLURAL:$3|'n método permìsso|un di métodi permìssi}} pe sto percórso chi ($2)",
+	"rest-no-match": "O percórso relatîvo ($1) o no coincìdde con di âtri controller conosciûi",
+	"rest-nonexistent-title-revision": "A versción domandâ ($1) a no l'é exìste pe-a pàgina indicâ ($2)",
+	"rest-nonexistent-revision": "A versción domandâ ($1) a no l'exìste",
+	"rest-nonexistent-user": "L'uténte indicòu ($1) o no l'exìste",
+	"rest-invalid-user": "O nómme uténte indicòu ($1) o no l'é vàlido",
+	"rest-permission-denied-anon": "No acescìbile a-i uténti anònimi",
+	"rest-permission-denied-title": "L'uténte o no gh'à i dirìtti pe lêze o tìtolo ($1)",
+	"rest-permission-denied-revision": "L'uténte o no peu intrâ a-a versción domandâ ($1).",
+	"rest-resource-limit-exceeded": "Sconpasòu i lìmiti de vivàgne pe elaborâ a domànda.",
+	"rest-pagehistory-incompatible-params": "No peu êse specificòu tùtti doî i paràmetri \"older_than\" e \"newer_than\"",
+	"rest-pagehistory-param-range-error": "ID versción o gh'à da êse ciù èrto de 0",
+	"rest-pagehistory-timestamp-error": "Inposcìbile repigiâ l'orâio pe-a versción indicâ ($1)",
+	"rest-pagehistorycount-type-unrecognized": "O tîpo de contézzo specificòu ($1) o no l'é vàlido",
+	"rest-pagehistorycount-parameters-invalid": "A conbinaçión de paràmetri specificâ a no l'é suportâ.",
+	"rest-compare-page-mismatch": "A versción specificâ a l'apartêgne a de pàgine diferénti; o paragón o l'é refuòu.",
+	"rest-compare-permission-denied": "L'uténte o no peu intrâ a-a versción domandâ.",
+	"rest-compare-nonexistent": "A versción specificâ do paràmetro $1 a no l'exìste.",
+	"rest-compare-inaccessible": "A versción specificâ da-o paràmetro $1 a no l'é acescìbile a-o pùblico.",
+	"rest-compare-wrong-content": "O spàçio $1 da versción specificâ pe-o paràmetro $2 a gh'à 'n tîpo de contegnûo ch'o no se peu trasformâ inte 'n tèsto.",
+	"rest-compare-wikidiff2": "St'endpoint chi o gh'à de bezéugno de wikidiff2 1.9.0 ò ciù modèrno.",
+	"rest-pagehistorycount-too-many-revisions": "O tìtolo indicòu o contêgne tròppe verscioìn pe repigiâ sto contézzo chi.",
+	"rest-search-error": "Erô into restitoî o rizultâto da riçèrca: $1",
+	"rest-page-source-type-error": "O tîpo de contegnûo da pàgina vivàgna domandâ o no l'é suportòu",
+	"rest-no-revision": "Inposcìbile repigiâ a versción pe-o tìtolo $1",
+	"rest-media-too-many-links": "Tròppi ligàmmi a media trovæ co-o tìtolo $1 (n'é permìsso $2)",
+	"rest-bad-json-body": "Còrpo da domànda no vàlido, o gh'à da êse 'n ògètto JSON.",
+	"rest-json-body-parse-error": "Anàlixi do còrpo da domànda cómme JSON falîa: $1",
+	"rest-missing-body-field": "O cànpo òbligatöio \"$1\" o mànca into còrpo da domànda.",
+	"rest-bad-content-model": "Modéllo de contegnûo eròu: $1",
+	"rest-update-cannot-create-page": "A pàgina \"$1\" a no peu êse creâ scicómme ch'a l'exìste za. Pe métte a giórno a pàgina ch'a l'exìste za, indicâ l'ID versción bâze inta strutûa de sótta de \"l'ùrtima\" ciâve into còrpo domandòu.",
+	"rest-extraneous-csrf-token": "Token CSRF forèsto trovòu. I token CSRF no pêuan êse dêuviæ quànde se dêuvian di scistêmi de aotenticaçión cómme i OAuth, che són segûi cóntri i atàcchi CSRF.",
+	"rest-cannot-load-file": "O file pe-o tìtolo \"$1\" o no peu êse caregòu.",
+	"rest-cross-origin-anon-write": "E domànde de scritûa anònima d'òrìgine incroxâ no són permìsse",
+	"rest-requires-safe-against-csrf": "Sto endpoint chi o domànda 'n fornitô de seçioìn segûo pe CSRF.",
+	"rest-badtoken": "O token CSFR fornîo o no l'é vàlido."
+}

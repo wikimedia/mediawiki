@@ -2076,7 +2076,7 @@
 	"statistics-header-hooks": "Diğer istatistikler",
 	"statistics-articles": "İçerik sayfaları",
 	"statistics-pages": "Sayfalar",
-	"statistics-pages-desc": "Vikideki tüm sayfalar, tartışma sayfaları, yönlendirmeler vb.",
+	"statistics-pages-desc": "Vikideki tüm sayfalar; tartışma sayfaları, yönlendirmeler vb.",
 	"statistics-files": "Yüklenmiş dosyalar",
 	"statistics-edits": "{{SITENAME}} kurulduğundan beri yapılan sayfa değişiklikleri",
 	"statistics-edits-average": "Her sayfadaki ortalama değişiklik",
