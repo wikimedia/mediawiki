@@ -228,6 +228,9 @@ class SpecialSearch extends SpecialPage {
 					[ 'class' => 'mw-searchdisabled' ],
 					$this->msg( 'searchdisabled', [ 'mw:Special:MyLanguage/Manual:$wgSearchForwardUrl' ] )->parse()
 				) ) );
+				$titleNs = count( $this->namespaces ) === 1 ? reset( $this->namespaces ) : null;
+				$title = Title::newFromText( $term, $titleNs );
+				$this->showCreateLink( $title, 0, null, null );
 			}
 
 			return;
