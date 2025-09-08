@@ -584,8 +584,19 @@ class SpecialSearch extends SpecialPage {
 
 		if ( !$title->isExternal() ) {
 			if ( $title->isKnown() ) {
-				$messageName = 'searchmenu-exists';
-				$linkClass = 'mw-search-exists';
+				$firstTitle = null;
+				if ( $titleMatches && $titleMatches->numRows() > 0 ) {
+					$firstTitle = $titleMatches->extractTitles()[0] ?? null;
+				} elseif ( $textMatches && $textMatches->numRows() > 0 ) {
+					$firstTitle = $textMatches->extractTitles()[0] ?? null;
+				}
+
+				if ( $firstTitle && $title->isSamePageAs( $firstTitle ) ) {
+					$messageName = '';
+				} else {
+					$messageName = 'searchmenu-exists';
+					$linkClass = 'mw-search-exists';
+				}
 			} elseif (
 				$this->contentHandlerFactory->getContentHandler( $title->getContentModel() )
 					->supportsDirectEditing()
@@ -605,12 +616,8 @@ class SpecialSearch extends SpecialPage {
 		$this->getHookRunner()->onSpecialSearchCreateLink( $title, $params );
 
 		// Extensions using the hook might still return an empty $messageName
-		// @phan-suppress-next-line PhanRedundantCondition Might be unset by hook
 		if ( $messageName ) {
 			$this->getOutput()->wrapWikiMsg( "<p class=\"$linkClass\">\n$1</p>", $params );
-		} else {
-			// preserve the paragraph for margins etc...
-			$this->getOutput()->addHTML( '<p></p>' );
 		}
 	}
 
