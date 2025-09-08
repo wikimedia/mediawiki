@@ -158,7 +158,7 @@ class SpecialLogTest extends SpecialPageTestBase {
 		// Include temporary accounts in results, assert that the log is no longer empty
 		[ $html, ] = $this->executeSpecialPage(
 			$page,
-			new FauxRequest( [ 'excludetempacct' => 0, 'issubmitted' => 1 ] ),
+			new FauxRequest( [ 'excludetempacct' => 0, 'wpFormIdentifier' => 'logeventslist' ] ),
 			'qqx'
 		);
 		$this->assertStringNotContainsString( '(logempty)', $html );

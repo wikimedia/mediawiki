@@ -168,13 +168,14 @@ class SpecialLog extends SpecialPage {
 				// 2. form submitted, exclude temp accounts
 				// 3. form submitted, include temp accounts
 				// Check for cases 1 and 2 and omit temporary accounts in the pager query.
+				$formWasSubmitted = $this->getRequest()->getVal( 'wpFormIdentifier' ) === 'logeventslist';
 				if (
 					(
-						!$this->getRequest()->getVal( 'issubmitted' ) &&
+						!$formWasSubmitted &&
 						!$this->getRequest()->getVal( 'excludetempacct' )
 					) ||
 					(
-						$this->getRequest()->getVal( 'issubmitted' ) &&
+						$formWasSubmitted &&
 						$this->getRequest()->getVal( 'excludetempacct' )
 					)
 				) {
