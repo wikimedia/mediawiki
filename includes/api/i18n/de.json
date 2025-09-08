@@ -431,7 +431,7 @@
 	"apihelp-parse-param-usearticle": "Verwende den ArticleParserOptions-Hook, um sicherzustellen, dass die verwendeten Optionen mit denen für die Seitenansichten von Artikeln übereinstimmen",
 	"apihelp-parse-param-parsoid": "Erzeugt HTML gemäß der [[mw:Specs/HTML|MediaWiki-DOM-Spezifikation]] mittels [[mw:Parsoid|Parsoid]]. Ersetzt durch <kbd>$1parser=parsoid</kbd>",
 	"apihelp-parse-param-parser": "Welcher Wikitext-Parser soll verwendet werden:",
-	"apihelp-parse-paramvalue-parser-parsoid": "Generiert HTML mit [[mw:Parsoid|Parsoid]], das den [[mw:Specs/HTML|MediaWiki DOM-Spezifikation]] entspricht.en",
+	"apihelp-parse-paramvalue-parser-parsoid": "Generiert HTML mit [[mw:Parsoid|Parsoid]], das den [[mw:Specs/HTML|MediaWiki DOM-Spezifikationen]] entspricht.",
 	"apihelp-parse-paramvalue-parser-default": "Generiert HTML mit dem Standardparser dieses Wikis.",
 	"apihelp-parse-paramvalue-parser-legacy": "Generiert HTML mit dem Legacy-Parser.",
 	"apihelp-parse-param-pst": "Führt eine Vorabtransformation der Eingabe durch, bevor sie geparst wird. Nur gültig bei der Verwendung mit Text.",

@@ -243,6 +243,10 @@
 	"rest-endpoint-desc-get-page-title-media": "Lista os ficheiros multimedia empregados nunha páxina, ata 100 ficheiros.",
 	"rest-endpoint-desc-get-file-title": "Devolve información sobre un ficheiro, incluíndo ligazóns para descargar o ficheiro en formato de miniatura, vista previa e orixinal.",
 	"rest-endpoint-desc-post-transform-wikitext-to-html": "Converte texto wiki en HTML.",
+	"rest-endpoint-desc-post-transform-wikitext-to-html-title": "Converte texto wiki en HTML. Cómpre proporcionar o parámetro «body» da solicitude de texto wiki, pero pódese deixar baleiro para recibir a páxina completa. O corpo da resposta contén o HTML renderizado da páxina.",
+	"rest-endpoint-desc-post-transform-wikitext-to-html-title-revision": "Converte o texto wiki dunha revisión determinada en HTML. Cómpre proporcionar o parámetro «body» da solicitude de texto wiki, pero pódese deixar baleiro para recibir a revisión completa. O corpo da resposta contén o HTML renderizado da revisión.",
 	"rest-endpoint-desc-post-transform-wikitext-to-lint": "Devolve os erros do analizador sintáctico do texto wiki",
-	"rest-endpoint-desc-post-transform-html-to-wikitext": "Converte HTML en texto wiki."
+	"rest-endpoint-desc-post-transform-html-to-wikitext": "Converte HTML en texto wiki.",
+	"rest-endpoint-desc-post-transform-html-to-wikitext-title": "Converte HTML en texto wiki. Cómpre proporcionar o parámetro «body» da solicitude de HTML, pero pódese deixar baleiro para recibir a páxina completa. O corpo da resposta contén o texto wiki da páxina.",
+	"rest-endpoint-desc-post-transform-html-to-wikitext-title-revision": "Converte o HTML dunha revisión determinada en texto wiki. Cómpre proporcionar o parámetro «body» da solicitude de HTML, pero pódese deixar baleiro para recibir a revisión completa. O corpo da resposta contén o texto wiki da revisión."
 }

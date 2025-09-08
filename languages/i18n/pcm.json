@@ -512,7 +512,7 @@
 	"searchsuggest-containing": "Find pej-dem wey get",
 	"nstab-mainpage": "Main Pej",
 	"blockedtext-made-by": "Na $1 mek dis blok.",
-	"blockedtext-reason-comment": "Di risin na <em>$1</em>.",
+	"blockedtext-reason-comment": "Di risin na: <em>$1</em>",
 	"blockedtext-start-time": "Di blok go stat for: $1",
 	"blockedtext-expiration-time": "Di block go end for: $1",
 	"blockedtext-intended-blockee": "Pesin wey dem wan blok: $1",

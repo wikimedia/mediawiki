@@ -38,6 +38,6 @@
 	"botpasswords-restriction-failed": "Le restrission dle ciav ëd trigomiro a vieto d'intré.",
 	"botpasswords-invalid-name": "Lë stranòm specificà a conten pa ël separator (\"$1\") ëd ciav ëd trigomiro.",
 	"botpasswords-not-exist": "L'utent \"$1\" a l'ha pa na ciav ëd trigomiro ciamà \"$2\".",
-	"botpasswords-needs-reset": "La ciav ëd trigomiro për ël nòm ëd trigomiro \"$2\" ëd {{GENDER:$1|user}} \"$1\" a dev esse reimpostà.",
+	"botpasswords-needs-reset": "La ciav ëd trigomiro për ël nòm ëd trigomiro \"$2\" ëd l'{{GENDER:$1|utent}} \"$1\" a dev esse riampostà.",
 	"botpasswords-locked": "A peul pa intré con na ciav ëd trigomiro përché sò cont a l'é blocà."
 }

@@ -924,7 +924,7 @@
 	"diff-user-edits": "<span>$1</span> {{PLURAL:$1|sửa đổi}}",
 	"diff-multi-sameuser": "({{PLURAL:$1|Một sửa đổi ở giữa|không hiển thị $1 phiên bản ở giữa}} của cùng {{GENDER:$3|người dùng}})",
 	"diff-multi-otherusers": "(Không hiển thị {{PLURAL:$1||$1}} phiên bản của {{PLURAL:$2|một người dùng khác|$2 người dùng}} ở giữa)",
-	"diff-multi-manyusers": "(Không hiển thị {{PLURAL:$1||$1}} phiên bản của hơn $2 thành viên ở giữa)",
+	"diff-multi-manyusers": "({{PLURAL:$1|Không hiển thị 1 phiên bản|Không hiển thị $1 phiên bản}} của hơn $2 {{PLURAL:$2|thành viên}} ở giữa)",
 	"diff-paragraph-moved-tonew": "Đoạn văn được chuyển đến vị trí mới. Nhấn chuột để nhảy tới vị trí mới.",
 	"diff-paragraph-moved-toold": "Đoạn văn được chuyển từ vị trí khác. Nhấn chuột để nhảy tới vị trí cũ.",
 	"diff-inline-tooltip-ins": "Nội dung được thêm vào",

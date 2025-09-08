@@ -31,5 +31,5 @@
 	"botpasswords-deleted-body": "Şîfreya bot ji bo bota \"$1\" ya {{GENDER:$2|bikarhêner}} \"$2\" hate jêbirin.",
 	"botpasswords-restriction-failed": "Hidûdên şîfra botê vê têketinê asteng dikin.",
 	"botpasswords-invalid-name": "Di navê nivîsandî herfa veqetandinê ya şîfra botê (\"$1\") nîne.",
-	"botpasswords-not-exist": "Şîfreke botê bi navê \"$2\" bi bikarhêner{{Gender:$1|ê|a|ê/a}} \"$1\" re nîne."
+	"botpasswords-not-exist": "Şîfreke botê bi navê \"$2\" bi {{GENDER:$1|bikarhênerê|bikarhênera|bikarhênerê/a}} \"$1\" re nîne."
 }

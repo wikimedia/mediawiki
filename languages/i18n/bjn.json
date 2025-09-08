@@ -1398,6 +1398,7 @@
 	"logeventslist-submit": "Tampaiakan",
 	"logeventslist-more-filters": "Tampaiakan log tambahan:",
 	"logeventslist-newusers-log": "Log pamakai hanyar",
+	"newusers-excludetempacct": "Kacualiakan paulahan akun samantara",
 	"all-logs-page": "Samunyaan log umum",
 	"alllogstext": "Gabungan tampaian samunyaan log nang tasadia di {{SITENAME}}.\nPian kawa manggawi pawatasan tampaian lawan cara mamilih huaran log, ngaran pamakai (harung lawan kapitalisasi), atawa judul laman (harung jua lawan kapitalisasi).",
 	"logempty": "Kadada item nang rasuk di log.",

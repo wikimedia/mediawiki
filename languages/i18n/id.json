@@ -2073,6 +2073,7 @@
 	"logeventslist-patrol-log": "Log patroli",
 	"logeventslist-tag-log": "Log tag",
 	"logeventslist-newusers-log": "Log pengguna baru",
+	"newusers-excludetempacct": "Kecualikan pembuatan akun sementara",
 	"all-logs-page": "Log publik utama",
 	"alllogstext": "Gabungan tampilan semua log yang tersedia di {{SITENAME}}.\nAnda dapat melakukan pembatasan tampilan dengan memilih jenis log, nama pengguna (sensitif terhadap kapitalisasi), atau judul halaman (juga sensitif terhadap kapitalisasi).",
 	"logempty": "Tidak ditemukan entri log yang sesuai.",

@@ -241,6 +241,10 @@
 	"rest-endpoint-desc-get-page-title-media": "Fæ 'na lìsta di file dêuviæ inte 'na pàgina, scìnn-a 100 file.",
 	"rest-endpoint-desc-get-file-title": "O restitoìsce de informaçioìn in sce 'n file, conpréizo di ligàmmi pe scaregâ o file inte di formâti in miniatûa, anteprìmma e òriginâli.",
 	"rest-endpoint-desc-post-transform-wikitext-to-html": "O convèrte o wikitèsto inte HTML.",
+	"rest-endpoint-desc-post-transform-wikitext-to-html-title": "O convèrte o wikitèsto inte HTML. O paràmetro còrpo da domànda de wikitèsto o gh'à da êse indicòu, ma o peu êse lasciòu vêuo pe riçéive a pàgina intrêga. O còrpo da rispòsta o contêgne da réiza HTML da pàgina.",
+	"rest-endpoint-desc-post-transform-wikitext-to-html-title-revision": "O convèrte o wikitèsto da versción indicâ inte HTML. O paràmetro còrpo da domànda de wikitèsto o gh'à da êse indicòu, ma o peu êse lasciòu vêuo pe riçéive a pàgina intrêga. O còrpo da rispòsta o contêgne da réiza HTML da versción.",
 	"rest-endpoint-desc-post-transform-wikitext-to-lint": "O restitoìsce i eroî de lint pe-o wikitèsto",
-	"rest-endpoint-desc-post-transform-html-to-wikitext": "O convèrte l'HTML inte 'n wikitèsto."
+	"rest-endpoint-desc-post-transform-html-to-wikitext": "O convèrte l'HTML inte 'n wikitèsto.",
+	"rest-endpoint-desc-post-transform-html-to-wikitext-title": "O convèrte o wikitèsto inte HTML. O paràmetro còrpo da domànda de wikitèsto o gh'à da êse indicòu, ma o peu êse lasciòu vêuo pe riçéive a pàgina intrêga. O còrpo da rispòsta o contêgne o wikitèsto da pàgina.",
+	"rest-endpoint-desc-post-transform-html-to-wikitext-title-revision": "O convèrte o wikitèsto da versción indicâ inte HTML. O paràmetro còrpo da domànda de wikitèsto o gh'à da êse indicòu, ma o peu êse lasciòu vêuo pe riçéive a pàgina intrêga. O còrpo da rispòsta o contêgne o wikitèsto da versción."
 }

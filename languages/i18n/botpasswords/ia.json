@@ -37,6 +37,6 @@
 	"botpasswords-restriction-failed": "Session impedite per restrictiones de contrasigno de robot.",
 	"botpasswords-invalid-name": "Iste nomine de usator non contine le separator pro contrasigno de robot (“$1”).",
 	"botpasswords-not-exist": "Le usator “$1” non ha un contrasigno de robot del nomine “$2”.",
-	"botpasswords-needs-reset": "Le contrasigno pro le robot “$2” del usat{{GENDER:$1|or|rice}} “$1” debe esser reinitialisate.",
+	"botpasswords-needs-reset": "Le contrasigno pro le robot “$2” del {{GENDER:$1|usator|usatrice}} “$1” debe esser reinitialisate.",
 	"botpasswords-locked": "Tu non pote aperir session con un contrasigno de robot perque tu conto ha essite blocate."
 }

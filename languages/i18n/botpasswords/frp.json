@@ -36,7 +36,7 @@
 	"botpasswords-no-provider": "BotPasswordsSessionProvider est pas disponiblo.",
 	"botpasswords-restriction-failed": "Les rèstriccions de contresegno de robot empachont cél branchement.",
 	"botpasswords-invalid-name": "Lo nom d’utilisator spècefiâ contint gins de sèparator de contresegno de robot (« $1 »).",
-	"botpasswords-not-exist": "L’utilisato{{GENDER:$1|r|sa}} « $1 » at gins de contresegno de robot apelâ « $2 ».",
-	"botpasswords-needs-reset": "Lo contresegno de robot por lo nom de robot « $2 » a l’utilisato{{GENDER:$1|r|sa}} « $1 » dêt étre tornâ dèfenir.",
+	"botpasswords-not-exist": "{{GENDER:$1|L’utilisator|L’utilisatosa}} « $1 » at gins de contresegno de robot apelâ « $2 ».",
+	"botpasswords-needs-reset": "Lo contresegno de robot por lo nom de robot « $2 » a {{GENDER:$1|l’utilisator|l’utilisatosa}} « $1 » dêt étre tornâ dèfenir.",
 	"botpasswords-locked": "Vos vos pouede pas branchiér avouéc un contresegno de robot, voutron comptio est blocâ."
 }

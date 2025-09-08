@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"GilPe",
 			"Les Meloures",
 			"Macofe",
 			"Robby",
@@ -63,7 +64,7 @@
 	"apihelp-help-example-recursive": "All Hëllef op enger Säit",
 	"apihelp-imagerotate-summary": "Eent oder méi Biller dréinen.",
 	"apihelp-imagerotate-example-generator": "All Biller an der <kbd>Category:Flip]]<kbd> ëm <kbd>180<kbd> Grad dréinen.",
-	"apihelp-import-param-summary": "Resumé vum importéiere vum Logbuch.",
+	"apihelp-import-param-summary": "Resümmee vum importéiere vum Logbuch.",
 	"apihelp-import-param-xml": "Eropgeluedenen XML-Fichier.",
 	"apihelp-import-param-rootpage": "Als Ënnersäit vun dëser Säit importéieren. Kann net zesumme mam <var>$1namespace</var> benotzt ginn.",
 	"apihelp-login-param-name": "Benotzernumm.",
@@ -81,6 +82,7 @@
 	"apihelp-options-extended-description": "Nëmmen Optiounen aus dem Haaptdeel (core) oder aus enger vun den installéierten Erweiderunge, oder Optioune mat Schlësselen déi viragestallt si mat <code>userjs-</code> (geduecht fir mat Benotzer-Skripte benotzt ze ginn), kënnen agestallt ginn.",
 	"apihelp-options-param-optionname": "Den Numm vun der Optioun deen op de Wäert vun <var>$1optionvalue</var> gesat gi muss",
 	"apihelp-options-example-reset": "All Astellungen zrécksetzen",
+	"apihelp-parse-param-parser": "Wat fir ee Wikitext-Parser benotzt soll ginn:",
 	"apihelp-parse-param-disablepp": "Benotzt an där Plaz <var>$1disablelimitreport</var>.",
 	"apihelp-patrol-example-rcid": "Eng rezent Ännerung nokucken.",
 	"apihelp-patrol-example-revid": "Eng Versioun nokucken.",
@@ -184,7 +186,7 @@
 	"apihelp-stashedit-param-title": "Titel vun der Säit déi geännert gëtt.",
 	"apihelp-stashedit-param-sectiontitle": "Den Titel fir en neien Abschnitt.",
 	"apihelp-stashedit-param-text": "Inhalt vun der Säit",
-	"apihelp-stashedit-param-summary": "Resumé änneren",
+	"apihelp-stashedit-param-summary": "Resümmee änneren",
 	"apihelp-tag-param-reason": "Grond fir d'Ännerung.",
 	"apihelp-unblock-summary": "D'Spär vun engem Benotzer ophiewen.",
 	"apihelp-unblock-param-reason": "Grond fir d'Spär opzehiewen",

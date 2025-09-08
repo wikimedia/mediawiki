@@ -36,5 +36,5 @@
 	"botpasswords-restriction-failed": "Rèstrigsyon-yan di kodsigré di robo ka anpéché sa konnègsyon.",
 	"botpasswords-invalid-name": "Non-an di itilizatò ki èspésifyé pa ka kontni di séparatò pou kodsigré di robo (« $1 »).",
 	"botpasswords-not-exist": "{{GENDER:$1|Itilizatò|Itilizatris}}-a « $1 » pa gen kodsigré pou robo ki nonmen « $2 ».",
-	"botpasswords-needs-reset": "Kodsigré-a di robo ki nonmen « $2 » di itilizat{{GENDER:$1|ò|ris}} « $1 » divèt fika réynisyalizé."
+	"botpasswords-needs-reset": "Kodsigré-a di robo ki nonmen « $2 » di {{GENDER:$1|itilizatò|itilizatris}} « $1 » divèt fika réynisyalizé."
 }

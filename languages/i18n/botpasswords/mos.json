@@ -37,6 +37,6 @@
 	"botpasswords-restriction-failed": "Botsã sẽn pa tar loogr tɩ b tõog n tũ b sẽn datã, kɩtdame tɩ b pa tõog n kẽ ye.",
 	"botpasswords-invalid-name": "Sõngr ning b sẽn wilgã pa tar botã loogrã pʋga (\"$1\").",
 	"botpasswords-not-exist": "Sõngd \"$1\" pa tar bot sõdg sẽn boond tɩ \"$2\" ye.",
-	"botpasswords-needs-reset": "B segd n toeema bot yʋʋr sẽn boond tɩ \"$2\" wã wagsg tɩ \"$1\" yaa {{GENDER:$1ning sẽn tũnugd ne-a wã wagsg ye}}",
+	"botpasswords-needs-reset": "B segd n toeema bot yʋʋr sẽn boond tɩ \"$2\" wã wagsg tɩ \"$1\" yaa {{GENDER:$1|ning sẽn tũnugd ne-a wã wagsg ye}}",
 	"botpasswords-locked": "Fo pa tõe n logg n tũ botã wagsg ye, bala y sõorã yaa sẽn pa tõe n paam-a ye."
 }
