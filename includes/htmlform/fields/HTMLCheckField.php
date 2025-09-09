@@ -25,14 +25,16 @@ class HTMLCheckField extends HTMLFormField {
 			$value = !$value;
 		}
 
-		$attr = $this->getTooltipAndAccessKey();
-		$attr['id'] = $this->mID;
-
-		$attr += $this->getAttributes( [ 'disabled', 'tabindex' ] );
-
-		if ( $this->mClass !== '' ) {
-			$attr['class'] = $this->mClass;
-		}
+		$attr = [
+			...$this->getTooltipAndAccessKey(),
+			'id' => $this->mID,
+			...$this->getAttributes( [ 'disabled', 'tabindex' ] ),
+			'class' => $this->mClass !== '' ? $this->mClass : null,
+			'checked' => (bool)$value,
+			'type' => 'checkbox',
+			'value' => '1',
+			'name' => $this->mName,
+		];
 
 		$attrLabel = [ 'for' => $this->mID ];
 		if ( isset( $attr['title'] ) ) {
@@ -43,7 +45,7 @@ class HTMLCheckField extends HTMLFormField {
 		$isVForm = $this->mParent instanceof VFormHTMLForm;
 
 		$chkDivider = "\u{00A0}";
-		$chkLabel = Html::check( $this->mName, $value, $attr ) .
+		$chkLabel = Html::element( 'input', $attr ) .
 			$chkDivider .
 			Html::rawElement( 'label', $attrLabel, $this->mLabel );
 
@@ -96,13 +98,16 @@ class HTMLCheckField extends HTMLFormField {
 		}
 
 		// Attributes for the <input> element.
-		$attribs = $this->getTooltipAndAccessKey();
-		$attribs['id'] = $this->mID;
-		$attribs += $this->getAttributes( [ 'disabled', 'tabindex' ] );
-
-		// The Xml class doesn't support an array of classes, so we have to provide a string.
-		$inputClass = $this->mClass ?? '';
-		$attribs['class'] = $inputClass . ' cdx-checkbox__input';
+		$attribs = [
+			...$this->getTooltipAndAccessKey(),
+			'id' => $this->mID,
+			...$this->getAttributes( [ 'disabled', 'tabindex' ] ),
+			'class' => $this->mClass . ' cdx-checkbox__input',
+			'checked' => (bool)$value,
+			'type' => 'checkbox',
+			'value' => '1',
+			'name' => $this->mName,
+		];
 
 		// Attributes for the <label> element.
 		$labelAttribs = [ 'for' => $this->mID ];
@@ -120,7 +125,7 @@ class HTMLCheckField extends HTMLFormField {
 
 		// Construct the component.
 		$checkIcon = "<span class=\"cdx-checkbox__icon\">\u{00A0}</span>";
-		$innerContent = Html::check( $this->mName, $value, $attribs ) .
+		$innerContent = Html::element( 'input', $attribs ) .
 			$checkIcon .
 			Html::rawElement( 'label', $labelAttribs, $this->mLabel );
 		return Html::rawElement(

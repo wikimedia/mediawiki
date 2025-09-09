@@ -712,18 +712,12 @@ class Html {
 	 * @return string Raw HTML
 	 */
 	public static function check( $name, $checked = false, array $attribs = [] ) {
-		if ( isset( $attribs['value'] ) ) {
-			$value = $attribs['value'];
-			unset( $attribs['value'] );
-		} else {
-			$value = 1;
-		}
-
-		if ( $checked ) {
-			$attribs[] = 'checked';
-		}
-
-		return self::input( $name, $value, 'checkbox', $attribs );
+		return self::element( 'input', [
+			'checked' => (bool)$checked,
+			'type' => 'checkbox',
+			'value' => $attribs['value'] ?? 1,
+			'name' => $name,
+		] + $attribs );
 	}
 
 	/**
@@ -842,18 +836,12 @@ class Html {
 	 * @return string Raw HTML
 	 */
 	public static function radio( $name, $checked = false, array $attribs = [] ) {
-		if ( isset( $attribs['value'] ) ) {
-			$value = $attribs['value'];
-			unset( $attribs['value'] );
-		} else {
-			$value = 1;
-		}
-
-		if ( $checked ) {
-			$attribs[] = 'checked';
-		}
-
-		return self::input( $name, $value, 'radio', $attribs );
+		return self::element( 'input', [
+			'checked' => (bool)$checked,
+			'type' => 'radio',
+			'value' => $attribs['value'] ?? 1,
+			'name' => $name,
+		] + $attribs );
 	}
 
 	/**
@@ -881,7 +869,12 @@ class Html {
 	 * @return string Raw HTML
 	 */
 	public static function hidden( $name, $value, array $attribs = [] ) {
-		return self::input( $name, $value, 'hidden', $attribs );
+		return self::element( 'input', [
+			...$attribs,
+			'name' => $name,
+			'type' => 'hidden',
+			'value' => $value,
+		] );
 	}
 
 	/**
