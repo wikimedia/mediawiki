@@ -1,10 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
+			"Fulup",
 			"Huñvreüs",
 			"VIGNERON"
 		]
 	},
+	"cdx-breadcrumb-navigation-label": "Bruzun bara",
 	"cdx-breadcrumb-overflow-label": "Muioc'h a zibaboù merdeiñ",
 	"cdx-chip-input-chip-added": "Ouzhpennet eo bet ar chip $1.",
 	"cdx-chip-input-chip-removed": "Tennet eo bet ar chip $1.",
