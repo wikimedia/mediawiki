@@ -126,9 +126,6 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		$this->userIdentityUtils = $userIdentityUtils;
 		$this->tempUserConfig = $tempUserConfig;
 
-		$nonRevisionTypes = [ RC_LOG ];
-		$this->getHookRunner()->onSpecialWatchlistGetNonRevisionTypes( $nonRevisionTypes );
-
 		$this->filterGroupDefinitions = [
 			[
 				'name' => 'registration',
@@ -148,7 +145,6 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 							$join_conds['recentchanges_actor'] = [ 'JOIN', 'actor_id=rc_actor' ];
 						},
 						'isReplacedInStructuredUi' => true,
-
 					],
 					[
 						'name' => 'hideanons',
@@ -387,9 +383,9 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'default' => false,
 						'queryCallable' => static function ( string $specialClassName, IContextSource $ctx,
 							IReadableDatabase $dbr, &$tables, &$fields, &$conds, &$query_options, &$join_conds
-						) use ( $nonRevisionTypes ) {
+						) {
 							$conds[] = $dbr->expr( 'rc_this_oldid', '!=', new RawSQLValue( 'page_latest' ) )
-								->or( 'rc_type', '=', $nonRevisionTypes );
+								->or( 'rc_this_oldid', '=', 0 );
 						},
 						'cssClassSuffix' => 'last',
 						'isRowApplicableCallable' => static function ( IContextSource $ctx, RecentChange $rc ) {
@@ -403,9 +399,9 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'default' => false,
 						'queryCallable' => static function ( string $specialClassName, IContextSource $ctx,
 							IReadableDatabase $dbr, &$tables, &$fields, &$conds, &$query_options, &$join_conds
-						) use ( $nonRevisionTypes ) {
+						) {
 							$conds[] = $dbr->expr( 'rc_this_oldid', '=', new RawSQLValue( 'page_latest' ) )
-								->or( 'rc_type', '=', $nonRevisionTypes );
+								->or( 'rc_this_oldid', '=', 0 );
 						},
 						'cssClassSuffix' => 'previous',
 						'isRowApplicableCallable' => static function ( IContextSource $ctx, RecentChange $rc ) {

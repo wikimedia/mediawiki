@@ -3854,7 +3854,7 @@
 			},
 			{
 				"name": "rc_this_oldid",
-				"comment": "rev_id of the given revision",
+				"comment": "rev_id of the changed revision, or zero if the change does not relate to a revision.",
 				"type": "integer",
 				"options": {
 					"unsigned": true,

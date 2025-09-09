@@ -221,15 +221,11 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 					'isReplacedInStructuredUi' => true,
 					'activeValue' => false,
 					'default' => $this->userOptionsLookup->getBoolOption( $this->getUser(), 'extendwatchlist' ),
-					'queryCallable' => function ( string $specialClassName, IContextSource $ctx,
+					'queryCallable' => static function ( string $specialClassName, IContextSource $ctx,
 						IReadableDatabase $dbr, &$tables, &$fields, &$conds, &$query_options, &$join_conds
 					) {
-						$nonRevisionTypes = [ RC_LOG ];
-						$this->getHookRunner()->onSpecialWatchlistGetNonRevisionTypes( $nonRevisionTypes );
-						if ( $nonRevisionTypes ) {
-							$conds[] = $dbr->expr( 'rc_this_oldid', '=', new RawSQLValue( 'page_latest' ) )
-								->or( 'rc_type', '=', $nonRevisionTypes );
-						}
+						$conds[] = $dbr->expr( 'rc_this_oldid', '=', new RawSQLValue( 'page_latest' ) )
+							->or( 'rc_this_oldid', '=', 0 );
 					},
 				]
 			],
