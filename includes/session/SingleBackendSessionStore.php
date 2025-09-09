@@ -45,8 +45,8 @@ class SingleBackendSessionStore implements SessionStore {
 		LoggerInterface $logger
 	) {
 		$this->setLogger( $logger );
+		$this->logger->debug( 'SessionManager using store ' . get_class( $store ) );
 		$this->store = $store instanceof CachedBagOStuff ? $store : new CachedBagOStuff( $store );
-		$this->logger->debug( 'SessionManager using store ' . get_class( $this->store ) );
 	}
 
 	/** @inheritDoc */
