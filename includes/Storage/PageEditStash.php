@@ -29,7 +29,6 @@ use MediaWiki\Json\JsonCodec;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\WikiPage;
 use MediaWiki\Page\WikiPageFactory;
-use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\Hook\ParserOutputStashForEditHook;
@@ -566,19 +565,6 @@ class PageEditStash {
 	}
 
 	private function unserializeStashInfo( string $serial ): PageEditStashContents|false {
-		// Backward-compatibility: see T398656
-		if ( str_starts_with( $serial, 'O' ) ) {
-			$stashInfo = unserialize( $serial );
-			if ( is_object( $stashInfo ) && $stashInfo->output instanceof ParserOutput ) {
-				return new PageEditStashContents(
-					pstContent: $stashInfo->pstContent,
-					output: $stashInfo->output,
-					timestamp: $stashInfo->timestamp,
-					edits: $stashInfo->edits,
-				);
-			}
-			return false;
-		}
 		try {
 			return $this->jsonCodec->deserialize( $serial, PageEditStashContents::class );
 		} catch ( JsonException ) {
