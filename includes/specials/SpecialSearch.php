@@ -434,6 +434,12 @@ class SpecialSearch extends SpecialPage {
 			$textMatches = $textStatus->getValue();
 		}
 
+		if ( $textMatches && $textMatches->numRows() ) {
+			$engine->augmentSearchResults( $textMatches );
+		}
+
+		$this->getHookRunner()->onSpecialSearchResults( $term, $titleMatches, $textMatches );
+
 		// Get number of results
 		$titleMatchesNum = $textMatchesNum = $numTitleMatches = $numTextMatches = 0;
 		$approxTotalRes = false;
@@ -446,9 +452,6 @@ class SpecialSearch extends SpecialPage {
 			$textMatchesNum = $textMatches->numRows();
 			$numTextMatches = $textMatches->getTotalHits();
 			$approxTotalRes = $approxTotalRes || $textMatches->isApproximateTotalHits();
-			if ( $textMatchesNum > 0 ) {
-				$engine->augmentSearchResults( $textMatches );
-			}
 		}
 		$num = $titleMatchesNum + $textMatchesNum;
 		$totalRes = $numTitleMatches + $numTextMatches;
@@ -513,8 +516,6 @@ class SpecialSearch extends SpecialPage {
 
 		// Show the create link ahead
 		$this->showCreateLink( $title, $num, $titleMatches, $textMatches );
-
-		$this->getHookRunner()->onSpecialSearchResults( $term, $titleMatches, $textMatches );
 
 		// Close <div class='mw-search-results-info'>
 		$out->addHTML( '</div>' );
