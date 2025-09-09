@@ -10,8 +10,8 @@ import Page from './page.js';
 const baseUrl = `${ process.env.MW_SERVER }${ process.env.MW_SCRIPT_PATH }/index.php?title=`;
 
 class MainPage extends Page {
-	get login() {
-		return $( 'li#pt-login-2 a' );
+	get edit() {
+		return $( 'a[title="Edit section: Getting started"]' );
 	}
 
 	async open() {

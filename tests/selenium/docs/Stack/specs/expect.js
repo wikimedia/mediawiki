@@ -8,8 +8,8 @@
 const baseUrl = `${ process.env.MW_SERVER }${ process.env.MW_SCRIPT_PATH }/index.php?title=`;
 
 describe( 'Main page', () => {
-	it( 'should have "Log in" link when using expect', async () => {
+	it( 'should have edit link when using expect', async () => {
 		await browser.url( `${ baseUrl }Main_Page` );
-		await expect( $( 'li#pt-login-2 a' ) ).toExist();
+		await expect( $( 'a[title="Edit section: Getting started"]' ) ).toExist();
 	} );
 } );

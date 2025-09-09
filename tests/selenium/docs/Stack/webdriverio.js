@@ -29,10 +29,10 @@ const browser = await remote( {
 
 await browser.url( `${ baseUrl }Main_Page` );
 
-const displayed = await browser.$( 'li#pt-login-2 a' ).isDisplayed();
+const displayed = await browser.$( 'a[title="Edit section: Getting started"]' ).isDisplayed();
 if ( displayed === false ) {
-	throw new Error( 'Log in link not visible' );
+	throw new Error( 'Edit link not visible' );
 } else {
-	console.log( 'Log in link visible' );
+	console.log( 'Edit link visible' );
 }
 await browser.deleteSession();

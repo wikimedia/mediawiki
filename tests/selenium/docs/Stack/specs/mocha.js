@@ -8,13 +8,13 @@
 const baseUrl = `${ process.env.MW_SERVER }${ process.env.MW_SCRIPT_PATH }/index.php?title=`;
 
 describe( 'Main page', () => {
-	it( 'should have "Log in" link when using mocha', async () => {
+	it( 'should have edit link when using mocha', async () => {
 		await browser.url( `${ baseUrl }Main_Page` );
-		const displayed = await $( 'li#pt-login-2 a' ).isDisplayed();
+		const displayed = await $( 'a[title="Edit section: Getting started"]' ).isDisplayed();
 		if ( displayed === false ) {
-			throw new Error( 'Log in link not visible' );
+			throw new Error( 'Edit link not visible' );
 		} else {
-			console.log( 'Log in link visible' );
+			console.log( 'Edit link visible' );
 		}
 	} );
 } );
