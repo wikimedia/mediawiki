@@ -2517,15 +2517,10 @@ return [
 
 	'TitleMatcher' => static function ( MediaWikiServices $services ): TitleMatcher {
 		return new TitleMatcher(
-			new ServiceOptions(
-				TitleMatcher::CONSTRUCTOR_OPTIONS,
-				$services->getMainConfig()
-			),
 			$services->getContentLanguage(),
 			$services->getLanguageConverterFactory(),
 			$services->getHookContainer(),
 			$services->getWikiPageFactory(),
-			$services->getUserNameUtils(),
 			$services->getRepoGroup(),
 			$services->getTitleFactory()
 		);

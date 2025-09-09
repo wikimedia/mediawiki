@@ -2,7 +2,6 @@
 namespace MediaWiki\Search;
 
 use ISearchResultSet;
-use MediaWiki\Config\ServiceOptions;
 use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
@@ -12,7 +11,6 @@ use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
-use MediaWiki\User\UserNameUtils;
 use SearchNearMatchResultSet;
 use UtfNormal\Validator;
 
@@ -20,38 +18,26 @@ use UtfNormal\Validator;
  * Service implementation of near match title search.
  */
 class TitleMatcher {
-	/**
-	 * @internal For use by ServiceWiring.
-	 */
-	public const CONSTRUCTOR_OPTIONS = [];
 
-	private ServiceOptions $options;
 	private Language $language;
 	private ILanguageConverter $languageConverter;
 	private HookRunner $hookRunner;
 	private WikiPageFactory $wikiPageFactory;
-	private UserNameUtils $userNameUtils;
 	private RepoGroup $repoGroup;
 	private TitleFactory $titleFactory;
 
 	public function __construct(
-		ServiceOptions $options,
 		Language $contentLanguage,
 		LanguageConverterFactory $languageConverterFactory,
 		HookContainer $hookContainer,
 		WikiPageFactory $wikiPageFactory,
-		UserNameUtils $userNameUtils,
 		RepoGroup $repoGroup,
 		TitleFactory $titleFactory
 	) {
-		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
-		$this->options = $options;
-
 		$this->language = $contentLanguage;
 		$this->languageConverter = $languageConverterFactory->getLanguageConverter( $contentLanguage );
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->wikiPageFactory = $wikiPageFactory;
-		$this->userNameUtils = $userNameUtils;
 		$this->repoGroup = $repoGroup;
 		$this->titleFactory = $titleFactory;
 	}

@@ -1,7 +1,5 @@
 <?php
 
-use MediaWiki\Config\HashConfig;
-use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Search\TitleMatcher;
 use MediaWiki\Title\Title;
@@ -87,12 +85,10 @@ class TitleMatcherTest extends MediaWikiIntegrationTestCase {
 	private function getTitleMatcher( string $langCode ): TitleMatcher {
 		$services = $this->getServiceContainer();
 		return new TitleMatcher(
-			new ServiceOptions( TitleMatcher::CONSTRUCTOR_OPTIONS, new HashConfig() ),
 			$services->getLanguageFactory()->getLanguage( $langCode ),
 			$services->getLanguageConverterFactory(),
 			$services->getHookContainer(),
 			$services->getWikiPageFactory(),
-			$services->getUserNameUtils(),
 			$services->getRepoGroup(),
 			$services->getTitleFactory()
 		);
