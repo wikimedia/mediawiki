@@ -150,6 +150,23 @@ class BitmapMetadataHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * @covers \BitmapMetadataHandler::png
+	 */
+	public function testPNGExif() {
+		$this->overrideConfigValue( MainConfigNames::ShowEXIF, true );
+		$result = BitmapMetadataHandler::PNG( self::FILE_PATH . 'exif.png' );
+		$expected = [
+			'ImageDescription' => 'Test image',
+			'XResolution' => '72/1',
+			'YResolution' => '72/1',
+			'ResolutionUnit' => 2,
+			'YCbCrPositioning' => 1,
+			'_MW_PNG_VERSION' => 1,
+		];
+		$this->assertEquals( $expected, $result['metadata'] );
+	}
+
+	/**
 	 * @covers \BitmapMetadataHandler::getTiffByteOrder
 	 */
 	public function testTiffByteOrder() {

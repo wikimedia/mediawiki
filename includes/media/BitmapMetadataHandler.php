@@ -222,6 +222,19 @@ class BitmapMetadataHandler {
 				$meta->addMetadata( $xmpSection, $type );
 			}
 		}
+
+		if ( $array['exif'] ) {
+			// The Exif section is essentially an embedded tiff file,
+			// so just extract it and read it.
+			$tmpFile = MediaWikiServices::getInstance()->
+				getTempFSFileFactory()->
+				newTempFSFile( 'png-exif_', 'tiff' );
+			$exifDataFile = $tmpFile->getPath();
+			file_put_contents( $exifDataFile, $array['exif'] );
+			$byteOrder = self::getTiffByteOrder( $exifDataFile );
+			$meta->getExif( $exifDataFile, $byteOrder );
+		}
+		unset( $array['exif'] );
 		unset( $array['text']['xmp'] );
 		$meta->addMetadata( $array['text'], 'native' );
 		unset( $array['text'] );

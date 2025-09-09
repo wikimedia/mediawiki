@@ -88,6 +88,7 @@ class PNGMetadataExtractor {
 		$height = 0;
 		$bitDepth = 0;
 		$colorType = 'unknown';
+		$exif = null;
 
 		if ( !$filename ) {
 			throw new InvalidArgumentException( __METHOD__ . ": No file name specified" );
@@ -354,6 +355,18 @@ class PNGMetadataExtractor {
 						// 3 = dots per cm (from Exif).
 					}
 				}
+			} elseif ( $chunk_type === "eXIf" ) {
+				// There are 4 competing ways to store Exif
+				// in a PNG file. This is the official one.
+				if (
+					$chunk_size < 4 || (
+						substr( $buf, 0, 4 ) !== "II\x2A\x00" &&
+						substr( $buf, 0, 4 ) !== "MM\x00\x2A"
+					)
+				) {
+					wfDebug( __METHOD__ . ": Invalid eXIf tag" );
+				}
+				$exif = $buf;
 			} elseif ( $chunk_type === "IEND" ) {
 				break;
 			}
@@ -400,6 +413,7 @@ class PNGMetadataExtractor {
 			'text' => $text,
 			'bitDepth' => $bitDepth,
 			'colorType' => $colorType,
+			'exif' => $exif,
 		];
 	}
 
