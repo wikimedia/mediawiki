@@ -300,7 +300,7 @@
 	"collapsible-expand": "Expandir",
 	"collapsible-expand-all-text": "Expandir todos",
 	"collapsible-expand-all-tooltip": "Expandir todos os elementos recolhíveis da página atual",
-	"confirmable-confirm": "Tem a certeza?{{GENDER:$1|}}",
+	"confirmable-confirm": "{{GENDER:$1|Tem}} a certeza?",
 	"confirmable-yes": "Sim",
 	"confirmable-no": "Não",
 	"thisisdeleted": "Ver ou restaurar $1?",

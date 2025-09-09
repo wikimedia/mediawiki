@@ -31,7 +31,8 @@
 			"Rivazjani87",
 			"Suzukihau09",
 			"Xamila23",
-			"Yucavalla"
+			"Yucavalla",
+			"Geom"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Kategooriya|Kategooriyasoꞌob}}",
@@ -226,7 +227,7 @@
 	"readonly": "Le datoso’obo’ k’alpaja’an",
 	"enterlockreason": "Ts'íibt jump'éel o'olal uti'al u k'a'alal, ichil le je'elo'oba' yaan jump'éel estimación ti' ba'ax k'iin ken u jáalk'abta'al le k'a'alal",
 	"readonlytext": "Le k'iinoba u datos bejla'e' táan bloqueada ti' túumben u yokba'al yéetel uláak' yu'utsiktal, úuchak utia'al u mantenimiento rutinario ti' le k'oja'ano'obo' u datos, ka' le ba'ala' yaan u suut normal.\n\nLe administrador t.u.m ku bloqueó ofreció le tsoolil: $1",
-	"missing-article": "u chuun le ts'íibo'oba' ma' tu kaaxantaj u ts'íibil le un wáal meyaja' \"$1\" $2. ba'ale k'aanan u kaaxanil\n\nba'axten uch lela' tumen junpe'l \"diff' anacronico wáaj junp'el enlace te historial ti' jun wáal meyaj ts'o'ok u lu'usal.\n\nwáaj ma' leti' lelo', min ta kaaxantaj junp'el fallo ti' le softwero'\n\nma' k'asa'ani', wa'al lela' ti'\n[[Special:LisUsers/sysop|administrator]], yéetel ts'íibt le URL túumbeno'",
+	"missing-article": "Ma kaxta'ax le ts'íib ichil wáalal «$1» $2, kex wa túun ti' unaj yani'.\n\nLela' yóo'lal jump'éel ''diff'' mixba'al yaan u yili' wa tumen ba'ax yaan u yil ka'ach'e, ts'o'ok u tu'upul.\n\nWa ma' béyo', míij ts'o'ok a kaxtik jump'éel ba'ax k'aas ti' le softwareo'.\n\nMuch a'al ti' [[Special:ListUsers/sysop|administrador]], yéetel ts'íib le URL ka wilik te' súutuka'.",
 	"missingarticle-rev": "(xaak'alil#: $1)",
 	"missingarticle-diff": "(U jéelanil: $1,$2)",
 	"readonly_lag": "Le k'ubent'an' u datos ts'o'ok u bloqueado automáticamente ka' jo'op' u le servidores k'oja'ano'obo' u datos réplica coger le primario",
@@ -253,6 +254,12 @@
 	"badtitletext": "U k'aaba' le wáalal k'áata'ano' ma' ma'alobi', mina'an mixba'ali', wa jump'éel k'aaba ku k'abéetkunsa'al ichil t'aano'obwa interwiki ma' beeta'an ma'alobi'.\nMíi yaan jump'éel wáa ya'ab ts'íibo'ob ma' k'ambe'en ichil k'aaba'obi'",
 	"title-invalid": "U k'aaba' le linki abas kaambal ku k'áata'alo' ma' jach jaaj",
 	"title-invalid-empty": "U k'aaba' le pagina' solicitad  mina'an mixba'al wa chéen yaan ti' jump'éel prefijo kúuchil k'aaba'.",
+	"title-invalid-utf8": "U k'aaba' le wáalal ka k'áatiko', ma' ma'alob u tsoolalnil UTF-8 ti'i'.",
+	"title-invalid-interwiki": "U k'aaba' le wáalal ka yaayantiko', ku biskech tak u beelil interwiki ma' tu páajtal u k'abéetkunsa'al ti' uláak' k'aaba'ob.",
+	"title-invalid-characters": "Ichil u k'aaba' le wáalala' yaan woojo'ob ma' k'ambe'eno'obi' «$1».",
+	"title-invalid-relative": "U k'aaba' le wáalala' ma' jets'a'an ma'alobi' u beeli'. K'aaba'ob jela'antake' (./, ../) ma' ma'alobtako'obi' tumen ma' tu páajtal u meyajta'al je'el bix unaj tumen le navegadoro'ob web.",
+	"title-invalid-magic-tilde": "U k'aaba' le wáalala' ku k'abéetkunsik u tsoolil virgulillas ma' ma'alobtako'obi' (<nowiki>~~~</nowiki>).",
+	"title-invalid-leading-colon": "U k'aaba' le wáalale' yaan ti' jump'éel wooj ma' tu k'abéetkunsa'al tu káajbal (:).",
 	"viewsource": "il le u coodigo",
 	"skin-action-viewsource": "Il le u koodigo",
 	"viewsource-title": "Ilej u koodigo fuentey $1",

@@ -245,7 +245,7 @@
 	"badtitle": "Mauvais titre",
 	"badtitletext": "Le titre que vous avez demandé était pas bon, vide, ou y avait un mauvais titre entre-langue ou entre-wiki. Ça pourrait avoir des caractères qui pouvont pas être usés dans les titres.",
 	"perfcached": "Les données suivantes sont en cache et peuvent ne pas être à jour. Un maximum de {{PLURAL:$1|1=un résultat|$1 résultats}} est disponible dans le cache.",
-	"perfcachedts": "Les données suivantes sont en cache et ont été mises à jour pour la dernière fois le $1. {{PLURAL:$4|1=Un seul|$4}} résultat{{PLURAL:$4||s}} au maximum {{PLURAL:$4|est|sont}} disponible{{PLURAL:$4||s}} dans le cache.",
+	"perfcachedts": "Les données suivantes sont en cache et ont été mises à jour pour la dernière fois le $1. {{PLURAL:$4|1=Un seul résultat|$4 résultats}} au maximum {{PLURAL:$4|est disponible|sont disponibles}} dans le cache.",
 	"querypage-no-updates": "À présent, les renouvelages pour cette page sont barrés.  L'information ici va pas être renouvelée t'à l'heure.",
 	"viewsource": "Voir la source",
 	"protectedpagetext": "Cette page est barrée pour empêcher des changements.",

@@ -1280,6 +1280,7 @@
 	"rcfilters-filter-user-experience-level-registered-description": "Innlogga brukarar.",
 	"rcfilters-filter-user-experience-level-unregistered-label": "Uregistrerte",
 	"rcfilters-filter-user-experience-level-unregistered-description": "Brukarar som ikkje er innlogga.",
+	"rcfilters-filter-user-experience-level-unregistered-description-temp": "Bidragsytarar som ikkje er innlogga og bidragsytarar som nyttar mellombels brukarkontoar.",
 	"rcfilters-filter-user-experience-level-newcomer-label": "Nykomarar",
 	"rcfilters-filter-user-experience-level-newcomer-description": "Registrerte brukarar med færre enn 10 endringar eller under 4 dagar med aktivitet.",
 	"rcfilters-filter-user-experience-level-learner-label": "Nybyrjarar",

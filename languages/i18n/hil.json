@@ -223,7 +223,7 @@
 	"collapsible-expand": "Palaparon",
 	"collapsible-expand-all-text": "Palaparon ang tanan",
 	"collapsible-expand-all-tooltip": "Palaparon ang tanan nga mga elemento nga ma-collapse sa karon nga pahina",
-	"confirmable-confirm": "Mga {{GENDER:$1| ikaw}} sigurado?",
+	"confirmable-confirm": "Mga {{GENDER:$1|ikaw}} sigurado?",
 	"confirmable-yes": "Huo",
 	"confirmable-no": "Indi",
 	"thisisdeleted": "Tan-awa ukon i-delete $1 ?",

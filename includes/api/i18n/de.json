@@ -1058,6 +1058,7 @@
 	"apihelp-query+logevents-paramvalue-prop-details": "Listet zusätzliche Einzelheiten über das Logbuchereignis auf. Wenn die Logbuchaktion versionsgelöscht wurde, wird die Eigenschaft <samp>actionhidden</samp> zurückgegeben.",
 	"apihelp-query+logevents-paramvalue-prop-tags": "Listet Markierungen für das Logbuchereignis auf.",
 	"apihelp-query+logevents-param-type": "Filtert nur Logbucheinträge mit diesem Typ heraus.",
+	"apihelp-query+logevents-param-action": "Filtert Logbuchaktionen auf nur diese Aktion. Überschreibt <var>$1type</var>. In der Liste der möglichen Werte können Werte mit dem Platzhalterzeichen „Sternchen“ z. B. <kbd>action/*</kbd> nach dem Schrägstrich (/) unterschiedliche Zeichenfolgen haben.",
 	"apihelp-query+logevents-param-start": "Der Zeitstempel, bei dem die Aufzählung beginnen soll.",
 	"apihelp-query+logevents-param-end": "Der Zeitstempel, bei dem die Aufzählung enden soll.",
 	"apihelp-query+logevents-param-user": "Filtert die Einträge auf diejenigen, die von dem angegebenen Benutzer gemacht wurden.",

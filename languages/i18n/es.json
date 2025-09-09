@@ -266,7 +266,8 @@
 			"Laranxa",
 			"Sophocrat",
 			"Weritabris16",
-			"Geom"
+			"Geom",
+			"Jemily1"
 		]
 	},
 	"sunday": "domingo",
@@ -2308,7 +2309,7 @@
 	"allpagesto": "Mostrar páginas terminadas con:",
 	"allarticles": "Todas las páginas",
 	"allinnamespace": "Todas las páginas (espacio de nombres $1)",
-	"allpagessubmit": "Mostrar",
+	"allpagessubmit": "Ir",
 	"allpagesprefix": "Mostrar páginas con el prefijo:",
 	"allpagesbadtitle": "El título dado era inválido o tenía un prefijo de enlace inter-idioma o inter-wiki. Puede contener uno o más caracteres que no se pueden usar en títulos.",
 	"allpages-bad-ns": "{{SITENAME}} no tiene un espacio de nombres llamado «$1».",
@@ -3885,7 +3886,7 @@
 	"feedback-thanks-title": "¡Muchas gracias!",
 	"feedback-useragent": "Agente de usuario:",
 	"searchsuggest-search": "Buscar en {{SITENAME}}",
-	"searchsuggest-containing": "Buscar en las páginas que contengan",
+	"searchsuggest-containing": "Buscar las páginas que contengan",
 	"search-match-redirect-label": "Ir a la coincidencia exacta al buscar",
 	"search-match-redirect-help": "Selecciona esta opción para que se te redirija a una página cuando el título de la página coincida con lo que buscaste",
 	"api-clientside-error-noconnect": "No se pudo conectar al servidor. Asegúrate de que tu conexión a Internet funcione e inténtalo de nuevo.",

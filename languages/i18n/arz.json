@@ -220,7 +220,7 @@
 	"collapsible-expand": "اتوسع",
 	"collapsible-expand-all-text": "وسع الكل",
 	"collapsible-expand-all-tooltip": "وسع كل العناصر اللي ممكن تتسقط على الصفحه زى ما هيا دلوقتى",
-	"confirmable-confirm": "انت متأكد{{GENDER:$1||ه}}؟",
+	"confirmable-confirm": "انت {{GENDER:$1|متأكد|متأكده}}؟",
 	"confirmable-yes": "ايوه",
 	"confirmable-no": "لا",
 	"thisisdeleted": "عرض او استرجاع $1؟",

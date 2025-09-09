@@ -205,7 +205,7 @@
 	"hidetoc": "خبّي",
 	"collapsible-collapse": "خبّي",
 	"collapsible-expand": "ورّي",
-	"confirmable-confirm": "آش يلا راك مأكّد{{GENDER:$1||ة}}؟",
+	"confirmable-confirm": "آش يلا راك {{GENDER:$1|مأكّد|مأكّدة}}؟",
 	"confirmable-yes": "إيه",
 	"confirmable-no": "لا",
 	"thisisdeleted": "راك باغي تشوف ولا ترجّع $1؟",

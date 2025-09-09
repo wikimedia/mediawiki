@@ -140,7 +140,7 @@
 	"toolbox": "Galamiton",
 	"cactions": "Dugang pa",
 	"tool-link-userrights": "Usba ang {{GENDER:$1| user}} mga grupo",
-	"tool-link-userrights-readonly": "Tan-awa ang {{GENDER:$1| user}} mga grupo",
+	"tool-link-userrights-readonly": "Tan-awa ang {{GENDER:$1|user}} mga grupo",
 	"imagepage": "Tan-awa ang panid sa medya",
 	"mediawikipage": "Tan-awa ang panid sa mensahe",
 	"templatepage": "Tan-awa ang panid sa plantilya",

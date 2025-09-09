@@ -306,7 +306,7 @@
 	"virus-badscanner": "Špatna konfiguracija: njeznaty wirusowy scanner: ''$1''",
 	"virus-scanfailed": "Scannowanje njejo se raźiło (koda $1)",
 	"virus-unknownscanner": "njeznaty antiwirus:",
-	"logouttext": "'''{{GENDER:|Sy|Sy}} něnto {{GENDER:|wótzjawjony|wótzjawjona}}.'''\n\nGlědaj: Jo móžno, až někotare boki pokazuju se snaź tak, ako by ty hyšći pśizjawjony był, až njewuproznijoš pufrowak twójogo wobglědowaka.",
+	"logouttext": "<strong>Sy něnto {{GENDER:|wótzjawjony|wótzjawjona}}.</strong>\n\nGlědaj: Jo móžno, až někotare boki pokazuju se snaź tak, ako by ty hyšći pśizjawjony był, až njewuproznijoš pufrowak twójogo wobglědowaka.",
 	"welcomeuser": "Witaj $1",
 	"welcomecreation-msg": "Twójo konto jo se załožyło. Njezabydni změniś swóje [[Special:Preferences|nastajenja za {{SITENAME}}]].",
 	"yourname": "mě wužywarja",
