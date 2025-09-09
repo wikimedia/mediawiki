@@ -76,7 +76,7 @@ if ( $envVar !== false ) {
 		// there *might* be integration tests.
 		// See TestSuiteMapper for handling of the 'testsuites' argument.
 		$suites = explode( ',', $phpunitArgs->testSuite() );
-		$unitSuites = [ 'core:unit', 'extensions:unit', 'skins:unit' ];
+		$unitSuites = [ 'core:unit', 'extensions:unit' ];
 		$hasIntegrationTests = array_diff( $suites, $unitSuites ) !== [];
 	} else {
 		// Something more complex, just assume there might be integration tests
@@ -174,7 +174,7 @@ if ( !$hasIntegrationTests ) {
 	( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )->onUnitTestsList( $testPaths );
 }
 
-/** @internal For use in ExtensionsUnitTestSuite and SkinsUnitTestSuite only */
+/** @internal For use in ExtensionsUnitTestSuite only */
 define( 'MW_PHPUNIT_EXTENSIONS_PATHS', array_map( 'dirname', $pathsToJsonFiles ) );
 /** @internal For use in ExtensionsTestSuite only */
 define( 'MW_PHPUNIT_EXTENSIONS_TEST_PATHS', $testPaths );

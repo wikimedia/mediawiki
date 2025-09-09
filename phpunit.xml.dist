@@ -29,9 +29,6 @@
 		<testsuite name="extensions:unit">
 			<file>tests/phpunit/suites/ExtensionsUnitTestSuite.php</file>
 		</testsuite>
-		<testsuite name="skins:unit">
-			<file>tests/phpunit/suites/SkinsUnitTestSuite.php</file>
-		</testsuite>
 		<testsuite name="includes">
 			<directory>tests/phpunit/includes</directory>
 		</testsuite>
