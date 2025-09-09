@@ -110,11 +110,14 @@ class ApiQueryTokens extends ApiQueryBase {
 	 */
 	public static function getToken( User $user, \MediaWiki\Session\Session $session, $salt ) {
 		if ( is_array( $salt ) ) {
-			$session->persist();
-			return $session->getToken( ...$salt );
+			$token = $session->getToken( ...$salt );
 		} else {
-			return $user->getEditTokenObject( $salt, $session->getRequest() );
+			$token = $user->getEditTokenObject( $salt, $session->getRequest() );
 		}
+		if ( $token->wasNew() ) {
+			$session->persist();
+		}
+		return $token;
 	}
 
 	/** @inheritDoc */
