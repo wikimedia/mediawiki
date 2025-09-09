@@ -451,7 +451,7 @@ abstract class ChangesListFilterGroup {
 		FormOptions $opts, $isStructuredFiltersEnabled );
 
 	/**
-	 * All the options represented by this filter group to $opts
+	 * Add all the options represented by this filter group to $opts
 	 *
 	 * @param FormOptions $opts
 	 * @param bool $allowDefaults

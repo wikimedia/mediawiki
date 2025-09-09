@@ -29,7 +29,6 @@ use MediaWiki\Language\MessageParser;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\RecentChanges\ChangesList;
-use MediaWiki\RecentChanges\ChangesListBooleanFilter;
 use MediaWiki\RecentChanges\ChangesListStringOptionsFilterGroup;
 use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\SpecialPage\ChangesListSpecialPage;
@@ -245,7 +244,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 
 		if ( $this->needsWatchlistFeatures() ) {
 			$this->registerFiltersFromDefinitions( [ $this->watchlistFilterGroupDefinition ] );
-			$watchlistGroup = $this->getFilterGroup( 'watchlist' );
+			$watchlistGroup = $this->filterGroups->getWatchlistGroup();
 			$watchlistGroup->getFilter( 'watched' )->setAsSupersetOf(
 				$watchlistGroup->getFilter( 'watchednew' )
 			);
@@ -253,41 +252,27 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 
 		$user = $this->getUser();
 
-		$significance = $this->getFilterGroup( 'significance' );
-		/** @var ChangesListBooleanFilter $hideMinor */
-		$hideMinor = $significance->getFilter( 'hideminor' );
-		'@phan-var ChangesListBooleanFilter $hideMinor';
-		$hideMinor->setDefault( $this->userOptionsLookup->getBoolOption( $user, 'hideminor' ) );
+		$this->filterGroups->getSignificanceGroup()
+			->getFilter( 'hideminor' )
+			->setDefault( $this->userOptionsLookup->getBoolOption( $user, 'hideminor' ) );
 
-		$automated = $this->getFilterGroup( 'automated' );
-		/** @var ChangesListBooleanFilter $hideBots */
-		$hideBots = $automated->getFilter( 'hidebots' );
-		'@phan-var ChangesListBooleanFilter $hideBots';
-		$hideBots->setDefault( true );
+		$this->filterGroups->getAutomatedGroup()
+			->getFilter( 'hidebots' )
+			->setDefault( true );
 
-		/** @var ChangesListStringOptionsFilterGroup|null $reviewStatus */
-		$reviewStatus = $this->getFilterGroup( 'reviewStatus' );
-		'@phan-var ChangesListStringOptionsFilterGroup|null $reviewStatus';
-		if ( $reviewStatus !== null ) {
+		if ( $this->filterGroups->hasGroup( 'reviewStatus' ) ) {
 			// Conditional on feature being available and rights
 			if ( $this->userOptionsLookup->getBoolOption( $user, 'hidepatrolled' ) ) {
-				$reviewStatus->setDefault( 'unpatrolled' );
-				$legacyReviewStatus = $this->getFilterGroup( 'legacyReviewStatus' );
-				/** @var ChangesListBooleanFilter $legacyHidePatrolled */
-				$legacyHidePatrolled = $legacyReviewStatus->getFilter( 'hidepatrolled' );
-				'@phan-var ChangesListBooleanFilter $legacyHidePatrolled';
+				$this->filterGroups->getReviewStatusGroup()->setDefault( 'unpatrolled' );
+				$legacyHidePatrolled = $this->filterGroups->getLegacyReviewStatusGroup()
+					->getFilter( 'hidepatrolled' );
 				$legacyHidePatrolled->setDefault( true );
 			}
 		}
 
-		$changeType = $this->getFilterGroup( 'changeType' );
-		/** @var ChangesListBooleanFilter $hideCategorization */
-		$hideCategorization = $changeType->getFilter( 'hidecategorization' );
-		'@phan-var ChangesListBooleanFilter $hideCategorization';
-		if ( $hideCategorization !== null ) {
-			// Conditional on feature being available
-			$hideCategorization->setDefault( $this->userOptionsLookup->getBoolOption( $user, 'hidecategorization' ) );
-		}
+		$this->filterGroups->getChangeTypeGroup()
+			->getFilter( 'hidecategorization' )
+			?->setDefault( $this->userOptionsLookup->getBoolOption( $user, 'hidecategorization' ) );
 	}
 
 	/**
@@ -978,7 +963,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 
 		$links = [];
 
-		foreach ( $this->getLegacyShowHideFilters() as $key => $filter ) {
+		foreach ( $this->filterGroups->getLegacyShowHideFilters() as $key => $filter ) {
 			if ( !MediaWikiServices::getInstance()
 				->getPermissionManager()
 				->isEveryoneAllowed( "edit" ) &&

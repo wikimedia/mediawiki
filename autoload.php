@@ -2402,6 +2402,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\RecentChanges\\ChangesListBooleanFilterGroup' => __DIR__ . '/includes/recentchanges/ChangesListBooleanFilterGroup.php',
 	'MediaWiki\\RecentChanges\\ChangesListFilter' => __DIR__ . '/includes/recentchanges/ChangesListFilter.php',
 	'MediaWiki\\RecentChanges\\ChangesListFilterGroup' => __DIR__ . '/includes/recentchanges/ChangesListFilterGroup.php',
+	'MediaWiki\\RecentChanges\\ChangesListFilterGroupContainer' => __DIR__ . '/includes/recentchanges/ChangesListFilterGroupContainer.php',
 	'MediaWiki\\RecentChanges\\ChangesListStringOptionsFilter' => __DIR__ . '/includes/recentchanges/ChangesListStringOptionsFilter.php',
 	'MediaWiki\\RecentChanges\\ChangesListStringOptionsFilterGroup' => __DIR__ . '/includes/recentchanges/ChangesListStringOptionsFilterGroup.php',
 	'MediaWiki\\RecentChanges\\EnhancedChangesList' => __DIR__ . '/includes/recentchanges/EnhancedChangesList.php',

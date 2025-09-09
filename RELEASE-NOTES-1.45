@@ -283,6 +283,8 @@ because of Phabricator reports.
   in 1.37, have been removed.
 * SearchEngine::getTextFromContent(), deprecated in 1.34 is now removed
 * SearchEngine::replacePrefixes(), deprecated in 1.32 is now removed.
+* The FetchChangesList hook is now called with an object as its
+  fourth parameter, instead of an array. The object is iterable.
 * …
 
 === Deprecations in 1.45 ===

@@ -104,7 +104,7 @@ class ChangesList extends ContextSource {
 	protected $formattedComments;
 
 	/**
-	 * @var ChangesListFilterGroup[]
+	 * @var ChangesListFilterGroupContainer
 	 */
 	protected $filterGroups;
 
@@ -124,13 +124,13 @@ class ChangesList extends ContextSource {
 
 	/**
 	 * @param IContextSource $context
-	 * @param ChangesListFilterGroup[] $filterGroups Array of ChangesListFilterGroup objects (currently optional)
+	 * @param ChangesListFilterGroupContainer|null $filterGroups
 	 */
-	public function __construct( $context, array $filterGroups = [] ) {
+	public function __construct( $context, ?ChangesListFilterGroupContainer $filterGroups = null ) {
 		$this->setContext( $context );
 		$this->preCacheMessages();
 		$this->watchMsgCache = new MapCacheLRU( 50 );
-		$this->filterGroups = $filterGroups;
+		$this->filterGroups = $filterGroups ?? new ChangesListFilterGroupContainer();
 
 		$services = MediaWikiServices::getInstance();
 		$this->linkRenderer = $services->getLinkRenderer();
@@ -146,14 +146,18 @@ class ChangesList extends ContextSource {
 	 * Some users might want to use an enhanced list format, for instance
 	 *
 	 * @param IContextSource $context
-	 * @param array $groups Array of ChangesListFilterGroup objects (currently optional)
+	 * @param ChangesListFilterGroupContainer|null $groups
 	 * @return ChangesList
 	 */
-	public static function newFromContext( IContextSource $context, array $groups = [] ) {
+	public static function newFromContext(
+		IContextSource $context,
+		?ChangesListFilterGroupContainer $groups = null
+	) {
 		$user = $context->getUser();
 		$sk = $context->getSkin();
 		$services = MediaWikiServices::getInstance();
 		$list = null;
+		$groups ??= new ChangesListFilterGroupContainer();
 		if ( ( new HookRunner( $services->getHookContainer() ) )->onFetchChangesList( $user, $sk, $list, $groups ) ) {
 			$userOptionsLookup = $services->getUserOptionsLookup();
 			$new = $context->getRequest()->getBool(
@@ -313,11 +317,7 @@ class ChangesList extends ContextSource {
 			( $nsInfo->isTalk( $rc->mAttribs['rc_namespace'] ) ? 'talk' : 'subject' )
 		);
 
-		foreach ( $this->filterGroups as $filterGroup ) {
-			foreach ( $filterGroup->getFilters() as $filter ) {
-				$filter->applyCssClassIfNeeded( $this, $rc, $classes );
-			}
-		}
+		$this->filterGroups->applyCssClassIfNeeded( $this->getContext(), $rc, $classes );
 
 		return $classes;
 	}

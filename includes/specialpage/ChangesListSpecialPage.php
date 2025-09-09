@@ -32,6 +32,7 @@ use MediaWiki\Parser\Sanitizer;
 use MediaWiki\RecentChanges\ChangesListBooleanFilter;
 use MediaWiki\RecentChanges\ChangesListBooleanFilterGroup;
 use MediaWiki\RecentChanges\ChangesListFilterGroup;
+use MediaWiki\RecentChanges\ChangesListFilterGroupContainer;
 use MediaWiki\RecentChanges\ChangesListStringOptionsFilterGroup;
 use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\ResourceLoader as RL;
@@ -101,13 +102,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	/** @var array Single filter group registered conditionally */
 	private $hideCategorizationFilterDefinition;
 
-	/**
-	 * Filter groups, and their contained filters
-	 * This is an associative array (with group name as key) of ChangesListFilterGroup objects.
-	 *
-	 * @var ChangesListFilterGroup[]
-	 */
-	protected $filterGroups = [];
+	protected ChangesListFilterGroupContainer $filterGroups;
 
 	/**
 	 * @param string $name
@@ -125,6 +120,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 
 		$this->userIdentityUtils = $userIdentityUtils;
 		$this->tempUserConfig = $tempUserConfig;
+		$this->filterGroups = new ChangesListFilterGroupContainer();
 
 		$this->filterGroupDefinitions = [
 			[
@@ -621,36 +617,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 * @return bool
 	 */
 	protected function areFiltersInConflict() {
-		$opts = $this->getOptions();
-		foreach ( $this->getFilterGroups() as $group ) {
-			if ( $group->getConflictingGroups() ) {
-				wfLogWarning(
-					$group->getName() .
-					" specifies conflicts with other groups but these are not supported yet."
-				);
-			}
-
-			foreach ( $group->getConflictingFilters() as $conflictingFilter ) {
-				if ( $conflictingFilter->activelyInConflictWithGroup( $group, $opts ) ) {
-					return true;
-				}
-			}
-
-			foreach ( $group->getFilters() as $filter ) {
-				foreach ( $filter->getConflictingFilters() as $conflictingFilter ) {
-					if (
-						$conflictingFilter->activelyInConflictWithFilter( $filter, $opts ) &&
-						$filter->activelyInConflictWithFilter( $conflictingFilter, $opts )
-					) {
-						return true;
-					}
-				}
-
-			}
-
-		}
-
-		return false;
+		return $this->filterGroups->areFiltersInConflict( $this->getOptions() );
 	}
 
 	/**
@@ -869,7 +836,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	protected function includeRcFiltersApp() {
 		$out = $this->getOutput();
 		if ( $this->isStructuredFilterUiEnabled() && !$this->including() ) {
-			$jsData = $this->getStructuredFilterJsData();
+			$jsData = $this->filterGroups->getJsData();
 			$messages = [];
 			foreach ( $jsData['messageKeys'] as $key ) {
 				$messages[$key] = $this->msg( $key )->plain();
@@ -1037,7 +1004,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			$this->registerFiltersFromDefinitions( $this->reviewStatusFilterGroupDefinition );
 		}
 
-		$changeTypeGroup = $this->getFilterGroup( 'changeType' );
+		$changeTypeGroup = $this->filterGroups->getChangeTypeGroup();
 
 		$categoryFilter = null;
 		if ( $this->getConfig()->get( MainConfigNames::RCWatchCategoryMembership ) ) {
@@ -1056,7 +1023,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 
 		$this->registerFiltersFromDefinitions( [] );
 
-		$userExperienceLevel = $this->getFilterGroup( 'userExpLevel' );
+		$userExperienceLevel = $this->filterGroups->getUserExpLevelGroup();
 		if ( !$isRegistrationRequiredToEdit ) {
 			$registered = $userExperienceLevel->getFilter( 'registered' );
 			$registered->setAsSupersetOf( $userExperienceLevel->getFilter( 'newcomer' ) );
@@ -1068,7 +1035,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		$lognewuserFilter = $changeTypeGroup->getFilter( 'hidenewuserlog' );
 		$pagecreationFilter = $changeTypeGroup->getFilter( 'hidenewpages' );
 
-		$significanceTypeGroup = $this->getFilterGroup( 'significance' );
+		$significanceTypeGroup = $this->filterGroups->getSignificanceGroup();
 		$hideMinorFilter = $significanceTypeGroup->getFilter( 'hideminor' );
 
 		if ( $categoryFilter !== null ) {
@@ -1141,25 +1108,8 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 				$filterDefinition = $this->transformFilterDefinition( $filterDefinition );
 			}
 
-			$this->registerFilterGroup( new $className( $groupDefinition ) );
+			$this->filterGroups->registerGroup( new $className( $groupDefinition ) );
 		}
-	}
-
-	/**
-	 * @return ChangesListBooleanFilter[] The legacy show/hide toggle filters
-	 */
-	protected function getLegacyShowHideFilters() {
-		$filters = [];
-		foreach ( $this->filterGroups as $group ) {
-			if ( $group instanceof ChangesListBooleanFilterGroup ) {
-				foreach ( $group->getFilters() as $key => $filter ) {
-					if ( $filter->displaysOnUnstructuredUi() ) {
-						$filters[ $key ] = $filter;
-					}
-				}
-			}
-		}
-		return $filters;
 	}
 
 	/**
@@ -1202,10 +1152,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		// If urlversion=2 is set, ignore the filter defaults and set them all to false/empty
 		$useDefaults = $this->getRequest()->getInt( 'urlversion' ) !== 2;
 
-		/** @var ChangesListFilterGroup $filterGroup */
-		foreach ( $this->filterGroups as $filterGroup ) {
-			$filterGroup->addOptions( $opts, $useDefaults, $structuredUI );
-		}
+		$this->filterGroups->addOptions( $opts, $useDefaults, $structuredUI );
 
 		$opts->add( 'namespace', '', FormOptions::STRING );
 		$opts->add( 'subpageof', '', FormOptions::STRING );
@@ -1228,68 +1175,32 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 * Register a structured changes list filter group
 	 */
 	public function registerFilterGroup( ChangesListFilterGroup $group ) {
-		$groupName = $group->getName();
-
-		$this->filterGroups[$groupName] = $group;
+		$this->filterGroups->registerGroup( $group );
 	}
 
 	/**
-	 * Gets the currently registered filters groups
+	 * Gets a specified ChangesListFilterGroup by name.
 	 *
-	 * @return ChangesListFilterGroup[] Associative array of ChangesListFilterGroup objects, with group name as key
-	 */
-	protected function getFilterGroups() {
-		return $this->filterGroups;
-	}
-
-	/**
-	 * Gets a specified ChangesListFilterGroup by name
+	 * In core you can usually use a typed accessor in $this->filterGroups instead.
 	 *
 	 * @param string $groupName Name of group
 	 *
 	 * @return ChangesListFilterGroup|null Group, or null if not registered
 	 */
 	public function getFilterGroup( $groupName ) {
-		return $this->filterGroups[$groupName] ?? null;
+		return $this->filterGroups->getGroup( $groupName );
 	}
-
-	// Currently, this intentionally only includes filters that display
-	// in the structured UI.  This can be changed easily, though, if we want
-	// to include data on filters that use the unstructured UI.  messageKeys is a
-	// special top-level value, with the value being an array of the message keys to
-	// send to the client.
 
 	/**
 	 * Gets structured filter information needed by JS
 	 *
+	 * @internal for test
 	 * @return array Associative array
 	 * * array $return['groups'] Group data
 	 * * array $return['messageKeys'] Array of message keys
 	 */
-	public function getStructuredFilterJsData() {
-		$output = [
-			'groups' => [],
-			'messageKeys' => [],
-		];
-
-		usort( $this->filterGroups, static function ( ChangesListFilterGroup $a, ChangesListFilterGroup $b ) {
-			return $b->getPriority() <=> $a->getPriority();
-		} );
-
-		foreach ( $this->filterGroups as $group ) {
-			$groupOutput = $group->getJsData();
-			if ( $groupOutput !== null ) {
-				$output['messageKeys'] = array_merge(
-					$output['messageKeys'],
-					$groupOutput['messageKeys']
-				);
-
-				unset( $groupOutput['messageKeys'] );
-				$output['groups'][] = $groupOutput;
-			}
-		}
-
-		return $output;
+	protected function getStructuredFilterJsData() {
+		return $this->filterGroups->getJsData();
 	}
 
 	/**
@@ -1309,37 +1220,25 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	/**
 	 * Process $par and put options found in $opts. Used when including the page.
 	 *
+	 * See the comment on SpecialRecentChanges::parseParameters about why this exists.
+	 *
 	 * @param string $par
 	 * @param FormOptions $opts
 	 */
 	public function parseParameters( $par, FormOptions $opts ) {
-		$stringParameterNameSet = [];
-		$hideParameterNameSet = [];
-
-		// URL parameters can be per-group, like 'userExpLevel',
-		// or per-filter, like 'hideminor'.
-
-		foreach ( $this->filterGroups as $filterGroup ) {
-			if ( $filterGroup instanceof ChangesListStringOptionsFilterGroup ) {
-				$stringParameterNameSet[$filterGroup->getName()] = true;
-			} elseif ( $filterGroup instanceof ChangesListBooleanFilterGroup ) {
-				foreach ( $filterGroup->getFilters() as $filter ) {
-					$hideParameterNameSet[$filter->getName()] = true;
-				}
-			}
-		}
+		$params = $this->filterGroups->getSubpageParams();
 
 		$bits = preg_split( '/\s*,\s*/', trim( $par ) );
 		foreach ( $bits as $bit ) {
 			$m = [];
-			if ( isset( $hideParameterNameSet[$bit] ) ) {
+			if ( ( $params[$bit] ?? '' ) === 'bool' ) {
 				// hidefoo => hidefoo=true
 				$opts[$bit] = true;
-			} elseif ( isset( $hideParameterNameSet["hide$bit"] ) ) {
+			} elseif ( ( $params["hide$bit"] ?? '' ) === 'bool' ) {
 				// foo => hidefoo=false
 				$opts["hide$bit"] = false;
 			} elseif ( preg_match( '/^(.*)=(.*)$/', $bit, $m ) ) {
-				if ( isset( $stringParameterNameSet[$m[1]] ) ) {
+				if ( ( $params[$m[1]] ?? '' ) === 'string' ) {
 					$opts[$m[1]] = $m[2];
 				}
 			}
@@ -1371,33 +1270,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 */
 	private function fixContradictoryOptions( FormOptions $opts ) {
 		$fixed = $this->fixBackwardsCompatibilityOptions( $opts );
-
-		foreach ( $this->filterGroups as $filterGroup ) {
-			if ( $filterGroup instanceof ChangesListBooleanFilterGroup ) {
-				$filters = $filterGroup->getFilters();
-
-				if ( count( $filters ) === 1 ) {
-					// legacy boolean filters should not be considered
-					continue;
-				}
-
-				$allInGroupEnabled = array_reduce(
-					$filters,
-					static function ( bool $carry, ChangesListBooleanFilter $filter ) use ( $opts ) {
-						return $carry && $opts[ $filter->getName() ];
-					},
-					/* initialValue */ count( $filters ) > 0
-				);
-
-				if ( $allInGroupEnabled ) {
-					foreach ( $filters as $filter ) {
-						$opts[ $filter->getName() ] = false;
-					}
-
-					$fixed = true;
-				}
-			}
-		}
+		$fixed = $this->filterGroups->fixContradictoryOptions( $opts ) || $fixed;
 
 		// Namespace conflicts with subpageof
 		if ( $opts['namespace'] !== '' && $opts['subpageof'] !== '' ) {
@@ -1458,7 +1331,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			$changed = true;
 		}
 
-		if ( $this->getFilterGroup( 'legacyReviewStatus' ) ) {
+		if ( $this->filterGroups->hasGroup( 'legacyReviewStatus' ) ) {
 			if ( $opts[ 'hidepatrolled' ] ) {
 				$opts->reset( 'hidepatrolled' );
 				$opts[ 'reviewStatus' ] = 'unpatrolled';
@@ -1513,11 +1386,17 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		$dbr = $this->getDB();
 		$isStructuredUI = $this->isStructuredFilterUiEnabled();
 
-		/** @var ChangesListFilterGroup $filterGroup */
-		foreach ( $this->filterGroups as $filterGroup ) {
-			$filterGroup->modifyQuery( $dbr, $this, $tables, $fields, $conds,
-				$query_options, $join_conds, $opts, $isStructuredUI );
-		}
+		$this->filterGroups->modifyQuery(
+			$dbr,
+			$this,
+			$tables,
+			$fields,
+			$conds,
+			$query_options,
+			$join_conds,
+			$opts,
+			$isStructuredUI
+		);
 
 		// Namespace filtering
 		if ( $opts[ 'namespace' ] !== '' ) {

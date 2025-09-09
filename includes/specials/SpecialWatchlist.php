@@ -207,7 +207,6 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 
 	/**
 	 * @inheritDoc
-	 * @suppress PhanUndeclaredMethod
 	 */
 	protected function registerFilters() {
 		parent::registerFilters();
@@ -233,7 +232,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		] ) );
 
 		if ( $this->isStructuredFilterUiEnabled() ) {
-			$this->getFilterGroup( 'lastRevision' )
+			$this->filterGroups->getLastRevisionGroup()
 				->getFilter( 'hidepreviousrevisions' )
 				->setDefault( !$this->userOptionsLookup->getBoolOption( $this->getUser(), 'extendwatchlist' ) );
 		}
@@ -288,15 +287,15 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 
 		$user = $this->getUser();
 
-		$significance = $this->getFilterGroup( 'significance' );
-		$hideMinor = $significance->getFilter( 'hideminor' );
-		$hideMinor->setDefault( $this->userOptionsLookup->getBoolOption( $user, 'watchlisthideminor' ) );
+		$this->filterGroups->getSignificanceGroup()
+			->getFilter( 'hideminor' )
+			->setDefault( $this->userOptionsLookup->getBoolOption( $user, 'watchlisthideminor' ) );
 
-		$automated = $this->getFilterGroup( 'automated' );
-		$hideBots = $automated->getFilter( 'hidebots' );
-		$hideBots->setDefault( $this->userOptionsLookup->getBoolOption( $user, 'watchlisthidebots' ) );
+		$this->filterGroups->getAutomatedGroup()
+			->getFilter( 'hidebots' )
+			->setDefault( $this->userOptionsLookup->getBoolOption( $user, 'watchlisthidebots' ) );
 
-		$registration = $this->getFilterGroup( 'registration' );
+		$registration = $this->filterGroups->getRegistrationGroup();
 		$hideAnons = $registration->getFilter( 'hideanons' );
 		$hideAnons->setDefault( $this->userOptionsLookup->getBoolOption( $user, 'watchlisthideanons' ) );
 		$hideLiu = $registration->getFilter( 'hideliu' );
@@ -307,33 +306,32 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		if ( $this->userOptionsLookup->getBoolOption( $user, 'watchlisthideanons' ) &&
 			!$this->userOptionsLookup->getBoolOption( $user, 'watchlisthideliu' )
 		) {
-			$this->getFilterGroup( 'userExpLevel' )
+			$this->filterGroups->getUserExpLevelGroup()
 				->setDefault( 'registered' );
 		}
 
 		if ( $this->userOptionsLookup->getBoolOption( $user, 'watchlisthideliu' ) &&
 			!$this->userOptionsLookup->getBoolOption( $user, 'watchlisthideanons' )
 		) {
-			$this->getFilterGroup( 'userExpLevel' )
+			$this->filterGroups->getUserExpLevelGroup()
 				->setDefault( 'unregistered' );
 		}
 
-		$reviewStatus = $this->getFilterGroup( 'reviewStatus' );
-		if ( $reviewStatus !== null ) {
+		if ( $this->filterGroups->hasGroup( 'reviewStatus' ) ) {
 			// Conditional on feature being available and rights
 			if ( $this->userOptionsLookup->getBoolOption( $user, 'watchlisthidepatrolled' ) ) {
-				$reviewStatus->setDefault( 'unpatrolled' );
-				$legacyReviewStatus = $this->getFilterGroup( 'legacyReviewStatus' );
-				$legacyHidePatrolled = $legacyReviewStatus->getFilter( 'hidepatrolled' );
-				$legacyHidePatrolled->setDefault( true );
+				$this->filterGroups->getReviewStatusGroup()->setDefault( 'unpatrolled' );
+				$this->filterGroups->getLegacyReviewStatusGroup()
+					->getFilter( 'hidepatrolled' )
+					->setDefault( true );
 			}
 		}
 
-		$authorship = $this->getFilterGroup( 'authorship' );
-		$hideMyself = $authorship->getFilter( 'hidemyself' );
-		$hideMyself->setDefault( $this->userOptionsLookup->getBoolOption( $user, 'watchlisthideown' ) );
+		$this->filterGroups->getAuthorshipGroup()
+			->getFilter( 'hidemyself' )
+			->setDefault( $this->userOptionsLookup->getBoolOption( $user, 'watchlisthideown' ) );
 
-		$changeType = $this->getFilterGroup( 'changeType' );
+		$changeType = $this->filterGroups->getChangeTypeGroup();
 		$hideCategorization = $changeType->getFilter( 'hidecategorization' );
 		if ( $hideCategorization !== null ) {
 			// Conditional on feature being available
@@ -379,7 +377,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 
 			// This is how we handle the fact that HTML forms don't submit
 			// unchecked boxes.
-			foreach ( $this->getLegacyShowHideFilters() as $filter ) {
+			foreach ( $this->filterGroups->getLegacyShowHideFilters() as $filter ) {
 				$allBooleansFalse[ $filter->getName() ] = false;
 			}
 
@@ -740,7 +738,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		// Spit out some control panel links
 		$links = [];
 		$namesOfDisplayedFilters = [];
-		foreach ( $this->getLegacyShowHideFilters() as $filterName => $filter ) {
+		foreach ( $this->filterGroups->getLegacyShowHideFilters() as $filterName => $filter ) {
 			$namesOfDisplayedFilters[] = $filterName;
 			$links[] = $this->showHideCheck(
 				$nondefaults,

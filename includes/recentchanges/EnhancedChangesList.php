@@ -56,9 +56,9 @@ class EnhancedChangesList extends ChangesList {
 
 	/**
 	 * @param IContextSource $context
-	 * @param ChangesListFilterGroup[] $filterGroups Array of ChangesListFilterGroup objects (currently optional)
+	 * @param ChangesListFilterGroupContainer|null $filterGroups
 	 */
-	public function __construct( $context, array $filterGroups = [] ) {
+	public function __construct( $context, ?ChangesListFilterGroupContainer $filterGroups = null ) {
 		parent::__construct( $context, $filterGroups );
 
 		// message is set by the parent ChangesList class
