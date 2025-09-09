@@ -691,8 +691,8 @@ class UploadVerification {
 				// phpcs:ignore Generic.Files.LineLength
 				$parameters = '(?>;[a-zA-Z0-9\!#$&\'*+.^_`{|}~-]+=(?>[a-zA-Z0-9\!#$&\'*+.^_`{|}~-]+|"(?>[\0-\x0c\x0e-\x21\x23-\x5b\x5d-\x7f]+|\\\\[\0-\x7f])*"))*(?:;base64)?';
 
-				if ( !preg_match( "!^data:\s*image/(gif|jpeg|jpg|png)$parameters,!i", $value ) ) {
-					wfDebug( __METHOD__ . ": Found href to allow listed data: uri "
+				if ( !preg_match( "!^data:\s*image/(gif|jpeg|jpg|a?png|webp|avif)$parameters,!i", $value ) ) {
+					wfDebug( __METHOD__ . ": Found href with data URI with MIME type that is not allowed "
 						. "\"<$strippedElement '$attrib'='$value'...\" in uploaded file." );
 					return [ 'uploaded-href-unsafe-target-svg', $strippedElement, $attrib, $value ];
 				}
