@@ -256,7 +256,7 @@
 	"rest-endpoint-summ-get-revision-id-html": "Get revision HTML",
 	"rest-endpoint-summ-get-revision-id-with-html": "Get revision information with HTML",
 	"rest-endpoint-summ-get-revision-id-bare": "Get revision",
-	"rest-endpoint-summ-get-search": "Get Opensearch description document",
+	"rest-endpoint-summ-get-search": "Get OpenSearch description document",
 	"rest-endpoint-summ-get-search-page": "Search pages",
 	"rest-endpoint-summ-get-search-title": "Autocomplete page title",
 	"rest-endpoint-summ-get-page-title-language": "Get languages",
