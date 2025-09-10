@@ -61,6 +61,7 @@
 	"search": "Izlew",
 	"search-ignored-headings": " #<!-- bul qatardı solayınsha qaldırıń --> <pre>\n# Izlewde itibarǵa alınbaytuǵın Taqırıplar.\n# Ózgerisler taqırıplı bet indekslengennen soń kúshke kiredi.\n# Nollik dúzetiw arqalı betti qayta indekslew múmkin.\n# Sintaksis tómendegishe:\n# * \"#\" belgisinen baslap qatar aqırına shekemgiler pikir bolıp tabıladı.\n# * Hárbir bos bolmaǵan qatar - bul itibarǵa alınbaytuǵın anıq taqırıp, jaǵday hám basqa hárqanday nárse.\nMálimlemeler\nSırtqı siltemeler\nSonıń menen birge qarań\n #</pre> <!-- bul qatardı solayınsha qaldırıń -->",
 	"searchbutton": "Izlew",
+	"searchsuggest-containing-html": "<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> maǵlıwmatı bar betlerdi izlew",
 	"go": "Ótiw",
 	"searcharticle": "Ótiw",
 	"skin-view-history": "Tariyxın kóriw",

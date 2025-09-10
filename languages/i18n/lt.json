@@ -579,7 +579,7 @@
 	"preview": "Peržiūra",
 	"showpreview": "Rodyti peržiūrą",
 	"showdiff": "Rodyti skirtumus",
-	"tempuser-expired-link-tooltip": "Šios paskyros galiojimo laikas baigėsi",
+	"tempuser-expired-link-tooltip": "Laikinoji paskyra nebegalioja",
 	"temp-user-banner-description": "Naudojate laikiną paskyrą",
 	"temp-user-banner-tooltip-label": "Daugiau informacijos apie laikinąsias paskyras",
 	"temp-user-banner-tooltip-title": "Laikina paskyra",
