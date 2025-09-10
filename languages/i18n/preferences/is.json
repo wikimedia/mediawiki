@@ -199,6 +199,7 @@
 	"rcfilters-watchlist-preference-label": "Nota viðmót án JavaScript",
 	"rcfilters-watchlist-preference-help": "Hleður [[{{#special:Watchlist}}|vaktlista]] án síuleitar eða ljómunarvirkni.",
 	"prefs-changeswatchlist": "Birtar breytingar",
+	"tog-watch-expiry": "Sjálfgefið tímabil:",
 	"tog-watchlisthideminor": "Ekki sýna minniháttar breytingar á vaktlistanum",
 	"tog-watchlisthidebots": "Ekki sýna breytingar vélmenna á vaktlistanum",
 	"tog-watchlisthideown": "Ekki sýna mínar breytingar á vaktlistanum",
