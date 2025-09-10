@@ -122,6 +122,10 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			'log_deleted',
 		] );
 
+		if ( $params['ids'] ) {
+			$this->addWhereIDsFld( 'logging', 'log_id', $params['ids'] );
+		}
+
 		$user = $params['user'];
 		if ( $this->fld_user || $this->fld_userid || $user !== null ) {
 			$this->addTables( 'actor' );
@@ -513,6 +517,10 @@ class ApiQueryLogEvents extends ApiQueryBase {
 					'newer' => 'api-help-paramvalue-direction-newer',
 					'older' => 'api-help-paramvalue-direction-older',
 				],
+			],
+			'ids' => [
+				ParamValidator::PARAM_TYPE => 'integer',
+				ParamValidator::PARAM_ISMULTI => true
 			],
 			'user' => [
 				ParamValidator::PARAM_TYPE => 'user',

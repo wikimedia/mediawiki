@@ -1061,6 +1061,7 @@
 	"apihelp-query+logevents-param-action": "{{doc-apihelp-param|query+logevents|action}}",
 	"apihelp-query+logevents-param-start": "{{doc-apihelp-param|query+logevents|start}}",
 	"apihelp-query+logevents-param-end": "{{doc-apihelp-param|query+logevents|end}}",
+	"apihelp-query+logevents-param-ids": "{{doc-apihelp-param|query+logevents|ids}}",
 	"apihelp-query+logevents-param-user": "{{doc-apihelp-param|query+logevents|user}}",
 	"apihelp-query+logevents-param-title": "{{doc-apihelp-param|query+logevents|title}}",
 	"apihelp-query+logevents-param-namespace": "{{doc-apihelp-param|query+logevents|namespace}}",
