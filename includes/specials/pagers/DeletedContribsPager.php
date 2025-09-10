@@ -47,7 +47,7 @@ class DeletedContribsPager extends ContributionsPager {
 		UserFactory $userFactory,
 		IContextSource $context,
 		array $options,
-		UserIdentity $target
+		UserIdentity $targetUser
 	) {
 		$options['isArchive'] = true;
 
@@ -61,7 +61,7 @@ class DeletedContribsPager extends ContributionsPager {
 			$userFactory,
 			$context,
 			$options,
-			$target
+			$targetUser
 		);
 
 		$this->revisionIdField = 'ar_rev_id';
@@ -81,7 +81,7 @@ class DeletedContribsPager extends ContributionsPager {
 	protected function getRevisionQuery() {
 		$queryBuilder = $this->revisionStore->newArchiveSelectQueryBuilder( $this->getDatabase() )
 			->joinComment()
-			->where( [ 'actor_name' => $this->target ] );
+			->where( [ 'actor_name' => $this->targetUser->getName() ] );
 
 		return $queryBuilder->getQueryInfo();
 	}
