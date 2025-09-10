@@ -41,29 +41,30 @@ class ParsoidLocalization extends ContentDOMTransformStage {
 	}
 
 	public function transformDOM(
-		Document $doc, ParserOutput $po, ?ParserOptions $popts, array &$options
-	): Document {
+		DocumentFragment $df, ParserOutput $po, ?ParserOptions $popts, array &$options
+	): DocumentFragment {
 		$poLang = $po->getLanguage();
 		if ( $poLang == null ) {
 			$this->logger->warning( 'Localization pass started on ParserOutput without defined language',
 				[
 					'pass' => 'Localization',
 				] );
-			return $doc;
+			return $df;
 		}
 
 		$pageReference = $this->getPageReference( $po );
 
 		// TODO this traversal will need to also traverse rich attributes
 		$traverser = new DOMTraverser( false, false );
-		$traverser->addHandler( null, function ( $node ) use ( $doc, $poLang, $pageReference ) {
+		$traverser->addHandler( null, function ( $node ) use ( $poLang, $pageReference ) {
 			if ( $node instanceof Element ) {
-				return $this->localizeElement( $node, $poLang, $doc, $pageReference );
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable ownerDocument is not null
+				return $this->localizeElement( $node, $poLang, $node->ownerDocument, $pageReference );
 			}
 			return true;
 		} );
-		$traverser->traverse( null, $doc );
-		return $doc;
+		$traverser->traverse( null, $df );
+		return $df;
 	}
 
 	public function shouldRun( ParserOutput $po, ?ParserOptions $popts, array $options = [] ): bool {

@@ -13,7 +13,7 @@ use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Skin\Skin;
 use MediaWiki\Title\TitleFactory;
 use Psr\Log\LoggerInterface;
-use Wikimedia\Parsoid\DOM\Document;
+use Wikimedia\Parsoid\DOM\DocumentFragment;
 use Wikimedia\Parsoid\DOM\Element;
 use Wikimedia\Parsoid\Utils\DOMCompat;
 use Wikimedia\Parsoid\Utils\DOMDataUtils;
@@ -63,8 +63,8 @@ class HandleParsoidSectionLinks extends ContentDOMTransformStage {
 	}
 
 	public function transformDOM(
-		Document $dom, ParserOutput $po, ?ParserOptions $popts, array &$options
-	): Document {
+		DocumentFragment $df, ParserOutput $po, ?ParserOptions $popts, array &$options
+	): DocumentFragment {
 		$skin = $this->resolveSkin( $options );
 		$titleText = $po->getTitleText();
 		// Transform:
@@ -95,7 +95,7 @@ class HandleParsoidSectionLinks extends ContentDOMTransformStage {
 				// error since it's a common enough occurrence at present.
 				continue;
 			}
-			$h = $dom->getElementById( $section->anchor );
+			$h = DOMCompat::getElementById( $df, $section->anchor );
 			if ( $h === null ) {
 				$this->logger->error(
 					__METHOD__ . ': Heading missing for anchor',
@@ -114,7 +114,7 @@ class HandleParsoidSectionLinks extends ContentDOMTransformStage {
 			}
 
 			$fromTitle = $section->fromTitle;
-			$div = $dom->createElement( 'div' );
+			$div = $df->ownerDocument->createElement( 'div' );
 			if (
 				$fromTitle !== null &&
 				( $options['enableSectionEditLinks'] ?? true ) &&
@@ -164,7 +164,7 @@ class HandleParsoidSectionLinks extends ContentDOMTransformStage {
 			}
 			// Create collapsible section wrapper if requested.
 			if ( $po->getOutputFlag( ParserOutputFlags::COLLAPSIBLE_SECTIONS ) ) {
-				$contentsDiv = $dom->createElement( 'div' );
+				$contentsDiv = $df->ownerDocument->createElement( 'div' );
 				while ( $div->nextSibling !== null ) {
 					// @phan-suppress-next-line PhanTypeMismatchArgumentNullableInternal
 					$contentsDiv->appendChild( $div->nextSibling );
@@ -172,7 +172,7 @@ class HandleParsoidSectionLinks extends ContentDOMTransformStage {
 				$div->parentNode->appendChild( $contentsDiv );
 			}
 		}
-		return $dom;
+		return $df;
 	}
 
 	/**

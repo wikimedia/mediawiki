@@ -6,13 +6,13 @@ namespace MediaWiki\Tests\OutputTransform;
 use MediaWiki\OutputTransform\ContentDOMTransformStage;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
-use Wikimedia\Parsoid\DOM\Document;
+use Wikimedia\Parsoid\DOM\DocumentFragment;
 
 class DummyDOMTransformStage extends ContentDOMTransformStage {
 
-	public function transformDOM( Document $dom, ParserOutput $po, ?ParserOptions $popts, array &$options
-	): Document {
-		return $dom;
+	public function transformDOM( DocumentFragment $df, ParserOutput $po, ?ParserOptions $popts, array &$options
+	): DocumentFragment {
+		return $df;
 	}
 
 	public function shouldRun( ParserOutput $po, ?ParserOptions $popts, array $options = [] ): bool {
