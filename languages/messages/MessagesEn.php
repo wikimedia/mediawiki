@@ -244,6 +244,7 @@ $magicWords = [
 	'contentlanguage'         => [ 1, 'CONTENTLANGUAGE', 'CONTENTLANG' ],
 	'contentmodel'            => [ 1, '#contentmodel' ],
 	'contentmodel_canonical'  => [ 1, 'canonical' ],
+	'contentmodel_local'      => [ 1, 'local' ],
 	'currentday'              => [ 1, 'CURRENTDAY' ],
 	'currentday2'             => [ 1, 'CURRENTDAY2' ],
 	'currentdayname'          => [ 1, 'CURRENTDAYNAME' ],

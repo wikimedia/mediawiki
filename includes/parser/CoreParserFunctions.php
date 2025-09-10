@@ -1964,10 +1964,12 @@ class CoreParserFunctions {
 		if ( $magicWords === null ) {
 			$magicWords = $parser->getMagicWordFactory()->newArray( [
 				'contentmodel_canonical',
+				'contentmodel_local',
 			] );
 		}
 
-		$formatType = $magicWords->matchStartToEnd( $format ?? '' );
+		$formatType = $format === null ? 'contentmodel_local' :
+			$magicWords->matchStartToEnd( $format );
 
 		$t = self::makeTitle( $parser, $title );
 		if ( $t === null ) {
@@ -1977,10 +1979,13 @@ class CoreParserFunctions {
 		$contentModel = $t->getContentModel();
 		if ( $formatType === 'contentmodel_canonical' ) {
 			return wfEscapeWikiText( $contentModel );
+		} elseif ( $formatType === 'contentmodel_local' ) {
+			$localizedContentModel = ContentHandler::getLocalizedName( $contentModel, $parser->getTargetLanguage() );
+			return wfEscapeWikiText( $localizedContentModel );
+		} else {
+			// Unknown format option
+			return '';
 		}
-
-		$localizedContentModel = ContentHandler::getLocalizedName( $contentModel, $parser->getTargetLanguage() );
-		return wfEscapeWikiText( $localizedContentModel );
 	}
 
 	/**

@@ -17412,7 +17412,7 @@ added between the divtags:
 !! wikitext
 {{#contentmodel}}
 
-{{#contentmodel:}}
+{{#contentmodel:local}}
 
 {{#contentmodel:canonical}}
 !! html
@@ -17434,7 +17434,7 @@ title=MediaWiki:Common.css
 !! end
 
 !! test
-{{#contentmodel:}} parser function on a CSS page (canonical)
+{{#contentmodel}} parser function on a CSS page (canonical)
 !! options
 title=MediaWiki:Common.css
 !! wikitext
@@ -17445,7 +17445,7 @@ title=MediaWiki:Common.css
 !! end
 
 !! test
-{{#contentmodel:}} parser function for a JS page using the title argument
+{{#contentmodel}} parser function for a JS page using the title argument
 !! wikitext
 {{#contentmodel: canonical | MediaWiki:Common.js}}
 !! html
