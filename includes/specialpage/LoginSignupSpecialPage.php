@@ -842,7 +842,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	 */
 	protected function showExtraInformation() {
 		return $this->authAction !== $this->getContinueAction( $this->authAction )
-			&& !$this->securityLevel;
+			&& ( !$this->securityLevel || !$this->getUser()->isNamed() );
 	}
 
 	/**
