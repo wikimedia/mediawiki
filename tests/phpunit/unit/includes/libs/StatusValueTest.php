@@ -5,6 +5,7 @@ namespace Wikimedia\Tests\Unit;
 use MediaWiki\Message\Message;
 use MediaWikiUnitTestCase;
 use StatusValue;
+use Wikimedia\Assert\Assert;
 
 /**
  * @covers \StatusValue
@@ -210,4 +211,49 @@ class StatusValueTest extends MediaWikiUnitTestCase {
 		$this->assertEquals( 'warning111', $status->getMessages( 'warning' )[0]->getKey() );
 		$this->assertEquals( 'error111', $status->getMessages( 'error' )[0]->getKey() );
 	}
+
+	public function testCast(): void {
+		$testStatusValue = TestStatusValue::newIntAndString( 1, 'string' );
+		$this->assertInstanceOf( TestStatusValue::class, $testStatusValue );
+		$this->assertSame( 1, $testStatusValue->getAnInt() );
+		$this->assertSame( 'string', $testStatusValue->getAString() );
+
+		$testGenericStatusValue = TestGenericStatusValue::cast( $testStatusValue );
+		$this->assertInstanceOf( TestGenericStatusValue::class, $testGenericStatusValue );
+		$this->assertStringStartsWith( '{"', $testGenericStatusValue->getValueJson() );
+
+		$testStatusValue2 = TestStatusValue::cast( $testGenericStatusValue );
+		$this->assertInstanceOf( TestStatusValue::class, $testStatusValue2 );
+		$this->assertSame( 1, $testStatusValue2->getAnInt() );
+		$this->assertSame( 'string', $testStatusValue2->getAString() );
+	}
+}
+
+class TestStatusValue extends StatusValue {
+
+	public static function newIntAndString( int $anInt, string $aString ) {
+		return parent::newGood( [
+			'anInt' => $anInt,
+			'aString' => $aString,
+		] );
+	}
+
+	public function getAnInt(): int {
+		Assert::precondition( $this->isOK(), '$this->isOK()' );
+		return $this->getValue()['anInt'];
+	}
+
+	public function getAString(): string {
+		Assert::precondition( $this->isOK(), '$this->isOK()' );
+		return $this->getValue()['aString'];
+	}
+
+}
+
+class TestGenericStatusValue extends StatusValue {
+
+	public function getValueJson(): string {
+		return json_encode( $this->getValue() );
+	}
+
 }

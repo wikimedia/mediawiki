@@ -64,6 +64,10 @@ class Status extends StatusValue {
 	 *     $this->getOutput()->addHtml( Status::wrap( $sv )->getHTML() );
 	 * @endcode
 	 *
+	 * Note that the contents of the status are copied by reference,
+	 * so that any changes to the inner status will also affect the wrapped status and vice versa.
+	 * If this is not needed, {@link StatusValue::cast()} is usually preferable.
+	 *
 	 * @param StatusValue|Status $sv
 	 * @return static
 	 */

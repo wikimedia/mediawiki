@@ -101,6 +101,53 @@ class StatusValue implements Stringable {
 	}
 
 	/**
+	 * Succinct helper method to wrap a StatusValue in some other specific subclass.
+	 *
+	 * One place where this is useful is when formatting StatusValue objects:
+	 * @code
+	 *     $this->getOutput()->addHtml( Status::cast( $sv )->getHTML() );
+	 * @endcode
+	 *
+	 * Also, several code paths in MediaWiki core use {@link Status::wrap()}
+	 * to turn a returned StatusValue into a Status (e.g. {@link \MediaWiki\HTMLForm\HTMLForm::trySubmit());
+	 * in such cases, cast() can be used to "restore" the original type.
+	 * @code
+	 *     $form = HTMLForm::factory( 'ooui', [ ... ], $this->getContext() )
+	 *         ->setSubmitCallback( function ( array $data, HTMLForm $form ) {
+	 *             return CustomStatusValue::newGood( $data );
+	 *         } );
+	 *     $result = $form->tryAuthorizedSubmit();
+	 *     // $result is a generic Status
+	 *     if ( $result && $result->isGood() ) {
+	 *         $result = CustomStatusValue::cast( $result );
+	 *         // $result is a CustomStatusValue again
+	 *     }
+	 * @endcode
+	 * To support this pattern, StatusValue subclasses should not add any new properties:
+	 * all data should be stored in the standard fields, chiefly {@link self::$value} and {@link self::$statusData}.
+	 * (Making them associative arrays can help to keep the data extensible.)
+	 *
+	 * @param StatusValue $sv
+	 * @return static
+	 */
+	public static function cast( StatusValue $sv ) {
+		if ( $sv instanceof static ) {
+			return $sv;
+		}
+
+		$result = new static();
+		$result->ok = $sv->ok;
+		$result->errors = $sv->errors;
+		$result->value = $sv->value;
+		$result->successCount = $sv->successCount;
+		$result->failCount = $sv->failCount;
+		$result->success = $sv->success;
+		$result->statusData = $sv->statusData;
+
+		return $result;
+	}
+
+	/**
 	 * Splits this StatusValue object into two new StatusValue objects, one which contains only
 	 * the error messages, and one that contains the warnings, only. The returned array is
 	 * defined as:

@@ -721,6 +721,33 @@ class StatusTest extends MediaWikiLangTestCase {
 		$this->assertTrue( $sw->isOK() );
 	}
 
+	public function testWrapAndCast(): void {
+		$sv = StatusValue::newGood( [ 'foo' => 'bar' ] );
+		$sv->warning( 'warning1' );
+
+		$wrap = Status::wrap( $sv );
+		$this->assertInstanceOf( Status::class, $wrap );
+		$this->assertStatusValue( [ 'foo' => 'bar' ], $wrap, 'Value is the same' );
+		$this->assertStatusMessage( 'warning1', $wrap, 'Messages are the same' );
+
+		$cast = Status::cast( $sv );
+		$this->assertInstanceOf( Status::class, $cast );
+		$this->assertStatusValue( [ 'foo' => 'bar' ], $cast, 'Value is the same' );
+		$this->assertStatusMessage( 'warning1', $cast, 'Messages are the same' );
+
+		$wrap->value = 'xxx';
+		$wrap->warning( 'warning2' );
+		$this->assertStatusValue( 'xxx', $sv, 'Original StatusValue has been changed' );
+		$this->assertStatusMessage( 'warning2', $sv, 'Original StatusValue has been changed' );
+		$this->assertStatusValue( [ 'foo' => 'bar' ], $cast, 'Cast StatusValue has NOT been changed' );
+		$this->assertStatusMessagesExactly( ( new StatusValue )->warning( 'warning1' ), $cast, 'Cast StatusValue has NOT been changed' );
+
+		$cast->value = 'yyy';
+		$this->assertStatusValue( 'yyy', $cast, 'Cast StatusValue has been changed' );
+		$this->assertStatusValue( 'xxx', $wrap, 'Wrapped StatusValue has NOT been changed' );
+		$this->assertStatusValue( 'xxx', $sv, 'Original StatusValue has NOT been changed' );
+	}
+
 	public function testSetContext() {
 		$status = Status::newFatal( 'foo' );
 		$status->fatal( 'bar' );
