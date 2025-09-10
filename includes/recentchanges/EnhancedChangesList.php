@@ -808,10 +808,33 @@ class EnhancedChangesList extends ChangesList {
 
 		$blockOut = '';
 		foreach ( $this->rc_cache as $block ) {
-			if ( count( $block ) < 2 ) {
-				$blockOut .= $this->recentChangesBlockLine( array_shift( $block ) );
-			} else {
-				$blockOut .= $this->recentChangesBlockGroup( $block );
+			$visibleBlock = [];
+			$hiddenBlock = [];
+
+			// T398706: Filter the block to prevent leaking hidden usernames
+			foreach ( $block as $rcObj ) {
+				if ( static::isDeleted( $rcObj, RevisionRecord::DELETED_USER ) ) {
+					$hiddenBlock[] = $rcObj;
+				} else {
+					$visibleBlock[] = $rcObj;
+				}
+			}
+
+			$visibleCount = count( $visibleBlock );
+
+			if ( $visibleCount > 0 ) {
+				$blockOut .= $visibleCount > 1 ?
+					$this->recentChangesBlockGroup( $visibleBlock ) :
+					$this->recentChangesBlockLine( array_shift( $visibleBlock ) );
+
+			}
+
+			$hiddenCount = count( $hiddenBlock );
+
+			if ( $hiddenCount > 0 ) {
+				$blockOut .= $hiddenCount > 1 ?
+					$this->recentChangesBlockGroup( $hiddenBlock ) :
+					$this->recentChangesBlockLine( array_shift( $hiddenBlock ) );
 			}
 		}
 
