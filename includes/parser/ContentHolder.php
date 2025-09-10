@@ -72,13 +72,13 @@ class ContentHolder {
 	}
 
 	/**
-	 * Create a ContentHolder from a legacy body string, typically returned
-	 * by the legacy parser.
+	 * Create a ContentHolder from a legacy body HTML string, typically
+	 * returned by the legacy parser.
 	 */
-	public static function createFromLegacyString( string $s ): ContentHolder {
+	public static function createFromLegacyString( string $html ): ContentHolder {
 		$ch = new ContentHolder(
 			ownerDocument: DOMUtils::parseHTML( '' ),
-			htmlMap: [ self::BODY_FRAGMENT => $s ],
+			htmlMap: [ self::BODY_FRAGMENT => $html ],
 			isParsoidContent: false,
 		);
 		return $ch;
@@ -140,7 +140,7 @@ class ContentHolder {
 	 * @note If a conversion is needed, at present all fragments of the
 	 * document are converted to HTML strings.
 	 */
-	public function getAsHtmlString( string $fragmentName ): ?string {
+	public function getAsHtmlString( string $fragmentName = self::BODY_FRAGMENT ): ?string {
 		if ( $this->domFormat ) {
 			$this->convertDomToHtml();
 		}
@@ -154,7 +154,7 @@ class ContentHolder {
 	 * @note If a conversion is needed, at present all fragments of the
 	 * document are converted to DOM DocumentFragments.
 	 */
-	public function getAsDom( string $fragmentName ): ?DocumentFragment {
+	public function getAsDom( string $fragmentName = self::BODY_FRAGMENT ): ?DocumentFragment {
 		if ( !$this->domFormat ) {
 			$this->convertHtmlToDom();
 		}
@@ -164,7 +164,7 @@ class ContentHolder {
 	/**
 	 * Sets or removes a fragment, provided as an HTML string.
 	 * @param string $fragmentName name of the fragment to set
-	 * @param string|null $text string of the fragment to set, or null to
+	 * @param string|null $html string of the fragment to set, or null to
 	 *  remove a fragment.
 	 * @return void
 	 *
@@ -172,11 +172,11 @@ class ContentHolder {
 	 * tag.
 	 * @note All fragments may be converted to HTML strings as a side-effect.
 	 */
-	public function setAsHtmlString( string $fragmentName, ?string $text ): void {
+	public function setAsHtmlString( string $fragmentName = self::BODY_FRAGMENT, ?string $html = null ): void {
 		// no need to convert the fragment that we're going to replace
 		unset( $this->domMap[ $fragmentName ] );
 
-		if ( $text === null ) {
+		if ( $html === null ) {
 			unset( $this->htmlMap[$fragmentName] );
 			return;
 		}
@@ -186,16 +186,16 @@ class ContentHolder {
 		}
 
 		if ( $fragmentName === self::BODY_FRAGMENT ) {
-			Assert::invariant( !str_starts_with( $text, '<body' ),
+			Assert::invariant( !str_starts_with( $html, '<body' ),
 							   "Body fragment should not contain a body tag" );
 		}
-		$this->htmlMap[ $fragmentName ] = $text;
+		$this->htmlMap[ $fragmentName ] = $html;
 	}
 
 	/**
 	 * Sets or removes a fragment, provided as a DOM DocumentFragment.
 	 * @param string $fragmentName name of the fragment to set
-	 * @param DocumentFragment|null $dom the fragment to set, or null to
+	 * @param DocumentFragment|null $fragment the fragment to set, or null to
 	 *   remove a fragment.
 	 * @return void
 	 *
@@ -204,11 +204,11 @@ class ContentHolder {
 	 * @note All fragments may be converted to DOM DocumentFragments as a
 	 * side-effect.
 	 */
-	public function setAsDom( string $fragmentName, ?DocumentFragment $dom ) {
+	public function setAsDom( string $fragmentName = self::BODY_FRAGMENT, ?DocumentFragment $fragment = null ) {
 		// no need to convert the fragment that we're going to replace
 		unset( $this->htmlMap[ $fragmentName ] );
 
-		if ( $dom === null ) {
+		if ( $fragment === null ) {
 			unset( $this->domMap[ $fragmentName ] );
 			return;
 		}
@@ -217,19 +217,19 @@ class ContentHolder {
 			$this->convertHtmlToDom();
 		}
 
-		Assert::invariant( $dom->ownerDocument === $this->ownerDocument,
+		Assert::invariant( $fragment->ownerDocument === $this->ownerDocument,
 			"Fragment not owned by the ContentHolder document." );
 
-		$firstChild = $dom->firstElementChild;
+		$firstChild = $fragment->firstElementChild;
 		if ( $fragmentName === self::BODY_FRAGMENT && $firstChild ) {
 			Assert::invariant( DOMCompat::nodeName( $firstChild ) !== "body",
 				"Body fragment should not contain a body tag" );
 		}
 
-		$this->domMap[$fragmentName] = $dom;
+		$this->domMap[$fragmentName] = $fragment;
 	}
 
-	public function createFragment( ?string $html = null ): DocumentFragment|false {
+	public function createFragment( ?string $html = null ): DocumentFragment {
 		if ( !$this->domFormat ) {
 			$this->convertHtmlToDom();
 		}
@@ -242,7 +242,7 @@ class ContentHolder {
 		return DOMUtils::parseHTMLToFragment( $this->ownerDocument, $html );
 	}
 
-	public function addFragment( string $name, ?string $html = null ): DocumentFragment|false {
+	public function addFragment( string $name = self::BODY_FRAGMENT, ?string $html = null ): DocumentFragment {
 		$frag = $this->createFragment( $html );
 		$this->setAsDom( $name, $frag );
 		return $frag;
@@ -314,8 +314,8 @@ class ContentHolder {
 			$this->htmlMap = $pb->fragments;
 			$this->htmlMap[self::BODY_FRAGMENT] = $pb->html;
 		} else {
-			foreach ( $this->domMap as $name => $dom ) {
-				$this->htmlMap[ $name ] = ContentUtils::toXML( $dom, [ 'innerXML' => true ] );
+			foreach ( $this->domMap as $name => $df ) {
+				$this->htmlMap[ $name ] = ContentUtils::toXML( $df, [ 'innerXML' => true ] );
 			}
 		}
 		$this->domMap = [];
