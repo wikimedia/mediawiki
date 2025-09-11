@@ -51,6 +51,14 @@ class CookieSessionProvider extends SessionProvider {
 	protected $cookieOptions = [];
 
 	/**
+	 * JWT 'jti' field.
+	 * FIXME This is an ugly hack to make the cookie set in setJwtCookie() deterministic within
+	 *   a given request. We don't have a mechanism to avoid writing cookies several times per
+	 *   request, and rely on WebResponse deduplicating cookies as long as the values are the same.
+	 */
+	protected ?string $jti = null;
+
+	/**
 	 * @param JwtCodec $jwtCodec
 	 * @param UrlUtils $urlUtils
 	 * @param array $params Keys include:
@@ -541,6 +549,7 @@ class CookieSessionProvider extends SessionProvider {
 	 * @param int $expirationDuration Session lifetime in seconds.
 	 */
 	protected function getJwtClaimOverrides( int $expirationDuration ): array {
+		$this->jti ??= base64_encode( random_bytes( 16 ) );
 		return [
 			'iss' => $this->urlUtils->getCanonicalServer(),
 			'exp' => ConvertibleTimestamp::time() + $expirationDuration + ExpirationAwareness::TTL_DAY,
@@ -548,6 +557,7 @@ class CookieSessionProvider extends SessionProvider {
 			//   We might want to set it to something short instead (e.g. a day) so we don't need to
 			//   worry about the contents being outdated, but then we need a mechanism to refresh it.
 			'sxp' => ConvertibleTimestamp::time() + $expirationDuration,
+			'jti' => $this->jti,
 		];
 	}
 
