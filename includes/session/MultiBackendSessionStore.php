@@ -21,10 +21,12 @@
 
 namespace MediaWiki\Session;
 
+use MediaWiki\WikiMap\WikiMap;
 use Psr\Log\LoggerInterface;
 use RuntimeException;
 use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\ObjectCache\CachedBagOStuff;
+use Wikimedia\Stats\StatsFactory;
 
 /**
  * An implementation of a session store with two backends for storing
@@ -58,10 +60,14 @@ use Wikimedia\ObjectCache\CachedBagOStuff;
  */
 class MultiBackendSessionStore implements SessionStore {
 
+	private const STATS_LABEL_ANON = 'anonymous';
+	private const STATS_LABEL_AUTH = 'authenticated';
+
 	private BagOStuff $anonSessionStore;
 	private BagOStuff $authenticatedSessionStore;
 	/** @var bool Track whether injected backends are the same or not. */
 	private bool $sameBackend;
+	private StatsFactory $statsFactory;
 
 	/**
 	 * The store that should be used during the request at
@@ -72,7 +78,8 @@ class MultiBackendSessionStore implements SessionStore {
 	public function __construct(
 		BagOStuff $anonSessionStore,
 		BagOStuff $authenticatedSessionStore,
-		LoggerInterface $logger
+		LoggerInterface $logger,
+		StatsFactory $statsFactory
 	) {
 		$this->setLogger( $logger );
 		// Do some logging of the individual stores before wrapping.
@@ -82,6 +89,7 @@ class MultiBackendSessionStore implements SessionStore {
 		$this->sameBackend = $anonSessionStore === $authenticatedSessionStore;
 		$this->anonSessionStore = $this->wrapWithCachedBagOStuff( $anonSessionStore );
 		$this->authenticatedSessionStore = $this->wrapWithCachedBagOStuff( $authenticatedSessionStore );
+		$this->statsFactory = $statsFactory;
 	}
 
 	/** @inheritDoc */
@@ -106,6 +114,7 @@ class MultiBackendSessionStore implements SessionStore {
 	 * @return array{0:CachedBagOStuff,1:bool}
 	 */
 	private function getActiveStore( SessionInfo $sessionInfo ): array {
+		$stats = $this->statsFactory->getCounter( 'sessionstore_active_backend_total' );
 		$userInfo = $sessionInfo->getUserInfo();
 
 		if ( $userInfo === null ) {
@@ -157,18 +166,30 @@ class MultiBackendSessionStore implements SessionStore {
 			}
 
 			if ( $authData ) {
+				$stats->setLabel( 'type', self::STATS_LABEL_AUTH )
+					->setLabel( 'wiki', WikiMap::getCurrentWikiId() )
+					->increment();
 				return [ $this->authenticatedSessionStore, true ];
 			}
 
+			$stats->setLabel( 'type', self::STATS_LABEL_ANON )
+				->setLabel( 'wiki', WikiMap::getCurrentWikiId() )
+				->increment();
 			return [ $this->anonSessionStore, false ];
 		}
 
 		if ( !$userInfo->isAnon() ) {
+			$stats->setLabel( 'type', self::STATS_LABEL_AUTH )
+				->setLabel( 'wiki', WikiMap::getCurrentWikiId() )
+				->increment();
 			// Hopefully, we can use the user info here to know if it's an anonymous user or
 			// and authenticated user. This will help us determine which store to use.
 			return [ $this->authenticatedSessionStore, true ];
 		}
 
+		$stats->setLabel( 'type', self::STATS_LABEL_ANON )
+			->setLabel( 'wiki', WikiMap::getCurrentWikiId() )
+			->increment();
 		return [ $this->anonSessionStore, false ];
 	}
 
@@ -181,6 +202,8 @@ class MultiBackendSessionStore implements SessionStore {
 	 * @return mixed
 	 */
 	public function get( SessionInfo $info ) {
+		$this->logger->debug( __METHOD__ . " was called for $info" );
+
 		[ $store, $isAuthenticated ] = $this->getActiveStore( $info );
 
 		$key = $store->makeKey( 'MWSession', $info->getId() );
@@ -203,6 +226,10 @@ class MultiBackendSessionStore implements SessionStore {
 			] );
 		}
 
+		$this->statsFactory->getCounter( 'sessionstore_get_total' )
+			->setLabel( 'wiki', WikiMap::getCurrentWikiId() )
+			->increment();
+
 		return $data;
 	}
 
@@ -216,6 +243,8 @@ class MultiBackendSessionStore implements SessionStore {
 	 * @param int $flags
 	 */
 	public function set( SessionInfo $info, $value, $exptime = 0, $flags = 0 ): void {
+		$this->logger->debug( __METHOD__ . " was called for $info" );
+
 		[ $store, $isAuthenticated ] = $this->getActiveStore( $info );
 
 		$key = $store->makeKey( 'MWSession', $info->getId() );
@@ -243,6 +272,10 @@ class MultiBackendSessionStore implements SessionStore {
 		}
 
 		$store->set( $key, $value, $exptime, $flags );
+
+		$this->statsFactory->getCounter( 'sessionstore_set_total' )
+			->setLabel( 'wiki', WikiMap::getCurrentWikiId() )
+			->increment();
 	}
 
 	/**
@@ -251,10 +284,16 @@ class MultiBackendSessionStore implements SessionStore {
 	 * @param SessionInfo $info
 	 */
 	public function delete( SessionInfo $info ): void {
+		$this->logger->debug( __METHOD__ . " was called for $info" );
+
 		[ $store, /** $isAuthenticated */ ] = $this->getActiveStore( $info );
 		$key = $store->makeKey( 'MWSession', $info->getId() );
 
 		$store->delete( $key );
+
+		$this->statsFactory->getCounter( 'sessionstore_delete_total' )
+			->setLabel( 'wiki', WikiMap::getCurrentWikiId() )
+			->increment();
 	}
 
 	/**

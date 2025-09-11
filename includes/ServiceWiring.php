@@ -2229,7 +2229,8 @@ return [
 			return new MultiBackendSessionStore(
 				$objectCacheFactory->getInstance( $anonCacheType ),
 				$objectCacheFactory->getInstance( $authCacheType ),
-				$logger
+				$logger,
+				$services->getStatsFactory()
 			);
 		}
 

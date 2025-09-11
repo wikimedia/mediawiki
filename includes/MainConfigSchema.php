@@ -3981,6 +3981,8 @@ class MainConfigSchema {
 	 * will be used.
 	 *
 	 * Used by MediaWiki\Session\SessionCache. See $wgSessionCacheType for available types.
+	 *
+	 * @since 1.45
 	 */
 	public const AnonSessionCacheType = [
 		'default' => false

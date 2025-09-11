@@ -2460,6 +2460,7 @@ config-schema:
             The cache backend for storing anonymous session data. When false, $wgSessionCacheType
             will be used.
             Used by MediaWiki\Session\SessionCache. See $wgSessionCacheType for available types.
+            @since 1.45
     LanguageConverterCacheType:
         default: -1
         description: |-
