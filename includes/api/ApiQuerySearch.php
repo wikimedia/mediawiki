@@ -461,9 +461,15 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 	/** @inheritDoc */
 	public function getSearchProfileParams() {
 		return [
+			// Query-independent scoring profile (article popularity, quality, etc)
 			'qiprofile' => [
 				'profile-type' => SearchEngine::FT_QUERY_INDEP_PROFILE_TYPE,
 				'help-message' => 'apihelp-query+search-param-qiprofile',
+			],
+			// Query-dependent scoring profile (match strictness, default and/or, etc.)
+			'qdprofile' => [
+				'profile-type' => SearchEngine::FT_QUERY_DEP_PROFILE_TYPE,
+				'help-message' => 'apihelp-query+search-param-qdprofile',
 			],
 		];
 	}

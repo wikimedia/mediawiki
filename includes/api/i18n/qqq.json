@@ -1220,6 +1220,7 @@
 	"apihelp-query+search-param-info": "{{doc-apihelp-param|query+search|info}}",
 	"apihelp-query+search-param-prop": "{{doc-apihelp-param|query+search|prop|paramvalues=1}}",
 	"apihelp-query+search-param-qiprofile": "{{doc-apihelp-param|query+search|qiprofile|paramvalues=1}}",
+	"apihelp-query+search-param-qdprofile": "{{doc-apihelp-param|query+search|qdprofile|paramvalues=1}}",
 	"apihelp-query+search-paramvalue-prop-size": "{{doc-apihelp-paramvalue|query+search|prop|size}}",
 	"apihelp-query+search-paramvalue-prop-wordcount": "{{doc-apihelp-paramvalue|query+search|prop|wordcount}}",
 	"apihelp-query+search-paramvalue-prop-timestamp": "{{doc-apihelp-paramvalue|query+search|prop|timestamp}}",

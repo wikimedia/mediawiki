@@ -1286,6 +1286,7 @@
 	"apihelp-query+search-param-info": "Which metadata to return.",
 	"apihelp-query+search-param-prop": "Which properties to return:",
 	"apihelp-query+search-param-qiprofile": "Query independent profile to use (affects ranking algorithm).",
+	"apihelp-query+search-param-qdprofile": "Query dependent profile to use (affects ranking algorithm).",
 	"apihelp-query+search-paramvalue-prop-size": "Adds the size of the page in bytes.",
 	"apihelp-query+search-paramvalue-prop-wordcount": "Adds the word count of the page.",
 	"apihelp-query+search-paramvalue-prop-timestamp": "Adds the timestamp of when the page was last edited.",

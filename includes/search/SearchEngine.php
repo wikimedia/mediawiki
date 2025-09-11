@@ -78,8 +78,11 @@ abstract class SearchEngine {
 	/** Profile type for completionSearch */
 	public const COMPLETION_PROFILE_TYPE = 'completionSearchProfile';
 
-	/** Profile type for query independent ranking features */
+	/** Profile type for query independent ranking features (ex: article popularity) */
 	public const FT_QUERY_INDEP_PROFILE_TYPE = 'fulltextQueryIndepProfile';
+
+	/** Profile type for query dependent ranking features (ex: field weights) */
+	public const FT_QUERY_DEP_PROFILE_TYPE = 'fulltextQueryDepProfile';
 
 	/** Integer flag for legalSearchChars: includes all chars allowed in a search query */
 	protected const CHARS_ALL = 1;
