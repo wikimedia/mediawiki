@@ -22,6 +22,7 @@
 
 namespace MediaWiki\Request;
 
+use LogicException;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
@@ -250,11 +251,7 @@ class WebResponse {
 		}
 
 		wfDebugLog( 'cookie', $logDesc );
-		if ( $func === 'setrawcookie' ) {
-			setrawcookie( $prefixedName, $value, $setOptions );
-		} else {
-			setcookie( $prefixedName, $value, $setOptions );
-		}
+		$this->actuallySetCookie( $func, $prefixedName, $value, $setOptions );
 		self::$setCookies[$key] = $deleting ? null : $optionsForDeduplication;
 	}
 
@@ -279,5 +276,23 @@ class WebResponse {
 	 */
 	public function hasCookies() {
 		return (bool)self::$setCookies;
+	}
+
+	protected function actuallySetCookie( string $func, string $prefixedName, string $value, array $setOptions ): void {
+		if ( $func === 'setrawcookie' ) {
+			setrawcookie( $prefixedName, $value, $setOptions );
+		} else {
+			setcookie( $prefixedName, $value, $setOptions );
+		}
+	}
+
+	/**
+	 * @internal for tests only
+	 */
+	public static function resetCookieCache(): void {
+		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
+			throw new LogicException( __METHOD__ . ' should not be called outside tests' );
+		}
+		self::$setCookies = [];
 	}
 }

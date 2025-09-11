@@ -9,6 +9,8 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Message\Message;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Request\FauxResponse;
+use MediaWiki\Request\WebRequest;
+use MediaWiki\Request\WebResponse;
 use MediaWiki\Session\CookieSessionProvider;
 use MediaWiki\Session\SessionBackend;
 use MediaWiki\Session\SessionId;
@@ -716,6 +718,33 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 		}
 		$this->assertJwtMatches( $expectedJwtCookie, $request->response()->getCookie( 'sessionJwt' ) );
 		$this->assertSame( [], $backend->getData() );
+
+		// Multiple persists should not result in duplicated Set-Cookie headers
+		$cookies = [];
+		$expectedCookies = [ 'xUserID', 'xUserName', 'xToken' ];
+		WebResponse::resetCookieCache();
+		if ( $useSessionCookieJwt ) {
+			$expectedCookies[] = 'sessionJwt';
+		}
+		$centralIdMap = [ $user->getName() => 123 ];
+		$backend->setUser( $user );
+		$backend->setRememberUser( true );
+		$backend->setForceHTTPS( true );
+		$response = $this->createPartialMock( WebResponse::class, [ 'actuallySetCookie' ] );
+		$response->method( 'actuallySetCookie' )->willReturnCallback(
+			function ( string $func, string $prefixedName, string $value, array $setOptions ) use ( &$cookies ): void {
+				if ( array_key_exists( $prefixedName, $cookies ) ) {
+					$this->fail( 'Cookie set twice: ' . $prefixedName );
+				}
+				$cookies[$prefixedName] = true;
+			}
+		);
+		$request = $this->createPartialMock( WebRequest::class, [ 'response' ] );
+		$request->method( 'response' )->willReturn( $response );
+		$provider->persistSession( $backend, $request );
+		$provider->persistSession( $backend, $request );
+		$provider->persistSession( $backend, $request );
+		$this->assertArrayContains( $expectedCookies, array_keys( $cookies ) );
 	}
 
 	public static function providePersistSession() {
