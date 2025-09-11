@@ -968,8 +968,11 @@ class LocalisationCache {
 			'codex' => "$IP/languages/i18n/codex",
 			'datetime' => "$IP/languages/i18n/datetime",
 			'exif' => "$IP/languages/i18n/exif",
+			'languageconverter' => "$IP/languages/i18n/languageconverter",
 			'preferences' => "$IP/languages/i18n/preferences",
+
 			'nontranslatable' => "$IP/languages/i18n/nontranslatable",
+
 			'api' => "$IP/includes/api/i18n",
 			'rest' => "$IP/includes/Rest/i18n",
 			'oojs-ui' => "$IP/resources/lib/ooui/i18n",

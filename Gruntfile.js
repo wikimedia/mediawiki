@@ -67,6 +67,7 @@ module.exports = function ( grunt ) {
 			exif: 'languages/i18n/exif/',
 			nontranslatable: 'languages/i18n/nontranslatable/',
 			preferences: 'languages/i18n/preferences/',
+			languageconverter: 'languages/i18n/languageconverter/',
 			api: 'includes/api/i18n/',
 			rest: 'includes/Rest/i18n/',
 			installer: 'includes/installer/i18n/',
