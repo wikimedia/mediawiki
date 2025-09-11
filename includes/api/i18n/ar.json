@@ -425,6 +425,7 @@
 	"apihelp-parse-param-usearticle": "استخدم خطاف ArticleParserOptions للتأكد من أن الخيارات المستخدمة تتطابق مع تلك المستخدمة لعرض صفحات المقالة",
 	"apihelp-parse-param-parsoid": "إنشاء HTML يتوافق مع [[mw:Specs/HTML|مواصفات MediaWiki DOM]] باستخدام [[mw:Parsoid|Parsoid]]. تم استبداله بـ <kbd>$1 parser=parsoid</kbd> .",
 	"apihelp-parse-param-parser": "أي محلل نصوص ويكي ينبغي استخدامه:",
+	"apihelp-parse-paramvalue-parser-parsoid": "إنشاء HTML يتوافق مع [[mw:Specs/HTML|مواصفات MediaWiki DOM]] باستخدام [[mw:Parsoid|Parsoid]].",
 	"apihelp-parse-paramvalue-parser-default": "إنشاء HTML باستخدام المصفح الافتراضي لهذا الويكي.",
 	"apihelp-parse-paramvalue-parser-legacy": "توليد HTML باستخدام المصفح القديم.",
 	"apihelp-parse-param-pst": "قم بتحويل قبل الحفظ على المدخلات قبل تحليل ذلك. صالح فقط عند استخدامه مع النص.",

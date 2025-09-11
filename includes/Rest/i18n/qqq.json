@@ -254,7 +254,7 @@
 	"rest-endpoint-desc-post-transform-html-to-wikitext-title": "{{Experimental}} REST API endpoint description, for the endpoint that transforms HTML to wikitext for a given page.",
 	"rest-endpoint-desc-post-transform-html-to-wikitext-title-revision": "{{Experimental}} REST API endpoint description, for the endpoint that transforms HTML to wikitext for a given revision.",
 	"rest-endpoint-summ-get-page-history": "{{Experimental}} Get page history",
-	"rest-endpoint-summ-get-page-history-counts": "{{Experimental}} Get page history counts",
+	"rest-endpoint-summ-get-page-history-counts": "{{Experimental}}\n\nGet the number of page revisions by type, for example the number of edits made by anonymous users, edits that revert an earlier edit, etc.",
 	"rest-endpoint-summ-get-revision-compare": "{{Experimental}} Compare revisions",
 	"rest-endpoint-summ-get-revision-id": "{{Experimental}} Get revision source",
 	"rest-endpoint-summ-get-revision-id-html": "{{Experimental}} Get revision HTML",

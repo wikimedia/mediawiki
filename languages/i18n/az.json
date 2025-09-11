@@ -2606,7 +2606,7 @@
 	"blocklist-hidden-param": "istifadəçi adı gizlədilib",
 	"contribslink": "töhfələr",
 	"emaillink": "e-məktub göndər",
-	"autoblocker": "Avtomatik olaraq bloklanmısınız. Çünki, qısa müddət əvvəl sizin IP-ünvanınız \"[[User:$1|$1]]\" tərəfindən istifadə edilmişdir.\n$1 adlı istifadəçinin bloklanma səbəbi: <em>$2</em>",
+	"autoblocker": "Avtomatik olaraq bloklanmısınız. Çünki qısa müddət əvvəl sizin IP-ünvanınız \"[[User:$1|$1]]\" tərəfindən istifadə edilmişdir.\n$1 adlı istifadəçinin bloklanma səbəbi: <em>$2</em>",
 	"blocklogpage": "Blok jurnalı",
 	"blocklog-showlog": "Bu {{GENDER:$1|istifadəçi}} daha əvvəl bloklanmışdır. Bloklama qeydləri istinad üçün aşağıda göstərilib:",
 	"blocklog-showsuppresslog": "Bu {{GENDER:$1|istifadəçi}} daha əvvəl bloklanıb. Gizlətmə qeydləri istinad üçün aşağıda göstərilib:",

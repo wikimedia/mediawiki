@@ -55,5 +55,16 @@
 	"rest-endpoint-desc-post-page": "Crea una pagina.",
 	"rest-endpoint-desc-post-transform-wikitext-to-html-title-revision": "Converte il wikitesto di una determinata versione in HTML. Il parametro del corpo della richiesta del wikitesto deve essere specificato, ma può essere lasciato vuoto per ricevere la versione completa. Il corpo della risposta contiene il codice HTML renderizzato della versione.",
 	"rest-endpoint-desc-post-transform-html-to-wikitext-title": "Converte l'HTML in wikitesto. Il parametro \"HTML request body\" deve essere specificato, ma può essere vuoto per ricevere la pagina completa. Il corpo della risposta contiene il wikitesto della pagina.",
-	"rest-endpoint-desc-post-transform-html-to-wikitext-title-revision": "Converte il codice HTML di una determinata versione in wikitesto. Il parametro html nel corpo della richiesta deve essere specificato, ma può essere lasciato vuoto per ricevere la versione completa. Il corpo della risposta contiene il wikitesto della versione ."
+	"rest-endpoint-desc-post-transform-html-to-wikitext-title-revision": "Converte il codice HTML di una determinata versione in wikitesto. Il parametro html nel corpo della richiesta deve essere specificato, ma può essere lasciato vuoto per ricevere la versione completa. Il corpo della risposta contiene il wikitesto della versione .",
+	"rest-endpoint-summ-get-page-history": "Ottieni la cronologia della pagina",
+	"rest-endpoint-summ-get-revision-id-with-html": "Ottieni informazioni sulla versione con HTML",
+	"rest-endpoint-summ-get-revision-id-bare": "Ottieni la versione",
+	"rest-endpoint-summ-get-search": "Ottieni il documento descrittivo di OpenSearch",
+	"rest-endpoint-summ-get-search-title": "Completamento automatico del titolo della pagina",
+	"rest-endpoint-summ-get-page-title-bare": "Ottieni la pagina",
+	"rest-endpoint-summ-get-page-title-with-html": "Ottieni la pagina con HTML",
+	"rest-endpoint-summ-get-page-title-media": "Ottieni i file sulla pagina",
+	"rest-endpoint-summ-get-file-title": "Ottieni file",
+	"rest-endpoint-summ-post-page": "Crea pagina",
+	"rest-endpoint-summ-post-transform-html-to-wikitext": "Converti HTML in wikitesto"
 }

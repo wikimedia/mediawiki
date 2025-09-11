@@ -7,9 +7,9 @@
 		]
 	},
 	"botpasswords": "Botpasswörter",
-	"botpasswords-summary": "<em>Botpasswörter</em> erlauben Zugriff auf ein Benutzerkonto über die API, ohne die Hauptanmeldeinformationen des Benutzerkontos zu verwenden. Die verfügbaren Benutzerrechte bei der Anmeldung mit einem Botpasswort können beschränkt sein.\n\nWenn du nicht weißt, warum du ein Passwort erstellen sollst, tu es nicht. Du solltest ein Passwort nie für einen anderen erzeugen und es an ihn übergeben.",
+	"botpasswords-summary": "<em>Botpasswörter</em> erlauben Zugriff auf ein Benutzerkonto über die API, ohne die Hauptanmeldeinformationen des Benutzerkontos zu verwenden. Die verfügbaren Benutzerrechte bei der Anmeldung mit einem Botpasswort können beschränkt sein.\n \nWenn {{#FORMAL:du|Sie}} nicht {{#FORMAL:weißt|wissen}}, warum {{#FORMAL:du|Sie}} ein Passwort erstellen {{#FORMAL:sollst|sollen}}, {{#FORMAL:tu|tun Sie}} es nicht. {{#FORMAL:Du solltest|Sie sollten}} ein Passwort nie für einen anderen erzeugen und es an ihn übergeben.",
 	"botpasswords-disabled": "Botpasswörter sind deaktiviert.",
-	"botpasswords-no-central-id": "Um Botpasswörter zu verwenden, musst du bei einem zentralisierten Benutzerkonto angemeldet sein.",
+	"botpasswords-no-central-id": "Um Botpasswörter zu verwenden, {{#FORMAL:musst du|müssen Sie}} bei einem zentralisierten Benutzerkonto angemeldet sein.",
 	"botpasswords-existing": "Vorhandene Botpasswörter",
 	"botpasswords-createnew": "Ein neues Botpasswort erstellen",
 	"botpasswords-editexisting": "Ein vorhandenes Botpasswort bearbeiten",
@@ -34,11 +34,11 @@
 	"botpasswords-updated-body": "Das Botpasswort für den Botnamen „$1“ {{GENDER:$2|des Benutzers|der Benutzerin}} „$2“ wurde aktualisiert.",
 	"botpasswords-deleted-title": "Botpasswort gelöscht",
 	"botpasswords-deleted-body": "Das Botpasswort für den Botnamen „$1“ {{GENDER:$2|des Benutzers|der Benutzerin}} „$2“ wurde gelöscht.",
-	"botpasswords-newpassword": "Das neue Passwort zur Anmeldung mit <strong>$1</strong> ist <strong>$2</strong>. <em>Bitte speichere diese Anmeldeinformationen.</em><br>Für Bots, bei denen der Anmeldename mit dem späteren Benutzernamen identisch sein muss, kannst du <strong>$3</strong> als Benutzernamen und <strong>$4</strong> als Passwort verwenden.",
+	"botpasswords-newpassword": "Das neue Passwort zur Anmeldung mit <strong>$1</strong> ist <strong>$2</strong>. <em>Bitte {{#FORMAL:speichere|speichern Sie}} diese Anmeldeinformationen.</em><br>Für Bots, bei denen der Anmeldename mit dem späteren Benutzernamen identisch sein muss, {{#FORMAL:kannst du|können Sie}} <strong>$3</strong> als Benutzernamen und <strong>$4</strong> als Passwort verwenden.",
 	"botpasswords-no-provider": "BotPasswordsSessionProvider ist nicht verfügbar.",
 	"botpasswords-restriction-failed": "Beschränkungen des Botpassworts verhindern diese Anmeldung.",
 	"botpasswords-invalid-name": "Der angegebene Benutzername enthält keinen Botpassworttrenner („$1“).",
 	"botpasswords-not-exist": "Der Benutzer „$1“ hat kein Botpasswort mit dem Namen „$2“.",
 	"botpasswords-needs-reset": "Das Botpasswort für den Botnamen „$2“ {{GENDER:$1|des Benutzers|der Benutzerin}} „$1“ muss zurückgesetzt werden.",
-	"botpasswords-locked": "Du kannst dich nicht mit einem Botpasswort anmelden, da dein Benutzerkonto gesperrt ist."
+	"botpasswords-locked": "{{#FORMAL:Du kannst dich|Sie können sich}} nicht mit einem Botpasswort anmelden, da {{#FORMAL:dein|Ihr}} Benutzerkonto gesperrt ist."
 }

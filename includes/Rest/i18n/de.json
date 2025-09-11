@@ -227,5 +227,22 @@
 	"rest-endpoint-desc-post-transform-wikitext-to-lint": "Gibt Lint-Fehler für Wikitext zurück",
 	"rest-endpoint-desc-post-transform-html-to-wikitext": "Konvertiert HTML in Wikitext.",
 	"rest-endpoint-desc-post-transform-html-to-wikitext-title": "Konvertiert Wikitext in HTML. Der Wikitext-Anforderungstext muss angegeben werden, kann aber leer gelassen werden, um die vollständige Seite zu erhalten. Der Antworttext enthält das gerenderte HTML der Seite.",
-	"rest-endpoint-desc-post-transform-html-to-wikitext-title-revision": "Konvertiert das HTML einer bestimmten Version in Wikitext. Der HTML-Anforderungstext muss angegeben werden, kann aber leer gelassen werden, um die vollständige Version zu erhalten. Der Antworttext enthält den Wikitext der Version."
+	"rest-endpoint-desc-post-transform-html-to-wikitext-title-revision": "Konvertiert das HTML einer bestimmten Version in Wikitext. Der HTML-Anforderungstext muss angegeben werden, kann aber leer gelassen werden, um die vollständige Version zu erhalten. Der Antworttext enthält den Wikitext der Version.",
+	"rest-endpoint-summ-get-page-history": "Versionsgeschichte der Seite abrufen",
+	"rest-endpoint-summ-get-revision-compare": "Versionen vergleichen",
+	"rest-endpoint-summ-get-revision-id-bare": "Version abrufen",
+	"rest-endpoint-summ-get-search-page": "Seiten suchen",
+	"rest-endpoint-summ-get-search-title": "Seitentitel automatisch vervollständigen",
+	"rest-endpoint-summ-get-page-title-language": "Sprachen abrufen",
+	"rest-endpoint-summ-get-page-title": "Seitenquelle abrufen",
+	"rest-endpoint-summ-get-page-title-bare": "Seite abrufen",
+	"rest-endpoint-summ-get-page-title-html": "HTML abrufen",
+	"rest-endpoint-summ-get-page-title-with-html": "Seite mit HTML abrufen",
+	"rest-endpoint-summ-get-page-title-media": "Dateien auf der Seite abrufen",
+	"rest-endpoint-summ-get-file-title": "Datei abrufen",
+	"rest-endpoint-summ-put-page-title": "Seite aktualisieren",
+	"rest-endpoint-summ-post-page": "Seite erstellen",
+	"rest-endpoint-summ-post-transform-wikitext-to-lint": "Gibt Lint-Fehler für Wikitext zurück",
+	"rest-endpoint-summ-post-transform-wikitext-to-html": "Konvertiert Wikitext in HTML",
+	"rest-endpoint-summ-post-transform-html-to-wikitext": "Konvertiert HTML in Wikitext"
 }

@@ -40,5 +40,8 @@
 	"rest-endpoint-desc-get-page-title-bare": "Gëtt Informatiounen iwwer eng Säit zréck.",
 	"rest-endpoint-desc-get-revision-id-bare": "Gëtt Informatiounen iwwer eng Versioun zréck.",
 	"rest-endpoint-desc-post-transform-wikitext-to-html": "Konvertéiert Wikitext an HTML.",
-	"rest-endpoint-desc-post-transform-html-to-wikitext": "Konvertéiert HTML a Wikitext."
+	"rest-endpoint-desc-post-transform-html-to-wikitext": "Konvertéiert HTML a Wikitext.",
+	"rest-endpoint-summ-get-revision-compare": "Versioune vergläichen",
+	"rest-endpoint-summ-put-page-title": "Säit aktualiséieren",
+	"rest-endpoint-summ-post-page": "Säit uleeën"
 }
