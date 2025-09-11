@@ -119,7 +119,7 @@ class RealTempUserConfig implements TempUserConfig {
 	public function shouldAutoCreate( Authority $authority, string $action ) {
 		return $this->isAutoCreateAction( $action )
 			&& !$authority->isRegistered()
-			&& $authority->isAllowed( 'createaccount' );
+			&& $authority->isAllowedAny( 'createaccount', 'autocreateaccount' );
 	}
 
 	/** @inheritDoc */

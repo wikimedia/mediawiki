@@ -7773,6 +7773,8 @@ class MainConfigSchema {
 	 *     value from 'true' to 'false', you should also set 'known' to true, so
 	 *     that relevant code can continue to identify temporary accounts as
 	 *     visually and conceptually distinct from anonymous accounts and named accounts.
+	 *     Note that temporary account auto-creation is only actually enabled if
+	 *     `*` group has the `createaccount` or `autocreateaccount` right.
 	 *   - actions: (array) A list of actions for which the feature is enabled.
 	 *     Currently only "edit" is supported.
 	 *   - genPattern: (string) The pattern used when generating new usernames.

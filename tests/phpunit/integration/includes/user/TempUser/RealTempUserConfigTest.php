@@ -75,28 +75,42 @@ class RealTempUserConfigTest extends \MediaWikiIntegrationTestCase {
 
 	public static function provideShouldAutoCreate() {
 		return [
-			'enabled' => [
+			'enabled, autocreateaccount allowed' => [
+				'enabled' => true,
+				'id' => 0,
+				'rights' => [ 'autocreateaccount' ],
+				'action' => 'edit',
+				'expected' => true
+			],
+			'enabled, createaccount allowed' => [
 				'enabled' => true,
 				'id' => 0,
 				'rights' => [ 'createaccount' ],
 				'action' => 'edit',
 				'expected' => true
 			],
+			'enabled, autocreateaccount and createaccount allowed' => [
+				'enabled' => true,
+				'id' => 0,
+				'rights' => [ 'autocreateaccount', 'createaccount' ],
+				'action' => 'edit',
+				'expected' => true
+			],
 			'disabled by config' => [
 				'enabled' => false,
 				'id' => 0,
-				'rights' => [ 'createaccount' ],
+				'rights' => [ 'autocreateaccount' ],
 				'action' => 'edit',
 				'expected' => false
 			],
 			'logged in' => [
 				'enabled' => true,
 				'id' => 1,
-				'rights' => [ 'createaccount' ],
+				'rights' => [ 'autocreateaccount' ],
 				'action' => 'edit',
 				'expected' => false
 			],
-			'no createaccount right' => [
+			'no createaccount or autocreateaccount right' => [
 				'enabled' => true,
 				'id' => 0,
 				'rights' => [ 'edit' ],
@@ -106,7 +120,7 @@ class RealTempUserConfigTest extends \MediaWikiIntegrationTestCase {
 			'wrong action' => [
 				'enabled' => true,
 				'id' => 0,
-				'rights' => [ 'createaccount' ],
+				'rights' => [ 'autocreateaccount' ],
 				'action' => 'upload',
 				'expected' => false
 			],
