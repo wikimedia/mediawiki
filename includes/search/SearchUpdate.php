@@ -197,6 +197,10 @@ class SearchUpdate {
 		$t = preg_replace( "/[^{$lc}]+/", ' ', $t );
 		$t = $contLang->lc( $t );
 
+		if ( $this->page->getNamespace() === NS_FILE ) {
+			$t = preg_replace( "/([{$lc}]+)\\.(\\w{1,4})$/", "\\1 \\1.\\2", $t );
+		}
+
 		# Handle 's, s'
 		$t = preg_replace( "/([{$lc}]+)'s( |$)/", "\\1 \\1's ", $t );
 		$t = preg_replace( "/([{$lc}]+)s'( |$)/", "\\1s ", $t );
