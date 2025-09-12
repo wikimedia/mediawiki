@@ -48,11 +48,15 @@ export async function waitForModuleState( moduleName, moduleStatus = 'ready', ti
 	// Wait for the mediaWiki object to be availible
 	await browser.waitUntil(
 		() => browser.execute( () => typeof mw !== 'undefined' ),
-		{ timeout, timeoutMsg: 'mw is not availible' }
+		{ timeout, timeoutMsg: 'mw is not available' }
 	);
 
 	// Use the built in using when we wait for modules to become ready
 	if ( moduleStatus === 'ready' ) {
+		await browser.waitUntil(
+			() => browser.execute( () => typeof mw.loader.using === 'function' ),
+			{ timeout, timeoutMsg: 'mw.loader.using is not available' }
+		);
 		await browser.execute( async ( name ) => mw.loader.using( name ), moduleName );
 	} else {
 		await browser.waitUntil(
