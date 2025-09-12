@@ -207,7 +207,7 @@ class LinksUpdate extends DataUpdate {
 	 */
 	public static function acquirePageLock( IDatabase $dbw, $pageId, $why = 'atomicity' ) {
 		$key = "{$dbw->getDomainID()}:LinksUpdate:$why:pageid:$pageId"; // per-wiki
-		$scopedLock = $dbw->getScopedLockAndFlush( $key, __METHOD__, 15 );
+		$scopedLock = $dbw->getScopedLockAndFlush( $key, __METHOD__, 5 );
 		if ( !$scopedLock ) {
 			$logger = LoggerFactory::getInstance( 'SecondaryDataUpdate' );
 			$logger->info( "Could not acquire lock '{key}' for page ID '{page_id}'.", [
