@@ -10,18 +10,6 @@
 
 /* stylelint-disable selector-class-pattern */
 
-// Deprecated in MW v1.43, use linear-gradient directly
-.horizontal-gradient( @startColor: #808080, @endColor: #fff, @startPos: 0, @endPos: 100% ) {
-	background-color: average( @startColor, @endColor );
-	background-image: linear-gradient( to right, @startColor @startPos, @endColor @endPos );
-}
-
-// Deprecated in MW v1.43, use linear-gradient directly
-.vertical-gradient( @startColor: #808080, @endColor: #fff, @startPos: 0, @endPos: 100% ) {
-	background-color: average( @startColor, @endColor );
-	background-image: linear-gradient( to bottom, @startColor @startPos, @endColor @endPos );
-}
-
 .hyphens( @value: auto ) {
 	& when ( @value = auto ) {
 		// Legacy `word-wrap`; Edge 12+, Firefox 3.5+, Chrome 4+, Safari 3.1+,

@@ -347,6 +347,8 @@ because of Phabricator reports.
   should initialise settings using the constructor.
 * CentralIdLookup::factory(), deprecated since 1.37, has now been removed. Use
   MediaWikiServices to obtain an instance instead.
+* The Less mixins .horizontal-gradient() and .vertical-gradient() in
+  mediawiki.mixins.less, deprecated in 1.43 have been removed.
 * …
 
 === Deprecations in 1.45 ===
