@@ -99,12 +99,12 @@ class ParsoidLocalization extends ContentDOMTransformStage {
 		}
 
 		if (
-			( DOMCompat::nodeName( $node ) === 'span' || DOMCompat::nodeName( $node ) === 'div' )
+			( DOMUtils::nodeName( $node ) === 'span' || DOMUtils::nodeName( $node ) === 'div' )
 			&& DOMUtils::hasTypeOf( $node, 'mw:I18n' )
 		) {
 			$i18n = DOMDataUtils::getDataNodeI18n( $node );
 			if ( $i18n !== null ) {
-				$frag = $this->localizeI18n( $i18n, $lang, $doc, DOMCompat::nodeName( $node ) === 'span', $pageRef );
+				$frag = $this->localizeI18n( $i18n, $lang, $doc, DOMUtils::nodeName( $node ) === 'span', $pageRef );
 				if ( $frag->hasChildNodes() ) {
 					$node->appendChild( $frag );
 				}

@@ -4200,7 +4200,7 @@ class Parser {
 		while ( $node !== null ) {
 			$next = $node->nextSibling;
 			if ( $node instanceof Element ) {
-				$nodeName = DOMCompat::nodeName( $node );
+				$nodeName = DOMUtils::nodeName( $node );
 				if ( in_array( $nodeName, [ 'style', 'script' ], true ) ) {
 					# Remove any <style> or <script> tags (T198618)
 					DOMCompat::remove( $node );

@@ -222,7 +222,7 @@ class ContentHolder {
 
 		$firstChild = $fragment->firstElementChild;
 		if ( $fragmentName === self::BODY_FRAGMENT && $firstChild ) {
-			Assert::invariant( DOMCompat::nodeName( $firstChild ) !== "body",
+			Assert::invariant( DOMUtils::nodeName( $firstChild ) !== "body",
 				"Body fragment should not contain a body tag" );
 		}
 

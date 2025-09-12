@@ -17,6 +17,7 @@ use Wikimedia\Parsoid\DOM\DocumentFragment;
 use Wikimedia\Parsoid\DOM\Element;
 use Wikimedia\Parsoid\Utils\DOMCompat;
 use Wikimedia\Parsoid\Utils\DOMDataUtils;
+use Wikimedia\Parsoid\Utils\DOMUtils;
 
 /**
  * Add anchors and other heading formatting, and replace the section link placeholders.
@@ -132,7 +133,7 @@ class HandleParsoidSectionLinks extends ContentDOMTransformStage {
 			$maybeWrapper = $h->parentNode;
 			'@phan-var \Wikimedia\Parsoid\DOM\Element $maybeWrapper';
 			if (
-				DOMCompat::nodeName( $maybeWrapper ) === 'div' &&
+				DOMUtils::nodeName( $maybeWrapper ) === 'div' &&
 				DOMCompat::getClassList( $maybeWrapper )->contains( 'mw-heading' )
 			) {
 				// Transfer section edit link children to existing wrapper
