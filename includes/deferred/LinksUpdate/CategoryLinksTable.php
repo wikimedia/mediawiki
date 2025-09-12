@@ -5,7 +5,6 @@ namespace MediaWiki\Deferred\LinksUpdate;
 use Collation;
 use MediaWiki\Category\Category;
 use MediaWiki\Config\Config;
-use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\JobQueue\JobQueueGroup;
@@ -14,7 +13,6 @@ use MediaWiki\JobQueue\Utils\PurgeJobUtils;
 use MediaWiki\Language\ILanguageConverter;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Logger\LoggerFactory;
-use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Parser\ParserOutput;
@@ -80,13 +78,6 @@ class CategoryLinksTable extends TitleLinksTable {
 	/** @var WikiPageFactory */
 	private $wikiPageFactory;
 
-	private const CONSTRUCTOR_OPTIONS = [
-		MainConfigNames::CategoryLinksSchemaMigrationStage,
-	];
-
-	/** @var int */
-	private $migrationStage;
-
 	private NameTableStore $collationNameStore;
 	private JobQueueGroup $jobQueueGroup;
 	private HookRunner $hookRunner;
@@ -129,10 +120,6 @@ class CategoryLinksTable extends TitleLinksTable {
 		$this->tableName = $tableName;
 		$this->isTempTable = $isTempTable;
 
-		$options = new ServiceOptions( self::CONSTRUCTOR_OPTIONS, $config );
-		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
-
-		$this->migrationStage = $options->get( MainConfigNames::CategoryLinksSchemaMigrationStage );
 		$this->collationNameStore = new NameTableStore(
 			$loadBalancer,
 			$WANObjectCache,
@@ -206,14 +193,12 @@ class CategoryLinksTable extends TitleLinksTable {
 
 	/** @inheritDoc */
 	protected function getExistingFields() {
-		if ( $this->linksTargetNormalizationStage() & SCHEMA_COMPAT_WRITE_OLD ) {
-			$fields = [ 'cl_to', 'cl_sortkey_prefix' ];
-		} else {
-			$fields = [ 'lt_title', 'cl_sortkey_prefix' ];
-		}
+		$fields = [ 'lt_title', 'cl_sortkey_prefix' ];
+
 		if ( $this->needForcedLinkRefresh() ) {
 			$fields[] = 'cl_timestamp';
 		}
+
 		return $fields;
 	}
 
@@ -237,14 +222,9 @@ class CategoryLinksTable extends TitleLinksTable {
 		$this->savedTimestamps = [];
 		$force = $this->needForcedLinkRefresh();
 		foreach ( $this->fetchExistingRows() as $row ) {
-			if ( $this->linksTargetNormalizationStage() & SCHEMA_COMPAT_WRITE_OLD ) {
-				$title = $row->cl_to;
-			} else {
-				$title = $row->lt_title;
-			}
-			$this->existingLinks[$title] = $row->cl_sortkey_prefix;
+			$this->existingLinks[$row->lt_title] = $row->cl_sortkey_prefix;
 			if ( $force ) {
-				$this->savedTimestamps[$title] = $row->cl_timestamp;
+				$this->savedTimestamps[$row->lt_title] = $row->cl_timestamp;
 			}
 		}
 	}
@@ -302,17 +282,11 @@ class CategoryLinksTable extends TitleLinksTable {
 		$timestamp = $this->getDB()->timestamp( $savedTimestamps[$name] ?? 0 );
 
 		$targetFields = [];
-		if ( $this->linksTargetNormalizationStage() & SCHEMA_COMPAT_WRITE_NEW ) {
-			$targetFields['cl_target_id'] = $this->linkTargetLookup->acquireLinkTargetId(
-				$this->makeTitle( $linkId ),
-				$this->getDB()
-			);
-			$targetFields['cl_collation_id'] = $this->collationNameStore->acquireId( $this->collationName );
-		}
-		if ( $this->linksTargetNormalizationStage() & SCHEMA_COMPAT_WRITE_OLD ) {
-			$targetFields['cl_to'] = $name;
-			$targetFields['cl_collation'] = $this->collationName;
-		}
+		$targetFields['cl_target_id'] = $this->linkTargetLookup->acquireLinkTargetId(
+			$this->makeTitle( $linkId ),
+			$this->getDB()
+		);
+		$targetFields['cl_collation_id'] = $this->collationNameStore->acquireId( $this->collationName );
 
 		$this->insertRow( $targetFields + [
 			'cl_sortkey' => $sortKey,
@@ -324,16 +298,12 @@ class CategoryLinksTable extends TitleLinksTable {
 
 	/** @inheritDoc */
 	protected function deleteLink( $linkId ) {
-		if ( $this->linksTargetNormalizationStage() & SCHEMA_COMPAT_WRITE_OLD ) {
-			$this->deleteRow( [ 'cl_to' => $linkId[0] ] );
-		} else {
-			$this->deleteRow( [
-				'cl_target_id' => $this->linkTargetLookup->acquireLinkTargetId(
-					$this->makeTitle( $linkId ),
-					$this->getDB()
-				)
-			] );
-		}
+		$this->deleteRow( [
+			'cl_target_id' => $this->linkTargetLookup->acquireLinkTargetId(
+				$this->makeTitle( $linkId ),
+				$this->getDB()
+			)
+		] );
 	}
 
 	/** @inheritDoc */
@@ -411,21 +381,15 @@ class CategoryLinksTable extends TitleLinksTable {
 	}
 
 	protected function linksTargetNormalizationStage(): int {
-		return $this->migrationStage;
+		return SCHEMA_COMPAT_NEW;
 	}
 
 	protected function fetchExistingRows(): IResultWrapper {
-		$queryBuilder = $this->getDB()->newSelectQueryBuilder()
+		return $this->getDB()->newSelectQueryBuilder()
 			->select( $this->getExistingFields() )
 			->from( $this->getTableName() )
-			->where( $this->getFromConds() );
-
-		// This read is for updating, it's conceptually better to use the write config
-		if ( !( $this->linksTargetNormalizationStage() & SCHEMA_COMPAT_WRITE_OLD ) ) {
-			$queryBuilder->join( 'linktarget', null, [ 'cl_target_id=lt_id' ] );
-		}
-
-		return $queryBuilder
+			->join( 'linktarget', null, [ 'cl_target_id=lt_id' ] )
+			->where( $this->getFromConds() )
 			->caller( __METHOD__ )
 			->fetchResultSet();
 	}

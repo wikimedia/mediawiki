@@ -3,7 +3,6 @@
 use MediaWiki\Config\HashConfig;
 use MediaWiki\Linker\LinksMigration;
 use MediaWiki\Linker\LinkTargetLookup;
-use MediaWiki\MainConfigNames;
 use MediaWiki\Title\TitleValue;
 
 /**
@@ -21,6 +20,8 @@ class LinksMigrationTest extends MediaWikiUnitTestCase {
 	 * @covers \MediaWiki\Linker\LinksMigration::getLinksConditions
 	 */
 	public function testGetLinksConditionsReadNew( $configValue ) {
+		$this->markTestSkipped( 'There is currently no xxxlinks table which has a migration config.' );
+
 		$title = new TitleValue( NS_CATEGORY, 'Somecategory' );
 		$linkTargetStore = $this->createMock( LinkTargetLookup::class );
 		$linkTargetStore->method( 'getLinkTargetId' )
@@ -30,7 +31,7 @@ class LinksMigrationTest extends MediaWikiUnitTestCase {
 
 		$config = new HashConfig(
 			[
-				MainConfigNames::CategoryLinksSchemaMigrationStage => $configValue
+				'SchemaMigrationStage' => $configValue
 			]
 		);
 		$linksMigration = new LinksMigration( $config, $linkTargetStore );
@@ -49,7 +50,8 @@ class LinksMigrationTest extends MediaWikiUnitTestCase {
 	 * @covers \MediaWiki\Linker\LinksMigration::getLinksConditions
 	 */
 	public function testGetLinksConditionsReadOld( $configValue ) {
-		$this->markTestSkipped( 'The is currently no xxxlinks table which supports read old.' );
+		$this->markTestSkipped( 'There is currently no xxxlinks table which has a migration config.' );
+
 		$title = new TitleValue( NS_CATEGORY, 'Somecategory' );
 		$linkTargetStore = $this->createMock( LinkTargetLookup::class );
 		$linkTargetStore->expects( $this->never() )->method( 'getLinkTargetId' );
@@ -57,7 +59,7 @@ class LinksMigrationTest extends MediaWikiUnitTestCase {
 
 		$config = new HashConfig(
 			[
-				MainConfigNames::CategoryLinksSchemaMigrationStage => $configValue
+				'SchemaMigrationStage' => $configValue
 			]
 		);
 		$linksMigration = new LinksMigration( $config, $linkTargetStore );

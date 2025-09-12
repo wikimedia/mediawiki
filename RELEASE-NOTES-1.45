@@ -36,9 +36,6 @@ For notes on 1.44.x and older releases, see HISTORY.
 
 ==== Changed configuration ====
 
-* (T299951) $wgCategoryLinksSchemaMigrationStage, a temporary setting which
-  controls the database schema migration for the categorylinks table, is now set
-  by default to write to both old and new data and read from the new data.
 * (T402094) $wgReauthenticateTime now defaults to 3600 seconds instead of 60
   seconds (1 minute to 1 hour) to improve the user experience
 
@@ -55,6 +52,9 @@ For notes on 1.44.x and older releases, see HISTORY.
   https://www.mediawiki.org/wiki/Parsoid/Parser_Unification/Media_structure/FAQ
 * $wgPageLinksSchemaMigrationStage has been removed.
 * (T306325) $wgEnableSearchContributorsByIP has been removed.
+* (T299951) $wgCategoryLinksSchemaMigrationStage, a temporary setting which
+  controls the database schema migration for the categorylinks table, has been
+  removed.
 * …
 
 === New user-facing features in 1.45 ===

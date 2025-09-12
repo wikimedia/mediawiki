@@ -3328,24 +3328,6 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * Migration stage for categorylinks tables
-	 *
-	 * Use the SCHEMA_COMPAT_XXX flags. Supported values:
-	 *
-	 *   - SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW
-	 *   - SCHEMA_COMPAT_WRITE_NEW | SCHEMA_COMPAT_READ_NEW (SCHEMA_COMPAT_NEW)
-	 *
-	 * History:
-	 *   - 1.44: Added
-	 *   - 1.45: Added support for _READ_NEW, dropped support for _READ_OLD,
-	 *      changed default to SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW.
-	 */
-	public const CategoryLinksSchemaMigrationStage = [
-		'default' => SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW,
-		'type' => 'integer',
-	];
-
-	/**
 	 * Gaps in the externallinks table for certain domains.
 	 *
 	 * If you have identified certain domains for which externallinks searches are slow,

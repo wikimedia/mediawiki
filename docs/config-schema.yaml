@@ -2046,18 +2046,6 @@ config-schema:
               - SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD
             History:
               - 1.44: Added
-    CategoryLinksSchemaMigrationStage:
-        default: 769
-        type: integer
-        description: |-
-            Migration stage for categorylinks tables
-            Use the SCHEMA_COMPAT_XXX flags. Supported values:
-              - SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW
-              - SCHEMA_COMPAT_WRITE_NEW | SCHEMA_COMPAT_READ_NEW (SCHEMA_COMPAT_NEW)
-            History:
-              - 1.44: Added
-              - 1.45: Added support for _READ_NEW, dropped support for _READ_OLD,
-                 changed default to SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW.
     ExternalLinksDomainGaps:
         default: {  }
         type: object

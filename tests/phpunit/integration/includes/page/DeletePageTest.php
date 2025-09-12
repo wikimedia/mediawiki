@@ -209,8 +209,9 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 			->where( [ 'tl_from' => $pageID ] )
 			->assertFieldValue( $linkTarget );
 		$this->newSelectQueryBuilder()
-			->select( 'cl_to' )
+			->select( 'lt_title' )
 			->from( 'categorylinks' )
+			->join( 'linktarget', null, 'cl_target_id=lt_id' )
 			->where( [ 'cl_from' => $pageID ] )
 			->assertFieldValue( 'Felis_catus' );
 		$this->newSelectQueryBuilder()
@@ -237,8 +238,9 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 			->where( [ 'tl_from' => $pageID ] )
 			->assertEmptyResult();
 		$this->newSelectQueryBuilder()
-			->select( 'cl_to' )
+			->select( 'lt_title' )
 			->from( 'categorylinks' )
+			->join( 'linktarget', null, 'cl_target_id=lt_id' )
 			->where( [ 'cl_from' => $pageID ] )
 			->assertEmptyResult();
 		$this->newSelectQueryBuilder()

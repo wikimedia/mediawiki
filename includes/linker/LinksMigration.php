@@ -22,7 +22,6 @@ namespace MediaWiki\Linker;
 
 use InvalidArgumentException;
 use MediaWiki\Config\Config;
-use MediaWiki\MainConfigNames;
 
 /**
  * Service for compat reading of links tables
@@ -58,12 +57,12 @@ class LinksMigration {
 			'deprecated_configs' => [],
 		],
 		'categorylinks' => [
-			'config' => MainConfigNames::CategoryLinksSchemaMigrationStage,
+			'config' => -1,
 			'page_id' => 'cl_from',
 			'ns' => 14,
 			'title' => 'cl_to',
 			'target_id' => 'cl_target_id',
-			'deprecated_configs' => [ SCHEMA_COMPAT_READ_OLD ],
+			'deprecated_configs' => [],
 		],
 		'existencelinks' => [
 			'config' => -1,
@@ -169,6 +168,7 @@ class LinksMigration {
 
 	private function isMigrationReadNew( string $table ): bool {
 		return self::$mapping[$table]['config'] === -1 ||
+			// @phan-suppress-next-line PhanTypeMismatchArgument
 			$this->config->get( self::$mapping[$table]['config'] ) & SCHEMA_COMPAT_READ_NEW;
 	}
 
@@ -180,6 +180,7 @@ class LinksMigration {
 		}
 
 		if ( self::$mapping[$table]['config'] !== -1 && self::$mapping[$table]['deprecated_configs'] ) {
+			// @phan-suppress-next-line PhanTypeMismatchArgument
 			$config = $this->config->get( self::$mapping[$table]['config'] );
 			foreach ( self::$mapping[$table]['deprecated_configs'] as $deprecatedConfig ) {
 				if ( $config & $deprecatedConfig ) {

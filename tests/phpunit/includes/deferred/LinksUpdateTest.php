@@ -310,7 +310,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			$t,
 			$po,
 			'categorylinks',
-			[ 'cl_to', 'cl_sortkey' ],
+			[ 'lt_title', 'cl_sortkey' ],
 			[ 'cl_from' => self::$testingPageId ],
 			[
 				[ 'Bar', "BAR\nTESTING" ],
@@ -340,7 +340,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			$t,
 			$po,
 			'categorylinks',
-			[ 'cl_to', 'cl_sortkey' ],
+			[ 'lt_title', 'cl_sortkey' ],
 			[ 'cl_from' => self::$testingPageId ],
 			[
 				[ 'Bar', "BAR\nTESTING" ],
@@ -457,7 +457,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			$t,
 			$po,
 			'categorylinks',
-			[ 'cl_to', 'cl_sortkey' ],
+			[ 'lt_title', 'cl_sortkey' ],
 			[ 'cl_from' => self::$testingPageId ],
 			[
 				[ 'Bar', "BAR\nOLD" ],
@@ -487,7 +487,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			$t,
 			$po,
 			'categorylinks',
-			[ 'cl_to', 'cl_sortkey' ],
+			[ 'lt_title', 'cl_sortkey' ],
 			[ 'cl_from' => self::$testingPageId ],
 			[
 				[ 'Bar', "BAR\nOLD" ],
@@ -518,7 +518,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			PageIdentityValue::localIdentity( 2, 0, "new" ),
 			$po,
 			'categorylinks',
-			[ 'cl_to', 'cl_sortkey' ],
+			[ 'lt_title', 'cl_sortkey' ],
 			[ 'cl_from' => self::$testingPageId ],
 			[
 				[ 'Baz', "BAZ\nNEW" ],
@@ -897,6 +897,8 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			$qb->join( 'linktarget', null, 'pl_target_id=lt_id' );
 		} elseif ( $table === 'existencelinks' ) {
 			$qb->join( 'linktarget', null, 'exl_target_id=lt_id' );
+		} elseif ( $table === 'categorylinks' ) {
+			$qb->join( 'linktarget', null, 'cl_target_id=lt_id' );
 		}
 		$qb->assertResultSet( $expectedRows );
 		return $update;

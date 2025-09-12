@@ -402,8 +402,9 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( [], $actualLinks, 'Leftover Page Links' );
 
 		$actualCategories = $this->getDb()->newSelectQueryBuilder()
-			->select( 'cl_to' )
+			->select( 'lt_title' )
 			->from( 'categorylinks' )
+			->join( 'linktarget', null, 'cl_target_id=lt_id' )
 			->where( [ 'cl_from' => $page->getId() ] )
 			->caller( __METHOD__ )
 			->fetchFieldValues();
