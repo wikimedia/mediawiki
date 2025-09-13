@@ -580,8 +580,6 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 			'reset' => false,
 			'withToken' => false,
 		];
-		// Help Phan figure out that these fields are now definitely set - https://github.com/phan/phan/issues/4864
-		'@phan-var array{reset: bool, withToken: bool} $options';
 		$params = [];
 		$request = $this->getRequest();
 
