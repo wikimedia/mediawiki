@@ -5,6 +5,7 @@ use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\Parsoid\ParsoidParser;
 use MediaWiki\Title\Title;
+use Wikimedia\Parsoid\Utils\ContentUtils;
 
 /**
  * Parse some wikitext.
@@ -66,6 +67,7 @@ class CLIParser extends Maintenance {
 		);
 		$this->addArg( 'file', 'File containing wikitext (Default: stdin)', false );
 		$this->addOption( 'parsoid', 'Whether to use Parsoid', false, false, 'p' );
+		$this->addOption( 'show-rich-attributes', 'Show rich attributes', false );
 	}
 
 	public function execute() {
@@ -87,7 +89,13 @@ class CLIParser extends Maintenance {
 		);
 		// TODO T371008 consider if using the Content framework makes sense instead of creating the pipeline
 		$pipeline = $this->getServiceContainer()->getDefaultOutputPipeline();
-		return $pipeline->run( $po, $options, [ 'wrapperDivClass' => '' ] )->getContentHolderText();
+		$po = $pipeline->run( $po, $options, [ 'wrapperDivClass' => '' ] );
+		if ( $this->getOption( 'show-rich-attributes' ) ) {
+			$df = $po->getContentHolder()->getAsDom();
+			$df ??= $po->getContentHolder()->createFragment();
+			return ContentUtils::dumpDOM( $df, '', [ 'quiet' => true ] );
+		}
+		return $po->getContentHolderText();
 	}
 
 	/**
