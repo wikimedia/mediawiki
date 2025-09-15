@@ -1268,21 +1268,18 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 	}
 
 	/**
-	 * Builds update conditions. Additional conditions may be added to $conditions to
-	 * protected against race conditions using a compare-and-set (CAS) mechanism
-	 * based on comparing $this->mTouched with the user_touched field.
+	 * Build additional update conditions to protect against race conditions using a compare-and-set
+	 * (CAS) mechanism based on comparing $this->mTouched with the user_touched field.
 	 *
 	 * @param IReadableDatabase $db
-	 * @param array $conditions WHERE conditions for use with Database::update
 	 * @return array WHERE conditions for use with Database::update
 	 */
-	protected function makeUpdateConditions( IReadableDatabase $db, array $conditions ) {
+	protected function makeUpdateConditions( IReadableDatabase $db ) {
 		if ( $this->mTouched ) {
 			// CAS check: only update if the row wasn't changed since it was loaded.
-			$conditions['user_touched'] = $db->timestamp( $this->mTouched );
+			return [ 'user_touched' => $db->timestamp( $this->mTouched ) ];
 		}
-
-		return $conditions;
+		return [];
 	}
 
 	/**
@@ -1309,9 +1306,8 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 		$dbw->newUpdateQueryBuilder()
 			->update( 'user' )
 			->set( [ 'user_touched' => $dbw->timestamp( $newTouched ) ] )
-			->where( $this->makeUpdateConditions( $dbw, [
-				'user_id' => $this->mId,
-			] ) )
+			->where( [ 'user_id' => $this->mId ] )
+			->andWhere( $this->makeUpdateConditions( $dbw ) )
 			->caller( __METHOD__ )->execute();
 		$success = ( $dbw->affectedRows() > 0 );
 
@@ -2358,9 +2354,8 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 					'user_email_token' => $this->mEmailToken,
 					'user_email_token_expires' => $dbw->timestampOrNull( $this->mEmailTokenExpires ),
 				] )
-				->where( $this->makeUpdateConditions( $dbw, [ /* WHERE */
-					'user_id' => $this->mId,
-				] ) )
+				->where( [ 'user_id' => $this->mId ] )
+				->andWhere( $this->makeUpdateConditions( $dbw ) )
 				->caller( $fname )->execute();
 
 			if ( !$dbw->affectedRows() ) {
