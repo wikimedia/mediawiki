@@ -199,7 +199,7 @@
 	"toolbox": "Instrumentos",
 	"cactions": "Plus",
 	"tool-link-userrights": "Modificar le gruppos del {{GENDER:$1|usator|usatrice}}",
-	"tool-link-userrights-readonly": "Vider le gruppos del usat{{GENDER:$1|or|rice}}",
+	"tool-link-userrights-readonly": "Vider le gruppos del {{GENDER:$1|usator|usatrice}}",
 	"tool-link-emailuser": "Inviar e-mail a iste {{GENDER:$1|usator|usatrice}}",
 	"imagepage": "Visitar le pagina del file",
 	"mediawikipage": "Vider pagina de message",

@@ -258,7 +258,7 @@
 	"hidetoc": "pagatagu-on",
 	"collapsible-collapse": "Pagamayon",
 	"collapsible-expand": "Palaparon",
-	"confirmable-confirm": "Mga {{GENDER:$1| ikaw}} sigurado?",
+	"confirmable-confirm": "Mga {{GENDER:$1|ikaw}} sigurado?",
 	"confirmable-yes": "Huo",
 	"confirmable-no": "Indi",
 	"thisisdeleted": "Tan-awa ukon i-delete $1 ?",

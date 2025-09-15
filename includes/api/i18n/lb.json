@@ -5,7 +5,8 @@
 			"Macofe",
 			"Robby",
 			"Soued031",
-			"Volvox"
+			"Volvox",
+			"GilPe"
 		]
 	},
 	"apihelp-main-param-assertuser": "Iwwerpréifen ob den aktuelle Benotzer, de Benotzer mat deem Numm ass.",
@@ -61,7 +62,7 @@
 	"apihelp-help-example-recursive": "All Hëllef op enger Säit",
 	"apihelp-imagerotate-summary": "Eent oder méi Biller dréinen.",
 	"apihelp-imagerotate-example-generator": "All Biller an der <kbd>Category:Flip]]<kbd> ëm <kbd>180<kbd> Grad dréinen.",
-	"apihelp-import-param-summary": "Resumé vum importéiere vum Logbuch.",
+	"apihelp-import-param-summary": "Resümmee vum importéiere vum Logbuch.",
 	"apihelp-import-param-xml": "Eropgeluedenen XML-Fichier.",
 	"apihelp-import-param-rootpage": "Als Ënnersäit vun dëser Säit importéieren. Kann net zesumme mam <var>$1namespace</var> benotzt ginn.",
 	"apihelp-login-param-name": "Benotzernumm.",
@@ -182,7 +183,7 @@
 	"apihelp-stashedit-param-title": "Titel vun der Säit déi geännert gëtt.",
 	"apihelp-stashedit-param-sectiontitle": "Den Titel fir en neien Abschnitt.",
 	"apihelp-stashedit-param-text": "Inhalt vun der Säit",
-	"apihelp-stashedit-param-summary": "Resumé änneren",
+	"apihelp-stashedit-param-summary": "Resümmee änneren",
 	"apihelp-tag-param-reason": "Grond fir d'Ännerung.",
 	"apihelp-unblock-summary": "D'Spär vun engem Benotzer ophiewen.",
 	"apihelp-unblock-param-reason": "Grond fir d'Spär opzehiewen",

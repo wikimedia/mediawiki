@@ -266,7 +266,7 @@
 	"hidetoc": "خبي",
 	"collapsible-collapse": "طوي",
 	"collapsible-expand": "وسع",
-	"confirmable-confirm": "واش متأكد{{GENDER:$1||ة}}؟",
+	"confirmable-confirm": "واش {{GENDER:$1|متأكد|متأكدة}}؟",
 	"confirmable-yes": "آه",
 	"confirmable-no": "لا",
 	"thisisdeleted": "نشوف وترجع $1؟",

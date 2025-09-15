@@ -201,7 +201,7 @@
 	"toolbox": "Ӱзгар-влак",
 	"cactions": "Эше",
 	"tool-link-userrights": "{{GENDER:$1|ушнышын}} тӱшка-влакшым вашталташ",
-	"tool-link-userrights-readonly": "{{GENDER:$1|ушнышын}} тӱшка-влакшым ончалаш",
+	"tool-link-userrights-readonly": "{{GENDER:$1|Ушнышын}} тӱшка-влакшым ончалаш",
 	"tool-link-emailuser": "{{GENDER:$1|ушнышылан}} серышым возаш",
 	"imagepage": "Файлын лаштыкшым ончалаш",
 	"mediawikipage": "Увертарымашын велыжшым ончыкташ",

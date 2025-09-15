@@ -367,7 +367,7 @@
 	"hidetoc": "أخف",
 	"collapsible-collapse": "إخفاء",
 	"collapsible-expand": "إظهار",
-	"confirmable-confirm": "أأنت متأكد{{GENDER:$1||ة}}؟",
+	"confirmable-confirm": "أأنت {{GENDER:$1|متأكد|متأكدة}}؟",
 	"confirmable-yes": "نعم",
 	"confirmable-no": "لا",
 	"thisisdeleted": "عرض أو استرجاع $1؟",

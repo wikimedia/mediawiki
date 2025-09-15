@@ -846,7 +846,7 @@
 	"diff-empty": "(Nav atšķirību)",
 	"diff-multi-sameuser": "({{PLURAL:$1|$1 starpversijas|$1 starpversija|$1 starpversijas}}, ko mainījis viens dalībnieks, nav {{PLURAL:$1|parādītas|parādīta|parādītas}})",
 	"diff-multi-otherusers": "({{PLURAL:$1|$1 starpversijas|Viena starpversija|$1 starpversijas}}, ko {{PLURAL:$2|saglabājuši|saglabājis|saglabājuši}} {{PLURAL:$2|$2 lietotāji|viens cits lietotājs|$2 lietotāji}}, nav parādīta{{PLURAL:$1||s}})",
-	"diff-multi-manyusers": "({{PLURAL:$1|$1 starpversijas|$1 starpversija|$1 starpversijas}}, ko saglabājuši vairāk nekā $2 {{PLURAL:$2|lietotāji|lietotājs|lietotāji}}, nav parādīta{{PLURAL:$1||s}})",
+	"diff-multi-manyusers": "({{PLURAL:$1|$1 starpversijas|$1 starpversija|$1 starpversijas}}, ko saglabājuši vairāk nekā $2 {{PLURAL:$2|lietotāji|lietotājs|lietotāji}}, nav {{PLURAL:$1|parādīta|parādītas}})",
 	"diff-paragraph-moved-tonew": "Rindkopa tika pārvietota. Klikšķini, lai pārietu uz jauno atrašanās vietu.",
 	"diff-paragraph-moved-toold": "Rindkopa tika pārvietota. Klikšķini, lai pārietu uz veco atrašanās vietu.",
 	"searchresults": "Meklēšanas rezultāti",

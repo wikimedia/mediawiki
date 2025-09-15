@@ -217,5 +217,9 @@
 	"exif-iimcategory-wea": "هوا",
 	"exif-urgency-normal": "نورمال ($1)",
 	"exif-urgency-low": "لږ ($1)",
-	"exif-urgency-high": "ډېر ($1)"
+	"exif-urgency-high": "ډېر ($1)",
+	"exif-usepanoramaviewer-true": "هو",
+	"exif-usepanoramaviewer-false": "نه",
+	"exif-exposurelockused-true": "هو",
+	"exif-exposurelockused-false": "نه"
 }

@@ -84,5 +84,6 @@
 	"api-help-param-default-empty": "تلواليز: <span class=\"apihelp-empty\">(تش)</span>",
 	"api-help-examples": "{{PLURAL:$1|بېلگه|بېلگې}}:",
 	"api-help-permissions": "{{PLURAL:$1|پرېښه|پرېښې}}:",
+	"apierror-cantchangecontentmodel": "تاسو د يو مخ منځپانگيزې بېلگې بدلولولو پرېښولی نه لرئ.",
 	"api-credits-header": "کرېډټونه"
 }
