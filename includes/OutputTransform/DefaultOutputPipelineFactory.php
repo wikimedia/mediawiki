@@ -77,7 +77,7 @@ class DefaultOutputPipelineFactory {
 			],
 		],
 		// HandleParsoidSectionLinks and ParsoidLocalization are currently the only two DOM passes; we keep them
-		// adjacent to each other to be able to skip the DOM->text->DOM transformations (TODO)
+		// adjacent to each other to be able to skip the DOM->text->DOM transformations
 		'HandleParsoidSectionLinks' => [
 			'class' => HandleParsoidSectionLinks::class,
 			'services' => [
