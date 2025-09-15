@@ -981,10 +981,14 @@ class SessionManager implements SessionManagerInterface {
 			);
 			$this->allSessionBackends[$id] = $backend;
 			$delay = $backend->delaySave();
+			if ( $info->wasPersisted() && $info->needsRefresh() ) {
+				$backend->persist( true );
+			}
 		} else {
 			$backend = $this->allSessionBackends[$id];
 			$delay = $backend->delaySave();
 			if ( $info->wasPersisted() ) {
+				// Ignore $info->needsRefresh() here; we only need to refresh once per (PHP) request.
 				$backend->persist();
 			}
 			if ( $info->wasRemembered() ) {

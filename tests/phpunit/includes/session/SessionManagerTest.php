@@ -64,6 +64,7 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		$this->logger = new TestLogger( false, static function ( $m ) {
 			return ( str_starts_with( $m, 'SessionBackend ' )
 				|| str_starts_with( $m, 'SessionManager using store ' )
+				|| $m === 'Saving all sessions on shutdown'
 				// These were added for T264793 and behave somewhat erratically, not worth testing
 				|| str_starts_with( $m, 'Failed to load session, unpersisting' )
 				|| preg_match( '/^(Persisting|Unpersisting) session (for|due to)/', $m )
@@ -822,7 +823,6 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 			'userInfo' => UserInfo::newFromName( 'TestGetSessionFromInfo', true ),
 			'idIsSafe' => true,
 		] );
-		TestingAccessWrapper::newFromObject( $info )->idIsSafe = true;
 		$session1 = TestingAccessWrapper::newFromObject(
 			$manager->getSessionFromInfo( $info, $request )
 		);
@@ -838,6 +838,54 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		TestingAccessWrapper::newFromObject( $info )->idIsSafe = false;
 		$session3 = $manager->getSessionFromInfo( $info, $request );
 		$this->assertNotSame( $id, $session3->getId() );
+	}
+
+	public function testGetSessionFromInfo_persist() {
+		$manager = $this->createManager();
+		$request = new FauxRequest();
+		$request2 = new FauxRequest();
+
+		$id = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
+		$provider = $this->createPartialMock( DummySessionProvider::class, [ 'persistSession' ] );
+		$provider->expects( $this->once() )->method( 'persistSession' );
+		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, [
+			'provider' => $provider,
+			'id' => $id,
+			'persisted' => true,
+			'idIsSafe' => true,
+		] );
+		// FIXME the first call ("new SessionBackend" branch of getSessionFromInfo()) won't persist,
+		//   the second call (reusing allSessionBackends) will. This is probably wrong. persist() is
+		//   only a noop if the session data can be successfully loaded from the store.
+		$manager->getSessionFromInfo( $info, $request );
+		$manager->getSessionFromInfo( $info, $request2 );
+
+		$id = 'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb';
+		$provider = $this->createPartialMock( DummySessionProvider::class, [ 'persistSession' ] );
+		$provider->expects( $this->never() )->method( 'persistSession' );
+		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, [
+			'provider' => $provider,
+			'id' => $id,
+			'persisted' => true,
+			'idIsSafe' => true,
+		] );
+		$this->store->setSessionMeta( $id, [ 'expires' => time() + 100 ] );
+		$manager->getSessionFromInfo( $info, $request );
+		$manager->getSessionFromInfo( $info, $request2 );
+
+		$id = 'cccccccccccccccccccccccccccccccc';
+		$provider = $this->createPartialMock( DummySessionProvider::class, [ 'persistSession' ] );
+		$provider->expects( $this->once() )->method( 'persistSession' );
+		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, [
+			'provider' => $provider,
+			'id' => $id,
+			'persisted' => true,
+			'idIsSafe' => true,
+			'needsRefresh' => true,
+		] );
+		$this->store->setSessionMeta( $id, [ 'expires' => time() + 100 ] );
+		$manager->getSessionFromInfo( $info, $request );
+		$manager->getSessionFromInfo( $info, $request2 );
 	}
 
 	public function testBackendRegistration() {

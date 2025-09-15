@@ -110,6 +110,7 @@ class SessionInfoTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( SessionInfo::MIN_PRIORITY + 5, $info->getPriority() );
 		$this->assertSame( $anonInfo, $info->getUserInfo() );
 		$this->assertTrue( $info->isIdSafe() );
+		$this->assertFalse( $info->needsRefresh() );
 		$this->assertFalse( $info->forceUse() );
 		$this->assertFalse( $info->wasPersisted() );
 		$this->assertFalse( $info->wasRemembered() );
@@ -126,6 +127,7 @@ class SessionInfoTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( SessionInfo::MIN_PRIORITY + 5, $info->getPriority() );
 		$this->assertSame( $unverifiedUserInfo, $info->getUserInfo() );
 		$this->assertTrue( $info->isIdSafe() );
+		$this->assertFalse( $info->needsRefresh() );
 		$this->assertFalse( $info->forceUse() );
 		$this->assertFalse( $info->wasPersisted() );
 		$this->assertFalse( $info->wasRemembered() );
@@ -141,6 +143,7 @@ class SessionInfoTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( SessionInfo::MIN_PRIORITY + 5, $info->getPriority() );
 		$this->assertSame( $userInfo, $info->getUserInfo() );
 		$this->assertTrue( $info->isIdSafe() );
+		$this->assertFalse( $info->needsRefresh() );
 		$this->assertFalse( $info->forceUse() );
 		$this->assertFalse( $info->wasPersisted() );
 		$this->assertTrue( $info->wasRemembered() );
@@ -160,6 +163,7 @@ class SessionInfoTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( SessionInfo::MIN_PRIORITY + 5, $info->getPriority() );
 		$this->assertSame( $anonInfo, $info->getUserInfo() );
 		$this->assertFalse( $info->isIdSafe() );
+		$this->assertFalse( $info->needsRefresh() );
 		$this->assertFalse( $info->forceUse() );
 		$this->assertTrue( $info->wasPersisted() );
 		$this->assertFalse( $info->wasRemembered() );
@@ -176,6 +180,7 @@ class SessionInfoTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( SessionInfo::MIN_PRIORITY + 5, $info->getPriority() );
 		$this->assertSame( $userInfo, $info->getUserInfo() );
 		$this->assertFalse( $info->isIdSafe() );
+		$this->assertFalse( $info->needsRefresh() );
 		$this->assertFalse( $info->forceUse() );
 		$this->assertFalse( $info->wasPersisted() );
 		$this->assertTrue( $info->wasRemembered() );
@@ -192,6 +197,7 @@ class SessionInfoTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( SessionInfo::MIN_PRIORITY + 5, $info->getPriority() );
 		$this->assertSame( $userInfo, $info->getUserInfo() );
 		$this->assertFalse( $info->isIdSafe() );
+		$this->assertFalse( $info->needsRefresh() );
 		$this->assertFalse( $info->forceUse() );
 		$this->assertTrue( $info->wasPersisted() );
 		$this->assertFalse( $info->wasRemembered() );
@@ -246,6 +252,13 @@ class SessionInfoTest extends MediaWikiIntegrationTestCase {
 
 		$info = new SessionInfo( SessionInfo::MIN_PRIORITY + 5, [
 			'id' => $id,
+			'persisted' => true,
+			'needsRefresh' => true,
+		] );
+		$this->assertTrue( $info->needsRefresh(), 'needsRefresh override' );
+
+		$info = new SessionInfo( SessionInfo::MIN_PRIORITY + 5, [
+			'id' => $id,
 			'forceUse' => true,
 		] );
 		$this->assertFalse( $info->forceUse(), 'no provider' );
@@ -274,6 +287,7 @@ class SessionInfoTest extends MediaWikiIntegrationTestCase {
 			'provider' => $provider,
 			'userInfo' => $userInfo,
 			'idIsSafe' => true,
+			'needsRefresh' => true,
 			'forceUse' => true,
 			'persisted' => true,
 			'remembered' => true,
@@ -288,6 +302,7 @@ class SessionInfoTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $provider, $info->getProvider() );
 		$this->assertSame( $userInfo, $info->getUserInfo() );
 		$this->assertTrue( $info->isIdSafe() );
+		$this->assertTrue( $info->needsRefresh() );
 		$this->assertTrue( $info->forceUse() );
 		$this->assertTrue( $info->wasPersisted() );
 		$this->assertTrue( $info->wasRemembered() );
@@ -299,6 +314,7 @@ class SessionInfoTest extends MediaWikiIntegrationTestCase {
 			'provider' => $provider2,
 			'userInfo' => $unverifiedUserInfo,
 			'idIsSafe' => false,
+			'needsRefresh' => false,
 			'forceUse' => false,
 			'persisted' => false,
 			'remembered' => false,
@@ -311,6 +327,7 @@ class SessionInfoTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $provider2, $info->getProvider() );
 		$this->assertSame( $unverifiedUserInfo, $info->getUserInfo() );
 		$this->assertFalse( $info->isIdSafe() );
+		$this->assertFalse( $info->needsRefresh() );
 		$this->assertFalse( $info->forceUse() );
 		$this->assertFalse( $info->wasPersisted() );
 		$this->assertFalse( $info->wasRemembered() );

@@ -347,6 +347,15 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		$wrap->expires = 0;
 		$backend->persist();
 		$this->assertNotEquals( 0, $wrap->expires );
+
+		$this->provider = $this->getMockBuilder( DummySessionProvider::class )
+			->onlyMethods( [ 'persistSession' ] )->getMock();
+		$this->provider->expects( $this->once() )->method( 'persistSession' );
+		$backend = $this->getBackend();
+		$wrap = TestingAccessWrapper::newFromObject( $backend );
+		$wrap->persist = true;
+		$backend->persist(); // This one shouldn't call $provider->persistSession()
+		$backend->persist( true );
 	}
 
 	public function testUnpersist() {

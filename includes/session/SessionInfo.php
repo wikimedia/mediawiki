@@ -65,6 +65,9 @@ class SessionInfo implements Stringable {
 	private $idIsSafe = false;
 
 	/** @var bool */
+	private $needsRefresh = false;
+
+	/** @var bool */
 	private $forceUse = false;
 
 	/** @var array|null */
@@ -92,6 +95,8 @@ class SessionInfo implements Stringable {
 	 *  - idIsSafe: (bool) Set true if the 'id' did not come from the user.
 	 *    Generally you'll use this from SessionProvider::newEmptySession(),
 	 *    and not from any other method.
+	 *  - needsRefresh: (bool, since 1.45) Set to true if the session metadata needs to be
+	 *    re-persisted for some reason. This will result in Session::save() being called.
 	 *  - forceUse: (bool) Set true if the 'id' is from
 	 *    SessionProvider::hashToSessionId() to delete conflicting session
 	 *    store data instead of discarding this SessionInfo. Ignored unless
@@ -117,6 +122,7 @@ class SessionInfo implements Stringable {
 				'forceHTTPS' => $from->forceHTTPS,
 				'metadata' => $from->providerMetadata,
 				'idIsSafe' => $from->idIsSafe,
+				'needsRefresh' => $from->needsRefresh,
 				'forceUse' => $from->forceUse,
 				// @codeCoverageIgnoreStart
 			];
@@ -131,6 +137,7 @@ class SessionInfo implements Stringable {
 				'forceHTTPS' => false,
 				'metadata' => null,
 				'idIsSafe' => false,
+				'needsRefresh' => false,
 				'forceUse' => false,
 				// @codeCoverageIgnoreStart
 			];
@@ -139,20 +146,16 @@ class SessionInfo implements Stringable {
 
 		if ( $data['id'] !== null && !SessionManager::validateSessionId( $data['id'] ) ) {
 			throw new InvalidArgumentException( 'Invalid session ID' );
-		}
-
-		if ( $data['userInfo'] !== null && !$data['userInfo'] instanceof UserInfo ) {
+		} elseif ( $data['userInfo'] !== null && !$data['userInfo'] instanceof UserInfo ) {
 			throw new InvalidArgumentException( 'Invalid userInfo' );
-		}
-
-		if ( !$data['provider'] && $data['id'] === null ) {
+		} elseif ( !$data['provider'] && $data['id'] === null ) {
 			throw new InvalidArgumentException(
 				'Must supply an ID when no provider is given'
 			);
-		}
-
-		if ( $data['metadata'] !== null && !is_array( $data['metadata'] ) ) {
+		} elseif ( $data['metadata'] !== null && !is_array( $data['metadata'] ) ) {
 			throw new InvalidArgumentException( 'Invalid metadata' );
+		} elseif ( $data['needsRefresh'] && !$data['persisted'] ) {
+			throw new InvalidArgumentException( 'Cannot refresh an unpersisted session' );
 		}
 
 		$this->provider = $data['provider'];
@@ -165,6 +168,7 @@ class SessionInfo implements Stringable {
 			$this->idIsSafe = true;
 			$this->forceUse = false;
 		}
+		$this->needsRefresh = (bool)$data['needsRefresh'];
 		$this->priority = (int)$priority;
 		$this->userInfo = $data['userInfo'];
 		$this->persisted = (bool)$data['persisted'];
@@ -207,6 +211,15 @@ class SessionInfo implements Stringable {
 	 */
 	final public function isIdSafe() {
 		return $this->idIsSafe;
+	}
+
+	/**
+	 * Indicate that the session metadata needs to be re-persisted.
+	 * This will result in Session::save() being called.
+	 * @since 1.45
+	 */
+	final public function needsRefresh(): bool {
+		return $this->needsRefresh;
 	}
 
 	/**

@@ -78,6 +78,7 @@ final class SessionBackend {
 	 * - 'renew', 'resetId', 'setRememberUser', 'setUser', 'setForceHTTPS', 'setLoggedOutTimestamp',
 	 *   'setProviderMetadata': triggered by a call to that method
 	 * - 'manual': triggered by persist() / unpersist() call
+	 * - 'manual-forced': triggered by persist() call with the $force flag set
 	 * - 'no-store': the session was not found in the session store
 	 * - 'no-expiry': there was no expiry in the session store data; this probably shouldn't happen
 	 * - 'token': the user did not have a token
@@ -358,16 +359,25 @@ final class SessionBackend {
 	}
 
 	/**
-	 * Make this session persisted across requests
+	 * Make this session persisted across requests by calling SessionProvider::persist()
+	 * and saving the session data and metadata to the session store.
 	 *
-	 * If the session is already persistent, equivalent to calling `$this->renew()`.
+	 * Mutable sessions are started by application code calling persist(), and then the session
+	 * will exist until unpersist() is called, the session expires, or the client stops sending
+	 * the session tokens needed by the SessionProvider to return a non-null value from
+	 * provideSessionInfo(). Immutable sessions are started by the client sending the needed
+	 * session tokens; persist() / unpersist() will only determine whether the session data
+	 * is saved to the session store.
+	 *
+	 * If the session is already persistent, persist() equivalent to calling `$this->renew()`,
+	 * except when the $force flag is set.
 	 */
-	public function persist() {
-		if ( !$this->persist ) {
+	public function persist( bool $force = false ) {
+		if ( !$this->persist || $force ) {
 			$this->persist = true;
 			$this->forcePersist = true;
 			$this->metaDirty = true;
-			$this->sessionWriteReason ??= 'manual';
+			$this->sessionWriteReason ??= ( $force ? 'manual-forced' : 'manual' );
 			$this->logger->debug(
 				'SessionBackend "{session}" force-persist due to persist()',
 				[

@@ -38,7 +38,7 @@ interface SessionManagerInterface extends LoggerAwareInterface {
 	 * Fetch the session for a request (or a new empty session if none is
 	 * attached to it)
 	 *
-	 * @note You probably want to use $request->getSession() instead. It's more
+	 * @internal For WebRequest only. Use $request->getSession() instead. It's more
 	 *  efficient and doesn't break FauxRequests or sessions that were changed
 	 *  by $this->getSessionById() or $this->getEmptySession().
 	 * @param WebRequest $request Any existing associated session will be reset
