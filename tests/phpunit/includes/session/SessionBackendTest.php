@@ -4,6 +4,7 @@ namespace MediaWiki\Tests\Session;
 
 use BadMethodCallException;
 use DummySessionProvider;
+use HashBagOStuff;
 use InvalidArgumentException;
 use MediaWiki\Config\Config;
 use MediaWiki\Config\HashConfig;
@@ -71,7 +72,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		}
 
 		if ( !$this->store ) {
-			$this->store = $this->getServiceContainer()->getSessionStore();
+			$this->store = new SingleBackendSessionStore( new HashBagOStuff(), new NullLogger() );
 		}
 
 		$logger = new NullLogger();
