@@ -817,6 +817,13 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
+	public function testWrapperHidden() {
+		$this->assertEquals(
+			'<input type="hidden" value="x" name="foo">',
+			Html::hidden( 'foo', 'x' )
+		);
+	}
+
 	public function testWrapperLabel() {
 		$this->assertEquals(
 			'<label for="testid">testlabel</label>',

@@ -871,9 +871,9 @@ class Html {
 	public static function hidden( $name, $value, array $attribs = [] ) {
 		return self::element( 'input', [
 			...$attribs,
-			'name' => $name,
 			'type' => 'hidden',
 			'value' => $value,
+			'name' => $name,
 		] );
 	}
 
