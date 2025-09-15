@@ -55,8 +55,13 @@ class SimpleParsoidOutputStash implements ParsoidOutputStash {
 	 * @return PageBundle|null
 	 */
 	public function get( ParsoidRenderId $renderId ): ?PageBundle {
+		$jsonString = $this->bagOfStuff->get( $renderId->getKey() );
+		if ( !is_string( $jsonString ) ) {
+			// Protect against rollback from MW >= 1.43
+			return null;
+		}
 		$pageBundleArray = FormatJson::decode(
-				$this->bagOfStuff->get( $renderId->getKey() ),
+				$jsonString,
 				true
 			) ?? [];
 		$pageBundle = $this->newPageBundleFromJson( $pageBundleArray );
