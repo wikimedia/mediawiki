@@ -55,8 +55,9 @@ class SimpleParsoidOutputStash implements ParsoidOutputStash {
 		$jsonic = $this->bagOfStuff->get( $key ) ?? [];
 
 		if ( !is_array( $jsonic ) ) {
-			// Defend against old stashed data.
-			// Only needed for a couple of days after this code has been deployed.
+			// Defend against old stashed data: MW 1.39 stored a string.
+			// We're supposed to maintain upgrade compatibility with the
+			// last two LTS releases, so we can remove this in MW 1.48.
 			return null;
 		}
 		if ( !isset( $jsonic['pb'] ) ) {

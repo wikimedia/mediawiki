@@ -70,7 +70,9 @@ class SelserContext implements JsonCodecable {
 		}
 		$content = $json['c'] ?? $json['content'] ?? null;
 		if ( is_array( $content ) ) {
-			// Backward compatibility with old MW 1.44 serialization format
+			// Backward compatibility with MW 1.43/1.44 serialization format.
+			// Can be removed when back-compatibility with MW 1.43 is no longer
+			// required.
 			$contentHandler = MediaWikiServices::getInstance()
 				->getContentHandlerFactory()
 				->getContentHandler( $content['model'] );

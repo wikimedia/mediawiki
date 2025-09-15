@@ -33,7 +33,7 @@ interface ParsoidOutputStash {
 	 * Retrieve a SelserContext representing a rendering of a revision at a given point in time,
 	 * along with information about the content the rendering was based on.
 	 *
-	 * If a SelserContext was stahed using the set() method not too long ago, it can be expected
+	 * If a SelserContext was stashed using the set() method not too long ago, it can be expected
 	 * to be returned from this method.
 	 *
 	 * @param ParsoidRenderID $renderId
