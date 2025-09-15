@@ -329,7 +329,6 @@ class UpdateQueryBuilder {
 			throw new UnexpectedValueException(
 				__METHOD__ . ' expects table not to be empty' );
 		}
-		// @phan-suppress-next-line SecurityCheck-SQLInjection T401748
 		$this->db->update( $this->table, $this->set, $this->conds, $this->caller, $this->options );
 	}
 
