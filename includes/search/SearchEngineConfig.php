@@ -71,9 +71,13 @@ class SearchEngineConfig {
 	}
 
 	/**
-	 * Make a list of searchable namespaces and their localized names.
-	 * @return string[] Namespace ID => name
-	 * @phan-return array<int,string>
+	 * List searchable namespaces and their localized names (with underscores, without considering
+	 * language variants).
+	 *
+	 * NOTE: This is not suitable for UI text, as language variants of namespace names defined via
+	 * system messages are ignored. Use {@see LanguageConverter::convertNamespace} instead.
+	 *
+	 * @return array<int,string> Numeric namespace id => localized name (without language variants)
 	 */
 	public function searchableNamespaces() {
 		$arr = [];
@@ -96,7 +100,7 @@ class SearchEngineConfig {
 	 */
 	public function userNamespaces( $user ) {
 		$arr = [];
-		foreach ( $this->searchableNamespaces() as $ns => $name ) {
+		foreach ( $this->searchableNamespaces() as $ns => $_ ) {
 			if ( $this->userOptionsLookup->getOption( $user, 'searchNs' . $ns ) ) {
 				$arr[] = $ns;
 			}

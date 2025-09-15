@@ -371,8 +371,9 @@ class Language implements Bcp47Code {
 	}
 
 	/**
-	 * Returns an array of localised namespaces indexed by their numbers. If the namespace is not
-	 * available in localised form, it will be included in English.
+	 * Returns an array of localised namespaces (with underscores, without considering language
+	 * variants) indexed by their numbers. If the namespace is not available in localised form, it
+	 * will be included in English.
 	 *
 	 * @return array<int,string> List of localized namespace names, indexed by numeric namespace ID.
 	 */
@@ -435,13 +436,13 @@ class Language implements Bcp47Code {
 	}
 
 	/**
-	 * A convenience function that returns getNamespaces() with spaces instead of underscores
+	 * A convenience function that returns {@see getNamespaces} with spaces instead of underscores
 	 * in values.
 	 *
-	 * NOTE: This is not suitable for UI text, as language variants of namespace names
-	 * defined via system messages are ignored. Use LanguageConverter::convertNamespace() instead.
+	 * NOTE: This is not suitable for UI text, as language variants of namespace names defined via
+	 * system messages are ignored. Use {@see LanguageConverter::convertNamespace} instead.
 	 *
-	 * @return string[]
+	 * @return array<int,string>
 	 */
 	public function getFormattedNamespaces() {
 		$ns = $this->getNamespaces();

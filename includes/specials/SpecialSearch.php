@@ -699,7 +699,7 @@ class SpecialSearch extends SpecialPage {
 	 */
 	protected function powerSearch( &$request ) {
 		$arr = [];
-		foreach ( $this->searchConfig->searchableNamespaces() as $ns => $name ) {
+		foreach ( $this->searchConfig->searchableNamespaces() as $ns => $_ ) {
 			if ( $request->getCheck( 'ns' . $ns ) ) {
 				$arr[] = $ns;
 			}

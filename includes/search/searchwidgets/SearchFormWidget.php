@@ -389,7 +389,7 @@ class SearchFormWidget {
 	private function createCheckboxesForEverySearchableNamespace(): string {
 		$rows = [];
 		$activeNamespaces = $this->specialSearch->getNamespaces();
-		foreach ( $this->searchConfig->searchableNamespaces() as $namespace => $name ) {
+		foreach ( $this->searchConfig->searchableNamespaces() as $namespace => $_ ) {
 			$subject = $this->namespaceInfo->getSubject( $namespace );
 			if ( !isset( $rows[$subject] ) ) {
 				$rows[$subject] = "";

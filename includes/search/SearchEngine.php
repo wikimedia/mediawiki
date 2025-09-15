@@ -315,9 +315,9 @@ abstract class SearchEngine {
 		if ( $namespaces ) {
 			// Filter namespaces to only keep valid ones
 			$validNs = MediaWikiServices::getInstance()->getSearchEngineConfig()->searchableNamespaces();
-			$namespaces = array_filter( $namespaces, static function ( $ns ) use( $validNs ) {
-				return $ns < 0 || isset( $validNs[$ns] );
-			} );
+			$namespaces = array_filter( $namespaces,
+				static fn ( $id ) => $id < 0 || isset( $validNs[$id] )
+			);
 		} else {
 			$namespaces = [];
 		}
