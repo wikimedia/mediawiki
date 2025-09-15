@@ -19,7 +19,7 @@ mw.hook( 'htmlform.enhance' ).add( ( $root ) => {
 			const $reasonList = $root.find( '#' + $this.data( 'id-select' ) );
 
 			if ( $widget.length ) {
-				mw.loader.using( 'mediawiki.widgets.SelectWithInputWidget', () => {
+				mw.loader.using( [ 'mediawiki.widgets.SelectWithInputWidget', 'mediawiki.widgets.visibleLengthLimit' ], () => {
 					const widget = OO.ui.Widget.static.infuse( $widget );
 					const maxlengthUnit = widget.getData().maxlengthUnit;
 					const lengthLimiter = maxlengthUnit === 'codepoints' ?

@@ -91,7 +91,7 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 
 	/** @inheritDoc */
 	protected function getOOUIModules() {
-		return [ 'mediawiki.widgets.SelectWithInputWidget' ];
+		return [ 'mediawiki.widgets.SelectWithInputWidget', 'mediawiki.widgets.visibleLengthLimit' ];
 	}
 
 	/** @inheritDoc */

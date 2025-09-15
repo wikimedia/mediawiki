@@ -916,7 +916,7 @@ return [
 		],
 		'dependencies' => [
 			'mediawiki.util',
-			'mediawiki.widgets.visibleLengthLimit',
+			'jquery.lengthLimit',
 		]
 	],
 	'mediawiki.htmlform.ooui' => [
