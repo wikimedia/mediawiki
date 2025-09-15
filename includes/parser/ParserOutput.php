@@ -39,6 +39,7 @@ use Wikimedia\Bcp47Code\Bcp47Code;
 use Wikimedia\Bcp47Code\Bcp47CodeValue;
 use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\Message\MessageValue;
+use Wikimedia\Parsoid\Config\StubMetadataCollector;
 use Wikimedia\Parsoid\Core\ContentMetadataCollector;
 use Wikimedia\Parsoid\Core\ContentMetadataCollectorCompat;
 use Wikimedia\Parsoid\Core\LinkTarget as ParsoidLinkTarget;
@@ -2826,8 +2827,10 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 				$strategy = MergeStrategy::from( $value[self::MW_MERGE_STRATEGY_KEY] );
 				foreach ( $value as $item => $ignore ) {
 					$item = (string)$item;
-					if ( $item !== self::MW_MERGE_STRATEGY_KEY ) {
-						$metadata->appendJsConfigVar( $key, $item, $strategy->value );
+					if ( $item !== self::MW_MERGE_STRATEGY_KEY &&
+						 ( $metadata instanceof ParserOutput ||
+						   $metadata instanceof StubMetadataCollector ) ) {
+						$metadata->appendJsConfigVar( $key, $item, $strategy );
 					}
 				}
 			} elseif ( $metadata instanceof ParserOutput &&
@@ -2851,8 +2854,10 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 				$strategy = MergeStrategy::from( $value[self::MW_MERGE_STRATEGY_KEY] );
 				foreach ( $value as $item => $ignore ) {
 					$item = (string)$item;
-					if ( $item !== self::MW_MERGE_STRATEGY_KEY ) {
-						$metadata->appendExtensionData( $key, $item, $strategy->value );
+					if ( $item !== self::MW_MERGE_STRATEGY_KEY &&
+						 ( $metadata instanceof ParserOutput ||
+						   $metadata instanceof StubMetadataCollector ) ) {
+						$metadata->appendExtensionData( $key, $item, $strategy );
 					}
 				}
 			} elseif ( $metadata instanceof ParserOutput &&
