@@ -25,6 +25,7 @@ use MediaWikiIntegrationTestCase;
 use Psr\Log\NullLogger;
 use UnexpectedValueException;
 use Wikimedia\ScopedCallback;
+use Wikimedia\Stats\StatsFactory;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -63,11 +64,13 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		}
 
 		if ( !$this->store ) {
-			$this->store = new SingleBackendSessionStore( new HashBagOStuff(), new NullLogger() );
+			$this->store = new SingleBackendSessionStore(
+				new HashBagOStuff(), new NullLogger(), StatsFactory::newNull()
+			);
 		}
 
 		$logger = new NullLogger();
-		$hookContainer = $this->getHookContainer();
+		$hookContainer = $this->getServiceContainer()->getHookContainer();
 
 		if ( !$this->manager ) {
 			$this->manager = new SessionManager(
@@ -125,7 +128,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		] );
 		$id = new SessionId( $info->getId() );
 		$logger = new NullLogger();
-		$hookContainer = $this->getHookContainer();
+		$hookContainer = $this->getServiceContainer()->getHookContainer();
 		try {
 			new SessionBackend( $id, $info, $this->store, $logger, $hookContainer, 10 );
 			$this->fail( 'Expected exception not thrown' );
@@ -548,7 +551,9 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 
 	public function testSave() {
 		$user = static::getTestSysop()->getUser();
-		$this->store = new SingleBackendSessionStore( new TestBagOStuff(), new NullLogger() );
+		$this->store = new SingleBackendSessionStore(
+			new TestBagOStuff(), new NullLogger(), StatsFactory::newNull()
+		);
 		$testData = [ 'foo' => 'foo!', 'bar', [ 'baz', null ] ];
 
 		$builder = $this->getMockBuilder( DummySessionProvider::class )
@@ -850,7 +855,9 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 
 	public function testRenew() {
 		$user = static::getTestSysop()->getUser();
-		$this->store = new SingleBackendSessionStore( new TestBagOStuff(), new NullLogger() );
+		$this->store = new SingleBackendSessionStore(
+			new TestBagOStuff(), new NullLogger(), StatsFactory::newNull()
+		);
 		$testData = [ 'foo' => 'foo!', 'bar', [ 'baz', null ] ];
 
 		// Not persistent, expiring

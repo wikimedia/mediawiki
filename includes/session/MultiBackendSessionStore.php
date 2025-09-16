@@ -114,7 +114,6 @@ class MultiBackendSessionStore implements SessionStore {
 	 * @return array{0:CachedBagOStuff,1:bool}
 	 */
 	private function getActiveStore( SessionInfo $sessionInfo ): array {
-		$stats = $this->statsFactory->getCounter( 'sessionstore_active_backend_total' );
 		$userInfo = $sessionInfo->getUserInfo();
 
 		if ( $userInfo === null ) {
@@ -128,7 +127,19 @@ class MultiBackendSessionStore implements SessionStore {
 			$anonKey = $this->anonSessionStore->makeKey( 'MWSession', $sessionInfo->getId() );
 			$authKey = $this->authenticatedSessionStore->makeKey( 'MWSession', $sessionInfo->getId() );
 			$anonData = $this->anonSessionStore->get( $anonKey );
+			if ( !$this->anonSessionStore->wasLastGetCached() ) {
+				$this->statsFactory->getCounter( 'sessionstore_nouserinfo_get_total' )
+					->setLabel( 'type', 'anonymous' )
+					->setLabel( 'wiki', WikiMap::getCurrentWikiId() )
+					->increment();
+			}
 			$authData = $this->authenticatedSessionStore->get( $authKey );
+			if ( !$this->authenticatedSessionStore->wasLastGetCached() ) {
+				$this->statsFactory->getCounter( 'sessionstore_nouserinfo_get_total' )
+					->setLabel( 'type', 'authenticated' )
+					->setLabel( 'wiki', WikiMap::getCurrentWikiId() )
+					->increment();
+			}
 			$anonUserId = $anonData['metadata']['userId'] ?? null;
 			$authUserId = $authData['metadata']['userId'] ?? null;
 
@@ -166,30 +177,18 @@ class MultiBackendSessionStore implements SessionStore {
 			}
 
 			if ( $authData ) {
-				$stats->setLabel( 'type', self::STATS_LABEL_AUTH )
-					->setLabel( 'wiki', WikiMap::getCurrentWikiId() )
-					->increment();
 				return [ $this->authenticatedSessionStore, true ];
 			}
 
-			$stats->setLabel( 'type', self::STATS_LABEL_ANON )
-				->setLabel( 'wiki', WikiMap::getCurrentWikiId() )
-				->increment();
 			return [ $this->anonSessionStore, false ];
 		}
 
 		if ( !$userInfo->isAnon() ) {
-			$stats->setLabel( 'type', self::STATS_LABEL_AUTH )
-				->setLabel( 'wiki', WikiMap::getCurrentWikiId() )
-				->increment();
 			// Hopefully, we can use the user info here to know if it's an anonymous user or
 			// and authenticated user. This will help us determine which store to use.
 			return [ $this->authenticatedSessionStore, true ];
 		}
 
-		$stats->setLabel( 'type', self::STATS_LABEL_ANON )
-			->setLabel( 'wiki', WikiMap::getCurrentWikiId() )
-			->increment();
 		return [ $this->anonSessionStore, false ];
 	}
 
@@ -226,9 +225,14 @@ class MultiBackendSessionStore implements SessionStore {
 			] );
 		}
 
-		$this->statsFactory->getCounter( 'sessionstore_get_total' )
-			->setLabel( 'wiki', WikiMap::getCurrentWikiId() )
-			->increment();
+		// We are interested in tracking reads from the actual store (uncached in-process)
+		// to know how many times we do actual store look-ups.
+		if ( !$store->wasLastGetCached() ) {
+			$this->statsFactory->getCounter( 'sessionstore_get_total' )
+				->setLabel( 'type', $isAuthenticated ? self::STATS_LABEL_AUTH : self::STATS_LABEL_ANON )
+				->setLabel( 'wiki', WikiMap::getCurrentWikiId() )
+				->increment();
+		}
 
 		return $data;
 	}
@@ -273,9 +277,12 @@ class MultiBackendSessionStore implements SessionStore {
 
 		$store->set( $key, $value, $exptime, $flags );
 
-		$this->statsFactory->getCounter( 'sessionstore_set_total' )
-			->setLabel( 'wiki', WikiMap::getCurrentWikiId() )
-			->increment();
+		if ( ( $flags & BagOStuff::WRITE_CACHE_ONLY ) === 0 ) {
+			$this->statsFactory->getCounter( 'sessionstore_set_total' )
+				->setLabel( 'type', $isAuthenticated ? self::STATS_LABEL_AUTH : self::STATS_LABEL_ANON )
+				->setLabel( 'wiki', WikiMap::getCurrentWikiId() )
+				->increment();
+		}
 	}
 
 	/**
@@ -286,12 +293,13 @@ class MultiBackendSessionStore implements SessionStore {
 	public function delete( SessionInfo $info ): void {
 		$this->logger->debug( __METHOD__ . " was called for $info" );
 
-		[ $store, /** $isAuthenticated */ ] = $this->getActiveStore( $info );
+		[ $store, $isAuthenticated ] = $this->getActiveStore( $info );
 		$key = $store->makeKey( 'MWSession', $info->getId() );
 
 		$store->delete( $key );
 
 		$this->statsFactory->getCounter( 'sessionstore_delete_total' )
+			->setLabel( 'type', $isAuthenticated ? self::STATS_LABEL_AUTH : self::STATS_LABEL_ANON )
 			->setLabel( 'wiki', WikiMap::getCurrentWikiId() )
 			->increment();
 	}

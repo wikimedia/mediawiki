@@ -34,6 +34,7 @@ use stdClass;
 use TestLogger;
 use UnexpectedValueException;
 use Wikimedia\ScopedCallback;
+use Wikimedia\Stats\StatsFactory;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -82,7 +83,7 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 			$this->getServiceContainer()->getProxyLookup(),
 			$this->getServiceContainer()->getUrlUtils(),
 			$this->getServiceContainer()->getUserNameUtils(),
-			new SingleBackendSessionStore( $this->store, $this->logger )
+			new SingleBackendSessionStore( $this->store, $this->logger, StatsFactory::newNull() )
 		);
 	}
 
