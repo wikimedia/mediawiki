@@ -1899,3 +1899,84 @@ DEF
 {{!}}}}}
 b
 !! end
+
+## It's important to omit the data-parsoid attribute so html2wt mode doesn't
+## use that information to serialize as a named argument
+!! test
+T400080: Numbered args with tags with attributes should serialize as named
+!! wikitext
+{{1x|1=<div class="a">a</div>}}
+!! html/php
+<div class="a">a</div>
+!! html/parsoid
+<div class="a" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"&lt;div class=\"a\">a&lt;/div>"}},"i":0}}]}'>a</div>
+!! end
+
+!! test
+T400080: Numbered args with tags with attributes should break on equals
+!! wikitext
+{{1x|<div class="a">a</div>}}
+!! html/php
+<p>{{{1}}}
+</p>
+!! html/parsoid
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"&lt;div class":{"wt":"\"a\">a&lt;/div>"}},"i":0}}]}'>{{{1}}}</span></p>
+!! end
+
+!! test
+T400080: Numbered args of pfs with tags with attributes should not be serialized as named
+!! wikitext
+{{#tag:div|<span class="c">a</span>}}
+!! html/php
+<div><span class="c">a</span></div>
+!! html/parsoid+integrated
+<div typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"#tag:div","function":"tag"},"params":{"1":{"wt":"&lt;span class=\"c\">a&lt;/span>"}},"i":0}}]}'><span class="c">a</span></div>
+!! end
+
+!! test
+T400080: Template arg value with template with pipe nested in tag attribute value
+!! wikitext
+{{1x|test=<span class="{{1x|234}}"><span>|second arg}}
+!! html/php
+<p>second arg
+</p>
+!! html/parsoid
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"test":{"wt":"&lt;span class=\"{{1x|234}}\">&lt;span>"},"1":{"wt":"second arg"}},"i":0}}]}'>second arg</span></p>
+!! end
+
+!! test
+T400080: Numbered arg value with escaped tag attribute equals
+!! wikitext
+{{1x|<span class{{=}}"test">456</span>|123}}
+!! html/php
+<p><span class="test">456</span>
+</p>
+!! html/parsoid
+<p><span class="test" about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"&lt;span class{{=}}\"test\">456&lt;/span>"},"2":{"wt":"123"}},"i":0}}]}'>456</span></p>
+!! end
+
+## This test is split in two because our escaping heuristics naively
+## switch to the named form, despite the equals being in a extension tag
+!! test
+T400080: 1. Numbered arg value with extension tag in tag attribute value
+!! options
+parsoid=wt2html
+!! wikitext
+{{1x|<div class{{=}}"<nowiki>hmm=haa</nowiki>">asdf</div>|2=a|3=b|4=c}}
+!! html/php
+<div class="hmm=haa">asdf</div>
+!! html/parsoid+integrated
+<div class="hmm=haa" about="#mwt1" typeof="mw:Transclusion mw:ExpandedAttrs" data-mw='{"attribs":[[{"txt":"class"},{"html":"&lt;span typeof=\"mw:Nowiki\">hmm=haa&lt;/span>"}]],"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"&lt;div class{{=}}\"&lt;nowiki>hmm=haa&lt;/nowiki>\">asdf&lt;/div>"},"2":{"wt":"a"},"3":{"wt":"b"},"4":{"wt":"c"}},"i":0}}]}'>asdf</div>
+!! end
+
+!! test
+T400080: 2. Numbered arg value with extension tag in tag attribute value
+!! options
+parsoid=html2wt
+!! wikitext
+{{1x|1=<div class{{=}}"<nowiki>hmm=haa</nowiki>">asdf</div>|2=a|3=b|4=c}}
+!! html/php
+<div class="hmm=haa">asdf</div>
+!! html/parsoid+integrated
+<div class="hmm=haa" about="#mwt1" typeof="mw:Transclusion mw:ExpandedAttrs" data-mw='{"attribs":[[{"txt":"class"},{"html":"&lt;span typeof=\"mw:Nowiki\">hmm=haa&lt;/span>"}]],"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"&lt;div class{{=}}\"&lt;nowiki>hmm=haa&lt;/nowiki>\">asdf&lt;/div>"},"2":{"wt":"a"},"3":{"wt":"b"},"4":{"wt":"c"}},"i":0}}]}'>asdf</div>
+!! end

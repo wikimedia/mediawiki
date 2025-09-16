@@ -1275,7 +1275,7 @@ a
 <p data-parsoid='{"fostered":true,"autoInsertedEnd":true,"autoInsertedStart":true}'>
 a</p>
 <table>
-<tbody><tr class="mw-empty-elt" data-parsoid='{"startTagSrc":"|-"}'></tr></tbody></table>
+<tbody class="mw-empty-elt"><tr class="mw-empty-elt" data-parsoid='{"startTagSrc":"|-"}'></tr></tbody></table>
 !! end
 
 # selser tests are needed below as a regression test for T233815
@@ -1298,7 +1298,7 @@ parsoid={ "modes": ["wt2html","selser"], "suppressErrors": true }
 </table>
 !! html/parsoid
 <ul data-parsoid='{"fostered":true,"autoInsertedEnd":true}'><li>a</li><li>b</li></ul><table>
-<tbody><tr class="mw-empty-elt" data-parsoid='{"startTagSrc":"|-"}'>
+<tbody class="mw-empty-elt"><tr class="mw-empty-elt" data-parsoid='{"startTagSrc":"|-"}'>
 
 </tr></tbody></table>
 !! end
@@ -1622,7 +1622,7 @@ parsoid=wt2html
 </table>
 !! html/parsoid
 <table>
-<tbody>
+<tbody class="mw-empty-elt">
 <tr class='mw-empty-elt'></tr>
 <tr class='mw-empty-elt'></tr>
 </tbody></table>
@@ -2026,4 +2026,53 @@ First line attributes should be handled by html2wt even without data-parsoid
 <tbody><tr valign="top">
 <td>Bar
 </td></tr></tbody></table>
+!! end
+
+!! test
+Don't apply complex line-splitting heuristics in AttributeExpander for non-<table> tokens
+!! options
+parsoid=wt2html
+!! wikitext
+{{1x<invalid>
+|{{2x<invalid>y}}|
+}}
+
+{{1x<invalid>
+|{{2x<invalid>
+y}}|
+}}
+!! html/php
+<p>{{1x&lt;invalid&gt;
+|{{2x&lt;invalid&gt;y}}|
+}}
+</p><p>{{1x&lt;invalid&gt;
+|{{2x&lt;invalid&gt;
+y}}|
+}}
+</p>
+!! html/parsoid
+<p>{{1x&lt;invalid>
+|{{2x&lt;invalid>y}}|
+}}</p>
+
+<p>{{1x&lt;invalid>
+|{{2x&lt;invalid>
+y}}|
+}}</p>
+!! end
+
+!! test
+Autoinserted tr in html table
+!! wikitext
+<table>
+<td>a</td>
+</table>
+!! html/php
+<table>
+<tbody><tr><td>a</td>
+</tr></tbody></table>
+!! html/parsoid
+<table data-parsoid='{"stx":"html"}'>
+<tbody><tr data-parsoid='{"autoInsertedStart":true,"autoInsertedEnd":true}'><td data-parsoid='{"stx":"html"}'>a</td></tr>
+</tbody></table>
 !! end

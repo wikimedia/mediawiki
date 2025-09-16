@@ -280,3 +280,25 @@ hi <!--{"hi":"ho"}--> ho
 !! html/parsoid
 <p>hi <!--{"hi":"ho"}--> ho</p>
 !! end
+
+!! test
+Comment in attribute
+!! wikitext
+<div class="<!-- test -->123">hi ho</div>
+!! html/php
+<div class="123">hi ho</div>
+!! html/parsoid
+<div class="123" data-parsoid='{"stx":"html","a":{"class":"123"},"sa":{"class":"&lt;!-- test -->123"}}'>hi ho</div>
+!! end
+
+## The test isn't expected to roundtrip but it should serialize to
+## something that won't break the page
+!! test
+Serialize comment-like string in attribute
+!! options
+parsoid=html2wt
+!! html/parsoid
+<div class="<!-- test -->123">hi ho</div>
+!! wikitext
+<div class="<!-- test -->123">hi ho</div>
+!! end

@@ -291,8 +291,8 @@ Sections:
  h1 index:2 toclevel:1 number:2 title:Parser_test off:6 anchor/linkAnchor:x line:<i>x</i>
 !! end
 
-# For heading that come from template args, core, Parsoid-standalone, and
-# Parsoid-integrate different in ther "index" output.
+# The legacy parser, parsoid+standalone, and parsoid+integrated differ
+# in ther "index" output for headings that come from template args.
 #
 # - For templated sections, Parsoid and core differ in some of the metadata.
 #   Parsoid doesn't distinguish between sections that come from template args

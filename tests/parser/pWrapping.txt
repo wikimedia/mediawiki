@@ -279,7 +279,7 @@ c
 </p>
 !! html/parsoid
 <table data-parsoid='{"autoInsertedEnd":true}'>
-<tbody><tr class="mw-empty-elt" data-parsoid='{"startTagSrc":"|-"}'></tr>
+<tbody class="mw-empty-elt"><tr class="mw-empty-elt" data-parsoid='{"startTagSrc":"|-"}'></tr>
 
 </tbody></table><table>
 <tbody><tr data-parsoid='{"autoInsertedStart":true}'><td>x</td></tr>

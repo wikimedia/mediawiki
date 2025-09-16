@@ -1673,6 +1673,16 @@ parsoid=wt2html
 !! end
 
 !! test
+Non-wikilinks with html tags in target position
+!! wikitext
+<table><td>[[</td><td>[[link]]</td><td>]]</td></table>
+!! html/php
+<table><tbody><tr><td>[[</td><td><a href="/wiki/Link" title="Link">link</a></td><td>]]</td></tr></tbody></table>
+!! html/parsoid
+<table data-parsoid='{"stx":"html"}'><tbody><tr data-parsoid='{"autoInsertedStart":true,"autoInsertedEnd":true}'><td data-parsoid='{"stx":"html"}'>[[</td><td data-parsoid='{"stx":"html"}'><a rel="mw:WikiLink" href="./Link" title="Link">link</a></td><td data-parsoid='{"stx":"html"}'>]]</td></tr></tbody></table>
+!! end
+
+!! test
 Wikilinks with embedded newlines are not broken
 !! wikitext
 {{1x|[[ Foo
@@ -2398,7 +2408,7 @@ Link with double quotes in title part (literal) and alternate part (interpreted)
 </p><p><a href="/wiki/%27%27Pentecoste%27%27" title="&#39;&#39;Pentecoste&#39;&#39;"><i>Pentecoste</i></a>
 </p>
 !! html/parsoid
-<p><span class="mw-default-size" typeof="mw:Error mw:File" data-parsoid='{"optList":[]}' data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./Special:FilePath/Denys_Savchenko_''Pentecoste''.jpg"><span class="mw-file-element mw-broken-media" resource="./File:Denys_Savchenko_''Pentecoste''.jpg" data-parsoid='{"a":{"resource":"./File:Denys_Savchenko_&apos;&apos;Pentecoste&apos;&apos;.jpg"},"sa":{"resource":"File:Denys_Savchenko_&apos;&apos;Pentecoste&apos;&apos;.jpg"}}'>File:Denys Savchenko ''Pentecoste''.jpg</span></a></span></p>
+<p><span class="mw-default-size" typeof="mw:Error mw:File" data-parsoid='{"optList":[]}' data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./Special:FilePath/Denys_Savchenko_''Pentecoste''.jpg" class="new" title="File:Denys Savchenko ''Pentecoste''.jpg"><span class="mw-file-element mw-broken-media" resource="./File:Denys_Savchenko_''Pentecoste''.jpg" data-parsoid='{"a":{"resource":"./File:Denys_Savchenko_&apos;&apos;Pentecoste&apos;&apos;.jpg"},"sa":{"resource":"File:Denys_Savchenko_&apos;&apos;Pentecoste&apos;&apos;.jpg"}}'>File:Denys Savchenko ''Pentecoste''.jpg</span></a></span></p>
 
 <p><a rel="mw:WikiLink" href="./''Pentecoste''" title="''Pentecoste''" data-parsoid='{"stx":"simple","a":{"href":"./&apos;&apos;Pentecoste&apos;&apos;"},"sa":{"href":"&apos;&apos;Pentecoste&apos;&apos;"}}'>''Pentecoste''</a></p>
 
@@ -5463,7 +5473,7 @@ parsoid={
 </p>
 !!end
 
-!!test
+!! test
 4. includeonly in table attributes
 !! wikitext
 {|
@@ -5484,7 +5494,7 @@ parsoid={
 <td>a
 </td></tr>
 </tbody></table>
-!!end
+!! end
 
 ###
 ### Token Stream Patcher tests
@@ -5541,10 +5551,6 @@ b
 |}
 |-
 c
-|-
-{{1x|!a!!b}}
-|-
-{{1x|{{!}}a {{!}}{{!}}b}}
 !! html
 <p>a
 |+ not a caption
@@ -5556,11 +5562,48 @@ b
 |}
 |-
 c
+</p>
+!! end
+
+!! test
+1. Templated table wikitext syntax outside wiki-tables
+!! options
+parsoid=wt2html,wt2wt
+!! wikitext
 |-
+{{1x|!a!!b}}
+|-
+{{1x|{{!}}a {{!}}{{!}}b}}
+|-
+{{1x|1={{!}} class='boo' {{!}} bar}}
+!! html/php
+<p>|-
 !a!!b
 |-
 |a ||b
+|-
+| class='boo' | bar
 </p>
+!! html/parsoid
+<p>|-
+<span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"!a!!b"}},"i":0}}]}'>!a!!b</span>
+|-
+<span about="#mwt2" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"{{!}}a {{!}}{{!}}b"}},"i":0}}]}'>|a ||b</span>
+|-
+<span about="#mwt6" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"{{!}} class=&apos;boo&apos; {{!}} bar"}},"i":0}}]}'>| class='boo' | bar</span></p>
+!! end
+
+!! test
+2. Templated table wikitext syntax outside wiki-tables
+!! options
+parsoid=wt2html,wt2wt
+!! wikitext
+{{1x|1={{!}}- class='trclass'}}
+!! html/php
+<p>|- class='trclass'
+</p>
+!! html/parsoid
+<p><span about="#mwt2" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"{{!}}- class=&apos;trclass&apos;"}},"i":0}}]}'>|- class='trclass'</span></p>
 !! end
 
 !! test
@@ -5618,7 +5661,7 @@ Orphaned table row wikitext with templated table for an attribute should not dup
 <td>foo
 </td></tr></tbody></table>
 !! html/parsoid
-<p about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1"}]],"firstWikitextNode":"TR"}' data-mw='{"parts":["|-",{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"\n{{{!}}\n{{!}}foo\n{{!}}}\n"}},"i":0}}]}'>|-</p><span about="#mwt1">
+<p>|-</p><span about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"\n{{{!}}\n{{!}}foo\n{{!}}}\n"}},"i":0}}]}'>
 </span><table about="#mwt1">
 <tbody><tr><td>foo</td></tr>
 </tbody></table><span about="#mwt1">
@@ -8293,7 +8336,6 @@ Test for unicode normalization
 The page's name is U+05d0 U+05b7, with non-canonical form U+FB2E
 !! endarticle
 
-# Parsoid has a regression here (T258858) note the incorrect redlink as well
 !! test
 (T21451) Links should refer to the normalized form.
 !! wikitext
@@ -8310,11 +8352,11 @@ The page's name is U+05d0 U+05b7, with non-canonical form U+FB2E
 <a href="/wiki/%D7%90%D6%B7" title="אַ">אַ</a>
 </p>
 !! html/parsoid
-<p><a rel="mw:WikiLink" href="./אַ?action=edit&amp;redlink=1" title="אַ" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"simple","a":{"href":"./אַ"},"sa":{"href":"&amp;#xFB2E;"}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["אַ"]}}'>אַ</a>
-<a rel="mw:WikiLink" href="./אַ" title="אַ" data-parsoid='{"stx":"simple","a":{"href":"./אַ"},"sa":{"href":"&amp;#x5d0;&amp;#x5b7;"}}'>אַ</a>
-<a rel="mw:WikiLink" href="./אַ" title="אַ" data-parsoid='{"stx":"simple","a":{"href":"./אַ"},"sa":{"href":"&amp;#x5d0;ַ"}}'>אַ</a>
-<a rel="mw:WikiLink" href="./אַ" title="אַ" data-parsoid='{"stx":"simple","a":{"href":"./אַ"},"sa":{"href":"א&amp;#x5b7;"}}'>אַ</a>
-<a rel="mw:WikiLink" href="./אַ" title="אַ" data-parsoid='{"stx":"simple","a":{"href":"./אַ"},"sa":{"href":"אַ"}}'>אַ</a></p>
+<p data-parsoid='{"dsr":[0,68,0,0]}'><a rel="mw:WikiLink" href="./אַ" title="אַ" data-parsoid='{"stx":"simple","a":{"href":"./אַ"},"sa":{"href":"&amp;#xFB2E;"},"dsr":[0,12,2,2]}'>אַ</a>
+<a rel="mw:WikiLink" href="./אַ" title="אַ" data-parsoid='{"stx":"simple","a":{"href":"./אַ"},"sa":{"href":"&amp;#x5d0;&amp;#x5b7;"},"dsr":[13,31,2,2]}'>אַ</a>
+<a rel="mw:WikiLink" href="./אַ" title="אַ" data-parsoid='{"stx":"simple","a":{"href":"./אַ"},"sa":{"href":"&amp;#x5d0;ַ"},"dsr":[32,45,2,2]}'>אַ</a>
+<a rel="mw:WikiLink" href="./אַ" title="אַ" data-parsoid='{"stx":"simple","a":{"href":"./אַ"},"sa":{"href":"א&amp;#x5b7;"},"dsr":[46,59,2,2]}'>אַ</a>
+<a rel="mw:WikiLink" href="./אַ" title="אַ" data-parsoid='{"stx":"simple","a":{"href":"./אַ"},"sa":{"href":"אַ"},"dsr":[60,68,2,2]}'>אַ</a></p>
 !! end
 
 !! test
@@ -12590,7 +12632,7 @@ percent-encoding and + signs in internal links (T28410)
 !! html/parsoid
 <p><a rel="mw:WikiLink" href="./User:+%25?action=edit&amp;redlink=1" title="User:+%" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"simple","a":{"href":"./User:+%25"},"sa":{"href":"User:+%"}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["User:+%"]}}'>User:+%</a> <a rel="mw:WikiLink" href="./Page+title%25?action=edit&amp;redlink=1" title="Page+title%" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"simple","a":{"href":"./Page+title%25"},"sa":{"href":"Page+title%"}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["Page+title%"]}}'>Page+title%</a>
 <a rel="mw:WikiLink" href="./%25+?action=edit&amp;redlink=1" title="%+" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"simple","a":{"href":"./%25+"},"sa":{"href":"%+"}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["%+"]}}'>%+</a> <a rel="mw:WikiLink" href="./%25+?action=edit&amp;redlink=1" title="%+" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"piped","a":{"href":"./%25+"},"sa":{"href":"%+"}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["%+"]}}'>%20</a> <a rel="mw:WikiLink" href="./%25+?action=edit&amp;redlink=1" title="%+" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"simple","a":{"href":"./%25+"},"sa":{"href":"%+ "}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["%+"]}}'>%+ </a> <a rel="mw:WikiLink" href="./%25+r?action=edit&amp;redlink=1" title="%+r" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"simple","a":{"href":"./%25+r"},"sa":{"href":"%+r"}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["%+r"]}}'>%+r</a>
-<a rel="mw:WikiLink" href="./%25?action=edit&amp;redlink=1" title="%" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"simple","a":{"href":"./%25"},"sa":{"href":"%"}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["%"]}}'>%</a> <a rel="mw:WikiLink" href="./+?action=edit&amp;redlink=1" title="+" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"simple","a":{"href":"./+"},"sa":{"href":"+"}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["+"]}}'>+</a> <span class="mw-default-size" typeof="mw:Error mw:File" data-parsoid='{"optList":[{"ck":"bogus","ak":"foo"},{"ck":"caption","ak":"[[bar]]"}]}' data-mw='{"caption":"&lt;a rel=\"mw:WikiLink\" href=\"./Bar\" title=\"Bar\" data-parsoid=&apos;{\"stx\":\"simple\",\"a\":{\"href\":\"./Bar\"},\"sa\":{\"href\":\"bar\"},\"dsr\":[94,101,2,2]}&apos;>bar&lt;/a>","errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./Special:FilePath/%25+abc9"><span class="mw-file-element mw-broken-media" resource="./File:%25+abc9" data-parsoid='{"a":{"resource":"./File:%25+abc9"},"sa":{"resource":"File:%+abc%39"}}'>bar</span></a></span>
+<a rel="mw:WikiLink" href="./%25?action=edit&amp;redlink=1" title="%" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"simple","a":{"href":"./%25"},"sa":{"href":"%"}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["%"]}}'>%</a> <a rel="mw:WikiLink" href="./+?action=edit&amp;redlink=1" title="+" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"simple","a":{"href":"./+"},"sa":{"href":"+"}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["+"]}}'>+</a> <span class="mw-default-size" typeof="mw:Error mw:File" data-parsoid='{"optList":[{"ck":"bogus","ak":"foo"},{"ck":"caption","ak":"[[bar]]"}]}' data-mw='{"caption":"&lt;a rel=\"mw:WikiLink\" href=\"./Bar\" title=\"Bar\" data-parsoid=&apos;{\"stx\":\"simple\",\"a\":{\"href\":\"./Bar\"},\"sa\":{\"href\":\"bar\"},\"dsr\":[94,101,2,2]}&apos;>bar&lt;/a>","errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./Special:FilePath/%25+abc9" class="new" title="File:%+abc9"><span class="mw-file-element mw-broken-media" resource="./File:%25+abc9" data-parsoid='{"a":{"resource":"./File:%25+abc9"},"sa":{"resource":"File:%+abc%39"}}'>bar</span></a></span>
 <a rel="mw:WikiLink" href="./3E?action=edit&amp;redlink=1" title="3E" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"simple","a":{"href":"./3E"},"sa":{"href":"%33%45"}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["3E"]}}'>3E</a> <a rel="mw:WikiLink" href="./3E+?action=edit&amp;redlink=1" title="3E+" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"simple","a":{"href":"./3E+"},"sa":{"href":"%33%45+"}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["3E+"]}}'>3E+</a></p>
 !! end
 
@@ -13656,7 +13698,7 @@ Accept empty attributes in th-cells
 </th></tr></tbody></table>
 !! end
 
-!!test
+!! test
 Empty table rows go away
 !! wikitext
 {|
@@ -13665,7 +13707,7 @@ Empty table rows go away
 |- class="foo"
 |-
 |}
-!! html
+!! html/php
 <table>
 <tbody><tr>
 <td>Hello
@@ -13674,6 +13716,12 @@ Empty table rows go away
 </td></tr>
 
 </tbody></table>
+!! html/parsoid
+<table>
+<tbody><tr><td>Hello</td>
+<td>there</td></tr>
+<tr class="foo mw-empty-elt"></tr>
+<tr class="mw-empty-elt"></tr>
 !! end
 
 ###
@@ -13694,7 +13742,7 @@ RT-ed inter-element separators should be valid separators
 </table>
 !! html/parsoid
 <table>
-<tbody><tr class='mw-empty-elt' data-parsoid='{"startTagSrc":"|-","a":{"[[foo]]":null},"sa":{"[[foo]]":""}}'></tr>
+<tbody class='mw-empty-elt'><tr class='mw-empty-elt' data-parsoid='{"startTagSrc":"|-","a":{"[[foo]]":null},"sa":{"[[foo]]":""}}'></tr>
 </tbody></table>
 !!end
 
@@ -13862,7 +13910,7 @@ Empty TR followed by mixed-ws-comment line should RT correctly
 </table>
 !! html/parsoid
 <table>
-<tbody>
+<tbody class='mw-empty-elt'>
 <tr class='mw-empty-elt'></tr>
  <!--c-->
 <tr class="mw-empty-elt">
@@ -16818,6 +16866,32 @@ wgFragmentMode=[ "html5" ]
 !! html/parsoid
 <p><span id="[foo]" about="#mwt2" typeof="mw:ExpandedAttrs" data-parsoid='{"stx":"html","a":{"id":"[foo]"},"sa":{"id":"{{anchorencode:[foo]}}"}}' data-mw='{"attribs":[[{"txt":"id"},{"html":"&lt;span typeof=\"mw:Transclusion mw:Entity\" about=\"#mwt1\" data-parsoid=&apos;{\"srcContent\":\"[\",\"dsr\":[10,32,null,null],\"pi\":[[]]}&apos; data-mw=&apos;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"anchorencode:[foo]\",\"function\":\"anchorencode\"},\"params\":{},\"i\":0}}]}&apos;>[&lt;/span>&lt;span about=\"#mwt1\" data-parsoid=\"{}\">foo&lt;/span>&lt;span typeof=\"mw:Entity\" about=\"#mwt1\" data-parsoid=&apos;{\"src\":\"&amp;amp;#x5D;\",\"srcContent\":\"]\"}&apos;>]&lt;/span>"}]]}'></span><a typeof="mw:ExpandedAttrs" about="#mwt4" rel="mw:WikiLink" href="./Parser_test#[foo]" class="mw-selflink-fragment" data-parsoid='{"stx":"simple","a":{"href":"./Parser_test#[foo]"},"sa":{"href":"#{{anchorencode:[foo]}}"}}' data-mw='{"attribs":[[{"txt":"href"},{"html":"#&lt;span typeof=\"mw:Transclusion mw:Entity\" about=\"#mwt3\" data-parsoid=&apos;{\"srcContent\":\"[\",\"dsr\":[44,66,null,null],\"pi\":[[]]}&apos; data-mw=&apos;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"anchorencode:[foo]\",\"function\":\"anchorencode\"},\"params\":{},\"i\":0}}]}&apos;>[&lt;/span>&lt;span about=\"#mwt3\" data-parsoid=\"{}\">foo&lt;/span>&lt;span typeof=\"mw:Entity\" about=\"#mwt3\" data-parsoid=&apos;{\"src\":\"&amp;amp;#x5D;\",\"srcContent\":\"]\"}&apos;>]&lt;/span>"}]]}'>#[foo]</a></p>
 !! end
+
+
+
+!! test
+T222419: Section numbering after unclosed template/parser function
+!! options
+notoc
+parsoid={
+  "modes": ["wt2html"],
+  "wrapSections": true
+}
+!! wikitext
+== Foo ==
+{{subst: a surname
+== Bar ==
+!! html/php
+<div class="mw-heading mw-heading2"><h2 id="Foo">Foo</h2><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Foo">edit</a><span class="mw-editsection-bracket">]</span></span></div>
+<p>{{subst: a surname
+</p>
+<div class="mw-heading mw-heading2"><h2 id="Bar">Bar</h2><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: Bar">edit</a><span class="mw-editsection-bracket">]</span></span></div>
+!! html/parsoid
+<section data-mw-section-id="0"></section><section data-mw-section-id="1"><h2 id="Foo">Foo</h2>
+<p>{{subst: a surname</p>
+</section><section data-mw-section-id="2"><h2 id="Bar">Bar</h2></section>
+!! end
+
 ##########################################################################
 # Tests demonstrating white-space insensitivity in input wikitext
 # for wikitext headings, wikitext list items, and wikitext table captions,
@@ -17178,6 +17252,22 @@ Extension tag with embedded html
 <p><span typeof="mw:Extension/embedtag" about="#mwt2" data-mw='{"name":"embedtag","attrs":{},"body":{"html":"Content with a &lt;a rel=\"mw:WikiLink\" href=\"./Broken_link?action=edit&amp;redlink=1\" title=\"Broken link\" class=\"new\" typeof=\"mw:LocalizedAttrs\" data-parsoid=&apos;{\"stx\":\"simple\",\"a\":{\"href\":\"./Broken_link\"},\"sa\":{\"href\":\"broken link\"}}&apos; data-mw-i18n=&apos;{\"title\":{\"lang\":\"x-page\",\"key\":\"red-link-title\",\"params\":[\"Broken link\"]}}&apos;>broken link&lt;/a>."}}'></span></p>
 !! end
 
+# standalone/integrated have slightly different wt2html output based on template-expansion & tokenization differences
+!! test
+Extension tag with td-like wikitext
+!! options
+parsoid=wt2html,wt2wt
+!! wikitext
+<embedtag>
+{{1x|
+{{!}} foo {{!}}
+}}
+| bar |
+</embedtag>
+!! html/parsoid+integrated
+<p><span typeof="mw:Extension/embedtag" about="#mwt2" data-mw='{"name":"embedtag","attrs":{},"body":{"html":"\n&lt;span about=\"#mwt1\" typeof=\"mw:Transclusion\" data-mw=&apos;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"1x\",\"href\":\"./Template:1x\"},\"params\":{\"1\":{\"wt\":\"\\n{{!}} foo {{!}}\\n\"}},\"i\":0}}]}&apos;>\n| foo |\n&lt;/span>\n| bar |\n"}}'></span></p>
+!! end
+
 !! test
 Cloned formatting element with extension tag that unpacks itself in attribute name position
 !! options
@@ -17451,4 +17541,158 @@ title=MediaWiki:Common.css
 !! html
 <p>javascript
 </p>
+!! end
+
+!! test
+1. T400845: Dom/Handlers/CleanUp.php: Added mw:DisplaySpace spaces removal
+!! options
+parsoid=wt2html
+!! wikitext
+{|
+|%
+|&nbsp;%
+| %
+| &nbsp;%
+|&nbsp; %
+|  %
+|   %
+|}
+
+*%
+*&nbsp;%
+* %
+* &nbsp;%
+*&nbsp; %
+*  %
+*   %
+
+   % pre 1
+
+''' % BOLD '''
+!! html/php
+<table>
+<tbody><tr>
+<td>%
+</td>
+<td>&#160;%
+</td>
+<td>%
+</td>
+<td>&#160;%
+</td>
+<td>&#160;&#160;%
+</td>
+<td>%
+</td>
+<td>%
+</td></tr></tbody></table>
+<ul><li>%</li>
+<li>&#160;%</li>
+<li>%</li>
+<li>&#160;%</li>
+<li>&#160;&#160;%</li>
+<li>%</li>
+<li>%</li></ul>
+<pre> &#160;% pre 1
+</pre>
+<p><b>&#160;% BOLD </b>
+</p>
+!! html/parsoid
+<table>
+<tbody><tr><td>%</td>
+<td><span typeof="mw:Entity" data-parsoid='{"src":"&amp;nbsp;","srcContent":" "}'> </span>%</td>
+<td data-parsoid='{"dsr":[15,18,1,0,1,0]}'>%</td>
+<td data-parsoid='{"dsr":[19,28,1,0,1,0]}'><span typeof="mw:Entity" data-parsoid='{"src":"&amp;nbsp;","srcContent":" "}'> </span>%</td>
+<td><span typeof="mw:Entity" data-parsoid='{"src":"&amp;nbsp;","srcContent":" "}'> </span><span typeof="mw:DisplaySpace"> </span>%</td>
+<td data-parsoid='{"dsr":[39,43,1,0,2,0]}'>%</td>
+<td data-parsoid='{"dsr":[44,49,1,0,3,0]}'>%</td></tr>
+</tbody></table>
+
+<ul><li data-parsoid='{}'>%</li>
+<li data-parsoid='{}'><span typeof="mw:Entity" data-parsoid='{"src":"&amp;nbsp;","srcContent":" "}'> </span>%</li>
+<li data-parsoid='{"dsr":[66,69,1,0,1,0]}'>%</li>
+<li data-parsoid='{"dsr":[70,79,1,0,1,0]}'><span typeof="mw:Entity" data-parsoid='{"src":"&amp;nbsp;","srcContent":" "}'> </span>%</li>
+<li data-parsoid='{}'><span typeof="mw:Entity" data-parsoid='{"src":"&amp;nbsp;","srcContent":" "}'> </span><span typeof="mw:DisplaySpace"> </span>%</li>
+<li data-parsoid='{"dsr":[90,94,1,0,2,0]}'>%</li>
+<li data-parsoid='{"dsr":[95,100,1,0,3,0]}'>%</li></ul>
+
+<pre>  % pre 1</pre>
+
+<p><b><span typeof="mw:DisplaySpace"> </span>% BOLD </b></p>
+!! end
+
+!! test
+2. T400845: Dom/Handlers/CleanUp.php: Added mw:DisplaySpace spaces removal
+!! wikitext
+{|
+|%
+|&nbsp;%
+|%
+|&nbsp;%
+|&nbsp; %
+|%
+|%
+|}
+
+*%
+*&nbsp;%
+*%
+*&nbsp;%
+*&nbsp; %
+*%
+*%
+
+   % pre 1
+
+''' % BOLD '''
+!! html/php
+<table>
+<tbody><tr>
+<td>%
+</td>
+<td>&#160;%
+</td>
+<td>%
+</td>
+<td>&#160;%
+</td>
+<td>&#160;&#160;%
+</td>
+<td>%
+</td>
+<td>%
+</td></tr></tbody></table>
+<ul><li>%</li>
+<li>&#160;%</li>
+<li>%</li>
+<li>&#160;%</li>
+<li>&#160;&#160;%</li>
+<li>%</li>
+<li>%</li></ul>
+<pre> &#160;% pre 1
+</pre>
+<p><b>&#160;% BOLD </b>
+</p>
+!! html/parsoid
+<table>
+<tbody><tr><td>%</td>
+<td><span typeof="mw:Entity" data-parsoid='{"src":"&amp;nbsp;","srcContent":" "}'> </span>%</td>
+<td data-parsoid='{"dsr":[15,18,1,0,1,0]}'>%</td>
+<td data-parsoid='{"dsr":[19,28,1,0,1,0]}'><span typeof="mw:Entity" data-parsoid='{"src":"&amp;nbsp;","srcContent":" "}'> </span>%</td>
+<td><span typeof="mw:Entity" data-parsoid='{"src":"&amp;nbsp;","srcContent":" "}'> </span><span typeof="mw:DisplaySpace"> </span>%</td>
+<td data-parsoid='{"dsr":[39,43,1,0,2,0]}'>%</td>
+<td data-parsoid='{"dsr":[44,49,1,0,3,0]}'>%</td></tr>
+</tbody></table>
+
+<ul><li data-parsoid='{}'>%</li>
+<li data-parsoid='{}'><span typeof="mw:Entity" data-parsoid='{"src":"&amp;nbsp;","srcContent":" "}'> </span>%</li>
+<li data-parsoid='{"dsr":[66,69,1,0,1,0]}'>%</li>
+<li data-parsoid='{"dsr":[70,79,1,0,1,0]}'><span typeof="mw:Entity" data-parsoid='{"src":"&amp;nbsp;","srcContent":" "}'> </span>%</li>
+<li data-parsoid='{}'><span typeof="mw:Entity" data-parsoid='{"src":"&amp;nbsp;","srcContent":" "}'> </span><span typeof="mw:DisplaySpace"> </span>%</li>
+<li data-parsoid='{"dsr":[90,94,1,0,2,0]}'>%</li>
+<li data-parsoid='{"dsr":[95,100,1,0,3,0]}'>%</li></ul>
+
+<pre>  % pre 1</pre>
+
+<p><b><span typeof="mw:DisplaySpace"> </span>% BOLD </b></p>
 !! end
