@@ -10,11 +10,14 @@
 			"Rachmat04",
 			"Rex",
 			"Veracious",
-			"WongKentir"
+			"WongKentir",
+			"Hidayatsrf"
 		]
 	},
 	"apihelp-main-param-action": "Tindakan manakah yang akan dilakukan.",
 	"apihelp-main-param-format": "Format keluaran.",
+	"apihelp-main-param-assertuser": "Verifikasi bahwa pengguna saat ini adalah pengguna yang disebutkan namanya.",
+	"apihelp-main-paramvalue-errorformat-wikitext": "Wikiteks yang belum diurai.",
 	"apihelp-main-paramvalue-errorformat-raw": "Kunci pesan dan parameter.",
 	"apihelp-main-paramvalue-errorformat-none": "Tidak ada keluaran teks, hanya kode galat.",
 	"apihelp-block-summary": "Blokir pengguna.",
@@ -28,6 +31,7 @@
 	"apihelp-block-param-noemail": "Cegah pengguna mengirimkan surel melalui wiki. (Membutuhkan hak <code>blockemail</code>).",
 	"apihelp-block-param-reblock": "Jika pengguna tersebut sudah diblokir, atur ulang setelah pemblokirannya.",
 	"apihelp-block-example-ip-simple": "Blokir alamat IP <kbd>192.0.2.5</kbd> selama tiga hari dengan sebuah alasan.",
+	"apihelp-block-example-user-complex": "Blokir pengguna <kbd>Vandal</kbd> tanpa batas waktu dengan alasan, dan cegah pembuatan akun baru dan pengiriman email.",
 	"apihelp-changecontentmodel-summary": "Ubah model konten halaman",
 	"apihelp-checktoken-param-type": "Jenis token yang sedang diuji.",
 	"apihelp-checktoken-param-token": "Token untuk ujicoba.",

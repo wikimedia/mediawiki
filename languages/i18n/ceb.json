@@ -17,7 +17,8 @@
 			"Spilltea",
 			"לערי ריינהארט",
 			"아라",
-			"Filipinayzd"
+			"Filipinayzd",
+			"NguoiDungKhongDinhDanh"
 		]
 	},
 	"sunday": "Dominggo",
@@ -795,7 +796,7 @@
 	"watchlisttools-view": "Tan-awa ang may kalabotan nga mga pag-usab",
 	"watchlisttools-edit": "Tan-awa ug usba ang mga gibantayan",
 	"watchlisttools-raw": "Usba ang hilaw nga talaan sa gibantayan",
-	"signature": "[[{{ns:user}}: $1 | $2 ]] ([[{{ns:user_talk}}: $1 |talk]])",
+	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|talk]])",
 	"specialpages": "Espesyal nga mga panid",
 	"tag-filter": "[[Special:Tags|Tag]] nga pilter:",
 	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Tag|Mga tag}}]]: $2",

@@ -2039,7 +2039,7 @@
 	"wantedpages-summary": "以下為最多連結的不存在頁面，除只有重新導向連結的頁面外。若要取得不存在的重新導向頁面，請至[[{{#special:BrokenRedirects}}|損壞的重新導向清單]]。",
 	"wantedpages-badtitle": "結果集合中的標題無效：$1",
 	"wantedfiles": "需要的檔案",
-	"wantedfiletext-cat": "下列檔案被時用，但檔案不存在。 外部儲存庫的檔案儘管存在，但此清單仍會列出。 這類誤報的項目會以 <del>刪除線</del> 標示。 另外，頁面內嵌檔案不存在會於清單 [[:$1]] 中顯示。",
+	"wantedfiletext-cat": "下列檔案被使用，但檔案不存在。 外部儲存庫的檔案儘管存在，但此清單仍會列出。 這類誤報的項目會以 <del>刪除線</del> 標示。 另外，頁面內嵌檔案不存在會於清單 [[:$1]] 中顯示。",
 	"wantedfiletext-cat-noforeign": "下列檔案已被使用但不存在。 除此之外，頁面已內嵌但不存在的檔案列於 [[:$1]]。",
 	"wantedfiletext-nocat": "下列檔案被時用，但檔案不存在。 外部儲存庫的檔案儘管存在，但此清單仍會列出。 這類誤報的項目會以 <del>刪除線</del> 標示。",
 	"wantedfiletext-nocat-noforeign": "下列檔案已被使用但不存在。",
