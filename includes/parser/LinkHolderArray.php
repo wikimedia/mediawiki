@@ -45,23 +45,13 @@ class LinkHolderArray {
 	private $interwikis = [];
 	/** @var int */
 	private $size = 0;
-	/** @var Parser */
-	private $parent;
-	/** @var ILanguageConverter */
-	private $languageConverter;
-	/** @var HookRunner */
-	private $hookRunner;
+	private HookRunner $hookRunner;
 
-	/**
-	 * @param Parser $parent
-	 * @param ILanguageConverter $languageConverter
-	 * @param HookContainer $hookContainer
-	 */
-	public function __construct( Parser $parent, ILanguageConverter $languageConverter,
-		HookContainer $hookContainer
+	public function __construct(
+		private Parser $parent,
+		private ILanguageConverter $languageConverter,
+		HookContainer $hookContainer,
 	) {
-		$this->parent = $parent;
-		$this->languageConverter = $languageConverter;
 		$this->hookRunner = new HookRunner( $hookContainer );
 	}
 

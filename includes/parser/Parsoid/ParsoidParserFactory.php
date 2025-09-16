@@ -25,31 +25,13 @@ use Wikimedia\Parsoid\Parsoid;
  * @note Eventually this may extend \ParserFactory
  */
 class ParsoidParserFactory {
-	private SiteConfig $siteConfig;
-	private DataAccess $dataAccess;
-	private PageConfigFactory $pageConfigFactory;
-	private LanguageConverterFactory $languageConverterFactory;
-	private ParserFactory $legacyParserFactory;
-
-	/**
-	 * @param SiteConfig $siteConfig
-	 * @param DataAccess $dataAccess
-	 * @param PageConfigFactory $pageConfigFactory
-	 * @param LanguageConverterFactory $languageConverterFactory
-	 * @param ParserFactory $legacyParserFactory
-	 */
 	public function __construct(
-		SiteConfig $siteConfig,
-		DataAccess $dataAccess,
-		PageConfigFactory $pageConfigFactory,
-		LanguageConverterFactory $languageConverterFactory,
-		ParserFactory $legacyParserFactory
+		private readonly SiteConfig $siteConfig,
+		private readonly DataAccess $dataAccess,
+		private readonly PageConfigFactory $pageConfigFactory,
+		private readonly LanguageConverterFactory $languageConverterFactory,
+		private readonly ParserFactory $legacyParserFactory,
 	) {
-		$this->siteConfig = $siteConfig;
-		$this->dataAccess = $dataAccess;
-		$this->pageConfigFactory = $pageConfigFactory;
-		$this->languageConverterFactory = $languageConverterFactory;
-		$this->legacyParserFactory = $legacyParserFactory;
 	}
 
 	/**

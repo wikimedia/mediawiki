@@ -38,35 +38,14 @@ use Wikimedia\Parsoid\Config\PageContent as IPageContent;
  * @internal
  */
 class PageConfig extends IPageConfig {
-	private ParserOptions $parserOptions;
-	private SlotRoleHandler $slotRoleHandler;
-	private Title $title;
-	private ?RevisionRecord $revision = null;
-	private Bcp47Code $pageLanguage;
-	private string $pageLanguageDir;
-
-	/**
-	 * @param ParserOptions $parserOptions
-	 * @param SlotRoleHandler $slotRoleHandler
-	 * @param Title $title Title being parsed
-	 * @param ?RevisionRecord $revision
-	 * @param Bcp47Code $pageLanguage
-	 * @param string $pageLanguageDir
-	 */
 	public function __construct(
-		ParserOptions $parserOptions,
-		SlotRoleHandler $slotRoleHandler,
-		Title $title,
-		?RevisionRecord $revision,
-		Bcp47Code $pageLanguage,
-		string $pageLanguageDir
+		private readonly ParserOptions $parserOptions,
+		private readonly SlotRoleHandler $slotRoleHandler,
+		private readonly Title $title,
+		private readonly ?RevisionRecord $revision,
+		private readonly Bcp47Code $pageLanguage,
+		private readonly string $pageLanguageDir,
 	) {
-		$this->parserOptions = $parserOptions;
-		$this->slotRoleHandler = $slotRoleHandler;
-		$this->title = $title;
-		$this->revision = $revision;
-		$this->pageLanguage = $pageLanguage;
-		$this->pageLanguageDir = $pageLanguageDir;
 	}
 
 	public function getContentModel(): string {

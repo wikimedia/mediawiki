@@ -32,10 +32,7 @@ use Wikimedia\Parsoid\Config\SiteConfig;
  * transition is complete.  Use MediaWikiServices instead.
  */
 class ParsoidServices {
-	private MediaWikiServices $services;
-
-	public function __construct( MediaWikiServices $services ) {
-		$this->services = $services;
+	public function __construct( private readonly MediaWikiServices $services ) {
 	}
 
 	/**

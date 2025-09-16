@@ -46,60 +46,6 @@ use Wikimedia\ObjectCache\WANObjectCache;
  * @since 1.32
  */
 class ParserFactory {
-	/** @var ServiceOptions */
-	private $svcOptions;
-
-	/** @var MagicWordFactory */
-	private $magicWordFactory;
-
-	/** @var Language */
-	private $contLang;
-
-	/** @var UrlUtils */
-	private $urlUtils;
-
-	/** @var SpecialPageFactory */
-	private $specialPageFactory;
-
-	/** @var LinkRendererFactory */
-	private $linkRendererFactory;
-
-	/** @var NamespaceInfo */
-	private $nsInfo;
-
-	/** @var LoggerInterface */
-	private $logger;
-
-	/** @var BadFileLookup */
-	private $badFileLookup;
-
-	/** @var LanguageConverterFactory */
-	private $languageConverterFactory;
-
-	/** @var LanguageNameUtils */
-	private $languageNameUtils;
-
-	/** @var UserOptionsLookup */
-	private $userOptionsLookup;
-
-	/** @var UserFactory */
-	private $userFactory;
-
-	/** @var TitleFormatter */
-	private $titleFormatter;
-
-	/** @var HttpRequestFactory */
-	private $httpRequestFactory;
-
-	/** @var TrackingCategories */
-	private $trackingCategories;
-
-	/** @var SignatureValidatorFactory */
-	private $signatureValidatorFactory;
-
-	/** @var UserNameUtils */
-	private $userNameUtils;
-
 	/**
 	 * Track calls to Parser constructor to aid in deprecation of direct
 	 * Parser invocation.  This is temporary: it will be removed once the
@@ -110,91 +56,39 @@ class ParserFactory {
 	 */
 	public static $inParserFactory = 0;
 
-	/** @var HookContainer */
-	private $hookContainer;
-
-	/** @var TidyDriverBase */
-	private $tidy;
-
-	/** @var WANObjectCache */
-	private $wanCache;
-
 	/** @var Parser|null */
 	private $mainInstance;
 
 	/**
-	 * @param ServiceOptions $svcOptions
-	 * @param MagicWordFactory $magicWordFactory
-	 * @param Language $contLang Content language
-	 * @param UrlUtils $urlUtils
-	 * @param SpecialPageFactory $spFactory
-	 * @param LinkRendererFactory $linkRendererFactory
-	 * @param NamespaceInfo $nsInfo
-	 * @param LoggerInterface $logger
-	 * @param BadFileLookup $badFileLookup
-	 * @param LanguageConverterFactory $languageConverterFactory
-	 * @param LanguageNameUtils $languageNameUtils
-	 * @param HookContainer $hookContainer
-	 * @param TidyDriverBase $tidy
-	 * @param WANObjectCache $wanCache
-	 * @param UserOptionsLookup $userOptionsLookup
-	 * @param UserFactory $userFactory
-	 * @param TitleFormatter $titleFormatter
-	 * @param HttpRequestFactory $httpRequestFactory
-	 * @param TrackingCategories $trackingCategories
-	 * @param SignatureValidatorFactory $signatureValidatorFactory
-	 * @param UserNameUtils $userNameUtils
 	 * @since 1.32
 	 * @internal
 	 */
 	public function __construct(
-		ServiceOptions $svcOptions,
-		MagicWordFactory $magicWordFactory,
-		Language $contLang,
-		UrlUtils $urlUtils,
-		SpecialPageFactory $spFactory,
-		LinkRendererFactory $linkRendererFactory,
-		NamespaceInfo $nsInfo,
-		LoggerInterface $logger,
-		BadFileLookup $badFileLookup,
-		LanguageConverterFactory $languageConverterFactory,
-		LanguageNameUtils $languageNameUtils,
-		HookContainer $hookContainer,
-		TidyDriverBase $tidy,
-		WANObjectCache $wanCache,
-		UserOptionsLookup $userOptionsLookup,
-		UserFactory $userFactory,
-		TitleFormatter $titleFormatter,
-		HttpRequestFactory $httpRequestFactory,
-		TrackingCategories $trackingCategories,
-		SignatureValidatorFactory $signatureValidatorFactory,
-		UserNameUtils $userNameUtils
+		private readonly ServiceOptions $svcOptions,
+		private readonly MagicWordFactory $magicWordFactory,
+		private readonly Language $contLang,
+		private readonly UrlUtils $urlUtils,
+		private readonly SpecialPageFactory $specialPageFactory,
+		private readonly LinkRendererFactory $linkRendererFactory,
+		private readonly NamespaceInfo $nsInfo,
+		private readonly LoggerInterface $logger,
+		private readonly BadFileLookup $badFileLookup,
+		private readonly LanguageConverterFactory $languageConverterFactory,
+		private readonly LanguageNameUtils $languageNameUtils,
+		private readonly HookContainer $hookContainer,
+		private readonly TidyDriverBase $tidy,
+		private readonly WANObjectCache $wanCache,
+		private readonly UserOptionsLookup $userOptionsLookup,
+		private readonly UserFactory $userFactory,
+		private readonly TitleFormatter $titleFormatter,
+		private readonly HttpRequestFactory $httpRequestFactory,
+		private readonly TrackingCategories $trackingCategories,
+		private readonly SignatureValidatorFactory $signatureValidatorFactory,
+		private readonly UserNameUtils $userNameUtils,
 	) {
 		$svcOptions->assertRequiredOptions( Parser::CONSTRUCTOR_OPTIONS );
 
 		wfDebug( __CLASS__ . ": using default preprocessor" );
-
-		$this->svcOptions = $svcOptions;
-		$this->magicWordFactory = $magicWordFactory;
-		$this->contLang = $contLang;
-		$this->urlUtils = $urlUtils;
-		$this->specialPageFactory = $spFactory;
-		$this->linkRendererFactory = $linkRendererFactory;
-		$this->nsInfo = $nsInfo;
-		$this->logger = $logger;
-		$this->badFileLookup = $badFileLookup;
-		$this->languageConverterFactory = $languageConverterFactory;
-		$this->languageNameUtils = $languageNameUtils;
-		$this->hookContainer = $hookContainer;
-		$this->tidy = $tidy;
-		$this->wanCache = $wanCache;
-		$this->userOptionsLookup = $userOptionsLookup;
-		$this->userFactory = $userFactory;
-		$this->titleFormatter = $titleFormatter;
-		$this->httpRequestFactory = $httpRequestFactory;
-		$this->trackingCategories = $trackingCategories;
-		$this->signatureValidatorFactory = $signatureValidatorFactory;
-		$this->userNameUtils = $userNameUtils;
 	}
 
 	/**

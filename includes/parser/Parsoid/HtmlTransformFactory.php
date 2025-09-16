@@ -17,43 +17,16 @@ use Wikimedia\Parsoid\Parsoid;
  * @unstable should be marked stable before 1.40 release
  */
 class HtmlTransformFactory {
-	private Parsoid $parsoid;
-	private array $parsoidSettings;
-	private PageConfigFactory $configFactory;
-	private IContentHandlerFactory $contentHandlerFactory;
-	private SiteConfig $siteConfig;
-	private TitleFactory $titleFactory;
-	private LanguageConverterFactory $languageConverterFactory;
-	private LanguageFactory $languageFactory;
-
-	/**
-	 * @param Parsoid $parsoid
-	 * @param array $parsoidSettings
-	 * @param PageConfigFactory $configFactory
-	 * @param IContentHandlerFactory $contentHandlerFactory
-	 * @param SiteConfig $siteConfig
-	 * @param TitleFactory $titleFactory
-	 * @param LanguageConverterFactory $languageConverterFactory
-	 * @param LanguageFactory $languageFactory
-	 */
 	public function __construct(
-		Parsoid $parsoid,
-		array $parsoidSettings,
-		PageConfigFactory $configFactory,
-		IContentHandlerFactory $contentHandlerFactory,
-		SiteConfig $siteConfig,
-		TitleFactory $titleFactory,
-		LanguageConverterFactory $languageConverterFactory,
-		LanguageFactory $languageFactory
+		private readonly Parsoid $parsoid,
+		private readonly array $parsoidSettings,
+		private readonly PageConfigFactory $configFactory,
+		private readonly IContentHandlerFactory $contentHandlerFactory,
+		private readonly SiteConfig $siteConfig,
+		private readonly TitleFactory $titleFactory,
+		private readonly LanguageConverterFactory $languageConverterFactory,
+		private readonly LanguageFactory $languageFactory,
 	) {
-		$this->parsoid = $parsoid;
-		$this->parsoidSettings = $parsoidSettings;
-		$this->configFactory = $configFactory;
-		$this->contentHandlerFactory = $contentHandlerFactory;
-		$this->siteConfig = $siteConfig;
-		$this->titleFactory = $titleFactory;
-		$this->languageConverterFactory = $languageConverterFactory;
-		$this->languageFactory = $languageFactory;
 	}
 
 	/**

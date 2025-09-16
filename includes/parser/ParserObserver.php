@@ -42,15 +42,9 @@ use Wikimedia\MapCacheLRU\MapCacheLRU;
  * @package MediaWiki\Parser
  */
 class ParserObserver {
-	/**
-	 * @var LoggerInterface
-	 */
-	private $logger;
+	private readonly MapCacheLRU $previousParseStackTraces;
 
-	private MapCacheLRU $previousParseStackTraces;
-
-	public function __construct( LoggerInterface $logger ) {
-		$this->logger = $logger;
+	public function __construct( private readonly LoggerInterface $logger ) {
 		$this->previousParseStackTraces = new MapCacheLRU( 10 );
 	}
 

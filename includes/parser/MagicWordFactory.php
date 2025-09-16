@@ -151,14 +151,15 @@ class MagicWordFactory {
 	private array $mObjects = [];
 	private ?MagicWordArray $mDoubleUnderscoreArray = null;
 
-	private Language $contLang;
-	private HookRunner $hookRunner;
+	private readonly HookRunner $hookRunner;
 
 	/**
 	 * @internal For ServiceWiring only
 	 */
-	public function __construct( Language $contentLanguage, HookContainer $hookContainer ) {
-		$this->contLang = $contentLanguage;
+	public function __construct(
+		private readonly Language $contLang,
+		HookContainer $hookContainer,
+	) {
 		$this->hookRunner = new HookRunner( $hookContainer );
 	}
 

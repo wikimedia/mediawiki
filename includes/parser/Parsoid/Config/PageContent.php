@@ -30,10 +30,7 @@ use Wikimedia\Parsoid\Config\PageContent as IPageContent;
  * @since 1.39
  */
 class PageContent extends IPageContent {
-	private RevisionRecord $rev;
-
-	public function __construct( RevisionRecord $rev ) {
-		$this->rev = $rev;
+	public function __construct( private readonly RevisionRecord $rev ) {
 	}
 
 	/** @inheritDoc */

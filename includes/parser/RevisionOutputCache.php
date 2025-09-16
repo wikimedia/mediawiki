@@ -46,9 +46,6 @@ class RevisionOutputCache {
 	/** @var string The name of this cache. Used as a root of the cache key. */
 	private $name;
 
-	/** @var WANObjectCache */
-	private $cache;
-
 	/**
 	 * Anything cached prior to this is invalidated
 	 *
@@ -63,17 +60,6 @@ class RevisionOutputCache {
 	 */
 	private $cacheExpiry;
 
-	/** @var JsonCodec */
-	private $jsonCodec;
-
-	/** @var StatsFactory */
-	private $stats;
-
-	/** @var LoggerInterface */
-	private $logger;
-
-	private GlobalIdGenerator $globalIdGenerator;
-
 	/**
 	 * @param string $name
 	 * @param WANObjectCache $cache
@@ -86,22 +72,17 @@ class RevisionOutputCache {
 	 */
 	public function __construct(
 		string $name,
-		WANObjectCache $cache,
+		private readonly WANObjectCache $cache,
 		int $cacheExpiry,
 		string $cacheEpoch,
-		JsonCodec $jsonCodec,
-		StatsFactory $stats,
-		LoggerInterface $logger,
-		GlobalIdGenerator $globalIdGenerator
+		private readonly JsonCodec $jsonCodec,
+		private readonly StatsFactory $stats,
+		private readonly LoggerInterface $logger,
+		private readonly GlobalIdGenerator $globalIdGenerator,
 	) {
 		$this->name = $name;
-		$this->cache = $cache;
 		$this->cacheExpiry = $cacheExpiry;
 		$this->cacheEpoch = $cacheEpoch;
-		$this->jsonCodec = $jsonCodec;
-		$this->stats = $stats;
-		$this->logger = $logger;
-		$this->globalIdGenerator = $globalIdGenerator;
 	}
 
 	/**

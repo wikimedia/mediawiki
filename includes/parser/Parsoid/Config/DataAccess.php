@@ -62,20 +62,11 @@ class DataAccess extends IDataAccess {
 		MainConfigNames::SVGMaxSize,
 	];
 
-	private RepoGroup $repoGroup;
-	private BadFileLookup $badFileLookup;
-	private HookContainer $hookContainer;
-	private HookRunner $hookRunner;
-	private ContentTransformer $contentTransformer;
-	private TrackingCategories $trackingCategories;
-	private ParserFactory $parserFactory;
+	private readonly HookRunner $hookRunner;
 	/** Lazy-created via self::prepareParser() */
 	private ?Parser $parser = null;
 	private PPFrame $ppFrame;
 	private ?PageConfig $previousPageConfig = null;
-	private ServiceOptions $config;
-	private ReadOnlyMode $readOnlyMode;
-	private LinkBatchFactory $linkBatchFactory;
 	private int $markerIndex = 0;
 
 	/**
@@ -92,29 +83,19 @@ class DataAccess extends IDataAccess {
 	 * @param LinkBatchFactory $linkBatchFactory
 	 */
 	public function __construct(
-		ServiceOptions $config,
-		RepoGroup $repoGroup,
-		BadFileLookup $badFileLookup,
-		HookContainer $hookContainer,
-		ContentTransformer $contentTransformer,
-		TrackingCategories $trackingCategories,
-		ReadOnlyMode $readOnlyMode,
-		ParserFactory $parserFactory,
-		LinkBatchFactory $linkBatchFactory
+		private readonly ServiceOptions $config,
+		private readonly RepoGroup $repoGroup,
+		private readonly BadFileLookup $badFileLookup,
+		private readonly HookContainer $hookContainer,
+		private readonly ContentTransformer $contentTransformer,
+		private readonly TrackingCategories $trackingCategories,
+		private readonly ReadOnlyMode $readOnlyMode,
+		private readonly ParserFactory $parserFactory,
+		private readonly LinkBatchFactory $linkBatchFactory,
 	) {
 		$config->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
-		$this->config = $config;
-		$this->repoGroup = $repoGroup;
-		$this->badFileLookup = $badFileLookup;
-		$this->hookContainer = $hookContainer;
-		$this->contentTransformer = $contentTransformer;
-		$this->trackingCategories = $trackingCategories;
-		$this->readOnlyMode = $readOnlyMode;
-		$this->linkBatchFactory = $linkBatchFactory;
-
 		$this->hookRunner = new HookRunner( $hookContainer );
 
-		$this->parserFactory = $parserFactory;
 		$this->previousPageConfig = null; // ensure we initialize parser options
 	}
 

@@ -46,40 +46,11 @@ class ParserCacheFactory {
 	/** @var string name of RevisionOutputCache for the default parser */
 	public const DEFAULT_RCACHE_NAME = 'rcache';
 
-	/** @var BagOStuff */
-	private $parserCacheBackend;
-
-	/** @var WANObjectCache */
-	private $revisionOutputCacheBackend;
-
-	/** @var HookContainer */
-	private $hookContainer;
-
-	/** @var JsonCodec */
-	private $jsonCodec;
-
-	/** @var StatsFactory */
-	private $stats;
-
-	/** @var LoggerInterface */
-	private $logger;
-
-	/** @var TitleFactory */
-	private $titleFactory;
-
-	/** @var WikiPageFactory */
-	private $wikiPageFactory;
-
-	private GlobalIdGenerator $globalIdGenerator;
-
 	/** @var ParserCache[] */
 	private $parserCaches = [];
 
 	/** @var RevisionOutputCache[] */
 	private $revisionOutputCaches = [];
-
-	/** @var ServiceOptions */
-	private $options;
 
 	/**
 	 * @internal
@@ -90,42 +61,19 @@ class ParserCacheFactory {
 		MainConfigNames::OldRevisionParserCacheExpireTime,
 	];
 
-	/**
-	 * @param BagOStuff $parserCacheBackend
-	 * @param WANObjectCache $revisionOutputCacheBackend
-	 * @param HookContainer $hookContainer
-	 * @param JsonCodec $jsonCodec
-	 * @param StatsFactory $stats
-	 * @param LoggerInterface $logger
-	 * @param ServiceOptions $options
-	 * @param TitleFactory $titleFactory
-	 * @param WikiPageFactory $wikiPageFactory
-	 * @param GlobalIdGenerator $globalIdGenerator
-	 */
 	public function __construct(
-		BagOStuff $parserCacheBackend,
-		WANObjectCache $revisionOutputCacheBackend,
-		HookContainer $hookContainer,
-		JsonCodec $jsonCodec,
-		StatsFactory $stats,
-		LoggerInterface $logger,
-		ServiceOptions $options,
-		TitleFactory $titleFactory,
-		WikiPageFactory $wikiPageFactory,
-		GlobalIdGenerator $globalIdGenerator
+		private readonly BagOStuff $parserCacheBackend,
+		private readonly WANObjectCache $revisionOutputCacheBackend,
+		private readonly HookContainer $hookContainer,
+		private readonly JsonCodec $jsonCodec,
+		private readonly StatsFactory $stats,
+		private readonly LoggerInterface $logger,
+		private readonly ServiceOptions $options,
+		private readonly TitleFactory $titleFactory,
+		private readonly WikiPageFactory $wikiPageFactory,
+		private readonly GlobalIdGenerator $globalIdGenerator,
 	) {
-		$this->parserCacheBackend = $parserCacheBackend;
-		$this->revisionOutputCacheBackend = $revisionOutputCacheBackend;
-		$this->hookContainer = $hookContainer;
-		$this->jsonCodec = $jsonCodec;
-		$this->stats = $stats;
-		$this->logger = $logger;
-
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
-		$this->options = $options;
-		$this->titleFactory = $titleFactory;
-		$this->wikiPageFactory = $wikiPageFactory;
-		$this->globalIdGenerator = $globalIdGenerator;
 	}
 
 	/**

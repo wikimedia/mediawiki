@@ -42,23 +42,11 @@ use Wikimedia\Rdbms\IDBAccessObject;
  * @internal
  */
 class PageConfigFactory extends \Wikimedia\Parsoid\Config\PageConfigFactory {
-	private RevisionStore $revisionStore;
-	private SlotRoleRegistry $slotRoleRegistry;
-	private LanguageFactory $languageFactory;
-
-	/**
-	 * @param RevisionStore $revisionStore
-	 * @param SlotRoleRegistry $slotRoleRegistry
-	 * @param LanguageFactory $languageFactory
-	 */
 	public function __construct(
-		RevisionStore $revisionStore,
-		SlotRoleRegistry $slotRoleRegistry,
-		LanguageFactory $languageFactory
+		private readonly RevisionStore $revisionStore,
+		private readonly SlotRoleRegistry $slotRoleRegistry,
+		private readonly LanguageFactory $languageFactory,
 	) {
-		$this->revisionStore = $revisionStore;
-		$this->slotRoleRegistry = $slotRoleRegistry;
-		$this->languageFactory = $languageFactory;
 	}
 
 	/**

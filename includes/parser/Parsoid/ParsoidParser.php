@@ -40,26 +40,13 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 	 * and after initial exploration, this may be implemented differently.
 	 */
 	public const PARSOID_TITLE_KEY = "parsoid:title-dbkey";
-	private Parsoid $parsoid;
-	private PageConfigFactory $pageConfigFactory;
-	private LanguageConverterFactory $languageConverterFactory;
-	private DataAccess $dataAccess;
 
-	/**
-	 * @param Parsoid $parsoid
-	 * @param PageConfigFactory $pageConfigFactory
-	 * @param LanguageConverterFactory $languageConverterFactory
-	 */
 	public function __construct(
-		Parsoid $parsoid,
-		PageConfigFactory $pageConfigFactory,
-		LanguageConverterFactory $languageConverterFactory,
-		DataAccess $dataAccess
+		private Parsoid $parsoid,
+		private readonly PageConfigFactory $pageConfigFactory,
+		private readonly LanguageConverterFactory $languageConverterFactory,
+		private readonly DataAccess $dataAccess,
 	) {
-		$this->parsoid = $parsoid;
-		$this->pageConfigFactory = $pageConfigFactory;
-		$this->languageConverterFactory = $languageConverterFactory;
-		$this->dataAccess = $dataAccess;
 	}
 
 	/**

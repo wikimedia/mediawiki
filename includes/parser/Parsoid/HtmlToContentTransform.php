@@ -56,35 +56,17 @@ class HtmlToContentTransform {
 	private HtmlPageBundle $modifiedPageBundle;
 	private HtmlPageBundle $originalPageBundle;
 	private ?PageConfig $pageConfig = null;
-	private Parsoid $parsoid;
-	private array $parsoidSettings;
-	private PageIdentity $page;
-	private PageConfigFactory $pageConfigFactory;
-	private IContentHandlerFactory $contentHandlerFactory;
 
-	/**
-	 * @param string $modifiedHTML
-	 * @param PageIdentity $page
-	 * @param Parsoid $parsoid
-	 * @param array $parsoidSettings
-	 * @param PageConfigFactory $pageConfigFactory
-	 * @param IContentHandlerFactory $contentHandlerFactory
-	 */
 	public function __construct(
 		string $modifiedHTML,
-		PageIdentity $page,
-		Parsoid $parsoid,
-		array $parsoidSettings,
-		PageConfigFactory $pageConfigFactory,
-		IContentHandlerFactory $contentHandlerFactory
+		private readonly PageIdentity $page,
+		private readonly Parsoid $parsoid,
+		private readonly array $parsoidSettings,
+		private readonly PageConfigFactory $pageConfigFactory,
+		private readonly IContentHandlerFactory $contentHandlerFactory,
 	) {
-		$this->parsoid = $parsoid;
-		$this->parsoidSettings = $parsoidSettings;
 		$this->modifiedPageBundle = new HtmlPageBundle( $modifiedHTML );
 		$this->originalPageBundle = new HtmlPageBundle( '' );
-		$this->page = $page;
-		$this->pageConfigFactory = $pageConfigFactory;
-		$this->contentHandlerFactory = $contentHandlerFactory;
 	}
 
 	/**

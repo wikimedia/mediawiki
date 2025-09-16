@@ -97,99 +97,38 @@ class SiteConfig extends ISiteConfig {
 		MainConfigNames::ParsoidExperimentalParserFunctionOutput,
 	];
 
-	private ServiceOptions $config;
-	private Config $mwConfig;
-	/** Parsoid-specific options array from $config */
-	private array $parsoidSettings;
-	private Language $contLang;
-	private StatsdDataFactoryInterface $stats;
-	private StatsFactory $statsFactory;
-	private MagicWordFactory $magicWordFactory;
-	private NamespaceInfo $namespaceInfo;
-	private SpecialPageFactory $specialPageFactory;
-	private InterwikiLookup $interwikiLookup;
-	private ParserFactory $parserFactory;
-	private UserOptionsLookup $userOptionsLookup;
-	private ObjectFactory $objectFactory;
-	private LanguageFactory $languageFactory;
-	private LanguageConverterFactory $languageConverterFactory;
-	private LanguageNameUtils $languageNameUtils;
-	private UrlUtils $urlUtils;
-	private IContentHandlerFactory $contentHandlerFactory;
 	private ?string $baseUri = null;
 	private ?string $relativeLinkPrefix = null;
 	private ?array $interwikiMap = null;
 	private ?array $variants = null;
 	private ?array $extensionTags = null;
-	private bool $isTimedMediaHandlerLoaded;
 
-	/**
-	 * @param ServiceOptions $config MediaWiki main configuration object
-	 * @param array $parsoidSettings Parsoid-specific options array from main configuration.
-	 * @param ObjectFactory $objectFactory
-	 * @param Language $contentLanguage Content language.
-	 * @param StatsdDataFactoryInterface $stats
-	 * @param StatsFactory $statsFactory
-	 * @param MagicWordFactory $magicWordFactory
-	 * @param NamespaceInfo $namespaceInfo
-	 * @param SpecialPageFactory $specialPageFactory
-	 * @param InterwikiLookup $interwikiLookup
-	 * @param UserOptionsLookup $userOptionsLookup
-	 * @param LanguageFactory $languageFactory
-	 * @param LanguageConverterFactory $languageConverterFactory
-	 * @param LanguageNameUtils $languageNameUtils
-	 * @param UrlUtils $urlUtils
-	 * @param IContentHandlerFactory $contentHandlerFactory
-	 * @param array $extensionParsoidModules
-	 * @param ParserFactory $parserFactory
-	 * @param Config $mwConfig
-	 * @param bool $isTimedMediaHandlerLoaded
-	 */
 	public function __construct(
-		ServiceOptions $config,
-		array $parsoidSettings,
-		ObjectFactory $objectFactory,
-		Language $contentLanguage,
-		StatsdDataFactoryInterface $stats,
-		StatsFactory $statsFactory,
-		MagicWordFactory $magicWordFactory,
-		NamespaceInfo $namespaceInfo,
-		SpecialPageFactory $specialPageFactory,
-		InterwikiLookup $interwikiLookup,
-		UserOptionsLookup $userOptionsLookup,
-		LanguageFactory $languageFactory,
-		LanguageConverterFactory $languageConverterFactory,
-		LanguageNameUtils $languageNameUtils,
-		UrlUtils $urlUtils,
-		IContentHandlerFactory $contentHandlerFactory,
-		array $extensionParsoidModules,
+		private readonly ServiceOptions $config,
+		private readonly array $parsoidSettings,
+		private readonly ObjectFactory $objectFactory,
+		private readonly Language $contLang,
+		private readonly StatsdDataFactoryInterface $stats,
+		private readonly StatsFactory $statsFactory,
+		private readonly MagicWordFactory $magicWordFactory,
+		private readonly NamespaceInfo $namespaceInfo,
+		private readonly SpecialPageFactory $specialPageFactory,
+		private readonly InterwikiLookup $interwikiLookup,
+		private readonly UserOptionsLookup $userOptionsLookup,
+		private readonly LanguageFactory $languageFactory,
+		private readonly LanguageConverterFactory $languageConverterFactory,
+		private readonly LanguageNameUtils $languageNameUtils,
+		private readonly UrlUtils $urlUtils,
+		private readonly IContentHandlerFactory $contentHandlerFactory,
+		private readonly array $extensionParsoidModules,
 		// $parserFactory is temporary and may be removed once a better solution is found.
-		ParserFactory $parserFactory, // T268776
-		Config $mwConfig,
-		bool $isTimedMediaHandlerLoaded
+		private readonly ParserFactory $parserFactory, // T268776
+		private readonly Config $mwConfig,
+		private readonly bool $isTimedMediaHandlerLoaded,
 	) {
 		parent::__construct();
 
 		$config->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
-		$this->config = $config;
-		$this->mwConfig = $mwConfig;
-		$this->parsoidSettings = $parsoidSettings;
-
-		$this->objectFactory = $objectFactory;
-		$this->contLang = $contentLanguage;
-		$this->stats = $stats;
-		$this->statsFactory = $statsFactory;
-		$this->magicWordFactory = $magicWordFactory;
-		$this->namespaceInfo = $namespaceInfo;
-		$this->specialPageFactory = $specialPageFactory;
-		$this->interwikiLookup = $interwikiLookup;
-		$this->parserFactory = $parserFactory;
-		$this->userOptionsLookup = $userOptionsLookup;
-		$this->languageFactory = $languageFactory;
-		$this->languageConverterFactory = $languageConverterFactory;
-		$this->languageNameUtils = $languageNameUtils;
-		$this->urlUtils = $urlUtils;
-		$this->contentHandlerFactory = $contentHandlerFactory;
 
 		// Override parent default
 		if ( isset( $this->parsoidSettings['linting'] ) ) {
@@ -208,8 +147,6 @@ class SiteConfig extends ISiteConfig {
 		foreach ( $extensionParsoidModules as $configOrSpec ) {
 			$this->registerExtensionModule( $configOrSpec );
 		}
-
-		$this->isTimedMediaHandlerLoaded = $isTimedMediaHandlerLoaded;
 	}
 
 	/** @inheritDoc */

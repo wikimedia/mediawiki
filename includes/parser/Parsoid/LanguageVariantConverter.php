@@ -31,14 +31,8 @@ use Wikimedia\Parsoid\Utils\DOMUtils;
  * @unstable should be marked stable before 1.40 release
  */
 class LanguageVariantConverter {
-	private PageConfigFactory $pageConfigFactory;
 	private ?PageConfig $pageConfig = null;
-	private PageIdentity $pageIdentity;
-	private Title $pageTitle;
-	private Parsoid $parsoid;
-	private SiteConfig $siteConfig;
-	private LanguageConverterFactory $languageConverterFactory;
-	private LanguageFactory $languageFactory;
+	private readonly Title $pageTitle;
 	/**
 	 * Page language override from the Content-Language header.
 	 */
@@ -49,21 +43,15 @@ class LanguageVariantConverter {
 	private ?ParserOptions $parserOptionsForTest = null;
 
 	public function __construct(
-		PageIdentity $pageIdentity,
-		PageConfigFactory $pageConfigFactory,
-		Parsoid $parsoid,
-		SiteConfig $siteConfig,
+		private readonly PageIdentity $pageIdentity,
+		private readonly PageConfigFactory $pageConfigFactory,
+		private readonly Parsoid $parsoid,
+		private readonly SiteConfig $siteConfig,
 		TitleFactory $titleFactory,
-		LanguageConverterFactory $languageConverterFactory,
-		LanguageFactory $languageFactory
+		private readonly LanguageConverterFactory $languageConverterFactory,
+		private readonly LanguageFactory $languageFactory
 	) {
-		$this->pageConfigFactory = $pageConfigFactory;
-		$this->pageIdentity = $pageIdentity;
-		$this->parsoid = $parsoid;
-		$this->siteConfig = $siteConfig;
-		$this->pageTitle = $titleFactory->newFromPageIdentity( $this->pageIdentity );
-		$this->languageConverterFactory = $languageConverterFactory;
-		$this->languageFactory = $languageFactory;
+		$this->pageTitle = $titleFactory->newFromPageIdentity( $pageIdentity );
 	}
 
 	/**

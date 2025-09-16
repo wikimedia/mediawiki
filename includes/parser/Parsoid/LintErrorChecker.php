@@ -21,25 +21,13 @@ use Wikimedia\Parsoid\Parsoid;
  * @since 1.43
  */
 class LintErrorChecker {
-	private Parsoid $parsoid;
-	private PageConfigFactory $pageConfigFactory;
-	private TitleFactory $titleFactory;
-	private ExtensionRegistry $extensionRegistry;
-	private Config $mainConfig;
-
 	public function __construct(
-		Parsoid $parsoid,
-		PageConfigFactory $pageConfigFactory,
-		TitleFactory $titleFactory,
-		ExtensionRegistry $extensionRegistry,
-		Config $mainConfig
-
+		private readonly Parsoid $parsoid,
+		private readonly PageConfigFactory $pageConfigFactory,
+		private readonly TitleFactory $titleFactory,
+		private readonly ExtensionRegistry $extensionRegistry,
+		private readonly Config $mainConfig,
 	) {
-		$this->parsoid = $parsoid;
-		$this->pageConfigFactory = $pageConfigFactory;
-		$this->titleFactory = $titleFactory;
-		$this->extensionRegistry = $extensionRegistry;
-		$this->mainConfig = $mainConfig;
 	}
 
 	private function linterOptions( array $disabled ): array {
