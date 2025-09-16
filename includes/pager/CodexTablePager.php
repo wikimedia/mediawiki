@@ -187,7 +187,7 @@ abstract class CodexTablePager extends TablePager {
 		$ret = Html::openElement( 'table', [
 			'class' => $this->getTableClass() ]
 		);
-		$ret .= Html::rawElement( 'caption', [], $this->getFullCaption( $this->mCaption ) );
+		$ret .= Html::element( 'caption', [], $this->getFullCaption( $this->mCaption ) );
 		$ret .= $this->getThead();
 		$ret .= Html::openElement( 'tbody' ) . "\n";
 
