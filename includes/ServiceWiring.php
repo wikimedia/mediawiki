@@ -2236,7 +2236,8 @@ return [
 
 		return new SingleBackendSessionStore(
 			$objectCacheFactory->getInstance( $authCacheType ),
-			$logger
+			$logger,
+			$services->getStatsFactory()
 		);
 	},
 
