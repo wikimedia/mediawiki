@@ -51,9 +51,6 @@ use MediaWiki\User\UserRigorOptions;
 use OOUI\ButtonWidget;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\IConnectionProvider;
-use Wikimedia\Rdbms\IExpression;
-use Wikimedia\Rdbms\LikeMatch;
-use Wikimedia\Rdbms\LikeValue;
 
 /**
  * Show user contributions in a paged list.
@@ -457,113 +454,31 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 			}
 			$links = trim( $links ) . Html::closeElement( 'span' );
 
-			// Show a note if the user is blocked and display the last block log entry.
-			// Do not expose the autoblocks, since that may lead to a leak of accounts' IPs,
-			// and also this will display a totally irrelevant log entry as a current block.
-			$shouldShowBlocks = $this->shouldShowBlockLogExtract( $userObj );
-			if ( $shouldShowBlocks ) {
-				// For IP ranges you must give DatabaseBlock::newFromTarget the CIDR string
-				// and not a user object.
-				if ( IPUtils::isValidRange( $userObj->getName() ) ) {
-					$blocks = $this->blockStore->newListFromTarget(
-						$userObj->getName(), $userObj->getName(), false,
-						DatabaseBlockStore::AUTO_NONE );
-				} else {
-					$blocks = $this->blockStore->newListFromTarget(
-						$userObj, $userObj, false, DatabaseBlockStore::AUTO_NONE );
-				}
-
-				$logTargetPages = [];
-				$newestBlockTimestamp = null;
-				$blockId = null;
-				$sitewide = false;
-				foreach ( $blocks as $block ) {
-					$logTargetPages[] =
-						$this->namespaceInfo->getCanonicalName( NS_USER ) . ':' . $block->getTargetName();
-					if ( $block->isSitewide() ) {
-						$sitewide = true;
-					}
-
-					// Track the most recent active block. Prefer newer timestamps; if two blocks
-					// share the same timestamp, fall back to the larger block ID to break ties.
-					// This avoids issues where overridden blocks may reuse smaller IDs.
-					if (
-						$newestBlockTimestamp === null ||
-						$block->getTimestamp() > $newestBlockTimestamp ||
-						( $block->getTimestamp() === $newestBlockTimestamp && $block->getId() > $blockId )
-					) {
-						$newestBlockTimestamp = $block->getTimestamp();
-						$blockId = $block->getId();
-					}
-				}
-
-				if ( count( $blocks ) ) {
-					if ( count( $blocks ) === 1 ) {
-						if ( $userObj->isAnon() ) {
-							$msgKey = $sitewide ?
-								'sp-contributions-blocked-notice-anon' :
-								'sp-contributions-blocked-notice-anon-partial';
-						} else {
-							$msgKey = $sitewide ?
-								'sp-contributions-blocked-notice' :
-								'sp-contributions-blocked-notice-partial';
-						}
-					} else {
-						if ( $userObj->isAnon() ) {
-							$msgKey = 'sp-contributions-blocked-notice-anon-multi';
-						} else {
-							$msgKey = 'sp-contributions-blocked-notice-multi';
-						}
-					}
-					// Allow local styling overrides for different types of block
-					$class = $sitewide ?
-						'mw-contributions-blocked-notice' :
-						'mw-contributions-blocked-notice-partial';
-
-					// While $blocks already contains only active blocks, LogEventsList::showLogExtract
-					// by default fetches the most recent log entries regardless of block status.
-					// To ensure the newest ACTIVE block log is shown, add explicit LIKE conditions
-					// here to filter block log entries.
-					$dbr = $this->dbProvider->getReplicaDatabase();
-					$orCondsForBlockId = [];
-					$orCondsForBlockId[] = $dbr->expr(
-						// Before MW 1.44, log_params did not contain blockId. Always include such older
-						// log entries for backwards compatibility
-						'log_params',
-						IExpression::NOT_LIKE,
-						new LikeValue( new LikeMatch( '%"blockId"%' ) )
-					);
-					if ( $blockId !== null ) {
-						$orCondsForBlockId[] = $dbr->expr(
-							'log_params',
-							IExpression::LIKE,
-							new LikeValue( new LikeMatch( "%\"blockId\";i:$blockId;%" ) )
-						);
-					}
-					$conds = [ $dbr->makeList( $orCondsForBlockId, LIST_OR ) ];
-
-					LogEventsList::showLogExtract(
-						$out,
-						'block',
-						$logTargetPages,
-						'',
-						[
-							'lim' => 1,
-							'conds' => $conds,
-							'showIfEmpty' => false,
-							'msgKey' => [
-								$msgKey,
-								$userObj->getName(), # Support GENDER in 'sp-contributions-blocked-notice'
-								count( $blocks )
-							],
-							'offset' => '', # don't use WebRequest parameter offset
+			// If the user is blocked, display the latest active block log entry
+			if ( $this->shouldShowBlockLogExtract( $userObj ) ) {
+				$blockLogBox = LogEventsList::getBlockLogWarningBox(
+					$this->blockStore,
+					$this->namespaceInfo,
+					$this,
+					$this->getLinkRenderer(),
+					$userObj,
+					null,
+					static function ( array $data ): array {
+						// Allow local styling overrides for different types of block
+						$class = $data['sitewide'] ?
+							'mw-contributions-blocked-notice' :
+							'mw-contributions-blocked-notice-partial';
+						return [
 							'wrap' => Html::rawElement(
 								'div',
 								[ 'class' => $class ],
 								'$1'
-							),
-						]
-					);
+							)
+						];
+					}
+				);
+				if ( $blockLogBox !== null ) {
+					$out->addHTML( $blockLogBox );
 				}
 			}
 		}

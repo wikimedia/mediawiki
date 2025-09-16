@@ -56,7 +56,12 @@ use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\UserIdentity;
 use MessageLocalizer;
 use stdClass;
+use UnexpectedValueException;
+use Wikimedia\IPUtils;
 use Wikimedia\MapCacheLRU\MapCacheLRU;
+use Wikimedia\Rdbms\IExpression;
+use Wikimedia\Rdbms\LikeMatch;
+use Wikimedia\Rdbms\LikeValue;
 
 class LogEventsList extends ContextSource {
 	public const NO_ACTION_LINK = 1;
@@ -837,7 +842,8 @@ class LogEventsList extends ContextSource {
 	}
 
 	/**
-	 * @internal -- shared code for IntroMessageBuilder and Article::showMissingArticle
+	 * @internal -- shared code for IntroMessageBuilder, Article::showMissingArticle,
+	 * and ContributionsSpecialPage::contributionsSub
 	 *
 	 * If the user associated with the current page is blocked, get a warning
 	 * box with a block log extract in it. Otherwise, return null.
@@ -846,8 +852,17 @@ class LogEventsList extends ContextSource {
 	 * @param NamespaceInfo $namespaceInfo
 	 * @param MessageLocalizer $localizer
 	 * @param LinkRenderer $linkRenderer
-	 * @param UserIdentity|false|null $user The user which may be blocked
-	 * @param Title $title The title being viewed
+	 * @param UserIdentity|false|null $user The user identity that may be blocked
+	 * @param Title|null $title The title being viewed. Pass null if the box
+	 *  should be shown regardless of the title.
+	 * @param array|callable $additionalParams Either:
+	 * - An array of extra parameters for LogEventsList::showLogExtract, or
+	 * - A callback returning such an array.
+	 *
+	 * When a callback is used, it receives a `$data` array with the following keys:
+	 * - `blocks: DatabaseBlock[]` - Active blocks matching the target
+	 * - `sitewide: bool` - Whether any of the blocks is sitewide
+	 * - `logTargetPages: string[]` - Pages used as log targets
 	 * @return string|null
 	 */
 	public static function getBlockLogWarningBox(
@@ -856,41 +871,116 @@ class LogEventsList extends ContextSource {
 		MessageLocalizer $localizer,
 		LinkRenderer $linkRenderer,
 		$user,
-		Title $title
+		?Title $title,
+		array|callable $additionalParams = []
 	) {
 		if ( !$user ) {
 			return null;
 		}
+
+		// For IP ranges we must give DatabaseBlock::newFromTarget the CIDR string
+		// and not a user object
+		$userOrRange = IPUtils::isValidRange( $user->getName() ) ? $user->getName() : $user;
+		$blocks = $blockStore->newListFromTarget(
+			// Do not expose the autoblocks, since that may lead to a leak of accounts' IPs,
+			// and also that will display a totally irrelevant log entry as a current block.
+			$userOrRange, $userOrRange, false, DatabaseBlockStore::AUTO_NONE
+		);
+		if ( !count( $blocks ) ) {
+			return null;
+		}
+
 		$appliesToTitle = false;
-		$logTargetPages = [];
 		$blockTargetName = '';
-		$blocks = $blockStore->newListFromTarget( $user, $user, false,
-			DatabaseBlockStore::AUTO_NONE );
+		$logTargetPages = [];
+		$sitewide = false;
+		$newestBlockTimestamp = null;
+		$blockId = null;
 		foreach ( $blocks as $block ) {
-			if ( $block->appliesToTitle( $title ) ) {
+			if ( $title === null || $block->appliesToTitle( $title ) ) {
 				$appliesToTitle = true;
 			}
 			$blockTargetName = $block->getTargetName();
-			$logTargetPages[] = $namespaceInfo->getCanonicalName( NS_USER ) .
-				':' . $blockTargetName;
+			$logTargetPages[] =
+				$namespaceInfo->getCanonicalName( NS_USER ) . ':' . $blockTargetName;
+			if ( $block->isSitewide() ) {
+				$sitewide = true;
+			}
+
+			// Track the most recent active block. Prefer newer timestamps; if two blocks
+			// share the same timestamp, fall back to the larger block ID to break ties.
+			// This avoids issues where overridden blocks may reuse smaller IDs.
+			if (
+				$newestBlockTimestamp === null ||
+				$block->getTimestamp() > $newestBlockTimestamp ||
+				( $block->getTimestamp() === $newestBlockTimestamp && $block->getId() > $blockId )
+			) {
+				$newestBlockTimestamp = $block->getTimestamp();
+				$blockId = $block->getId();
+			}
 		}
 
-		// Show log extract if the user is sitewide blocked or is partially
-		// blocked and not allowed to edit their user page or user talk page
-		if ( !count( $blocks ) || !$appliesToTitle ) {
+		// Show nothing if no active block applies to the given title
+		// (practically, whether the target user is allowed to edit their user/user_talk page)
+		if ( !$appliesToTitle ) {
 			return null;
 		}
-		$msgKey = count( $blocks ) === 1
-			? 'blocked-notice-logextract' : 'blocked-notice-logextract-multi';
+
+		// TODO: Fully replace `sp-contributions-blocked-notice` messages with
+		// the newer `blocked-notice-logextract` ones (T393902)
+		$isAnon = !$user->isRegistered();
+		if ( count( $blocks ) === 1 ) {
+			if ( $isAnon ) {
+				$msgKey = $sitewide ?
+					'sp-contributions-blocked-notice-anon' :
+					'sp-contributions-blocked-notice-anon-partial';
+			} else {
+				$msgKey = $sitewide ?
+					'blocked-notice-logextract' :
+					'sp-contributions-blocked-notice-partial';
+			}
+		} else {
+			if ( $isAnon ) {
+				$msgKey = 'sp-contributions-blocked-notice-anon-multi';
+			} else {
+				$msgKey = 'blocked-notice-logextract-multi';
+			}
+		}
+
+		// While $blocks already contains only active blocks, LogEventsList::showLogExtract
+		// by default fetches the most recent log entries regardless of block status.
+		// To ensure the newest ACTIVE block log is shown, add explicit LIKE conditions
+		// here to filter block log entries.
+		$dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
+		$orCondsForBlockId = [];
+		$orCondsForBlockId[] = $dbr->expr(
+			// Before MW 1.44, log_params did not contain blockId. Always include such older
+			// log entries for backwards compatibility
+			'log_params',
+			IExpression::NOT_LIKE,
+			new LikeValue( new LikeMatch( '%"blockId"%' ) )
+		);
+		if ( $blockId !== null ) {
+			$orCondsForBlockId[] = $dbr->expr(
+				'log_params',
+				IExpression::LIKE,
+				new LikeValue( new LikeMatch( "%\"blockId\";i:$blockId;%" ) )
+			);
+		}
+		$conds = [ $dbr->makeList( $orCondsForBlockId, LIST_OR ) ];
+
 		$params = [
 			'lim' => 1,
+			'conds' => $conds,
 			'showIfEmpty' => false,
 			'msgKey' => [
 				$msgKey,
-				$user->getName(), # Support GENDER in notice
+				$user->getName(), // Support GENDER in $msgKey
 				count( $blocks )
 			],
+			'offset' => '' // Don't use WebRequest parameter offset
 		];
+
 		if ( count( $blocks ) > 1 ) {
 			$params['footerHtmlItems'] = [
 				$linkRenderer->makeKnownLink(
@@ -900,6 +990,24 @@ class LogEventsList extends ContextSource {
 					[ 'wpTarget' => $blockTargetName ]
 				),
 			];
+		}
+
+		if ( is_callable( $additionalParams ) ) {
+			$extraParams = $additionalParams( [
+				// Add values to this callback array depending on the needs
+				// Don't forget to also update the method documentation
+				'blocks' => $blocks,
+				'sitewide' => $sitewide,
+				'logTargetPages' => $logTargetPages
+			] );
+			if ( !is_array( $extraParams ) ) {
+				throw new UnexpectedValueException(
+					'The callable $additionalParams must return an array, ' . gettype( $extraParams ) . ' given'
+				);
+			}
+			$params += $extraParams;
+		} else {
+			$params += $additionalParams;
 		}
 
 		$outString = '';

@@ -376,6 +376,47 @@ class SpecialContributionsTest extends SpecialPageTestBase {
 		];
 	}
 
+	public function testIncludesSitewideBlockClass() {
+		$blockedUser = $this->getTestUser()->getUser();
+
+		$block = $this->getServiceContainer()->getBlockUserFactory()->newBlockUser(
+			$blockedUser->getUser(),
+			self::$admin,
+			'infinity'
+		)->placeBlock();
+		$this->assertStatusGood( $block, 'Failed to place sitewide block' );
+
+		[ $html ] = $this->executeSpecialPage( $blockedUser->getName() );
+
+		$this->assertMatchesRegularExpression(
+			'/mw-contributions-blocked-notice(?!-partial)/',
+			$html,
+			'Sitewide block CSS class missing'
+		);
+	}
+
+	public function testIncludesPartialBlockClass() {
+		$blockedUser = $this->getTestUser()->getUser();
+
+		$block = $this->getServiceContainer()->getBlockUserFactory()->newBlockUser(
+			$blockedUser->getUser(),
+			self::$admin,
+			'infinity',
+			'',
+			[ 'isPartial' => true ],
+			[ new NamespaceRestriction( 0, NS_MAIN ) ]
+		)->placeBlock();
+		$this->assertStatusGood( $block, 'Failed to place partial block' );
+
+		[ $html ] = $this->executeSpecialPage( $blockedUser->getName() );
+
+		$this->assertStringContainsString(
+			'mw-contributions-blocked-notice-partial',
+			$html,
+			'Partial block CSS class missing'
+		);
+	}
+
 	public function testShowsOnlyNewestActiveBlockLog() {
 		$this->overrideConfigValue( MainConfigNames::EnableMultiBlocks, true );
 		$services = $this->getServiceContainer();
@@ -438,14 +479,14 @@ class SpecialContributionsTest extends SpecialPageTestBase {
 
 		// The page HTML should contain the sitewide block class even if the newest block is partial
 		$this->assertMatchesRegularExpression(
-			'/sp-contributions-blocked-notice(?!-partial)/',
+			'/mw-contributions-blocked-notice(?!-partial)/',
 			$html,
 			'Sitewide block CSS class missing'
 		);
 
 		// The page HTML should not contain the partial block class
 		$this->assertStringNotContainsString(
-			'sp-contributions-blocked-notice-partial',
+			'mw-contributions-blocked-notice-partial',
 			$html,
 			'Partial block CSS class unexpectedly included'
 		);
