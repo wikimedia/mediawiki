@@ -176,7 +176,7 @@ class HashBagOStuffTest extends TestCase {
 				// The value is the key
 				$cache->makeKey( 'Foo', '123456' ),
 
-				// The value is a tuble of ( bytes sent, bytes received )
+				// The value is a tuple of ( bytes sent, bytes received )
 				$cache->makeGlobalKey( 'Bar', '123456' ) => [ 5, 3 ],
 
 				// The key is not a proper key

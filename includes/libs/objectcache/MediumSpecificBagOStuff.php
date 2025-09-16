@@ -1168,53 +1168,36 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 			if ( $op === self::METRIC_OP_GET ) {
 				// This operation was either a "hit" or "miss" for this key
 				if ( $rPayloadSize === false ) {
-					$statsdName = "objectcache.{$keygroup}.{$op}_miss_rate";
 					$statsName = "bagostuff_miss_total";
 				} else {
-					$statsdName = "objectcache.{$keygroup}.{$op}_hit_rate";
 					$statsName = "bagostuff_hit_total";
 				}
 			} else {
 				// There is no concept of "hit" or "miss" for this operation
-				$statsdName = "objectcache.{$keygroup}.{$op}_call_rate";
 				$statsName = "bagostuff_call_total";
 			}
-			$deltasByMetric[$statsdName] = [
-				'delta' => ( $deltasByMetric[$statsdName]['delta'] ?? 0 ) + 1,
-				'metric' => $statsName,
-				'keygroup' => $keygroup,
-				'operation' => $op,
-			];
+			$deltasByMetric[$statsName][$keygroup] = ( $deltasByMetric[$statsName][$keygroup] ?? 0 ) + 1;
 
 			if ( $sPayloadSize > 0 ) {
-				$statsdName = "objectcache.{$keygroup}.{$op}_bytes_sent";
 				$statsName = "bagostuff_bytes_sent_total";
-				$deltasByMetric[$statsdName] = [
-					'delta' => ( $deltasByMetric[$statsdName]['delta'] ?? 0 ) + $sPayloadSize,
-					'metric' => $statsName,
-					'keygroup' => $keygroup,
-					'operation' => $op,
-				];
+				$deltasByMetric[$statsName][$keygroup] =
+					( $deltasByMetric[$statsName][$keygroup] ?? 0 ) + $sPayloadSize;
 			}
 
 			if ( $rPayloadSize > 0 ) {
-				$statsdName = "objectcache.{$keygroup}.{$op}_bytes_read";
 				$statsName = "bagostuff_bytes_read_total";
-				$deltasByMetric[$statsdName] = [
-					'delta' => ( $deltasByMetric[$statsdName]['delta'] ?? 0 ) + $rPayloadSize,
-					'metric' => $statsName,
-					'keygroup' => $keygroup,
-					'operation' => $op,
-				];
+				$deltasByMetric[$statsName][$keygroup] =
+					( $deltasByMetric[$statsName][$keygroup] ?? 0 ) + $rPayloadSize;
 			}
 		}
 
-		foreach ( $deltasByMetric as $statsdName => $delta ) {
-			$this->stats->getCounter( $delta['metric'] )
-				->setLabel( 'keygroup', $delta['keygroup'] )
-				->setLabel( 'operation', $delta['operation'] )
-				->copyToStatsdAt( $statsdName )
-				->incrementBy( $delta['delta'] );
+		foreach ( $deltasByMetric as $statsName => $deltaByKeygroup ) {
+			$stats = $this->stats->getCounter( $statsName );
+			foreach ( $deltaByKeygroup as $keygroup => $delta ) {
+				$stats->setLabel( 'keygroup', $keygroup )
+					->setLabel( 'operation', $op )
+					->incrementBy( $delta );
+			}
 		}
 	}
 }
