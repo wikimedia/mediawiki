@@ -74,7 +74,7 @@ class MultiBackendSessionStoreTest extends MediaWikiIntegrationTestCase {
 		}
 
 		$logger = new NullLogger();
-		$hookContainer = $this->getHookContainer();
+		$hookContainer = $this->getServiceContainer()->getHookContainer();
 
 		if ( !$this->manager ) {
 			$this->manager = new SessionManager(
@@ -455,7 +455,12 @@ class MultiBackendSessionStoreTest extends MediaWikiIntegrationTestCase {
 
 	public function testRenew() {
 		$user = $this->getTestSysop()->getUser();
-		$this->store = new SingleBackendSessionStore( new TestBagOStuff(), new NullLogger() );
+		$this->store = new MultiBackendSessionStore(
+			new TestBagOStuff(),
+			new TestBagOStuff(),
+			new NullLogger(),
+			StatsFactory::newNull()
+		);
 		$testData = [ 'foo' => 'foo!', 'bar', [ 'baz', null ] ];
 
 		// Not persistent, expiring

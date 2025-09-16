@@ -21,10 +21,12 @@
 
 namespace MediaWiki\Session;
 
+use MediaWiki\WikiMap\WikiMap;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\LoggerInterface;
 use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\ObjectCache\CachedBagOStuff;
+use Wikimedia\Stats\StatsFactory;
 
 /**
  * An implementation of a session store with a single backend for storing
@@ -39,14 +41,17 @@ class SingleBackendSessionStore implements SessionStore {
 	use LoggerAwareTrait;
 
 	private CachedBagOStuff $store;
+	private StatsFactory $statsFactory;
 
 	public function __construct(
 		BagOStuff $store,
-		LoggerInterface $logger
+		LoggerInterface $logger,
+		StatsFactory $statsFactory
 	) {
 		$this->setLogger( $logger );
 		$this->logger->debug( 'SessionManager using store ' . get_class( $store ) );
 		$this->store = $store instanceof CachedBagOStuff ? $store : new CachedBagOStuff( $store );
+		$this->statsFactory = $statsFactory;
 	}
 
 	/** @inheritDoc */
@@ -64,7 +69,17 @@ class SingleBackendSessionStore implements SessionStore {
 	 */
 	public function get( SessionInfo $info ) {
 		$key = $this->makeKey( 'MWSession', $info->getId() );
-		return $this->store->get( $key );
+		$value = $this->store->get( $key );
+
+		$stats = $this->statsFactory->getCounter( 'sessionstore_get_total' );
+
+		if ( !$this->store->wasLastGetCached() ) {
+			$stats->setLabel( 'type', 'singlebackend' )
+				->setLabel( 'wiki', WikiMap::getCurrentWikiId() )
+				->increment();
+		}
+
+		return $value;
 	}
 
 	/**
@@ -79,6 +94,13 @@ class SingleBackendSessionStore implements SessionStore {
 	public function set( SessionInfo $info, $value, $exptime = 0, $flags = 0 ): void {
 		$key = $this->makeKey( 'MWSession', $info->getId() );
 		$this->store->set( $key, $value, $exptime, $flags );
+
+		if ( ( $flags & BagOStuff::WRITE_CACHE_ONLY ) === 0 ) {
+			$this->statsFactory->getCounter( 'sessionstore_set_total' )
+				->setLabel( 'type', 'singlebackend' )
+				->setLabel( 'wiki', WikiMap::getCurrentWikiId() )
+				->increment();
+		}
 	}
 
 	/**
@@ -89,6 +111,11 @@ class SingleBackendSessionStore implements SessionStore {
 	public function delete( SessionInfo $info ): void {
 		$key = $this->makeKey( 'MWSession', $info->getId() );
 		$this->store->delete( $key );
+
+		$this->statsFactory->getCounter( 'sessionstore_delete_total' )
+			->setLabel( 'type', 'singlebackend' )
+			->setLabel( 'wiki', WikiMap::getCurrentWikiId() )
+			->increment();
 	}
 
 	/**
