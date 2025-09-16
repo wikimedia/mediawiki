@@ -712,12 +712,15 @@ class Html {
 	 * @return string Raw HTML
 	 */
 	public static function check( $name, $checked = false, array $attribs = [] ) {
+		$value = $attribs['value'] ?? 1;
+		unset( $attribs['value'] );
 		return self::element( 'input', [
+			...$attribs,
 			'checked' => (bool)$checked,
 			'type' => 'checkbox',
-			'value' => $attribs['value'] ?? 1,
+			'value' => $value,
 			'name' => $name,
-		] + $attribs );
+		] );
 	}
 
 	/**
@@ -836,12 +839,15 @@ class Html {
 	 * @return string Raw HTML
 	 */
 	public static function radio( $name, $checked = false, array $attribs = [] ) {
+		$value = $attribs['value'] ?? 1;
+		unset( $attribs['value'] );
 		return self::element( 'input', [
+			...$attribs,
 			'checked' => (bool)$checked,
 			'type' => 'radio',
-			'value' => $attribs['value'] ?? 1,
+			'value' => $value,
 			'name' => $name,
-		] + $attribs );
+		] );
 	}
 
 	/**

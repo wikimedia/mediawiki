@@ -797,6 +797,16 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 			Html::check( 'testname', false, [ 'value' => 'testval' ] ),
 			'Checkbox wrapper with a value override.'
 		);
+		$this->assertEquals(
+			'<input type="checkbox" name="testname" value="1">',
+			Html::check( 'testname', false, [ 'type' => 'text', 'name' => 'x' ] ),
+			'Named args take precedence over attribs.'
+		);
+		$this->assertEquals(
+			'<input id="x" type="checkbox" value="1" name="testname">',
+			Html::check( 'testname', false, [ 'id' => 'x' ] ),
+			'Checkbox wrapper with extra attribs.'
+		);
 	}
 
 	public function testWrapperRadio() {
@@ -814,6 +824,16 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 			'<input type="radio" value="testval" name="testname">',
 			Html::radio( 'testname', false, [ 'value' => 'testval' ] ),
 			'Radio wrapper with a value override.'
+		);
+		$this->assertEquals(
+			'<input type="radio" name="testname" value="1">',
+			Html::radio( 'testname', false, [ 'type' => 'text', 'name' => 'x' ] ),
+			'Named args take precedence over attribs.'
+		);
+		$this->assertEquals(
+			'<input id="x" type="radio" value="1" name="testname">',
+			Html::radio( 'testname', false, [ 'id' => 'x' ] ),
+			'Radio wrapper with extra attribs.'
 		);
 	}
 
