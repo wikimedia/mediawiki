@@ -54,29 +54,39 @@ class SchemaGeneratorTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider provideJsonSchemasPaths
 	 */
-	public function testNormalizePath( string $expected, string $jsonSchemaPath, string $IP ) {
+	public function testNormalizePath( string $expected, string $jsonSchemaPath, string $IP, string $extensionDirectory ) {
 		$this->assertEquals(
 			$expected,
-			SchemaGenerator::normalizePath( $jsonSchemaPath, $IP )
+			SchemaGenerator::normalizePath( $jsonSchemaPath, $IP, $extensionDirectory )
 		);
 	}
 
 	public static function provideJsonSchemasPaths() {
 		global $IP;
-		// (expected, path, $IP)
+		// (expected, path, $IP, $extensionDirectory)
 		return [
 			'Core patch absolute path '
 			. 'then path is relative to $IP' => [
 				'tests/phpunit/data/schema-maintenance/patch-no_change.json',
 				self::DATA_DIR . '/patch-no_change.json',
-				$IP
+				$IP,
+				$IP . '/extensions'
 			],
 			'Extension directory under $IP '
 			. 'then path is relative to the extension root. '
 			=> [
 				'db_patches/patch.json',
 				self::DATA_DIR . '/extensions/FooExt/db_patches/patch.json',
-				self::DATA_DIR  // used as $IP
+				self::DATA_DIR, // used as $IP
+				self::DATA_DIR . '/extensions'
+			],
+			'Extension directory outside of $IP '
+			. 'then path is relative to the extension root. '
+			=> [
+				'db_patches/patch.json',
+				self::DATA_DIR . '/extensions/FooExt/db_patches/patch.json',
+				$IP . '/includes', // not a parent of self::DATA_DIR
+				self::DATA_DIR . '/extensions'
 			],
 		];
 	}
