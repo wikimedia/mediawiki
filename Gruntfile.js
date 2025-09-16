@@ -66,6 +66,7 @@ module.exports = function ( grunt ) {
 			datetime: 'languages/i18n/datetime/',
 			exif: 'languages/i18n/exif/',
 			nontranslatable: 'languages/i18n/nontranslatable/',
+			interwiki: 'languages/i18n/interwiki/',
 			preferences: 'languages/i18n/preferences/',
 			languageconverter: 'languages/i18n/languageconverter/',
 			api: 'includes/api/i18n/',

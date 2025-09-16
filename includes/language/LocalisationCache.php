@@ -969,6 +969,7 @@ class LocalisationCache {
 			'datetime' => "$IP/languages/i18n/datetime",
 			'exif' => "$IP/languages/i18n/exif",
 			'languageconverter' => "$IP/languages/i18n/languageconverter",
+			'interwiki' => "$IP/languages/i18n/interwiki",
 			'preferences' => "$IP/languages/i18n/preferences",
 
 			'nontranslatable' => "$IP/languages/i18n/nontranslatable",
