@@ -7,11 +7,10 @@
 
 namespace MediaWiki\ResourceLoader;
 
-use DOMDocument;
-use DOMElement;
-use DOMNode;
 use InvalidArgumentException;
-use Wikimedia\RemexHtml\DOM\DOMBuilder;
+use Wikimedia\Parsoid\DOM\Element;
+use Wikimedia\Parsoid\Utils\DOMCompat;
+use Wikimedia\Parsoid\Utils\DOMUtils;
 use Wikimedia\RemexHtml\HTMLData;
 use Wikimedia\RemexHtml\Serializer\HtmlFormatter;
 use Wikimedia\RemexHtml\Serializer\Serializer;
@@ -20,7 +19,6 @@ use Wikimedia\RemexHtml\Tokenizer\Attributes;
 use Wikimedia\RemexHtml\Tokenizer\Tokenizer;
 use Wikimedia\RemexHtml\TreeBuilder\Dispatcher;
 use Wikimedia\RemexHtml\TreeBuilder\TreeBuilder;
-use Wikimedia\Zest\Zest;
 
 /**
  * Parser for Vue single file components (.vue files). See parse() for usage.
@@ -48,16 +46,17 @@ class VueComponentParser {
 	 * @throws InvalidArgumentException If the input is invalid
 	 */
 	public function parse( string $html, array $options = [] ): array {
-		$dom = $this->parseHTML( $html );
-		// Remex wraps everything in <html><head>, unwrap that
-		$head = Zest::getElementsByTagName( $dom, 'head' )[ 0 ];
+		// Ensure that <script>,<template>,etc tags go into the <body>, not
+		// the <head>
+		$doc = DOMUtils::parseHTML( "<body>$html" );
+		$body = DOMCompat::getBody( $doc );
 
 		// Find the <script>, <template> and <style> tags. They can appear in any order, but they
 		// must be at the top level, and there can only be one of each.
-		if ( !$head ) {
-			throw new InvalidArgumentException( 'Parsed DOM did not contain a <head> tag' );
+		if ( !$body ) {
+			throw new InvalidArgumentException( 'Parsed DOM did not contain a <body> tag' );
 		}
-		$nodes = $this->findUniqueTags( $head, [ 'script', 'template', 'style' ] );
+		$nodes = $this->findUniqueTags( $body, [ 'script', 'template', 'style' ] );
 
 		// Throw an error if we didn't find a <script> or <template> tag. <style> is optional.
 		foreach ( [ 'script', 'template' ] as $requiredTag ) {
@@ -76,7 +75,7 @@ class VueComponentParser {
 		$template = $this->getTemplateHtml( $html, $options['minifyTemplate'] ?? false );
 
 		return [
-			'script' => trim( $nodes['script']->nodeValue ?? '' ),
+			'script' => trim( $nodes['script']->textContent ),
 			'template' => $template,
 			'style' => $styleData ? $styleData['style'] : null,
 			'styleLang' => $styleData ? $styleData['lang'] : null
@@ -84,29 +83,19 @@ class VueComponentParser {
 	}
 
 	/**
-	 * Parse HTML to DOM using RemexHtml
-	 */
-	private function parseHTML( string $html ): DOMDocument {
-		$domBuilder = new DOMBuilder( [ 'suppressHtmlNamespace' => true ] );
-		$treeBuilder = new TreeBuilder( $domBuilder, [ 'ignoreErrors' => true ] );
-		$tokenizer = new Tokenizer( new Dispatcher( $treeBuilder ), $html, [ 'ignoreErrors' => true ] );
-		$tokenizer->execute();
-		// @phan-suppress-next-line PhanTypeMismatchReturnSuperType
-		return $domBuilder->getFragment();
-	}
-
-	/**
 	 * Find occurrences of specified tags in a DOM node, expecting at most one occurrence of each.
 	 * This method only looks at the top-level children of $rootNode, it doesn't descend into them.
 	 *
-	 * @param DOMNode $rootNode Node whose children to look at
+	 * @param Element $rootNode Node whose children to look at
 	 * @param string[] $tagNames Tag names to look for (must be all lowercase)
-	 * @return DOMElement[] Associative arrays whose keys are tag names and values are DOM nodes
+	 * @return Element[] Associative arrays whose keys are tag names and values are DOM nodes
 	 */
-	private function findUniqueTags( DOMNode $rootNode, array $tagNames ): array {
+	private function findUniqueTags( Element $rootNode, array $tagNames ): array {
 		$nodes = [];
-		foreach ( $rootNode->childNodes as $node ) {
-			$tagName = strtolower( $node->nodeName );
+		for ( $node = DOMCompat::getFirstElementChild( $rootNode );
+			 $node !== null;
+			 $node = DOMCompat::getNextElementSibling( $node ) ) {
+			$tagName = DOMUtils::nodeName( $node );
 			if ( in_array( $tagName, $tagNames ) ) {
 				if ( isset( $nodes[ $tagName ] ) ) {
 					throw new InvalidArgumentException( "More than one <$tagName> tag found" );
@@ -119,33 +108,34 @@ class VueComponentParser {
 
 	/**
 	 * Verify that a given node only has a given set of attributes, and no others.
-	 * @param DOMNode $node Node to check
-	 * @param array $allowedAttributes Attributes the node is allowed to have
+	 * @param Element $node Node to check
+	 * @param list<string> $allowedAttributes Attributes the node is allowed to have
 	 * @throws InvalidArgumentException If the node has an attribute it's not allowed to have
 	 */
-	private function validateAttributes( DOMNode $node, array $allowedAttributes ): void {
+	private function validateAttributes( Element $node, array $allowedAttributes ): void {
 		if ( $allowedAttributes ) {
-			foreach ( $node->attributes as $attr ) {
-				if ( !in_array( $attr->name, $allowedAttributes ) ) {
-					throw new InvalidArgumentException( "<{$node->nodeName}> may not have the " .
-						"{$attr->name} attribute" );
+			foreach ( DOMCompat::attributes( $node ) as $name => $value ) {
+				if ( !in_array( $name, $allowedAttributes ) ) {
+					$nodeName = DOMUtils::nodeName( $node );
+					throw new InvalidArgumentException( "<{$nodeName}> may not have the " .
+						"{$name} attribute" );
 				}
 			}
-		} elseif ( $node->attributes->length > 0 ) {
-			throw new InvalidArgumentException( "<{$node->nodeName}> may not have any attributes" );
+		} elseif ( count( DOMCompat::attributes( $node ) ) > 0 ) {
+			$nodeName = DOMUtils::nodeName( $node );
+			throw new InvalidArgumentException( "<{$nodeName}> may not have any attributes" );
 		}
 	}
 
 	/**
 	 * Get the contents and language of the <style> tag. The language can be 'css' or 'less'.
-	 * @param DOMElement $styleNode The <style> tag.
+	 * @param Element $styleNode The <style> tag.
 	 * @return array [ 'style' => string, 'lang' => string ]
 	 * @throws InvalidArgumentException If an invalid language is used, or if the 'scoped' attribute is set.
 	 */
-	private function getStyleAndLang( DOMElement $styleNode ): array {
-		$style = trim( $styleNode->nodeValue ?? '' );
-		$styleLang = $styleNode->hasAttribute( 'lang' ) ?
-			$styleNode->getAttribute( 'lang' ) : 'css';
+	private function getStyleAndLang( Element $styleNode ): array {
+		$style = trim( $styleNode->textContent );
+		$styleLang = DOMCompat::getAttribute( $styleNode, 'lang' ) ?? 'css';
 		if ( $styleLang !== 'css' && $styleLang !== 'less' ) {
 			throw new InvalidArgumentException( "<style lang=\"$styleLang\"> is invalid," .
 				" lang must be \"css\" or \"less\"" );
