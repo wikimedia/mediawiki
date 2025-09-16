@@ -25,4 +25,8 @@ class MockChangesListFilterGroup extends ChangesListFilterGroup {
 	/** @inheritDoc */
 	public function addOptions( FormOptions $opts, $allowDefaults, $isStructuredFiltersEnabled ) {
 	}
+
+	/** @inheritDoc */
+	public function setDefault( $defaultValue ) {
+	}
 }

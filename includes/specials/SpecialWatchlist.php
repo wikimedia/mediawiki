@@ -194,151 +194,121 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		];
 	}
 
-	/**
-	 * @inheritDoc
-	 */
-	protected function transformFilterDefinition( array $filterDefinition ) {
-		if ( isset( $filterDefinition['showHideSuffix'] ) ) {
-			$filterDefinition['showHide'] = 'wl' . $filterDefinition['showHideSuffix'];
-		}
-
-		return $filterDefinition;
+	protected function getExtraFilterFactoryConfig(): array {
+		return [
+			'showHidePrefix' => 'wl',
+		];
 	}
 
-	/**
-	 * @inheritDoc
-	 */
-	protected function registerFilters() {
-		parent::registerFilters();
-
-		// legacy 'extended' filter
-		$this->registerFilterGroup( new ChangesListBooleanFilterGroup( [
-			'name' => 'extended-group',
-			'filters' => [
-				[
-					'name' => 'extended',
-					'isReplacedInStructuredUi' => true,
-					'activeValue' => false,
-					'default' => $this->userOptionsLookup->getBoolOption( $this->getUser(), 'extendwatchlist' ),
-					'queryCallable' => static function ( string $specialClassName, IContextSource $ctx,
-						IReadableDatabase $dbr, &$tables, &$fields, &$conds, &$query_options, &$join_conds
-					) {
-						$conds[] = $dbr->expr( 'rc_this_oldid', '=', new RawSQLValue( 'page_latest' ) )
-							->or( 'rc_this_oldid', '=', 0 );
-					},
-				]
-			],
-
-		] ) );
-
-		if ( $this->isStructuredFilterUiEnabled() ) {
-			$this->filterGroups->getLastRevisionGroup()
-				->getFilter( 'hidepreviousrevisions' )
-				->setDefault( !$this->userOptionsLookup->getBoolOption( $this->getUser(), 'extendwatchlist' ) );
-		}
-
-		$this->registerFilterGroup( new ChangesListStringOptionsFilterGroup( [
-			'name' => 'watchlistactivity',
-			'title' => 'rcfilters-filtergroup-watchlistactivity',
-			'class' => ChangesListStringOptionsFilterGroup::class,
-			'priority' => 3,
-			'isFullCoverage' => true,
-			'filters' => [
-				[
-					'name' => 'unseen',
-					'label' => 'rcfilters-filter-watchlistactivity-unseen-label',
-					'description' => 'rcfilters-filter-watchlistactivity-unseen-description',
-					'cssClassSuffix' => 'watchedunseen',
-					'isRowApplicableCallable' => function ( IContextSource $ctx, RecentChange $rc ) {
-						return !$this->isChangeEffectivelySeen( $rc );
-					},
+	protected function getExtraFilterGroupDefinitions(): array {
+		return [
+			// legacy 'extended' filter
+			[
+				'name' => 'extended-group',
+				'class' => ChangesListBooleanFilterGroup::class,
+				'filters' => [
+					[
+						'name' => 'extended',
+						'isReplacedInStructuredUi' => true,
+						'activeValue' => false,
+						'default' => $this->userOptionsLookup->getBoolOption( $this->getUser(), 'extendwatchlist' ),
+						'queryCallable' => static function ( string $specialClassName, IContextSource $ctx,
+							IReadableDatabase $dbr, &$tables, &$fields, &$conds, &$query_options, &$join_conds
+						) {
+							$conds[] = $dbr->expr( 'rc_this_oldid', '=', new RawSQLValue( 'page_latest' ) )
+								->or( 'rc_this_oldid', '=', 0 );
+						},
+					]
 				],
-				[
-					'name' => 'seen',
-					'label' => 'rcfilters-filter-watchlistactivity-seen-label',
-					'description' => 'rcfilters-filter-watchlistactivity-seen-description',
-					'cssClassSuffix' => 'watchedseen',
-					'isRowApplicableCallable' => function ( IContextSource $ctx, RecentChange $rc ) {
-						return $this->isChangeEffectivelySeen( $rc );
+			],
+			[
+				'name' => 'watchlistactivity',
+				'title' => 'rcfilters-filtergroup-watchlistactivity',
+				'class' => ChangesListStringOptionsFilterGroup::class,
+				'priority' => 3,
+				'isFullCoverage' => true,
+				'filters' => [
+					[
+						'name' => 'unseen',
+						'label' => 'rcfilters-filter-watchlistactivity-unseen-label',
+						'description' => 'rcfilters-filter-watchlistactivity-unseen-description',
+						'cssClassSuffix' => 'watchedunseen',
+						'isRowApplicableCallable' => function ( IContextSource $ctx, RecentChange $rc ) {
+							return !$this->isChangeEffectivelySeen( $rc );
+						},
+					],
+					[
+						'name' => 'seen',
+						'label' => 'rcfilters-filter-watchlistactivity-seen-label',
+						'description' => 'rcfilters-filter-watchlistactivity-seen-description',
+						'cssClassSuffix' => 'watchedseen',
+						'isRowApplicableCallable' => function ( IContextSource $ctx, RecentChange $rc ) {
+							return $this->isChangeEffectivelySeen( $rc );
+						}
+					],
+				],
+				'default' => ChangesListStringOptionsFilterGroup::NONE,
+				'queryCallable' => static function (
+					string $specialPageClassName,
+					IContextSource $context,
+					IReadableDatabase $dbr,
+					&$tables,
+					&$fields,
+					&$conds,
+					&$query_options,
+					&$join_conds,
+					$selectedValues
+				) {
+					if ( $selectedValues === [ 'seen' ] ) {
+						$conds[] = $dbr->expr( 'wl_notificationtimestamp', '=', null )
+							->orExpr( new RawSQLExpression( 'rc_timestamp < wl_notificationtimestamp' ) );
+					} elseif ( $selectedValues === [ 'unseen' ] ) {
+						$conds[] = $dbr->expr( 'wl_notificationtimestamp', '!=', null )
+							->andExpr( new RawSQLExpression( 'rc_timestamp >= wl_notificationtimestamp' ) );
 					}
-				],
-			],
-			'default' => ChangesListStringOptionsFilterGroup::NONE,
-			'queryCallable' => static function (
-				string $specialPageClassName,
-				IContextSource $context,
-				IReadableDatabase $dbr,
-				&$tables,
-				&$fields,
-				&$conds,
-				&$query_options,
-				&$join_conds,
-				$selectedValues
-			) {
-				if ( $selectedValues === [ 'seen' ] ) {
-					$conds[] = $dbr->expr( 'wl_notificationtimestamp', '=', null )
-						->orExpr( new RawSQLExpression( 'rc_timestamp < wl_notificationtimestamp' ) );
-				} elseif ( $selectedValues === [ 'unseen' ] ) {
-					$conds[] = $dbr->expr( 'wl_notificationtimestamp', '!=', null )
-						->andExpr( new RawSQLExpression( 'rc_timestamp >= wl_notificationtimestamp' ) );
 				}
-			}
-		] ) );
+			]
+		];
+	}
 
-		$user = $this->getUser();
-
-		$this->filterGroups->getSignificanceGroup()
-			->getFilter( 'hideminor' )
-			->setDefault( $this->userOptionsLookup->getBoolOption( $user, 'watchlisthideminor' ) );
-
-		$this->filterGroups->getAutomatedGroup()
-			->getFilter( 'hidebots' )
-			->setDefault( $this->userOptionsLookup->getBoolOption( $user, 'watchlisthidebots' ) );
-
-		$registration = $this->filterGroups->getRegistrationGroup();
-		$hideAnons = $registration->getFilter( 'hideanons' );
-		$hideAnons->setDefault( $this->userOptionsLookup->getBoolOption( $user, 'watchlisthideanons' ) );
-		$hideLiu = $registration->getFilter( 'hideliu' );
-		$hideLiu->setDefault( $this->userOptionsLookup->getBoolOption( $user, 'watchlisthideliu' ) );
+	protected function getFilterDefaultOverrides(): array {
+		$opt = fn ( $optName ) =>
+			$this->userOptionsLookup->getBoolOption( $this->getUser(), $optName );
+		$defaults = [
+			'lastRevision' => [
+				'hidepreviousrevisions' => !$opt( 'extendwatchlist' )
+			],
+			'significance' => [
+				'hideminor' => $opt( 'watchlisthideminor' )
+			],
+			'automated' => [
+				'hidebots' => $opt( 'watchlisthidebots' )
+			],
+			'registration' => [
+				'hideanons' => $opt( 'watchlisthideanons' ),
+				'hideliu' => $opt( 'watchlisthideliu' )
+			]
+		];
 
 		// Selecting both hideanons and hideliu on watchlist preferences
 		// gives mutually exclusive filters, so those are ignored
-		if ( $this->userOptionsLookup->getBoolOption( $user, 'watchlisthideanons' ) &&
-			!$this->userOptionsLookup->getBoolOption( $user, 'watchlisthideliu' )
-		) {
-			$this->filterGroups->getUserExpLevelGroup()
-				->setDefault( 'registered' );
+		if ( $opt( 'watchlisthideanons' ) && !$opt( 'watchlisthideliu' ) ) {
+			$defaults['userExpLevel'] = 'registered';
 		}
 
-		if ( $this->userOptionsLookup->getBoolOption( $user, 'watchlisthideliu' ) &&
-			!$this->userOptionsLookup->getBoolOption( $user, 'watchlisthideanons' )
-		) {
-			$this->filterGroups->getUserExpLevelGroup()
-				->setDefault( 'unregistered' );
+		if ( $opt( 'watchlisthideliu' ) && !$opt( 'watchlisthideanons' ) ) {
+			$defaults['userExpLevel'] = 'unregistered';
 		}
 
-		if ( $this->filterGroups->hasGroup( 'reviewStatus' ) ) {
-			// Conditional on feature being available and rights
-			if ( $this->userOptionsLookup->getBoolOption( $user, 'watchlisthidepatrolled' ) ) {
-				$this->filterGroups->getReviewStatusGroup()->setDefault( 'unpatrolled' );
-				$this->filterGroups->getLegacyReviewStatusGroup()
-					->getFilter( 'hidepatrolled' )
-					->setDefault( true );
-			}
+		if ( $opt( 'watchlisthidepatrolled' ) ) {
+			$defaults['reviewStatus'] = 'unpatrolled';
+			$defaults['legacyReviewStatus']['hidepatrolled'] = true;
 		}
 
-		$this->filterGroups->getAuthorshipGroup()
-			->getFilter( 'hidemyself' )
-			->setDefault( $this->userOptionsLookup->getBoolOption( $user, 'watchlisthideown' ) );
+		$defaults['authorship']['hidemyself'] = $opt( 'watchlisthideown' );
+		$defaults['changeType']['hidecategorization'] = $opt( 'watchlisthidecategorization' );
 
-		$changeType = $this->filterGroups->getChangeTypeGroup();
-		$hideCategorization = $changeType->getFilter( 'hidecategorization' );
-		if ( $hideCategorization !== null ) {
-			// Conditional on feature being available
-			$hideCategorization->setDefault(
-				$this->userOptionsLookup->getBoolOption( $user, 'watchlisthidecategorization' )
-			);
-		}
+		return $defaults;
 	}
 
 	/**

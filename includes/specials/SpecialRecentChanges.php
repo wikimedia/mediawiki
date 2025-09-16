@@ -53,9 +53,6 @@ use Wikimedia\Rdbms\RawSQLExpression;
  */
 class SpecialRecentChanges extends ChangesListSpecialPage {
 
-	/** @var array */
-	private $watchlistFilterGroupDefinition;
-
 	private WatchedItemStoreInterface $watchedItemStore;
 	private MessageParser $messageParser;
 	private UserOptionsLookup $userOptionsLookup;
@@ -85,103 +82,109 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$this->messageParser = $messageParser ?? $services->getMessageParser();
 		$this->userOptionsLookup = $userOptionsLookup ?? $services->getUserOptionsLookup();
 		$this->changeTagsStore = $changeTagsStore ?? $services->getChangeTagsStore();
+	}
 
-		$this->watchlistFilterGroupDefinition = [
-			'name' => 'watchlist',
-			'title' => 'rcfilters-filtergroup-watchlist',
-			'class' => ChangesListStringOptionsFilterGroup::class,
-			'priority' => -9,
-			'isFullCoverage' => true,
-			'filters' => [
-				[
-					'name' => 'watched',
-					'label' => 'rcfilters-filter-watchlist-watched-label',
-					'description' => 'rcfilters-filter-watchlist-watched-description',
-					'cssClassSuffix' => 'watched',
-					'isRowApplicableCallable' => static function ( IContextSource $ctx, RecentChange $rc ) {
-						return $rc->getAttribute( 'wl_user' );
+	protected function getExtraFilterGroupDefinitions(): array {
+		return [
+			[
+				'name' => 'watchlist',
+				'title' => 'rcfilters-filtergroup-watchlist',
+				'class' => ChangesListStringOptionsFilterGroup::class,
+				'priority' => -9,
+				'isFullCoverage' => true,
+				'requireConfig' => [ 'needsWatchlistFeatures' => true ],
+				'filters' => [
+					[
+						'name' => 'watched',
+						'label' => 'rcfilters-filter-watchlist-watched-label',
+						'description' => 'rcfilters-filter-watchlist-watched-description',
+						'cssClassSuffix' => 'watched',
+						'isRowApplicableCallable' => static function ( IContextSource $ctx, RecentChange $rc ) {
+							return $rc->getAttribute( 'wl_user' );
+						},
+						'subsets' => [ 'watchednew' ],
+					],
+					[
+						'name' => 'watchednew',
+						'label' => 'rcfilters-filter-watchlist-watchednew-label',
+						'description' => 'rcfilters-filter-watchlist-watchednew-description',
+						'cssClassSuffix' => 'watchednew',
+						'isRowApplicableCallable' => static function ( IContextSource $ctx, RecentChange $rc ) {
+							return $rc->getAttribute( 'wl_user' ) &&
+								$rc->getAttribute( 'rc_timestamp' ) &&
+								$rc->getAttribute( 'wl_notificationtimestamp' ) &&
+								$rc->getAttribute( 'rc_timestamp' ) >= $rc->getAttribute( 'wl_notificationtimestamp' );
+						},
+					],
+					[
+						'name' => 'notwatched',
+						'label' => 'rcfilters-filter-watchlist-notwatched-label',
+						'description' => 'rcfilters-filter-watchlist-notwatched-description',
+						'cssClassSuffix' => 'notwatched',
+						'isRowApplicableCallable' => static function ( IContextSource $ctx, RecentChange $rc ) {
+							return $rc->getAttribute( 'wl_user' ) === null;
+						},
+					]
+				],
+				'default' => ChangesListStringOptionsFilterGroup::NONE,
+				'queryCallable' => function ( string $specialClassName, IContextSource $ctx,
+					IReadableDatabase $dbr, &$tables, &$fields, &$conds, &$query_options, &$join_conds, $selectedValues
+				) {
+					sort( $selectedValues );
+					$notwatchedCond = $dbr->expr( 'wl_user', '=', null );
+					$watchedCond = $dbr->expr( 'wl_user', '!=', null );
+					if ( $this->getConfig()->get( MainConfigNames::WatchlistExpiry ) ) {
+						// Expired watchlist items stay in the DB after their expiry time until they're purged,
+						// so it's not enough to only check for wl_user.
+						$dbNow = $dbr->timestamp();
+						$notwatchedCond = $notwatchedCond
+							->orExpr( $dbr->expr( 'we_expiry', '!=', null )->and( 'we_expiry', '<', $dbNow ) );
+						$watchedCond = $watchedCond
+							->andExpr( $dbr->expr( 'we_expiry', '=', null )->or( 'we_expiry', '>=', $dbNow ) );
 					}
-				],
-				[
-					'name' => 'watchednew',
-					'label' => 'rcfilters-filter-watchlist-watchednew-label',
-					'description' => 'rcfilters-filter-watchlist-watchednew-description',
-					'cssClassSuffix' => 'watchednew',
-					'isRowApplicableCallable' => static function ( IContextSource $ctx, RecentChange $rc ) {
-						return $rc->getAttribute( 'wl_user' ) &&
-							$rc->getAttribute( 'rc_timestamp' ) &&
-							$rc->getAttribute( 'wl_notificationtimestamp' ) &&
-							$rc->getAttribute( 'rc_timestamp' ) >= $rc->getAttribute( 'wl_notificationtimestamp' );
-					},
-				],
-				[
-					'name' => 'notwatched',
-					'label' => 'rcfilters-filter-watchlist-notwatched-label',
-					'description' => 'rcfilters-filter-watchlist-notwatched-description',
-					'cssClassSuffix' => 'notwatched',
-					'isRowApplicableCallable' => static function ( IContextSource $ctx, RecentChange $rc ) {
-						return $rc->getAttribute( 'wl_user' ) === null;
-					},
-				]
+					$newCond = new RawSQLExpression( 'rc_timestamp >= wl_notificationtimestamp' );
+
+					if ( $selectedValues === [ 'notwatched' ] ) {
+						$conds[] = $notwatchedCond;
+						return;
+					}
+
+					if ( $selectedValues === [ 'watched' ] ) {
+						$conds[] = $watchedCond;
+						return;
+					}
+
+					if ( $selectedValues === [ 'watchednew' ] ) {
+						$conds[] = $watchedCond
+							->andExpr( $newCond );
+						return;
+					}
+
+					if ( $selectedValues === [ 'notwatched', 'watched' ] ) {
+						// no filters
+						return;
+					}
+
+					if ( $selectedValues === [ 'notwatched', 'watchednew' ] ) {
+						$conds[] = $notwatchedCond
+							->orExpr(
+								$watchedCond
+									->andExpr( $newCond )
+							);
+						return;
+					}
+
+					if ( $selectedValues === [ 'watched', 'watchednew' ] ) {
+						$conds[] = $watchedCond;
+						return;
+					}
+
+					if ( $selectedValues === [ 'notwatched', 'watched', 'watchednew' ] ) {
+						// no filters
+						return;
+					}
+				}
 			],
-			'default' => ChangesListStringOptionsFilterGroup::NONE,
-			'queryCallable' => function ( string $specialClassName, IContextSource $ctx,
-				IReadableDatabase $dbr, &$tables, &$fields, &$conds, &$query_options, &$join_conds, $selectedValues
-			) {
-				sort( $selectedValues );
-				$notwatchedCond = $dbr->expr( 'wl_user', '=', null );
-				$watchedCond = $dbr->expr( 'wl_user', '!=', null );
-				if ( $this->getConfig()->get( MainConfigNames::WatchlistExpiry ) ) {
-					// Expired watchlist items stay in the DB after their expiry time until they're purged,
-					// so it's not enough to only check for wl_user.
-					$dbNow = $dbr->timestamp();
-					$notwatchedCond = $notwatchedCond
-						->orExpr( $dbr->expr( 'we_expiry', '!=', null )->and( 'we_expiry', '<', $dbNow ) );
-					$watchedCond = $watchedCond
-						->andExpr( $dbr->expr( 'we_expiry', '=', null )->or( 'we_expiry', '>=', $dbNow ) );
-				}
-				$newCond = new RawSQLExpression( 'rc_timestamp >= wl_notificationtimestamp' );
-
-				if ( $selectedValues === [ 'notwatched' ] ) {
-					$conds[] = $notwatchedCond;
-					return;
-				}
-
-				if ( $selectedValues === [ 'watched' ] ) {
-					$conds[] = $watchedCond;
-					return;
-				}
-
-				if ( $selectedValues === [ 'watchednew' ] ) {
-					$conds[] = $watchedCond
-						->andExpr( $newCond );
-					return;
-				}
-
-				if ( $selectedValues === [ 'notwatched', 'watched' ] ) {
-					// no filters
-					return;
-				}
-
-				if ( $selectedValues === [ 'notwatched', 'watchednew' ] ) {
-					$conds[] = $notwatchedCond
-						->orExpr(
-							$watchedCond
-								->andExpr( $newCond )
-						);
-					return;
-				}
-
-				if ( $selectedValues === [ 'watched', 'watchednew' ] ) {
-					$conds[] = $watchedCond;
-					return;
-				}
-
-				if ( $selectedValues === [ 'notwatched', 'watched', 'watchednew' ] ) {
-					// no filters
-					return;
-				}
-			}
 		];
 	}
 
@@ -215,15 +218,11 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		parent::execute( $subpage );
 	}
 
-	/**
-	 * @inheritDoc
-	 */
-	protected function transformFilterDefinition( array $filterDefinition ) {
-		if ( isset( $filterDefinition['showHideSuffix'] ) ) {
-			$filterDefinition['showHide'] = 'rc' . $filterDefinition['showHideSuffix'];
-		}
-
-		return $filterDefinition;
+	protected function getExtraFilterFactoryConfig(): array {
+		return [
+			'showHidePrefix' => 'rc',
+			'needsWatchlistFeatures' => $this->needsWatchlistFeatures(),
+		];
 	}
 
 	/**
@@ -236,43 +235,26 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			&& $this->getAuthority()->isAllowed( 'viewmywatchlist' );
 	}
 
-	/**
-	 * @inheritDoc
-	 */
-	protected function registerFilters() {
-		parent::registerFilters();
-
-		if ( $this->needsWatchlistFeatures() ) {
-			$this->registerFiltersFromDefinitions( [ $this->watchlistFilterGroupDefinition ] );
-			$watchlistGroup = $this->filterGroups->getWatchlistGroup();
-			$watchlistGroup->getFilter( 'watched' )->setAsSupersetOf(
-				$watchlistGroup->getFilter( 'watchednew' )
-			);
+	protected function getFilterDefaultOverrides(): array {
+		$opt = fn ( $optName ) =>
+			$this->userOptionsLookup->getBoolOption( $this->getUser(), $optName );
+		$defaults = [
+			'significance' => [
+				'hideminor' => $opt( 'hideminor' ),
+			],
+			'automated' => [
+				'hidebots' => true,
+			],
+			'changeType' => [
+				'hidecategorization' => $opt( 'hidecategorization' )
+			]
+		];
+		if ( $opt( 'hidepatrolled' ) ) {
+			$defaults['reviewStatus'] = 'unpatrolled';
+			$defaults['legacyReviewStatus']['hidepatrolled'] = true;
 		}
-
-		$user = $this->getUser();
-
-		$this->filterGroups->getSignificanceGroup()
-			->getFilter( 'hideminor' )
-			->setDefault( $this->userOptionsLookup->getBoolOption( $user, 'hideminor' ) );
-
-		$this->filterGroups->getAutomatedGroup()
-			->getFilter( 'hidebots' )
-			->setDefault( true );
-
-		if ( $this->filterGroups->hasGroup( 'reviewStatus' ) ) {
-			// Conditional on feature being available and rights
-			if ( $this->userOptionsLookup->getBoolOption( $user, 'hidepatrolled' ) ) {
-				$this->filterGroups->getReviewStatusGroup()->setDefault( 'unpatrolled' );
-				$legacyHidePatrolled = $this->filterGroups->getLegacyReviewStatusGroup()
-					->getFilter( 'hidepatrolled' );
-				$legacyHidePatrolled->setDefault( true );
-			}
-		}
-
-		$this->filterGroups->getChangeTypeGroup()
-			->getFilter( 'hidecategorization' )
-			?->setDefault( $this->userOptionsLookup->getBoolOption( $user, 'hidecategorization' ) );
+		$defaults['changeType']['hidecategorization'] = $opt( 'hidecategorization' );
+		return $defaults;
 	}
 
 	/**

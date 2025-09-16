@@ -802,27 +802,20 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 			[ '*' => [ 'edit' => false ] ]
 		);
 		parent::setUp();
-		$this->assertCount( 3, $this->changesListSpecialPage->filterGroupDefinitions[1]['filters'] );
-
-		$actualFilterGroupDefinitions = [];
-		foreach ( $this->changesListSpecialPage->filterGroupDefinitions[1]['filters'] as $key => $value ) {
-			if ( $value['name'] ) {
-				array_push( $actualFilterGroupDefinitions, $value['name'] );
-			}
-		}
-		$this->assertSame( [ "newcomer", "learner", "experienced" ], $actualFilterGroupDefinitions );
+		$filterNames = array_keys(
+			$this->changesListSpecialPage->getFilterGroup( 'userExpLevel' )->getFilters() );
+		$this->assertSame( [ "newcomer", "learner", "experienced" ], $filterNames );
 	}
 
 	public function testFilterUserExpLevelRegistrationNotRequiredToEditDoesNotRemoveRegistrationFilters() {
-		$this->assertCount( 5, $this->changesListSpecialPage->filterGroupDefinitions[1]['filters'] );
-
-		$actualFilterGroupDefinitions = [];
-		foreach ( $this->changesListSpecialPage->filterGroupDefinitions[1]['filters'] as $key => $value ) {
-			if ( $value['name'] ) {
-				array_push( $actualFilterGroupDefinitions, $value['name'] );
-			}
-		}
-		$this->assertSame( [ "unregistered", "registered", "newcomer", "learner", "experienced" ], $actualFilterGroupDefinitions );
+		$this->overrideConfigValue(
+			MainConfigNames::GroupPermissions,
+			[ '*' => [ 'edit' => true ] ]
+		);
+		parent::setUp();
+		$filterNames = array_keys(
+			$this->changesListSpecialPage->getFilterGroup( 'userExpLevel' )->getFilters() );
+		$this->assertSame( [ "unregistered", "registered", "newcomer", "learner", "experienced" ], $filterNames );
 	}
 
 	public function testFilterUserExpLevel() {

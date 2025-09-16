@@ -2,6 +2,7 @@
 
 namespace MediaWiki\RecentChanges;
 
+use InvalidArgumentException;
 use MediaWiki\Html\FormOptions;
 use MediaWiki\SpecialPage\ChangesListSpecialPage;
 use Wikimedia\Rdbms\IReadableDatabase;
@@ -56,6 +57,26 @@ class ChangesListBooleanFilterGroup extends ChangesListFilterGroup {
 	 */
 	protected function createFilter( array $filterDefinition ) {
 		return new ChangesListBooleanFilter( $filterDefinition );
+	}
+
+	/**
+	 * @since 1.45
+	 * @param array $defaultValue
+	 */
+	public function setDefault( $defaultValue ) {
+		if ( !is_array( $defaultValue ) ) {
+			throw new InvalidArgumentException(
+				"Can't set the default of filter options group \"{$this->getName()}\"" .
+				' to a value of type "' . gettype( $defaultValue ) . ': expected bool[]' );
+		}
+		foreach ( $defaultValue as $name => $value ) {
+			if ( !is_bool( $value ) ) {
+				throw new InvalidArgumentException(
+					"Can't set the default of filter option \"{$this->getName()}/$name\"" .
+					' to a value of type "' . gettype( $value ) . ': expected bool' );
+			}
+			$this->getFilter( $name )?->setDefault( $value );
+		}
 	}
 
 	/**

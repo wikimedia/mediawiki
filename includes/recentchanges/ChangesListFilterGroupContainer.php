@@ -24,6 +24,20 @@ class ChangesListFilterGroupContainer implements \IteratorAggregate {
 	private $filterGroups = [];
 
 	/**
+	 * Pending conflicts indexed by group name and filter name
+	 *
+	 * @var array<string,array<string,array<int,array{0:ChangesListFilter,1:array}>>>
+	 */
+	private $pendingConflicts = [];
+
+	/**
+	 * The priority of the last inserted group
+	 *
+	 * @var int
+	 */
+	private $autoPriority = 0;
+
+	/**
 	 * Iterate over defined filter groups.
 	 *
 	 * This is mostly for b/c with the FetchChangesList hook. When core needs
@@ -56,96 +70,6 @@ class ChangesListFilterGroupContainer implements \IteratorAggregate {
 	}
 
 	/**
-	 * Get the authorship group, or throw
-	 * @suppress PhanTypeMismatchReturnSuperType
-	 * @return ChangesListBooleanFilterGroup
-	 */
-	public function getAuthorshipGroup(): ChangesListBooleanFilterGroup {
-		return $this->getGroup( 'authorship' );
-	}
-
-	/**
-	 * Get the automated group, or throw
-	 * @suppress PhanTypeMismatchReturnSuperType
-	 * @return ChangesListBooleanFilterGroup
-	 */
-	public function getAutomatedGroup(): ChangesListBooleanFilterGroup {
-		return $this->getGroup( 'automated' );
-	}
-
-	/**
-	 * Get the change type filter group, or throw
-	 * @suppress PhanTypeMismatchReturnSuperType
-	 * @return ChangesListBooleanFilterGroup
-	 */
-	public function getChangeTypeGroup(): ChangesListBooleanFilterGroup {
-		return $this->getGroup( 'changeType' );
-	}
-
-	/**
-	 * Get the last revision group, or throw
-	 * @suppress PhanTypeMismatchReturnSuperType
-	 * @return ChangesListBooleanFilterGroup
-	 */
-	public function getLastRevisionGroup(): ChangesListBooleanFilterGroup {
-		return $this->getGroup( 'lastRevision' );
-	}
-
-	/**
-	 * Get the legacy review status group, or throw
-	 * @suppress PhanTypeMismatchReturnSuperType
-	 * @return ChangesListBooleanFilterGroup
-	 */
-	public function getLegacyReviewStatusGroup(): ChangesListBooleanFilterGroup {
-		return $this->getGroup( 'legacyReviewStatus' );
-	}
-
-	/**
-	 * Get the registration group, or throw
-	 * @suppress PhanTypeMismatchReturnSuperType
-	 * @return ChangesListBooleanFilterGroup
-	 */
-	public function getRegistrationGroup(): ChangesListBooleanFilterGroup {
-		return $this->getGroup( 'registration' );
-	}
-
-	/**
-	 * Get the review status group, or throw
-	 * @suppress PhanTypeMismatchReturnSuperType
-	 * @return ChangesListStringOptionsFilterGroup
-	 */
-	public function getReviewStatusGroup(): ChangesListStringOptionsFilterGroup {
-		return $this->getGroup( 'reviewStatus' );
-	}
-
-	/**
-	 * Get the significance filter group, or throw
-	 * @suppress PhanTypeMismatchReturnSuperType
-	 * @return ChangesListBooleanFilterGroup
-	 */
-	public function getSignificanceGroup(): ChangesListBooleanFilterGroup {
-		return $this->getGroup( 'significance' );
-	}
-
-	/**
-	 * Get the user experience level filter group, or throw
-	 * @suppress PhanTypeMismatchReturnSuperType
-	 * @return ChangesListStringOptionsFilterGroup
-	 */
-	public function getUserExpLevelGroup(): ChangesListStringOptionsFilterGroup {
-		return $this->getGroup( 'userExpLevel' );
-	}
-
-	/**
-	 * Get the watchlist group, or throw
-	 * @suppress PhanTypeMismatchReturnSuperType
-	 * @return ChangesListStringOptionsFilterGroup
-	 */
-	public function getWatchlistGroup(): ChangesListStringOptionsFilterGroup {
-		return $this->getGroup( 'watchlist' );
-	}
-
-	/**
 	 * Check if a group with a specific name is registered
 	 *
 	 * @param string $name
@@ -162,6 +86,76 @@ class ChangesListFilterGroupContainer implements \IteratorAggregate {
 		$groupName = $group->getName();
 
 		$this->filterGroups[$groupName] = $group;
+	}
+
+	/**
+	 * Register a conflict where the source exists but the destination doesn't
+	 * exist yet.
+	 *
+	 * @param ChangesListFilter $sourceFilter
+	 * @param string $conflictingGroupName
+	 * @param string $conflictingFilterName
+	 * @param array $opts
+	 */
+	public function addPendingConflict(
+		$sourceFilter,
+		$conflictingGroupName,
+		$conflictingFilterName,
+		$opts
+	) {
+		$this->pendingConflicts[$conflictingGroupName][$conflictingFilterName][]
+			= [ $sourceFilter, $opts ];
+	}
+
+	/**
+	 * Get any pending conflicts for the specified filter which is in the
+	 * specified group, and remove the conflicts from the container.
+	 *
+	 * @param ChangesListFilterGroup $group
+	 * @param ChangesListFilter $filter
+	 * @return iterable<array{0:ChangesListFilter,1:array}>
+	 */
+	public function popPendingConflicts(
+		ChangesListFilterGroup $group,
+		ChangesListFilter $filter
+	) {
+		$groupName = $group->getName();
+		$filterName = $filter->getName();
+		$conflicts = $this->pendingConflicts[$groupName][$filterName] ?? [];
+		if ( $conflicts ) {
+			unset( $this->pendingConflicts[$groupName][$filterName] );
+		}
+		return $conflicts;
+	}
+
+	/**
+	 * Apply a set of default overrides to the registered filters. Ignore any
+	 * filters that don't exist.
+	 *
+	 * @param array<string,array<string,bool>|string> $defaults The key is the group name.
+	 *   For string options groups, the value is a string. For boolean groups,
+	 *   the value is an array mapping the filter name to the default value.
+	 */
+	public function setDefaults( array $defaults ) {
+		foreach ( $defaults as $groupName => $groupDefault ) {
+			$this->getGroup( $groupName )?->setDefault( $groupDefault );
+		}
+	}
+
+	/**
+	 * If a priority is passed, update the current auto-priority and return the
+	 * passed value. If the priority is null, return the next auto-priority value.
+	 *
+	 * @param ?int $priority
+	 * @return int
+	 */
+	public function fillPriority( ?int $priority ) {
+		if ( $priority === null ) {
+			return --$this->autoPriority;
+		} else {
+			$this->autoPriority = $priority;
+			return $priority;
+		}
 	}
 
 	/**

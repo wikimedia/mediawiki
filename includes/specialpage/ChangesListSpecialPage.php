@@ -29,8 +29,8 @@ use MediaWiki\Json\FormatJson;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\Sanitizer;
-use MediaWiki\RecentChanges\ChangesListBooleanFilter;
 use MediaWiki\RecentChanges\ChangesListBooleanFilterGroup;
+use MediaWiki\RecentChanges\ChangesListFilterFactory;
 use MediaWiki\RecentChanges\ChangesListFilterGroup;
 use MediaWiki\RecentChanges\ChangesListFilterGroupContainer;
 use MediaWiki\RecentChanges\ChangesListStringOptionsFilterGroup;
@@ -72,36 +72,6 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	protected UserIdentityUtils $userIdentityUtils;
 	protected TempUserConfig $tempUserConfig;
 
-	// Order of both groups and filters is significant; first is top-most priority,
-	// descending from there.
-	// 'showHideSuffix' is a shortcut to and avoid spelling out
-	// details specific to subclasses here.
-	/**
-	 * Definition information for the filters and their groups
-	 *
-	 * The value is $groupDefinition, a parameter to the ChangesListFilterGroup constructor.
-	 * However, priority is dynamically added for the core groups, to ease maintenance.
-	 *
-	 * Groups are displayed to the user in the structured UI.  However, if necessary,
-	 * all of the filters in a group can be configured to only display on the
-	 * unstructured UI, in which case you don't need a group title.
-	 *
-	 * @var array
-	 */
-	private $filterGroupDefinitions;
-
-	/**
-	 * @var array Same format as filterGroupDefinitions, but for a single group (reviewStatus)
-	 * that is registered conditionally.
-	 */
-	private $legacyReviewStatusFilterGroupDefinition;
-
-	/** @var array Single filter group registered conditionally */
-	private $reviewStatusFilterGroupDefinition;
-
-	/** @var array Single filter group registered conditionally */
-	private $hideCategorizationFilterDefinition;
-
 	protected ChangesListFilterGroupContainer $filterGroups;
 
 	/**
@@ -121,8 +91,20 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		$this->userIdentityUtils = $userIdentityUtils;
 		$this->tempUserConfig = $tempUserConfig;
 		$this->filterGroups = new ChangesListFilterGroupContainer();
+	}
 
-		$this->filterGroupDefinitions = [
+	/**
+	 * Definitions for the filters and their groups.
+	 *
+	 * This is extended by overriding getExtraFilterGroupDefinitions() in
+	 * subclasses.
+	 *
+	 * @see ChangesListFilterFactory::registerFiltersFromDefinitions()
+	 *
+	 * @return array
+	 */
+	private function getBaseFilterGroupDefinitions() {
+		return [
 			[
 				'name' => 'registration',
 				'title' => 'rcfilters-filtergroup-registration',
@@ -167,6 +149,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 				'filters' => [
 					[
 						'name' => 'unregistered',
+						'requireConfig' => [ 'isRegistrationRequiredToEdit' => false ],
 						'label' => 'rcfilters-filter-user-experience-level-unregistered-label',
 						'description' => $this->tempUserConfig->isKnown() ?
 							'rcfilters-filter-user-experience-level-unregistered-description-temp' :
@@ -178,12 +161,14 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 					],
 					[
 						'name' => 'registered',
+						'requireConfig' => [ 'isRegistrationRequiredToEdit' => false ],
 						'label' => 'rcfilters-filter-user-experience-level-registered-label',
 						'description' => 'rcfilters-filter-user-experience-level-registered-description',
 						'cssClassSuffix' => 'user-registered',
 						'isRowApplicableCallable' => function ( IContextSource $ctx, RecentChange $rc ) {
 							return $this->userIdentityUtils->isNamed( $rc->getPerformerIdentity() );
-						}
+						},
+						'subsets' => [ 'newcomer', 'learner', 'experienced' ],
 					],
 					[
 						'name' => 'newcomer',
@@ -346,7 +331,20 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'cssClassSuffix' => 'minor',
 						'isRowApplicableCallable' => static function ( IContextSource $ctx, RecentChange $rc ) {
 							return $rc->getAttribute( 'rc_minor' );
-						}
+						},
+						'conflictOptions' => [
+							'globalKey' => 'rcfilters-hideminor-conflicts-typeofchange-global',
+							'forwardKey' => 'rcfilters-hideminor-conflicts-typeofchange',
+							'backwardKey' => 'rcfilters-typeofchange-conflicts-hideminor',
+						],
+						'conflictsWith' => [
+							'changeType' => [
+								'hidecategorization' => [],
+								'hidelog' => [],
+								'hidenewuserlog' => [],
+								'hidenewpages' => []
+							],
+						],
 					],
 					[
 						'name' => 'hidemajor',
@@ -446,9 +444,26 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 							return $rc->getAttribute( 'rc_source' ) === RecentChange::SRC_NEW;
 						},
 					],
-
-					// hidecategorization
-
+					[
+						'name' => 'hidecategorization',
+						'label' => 'rcfilters-filter-categorization-label',
+						'description' => 'rcfilters-filter-categorization-description',
+						// rcshowhidecategorization-show, rcshowhidecategorization-hide.
+						// wlshowhidecategorization
+						'showHideSuffix' => 'showhidecategorization',
+						'default' => false,
+						'priority' => -4,
+						'requireConfig' => [ 'RCWatchCategoryMembership' => true ],
+						'queryCallable' => static function ( string $specialClassName, IContextSource $ctx,
+							IReadableDatabase $dbr, &$tables, &$fields, &$conds, &$query_options, &$join_conds
+						) {
+							$conds[] = $dbr->expr( 'rc_type', '!=', RC_CATEGORIZE );
+						},
+						'cssClassSuffix' => 'src-mw-categorize',
+						'isRowApplicableCallable' => static function ( IContextSource $ctx, RecentChange $rc ) {
+							return $rc->getAttribute( 'rc_source' ) === RecentChange::SRC_CATEGORIZE;
+						},
+					],
 					[
 						'name' => 'hidelog',
 						'label' => 'rcfilters-filter-logactions-label',
@@ -485,13 +500,11 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 				],
 			],
 
-		];
-
-		$this->legacyReviewStatusFilterGroupDefinition = [
 			[
 				'name' => 'legacyReviewStatus',
 				'title' => 'rcfilters-filtergroup-reviewstatus',
 				'class' => ChangesListBooleanFilterGroup::class,
+				'requireConfig' => [ 'useRCPatrol' => true ],
 				'filters' => [
 					[
 						'name' => 'hidepatrolled',
@@ -517,16 +530,15 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'isReplacedInStructuredUi' => true,
 					],
 				],
-			]
-		];
+			],
 
-		$this->reviewStatusFilterGroupDefinition = [
 			[
 				'name' => 'reviewStatus',
 				'title' => 'rcfilters-filtergroup-reviewstatus',
 				'class' => ChangesListStringOptionsFilterGroup::class,
 				'isFullCoverage' => true,
 				'priority' => -5,
+				'requireConfig' => [ 'useRCPatrol' => true ],
 				'filters' => [
 					[
 						'name' => 'unpatrolled',
@@ -573,42 +585,18 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						return $rcPatrolledValues[ $s ];
 					}, $selected );
 				}
-			]
-		];
-
-		$this->hideCategorizationFilterDefinition = [
-			'name' => 'hidecategorization',
-			'label' => 'rcfilters-filter-categorization-label',
-			'description' => 'rcfilters-filter-categorization-description',
-			// rcshowhidecategorization-show, rcshowhidecategorization-hide.
-			// wlshowhidecategorization
-			'showHideSuffix' => 'showhidecategorization',
-			'default' => false,
-			'priority' => -4,
-			'queryCallable' => static function ( string $specialClassName, IContextSource $ctx,
-				IReadableDatabase $dbr, &$tables, &$fields, &$conds, &$query_options, &$join_conds
-			) {
-				$conds[] = $dbr->expr( 'rc_type', '!=', RC_CATEGORIZE );
-			},
-			'cssClassSuffix' => 'src-mw-categorize',
-			'isRowApplicableCallable' => static function ( IContextSource $ctx, RecentChange $rc ) {
-				return $rc->getAttribute( 'rc_source' ) === RecentChange::SRC_CATEGORIZE;
-			},
+			],
 		];
 	}
 
 	/**
-	 * Removes registration filters from filterGroupDefinitions
+	 * This may be overridden by subclasses to add more filter groups.
+	 *
+	 * @see ChangesListFilterFactory::registerFiltersFromDefinitions()
+	 * @return array
 	 */
-	private function removeRegistrationFilterDefinitions(): void {
-		foreach ( $this->filterGroupDefinitions as $key => $value ) {
-			if ( $value['name'] == "userExpLevel" ) {
-				$this->filterGroupDefinitions[ $key ][ 'filters' ] = array_filter(
-					$this->filterGroupDefinitions[ $key ][ 'filters' ],
-					static fn ( $val, $key ) => $val[ 'name' ] != 'registered'
-						&& $val[ 'name' ] != 'unregistered', ARRAY_FILTER_USE_BOTH );
-			}
-		}
+	protected function getExtraFilterGroupDefinitions(): array {
+		return [];
 	}
 
 	/**
@@ -979,104 +967,65 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	}
 
 	/**
-	 * Register all filters and their groups (including those from hooks), plus handle
-	 * conflicts and defaults.
+	 * Get configuration to be passed to the filter factory. The values here
+	 * are matched against the "requireConfig" values in the filter group
+	 * definitions.
 	 *
-	 * You might want to customize these in the same method, in subclasses.  You can
-	 * call getFilterGroup to access a group, and (on the group) getFilter to access a
-	 * filter, then make necessary modfications to the filter or group (e.g. with
-	 * setDefault).
+	 * @return array
 	 */
-	protected function registerFilters() {
-		$isRegistrationRequiredToEdit = !MediaWikiServices::getInstance()
-			->getPermissionManager()
-			->isEveryoneAllowed( "edit" );
-		if ( $isRegistrationRequiredToEdit ) {
-			$this->removeRegistrationFilterDefinitions();
-		}
-		$this->registerFiltersFromDefinitions( $this->filterGroupDefinitions );
+	private function getBaseFilterFactoryConfig() {
+		return [
+			'showHidePrefix' => '',
+			'isRegistrationRequiredToEdit' => !MediaWikiServices::getInstance()
+				->getPermissionManager()
+				->isEveryoneAllowed( "edit" ),
+			'useRCPatrol' => !$this->including() && $this->getUser()->useRCPatrol(),
+			'RCWatchCategoryMembership' =>
+				$this->getConfig()->get( MainConfigNames::RCWatchCategoryMembership ),
+		];
+	}
 
-		// Make sure this is not being transcluded (we don't want to show this
-		// information to all users just because the user that saves the edit can
-		// patrol or is logged in)
-		if ( !$this->including() && $this->getUser()->useRCPatrol() ) {
-			$this->registerFiltersFromDefinitions( $this->legacyReviewStatusFilterGroupDefinition );
-			$this->registerFiltersFromDefinitions( $this->reviewStatusFilterGroupDefinition );
-		}
+	/**
+	 * Subclasses may override this to add configuration to the filter factory.
+	 *
+	 * @return array
+	 */
+	protected function getExtraFilterFactoryConfig(): array {
+		return [];
+	}
 
-		$changeTypeGroup = $this->filterGroups->getChangeTypeGroup();
+	/**
+	 * Subclasses may override this to provide an array of filter group defaults,
+	 * overriding the defaults in the filter definitions.
+	 *
+	 * @return array<string,string|array<string,bool>>
+	 */
+	protected function getFilterDefaultOverrides(): array {
+		return [];
+	}
 
-		$categoryFilter = null;
-		if ( $this->getConfig()->get( MainConfigNames::RCWatchCategoryMembership ) ) {
-			$transformedHideCategorizationDef = $this->transformFilterDefinition(
-				$this->hideCategorizationFilterDefinition
-			);
-
-			$transformedHideCategorizationDef['group'] = $changeTypeGroup;
-
-			$categoryFilter = new ChangesListBooleanFilter(
-				$transformedHideCategorizationDef
-			);
-		}
-
-		$this->getHookRunner()->onChangesListSpecialPageStructuredFilters( $this );
-
-		$this->registerFiltersFromDefinitions( [] );
-
-		$userExperienceLevel = $this->filterGroups->getUserExpLevelGroup();
-		if ( !$isRegistrationRequiredToEdit ) {
-			$registered = $userExperienceLevel->getFilter( 'registered' );
-			$registered->setAsSupersetOf( $userExperienceLevel->getFilter( 'newcomer' ) );
-			$registered->setAsSupersetOf( $userExperienceLevel->getFilter( 'learner' ) );
-			$registered->setAsSupersetOf( $userExperienceLevel->getFilter( 'experienced' ) );
-		}
-
-		$logactionsFilter = $changeTypeGroup->getFilter( 'hidelog' );
-		$lognewuserFilter = $changeTypeGroup->getFilter( 'hidenewuserlog' );
-		$pagecreationFilter = $changeTypeGroup->getFilter( 'hidenewpages' );
-
-		$significanceTypeGroup = $this->filterGroups->getSignificanceGroup();
-		$hideMinorFilter = $significanceTypeGroup->getFilter( 'hideminor' );
-
-		if ( $categoryFilter !== null ) {
-			$hideMinorFilter->conflictsWith(
-				$categoryFilter,
-				'rcfilters-hideminor-conflicts-typeofchange-global',
-				'rcfilters-hideminor-conflicts-typeofchange',
-				'rcfilters-typeofchange-conflicts-hideminor'
-			);
-		}
-		$hideMinorFilter->conflictsWith(
-			$logactionsFilter,
-			'rcfilters-hideminor-conflicts-typeofchange-global',
-			'rcfilters-hideminor-conflicts-typeofchange',
-			'rcfilters-typeofchange-conflicts-hideminor'
-		);
-		$hideMinorFilter->conflictsWith(
-			$lognewuserFilter,
-			'rcfilters-hideminor-conflicts-typeofchange-global',
-			'rcfilters-hideminor-conflicts-typeofchange',
-			'rcfilters-typeofchange-conflicts-hideminor'
-		);
-		$hideMinorFilter->conflictsWith(
-			$pagecreationFilter,
-			'rcfilters-hideminor-conflicts-typeofchange-global',
-			'rcfilters-hideminor-conflicts-typeofchange',
-			'rcfilters-typeofchange-conflicts-hideminor'
+	protected function getFilterFactory(): ChangesListFilterFactory {
+		return new ChangesListFilterFactory(
+			$this->getExtraFilterFactoryConfig() + $this->getBaseFilterFactoryConfig()
 		);
 	}
 
 	/**
-	 * Transforms filter definition to prepare it for constructor.
-	 *
-	 * See overrides of this method as well.
-	 *
-	 * @param array $filterDefinition Original filter definition
-	 *
-	 * @return array Transformed definition
+	 * Register all filters and their groups (including those from hooks), plus handle
+	 * conflicts and defaults.
 	 */
-	protected function transformFilterDefinition( array $filterDefinition ) {
-		return $filterDefinition;
+	protected function registerFilters() {
+		$filterFactory = $this->getFilterFactory();
+		$filterFactory->registerFiltersFromDefinitions(
+			$this->filterGroups,
+			$this->getBaseFilterGroupDefinitions()
+		);
+		$filterFactory->registerFiltersFromDefinitions(
+			$this->filterGroups,
+			$this->getExtraFilterGroupDefinitions()
+		);
+		$this->getHookRunner()->onChangesListSpecialPageStructuredFilters( $this );
+		$this->filterGroups->setDefaults( $this->getFilterDefaultOverrides() );
 	}
 
 	/**
@@ -1090,26 +1039,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 * @phan-param array<int,array{class:class-string<ChangesListFilterGroup>,filters:array}> $definition
 	 */
 	protected function registerFiltersFromDefinitions( array $definition ) {
-		$autoFillPriority = -1;
-		foreach ( $definition as $groupDefinition ) {
-			if ( !isset( $groupDefinition['priority'] ) ) {
-				$groupDefinition['priority'] = $autoFillPriority;
-			} else {
-				// If it's explicitly specified, start over the auto-fill
-				$autoFillPriority = $groupDefinition['priority'];
-			}
-
-			$autoFillPriority--;
-
-			$className = $groupDefinition['class'];
-			unset( $groupDefinition['class'] );
-
-			foreach ( $groupDefinition['filters'] as &$filterDefinition ) {
-				$filterDefinition = $this->transformFilterDefinition( $filterDefinition );
-			}
-
-			$this->filterGroups->registerGroup( new $className( $groupDefinition ) );
-		}
+		$this->getFilterFactory()->registerFiltersFromDefinitions( $this->filterGroups, $definition );
 	}
 
 	/**

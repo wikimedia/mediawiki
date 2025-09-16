@@ -217,6 +217,14 @@ abstract class ChangesListFilterGroup {
 	abstract protected function createFilter( array $filterDefinition );
 
 	/**
+	 * Set the default for this filter group.
+	 *
+	 * @since 1.45
+	 * @param bool[]|string $defaultValue
+	 */
+	abstract public function setDefault( $defaultValue );
+
+	/**
 	 * Marks that the given ChangesListFilterGroup or ChangesListFilter conflicts with this object.
 	 *
 	 * WARNING: This means there is a conflict when both things are *shown*

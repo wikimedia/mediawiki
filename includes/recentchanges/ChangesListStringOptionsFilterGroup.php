@@ -136,6 +136,11 @@ class ChangesListStringOptionsFilterGroup extends ChangesListFilterGroup {
 	 * @param string $defaultValue
 	 */
 	public function setDefault( $defaultValue ) {
+		if ( !is_string( $defaultValue ) ) {
+			throw new InvalidArgumentException(
+				"Can't set the default of filter options group \"{$this->getName()}\"" .
+				' to a value of type "' . gettype( $defaultValue ) . ': string expected' );
+		}
 		$this->defaultValue = $defaultValue;
 	}
 
