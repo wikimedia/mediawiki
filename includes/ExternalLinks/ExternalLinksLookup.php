@@ -40,6 +40,7 @@ class ExternalLinksLookup {
 	 * @deprecated since 1.45 use ::getExtLinksForPage() instead
 	 */
 	public static function getExternalLinksForPage( int $pagId, IReadableDatabase $dbr, $fname ) {
+		wfDeprecated( __METHOD__, '1.45' );
 		$links = [];
 		$res = $dbr->newSelectQueryBuilder()
 			->select( [ 'el_to_domain_index', 'el_to_path' ] )
