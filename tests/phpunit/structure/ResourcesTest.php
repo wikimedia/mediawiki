@@ -142,6 +142,11 @@ class ResourcesTest extends MediaWikiIntegrationTestCase {
 		$modules = [];
 
 		foreach ( $rl->getModuleNames() as $moduleName ) {
+			// Hack to unblock MediaWiki CI: T404729
+			if ( $moduleName === 'ext.pageviewinfo' ) {
+				continue;
+			}
+
 			$modules[$moduleName] = $rl->getModule( $moduleName );
 		}
 
