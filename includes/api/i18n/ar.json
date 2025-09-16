@@ -1066,6 +1066,7 @@
 	"apihelp-query+logevents-param-action": "تصفية إجراءات السجل لهذا الإجراء فقط، يتجاوز <var>$1type</var>، في قائمة القيم المحتملة، يمكن أن تحتوي القيم بحرف بدل العلامة النجمية مثل <kbd>action/*</kbd> على سلاسل مختلفة بعد الخط المائل (/).",
 	"apihelp-query+logevents-param-start": "الطابع الزمني لبدء العد منه.",
 	"apihelp-query+logevents-param-end": "الطابع الزمني لإنهاء التعداد.",
+	"apihelp-query+logevents-param-ids": "قم بتصفية الإدخالات إلى تلك التي تطابق معرفات السجل المحددة.",
 	"apihelp-query+logevents-param-user": "تصفية الإلدخالات تلك المدخلات من قبل المستخدم المعطى.",
 	"apihelp-query+logevents-param-title": "تصفية الإدخالات إلى تلك المتعلقة بصفحة.",
 	"apihelp-query+logevents-param-namespace": "تصفية الإدخالات إلى تلك الموجودة في النطاق المحدد.",

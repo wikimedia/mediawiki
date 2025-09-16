@@ -1038,6 +1038,7 @@
 	"apihelp-query+logevents-param-action": "Filtrar actiones de registro solo a iste action. Supplanta <var>$1type</var>. In le lista de valores possibile, valores con le metacharacter de asterisco como <kbd>action/*</kbd> pote haber differente catenas post le barra oblique (/).",
 	"apihelp-query+logevents-param-start": "Le data e hora al qual comenciar a enumerar.",
 	"apihelp-query+logevents-param-end": "Le data e hora al qual cessar de enumerar.",
+	"apihelp-query+logevents-param-ids": "Filtrar le entratas, limitante los a illos correspondente al ID(s) de registro date.",
 	"apihelp-query+logevents-param-user": "Filtrar entratas a illos facite per le usator date.",
 	"apihelp-query+logevents-param-title": "Filtrar entratas a illos associate a un pagina.",
 	"apihelp-query+logevents-param-namespace": "Filtrar entratas a illos in le spatio de nomines date.",

@@ -2395,7 +2395,7 @@
 	"tooltip-t-whatlinkshere": "Lista de las paginas ligadas a aquesta",
 	"tooltip-t-recentchangeslinked": "Lista dels darrièrs cambiaments de las paginas ligadas a aquesta",
 	"tooltip-feed-rss": "Flux RSS per aquesta pagina",
-	"tooltip-feed-atom": "Flux Atom per aquesta pagina",
+	"tooltip-feed-atom": "Canal Atom per aquesta pagina",
 	"tooltip-t-contributions": "Veire la lista de las contribucions d'{{GENDER:$1|aqueste utilizaire|aquesta utilizaira}}",
 	"tooltip-t-emailuser": "Mandar un corrièr electronic a {{GENDER:$1|aqueste utilizaire|aquesta utilizaira}}",
 	"tooltip-t-info": "Mai d’informacion sus aquesta pagina",

@@ -1731,6 +1731,7 @@
 	"apierror-filenopath": "Невозможно получить локальный путь к файлу.",
 	"apierror-filetypecannotberotated": "Этот тип файлов не может быть повёрнут.",
 	"apierror-formatphp": "Этот ответ не может быть представлен с использованием <kbd>format=php</kbd>. См. https://phabricator.wikimedia.org/T68776.",
+	"apierror-http-contenttoolarge": "Содержимое HTTP-запроса слишком велико. Максимальная длина: $1.",
 	"apierror-imageusage-badtitle": "Название для модуля <kbd>$1</kbd> должно быть файлом.",
 	"apierror-import-unknownerror": "Неизвестная ошибка при импорте: $1.",
 	"apierror-integeroutofrange-abovebotmax": "<var>$1</var> не может быть больше $2 (присвоено $3) для ботов и администраторов.",

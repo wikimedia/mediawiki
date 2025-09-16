@@ -1059,6 +1059,7 @@
 	"apihelp-query+logevents-param-action": "סינון פעולות יומן רק לפעולה הזאת. דורס את <var>$1type</var>. ברשימת הערכים האפשריים, ערכים עם תו־כל כוכבית כגון <kbd>action/*</kbd> יכולים להיות מחרוזות שונות אחרי הקו הנטוי (/).",
 	"apihelp-query+logevents-param-start": "מאיזה חותם־זמן להתחיל למנות.",
 	"apihelp-query+logevents-param-end": "באיזה חותם־זמן להפסיק למנות.",
+	"apihelp-query+logevents-param-ids": "סינון ערכים לאלה שתואמים למזהי היומן הנתונים.",
 	"apihelp-query+logevents-param-user": "לסנן את הרשומות שעשה המשתמש הנתון.",
 	"apihelp-query+logevents-param-title": "סינון רשומות רק לכאלו שמתייחסות לדף.",
 	"apihelp-query+logevents-param-namespace": "סינון רשומות רק לכאלה במרחב השם הנתון.",

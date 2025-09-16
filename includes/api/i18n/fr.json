@@ -1085,6 +1085,7 @@
 	"apihelp-query+logevents-param-action": "Filtrer les actions du journal sur cette seule action. Écrase <var>$1type</var>. Dans la liste des valeurs possibles, les valeurs suivies d’un astérisque, comme <kbd>action/*</kbd>, peuvent comprendre différentes chaînes après la barre oblique (/).",
 	"apihelp-query+logevents-param-start": "L’horodatage auquel commencer l’énumération.",
 	"apihelp-query+logevents-param-end": "L’horodatage auquel arrêter l’énumération.",
+	"apihelp-query+logevents-param-ids": "Filtrer les entrées à celles correspondant aux ID de journal donnés.",
 	"apihelp-query+logevents-param-user": "Filtrer les entrées sur celles réalisées par l’utilisateur donné.",
 	"apihelp-query+logevents-param-title": "Filtrer les entrées sur celles relatives à une page donnée.",
 	"apihelp-query+logevents-param-namespace": "Filtrer les entrées sur celles dans l’espace de noms donné.",

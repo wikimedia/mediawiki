@@ -198,5 +198,11 @@
 	"rest-endpoint-desc-mock-desc": "وصف وهمي.",
 	"rest-endpoint-desc-post-page": "إنشاء صفحة.",
 	"rest-endpoint-desc-get-revision-id": "يقوم بإرجاع معلومات حول المراجعة، بما في ذلك مصدر المراجعة، عادةً في wikitext.",
-	"rest-endpoint-desc-get-revision-id-with-html": "إرجاع معلومات حول المراجعة، بما في ذلك محتوى المراجعة في HTML."
+	"rest-endpoint-desc-get-revision-id-with-html": "إرجاع معلومات حول المراجعة، بما في ذلك محتوى المراجعة في HTML.",
+	"rest-endpoint-summ-get-revision-id": "احصل على مصدر المراجعة",
+	"rest-endpoint-summ-get-search-page": "صفحات البحث",
+	"rest-endpoint-summ-get-page-title-language": "اختر اللغة",
+	"rest-endpoint-summ-get-page-title": "احصل على مصدر الصفحة",
+	"rest-endpoint-summ-get-page-title-bare": "جلب الصفحة",
+	"rest-endpoint-summ-post-page": "أنشئ الصفحة"
 }

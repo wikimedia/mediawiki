@@ -7,7 +7,8 @@
 			"Taiwania Justo",
 			"Xiplus",
 			"列维劳德",
-			"捍粵者"
+			"捍粵者",
+			"臺灣象象"
 		]
 	},
 	"rest-prefix-mismatch": "請求的路徑（$1）不在REST API的基本路徑（$2）內",
@@ -106,6 +107,18 @@
 	"rest-param-desc-html-input-oldid": "HTML輸入轉換oldid",
 	"rest-param-desc-html-input-from": "HTML輸入轉換自",
 	"rest-param-desc-html-input-format": "HTML輸入轉換格式",
+	"rest-param-desc-compare-from-section-level": "章節層級",
+	"rest-param-desc-compare-from-section-heading": "章節標題，例如:1<h1>",
+	"rest-param-desc-compare-to-section-level": "章節層級",
+	"rest-param-desc-language-links-title": "維基頁面標題",
+	"rest-param-desc-media-links-title": "頁面標題",
+	"rest-param-desc-media-file-title": "檔案標題",
+	"rest-param-desc-media-mediatype": "檔案類型",
+	"rest-param-desc-pagehistory-count-title": "維基頁面標題",
+	"rest-param-desc-pagehistory-count-type": "計數類型（匿名、機器人、編輯者、編輯、小修改、已被回退）",
+	"rest-property-desc-revision-id": "修訂版本ID",
+	"rest-property-desc-revision-timestamp": "修訂版本時間戳",
+	"rest-property-desc-page-title": "頁面標題",
 	"rest-property-desc-page-language-code": "語言代碼",
 	"rest-property-desc-page-language-name": "翻譯語言名稱",
 	"rest-property-desc-page-language-key": "以 URL 友善格式翻譯頁面標題"

@@ -1064,6 +1064,7 @@
 	"apihelp-query+logevents-param-action": "Filter logboekhandelingen zodat alleen deze handeling wordt weergegeven. Overschrijft <var>$1type</var>. In de lijst met mogelijke waarden kunnen waarden met de asterisk-joker, zoals <kbd>action/*</kbd>, verschillende tekenreeksen na de slash (/) hebben.",
 	"apihelp-query+logevents-param-start": "Het tijdstip waar de opsomming begint.",
 	"apihelp-query+logevents-param-end": "Het tijdstip waar de opsomming eindigt.",
+	"apihelp-query+logevents-param-ids": "De vermeldingen filteren op overeenkomst met de opgegeven logboek-ID(’s).",
 	"apihelp-query+logevents-param-user": "Vermeldingen zo filteren dat alleen de door de gegeven gebruiker gemaakte worden weergegeven.",
 	"apihelp-query+logevents-param-title": "Vermeldingen zo filteren dat alleen de aan een bepaalde pagina gerelateerde worden weergegeven.",
 	"apihelp-query+logevents-param-namespace": "Vermeldingen zo filteren dat alleen die in de gegeven naamruimte worden weergegeven.",

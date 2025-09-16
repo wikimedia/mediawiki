@@ -1055,6 +1055,7 @@
 	"apihelp-query+logevents-param-action": "Filtrar accións no rexistro para amosar só esta acción. Ignora <var>$1type</var>. Na lista de posibles valores, valores coa máscara asterisco como <kbd>action/*</kbd> poden ter diferentes cadeas despois da barra (/).",
 	"apihelp-query+logevents-param-start": "Selo de tempo no que comezar a enumeración.",
 	"apihelp-query+logevents-param-end": "Selo de tempo no que rematar a enumeración.",
+	"apihelp-query+logevents-param-ids": "Filtrar entradas ás que coincidan cos identificadores de rexistro indicados.",
 	"apihelp-query+logevents-param-user": "Filtrar entradas ás feitas polo usuario indicado.",
 	"apihelp-query+logevents-param-title": "Filtrar entradas ás asociadas á páxina indicada.",
 	"apihelp-query+logevents-param-namespace": "Filtrar entradas ás do espazo de nomes indicado.",

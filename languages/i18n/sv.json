@@ -754,7 +754,7 @@
 	"expensive-parserfunction-warning": "Varning: Denna sida innehåller för många anrop av resurskrävande parserfunktioner.\n\nAntalet anrop får vara högst $2, nu görs {{PLURAL:$1|$1 anrop}}",
 	"expensive-parserfunction-category": "Sidor med för många resurskrävande parserfunktioner",
 	"post-expand-template-inclusion-warning": "Varning: Den här sidan innehåller för mycket mallinklusioner.\nNågra av mallarna kommer inte att inkluderas.",
-	"post-expand-template-inclusion-category": "Sidor som överskrider maxstorleken vid expansion av mallar och moduler",
+	"post-expand-template-inclusion-category": "Sidor som inkluderar för mycket mallkod",
 	"post-expand-template-argument-warning": "<strong>Varning:</strong> Sidan innehåller minst en mallparameter som blir för lång när den expanderas.\nDessa parametrar har utelämnats.",
 	"post-expand-template-argument-category": "Sidor med uteslutna mallparametrar",
 	"template-equals-category": "Sidor som använder = som en mall",

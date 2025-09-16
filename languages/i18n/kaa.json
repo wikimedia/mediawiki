@@ -1150,6 +1150,7 @@
 	"statistics-header-users": "Paydalanıwshı statistikası",
 	"statistics-header-hooks": "Basqa statistika",
 	"statistics-articles": "Maqalalar",
+	"statistics-articles-desc": "Tolıǵıraq maǵlıwmat ushın [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgArticleCountMethod maqala sanı hújjetine] qarań",
 	"statistics-pages": "Betler",
 	"statistics-pages-desc": "Wikidegi barlıq betler, talqılaw, qayta baǵıtlanǵan hám basqa betlerdi qosqanda",
 	"statistics-files": "Júklengen fayllar",
