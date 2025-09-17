@@ -151,4 +151,41 @@ class CachedBagOStuffTest extends TestCase {
 		$this->assertSame( BagOStuff::ERR_UNEXPECTED, $cache->getLastError( $wp ) );
 		$this->assertSame( BagOStuff::ERR_NONE, $cache->getLastError( $wp2 ) );
 	}
+
+	public function testWasLastGetCached() {
+		$backend = new HashBagOStuff( [ 'miss' => 1 ] );
+		$cache = new CachedBagOStuff( $backend );
+		$cache->set( 'hit', 1 );
+
+		$cache->get( 'foo' );
+		$this->assertFalse( $cache->wasLastGetCached() );
+
+		$cache->get( 'hit' );
+		$this->assertTrue( $cache->wasLastGetCached() );
+
+		$cache->get( 'miss' );
+		$this->assertFalse( $cache->wasLastGetCached() );
+	}
+
+	public function testWasLastGetCachedThrowsDefault(): void {
+		$cache = new CachedBagOStuff( new HashBagOStuff() );
+
+		$this->expectExceptionMessage(
+			'Wikimedia\ObjectCache\CachedBagOStuff::wasLastGetCached must be called immediately after get()'
+		);
+		$cache->wasLastGetCached();
+	}
+
+	public function testWasLastGetCachedThrows(): void {
+		$cache = new CachedBagOStuff( new HashBagOStuff( [ 'miss' => 1 ] ) );
+		$cache->set( 'hit', 1 );
+
+		$cache->get( 'hit' );
+		$this->assertTrue( $cache->wasLastGetCached() );
+
+		$this->expectExceptionMessage(
+			'Wikimedia\ObjectCache\CachedBagOStuff::wasLastGetCached must be called immediately after get()'
+		);
+		$cache->wasLastGetCached();
+	}
 }
