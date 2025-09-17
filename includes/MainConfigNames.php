@@ -4248,13 +4248,6 @@ class MainConfigNames {
 	public const APIMaxLagThreshold = 'APIMaxLagThreshold';
 
 	/**
-	 * Name constant for the APIRequestLog setting, for use with Config::get()
-	 * @see MainConfigSchema::APIRequestLog
-	 * @deprecated since 1.43; use api or api-request $wgDebugLogGroups channel
-	 */
-	public const APIRequestLog = 'APIRequestLog';
-
-	/**
 	 * Name constant for the APICacheHelpTimeout setting, for use with Config::get()
 	 * @see MainConfigSchema::APICacheHelpTimeout
 	 */

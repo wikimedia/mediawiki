@@ -7890,12 +7890,6 @@ config-schema:
             Maximum amount of DB lag on a majority of DB replica DBs to tolerate
             before forcing bots to retry any write requests via API errors.
             This should be lower than the 'max lag' value in $wgLBFactoryConf.
-    APIRequestLog:
-        default: false
-        deprecated: 'since 1.43; use api or api-request $wgDebugLogGroups channel'
-        description: |-
-            Log file or URL (TCP or UDP) to log API requests to, or false to disable
-            API request logging
     APICacheHelpTimeout:
         default: 3600
         description: 'Set the timeout for the API help text cache. If set to 0, caching disabled'

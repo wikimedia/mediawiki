@@ -2622,7 +2622,6 @@ return [
 			'APIMaxResultSize' => 8388608,
 			'APIMaxUncachedDiffs' => 1,
 			'APIMaxLagThreshold' => 7,
-			'APIRequestLog' => false,
 			'APICacheHelpTimeout' => 3600,
 			'APIUselessQueryPages' => [
 				'MIMEsearch',
@@ -3636,9 +3635,6 @@ return [
 			'additionalProperties' => [
 				'type' => 'integer',
 			],
-		],
-		'APIRequestLog' => [
-			'deprecated' => 'since 1.43; use api or api-request $wgDebugLogGroups channel',
 		],
 		'RestSandboxSpecs' => [
 			'additionalProperties' => [

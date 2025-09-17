@@ -12686,15 +12686,6 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * Log file or URL (TCP or UDP) to log API requests to, or false to disable
-	 * API request logging
-	 */
-	public const APIRequestLog = [
-		'default' => false,
-		'deprecated' => 'since 1.43; use api or api-request $wgDebugLogGroups channel',
-	];
-
-	/**
 	 * Set the timeout for the API help text cache. If set to 0, caching disabled
 	 */
 	public const APICacheHelpTimeout = [

@@ -40,6 +40,7 @@ For notes on 1.45.x and older releases, see HISTORY.
 
 ==== Removed configuration ====
 
+* (T276975) $wgAPIRequestLog, ignored since 1.43, has now been fully removed.
 * …
 
 === New user-facing features in 1.46 ===
