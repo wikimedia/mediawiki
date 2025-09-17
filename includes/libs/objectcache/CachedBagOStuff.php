@@ -19,6 +19,8 @@
  */
 namespace Wikimedia\ObjectCache;
 
+use LogicException;
+
 /**
  * Wrap any BagOStuff and add an in-process memory cache to it.
  *
@@ -37,6 +39,13 @@ class CachedBagOStuff extends BagOStuff {
 	protected $store;
 	/** @var HashBagOStuff */
 	protected $procCache;
+
+	/**
+	 * Whether the last get() call was read from cache ($procCache) or the actual store.
+	 * Null means not applicable (e.g. there was no get() call yet).
+	 * Should be called immediately after a get() call. getMulti() is not supported.
+	 */
+	protected ?bool $wasLastGetCached = null;
 
 	/**
 	 * @stable to call
@@ -58,6 +67,7 @@ class CachedBagOStuff extends BagOStuff {
 	public function get( $key, $flags = 0 ) {
 		$value = $this->procCache->get( $key, $flags );
 		if ( $value !== false || $this->procCache->hasKey( $key ) ) {
+			$this->wasLastGetCached = true;
 			return $value;
 		}
 
@@ -70,11 +80,13 @@ class CachedBagOStuff extends BagOStuff {
 		);
 		$this->set( $key, $value, self::TTL_INDEFINITE, self::WRITE_CACHE_ONLY );
 
+		$this->wasLastGetCached = false;
 		return $value;
 	}
 
 	/** @inheritDoc */
 	public function getMulti( array $keys, $flags = 0 ) {
+		$this->wasLastGetCached = null;
 		$valueByKeyCached = [];
 
 		$keysFetch = [];
@@ -281,6 +293,25 @@ class CachedBagOStuff extends BagOStuff {
 		parent::setMockTime( $time );
 		$this->procCache->setMockTime( $time );
 		$this->store->setMockTime( $time );
+	}
+
+	/**
+	 * True if the last get() call was read from cache, false if it was a cache miss.
+	 * Should be called immediately after a get() call (might throw otherwise).
+	 * getMulti() is not supported.
+	 * @since 1.45
+	 */
+	public function wasLastGetCached(): bool {
+		if ( $this->wasLastGetCached === null ) {
+			throw new LogicException( __METHOD__ . ' must be called immediately after get()' );
+		}
+
+		$status = $this->wasLastGetCached;
+		// Disallow multiple calls without a get() in between as we expect this method to
+		// be used right after a get().
+		$this->wasLastGetCached = null;
+
+		return $status;
 	}
 
 	// @codeCoverageIgnoreEnd
