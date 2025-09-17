@@ -227,7 +227,11 @@ class EnhancedChangesList extends ChangesList {
 				$formattedCount = $this->msg( 'ntimes' )->numParams( $count )->escaped();
 				$text .= ' ' . $this->msg( 'parentheses' )->rawParams( $formattedCount )->escaped();
 			}
-			$users[] = $text;
+			$users[] = Html::rawElement(
+				'span',
+				[ 'class' => 'mw-changeslist-user-in-group' ],
+				$text
+			);
 		}
 
 		# Article link
