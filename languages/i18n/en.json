@@ -972,6 +972,7 @@
 	"linterror-tidy-whitespace-bug": "Whitespace parsing bug",
 	"linterror-unclosed-quotes-in-heading": "Unclosed quote which leaks out of the table of contents",
 	"linterror-wikilink-in-extlink": "Links in links",
+	"linterror-template-arg-in-extension-tag": "Extension tag with template parameter",
 	"email": "Email",
 	"userrights": "User rights",
 	"userrights-lookup-user": "Select a user",

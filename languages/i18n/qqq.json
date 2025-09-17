@@ -1248,6 +1248,7 @@
 	"linterror-tidy-whitespace-bug": "Error message, follows {{msg-mw|badsightml}}. For information about the bug, see the commit message https://gerrit.wikimedia.org/r/#/c/371068 .\n\nSee also {{msg-mw|linter-pager-tidy-whitespace-bug-details}}.",
 	"linterror-unclosed-quotes-in-heading": "Error message, follows {{msg-mw|badsightml}}. See [[:mw:Help:Extension:Linter/unclosed-quote-in-heading]].\n\nSee also {{msg-mw|linter-pager-unclosed-quotes-in-heading-details}}.",
 	"linterror-wikilink-in-extlink": "Error message, follows {{msg-mw|badsightml}}.\n\nSee also {{msg-mw|linter-pager-wikilink-in-extlink-details}}.",
+	"linterror-template-arg-in-extension-tag": "Error message, follows {{msg-mw|badsightml}}.\n\nSee also {{msg-mw|linter-pager-template-arg-in-extension-tag-details}}.",
 	"email": "{{Identical|E-mail}}",
 	"userrights": "Page title of [[Special:UserRights]].",
 	"userrights-lookup-user": "Used as a legend for a fieldset when managing user rights ([[Special:UserRights]])",

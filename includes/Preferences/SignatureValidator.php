@@ -152,6 +152,7 @@ class SignatureValidator {
 				// * linterror-tidy-whitespace-bug
 				// * linterror-unclosed-quotes-in-heading
 				// * linterror-wikilink-in-extlink
+				// * linterror-template-arg-in-extension-tag
 				$label = $this->localizer->msg( "linterror-{$error['type']}" )->parse();
 				$docsLink = new ButtonWidget( [
 					'href' =>
