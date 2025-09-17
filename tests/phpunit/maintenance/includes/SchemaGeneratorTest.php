@@ -50,4 +50,35 @@ class SchemaGeneratorTest extends MediaWikiIntegrationTestCase {
 		$this->expectExceptionMessage( 'No schema changes detected' );
 		$generator->generateSchemaChange( 'mysql', self::DATA_DIR . '/patch-no_change.json' );
 	}
+
+	/**
+	 * @dataProvider provideJsonSchemasPaths
+	 */
+	public function testNormalizePath( string $expected, string $jsonSchemaPath, string $IP ) {
+		$this->assertEquals(
+			$expected,
+			SchemaGenerator::normalizePath( $jsonSchemaPath, $IP )
+		);
+	}
+
+	public static function provideJsonSchemasPaths() {
+		global $IP;
+		// (expected, path, $IP)
+		return [
+			'Core patch absolute path '
+			. 'then path is relative to $IP' => [
+				'tests/phpunit/data/schema-maintenance/patch-no_change.json',
+				self::DATA_DIR . '/patch-no_change.json',
+				$IP
+			],
+			'Extension directory under $IP '
+			. 'then path is relative to the extension root. '
+			=> [
+				'db_patches/patch.json',
+				self::DATA_DIR . '/extensions/FooExt/db_patches/patch.json',
+				self::DATA_DIR  // used as $IP
+			],
+		];
+	}
+
 }
