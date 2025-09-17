@@ -4060,7 +4060,7 @@
 	"restsandbox-no-such-api": "지정된 API 변수는 지원되지 않습니다: $1",
 	"restsandbox-jsonly": "REST 사양을 보려면 자바스크립트가 필수입니다.",
 	"blockedtext-made-by": "차단은 $1님에 의해 이루어졌습니다.",
-	"blockedtext-reason-comment": "지정된 이유는 다음과 같습니다: <em>$1</em>",
+	"blockedtext-reason-comment": "차단된 이유는 다음과 같습니다: <em>$1</em>",
 	"blockedtext-start-time": "차단이 시작된 시간: $1",
 	"blockedtext-expiration-time": "차단이 끝나는 시간: $1",
 	"blockedtext-expiration-longest-block": "차단 만료: $1",

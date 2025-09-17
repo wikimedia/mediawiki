@@ -3858,7 +3858,7 @@
 	"newpages-showhide-redirect": "$1 перасылкі",
 	"newpages-showhide-registered": "$1 пазнаных удзельнікаў",
 	"blockedtext-made-by": "Блакаванне было зроблена ўдзельнікам $1.",
-	"blockedtext-reason-comment": "Пададзеная прычына — <em>$1</em>.",
+	"blockedtext-reason-comment": "Пададзеная прычына: <em>$1</em>",
 	"blockedtext-start-time": "Пачатак блакавання: $1",
 	"blockedtext-expiration-time": "Сканчэнне блакавання: $1",
 	"blockedtext-expiration-longest-block": "Сканчэнне найдаўжэйшага блакавання: $1",

@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"A R King",
+			"Jose Antonio Guillen Landaverde",
 			"Taty Flores de Constante",
 			"TimumachtikanNawat"
 		]
@@ -55,5 +56,6 @@
 	"thu": "Tunal4",
 	"fri": "Tunal5",
 	"sat": "Tunal6",
-	"sun": "Tunal1"
+	"sun": "Tunal1",
+	"duration-days": "$1 {{PLURAL:$1|tanestuk|tajtanestuk}}"
 }
