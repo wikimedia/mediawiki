@@ -101,7 +101,6 @@ class ApiFormatPhpTest extends ApiFormatTestBase {
 					'a:1:{s:3:"foo";s:3:"foo";}' ],
 			] )
 		);
-		// phpcs:enable
 	}
 
 }

@@ -263,7 +263,6 @@ class PreprocessorTest extends MediaWikiIntegrationTestCase {
 			[ "== h ==<!--c1--> x <!--c2--><!--c3-->  ", "<root>== h ==<comment>&lt;!--c1--&gt;</comment> x <comment>&lt;!--c2--&gt;</comment><comment>&lt;!--c3--&gt;</comment>  </root>" ],
 			[ "== h ==<!--c1--><!--c2--><!--c3--> x ", "<root>== h ==<comment>&lt;!--c1--&gt;</comment><comment>&lt;!--c2--&gt;</comment><comment>&lt;!--c3--&gt;</comment> x </root>" ],
 		];
-		// phpcs:enable
 	}
 
 }

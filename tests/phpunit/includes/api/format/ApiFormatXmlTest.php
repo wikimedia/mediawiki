@@ -134,7 +134,6 @@ class ApiFormatXmlTest extends ApiFormatTestBase {
 					'" type="text/xsl" ?><api />',
 				[ 'xslt' => 'MediaWiki:ApiFormatXmlTest.xsl' ] ],
 		];
-		// phpcs:enable
 	}
 
 }

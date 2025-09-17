@@ -195,4 +195,3 @@ class Test2 extends Test1 {
 		$this->protected2NoDump = new stdClass;
 	}
 }
-// phpcs:enable MediaWiki.Commenting.PropertyDocumentation

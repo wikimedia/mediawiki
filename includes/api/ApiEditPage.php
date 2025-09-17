@@ -540,7 +540,7 @@ class ApiEditPage extends ApiBase {
 		$status = $ep->attemptSave( $result );
 		$statusValue = is_int( $status->value ) ? $status->value : 0;
 		$wgRequest = $oldRequest;
-		// phpcs:enable MediaWiki.Usage.ExtendClassUsage.FunctionVarUsage
+		// phpcs:enable
 
 		$r = [];
 		switch ( $statusValue ) {

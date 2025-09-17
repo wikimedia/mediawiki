@@ -395,4 +395,3 @@ $wgAutoloadClasses += [
 	'ParserTestTopLevelSuite' => "$testDir/phpunit/suites/ParserTestTopLevelSuite.php",
 	'SuiteEventsTrait' => "$testDir/phpunit/suites/SuiteEventsTrait.php",
 ];
-// phpcs:enable

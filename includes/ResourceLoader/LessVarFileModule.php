@@ -108,7 +108,7 @@ class LessVarFileModule extends FileModule {
 		return str_replace( "'", "\'", CSSMin::serializeStringValue( $msg ) );
 	}
 
-	// phpcs:enable MediaWiki.Commenting.DocComment.SpacingDocTag, Squiz.WhiteSpace.FunctionSpacing.Before
+	// phpcs:enable
 
 	/**
 	 * Get language-specific LESS variables for this module.

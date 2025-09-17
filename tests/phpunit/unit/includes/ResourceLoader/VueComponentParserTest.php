@@ -346,6 +346,5 @@ class VueComponentParserTest extends \PHPUnit\Framework\TestCase {
 				'Template with self-closing tag (broken)'
 			],
 		];
-		// phpcs:enable
 	}
 }
