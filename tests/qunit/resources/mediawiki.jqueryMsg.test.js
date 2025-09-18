@@ -1093,14 +1093,14 @@
 			'Attributes with single quotes are normalized to double'
 		);
 
-		mw.messages.set( 'jquerymsg-escaped-double-quotes-attribute', '<i style="font-family:&quot;Arial&quot;">Styled</i>' );
+		mw.messages.set( 'jquerymsg-escaped-double-quotes-attribute', '<i title="Hello &quot;World&quot;">Title</i>' );
 		assert.htmlEqual(
 			formatParse( 'jquerymsg-escaped-double-quotes-attribute' ),
 			mw.messages.get( 'jquerymsg-escaped-double-quotes-attribute' ),
 			'Escaped attributes are parsed correctly'
 		);
 
-		mw.messages.set( 'jquerymsg-escaped-single-quotes-attribute', '<i style=\'font-family:&#039;Arial&#039;\'>Styled</i>' );
+		mw.messages.set( 'jquerymsg-escaped-single-quotes-attribute', '<i title=\'Hello &#039;World&#039;\'>Title</i>' );
 		assert.htmlEqual(
 			formatParse( 'jquerymsg-escaped-single-quotes-attribute' ),
 			mw.messages.get( 'jquerymsg-escaped-single-quotes-attribute' ),
@@ -1359,15 +1359,22 @@
 		);
 	} );
 
-	QUnit.test( 'Do not allow arbitrary style', function ( assert ) {
-		mw.messages.set( 'illegal-style', '<span style="background-image:url( http://example.com )">bar</span>' );
+	QUnit.test( 'Do not allow style attribute (T251032)', function ( assert ) {
+		mw.messages.set( 'unsafe-style', '<span style="background-image:url( http://example.com )">bar</span>' );
+		mw.messages.set( 'safe-style', '<span style="color:red">bar</span>' );
 
 		this.suppressWarnings();
 
 		assert.strictEqual(
-			formatParse( 'illegal-style' ),
+			formatParse( 'unsafe-style' ),
 			'&lt;span style="background-image:url( http://example.com )"&gt;bar&lt;/span&gt;',
-			'illegal-style: \'parse\' format'
+			'unsafe-style: \'parse\' format'
+		);
+
+		assert.strictEqual(
+			formatParse( 'safe-style' ),
+			'&lt;span style="color:red"&gt;bar&lt;/span&gt;',
+			'safe-style: \'parse\' format (all styles are disallowed now, T251032)'
 		);
 	} );
 

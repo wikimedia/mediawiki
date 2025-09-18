@@ -46,12 +46,12 @@ const slice = Array.prototype.slice,
 			'hr'
 		],
 		// Key tag name, value allowed attributes for that tag.
-		// See Sanitizer::setupAttributeWhitelist
+		// See Sanitizer::setupAttributesAllowedInternal
 		allowedHtmlCommonAttributes: [
 			// HTML
 			'id',
 			'class',
-			'style',
+			// 'style' attribute is not allowed because it is difficult to sanitize (T251032)
 			'lang',
 			'dir',
 			'title',
@@ -728,17 +728,11 @@ Parser.prototype = {
 				return false;
 			}
 
-			const badStyle = /[\000-\010\013\016-\037\177]|expression|filter\s*:|accelerator\s*:|-o-link\s*:|-o-link-source\s*:|-o-replace\s*:|url\s*\(|image\s*\(|image-set\s*\(/i;
-
 			let attributeName;
 			for ( let i = 0, len = attributes.length; i < len; i += 2 ) {
 				attributeName = attributes[ i ];
 				if ( settings.allowedHtmlCommonAttributes.indexOf( attributeName ) === -1 &&
 					( settings.allowedHtmlAttributesByElement[ startTagName ] || [] ).indexOf( attributeName ) === -1 ) {
-					return false;
-				}
-				if ( attributeName === 'style' && attributes[ i + 1 ].search( badStyle ) !== -1 ) {
-					mw.log( 'HTML tag not parsed due to dangerous style attribute' );
 					return false;
 				}
 			}
