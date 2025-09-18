@@ -75,15 +75,11 @@ trait SpecBasedFactoryTrait {
 	/**
 	 * Create and cache an object instance.
 	 *
-	 * @phpcs:disable MediaWiki.Commenting.FunctionAnnotations.NonNormalizedAnnotation
 	 * @template T of object
-	 * @phan-template T of object
 	 *
 	 * @param class-string<T> $class The class name.
 	 *
-	 * @phan-param class-string<T> $class
 	 * @return T An instance of the specified class.
-	 * @phan-return T
 	 *
 	 * @since 1.45
 	 */

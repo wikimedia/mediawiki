@@ -290,15 +290,13 @@ abstract class AuthenticationRequest {
 	/**
 	 * Select a request by class name.
 	 *
-	 * @phan-template T
+	 * @template T of AuthenticationRequest
 	 * @param AuthenticationRequest[] $reqs
-	 * @param class-string<AuthenticationRequest> $class Class name
-	 * @phan-param class-string<T> $class
+	 * @param class-string<T> $class Class name
 	 * @param bool $allowSubclasses If true, also returns any request that's a subclass of the given
 	 *   class.
-	 * @return AuthenticationRequest|null Returns null if there is not exactly
+	 * @return T|null Returns null if there is not exactly
 	 *  one matching request.
-	 * @phan-return T|null
 	 */
 	public static function getRequestByClass( array $reqs, $class, $allowSubclasses = false ) {
 		$requests = array_filter( $reqs, static function ( $req ) use ( $class, $allowSubclasses ) {
