@@ -337,7 +337,7 @@ class ParserOutputAccess implements LoggerAwareInterface {
 
 		if (
 			$output && !$options[ self::OPT_IGNORE_PROFILE_VERSION ] &&
-			$parserOptions->getUseParsoid()
+			$output->getContentHolder()->isParsoidContent()
 		) {
 			$pageBundle = $output->getContentHolder()->getBasePageBundle();
 			// T333606: Force a reparse if the version coming from cache is not the default
