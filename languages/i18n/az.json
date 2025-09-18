@@ -1473,7 +1473,7 @@
 	"recentchanges-page-removed-from-category-bundled": "[[:$1]] kateqoriyadan silindi, [[Special:WhatLinksHere/$1|bu səhifəyə digər səhifələrdən keçid verilib]]",
 	"autochange-username": "MediaWiki avtomatik dəyişməsi",
 	"upload": "Fayl yüklə",
-	"uploadbtn": "Faylı yüklə",
+	"uploadbtn": "Fayl yüklə",
 	"reuploaddesc": "Yükləmə formasına geri qayıt",
 	"upload-refresh": "Yenilə",
 	"upload-progress-queued": "Yükləmənin başlaması gözlənilir. Lütfən, yenidən yoxlamaq üçün yeniləmə düyməsini basın.",

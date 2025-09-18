@@ -3315,7 +3315,7 @@
 	"version-entrypoints-header-url": "URL",
 	"version-entrypoints-articlepath": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgArticlePath Artikelpfad]",
 	"version-entrypoints-scriptpath": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgScriptPath Skriptpfad]",
-	"version-libraries": "Serverseitig installierte Bibliotheken",
+	"version-libraries": "Installierte Bibliotheken",
 	"version-libraries-server": "Serverseitig installierte Bibliotheken",
 	"version-libraries-client": "Clientseitig installierte Bibliotheken",
 	"version-libraries-library": "Bibliothek",

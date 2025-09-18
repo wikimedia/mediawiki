@@ -2529,7 +2529,7 @@
 	"ipboptions": "2 godziny:2 hours,1 dzień:1 day,3 dni:3 days,1 tydzień:1 week,2 tygodnie:2 weeks,1 miesiąc:1 month,3 miesiące:3 months,6 miesięcy:6 months,1 rok:1 year,na czas nieokreślony:infinite",
 	"ipbhidename": "Ukryj nazwę użytkownika w edycjach i listach",
 	"ipbwatchuser": "Obserwuj stronę osobistą i stronę dyskusji blokowanego użytkownika",
-	"ipb-disableusertalk": "Edytowanie własnej strony dyskusji",
+	"ipb-disableusertalk": "Blokada edytowania własnej strony dyskusji",
 	"ipb-change-block": "Zmień ustawienia blokady",
 	"ipb-confirm": "Potwierdzam blokadę",
 	"ipb-sitewide": "Całkowicie",

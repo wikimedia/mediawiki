@@ -1978,7 +1978,7 @@
 	"protect-expiry-options": " १ घण्टा:1 hour, १ दिन :1 day, १ हप्ता:1 week, २ हप्ता:2 weeks, १ महिना:1 month, ३ महिना:3 months,६ महिना:6 months, १ वर्ष:1 year, अनिश्चितकाल:infinite",
 	"restriction-type": "अनुमति:",
 	"restriction-level": "प्रतिबन्ध स्तरः",
-	"minimum-size": "न्यूनतम आकार",
+	"minimum-size": "न्युनतम आकार",
 	"maximum-size": "अधिकतम आकार:",
 	"pagesize": "(बाइटहरू)",
 	"restriction-edit": "सम्पादन गर्नुहोस्",

@@ -204,7 +204,7 @@
 	"redirectpagesub": "Halaman pengalihan",
 	"redirectto": "Mengalihkan ke:",
 	"lastmodifiedat": "Halaman ini terakhir diubah pada $1, pukul $2.",
-	"renderedwith-parsoid": "Halaman digambar menggunakan [[mw:Special:MyLanguage/Parsoid|Parsoid]].",
+	"renderedwith-parsoid": "Halaman di-''rènder'' menggunakan [[mw:Special:MyLanguage/Parsoid|Parsoid]].",
 	"viewcount": "Halaman ini telah diakses sebanyak {{PLURAL:$1|$1 kali}}.<br />",
 	"protectedpage": "Halaman yang dilindungi",
 	"jumpto": "Lompat ke:",
