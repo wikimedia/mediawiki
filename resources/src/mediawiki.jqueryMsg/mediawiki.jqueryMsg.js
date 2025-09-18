@@ -25,12 +25,12 @@ var slice = Array.prototype.slice,
 		// Filled in with server-side data below
 		allowedHtmlElements: [],
 		// Key tag name, value allowed attributes for that tag.
-		// See Sanitizer::setupAttributeWhitelist
+		// See Sanitizer::setupAttributesAllowedInternal
 		allowedHtmlCommonAttributes: [
 			// HTML
 			'id',
 			'class',
-			'style',
+			// 'style' attribute is not allowed because it is difficult to sanitize (T251032)
 			'lang',
 			'dir',
 			'title',
@@ -733,17 +733,11 @@ mw.jqueryMsg.Parser.prototype = {
 				return false;
 			}
 
-			var badStyle = /[\000-\010\013\016-\037\177]|expression|filter\s*:|accelerator\s*:|-o-link\s*:|-o-link-source\s*:|-o-replace\s*:|url\s*\(|image\s*\(|image-set\s*\(/i;
-
 			var attributeName;
 			for ( var i = 0, len = attributes.length; i < len; i += 2 ) {
 				attributeName = attributes[ i ];
 				if ( settings.allowedHtmlCommonAttributes.indexOf( attributeName ) === -1 &&
 					( settings.allowedHtmlAttributesByElement[ startTagName ] || [] ).indexOf( attributeName ) === -1 ) {
-					return false;
-				}
-				if ( attributeName === 'style' && attributes[ i + 1 ].search( badStyle ) !== -1 ) {
-					mw.log( 'HTML tag not parsed due to dangerous style attribute' );
 					return false;
 				}
 			}
