@@ -197,7 +197,9 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		);
 
 		# We need a target page!
-		if ( $this->targetObj === null || !$this->targetObj->canExist() ) {
+		if ( $this->targetObj === null ||
+			( $this->typeName !== 'logging' && !$this->targetObj->canExist() )
+		) {
 			$output->addWikiMsg( 'undelete-header' );
 
 			return;
