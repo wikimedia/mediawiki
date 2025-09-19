@@ -2429,7 +2429,8 @@ return [
 			$services->getContentLanguage(),
 			$services->getObjectFactory(),
 			$services->getTitleFactory(),
-			$services->getHookContainer()
+			$services->getHookContainer(),
+			$services->getStatsFactory(),
 		);
 	},
 

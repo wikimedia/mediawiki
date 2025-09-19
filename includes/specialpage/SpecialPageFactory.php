@@ -178,6 +178,7 @@ use MediaWiki\User\User;
 use Profiler;
 use Wikimedia\DebugInfo\DebugInfoTrait;
 use Wikimedia\ObjectFactory\ObjectFactory;
+use Wikimedia\Stats\StatsFactory;
 
 /**
  * Factory for handling the special page list and generating SpecialPage objects.
@@ -1319,6 +1320,13 @@ class SpecialPageFactory {
 	private $hookRunner;
 
 	/**
+	 * @var TitleFactory
+	 */
+	private $titleFactory;
+
+	private StatsFactory $statsFactory;
+
+	/**
 	 * @internal For use by ServiceWiring
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
@@ -1333,23 +1341,20 @@ class SpecialPageFactory {
 	];
 
 	/**
-	 * @var TitleFactory
-	 */
-	private $titleFactory;
-
-	/**
 	 * @param ServiceOptions $options
 	 * @param Language $contLang
 	 * @param ObjectFactory $objectFactory
 	 * @param TitleFactory $titleFactory
 	 * @param HookContainer $hookContainer
+	 * @param StatsFactory $statsFactory
 	 */
 	public function __construct(
 		ServiceOptions $options,
 		Language $contLang,
 		ObjectFactory $objectFactory,
 		TitleFactory $titleFactory,
-		HookContainer $hookContainer
+		HookContainer $hookContainer,
+		StatsFactory $statsFactory,
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
@@ -1358,6 +1363,7 @@ class SpecialPageFactory {
 		$this->titleFactory = $titleFactory;
 		$this->hookContainer = $hookContainer;
 		$this->hookRunner = new HookRunner( $hookContainer );
+		$this->statsFactory = $statsFactory;
 	}
 
 	/**
@@ -1729,8 +1735,15 @@ class SpecialPageFactory {
 			$page->setLinkRenderer( $linkRenderer );
 		}
 
+		$timer = $including ? null : $this->statsFactory
+			->getTiming( 'special_executeTiming_seconds' )
+			->setLabel( 'special', $page->getName() )
+			->start();
+
 		// Execute special page
 		$page->run( $par );
+
+		$timer?->stop();
 
 		return true;
 	}
