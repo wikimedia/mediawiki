@@ -1443,8 +1443,6 @@
 	"minoreditletter": "m",
 	"newpageletter": "N",
 	"boteditletter": "b",
-	"unpatrolledletter": "!",
-	"rc-change-size": "$1",
 	"rc-change-size-new": "po spremembi: $1 {{PLURAL:$1|bajt|bajta|bajti|bajtov}}",
 	"newsectionsummary": "/* $1 */ nov razdelek",
 	"rc-old-title": "prvotno ustvarjeno kot »$1«",

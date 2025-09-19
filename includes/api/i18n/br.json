@@ -17,7 +17,7 @@
 	"apihelp-block-param-reason": "Abeg evit stankañ.",
 	"apihelp-block-param-nocreate": "Mirout a grouiñ kontoù.",
 	"apihelp-block-param-hidename": "Kuzhat a ra anv implijer e marilh ar stankadennoù. (Rekis eo kaout ar gwir <code>hideuser</code> right).",
-	"apihelp-block-param-reblock": "Mard eo stanket an implijer ur wech hepken, frikañ ar stankadenn zo. Ne vo ket posubl mard eo stanket an implijer meur a wech — grit neuze gant an arventenn <var>id</var> da spisaat pe stankadenn a vo friket.",
+	"apihelp-block-param-reblock": "Mard eo stanket an implijer gant ur stankadenn hepken dija, frikañ ar stankadenn. Mard eo stanket an implijer muioc'h evit ur wech e c'hwitaio an dra-se — spisait ar stankadenn da frikañ gant an arventenn <var>id</var>. N'hall ket bezañ implijet asambles gant <var>id</var> pe <var>newblock</var>.",
 	"apihelp-block-param-watchuser": "Evezhiañ pajennoù implijer ha kaozeal an den pe e chomlec'h IP.",
 	"apihelp-block-param-tags": "Kemmañ an tikedennoù da lakaat e talvoud en enmont marilh ar stankadennoù.",
 	"apihelp-block-example-ip-simple": "Stankañ ar chomlec'h IP <kbd>192.0.2.5</kbd> tri devezh-pad gant un abeg.",

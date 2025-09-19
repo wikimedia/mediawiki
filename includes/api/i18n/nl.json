@@ -1223,6 +1223,7 @@
 	"apihelp-query+search-param-info": "Welke metagegevens geretourneerd moeten worden.",
 	"apihelp-query+search-param-prop": "Welke eigenschappen geretourneerd moeten worden:",
 	"apihelp-query+search-param-qiprofile": "Het te gebruiken query-onafhankelijke profiel (heeft invloed op het rangschikkingsalgoritme).",
+	"apihelp-query+search-param-qdprofile": "Het te gebruiken query-afhankelijke profiel (heeft invloed op het rangschikkingsalgoritme).",
 	"apihelp-query+search-paramvalue-prop-size": "Voegt de grootte van de pagina toe in bytes.",
 	"apihelp-query+search-paramvalue-prop-wordcount": "Voegt het aantal woorden van de pagina toe.",
 	"apihelp-query+search-paramvalue-prop-timestamp": "Voegt het tijdstip toe waarop de pagina voor het laatst is bewerkt.",

@@ -1521,8 +1521,6 @@
 	"minoreditletter": "k",
 	"newpageletter": "B",
 	"boteditletter": "b",
-	"unpatrolledletter": "!",
-	"rc-change-size": "$1",
 	"rc-change-size-new": "$1 {{PLURAL:$1|bita}} setelah perubahan",
 	"newsectionsummary": "/* $1 */ bagian baru",
 	"rc-old-title": "awalnya dibuat dengan judul \"$1\"",

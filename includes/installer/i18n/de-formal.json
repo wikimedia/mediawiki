@@ -1,8 +1,0 @@
-{
-	"@metadata": {
-		"authors": [
-			"ThisCarthing"
-		]
-	},
-	"mainpagedocfooter": "Hilfe zur Benutzung und Konfiguration der Wiki-Software finden Sie im [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Benutzerhandbuch].\n\n== Starthilfen ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Liste der Konfigurationsparameter]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Häufige Fragen zu MediaWiki]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ Mailingliste zu neuen Versionen von MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Übersetzen Sie MediaWiki in Ihre Sprache]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Erfahren Sie, wie Sie Spam auf Ihrem Wiki bekämpfen können]"
-}

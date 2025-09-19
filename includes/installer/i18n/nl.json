@@ -219,7 +219,7 @@
 	"config-license-help": "In veel openbare wiki's zijn alle bijdragen beschikbaar onder een [https://freedomdefined.org/Definition vrije licentie].\nDit helpt bij het creëren van een gevoel van gemeenschappelijk eigendom en stimuleert bijdragen op lange termijn.\nDit is over het algemeen niet nodig is voor een particuliere of zakelijke wiki.\n\nAls u teksten uit Wikipedia wilt kunnen gebruiken en u wilt het mogelijk maken teksten uit uw wiki naar Wikipedia te kopiëren, kies dan de licentie <strong>{{int:config-license-cc-by-sa}}</strong>.\n\nDe GNU Free Documentation License is de oude licentie voor inhoud uit Wikipedia.\nDit is nog steeds een geldige licentie, maar deze licentie is lastig te begrijpen.\nHet is ook lastig inhoud te hergebruiken onder de GFDL.",
 	"config-email-settings": "E-mailinstellingen",
 	"config-enable-email": "Uitgaande e-mail inschakelen",
-	"config-enable-email-help": "Als u wilt dat e-mailen mogelijk is, dan moeten de [https://www.php.net/mail.configuration e-mailinstellingen van PHP] correct zijn.\nAls u niet wilt dat e-mailen mogelijk is, dan kunt u de instellingen hier uitschakelen.",
+	"config-enable-email-help": "Als u wilt dat e-mailen mogelijk is, dan moeten de [https://www.php.net/mail.configuration e-mailinstellingen van PHP] correct zijn.\nAls u geen e-mailfuncties wilt, dan kunt u deze hier uitschakelen.",
 	"config-email-user": "E-mail tussen gebruikers inschakelen",
 	"config-email-user-help": "Gebruikers toestaan e-mail aan elkaar te verzenden als dit in de voorkeuren is ingesteld.",
 	"config-email-usertalk": "Gebruikersoverlegmeldingen inschakelen",
