@@ -8,18 +8,23 @@ use MediaWiki\FileRepo\FileRepo;
 use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
+use MediaWiki\Parser\Parsoid\LintErrorChecker;
 use MediaWiki\Parser\Parsoid\ParsoidParser;
 use MediaWiki\Parser\Parsoid\ParsoidParserFactory;
+use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Rest\Handler\Helper\HtmlMessageOutputHelper;
 use MediaWiki\Rest\Handler\Helper\HtmlOutputRendererHelper;
 use MediaWiki\Rest\Handler\Helper\PageContentHelper;
 use MediaWiki\Rest\Handler\Helper\PageRedirectHelper;
 use MediaWiki\Rest\Handler\Helper\PageRestHelperFactory;
+use MediaWiki\Rest\Handler\Helper\RevisionContentHelper;
 use MediaWiki\Rest\Handler\LanguageLinksHandler;
 use MediaWiki\Rest\Handler\PageHistoryCountHandler;
 use MediaWiki\Rest\Handler\PageHistoryHandler;
 use MediaWiki\Rest\Handler\PageHTMLHandler;
+use MediaWiki\Rest\Handler\PageLintHandler;
 use MediaWiki\Rest\Handler\PageSourceHandler;
+use MediaWiki\Rest\Handler\RevisionLintHandler;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\RequestInterface;
 use MediaWiki\Rest\ResponseFactory;
@@ -160,6 +165,124 @@ trait PageHandlerTestTrait {
 		return new PageHTMLHandler(
 			$helperFactory
 		);
+	}
+
+	/**
+	 * @param RequestInterface|null $request
+	 * @param Parsoid|MockObject|null $parsoid
+	 * @return PageLintHandler
+	 */
+	public function newPageLintHandler(
+		?RequestInterface $request = null,
+		?Parsoid $parsoid = null
+	) {
+		$services = $this->getServiceContainer();
+		$config = [
+			MainConfigNames::RightsUrl => 'https://example.com/rights',
+			MainConfigNames::RightsText => 'some rights',
+			MainConfigNames::ParsoidCacheConfig =>
+				MainConfigSchema::getDefaultValue( MainConfigNames::ParsoidCacheConfig )
+		];
+
+		$helperFactory = $this->createNoOpMock(
+			PageRestHelperFactory::class,
+			[ 'newPageContentHelper', 'newPageRedirectHelper' ]
+		);
+
+		$helperFactory->method( 'newPageContentHelper' )
+			->willReturn( new PageContentHelper(
+				new ServiceOptions( PageContentHelper::CONSTRUCTOR_OPTIONS, $config ),
+				$services->getRevisionLookup(),
+				$services->getTitleFormatter(),
+				$services->getPageStore(),
+				$services->getTitleFactory(),
+				$services->getConnectionProvider(),
+				$services->getChangeTagsStore()
+			) );
+
+		$request ??= new RequestData( [] );
+		$responseFactory = new ResponseFactory( [] );
+		$helperFactory->method( 'newPageRedirectHelper' )
+			->willReturn(
+				new PageRedirectHelper(
+					$services->getRedirectStore(),
+					$services->getTitleFormatter(),
+					$responseFactory,
+					$this->newRouterForPageHandler( 'https://example.test/api' ),
+					'/test/{title}',
+					$request,
+					$services->getLanguageConverterFactory()
+				)
+			);
+
+		$lintErrorChecker = new LintErrorChecker(
+			$parsoid ?: $services->get( '_Parsoid' ),
+			$services->getParsoidPageConfigFactory(),
+			$services->getTitleFactory(),
+			ExtensionRegistry::getInstance(),
+			$services->getMainConfig(),
+		);
+
+		return new PageLintHandler( $helperFactory, $lintErrorChecker );
+	}
+
+	/**
+	 * @param RequestInterface|null $request
+	 * @param Parsoid|MockObject|null $parsoid
+	 * @return RevisionLintHandler
+	 */
+	public function newRevisionLintHandler(
+		?RequestInterface $request = null,
+		?Parsoid $parsoid = null
+	) {
+		$services = $this->getServiceContainer();
+		$config = [
+			MainConfigNames::RightsUrl => 'https://example.com/rights',
+			MainConfigNames::RightsText => 'some rights',
+			MainConfigNames::ParsoidCacheConfig =>
+				MainConfigSchema::getDefaultValue( MainConfigNames::ParsoidCacheConfig )
+		];
+
+		$helperFactory = $this->createNoOpMock(
+			PageRestHelperFactory::class,
+			[ 'newRevisionContentHelper', 'newPageRedirectHelper' ]
+		);
+
+		$helperFactory->method( 'newRevisionContentHelper' )
+			->willReturn( new RevisionContentHelper(
+				new ServiceOptions( PageContentHelper::CONSTRUCTOR_OPTIONS, $config ),
+				$services->getRevisionLookup(),
+				$services->getTitleFormatter(),
+				$services->getPageStore(),
+				$services->getTitleFactory(),
+				$services->getConnectionProvider(),
+				$services->getChangeTagsStore()
+			) );
+
+		$request ??= new RequestData( [] );
+		$responseFactory = new ResponseFactory( [] );
+		$helperFactory->method( 'newPageRedirectHelper' )
+			->willReturn(
+				new PageRedirectHelper(
+					$services->getRedirectStore(),
+					$services->getTitleFormatter(),
+					$responseFactory,
+					$this->newRouterForPageHandler( 'https://example.test/api' ),
+					'/test/{title}',
+					$request,
+					$services->getLanguageConverterFactory()
+				)
+			);
+
+		$lintErrorChecker = new LintErrorChecker(
+			$parsoid ?: $services->get( '_Parsoid' ),
+			$services->getParsoidPageConfigFactory(),
+			$services->getTitleFactory(),
+			ExtensionRegistry::getInstance(),
+			$services->getMainConfig(),
+		);
+
+		return new RevisionLintHandler( $helperFactory, $lintErrorChecker );
 	}
 
 	/**

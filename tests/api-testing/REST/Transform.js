@@ -59,6 +59,12 @@ function status200( res ) {
 	assert.strictEqual( res.status, 200, res.text );
 }
 
+// Matcher checking that the result status is 307, including the actual response
+// text in the output if it isn't.
+function status307( res ) {
+	assert.strictEqual( res.status, 307, res.text );
+}
+
 // Return a matcher function that checks whether a content type matches the given parameters.
 function contentTypeMatcher( expectedMime, expectedSpec, expectedVersion ) {
 	const pattern = /^([-\w]+\/[-\w]+); charset=utf-8; profile="https:\/\/www.mediawiki.org\/wiki\/Specs\/([-\w]+)\/(\d+\.\d+\.\d+)"$/;
@@ -94,13 +100,15 @@ function validateDefaultSpec( response ) {
 	expect( response.text ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
 }
 
-// TODO: Replace all occurrences of (Lint Page/Lint_Page) with `page`.
-describe( '/transform/ endpoint', () => {
+describe( '/transform/ and related endpoints', () => {
 	const client = new REST();
 	const endpointPrefix = client.pathPrefix = 'rest.php';
 	const page = utils.title( 'TransformSource_' );
 	const pageEncoded = encodeURIComponent( page );
 	const pageContent = '{|\nhi\n|ho\n|}';
+	const redirPage = utils.title( 'TransformRedirectSource_' );
+	const redirPageEncoded = encodeURIComponent( redirPage );
+	const redirPageContent = `#REDIRECT [[${ page }]]`;
 	let revid, openApiSpec;
 
 	before( async function () {
@@ -109,11 +117,14 @@ describe( '/transform/ endpoint', () => {
 		const alice = await action.alice();
 		const admin = await action.mindy();
 
-		// Create pages
+		// Create a wikitext page
 		let edit = await alice.edit( page, { text: pageContent } );
 		edit.result.should.equal( 'Success' );
 		revid = edit.newrevid;
-
+		// Create a redirect to that page
+		edit = await alice.edit( redirPage, { text: redirPageContent } );
+		edit.result.should.equal( 'Success' );
+		// Create a JSON page
 		edit = await admin.edit( 'JSON Page', {
 			text: '[1]', contentmodel: 'json'
 		} );
@@ -579,7 +590,6 @@ describe( '/transform/ endpoint', () => {
 		it( 'should lint the given page, transform (GET)', ( done ) => {
 			client.req
 				.get( `${ endpointPrefix }/v1/transform/wikitext/to/lint/${ pageEncoded }` )
-				.send( {} )
 				.expect( status200 )
 				.expect( ( res ) => {
 					res.body.should.be.instanceof( Array );
@@ -613,6 +623,58 @@ describe( '/transform/ endpoint', () => {
 				.end( done );
 		} );
 
+		it( 'should lint the given page, lint', ( done ) => {
+			client.req
+				.get( `${ endpointPrefix }/v1/page/${ pageEncoded }/lint` )
+				.expect( status200 )
+				.expect( ( res ) => {
+					res.body.should.be.instanceof( Array );
+					res.body.length.should.equal( 1 );
+					res.body[ 0 ].type.should.equal( 'fostered' );
+					validateSpec( res );
+				} )
+				.end( done );
+		} );
+
+		it( 'should lint the given revision, lint', ( done ) => {
+			client.req
+				.get( `${ endpointPrefix }/v1/revision/${ revid }/lint` )
+				.expect( status200 )
+				.expect( ( res ) => {
+					res.body.should.be.instanceof( Array );
+					res.body.length.should.equal( 1 );
+					res.body[ 0 ].type.should.equal( 'fostered' );
+					validateSpec( res );
+				} )
+				.end( done );
+		} );
+
+		it( 'should lint the given redirect page, lint', ( done ) => {
+			client.req
+				.get( `${ endpointPrefix }/v1/page/${ redirPageEncoded }/lint` )
+				.query( { redirect: 'no' } )
+				.expect( status200 )
+				.expect( ( res ) => {
+					res.body.should.be.instanceof( Array );
+					res.body.length.should.equal( 0 );
+					validateSpec( res );
+				} )
+				.end( done );
+		} );
+
+		it( 'should redirect client for the given redirect page, lint', ( done ) => {
+			client.req
+				.get( `${ endpointPrefix }/v1/page/${ redirPageEncoded }/lint` )
+				.expect( status307 )
+				.expect( ( res ) => {
+					const headers = res.headers;
+					headers.should.have.property( 'location' );
+					headers.location.should.contain(
+						`${ endpointPrefix }/v1/page/${ pageEncoded }/lint?redirect=no`
+					);
+				} )
+				.end( done );
+		} );
 	} );
 
 	describe( 'wt2html', () => {

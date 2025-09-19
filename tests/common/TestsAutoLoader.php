@@ -355,6 +355,7 @@ $wgAutoloadClasses += [
 	'MediaWiki\\Tests\\Unit\\Permissions\\MockAuthorityTrait' => "$testDir/phpunit/mocks/permissions/MockAuthorityTrait.php",
 	'MediaWiki\\Tests\\Rest\\Handler\\ActionModuleBasedHandlerTestTrait' => "$testDir/phpunit/unit/includes/Rest/Handler/ActionModuleBasedHandlerTestTrait.php",
 	'MediaWiki\\Tests\\Rest\\Handler\\HTMLHandlerTestTrait' => "$testDir/phpunit/integration/includes/Rest/Handler/HTMLHandlerTestTrait.php",
+	'MediaWiki\\Tests\\Rest\\Handler\\LintHandlerTestTrait' => "$testDir/phpunit/integration/includes/Rest/Handler/LintHandlerTestTrait.php",
 	'MediaWiki\\Tests\\Rest\\Handler\\HandlerTestTrait' => "$testDir/phpunit/unit/includes/Rest/Handler/HandlerTestTrait.php",
 	'MediaWiki\\Tests\\Rest\\Handler\\PageHandlerTestTrait' => "$testDir/phpunit/unit/includes/Rest/Handler/PageHandlerTestTrait.php",
 	'MediaWiki\\Tests\\Rest\\Handler\\HelloHandler' => "$testDir/phpunit/unit/includes/Rest/Handler/HelloHandler.php",

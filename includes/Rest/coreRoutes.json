@@ -83,6 +83,18 @@
 		}
 	},
 	{
+		"path": "/v1/revision/{id}/lint",
+		"class": "MediaWiki\\Rest\\Handler\\RevisionLintHandler",
+		"services": [
+			"PageRestHelperFactory",
+			"LintErrorChecker"
+		],
+		"openApiSpec": {
+			"x-i18n-description": "rest-endpoint-desc-get-revision-id-lint",
+			"x-i18n-summary": "rest-endpoint-summ-get-revision-id-lint"
+		}
+	},
+	{
 		"path": "/v1/revision/{id}/bare",
 		"class": "MediaWiki\\Rest\\Handler\\RevisionSourceHandler",
 		"services": [
@@ -208,6 +220,18 @@
 		"openApiSpec": {
 			"x-i18n-description": "rest-endpoint-desc-get-page-title-with-html",
 			"x-i18n-summary": "rest-endpoint-summ-get-page-title-with-html"
+		}
+	},
+	{
+		"path": "/v1/page/{title}/lint",
+		"class": "MediaWiki\\Rest\\Handler\\PageLintHandler",
+		"services": [
+			"PageRestHelperFactory",
+			"LintErrorChecker"
+		],
+		"openApiSpec": {
+			"x-i18n-description": "rest-endpoint-desc-get-page-title-lint",
+			"x-i18n-summary": "rest-endpoint-summ-get-page-title-lint"
 		}
 	},
 	{

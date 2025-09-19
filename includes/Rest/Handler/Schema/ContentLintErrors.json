@@ -1,0 +1,68 @@
+{
+	"x-i18n-description": "rest-property-desc-linterrors-array",
+	"type": "array",
+	"items": {
+		"type": "object",
+		"properties": {
+			"type": {
+				"x-i18n-description": "rest-property-desc-linterror-type",
+				"type": "string"
+			},
+			"dsr": {
+				"x-i18n-description": "rest-property-desc-linterror-dsr",
+				"type": "array",
+				"items": {
+					"type": "number"
+				},
+				"minItems": 4,
+				"maxItems": 6
+			},
+			"templateInfo": {
+				"x-i18n-description": "rest-property-desc-linterror-templateinfo",
+				"nullable": true,
+				"anyOf": [
+					{
+						"type": "object",
+						"properties": {
+							"name": {
+								"type": "string"
+							}
+						},
+						"required": [
+							"name"
+						]
+					},
+					{
+						"type": "object",
+						"properties": {
+							"multiPartTemplateBlock": {
+								"enum": [ true ]
+							}
+						},
+						"required": [
+							"multiPartTemplateBlock"
+						]
+					}
+				]
+			},
+			"params": {
+				"x-i18n-description": "rest-property-desc-linterror-params",
+				"anyOf": [
+					{
+						"type": "object"
+					},
+					{
+						"type": "array",
+						"maxItems": 0
+					}
+				]
+			}
+		},
+		"required": [
+			"type",
+			"dsr",
+			"templateInfo",
+			"params"
+		]
+	}
+}
