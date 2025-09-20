@@ -3001,6 +3001,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Title\\TitleFormatter' => __DIR__ . '/includes/title/TitleFormatter.php',
 	'MediaWiki\\Title\\TitleParser' => __DIR__ . '/includes/title/TitleParser.php',
 	'MediaWiki\\Title\\TitleValue' => __DIR__ . '/includes/title/TitleValue.php',
+	'MediaWiki\\Upload\\SVGCSSChecker' => __DIR__ . '/includes/upload/SVGCSSChecker.php',
 	'MediaWiki\\Upload\\UploadVerification' => __DIR__ . '/includes/upload/UploadVerification.php',
 	'MediaWiki\\User\\ActorCache' => __DIR__ . '/includes/user/ActorCache.php',
 	'MediaWiki\\User\\ActorMigration' => __DIR__ . '/includes/user/ActorMigration.php',

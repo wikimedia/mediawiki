@@ -1517,7 +1517,7 @@
 	"upload-scripted-pi-callback": "Cannot upload a file that contains XML-stylesheet processing instruction.",
 	"upload-scripted-dtd": "Cannot upload SVG files that contain a non-standard DTD declaration.",
 	"uploaded-script-svg": "Found scriptable element \"$1\" in the uploaded SVG file.",
-	"uploaded-hostile-svg": "Found unsafe CSS in the style element of uploaded SVG file.",
+	"uploaded-hostile-svg": "Found unsafe CSS in the style element of uploaded SVG file. Encountered $1 on line $2 column $3 of &lt;style&gt;",
 	"uploaded-event-handler-on-svg": "Setting event-handler attributes <code>$1=\"$2\"</code> is not allowed in SVG files.",
 	"uploaded-href-attribute-svg": "&lt;a&gt; elements can only link (href) to data: (embedded file), http:// or https://, or fragment (#, same-document) targets. For other elements, such as &lt;image&gt;, only data: and fragment are allowed. Try embedding images when exporting your SVG. Found <code>&lt;$1 $2=\"$3\"&gt;</code>.",
 	"uploaded-href-unsafe-target-svg": "Found href to unsafe data: URI target <code>&lt;$1 $2=\"$3\"&gt;</code> in the uploaded SVG file.",
