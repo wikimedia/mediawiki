@@ -1152,7 +1152,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		}
 		if ( !$this->isSignup() && $this->showExtraInformation() ) {
 			$passwordReset = MediaWikiServices::getInstance()->getPasswordReset();
-			if ( $passwordReset->isAllowed( $this->getUser() )->isGood() ) {
+			if ( $passwordReset->isEnabled()->isGood() ) {
 				$fieldDefinitions['passwordReset'] = [
 					'type' => 'info',
 					'raw' => true,
