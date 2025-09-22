@@ -5,10 +5,47 @@
 THIS IS NOT A RELEASE YET
 
 === Changes since MediaWiki 1.44.0 ===
-
+* Localisation updates.
 * (T385890, T398448) ApiQueryCategoryMembers: Use correct index for
-  categorylinks
-* …
+  categorylinks.
+* (T398860) Straight join collation table to make sure it is last.
+* updateCollation: Drop 'order by cl_from' from query.
+* (T399672) mime: Add mime types for *.less.
+* (T388729) Parser: Handle regex failure in extractBody method.
+* (T399064) Parser::extractBody: Use possessive matcher and once-only
+  subpattern.
+* (T399450) file: Init LocalFile::$upgraded with false.
+* (T399793) PermissionManager: Fix missingPermissionError() not returning early
+  when $short is true.
+* rdbms: Fix GTID style detection for MySQL servers.
+* ParserCacheSerializationTestCases: back port ParserOutput changes from 1.45.
+* ParserCacheSerializationTestCases: distinguish empty ToC from missing ToC.
+* diff: Avoid Phan warning with some Wikidiff2 versions.
+* (T327439) ParserOutput: Prepare to allow JsonCodec serialization of TOCData.
+* (T386208) Exif: Handle malformed gps tags.
+* i18n: Add Special:MyLanguage to mediawiki.org links.
+* (T381699) Do not use Special:MyLanguage for category links.
+* maintenance: Fix sql for touched-only option of refreshLinks script.
+* (T393028) ImagePage: Remove PNG previews line for native SVG rendering.
+* (T394796) installer: Use input type from params if provided.
+* (T374042) PostgresUpdater: Fix typo in sites_group index renaming instruction.
+* (T401088) maintenance: Fix paging in findMissingFiles.php.
+* (T401570) rdbms: Fix read-only detection for MariaDB 12.
+* (T400881) filerepo: Improve identification of ForeignAPIRepo requests.
+* (T386761) docs: Mention deprecated Skin::appendSpecialPagesLinkIfAbsent in
+  release notes.
+* (T397900) Don't use RequestContext in CommentParserFactory construction.
+* (T402037) config: Change Reauthenticate Time Default.
+* WebPHandler: Read all of the VP8L canvas height.
+* Forward-compatibility serialization data for SelserContext.
+* (T264389, T161647) Make Content JsonCodecable.
+* maintenance: Fix SQL range for moveToExternal.
+* (T403922) Installer: SQLite searchindex step depends on tableinstall .
+* Use JsonCodec to serialize SelserContext.
+* Forward-compat data for SelserContext w/ JSON-encoded Content.
+* (T402066) Skin: Table width should not exceed content width.
+* (T372444, T404230) DeletedContribsPager: Use the UserIdentity object instead
+  of the raw target string.
 
 == MediaWiki 1.44.0 ==
 
