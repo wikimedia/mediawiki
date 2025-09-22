@@ -4323,10 +4323,12 @@ class MainConfigSchema {
 	 * others' cookies.
 	 *
 	 * @since 1.27
+	 * @deprecated since 1.45 Integration with PHP session handling will be removed in the future
 	 */
 	public const PHPSessionHandling = [
-		'default' => 'enable',
+		'default' => 'warn',
 		'type' => 'string',
+		'deprecated' => 'since 1.45 Integration with PHP session handling will be removed in the future',
 	];
 
 	/**

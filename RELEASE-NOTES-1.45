@@ -22,6 +22,26 @@ For notes on 1.44.x and older releases, see HISTORY.
 
 === Configuration changes for system administrators in 1.45 ===
 
+* $wgPHPSessionHandling is now deprecated, and the default value has
+  been changed to 'warn'. Any extension that uses PHP session handling
+  ($_SESSION, session_start(), etc.) will cause warnings to be emitted.
+  Migration instructions:
+  https://www.mediawiki.org/wiki/Manual:SessionManager_and_AuthManager/Updating_tips#SessionManager
+  Known affected extensions:
+  https://codesearch.wmcloud.org/things/?q=\%24_SESSION|\ssession_\w%2B\s*\(&files=\.php%24
+
+  Integration with PHP session handling will be removed in the future, making
+  PHP session handling and MediaWiki session handling independent. Using PHP
+  session handling may cause conflicts with the cookies used by MediaWiki.
+
+  To silence the warnings and restore previous behavior,
+  use `$wgPHPSessionHandling = 'enable';`.
+  This configuration setting will be removed in a future release.
+
+  To silence the warnings and disable integration with PHP session handling,
+  use `define( 'MW_NO_SESSION_HANDLER', 1 );`.
+  This constant will always be defined in a future release.
+
 * $wgSitemapNamespacesPriorities is deprecated and ignored.
 * $wgCSPUploadEntryPoint to control if img_auth.php & thumb.php send CSP headers
 * …

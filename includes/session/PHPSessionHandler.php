@@ -32,6 +32,7 @@ use Wikimedia\PhpSessionSerializer;
  * Adapter for PHP's session handling
  *
  * @since 1.27
+ * @deprecated since 1.45 Integration with PHP session handling will be removed in the future
  * @ingroup Session
  */
 class PHPSessionHandler implements SessionHandlerInterface {
