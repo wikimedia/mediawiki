@@ -66,5 +66,10 @@
 	"rest-endpoint-desc-mock-desc": "خيالي څرگنداوی.",
 	"rest-endpoint-desc-post-page": "ويکي مخ جوړوي.",
 	"rest-endpoint-desc-get-page-title-language": "په بېلابېلو ژبو کې سره ورته سکالوگانې لړليک کوي.",
-	"rest-endpoint-desc-get-page-title-media": "په يو مخ کې کارېدلې تر ۱۰۰ دوتنو پورې رسنيزې دوتنې لړليک کوي."
+	"rest-endpoint-desc-get-page-title-media": "په يو مخ کې کارېدلې تر ۱۰۰ دوتنو پورې رسنيزې دوتنې لړليک کوي.",
+	"rest-endpoint-summ-get-revision-compare": "بياکتنو پرتلنه",
+	"rest-endpoint-summ-get-revision-id-bare": "بياليدنه ترلاسه‌کول",
+	"rest-endpoint-summ-get-search-page": "مخونه پلټل",
+	"rest-endpoint-summ-get-page-title-bare": "مخ ترلاسه‌کول",
+	"rest-endpoint-summ-post-page": "مخ جوړول"
 }

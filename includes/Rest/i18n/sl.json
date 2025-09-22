@@ -15,6 +15,7 @@
 	"rest-nonexistent-revision": "Navedena redakcija ($1) ne obstaja",
 	"rest-nonexistent-user": "Navedeni uporabnik ($1) ne obstaja",
 	"rest-invalid-user": "Navedeno uporabniško ime ($1) je neveljavno",
+	"rest-invalid-ip": "Navedeni IP ($1) je neveljaven",
 	"rest-invalid-title": "Navedeni naslov ($1) se ne nanaša na viki stran.",
 	"rest-unsupported-content-type": "Nepodprta vrsta vsebine: $1",
 	"rest-permission-error": "Dovoljenje zavrnjeno: $1",
@@ -44,6 +45,7 @@
 	"rest-bad-json-body": "Neustrezno telo zahtevke, biti mora objekt JSON.",
 	"rest-json-body-parse-error": "Razčlenjevanje telesa zahtevka kot JSON ni uspelo: $1",
 	"rest-missing-body-field": "Telesu zahtevka manjka obvezno polje »$1«.",
+	"rest-body-validation-error": "Neveljavno telo zahtevka: $1",
 	"rest-extraneous-body-fields": "Dodatna polja v telesu zahtevka: $1",
 	"rest-bad-content-model": "Neustrezen vsebinski model: $1",
 	"rest-update-cannot-create-page": "Strani »$1« ni mogoče ustvariti, ker že obstaja. Za posodobitev obstoječe strani navedite ID osnovne redakcije v strukturi v telesu zahtevka pod ključem »latest« (najnovejše).",
@@ -54,5 +56,8 @@
 	"rest-badtoken": "Predloženi žeton CSRF je neveljaven.",
 	"rest-badtoken-missing": "Potreben je parameter <var>token</var>, razen če uporabljate CSRF-varen način avtentikacije.",
 	"rest-badtoken-nosession": "Napaka CSRF – ni seje.",
+	"rest-mock-error": "Simulirana napaka.",
+	"rest-specified-revision-unavailable": "Navedena redakcija je izbrisana ali skrita.",
+	"rest-previous-revision-unavailable": "Prejšnje redakcije ni bilo mogoče najti. Ali je bila stran zaklenjena ali izbrisana?",
 	"rest-property-desc-revision-delta": "Razlika v velikosti v primerjavi s prejšnjo redakcijo."
 }

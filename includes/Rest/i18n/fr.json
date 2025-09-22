@@ -260,6 +260,7 @@
 	"rest-endpoint-desc-post-transform-html-to-wikitext-title": "Convertit du HTML en wikitexte. Le paramètre « corps de la requête » doit être fourni, mais peut être laissé vide pour recevoir la page complète. Le corps de la réponse contient le wikitexte de la page.",
 	"rest-endpoint-desc-post-transform-html-to-wikitext-title-revision": "Convertit le HTML d’une version donnée en wikitexte. Le paramètre « corps de la requête » doit être fourni, mais peut être laissé vide pour recevoir la version complète. Le corps de la réponse contient le wikitexte de la version.",
 	"rest-endpoint-summ-get-page-history": "Obtenir l'historique de la page",
+	"rest-endpoint-summ-get-page-history-counts": "Afficher l'historique des modifications par type de modification",
 	"rest-endpoint-summ-get-revision-compare": "Comparer les révisions",
 	"rest-endpoint-summ-get-revision-id": "Obtenir la source de révision",
 	"rest-endpoint-summ-get-revision-id-html": "Obtenez le HTML de révision",

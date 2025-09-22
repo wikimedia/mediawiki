@@ -2392,7 +2392,7 @@
 	"date": "Od datuma (in prej):",
 	"sp-contributions-blocklog": "dnevnik blokiranja",
 	"sp-contributions-suppresslog": "ukinjeni {{GENDER:$1|uporabnikovi|uporabničini|uporabnikovi_čini}} prispevki",
-	"sp-contributions-deleted": "izbrisani ukinjeni {{GENDER:$1|uporabnikovi|uporabničini|uporabnikovi_čini}} prispevki",
+	"sp-contributions-deleted": "izbrisani {{GENDER:$1|uporabnikovi|uporabničini|uporabnikovi}} prispevki",
 	"sp-contributions-uploads": "naložene datoteke",
 	"sp-contributions-logs": "dnevniki",
 	"sp-contributions-talk": "pogovor",
