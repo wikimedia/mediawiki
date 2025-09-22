@@ -22,6 +22,7 @@ namespace MediaWiki\ResourceLoader;
 
 use Composer\Spdx\SpdxLicenses;
 use LogicException;
+use MediaWiki\Json\FormatJson;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
@@ -151,11 +152,18 @@ class ForeignResourceManager {
 		}
 
 		if ( $this->action === 'make-cdx' ) {
-			$cdxFile = $this->getCdxFileLocation();
-			$cdxJson = json_encode(
+			$cdxJson = FormatJson::encode(
 				$this->generateCdxForModules( $modules ),
-				JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR
+				"\t",
+				FormatJson::UTF8_OK
 			);
+
+			if ( $cdxJson === false ) {
+				$this->error( 'json_encode() returned false.' );
+				return false;
+			}
+
+			$cdxFile = $this->getCdxFileLocation();
 			file_put_contents( $cdxFile, $cdxJson );
 			$this->output( "Created CycloneDX file at $cdxFile\n" );
 			return true;
