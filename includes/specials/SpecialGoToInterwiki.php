@@ -76,17 +76,19 @@ class SpecialGoToInterwiki extends UnlistedSpecialPage {
 		}
 
 		$url = $target->getFullURL();
-		if ( !$target->isExternal() || ( $target->isLocal() && !$force ) ) {
-			// Either a normal page, or a local interwiki.
-			// Just redirect.
-			$this->getOutput()->redirect( $url, '301' );
-		} else {
+		/* Fandom change - start (PLATFORM-11316) */
+		$host = parse_url( $url, PHP_URL_HOST );
+		if ( $force || ( !str_contains( $host, '.fandom.com' ) && !str_contains( $host, '.wikia.com' ) && !str_contains( $host, '.gamepedia.com') ) ) {
 			$this->getOutput()->addWikiMsg(
 				'gotointerwiki-external',
 				$url,
 				$target->getFullText()
 			);
+		} else {
+			// Just redirect.
+			$this->getOutput()->redirect( $url, '301' );
 		}
+		/* Fandom change - end (PLATFORM-11316) */
 	}
 
 	/**
