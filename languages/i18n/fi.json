@@ -89,7 +89,8 @@
 			"Lliehu",
 			"Kimberli Mäkäräinen (WMNO)",
 			"Minilammas",
-			"Hdicu"
+			"Hdicu",
+			"Taavi"
 		]
 	},
 	"tog-underline": "Linkkien alleviivaus:",
@@ -634,7 +635,7 @@
 	"resetpass_forbidden": "Salasanoja ei voi vaihtaa.",
 	"resetpass_forbidden-reason": "Salasanoja ei voi muuttaa: $1",
 	"resetpass-no-info": "Et voi nähdä tätä sivua kirjautumatta sisään.",
-	"resetpass-submit-loggedin": "Muuta salasana",
+	"resetpass-submit-loggedin": "Vaihda salasana",
 	"resetpass-submit-cancel": "Peruuta",
 	"resetpass-wrong-oldpass": "Virheellinen väliaikainen tai nykyinen salasana.\nOlet saattanut jo vaihtaa salasanasi tai pyytää uutta väliaikaista salasanaa.",
 	"resetpass-recycled": "Sinun täytyy valita uudeksi salasanaksi jokin muu kuin nykyinen salasanasi.",

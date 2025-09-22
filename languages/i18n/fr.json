@@ -4272,7 +4272,7 @@
 	"specialmute-submit": "Confirmer",
 	"specialmute-label-mute-email": "Mettre en sourdine les courriels de {{GENDER:$1|cet utilisateur|cette utilisatrice}}",
 	"specialmute-header": "Veuillez sélectionner vos préférences de mise en sourdine pour l’utilisat{{GENDER:$1|eur|rice}} <b>[[User:$1|{{BIDI:$1}}]]</b>.",
-	"specialmute-error-invalid-user": "Le nom d’utilisateur demandé n’a pu être trouvé.",
+	"specialmute-error-invalid-user": "Le nom d’utilisateur demandé n’a pas été trouvé.",
 	"specialmute-error-no-options": "Les fonctionnalités de mise en silence ne sont pas disponibles. Cela peut être dû au fait que vous n’avez pas confirmé votre adresse de messagerie, ou que l’administrateur du wiki a désactivé les fonctionnalités de courriel, ou encore que votre adresse de courriel est mises en silence pour ce wiki.",
 	"specialmute-email-footer": "Veuillez voir <$1> pour gérer les préférences courriel pour l’utilisateur {{BIDI:$2}}.",
 	"specialmute-login-required": "Veuillez vous connecter pour mettre à jour vos préférences de mise en sourdine d’utilisateurs.",
