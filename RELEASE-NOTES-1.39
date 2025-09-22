@@ -12,6 +12,25 @@ THIS IS NOT A RELEASE YET
 
 === Changes since 1.39.13 ===
 * Localisation updates.
+* (T399672) mime: Add mime types for *.less.
+* ParserCacheSerializationTestCases: back port ParserOutput changes from 1.45.
+* ParserCacheSerializationTestCases: distinguish empty ToC from missing ToC.
+* Fix attachLatest --regenerate-all creating invalid SQL command.
+* (T322099) Make RequestContext::sanitizeLangCode() accept null.
+* (T380456) exception: Avoid service container init in exception handler.
+* diff: Avoid Phan warning with some Wikidiff2 versions.
+* (T387408) exception: Skip use of HookRunner when not autoloaded.
+* (T327439) ParserOutput: Prepare to allow JsonCodec serialization of TOCData.
+* media: Remove pass-by-ref in Exif::exifGPStoNumber.
+* (T386208) Exif: Handle malformed gps tags.
+* i18n: Add Special:MyLanguage to mediawiki.org links.
+* (T380423) Show user a human readable message when $wgLocaltimezone is set to
+  an invalid timezone.
+* (T374042) PostgresUpdater: Fix typo in sites_group index renaming instruction.
+* (T401570) rdbms: Fix read-only detection for MariaDB 12.
+* (T400881) filerepo: Improve identification of ForeignAPIRepo requests.
+* (T402037) config: Change Reauthenticate Time Default.
+* SimpleParsoidOutputStash: protect against rollback from MW >= 1.43.
 
 == MediaWiki 1.39.13 ==
 
