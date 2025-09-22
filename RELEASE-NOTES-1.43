@@ -11,6 +11,48 @@ THIS IS NOT A RELEASE YET
 
 === Changes since MediaWiki 1.43.3 ===
 * Localisation updates.
+* Rest: Move ModuleConfigurationException into correct folder.
+* Cache: Move MessageCache hook interfaces into correct folder.
+* uppercaseTitlesForUnicodeTransition: Add missing return.
+* installer: Always check return of IDatabase::fieldInfo in postgres.
+* autoload: Expand Autoloader::CORE_NAMESPACES.
+* (T378163) mediawiki.page.ready: Fix undefined mw.user during temp user logout.
+* (T375530) Define and store MediaWiki REST API ‘page’ endpoint responses as
+  JSON schemas.
+* (T376603) REST: JSON schema definitions for additional response bodies.
+* (T399672) mime: Add mime types for *.less.
+* (T391180) docs: Add link to CORS setting for REST API.
+* (T388729) Parser: Handle regex failure in extractBody method.
+* (T399064) Parser::extractBody: Use possessive matcher and once-only
+  subpattern.
+* (T399793) PermissionManager: Fix missingPermissionError() not returning early
+  when $short is true.
+* rdbms: Fix GTID style detection for MySQL servers.
+* ParserCacheSerializationTestCases: back port ParserOutput changes from 1.45.
+* ParserCacheSerializationTestCases: distinguish empty ToC from missing ToC.
+* Fix attachLatest --regenerate-all creating invalid SQL command.
+* diff: Avoid Phan warning with some Wikidiff2 versions.
+* (T327439) ParserOutput: Prepare to allow JsonCodec serialization of TOCData.
+* media: Remove pass-by-ref in Exif::exifGPStoNumber.
+* (T386208) Exif: Handle malformed gps tags.
+* i18n: Add Special:MyLanguage to mediawiki.org links.
+* (T380423) Show user a human readable message when $wgLocaltimezone is set to
+  an invalid timezone.
+* maintenance: Fix sql for touched-only option of refreshLinks script.
+* (T393028) ImagePage: Remove PNG previews line for native SVG rendering.
+* (T374042) PostgresUpdater: Fix typo in sites_group index renaming instruction.
+* (T401088) maintenance: Fix paging in findMissingFiles.php.
+* (T401570) rdbms: Fix read-only detection for MariaDB 12.
+* (T400881) filerepo: Improve identification of ForeignAPIRepo requests.
+* (T397900) Don't use RequestContext in CommentParserFactory construction.
+* (T402037) config: Change Reauthenticate Time Default.
+* WebPHandler: Read all of the VP8L canvas height.
+* (T264389, T161647) Make Content JsonCodecable.
+* maintenance: Fix SQL range for moveToExternal.
+* Use JsonCodec to serialize SelserContext.
+* Forward-compat data for SelserContext w/ JSON-encoded Content.
+* (T372444, T404230) DeletedContribsPager: Use the UserIdentity object instead
+  of the raw target string.
 
 == MediaWiki 1.43.3 ==
 
