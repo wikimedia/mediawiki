@@ -55,7 +55,8 @@ class RsaJwtCodecTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 'bar', $claims['foo'] );
 
 		$jwt = $jwtCodec->create( [ 'exp' => ConvertibleTimestamp::time() + 1 ] );
-		$jwtCodec->parse( $jwt );
+		$claims = $jwtCodec->parse( $jwt );
+		$this->assertSame( ConvertibleTimestamp::time() + 1, $claims['exp'] );
 
 		// 'exp' in the past
 		$jwt = $jwtCodec->create( [ 'exp' => ConvertibleTimestamp::time() - 1 ] );

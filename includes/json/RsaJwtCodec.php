@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Json;
 
+use DateTimeImmutable;
 use Lcobucci\JWT;
 use Lcobucci\JWT\Encoding\JoseEncoder;
 use Lcobucci\JWT\Encoding\UnifyAudience;
@@ -9,6 +10,7 @@ use Lcobucci\JWT\Signer\Key;
 use Lcobucci\JWT\Signer\Rsa;
 use Lcobucci\JWT\Token\Parser;
 use Lcobucci\JWT\Token\Plain;
+use Lcobucci\JWT\Token\RegisteredClaims;
 use Lcobucci\JWT\Validation\Constraint\LooseValidAt;
 use Lcobucci\JWT\Validation\Constraint\SignedWith;
 use Lcobucci\JWT\Validation\Validator;
@@ -83,7 +85,18 @@ class RsaJwtCodec implements JwtCodec {
 			throw new JwtException( $e->getMessage(), [], $e->getCode(), $e );
 		}
 
-		return $token->claims()->all();
+		$claims = $token->claims()->all();
+
+		// The lcobucci parser tries to be too clever for its own good, and converts some claims to
+		// PHP objects. Undo that.
+		foreach ( $claims as $claimName => $claimValue ) {
+			if ( in_array( $claimName, RegisteredClaims::DATE_CLAIMS ) ) {
+				/** @var DateTimeImmutable $claimValue */'@phan-var DateTimeImmutable $claimValue';
+				$claims[$claimName] = $claimValue->getTimestamp();
+			}
+		}
+
+		return $claims;
 	}
 
 }
