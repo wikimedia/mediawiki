@@ -235,6 +235,28 @@ Sections:
 !! end
 
 !! test
+Ensure tags following empty tags are stripped
+!! options
+nohtml
+showtocdata
+parsoid={
+	"modes": [ "wt2html" ],
+	"wrapSections": true
+}
+!! wikitext
+==<div></div>x==
+==<abbr><abbr></abbr></abbr><abbr><abbr title="abbr title">y</abbr></abbr>z==
+!! metadata/php
+Sections:
+ h2 index:1 toclevel:1 number:1 title:Parser_test off:0 anchor/linkAnchor:x line:x
+ h2 index:2 toclevel:1 number:2 title:Parser_test off:17 anchor/linkAnchor:yz line:yz
+!! metadata/parsoid
+Sections:
+ h2 index:1 toclevel:1 number:1 title:Parser_test off:0 anchor/linkAnchor:x line:x
+ h2 index:2 toclevel:1 number:2 title:Parser_test off:17 anchor/linkAnchor:yz line:yz
+!! end
+
+!! test
 Ensure comments in toc lines are stripped
 !! config
 wgRawHtml=1
