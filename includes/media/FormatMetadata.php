@@ -947,7 +947,19 @@ class FormatMetadata extends ContextSource {
 							$val = $this->literal( $val );
 						}
 						break;
-
+					case 'DigitalSourceType':
+						// Should be a url starting with
+						// http://cv.iptc.org/newscodes/digitalsourcetype/
+						if ( str_starts_with( $val, 'http://cv.iptc.org/newscodes/digitalsourcetype/' ) ) {
+							$code = substr( $val, 47 );
+							$msg = $this->msg( 'exif-digitalsourcetype-' . strtolower( $code ) );
+							if ( !$msg->isDisabled() ) {
+								$val = $msg->text();
+								break;
+							}
+						}
+						$val = $this->literal( $val );
+						break;
 					// Things that have a unit of pixels.
 					case 'OriginalImageHeight':
 					case 'OriginalImageWidth':
