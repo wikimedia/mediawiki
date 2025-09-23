@@ -39,7 +39,7 @@ use Wikimedia\ParamValidator\ParamValidator;
  */
 abstract class ApiOptionsBase extends ApiBase {
 	/** @var User User account to modify */
-	private $userForUpdates;
+	private $userFromPrimary;
 
 	private UserOptionsManager $userOptionsManager;
 	private PreferencesFactory $preferencesFactory;
@@ -258,6 +258,18 @@ abstract class ApiOptionsBase extends ApiBase {
 	 * Load the user from the primary to reduce CAS errors on double post (T95839)
 	 * Will throw if the user is anonymous.
 	 */
+	protected function getUserFromPrimary(): User {
+		if ( !$this->userFromPrimary ) {
+			$this->userFromPrimary = $this->getUser()->getInstanceForUpdate();
+		}
+
+		return $this->userFromPrimary;
+	}
+
+	/**
+	 * Load the user from the primary to reduce CAS errors on double post (T95839)
+	 * Will throw if the user is anonymous.
+	 */
 	protected function getUserForUpdates(): User {
 		// @phan-suppress-next-line PhanTypeMismatchReturnNullable
 		return $this->getUserForUpdatesOrNull();
@@ -269,11 +281,11 @@ abstract class ApiOptionsBase extends ApiBase {
 	 * @return User|null
 	 */
 	protected function getUserForUpdatesOrNull(): ?User {
-		if ( !$this->userForUpdates ) {
-			$this->userForUpdates = $this->getUser()->getInstanceForUpdate();
+		if ( !$this->userFromPrimary ) {
+			$this->userFromPrimary = $this->getUser()->getInstanceForUpdate();
 		}
 
-		return $this->userForUpdates;
+		return $this->userFromPrimary;
 	}
 
 	/**
