@@ -3595,7 +3595,7 @@
 	"logentry-protect-modify": "$1 {{GENDER:$2|a modificat}} parametrii protejării pentru $3 $4",
 	"logentry-protect-modify-cascade": "$1 {{GENDER:$2|a modificat}} parametrii protejării pentru $3 $4 [protejare în cascadă]",
 	"logentry-rights-rights": "$1 {{GENDER:$2|a schimbat}} apartenența la grup pentru {{GENDER:$6|$3}} de la $4 la $5",
-	"logentry-rights-rights-legacy": "$1 {{GENDER:$2|a schimbat}} apartenența la grup pentru $3",
+	"logentry-rights-rights-legacy": "$1 {{GENDER:$2|a schimbat}} apartenența la grupuri pentru $3",
 	"logentry-rights-autopromote": "$1 {{GENDER:$2|a fost promovat|a fost promovată}} în mod automat de la $4 la $5",
 	"logentry-upload-upload": "$1 {{GENDER:$2|a încărcat}} $3",
 	"logentry-upload-overwrite": "$1 {{GENDER:$2|a încărcat}} o versiune nouă pentru $3",

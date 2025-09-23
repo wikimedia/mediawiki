@@ -89,7 +89,8 @@
 			"ZeiP",
 			"לערי ריינהארט",
 			"아라",
-			"Hdicu"
+			"Hdicu",
+			"Taavi"
 		]
 	},
 	"sunday": "sunnuntai",
@@ -492,7 +493,7 @@
 	"nocookieslogin": "{{SITENAME}} käyttää evästeitä sisäänkirjautumisen yhteydessä. Selaimesi ei salli evästeitä. Ota ne käyttöön, ja yritä uudelleen.",
 	"nocookiesfornew": "Tunnusta ei luotu, koska sen lähdettä ei kyetty varmistamaan. Varmista, että selaimessasi on käytössä evästeet, päivitä tämä sivu ja yritä uudelleen.",
 	"createacct-loginerror": "Tunnus luotiin onnistuneesti, mutta automaattista sisäänkirjautumista ei voitu tehdä. Siirry [[Special:UserLogin|manuaaliseen kirjautumiseen]].",
-	"createacct-temp-warning": "Tilapäisellä tunnuksellasi <strong>$1</strong> tekemäsi muutokset eivät siirry pysyvälle tunnuksellesi.",
+	"createacct-temp-warning": "Tilapäisellä tunnuksella <strong>$1</strong> tekemäsi muokkaukset eivät siirry pysyvälle tunnuksellesi.",
 	"noname": "Et ole antanut kelvollista käyttäjänimeä.",
 	"userlogin-authpopup-loggingin-title": "Kirjaudutaan sisään...",
 	"userlogin-authpopup-loggingin-body": "Ponnahdusikkunan olisi pitänyt avautua. Jos et näe sitä, voit yrittää avata sen uudelleen. Vaihtoehtoisesti voit [$1 kirjautua vanhalla tavalla].",
@@ -588,7 +589,7 @@
 	"botpasswords-locked": "Et voi kirjautua sisään bottisalasanalla, koska tunnuksesi on lukittu.",
 	"resetpass_forbidden": "Salasanoja ei voi vaihtaa.",
 	"resetpass_forbidden-reason": "Salasanoja ei voi muuttaa: $1",
-	"resetpass-submit-loggedin": "Muuta salasana",
+	"resetpass-submit-loggedin": "Vaihda salasana",
 	"resetpass-submit-cancel": "Peruuta",
 	"resetpass-wrong-oldpass": "Virheellinen väliaikainen tai nykyinen salasana.\nOlet saattanut jo vaihtaa salasanasi tai pyytää uutta väliaikaista salasanaa.",
 	"resetpass-recycled": "Sinun täytyy valita uudeksi salasanaksi jokin muu kuin nykyinen salasanasi.",

@@ -10,7 +10,8 @@
 			"बिप्लब आनन्द",
 			"राम प्रसाद जोशी",
 			"सरोज कुमार ढकाल",
-			"हिमाल सुबेदी"
+			"हिमाल सुबेदी",
+			"Nirajan pant"
 		]
 	},
 	"config-desc": "मेडियाविकिको लागि स्थापक",
@@ -39,11 +40,11 @@
 	"config-env-php": "PHP $1 स्थापना गरिएको छ ।",
 	"config-db-type": "डाटाबेस प्रकारः",
 	"config-db-host": "डेटाबेस होस्ट:",
-	"config-db-name": "डाटाबेस नामः",
+	"config-db-name": "डाटाबेस नाम (कुनै योजक चिह्न बिना):",
 	"config-db-username": "डाटाबेस प्रयोगकर्ता नामः",
 	"config-db-password": "डाटाबेस पासबर्डः",
 	"config-db-port": "डेटाबेस पोर्ट:",
-	"config-header-mysql": "MySQL सेटिङ",
+	"config-header-mysql": "MariaDB/MySQL सेटिङहरू",
 	"config-header-postgres": "PostgreSQL सेटिङहरू",
 	"config-header-sqlite": "SQLite सेटिङ्हरू",
 	"config-site-name": "विकीको नाम:",
@@ -77,6 +78,6 @@
 	"config-install-sysop": "प्रबन्धकको प्रयोगकर्ता खाता बनाउदै",
 	"config-help": "सहायता",
 	"config-help-tooltip": "विस्तार गर्न क्लीक गर्नुहोस्",
-	"mainpagetext": "'''मीडिया सफलतापूर्वक कम्प्यूटरमा स्थापित भयो ।'''",
+	"mainpagetext": "<strong>मिडियाविकि स्थापित भयो।</strong>",
 	"mainpagedocfooter": " विकी अनुप्रयोग कसरी प्रयोग गर्ने भन्ने जानकारीको लागि  [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents प्रयोगकर्ता सहायता] हेर्नुहोस्\n\n== सुरू गर्नको लागि  ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings विन्यास सेटिङ्ग सूची]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ मेडियाविकि सामान्य प्रश्नका उत्तरहरू]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ मेडियाविकि सूचना मेलिङ्ग सूची]"
 }

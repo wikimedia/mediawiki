@@ -28,7 +28,8 @@
 			"Selven",
 			"The Polish",
 			"Tosky",
-			"아라"
+			"아라",
+			"Giorgx12"
 		]
 	},
 	"config-desc": "Programma di installazione per MediaWiki",
@@ -97,6 +98,8 @@
 	"config-using-server": "Nome server in uso \"<nowiki>$1</nowiki>\".",
 	"config-using-uri": "URL del server in uso \"<nowiki>$1$2</nowiki>\".",
 	"config-uploads-not-safe": "<strong>Attenzione:</strong> la directory predefinita per i caricamenti <code>$1</code> è vulnerabile all'esecuzione arbitraria di script.\nAnche se, a difesa della sicurezza, MediaWiki controlla tutti i file caricati, è fortemente raccomandato di [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security#Upload_security chiudere questa minaccia] prima di abilitare i caricamenti.",
+	"config-uploads-security-headers": "<strong>Attenzione:</strong> le richieste di immagini nella directory dei caricamenti devono rispondere con l'intestazione HTTP <code>$1</code> per proteggere i browser da file potenzialmente pericolosi.\nSi consiglia vivamente di [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security#Upload_security/it configurare le intestazioni di risposta appropriate sul server web] prima di abilitare i caricamenti.",
+	"config-uploads-security-requesterror": "<strong>Attenzione:</strong> a causa di un errore di connessione, non è stato possibile verificare che le immagini nella directory dei caricamenti rispondano con l'intestazione HTTP <code>$1</code> per proteggere i browser da file potenzialmente pericolosi.\nSi consiglia vivamente di [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security#Upload_security/it configurare le intestazioni di risposta appropriate sul server web] prima di abilitare i caricamenti.",
 	"config-no-cli-uploads-check": "<strong>Attenzione:</strong> la directory predefinita per i caricamenti (<code>$1</code>) non è stata verificata per la vulnerabilità sull'esecuzione arbitraria di script durante l'installazione da linea di comando.",
 	"config-using-32bit": "<strong>Attenzione</strong> sembra che il tuo sistema utilizzi interi a 32-bit, ciò [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:32-bit non è raccomandato].",
 	"config-db-type": "Tipo di database:",
@@ -117,6 +120,7 @@
 	"config-db-prefix": "Prefisso tabella del database (no trattini):",
 	"config-db-prefix-help": "Se hai bisogno di condividere un database tra più wiki, o tra MediaWiki e un'altra applicazione web, puoi scegliere di aggiungere un prefisso a tutti i nomi di tabella, per evitare conflitti.\nNon utilizzare spazi.\n\nSolitamente, questo campo viene lasciato vuoto.",
 	"config-mysql-old": "MySQL $1 o una versione successiva è necessaria, rilevata la $2.",
+	"config-mariadb-old": "MariaDB $1 or later is required. You have $2.",
 	"config-db-port": "Porta del database:",
 	"config-db-ssl": "Connetti tramite SSL",
 	"config-db-schema": "Schema per MediaWiki (no trattini):",

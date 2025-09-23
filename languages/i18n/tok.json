@@ -27,7 +27,8 @@
 			"Ca",
 			"物灵",
 			"Waldyrious",
-			"Theleekycauldron"
+			"Theleekycauldron",
+			"Ne"
 		]
 	},
 	"sunday": "tenpo suno #7 pi tenpo esun",
@@ -878,7 +879,7 @@
 	"powersearch-toggleall": "ale",
 	"powersearch-togglenone": "ala",
 	"powersearch-remember": "alasa kama la o awen sona e wile ni",
-	"mypreferences": "ilo la wile mi",
+	"mypreferences": "wile ilo mi",
 	"prefs-misc": "namako",
 	"searchresultshead": "alasa",
 	"prefs-namespaces": "poki nimi",
@@ -984,7 +985,7 @@
 	"action-purge": "o sin e lipu ni",
 	"nchanges": "{{PLURAL:$1|ante}} $1",
 	"enhancedrc-history": "tenpo pini",
-	"recentchanges": "tenpo poka la pali sin",
+	"recentchanges": "pali sin",
 	"recentchanges-summary": "ilo ni li pana e ni: jan li ante e lipu seme lon tenpo poka?",
 	"recentchanges-noresult": "tenpo ni la ante ala li sama ni",
 	"recentchanges-feed-description": "ilo ni li pana e ni: jan li ante e lipu seme lon tenpo poka?",

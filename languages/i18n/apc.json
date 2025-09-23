@@ -3,7 +3,8 @@
 		"authors": [
 			"CamelCaseCo",
 			"FunLater",
-			"HitomiAkane"
+			"HitomiAkane",
+			"Hubaishan"
 		]
 	},
 	"sunday": "الأحد",
@@ -87,7 +88,7 @@
 	"and": "&#32;و",
 	"faq": "الأسئلة المتكررة",
 	"actions": "الإجراءات",
-	"namespaces": "مساحة الصفحات",
+	"namespaces": "نطاقات",
 	"variants": "المتغيرات",
 	"navigation-heading": "منيو التنقل",
 	"errorpagetitle": "خطأ",
@@ -608,7 +609,7 @@
 	"restriction-move": "غيّر الإسم",
 	"undeletecomment": "السبب:",
 	"undelete-show-file-submit": "أيه",
-	"namespace": "مساحة الصفحة:",
+	"namespace": "نطاق:",
 	"blanknamespace": "(رئيسي)",
 	"contributions": "مساهمات المستخدم",
 	"contributions-title": "مساهمات المستخدم $1",

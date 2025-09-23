@@ -5,7 +5,8 @@
 			"Mahir256",
 			"Sadidmibzalhan",
 			"এম আবু সাঈদ",
-			"ꠢꠣꠍꠘ ꠞꠣꠎꠣ"
+			"ꠢꠣꠍꠘ ꠞꠣꠎꠣ",
+			"Nintendofan885"
 		]
 	},
 	"sunday": "ꠞꠁꠛꠣꠞ",
@@ -466,7 +467,7 @@
 	"tooltip-last": "ꠡꠣꠝꠘꠞ ꠞꠤꠜꠤꠡꠘꠞ ꠟꠉꠦ ꠔꠚꠣꠔ",
 	"page_first": "ꠙꠄꠟꠣꠇꠥꠞ",
 	"page_last": "ꠢꠦꠡꠇꠥꠞ",
-	"histlegend": "ꠔꠚꠣꠕ ꠛꠣꠌꠂꠘ ꠪ ꠔꠥꠟꠘꠣ ꠇꠞꠣꠞ ꠟꠣꠉꠤ ꠡꠋꠡꠧꠗꠘꠞ ꠞꠦꠒꠤꠅ ꠛꠧꠔꠣꠝꠣꠁꠘ ꠌꠤꠢ꠆ꠘꠤꠔ ꠇꠞꠂꠘ ꠀꠞ ꠄꠘ꠆ꠐꠣꠞ ꠘꠣꠄ ꠔꠟꠞ ꠛꠧꠔꠣꠝꠅ ꠏꠣꠔꠣ ꠝꠣꠞꠂꠘ  ⁕<br /> ꠇꠤꠋꠛꠖꠘ꠆ꠔꠤ: <strong>({{int:cur}})</strong> = ꠢꠇꠟꠞ ꠡꠦꠡ ꠡꠋꠡꠧꠗꠘꠞ ꠟꠉꠦ ꠔꠚꠣꠕ ꠨ <strong>({{int:last}})</strong> = ꠀꠉꠞꠛꠣꠞꠞ ꠡꠋꠡꠧꠗꠘꠞ ꠟꠉꠦ ꠔꠚꠣꠕ ꠨ <strong>{ {int:minoreditletter}}</strong> = ꠢꠥꠞꠥꠝꠥꠞꠥ ꠡꠝ꠆ꠙꠣꠖꠘꠣ ⁕",
+	"histlegend": "ꠔꠚꠣꠕ ꠛꠣꠌꠂꠘ ꠪ ꠔꠥꠟꠘꠣ ꠇꠞꠣꠞ ꠟꠣꠉꠤ ꠡꠋꠡꠧꠗꠘꠞ ꠞꠦꠒꠤꠅ ꠛꠧꠔꠣꠝꠣꠁꠘ ꠌꠤꠢ꠆ꠘꠤꠔ ꠇꠞꠂꠘ ꠀꠞ ꠄꠘ꠆ꠐꠣꠞ ꠘꠣꠄ ꠔꠟꠞ ꠛꠧꠔꠣꠝꠅ ꠏꠣꠔꠣ ꠝꠣꠞꠂꠘ  ⁕<br /> ꠇꠤꠋꠛꠖꠘ꠆ꠔꠤ: <strong>({{int:cur}})</strong> = ꠢꠇꠟꠞ ꠡꠦꠡ ꠡꠋꠡꠧꠗꠘꠞ ꠟꠉꠦ ꠔꠚꠣꠕ ꠨ <strong>({{int:last}})</strong> = ꠀꠉꠞꠛꠣꠞꠞ ꠡꠋꠡꠧꠗꠘꠞ ꠟꠉꠦ ꠔꠚꠣꠕ ꠨ <strong>{{int:minoreditletter}}</strong> = ꠢꠥꠞꠥꠝꠥꠞꠥ ꠡꠝ꠆ꠙꠣꠖꠘꠣ ⁕",
 	"history-fieldset-title": "ꠢꠤꠞꠛꠣꠞ ꠖꠦꠈꠣꠅꠉꠥꠁꠘ ꠛꠣꠍꠂꠇ꠆ꠇꠣ",
 	"history-show-deleted": "ꠈꠣꠟꠤ ꠞꠤꠜꠤꠡꠘ ꠙꠣꠟꠣꠁꠖꠦꠅꠣꠅꠁꠍꠦ",
 	"histfirst": "ꠄꠇꠛꠣꠞꠦ ꠀꠉꠞ",
