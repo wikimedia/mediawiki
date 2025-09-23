@@ -47,7 +47,7 @@ class ApiOptionsTest extends ApiTestCase {
 		$this->mUserMock = $this->createMock( User::class );
 
 		// No actual DB data
-		$this->mUserMock->method( 'getInstanceForUpdate' )->willReturn( $this->mUserMock );
+		$this->mUserMock->method( 'getInstanceFromPrimary' )->willReturn( $this->mUserMock );
 
 		$this->mUserMock->method( 'isAllowedAny' )->willReturn( true );
 
@@ -65,7 +65,7 @@ class ApiOptionsTest extends ApiTestCase {
 
 		$this->userOptionsManagerMock = $this->createNoOpMock(
 			UserOptionsManager::class,
-			[ 'getOptions', 'resetOptionsByName', 'setOption', 'isOptionGlobal' ]
+			[ 'getOptions', 'resetOptionsByName', 'setOption', 'isOptionGlobal', 'saveOptions' ]
 		);
 		// Needs to return something
 		$this->userOptionsManagerMock->method( 'getOptions' )->willReturn( [] );
@@ -241,8 +241,8 @@ class ApiOptionsTest extends ApiTestCase {
 		$this->userOptionsManagerMock->expects( $this->never() )
 			->method( 'setOption' );
 
-		$this->mUserMock->expects( $this->never() )
-			->method( 'saveSettings' );
+		$this->userOptionsManagerMock->expects( $this->never() )
+			->method( 'saveOptions' );
 
 		try {
 			$request = $this->getSampleRequest();
@@ -272,11 +272,11 @@ class ApiOptionsTest extends ApiTestCase {
 		if ( $expectException ) {
 			$this->userOptionsManagerMock->expects( $this->never() )->method( 'resetOptionsByName' );
 			$this->userOptionsManagerMock->expects( $this->never() )->method( 'setOption' );
-			$this->mUserMock->expects( $this->never() )->method( 'saveSettings' );
+			$this->userOptionsManagerMock->expects( $this->never() )->method( 'saveOptions' );
 		} else {
 			$this->userOptionsManagerMock->expects( $this->once() )->method( 'resetOptionsByName' );
 			$this->userOptionsManagerMock->expects( $this->never() )->method( 'setOption' );
-			$this->mUserMock->expects( $this->once() )->method( 'saveSettings' );
+			$this->userOptionsManagerMock->expects( $this->once() )->method( 'saveOptions' );
 		}
 		$request = $this->getSampleRequest( [ 'reset' => '' ] );
 		try {
@@ -302,13 +302,13 @@ class ApiOptionsTest extends ApiTestCase {
 		$this->mUserMock->method( 'isRegistered' )->willReturn( $isRegistered );
 		$this->mUserMock->method( 'isNamed' )->willReturn( $isNamed );
 		if ( $expectException ) {
-			$this->mUserMock->expects( $this->never() )->method( 'saveSettings' );
+			$this->userOptionsManagerMock->expects( $this->never() )->method( 'saveOptions' );
 			$this->userOptionsManagerMock->expects( $this->never() )->method( 'resetOptionsByName' );
 			$this->userOptionsManagerMock->expects( $this->never() )->method( 'setOption' );
 		} else {
 			$this->userOptionsManagerMock->expects( $this->once() )->method( 'resetOptionsByName' );
 			$this->userOptionsManagerMock->expects( $this->never() )->method( 'setOption' );
-			$this->mUserMock->expects( $this->once() )->method( 'saveSettings' );
+			$this->userOptionsManagerMock->expects( $this->once() )->method( 'saveOptions' );
 		}
 		$request = $this->getSampleRequest( [ 'reset' => '', 'resetkinds' => 'registered' ] );
 		try {
@@ -337,7 +337,7 @@ class ApiOptionsTest extends ApiTestCase {
 		if ( $expectException ) {
 			$this->userOptionsManagerMock->expects( $this->never() )->method( 'resetOptionsByName' );
 			$this->userOptionsManagerMock->expects( $this->never() )->method( 'setOption' );
-			$this->mUserMock->expects( $this->never() )->method( 'saveSettings' );
+			$this->userOptionsManagerMock->expects( $this->never() )->method( 'saveOptions' );
 		} else {
 			$this->userOptionsManagerMock->expects( $this->once() )->method( 'resetOptionsByName' );
 			$expectedOptions = [
@@ -352,7 +352,7 @@ class ApiOptionsTest extends ApiTestCase {
 					$this->assertSame( $expectedOptions[$oname], $val );
 					unset( $expectedOptions[$oname] );
 				} );
-			$this->mUserMock->expects( $this->once() )->method( 'saveSettings' );
+			$this->userOptionsManagerMock->expects( $this->once() )->method( 'saveOptions' );
 		}
 
 		$args = [
@@ -414,11 +414,11 @@ class ApiOptionsTest extends ApiTestCase {
 			->willReturn( $isOptionGlobal );
 
 		if ( $setOptions ) {
-			$this->mUserMock->expects( $this->once() )
-				->method( 'saveSettings' );
+			$this->userOptionsManagerMock->expects( $this->once() )
+				->method( 'saveOptions' );
 		} else {
-			$this->mUserMock->expects( $this->never() )
-				->method( 'saveSettings' );
+			$this->userOptionsManagerMock->expects( $this->never() )
+				->method( 'saveOptions' );
 		}
 
 		$request = $this->getSampleRequest( $params );

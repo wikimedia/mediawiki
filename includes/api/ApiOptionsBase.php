@@ -38,8 +38,8 @@ use Wikimedia\ParamValidator\ParamValidator;
  * @ingroup API
  */
 abstract class ApiOptionsBase extends ApiBase {
-	/** @var User User account to modify */
-	private $userFromPrimary;
+	/** @var User|null User account to modify */
+	private ?User $userFromPrimary = null;
 
 	private UserOptionsManager $userOptionsManager;
 	private PreferencesFactory $preferencesFactory;
@@ -68,7 +68,7 @@ abstract class ApiOptionsBase extends ApiBase {
 	 * Changes preferences of the current user.
 	 */
 	public function execute() {
-		$user = $this->getUserForUpdatesOrNull();
+		$user = $this->getUserFromPrimaryOrNull();
 		if ( !$user || !$user->isNamed() ) {
 			$this->dieWithError(
 				[ 'apierror-mustbeloggedin', $this->msg( 'action-editmyoptions' ) ], 'notloggedin'
@@ -200,7 +200,7 @@ abstract class ApiOptionsBase extends ApiBase {
 					$field = $this->getHtmlForm()->getField( $key );
 					$validation = $field->validate(
 						$value,
-						$this->userOptionsManager->getOptions( $this->getUserForUpdates() )
+						$this->userOptionsManager->getOptions( $this->getUserFromPrimary() )
 					);
 				}
 				break;
@@ -229,7 +229,7 @@ abstract class ApiOptionsBase extends ApiBase {
 						'OptionValue' => substr( $value ?? '', 0, 255 ),
 						'OptionSize' => strlen( $value ?? '' ),
 						'OptionValidation' => $validation,
-						'UserId' => $this->getUserForUpdates()->getId(),
+						'UserId' => $this->getUserFromPrimary()->getId(),
 						'RequestIP' => $this->getRequest()->getIP(),
 						'RequestUA' => $this->getRequest()->getHeader( 'User-Agent' )
 					]
@@ -259,33 +259,29 @@ abstract class ApiOptionsBase extends ApiBase {
 	 * Will throw if the user is anonymous.
 	 */
 	protected function getUserFromPrimary(): User {
-		if ( !$this->userFromPrimary ) {
-			$this->userFromPrimary = $this->getUser()->getInstanceForUpdate();
-		}
-
-		return $this->userFromPrimary;
-	}
-
-	/**
-	 * Load the user from the primary to reduce CAS errors on double post (T95839)
-	 * Will throw if the user is anonymous.
-	 */
-	protected function getUserForUpdates(): User {
 		// @phan-suppress-next-line PhanTypeMismatchReturnNullable
-		return $this->getUserForUpdatesOrNull();
+		return $this->getUserFromPrimaryOrNull();
 	}
 
 	/**
-	 * Get the user for updates, or null if the user is anonymous
-	 *
-	 * @return User|null
+	 * Get the user from the primary, or null if the user is anonymous
 	 */
-	protected function getUserForUpdatesOrNull(): ?User {
+	protected function getUserFromPrimaryOrNull(): ?User {
 		if ( !$this->userFromPrimary ) {
-			$this->userFromPrimary = $this->getUser()->getInstanceForUpdate();
+			$this->userFromPrimary = $this->getUser()->getInstanceFromPrimary();
 		}
 
 		return $this->userFromPrimary;
+	}
+
+	/** @deprecated will be removed in next patch */
+	protected function getUserForUpdatesOrNull(): ?User {
+		return $this->getUserFromPrimaryOrNull();
+	}
+
+	/** @deprecated will be removed in next patch */
+	protected function getUserForUpdates(): User {
+		return $this->getUserFromPrimary();
 	}
 
 	/**
@@ -295,7 +291,7 @@ abstract class ApiOptionsBase extends ApiBase {
 	protected function getPreferences() {
 		if ( !$this->preferences ) {
 			$this->preferences = $this->preferencesFactory->getFormDescriptor(
-				$this->getUserForUpdates(),
+				$this->getUserFromPrimary(),
 				$this->getContext()
 			);
 		}
