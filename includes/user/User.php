@@ -3218,14 +3218,36 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 	 *
 	 * @return User|null Returns null if the user was not found in the DB
 	 * @since 1.27
+	 * @deprecated since 1.45. Use User::getInstanceFromPrimary() instead. The exact equivalent of
+	 *   this method is getInstanceFromPrimary() with the READ_EXCLUSIVE flag, but most callers
+	 *   didn't actually need an exclusive lock, and overusing it is harmful, so consider whether
+	 *   you really need locking.
 	 */
 	public function getInstanceForUpdate() {
+		return $this->getInstanceFromPrimary( IDBAccessObject::READ_EXCLUSIVE );
+	}
+
+	/**
+	 * Get a new instance of this user that was loaded from the primary DB
+	 *
+	 * Use this instead of the main context User when updating that user or updating something else
+	 * based on the user's data, to avoid updating based on outdated information.
+	 *
+	 * Optionally you can set a shared or exclusive lock on the user record with the $loadFlags
+	 * option. Only use this (especially with an exclusive lock) when absolutely necessary, as
+	 * overuse of locks can have significant performance impact.
+	 *
+	 * @param int $loadFlags Optional IDBAccessObject flags for locking
+	 * @return User|null Returns null if the user was not found in the DB
+	 * @since 1.45
+	 */
+	public function getInstanceFromPrimary( int $loadFlags = IDBAccessObject::READ_LATEST ): ?User {
 		if ( !$this->getId() ) {
 			return null; // anon
 		}
 
 		$user = self::newFromId( $this->getId() );
-		if ( !$user->loadFromId( IDBAccessObject::READ_EXCLUSIVE ) ) {
+		if ( !$user->loadFromId( $loadFlags ) ) {
 			return null;
 		}
 
