@@ -3225,7 +3225,7 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 		}
 
 		$user = self::newFromId( $this->getId() );
-		if ( !$user->loadFromId( IDBAccessObject::READ_LOCKING ) ) {
+		if ( !$user->loadFromId( IDBAccessObject::READ_EXCLUSIVE ) ) {
 			return null;
 		}
 
