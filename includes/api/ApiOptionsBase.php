@@ -274,16 +274,6 @@ abstract class ApiOptionsBase extends ApiBase {
 		return $this->userFromPrimary;
 	}
 
-	/** @deprecated will be removed in next patch */
-	protected function getUserForUpdatesOrNull(): ?User {
-		return $this->getUserFromPrimaryOrNull();
-	}
-
-	/** @deprecated will be removed in next patch */
-	protected function getUserForUpdates(): User {
-		return $this->getUserFromPrimary();
-	}
-
 	/**
 	 * Returns preferences form descriptor
 	 * @return mixed[][]
