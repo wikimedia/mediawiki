@@ -1751,6 +1751,8 @@ abstract class Skin extends ContextSource {
 			case 'help':
 			case 'help-mediawiki':
 				return 'help';
+			case 'specialpages':
+				return 'specialPages';
 			default:
 				return null;
 		}
