@@ -4213,10 +4213,12 @@ class Parser {
 					}
 				} else {
 					// Strip tag
-					$next = $node->firstChild;
-					// phpcs:ignore Generic.CodeAnalysis.AssignmentInCondition.FoundInWhileCondition
-					while ( $childNode = $node->firstChild ) {
-						$node->parentNode->insertBefore( $childNode, $node );
+					if ( $node->firstChild !== null ) {
+						$next = $node->firstChild;
+						// phpcs:ignore Generic.CodeAnalysis.AssignmentInCondition.FoundInWhileCondition
+						while ( $childNode = $node->firstChild ) {
+							$node->parentNode->insertBefore( $childNode, $node );
+						}
 					}
 					DOMCompat::remove( $node );
 				}
