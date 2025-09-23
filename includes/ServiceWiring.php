@@ -815,6 +815,7 @@ return [
 			$services->getStatsFactory(),
 			ExtensionRegistry::getInstance()->getAttribute( 'DatabaseVirtualDomains' ),
 			$services->getTracer(),
+			RequestContext::getMain()->getRequest()->getIP()
 		);
 	},
 

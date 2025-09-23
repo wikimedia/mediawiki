@@ -98,6 +98,8 @@ abstract class LBFactory implements ILBFactory {
 
 	/** @var string|null */
 	private $defaultGroup = null;
+	private bool $shuffleSharding = false;
+	private ?string $uniqueIdentifier = null;
 
 	private const ROUND_CURSORY = 'cursory';
 	private const ROUND_BEGINNING = 'within-begin';
@@ -154,6 +156,9 @@ abstract class LBFactory implements ILBFactory {
 		$this->replicationWaitTimeout = $this->cliMode ? 60 : 1;
 		$this->virtualDomainsMapping = $conf['virtualDomainsMapping'] ?? [];
 		$this->virtualDomains = $conf['virtualDomains'] ?? [];
+
+		$this->shuffleSharding = $conf['shuffleSharding'] ?? false;
+		$this->uniqueIdentifier = $conf['uniqueIdentifier'] ?? null;
 
 		static $nextTicket;
 		$this->ticket = $nextTicket = ( is_int( $nextTicket ) ? $nextTicket++ : mt_rand() );
@@ -727,7 +732,9 @@ abstract class LBFactory implements ILBFactory {
 			'defaultGroup' => $this->defaultGroup,
 			'chronologyProtector' => $this->chronologyProtector,
 			'roundStage' => $initStage,
-			'criticalSectionProvider' => $this->csProvider
+			'criticalSectionProvider' => $this->csProvider,
+			'shuffleSharding' => $this->shuffleSharding,
+			'uniqueIdentifier' => $this->uniqueIdentifier,
 		];
 	}
 

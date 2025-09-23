@@ -216,12 +216,14 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	private function newMultiServerLocalLoadBalancer(
-		$lbExtra = [], $srvExtra = [], $masterOnly = false
+		$lbExtra = [], $srvExtra = [], $masterOnly = false, $largeGroup = false
 	) {
 		global $wgDBserver, $wgDBport, $wgDBuser, $wgDBpassword, $wgDBtype;
 		global $wgDBname, $wgDBmwschema;
 		global $wgSQLiteDataDir;
 
+		// Many hosts need 'is static' since otherwise LB actually ignores
+		// them due to "high lag".
 		$servers = [
 			// Primary DB
 			0 => $srvExtra + [
@@ -248,6 +250,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 					'type' => $wgDBtype,
 					'dbDirectory' => $wgSQLiteDataDir,
 					'load' => $masterOnly ? 0 : 100,
+					'is static' => true
 				],
 			2 => $srvExtra + [
 					'serverName' => 'db2',
@@ -260,6 +263,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 					'type' => $wgDBtype,
 					'dbDirectory' => $wgSQLiteDataDir,
 					'load' => $masterOnly ? 0 : 100,
+					'is static' => true
 				],
 			// RC replica DBs
 			3 => $srvExtra + [
@@ -272,11 +276,12 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 					'password' => $wgDBpassword,
 					'type' => $wgDBtype,
 					'dbDirectory' => $wgSQLiteDataDir,
-					'load' => 0,
+					'load' => $largeGroup ? 100 : 0,
 					'groupLoads' => [
 						'foo' => 100,
 						'bar' => 100
 					],
+					'is static' => true
 				],
 			// Logging replica DBs
 			4 => $srvExtra + [
@@ -289,10 +294,11 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 					'password' => $wgDBpassword,
 					'type' => $wgDBtype,
 					'dbDirectory' => $wgSQLiteDataDir,
-					'load' => 0,
+					'load' => $largeGroup ? 100 : 0,
 					'groupLoads' => [
 						'baz' => 100
 					],
+					'is static' => true
 				],
 			5 => $srvExtra + [
 					'serverName' => 'db5',
@@ -304,10 +310,11 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 					'password' => $wgDBpassword,
 					'type' => $wgDBtype,
 					'dbDirectory' => $wgSQLiteDataDir,
-					'load' => 0,
+					'load' => $largeGroup ? 100 : 0,
 					'groupLoads' => [
 						'baz' => 100
 					],
+					'is static' => true
 				],
 			// Maintenance query replica DBs
 			6 => $srvExtra + [
@@ -320,7 +327,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 					'password' => $wgDBpassword,
 					'type' => $wgDBtype,
 					'dbDirectory' => $wgSQLiteDataDir,
-					'load' => 0,
+					'load' => $largeGroup ? 100 : 0,
 					'groupLoads' => [
 						'vslow' => 100
 					],
@@ -336,7 +343,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 					'password' => $wgDBpassword,
 					'type' => $wgDBtype,
 					'dbDirectory' => $wgSQLiteDataDir,
-					'load' => 0,
+					'load' => $largeGroup ? 100 : 0,
 					'groupLoads' => [
 						'archive' => 100
 					],
@@ -349,7 +356,9 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 			'localDomain' => new DatabaseDomain( $wgDBname, $wgDBmwschema, self::dbPrefix() ),
 			'logger' => MediaWiki\Logger\LoggerFactory::getInstance( 'rdbms' ),
 			'loadMonitor' => [ 'class' => LoadMonitorNull::class ],
-			'clusterName' => 'main-test-cluster'
+			'clusterName' => 'main-test-cluster',
+			'uniqueIdentifier' => 'very-unique-ip-v6',
+			'shuffleSharding' => true,
 		] );
 	}
 
@@ -794,5 +803,18 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 			'clusterName' => null
 		] );
 		$this->assertSame( 'testhost', $lb2->getClusterName() );
+	}
+
+	public function testShuffleSharding() {
+		$lb = $this->newMultiServerLocalLoadBalancer( [ 'defaultGroup' => false ], [], false, true );
+		$lbObj = TestingAccessWrapper::newFromObject( $lb );
+		for ( $i = 0; $i < 300; ++$i ) {
+			$rLog = $lbObj->getConnection( DB_REPLICA );
+			$indexPicked = $rLog->getLBInfo( 'serverIndex' );
+			$lbObj->closeAll();
+			$lbObj->readIndexByGroup = [];
+
+			$this->assertContains( $indexPicked, [ 1, 4, 6 ] );
+		}
 	}
 }

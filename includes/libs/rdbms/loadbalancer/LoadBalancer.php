@@ -106,6 +106,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 
 	/** @var DatabaseDomain[] Map of (domain ID => domain instance) */
 	private $nonLocalDomainCache = [];
+	private ?string $uniqueIdentifier = null;
 
 	/**
 	 * @var int Modification counter for invalidating connections held by
@@ -232,6 +233,11 @@ class LoadBalancer implements ILoadBalancerForOwner {
 
 		$group = $params['defaultGroup'] ?? self::GROUP_GENERIC;
 		$this->defaultGroup = isset( $this->groupLoads[ $group ] ) ? $group : self::GROUP_GENERIC;
+		if ( empty( $params['shuffleSharding'] ) ) {
+			$this->uniqueIdentifier = null;
+		} else {
+			$this->uniqueIdentifier = $params['uniqueIdentifier'] ?? null;
+		}
 	}
 
 	private static function newTrackedConnectionsArray(): array {
@@ -383,6 +389,11 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	private function getRandomNonLagged( array $loads, $sessionLagLimit = INF ) {
 		$lags = $this->getLagTimes();
 
+		$dbs = [];
+		foreach ( $loads as $i => $load ) {
+			$srvName = $this->serverInfo->getServerName( $i );
+			$dbs[$srvName] = $i;
+		}
 		// Unset excessively lagged servers from the load group
 		foreach ( $lags as $i => $lag ) {
 			if ( $i !== ServerInfo::WRITER_INDEX ) {
@@ -398,6 +409,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 						[ 'db_server' => $srvName ]
 					);
 					unset( $loads[$i] );
+					unset( $dbs[$srvName] );
 				} elseif ( $lag > $maxServerLag ) {
 					$this->logger->debug(
 						__METHOD__ .
@@ -405,6 +417,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 						[ 'db_server' => $srvName, 'lag' => $lag, 'maxlag' => $maxServerLag ]
 					);
 					unset( $loads[$i] );
+					unset( $dbs[$srvName] );
 				}
 			}
 		}
@@ -416,7 +429,34 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		}
 
 		// Return a server index based on weighted random selection
-		return ArrayUtils::pickRandom( $loads );
+		return $this->shuffleSharding( $dbs, $loads );
+	}
+
+	/**
+	 * Apply shuffle sharding. Idea originally from Amazon's Route 53.
+	 *
+	 * It basically used a unique identifier from the request (IP is good enough) and uses hashing
+	 * to pick a consistent set of 2 or 3 from the pool. Then using randomness, picks one at random.
+	 *
+	 * It provides many benefits and makes the system more robust against issues or attacks.
+	 *
+	 * @param array $dbs Map of server name => server index
+	 * @param array $loads Map of (server index => weight) for a load group
+	 * @return int Index of the server
+	 */
+	private function shuffleSharding( $dbs, $loads ) {
+		// shuffle sharding doesn't make sense in small groups
+		if ( count( $loads ) <= 3 || $this->uniqueIdentifier === null ) {
+			return ArrayUtils::pickRandom( $loads );
+		}
+
+		ArrayUtils::consistentHashSort( $dbs, $this->uniqueIdentifier );
+		$keys = array_values( $dbs );
+		return ArrayUtils::pickRandom( [
+			$keys[0] => $loads[$keys[0]],
+			$keys[1] => $loads[$keys[1]],
+			$keys[2] => $loads[$keys[2]],
+		] );
 	}
 
 	/** @inheritDoc */

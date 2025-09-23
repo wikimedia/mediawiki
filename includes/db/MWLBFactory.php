@@ -100,6 +100,7 @@ class MWLBFactory {
 	private TracerInterface $tracer;
 	/** @var string[] */
 	private array $virtualDomains;
+	private ?string $uniqueIdentifier;
 
 	/**
 	 * @param ServiceOptions $options
@@ -111,6 +112,7 @@ class MWLBFactory {
 	 * @param StatsFactory $statsFactory
 	 * @param string[] $virtualDomains
 	 * @param TracerInterface $tracer
+	 * @param ?string $uniqueIdentifier
 	 */
 	public function __construct(
 		ServiceOptions $options,
@@ -121,7 +123,8 @@ class MWLBFactory {
 		CriticalSectionProvider $csProvider,
 		StatsFactory $statsFactory,
 		array $virtualDomains,
-		TracerInterface $tracer
+		TracerInterface $tracer,
+		?string $uniqueIdentifier = null
 	) {
 		$this->options = $options;
 		$this->readOnlyMode = $readOnlyMode;
@@ -132,6 +135,7 @@ class MWLBFactory {
 		$this->statsFactory = $statsFactory;
 		$this->virtualDomains = $virtualDomains;
 		$this->tracer = $tracer;
+		$this->uniqueIdentifier = $uniqueIdentifier;
 	}
 
 	/**
@@ -167,6 +171,7 @@ class MWLBFactory {
 			'readOnlyReason' => $this->readOnlyMode->getReason(),
 			'defaultGroup' => $this->options->get( MainConfigNames::DBDefaultGroup ),
 			'criticalSectionProvider' => $this->csProvider,
+			'uniqueIdentifier' => $this->uniqueIdentifier,
 		];
 
 		$serversCheck = [];
