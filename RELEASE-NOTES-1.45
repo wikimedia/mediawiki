@@ -243,6 +243,7 @@ because of Phabricator reports.
 * The LogEventsListShowLogExtract $page parameter is now an array.
 * ReverseArrayIterator, deprecated in MediaWiki 1.44, has been removed.
 * Command::whitelistPaths, deprecated in 1.36, has been removed.
+* BagOStuff::WRITE_PRUNE_SEGMENTS, deprecated in 1.43, has been removed.
 * ::setIndexAliases() method in the following classes and interfaces have been
   removed without deprecation as it was completely unused:
  - Database

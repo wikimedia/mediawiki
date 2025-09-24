@@ -170,11 +170,7 @@ abstract class BagOStuff implements
 	public const WRITE_CACHE_ONLY = 8;
 	/** Allow partitioning of the value if it is a large string */
 	public const WRITE_ALLOW_SEGMENTS = 16;
-	/**
-	 * Delete all the segments if the value is partitioned
-	 * @deprecated since 1.43 Use WRITE_ALLOW_SEGMENTS instead.
-	 */
-	public const WRITE_PRUNE_SEGMENTS = self::WRITE_ALLOW_SEGMENTS;
+
 	/**
 	 * If supported, do not block on write operation completion; instead, treat writes as
 	 * succesful based on whether they could be buffered. When using this flag with methods
