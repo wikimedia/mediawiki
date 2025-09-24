@@ -2619,6 +2619,29 @@ class ParserTestRunner {
 			$this->db->timestamp( '20010115123500' )
 		);
 
+		$image = $localRepo->newFile( new TitleValue( NS_FILE, 'File_&_file.jpg' ) );
+		# note that the size/width/height/bits/etc of the file
+		# are actually set by inspecting the file itself; the arguments
+		# to recordUpload3 have no effect.  That said, we try to make things
+		# match up so it is less confusing to readers of the code & tests.
+		$image->recordUpload3(
+			'',
+			'Upload of second lame file', 'Another lame file',
+			$performer,
+			[
+				'size' => 7881,
+				'width' => 1941,
+				'height' => 220,
+				'bits' => 8,
+				'media_type' => MEDIATYPE_BITMAP,
+				'mime' => 'image/jpeg',
+				'metadata' => [],
+				'sha1' => Wikimedia\base_convert( '4', 16, 36, 31 ),
+				'fileExists' => true
+			],
+			$this->db->timestamp( '20010115123500' )
+		);
+
 		$image = $localRepo->newFile( new TitleValue( NS_FILE, 'Thumb.png' ) );
 		# again, note that size/width/height below are ignored; see above.
 		$image->recordUpload3(
@@ -2802,6 +2825,11 @@ class ParserTestRunner {
 			'src' => "$IP/tests/phpunit/data/parser/headbg.jpg",
 			'dst' => "$base/3/3a/Foobar.jpg"
 		] );
+		$backend->prepare( [ 'dir' => "$base/1/1f" ] );
+		$backend->quickStore( [
+			'src' => "$IP/tests/phpunit/data/parser/headbg.jpg",
+			'dst' => "$base/1/1f/File_&_file.jpg"
+		] );
 		$backend->prepare( [ 'dir' => "$base/e/ea" ] );
 		$backend->quickStore( [
 			'src' => "$IP/tests/phpunit/data/parser/wiki.png",
@@ -2851,6 +2879,7 @@ class ParserTestRunner {
 		$this->deleteFiles(
 			[
 				"$public/3/3a/Foobar.jpg",
+				"$public/1/1f/File_&_file.jpg",
 				"$public/e/ea/Thumb.png",
 				"$public/0/09/Bad.jpg",
 				"$public/5/5f/LoremIpsum.djvu",
