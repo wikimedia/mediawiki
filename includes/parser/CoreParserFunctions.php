@@ -1976,6 +1976,10 @@ class CoreParserFunctions {
 			return '';
 		}
 
+		if ( !$parser->incrementExpensiveFunctionCount() ) {
+			return '';
+		}
+
 		$contentModel = $t->getContentModel();
 		if ( $formatType === 'contentmodel_canonical' ) {
 			return wfEscapeWikiText( $contentModel );
