@@ -6,6 +6,7 @@ use MediaWiki\Config\HashConfig;
 use MediaWiki\Config\MultiConfig;
 use MediaWiki\Content\Content;
 use MediaWiki\Content\ContentHandler;
+use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\DB\CloneDatabase;
 use MediaWiki\Deferred\DeferredUpdates;
@@ -2706,9 +2707,10 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		// Make sure the context user is set to a named user account, otherwise
 		// ::createList will fail when temp accounts are enabled, because
 		// that generates a log entry which requires a named or temp account actor
-		RequestContext::getMain()->setUser( $this->getTestUser()->getUser() );
+		$context = new DerivativeContext( RequestContext::getMain() );
+		$context->setAuthority( new UltimateAuthority( $this->getTestSysop()->getUser() ) );
 		$res = RevisionDeleter::createList(
-			'revision', RequestContext::getMain(), $rev->getPage(), [ $rev->getId() ]
+			'revision', $context, $rev->getPage(), [ $rev->getId() ]
 		)->setVisibility( [
 			'value' => $value,
 			'comment' => $comment,
