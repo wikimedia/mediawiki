@@ -3317,7 +3317,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		$this->setRawText( $s );
 	}
 
-	public function __get( $name ) {
+	public function &__get( $name ) {
 		if ( property_exists( get_called_class(), $name ) ) {
 			// Direct access to a public property, deprecated.
 			wfDeprecatedMsg( "ParserOutput::{$name} public read access deprecated", '1.38' );
@@ -3328,7 +3328,8 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			return $this->$name;
 		} else {
 			trigger_error( "Inaccessible property via __get(): $name" );
-			return null;
+			$this->$name = null;
+			return $this->$name;
 		}
 	}
 
