@@ -56,7 +56,7 @@ class HTMLSelectOrOtherField extends HTMLTextField {
 
 		$tbAttribs = [ 'size' => $this->getSize() ];
 
-		if ( !empty( $this->mParams['disabled'] ) ) {
+		if ( $this->isDisabledNoJs( $this->mParent->mFieldData ) ) {
 			$select->setAttribute( 'disabled', 'disabled' );
 			$tbAttribs['disabled'] = 'disabled';
 		}
@@ -202,7 +202,7 @@ class HTMLSelectOrOtherField extends HTMLTextField {
 		$textInputAttribs = [ 'size' => $this->getSize() ];
 		$textInputAttribs['name'] = $this->mName . '-other';
 
-		if ( !empty( $this->mParams['disabled'] ) ) {
+		if ( $this->isDisabledNoJs( $this->mParent->mFieldData ) ) {
 			$select->setAttribute( 'disabled', 'disabled' );
 			$textInputAttribs['disabled'] = 'disabled';
 		}

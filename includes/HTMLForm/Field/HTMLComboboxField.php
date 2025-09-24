@@ -44,7 +44,6 @@ class HTMLComboboxField extends HTMLTextField {
 
 	/** @inheritDoc */
 	public function getInputOOUI( $value ) {
-		$disabled = false;
 		$allowedParams = [ 'tabindex' ];
 		$attribs = \OOUI\Element::configFromHtmlAttributes(
 			$this->getAttributes( $allowedParams )
@@ -54,9 +53,7 @@ class HTMLComboboxField extends HTMLTextField {
 			$attribs['classes'] = [ $this->mClass ];
 		}
 
-		if ( !empty( $this->mParams['disabled'] ) ) {
-			$disabled = true;
-		}
+		$disabled = $this->isDisabledNoJs( $this->mParent->mFieldData );
 
 		if ( $this->mPlaceholder !== '' ) {
 			$attribs['placeholder'] = $this->mPlaceholder;

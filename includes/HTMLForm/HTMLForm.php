@@ -183,6 +183,12 @@ use Wikimedia\Message\MessageSpecifier;
  *                             to set this attribute with the same condition manually.
  *                             You can pass both 'disabled' and this attribute to omit extra
  *                             check, but this would function only for not 'disabled' fields.
+ *    'hide-if-nojs', 'disable-if-nojs' -- The 'hide-if' and 'disable-if' options documented above
+ *                             do not affect the initial HTML form rendering, to allow no-JavaScript
+ *                             users a full use of the form (even fields that would be initially
+ *                             hidden or disabled). If you want fields to be conditionally hidden
+ *                             or disabled in the initial HTML, requiring no-JS users to submit
+ *                             the form in order to access them, use these options instead.
  *    'section'             -- A string name for the section of the form to which the field
  *                             belongs. Subsections may be added using the separator '/', e.g.:
  *                               'section' => 'section1/subsection1'

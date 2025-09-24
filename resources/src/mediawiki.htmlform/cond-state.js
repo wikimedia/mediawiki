@@ -242,8 +242,10 @@ mw.hook( 'htmlform.enhance' ).add( ( $root ) => {
 					// Remove server-side CSS class that hides the elements, and re-compute the state
 					if ( $elOrLayout instanceof $ ) {
 						$elOrLayout.removeClass( 'mw-htmlform-hide-if-hidden' );
+						$elOrLayout.removeClass( 'mw-htmlform-hide-if-hidden-nojs' );
 					} else {
 						$elOrLayout.$element.removeClass( 'mw-htmlform-hide-if-hidden' );
+						$elOrLayout.$element.removeClass( 'mw-htmlform-hide-if-hidden-nojs' );
 					}
 					// The .toggle() method works mostly the same for jQuery objects and OO.ui.Widget
 					$elOrLayout.toggle( !shouldHide );
@@ -261,26 +263,11 @@ mw.hook( 'htmlform.enhance' ).add( ( $root ) => {
 					// * Event handlers are fired in the order they were registered, so even if the handler
 					//   for parent messed up the child, the handle for child will run next and fix it
 					$elOrLayout.find( 'input, textarea, select' ).each( function () {
-						const $this = $( this );
-						if ( shouldDisable ) {
-							if ( $this.data( 'was-disabled' ) === undefined ) {
-								$this.data( 'was-disabled', $this.prop( 'disabled' ) );
-							}
-							$this.prop( 'disabled', true );
-						} else {
-							$this.prop( 'disabled', $this.data( 'was-disabled' ) );
-						}
+						$( this ).prop( 'disabled', shouldDisable || spec.alwaysDisabled );
 					} );
 				} else {
 					// $elOrLayout is a OO.ui.FieldLayout
-					if ( shouldDisable ) {
-						if ( $elOrLayout.wasDisabled === undefined ) {
-							$elOrLayout.wasDisabled = $elOrLayout.fieldWidget.isDisabled();
-						}
-						$elOrLayout.fieldWidget.setDisabled( true );
-					} else if ( $elOrLayout.wasDisabled !== undefined ) {
-						$elOrLayout.fieldWidget.setDisabled( $elOrLayout.wasDisabled );
-					}
+					$elOrLayout.fieldWidget.setDisabled( shouldDisable || spec.alwaysDisabled );
 				}
 			};
 

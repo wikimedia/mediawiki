@@ -79,6 +79,7 @@ class HTMLFormFieldTest extends MediaWikiIntegrationTestCase {
 			],
 			'callback' => static function ( $form, $fieldData ) {
 				Assert::assertTrue( $form->getField( 'text1' )->isHidden( $fieldData ) );
+				Assert::assertFalse( $form->getField( 'text1' )->isHiddenNoJs( $fieldData ) );
 			}
 		];
 		yield 'Field hidden if "check" field is not checked' => [
@@ -88,6 +89,7 @@ class HTMLFormFieldTest extends MediaWikiIntegrationTestCase {
 			'requestData' => [],
 			'callback' => static function ( $form, $fieldData ) {
 				Assert::assertTrue( $form->getField( 'text1' )->isHidden( $fieldData ) );
+				Assert::assertFalse( $form->getField( 'text1' )->isHiddenNoJs( $fieldData ) );
 			}
 		];
 		yield 'Field not hidden if "check" field is not checked' => [
@@ -224,6 +226,62 @@ class HTMLFormFieldTest extends MediaWikiIntegrationTestCase {
 			}
 		];
 
+		yield 'Field hidden using no-JS conditions' => [
+			'fieldInfo' => [
+				'text1' => [ 'hide-if-nojs' => [ '===', 'check1', '1' ] ],
+			],
+			'requestData' => [
+				'wpcheck1' => '1',
+			],
+			'callback' => static function ( $form, $fieldData ) {
+				Assert::assertTrue( $form->getField( 'text1' )->isHidden( $fieldData ) );
+				Assert::assertTrue( $form->getField( 'text1' )->isHiddenNoJs( $fieldData ) );
+				// Field disabled if hidden
+				Assert::assertTrue( $form->getField( 'text1' )->isDisabled( $fieldData ) );
+				Assert::assertTrue( $form->getField( 'text1' )->isDisabledNoJs( $fieldData ) );
+			}
+		];
+		yield 'Field disabled using no-JS conditions' => [
+			'fieldInfo' => [
+				'text1' => [ 'disable-if-nojs' => [ '===', 'check1', '1' ] ],
+			],
+			'requestData' => [
+				'wpcheck1' => '1',
+			],
+			'callback' => static function ( $form, $fieldData ) {
+				Assert::assertFalse( $form->getField( 'text1' )->isHidden( $fieldData ) );
+				Assert::assertFalse( $form->getField( 'text1' )->isHiddenNoJs( $fieldData ) );
+				Assert::assertTrue( $form->getField( 'text1' )->isDisabled( $fieldData ) );
+				Assert::assertTrue( $form->getField( 'text1' )->isDisabledNoJs( $fieldData ) );
+			}
+		];
+		yield 'Field hidden using no-JS conditions (merged with JS conditions)' => [
+			'fieldInfo' => [
+				'text1' => [
+					'hide-if' => [ '===', 'check1', '1' ],
+					'hide-if-nojs' => [ '===', 'check2', '1' ],
+				],
+				'select1' => [
+					'hide-if' => [ '===', 'check2', '1' ],
+					'hide-if-nojs' => [ '===', 'check1', '1' ],
+				],
+			],
+			'requestData' => [
+				'wpcheck1' => '1',
+			],
+			'callback' => static function ( $form, $fieldData ) {
+				Assert::assertTrue( $form->getField( 'text1' )->isHidden( $fieldData ) );
+				Assert::assertFalse( $form->getField( 'text1' )->isHiddenNoJs( $fieldData ) );
+				Assert::assertTrue( $form->getField( 'text1' )->isDisabled( $fieldData ) );
+				Assert::assertFalse( $form->getField( 'text1' )->isDisabledNoJs( $fieldData ) );
+
+				Assert::assertTrue( $form->getField( 'select1' )->isHidden( $fieldData ) );
+				Assert::assertTrue( $form->getField( 'select1' )->isHiddenNoJs( $fieldData ) );
+				Assert::assertTrue( $form->getField( 'select1' )->isDisabled( $fieldData ) );
+				Assert::assertTrue( $form->getField( 'select1' )->isDisabledNoJs( $fieldData ) );
+			}
+		];
+
 		yield 'Invalid conditional specification (unsupported)' => [
 			'fieldInfo' => [
 				'text1' => [ 'hide-if' => [ '>', 'test1', '10' ] ],
@@ -274,6 +332,7 @@ class HTMLFormFieldTest extends MediaWikiIntegrationTestCase {
 			],
 			'callback' => static function ( $form, $fieldData ) {
 				Assert::assertTrue( $form->getField( 'text1' )->isDisabled( $fieldData ) );
+				Assert::assertFalse( $form->getField( 'text1' )->isDisabledNoJs( $fieldData ) );
 			}
 		];
 		yield 'Field disabled if hidden' => [
@@ -285,6 +344,7 @@ class HTMLFormFieldTest extends MediaWikiIntegrationTestCase {
 			],
 			'callback' => static function ( $form, $fieldData ) {
 				Assert::assertTrue( $form->getField( 'text1' )->isDisabled( $fieldData ) );
+				Assert::assertFalse( $form->getField( 'text1' )->isDisabledNoJs( $fieldData ) );
 			}
 		];
 

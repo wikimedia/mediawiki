@@ -375,8 +375,14 @@ abstract class HTMLFormField implements MessageLocalizer {
 	protected function parseCondStateForClient() {
 		$parsed = [];
 		foreach ( $this->mCondState as $type => $params ) {
-			$parsed[$type] = $this->parseCondState( $params );
+			// Omit 'hide-nojs' and 'disable-nojs' here, not needed.
+			if ( in_array( $type, [ 'hide', 'disable' ], true ) ) {
+				$parsed[$type] = $this->parseCondState( $params );
+			}
 		}
+		// Needed to distinguish fields that are initially disabled because of 'hide-if-nojs' or
+		// 'disable-if-nojs', from fields that are always disabled because of their parameters.
+		$parsed['alwaysDisabled'] = ( $this->mParams['disabled'] ?? false );
 		return $parsed;
 	}
 
@@ -394,6 +400,18 @@ abstract class HTMLFormField implements MessageLocalizer {
 	}
 
 	/**
+	 * Test whether this field is hidden in the generated HTML due to 'hide-if-nojs' rules.
+	 *
+	 * @since 1.45
+	 * @param array $alldata The data collected from the form
+	 * @return bool
+	 */
+	public function isHiddenNoJs( $alldata ) {
+		return isset( $this->mCondState['hide-nojs'] ) &&
+			$this->checkStateRecurse( $alldata, $this->mCondState['hide-nojs'] );
+	}
+
+	/**
 	 * Test whether this field is supposed to be disabled, based on the values of
 	 * the other form fields.
 	 *
@@ -406,6 +424,21 @@ abstract class HTMLFormField implements MessageLocalizer {
 			$this->isHidden( $alldata ) ||
 			( isset( $this->mCondState['disable'] )
 				&& $this->checkStateRecurse( $alldata, $this->mCondState['disable'] ) );
+	}
+
+	/**
+	 * Test whether this field is disabled in the generated HTML, either due to the 'disabled'
+	 * parameter, or due to 'hide-if-nojs' or 'disable-if-nojs' rules.
+	 *
+	 * @since 1.45
+	 * @param array $alldata The data collected from the form
+	 * @return bool
+	 */
+	public function isDisabledNoJs( $alldata ) {
+		return ( $this->mParams['disabled'] ?? false ) ||
+			$this->isHiddenNoJs( $alldata ) ||
+			( isset( $this->mCondState['disable-nojs'] )
+				&& $this->checkStateRecurse( $alldata, $this->mCondState['disable-nojs'] ) );
 	}
 
 	/**
@@ -608,13 +641,38 @@ abstract class HTMLFormField implements MessageLocalizer {
 		if ( isset( $params['hide-if'] ) && $params['hide-if'] ) {
 			$this->validateCondState( $params['hide-if'] );
 			$this->mCondState['hide'] = $params['hide-if'];
+		}
+		if ( isset( $params['hide-if-nojs'] ) && $params['hide-if-nojs'] ) {
+			$this->validateCondState( $params['hide-if-nojs'] );
+			$this->mCondState['hide-nojs'] = $params['hide-if-nojs'];
+			// Merge the rules here so that we don't have to handle two options everywhere else.
+			// This value is sent to the client-side JS, so that stays consistent as well.
+			$this->mCondState['hide'] = isset( $this->mCondState['hide'] ) ?
+				[ 'OR', $this->mCondState['hide'], $params['hide-if-nojs'] ] :
+				$params['hide-if-nojs'];
+		}
+		if ( isset( $this->mCondState['hide'] ) ) {
 			$this->mCondStateClass[] = 'mw-htmlform-hide-if';
 		}
+
 		if ( !( isset( $params['disabled'] ) && $params['disabled'] ) &&
 			isset( $params['disable-if'] ) && $params['disable-if']
 		) {
 			$this->validateCondState( $params['disable-if'] );
 			$this->mCondState['disable'] = $params['disable-if'];
+		}
+		if ( !( isset( $params['disabled'] ) && $params['disabled'] ) &&
+			isset( $params['disable-if-nojs'] ) && $params['disable-if-nojs']
+		) {
+			$this->validateCondState( $params['disable-if-nojs'] );
+			$this->mCondState['disable-nojs'] = $params['disable-if-nojs'];
+			// Merge the rules here so that we don't have to handle two options everywhere else.
+			// This value is sent to the client-side JS, so that stays consistent as well.
+			$this->mCondState['disable'] = isset( $this->mCondState['disable'] ) ?
+				[ 'OR', $this->mCondState['disable'], $params['disable-if-nojs'] ] :
+				$params['disable-if-nojs'];
+		}
+		if ( isset( $this->mCondState['disable'] ) ) {
 			$this->mCondStateClass[] = 'mw-htmlform-disable-if';
 		}
 	}
@@ -655,7 +713,9 @@ abstract class HTMLFormField implements MessageLocalizer {
 		if ( $this->mCondState ) {
 			$rowAttributes['data-cond-state'] = FormatJson::encode( $this->parseCondStateForClient() );
 			$rowClasses .= implode( ' ', $this->mCondStateClass );
-			if ( $this->isHidden( $this->mParent->mFieldData ) ) {
+			if ( $this->isHiddenNoJs( $this->mParent->mFieldData ) ) {
+				$rowClasses .= ' mw-htmlform-hide-if-hidden-nojs';
+			} elseif ( $this->isHidden( $this->mParent->mFieldData ) ) {
 				$rowClasses .= ' mw-htmlform-hide-if-hidden';
 			}
 		}
@@ -723,7 +783,9 @@ abstract class HTMLFormField implements MessageLocalizer {
 		if ( $this->mCondState ) {
 			$wrapperAttributes['data-cond-state'] = FormatJson::encode( $this->parseCondStateForClient() );
 			$wrapperAttributes['class'] = array_merge( $wrapperAttributes['class'], $this->mCondStateClass );
-			if ( $this->isHidden( $this->mParent->mFieldData ) ) {
+			if ( $this->isHiddenNoJs( $this->mParent->mFieldData ) ) {
+				$wrapperAttributes['class'][] = 'mw-htmlform-hide-if-hidden-nojs';
+			} elseif ( $this->isHidden( $this->mParent->mFieldData ) ) {
 				$wrapperAttributes['class'][] = 'mw-htmlform-hide-if-hidden';
 			}
 		}
@@ -795,7 +857,9 @@ abstract class HTMLFormField implements MessageLocalizer {
 		}
 		if ( $this->mCondState ) {
 			$config['classes'] = array_merge( $config['classes'], $this->mCondStateClass );
-			if ( $this->isHidden( $this->mParent->mFieldData ) ) {
+			if ( $this->isHiddenNoJs( $this->mParent->mFieldData ) ) {
+				$config['classes'][] = 'mw-htmlform-hide-if-hidden-nojs';
+			} elseif ( $this->isHidden( $this->mParent->mFieldData ) ) {
 				$config['classes'][] = 'mw-htmlform-hide-if-hidden';
 			}
 		}
@@ -907,7 +971,9 @@ abstract class HTMLFormField implements MessageLocalizer {
 		if ( $this->mCondState ) {
 			$fieldAttributes['data-cond-state'] = FormatJson::encode( $this->parseCondStateForClient() );
 			$fieldClasses = array_merge( $fieldClasses, $this->mCondStateClass );
-			if ( $this->isHidden( $this->mParent->mFieldData ) ) {
+			if ( $this->isHiddenNoJs( $this->mParent->mFieldData ) ) {
+				$fieldClasses[] = 'mw-htmlform-hide-if-hidden-nojs';
+			} elseif ( $this->isHidden( $this->mParent->mFieldData ) ) {
 				$fieldClasses[] = 'mw-htmlform-hide-if-hidden';
 			}
 		}
@@ -1321,7 +1387,11 @@ abstract class HTMLFormField implements MessageLocalizer {
 
 		$ret = [];
 		foreach ( $list as $key ) {
-			if ( in_array( $key, $boolAttribs ) ) {
+			if ( $key === 'disabled' ) {
+				if ( $this->isDisabledNoJs( $this->mParent->mFieldData ) ) {
+					$ret[$key] = '';
+				}
+			} elseif ( in_array( $key, $boolAttribs ) ) {
 				if ( !empty( $this->mParams[$key] ) ) {
 					$ret[$key] = '';
 				}

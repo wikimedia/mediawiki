@@ -39,7 +39,7 @@ class HTMLSelectField extends HTMLFormField {
 	public function getInputHTML( $value ) {
 		$select = new XmlSelect( $this->mName, $this->mID, strval( $value ) );
 
-		if ( !empty( $this->mParams['disabled'] ) ) {
+		if ( $this->isDisabledNoJs( $this->mParent->mFieldData ) ) {
 			$select->setAttribute( 'disabled', 'disabled' );
 		}
 
@@ -63,7 +63,6 @@ class HTMLSelectField extends HTMLFormField {
 	 * @stable to override
 	 */
 	public function getInputOOUI( $value ) {
-		$disabled = false;
 		$allowedParams = [ 'tabindex' ];
 		$attribs = \OOUI\Element::configFromHtmlAttributes(
 			$this->getAttributes( $allowedParams )
@@ -73,9 +72,7 @@ class HTMLSelectField extends HTMLFormField {
 			$attribs['classes'] = [ $this->mClass ];
 		}
 
-		if ( !empty( $this->mParams['disabled'] ) ) {
-			$disabled = true;
-		}
+		$disabled = $this->isDisabledNoJs( $this->mParent->mFieldData );
 
 		return new \OOUI\DropdownInputWidget( [
 			'name' => $this->mName,
@@ -90,7 +87,7 @@ class HTMLSelectField extends HTMLFormField {
 	public function getInputCodex( $value, $hasErrors ) {
 		$select = new XmlSelect( $this->mName, $this->mID, strval( $value ) );
 
-		if ( !empty( $this->mParams['disabled'] ) ) {
+		if ( $this->isDisabledNoJs( $this->mParent->mFieldData ) ) {
 			$select->setAttribute( 'disabled', 'disabled' );
 		}
 

@@ -80,9 +80,7 @@ class HTMLTagMultiselectField extends HTMLTextField {
 			$params['id'] = $this->mParams['id'];
 		}
 
-		if ( isset( $this->mParams['disabled'] ) ) {
-			$params['disabled'] = $this->mParams['disabled'];
-		}
+		$params['disabled'] = $this->isDisabledNoJs( $this->mParent->mFieldData );
 
 		if ( isset( $this->mParams['default'] ) ) {
 			$params['default'] = $this->mParams['default'];

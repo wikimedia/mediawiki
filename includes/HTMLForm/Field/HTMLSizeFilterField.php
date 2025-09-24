@@ -28,7 +28,7 @@ class HTMLSizeFilterField extends HTMLIntField {
 	/** @inheritDoc */
 	public function getInputHTML( $value ) {
 		$attribs = [];
-		if ( !empty( $this->mParams['disabled'] ) ) {
+		if ( $this->isDisabledNoJs( $this->mParent->mFieldData ) ) {
 			$attribs['disabled'] = 'disabled';
 		}
 
@@ -74,7 +74,7 @@ class HTMLSizeFilterField extends HTMLIntField {
 			'textinput' => $params,
 			'radioselectinput' => [
 				'name' => $this->mName . '-mode',
-				'disabled' => !empty( $this->mParams['disabled'] ),
+				'disabled' => $this->isDisabledNoJs( $this->mParent->mFieldData ),
 			],
 		] );
 	}

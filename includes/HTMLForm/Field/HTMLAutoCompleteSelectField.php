@@ -154,7 +154,7 @@ class HTMLAutoCompleteSelectField extends HTMLTextField {
 			$select = new XmlSelect( $this->mName . '-select', $this->mID . '-select', $selected );
 			$select->addOptions( $this->getOptions() );
 
-			if ( !empty( $this->mParams['disabled'] ) ) {
+			if ( $this->isDisabledNoJs( $this->mParent->mFieldData ) ) {
 				$select->setAttribute( 'disabled', 'disabled' );
 			}
 
