@@ -3,7 +3,8 @@
 		"authors": [
 			"A R King",
 			"TimumachtikanNawat",
-			"Taty Flores de Constante"
+			"Taty Flores de Constante",
+			"Jose Antonio Guillen Landaverde"
 		]
 	},
 	"january": "Metzti se",
@@ -55,5 +56,6 @@
 	"thu": "Tunal4",
 	"fri": "Tunal5",
 	"sat": "Tunal6",
-	"sun": "Tunal1"
+	"sun": "Tunal1",
+	"duration-days": "$1 {{PLURAL:$1|tanestuk|tajtanestuk}}"
 }

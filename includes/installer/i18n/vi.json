@@ -288,7 +288,6 @@
 	"config-screenshot": "ảnh chụp màn hình",
 	"config-extension-not-found": "Không tìm thấy tập tin đăng ký của bộ mở rộng “$1”",
 	"config-extension-dependency": "Lỗi thiếu phần phụ thuộc xảy ra khi đang cài đặt bộ mở rộng “$1”: $2",
-	"config-ext-skins-more-info": "thêm thông tin",
 	"mainpagetext": "'''MediaWiki đã được cài đặt.'''",
 	"mainpagedocfooter": "Xin đọc [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Hướng dẫn sử dụng] để biết thêm thông tin về cách sử dụng phần mềm wiki.\n\n== Để bắt đầu ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Danh sách các thiết lập cấu hình]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Các câu hỏi thường gặp MediaWiki]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ Danh sách gửi thư về việc phát hành MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Tìm hiểu cách chống spam tại wiki của bạn]"
 }

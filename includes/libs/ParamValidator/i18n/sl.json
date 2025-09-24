@@ -35,7 +35,7 @@
 	"paramvalidator-outofrange-min": "Vrednost »$2« za parameter »$1« ne sme biti manjša od $3.",
 	"paramvalidator-param-deprecated": "Parameter »$1« je opuščen.",
 	"paramvalidator-toomanyvalues": "Za parameter »$1« je podanih preveč vrednosti. Omejitev je $2.",
-	"paramvalidator-unclearnowtimestamp": "Posredovanje »$2« za parameter časovnega žiga »$1« je opuščena. Če mora iz nekega razloga izrecno določiti trenutni čas, ne da bi ga izračunali na strani odjemalca, uporabite »zdaj«.",
+	"paramvalidator-unclearnowtimestamp": "Posredovanje »$2« za parameter časovnega žiga »$1« je opuščeno. Če morate iz nekega razloga izrecno določiti trenutni čas, ne da bi ga izračunali na strani odjemalca, uporabite »now«.",
 	"paramvalidator-unrecognizedvalues": "{{PLURAL:$4|Neprepoznana vrednost|Neprepoznani vrednosti|Neprepoznane vrednosti}} za parameter »$1«: $3",
 	"paramvalidator-help-default": "Privzeto: $1",
 	"paramvalidator-help-default-empty": "Privzeto (prazno)",

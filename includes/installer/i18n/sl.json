@@ -148,6 +148,8 @@
 	"config-mysql-engine": "Pogon skladiščenja:",
 	"config-mysql-innodb": "InnoDB (priporočeno)",
 	"config-mysql-engine-help": "<strong>InnoDB</strong> je skoraj vedno najboljša možnost, saj ima dobro podporo za sočasno izvajanje transakcij.\n\n<strong>MyISAM</strong> je lahko hitrejši pri enouporabniških namestitvah ali namestitvah samo za branje.\nPodwtkovne zbirke MyISAM se okvarijo pogosteje kot podatkovne zbirke InnoDB.",
+	"config-server": "Ime gostitelja URL-ja:",
+	"config-server-help": "Del s protokolom in imeno gostitelja v URL-ju, ki se uporablja za dostop do vašega vikija. Samodejno zaznana privzeta vrednost je običajno pravilna.",
 	"config-site-name": "Ime vikija:",
 	"config-site-name-help": "To bo prikazano v naslovni vrstici brskalnika in na drugih različnih mestih.",
 	"config-site-name-blank": "Vnesite ime strani.",

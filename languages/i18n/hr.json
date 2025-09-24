@@ -1728,6 +1728,7 @@
 	"listusers": "Popis suradnika",
 	"listusers-editsonly": "Prikaži samo suradnike s uređivanjem",
 	"listusers-temporarygroupsonly": "Pokaži samo suradnike u privremenim suradničkim skupinama",
+	"listusers-temporaryaccountsonly": "Prikaži samo privremene račune",
 	"listusers-creationsort": "Razvrstaj po datumu stvaranja",
 	"listusers-desc": "Sortiraj obrnutim redoslijedom",
 	"usereditcount": "$1 {{PLURAL:$1|uređivanje|uređivanja|uređivanja}}",
