@@ -2678,9 +2678,12 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	protected function deletePage( $page, string $summary = '', ?Authority $deleter = null ): void {
 		$page = $this->makeWikiPage( $page );
 		$deleter ??= new UltimateAuthority( new UserIdentityValue( 0, 'MediaWiki default' ) );
-		MediaWikiServices::getInstance()->getDeletePageFactory()
+		$res = MediaWikiServices::getInstance()->getDeletePageFactory()
 			->newDeletePage( $page, $deleter )
 			->deleteUnsafe( $summary );
+		if ( !$res->isGood() ) {
+			$this->fail( "Could not delete page:\n$res" );
+		}
 	}
 
 	/**
@@ -2704,12 +2707,15 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		// ::createList will fail when temp accounts are enabled, because
 		// that generates a log entry which requires a named or temp account actor
 		RequestContext::getMain()->setUser( $this->getTestUser()->getUser() );
-		RevisionDeleter::createList(
+		$res = RevisionDeleter::createList(
 			'revision', RequestContext::getMain(), $rev->getPage(), [ $rev->getId() ]
 		)->setVisibility( [
 			'value' => $value,
 			'comment' => $comment,
 		] );
+		if ( !$res->isGood() ) {
+			$this->fail( "Could not perform revision delete:\n$res" );
+		}
 	}
 
 	/**

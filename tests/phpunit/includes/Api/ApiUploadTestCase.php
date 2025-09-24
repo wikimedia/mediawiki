@@ -57,9 +57,6 @@ abstract class ApiUploadTestCase extends ApiTestCase {
 			if ( !$status->isGood() ) {
 				return false;
 			}
-
-			$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
-			$this->deletePage( $page, "removing for test" );
 		}
 
 		return !( $title && $title instanceof Title && $title->exists( IDBAccessObject::READ_LATEST ) );
