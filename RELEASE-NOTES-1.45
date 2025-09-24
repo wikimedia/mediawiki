@@ -101,6 +101,7 @@ For notes on 1.44.x and older releases, see HISTORY.
   central IDs.
 * SessionManager::getJwtData() has been added, to standardize JWT format
   for session providers which use a JWT.
+* The JwtCodec service has been added, for encoding/decoding JWTs.
 * The LeximorphFactory service was added.
 * (T402154) MessagePostProcessText and MessagePostProcessHtml hooks were added.
 * …
