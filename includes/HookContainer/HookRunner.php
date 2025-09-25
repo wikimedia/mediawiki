@@ -4587,10 +4587,10 @@ class HookRunner implements
 	}
 
 	/** @inheritDoc */
-	public function onTitleReadWhitelist( $title, $user, &$whitelisted ) {
+	public function onTitleReadWhitelist( $title, $user, &$allowed ) {
 		return $this->container->run(
 			'TitleReadWhitelist',
-			[ $title, $user, &$whitelisted ]
+			[ $title, $user, &$allowed ]
 		);
 	}
 

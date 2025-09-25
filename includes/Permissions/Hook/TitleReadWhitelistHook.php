@@ -21,9 +21,9 @@ interface TitleReadWhitelistHook {
 	 *
 	 * @param Title $title Title being checked against
 	 * @param User $user Current user
-	 * @param bool &$whitelisted Whether this title is whitelisted
-	 * @return bool|void True or no return value to continue, or false to *not* whitelist
+	 * @param bool &$allowed Whether this title is allowed
+	 * @return bool|void True or no return value to continue, or false to *not* allow
 	 *   the title
 	 */
-	public function onTitleReadWhitelist( $title, $user, &$whitelisted );
+	public function onTitleReadWhitelist( $title, $user, &$allowed );
 }

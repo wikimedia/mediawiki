@@ -686,7 +686,7 @@ class PermissionManager {
 		}
 
 		if ( !$allowed ) {
-			# If the title is not whitelisted, give extensions a chance to do so...
+			// If the title is not allowed, give extensions a chance to do so
 			$this->hookRunner->onTitleReadWhitelist( $title, $user, $allowed );
 			if ( !$allowed ) {
 				$this->missingPermissionError( $action, $short, $status );
