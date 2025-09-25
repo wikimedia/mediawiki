@@ -2,7 +2,7 @@
 // https://www.mediawiki.org/wiki/Selenium/How-to/Use_MediaWiki_API
 
 import assert from 'assert';
-import MWBot from 'mwbot';
+import { createApiClient } from 'wdio-mediawiki/Api.js';
 
 // apiUrl is required for our continuous integration.
 // If you don't have MW_SERVER and MW_SCRIPT_PATH environment variables set
@@ -10,19 +10,14 @@ import MWBot from 'mwbot';
 // const apiUrl = 'http://localhost:8080/w/api.php';
 const apiUrl = `${ process.env.MW_SERVER }${ process.env.MW_SCRIPT_PATH }/api.php`;
 
-const bot = new MWBot( {
+const apiClient = await createApiClient( {
 	apiUrl: apiUrl
 } );
-
-// Since mwbot v2 the script either needs to log in immediately or hardcode MediaWiki version.
-// Without the line below, this error message is displayed:
-// Invalid version. Must be a string. Got type "object".
-bot.mwversion = '0.0.0';
 
 describe( 'API', () => {
 
 	it( 'Main Page should exist', async () => {
-		const response = await bot.read( 'Main Page' );
+		const response = await apiClient.read( 'Main Page' );
 
 		// console.log( response );
 		// { batchcomplete: '' (...) query: { pages: { '3': [Object] } } }
@@ -35,7 +30,7 @@ describe( 'API', () => {
 	} );
 
 	it( 'Missing Page should not exist', async () => {
-		const response = await bot.read( 'Missing Page' );
+		const response = await apiClient.read( 'Missing Page' );
 
 		// console.log( response );
 		// { batchcomplete: '', query: { pages: { '-1': [Object] } } }

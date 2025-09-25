@@ -5,14 +5,14 @@ import CreateAccountPage from 'wdio-mediawiki/CreateAccountPage.js';
 import EditPage from '../pageobjects/edit.page.js';
 import LoginPage from 'wdio-mediawiki/LoginPage.js';
 import BlockPage from '../pageobjects/block.page.js';
-import { createAccount, mwbot } from 'wdio-mediawiki/Api.js';
+import { createApiClient } from 'wdio-mediawiki/Api.js';
 import { getTestString } from 'wdio-mediawiki/Util.js';
 
 describe( 'User', () => {
-	let password, username, bot;
+	let password, username, apiClient;
 
 	before( async () => {
-		bot = await mwbot();
+		apiClient = await createApiClient();
 	} );
 
 	beforeEach( async () => {
@@ -31,7 +31,7 @@ describe( 'User', () => {
 
 	it( 'should be able to log in', async () => {
 		// create
-		await createAccount( bot, username, password );
+		await apiClient.createAccount( username, password );
 
 		// log in
 		await LoginPage.login( username, password );
@@ -42,7 +42,7 @@ describe( 'User', () => {
 	} );
 
 	it( 'named user should see extra signup form fields when creating an account', async () => {
-		await createAccount( bot, username, password );
+		await apiClient.createAccount( username, password );
 		await LoginPage.login( username, password );
 
 		await CreateAccountPage.open();
@@ -95,7 +95,7 @@ describe( 'User', () => {
 	} );
 
 	it( 'should be able to block a user', async () => {
-		await createAccount( bot, username, password );
+		await apiClient.createAccount( username, password );
 
 		await LoginPage.loginAdmin();
 

@@ -1,13 +1,13 @@
-import { mwbot } from 'wdio-mediawiki/Api.js';
+import { createApiClient } from 'wdio-mediawiki/Api.js';
 import BlankPage from 'wdio-mediawiki/BlankPage.js';
 import RecentChangesPage from '../pageobjects/recentchanges.page.js';
 import { getTestString, isTargetNotWikitext } from 'wdio-mediawiki/Util.js';
 
 describe( 'Special:RecentChanges', () => {
-	let content, name, bot;
+	let content, name, apiClient;
 
 	before( async () => {
-		bot = await mwbot();
+		apiClient = await createApiClient();
 	} );
 
 	beforeEach( async () => {
@@ -25,9 +25,9 @@ describe( 'Special:RecentChanges', () => {
 			this.skip();
 		}
 
-		await bot.edit( name, content );
+		await apiClient.edit( name, content );
 		await browser.waitUntil( async () => {
-			const result = await bot.request( {
+			const result = await apiClient.request( {
 				action: 'query',
 				list: 'recentchanges',
 				rctitle: name

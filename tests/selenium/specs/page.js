@@ -1,5 +1,5 @@
 import BlankPage from 'wdio-mediawiki/BlankPage.js';
-import { mwbot } from 'wdio-mediawiki/Api.js';
+import { createApiClient } from 'wdio-mediawiki/Api.js';
 import DeletePage from '../pageobjects/delete.page.js';
 import RestorePage from '../pageobjects/restore.page.js';
 import EditPage from '../pageobjects/edit.page.js';
@@ -10,10 +10,10 @@ import LoginPage from 'wdio-mediawiki/LoginPage.js';
 import { getTestString, isTargetNotWikitext } from 'wdio-mediawiki/Util.js';
 
 describe( 'Page', () => {
-	let content, name, bot;
+	let content, name, apiClient;
 
 	before( async () => {
-		bot = await mwbot();
+		apiClient = await createApiClient();
 	} );
 
 	beforeEach( async function () {
@@ -54,8 +54,8 @@ describe( 'Page', () => {
 		const initialContent = getTestString( 'initialContent-' );
 
 		// create and delete
-		await bot.edit( name, initialContent, 'create for delete' );
-		await bot.delete( name, 'delete prior to recreate' );
+		await apiClient.edit( name, initialContent, 'create for delete' );
+		await apiClient.delete( name, 'delete prior to recreate' );
 
 		// re-create
 		await LoginPage.loginAdmin();
@@ -68,7 +68,7 @@ describe( 'Page', () => {
 
 	it( 'should be editable @daily', async () => {
 		// create
-		await bot.edit( name, content, 'create for edit' );
+		await apiClient.edit( name, content, 'create for edit' );
 
 		// edit
 		const editContent = getTestString( 'editContent-' );
@@ -81,7 +81,7 @@ describe( 'Page', () => {
 
 	it( 'should have history @daily', async () => {
 		// create
-		await bot.edit( name, content, `created with "${ content }"` );
+		await apiClient.edit( name, content, `created with "${ content }"` );
 
 		// check
 		await HistoryPage.open( name );
@@ -90,7 +90,7 @@ describe( 'Page', () => {
 
 	it( 'should be deletable', async () => {
 		// create
-		await bot.edit( name, content, 'create for delete' );
+		await apiClient.edit( name, content, 'create for delete' );
 
 		// login
 		await LoginPage.loginAdmin();
@@ -103,8 +103,8 @@ describe( 'Page', () => {
 
 	it( 'should be restorable', async () => {
 		// create and delete
-		await bot.edit( name, content, 'create for delete' );
-		await bot.delete( name, 'delete for restore' );
+		await apiClient.edit( name, content, 'create for delete' );
+		await apiClient.delete( name, 'delete for restore' );
 
 		// login
 		await LoginPage.loginAdmin();
@@ -118,7 +118,7 @@ describe( 'Page', () => {
 
 	it( 'should be protectable', async () => {
 
-		await bot.edit( name, content, 'create for protect' );
+		await apiClient.edit( name, content, 'create for protect' );
 
 		// login
 		await LoginPage.loginAdmin();
@@ -141,10 +141,10 @@ describe( 'Page', () => {
 	it( 'should be undoable @daily', async () => {
 
 		// create
-		await bot.edit( name, content, 'create to edit and undo' );
+		await apiClient.edit( name, content, 'create to edit and undo' );
 
 		// edit
-		const response = await bot.edit( name, getTestString( 'editContent-' ) );
+		const response = await apiClient.edit( name, getTestString( 'editContent-' ) );
 		const previousRev = response.edit.oldrevid;
 		const undoRev = response.edit.newrevid;
 

@@ -1,7 +1,6 @@
 // Example code for Selenium/Explanation/Page object pattern
 // https://www.mediawiki.org/wiki/Selenium/Explanation/Page_object_pattern
-
-import { mwbot, createAccount } from 'wdio-mediawiki/Api.js';
+import { createApiClient } from 'wdio-mediawiki/Api.js';
 import { getTestString } from 'wdio-mediawiki/Util.js';
 
 // baseUrl is required for our continuous integration.
@@ -11,10 +10,10 @@ import { getTestString } from 'wdio-mediawiki/Util.js';
 const baseUrl = `${ process.env.MW_SERVER }${ process.env.MW_SCRIPT_PATH }/index.php?title=`;
 
 describe( 'User', () => {
-	let password, username, bot;
+	let password, username, apiClient;
 
 	before( async () => {
-		bot = await mwbot();
+		apiClient = await createApiClient();
 	} );
 
 	beforeEach( async () => {
@@ -24,7 +23,7 @@ describe( 'User', () => {
 
 	it( 'should be able to log in without page object', async () => {
 		// create
-		await createAccount( bot, username, password );
+		await apiClient.createAccount( username, password );
 
 		// log in
 		await browser.url( `${ baseUrl }Special:UserLogin` );
