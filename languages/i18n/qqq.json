@@ -3626,7 +3626,6 @@
 	"specialpages": "{{doc-special|SpecialPages|unlisted=1}}\nDisplay name of link to [[Special:SpecialPages]] shown on all pages in the toolbox.\n\nSee also:\n* {{msg-mw|Specialpages}}\n* {{msg-mw|Accesskey-t-specialpages}}\n* {{msg-mw|Tooltip-t-specialpages}}\n{{Identical|Special page}}",
 	"specialpages-note-top": "Heading for {{msg-mw|specialpages-note}}.\n{{Identical|Legend}}",
 	"specialpages-note-restricted": "Footer note for the [[Special:SpecialPages]] page\n\nCompare {{msg-mw|Mw-core-1.18-specialpages-note}}",
-	"specialpages-note-cached": "{{ignore}}\nFooter note for the [[Special:SpecialPages]] page",
 	"specialpages-header-search": "Label for search input in Special:SpecialPages.",
 	"specialpages-group-maintenance": "{{doc-special-group|like=[[Special:DoubleRedirects]], [[Special:LonelyPages]] and [[Special:WantedPages]]}}",
 	"specialpages-group-other": "{{doc-special-group|like=[[Special:AdminLinks]] and [[Special:BookSources]]}}",

@@ -272,6 +272,7 @@
 	"sp-contributions-footer-anon": "{{ignored}}This is the footer for anonymous users on [[Special:Contributions]].",
 	"sp-contributions-footer-anon-range": "{{ignored}}This is the footer for IP ranges on [[Special:Contributions]].",
 	"sp-contributions-footer-temp": "{{ignored}}This is the footer for temporary accounts on [[Special:Contributions]].",
+	"specialpages-note-cached": "{{ignore}}\nFooter note for the [[Special:SpecialPages]] page",
 	"specialpages-summary": "{{doc-specialpagesummary|specialpages}}",
 	"specialpages-url": "{{notranslate}}",
 	"statistics-files-desc": "Tooltip shown over ''Uploaded file'' (or as a note below it) in [[Special:Statistics]]",
