@@ -17,4 +17,9 @@ class MockChangesListFilter extends ChangesListFilter {
 	public function isSelected( FormOptions $opts ) {
 		return false;
 	}
+
+	/** @inheritDoc */
+	public function isActive( FormOptions $opts, $isStructuredUI ) {
+		return false;
+	}
 }

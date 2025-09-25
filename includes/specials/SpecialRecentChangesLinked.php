@@ -11,7 +11,9 @@ use MediaWiki\Html\FormOptions;
 use MediaWiki\Html\Html;
 use MediaWiki\Language\MessageParser;
 use MediaWiki\MainConfigNames;
-use MediaWiki\RecentChanges\RecentChange;
+use MediaWiki\RecentChanges\ChangesListQuery\ChangesListQuery;
+use MediaWiki\RecentChanges\ChangesListQuery\ChangesListQueryFactory;
+use MediaWiki\RecentChanges\RecentChangeFactory;
 use MediaWiki\Title\Title;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\TempUser\TempUserConfig;
@@ -41,7 +43,9 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 		SearchEngineFactory $searchEngineFactory,
 		ChangeTagsStore $changeTagsStore,
 		UserIdentityUtils $userIdentityUtils,
-		TempUserConfig $tempUserConfig
+		TempUserConfig $tempUserConfig,
+		RecentChangeFactory $recentChangeFactory,
+		ChangesListQueryFactory $changesListQueryFactory,
 	) {
 		parent::__construct(
 			$watchedItemStore,
@@ -49,7 +53,9 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 			$userOptionsLookup,
 			$changeTagsStore,
 			$userIdentityUtils,
-			$tempUserConfig
+			$tempUserConfig,
+			$recentChangeFactory,
+			$changesListQueryFactory,
 		);
 		$this->mName = 'Recentchangeslinked';
 		$this->searchEngineFactory = $searchEngineFactory;
@@ -71,19 +77,16 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 	}
 
 	/**
-	 * FIXME: Port useful changes from SpecialRecentChanges
-	 *
 	 * @inheritDoc
 	 */
-	protected function doMainQuery( $tables, $select, $conds, $query_options,
-		$join_conds, FormOptions $opts
-	) {
+	protected function modifyQuery( ChangesListQuery $query, FormOptions $opts ) {
 		$target = $opts['target'];
 		$showlinkedto = $opts['showlinkedto'];
 		$limit = $opts['limit'];
 
 		if ( $target === '' ) {
-			return false;
+			$query->forceEmptySet();
+			return;
 		}
 		$outputPage = $this->getOutput();
 		$title = Title::newFromText( $target );
@@ -92,7 +95,8 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 			$outputPage->addHTML(
 				Html::errorBox( $this->msg( 'allpagesbadtitle' )->parse(), '', 'mw-recentchangeslinked-errorbox' )
 			);
-			return false;
+			$query->forceEmptySet();
+			return;
 		}
 
 		$outputPage->setPageTitleMsg(
@@ -112,51 +116,38 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 		$ns = $title->getNamespace();
 		$dbkey = $title->getDBkey();
 
-		$rcQuery = RecentChange::getQueryInfo( RecentChange::STRAIGHT_JOIN_ACTOR );
-		$tables = array_unique( array_merge( $rcQuery['tables'], $tables ) );
-		$select = array_unique( array_merge( $rcQuery['fields'], $select ) );
-		$join_conds = array_merge( $rcQuery['joins'], $join_conds );
+		// TODO: $query->requireChangeTags( ... )
+		$query->legacyMutator( function ( &$tables, &$fields, &$conds, &$query_options, &$join_conds )
+			use ( $dbr, $opts )
+		{
+			$tagFilter = $opts['tagfilter'] !== '' ? explode( '|', $opts['tagfilter'] ) : [];
+			$this->changeTagsStore->modifyDisplayQuery(
+				$tables,
+				$select,
+				$conds,
+				$join_conds,
+				$query_options,
+				$tagFilter,
+				$opts['inverttags']
+			);
 
-		// Join with watchlist and watchlist_expiry tables to highlight watched rows.
-		$this->addWatchlistJoins( $dbr, $tables, $select, $join_conds, $conds );
-
-		// JOIN on page, used for 'last revision' filter highlight
-		$tables[] = 'page';
-		$join_conds['page'] = [ 'LEFT JOIN', 'rc_cur_id=page_id' ];
-		$select[] = 'page_latest';
-
-		$tagFilter = $opts['tagfilter'] !== '' ? explode( '|', $opts['tagfilter'] ) : [];
-		$this->changeTagsStore->modifyDisplayQuery(
-			$tables,
-			$select,
-			$conds,
-			$join_conds,
-			$query_options,
-			$tagFilter,
-			$opts['inverttags']
-		);
-
-		if ( $dbr->unionSupportsOrderAndLimit() ) {
-			if ( in_array( 'DISTINCT', $query_options ) ) {
-				// ChangeTagsStore::modifyDisplayQuery() will have added DISTINCT.
-				// To prevent this from causing query performance problems, we need to add
-				// a GROUP BY, and add rc_id to the ORDER BY.
-				$order = [
-					'GROUP BY' => [ 'rc_timestamp', 'rc_id' ],
-					'ORDER BY' => [ 'rc_timestamp DESC', 'rc_id DESC' ]
-				];
+			if ( $dbr->unionSupportsOrderAndLimit() ) {
+				if ( in_array( 'DISTINCT', $query_options ) ) {
+					// ChangeTagsStore::modifyDisplayQuery() will have added DISTINCT.
+					// To prevent this from causing query performance problems, we need to add
+					// a GROUP BY, and add rc_id to the ORDER BY.
+					$order = [
+						'GROUP BY' => [ 'rc_timestamp', 'rc_id' ],
+						'ORDER BY' => [ 'rc_timestamp DESC', 'rc_id DESC' ]
+					];
+				} else {
+					$order = [ 'ORDER BY' => 'rc_timestamp DESC' ];
+				}
 			} else {
-				$order = [ 'ORDER BY' => 'rc_timestamp DESC' ];
+				$order = [];
 			}
-		} else {
-			$order = [];
-		}
-
-		if ( !$this->runMainQueryHook( $tables, $select, $conds, $query_options, $join_conds,
-			$opts )
-		) {
-			return false;
-		}
+			$query_options['ORDER'] = $order;
+		} );
 
 		if ( $ns === NS_CATEGORY && !$showlinkedto ) {
 			// special handling for categories
@@ -173,114 +164,114 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 		}
 
 		if ( $id == 0 && !$showlinkedto ) {
-			return false; // nonexistent pages can't link to any pages
+			// nonexistent pages can't link to any pages
+			$query->forceEmptySet();
+			return;
 		}
 
-		// field name prefixes for all the various tables we might want to join with
-		$prefix = [
-			'pagelinks' => 'pl',
-			'templatelinks' => 'tl',
-			'categorylinks' => 'cl',
-			'imagelinks' => 'il'
-		];
+		// TODO: $query->requireLinksFrom( ... )
+		$fname = __METHOD__;
+		$query->sqbMutator( function ( SelectQueryBuilder &$mainQueryBuilder )
+			use ( $id, $ns, $dbkey, $link_tables, $dbr, $showlinkedto, $title, $limit, $fname )
+		{
+			// field name prefixes for all the various tables we might want to join with
+			$prefix = [
+				'pagelinks' => 'pl',
+				'templatelinks' => 'tl',
+				'categorylinks' => 'cl',
+				'imagelinks' => 'il'
+			];
 
-		$subsql = []; // SELECT statements to combine with UNION
+			$subsql = []; // SELECT statements to combine with UNION
 
-		foreach ( $link_tables as $link_table ) {
-			$queryBuilder = $dbr->newSelectQueryBuilder();
-			$linksMigration = \MediaWiki\MediaWikiServices::getInstance()->getLinksMigration();
-			$queryBuilder = $queryBuilder
-				->tables( $tables )
-				->fields( $select )
-				->where( $conds )
-				->caller( __METHOD__ )
-				->options( $order + $query_options )
-				->joinConds( $join_conds );
-			$pfx = $prefix[$link_table];
+			foreach ( $link_tables as $link_table ) {
+				$queryBuilder = clone $mainQueryBuilder;
+				$linksMigration = \MediaWiki\MediaWikiServices::getInstance()->getLinksMigration();
+				$pfx = $prefix[$link_table];
 
-			// The imagelinks table has no xx_namespace field and has xx_to instead of xx_title
-			$link_ns = $link_table == 'imagelinks' ? NS_FILE : 0;
+				// The imagelinks table has no xx_namespace field and has xx_to instead of xx_title
+				$link_ns = $link_table == 'imagelinks' ? NS_FILE : 0;
 
-			if ( $showlinkedto ) {
-				// find changes to pages linking to this page
-				if ( $link_ns ) {
-					if ( $ns != $link_ns ) {
-						continue;
-					} // should never happen, but check anyway
-					$queryBuilder->where( [ "{$pfx}_to" => $dbkey ] );
-				} else {
-					if ( isset( $linksMigration::$mapping[$link_table] ) ) {
-						$queryBuilder->where( $linksMigration->getLinksConditions( $link_table, $title ) );
+				if ( $showlinkedto ) {
+					// find changes to pages linking to this page
+					if ( $link_ns ) {
+						if ( $ns != $link_ns ) {
+							continue;
+						} // should never happen, but check anyway
+						$queryBuilder->where( [ "{$pfx}_to" => $dbkey ] );
 					} else {
-						$queryBuilder->where( [ "{$pfx}_namespace" => $ns, "{$pfx}_title" => $dbkey ] );
-					}
-				}
-				$queryBuilder->join( $link_table, null, "rc_cur_id = {$pfx}_from" );
-			} else {
-				// find changes to pages linked from this page
-				$queryBuilder->where( [ "{$pfx}_from" => $id ] );
-				if ( $link_table == 'imagelinks' ) {
-					$queryBuilder->where( [ "rc_namespace" => $link_ns ] );
-					$queryBuilder->join( $link_table, null, "rc_title = {$pfx}_to" );
-				} else {
-					// TODO: Move this to LinksMigration
-					if ( isset( $linksMigration::$mapping[$link_table] ) ) {
-						$queryInfo = $linksMigration->getQueryInfo( $link_table, $link_table );
-						[ $nsField, $titleField ] = $linksMigration->getTitleFields( $link_table );
-						if ( in_array( 'linktarget', $queryInfo['tables'] ) ) {
-							$joinTable = 'linktarget';
+						if ( isset( $linksMigration::$mapping[$link_table] ) ) {
+							$queryBuilder->where( $linksMigration->getLinksConditions( $link_table, $title ) );
 						} else {
-							$joinTable = $link_table;
+							$queryBuilder->where( [ "{$pfx}_namespace" => $ns, "{$pfx}_title" => $dbkey ] );
 						}
-						$queryBuilder->join(
-							$joinTable,
-							null,
-							[ "rc_namespace = {$nsField}", "rc_title = {$titleField}" ]
-						);
-						if ( in_array( 'linktarget', $queryInfo['tables'] ) ) {
-							$queryBuilder->joinConds( $queryInfo['joins'] );
-							$queryBuilder->table( $link_table );
-						}
+					}
+					$queryBuilder->join( $link_table, null, "rc_cur_id = {$pfx}_from" );
+				} else {
+					// find changes to pages linked from this page
+					$queryBuilder->where( [ "{$pfx}_from" => $id ] );
+					if ( $link_table == 'imagelinks' ) {
+						$queryBuilder->where( [ "rc_namespace" => $link_ns ] );
+						$queryBuilder->join( $link_table, null, "rc_title = {$pfx}_to" );
 					} else {
-						$queryBuilder->join(
-							$link_table,
-							null,
-							[ "rc_namespace = {$pfx}_namespace", "rc_title = {$pfx}_title" ]
-						);
+						// TODO: Move this to LinksMigration
+						if ( isset( $linksMigration::$mapping[$link_table] ) ) {
+							$queryInfo = $linksMigration->getQueryInfo( $link_table, $link_table );
+							[ $nsField, $titleField ] = $linksMigration->getTitleFields( $link_table );
+							if ( in_array( 'linktarget', $queryInfo['tables'] ) ) {
+								$joinTable = 'linktarget';
+							} else {
+								$joinTable = $link_table;
+							}
+							$queryBuilder->join(
+								$joinTable,
+								null,
+								[ "rc_namespace = {$nsField}", "rc_title = {$titleField}" ]
+							);
+							if ( in_array( 'linktarget', $queryInfo['tables'] ) ) {
+								$queryBuilder->joinConds( $queryInfo['joins'] );
+								$queryBuilder->table( $link_table );
+							}
+						} else {
+							$queryBuilder->join(
+								$link_table,
+								null,
+								[ "rc_namespace = {$pfx}_namespace", "rc_title = {$pfx}_title" ]
+							);
+						}
 					}
 				}
+
+				if ( $dbr->unionSupportsOrderAndLimit() ) {
+					$queryBuilder->limit( $limit );
+				}
+
+				$subsql[] = $queryBuilder;
 			}
 
-			if ( $dbr->unionSupportsOrderAndLimit() ) {
-				$queryBuilder->limit( $limit );
+			if ( count( $subsql ) == 0 ) {
+				throw new \RuntimeException( 'Need at least one link table' );
 			}
-
-			$subsql[] = $queryBuilder;
-		}
-
-		if ( count( $subsql ) == 0 ) {
-			return false; // should never happen
-		}
-		if ( count( $subsql ) == 1 && $dbr->unionSupportsOrderAndLimit() ) {
-			return $subsql[0]
-				->setMaxExecutionTime( $this->getConfig()->get( MainConfigNames::MaxExecutionTimeForExpensiveQueries ) )
-				->caller( __METHOD__ )->fetchResultSet();
-		} else {
-			$unionQueryBuilder = $dbr->newUnionQueryBuilder()->caller( __METHOD__ );
-			foreach ( $subsql as $selectQueryBuilder ) {
-				$unionQueryBuilder->add( $selectQueryBuilder );
+			if ( count( $subsql ) == 1 && $dbr->unionSupportsOrderAndLimit() ) {
+				$mainQueryBuilder = $subsql[0];
+			} else {
+				$unionQueryBuilder = $dbr->newUnionQueryBuilder()->caller( $fname );
+				foreach ( $subsql as $selectQueryBuilder ) {
+					$unionQueryBuilder->add( $selectQueryBuilder );
+				}
+				$mainQueryBuilder = $dbr->newSelectQueryBuilder()
+					->select( '*' )
+					->from(
+						new Subquery( $unionQueryBuilder->getSQL() ),
+						'main'
+					)
+					->orderBy( 'rc_timestamp', SelectQueryBuilder::SORT_DESC )
+					->setMaxExecutionTime( $this->getConfig()->get(
+						MainConfigNames::MaxExecutionTimeForExpensiveQueries ) )
+					->limit( $limit )
+					->caller( $fname );
 			}
-			return $dbr->newSelectQueryBuilder()
-				->select( '*' )
-				->from(
-					new Subquery( $unionQueryBuilder->getSQL() ),
-					'main'
-				)
-				->orderBy( 'rc_timestamp', SelectQueryBuilder::SORT_DESC )
-				->setMaxExecutionTime( $this->getConfig()->get( MainConfigNames::MaxExecutionTimeForExpensiveQueries ) )
-				->limit( $limit )
-				->caller( __METHOD__ )->fetchResultSet();
-		}
+		} );
 	}
 
 	public function setTopText( FormOptions $opts ) {

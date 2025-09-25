@@ -32,6 +32,12 @@ class ChangesListStringOptionsFilter extends ChangesListFilter {
 		$values = explode( ChangesListStringOptionsFilterGroup::SEPARATOR, $option );
 		return in_array( $this->getName(), $values );
 	}
+
+	/** @inheritDoc */
+	public function isActive( FormOptions $opts, $isStructuredUI ) {
+		// STRING_OPTIONS filter groups are exclusively active on Structured UI
+		return $isStructuredUI && $this->isSelected( $opts );
+	}
 }
 
 /** @deprecated class alias since 1.44 */
