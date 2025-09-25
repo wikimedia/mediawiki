@@ -11,7 +11,7 @@
 	"apihelp-main-param-format": "د بهرښوونې بڼه.",
 	"apihelp-main-param-assertuser": "تاييدول چې اوسنی کارن هماغه نومول‌شوی کارن دی.",
 	"apihelp-block-summary": "په يو کارن بنديز لگول.",
-	"apihelp-block-param-user": "کارن چې بايد بنديز پرې ولگول شي.",
+	"apihelp-block-param-user": "کارن چې بايد بنديز پرې ولگول شي. د <var>$1id</var> سره يوځای نشي کارېدای.",
 	"apihelp-block-param-reason": "د بنديز لامل.",
 	"apihelp-block-param-nocreate": "د گڼون جوړولو مخ نيول.",
 	"apihelp-changecontentmodel-summary": "د يو مخ منځپانگيزه بېلگه بدلول",
