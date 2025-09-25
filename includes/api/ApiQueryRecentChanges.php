@@ -20,6 +20,7 @@ use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\RecentChanges\ChangesList;
 use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\Storage\NameTableAccessException;
 use MediaWiki\Storage\NameTableStore;
@@ -31,6 +32,7 @@ use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\RawSQLExpression;
+use Wikimedia\Rdbms\Subquery;
 
 /**
  * A query action to enumerate the recent changes that were done to the wiki.
@@ -331,10 +333,30 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		}
 
 		if ( $this->fld_sha1 ) {
-			$this->addTables( 'revision' );
-			$this->addJoinConds( [ 'revision' => [ 'LEFT JOIN',
-				[ 'rc_this_oldid=rev_id' ] ] ] );
-			$this->addFields( [ 'rev_sha1', 'rev_deleted' ] );
+			$pairExpr = $db->buildGroupConcat(
+				$db->buildConcat( [ 'sr.role_name', $db->addQuotes( ':' ), 'c.content_sha1' ] ),
+				','
+			);
+			$revSha1Subquery = $db->newSelectQueryBuilder()
+				->select( [
+					'rev_id',
+					'rev_deleted',
+					'rev_slot_pairs' => $pairExpr,
+				] )
+				->from( 'revision' )
+				->join( 'slots', 's', [ 'rev_id = s.slot_revision_id' ] )
+				->join( 'content', 'c', [ 's.slot_content_id = c.content_id' ] )
+				->join( 'slot_roles', 'sr', [ 's.slot_role_id = sr.role_id' ] )
+				->groupBy( [ 'rev_id', 'rev_deleted' ] )
+				->caller( __METHOD__ )
+				->getSQL();
+
+			$this->addTables( [ 'revsha1' => new Subquery( $revSha1Subquery ) ] );
+			$this->addFields( [
+				'rev_deleted' => 'revsha1.rev_deleted',
+				'rev_slot_pairs' => 'revsha1.rev_slot_pairs'
+			] );
+			$this->addJoinConds( [ 'revsha1' => [ 'LEFT JOIN', [ 'rc_this_oldid = revsha1.rev_id' ] ] ] );
 		}
 
 		if ( $params['toponly'] || $showRedirects ) {
@@ -657,7 +679,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			}
 		}
 
-		if ( $this->fld_sha1 && $row->rev_sha1 !== null ) {
+		if ( $this->fld_sha1 && $row->rev_slot_pairs !== null ) {
 			if ( $row->rev_deleted & RevisionRecord::DELETED_TEXT ) {
 				$vals['sha1hidden'] = true;
 				$anyHidden = true;
@@ -665,11 +687,28 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			if ( RevisionRecord::userCanBitfield(
 				$row->rev_deleted, RevisionRecord::DELETED_TEXT, $user
 			) ) {
-				if ( $row->rev_sha1 !== '' ) {
-					$vals['sha1'] = \Wikimedia\base_convert( $row->rev_sha1, 36, 16, 40 );
-				} else {
-					$vals['sha1'] = '';
+				$combinedBase36 = '';
+				if ( $row->rev_slot_pairs !== '' ) {
+					$items = explode( ',', $row->rev_slot_pairs );
+					$slotHashes = [];
+					foreach ( $items as $item ) {
+						$parts = explode( ':', $item );
+						$slotHashes[$parts[0]] = $parts[1];
+					}
+					ksort( $slotHashes );
+
+					$accu = null;
+					foreach ( $slotHashes as $slotHash ) {
+						$accu = $accu === null
+							? $slotHash
+							: SlotRecord::base36Sha1( $accu . $slotHash );
+					}
+					$combinedBase36 = $accu ?? SlotRecord::base36Sha1( '' );
 				}
+
+				$vals['sha1'] = $combinedBase36 !== ''
+					? \Wikimedia\base_convert( $combinedBase36, 36, 16, 40 )
+					: '';
 			}
 		}
 
