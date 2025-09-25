@@ -304,8 +304,10 @@ class JobQueueRedis extends JobQueue {
 				pushed = pushed + 1
 			end
 		end
-		-- Mark this queue as having jobs
-		redis.call('sAdd',kQwJobs,queueId)
+		if pushed > 0 then
+			-- Mark this queue as having jobs
+			redis.call('sAdd',kQwJobs,queueId)
+		end
 		return pushed
 LUA;
 		return $conn->luaEval( $script,
