@@ -47,7 +47,7 @@ class Deflate {
 	 * @endcode
 	 *
 	 * @param string $data Deflated data
-	 * @return StatusValue Inflated data will be set as the value
+	 * @return StatusValue<string> Inflated data will be set as the value
 	 * @throws InvalidArgumentException If the data wasn't deflated
 	 */
 	public static function inflate( string $data ): StatusValue {

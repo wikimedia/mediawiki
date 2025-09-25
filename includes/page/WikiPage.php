@@ -1578,7 +1578,7 @@ class WikiPage implements Stringable, Page, PageRecord {
 	 * (with ChangeTags::canAddTagsAccompanyingChange)
 	 * @param int $undidRevId Id of revision that was undone or 0
 	 *
-	 * @return PageUpdateStatus Possible errors:
+	 * @return PageUpdateStatus<array> Possible errors:
 	 *     edit-hook-aborted: The ArticleSave hook aborted the edit but didn't
 	 *       set the fatal flag of $status.
 	 *     edit-gone-missing: In update mode, but the article didn't exist.
