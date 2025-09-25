@@ -158,9 +158,6 @@ class AuthenticatedFileEntryPoint extends MediaWikiEntryPoint {
 				return;
 			}
 
-			// Check user authorization for this title
-			// Checks Whitelist too
-
 			if ( !$permissionManager->userCan( 'read', $user, $title ) ) {
 				$this->forbidden( 'img-auth-accessdenied', 'img-auth-noread', $name );
 				return;

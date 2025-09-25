@@ -431,7 +431,7 @@ class XmlTypeCheck {
 	/**
 	 * Check if the internal subset of the DTD is safe.
 	 *
-	 * We whitelist an extremely restricted subset of DTD features.
+	 * We allow an extremely restricted subset of DTD features.
 	 *
 	 * Safe is defined as:
 	 *  * Only contains entity definitions (e.g. No <!ATLIST )

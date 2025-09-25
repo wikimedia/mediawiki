@@ -52,16 +52,16 @@ class ComposerPhpunitXmlCoverageEdit {
 		foreach ( $include as $childNode ) {
 			$childNode->parentNode->removeChild( $childNode );
 		}
-		$whitelistElement = $phpunitXml->createElement( 'include' );
+		$includeElement = $phpunitXml->createElement( 'include' );
 		// TODO: Use AutoloadClasses from extension.json to load the relevant directories
 		foreach ( [ 'includes', 'src', 'maintenance' ] as $dir ) {
 			$dirElement = $phpunitXml->createElement( 'directory', $project . '/' . $dir );
 			$dirElement->setAttribute( 'suffix', '.php' );
-			$whitelistElement->appendChild( $dirElement );
+			$includeElement->appendChild( $dirElement );
 
 		}
 		$phpunitXml->getElementsByTagName( 'coverage' )->item( 0 )
-			->appendChild( $whitelistElement );
+			->appendChild( $includeElement );
 		$phpunitXml->formatOutput = true;
 		$phpunitXml->save( $IP . '/phpunit.xml' );
 	}
