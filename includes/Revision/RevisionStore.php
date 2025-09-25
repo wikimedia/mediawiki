@@ -3366,11 +3366,11 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	): ?RevisionRecord {
 		$revision->assertWiki( $this->wikiId );
 		$db = $this->getReplicaConnection();
-		$candidateRevisions = $this->newSelectQueryBuilder( $db )
-			->select( [ 'role_name', 'content_sha1' ] )
-			->join( 'slots', null, 'slot_revision_id = rev_id' )
-			->join( 'content', null, 'content_id = slot_content_id' )
-			->join( 'slot_roles', null, 'slot_role_id = role_id' )
+
+		// First fetch the IDs of the most recent revisions for this page, limited by the search limit.
+		$candidateRevIds = $db->newSelectQueryBuilder()
+			->select( 'rev_id' )
+			->from( 'revision' )
 			->where( [ 'rev_page' => $revision->getPageId( $this->wikiId ) ] )
 			// Include 'rev_id' in the ordering in case there are multiple revs with same timestamp
 			->orderBy( [ 'rev_timestamp', 'rev_id' ], SelectQueryBuilder::SORT_DESC )
@@ -3380,12 +3380,26 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 			// skip the most recent edit, we can't revert to it anyway
 			->offset( 1 )
 			->caller( __METHOD__ )
+			->fetchFieldValues();
+
+		if ( $candidateRevIds === [] ) {
+			return null;
+		}
+
+		// Then, for only those revisions, fetch their slot role => sha1 data.
+		$candidateRevisions = $db->newSelectQueryBuilder()
+			->select( [ 'slot_revision_id', 'role_name', 'content_sha1' ] )
+			->from( 'slots' )
+			->join( 'content', null, 'content_id = slot_content_id' )
+			->join( 'slot_roles', null, 'slot_role_id = role_id' )
+			->where( [ 'slot_revision_id' => $candidateRevIds ] )
+			->caller( __METHOD__ )
 			->fetchResultSet();
 
 		// Build a map of candidate revisions to their slot role => sha1 arrays
 		$candidateSlotHashes = [];
 		foreach ( $candidateRevisions as $candidate ) {
-			$candidateSlotHashes[$candidate->rev_id][$candidate->role_name] = $candidate->content_sha1;
+			$candidateSlotHashes[$candidate->slot_revision_id][$candidate->role_name] = $candidate->content_sha1;
 		}
 
 		// Build the target slot role => sha1 array from the provided revision
@@ -3395,9 +3409,12 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 			$searchedSlotHashes[$slot->getRole()] = $slot->getSha1();
 		}
 
+		// Find the first revision that has the same slot role => sha1 array as the provided revision.
+		// We use $candidateRevIds, which are ordered by the revision timestamps, to ensure we return
+		// the most recent revision that matches.
 		$matchRevId = null;
-		foreach ( $candidateSlotHashes as $revId => $slotHashes ) {
-			if ( $slotHashes === $searchedSlotHashes ) {
+		foreach ( $candidateRevIds as $revId ) {
+			if ( $candidateSlotHashes[$revId] === $searchedSlotHashes ) {
 				$matchRevId = $revId;
 				break;
 			}
