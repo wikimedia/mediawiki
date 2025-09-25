@@ -48,6 +48,7 @@ class PageHistoryVisibilityChangedEvent extends PageEvent {
 	 * @param ProperPageIdentity $page The page affected by the update.
 	 * @param UserIdentity $performer The user performing the update.
 	 * @param int $currentRevisionId
+	 *        The current rev id at the time of the visibility change event.
 	 * @param int $bitsSet Bitmap indicating which bits got set by the change
 	 * @param int $bitsUnset Bitmap indicating which bits got unset by the change
 	 * @param array<int,array> $visibilityChangeMap a map from revision IDs to visibility changes,
@@ -135,8 +136,18 @@ class PageHistoryVisibilityChangedEvent extends PageEvent {
 	/**
 	 * @return bool
 	 */
-	public function wasCurrentRevisionAffected() {
-		return isset( $this->visibilityChangeMap[ $this->currentRevisionId ] );
+	public function wasCurrentRevisionAffected(): bool {
+		return isset( $this->visibilityChangeMap[$this->currentRevisionId] );
+	}
+
+	/**
+	 * Returns the current revision ID of the page at
+	 * the time of the visibilty change event.
+	 *
+	 * @return int
+	 */
+	public function getCurrentRevisionId(): int {
+		return $this->currentRevisionId;
 	}
 
 	public function getCurrentRevisionVisibilityBefore(): int {
@@ -148,19 +159,19 @@ class PageHistoryVisibilityChangedEvent extends PageEvent {
 	}
 
 	public function getVisibilityBefore( int $revId ): int {
-		if ( !isset( $this->visibilityChangeMap[ $revId ] ) ) {
+		if ( !isset( $this->visibilityChangeMap[$revId] ) ) {
 			throw new InvalidArgumentException( 'Unexpected revision ID: ' . $revId );
 		}
 
-		return $this->visibilityChangeMap[ $revId ]['oldBits'];
+		return $this->visibilityChangeMap[$revId]['oldBits'];
 	}
 
 	public function getVisibilityAfter( int $revId ): int {
-		if ( !isset( $this->visibilityChangeMap[ $revId ] ) ) {
+		if ( !isset( $this->visibilityChangeMap[$revId] ) ) {
 			throw new InvalidArgumentException( 'Unexpected revision ID: ' . $revId );
 		}
 
-		return $this->visibilityChangeMap[ $revId ]['newBits'];
+		return $this->visibilityChangeMap[$revId]['newBits'];
 	}
 
 }

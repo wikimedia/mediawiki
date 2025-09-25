@@ -36,8 +36,7 @@ class RevDelRevisionListTest extends MediaWikiIntegrationTestCase {
 		$this->expectDomainEvent(
 			PageHistoryVisibilityChangedEvent::TYPE, 2,
 			static function ( PageHistoryVisibilityChangedEvent $event )
-				use ( &$listenerCall, $page, $rev1, $rev2, $rev3 )
-			{
+			use ( &$listenerCall, $page, $rev1, $rev2, $rev3 ) {
 				Assert::assertSame( $page->getId(), $event->getPageId() );
 				Assert::assertTrue( $page->isSamePageAs( $event->getPage() ) );
 
@@ -55,10 +54,18 @@ class RevDelRevisionListTest extends MediaWikiIntegrationTestCase {
 							$event->wasCurrentRevisionAffected(),
 							'wasCurrentRevisionAffected'
 						);
+						$affectedRevisionIds = $event->getAffectedRevisionIDs();
 						Assert::assertEquals(
 							[ $rev1, $rev2, ],
-							self::sort( $event->getAffectedRevisionIDs() ),
+							self::sort( $affectedRevisionIds ),
 							'getAffectedRevisionIDs'
+						);
+
+						Assert::assertNotContains(
+							$event->getCurrentRevisionId(),
+							$affectedRevisionIds,
+							"Current revision should not be in affected rev ids " .
+							"as visibility of current revision has not been changed."
 						);
 
 						Assert::assertSame( $delText, $event->getBitsSet() );
@@ -92,10 +99,18 @@ class RevDelRevisionListTest extends MediaWikiIntegrationTestCase {
 							'getCurrentRevisionVisibilityAfter'
 						);
 
+						$affectedRevisionIds = $event->getAffectedRevisionIDs();
 						Assert::assertEquals(
 							[ $rev2, $rev3, ],
-							self::sort( $event->getAffectedRevisionIDs() ),
+							self::sort( $affectedRevisionIds ),
 							'getAffectedRevisionIDs'
+						);
+
+						Assert::assertContains(
+							$event->getCurrentRevisionId(),
+							$affectedRevisionIds,
+							"Current revision should be in affected rev ids " .
+							"as visibility of current revision has been changed."
 						);
 
 						Assert::assertSame( $delUser, $event->getBitsSet() );
