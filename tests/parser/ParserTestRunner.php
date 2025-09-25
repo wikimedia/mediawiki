@@ -2734,6 +2734,26 @@ class ParserTestRunner {
 			$this->db->timestamp( '20010115123500' )
 		);
 
+		$image = $localRepo->newFile( new TitleValue( NS_FILE, 'Tall.jpg' ) );
+		$image->recordUpload3(
+			'',
+			'Taller than wide',
+			'Tall file',
+			$performer,
+			[
+				'size' => 8888,
+				'width' => 400,
+				'height' => 600,
+				'bits' => 8,
+				'media_type' => MEDIATYPE_BITMAP,
+				'mime' => 'image/jpeg',
+				'metadata' => [],
+				'sha1' => Wikimedia\base_convert( '5', 16, 36, 31 ),
+				'fileExists' => true
+			],
+			$this->db->timestamp( '20010115123500' )
+		);
+
 		$image = $localRepo->newFile( new TitleValue( NS_FILE, 'Video.ogv' ) );
 		$image->recordUpload3(
 			'',
@@ -2840,6 +2860,11 @@ class ParserTestRunner {
 			'src' => "$IP/tests/phpunit/data/parser/headbg.jpg",
 			'dst' => "$base/0/09/Bad.jpg"
 		] );
+		$backend->prepare( [ 'dir' => "$base/8/88" ] );
+		$backend->quickStore( [
+			'src' => "$IP/tests/phpunit/data/parser/headbg.jpg",
+			'dst' => "$base/8/88/Tall.jpg"
+		] );
 		$backend->prepare( [ 'dir' => "$base/5/5f" ] );
 		$backend->quickStore( [
 			'src' => "$IP/tests/phpunit/data/parser/LoremIpsum.djvu",
@@ -2884,6 +2909,7 @@ class ParserTestRunner {
 				"$public/0/09/Bad.jpg",
 				"$public/5/5f/LoremIpsum.djvu",
 				"$public/f/ff/Foobar.svg",
+				"$public/8/88/Tall.jpg",
 				"$public/0/00/Video.ogv",
 				"$public/4/41/Audio.oga",
 			]
