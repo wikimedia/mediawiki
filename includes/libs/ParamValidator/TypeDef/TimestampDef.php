@@ -63,15 +63,28 @@ class TimestampDef extends TypeDef {
 		$this->defaultFormat = $options['defaultFormat'] ?? 'ConvertibleTimestamp';
 		$this->stringifyFormat = $options['stringifyFormat'] ?? TS_ISO_8601;
 
-		// Check values by trying to convert 0
-		if ( $this->defaultFormat !== 'ConvertibleTimestamp' && $this->defaultFormat !== 'DateTime' &&
-			ConvertibleTimestamp::convert( $this->defaultFormat, 0 ) === false
-		) {
+		if ( !$this->isSpecialFormat( $this->defaultFormat ) && !$this->isValidFormat( $this->defaultFormat ) ) {
 			throw new InvalidArgumentException( 'Invalid value for $options[\'defaultFormat\']' );
 		}
-		if ( ConvertibleTimestamp::convert( $this->stringifyFormat, 0 ) === false ) {
+		if ( !$this->isValidFormat( $this->stringifyFormat ) ) {
 			throw new InvalidArgumentException( 'Invalid value for $options[\'stringifyFormat\']' );
 		}
+	}
+
+	private function isSpecialFormat( mixed $format ): bool {
+		return $format === 'ConvertibleTimestamp' || $format === 'DateTime';
+	}
+
+	private function isValidFormat( mixed $format ): bool {
+		// Leave validation up to the wikimedia/timestamp library.
+		$ts = new ConvertibleTimestamp();
+		try {
+			$ts->getTimestamp( $format );
+		} catch ( TimestampException | InvalidArgumentException ) {
+			// Throws on invalid format. TimestampException up to 4.x, InvalidArgumentException from 5.x
+			return false;
+		}
+		return true;
 	}
 
 	/** @inheritDoc */
@@ -87,9 +100,7 @@ class TimestampDef extends TypeDef {
 		try {
 			$timestampObj = new ConvertibleTimestamp( $value === 'now' ? false : $value );
 
-			$timestamp = ( $format !== 'ConvertibleTimestamp' && $format !== 'DateTime' )
-				? $timestampObj->getTimestamp( $format )
-				: null;
+			$timestamp = $this->isSpecialFormat( $format ) ? null : $timestampObj->getTimestamp( $format );
 		} catch ( TimestampException $ex ) {
 			// $this->failure() doesn't handle passing a previous exception
 			throw new ValidationException(
@@ -118,9 +129,7 @@ class TimestampDef extends TypeDef {
 		$ret['allowedKeys'][] = self::PARAM_TIMESTAMP_FORMAT;
 
 		$f = $settings[self::PARAM_TIMESTAMP_FORMAT] ?? $this->defaultFormat;
-		if ( $f !== 'ConvertibleTimestamp' && $f !== 'DateTime' &&
-			ConvertibleTimestamp::convert( $f, 0 ) === false
-		) {
+		if ( !$this->isSpecialFormat( $f ) && !$this->isValidFormat( $f ) ) {
 			$ret['issues'][self::PARAM_TIMESTAMP_FORMAT] = 'Value for PARAM_TIMESTAMP_FORMAT is not valid';
 		}
 
