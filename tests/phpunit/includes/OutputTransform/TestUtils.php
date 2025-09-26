@@ -21,7 +21,7 @@ class TestUtils {
 <h2 data-mw-anchor="Section_2">Section 2<mw:editsection page="Test Page" section="2">Section 2</mw:editsection></h2>
 <p>Two
 </p>
-<h3 data-mw-anchor="Section_2.1">Section 2.1</h3>
+<h3 data-mw-anchor="Section_2.1"><i>Section 2.1</i></h3>
 <p>Two point one
 </p>
 <h2 data-mw-anchor="Section_3">Section 3<mw:editsection page="Test Page" section="4">Section 3</mw:editsection></h2>
@@ -38,7 +38,7 @@ HTML;
 <div class="mw-heading mw-heading2"><h2 id="Section_2">Section 2</h2><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=2" title="Edit section: Section 2">edit</a><span class="mw-editsection-bracket">]</span></span></div>
 <p>Two
 </p>
-<div class="mw-heading mw-heading3"><h3 id="Section_2.1">Section 2.1</h3></div>
+<div class="mw-heading mw-heading3"><h3 id="Section_2.1"><i>Section 2.1</i></h3></div>
 <p>Two point one
 </p>
 <div class="mw-heading mw-heading2"><h2 id="Section_3">Section 3</h2><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=4" title="Edit section: Section 3">edit</a><span class="mw-editsection-bracket">]</span></span></div>
@@ -55,7 +55,7 @@ HTML;
 <div class="mw-heading mw-heading2"><h2 id="Section_2">Section 2</h2></div>
 <p>Two
 </p>
-<div class="mw-heading mw-heading3"><h3 id="Section_2.1">Section 2.1</h3></div>
+<div class="mw-heading mw-heading3"><h3 id="Section_2.1"><i>Section 2.1</i></h3></div>
 <p>Two point one
 </p>
 <div class="mw-heading mw-heading2"><h2 id="Section_3">Section 3</h2></div>
@@ -127,7 +127,7 @@ HTML;
 			'level' => 2,
 			'toclevel' => 2,
 			'number' => "2.1",
-			'line' => "Section 2.1",
+			'line' => "<i>Section 2.1</i>",
 			'anchor' => "Section_2.1",
 			'fromtitle' => 'Test_Page'
 		] ), SectionMetadata::fromLegacy( [

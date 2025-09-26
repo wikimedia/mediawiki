@@ -68,7 +68,7 @@ class DefaultOutputPipelineFactoryTest extends MediaWikiLangTestCase {
 <li class="toclevel-1 tocsection-1"><a href="#Section_1"><span class="tocnumber">1</span> <span class="toctext">Section 1</span></a></li>
 <li class="toclevel-1 tocsection-2"><a href="#Section_2"><span class="tocnumber">2</span> <span class="toctext">Section 2</span></a>
 <ul>
-<li class="toclevel-2 tocsection-3"><a href="#Section_2.1"><span class="tocnumber">2.1</span> <span class="toctext">Section 2.1</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="#Section_2.1"><span class="tocnumber">2.1</span> <span class="toctext"><i>Section 2.1</i></span></a></li>
 </ul>
 </li>
 <li class="toclevel-1 tocsection-4"><a href="#Section_3"><span class="tocnumber">3</span> <span class="toctext">Section 3</span></a></li>
@@ -81,7 +81,7 @@ class DefaultOutputPipelineFactoryTest extends MediaWikiLangTestCase {
 <div class="mw-heading mw-heading2"><h2 id="Section_2">Section 2</h2><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=2" title="Edit section: Section 2">edit</a><span class="mw-editsection-bracket">]</span></span></div>
 <p>Two
 </p>
-<div class="mw-heading mw-heading3"><h3 id="Section_2.1">Section 2.1</h3></div>
+<div class="mw-heading mw-heading3"><h3 id="Section_2.1"><i>Section 2.1</i></h3></div>
 <p>Two point one
 </p>
 <div class="mw-heading mw-heading2"><h2 id="Section_3">Section 3</h2><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=4" title="Edit section: Section 3">edit</a><span class="mw-editsection-bracket">]</span></span></div>
@@ -98,7 +98,7 @@ EOF
 <li class="toclevel-1 tocsection-1"><a href="#Section_1"><span class="tocnumber">1</span> <span class="toctext">Section 1</span></a></li>
 <li class="toclevel-1 tocsection-2"><a href="#Section_2"><span class="tocnumber">2</span> <span class="toctext">Section 2</span></a>
 <ul>
-<li class="toclevel-2 tocsection-3"><a href="#Section_2.1"><span class="tocnumber">2.1</span> <span class="toctext">Section 2.1</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="#Section_2.1"><span class="tocnumber">2.1</span> <span class="toctext"><i>Section 2.1</i></span></a></li>
 </ul>
 </li>
 <li class="toclevel-1 tocsection-4"><a href="#Section_3"><span class="tocnumber">3</span> <span class="toctext">Section 3</span></a></li>
@@ -111,7 +111,7 @@ EOF
 <div class="mw-heading mw-heading2"><h2 id="Section_2">Section 2</h2></div>
 <p>Two
 </p>
-<div class="mw-heading mw-heading3"><h3 id="Section_2.1">Section 2.1</h3></div>
+<div class="mw-heading mw-heading3"><h3 id="Section_2.1"><i>Section 2.1</i></h3></div>
 <p>Two point one
 </p>
 <div class="mw-heading mw-heading2"><h2 id="Section_3">Section 3</h2></div>
@@ -130,7 +130,7 @@ EOF
 <div class="mw-heading mw-heading2"><h2 id="Section_2">Section 2</h2><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=2" title="Edit section: Section 2">edit</a><span class="mw-editsection-bracket">]</span></span></div>
 <p>Two
 </p>
-<div class="mw-heading mw-heading3"><h3 id="Section_2.1">Section 2.1</h3></div>
+<div class="mw-heading mw-heading3"><h3 id="Section_2.1"><i>Section 2.1</i></h3></div>
 <p>Two point one
 </p>
 <div class="mw-heading mw-heading2"><h2 id="Section_3">Section 3</h2><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=4" title="Edit section: Section 3">edit</a><span class="mw-editsection-bracket">]</span></span></div>
