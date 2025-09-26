@@ -6,7 +6,8 @@ namespace MediaWiki\Hook;
  * This is a hook handler interface, see docs/Hooks.md.
  * Use the hook name "SpecialWatchlistGetNonRevisionTypes" to register handlers implementing this interface.
  *
- * @stable to implement
+ * @deprecated since 1.45, extensions should instead ensure that rc_this_oldid is set to
+ * zero on recent changes entries that do not relate to any particular revision
  * @ingroup Hooks
  */
 interface SpecialWatchlistGetNonRevisionTypesHook {
