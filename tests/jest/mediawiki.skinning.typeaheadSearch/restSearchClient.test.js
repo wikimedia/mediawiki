@@ -11,6 +11,12 @@ const mockedRequests = !process.env.TEST_LIVE_REQUESTS;
 describe( 'restApiSearchClient', () => {
 	beforeAll( () => {
 		jestFetchMock.enableFetchMocks();
+		const mockConfig = {
+			wgMainPage: false,
+			wgNamespaceNumber: 0,
+			wgContentNamespaces: [ 0 ]
+		};
+		mw.config.get.mockImplementation( ( key ) => mockConfig[ key ] );
 	} );
 
 	afterAll( () => {

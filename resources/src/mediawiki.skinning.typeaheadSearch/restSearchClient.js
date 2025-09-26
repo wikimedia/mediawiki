@@ -100,11 +100,21 @@ function restSearchClient( searchApiUrl, urlGeneratorInstance, recommendationApi
 		 * @type {fetchRecommendationByTitle}
 		 */
 		fetchRecommendationByTitle: recommendationApiUrl ? ( currentTitle, showDescription = true ) => {
-			const result = fetchJson( recommendationApiUrl.replace( /\$1/g, currentTitle ), {
-				headers: {
-					accept: 'application/json'
-				}
-			} );
+			const isPageEligible = !mw.config.get( 'wgIsMainPage' ) &&
+				mw.config.get( 'wgContentNamespaces', [] ).includes(
+					mw.config.get( 'wgNamespaceNumber' )
+				);
+			const result = isPageEligible ?
+				fetchJson( recommendationApiUrl.replace( /\$1/g, currentTitle ), {
+					headers: {
+						accept: 'application/json'
+					}
+				} ) :
+				{
+					fetch: Promise.reject( 'No recommendations for this page.' ),
+					abort: () => {}
+				};
+
 			const recommendationResponsePromise = result.fetch
 				.then( ( /** @type {RestResponse} */ res ) => adaptApiResponse(
 					urlGeneratorInstance, '', res, showDescription
