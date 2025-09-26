@@ -51,25 +51,25 @@ var __async = (__this, __arguments, generator) => {
   });
 };
 import { ref, onMounted, defineComponent, computed, createElementBlock, openBlock, normalizeClass, createCommentVNode, toDisplayString, Comment, warn, watch, withKeys, withModifiers, renderSlot, toRef, resolveComponent, createElementVNode, createBlock, resolveDynamicComponent, withCtx, createVNode, Fragment, renderList, createTextVNode, Transition, normalizeStyle, inject, mergeProps, useId, withDirectives, vModelCheckbox, createSlots, unref, shallowRef, getCurrentScope, onScopeDispose, shallowReadonly, resolveDirective, nextTick, vModelDynamic, onUnmounted, Teleport, toHandlers, vShow, provide, toRefs, reactive, vModelRadio, vModelText, getCurrentInstance } from "vue";
-const H = '<path d="M11.53 2.3A1.85 1.85 0 0010 1.21 1.85 1.85 0 008.48 2.3L.36 16.36C-.48 17.81.21 19 1.88 19h16.24c1.67 0 2.36-1.19 1.52-2.64zM11 16H9v-2h2zm0-4H9V6h2z"/>', w = '<path d="M12.43 14.34A5 5 0 0110 15a5 5 0 113.95-2L17 16.09V3a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 001.45-.63z"/><circle cx="10" cy="10" r="3"/>', v1 = '<path d="M7 14.17 2.83 10l-1.41 1.41L7 17 19 5l-1.41-1.42z"/>', e1 = '<path d="M10 0a10 10 0 1010 10A10 10 0 0010 0m5.66 14.24-1.41 1.41L10 11.41l-4.24 4.25-1.42-1.42L8.59 10 4.34 5.76l1.42-1.42L10 8.59l4.24-4.24 1.41 1.41L11.41 10z"/>', z1 = '<path d="m4.34 2.93 12.73 12.73-1.41 1.41L2.93 4.35z"/><path d="M17.07 4.34 4.34 17.07l-1.41-1.41L15.66 2.93z"/>', L1 = '<path d="M10 15 2 5h16z"/>', S1 = '<path d="M13.728 1H6.272L1 6.272v7.456L6.272 19h7.456L19 13.728V6.272zM11 15H9v-2h2zm0-4H9V5h2z"/>', q1 = '<path d="m17.5 4.75-7.5 7.5-7.5-7.5L1 6.25l9 9 9-9z"/>', $1 = '<path d="M2 2a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V4a2 2 0 00-2-2zm-.17 13 4.09-5.25 2.92 3.51L12.92 8l5.25 7z"/>', l0 = '<path d="M19 3H1v14h18zM3 14l3.5-4.5 2.5 3L12.5 8l4.5 6z"/><path d="M19 5H1V3h18zm0 12H1v-2h18z"/>', i = '<path d="M8 19a1 1 0 001 1h2a1 1 0 001-1v-1H8zm9-12a7 7 0 10-12 4.9S7 14 7 15v1a1 1 0 001 1h4a1 1 0 001-1v-1c0-1 2-3.1 2-3.1A7 7 0 0017 7"/>', m0 = '<path d="M10 0C4.477 0 0 4.477 0 10s4.477 10 10 10 10-4.477 10-10S15.523 0 10 0M9 5h2v2H9zm0 4h2v6H9z"/>', H2 = '<path d="M3 1h2v18H3zm13.5 1.5L15 1l-9 9 9 9 1.5-1.5L9 10z"/>', g2 = '<path d="M15 1h2v18h-2zM3.5 2.5 11 10l-7.5 7.5L5 19l9-9-9-9z"/>', k2 = '<path d="M7 1 5.6 2.5 13 10l-7.4 7.5L7 19l9-9z"/>', W2 = '<path d="m4 10 9 9 1.4-1.5L7 10l7.4-7.5L13 1z"/>', a5 = '<path d="M12.2 13.6a7 7 0 111.4-1.4l5.4 5.4-1.4 1.4zM3 8a5 5 0 1010 0A5 5 0 003 8"/>', e5 = '<path d="M10 0 3 8h14zm0 18-7-8h14z"/>', L5 = '<path d="M10 20a10 10 0 010-20 10 10 0 110 20m-2-5 9-8.5L15.5 5 8 12 4.5 8.5 3 10z"/>', _5 = '<path d="m10 5 8 10H2z"/>', A3 = H, D3 = w, o4 = v1, l4 = e1, v4 = z1, g4 = L1, k4 = S1, y4 = q1, J4 = $1, c6 = l0, v6 = {
+const g = '<path d="M11.53 2.3A1.85 1.85 0 0010 1.21 1.85 1.85 0 008.48 2.3L.36 16.36C-.48 17.81.21 19 1.88 19h16.24c1.67 0 2.36-1.19 1.52-2.64zM11 16H9v-2h2zm0-4H9V6h2z"/>', w = '<path d="M12.43 14.34A5 5 0 0110 15a5 5 0 113.95-2L17 16.09V3a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 001.45-.63z"/><circle cx="10" cy="10" r="3"/>', v1 = '<path d="M7 14.17 2.83 10l-1.41 1.41L7 17 19 5l-1.41-1.42z"/>', e1 = '<path d="M10 0a10 10 0 1010 10A10 10 0 0010 0m5.66 14.24-1.41 1.41L10 11.41l-4.24 4.25-1.42-1.42L8.59 10 4.34 5.76l1.42-1.42L10 8.59l4.24-4.24 1.41 1.41L11.41 10z"/>', z1 = '<path d="m4.34 2.93 12.73 12.73-1.41 1.41L2.93 4.35z"/><path d="M17.07 4.34 4.34 17.07l-1.41-1.41L15.66 2.93z"/>', L1 = '<path d="M10 15 2 5h16z"/>', S1 = '<path d="M13.728 1H6.272L1 6.272v7.456L6.272 19h7.456L19 13.728V6.272zM11 15H9v-2h2zm0-4H9V5h2z"/>', q1 = '<path d="m17.5 4.75-7.5 7.5-7.5-7.5L1 6.25l9 9 9-9z"/>', $1 = '<path d="M2 2a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V4a2 2 0 00-2-2zm-.17 13 4.09-5.25 2.92 3.51L12.92 8l5.25 7z"/>', l0 = '<path d="M19 3H1v14h18zM3 14l3.5-4.5 2.5 3L12.5 8l4.5 6z"/><path d="M19 5H1V3h18zm0 12H1v-2h18z"/>', i = '<path d="M8 19a1 1 0 001 1h2a1 1 0 001-1v-1H8zm9-12a7 7 0 10-12 4.9S7 14 7 15v1a1 1 0 001 1h4a1 1 0 001-1v-1c0-1 2-3.1 2-3.1A7 7 0 0017 7"/>', p0 = '<path d="M10 0C4.477 0 0 4.477 0 10s4.477 10 10 10 10-4.477 10-10S15.523 0 10 0M9 5h2v2H9zm0 4h2v6H9z"/>', H2 = '<path d="M3 1h2v18H3zm13.5 1.5L15 1l-9 9 9 9 1.5-1.5L9 10z"/>', x2 = '<path d="M15 1h2v18h-2zM3.5 2.5 11 10l-7.5 7.5L5 19l9-9-9-9z"/>', C2 = '<path d="M7 1 5.6 2.5 13 10l-7.4 7.5L7 19l9-9z"/>', W2 = '<path d="m4 10 9 9 1.4-1.5L7 10l7.4-7.5L13 1z"/>', t5 = '<path d="M12.2 13.6a7 7 0 111.4-1.4l5.4 5.4-1.4 1.4zM3 8a5 5 0 1010 0A5 5 0 003 8"/>', r5 = '<path d="M10 0 3 8h14zm0 18-7-8h14z"/>', I5 = '<path d="M10 20a10 10 0 010-20 10 10 0 110 20m-2-5 9-8.5L15.5 5 8 12 4.5 8.5 3 10z"/>', c3 = '<path d="m10 5 8 10H2z"/>', C3 = g, P3 = w, l4 = v1, v4 = e1, e4 = z1, V4 = L1, F4 = S1, f4 = q1, j4 = $1, t6 = l0, e6 = {
   langCodeMap: {
     ar: i
   },
-  default: m0
-}, t7 = {
+  default: p0
+}, s7 = {
   ltr: H2,
   shouldFlip: true
-}, h7 = {
-  ltr: g2,
+}, l7 = {
+  ltr: x2,
   shouldFlip: true
-}, e7 = {
-  ltr: k2,
+}, i7 = {
+  ltr: C2,
   shouldFlip: true
-}, L7 = {
+}, k7 = {
   ltr: W2,
   shouldFlip: true
-}, U7 = a5, K7 = e5, o8 = L5, w8 = _5;
-function h9(c, s, o) {
+}, E7 = t5, j7 = r5, n8 = I5, U8 = c3;
+function n9(c, s, o) {
   if (typeof c == "string" || "path" in c)
     return c;
   if ("shouldFlip" in c)
@@ -79,7 +79,7 @@ function h9(c, s, o) {
   const v = s in c.langCodeMap ? c.langCodeMap[s] : c.default;
   return typeof v == "string" || "path" in v ? v : v.ltr;
 }
-function o9(c, s) {
+function v9(c, s) {
   if (typeof c == "string")
     return false;
   if ("langCodeMap" in c) {
@@ -196,6 +196,12 @@ const ObjectPositions = [
   "center"
 ];
 const imagePositionValidator = makeStringTypeValidator(ObjectPositions);
+const AccordionSeparations = [
+  "none",
+  "minimal",
+  "divider",
+  "outline"
+];
 const DebounceInterval = 120;
 const PendingDelay = 500;
 const MenuFooterValue = "cdx-menu-footer-item";
@@ -288,13 +294,13 @@ const _sfc_main$B = defineComponent({
       return (_a = props.lang) != null ? _a : computedLang.value;
     });
     const rootClasses = computed(() => ({
-      "cdx-icon--flipped": overriddenDir.value === "rtl" && overriddenLang.value !== null && o9(props.icon, overriddenLang.value),
+      "cdx-icon--flipped": overriddenDir.value === "rtl" && overriddenLang.value !== null && v9(props.icon, overriddenLang.value),
       ["cdx-icon--".concat(props.size)]: true
     }));
     const resolvedIcon = computed(
       () => {
         var _a, _b;
-        return h9(props.icon, (_a = overriddenLang.value) != null ? _a : "", (_b = overriddenDir.value) != null ? _b : "ltr");
+        return n9(props.icon, (_a = overriddenLang.value) != null ? _a : "", (_b = overriddenDir.value) != null ? _b : "ltr");
       }
     );
     const iconSvg = computed(() => typeof resolvedIcon.value === "string" ? resolvedIcon.value : "");
@@ -535,6 +541,7 @@ function useOptionalModelWrapper(internalValueRef, modelValueRef, emit, eventNam
     }
   });
 }
+const separationValidator = makeStringTypeValidator(AccordionSeparations);
 const _sfc_main$z = defineComponent({
   name: "CdxAccordion",
   components: { CdxButton, CdxIcon },
@@ -556,6 +563,21 @@ const _sfc_main$z = defineComponent({
     actionAlwaysVisible: {
       type: Boolean,
       default: false
+    },
+    /**
+     * Sets the visual style and sometimes size of the accordion.
+     *
+     * - 'none': no divider or outline, size scales with header content.
+     * - 'minimal': no divider or outline, fixed small size.
+     * - 'divider': divider line between mmultiple accordions, size scales with header content.
+     * - 'outline': border around entire accordion, size scales with header content.
+     *
+     * @values 'none', 'minimal', 'divider', 'outline'
+     */
+    separation: {
+      type: String,
+      default: "divider",
+      validator: separationValidator
     },
     /**
      * The icon that will be displayed on the right side of the accordion header when expanded.
@@ -632,7 +654,8 @@ const _sfc_main$z = defineComponent({
       }
     });
     const rootClasses = computed(() => ({
-      "cdx-accordion--has-icon": shouldShowActionButton.value
+      "cdx-accordion--has-icon": shouldShowActionButton.value,
+      ["cdx-accordion--separation-".concat(props.separation)]: true
     }));
     return {
       emitActionButtonClick,
@@ -905,7 +928,7 @@ const _sfc_main$x = defineComponent({
      */
     placeholderIcon: {
       type: [String, Object],
-      default: c6
+      default: t6
     }
   },
   setup: (props) => {
@@ -2211,11 +2234,11 @@ const shift$1 = function(options) {
           limiter = {
             fn: (_ref) => {
               let {
-                x: x2,
+                x: x3,
                 y: y2
               } = _ref;
               return {
-                x: x2,
+                x: x3,
                 y: y2
               };
             }
@@ -3525,7 +3548,7 @@ const _sfc_main$t = defineComponent({
       rootClasses,
       ariaDescription,
       onKeydown,
-      cdxIconClose: v4,
+      cdxIconClose: e4,
       tabIndex,
       tooltipContent,
       textElement
@@ -4165,11 +4188,18 @@ const _sfc_main$q = defineComponent({
     },
     /**
      * URL for the menu item. If provided, the content of the menu item will be wrapped in an
-     * anchor tag.
+     * anchor `<a>` element.
      */
     url: {
       type: String,
       default: ""
+    },
+    /**
+     * Whether to open the URL in a new tab when url is provided.
+     */
+    urlNewTab: {
+      type: Boolean,
+      default: false
     },
     /**
      * Icon for the menu item.
@@ -4294,6 +4324,10 @@ const _sfc_main$q = defineComponent({
       "cdx-menu-item--hide-description-overflow": props.hideDescriptionOverflow
     }));
     const contentTag = computed(() => props.url ? "a" : "span");
+    const linkAttrs = computed(() => props.url && props.urlNewTab ? {
+      target: "_blank",
+      rel: "noopener noreferrer"
+    } : {});
     const title = computed(() => props.label || String(props.value));
     return {
       onMouseMove,
@@ -4303,8 +4337,9 @@ const _sfc_main$q = defineComponent({
       highlightQuery,
       rootClasses,
       contentTag,
+      linkAttrs,
       title,
-      cdxIconCheck: o4
+      cdxIconCheck: l4
     };
   }
 });
@@ -4331,10 +4366,9 @@ function _sfc_render$q(_ctx, _cache, $props, $setup, $data, $options) {
     onClick: _cache[3] || (_cache[3] = (...args) => _ctx.onClick && _ctx.onClick(...args))
   }, [
     renderSlot(_ctx.$slots, "default", {}, () => [
-      (openBlock(), createBlock(resolveDynamicComponent(_ctx.contentTag), {
-        href: _ctx.url ? _ctx.url : void 0,
-        class: "cdx-menu-item__content"
-      }, {
+      (openBlock(), createBlock(resolveDynamicComponent(_ctx.contentTag), mergeProps({
+        href: _ctx.url ? _ctx.url : void 0
+      }, _ctx.url ? _ctx.linkAttrs : {}, { class: "cdx-menu-item__content" }), {
         default: withCtx(() => {
           var _a, _b, _c, _d, _e, _f;
           return [
@@ -4438,7 +4472,7 @@ function _sfc_render$q(_ctx, _cache, $props, $setup, $data, $options) {
         }),
         _: 1
         /* STABLE */
-      }, 8, ["href"]))
+      }, 16, ["href"]))
     ])
   ], 42, _hoisted_1$o);
 }
@@ -4555,7 +4589,7 @@ const _sfc_main$o = defineComponent({
     CdxProgressBar
   },
   /**
-   * Attributes, besides class and style, will be passed to the <ul> element.
+   * Attributes, besides class and style, will be passed to the `<ul>` element.
    */
   inheritAttrs: false,
   props: {
@@ -5549,21 +5583,21 @@ const _sfc_main$n = defineComponent({
       default: false
     },
     /**
-     * An icon at the start of the input element. Similar to a `::before` pseudo-element.
+     * An icon at the start of the `<input>` element. Similar to a `::before` pseudo-element.
      */
     startIcon: {
       type: [String, Object],
       default: void 0
     },
     /**
-     * An icon at the end of the input element. Similar to an `::after` pseudo-element.
+     * An icon at the end of the `<input>` element. Similar to an `::after` pseudo-element.
      */
     endIcon: {
       type: [String, Object],
       default: void 0
     },
     /**
-     * Add a clear button at the end of the input element.
+     * Add a clear button at the end of the `<input>` element.
      *
      * When the clear button is pressed, the input's value is set to an empty string.
      * The clear button is displayed when input text is present.
@@ -5710,7 +5744,7 @@ const _sfc_main$n = defineComponent({
       onBlur,
       onInvalid,
       shouldPreventDefault,
-      cdxIconClear: l4
+      cdxIconClear: v4
     };
   },
   // Public methods
@@ -5718,7 +5752,7 @@ const _sfc_main$n = defineComponent({
   // won't be picked up by vue-docgen
   methods: {
     /**
-     * Focus the component's input element.
+     * Focus the component's `<input>` element.
      *
      * @public
      */
@@ -5727,7 +5761,7 @@ const _sfc_main$n = defineComponent({
       input.focus();
     },
     /**
-     * Blur the component's input element.
+     * Blur the component's `<input>` element.
      *
      * @public
      */
@@ -5736,8 +5770,8 @@ const _sfc_main$n = defineComponent({
       input.blur();
     },
     /**
-     * Check the validity of the input element according to its constraint attributes. Emits an
-     * 'invalid' event if the input is invalid. See:
+     * Check the validity of the `<input>` element according to its constraint attributes.
+     * Emits an 'invalid' event if the input is invalid. See:
      * https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/checkValidity
      *
      * @public
@@ -5748,7 +5782,7 @@ const _sfc_main$n = defineComponent({
       return input.checkValidity();
     },
     /**
-     * Check the validity of the input element and report it as a pop up on the UI. See:
+     * Check the validity of the `<input>` element and report it as a pop up on the UI. See:
      * https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/reportValidity
      *
      * @public
@@ -5760,7 +5794,7 @@ const _sfc_main$n = defineComponent({
       return input.reportValidity();
     },
     /**
-     * Set custom validity and message for the input element. See:
+     * Set custom validity and message for the `<input>` element. See:
      * https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/setCustomValidity
      *
      * @public
@@ -6130,7 +6164,7 @@ const _sfc_main$m = defineComponent({
       onKeydown,
       onButtonClick,
       onButtonMousedown,
-      cdxIconExpand: y4,
+      cdxIconExpand: f4,
       rootClasses,
       rootStyle,
       otherAttrs
@@ -6549,7 +6583,7 @@ const _sfc_main$l = defineComponent({
       close,
       onBackdropClick,
       onBackdropMouseDown,
-      cdxIconClose: v4,
+      cdxIconClose: e4,
       labelId,
       rootClasses,
       backdrop,
@@ -6783,10 +6817,10 @@ function _sfc_render$l(_ctx, _cache, $props, $setup, $data, $options) {
 }
 const Dialog = /* @__PURE__ */ _export_sfc(_sfc_main$l, [["render", _sfc_render$l]]);
 const iconMap$2 = {
-  notice: v6,
-  error: k4,
-  warning: A3,
-  success: o8
+  notice: e6,
+  error: F4,
+  warning: C3,
+  success: n8
 };
 const _sfc_main$k = defineComponent({
   name: "CdxMessage",
@@ -6931,7 +6965,7 @@ const _sfc_main$k = defineComponent({
       leaveActiveClass,
       computedIcon,
       onDismiss,
-      cdxIconClose: v4
+      cdxIconClose: e4
     };
   }
 });
@@ -7322,7 +7356,7 @@ const _sfc_main$i = defineComponent({
       placeholderStyles,
       handleError,
       handleLoad,
-      cdxIconImage: J4,
+      cdxIconImage: j4,
       iconSizeClass,
       placeholderClasses
     };
@@ -7371,10 +7405,10 @@ function _sfc_render$i(_ctx, _cache, $props, $setup, $data, $options) {
 }
 const Image$1 = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["render", _sfc_render$i]]);
 const iconMap$1 = {
-  notice: v6,
-  error: k4,
-  warning: A3,
-  success: o8
+  notice: e6,
+  error: F4,
+  warning: C3,
+  success: n8
 };
 const _sfc_main$h = defineComponent({
   name: "CdxInfoChip",
@@ -7533,6 +7567,10 @@ const _sfc_main$g = defineComponent({
       type: String,
       default: "default",
       validator: statusValidator$5
+    },
+    readonly: {
+      type: Boolean,
+      default: false
     }
   },
   emits: [
@@ -7641,6 +7679,10 @@ const _sfc_main$g = defineComponent({
       emit("input", newVal);
     }
     function onInputFocus(event) {
+      if (props.readonly) {
+        emit("focus", event);
+        return;
+      }
       isActive.value = true;
       const hasInput = computedInputValue.value !== null && computedInputValue.value !== "";
       const hasMenuItems = !!(props.menuItems.length > 0 || slots["no-results"]);
@@ -7655,7 +7697,7 @@ const _sfc_main$g = defineComponent({
       emit("blur", event);
     }
     function onKeydown(e) {
-      if (!menu.value || computedDisabled.value || props.menuItems.length === 0 && !slots["no-results"] || e.key === " ") {
+      if (props.readonly || !menu.value || computedDisabled.value || props.menuItems.length === 0 && !slots["no-results"] || e.key === " ") {
         return;
       }
       menu.value.delegateKeyNavigation(e);
@@ -7730,14 +7772,16 @@ function _sfc_render$g(_ctx, _cache, $props, $setup, $data, $options) {
         "aria-expanded": _ctx.expanded,
         "aria-activedescendant": _ctx.highlightedId,
         disabled: _ctx.computedDisabled,
+        readonly: _ctx.readonly,
         status: _ctx.computedStatus,
         "onUpdate:modelValue": _ctx.onUpdateInput,
         onChange: _cache[1] || (_cache[1] = ($event) => _ctx.$emit("change", $event)),
         onFocus: _ctx.onInputFocus,
         onBlur: _ctx.onInputBlur,
         onKeydown: _ctx.onKeydown
-      }), null, 16, ["modelValue", "aria-controls", "aria-expanded", "aria-activedescendant", "disabled", "status", "onUpdate:modelValue", "onFocus", "onBlur", "onKeydown"]),
-      createVNode(_component_cdx_menu, mergeProps({
+      }), null, 16, ["modelValue", "aria-controls", "aria-expanded", "aria-activedescendant", "disabled", "readonly", "status", "onUpdate:modelValue", "onFocus", "onBlur", "onKeydown"]),
+      !_ctx.readonly ? (openBlock(), createBlock(_component_cdx_menu, mergeProps({
+        key: 0,
         id: _ctx.menuId,
         ref: "menu",
         selected: _ctx.selection,
@@ -7756,7 +7800,7 @@ function _sfc_render$g(_ctx, _cache, $props, $setup, $data, $options) {
         ]),
         _: 3
         /* FORWARDED */
-      }, 16, ["id", "selected", "expanded", "menu-items"])
+      }, 16, ["id", "selected", "expanded", "menu-items"])) : createCommentVNode("v-if", true)
     ],
     6
     /* CLASS, STYLE */
@@ -8606,7 +8650,7 @@ const _sfc_main$c = defineComponent({
       showFooter,
       footerActionsClasses,
       close,
-      cdxIconClose: v4,
+      cdxIconClose: e4,
       floating,
       floatingStyles,
       arrowRef,
@@ -8999,7 +9043,7 @@ const _sfc_main$9 = defineComponent({
     CdxTextInput
   },
   /**
-   * Attributes, besides class, will be passed to the TextInput's input element.
+   * Attributes, besides class, will be passed to the TextInput's `<input>` element.
    */
   inheritAttrs: false,
   props: {
@@ -9134,14 +9178,14 @@ const _sfc_main$9 = defineComponent({
       rootStyle,
       otherAttrs,
       handleSubmit,
-      searchIcon: U7,
+      searchIcon: E7,
       translatedSearchButtonLabel,
       useButtonOrLabel
     };
   },
   methods: {
     /**
-     * Focus the component's input element.
+     * Focus the component's `<input>` element.
      *
      * @public
      */
@@ -9269,7 +9313,7 @@ const _sfc_main$8 = defineComponent({
       default: () => ({})
     },
     /**
-     * An icon at the start of the select element
+     * An icon at the start of the `<select>` element
      * displayed when no selection has been made.
      */
     defaultIcon: {
@@ -9398,7 +9442,7 @@ const _sfc_main$8 = defineComponent({
       onClick,
       onKeydown,
       startIcon,
-      cdxIconExpand: y4
+      cdxIconExpand: f4
     };
   }
 });
@@ -9562,10 +9606,10 @@ const _sfc_main$7 = defineComponent({
       btnLabelPrev,
       btnLabelLast,
       wrappedItemsPerPage,
-      cdxIconPrevious: L7,
-      cdxIconNext: e7,
-      cdxIconMoveFirst: t7,
-      cdxIconMoveLast: h7
+      cdxIconPrevious: k7,
+      cdxIconNext: i7,
+      cdxIconMoveFirst: s7,
+      cdxIconMoveLast: l7
     };
   }
 });
@@ -9671,9 +9715,9 @@ const CdxTablePager = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["render", _sfc_
 const tableTextAlignmentsValidator = makeStringTypeValidator(TableTextAlignments);
 const paginationPositionValidator = makeStringTypeValidator(TablePaginationPositions);
 const iconMap = {
-  none: K7,
-  asc: w8,
-  desc: g4
+  none: j7,
+  asc: U8,
+  desc: V4
 };
 const sortDirectionMap = {
   none: "none",
@@ -10076,7 +10120,7 @@ const _sfc_main$6 = defineComponent({
       }
       return {
         // Don't assign a class for the default value 'start'. Instead, we'll set
-        // text-align: left on the td and th elements.
+        // text-align: left on the `<th>` or `<td>` elements.
         ["cdx-table__table__cell--align-".concat(column.textAlign)]: "textAlign" in column && column.textAlign !== "start",
         "cdx-table__table__cell--has-sort": hasSort
       };
@@ -10786,8 +10830,8 @@ const _sfc_main$4 = defineComponent({
       assignTemplateRefForTabButton,
       scrollTabs,
       focusActiveTab,
-      cdxIconPrevious: L7,
-      cdxIconNext: e7
+      cdxIconPrevious: k7,
+      cdxIconNext: i7
     };
   },
   /**
@@ -11069,14 +11113,14 @@ const _sfc_main$3 = defineComponent({
       default: false
     },
     /**
-     * An icon at the start of the textarea element. Similar to a `::before` pseudo-element.
+     * An icon at the start of the `<textarea>` element. Similar to a `::before` pseudo-element.
      */
     startIcon: {
       type: [String, Object],
       default: void 0
     },
     /**
-     * An icon at the end of the textarea element. Similar to an `::after` pseudo-element.
+     * An icon at the end of the `<textarea>` element. Similar to an `::after` pseudo-element.
      */
     endIcon: {
       type: [String, Object],
@@ -11203,7 +11247,7 @@ const _sfc_main$3 = defineComponent({
   // won't be picked up by vue-docgen
   methods: {
     /**
-     * Focus the component's textarea element.
+     * Focus the component's `<textarea>` element.
      *
      * @public
      */
@@ -11212,7 +11256,7 @@ const _sfc_main$3 = defineComponent({
       textarea.focus();
     },
     /**
-     * Blur the component's textarea element.
+     * Blur the component's `<textarea>` element.
      *
      * @public
      */
@@ -11221,8 +11265,8 @@ const _sfc_main$3 = defineComponent({
       textarea.blur();
     },
     /**
-     * Check the validity of the textarea element according to its constraint attributes. Emits
-     * an 'invalid' event if the textarea is invalid. See:
+     * Check the validity of the `<textarea>` element according to its constraint attributes.
+     * Emits an 'invalid' event if the textarea is invalid. See:
      * https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/checkValidity
      *
      * @public
@@ -11233,7 +11277,7 @@ const _sfc_main$3 = defineComponent({
       return textarea.checkValidity();
     },
     /**
-     * Check the validity of the textarea element and report it as a pop up on the UI. See:
+     * Check the validity of the `<textarea>` element and report it as a pop up on the UI. See:
      * https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/reportValidity
      *
      * @public
@@ -11245,7 +11289,7 @@ const _sfc_main$3 = defineComponent({
       return textarea.reportValidity();
     },
     /**
-     * Set custom validity and message for the textarea element. See:
+     * Set custom validity and message for the `<textarea>` element. See:
      * https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/setCustomValidity
      *
      * @public
@@ -11450,7 +11494,7 @@ const _sfc_main$1 = defineComponent({
   name: "CdxToggleSwitch",
   components: { CdxLabel },
   /**
-   * The input element will inherit attributes, not the root element.
+   * The `<input>` element will inherit attributes, not the root element.
    */
   inheritAttrs: false,
   props: {
@@ -11464,7 +11508,7 @@ const _sfc_main$1 = defineComponent({
       default: false
     },
     /**
-     * HTML "value" attribute to assign to the input element.
+     * HTML "value" attribute to assign to the `<input>` element.
      *
      * Required for groups of ToggleSwitches. Can be omitted for single true/false switches.
      */
@@ -11609,7 +11653,7 @@ const _sfc_main = defineComponent({
     CdxSearchInput
   },
   /**
-   * Attributes, besides class, will be passed to the TextInput's input element.
+   * Attributes, besides class, will be passed to the TextInput's `<input>` element.
    */
   inheritAttrs: false,
   props: {
@@ -11996,13 +12040,13 @@ const _sfc_main = defineComponent({
       onSubmit,
       onKeydown,
       MenuFooterValue,
-      articleIcon: D3,
+      articleIcon: P3,
       translatedSearchResultsLabel
     };
   },
   methods: {
     /**
-     * Focus the component's input element.
+     * Focus the component's `<input>` element.
      *
      * @public
      */

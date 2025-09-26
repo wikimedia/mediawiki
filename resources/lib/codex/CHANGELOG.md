@@ -1,3 +1,32 @@
+# 2.3.2 / 2025-09-25
+
+## Styles
+- styles, Grid: Use `gap` shorthand for both, rows and columns (Volker E.)
+- styles, Grid: Refining container mixin with limiting to row gap params (Volker E.)
+- Accordion: build in more styles (Derek Torsani)
+- Accordion: fix small design details (Derek Torsani)
+- Accordion: Use Flexbox instead of positioning for action button (Eric Gardner)
+
+## Icons
+- icons: Add 'merge' and 'update' icons (Volker E.)
+- icons: Optimize and fix 'bookmarkList' icon (Thiemo Kreuz)
+- icons: SVGO optimize recent icons after addition (Volker E.)
+
+## Code
+- Codex: Add urlNewTab prop to support opening links in new tabs (Aditya Kumar)
+- Lookup: add readonly state and block menu interaction (spushpit)
+
+## Build
+- build: Deduplicate code for building mode outputs (Roan Kattouw)
+- build: Fix favicon paths in VitePress config (Volker E.)
+- .nvmrc: Update version of Node 20 to 20.19.5 (James D. Forrester)
+
+## Documentation
+- docs: Fix branch name and add Jest section to core (Volker E.)
+- docs: Apply HTML "`<tagged-element>` element" writing convention (Volker E.)
+- docs: clean up documentation (Vanshika)
+- Fix a couple dead links in the Codex documentation. (Brooke Vibber)
+
 # 2.3.1 / 2025-08-21
 
 ## Styles
@@ -797,7 +826,7 @@ Dummy release to fix a publishing problem with 1.19.0.
 - This release deprecates the `initialInputValue` prop of the Lookup component.
   This prop will be removed in the next major release of Codex (v2.0). In the
   meantime it is recommended that users stop using this prop in their own code;
-  the new `inputValue` prop should be used instead. See the Lookup component's
+  the new `inputValue` prop should be used instead. Refer to the Lookup component's
   documentation for more information.
 
 ## Features
