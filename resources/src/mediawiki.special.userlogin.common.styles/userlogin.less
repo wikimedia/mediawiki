@@ -1,14 +1,13 @@
 /* User login and signup forms */
 @import 'mediawiki.skin.variables.less';
-@import 'mediawiki.mixins.less';
 
-@defaultFormWidth: 290px;
+@width-login-form: @size-2800;
 
 .mw-htmlform {
 	box-sizing: border-box;
 
 	@media ( min-width: @min-width-breakpoint-tablet ) {
-		width: @defaultFormWidth;
+		width: @width-login-form;
 	}
 }
 
