@@ -140,6 +140,7 @@ $wgAutoloadClasses += [
 	'MediaWiki\\Tests\\OutputTransform\\DummyDOMTransformStage' => "$testDir/phpunit/includes/OutputTransform/DummyDOMTransformStage.php",
 	'MediaWiki\\Tests\\OutputTransform\\TestUtils' => "$testDir/phpunit/includes/OutputTransform/TestUtils.php",
 	'MediaWiki\\Tests\\OutputTransform\\OutputTransformStageTestBase' => "$testDir/phpunit/includes/OutputTransform/OutputTransformStageTestBase.php",
+	'MediaWiki\\Tests\\OutputTransform\\Stages\\HandleTOCMarkersTestCommon' => "$testDir/phpunit/includes/OutputTransform/Stages/HandleTOCMarkersTestCommon.php",
 
 	# tests/phpunit/includes/page
 	'LinkCacheTestTrait' => "$testDir/phpunit/includes/page/LinkCacheTestTrait.php",
