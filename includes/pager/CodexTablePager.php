@@ -366,7 +366,6 @@ abstract class CodexTablePager extends TablePager {
 		return Html::rawElement(
 			'form',
 			[
-				'id' => 'cdx-table-pager-limit-form',
 				'method' => 'get',
 				'action' => wfScript(),
 				'class' => 'cdx-table-pager__limit-form'

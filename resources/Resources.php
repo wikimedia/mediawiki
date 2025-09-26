@@ -1002,7 +1002,12 @@ return [
 		],
 	],
 	'mediawiki.pager.codex' => [
-		'scripts' => 'resources/src/mediawiki.pager.codex/codexTablePager.js',
+		'localBasePath' => MW_INSTALL_PATH . '/resources/src/mediawiki.pager.codex',
+		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.pager.codex",
+		'packageFiles' => [
+			'init.js',
+			'limitSelectors.js',
+		],
 	],
 	'mediawiki.pager.codex.styles' => [
 		'class' => CodexModule::class,
