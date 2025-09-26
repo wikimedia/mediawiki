@@ -25,9 +25,11 @@
 
 namespace MediaWiki\Api;
 
+use MediaWiki\Deferred\LinksUpdate\InterwikiLinksTable;
 use MediaWiki\Title\Title;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * This gives links pointing to the given interwiki
@@ -35,8 +37,12 @@ use Wikimedia\ParamValidator\TypeDef\IntegerDef;
  */
 class ApiQueryIWBacklinks extends ApiQueryGeneratorBase {
 
-	public function __construct( ApiQuery $query, string $moduleName ) {
+	private IConnectionProvider $dbProvider;
+
+	public function __construct( ApiQuery $query, string $moduleName, IConnectionProvider $dbProvider ) {
 		parent::__construct( $query, $moduleName, 'iwbl' );
+
+		$this->dbProvider = $dbProvider;
 	}
 
 	public function execute() {
@@ -66,9 +72,11 @@ class ApiQueryIWBacklinks extends ApiQueryGeneratorBase {
 			);
 		}
 
+		$db = $this->dbProvider->getReplicaDatabase( InterwikiLinksTable::VIRTUAL_DOMAIN, 'api' );
+		$this->getQueryBuilder()->connection( $db );
+
 		if ( $params['continue'] !== null ) {
 			$cont = $this->parseContinueParamOrDie( $params['continue'], [ 'string', 'string', 'int' ] );
-			$db = $this->getDB();
 			$op = $params['dir'] == 'descending' ? '<=' : '>=';
 			$this->addWhere( $db->buildComparison( $op, [
 				'iwl_prefix' => $cont[0],

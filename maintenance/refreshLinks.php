@@ -20,6 +20,7 @@
 
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Deferred\LinksUpdate\ExternalLinksTable;
+use MediaWiki\Deferred\LinksUpdate\InterwikiLinksTable;
 use MediaWiki\Deferred\LinksUpdate\TemplateLinksTable;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Maintenance\Maintenance;
@@ -332,6 +333,7 @@ class RefreshLinks extends Maintenance {
 		$domains = [
 			'templatelinks' => TemplateLinksTable::VIRTUAL_DOMAIN,
 			'externallinks' => ExternalLinksTable::VIRTUAL_DOMAIN,
+			'iwlinks' => InterwikiLinksTable::VIRTUAL_DOMAIN,
 		];
 
 		foreach ( $linksTables as $table => $field ) {

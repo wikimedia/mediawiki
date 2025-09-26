@@ -157,6 +157,7 @@ class ApiQuery extends ApiBase {
 			'class' => ApiQueryIWLinks::class,
 			'services' => [
 				'UrlUtils',
+				'ConnectionProvider',
 			]
 		],
 		'langlinks' => [
@@ -402,6 +403,9 @@ class ApiQuery extends ApiBase {
 		],
 		'iwbacklinks' => [
 			'class' => ApiQueryIWBacklinks::class,
+			'services' => [
+				'ConnectionProvider',
+			]
 		],
 		'langbacklinks' => [
 			'class' => ApiQueryLangBacklinks::class,

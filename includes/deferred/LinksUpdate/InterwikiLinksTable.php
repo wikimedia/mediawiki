@@ -15,6 +15,8 @@ use MediaWiki\Parser\ParserOutputLinkTypes;
  * @since 1.38
  */
 class InterwikiLinksTable extends LinksTable {
+	public const VIRTUAL_DOMAIN = 'virtual-interwikilinks';
+
 	/** @var array */
 	private $newLinks = [];
 
@@ -109,5 +111,10 @@ class InterwikiLinksTable extends LinksTable {
 			'iwl_prefix' => $prefix,
 			'iwl_title' => $title
 		] );
+	}
+
+	/** @inheritDoc */
+	protected function getVirtualDomain() {
+		return self::VIRTUAL_DOMAIN;
 	}
 }
