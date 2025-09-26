@@ -15,6 +15,7 @@ use MediaWiki\Parser\ParserOutputLinkTypes;
  * @since 1.45
  */
 class ExistenceLinksTable extends GenericPageLinksTable {
+	public const VIRTUAL_DOMAIN = 'virtual-existencelinks';
 
 	public function setParserOutput( ParserOutput $parserOutput ) {
 		$this->newLinks = [];
@@ -56,7 +57,13 @@ class ExistenceLinksTable extends GenericPageLinksTable {
 		return 'exl_target_id';
 	}
 
+	/** @inheritDoc */
 	protected function linksTargetNormalizationStage(): int {
 		return SCHEMA_COMPAT_NEW;
+	}
+
+	/** @inheritDoc */
+	protected function virtualDomain(): string {
+		return self::VIRTUAL_DOMAIN;
 	}
 }

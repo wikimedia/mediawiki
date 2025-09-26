@@ -30,6 +30,7 @@ namespace MediaWiki\Cache;
 use Iterator;
 use LogicException;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Deferred\LinksUpdate\ExistenceLinksTable;
 use MediaWiki\Deferred\LinksUpdate\ImageLinksTable;
 use MediaWiki\Deferred\LinksUpdate\TemplateLinksTable;
 use MediaWiki\HookContainer\HookContainer;
@@ -274,13 +275,13 @@ class BacklinkCache {
 	 * @return SelectQueryBuilder
 	 */
 	private function initQueryBuilderForTable( string $table, string $select ): SelectQueryBuilder {
-		if ( $table === 'templatelinks' ) {
-			$domain = TemplateLinksTable::VIRTUAL_DOMAIN;
-		} elseif ( $table === 'imagelinks' ) {
-			$domain = ImageLinksTable::VIRTUAL_DOMAIN;
-		} else {
-			$domain = false;
-		}
+		$domainMap = [
+			'templatelinks' => TemplateLinksTable::VIRTUAL_DOMAIN,
+			'imagelinks' => ImageLinksTable::VIRTUAL_DOMAIN,
+			'existencelinks' => ExistenceLinksTable::VIRTUAL_DOMAIN,
+		];
+		$domain = $domainMap[$table] ?? false;
+
 		$prefix = $this->getPrefix( $table );
 		$queryBuilder = $this->dbProvider->getReplicaDatabase( $domain )->newSelectQueryBuilder();
 		$joinPageTable = $select !== 'ids';

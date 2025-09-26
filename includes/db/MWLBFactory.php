@@ -23,6 +23,7 @@
 
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Debug\MWDebug;
+use MediaWiki\Deferred\LinksUpdate\ExistenceLinksTable;
 use MediaWiki\Deferred\LinksUpdate\ExternalLinksTable;
 use MediaWiki\Deferred\LinksUpdate\ImageLinksTable;
 use MediaWiki\Deferred\LinksUpdate\TemplateLinksTable;
@@ -59,6 +60,7 @@ class MWLBFactory {
 		ExternalLinksTable::VIRTUAL_DOMAIN,
 		TemplateLinksTable::VIRTUAL_DOMAIN,
 		ImageLinksTable::VIRTUAL_DOMAIN,
+		ExistenceLinksTable::VIRTUAL_DOMAIN,
 	];
 
 	/**
