@@ -597,14 +597,40 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		}
 
 		// warning header for non-standard workflows (e.g. security reauthentication)
-		if (
-			!$this->isSignup() &&
-			$this->getUser()->isRegistered() &&
-			!$this->getUser()->isTemp() &&
-			$this->authAction !== AuthManager::ACTION_LOGIN_CONTINUE
-		) {
-			$reauthMessage = $this->securityLevel ? 'userlogin-reauth' : 'userlogin-loggedin';
-			$submitStatus->warning( $reauthMessage, $this->getUser()->getName() );
+		if ( $this->getUser()->isNamed() && !$this->isContinued() ) {
+			if ( !$this->isSignup() && $this->securityLevel ) {
+				$submitStatus->warning( 'userlogin-reauth', $this->getUser()->getName() );
+			} else {
+				// User is accessing the login or signup page while already logged in.
+				// Add a big warning and a button to leave this page (T284927),
+				// but allow using the form if they really want to.
+				$submitStatus->warning(
+					$this->isSignup() ? 'createacct-loggedin' : 'userlogin-loggedin',
+					$this->getUser()->getName()
+				);
+				$form->addHeaderHtml(
+					'<div class="cdx-field"><div class="cdx-field__control">' .
+					Html::element( 'a',
+						[
+							'class' => 'cdx-button cdx-button--fake-button cdx-button--fake-button--enabled ' .
+								'cdx-button--action-progressive cdx-button--weight-primary mw-htmlform-submit',
+							'href' => ( Title::newFromText( $this->mReturnTo ) ?: Title::newMainPage() )
+								->createFragmentTarget( $this->mReturnToAnchor )->getLinkURL( $this->mReturnToQuery ),
+						],
+						$this->msg(
+							$this->isSignup() ? 'createacct-loggedin-continue-as' : 'userlogin-loggedin-continue-as',
+							$this->getUser()->getName()
+						)->text()
+					) .
+					'</div></div>' .
+					Html::element( 'h2', [], $this->msg(
+						$this->isSignup() ? 'createacct-loggedin-heading' : 'userlogin-loggedin-heading'
+					)->text() ) .
+					$this->msg(
+						$this->isSignup() ? 'createacct-loggedin-prompt' : 'userlogin-loggedin-prompt'
+					)->parseAsBlock()
+				);
+			}
 		}
 
 		$formHtml = $form->getHTML( $submitStatus );
@@ -638,7 +664,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		}
 		$formBlock = Html::rawElement( 'div', [ 'id' => 'userloginForm' ], $formHtml );
 		$formAndBenefits = $formBlock;
-		if ( $this->isSignup() && $this->showExtraInformation() ) {
+		if ( $this->isSignup() && $this->showExtraInformation() && !$this->getUser()->isNamed() ) {
 			$benefitsContainerHtml = null;
 			$info = [
 				'context' => $this->getContext(),
@@ -1303,6 +1329,16 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		// is other submit buttons, for redirect flows)
 		if ( !$this->needsSubmitButton( $requests ) ) {
 			unset( $formDescriptor['createaccount'], $formDescriptor['loginattempt'] );
+		}
+
+		if ( $this->getUser()->isNamed() && !$this->isContinued() ) {
+			// Remove 'primary' flag from the default form submission button if the user is already logged in
+			if ( isset( $formDescriptor['createaccount'] ) ) {
+				$formDescriptor['createaccount']['flags'] = [ 'progressive' ];
+			}
+			if ( isset( $formDescriptor['loginattempt'] ) ) {
+				$formDescriptor['loginattempt']['flags'] = [ 'progressive' ];
+			}
 		}
 
 		if ( !$this->isSignup() ) {
