@@ -18,6 +18,18 @@
 	font-size: @font-size-small;
 	background-color: @background-color-backdrop-dark;
 	color: @color-inverted;
+	// Put temporary user banner above `.mw-notification-area`, which currently
+	// features non-design-system `z-index: 10000;`.
+	// Create a new stacking context for selected DOM children on body:
+	// - 3. Temporary user banner: `( @z-index-top + 2 )`.
+	// - 2. `.mw-notification-area-overlay`, the container: `@z-index-top`.
+	// - 2.1. `.mw-notification-area` – the actual notification area:
+	// 		  Inherited`z-index: 10000`: now `( @z-index-top + 1 )`.
+	// - 1. `#teleport-target`: `@z-index-overlay` equal to 450.
+	// Refer to T404122.
+	// TODO: Consider lowering the `z-index` of `.mw-notification-area` and its children instead.
+	// 		 And rely on named Codex `@z-index-*` tokens instead.
+	z-index: ( @z-index-top + 2 );
 }
 
 .mw-temp-user-banner-username {

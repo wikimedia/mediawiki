@@ -9,6 +9,16 @@
 	/* Avoid horizontal scrollbar on fade in and on fade out */
 	overflow: hidden;
 	pointer-events: none;
+	// Create a new stacking context for selected DOM children on body:
+	// - 3. Temporary user banner: `( @z-index-top + 2 )`.
+	// - 2. `.mw-notification-area-overlay`, the container: `@z-index-top`.
+	// - 2.1. `.mw-notification-area` – the actual notification area:
+	// 		  Inherited`z-index: 10000`: now `( @z-index-top + 1 )`.
+	// - 1. `#teleport-target`: `@z-index-overlay` equal to 450.
+	// Refer to T404122.
+	// TODO: Consider lowering the `z-index` of `.mw-notification-area` and its children instead.
+	// 		 And rely on named Codex `@z-index-*` tokens instead.
+	z-index: @z-index-top;
 }
 
 .mw-notification-area {
@@ -18,7 +28,9 @@
 	padding: 1em;
 	width: 20em;
 	line-height: 1.35;
-	z-index: 10000;
+	// Original value from 13y ago was `10000`. Keep it that way to avoid conflicts.
+
+	z-index: ( @z-index-top + 1 );
 }
 
 .mw-notification {
