@@ -151,6 +151,7 @@ For notes on 1.44.x and older releases, see HISTORY.
 * Updated codex, codex-design-tokens and codex-icons
   from v1.23.0 to v2.3.2.
 * Updated composer/semver from 3.4.3 to 3.4.4.
+* Updated mck89/peast from v1.17.0 to 1.17.2.
 * Updated psr/container from 1.1.2 to 2.0.2.
 * Updated symfony/polyfill-php82 from 1.32.0 to 1.33.0
 * Updated symfony/polyfill-php83 from 1.32.0 to 1.33.0
@@ -159,8 +160,8 @@ For notes on 1.44.x and older releases, see HISTORY.
 * Updated wikimedia/php-session-serializer from 3.0.1 to 3.0.2.
 * Updated wikimedia/request-timeout from 2.0.2 to 3.0.0.
 * Updated wikimedia/shellbox from 4.2.0 to 4.3.0.
+* Updated wikimedia/xmp-reader from 0.9.4 to 0.10.1.
 * Updated OOUI from v0.51.7 to v0.53.0.
-* Updated mck89/peast from v1.17.0 to 1.17.2.
 * …
 
 ===== Changed development-only external libraries =====
