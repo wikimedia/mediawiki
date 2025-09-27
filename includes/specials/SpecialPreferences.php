@@ -20,6 +20,7 @@
 
 namespace MediaWiki\Specials;
 
+use LogicException;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Exception\PermissionsError;
 use MediaWiki\Html\Html;
@@ -106,7 +107,7 @@ class SpecialPreferences extends SpecialPage {
 
 		// Load the user from the primary DB to reduce CAS errors on double post (T95839)
 		if ( $this->getRequest()->wasPosted() ) {
-			$user = $this->getUser()->getInstanceForUpdate() ?: $this->getUser();
+			$user = $this->getUser()->getInstanceFromPrimary() ?? $this->getUser();
 		} else {
 			$user = $this->getUser();
 		}
@@ -182,9 +183,9 @@ class SpecialPreferences extends SpecialPage {
 			throw new PermissionsError( 'editmyoptions' );
 		}
 
-		$user = $this->getUser()->getInstanceForUpdate();
+		$user = $this->getUser()->getInstanceFromPrimary() ?? throw new LogicException( 'No user' );
 		$this->userOptionsManager->resetAllOptions( $user );
-		$user->saveSettings();
+		$this->userOptionsManager->saveOptions( $user );
 
 		// Set session data for the success message
 		$this->getRequest()->getSession()->set( 'specialPreferencesSaveSuccess', 1 );

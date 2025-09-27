@@ -20,6 +20,7 @@
 
 namespace MediaWiki\Specials;
 
+use LogicException;
 use MediaWiki\Exception\PermissionsError;
 use MediaWiki\Exception\ReadOnlyError;
 use MediaWiki\Exception\UserNotLoggedIn;
@@ -187,7 +188,7 @@ class SpecialConfirmEmail extends UnlistedSpecialPage {
 		// Enforce permissions, user blocks, and rate limits
 		$this->authorizeAction( 'confirmemail' )->throwErrorPageError();
 
-		$userLatest = $user->getInstanceForUpdate();
+		$userLatest = $user->getInstanceFromPrimary() ?? throw new LogicException( 'No user' );
 		$userLatest->confirmEmail();
 		$userLatest->saveSettings();
 		$message = $this->getUser()->isNamed() ? 'confirmemail_loggedin' : 'confirmemail_success';

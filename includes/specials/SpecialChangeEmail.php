@@ -20,6 +20,7 @@
 
 namespace MediaWiki\Specials;
 
+use LogicException;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Exception\ErrorPageError;
 use MediaWiki\Exception\PermissionsError;
@@ -196,7 +197,7 @@ class SpecialChangeEmail extends FormSpecialPage {
 			}
 		}
 
-		$userLatest = $user->getInstanceForUpdate();
+		$userLatest = $user->getInstanceFromPrimary() ?? throw new LogicException( 'No user' );
 		$status = $userLatest->setEmailWithConfirmation( $newAddr );
 		if ( !$status->isGood() ) {
 			return $status;

@@ -59,7 +59,7 @@ class EmailNotificationSecondaryAuthenticationProvider
 			// TODO show 'confirmemail_oncreate'/'confirmemail_sendfailed' message
 			$this->dbProvider->getPrimaryDatabase()->onTransactionCommitOrIdle(
 				function () use ( $user ) {
-					$user = $user->getInstanceForUpdate();
+					$user = $user->getInstanceFromPrimary() ?? $user;
 					$status = $user->sendConfirmationMail();
 					$user->saveSettings();
 					if ( !$status->isGood() ) {

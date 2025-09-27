@@ -20,6 +20,7 @@
 
 namespace MediaWiki\Specials;
 
+use LogicException;
 use MediaWiki\SpecialPage\UnlistedSpecialPage;
 use MediaWiki\User\UserFactory;
 use Profiler;
@@ -81,7 +82,7 @@ class SpecialEmailInvalidate extends UnlistedSpecialPage {
 			return;
 		}
 
-		$userLatest = $user->getInstanceForUpdate();
+		$userLatest = $user->getInstanceFromPrimary() ?? throw new LogicException( 'No user' );
 		$userLatest->invalidateEmail();
 		$userLatest->saveSettings();
 		$this->getOutput()->addWikiMsg( 'confirmemail_invalidated' );
