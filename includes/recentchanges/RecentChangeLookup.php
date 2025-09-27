@@ -38,4 +38,12 @@ interface RecentChangeLookup {
 	 * @return string[]
 	 */
 	public function getPrimarySources(): array;
+
+	/**
+	 * Check if a recent change is from a primary source
+	 *
+	 * @param RecentChange $rc
+	 * @return bool
+	 */
+	public function isFromPrimarySource( RecentChange $rc ): bool;
 }
