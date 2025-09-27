@@ -2,6 +2,7 @@
 
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Html\FormOptions;
+use MediaWiki\MainConfigNames;
 use MediaWiki\RecentChanges\ChangesListBooleanFilterGroup;
 use MediaWiki\RecentChanges\ChangesListFilterGroup;
 use MediaWiki\RecentChanges\ChangesListFilterGroupContainer;
@@ -150,6 +151,42 @@ class ChangesListFilterGroupContainerTest extends MediaWikiIntegrationTestCase {
 				],
 				"expectedConflicts" => false,
 			],
+			[
+				"parameters" => [
+					"hidenewpages" => true,
+					"hidepageedits" => true,
+					"hidecategorization" => false,
+					"hidelog" => true,
+					"hidenewuserlog" => true,
+					"hideWikidata" => true,
+					"reviewStatus" => "unpatrolled",
+				],
+				"expectedConflicts" => true,
+			],
+			[
+				"parameters" => [
+					"hidenewpages" => true,
+					"hidepageedits" => true,
+					"hidecategorization" => false,
+					"hidelog" => true,
+					"hidenewuserlog" => true,
+					"hideWikidata" => true,
+					"reviewStatus" => "unpatrolled;manual",
+				],
+				"expectedConflicts" => true,
+			],
+			[
+				"parameters" => [
+					"hidenewpages" => true,
+					"hidepageedits" => true,
+					"hidecategorization" => false,
+					"hidelog" => true,
+					"hidenewuserlog" => true,
+					"hideWikidata" => true,
+					"reviewStatus" => "unpatrolled;auto",
+				],
+				"expectedConflicts" => false,
+			],
 		];
 	}
 
@@ -160,6 +197,7 @@ class ChangesListFilterGroupContainerTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideAreFiltersInConflict
 	 */
 	public function testAreFiltersInConflict( $parameters, $expectedConflicts ) {
+		$this->overrideConfigValue( MainConfigNames::RCWatchCategoryMembership, true );
 		[ $formOpts, $container ] = $this->integratedSetup( $parameters );
 
 		$this->assertSame(

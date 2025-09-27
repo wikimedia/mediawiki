@@ -352,6 +352,17 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'action' => [ 'exclude', 'source', RecentChange::SRC_CATEGORIZE ],
 						'highlight' => [ 'require', 'source', RecentChange::SRC_CATEGORIZE ],
 						'cssClassSuffix' => 'src-mw-categorize',
+						'conflictOptions' => [
+							'globalKey' => 'rcfilters-hidecategorization-conflicts-reviewstatus-global',
+							'forwardKey' => 'rcfilters-hidecategorization-conflicts-reviewstatus',
+							'backwardKey' => 'rcfilters-reviewstatus-conflicts-reviewstatus',
+						],
+						'conflictsWith' => [
+							'reviewStatus' => [
+								'unpatrolled' => [],
+								'manual' => [],
+							],
+						],
 					],
 					[
 						'name' => 'hidelog',
