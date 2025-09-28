@@ -1066,7 +1066,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 				return is_callable( [ $p, 'expects' ] );
 			}
 		);
-		$shouldInvokePostCalled = (bool)array_filter(
+		$shouldInvokePostCalled = array_any(
 			$managerResponses,
 			static function ( $r ) {
 				return $r instanceof AuthenticationResponse &&
@@ -2355,7 +2355,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		$providers = array_merge(
 			$this->preauthMocks, $this->primaryauthMocks, $this->secondaryauthMocks
 		);
-		$shouldInvokePostCalled = (bool)array_filter(
+		$shouldInvokePostCalled = array_any(
 			$managerResponses,
 			static function ( $r ) {
 				return $r instanceof AuthenticationResponse &&
@@ -3417,11 +3417,8 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 			return $req;
 		};
 		$cmpReqs = static function ( $a, $b ) {
-			$ret = strcmp( get_class( $a ), get_class( $b ) );
-			if ( !$ret ) {
-				$ret = strcmp( $a->getUniqueId(), $b->getUniqueId() );
-			}
-			return $ret;
+			return ( get_class( $a ) <=> get_class( $b ) )
+				?: ( $a->getUniqueId() <=> $b->getUniqueId() );
 		};
 
 		$good = StatusValue::newGood();
@@ -3619,11 +3616,8 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 			return $req;
 		};
 		$cmpReqs = static function ( $a, $b ) {
-			$ret = strcmp( get_class( $a ), get_class( $b ) );
-			if ( !$ret ) {
-				$ret = strcmp( $a->getUniqueId(), $b->getUniqueId() );
-			}
-			return $ret;
+			return ( get_class( $a ) <=> get_class( $b ) )
+				?: ( $a->getUniqueId() <=> $b->getUniqueId() );
 		};
 
 		$primary1 = $this->createMock( AbstractPrimaryAuthenticationProvider::class );
@@ -4061,7 +4055,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 			$this->equalTo( AuthenticationResponse::FAIL )
 		);
 		$providers = array_merge( $this->preauthMocks, $this->primaryauthMocks );
-		$shouldInvokePostCalled = (bool)array_filter(
+		$shouldInvokePostCalled = array_any(
 			$managerResponses,
 			static function ( $r ) {
 				return $r instanceof AuthenticationResponse &&

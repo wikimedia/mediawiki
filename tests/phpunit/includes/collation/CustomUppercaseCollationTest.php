@@ -32,7 +32,7 @@ class CustomUppercaseCollationTest extends MediaWikiIntegrationTestCase {
 		$sortkey1 = $this->collation->getSortKey( $first );
 		$sortkey2 = $this->collation->getSortKey( $second );
 
-		$this->assertTrue( strcmp( $sortkey1, $sortkey2 ) < 0, $msg );
+		$this->assertLessThan( 0, strcmp( $sortkey1, $sortkey2 ), $msg );
 	}
 
 	public static function providerOrder() {

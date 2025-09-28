@@ -420,15 +420,12 @@ class MediaWikiServicesTest extends MediaWikiIntegrationTestCase {
 		$methods = ( new ReflectionClass( MediaWikiServices::class ) )
 			->getMethods( ReflectionMethod::IS_STATIC | ReflectionMethod::IS_PUBLIC );
 
-		$names = array_map( static function ( $method ) {
-			return $method->getName();
-		}, $methods );
-		$serviceNames = array_map( static function ( $name ) {
-			return "get$name";
-		}, array_keys( self::provideGetService() ) );
-		$names = array_values( array_filter( $names, static function ( $name ) use ( $serviceNames ) {
-			return in_array( $name, $serviceNames );
-		} ) );
+		$getters = self::provideGetService();
+		$names = array_map( static fn ( $method ) => $method->getName(), $methods );
+		$names = array_filter(
+			$names,
+			static fn ( $name ) => array_key_exists( "get$name", $getters )
+		);
 
 		$sortedNames = $names;
 		natcasesort( $sortedNames );

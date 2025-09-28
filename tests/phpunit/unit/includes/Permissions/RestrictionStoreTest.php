@@ -1042,9 +1042,7 @@ class RestrictionStoreTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testShouldNotFetchProtectionSettingsIfActionCannotBeRestricted(): void {
-		$lb = $this->createMock( ILoadBalancer::class );
-		$lb->expects( $this->never() )
-			->method( $this->anything() );
+		$lb = $this->createNoopMock( ILoadBalancer::class );
 
 		$store = new RestrictionStore(
 			new ServiceOptions( RestrictionStore::CONSTRUCTOR_OPTIONS, [

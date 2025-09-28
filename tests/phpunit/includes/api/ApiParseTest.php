@@ -110,13 +110,13 @@ class ApiParseTest extends ApiTestCase {
 
 		if ( $res[1]->getBool( 'disablelimitreport' ) ) {
 			$expectedEnd = "</div>";
-			$this->assertSame( $expectedEnd, substr( $html, -strlen( $expectedEnd ) ) );
+			$this->assertStringEndsWith( $expectedEnd, $html );
 
 			$unexpectedEnd = '#<!-- \nNewPP limit report|' .
 				'<!--\nTransclusion expansion time report#';
 			$this->assertDoesNotMatchRegularExpression( $unexpectedEnd, $html );
 
-			$html = substr( $html, 0, strlen( $html ) - strlen( $expectedEnd ) );
+			$html = substr( $html, 0, -strlen( $expectedEnd ) );
 		} else {
 			$expectedEnd = '#\n<!-- \nNewPP limit report\n(?>.+?\n-->)\n' .
 				'<!--\nTransclusion expansion time report \(%,ms,calls,template\)\n(?>.*?\n-->)\n' .
