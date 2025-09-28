@@ -43,7 +43,7 @@ class JsonContentHandler extends CodeContentHandler {
 
 	private ParsoidParserFactory $parsoidParserFactory;
 	private TitleFactory $titleFactory;
-	private const WIKITEXT_SIZE_BYTES = 100000; // 100 KB
+	private const WIKITEXT_SIZE_BYTES = 200000; // 200 KB
 
 	/**
 	 * @stable to call
