@@ -238,6 +238,7 @@ class UnblockUser {
 		if ( count( $activeBlocks ) > 1 ) {
 			$status->fatal( 'ipb_cant_unblock_multiple_blocks',
 				count( $activeBlocks ), Message::listParam(
+					// @phan-suppress-next-line PhanTypeMismatchArgument
 					array_map(
 						static function ( $block ) {
 							return $block->getId();

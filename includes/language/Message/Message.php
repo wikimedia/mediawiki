@@ -1360,7 +1360,7 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 	/**
 	 * @since 1.29
 	 *
-	 * @param array $list
+	 * @param (MessageParam|MessageSpecifier|string|int|float)[] $list
 	 * @param ListType|string $type One of the ListType constants
 	 * @return ListParam
 	 */
