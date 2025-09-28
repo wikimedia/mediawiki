@@ -66,7 +66,6 @@ class ImportableOldRevisionImporter implements OldRevisionImporter {
 		} else {
 			$userId = 0;
 			$userText = $importableRevision->getUser();
-			$user = $this->userFactory->newAnonymous();
 		}
 
 		// avoid memory leak...?
@@ -213,7 +212,7 @@ class ImportableOldRevisionImporter implements OldRevisionImporter {
 			];
 
 			$updater->setCause( PageUpdater::CAUSE_IMPORT );
-			$updater->setPerformer( $user ); // TODO: get the actual performer, not the revision author.
+			$updater->setPerformer( RequestContext::getMain()->getUser() );
 			$updater->prepareUpdate( $inserted, $options );
 			$updater->doUpdates();
 		}
