@@ -25,6 +25,7 @@
 require_once __DIR__ . '/Maintenance.php';
 // @codeCoverageIgnoreEnd
 
+use MediaWiki\Deferred\LinksUpdate\PageLinksTable;
 use MediaWiki\Deferred\LinksUpdate\TemplateLinksTable;
 use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Title\Title;
@@ -54,7 +55,7 @@ class CleanupInvalidDbKeys extends Maintenance {
 		// but also usernames or other things like that, so we leave them alone
 
 		// Links tables
-		[ 'pagelinks', 'pl', 'idField' => 'pl_from' ],
+		[ 'pagelinks', 'pl', 'idField' => 'pl_from', 'virtualDomain' => PageLinksTable::VIRTUAL_DOMAIN ],
 		[ 'templatelinks', 'tl', 'idField' => 'tl_from', 'virtualDomain' => TemplateLinksTable::VIRTUAL_DOMAIN ],
 		[ 'categorylinks', 'cl', 'idField' => 'cl_from' ],
 		[ 'imagelinks', 'il', 'idField' => 'il_from', 'nsField' => 6, 'titleField' => 'il_to' ],

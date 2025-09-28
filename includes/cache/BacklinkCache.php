@@ -32,6 +32,7 @@ use LogicException;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Deferred\LinksUpdate\ExistenceLinksTable;
 use MediaWiki\Deferred\LinksUpdate\ImageLinksTable;
+use MediaWiki\Deferred\LinksUpdate\PageLinksTable;
 use MediaWiki\Deferred\LinksUpdate\TemplateLinksTable;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
@@ -279,6 +280,7 @@ class BacklinkCache {
 			'templatelinks' => TemplateLinksTable::VIRTUAL_DOMAIN,
 			'imagelinks' => ImageLinksTable::VIRTUAL_DOMAIN,
 			'existencelinks' => ExistenceLinksTable::VIRTUAL_DOMAIN,
+			'pagelinks' => PageLinksTable::VIRTUAL_DOMAIN,
 		];
 		$domain = $domainMap[$table] ?? false;
 

@@ -25,11 +25,13 @@
 
 namespace MediaWiki\Api;
 
+use MediaWiki\Deferred\LinksUpdate\PageLinksTable;
 use MediaWiki\Linker\LinksMigration;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * This implements prop=redirects, prop=linkshere, prop=catmembers,
@@ -62,6 +64,7 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 			'indexes' => [ 'pl_namespace', 'pl_backlinks_namespace' ],
 			'from_namespace' => true,
 			'showredirects' => true,
+			'virtualdomain' => PageLinksTable::VIRTUAL_DOMAIN,
 		],
 		'transcludedin' => [
 			'code' => 'ti',
@@ -83,14 +86,17 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 	];
 
 	private LinksMigration $linksMigration;
+	private IConnectionProvider $dbProvider;
 
 	public function __construct(
 		ApiQuery $query,
 		string $moduleName,
-		LinksMigration $linksMigration
+		LinksMigration $linksMigration,
+		IConnectionProvider $dbProvider
 	) {
 		parent::__construct( $query, $moduleName, self::$settings[$moduleName]['code'] );
 		$this->linksMigration = $linksMigration;
+		$this->dbProvider = $dbProvider;
 	}
 
 	public function execute() {
@@ -108,7 +114,10 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 	private function run( ?ApiPageSet $resultPageSet = null ) {
 		$settings = self::$settings[$this->getModuleName()];
 
-		$db = $this->getDB();
+		$domain = $settings['virtualdomain'] ?? false;
+		$db = $this->dbProvider->getReplicaDatabase( $domain, 'api' );
+		$this->getQueryBuilder()->connection( $db );
+
 		$params = $this->extractRequestParams();
 		$prop = array_fill_keys( $params['prop'], true );
 

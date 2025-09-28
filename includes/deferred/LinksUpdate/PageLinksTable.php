@@ -9,6 +9,7 @@ use MediaWiki\Parser\ParserOutputLinkTypes;
  * pagelinks
  */
 class PageLinksTable extends GenericPageLinksTable {
+	public const VIRTUAL_DOMAIN = 'virtual-pagelinks';
 
 	public function setParserOutput( ParserOutput $parserOutput ) {
 		// Convert the format of the local links
@@ -51,10 +52,13 @@ class PageLinksTable extends GenericPageLinksTable {
 		return 'pl_target_id';
 	}
 
-	/**
-	 * Normalization stage of the links table (see T222224)
-	 */
+	/** @inheritDoc */
 	protected function linksTargetNormalizationStage(): int {
 		return SCHEMA_COMPAT_NEW;
+	}
+
+	/** @inheritDoc */
+	protected function getVirtualDomain(): string {
+		return self::VIRTUAL_DOMAIN;
 	}
 }

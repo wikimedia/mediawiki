@@ -34,6 +34,7 @@
 require_once __DIR__ . '/Maintenance.php';
 // @codeCoverageIgnoreEnd
 
+use MediaWiki\Deferred\LinksUpdate\PageLinksTable;
 use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Title\Title;
 
@@ -49,7 +50,9 @@ class DumpLinks extends Maintenance {
 	}
 
 	public function execute() {
-		$dbr = $this->getReplicaDB();
+		$dbr = $this->getServiceContainer()
+			->getConnectionProvider()
+			->getReplicaDatabase( PageLinksTable::VIRTUAL_DOMAIN );
 		$linksMigration = $this->getServiceContainer()->getLinksMigration();
 		$queryInfo = $linksMigration->getQueryInfo( 'pagelinks' );
 		$queryInfo['tables'] = array_diff( $queryInfo['tables'], [ 'pagelinks' ] );

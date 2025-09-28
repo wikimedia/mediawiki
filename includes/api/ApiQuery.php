@@ -104,6 +104,7 @@ class ApiQuery extends ApiBase {
 			'services' => [
 				// Same as for linkshere, redirects, transcludedin
 				'LinksMigration',
+				'ConnectionProvider',
 			]
 		],
 		'images' => [
@@ -151,6 +152,7 @@ class ApiQuery extends ApiBase {
 			'services' => [
 				// Same as for fileusage, redirects, transcludedin
 				'LinksMigration',
+				'ConnectionProvider',
 			]
 		],
 		'iwlinks' => [
@@ -179,6 +181,7 @@ class ApiQuery extends ApiBase {
 			'services' => [
 				// Same as for fileusage, linkshere, transcludedin
 				'LinksMigration',
+				'ConnectionProvider',
 			]
 		],
 		'revisions' => [
@@ -221,6 +224,7 @@ class ApiQuery extends ApiBase {
 			'services' => [
 				// Same as for fileusage, linkshere, redirects
 				'LinksMigration',
+				'ConnectionProvider',
 			]
 		],
 	];

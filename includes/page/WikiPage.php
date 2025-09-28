@@ -30,6 +30,7 @@ use MediaWiki\Content\ContentHandler;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\DAO\WikiAwareEntityTrait;
 use MediaWiki\Deferred\DeferredUpdates;
+use MediaWiki\Deferred\LinksUpdate\PageLinksTable;
 use MediaWiki\Edit\PreparedEdit;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\JobQueue\Jobs\HTMLCacheUpdateJob;
@@ -943,7 +944,9 @@ class WikiPage implements Stringable, Page, PageRecord {
 			} else {
 				// NOTE: keep in sync with RevisionRenderer::getLinkCount
 				// NOTE: keep in sync with DerivedPageDataUpdater::isCountable
-				$dbr = $mwServices->getConnectionProvider()->getReplicaDatabase();
+				$dbr = $mwServices
+					->getConnectionProvider()
+					->getReplicaDatabase( PageLinksTable::VIRTUAL_DOMAIN );
 				$hasLinks = (bool)$dbr->newSelectQueryBuilder()
 					->select( '1' )
 					->from( 'pagelinks' )

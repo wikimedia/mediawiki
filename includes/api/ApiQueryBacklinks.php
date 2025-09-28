@@ -23,6 +23,7 @@
 namespace MediaWiki\Api;
 
 use MediaWiki\Deferred\LinksUpdate\ImageLinksTable;
+use MediaWiki\Deferred\LinksUpdate\PageLinksTable;
 use MediaWiki\Deferred\LinksUpdate\TemplateLinksTable;
 use MediaWiki\Linker\LinksMigration;
 use MediaWiki\Title\Title;
@@ -89,6 +90,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 			'prefix' => 'pl',
 			'linktbl' => 'pagelinks',
 			'helpurl' => 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Backlinks',
+			'virtualdomain' => PageLinksTable::VIRTUAL_DOMAIN,
 		],
 		'embeddedin' => [
 			'code' => 'ei',
@@ -135,7 +137,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		$this->bl_from_ns = $prefix . '_from_namespace';
 		$this->bl_code = $code;
 		$this->helpUrl = $settings['helpurl'];
-		$this->virtual_domain = $settings['virtual_domain'] ?? false;
+		$this->virtual_domain = $settings['virtualdomain'];
 		$this->dbProvider = $dbProvider;
 	}
 
