@@ -4077,6 +4077,55 @@ images=Hi-ho.jpg
 !! end
 
 !! test
+Filename with amp symbol in gallery
+!! wikitext
+<gallery>
+File:file & file.jpg
+File:file &amp; file.jpg
+File:file %26 file.jpg
+file & file.jpg
+file &amp; file.jpg
+file %26 file.jpg
+</gallery>
+!! html/php
+<ul class="gallery mw-gallery-traditional">
+		<li class="gallerybox" style="width: 155px">
+			<div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:File"><a href="/wiki/File:File_%26_file.jpg" class="mw-file-description"><img src="http://example.com/images/thumb/1/1f/File_%26_file.jpg/120px-File_%26_file.jpg" decoding="async" width="120" height="14" class="mw-file-element" srcset="http://example.com/images/thumb/1/1f/File_%26_file.jpg/180px-File_%26_file.jpg 1.5x, http://example.com/images/thumb/1/1f/File_%26_file.jpg/240px-File_%26_file.jpg 2x" /></a></span></div>
+			<div class="gallerytext"></div>
+		</li>
+		<li class="gallerybox" style="width: 155px">
+			<div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:File"><a href="/wiki/File:File_%26_file.jpg" class="mw-file-description"><img src="http://example.com/images/thumb/1/1f/File_%26_file.jpg/120px-File_%26_file.jpg" decoding="async" width="120" height="14" class="mw-file-element" srcset="http://example.com/images/thumb/1/1f/File_%26_file.jpg/180px-File_%26_file.jpg 1.5x, http://example.com/images/thumb/1/1f/File_%26_file.jpg/240px-File_%26_file.jpg 2x" /></a></span></div>
+			<div class="gallerytext"></div>
+		</li>
+		<li class="gallerybox" style="width: 155px">
+			<div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:File"><a href="/wiki/File:File_%26_file.jpg" class="mw-file-description"><img src="http://example.com/images/thumb/1/1f/File_%26_file.jpg/120px-File_%26_file.jpg" decoding="async" width="120" height="14" class="mw-file-element" srcset="http://example.com/images/thumb/1/1f/File_%26_file.jpg/180px-File_%26_file.jpg 1.5x, http://example.com/images/thumb/1/1f/File_%26_file.jpg/240px-File_%26_file.jpg 2x" /></a></span></div>
+			<div class="gallerytext"></div>
+		</li>
+		<li class="gallerybox" style="width: 155px">
+			<div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:File"><a href="/wiki/File:File_%26_file.jpg" class="mw-file-description"><img src="http://example.com/images/thumb/1/1f/File_%26_file.jpg/120px-File_%26_file.jpg" decoding="async" width="120" height="14" class="mw-file-element" srcset="http://example.com/images/thumb/1/1f/File_%26_file.jpg/180px-File_%26_file.jpg 1.5x, http://example.com/images/thumb/1/1f/File_%26_file.jpg/240px-File_%26_file.jpg 2x" /></a></span></div>
+			<div class="gallerytext"></div>
+		</li>
+		<li class="gallerybox" style="width: 155px">
+			<div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:File"><a href="/wiki/File:File_%26_file.jpg" class="mw-file-description"><img src="http://example.com/images/thumb/1/1f/File_%26_file.jpg/120px-File_%26_file.jpg" decoding="async" width="120" height="14" class="mw-file-element" srcset="http://example.com/images/thumb/1/1f/File_%26_file.jpg/180px-File_%26_file.jpg 1.5x, http://example.com/images/thumb/1/1f/File_%26_file.jpg/240px-File_%26_file.jpg 2x" /></a></span></div>
+			<div class="gallerytext"></div>
+		</li>
+		<li class="gallerybox" style="width: 155px">
+			<div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:File"><a href="/wiki/File:File_%26_file.jpg" class="mw-file-description"><img src="http://example.com/images/thumb/1/1f/File_%26_file.jpg/120px-File_%26_file.jpg" decoding="async" width="120" height="14" class="mw-file-element" srcset="http://example.com/images/thumb/1/1f/File_%26_file.jpg/180px-File_%26_file.jpg 1.5x, http://example.com/images/thumb/1/1f/File_%26_file.jpg/240px-File_%26_file.jpg 2x" /></a></span></div>
+			<div class="gallerytext"></div>
+		</li>
+</ul>
+!! html/parsoid
+<ul class="gallery mw-gallery-traditional" typeof="mw:Extension/gallery" about="#mwt1" data-parsoid='{"dsr":[0,143,9,10]}' data-mw='{"name":"gallery","attrs":{},"body":{}}'>
+<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:File"><a href="./File:File_&amp;_file.jpg" class="mw-file-description"><img resource="./File:File_&amp;_file.jpg" src="http://example.com/images/thumb/1/1f/File_%26_file.jpg/120px-File_%26_file.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120" srcset="http://example.com/images/thumb/1/1f/File_%26_file.jpg/180px-File_%26_file.jpg 1.5x, http://example.com/images/thumb/1/1f/File_%26_file.jpg/240px-File_%26_file.jpg 2x" class="mw-file-element" data-parsoid='{"a":{"resource":"./File:File_&amp;_file.jpg","height":"14","width":"120"},"sa":{"resource":"File:file &amp; file.jpg"}}'/></a></span></div><div class="gallerytext"></div></li>
+<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:File"><a href="./File:File_&amp;_file.jpg" class="mw-file-description"><img resource="./File:File_&amp;_file.jpg" src="http://example.com/images/thumb/1/1f/File_%26_file.jpg/120px-File_%26_file.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120" srcset="http://example.com/images/thumb/1/1f/File_%26_file.jpg/180px-File_%26_file.jpg 1.5x, http://example.com/images/thumb/1/1f/File_%26_file.jpg/240px-File_%26_file.jpg 2x" class="mw-file-element" data-parsoid='{"a":{"resource":"./File:File_&amp;_file.jpg","height":"14","width":"120"},"sa":{"resource":"File:file &amp;amp; file.jpg"}}'/></a></span></div><div class="gallerytext"></div></li>
+<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:File"><a href="./File:File_&amp;_file.jpg" class="mw-file-description"><img resource="./File:File_&amp;_file.jpg" src="http://example.com/images/thumb/1/1f/File_%26_file.jpg/120px-File_%26_file.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120" srcset="http://example.com/images/thumb/1/1f/File_%26_file.jpg/180px-File_%26_file.jpg 1.5x, http://example.com/images/thumb/1/1f/File_%26_file.jpg/240px-File_%26_file.jpg 2x" class="mw-file-element" data-parsoid='{"a":{"resource":"./File:File_&amp;_file.jpg","height":"14","width":"120"},"sa":{"resource":"File:file %26 file.jpg"}}'/></a></span></div><div class="gallerytext"></div></li>
+<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:File"><a href="./File:File_&amp;_file.jpg" class="mw-file-description"><img resource="./File:File_&amp;_file.jpg" src="http://example.com/images/thumb/1/1f/File_%26_file.jpg/120px-File_%26_file.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120" srcset="http://example.com/images/thumb/1/1f/File_%26_file.jpg/180px-File_%26_file.jpg 1.5x, http://example.com/images/thumb/1/1f/File_%26_file.jpg/240px-File_%26_file.jpg 2x" class="mw-file-element" data-parsoid='{"a":{"resource":"./File:File_&amp;_file.jpg","height":"14","width":"120"},"sa":{"resource":"file &amp; file.jpg"}}'/></a></span></div><div class="gallerytext"></div></li>
+<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:File"><a href="./File:File_&amp;_file.jpg" class="mw-file-description"><img resource="./File:File_&amp;_file.jpg" src="http://example.com/images/thumb/1/1f/File_%26_file.jpg/120px-File_%26_file.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120" srcset="http://example.com/images/thumb/1/1f/File_%26_file.jpg/180px-File_%26_file.jpg 1.5x, http://example.com/images/thumb/1/1f/File_%26_file.jpg/240px-File_%26_file.jpg 2x" class="mw-file-element" data-parsoid='{"a":{"resource":"./File:File_&amp;_file.jpg","height":"14","width":"120"},"sa":{"resource":"file &amp;amp; file.jpg"}}'/></a></span></div><div class="gallerytext"></div></li>
+<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:File"><a href="./File:File_&amp;_file.jpg" class="mw-file-description"><img resource="./File:File_&amp;_file.jpg" src="http://example.com/images/thumb/1/1f/File_%26_file.jpg/120px-File_%26_file.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120" srcset="http://example.com/images/thumb/1/1f/File_%26_file.jpg/180px-File_%26_file.jpg 1.5x, http://example.com/images/thumb/1/1f/File_%26_file.jpg/240px-File_%26_file.jpg 2x" class="mw-file-element" data-parsoid='{"a":{"resource":"./File:File_&amp;_file.jpg","height":"14","width":"120"},"sa":{"resource":"file %26 file.jpg"}}'/></a></span></div><div class="gallerytext"></div></li>
+</ul>
+!! end
+
+!! test
 Inline gallery attributes are appended to the defaults
 !! wikitext
 <gallery perrow="1" style="color: red">
