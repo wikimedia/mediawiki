@@ -2137,6 +2137,7 @@
 	"apisandbox-alert-field": "Šio lauko reikšmė yra neteisinga.",
 	"apisandbox-continue": "Tęsti",
 	"apisandbox-continue-clear": "Išvalyti",
+	"apisandbox-continue-help": "{{int:apisandbox-continue}} [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Query#Continuing_queries tęs] paskutinę užklausą; {{int:apisandbox-continue-clear}} išvalys su tęsimu susijusius parametrus.",
 	"apisandbox-param-limit": "Jei norite naudoti didžiausią limitą, įveskite <kbd>maks</kbd>.",
 	"apisandbox-multivalue-all-namespaces": "$1 (Visos vardų sritys)",
 	"apisandbox-multivalue-all-values": "$1 (Visos reikšmės)",

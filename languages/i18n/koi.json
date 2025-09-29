@@ -3408,7 +3408,7 @@
 	"htmlform-int-toohigh": "Тіянӧн иньдӧм вежӧртасыс унажык $1-лӧн медунаись.",
 	"htmlform-multiselect-toomany": "Тіянӧн иньдӧм юкӧн лыдыс унажык $1-лӧн медуна лыдісь.",
 	"htmlform-required": "Эта вежӧртасыс дзик колана.",
-	"htmlform-submit": "Петкӧтлыны",
+	"htmlform-submit": "Иньдӧтны",
 	"htmlform-reset": "Дугдӧтны вежӧммез",
 	"htmlform-selectorother-other": "Мöдiк",
 	"htmlform-no": "Абу",
