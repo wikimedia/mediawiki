@@ -58,7 +58,7 @@ abstract class PageEvent extends DomainEvent {
 	private array $flags;
 
 	/**
-	 * @param string $cause See the self::CAUSE_XXX constants.
+	 * @param string $cause See the constants in PageUpdateCauses.
 	 * @param int $pageId
 	 * @param UserIdentity $performer The user performing the update.
 	 * @param array<string> $tags Applicable tags, see ChangeTags.
@@ -122,7 +122,7 @@ abstract class PageEvent extends DomainEvent {
 
 	/**
 	 * Indicates the cause of the update.
-	 * See the self::CAUSE_XXX constants.
+	 * See the constants in PageUpdateCauses.
 	 * @return string
 	 */
 	public function getCause(): string {
@@ -132,7 +132,7 @@ abstract class PageEvent extends DomainEvent {
 	/**
 	 * Checks whether the update had the given cause.
 	 *
-	 * @see self::CAUSE_XXX constants
+	 * @see PageUpdateCauses constants
 	 */
 	public function hasCause( string $cause ): bool {
 		return $this->cause === $cause;
