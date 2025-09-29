@@ -380,7 +380,9 @@ class PageEditStash {
 		$editInfo = $this->getStashValue( $key );
 
 		if ( !$editInfo ) {
-			$start = microtime( true );
+			$timer = $this->stats->getTiming( 'editstash_lock_wait_seconds' )
+				->start();
+
 			// We ignore user aborts and keep parsing. Block on any prior parsing
 			// so as to use its results and make use of the time spent parsing.
 			$dbw = $this->dbProvider->getPrimaryDatabase();
@@ -389,10 +391,7 @@ class PageEditStash {
 				$dbw->unlock( $key, __METHOD__ );
 			}
 
-			$timeMs = 1000 * max( 0, microtime( true ) - $start );
-			$this->stats->getTiming( 'editstash_lock_wait_seconds' )
-				->copyToStatsdAt( 'editstash.lock_wait_time' )
-				->observe( $timeMs );
+			$timer->stop();
 		}
 
 		return $editInfo;

@@ -304,16 +304,13 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 	 */
 	public function getTextDiff( string $oldText, string $newText ) {
 		$diff = function () use ( $oldText, $newText ) {
-			$time = microtime( true );
+			$timer = $this->statsFactory?->getTiming( 'diff_text_seconds' )
+				->start();
 
 			$result = $this->getTextDiffInternal( $oldText, $newText );
 
-			$time = intval( ( microtime( true ) - $time ) * 1000 );
-
-			if ( $this->statsFactory ) {
-				$this->statsFactory->getTiming( 'diff_text_seconds' )
-					->copyToStatsdAt( 'diff_time' )
-					->observe( $time );
+			if ( $timer ) {
+				$timer->stop();
 			}
 
 			return $result;

@@ -46,7 +46,6 @@ use MediaWiki\Request\WebRequestUpload;
 use MediaWiki\Rest\HeaderParser\Origin;
 use MediaWiki\StubObject\StubGlobalUser;
 use MediaWiki\User\UserRigorOptions;
-use MediaWiki\Utils\MWTimestamp;
 use MediaWiki\WikiMap\WikiMap;
 use Profiler;
 use Throwable;
@@ -58,6 +57,7 @@ use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 use Wikimedia\ScopedCallback;
 use Wikimedia\Stats\StatsFactory;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 use Wikimedia\Timestamp\TimestampException;
 
 /**
@@ -1786,7 +1786,7 @@ class ApiMain extends ApiBase {
 
 			if ( $value !== '' ) {
 				try {
-					$ts = new MWTimestamp( $value );
+					$ts = new ConvertibleTimestamp( $value );
 					if (
 						// RFC 7231 IMF-fixdate
 						$ts->getTimestamp( TS_RFC2822 ) === $value ||

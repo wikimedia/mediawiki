@@ -694,18 +694,24 @@ class ActionEntryPoint extends MediaWikiEntryPoint {
 			return;
 		}
 
-		$t = microtime( true );
 		$actionName = $this->getAction();
 		$services = $this->getServiceContainer();
+		// To avoid gargage in the data we do not submit this timer when:
+		// * nosuchaction: The action is not defined in the code, e.g. action=blabla.
+		// * PermissionsError: The action handler Action::show is not even called,
+		//   and these fast errors should not influence the latency graph.
+		$timer = $services->getStatsFactory()->getTiming( 'action_executeTiming_seconds' )
+			->setLabel( 'action', strtr( $actionName, '.', '_' ) )
+			->start();
 
 		$action = $services->getActionFactory()->getAction( $actionName, $article, $this->getContext() );
 		if ( $action instanceof Action ) {
-			ProfilingContext::singleton()->init( MW_ENTRY_POINT, $actionName );
-
 			// Check read permissions
 			if ( $action->needsReadRights() && !$user->isAllowed( 'read' ) ) {
 				throw new PermissionsError( 'read' );
 			}
+
+			ProfilingContext::singleton()->init( MW_ENTRY_POINT, $actionName );
 
 			// Narrow DB query expectations for this HTTP request
 			if ( $request->wasPosted() && !$action->doesWrites() ) {
@@ -727,13 +733,7 @@ class ActionEntryPoint extends MediaWikiEntryPoint {
 
 			$action->show();
 
-			$runTime = microtime( true ) - $t;
-
-			$statAction = strtr( $actionName, '.', '_' );
-			$services->getStatsFactory()->getTiming( 'action_executeTiming_seconds' )
-				->setLabel( 'action', $statAction )
-				->copyToStatsdAt( 'action.' . $statAction . '.executeTiming' )
-				->observe( 1000 * $runTime );
+			$timer->stop();
 
 			return;
 		}
