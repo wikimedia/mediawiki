@@ -49,6 +49,8 @@ abstract class MediaWikiUnitTestCase extends TestCase {
 	private static $originalGlobals;
 	/** @var array */
 	private static $unitGlobals;
+	/** @var \MediaWiki\Logger\Spi */
+	private static $originalSpi;
 
 	private ?MediaWikiServices $serviceContainer = null;
 
@@ -121,6 +123,7 @@ abstract class MediaWikiUnitTestCase extends TestCase {
 		SettingsBuilder::disableAccessForUnitTests();
 
 		// Don't let LoggerFactory::getProvider() access globals or other things we don't want.
+		self::$originalSpi = LoggerFactory::getProvider();
 		LoggerFactory::registerProvider( ObjectFactory::getObjectFromSpec( [
 			'class' => NullSpi::class
 		] ) );
@@ -163,6 +166,7 @@ abstract class MediaWikiUnitTestCase extends TestCase {
 		DeferredUpdates::setScopeStack( new DeferredUpdatesScopeMediaWikiStack() );
 		ExtensionRegistry::enableForTest();
 		SettingsBuilder::enableAccessAfterUnitTests();
+		LoggerFactory::registerProvider( self::$originalSpi );
 	}
 
 	/**
