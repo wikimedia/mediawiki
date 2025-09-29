@@ -656,7 +656,6 @@
 	"mailmypassword": "Used as label for Submit button in [[Special:PasswordReset]].\n{{Identical|Reset password}}",
 	"passwordremindertitle": "Title of email which contains temporary password",
 	"passwordremindertext": "This text is used in an email sent when a user requests a new temporary password (they have forgotten their password) or when a sysop creates a new user account choosing to have password and username sent to the new user by email.\n\nParameters:\n* $1 - an IP address. Example: 123.123.123.123\n* $2 - a username. Example: Joe\n* $3 - a password. Example: er##@fdas!\n* $4 - a URL. Example: http://wiki.example.com\n* $5 - a number of days in which the temporary password will expire",
-	"noemail": "Shown as error message when trying to register a user sending password to email address and no email address has been given. Registering users and sending a password to an email address may require non-standard user rights ([{{canonicalurl:Special:UserLogin|action=submitlogin&type=signup}} register user link]).\n\nParameters:\n* $1 - a username, can be used with GENDER",
 	"noemailcreate": "Used as error message when one user creates an account for another and there is no email.",
 	"passwordsent": "Parameters:\n* $1 - username",
 	"blocked-mailpassword": "Used as error message in password recovery.",

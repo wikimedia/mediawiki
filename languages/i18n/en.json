@@ -381,7 +381,6 @@
 	"mailmypassword": "Reset password",
 	"passwordremindertitle": "New temporary password for {{SITENAME}}",
 	"passwordremindertext": "Someone (from IP address $1) requested a new\npassword for {{SITENAME}} ($4). A temporary password for user\n\"$2\" has been created and was set to \"$3\". If this was your\nintent, you will need to log in and choose a new password now.\nYour temporary password will expire in {{PLURAL:$5|one day|$5 days}}.\n\nIf someone else made this request, or if you have remembered your password,\nand you no longer wish to change it, you may ignore this message and\ncontinue using your old password.",
-	"noemail": "There is no email address recorded for user \"$1\".",
 	"noemailcreate": "You need to provide a valid email address.",
 	"passwordsent": "A new password has been sent to the email address registered for \"$1\".\nPlease log in again after you receive it.",
 	"blocked-mailpassword": "Your IP address is blocked from editing. To prevent abuse, it is not allowed to use password recovery from this IP address.",
