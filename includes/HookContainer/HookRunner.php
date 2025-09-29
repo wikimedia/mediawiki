@@ -4452,11 +4452,11 @@ class HookRunner implements
 		Authority $authority,
 		UserIdentity $target,
 		array $addableGroups,
-		array &$unaddableGroups
+		array &$restrictedGroups
 	): void {
 		$this->container->run(
 			'SpecialUserRightsChangeableGroups',
-			[ $authority, $target, $addableGroups, &$unaddableGroups ],
+			[ $authority, $target, $addableGroups, &$restrictedGroups ],
 			[ 'abortable' => false ]
 		);
 	}

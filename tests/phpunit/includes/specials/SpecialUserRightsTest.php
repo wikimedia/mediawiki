@@ -73,8 +73,12 @@ class SpecialUserRightsTest extends SpecialPageTestBase {
 	private function setUnaddableSysopGroup() {
 		$this->setTemporaryHook(
 			'SpecialUserRightsChangeableGroups',
-			static function ( $authority, $target, $addableGroups, &$unaddableGroups ) {
-				$unaddableGroups['sysop'] = 'sysop-unaddable-reason';
+			static function ( $authority, $target, $addableGroups, &$restrictedGroups ) {
+				$restrictedGroups['sysop'] = [
+					'condition-met' => false,
+					'ignore-condition' => false,
+					'message' => 'sysop-unaddable-reason',
+				];
 			}
 		);
 	}

@@ -1004,11 +1004,11 @@ class SpecialUserRights extends SpecialPage {
 				] ) . '&nbsp;' . Html::label( $text, "wpGroup-$group" );
 
 				$groups = $this->changeableGroups();
-				if ( isset( $groups['unaddable'][$group] ) ) {
+				if ( isset( $groups['restricted'][$group] ) && !$groups['restricted'][$group]['condition-met'] ) {
 					$checkboxHtml .= Html::rawElement(
 						'div',
 						[ 'class' => 'mw-userrights-unaddable-reason' ],
-						$this->msg( $groups['unaddable'][$group] )->parse()
+						$this->msg( $groups['restricted'][$group]['message'] )->parse()
 					);
 				}
 
@@ -1145,7 +1145,7 @@ class SpecialUserRights extends SpecialPage {
 	 *   'remove' => [ removablegroups ],
 	 *   'add-self' => [ addablegroups to self ],
 	 *   'remove-self' => [ removable groups from self ]
-	 *   'unaddable' => [ map of unchangeable groups to reasons ]
+	 *   'restricted' => [ map of restricted groups to details about them ]
 	 *  ]
 	 * @phan-return array{add:list<string>,remove:list<string>,add-self:list<string>,remove-self:list<string>}
 	 */
@@ -1158,17 +1158,21 @@ class SpecialUserRights extends SpecialPage {
 				// Allow extensions to define groups that cannot be added, given the target user and
 				// the performer. This allows policy restrictions to be enforced via software. This
 				// could be done via configuration in the future, as discussed in T393615.
-				$unaddableGroups = [];
+				$restrictedGroups = [];
 				$this->getHookRunner()->onSpecialUserRightsChangeableGroups(
 					$authority,
 					$this->mFetchedUser,
 					$groups['add'],
-					$unaddableGroups
+					$restrictedGroups
 				);
 
-				$unaddableGroupNames = array_keys( $unaddableGroups );
-				$groups['add'] = array_diff( $groups['add'], $unaddableGroupNames );
-				$groups['unaddable'] = $unaddableGroups;
+				$unAddableRestrictedGroups = array_keys(
+					array_filter( $restrictedGroups, static fn ( $group ) =>
+						!$group['condition-met'] && !$group['ignore-condition'] )
+				);
+
+				$groups['add'] = array_diff( $groups['add'], $unAddableRestrictedGroups );
+				$groups['restricted'] = $restrictedGroups;
 			}
 
 			$this->changeableGroups = $groups;
