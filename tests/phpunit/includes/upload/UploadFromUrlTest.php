@@ -240,8 +240,6 @@ class UploadFromUrlTest extends ApiTestCase {
 
 		$this->assertEquals( 'Success', $data[0]['upload']['result'] );
 		$this->deleteFile( 'UploadFromUrlTest.png' );
-
-		return $data;
 	}
 
 	protected function deleteFile( $name ) {
