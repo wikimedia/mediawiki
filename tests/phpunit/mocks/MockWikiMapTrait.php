@@ -25,11 +25,13 @@ trait MockWikiMapTrait {
 		$currentSite = new MediaWikiSite();
 		$currentSite->setGlobalId( WikiMap::getCurrentWikiId() );
 		$currentSite->setPath( MediaWikiSite::PATH_PAGE, "$server/wiki/\$1" );
+		$currentSite->setPath( MediaWikiSite::PATH_FILE, "$server/w/\$1" );
 		$sites = [ $currentSite ];
 		foreach ( $extraSites as $extraSite ) {
 			$site = new MediaWikiSite();
 			$site->setGlobalId( $extraSite['wikiId'] );
 			$site->setPath( MediaWikiSite::PATH_PAGE, "{$extraSite['server']}/wiki/\$1" );
+			$site->setPath( MediaWikiSite::PATH_FILE, "{$extraSite['server']}/w/\$1" );
 			$sites[] = $site;
 		}
 		$this->setService( 'SiteLookup', new HashSiteStore( $sites ) );
