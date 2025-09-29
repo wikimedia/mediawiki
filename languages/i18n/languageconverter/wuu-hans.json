@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Winston Sung",
+			"城市酸儒文人挖坑"
+		]
+	},
+	"variantname-zh-tw": "臺灣正體",
+	"converter-manual-rule-error": "勒手动字词转换规则当中查着错误",
+	"language-converter-depth-warning": "字词转换器深度超限（$1）"
+}

@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"N. Longo"
+		]
+	},
+	"converter-manual-rule-error": "Rilevòu erô inta régola manoâ de conversción da léngoa",
+	"language-converter-depth-warning": "Sconpasòu o lìmite de profonditæ do convertitô de léngoa ($1)"
+}

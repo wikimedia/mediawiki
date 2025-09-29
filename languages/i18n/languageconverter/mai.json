@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ggajendra",
+			"बिप्लब आनन्द"
+		]
+	},
+	"converter-manual-rule-error": "म्यानुअल भाषा परिवर्तन नियममे त्रुटि",
+	"language-converter-depth-warning": "भाषान्तर गहीर सीमा पार केलक ($1)"
+}

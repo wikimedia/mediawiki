@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"IvanLanin",
+			"Rachmat04"
+		]
+	},
+	"converter-manual-rule-error": "Kesalahan terdeteksi dalam aturan konversi bahasa manual",
+	"language-converter-depth-warning": "Batas kedalaman pengonversi bahasa terlampaui ($1)"
+}

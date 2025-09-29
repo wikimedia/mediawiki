@@ -113,7 +113,7 @@
 	"rest-param-desc-compare-from-section-heading": "Abschnittsüberschrift z. B. 1 für <h1>",
 	"rest-param-desc-compare-from-section-offset": "Byte-Offset innerhalb des Wikitextes, bei dem der Abschnitt beginnt",
 	"rest-param-desc-compare-to": "Versionskennzeichen zum Vergleich mit der Basis",
-	"rest-param-desc-compare-to-id": "Versionskennung für die zu revidierende Version",
+	"rest-param-desc-compare-to-id": "Versionskennung für die „zu“ Version",
 	"rest-param-desc-compare-to-sections": "Präprozessorabschnitte für die Version, ohne Template-Erweiterung",
 	"rest-param-desc-compare-to-section-level": "Abschnittsebene",
 	"rest-param-desc-compare-to-section-heading": "Abschnittsüberschrift z. B. 1 für <h1>",

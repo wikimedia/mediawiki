@@ -1,0 +1,36 @@
+{
+	"@metadata": {
+		"authors": [
+			"Minh Nguyen",
+			"Vinhtantran"
+		]
+	},
+	"variantname-gan": "Cám nguyên văn",
+	"variantname-gan-hans": "Giản thể",
+	"variantname-gan-hant": "Phồn thể",
+	"variantname-ike-cans": "Âm tiết Thổ dân Canada",
+	"variantname-ike-latn": "Latinh",
+	"variantname-kk-cyrl": "Kirin",
+	"variantname-kk-latn": "Latinh",
+	"variantname-kk-arab": "Ả Rập",
+	"variantname-kk-kz": "Kazakhstan",
+	"variantname-kk-tr": "Thổ Nhĩ Kỳ",
+	"variantname-kk-cn": "Trung Quốc",
+	"variantname-ku-arab": "Ả Rập",
+	"variantname-ku-latn": "Latinh",
+	"variantname-sr-ec": "Kirin",
+	"variantname-sr-el": "Latinh",
+	"variantname-tg-latn": "Latinh",
+	"variantname-tly-cyrl": "Kirin",
+	"variantname-zh": "Không chuyển tự",
+	"variantname-zh-hans": "Giản thể",
+	"variantname-zh-hant": "Phồn thể",
+	"variantname-zh-cn": "Giản thể Hoa Lục",
+	"variantname-zh-hk": "Phồn thể Hồng Kông",
+	"variantname-zh-mo": "Phồn thể Ma Cao",
+	"variantname-zh-my": "Giản thể Mã Lai",
+	"variantname-zh-sg": "Giản thể Singapore",
+	"variantname-zh-tw": "Phồn thể Đài Loan",
+	"converter-manual-rule-error": "Lỗi được phát hiện trong quy tắc chuyển đổi ngôn ngữ thủ công",
+	"language-converter-depth-warning": "Đã vượt quá giới hạn độ sâu của bộ chuyển đổi ngôn ngữ ($1)"
+}

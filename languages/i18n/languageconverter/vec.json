@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Candalua",
+			"GatoSelvadego"
+		]
+	},
+	"converter-manual-rule-error": "Rilevà eror inte ła regoła manuałe de conversion de ła lèngua",
+	"language-converter-depth-warning": "Limite de profondità del convertidor de lengua superà ($1)"
+}

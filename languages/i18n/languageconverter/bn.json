@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"আফতাবুজ্জামান"
+		]
+	},
+	"converter-manual-rule-error": "ম্যানুয়াল ভাষা রূপান্তর নিয়মে ত্রুটি পাওয়া গিয়েছে",
+	"language-converter-depth-warning": "ভাষা পরিবর্তন গভীরতা সীমা অতক্রম করেছে ($1)"
+}

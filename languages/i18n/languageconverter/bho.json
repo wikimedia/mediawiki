@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"SatyamMishra"
+		]
+	},
+	"converter-manual-rule-error": "मैनुअल भाषा परिवर्तन नियम में खराबी पकड़ल गइल",
+	"language-converter-depth-warning": "भाषा बदलावक (language converter) के गहिराइ सीमा पार ($1)"
+}

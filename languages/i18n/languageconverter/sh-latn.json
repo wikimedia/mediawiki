@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Aca",
+			"Winston Sung"
+		]
+	},
+	"variantname-sh-latn": "Latinica",
+	"variantname-sh-cyrl": "Ћирилица",
+	"converter-manual-rule-error": "Pronađena je greška u pravilu za ručno pretvaranje jezika",
+	"language-converter-depth-warning": "Prekoračena granica dubine jezičkog pretvarača ($1)"
+}

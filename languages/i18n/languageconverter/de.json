@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Kghbln",
+			"Metalhead64"
+		]
+	},
+	"converter-manual-rule-error": "Bei der manuellen Sprachkonvertierungsregel wurde ein Fehler entdeckt.",
+	"language-converter-depth-warning": "Sprachkonvertertiefenlimit überschritten ($1)"
+}

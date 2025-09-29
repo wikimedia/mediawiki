@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Xuacu"
+		]
+	},
+	"variantname-ku-arab": "ku-Árabe",
+	"variantname-ku-latn": "ku-Llatín",
+	"converter-manual-rule-error": "Detectóse un error na regla de conversión manual de llingua",
+	"language-converter-depth-warning": "Se pasó la llende de fondura del convertidor de llingües ($1)"
+}

@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Guycn2",
+			"Rotemliss"
+		]
+	},
+	"converter-manual-rule-error": "התגלתה שגיאה בכלל המרת שפה ידני",
+	"language-converter-depth-warning": "עומק המרת השפה עבר את המגבלה ($1)"
+}

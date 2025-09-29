@@ -1,0 +1,8 @@
+{
+	"@metadata": {
+		"authors": [
+			"Juanpabl"
+		]
+	},
+	"language-converter-depth-warning": "S'ha blincau o limite de profundidat d'o conversor d'idiomas ($1)"
+}

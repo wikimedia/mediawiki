@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Kalan",
+			"Александр Сигачёв"
+		]
+	},
+	"converter-manual-rule-error": "Ошибка в ручном правиле преобразования языка",
+	"language-converter-depth-warning": "Превышен предел глубины преобразователя языков ($1)"
+}

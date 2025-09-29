@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Objectivesea",
+			"Yekrats"
+		]
+	},
+	"converter-manual-rule-error": "Eraron detektis en mana lingvokonverta regulo",
+	"language-converter-depth-warning": "Profundo de lingvo-konvertilo preterpasis limon ($1)"
+}

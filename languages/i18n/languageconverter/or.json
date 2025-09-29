@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Jnanaranjan Sahu",
+			"Psubhashish"
+		]
+	},
+	"converter-manual-rule-error": "ଆପେ ଆପେ ଭାଷା ପରିବର୍ତ୍ତନ ନିଯମରେ ଭୁଲ ଅଛି",
+	"language-converter-depth-warning": "ଭାଷା ରୂପାନ୍ତରଣ କ୍ଷମତା ସରିଯାଇଅଛି ($1)"
+}

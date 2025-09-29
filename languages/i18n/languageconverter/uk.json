@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Base",
+			"Prima klasy4na"
+		]
+	},
+	"converter-manual-rule-error": "Помилка в ручному правилі перетворення мови",
+	"language-converter-depth-warning": "Перевищене обмеження глибини мовного конвертора ($1)"
+}

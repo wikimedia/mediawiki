@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Gitartha.bordoloi"
+		]
+	},
+	"converter-manual-rule-error": "মেনুৱেল ভাষা পৰিৱৰ্তন নিয়মত ত্ৰুটি পোৱা গৈছে",
+	"language-converter-depth-warning": "ভাষা পৰিৱৰ্তকৰ গভীৰতা সীমাই ($1) অতিক্ৰম কৰিছে"
+}

@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Garas",
+			"Hugo.arg"
+		]
+	},
+	"converter-manual-rule-error": "Rankinėje kalbos pertvarkymo taisyklėje rasta klaida",
+	"language-converter-depth-warning": "Kalbos keitiklio gylio riba viršyta ($1)"
+}

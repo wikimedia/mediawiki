@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Nemoralis",
+			"Vugar 1981"
+		]
+	},
+	"converter-manual-rule-error": "Dilin manual çevrilməsi qaydasında xəta aşkarlandı",
+	"language-converter-depth-warning": "($1) Dil konvertorunun limiti keçildi"
+}

@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Als-Holder"
+		]
+	},
+	"converter-manual-rule-error": "Bi dr manuälle Sprochkonvertierigsregle isch e Fähler entdeckt wore.",
+	"language-converter-depth-warning": "Gränz vu dr Sprochkonvertertiefi iberschritte ($1)"
+}

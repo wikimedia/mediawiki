@@ -1,0 +1,26 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ktchankt",
+			"Winston Sung"
+		]
+	},
+	"variantname-kk-cyrl": "哈薩克文（西里爾字）",
+	"variantname-kk-latn": "哈薩克文（拉丁字）",
+	"variantname-kk-arab": "哈薩克阿剌伯文",
+	"variantname-ku": "無變換",
+	"variantname-ku-arab": "庫爾德阿剌伯文",
+	"variantname-ku-latn": "庫爾德拉丁文",
+	"variantname-sr": "無變換",
+	"variantname-sr-ec": "斯拉夫易卡語",
+	"variantname-sr-el": "拉丁易卡語",
+	"variantname-zh": "無變換",
+	"variantname-zh-hans": "簡體",
+	"variantname-zh-hant": "繁體",
+	"variantname-zh-cn": "中國大陸",
+	"variantname-zh-hk": "香港",
+	"variantname-zh-sg": "星加坡",
+	"variantname-zh-tw": "臺灣",
+	"converter-manual-rule-error": "手動語言轉換規則入面偵測到出錯",
+	"language-converter-depth-warning": "字體變換器深度限制超過咗 ($1)"
+}

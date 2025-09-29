@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"ChrisPtDe"
+		]
+	},
+	"converter-manual-rule-error": "Fôta dècelâye dedens la règlla de convèrsion manuâla de lengoua",
+	"language-converter-depth-warning": "Limita de provondior du convèrtior de lengoua dèpassâye ($1)"
+}

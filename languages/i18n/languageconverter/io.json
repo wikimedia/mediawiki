@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Joao Xavier"
+		]
+	},
+	"converter-manual-rule-error": "Eroro trovesis en la regulo pri manuala konverto inter idiomi",
+	"language-converter-depth-warning": "La limito di profundeso dil linguo-konvertilo superiresis ($1)"
+}

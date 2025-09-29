@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Robby",
+			"Soued031"
+		]
+	},
+	"converter-manual-rule-error": "An der Reegel iwwer déi manuell Ëmwandlung vun der Sprooch gouf e Feeler fonnt",
+	"language-converter-depth-warning": "D'Limite vun der déift vun der Sproochëmwandlung gouf iwwerschratt ($1)"
+}

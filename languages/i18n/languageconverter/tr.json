@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Joseph",
+			"Sezgin İbiş"
+		]
+	},
+	"converter-manual-rule-error": "Elle yapılandırma dil dönüşüm kuralı hatası tespit edildi",
+	"language-converter-depth-warning": "Dil çevirici derinlik sınırı aşıldı ($1)"
+}

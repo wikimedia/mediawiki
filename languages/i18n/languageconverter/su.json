@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Kandar",
+			"Uchup19"
+		]
+	},
+	"converter-manual-rule-error": "Kasalahan kanyahoan dina aturan tarjamahan basa manual",
+	"language-converter-depth-warning": "Parobah basa ngaleuwihan wates jerona ($1)"
+}

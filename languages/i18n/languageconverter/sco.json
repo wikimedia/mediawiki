@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"John Reid"
+		]
+	},
+	"converter-manual-rule-error": "mistak detected in manual leid conversion rule",
+	"language-converter-depth-warning": "Leid converter depth limit owershote ($1)"
+}

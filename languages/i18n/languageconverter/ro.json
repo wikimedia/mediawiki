@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Firilacroco",
+			"Minisarm"
+		]
+	},
+	"converter-manual-rule-error": "Eroare detectată în regula manuală de conversie a limbii",
+	"language-converter-depth-warning": "Limita adâncimii convertorului de limbă a fost depășită ($1)"
+}

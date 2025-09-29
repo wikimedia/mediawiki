@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"MRidhaAJ"
+		]
+	},
+	"converter-manual-rule-error": "خطأ انكشف بقاعدة تحويل اللغة اليدوية",
+	"language-converter-depth-warning": "تم تخطي حد عمق محول اللغه ($1)"
+}

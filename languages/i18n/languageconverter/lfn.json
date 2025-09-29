@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Katxis"
+		]
+	},
+	"converter-manual-rule-error": "Era detetada en regula nonautomata de converti de lingua",
+	"language-converter-depth-warning": "Esede de profondia masima de convertador de lingua ($1)"
+}

@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Crt",
+			"Nike"
+		]
+	},
+	"converter-manual-rule-error": "Kielivarianttisäännössä on virhe",
+	"language-converter-depth-warning": "Kielimuuntimen syvyysraja ylittyi ($1)"
+}

@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"EugeneZelenko",
+			"Red Winged Duck"
+		]
+	},
+	"converter-manual-rule-error": "Знойдзеная памылка ў ручным правіле моўнага канвэртару",
+	"language-converter-depth-warning": "Перавышанае абмежаваньне глыбіні канвэртару варыянтаў мовы ($1)"
+}

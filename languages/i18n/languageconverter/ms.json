@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Anakmalaysia",
+			"Aurora"
+		]
+	},
+	"converter-manual-rule-error": "Ralat dikesan dalam aturan penukaran bahasa manual",
+	"language-converter-depth-warning": "Had kedalaman penukar bahasa dilepasi ($1)"
+}

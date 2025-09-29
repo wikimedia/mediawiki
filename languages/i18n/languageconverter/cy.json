@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Lloffiwr"
+		]
+	},
+	"converter-manual-rule-error": "Cafwyd hyd i wall yn y rheol trosi iaith â llaw",
+	"language-converter-depth-warning": "Wedi mynd tu hwnt i'r terfyn dyfnder ($1) ar y cyfnewidydd iaith."
+}

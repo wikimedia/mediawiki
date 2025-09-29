@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Iwan Novirion"
+		]
+	},
+	"converter-manual-rule-error": "Kasalahan tadeteksi di aturan manual konversi bahaso",
+	"language-converter-depth-warning": "Bateh kadalaman pangonversi bahaso lah talampau ($1)"
+}

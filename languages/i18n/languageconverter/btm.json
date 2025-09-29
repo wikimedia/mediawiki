@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"IHLubis"
+		]
+	},
+	"converter-manual-rule-error": "Hasalaan na mandung tardeteksi ibagasan ni aturan konversi saro manual",
+	"language-converter-depth-warning": "Batas ni habagasan nai pangonversi saro mandung tarlampaoi ($1)"
+}

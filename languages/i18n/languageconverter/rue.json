@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Gazeb"
+		]
+	},
+	"converter-manual-rule-error": "Найджена хыба в ручнім правилї конверзії языка",
+	"language-converter-depth-warning": "Перевышеный ліміт глубкы у языковій конверзії ($1)"
+}

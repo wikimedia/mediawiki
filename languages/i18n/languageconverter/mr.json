@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Htt",
+			"V.narsikar"
+		]
+	},
+	"converter-manual-rule-error": "निदेशपुस्तिकेच्या भाषा अनुरुपण नियमामध्ये त्रुटी आढळली",
+	"language-converter-depth-warning": "भाषा रुपांतरण खोली मर्यादा ओलांडली ($1)"
+}

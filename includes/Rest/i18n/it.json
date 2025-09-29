@@ -51,6 +51,8 @@
 	"rest-param-desc-transform-format": "Trasforma formato",
 	"rest-param-desc-transform-revision": "Trasforma versione",
 	"rest-property-desc-revision-id": "ID versione",
+	"rest-property-desc-search-pages": "Elenco delle pagine dei risultati di ricerca",
+	"rest-property-desc-user": "Utente che ha effettuato la modifica",
 	"rest-property-desc-user-name": "Nome utente o indirizzo IP di origine per utenti anonimi",
 	"rest-endpoint-desc-post-page": "Crea una pagina.",
 	"rest-endpoint-desc-post-transform-wikitext-to-html-title-revision": "Converte il wikitesto di una determinata versione in HTML. Il parametro del corpo della richiesta del wikitesto deve essere specificato, ma può essere lasciato vuoto per ricevere la versione completa. Il corpo della risposta contiene il codice HTML renderizzato della versione.",

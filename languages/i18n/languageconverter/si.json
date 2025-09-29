@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"චතුනි අලහප්පෙරුම",
+			"පසිඳු කාවින්ද"
+		]
+	},
+	"converter-manual-rule-error": "අත්පොත භාෂා පරිවර්තනය පාලනය අනාවරණය දෝෂ",
+	"language-converter-depth-warning": "භාෂා පරිවර්තක අධිකත්ව සීමාව ඉක්මවා ඇත ($1)"
+}

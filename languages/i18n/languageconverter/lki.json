@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Lakzon"
+		]
+	},
+	"converter-manual-rule-error": "خطا در قوانین مبدل دستی زبان",
+	"language-converter-depth-warning": "محدودیت عمق مبدل زبانی رد شد ($1)"
+}

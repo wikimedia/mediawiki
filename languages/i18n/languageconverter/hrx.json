@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Paul Beppler"
+		]
+	},
+	"converter-manual-rule-error": "Bei der manuelle Sprochkonvertierungsrechel woard en Fehler entdeckt.",
+	"language-converter-depth-warning": "Sprochkonvertertieflimit üwerschritt ($1)"
+}

@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"Klutzy",
+			"YeBoy371",
+			"아라"
+		]
+	},
+	"variantname-gan-hans": "간어(간체)",
+	"variantname-zh-hans": "중국어(간체)",
+	"variantname-zh-hant": "중국어 (정체)",
+	"converter-manual-rule-error": "언어 변환 규칙을 수동으로 지정하는 도중 오류",
+	"language-converter-depth-warning": "언어 변환기 실행 제한 초과($1)"
+}

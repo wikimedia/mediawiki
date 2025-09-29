@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Erkethan",
+			"IAlex",
+			"Verdy p"
+		]
+	},
+	"variantname-gan-hans": "sinogrammes simplifiés",
+	"variantname-gan-hant": "sinogrammes traditionnels",
+	"variantname-tg-latn": "tg-latn",
+	"variantname-wuu-hans": "sinogrammes simplifiés",
+	"variantname-wuu-hant": "sinogrammes traditionnels",
+	"variantname-yue-hant": "sinogrammes traditionnels",
+	"variantname-yue-hans": "sinogrammes simplifiés",
+	"variantname-zh-hans": "sinogrammes simplifiés",
+	"variantname-zh-hant": "sinogrammes traditionnels",
+	"converter-manual-rule-error": "Erreur détectée dans la règle manuelle de conversion de langue",
+	"language-converter-depth-warning": "Limite de profondeur du convertisseur de langue dépassée ($1)"
+}

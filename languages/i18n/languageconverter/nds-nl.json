@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Servien"
+		]
+	},
+	"converter-manual-rule-error": "Der is n fout evunnen in n haandmaotig in-evoegden taalkonversieregel.",
+	"language-converter-depth-warning": "Je hebben t dieptelimiet veur de taalumzetter bereikt ($1)"
+}

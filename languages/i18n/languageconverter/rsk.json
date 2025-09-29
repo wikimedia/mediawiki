@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Keresturec"
+		]
+	},
+	"converter-manual-rule-error": "Пренайдзена гришка у правилу за ручне конвертованє язика",
+	"language-converter-depth-warning": "Лимит глїбини язичного конвертера прекрочени ($1)"
+}

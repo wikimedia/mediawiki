@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"NehalDaveND",
+			"Shreekant Hegde"
+		]
+	},
+	"converter-manual-rule-error": "मानवीये भाषापरिवर्तने दोषः दृष्टः ।",
+	"language-converter-depth-warning": "भाषा-परिवर्तकस्य सीमा समाप्ता ($1)"
+}

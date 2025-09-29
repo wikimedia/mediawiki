@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Jon Harald Søby",
+			"Stigmj"
+		]
+	},
+	"converter-manual-rule-error": "En feil ble oppdaget i en manuell språkkonverteringsregel",
+	"language-converter-depth-warning": "Dybdegrense for språkkonvertering overskredet ($1)"
+}

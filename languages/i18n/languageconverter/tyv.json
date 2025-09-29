@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Karak-Kyzyl"
+		]
+	},
+	"converter-manual-rule-error": "Дыл чаартылгазының хол дүрүмүнде алдаг",
+	"language-converter-depth-warning": "Дылдың чаартылгазының ханызының кызыгаары ашкан ($1)"
+}

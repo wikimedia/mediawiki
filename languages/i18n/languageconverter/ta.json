@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Balajijagadesh",
+			"Shanmugamp7"
+		]
+	},
+	"converter-manual-rule-error": "கைமுறை மொழி மாற்றம் விதியில் பிழை கண்டுபிடிக்கப்பட்டது",
+	"language-converter-depth-warning": "மொழி மாற்றியின் ஆழம் வரம்பை மீறிவிட்டது ( $1 )"
+}

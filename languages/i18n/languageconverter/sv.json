@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Boivie",
+			"WikiPhoenix"
+		]
+	},
+	"converter-manual-rule-error": "Fel upptäcktes i manuell språkkonverteringsregel",
+	"language-converter-depth-warning": "Gräns för språkkonverteringsdjup överskriden ($1)"
+}

@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Chaduvari",
+			"Veeven"
+		]
+	},
+	"converter-manual-rule-error": "మానవిక భాషాంతరీకరణ పరికరంలో లోపాన్ని కనుక్కున్నాం",
+	"language-converter-depth-warning": "భాషా మార్పిడి లోతు పరిమితిని అధిగమించారు ($1)"
+}

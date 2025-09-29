@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Siebrand"
+		]
+	},
+	"converter-manual-rule-error": "Er is een fout gedetecteerd in een handmatig toegevoegde taalconversieregel.",
+	"language-converter-depth-warning": "De dieptelimiet voor de taalconvertor is overschreden ($1)"
+}

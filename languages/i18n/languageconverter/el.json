@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Geraki",
+			"Protnet"
+		]
+	},
+	"converter-manual-rule-error": "Εντοπίστηκε σφάλμα σε μη αυτόματο κανόνα μετατροπής γλώσσας",
+	"language-converter-depth-warning": "Το όριο βάθους του μετατροπέα γλώσσας έχει ξεπεραστεί ($1)"
+}

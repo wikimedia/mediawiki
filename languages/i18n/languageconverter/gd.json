@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Akerbeltz"
+		]
+	},
+	"converter-manual-rule-error": "Mhothaich sinn do mhearachd san riaghailt iompachadh làimhe airson cànan",
+	"language-converter-depth-warning": "Chaidh thu thairis air crìoch doimhne an iompachair chànain ($1)"
+}

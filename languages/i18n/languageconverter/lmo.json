@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Salvemm el lombard"
+		]
+	},
+	"converter-manual-rule-error": "Eror rilevad in la regola manual de conversion de la lengua",
+	"language-converter-depth-warning": "Limit de profondità del convertidor de lengua superad ($1)"
+}

@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Capmo",
+			"Pedroca cerebral"
+		]
+	},
+	"converter-manual-rule-error": "Erro detectado na regra de conversão de língua manual",
+	"language-converter-depth-warning": "O limite de profundidade do conversor de línguas excedeu a ($1)"
+}

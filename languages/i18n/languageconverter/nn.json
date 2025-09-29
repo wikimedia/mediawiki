@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Nghtwlkr",
+			"Njardarlogar"
+		]
+	},
+	"converter-manual-rule-error": "Det vart oppdaga ein feil i ein manuell språkkonverteringsregel",
+	"language-converter-depth-warning": "Språkomformaren si djubdegrense vart overstege ($1)"
+}

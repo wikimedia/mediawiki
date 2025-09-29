@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Horus"
+		]
+	},
+	"converter-manual-rule-error": "พบข้อผิดพลาดในกฎการแปลงผันภาษาด้วยมือ",
+	"language-converter-depth-warning": "เกินขีดจำกัดความลึกตัวแปลงผันภาษา ($1)"
+}

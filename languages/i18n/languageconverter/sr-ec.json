@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"Rancher",
+			"Жељко Тодоровић",
+			"Сербијана"
+		]
+	},
+	"variantname-sr": "Ћир./lat.",
+	"variantname-sr-ec": "Ћирилица",
+	"variantname-sr-el": "Latinica",
+	"converter-manual-rule-error": "Пронађена је грешка у правилу за ручно претварање језика",
+	"language-converter-depth-warning": "Прекорачена је граница дубине језичког претварача ($1)"
+}

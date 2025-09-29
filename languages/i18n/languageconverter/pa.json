@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Cabal"
+		]
+	},
+	"converter-manual-rule-error": "ਹੱਥੀਂ ਭਾਸ਼ਾ ਬਦਲਣ ਨਿਯਮ ਵਿੱਚ ਗਲਤੀ ਲੱਭੀ",
+	"language-converter-depth-warning": "ਭਾਸ਼ਾ ਵਟਾਂਦਰਾਂ ਡੂੰਘਾਈ ਹੱਦ ਤੋਂ ਵੱਧ ਹੋ ਗਈ ($1)"
+}

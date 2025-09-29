@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Darzz",
+			"Winston Sung"
+		]
+	},
+	"variantname-kk-kz": "Кирил (Қазақстан)",
+	"converter-manual-rule-error": "Қолдан тіл түрлендіру ережесінде қате анықталды",
+	"language-converter-depth-warning": "Тіл түрлендіргіштің тереңдік шектеуінен асты ($1)"
+}

@@ -1,0 +1,13 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ex13",
+			"Roberta F.",
+			"SpeedyGonsales"
+		]
+	},
+	"variantname-sr-ec": "ćirilica",
+	"variantname-sr-el": "latinica",
+	"converter-manual-rule-error": "Pronađena je pogrješka u pravilu ručnog prijevoda",
+	"language-converter-depth-warning": "Prekoračena granica dubine jezičnog pretvarača ($1)"
+}

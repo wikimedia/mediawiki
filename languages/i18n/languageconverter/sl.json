@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Eleassar"
+		]
+	},
+	"variantname-sr-ec": "cirilica",
+	"variantname-sr-el": "latinica",
+	"converter-manual-rule-error": "Odkrita je bila napaka v pravilu ročne pretvorbe jezikov",
+	"language-converter-depth-warning": "Prekoračena omejitev globine pretvornika jezikov ($1)"
+}

@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Hamilton Abreu",
+			"SandroHc"
+		]
+	},
+	"converter-manual-rule-error": "Erro detetado na regra de conversão de língua manual",
+	"language-converter-depth-warning": "O limite de profundidade do conversor de línguas foi excedido ($1)"
+}

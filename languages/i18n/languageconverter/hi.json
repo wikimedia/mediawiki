@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Saurmandal"
+		]
+	},
+	"converter-manual-rule-error": "मैन्युअल भाषा अंतरण नियम में त्रुटि",
+	"language-converter-depth-warning": "भाषा अंतरक की गहराई की सीमा पार ($1)"
+}

@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Bjankuloski06"
+		]
+	},
+	"converter-manual-rule-error": "Пронајдов грешка во правилото за рачно претворање на јазик",
+	"language-converter-depth-warning": "Пречекорена е границата на длабочината на јазичниот претворач ($1)"
+}

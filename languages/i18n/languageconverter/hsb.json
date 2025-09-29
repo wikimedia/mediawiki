@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Michawiki"
+		]
+	},
+	"converter-manual-rule-error": "Zmylk w manuelnym prawidle rěčneho konwertowanja namakany",
+	"language-converter-depth-warning": "Limit hłubokosće rěčneho konwertera překročena ($1)"
+}

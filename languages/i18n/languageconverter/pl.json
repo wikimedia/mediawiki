@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Przemub",
+			"Sp5uhe"
+		]
+	},
+	"converter-manual-rule-error": "Błąd w językowych regułach konwersji",
+	"language-converter-depth-warning": "Przekroczono ograniczenie ($1) głębokości zagnieżdżenia konwersji językowej"
+}

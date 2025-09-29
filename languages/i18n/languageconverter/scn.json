@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Pippinu",
+			"Sarvaturi"
+		]
+	},
+	"converter-manual-rule-error": "Rilivatu n'erruri nta na règula manuali di cunvirsioni di lingua",
+	"language-converter-depth-warning": "Passatu lu lìmiti di funnu dû cunvirtituri di lingua ($1)"
+}

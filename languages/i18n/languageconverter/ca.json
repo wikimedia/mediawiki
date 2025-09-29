@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Arnaugir",
+			"Jaumeortola"
+		]
+	},
+	"converter-manual-rule-error": "Error detectat a la norma de conversió de llengua manual",
+	"language-converter-depth-warning": "S'ha excedit el límit de profunditat del convertidor d'idiomes ($1)"
+}

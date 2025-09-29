@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Helix84"
+		]
+	},
+	"converter-manual-rule-error": "Bola zistená chyba v pravidle manuálnej konverzie jazyka",
+	"language-converter-depth-warning": "Bolo prekročené obmedzenie hĺbky ($1) jazykového konvertora"
+}

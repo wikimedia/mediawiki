@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Toliño"
+		]
+	},
+	"converter-manual-rule-error": "Detectouse un erro na regra manual de conversión da lingua",
+	"language-converter-depth-warning": "Excedeuse o límite de profundidade do convertedor de lingua ($1)"
+}

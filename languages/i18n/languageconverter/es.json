@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Kroji",
+			"Macofe"
+		]
+	},
+	"converter-manual-rule-error": "Se ha detectado un error en una regla manual de conversión de idioma",
+	"language-converter-depth-warning": "Se ha superado el límite de profundidad del convertidor de idioma ($1)"
+}

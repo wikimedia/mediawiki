@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ruppijeva"
+		]
+	},
+	"converter-manual-rule-error": "Rodih hairahtus kielen käzil vaihtandan siändölöis.",
+	"language-converter-depth-warning": "Kielen muuttajan syvysraja on ylitetty ($1)"
+}

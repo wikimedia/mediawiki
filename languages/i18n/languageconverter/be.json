@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Mikalai Udodau",
+			"Хомелка"
+		]
+	},
+	"converter-manual-rule-error": "Выяўлена памылка ў ручным правіле моўнага канвертара",
+	"language-converter-depth-warning": "Перавышана глыбіня моўнага канвертэра ($1)"
+}

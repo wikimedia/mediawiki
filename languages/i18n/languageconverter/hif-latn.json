@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Abdul Kadir",
+			"Thakurji"
+		]
+	},
+	"converter-manual-rule-error": "Bhasa ke anuwaad kare waala niyam me galti hae",
+	"language-converter-depth-warning": "Bhasa anuwaad ke gahiraai ijajat se jaada hoe gais hae ($1)"
+}

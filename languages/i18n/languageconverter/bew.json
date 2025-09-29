@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Bangrapip"
+		]
+	},
+	"converter-manual-rule-error": "Ada kengabluan keendus di aturan penukeran basa manual",
+	"language-converter-depth-warning": "Wates kedaleman penukeran basa ngliwatin ($1)"
+}

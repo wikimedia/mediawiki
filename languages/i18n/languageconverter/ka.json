@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"David1010",
+			"გიორგიმელა"
+		]
+	},
+	"converter-manual-rule-error": "შეცდომა ენის ხელით გარდაქმნის წესში",
+	"language-converter-depth-warning": "ენათა გადამუშავების კონვერციის ლიმიტი ამოწურულია ($1)"
+}

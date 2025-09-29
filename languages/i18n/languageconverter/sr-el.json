@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"Kizule",
+			"Rancher",
+			"Жељко Тодоровић"
+		]
+	},
+	"variantname-sr": "Ćir./lat.",
+	"variantname-sr-ec": "Ćirilica",
+	"variantname-sr-el": "Latinica",
+	"converter-manual-rule-error": "Pronađena je greška u pravilu za ručno pretvaranje jezika",
+	"language-converter-depth-warning": "Prekoračena je granica dubine jezičkog pretvarača ($1)"
+}

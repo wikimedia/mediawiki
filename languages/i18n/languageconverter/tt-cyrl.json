@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Mansur"
+		]
+	},
+	"converter-manual-rule-error": "Телне кулдан үзгәртү кагыйдәсендә хата табылган",
+	"language-converter-depth-warning": "Тел үзгәртүләре тирәнлегенең ($1) чиге арттырылган"
+}

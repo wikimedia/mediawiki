@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Delim",
+			"Gminky"
+		]
+	},
+	"converter-manual-rule-error": "언어 변환 규칙을 수동으로 지정하는 도중 오유",
+	"language-converter-depth-warning": "언어 변환기 실행 제한 초과($1)"
+}

@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Marwan Mohamad"
+		]
+	},
+	"converter-manual-rule-error": "Tilala yilotapu to delomo aturan konversi bahasa manual",
+	"language-converter-depth-warning": "Batasi delomo pomoli'o bahasa ma yilimbata ($1)"
+}

@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Es Krim 5 Juta Rasa"
+		]
+	},
+	"converter-manual-rule-error": "Kasalahan tideteksi dilom aturan konversi bahasa manual",
+	"language-converter-depth-warning": "Batas karakloman pangonversi bahasa tiliyu'i ($1)"
+}

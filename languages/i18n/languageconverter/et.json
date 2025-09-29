@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"KaidoKikkas",
+			"Pikne"
+		]
+	},
+	"converter-manual-rule-error": "Tõrge keelevariandi käsivahetusreeglis",
+	"language-converter-depth-warning": "Keeleteisendaja sügavuspiir ületatud ($1)"
+}

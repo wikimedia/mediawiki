@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Meno25"
+		]
+	},
+	"converter-manual-rule-error": "خطأ تم اكتشافه في قاعدة تحويل اللغة اليدوية",
+	"language-converter-depth-warning": "تم تخطي حد عمق محول اللغة ($1)"
+}

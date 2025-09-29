@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Chinneeb",
+			"Wisdom"
+		]
+	},
+	"converter-manual-rule-error": "Гараар хэл солих дүрэмд алдаа илэрлээ",
+	"language-converter-depth-warning": "Хэл хооронд хөрвүүлэх гүний хязгаараас хэтрэв ($1)"
+}

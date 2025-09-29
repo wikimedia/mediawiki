@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Hylle",
+			"Kwi"
+		]
+	},
+	"converter-manual-rule-error": "Fejl opdaget i manuel sprogkonvertingsregel",
+	"language-converter-depth-warning": "Dybdegrænse for sprogkonvertering overskredet ($1)"
+}

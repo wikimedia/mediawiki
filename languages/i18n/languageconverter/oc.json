@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Cedric31"
+		]
+	},
+	"variantname-ku-arab": "ku-Arabi",
+	"converter-manual-rule-error": "Error detectada dins la règla manuala de conversion de lenga",
+	"language-converter-depth-warning": "Limit de prigondor del convertissor de lenga depassada ($1)"
+}

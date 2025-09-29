@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"StanProg",
+			"Stanqo"
+		]
+	},
+	"converter-manual-rule-error": "Открита е грешка в правилото за ръчно езиково преобразуване",
+	"language-converter-depth-warning": "Надвишени са възможностите за автоматичен превод ($1)"
+}

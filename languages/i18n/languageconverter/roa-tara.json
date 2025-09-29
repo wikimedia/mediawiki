@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Joetaras"
+		]
+	},
+	"converter-manual-rule-error": "Errore assute jndr'à le regole de conversione d'a lènghe manuale",
+	"language-converter-depth-warning": "'U convertitore de lènghe ha subranate 'u limite de profonnetà ($1)"
+}

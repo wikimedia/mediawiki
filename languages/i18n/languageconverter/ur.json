@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Muhammad Shuaib"
+		]
+	},
+	"converter-manual-rule-error": "زبان کی دستی تبدیلی کے ضوابط میں نقص دریافت ہوا",
+	"language-converter-depth-warning": "لسانی مبدل کی گہرائی اپنی حد سے تجاوز کر گئی ($1)"
+}

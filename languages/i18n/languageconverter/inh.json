@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Adam-Yourist"
+		]
+	},
+	"converter-manual-rule-error": "ГӀалат да кара мотт хувцара бокъона чу",
+	"language-converter-depth-warning": "Мотт хувцарга (метта конвертера) кӀоаргал боарамал тӀехъяьннай ($1)"
+}

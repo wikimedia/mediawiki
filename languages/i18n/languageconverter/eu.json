@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Theklan",
+			"Unai Fdz. de Betoño"
+		]
+	},
+	"converter-manual-rule-error": "Akatsa aurkitu da hizkuntzen eskuszko konbertsio arauan",
+	"language-converter-depth-warning": "Hizkuntza-bihurgailuaren sakonerak ($1) muga gainditu du"
+}

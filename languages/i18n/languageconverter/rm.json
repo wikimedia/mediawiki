@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Gion-andri"
+		]
+	},
+	"converter-manual-rule-error": "Ina errur è cumparida en la regla manuala da convertir la lingua",
+	"language-converter-depth-warning": "Surpassà la limita ($1) dal convertader da linguas"
+}

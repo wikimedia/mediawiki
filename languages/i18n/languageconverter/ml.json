@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Praveenp"
+		]
+	},
+	"converter-manual-rule-error": "മാനുഷികമായുള്ള ഭാഷാ പരിവർത്തന നിയമത്തിൽ പിഴവ് കണ്ടെത്തി",
+	"language-converter-depth-warning": "ഭാഷ മാറ്റൽ ഉപകരണത്തിന്റെ ആഴത്തിന്റെ പരിധി കവിഞ്ഞിരിക്കുന്നു ($1)"
+}

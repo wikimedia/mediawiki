@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Brahim-essaidi"
+		]
+	},
+	"variantname-zgh": "ⵜⵉⴼⵉⵏⴰⵖ",
+	"variantname-zgh-latn": "Alatin",
+	"converter-manual-rule-error": "ⵜⴻⵜⵜⵢⴼⴰ ⵢⴰⵜ ⵜⵣⴳⵍⵜ ⴳ ⵓⵍⵓⴳⵏ ⴰⵡⴼⵓⵙ ⵏ ⵓⵙⵏⴼⵍ ⵏ ⵜⵓⵜⵍⴰⵢⵜ",
+	"language-converter-depth-warning": "ⵉⵜⵜⵓⵣⵔⴰⵢ ⵓⵡⵓⵜⵜⵓ ⵏ ⵜⴷⵔⵉ ⵏ ⵓⵙⵏⴼⴰⵍ ⵏ ⵜⵓⵜⵍⴰⵢⵜ ($1)"
+}

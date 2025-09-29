@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"McDutchie"
+		]
+	},
+	"converter-manual-rule-error": "Error detegite in le regula manual de conversion de lingua",
+	"language-converter-depth-warning": "Limite de profunditate del conversor de lingua excedite ($1)"
+}

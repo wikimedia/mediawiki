@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Darth Kule",
+			"Una giornata uggiosa '94"
+		]
+	},
+	"converter-manual-rule-error": "Rilevato errore nella regola manuale di conversione della lingua",
+	"language-converter-depth-warning": "Limite di profondità del convertitore di lingua superato ($1)"
+}

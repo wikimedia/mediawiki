@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Mormegil",
+			"Vks"
+		]
+	},
+	"converter-manual-rule-error": "Detekována chyba v pravidlech manuální jazykové konverze",
+	"language-converter-depth-warning": "Překročen limit vnoření u jazykové konverze ($1)"
+}

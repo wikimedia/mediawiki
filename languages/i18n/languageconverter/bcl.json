@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Geopoet"
+		]
+	},
+	"converter-manual-rule-error": "Kasalaan detektado sa manwal na konbersyon kan pinapasunod sa lengguwahe",
+	"language-converter-depth-warning": "Tagapagbago kan Lengguwaheng panrarom na kasagkodan nagsobra ($1)"
+}

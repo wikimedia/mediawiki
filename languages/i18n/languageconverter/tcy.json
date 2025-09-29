@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ravi Mundkur"
+		]
+	},
+	"converter-manual-rule-error": "ದೈಹಿಕ ಭಾಷಾ ಪರಿವರ್ತನ ನಿಯಮೊಡು ದೋಷ ಪತ್ತೆ ಆಂಡ್.",
+	"language-converter-depth-warning": "ಭಾಷಾ ಪರಿವರ್ತಕದ ಗಾಂತ್' ಮಿತಿ ಮೀರ್ದುಂಡು  ($1)"
+}

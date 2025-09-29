@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Olsi",
+			"Xhulianoo"
+		]
+	},
+	"converter-manual-rule-error": "U zbulua gabim në rregullin manual të konvertimit të gjuhës",
+	"language-converter-depth-warning": "Konvertimi i gjuhës ka kaluar limitin e lejuar: ($1)"
+}

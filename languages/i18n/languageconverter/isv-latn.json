@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"IJzeren Jan"
+		]
+	},
+	"converter-manual-rule-error": "Odkryta pogrěška v pravilah ručnoj jezyčnoj konversije",
+	"language-converter-depth-warning": "Prěvyšeno ograničenje glubiny jezyčnogo prětvarjača ($1)"
+}

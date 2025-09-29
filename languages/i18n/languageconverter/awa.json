@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"1AnuraagPandey"
+		]
+	},
+	"converter-manual-rule-error": "मैन्यूअल भाषा परिवर्तन नियम में त्रुटि",
+	"language-converter-depth-warning": "भाषा कन्वर्टर गहीराई सीमा से बहरे गय ( $1 )"
+}

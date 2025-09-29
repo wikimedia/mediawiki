@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Tejoebāsa"
+		]
+	},
+	"converter-manual-rule-error": "လူကိုယ်တိုင် ဘာသာစကားပြောင်းလဲခြင်း စည်းမျဉ်းမှာ အမှားတွိ့ဟိခရေ",
+	"language-converter-depth-warning": "ဘာသာစကား converter အတိမ်အနက် ကန့်သတ်ချက်ကို ကျော်လားရေ ($1)"
+}

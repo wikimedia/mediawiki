@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Bjarki S",
+			"Stefán Örvar Sigmundsson"
+		]
+	},
+	"converter-manual-rule-error": "Villa greindist í handvirkri tungumálaumbreytingarreglu",
+	"language-converter-depth-warning": "Farið út fyrir dýptarmörk tungumálabreytara ($1)"
+}

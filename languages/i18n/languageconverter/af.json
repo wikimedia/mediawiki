@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Naudefj"
+		]
+	},
+	"converter-manual-rule-error": "'n Fout is in 'n handmatig toegevoegde taalomskalelingsreël gevind.",
+	"language-converter-depth-warning": "Die dieptelimiet vir die taalomskakelaar is oorskrei ($1)"
+}
