@@ -297,7 +297,7 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 	/**
 	 * Set the bot flag in the recent changes to this value.
 	 *
-	 * @since 1.40
+	 * @since 1.40 (also backported to 1.39.14)
 	 * @param bool $forceBotFlag
 	 */
 	public function setForceBotFlag( bool $forceBotFlag ): void {
