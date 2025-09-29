@@ -121,7 +121,7 @@ trait MediaWikiTestCaseTrait {
 	}
 
 	/**
-	 * Create an initially empty DoainEventDispatcher with an empty service
+	 * Create an initially empty DomainEventDispatcher with an empty service
 	 * container attached. Register only the listeners specified in the parameter.
 	 *
 	 * @param array<string, callable> $listeners
@@ -507,7 +507,10 @@ trait MediaWikiTestCaseTrait {
 					$expectedMsg === null || $actualMsg === null ||
 					$localizer->msg( $expectedMsg )->text() !== $localizer->msg( $actualMsg )->text()
 				) {
-					$this->failStatus( $actual, "Status messages should be exactly like: $expected\nActual:", $message );
+					$this->failStatus(
+						$actual,
+						"Status messages should be exactly like: $expected\nActual:", $message
+					);
 				}
 			}
 		}
