@@ -389,7 +389,6 @@
 	"post-expand-template-argument-category": "Sieden, do der ignorierde Foarloagenargumente änthoolde",
 	"parser-template-loop-warning": "Foarloagenstrik äntdäkt: [[:$1]]",
 	"parser-template-recursion-depth-warning": "Foarloagenrekursionsdjuptenskeed uurtreeden ($1)",
-	"language-converter-depth-warning": "Sproakkonverter-djüptelimit uurtreeden ($1)",
 	"node-count-exceeded-category": "Sieden, do ju Knättenantaal uurtreeden hääbe",
 	"node-count-exceeded-warning": "Ju Siede häd ju Knättepunktantaal uurtreeden.",
 	"expansion-depth-exceeded-category": "Sieden, do der ju Expansionsdjupte uurtreeden hääbe",

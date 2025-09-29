@@ -552,7 +552,6 @@
 	"template-loop-category": "Şablon aýlawly sahypalar",
 	"template-loop-category-desc": "Sahypada şablon aýlawy bar. özüni yzygiderli çagyrýan şablon.",
 	"parser-template-recursion-depth-warning": "Şablonyň rekursiýasynyň çuňluk çäginden geçildi ($1)",
-	"language-converter-depth-warning": "Dil konwertorynyň çuňluk çäginden geçildi ($1)",
 	"node-count-exceeded-category": "Düwünleriň sany köp bolan sahypalar",
 	"node-count-exceeded-category-desc": "Sahypa iň ýokary düwün sanyndan ýokarydyr.",
 	"node-count-exceeded-warning": "Sahypa düwün sanyndan ýokarydy",

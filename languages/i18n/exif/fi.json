@@ -379,5 +379,22 @@
 	"exif-usepanoramaviewer-false": "Ei",
 	"exif-exposurelockused": "Valotuslukon käyttö",
 	"exif-exposurelockused-true": "Kyllä",
-	"exif-exposurelockused-false": "Ei"
+	"exif-exposurelockused-false": "Ei",
+	"exif-stitchingsoftware": "Yhdistämisohjelma",
+	"exif-digitalsourcetype": "Digitaalisen median lähde",
+	"exif-digitalsourcetype-digitalcapture": "Digitaalikamera tai -tallennin",
+	"exif-digitalsourcetype-computationalcapture": "Digitaalikamera tai -tallennin (useita kuvia yhdistettynä)",
+	"exif-digitalsourcetype-negativefilm": "Digitoitu läpinäkyvästä negatiivista",
+	"exif-digitalsourcetype-positivefilm": "Digitoitu läpinäkyvästä positiivista",
+	"exif-digitalsourcetype-print": "Digitoitu läpinäkymättömästä tallennusvälineestä",
+	"exif-digitalsourcetype-minorhumanedits": "Alkuperäinen media, jossa on pieniä ihmisen tekemiä muokkauksia",
+	"exif-digitalsourcetype-humanedits": "Ihmisen muokkaama media",
+	"exif-digitalsourcetype-compositewithtrainedalgorithmicmedia": "Muokattu generatiivisen tekoälyn avulla",
+	"exif-digitalsourcetype-algorithmicallyenhanced": "Algoritmistisesti muokattu media",
+	"exif-digitalsourcetype-softwareimage": "Ohjelmiston luoma",
+	"exif-digitalsourcetype-digitalart": "Ihmisen luoma digitaalisten työkalujen avulla",
+	"exif-digitalsourcetype-digitalcreation": "Ihmisen luoma ei-tekoälytyökalujen kanssa",
+	"exif-digitalsourcetype-trainedalgorithmicmedia": "Luotu generatiivisen tekoälyn avulla",
+	"exif-digitalsourcetype-algorithmicmedia": "Puhtaasti ei-tekoälyalgoritmillä luotu media",
+	"exif-digitalsourcetype-screencapture": "Kuvakaappaus"
 }

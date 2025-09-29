@@ -1,0 +1,21 @@
+{
+	"@metadata": {
+		"authors": [
+			"Kambai Akau"
+		]
+	},
+	"monday": "Tuk Gyut-kywom",
+	"tuesday": "Tuk Fe̱ri",
+	"wednesday": "Tuk Tar",
+	"thursday": "Tuk Naang",
+	"friday": "Tuk Twoo",
+	"saturday": "Tuk Twaani",
+	"sunday": "Tuk Kyuwiny",
+	"mon": "Gky",
+	"tue": "Fe̱r",
+	"wed": "Tar",
+	"thu": "Nan",
+	"fri": "Two",
+	"sat": "Twn",
+	"sun": "Kwn"
+}

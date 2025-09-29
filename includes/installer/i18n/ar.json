@@ -323,7 +323,6 @@
 	"config-nofile": "لا يمكن العثور على الملف «$1». هل حُذف؟",
 	"config-extension-link": "هل كنت تعلم أن الويكي الخاص بك تدعم [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions الامتدادات]؟\n\nيمكنك تصفح [https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category الامتدادات حسب التصنيف].",
 	"config-skins-screenshots": "$1 (لقطات شاشة: $2)",
-	"config-skins-screenshot": "$1 ($2)",
 	"config-extensions-requires": "$1 (يتطلب $2)",
 	"config-screenshot": "لقطة شاشة",
 	"config-extension-not-found": "لم يمكن العثور على ملف التسجيل للامتداد «$1»",

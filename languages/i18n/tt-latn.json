@@ -392,7 +392,6 @@
 	"post-expand-template-argument-category": "Töşerep qaldırılğan ürnäk argumentlı bitlär",
 	"parser-template-loop-warning": "Ürnäklärdä yomıq sıltama tabıldı: [[:$1]]",
 	"parser-template-recursion-depth-warning": "($1) ürnägen rekursiä itep qullanu çige röxsät itelgännän artıp kitkän",
-	"language-converter-depth-warning": "Tellärne üzgärtüläre artıq yuğarığa kitkän ($1)",
 	"undo-success": "Üzgärtüdän baş tartıp bula.\nYuramalaranı çağıştırunı qarağız häm, üzgärtülär Sez telägänçä bulsa, bitne saqlağız.",
 	"undo-failure": "Aralıqtağı üzgärtülär turı kilmäw säbäple, üzgärtüdän baş tartıp bulmıy.",
 	"undo-norev": "Üzgärtü yuq yäisä ul beterelgän, şuña annan baş tartıp bulmıy.",

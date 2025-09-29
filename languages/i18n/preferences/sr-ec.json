@@ -208,6 +208,7 @@
 	"rcfilters-watchlist-preference-label": "Интерфејс без JavaScript-а",
 	"rcfilters-watchlist-preference-help": "Учитава [[{{#special:Watchlist}}|списак надгледања]] без претраге филтера и могућности истицања измена.",
 	"prefs-changeswatchlist": "Приказане измене",
+	"tog-watchstar-expiry": "Подразумевано време надгледања ручно додатих страница:",
 	"tog-watchlisthideminor": "Сакривај мање измене са списка надгледања",
 	"tog-watchlisthidebots": "Сакривај измене ботова са списка надгледања",
 	"tog-watchlisthideown": "Сакривај моје измене са списка надгледања",

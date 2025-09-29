@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Marphy 123",
 			"Rut",
 			"RutulManT"
 		]
@@ -451,6 +452,7 @@
 	"ilsubmit": "Ахтармиш",
 	"metadata": "Meta-маIлуматбыр",
 	"metadata-help": "Мид файл ха камерабыр нI сканермыр уу лихъихед данныйбыр. Эгер хIели файл дегишь йищир, гьаса йиъиди - дегишед нI оригинальный файлад сасадбыр хасиетбыр джура ыIкыс.",
+	"metadata-fields": "Bu səhifədə sıralanan EXIF metadata sahələri şəkil görünüş səhifələrində metadata cədvəli çökdüyündə istifadə edilir. Digərləri varsayılan olaraq gizlənəcəkdir.\n* make\n* model\n* datetimeoriginal\n* exposuretime\n* fnumber\n* isospeedratings\n* focallength\n* artist\n* copyright\n* imagedescription\n* gpslatitude\n* gpslongitude\n* gpsaltitude\n* dc-rights\n* copyrightowner\n* usageterms\n* webstatement\n* licenseurl\n* attributionurl\n* preferredattributionname\n* credit\n* jpegfilecomment\n* pngfilecomment\n* giffilecomment\n* usercomment\n* citydest\n* citycreated\n* headline\n* source\n* locationdest\n* dc-contributor\n* dc-coverage\n* dc-publisher\n* dc-relation\n* label\n* nickname\n* personinimage\n* disclaimer\n* event\n* objectname\n* digitalsourcetype",
 	"namespacesall": "сиене",
 	"monthsall": "сиене",
 	"imgmultipageprev": "← уьлихьде",

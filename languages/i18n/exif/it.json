@@ -381,5 +381,7 @@
 	"exif-usepanoramaviewer-false": "No",
 	"exif-exposurelockused": "Blocco di esposizione utilizzata",
 	"exif-exposurelockused-true": "Sì",
-	"exif-exposurelockused-false": "No"
+	"exif-exposurelockused-false": "No",
+	"exif-digitalsourcetype-computationalcapture": "Fotocamera digitale o registratore (più fotogrammi combinati)",
+	"exif-digitalsourcetype-softwareimage": "Creato dal software"
 }

@@ -566,7 +566,6 @@
 	"template-loop-category-desc": "ᥘᥣᥲ ᥘᥤᥐ ᥘᥭᥳ ᥑᥝᥲ ᥙᥣᥰ ᥝᥭᥳ ᥗᥦᥛᥰ ᥙᥣ ᥘᥥᥐᥳ ᥙᥢᥱ ᥖᥨᥒᥱ, ᥖᥨᥝᥱ ᥕᥣᥒᥱ ᥗᥦᥛᥰ ᥙᥣ ᥘᥥᥐᥳ ᥟᥢ ᥑᥪᥢᥰ ᥞᥩᥒᥳ ᥖᥨᥝ ᥐᥝᥱ ᥙᥢᥱ ᥖᥨᥒᥱ ᥝᥭᥳ ᥘᥢᥳ.",
 	"template-loop-warning": "<strong>ᥑᥨᥝᥲ ᥚᥣᥒᥳ:</strong> ᥘᥣᥲ ᥘᥤᥐ ᥟᥢ ᥘᥭᥳ ᥞᥩᥒᥳ [[:$1]] ᥟᥢ ᥙᥥᥢ ᥗᥦᥛᥰ ᥙᥣ ᥘᥥᥐᥳ ᥙᥢᥱ ᥖᥨᥒᥱ (ᥟᥢ ᥞᥩᥒᥳ ᥙᥢᥱ ᥖᥨᥒᥱ ᥟᥛᥱ ᥛᥤᥰ ᥖᥤ ᥔᥧᥖᥴ).",
 	"parser-template-recursion-depth-warning": "ᥘᥩᥒ ᥛᥐᥴ ᥑᥣᥢᥰ ᥖᥣᥒᥰ ᥘᥪᥐ ᥘᥩᥒ ᥙᥢᥱ ᥖᥨᥒᥱ ᥗᥦᥛᥰ ᥙᥣ ᥘᥥᥐᥳ ᥘᥭᥳ ᥙᥨᥢᥳ ᥘᥫᥴ ᥐᥣᥱ ($1)",
-	"language-converter-depth-warning": "ᥘᥩᥒ ᥛᥐᥴ ᥑᥣᥢᥰ ᥖᥣᥒᥰ ᥘᥪᥐ ᥘᥩᥒ ᥙᥢᥱ ᥖᥨᥒᥱ ᥗᥦᥛᥰ ᥙᥣ ᥘᥥᥐᥳ ᥘᥭᥳ ᥙᥨᥢᥳ ᥘᥫᥴ ᥐᥣᥱ ($1)",
 	"node-count-exceeded-category": "ᥘᥣᥲ ᥘᥤᥐ ᥓᥫᥰ ᥟᥢ ᥞᥨᥝᥴ ᥘᥙᥳ ᥖᥨᥝ ᥙᥨᥢᥳ ᥙᥦᥢ ᥝᥭᥳ ᥘᥢᥳ",
 	"node-count-exceeded-category-desc": "ᥘᥣᥲ ᥘᥤᥐ ᥟᥢ ᥞᥨᥝᥴ ᥘᥙᥳ ᥖᥨᥝ ᥙᥨᥢᥳ ᥙᥦᥢ ᥘᥫᥴ ᥖᥤ ᥘᥛᥴ ᥔᥧᥖᥴ.",
 	"node-count-exceeded-warning": "ᥘᥣᥲ ᥘᥤᥐ ᥟᥢ ᥞᥨᥝᥴ ᥘᥙᥳ ᥖᥩ ᥙᥨᥢᥳ ᥙᥦᥢ ᥝᥭᥳ",
