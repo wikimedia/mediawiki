@@ -1723,6 +1723,7 @@
 	"upload-progress-processing": "Used as status message in the upload progress form in [[Special:Upload]] for asynchronous uploads, when the upload is processing",
 	"upload-tryagain": "Used as Submit button text in [[Special:Upload]].\n\nSee also:\n* {{msg-mw|Uploaderror|section header}}\n* {{msg-mw|ignorewarning|button text}}\n* {{msg-mw|reuploaddesc|button text}}",
 	"upload-tryagain-nostash": "Used as Submit button text in [[Special:Upload]] when the upload could not be stashed & the file needs to be reuploaded.\n\nSee also:\n* {{msg-mw|Uploaderror|section header}}\n* {{msg-mw|ignorewarning|button text}}\n* {{msg-mw|reuploaddesc|button text}}",
+	"upload-stash-error": "Used as error message in [[Special:Upload]] for problems with stashed files {{msg-mw|uploadstash}}.\nParameters: Error message (for example {{msg-mw|uploadstash-file-not-found}})",
 	"uploadnologin": "Used as title of the error message {{msg-mw|Uploadnologintext}}.\n{{Identical|Not logged in}}",
 	"uploadnologintext": "Used as error message.\n\nThe title for this message is {{msg-mw|Uploadnologin}}.\n\nParameters:\n* $1 - a link to [[Special:UserLogin]] with {{msg-mw|loginreqlink}} as link description\n* $2 - an URL to the same\n\nSee also:\n* {{msg-mw|Whitelistedittext}}\n* {{msg-mw|Nocreatetext}}\n* {{msg-mw|Loginreqpagetext}}",
 	"upload_directory_missing": "Parameters:\n* $1 - directory name",

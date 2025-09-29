@@ -54,6 +54,7 @@ use UnexpectedValueException;
 use UploadBase;
 use UploadForm;
 use UploadFromStash;
+use UploadStashException;
 
 /**
  * Form for uploading media files.
@@ -269,7 +270,12 @@ class SpecialUpload extends SpecialPage {
 		# Check whether we actually want to allow changing stuff
 		$this->checkReadOnly();
 
-		$this->loadRequest();
+		try {
+			$this->loadRequest();
+		} catch ( UploadStashException $e ) {
+			$this->showUploadError( $this->msg( 'upload-stash-error', $e->getMessageObject() )->escaped() );
+			return;
+		}
 
 		# Unsave the temporary file in case this was a cancelled upload
 		if ( $this->mCancelUpload && !$this->unsaveUploadedFile() ) {
