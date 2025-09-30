@@ -56,7 +56,7 @@ class CleanupInvalidDbKeys extends Maintenance {
 		// Links tables
 		[ 'pagelinks', 'pl', 'idField' => 'pl_from' ],
 		[ 'templatelinks', 'tl', 'idField' => 'tl_from', 'virtualDomain' => TemplateLinksTable::VIRTUAL_DOMAIN ],
-		[ 'categorylinks', 'cl', 'idField' => 'cl_from', 'nsField' => 14, 'titleField' => 'cl_to' ],
+		[ 'categorylinks', 'cl', 'idField' => 'cl_from' ],
 		[ 'imagelinks', 'il', 'idField' => 'il_from', 'nsField' => 6, 'titleField' => 'il_to' ],
 	];
 

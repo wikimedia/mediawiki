@@ -427,7 +427,8 @@ class RefreshLinks extends Maintenance {
 		$this->output( "Refreshing pages in category '{$category->getText()}'...\n" );
 
 		$builder->join( 'categorylinks', null, 'page_id=cl_from' )
-			->andWhere( [ 'cl_to' => $category->getDBkey() ] );
+			->join( 'linktarget', null, 'lt_id=cl_target_id' )
+			->andWhere( [ 'lt_title' => $category->getDBkey(), 'lt_namespace' => NS_CATEGORY ] );
 		$this->doRefreshLinks( $builder, false, [ 'cl_timestamp', 'cl_from' ] );
 	}
 
