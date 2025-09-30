@@ -2,9 +2,12 @@
 
 namespace MediaWiki\Tests\Api\Query;
 
+use MediaWiki\CommentStore\CommentStoreComment;
+use MediaWiki\Content\WikitextContent;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\RecentChanges\RecentChange;
+use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Tests\Api\ApiTestCase;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
@@ -429,6 +432,58 @@ class ApiQueryRecentChangesIntegrationTest extends ApiTestCase {
 			],
 			$this->getItemsFromRecentChangesResult( $result )
 		);
+	}
+
+	public function testSha1PropParameter() {
+		$target = new TitleValue( NS_MAIN, 'Thing' );
+		$this->doPageEdit( $this->getLoggedInTestUser(), $target, 'Create the page' );
+
+		$result = $this->doListRecentChangesRequest( [ 'rcprop' => 'sha1' ] );
+		$items = $this->getItemsFromRecentChangesResult( $result );
+
+		$this->assertCount( 1, $items );
+		$item = $items[0];
+		$this->assertArrayHasKey( 'sha1', $item );
+		$this->assertIsString( $item['sha1'] );
+		$this->assertEquals( 'c83c5a32da4b735b037d43eeee7e379741773ce1', $item['sha1'] );
+	}
+
+	public function testSha1PropParameterWithMultipleSlots() {
+		// Ensure an auxiliary slot exists for the test
+		$slotRoleRegistry = $this->getServiceContainer()->getSlotRoleRegistry();
+		if ( !$slotRoleRegistry->isDefinedRole( 'aux' ) ) {
+			$slotRoleRegistry->defineRoleWithModel( 'aux', CONTENT_MODEL_WIKITEXT );
+			$this->setService( 'SlotRoleRegistry', $slotRoleRegistry );
+		}
+
+		$target = new TitleValue( NS_MAIN, 'MultiSlotPage' );
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromLinkTarget( $target );
+		$updater = $page->newPageUpdater( $this->getLoggedInTestUser() );
+		$updater->setContent( SlotRecord::MAIN, new WikitextContent( 'Main slot content' ) );
+		$updater->setContent( 'aux', new WikitextContent( 'Aux slot content' ) );
+		$updater->saveRevision( CommentStoreComment::newUnsavedComment( 'Create multi-slot revision' ) );
+
+		$result = $this->doListRecentChangesRequest( [ 'rcprop' => 'sha1', 'rctitle' => 'MultiSlotPage' ] );
+		$items = $this->getItemsFromRecentChangesResult( $result );
+
+		$this->assertCount( 1, $items );
+		$item = $items[0];
+		$this->assertArrayHasKey( 'sha1', $item );
+		$this->assertIsString( $item['sha1'] );
+		$this->assertEquals( '2a80176c16d08b348d45687ef559028a1235780a', $item['sha1'] );
+	}
+
+	public function testSha1PropParameterAbsentForLogs() {
+		$target = new TitleValue( NS_MAIN, 'Thing' );
+		$this->createPageAndDeleteIt( $target );
+
+		$result = $this->doListRecentChangesRequest( [ 'rcprop' => 'sha1', 'rctype' => 'log' ] );
+		$items = $this->getItemsFromRecentChangesResult( $result );
+
+		$this->assertCount( 1, $items );
+		$item = $items[0];
+		$this->assertEquals( 'log', $item['type'] );
+		$this->assertArrayNotHasKey( 'sha1', $item );
 	}
 
 	private function createPageAndDeleteIt( LinkTarget $target ) {
