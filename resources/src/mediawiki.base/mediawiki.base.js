@@ -3,7 +3,14 @@
 const slice = Array.prototype.slice;
 
 // Apply site-level data
-mw.config.set( require( './config.json' ) );
+// Allow page-specific configs (which were already set in startup.js)
+// to take precedence over site configs (T380552, T393256)
+const config = require( './config.json' );
+for ( const key in config ) {
+	if ( !mw.config.exists( key ) ) {
+		mw.config.set( key, config[ key ] );
+	}
+}
 
 require( './log.js' );
 
