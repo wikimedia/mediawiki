@@ -115,6 +115,7 @@ class MultiBackendSessionStore implements SessionStore {
 	 */
 	private function getActiveStore( SessionInfo $sessionInfo ): array {
 		$userInfo = $sessionInfo->getUserInfo();
+		$anonData = null;
 
 		if ( $userInfo === null ) {
 			$this->logger->debug( 'No user info found for this session', [
@@ -126,20 +127,26 @@ class MultiBackendSessionStore implements SessionStore {
 			// (e.g., getSessionById() is being used), so we need to check both stores.
 			$anonKey = $this->anonSessionStore->makeKey( 'MWSession', $sessionInfo->getId() );
 			$authKey = $this->authenticatedSessionStore->makeKey( 'MWSession', $sessionInfo->getId() );
-			$anonData = $this->anonSessionStore->get( $anonKey );
-			if ( !$this->anonSessionStore->wasLastGetCached() ) {
-				$this->statsFactory->getCounter( 'sessionstore_nouserinfo_get_total' )
-					->setLabel( 'type', 'anonymous' )
-					->setLabel( 'wiki', WikiMap::getCurrentWikiId() )
-					->increment();
-			}
+
 			$authData = $this->authenticatedSessionStore->get( $authKey );
 			if ( !$this->authenticatedSessionStore->wasLastGetCached() ) {
 				$this->statsFactory->getCounter( 'sessionstore_nouserinfo_get_total' )
-					->setLabel( 'type', 'authenticated' )
 					->setLabel( 'wiki', WikiMap::getCurrentWikiId() )
+					->setLabel( 'type', 'authenticated' )
+					->setLabel( 'status', $authData ? 'hit' : 'miss' )
 					->increment();
 			}
+			if ( !$authData ) {
+				$anonData = $this->anonSessionStore->get( $anonKey );
+				if ( !$this->anonSessionStore->wasLastGetCached() ) {
+					$this->statsFactory->getCounter( 'sessionstore_nouserinfo_get_total' )
+						->setLabel( 'wiki', WikiMap::getCurrentWikiId() )
+						->setLabel( 'type', 'anonymous' )
+						->setLabel( 'status', $anonData ? 'hit' : 'miss' )
+						->increment();
+				}
+			}
+
 			$anonUserId = $anonData['metadata']['userId'] ?? null;
 			$authUserId = $authData['metadata']['userId'] ?? null;
 
