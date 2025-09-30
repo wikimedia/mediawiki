@@ -53,6 +53,12 @@ THIS IS NOT A RELEASE YET
 * Forward-compat data for SelserContext w/ JSON-encoded Content.
 * (T372444, T404230) DeletedContribsPager: Use the UserIdentity object instead
   of the raw target string.
+* Upgrading wikimedia/parsoid (v0.20.3 => v0.20.4).
+* (T394968) Metadata: ignore LocationCreated, similar to LocationShown.
+* (T366083) OutputTransform: Fix double IDs on headings.
+* (T381617) Use Remex/HtmlHelper to implement Parser::replaceTableOfContents.
+* Re-apply "Use Remex for DeduplicateStyles transform".
+* (T400505) Regenerate patch-drop-page_restrictions-pr_user.sql for SQLite.
 
 == MediaWiki 1.43.3 ==
 
