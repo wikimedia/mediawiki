@@ -1235,7 +1235,7 @@
 	"group-named-member": "{{GENDER:$1|usuário registrado|usuária registrada}}",
 	"group-temp-member": "{{GENDER:$1|usuário temporário|usuária temporária}}",
 	"group-autoconfirmed-member": "{{GENDER:$1|usuário autoconfirmado|usuária autoconfirmada|usuário(a) autoconfirmado(a)}}",
-	"group-bot-member": "robô",
+	"group-bot-member": "{{GENDER:$1|robô}}",
 	"group-sysop-member": "{{GENDER:$1|administrador|administradora|administrador(a)}}",
 	"group-interface-admin-member": "{{GENDER:$1|administrador|administradora}} da interface",
 	"group-bureaucrat-member": "burocrata",

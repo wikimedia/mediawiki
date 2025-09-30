@@ -1747,7 +1747,7 @@
 	"ipb_hide_invalid": "Njejo móžno toś to konto pódtłocyś; ma wěcej ako {{PLURAL:$1|jadnu změnu|$1 změnje|$1 změny|$1 změnow}}.",
 	"ipb_already_blocked": "\"$1\" jo južo blokěrowany.",
 	"ipb-needreblock": "$1 jo južo zablokěrowany. Coš nastajenja změniś?",
-	"ipb-otherblocks-header": "{{PLURAL:$1|Druge blokěrowanje|Drugej blokěrowani|Druge blokěrowanja|Druge blokěrowanja}}",
+	"ipb-otherblocks-header": "{{PLURAL:$1|Druge blokěrowanje|Druge blokěrowanja}}",
 	"unblock-hideuser": "Njamóžoš blokěrowanje za toś togo wužywarja wótpóraś, dokulaž jogo wužywarske mě jo se schowało.",
 	"ipb_cant_unblock": "Zmólka: Blokěrowańska ID $1 njejo se namakała. Blokěrowanje jo było južo wótpórane.",
 	"ipb_blocked_as_range": "Zmólka: IP-adresa $1 njejo direktnje blokěrowana a njeda se wótblokěrowaś. Jo pak ako źěl wobcerka $2 blokěrowana, kótaryž da se wótblokěrowaś.",

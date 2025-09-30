@@ -15,7 +15,8 @@
 			"Oromoo",
 			"Oromoom",
 			"Tumsaa",
-			"Cherinett"
+			"Cherinett",
+			"NguoiDungKhongDinhDanh"
 		]
 	},
 	"sunday": "Dilbata",
@@ -444,6 +445,7 @@
 	"booksources-search-legend": "Madda kitaabaa barbaadi",
 	"booksources-search": "Barbaadi",
 	"log": "Galmeewwan",
+	"alllogstext": "Mullatta walii-galla maqolle {{SITENAME}} argamani.\nMullatta kana akka dhiphatte, salpha ta'u gochuu ni dandessu, kunis gossa maqqa, maqqa nama fayyadatamu yokan fulla waliin jijjiramu fillachun.",
 	"checkbox-all": "Hunda",
 	"checkbox-none": "Homaa",
 	"allpages": "Fuulota hunda",

@@ -76,8 +76,6 @@
 	"config-pg-test-error": "Zwisk z datowej banku '''$1''' móžno njeje: $2",
 	"config-sqlite-dir": "Zapis SQLite-datow:",
 	"config-type-mysql": "MySQL (abo kompatibelny)",
-	"config-type-postgres": "PostgreSQL",
-	"config-type-sqlite": "SQLite",
 	"config-dbsupport-mysql": "* [{{int:version-db-mysql-url}} MySQL] je primarny cil za MediaWiki a podpěruje so najlěpje. MediaWiki funguje tež z [{{int:version-db-mariadb-url}} MariaDB] a [{{int:version-db-percona-url}} Percona Server], kotrejž stej kompatibelnej z MySQL. ([https://www.php.net/manual/en/mysqli.installation.php Nawod ke kompilowanju  PHP z  MySQL-podpěru])",
 	"config-dbsupport-postgres": "* [{{int:version-db-postgres-url}} PostgreSQL] je popularny system datoweje banki zjawneho žórła jako alternatiwa k MySQL. Móhło hišće někotre zmylki eksistować, a njeporuča so jón w produktiwnej wokolinje wužiwać. ([https://www.php.net/manual/en/pgsql.installation.php Nawod za kompilowanje PHP z podpěru PostgreSQL])",
 	"config-header-mysql": "Nastajenja MySQL",

@@ -1148,7 +1148,6 @@
 	"saveusergroups": "Simpan kelompok {{GENDER:$1|pengguna}}",
 	"userrights-groupsmember": "Anggota dari:",
 	"userrights-groupsmember-auto": "Anggota implisit dari:",
-	"userrights-groupsmember-type": "$1",
 	"userrights-systemuser": "{{GENDER:$1|Pengguna ini}} adalah pengguna sistem",
 	"userrights-groups-help": "Anda dapat mengubah kelompok {{GENDER:$1|pengguna ini}}:\n* Kotak dengan tanda cek merupakan kelompok pengguna yang bersangkutan.\n* Kotak tanpa tanda cek berarti pengguna ini bukan anggota kelompok tersebut.\n* Tanda * menandai bahwa Anda tidak dapat membatalkan kelompok tersebut bila Anda telah menambahkannya, atau sebaliknya.\n* Tanda # menandai bahwa Anda hanya dapat mengembalikan waktu kedaluwarsa keanggotaan kelompok ini, tetapi Anda tidak dapat memajukan waktu kedaluwarsanya.",
 	"userrights-reason": "Alasan:",

@@ -849,7 +849,6 @@
 	"group-sysop-member": "{{GENDER:$1|administrator}}",
 	"group-interface-admin-member": "{{GENDER:$1|interface administrator}}",
 	"group-bureaucrat-member": "{{GENDER:$1|bureaucrat}}",
-	"group-suppress-member": "{{GENDER:$1|suppressor}}",
 	"grouppage-user": "{{ns:project}}:Users",
 	"grouppage-temp": "{{ns:project}}:ban suhi so' ŋmahi",
 	"grouppage-autoconfirmed": "{{ns:project}}:Autoconfirmed users",

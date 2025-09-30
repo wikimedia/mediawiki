@@ -2363,7 +2363,7 @@
 	"protect-existing-expiry-infinity": "Kehtiv aegumistähtaeg: tähtajatu",
 	"protect-otherreason": "Muu või täiendav põhjus:",
 	"protect-otherreason-op": "Muu põhjus",
-	"protect-dropdown": "*Tavalised kaitsmise põhjused\n** Liigne vandalism\n** Liigne rämpspostitamine\n** Redigeerimissõja pidamine\n** Suure liiklusega lehekülg",
+	"protect-dropdown": "*Tavalised kaitsmise põhjused\n** Rohke vandalism\n** Rohke rämpspostitamine\n** Redigeerimissõja pidamine\n** Suure liiklusega lehekülg",
 	"protect-edit-reasonlist": "Muudatuste eest kaitsmise põhjused",
 	"protect-expiry-options": "1 tund:1 hour,1 päev:1 day,1 nädal:1 week,2 nädalat: 2 weeks,1 kuu:1 month,3 kuud:3 months,6 kuud:6 months,1 aasta:1 year,tähtajatu:infinite",
 	"restriction-type": "Lubatud:",

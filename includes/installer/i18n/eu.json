@@ -101,8 +101,6 @@
 	"config-sqlite-dir": "SQLite -eko informazioaren direktorioa:",
 	"config-sqlite-dir-help": "SQLite-k datu guztiak fitxategi bakarrean gordetzen ditu.\n\nHornitu duzun direktorioa web zerbitzariaren bidez idatzia izateko aukera eman beharko duu instalazioan zehar.\n\n<Strong>Ez</strong> da webgunearen bidez eskuragarri egon behar; horregatik zure PHP fitxategiak non dauden ez dugu erakutsi.\n\nInstalatzaileak <code>.htaccess</code> fitxategi bat idatziko du bertan, baina horrek huts egiten badu zure datu base gordinera norbait sar daiteke.\nErabiltzaileen datu gordinak (helbide elektronikoak, pasahitzak), ezabatutako berrikusketa eta gainontzeko datu mugatuak ere barnean hartuz.\n\nDatu-basea beste nonbait jartzearen inguruan hausnartu, adibidez, <code>/var/lib/mediawiki/yourwiki</code>-n.",
 	"config-type-mysql": "MariaDB, MySQL edo bateragarria",
-	"config-type-postgres": "PostgreSQL",
-	"config-type-sqlite": "SQLite",
 	"config-support-info": "MediaWiki-k onartzen du hurrengo datu-base sistemak:\n\n$1\n\nListan ez baduzu ikusten erabili nahi duzun sistema, jarraitu goiko argibideak aktibatzeko.",
 	"config-dbsupport-mysql": "* [{{int:version-db-mysql-url}} MySQL] MediaWikiren lehenengoko helburua da eta primeran babesturik dago. MediaWikik ere [{{int:version-db-mariadb-url}} MariaDB]-rekin egiten du lan baita [{{int:version-db-percona-url}} Percona Server]-kin, MySQL-rekin balio dutenak. ([https://www.php.net/manual/en/mysqli.installation.php How to compile PHP with MySQL support])",
 	"config-dbsupport-postgres": "* [{{int:version-db-postgres-url}} PostgreSQL] iturburu irekiko datu basea sistema famatua da MySQL-rako alternatiba bezala. ([https://www.php.net/manual/en/pgsql.installation.php How to compile PHP with PostgreSQL support])",

@@ -2071,7 +2071,7 @@
 	"blocklist-reason": "Přičina",
 	"ipblocklist-submit": "Pytać",
 	"ipblocklist-localblock": "Lokalne blokowanje",
-	"ipblocklist-otherblocks": "{{PLURAL:$1|Druhe blokowanje|Druhej blokowani|Druhe blokowanja|Druhe blokowanja}}",
+	"ipblocklist-otherblocks": "{{PLURAL:$1|Druhe blokowanje|Druhe blokowanja}}",
 	"infiniteblock": "njewobmjezowane",
 	"anononlyblock": "jenož anonymnych blokować",
 	"noautoblockblock": "awtoblokowanje znjemóžnjene",

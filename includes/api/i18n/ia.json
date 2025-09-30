@@ -1866,7 +1866,7 @@
 	"apierror-unknownerror-nocode": "Error incognite.",
 	"apierror-unknownerror": "Error incognite: \"$1\".",
 	"apierror-unknownformat": "Formato \"$1\" non recognoscite.",
-	"apierror-unrecognizedparams": "Parametro{{PLURAL:$2||s}} non recognoscite: $1.",
+	"apierror-unrecognizedparams": "{{PLURAL:$2|Parametro|Parametros}} non recognoscite: $1.",
 	"apierror-unrecognizedvalue": "Valor non recognoscite pro le parametro <var>$1</var>: $2.",
 	"apierror-unsupportedrepo": "Le repositorio local de files non supporta cercar in tote le imagines.",
 	"apierror-upload-filekeyneeded": "Es obligatori fornir un <var>filekey</var> (clave de file) quando le <var>offset</var> (position) es non-zero.",

@@ -105,8 +105,6 @@
 	"config-pg-test-error": "Δεν μπορεί να συνδεθεί στη βάση δεδομένων <strong>$1</strong>: $2",
 	"config-sqlite-dir": "SQLite κατάλογος δεδομένων:",
 	"config-type-mysql": "MariaDB, MySQL, ή συμβατή",
-	"config-type-postgres": "PostgreSQL",
-	"config-type-sqlite": "SQLite",
 	"config-support-info": "To MediaWiki υποστηρίζει τα ακόλουθα συστήματα βάσεων δεδομένων:\n\n$1\n\nΑν δεν εμφανίζεται παρακάτω το σύστημα βάσης δεδομένων που θέλετε να χρησιμοποιήσετε, τότε ακολουθήστε τις οδηγίες στον παραπάνω σύνδεσμο για να ενεργοποιήσετε την υποστήριξη.",
 	"config-dbsupport-mysql": "* Η [{{int:version-db-mysql-url}} MySQL] είναι ο πρωταρχικός στόχος για το MediaWiki και υποστηρίζεται καλύτερα. Το MediaWiki συνεργάζεται επίσης με τη [{{int:version-db-mariadb-url}} MariaDB] και το [{{int:version-db-percona-url}} διακομιστή Percona], που είναι όλα συμβατά με MySQL. ([https://www.php.net/manual/en/mysqli.installation.php Πώς να μεταγλωττίσετε την PHP με υποστήριξη MySQL])",
 	"config-dbsupport-postgres": "* Η [{{int:version-db-postgres-url}} PostgreSQL] είναι δημοφιλές σύστημα βάσης δεδομένων ανοικτού κώδικα ως εναλλακτική της MySQL. ([https://www.php.net/manual/en/pgsql.installation.php Πώς να μεταγλωττίσετε την PHP με υποστήριξη PostgreSQL])",

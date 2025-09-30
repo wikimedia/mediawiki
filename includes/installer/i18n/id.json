@@ -119,8 +119,6 @@
 	"config-sqlite-dir": "Direktori data SQLite:",
 	"config-sqlite-dir-help": "SQLite menyimpan semua data dalam satu berkas.\n\nDirektori yang Anda berikan harus dapat ditulisi oleh server web selama instalasi.\n\nDirektori itu '''tidak''' boleh dapat diakses melalui web, inilah sebabnya kami tidak menempatkannya bersama dengan berkas PHP lain.\n\nPenginstal akan membuat berkas <code>.htaccess</code> bersamaan dengan itu, tetapi jika gagal, orang dapat memperoleh akses ke basis data mentah Anda.\nItu termasuk data mentah pengguna (alamat surel, hash sandi) serta revisi yang dihapus dan data lainnya yang dibatasi pada wiki.\n\nPertimbangkan untuk menempatkan basis data di tempat lain, misalnya di <code>/var/lib/mediawiki/yourwiki</code>.",
 	"config-type-mysql": "MariaDB, MySQL, atau yang kompatibel",
-	"config-type-postgres": "PostgreSQL",
-	"config-type-sqlite": "SQLite",
 	"config-support-info": "MediaWiki mendukung sistem basis data berikut:\n\n$1\n\nJika Anda tidak melihat sistem basis data yang Anda gunakan tercantum di bawah ini, ikuti petunjuk terkait di atas untuk mengaktifkan dukungan.",
 	"config-dbsupport-mysql": "* [{{int:version-db-mysql-url}} MySQL] adalah target utama MediaWiki dan memiliki dukungan terbaik. MediaWiki juga berjalan dengan [{{int:version-db-mariadb-url}} MariaDB] dan [{{int:version-db-percona-url}} Server Percona], yang kompatibel dengan MySQL. ([https://www.php.net/manual/en/mysql.installation.php Cara mengompilasi PHP dengan dukungan MySQL])",
 	"config-dbsupport-postgres": "* [{{int:version-db-postgres-url}} PostgreSQL] adalah sistem basis data sumber terbuka populer sebagai alternatif MySQL.([https://www.php.net/manual/en/pgsql.installation.php Bagaimana mengompilasikan PHP dengan dukungan PostgreSQL])",

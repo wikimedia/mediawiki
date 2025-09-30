@@ -1089,7 +1089,6 @@
 	"group-sysop-member": "{{GENDER:$1|tagdumala}}",
 	"group-interface-admin-member": "{{GENDER:$1| interface administrator}}",
 	"group-bureaucrat-member": "{{GENDER:$1|byurokratiko}}",
-	"group-suppress-member": "{{GENDER:$1|suppressor}}",
 	"grouppage-user": "{{ns:project}}:Mga Naga-usar",
 	"grouppage-temp": "{{ns:project}}:Temporaryo nga mga tiggamit",
 	"grouppage-autoconfirmed": "{{ns:project}}:Mga naga-usar nga awtomatikong nakompirma.",

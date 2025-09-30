@@ -1083,7 +1083,7 @@
 	"group-sysop-member": "administrato{{GENDER:$1|r|sa}}",
 	"group-interface-admin-member": "administrato{{GENDER:$1|r|sa}} d’entredoux",
 	"group-bureaucrat-member": "{{GENDER:$1|grata-papiér}}",
-	"group-suppress-member": "rèprèssio{{GENDER:$1|r|sa}}",
+	"group-suppress-member": "{{GENDER:$1|rèprèssior|rèprèssiosa}}",
 	"grouppage-user": "{{ns:project}}:Utilisators",
 	"grouppage-autoconfirmed": "{{ns:project}}:Utilisators ôtoconfirmâs",
 	"grouppage-bot": "{{ns:project}}:Robots",

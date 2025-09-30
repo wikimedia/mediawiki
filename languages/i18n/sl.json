@@ -1067,7 +1067,6 @@
 	"saveusergroups": "Shrani {{GENDER:$1|uporabnikove|uporabničine|uporabnikove}} skupine",
 	"userrights-groupsmember": "Član skupine:",
 	"userrights-groupsmember-auto": "Posredni član:",
-	"userrights-groupsmember-type": "$1",
 	"userrights-systemuser": "Ta {{GENDER:$1|uporabnik|uporabnica|uporabnik_ca}} je {{GENDER:$1|sistemski uporabnik|sistemska uporabnica|sistemski_a uporabnik_ca}}",
 	"userrights-groups-help": "Spreminjate lahko skupine {{GENDER:$1|uporabnika|uporabnice|uporabnika}}:\n* Obkljukano polje pomeni {{GENDER:$1|uporabnika|uporabnico|uporabnika}}, ki je v skupini.\n* Neobkljukano polje pomeni {{GENDER:$1|uporabnika|uporabnico|uporabnika}}, ki ni v skupini.\n* Zvezdica (*) pomeni, da {{GENDER:$1|uporabnika|uporabnice|uporabnika}} ne boste mogli odstraniti iz skupine, ko {{GENDER:$1|ga|jo|ga}} boste dodali vanjo, in nasprotno.\n* Lojtra (#) pomeni, da lahko čas poteka članstva v tej skupini prestavite samo nazaj; ne morete ga prestaviti naprej.",
 	"userrights-reason": "Razlog:",

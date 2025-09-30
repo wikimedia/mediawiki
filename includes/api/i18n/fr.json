@@ -1913,7 +1913,7 @@
 	"apierror-unknownerror-nocode": "Erreur inconnue.",
 	"apierror-unknownerror": "Erreur inconnue : « $1 ».",
 	"apierror-unknownformat": "Format inconnu \"$1\".",
-	"apierror-unrecognizedparams": "{{PLURAL:$2|Paramètre|Paramètres}} non {{PLURAL:$2|reconnu|reconnus}} : $1.",
+	"apierror-unrecognizedparams": "{{PLURAL:$2|Paramètre non reconnu|Paramètres non reconnus}} : $1.",
 	"apierror-unrecognizedvalue": "Valeur non reconnue du paramètre <var>$1</var>: $2.",
 	"apierror-unsupportedrepo": "Le dépôt local des fichiers ne prend pas en charge la recherche de toutes les images.",
 	"apierror-upload-filekeyneeded": "Un <var>filekey</var> est nécessaire si le <var>décalage</var> est non nul.",

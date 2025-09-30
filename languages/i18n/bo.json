@@ -302,7 +302,7 @@
 	"loginlanguagelabel": "སྐད་རིགས། $1",
 	"pt-login": "ནང་འཛུ།",
 	"pt-login-button": "ནང་འཛུལ།",
-	"pt-createaccount": "མིང་བཀོད་གསར་བཟོ། / ཐོ་འགོད་གསར་བཟོ།",
+	"pt-createaccount": "ཐོ་འགོད་གསར་བཟོ།",
 	"changepassword": "ལམ་ཡིག་བརྗེ་བ།",
 	"resetpass_announce": "ནང་འཛུལ་བྱེད་པར། ཁྱེད་ཀྱིས་གསང་བའི་ཨང་གསར་པ་ཞིག་འཇུག་རོགས།",
 	"resetpass_header": "གསང་ཨང་བརྗེ་བ།",
