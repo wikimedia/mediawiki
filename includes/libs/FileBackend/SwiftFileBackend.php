@@ -1104,7 +1104,7 @@ class SwiftFileBackend extends FileBackendStore {
 	 * @param array $val Stat value
 	 */
 	public function loadListingStatInternal( $path, array $val ) {
-		$this->cheapCache->setField( $path, 'stat', $val );
+		$this->procFileStatCache->setField( $path, 'stat', $val );
 	}
 
 	/** @inheritDoc */
@@ -1260,10 +1260,10 @@ class SwiftFileBackend extends FileBackendStore {
 				// Set the file stat process cache in passing
 				$stat = $this->getStatFromHeaders( $rhdrs );
 				$stat['latest'] = $latest;
-				$this->cheapCache->setField( $path, 'stat', $stat );
+				$this->procFileStatCache->setField( $path, 'stat', $stat );
 			} elseif ( $rcode === 404 ) {
 				$tmpFiles[$path] = self::RES_ABSENT;
-				$this->cheapCache->setField(
+				$this->procFileStatCache->setField(
 					$path,
 					'stat',
 					$latest ? self::ABSENT_LATEST : self::ABSENT_NORMAL

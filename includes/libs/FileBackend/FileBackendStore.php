@@ -52,14 +52,18 @@ abstract class FileBackendStore extends FileBackend {
 	protected WANObjectCache $wanCache;
 	/** Persistent local server/host cache (e.g. APCu) */
 	protected BagOStuff $srvCache;
-	/** In-memory map of paths to small (RAM/disk) cache items */
+	/** LRU map of file paths to small (RAM/disk) cache items */
+	protected MapCacheLRU $procFileStatCache;
+	/** @deprecated Since 1.47 */
 	protected MapCacheLRU $cheapCache;
-	/** In-memory map of paths to large (RAM/disk) cache items */
+	/** LRU map of file paths to large (RAM/disk) cache items */
+	protected MapCacheLRU $procFileDataCache;
+	/** @deprecated Since 1.47 */
 	protected MapCacheLRU $expensiveCache;
 
 	/** Cache used for persistent file/container stat entries */
 	protected WANObjectCache $wanStatCache;
-	/** @deprecated Since 1.45 */
+	/** @deprecated Since 1.47 */
 	protected $memCache;
 
 	/** @var array<string,array> Map of container names to sharding config */
@@ -105,8 +109,10 @@ abstract class FileBackendStore extends FileBackend {
 		$this->wanCache = $config['wanCache'] ?? WANObjectCache::newEmpty();
 		$this->wanStatCache = WANObjectCache::newEmpty(); // disabled by default
 		$this->memCache =& $this->wanStatCache; // compatability alias
-		$this->cheapCache = new MapCacheLRU( self::CACHE_CHEAP_SIZE );
-		$this->expensiveCache = new MapCacheLRU( self::CACHE_EXPENSIVE_SIZE );
+		$this->procFileStatCache = new MapCacheLRU( self::CACHE_CHEAP_SIZE );
+		$this->cheapCache =& $this->procFileStatCache; // compatability alias
+		$this->procFileDataCache = new MapCacheLRU( self::CACHE_EXPENSIVE_SIZE );
+		$this->expensiveCache =& $this->procFileDataCache; // compatability alias
 	}
 
 	/**
@@ -668,7 +674,7 @@ abstract class FileBackendStore extends FileBackend {
 		// Whether to ignore cache entries missing the SHA-1 field for existing files
 		$requireSHA1 = !empty( $params['requireSHA1'] );
 
-		$stat = $this->cheapCache->getField( $path, 'stat', self::CACHE_TTL );
+		$stat = $this->procFileStatCache->getField( $path, 'stat', self::CACHE_TTL );
 		// Load the persistent stat cache into process cache if needed
 		if ( !$latest ) {
 			if (
@@ -681,7 +687,7 @@ abstract class FileBackendStore extends FileBackend {
 			) {
 				$this->primeFileCache( [ $path ] );
 				// Get any newly process-cached entry
-				$stat = $this->cheapCache->getField( $path, 'stat', self::CACHE_TTL );
+				$stat = $this->procFileStatCache->getField( $path, 'stat', self::CACHE_TTL );
 			}
 		}
 
@@ -726,10 +732,10 @@ abstract class FileBackendStore extends FileBackend {
 				// Strongly consistent backends might automatically set this flag
 				$stat['latest'] ??= $latest;
 
-				$this->cheapCache->setField( $path, 'stat', $stat );
+				$this->procFileStatCache->setField( $path, 'stat', $stat );
 				if ( isset( $stat['sha1'] ) ) {
 					// Some backends store the SHA-1 hash as metadata
-					$this->cheapCache->setField(
+					$this->procFileStatCache->setField(
 						$path,
 						'sha1',
 						[ 'hash' => $stat['sha1'], 'latest' => $latest ]
@@ -738,7 +744,7 @@ abstract class FileBackendStore extends FileBackend {
 				if ( isset( $stat['xattr'] ) ) {
 					// Some backends store custom headers/metadata
 					$stat['xattr'] = self::normalizeXAttributes( $stat['xattr'] );
-					$this->cheapCache->setField(
+					$this->procFileStatCache->setField(
 						$path,
 						'xattr',
 						[ 'map' => $stat['xattr'], 'latest' => $latest ]
@@ -747,17 +753,17 @@ abstract class FileBackendStore extends FileBackend {
 				// Update persistent cache (@TODO: set all entries in one batch)
 				$this->setFileCache( $path, $stat );
 			} elseif ( $stat === self::RES_ABSENT ) {
-				$this->cheapCache->setField(
+				$this->procFileStatCache->setField(
 					$path,
 					'stat',
 					$latest ? self::ABSENT_LATEST : self::ABSENT_NORMAL
 				);
-				$this->cheapCache->setField(
+				$this->procFileStatCache->setField(
 					$path,
 					'xattr',
 					[ 'map' => self::XATTRS_FAIL, 'latest' => $latest ]
 				);
-				$this->cheapCache->setField(
+				$this->procFileStatCache->setField(
 					$path,
 					'sha1',
 					[ 'hash' => self::SHA1_FAIL, 'latest' => $latest ]
@@ -827,8 +833,8 @@ abstract class FileBackendStore extends FileBackend {
 			return self::XATTRS_FAIL; // invalid storage path
 		}
 		$latest = !empty( $params['latest'] ); // use latest data?
-		if ( $this->cheapCache->hasField( $path, 'xattr', self::CACHE_TTL ) ) {
-			$stat = $this->cheapCache->getField( $path, 'xattr' );
+		if ( $this->procFileStatCache->hasField( $path, 'xattr', self::CACHE_TTL ) ) {
+			$stat = $this->procFileStatCache->getField( $path, 'xattr' );
 			// If we want the latest data, check that this cached
 			// value was in fact fetched with the latest available data.
 			if ( !$latest || $stat['latest'] ) {
@@ -838,13 +844,13 @@ abstract class FileBackendStore extends FileBackend {
 		$fields = $this->doGetFileXAttributes( $params );
 		if ( is_array( $fields ) ) {
 			$fields = self::normalizeXAttributes( $fields );
-			$this->cheapCache->setField(
+			$this->procFileStatCache->setField(
 				$path,
 				'xattr',
 				[ 'map' => $fields, 'latest' => $latest ]
 			);
 		} elseif ( $fields === self::RES_ABSENT ) {
-			$this->cheapCache->setField(
+			$this->procFileStatCache->setField(
 				$path,
 				'xattr',
 				[ 'map' => self::XATTRS_FAIL, 'latest' => $latest ]
@@ -873,8 +879,8 @@ abstract class FileBackendStore extends FileBackend {
 			return self::SHA1_FAIL; // invalid storage path
 		}
 		$latest = !empty( $params['latest'] ); // use latest data?
-		if ( $this->cheapCache->hasField( $path, 'sha1', self::CACHE_TTL ) ) {
-			$stat = $this->cheapCache->getField( $path, 'sha1' );
+		if ( $this->procFileStatCache->hasField( $path, 'sha1', self::CACHE_TTL ) ) {
+			$stat = $this->procFileStatCache->getField( $path, 'sha1' );
 			// If we want the latest data, check that this cached
 			// value was in fact fetched with the latest available data.
 			if ( !$latest || $stat['latest'] ) {
@@ -883,13 +889,13 @@ abstract class FileBackendStore extends FileBackend {
 		}
 		$sha1 = $this->doGetFileSha1Base36( $params );
 		if ( is_string( $sha1 ) ) {
-			$this->cheapCache->setField(
+			$this->procFileStatCache->setField(
 				$path,
 				'sha1',
 				[ 'hash' => $sha1, 'latest' => $latest ]
 			);
 		} elseif ( $sha1 === self::RES_ABSENT ) {
-			$this->cheapCache->setField(
+			$this->procFileStatCache->setField(
 				$path,
 				'sha1',
 				[ 'hash' => self::SHA1_FAIL, 'latest' => $latest ]
@@ -936,8 +942,8 @@ abstract class FileBackendStore extends FileBackend {
 			$path = self::normalizeStoragePath( $src );
 			if ( $path === null ) {
 				$fsFiles[$src] = self::RES_ERROR; // invalid storage path
-			} elseif ( $this->expensiveCache->hasField( $path, 'localRef' ) ) {
-				$val = $this->expensiveCache->getField( $path, 'localRef' );
+			} elseif ( $this->procFileDataCache->hasField( $path, 'localRef' ) ) {
+				$val = $this->procFileDataCache->getField( $path, 'localRef' );
 				// If we want the latest data, check that this cached
 				// value was in fact fetched with the latest available data.
 				if ( !$latest || $val['latest'] ) {
@@ -950,7 +956,7 @@ abstract class FileBackendStore extends FileBackend {
 		foreach ( $this->doGetLocalReferenceMulti( $params ) as $path => $fsFile ) {
 			$fsFiles[$path] = $fsFile;
 			if ( $fsFile instanceof FSFile ) {
-				$this->expensiveCache->setField(
+				$this->procFileDataCache->setField(
 					$path,
 					'localRef',
 					[ 'object' => $fsFile, 'latest' => $latest ]
@@ -1266,7 +1272,9 @@ abstract class FileBackendStore extends FileBackend {
 		}
 
 		// Enlarge the cache to fit the stat entries of these files
-		$this->cheapCache->setMaxSize( max( 2 * count( $pathsUsed ), self::CACHE_CHEAP_SIZE ) );
+		$this->procFileStatCache->setMaxSize(
+			max( 2 * count( $pathsUsed ), self::CACHE_CHEAP_SIZE )
+		);
 
 		// Load from the persistent container caches
 		$this->primeContainerCache( $pathsUsed );
@@ -1294,7 +1302,7 @@ abstract class FileBackendStore extends FileBackend {
 		$status->success = $subStatus->success; // not done in merge()
 
 		// Shrink the stat cache back to normal size
-		$this->cheapCache->setMaxSize( self::CACHE_CHEAP_SIZE );
+		$this->procFileStatCache->setMaxSize( self::CACHE_CHEAP_SIZE );
 
 		return $status;
 	}
@@ -1452,12 +1460,12 @@ abstract class FileBackendStore extends FileBackend {
 			$paths = array_filter( $paths, 'strlen' ); // remove nulls
 		}
 		if ( $paths === null ) {
-			$this->cheapCache->clear();
-			$this->expensiveCache->clear();
+			$this->procFileStatCache->clear();
+			$this->procFileDataCache->clear();
 		} else {
 			foreach ( $paths as $path ) {
-				$this->cheapCache->clear( $path );
-				$this->expensiveCache->clear( $path );
+				$this->procFileStatCache->clear( $path );
+				$this->procFileDataCache->clear( $path );
 			}
 		}
 		$this->doClearCache( $paths );
@@ -1926,10 +1934,10 @@ abstract class FileBackendStore extends FileBackend {
 			// from a high consistency backend query to the process cache
 			unset( $stat['latest'] );
 
-			$this->cheapCache->setField( $path, 'stat', $stat );
+			$this->procFileStatCache->setField( $path, 'stat', $stat );
 			if ( isset( $stat['sha1'] ) && strlen( $stat['sha1'] ) == 31 ) {
 				// Some backends store SHA-1 as metadata
-				$this->cheapCache->setField(
+				$this->procFileStatCache->setField(
 					$path,
 					'sha1',
 					[ 'hash' => $stat['sha1'], 'latest' => false ]
@@ -1938,7 +1946,7 @@ abstract class FileBackendStore extends FileBackend {
 			if ( isset( $stat['xattr'] ) && is_array( $stat['xattr'] ) ) {
 				// Some backends store custom headers/metadata
 				$stat['xattr'] = self::normalizeXAttributes( $stat['xattr'] );
-				$this->cheapCache->setField(
+				$this->procFileStatCache->setField(
 					$path,
 					'xattr',
 					[ 'map' => $stat['xattr'], 'latest' => false ]
