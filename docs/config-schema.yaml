@@ -8242,7 +8242,7 @@ config-schema:
             @unstable Temporary feature flag, T357484
             @since 1.42
     EnableProtectionIndicators:
-        default: false
+        default: true
         type: boolean
         description: |-
             Whether to show indicators on a page when it is protected.

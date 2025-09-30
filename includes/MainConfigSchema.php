@@ -13247,7 +13247,7 @@ class MainConfigSchema {
 	 * @since 1.43
 	 */
 	public const EnableProtectionIndicators = [
-		'default' => false,
+		'default' => true,
 		'type' => 'boolean',
 	];
 

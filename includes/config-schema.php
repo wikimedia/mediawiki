@@ -2703,7 +2703,7 @@ return [
 			'EditRecoveryExpiry' => 2592000,
 			'UseCodexSpecialBlock' => false,
 			'ShowLogoutConfirmation' => false,
-			'EnableProtectionIndicators' => false,
+			'EnableProtectionIndicators' => true,
 			'OutputPipelineStages' => [
 			],
 			'FeatureShutdown' => [

@@ -44,6 +44,9 @@ For notes on 1.44.x and older releases, see HISTORY.
 
 * $wgSitemapNamespacesPriorities is deprecated and ignored.
 * $wgCSPUploadEntryPoint to control if img_auth.php & thumb.php send CSP headers
+* $wgEnableProtectionIndicators is now enabled by default.
+  If your community already uses protection indicators you might want to disable
+  this setting, or customize them with site CSS.
 * …
 
 ==== New configuration ====
