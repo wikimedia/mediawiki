@@ -31,6 +31,10 @@ THIS IS NOT A RELEASE YET
 * (T400881) filerepo: Improve identification of ForeignAPIRepo requests.
 * (T402037) config: Change Reauthenticate Time Default.
 * SimpleParsoidOutputStash: protect against rollback from MW >= 1.43.
+* Upgrading wikimedia/parsoid (v0.16.5 => v0.16.6).
+* (T394968) Metadata: ignore LocationCreated, similar to LocationShown.
+* (T304428) Allow marking recent changes about logged actions with bot flag.
+* (T400505) Regenerate patch-drop-page_restrictions-pr_user.sql for SQLite.
 
 == MediaWiki 1.39.13 ==
 
