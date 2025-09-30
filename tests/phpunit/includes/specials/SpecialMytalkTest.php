@@ -1,6 +1,5 @@
 <?php
 
-use MediaWiki\Block\AnonIpBlockTarget;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Exception\UserNotLoggedIn;
@@ -68,12 +67,19 @@ class SpecialMytalkTest extends SpecialPageTestBase {
 		$this->executeSpecialPage();
 	}
 
-	public function testLoggedOutAndBlockedWithTempAccountsEnabled() {
+	/** @dataProvider provideBlockTarget */
+	public function testLoggedOutAndBlockedWithTempAccountsEnabled(
+		string $username,
+		string $blockTargetName
+	) {
 		$this->enableAutoCreateTempUser();
+		$blockTarget = $this->getServiceContainer()
+			->getBlockTargetFactory()
+			->newFromString( $blockTargetName );
 
-		$user = new UserIdentityValue( 0, '127.0.0.1' );
+		$user = new UserIdentityValue( 0, $username );
 		$block = new DatabaseBlock( [
-			'target' => new AnonIpBlockTarget( '127.0.0.1' ),
+			'target' => $blockTarget,
 			'by' => $this->getTestSysop()->getUser(),
 			'allowUsertalk' => true,
 		] );
@@ -91,12 +97,19 @@ class SpecialMytalkTest extends SpecialPageTestBase {
 		$this->assertStringContainsString( 'mytalk-appeal-submit', $html );
 	}
 
-	public function testLoggedOutAndBlockedWithTempAccountsEnabledSubmit() {
+	/** @dataProvider provideBlockTarget */
+	public function testLoggedOutAndBlockedWithTempAccountsEnabledSubmit(
+		string $username,
+		string $blockTargetName
+	) {
 		$this->enableAutoCreateTempUser();
+		$blockTarget = $this->getServiceContainer()
+			->getBlockTargetFactory()
+			->newFromString( $blockTargetName );
 
-		$user = new UserIdentityValue( 0, '127.0.0.1' );
+		$user = new UserIdentityValue( 0, $username );
 		$block = new DatabaseBlock( [
-			'target' => new AnonIpBlockTarget( '127.0.0.1' ),
+			'target' => $blockTarget,
 			'by' => $this->getTestSysop()->getUser(),
 			'createAccount' => true,
 			'allowUsertalk' => true,
@@ -133,5 +146,18 @@ class SpecialMytalkTest extends SpecialPageTestBase {
 			'User_talk:' . $tempUserName,
 			$response->getHeader( 'LOCATION' )
 		);
+	}
+
+	public static function provideBlockTarget() {
+		return [
+			'IP address block target' => [
+				'username' => '127.0.0.1',
+				'blockTarget' => '127.0.0.1',
+			],
+			'IP range block target' => [
+				'username' => '127.0.0.1',
+				'blockTarget' => '127.0.0.1/28',
+			],
+		];
 	}
 }

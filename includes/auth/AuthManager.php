@@ -1922,7 +1922,7 @@ class AuthManager implements LoggerAwareInterface {
 			$source === self::AUTOCREATE_SOURCE_TEMP &&
 			$performer->isAnon() &&
 			count( $status->getErrors() ) === 1 &&
-			!$block->appliesToUsertalk();
+			!$block->appliesToUsertalk( $performer->getTalkPage() );
 	}
 
 	/**
