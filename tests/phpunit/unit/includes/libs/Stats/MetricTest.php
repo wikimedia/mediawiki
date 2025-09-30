@@ -29,11 +29,12 @@ class MetricTest extends MediaWikiUnitTestCase {
 					'name' => 'test.unit',
 					'labels' => [],
 					'value' => 2,
+					'timing' => 0.2,
 				],
 				'expected' => [
 					'counter' => 'mediawiki.testComponent.test_unit:2|c',
 					'gauge' => 'mediawiki.testComponent.test_unit:2|g',
-					'timing' => 'mediawiki.testComponent.test_unit:2|ms',
+					'timing' => 'mediawiki.testComponent.test_unit:200|ms',
 				],
 			],
 			'oneLabel' => [
@@ -42,6 +43,7 @@ class MetricTest extends MediaWikiUnitTestCase {
 					'name' => 'test.unit',
 					'labels' => [ 'x' => 'labelOne' ],
 					'value' => 2,
+					'timing' => 0.2,
 				],
 				'expected' => [
 					'counter' => [
@@ -53,8 +55,8 @@ class MetricTest extends MediaWikiUnitTestCase {
 						'dogstatsd' => 'mediawiki.testComponent.test_unit:2|g|#x:labelOne',
 					],
 					'timing' => [
-						'statsd' => 'mediawiki.testComponent.test_unit.labelOne:2|ms',
-						'dogstatsd' => 'mediawiki.testComponent.test_unit:2|ms|#x:labelOne',
+						'statsd' => 'mediawiki.testComponent.test_unit.labelOne:200|ms',
+						'dogstatsd' => 'mediawiki.testComponent.test_unit:200|ms|#x:labelOne',
 					],
 				],
 			],
@@ -64,6 +66,7 @@ class MetricTest extends MediaWikiUnitTestCase {
 					'name' => 'test.unit',
 					'labels' => [ 'x' => 'labelOne', 'y' => 'labelTwo' ],
 					'value' => 2,
+					'timing' => 0.2,
 				],
 				'expected' => [
 					'counter' => [
@@ -75,8 +78,8 @@ class MetricTest extends MediaWikiUnitTestCase {
 						'dogstatsd' => 'mediawiki.testComponent.test_unit:2|g|#x:labelOne,y:labelTwo',
 					],
 					'timing' => [
-						'statsd' => 'mediawiki.testComponent.test_unit.labelOne.labelTwo:2|ms',
-						'dogstatsd' => 'mediawiki.testComponent.test_unit:2|ms|#x:labelOne,y:labelTwo',
+						'statsd' => 'mediawiki.testComponent.test_unit.labelOne.labelTwo:200|ms',
+						'dogstatsd' => 'mediawiki.testComponent.test_unit:200|ms|#x:labelOne,y:labelTwo',
 					],
 				],
 			],
@@ -86,11 +89,12 @@ class MetricTest extends MediaWikiUnitTestCase {
 					'name' => 'test.unit',
 					'labels' => [],
 					'value' => 2,
+					'timing' => 0.2,
 				],
 				'expected' => [
 					'counter' => 'mediawiki.test_unit:2|c',
 					'gauge' => 'mediawiki.test_unit:2|g',
-					'timing' => 'mediawiki.test_unit:2|ms',
+					'timing' => 'mediawiki.test_unit:200|ms',
 				],
 			]
 		];
@@ -131,7 +135,7 @@ class MetricTest extends MediaWikiUnitTestCase {
 			case 'timing':
 				$metric = $statsFactory->getTiming( $call['name'] );
 				$metric->setLabels( $call['labels'] );
-				$metric->observe( $call['value'] );
+				$metric->observeSeconds( $call['timing'] );
 				break;
 		}
 		$this->assertEquals( $expected, TestingAccessWrapper::newFromObject( $emitter )->render() );
@@ -197,7 +201,7 @@ class MetricTest extends MediaWikiUnitTestCase {
 		$gauge = @$m->getGauge( 'testMetricGauge' )->setLabel( 'labelTwo', 'b' );
 		$this->assertInstanceOf( NullMetric::class, $gauge );
 		$timing = $m->getTiming( 'testMetricTiming' )->setLabel( 'labelOne', 'a' );
-		$timing->observe( 1 );
+		$timing->observeSeconds( 0.1 );
 		$callable = static function () use ( $timing ) {
 			$timing->setLabel( 'labelTwo', 'b' );
 		};
@@ -234,12 +238,12 @@ class MetricTest extends MediaWikiUnitTestCase {
 
 	public function testTimingHandleNotAllLabelsHaveValues() {
 		$m = StatsFactory::newNull();
-		$m->getTiming( 'testMetricTiming' )->setLabel( 'labelOne', 'a' )->observe( 1 );
+		$m->getTiming( 'testMetricTiming' )->setLabel( 'labelOne', 'a' )->observeSeconds( 0.1 );
 		$this->expectPHPWarning(
 			'Stats: (testMetricTiming) Cannot associate label keys with label values - '
 			. 'Not all initialized labels have an assigned value.',
 			static function () use ( $m ) {
-				$m->getTiming( 'testMetricTiming' )->observe( 1 );
+				$m->getTiming( 'testMetricTiming' )->observeSeconds( 0.1 );
 			}
 		);
 	}
@@ -285,7 +289,7 @@ class MetricTest extends MediaWikiUnitTestCase {
 		$m->getGauge( 'GaugeMetricName' )->set( 1 );
 		$metric = @$m->getGauge( 'GaugeMetricName' )->setSampleRate( 0.5 );
 		$this->assertInstanceOf( NullMetric::class, $metric );
-		$m->getTiming( 'TimingMetricName' )->observe( 1 );
+		$m->getTiming( 'TimingMetricName' )->observeSeconds( 0.1 );
 		$metric = @$m->getTiming( 'TimingMetricName' )->setSampleRate( 0.5 );
 		$this->assertInstanceOf( NullMetric::class, $metric );
 	}
@@ -295,10 +299,11 @@ class MetricTest extends MediaWikiUnitTestCase {
 		$statsHelper = StatsFactory::newUnitTestingHelper();
 		$statsFactory = $statsHelper->getStatsFactory();
 
-		$timer = $statsFactory->getTiming( 'test' )->setLabel( 'foo', 'bar' );
-		$timer->start();
-		$timer->setLabel( 'foo', 'baz' );
-		$timer->stop();
+		$timer = $statsFactory->getTiming( 'test' )->setLabel( 'foo', 'bar' )
+			->start();
+		$timer
+			->setLabel( 'foo', 'baz' )
+			->stop();
 
 		$this->assertSame(
 			[ 'mediawiki.test:1|ms|#foo:baz' ],

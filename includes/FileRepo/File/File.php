@@ -1460,8 +1460,8 @@ abstract class File implements MediaHandlerState {
 		}
 
 		$timer = MediaWikiServices::getInstance()->getStatsFactory()
-			->getTiming( 'media_thumbnail_generate_bucket_seconds' );
-		$timer->start();
+			->getTiming( 'media_thumbnail_generate_bucket_seconds' )
+			->start();
 
 		$params['physicalWidth'] = $bucket;
 		$params['width'] = $bucket;

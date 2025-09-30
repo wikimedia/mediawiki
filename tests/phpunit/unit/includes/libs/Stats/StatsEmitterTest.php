@@ -95,7 +95,7 @@ class StatsEmitterTest extends TestCase {
 		// timer with statsd copy
 		$m->getTiming( 'baz' )
 			->copyToStatsdAt( 'test.old_baz' )
-			->observe( 3.14 );
+			->observeSeconds( 0.00314 );
 
 		// setting a bucket manages the 'le' label
 		$m->getCounter( 'bucketed' )

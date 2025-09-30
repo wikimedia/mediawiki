@@ -46,6 +46,17 @@ class TimingMetric implements MetricInterface {
 	 * $timer->stop();
 	 * ```
 	 *
+	 * Example with an extra label informed by the work:
+	 *
+	 * ```php
+	 * $timer = StatsFactory->getTiming( 'example_seconds' )
+	 *     ->start();
+	 * # work to be measured...
+	 * $timer
+	 *     ->setLabel( 'status', $status->isOK() ? 'ok' : 'error' )
+	 *     ->stop();
+	 * ```
+	 *
 	 * @return RunningTimer
 	 */
 	public function start() {
@@ -55,12 +66,16 @@ class TimingMetric implements MetricInterface {
 
 	/**
 	 * Stop the running timer.
+	 *
+	 * @deprecated since 1.45 Call RunningTimer::stop on the object returned by start() instead.
 	 */
 	public function stop(): void {
 		if ( $this->startTime === null ) {
 			trigger_error( "Stats: ({$this->getName()}) stop() called before start()", E_USER_WARNING );
 			return;
 		}
+
+		trigger_error( 'Use of shared timer is deprecated. Use the returned start object instead.', E_USER_DEPRECATED );
 		$this->observeNanoseconds( ConvertibleTimestamp::hrtime() - $this->startTime );
 		$this->startTime = null;
 	}
@@ -68,12 +83,20 @@ class TimingMetric implements MetricInterface {
 	/**
 	 * Record a previously calculated observation in nanoseconds.
 	 *
+	 * It is recommended to use TimingMetric::start() and RunningTimer::stop() instead.
+	 *
+	 * Only measure latency yourself if you also need the duration value elsewhere.
+	 *
 	 * Example:
 	 *
 	 * ```php
-	 * $startTime = hrtime( true )
+	 * $startTime = ConvertibleTimestamp::hrtime( true );
 	 * # work to be measured...
-	 * $metric->observeNanoseconds( hrtime( true ) - $startTime )
+	 * $durationNano = ConvertibleTimestamp::hrtime( true ) - $startTime;
+	 * $metric->observeNanoseconds( $durationNano );
+	 *
+	 * $durationMs = $durationNano / 1e6;
+	 * $durationSec = $durationNano / 1e9;
 	 * ```
 	 *
 	 * @param float $nanoseconds
@@ -87,19 +110,19 @@ class TimingMetric implements MetricInterface {
 	/**
 	 * Record a previously calculated observation in seconds.
 	 *
-	 * This method is provided for tracking externally-generated values, timestamp deltas, and
-	 * situations where the expected input value is the expected Prometheus graphed value.
+	 * This method is provided to ease recording of externally-generated time values.
+	 * For example, when a service returns a delta in seconds to you, and you are not
+	 * measuring or multiplying this value yourself.
 	 *
-	 * Performance measurements in process should be done with hrtime() and observeNanoseconds()
-	 * to ensure monotonic time is used and not wall-clock time.
+	 * To instrument your own code, it is recommended to use TimingMetric::start()
+	 * and RunningTimer::stop() instead. Or, if measuring by hand, use hrtime()
+	 * with observeNanoseconds() to guarantee a monotonic clock and not a wall-clock.
 	 *
-	 * Example:
+	 * Do not measure latency with time() or microtime(), per T245464.
 	 *
-	 * ```php
-	 * $startTime = microtime( true )
-	 * # work to be measured...
-	 * $metric->observeSeconds( microtime( true ) - $startTime )
-	 * ```
+	 * NOTE: If you previously used observeSeconds to store non-time values in a histogram,
+	 * such as kilobytes or other unrelated quantities, use StatsFactory::getHistogram
+	 * instead (T348796, T364240, T383208).
 	 *
 	 * @param float $seconds
 	 * @return void
@@ -119,6 +142,8 @@ class TimingMetric implements MetricInterface {
 	 * and stop(), or pass values from hrtime() directly to observeNanoseconds()
 	 * without manual multiplication to another unit.
 	 *
+	 * @deprecated since 1.45 Use TimingMetric::start instead, or switch to hrtime() and
+	 * use TimingMetric::observeNanoseconds.
 	 * @param float $milliseconds
 	 * @return void
 	 */
