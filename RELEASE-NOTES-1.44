@@ -1,8 +1,13 @@
 = MediaWiki 1.44 =
 
+PHP 8.1 workboard: https://phabricator.wikimedia.org/tag/php_8.1_support/
+PHP 8.2 workboard: https://phabricator.wikimedia.org/tag/php_8.2_support/
+PHP 8.3 workboard: https://phabricator.wikimedia.org/tag/php_8.3_support/
+PHP 8.4 workboard: https://phabricator.wikimedia.org/tag/php_8.4_support/
+
 == MediaWiki 1.44.1 ==
 
-THIS IS NOT A RELEASE YET
+This is a security and maintenance release of the MediaWiki 1.44 branch.
 
 === Changes since MediaWiki 1.44.0 ===
 * Localisation updates.
@@ -40,16 +45,34 @@ THIS IS NOT A RELEASE YET
 * Forward-compatibility serialization data for SelserContext.
 * (T264389, T161647) Make Content JsonCodecable.
 * maintenance: Fix SQL range for moveToExternal.
-* (T403922) Installer: SQLite searchindex step depends on tableinstall .
+* (T403922) Installer: SQLite searchindex step depends on tableinstall.
 * Use JsonCodec to serialize SelserContext.
 * Forward-compat data for SelserContext w/ JSON-encoded Content.
 * (T402066) Skin: Table width should not exceed content width.
 * (T372444, T404230) DeletedContribsPager: Use the UserIdentity object instead
   of the raw target string.
 * (T403922) Installer: Merge applySourceFile status into Task status.
-* Upgrading wikimedia/parsoid (v0.21.0 => v0.21.1).
+* (T401099, CVE-2025-61638) Upgrading wikimedia/parsoid (v0.21.0 => v0.21.1).
 * (T394968) Metadata: ignore LocationCreated, similar to LocationShown.
-
+* (T387478, CVE-2025-61634) SECURITY: REST: Set cache-control value of
+  max-age=60 for redirects.
+* (T394396, CVE-2025-61636) SECURITY: Escape rawElement $content.
+* (T394856, CVE-2025-61637) SECURITY: Escape three system messages used by
+  live preview.
+* (T401099, CVE-2025-61638) SECURITY: Sanitize data- attributes.
+* (T280413, CVE-2025-61639) SECURITY: Use ManualLogEntry::getDeleted in
+  ::getRecentChange.
+* (T402075, CVE-2025-61640) SECURITY: Parse messages instead of inserting
+  them as HTML.
+* (T298690, CVE-2025-61641) SECURITY: api: Disable maxsize in QueryAllPages
+  in miser mode.
+* (T402313, CVE-2025-61642) SECURITY: Escape submit button label for Codex-based
+  HTMLForms.
+* (T403757, CVE-2025-61643) SECURITY: Don't send suppressed recent changes to
+  RCFeeds.
+* (T403761, CVE-2025-61645) SECURITY: Fix i18n XSS in CodexTablePager.
+* (T398706, CVE-2025-61646) SECURITY: Prevent leaking hidden usernames in
+  Watchlist/RecentChanges.
 
 == MediaWiki 1.44.0 ==
 
