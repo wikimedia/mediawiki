@@ -411,5 +411,6 @@
 	"exif-digitalsourcetype": "数码媒体来源",
 	"exif-digitalsourcetype-compositewithtrainedalgorithmicmedia": "使用生成式人工智能做出的编辑",
 	"exif-digitalsourcetype-softwareimage": "由软件创作",
+	"exif-digitalsourcetype-trainedalgorithmicmedia": "使用生成式人工智能创作",
 	"exif-digitalsourcetype-screencapture": "屏幕截图"
 }

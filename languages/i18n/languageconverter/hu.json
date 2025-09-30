@@ -2,9 +2,10 @@
 	"@metadata": {
 		"authors": [
 			"Dani",
-			"Dj"
+			"Dj",
+			"Tacsipacsi"
 		]
 	},
-	"converter-manual-rule-error": "Hiba van a kézi nyelvi konverziós szabályban",
+	"converter-manual-rule-error": "Hiba van a kézi nyelvátalakító szabályban",
 	"language-converter-depth-warning": "A nyelvátalakító rekurzióinak száma túllépve ($1)"
 }

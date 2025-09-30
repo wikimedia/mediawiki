@@ -119,7 +119,7 @@
 	"rest-param-desc-update-source": "תוכן הדף בתסדיר שצוין על־ידי המאפיין content_model",
 	"rest-param-desc-latest-source": "התוכן האחרון של הדף בתסדיר שצוין על־ידי המאפיין content_model",
 	"rest-param-desc-compare-from": "מזהה גרסה לשימוש בתור בסיס להשוואה",
-	"rest-param-desc-compare-from-id": "מזהה גרסה עבור גרסת ה־from",
+	"rest-param-desc-compare-from-id": "מזהה גרסה עבור גרסת ה־\"from\"",
 	"rest-param-desc-compare-from-slotrole": "תפקיד עבור המשבצת המושווית (כרגע תמיד \"main\")",
 	"rest-param-desc-compare-from-sections": "פרקי הקדם־מעבד עבור הגרסה, ללא הרחבת תבנית",
 	"rest-param-desc-compare-from-section-level": "רמת הפרק",

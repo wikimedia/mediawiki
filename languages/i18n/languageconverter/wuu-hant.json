@@ -4,7 +4,7 @@
 			"Winston Sung"
 		]
 	},
-	"variantname-zh-tw": "!!FUZZY!!臺灣正體",
+	"variantname-zh-tw": "臺灣正體",
 	"converter-manual-rule-error": "來手動語言轉換規則當中查著錯誤",
 	"language-converter-depth-warning": "字詞轉換器深度超限（$1）"
 }
