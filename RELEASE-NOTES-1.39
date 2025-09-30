@@ -8,7 +8,7 @@ PHP 8.4 workboard: https://phabricator.wikimedia.org/tag/php_8.4_support/
 
 == MediaWiki 1.39.14 ==
 
-THIS IS NOT A RELEASE YET
+This is a security and maintenance release of the MediaWiki 1.39 branch.
 
 === Changes since 1.39.13 ===
 * Localisation updates.
@@ -31,10 +31,21 @@ THIS IS NOT A RELEASE YET
 * (T400881) filerepo: Improve identification of ForeignAPIRepo requests.
 * (T402037) config: Change Reauthenticate Time Default.
 * SimpleParsoidOutputStash: protect against rollback from MW >= 1.43.
-* Upgrading wikimedia/parsoid (v0.16.5 => v0.16.6).
+* (T401099, CVE-2025-61638) Upgrading wikimedia/parsoid (v0.16.5 => v0.16.6).
 * (T394968) Metadata: ignore LocationCreated, similar to LocationShown.
 * (T304428) Allow marking recent changes about logged actions with bot flag.
 * (T400505) Regenerate patch-drop-page_restrictions-pr_user.sql for SQLite.
+* (T401099, CVE-2025-61638) SECURITY: Sanitize data- attributes.
+* (T280413, CVE-2025-61639) SECURITY: Use ManualLogEntry::getDeleted in
+  ::getRecentChange.
+* (T402075, CVE-2025-61640) SECURITY: Parse messages instead of inserting
+  them as HTML.
+* (T298690, CVE-2025-61641) SECURITY: api: Disable maxsize in QueryAllPages
+  in miser mode.
+* (T403757, CVE-2025-61643) SECURITY: Don't send suppressed recent changes to
+  RCFeeds.
+* (T398706, CVE-2025-61646) SECURITY: Prevent leaking hidden usernames in
+  Watchlist/RecentChanges.
 
 == MediaWiki 1.39.13 ==
 
