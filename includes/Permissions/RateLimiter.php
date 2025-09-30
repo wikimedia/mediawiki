@@ -182,7 +182,7 @@ class RateLimiter {
 			return false;
 		}
 		$actionMetric = $this->statsFactory->getCounter( 'RateLimiter_limit_actions_total' )
-			->setLabel( 'action', $action );
+			->setLabel( 'action', $action === '' ? '[view]' : $action );
 
 		$user = $subject->getUser();
 		$ip = $subject->getIP();

@@ -101,6 +101,7 @@ class RateLimiterTest extends MediaWikiIntegrationTestCase {
 		// Test limits on wiki X
 		$this->assertFalse( $limiter->limit( $anon1, 'read' ), 'First anon read' );
 		$this->assertFalse( $limiter->limit( $anon2, 'read' ), 'Second anon read (should ignore any limits)' );
+		$this->assertFalse( $limiter->limit( $anon1, '' ), 'Empty action (T388175)' );
 
 		$this->assertFalse( $limiter->limit( $anon1, 'edit' ), 'First anon edit' );
 		$this->assertTrue( $limiter->limit( $anon2, 'edit' ), 'Second anon edit' );
