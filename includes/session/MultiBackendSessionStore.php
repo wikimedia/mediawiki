@@ -249,6 +249,21 @@ class MultiBackendSessionStore implements SessionStore {
 	public function set( SessionInfo $info, $value, $exptime = 0, $flags = 0 ): void {
 		$this->logger->debug( __METHOD__ . " was called for $info" );
 
+		if ( $flags === BagOStuff::WRITE_CACHE_ONLY && $value === false ) {
+			// writing $value === false in the cache is only used by
+			// SessionManager::generateSessionId() to prevent an unnecessary store lookup.
+			// We don't know which store the ID is going to be used for in that case,
+			// so need to avoid calling getActiveStore() which would result in a store lookup
+			// and defeat the purpose. Since a new random key can't conflict with existing keys,
+			// no harm in just updating both caches.
+			$anonKey = $this->anonSessionStore->makeKey( 'MWSession', $info->getId() );
+			$authKey = $this->authenticatedSessionStore->makeKey( 'MWSession', $info->getId() );
+
+			$this->anonSessionStore->set( $anonKey, false, 0, BagOStuff::WRITE_CACHE_ONLY );
+			$this->authenticatedSessionStore->set( $authKey, false, 0, BagOStuff::WRITE_CACHE_ONLY );
+			return;
+		}
+
 		[ $store, $isAuthenticated ] = $this->getActiveStore( $info );
 
 		$key = $store->makeKey( 'MWSession', $info->getId() );
