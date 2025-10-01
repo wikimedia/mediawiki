@@ -12,6 +12,7 @@
 namespace MediaWiki\Api;
 
 use MediaWiki\Deferred\LinksUpdate\PageLinksTable;
+use MediaWiki\Deferred\LinksUpdate\TemplateLinksTable;
 use MediaWiki\Linker\LinksMigration;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
@@ -58,6 +59,7 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 			'linktable' => 'templatelinks',
 			'from_namespace' => true,
 			'showredirects' => true,
+			'virtualdomain' => TemplateLinksTable::VIRTUAL_DOMAIN,
 		],
 		'fileusage' => [
 			'code' => 'fu',

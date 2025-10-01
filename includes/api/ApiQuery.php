@@ -131,6 +131,7 @@ class ApiQuery extends ApiBase {
 				// Same as for templates
 				'LinkBatchFactory',
 				'LinksMigration',
+				'ConnectionProvider',
 			]
 		],
 		'linkshere' => [
@@ -203,6 +204,7 @@ class ApiQuery extends ApiBase {
 				// Same as for links
 				'LinkBatchFactory',
 				'LinksMigration',
+				'ConnectionProvider',
 			]
 		],
 		'transcludedin' => [

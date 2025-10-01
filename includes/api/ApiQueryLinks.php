@@ -9,11 +9,14 @@
 namespace MediaWiki\Api;
 
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\Deferred\LinksUpdate\PageLinksTable;
+use MediaWiki\Deferred\LinksUpdate\TemplateLinksTable;
 use MediaWiki\Linker\LinksMigration;
 use MediaWiki\ParamValidator\TypeDef\NamespaceDef;
 use MediaWiki\Title\Title;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * A query module to list all wiki links on a given set of pages.
@@ -29,15 +32,18 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 	private string $prefix;
 	private string $titlesParam;
 	private string $helpUrl;
+	private ?string $virtualdomain;
 
 	private LinkBatchFactory $linkBatchFactory;
 	private LinksMigration $linksMigration;
+	private IConnectionProvider $dbProvider;
 
 	public function __construct(
 		ApiQuery $query,
 		string $moduleName,
 		LinkBatchFactory $linkBatchFactory,
-		LinksMigration $linksMigration
+		LinksMigration $linksMigration,
+		IConnectionProvider $dbProvider
 	) {
 		switch ( $moduleName ) {
 			case self::LINKS:
@@ -45,12 +51,14 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 				$this->prefix = 'pl';
 				$this->titlesParam = 'titles';
 				$this->helpUrl = 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Links';
+				$this->virtualdomain = PageLinksTable::VIRTUAL_DOMAIN;
 				break;
 			case self::TEMPLATES:
 				$this->table = 'templatelinks';
 				$this->prefix = 'tl';
 				$this->titlesParam = 'templates';
 				$this->helpUrl = 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Templates';
+				$this->virtualdomain = TemplateLinksTable::VIRTUAL_DOMAIN;
 				break;
 			default:
 				ApiBase::dieDebug( __METHOD__, 'Unknown module name' );
@@ -59,6 +67,7 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 		parent::__construct( $query, $moduleName, $this->prefix );
 		$this->linkBatchFactory = $linkBatchFactory;
 		$this->linksMigration = $linksMigration;
+		$this->dbProvider = $dbProvider;
 	}
 
 	public function execute() {
@@ -85,6 +94,9 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 		}
 
 		$params = $this->extractRequestParams();
+
+		$db = $this->dbProvider->getReplicaDatabase( $this->virtualdomain );
+		$this->getQueryBuilder()->connection( $db );
 
 		if ( isset( $this->linksMigration::$mapping[$this->table] ) ) {
 			[ $nsField, $titleField ] = $this->linksMigration->getTitleFields( $this->table );
@@ -124,7 +136,7 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 				// No titles, no results!
 				return;
 			}
-			$cond = $lb->constructSet( $this->prefix, $this->getDB() );
+			$cond = $lb->constructSet( $this->prefix, $db );
 			$this->addWhere( $cond );
 			$multiNS = count( $lb->data ) !== 1;
 			$multiTitle = count( array_merge( ...$lb->data ) ) !== 1;
