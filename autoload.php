@@ -2789,6 +2789,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\SpecialPage\\SpecialRedirectToSpecial' => __DIR__ . '/includes/specialpage/SpecialRedirectToSpecial.php',
 	'MediaWiki\\SpecialPage\\SpecialRedirectWithAction' => __DIR__ . '/includes/specialpage/SpecialRedirectWithAction.php',
 	'MediaWiki\\SpecialPage\\UnlistedSpecialPage' => __DIR__ . '/includes/specialpage/UnlistedSpecialPage.php',
+	'MediaWiki\\SpecialPage\\UserGroupsSpecialPage' => __DIR__ . '/includes/specialpage/UserGroupsSpecialPage.php',
 	'MediaWiki\\SpecialPage\\WantedQueryPage' => __DIR__ . '/includes/specialpage/WantedQueryPage.php',
 	'MediaWiki\\Specials\\Contribute\\Card\\ContributeCard' => __DIR__ . '/includes/specials/Contribute/Card/ContributeCard.php',
 	'MediaWiki\\Specials\\Contribute\\Card\\ContributeCardAction' => __DIR__ . '/includes/specials/Contribute/Card/ContributeCardAction.php',

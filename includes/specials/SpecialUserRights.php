@@ -6,7 +6,6 @@
 
 namespace MediaWiki\Specials;
 
-use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Exception\PermissionsError;
 use MediaWiki\Exception\UserBlockedError;
 use MediaWiki\Html\Html;
@@ -20,6 +19,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\SpecialPage\SpecialPage;
+use MediaWiki\SpecialPage\UserGroupsSpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\User\ActorStoreFactory;
@@ -33,7 +33,6 @@ use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\Watchlist\WatchlistManager;
 use MediaWiki\WikiMap\WikiMap;
-use MediaWiki\Xml\XmlSelect;
 use Wikimedia\Rdbms\IDBAccessObject;
 
 /**
@@ -41,7 +40,7 @@ use Wikimedia\Rdbms\IDBAccessObject;
  *
  * @ingroup SpecialPage
  */
-class SpecialUserRights extends SpecialPage {
+class SpecialUserRights extends UserGroupsSpecialPage {
 	/**
 	 * The target of the local right-adjuster's interest.  Can be gotten from
 	 * either a GET parameter or a subpage-style parameter, so have a member
@@ -283,16 +282,6 @@ class SpecialUserRights extends SpecialPage {
 
 	private function getSuccessURL(): string {
 		return $this->getPageTitle( $this->mTarget )->getFullURL();
-	}
-
-	/**
-	 * Returns true if this user rights form can set and change user group expiries.
-	 * Subclasses may wish to override this to return false.
-	 *
-	 * @return bool
-	 */
-	public function canProcessExpiries() {
-		return true;
 	}
 
 	/**
@@ -591,9 +580,7 @@ class SpecialUserRights extends SpecialPage {
 		$user = $status->value;
 		'@phan-var UserIdentity $user';
 
-		$groups = $this->userGroupManager->getUserGroups( $user );
-		$groupMemberships = $this->userGroupManager->getUserGroupMemberships( $user );
-		$this->showEditUserGroupsForm( $user, $groups, $groupMemberships );
+		$this->getOutput()->addHTML( $this->buildGroupsForm( $user->getName() ) );
 
 		// This isn't really ideal logging behavior, but let's not hide the
 		// interwiki logs if we're using them as is.
@@ -687,21 +674,6 @@ class SpecialUserRights extends SpecialPage {
 	}
 
 	/**
-	 * @since 1.15
-	 *
-	 * @param array $ids
-	 *
-	 * @return string
-	 */
-	public function makeGroupNameList( $ids ) {
-		if ( !$ids ) {
-			return $this->msg( 'rightsnone' )->inContentLanguage()->text();
-		} else {
-			return implode( ', ', $ids );
-		}
-	}
-
-	/**
 	 * Display a HTMLUserTextField form to allow searching for a named user only
 	 */
 	protected function switchForm() {
@@ -731,16 +703,37 @@ class SpecialUserRights extends SpecialPage {
 			->displayForm( true );
 	}
 
-	/**
-	 * Show the form to edit group memberships.
-	 *
-	 * @param UserIdentity $user The target user
-	 * @param string[] $groups Array of groups the user is in. Not used by this implementation
-	 *   anymore, but kept for backward compatibility with subclasses
-	 * @param UserGroupMembership[] $groupMemberships Associative array of (group name => UserGroupMembership
-	 *   object) containing the groups the user is in
-	 */
-	protected function showEditUserGroupsForm( $user, $groups, $groupMemberships ) {
+	/** @inheritDoc */
+	protected function makeConflictCheckKey(): string {
+		$user = $this->mFetchedUser;
+		return implode( ',', $this->userGroupManager->getUserGroups( $user ) );
+	}
+
+	/** @inheritDoc */
+	protected function getTargetDescriptor(): string {
+		return $this->mTarget;
+	}
+
+	/** @inheritDoc */
+	protected function getTargetUserToolLinks(): string {
+		$user = $this->mFetchedUser;
+		$systemUser = $user->getWikiId() === UserIdentity::LOCAL
+			&& $this->userFactory->newFromUserIdentity( $user )->isSystemUser();
+
+		// Only add an email link if the user is not a system user
+		$flags = $systemUser ? 0 : Linker::TOOL_LINKS_EMAIL;
+		return Linker::userToolLinks(
+			$user->getId( $user->getWikiId() ),
+			$this->getDisplayUsername( $user ),
+			false, /* default for redContribsWhenNoEdits */
+			$flags
+		);
+	}
+
+	/** @inheritDoc */
+	protected function getCurrentUserGroupsText(): string {
+		$user = $this->mFetchedUser;
+		$groupMemberships = $this->userGroupManager->getUserGroupMemberships( $user );
 		$list = $membersList = $tempList = $tempMembersList = [];
 		foreach ( $groupMemberships as $ugm ) {
 			$linkG = UserGroupMembership::getLinkHTML( $ugm, $this->getContext() );
@@ -805,305 +798,40 @@ class SpecialUserRights extends SpecialPage {
 				->parse();
 			$grouplist .= '<p>' . $systemusernote . "</p>\n";
 		}
-
-		// Only add an email link if the user is not a system user
-		$flags = $systemUser ? 0 : Linker::TOOL_LINKS_EMAIL;
-		$userToolLinks = Linker::userToolLinks(
-			$user->getId( $user->getWikiId() ),
-			$this->getDisplayUsername( $user ),
-			false, /* default for redContribsWhenNoEdits */
-			$flags
-		);
-
-		[ $groupCheckboxes, $canChangeAny ] =
-			$this->groupCheckboxes( $groupMemberships, $user );
-		$this->getOutput()->addHTML(
-			Html::openElement(
-				'form',
-				[
-					'method' => 'post',
-					'action' => $this->getPageTitle()->getLocalURL(),
-					'name' => 'editGroup',
-					'id' => 'mw-userrights-form2'
-				]
-			) .
-			Html::hidden( 'user', $this->mTarget ) .
-			Html::hidden( 'wpEditToken', $this->getUser()->getEditToken( $this->mTarget ) ) .
-			Html::hidden(
-				'conflictcheck-originalgroups',
-				implode( ',', $this->userGroupManager->getUserGroups( $user ) )
-			) . // Conflict detection
-			Html::openElement( 'fieldset' ) .
-			Html::element(
-				'legend',
-				[],
-				$this->msg(
-					$canChangeAny ? 'userrights-editusergroup' : 'userrights-viewusergroup',
-					$user->getName()
-				)->text()
-			) .
-			$this->msg(
-				$canChangeAny ? 'editinguser' : 'viewinguserrights'
-			)->params( wfEscapeWikiText( $this->getDisplayUsername( $user ) ) )
-				->rawParams( $userToolLinks )->parse()
-		);
-		if ( $canChangeAny ) {
-			$this->getOutput()->addHTML(
-				$this->msg( 'userrights-groups-help', $user->getName() )->parse() .
-				$grouplist .
-				$groupCheckboxes .
-				Html::openElement( 'table', [ 'id' => 'mw-userrights-table-outer' ] ) .
-					"<tr>
-						<td class='mw-label'>" .
-							Html::label( $this->msg( 'userrights-reason' )->text(), 'wpReason' ) .
-						"</td>
-						<td class='mw-input'>" .
-							Html::input( 'user-reason', $this->getRequest()->getVal( 'user-reason' ) ?? false, 'text', [
-								'size' => 60,
-								'id' => 'wpReason',
-								// HTML maxlength uses "UTF-16 code units", which means that characters outside BMP
-								// (e.g. emojis) count for two each. This limit is overridden in JS to instead count
-								// Unicode codepoints.
-								'maxlength' => CommentStore::COMMENT_CHARACTER_LIMIT,
-							] ) .
-						"</td>
-					</tr>
-					<tr>
-						<td></td>
-						<td class='mw-submit'>" .
-							Html::submitButton( $this->msg( 'saveusergroups', $user->getName() )->text(),
-								[ 'name' => 'saveusergroups' ] +
-									Linker::tooltipAndAccesskeyAttribs( 'userrights-set' )
-							) .
-						"</td>
-					</tr>
-					<tr>
-						<td></td>
-						<td class='mw-input'>" .
-							Html::check( 'wpWatch', false, [ 'id' => 'wpWatch' ] ) .
-							'&nbsp;' . Html::label( $this->msg( 'userrights-watchuser' )->text(), 'wpWatch' ) .
-						"</td>
-					</tr>" .
-				Html::closeElement( 'table' ) . "\n"
-			);
-		} else {
-			$this->getOutput()->addHTML( $grouplist );
-		}
-		$this->getOutput()->addHTML(
-			Html::closeElement( 'fieldset' ) .
-			Html::closeElement( 'form' ) . "\n"
-		);
+		return $grouplist;
 	}
 
-	/**
-	 * Adds a table with checkboxes where you can select what groups to add/remove
-	 *
-	 * @param UserGroupMembership[] $usergroups Associative array of (group name as string =>
-	 *   UserGroupMembership object) for groups the user belongs to
-	 * @param UserIdentity $user The target user
-	 * @return array Array with 2 elements: the XHTML table element with checkxboes, and
-	 * whether any groups are changeable
-	 */
-	private function groupCheckboxes( $usergroups, UserIdentity $user ) {
-		$allgroups = $this->userGroupManager->listAllGroups();
-		$ret = '';
+	/** @inheritDoc */
+	protected function listAllExplicitGroups(): array {
+		return $this->userGroupManager->listAllGroups();
+	}
 
-		// Get the list of preset expiry times from the system message
-		$expiryOptionsMsg = $this->msg( 'userrights-expiry-options' )->inContentLanguage();
-		$expiryOptions = $expiryOptionsMsg->isDisabled()
-			? []
-			: XmlSelect::parseOptionsMessage( $expiryOptionsMsg->text() );
+	/** @inheritDoc */
+	protected function getGroupMemberships(): array {
+		$memberships = $this->userGroupManager->getUserGroupMemberships( $this->mFetchedUser );
+		$result = [];
 
-		// Put all column info into an associative array so that extensions can
-		// more easily manage it.
-		$columns = [ 'unchangeable' => [], 'changeable' => [] ];
-
-		foreach ( $allgroups as $group ) {
-			$set = isset( $usergroups[$group] );
-			// Users who can add the group, but not remove it, can only lengthen
-			// expiries, not shorten them. So they should only see the expiry
-			// dropdown if the group currently has a finite expiry
-			$canOnlyLengthenExpiry = ( $set && $this->canAdd( $group ) &&
-				!$this->canRemove( $group ) && $usergroups[$group]->getExpiry() );
-			// Should the checkbox be disabled?
-			$disabledCheckbox = !(
-				( $set && $this->canRemove( $group ) ) ||
-				( !$set && $this->canAdd( $group ) ) );
-			// Should the expiry elements be disabled?
-			$disabledExpiry = $disabledCheckbox && !$canOnlyLengthenExpiry;
-			// Do we need to point out that this action is irreversible?
-			$irreversible = !$disabledCheckbox && (
-				( $set && !$this->canAdd( $group ) ) ||
-				( !$set && !$this->canRemove( $group ) ) );
-
-			$checkbox = [
-				'set' => $set,
-				'disabled' => $disabledCheckbox,
-				'disabled-expiry' => $disabledExpiry,
-				'irreversible' => $irreversible
-			];
-
-			if ( $disabledCheckbox && $disabledExpiry ) {
-				$columns['unchangeable'][$group] = $checkbox;
-			} else {
-				$columns['changeable'][$group] = $checkbox;
-			}
+		foreach ( $memberships as $ugm ) {
+			$result[$ugm->getGroup()] = $ugm->getExpiry();
 		}
+		return $result;
+	}
 
-		// Build the HTML table
-		$ret .= Html::openElement( 'table', [ 'class' => 'mw-userrights-groups' ] ) .
-			"<tr>\n";
-		foreach ( $columns as $name => $column ) {
-			if ( $column === [] ) {
-				continue;
-			}
-			// Messages: userrights-changeable-col, userrights-unchangeable-col
-			$ret .= Html::element(
-				'th',
-				[],
-				$this->msg( 'userrights-' . $name . '-col', count( $column ) )->text()
-			);
+	protected function getGroupAnnotations( string $group ): array {
+		$groups = $this->changeableGroups();
+		if ( !isset( $groups['restricted'][$group] ) || $groups['restricted'][$group]['condition-met'] ) {
+			return parent::getGroupAnnotations( $group );
 		}
-
-		$ret .= "</tr>\n<tr>\n";
-		$uiLanguage = $this->getLanguage();
-		$userName = $user->getName();
-		foreach ( $columns as $column ) {
-			if ( $column === [] ) {
-				continue;
-			}
-			$ret .= "\t<td style='vertical-align:top;'>\n";
-			foreach ( $column as $group => $checkbox ) {
-				$member = $uiLanguage->getGroupMemberName( $group, $userName );
-				if ( $checkbox['irreversible'] ) {
-					$text = $this->msg( 'userrights-irreversible-marker', $member )->text();
-				} elseif ( $checkbox['disabled'] && !$checkbox['disabled-expiry'] ) {
-					$text = $this->msg( 'userrights-no-shorten-expiry-marker', $member )->text();
-				} else {
-					$text = $member;
-				}
-				$checkboxHtml = Html::element( 'input', [
-					'type' => 'checkbox', 'name' => "wpGroup-$group", 'value' => '1',
-					'id' => "wpGroup-$group", 'checked' => $checkbox['set'],
-					'class' => 'mw-userrights-groupcheckbox',
-					'disabled' => $checkbox['disabled'],
-				] ) . '&nbsp;' . Html::label( $text, "wpGroup-$group" );
-
-				$groups = $this->changeableGroups();
-				if ( isset( $groups['restricted'][$group] ) && !$groups['restricted'][$group]['condition-met'] ) {
-					$checkboxHtml .= Html::rawElement(
-						'div',
-						[ 'class' => 'mw-userrights-unaddable-reason' ],
-						$this->msg( $groups['restricted'][$group]['message'] )->parse()
-					);
-				}
-
-				if ( $this->canProcessExpiries() ) {
-					$uiUser = $this->getUser();
-
-					$currentExpiry = isset( $usergroups[$group] ) ?
-						$usergroups[$group]->getExpiry() :
-						null;
-
-					// If the user can't modify the expiry, print the current expiry below
-					// it in plain text. Otherwise provide UI to set/change the expiry
-					if ( $checkbox['set'] &&
-						( $checkbox['irreversible'] || $checkbox['disabled-expiry'] )
-					) {
-						if ( $currentExpiry ) {
-							$expiryFormatted = $uiLanguage->userTimeAndDate( $currentExpiry, $uiUser );
-							$expiryFormattedD = $uiLanguage->userDate( $currentExpiry, $uiUser );
-							$expiryFormattedT = $uiLanguage->userTime( $currentExpiry, $uiUser );
-							$expiryHtml = Html::element( 'span', [],
-								$this->msg( 'userrights-expiry-current' )->params(
-								$expiryFormatted, $expiryFormattedD, $expiryFormattedT )->text() );
-						} else {
-							$expiryHtml = Html::element( 'span', [],
-								$this->msg( 'userrights-expiry-none' )->text() );
-						}
-						// T171345: Add a hidden form element so that other groups can still be manipulated,
-						// otherwise saving errors out with an invalid expiry time for this group.
-						$expiryHtml .= Html::hidden( "wpExpiry-$group",
-							$currentExpiry ? 'existing' : 'infinite' );
-						$expiryHtml .= "<br />\n";
-					} else {
-						$expiryHtml = Html::element( 'span', [],
-							$this->msg( 'userrights-expiry' )->text() );
-						$expiryHtml .= Html::openElement( 'span' );
-
-						// add a form element to set the expiry date
-						$expiryFormOptions = new XmlSelect(
-							"wpExpiry-$group",
-							"mw-input-wpExpiry-$group", // forward compatibility with HTMLForm
-							$currentExpiry ? 'existing' : 'infinite'
-						);
-						if ( $checkbox['disabled-expiry'] ) {
-							$expiryFormOptions->setAttribute( 'disabled', 'disabled' );
-						}
-
-						if ( $currentExpiry ) {
-							$timestamp = $uiLanguage->userTimeAndDate( $currentExpiry, $uiUser );
-							$d = $uiLanguage->userDate( $currentExpiry, $uiUser );
-							$t = $uiLanguage->userTime( $currentExpiry, $uiUser );
-							$existingExpiryMessage = $this->msg( 'userrights-expiry-existing',
-								$timestamp, $d, $t );
-							$expiryFormOptions->addOption( $existingExpiryMessage->text(), 'existing' );
-						}
-
-						$expiryFormOptions->addOption(
-							$this->msg( 'userrights-expiry-none' )->text(),
-							'infinite'
-						);
-						$expiryFormOptions->addOption(
-							$this->msg( 'userrights-expiry-othertime' )->text(),
-							'other'
-						);
-
-						$expiryFormOptions->addOptions( $expiryOptions );
-
-						// Add expiry dropdown
-						$expiryHtml .= $expiryFormOptions->getHTML() . '<br />';
-
-						// Add custom expiry field
-						$expiryHtml .= Html::element( 'input', [
-							'name' => "wpExpiry-$group-other", 'size' => 30, 'value' => '',
-							'id' => "mw-input-wpExpiry-$group-other",
-							'class' => 'mw-userrights-expiryfield',
-							'disabled' => $checkbox['disabled-expiry'],
-						] );
-
-						// If the user group is set but the checkbox is disabled, mimic a
-						// checked checkbox in the form submission
-						if ( $checkbox['set'] && $checkbox['disabled'] ) {
-							$expiryHtml .= Html::hidden( "wpGroup-$group", 1 );
-						}
-
-						$expiryHtml .= Html::closeElement( 'span' );
-					}
-
-					$divAttribs = [
-						'id' => "mw-userrights-nested-wpGroup-$group",
-						'class' => 'mw-userrights-nested',
-					];
-					$checkboxHtml .= "\t\t\t" . Html::rawElement( 'div', $divAttribs, $expiryHtml ) . "\n";
-				}
-				$ret .= "\t\t" . ( ( $checkbox['disabled'] && $checkbox['disabled-expiry'] )
-					? Html::rawElement( 'div', [ 'class' => 'mw-userrights-disabled' ], $checkboxHtml )
-					: Html::rawElement( 'div', [], $checkboxHtml )
-				) . "\n";
-			}
-			$ret .= "\t</td>\n";
-		}
-		$ret .= Html::closeElement( 'tr' ) . Html::closeElement( 'table' );
-
-		return [ $ret, (bool)$columns['changeable'] ];
+		return [
+			$groups['restricted'][$group]['message']
+		];
 	}
 
 	/**
 	 * @param string $group The name of the group to check
 	 * @return bool Can we remove the group?
 	 */
-	private function canRemove( $group ) {
+	protected function canRemove( string $group ): bool {
 		$groups = $this->changeableGroups();
 
 		return in_array(
@@ -1116,7 +844,7 @@ class SpecialUserRights extends SpecialPage {
 	 * @param string $group The name of the group to check
 	 * @return bool Can we add the group?
 	 */
-	private function canAdd( $group ) {
+	protected function canAdd( string $group ): bool {
 		$groups = $this->changeableGroups();
 
 		return in_array(
@@ -1172,10 +900,11 @@ class SpecialUserRights extends SpecialPage {
 	 * Use UserIdentity::getName for {{GENDER:}} in messages and
 	 * use the "display user name" for visible user names in logs or messages
 	 *
-	 * @param UserIdentity $user The target user
+	 * @param null|UserIdentity $user The target user
 	 * @return string
 	 */
-	private function getDisplayUsername( UserIdentity $user ) {
+	protected function getDisplayUsername( ?UserIdentity $user = null ): string {
+		$user ??= $this->mFetchedUser;
 		$userName = $user->getName();
 		if ( $user->getWikiId() !== UserIdentity::LOCAL ) {
 			$userName .= $this->getConfig()->get( MainConfigNames::UserrightsInterwikiDelimiter )

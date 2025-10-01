@@ -1,12 +1,13 @@
 /*!
  * Styles for Special:UserRights
  */
-.mw-userrights-nested {
+.mw-userrights-nested,
+.mw-userrights-annotation {
 	margin-left: 1.2em;
 }
 
 .mw-userrights-nested span {
-	margin-left: 0.3em;
+	margin-right: 0.3em;
 	display: inline-block;
 	vertical-align: middle;
 }
@@ -33,8 +34,4 @@ input.mw-userrights-groupcheckbox:not( :checked ) ~ .mw-userrights-nested {
 /* The input fields gets unhidden by JavaScript when needed */
 .client-js .mw-userrights-expiryfield {
 	display: none;
-}
-
-.mw-userrights-unaddable-reason {
-	margin-left: 1.2em;
 }
