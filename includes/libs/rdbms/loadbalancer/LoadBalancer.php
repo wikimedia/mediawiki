@@ -1726,11 +1726,11 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		// server configuration arrays. Such handles will still be flushed during calls
 		// to {@link LoadBalancer::commitPrimaryChanges()}.
 		if ( $conn->getFlag( $conn::DBO_TRX ) ) {
-			// DB handle is participating in the active transction round
+			// DB handle is participating in the active transaction round
 			$conn->setLBInfo( $conn::LB_TRX_ROUND_LEVEL, $trxRoundLevel );
 			$conn->setLBInfo( $conn::LB_TRX_ROUND_FNAME, $this->trxRoundFname );
 		} else {
-			// DB handle is not participating in any transction rounds
+			// DB handle is not participating in any transaction rounds
 			$conn->setLBInfo( $conn::LB_TRX_ROUND_LEVEL, 0 );
 			$conn->setLBInfo( $conn::LB_TRX_ROUND_FNAME, null );
 		}
