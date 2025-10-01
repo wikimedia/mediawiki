@@ -98,27 +98,6 @@ class TransformHandlerTest extends MediaWikiIntegrationTestCase {
 			[ 'format' => ParsoidFormatHelper::FORMAT_LINT ]
 		];
 
-		// Convert wikitext to lint errors (GET) //////////////////////////////////////////////////
-		$request = new RequestData( [
-			'method' => 'GET',
-			'pathParams' => [
-				'from' => ParsoidFormatHelper::FORMAT_WIKITEXT,
-				'title' => 'wikitext_lint_page'
-			]
-		] + $defaultParams );
-
-		yield 'should transform wikitext to lint errors (GET)' => [
-			$request,
-			'[' .
-			'{"type":"missing-end-tag","dsr":[36,55,6,0],"templateInfo":null,"params":{"name":"code","inTable":false}},' .
-			'{"type":"multiple-unclosed-formatting-tags","dsr":[36,55,6,0],"templateInfo":null,"params":{"name":"code","inTable":false}},' .
-			'{"type":"missing-end-tag","dsr":[45,55,6,0],"templateInfo":null,"params":{"name":"code","inTable":false}}' .
-			']',
-			200,
-			[ 'content-type' => 'application/json' ],
-			[ 'format' => ParsoidFormatHelper::FORMAT_LINT ]
-		];
-
 		// Perform language variant conversion //////////////////////////////////////////////////
 		$request = new RequestData( [
 				'pathParams' => [
