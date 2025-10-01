@@ -23,6 +23,7 @@ namespace MediaWiki\Session;
 use InvalidArgumentException;
 use MediaWiki\Json\JwtCodec;
 use MediaWiki\Json\JwtException;
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\User\User;
@@ -575,7 +576,7 @@ class CookieSessionProvider extends SessionProvider {
 				// Already expired (we add a one-minute fudge factor for slow network etc).
 				// This shouldn't happen since the cookie expiry and the JWT expiry are synced,
 				// but some clients might not honor cookie expiry; we want to know about those.
-				$this->logger->warning( 'Soft-expired JWT cookie', [
+				LoggerFactory::getInstance( 'session-sampled' )->warning( 'Soft-expired JWT cookie', [
 					'jti' => $data['jti'],
 					'expiry' => $softExpiry,
 					'expired_by' => ConvertibleTimestamp::time() - $softExpiry,

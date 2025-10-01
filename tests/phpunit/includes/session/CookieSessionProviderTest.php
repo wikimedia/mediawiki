@@ -240,6 +240,12 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 		ConvertibleTimestamp::setFakeTime( $startTime );
 		$centralIdMap = &$this->mockCentralIdLookup();
 		$logger = new TestLogger( true );
+		$logger2 = new TestLogger( true, static function ( string $message ) {
+			if ( str_starts_with( $message, 'Session store:' ) ) {
+				return null;
+			}
+			return $message;
+		} );
 		$params = [
 			'priority' => 20,
 			'sessionName' => 'session',
@@ -255,6 +261,7 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 		$this->initProvider(
 			$provider, $logger, $config, $this->getServiceContainer()->getSessionManager()
 		);
+		$this->setLogger( 'session-sampled', $logger2 );
 
 		$user = static::getTestSysop()->getUser();
 		$id = $user->getId();
@@ -571,8 +578,10 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 			$this->assertSame( $id, $info->getUserInfo()->getId() );
 			$this->assertSame( $name, $info->getUserInfo()->getName() );
 			$this->assertTrue( $info->needsRefresh() );
-			$this->assertSame( [ [ LogLevel::WARNING, 'Soft-expired JWT cookie' ] ], $logger->getBuffer() );
+			$this->assertSame( [], $logger->getBuffer() );
 			$logger->clearBuffer();
+			$this->assertSame( [ [ LogLevel::WARNING, 'Soft-expired JWT cookie' ] ], $logger2->getBuffer() );
+			$logger2->clearBuffer();
 
 			// near-expired JWT
 			ConvertibleTimestamp::setFakeTime( $startTime + $jwtExpiry - 1 );
