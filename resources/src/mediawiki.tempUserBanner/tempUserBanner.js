@@ -8,6 +8,7 @@
 $( () => {
 
 	const config = require( './config.json' ),
+		local = require( 'mediawiki.storage' ).local,
 		$tempUserBannerEl = $( '.mw-temp-user-banner ' ),
 		$tempUserBannerTooltipEl = $( '.mw-temp-user-banner-tooltip ' ),
 		$tempUserBannerTooltipButtonEl = $( '#mw-temp-user-banner-tooltip-button' ),
@@ -59,7 +60,7 @@ $( () => {
 	 * @return {boolean}
 	 */
 	function shouldShowExpirationAlert() {
-		const tempUserExpirationAlertDismissed = localStorage.getItem( 'tempUserExpirationAlertDismissed' );
+		const tempUserExpirationAlertDismissed = local.get( 'tempUserExpirationAlertDismissed' );
 		const expirationIsSet = typeof config.AutoCreateTempUser.expireAfterDays === 'number';
 		const notifyBeforeExpirationIsSet = typeof config.AutoCreateTempUser.notifyBeforeExpirationDays === 'number';
 		return expirationIsSet &&
@@ -150,7 +151,7 @@ $( () => {
 					if ( shouldShowExpiration ) {
 						popup.on( 'toggle', ( visible ) => {
 							if ( !visible ) {
-								localStorage.setItem( 'tempUserExpirationAlertDismissed', true );
+								local.set( 'tempUserExpirationAlertDismissed', true );
 								popup = null;
 							}
 						} );
