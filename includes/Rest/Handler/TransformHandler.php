@@ -168,7 +168,6 @@ class TransformHandler extends ParsoidHandler {
 	 * @throws HttpException
 	 */
 	public function execute(): Response {
-		$request = $this->getRequest();
 		$from = $this->getFromFormat();
 		$format = $this->getTargetFormat();
 
@@ -205,7 +204,7 @@ class TransformHandler extends ParsoidHandler {
 				}
 			}
 			// Abort if no wikitext or title.
-			if ( $wikitext === null && empty( $attribs['pageName'] ) ) {
+			if ( $wikitext === null && ( $attribs['pageName'] ?? '' ) === '' ) {
 				throw new LocalizedHttpException( new MessageValue( "rest-transform-missing-title" ), 400 );
 			}
 			$pageConfig = $this->tryToCreatePageConfig( $attribs, $wikitext );
