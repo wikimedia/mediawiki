@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"FunPL",
+			"Nux",
 			"Pietrasagh",
 			"Rail",
 			"Rainbow P",
@@ -65,5 +66,6 @@
 	"rest-parsoid-resource-exceeded": "Przekroczono limit zasobów",
 	"rest-parsoid-error": "Błąd Parsoida.",
 	"rest-parsoid-bad-render-id": "Identyfikator problematycznego renderowania Parsoida: $1",
-	"rest-html-key-expected": "Oczekiwano klucza <var>html</var> w zawartości"
+	"rest-html-key-expected": "Oczekiwano klucza <var>html</var> w zawartości",
+	"rest-param-desc-compare-to-desc": "Szczegóły wersji „to” (do)"
 }

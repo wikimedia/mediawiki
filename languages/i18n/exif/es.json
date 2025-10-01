@@ -16,6 +16,7 @@
 			"Macofe",
 			"MarcoAurelio",
 			"Sanbec",
+			"Sophocrat",
 			"Vivaelcelta"
 		]
 	},
@@ -400,5 +401,22 @@
 	"exif-croppedarealeftpixels": "Recorte izquierdo del panorama",
 	"exif-croppedareatoppixels": "Recorte superior del panorama",
 	"exif-initialcameradolly": "Cámara dolly inicial",
-	"exif-stitchingsoftware": "Software para panorámicas (stitching)"
+	"exif-stitchingsoftware": "Software para panorámicas (stitching)",
+	"exif-digitalsourcetype": "Fuente de medio digital",
+	"exif-digitalsourcetype-digitalcapture": "Cámara o grabadora digital",
+	"exif-digitalsourcetype-computationalcapture": "Cámara o grabadora digital (múltiples cuadros combinados)",
+	"exif-digitalsourcetype-negativefilm": "Digitalizado de un negativo transparente",
+	"exif-digitalsourcetype-positivefilm": "Digitalizado de un positivo transparente",
+	"exif-digitalsourcetype-print": "Digitalizado de un medio no-transparente",
+	"exif-digitalsourcetype-minorhumanedits": "Media original con ediciones humanas menores",
+	"exif-digitalsourcetype-humanedits": "Medios editados por humanos",
+	"exif-digitalsourcetype-compositewithtrainedalgorithmicmedia": "Editado usando IA generativa",
+	"exif-digitalsourcetype-algorithmicallyenhanced": "Medios algorítmicamente alterados",
+	"exif-digitalsourcetype-softwareimage": "Creado por software",
+	"exif-digitalsourcetype-digitalart": "Creado por un humano usando herramientas digitales",
+	"exif-digitalsourcetype-digitalcreation": "Medios creados por humanos usando herramientas que no son de IA",
+	"exif-digitalsourcetype-datadrivenmedia": "Representación de medios digitales de datos a través de programación o creatividad humana",
+	"exif-digitalsourcetype-trainedalgorithmicmedia": "Creado usando IA Generativa",
+	"exif-digitalsourcetype-algorithmicmedia": "Medio creado puramente por un algoritmo que no es de IA",
+	"exif-digitalsourcetype-screencapture": "Captura de pantalla"
 }

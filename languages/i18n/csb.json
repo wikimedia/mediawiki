@@ -275,7 +275,6 @@
 	"mailmypassword": "Zetrzéc hasło.",
 	"passwordremindertitle": "Nowô doczasnô parola dlô {{SITENAME}}",
 	"passwordremindertext": "Chtos (gwës Të, z adresë $1) pòprosëł ò wësłanié nowi\nparolë dlô {{SITENAME}} ($4). Aktualnô parola dlô brëkòwnika\n\"$2\" òsta ùsôdzonô ë nastôwionô jakno \"$3\". Jeżlë to bëło twòją\njintencëją, mùszisz sã terô wlogòwac ë zmienic swòją parolã.\nNowô parola je wôznô {{PLURAL:$5|dzéń|$5 dni}}.\nJeżlë chto jinszi wësłôł to zapëtanié, abò pamiãtôsz swòją parolã\në chcesz jã dali bez zmianë brëkòwac, zjignorëje to wiadło ë\nrobi dali ze starną parolą.",
-	"noemail": "W baze ni ma email-adresë dlô brëkòwnika \"$1\".",
 	"acct_creation_throttle_hit": "Z adresë IP chtërny brëkùjesz òstało, w slédnych $2 ùsôdzonych {{PLURAL:$1|1 kònto|$1 kontów}}, co je maksymalną wielëną, \nBrëkòwnicy ti IP-adresë ni mògą terôczasno ùsôdzac wicy kòntów.",
 	"accountcreated": "Konto założone",
 	"accountcreatedtext": "Kònto brëkòwnika dlô [[{{ns:User}}:$1|$1]], [[{{ns:User talk}}:$1|talk]] òstało ùsadzóné.",

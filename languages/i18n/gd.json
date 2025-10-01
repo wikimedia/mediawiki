@@ -338,7 +338,6 @@
 	"mailmypassword": "Ath-shuidhich am facal-faire",
 	"passwordremindertitle": "Facal-faire sealach ùr airson {{SITENAME}}",
 	"passwordremindertext": "Dh'iarr cuideigin ('s mathaid gun do dh'iarr thusa seo on t-seòladh IP $1) facal-faire ùr airson {{SITENAME}} ($4). Chaidh facal-faire sealach a chruthachadh airson \"$2\" a tha 'na \"$3\".\nMa bha sin fa-near dhut, bidh agad ri logadh a-steach agus facal-faire ùr a thaghadh\nan-dràsta fhèin. Falbhaidh an ùine air an fhacal-fhaire sealach agad ann an {{PLURAL:$5|$5 latha|$5 latha|$5 làithean|$5 latha}}.\n\nMa dh'iarr cuideigin eile seo no ma chuimhnich thu am facal-faire agad 's mur eil thu\nairson atharrachadh tuilleadh, 's urrainn dhut an teachdaireachd seo a leigeil seachad\nagus leantainn ort leis an t-seann fhacal-faire.",
-	"noemail": "Cha deach post-d a chlàradh airson a' chleachdaiche \"$1\".",
 	"noemailcreate": "Feumaidh tu post-d dligheach a chur ann",
 	"passwordsent": "Chaidh facal-faire ùr a chur dhan phost-d a chaidh a chlàradh airson \"$1\".\nDèan logadh a-steach a-rithist nuair a gheibh thu e.",
 	"blocked-mailpassword": "Chaidh bacadh deasachaidh a chur air an t-seòladh IP agad. Airson casg a chur air mì-ghnàthachadh, chan urrainn dhut an gleus a chum aiseag an fhacail-fhaire a chleachdadh an-dràsta fhèin.",

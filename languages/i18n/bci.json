@@ -315,7 +315,6 @@
 	"wrongpasswordempty": "Ba klè man mot de passi vié fi.\nAmoun yatchi, amoun nian yé i ékoun.",
 	"mailmypassword": "Yi ô mot de passi i ouflèouflè",
 	"passwordremindertitle": "{{SITENAME}} i mot de passi ouflè mô ô tchèman",
-	"noemail": "Ba fa man email adressi vié fi ba fa sié man interneti conti léfouè \"$1\" i douman noun.",
 	"noemailcreate": "Ô fata kè amoun man email adressi kpa koun.",
 	"mailerror": "Bé sa to fouanli email nga fa kôlè sou: $1",
 	"cannotchangeemail": "Bé kloua katchi man conti nga i email adressi moun bé wiki nga sou.",

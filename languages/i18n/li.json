@@ -350,7 +350,6 @@
 	"mailmypassword": "Mail mich e nuuj wachwaord",
 	"passwordremindertitle": "Nuuj tiedelik wachwaord van {{SITENAME}}",
 	"passwordremindertext": "Emes haet vanaaf IP-adres $1 'n nuuj wachwoord veur {{SITENAME}} ($4) verzoch. 't Nuuj wachwaord veur gebroeker \"$2\" is \"$3\". Es det dien bedoeling woor, melj dich den noe aan en kees e nuuj wachwaord. 't Tiedelik wachwaord verluip euver {{PLURAL:$5|einen daag|$5 daag}}.\n\nEs emes anges dit verzeuk haet gedaon, of wens se dich die wachwaord weer herinjers en 't neet mie wils verangere, negeer den dit besjeid en blief dien aad wachwaord gebroeke.",
-	"noemail": "D'r is gein geregistreerd e-mailadres veur \"$1\".",
 	"noemailcreate": "Doe mós e geljig e-mailadres ópgaeve.",
 	"passwordsent": "D'r is 'n nuui wachwaord verzonde nao 't e-mailadres dat geregistreerd sjtit veur \"$1\".\nGelieve na ontvangst opnieuw aan te melden.",
 	"blocked-mailpassword": "Dien IP-adres is geblokkeerd veur 't make van verangeringe. Om misbroek te veurkomme is 't neet meugelik om 'n nuuj wachwaord aan te vraoge.",
@@ -3263,7 +3262,5 @@
 	"renameuser-move-log": "Automatisch hernömp bie 't wiezige van gebroeker \"[[User:$1|$1]]\" nao \"[[User:$2|$2]]\"",
 	"action-renameuser": "gebroekers van naam te verangere",
 	"right-renameuser": "Gebroekers hernaome",
-	"renameuser-renamed-notice": "Deze gebroeker is herneump.\nRelevante regels oet 't logbook staon hieónger.",
-	"interwiki": "Tuin en bewirk interwikigegaeves",
-	"interwiki-title-norights": "Toean interwikigegaeves"
+	"renameuser-renamed-notice": "Deze gebroeker is herneump.\nRelevante regels oet 't logbook staon hieónger."
 }

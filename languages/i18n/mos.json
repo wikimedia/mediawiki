@@ -361,7 +361,6 @@
 	"mailmypassword": "Lebe-sigli sogbo",
 	"passwordremindertitle": "Sõng-vɩɩs a ye sẽn yaa wakat bilf n na n kõ {{SITENAME}}",
 	"passwordremindertext": "Ned n da (IP address $1) n kos tɩ b kõ-a {{SITENAME}} ($4) paalg sõor ye. B naan n naan sõor sẽn yaa wakat bilf n kõ \"$2\" tɩ b yãk-a tɩ \"$3\". Y sã n da rat n maan woto, yaa tɩlae tɩ y kẽ n yãk y paalg masã. Y sẽn na n paam tɩ y pa tar lohoremã na n kaoosa rasem a pʋgẽ{{PLURAL:$5|one day|$5 days}} Ned a to sã n kos foom, bɩ f sã n tẽeg f loogr-bilã, la fo pa rat n le toeem-a ye, fo tõe n basa sõsgã n ket n tũnugda ne f loogrã.",
-	"noemail": "Pa tar e-mail-dres sẽn gʋlsd nin-tɩrga \"$1\" yĩng ye.",
 	"noemailcreate": "Y segd n wilga e-mail-rɩll sẽn yaa sõma.",
 	"passwordsent": "B tʋma koe-bõn-paal a ye e-mail-rɩk-roogẽ sẽn gʋls tɩ \"$1\" wã. Y sã n wa paam-a, bɩ y le log n lebg n kẽ.",
 	"blocked-mailpassword": "Y IP-dʋʋllã pa tõe n leoke ye. Sẽn na yɩl n da wa maan tɩ b pa maan-b wẽng ye, pa segd tɩ b tũnug ne b sẽn na n paam n paam b loogrã n paam b yoodã n yiis IP-rɩk-kãngã ye.",

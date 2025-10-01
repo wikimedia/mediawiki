@@ -370,7 +370,6 @@
 	"mailmypassword": "Yiyeman epagigan",
 	"passwordremindertitle": "Epagigan ekakyangi ya {{SITENAME}}",
 	"passwordremindertext": "Zandoci gwata (yeji IP $1 bo) wa epagigan woro ya {{SITENAME}} ($4). Epagigan nya ekakyangi ya ezaloci “$2” wun a de tsutswa beman wun a de eman ta “$3” bo. Nana ga yi kpikpa nya woe, wo a wa gangan wo lo nin wo li epagigan woro gbani. Egipagi ekakyangi woe yi ga zogban dan {{PLURAL:$5 |one day| $5 days}}. Zandoci kanyi ga la wiwa dan nana, koman woga pa epagigan woe, beman woman wa gangan wo zheuban be a, wo la egwadaya dan sanwo nana wo woci o loye be epagigan gbako nya wonyi.",
-	"noemail": "Ah de yeji sanwosabo kukuci ya ezaloci a “$1”",
 	"noemailcreate": "Wun gosa wo la yeji sanwosabo wangi o danbo.",
 	"passwordsent": "Epagigan woro a de egwada ya yeji sanwosoba wo e na wo a dangwa ya “$1” na. Bosoko la u danbo be zunman na woga go u na.",
 	"blocked-mailpassword": "Yeji IP nya woe wun a de tite gwata edzunta o. Ya kikan dan eboku, wunde yekoya ya woe na wo a lo yiyezhe gwata yeji IP nana o na a.",

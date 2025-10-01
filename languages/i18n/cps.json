@@ -215,7 +215,6 @@
 	"wrongpasswordempty": "Wala unod ang password nga ginsulod.\nPalihog tistingan liwat.",
 	"mailmypassword": "I-email ang bag-o nga password",
 	"passwordremindertitle": "Bag-ong temporaryo nga password para sa {{SITENAME}}",
-	"noemail": "Wala sang address sang email nga nakalista para sa manug-usar nga \"$1\".",
 	"noemailcreate": "Kinahanglan mo maghatag sang pwede nga address sang email",
 	"mailerror": "Kasal-anan sa pagpadala sang email: $1",
 	"accountcreated": "Nahimo na ang account",

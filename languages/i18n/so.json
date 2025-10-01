@@ -255,7 +255,6 @@
 	"mailmypassword": "E-mail iigu soo dir ereysir cusub",
 	"passwordremindertitle": "Eraysir ku meelgaar ah oo loogu talagalay {{SITENAME}}",
 	"passwordremindertext": "Qof ( ka soo galay cinwaanka-IP-ka  $1) ayaa eraysir oo cusub u codsaday  {{SITENAME}}  ($4).\nEraysir oo ku meelgaar ah oo loogu talagalay isticmaalaha \"$2\" ayaa la abuuray waxaana loo diray \"$3\".\nHadii uu ahaa qofka rabay, waxaa la rabaa in aad hadda gudaha soo gashid isla markaas neh eraysir cusub dooratid.\nEraygaan sirta oo ku meelgaarka ah wuxuu dhici doonaa ilaa  {{PLURAL:$5|maalin|$5 maalmood}}.\n\nHadii u qofkale sameeyay codsigaan, ama aad soo xasuusatay eraysirkaagii,\noo aadan u baahnayn in aad bedeshid, iska ilow farriintaan siina wado eraysirkaagi hore.",
-	"noemail": "E-mailkiisa lama haayo isticmaalaha  \"$1\".",
 	"noemailcreate": "Waa in aad ciwaan e-mail oo sax ah keentaa.",
 	"passwordsent": "Eraysir cusub ayaa loo diray cinwaanka email ee lagu diiwaangaliyay \"$1\".\nFadlan mar kale soo gal marka aad heshid.",
 	"blocked-mailpassword": "Cinwaankaaga IP'ka waa laga xannibay tafatirida. Si looga hortago waxyeelo, looma ogola in cinwaankaan IP'ka loo adeegsado soo celida eraysirka.",

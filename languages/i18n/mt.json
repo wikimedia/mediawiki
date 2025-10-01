@@ -365,7 +365,6 @@
 	"mailmypassword": "Erġa' waqqaf kelma tad-dħul",
 	"passwordremindertitle": "Password temporanju ġdid għal {{SITENAME}}",
 	"passwordremindertext": "Xi ħadd (probabbilment int, mill-indirizz IP $1) għamel rikjesta għal password ġdida għal {{SITENAME}} ($4). Password temporanja għall-utent \"$2\" ġiet maħluqa u din hi \"$3\".\nHuwa opportun li inti tidħol issa u tbiddel immedjatament il-password tiegħek. Din il-password il-ġdida se tiskadi fi żmien {{PLURAL:$5|ġurnata|$5 ijiem}}.\n\nJekk xi ħadd ieħor għamel din ir-rikjesta jew jekk int ftakart il-password tiegħek u issa ma tridx tbiddilha, int tista' ma tagħtix każ dan il-messaġġ u tkompli tuża' l-password l-antika.",
-	"noemail": "M'hemm l-ebda indirizz ta' posta elettronika għall-utent \"$1\".",
 	"noemailcreate": "Huwa neċessarju li tipprovdi indirizz elettroniku validu",
 	"passwordsent": "Il-password il-ġdida ntbagħtet fl-indirizz tal-posta elettronika ta' \"$1\".\nJekk jogħġbok, għamel aċċess wara li tasallek.",
 	"blocked-mailpassword": "L-indirizz tal-IP tiegħek huwa mblukkat milli jwettaq modifiki. Sabiex jitnaqqas l-abbuż, mhuwiex permess li tirkupra lura l-password minn dan l-indirizz IP.",
@@ -2899,17 +2898,5 @@
 	"renameuser-move-log": "Paġna mmexxiha matul il-bidla tal-utent \"[[User:$1|$1]]\" għal \"[[User:$2|$2]]\"",
 	"action-renameuser": "tbiddel l-ismijiet tal-utenti",
 	"right-renameuser": "Ibiddel l-isem tal-utenti",
-	"renameuser-renamed-notice": "Dan l-utent reġa' ssemma mill-ġdid. Ir-reġistru tal-ismijiet ġodda huwa mogħti bħala referenza.",
-	"interwiki_prefix": "Prefiss",
-	"interwiki-prefix-label": "Prefiss:",
-	"interwiki_local_0_intro": "It-talbiet tal-HTTP esterni lill-wiki lokali permezz ta' dan il-prefiss tal-interwiki fil-URL jirriżultaw f'paġna ta' żball \"{{int:badtitle}}\".",
-	"interwiki_local_1_intro": "It-talbiet esterni tal-HTTP għall-wiki lokali li jużaw dan il-prefiss tal-interwiki jiġu ridirezzjonati lejn il-URL tad-destinazzjoni tal-interwiki (jiġifieri jiġu ttrattati bħala ħoloq għal paġni lokali).",
-	"interwiki_trans_0_intro": "Tħallix <code>{<nowiki />{prefix:<em>isempaġna</em>}}</code> li tittraskludi mudelli/paġni esterni, minnflok fittex paġna interna fil-mudell tan-namespace.",
-	"interwiki_1": "iva",
-	"interwiki_0": "le",
-	"interwiki_edit": "Editja",
-	"interwiki_reasonfield": "Raġuni:",
-	"interwiki_addbutton": "Żid",
-	"interwiki_added": "Il-prefiss \"$1\" ġie miżjud b'suċċess fit-tabella tal-interwiki.",
-	"interwiki_addfailed": "Il-prefiss \"$1\" ma setax jiġi miżjud mat-tabella tal-interwiki.\nProbabbilment dan diġà jeżisti fit-tabella."
+	"renameuser-renamed-notice": "Dan l-utent reġa' ssemma mill-ġdid. Ir-reġistru tal-ismijiet ġodda huwa mogħti bħala referenza."
 }

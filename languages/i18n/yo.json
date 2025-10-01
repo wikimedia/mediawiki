@@ -381,7 +381,6 @@
 	"mailmypassword": "Ìtúntò ọ̀rọ̀ìpamọ́",
 	"passwordremindertitle": "Ọ̀rọ̀ìpamọ́ tuntun fún ìgbà díẹ̀ fún {{SITENAME}}",
 	"passwordremindertext": "Ẹnìkan (láti àdírẹ́ẹ̀sì IP $1) bèrè fún\nọ̀rọ̀ìpamọ́ tuntun fùn {{SITENAME}} ($4). A ti ṣ'èdá ọ̀rọ̀ìpamọ́ ìgbádíẹ̀ fún oníṣe \"$2\" bẹ́ ẹ̀ sì ni a ti ṣ'ètò rẹ̀ sí \"$3\". Tó bá jẹ́ pé èrò yín nuhun, ẹ gbúdọ̀ wọlé kí ẹ yan ọ̀rọ̀ìpamọ́ tuntun ní ìsinsìnyí. Ọ̀rọ̀ìpamọ́ ìgbàdíẹ̀ yín yíò parí lẹ́yìn ọjọ́ {{PLURAL:$5|kan|$5}}.\n\nTó bá jẹ́ pé ẹlòmíràn ni ò ṣe ìtọrọ yìí, tábí pé ẹ ti rántí ọ̀rọ̀ìpamọ́ yín, tí ẹ kò sì fẹ́ yípadà mọ́, ẹ mọ́ kọbiara sí ìránṣẹ́ yìí.",
-	"noemail": "Kò sí àkọsílẹ̀ àdírẹ́ẹ̀sì e-mail fún oníṣe \"$1\".",
 	"noemailcreate": "Ẹ gbọ́dọ̀ pèsè àdírẹ́ẹ̀sì e-mail títọ́",
 	"passwordsent": "A ti fi ọ̀rọ̀ìpamọ́ tuntun ránṣẹ́ sí ojúọ̀nà e-mail tí a fisílẹ̀ fún \"$1\".\nẸ jọ̀wọ́ ẹ padà ṣe ìtẹ̀wọlé tí ẹ bá ti gbàá.",
 	"blocked-mailpassword": "Àdírẹ́sì IP yín jẹ́ dídèlọ́nà láti ṣe ìṣàtúnṣe. Láti dínà ìbàjẹ́, ẹ kò le lo àwárí ọ̀rọ̀ìpamọ́ láti ibi àdírẹ́sì IP yìí.",

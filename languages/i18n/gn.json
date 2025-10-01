@@ -260,7 +260,6 @@
 	"mailmypassword": "Emohenda jey ne ñe'ẽñemi",
 	"passwordremindertitle": "Ñe'ẽñemi sapy'agua pyahu {{SITENAME}}-pe g̃uarã",
 	"passwordremindertext": "Oĩ (IP $1 pegua) ojeruréva peteĩ\nñe'ẽñemi pyahu {{SITENAME}} ( $4 )-pe g̃uarã. Ojejapo peteĩ ñe'ẽñemi sapy'agua puruhára\n\" $2 \"-pe g̃uarã ha oñemohenda \" $3 \"-pe. Kóva ha'érire ne\nrembipota, tekotevẽta reike ha reiporavo peteĩ ñe'ẽñemi pyahu ko'ágã.\nNe ñe'ẽñemi sapy'agua ndaiporivéta {{PLURAL:$5|peteĩ árape|$5 áraoe}}.\n\nOĩramo ambue tapicha ojapova'ekue ko mba'ejerure, térã nemandu'áramo ne ñe'ẽñemi rehe,\nha neremoambueséivéima, ikatu remboyke ko marandu ha\neipuru meme ne ñe'ẽñemi tuja.",
-	"noemail": "Ndaipóri ñe'ẽveve ojehaipyréva puruhára \"$1 \"-pe g̃uarã.",
 	"acct_creation_throttle_hit": "Umi tapicha ohóva ko víkipe oipurúva nde IP renda omoheñói {{PLURAL:$1|1 kuatia|$1 kuatia}} $2 pahaitépe, ha'éva pe hetaitéva ojehejáva ko ára pukukuépe.\nUpévare, umi oipurúva ko IP ndaikatúi omoheñóive ikuatiarã ko'ágãite.",
 	"accountcreated": "Ojejapopáma nde kuatiarã",
 	"createaccount-text": "Oĩ omoheñóiva peteĩ kuatia nde korréo rupive {{SITENAME}} rendápe ( $4 ) hérava \"$2\", ñe'ẽñemi \"$3\" reheve.\nEikeva'erã ha emoambue ne ñe'ẽñemi ko'ágã.\n\nIkatu remboyke ko marandu, ojejavýramo ko kuatia apo.",

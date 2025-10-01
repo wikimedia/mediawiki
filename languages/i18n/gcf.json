@@ -299,7 +299,6 @@
 	"wrongpassword": "Tinon-la oben kòd-la pa bon.\nWouséyé souplé.",
 	"wrongpasswordempty": "Ou pa maké p'on kòd.\nWouséyé souplé.",
 	"mailmypassword": "Woufè modpas-la",
-	"noemail": "Pa ni pon adrès email ki anréjistré pou itilizatè \"$1\".",
 	"noemailcreate": "Fo ou bay on adrès email ki valid.",
 	"passwordsent": "Nou voyé on nouvo modpas si adrès email ki anréjistré ba \"$1\".\nSyouplé konnékté-w ankò aprédavwa ou wousouvwé-y.",
 	"blocked-mailpassword": "Ou pé pa fè pon modifikasyon davwa adrès email a-w bloké pou sa. Pou anpéché abi, ou pé pa sèvi èvè adrès IP-la pou on rékipérasyon a modpas.",

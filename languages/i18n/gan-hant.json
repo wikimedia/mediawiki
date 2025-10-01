@@ -308,7 +308,6 @@
 	"mailmypassword": "寄新密碼到我",
 	"passwordremindertitle": "{{SITENAME}}嗰密碼提醒",
 	"passwordremindertext": "有人（可能係汝，IP位址$1）要我俚搦新嗰{{SITENAME}} （$4） 嗰登入密碼寄到汝。眼下用戶\"$2\"嗰密碼係\"$3\"。請仰上就登入同到換吥密碼。要係別嗰人發嗰請求，或者倷尋回嘞倷嗰密碼，伓想改佢，倷可以嫑搭箇隻消息，接得用舊密碼。臨時密碼{{PLURAL:$5|一日|$5日}}之內會失效。",
-	"noemail": "冇有用戶\"$1\"嗰email地址。",
 	"passwordsent": "新嗰密碼已經寄到用戶\"$1\"嗰email去嘍。收到後請再登入過。",
 	"blocked-mailpassword": "倷嗰IP地址拕封到嘞。用伓正密碼復原功能以防亂用。",
 	"eauthentsent": "確認email寄到話正嗰地址去嘍。別嗰email發到箇隻帳戶之前，倷起先要按箇封email話嗰佢係否倷嗰。",

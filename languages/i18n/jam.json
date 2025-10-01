@@ -247,7 +247,6 @@
 	"mailmypassword": "E-miel nyuu paaswod",
 	"passwordremindertitle": "Nyuu tempareri paaswod fi {{SITENAME}}",
 	"passwordremindertext": "Smadi (prabli yu, frahn IP ajres $1) rikwest a nyuu\npaaswod fi {{SITENAME}} ($4). A tempareri paaswod fi yuuza\n\"$2\" wehn kriet ahn set to \"$3\". Ef dis wehna yu\nintent, yu wi niid fi lag iin ahn chuuz a nyuu paaswod nou.\nYu tempareri paaswod wi expaya ina {{PLURAL:$5|wan die|$5 die}}.\n\nEf smadi els ehn mek dis rikwes, ar ef yu sens memba yu paaswod,\nahn yu no langa wish fi chienji, yu kiahn ignuor dis mechiz ahn\nkantiniu yuuz yu uol paaswod.",
-	"noemail": "No e-miel ajres no rekaad fi yuuza \"$1\".",
 	"noemailcreate": "Yu niid fi provaid a valid e-miel ajres.",
 	"passwordsent": "A nyuu paaswod sen gaan tu di e-miel ajres rejista fi \"$1\".\nBegyu lag iin agen afta yu risiibi.",
 	"blocked-mailpassword": "Yu IP ajres blak frahn editin, ahn so ino lou fi yuuz di paaswod rikovri fongshan fi privent abyuus.",

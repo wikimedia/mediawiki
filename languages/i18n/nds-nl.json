@@ -322,7 +322,6 @@
 	"mailmypassword": "Wachtwoord opniej instellen",
 	"passwordremindertitle": "Niej tiedelik wachtwoord veur {{SITENAME}}",
 	"passwordremindertext": "Der hevt der eyne (vanaf IP-adres $1) en ny wachtwoord vöär {{SITENAME}} ($4) anvrågd.\nDer is en tydelik wachtwoord vöär gebruker \"$2\" anmaked, en dat is: \"$3\". As dit de bedoling was, meld juw eigen dan nu an en kees en ny wachtwoord.\nJuw tydelike wachtwoord sal oaver {{PLURAL:$5|eyn dag|$5 dagen}} verloupen.\n\nAs en ander disse anvråge dån hevt, of as jy et wachtwoord weader weatet,\nen et neet meyr wysigen willet, negeer dit bericht dan\nen blyv juw olde wachtwoord gebruken.",
-	"noemail": "Gien netpostadres eregistreerd veur \"$1\".",
 	"noemailcreate": "Je mutten n geldig netpostadres opgeven",
 	"passwordsent": "Der is n niej wachtwoord verstuurd naor t netpostadres van gebruker \"$1\". Meld an, a'j t wachtwoord ontvangen.",
 	"blocked-mailpassword": "Juw IP-adres is blokkeerd vöär bewarkingen. Üm misbruuk teagen te gån is et neet möägelik üm vanaf dit IP-adres juw wachtwoord up te vrågen.",
@@ -2484,16 +2483,5 @@
 	"renameuser-move-log": "Zied is automaties verplaotst bie t herneumen van de gebruker \"[[User:$1|$1]]\" naor \"[[User:$2|$2]]\"",
 	"action-renameuser": "gebrukers herneumen",
 	"right-renameuser": "Gebrukers herneumen",
-	"renameuser-renamed-notice": "Disse gebrukersnaam is herneumd.\nHieronder vie-j t herneumlogboek as referensie.",
-	"interwiki": "Interwikigegeavens bekyken en wysigen",
-	"interwiki-title-norights": "Interwikigegeavens bekyken en wysigen",
-	"interwiki_prefix": "Veurvoegsel",
-	"interwiki-prefix-label": "Veurvoegsel:",
-	"interwiki_local": "Veuruut",
-	"interwiki-local-label": "Veuruut:",
-	"interwiki_trans": "Transkluderen",
-	"interwiki-trans-label": "Transkluderen:",
-	"interwiki_edit": "Bewarken",
-	"interwiki_deleting": "Je bin veurvoegsel \"$1\" an t vortdoon.",
-	"interwiki_addbutton": "Derbie doon"
+	"renameuser-renamed-notice": "Disse gebrukersnaam is herneumd.\nHieronder vie-j t herneumlogboek as referensie."
 }

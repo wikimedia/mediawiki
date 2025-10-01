@@ -315,7 +315,6 @@
 	"mailmypassword": "Awennez tikkelt nniḍen n awal uɛaddi",
 	"passwordremindertitle": "Asmekti n wawal n tbaḍnit seg {{SITENAME}}",
 	"passwordremindertext": "Amdan (waqila d kečč/kem, seg tansa IP $1) yesteqsa iwakken a nazen\nAwal n uɛaddi amaynut i {{SITENAME}} ($4). Awal n uɛaddi i wemseqdac \"$2\" yuɣal-d tura \"$3\".\nMliḥ lukan tkecmeḍ u tbeddleḍ Awal n uɛaddi tura.\nTasewti n awal agi n uɛaddi amaynut ad yaweḍ deg {{PLURAL:$5|yiwen ass|$5 ussan}}\n\nLukan mačči d kečč i yesteqsan naɣ tecfiḍ ɣef awal n uɛaddi, tzemreḍ ad tkemmleḍ mebla ma tbeddleḍ awal n uɛaddi.",
-	"noemail": "\"$1\" ur yesɛi ara email.",
 	"noemailcreate": "Ilaq ad efkeḍ tansa e-mail i sɛan aseɣbel.",
 	"passwordsent": "Awal n tbaḍnit amaynut yettwazen i emal inek, aylaw n \"$1\".\nG leɛnaya-k, kcem tikelt nniḍen yis-s.",
 	"blocked-mailpassword": "Tansa-ik IP tewḥel i unifel. Akken ad nsewḥel yir aseqdec, ur tezmireḍ ara ad tesqedceḍ tiririt n wawal uffir si tansa-agi IP.",

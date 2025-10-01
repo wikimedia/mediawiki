@@ -1092,8 +1092,5 @@
 	"blockedtext-intended-blockee": "ⴰⵎⴳⴷⴰⵍ ⵉⵜⵜⵡⴰⵜⵜⵙⵏ: $1",
 	"blockedtext-contact-blocker-admin": "ⵜⵣⵎⵔⴷ ⴰⴷ ⵜⵎⵢⴰⵡⴰⴹⴷ ⴰⴽⴷ $1 ⵏⵖ [[{{MediaWiki:Grouppage-sysop}}|ⴰⵎⵙⵙⵓⴳⵓⵔ]] ⵢⴰⴹⵏ ⵉ ⵓⵎⵙⴳⴷⴰⵍ ⵏ ⵓⴳⴷⴷⵓⵍ.",
 	"blockedtext-block-ip": "ⴰⵏⵙⴰ ⵏ IP ⵏⵏⵓⵏ ⴰⵎⵉⵔⴰⵏ ⵉⴳⴰ $1.",
-	"blockedtext-include-details-queries": "ⵎⴽ ⵜⵓⴼⵉⴷ, ⵙⵙⴰⵎⵓ ⵉⴼⵔⵓⵔⵉⵜⵏ ⴰⴽⴽⵯ ⵏ ⵏⵏⵉⴳ ⴷⴰ ⴳ ⵜⵓⵜⵔⵉⵡⵉⵏ ⴰⴽⴽⵯ ⵏⵏⴰ ⵜⵙⴽⵔⴷ.",
-	"interwiki_1": "ⵢⴰⵀ",
-	"interwiki_0": "ⵓⵀⵓ",
-	"interwiki_addbutton": "ⵔⵏⵓ"
+	"blockedtext-include-details-queries": "ⵎⴽ ⵜⵓⴼⵉⴷ, ⵙⵙⴰⵎⵓ ⵉⴼⵔⵓⵔⵉⵜⵏ ⴰⴽⴽⵯ ⵏ ⵏⵏⵉⴳ ⴷⴰ ⴳ ⵜⵓⵜⵔⵉⵡⵉⵏ ⴰⴽⴽⵯ ⵏⵏⴰ ⵜⵙⴽⵔⴷ."
 }

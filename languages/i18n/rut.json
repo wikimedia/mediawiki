@@ -497,8 +497,5 @@
 	"blockedtext-block-ip": "АIбысыма Выды IP-адрес йи: $1.",
 	"blockedtext-include-details-queries": "Башуста, кихь син мид йиъидкалбыр выды шыв йигарди худкунбырма.",
 	"renameuserreason": "Себеб:",
-	"renameusersubmit": "Сигын",
-	"interwiki_1": "эӀй",
-	"interwiki_0": "ваӀ",
-	"interwiki_reasonfield": "Себеб:"
+	"renameusersubmit": "Сигын"
 }

@@ -98,7 +98,6 @@
 	"mailmypassword": "Bichhal ma o nakhavipnasko lav e-mail-estar!",
 	"passwordremindertitle": "Astaripen le tire nakhavipnaske lavesko kai {{SITENAME}}",
 	"passwordremindertext": "Varekon (shai te aves tu, katar i adresa $1)\nmanglyas ek nevo nakahvipnasko lav katar {{SITENAME}}.\nO nakhavipnasko lav le jenesko \"$2\" akana si \"$3\".\nMishto si te jas kai {{SITENAME}} thai te paruves tiro lav sigo.",
-	"noemail": "Nai ni ekh adresa e-mail prinjarde le jeneske \"$1\".",
 	"eauthentsent": "Ekh prinjaripnasko e-mail bichhaldo kai tiri e-maileski adresa. Kashte avel tuke e-mailuya le avre jenendar trebul te prinjares tiri adresa (dikh buteder ando bichhaldo e-mail).",
 	"mailerror": "Dosh kana sas bichhaldo o e-mail: $1",
 	"acct_creation_throttle_hit": "Fal ame nasul, akana si tut $1 akounturya. Nashti te keres aver.",

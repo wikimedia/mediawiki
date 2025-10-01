@@ -285,7 +285,6 @@
 	"mailmypassword": "Redefinir il pled-clav",
 	"passwordremindertitle": "Nov pled-clav temporar per {{SITENAME}}",
 	"passwordremindertext": "Insatgi (probablamain ti, cun l'adressa dad IP $1) ha dumandà in nov pled-clav per {{SITENAME}} ($4). Il pled-clav temporar \"$3\" per l'utilisader \"$2\" è vegnì creà. Sche quai era tes intent, ti al dovras per t'annunziar e tscherner lura in nov pled-clav. Quest pled-clav temporar vegn a scrudar en {{PLURAL:$5|in di|$5 dis}}.\n\nSch'insatgi auter ha fatg questa dumonda, ni sch'il pled-clav è vegnì endament e ti na vuls betg pli midar el, pos ti simplamain ignorar quest messadi e cuntinuar la lavur cun tes pled-clav vegl.",
-	"noemail": "L'utilisader \"$1\" n'ha inditgà nagina adressa dad e-mail.",
 	"noemailcreate": "Ti stos endatar in'adressa dad e-mail valaivla",
 	"passwordsent": "In nov pled-clav è vegnì tramess a l'adressa dad e-mail ch'è registrada per l'utilisader \"$1\".\nT'annunzia per plaschair sche ti has retschavì el.",
 	"blocked-mailpassword": "L'adressa dad IP che ti utiliseschas è vegnida bloccada per midar paginas. Plinavant è era la funcziun da generar in nov pled-clav vegnida bloccada per impedir in abus da questa funcziun.",
@@ -2060,6 +2059,5 @@
 	"skin-action-undelete": "Restituir",
 	"skin-action-delete": "Stizzar",
 	"skin-action-move": "Spustar",
-	"log-name-renameuser": "Protocol da midadas da num d'utilisader",
-	"interwiki_0": "na"
+	"log-name-renameuser": "Protocol da midadas da num d'utilisader"
 }

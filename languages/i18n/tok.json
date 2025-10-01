@@ -408,7 +408,6 @@
 	"mailmypassword": "o sin e nimi open",
 	"passwordremindertitle": "nimi open sin pi awen ala tan lipu {{SITENAME}}",
 	"passwordremindertext": "nanpa IP $1 la jan li alasa e nimi open sin lon {{SITENAME}} ($4). mi pana e nimi open \"$3\" pi tenpo lili tawa jan \"$2\". ni li wile sina la, o lon sijelo, o ante e nimi open.\nnimi open sina pi tenpo lili li pini lon {{PLURAL:$5|tenpo suno $5}}.\n\nken la jan ante li alasa e ni. ken la sina kama sona e nimi open sina, li wile ala ante e ona. ken ni tu la o kute ala e toki ni. o awen kepeken nimi open majuna.",
-	"noemail": "sijelo \"$1\" la nimi Email li lon ala.",
 	"noemailcreate": "o pana e nimi Email pona.",
 	"passwordsent": "mi li pana e toki open sin kepeken nimi Email pi sijelo \"$1\".\nsina jo e toki open la o lon sijelo.",
 	"blocked-mailpassword": "nanpa IP sina la jan li ken ala pali. tan ken pakala la ona li ken ala sin e nimi open.",

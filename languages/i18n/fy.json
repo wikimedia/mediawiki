@@ -301,7 +301,6 @@
 	"mailmypassword": "Nij wachtwurd",
 	"passwordremindertitle": "Nij tydlik wachtwurd foar {{GRAMMAR:lidw|{{SITENAME}}}}",
 	"passwordremindertext": "Immen (mei it YP-adres $1) hat in nij\nwachtwurd oanfrege foar {{GRAMMAR:lidw|{{SITENAME}}}} ($4). Der is in tydlik wachtwurd foar\nmeidogger \"$2\" oanmakke, en dat is \"$3\". At dat jo\ndoel wie, meld jo dan no oan en kies in nij wachtwurd.\nJo tydlik wachtwurd ferrint nei {{PLURAL:$5|ien dei|$5 dagen}}.\n\nAt immen oars dy oanfraach dien hat, of at jo jo wachtwurd wer witte\nen it net mear feroarje wolle, dan kinne jo dit berjocht negearje en\njo âlde wachtwurd brûken bliuwe.",
-	"noemail": "Der is gjin e-mailadres fêstlein foar meidogger \"$1\".",
 	"passwordsent": "Der is in nij wachtwurd ferstjoerd nei it opjûne e-mailadres fan \"$1\".\nMeld jo nei ûntfangst op 'e nij oan.",
 	"blocked-mailpassword": "Jo YP-adres is blokkearre foar it meitsjen fan feroarings. Om misbrûk tefoaren te kommen is it net mûglik in oar wachtwurd oan te freegjen fan dat YP-adres ôf.",
 	"eauthentsent": "Der is in befêstigingsmail nei it opjûne e-mailadres ferstjoerd.\nFoar't oare e-mails nei jo tastjoerd wurde, moatte jo de ynstruksjes yn de e-mail opfolgje, om te befêstigjen dat it akkount yndie jowes is.",
@@ -2186,13 +2185,5 @@
 	"log-name-renameuser": "Meidoggeromneamloch",
 	"logentry-renameuser-renameuser": "$1 {{GENDER:$2|hat}} meidogger $4 ({{PLURAL:$6|$6 bewurking|$6 bewurkings}}) omneamd ta {{GENDER:$7|$5}}",
 	"renameuser-move-log": "Side automatysk omneamd by it omneamen fan {{GENDER:$2|meidogger|meidochster}} \"[[User:$1|$1]]\" ta \"[[User:$2|$2]]\"",
-	"right-renameuser": "Meidoggers omneame",
-	"interwiki-legend-label": "Leginda",
-	"interwiki_url": "URL",
-	"interwiki-url-label": "URL",
-	"interwiki_1": "ja",
-	"interwiki_0": "nee",
-	"interwiki_edit": "Bewurkje",
-	"interwiki_reasonfield": "Reden:",
-	"interwiki_addbutton": "Tafoegje"
+	"right-renameuser": "Meidoggers omneame"
 }

@@ -336,7 +336,6 @@
 	"mailmypassword": "Şîfreyê nû bike",
 	"passwordremindertitle": "Şîfreyeke nû ya demkî ji bo {{GRAMMAR:oblique|{{SITENAME}}}}",
 	"passwordremindertext": "Kesek (dibe ku tu bî, bi IPya $1) şîfreyeke nû ji bo {{GRAMMAR:oblique|{{SITENAME}}}} ($4) xwest.\nŞîfreyek demkî ji bo bikarhênerê \"$2\" hatiye çêkirin û ew bûye \"$3\".\nKu ev li ser daxwaziya te be, divê tu niha têkevî û şîfreyekî nû bineqînî.\nŞîfreya te ya demkî piştî {{PLURAL:$5|rojekê|$5 rojan}} dê bê girtin.\n\nKu kesekî din vê xwestibe, yan şîfreya te hatibe bîra te û tu hew bixwazî biguherînî,\nvê peyamê piştguh bike û dewam bike bikaranîna şîfreya xwe ya kevn.",
-	"noemail": "Navnîşana bikarhênerê/î \"$1\" nehat tomar kirine.",
 	"noemailcreate": "Divê tu e-nameyeke derbasdar binivîsî",
 	"passwordsent": "Ji navnîşana e-mail ku ji bo \"$1\" hat tomarkirin şîfreyekê nû hat şandin. Vê bistîne û dîsa têkeve.",
 	"blocked-mailpassword": "IPya te ji guhartinan hatiye astengkirin. Ji bo rê li ber girtina îstîsmaran, nikarî şîfreyeke nû ji vê IPyê bixwazî.",
@@ -1959,8 +1958,5 @@
 	"renameuser-page-unmoved": "Rûpela $1 nikanî çûba ciha $2.",
 	"log-name-renameuser": "Guhartina navê bikarhêner",
 	"renameuser-move-log": "Otomatîk hate guhartin, ji ber ku {{GENDER:$2|bikarhêner}} \"[[User:$1|$1]]\" navê xwe guhart û kir \"[[User:$2|$2]]\"",
-	"right-renameuser": "Navê bikarhêneran biguhêre",
-	"interwiki_1": "erê",
-	"interwiki_edit": "Biguhêre",
-	"interwiki_reasonfield": "Sedem:"
+	"right-renameuser": "Navê bikarhêneran biguhêre"
 }

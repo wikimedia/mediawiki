@@ -265,7 +265,6 @@
 	"mailmypassword": "Elektron poçtağa yaña sersüz cibärü",
 	"passwordremindertitle": "{{SITENAME}} qullanuçısına waqıtlı sersüz tapşıru",
 	"passwordremindertext": "Kemder (bälki, sezder, IP adresı: $1) {{SITENAME}} ($4) öçen yaña sersüz sorattı. $2 öçen yaña sersüz: $3. Ägär bu sez bulsağız, sistemağa keregez häm sersüzne almaştırığız. Yaña sersüz $5 {{PLURAL:$5|kön}} ğämäldä bulaçaq.\n\nÄgär sez sersüzne almaştırunı soramağan bulsağız yäki, onıtqan oçraqta, isegezgä töşergän bulsağız, bu xäbärgä iğtibar birmiçä, iske sersüzegezne qullanunı däwam itegez.",
-	"noemail": "$1 isemle qullanuçı öçen elektron poçta adresı yazılmağan.",
 	"noemailcreate": "Sez döres e-mail adresı kürsätergä tieş",
 	"passwordsent": "Yaña sersüz $1 isemle qullanuçınıñ elektron poçta adresına cibärelde.\n\nZinhar, sersüzne alğaç, sistemağa yañadan keregez.",
 	"blocked-mailpassword": "Sezneñ IP adresığız belän bitlär üzgärtep häm sersüzne yañartıp bulmıy.",

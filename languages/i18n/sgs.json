@@ -281,7 +281,6 @@
 	"mailmypassword": "Atgamintė slaptažuodi",
 	"passwordremindertitle": "Laikėns {{SITENAME}} slaptažuodis",
 	"passwordremindertext": "Kažė kas tā (tikriausē Tamīsta, ėš IP adresa $1)\npaprašė, ka atsiōstomiet naujė slaptažuodi pruojektō {{SITENAME}} ($4).\nLaikėns slaptažuodis nauduotuojō „$2“ bova sokorts ėr nūstatīts kap „$3“.\nJēgo Tamīsta nuoriejot ana pamainītė, tūmet torietomiet prīsijongtė ė daba pakeistė sava slaptažuodi.\nTamstas laikėns slaptažuodis bėngs galiuotė par {{PLURAL:$5|dėina|$5 dėinas}}.\n\nJēgo kažė kas kėts padėrba ton prašīma aba Tamsīta prīsimėniet sava slaptažuodi ė\nnabnuorat anon pakeistė, Tamīsta galat tėisiuog nekrēptė diemiesė i šėton gruomata ė tūliaus\nnauduotėis sava seno slaptažuodio.",
-	"noemail": "Nier anėjuokė el. pašta adresa ivesta nauduotuojō „$1“.",
 	"noemailcreate": "Tamsta nuruodīkat elektruonėni pašta, katros vēk",
 	"passwordsent": "Naus slaptažuodis bova nusiōsts i el. pašta adresa,\nožregėstrouta nauduotuojė „$1“.\nPrašuom prisėjongtė vielē, kumet Tamsta gausėt anū.",
 	"blocked-mailpassword": "Tamstas IP adresos ožgints ī, ka negalietomiet nieka čė dirbtė. Ka būtom apsisauguota nūg pėktnaudiavėma, slaptažuodė atgamėnėms ėšjongts ī.",

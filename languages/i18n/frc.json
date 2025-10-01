@@ -249,7 +249,6 @@
 	"mailmypassword": "Envoyer mon mot de passe par e-mail",
 	"passwordremindertitle": "Votre nouveau mot de passe sus {{SITENAME}}",
 	"passwordremindertext": "Quèqu'une (peut-être vous, de l'adresse IP $1) a demandé qu'on vous envoye un nouveau mot de passe pour {{SITENAME}} ($4).  Le mot de passe pour useur \"$2\" est \"$3\" asteur.  Vous devrait connecter et changer votre mot de passe asteur.\n\nSi quèqu'une d'autre a demandé ce mot de passe ou si vous vous rappelez de votre mot de passe et vous voulez p'us le changer, vous pouvez ignorer ce message et continuer à user votre vieux mot de passe.",
-	"noemail": "Y a aucune adresse e-mail pour l'useur \"$1\".",
 	"passwordsent": "Un nouveau mot de passe a été envoyé à l'adresse e-mail de l'useur \"$1\".  Reconnectez donc après que vous l'avez reçu.",
 	"blocked-mailpassword": "Votre adresse IP est bloquée. Pour empêcher l'abus, vous pouvez ni faire des changements ni user la fonction de rappel du mot de passe.",
 	"eauthentsent": "Un message de confirmation a été envoyé à l'adresse e-mail choisie.  Avant qu'on peuve envoyer des autres e-mails à ce compte, il faut que vous suivez les instructions dans le message pour confirmer que le compte est le vôtre.",

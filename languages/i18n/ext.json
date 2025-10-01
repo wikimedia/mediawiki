@@ -311,7 +311,6 @@
 	"mailmypassword": "Envialmi pol correu una nueva consínia",
 	"passwordremindertitle": "Alcuerda-consínias de {{SITENAME}}",
 	"passwordremindertext": "Alguien (siguramenti tú, dendi la direción IP $1)\nmos á solicitau una nueva consínia pa {{SITENAME}} ($4).\nLa consínia temporal del ussuáriu \"$2\" es \"$3\".\nEberias entral ena tu cuenta i chambal la consínia lo antis possibri, la consínia caducará {{PLURAL:$5|nun dia|en $5 dias}}.\n\nSi nu ás solicitau tú el chambu, u ya t'as alcuerdau 'e la tu consínia i nu quieis chambala, pueis acontinal gastandu la consínia antígua.",
-	"noemail": "Nu ai emburacau dengún e-mail el usuáriu \"$1\".",
 	"passwordsent": "S'á enviau una nueva consínia a la direción d'email\nrustria pol \"$1\".\nPol favol, abri la tu cuenta d'usuáriu cuandu la recibas.",
 	"blocked-mailpassword": "La tu direción d'IP está atarugá, polo que nu se te premiti\ngastal la hunción p'arrecuperal consínias pa previnil abusionis.",
 	"eauthentsent": "S'á enviau un email de confirmación a la direción especificá. Enantis de que se envii cualisquiel otru correu a la cuenta tienis que seguil las istrucionis enviás nel mensahi, pa d'esta horma, confirmal que la direción te preteneci.",

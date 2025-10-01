@@ -178,7 +178,6 @@
 	"mailmypassword": "Quimx canj e-iitom",
 	"passwordremindertitle": "Qualtiiniide quiinx canjde {{SITENAME}}",
 	"passwordremindertext": "Jömdecomcáac (me, adressade IP $1 mii) coccebj iitom hunquimx canjde {{SITENAME}} ($4).\nQuimx canj zode caitom \"$2\" coccebj \"$3\".\nMe caápo ö reset' mequimx canj cmaa.\n\nJömdecomcáac coccebj e-iitom zo jöx meraán mequimx canj, menignoran jan iitom ö usadad mejanquimx canj.",
-	"noemail": "Zo necoccebj addressade e-iitomde caitom \"$1\".",
 	"passwordsent": "Hunquimx anj coccebj iitomde adressade e-iitom registrarde \"$1\".\nCaápo me recevoir depre.",
 	"blocked-mailpassword": "Menadressade IP coccebj blocköxde ticpatlöx ö necoccebj permiccion usadad quimx canj recovery funccion zode abuse preventua.",
 	"eauthentsent": "E-iitomde confirmacion coccebj iitomde adressade e-iitom the nominatenöx.\nDepre diijömde e-iitom coccebj iitomde account zo, me coccebj Necesde instruccions e-iitom zo iti,\nconfirmom account zo coccebj de'me.",

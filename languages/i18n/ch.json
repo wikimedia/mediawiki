@@ -178,7 +178,6 @@
 	"mailmypassword": "E-mail password neu",
 	"passwordremindertitle": "I nuebu na password temporårio para {{SITENAME}}",
 	"passwordremindertext": "Guåha na mamaisen (hågu ha' buente, ginen i IP $1)\nna para in na'hanague hao ni password nuebu para {{SITENAME}} ($4).\nMatulaika i password i muna'sesetbi as \"$2\" para \"$3\".\nDebi di un log in ya un tulaika i password ensigidas.\n\nYanggen ti hagu ha' na mamaisen pat yanggen un hasso ni password (ya munga hao tumulaika), siña un iknora este na mensahe ya un usa i password-mu mas bihu.",
-	"noemail": "Tåya' e-mail address tinige' papa' ni muna'sesetbi as \"$1\".",
 	"passwordsent": "Mana'hanague hao ni password nuebu gi iyo-mu e-mail address ni marehistra nu \"$1\".\nPot fabot na'log in despues di un recibi ha'.",
 	"blocked-mailpassword": "Machomma' i IP-mu tumulaika påhina, ya ti masedi ha usa i fonksion manlaknos password ya u fanåtaha mama'baba.",
 	"eauthentsent": "Mana'hanague i e-mail address ni tinige'-mu ni konfitmasion.\nÅntes di mana'hanague i kuenta ni otru e-mail, debi di un tattiyi i chinachalani gi halom e-mail, para mankonfotme na magahet na kuenta-mu ha.",

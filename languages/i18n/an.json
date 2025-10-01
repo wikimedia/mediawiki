@@ -264,7 +264,6 @@
 	"mailmypassword": "Tornar a fixar a clau",
 	"passwordremindertitle": "Nueva clau temporal de {{SITENAME}}",
 	"passwordremindertext": "Bell un (probablement vusté mesmo, dende l'adreza IP $1) demandó una nueva clau d'acceso ta la suya cuenta en {{SITENAME}} ($4). S'ha creyato una nueva clau temporal ta l'usuario \"$2\", que ye \"$3\".\nSi isto ye o que quereba, ha d'encetar agora una sesión y trigar una nueva clau.\nA suya clau temporal circumducirá en {{PLURAL:$5|un día|$5 días}}\n\nSi estió bell atro qui fació ista demanda, u ya se'n ha alcordau d'a clau y ya no deseya cambiar-la, puet ignorar iste mensache y continar fendo servir l'antiga clau.",
-	"noemail": "No bi ha garra adreza de correu electronico rechistrada ta \"$1\".",
 	"noemailcreate": "Has d'indicar una adreza de correu electronico valida",
 	"passwordsent": "Una nueva clau plega de ninviar-se ta o correu electronico de \"$1\".\nPor favor, identifique-se un atra vez malas que la reculla.",
 	"blocked-mailpassword": "A suya adreza IP ye bloqueyata y, ta privar abusos, no se li premite emplegar d'a función de recuperación de claus.",
@@ -2051,7 +2050,5 @@
 	"log-name-renameuser": "Rechistro de cambios de nombre d'usuarios",
 	"renameuser-move-log": "Pachina tresladata automaticament en renombrar o usuario \"[[User:$1|$1]]\" como \"[[User:$2|$2]]\"",
 	"right-renameuser": "Renombrar usuarios",
-	"renameuser-renamed-notice": "O nombre d'iste usuario s'ha modificau.\nO rechistro de cambeos de nombre d'usuario se proveye debaixo ta mas referencia.",
-	"interwiki_1": "Sí",
-	"interwiki_reasonfield": "Razón:"
+	"renameuser-renamed-notice": "O nombre d'iste usuario s'ha modificau.\nO rechistro de cambeos de nombre d'usuario se proveye debaixo ta mas referencia."
 }

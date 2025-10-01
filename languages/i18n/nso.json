@@ -174,7 +174,6 @@
 	"mailmypassword": "Fetola ditlhaka-tša-siphiri",
 	"passwordremindertitle": "''Password'' ye mphsa ya nakonyana go {{SITENAME}}",
 	"passwordremindertext": "Motho yo mongwe (goba wena, gotšwa IP atrese $1) o\nkgopetše gore re moromele Ditlhaka-tša-siphiri tše mfsa tša {{SITENAME}} ($4).\n\nDitlhaka-tša-siphiri tša  mošomiši \"$2\" go tloga bjale ke  \"$3\".\n\nDitlhaka-tša-siphiri di tla šoma {{PLURAL:$5|letšatši|matšatši a $5}}.\n\nGa eba motho yo mongwe esego wena o dirile kgopelo ye, goba o gopola Ditlhaka-tša-siphiri gomme ga o sa\nhloka gore e fetolwe, hlokomologa molaetša wo, o tšwele pele o šumiše Ditlhaka-tša-siphiri tša kgale.",
-	"noemail": "Ga gona e-mail atrese ya mošomiši \"$1\".",
 	"passwordsent": "\nDihlaka tša siphiri (''password'') tše mphsa di rometšwe go e-mail atrese ya \"$1\".\nRe kgopela gore o tsene ge fetša go e hwetša.",
 	"blocked-mailpassword": "IP atrese ya gago e thibetšwe go dira diphetogo.\nGo thibela go hlapanya, ga wa dumellwa\ngo šomiša thulusu ya go hwetša Ditlhaka-tša-siphiri ka aterese ye.",
 	"eauthentsent": "Molaetša wa go tiišetša o  rometšwe go e-mail atrese.\n\nPele re romela melaetša ye mengwe go atrese ye, o kgopelwa go latela ditaelo tšeo dilego molaetšeng go tiišetša gore atrese ke ya gago.",
@@ -749,7 +748,5 @@
 	"renameuserold": "Leina la bjale la mošomiši:",
 	"renameusernew": "Leina le lempsha la mošomiši:",
 	"renameuserreason": "Lebaka:",
-	"renameuser-page-moved": "Letlakala $1 le hudušitšwe go $2",
-	"interwiki_reasonfield": "Lebaka:",
-	"interwiki_addbutton": "Lokela"
+	"renameuser-page-moved": "Letlakala $1 le hudušitšwe go $2"
 }

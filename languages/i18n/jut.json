@@ -253,7 +253,6 @@
 	"mailmypassword": "Send et nyt adgangskode til min e-mail-adresse",
 	"passwordremindertitle": "Ny midletidi adgångskode te {{SITENAME}}",
 	"passwordremindertext": "Nogen (sandsynlegves dig, frå'n IP-addresse $1)\nhar bedt at vi sender dig en ny adgangskode til at loĝge på {{SITENAME}} ($4)'m.\nÆ adgangskode før bruger \"$2\" er nu \"$3\".\nDu bør loĝge på nu og ændre din adgangskode.,\n\nHves en anden har bestilt den nye adgangskode æller hves du er kåmet i tanke dit gamle password og ekke mære vil ændre det'm,\nkenst du bare ignorere denne mail og førtsætte ve at bruge dit gamle password.",
-	"noemail": "Där ä ett opløstj en e-mailadress for bruge \"$1\".",
 	"passwordsent": "En ny adgångskode ä senjen te e-mailadressen, som ä registriirtj for \"$1\".\nDu bör logg på å ønda din adgangskode ette du hår modtan e-maili.",
 	"eauthentsent": "En bekrftelsesmail er sendt til den angævne e-mail-adresse.\n\nFør en e-mail ken modtages åf andre brugere åf æ {{SITENAME}}-mailfunksje, skel æ adresse og dens tilhørsførholt til denne bruger bekræftes. Følg venlegst anvesnengerne i denne mail.",
 	"loginlanguagelabel": "Spraw: $1",

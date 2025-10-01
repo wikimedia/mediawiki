@@ -259,7 +259,6 @@
 	"wrongpasswordempty": "Thurûk i ziak lo.\nKhawngaihin tum ţha leh rawh.",
 	"mailmypassword": "Thurûk thar e-thawn rawh",
 	"passwordremindertitle": "{{SITENAME}} tana thurûk lailâwk.",
-	"noemail": "Hmangtu \"$1\" tä e-chenhmun ziaksa kan nei lo tlat.",
 	"noemailcreate": "E-chenhmun dik i ziah a ngai.",
 	"passwordsent": "\"$1\" tana i e-chenhmun pêkah thurûk thawn a ni ta.\nI dawn hnuah i lût dawn nia.",
 	"blocked-mailpassword": "Phêkte khawih danglam thei lo tùrin i IP hi danbeh a ni; hman khawlohna vèn nan i thurûk dawn lêt leh phalsak i ni tawh lo.",

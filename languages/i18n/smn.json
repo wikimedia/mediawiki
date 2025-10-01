@@ -304,7 +304,6 @@
 	"wrongpasswordempty": "Adelih kuárus syelisääni.\nKeččâl uđđâsist.",
 	"mailmypassword": "Syelisääni uđâsmittem",
 	"passwordremindertitle": "Uđđâ koskâpuddâsâš syelisääni {{GRAMMAR:elative|{{SITENAME}}}}",
-	"noemail": "Kevttei $1 ij lah miäruštâllum šleđgâpostâčujottâs.",
 	"mailerror": "Feilâ šleđgâpoostâ vuolgâtmist: $1",
 	"cannotchangeemail": "Tubdâlduvâi šleđgâpostâčujottâs ij pyevti mutteđ taan wikist.",
 	"emaildisabled": "Taan sijđostuvâst ij pyevti vuolgâttiđ šleđgâpostâviestâid.",
@@ -1714,8 +1713,5 @@
 	"action-renameuser": "molsođ kevtteenoomâid",
 	"right-renameuser": "Molsođ kevtteenoomâid",
 	"renameuser-renamed-notice": "Taat {{GENDER:$1|kevttee}} lii finnim uđđâ noomâ.\nVyellin lii kevtteenoomâi molsomloki, mast láá lasetiäđuh.",
-	"temp-user-unable-to-acquire": "Koskâpuddâsâš kevtteetubdâlduv kevtteenoomâ rähtim ij luhostum. Keččâl uđđâsist.",
-	"interwiki_reasonfield": "Suijâ:",
-	"interwiki-logtext": "Keejâ loki",
-	"interwiki_addbutton": "Lasseet"
+	"temp-user-unable-to-acquire": "Koskâpuddâsâš kevtteetubdâlduv kevtteenoomâ rähtim ij luhostum. Keččâl uđđâsist."
 }

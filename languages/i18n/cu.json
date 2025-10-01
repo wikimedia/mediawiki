@@ -723,8 +723,5 @@
 	"renameusererrorinvalid": "имѧ ⁖ <nowiki>$1</nowiki> ⁖ нѣстъ годѣ",
 	"log-name-renameuser": "польꙃєватєлъ прѣимєнованиꙗ їсторїꙗ",
 	"log-description-renameuser": "сѥ ѥстъ їсторїꙗ польꙃєватєльскъ имєнъ иꙁмѣнѥниꙗ",
-	"logentry-renameuser-renameuser": "$1 {{GENDER:$2|нарєчє}} польꙃєватєл҄ь ⁖ $4 ⁖ ({{PLURAL:$6|$6 мѣна|$6 мѣноу|$6 мѣнъ}}) имєньмь ⁖ {{GENDER:$7|$5}} ⁖",
-	"interwiki_1": "да",
-	"interwiki_0": "нѣтъ",
-	"interwiki_edit": "исправлѥниѥ"
+	"logentry-renameuser-renameuser": "$1 {{GENDER:$2|нарєчє}} польꙃєватєл҄ь ⁖ $4 ⁖ ({{PLURAL:$6|$6 мѣна|$6 мѣноу|$6 мѣнъ}}) имєньмь ⁖ {{GENDER:$7|$5}} ⁖"
 }

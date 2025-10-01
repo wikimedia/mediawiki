@@ -230,7 +230,6 @@
 	"wrongpasswordempty": "Parola thale kota cı.\nKerem ke, oncia bıcerrebne.",
 	"mailmypassword": "E-mail sera parola newiye bırusne",
 	"passwordremindertitle": "Serba {{SITENAME}} parola newiya vêrdoğe",
-	"noemail": "Adresa de e-posteya ke ebe namê karberi \"$1\" beqeyda, çina.",
 	"mailerror": "Xeta rusnaena e-postey: $1",
 	"accountcreated": "Hesab vırajiya",
 	"accountcreatedtext": "Serba $1i hesabê karberi vırajiya.",
@@ -910,7 +909,5 @@
 	"skin-action-protect": "Bısevekne",
 	"skin-action-undelete": "Esterıtene peyser bıcê",
 	"skin-action-delete": "Bestere",
-	"skin-action-move": "Bere",
-	"interwiki_1": "heya",
-	"interwiki_0": "nê"
+	"skin-action-move": "Bere"
 }

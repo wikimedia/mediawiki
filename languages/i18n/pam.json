@@ -222,7 +222,6 @@
 	"mailmypassword": "I e-mail me ing bayung password",
 	"passwordremindertitle": "Bayu at pansamantalang password para king {{SITENAME}}",
 	"passwordremindertext": "Ating talagamit (mapaliaring ika, ibat king IP address $1)\na mákisabing paralan da kang bayung password para king {{SITENAME}} ($4).\nIng password para king talagamit a i \"$2\", miyalilan ne king \"$3\".\nKailangan mung mag login ngeni at alilan me ing kekang password.\n\nNung aliwa ya itang mekisabi kaniti, o nung atatandanan me ing kekang password, at e mu ne buring alilan, malyari meng e pansinan ining mensahi, at isundu me ing sadya mung password.",
-	"noemail": "Alang e-mail address a makalista para kang talagamit \"$1\".",
 	"passwordsent": "Miparla ya ing bayung password king e-mail address a makarehistru kang \"$1\".\nPaki log in pasibayu kaibat meng atanggap.",
 	"blocked-mailpassword": "Milako ya paintulut a manalili (mag-edit) ing kekang IP address, anya\ne malyaring gumamit king password recovery function bang e mayayabusu iti.",
 	"eauthentsent": "Miparla ya ing metung a e-mail a pamipatutu ketang e-mail address a mituldu.\nBayu ating aliwang miparlang e-mail ketang account, kailangan mong tukian pamu deng pagawa ra keka ketang e-mail, bang patutuan a keka ya pin ing account.",

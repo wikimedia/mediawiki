@@ -383,7 +383,6 @@
 	"mailmypassword": "Nitumie neno la siri jipya kwa barua-pepe",
 	"passwordremindertitle": "Neno la siri jipya la muda kwa ajili ya {{SITENAME}}",
 	"passwordremindertext": "Mtu mmoja (yamkini wewe, kutoka anwani ya IP $1)\nameulizia neno jipya la siri kwa {{SITENAME}} ($4).\nNeno la siri la muda kwa mtumiaji \"$2\" sasa ni \"$3\".\nInatakiwa uingie na ubadilishe neno lako la siri sasa. Neno lako la siri la muda litaishia baada ya siku {{PLURAL:$5|moja|$5}}.\n\nKama mtu mwingine ametoa ombi hili au kama umekumbuka neno lako la siri na\numeamua kutoibadilisha, unaweza kupuuza ujumbe huu na\nkuendelea kulitumia neno lako la siri la awali.",
-	"noemail": "Hatuna anwani ya barua pepe kwa mtumiaji  \"$1\".",
 	"noemailcreate": "Unahitajika utoe anwani halali ya barua pepe",
 	"passwordsent": "Neno jipya la siri limeshatumwa kwenye anwani ya barua pepe ya \"$1\".\nTafadhali, ingia baada ya kulipokea.",
 	"blocked-mailpassword": "Anwani yako ya IP imezuiwa kuhariri {{SITENAME}}, kwa hiyo hairuhusiwi kuomba neno jipya la siri, kwa lengo la kuzuia uharibifu.",
@@ -2274,7 +2273,5 @@
 	"renameuser-page-moved": "Ukurasa wa $1 umehamishwa hadi $2.",
 	"renameuser-page-unmoved": "Ukurasa $1 haungesongezwa hadi $2.",
 	"action-renameuser": "badili jina la mtumiaji",
-	"right-renameuser": "Badili majina ya watumiaji",
-	"interwiki-legend-label": "Simulizi",
-	"interwiki_1": "ndiyo"
+	"right-renameuser": "Badili majina ya watumiaji"
 }

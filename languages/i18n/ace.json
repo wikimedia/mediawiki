@@ -305,7 +305,6 @@
 	"mailmypassword": "Atô keulayi lageuëm rahsia",
 	"passwordremindertitle": "Lageuem tamöng sijamong barô keu {{SITENAME}}",
 	"passwordremindertext": "Salah sidroë (kadang Droëneuh, ngön alamat IP $1) geulakèë lageuëm barô keu {{SITENAME}} ($4). Lageuëm si'at keu ureuëng ngui \"$2\" ka geupeuna ngön ka geuatô jeuet keu \"$3\". Meunyö nyoe nakeuh meukeusud droeneuh, droeneuh peureulèë neutamöng ngön neupiléh lageuëm barô jinoe. Lageuem siat droeneuh meung abéh lam {{PLURAL:$5|siuroe|$5 uroe}}.\n\nMeunyö ureuëng la'én nyang peugöt neulakèë nyoe, atawa meunyö droeneuh ka neuingat lageuëm droeneuh, ngön droeneuh h'an ék neugantoë lé, droeneuh jeuet hana neupeureumeuën peusan nyoe ngön neulanjut neungui lageuem awaineuh.",
-	"noemail": "Hana alamat surat-e nyang teucatat keu ureuëng ngui \"$1\".",
 	"noemailcreate": "Droeneuh suwah neuseudia alamt surat-e nyang jeut ngui.",
 	"passwordsent": "Lageuëm barô ka geupeu'et u surat-e nyang geupeudapeuta keu \"$1\". Neutamöng teuma lheuëh neuteurimöng surat-e nyan.",
 	"eauthentsent": "Saboh surat-e keu peusahèh ka geupeuét u alamat surat-e neuh. Sigohlom surat-e laén geupeuét u akun, Droeneuh beu neuseutöt paréntah lam surat nyan, keu neupeusahèh meunyö akun nyan keubit atra Droeneuh.",

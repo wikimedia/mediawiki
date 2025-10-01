@@ -367,7 +367,6 @@
 	"mailmypassword": "Riabbìa 'a password",
 	"passwordremindertitle": "Nnova password temporale pe' {{SITENAME}}",
 	"passwordremindertext": "Quaccheduno (pussibbilmente tu, cu n'innerizzo IP $1) ha dimmannato l'invio 'e na password d'accieso nova pe {{SITENAME}} ($4).\nNa password temporanea 'e l'utente \"$2\" s'è abbiata comme \"$3\".\nSi chest'è stata l'intenzione toja, allora hè a trasì dint'o sito e cagnà 'a password primm'e mo. 'A password temporanea scade aropp'a {{PLURAL:$5|nu juorno|$5 ghiuorne}}.\n\nSi nun sì stato tu a dimannà 'a password, o pure hê truvat'a password e nun 'a bbuò cagnà cchiù, allora nun fà niente e continua a usare 'a password viecchia.",
-	"noemail": "Nun ce sta indirizzo e-mail pe' l'utente \"$1\".",
 	"noemailcreate": "S'add'appruviggiunà n'indirizzo e-mail buono.",
 	"passwordsent": "Na password nova è stata inviata a l'innerizzo e-mail riggistrato 'a ll'utente \"$1\".\nPe' piacere, trasite appena avite ricevuta sta password.",
 	"blocked-mailpassword": "Ll'IP toja è bloccata pe' scrivere. Pe' ce sparagnà n'abbuso, nun se ponn'ausà 'e ffunzione pe ve mannà na password nova 'a st'indirizzo IP.",
@@ -3109,11 +3108,5 @@
 	"skin-action-protect": "Prutegge",
 	"skin-action-undelete": "Arrepiglia",
 	"skin-action-delete": "Scancèlla",
-	"skin-action-move": "Mòve",
-	"interwiki": "Vide e cagna 'e date interwiki",
-	"interwiki-title-norights": "Vide 'e date interwiki",
-	"interwiki_local_0_intro": "'E richieste HTTP sterne a 'o wiki lucale ch' 'ausano stu prefisso interwiki dint'a l'URL fernerranno comm'a n'errore \"{{int:badtitle}}\".",
-	"interwiki_addtext": "Azzecca interwiki o prefisso 'e lengua",
-	"interwiki-addtext-local": "Azzecca interwiki lucale o prefisso 'e lengua",
-	"interwiki-links": "Prefisse d'interwiki"
+	"skin-action-move": "Mòve"
 }

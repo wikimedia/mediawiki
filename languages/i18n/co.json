@@ -633,10 +633,5 @@
 	"skin-action-protect": "Pruteghje",
 	"skin-action-delete": "Supprimà",
 	"skin-action-move": "Cullucà",
-	"logentry-renameuser-renameuser": "$1 {{GENDER:$2|renamed}} user $4 ({{PLURAL:$6|$6 edit|$6 edits}}) to {{GENDER:$7|$5}}",
-	"interwiki_1": "iè",
-	"interwiki_0": "nò",
-	"interwiki_edit": "Modificà",
-	"interwiki_reasonfield": "Mutivu:",
-	"interwiki_addbutton": "Agghjustà"
+	"logentry-renameuser-renameuser": "$1 {{GENDER:$2|renamed}} user $4 ({{PLURAL:$6|$6 edit|$6 edits}}) to {{GENDER:$7|$5}}"
 }

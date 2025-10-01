@@ -308,7 +308,6 @@
 	"mailmypassword": "Wyczyść hasło",
 	"passwordremindertitle": "Nowe tymczasowe hasło lo {{SITENAME}}",
 	"passwordremindertext": "Ftoś (cheba Ty, ze IP $1)\npado, aże chce nowe hasło do {{SITENAME}} ($4).\nLo użytkowńika \"$2\" wygenyrowano nowe hasło a je ńim \"$3\".\nJak chćołżeś gynał to zrobjyć, to zalůgůj śe terozki a podej swoje hasło.\nHasło wygaśnie za {{PLURAL:$5|1 dzień|$5 dni}}.\n\nJak ftoś inkszy chćoł nowe hasło abo jak Ci śe przipůmńouo stare a ńy chcesz nowygo, to zignoruj to a używej starygo hasła.",
-	"noemail": "Ńy mo u nos adresu e-brifa do \"$1\".",
 	"noemailcreate": "Podej dobry e-mail ausdruk",
 	"passwordsent": "Nowe hasło polozło na e-brifa uod użytkowńika \"$1\".\nZaloguj śe zaś jak dostańysz tygo brifa.",
 	"blocked-mailpassword": "Twůj adres IP zostoł zawarty a ńy moższ używać funkcyje uodzyskiwańo hasła skuli mogebnośći jeji nadużywańo.",
@@ -1779,7 +1778,5 @@
 	"blockedtext-intended-blockee": "Zaszperowany ôstoł: $1",
 	"blockedtext-contact-blocker-admin": "Mogesz skōntaktować sie ze $1 abo inkszym [[{{MediaWiki:Grouppage-sysop}}|adminisztratorym]], coby ôbgŏdać szperã.",
 	"blockedtext-block-ip": "Twōj adres IP to je terŏz $1.",
-	"blockedtext-include-details-queries": "Proszã ô wkludzyniy wszyjskich powyższych informacyji we wszelich spytaniach.",
-	"interwiki_reasonfield": "Powōd:",
-	"interwiki_addbutton": "Dodej"
+	"blockedtext-include-details-queries": "Proszã ô wkludzyniy wszyjskich powyższych informacyji we wszelich spytaniach."
 }

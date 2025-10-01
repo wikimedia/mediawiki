@@ -236,7 +236,6 @@
 	"wrongpasswordempty": "Gupitutor ghalunk na.\nUpkar korun portun proyotn kor.",
 	"mailmypassword": "Novem gupitutor",
 	"passwordremindertitle": "{{SITENAME}} haka novo tatpurte gupitutor",
-	"noemail": "\"$1\" vapurpeak email potto nond korunk na.",
 	"noemailcreate": "Uchit email potto tunven diunk zai",
 	"mailerror": "Email dhadtana truti: $1",
 	"cannotchangeemail": "Hea wikicher khateanchi email potte bodlunk zaina.",
@@ -1125,7 +1124,5 @@
 	"blockedtext-block-ip": "Tuzo chalont IP pot'to asa $1.",
 	"blockedtext-block-id": "Addavnnecheo ank #$1.",
 	"blockedtext-include-details-queries": "Upkar korun soglleo voileo bariksanno tum kortai tea vicharant aspav kor.",
-	"logentry-renameuser-renameuser": "$1 hannem $4 hachem vaporpeachem nanv bodlun {{GENDER:$7|$5}} {{GENDER:$2|kelem}} ({{PLURAL:$6|$6 bodol}})",
-	"interwiki_trans": "Sondorbh-aspav",
-	"interwiki-trans-label": "Sondorbh-aspav"
+	"logentry-renameuser-renameuser": "$1 hannem $4 hachem vaporpeachem nanv bodlun {{GENDER:$7|$5}} {{GENDER:$2|kelem}} ({{PLURAL:$6|$6 bodol}})"
 }

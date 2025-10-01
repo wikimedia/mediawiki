@@ -205,7 +205,6 @@
 	"mailmypassword": "Qupïya sözimdi xatpen jiber",
 	"passwordremindertitle": "{{SITENAME}} üşin jaña waqıtşa qupïya söz",
 	"passwordremindertext": "Keýbirew (IP mekenjaýı: $1, bälkim öziñiz bolarsız)\nsizge {{SITENAME}} üşin jaña qupïya söz jöneletwin bizden surağan ($4).\n«$2» qatıswşınıñ qupïya sözi «$3» boldı endi.\nQazir kirwiñiz jäne qupïya sözdi özgertwiñiz kerek.\n\nEger bul suranımdı basqa birew istese, ne qupïya sözdi eske tüsirsip endi özgertkiñiz kelmese, eski qupïya söz qoldanwın jağastırıp osı xatqa añğarmawıñızğa da boladı.",
-	"noemail": "Osı arada «$1» qatıswşınıñ e-poşta mekenjaýı joq.",
 	"passwordsent": "Jaña qupïya söz «$1» üşin tirkelgen e-poşta mekenjaýına jöneltildi.\nQabıldağannan keýin kirgende sonı engiziñiz.",
 	"blocked-mailpassword": "IP mekenjaýıñızdan öñdew buğattalğan, sondıqtan qïyanattı qaqpaýlaw üşin qupïya sözdi qalpına keltirw jetesin qoldanwına ruqsat etilmeýdi.",
 	"eauthentsent": "Quptaw xatı aýtılmış e-poşta mekenjaýına jöneltildi.\nBasqa e-poşta xatın jöneltw aldınan, tirkelgi şınınan sizdiki ekenin quptaw üşin xattağı nusqamalarğa eriwñiz jön.",

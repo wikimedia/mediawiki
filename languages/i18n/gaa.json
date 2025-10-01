@@ -384,7 +384,6 @@
 	"mailmypassword": "Tsakemɔ paswɛdi",
 	"passwordremindertitle": "Paswɛdi hee ni baatsu nii be fioo kɛhã {{SITENAME}}",
 	"passwordremindertext": "Mɛikomɛi (ni jɛ IP adrɛsi $1) bi paswɛdi hee kɛhã {{SITENAME}} ($4). Afee paswɛdi ni akɛtsuɔ nii be fioo kɛhã nifeelɔ\nAfee \"$2\" ni asɛti kɛtee \"$3\". Kɛji oje gbɛ lɛ, ehehiaa akɛ obote akauntu lɛ mli koni otsuusu paswɛdi hee amrɔ nɔŋŋ\nopaswɛdi ni ofee kɛtsɔ hiɛ lɛ bee baaho yɛ {{PLURAL:$5|gbi kome|$5 gbii}}.\nKɛji mɔ kroko ni biɔ lɛ, loo okai opaswɛdi lɛ, ni obasumɔŋ akɛ obaatsake dɔŋŋ lɛ, no obaanyɛ ni oshi wiemɔ nɛɛ sɛɛ koni oya nɔ ni okɛ o-paswɛdi momo lɛ atsu nii.",
-	"noemail": "Email adrɛsi ko bɛ kɛhã nɔtsɛ \"$1\".",
 	"noemailcreate": "esa akɛ ohã email adrɛsi ni ja",
 	"passwordsent": "akɛ paswɛdi hee ko emaje bo kɛtsɔ email adrɛsi ni okɛrɛgista kɛhã lɛ \"$1\".\nOfainɛ botemɔ akauntu lɛ mli ekoŋŋ kɛji onine shɛ nɔ",
 	"blocked-mailpassword": "ablɔki o IP adrɛsi kɛjɛ saamɔ he. Kɛhã ni akaye onɔ lɛ, aŋmɛɛɛ gbɛ akɛ okɛ paswɛdi sɛɛdii lɛ atsu nii yɛ IP adrɛsi.",

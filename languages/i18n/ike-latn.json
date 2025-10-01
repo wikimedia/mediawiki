@@ -479,6 +479,5 @@
 	"blockedtext-intended-blockee": "quituaminik ilippalliangimmijuq: $1",
 	"blockedtext-contact-blocker-admin": "pijariakittuq savirajak $1 tautugaqarniq [[{{MediaWiki:Grouppage-sysop}}|taiguusingit]] uqaqatigijausimajuq.",
 	"blockedtext-block-ip": "maannaujuq IP turaarutigijait $1.",
-	"blockedtext-include-details-queries": "tatattuq piqannarijanut ammalu tusagaksanut nipiliuqtausimajunut.",
-	"interwiki_edit": "Suqusiqpaa"
+	"blockedtext-include-details-queries": "tatattuq piqannarijanut ammalu tusagaksanut nipiliuqtausimajunut."
 }

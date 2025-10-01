@@ -361,7 +361,6 @@
 	"mailmypassword": "Bulikakan katasunduk",
 	"passwordremindertitle": "Kata sunduk pahadangan gasan {{SITENAME}}",
 	"passwordremindertext": "Ada urang (pinanya Pian, matan alamat IP $1) maminta sabuting katasunduk hanyar gasan {{SITENAME}} ($4). Sabuting katasunduk pahadangan gasan pamakai \"$2\" hudah diulah wan disetel ka \"$3\". Amun bujur Pian nang maminta, Pian parlu babuat log wan mamilih katasunduk hanyar wayahini jua. Katasunduk pahadangan Pian pacangan kadaluarsa dalam {{PLURAL:$5|sahari|$5 hari}}.\n\nAmun urang lain nang maminta ngini, atawa amun Pian sudah ingat lawan katasunduk Pian, wan Pian kada handak maubahnya, Pian kawa kada maharung pasan ngini wan manyambung mamakai katasunduk lawas Pian.",
-	"noemail": "Kadada alamat suril tarakam gasan pamakai \"$1\".",
 	"noemailcreate": "Pian parlu manyadiakan sabuting alamat suril nang sah",
 	"passwordsent": "Sabuting kata sunduk hanyar sudah dikirim ka suril tadaptar gasan \"$1\".\nMuhun babuat log pulang habis Pian manarima nangini.",
 	"blocked-mailpassword": "Alamat IP Pian diblukir matan pambabakan. Gasan mancagah panyalahpakaian, pian kada dibulihakan gasan mambulikakan kata sunduk pian matan alamat IP ngini.",

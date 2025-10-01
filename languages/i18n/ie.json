@@ -338,7 +338,6 @@
 	"wrongpasswordempty": "Parol-passe inscrit esset nud.\nPleser prova denov.",
 	"mailmypassword": "Redefinir parol-passe",
 	"passwordremindertitle": "Nov parol-passe temporari por {{SITENAME}}",
-	"noemail": "Nequant adresse de missage electronic registrat por li usator \"$1\".",
 	"noemailcreate": "Vu besona provider un adresse de missage electronic valid.",
 	"throttled-mailpassword": "Un parol-passe amemora ha ja esset inviat, intra li ultim {{PLURAL:$1|hor|$1 hores}}.\nPor preventer misusa, solmen un parol-passe amemora va esser inviat per {{PLURAL:$1|hor|$1 hores}}.",
 	"mailerror": "Errore quande inviant missage electronic: $1",
@@ -1592,8 +1591,5 @@
 	"skin-action-delete": "Deleter",
 	"skin-action-move": "Mover",
 	"renameuserreason": "Rason:",
-	"log-name-renameuser": "Diarium de renomination de usator",
-	"interwiki_reasonfield": "Rason:",
-	"interwiki-logtext": "Vider diarium",
-	"log-name-interwiki": "Diarium del tabelle de interwikis"
+	"log-name-renameuser": "Diarium de renomination de usator"
 }

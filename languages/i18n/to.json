@@ -161,7 +161,6 @@
 	"mailmypassword": "Tohila mai ʻa e leatapu foʻou",
 	"passwordremindertitle": "Ko e fakamanatu ki he leatapu mei he {{SITENAME}}",
 	"passwordremindertext": "Ko e tokotaha, mahalo pe ko koe mei he tuʻasila IP $1, naʻe kole ia ke ʻavea ha leatapu foʻou maʻa e {{SITENAME}} ($4). Ko e leatapu maʻa e ʻetita \"$2\", ʻoku \"$3\" he taimí ni. ʻOku ke pau te ke kau-ki-ai pea te ke liliu hoʻo leatapu. Ko e leatapu fakataimi ʻe mate ia ʻi he ʻaho ʻe $5.\n\nKapau naʻe kole ia ʻe he tokotaha kehe, pea ʻosi hoʻo manatuʻi ʻo e leatapu motuʻa mo ʻoku ʻikai te ke kei fieliliu ia, ʻe sai te ke taʻetokaʻi ʻa e fakamatalá ni pea ngāueʻaki ai pe hoʻo leatapu motuʻa.",
-	"noemail": "ʻOku ʻikai ʻiloa ha tuʻasila tohila maʻa e ʻetita \"$1\".",
 	"passwordsent": "ʻOsi ʻave ʻa e leatapu foʻou ki he tohila kuo lēsisita maʻa \"$1\". Kātaki ʻe toe kau-ki-ai ʻosi maʻu ia.",
 	"eauthentsent": "Kuo ʻave ʻa e tohila fakomoʻoniʻi ki he tuʻasila tohila naʻe fokotuʻu. ʻE pau te ke muitala ʻa e tohilá ni pea fakamoʻoniʻi ʻe koe ko e tuʻasila ē ʻoku moʻoni ko e tuʻasila ʻaʻau, ki muʻa ʻe ʻi ai ha tohila ʻe taha ʻe ʻave ia ki he tuʻasila ko ē.",
 	"mailerror": "Hala mei he tohila, ʻene ʻave ia: $1",

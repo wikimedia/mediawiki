@@ -362,7 +362,6 @@
 	"wrongpasswordempty": "Þu ne write nænig leafnessword. \nIc bidde þe þæt þu sece eft.",
 	"mailmypassword": "Sete leafnessword eft",
 	"passwordremindertitle": "Niwe hwilendlic leafnessword on {{SITENAME}}",
-	"noemail": "Þær nis nænig spearcærenda nama gewriten \"$1\" brucende.",
 	"noemailcreate": "Þu þearft writan gengne spearcærenda naman.",
 	"passwordsent": "Niwe geleafnesword habbaþ we gesended þæm spearcærenda hamstealle þe is to \"$1\" geseted.\nIc bidde þe þæt þu fo eft to þinre wisbec siþþan þu rætst þæt.",
 	"blocked-mailpassword": "Þinum IP hamstealle is forboden þæt man adihte þærmid. To þy þe man ne mage miswendan, man ne mot brucan geleafneswordforfanges fram þissum IP hamstealle.",

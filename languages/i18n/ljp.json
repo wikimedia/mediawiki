@@ -370,7 +370,6 @@
 	"mailmypassword": "Setél ulang kata sandi",
 	"passwordremindertitle": "Peghingatan kata sandi jak {{SITENAME}}",
 	"passwordremindertext": "Jamma (jak jenganan IP $1) ngilu kata sandi ampay guway {{SITENAME}} ($4). Kata sandi sementagha guway pumakay \"$2\" ghadu tisani ghik tiatogh ngenjadi \"$3\". Kik sangun Niku say ngajuko kiluwan hinji, Niku musti kughuk log ghik milih kata sandi ampay ganta. Kata sandi sementagha mu bakal kadaluwarsa di lom waktu {{PLURAL:$5|seghani|$5 ghani}}.\n\nKik jamma baghih say ngeguwayni, atawa kik Niku ghadu ngingok kata sandi mu ghik mak laju ngegattini, payu mak usah tipeghingohko lohot hinji ghik tetop pakay kata sandi mu say saka.",
-	"noemail": "Mak ngedok jenganan surel say ticatat guway pumakay \"$1\".",
 	"noemailcreate": "Niku musti nyiyapko jenganan surel say buyun.",
 	"passwordsent": "Kata sandi ampay ghadu tikighim mit jenganan surel say tidaptarko guway \"$1\".\nPayu kughuk log luwot seghadu neghima surel sina.",
 	"blocked-mailpassword": "Jenganan IP mu tiblokir jak pedandanan. Guway ngehalang penyalahgunaan, Niku mak tikeni ngehelawko kata sandimu ngeliyui jenganan IP hinji.",

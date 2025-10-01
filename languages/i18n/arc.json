@@ -217,7 +217,6 @@
 	"wrongpasswordempty": "ܡܠܬܐ ܕܥܠܠܐ ܕܐܥܠܬ ܣܦܝܩܬܐ ܐܝܬܝܗ.\nܒܒܥܘ ܡܢܟ ܕܬܢܣܐ ܙܒܢ ܐܚܪܝܢ.",
 	"mailmypassword": "ܣܘܡ ܡܠܬܐ ܕܥܠܠܐ ܙܒܢ ܐܚܪܝܢ",
 	"passwordremindertitle": "ܡܠܬܐ ܕܥܠܠܐ ܙܒܢܢܝܬܐ ܚܕܬܐ ܠ{{SITENAME}}",
-	"noemail": "ܠܝܬ ܒܝܠܕܪܐ ܐܠܩܛܪܘܢܝܐ ܠܡܦܠܚܢܐ \"$1\".",
 	"mailerror": "ܦܘܕܐ ܒܫܘܕܪܐ ܕܒܝܠܕܪܐ: $1",
 	"accountcreated": "ܚܘܫܒܢܐ ܒܪܐ",
 	"accountcreatedtext": "ܐܬܒܪܝ ܚܘܫܒܢܐ ܕܡܦܠܚܢܐ ܠ $1.",
@@ -1166,14 +1165,5 @@
 	"logentry-renameuser-renameuser-legacier": "$1 ܬܢܝ ܫܘܡܗܐ ܕ $4 ܠ $5",
 	"renameuser-move-log": "ܝܬܐܝܬ ܫܢܐ ܦܐܬܐ ܟܕ ܬܢܝ ܫܘܡܗܐ ܕܡܦܠܚܢܐ \"[[User:$1|$1]]\" ܠ \"[[User:$2|$2]]\"",
 	"action-renameuser": "ܬܢܝ ܫܘܡܗܐ ܕܡܦܠܚܢܐ",
-	"right-renameuser": "ܬܢܝ ܫܘܡܗܐ ܕܡܦܠܚܢܐ",
-	"interwiki": "ܚܘܝ ܘܫܚܠܦ ܝܕ̈ܥܬܐ ܕܐܢܛܪܘܝܩܝ",
-	"interwiki-title-norights": "ܚܘܝ ܝܕ̈ܥܬܐ ܕܐܢܛܪܘܝܩܝ",
-	"interwiki_prefix": "ܫܪܘܝܐ",
-	"interwiki-prefix-label": "ܫܪܘܝܐ:",
-	"interwiki_1": "ܐܝܢ",
-	"interwiki_0": "ܠܐ",
-	"interwiki_edit": "ܫܚܠܦ",
-	"interwiki_reasonfield": "ܥܠܬܐ:",
-	"interwiki_addbutton": "ܐܘܣܦ"
+	"right-renameuser": "ܬܢܝ ܫܘܡܗܐ ܕܡܦܠܚܢܐ"
 }

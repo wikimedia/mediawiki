@@ -392,7 +392,6 @@
 	"mailmypassword": "Imposta de noeuv la parolla ciav",
 	"passwordremindertitle": "Noeuva parola ciav provisoria per {{SITENAME}}",
 	"passwordremindertext": "Un quaivun ( cun l'indiriz IP $1) l'ha ciamad da mandàt una parolla ciav noeuva per {{SITENAME}} ($4).\nUna parola ciav provisoria per l'utent \"$2\" l'è stada creada e l'è \"$3\".\nSe te see stad ti a vorell, te gh'hee de andà dent e scernì una parola ciav noeuva.\nLa toa parola d'ordin provisoria la scaderà de chì a {{PLURAL:$5|un dì|$5 dì}}.\n\nSe te see stad minga ti a ciamà 'sta parolla ciav chì, o magara t'hee trovad la parola ciav vegia e te voeuret pu cambiala, te podet ignorà quell messagg chì e andà inanz a drovà la vegia la parola ciav.",
-	"noemail": "Gh'è registrad nissun adress de posta eletronica per l'utent \"$1\".",
 	"noemailcreate": "Te gh'hee de fornì on adress de posta eletronica valid.",
 	"passwordsent": "Una parola ciav noeuva l'è stada mandada a l'adress de posta elettronica registrad de l'utent \"$1\".\nPer piaser, va dent anmò dopo che te l'hee ricevuda.",
 	"blocked-mailpassword": "El to address IP l'è blocad, e te podet fà minga di cambiament. Per prevegnì di abus, a doprà la fonzion de recuper de la parola ciav de quell adress IP chì l'è minga permess.",
@@ -3669,7 +3668,5 @@
 	"renameuserold": "Nom de l'utent de adessː",
 	"renameusernew": "Nom de l'utent noeuvː",
 	"renameuserreason": "Resonː",
-	"logentry-renameuser-renameuser": "$1 {{GENDER:$2|a l'ha rinominad}} l'utent $4 ({{PLURAL:$6|$6 modifega|$6 modifeghe}}) come $5",
-	"interwiki": "Varda e modìfica i dati interwiki",
-	"interwiki-title-norights": "Varda i dati interwiki"
+	"logentry-renameuser-renameuser": "$1 {{GENDER:$2|a l'ha rinominad}} l'utent $4 ({{PLURAL:$6|$6 modifega|$6 modifeghe}}) come $5"
 }

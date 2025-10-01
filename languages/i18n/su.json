@@ -348,7 +348,6 @@
 	"mailmypassword": "Setél ulang kecap sandi",
 	"passwordremindertitle": "Pangéling sandi ti {{SITENAME}}",
 	"passwordremindertext": "Aya (jigana anjeun ti alamat IP $1) nu ménta sangkan dikiriman sandi anyar asup log {{SITENAME}} ($4). Saheulaanan, sandi anyar keur pamaké \"$2\" ayeuna diganti jadi \"$3\". Anjeun kudu asup log sarta ngarobah sandi anjeun ayeuna. Ieu sandi bakal kadaluwarsa dina {{PLURAL:$5|sapoé|$5 poé}}.\n\nMun pamundut ieu datang ti nu séjén, atawa mun anjeun geus inget sandi anu tadina poho, sarta teu hayang ngarobah sandina, anjeun teu kudu ngawaro kana ieu surat sarta bisa tetep maké sandi anu ti heula.",
-	"noemail": "Teu aya alamat surélék karékam pikeun \"$1\".",
 	"noemailcreate": "Anjeun kudu nyadiakeun alamat surélék anu bener",
 	"passwordsent": "Sandi anyar geus dikirim ka alamat surélék nu kadaptar pikeun \"$1\". Mangga asup log deui satutasna katarima.",
 	"blocked-mailpassword": "Alamat IP anjeun dipeungpeuk tina kabisa ngédit. Pikeun nyingkahan panyalahgunaan, Anjeun teu dimeunangkeun pikeun mermanakeun kecap sandi liwat ieu alamat IP.",
@@ -2935,7 +2934,5 @@
 	"renameuser-page-moved": "Kaca $1 geus dipindahkeun ka $2.",
 	"renameuser-page-unmoved": "Kaca $1 teu bisa dipindahkeun ka $2.",
 	"log-name-renameuser": "Log ganti ngaran",
-	"renameuser-move-log": "Otomatis mindahkeun kaca nalika ngaganti ngaran \"[[User:$1|$1]]\" jadi \"[[User:$2|$2]]\"",
-	"interwiki_1": "nya",
-	"interwiki_reasonfield": "Alesan:"
+	"renameuser-move-log": "Otomatis mindahkeun kaca nalika ngaganti ngaran \"[[User:$1|$1]]\" jadi \"[[User:$2|$2]]\""
 }

@@ -130,7 +130,6 @@
 	"mailmypassword": "Sekk Taguri n wadaf di E-mail",
 	"passwordremindertitle": "Taguri n wadaf tamaynut n ruxa waha {{SITENAME}}",
 	"passwordremindertext": "Ca n ijj (teqqad ad yili d cekk, zi tansa IP a $1)\ninna neɣ ada-s-ad nesekk Taguri n wadaf tamaynut i {{SITENAME}} ($4).\nTaguri n wadaf n useqdac \"$2\" ruxa d \"$3\".\nixessa ad tadeffed bac ad tbeddeled ruxa.\nɣar {{PLURAL:$5|one day|$5 days}} at sala taguri n wadaf tamaynut .\nmala war illi d cekk ur tawi x manaya , qim sexdam Taguri n wadaf inecc taqburt.",
-	"noemail": "War illi ca n e-mail ɣar useqdac a \"$1\".",
 	"passwordsent": "Taguri n wadaf tamaynut twassekked i e-mail  \"$1\".\nadeff-d xmi ɣa teṭfed.",
 	"eauthentsent": "ijj n e-mail itwasekked ɣar e-mail nni.\nzzat ma ca n e-mail nniḍen ma ad itwasekk ɣar umiḍan , ixessa ad tegged manayenni di e-mail, bac ad nessen ila qa amiḍan a inec.",
 	"loginlanguagelabel": "Tutlayt: $1",

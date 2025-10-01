@@ -309,7 +309,6 @@
 	"mailmypassword": "Reseta sa password",
 	"passwordremindertitle": "Servìtziu Password Reminder de {{SITENAME}}",
 	"passwordremindertext": "Calicunu (probabilmenti tue, cun s'indiritzu IP $1) at pediu de arritziri una password noa pro intrare a {{SITENAME}} ($4).\nUna password temporanea pro s'impitadore \"$2\" est istada impostada a \"$3\".\nChi custu fiat ne is intentziones tuas, depis intrare (log in) e scioberari una password noa.\nSa password temporanea tua at a iscadiri in {{PLURAL:$5|una die|$5 dies}}.\n\nChi non ses istadu a pediri sa password, o chi as torrau a agatare sa password torra e non da depis cambiari prus, non cunsideras custu messagiu e sighi a impreare sa password beccia.",
-	"noemail": "Peruna email resurtat registrada pro s'impitadore \"$1\".",
 	"noemailcreate": "Bisòngiat a frunire un'indiritzu email vàlidu.",
 	"passwordsent": "Una password noa est stada mandada a s'indiritzu email de s'impitadore \"$1\".\nPro praxere, cando dda retzis identìfica·ti torra.",
 	"blocked-mailpassword": "Sos càmbios dae s'indiritzu IP tuo sunt arreados, e no est adduidu impreare sa funtzionalidade \"imbia password noa\".",

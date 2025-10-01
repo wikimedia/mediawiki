@@ -293,7 +293,6 @@
 	"mailmypassword": "Parolni sıfırla",
 	"passwordremindertitle": "{{SITENAME}} içün yañı vaqtınca parol",
 	"passwordremindertext": "Birev (belki de bu sizsiñiz, $1 IP adresinden) {{SITENAME}} saytı içün ($4) yañı qullanıcı parolini istedi.\n$2 qullanıcısına vaqtınca <code>$3</code> paroli yaratıldı. Eger bu kerçekten de siziñ istegiñiz olğan olsa, oturım açıp yañı bir parol yaratmañız kerektir. Muvaqqat paroliñizniñ müddeti {{PLURAL:$5|1 kün|$5 kün}} içinde dolacaq.\n\nEger de yañı parol talap etmegen olsañız ya da eski paroliñizni hatırlap endi onı deñiştirmege istemeseñiz, bu mektüpni diqqatqa almayıp eski paroliñizni qullanmağa devam etip olasıñız.",
-	"noemail": "$1 adlı qullanıcı içün e-mail bildirilmedi.",
 	"noemailcreate": "Doğru bir e-mail adresi bildirmek kereksiñiz",
 	"passwordsent": "Yañı parol e-mail yolunen qullanıcınıñ bildirgen $1 adresine yiberildi. Parolni alğan soñ tekrar kiriş yapıñız.",
 	"blocked-mailpassword": "IP adresiñizden saifeler deñiştirüv yasaqlı, parol hatırlatuv funktsiyası da blok etildi.",
@@ -1703,6 +1702,5 @@
 	"logentry-renameuser-renameuser-legacier": "$1, $4 qullanıcısınıñ adını {{GENDER:$7|$5}} olaraq {{GENDER:$2|deñiştirdi}}",
 	"renameuser-renamed-notice": "Bu {{GENDER:$1|qullanıcınıñ}} adını deñiştirildi.\nAd deñiştirüv kündeligi menba olaraq aşağıda kösterilgen.",
 	"createacct-benefit-heading-temp-user": "{{SITENAME}} saytına isse qoşqanıñız içün sağ oluñız.\nDaa ziyade funktsiyağa irişmek içün qullanıcı esabını yaratıñız.",
-	"createacct-benefit-subheading-temp-user": "{{SITENAME}}nı siziñ kibi adamlar yaza. Bir qullanıcı esabınen, aşağıdaki kibi funktsiyalarğa irişim bergen daimiy ve telükesiz bir kimlikke saip ola bilesiñiz:",
-	"interwiki-logtext": "Jurnalnı köster"
+	"createacct-benefit-subheading-temp-user": "{{SITENAME}}nı siziñ kibi adamlar yaza. Bir qullanıcı esabınen, aşağıdaki kibi funktsiyalarğa irişim bergen daimiy ve telükesiz bir kimlikke saip ola bilesiñiz:"
 }

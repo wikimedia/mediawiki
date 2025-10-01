@@ -363,7 +363,6 @@
 	"mailmypassword": "Setèl ulang kata sandi",
 	"passwordremindertitle": "Kata sandi sementara baru bakal {{SITENAME}}",
 	"passwordremindertext": "Ada orang (deri aderès IP $1) minta' kata sandi baru bakal {{SITENAME}} ($4). Kata sandi sementara bakal pemaké \"$2\" udah dikeja èn diatur jadi \"$3\". Kalo ni èmang lu punya perbuatan, lu bakalan perlu masup èn milih kata sandi baru sekarang. Lu punya kata sandi sementara bakalan bonto dalem waktu {{PLURAL:$5|atu ari|$5 ari}}.\n\nKalo orang laèn nyang ngeja ni rekès, atawa kalo lu udah keèlingan ama lu punya kata sandi, èn lu kaga' jadi ngerobahnya, lu bolé cuèkin ni pesen èn terus maké lu punya kata sandi nyang lama.",
-	"noemail": "Kaga' ada aderès surlès nyang kerekem bakal pemaké \"$1\".",
 	"noemailcreate": "Lu perlu nyediain aderès surat lèstrik nyang aci.",
 	"passwordsent": "Kata sandi udah dikirim ke aderès surlès nyang didaptarin bakal \"$1\".\nPadol dah, masup lagi pas lu udah nerima tu surat lèstrik.",
 	"blocked-mailpassword": "Aderès IP digibang deri pemermakan. Bakal ngalingin penyalahmakéan, kaga' diboléin maké pemulihan kata sandi liwat ini aderès IP.",

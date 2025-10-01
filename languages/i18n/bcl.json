@@ -364,7 +364,6 @@
 	"mailmypassword": "Pakibaguha an pasa-taramon",
 	"passwordremindertitle": "Bagong temporaryo na sekretong panlaog para sa {{SITENAME}}",
 	"passwordremindertext": "May sarong tawo (pwedeng ika gayod, gikan sa IP address na $1) naghagad nin sarong bagong sekretong panlaog para sa {{SITENAME}} ($4). Sarong temporaryong sekretong panlaog para sa paragamit \"$2\" an pinagmukna asin pinagtuytoy na magin \"$3\". Kun iyo ini an saimong katuyuhan, kaipuhan mong maglaog asin magpili nin sarong bagong sekretong panlaog ngunyan.\nAn saimong temporaryong sekretong panlaog mapapaso sa laog nin {{PLURAL:$5|sarong aldaw|$5 aldaw}}. \n\nKun ibang tawo an naghimo kaining kahagadan, o kun saimo nang nagiromdoman an saimong sekretong panlaog, asin habo mo nang ribayan ini, ipasapara mo na sana an mensaheng ini asin ipadagos mo nang gamiton an saimong lumang sekretong panlaog.",
-	"noemail": "Mayo tabing e-koreong address na nakarehistro para sa paragamit na \"$1\".",
 	"noemailcreate": "Kaipuhan kang magtao nin sarong balidong address sa e-surat",
 	"passwordsent": "Sarong baguhon na sekretong panlaog an ipinadara sa e-koreong address na nakarehistro para ki \"$1\".\nTabi maglaog giraray matapos mong maresibe ini.",
 	"blocked-mailpassword": "An saimong IP address pinagkubkob na magliwat, asin kaya dae tinutugutan na gumamit kan pambawi nin sekretong panlaog na punksyon tanganing makalikay sa abuso.",

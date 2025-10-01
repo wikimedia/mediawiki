@@ -180,7 +180,6 @@
 	"mailmypassword": "E-mail psa wortu",
 	"passwordremindertitle": "Nyun sranga psa wortu gi {{SITENAME}}",
 	"passwordremindertext": "Wan suma (kande yu,  fu IP $1) ben aksi fu wi seni yu wan nyun psa wortu gi {{SITENAME}} ($4).<br />\nA psa wortu fu kebroikiman \"$2\" na \"$3\" now.<br />\nPsa kon nownowde én kenki yu psa wortu.\n\nEfu na wan tra suma ben aksi disi, noso efu yu memre yu psa wortu én yu no wani kenki en moro, yu kan skotu a boskopu disi én tan kebroiki yu owru psa wortu.",
-	"noemail": "No wan e-mail nen de gi kebroikiman \"$1\".",
 	"passwordsent": "Wan nyun psa wortu seni go na a e-mail fu \"$1\".\nPsa kon baka te yu kisi en.",
 	"eauthentsent": "Wan e-mail seni go na a e-mail nen di yu gi.\nBifo tra e-mail kan seni go na a account, yu musu du san skrifi ini a e-mail fu sori taki a account na fu yu fu tru.",
 	"accountcreated": "Masyin ben skopu",

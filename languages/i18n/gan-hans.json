@@ -227,7 +227,6 @@
 	"mailmypassword": "拿新密码寄到偶",
 	"passwordremindertitle": "{{SITENAME}}𠮶密码提醒",
 	"passwordremindertext": "有人（可能系汝，IP位址$1）要我俚搦新𠮶{{SITENAME}} （$4） 𠮶登入密码寄到汝。眼下用户\"$2\"𠮶密码系\"$3\"。请仰上就登入同到换吥密码。要系别𠮶人发𠮶请求，或者倷寻回嘞倷𠮶密码，伓想改佢，倷可以嫑搭个只消息，接得用旧密码。临时密码{{PLURAL:$5|一日|$5日}}之内会失效。",
-	"noemail": "冇有用户\"$1\"𠮶email地址。",
 	"passwordsent": "新𠮶密码已经寄到用户\"$1\"𠮶email去喽。收到后请再登入过。",
 	"blocked-mailpassword": "倷𠮶IP地址拖封到嘞。用伓正密码复原功能以防乱用。",
 	"eauthentsent": "确认email寄到话正𠮶地址去喽。别𠮶email发到个只帐户之前，倷起先要按个封email话𠮶佢系否倷𠮶。",

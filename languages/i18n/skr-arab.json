@@ -276,7 +276,6 @@
 	"wrongpasswordempty": "خالی پاسورڈ درج کیتے۔\nسوہݨاں، ولدا کوشش کرو۔",
 	"mailmypassword": "نواں پاس ورڈ بݨاؤ",
 	"passwordremindertitle": "{{SITENAME}}کیتے نواں عارضی نواں پاسورڈ",
-	"noemail": "ورتݨ آلے  \"$1\" کیتے کوئی ای میل پتہ ریکارڈ وچ کائنی",
 	"noemailcreate": "ٹھیک ای میل پتہ فراہم کرو۔",
 	"mailerror": "ای میل بھیجݨ وچ غلطی: $1",
 	"cannotchangeemail": "ایں وکی تے کھاتے دا ای میل پتہ تبدیل کائنی تھی سڳدا۔",
@@ -2565,15 +2564,5 @@
 	"renameusersubmit": "جمع کرواؤ",
 	"log-name-renameuser": "ورتݨ آلیاں دے ناں وٹاوݨ دا لاگ",
 	"action-renameuser": "ورتݨ ناں وٹاؤ",
-	"right-renameuser": "ورتݨ ناں وٹاؤ",
-	"interwiki": "انٹر وکی ڈیٹا وچ تبدیلی کرو تے ݙیکھو",
-	"interwiki-title-norights": "انٹر وکی معلومات ݙیکھو",
-	"interwiki_prefix": "سابقے",
-	"interwiki-prefix-label": "سابقے:",
-	"interwiki_local": "اڳوں تے بھیڄو",
-	"interwiki-local-label": "اڳوں تے بھیڄو:",
-	"interwiki_1": "جیا",
-	"interwiki_0": "کو",
-	"interwiki_edit": "لکھو",
-	"interwiki_reasonfield": "وجہ:"
+	"right-renameuser": "ورتݨ ناں وٹاؤ"
 }

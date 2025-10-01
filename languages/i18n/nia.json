@@ -372,7 +372,6 @@
 	"mailmypassword": "Fuli fazökhi nono kusi",
 	"passwordremindertitle": "Ono kusi gasa-gasa khö {{SITENAME}}",
 	"passwordremindertext": "So niha (moroi ba nomoro IP $1) sangandrö\nono kusi si bohou khö {{SITENAME}} ($4). No tefazökhi nono kusi gasa-gasa\nkhö zangoguna \"$2\" ya'ia \"$3\". Na moroi khöu wangandrö andre,\nmoguna möi'ö bakha ba fazökhi nono kusi si bohou.\nTobali obou nono kusi gasa-gasa andre ba zi {{PLURAL:$5|ma'ökhö|$5 ngaluo}}.\n\nNa tenga ya'ugö zangandrö da'a ma zui no itörö tödöu nono kusi-mö,\nba lö omasi'ö wamalali ya'ia, ba tohugö wangoguna'ö nono kusi satua andrö.\nOlifugö manö duria andre.",
-	"noemail": "Lö email si no tefasura'ö ba döi \"$1\".",
 	"noemailcreate": "Moguna öbe'e alamat email satulö.",
 	"passwordsent": "No tefa'ohe'ö nono kusi si bohou ba alamat email ni'irö'ö ba \"$1\".\nFuli ae bakha na no ötema ia.",
 	"blocked-mailpassword": "Nomoro IP-mö no teba'agö moroi ba wamulö'ö nga'örö wiki. Lö göi molala wamohouni ono kusi moroi ba nomoro IP andre.",

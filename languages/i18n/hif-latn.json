@@ -344,7 +344,6 @@
 	"mailmypassword": "Password ke badlo",
 	"passwordremindertitle": "{{SITENAME}} ke khatir nawaa temporary password",
 	"passwordremindertext": "Koi (IP address $1 se) {{SITENAME}} ($4) ke khatir nawaa password mangis hai. Ek temporary password, \"$2\" ke banae ke \"$3\" se set kar dewa gais hai. Agar aap ii chij mangta rahaa, tab aap ke abhi login kar ke password badle ke chaahi.\nAap ke temporary password {{PLURAL:$5|ek din|$5 din}} me expire hoi.\n\nAgar jo aur koi ii request karis hai, nai to aap aapan password yaad kar liya hai aur nai badle mangta hai, tab ii sandes ke ignore kar ke aapan puraana password ke kaam me laate raho.",
-	"noemail": "Sadasya \"$1\" ke koi e-mail address recorded nai hai.",
 	"noemailcreate": "Aap ke thiik e-mail address de ke parrii",
 	"passwordsent": "Ek nawaa password ke \"$1\" ke registered e-mail pe bheja gais hai. Meharbaani kar ke aap password mile ke baad login karna.",
 	"blocked-mailpassword": "Aap ke IP address ke block kar dewa gais hai, aur iske kaaran aap ke password recovery function kaam me lae ke ijajat nai hai,",

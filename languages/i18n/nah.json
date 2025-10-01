@@ -218,7 +218,6 @@
 	"wrongpassword": "Ahcualli motlahtōlichtacāyo.\nTimitztlātlauhtia xicchīhua occeppa.",
 	"wrongpasswordempty": "Ayāc motlahtōlichtacāyo.\nTimitztlātlauhtia xicchīhua occeppa.",
 	"mailmypassword": "Motlacuepilīz mochtacātlahtōl",
-	"noemail": "\"$1\" ahmo quipiya īe-mailcān.",
 	"passwordsent": "Ōmoihuah yancuīc motlahtōlichtacāyo īhuīc mo e-mail (\"$1\").\nOcceppa xicalaqui niman ticmatīz.",
 	"mailerror": "Ahcuallōtl e-mailcopa: $1",
 	"accountcreated": "Tlapōhualli ōmochīuh",
@@ -975,8 +974,5 @@
 	"skin-action-undelete": "Xicmāquīxti",
 	"skin-action-delete": "Xikixpolo",
 	"skin-action-move": "Xiksaka",
-	"renameusersubmit": "Tiquihuāz",
-	"interwiki_edit": "Xikpatla",
-	"interwiki_reasonfield": "Īxtlamatiliztli:",
-	"interwiki_addbutton": "Ticcetiliz"
+	"renameusersubmit": "Tiquihuāz"
 }

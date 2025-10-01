@@ -836,8 +836,5 @@
 	"blockedtext-intended-blockee": "Dəbaste məǧsəd: $1",
 	"blockedtext-contact-blocker-admin": "Šymə bəzynejon de $1 əloǧə gəte ja de čo [[{{MediaWiki:Grouppage-sysop}}|mudiri]], dəbaste barədə no-pegət karde.",
 	"blockedtext-block-ip": "Šymə ysətnə IP adres yme $1.",
-	"blockedtext-include-details-queries": "Zəhmət nybu həmmə ym ətrofinə cijon əlovə bykən bə hargylə yštə ərizon.",
-	"interwiki_0": "ne",
-	"interwiki_edit": "Sərost bykə",
-	"interwiki_addbutton": "Əlovə"
+	"blockedtext-include-details-queries": "Zəhmət nybu həmmə ym ətrofinə cijon əlovə bykən bə hargylə yštə ərizon."
 }

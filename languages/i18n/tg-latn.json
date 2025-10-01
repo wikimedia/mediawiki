@@ -211,7 +211,6 @@
 	"wrongpasswordempty": "Kalimai uburi doxil şuda xolī ast. Bori digar sançed.",
 	"mailmypassword": "Guzarvoƶai navro ba E-mail bifiristed",
 	"passwordremindertitle": "Muvaqqatan kalimai uburī çadid baroi {{SITENAME}}",
-	"noemail": "Heç nişonai poctai elektronī baroi korbar \"$1\" sabt naşudaast.",
 	"noemailcreate": "Şumo bojad jak nişonai poctai elektroniji mū'tabarro vorid kuned",
 	"passwordsent": "Kalimai uburi nav ba adresi e-mail, ki baroi \"$1\" nomnavis şudaast firistoda şud.\nBa'd az dastras kardani on, marhamat karda vurud kuned.",
 	"blocked-mailpassword": "Nişonai IP şumo az viroiş boz doşta şudaast va az in rū ba manzuri çilavgirī az sūiistifoda az bahragirī az qobilijati barqaror kardani kalimai uburro nadorad.",
@@ -1302,7 +1301,5 @@
 	"renameuser-page-unmoved": "Imkoni kūconidani sahifai $1 ba $2 vuçud nadorad.",
 	"log-name-renameuser": "Guzorişi taƣjiri nomi korbar",
 	"renameuser-move-log": "Sahifa dar vaqti taƣjiri nomi korbar  \"[[User:$1|$1]]\" ba \"[[User:$2|$2]]\" ba tavri xudkor kūconida şud",
-	"right-renameuser": "Taƣjiri nomi korbaron",
-	"interwiki_reasonfield": "Sabab:",
-	"interwiki_addbutton": "Ilova"
+	"right-renameuser": "Taƣjiri nomi korbaron"
 }

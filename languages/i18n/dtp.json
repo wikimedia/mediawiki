@@ -360,7 +360,6 @@
 	"mailmypassword": "Pudolio kawagu o hogot wawayaan",
 	"passwordremindertitle": "Kaatalib wagu daamot nopo montok {{SITENAME}}",
 	"passwordremindertext": "Sosongulun (ika nogi matuu, mantad kinoyonon IP $1) minokianu\nkaatalib montok {{SITENAME}} ($4). Kaatalib daamot montok momoguno\n\"$2\" nowonsoi om noguno hilo \"$3\". Nung iti nopo komoyonnu, ongoi no suang log om pilio kaatalib wagu do baino. Kaatalib daamot diti nopo nga opupusan solinaid {{PLURAL:$5|sangadau|$5 madau}}.\n\nNung sosongulun iri minokianu do kaatalib diti, toi osorou nu nodi kaatalibnu, om awu nu alanan iri, milo ko do mogolim diti pason om monilombus mongoguno di kaatalib laidnu.",
-	"noemail": "Ingaa poinsurat paatadan surat-i montok momoguno \"$1\".",
 	"noemailcreate": "Posuango porikatan surat-i di otopot",
 	"passwordsent": "Nakaatod kaatalib wagu hilo id porikatan surat-i poinrijisto montok \"$1\".\nGumuli sumuang log do aramit nu noh iri kio.",
 	"blocked-mailpassword": "Nantaban kinoyonon IP do karaja mongidit, om nantaban mongoguno kangkaraja manampasi kaatalib do magalai salaguno.",

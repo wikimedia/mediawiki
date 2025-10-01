@@ -158,7 +158,6 @@
 	"mailmypassword": "Meli sebu dafi",
 	"passwordremindertitle": "Nca sebu dafi temporali di {{SITENAME}}",
 	"passwordremindertext": "Ku (sa a, dIP $1)\nkusizi sebu dafi di {{SITENAME}} ($4).\nSebu dafi di sebelu \"$2\" sa \"$3\".\nA sa menuhile e hloli zwa sebu dafi.\n\nSa ku bye fatukile zwa sebu dafi e a ni petuho, ni petuho e mulumiwasibukirisize.",
-	"noemail": "No meli di sebelu \"$1\".",
 	"passwordsent": "Nca sebu dafi sa meli di sebelu \"$1\". Menuhile post tamibukisimelize.",
 	"eauthentsent": "Meli sa meli di meli adresi. Pre xete meli sa meli di sebelu, inisidusize melisaku, di saguridimi sebelu.",
 	"mailerror": "Bufosi afi mail: $1",

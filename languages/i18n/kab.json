@@ -355,7 +355,6 @@
 	"mailmypassword": "Awennez tikkelt nniḍen n awal uɛaddi",
 	"passwordremindertitle": "Asmekti n wawal n tbaḍnit seg {{SITENAME}}",
 	"passwordremindertext": "Amdan (waqila d kečč/kemm seg tansa IP $1) yesteqsa iwakken ad nazen awal n uɛeddi amaynut i {{SITENAME}} ($4). Awal n uɛeddi i umseqdac \"$2\" yuɣal-d tura \"$3\".\nMliḥ lukan tkecmeḍ u tbeddleḍ awal n uɛaddi tura.\nTasewti n wawal-a n uɛeddi amaynut ad yaweḍ deg {{PLURAL:$5|yiwen n wass|$5 ussan}}\n\nLukan mačči d kečč i yesteqsan neɣ tecfiḍ ɣef wawal n uɛeddi, tzemreḍ ad tkemmleḍ mebla ma tbeddleḍ awal n uɛeddi.",
-	"noemail": "\"$1\" ur yesɛi ara email.",
 	"noemailcreate": "Ilaq ad efkeḍ tansa e-mail i sɛan aseɣbel.",
 	"passwordsent": "Awal n tbaḍnit amaynut yettwazen i emal inek, aylaw n \"$1\".\nG leɛnaya-k, kcem tikelt nniḍen yis-s.",
 	"blocked-mailpassword": "Tansa-ik IP tewḥel i unifel. Akken ad nsewḥel yir aseqdec, ur tezmireḍ ara ad tesqedceḍ tiririt n wawal uffir si tansa-agi IP.",
@@ -2531,9 +2530,5 @@
 	"skin-action-protect": "Ḥrez",
 	"skin-action-undelete": "Uɣaled",
 	"skin-action-delete": "Mḥu",
-	"skin-action-move": "Snifel isem",
-	"interwiki_1": "ih",
-	"interwiki_0": "uhu",
-	"interwiki_edit": "Ẓreg",
-	"interwiki_addbutton": "Rnu"
+	"skin-action-move": "Snifel isem"
 }

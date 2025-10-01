@@ -320,7 +320,6 @@
 	"mailmypassword": "Bu-nyia̱-seti swang-nwuai ji",
 	"passwordremindertitle": "Swang-nwuai swai ji̱ nwai yet a̱di̱ndi̱ng a̱ni mat {{SITENAME}}",
 	"passwordremindertext": "A̱nyuu (neet a̱vwuonswat IP $1) ku cat\nswang-nwuai swai mat {{SITENAME}} ($4). Á̱ ba̱ khwuk swang-nwuai ji̱ nwai yet si̱ a̱di̱ndi̱ng a̱ni mat a̱tyunta̱m\n\"$2\" a̱wot á̱ si̱ nyia̱ nji seti nat \"$3\". Ka̱ si̱ hwa hwa ku yet fa ang hu, ku na myim a nwuo a̱wot a kin khai swang-nwuai swai ma̱ninika.\nSwang-nwuai ang ji ji̱ nwai yet a̱si̱ a̱di̱ndi̱ng a̱ni na tyak ta̱m mi̱ {{PLURAL:$5|mam nyiung ku cobai|mmam $5 na̱ cobai}}.\n\nKa̱ a̱ghyang a̱niet wa ku neap catkyang huni, ku ka̱ a ba̱ jhyung swang-nwuai ang ji,\na̱wot a si̱ si̱ mi̱n bu cat shyak ji, a bye nwuan ta̱m jini gbi̱t a̱wot\na kin ngya a̱son ma̱ng a̱lyen swang-nwuai ang wu.",
-	"noemail": "Á̱ ku lyuut ku a̱vwuonswat ta̱m-i mat a̱tyunta̱m \"$1\" bah.",
 	"noemailcreate": "Ku myim a tyia̱ a̱vwuonswat ta̱m-i nang á̱ lyen a̱ni.",
 	"passwordsent": "Á̱ ku ta̱m ma̱ng swang-nwuai swai da̱ a̱vwuonswat ta̱m-i ang ka nang á̱ nyia̱ ri̱jista mat \"$1\".\nMa̱sa̱kut bu nwuo ka̱ a san nji.",
 	"blocked-mailpassword": "Á̱ fwun a̱vwuonswat IP ang ka jhyuk. Mat nvwuong za̱kwa byian a̱wat, á̱ shim a̱yin gu nyia̱ ta̱m ma̱ng kyang bwuot ma̱ng swang-nwuai neet da̱ a̱vwuonswat IP kani bah.",

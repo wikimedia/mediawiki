@@ -387,7 +387,6 @@
 	"mailmypassword": "重置密码",
 	"passwordremindertitle": "{{SITENAME}}个新临时密码",
 	"passwordremindertext": "有人（来自IP地址$1）已经请求{{SITENAME}}个新密码（$4）。用户“$2”个临时密码已经新建并设置为“$3”。假使箇只动作是侬发起个，侬现在需要登录并选择一只新个密码。侬个临时密码会得垃拉{{PLURAL:$5|一日|$5日}}之后过期。\n\n假使箇只请求是别人家发起个，或者侬已经拿密码想起来，外加弗准备改脱渠，侬可以忽略此消息并继续使用侬个旧密码。",
-	"noemail": "用户\"$1\"弗曾登记电子邮件地址。",
 	"noemailcreate": "侬要提供只有效个电子邮件地址",
 	"passwordsent": "用户\"$1\"个新密码已经寄往登记个电子邮件地址。\n请收着仔再登录。",
 	"blocked-mailpassword": "侬个IP地址处于查封状态，弗允许编辑。为仔防止乱用，箇只IP地址个密码恢复功能已经禁用。",
@@ -1593,6 +1592,5 @@
 	"skin-action-protect": "保护",
 	"skin-action-undelete": "取消删除",
 	"skin-action-delete": "删除",
-	"skin-action-move": "移动",
-	"interwiki_reasonfield": "理由："
+	"skin-action-move": "移动"
 }

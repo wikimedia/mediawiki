@@ -300,7 +300,6 @@
 	"mailmypassword": "Tōrna mèter la cêva 'd ingrès",
 	"passwordremindertitle": "Nōva cêva 'd ingrès pruvişôria per {{SITENAME}}",
 	"passwordremindertext": "Quelchiûn (da l'indirés IP $1) l'à dmandê de spidîregh 'na nōva cêva 'd ingrès a {{SITENAME}} ($4). 'Na nōva cêva 'd ingrès pruvişôria per l'utèint \"$2\" l'é stêda impustêda a \"$3\". L'é necesâri fêr un ingrès al pió prèst e cambiêr la cêva 'd ingrès subét. La cêva 'd ingrès pruvişôria la scadrà dôp {{PLURAL:$5un dé|$5 dé}}. S' an t'é mia stê té a fêr la dmânda, opór t'é turnê a catêr la vècia cêva 'd ingrès e an 't vō pió cambiêrla, ét pō trascurêr cól mesâg ché e cuntinvêr a druvêr la vècia cêva 'd ingrès.",
-	"noemail": "Nisûn indirés ed pôsta eletrônica registrê per l'utèint $1.",
 	"noemailcreate": "L'é necesâri dêr un 'indirés ed pôsta eletrônica vâlid.",
 	"passwordsent": "'Na nōva cêva 'd ingrès l'é stêda spidîda a l'indiré ed pôsta eletrônica per l'utèint \"$1\". Per piaşèir, fà un ingrès apèina 't la ricēv.",
 	"blocked-mailpassword": "Al tó indirés IP l’è bluchê int la mudéfica. Per pervèder abûş, an n'é mìa permès druvêr la funsiòun ed recóper ed la cêva ‘d ingrès da cl’indirés IP ché.",

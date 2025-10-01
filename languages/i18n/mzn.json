@@ -149,7 +149,6 @@
 	"versionrequired": "نوسخهٔ $1 نرم‌افزار مدیاویکی جه لازم هسّه",
 	"versionrequiredtext": "این صفحه‌ی بدی‌ین وسّه به نسخهٔ $1 نرم‌افزار مدیاویکی جه نیاز دارنی.\nبه [[Special:Version|این صفحه]] بورین.",
 	"ok": "خا",
-	"pagetitle": "$1 - {{SITENAME}}",
 	"backlinksubtitle": "← $1",
 	"retrievedfrom": "\"$1\" جه بیته بیّه",
 	"new-messages": "شما اتا $1 دانّی ($2).",
@@ -1021,6 +1020,5 @@
 	"blockedtext-intended-blockee": "کسی که دَوست بیّه: $1",
 	"blockedtext-contact-blocker-admin": "این قطع دسترسی خَوِری گپ بزوئن وسه تونی $1 یا اتی [[{{MediaWiki:Grouppage-sysop\n}}|مدیر]] جه صؤحبت هاکنین.",
 	"blockedtext-block-ip": "شمه آی‌پی نشونی إسا $1 هسه.",
-	"blockedtext-include-details-queries": "اگه خانی ات‌چی هاپورسین، این اطلاعات ره اونجه حکماً بلین.",
-	"interwiki_edit": "دچی‌ین"
+	"blockedtext-include-details-queries": "اگه خانی ات‌چی هاپورسین، این اطلاعات ره اونجه حکماً بلین."
 }

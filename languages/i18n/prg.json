@@ -272,7 +272,6 @@
 	"mailmypassword": "Etkraūneis kliptaswīrdan",
 	"passwordremindertitle": "Nāuns kīsmingiskas kliptaswīrds per {{SITENAME}}",
 	"passwordremindertext": "Ainunts (iz IP adressin $1) ast madlīwuns ezze nāunas kliptaswīrdas prei {{SITENAME}} ($4) tengīnsnan.\nPer tērpautajan \"$2\" pastāi generītan kīsmingiskas kliptaswīrds: \"$3\".\nIk tu skatta din segītun, tebbei prawerru enēitwei be enpeisātun nāunan kliptaswīrdan.\nŠisse autōmatiskai generītas kliptaswīrdas swarewīngisku wīrst wanginnusi si pa {{PLURAL:$5|$5 dēinans|aīnan dēinan|$5 dēinans}}.\n\nIk ainunts kits ast tenginnuns šan madlin, anga assei etminītun si kliptaswīrdan be tū ni kwaitēi din kitawīdintun, tu mazzi ignōritun šan waīstin be tālis tērpautun wūran kliptaswīrdan.",
-	"noemail": "Ni ast e-mail adressi enpeisātan per tērpautajan \"$1\".",
 	"noemailcreate": "Tebbei prawerru enwestun tikrōmiskan e-mail adressin",
 	"passwordsent": "Nāuns kliptaswīrds pastāi tengīntan  en e-mail adressin stesse tērpautajan\" $1\".\nPanzdau gaūsenin, enjaīs etkūmps.",
 	"blocked-mailpassword": "Twajā IP adressi ast blōkitan ezze redigīsnai be stesse paggan ni assei enwarīntan tērpautun kliptaswīrdas etgaūsnas funkciōnin, kāi pakūntlai ezze wargaitērpausnai.",

@@ -961,14 +961,5 @@
 	"blockedtext-block-ip": "ناونیشان ئای-پی ئیسەت $1‍ە.",
 	"renameusernew": "ناو وەکاربەری تازە:",
 	"renameuserreason": "هووکار:",
-	"renameusersubmit": "کلکردن",
-	"interwiki_prefix": "پێشگر",
-	"interwiki-prefix-label": "پێشگر:",
-	"interwiki_1": "ئەرێ",
-	"interwiki_0": "نە",
-	"interwiki_edit": "دەسکاری",
-	"interwiki_reasonfield": "هووکار",
-	"interwiki_addbutton": "ئزافەکردن",
-	"right-interwiki": "دەسکاری داتای ناوانویکی",
-	"interwiki-links": "پێشگرەیل ناوانویکی"
+	"renameusersubmit": "کلکردن"
 }

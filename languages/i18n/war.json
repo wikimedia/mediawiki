@@ -352,7 +352,6 @@
 	"mailmypassword": "Ig-reset an tigaman-pagsulod",
 	"passwordremindertitle": "Bag-o nga diri-pirmihan nga tigaman-pagsulod para han {{SITENAME}}",
 	"passwordremindertext": "May-ada tawo (tikang ha IP address nga $1) in umaro hin bag-o nga tigaman-pagsakob para han {{SITENAME}} ($4). Uska temporaryo nga tigaman-pagsakob para han gumaramit \n\"$2\" in nahimo ngan ginbutang nga \"$3\". Kun ini an imo panuyuan, kinahanglanon nim maglog-in ngan pumili hin bag-o nga tigaman-pagsakob yana.\nAn imo temporaryo nga tigaman-pagsakob in diri madulot kahuman hin {{PLURAL:$5|usa ka adlaw|$5 ka mga adlaw}}.\n\nKun iba nga tawo an naghimo ini nga paalayon, o kun nakahinumdom ka han imo tigaman-pagsakob, ngan diri mo na karuyag nga igbal-iw ini, pabay-i nala ini nga mensahe ngan padayon paggamit han imo daan nga tigaman-pagsakob.",
-	"noemail": "Waray e-mail nga adres nga ginrekord para han nágámit \"$1\".",
 	"noemailcreate": "Kinahanglan nim maghatag hin may hinungdan nga e-mail address",
 	"passwordsent": "Uska bag-o nga password in ginpadangat ha e-mail address nga nakarehistro kan \"$1\".\nAlayon paglog-in utro kahuman mo makarawat ini.",
 	"blocked-mailpassword": "An imo IP address in ginpugngan pag-edit. Para pugngan an pag-abuso, ini in diri tinutogotan paggamit hin password recovery function tikang hinin nga IP address.",

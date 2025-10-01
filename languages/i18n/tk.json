@@ -351,7 +351,6 @@
 	"mailmypassword": "Paroly nol et",
 	"passwordremindertitle": "{{SITENAME}} üçin täze wagtlaýyn parol",
 	"passwordremindertext": "Kimdir biri (ähtimal özüňiz $1 IP adresinden) {{SITENAME}} ($4) üçin täze parol iberilmegini talap etdi. \"$2\" ulanyjysy üçin wagtlaýynça \"$3\" paroly döredildi. Eger bu siziň öz talabyňyz bolsa, onda sessiýa açyp, bir täze parol saýlap almagyňyz zerurdyr. Wagtlaýyn parolyňyzyň möhleti {{PLURAL:$5|1 günden|$5 günden}} gutarjakdyr.\n\nParol üýtgetmekligi siz talap etmedik bolsaňyz ýa-da parolyňyz ýadyňyza düşen bolsa hem-de indi parolyňyzy üýtgedesiňiz gelmeýän bolsa, onda bu habarlaşyga ähmiýet bermän öňki parolyňyzy ulanmaklygy dowam etdirip bilersiňiz.",
-	"noemail": "\"$1\" atly ulanyjynyň hasabynda duran hiç hili e-poçta adresi ýok.",
 	"noemailcreate": "Dogry bir e-poçta adresini görkezmegiňiz zerur",
 	"passwordsent": "\"$1\" ulanyjysynyň hasabynda duran e-poçta adresine täze parol iberildi. Paroly alanyňyzdan soňra sessiýany ýaňadan açmagyňyzy haýyş edýäris.",
 	"blocked-mailpassword": "IP adresiňiz blokirlenipdir, şonuň üçinem parol dikeldiş funksiýasyny ulanmaklyga rugsat berilmeýär.",
@@ -2942,6 +2941,5 @@
 	"log-name-renameuser": "Ulanyjy adyny üýtgetme gündeligi",
 	"renameuser-move-log": "Ulanyjy \"[[User:$1|$1]]\" adyndan \"[[User:$2|$2]]\" adyna täzeden atlandyrylanda, sahypa awtomatik geçirildi",
 	"right-renameuser": "Ulanyjylaryň adyny üýtget",
-	"renameuser-renamed-notice": "Bu ulanyjynyň ady üýtgedilipdir.\nAt üýtgediş gündeligi aşakda salgylanma üçin berilýär.",
-	"interwiki_edit": "Redaktirle"
+	"renameuser-renamed-notice": "Bu ulanyjynyň ady üýtgedilipdir.\nAt üýtgediş gündeligi aşakda salgylanma üçin berilýär."
 }

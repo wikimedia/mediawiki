@@ -278,7 +278,6 @@
 	"wrongpasswordempty": "Te ne es nia dat ite na parola tle. \nProa prëibel mo n iede.",
 	"mailmypassword": "Imposté danü la password",
 	"passwordremindertitle": "Nueva parola tle per ntant per {{SITENAME}}",
-	"noemail": "Deguna e-mail ie registreda per l utënt \"$1\".",
 	"noemailcreate": "Te mues purté dant na adres e-mail che vel.",
 	"accountcreated": "Utënt crià",
 	"accountcreatedtext": "L cont d'utënt per [[{{ns:User}}:$1|$1]] ([[{{ns:User talk}}:$1|descuscion]]) ie stat crià.",
@@ -1052,6 +1051,5 @@
 	"blockedtext-start-time": "Scumenciamënt dl bloch: $1",
 	"blockedtext-expiration-time": "Fin dl bloch: $1",
 	"blockedtext-intended-blockee": "Utënt che dëssa unì blocà: $1",
-	"blockedtext-block-ip": "Ti adres IP atuela ie $1",
-	"interwiki-title-norights": "Lista di prefisc interwiki"
+	"blockedtext-block-ip": "Ti adres IP atuela ie $1"
 }

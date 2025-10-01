@@ -358,7 +358,6 @@
 	"wrongpasswordempty": "Niku mak ngurukko kata sandi. Silahko cuba luwot.",
 	"mailmypassword": "Setil ulang kata sandi",
 	"passwordremindertitle": "Paringatan kata sandi jak {{SITENAME}}",
-	"noemail": "Makka alamat surel say ticatat untuk pamakay \"$1\".",
 	"noemailcreate": "Niku porlu nyiapko alamat email say sah.",
 	"passwordsent": "Kata sandi anyar kok tikirimko guk alamat surel say tidaptarko untuk \"$1\".\nPayu kuruk log luwot saradu narima surel sina.",
 	"blocked-mailpassword": "Alamat IP mu tiblokir jak pangeditan. Untuk ngahalang panyalahgunaan, Niku mak tihinganko untuk ngaholawi kata sandimu ngaliyu'i alamat IP hasa.",

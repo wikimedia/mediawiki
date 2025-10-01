@@ -189,7 +189,6 @@
 	"wrongpasswordempty": "Va'n fockle arrey screeuit bane.\nAascreeu, my sailliu.",
 	"mailmypassword": "Cur dou m'ockle arrey er post-L",
 	"passwordremindertitle": "Fockle arrey noa shallidagh son {{SITENAME}}",
-	"noemail": "Cha nel enmys post-L recortyssit da'n ymmydeyr \"$1\".",
 	"noemailcreate": "Shegin diu enmys post-l fondagh y honraghey",
 	"passwordsent": "Va fockle arrey noa currit da enmys post-L ta recortyssit da \"$1\".<br />\nTra t'eh eu, log stiagh my sailliu.",
 	"acct_creation_throttle_hit": "Va {{PLURAL:$1|$1 coontys|$1 choontys|$1 choontys|$1 coontyssyn}} crooit ec keayrtee da'n wiki shoh lesh yn enmys IP eu 'sy laa ain, as cha nel ny smoo coontyssyn y chroo lhiggalagh.<br />\nMyr eiyrtys, cha nod keayrtee lesh yn enmys IP shoh ny smoo coontyssyn noa y chroo nish.",
@@ -827,6 +826,5 @@
 	"skin-action-protect": "Coadee",
 	"skin-action-undelete": "Jee-scryss",
 	"skin-action-delete": "Scryss",
-	"skin-action-move": "Scugh",
-	"interwiki_reasonfield": "Fa:"
+	"skin-action-move": "Scugh"
 }

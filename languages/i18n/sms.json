@@ -1263,12 +1263,5 @@
 	"renameuser-error-same-user": "Ton jiõk vuäǯǯ ooʹnnʼja uʹvdded seämma nõõm, kååʹtt suʹst juʹn lij.",
 	"renameuser-page-unmoved": "Seeid $1 serddmõš nõʹmme $2 ij oʹnnstam.",
 	"action-renameuser": "õõʹnnʼja ođđ nõõm uʹvdded",
-	"right-renameuser": "Oõʹnnʼja ođđ nõõm uʹvdded",
-	"interwiki": "Čuäʹjet da muuʹtt interwiki-liiŋki teâđaid",
-	"interwiki-legend-label": "Čiʹlǧǧtõs",
-	"interwiki_url": "URL",
-	"interwiki-url-label": "URL:",
-	"interwiki_edit": "Muuʹtt",
-	"interwiki_reasonfield": "Mäinn:",
-	"interwiki_addbutton": "Lââʹzzet"
+	"right-renameuser": "Oõʹnnʼja ođđ nõõm uʹvdded"
 }

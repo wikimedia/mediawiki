@@ -714,7 +714,5 @@
 	"skin-action-protect": "Protege",
 	"skin-action-delete": "Borra",
 	"skin-action-move": "Move",
-	"blockedtext-reason-comment": "El razon ya dale: <em>$1</em>.",
-	"interwiki_1": "si",
-	"interwiki-logtext": "Mira con el log"
+	"blockedtext-reason-comment": "El razon ya dale: <em>$1</em>."
 }

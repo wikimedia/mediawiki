@@ -222,7 +222,6 @@
 	"mailmypassword": "Ambiar nuoba palabra-chabe por carta eiletrónica",
 	"passwordremindertitle": "Nuoba palabra chabe temporária an {{SITENAME}}",
 	"passwordremindertext": "Alguém (l mais cierto tu, a partir de la morada de IP $1) pediu que le fusse ambiada ua nouba palabra-chabe pa {{SITENAME}} ($4).\nFui criada ua palabra-chabe temporária pa l outelizador \"$2\", i fui puosta outra beç cumo \"$3\". Causo tengas feito cun este perpósito, entra na tue cuonta i scolhe ua nouba palabra-chabe agora.\nLa tue palabra-chabe temporária queda fuora de balidade {{PLURAL:$5|nun die|an $5 dies}}.\n\nCauso tenga sido outra pessona a fazer este pedido, ó causo tu yá te tengas lhembrado de la palabra-chabe i nun queiras demudar-la, squece esta mensaige i cuntina a outelizar la palabra-chabe antiga.",
-	"noemail": "Nun eisiste morada eiletrónica pa l outelizador \"$1\".",
 	"passwordsent": "Ua nuoba palabra chabe stá a ambiada pa la morada de correio eiletrónico de l outelizador \"$1\".\nPor fabor, bolta a fazer la outenticaçon al recebir-la.",
 	"eauthentsent": "Ua carta eiletrónica de cunfirmaçon fui ambiada pa la morada de correio eiletrónico nomeada.\nAntes de qualquier outra carta eiletrónica seia ambiada pa la cuonta, terás de seguir las anstruçones na carta eiletrónica,\nde modo a cunfirmar que la cuonta ye mesmo la tue.",
 	"mailerror": "Erro al ambiar la carta eiletrónica: $1",
@@ -1022,7 +1021,5 @@
 	"skin-action-protect": "Porteger",
 	"skin-action-delete": "Botar fuora",
 	"skin-action-move": "Arrastrar",
-	"renameuser-page-moved": "La páigina $1 fui arrastrada pa $2.",
-	"interwiki-title-norights": "Dados de prefixos anterwikis",
-	"interwiki_edit": "Eiditar"
+	"renameuser-page-moved": "La páigina $1 fui arrastrada pa $2."
 }

@@ -215,7 +215,6 @@
 	"mailmypassword": "E-mail nuuw wachtwoôrd",
 	"passwordremindertitle": "Nieuw tiedelijk wachtwoôrd voe {{SITENAME}}",
 	"passwordremindertext": "Iemand, warschienlijk jie, ei vanof 't IP-adres $1 een verzoek edaene toet 't toezen'n van 't wachtwoôrd voe {{SITENAME}} ($4).\n't Wachtwoôrd voe gebruker \"$2\" is \"$3\".\nMel je noe an en wiezig dan je wachtwoôrd.\n\nA iemand aors dan jie dit verzoek ei edaene of a je ondertussen 't wachtwoôrd wee weet en 't nie langer wil wiezigen, neheer dan dit bericht en bluuf je bestaende wachtwoôrd gebruken.",
-	"noemail": "Der is hin e-mailadres bekend van gebruker \"$1\".",
 	"passwordsent": "'t Wachtwoôrd is verzon'n nae 't e-mailadres voe \"$1\".\nMel je asjeblieft an naeda je 't ei ontvangen.",
 	"blocked-mailpassword": "Jen IP-adres is geblokkeerd, en vò zoôlank as dat\ndiert kan je, om misbruuk te vorkommen, geên nieuw wachtwoord laete opstiere.",
 	"eauthentsent": "Der is een bevestigiengs-e-mail ni 't opeheven e-mailadres ezon'n. Volg de anwieziengen in de e-mail om an te heven dat 't joen e-mailadres is. Tot die tied kunn'n der hin e-mails ni 't e-mailadres ezon'n worn.",

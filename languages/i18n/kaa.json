@@ -380,7 +380,6 @@
 	"mailmypassword": "Jasırın sózdi qayta tiklew",
 	"passwordremindertitle": "{{SITENAME}} ushın waqıtsha taza jasırın sóz",
 	"passwordremindertext": "Kimdir (IP adresi: $1, bálkim ózińiz shıǵar)\n{{SITENAME}} ushın bizden taza jasırın sóz jiberiwimizdi soraǵan ($4).\nEndi «$2» paydalanıwshınıń jasırın sózi «$3». Eger bul siziń maqsetińiz bolǵan bolsa, házir kirip jasırın sózińizdi almastırıwıńız kerek.\nSiziń waqtınshalıq jasırın sózińiz {{PLURAL:$5|bir kúnnen|$5 kúnnen}} keyin óz kúshin joǵaltadı.\n\nEger basqa birew bunı soraǵan bolsa yamasa parolińizdi eslegen bolsańız,\nbul xabarǵa itibar bermey, aldınǵı parolińizdi qollanıwıńızǵa boladı.",
-	"noemail": "«$1» paydalanıwshı ushın elektron pochta adresi joq.",
 	"noemailcreate": "Jaramlı elektron pochta mánzilin kirgiziwińiz kerek.",
 	"passwordsent": "Taza jasırın sóz «$1» ushın kórsetilgen e-mail\nadresine jiberildi.\nQabıllaǵanıńızdan keyin sistemaǵa qaytadan kirip kórińiz.",
 	"blocked-mailpassword": "Siziń IP adresińiz redaktorlawdan bloklanǵan, sonıń ushın bul IP adres arqalı jasırın sózdi tiklew funkciyasınan paydalana almaysız.",
@@ -2178,12 +2177,5 @@
 	"log-name-renameuser": "Paydalanıwshı atın ózgertiw jurnalı",
 	"log-description-renameuser": "Bul paydalanıwshılar atlarınıń ózgerisleri jurnalı.",
 	"logentry-renameuser-renameuser": "$1 paydalanıwshı atın $4 degennen({{PLURAL:$6|$6 redaktorlaw|$6 redaktorlaw}}) $5 degenge {{GENDER:$2|ózgertti}}",
-	"logentry-renameuser-renameuser-legacier": "$1 paydalanıwshı atın $4 degennen $5 degenge ózgertti",
-	"interwiki": "Wikiaralıq maǵlıwmat penen tanısıw hám onı dúzetiw",
-	"interwiki-title-norights": "Wikiaralıq maǵlıwmat penen tanısıw",
-	"interwiki_1": "awa",
-	"interwiki_0": "yaq",
-	"interwiki_edit": "Redaktorlaw",
-	"interwiki_reasonfield": "Sebebi:",
-	"log-name-interwiki": "Interwiki keste jurnalı"
+	"logentry-renameuser-renameuser-legacier": "$1 paydalanıwshı atın $4 degennen $5 degenge ózgertti"
 }

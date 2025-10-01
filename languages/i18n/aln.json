@@ -250,7 +250,6 @@
 	"mailmypassword": "Çoma fjalëkalimin me postel",
 	"passwordremindertitle": "Fjalëkalim i ri i përkohshëm për {{SITENAME}}",
 	"passwordremindertext": "Dikush (me giasë ju vetë, nga adresa IP $1) ka lypë nji\nfjalëkalim për {{SITENAME}} ($4). Nji fjalëkalim i përkohshëm për\n\"$2\" âsht krijue si vijon \"$3\". Nëse kjo ka qenë qëllimi juej\natëhere duheni me u kyçë tash dhe me zgjedhë nji fjalëkalim të ri.\nFjalëkalimi juej i përkohshëm skadon për {{PLURAL:$5|nji ditë|$5 ditë}}.\n\nNëse dikush tjetër e ka bâ këtë kërkesë, ose ju âsht kujtue fjalëkalimi,\ndhe nuk dëshironi me ndërrue fjalëkalimin, mundeni me injorue këtë mesazh\ndhe me vazhdue me përdorë fajlëkalimin e vjetër.",
-	"noemail": "Nuk ka adresë emaili për përdoruesin \"$1\".",
 	"noemailcreate": "Ju duhet të sigurojë një adresë të saktë-mail",
 	"passwordsent": "Nji fjalëkalim i ri u dërgue në adresën e emailit të \"$1\".\nJu lutem kyçuni mbasi ta keni marrë atê.",
 	"blocked-mailpassword": "Adresa juej IP âsht bllokue për redaktim, dhe nuk lejohet me përdorë funksionin e mëkâmbjes së fjalëkalimit për me parandalue keqpërdorimin.",

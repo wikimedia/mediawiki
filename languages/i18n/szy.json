@@ -322,7 +322,6 @@
 	"mailmypassword": "miliyaw miteka setin mima",
 	"passwordremindertitle": "{{SITENAME}} a baluhay nanunuz mima",
 	"passwordremindertext": "caay kapulita a tademaw (hakay kisu I, namakay IP puenengan $1) milunguc miliyaw patizeng i {{SITENAME}} ($4) a mima.\npabeli’ misaungayay \"$2\" a nanunuz mima setin tu \"$3\".\namahica tina ku kisu misaungayay, maydih kisu tansul patalabu atu pisetin cacay baluhay mima,\nnanunuz mima nu misu a ilabu’ {{PLURAL:$5|cacay|$5}} demiad mangasiw.\n\namahica caay kisu milunguc miliyaw patizeng mima, saca mazateng tu kisu ku mima, caay henay amisumad,\nkapah kisu sekipo tina palatuh zumasatu palalid pisaungay mahizaay saayaway mima nu misu.",
-	"noemail": "misaungayay \"$1\" inayi’ imyiyo(email) puenengan nasulitan.",
 	"noemailcreate": "maydih kisu nipabeli cacay kapahay a imyiyo(email) puenengan.",
 	"passwordsent": "misaungayay \"$1\" a baluhay mima mapatahkal tu i saayaway a imyiyo(email) puenengan, kapihalhal henay maala tu tigami miliyaw patalabu aca",
 	"blocked-mailpassword": "numisu a IP puenengan malangat tu caay kahasa mikawaway-kalumyiti, satezep tu namakay tini IP puenengan a mima panukasan sasahicaan a mitena’ patahtah.",
@@ -2977,6 +2976,5 @@
 	"skin-action-protect": "midiput",
 	"skin-action-undelete": "palawpes tu masipuay",
 	"skin-action-delete": "misipu",
-	"skin-action-move": "milimad",
-	"interwiki_1": "hang"
+	"skin-action-move": "milimad"
 }

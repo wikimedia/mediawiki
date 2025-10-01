@@ -240,7 +240,6 @@
 	"mailmypassword": "Nsindikira ekigambo ekikuumi ekipya",
 	"passwordremindertitle": "Ekigambo ekikuumi eky'oku {{SITENAME}} ekipya. Kya kiseerabuseera.",
 	"passwordremindertext": "Waliwo eyayimidde ku ndagiriro eya IP $1 (tusuubiri nti ye ggwe) n'asaba ekigambo ekikuumi eky'oku {{SITENAME}} ($4) ekipya.<br />\nMemba \"$2\" tumukoleddewo ekigambo ekikuumi eky'ekiseerabuseera, \"$3\". Kino bwe kiba nga kye kyewagenderedde,<br />\nwetaaga kugenda kati oyingire akawunti yo okyuse ekigambo ekikuumi okolewo ekya ddala.<br />\nEkigambo eky'ekiseerabuseera kijjakuleker'awo okukola mu {{PLURAL:$5|lunaku lumu|nnaku $5}}.",
-	"noemail": "Tetulina ndagiriro eya E-mail eya memba \"$1\".",
 	"noemailcreate": "Wetaaga kuwayo ndagiriro eya E-mail ekola",
 	"passwordsent": "Ekigambo ekikuumi ekipya tukisindise ku E-mail eyatuwebwa nga eya \"$1\".<br />\nBw'omala okukifuna nga oryoka oddamu okuyingira.",
 	"blocked-mailpassword": "Okulwanyisa nkozesa mbi, tetukkiriza okukyusa eby'oku {{SITENAME}} okuva ku ndagiriro eya IP kw'oyimye.<br />\nKino kitwaliramu n'obutakkiriza okufuna ebigambo bikuumi ebipya.",
@@ -756,6 +755,5 @@
 	"skin-action-protect": "Ssiba",
 	"skin-action-undelete": "Zawo",
 	"skin-action-delete": "Gyawo olupapula luno",
-	"skin-action-move": "Simbuliza",
-	"interwiki_edit": "Kyusa"
+	"skin-action-move": "Simbuliza"
 }

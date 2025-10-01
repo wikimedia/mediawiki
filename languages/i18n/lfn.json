@@ -364,7 +364,6 @@
 	"mailmypassword": "Reinisia tua clave",
 	"passwordremindertitle": "Clave nova e tempora per {{SITENAME}}",
 	"passwordremindertext": "Algun (probable tu, de adirije IP $1)\nia solisita un clave nova per {{SITENAME}} ($4).\nUn clave tempora per usor\n\"$2\" ia es creada con la testo \"$3\". Si esta ia es\ntua intende, tu debe aora reautentici e eleje un clave nova.\nTua clave tempora va desvalidi pos {{PLURAL:$5|un dia|$5 dias}}.\n\nSi un otra person ia fa esta solisita, o si tu ia recorda\ntua clave e aora no vole cambia lo, tu pote iniora esta mesaje\ne continua usa tua clave vea.",
-	"noemail": "No adirije de eposta esiste per usor \"$1\".",
 	"noemailcreate": "Tu debe furni un adirije de eposta valida.",
 	"passwordsent": "Un clave nova es enviada a la adirije de eposta rejistrada per \"$1\".\nPer favore, reautentici pos reseta lo.",
 	"blocked-mailpassword": "Tua adirije IP es impedida de edita. Per preveni malusa, on no permete ce esta adirije IP usa la sistem de recovre claves.",
@@ -3336,6 +3335,5 @@
 	"newpages-showhide-redirect": "$1 redirijes",
 	"newpages-showhide-registered": "$1 usores rejistrada",
 	"renameuserreason": "Razona:",
-	"renameusersubmit": "Envia",
-	"interwiki-title-norights": "Regarda datos de intervici"
+	"renameusersubmit": "Envia"
 }

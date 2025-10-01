@@ -359,7 +359,6 @@
 	"mailmypassword": "Vọ họnhungan jlado",
 	"passwordremindertitle": "Wekun họnhungan tọn ojlẹ gli tọn na {{SITENAME}}",
 	"passwordremindertext": "Mẹde (sọn adlẹsi IP tọn $1) basi obiọ họ̀nhungan yọyọ de tọn na {{SITENAME}} ($4). Họ̀nhungan whenu gli tọn na zinzántọ \"$2\" ko yin awuwiwlena bo ko yin didoai do \"$3\". E yindọ lẹndai towe niyẹn, e na biọ dọ a ni hùn adà towe bo de họ̀nhungan yọyọ de todin. \nHọ̀nhungan whenu gli tọn towe na dohó to  {{PLURAL:$5|azán dopo gblamẹ|azán 5 gblamẹ}}\n\nE yindọ mẹdevo wẹ basi obiọ ehe, kavi a ko flin hokún họ̀nhungan tọn towe, bo ma ka sọ jlo nado diọ ẹ ba, a sọgan dovọ́na wẹndomẹ ehe bo zindonukọ̀n po họ̀nhungan towe hoho lọ po.",
-	"noemail": "Adlẹsi email tọn depope ma yin zize dari na zinzantọ \"$1\" ehe",
 	"noemailcreate": "A dona na adlẹsi email tọn he to azọnwa dé.",
 	"passwordsent": "Wekun họnhungan tọn yọyọ ko yin sisẹ do adlẹsi email tọn he yin nina na \"$1\".\nJaale bo vọ adà towe hùn ni amọẹ yi.",
 	"blocked-mailpassword": "Adlẹsi IP towe tọn ko yin aliglọnna na vọjlado babasi. Nado dapana ṣiṣizan, a má sọgan zan họnhungan mọyi tọn sọn adlẹsi IP ehe tọn mẹ.",

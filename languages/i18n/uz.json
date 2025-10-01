@@ -349,7 +349,6 @@
 	"wrongpasswordempty": "Maxfiy soʻz koʻrsatilmagan. Qaytadan urinib koʻring.",
 	"mailmypassword": "Maxfiy soʻzni yangilash",
 	"passwordremindertitle": "{{SITENAME}} uchun vaqtinchalik yangi maxfiy so'z",
-	"noemail": "\"$1\" foydalanuvchisi uchun elektron pochta manzili qayd etilmagan.",
 	"noemailcreate": "Siz haqiqiy elektron pochta manzilingizni taqdim qilishingiz kerak.",
 	"passwordsent": "\"$1\" uchun roʻyxatdan oʻtgan elektron pochta manziliga yangi parol yuborildi.\nOlganingizdan keyin tizimga qayta kiring.",
 	"eauthentsent": "Belgilangan elektron pochta manziliga tasdiqlovchi xat yuborildi.\nAkkauntga boshqa xat yuborilishidan oldin, hisob haqiqatda sizniki ekanligini tasdiqlash uchun xatdagi ko‘rsatmalarga amal qilishingiz kerak bo‘ladi.",
@@ -2077,8 +2076,5 @@
 	"logentry-renameuser-renameuser": "$1 $4 ({{PLURAL:$6|$6 ta tahrir}}) ning foydalanuvchi nomini {{GENDER:$7|$5}}ga {{GENDER:$2|oʻzgartirdi}}",
 	"logentry-renameuser-renameuser-legacier": "$1 $4ning foydalanuvchi nomini {{GENDER:$7|$5}}ga oʻzgartirdi",
 	"action-renameuser": "foydalanuvchilar nomini oʻzgartirish",
-	"right-renameuser": "Foydalanuvchilar nomini oʻzgartirish",
-	"interwiki_reasonfield": "Sabab:",
-	"interwiki_addbutton": "Qoʻshish",
-	"log-name-interwiki": "Interviki jadvalidagi oʻzgarishlar qaydlari"
+	"right-renameuser": "Foydalanuvchilar nomini oʻzgartirish"
 }

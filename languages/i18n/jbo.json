@@ -218,7 +218,6 @@
 	"loginsuccess": "<strong>.i da ca jaspu do fo tu'a la'o zoi. {{SITENAME}} .zoi .i zoi zoi. $1 .zoi plicme do</strong>",
 	"nouserspecified": ".i sarcu fa le nu do ciska pa plicme",
 	"wrongpasswordempty": ".i le lerpoijaspu poi se ciska do cu kunti\n.i ko za'u re'u troci",
-	"noemail": ".i no da vreji le du'u de samymri judri la'o zoi. $1 .zoi poi pilno",
 	"noemailcreate": ".i sarcu fa le nu do ciska pa samymri judri poi drani",
 	"mailerror": ".i da nabmi fi le nu samymri da le se judri be zoi zoi. $1 .zoi",
 	"emaildisabled": ".i na cumki fa le nu le samtcise'u cu samymri da",

@@ -316,7 +316,6 @@
 	"mailmypassword": "Tembung sandhi di-reset",
 	"passwordremindertitle": "Tembung sandi anyar temporer kanggo {{SITENAME}}",
 	"passwordremindertext": "Ana wong (ndeyane Rika dhewek, sekang alamat IP $1) sing njaluk\ntembung sandhi anyar kanggo {{SITENAME}} ($4). Tembung sandhi sawetara nggo panganggo \n\"$2\" uwis digawe lan sekiye dadi \"$3\". Angger kiye pancen karepe Rika dhewek,\nmayuh ndang mlebu log lan ngganti tembung sandhi sekiye.\nTembung sandhi sawetara kuwe mau bakal kadaluwarsa nang {{PLURAL:$5|sadina|$5 dina}}.\n\nAnggere wong sejen sing gawe panjalukan kiye, utawa Rika wis kemutan maning tembung sandhine Rika,\nlan Rika wis ora sida ngganti tembung sandhi kuwe, Rika ora usah nggubris pesen kiye lan\nterusna baen nggunakna tembung sandhine Rika sing lawas.",
-	"noemail": "Ora ana alamat imel sing kecathet kanggo panganggo \"$1\".",
 	"noemailcreate": "Rika kudu nyediakna alamat imel sing sah",
 	"passwordsent": "Tembung sandhi anyar wis dikirim maring alamat imelsing didaftarna nggo \"$1\".\nMonggoo mlebu log maning seuwise Rika nampa imel kuwe.",
 	"blocked-mailpassword": "Alamat IP-ne Rika diblokir sekang panyuntingan, mulane kuwe Rika ora olih nganggo fungsi pèngetan tembung sandhi kanggo ''mencegah penyalahgunaan''.",

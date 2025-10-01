@@ -393,7 +393,6 @@
 	"mailmypassword": "Sendez nova pasovorto per e-posto",
 	"passwordremindertitle": "Nova provizora pasovorto por {{SITENAME}}",
 	"passwordremindertext": "Ulu (probable tu, del IP-adreso $1) solicitis nova pasovorto de {{SITENAME}} ($4). Provizora pasovorto por l'uzero \"$2\" kreesis e sendesis a \"$3\". Se to esis tua volunto, tu mustas facar 'log in' e selektar nova pasovorto nun.\nTua tempala pasovorto expiros en {{PLURAL:$5|un dio|$5 dii}}.\n\nSe ul altra persono facis la demando, o se tu rimemoris tua anciena pasovorto e ne bezonas modifikor ol, ignorez ica mesajo e durez uzar tua anciena pasovorto.",
-	"noemail": "Ne esas e-adreso konservita por la uzero \"$1\".",
 	"noemailcreate": "Tu mustas informar valida e-posto",
 	"passwordsent": "Nova pasovorto sendesis a la e-adreso registragita por \"$1\".\nVoluntez enirar altrafoye pos recevar ol.",
 	"blocked-mailpassword": "Vua IP-adreso blokusesis por redaktado. Por preventar misuzo, ne permisesas rekuperar pasovorti de ca IP-adreso.",
@@ -3152,11 +3151,5 @@
 	"logentry-renameuser-renameuser": "$1 {{GENDER:$2|rinomizis}} uzero $4 ({{PLURAL:$6|$6 redakto|$6 redakti}}) kom {{GENDER:$7|$5}}",
 	"action-renameuser": "rinomizar uzeri",
 	"right-renameuser": "Rinomizar uzeri",
-	"renameuser-renamed-notice": "Ca {{GENDER:$1|uzero}} rinomizesis.\nL'informo pri rinomizo furnisesas adinfre, kom refero.",
-	"interwiki-title-norights": "Vidar datumi interwiki",
-	"interwiki_1": "yes",
-	"interwiki_0": "no",
-	"interwiki_edit": "Redaktar",
-	"interwiki_reasonfield": "Motivo:",
-	"interwiki_addbutton": "Adjuntar"
+	"renameuser-renamed-notice": "Ca {{GENDER:$1|uzero}} rinomizesis.\nL'informo pri rinomizo furnisesas adinfre, kom refero."
 }

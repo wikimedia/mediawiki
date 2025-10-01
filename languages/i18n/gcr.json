@@ -334,7 +334,6 @@
 	"mailmypassword": "Fè roun kodsigré nòv",
 	"passwordremindertitle": "Kodsigré nòv ki tanporèr pou {{SITENAME}}",
 	"passwordremindertext": "Tchèk moun (dipi adrès IP $1) doumandé roun kodsigré nòv pou {{SITENAME}} ($4). Oun kodsigré ki tanporèr pou itilizatò\n« $2 » sa kréyé ké défini kou « $3 ». Si a byen sa ou té lé fè, \nou ké divèt konnègté oukò épi chwézi roun kodsigré ki nòv.\nOu kodsigré ki tanporèr ké èspiré annan $5 jou{{PLURAL:}}.\n\nSi a pa ou ki fè sa doumann oben si ou routrouvé ou kodsigré é ou pa lé chanjé li òkò, ou pouvé ignoré sa mésaj épi kontinwé itilizé ou vyé kodsigré.",
-	"noemail": "Pyès adrès di kourilèt fika anréjistré pou itilizatò-a « $1 ».",
 	"noemailcreate": "Ou divèt fourni roun adrès kourilèt ki valid",
 	"passwordsent": "Roun kodsigré nòv fin voyé bò’d adrès kourilèt di itilizat{{GENDER:$1|ò|ris}} « $1 ».\nSouplé roukonnègté oukò apré ou rousouvri li.",
 	"blocked-mailpassword": "Ou adrès IP sa bloké an modifikasyon. Pou évité zabi-ya, li pa otorizé di itilizé rékipérasyon-an di kodsigré ké sa adrès IP.",

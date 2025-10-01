@@ -294,7 +294,6 @@
 	"mailmypassword": "Vahtsõndaq umma salasõnna",
 	"passwordremindertitle": "{{SITENAME}} salasõna miildetulõtus",
 	"passwordremindertext": "Kiäki (arvadaq saq esiq, puutri võrgonummõr $1),\npallõl' vahtsõt sisseminegi salasõnna {{SITENAME}} ($4) jaos.\nPruukja \"$2\" salasõna om noq \"$3\". Ku olõt nimega sisse lännüq, võit taa aotlidsõ salasõna ärq muutaq.\nAotlinõ salasõna lätt vanas {{PLURAL:$5|üte päävä|$5 päävä}} peräst.\n\nKu taa pallõmisõ om tennüq kiä tõõnõ vai ku olõt uma salasõna miilde tulõtanuq ja taha-i taad inämb muutaq,\nsis teku-i seost sõnomist vällä ja pruugiq umma vanna salasõnna edesi.",
-	"noemail": "Kah'os olõ-i meil pruukja \"$1\" e-postiaadrõssit.",
 	"noemailcreate": "Pead kirotama kõrraligu e-postiaadrõsi",
 	"passwordsent": "Vahtsõnõ salasõna om saadõt pruukja \"$1\" kirotõdu e-postiaadrõsi pääle. Ku olõt salasõna kätte saanuq, mineq nimega sisse.",
 	"blocked-mailpassword": "Su võrgonumbrilõ om pant pääle toimõndamiskiild, miä lasõ-i salasõnna miilde tulõtaq.",

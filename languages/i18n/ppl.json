@@ -240,7 +240,6 @@
 	"mailmypassword": "Nikenki ma kituktikan se email iwan se yankwik tajatakketzalis ichtaka.",
 	"passwordremindertitle": "Muyankwik palabraj ichtaka pal ashan pal {{SITENAME}}",
 	"passwordremindertext": "Se (tikmatit ka taja, iwan ne direccion IP $1) tajtantuk se yankwik palabraj ichtaka pal {{SITENAME}} ($4). Muchiwtuk se yankwik palabraj ichtaka pal ashan ipal ne usuarioj \"$2\"; yaja \"$3\". Su ini tay tiknekituya, ashan muneki ma shikalaki tik mucuentaj wan ma shikishpejpena se yankwik palabraj ichtaka. Ne mupalabraj ichtaka pal ashan yawi tami ijtik {{PLURAL:$5|se tunal|$5 tunal}}.\n\nSu seuk kitajtan, o su tikelnamiktuk ne mupalabraj ichtaka wan su teuk tikneki tikpata, weli tikelkawa ini amat wan weli tikalaki iwan ne mupalabraj ichtaka tikpiatuya.",
-	"noemail": "Muita ka te kanaj se direccion pal email pal ne usuarioj \"$1\".",
 	"noemailcreate": "Timuneki titechmaka se direccion pal email yek.",
 	"passwordsent": "Mutitanijtuk se yankwik palabraj ichtaka itech ne direccion pal email ne tikpiat ipal \"$1\".\nKwak titami tikwi, shikalaki tik mucuentaj senpa.",
 	"eauthentsent": "Mutitanijtuk se email itech ne direccion mutajkwiluj.\nAchtu ma tiktitanikan ukse email ka ne, muneki ma shikchiwa tay ina tik ne email pal tikmatit ka uni mutakutun",

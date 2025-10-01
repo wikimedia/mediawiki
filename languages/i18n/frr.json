@@ -342,7 +342,6 @@
 	"mailmypassword": "Paaswurd turagsaat",
 	"passwordremindertitle": "Nei tidjwiis paaswurd för {{SITENAME}}",
 	"passwordremindertext": "En brüker (faan IP adres $1) hää am en nei paaswurd för {{SITENAME}} ($4) fraaget.\nEn nei paaswurd för di brüker \"$2\" as maaget wurden an het nü \"$3\".\n\nWan dü det würelk so haa wel, do melde di nü uun an feranere det paaswurd. Det nei paaswurd täält för {{PLURAL:$5|ään dai|$5 daar}}.\n\nWan dü ei salew am en nei paaswurd fraaget heest, do säärst dü di am niks widjer komre. Do könst dü din ual paaswurd widjer brük.",
-	"noemail": "Diar as nian e-mail adres bekäänd för di brüker \"$1\".",
 	"noemailcreate": "Dü skel en rocht e-mail adres uundu.",
 	"passwordsent": "En nei tidjwiis paaswurd as tu det e-mail-adres faan di brüker \"$1\" schüürd wurden.\nMelde di diarmä uun, wan dü det füngen heest. Det ual paaswurd blaft iarst ans bestunen.",
 	"blocked-mailpassword": "Det IP-adres, wat dü brükst, as speret wurden. Am dat diar nian dom tjüch mä maaget woort, as uk det uffraagin faan paaswurden speret wurden.",
@@ -2706,6 +2705,5 @@
 	"renameuser-move-log": "Det sidj as bi't amnäämen faan „[[User:$1|$1]]“ tu „[[User:$2|$2]]“ automaatisk fersköwen wurden",
 	"action-renameuser": "brükern amnääm",
 	"right-renameuser": "Brükern amnääm",
-	"renameuser-renamed-notice": "Didiar {{GENDER:$1|brüker}} as amnäämd wurden. Uun't amnääm logbuk oner stäänt muar diartu.",
-	"interwiki-title-norights": "Interwiki-dooten uunluke"
+	"renameuser-renamed-notice": "Didiar {{GENDER:$1|brüker}} as amnäämd wurden. Uun't amnääm logbuk oner stäänt muar diartu."
 }

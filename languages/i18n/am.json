@@ -271,7 +271,6 @@
 	"mailmypassword": "አዲስ የይለፍቃል በኢሜሌ ይላክልኝ።",
 	"passwordremindertitle": "አዲስ ግዜያዊ መግቢያ ቃል (PASSWORD) ለ{{SITENAME}}",
 	"passwordremindertext": "አንድ ሰው (ከቁጥር አድራሻ #$1 ሆኖ እርስዎ ይሆናሉ) አዲስ መግቢያ ቃል ለ{{SITENAME}} ጠይቋል ($4).\nለ«$2» ይሆነው መግቢያ ቃል አሁን «$3» ነው። አሁን በዚህ መግቢያ ቃል ገብተው ወደ አዲስ መግቢያ ቃል መቀየር ይሻሎታል።\n\nይህ ጥያቄ የእርስዎ ካልሆነ፣ ወይም መግቢያ ቃልዎን ያስታወሱ እንደ ሆነ፣ ይህንን መልእክት ቸል ማለት ይችላሉ። የቆየው መግቢያ ቃል ከዚህ በኋላ ተግባራዊ ሆኖ ይቀጥላል።",
-	"noemail": "ለብዕር ስም «$1» የተመዘገበ ኢ-ሜል የለም።",
 	"noemailcreate": "ትክክለኛ ኢ-ሜል ማቅረብ ያስፈልጋል።",
 	"passwordsent": "አዲስ መግቢያ ቃል ለ«$1» ወደ ተመዘገበው ኢ-ሜል ተልኳል። እባክዎ ከተቀበሉት በኋላ ዳግመኛ ይግቡ።",
 	"blocked-mailpassword": "የርስዎ ቁጥር አድራሻ ከማዘጋጀት ታግዷልና፣ እንግዲህ ተንኮል ለመከልከል የመግቢያ ቃል ማግኘት ዘዴ ለመጠቀም አይፈቀደም።",
@@ -1505,6 +1504,5 @@
 	"blockedtext-contact-blocker-admin": "$1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስለ ማገጃ ለመጠይቅ ይችላሉ።",
 	"blockedtext-block-ip": "የአሁኑኑ ቁጥር አድራሻዎ $1።",
 	"blockedtext-block-id": "የማገጃው ቁጥር #$1 ነው።",
-	"blockedtext-include-details-queries": "ምንም ጥያቄ ካለዎ ይህን ቁጥር ይጨምሩ።",
-	"interwiki_reasonfield": "ምክንያት:"
+	"blockedtext-include-details-queries": "ምንም ጥያቄ ካለዎ ይህን ቁጥር ይጨምሩ።"
 }

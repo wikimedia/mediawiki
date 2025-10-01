@@ -267,7 +267,6 @@
 	"mailmypassword": "Rifé l' sicret",
 	"passwordremindertitle": "Novea scret timporaire po {{SITENAME}}",
 	"passwordremindertext": "Ene sakî (avou l' adresse IP $1) a dmandé \non novea scret po {{SITENAME}} ($4).\nOn scret timporare po l' uzeu «$2» a stî fwait, c' est «$3».\nSi c' est vos k' a fwait l' dimande, vos vs divoz elodjî eyet tchoezi on novea scret.\nLi scret timporaire ni srè pus valide après {{PLURAL:$5|on djoû|$5 djoûs}}.\n\nSi c' est ene ôte sakî k' a fwait l' dimande, ou si vos vs avoz rtrové l' vî scret eyet \nnel pus vleur candjî, vos ploz djusse ignorer ci messaedje ci eyet continouwer avou l' vî scret.",
-	"noemail": "I n' a pont d' adresse emile di cnoxhowe po l' uzeu «$1».",
 	"noemailcreate": "Vos dvoz dner ene adresse emile valide.",
 	"passwordsent": "On novea scret a stî emilé a l' adresse emile\nracsegneye po l' uzeu «$1».\nRelodjîz vs avou ç' noû scret on côp ki vos l' åroz rçuvou s' i vs plait.",
 	"blocked-mailpassword": "Voste adresse IP est blokêye pol sicrijhaedje. Po-z eviter les abus, vos n' poloz nén eployî l' fonccion d' rapexhaedje do scret avou ciste adresse IP.",
@@ -1512,8 +1511,5 @@
 	"renameuser-page-moved": "Li pådje $1 a stî displaeceye viè $2.",
 	"renameuser-page-unmoved": "Li pådje $1 èn pout nén esse displaeceye viè $2.",
 	"log-name-renameuser": "Djournå des candjmints d' no d' uzeus",
-	"renameuser-move-log": "Pådje displaeceye otomaticmint tot rlomant l' uzeu «[[User:$1|$1]]» viè «[[User:$2|$2]]»",
-	"interwiki-legend-label": "Ledjinde",
-	"interwiki_edit": "Candjî",
-	"interwiki_reasonfield": "Råjhon:"
+	"renameuser-move-log": "Pådje displaeceye otomaticmint tot rlomant l' uzeu «[[User:$1|$1]]» viè «[[User:$2|$2]]»"
 }

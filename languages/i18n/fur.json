@@ -299,7 +299,6 @@
 	"mailmypassword": "Azere la password",
 	"passwordremindertitle": "Gnove peraule clâf temporanie par {{SITENAME}}",
 	"passwordremindertext": "Cualchidun (probabilmentri tu, de direzion IP $1) al à domandât une gnove peraule clâf par jentrâ in {{SITENAME}} ($4).\nUne peraule clâf temporanie par l'utent \"$2\" e je stade creade e impuestade a \"$3\". Se cheste e jere la tô intenzion, tu varâs di jentrâ e sielzi une gnove peraule clâf cumò. La to peraule clâf temporanie e scjadarà daspò {{PLURAL:$5|une zornade|$5 zornadis}}.\n\nSe no tu âs domandât tu chest o se tu âs cjatât la peraule clâf e no tu vuelis plui cambiâle, tu puedis ignorâ chest messaç e continuâ a doprâ la vecje peraule clâf.",
-	"noemail": "Nissune direzion email regjistrade par l'utent \"$1\".",
 	"passwordsent": "Une gnove peraule clâf e je stade mandade ae direzion di pueste eletroniche regjistrade par l'utent \"$1\".\nPar plasê torne a fâ la jentrade pene che tu la âs ricevude.",
 	"eauthentsent": "Un messaç di pueste eletroniche di conferme al è stât mandât ae direzion specificade.\nPrime di ricevi cualsisei altri messaç di pueste, tu scugnis seguî lis istruzions scritis dal messaç, par confermâ che la identitât e je propi la tô.",
 	"invalidemailaddress": "La direzion email no pues jessi acetade parcè che no samee intun formât valit. Inserìs par plasê une direzion ben formatade o disvuede chest cjamp.",
@@ -1164,8 +1163,5 @@
 	"renameuser": "Cambie non par un utent",
 	"renameuserold": "Non utent atuâl:",
 	"renameusernew": "Gnûf non utent:",
-	"renameuserwarnings": "Avîs:",
-	"interwiki_1": "sì",
-	"interwiki_0": "no",
-	"interwiki_addbutton": "Zonte"
+	"renameuserwarnings": "Avîs:"
 }

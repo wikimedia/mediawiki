@@ -344,7 +344,6 @@
 	"mailmypassword": "Popobohuwa tahe u'unti",
 	"passwordremindertitle": "Taahe u'unti ja kakali monto {{SITENAME}}",
 	"passwordremindertext": "Tawu ngota (meyalo Yi'o, lonto alamat IP $1) mohile tahe u'unti bohu {{SITENAME}} ($4). Tahe u'unti ja kakali lo ta ohu'uwo \"$2\" ma pilohutu wawu ma pilopowali \"$3\". \nWonu Yi'o ta lohile utiye, Yi'o paralu tumuwoto log wawu molulawota tahe u'unti bohu masatiya. Tahe u'unti ja kakali ma mololante to delomo wakutu {{PLURAL:$5|ngohuyi|$5 huyi}}.\n\nWonu Yi'o morasa ja lohile tahe u'unti bohu, meyalo ma lo eela tahe u'unti wawu debo mopphuna leeto, pelehiyama'o tahuli botiya wawu debo mopohuna tahe u'unti muloolo.",
-	"noemail": "Diya'a alamat tuladu elektronik u tula-tulade to ta ohu'uwo botiye \"$1\".",
 	"noemailcreate": "Yi'o musti moposadiya alamat tuladu elektronik u sah.",
 	"passwordsent": "Tahe u'unti bohu ma yilawo ode alamat tuladu elektronik u to daputari lo \"$1\".\nToduwoolo tumuwoto wonu ma lololimo tulade boyito.",
 	"blocked-mailpassword": "Alamat IP olemu ma diblokir monto u momoli'o. Modaha u mopotalawa, Yi'o diipo mowali mopobohu lo tahe u'unti moli alamat IP botiye.",

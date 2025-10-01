@@ -364,7 +364,6 @@
 	"mailmypassword": "Kumua peittosana",
 	"passwordremindertitle": "Uuzi väliaigaine peittosana {{SITENAME}}-verkosivustoh niškoi",
 	"passwordremindertext": "Kenlienne (IP-adresispäi $1) kyzyi työndämäh uuttu peittosanua {{SITENAME}} ($4) niškoi. Käyttäjäle $2 on luajittu väliaigaine peittosana: $3. \nKu se oli sinun pakičus, piäze sistiemah da valliče uuzi peittosana.  \nSinun väliaigaine peittosana rodieu voimas {{PLURAL:$5|yhten päivän|$5 päivän}} aigah.\n\nKu et työndänyh pakičustu peittosanan kumuamizekse, libo olet juohatannuh oman peittosanan da et tahto sidä muuttua, voit jättiä tämän viestin huomuamattah da jatkua oman vahnan peittosanan käyttämisty.",
-	"noemail": "Käyttäjäh $1 niškoi sähköpoštuadressii ei ole kirjutettu.",
 	"noemailcreate": "Sinul pidäy andua voimas olii sähköpoštuadressi.",
 	"passwordsent": "Uuzi peittosana on työtty käyttäjän <b>$1</b> sähköpoštuadresile.\nOle hyvä, piäze sistiemah uvvessah, konzu olet suannuh sen.",
 	"blocked-mailpassword": "Kohendamine sinun IP-adresispäi on kielletty. Viärän käytön vastustamizekse peittosanan kumuamine täs IP-adresispäi sežo on kielletty.",

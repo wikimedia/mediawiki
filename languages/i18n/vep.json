@@ -382,7 +382,6 @@
 	"mailmypassword": "Peitsanan heitämine",
 	"passwordremindertitle": "Uz' keskaigaine peitsana {{SITENAME}} saitan täht",
 	"passwordremindertext": "Ken-se (IP-adresaspäi $1) pakiči uden peitsanan {{SITENAME}} saitan täht ($4). Oli tehtud keskaigaine peitsana \"$2\" kävutajan täht, mitte oli pandud \"$3\". Ku sinä tegid necen, ka sinei pidab tulda sistemaha da vajehtada peitsanan ani nügüd'.\nSinun keskaigaižen peitsanan radonaig lopiše {{PLURAL:$5|ühtes päiväs|$vides päiväs}} päliči.\n\nKu ken-se toine tegi necen pakičusen libo sinä panid muštho sinun peitsanan da ed tahtoi enamba vajehtada sidä, sinä void hül'gäita necen vestin da void kävutada edemba sinun enttušt peitsanad.",
-	"noemail": "Kävutai \"$1\" ei kirjutand ičeze email-počtan adresad.",
 	"noemailcreate": "Sinei pidab kirjutada todesižen email-počtan adresan.",
 	"passwordsent": "Uz' peitsana oli oigetud registriruitud $1 email-počtan adresale.\nOle hüvä, tule sistemaha völ kerdan jäl'ghe sidä, konz sad sen.",
 	"blocked-mailpassword": "Sinun IP-adresan rad om loptud. Ei sa udištada aigemba tehtud peitsanad neciš IP-adresaspäi.",
@@ -3785,13 +3784,5 @@
 	"benefit-1-description": "Kacundlugetišed abutaba sinei kacta da tarkištada melentartuižid lehtpolid.",
 	"benefit-2-description": "Kaikenaigaine tehtud radon lugetiž, miččen sinä panid projektaha.",
 	"benefit-3-description": "Valičused, miččed abutaba ladida sinun tehtud radod.",
-	"temp-user-unable-to-acquire": "Ei sa sada nimed keskaigaižen kävutajan täht. Ole hüvä, tege völ kerdan.",
-	"interwiki_prefix": "Prefiks",
-	"interwiki-prefix-label": "Prefiks:",
-	"interwiki_1": "ka",
-	"interwiki_0": "ei",
-	"interwiki_edit": "Redaktiruida",
-	"interwiki_reasonfield": "Sü:",
-	"interwiki_addbutton": "Ližata",
-	"interwiki_edittext": "Interwiki-prefiksoiden redaktiruind"
+	"temp-user-unable-to-acquire": "Ei sa sada nimed keskaigaižen kävutajan täht. Ole hüvä, tege völ kerdan."
 }

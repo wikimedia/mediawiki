@@ -311,7 +311,6 @@
 	"wrongpasswordempty": "Gelida geliyoo qaalay mela.\nHayyanaa zaarada mala.",
 	"mailmypassword": "Geliyo qaalaa laamma",
 	"passwordremindertitle": "{{SITENAME}} hagaassi ooratta ha'issi geliyo qaalaa",
-	"noemail": "H $1 yaraassi iimmayliyaa qatoy baawa.",
 	"noemailcreate": "Likke iimmayliyaa qatuwaa shiishshanawu koshshees.",
 	"mailerror": "Iimmayliyaa yeddishin balay de'ees: $1",
 	"cannotchangeemail": "Ha wikkiin akkawunttiyaa iimmayliyaa qatoy laamettenna.",

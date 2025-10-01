@@ -325,7 +325,6 @@
 	"mailmypassword": "Šennikufaloo yeeti",
 	"passwordremindertitle": "Šiiyan šennikufal taaga {{SITENAME}} se",
 	"passwordremindertext": "Boro foo (nda IP aderesu $1) na šennikufal taaga wiri {{SITENAME}} ($4) se. Waati-duura šennikufal n' ka tee goykaw \"$2\" se nd'a kayandi \"$3\" ga. Nda woo manti war anniyaa, war mma hima ka huru sohõ ka šennikufal taaga suuba. War šiiyan šennikufaloo waato ga ben {{PLURAL:$5|jirbi foo|jirbi $5}} ra. \n\nNda boro waani foo no k'a wiri, wala war n' ka honga war šennikufaloo nda war ši boona k'a barmay koyne, war ga hin ka yaamaroo woo muray, nda ka gaabu ka goy nda šennikufal žeenaa.",
-	"noemail": "Bataga aderesu kul mana jisandi \"$1\" goykaa se.",
 	"noemailcreate": "War ga hima ka bataga aderesu henna noo.",
 	"passwordsent": "Šennikufal taaga n' ka sanbandi bataga aderesu jisantaa ga \"$1\" se. Ceeci ka huru koyne nda n' duu w'a.",
 	"blocked-mailpassword": "I na war IP aderesoo ganji a ma hantum. Ka zanbayan ganji, šennikufal yeetiyan ši duɲe IP aderesoo woo ga.",

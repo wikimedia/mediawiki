@@ -428,7 +428,6 @@
 	"mailmypassword": "Ridergo fjalekalimin",
 	"passwordremindertitle": "Kërkesë për fjalëkalim të ri tek {{SITENAME}}",
 	"passwordremindertext": "Dikush (nga adresa IP $1) kërkoi një fjalëkalim të ri\npër {{SITENAME}} ($4). Për përdoruesin \"$2\" u krijua një fjalëkalim\ni përkohshëm dhe u vu si \"$3\". Nëse ky ishte synimi yt, do të të duhet\ntë hysh në llogari dhe të zgjedhësh një fjalëkalim të ri tani.\nFjalëkalimi yt i përkohshëm do të skadojë pas {{PLURAL:$5|një dite|$5 ditësh}}.\n\nNëse këtë kërkesë e bëri dikush tjetër, ose nëse e kujtove fjalëkalimin,\ndhe nuk dëshiron më ta ndryshosh, mund të shpërfillësh këtë mesazh dhe\ntë vazhdosh të përdorësh fjalëkalimin tënd të vjetër.",
-	"noemail": "Regjistri nuk ka adresë për përdoruesin \"$1\".",
 	"noemailcreate": "Ju duhet të sigurojë një adresë e e-mailit të saktë.",
 	"passwordsent": "Një fjalëkalim i ri është dërguar tek adresa e regjistruar për \"$1\". Provojeni përsëri hyrjen mbasi ta keni marrë fjalëkalimin.",
 	"blocked-mailpassword": "Adresa jote IP është e bllokuar nga të redaktuarit. Për të parandaluar abuzimin, nuk lejohet të përdoret funksioni për rikuperimin e fjalëkalimit nga kjo adresë IP-je.",

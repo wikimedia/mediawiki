@@ -303,6 +303,5 @@
 	"log-name-renameuser": "用戶名變更日誌",
 	"logentry-renameuser-renameuser": "$1 已將用戶「$4」（已編輯 {{PLURAL:$6|$6 次}}）{{GENDER:$2|重新命名}}為「{{GENDER:$7|$5}}」",
 	"action-renameuser": "重新命名用戶",
-	"right-renameuser": "重新命名用戶",
-	"interwiki_intro": "此頁為跨wiki資料表一覽，資料表中定義了可用來快速連結至其他wiki與其他外部網站的字首。使用建議請參考[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Interwiki MediaWiki.org上的操作手冊]。"
+	"right-renameuser": "重新命名用戶"
 }

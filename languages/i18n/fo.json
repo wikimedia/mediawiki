@@ -308,7 +308,6 @@
 	"mailmypassword": "Nullstilla loyniorðið",
 	"passwordremindertitle": "Nýtt fyribils loyniorð fyri {{SITENAME}}",
 	"passwordremindertext": "Onkur (óivað tú, frá IP adressu $1) hevur umbiðið eitt nýtt loyniorð fyri {{SITENAME}}  $4. Eitt fyribils loyniorð fyri brúkara \"$2\" er nú gjørt og er sent til \"$3\". Um hetta var tað tú vildi, so mást tú rita inn og velja eitt nýtt loyniorð nú. \nTítt fyribils loyniorð gongur út um {{PLURAL:$5|ein dag|$5 dagar}}.\n\n\nUm onkur annar hevur sent hesa umbønina, ella um tú nú minnist títt loyniorð, \nog tú ikki longur ynskir at broyta tað, so skal tú síggja burtur frá hesum boðunum og halda fram við at brúka títt gamla loyniorð.",
-	"noemail": "Tað er ongin t-post adressa skrásett fyri brúkara \"$1\".",
 	"noemailcreate": "Tú mást geva eina galdandi t-post adressu",
 	"passwordsent": "Eitt nýtt loyniorð er sent til t-postadressuna,\nsum er skrásett fyri \"$1\".\nVinarliga rita inn eftir at tú hevur fingið hana.",
 	"blocked-mailpassword": "Tín IP adressa er stongd fyri at gera rættingar á síðum, og tí er tað ikki loyvt at brúka funkuna fyri endurskapan av loyniorði, hetta fyri at forða fyri misnýtslu.",

@@ -306,7 +306,6 @@
 	"mailmypassword": "Invia una noba paràura d'órdhini pa postha erettrònica",
 	"passwordremindertitle": "Saivvìziu promimória paràura d'órdhini di {{SITENAME}}",
 	"passwordremindertext": "Calchunu (cu' l'indirizzu IP $1) à dumandaddu l'inviu d'una noba paràura d'órdhini pa l'intradda a {{SITENAME}} ($4).\nLa paràura d'órdhini timpuranea pa l'utenti \"$2\" è isthadda impusthadda a \"$3\". E' opporthunu eseguì un'intradda cantu primma e ciambà la paràura d'órdhini immediatamenti. La paràura d'órdhini timpuranea sarà cancillada in {{PLURAL:$5|unu gionnu|$5 gionni}}.\n\nSi nò sei isthaddu tu a fà la prigonta, oppuru ài acciapaddu la paràura d'órdhini e nò desideri più la ciambà, pói ignorà chisth'imbasciadda e continuà a usà la paràura d'órdhini véccia.",
-	"noemail": "Nisciunu indirizzu di postha erettrònica registhraddu pa l'utenti \"$1\".",
 	"passwordsent": "Una noba paràura d'órdhini è isthadda inviadda a l'indirizzu di postha erettrònica registhraddu pa l'utenti \"$1\".\nPa piazeri, effettua una intradda nò appèna la rizzibi.",
 	"blocked-mailpassword": "Pa pribinì abusi, nò è cunsintiddu usà la funzioni \"Invia noba paràura d'órdhini\" da un indirizzu IP broccaddu.",
 	"eauthentsent": "Un'e-mail di cunfèimma è insthadda inviadda a l'indirizzu email fruniddu. Pa abirità l'inviu d'email pa chistha registhrazioni è nezzessàriu sighì l'isthruzioni indicaddi in l'email pa cunfèimmà d'assé lu legìttimu titurari di l'indirizzu.",
@@ -1525,17 +1524,5 @@
 	"skin-action-protect": "Brocca",
 	"skin-action-undelete": "Non canzellà",
 	"skin-action-delete": "Canzella",
-	"skin-action-move": "Ippustha",
-	"interwiki": "Vidè e mudifiggà li dati interwiki",
-	"interwiki-title-norights": "Vidé li dati interwiki",
-	"interwiki_prefix": "Prefissu",
-	"interwiki-prefix-label": "Prefissu:",
-	"interwiki_1": "si",
-	"interwiki_0": "no",
-	"interwiki_edit": "Mudifiggà",
-	"interwiki_reasonfield": "Rasgioni",
-	"interwiki_deleting": "Sei canzillendhi lu prefissu \"$1\".",
-	"interwiki_addtext": "Aggiungi un prefissu interwiki (prefissu di linga)",
-	"interwiki_addbutton": "Aggiungì",
-	"log-name-interwiki": "Rigisthru di la table interwiki"
+	"skin-action-move": "Ippustha"
 }

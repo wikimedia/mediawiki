@@ -265,7 +265,6 @@
 	"wrongpasswordempty": "Hakahaka ka ʻōlelo hūnā.\nE ʻoluʻolu, e hana hou.",
 	"mailmypassword": "Kāinoa hou i ka ʻōlelo hūnā",
 	"passwordremindertitle": "He 'ōlelo hūnā kūikawā no {{SITENAME}}",
-	"noemail": "Loaʻa ʻole kekahi wahinoho lekauila  no ka mea hoʻohana ʻo \"$1\".",
 	"noemailcreate": "Pono ʻoe i kekahi wahinoho lekauila maikaʻi.",
 	"passwordsent": "Ua hoʻouna ʻia kekahi ʻōlelo hūnā hou i ka lekauila i loaʻa ʻia no \"$1\".\nE ʻoluʻolu, e ʻeʻe hou ma hope o ka loaʻa ʻana.",
 	"mailerror": "He hewa me ka hoʻouna leka ana: $1",
@@ -978,8 +977,5 @@
 	"skin-action-protect": "Hoʻomalu",
 	"skin-action-undelete": "Holoiʻole",
 	"skin-action-delete": "Holoi",
-	"skin-action-move": "E hoʻoneʻe",
-	"interwiki_edit": "Hoʻololi",
-	"interwiki_reasonfield": "Kumu:",
-	"interwiki_addbutton": "Ho‘ohui"
+	"skin-action-move": "E hoʻoneʻe"
 }

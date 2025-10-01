@@ -311,7 +311,6 @@
 	"wrongpasswordempty": "Bi̍t-bé keh-á khang-khang. Chhiáⁿ têng chhì.",
 	"mailmypassword": "Têng siat bi̍t-bé",
 	"passwordremindertitle": "{{SITENAME}} the-chheN li e bit-be",
-	"noemail": "Kì-lo̍k bô iōng-chiá \"$1\" ê e-mail chū-chí.",
 	"noemailcreate": "Lí ài thê-kiong ha̍p-lí ê tiān-chú-phoe chū-chí.",
 	"passwordsent": "Ū kià sin bi̍t-bé khì \"$1\" chù-chheh ê e-mail chū-chí. Siu--tio̍h liáu-āu chhiáⁿ têng teng-ji̍p.",
 	"mailerror": "Kià phoe tú tio̍h chhò-gō·: $1",

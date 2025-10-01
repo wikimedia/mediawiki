@@ -180,7 +180,6 @@
 	"mailmypassword": "Gönder bana e-maillän eni bir parol",
 	"passwordremindertitle": "{{SITENAME}} saytından parol hatırlatıcısı.",
 	"passwordremindertext": "$1 IP adresinnän (beki siz) istendi {{SERVERNAME}} için eni bir {{SITENAME}} ($4) parolu göndermää.\n\"$2\" nikli kullanıcının eni parolu: \"$3\"\nLäazım sessiya açmaa hem parolu diiştirmää.\n\nHerliim istemeersiniz parolu diiştirmää, yaki vaz geçtiniz neçin ki parolu hatırladınız bu haberi ignor edin hem devam edin kullanmaa eski parolu.",
-	"noemail": "\"$1\" adlı kullanıcı için registrat olmuş e-mail adresi yok.",
 	"passwordsent": "\"$1\" adına registrat olmuş e-mail adresine eni bir parol gönderildi. Lütfen, läazım açmaa oturmaa ne zaman bunu aldınız.",
 	"blocked-mailpassword": "Neçin ki İP adresiniz kösteklendi, eni parol gönderilmäk işlemi yapılmêêr.",
 	"eauthentsent": "Registrat olunan adresa doorulamak kodlan e-mail gönderildi.\nO zamana kadar ani e-maildaki instrukțiyalar yapılmaycêk hem doorulanmaycêk ki o adres sizin, başka e-mail gönderilmeycek.",

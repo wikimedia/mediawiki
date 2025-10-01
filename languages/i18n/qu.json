@@ -300,7 +300,6 @@
 	"mailmypassword": "Yaykuna rimata kutichiy",
 	"passwordremindertitle": "{{SITENAME}}paq musuq mit'alla yaykuna rima",
 	"passwordremindertext": "Pipas (qamchiki, $1 IP huchhayuq tiyaymanta) mañakuwarqan {{SITENAME}}paq musuq yaykuna rimatam e-chaski imamaytaykiman kachayta ($4).\n\"$2\" sutiyuq ruraqpa mit'alla yaykuna rimanqa kamarisqañam, \"$3\" sutichasqam kachkan. Munarqaspaykiqa, kunan yaykuspa musuq yaykuna rimaykitam akllay.\nMit'alla yaykuna rimaykiqa kunanmanta {{PLURAL:$5|huk p'unchawpi|$5 p'unchawkunapi}} puchukanqa.\n\nHuk runa kay willayta mañakurqaptinqa icha yaykuna rimaykita hukchayta manaña munaspayki, kay willayta qhawarparispa ñawpaq yaykuna rimaykita llamk'arayachiytam atinki.",
-	"noemail": "Manam kanchu \"$1\" sutiyuq ruraqpa e-chaski imamaytan.",
 	"noemailcreate": "Chaniyuq e-chaski imamaytatam willanayki tiyan",
 	"passwordsent": "Musuq yaykuna rimaqa kachasqañam \"$1\" sutiyuq ruraqpa e-chaski imamaytanman.\nAma hina kaspa, chaskispaykiqa ruraqpa sutiykita nispa musuqmanta yaykuy.",
 	"blocked-mailpassword": "IP tiyayniykiqa hark'asqam, chayrayku manam saqillanchu yaykuna rimata musuqmanta chaskiyta, millay rurayta hark'anapaq.",

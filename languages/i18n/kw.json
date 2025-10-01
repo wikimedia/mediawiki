@@ -230,7 +230,6 @@
 	"mailmypassword": "Ebostya ger tremena nowyth",
 	"passwordremindertitle": "Ger-tremena nowyth rag {{SITENAME}}",
 	"passwordremindertext": "Nebonan (hwi martesen, dhyworth an drigva IP $1) a wovynnis ger tremena nowyth rag {{SITENAME}} ($4). Ger tremena anbarthus rag an devnydhyer\n\"$2\" re beu gwruthys hag a veu settyes dhe \"$3\". Mars o henna agas bodh, y fydh res dhywgh omgelmi ha dewis ger tremena nowyth lemmyn.\nAgas ger tremena anbarthus a dhiwedh yn {{PLURAL:$5|unn jydh|$5 dydh}}.\n\nMar kovynnis nebonan aral hemma, po hwi a'gas beus kov a'gas ger tremena ha ny'm beus hwans dh'y janjya namoy, hwi a yll skonya aswon an messach-ma ha pesya devnydhya agas ger tremena koth.",
-	"noemail": "Nyns eus trigva ebost rekordys rag an devnydhyer \"$1\".",
 	"noemailcreate": "Res yw dhywgh ri trigva ebost da",
 	"passwordsent": "Ger-tremena nowydh re beu danvenys dhe'n drigva ebost kovskrifys rag \"$1\".\nOmgelmewgh arta mar pleg wosa hwi dh'y dhegemeres.",
 	"invalidemailaddress": "Ny yllir alowa an drigva ebost drefen bos furvyans drog dhedhi.\nEntrewgh trigva da y furvyans po gwakhewgh an furvlen-na.",

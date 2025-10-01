@@ -234,7 +234,6 @@
 	"mailmypassword": "Passwurt zuricksetza",
 	"passwordremindertitle": "Neues Passwurt fier a {{SITENAME}}-Benutzerkonto",
 	"passwordremindertext": "Jemand miet dar IP-Atresse $1, woahrscheinlich du selbst, hoot  neues Poaßwurt fier de Oameldung bei {{SITENAME}} ($4) oagefurdert.\n\nDoas automatisch generierte Poaßwurt fier Nutzer „$2“ lautet nun: $3\n\nFoalls du dies wirklich gewienscht host, sulltest du diech jitz oamelden und doas Poaßwurt ändern.\nDoas neue Poaßwurt ies {{PLURAL:$5|1 Tag|$5 Tage}} giltig.\n\nBitte ignoriere diese E-Mail, foalls du se ne selbst oagefurdert host. Doas aale Poaßwurt bleit wetterhien giltig.",
-	"noemail": "Nutzer „$1“ hoot keene E-Mail-Atresse oagegahn.",
 	"noemailcreate": "Du mußt anne giltige E-Mail-Atresse oagahn",
 	"passwordsent": "A neues, temporäres Poaßwurt wurde oa de E-Mail-Atresse vu Nutzer „$1“ gesandt.\nBitte melde diech damit oa, subald du is erhalten host. Doas aale Poaßwurt bleit wetterhien giltig.",
 	"blocked-mailpassword": "De vu dir verwendete IP-Atresse ies fier doas Ändern vu Seyta gesperrt. Im an'n Missbrauch zu verhindern, wurde de Meeglichkeet zer Oaforderung annes neua Poaßwurtes ebenfoalls gesperrt.",

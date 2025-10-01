@@ -82,7 +82,6 @@
 	"nosuchuser": "Der Benutzername «$1» existiert nicht.\nÜberprüfe die Schreibweise (Gross-/Kleinschreibung beachten) oder [[Special:CreateAccount|melde dich als neuer Benutzer an]].",
 	"nosuchusershort": "Der Benutzername «$1» ist nicht vorhanden. Bitte überprüfe die Schreibweise.",
 	"passwordremindertext": "Jemand mit der IP-Adresse $1, wahrscheinlich du selbst, hat ein neues Passwort für die Anmeldung bei {{SITENAME}} ($4) angefordert.\n\nDas automatisch generierte Passwort für Benutzer «$2» lautet nun: $3\n\nFalls du dies wirklich gewünscht hast, solltest du dich jetzt anmelden und das Passwort ändern.\nDas neue Passwort ist {{PLURAL:$5|1 Tag|$5 Tage}} gültig.\n\nBitte ignoriere dieses E-Mail, falls du es nicht selbst angefordert hast. Das alte Passwort bleibt weiterhin gültig.",
-	"noemail": "{{GENDER:$1|Benutzer|Benutzerin|Benutzer}} «$1» hat keine E-Mail-Adresse angegeben.",
 	"passwordsent": "Ein neues, temporäres Passwort wurde an die E-Mail-Adresse von Benutzer «$1» gesandt.\nBitte melde dich damit an, sobald du es erhalten hast. Das alte Passwort bleibt weiterhin gültig.",
 	"eauthentsent": "Ein Bestätigungs-E-Mail wurde an die angegebene Adresse verschickt.\n\nBevor ein E-Mail von anderen Benutzern über die E-Mail-Funktion empfangen werden kann, muss die Adresse und ihre tatsächliche Zugehörigkeit zu diesem Benutzerkonto erst bestätigt werden. Bitte befolge die Hinweise im Bestätigungs-E-Mail.",
 	"throttled-mailpassword": "Es wurde innerhalb der letzten {{PLURAL:$1|Stunde|$1 Stunden}} bereits ein Passwortzurücksetzungs-E-Mail angefordert. Um einen Missbrauch der Funktion zu verhindern, kann nur {{PLURAL:$1|einmal pro Stunde|alle $1 Stunden}} ein Passwortzurücksetzungs-E-Mail angefordert werden.",
@@ -329,6 +328,5 @@
 	"api-error-unknown-warning": "Unbekannte Warnung: «$1»",
 	"api-error-unknownerror": "Unbekannter Fehler: «$1»",
 	"specialmute-email-footer": "Um Deine E-Mail Einstellungen für {{BIDI:$2}} zu verwalten, besuche bitte <$1>.",
-	"nstab-mainpage": "Hauptseite",
-	"interwiki_addintro": "Du fügst ein neues Interwikipräfix hinzu. Beachte, dass es keinen Leerschlag ( ), Et-Zeichen (&), Gleichheitszeichen (=) und keinen Doppelpunkt (:) enthalten darf."
+	"nstab-mainpage": "Hauptseite"
 }
