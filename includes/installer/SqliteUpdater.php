@@ -104,7 +104,7 @@ class SqliteUpdater extends DatabaseUpdater {
 			[ 'addIndex', 'categorylinks', 'cl_timestamp_id', 'patch-categorylinks-cl_timestamp_id.sql' ],
 			[ 'migrateCategorylinks' ],
 			[ 'normalizeCollation' ],
-			[ 'addIndex', 'categorylinks', 'cl_pkey', 'patch-categorylinks-pk.sql' ],
+			[ 'modifyPrimaryKey', 'categorylinks', [ 'cl_from', 'cl_target_id' ], 'patch-categorylinks-pk.sql' ],
 			[ 'addIndex', 'recentchanges', 'rc_source_name_timestamp',
 				'patch-recentchanges-rc_source_name_timestamp.sql' ],
 			[ 'addIndex', 'recentchanges', 'rc_name_source_patrolled_timestamp',

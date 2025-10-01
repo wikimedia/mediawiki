@@ -219,6 +219,11 @@ class DatabaseTestHelper extends Database {
 	}
 
 	/** @inheritDoc */
+	public function getPrimaryKeyColumns( $table, $fname = __METHOD__ ) {
+		return [];
+	}
+
+	/** @inheritDoc */
 	public function getSoftwareLink() {
 		return 'test';
 	}

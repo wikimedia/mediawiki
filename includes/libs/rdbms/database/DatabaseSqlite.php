@@ -511,6 +511,29 @@ class DatabaseSqlite extends Database {
 	}
 
 	/** @inheritDoc */
+	public function getPrimaryKeyColumns( $table, $fname = __METHOD__ ) {
+		$components = $this->platform->qualifiedTableComponents( $table );
+		$tableRaw = end( $components );
+		$query = new Query(
+			'PRAGMA table_info(' . $this->addQuotes( $tableRaw ) . ')',
+			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE,
+			'PRAGMA'
+		);
+		$res = $this->query( $query, $fname );
+
+		$pkBySeq = [];
+		foreach ( $res as $row ) {
+			if ( isset( $row->pk ) && (int)$row->pk > 0 ) {
+				$pkBySeq[(int)$row->pk] = (string)$row->name;
+			}
+		}
+
+		ksort( $pkBySeq );
+
+		return array_values( $pkBySeq );
+	}
+
+	/** @inheritDoc */
 	public function replace( $table, $uniqueKeys, $rows, $fname = __METHOD__ ) {
 		$this->platform->normalizeUpsertParams( $uniqueKeys, $rows );
 		if ( !$rows ) {

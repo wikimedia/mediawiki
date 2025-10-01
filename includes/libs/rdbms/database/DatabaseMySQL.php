@@ -375,6 +375,27 @@ class DatabaseMySQL extends Database {
 		return false;
 	}
 
+	/** @inheritDoc */
+	public function getPrimaryKeyColumns( $table, $fname = __METHOD__ ) {
+		$query = new Query(
+			'SHOW INDEX FROM ' . $this->tableName( $table ),
+			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE,
+			'SHOW'
+		);
+		$res = $this->query( $query, $fname );
+
+		$bySeq = [];
+		foreach ( $res as $row ) {
+			if ( $row->Key_name === 'PRIMARY' ) {
+				$bySeq[(int)$row->Seq_in_index] = (string)$row->Column_name;
+			}
+		}
+
+		ksort( $bySeq );
+
+		return array_values( $bySeq );
+	}
+
 	/**
 	 * @param string $s
 	 * @return string

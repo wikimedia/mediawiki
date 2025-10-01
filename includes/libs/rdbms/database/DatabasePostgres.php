@@ -340,6 +340,24 @@ class DatabasePostgres extends Database {
 	}
 
 	/** @inheritDoc */
+	public function getPrimaryKeyColumns( $table, $fname = __METHOD__ ) {
+		$components = $this->platform->qualifiedTableComponents( $table );
+		$tableComponent = end( $components );
+
+		$pkIndexName = $tableComponent . '_pkey';
+		$attrs = $this->indexAttributes( $pkIndexName );
+		if ( is_array( $attrs ) && $attrs ) {
+			$cols = [];
+			foreach ( $attrs as $a ) {
+				$cols[] = (string)$a[0];
+			}
+			return $cols;
+		}
+
+		return [];
+	}
+
+	/** @inheritDoc */
 	public function indexAttributes( $index, $schema = false ) {
 		if ( $schema === false ) {
 			$schemas = $this->getCoreSchemas();

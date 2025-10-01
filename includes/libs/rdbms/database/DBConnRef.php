@@ -439,6 +439,11 @@ class DBConnRef implements Stringable, IMaintainableDatabase, IDatabaseForOwner 
 	}
 
 	/** @inheritDoc */
+	public function getPrimaryKeyColumns( $table, $fname = __METHOD__ ) {
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
+	/** @inheritDoc */
 	public function tableExists( $table, $fname = __METHOD__ ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}

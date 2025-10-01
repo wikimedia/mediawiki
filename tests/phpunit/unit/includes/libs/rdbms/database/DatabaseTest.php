@@ -453,6 +453,7 @@ class DatabaseTest extends TestCase {
 			'getServerVersion',
 			'getType',
 			'indexInfo',
+			'getPrimaryKeyColumns',
 			'insertId',
 			'lastError',
 			'lastErrno',

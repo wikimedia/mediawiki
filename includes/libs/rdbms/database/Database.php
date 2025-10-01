@@ -1496,6 +1496,9 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		return $info ? $info['unique'] : null;
 	}
 
+	/** @inheritDoc */
+	abstract public function getPrimaryKeyColumns( $table, $fname = __METHOD__ );
+
 	/**
 	 * Get information about an index into an object
 	 *

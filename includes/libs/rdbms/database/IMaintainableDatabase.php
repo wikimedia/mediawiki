@@ -190,4 +190,16 @@ interface IMaintainableDatabase extends IDatabase {
 	 * @throws DBError If an error occurs, {@see query}
 	 */
 	public function tableExists( $table, $fname = __METHOD__ );
+
+	/**
+	 * Get the primary key columns of a table
+	 *
+	 * @internal to be used by updater only
+	 *
+	 * @param string $table The unqualified name of a table
+	 * @param string $fname Calling function name @phan-mandatory-param
+	 * @return string[]
+	 * @throws DBError If an error occurs, {@see query}
+	 */
+	public function getPrimaryKeyColumns( $table, $fname = __METHOD__ );
 }

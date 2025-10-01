@@ -1028,6 +1028,39 @@ abstract class DatabaseUpdater {
 	}
 
 	/**
+	 * Modify or set a PRIMARY KEY on a table.
+	 *
+	 * This checks the current table schema via the database layer to determine the existing
+	 * PRIMARY KEY columns. If they already match the requested set, the patch is skipped;
+	 * otherwise the supplied patch is applied.
+	 *
+	 * @param string $table Table name
+	 * @param string[] $columns Desired PRIMARY KEY columns in order
+	 * @param string $patch SQL patch path
+	 * @param bool $fullpath Whether $patch is a full path
+	 * @return bool False if the patch was skipped because schema changes are skipped
+	 */
+	protected function modifyPrimaryKey( $table, array $columns, $patch, $fullpath = false ) {
+		if ( !$this->doTable( $table ) ) {
+			return true;
+		}
+
+		if ( !$this->db->tableExists( $table, __METHOD__ ) ) {
+			$this->output( "...skipping: '$table' table doesn't exist yet.\n" );
+			return true;
+		}
+
+		// Compare desired PK to current PK columns from the DB layer
+		$current = $this->db->getPrimaryKeyColumns( $table, __METHOD__ );
+		if ( $current === array_values( $columns ) ) {
+			$this->output( "...primary key already set on $table table.\n" );
+			return true;
+		}
+
+		return $this->applyPatch( $patch, $fullpath, "Modifying primary key on table $table" );
+	}
+
+	/**
 	 * Modify an existing table, similar to modifyField. Intended for changes that
 	 *  touch more than one column on a table.
 	 *

@@ -99,6 +99,11 @@ class MockDatabase extends Database {
 	}
 
 	/** @inheritDoc */
+	public function getPrimaryKeyColumns( $table, $fname = __METHOD__ ) {
+		return [];
+	}
+
+	/** @inheritDoc */
 	protected function lastInsertId() {
 		return $this->nextInsertId++;
 	}
