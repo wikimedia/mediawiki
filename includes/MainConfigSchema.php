@@ -7623,7 +7623,7 @@ class MainConfigSchema {
 	 * Conditional defaults for user options
 	 *
 	 * Map of user options to conditional defaults descriptors, which is an array
-	 * of conditional cases [ VALUE, CONDITION1, CONDITION2 ], where VALUE is the default value for
+	 * of conditional cases [ VALUE, CONDITION1, CONDITION2, ... ], where VALUE is the default value for
 	 * all users that meet ALL conditions, and each CONDITION is either a:
 	 *     (a) a CUDCOND_* constant (when condition does not take any arguments), or
 	 *     (b) an array [ CUDCOND_*, argument1, argument1, ... ] (when chosen condition takes at

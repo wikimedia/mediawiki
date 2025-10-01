@@ -98,6 +98,10 @@
 					"description": "If supplied and non-empty, the named services are requested from the service container and appended after 'services' if the services are available; null is passed if the services are not available."
 				}
 			}
+		},
+		"UserOptionValue": {
+			"type": [ "string", "number", "boolean", "null" ],
+			"description": "The value of a user option"
 		}
 	},
 	"type": "object",
@@ -1361,11 +1365,42 @@
 		},
 		"DefaultUserOptions": {
 			"type": "object",
-			"description": "Default values of user options"
+			"description": "Default values of user options",
+			"additionalProperties": { "$ref": "#/definitions/UserOptionValue" }
 		},
 		"ConditionalUserOptions": {
 			"type": "object",
-			"description": "Conditional defaults of user options"
+			"description": "Conditional defaults of user options.",
+			"additionalProperties": {
+				"type": "array",
+				"description": "Array whose first element is the value to set the option to if all conditions are met, and subsequent elements are conditions: [ VALUE, CONDITION1, CONDITION2, ... ]",
+				"minItems": 1,
+				"items": {
+					"type": "array",
+					"description": "The default value, followed by conditions.",
+					"minItems": 1,
+					"items": [ { "$ref": "#/definitions/UserOptionValue" } ],
+					"additionalItems": {
+						"description": "Conditions that must be met for the default value to apply.",
+						"oneOf": [
+							{
+								"type": "string",
+								"description": "A condition constant (without any arguments)"
+							},
+							{
+								"type": "array",
+								"description": "A condition with arguments",
+								"minItems": 1,
+								"items": [ {
+									"type": "string",
+									"description": "A condition constant"
+								} ],
+								"additionalItems": {}
+							}
+						]
+					}
+				}
+			}
 		},
 		"HiddenPrefs": {
 			"type": "array",

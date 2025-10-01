@@ -61,8 +61,15 @@
 		"ext-nullable": null
 	},
 	"ConditionalUserOptions": {
-		"ext-conditional": [
-			[ true, [ "registered-after", "20240617000000" ] ]
+		"ext-conditional-1": [
+			[ "anon", "anonymous-user" ]
+		],
+		"ext-conditional-2": [
+			[ true, [ "custom-condition", "arg1", 2, 3, true, "arg4", [], {} ] ]
+		],
+		"ext-conditional-3": [
+			[ 1, [ "registered-after", "20240617000000" ] ],
+			[ 2, [ "registered-after", "20250719000000" ] ]
 		]
 	},
 	"HiddenPrefs": [ "hidden-pref1", "hidden-pref2" ],
