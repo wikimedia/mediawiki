@@ -59,8 +59,6 @@
 	"config-db-port": "Gátt gagnagrunns:",
 	"config-sqlite-dir": "Gagnamappa SQLite:",
 	"config-type-mysql": "MariaDB, MySQL, eða samhæft",
-	"config-type-postgres": "PostgreSQL",
-	"config-type-sqlite": "SQLite",
 	"config-header-mysql": "Stillingar MariaDB/MySQL",
 	"config-header-postgres": "Stillingar PostgreSQL",
 	"config-header-sqlite": "Stillingar SQLite",

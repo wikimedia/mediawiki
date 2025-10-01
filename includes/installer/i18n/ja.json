@@ -137,8 +137,6 @@
 	"config-sqlite-dir": "SQLite データ ディレクトリ:",
 	"config-sqlite-dir-help": "SQLite は単一のファイル内にすべてのデータを格納しています。\n\n指定したディレクトリは、インストール時にウェブ サーバーが書き込めるようにしておく必要があります。\n\nこのディレクトリはウェブからアクセス<strong>不可能</strong>である必要があります。PHP ファイルがある場所には配置できないのはこのためです。\n\nインストーラーは <code>.htaccess</code> ファイルにも書き込みます。しかし、これが失敗した場合は、誰かが生のデータベースにアクセスできてしまいます。\nデータベースは、生のデータ (メールアドレス、パスワードのハッシュ値) の他、削除された版、その他ウィキ上の制限されているデータを含んでいます。\n\n例えば <code>/var/lib/mediawiki/yourwiki</code> のように、別の場所にデータベースを配置することを検討してください。",
 	"config-type-mysql": "MariaDB、MySQLまたは互換製品",
-	"config-type-postgres": "PostgreSQL",
-	"config-type-sqlite": "SQLite",
 	"config-support-info": "MediaWiki は以下のデータベース システムに対応しています:\n\n$1\n\n使用しようとしているデータベース システムが下記の一覧にない場合は、上記リンク先の手順に従ってインストールしてください。",
 	"config-dbsupport-mysql": "* [{{int:version-db-mariadb-url}} MariaDB]はMediaWikiの主要な対象であり、最もよくサポートされています。MediaWikiはMariaDBと互換性のある[{{int:version-db-mysql-url}} MySQL]、[{{int:version-db-percona-url}} Percona Server]でも動きます。 ([https://www.php.net/manual/ja/mysqli.installation.php PHPをMySQLサポート付きでコンパイルする方法])",
 	"config-dbsupport-postgres": "* [{{int:version-db-postgres-url}} PostgreSQL] は、MySQLの代替として人気があるオープンソースのデータベースシステムです。([https://www.php.net/manual/en/pgsql.installation.php PHPをPostgreSQLサポート付きでコンパイルする方法])",

@@ -42,8 +42,6 @@
 	"config-db-port": "Porte d'u database:",
 	"config-db-schema": "Scheme pe MediaUicchi (none trattine):",
 	"config-type-mysql": "MariaDFB, MySQL, o combatibbile",
-	"config-type-postgres": "PostgreSQL",
-	"config-type-sqlite": "SQLite",
 	"config-header-mysql": "'Mbostaziune de MariaDB/MySQL",
 	"config-header-postgres": "'Mbostaziune de PostgreSQL",
 	"config-header-sqlite": "'Mbostaziune de SQLite",

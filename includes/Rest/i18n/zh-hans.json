@@ -21,7 +21,8 @@
 			"WaitSpring",
 			"Kcx36",
 			"Peterxy12",
-			"范"
+			"范",
+			"Libamidi"
 		]
 	},
 	"rest-prefix-mismatch": "请求的路径（$1）不在REST API基本路径（$2）中",
@@ -149,7 +150,7 @@
 	"rest-param-desc-compare-to-section-offset": "wikitext 中该部分开始的字节偏移量",
 	"rest-param-desc-compare-diff": "修订版本之间的差异",
 	"rest-param-desc-language-links-title": "Wiki页面标题",
-	"rest-param-desc-media-links-title": "文件标题",
+	"rest-param-desc-media-links-title": "页面标题",
 	"rest-param-desc-media-file-title": "文件标题",
 	"rest-param-desc-media-description-url": "描述文件的页面 URL，包括许可证信息和其他元数据",
 	"rest-param-desc-media-latest": "有关文件最新修订版的信息",
@@ -162,8 +163,8 @@
 	"rest-param-desc-media-height": "建议的最大图像宽度（以像素为单位）或如果不可用则为空",
 	"rest-param-desc-media-duration": "视频、音频或多媒体文件的长度，其他媒体类型为空",
 	"rest-param-desc-media-url": "下载文件的 URL",
-	"rest-param-desc-media-original": "原始文件详细信息",
-	"rest-param-desc-media-thumbnail": "缩略图信息",
+	"rest-param-desc-media-original": "有关文件原始格式的信息",
+	"rest-param-desc-media-thumbnail": "有关文件缩略图格式的信息",
 	"rest-param-desc-media-links-array": "页面上使用的媒体数组",
 	"rest-param-desc-module-spec-module": "模块规范模块",
 	"rest-param-desc-module-spec-version": "模块规范版本",

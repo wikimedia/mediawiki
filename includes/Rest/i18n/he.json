@@ -123,7 +123,7 @@
 	"rest-param-desc-compare-from-slotrole": "תפקיד עבור המשבצת המושווית (כרגע תמיד \"main\")",
 	"rest-param-desc-compare-from-sections": "פרקי הקדם־מעבד עבור הגרסה, ללא הרחבת תבנית",
 	"rest-param-desc-compare-from-section-level": "רמת הפרק",
-	"rest-param-desc-compare-from-section-heading": "כותרת הפרק, למשל 1 עבור <h1>",
+	"rest-param-desc-compare-from-section-heading": "כותרת פרק, למשל 1 עבור <h1>",
 	"rest-param-desc-compare-from-section-offset": "היסט בבתים בתוך קוד הוויקי שהפרק מתחיל בו",
 	"rest-param-desc-compare-to": "מזהה גרסה להשוואה לבסיס",
 	"rest-param-desc-compare-to-id": "מזהה גרסה עבור גרסת ה־to",

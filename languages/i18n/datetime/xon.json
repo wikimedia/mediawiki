@@ -3,7 +3,8 @@
 		"authors": [
 			"Abdul Fatawu 352",
 			"WUMBEI ALBERT",
-			"Hasslaebetch"
+			"Hasslaebetch",
+			"Yakubu Hami"
 		]
 	},
 	"january": "Chɔnɔnyam",
@@ -55,5 +56,6 @@
 	"thu": "Alh",
 	"fri": "Jum",
 	"sat": "Sib",
-	"sun": "Lidaan"
+	"sun": "Lidaan",
+	"duration-days": "$1 {{PLURAL:$1|dɛŋa|dɛŋa naŋa}}"
 }

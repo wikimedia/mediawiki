@@ -127,8 +127,6 @@
 	"config-sqlite-dir": "SQLiten datahakemisto:",
 	"config-sqlite-dir-help": "SQLite tallentaa kaiken sisällön yhteen tiedostoon.\n\nPalvelimen pitää pystyä kirjoittamaan tietoa hakemistoon asennuksen aikana.\n\nHakemiston <strong>ei</strong> tulisi olla nähtävissä www-selaimella. Siksi hakemisto on eri kuin missä PHP-tiedostot sijaitsevat.\n\nAsennusohjelma luo <code>.htaccess</code>-tiedoston, mutta jos sen luomisessa ilmenee ongelmia joku voi päästä käsiksi tietokantaasi. \nTietokannassa on kaikki sähköpostiosoitteet, salasanat, poistetut versiot ja kaikki muu tieto, joka ei näy wikissä.\n\nSuosittelemme tallentamaan tietokannan eri hakemistoon, esimerkiksi <code>/var/lib/mediawiki/yourwiki</code>.",
 	"config-type-mysql": "MariaDB, MySQL tai yhteensopiva",
-	"config-type-postgres": "PostgreSQL",
-	"config-type-sqlite": "SQLite",
 	"config-support-info": "MediaWiki tukee seuraavia tietokantajärjestelmiä:\n\n$1\n\nJos et näe tietokantajärjestelmää, jota yrität käyttää, listattuna alhaalla, seuraa yläpuolella olevia ohjeita tuen aktivoimiseksi.",
 	"config-dbsupport-mysql": "* [{{int:version-db-mariadb-url}} MariaDB] on MediaWikin ensisijainen kohde ja se on myös parhaiten tuettu. MediaWiki voi myös käyttää [{{int:version-db-mysql-url}} MySQL]- sekä [{{int:version-db-percona-url}} Percona Server] -järjestelmiä, jotka ovat MariaDB-yhteensopivia. ([https://www.php.net/manual/en/mysqli.installation.php Miten PHP käännetään MySQL-tuella])",
 	"config-dbsupport-postgres": "* [{{int:version-db-postgres-url}} PostgreSQL] on suosittu avoimen lähdekoodin tietokantajärjestelmä vaihtoehtona MySQL:lle. ([https://www.php.net/manual/en/pgsql.installation.php Miten PHP käännetään PostgreSQL-tuella])",

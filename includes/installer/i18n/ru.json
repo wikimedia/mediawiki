@@ -137,8 +137,6 @@
 	"config-sqlite-dir": "Директория данных SQLite:",
 	"config-sqlite-dir-help": "SQLite хранит все данные в одном файле.\n\nДиректория, указываемая вами, должна быть доступна для записи веб-сервером во время установки.\n\nОна <strong>не должна</strong> быть доступна через Интернет, поэтому не должна совпадать с той, где хранятся PHP файлы.\n\nУстановщик запишет в эту директорию файл <code>.htaccess</code>, но если это не сработает, кто-нибудь может получить доступ ко всей базе данных.\nВ этой базе находится в том числе и информация о пользователях (адреса электронной почты, хэши паролей), а также удалённые страницы и другие секретные данные о вики.\n\nПо возможности, расположите базу данных где-нибудь в стороне, например, в <code>/var/lib/mediawiki/yourwiki</code>.",
 	"config-type-mysql": "MariaDB, MySQL или совместимая",
-	"config-type-postgres": "PostgreSQL",
-	"config-type-sqlite": "SQLite",
 	"config-support-info": "MediaWiki поддерживает следующие СУБД:\n\n$1\n\nЕсли вы не видите своей системы хранения данных в этом списке, следуйте инструкциям, на которые есть ссылка выше, чтобы получить поддержку.",
 	"config-dbsupport-mysql": "* [{{int:version-db-mysql-url}} MySQL] — основная база данных для MediaWiki, которая поддерживается лучше всего. MediaWiki также работает с [{{int:version-db-mariadb-url}} MariaDB] и [{{int:version-db-percona-url}} Percona Server], которые являются MariaDB-совместимыми. (См.[https://www.php.net/manual/ru/mysql.installation.php Как собрать PHP с поддержкой MySQL])",
 	"config-dbsupport-postgres": "* [{{int:version-db-postgres-url}} PostgreSQL] — популярная СУБД с открытым исходным кодом, альтернатива MySQL. ([https://www.php.net/manual/ru/pgsql.installation.php Как собрать PHP с поддержкой PostgreSQL]).",

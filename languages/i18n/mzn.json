@@ -601,7 +601,6 @@
 	"userrights-lookup-user": "اتا کارورِ انتخاب",
 	"userrights-user-editname": "اتا کاروری نوم وارد هاکنین:",
 	"userrights-groupsmember": "عضوِ:",
-	"userrights-groupsmember-type": "$1",
 	"userrights-reason": "دلیل:",
 	"userrights-irreversible-marker": "$1*",
 	"userrights-no-shorten-expiry-marker": "$1#",

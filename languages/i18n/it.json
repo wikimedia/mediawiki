@@ -2682,6 +2682,7 @@
 	"blocklist-tempblocks": "Nascondi blocchi temporanei",
 	"blocklist-indefblocks": "Nascondi blocchi infiniti",
 	"blocklist-addressblocks": "Nascondi blocchi di un solo IP",
+	"blocklist-tempuserblocks": "Nascondi blocchi delle utenze temporanee",
 	"blocklist-type": "Tipo:",
 	"blocklist-type-header": "Tipo",
 	"blocklist-actions-header": "Azioni",
