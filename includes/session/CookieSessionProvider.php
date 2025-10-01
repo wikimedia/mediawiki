@@ -580,6 +580,7 @@ class CookieSessionProvider extends SessionProvider {
 					'jti' => $data['jti'],
 					'expiry' => $softExpiry,
 					'expired_by' => ConvertibleTimestamp::time() - $softExpiry,
+					'subject' => $data['sub'],
 				] + $request->getSecurityLogContext( $expectedUser ) );
 			}
 		}
