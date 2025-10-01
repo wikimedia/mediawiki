@@ -591,7 +591,8 @@ class DatabaseMySQL extends Database {
 		// https://mariadb.com/kb/en/mariadb-error-codes/
 		// https://dev.mysql.com/doc/refman/8.0/en/client-error-reference.html
 		// https://dev.mysql.com/doc/mysql-errors/8.0/en/server-error-reference.html
-		return in_array( $errno, [ 3024, 2062, 1969, 1028 ], true );
+		// Note that 1969 is MariaDB specific and unused in MySQL.
+		return in_array( $errno, [ 3024, 1969, 1028 ], true );
 	}
 
 	/** @inheritDoc */
