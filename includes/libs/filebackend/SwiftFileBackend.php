@@ -34,6 +34,7 @@ use Wikimedia\AtEase\AtEase;
 use Wikimedia\FileBackend\FileIteration\SwiftFileBackendDirList;
 use Wikimedia\FileBackend\FileIteration\SwiftFileBackendFileList;
 use Wikimedia\FileBackend\FileOpHandle\SwiftFileOpHandle;
+use Wikimedia\FileBackend\FSFile\TempFSFile;
 use Wikimedia\Http\MultiHttpClient;
 use Wikimedia\MapCacheLRU\MapCacheLRU;
 use Wikimedia\ObjectCache\BagOStuff;
@@ -687,7 +688,7 @@ class SwiftFileBackend extends FileBackendStore {
 	/**
 	 * @inheritDoc
 	 */
-	protected function doPrepareInternal( $fullCont, $dir, array $params ) {
+	protected function doPrepareInternal( $fullCont, $dirRel, array $params ) {
 		$status = $this->newStatus();
 
 		// (a) Check if container already exists
@@ -707,7 +708,7 @@ class SwiftFileBackend extends FileBackendStore {
 	}
 
 	/** @inheritDoc */
-	protected function doSecureInternal( $fullCont, $dir, array $params ) {
+	protected function doSecureInternal( $fullCont, $dirRel, array $params ) {
 		$status = $this->newStatus();
 		if ( empty( $params['noAccess'] ) ) {
 			return $status; // nothing to do
@@ -734,7 +735,7 @@ class SwiftFileBackend extends FileBackendStore {
 	}
 
 	/** @inheritDoc */
-	protected function doPublishInternal( $fullCont, $dir, array $params ) {
+	protected function doPublishInternal( $fullCont, $dirRel, array $params ) {
 		$status = $this->newStatus();
 		if ( empty( $params['access'] ) ) {
 			return $status; // nothing to do
@@ -765,11 +766,11 @@ class SwiftFileBackend extends FileBackendStore {
 	}
 
 	/** @inheritDoc */
-	protected function doCleanInternal( $fullCont, $dir, array $params ) {
+	protected function doCleanInternal( $fullCont, $dirRel, array $params ) {
 		$status = $this->newStatus();
 
 		// Only containers themselves can be removed, all else is virtual
-		if ( $dir != '' ) {
+		if ( $dirRel != '' ) {
 			return $status; // nothing to do
 		}
 
@@ -937,8 +938,8 @@ class SwiftFileBackend extends FileBackendStore {
 	}
 
 	/** @inheritDoc */
-	protected function doDirectoryExists( $fullCont, $dir, array $params ) {
-		$prefix = ( $dir == '' ) ? null : "{$dir}/";
+	protected function doDirectoryExists( $fullCont, $dirRel, array $params ) {
+		$prefix = ( $dirRel == '' ) ? null : "{$dirRel}/";
 		$status = $this->objectListing( $fullCont, 'names', 1, null, $prefix );
 		if ( $status->isOK() ) {
 			return ( count( $status->value ) ) > 0;
@@ -950,23 +951,23 @@ class SwiftFileBackend extends FileBackendStore {
 	/**
 	 * @see FileBackendStore::getDirectoryListInternal()
 	 * @param string $fullCont
-	 * @param string $dir
+	 * @param string $dirRel
 	 * @param array $params
 	 * @return SwiftFileBackendDirList
 	 */
-	public function getDirectoryListInternal( $fullCont, $dir, array $params ) {
-		return new SwiftFileBackendDirList( $this, $fullCont, $dir, $params );
+	public function getDirectoryListInternal( $fullCont, $dirRel, array $params ) {
+		return new SwiftFileBackendDirList( $this, $fullCont, $dirRel, $params );
 	}
 
 	/**
 	 * @see FileBackendStore::getFileListInternal()
 	 * @param string $fullCont
-	 * @param string $dir
+	 * @param string $dirRel
 	 * @param array $params
 	 * @return SwiftFileBackendFileList
 	 */
-	public function getFileListInternal( $fullCont, $dir, array $params ) {
-		return new SwiftFileBackendFileList( $this, $fullCont, $dir, $params );
+	public function getFileListInternal( $fullCont, $dirRel, array $params ) {
+		return new SwiftFileBackendFileList( $this, $fullCont, $dirRel, $params );
 	}
 
 	/**
@@ -1524,7 +1525,7 @@ class SwiftFileBackend extends FileBackendStore {
 
 	/**
 	 * Get a Swift container stat map, possibly from process cache.
-	 * Use $reCache if the file count or byte count is needed.
+	 * Use $bypassCache if the file count or byte count is needed.
 	 *
 	 * @param string $container Container name
 	 * @param bool $bypassCache Bypass all caches and load from Swift

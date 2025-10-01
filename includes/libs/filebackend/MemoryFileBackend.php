@@ -216,8 +216,8 @@ class MemoryFileBackend extends FileBackendStore {
 	}
 
 	/** @inheritDoc */
-	protected function doDirectoryExists( $container, $dir, array $params ) {
-		$prefix = rtrim( "$container/$dir", '/' ) . '/';
+	protected function doDirectoryExists( $fullCont, $dirRel, array $params ) {
+		$prefix = rtrim( "$fullCont/$dirRel", '/' ) . '/';
 		foreach ( $this->files as $path => $data ) {
 			if ( str_starts_with( $path, $prefix ) ) {
 				return true;
@@ -228,9 +228,9 @@ class MemoryFileBackend extends FileBackendStore {
 	}
 
 	/** @inheritDoc */
-	public function getDirectoryListInternal( $container, $dir, array $params ) {
+	public function getDirectoryListInternal( $fullCont, $dirRel, array $params ) {
 		$dirs = [];
-		$prefix = rtrim( "$container/$dir", '/' ) . '/';
+		$prefix = rtrim( "$fullCont/$dirRel", '/' ) . '/';
 		$prefixLen = strlen( $prefix );
 		foreach ( $this->files as $path => $data ) {
 			if ( str_starts_with( $path, $prefix ) ) {
@@ -244,9 +244,9 @@ class MemoryFileBackend extends FileBackendStore {
 				} else {
 					$current = '';
 					foreach ( $parts as $part ) { // all directories
-						$dir = ( $current === '' ) ? $part : "$current/$part";
-						$dirs[$dir] = 1;
-						$current = $dir;
+						$dirRel = ( $current === '' ) ? $part : "$current/$part";
+						$dirs[$dirRel] = 1;
+						$current = $dirRel;
 					}
 				}
 			}
@@ -256,9 +256,9 @@ class MemoryFileBackend extends FileBackendStore {
 	}
 
 	/** @inheritDoc */
-	public function getFileListInternal( $container, $dir, array $params ) {
+	public function getFileListInternal( $fullCont, $dirRel, array $params ) {
 		$files = [];
-		$prefix = rtrim( "$container/$dir", '/' ) . '/';
+		$prefix = rtrim( "$fullCont/$dirRel", '/' ) . '/';
 		$prefixLen = strlen( $prefix );
 		foreach ( $this->files as $path => $data ) {
 			if ( str_starts_with( $path, $prefix ) ) {

@@ -516,12 +516,12 @@ abstract class FileBackendStore extends FileBackend {
 	/**
 	 * @see FileBackendStore::doPrepare()
 	 * @stable to override
-	 * @param string $container
-	 * @param string $dir
+	 * @param string $fullCont
+	 * @param string $dirRel
 	 * @param array $params
 	 * @return StatusValue Good status without value for success, fatal otherwise.
 	 */
-	protected function doPrepareInternal( $container, $dir, array $params ) {
+	protected function doPrepareInternal( $fullCont, $dirRel, array $params ) {
 		return $this->newStatus();
 	}
 
@@ -554,12 +554,12 @@ abstract class FileBackendStore extends FileBackend {
 	/**
 	 * @see FileBackendStore::doSecure()
 	 * @stable to override
-	 * @param string $container
-	 * @param string $dir
+	 * @param string $fullCont
+	 * @param string $dirRel
 	 * @param array $params
 	 * @return StatusValue Good status without value for success, fatal otherwise.
 	 */
-	protected function doSecureInternal( $container, $dir, array $params ) {
+	protected function doSecureInternal( $fullCont, $dirRel, array $params ) {
 		return $this->newStatus();
 	}
 
@@ -592,12 +592,12 @@ abstract class FileBackendStore extends FileBackend {
 	/**
 	 * @see FileBackendStore::doPublish()
 	 * @stable to override
-	 * @param string $container
-	 * @param string $dir
+	 * @param string $fullCont
+	 * @param string $dirRel
 	 * @param array $params
 	 * @return StatusValue
 	 */
-	protected function doPublishInternal( $container, $dir, array $params ) {
+	protected function doPublishInternal( $fullCont, $dirRel, array $params ) {
 		return $this->newStatus();
 	}
 
@@ -652,12 +652,12 @@ abstract class FileBackendStore extends FileBackend {
 	/**
 	 * @see FileBackendStore::doClean()
 	 * @stable to override
-	 * @param string $container
-	 * @param string $dir
+	 * @param string $fullCont
+	 * @param string $dirRel
 	 * @param array $params
 	 * @return StatusValue
 	 */
-	protected function doCleanInternal( $container, $dir, array $params ) {
+	protected function doCleanInternal( $fullCont, $dirRel, array $params ) {
 		return $this->newStatus();
 	}
 
@@ -1162,12 +1162,12 @@ abstract class FileBackendStore extends FileBackend {
 	/**
 	 * @see FileBackendStore::directoryExists()
 	 *
-	 * @param string $container Resolved container name
-	 * @param string $dir Resolved path relative to container
+	 * @param string $fullCont Resolved container name
+	 * @param string $dirRel Resolved path relative to container
 	 * @param array $params
 	 * @return bool|null
 	 */
-	abstract protected function doDirectoryExists( $container, $dir, array $params );
+	abstract protected function doDirectoryExists( $fullCont, $dirRel, array $params );
 
 	/** @inheritDoc */
 	final public function getDirectoryList( array $params ) {
@@ -1193,12 +1193,12 @@ abstract class FileBackendStore extends FileBackend {
 	 *
 	 * @see FileBackendStore::getDirectoryList()
 	 *
-	 * @param string $container Resolved container name
-	 * @param string $dir Resolved path relative to container
+	 * @param string $fullCont Resolved container name
+	 * @param string $dirRel Resolved path relative to container
 	 * @param array $params
 	 * @return Traversable|array|null Iterable list or null (error)
 	 */
-	abstract public function getDirectoryListInternal( $container, $dir, array $params );
+	abstract public function getDirectoryListInternal( $fullCont, $dirRel, array $params );
 
 	/** @inheritDoc */
 	final public function getFileList( array $params ) {
@@ -1224,12 +1224,12 @@ abstract class FileBackendStore extends FileBackend {
 	 *
 	 * @see FileBackendStore::getFileList()
 	 *
-	 * @param string $container Resolved container name
-	 * @param string $dir Resolved path relative to container
+	 * @param string $fullCont Resolved container name
+	 * @param string $dirRel Resolved path relative to container
 	 * @param array $params
 	 * @return Traversable|string[]|null Iterable list or null (error)
 	 */
-	abstract public function getFileListInternal( $container, $dir, array $params );
+	abstract public function getFileListInternal( $fullCont, $dirRel, array $params );
 
 	/**
 	 * Return a list of FileOp objects from a list of operations.
