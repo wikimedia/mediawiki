@@ -143,7 +143,7 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 	 * @return string The HTML of the fields
 	 */
 	private function buildReasonFields( string $userName ): string {
-		return Html::openElement( 'table', [ 'id' => 'mw-userrights-table-outer' ] ) .
+		$output = Html::openElement( 'table', [ 'id' => 'mw-userrights-table-outer' ] ) .
 			"<tr>
 				<td class='mw-label'>" .
 					Html::label( $this->msg( 'userrights-reason' )->text(), 'wpReason' ) .
@@ -167,15 +167,19 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 						Linker::tooltipAndAccesskeyAttribs( 'userrights-set' )
 					) .
 				"</td>
-			</tr>
-			<tr>
-				<td></td>
-				<td class='mw-input'>" .
-					Html::check( 'wpWatch', false, [ 'id' => 'wpWatch' ] ) .
-					'&nbsp;' . Html::label( $this->msg( 'userrights-watchuser' )->text(), 'wpWatch' ) .
-				"</td>
-			</tr>" .
-		Html::closeElement( 'table' );
+			</tr>";
+		if ( $this->supportsWatchUser() ) {
+			$output .= "<tr>
+					<td></td>
+					<td class='mw-input'>" .
+						Html::check( 'wpWatch', false, [ 'id' => 'wpWatch' ] ) .
+						'&nbsp;' . Html::label( $this->msg( 'userrights-watchuser' )->text(), 'wpWatch' ) .
+					"</td>
+				</tr>";
+		}
+		$output .= Html::closeElement( 'table' );
+
+		return $output;
 	}
 
 	/**
@@ -482,6 +486,13 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 	 * @return bool
 	 */
 	protected function canProcessExpiries() {
+		return true;
+	}
+
+	/**
+	 * Returns whether the "Watch user page" checkbox should be shown.
+	 */
+	protected function supportsWatchUser(): bool {
 		return true;
 	}
 }

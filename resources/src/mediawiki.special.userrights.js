@@ -11,10 +11,4 @@ $( () => {
 	} );
 
 	$( '#wpReason' ).codePointLimit( mw.config.get( 'wgCommentCodePointLimit' ) );
-
-	// Disable the watch field for cross-wiki userright changes
-	const userrightsInterwikiDelimiter = require( './config.json' ).UserrightsInterwikiDelimiter;
-	$( '#username' ).on( 'change', ( e ) => {
-		$( '#wpWatch' ).prop( 'disabled', e.target.value.includes( userrightsInterwikiDelimiter ) );
-	} ).trigger( 'change' );
 } );

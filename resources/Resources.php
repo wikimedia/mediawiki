@@ -2752,12 +2752,6 @@ return [
 		'remoteBasePath' => "$wgResourceBasePath/resources/src",
 		'packageFiles' => [
 			'mediawiki.special.userrights.js',
-			[
-				'name' => 'config.json',
-				'config' => [
-					MainConfigNames::UserrightsInterwikiDelimiter
-				],
-			],
 		],
 		'dependencies' => [
 			'mediawiki.notification.convertmessagebox',

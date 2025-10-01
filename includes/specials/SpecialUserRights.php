@@ -913,6 +913,12 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 		return $userName;
 	}
 
+	/** @inheritDoc */
+	protected function supportsWatchUser(): bool {
+		$user = $this->mFetchedUser;
+		return $user->getWikiId() === UserIdentity::LOCAL;
+	}
+
 	/**
 	 * Show a rights log fragment for the specified user
 	 *
