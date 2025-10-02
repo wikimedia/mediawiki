@@ -28,6 +28,7 @@ use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserGroupManagerFactory;
 use MediaWiki\User\UserGroupMembership;
+use MediaWiki\User\UserGroupsSpecialPageTarget;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
@@ -587,7 +588,8 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 		$user = $status->value;
 		'@phan-var UserIdentity $user';
 
-		$this->getOutput()->addHTML( $this->buildGroupsForm( $user->getName() ) );
+		$target = new UserGroupsSpecialPageTarget( $user->getName(), $user );
+		$this->getOutput()->addHTML( $this->buildGroupsForm( $target ) );
 
 		// This isn't really ideal logging behavior, but let's not hide the
 		// interwiki logs if we're using them as is.
@@ -711,9 +713,8 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 	}
 
 	/** @inheritDoc */
-	protected function makeConflictCheckKey(): string {
-		$user = $this->mFetchedUser;
-		return implode( ',', $this->userGroupManager->getUserGroups( $user ) );
+	protected function makeConflictCheckKey( UserGroupsSpecialPageTarget $target ): string {
+		return implode( ',', $this->userGroupManager->getUserGroups( $target->userObject ) );
 	}
 
 	/** @inheritDoc */
@@ -738,8 +739,8 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 	}
 
 	/** @inheritDoc */
-	protected function getCurrentUserGroupsText(): string {
-		$user = $this->mFetchedUser;
+	protected function getCurrentUserGroupsText( UserGroupsSpecialPageTarget $target ): string {
+		$user = $target->userObject;
 		$groupMemberships = $this->userGroupManager->getUserGroupMemberships( $user );
 		$list = $membersList = $tempList = $tempMembersList = [];
 		foreach ( $groupMemberships as $ugm ) {
@@ -814,8 +815,8 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 	}
 
 	/** @inheritDoc */
-	protected function getGroupMemberships(): array {
-		$memberships = $this->userGroupManager->getUserGroupMemberships( $this->mFetchedUser );
+	protected function getGroupMemberships( UserGroupsSpecialPageTarget $target ): array {
+		$memberships = $this->userGroupManager->getUserGroupMemberships( $target->userObject );
 		$result = [];
 
 		foreach ( $memberships as $ugm ) {
@@ -921,9 +922,8 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 	}
 
 	/** @inheritDoc */
-	protected function supportsWatchUser(): bool {
-		$user = $this->mFetchedUser;
-		return $user->getWikiId() === UserIdentity::LOCAL;
+	protected function supportsWatchUser( UserGroupsSpecialPageTarget $target ): bool {
+		return $target->userObject->getWikiId() === UserIdentity::LOCAL;
 	}
 
 	/**

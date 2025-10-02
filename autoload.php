@@ -3084,6 +3084,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\User\\UserGroupManager' => __DIR__ . '/includes/user/UserGroupManager.php',
 	'MediaWiki\\User\\UserGroupManagerFactory' => __DIR__ . '/includes/user/UserGroupManagerFactory.php',
 	'MediaWiki\\User\\UserGroupMembership' => __DIR__ . '/includes/user/UserGroupMembership.php',
+	'MediaWiki\\User\\UserGroupsSpecialPageTarget' => __DIR__ . '/includes/user/UserGroupsSpecialPageTarget.php',
 	'MediaWiki\\User\\UserIdentity' => __DIR__ . '/includes/user/UserIdentity.php',
 	'MediaWiki\\User\\UserIdentityLookup' => __DIR__ . '/includes/user/UserIdentityLookup.php',
 	'MediaWiki\\User\\UserIdentityUtils' => __DIR__ . '/includes/user/UserIdentityUtils.php',

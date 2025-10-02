@@ -24,6 +24,7 @@ use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Message\Message;
+use MediaWiki\User\UserGroupsSpecialPageTarget;
 use MediaWiki\Xml\XmlSelect;
 
 /**
@@ -36,10 +37,10 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 
 	/**
 	 * Builds the user groups form, either in view or edit mode.
-	 * @param string $targetName Username of the target user, used for {{GENDER:}}
+	 * @param UserGroupsSpecialPageTarget $target The target user
 	 * @return string The HTML of the form
 	 */
-	protected function buildGroupsForm( string $targetName ): string {
+	protected function buildGroupsForm( UserGroupsSpecialPageTarget $target ): string {
 		$groups = $this->prepareAvailableGroups();
 
 		$canChangeAny = array_any(
@@ -48,8 +49,8 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 		);
 
 		$formContent = $canChangeAny ?
-			$this->buildEditGroupsFormContent( $targetName, $groups ) :
-			$this->buildViewGroupsFormContent( $targetName );
+			$this->buildEditGroupsFormContent( $target, $groups ) :
+			$this->buildViewGroupsFormContent( $target );
 
 		$form = Html::rawElement(
 			'form',
@@ -66,52 +67,52 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 
 	/**
 	 * Builds the user groups form in view-only mode.
-	 * @param string $targetName Username of the target user, used for {{GENDER:}}
+	 * @param UserGroupsSpecialPageTarget $target The target user
 	 * @return string The HTML of the form
 	 */
-	private function buildViewGroupsFormContent( string $targetName ): string {
+	private function buildViewGroupsFormContent( UserGroupsSpecialPageTarget $target ): string {
 		$formContent =
 			Html::openElement( 'fieldset' ) .
 			Html::element(
 				'legend',
 				[],
-				$this->msg( 'userrights-viewusergroup', $targetName )->text()
+				$this->msg( 'userrights-viewusergroup', $target->userName )->text()
 			) .
 			$this->msg( 'viewinguserrights'	)->params(
 				wfEscapeWikiText( $this->getDisplayUsername() )
 			)->rawParams( $this->getTargetUserToolLinks() )->parse() .
-			$this->getCurrentUserGroupsText() .
+			$this->getCurrentUserGroupsText( $target ) .
 			Html::closeElement( 'fieldset' );
 		return $formContent;
 	}
 
 	/**
 	 * Builds the user groups form in edit mode.
-	 * @param string $targetName Username of the target user, used for {{GENDER:}}
+	 * @param UserGroupsSpecialPageTarget $target The target user
 	 * @param array $groups Prepared list of groups to show, {@see prepareAvailableGroups()}
 	 * @return string The HTML of the form
 	 */
-	private function buildEditGroupsFormContent( string $targetName, array $groups ): string {
+	private function buildEditGroupsFormContent( UserGroupsSpecialPageTarget $target, array $groups ): string {
 		$formContent =
 			Html::hidden( 'user', $this->getTargetDescriptor() ) .
 			Html::hidden( 'wpEditToken', $this->getUser()->getEditToken( $this->getTargetDescriptor() ) ) .
 			Html::hidden(
 				'conflictcheck-originalgroups',
-				$this->makeConflictCheckKey()
+				$this->makeConflictCheckKey( $target )
 			) .
 			Html::openElement( 'fieldset' ) .
 			Html::element(
 				'legend',
 				[],
-				$this->msg( 'userrights-editusergroup',	$targetName )->text()
+				$this->msg( 'userrights-editusergroup',	$target->userName )->text()
 			) .
 			$this->msg( 'editinguser' )->params(
 				wfEscapeWikiText( $this->getDisplayUsername() )
 			)->rawParams( $this->getTargetUserToolLinks() )->parse() .
-			$this->msg( 'userrights-groups-help', $targetName )->parse() .
-			$this->getCurrentUserGroupsText();
+			$this->msg( 'userrights-groups-help', $target->userName )->parse() .
+			$this->getCurrentUserGroupsText( $target );
 
-		$memberships = $this->getGroupMemberships();
+		$memberships = $this->getGroupMemberships( $target );
 		$columns = [
 			'unchangeable' => [],
 			'changeable' => [],
@@ -121,7 +122,7 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 				$groupData,
 				array_key_exists( $group, $memberships ),
 				$memberships[$group] ?? null,
-				$targetName
+				$target->userName
 			);
 
 			if ( $isChangeable ) {
@@ -132,17 +133,17 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 		}
 
 		$formContent .= $this->buildColumnsView( $columns ) .
-			$this->buildReasonFields( $targetName ) .
+			$this->buildReasonFields( $target ) .
 			Html::closeElement( 'fieldset' );
 		return $formContent;
 	}
 
 	/**
 	 * Builds the bottom part of the form, with the reason and watch fields, and the submit button.
-	 * @param string $userName Username of the target user, used for {{GENDER:}}
+	 * @param UserGroupsSpecialPageTarget $target The target user
 	 * @return string The HTML of the fields
 	 */
-	private function buildReasonFields( string $userName ): string {
+	private function buildReasonFields( UserGroupsSpecialPageTarget $target ): string {
 		$output = Html::openElement( 'table', [ 'id' => 'mw-userrights-table-outer' ] ) .
 			"<tr>
 				<td class='mw-label'>" .
@@ -162,13 +163,13 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 			<tr>
 				<td></td>
 				<td class='mw-submit'>" .
-					Html::submitButton( $this->msg( 'saveusergroups', $userName )->text(),
+					Html::submitButton( $this->msg( 'saveusergroups', $target->userName )->text(),
 						[ 'name' => 'saveusergroups' ] +
 						Linker::tooltipAndAccesskeyAttribs( 'userrights-set' )
 					) .
 				"</td>
 			</tr>";
-		if ( $this->supportsWatchUser() ) {
+		if ( $this->supportsWatchUser( $target ) ) {
 			$output .= "<tr>
 					<td></td>
 					<td class='mw-input'>" .
@@ -412,14 +413,14 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 	 * Returns a string that represents the current state of the target's groups. It is used to
 	 * detect attempts of concurrent modifications to the user groups.
 	 */
-	abstract protected function makeConflictCheckKey(): string;
+	abstract protected function makeConflictCheckKey( UserGroupsSpecialPageTarget $target ): string;
 
 	/**
 	 * Returns an HTML snippet that describes the current user groups the target belongs to.
 	 * There are no specific requirements on the format, e.g. the implementation may choose to
 	 * split them into several paragraphs etc.
 	 */
-	abstract protected function getCurrentUserGroupsText(): string;
+	abstract protected function getCurrentUserGroupsText( UserGroupsSpecialPageTarget $target ): string;
 
 	/**
 	 * Returns the descriptor of the current target, e.g. "Foo", "Foo@wiki" or "#123". This will
@@ -454,7 +455,7 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 	 * If a group has no expiry, it's represented with null.
 	 * @return array<string,?string>
 	 */
-	abstract protected function getGroupMemberships(): array;
+	abstract protected function getGroupMemberships( UserGroupsSpecialPageTarget $target ): array;
 
 	/**
 	 * Whether the current user can add the target user to the given group.
@@ -492,7 +493,7 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 	/**
 	 * Returns whether the "Watch user page" checkbox should be shown.
 	 */
-	protected function supportsWatchUser(): bool {
+	protected function supportsWatchUser( UserGroupsSpecialPageTarget $target ): bool {
 		return true;
 	}
 }
