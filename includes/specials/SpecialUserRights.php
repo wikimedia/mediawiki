@@ -62,6 +62,12 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 	/** @var UserGroupManager|null The UserGroupManager of the target username or null */
 	private $userGroupManager = null;
 
+	/**
+	 * @var UserGroupManager The local UserGroupManager, for checking permissions of the
+	 * performer. Different from $userGroupManager if the target is from an external wiki.
+	 */
+	private $localUserGroupManager;
+
 	private UserNameUtils $userNameUtils;
 	private UserNamePrefixSearch $userNamePrefixSearch;
 	private UserFactory $userFactory;
@@ -85,6 +91,7 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 		$this->userNamePrefixSearch = $userNamePrefixSearch ?? $services->getUserNamePrefixSearch();
 		$this->userFactory = $userFactory ?? $services->getUserFactory();
 		$this->userGroupManagerFactory = $userGroupManagerFactory ?? $services->getUserGroupManagerFactory();
+		$this->localUserGroupManager = $this->userGroupManagerFactory->getUserGroupManager();
 		$this->actorStoreFactory = $actorStoreFactory ?? $services->getActorStoreFactory();
 		$this->watchlistManager = $watchlistManager ?? $services->getWatchlistManager();
 		$this->tempUserConfig = $tempUserConfig ?? $services->getTempUserConfig();
@@ -866,7 +873,7 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 	protected function changeableGroups() {
 		if ( $this->changeableGroups === null ) {
 			$authority = $this->getContext()->getAuthority();
-			$groups = $this->userGroupManager->getGroupsChangeableBy( $authority );
+			$groups = $this->localUserGroupManager->getGroupsChangeableBy( $authority );
 
 			if ( $this->mFetchedUser !== null ) {
 				// Allow extensions to define groups that cannot be added, given the target user and
