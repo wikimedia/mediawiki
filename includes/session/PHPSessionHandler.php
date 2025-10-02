@@ -94,7 +94,6 @@ class PHPSessionHandler implements SessionHandlerInterface {
 	 */
 	public static function install( SessionManagerInterface $manager ) {
 		/* @var SessionManager $manager*/'@phan-var SessionManager $manager';
-		register_shutdown_function( $manager->shutdown( ... ) );
 		if ( self::$instance ) {
 			$manager->setupPHPSessionHandler( self::$instance );
 			return;
