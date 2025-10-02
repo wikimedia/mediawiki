@@ -3367,13 +3367,15 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 		$revision->assertWiki( $this->wikiId );
 		$db = $this->getReplicaConnection();
 
-		// Build the target slot role => sha1 array from the provided revision
+		// Build the target slot role ID => sha1 array from the provided revision
 		// (this is seemingly necessary *before* fetching the candidate revisions: T406027)
 		$searchedSlotHashes = [];
 		$slots = $revision->getSlots()->getPrimarySlots();
 		foreach ( $slots as $slot ) {
-			$searchedSlotHashes[$slot->getRole()] = $slot->getSha1();
+			$roleId = $this->slotRoleStore->acquireId( $slot->getRole() );
+			$searchedSlotHashes[$roleId] = $slot->getSha1();
 		}
+		ksort( $searchedSlotHashes );
 
 		// First fetch the IDs of the most recent revisions for this page, limited by the search limit.
 		$candidateRevIds = $db->newSelectQueryBuilder()
@@ -3394,27 +3396,27 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 			return null;
 		}
 
-		// Then, for only those revisions, fetch their slot role => sha1 data.
+		// Then, for only those revisions, fetch their slot role ID => sha1 data.
 		$candidateRevisions = $db->newSelectQueryBuilder()
-			->select( [ 'slot_revision_id', 'role_name', 'content_sha1' ] )
+			->select( [ 'slot_revision_id', 'slot_role_id', 'content_sha1' ] )
 			->from( 'slots' )
 			->join( 'content', null, 'content_id = slot_content_id' )
-			->join( 'slot_roles', null, 'slot_role_id = role_id' )
 			->where( [ 'slot_revision_id' => $candidateRevIds ] )
 			->caller( __METHOD__ )
 			->fetchResultSet();
 
-		// Build a map of candidate revisions to their slot role => sha1 arrays
+		// Build a map of candidate revisions to their slot role ID => sha1 arrays
 		$candidateSlotHashes = [];
 		foreach ( $candidateRevisions as $candidate ) {
-			$candidateSlotHashes[$candidate->slot_revision_id][$candidate->role_name] = $candidate->content_sha1;
+			$candidateSlotHashes[$candidate->slot_revision_id][$candidate->slot_role_id] = $candidate->content_sha1;
 		}
 
-		// Find the first revision that has the same slot role => sha1 array as the provided revision.
+		// Find the first revision that has the same slot role ID => sha1 array as the provided revision.
 		// We use $candidateRevIds, which are ordered by the revision timestamps, to ensure we return
 		// the most recent revision that matches.
 		$matchRevId = null;
 		foreach ( $candidateRevIds as $revId ) {
+			ksort( $candidateSlotHashes[$revId] );
 			if ( $candidateSlotHashes[$revId] === $searchedSlotHashes ) {
 				$matchRevId = $revId;
 				break;
