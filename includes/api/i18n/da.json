@@ -21,7 +21,7 @@
 	"apihelp-delete-summary": "Slet en side.",
 	"apihelp-delete-param-watch": "Tilføj siden til den nuværende brugers overvågningsliste.",
 	"apihelp-delete-param-unwatch": "Fjern siden fra den nuværende brugers overvågningsliste.",
-	"apihelp-delete-example-simple": "Slet <kbd>Forsiden</kbd>.",
+	"apihelp-delete-example-simple": "Slet [[{{MediaWiki:Mainpage}}]].",
 	"apihelp-disabled-summary": "Dette modul er blevet deaktiveret.",
 	"apihelp-edit-summary": "Opret og rediger sider.",
 	"apihelp-edit-param-sectiontitle": "Titlen på et nyt afsnit.",

@@ -18,38 +18,19 @@
  * @file
  */
 
-namespace MediaWiki\Tests\Unit\CommentFormatter;
+namespace MediaWiki\Tests\Integration\CommentFormatter;
 
-use MediaWiki\Cache\LinkBatchFactory;
-use MediaWiki\Cache\LinkCache;
 use MediaWiki\CommentFormatter\CommentParser;
-use MediaWiki\CommentFormatter\CommentParserFactory;
-use MediaWiki\HookContainer\HookContainer;
-use MediaWiki\Language\Language;
-use MediaWiki\Linker\LinkRenderer;
-use MediaWiki\Title\NamespaceInfo;
-use MediaWiki\Title\TitleParser;
-use MediaWikiUnitTestCase;
-use RepoGroup;
+use MediaWikiIntegrationTestCase;
 
 /**
  * @group CommentFormatter
  * @covers \MediaWiki\CommentFormatter\CommentParserFactory
  */
-class CommentParserFactoryTest extends MediaWikiUnitTestCase {
+class CommentParserFactoryTest extends MediaWikiIntegrationTestCase {
 
 	public function testCreate() {
-		$factory = new CommentParserFactory(
-			$this->createMock( LinkRenderer::class ),
-			$this->createMock( LinkBatchFactory::class ),
-			$this->createMock( LinkCache::class ),
-			$this->createMock( RepoGroup::class ),
-			$this->createMock( Language::class ),
-			$this->createMock( Language::class ),
-			$this->createMock( TitleParser::class ),
-			$this->createMock( NamespaceInfo::class ),
-			$this->createMock( HookContainer::class )
-		);
+		$factory = $this->getServiceContainer()->getCommentParserFactory();
 
 		$this->assertInstanceOf( CommentParser::class, $factory->create() );
 	}

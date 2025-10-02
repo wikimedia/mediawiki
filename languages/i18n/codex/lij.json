@@ -1,0 +1,30 @@
+{
+	"@metadata": {
+		"authors": [
+			"N. Longo"
+		]
+	},
+	"cdx-chip-input-chip-added": "O chip $1 o l'é stæto azónto.",
+	"cdx-chip-input-chip-removed": "O chip $1 o l'é stæto levòu.",
+	"cdx-input-chip-aria-description": "Sciàcca Invîo pe modificâ ò Scancélla pe levâ.",
+	"cdx-dialog-close-button-label": "Særa",
+	"cdx-label-optional-flag": "(facoltatîvo)",
+	"cdx-message-dismiss-button-label": "Særa",
+	"cdx-search-input-search-button-label": "Riçèrca",
+	"cdx-table-select-all-label": "Seleçiónn-a tùtte e rîghe",
+	"cdx-table-select-row-label": "Seleçiónn-a a rîga $1 de $2",
+	"cdx-table-sort-caption": "$1 (e intestaçioìn de colònne co-i pomélli se pêuan ordinâ).",
+	"cdx-typeahead-search-search-results-label": "Rizultâti da riçèrca",
+	"cdx-table-pager-button-first-page": "Prìmma pàgina",
+	"cdx-table-pager-button-last-page": "Ùrtima pàgina",
+	"cdx-table-pager-button-next-page": "Pàgina aprêuvo",
+	"cdx-table-pager-button-prev-page": "Pàgina de prìmma",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 rîga|$1 rîghe}}",
+	"cdx-table-pager-items-per-page-default": "Rizultâti pe pàgina",
+	"cdx-table-pagination-status-message-determinate-long": "Móstra i rizulâti $1-$2 de $3",
+	"cdx-table-pagination-status-message-determinate-short": "$1-$2 de $3",
+	"cdx-table-pagination-status-message-indeterminate-long": "Móstra i rizulâti $1-$2 de tànti",
+	"cdx-table-pagination-status-message-indeterminate-short": "$1-$2 de tànti",
+	"cdx-table-pagination-status-message-indeterminate-final": "Mostràndo l'ùrtimo {{PLURAL:$1|$1 rizultâto|$1 rizultâti}}",
+	"cdx-table-pagination-status-message-pending": "Caregaménto di rizultâti..."
+}

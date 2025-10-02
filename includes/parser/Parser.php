@@ -42,6 +42,7 @@ use MediaWiki\Debug\DeprecationHelper;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
+use MediaWiki\Html\HtmlHelper;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Language\ILanguageConverter;
 use MediaWiki\Language\Language;
@@ -97,6 +98,7 @@ use Wikimedia\Parsoid\DOM\Element;
 use Wikimedia\Parsoid\DOM\Node;
 use Wikimedia\Parsoid\Utils\DOMCompat;
 use Wikimedia\Parsoid\Utils\DOMUtils;
+use Wikimedia\RemexHtml\Serializer\SerializerNode;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -224,15 +226,6 @@ class Parser {
 	 * but instead use Parser::replaceTableOfContentsMarker().
 	 */
 	public const TOC_PLACEHOLDER = '<meta property="mw:PageProp/toc" />';
-
-	/**
-	 * Permissive regexp matching TOC_PLACEHOLDER.  This allows for some
-	 * minor modifications to the placeholder to be made by extensions
-	 * without breaking the TOC (T317857); note also that Parsoid's version
-	 * of the placeholder might include additional attributes.
-	 * @var string
-	 */
-	private const TOC_PLACEHOLDER_REGEX = '/<meta\\b[^>]*\\bproperty\\s*=\\s*"mw:PageProp\\/toc"[^>]*>/';
 
 	# Persistent:
 	/** @var array<string,callable> */
@@ -4361,9 +4354,20 @@ class Parser {
 			// conveniently also giving us a way to handle French spaces (T324763)
 			$safeHeadline = $this->tidy->tidy( $safeHeadline, [ Sanitizer::class, 'armorFrenchSpaces' ] );
 
+			// Wrap the safe headline to parse the heading attributes
+			// Literal HTML tags should be sanitized at this point
+			// cleanUpTocLine will strip the headline tag
+			$wrappedHeadline = "<h$level" . $matches['attrib'][$headlineCount] . $safeHeadline . "</h$level>";
+
 			// Parse the heading contents as HTML. This makes it easier to strip out some HTML tags,
 			// and ensures that we generate balanced HTML at the end (T218330).
-			$headlineDom = DOMUtils::parseHTMLToFragment( $domDocument, $safeHeadline );
+			$headlineDom = DOMUtils::parseHTMLToFragment( $domDocument, $wrappedHeadline );
+
+			// Extract a user defined id on the heading
+			// A heading is expected as the first child and could be asserted
+			$h = $headlineDom->firstChild;
+			$headingId = ( $h instanceof Element && DOMUtils::isHeading( $h ) ) ?
+				DOMCompat::getAttribute( $h, 'id' ) : null;
 
 			$this->cleanUpTocLine( $headlineDom );
 
@@ -4372,11 +4376,16 @@ class Parser {
 
 			# For the anchor, strip out HTML-y stuff period
 			$safeHeadline = trim( $headlineDom->textContent );
+
 			# Save headline for section edit hint before it's normalized for the link
 			$headlineHint = htmlspecialchars( $safeHeadline );
 
 			$safeHeadline = Sanitizer::normalizeSectionNameWhitespace( $safeHeadline );
 			$safeHeadline = self::normalizeSectionName( $safeHeadline );
+
+			if ( $headingId !== null && $headingId !== '' ) {
+				$safeHeadline = $headingId;
+			}
 
 			$fallbackHeadline = Sanitizer::escapeIdForAttribute( $safeHeadline, Sanitizer::ID_FALLBACK );
 			$linkAnchor = Sanitizer::escapeIdForLink( $safeHeadline );
@@ -4862,20 +4871,24 @@ class Parser {
 	 */
 	public static function replaceTableOfContentsMarker( $text, $toc ) {
 		$replaced = false;
-		// remove the additional metas. while not strictly necessary, this also ensures idempotence if we run
-		// the pass more than once on a given content and TOC markers are not inserted by $toc. At the same time,
-		// if $toc inserts TOC markers (which, as of 2024-05, it shouldn't be able to), these are preserved by the
-		// fact that we run a single pass with a callback (rather than doing a first replacement with the $toc and
-		// a replacement of leftover markers as a second pass).
-		$callback = static function ( array $matches ) use( &$replaced, $toc ): string {
-			if ( !$replaced ) {
+		return HtmlHelper::modifyElements(
+			$text,
+			static function ( SerializerNode $node ): bool {
+				$prop = $node->attrs['property'] ?? '';
+				return $node->name === 'meta' && $prop === 'mw:PageProp/toc';
+			},
+			static function ( SerializerNode $node ) use ( &$replaced, $toc ) {
+				if ( $replaced ) {
+					// Remove the additional metas. While not strictly
+					// necessary, this also ensures idempotence if we
+					// run the pass more than once on a given content.
+					return '';
+				}
 				$replaced = true;
-				return $toc;
-			}
-			return '';
-		};
-
-		return preg_replace_callback( self::TOC_PLACEHOLDER_REGEX, $callback, $text );
+				return $toc; // outerHTML replacement.
+			},
+			false /* use legacy-compatible serialization */
+		);
 	}
 
 	/**
@@ -6483,8 +6496,12 @@ class Parser {
 	 * @unstable
 	 */
 	public static function extractBody( string $text ): string {
-		$text = preg_replace( '!^.*?<body[^>]*>!s', '', $text, 1 );
-		$text = preg_replace( '!</body>\s*</html>\s*$!', '', $text, 1 );
+		$text = preg_replace( '!^(?>.*?<body)[^>]*+>!s', '', $text, 1 );
+		if ( $text === null ) {
+			// T399064: this should never happen
+			throw new RuntimeException( 'Regex failed: ' . preg_last_error() );
+		}
+		$text = preg_replace( '!</body>\s*+</html>\s*+$!', '', $text, 1 );
 		return $text;
 	}
 

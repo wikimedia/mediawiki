@@ -159,7 +159,7 @@
 	"underline-always": "Zawsze",
 	"tog-showhiddencats": "Pokazuj ukryte kategorie",
 	"tog-showrollbackconfirmation": "Wyświetl komunikat potwierdzający kliknięcie linku wycofującego edycje",
-	"tog-forcesafemode": "Zawsze aktywuj [[mw:Manual:Safemode|tryb bezpieczny]]",
+	"tog-forcesafemode": "Zawsze aktywuj [[mw:Special:MyLanguage/Manual:Safemode|tryb bezpieczny]]",
 	"prefs-help-forcesafemode": "Wyłącz skrypty i style na wiki.",
 	"prefs-editing": "Edycja",
 	"prefs-description-editing": "Dostosuj sposób wprowadzania, śledzenia i przeglądania zmian.",

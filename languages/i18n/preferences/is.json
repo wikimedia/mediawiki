@@ -145,7 +145,7 @@
 	"underline-always": "Alltaf",
 	"tog-showhiddencats": "Sýna falda flokka",
 	"tog-showrollbackconfirmation": "Sýna staðfestingarglugga þegar smellt er á afturköllunar-tengil",
-	"tog-forcesafemode": "Alltaf virkja [[mw:Manual:Safemode|öruggan ham]]",
+	"tog-forcesafemode": "Alltaf virkja [[mw:Special:MyLanguage/Manual:Safemode|öruggan ham]]",
 	"prefs-editing": "Breytingaflipi",
 	"prefs-description-editing": "Sérsníddu hvernig þú gerir, rekur og yfirferð breytingar.",
 	"prefs-advancedediting": "Almennir valkostir",

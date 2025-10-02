@@ -1,0 +1,172 @@
+<?php
+
+namespace MediaWiki\Tests\Integration\Edit;
+
+use MediaWiki\Content\Content;
+use MediaWiki\Content\ContentHandler;
+use MediaWiki\Content\ContentJsonCodec;
+use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\Content\WikitextContent;
+use MediaWiki\Edit\SelserContext;
+use MediaWiki\Json\JsonCodec;
+use MediaWikiIntegrationTestCase;
+use Psr\Container\ContainerInterface;
+use Wikimedia\Parsoid\Core\PageBundle;
+use Wikimedia\Tests\SerializationTestTrait;
+
+/**
+ * @covers \MediaWiki\Edit\SimpleParsoidOutputStash
+ * @covers \MediaWiki\Edit\SelserContext
+ */
+class SimpleParsoidOutputStashSerializationTest extends MediaWikiIntegrationTestCase {
+	use SerializationTestTrait;
+
+	public static function getClassToTest(): string {
+		return SelserContext::class;
+	}
+
+	public static function getSerializedDataPath(): string {
+		return __DIR__ . '/../../../data/SelserContext';
+	}
+
+	public static function getTestInstancesAndAssertions(): array {
+		return [
+			'basic' => [
+				'instance' => new SelserContext(
+					new PageBundle(
+						'<b>html</b>',
+						[
+							'counter' => 1234,
+							'offsetType' => 'byte',
+							'ids' => [
+								'mwAA' => [ 'parsoid' => true ],
+							],
+						],
+						[
+							'ids' => [
+								'mwAA' => [ 'mw' => true ],
+							],
+						],
+						'1.2.3.4',
+						[
+							'X-Header-Test' => 'header test',
+						],
+						CONTENT_MODEL_WIKITEXT,
+					),
+					5678, /* revision */
+					new WikitextContent( 'wiki wiki wiki' )
+				),
+				'assertions' => static function ( MediaWikiIntegrationTestCase $testCase, SelserContext $ss ) {
+					$pb = $ss->getPageBundle();
+					$testCase->assertSame( '<b>html</b>', $pb->html );
+					$testCase->assertSame( [
+						'counter' => 1234,
+						'offsetType' => 'byte',
+						'ids' => [
+							'mwAA' => [ 'parsoid' => true ],
+						],
+					], $pb->parsoid );
+					$testCase->assertSame( [
+						'ids' => [
+							'mwAA' => [ 'mw' => true ],
+						],
+					], $pb->mw );
+					$testCase->assertSame( '1.2.3.4', $pb->version );
+					$testCase->assertSame( [
+						'X-Header-Test' => 'header test',
+					], $pb->headers );
+					$testCase->assertSame( CONTENT_MODEL_WIKITEXT, $pb->contentmodel );
+
+					$testCase->assertSame( 5678, $ss->getRevisionID() );
+
+					$content = $ss->getContent();
+					$testCase->assertSame( CONTENT_MODEL_WIKITEXT, $content->getModel() );
+					$testCase->assertSame( 'wiki wiki wiki', $content->getText() );
+				},
+			],
+		];
+	}
+
+	public static function getSupportedSerializationFormats(): array {
+		$mockServices = new class implements ContainerInterface {
+			private $contents = [];
+
+			public function get( $id ) {
+				return $this->contents[$id] ?? null;
+			}
+
+			public function has( $id ): bool {
+				return isset( $this->contents[$id] );
+			}
+
+			public function set( $id, $value ) {
+				$this->contents[$id] = $value;
+			}
+		};
+		$chFactory = new class implements IContentHandlerFactory {
+			public function getContentHandler( string $modelID ): ContentHandler {
+				return new class( CONTENT_MODEL_WIKITEXT, [ CONTENT_FORMAT_WIKITEXT ] ) extends ContentHandler {
+					public function serializeContent( Content $content, $format = null ) {
+						return $content->getText();
+					}
+
+					public function unserializeContent( $blob, $format = null ) {
+						return new WikitextContent( $blob );
+					}
+
+					public function makeEmptyContent() {
+						throw new \Error( "unimplemented" );
+					}
+				};
+			}
+
+			public function getContentModels(): array {
+				return [ CONTENT_MODEL_WIKITEXT ];
+			}
+
+			public function getAllContentFormats(): array {
+				return [ CONTENT_FORMAT_WIKITEXT ];
+			}
+
+			public function isDefinedModel( string $modelId ): bool {
+				return $modelId === CONTENT_MODEL_WIKITEXT;
+			}
+		};
+		$mockServices->set(
+			'ContentHandlerFactory', $chFactory
+		);
+		$mockServices->set(
+			'ContentJsonCodec', new ContentJsonCodec( $chFactory )
+		);
+		$jsonCodec = new JsonCodec( $mockServices );
+		return [
+			[
+				'ext' => 'serialized',
+				'serializer' => static function ( $obj ) use ( $jsonCodec ) {
+					return serialize(
+						$jsonCodec->toJsonArray( $obj, SelserContext::class )
+					);
+				},
+				'deserializer' => static function ( $data ) use ( $jsonCodec ) {
+					return $jsonCodec->newFromJsonArray(
+						unserialize( $data ), SelserContext::class
+					);
+				},
+			],
+			[
+				'ext' => 'json',
+				'serializer' => static function ( $obj ) use ( $jsonCodec ) {
+					return json_encode(
+						$jsonCodec->toJsonArray( $obj, SelserContext::class )
+					);
+				},
+				'deserializer' => static function ( $data ) use ( $jsonCodec ) {
+					return $jsonCodec->newFromJsonArray(
+						json_decode( $data, true ), SelserContext::class
+					);
+				},
+			],
+		];
+	}
+
+}

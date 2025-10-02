@@ -5,8 +5,9 @@ module.exports = ( function () {
 	 * an object like {@link mw.Rest}, but automatically handles everything required to communicate
 	 * with another MediaWiki wiki via cross-origin requests (CORS).
 	 *
-	 * The foreign wiki must be configured to accept requests from the current wiki. See
-	 * <https://www.mediawiki.org/wiki/Manual:$wgCrossSiteAJAXdomains> for details.
+	 * The foreign wiki must be configured to accept requests from the current wiki.
+	 * For details, see [$wgCrossSiteAJAXdomains](https://www.mediawiki.org/wiki/Manual:$wgCrossSiteAJAXdomains)
+	 * and [$wgRestAllowCrossOriginCookieAuth](https://www.mediawiki.org/wiki/Manual:$wgRestAllowCrossOriginCookieAuth).
 	 * ```
 	 * const api = new mw.ForeignRest( 'https://commons.wikimedia.org/w/rest.php' );
 	 * api.get( '/page/Main_Page/html' )

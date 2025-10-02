@@ -253,4 +253,8 @@ class UpdateHandler extends EditHandler {
 		$json = ( $this->jsonDiffFunction )( $from->getText(), $to->getText(), 2 );
 		return FormatJson::decode( $json, true );
 	}
+
+	public function getResponseBodySchemaFileName( string $method ): ?string {
+		return 'includes/Rest/Handler/Schema/ExistingPageSource.json';
+	}
 }

@@ -151,6 +151,7 @@ class Wikidiff2TextDiffer extends BaseTextDiffer {
 	 * @param string $old
 	 * @param string $new
 	 * @return string
+	 * @suppress PhanParamTooManyInternal,UnusedSuppression Spurious Phan warning with wikidiff <1.5.0 or >=1.8.0
 	 */
 	private function doTableFormat( $old, $new ) {
 		if ( $this->haveCutoffParameter ) {

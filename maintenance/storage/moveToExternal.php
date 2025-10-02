@@ -322,7 +322,7 @@ class MoveToExternal extends Maintenance {
 	protected function getConditions( $blockStart, $blockEnd, $dbr ) {
 		return [
 			$dbr->expr( 'old_id', '>=', $blockStart ),
-			$dbr->expr( 'old_id', '>=', $blockEnd ),
+			$dbr->expr( 'old_id', '<=', $blockEnd ),
 			$dbr->expr( 'old_flags', IExpression::NOT_LIKE,
 				new LikeValue( $dbr->anyString(), 'external', $dbr->anyString() ) ),
 		];

@@ -123,7 +123,7 @@
 	"underline-always": "Totjorn",
 	"tog-showhiddencats": "Afichar las categorias amagadas",
 	"tog-showrollbackconfirmation": "Afichar una demanda de confiermacion quand cliqui sus un liame de revocacion",
-	"tog-forcesafemode": "Totjorn activar lo [[mw:Manual:Safemode|mòde segur]]",
+	"tog-forcesafemode": "Totjorn activar lo [[mw:Special:MyLanguage/Manual:Safemode|mòde segur]]",
 	"prefs-help-forcesafemode": "Desactivar suls scripts e paginas d'estil dins lo wiki.",
 	"prefs-editing": "Fenèstra de modificacion",
 	"prefs-advancedediting": "Opcions generalas",

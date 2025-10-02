@@ -197,6 +197,7 @@ class MimeMap {
 		'text/vnd.wap.wmlscript' => [ 'wmls' ],
 		'text/xml' => [ 'xml', 'xsl', 'xslt', 'rss', 'rdf' ],
 		'text/x-component' => [ 'htc' ],
+		'text/x-less' => [ 'less' ], // T399672
 		'text/x-setext' => [ 'etx' ],
 		'text/x-sawfish' => [ 'jl' ],
 		'video/mp4' => [ 'mp4', 'm4a', 'm4p', 'm4b', 'm4r', 'm4v' ],

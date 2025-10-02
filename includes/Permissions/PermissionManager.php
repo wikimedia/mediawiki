@@ -699,6 +699,7 @@ class PermissionManager {
 		// We avoid expensive display logic for quickUserCan's and such
 		if ( $short ) {
 			$status->fatal( 'badaccess-group0' );
+			return;
 		}
 
 		// TODO: it would be a good idea to replace the method below with something else like

@@ -1,0 +1,182 @@
+{
+	"description": "Media links for the page",
+	"required": [
+		"files"
+	],
+	"properties": {
+		"files": {
+			"type": "array",
+			"description": "Array of media used on the page",
+			"items": {
+				"type": "object",
+				"required": [
+					"title",
+					"file_description_url",
+					"latest",
+					"preferred",
+					"original"
+				],
+				"properties": {
+					"title": {
+						"type": "string",
+						"description": "File title"
+					},
+					"file_description_url": {
+						"type": "string",
+						"description": "URL for the page describing the file, including license information and other metadata"
+					},
+					"latest": {
+						"type": "object",
+						"nullable": true,
+						"description": "Information about the latest revision to the file",
+						"properties": {
+							"timestamp": {
+								"type": "string",
+								"format": "date-time",
+								"description": "Last modified timestamp in ISO 8601 format"
+							},
+							"user": {
+								"type": "object",
+								"description": "Information about the user who uploaded the file",
+								"properties": {
+									"id": {
+										"type": "integer",
+										"nullable": true,
+										"description": "User identifier"
+									},
+									"name": {
+										"type": "string",
+										"nullable": true,
+										"description": "Username"
+									}
+								},
+								"required": [
+									"id",
+									"name"
+								]
+							}
+						},
+						"required": [
+							"timestamp",
+							"user"
+						]
+					},
+					"preferred": {
+						"type": "object",
+						"nullable": true,
+						"description": "Information about the file's preferred preview format, original format, and thumbnail format",
+						"properties": {
+							"mediatype": {
+								"type": "string",
+								"enum": [
+									"BITMAP",
+									"DRAWING",
+									"AUDIO",
+									"VIDEO",
+									"MULTIMEDIA",
+									"UNKNOWN",
+									"OFFICE",
+									"TEXT",
+									"EXECUTABLE",
+									"ARCHIVE",
+									"3D"
+								],
+								"description": "The file type"
+							},
+							"size": {
+								"type": "integer",
+								"nullable": true,
+								"description": "File size in bytes or null if not available"
+							},
+							"width": {
+								"type": "integer",
+								"nullable": true,
+								"description": "Maximum recommended image width in pixels or null if not available"
+							},
+							"height": {
+								"type": "integer",
+								"nullable": true,
+								"description": "Maximum recommended image height in pixels or null if not available"
+							},
+							"duration": {
+								"type": "number",
+								"nullable": true,
+								"description": "The length of the video, audio, or multimedia file or null for other media types"
+							},
+							"url": {
+								"type": "string",
+								"format": "uri",
+								"description": "URL to download the file"
+							}
+						},
+						"required": [
+							"mediatype",
+							"size",
+							"width",
+							"height",
+							"duration",
+							"url"
+						]
+					},
+					"original": {
+						"type": "object",
+						"nullable": true,
+						"description": "Original file details",
+						"properties": {
+							"mediatype": {
+								"type": "string",
+								"enum": [
+									"BITMAP",
+									"DRAWING",
+									"AUDIO",
+									"VIDEO",
+									"MULTIMEDIA",
+									"UNKNOWN",
+									"OFFICE",
+									"TEXT",
+									"EXECUTABLE",
+									"ARCHIVE",
+									"3D"
+								],
+								"description": "The file type"
+							},
+							"size": {
+								"type": "integer",
+								"nullable": true,
+								"description": "File size in bytes or null if not available"
+							},
+							"width": {
+								"type": "integer",
+								"nullable": true,
+								"description": "Maximum recommended image width in pixels or null if not available"
+							},
+							"height": {
+								"type": "integer",
+								"nullable": true,
+								"description": "Maximum recommended image height in pixels or null if not available"
+							},
+							"duration": {
+								"type": "number",
+								"nullable": true,
+								"description": "The length of the video, audio, or multimedia file or null for other media types"
+							},
+							"url": {
+								"type": "string",
+								"format": "uri",
+								"description": "URL to download the file"
+							}
+						},
+						"required": [
+							"mediatype",
+							"size",
+							"width",
+							"height",
+							"duration",
+							"url"
+						]
+					}
+				}
+			}
+		}
+	}
+}

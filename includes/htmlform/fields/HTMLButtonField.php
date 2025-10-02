@@ -121,7 +121,7 @@ class HTMLButtonField extends HTMLFormField {
 
 	public function getInputCodex( $value, $hasErrors ) {
 		$flags = $this->mFlags;
-		$buttonLabel = $this->buttonLabel ?: htmlspecialchars( $this->getDefault() );
+		$buttonLabel = $this->buttonLabel ?: $this->getDefault();
 		$buttonClasses = [ 'mw-htmlform-submit', 'cdx-button', $this->mClass ];
 		$buttonAttribs = [
 			'class' => $buttonClasses,
@@ -143,7 +143,8 @@ class HTMLButtonField extends HTMLFormField {
 	 * Build the markup of the Codex component
 	 *
 	 * @param array $flags The button's flag classes.
-	 * @param string $buttonLabel The button's label attribute.
+	 * @param string $buttonLabel The button's label (raw HTML)
+	 * @param-taint $buttonLabel exec_html
 	 * @param array $attribs The button's list of attributes.
 	 * @return string Raw HTML.
 	 */
@@ -170,7 +171,7 @@ class HTMLButtonField extends HTMLFormField {
 		$attribs['class'] = $buttonClassesAndFlags;
 
 		$buttonHtml = Html::rawElement(
-			'button', $attribs, $buttonLabel
+			'button', $attribs, htmlspecialchars( $buttonLabel )
 		);
 
 		return $buttonHtml;

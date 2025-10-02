@@ -1,0 +1,30 @@
+{
+	"description": "Interlanguage links for the page",
+	"type": "array",
+	"items": {
+		"required": [
+			"code",
+			"name",
+			"key",
+			"title"
+		],
+		"properties": {
+			"code": {
+				"type": "string",
+				"description": "Language code"
+			},
+			"name": {
+				"type": "string",
+				"description": "Translated language name"
+			},
+			"key": {
+				"type": "string",
+				"description": "Translated page title in URL-friendly format"
+			},
+			"title": {
+				"type": "string",
+				"description": "Translated page title in reading-friendly format"
+			}
+		}
+	}
+}

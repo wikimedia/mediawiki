@@ -1,0 +1,84 @@
+{
+	"description": "Search results",
+	"required": [
+		"pages"
+	],
+	"properties": {
+		"pages": {
+			"type": "array",
+			"description": "List of search result pages",
+			"items": {
+				"type": "object",
+				"required": [
+					"id",
+					"key",
+					"title",
+					"excerpt",
+					"matched_title",
+					"description",
+					"thumbnail"
+				],
+				"properties": {
+					"id": {
+						"type": "integer",
+						"description": "Page identifier"
+					},
+					"key": {
+						"type": "string",
+						"description": "Page title in URL-friendly format"
+					},
+					"title": {
+						"type": "string",
+						"description": "Page title in reading-friendly format"
+					},
+					"excerpt": {
+						"type": "string",
+						"description": "Excerpt of the page content matching the search query"
+					},
+					"matched_title": {
+						"type": "string",
+						"nullable": true,
+						"description": "The title of a page redirection from, if applicable, or null"
+					},
+					"description": {
+						"type": "string",
+						"nullable": true,
+						"description": "Short summary of the page topic or null if no summary exists."
+					},
+					"thumbnail": {
+						"type": "object",
+						"nullable": true,
+						"description": "Information about the thumbnail image for the page, or null if no thumbnail exists.",
+						"properties": {
+							"mimetype": {
+								"type": "string",
+								"description": "The file type"
+							},
+							"width": {
+								"type": "integer",
+								"nullable": true,
+								"description": "Maximum recommended image width in pixels or null if not available"
+							},
+							"height": {
+								"type": "integer",
+								"nullable": true,
+								"description": "Maximum recommended image height in pixels or null if not available"
+							},
+							"duration": {
+								"type": "number",
+								"nullable": true,
+								"description": "The length of the video, audio, or multimedia file or null for other media types"
+							},
+							"url": {
+								"type": "string",
+								"format": "uri",
+								"description": "URL to download the file"
+							}
+						},
+						"required": [ "mimetype", "width", "height", "duration", "url" ]
+					}
+				}
+			}
+		}
+	}
+}

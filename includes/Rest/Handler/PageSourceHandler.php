@@ -166,4 +166,22 @@ class PageSourceHandler extends SimpleHandler {
 	protected function hasRepresentation() {
 		return $this->contentHelper->hasContent();
 	}
+
+	public function getResponseBodySchemaFileName( string $method ): ?string {
+		// This does not include restbase compatibility mode, which is triggered by request
+		// headers. Presumably, such callers will look at the RESTBase spec instead.
+		switch ( $this->getConfig()['format'] ) {
+			case 'bare':
+				$schema = 'includes/Rest/Handler/Schema/ExistingPageBare.json';
+				break;
+			case 'source':
+				$schema = 'includes/Rest/Handler/Schema/ExistingPageSource.json';
+				break;
+			default:
+				$schema = null;
+				break;
+		}
+
+		return $schema;
+	}
 }

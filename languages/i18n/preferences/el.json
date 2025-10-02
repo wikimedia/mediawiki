@@ -154,7 +154,7 @@
 	"underline-always": "Πάντα",
 	"tog-showhiddencats": "Εμφάνιση κρυφών κατηγοριών",
 	"tog-showrollbackconfirmation": "Εμφάνιση προτροπής επιβεβαίωσης όταν κάνετε κλικ σε έναν σύνδεσμο επαναφοράς",
-	"tog-forcesafemode": "Πάντα να ενεργοποιείται η [[mw:Manual:Safemode|ασφαλής λειτουργία]]",
+	"tog-forcesafemode": "Πάντα να ενεργοποιείται η [[mw:Special:MyLanguage/Manual:Safemode|ασφαλής λειτουργία]]",
 	"prefs-help-forcesafemode": "Απενεργοποίηση των scripts και stylesheets στο wiki.",
 	"prefs-editing": "Επεξεργασία",
 	"prefs-description-editing": "Προσαρμόστε τον τρόπο με τον οποίο κάνετε, παρακολουθείτε και ελέγχετε επεξεργασίες.",

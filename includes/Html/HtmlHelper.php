@@ -23,7 +23,8 @@ class HtmlHelper {
 	 *   RemexHtml\Serializer\SerializerNode argument, and returns true if it should be modified.
 	 * @param callable $modifyCallback A callback which takes a single
 	 *   RemexHtml\Serializer\SerializerNode argument and actually performs the modification on it.
-	 *   It must return the new node (which can be the original node object).
+	 *   It must return the new node (which can be the original node object)
+	 *   or a string, which is treated as the outerHTML of a replacement.
 	 * @param bool $html5format Defaults to true, which uses standard HTML5
 	 *   serialization for the parsed HTML.  If set to false, uses a
 	 *   serialization which is more compatible with the output of the

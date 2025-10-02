@@ -146,7 +146,7 @@
 	"underline-always": "მუდამ",
 	"tog-showhiddencats": "დამალული კატეგორიების ჩვენება",
 	"tog-showrollbackconfirmation": "დადასტურების მოთხოვნა გაუქმების ლინკზე დაჭერისას",
-	"tog-forcesafemode": "ყოველთვის ჩართული იყოს [[mw:Manual:Safemode|უსაფრთხო რეჟიმი]]",
+	"tog-forcesafemode": "ყოველთვის ჩართული იყოს [[mw:Special:MyLanguage/Manual:Safemode|უსაფრთხო რეჟიმი]]",
 	"prefs-editing": "რედაქტირება",
 	"prefs-advancedediting": "მთავარი პარამეტრები",
 	"tog-editsectiononrightclick": "სექციის რედაქტირების ნებართვა სათაურებზე მარჯვენა ღილაკზე დაჭერით",

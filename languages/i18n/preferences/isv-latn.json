@@ -137,7 +137,7 @@
 	"underline-always": "Vsegda",
 	"tog-showhiddencats": "Pokazyvati skryte kategorije",
 	"tog-showrollbackconfirmation": "Izobražati prosbu potvrdženja poslě nakliknutja linka za brzo odčinjenje pravky",
-	"tog-forcesafemode": "Vsegda vključati [[mw:Manual:Safemode|bezpečny režim]]",
+	"tog-forcesafemode": "Vsegda vključati [[mw:Special:MyLanguage/Manual:Safemode|bezpečny režim]]",
 	"prefs-help-forcesafemode": "Izključiti skripty i koristničske CSS-stily v viki.",
 	"prefs-editing": "Pravjenje",
 	"prefs-description-editing": "Prisposobite sobě, kako vy dělajete, slědujete i prěgledajete pravky.",

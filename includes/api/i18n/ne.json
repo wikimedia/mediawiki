@@ -12,6 +12,7 @@
 	"apihelp-edit-example-edit": "पृष्ठ सम्पादन गर्नुहोस्।",
 	"apihelp-emailuser-summary": "प्रयोगकर्तालाई इमेल गर्नुहोस्।",
 	"apihelp-feedrecentchanges-param-hidepatrolled": "गस्ती गरिएका परिवर्तनहरू लुकाउनुहोस्।",
+	"apihelp-mergehistory-summary": "पृष्ठ इतिहासहरू मिसाउने",
 	"apihelp-parse-param-prop": "जानकारीको कुन भाग लिनेः",
 	"apihelp-userrights-param-user": "प्रयोगकर्ता"
 }

@@ -184,7 +184,7 @@
 	"hidetoc": "ascundi",
 	"collapsible-collapse": "Apreadunâ",
 	"collapsible-expand": "Tindi",
-	"confirmable-confirm": "Hii sigur{{GENDER:$1||â}}?",
+	"confirmable-confirm": "Hii {{GENDER:$1|sigur|sigurâ}}?",
 	"confirmable-yes": "E",
 	"confirmable-no": "Nu",
 	"thisisdeleted": "Vedz icâ adu napoea $1?",

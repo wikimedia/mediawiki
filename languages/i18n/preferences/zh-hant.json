@@ -159,7 +159,7 @@
 	"underline-always": "永遠使用",
 	"tog-showhiddencats": "顯示隱藏分類",
 	"tog-showrollbackconfirmation": "當點擊回退連結時顯示確認提示",
-	"tog-forcesafemode": "始終啟用[[mw:Manual:Safemode|安全模式]]",
+	"tog-forcesafemode": "始終啟用[[mw:Special:MyLanguage/Manual:Safemode|安全模式]]",
 	"prefs-help-forcesafemode": "停用透過站點內容提供的指令碼和樣式表。",
 	"prefs-editing": "編輯",
 	"prefs-description-editing": "自訂您做出、追蹤、審核編輯的方式。",

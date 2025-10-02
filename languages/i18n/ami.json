@@ -8,7 +8,8 @@
 			"Ljying",
 			"Panay Masaw",
 			"Vickylin77s",
-			"嚴美鳳"
+			"嚴美鳳",
+			"NguoiDungKhongDinhDanh"
 		]
 	},
 	"sunday": "pilipayan",
@@ -657,7 +658,7 @@
 	"watchlisttools-view": "misongila’ a minengneng to pakayniay i falic",
 	"watchlisttools-edit": "misongila’ a minengneng ato misinanot to pirorodan to tatapalen a tilid",
 	"watchlisttools-raw": "misinanot to satapangan no pirorodan to tatapalen a tilid",
-	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1| kalalicay]])",
+	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|kalalicay]])",
 	"version-specialpages": "micidekay a felih",
 	"version-ext-colheader-description": "kimad",
 	"version-libraries-description": "kimad",

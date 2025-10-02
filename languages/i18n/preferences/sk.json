@@ -139,7 +139,7 @@
 	"underline-always": "Vždy",
 	"tog-showhiddencats": "Zobraziť skryté kategórie",
 	"tog-showrollbackconfirmation": "Zobraziť výzvu na potvrdenie pri kliknutí na odkaz rollbacku",
-	"tog-forcesafemode": "Vždy zapnúť [[mw:Manual:Safemode|bezpečný režim]]",
+	"tog-forcesafemode": "Vždy zapnúť [[mw:Special:MyLanguage/Manual:Safemode|bezpečný režim]]",
 	"prefs-help-forcesafemode": "Vypnúť skripty a štýly uložené na wiki.",
 	"prefs-editing": "Úpravy",
 	"prefs-description-editing": "Prispôsobte si spôsob vykonávania, sledovania a kontroly úprav.",

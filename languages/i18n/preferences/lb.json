@@ -7,7 +7,8 @@
 			"Robby",
 			"Soued031",
 			"Talex42",
-			"Volvox"
+			"Volvox",
+			"GilPe"
 		]
 	},
 	"preferences": "Astellungen",
@@ -132,7 +133,7 @@
 	"underline-always": "Ëmmer",
 	"tog-showhiddencats": "Verstoppt Kategorië weisen",
 	"tog-showrollbackconfirmation": "Eng Confirmatioun verlaange wann een op de Rollback Link klickt",
-	"tog-forcesafemode": "Ëmmer de [[mw:Manual:Safemode|Safe Mode]] aktivéieren",
+	"tog-forcesafemode": "Ëmmer de [[mw:Special:MyLanguage/Manual:Safemode|Safe Mode]] aktivéieren",
 	"prefs-editing": "Änneren",
 	"prefs-description-editing": "Upassen, wéi Dir Ännerunge maacht, verfollegt an nokuckt.",
 	"prefs-advancedediting": "Allgemeng Optiounen",
@@ -144,7 +145,7 @@
 	"editfont-sansserif": "Schrëft ouni Serifen",
 	"editfont-serif": "Schrëft mat Serifen",
 	"tog-minordefault": "All Ännerungen automatesch als 'Kleng Ännerungen' markéieren.",
-	"tog-forceeditsummary": "Warnen, wann en eidele Resumé vun der Ännerung agi gouf (oder de Standard-Zrécksetzungs-Resumé)",
+	"tog-forceeditsummary": "Warnen, wann en eidele Resümmee vun der Ännerung agi gouf (oder de Standard-Zrécksetzungs-Resümmee)",
 	"tog-editrecovery": "D'Funktioun [[Special:EditRecovery|{{int:editrecovery}}]] aktivéieren",
 	"tog-editrecovery-help": "Dir kënnt op der [$1 Diskussiounssäit vum Projet] Feedback ginn.",
 	"tog-useeditwarning": "Mech warne wann ech d'Ännerung vun enger Säit verloossen, ouni Ännerunge gespäichert ze hunn",

@@ -495,7 +495,7 @@
 	"revdelete-submit": "Apliker {{PLURAL:$1|al modêye tchoezeye|åzès modêyes tchoezeyes}}",
 	"revdel-restore": "candjî l' veyåvisté",
 	"deletedhist": "Istwere disfacêye",
-	"mergehistory-done": "$3 modêye{{PLURAL:$3||s}} di $1 {{PLURAL:$3|a stî metowe|ont stî metowes}} avou [[:$2]].",
+	"mergehistory-done": "$3 {{PLURAL:$3|modêye|modêyes}} di $1 {{PLURAL:$3|a stî metowe|ont stî metowes}} avou [[:$2]].",
 	"mergehistory-fail": "Nén possibe di mete eshonne les istweres. Verifyîz l' pådje et les parametes di date.",
 	"mergehistory-no-source": "Li pådje sourdant $1 n' egzistêye nén.",
 	"mergehistory-reason": "Råjhon:",

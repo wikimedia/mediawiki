@@ -167,7 +167,7 @@
 	"underline-always": "Sempre",
 	"tog-showhiddencats": "Mostra le categorie nascoste",
 	"tog-showrollbackconfirmation": "Mostra una richiesta di conferma quando si clicca su un link di rollback",
-	"tog-forcesafemode": "Mantieni sempre attiva la [[mw:Manual:Safemode|modalità sicura]]",
+	"tog-forcesafemode": "Mantieni sempre attiva la [[mw:Special:MyLanguage/Manual:Safemode|modalità sicura]]",
 	"prefs-help-forcesafemode": "Disabilita il caricamento degli script e dei fogli di stile creati nel wiki.",
 	"prefs-editing": "Casella di modifica",
 	"prefs-description-editing": "Personalizza il modo in cui applichi, segui e rivedi le modifiche.",

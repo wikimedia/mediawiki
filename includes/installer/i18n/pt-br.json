@@ -30,7 +30,8 @@
 			"Tuliouel",
 			"Walesson",
 			"Warley Felipe C.",
-			"YuriNikolai"
+			"YuriNikolai",
+			"EGobi"
 		]
 	},
 	"config-desc": "O instalador do MediaWiki",
@@ -130,8 +131,6 @@
 	"config-sqlite-dir": "Diretório de dados do SQLite:",
 	"config-sqlite-dir-help": "O SQLite armazena todos os dados em um único arquivo.\n\nO diretório que você fornecer deve permitir a sua escrita pelo servidor web durante a instalação.\n\nO diretório <strong>não</strong> deve ser acessível pela web, por isso não estamos colocando onde estão os seus arquivos PHP.\n\nO instalador escreverá um arquivo <code>.htaccess</code>, mas se isso falhar alguém poderá ganhar acesso a toda sua base de dados.\nIsso inclui dados brutos dos usuários (endereços de e-mail, senhas criptografadas) assim como todas revisões deletadas e outros dados restritos na wiki.\n\nConsidere colocar a banco de dados em algum outro lugar, por exemplo <code>/var/lib/mediawiki/yourwiki</code>.",
 	"config-type-mysql": "MariaDB, MySQL (ou compatível)",
-	"config-type-postgres": "PostgreSQL",
-	"config-type-sqlite": "SQLite",
 	"config-support-info": "O MediaWiki suporta os sistemas de banco de dados a seguir:\n\n$1\n\nSe você não vê o sistema de banco de dados que você está tentando usar listados abaixo, siga as instruções relacionadas acima, para ativar o suporte.",
 	"config-dbsupport-mysql": "* [{{int:version-db-mariadb-url}} MariaDB] é a base de dados preferida para o MediaWiki e a melhor suportada. O MediaWiki também trabalha com [{{int:version-db-mysql-url}} MySQL] e [{{int:version-db-percona-url}} Percona Server], que são compatíveis com MariaDB. ([https://www.php.net/manual/pt_BR/mysqli.installation.php Como compilar PHP com suporte para MySQL].)",
 	"config-dbsupport-postgres": "* [{{int:version-db-postgres-url}} PostgreSQL] é um popular sistema de banco de dados de código aberto como uma alternativa para o MySQL. ([https://www.php.net/manual/en/pgsql.installation.php Como compilar o PHP com suporte PostgreSQL])",
@@ -323,7 +322,6 @@
 	"config-nofile": "O arquivo \"$1\" não foi encontrado. Ele foi apagado?",
 	"config-extension-link": "Você sabia que sua wiki suporta [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions extensões]?\n\nVocê pode explorar as [https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category extensões por categoria]",
 	"config-skins-screenshots": "$1 (screenshots: $2)",
-	"config-skins-screenshot": "$1 ($2)",
 	"config-extensions-requires": "$1 (requer $2)",
 	"config-screenshot": "capturas de tela",
 	"config-extension-not-found": "Não foi possível encontrar o arquivo de registo da extensão \"$1\"",

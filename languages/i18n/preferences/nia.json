@@ -136,7 +136,7 @@
 	"underline-always": "Selalu",
 	"tog-showhiddencats": "Oroma'ö kategori si tobini",
 	"tog-showrollbackconfirmation": "Oroma'ö konfirmasi na tehöndrögö khai-khai ''rollback''",
-	"tog-forcesafemode": "Lö mamalö orifi [[mw:Manual:Safemode|\"safe mode\"]]",
+	"tog-forcesafemode": "Lö mamalö orifi [[mw:Special:MyLanguage/Manual:Safemode|\"safe mode\"]]",
 	"prefs-help-forcesafemode": "Bunu skip awö lembar gaya ba wiki",
 	"prefs-editing": "Mamulö'ö",
 	"prefs-description-editing": "Atulö'ö hewisa öfalua, ö'osisi'ö ba öfaigi wamulö'ö.",

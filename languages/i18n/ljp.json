@@ -585,7 +585,7 @@
 	"temp-user-banner-tooltip-title": "Akun sementagha",
 	"temp-user-banner-tooltip-description-expiration-soon": "<strong>Masa bulaku akun sementaghamu bakal buaghir lom {{PLURAL:$1|1 ghani|$1 ghani}}.</strong> Seghadu bela masa bulakuni, say ampay bakal tisani pas selanjutni Niku ngeguway pedandanan tanpa kughuk log.",
 	"temp-user-banner-tooltip-description-expiration-soon-day": "<strong>Akun sementaghamu bakal bela masa bulakuni di lom waktu kughang jak seghani.</strong> Seghadu bela masa bulakuni, say ampay bakal tisani selanjutni Niku ngeguway pedandanan tanpa kughuk log.",
-	"temp-user-banner-tooltip-description-learn-more": "Akun sementagha sinji tisani seghadu pedandanan tigawiko tanpa say akun di peramban ghik peghangkat sinji. [[mw:Help:Temporary_accounts|Pelajaghi luwot]].",
+	"temp-user-banner-tooltip-description-learn-more": "Akun sementagha sinji tisani seghadu pedandanan tigawiko tanpa say akun di peramban ghik peghangkat sinji. [[mw:Special:MyLanguage/Help:Temporary_accounts|Pelajaghi luwot]].",
 	"temp-user-banner-tooltip-description-login": "[[Special:UserLogin|Kughuk log]] atawa [[Special:CreateAccount|guway akun]] guway ngena krédit pakay pedandanan selanjutni ghik ngaksés pitur baghih.",
 	"blankarticle": "<strong>Peghingatan:</strong> Halaman say bakal Niku sani mak buisi api-api.\nKik Niku micitko \"$1\" luwot, halaman hinji bakal tisani tanpa ngedok isi.",
 	"anoneditwarning": "<strong>Peringatan:</strong> Niku lagi mak kuruk log. Jenganan IP  mu bakal keliyakan jama publik kik Niku ngeguwai perubahan. Kik Niku <strong>[$1 kuruk log]</strong> atawa <strong>[$2 ngeguwai akun]</strong>, dandananmu bakal tiatribusiko jama gelar pemakaimu, rik sunyinni keuntungan barihni.",

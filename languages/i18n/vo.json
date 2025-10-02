@@ -606,7 +606,7 @@
 	"temp-user-banner-tooltip-title": "Lönaspad nelaidüpik",
 	"temp-user-banner-tooltip-description-expiration-soon": "<strong>Lönaspad nelaidüpik ola ofinikon ad jäfidön ünü {{PLURAL:$1|del bal|dels $1}}.</strong> Posä ufinikon ad jäfidön, nulik pojafon dönu ven odunol votükami nen nunäd ola.",
 	"temp-user-banner-tooltip-description-expiration-soon-day": "<strong>Lönaspad nelaidüpik ola ofinikon ad jädidön ünü tüp nemödikum ka del bal.</strong> Posä ufinikon ad jäfidön, nulik pojafon dönu ven odunol votükami nen nunäd ola.",
-	"temp-user-banner-tooltip-description-learn-more": "Lönaspad nelaidüpik at pejafon, posä votükam pedunon nen dabin lönaspada pö nafamöm e parat ats. [[mw:Help:Temporary_accounts|Seivolös mödikumosi]]!",
+	"temp-user-banner-tooltip-description-learn-more": "Lönaspad nelaidüpik at pejafon, posä votükam pedunon nen dabin lönaspada pö nafamöm e parat ats. [[mw:Special:MyLanguage/Help:Temporary_accounts|Seivolös mödikumosi]]!",
 	"temp-user-banner-tooltip-description-login": "[[Special:UserLogin|Nunädolöd oli]] u [[Special:CreateAccount|jafolöd lönaspadi]], dat okanol mäkön lauti ola pö votükams fütürik e gebön mögis patik votik.",
 	"blankarticle": "<strong>Prüdö!</strong> Pad fa ol pejaföl binon nenkipädik.\nIf ovälaklavol eli \"$1\" nogna, pad pojafon nen ninäd alseimik.",
 	"anoneditwarning": "'''Nuned:''' No enunädol oli. Ladet olik: IP pojonon su redakamajenotem pada at. If <strong>[$1 nunädolöv oli]</strong> u <strong>[$2 jafolöv lönaspadi]</strong>, votükams olik poyümätons ko gebananem olik, zuo ogetol buädis votik.",

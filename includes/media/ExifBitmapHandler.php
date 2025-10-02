@@ -72,9 +72,11 @@ class ExifBitmapHandler extends BitmapHandler {
 			);
 		}
 
-		// Ignore Location shown if it is not a simple string
-		if ( isset( $metadata['LocationShown'] ) && !is_string( $metadata['LocationShown'] ) ) {
-			unset( $metadata['LocationShown'] );
+		// Ignore Location shown/created if they are not simple strings
+		foreach ( [ 'LocationShown', 'LocationCreated' ] as $metadataKey ) {
+			if ( isset( $metadata[ $metadataKey ] ) && !is_string( $metadata[ $metadataKey ] ) ) {
+				unset( $metadata[ $metadataKey ] );
+			}
 		}
 
 		foreach ( $metadata as &$val ) {

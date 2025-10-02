@@ -1,11 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
-			"Rebeccayoga"
+			"Rebeccayoga",
+			"Hidayatsrf"
 		]
 	},
 	"cdx-dialog-close-button-label": "Tutup",
 	"cdx-message-dismiss-button-label": "Tutup",
 	"cdx-search-input-search-button-label": "Cari",
+	"cdx-table-select-all-label": "Pilih semua baris",
 	"cdx-typeahead-search-search-results-label": "Hasil pencarian"
 }

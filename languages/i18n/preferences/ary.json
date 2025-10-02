@@ -135,7 +135,7 @@
 	"prefs-rc": "التبديلات اللخرة",
 	"prefs-displayrc": "خيارات العرض",
 	"recentchangesdays": "شحال من نهار باش غايبان ف التبديلات اللخرانية:",
-	"recentchangesdays-max": "الحد الأقصى {{PLURAL:$1||نهار واحد|يوماين|$1 إيام|$1 يوم}}",
+	"recentchangesdays-max": "لحد لأقصى {{PLURAL:$1||نهار واحد|يوماين|$1 يام|$1 يوم}}",
 	"recentchangescount": "عدد التعديلات اللي أيبان فأحدث التبديلات, تواريخ الصفحات, والسجلات, افتراضيا:",
 	"prefs-help-recentchangescount": "أكبر عدد: 1000",
 	"prefs-advancedrc": "خيارات متقدمة",

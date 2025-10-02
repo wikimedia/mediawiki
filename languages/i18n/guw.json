@@ -2199,7 +2199,7 @@
 	"blocklist-reason": "whẹwhinwhẹn",
 	"ipblocklist-submit": "Dín",
 	"ipblocklist-localblock": "Alọhẹndotenamẹ lẹdo mẹ tọn",
-	"ipblocklist-otherblocks": "{{PLURAL:$1|alọhẹndotenamẹ devo|Alọhẹndotenamẹ devo lẹ}}",
+	"ipblocklist-otherblocks": "{{PLURAL:$1|Alọhẹndotenamẹ devo|Alọhẹndotenamẹ devo lẹ}}",
 	"infiniteblock": "kakadoi",
 	"anononlyblock": "anon. kẹdẹ",
 	"noautoblockblock": "Ma kẹ alọ yi alọhẹndotena zomọ̀ tọn blo",

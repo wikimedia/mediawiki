@@ -136,7 +136,7 @@
 	"underline-always": "Ainos",
 	"tog-showhiddencats": "Ozuta peitetyt kategouriet",
 	"tog-showrollbackconfirmation": "Ozuta lujuandupakičus sua endizeh kundoh -linkua painaldajes",
-	"tog-forcesafemode": "Ota ainos käyttöh [[mw:Manual:Safemode|turvalline ruandutaba]]",
+	"tog-forcesafemode": "Ota ainos käyttöh [[mw:Special:MyLanguage/Manual:Safemode|turvalline ruandutaba]]",
 	"prefs-help-forcesafemode": "Ota iäre käytöspäi wiki-skriptat da CSS.",
 	"prefs-editing": "Kohendamine",
 	"prefs-description-editing": "Azeta, kui luajit, tarkailet da kačot kohenduksii.",

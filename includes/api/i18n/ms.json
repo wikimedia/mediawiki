@@ -10,6 +10,7 @@
 	"apihelp-main-param-action": "Tindakan mana untuk dilakukan.",
 	"apihelp-main-param-format": "Format output.",
 	"apihelp-main-param-uselang": "Bahasa yang hendak digunakan untuk penterjemahan mesej. Senarai kod boleh diperoleh dari [[Special:ApiHelp/query+siteinfo|action=query&meta=siteinfo&siprop=languages]], ataupun menyatakan \"user\" untuk menggunakan bahasa kegemaran pengguna semasa.",
+	"apihelp-block-summary": "Sekat pengguna.",
 	"apihelp-expandtemplates-example-simple": "Perluaskan <kbd><nowiki>{{Project:Sandbox}}</nowiki></kbd> wikiteks.",
 	"apihelp-help-param-helpformat": "Format output bantuan.",
 	"apihelp-help-example-main": "Bantuan untuk modul utama",

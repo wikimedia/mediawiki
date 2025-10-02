@@ -1,0 +1,62 @@
+{
+	"description": "Page with HTML content",
+	"required": [
+		"id",
+		"key",
+		"title",
+		"latest",
+		"content_model",
+		"license",
+		"html"
+	],
+	"properties": {
+		"id": {
+			"type": "integer",
+			"description": "Page identifier"
+		},
+		"key": {
+			"type": "string",
+			"description": "Page title in URL-friendly format"
+		},
+		"title": {
+			"type": "string",
+			"description": "Page title in reading-friendly format"
+		},
+		"latest": {
+			"type": "object",
+			"description": "Information about the latest revision",
+			"properties": {
+				"id": {
+					"type": "integer",
+					"description": "Revision identifier for the latest revision"
+				},
+				"timestamp": {
+					"type": "string",
+					"description": " Timestamp of the latest revision in ISO 8601 format"
+				}
+			}
+		},
+		"content_model": {
+			"type": "string",
+			"description": "Type of content on the page"
+		},
+		"license": {
+			"type": "object",
+			"description": "Information about the wiki's license",
+			"properties": {
+				"url": {
+					"type": "string",
+					"description": "URL of the applicable license based on the $wgRightsUrl setting"
+				},
+				"title": {
+					"type": "string",
+					"description": "Name of the applicable license based on the $wgRightsText setting"
+				}
+			}
+		},
+		"html": {
+			"type": "string",
+			"description": "Latest page content in HTML, following the HTML specification"
+		}
+	}
+}

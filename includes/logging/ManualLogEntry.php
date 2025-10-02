@@ -392,7 +392,8 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 			$formatter->getIRCActionComment(), // Used for IRC feeds
 			$this->getAssociatedRevId(), // Used for e.g. moves and uploads
 			$this->getIsPatrollable(),
-			$this->forceBotFlag
+			$this->forceBotFlag,
+			$this->getDeleted()
 		);
 	}
 

@@ -183,7 +183,7 @@ class CodexHTMLForm extends HTMLForm {
 
 			$button = HTMLButtonField::buildCodexComponent(
 				$submitFlags,
-				$submitButtonLabel,
+				htmlspecialchars( $submitButtonLabel ),
 				$buttonAttribs
 			);
 			$buttons[] = $button;

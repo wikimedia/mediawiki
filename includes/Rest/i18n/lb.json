@@ -10,6 +10,7 @@
 	"rest-invalid-user": "De Benotzernumm, deen ugi gouf, ass ongülteg ($1)",
 	"rest-permission-denied-title": "De Benotzer huet net d'Rechter fir den Titel ($1) ze liesen",
 	"rest-cannot-load-file": "De Fichier fir den Titel ''$1'' kann net geluede ginn.",
+	"rest-badtoken": "De CSRF-Token, deen ugi gouf, ass ongülteg.",
 	"rest-unsupported-transform-input": "Net ënnerstëtzten Input: $1",
 	"rest-unsupported-profile-version": "Net ënnerstëtzte Profilversioun: $1",
 	"rest-parsoid-unsupported-media": "Net ënnerstëtzte Medientyp",

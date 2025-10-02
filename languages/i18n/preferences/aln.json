@@ -5,7 +5,8 @@
 			"Cradel",
 			"Dardan",
 			"Mdupont",
-			"Vanished 456321456"
+			"Vanished 456321456",
+			"Xhulianoo"
 		]
 	},
 	"preferences": "Parapëlqimet",
@@ -41,7 +42,7 @@
 	"prefs-help-email-required": "Adresa e emailit âsht e domosdoshme.",
 	"noemailprefs": "Specifikoni nji adresë emaili në parapëlqimet tueja në mënyrë që t'funksionojnë shërbimet.",
 	"emailnotauthenticated": "Adresa juej e emailit nuk âsht vërtetue ende.\nNuk ka me u dërgue mâ asnji email për shërbimet në vazhdim.",
-	"emailconfirmlink": "Konfirmonin adresën tuej te emailit",
+	"emailconfirmlink": "Konfirmo adresën tënde të email-it",
 	"prefs-emailconfirm-label": "Konfirmimi i emailit:",
 	"emailauthenticated": "Adresa juej e emailit âsht vërtetue me $2 në ora $3.",
 	"allowemail": "Lejo emaila prej përdoruesve tjerë",
@@ -49,7 +50,7 @@
 	"tog-enotifwatchlistpages": "Njoftomë me email, kur ndryshojnë faqet e mbikëqyruna",
 	"tog-enotifusertalkpages": "Njoftomë me email kur ndryshon faqja ime e bisedimit",
 	"tog-enotifminoredits": "Njoftomë me email për redaktime të vogla të faqeve",
-	"tog-enotifrevealaddr": "Shfaqe adresën time në emailat njoftues",
+	"tog-enotifrevealaddr": "Trego adresën time të email-it në email-et njoftuese",
 	"prefs-rendering": "Pâmja",
 	"prefs-skin": "Doka",
 	"skin-preview": "Parapâmja",

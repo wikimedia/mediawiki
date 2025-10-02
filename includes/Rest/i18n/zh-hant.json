@@ -5,7 +5,9 @@
 			"Xiplus",
 			"列维劳德",
 			"捍粵者",
-			"August.C"
+			"August.C",
+			"Peterxy12",
+			"Taiwania Justo"
 		]
 	},
 	"rest-prefix-mismatch": "請求的路徑（$1）不在REST API的基本路徑（$2）內",
@@ -68,6 +70,7 @@
 	"rest-unsupported-target-format": "不支援的請求目標格式。",
 	"rest-parsoid-resource-exceeded": "超出資源限制",
 	"rest-parsoid-error": "Parsoid 錯誤。",
+	"rest-parsoid-bad-render-id": "错误的Parsoid渲染ID：$1",
 	"rest-bad-stash-key": "錯誤的 stash key。",
 	"rest-html-key-expected": "正文裡預期的 <var>html</var> 鍵",
 	"rest-invalid-transform": "無效轉換：$1成$2",

@@ -1857,7 +1857,7 @@ section 5
 <h2><span class="mw-headline" id="text_.26_text">text &amp; text</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: text &amp; text">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <p>section 3
 </p>
-<h2><span class="mw-headline" id="text_.27_text">text ' text</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=4" title="Edit section: text &#039; text">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<h2><span class="mw-headline" id="text_.27_text">text ' text</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=4" title="Edit section: text &#39; text">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <p>section 4
 </p>
 <h2><span class="mw-headline" id="text_.22_text">text " text</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=5" title="Edit section: text &quot; text">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
@@ -2350,10 +2350,10 @@ wgParserEnableLegacyHeadingDOM=true
 !! wikitext
 <h3 id="asdf">odd</h3>
 !! html/php
-<h3 id="asdf"><span class="mw-headline" id="odd">odd</span></h3>
+<h3 id="asdf"><span class="mw-headline">odd</span></h3>
 !! metadata/php
 Sections:
- h3 index: toclevel:1 number:1 title:NULL off:NULL anchor/linkAnchor:odd line:odd
+ h3 index: toclevel:1 number:1 title:NULL off:NULL anchor/linkAnchor:asdf line:odd
 !! html/parsoid
 <section data-mw-section-id="0"></section><section data-mw-section-id="-1"><h3 id="asdf" data-parsoid='{"stx":"html","reusedId":true}'>odd</h3></section>
 !! metadata/parsoid
@@ -2441,7 +2441,7 @@ wgParserEnableLegacyHeadingDOM=true
 !! wikitext
 == &nbsp; A &nbsp; B &nbsp; ==
 !! html/php
-<h2><span class="mw-headline" id="_A_B">&#160; A &#160; B &#160;</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section:   A   B  ">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<h2><span class="mw-headline" id="_A_B">&#160; A &#160; B &#160;</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: &#160; A &#160; B &#160;">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 !! html/parsoid
 <h2 id="_A_B"><span typeof="mw:Entity"> </span> A <span typeof="mw:Entity"> </span> B <span typeof="mw:Entity"> </span></h2>
 !! end
@@ -2686,7 +2686,7 @@ wgParserEnableLegacyHeadingDOM=true
 <h2><span id=".D0.A2.D0.B5.D1.81.D1.82"></span><span class="mw-headline" id="Тест">Тест</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: Тест">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <h2><span id=".D0.A2.D0.B5.D1.81.D1.82_2"></span><span class="mw-headline" id="Тест_2">Тест</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=4" title="Edit section: Тест">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <h2><span id=".D1.82.D0.B5.D1.81.D1.82"></span><span class="mw-headline" id="тест">тест</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=5" title="Edit section: тест">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-<h2><span id="Hey_.3C_.23_.22_.3E_.25_:_.27"></span><span class="mw-headline" id="Hey_&lt;_#_&quot;_&gt;_%_:_'">Hey &lt; # " &gt;&#160;%&#160;: '</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=6" title="Edit section: Hey &lt; # &quot; &gt; % : &#039;">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<h2><span id="Hey_.3C_.23_.22_.3E_.25_:_.27"></span><span class="mw-headline" id="Hey_&lt;_#_&quot;_&gt;_%_:_'">Hey &lt; # " &gt;&#160;%&#160;: '</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=6" title="Edit section: Hey &lt; # &quot; &gt;&#160;%&#160;: &#39;">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <p><a href="#Foo_bar">#Foo bar</a> <a href="#foo_Bar">#foo Bar</a> <a href="#Тест">#Тест</a> <a href="#тест">#тест</a> <a href="#Hey_&lt;_#_&quot;_&gt;_%_:_&#39;">#Hey &lt; # " &gt;&#160;%&#160;: '</a>
 </p><p>💩 <span id="💩"></span>
 </p><p><a href="#啤酒">#啤酒</a> <a href="#啤酒">#啤酒</a>
@@ -2753,7 +2753,7 @@ wgParserEnableLegacyHeadingDOM=true
 <h2><span id="Тест"></span><span class="mw-headline" id=".D0.A2.D0.B5.D1.81.D1.82">Тест</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: Тест">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <h2><span id="Тест_2"></span><span class="mw-headline" id=".D0.A2.D0.B5.D1.81.D1.82_2">Тест</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=4" title="Edit section: Тест">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <h2><span id="тест"></span><span class="mw-headline" id=".D1.82.D0.B5.D1.81.D1.82">тест</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=5" title="Edit section: тест">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-<h2><span id="Hey_&lt;_#_&quot;_&gt;_%_:_'"></span><span class="mw-headline" id="Hey_.3C_.23_.22_.3E_.25_:_.27">Hey &lt; # " &gt;&#160;%&#160;: '</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=6" title="Edit section: Hey &lt; # &quot; &gt; % : &#039;">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<h2><span id="Hey_&lt;_#_&quot;_&gt;_%_:_'"></span><span class="mw-headline" id="Hey_.3C_.23_.22_.3E_.25_:_.27">Hey &lt; # " &gt;&#160;%&#160;: '</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=6" title="Edit section: Hey &lt; # &quot; &gt;&#160;%&#160;: &#39;">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <p><a href="#Foo_bar">#Foo bar</a> <a href="#foo_Bar">#foo Bar</a> <a href="#.D0.A2.D0.B5.D1.81.D1.82">#Тест</a> <a href="#.D1.82.D0.B5.D1.81.D1.82">#тест</a> <a href="#Hey_.3C_.23_.22_.3E_.25_:_.27">#Hey &lt; # " &gt;&#160;%&#160;: '</a>
 </p><p>.F0.9F.92.A9 <span id=".F0.9F.92.A9"></span>
 </p><p><a href="#.E5.95.A4.E9.85.92">#啤酒</a> <a href="#.E5.95.A4.E9.85.92">#啤酒</a>
@@ -2802,7 +2802,7 @@ wgParserEnableLegacyHeadingDOM=true
 <h2><span class="mw-headline" id="Тест">Тест</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: Тест">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <h2><span class="mw-headline" id="Тест_2">Тест</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=4" title="Edit section: Тест">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <h2><span class="mw-headline" id="тест">тест</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=5" title="Edit section: тест">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-<h2><span class="mw-headline" id="Hey_&lt;_#_&quot;_&gt;_%_:_'">Hey &lt; # " &gt;&#160;%&#160;: '</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=6" title="Edit section: Hey &lt; # &quot; &gt; % : &#039;">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<h2><span class="mw-headline" id="Hey_&lt;_#_&quot;_&gt;_%_:_'">Hey &lt; # " &gt;&#160;%&#160;: '</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=6" title="Edit section: Hey &lt; # &quot; &gt;&#160;%&#160;: &#39;">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <p><a href="#Foo_bar">#Foo bar</a> <a href="#foo_Bar">#foo Bar</a> <a href="#Тест">#Тест</a> <a href="#тест">#тест</a> <a href="#Hey_&lt;_#_&quot;_&gt;_%_:_&#39;">#Hey &lt; # " &gt;&#160;%&#160;: '</a>
 </p><p>💩 <span id="💩"></span>
 </p><p><a href="#啤酒">#啤酒</a> <a href="#啤酒">#啤酒</a>
@@ -2819,7 +2819,7 @@ wgParserEnableLegacyHeadingDOM=true
 [[#Foo&nbsp;bar]]
 
 !! html/php
-<h2><span class="mw-headline" id="Foo_bar">Foo&#160;bar</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Foo bar">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<h2><span class="mw-headline" id="Foo_bar">Foo&#160;bar</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Foo&#160;bar">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <p><a href="#Foo_bar">#Foo&#160;bar</a>
 </p>
 !! html/parsoid

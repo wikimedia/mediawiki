@@ -142,7 +142,7 @@
 	"underline-always": "Секогаш",
 	"tog-showhiddencats": "Прикажи скриени категории",
 	"tog-showrollbackconfirmation": "Прикажи потврдница при стискање на врската за отповикување",
-	"tog-forcesafemode": "Секогаш вклучувај [[mw:Manual:Safemode|безбеден режим]]",
+	"tog-forcesafemode": "Секогаш вклучувај [[mw:Special:MyLanguage/Manual:Safemode|безбеден режим]]",
 	"prefs-help-forcesafemode": "Исклучи скрипти и стилски табели на вики.",
 	"prefs-editing": "Уредување",
 	"prefs-description-editing": "Прилагодете како правите, следите и оценувате уредувања.",

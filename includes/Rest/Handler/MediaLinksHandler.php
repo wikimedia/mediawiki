@@ -192,4 +192,8 @@ class MediaLinksHandler extends SimpleHandler {
 	protected function getMaxNumLinks(): int {
 		return self::MAX_NUM_LINKS;
 	}
+
+	public function getResponseBodySchemaFileName( string $method ): ?string {
+		return 'includes/Rest/Handler/Schema/MediaLinks.json';
+	}
 }

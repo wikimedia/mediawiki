@@ -1,0 +1,30 @@
+{
+	"@metadata": {
+		"authors": [
+			"Shvermer"
+		]
+	},
+	"cdx-chip-input-chip-added": "טשיפּ $1 איז צוגעלייגט געוואָרן.",
+	"cdx-chip-input-chip-removed": "טשיפּ $1 איז אַוועקגענומען געוואָרן.",
+	"cdx-input-chip-aria-description": "דריקט Enter צו רעדאַקטירן אדער Delete צו אַראָפּנעמען.",
+	"cdx-dialog-close-button-label": "פאַרמאַכן",
+	"cdx-label-optional-flag": "(אָפּציאָנאַל)",
+	"cdx-message-dismiss-button-label": "פאַרמאַכן",
+	"cdx-search-input-search-button-label": "זוכן",
+	"cdx-table-select-all-label": "אויסקלויבן אַלע רייען",
+	"cdx-table-select-row-label": "אויסקלויבן רייע $1 פון $2",
+	"cdx-table-sort-caption": "$1 (קאָלום קעפּלעך מיט קנעפּלעך קען מען סאָרטירן).",
+	"cdx-typeahead-search-search-results-label": "זוך רעזולטאַטן",
+	"cdx-table-pager-button-first-page": "ערשטער בלאַט",
+	"cdx-table-pager-button-last-page": "לעצטער בלאַט",
+	"cdx-table-pager-button-next-page": "קומענדיגער בלאַט",
+	"cdx-table-pager-button-prev-page": "פריערדיגער בלאַט",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1| $1 רייע| $1 רייען}}",
+	"cdx-table-pager-items-per-page-default": "רעזולטאַטן פּער בלאַט",
+	"cdx-table-pagination-status-message-determinate-long": "ווייזט רעזולטאַטן $1 – $2 פון $3",
+	"cdx-table-pagination-status-message-determinate-short": "$1 – $2 פון $3",
+	"cdx-table-pagination-status-message-indeterminate-long": "ווייזט רעזולטאַטן $1 – $2 פון פילע",
+	"cdx-table-pagination-status-message-indeterminate-short": "$1 – $2 פון פילע",
+	"cdx-table-pagination-status-message-indeterminate-final": "ווייזט די לעצטע {{PLURAL:$1| $1 רעזולטאַט| $1 רעזולטאַטן}}",
+	"cdx-table-pagination-status-message-pending": "לאָדנט רעזולטאַטן..."
+}

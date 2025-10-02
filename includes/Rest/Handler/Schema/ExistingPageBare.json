@@ -1,0 +1,62 @@
+{
+	"description": "Page without content",
+	"required": [
+		"id",
+		"key",
+		"title",
+		"latest",
+		"content_model",
+		"license",
+		"html_url"
+	],
+	"properties": {
+		"id": {
+			"type": "integer",
+			"description": "Page identifier"
+		},
+		"key": {
+			"type": "string",
+			"description": "Page title in URL-friendly format"
+		},
+		"title": {
+			"type": "string",
+			"description": "Page title"
+		},
+		"latest": {
+			"type": "object",
+			"description": "Information about the latest revision",
+			"properties": {
+				"id": {
+					"type": "integer",
+					"description": "Revision identifier for the latest revision"
+				},
+				"timestamp": {
+					"type": "string",
+					"description": " Timestamp of the latest revision"
+				}
+			}
+		},
+		"content_model": {
+			"type": "string",
+			"description": "Page content type"
+		},
+		"license": {
+			"type": "object",
+			"description": "Information about the wiki's license",
+			"properties": {
+				"url": {
+					"type": "string",
+					"description": "URL of the applicable license"
+				},
+				"title": {
+					"type": "string",
+					"description": "Name of the applicable license"
+				}
+			}
+		},
+		"html_url": {
+			"type": "string",
+			"description": "API route to fetch the content of the page in HTML"
+		}
+	}
+}

@@ -105,8 +105,13 @@ class SpecialDeletedContributions extends ContributionsSpecialPage {
 	/**
 	 * @inheritDoc
 	 */
-	protected function getPager( $target ) {
+	protected function getPager( $targetUser ) {
 		if ( $this->pager === null ) {
+			// Fields in the opts property are usually not normalised, mainly
+			// for validations in HTMLForm, especially the 'target' field.
+			$options = $this->opts;
+			unset( $options['target'] );
+
 			$this->pager = new DeletedContribsPager(
 				$this->getHookContainer(),
 				$this->getLinkRenderer(),
@@ -117,8 +122,8 @@ class SpecialDeletedContributions extends ContributionsSpecialPage {
 				$this->linkBatchFactory,
 				$this->userFactory,
 				$this->getContext(),
-				$this->opts,
-				$target
+				$options,
+				$targetUser
 			);
 		}
 

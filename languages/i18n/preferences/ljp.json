@@ -134,7 +134,7 @@
 	"underline-always": "Selalu",
 	"tog-showhiddencats": "Jajakko kaban sai tisegokko",
 	"tog-showrollbackconfirmation": "Jajakko konpirmasi pas micit kawikan pengulohan",
-	"tog-forcesafemode": "Selalu hurikko [[mw:Manual:Safemode|mode aman]]",
+	"tog-forcesafemode": "Selalu hurikko [[mw:Special:MyLanguage/Manual:Safemode|mode aman]]",
 	"prefs-help-forcesafemode": "Matiko skrip rik lembar lagak dilom wiki.",
 	"prefs-editing": "Ngedandan",
 	"prefs-description-editing": "Kustomisasi caramu ngegawi, ngelacak, rik nyilau ulih dandanan.",

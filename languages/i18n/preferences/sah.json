@@ -137,7 +137,7 @@
 	"underline-always": "Куруук",
 	"tog-showhiddencats": "Кистэммит категориялары көрдөр",
 	"tog-showrollbackconfirmation": "Сигэни баттаатахха дьайыыга бигэргэтиини көрдөр",
-	"tog-forcesafemode": "Букатын [[mw:Manual:Safemode|куттала суох эрэсиими]] холбоо",
+	"tog-forcesafemode": "Букатын [[mw:Special:MyLanguage/Manual:Safemode|куттала суох эрэсиими]] холбоо",
 	"prefs-help-forcesafemode": "Биикигэ скриптары уонна CSS араар.",
 	"prefs-editing": "Уларытыы",
 	"prefs-description-editing": "Хайдах торумнары оҥороргун, кэтииргин уонна көрөргүн нарылаа.",

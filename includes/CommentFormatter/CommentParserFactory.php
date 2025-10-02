@@ -4,6 +4,7 @@ namespace MediaWiki\CommentFormatter;
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Cache\LinkCache;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Language\Language;
 use MediaWiki\Linker\LinkRenderer;
@@ -24,8 +25,6 @@ class CommentParserFactory {
 	/** @var RepoGroup */
 	private $repoGroup;
 	/** @var Language */
-	private $userLang;
-	/** @var Language */
 	private $contLang;
 	/** @var TitleParser */
 	private $titleParser;
@@ -39,7 +38,6 @@ class CommentParserFactory {
 	 * @param LinkBatchFactory $linkBatchFactory
 	 * @param LinkCache $linkCache
 	 * @param RepoGroup $repoGroup
-	 * @param Language $userLang
 	 * @param Language $contLang
 	 * @param TitleParser $titleParser
 	 * @param NamespaceInfo $namespaceInfo
@@ -50,7 +48,6 @@ class CommentParserFactory {
 		LinkBatchFactory $linkBatchFactory,
 		LinkCache $linkCache,
 		RepoGroup $repoGroup,
-		Language $userLang,
 		Language $contLang,
 		TitleParser $titleParser,
 		NamespaceInfo $namespaceInfo,
@@ -60,7 +57,6 @@ class CommentParserFactory {
 		$this->linkBatchFactory = $linkBatchFactory;
 		$this->linkCache = $linkCache;
 		$this->repoGroup = $repoGroup;
-		$this->userLang = $userLang;
 		$this->contLang = $contLang;
 		$this->titleParser = $titleParser;
 		$this->namespaceInfo = $namespaceInfo;
@@ -76,7 +72,7 @@ class CommentParserFactory {
 			$this->linkBatchFactory,
 			$this->linkCache,
 			$this->repoGroup,
-			$this->userLang,
+			RequestContext::getMain()->getLanguage(),
 			$this->contLang,
 			$this->titleParser,
 			$this->namespaceInfo,

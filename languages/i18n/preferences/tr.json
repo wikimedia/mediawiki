@@ -162,7 +162,7 @@
 	"underline-always": "Her zaman",
 	"tog-showhiddencats": "Gizli kategorileri göster",
 	"tog-showrollbackconfirmation": "Geri döndür bağlantısına tıklanınca bir onay istemi göster",
-	"tog-forcesafemode": "[[mw:Manual:Safemode|Güvenli kipi]] her zaman etkinleştir",
+	"tog-forcesafemode": "[[mw:Special:MyLanguage/Manual:Safemode|Güvenli modu]] her zaman etkinleştir",
 	"prefs-help-forcesafemode": "Vikideki betikleri ve biçem sayfalarını devre dışı bırakın.",
 	"prefs-editing": "Sayfa yazma alanı",
 	"prefs-description-editing": "Değişiklikleri nasıl yapacağınızı, izleyeceğinizi ve inceleyeceğinizi özelleştirin.",

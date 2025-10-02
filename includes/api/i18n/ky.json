@@ -18,6 +18,7 @@
 	"apihelp-login-param-name": "Колдонуучунун аты.",
 	"apihelp-login-example-login": "Кирүү.",
 	"apihelp-userrights-param-user": "Колдонуучу.",
+	"api-help-parameters": "{{PLURAL:$1|Белгилүү бир параметр|Белгилүү бир параметрлер}}:",
 	"api-help-examples": "{{PLURAL:$1|Мисал|Мисалдар}}:",
 	"api-feed-error-title": "Ката ($1)"
 }

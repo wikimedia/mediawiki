@@ -146,17 +146,12 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 		$target = $par ?? $request->getVal( 'target', '' );
 		'@phan-var string $target'; // getVal does not return null here
 
-		// Normalize underscores that may be present in the target parameter
-		// if it was passed in as a path param, rather than a query param
-		// where HTMLForm may have already performed preprocessing (T372444).
-		$target = $this->userNameUtils->getCanonical( $target, UserNameUtils::RIGOR_NONE );
-
 		$this->opts['deletedOnly'] = $request->getBool( 'deletedOnly' );
 
-		// Explicitly check for false or empty string as this needs to account
-		// for the rare case where the target parameter is '0' which is a valid
+		// Explicitly check for empty string as this needs to account for
+		// the rare case where the target parameter is '0' which is a valid
 		// target but resolves to false in boolean context (T379515).
-		if ( $target === false || $target === '' ) {
+		if ( $target === '' ) {
 			$out->addHTML( $this->getForm( $this->opts ) );
 
 			return;
@@ -743,7 +738,7 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 			'title',
 		];
 
-		foreach ( $this->opts as $name => $value ) {
+		foreach ( $pagerOptions as $name => $value ) {
 			if ( in_array( $name, $skipParameters ) ) {
 				continue;
 			}
@@ -755,10 +750,10 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 			];
 		}
 
-		$target = $this->opts['target'] ?? '';
+		$target = $pagerOptions['target'] ?? '';
 		$fields['target'] = $this->getTargetField( $target );
 
-		$ns = $this->opts['namespace'] ?? null;
+		$ns = $pagerOptions['namespace'] ?? null;
 		$fields['namespace'] = [
 			'type' => 'namespaceselect',
 			'label' => $this->msg( 'namespace' )->text(),

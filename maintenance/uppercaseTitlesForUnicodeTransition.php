@@ -426,6 +426,7 @@ class UppercaseTitlesForUnicodeTransition extends Maintenance {
 		if ( !$status->isOK() ) {
 			$this->error( "Move {$oldTitle->getPrefixedText()} → {$newTitle->getPrefixedText()} failed:" );
 			$this->error( $status );
+			return false;
 		}
 		$this->output( "Renamed {$oldTitle->getPrefixedText()} → {$newTitle->getPrefixedText()}\n" );
 

@@ -190,4 +190,7 @@ class LanguageLinksHandler extends SimpleHandler {
 		return (bool)$this->getPage();
 	}
 
+	public function getResponseBodySchemaFileName( string $method ): ?string {
+		return 'includes/Rest/Handler/Schema/PageLanguageLinks.json';
+	}
 }

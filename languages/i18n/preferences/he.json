@@ -145,7 +145,7 @@
 	"underline-always": "תמיד",
 	"tog-showhiddencats": "הצגת קטגוריות מוסתרות",
 	"tog-showrollbackconfirmation": "הצגת הודעת אישור לאחר לחיצה על קישור \"שחזור\"",
-	"tog-forcesafemode": "להפעיל תמיד את [[mw:Manual:Safemode|המצב הבטוח]]",
+	"tog-forcesafemode": "להפעיל תמיד את [[mw:Special:MyLanguage/Manual:Safemode|המצב הבטוח]]",
 	"prefs-help-forcesafemode": "להשבית סקריפטים וגיליונות סגנונות בוויקי.",
 	"prefs-editing": "עריכה",
 	"prefs-description-editing": "התאמה אישית של האופן שבו {{GENDER:|אתה עושה עריכות, עוקב אחריהן ובודק אותן|את עושה עריכות, עוקבת אחריהן ובודקת אותן}}.",

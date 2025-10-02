@@ -212,6 +212,7 @@
 	"confirmedittext": "Lapok szerkesztése előtt meg kell erősítenie az e-mail-címét.\nKérjük, hogy a [[Special:Preferences|felhasználói beállításaiban]] adja meg, majd erősítse meg az e-mail-címét.",
 	"noarticletext": "Ez a lap jelenleg nem tartalmaz szöveget.\n[[Special:Search/{{PAGENAME}}|Rákereshet erre a címszóra]],\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} megtekintheti a kapcsolódó naplókat],\nvagy [{{fullurl:{{FULLPAGENAME}}|action=edit}} létrehozhatja a lapot].</span>",
 	"note": "<strong>Megjegyzés:</strong>",
+	"permissionserrorstext-withaction": "Nincs jogosultsága a következő művelet elvégzéséhez: $2, a következő {{PLURAL:$1|ok|okok}} miatt:",
 	"skin-action-addsection": "Új téma nyitása",
 	"action-move": "Átnevezés",
 	"action-delete": "Törlés",

@@ -142,7 +142,7 @@
 	"underline-always": "Һәр ваҡыт",
 	"tog-showhiddencats": "Йәшерен категорияларҙы күрһәтергә",
 	"tog-showrollbackconfirmation": "Кире алыу һылтанмаһына баҫҡанда раҫлауҙы һорарға",
-	"tog-forcesafemode": "Һәр ваҡыт [[mw:Manual:Safemode|хәүефһеҙ режим]]ды ҡабыҙырға",
+	"tog-forcesafemode": "Һәр ваҡыт [[mw:Special:MyLanguage/Manual:Safemode|хәүефһеҙ режим]]ды ҡабыҙырға",
 	"prefs-help-forcesafemode": "Викиҙа скриптарҙы һәм стилдәр таблицаһын һүндерергә.",
 	"prefs-editing": "Мөхәррирләү",
 	"prefs-description-editing": "Төҙәтеү индереүегеҙҙе, күҙәтеүегеҙҙе һәм ҡарауығыҙҙы көйләгеҙ.",

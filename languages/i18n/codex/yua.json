@@ -2,7 +2,9 @@
 	"@metadata": {
 		"authors": [
 			"Cenzontle25",
-			"ROJOVIVO"
+			"ROJOVIVO",
+			"Fredy",
+			"Kuxtal"
 		]
 	},
 	"cdx-chip-input-chip-added": "Chip $1 ts'o'ok u ts'áabal.",
@@ -16,5 +18,16 @@
 	"cdx-table-select-row-label": "Yéey u tsol $1 ti' $2",
 	"cdx-table-sort-caption": "$1 (u cabeceras le columna yéetel botones ku ordenables).",
 	"cdx-typeahead-search-search-results-label": "U núukil ba'ax kaxanta'abij",
-	"cdx-table-pager-button-first-page": "yáax linki abas kaambal"
+	"cdx-table-pager-button-first-page": "yáax linki abas kaambal",
+	"cdx-table-pager-button-last-page": "u láak wáal",
+	"cdx-table-pager-button-next-page": "u láak ju'un",
+	"cdx-table-pager-button-prev-page": "táanil ju'um",
+	"cdx-table-pager-items-per-page-current": "{{yaabo':$1|$1 tsool|$1 tsool}}",
+	"cdx-table-pager-items-per-page-default": "u ye'esajil ba'ax ku taasik",
+	"cdx-table-pagination-status-message-determinate-long": "u ye'esajil ba'ax ku taasik $1–$2 ti' $3",
+	"cdx-table-pagination-status-message-determinate-short": "$1 – $2 ti' $3",
+	"cdx-table-pagination-status-message-indeterminate-long": "U ye'esa'al ba'ax kaxta'abil $1–$2 ti' u ya'abil",
+	"cdx-table-pagination-status-message-indeterminate-short": "$1 – $2 ti' ya'ab",
+	"cdx-table-pagination-status-message-indeterminate-final": "Ku ye'esik u ts'ook u náajalil {{ya'abo'ob:$1|$1 ku ye'esik u ts'ook u náajalilo'ob|$1}}",
+	"cdx-table-pagination-status-message-pending": "táan u páa'tik ye'esajil"
 }

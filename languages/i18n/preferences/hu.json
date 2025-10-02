@@ -22,7 +22,8 @@
 			"TK-999",
 			"Tacsipacsi",
 			"Tgr",
-			"ViDam"
+			"ViDam",
+			"Krisztina"
 		]
 	},
 	"preferences": "Beállítások",
@@ -44,7 +45,7 @@
 	"group-membership-link-with-expiry": "$1 (a következő időpontig: $2)",
 	"prefs-edits": "Szerkesztéseid száma:",
 	"prefs-registration": "Regisztráció ideje:",
-	"yourrealname": "Valódi neved:",
+	"yourrealname": "Valódi név:",
 	"prefs-help-realname": "A valódi név nem kötelező.\nHa megadod, akkor leszel feltüntetve a munkád szerzőjeként.",
 	"yourpassword": "Jelszavad:",
 	"prefs-resetpass": "Jelszó megváltoztatása",
@@ -155,7 +156,7 @@
 	"underline-always": "mindig",
 	"tog-showhiddencats": "Rejtett kategóriák megjelenítése",
 	"tog-showrollbackconfirmation": "Megerősítés kérése, amikor a visszaállítás linkre kattintasz",
-	"tog-forcesafemode": "Mindig engedélyezze a [[mw:Manual:Safemode|biztonságos módot]]",
+	"tog-forcesafemode": "Mindig engedélyezze a [[mw:Special:MyLanguage/Manual:Safemode|biztonságos módot]]",
 	"prefs-help-forcesafemode": "A wiki-szkriptek és stíluslapok letiltása.",
 	"prefs-editing": "Szerkesztés",
 	"prefs-description-editing": "A szerkesztések végzésének, követésének és ellenőrzésének testreszabása.",

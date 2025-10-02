@@ -138,7 +138,7 @@
 	"underline-always": "Јаантайын",
 	"tog-showhiddencats": "Јажырган категорияларды кӧргузер",
 	"tog-showrollbackconfirmation": "Тескерледер тайантыга былчып ийзе јӧптӧш сураар",
-	"tog-forcesafemode": "[[mw:Manual:Safemode|Каршу болдыртпас режимди]] јаантайынга иштедер",
+	"tog-forcesafemode": "[[mw:Special:MyLanguage/Manual:Safemode|Каршу болдыртпас режимди]] јаантайынга иштедер",
 	"prefs-help-forcesafemode": "Викиде скриптерди ле туружаачыныҥ CSS-терин иштетпес.",
 	"prefs-editing": "Тӱзедиш",
 	"prefs-description-editing": "Слер эдип турган тӱзедӱни, ширтеени ле тузедӱлерди кӧргӱзетенин эптештирер.",

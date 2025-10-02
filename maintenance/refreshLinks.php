@@ -26,6 +26,7 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Title\Title;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\IReadableDatabase;
+use Wikimedia\Rdbms\RawSQLExpression;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
 // @codeCoverageIgnoreStart
@@ -112,8 +113,8 @@ class RefreshLinks extends Maintenance {
 			} else {
 				if ( $touched ) {
 					$builder->andWhere( [
-						$dbr->expr( 'page_touched', '>', 'page_links_updated' )
-							->or( 'page_links_updated', '=', null ),
+						$dbr->expr( 'page_links_updated', '=', null )
+							->orExpr( new RawSQLExpression( 'page_touched > page_links_updated' ) ),
 					] );
 				}
 				$this->output( "Refreshing $what from pages...\n" );

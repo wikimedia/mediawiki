@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Prem4826"
+			"Prem4826",
+			"Wutkh"
 		]
 	},
 	"cdx-chip-input-chip-added": "ชิป $1 ถูกเพิ่มแล้ว",
@@ -13,7 +14,7 @@
 	"cdx-search-input-search-button-label": "ค้นหา",
 	"cdx-table-select-all-label": "เลือกแถวทั้งหมด",
 	"cdx-table-select-row-label": "เลือกแถว $1 จาก $2",
-	"cdx-table-sort-caption": "$1 ส่วนหัวคอลัมน์พร้อมปุ่มสามารถเรียงลำดับได้",
+	"cdx-table-sort-caption": "$1 (ส่วนหัวคอลัมน์พร้อมปุ่มสามารถเรียงลำดับได้)",
 	"cdx-typeahead-search-search-results-label": "ผลการค้นหา",
 	"cdx-table-pager-button-first-page": "หน้าแรก",
 	"cdx-table-pager-button-last-page": "หน้าสุดท้าย",

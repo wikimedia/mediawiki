@@ -155,7 +155,7 @@
 	"underline-always": "Alltid",
 	"tog-showhiddencats": "Vis skjulte kategorier",
 	"tog-showrollbackconfirmation": "Be om bekreftelse når man klikker på en tilbakestillingslenke",
-	"tog-forcesafemode": "Aktiver alltid [[mw:Manual:Safemode|sikkerhetsmodus]].",
+	"tog-forcesafemode": "Aktiver alltid [[mw:Special:MyLanguage/Manual:Safemode|sikkerhetsmodus]].",
 	"prefs-help-forcesafemode": "Deaktiver skript og stilark på wikien.",
 	"prefs-editing": "Redigering",
 	"prefs-description-editing": "Tilpass hvordan du gjør, sporer og gjennomgår redigeringer.",
