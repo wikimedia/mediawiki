@@ -3366,11 +3366,8 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	): ?RevisionRecord {
 		$revision->assertWiki( $this->wikiId );
 		$db = $this->getReplicaConnection();
-		$candidateRevisions = $this->newSelectQueryBuilder( $db )
-			->select( [ 'role_name', 'content_sha1' ] )
-			->join( 'slots', null, 'slot_revision_id = rev_id' )
-			->join( 'content', null, 'content_id = slot_content_id' )
-			->join( 'slot_roles', null, 'slot_role_id = role_id' )
+		$subquery = $this->newSelectQueryBuilder( $db )
+			->joinComment()
 			->where( [ 'rev_page' => $revision->getPageId( $this->wikiId ) ] )
 			// Include 'rev_id' in the ordering in case there are multiple revs with same timestamp
 			->orderBy( [ 'rev_timestamp', 'rev_id' ], SelectQueryBuilder::SORT_DESC )
@@ -3379,38 +3376,14 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 			->limit( $searchLimit )
 			// skip the most recent edit, we can't revert to it anyway
 			->offset( 1 )
-			->caller( __METHOD__ )
-			->fetchResultSet();
+			->caller( __METHOD__ );
 
-		// Build a map of candidate revisions to their slot role => sha1 arrays
-		$candidateSlotHashes = [];
-		foreach ( $candidateRevisions as $candidate ) {
-			$candidateSlotHashes[$candidate->rev_id][$candidate->role_name] = $candidate->content_sha1;
-		}
-
-		// Build the target slot role => sha1 array from the provided revision
-		$searchedSlotHashes = [];
-		$slots = $revision->getSlots()->getPrimarySlots();
-		foreach ( $slots as $slot ) {
-			$searchedSlotHashes[$slot->getRole()] = $slot->getSha1();
-		}
-
-		$matchRevId = null;
-		foreach ( $candidateSlotHashes as $revId => $slotHashes ) {
-			if ( $slotHashes === $searchedSlotHashes ) {
-				$matchRevId = $revId;
-				break;
-			}
-		}
-
-		$revisionRow = null;
-		if ( $matchRevId !== null ) {
-			$revisionRow = $this->newSelectQueryBuilder( $db )
-				->joinComment()
-				->where( [ 'rev_id' => $matchRevId ] )
-				->caller( __METHOD__ )
-				->fetchRow();
-		}
+		// fetchRow effectively uses LIMIT 1 clause, returning only the first result
+		$revisionRow = $db->newSelectQueryBuilder()
+			->select( '*' )
+			->from( $subquery, 'recent_revs' )
+			->where( [ 'rev_sha1' => $revision->getSha1() ] )
+			->caller( __METHOD__ )->fetchRow();
 
 		return $revisionRow ? $this->newRevisionFromRow( $revisionRow ) : null;
 	}
