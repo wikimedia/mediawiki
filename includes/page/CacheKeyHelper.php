@@ -7,6 +7,7 @@
 namespace MediaWiki\Page;
 
 use LogicException;
+use MediaWiki\DAO\WikiAwareEntity;
 use Wikimedia\Parsoid\Core\LinkTarget;
 
 /**
@@ -38,11 +39,30 @@ abstract class CacheKeyHelper {
 	}
 
 	/**
+	 * Returns a stable key for identifying the given page in a cache.
+	 * The return value takes into account the page's DB key, namespace and
+	 * wiki ID or interwiki prefix. It is suitable for use with
+	 * BagOStuff::makeKey and BagOStuff::makeGlobalKey.
+	 *
+	 * @note The key that this method returns for a given page should never change.
+	 * Changing the return value may have sever impact on deployment, as it would
+	 * cause caches that rely on this method to become effectively "cold" (empty).
+	 *
 	 * @param LinkTarget|PageReference $page
-	 * @return string
+	 * @return string A string suitable for identifying the given page. Callers
+	 *         should not attempt to extract information from this value, it
+	 *         should be treated as opaque (but stable).
 	 */
 	public static function getKeyForPage( $page ): string {
-		return 'ns' . $page->getNamespace() . ':' . $page->getDBkey();
+		$prefix = 'ns' . $page->getNamespace();
+
+		if ( $page instanceof WikiAwareEntity && $page->getWikiId() !== WikiAwareEntity::LOCAL ) {
+			$prefix .= '@id@' . $page->getWikiId();
+		} elseif ( $page instanceof LinkTarget && $page->getInterwiki() !== '' ) {
+			$prefix .= '@iw@' . $page->getInterwiki();
+		}
+
+		return $prefix . ':' . $page->getDBkey();
 	}
 }
 

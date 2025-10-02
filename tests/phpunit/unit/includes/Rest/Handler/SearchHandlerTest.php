@@ -13,7 +13,6 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\PageStore;
-use MediaWiki\Page\ProperPageIdentity;
 use MediaWiki\Page\RedirectLookup;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\Handler\SearchHandler;
@@ -561,9 +560,7 @@ class SearchHandlerTest extends MediaWikiUnitTestCase {
 	 * We expect to remove the redirect source, and keep the redirect target.
 	 */
 	public function testExecute_RemovesDuplicateRedirectAndSource() {
-		$pageTarget = $this->createMock( ProperPageIdentity::class );
-		$pageTarget->method( 'getID' )->willReturn( 10 );
-		$pageTarget->method( 'getDBKey' )->willReturn( 'Foo_Redirect_Target' );
+		$pageTarget = PageIdentityValue::localIdentity( 10, NS_MAIN, 'Foo_Redirect_Target' );
 
 		$mockRedirectLinkTarget = $this->createMock( LinkTarget::class );
 		$mockPageStore = $this->createMock( PageStore::class );

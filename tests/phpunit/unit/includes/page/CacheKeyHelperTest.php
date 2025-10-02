@@ -20,6 +20,11 @@ class CacheKeyHelperTest extends MediaWikiUnitTestCase {
 		yield [ PageIdentityValue::localIdentity( 7, NS_USER, 'Yulduz' ), 'ns2:Yulduz' ];
 		yield [ Title::makeTitle( NS_USER, 'Yulduz' ), 'ns2:Yulduz' ];
 		yield [ new TitleValue( NS_USER, 'Yulduz' ), 'ns2:Yulduz' ];
+		yield [ new TitleValue( NS_USER, 'Yulduz', 'Foobar' ), 'ns2:Yulduz' ];
+
+		yield [ PageIdentityValue::localReference( NS_MAIN, 'Yer' ), 'ns0:Yer' ];
+		yield [ new PageIdentityValue( 17, NS_MAIN, 'Yer', 'uzwiki' ), 'ns0@id@uzwiki:Yer' ];
+		yield [ new TitleValue( NS_MAIN, 'Yer', '', 'uz' ), 'ns0@iw@uz:Yer' ];
 	}
 
 	/**
