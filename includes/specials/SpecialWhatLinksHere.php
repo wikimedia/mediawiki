@@ -9,6 +9,7 @@ namespace MediaWiki\Specials;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Deferred\LinksUpdate\ImageLinksTable;
+use MediaWiki\Deferred\LinksUpdate\PageLinksTable;
 use MediaWiki\Deferred\LinksUpdate\TemplateLinksTable;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
@@ -288,11 +289,14 @@ class SpecialWhatLinksHere extends FormSpecialPage {
 		}
 
 		if ( !$hidelinks ) {
-			$plRes = $queryFunc( $dbr, 'pagelinks', 'pl_from' );
+			$plRes = $queryFunc(
+				$this->dbProvider->getReplicaDatabase( PageLinksTable::VIRTUAL_DOMAIN ),
+				'pagelinks',
+				'pl_from'
+			);
 		}
 
 		if ( !$hidetrans ) {
-
 			$tlRes = $queryFunc(
 				$this->dbProvider->getReplicaDatabase( TemplateLinksTable::VIRTUAL_DOMAIN ),
 				'templatelinks',

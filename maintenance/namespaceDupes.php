@@ -15,7 +15,9 @@ require_once __DIR__ . '/Maintenance.php';
 // @codeCoverageIgnoreEnd
 
 use MediaWiki\Deferred\DeferredUpdates;
+use MediaWiki\Deferred\LinksUpdate\ImageLinksTable;
 use MediaWiki\Deferred\LinksUpdate\LinksDeletionUpdate;
+use MediaWiki\Deferred\LinksUpdate\PageLinksTable;
 use MediaWiki\Deferred\LinksUpdate\TemplateLinksTable;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
@@ -424,10 +426,14 @@ class NamespaceDupes extends Maintenance {
 	private function checkLinkTable( $table, $fieldPrefix, $ns, $name, $options,
 		$extraConds = []
 	) {
-		if ( $table === 'templatelinks' ) {
-			$dbw = $this->getServiceContainer()->getConnectionProvider()->getPrimaryDatabase(
-				TemplateLinksTable::VIRTUAL_DOMAIN
-			);
+		$domainMap = [
+			'templatelinks' => TemplateLinksTable::VIRTUAL_DOMAIN,
+			'imagelinks' => ImageLinksTable::VIRTUAL_DOMAIN,
+			'pagelinks' => PageLinksTable::VIRTUAL_DOMAIN,
+		];
+
+		if ( isset( $domainMap[$table] ) ) {
+			$dbw = $this->getServiceContainer()->getConnectionProvider()->getPrimaryDatabase( $domainMap[$table] );
 		} else {
 			$dbw = $this->getPrimaryDB();
 		}
@@ -713,7 +719,20 @@ class NamespaceDupes extends Maintenance {
 			[ 'pagelinks', 'pl', [ 'pl_target_id' ] ],
 		];
 		$updateRowsPerQuery = $this->getConfig()->get( MainConfigNames::UpdateRowsPerQuery );
+
 		foreach ( $fromNamespaceTables as [ $table, $fieldPrefix, $additionalPrimaryKeyFields ] ) {
+			$domainMap = [
+				'templatelinks' => TemplateLinksTable::VIRTUAL_DOMAIN,
+				'imagelinks' => ImageLinksTable::VIRTUAL_DOMAIN,
+				'pagelinks' => PageLinksTable::VIRTUAL_DOMAIN,
+			];
+
+			if ( isset( $domainMap[$table] ) ) {
+				$dbw = $this->getServiceContainer()->getConnectionProvider()->getPrimaryDatabase( $domainMap[$table] );
+			} else {
+				$dbw = $this->getPrimaryDB();
+			}
+
 			$fromField = "{$fieldPrefix}_from";
 			$fromNamespaceField = "{$fieldPrefix}_from_namespace";
 

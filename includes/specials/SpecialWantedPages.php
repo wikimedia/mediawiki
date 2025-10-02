@@ -7,6 +7,7 @@
 namespace MediaWiki\Specials;
 
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\Deferred\LinksUpdate\PageLinksTable;
 use MediaWiki\Linker\LinksMigration;
 use MediaWiki\MainConfigNames;
 use MediaWiki\SpecialPage\WantedQueryPage;
@@ -91,6 +92,14 @@ class SpecialWantedPages extends WantedQueryPage {
 		$this->getHookRunner()->onWantedPages__getQueryInfo( $this, $query );
 
 		return $query;
+	}
+
+	/** @inheritDoc */
+	protected function getRecacheDB() {
+		return $this->getDatabaseProvider()->getReplicaDatabase(
+			PageLinksTable::VIRTUAL_DOMAIN,
+			'vslow'
+		);
 	}
 
 	/** @inheritDoc */

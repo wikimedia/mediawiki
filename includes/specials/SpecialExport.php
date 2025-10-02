@@ -8,6 +8,7 @@
 
 namespace MediaWiki\Specials;
 
+use MediaWiki\Deferred\LinksUpdate\PageLinksTable;
 use MediaWiki\Deferred\LinksUpdate\TemplateLinksTable;
 use MediaWiki\Export\WikiExporterFactory;
 use MediaWiki\HTMLForm\Field\HTMLTextAreaField;
@@ -554,7 +555,7 @@ class SpecialExport extends SpecialPage {
 		for ( ; $depth > 0; --$depth ) {
 			[ $nsField, $titleField ] = $this->linksMigration->getTitleFields( 'pagelinks' );
 			$queryInfo = $this->linksMigration->getQueryInfo( 'pagelinks' );
-			$dbr = $this->dbProvider->getReplicaDatabase();
+			$dbr = $this->dbProvider->getReplicaDatabase( PageLinksTable::VIRTUAL_DOMAIN );
 			$queryBuilder = $dbr->newSelectQueryBuilder()
 				->caller( __METHOD__ )
 				->select( [ 'namespace' => $nsField, 'title' => $titleField ] )

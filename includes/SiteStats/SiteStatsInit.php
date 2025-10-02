@@ -6,6 +6,7 @@
 
 namespace MediaWiki\SiteStats;
 
+use MediaWiki\Deferred\LinksUpdate\PageLinksTable;
 use MediaWiki\Deferred\SiteStatsUpdate;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
@@ -18,6 +19,8 @@ use Wikimedia\Rdbms\IReadableDatabase;
 class SiteStatsInit {
 	/** @var IReadableDatabase */
 	private $dbr;
+	/** @var IReadableDatabase */
+	private $pageLinksDbr;
 	/** @var int */
 	private $edits;
 	/** @var int */
@@ -37,10 +40,13 @@ class SiteStatsInit {
 	public function __construct( $database = false ) {
 		if ( $database instanceof IReadableDatabase ) {
 			$this->dbr = $database;
+			$this->pageLinksDbr = $database;
 		} elseif ( $database ) {
 			$this->dbr = self::getPrimaryDB();
+			$this->pageLinksDbr = self::getPrimaryDB( PageLinksTable::VIRTUAL_DOMAIN );
 		} else {
 			$this->dbr = self::getReplicaDB();
+			$this->pageLinksDbr = self::getReplicaDB( PageLinksTable::VIRTUAL_DOMAIN );
 		}
 	}
 
@@ -68,7 +74,7 @@ class SiteStatsInit {
 	 */
 	public function articles() {
 		$services = MediaWikiServices::getInstance();
-		$queryBuilder = $this->dbr->newSelectQueryBuilder()
+		$queryBuilder = $this->pageLinksDbr->newSelectQueryBuilder()
 			->select( 'COUNT(DISTINCT page_id)' )
 			->from( 'page' )
 			->where( [
@@ -217,16 +223,28 @@ class SiteStatsInit {
 		}
 	}
 
-	private static function getReplicaDB(): IReadableDatabase {
+	/**
+	 * Get a replica database connection
+	 *
+	 * @param string|false $virtualDomain
+	 * @return IReadableDatabase
+	 */
+	private static function getReplicaDB( $virtualDomain = false ): IReadableDatabase {
 		return MediaWikiServices::getInstance()
 			->getConnectionProvider()
-			->getReplicaDatabase( false, 'vslow' );
+			->getReplicaDatabase( $virtualDomain, 'vslow' );
 	}
 
-	private static function getPrimaryDB(): IDatabase {
+	/**
+	 * Get a primary database connection
+	 *
+	 * @param string|false $virtualDomain
+	 * @return IDatabase
+	 */
+	private static function getPrimaryDB( $virtualDomain = false ): IDatabase {
 		return MediaWikiServices::getInstance()
 			->getConnectionProvider()
-			->getPrimaryDatabase();
+			->getPrimaryDatabase( $virtualDomain );
 	}
 }
 

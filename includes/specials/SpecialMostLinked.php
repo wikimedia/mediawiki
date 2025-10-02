@@ -9,6 +9,7 @@
 namespace MediaWiki\Specials;
 
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\Deferred\LinksUpdate\PageLinksTable;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinksMigration;
@@ -70,6 +71,14 @@ class SpecialMostLinked extends QueryPage {
 			],
 			'join_conds' => $queryInfo['joins'],
 		];
+	}
+
+	/** @inheritDoc */
+	protected function getRecacheDB() {
+		return $this->getDatabaseProvider()->getReplicaDatabase(
+			PageLinksTable::VIRTUAL_DOMAIN,
+			'vslow'
+		);
 	}
 
 	/**

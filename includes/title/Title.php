@@ -17,6 +17,7 @@ use MediaWiki\DAO\WikiAwareEntityTrait;
 use MediaWiki\Deferred\AutoCommitUpdate;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Deferred\LinksUpdate\ImageLinksTable;
+use MediaWiki\Deferred\LinksUpdate\PageLinksTable;
 use MediaWiki\Deferred\LinksUpdate\TemplateLinksTable;
 use MediaWiki\Exception\MWException;
 use MediaWiki\HookContainer\HookRunner;
@@ -2747,13 +2748,13 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 	 * @return Title[]
 	 */
 	public function getLinksTo( $options = [], $table = 'pagelinks', $prefix = 'pl' ) {
-		if ( $table === 'templatelinks' ) {
-			$domain = TemplateLinksTable::VIRTUAL_DOMAIN;
-		} elseif ( $table === 'imagelinks' ) {
-			$domain = ImageLinksTable::VIRTUAL_DOMAIN;
-		} else {
-			$domain = false;
-		}
+		$domainMap = [
+			'imagelinks' => ImageLinksTable::VIRTUAL_DOMAIN,
+			'pagelinks' => PageLinksTable::VIRTUAL_DOMAIN,
+			'templatelinks' => TemplateLinksTable::VIRTUAL_DOMAIN,
+		];
+		$domain = $domainMap[$table] ?? false;
+
 		if ( count( $options ) > 0 ) {
 			$db = $this->getDbProvider()->getPrimaryDatabase( $domain );
 		} else {
@@ -2827,7 +2828,14 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 			return [];
 		}
 
-		$db = $this->getDbProvider()->getReplicaDatabase();
+		$domainMap = [
+			'imagelinks' => ImageLinksTable::VIRTUAL_DOMAIN,
+			'pagelinks' => PageLinksTable::VIRTUAL_DOMAIN,
+			'templatelinks' => TemplateLinksTable::VIRTUAL_DOMAIN,
+		];
+		$domain = $domainMap[$table] ?? false;
+
+		$db = $this->getDbProvider()->getReplicaDatabase( $domain );
 		$linksMigration = MediaWikiServices::getInstance()->getLinksMigration();
 
 		$queryBuilder = $db->newSelectQueryBuilder();

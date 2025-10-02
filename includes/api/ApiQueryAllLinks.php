@@ -10,6 +10,7 @@ namespace MediaWiki\Api;
 
 use MediaWiki\Cache\GenderCache;
 use MediaWiki\Deferred\LinksUpdate\ImageLinksTable;
+use MediaWiki\Deferred\LinksUpdate\PageLinksTable;
 use MediaWiki\Deferred\LinksUpdate\TemplateLinksTable;
 use MediaWiki\Linker\LinksMigration;
 use MediaWiki\ParamValidator\TypeDef\NamespaceDef;
@@ -64,6 +65,7 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 				$this->tablePrefix = 'pl_';
 				$this->useIndex = 'pl_namespace';
 				$this->indexTag = 'l';
+				$this->virtualDomain = PageLinksTable::VIRTUAL_DOMAIN;
 				break;
 			case 'alltransclusions':
 				$prefix = 'at';
