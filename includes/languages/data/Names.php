@@ -52,6 +52,7 @@ class Names {
 		'aa' => 'Qafár af', # Afar
 		'aae' => 'Arbërisht', # Arbëresh
 		'ab' => 'аԥсшәа', # Abkhaz
+		'abr' => 'Abron', # Bono
 		'abs' => 'bahasa ambon', # Ambonese Malay, T193566
 		'ace' => 'Acèh', # Aceh
 		'acf' => 'Kwéyòl Sent Lisi', # Saint Lucian Creole
