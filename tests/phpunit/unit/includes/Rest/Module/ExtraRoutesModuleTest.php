@@ -330,4 +330,24 @@ class ExtraRoutesModuleTest extends \MediaWikiUnitTestCase {
 		$this->assertSame( 'hello summary', $oas['summary'] );
 	}
 
+	public function testEndpointDeprecationOpenAPISpec() {
+		$request = new RequestData( [ 'uri' => new Uri( '/rest/test.v1/ModuleTest/deprecated' ) ] );
+		$module = $this->createRouteFileModule( $request );
+
+		$handler = $module->getHandlerForPath( '/ModuleTest/deprecated', $request );
+		$oas = $handler->getOpenApiSpec( 'GET' );
+
+		$this->assertSame( true, $oas['deprecated'] );
+	}
+
+	public function testEndpointDeprecationHeader() {
+		$request = new RequestData( [ 'uri' => new Uri( '/rest/ModuleTest/deprecated' ) ] );
+		$module = $this->createRouteFileModule( $request );
+		$response = $module->execute( '/ModuleTest/deprecated', $request );
+
+		$this->assertSame( 200, $response->getStatusCode(), (string)$response->getBody() );
+		$responseHeaders = $response->getHeaders();
+		$this->assertArrayHasKey( 'Deprecation', $responseHeaders );
+		$this->assertSame( '@1735689600', $responseHeaders['Deprecation'][0] );
+	}
 }

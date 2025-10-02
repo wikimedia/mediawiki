@@ -1,0 +1,24 @@
+{
+	"$schema": "https://www.mediawiki.org/schema/mwapi-1.1",
+	"mwapi": "1.1.0",
+	"moduleId": "test.v1",
+	"info": {
+		"title": "test",
+		"version": "1.0",
+		"deprecationSettings": {
+			"since": 1735689600
+		}
+	},
+	"paths": {
+		"/ModuleTest/hello/{name}": {
+			"get": {
+				"summary": "hello summary",
+				"x-i18n-description": "rest-endpoint-desc-mock-desc",
+				"handler": {
+					"class": "MediaWiki\\Tests\\Rest\\Handler\\HelloHandler",
+					"hello": "hi!"
+				}
+			}
+		}
+	}
+}

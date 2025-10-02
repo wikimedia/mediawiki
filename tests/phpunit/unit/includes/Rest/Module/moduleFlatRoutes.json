@@ -29,5 +29,13 @@
 	{
 		"path": "/ModuleTest/throwWrapped",
 		"factory": "MediaWiki\\Tests\\Rest\\MockHandlerFactory::throwWrappedHandlerFactory"
-	}
-]
+	},
+	{
+		"path": "/ModuleTest/deprecated",
+		"class": "MediaWiki\\Tests\\Rest\\Handler\\HelloHandler",
+		"openApiSpec": {
+			"deprecationSettings": {
+				"since": 1735689600
+			}
+		}
+	} ]

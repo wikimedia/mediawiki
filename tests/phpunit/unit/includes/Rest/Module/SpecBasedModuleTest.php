@@ -35,14 +35,16 @@ class SpecBasedModuleTest extends \MediaWikiUnitTestCase {
 	/**
 	 * @param RequestInterface $request
 	 * @param string|null $authError
+	 * @param bool $deprecated
 	 *
 	 * @return SpecBasedModule
 	 */
 	private function createOpenApiModule(
 		RequestInterface $request,
-		$authError = null
+		$authError = null,
+		$deprecated = false
 	) {
-		$specFile = __DIR__ . '/moduleTestRoutes.json';
+		$specFile = __DIR__ . ( $deprecated ? '/deprecatedModuleTestRoutes.json' : '/moduleTestRoutes.json' );
 
 		/** @var MockObject|ErrorReporter $mockErrorReporter */
 		$mockErrorReporter = $this->createNoOpMock( ErrorReporter::class, [ 'reportError' ] );
@@ -105,7 +107,7 @@ class SpecBasedModuleTest extends \MediaWikiUnitTestCase {
 
 		$this->assertSame( 200, $response->getStatusCode(), (string)$response->getBody() );
 
-		// "hi!" comes from the rout definition, the default is 'Hello!'.
+		// "hi!" comes from the route definition, the default is 'Hello!'.
 		$data = json_decode( $response->getBody(), true );
 		$this->assertSame( 'hi!', $data['message'] );
 		$this->assertSame( [
@@ -246,5 +248,47 @@ class SpecBasedModuleTest extends \MediaWikiUnitTestCase {
 
 		$this->assertSame( 'hello summary', $oas['summary'] );
 		$this->assertSame( '<message key="rest-endpoint-desc-mock-desc"></message>', $oas['description'] );
+	}
+
+	public function testEndpointDeprecationOpenAPISpec() {
+		$request = new RequestData( [ 'uri' => new Uri( '/rest/test.v1/ModuleTest/deprecated' ) ] );
+		$module = $this->createOpenApiModule( $request );
+
+		$handler = $module->getHandlerForPath( '/ModuleTest/deprecated', $request );
+		$oas = $handler->getOpenApiSpec( 'GET' );
+
+		$this->assertSame( true, $oas['deprecated'] );
+	}
+
+	public function testEndpointDeprecationHeader() {
+		$request = new RequestData( [ 'uri' => new Uri( '/rest/test.v1/ModuleTest/deprecated' ) ] );
+		$module = $this->createOpenApiModule( $request );
+		$response = $module->execute( '/ModuleTest/deprecated', $request );
+
+		$this->assertSame( 200, $response->getStatusCode(), (string)$response->getBody() );
+		$responseHeaders = $response->getHeaders();
+		$this->assertArrayHasKey( 'Deprecation', $responseHeaders );
+		$this->assertSame( '@1735689600', $responseHeaders['Deprecation'][0] );
+	}
+
+	public function testModuleDeprecationOpenAPISpec() {
+		$request = new RequestData( [ 'uri' => new Uri( '/rest/test.v1/ModuleTest/hello/you' ) ] );
+		$module = $this->createOpenApiModule( $request, null, true );
+
+		$handler = $module->getHandlerForPath( '/ModuleTest/hello/you', $request );
+		$oas = $handler->getOpenApiSpec( 'GET' );
+
+		$this->assertSame( true, $oas['deprecated'] );
+	}
+
+	public function testModuleDeprecationHeaders() {
+		$request = new RequestData( [ 'uri' => new Uri( '/rest/test.v1/ModuleTest/hello/you' ) ] );
+		$module = $this->createOpenApiModule( $request, null, true );
+		$response = $module->execute( '/ModuleTest/hello/you', $request );
+
+		$this->assertSame( 200, $response->getStatusCode(), (string)$response->getBody() );
+		$responseHeaders = $response->getHeaders();
+		$this->assertArrayHasKey( 'Deprecation', $responseHeaders );
+		$this->assertSame( '@1735689600', $responseHeaders['Deprecation'][0] );
 	}
 }

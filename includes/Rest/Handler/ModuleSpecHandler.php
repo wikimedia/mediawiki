@@ -65,13 +65,17 @@ class ModuleSpecHandler extends SimpleHandler {
 			);
 		}
 
-		return [
+		$spec = [
 			'openapi' => '3.0.0',
 			'info' => $this->getInfoSpec( $module ),
 			'servers' => $this->getServerSpec( $module ),
 			'paths' => $this->getPathsSpec( $module ),
 			'components' => $this->getComponentsSpec( $module ),
 		];
+
+		unset( $spec['info']['deprecationSettings'] );
+
+		return $spec;
 	}
 
 	/**

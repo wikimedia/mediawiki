@@ -206,6 +206,17 @@ class HandlerTest extends MediaWikiUnitTestCase {
 		}
 	}
 
+	public function testApplyDeprecationHeader() {
+		$handler = $this->newHandler( [ 'getDeprecatedDate' ] );
+		$handler->method( 'getDeprecatedDate' )->willReturn( 1735689600 );
+
+		$this->initHandler( $handler, new RequestData() );
+		$response = $handler->getResponseFactory()->create();
+		$handler->applyDeprecationHeader( $response );
+
+		$this->assertSame( '@1735689600', $response->getHeaderLine( 'Deprecation' ) );
+	}
+
 	public function testApplyConditionalResponseHeaders() {
 		$util = $this->createNoOpMock( ConditionalHeaderUtil::class, [ 'applyResponseHeaders' ] );
 		$util->method( 'applyResponseHeaders' )->willReturnCallback(
@@ -1763,7 +1774,8 @@ class HandlerTest extends MediaWikiUnitTestCase {
 		$handler->method( 'getResponseBodySchema' )->willReturn( $responseBodySchema );
 
 		// The "body" parameter should be processed as "body", not as "parameter".
-		$module = $this->createNoOpMock( Module::class );
+		$module = $this->createNoOpMock( Module::class, [ 'getModuleDescription' ] );
+		$module->method( 'getModuleDescription' )->willReturn( [] );
 		$handler->initContext(
 			$module,
 			$routeConfig['path'],

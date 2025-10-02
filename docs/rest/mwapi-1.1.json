@@ -1,0 +1,143 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"$id": "https://www.mediawiki.org/schema/mwapi-1.1",
+	"title": "MediaWiki REST API module definition",
+	"description": "Module definition files provide meta-data about modules and define the available routes. They are similar to OpenAPI specs.",
+	"type": "object",
+	"required": [ "mwapi", "info", "moduleId", "paths" ],
+	"properties": {
+		"mwapi": {
+			"description": "The version of the MediaWiki module definition schema used by the document.",
+			"type": "string"
+		},
+		"moduleId": {
+			"description": "The module name, also used as the path prefix",
+			"type": "string"
+		},
+		"info": {
+			"$ref": "#/definitions/Info"
+		},
+		"paths": {
+			"description": "Information about the API routes available for interacting with the wiki.",
+			"type": "object",
+			"minProperties": 1,
+			"additionalProperties": { "$ref": "#/definitions/Path" }
+		}
+	},
+	"definitions": {
+		"Info": {
+			"allOf": [
+				{ "$ref": "https://spec.openapis.org/oas/3.0/schema/2021-09-28#/definitions/Info" },
+				{ "$ref": "#/definitions/ExtraInfo" }
+			]
+		},
+		"ExtraInfo": {
+			"type": "object"
+		},
+		"Path": {
+			"title": "REST API Path",
+			"description": "The operations available for a given path",
+			"type": "object",
+			"minProperties": 1,
+			"additionalProperties": { "$ref": "#/definitions/Operation" }
+		},
+		"Operation": {
+			"allOf": [
+				{ "$ref": "#/definitions/OperationInfo" },
+				{ "$ref": "#/definitions/OperationImpl" }
+			]
+		},
+		"OperationInfo": {
+			"properties": {
+				"tags": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"summary": {
+					"type": "string"
+				},
+				"description": {
+					"type": "string"
+				},
+				"deprecationSettings": {
+					"$ref": "#/definitions/DeprecationSettings"
+				},
+				"externalDocs": {
+					"$ref": "https://spec.openapis.org/oas/3.0/schema/2021-09-28#/definitions/ExternalDocumentation"
+				}
+			},
+			"patternProperties": {
+				"^x-i18n-": { "$ref": "#/definitions/i18n" }
+			}
+		},
+		"OperationImpl": {
+			"oneOf": [
+				{ "$ref": "#/definitions/WithHandler" },
+				{ "$ref": "#/definitions/WithRedirect" }
+			]
+		},
+		"WithHandler": {
+			"required": [ "handler" ],
+			"properties": {
+				"handler": {
+					"$ref": "#/definitions/MWObjectSpec"
+				}
+			}
+		},
+		"MWObjectSpec": {
+			"type": "object",
+			"description": "An object-spec for use with the wikimedia/object-factory package.",
+			"properties": {
+				"class": {
+					"type": "string",
+					"description": "PHP class name of the object to create. If 'factory' is also specified, it will be used to validate the object."
+				},
+				"factory": {
+					"type": [ "string", "array" ],
+					"description": "Factory method for creating the object (a PHP callable)."
+				},
+				"args": {
+					"type": "array",
+					"description": "Arguments to pass to the constructor or the factory method."
+				},
+				"services": {
+					"type": "array",
+					"item": { "type": "string" },
+					"description": "List of services to pass as arguments. Each name will be looked up in MediaWikiServices."
+				},
+				"optional_services": {
+					"type": "array",
+					"item": { "type": "string" },
+					"description": "List of services to pass as arguments. Each name will be looked up in MediaWikiServices. If the service is unknown the parameter is set to 'null' instead of causing an error."
+				}
+			},
+			"additionalProperties": true
+		},
+		"WithRedirect": {
+			"required": [ "redirect" ],
+			"properties": {
+				"redirect": {
+					"type": "object",
+					"required": [ "path" ],
+					"properties": {
+						"path": { "type": "string" },
+						"code": { "type": "integer" }
+					},
+					"additionalProperties": false
+				}
+			}
+		},
+		"i18n": {
+			"description": "internationalized version of some other key",
+			"type": "string"
+		},
+		"DeprecationSettings": {
+			"properties": {
+				"since": { "type": "integer" }
+			},
+			"additionalProperties": false
+		}
+	}
+}

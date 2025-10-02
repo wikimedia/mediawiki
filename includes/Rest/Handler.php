@@ -376,6 +376,39 @@ abstract class Handler {
 	}
 
 	/**
+	 * Indicates whether this is deprecated.
+	 *
+	 * Whenever possible, module deprecation is preferred to endpoint deprecation.
+	 * Modules and endpoints are normally deprecated in module or route definition .json files
+	 * rather than by overriding this function.
+	 *
+	 * @since 1.45
+	 * @stable to override
+	 * @return bool
+	 */
+	protected function isDeprecated(): bool {
+		return isset( $this->getModule()->getModuleDescription()['info']['deprecationSettings'] ) ||
+			isset( $this->openApiSpec['deprecationSettings'] );
+	}
+
+	/**
+	 * Returns the timestamp at which this was or will be deprecated, or null if none.
+	 *
+	 * Whenever possible, module deprecation is preferred to endpoint deprecation.
+	 * Modules and endpoints are normally deprecated in module or route definition .json files
+	 * rather than by overriding this function.
+	 *
+	 * @since 1.45
+	 * @stable to override
+	 * @return ?int deprecation date, as a unix timestamp, or null if none
+	 */
+	protected function getDeprecatedDate(): ?int {
+		return $this->getModule()->getModuleDescription()['info']['deprecationSettings']['since']
+			?? $this->openApiSpec['deprecationSettings']['since']
+			?? null;
+	}
+
+	/**
 	 * Validate the request parameters/attributes and body. If there is a validation
 	 * failure, a response with an error message should be returned or an
 	 * HttpException should be thrown.
@@ -415,6 +448,22 @@ abstract class Handler {
 		}
 
 		$this->postValidationSetup();
+	}
+
+	/**
+	 * Apply Deprecation header per RFC 9745.
+	 *
+	 * @since 1.45
+	 * @stable to override
+	 * @see https://www.rfc-editor.org/rfc/rfc9745.txt
+	 *
+	 * @param ResponseInterface $response
+	 */
+	public function applyDeprecationHeader( ResponseInterface $response ) {
+		$dd = $this->getDeprecatedDate();
+		if ( $dd !== null && !$response->getHeaderLine( 'Deprecation' ) ) {
+			$response->setHeader( 'Deprecation', '@' . $dd );
+		}
 	}
 
 	/**
@@ -679,6 +728,11 @@ abstract class Handler {
 		// TODO: Allow additional information about parameters and responses to
 		//       be provided in the route definition.
 		$spec += $this->openApiSpec;
+
+		if ( $this->isDeprecated() ) {
+			$spec['deprecated'] = true;
+			unset( $spec['deprecationSettings'] );
+		}
 
 		return $spec;
 	}

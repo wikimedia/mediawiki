@@ -112,9 +112,9 @@ class SpecBasedModule extends MatcherBasedModule {
 			);
 		}
 
-		// Require OpenAPI version 3.1 or compatible.
-		if ( !version_compare( $moduleDef['mwapi'], '1.0.999', '<=' ) ||
-			!version_compare( $moduleDef['mwapi'], '1.0.0', '>=' )
+		// Require a supported version of mwapi
+		if ( version_compare( $moduleDef['mwapi'], '1.0.0', '<' ) ||
+			version_compare( $moduleDef['mwapi'], '1.1.999', '>' )
 		) {
 			throw new ModuleConfigurationException(
 				"Unsupported openapi version {$moduleDef['mwapi']} in "
@@ -191,6 +191,7 @@ class SpecBasedModule extends MatcherBasedModule {
 			'description',
 			'tags',
 			'externalDocs',
+			'deprecationSettings'
 		];
 
 		if ( isset( $opSpec['redirect'] ) ) {

@@ -1,6 +1,6 @@
 {
 	"$schema": "https://www.mediawiki.org/schema/mwapi-1.0",
-	"mwapi": "1.0.0",
+	"mwapi": "1.1.0",
 	"moduleId": "test.v1",
 	"info": {
 		"title": "test",
@@ -49,6 +49,17 @@
 			"get": {
 				"handler": {
 					"factory": "MediaWiki\\Tests\\Rest\\MockHandlerFactory::throwWrappedHandlerFactory"
+				}
+			}
+		},
+		"/ModuleTest/deprecated": {
+			"get": {
+				"deprecationSettings": {
+					"since": 1735689600
+				},
+				"handler": {
+					"class": "MediaWiki\\Tests\\Rest\\Handler\\HelloHandler",
+					"hello": "hi!"
 				}
 			}
 		}

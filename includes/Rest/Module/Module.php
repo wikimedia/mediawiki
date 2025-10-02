@@ -456,6 +456,9 @@ abstract class Module {
 			$response = $this->responseFactory->createFromReturnValue( $response );
 		}
 
+		// Deprecation header per RFC 9745
+		$handler->applyDeprecationHeader( $response );
+
 		// Set Last-Modified and ETag headers in the response if available
 		$handler->applyConditionalResponseHeaders( $response );
 
@@ -534,7 +537,7 @@ abstract class Module {
 	 * Supported keys are described in /docs/discovery-1.0.json#/definitions/Module
 	 *
 	 * @see /docs/discovery-1.0.json
-	 * @see /docs/mwapi-1.0.json
+	 * @see /docs/mwapi-1.1.json
 	 * @see DiscoveryHandler
 	 */
 	public function getModuleDescription(): array {
@@ -544,9 +547,9 @@ abstract class Module {
 		$moduleId = $this->getPathPrefix();
 
 		// Fields from openApiSpec info to include.
-		// Note that mwapi-1.0 is based on OAS 3.0, so it doesn't support the
+		// Note that mwapi-1.1 and earlier are based on OAS 3.0, so they don't support the
 		// "summary" property introduced in 3.1.
-		$infoFields = [ 'version', 'title', 'description' ];
+		$infoFields = [ 'version', 'title', 'description', 'deprecationSettings' ];
 
 		return [
 			'moduleId' => $moduleId,
