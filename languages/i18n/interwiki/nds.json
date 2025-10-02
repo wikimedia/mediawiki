@@ -1,0 +1,25 @@
+{
+	"@metadata": {
+		"authors": [
+			"Joachim Mos",
+			"Purodha",
+			"Slomox"
+		]
+	},
+	"interwiki_intro": "Disse Sied gifft en Överblick över de Interwiki-Tabell.",
+	"interwiki_prefix": "Präfix",
+	"interwiki-prefix-label": "Präfix:",
+	"interwiki_local": "Wiederleiden to en anner Wiki",
+	"interwiki-local-label": "Vörwarts:",
+	"interwiki_trans": "Inbinnen över Interwiki verlöven",
+	"interwiki-trans-label": "Inbinnen över Interwiki verlöven:",
+	"interwiki_1": "jo",
+	"interwiki_0": "nee",
+	"interwiki_error": "De Interwiki-Tabell is leddig, oder wat anners is verkehrt lopen.",
+	"interwiki_edit": "Ännern",
+	"interwiki_reasonfield": "Grund:",
+	"interwiki_addtext": "Interwiki- oder Spraakpräfix tofögen",
+	"interwiki_addbutton": "Tofögen",
+	"right-interwiki": "Interwiki-Tabell ännern",
+	"action-interwiki": "dissen Indrag in de Interwiki-Tabell ännern"
+}

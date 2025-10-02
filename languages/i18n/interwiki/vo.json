@@ -1,0 +1,34 @@
+{
+	"@metadata": {
+		"authors": [
+			"Kizule",
+			"Malafaya",
+			"Smeira"
+		]
+	},
+	"interwiki": "Logön e bevobön nünodis vüvükik",
+	"interwiki-title-norights": "Logön nünodis vüvükik",
+	"interwiki_intro": "Logön eli [//www.mediawiki.org/wiki/Interwiki_table MediaWiki.org] ad tuvön nünis pluik tefü taib vüvükik.",
+	"interwiki_prefix": "Foyümot",
+	"interwiki-prefix-label": "Foyümot:",
+	"interwiki_0": "nö",
+	"interwiki_error": "Pöl: Taib vüvükik vagon, u ba pöl votik ejenon.",
+	"interwiki_reasonfield": "Kod:",
+	"interwiki_deleting": "Moükol foyümoti: „$1“.",
+	"interwiki_deleted": "Foyümot: „$1“ pemoükon benosekiko se taib vüvükik.",
+	"interwiki_delfailed": "No eplöpos ad moükön foyümot: „$1“ se taib vüvükik.",
+	"interwiki_addtext": "Läükön foyümoti vüvükik",
+	"interwiki_addintro": "Läükol foyümoti vüvükik nulik.\nDemolös, das foyümot no dalon ninädon spadis ( ), telpünis (:), (&), u (=).",
+	"interwiki_addbutton": "Läükön",
+	"interwiki_added": "Foyümot: „$1“ peläükon benosekiko taibe vüvükik.",
+	"interwiki_addfailed": "No eplöpos ad läükön foyümoti: „$1“ taibe vüvükik.\nBa ya dabinon in taib vüvükik.",
+	"interwiki_edittext": "Votükam foyümota vüvükik",
+	"interwiki_editintro": "Bevobol foyümoti vüvükik.\nDemolös, das atos kanon breikön yümis dabinöl.",
+	"interwiki_edited": "Foyümot: „$1“ pevotükon benosekiko in taib vüvükik.",
+	"interwiki_editerror": "No eplöpos ad votükön foyümoti: „$1“ in taib vüvükik.\nBa no dabinon.",
+	"interwiki-badprefix": "Foyümot vüvükik pavilöl: „$1“ ninädon malatis no lonöfölis",
+	"log-name-interwiki": "Jenotalised taiba vüvükik",
+	"log-description-interwiki": "Is palisedons votükams [[Special:Interwiki|taiba vüvükik]].",
+	"right-interwiki": "Bevobön nünis vüvükik",
+	"action-interwiki": "votükön pati vüvükik at"
+}

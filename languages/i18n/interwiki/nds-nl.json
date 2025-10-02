@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"Servien"
+		]
+	},
+	"interwiki": "Interwikigegeavens bekyken en wysigen",
+	"interwiki-title-norights": "Interwikigegeavens bekyken en wysigen",
+	"interwiki_prefix": "Veurvoegsel",
+	"interwiki-prefix-label": "Veurvoegsel:",
+	"interwiki_local": "Veuruut",
+	"interwiki-local-label": "Veuruut:",
+	"interwiki_trans": "Transkluderen",
+	"interwiki-trans-label": "Transkluderen:",
+	"interwiki_edit": "Bewarken",
+	"interwiki_deleting": "Je bin veurvoegsel \"$1\" an t vortdoon.",
+	"interwiki_addbutton": "Derbie doon"
+}

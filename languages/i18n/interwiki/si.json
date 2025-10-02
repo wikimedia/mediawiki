@@ -1,0 +1,31 @@
+{
+	"@metadata": {
+		"authors": [
+			"තඹරු විජේසේකර",
+			"පසිඳු කාවින්ද",
+			"බිඟුවා"
+		]
+	},
+	"interwiki": "අන්තර්විකි දත්ත නැරඹීම සහ සංස්කරණය",
+	"interwiki-title-norights": "අන්තර්විකි දත්ත නරඹන්න",
+	"interwiki_prefix": "උපසර්ගය",
+	"interwiki-prefix-label": "උපසර්ගය:",
+	"interwiki_local": "ඉදිරියට",
+	"interwiki-local-label": "ඉදිරියට:",
+	"interwiki_trans": "අතිරෝහණය",
+	"interwiki-trans-label": "අතිරෝහණය:",
+	"interwiki_1": "ඔව්",
+	"interwiki_0": "නැත",
+	"interwiki_edit": "සංස්කරණය",
+	"interwiki_reasonfield": "හේතුව:",
+	"interwiki_deleting": "ඔබ විසින් \"$1\" උපසර්ගය මකා දමමින්.",
+	"interwiki_addtext": "අන්තර්විකි උපසර්ගයක් එක් කරන්න",
+	"interwiki_addbutton": "එක් කරන්න",
+	"interwiki_edittext": "අන්තර්විකි උපසර්ගය සංස්කරණය කරමින්",
+	"interwiki-badprefix": "විශේෂිත අන්තර්විකි උපසර්ගය \"$1\" සතුව වලංගු නොවන අක්ෂර අඩංගු වේ",
+	"interwiki-submit-empty": "උපසර්ගය සහ URL හිස් විය නොහැක.",
+	"interwiki-submit-invalidurl": "URL හී ප්‍රොටෝකෝලය වලංගු නොවේ.",
+	"log-name-interwiki": "අන්තර්විකි වගු ලොගය",
+	"right-interwiki": "අන්තර්-විකි දත්ත සංස්කරණය",
+	"action-interwiki": "මෙම අන්තර්විකි ඇතුලත් කෙරුම වෙනස් කරන්න"
+}

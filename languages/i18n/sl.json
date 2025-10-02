@@ -1467,6 +1467,7 @@
 	"upload-progress-processing": "Obdelava slike. Pritisnite gumb za osvežitev, da znova preverite.",
 	"upload-tryagain": "Vnesite spremenjeni opis datoteke",
 	"upload-tryagain-nostash": "Pošlji znova naloženo datoteko in spremenjeni opis",
+	"upload-stash-error": "Napaka pri nalaganju zaloge: $1",
 	"uploadnologin": "Niste prijavljeni",
 	"uploadnologintext": "Za nalaganje datotek se morate $1.",
 	"upload_directory_missing": "Imenik za nalaganje datotek ($1) manjka in ga ni bilo mogoče ustvariti s spletnim strežnikom.",

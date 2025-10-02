@@ -1,0 +1,31 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ahmed-Najib-Biabani-Ibrahimkhel",
+			"شاه زمان پټان"
+		]
+	},
+	"interwiki-title-norights": "ويکي‌خپلمنځي اومتوک کتل",
+	"interwiki_prefix": "مختاړی",
+	"interwiki-prefix-label": "مختاړی:",
+	"interwiki_prefix_intro": "ويکي‌خپلمنځي مختاړی چې په <code>[<nowiki />[prefix:<em>pagename</em>]]</code> ويکي‌ليک غونډل‌پوهه کې کارېدلی دی.",
+	"interwiki_url": "وېبتړ",
+	"interwiki-url-label": "وېبتړ:",
+	"interwiki_url_intro": "وېبتړونو لپاره کينډۍ. ځای‌نيوونکی  $1 به د <em>pagename</em> له خوا په code>[<nowiki />[prefix:<em>pagename</em>]]</code> کې ځايناستی شي.",
+	"interwiki_local": "مخته‌وړل",
+	"interwiki-local-label": "مخته‌وړل",
+	"interwiki_local_0_intro": "په وېبتړ کې د دې ويکي‌خپلمنځي مختاړي په کارولو سره سيمه‌ييزې ويکي ته بهرنۍ اېچ‌ټي‌ټي‌پي غوښتنې به د \"{{int:badtitle}}\" تېروتنې مخ پايله ولري.",
+	"interwiki_local_1_intro": "د دې ويکي‌خپلمنځي مختاړي په کارولو سره سيمه‌ييزې ويکي ته بهرنۍ اېج‌ټي‌ټي‌پي غوښتنې د ويکي‌خپلمنځي موخې وېبتړ ته ولېږل شي(يانې د سيمه‌ييزو مخونو سره د د تړونو په څېر چلند کېږي).",
+	"interwiki_trans": "لنډول",
+	"interwiki-trans-label": "لنډول",
+	"interwiki_1": "هو",
+	"interwiki_0": "نه",
+	"interwiki_edit": "سمول",
+	"interwiki_reasonfield": "سبب:",
+	"interwiki_deleting": "تاسې د \"$1\" مختاړی ړنګوی.",
+	"interwiki_addbutton": "ورگډول",
+	"interwiki-submit-invalidurl": "د وېبتړ پروتوکول ناچله دی.",
+	"interwiki-local-description": "دا مختاړي په سيمه‌ييز ډول شتون لري. د ټوليز ترتيب سره هرډول غبرگونی به د ټوليز پېژندون څخه سرغړونه وکړي.",
+	"interwiki-links": "ويکي‌خپلمنځي مختاړي",
+	"interwiki-language-links": "ژب‌خپلمنځي مختاړي"
+}

@@ -1,0 +1,30 @@
+{
+	"@metadata": {
+		"authors": [
+			"Amire80",
+			"Boukman",
+			"Jvm"
+		]
+	},
+	"interwiki": "Wè epi modifye enfòmasyon entèwiki yo",
+	"interwiki-title-norights": "Wè enfòmasyon entèwiki",
+	"interwiki_intro": "Sa a se yon apèsi sou tablo interwiki a, ki defini rakoursi prefiks yo pou relye rapidman nan diferan wiki ak lòt sit ekstèn. Pou itilizasyon rekòmande, tanpri gade [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Interwiki manyèl la sou MediaWiki.org].",
+	"interwiki_prefix": "Prefiks",
+	"interwiki-prefix-label": "Prefiks:",
+	"interwiki_error": "ERÈ:  Tablo entèwiki a vid, oubyen yon lòt bagay pa t mache.",
+	"interwiki_reasonfield": "Rezon :",
+	"interwiki_deleting": "W ap efase prefiks \"$1\".",
+	"interwiki_deleted": "Prefiks \"$1\" te reyisi retire nan tablo entèwiki a.",
+	"interwiki_delfailed": "Prefiks \"$1\" pa t kapab retire nan tablo entèwiki a.",
+	"interwiki_addtext": "Ajoute yon prefiks entèwiki",
+	"interwiki_addintro": "W ap ajoute yon nouvo prefiks entèwiki.\nSonje ke li pa ka genyen ladan li espace ( ), de pwen (:), anmpèsand (&), ou sign egalite (=).",
+	"interwiki_addbutton": "Ajoute",
+	"interwiki_added": "Prefiks \"$1\" te reyisi ajoute nan tablo entèwiki a.",
+	"interwiki_addfailed": "Prefiks \"$1\" pa t kapab ajoute nan tablo entèwiki a.\nGendwa se paske li deja ekziste nan tablo entèwiki a.",
+	"interwiki_edittext": "Modifye yon prefiks entèwiki",
+	"interwiki_editintro": "W ap modifye yon prefiks entèwiki.\nSonje ke sa gendwa kraze lyen ki deja ekziste yo.",
+	"interwiki_edited": "Prefiks \"$1\" te reyisi modifye nan tablo entèwiki a.",
+	"interwiki_editerror": "Prefiks \"$1\" pa ka modifye nan tablo entèwiki a.\nPetèt li pa ekziste.",
+	"log-name-interwiki": "Jounal tablo entèwiki a",
+	"log-description-interwiki": "Sa se yon jounal pou chanjman yo nan [[Special:Interwiki|tablo entèwiki a]]."
+}

@@ -1,0 +1,21 @@
+{
+	"@metadata": {
+		"authors": [
+			"Chrisportelli",
+			"Leli Forte",
+			"පසිඳු කාවින්ද"
+		]
+	},
+	"interwiki_prefix": "Prefiss",
+	"interwiki-prefix-label": "Prefiss:",
+	"interwiki_local_0_intro": "It-talbiet tal-HTTP esterni lill-wiki lokali permezz ta' dan il-prefiss tal-interwiki fil-URL jirriżultaw f'paġna ta' żball \"{{int:badtitle}}\".",
+	"interwiki_local_1_intro": "It-talbiet esterni tal-HTTP għall-wiki lokali li jużaw dan il-prefiss tal-interwiki jiġu ridirezzjonati lejn il-URL tad-destinazzjoni tal-interwiki (jiġifieri jiġu ttrattati bħala ħoloq għal paġni lokali).",
+	"interwiki_trans_0_intro": "Tħallix <code>{<nowiki />{prefix:<em>isempaġna</em>}}</code> li tittraskludi mudelli/paġni esterni, minnflok fittex paġna interna fil-mudell tan-namespace.",
+	"interwiki_1": "iva",
+	"interwiki_0": "le",
+	"interwiki_edit": "Editja",
+	"interwiki_reasonfield": "Raġuni:",
+	"interwiki_addbutton": "Żid",
+	"interwiki_added": "Il-prefiss \"$1\" ġie miżjud b'suċċess fit-tabella tal-interwiki.",
+	"interwiki_addfailed": "Il-prefiss \"$1\" ma setax jiġi miżjud mat-tabella tal-interwiki.\nProbabbilment dan diġà jeżisti fit-tabella."
+}

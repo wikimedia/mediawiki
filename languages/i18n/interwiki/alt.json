@@ -1,0 +1,37 @@
+{
+	"@metadata": {
+		"authors": [
+			"Kareyac",
+			"Батыр Комдошев"
+		]
+	},
+	"interwiki": "Интервикиниҥ јазалталарын кӧрӧри ле солыыры",
+	"interwiki-title-norights": "Интервики керегинде информацияны кӧрӧр",
+	"interwiki_intro": "Бу интервикиниҥ таблицазы, ол башка-башка викилерге ле ӧскӧ тыштындыгы сайттарга кыска тайантылар этире эдинип турган префикстарды јартайт. Эдинетен рекомендацияларды [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Interwiki башкарынар бичик MediaWiki.org-тоҥ] кӧрӧр.",
+	"interwiki-legend-label": "Легендазы",
+	"interwiki_prefix": "Префикс",
+	"interwiki-prefix-label": "Префикс:",
+	"interwiki_url": "URL",
+	"interwiki-url-label": "URL:",
+	"interwiki-api-label": "API:",
+	"interwiki_local": "Ичкери",
+	"interwiki-local-label": "Ичкери",
+	"interwiki_trans": "Кийдирери",
+	"interwiki-trans-label": "Кийдирери",
+	"interwiki_1": "эйе",
+	"interwiki_0": "jок",
+	"interwiki_edit": "Тӱзедери",
+	"interwiki_reasonfield": "Шылтагы:",
+	"interwiki_deleting": "Слер \"$1\" префиксты јоголтып јатканар.",
+	"interwiki_deleted": "\"$1\" префикс интервикиниҥ таблицазынаҥ кырылган.",
+	"interwiki_delfailed": "\"$1\" префиксты интервикиниҥ таблицазынаҥ кырып болбос.",
+	"interwiki-logtext": "Журналды кӧрӧр",
+	"interwiki_addtext": "Тилдиҥ эмезе интервикиниҥ префиксын кожор",
+	"interwiki-addtext-local": "Локальный тилдиҥ эмезе интервикиниҥ префиксты кожор",
+	"interwiki-addtext-nolang": "Интерфики префиксты кожор",
+	"interwiki-addtext-local-nolang": "Локальный интервики префиксты кожор",
+	"interwiki_addbutton": "Кожор",
+	"interwiki-local-links": "Интервикиниҥ локальный префикстары",
+	"interwiki-links": "Интервикиниҥ префикстери",
+	"interwiki-language-links": "Тил ортодогы префикстер"
+}

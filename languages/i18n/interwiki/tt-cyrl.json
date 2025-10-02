@@ -1,0 +1,26 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ajdar",
+			"Don Alessandro",
+			"Ерней",
+			"Ильгиз",
+			"Ильнар"
+		]
+	},
+	"interwiki": "Интервики көйләнмәләрен карау һәм үзгәртү",
+	"interwiki-title-norights": "Интервики турында мәгълүматларны үзгәртү",
+	"interwiki_intro": "Бу интервики җәдвалына манзара, өрле вики һәм башка тышкы сылтамаларга итүче префиксларны билгели. Куллану буенча тәкъдимнәрне [//www.mediawiki.org/wiki/Extension:Interwiki MediaWiki.org] сәхифәсендә булган әсбаптан таба аласыз.",
+	"interwiki-legend-label": "Аңлатма",
+	"interwiki_prefix": "Префикс",
+	"interwiki-prefix-label": "Өстәлмә",
+	"interwiki-local-label": "Юнәлдерү",
+	"interwiki_trans": "Ачу",
+	"interwiki-trans-label": "Тоташтыру",
+	"interwiki_1": "әйе",
+	"interwiki_0": "юк",
+	"interwiki_edit": "Үзгәртү",
+	"interwiki_reasonfield": "Сәбәп:",
+	"interwiki-logtext": "Көндәлекне карау",
+	"interwiki_addbutton": "Өстәү"
+}

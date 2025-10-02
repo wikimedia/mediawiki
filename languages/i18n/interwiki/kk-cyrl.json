@@ -1,0 +1,36 @@
+{
+	"@metadata": {
+		"authors": [
+			"Arystanbek",
+			"СеніңШешең"
+		]
+	},
+	"interwiki": "Уикиаралық деректерді көру және өңдеу",
+	"interwiki-title-norights": "Уикиаралық деректерді көру",
+	"interwiki_intro": "Бұл интеруики кестесін шолып шығу",
+	"interwiki_prefix": "Префикс",
+	"interwiki-prefix-label": "Префикс",
+	"interwiki_local": "Алға",
+	"interwiki-local-label": "Алға",
+	"interwiki_1": "иә",
+	"interwiki_0": "жоқ",
+	"interwiki_edit": "Өңдеу",
+	"interwiki_reasonfield": "Себебі:",
+	"interwiki_deleting": "\"$1\" префиксін жоюдасыз.",
+	"interwiki_deleted": "\"$1\" префиксі интеруики кестесінен сәтті алынып тасталды.",
+	"interwiki_delfailed": "\"$1\" префиксі интеруики кестесінен алынып тасталмады",
+	"interwiki_addtext": "Интеруики префиксін қосу",
+	"interwiki_addbutton": "Қосу",
+	"interwiki_added": "\"$1\" префиксі интеруики кестесіне сәтті қосылды.",
+	"interwiki_addfailed": "\"$1\" префиксі интеруики кестесіне қосылмады.\nМүмкін әлдеқашан интеруики кестесінде қолданылған болар.",
+	"interwiki_edittext": "Интеруики префиксі өңделуде",
+	"interwiki_editintro": "Интеруики префиксін өңдеудесіз.\nЕсіңізде болсын бұл бұрыннан бар сілтемелерді бұза алады.",
+	"interwiki_edited": "\"$1\" префиксі интеруики кестесінде сәтті өзгертілді.",
+	"interwiki_editerror": "\"$1\" префиксі интеруики кестесінде өзгеру мүмкін болмады.\nМүмкін бұл бар болмаған шығар.",
+	"log-name-interwiki": "Интеруики кесте журналы",
+	"logentry-interwiki-iw_add": "$1 {{GENDER:$2|added}} \"$4\" префиксі интеруики кестесіне ($5) (trans: $6; local: $7)",
+	"logentry-interwiki-iw_edit": "$1 {{GENDER:$2|modified}} \"$4\" ($5) интеруики кестесіне (trans: $6; local: $7)",
+	"logentry-interwiki-iw_delete": "Интеруики кестесінен \"$4\" префиксі $1 {{GENDER:$2|removed}}",
+	"right-interwiki": "Интеруики деректерін өңдеу",
+	"action-interwiki": "бұл интеруики ендірілуін өзгерту"
+}

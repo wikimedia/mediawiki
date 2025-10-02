@@ -1,0 +1,24 @@
+{
+	"@metadata": {
+		"authors": [
+			"Iwan Novirion"
+		]
+	},
+	"interwiki": "Caliak dan suntiang data interwiki",
+	"interwiki-title-norights": "Caliak data interwiki",
+	"interwiki_intro": "Iko gambaran tabel interwiki.",
+	"interwiki_prefix": "Kode",
+	"interwiki-prefix-label": "Kode:",
+	"interwiki_prefix_intro": "Kode interwiki akan digunoan dalam  <code>[<nowiki />[kode:<em>namo laman</em>]]</code> sintak teks wiki.",
+	"interwiki_local": "Manaruihkan",
+	"interwiki-local-label": "Manaruihkan",
+	"interwiki_trans": "Transklusi",
+	"interwiki-trans-label": "Transklusi",
+	"interwiki_1": "yo",
+	"interwiki_0": "indak",
+	"interwiki_edit": "Suntiang",
+	"interwiki_reasonfield": "Alasan:",
+	"interwiki_addbutton": "Tambahkan",
+	"right-interwiki": "Suntiang data interwiki",
+	"action-interwiki": "ubah masuakan interwiki ko"
+}

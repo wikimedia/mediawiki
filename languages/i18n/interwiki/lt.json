@@ -1,0 +1,26 @@
+{
+	"@metadata": {
+		"authors": [
+			"Homo",
+			"Hugo.arg",
+			"Nokeoo",
+			"Tomasdd"
+		]
+	},
+	"interwiki": "Žiūrėti ir redaguoti interwiki duomenis",
+	"interwiki-title-norights": "Žiūrėti tarpkalbinių nuorodų duomenis",
+	"interwiki-legend-label": "Legenda",
+	"interwiki_prefix": "Priešdėlis",
+	"interwiki-prefix-label": "Priešdėlis:",
+	"interwiki_local": "Persiųsti",
+	"interwiki-local-label": "Persiųsti",
+	"interwiki_1": "taip",
+	"interwiki_0": "ne",
+	"interwiki_edit": "Redaguoti",
+	"interwiki_reasonfield": "Priežastis:",
+	"interwiki_deleting": "Jūs trinate priešdėlį „$1“.",
+	"interwiki-logtext": "Žiūrėti žurnalą",
+	"interwiki_addbutton": "Pridėti",
+	"log-description-interwiki": "Tai pakeitimų [[Special:Interwiki|interwiki lentelėje]] sąrašas",
+	"right-interwiki": "Keisti interwiki duomenis"
+}

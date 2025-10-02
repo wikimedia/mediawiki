@@ -1491,6 +1491,7 @@
 	"upload-progress-processing": "עיבוד התמונה. נא ללחוץ על כפתור הרענון כדי לבדוק שוב.",
 	"upload-tryagain": "שליחת התיאור החדש של הקובץ",
 	"upload-tryagain-nostash": "שליחת הקובץ המועלה מחדש והתיאור המעודכן",
+	"upload-stash-error": "שגיאת מאגר העלאות: $1",
 	"uploadnologin": "לא נכנסת לחשבון",
 	"uploadnologintext": "נדרשת $1 כדי להעלות קבצים.",
 	"upload_directory_missing": "שרת האינטרנט אינו יכול ליצור את תיקיית ההעלאות ($1) החסרה.",

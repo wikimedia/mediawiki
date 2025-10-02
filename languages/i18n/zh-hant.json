@@ -1580,6 +1580,7 @@
 	"upload-progress-processing": "正在處理圖片。請點擊重新整理按鈕再次檢查。",
 	"upload-tryagain": "送出修改後的檔案描述",
 	"upload-tryagain-nostash": "提交重新上傳的檔案並修改說明",
+	"upload-stash-error": "上傳儲藏庫錯誤：$1",
 	"uploadnologin": "尚未登入",
 	"uploadnologintext": "您必須先 $1 才能上傳檔案。",
 	"upload_directory_missing": "缺少上傳目錄 ($1) 且網頁伺服器沒有權限建立。",

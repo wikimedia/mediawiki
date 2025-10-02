@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"Hosseinblue",
+			"Lakzon"
+		]
+	},
+	"interwiki_prefix": "پیشوند",
+	"interwiki-prefix-label": "پیشوند:",
+	"interwiki_prefix_intro": "پیشوند ویکی داخلی در <code>[<nowiki />[prefix:<em>pagename</em>]]</code> نحو متن ویکی استفاده شده‌است.",
+	"interwiki_local": "جلو/نووا",
+	"interwiki-local-label": "جلو/نووا:",
+	"interwiki_1": "أرێ-بةلئ",
+	"interwiki_0": "نة-نةخئر",
+	"interwiki_edit": "دەسکاری",
+	"interwiki_reasonfield": ":دةلیل",
+	"interwiki-logtext": "مشاهده سیاهه‌",
+	"interwiki_addbutton": "افزودن"
+}

@@ -7,6 +7,7 @@
 			"Isarra",
 			"Jon Harald Søby",
 			"Liuxinyu970226",
+			"Matma Rex",
 			"Meno25",
 			"Mormegil",
 			"Nemo bis",
@@ -22,6 +23,7 @@
 	"interwiki": "{{doc-special|Interwiki}}",
 	"interwiki-title-norights": "{{doc-special|Interwiki}}\nUsed when the user has no right to edit the interwiki data and can only view them.",
 	"interwiki_intro": "Shown as introductory text on [[Special:Interwiki]].",
+	"interwiki-legend-label": "Used on [[Special:Interwiki]] as header text for interwiki legend\n{{Identical|Legend}}",
 	"interwiki_prefix": "Used on [[Special:Interwiki]] as a column header of the table.",
 	"interwiki-prefix-label": "Used on [[Special:Interwiki]] as a field label in a form.",
 	"interwiki_prefix_intro": "Used on [[Special:Interwiki]] so as to explain the data in the {{msg-mw|Interwiki prefix}} column of the table.\n\nDo translate both words inside the square brackets as placeholders, where \"prefix\" should be identical to, or clearly linked to, the column header.",
@@ -65,6 +67,7 @@
 	"interwiki-submit-invalidurl": "Error message displayed when trying to save an interwiki prefix with an invalid URL.",
 	"log-name-interwiki": "{{doc-logpage}}\n\nThis message is shown as page title on [[Special:Log/interwiki]].",
 	"logentry-interwiki-iw_add": "Used when someone has added a prefix. Leave parameters and text between brackets exactly as it is. \nSee also the legend on [[Special:Interwiki]].\n\n{{Logentry|[[Special:Log/interwiki]]}}\nAdditional parameters:\n* $4 - the prefix\n* $5 - the URL\n* $6 and $7 is 0 or 1",
+	"logentry-interwiki-iw_edit": "Used when someone has modified a prefix. Leave parameters and text between brackets exactly as it is.\n\n{{Logentry|[[Special:Log/interwiki]]}}\nAdditional parameters:\n* $4 - the prefix\n* $5 - the URL\n* $6 and $7 is 0 or 1",
 	"logentry-interwiki-iw_delete": "Used when someone removed a prefix.\n\n{{Logentry|[[Special:Log/interwiki]]}}\nAdditional parameters:\n* $4 - the prefix",
 	"log-description-interwiki": "Summary shown on [[Special:Log/interwiki]].",
 	"right-interwiki": "{{doc-right|interwiki}}",
@@ -77,7 +80,5 @@
 	"interwiki-language-links": "Used on [[Special:Interwiki]] as header text for interwiki language prefix table",
 	"interwiki-language-description": "Appears under the interwiki-language-links header on [[Special:Interwiki]]; explains what interlanguage links do.\n\nRefers to {{msg-mw|Otherlanguages}}.",
 	"interwiki-global-language-links": "Used on [[Special:Interwiki]] as header text for global interwiki language prefix tables",
-	"interwiki-global-language-description": "Appears under the interwiki-global-language-links header on [[Special:Interwiki]]; explains what interlanguage links do and the distinction between global and normal interlanguage configurations.",
-	"interwiki-legend-label": "Used on [[Special:Interwiki]] as header text for interwiki legend\n{{Identical|Legend}}",
-	"logentry-interwiki-iw_edit": "Used when someone has modified a prefix. Leave parameters and text between brackets exactly as it is.\n\n{{Logentry|[[Special:Log/interwiki]]}}\nAdditional parameters:\n* $4 - the prefix\n* $5 - the URL\n* $6 and $7 is 0 or 1"
+	"interwiki-global-language-description": "Appears under the interwiki-global-language-links header on [[Special:Interwiki]]; explains what interlanguage links do and the distinction between global and normal interlanguage configurations."
 }

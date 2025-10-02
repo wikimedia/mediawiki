@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Siebrand"
+		]
+	},
+	"interwiki_deleting": "Je bent voorvoegsel \"$1\" aan het verwijderen.",
+	"interwiki_addintro": "Je bent een nieuw interwikivoorvoegsel aan het toevoegen.\nLet op dat dit geen spaties ( ), dubbele punt (:), ampersands (&), of gelijktekens (=) mag bevatten.",
+	"interwiki_editintro": "Je bent een interwikivoorvoegsel aan het bewerken. Let op dat dit bestaande koppelingen kan breken."
+}

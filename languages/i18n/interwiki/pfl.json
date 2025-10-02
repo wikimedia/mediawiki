@@ -1,0 +1,33 @@
+{
+	"@metadata": {
+		"authors": [
+			"Manuae"
+		]
+	},
+	"interwiki": "Innawikidaade ogugge un ännare.",
+	"interwiki-title-norights": "Innawikidaade ogugge.",
+	"interwiki_intro": "Des ischn Iwabligg vunde Innawikitabell.",
+	"interwiki_prefix": "Präfix",
+	"interwiki-prefix-label": "Präfix:",
+	"interwiki_trans": "Oibinde",
+	"interwiki-trans-label": "Oibinde:",
+	"interwiki_1": "ja",
+	"interwiki_0": "nä",
+	"interwiki-cached": "Die Innawikidaade sin abgleschd worre un kennen jedz nemme g'ännad were.",
+	"interwiki_edit": "B'awaide",
+	"interwiki_reasonfield": "Grund:",
+	"interwiki_deleting": "Du duschd grad s'Präfix „$1“ lesche.",
+	"interwiki_deleted": "S'Präfix „$1“ isch ausde Innawikitabell gleschd worre.",
+	"interwiki_delfailed": "S'Präfix $1 hod ned ausde Innawikitabell gleschd were kenne.",
+	"interwiki_addtext": "Ä Innawikipräfix oifiesche.",
+	"interwiki_addintro": "Du fiegschd ä naies Innawikipräfix oi.\nDeng'g dro, s'derf kä Leazaische ( ), kä Und (&), kä Glaischhaidszaische (=) un kän Dobblpungd (:) hawe.",
+	"interwiki_addbutton": "Dzufiesche",
+	"interwiki_added": "S'Präfix „$1“ isch in die Innawikitabell oigfieschd worre.",
+	"interwiki_edittext": "Innawikipräfix ännare.",
+	"interwiki_editintro": "Du änaschd grad ä Präfix.\nDeng'g dro, des konn Lings zaschdere, wus gibd.",
+	"interwiki_edited": "S'Präfix „$1“ isch inde Innawikitabell gännad worre.",
+	"interwiki_editerror": "S'Präfix „$1“ hod ma ned inde Interwikitabell ännare kenne.\nVielaischd hods des a ned.",
+	"interwiki-submit-empty": "S'Präfix un's URL derfen ned lea soi.",
+	"right-interwiki": "Innawikidaade ännare.",
+	"action-interwiki": "Den Innawikioidraach ännare."
+}

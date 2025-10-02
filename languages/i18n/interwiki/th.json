@@ -1,0 +1,31 @@
+{
+	"@metadata": {
+		"authors": [
+			"Aefgh39622",
+			"Ekminarin",
+			"Manop",
+			"Passawuth",
+			"Wutkh"
+		]
+	},
+	"interwiki": "ดูและแก้ไขข้อมูลอินเทอร์วิกิ",
+	"interwiki-title-norights": "ดูข้อมูลอินเทอร์วิกิ",
+	"interwiki-legend-label": "คำอธิบายสัญลักษณ์",
+	"interwiki_prefix": "คำนำหน้า",
+	"interwiki-prefix-label": "คำนำหน้า:",
+	"interwiki_url": "ยูอาร์แอล",
+	"interwiki-url-label": "ยูอาร์แอล:",
+	"interwiki-api-label": "เอพีไอ:",
+	"interwiki_local": "ส่งต่อ",
+	"interwiki_trans": "การใช้แม่แบบ",
+	"interwiki_1": "ใช่",
+	"interwiki_0": "ไม่",
+	"interwiki_edit": "แก้ไข",
+	"interwiki_reasonfield": "เหตุผล:",
+	"interwiki_deleting": "คุณกำลังจะลบคำนำหน้า \"$1\"",
+	"interwiki-logtext": "ดูปูม",
+	"interwiki_addbutton": "เพิ่ม",
+	"interwiki_edittext": "แก้ไขคำนำหน้าอินเทอร์วิกิ",
+	"right-interwiki": "แก้ไขข้อมูลอินเทอร์วิกิ",
+	"action-interwiki": "เปลี่ยนแปลงรายการอินเทอร์วิกินี้"
+}

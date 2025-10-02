@@ -1,0 +1,40 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ajeje Brazorf",
+			"Pippinu",
+			"Santu",
+			"Sarvaturi"
+		]
+	},
+	"interwiki": "Talìa e mudìfica li dati interwiki",
+	"interwiki-title-norights": "Talìa li dati interwiki",
+	"interwiki_intro": "Chista è na panuràmica dâ tabbella interwiki, chi difinisci li prifissi scurzaturi chi si ponnu adupirari pi fari culligamenti viloci versu àutri wiki o àutri siti esterni. Pi struzzioni supra a comu s'adòpira, talìa [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Interwiki lu manuali supra a MediaWiki.org].",
+	"interwiki_prefix": "Prifissu",
+	"interwiki-prefix-label": "Prifissu:",
+	"interwiki_url": "URL",
+	"interwiki-url-label": "URL:",
+	"interwiki_local": "Rimanna",
+	"interwiki-local-label": "Rimanna:",
+	"interwiki_trans": "Ncludi",
+	"interwiki-trans-label": "Ncludi:",
+	"interwiki_1": "sì",
+	"interwiki_0": "no",
+	"interwiki_error": "SBÀGGHIU: La tabedda di li interwiki è vacanti, o c'è qualchi àutru sbàgghiu.",
+	"interwiki_edit": "Cancia",
+	"interwiki_reasonfield": "Mutivu:",
+	"interwiki_deleting": "Stai pi scancillari lu prufissu \"$1\"",
+	"interwiki_deleted": "Lu prifissu \"$1\" vinni scancillatu dâ tabedda di li interwiki.",
+	"interwiki_delfailed": "Rimuzzioni dû prifissi \"$1\" dâ tabedda di li interwiki non arinisciuta.",
+	"interwiki_addtext": "Agghiunci nu prifissu interwiki o di lingua",
+	"interwiki_addintro": "Ora veni iunciutu nu novu prifissu interwiki.\nNon sunnu ammittuti li caràttiri: spàzziu ( ), dui punti (:), e cummirciali (&), sìmmulu di uguali (=).",
+	"interwiki_addbutton": "Agghiunci",
+	"interwiki_added": "Lu prifissi \"$1\" vinni agghiunciutu â tabedda di li interwiki.",
+	"interwiki_addfailed": "Mpussìbbili agghiunciri lu prufissu \"$1\" â tabedda di li interwiki.\nLu prifissi putissi èssiri già prisenti ntâ tabedda.",
+	"interwiki_edittext": "Canciamentu d'un prifissu interwiki",
+	"interwiki_editintro": "Si sta pi mudificari nu prifissu interwiki.\nChistu pò non fari funziunari arcuni lijami ca ci sù.",
+	"interwiki_edited": "Lu prifissi \"$1\" vinni canciatu ntâ tabedda di li interwiki.",
+	"interwiki_editerror": "Mpussìbbili mudificari lu prifissi \"$1\" nnâ tabedda di li interwiki.\nLu prifissu putissi èssiri ca non c'è.",
+	"interwiki-badprefix": "Lu prifissu interwiki \"$1\" cunteni caràttiri non vàlidi",
+	"right-interwiki": "Mudìfica li dati interwiki"
+}

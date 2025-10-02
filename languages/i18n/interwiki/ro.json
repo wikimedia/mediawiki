@@ -1,0 +1,30 @@
+{
+	"@metadata": {
+		"authors": [
+			"Andrei Stroe",
+			"Firilacroco",
+			"KlaudiuMihaila",
+			"Minisarm"
+		]
+	},
+	"interwiki": "Vizualizare și editare date interwiki",
+	"interwiki-title-norights": "Vizualizare date interwiki",
+	"interwiki_intro": "Aceasta este o imagine de ansamblu a tabelului interwiki, care definește scurtăturile de prefix utilizate pentru a face rapid o legătură cu wiki-uri diferite și alte site-uri externe. Pentru utilizarea recomandată, vă rugăm să vedeți [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Interwiki manualul de pe MediaWiki.org].",
+	"interwiki_prefix": "Prefix",
+	"interwiki-prefix-label": "Prefix:",
+	"interwiki_local": "Înainte",
+	"interwiki-local-label": "Redirecționat:",
+	"interwiki_trans": "Transcludere",
+	"interwiki-trans-label": "Transcludere",
+	"interwiki_1": "da",
+	"interwiki_0": "nu",
+	"interwiki_edit": "Modificare",
+	"interwiki_reasonfield": "Motiv:",
+	"interwiki_deleting": "În prezent, ștergeți prefixul „$1”.",
+	"interwiki_addtext": "Adaugă un prefix interwiki sau de limbă",
+	"interwiki_addbutton": "Adaugă",
+	"interwiki_edittext": "Modificarea prefixului unui interwiki",
+	"log-name-interwiki": "Jurnal tabel interwiki",
+	"right-interwiki": "Modifică date interwiki",
+	"action-interwiki": "modificați această legătură interwiki"
+}

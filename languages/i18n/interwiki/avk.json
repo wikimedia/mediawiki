@@ -1,0 +1,29 @@
+{
+	"@metadata": {
+		"authors": [
+			"Kizule",
+			"Wikimistusik"
+		]
+	},
+	"interwiki": "Wira va 'interwiki' orig isu betara",
+	"interwiki-title-norights": "Wira va 'interwiki' orig",
+	"interwiki_intro": "Ta lo giva icde 'interwiki' origak va [//www.mediawiki.org/wiki/Interwiki_table MediaWiki.org] wil !",
+	"interwiki_prefix": "Abdueosta",
+	"interwiki-prefix-label": "Abdueosta:",
+	"interwiki_error": "ROKLA : 'Interwiki' origak tir vlardaf oke rotaca al sokir.",
+	"interwiki_reasonfield": "Lazava :",
+	"interwiki_deleting": "Rin va \"$1\" abdueosta dun sulal.",
+	"interwiki_deleted": "\"$1\" abdueosta div 'interwiki' origak al zo tioltenher.",
+	"interwiki_delfailed": "\"$1\" abdueosta div 'interwiki' origak me zo rotiolter.",
+	"interwiki_addtext": "Loplekura va 'interwiki' abdueosta",
+	"interwiki_addintro": "Rin va warzafa 'interwiki' abdueosta dun loplekul.\nMe vulkul da bata va darka ( ) ik briva (:) ik 'ampersand' (&) ik miltastaa (=) me roruldar.",
+	"interwiki_addbutton": "Loplekura",
+	"interwiki_added": "\"$1\" abdueosta ko 'interwiki' origak al zo loplekunhur.",
+	"interwiki_addfailed": "\"$1\" abdueosta ko 'interwiki' origak me zo roloplekur.\nRotir koeon ixam tir.",
+	"interwiki_edittext": "Betara va 'interwiki' abdueosta",
+	"interwiki_editintro": "Rin va 'interwiki' abdueosta dun betal.\nMe vulkul da batcoba va kruldesi gluyasiki rotempar !",
+	"interwiki_edited": "\"$1\" abdueosta koe 'interwiki' origak al zo betanhar.",
+	"interwiki_editerror": "\"$1\" abdueosta koe 'interwiki' origak me zo robetar.\nRotir koeon me krulder.",
+	"log-name-interwiki": "'Interwiki' origak 'log'",
+	"log-description-interwiki": "Batcoba tir 'log' dem betaks va [[Special:Interwiki|'interwiki' origak]]."
+}

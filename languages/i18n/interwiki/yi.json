@@ -1,0 +1,22 @@
+{
+	"@metadata": {
+		"authors": [
+			"פוילישער"
+		]
+	},
+	"interwiki-title-norights": "באקוקן אינטערוויקי דאטן",
+	"interwiki_intro": "דאס איז אן איבערבליק פון דער אינטערוויקי טאבעלע, וואס דעפֿינירט די פרעפֿיקס פֿארקירצונגען געניצט צו פֿארבינדן גיך צו אנדערע וויקיס און אנדערע דרויסנדיקע וועבזײַטלעך. פאר רעקאמאנדירטן באניץ, ביטע זעט [//https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Interwiki דעם האנטבוך בײַ MediaWiki.org].",
+	"interwiki_prefix": "פרעפֿיקס",
+	"interwiki-prefix-label": "פרעפֿיקס:",
+	"interwiki_local": "איבערפֿירן",
+	"interwiki-local-label": "איבערפֿירן",
+	"interwiki_trans": "אריבערשליסן",
+	"interwiki-trans-label": "אריבערשליסן",
+	"interwiki_1": "יא",
+	"interwiki_0": "ניין",
+	"interwiki_edit": "רעדאַקטירן",
+	"interwiki_reasonfield": "אורזאַך:",
+	"interwiki_addbutton": "צולייגן",
+	"interwiki_edittext": "רעדאקטירן אן אינטערוויקי פרעפיקס",
+	"interwiki-links": "צווישן־וויקי פרעפֿיקסן"
+}

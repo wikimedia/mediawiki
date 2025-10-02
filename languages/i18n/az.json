@@ -1482,6 +1482,7 @@
 	"upload-progress-processing": "Şəkil emal edilir. Lütfən, yenidən yoxlamaq üçün yeniləmə düyməsini basın.",
 	"upload-tryagain": "Dəyişdirilmiş fayl izahını göndər",
 	"upload-tryagain-nostash": "Yenidən yüklənmiş faylı və dəyişdirilmiş təsviri təqdim edin",
+	"upload-stash-error": "Gizli yükləmə xətası: $1",
 	"uploadnologin": "Daxil olmamısınız",
 	"uploadnologintext": "Fayl yükləmək üçün siz sistemə $1.",
 	"upload_directory_missing": "($1) yükləmə qaydası axtarılır və vebserverdə yaradılması qeyri-mümkündür.",

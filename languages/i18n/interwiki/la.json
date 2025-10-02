@@ -1,0 +1,30 @@
+{
+	"@metadata": {
+		"authors": [
+			"SPQRobin",
+			"UV"
+		]
+	},
+	"interwiki": "Videre et recensere data intervica",
+	"interwiki-title-norights": "Videre data intervica",
+	"interwiki_intro": "De tabula intervicia.",
+	"interwiki_prefix": "Praefixum",
+	"interwiki-prefix-label": "Praefixum:",
+	"interwiki_error": "ERROR: Tabula intervica est vacua, aut aerumna alia occurrit.",
+	"interwiki_reasonfield": "Causa:",
+	"interwiki_deleting": "Delens praefixum \"$1\".",
+	"interwiki_deleted": "Praefixum \"$1\" prospere remotum est ex tabula intervica.",
+	"interwiki_delfailed": "Praefixum \"$1\" ex tabula intervica removeri non potuit.",
+	"interwiki_addtext": "Addere praefixum intervicum",
+	"interwiki_addbutton": "Addere",
+	"interwiki_added": "Praefixum \"$1\" prospere in tabulam intervicam additum est.",
+	"interwiki_addfailed": "Praefixum \"$1\" in tabulam intervicam addi non potuit. Fortasse iam est in tabula intervica.",
+	"interwiki_edittext": "Recensere praefixum intervicum",
+	"interwiki_editintro": "Recenses praefixum intervicum.\nMemento hoc nexus frangere posse.",
+	"interwiki_edited": "Praefixum \"$1\" prospere modificata est in tabula intervica.",
+	"interwiki_editerror": "Praefixum \"$1\" in tabula intervica modificari non potuit.\nFortasse nondum est in tabula intervica.",
+	"log-name-interwiki": "Index tabulae intervicae",
+	"log-description-interwiki": "Hic est index mutationum [[Special:Interwiki|tabulae intervicae]].",
+	"right-interwiki": "Data intervica recensere",
+	"action-interwiki": "data intervica recensere"
+}

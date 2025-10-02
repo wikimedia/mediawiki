@@ -1,0 +1,37 @@
+{
+	"@metadata": {
+		"authors": [
+			"Dimension",
+			"Jason924tw",
+			"Kizule"
+		]
+	},
+	"interwiki": "察與修跨維表",
+	"interwiki-title-norights": "察跨維",
+	"interwiki_intro": "閱[//www.mediawiki.org/wiki/Interwiki_table MediaWiki.org]之。",
+	"interwiki_prefix": "前",
+	"interwiki-prefix-label": "前:",
+	"interwiki_local": "定為本維",
+	"interwiki-local-label": "定為本維:",
+	"interwiki_trans": "許跨維之含",
+	"interwiki-trans-label": "許跨維之含:",
+	"interwiki_1": "是",
+	"interwiki_0": "否",
+	"interwiki_error": "錯：跨維為空，或它錯發生。",
+	"interwiki_edit": "纂",
+	"interwiki_reasonfield": "因：",
+	"interwiki_deleting": "爾正刪「$1」。",
+	"interwiki_deleted": "已刪「$1」。",
+	"interwiki_delfailed": "無刪「$1」。",
+	"interwiki_addtext": "加跨維",
+	"interwiki_addintro": "爾正加新之跨。\n記無含空（ ）、冒（:）、連（&），或等（=）。",
+	"interwiki_addbutton": "加",
+	"interwiki_added": "「$1」加至跨維也。",
+	"interwiki_addfailed": "「$1」無加跨維也。\n或已存在之。",
+	"interwiki_edittext": "改跨維",
+	"interwiki_editintro": "爾正改跨維。\n記此能斷現連。",
+	"interwiki_edited": "「$1」已改之。",
+	"interwiki_editerror": "「$1」無改之。\n無存。",
+	"interwiki-badprefix": "定之跨維前「$1」含有無效之字也",
+	"right-interwiki": "改跨維"
+}

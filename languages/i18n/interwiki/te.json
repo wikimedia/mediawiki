@@ -1,0 +1,29 @@
+{
+	"@metadata": {
+		"authors": [
+			"Chaduvari",
+			"Kiranmayee",
+			"Veeven"
+		]
+	},
+	"interwiki": "అంతర్వికీ భోగట్టాని చూడండి, మార్చండి",
+	"interwiki-title-norights": "అంతర్వికీ భోగట్టా చూడండి",
+	"interwiki_intro": "ఇది అంతర్వికీ పట్టిక యొక్క సంగ్రహం.",
+	"interwiki_prefix": "ఉపసర్గ",
+	"interwiki-prefix-label": "ఉపసర్గ:",
+	"interwiki_local": "ముందుకు",
+	"interwiki-local-label": "ముందుకు:",
+	"interwiki_1": "అవును",
+	"interwiki_0": "కాదు",
+	"interwiki_error": "లోపం: అంతర్వికీ పట్టిక ఖాళీగా ఉంది, లేదా మరేదో తప్పు జరిగింది.",
+	"interwiki_edit": "మార్చు",
+	"interwiki_reasonfield": "కారణం:",
+	"interwiki_deleting": "మీరు \"$1\" అనే ఉపసర్గని తొలగించబోతున్నారు.",
+	"interwiki_deleted": "అంతర్వికీ పట్టిక నుండి \"$1\" అనే ఉపసర్గని విజయవంతంగా తొలగించాం.",
+	"interwiki_delfailed": "అంతర్వికీ పట్టిక నుండి \"$1\" అనే ఉపసర్గని తొలగించలేకపోయాం.",
+	"interwiki_addtext": "ఓ అంతర్వికీ ఉపసర్గని చేర్చండి",
+	"interwiki_addbutton": "చేర్చు",
+	"log-name-interwiki": "అంతర్వికీ పట్టిక చిట్టా",
+	"log-description-interwiki": "ఇది [[Special:Interwiki|అంతర్వికీ పట్టిక]]కి జరిగిన మార్పుల చిట్టా.",
+	"right-interwiki": "అంతర్వికీ సమాచారము మార్చు"
+}

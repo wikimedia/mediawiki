@@ -1548,6 +1548,7 @@
 	"upload-progress-processing": "De afbeelding wordt verwerkt. Klik op de knop Vernieuwen om de status te vernieuwen.",
 	"upload-tryagain": "Bestandsbeschrijving bijwerken",
 	"upload-tryagain-nostash": "Verzend het opnieuw geüploade bestand en de aangepaste beschrijving",
+	"upload-stash-error": "Fout bij opbergen upload: $1",
 	"uploadnologin": "Niet aangemeld",
 	"uploadnologintext": "U moet $1 om bestanden te kunnen uploaden.",
 	"upload_directory_missing": "De uploadmap ($1) is niet aanwezig en kon niet aangemaakt worden door de webserver.",

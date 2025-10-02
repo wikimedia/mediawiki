@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"Basharh"
+		]
+	},
+	"interwiki": "ܚܘܝ ܘܫܚܠܦ ܝܕ̈ܥܬܐ ܕܐܢܛܪܘܝܩܝ",
+	"interwiki-title-norights": "ܚܘܝ ܝܕ̈ܥܬܐ ܕܐܢܛܪܘܝܩܝ",
+	"interwiki_prefix": "ܫܪܘܝܐ",
+	"interwiki-prefix-label": "ܫܪܘܝܐ:",
+	"interwiki_1": "ܐܝܢ",
+	"interwiki_0": "ܠܐ",
+	"interwiki_edit": "ܫܚܠܦ",
+	"interwiki_reasonfield": "ܥܠܬܐ:",
+	"interwiki_addbutton": "ܐܘܣܦ"
+}

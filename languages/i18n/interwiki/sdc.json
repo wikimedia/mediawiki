@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Felis",
+			"Jun Misugi"
+		]
+	},
+	"interwiki": "Vidè e mudifiggà li dati interwiki",
+	"interwiki-title-norights": "Vidé li dati interwiki",
+	"interwiki_prefix": "Prefissu",
+	"interwiki-prefix-label": "Prefissu:",
+	"interwiki_1": "si",
+	"interwiki_0": "no",
+	"interwiki_edit": "Mudifiggà",
+	"interwiki_reasonfield": "Rasgioni",
+	"interwiki_deleting": "Sei canzillendhi lu prefissu \"$1\".",
+	"interwiki_addtext": "Aggiungi un prefissu interwiki (prefissu di linga)",
+	"interwiki_addbutton": "Aggiungì",
+	"log-name-interwiki": "Rigisthru di la table interwiki"
+}

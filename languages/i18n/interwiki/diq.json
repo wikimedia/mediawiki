@@ -1,0 +1,23 @@
+{
+	"@metadata": {
+		"authors": [
+			"Erdemaslancan",
+			"Mirzali"
+		]
+	},
+	"interwiki-title-norights": "Melumatê interwikiya bıvin",
+	"interwiki-legend-label": "Kıtabek",
+	"interwiki_prefix": "Verbend",
+	"interwiki-prefix-label": "Verbend:",
+	"interwiki_local": "Raver",
+	"interwiki-local-label": "Raver",
+	"interwiki_trans": "Şıkıl bıvurne",
+	"interwiki-trans-label": "Şıkıl bıvurne",
+	"interwiki_1": "eya",
+	"interwiki_0": "nê",
+	"interwiki_edit": "Bıvurne",
+	"interwiki_reasonfield": "Sebeb:",
+	"interwiki_addbutton": "Cı ke",
+	"log-name-interwiki": "Qeydê tabloyê interwiki",
+	"right-interwiki": "Daneyanê interwiki bıvurne"
+}

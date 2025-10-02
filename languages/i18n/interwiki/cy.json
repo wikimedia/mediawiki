@@ -1,0 +1,33 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ceirios",
+			"Lloffiwr"
+		]
+	},
+	"interwiki": "Gweld a golygu data rhyngwici",
+	"interwiki-title-norights": "Gweld y data rhyngwici",
+	"interwiki-legend-label": "Allwedd",
+	"interwiki_prefix": "Rhagddodiad",
+	"interwiki-prefix-label": "Rhagddodiad:",
+	"interwiki_local": "Anfon ymlaen",
+	"interwiki-local-label": "Anfon ymlaen",
+	"interwiki_trans": "Trawsgynnwys",
+	"interwiki-trans-label": "Trawsgynnwys",
+	"interwiki_1": "ie",
+	"interwiki_0": "na",
+	"interwiki_edit": "Golygu",
+	"interwiki_reasonfield": "Rheswm:",
+	"interwiki-logtext": "Gweld y log",
+	"interwiki_addtext": "Ychwanegu rhagddodiad rhyngwici neu iaith",
+	"interwiki_addintro": "Rydych yn ychwanegu rhagddodiad rhyngwici newydd.\nCofiwch na all gynnwys bwlch ( ), gorwahannod (:), ampersand (&), na hafalnod (=).",
+	"interwiki_addbutton": "Ychwanegu",
+	"interwiki_added": "Ychwanegwyd rhagddodiad \"$1\" at y tabl rhyngwici.",
+	"interwiki_addfailed": "Methwyd ychwanegu'r rhagddodiad \"$1\" at y tabl rhyngwici.\nEfallai ei fod eisoes yn y tabl rhyngwici.",
+	"log-name-interwiki": "Log tabl rhyngwici",
+	"log-description-interwiki": "Dyma log o newidiadau i'r [[Special:Interwiki|tabl rhyngwici]].",
+	"right-interwiki": "Golygu data rhyngwici",
+	"action-interwiki": "newid yr eitem rhyngwici hwn",
+	"interwiki-links": "Rhagddodiaid interwici",
+	"interwiki-language-links": "Rhagddodiaid rhyngiaith"
+}

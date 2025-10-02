@@ -1,0 +1,39 @@
+{
+	"@metadata": {
+		"authors": [
+			"Candalua",
+			"Fierodelveneto"
+		]
+	},
+	"interwiki": "Varda e modìfega i dati interwiki",
+	"interwiki-title-norights": "Varda i dati interwiki",
+	"interwiki_intro": "Sta qua la xe na panoramica de la tabèla dei interwiki.",
+	"interwiki-legend-label": "Lejenda",
+	"interwiki_prefix": "Prefisso",
+	"interwiki-prefix-label": "Prefisso:",
+	"interwiki_local": "Avanti",
+	"interwiki-local-label": "Avanti:",
+	"interwiki_trans": "Transcludi",
+	"interwiki-trans-label": "Transcludi:",
+	"interwiki_1": "sì",
+	"interwiki_0": "no",
+	"interwiki_error": "ERÓR: La tabèla dei interwiki la xe voda, o ghe xe qualche altro erór.",
+	"interwiki_edit": "Modìfega",
+	"interwiki_reasonfield": "Motivassion:",
+	"interwiki_deleting": "Te sì drio scancelar el prefisso \"$1\"",
+	"interwiki_deleted": "El prefisso \"$1\" el xe stà scancelà da la tabèla dei interwiki.",
+	"interwiki_delfailed": "No s'à podesto cavar el prefisso \"$1\" da la tabèla dei interwiki.",
+	"interwiki_addtext": "Zonta un prefisso interwiki",
+	"interwiki_addintro": "Te sì drio zontar un prefisso interwiki novo.\nNo xe mia parmessi i caràteri: spassio ( ), do ponti (:), e comerçial (&), sìnbolo de uguale (=).",
+	"interwiki_addbutton": "Zonta",
+	"interwiki_added": "El prefisso \"$1\" el xe stà zontà a la tabèla dei interwiki.",
+	"interwiki_addfailed": "No se riesse a zontar el prefisso \"$1\" a la tabèla dei interwiki.\nEl prefisso el podarìa èssar xà presente in tabèla.",
+	"interwiki_edittext": "Modìfega de un prefisso interwiki",
+	"interwiki_editintro": "Te sì drio modificar un prefisso interwiki.\nOcio a no desfar i colegamenti esistenti.",
+	"interwiki_edited": "El prefisso \"$1\" el xe stà canbià in te la tabèla dei interwiki.",
+	"interwiki_editerror": "No se riesse a canbiar el prefisso \"$1\" in te la tabèla dei interwiki.\nSto prefisso el podarìa èssar inesistente.",
+	"interwiki-badprefix": "El prefisso interwiki speçificà (\"$1\") el contien caràteri mia validi",
+	"log-name-interwiki": "Registro de la tabèla interwiki",
+	"log-description-interwiki": "Registro dei canbiamenti fati a la [[Special:Interwiki|tabèla dei interwiki]].",
+	"right-interwiki": "Cànbia i dati interwiki"
+}

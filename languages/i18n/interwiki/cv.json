@@ -1,0 +1,21 @@
+{
+	"@metadata": {
+		"authors": [
+			"Astahar",
+			"Chuvash2014"
+		]
+	},
+	"interwiki-legend-label": "Легенда",
+	"interwiki_prefix": "Префикс",
+	"interwiki-prefix-label": "Префикс:",
+	"interwiki_local": "Малалла",
+	"interwiki-local-label": "Малалла",
+	"interwiki_1": "ҫапла",
+	"interwiki_0": "ҫук",
+	"interwiki_error": "Йӑнӑш: интервики таблици пушӑ, е ытти ҫӗрте йӑнӑш пур.",
+	"interwiki-cached": "Интервики даннӑйӗсене кэшран илнӗ. Кэшрине улӑштарма май ҫук.",
+	"interwiki_edit": "Тӳрлет",
+	"interwiki_reasonfield": "Сӑлтав:",
+	"interwiki-logtext": "Журнала пӑхӑр",
+	"interwiki_addbutton": "Хуш"
+}

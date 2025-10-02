@@ -1499,6 +1499,7 @@
 	"upload-progress-processing": "Behandler bildet. Trykk på oppdateringsknappen for å sjekke på nytt.",
 	"upload-tryagain": "Send inn endret filbeskrivelse",
 	"upload-tryagain-nostash": "Send inn nyopplastet fil og endret beskrivelse",
+	"upload-stash-error": "Feil i opplastingsstash: $1",
 	"uploadnologin": "Ikke logget inn",
 	"uploadnologintext": "Du må $1 for å kunne laste opp filer.",
 	"upload_directory_missing": "Oppplastingsmappen ($1) mangler og kunne ikke opprettes av tjeneren.",

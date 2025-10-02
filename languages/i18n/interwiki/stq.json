@@ -1,0 +1,24 @@
+{
+	"@metadata": {
+		"authors": [
+			"Purodha",
+			"Pyt"
+		]
+	},
+	"interwiki": "Interwiki-Doaten bekiekje un beoarbaidje",
+	"interwiki_intro": "Dit is n Uursicht fon dän Inhoold fon ju Interwiki-Tabelle.",
+	"interwiki_prefix": "Präfix",
+	"interwiki-prefix-label": "Präfix:",
+	"interwiki_error": "Failer: Ju Interwiki-Tabelle is loos.",
+	"interwiki_reasonfield": "Gruund:",
+	"interwiki_deleting": "Du hoalst Prefix \"$1\" wäch.",
+	"interwiki_deleted": "„$1“ wuude mäd Ärfoulch uut ju Interwiki-Tabelle wächhoald.",
+	"interwiki_delfailed": "„$1“ kuude nit uut ju Interwiki-Tabelle läsked wäide.",
+	"interwiki_addtext": "N Interwiki-Präfix bietouföigje",
+	"interwiki_addintro": "Du föigest n näi Interwiki-Präfix bietou. Beoachte, dät et neen Loosteeken ( ), Koopmons-Un (&), Gliekhaidsteeken (=) un naan Dubbelpunkt (:) änthoolde duur.",
+	"interwiki_addbutton": "Bietouföigje",
+	"interwiki_added": "„$1“ wuude mäd Ärfoulch ju Interwiki-Tabelle bietouföiged.",
+	"interwiki_addfailed": "„$1“ kuude nit ju Interwiki-Tabelle bietouföiged wäide.",
+	"log-name-interwiki": "Interwiki-Tabellenlogbouk",
+	"log-description-interwiki": "In dit Logbouk wäide Annerengen an ju [[Special:Interwiki|Interwiki-Tabelle]] protokollierd."
+}

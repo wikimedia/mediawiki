@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"Artsiom91",
+			"No Sleep till Krupki",
+			"ZlyiLev",
+			"Тест"
+		]
+	},
+	"interwiki-title-norights": "Прагляд звестак пра інтэрвікі",
+	"interwiki_1": "так",
+	"interwiki_0": "не",
+	"interwiki_edit": "Правіць",
+	"interwiki_reasonfield": "Прычына:",
+	"interwiki-logtext": "Праглядзець журнал",
+	"interwiki_addbutton": "Дадаць",
+	"interwiki-badprefix": "Пазначаны прэфікс інтэрвікі «$1» змяшчае няслушныя сімвалы"
+}

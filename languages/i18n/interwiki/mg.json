@@ -1,0 +1,22 @@
+{
+	"@metadata": {
+		"authors": [
+			"Jagwar"
+		]
+	},
+	"interwiki": "Hijery sy hikasika ny data interwiki",
+	"interwiki-title-norights": "Hijery ny data interwiki",
+	"interwiki_intro": "Ity dia topimaso momba ny tabilao interwiki, izay mamaritra ny hitsin-dàlana ampiasaina hampifandraisana haingana amin'ny wiki samihafa sy tranonkala ivelany hafa. Raha te hampiasaina dia jereo azafady ny [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Interwiki ny torolalana ao amin'i MediaWiki.org].",
+	"interwiki_prefix": "Tovona",
+	"interwiki-prefix-label": "Tovona",
+	"interwiki_prefix_intro": "Tovona ampiasaina anatin'i <code>[<nowiki />[tovona:<em>anaram-pejy</em>]]</code> ny rariteny wiki.",
+	"interwiki_url": "URL",
+	"interwiki-url-label": "URL:",
+	"interwiki_url_intro": "Endrika ho an'ny URL. Hovàna amin'ny <em>anaram-pejy</em> ny wikilahatsoratra i $1, rehefa ampiasaaina ny rariteny aseho eo ambony.",
+	"interwiki_local": "Hanohy",
+	"interwiki-local-label": "Hampanaraka",
+	"interwiki_1": "eny",
+	"interwiki_0": "tsia",
+	"interwiki_edit": "Hanova",
+	"right-interwiki": "Manova ny data interwiki"
+}

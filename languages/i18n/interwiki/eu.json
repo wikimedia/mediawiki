@@ -1,0 +1,30 @@
+{
+	"@metadata": {
+		"authors": [
+			"An13sa",
+			"Kobazulo",
+			"Sator",
+			"Theklan"
+		]
+	},
+	"interwiki": "Ikusi eta aldatu interwikiak",
+	"interwiki-title-norights": "Ikusi interwikiak",
+	"interwiki_intro": "Hau interwiki taularen ikuspegi orokor bat da.",
+	"interwiki_prefix": "Aurrizkia",
+	"interwiki-prefix-label": "Aurrizkia:",
+	"interwiki_local": "Aurrera",
+	"interwiki-local-label": "Aurrera",
+	"interwiki_trans": "Txertatu",
+	"interwiki-trans-label": "Txertatu",
+	"interwiki_1": "bai",
+	"interwiki_0": "ez",
+	"interwiki_edit": "Aldatu",
+	"interwiki_reasonfield": "Arrazoia:",
+	"interwiki_deleting": "\"$1\" aurrizkia ezabatzen ari zara.",
+	"interwiki_addbutton": "Gehitu",
+	"interwiki_edittext": "Interwiki aurrizkia editatzen",
+	"right-interwiki": "Interwiki datuak aldatu",
+	"action-interwiki": "aldatu interwiki sarrera hau",
+	"interwiki-links": "Interwiki aurrizkiak",
+	"interwiki-language-links": "Interlanguage aurrizkiak"
+}

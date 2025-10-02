@@ -1,0 +1,17 @@
+{
+	"@metadata": {
+		"authors": [
+			"Chiraldine",
+			"Ukabia"
+		]
+	},
+	"interwiki_edit": "Mèzi",
+	"interwiki_reasonfield": "Mgbághapụtà:",
+	"interwiki-local-links": "prefixes interwiki mpaghara",
+	"interwiki-local-description": "Prefixes ndị a dị na mpaghara. Ihe ọ bụla oyiri nwere nhazi zuru ụwa ọnụ ga-ewepụ nkọwa zuru ụwa ọnụ.",
+	"interwiki-links": "Ndịniihu interwiki",
+	"interwiki-language-links": "Ndịniihu asụsụ dị iche iche",
+	"interwiki-language-description": "Nganiihu ndị a dakọtara na koodu asụsụ akọwara, a ga-eji ya mepụta ndepụta \"{{int:otherlanguages}}\" mgbe agbakwunyere na ibe.",
+	"interwiki-global-language-links": "prefixes asụsụ zuru ụwa ọnụ",
+	"interwiki-global-language-description": "Nganiihu ndị a dakọtara na koodu asụsụ akọwara, a ga-eji ya mepụta ndepụta \"{{int:otherlanguages}}\" mgbe agbakwunyere na ibe. Dịka e ketara ha site na nhazi zuru ụwa ọnụ, enwere ike dezie ha na wiki isi iyi. Enweghị ike ịkagbu nkọwa ntụgharị asụsụ zuru ụwa ọnụ na mpaghara."
+}
