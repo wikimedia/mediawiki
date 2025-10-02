@@ -503,6 +503,11 @@ class DBConnRef implements Stringable, IMaintainableDatabase, IDatabaseForOwner 
 	}
 
 	/** @inheritDoc */
+	public function buildGroupConcat( $field, $delim ): string {
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
+	/** @inheritDoc */
 	public function buildGroupConcatField(
 		$delim, $tables, $field, $conds = '', $join_conds = []
 	) {

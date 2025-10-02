@@ -32,6 +32,11 @@ class SqlitePlatform extends SQLPlatform {
 		return '(' . implode( ') || (', $stringList ) . ')';
 	}
 
+	/** @inheritDoc */
+	public function buildGroupConcat( $field, $delim ): string {
+		return "group_concat($field," . $this->quoter->addQuotes( $delim ) . ')';
+	}
+
 	/**
 	 * @param string[] $sqls
 	 * @param bool $all Whether to "UNION ALL" or not
@@ -90,15 +95,6 @@ class SqlitePlatform extends SQLPlatform {
 		}
 
 		return parent::makeSelectOptions( $options );
-	}
-
-	/** @inheritDoc */
-	public function buildGroupConcatField(
-		$delim, $tables, $field, $conds = '', $join_conds = []
-	) {
-		$fld = "group_concat($field," . $this->quoter->addQuotes( $delim ) . ')';
-
-		return '(' . $this->selectSQLText( $tables, $fld, $conds, static::CALLER_SUBQUERY, [], $join_conds ) . ')';
 	}
 
 	/** @inheritDoc */

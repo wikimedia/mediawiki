@@ -266,6 +266,15 @@ interface ISQLPlatform {
 	public function buildConcat( $stringList );
 
 	/**
+	 * Build a GROUP_CONCAT expression
+	 *
+	 * @param string $field Field name
+	 * @param string $delim Delimiter
+	 * @return string
+	 */
+	public function buildGroupConcat( $field, $delim ): string;
+
+	/**
 	 * Construct a LIMIT query with optional offset
 	 *
 	 * The SQL should be adjusted so that only the first $limit rows

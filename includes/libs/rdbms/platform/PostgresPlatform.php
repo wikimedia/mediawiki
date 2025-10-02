@@ -28,6 +28,11 @@ class PostgresPlatform extends SQLPlatform {
 	}
 
 	/** @inheritDoc */
+	public function buildGroupConcat( $field, $delim ): string {
+		return "array_to_string(array_agg($field)," . $this->quoter->addQuotes( $delim ) . ')';
+	}
+
+	/** @inheritDoc */
 	public function timestamp( $ts = 0 ) {
 		$ct = new ConvertibleTimestamp( $ts );
 
@@ -165,15 +170,6 @@ class PostgresPlatform extends SQLPlatform {
 		}
 
 		return parent::relationSchemaQualifier();
-	}
-
-	/** @inheritDoc */
-	public function buildGroupConcatField(
-		$delim, $tables, $field, $conds = '', $join_conds = []
-	) {
-		$fld = "array_to_string(array_agg($field)," . $this->quoter->addQuotes( $delim ) . ')';
-
-		return '(' . $this->selectSQLText( $tables, $fld, $conds, static::CALLER_SUBQUERY, [], $join_conds ) . ')';
 	}
 
 	/** @inheritDoc */

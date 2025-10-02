@@ -3428,6 +3428,11 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 	}
 
 	/** @inheritDoc */
+	public function buildGroupConcat( $field, $delim ): string {
+		return $this->platform->buildGroupConcat( $field, $delim );
+	}
+
+	/** @inheritDoc */
 	public function buildGreatest( $fields, $values ) {
 		return $this->platform->buildGreatest( $fields, $values );
 	}

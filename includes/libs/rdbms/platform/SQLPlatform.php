@@ -426,6 +426,11 @@ class SQLPlatform implements ISQLPlatform {
 	}
 
 	/** @inheritDoc */
+	public function buildGroupConcat( $field, $delim ): string {
+		return 'GROUP_CONCAT(' . $field . ' SEPARATOR ' . $this->quoter->addQuotes( $delim ) . ')';
+	}
+
+	/** @inheritDoc */
 	public function limitResult( $sql, $limit, $offset = false ) {
 		if ( !is_numeric( $limit ) ) {
 			throw new DBLanguageError(
@@ -1369,7 +1374,7 @@ class SQLPlatform implements ISQLPlatform {
 	public function buildGroupConcatField(
 		$delim, $tables, $field, $conds = '', $join_conds = []
 	) {
-		$fld = "GROUP_CONCAT($field SEPARATOR " . $this->quoter->addQuotes( $delim ) . ')';
+		$fld = $this->buildGroupConcat( $field, $delim );
 
 		return '(' . $this->selectSQLText( $tables, $fld, $conds, static::CALLER_SUBQUERY, [], $join_conds ) . ')';
 	}
