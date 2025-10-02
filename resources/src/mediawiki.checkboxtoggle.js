@@ -2,7 +2,7 @@
  * Allows users to perform all / none / invert operations on a list of
  * checkboxes on the page.
  *
- * @licence GNU GPL v2+
+ * @license GPL-2.0-or-later
  * @author Luke Faraone <luke at faraone dot cc>
  *
  * Based on ext.nuke.js from https://www.mediawiki.org/wiki/Extension:Nuke by
