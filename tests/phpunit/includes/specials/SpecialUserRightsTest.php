@@ -4,12 +4,21 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Specials\SpecialUserRights;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
+use MediaWiki\User\UserFactory;
+use MediaWiki\User\UserGroupManager;
+use MediaWiki\User\UserGroupManagerFactory;
+use MediaWiki\User\UserGroupsSpecialPageTarget;
+use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\WikiMap\WikiMap;
+use Wikimedia\Parsoid\Utils\DOMCompat;
+use Wikimedia\Parsoid\Utils\DOMUtils;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group Database
  * @covers \MediaWiki\Specials\SpecialUserRights
+ * @covers \MediaWiki\SpecialPage\UserGroupsSpecialPage
  */
 class SpecialUserRightsTest extends SpecialPageTestBase {
 
@@ -68,6 +77,27 @@ class SpecialUserRightsTest extends SpecialPageTestBase {
 		);
 
 		$this->performBasicFormAssertions( $html, $target );
+	}
+
+	public function testShowFormViewMode() {
+		$user = $this->getTestUser()->getUser();
+
+		[ $html ] = $this->executeSpecialPage(
+			$user->getName(),
+			null,
+			'qqx',
+			$user
+		);
+
+		$this->assertStringContainsString( '(userrights-viewusergroup: ' . $user->getName() . ')', $html );
+
+		// There should be no input for the groups, as we are in view mode
+		$input = DOMCompat::querySelector(
+			DOMUtils::parseHTML( $html ),
+			'#mw-userrights-form2 input'
+		);
+		$this->assertNull( $input,
+			'No input fields should be present in the view mode, apart from the user select form' );
 	}
 
 	private function setUnaddableSysopGroup() {
@@ -301,5 +331,94 @@ class SpecialUserRightsTest extends SpecialPageTestBase {
 				->caller( __METHOD__ )
 				->fetchField()
 		);
+	}
+
+	public function testDisplayCurrentGroups() {
+		$testUser = $this->getTestUser();
+		$userId = $testUser->getUserIdentity()->getId();
+
+		$ugmMock = $this->createMock( UserGroupManager::class );
+		$ugmMock->method( 'getUserGroupMemberships' )
+			->willReturn( [
+				new UserGroupMembership( $userId, 'sysop' ),
+				new UserGroupMembership( $userId, 'bureaucrat' ),
+				new UserGroupMembership( $userId, 'bot', '99990101000000' ),
+			] );
+		$ugmMock->method( 'getGroupsChangeableBy' )
+			->willReturn( [ 'add' => [], 'remove' => [], 'add-self' => [], 'remove-self' => [] ] );
+		$ugmMock->method( 'getUserAutopromoteGroups' )
+			->willReturn( [ 'autoconfirmed' ] );
+
+		$ugmFactoryMock = $this->createMock( UserGroupManagerFactory::class );
+		$ugmFactoryMock->method( 'getUserGroupManager' )
+			->willReturn( $ugmMock );
+
+		$this->setService( 'UserGroupManagerFactory', $ugmFactoryMock );
+		$specialPage = $this->newSpecialPage();
+		$context = new DerivativeContext( RequestContext::getMain() );
+		$context->setLanguage( 'qqx' );
+		$specialPage->setContext( $context );
+
+		// FIXME: We need to ensure that the special page creates the UserGroupManager object and the method below
+		// in one of the three that do so. Otherwise, we would be trying to call a method on null.
+		$specialPage->userCanChangeRights( $testUser->getUser() );
+		$wrappedPage = TestingAccessWrapper::newFromObject( $specialPage );
+		$target = new UserGroupsSpecialPageTarget( $testUser->getUser()->getName(), $testUser->getUserIdentity() );
+
+		// This test is deliberately not using executeSpecialPage, as we want to ensure that these group names are
+		// present in the correct places. The full output of this special page would contain them in many other places.
+		$groupsText = $wrappedPage->getCurrentUserGroupsText( $target );
+
+		$paragraphs = explode( '<p>', $groupsText );
+
+		// The 0th element is empty, then explicit groups and finally implicit groups
+		$permanentGroups = $paragraphs[1];
+		$this->assertStringContainsString( '(userrights-groupsmember: 3,', $permanentGroups );
+		$this->assertStringContainsString( '(group-bot)</a>, 00:00, 1 (january) 9999', $permanentGroups );
+		$this->assertStringContainsString( '(group-sysop)', $permanentGroups );
+		$this->assertStringContainsString( '(group-bureaucrat)', $permanentGroups );
+
+		$implicitGroups = $paragraphs[2];
+		$this->assertStringContainsString( '(userrights-groupsmember-auto: 1,', $implicitGroups );
+		$this->assertStringContainsString( '(group-autoconfirmed)', $implicitGroups );
+	}
+
+	public function testSystemUserNotice() {
+		$userName = $this->getTestUser()->getUser()->getName();
+
+		$userMock = $this->createMock( User::class );
+		$userMock->method( 'isSystemUser' )
+			->willReturn( true );
+
+		$userFactoryMock = $this->createMock( UserFactory::class );
+		$userFactoryMock->method( 'newFromUserIdentity' )
+			->willReturn( $userMock );
+
+		$this->setService( 'UserFactory', $userFactoryMock );
+
+		[ $html, ] = $this->executeSpecialPage( $userName );
+		$this->assertStringContainsString( 'userrights-systemuser', $html );
+	}
+
+	/** @dataProvider provideSupportsWatchUser */
+	public function testSupportsWatchUser( UserIdentity $userIdentity, bool $expected ) {
+		$specialPage = $this->newSpecialPage();
+		$wrappedPage = TestingAccessWrapper::newFromObject( $specialPage );
+
+		$target = new UserGroupsSpecialPageTarget( $userIdentity->getName(), $userIdentity );
+		$this->assertSame( $expected, $wrappedPage->supportsWatchUser( $target ) );
+	}
+
+	public static function provideSupportsWatchUser() {
+		return [
+			'User on local wiki' => [
+				'userIdentity' => new UserIdentityValue( 1, 'Test User 1' ),
+				'expected' => true,
+			],
+			'User on remote wiki' => [
+				'userIdentity' => new UserIdentityValue( 2, 'Test User 1', 'otherwiki' ),
+				'expected' => false,
+			],
+		];
 	}
 }
