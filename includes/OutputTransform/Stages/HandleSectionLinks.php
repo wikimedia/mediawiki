@@ -36,8 +36,7 @@ class HandleSectionLinks extends ContentTextTransformStage {
 	}
 
 	public function shouldRun( ParserOutput $po, ?ParserOptions $popts, array $options = [] ): bool {
-		$isParsoid = $options['isParsoidContent'] ?? false;
-		return !$isParsoid;
+		return !( $po->getContentHolder()->isParsoidContent() );
 	}
 
 	protected function transformText( string $text, ParserOutput $po, ?ParserOptions $popts, array &$options ): string {

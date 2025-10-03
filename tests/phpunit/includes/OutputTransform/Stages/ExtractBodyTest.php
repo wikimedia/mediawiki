@@ -8,9 +8,11 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\OutputTransform\OutputTransformStage;
 use MediaWiki\OutputTransform\Stages\ExtractBody;
 use MediaWiki\Parser\ParserOutput;
+use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWiki\Parser\Parsoid\ParsoidParser;
 use MediaWiki\Tests\OutputTransform\OutputTransformStageTestBase;
 use Psr\Log\NullLogger;
+use Wikimedia\Parsoid\Core\HtmlPageBundle;
 
 /**
  * @covers \MediaWiki\OutputTransform\Stages\ExtractBody
@@ -25,13 +27,13 @@ class ExtractBodyTest extends OutputTransformStageTestBase {
 
 	public static function provideShouldRun(): array {
 		return [
-			[ new ParserOutput(), null, [ 'isParsoidContent' => true ] ],
+			[ PageBundleParserOutputConverter::parserOutputFromPageBundle( new HtmlPageBundle( '' ) ), null, [] ],
 		];
 	}
 
 	public static function provideShouldNotRun(): array {
 		return [
-			[ new ParserOutput(), null, [ 'isParsoidContent' => false ] ],
+			[ new ParserOutput(), null, [] ],
 			[ new ParserOutput(), null, [] ],
 		];
 	}

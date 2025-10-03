@@ -34,7 +34,8 @@ class ContentDOMTransformStageTest extends TestCase {
 			new HtmlPageBundle( html: $html )
 		);
 		$transform = $this->createStage();
-		$options = [ 'isParsoidContent' => true ];
+		$options = [];
+		$this->assertTrue( $po->getContentHolder()->isParsoidContent() );
 		$po = $transform->transform( $po, null, $options );
 		$json = MediaWikiServices::getInstance()->getJsonCodec()->serialize( $po );
 		self::assertStringContainsString( "parsoid-page-bundle", $json );
@@ -49,13 +50,17 @@ class ContentDOMTransformStageTest extends TestCase {
 		$transform = $this->createStage();
 
 		// Legacy, should roundtrip the input
-		$options = [ 'isParsoidContent' => false ];
+		$options = [];
+		$this->assertFalse( $po->getContentHolder()->isParsoidContent() );
 		$po = $transform->transform( $po, null, $options );
 		$text = $po->getContentHolderText();
 		$this->assertEquals( $html, $text );
 
 		// Parsoid, also roundtrips the input since document creation marks it as new
-		$options = [ 'isParsoidContent' => true ];
+		$po = PageBundleParserOutputConverter::parserOutputFromPageBundle(
+			new HtmlPageBundle( html: $html )
+		);
+		$this->assertTrue( $po->getContentHolder()->isParsoidContent() );
 		$po = $transform->transform( $po, null, $options );
 		$text = $po->getContentHolderText();
 		$this->assertEquals( $html, $text );

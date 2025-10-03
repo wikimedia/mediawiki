@@ -7,9 +7,11 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\OutputTransform\OutputTransformStage;
 use MediaWiki\OutputTransform\Stages\DeduplicateStyles;
 use MediaWiki\Parser\ParserOutput;
+use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWiki\Tests\OutputTransform\OutputTransformStageTestBase;
 use MediaWiki\Tests\OutputTransform\TestUtils;
 use Psr\Log\NullLogger;
+use Wikimedia\Parsoid\Core\HtmlPageBundle;
 
 /**
  * @covers \MediaWiki\OutputTransform\Stages\DeduplicateStyles
@@ -40,7 +42,7 @@ class DeduplicateStylesTest extends OutputTransformStageTestBase {
 		$testCases = [
 			'legacy parser output' => [
 				TestUtils::TEST_TO_DEDUP,
-				[],
+				false,
 				<<<EOF
 <p>This is a test document.</p>
 <style data-mw-deduplicate="duplicate1">.Duplicate1 {}</style>
@@ -62,7 +64,7 @@ EOF
 <style data-mw-deduplicate="duplicate1">.Duplicate1 {}</style>
 EOF
 				,
-				[ 'isParsoidContent' => true ],
+				true,
 				<<<EOF
 <style data-mw-deduplicate="duplicate1">.Duplicate1 {}</style>
 <span data-mw="{&quot;name&quot;:&quot;ref&quot;,&quot;attrs&quot;:{&quot;name&quot;:&quot;blank&quot;},
@@ -72,12 +74,21 @@ EOF
 			]
 		];
 
-		foreach ( $testCases as $name => [ $input, $options, $expected ] ) {
+		foreach ( $testCases as $name => [ $input, $isParsoid, $expected ] ) {
+			if ( $isParsoid ) {
+				$in = PageBundleParserOutputConverter::parserOutputFromPageBundle(
+					new HtmlPageBundle( $input ) );
+				$out = PageBundleParserOutputConverter::parserOutputFromPageBundle(
+					new HtmlPageBundle( $expected ) );
+			} else {
+				$in = new ParserOutput( $input );
+				$out = new ParserOutput( $expected );
+			}
 			yield $name => [
-				new ParserOutput( $input ),
+				$in,
 				null,
-				$options,
-				new ParserOutput( $expected )
+				[],
+				$out
 			];
 		}
 	}

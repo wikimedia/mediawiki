@@ -28,11 +28,11 @@ class HandleParsoidSectionLinksTest extends OutputTransformStageTestBase {
 	}
 
 	public static function provideShouldRun(): iterable {
-		yield [ new ParserOutput(), null, [ 'isParsoidContent' => true ] ];
+		yield [ PageBundleParserOutputConverter::parserOutputFromPageBundle( new HtmlPageBundle( '' ) ), null, [] ];
 	}
 
 	public static function provideShouldNotRun(): iterable {
-		yield [ new ParserOutput(), null, [ 'isParsoidContent' => false ] ];
+		yield [ new ParserOutput(), null, [] ];
 	}
 
 	private static function newParserOutput(
@@ -41,12 +41,9 @@ class HandleParsoidSectionLinksTest extends OutputTransformStageTestBase {
 		?TOCData $toc = null,
 		string ...$flags
 	) {
-		$po = new ParserOutput();
-		if ( $rawText !== null ) {
-			$po = PageBundleParserOutputConverter::parserOutputFromPageBundle(
-				new HtmlPageBundle( $rawText )
-			);
-		}
+		$po = PageBundleParserOutputConverter::parserOutputFromPageBundle(
+			new HtmlPageBundle( $rawText ?? '' )
+		);
 		if ( $parserOptions !== null ) {
 			$po->setFromParserOptions( $parserOptions );
 		}
@@ -80,7 +77,6 @@ class HandleParsoidSectionLinksTest extends OutputTransformStageTestBase {
 
 	public static function provideTransform(): iterable {
 		$options = [
-			'isParsoidContent' => true,
 			'enableSectionEditLinks' => true,
 			'skin' => null,
 		];

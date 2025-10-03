@@ -26,10 +26,11 @@ class DefaultOutputPipelineFactoryTest extends MediaWikiLangTestCase {
 	 * @covers \MediaWiki\OutputTransform\DefaultOutputPipelineFactory::buildPipeline
 	 * @dataProvider provideTransform
 	 * @param array $options Options to transform()
+	 * @param bool $isParsoidContent are we transforming parsoid content
 	 * @param string $text Parser text
 	 * @param string $expect Expected output
 	 */
-	public function testTransform( $options, $text, $expect ) {
+	public function testTransform( $options, $isParsoidContent, $text, $expect ) {
 		// Avoid other skins or extensions affecting the section edit links
 		$this->overrideConfigValue( MainConfigNames::DefaultSkin, 'fallback' );
 		$this->clearHook( 'SkinEditSectionLinks' );
@@ -41,7 +42,7 @@ class DefaultOutputPipelineFactoryTest extends MediaWikiLangTestCase {
 		] );
 
 		$po = new ParserOutput( $text );
-		if ( $options['isParsoidContent'] ?? false ) {
+		if ( $isParsoidContent ) {
 			$po = PageBundleParserOutputConverter::parserOutputFromPageBundle( new HtmlPageBundle( $text ) );
 			$po->setExtensionData( ParsoidParser::PARSOID_TITLE_KEY, 'Test_page' );
 			$po->setLanguage( new Bcp47CodeValue( 'en' ) );
@@ -60,7 +61,7 @@ class DefaultOutputPipelineFactoryTest extends MediaWikiLangTestCase {
 	public static function provideTransform() {
 		return [
 			'No options' => [
-				[], TestUtils::TEST_DOC, <<<EOF
+				[], false, TestUtils::TEST_DOC, <<<EOF
 <p>Test document.
 </p>
 <div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
@@ -90,7 +91,7 @@ class DefaultOutputPipelineFactoryTest extends MediaWikiLangTestCase {
 EOF
 			],
 			'Disable section edit links' => [
-				[ 'enableSectionEditLinks' => false ], TestUtils::TEST_DOC, <<<EOF
+				[ 'enableSectionEditLinks' => false ], false, TestUtils::TEST_DOC, <<<EOF
 <p>Test document.
 </p>
 <div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
@@ -120,7 +121,7 @@ EOF
 EOF
 			],
 			'Disable TOC, but wrap' => [
-				[ 'allowTOC' => false, 'wrapperDivClass' => 'mw-parser-output' ], TestUtils::TEST_DOC, <<<EOF
+				[ 'allowTOC' => false, 'wrapperDivClass' => 'mw-parser-output' ], false, TestUtils::TEST_DOC, <<<EOF
 <div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"><p>Test document.
 </p>
 
@@ -139,10 +140,10 @@ EOF
 EOF
 			],
 			'Style deduplication disabled' => [
-				[ 'deduplicateStyles' => false ], TestUtils::TEST_TO_DEDUP, TestUtils::TEST_TO_DEDUP
+				[ 'deduplicateStyles' => false ], false, TestUtils::TEST_TO_DEDUP, TestUtils::TEST_TO_DEDUP
 			],
 			'Section edit links + localization' => [
-				[ 'isParsoidContent' => true, 'allowTOC' => false, 'wrapperDivClass' => 'mw-parser-output' ],
+				[ 'allowTOC' => false, 'wrapperDivClass' => 'mw-parser-output' ], true,
 				TestUtils::TEST_MULTI_STAGE, TestUtils::TEST_MULTI_STAGE_POST_PIPELINE
 			]
 		];

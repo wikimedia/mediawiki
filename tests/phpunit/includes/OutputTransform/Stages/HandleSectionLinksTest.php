@@ -9,9 +9,11 @@ use MediaWiki\OutputTransform\OutputTransformStage;
 use MediaWiki\OutputTransform\Stages\HandleSectionLinks;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
+use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWiki\Tests\OutputTransform\OutputTransformStageTestBase;
 use MediaWiki\Tests\OutputTransform\TestUtils;
 use Psr\Log\NullLogger;
+use Wikimedia\Parsoid\Core\HtmlPageBundle;
 
 /** @covers \MediaWiki\OutputTransform\Stages\HandleSectionLinks */
 class HandleSectionLinksTest extends OutputTransformStageTestBase {
@@ -32,7 +34,9 @@ class HandleSectionLinksTest extends OutputTransformStageTestBase {
 	}
 
 	public static function provideShouldNotRun(): array {
-		return [ [ new ParserOutput(), null, [ 'isParsoidContent' => true ] ] ];
+		return [
+			[ PageBundleParserOutputConverter::parserOutputFromPageBundle( new HtmlPageBundle( '' ) ), null, [] ]
+		];
 	}
 
 	private static function newParserOutput(
@@ -40,10 +44,7 @@ class HandleSectionLinksTest extends OutputTransformStageTestBase {
 		?ParserOptions $parserOptions = null,
 		string ...$flags
 	) {
-		$po = new ParserOutput();
-		if ( $rawText !== null ) {
-			$po->setRawText( $rawText );
-		}
+		$po = new ParserOutput( $rawText ?? '' );
 		if ( $parserOptions !== null ) {
 			$po->setFromParserOptions( $parserOptions );
 		}

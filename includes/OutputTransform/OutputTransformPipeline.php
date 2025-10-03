@@ -6,7 +6,6 @@ namespace MediaWiki\OutputTransform;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\ParserOutputFlags;
-use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 
 /**
  * @unstable
@@ -66,7 +65,6 @@ class OutputTransformPipeline {
 		$options += [
 			'enableSectionEditLinks' => !$in->getOutputFlag( ParserOutputFlags::NO_SECTION_EDIT_LINKS ),
 			'wrapperDivClass' => $in->getWrapperDivClass(),
-			'isParsoidContent' => PageBundleParserOutputConverter::hasPageBundle( $in ),
 		];
 		if ( $options['allowClone'] ?? true ) {
 			$out = clone $in;

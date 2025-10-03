@@ -36,7 +36,7 @@ class HandleParsoidSectionLinks extends ContentDOMTransformStage {
 
 	public function shouldRun( ParserOutput $po, ?ParserOptions $popts, array $options = [] ): bool {
 		// Only run this stage if it is parsoid content
-		return ( $options['isParsoidContent'] ?? false );
+		return $po->getContentHolder()->isParsoidContent();
 	}
 
 	/**

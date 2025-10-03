@@ -68,7 +68,7 @@ class ParsoidLocalization extends ContentDOMTransformStage {
 	}
 
 	public function shouldRun( ParserOutput $po, ?ParserOptions $popts, array $options = [] ): bool {
-		return ( $options['isParsoidContent'] ?? false );
+		return $po->getContentHolder()->isParsoidContent();
 	}
 
 	/**

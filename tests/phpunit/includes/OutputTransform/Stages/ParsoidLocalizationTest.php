@@ -53,7 +53,7 @@ class ParsoidLocalizationTest extends MediaWikiIntegrationTestCase {
 		$po = PageBundleParserOutputConverter::parserOutputFromPageBundle( new HtmlPageBundle( $input ) );
 		$po->setLanguage( new Bcp47CodeValue( $pagelang ) );
 		$po->setExtensionData( ParsoidParser::PARSOID_TITLE_KEY, 'Test_page' );
-		$opts = [ 'isParsoidContent' => true ];
+		$opts = [];
 		$transf = $loc->transform( $po, null, $opts );
 		$res = $transf->getContentHolderText();
 		self::assertEquals( $expected, TestUtils::stripParsoidIds( $res ), $message );
@@ -73,7 +73,7 @@ class ParsoidLocalizationTest extends MediaWikiIntegrationTestCase {
 			new HtmlPageBundle( ContentUtils::ppToXML( $doc ) ) );
 		$po->setLanguage( new Bcp47CodeValue( 'en' ) );
 		$po->setExtensionData( ParsoidParser::PARSOID_TITLE_KEY, 'Test_page' );
-		$opts = [ 'isParsoidContent' => true ];
+		$opts = [];
 		$transf = $loc->transform( $po, null, $opts );
 		$res = $transf->getContentHolderText();
 		$this->assertEquals( $expected, TestUtils::stripParsoidIds( $res ), $message );
@@ -92,7 +92,7 @@ class ParsoidLocalizationTest extends MediaWikiIntegrationTestCase {
 			new HtmlPageBundle( ContentUtils::ppToXML( $doc ) ) );
 		$po->setLanguage( new Bcp47CodeValue( 'fr' ) );
 		$po->setExtensionData( ParsoidParser::PARSOID_TITLE_KEY, 'Test_page' );
-		$opts = [ 'isParsoidContent' => true ];
+		$opts = [];
 		$transf = $loc->transform( $po, null, $opts );
 		$res = $transf->getContentHolderText();
 		$this->assertEquals( $expected, TestUtils::stripParsoidIds( $res ), $message );

@@ -486,7 +486,6 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			'deduplicateStyles' => true,
 			'absoluteURLs' => false,
 			'includeDebugInfo' => false,
-			'isParsoidContent' => $this->contentHolder->isParsoidContent(),
 		];
 		return $pipeline->run( $this, $popts, $options );
 	}
