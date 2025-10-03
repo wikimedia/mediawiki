@@ -740,73 +740,46 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 
 	/** @inheritDoc */
 	protected function getCurrentUserGroupsText( UserGroupsSpecialPageTarget $target ): string {
+		$groupsText = parent::getCurrentUserGroupsText( $target );
+
+		// Apart from displaying the groups list, also display a note if this is a system user
 		$user = $target->userObject;
-		$groupMemberships = $this->userGroupManager->getUserGroupMemberships( $user );
-		$list = $membersList = $tempList = $tempMembersList = [];
-		foreach ( $groupMemberships as $ugm ) {
-			$linkG = UserGroupMembership::getLinkHTML( $ugm, $this->getContext() );
-			$linkM = UserGroupMembership::getLinkHTML( $ugm, $this->getContext(), $user->getName() );
-			if ( $ugm->getExpiry() ) {
-				$tempList[] = $linkG;
-				$tempMembersList[] = $linkM;
-			} else {
-				$list[] = $linkG;
-				$membersList[] = $linkM;
-
-			}
-		}
-
-		$autoList = [];
-		$autoMembersList = [];
-
-		if ( $user->getWikiId() === UserIdentity::LOCAL ) {
-			// Listing autopromote groups works only on the local wiki
-			foreach ( $this->userGroupManager->getUserAutopromoteGroups( $user ) as $group ) {
-				$autoList[] = UserGroupMembership::getLinkHTML( $group, $this->getContext() );
-				$autoMembersList[] = UserGroupMembership::getLinkHTML( $group, $this->getContext(), $user->getName() );
-			}
-		}
-
-		$language = $this->getLanguage();
-		$displayedList = $this->msg( 'userrights-groupsmember-type' )
-			->rawParams(
-				$language->commaList( array_merge( $tempList, $list ) ),
-				$language->commaList( array_merge( $tempMembersList, $membersList ) )
-			)->escaped();
-		$displayedAutolist = $this->msg( 'userrights-groupsmember-type' )
-			->rawParams(
-				$language->commaList( $autoList ),
-				$language->commaList( $autoMembersList )
-			)->escaped();
-
-		$grouplist = '';
-		$count = count( $list ) + count( $tempList );
-		if ( $count > 0 ) {
-			$grouplist = $this->msg( 'userrights-groupsmember' )
-				->numParams( $count )
-				->params( $user->getName() )
-				->parse();
-			$grouplist = '<p>' . $grouplist . ' ' . $displayedList . "</p>\n";
-		}
-
-		$count = count( $autoList );
-		if ( $count > 0 ) {
-			$autogrouplistintro = $this->msg( 'userrights-groupsmember-auto' )
-				->numParams( $count )
-				->params( $user->getName() )
-				->parse();
-			$grouplist .= '<p>' . $autogrouplistintro . ' ' . $displayedAutolist . "</p>\n";
-		}
-
 		$systemUser = $user->getWikiId() === UserIdentity::LOCAL
 			&& $this->userFactory->newFromUserIdentity( $user )->isSystemUser();
 		if ( $systemUser ) {
-			$systemusernote = $this->msg( 'userrights-systemuser' )
+			$systemUserNote = $this->msg( 'userrights-systemuser' )
 				->params( $user->getName() )
 				->parse();
-			$grouplist .= '<p>' . $systemusernote . "</p>\n";
+			$groupsText .= Html::rawElement(
+				'p',
+				[],
+				$systemUserNote
+			);
 		}
-		return $grouplist;
+		return $groupsText;
+	}
+
+	/** @inheritDoc */
+	protected function categorizeUserGroupsForDisplay(
+		array $userGroups,
+		UserGroupsSpecialPageTarget $target
+	): array {
+		$autoGroups = [];
+		/** @var UserIdentity $user */
+		$user = $target->userObject;
+
+		// Listing autopromote groups works only on the local wiki
+		if ( $user->getWikiId() === UserIdentity::LOCAL ) {
+			foreach ( $this->userGroupManager->getUserAutopromoteGroups( $user ) as $group ) {
+				$autoGroups[$group] = new UserGroupMembership( $user->getId(), $group );
+			}
+			ksort( $autoGroups );
+		}
+
+		return [
+			'userrights-groupsmember' => array_values( $userGroups ),
+			'userrights-groupsmember-auto' => $autoGroups,
+		];
 	}
 
 	/** @inheritDoc */
@@ -816,13 +789,7 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 
 	/** @inheritDoc */
 	protected function getGroupMemberships( UserGroupsSpecialPageTarget $target ): array {
-		$memberships = $this->userGroupManager->getUserGroupMemberships( $target->userObject );
-		$result = [];
-
-		foreach ( $memberships as $ugm ) {
-			$result[$ugm->getGroup()] = $ugm->getExpiry();
-		}
-		return $result;
+		return $this->userGroupManager->getUserGroupMemberships( $target->userObject );
 	}
 
 	protected function getGroupAnnotations( string $group ): array {

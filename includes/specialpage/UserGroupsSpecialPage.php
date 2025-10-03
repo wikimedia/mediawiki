@@ -24,6 +24,7 @@ use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Message\Message;
+use MediaWiki\User\UserGroupMembership;
 use MediaWiki\User\UserGroupsSpecialPageTarget;
 use MediaWiki\Xml\XmlSelect;
 
@@ -118,10 +119,16 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 			'changeable' => [],
 		];
 		foreach ( $groups as $group => $groupData ) {
+			$isMember = array_key_exists( $group, $memberships );
+			$expiry = null;
+			if ( $isMember ) {
+				$expiry = $memberships[$group]->getExpiry();
+			}
+
 			[ $checkbox, $isChangeable ] = $this->makeCheckbox(
 				$groupData,
-				array_key_exists( $group, $memberships ),
-				$memberships[$group] ?? null,
+				$isMember,
+				$expiry,
 				$target->userName
 			);
 
@@ -410,17 +417,84 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 	}
 
 	/**
-	 * Returns a string that represents the current state of the target's groups. It is used to
-	 * detect attempts of concurrent modifications to the user groups.
-	 */
-	abstract protected function makeConflictCheckKey( UserGroupsSpecialPageTarget $target ): string;
-
-	/**
 	 * Returns an HTML snippet that describes the current user groups the target belongs to.
 	 * There are no specific requirements on the format, e.g. the implementation may choose to
 	 * split them into several paragraphs etc.
 	 */
-	abstract protected function getCurrentUserGroupsText( UserGroupsSpecialPageTarget $target ): string;
+	protected function getCurrentUserGroupsText( UserGroupsSpecialPageTarget $target ): string {
+		$userGroups = $this->getGroupMemberships( $target );
+		$userGroups = $this->sortGroupMemberships( $userGroups );
+
+		$groupParagraphs = $this->categorizeUserGroupsForDisplay( $userGroups, $target );
+
+		$context = $this->getContext();
+		$userName = $target->userName;
+		$language = $this->getLanguage();
+
+		$output = '';
+		foreach ( $groupParagraphs as $paragraphKey => $groups ) {
+			if ( count( $groups ) === 0 ) {
+				continue;
+			}
+
+			$groupLinks = array_map(
+				static fn ( $group ) => UserGroupMembership::getLinkHTML( $group, $context ),
+				$groups
+			);
+			$memberLinks = array_map(
+				static fn ( $group ) => UserGroupMembership::getLinkHTML( $group, $context, $userName ),
+				$groups
+			);
+
+			// Some languages prefer to have group names listed and some others prefer the member names,
+			// i.e. "Administrators" or "Administrator", respectively. This message acts as a switch between these.
+			$displayedList = $this->msg( 'userrights-groupsmember-type' )
+				->rawParams(
+					$language->commaList( $groupLinks ),
+					$language->commaList( $memberLinks )
+				)->escaped();
+
+			$paragraphHeader = $this->msg( $paragraphKey )
+				->numParams( count( $groups ) )
+				->params( $userName )
+				->parse();
+
+			$output .= Html::rawElement(
+				'p',
+				[],
+				$paragraphHeader . ' ' . $displayedList
+			);
+		}
+		return $output;
+	}
+
+	/**
+	 * This function is invoked when constructing the "current user groups" part of the form. It can be
+	 * overridden by the implementations to split the user groups into several paragraphs or add more
+	 * groups to the list, which are not expected to be editable through the form.
+	 *
+	 * @param array<string,UserGroupMembership> $userGroups The user groups the target belongs to, as
+	 *   returned by {@see getGroupMemberships()}. The groups are sorted in such a way that permanent
+	 *   memberships are after temporary ones.
+	 * @param UserGroupsSpecialPageTarget $target The target user
+	 * @return array<string,list<UserGroupMembership>> List of groups to show, keyed by the message key to
+	 *   include at the beginning of the respective paragraph. The default implementation returns a single
+	 *   paragraph with all the groups, keyed by 'userrights-groupsmember'.
+	 */
+	protected function categorizeUserGroupsForDisplay(
+		array $userGroups,
+		UserGroupsSpecialPageTarget $target
+	): array {
+		return [
+			'userrights-groupsmember' => array_values( $userGroups ),
+		];
+	}
+
+	/**
+	 * Returns a string that represents the current state of the target's groups. It is used to
+	 * detect attempts of concurrent modifications to the user groups.
+	 */
+	abstract protected function makeConflictCheckKey( UserGroupsSpecialPageTarget $target ): string;
 
 	/**
 	 * Returns the descriptor of the current target, e.g. "Foo", "Foo@wiki" or "#123". This will
@@ -451,9 +525,8 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 	abstract protected function listAllExplicitGroups(): array;
 
 	/**
-	 * Returns the groups the target user currently belongs to (keys), along with their expiry (values).
-	 * If a group has no expiry, it's represented with null.
-	 * @return array<string,?string>
+	 * Returns the groups the target user currently belongs to, keyed by the group name.
+	 * @return array<string,UserGroupMembership>
 	 */
 	abstract protected function getGroupMemberships( UserGroupsSpecialPageTarget $target ): array;
 
@@ -495,5 +568,25 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 	 */
 	protected function supportsWatchUser( UserGroupsSpecialPageTarget $target ): bool {
 		return true;
+	}
+
+	/**
+	 * Sorts the given group memberships so that the temporary memberships come first, followed
+	 * by the permanent ones; within each category, sorts alphabetically by group name.
+	 * @param array<string,UserGroupMembership> $memberships
+	 * @return array<string,UserGroupMembership>
+	 */
+	private function sortGroupMemberships( array $memberships ): array {
+		uasort( $memberships, static function ( $a, $b ) {
+			$aPermanent = $a->getExpiry() === null;
+			$bPermanent = $b->getExpiry() === null;
+
+			if ( $aPermanent === $bPermanent ) {
+				return $a->getGroup() <=> $b->getGroup();
+			} else {
+				return $aPermanent ? 1 : -1;
+			}
+		} );
+		return $memberships;
 	}
 }
