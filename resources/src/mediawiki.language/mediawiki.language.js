@@ -138,9 +138,9 @@
 			for ( let i = 0; i < list.length; i++ ) {
 				text += list[ i ];
 				if ( list.length - 2 === i ) {
-					text += mw.msg( 'and' ) + mw.msg( 'word-separator' );
+					text += mw.message( 'and' ).escaped() + mw.message( 'word-separator' ).escaped();
 				} else if ( list.length - 1 !== i ) {
-					text += mw.msg( 'comma-separator' );
+					text += mw.message( 'comma-separator' ).escaped();
 				}
 			}
 			return text;
