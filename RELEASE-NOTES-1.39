@@ -8,10 +8,12 @@ PHP 8.4 workboard: https://phabricator.wikimedia.org/tag/php_8.4_support/
 
 == MediaWiki 1.39.15 ==
 
-THIS IS NOT A RELEASE YET
+This is a maintenance release of the MediaWiki 1.39 branch.
 
 === Changes since 1.39.14 ===
-* Localisation updates.
+* Fixup VisualEditor related backports.
+* (T406322, CVE-2025-11261) SECURITY: Escape system messages in
+  mw.language.listToText.
 
 == MediaWiki 1.39.14 ==
 
