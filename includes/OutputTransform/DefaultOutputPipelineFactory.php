@@ -152,19 +152,20 @@ class DefaultOutputPipelineFactory {
 		$otp = new OutputTransformPipeline();
 		foreach ( $list as $spec ) {
 			if ( is_array( $spec ) &&
-				array_key_exists( 'domStage', $spec ) && array_key_exists( 'textStage', $spec )
+				array_key_exists( 'domStage', $spec ) &&
+				array_key_exists( 'textStage', $spec )
 			) {
-				$svcOptions = new ServiceOptions( ContentHolderTransformStage::CONSTRUCTOR_OPTIONS, $this->config );
-				$extraArgs = [ 'extraArgs' => [ $svcOptions, $this->logger ] ];
 				$args = [
 					$this->objectFactory->createObject( $spec['textStage'],
 					[
 						'assertClass' => ContentTextTransformStage::class,
-					] + $extraArgs ),
+						'allowClassName' => true,
+					] + $this->makeExtraArgs( $spec['textStage'] ) ),
 					$this->objectFactory->createObject( $spec['domStage'],
 						[
 							'assertClass' => ContentDOMTransformStage::class,
-						] + $extraArgs ),
+							'allowClassName' => true,
+						] + $this->makeExtraArgs( $spec['domStage'] ) ),
 					$spec['exclusive'] ?? false
 				];
 				$spec = [
@@ -173,21 +174,33 @@ class DefaultOutputPipelineFactory {
 				];
 			}
 
-			$class = $spec['class'];
-			$svcOptions = new ServiceOptions(
-				$class::CONSTRUCTOR_OPTIONS, $this->config
-			);
-			$extraArgs = [ 'extraArgs' => [ $svcOptions, $this->logger ] ];
 			// ObjectFactory::createObject accepts an array, not just a callable (phan bug)
 			// @phan-suppress-next-line PhanTypeInvalidCallableArrayKey
 			$transform = $this->objectFactory->createObject(
 				$spec,
 				[
-					'assertClass' => OutputTransformStage::class
-				] + $extraArgs
+					'assertClass' => OutputTransformStage::class,
+					'allowClassName' => true,
+				] + $this->makeExtraArgs( $spec )
 			);
 			$otp->addStage( $transform );
 		}
 		return $otp;
+	}
+
+	/**
+	 * Add appropriate ServiceOptions and a logger to the args array.
+	 * @param mixed $spec
+	 * @return array{extraArgs:array{0:ServiceOptions,1:LoggerInterface}}
+	 */
+	private function makeExtraArgs( $spec ): array {
+		// If the handler is specified as a class, use the CONSTRUCTOR_OPTIONS
+		// for that class.
+		$class = is_string( $spec ) ? $spec : ( $spec['class'] ?? null );
+		$svcOptions = new ServiceOptions(
+			$class ? $class::CONSTRUCTOR_OPTIONS : [],
+			$this->config
+		);
+		return [ 'extraArgs' => [ $svcOptions, $this->logger ] ];
 	}
 }
