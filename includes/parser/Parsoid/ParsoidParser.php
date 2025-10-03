@@ -209,6 +209,10 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 		$parserOutput->setExtensionData(
 			'core:html-version', Parsoid::defaultHTMLVersion()
 		);
+		// Export Parsoid HTML version to client gadgets as well
+		$parserOutput->setJsConfigVar(
+			'wgParsoidHtmlVersion', Parsoid::defaultHTMLVersion()
+		);
 
 		return $parserOutput;
 	}
