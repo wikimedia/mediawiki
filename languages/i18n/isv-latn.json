@@ -1433,6 +1433,7 @@
 	"upload-progress-processing": "Obrabotyvanje obrazka. Prosimo, natisknite knopku «Osvěžiti», da byste prověrili ješče raz.",
 	"upload-tryagain": "Zapisati izměnjeny opis fajla",
 	"upload-tryagain-nostash": "Izslati ponovno dodany fajl i izměnjeny opis",
+	"upload-stash-error": "Pogrěška s buferom dodanyh fajlov",
 	"uploadnologin": "Vy ne jeste prijavjeni",
 	"uploadnologintext": "Prosimo, $1 za dodanje fajlov.",
 	"upload_directory_missing": "Katalog ($1) ne jestvuje i veb-server ne može go stvoriti.",

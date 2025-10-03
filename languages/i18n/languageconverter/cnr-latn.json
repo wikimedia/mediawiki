@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"ITZQing"
+		]
+	},
+	"converter-manual-rule-error": "Pronađena je greška u pravilu za ručno pretvaranje jezika",
+	"language-converter-depth-warning": "Prekoračena granica dubine jezičkog pretvarača ($1)"
+}

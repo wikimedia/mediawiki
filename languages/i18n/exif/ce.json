@@ -388,5 +388,7 @@
 	"exif-croppedarealeftpixels": "Аьрру агӀор панорама хадор",
 	"exif-croppedareatoppixels": "Лакхахь панорама хадор",
 	"exif-initialcameradolly": "Камеран йуьхьанца хьажар",
-	"exif-stitchingsoftware": "Стичинг программин гӀирс"
+	"exif-stitchingsoftware": "Стичинг программин гӀирс",
+	"exif-digitalsourcetype": "Терахьийн хаамийн гӀирсийн хьост",
+	"exif-digitalsourcetype-digitalcapture": "Терахьийн камера йа диктофон"
 }
