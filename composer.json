@@ -88,7 +88,7 @@
 		"zordius/lightncandy": "1.2.6"
 	},
 	"require-dev": {
-		"composer/spdx-licenses": "1.5.8",
+		"composer/spdx-licenses": "1.5.9",
 		"doctrine/dbal": "3.10.0",
 		"doctrine/sql-formatter": "1.5.2",
 		"ext-simplexml": "*",
