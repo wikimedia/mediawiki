@@ -7,6 +7,7 @@
 namespace MediaWiki\Specials;
 
 use BadMethodCallException;
+use MediaWiki\Deferred\LinksUpdate\CategoryLinksTable;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\SpecialPage\FormSpecialPage;
 use MediaWiki\Status\Status;
@@ -202,7 +203,7 @@ class SpecialRandomInCategory extends FormSpecialPage {
 		if ( !$this->category instanceof Title ) {
 			throw new BadMethodCallException( 'No category set' );
 		}
-		$dbr = $this->dbProvider->getReplicaDatabase();
+		$dbr = $this->dbProvider->getReplicaDatabase( CategoryLinksTable::VIRTUAL_DOMAIN );
 		$queryBuilder = $dbr->newSelectQueryBuilder()
 			->select( [ 'page_title', 'page_namespace' ] )
 			->from( 'categorylinks' )
@@ -253,7 +254,7 @@ class SpecialRandomInCategory extends FormSpecialPage {
 	 * @return array|null The lowest and highest timestamp, or null if the category has no entries.
 	 */
 	protected function getMinAndMaxForCat() {
-		$dbr = $this->dbProvider->getReplicaDatabase();
+		$dbr = $this->dbProvider->getReplicaDatabase( CategoryLinksTable::VIRTUAL_DOMAIN );
 		$res = $dbr->newSelectQueryBuilder()
 			->select( [ 'low' => 'MIN( cl_timestamp )', 'high' => 'MAX( cl_timestamp )' ] )
 			->from( 'categorylinks' )

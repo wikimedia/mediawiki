@@ -16,6 +16,7 @@ use MediaWiki\Content\ContentHandler;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\DAO\WikiAwareEntityTrait;
 use MediaWiki\Deferred\DeferredUpdates;
+use MediaWiki\Deferred\LinksUpdate\CategoryLinksTable;
 use MediaWiki\Deferred\LinksUpdate\PageLinksTable;
 use MediaWiki\Edit\PreparedEdit;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
@@ -2654,7 +2655,7 @@ class WikiPage implements Stringable, Page, PageRecord {
 			return $services->getTitleFactory()->newTitleArrayFromResult( new FakeResultWrapper( [] ) );
 		}
 
-		$dbr = $services->getConnectionProvider()->getReplicaDatabase();
+		$dbr = $services->getConnectionProvider()->getReplicaDatabase( CategoryLinksTable::VIRTUAL_DOMAIN );
 		$res = $dbr->newSelectQueryBuilder()
 			->select( [ 'page_title' => 'lt_title', 'page_namespace' => (string)NS_CATEGORY ] )
 			->from( 'categorylinks' )
@@ -2680,7 +2681,7 @@ class WikiPage implements Stringable, Page, PageRecord {
 			return [];
 		}
 
-		$dbr = $this->getConnectionProvider()->getReplicaDatabase();
+		$dbr = $this->getConnectionProvider()->getReplicaDatabase( CategoryLinksTable::VIRTUAL_DOMAIN );
 		$res = $dbr->newSelectQueryBuilder()
 			->select( 'lt_title' )
 			->from( 'categorylinks' )

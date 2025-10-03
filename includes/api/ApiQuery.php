@@ -349,6 +349,7 @@ class ApiQuery extends ApiBase {
 			'class' => ApiQueryCategoryMembers::class,
 			'services' => [
 				'CollationFactory',
+				'ConnectionProvider',
 			]
 		],
 		'codexicons' => [

@@ -10,10 +10,12 @@ namespace MediaWiki\Api;
 
 use Collation;
 use MediaWiki\Collation\CollationFactory;
+use MediaWiki\Deferred\LinksUpdate\CategoryLinksTable;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * A query module to enumerate pages that belong to a category.
@@ -23,14 +25,17 @@ use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 
 	private Collation $collation;
+	private IConnectionProvider $connProvider;
 
 	public function __construct(
 		ApiQuery $query,
 		string $moduleName,
-		CollationFactory $collationFactory
+		CollationFactory $collationFactory,
+		IConnectionProvider $connProvider
 	) {
 		parent::__construct( $query, $moduleName, 'cm' );
 		$this->collation = $collationFactory->getCategoryCollation();
+		$this->connProvider = $connProvider;
 	}
 
 	public function execute() {
@@ -76,6 +81,9 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 		$fld_timestamp = isset( $prop['timestamp'] );
 		$fld_type = isset( $prop['type'] );
 
+		$db = $this->connProvider->getReplicaDatabase( CategoryLinksTable::VIRTUAL_DOMAIN );
+		$this->getQueryBuilder()->connection( $db );
+
 		if ( $resultPageSet === null ) {
 			$this->addFields( [ 'cl_from', 'cl_sortkey', 'cl_type', 'page_namespace', 'page_title' ] );
 			$this->addFieldsIf( 'page_id', $fld_ids );
@@ -120,7 +128,6 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 			if ( $params['continue'] !== null ) {
 				$cont = $this->parseContinueParamOrDie( $params['continue'], [ 'timestamp', 'int' ] );
 				$op = ( $dir === 'newer' ? '>=' : '<=' );
-				$db = $this->getDB();
 				$this->addWhere( $db->buildComparison( $op, [
 					'cl_timestamp' => $db->timestamp( $cont[0] ),
 					'cl_from' => $cont[1],
@@ -138,7 +145,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 				$this->dieContinueUsageIf( !$this->validateHexSortkey( $cont[1] ) );
 				$op = $dir == 'newer' ? '>=' : '<=';
 				// $contWhere is used further down
-				$contWhere = $this->getDB()->buildComparison( $op, [
+				$contWhere = $db->buildComparison( $op, [
 					'cl_sortkey' => hex2bin( $cont[1] ),
 					'cl_from' => $cont[2],
 				] );
@@ -229,7 +236,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 				if ( $params['sort'] == 'timestamp' ) {
 					$this->setContinueEnumParameter(
 						'continue',
-						$this->getDB()->timestamp( $row->cl_timestamp ) . "|$row->cl_from"
+						$db->timestamp( $row->cl_timestamp ) . "|$row->cl_from"
 					);
 				} else {
 					$sortkey = bin2hex( $row->cl_sortkey );
@@ -277,7 +284,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 					if ( $params['sort'] == 'timestamp' ) {
 						$this->setContinueEnumParameter(
 							'continue',
-							$this->getDB()->timestamp( $row->cl_timestamp ) . "|$row->cl_from"
+							$db->timestamp( $row->cl_timestamp ) . "|$row->cl_from"
 						);
 					} else {
 						$sortkey = bin2hex( $row->cl_sortkey );

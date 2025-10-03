@@ -9,6 +9,7 @@
 namespace MediaWiki\Specials;
 
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\Deferred\LinksUpdate\CategoryLinksTable;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Skin\Skin;
@@ -74,6 +75,14 @@ class SpecialMostCategories extends QueryPage {
 				]
 			]
 		];
+	}
+
+	/** @inheritDoc */
+	protected function getRecacheDB() {
+		return $this->getDatabaseProvider()->getReplicaDatabase(
+			CategoryLinksTable::VIRTUAL_DOMAIN,
+			'vslow'
+		);
 	}
 
 	/**

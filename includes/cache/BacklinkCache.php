@@ -16,6 +16,7 @@ namespace MediaWiki\Cache;
 use Iterator;
 use LogicException;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Deferred\LinksUpdate\CategoryLinksTable;
 use MediaWiki\Deferred\LinksUpdate\ExistenceLinksTable;
 use MediaWiki\Deferred\LinksUpdate\ImageLinksTable;
 use MediaWiki\Deferred\LinksUpdate\PageLinksTable;
@@ -263,10 +264,11 @@ class BacklinkCache {
 	 */
 	private function initQueryBuilderForTable( string $table, string $select ): SelectQueryBuilder {
 		$domainMap = [
-			'templatelinks' => TemplateLinksTable::VIRTUAL_DOMAIN,
-			'imagelinks' => ImageLinksTable::VIRTUAL_DOMAIN,
+			'categorylinks' => CategoryLinksTable::VIRTUAL_DOMAIN,
 			'existencelinks' => ExistenceLinksTable::VIRTUAL_DOMAIN,
+			'imagelinks' => ImageLinksTable::VIRTUAL_DOMAIN,
 			'pagelinks' => PageLinksTable::VIRTUAL_DOMAIN,
+			'templatelinks' => TemplateLinksTable::VIRTUAL_DOMAIN,
 		];
 		$domain = $domainMap[$table] ?? false;
 

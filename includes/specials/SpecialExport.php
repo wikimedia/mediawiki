@@ -8,6 +8,7 @@
 
 namespace MediaWiki\Specials;
 
+use MediaWiki\Deferred\LinksUpdate\CategoryLinksTable;
 use MediaWiki\Deferred\LinksUpdate\PageLinksTable;
 use MediaWiki\Deferred\LinksUpdate\TemplateLinksTable;
 use MediaWiki\Export\WikiExporterFactory;
@@ -439,7 +440,7 @@ class SpecialExport extends SpecialPage {
 
 		$name = $page->getDBkey();
 
-		$dbr = $this->dbProvider->getReplicaDatabase();
+		$dbr = $this->dbProvider->getReplicaDatabase( CategoryLinksTable::VIRTUAL_DOMAIN );
 		$res = $dbr->newSelectQueryBuilder()
 			->select( [ 'page_namespace', 'page_title' ] )
 			->from( 'page' )

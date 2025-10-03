@@ -7,6 +7,7 @@
 namespace MediaWiki\Specials;
 
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\Deferred\LinksUpdate\CategoryLinksTable;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\SpecialPage\PageQueryPage;
 use MediaWiki\Title\NamespaceInfo;
@@ -80,6 +81,14 @@ class SpecialUncategorizedPages extends PageQueryPage {
 				'categorylinks' => [ 'LEFT JOIN', 'cl_from = page_id' ]
 			]
 		];
+	}
+
+	/** @inheritDoc */
+	protected function getRecacheDB() {
+		return $this->getDatabaseProvider()->getReplicaDatabase(
+			CategoryLinksTable::VIRTUAL_DOMAIN,
+			'vslow'
+		);
 	}
 
 	/** @inheritDoc */

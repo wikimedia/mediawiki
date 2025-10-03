@@ -9,6 +9,7 @@
 
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Debug\MWDebug;
+use MediaWiki\Deferred\LinksUpdate\CategoryLinksTable;
 use MediaWiki\Deferred\LinksUpdate\ExistenceLinksTable;
 use MediaWiki\Deferred\LinksUpdate\ExternalLinksTable;
 use MediaWiki\Deferred\LinksUpdate\ImageLinksTable;
@@ -51,6 +52,7 @@ class MWLBFactory {
 		ExistenceLinksTable::VIRTUAL_DOMAIN,
 		InterwikiLinksTable::VIRTUAL_DOMAIN,
 		PageLinksTable::VIRTUAL_DOMAIN,
+		CategoryLinksTable::VIRTUAL_DOMAIN,
 	];
 
 	/**

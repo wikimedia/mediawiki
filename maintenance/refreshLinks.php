@@ -5,7 +5,9 @@
  */
 
 use MediaWiki\Deferred\DeferredUpdates;
+use MediaWiki\Deferred\LinksUpdate\CategoryLinksTable;
 use MediaWiki\Deferred\LinksUpdate\ExternalLinksTable;
+use MediaWiki\Deferred\LinksUpdate\ImageLinksTable;
 use MediaWiki\Deferred\LinksUpdate\InterwikiLinksTable;
 use MediaWiki\Deferred\LinksUpdate\PageLinksTable;
 use MediaWiki\Deferred\LinksUpdate\TemplateLinksTable;
@@ -318,7 +320,9 @@ class RefreshLinks extends Maintenance {
 		];
 
 		$domains = [
+			'categorylinks' => CategoryLinksTable::VIRTUAL_DOMAIN,
 			'externallinks' => ExternalLinksTable::VIRTUAL_DOMAIN,
+			'imagelinks' => ImageLinksTable::VIRTUAL_DOMAIN,
 			'iwlinks' => InterwikiLinksTable::VIRTUAL_DOMAIN,
 			'pagelinks' => PageLinksTable::VIRTUAL_DOMAIN,
 			'templatelinks' => TemplateLinksTable::VIRTUAL_DOMAIN,

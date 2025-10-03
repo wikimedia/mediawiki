@@ -6,6 +6,7 @@
 
 namespace MediaWiki\Specials;
 
+use MediaWiki\Deferred\LinksUpdate\CategoryLinksTable;
 use MediaWiki\SpecialPage\ImageQueryPage;
 use Wikimedia\Rdbms\IConnectionProvider;
 
@@ -70,6 +71,14 @@ class SpecialUncategorizedImages extends ImageQueryPage {
 				],
 			],
 		];
+	}
+
+	/** @inheritDoc */
+	protected function getRecacheDB() {
+		return $this->getDatabaseProvider()->getReplicaDatabase(
+			CategoryLinksTable::VIRTUAL_DOMAIN,
+			'vslow'
+		);
 	}
 
 	/** @inheritDoc */

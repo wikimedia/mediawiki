@@ -11,6 +11,8 @@
 require_once __DIR__ . '/Maintenance.php';
 // @codeCoverageIgnoreEnd
 
+use MediaWiki\Deferred\LinksUpdate\CategoryLinksTable;
+use MediaWiki\Deferred\LinksUpdate\ImageLinksTable;
 use MediaWiki\Deferred\LinksUpdate\PageLinksTable;
 use MediaWiki\Deferred\LinksUpdate\TemplateLinksTable;
 use MediaWiki\Maintenance\Maintenance;
@@ -43,8 +45,9 @@ class CleanupInvalidDbKeys extends Maintenance {
 		// Links tables
 		[ 'pagelinks', 'pl', 'idField' => 'pl_from', 'virtualDomain' => PageLinksTable::VIRTUAL_DOMAIN ],
 		[ 'templatelinks', 'tl', 'idField' => 'tl_from', 'virtualDomain' => TemplateLinksTable::VIRTUAL_DOMAIN ],
-		[ 'categorylinks', 'cl', 'idField' => 'cl_from' ],
-		[ 'imagelinks', 'il', 'idField' => 'il_from', 'nsField' => 6, 'titleField' => 'il_to' ],
+		[ 'categorylinks', 'cl', 'idField' => 'cl_from', 'virtualDomain' => CategoryLinksTable::VIRTUAL_DOMAIN ],
+		[ 'imagelinks', 'il', 'idField' => 'il_from', 'nsField' => 6, 'titleField' => 'il_to',
+			'virtualDomain' => ImageLinksTable::VIRTUAL_DOMAIN ],
 	];
 
 	public function __construct() {

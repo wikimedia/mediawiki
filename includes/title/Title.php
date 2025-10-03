@@ -16,6 +16,7 @@ use MediaWiki\Context\RequestContext;
 use MediaWiki\DAO\WikiAwareEntityTrait;
 use MediaWiki\Deferred\AutoCommitUpdate;
 use MediaWiki\Deferred\DeferredUpdates;
+use MediaWiki\Deferred\LinksUpdate\CategoryLinksTable;
 use MediaWiki\Deferred\LinksUpdate\ImageLinksTable;
 use MediaWiki\Deferred\LinksUpdate\PageLinksTable;
 use MediaWiki\Deferred\LinksUpdate\TemplateLinksTable;
@@ -2749,6 +2750,7 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 	 */
 	public function getLinksTo( $options = [], $table = 'pagelinks', $prefix = 'pl' ) {
 		$domainMap = [
+			'categorylinks' => CategoryLinksTable::VIRTUAL_DOMAIN,
 			'imagelinks' => ImageLinksTable::VIRTUAL_DOMAIN,
 			'pagelinks' => PageLinksTable::VIRTUAL_DOMAIN,
 			'templatelinks' => TemplateLinksTable::VIRTUAL_DOMAIN,
@@ -2829,6 +2831,7 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 		}
 
 		$domainMap = [
+			'categorylinks' => CategoryLinksTable::VIRTUAL_DOMAIN,
 			'imagelinks' => ImageLinksTable::VIRTUAL_DOMAIN,
 			'pagelinks' => PageLinksTable::VIRTUAL_DOMAIN,
 			'templatelinks' => TemplateLinksTable::VIRTUAL_DOMAIN,
@@ -2940,7 +2943,7 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 			return $data;
 		}
 
-		$dbr = $this->getDbProvider()->getReplicaDatabase();
+		$dbr = $this->getDbProvider()->getReplicaDatabase( CategoryLinksTable::VIRTUAL_DOMAIN );
 		$res = $dbr->newSelectQueryBuilder()
 			->select( 'lt_title' )
 			->from( 'categorylinks' )

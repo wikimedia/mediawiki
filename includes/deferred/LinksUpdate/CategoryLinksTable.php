@@ -35,6 +35,8 @@ use Wikimedia\Rdbms\IResultWrapper;
  * @since 1.38
  */
 class CategoryLinksTable extends TitleLinksTable {
+	public const VIRTUAL_DOMAIN = 'virtual-categorylinks';
+
 	/**
 	 * @var array Associative array of new links, with the category name in the
 	 *   key. The value is a list consisting of the sort key prefix and the sort
@@ -382,6 +384,11 @@ class CategoryLinksTable extends TitleLinksTable {
 
 	protected function linksTargetNormalizationStage(): int {
 		return SCHEMA_COMPAT_NEW;
+	}
+
+	/** @inheritDoc */
+	protected function virtualDomain(): string {
+		return self::VIRTUAL_DOMAIN;
 	}
 
 	protected function fetchExistingRows(): IResultWrapper {

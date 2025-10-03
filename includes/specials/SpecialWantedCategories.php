@@ -9,6 +9,7 @@
 namespace MediaWiki\Specials;
 
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\Deferred\LinksUpdate\CategoryLinksTable;
 use MediaWiki\Language\ILanguageConverter;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Linker\LinksMigration;
@@ -63,6 +64,14 @@ class SpecialWantedCategories extends WantedQueryPage {
 					[ 'page_title = ' . $titleField,
 						'page_namespace' => NS_CATEGORY ] ] ] )
 		];
+	}
+
+	/** @inheritDoc */
+	protected function getRecacheDB() {
+		return $this->getDatabaseProvider()->getReplicaDatabase(
+			CategoryLinksTable::VIRTUAL_DOMAIN,
+			'vslow'
+		);
 	}
 
 	/** @inheritDoc */
