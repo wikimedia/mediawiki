@@ -21,6 +21,7 @@
 namespace MediaWiki\SpecialPage;
 
 use MediaWiki\CommentStore\CommentStore;
+use MediaWiki\Debug\MWDebug;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Message\Message;
@@ -556,10 +557,11 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 	 * Returns true if this user rights form can set and change user group expiries.
 	 * Subclasses may wish to override this to return false.
 	 *
-	 * TODO: Delete?
+	 * @deprecated since 1.45 The special page will eventually always allow to set the expiry
 	 * @return bool
 	 */
-	protected function canProcessExpiries() {
+	public function canProcessExpiries() {
+		MWDebug::detectDeprecatedOverride( $this, __CLASS__, 'canProcessExpiries', '1.45' );
 		return true;
 	}
 
