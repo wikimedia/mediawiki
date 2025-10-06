@@ -12,9 +12,7 @@
 	],
 	"files": [
 		"*.js",
+		"api/",
 		"specs/"
-	],
-	"dependencies": {
-		"mwbot": "2.1.3"
-	}
+	]
 }

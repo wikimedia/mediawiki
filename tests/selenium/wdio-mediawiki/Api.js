@@ -1,161 +1,241 @@
-import MWBot from 'mwbot';
+import { Cookies } from './api/Cookies.js';
+import { MwApiHttpClient } from './api/MwApiHttpClient.js';
+import { Auth } from './api/Auth.js';
+import { Pages } from './api/Page.js';
+import { User } from './api/User.js';
 
 /**
  * The API class is the way to talk to the MediaWiki API from webdriver.io.
+ * https://www.mediawiki.org/wiki/API:Action_API
  *
- * It wraps the background API implementation with convenience methods made for
- * browser tests. Default credentials and base URL are read from the webdriver.io config.
- *
+ * The goal is to simplify API calls to make it easier to run automatic browser
+ * tests.
+ * Default credentials and base URL are read from the webdriver.io config.
  */
 class Api {
-	// Question: Is there any use case where we don't want to use the settings
-	// from the webdriver.io config?
-	constructor(
-		username = browser.options.capabilities[ 'mw:user' ],
-		password = browser.options.capabilities[ 'mw:pwd' ],
-		baseUrl = browser.options.baseUrl ) {
+	constructor( options ) {
+		const {
+			baseUrl,
+			username,
+			password,
+			verbose
+		} = options;
 
-		this.username = username;
-		this.password = password;
-		this.baseUrl = baseUrl;
+		this.session = {
+			loggedIn: false,
+			csrfToken: null,
+			createAccountToken: null
+		};
 
-		this.bot = new MWBot();
+		this.cookies = new Cookies();
+		this.httpClient = new MwApiHttpClient( {
+			cookies: this.cookies,
+			options: {
+				defaultSummary: 'MwApiClient',
+				apiUrl: `${ baseUrl }/api.php`,
+				username: username,
+				password: password,
+				verbose: verbose
+			}
+		} );
 
-		// We bind the functions for mwbot that is used in core
-		// Is there a good way to JSDoc them?
-		this.request = this.bot.request.bind( this.bot );
-		this.edit = this.bot.edit.bind( this.bot );
-		this.delete = this.bot.delete.bind( this.bot );
-		this.read = this.bot.read.bind( this.bot );
-		this.loginGetEditToken = this.bot.loginGetEditToken.bind( this.bot );
-	}
+		this.auth = new Auth( {
+			request: this.httpClient.request.bind( this.httpClient ),
+			session: this.session
+		} );
 
-	/**
-	 * Log in with the configured user and obtain an edit token.
-	 *
-	 * @return {Promise<Object>}
-	 */
-	async loginGetEditToken() {
-		return this.bot.loginGetEditToken( {
-			apiUrl: `${ this.baseUrl }/api.php`,
-			username: this.username,
-			password: this.password
+		this.pages = new Pages( {
+			request: this.httpClient.request.bind( this.httpClient ),
+			session: this.session,
+			summary: 'MwApiClient',
+			auth: this.auth
+		} );
+
+		this.user = new User( {
+			request: this.httpClient.request.bind( this.httpClient ),
+			auth: this.auth,
+			session: this.session
 		} );
 	}
 
 	/**
-	 * Shortcut for `MWBot#request( { acount: 'createaccount', .. } )`.
+	 * Do a request with custom parameters to the API. If you
+	 * use this function maybe something is missing in core?
 	 *
-	 * @since 0.1.0
-	 * @see <https://www.mediawiki.org/wiki/API:Account_creation>
-	 * @param {string} username New user name
-	 * @param {string} password New user password
-	 * @return {Object} Promise for API action=createaccount response data.
+	 * @param params
+	 * @return {Promise<Object>} The JSON response from the API
+	 * @throws {Error} If the request fails
+	 */
+	async request( params ) {
+		return this.httpClient.request( params );
+	}
+
+	/**
+	 * Login a user using the MediaWiki API.
+	 *
+	 * @see https://www.mediawiki.org/wiki/API:Login
+	 * @param {string} username
+	 * @param {string} password
+	 * @return {Promise<void>} Resolves when the user is logged in.
+	 * @throws {Error} If the login request fails or the API returns an error.
+	 */
+	async login( username, password ) {
+		return this.auth.login( username, password );
+	}
+
+	/**
+	 * Get a CSRF edit token. The token will be cached for the next request.
+	 *
+	 * @return {Promise<string>} A CSRF token suitable for write actions.
+	 * @throws {Error} If the API does not return a token.
+	 */
+	async getEditToken() {
+		return this.auth.getEditToken();
+	}
+
+	/**
+	 * Get a create-account token. The token wil be cached for the next request.
+	 *
+	 * @return {Promise<string>} A token for create account.
+	 * @throws {Error} If the API does not return a token.
+	 */
+	async getCreateAccountToken() {
+		return this.auth.getCreateAccountToken();
+	}
+
+	/**
+	 * Login the user and get an edit token.
+	 *
+	 * @param {string} username
+	 * @param {string} password
+	 * @return {Promise<string>} A CSRF token suitable for write actions.
+	 * @throws {Error} If the API does not return a token or the login fails
+	 */
+	async loginGetEditToken( username, password ) {
+		return this.auth.loginGetEditToken( username, password );
+	}
+
+	/**
+	 * Read content/meta data from one or many wiki pages.
+	 *
+	 * @param {string} title - for multiple pages use PageA|PageB|PageC
+	 * @return {Promise<Object>} The JSON response from the API.
+	 * @throws {Error} if something fails when talking to the API
+	 */
+	async read( title ) {
+		return this.pages.read( title );
+	}
+
+	/**
+	 * Edits a new wiki pages. Creates a new page if it does not exist yet.
+	 * Automatically fetches a CSRF token if it's not available.
+	 *
+	 * @param {string} title
+	 * @param {string} text
+	 * @param {string} summary
+	 * @return {Promise<Object>} The JSON response from the API.
+	 * @throws {Error} if something fails when talking to the API
+	 */
+	async edit( title, text, summary ) {
+		return this.pages.edit( title, text, summary );
+	}
+
+	/**
+	 * Delete a page.
+	 *
+	 * Automatically fetches a CSRF token if it's not available.
+	 *
+	 * @param {string} title - Page title to delete.
+	 * @param {string} reason - Deletion reason.
+	 * @return {Promise<Object>} The JSON response from the API
+	 * @throws {Error} if something fails when talking to the API
+	 */
+	async delete( title, reason ) {
+		return this.pages.delete( title, reason );
+	}
+
+	/**
+	 * Create a new user account.
+	 *
+	 * @param {string} username - The username for the new account.
+	 * @param {string} password - The password for the new account.
+	 * @return {Promise<Object>} API response with account creation details.
+	 * @throws {Error} if something fails when talking to the API
 	 */
 	async createAccount( username, password ) {
-		await this.bot.getCreateaccountToken();
-
-		// Create the new account
-		return await this.bot.request( {
-			action: 'createaccount',
-			createreturnurl: browser.options.baseUrl,
-			createtoken: this.bot.createaccountToken,
-			username: username,
-			password: password,
-			retype: password
-		} );
+		return this.user.createAccount( username, password );
 	}
 
 	/**
-	 * Shortcut for `MWBot#request( { action: 'block', .. } )`.
+	 * Block a user account.
 	 *
-	 * @since 0.3.0
-	 * @see <https://www.mediawiki.org/wiki/API:Block>
-	 * @param {string} [username] defaults to blocking the admin user
-	 * @param {string} [expiry] default is not set. For format see API docs
-	 * @return {Object} Promise for API action=block response data.
+	 * @param {string} username - The username to block.
+	 * @param {string} expiry - How long the block should last (e.g. "1 day", "infinite").
+	 * @return {Promise<Object>} API response for the block action.
+	 * @throws {Error} if something fails when talking to the API
 	 */
 	async blockUser( username, expiry ) {
-		return await this.bot.request( {
-			action: 'block',
-			user: username || browser.options.capabilities[ 'mw:user' ],
-			reason: 'browser test',
-			token: this.bot.editToken,
-			expiry
-		} );
+		return this.user.blockUser( username, expiry );
 	}
 
 	/**
-	 * Shortcut for `MWBot#request( { action: 'unblock', .. } )`.
+	 * Unblock a user account.
 	 *
-	 * @since 0.3.0
-	 * @see <https://www.mediawiki.org/wiki/API:Block>
-	 * @param {string} [username] defaults to unblocking the admin user
-	 * @return {Object} Promise for API action=unblock response data.
+	 * @param {string} username - The username to unblock.
+	 * @return {Promise<Object>} API response for the unblock action.
+	 * @throws {Error} if something fails when talking to the API
 	 */
 	async unblockUser( username ) {
-		return await this.bot.request( {
-			action: 'unblock',
-			user: username || browser.options.capabilities[ 'mw:user' ],
-			reason: 'browser test done',
-			token: this.bot.editToken
-		} );
+		return this.user.unblockUser( username );
 	}
 
 	/**
-	 * Assign a new user group to the given username.
+	 * Add a user to a group.
 	 *
-	 * @since 2.7.0
-	 * @param {string} username
-	 * @param {string} groupName
+	 * Skips the request if the user is already in the group.
+	 *
+	 * @param {string} username - The username to modify.
+	 * @param {string} groupName - The group to add the user to.
+	 * @return {Promise<void>} Resolves when complete. Throws if API returns an error.
+	 *  @throws {Error} if something fails when talking to the API
 	 */
 	async addUserToGroup( username, groupName ) {
-		const userGroupsResponse = await this.bot.request( {
-			action: 'query',
-			list: 'users',
-			usprop: 'groups',
-			ususers: username,
-			formatversion: 2
-		} );
-
-		if ( userGroupsResponse.query.users.length ) {
-			const respUser = userGroupsResponse.query.users[ 0 ];
-			if ( !respUser.groups ) {
-				// Should not happen, except it does: T393428
-				throw new Error( 'API response does not include user groups: ' + JSON.stringify( userGroupsResponse ) );
-			}
-			if ( respUser.groups.includes( groupName ) ) {
-				return;
-			}
-		}
-		const tokenResponse = await this.bot.request( {
-			action: 'query',
-			meta: 'tokens',
-			type: 'userrights'
-		} );
-		await this.bot.request( {
-			action: 'userrights',
-			user: username,
-			token: tokenResponse.query.tokens.userrightstoken,
-			add: groupName,
-			reason: 'Selenium testing'
-		} );
-		// If there is an error, the above already throws.
+		return this.user.addUserToGroup( username, groupName );
 	}
 }
 
 /**
- * Factory that creates and logs in an Api(client) instance.
+ * Create and return an authenticated MediaWiki API client for webdriver.io tests.
  *
- * @return {Promise<Api>}
+ * The factory uses the options configuration, else it falls back to webdriver.io config:
+ * - options.baseUrl -  browser.options.baseUrl
+ * - options.username - browser.options.capabilities['mw:user']
+ * - options.password - browser.options.capabilities['mw:pwd']
+ * - options.verbose set to true logs every response from MediaWiki
+ *
+ * @param {Object} [options={}] Optional api configuration.
+ * @return {Promise<Api>} An authenticated API client instance.
+ * @throws {Error} If login fails
+ *
+ * @example
+ * // Example configuration:
+ * const api = await createApiClient({
+ *   baseUrl: 'https://mw.example.org',
+ *   username: 'Admin',
+ *   password: process.env.MW_PWD,
+ *   verbose: true
+ * });
  */
-export const createApiClient = async function () {
-	const api = new Api();
-
-	await api.loginGetEditToken( {
-		apiUrl: `${ api.baseUrl }/api.php`,
-		username: api.username,
-		password: api.password
+export const createApiClient = async function ( options = {} ) {
+	const username = options.username || browser.options.capabilities[ 'mw:user' ];
+	const password = options.password || browser.options.capabilities[ 'mw:pwd' ];
+	const baseUrl = options.baseUrl || browser.options.baseUrl;
+	const api = new Api( {
+		baseUrl,
+		username,
+		password,
+		verbose: options.verbose ?? false
 	} );
+	await api.loginGetEditToken( username, password );
 	return api;
 };

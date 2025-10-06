@@ -4,14 +4,14 @@
 import assert from 'assert';
 import { createApiClient } from 'wdio-mediawiki/Api.js';
 
-// apiUrl is required for our continuous integration.
+// baseUrl is required for our continuous integration.
 // If you don't have MW_SERVER and MW_SCRIPT_PATH environment variables set
 // you can probably hardcode it to something like this:
-// const apiUrl = 'http://localhost:8080/w/api.php';
-const apiUrl = `${ process.env.MW_SERVER }${ process.env.MW_SCRIPT_PATH }/api.php`;
+// const baseUrl = 'http://localhost:8080/';
+const baseUrl = `${ process.env.MW_SERVER }${ process.env.MW_SCRIPT_PATH }`;
 
 const apiClient = await createApiClient( {
-	apiUrl: apiUrl
+	baseUrl
 } );
 
 describe( 'API', () => {

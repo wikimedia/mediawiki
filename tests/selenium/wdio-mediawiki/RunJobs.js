@@ -1,13 +1,11 @@
-import MWBot from 'mwbot';
+import { createApiClient } from 'wdio-mediawiki/Api.js';
 import Page from './Page.js';
 
 const MAINPAGE_REQUESTS_MAX_RUNS = 10; // (arbitrary) safe-guard against endless execution
 
 function getJobCount() {
-	const bot = new MWBot( {
-		apiUrl: `${ browser.options.baseUrl }/api.php`
-	} );
-	return bot.request( {
+	const api = createApiClient();
+	return api.request( {
 		action: 'query',
 		meta: 'siteinfo',
 		siprop: 'statistics'

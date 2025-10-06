@@ -45,7 +45,7 @@ export async function isTargetNotWikitext( target ) {
  */
 export async function waitForModuleState( moduleName, moduleStatus = 'ready', timeout = 5000 ) {
 
-	// Wait for the mediaWiki object to be availible
+	// Wait for the mediaWiki object to be available
 	await browser.waitUntil(
 		() => browser.execute( () => typeof mw !== 'undefined' ),
 		{ timeout, timeoutMsg: 'mw is not available' }
