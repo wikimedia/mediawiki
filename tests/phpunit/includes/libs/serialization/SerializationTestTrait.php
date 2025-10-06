@@ -198,16 +198,23 @@ trait SerializationTestTrait {
 			$class = new ReflectionClass( $expected );
 		}
 
-		$propsToIgnore = $this->ignoreForObjectEquality();
+		$propsToNormalize =
+			$this->normalizeForObjectEquality()[$class->getName()] ?? [];
+		if ( $class->hasMethod( 'normalizeForObjectEquality' ) ) {
+			$propsToNormalize +=
+				$class->getMethod( 'normalizeForObjectEquality' )->invoke( null );
+		}
 
 		foreach ( $class->getProperties() as $prop ) {
 			$name = $prop->getName();
-			if ( in_array( [ $class->getName(), $name ], $propsToIgnore ) ) {
+			$norm = $propsToNormalize[$name] ?? ( static fn ( $v ) => $v );
+			if ( $norm === false ) {
+				// skip this property
 				continue;
 			}
 			$this->validateEquality(
-				$prop->getValue( $expected ),
-				$prop->getValue( $actual ),
+				$norm( $prop->getValue( $expected ) ),
+				$norm( $prop->getValue( $actual ) ),
 				$prop->getName()
 			);
 		}
@@ -322,10 +329,14 @@ trait SerializationTestTrait {
 	abstract public static function getSupportedSerializationFormats(): array;
 
 	/**
-	 * @return list<array{0:class-string,1:string}> list of properties that should
-	 * be ignored when testing for object equality.
+	 * @return array<class-string,array<string,callable|false>> map of
+	 *   properties with special normalization functions to be used
+	 *   when testing for object equality. This maps a class name to a
+	 *   map from property name to normalization function.  If the
+	 *   normalization function is `false`, then the property should
+	 *   be ignored when testing for object equality.
 	 */
-	public function ignoreForObjectEquality(): array {
+	public function normalizeForObjectEquality(): array {
 		return [];
 	}
 }

@@ -318,10 +318,6 @@ class ContentHolder {
 		}
 	}
 
-	public function ignoreForObjectEquality(): array {
-		return [ "ownerDocument" ];
-	}
-
 	/**
 	 * Given a ContentHolderTransformStage that has two valid transform options, returns true if the state of the
 	 * ContentHolder calls for a DOM transform, false if it calls for a text transform.
@@ -330,5 +326,10 @@ class ContentHolder {
 	 */
 	public function preferDom(): bool {
 		return $this->domFormat;
+	}
+
+	/** Helper for serialization compatibility testing. */
+	private static function normalizeForObjectEquality(): array {
+		return [ 'ownerDocument' => false ];
 	}
 }
