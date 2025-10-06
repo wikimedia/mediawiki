@@ -15,6 +15,7 @@ use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
+use MediaWiki\Parser\ParserOutputLinkTypes;
 use MediaWiki\Revision\MainSlotRoleHandler;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
@@ -435,13 +436,10 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 1, preg_match_all( '#class="[^"]*mw-parser-output"#', $combinedHtml ) );
 		$this->assertStringNotContainsString( 'mw-parser-output"', $combinedOutput->getRawText() );
 
-		$combinedLinks = $combinedOutput->getLinks();
-		$mainLinks = $mainOutput->getLinks();
-		$auxLinks = $auxOutput->getLinks();
-		$this->assertTrue( isset( $combinedLinks[NS_MAIN]['Kittens'] ), 'links from main slot' );
-		$this->assertTrue( isset( $combinedLinks[NS_MAIN]['Goats'] ), 'links from aux slot' );
-		$this->assertFalse( isset( $mainLinks[NS_MAIN]['Goats'] ), 'no aux links in main' );
-		$this->assertFalse( isset( $auxLinks[NS_MAIN]['Kittens'] ), 'no main links in aux' );
+		$this->assertTrue( self::linksContain( $combinedOutput, NS_MAIN, 'Kittens' ), 'links from main slot' );
+		$this->assertTrue( self::linksContain( $combinedOutput, NS_MAIN, 'Goats' ), 'links from aux slot' );
+		$this->assertFalse( self::linksContain( $mainOutput, NS_MAIN, 'Goats' ), 'no aux links in main' );
+		$this->assertFalse( self::linksContain( $auxOutput, NS_MAIN, 'Kittens' ), 'no main links in aux' );
 
 		// Same tests with Parsoid
 		// T351026: We should get only main slot output in the combined output.
@@ -456,10 +454,19 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 		$combinedHtml = $pipeline->run( $combinedOutput, $options, [] )->getContentHolderText();
 		$mainHtml = $pipeline->run( $mainOutput, $options, [] )->getContentHolderText();
 		$this->assertSame( $combinedHtml, $mainHtml );
-		$this->assertSame( $combinedOutput->getLinks(), $mainOutput->getLinks() );
+		$this->assertSame(
+			$combinedOutput->getLinkList( ParserOutputLinkTypes::LOCAL ),
+			$mainOutput->getLinkList( ParserOutputLinkTypes::LOCAL ) );
 		$this->assertStringContainsString( 'class="mw-content-ltr mw-parser-output"', $mainHtml );
 		$this->assertStringContainsString( 'Kittens', $combinedHtml );
 		$this->assertStringNotContainsString( 'Goats', $combinedHtml );
+	}
+
+	protected static function linksContain( ParserOutput $parserOutput, int $ns, string $dbkey ) {
+		return array_any(
+			$parserOutput->getLinkList( ParserOutputLinkTypes::LOCAL, $ns ),
+			static fn ( $item ) => $item['link']->getDBkey() === $dbkey
+		);
 	}
 
 	public function testGetRenderedRevision_noHtml() {

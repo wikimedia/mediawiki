@@ -885,6 +885,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 
 	/** @deprecated since 1.43, use ::getLinkList(ParserOutputLinkTypes::LOCAL) */
 	public function &getLinks() {
+		wfDeprecated( __METHOD__, '1.43' );
 		return $this->mLinks;
 	}
 

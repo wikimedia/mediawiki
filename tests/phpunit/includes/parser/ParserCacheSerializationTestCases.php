@@ -350,7 +350,7 @@ abstract class ParserCacheSerializationTestCases {
 					$testCase->assertSame( '', $object->getTitleText() );
 					$testCase->assertArrayEquals( [], $object->getSections() );
 					$testCase->assertNull( $object->getTOCData() );
-					$testCase->assertArrayEquals( [], $object->getLinks() );
+					$testCase->assertArrayEquals( [], $object->getLinkList( ParserOutputLinkTypes::LOCAL ) );
 					$testCase->assertArrayEquals( [], $object->getLinkList( ParserOutputLinkTypes::SPECIAL ) );
 					$testCase->assertArrayEquals( [], $object->getLinkList( ParserOutputLinkTypes::TEMPLATE ) );
 					$testCase->assertArrayEquals( [], $object->getLinkList( ParserOutputLinkTypes::MEDIA ) );
@@ -518,10 +518,13 @@ abstract class ParserCacheSerializationTestCases {
 					$testCase->assertSame( 'title_text1', $object->getTitleText() );
 					$testCase->assertArrayEquals( self::SECTIONS, $object->getSections() );
 					$testCase->assertNotNull( $object->getTOCData() );
-					$testCase->assertArrayEquals( [
-						NS_MAIN => [ 'Link1' => 42 ],
-						NS_USER => [ 'Link2' => 43 ]
-					], $object->getLinks() );
+					$testCase->assertEqualsCanonicalizing( [
+						[ 'link' => '0:Link1', 'pageid' => 42 ],
+						[ 'link' => '2:Link2', 'pageid' => 43 ],
+					], array_map(
+						static fn ( $item )=>[ 'link' => strval( $item['link'] ) ] + $item,
+						$object->getLinkList( ParserOutputLinkTypes::LOCAL )
+					) );
 					$testCase->assertArrayEquals( [
 						[
 							'link' => '10:Template1',

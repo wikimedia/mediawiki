@@ -2,6 +2,7 @@
 
 use MediaWiki\Content\ContentHandler;
 use MediaWiki\Parser\ParserOptions;
+use MediaWiki\Parser\ParserOutputLinkTypes;
 use MediaWiki\Title\Title;
 use Wikimedia\Parsoid\ParserTests\TestUtils;
 
@@ -19,14 +20,18 @@ class TextContentHandlerIntegrationTest extends MediaWikiLangTestCase {
 			'model' => CONTENT_MODEL_TEXT,
 			'text' => "hello ''world'' & [[stuff]]\n",
 			'expectedHtml' => "<pre>hello ''world'' &amp; [[stuff]]\n</pre>",
-			'expectedFields' =>	[ 'Links' => [] ]
+			'expectedFields' =>	[ 'LinkList!LOCAL' => [
+				'_args_' => [ ParserOutputLinkTypes::LOCAL ]
+			] ]
 		];
 		yield 'Multi line render' => [
 			'title' => 'TextContentTest_testGetParserOutput',
 			'model' => CONTENT_MODEL_TEXT,
 			'text' => "Test 1\nTest 2\n\nTest 3\n",
 			'expectedHtml' => "<pre>Test 1\nTest 2\n\nTest 3\n</pre>",
-			'expectedFields' =>	[ 'Links' => [] ]
+			'expectedFields' =>	[ 'LinkList!LOCAL' => [
+				'_args_' => [ ParserOutputLinkTypes::LOCAL ]
+			] ]
 		];
 	}
 
@@ -56,8 +61,17 @@ class TextContentHandlerIntegrationTest extends MediaWikiLangTestCase {
 
 		if ( $expectedFields ) {
 			foreach ( $expectedFields as $field => $exp ) {
+				if ( str_contains( $field, '!' ) ) {
+					[ $field, $ignore ] = explode( '!', $field, 2 );
+				}
 				$getter = 'get' . ucfirst( $field );
-				$v = $processedPo->$getter();
+				if ( is_array( $exp ) ) {
+					$args = $exp['_args_'] ?? [];
+					unset( $exp['_args_'] );
+					$v = call_user_func_array( [ $processedPo, $getter ], $args );
+				} else {
+					$v = $processedPo->$getter();
+				}
 
 				if ( is_array( $exp ) ) {
 					$this->assertArrayEquals( $exp, $v );

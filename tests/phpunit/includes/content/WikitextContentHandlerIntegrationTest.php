@@ -5,6 +5,7 @@ use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Parser\ParserOptions;
+use MediaWiki\Parser\ParserOutputLinkTypes;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
 use Wikimedia\Parsoid\Parsoid;
@@ -79,7 +80,8 @@ class WikitextContentHandlerIntegrationTest extends TextContentHandlerIntegratio
 			'text' => "hello ''world''\n",
 			'expectedHtml' => '<div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr">' . "<p>hello <i>world</i>\n</p></div>",
 			'expectedFields' => [
-				'Links' => [
+				'LinkList!LOCAL' => [
+					'_args_' => [ ParserOutputLinkTypes::LOCAL ],
 				],
 				'Sections' => [
 				],
@@ -92,7 +94,8 @@ class WikitextContentHandlerIntegrationTest extends TextContentHandlerIntegratio
 			'text' => "hello ''world''\n",
 			'expectedHtml' => "<div class=\"mw-content-ltr mw-parser-output\" lang=\"en\" dir=\"ltr\" $parsoidVersion><section data-mw-section-id=\"0\" id=\"mwAQ\"><p id=\"mwAg\">hello <i id=\"mwAw\">world</i></p>\n</section></div>",
 			'expectedFields' => [
-				'Links' => [
+				'LinkList!LOCAL' => [
+					'_args_' => [ ParserOutputLinkTypes::LOCAL ],
 				],
 				'Sections' => [
 				],
@@ -106,8 +109,12 @@ class WikitextContentHandlerIntegrationTest extends TextContentHandlerIntegratio
 			'text' => "#REDIRECT [[Main Page]]",
 			'expectedHtml' => "<div class=\"mw-content-ltr mw-parser-output\" lang=\"en\" dir=\"ltr\" $parsoidVersion><div class=\"redirectMsg\"><p>Redirect to:</p><ul class=\"redirectText\"><li><a href=\"/w/index.php?title=Main_Page&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"Main Page (page does not exist)\">Main Page</a></li></ul></div><section data-mw-section-id=\"0\" id=\"mwAQ\"><link rel=\"mw:PageProp/redirect\" href=\"./Main_Page\" id=\"mwAg\"></section></div>",
 			'expectedFields' => [
-				'Links' => [
-					[ 'Main_Page' => 0 ],
+				'LinkList!LOCAL' => [
+					'_args_' => [ ParserOutputLinkTypes::LOCAL ],
+					[
+						'link' => new TitleValue( NS_MAIN, 'Main_Page' ),
+						'pageid' => 0,
+					],
 				],
 				'Sections' => [
 				],
@@ -121,7 +128,8 @@ class WikitextContentHandlerIntegrationTest extends TextContentHandlerIntegratio
 			'text' => "== Hello ==",
 			'expectedHtml' => "<div class=\"mw-content-ltr mw-parser-output\" lang=\"en\" dir=\"ltr\" $parsoidVersion id=\"mwAw\">" . '<section data-mw-section-id="0" id="mwAQ"></section><section data-mw-section-id="1" id="mwAg"><div class="mw-heading mw-heading2" id="mwBA"><h2 id="Hello">Hello</h2><span class="mw-editsection" id="mwBQ"><span class="mw-editsection-bracket" id="mwBg">[</span><a href="/w/index.php?title=WikitextContentTest_testGetParserOutput&amp;action=edit&amp;section=1" title="Edit section: Hello" id="mwBw"><span id="mwCA">edit</span></a><span class="mw-editsection-bracket" id="mwCQ">]</span></span></div></section></div>',
 			'expectedFields' => [
-				'Links' => [
+				'LinkList!LOCAL' => [
+					'_args_' => [ ParserOutputLinkTypes::LOCAL ],
 				],
 				'Sections' => [
 					[
@@ -146,8 +154,12 @@ class WikitextContentHandlerIntegrationTest extends TextContentHandlerIntegratio
 			'text' => "[[title that does not really exist]]",
 			'expectedHtml' => null,
 			'expectedFields' => [
-				'Links' => [
-					[ 'Title_that_does_not_really_exist' => 0, ],
+				'LinkList!LOCAL' => [
+					'_args_' => [ ParserOutputLinkTypes::LOCAL ],
+					[
+						'link' => new TitleValue( NS_MAIN, 'Title_that_does_not_really_exist' ),
+						'pageid' => 0,
+					],
 				],
 				'Sections' => [
 				],
@@ -159,7 +171,8 @@ class WikitextContentHandlerIntegrationTest extends TextContentHandlerIntegratio
 			'text' => "==One==\n==Two==\n==Three==\n==Four==\n<h2>Five</h2>\n===Six+Seven %2525===",
 			'expectedHtml' => null,
 			'expectedFields' => [
-				'Links' => [
+				'LinkList!LOCAL' => [
+					'_args_' => [ ParserOutputLinkTypes::LOCAL ],
 				],
 				'Sections' => [
 					[

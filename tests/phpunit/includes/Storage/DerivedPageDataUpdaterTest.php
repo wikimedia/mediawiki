@@ -28,6 +28,7 @@ use MediaWiki\Page\ParserOutputAccess;
 use MediaWiki\Page\WikiPage;
 use MediaWiki\Parser\ParserCacheFactory;
 use MediaWiki\Parser\ParserOptions;
+use MediaWiki\Parser\ParserOutputLinkTypes;
 use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\MutableRevisionSlots;
@@ -288,14 +289,14 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		$text = $mainOutput->getRawText();
 		$this->assertStringContainsString( 'first', $text );
 		$this->assertStringContainsString( '<a ', $text );
-		$this->assertNotEmpty( $mainOutput->getLinks() );
+		$this->assertNotEmpty( $mainOutput->getLinkList( ParserOutputLinkTypes::LOCAL ) );
 
 		$canonicalOutput = $updater->getCanonicalParserOutput();
 		$text = $canonicalOutput->getRawText();
 		$this->assertStringContainsString( 'first', $text );
 		$this->assertStringContainsString( '<a ', $text );
 		$this->assertStringContainsString( 'inherited ', $text );
-		$this->assertNotEmpty( $canonicalOutput->getLinks() );
+		$this->assertNotEmpty( $canonicalOutput->getLinkList( ParserOutputLinkTypes::LOCAL ) );
 	}
 
 	/**
@@ -427,13 +428,13 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		$mainText = $mainOutput->getRawText();
 		$this->assertStringContainsString( 'first', $mainText );
 		$this->assertStringContainsString( '<a ', $mainText );
-		$this->assertNotEmpty( $mainOutput->getLinks() );
+		$this->assertNotEmpty( $mainOutput->getLinkList( ParserOutputLinkTypes::LOCAL ) );
 
 		$canonicalOutput = $updater1->getCanonicalParserOutput();
 		$canonicalText = $canonicalOutput->getRawText();
 		$this->assertStringContainsString( 'first', $canonicalText );
 		$this->assertStringContainsString( '<a ', $canonicalText );
-		$this->assertNotEmpty( $canonicalOutput->getLinks() );
+		$this->assertNotEmpty( $canonicalOutput->getLinkList( ParserOutputLinkTypes::LOCAL ) );
 
 		$mainContent2 = new WikitextContent( 'second' );
 		$rev2 = $this->createRevision( $page, 'second', $mainContent2 );

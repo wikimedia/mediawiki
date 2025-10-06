@@ -592,29 +592,36 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 		$a->addLink( new TitleValue( NS_TALK, 'Puppies', 'Topic' ), 17 );
 
 		$expected = [
-			NS_MAIN => [ 'Kittens' => 6, 'Goats_786827346' => 0 ],
-			NS_TALK => [ 'Kittens' => 16, 'Puppies' => 17 ]
+			[ 'link' => '0:Kittens', 'pageid' => 6 ],
+			[ 'link' => '0:Goats_786827346', 'pageid' => 0 ],
+			[ 'link' => '1:Kittens', 'pageid' => 16 ],
+			[ 'link' => '1:Puppies', 'pageid' => 17 ],
 		];
-		$this->assertSame( $expected, $a->getLinks() );
+		$this->assertEqualsCanonicalizing( $expected, array_map(
+			static fn ( $item )=>[ 'link' => strval( $item['link'] ) ] + $item,
+			$a->getLinkList( ParserOutputLinkTypes::LOCAL ) ) );
 		$expected = [
 			[
-				'link' => new TitleValue( NS_MAIN, 'Kittens' ),
+				'link' => '0:Kittens',
 				'pageid' => 6,
 			],
 			[
-				'link' => new TitleValue( NS_MAIN, 'Goats_786827346' ),
+				'link' => '0:Goats_786827346',
 				'pageid' => 0,
 			],
 			[
-				'link' => new TitleValue( NS_TALK, 'Kittens' ),
+				'link' => '1:Kittens',
 				'pageid' => 16,
 			],
 			[
-				'link' => new TitleValue( NS_TALK, 'Puppies' ),
+				'link' => '1:Puppies',
 				'pageid' => 17,
 			],
 		];
-		$this->assertEquals( $expected, $a->getLinkList( ParserOutputLinkTypes::LOCAL ) );
+		$this->assertEqualsCanonicalizing( $expected, array_map(
+			static fn ( $item )=>[ 'link' => strval( $item['link'] ) ] + $item,
+			$a->getLinkList( ParserOutputLinkTypes::LOCAL )
+		) );
 	}
 
 	public static function provideMergeTrackingMetaDataFrom() {
@@ -872,6 +879,7 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 		$this->filterDeprecated( '/ParserOutput::getInterwikiLinks was deprecated/' );
 		$this->filterDeprecated( '/ParserOutput::getTemplates was deprecated/' );
 		$this->filterDeprecated( '/ParserOutput::getTemplateIds was deprecated/' );
+		$this->filterDeprecated( '/ParserOutput::getLinks was deprecated/' );
 		$a->mergeTrackingMetaDataFrom( $b );
 
 		$this->assertFieldValues( $a, $expected );
@@ -896,6 +904,7 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 		$this->filterDeprecated( '/ParserOutput::getInterwikiLinks was deprecated/' );
 		$this->filterDeprecated( '/ParserOutput::getTemplates was deprecated/' );
 		$this->filterDeprecated( '/ParserOutput::getTemplateIds was deprecated/' );
+		$this->filterDeprecated( '/ParserOutput::getLinks was deprecated/' );
 		$b->collectMetadata( $a );
 
 		$this->assertFieldValues( $a, $expected );

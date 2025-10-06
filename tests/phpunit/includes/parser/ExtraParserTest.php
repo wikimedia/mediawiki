@@ -256,6 +256,7 @@ class ExtraParserTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testParseLinkParameter( $input, $expected, $expectedLinks, $desc ) {
 		MWDebug::filterDeprecationForTest( '/::getInterwikiLinks was deprecated/' );
+		MWDebug::filterDeprecationForTest( '/::getLinks was deprecated/' );
 		static $testInterwikis = [
 			[
 				'iw_prefix' => 'local',

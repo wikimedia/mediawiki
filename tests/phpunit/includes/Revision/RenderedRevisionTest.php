@@ -12,6 +12,7 @@ use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
+use MediaWiki\Parser\ParserOutputLinkTypes;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\MutableRevisionSlots;
 use MediaWiki\Revision\RenderedRevision;
@@ -434,13 +435,17 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 		$this->assertStringContainsString( 'Goats', $combinedHtml );
 		$this->assertStringContainsString( 'aux', $combinedHtml, 'slot section header' );
 
-		$combinedLinks = $combinedOutput->getLinks();
-		$mainLinks = $mainOutput->getLinks();
-		$auxLinks = $auxOutput->getLinks();
-		$this->assertTrue( isset( $combinedLinks[NS_MAIN]['Kittens'] ), 'links from main slot' );
-		$this->assertTrue( isset( $combinedLinks[NS_MAIN]['Goats'] ), 'links from aux slot' );
-		$this->assertFalse( isset( $mainLinks[NS_MAIN]['Goats'] ), 'no aux links in main' );
-		$this->assertFalse( isset( $auxLinks[NS_MAIN]['Kittens'] ), 'no main links in aux' );
+		$this->assertTrue( self::linksContain( $combinedOutput, NS_MAIN, 'Kittens' ), 'links from main slot' );
+		$this->assertTrue( self::linksContain( $combinedOutput, NS_MAIN, 'Goats' ), 'links from aux slot' );
+		$this->assertFalse( self::linksContain( $mainOutput, NS_MAIN, 'Goats' ), 'no aux links in main' );
+		$this->assertFalse( self::linksContain( $auxOutput, NS_MAIN, 'Kittens' ), 'no main links in aux' );
+	}
+
+	protected static function linksContain( ParserOutput $parserOutput, int $ns, string $dbkey ) {
+		return array_any(
+			$parserOutput->getLinkList( ParserOutputLinkTypes::LOCAL, $ns ),
+			static fn ( $item ) => $item['link']->getDBkey() === $dbkey
+		);
 	}
 
 	public function testGetRevisionParserOutput_incompleteNoId() {
