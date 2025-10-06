@@ -351,7 +351,7 @@
 	"accmailtitle": "Ya envia ya el password",
 	"accmailtext": "Un randomly generated password para con [[User talk:$1|$1]] el ya envia ya na $2. Puede con este cambia na pagina de <em>[[Special:ChangePassword|cambia password]]</em> si man log-in.",
 	"newarticle": "(Nuevo)",
-	"noarticletext": "Na este momento, no hay pa texto na este pagina. \nPuede tu [[Special:Search/{{PAGENAME}}|budca para con este titulo de pagina]] para na otro pagina, <span class=\"plainlinks\">[{{fullurl:{{#FULLPAGENAMEE}}}} busca con el maga relacionao logs], o [{{fullurl:{{FULLPAGENAME}}|action=edit}} crea na este pagina]</span>.",
+	"noarticletext": "Na este momento, no hay pa texto na este pagina. \nPuede tu [[Special:Search/{{PAGENAME}}|busca para con este titulo de pagina]] para na otro pagina, <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} busca con el maga relacionao logs], o [{{fullurl:{{FULLPAGENAME}}|action=edit}} crea na este pagina]</span>.",
 	"editing": "Ta'n edit pa con el '$1'",
 	"creating": "Ta crea pa con el '$1'",
 	"editingsection": "Ta'n edit pa con el '$1' (seccion)",

@@ -3577,7 +3577,7 @@
 	"version-poweredby-translators": "translatewiki.net上的翻译者",
 	"version-poweredby-various": "各作者",
 	"version-credits-summary": "我们感谢下列人士为[[Special:Version|MediaWiki]]作出的贡献。",
-	"version-license-info": "MediaWiki是自由软件；您可以依据自由软件基金会发行的GNU通用公共许可协议第2版或任意后续版本的条款，传播和/或修改本软件。\n\nMediaWiki在分发时期望其有用，但对此<em>无任何担保</em>；更无隐含的<strong>可以销售</strong>或<strong>适合特定目的</strong>的担保。详情请见GNU通用公共许可协议。\n\n您应该已经收到本程序附带的[{{SERVER}}{{SCRIPTPATH}}/COPYING GNU通用公共许可协议的副本]；如果没有，请写信至美国马萨诸塞州波士顿富兰克林大街51号5楼自由软件基金会，邮编MA 02110-1301（Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA），或[//www.gnu.org/licenses/old-licenses/gpl-2.0.html 在线阅读该协议]。",
+	"version-license-info": "MediaWiki是自由软件；您可以依据自由软件基金会发行的GNU通用公共许可协议第2版或任意后续版本的条款，传播和/或修改本软件。\n\nMediaWiki在分发时期望其有用，但对此<em>无任何担保</em>；更无隐含的<strong>可以销售</strong>或<strong>适合特定目的</strong>的担保。详情请见GNU通用公共许可协议。\n\n您应该已经收到本程序附带的[{{SERVER}}{{SCRIPTPATH}}/COPYING GNU通用公共许可协议的副本]；如果没有，请[//www.gnu.org/licenses/old-licenses/gpl-2.0.html 在线阅读该协议]。",
 	"version-software": "安装的软件",
 	"version-software-product": "产品",
 	"version-software-version": "版本",

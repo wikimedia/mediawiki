@@ -2646,7 +2646,7 @@
 	"blocklist-reason": "Сәбәп",
 	"ipblocklist-submit": "Эзләү",
 	"ipblocklist-localblock": "Локаль тыюлык",
-	"ipblocklist-otherblocks": "Башка {{PLURAL:$1|1=тыю}}",
+	"ipblocklist-otherblocks": "Башка {{PLURAL:$1|тыю}}",
 	"infiniteblock": "чиксез",
 	"anononlyblock": "анонимнар гына",
 	"noautoblockblock": "автотыю ябык",

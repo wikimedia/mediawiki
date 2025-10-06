@@ -268,7 +268,6 @@
 	"versionrequired": "మీడియావికీ సాఫ్టువేరు వెర్షను $1 కావాలి",
 	"versionrequiredtext": "ఈ పేజీని వాడటానికి మీకు మీడియావికీ సాఫ్టువేరు వెర్షను $1 కావాలి. [[Special:Version|వెర్షను పేజీ]]ని చూడండి.",
 	"ok": "సరే",
-	"pagetitle": "$1 - {{SITENAME}}",
 	"backlinksubtitle": "← $1",
 	"retrievedfrom": "\"$1\" నుండి వెలికితీశారు",
 	"youhavenewmessages": "మీకు $1 ఉన్నాయి ($2).",

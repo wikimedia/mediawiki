@@ -379,5 +379,6 @@
 	"exif-usepanoramaviewer-false": "Ei",
 	"exif-exposurelockused": "Valotuslukon käyttö",
 	"exif-exposurelockused-true": "Kyllä",
-	"exif-exposurelockused-false": "Ei"
+	"exif-exposurelockused-false": "Ei",
+	"exif-stitchingsoftware": "Yhdistämisohjelma"
 }

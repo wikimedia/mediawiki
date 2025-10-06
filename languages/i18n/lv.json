@@ -2196,7 +2196,7 @@
 	"blocklist-reason": "Iemesls",
 	"ipblocklist-submit": "Meklēt",
 	"ipblocklist-localblock": "Vietējais bloks",
-	"ipblocklist-otherblocks": " {{PLURAL:$1|Citas|Cita|Citas}} {{PLURAL:$1|bloķēšanas|bloķēšana|bloķēšanas}}",
+	"ipblocklist-otherblocks": "{{PLURAL:$1|Citas bloķēšanas|Cita bloķēšana|Citas bloķēšanas}}",
 	"infiniteblock": "bezgalīgs",
 	"anononlyblock": "tikai anon.",
 	"noautoblockblock": "automātiskā bloķēšana atslēgta",

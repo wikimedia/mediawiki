@@ -88,7 +88,7 @@
 	"apihelp-checktoken-summary": "De geldigheid van een token van <kbd>[[Special:ApiHelp/query+tokens|action=query&meta=tokens]]</kbd> controleren.",
 	"apihelp-checktoken-param-type": "Het type token dat getest wordt.",
 	"apihelp-checktoken-param-token": "Te testen token.",
-	"apihelp-checktoken-param-maxtokenage": "Maximale levensduur van de token, in seconden.",
+	"apihelp-checktoken-param-maxtokenage": "Maximale levensduur van het token, in seconden.",
 	"apihelp-checktoken-example-simple": "Test de geldigheid van een <kbd>csrf</kbd>-token.",
 	"apihelp-clearhasmsg-summary": "Wist de <code>hasmsg</code>-vlag voor de huidige gebruiker.",
 	"apihelp-clearhasmsg-example-1": "De <code>hasmsg</code>-vlag voor de huidige gebruiker wissen.",
