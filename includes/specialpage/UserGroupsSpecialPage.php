@@ -81,8 +81,8 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 				$this->msg( 'userrights-viewusergroup', $target->userName )->text()
 			) .
 			$this->msg( 'viewinguserrights'	)->params(
-				wfEscapeWikiText( $this->getDisplayUsername() )
-			)->rawParams( $this->getTargetUserToolLinks() )->parse() .
+				wfEscapeWikiText( $this->getDisplayUsername( $target ) )
+			)->rawParams( $this->getTargetUserToolLinks( $target ) )->parse() .
 			$this->getCurrentUserGroupsText( $target ) .
 			Html::closeElement( 'fieldset' );
 		return $formContent;
@@ -109,8 +109,8 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 				$this->msg( 'userrights-editusergroup',	$target->userName )->text()
 			) .
 			$this->msg( 'editinguser' )->params(
-				wfEscapeWikiText( $this->getDisplayUsername() )
-			)->rawParams( $this->getTargetUserToolLinks() )->parse() .
+				wfEscapeWikiText( $this->getDisplayUsername( $target ) )
+			)->rawParams( $this->getTargetUserToolLinks( $target ) )->parse() .
 			$this->msg( 'userrights-groups-help', $target->userName )->parse() .
 			$this->getCurrentUserGroupsText( $target );
 
@@ -505,19 +505,18 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 
 	/**
 	 * Returns the target username in a format suitable for displaying. It will be used in the
-	 * "Changing user groups of" header.
-	 *
-	 * TODO: Should be further refactored and joined with getTargetUserToolLinks()
+	 * "Changing user groups of" header and as the target in logs.
+	 * The default implementation returns the raw username as specified in the target.
 	 */
-	abstract protected function getDisplayUsername(): string;
+	protected function getDisplayUsername( UserGroupsSpecialPageTarget $target ): string {
+		return $target->userName;
+	}
 
 	/**
 	 * Returns an HTML snippet with links to pages like user talk, contributions etc. for the
 	 * target user. It will be used in the "Changing user groups of" header.
-	 *
-	 * TODO: Should be further refactored and joined with getDisplayUsername()
 	 */
-	abstract protected function getTargetUserToolLinks(): string;
+	abstract protected function getTargetUserToolLinks( UserGroupsSpecialPageTarget $target ): string;
 
 	/**
 	 * Returns a list of all groups that should be presented in the form.
