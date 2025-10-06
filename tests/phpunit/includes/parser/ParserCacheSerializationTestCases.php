@@ -6,6 +6,7 @@ use MediaWiki\Debug\MWDebug;
 use MediaWiki\Json\JsonCodec;
 use MediaWiki\Parser\CacheTime;
 use MediaWiki\Parser\ParserOutput;
+use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Parser\ParserOutputLinkTypes;
 use MediaWiki\Tests\Json\JsonDeserializableSubClass;
 use MediaWiki\Title\Title;
@@ -301,7 +302,12 @@ abstract class ParserCacheSerializationTestCases {
 		$parserOutputWithMetadata->setEnableOOUI( true );
 		$parserOutputWithMetadata->setHideNewSection( true );
 		$parserOutputWithMetadata->setNewSection( true );
-		$parserOutputWithMetadata->setOutputFlag( 'test' );
+		$parserOutputWithMetadata->setOutputFlag( ParserOutputFlags::VARY_REVISION_ID );
+
+		$parserOutputWithMetadataPost1_44 = clone $parserOutputWithMetadata;
+		// Non-standard output flags were deprecated in MW 1.45
+		$parserOutputWithMetadataPost1_44->setOutputFlag( ParserOutputFlags::VARY_REVISION_ID, false );
+		$parserOutputWithMetadataPost1_44->setOutputFlag( 'test' );
 
 		$parserOutputWithSections = new ParserOutput( '' );
 		$parserOutputWithSections->setSections( self::SECTIONS );
@@ -498,7 +504,7 @@ abstract class ParserCacheSerializationTestCases {
 				}
 			],
 			'withMetadataPost1_44' => [
-				'instance' => $parserOutputWithMetadata,
+				'instance' => $parserOutputWithMetadataPost1_44,
 				'assertions' => static function ( MediaWikiIntegrationTestCase $testCase, ParserOutput $object ) {
 					$testCase->assertSame( 42, $object->getSpeculativeRevIdUsed() );
 					$testCase->assertArrayEquals( [ 'm:link1', 'mw:link2' ], $object->getLanguageLinks() );
@@ -568,6 +574,83 @@ abstract class ParserCacheSerializationTestCases {
 					$testCase->assertArrayEquals( [ 'test' ], $object->getAllFlags() );
 				}
 			],
+			'withMetadataPost1_45' => [
+				'instance' => $parserOutputWithMetadata,
+				'assertions' => static function ( MediaWikiIntegrationTestCase $testCase, ParserOutput $object ) {
+					$testCase->assertSame( 42, $object->getSpeculativeRevIdUsed() );
+					$testCase->assertEqualsCanonicalizing( [
+						'm:0:link1',
+						'mw:0:link2',
+					], array_map(
+						static fn ( $item ) => strval( $item['link'] ),
+						$object->getLinkList( ParserOutputLinkTypes::LANGUAGE )
+					) );
+					$testCase->assertEqualsCanonicalizing( [
+						'enwiki:0:interwiki1',
+						'enwiki:0:interwiki2',
+					], array_map(
+						static fn ( $item ) => strval( $item['link'] ),
+						$object->getLinkList( ParserOutputLinkTypes::INTERWIKI )
+					) );
+					$testCase->assertArrayEquals( [ 'category1', 'category2' ], $object->getCategoryNames() );
+					$testCase->assertArrayEquals( [
+						'category1' => '2',
+						'category2' => '1'
+					], $object->getCategoryMap() );
+					$testCase->assertArrayEquals( [ 'indicator1' => 'indicator1_value' ], $object->getIndicators() );
+					$testCase->assertSame( 'title_text1', $object->getTitleText() );
+					$testCase->assertArrayEquals( self::SECTIONS, $object->getSections() );
+					$testCase->assertNotNull( $object->getTOCData() );
+					$testCase->assertEqualsCanonicalizing( [
+						[ 'link' => '0:Link1', 'pageid' => 42 ],
+						[ 'link' => '2:Link2', 'pageid' => 43 ],
+					], array_map(
+						static fn ( $item )=>[ 'link' => strval( $item['link'] ) ] + $item,
+						$object->getLinkList( ParserOutputLinkTypes::LOCAL )
+					) );
+					$testCase->assertArrayEquals( [
+						[
+							'link' => '10:Template1',
+							'pageid' => '42',
+							'revid' => '4242',
+						],
+					], array_map(
+						static fn ( $item ) => ( [ 'link' => strval( $item['link'] ) ] + $item ),
+						$object->getLinkList( ParserOutputLinkTypes::TEMPLATE )
+					) );
+					$testCase->assertArrayEquals( [
+						[
+							'link' => '6:Image1',
+							'time' => MWTimestamp::convert( TS_MW, 123456789 ),
+							'sha1' => 'test_sha1',
+						]
+					], array_map(
+						static fn ( $item ) => ( [ 'link' => strval( $item['link'] ) ] + $item ),
+						$object->getLinkList( ParserOutputLinkTypes::MEDIA )
+					) );
+					$testCase->assertArrayEquals( [ 'https://test.com' => 1 ], $object->getExternalLinks() );
+					$testCase->assertArrayEquals( [ 'tag1' => 'head_item1' ], $object->getHeadItems() );
+					$testCase->assertArrayEquals( [ 'module1' ], $object->getModules() );
+					$testCase->assertArrayEquals( [ 'module_style1' ], $object->getModuleStyles() );
+					$testCase->assertArrayEquals( [ 'key1' => 'value1' ], $object->getJsConfigVars() );
+					$testCase->assertArrayEquals( [ MessageValue::new( 'rawmessage', [ 'warning1' ] ) ], $object->getWarningMsgs() );
+					$testCase->assertSame( 'noindex', $object->getIndexPolicy() );
+					$testCase->assertSame( MWTimestamp::convert( TS_MW, 987654321 ), $object->getRevisionTimestamp() );
+					$testCase->assertArrayEquals(
+						[ 'limit_report_key1' => 'value1' ],
+						$object->getLimitReportData()
+					);
+					$testCase->assertArrayEquals(
+						[ 'limit_report_key1' => 'value1' ],
+						$object->getLimitReportJSData()
+					);
+					$testCase->assertTrue( $object->getEnableOOUI() );
+					$testCase->assertTrue( $object->getHideNewSection() );
+					$testCase->assertTrue( $object->getNewSection() );
+					$testCase->assertTrue( $object->getOutputFlag( ParserOutputFlags::VARY_REVISION_ID ) );
+					$testCase->assertArrayEquals( [ 'vary-revision-id' ], $object->getAllFlags() );
+				}
+			],
 			'withFalsyProperties1_45' => [
 				'instance' => $parserOutputWithFalsyProperties,
 				'assertions' => static function ( MediaWikiIntegrationTestCase $testCase, ParserOutput $object ) {
@@ -629,8 +712,10 @@ abstract class ParserCacheSerializationTestCases {
 				'ext' => 'json',
 				'serializer' => static fn ( $obj ) =>
 					$jsonCodec->serialize( $obj ),
-				'deserializer' => static fn ( $data ) =>
-					$jsonCodec->deserialize( $data ),
+				'deserializer' => static function ( $data ) use ( $jsonCodec ) {
+					MWDebug::filterDeprecationForTest( '/::setOutputFlag with non-standard flag/' );
+					return $jsonCodec->deserialize( $data );
+				},
 			],
 		];
 		return $serializationFormats;
