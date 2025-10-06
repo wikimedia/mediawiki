@@ -867,6 +867,7 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 	 * @param array $expected
 	 */
 	public function testMergeTrackingMetaDataFrom( ParserOutput $a, ParserOutput $b, $expected ) {
+		$this->filterDeprecated( '/ParserOutput::getInterwikiLinks was deprecated/' );
 		$a->mergeTrackingMetaDataFrom( $b );
 
 		$this->assertFieldValues( $a, $expected );
@@ -886,6 +887,7 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 	 * @param array $expected
 	 */
 	public function testCollectMetaData( ParserOutput $a, ParserOutput $b, $expected ) {
+		$this->filterDeprecated( '/ParserOutput::getInterwikiLinks was deprecated/' );
 		$b->collectMetadata( $a );
 
 		$this->assertFieldValues( $a, $expected );
@@ -978,13 +980,13 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 			'revisionTimestamp' => '20180101000011',
 		];
 		$b = [];
-		yield 'only left timestamp' => [ $a, $b, [ 'getTimestamp' => '20180101000011' ] ];
+		yield 'only left timestamp' => [ $a, $b, [ 'getRevisionTimestamp' => '20180101000011' ] ];
 
 		$a = [];
 		$b = [
 			'revisionTimestamp' => '20180101000011',
 		];
-		yield 'only right timestamp' => [ $a, $b, [ 'getTimestamp' => '20180101000011' ] ];
+		yield 'only right timestamp' => [ $a, $b, [ 'getRevisionTimestamp' => '20180101000011' ] ];
 
 		$a = [
 			'revisionTimestamp' => '20180101000011',
@@ -992,7 +994,7 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 		$b = [
 			'revisionTimestamp' => '20180101000001',
 		];
-		yield 'left timestamp wins' => [ $a, $b, [ 'getTimestamp' => '20180101000011' ] ];
+		yield 'left timestamp wins' => [ $a, $b, [ 'getRevisionTimestamp' => '20180101000011' ] ];
 
 		$a = [
 			'revisionTimestamp' => '20180101000001',
@@ -1000,7 +1002,7 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 		$b = [
 			'revisionTimestamp' => '20180101000011',
 		];
-		yield 'right timestamp wins' => [ $a, $b, [ 'getTimestamp' => '20180101000011' ] ];
+		yield 'right timestamp wins' => [ $a, $b, [ 'getRevisionTimestamp' => '20180101000011' ] ];
 
 		// speculative rev id ------------
 		$a = [

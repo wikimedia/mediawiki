@@ -616,6 +616,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 
 	/** @deprecated since 1.43, use ::getLinkList(ParserOutputLinkTypes::INTERWIKI) */
 	public function getInterwikiLinks() {
+		wfDeprecated( __METHOD__, '1.43' );
 		return $this->mInterwikiLinks;
 	}
 
@@ -881,6 +882,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * @deprecated since 1.43, use ::getLinkList(ParserOutputLinkTypes::SPECIAL)
 	 */
 	public function &getLinksSpecial() {
+		wfDeprecated( __METHOD__, '1.43' );
 		return $this->mLinksSpecial;
 	}
 
@@ -1010,6 +1012,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * @deprecated since 1.42; use ::getRevisionTimestamp() instead
 	 */
 	public function getTimestamp() {
+		wfDeprecated( __METHOD__, '1.42' );
 		return $this->getRevisionTimestamp();
 	}
 

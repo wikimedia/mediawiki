@@ -34,7 +34,6 @@ enum ParserOutputLinkTypes: string {
 	/**
 	 * Interwiki links
 	 * @see ParserOutput::addInterwikiLink
-	 * @see ParserOutput::getInterwikiLinks
 	 */
 	case INTERWIKI = 'interwiki';
 

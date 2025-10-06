@@ -961,7 +961,7 @@ class Article implements Page {
 			$cachedId = $pOutput->getCacheRevisionId();
 			if ( $cachedId !== null ) {
 				$outputPage->setRevisionId( $cachedId );
-				$outputPage->getMetadata()->setRevisionTimestamp( $pOutput->getTimestamp() );
+				$outputPage->getMetadata()->setRevisionTimestamp( $pOutput->getRevisionTimestamp() );
 			}
 		}
 

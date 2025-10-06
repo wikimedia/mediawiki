@@ -6,6 +6,7 @@ use MediaWiki\Debug\MWDebug;
 use MediaWiki\Json\JsonCodec;
 use MediaWiki\Parser\CacheTime;
 use MediaWiki\Parser\ParserOutput;
+use MediaWiki\Parser\ParserOutputLinkTypes;
 use MediaWiki\Tests\Json\JsonDeserializableSubClass;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
@@ -342,7 +343,7 @@ abstract class ParserCacheSerializationTestCases {
 					$testCase->assertNull( $object->getRevisionTimestampUsed() );
 					$testCase->assertNull( $object->getRevisionUsedSha1Base36() );
 					$testCase->assertArrayEquals( [], $object->getLanguageLinks() );
-					$testCase->assertArrayEquals( [], $object->getInterwikiLinks() );
+					$testCase->assertArrayEquals( [], $object->getLinkList( ParserOutputLinkTypes::INTERWIKI ) );
 					$testCase->assertArrayEquals( [], $object->getCategoryNames() );
 					$testCase->assertArrayEquals( [], $object->getCategoryMap() );
 					$testCase->assertArrayEquals( [], $object->getIndicators() );
@@ -350,7 +351,7 @@ abstract class ParserCacheSerializationTestCases {
 					$testCase->assertArrayEquals( [], $object->getSections() );
 					$testCase->assertNull( $object->getTOCData() );
 					$testCase->assertArrayEquals( [], $object->getLinks() );
-					$testCase->assertArrayEquals( [], $object->getLinksSpecial() );
+					$testCase->assertArrayEquals( [], $object->getLinkList( ParserOutputLinkTypes::SPECIAL ) );
 					$testCase->assertArrayEquals( [], $object->getTemplates() );
 					$testCase->assertArrayEquals( [], $object->getTemplateIds() );
 					$testCase->assertArrayEquals( [], $object->getImages() );
@@ -490,7 +491,12 @@ abstract class ParserCacheSerializationTestCases {
 					$testCase->assertArrayEquals( [ 'default1' ], $object->getExtraCSPDefaultSrcs() );
 					$testCase->assertArrayEquals( [ 'script1' ], $object->getExtraCSPScriptSrcs() );
 					$testCase->assertArrayEquals( [ 'style1' ], $object->getExtraCSPStyleSrcs() );
-					$testCase->assertArrayEquals( [ 'Link3' => 1 ], $object->getLinksSpecial() );
+					$testCase->assertEqualsCanonicalizing( [
+						'-1:Link3'
+					], array_map(
+						static fn ( $item ) => strval( $item['link'] ),
+						$object->getLinkList( ParserOutputLinkTypes::SPECIAL )
+					) );
 				}
 			],
 			'withMetadataPost1_44' => [
@@ -498,10 +504,13 @@ abstract class ParserCacheSerializationTestCases {
 				'assertions' => static function ( MediaWikiIntegrationTestCase $testCase, ParserOutput $object ) {
 					$testCase->assertSame( 42, $object->getSpeculativeRevIdUsed() );
 					$testCase->assertArrayEquals( [ 'm:link1', 'mw:link2' ], $object->getLanguageLinks() );
-					$testCase->assertArrayEquals( [ 'enwiki' => [
-						'interwiki1' => 1,
-						'interwiki2' => 1
-					] ], $object->getInterwikiLinks() );
+					$testCase->assertEqualsCanonicalizing( [
+						'enwiki:0:interwiki1',
+						'enwiki:0:interwiki2',
+					], array_map(
+						static fn ( $item ) => strval( $item['link'] ),
+						$object->getLinkList( ParserOutputLinkTypes::INTERWIKI )
+					) );
 					$testCase->assertArrayEquals( [ 'category1', 'category2' ], $object->getCategoryNames() );
 					$testCase->assertArrayEquals( [
 						'category1' => '2',

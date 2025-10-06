@@ -3,6 +3,7 @@
 namespace MediaWiki\Tests\Parser;
 
 use MediaWiki\Context\RequestContext;
+use MediaWiki\Debug\MWDebug;
 use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Parser\Parser;
@@ -254,6 +255,7 @@ class ExtraParserTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideParseLinkParameter
 	 */
 	public function testParseLinkParameter( $input, $expected, $expectedLinks, $desc ) {
+		MWDebug::filterDeprecationForTest( '/::getInterwikiLinks was deprecated/' );
 		static $testInterwikis = [
 			[
 				'iw_prefix' => 'local',
