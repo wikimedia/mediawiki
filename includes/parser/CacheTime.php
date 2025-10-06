@@ -259,15 +259,7 @@ class CacheTime implements ParserCacheMetadata, JsonCodecable {
 		// WARNING: When changing how this class is serialized, follow the instructions
 		// at <https://www.mediawiki.org/wiki/Manual:Parser_cache/Serialization_compatibility>!
 
-		if ( array_key_exists( 'AccessedOptions', $jsonData ) ) {
-			// Backwards compatibility for ParserOutput
-			$this->mParseUsedOptions = $jsonData['AccessedOptions'] ?: [];
-		} elseif ( array_key_exists( 'UsedOptions', $jsonData ) ) {
-			// Backwards compatibility
-			$this->recordOptions( $jsonData['UsedOptions'] ?: [] );
-		} else {
-			$this->mParseUsedOptions = $jsonData['ParseUsedOptions'] ?: [];
-		}
+		$this->mParseUsedOptions = $jsonData['ParseUsedOptions'] ?: [];
 		$this->mCacheExpiry = $jsonData['CacheExpiry'];
 		$this->mCacheTime = $jsonData['CacheTime'];
 		$this->mCacheRevisionId = $jsonData['CacheRevisionId'];
