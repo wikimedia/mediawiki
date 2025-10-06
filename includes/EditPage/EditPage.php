@@ -3950,7 +3950,22 @@ class EditPage implements IEditObject {
 	 * @return string
 	 */
 	protected function getActionURL( Title $title ) {
-		return $title->getLocalURL( [ 'action' => $this->action ] );
+		$request = $this->context->getRequest();
+		$params = $request->getQueryValuesOnly();
+
+		$allowedFormParams = [
+			'section', 'oldid', 'preloadtitle', 'undo', 'undoafter',
+			// Considered safe in all contexts
+			'uselang', 'useskin', 'useformat', 'variant', 'debug', 'safemode'
+		];
+		$formParams = [ 'action' => $this->action ];
+		foreach ( $params as $arg => $val ) {
+			if ( in_array( $arg, $allowedFormParams, true ) ) {
+				$formParams[$arg] = $val;
+			}
+		}
+
+		return $title->getLocalURL( $formParams );
 	}
 
 	/**
