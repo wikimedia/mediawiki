@@ -403,9 +403,9 @@ because of Phabricator reports.
   warnings.
 * ParserOutput::getWarnings() has been deprecated. Use ::getWarningMsgs()
   instead.
-* ParserOutput::setLanguageLinks() and ::getTimestamp(), deprecated in 1.42,
-  now emit deprecation warnings.
-* ParserOutput::getInterwikiLinks() and ::getLinksSpecial(), deprecated in
+* ParserOutput::setLanguageLinks(), ::getTimestamp(), and
+  ::setTimestamp, deprecated in 1.42, now emit deprecation warnings.
+* ParserOutput::getInterwikiLinks(), and ::getLinksSpecial(), deprecated in
   1.43, now emit deprecation warnings.
 * OutputPage::setLanguageLinks(), deprecated in 1.43, now emits deprecation
   warnings.
