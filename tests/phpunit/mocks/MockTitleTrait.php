@@ -29,9 +29,9 @@ trait MockTitleTrait {
 	 *        - revision: int
 	 *        - validRedirect: bool
 	 *
-	 * @return Title|MockObject
+	 * @return Title&MockObject
 	 */
-	private function makeMockTitle( $text, array $props = [] ) {
+	private function makeMockTitle( string $text, array $props = [] ): Title&MockObject {
 		$ns = $props['namespace'] ?? 0;
 		if ( $ns < 0 ) {
 			$id = 0;

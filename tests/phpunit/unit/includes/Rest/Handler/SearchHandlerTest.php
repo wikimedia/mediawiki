@@ -3,12 +3,11 @@
 namespace MediaWiki\Tests\Rest\Handler;
 
 use InvalidArgumentException;
+use ISearchResultSet;
 use MediaWiki\Config\HashConfig;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
-use MediaWiki\Language\FormatterFactory;
 use MediaWiki\Language\Language;
-use MediaWiki\Language\RawMessage;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
@@ -23,8 +22,8 @@ use MediaWiki\Rest\RequestData;
 use MediaWiki\Search\Entity\SearchResultThumbnail;
 use MediaWiki\Search\SearchResultThumbnailProvider;
 use MediaWiki\Status\Status;
-use MediaWiki\Status\StatusFormatter;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
+use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFormatter;
 use MediaWiki\Title\TitleValue;
 use MediaWiki\User\Options\UserOptionsLookup;
@@ -35,7 +34,6 @@ use SearchEngine;
 use SearchEngineConfig;
 use SearchEngineFactory;
 use SearchResult;
-use SearchResultSet;
 use SearchSuggestion;
 use SearchSuggestionSet;
 use Wikimedia\Message\MessageValue;
@@ -49,14 +47,14 @@ class SearchHandlerTest extends MediaWikiUnitTestCase {
 	use MediaTestTrait;
 
 	/**
-	 * @var SearchEngine|MockObject|null
+	 * @var SearchEngine&MockObject|null
 	 */
 	private $searchEngine = null;
 
 	/**
 	 * @param string $query
-	 * @param SearchResultSet|Status $titleResult
-	 * @param SearchResultSet|Status $textResult
+	 * @param ISearchResultSet|Status<ISearchResultSet>|null $titleResult
+	 * @param ISearchResultSet|Status<ISearchResultSet>|null $textResult
 	 * @param SearchSuggestionSet|null $completionResult
 	 * @param PermissionManager|null $permissionManager
 	 * @param RedirectLookup|null $redirectLookup
@@ -67,38 +65,33 @@ class SearchHandlerTest extends MediaWikiUnitTestCase {
 	 * @return SearchHandler
 	 */
 	private function newHandler(
-		$query,
+		string $query,
 		$titleResult,
 		$textResult,
-		$completionResult = null,
-		$permissionManager = null,
-		$redirectLookup = null,
-		$pageStore = null,
-		$mockTitleFormatter = null,
+		?SearchSuggestionSet $completionResult = null,
+		?PermissionManager $permissionManager = null,
+		?RedirectLookup $redirectLookup = null,
+		?PageStore $pageStore = null,
+		?TitleFormatter $mockTitleFormatter = null,
 		?HookContainer $hookContainer = null
-	) {
+	): SearchHandler {
 		$sources = [
 			MainConfigNames::SearchType => 'test',
 			MainConfigNames::SearchTypeAlternatives => [],
 			MainConfigNames::NamespacesToBeSearchedDefault => [ NS_MAIN => true ],
 			MainConfigNames::SearchSuggestCacheExpiry => 1200,
 		];
-		$config = new HashConfig( $sources );
 
-		/** @var Language|MockObject $language */
-		$language = $this->createNoOpMock( Language::class );
 		$hookContainer ??= $this->createHookContainer();
-		/** @var UserOptionsLookup|MockObject $userOptionsLookup */
-		$userOptionsLookup = $this->createMock( UserOptionsLookup::class );
 		$searchEngineConfig = new SearchEngineConfig(
 			new ServiceOptions(
 				SearchEngineConfig::CONSTRUCTOR_OPTIONS,
 				$sources
 			),
-			$language,
+			$this->createNoOpMock( Language::class ),
 			$hookContainer,
 			[],
-			$userOptionsLookup
+			$this->createMock( UserOptionsLookup::class )
 		);
 
 		if ( !$permissionManager ) {
@@ -106,9 +99,6 @@ class SearchHandlerTest extends MediaWikiUnitTestCase {
 			$permissionManager->method( 'isEveryoneAllowed' )
 				->with( 'read' )
 				->willReturn( true );
-		}
-		if ( !$pageStore ) {
-			$pageStore = $this->createMock( PageStore::class );
 		}
 
 		// Our mock RedirectLookup defaults to not finding a redirect for our given page
@@ -118,10 +108,6 @@ class SearchHandlerTest extends MediaWikiUnitTestCase {
 				->willReturn( null );
 		}
 
-		if ( !$mockTitleFormatter ) {
-			$mockTitleFormatter = $this->getDummyTitleFormatter();
-		}
-
 		$this->searchEngine = $this->createMock( SearchEngine::class );
 		$this->searchEngine->method( 'searchTitle' )
 			->with( $query )
@@ -129,84 +115,51 @@ class SearchHandlerTest extends MediaWikiUnitTestCase {
 		$this->searchEngine->method( 'searchText' )
 			->with( $query )
 			->willReturn( $textResult );
+		$this->searchEngine->method( 'completionSearchWithVariants' )
+			->with( $query )
+			->willReturn( $completionResult );
 
-		if ( $completionResult ) {
-			$this->searchEngine->method( 'completionSearchWithVariants' )
-				->with( $query )
-				->willReturn( $completionResult );
-		}
-
-		/** @var SearchEngineFactory|MockObject $searchEngineFactory */
 		$searchEngineFactory = $this->createNoOpMock( SearchEngineFactory::class, [ 'create' ] );
 		$searchEngineFactory->method( 'create' )
 			->willReturn( $this->searchEngine );
 
-		$searchResultThumbnailProvider = new SearchResultThumbnailProvider(
-			$this->makeMockRepoGroup( [] ),
-			$hookContainer
-		);
-
-		$mockStatusFormatter = $this->createNoOpMock( StatusFormatter::class, [ 'getMessage' ] );
-		$mockStatusFormatter->method( 'getMessage' )->willReturn(
-			new RawMessage( 'testing' )
-		);
-
-		$mockFormatterFactory = $this->createNoOpMock( FormatterFactory::class, [ 'getStatusFormatter' ] );
-		$mockFormatterFactory->method( 'getStatusFormatter' )->willReturn( $mockStatusFormatter );
-
 		return new SearchHandler(
-			$config,
+			new HashConfig( $sources ),
 			$searchEngineFactory,
 			$searchEngineConfig,
-			$searchResultThumbnailProvider,
+			new SearchResultThumbnailProvider(
+				$this->makeMockRepoGroup( [] ),
+				$hookContainer
+			),
 			$permissionManager,
 			$redirectLookup,
-			$pageStore,
-			$mockTitleFormatter,
-			$mockFormatterFactory,
+			$pageStore ?? $this->createMock( PageStore::class ),
+			$mockTitleFormatter ?? $this->getDummyTitleFormatter(),
 		);
 	}
 
-	/**
-	 * @param string $pageName
-	 * @param string $textSnippet
-	 * @param bool $broken
-	 * @param bool $missing
-	 *
-	 * @return SearchResult
-	 */
 	private function makeMockSearchResult(
-		$pageName,
-		$textSnippet = 'Lorem Ipsum',
-		$broken = false,
-		$missing = false
-	) {
-		$title = $this->makeMockTitle( $pageName );
-
-		/** @var SearchResult|MockObject $result */
+		string $pageName,
+		string $textSnippet = 'Lorem Ipsum',
+		bool $broken = false,
+		bool $missing = false
+	): SearchResult {
 		$result = $this->createNoOpMock( SearchResult::class, [
 			'getTitle', 'isBrokenTitle', 'isMissingRevision', 'getTextSnippet'
 		] );
-		$result->method( 'getTitle' )->willReturn( $title );
+		$result->method( 'getTitle' )->willReturn( $this->makeMockTitle( $pageName ) );
 		$result->method( 'getTextSnippet' )->willReturn( $textSnippet );
 		$result->method( 'isBrokenTitle' )->willReturn( $broken );
 		$result->method( 'isMissingRevision' )->willReturn( $missing );
-
 		return $result;
 	}
 
-	/**
-	 * @param string $pageName
-	 * @param MockObject|null $title
-	 *
-	 * @return SearchSuggestion
-	 */
-	private function makeMockSearchSuggestion( $pageName, $title = null ) {
-		if ( !$title ) {
-			$title = $this->makeMockTitle( $pageName );
-		}
+	private function makeMockSearchSuggestion(
+		string $pageName,
+		?Title $title = null
+	): SearchSuggestion {
+		$title ??= $this->makeMockTitle( $pageName );
 
-		/** @var SearchSuggestion|MockObject $suggestion */
 		$suggestion = $this->createNoOpMock(
 			SearchSuggestion::class,
 			[ 'getSuggestedTitle', 'getSuggestedTitleID', 'getText' ]
@@ -239,7 +192,8 @@ class SearchHandlerTest extends MediaWikiUnitTestCase {
 		$data = $this->executeHandlerAndGetBodyData( $handler, $request, $config, [], [], [],
 			$this->mockAnonAuthority( static function ( string $permission, ?PageIdentity $target ) {
 				return $target && !preg_match( '/Forbidden/', $target->getDBkey() );
-			} ) );
+			} )
+		);
 
 		$this->assertArrayHasKey( 'pages', $data );
 		$this->assertCount( 4, $data['pages'] );
@@ -266,8 +220,7 @@ class SearchHandlerTest extends MediaWikiUnitTestCase {
 		$query = 'foo';
 		$request = new RequestData( [ 'queryParams' => [ 'q' => $query ] ] );
 
-		$handler = $this->newHandler(
-			$query, $titleResults, $textResults, $completionResults );
+		$handler = $this->newHandler( $query, $titleResults, $textResults, $completionResults );
 		$config = [ 'mode' => SearchHandler::COMPLETION_MODE ];
 		$response = $this->executeHandler( $handler, $request, $config );
 
@@ -359,10 +312,8 @@ class SearchHandlerTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider provideExecute_limit_error
-	 * @param int $requestedLimit
-	 * @param string $error
 	 */
-	public function testExecute_limit_error( $requestedLimit, $error ) {
+	public function testExecute_limit_error( $requestedLimit, string $error ) {
 		$titleResults = new MockSearchResultSet( [
 			$this->makeMockSearchResult( 'Foo' ),
 			$this->makeMockSearchResult( 'FooBar' ),
