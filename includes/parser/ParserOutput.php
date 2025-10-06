@@ -719,11 +719,13 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * Template links have 'revid' set.  Category links have 'sort' set.
 	 * Media links optionally have 'time' and 'sha1' set.
 	 *
-	 * @param string $linkType A link type, which should be a constant from
-	 *  ParserOutputLinkTypes.
+	 * @param string|ParserOutputLinkTypes $linkType A link type
 	 * @return list<array{link:ParsoidLinkTarget,pageid?:int,revid?:int,sort?:string,time?:string|false,sha1?:string|false}>
 	 */
-	public function getLinkList( string $linkType ): array {
+	public function getLinkList( string|ParserOutputLinkTypes $linkType ): array {
+		if ( is_string( $linkType ) ) {
+			$linkType = ParserOutputLinkTypes::from( $linkType );
+		}
 		# Note that fragments are dropped for everything except language links
 		$result = [];
 		switch ( $linkType ) {
@@ -807,7 +809,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 				break;
 
 			default:
-				throw new UnexpectedValueException( "Unknown link type $linkType" );
+				throw new UnexpectedValueException( "Unknown link type " . $linkType->value );
 		}
 		return $result;
 	}
