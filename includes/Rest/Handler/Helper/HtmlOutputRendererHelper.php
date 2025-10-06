@@ -21,6 +21,7 @@ use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageLookup;
 use MediaWiki\Page\PageRecord;
 use MediaWiki\Page\ParserOutputAccess;
+use MediaWiki\Parser\ContentHolder;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\Parsoid\Config\SiteConfig as ParsoidSiteConfig;
@@ -47,9 +48,9 @@ use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\Parsoid\Core\ClientError;
 use Wikimedia\Parsoid\Core\HtmlPageBundle;
 use Wikimedia\Parsoid\Core\ResourceLimitExceededException;
+use Wikimedia\Parsoid\DOM\DocumentFragment;
 use Wikimedia\Parsoid\DOM\Element;
 use Wikimedia\Parsoid\Parsoid;
-use Wikimedia\Parsoid\Utils\DOMCompat;
 use Wikimedia\Parsoid\Utils\DOMUtils;
 use Wikimedia\Parsoid\Utils\WTUtils;
 use Wikimedia\Stats\StatsFactory;
@@ -786,7 +787,7 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 	 * There already is a stripUnnecessaryWrappersAndSyntheticNodes but
 	 * it targets html2wt and does a lot more than just section unwrapping.
 	 */
-	private function stripParsoidSectionTags( Element $elt ): void {
+	private function stripParsoidSectionTags( DocumentFragment|Element $elt ): void {
 		$n = $elt->firstChild;
 		while ( $n ) {
 			$next = $n->nextSibling;
@@ -936,11 +937,10 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 				// NOTE: This introduces an extra html -> dom -> html roundtrip
 				// This will get addressed once HtmlHolder work is complete
 				$parserOutput = $status->getValue();
-				$body = DOMCompat::getBody( DOMUtils::parseHTML( $parserOutput->getRawText() ) );
-				if ( $body ) {
-					$this->stripParsoidSectionTags( $body );
-					$parserOutput->setText( DOMCompat::getInnerHTML( $body ) );
-				}
+				$body = $parserOutput->getContentHolder()->getAsDom(
+					ContentHolder::BODY_FRAGMENT
+				);
+				$this->stripParsoidSectionTags( $body );
 			}
 			Assert::invariant( $status->isOK() ? $status->getValue()->getRenderId() !== null : true, "no render id" );
 		}
