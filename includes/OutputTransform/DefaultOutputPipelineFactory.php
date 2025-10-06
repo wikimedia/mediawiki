@@ -49,9 +49,9 @@ class DefaultOutputPipelineFactory {
 				'MobileFrontend.Context',
 			],
 		],
-		'AddRedirectHeader' => [
-			'class' => AddRedirectHeader::class,
-		],
+		'AddRedirectHeader' =>
+			AddRedirectHeader::class,
+
 		'RenderDebugInfo' => [
 			'class' => RenderDebugInfo::class,
 			'services' => [
@@ -108,19 +108,18 @@ class DefaultOutputPipelineFactory {
 			],
 			'exclusive' => false
 		],
-		'DeduplicateStyles' => [
-			'class' => DeduplicateStyles::class,
-		],
-		'ExpandToAbsoluteUrls' => [
-			'class' => ExpandToAbsoluteUrls::class,
-		],
-		'HydrateHeaderPlaceholders' => [
-			'class' => HydrateHeaderPlaceholders::class,
-		],
+		'DeduplicateStyles' =>
+			DeduplicateStyles::class,
+
+		'ExpandToAbsoluteUrls' =>
+			ExpandToAbsoluteUrls::class,
+
+		'HydrateHeaderPlaceholders' =>
+			HydrateHeaderPlaceholders::class,
+
 		# This should be last, in order to ensure final output is hardened
-		'HardenNFC' => [
-			'class' => HardenNFC::class,
-		],
+		'HardenNFC' =>
+			HardenNFC::class,
 	];
 
 	public function __construct(
