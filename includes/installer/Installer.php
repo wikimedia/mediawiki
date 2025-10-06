@@ -621,7 +621,8 @@ abstract class Installer {
 	 * @since 1.30
 	 */
 	public static function getDBInstallerClass( $type ) {
-		return '\\MediaWiki\\Installer\\' . ucfirst( $type ) . 'Installer';
+		$installer = '\\MediaWiki\\Installer\\' . ucfirst( strtolower( $type ) ) . 'Installer';
+		return class_exists($installer) ? $installer : throw new Exception ("DB Driver Type {$type} doesn't exists.");
 	}
 
 	/**
