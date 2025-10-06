@@ -86,19 +86,6 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	use ContentMetadataCollectorCompat;
 
 	/**
-	 * Feature flags to indicate to extensions that MediaWiki core supports and
-	 * uses getText() stateless transforms.
-	 *
-	 * @since 1.31
-	 */
-	public const SUPPORTS_STATELESS_TRANSFORMS = 1;
-
-	/**
-	 * @since 1.31
-	 */
-	public const SUPPORTS_UNWRAP_TRANSFORM = 1;
-
-	/**
 	 * @internal
 	 * @since 1.45
 	 */

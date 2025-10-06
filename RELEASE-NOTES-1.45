@@ -324,6 +324,9 @@ because of Phabricator reports.
 * SearchEngine::replacePrefixes(), deprecated in 1.32 is now removed.
 * The FetchChangesList hook is now called with an object as its
   fourth parameter, instead of an array. The object is iterable.
+* ParserOutput::SUPPORTS_STATELESS_TRANSFORMS and
+  ParserOutput::SUPPORTS_UNWRAP_TRANSFORM, constants which were added as
+  feature flags in MW 1.31, have been removed.
 * …
 
 === Deprecations in 1.45 ===
