@@ -173,7 +173,6 @@ For notes on 1.44.x and older releases, see HISTORY.
 * Updated mediawiki/mediawiki-codesniffer from 47.0.0 to 48.0.0.
 * Updated mediawiki/mediawiki-phan-config from 0.16.0 to 0.17.0.
 * Updated composer/spdx-licenses from 1.5.8 to 1.5.9.
-* Updated giorgiosironi/eris from 0.14.1 to 1.0.0.
 * …
 
 ==== Removed external libraries ====

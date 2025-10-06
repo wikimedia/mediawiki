@@ -92,7 +92,7 @@
 		"doctrine/dbal": "3.10.0",
 		"doctrine/sql-formatter": "1.5.2",
 		"ext-simplexml": "*",
-		"giorgiosironi/eris": "^1.0",
+		"giorgiosironi/eris": "^0.14.0",
 		"hamcrest/hamcrest-php": "^2.0",
 		"johnkary/phpunit-speedtrap": "^4.0",
 		"mediawiki/mediawiki-codesniffer": "48.0.0",
