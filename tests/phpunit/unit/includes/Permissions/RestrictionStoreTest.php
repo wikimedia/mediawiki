@@ -28,6 +28,7 @@ use Wikimedia\Rdbms\DeleteQueryBuilder;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 use Wikimedia\Rdbms\UnionQueryBuilder;
 
@@ -49,9 +50,9 @@ class RestrictionStoreTest extends MediaWikiUnitTestCase {
 	 *       'select' => [ callback, -1 ], # may be called 0 or more times
 	 *     ],
 	 *   ]
-	 * @return ILoadBalancer
+	 * @return LBFactory
 	 */
-	private function newMockLoadBalancer( array $expectedCalls = [] ): ILoadBalancer {
+	private function newMockLBFactory( array $expectedCalls = [] ): LBFactory {
 		if ( !isset( $expectedCalls[DB_REPLICA] ) ) {
 			$expectedCalls[DB_REPLICA] = [];
 		}
@@ -93,7 +94,7 @@ class RestrictionStoreTest extends MediaWikiUnitTestCase {
 				} );
 		}
 
-		$lb = $this->createMock( ILoadBalancer::class, [ 'getConnection' ] );
+		$lb = $this->createMock( ILoadBalancer::class );
 		$lb->method( 'getConnection' )->willReturnCallback(
 			function ( int $index ) use ( $dbs ): IDatabase {
 				$this->assertArrayHasKey( $index, $dbs );
@@ -101,7 +102,20 @@ class RestrictionStoreTest extends MediaWikiUnitTestCase {
 			}
 		);
 
-		return $lb;
+		$lbFactory = $this->createMock( LBFactory::class );
+		$lbFactory->method( 'getReplicaDatabase' )->willReturnCallback(
+			static function ( $domain = null ) use ( $lb ) {
+				return $lb->getConnection( DB_REPLICA, [], $domain );
+			}
+		);
+		$lbFactory->method( 'getPrimaryDatabase' )->willReturnCallback(
+			static function ( $domain = null ) use ( $lb ) {
+				return $lb->getConnection( DB_PRIMARY, [], $domain );
+			}
+		);
+		$lbFactory->method( 'getMainLB' )->willReturn( $lb );
+
+		return $lbFactory;
 	}
 
 	private function newRestrictionStore( array $options = [] ): RestrictionStore {
@@ -113,7 +127,7 @@ class RestrictionStoreTest extends MediaWikiUnitTestCase {
 				MainConfigNames::SemiprotectedRestrictionLevels => [ 'autoconfirmed' ],
 			] ),
 			$this->createNoOpMock( WANObjectCache::class ),
-			$this->newMockLoadBalancer( $options['db'] ?? [] ),
+			$this->newMockLBFactory( $options['db'] ?? [] ),
 			// @todo test that these calls work correctly
 			$this->createNoOpMock( LinkCache::class, [ 'addLinkObj', 'getGoodLinkFieldObj' ] ),
 			$this->createNoOpMock( LinksMigration::class, [ 'getLinksConditions' ] ),
@@ -965,19 +979,16 @@ class RestrictionStoreTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testGetCascadeProtectionSources() {
-		$obj = $this->newRestrictionStore( [ 'db' => [ DB_REPLICA => [ 'select' =>
-			static function () {
-				return new FakeResultWrapper( [
-					(object)[ 'pr_page' => 1, 'page_namespace' => NS_MAIN, 'page_title' => 'test',
-						'pr_expiry' => 'infinity', 'pr_type' => 'edit', 'pr_level' => 'Sysop',
-						'type' => 'tl' ]
-				] );
-			},
-			'addQuotes' => [
+		$obj = $this->newRestrictionStore( [ 'db' => [ DB_REPLICA => [
+			'select' => [
 				static function () {
-					return 'noop';
+					return new FakeResultWrapper( [
+						(object)[ 'pr_page' => 1, 'page_namespace' => NS_MAIN, 'page_title' => 'test',
+							'pr_expiry' => 'infinity', 'pr_type' => 'edit', 'pr_level' => 'Sysop',
+							'tl_from' => 1 ]
+					] );
 				},
-				1
+				2
 			]
 		] ] ] );
 
@@ -991,31 +1002,19 @@ class RestrictionStoreTest extends MediaWikiUnitTestCase {
 
 	public function testGetCascadeProtectionSourcesFile() {
 		$obj = $this->newRestrictionStore( [ 'db' => [ DB_REPLICA => [
-			'addQuotes' => [
+			'select' => [
 				static function () {
-					return 'noop';
+					return new FakeResultWrapper( [
+						(object)[ 'pr_page' => 1, 'page_namespace' => NS_MAIN, 'page_title' => 'test1',
+							'pr_expiry' => 'infinity', 'pr_type' => 'edit', 'pr_level' => 'Sysop',
+							'tl_from' => 1, 'il_from' => 2 ],
+						(object)[ 'pr_page' => 2, 'page_namespace' => NS_MAIN, 'page_title' => 'test2',
+							'pr_expiry' => 'infinity', 'pr_type' => 'edit', 'pr_level' => 'Sysop',
+							'tl_from' => 1, 'il_from' => 2 ]
+					] );
 				},
-				2
-			],
-			'selectSQLText' => [
-				static function () {
-					return 'noop';
-				},
-				2
-			],
-			'unionQueries' => static function () {
-				return 'noop';
-			},
-			'query' => static function () {
-				return new FakeResultWrapper( [
-					(object)[ 'pr_page' => 1, 'page_namespace' => NS_MAIN, 'page_title' => 'test1',
-						'pr_expiry' => 'infinity', 'pr_type' => 'edit', 'pr_level' => 'Sysop',
-						'type' => 'il' ],
-					(object)[ 'pr_page' => 2, 'page_namespace' => NS_MAIN, 'page_title' => 'test2',
-						'pr_expiry' => 'infinity', 'pr_type' => 'edit', 'pr_level' => 'Sysop',
-						'type' => 'tl' ]
-				] );
-			},
+				3
+			]
 		] ] ] );
 
 		$page = PageIdentityValue::localIdentity( 1, NS_FILE, 'Image.jpg' );
@@ -1042,8 +1041,6 @@ class RestrictionStoreTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testShouldNotFetchProtectionSettingsIfActionCannotBeRestricted(): void {
-		$lb = $this->createNoopMock( ILoadBalancer::class );
-
 		$store = new RestrictionStore(
 			new ServiceOptions( RestrictionStore::CONSTRUCTOR_OPTIONS, [
 					MainConfigNames::NamespaceProtection => [],
@@ -1052,7 +1049,7 @@ class RestrictionStoreTest extends MediaWikiUnitTestCase {
 					MainConfigNames::SemiprotectedRestrictionLevels => [ 'autoconfirmed' ],
 				] ),
 			WANObjectCache::newEmpty(),
-			$lb,
+			$this->createNoopMock( LBFactory::class ),
 			$this->createMock( LinkCache::class ),
 			$this->createMock( LinksMigration::class ),
 			$this->createMock( CommentStore::class ),

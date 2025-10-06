@@ -17,7 +17,7 @@ use MediaWiki\Title\Title;
 use MediaWikiIntegrationTestCase;
 use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\Rdbms\IDBAccessObject;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -31,7 +31,7 @@ class RestrictionStoreTest extends MediaWikiIntegrationTestCase {
 	private const DEFAULT_RESTRICTION_TYPES = [ 'create', 'edit', 'move', 'upload' ];
 
 	private WANObjectCache $wanCache;
-	private ILoadBalancer $loadBalancer;
+	private LBFactory $loadBalancerFactory;
 	private LinkCache $linkCache;
 	private LinksMigration $linksMigration;
 	private HookContainer $hookContainer;
@@ -52,7 +52,7 @@ class RestrictionStoreTest extends MediaWikiIntegrationTestCase {
 
 		$services = $this->getServiceContainer();
 		$this->wanCache = $services->getMainWANObjectCache();
-		$this->loadBalancer = $services->getDBLoadBalancer();
+		$this->loadBalancerFactory = $services->getDBLoadBalancerFactory();
 		$this->linkCache = $services->getLinkCache();
 		$this->linksMigration = $services->getLinksMigration();
 		$this->hookContainer = $services->getHookContainer();
@@ -86,7 +86,7 @@ class RestrictionStoreTest extends MediaWikiIntegrationTestCase {
 				MainConfigNames::SemiprotectedRestrictionLevels => [ 'autoconfirmed' ],
 			] ),
 			$this->wanCache,
-			$this->loadBalancer,
+			$this->loadBalancerFactory,
 			$this->linkCache,
 			$this->linksMigration,
 			$this->commentStore,

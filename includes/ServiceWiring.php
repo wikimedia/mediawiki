@@ -2084,7 +2084,7 @@ return [
 				RestrictionStore::CONSTRUCTOR_OPTIONS, $services->getMainConfig()
 			),
 			$services->getMainWANObjectCache(),
-			$services->getDBLoadBalancer(),
+			$services->getDBLoadBalancerFactory(),
 			$services->getLinkCache(),
 			$services->getLinksMigration(),
 			$services->getCommentStore(),
