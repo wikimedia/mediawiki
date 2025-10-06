@@ -3191,7 +3191,7 @@
 	"version-poweredby-translators": "гочдархой translatewiki.net",
 	"version-poweredby-various": "Кхин авторш",
 	"version-credits-summary": "Баркалла ала лаьа хӀокху декъахошна цара [[Special:Version|MediaWiki]] кхиарехь дакъа лацарна.",
-	"version-license-info": "MediaWiki йу маьрша программин латораг, шу йиш йу фондас арахецна йолу GNU General Public License лицензица и йаржо йа хийца а.\n\nMediaWiki йаржош йу и шуна пайдане хир йац те аьлла, амма  ЦХЬА ЙУКЪАРАХИЛАР ДОЦУШ. Хь. кхин. лицензи мадарра GNU General Public License .\n\nШоьга кхача йезаш йара [{{SERVER}}{{SCRIPTPATH}}/COPYING копи GNU General Public License] хӀокху программица, кхаьчна йацахь йазйе Free Software Foundation, Inc., адрес тӀе: 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA йа [//www.gnu.org/licenses/old-licenses/gpl-2.0.html йеша и онлайнехь].",
+	"version-license-info": "MediaWiki — маьрша программа йу; хьан йиш йу иза йуха йаржо а,/йа хийца а GNU General Public License билламашца, Free Software Foundation-но арахецна ма-хиллара; лицензин 2-гӀа верси, йа (хьан лаамехь) муьлхха а тӀаьхьара верси.\n\nMediaWiki йаржош йу иза пайде хиларе сатуьйсуш, амма <em>ЦХЬА А ГАРАНТИ ЙОЦУШ</em>; атта дӀа ца лоцуш гаранти йоцуш <strong>СУРСАТАШ</strong> йа <strong>ЦХЬАНА ӀАЛАШОНАН ДОГӀУШ хилар</strong>. Кхин дӀа хьажа GNU General Public License.\n\nХьуна кхача йезаш йара [{{SERVER}}{{SCRIPTPATH}}/COPYING копи GNU General Public License] хӀокху программица цхьаьна; нагахь санна иза ца хиллехь, [//www.gnu.org/licenses/old-licenses/gpl-2.0.html йеша иза онлайнехь].",
 	"version-software": "ДӀахӀоттийна программин латтор",
 	"version-software-product": "Сурсат",
 	"version-software-version": "Верси",

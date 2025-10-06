@@ -113,7 +113,7 @@
 	"emailauthenticated": "Sähköpostiosoitteesi varmennettiin $2 kello $3.",
 	"allowemail": "Salli muiden käyttäjien lähettää minulle sähköpostia",
 	"email-allow-new-users-label": "Salli sähköpostit uusilta käyttäjiltä",
-	"prefs-help-email-allow-new-users": "Tämä valinta mahdollistaa [[{{MediaWiki:grouppage-autoconfirmed}}|automaattisesti hyväksyttyjen käyttäjien]] lähettää sinulle sähköpostia.",
+	"prefs-help-email-allow-new-users": "Tämä valinta mahdollistaa käyttäjien, jotka eivät ole [[{{MediaWiki:grouppage-autoconfirmed}}|automaattisesti hyväksyttyjä]], lähettää sinulle sähköpostia.",
 	"tog-ccmeonemails": "Lähetä minulle kopio MediaWikin kautta lähetetyistä sähköposteista",
 	"email-mutelist-label": "Estä näitä käyttäjiä lähettämästä minulle sähköpostia:",
 	"tog-enotifwatchlistpages": "Lähetä sähköpostiviesti tarkkailulistallani olevien sivujen muokkauksista",

@@ -390,5 +390,7 @@
 	"exif-initialcameradolly": "Камеран йуьхьанца хьажар",
 	"exif-stitchingsoftware": "Стичинг программин гӀирс",
 	"exif-digitalsourcetype": "Терахьийн хаамийн гӀирсийн хьост",
-	"exif-digitalsourcetype-digitalcapture": "Терахьийн камера йа диктофон"
+	"exif-digitalsourcetype-digitalcapture": "Терахьийн камера йа диктофон",
+	"exif-digitalsourcetype-softwareimage": "Программин гӀоьнца кхоьллина",
+	"exif-digitalsourcetype-digitalart": "Терахьийн гӀирс лелош адамо кхоьллина"
 }

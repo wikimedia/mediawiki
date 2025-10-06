@@ -28,6 +28,8 @@
 	"morenotlisted": "Badéq ndéqn lengkap daptar ni.",
 	"mypage": "Halaman",
 	"mytalk": "Begundem",
+	"mytalk-appeal": "Banding blokan IP ni",
+	"mytalk-appeal-summary": "Alamat IP side wah teblok adén ndéq bau ngerisaq. Lamunm klik \"{{int:mytalk-appeal-submit}}\", baréh araq tepiaq [[mw:Special:MyLanguage/Help:Temporary_accounts|akun sementara]]. Baréh baum kerisaq halaman begundem akun sementaram adénm bau banding.",
 	"mytalk-appeal-submit": "Lanjut",
 	"anontalk": "Begundem",
 	"navigation": "Navigasi",
