@@ -2387,14 +2387,12 @@ class OutputPage extends ContextSource {
 	public function addParserOutputMetadata( ParserOutput $parserOutput ) {
 		// T301020 This should eventually use the standard "merge ParserOutput"
 		// function between $parserOutput and $this->metadata.
-		$links = [];
 		foreach (
 			$parserOutput->getLinkList( ParserOutputLinkTypes::LANGUAGE )
-			as [ 'link' => $link ]
+			as $linkItem
 		) {
-			$links[] = $link;
+			$this->metadata->appendLinkList( ParserOutputLinkTypes::LANGUAGE, $linkItem );
 		}
-		$this->addLanguageLinks( $links );
 
 		$cats = [];
 		foreach (

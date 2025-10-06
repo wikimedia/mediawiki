@@ -17,7 +17,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Title\TitleValue;
-use UnexpectedValueException;
+use UnhandledMatchError;
 use Wikimedia\Bcp47Code\Bcp47Code;
 use Wikimedia\Bcp47Code\Bcp47CodeValue;
 use Wikimedia\Message\MessageSpecifier;
@@ -721,6 +721,8 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 *
 	 * @param string|ParserOutputLinkTypes $linkType A link type
 	 * @return list<array{link:ParsoidLinkTarget,pageid?:int,revid?:int,sort?:string,time?:string|false,sha1?:string|false}>
+	 * @since 1.43
+	 * @throws UnhandledMatchError if given an unknown link type
 	 */
 	public function getLinkList( string|ParserOutputLinkTypes $linkType ): array {
 		if ( is_string( $linkType ) ) {
@@ -809,9 +811,48 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 				break;
 
 			default:
-				throw new UnexpectedValueException( "Unknown link type " . $linkType->value );
+				throw new UnhandledMatchError( "Unknown link type " . $linkType->value );
 		}
 		return $result;
+	}
+
+	/**
+	 * Append a link of the given type.
+	 *
+	 * Provides a uniform interface to various lists of links stored in
+	 * the metadata, in a form which facilitates merging.
+	 *
+	 * @param string|ParserOutputLinkTypes $linkType The link type
+	 * @phpcs:ignore Generic.Files.LineLength.TooLong
+	 * @param array{link:ParsoidLinkTarget,pageid?:int,revid?:int,sort?:string,time?:string|false,sha1?:string|false} $linkItem
+	 *   A link item, in the form returned by ::getLinkList()
+	 * @throws UnhandledMatchError if given an unknown link type
+	 * @since 1.45
+	 */
+	public function appendLinkList( string|ParserOutputLinkTypes $linkType, array $linkItem ): void {
+		if ( is_string( $linkType ) ) {
+			$linkType = ParserOutputLinkTypes::from( $linkType );
+		}
+		$link = $linkItem['link'];
+		match ( $linkType ) {
+			ParserOutputLinkTypes::CATEGORY =>
+				$this->addCategory( $link, $linkItem['sort'] ?? '' ),
+			ParserOutputLinkTypes::EXISTENCE =>
+				$this->addExistenceDependency( $link ),
+			ParserOutputLinkTypes::INTERWIKI =>
+				$this->addInterwikiLink( $link ),
+			ParserOutputLinkTypes::LANGUAGE =>
+				$this->addLanguageLink( $link ),
+			ParserOutputLinkTypes::LOCAL =>
+				$this->addLink( $link, $linkItem['pageid'] ?? null ),
+			ParserOutputLinkTypes::MEDIA =>
+				$this->addImage( $link, $linkItem['time'] ?? null, $linkItem['sha1'] ?? null ),
+			ParserOutputLinkTypes::SPECIAL =>
+				$this->addLink( $link ),
+			ParserOutputLinkTypes::TEMPLATE =>
+				// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset
+				$this->addTemplate( $link, $linkItem['pageid'], $linkItem['revid'] ),
+		};
 	}
 
 	/** @deprecated since 1.43, use ::getLinkList(ParserOutputLinkTypes::LOCAL) */
@@ -2683,50 +2724,12 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * combined output of multiple content slots.
 	 */
 	public function mergeTrackingMetaDataFrom( ParserOutput $source ): void {
-		foreach (
-			$source->getLinkList( ParserOutputLinkTypes::LANGUAGE )
-			as [ 'link' => $link ]
-		) {
-			$this->addLanguageLink( $link );
-		}
-		$this->mCategories = self::mergeMap( $this->mCategories, $source->getCategoryMap() );
-		foreach (
-			$source->getLinkList( ParserOutputLinkTypes::LOCAL )
-			as [ 'link' => $link, 'pageid' => $pageid ]
-		) {
-			$this->addLink( $link, $pageid );
-		}
-		foreach (
-			$source->getLinkList( ParserOutputLinkTypes::TEMPLATE )
-				as [ 'link' => $link, 'pageid' => $pageid, 'revid' => $revid ]
-		) {
-			$this->addTemplate( $link, $pageid, $revid );
-		}
-		foreach (
-			$source->getLinkList( ParserOutputLinkTypes::EXISTENCE )
-			as [ 'link' => $link ]
-		) {
-			$this->addExistenceDependency( $link );
-		}
-		foreach (
-			$source->getLinkList( ParserOutputLinkTypes::MEDIA ) as $item
-		) {
-			$this->addImage( $item['link'], $item['time'] ?? null, $item['sha1'] ?? null );
+		foreach ( ParserOutputLinkTypes::cases() as $linkType ) {
+			foreach ( $source->getLinkList( $linkType ) as $linkItem ) {
+				$this->appendLinkList( $linkType, $linkItem );
+			}
 		}
 		$this->mExternalLinks = self::mergeMap( $this->mExternalLinks, $source->getExternalLinks() );
-		foreach (
-			$source->getLinkList( ParserOutputLinkTypes::INTERWIKI )
-			as [ 'link' => $link ]
-		) {
-			$this->addInterwikiLink( $link );
-		}
-
-		foreach (
-			$source->getLinkList( ParserOutputLinkTypes::SPECIAL )
-			as [ 'link' => $link ]
-		) {
-			$this->addLink( $link );
-		}
 
 		// TODO: add a $mergeStrategy parameter to setPageProperty to allow different
 		// kinds of properties to be merged in different ways.
@@ -2925,18 +2928,14 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			if ( $otherTitle === '' ) {
 				$metadata->setTitleText( $this->getTitleText() );
 			}
-			foreach ( $this->mTemplates as $ns => $arr ) {
-				foreach ( $arr as $dbk => $page_id ) {
-					// default to invalid/broken revision if this is not present
-					$rev_id = $this->mTemplateIds[$ns][$dbk] ?? 0;
-					$metadata->addTemplate( TitleValue::tryNew( $ns, (string)$dbk ), $page_id, $rev_id );
-				}
-			}
 			foreach (
-				$this->getLinkList( ParserOutputLinkTypes::EXISTENCE )
-				as [ 'link' => $link ]
-			) {
-				$metadata->addExistenceDependency( $link );
+				[
+					ParserOutputLinkTypes::TEMPLATE,
+					ParserOutputLinkTypes::EXISTENCE,
+				] as $linkType ) {
+				foreach ( $this->getLinkList( $linkType ) as $linkItem ) {
+					$metadata->appendLinkList( $linkType, $linkItem );
+				}
 			}
 		}
 	}
