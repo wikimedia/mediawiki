@@ -239,9 +239,7 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 		}
 		$this->addOption( 'ORDER BY', $orderBy );
 
-		$this->getQueryBuilder()->connection(
-			$this->dbProvider->getReplicaDatabase( $this->virtualDomain, 'api' )
-		);
+		$this->getQueryBuilder()->connection( $this->dbProvider->getReplicaDatabase( $this->virtualDomain ) );
 		$res = $this->select( __METHOD__ );
 		$this->getQueryBuilder()->connection( $this->getDB() );
 

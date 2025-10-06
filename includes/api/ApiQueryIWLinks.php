@@ -66,7 +66,7 @@ class ApiQueryIWLinks extends ApiQueryBase {
 			$prop = [ 'url' => 1 ];
 		}
 
-		$db = $this->dbProvider->getReplicaDatabase( InterwikiLinksTable::VIRTUAL_DOMAIN, 'api' );
+		$db = $this->dbProvider->getReplicaDatabase( InterwikiLinksTable::VIRTUAL_DOMAIN );
 		$this->getQueryBuilder()->connection( $db );
 
 		$this->addFields( [

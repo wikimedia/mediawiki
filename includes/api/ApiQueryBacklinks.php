@@ -198,9 +198,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		$this->addOption( 'ORDER BY', $orderBy );
 		$this->addOption( 'STRAIGHT_JOIN' );
 
-		$this->getQueryBuilder()->connection(
-			$this->dbProvider->getReplicaDatabase( $this->virtual_domain, 'api' )
-		);
+		$this->getQueryBuilder()->connection( $this->dbProvider->getReplicaDatabase( $this->virtual_domain ) );
 		$res = $this->select( __METHOD__ );
 		$this->getQueryBuilder()->connection( $this->getDB() );
 

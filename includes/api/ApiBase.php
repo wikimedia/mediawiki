@@ -707,7 +707,7 @@ abstract class ApiBase extends ContextSource {
 		if ( !$this->mReplicaDB ) {
 			$this->mReplicaDB = MediaWikiServices::getInstance()
 				->getConnectionProvider()
-				->getReplicaDatabase( false, 'api' );
+				->getReplicaDatabase();
 		}
 
 		return $this->mReplicaDB;

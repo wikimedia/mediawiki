@@ -103,7 +103,7 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 		$settings = self::$settings[$this->getModuleName()];
 
 		$domain = $settings['virtualdomain'] ?? false;
-		$db = $this->dbProvider->getReplicaDatabase( $domain, 'api' );
+		$db = $this->dbProvider->getReplicaDatabase( $domain );
 		$this->getQueryBuilder()->connection( $db );
 
 		$params = $this->extractRequestParams();

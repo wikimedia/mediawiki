@@ -58,7 +58,7 @@ class ApiQueryIWBacklinks extends ApiQueryGeneratorBase {
 			);
 		}
 
-		$db = $this->dbProvider->getReplicaDatabase( InterwikiLinksTable::VIRTUAL_DOMAIN, 'api' );
+		$db = $this->dbProvider->getReplicaDatabase( InterwikiLinksTable::VIRTUAL_DOMAIN );
 		$this->getQueryBuilder()->connection( $db );
 
 		if ( $params['continue'] !== null ) {

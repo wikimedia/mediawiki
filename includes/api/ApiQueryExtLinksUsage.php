@@ -132,7 +132,7 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 		}
 
 		$this->getQueryBuilder()->connection(
-			$this->dbProvider->getReplicaDatabase( ExternalLinksTable::VIRTUAL_DOMAIN, 'api' )
+			$this->dbProvider->getReplicaDatabase( ExternalLinksTable::VIRTUAL_DOMAIN )
 		);
 		$res = $this->select( __METHOD__ );
 		$this->getQueryBuilder()->connection( $this->getDB() );
