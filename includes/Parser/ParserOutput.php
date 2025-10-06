@@ -3135,9 +3135,6 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			'ExternalLinks' => $this->mExternalLinks,
 			'InterwikiLinks' => $this->mInterwikiLinks,
 			'ExistenceLinks' => $this->existenceLinks,
-			'NewSection' => $this->mNewSection,
-			'HideNewSection' => $this->mHideNewSection,
-			'NoGallery' => $this->mNoGallery,
 			'HeadItems' => $this->mHeadItems,
 			'Modules' => array_keys( $this->mModuleSet ),
 			'ModuleStyles' => array_keys( $this->mModuleStyleSet ),
@@ -3147,8 +3144,6 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			'TOCData' => $this->mTOCData,
 			'Properties' => self::detectAndEncodeBinary( $this->mProperties ),
 			'Timestamp' => $this->mTimestamp,
-			'EnableOOUI' => $this->mEnableOOUI,
-			'IndexPolicy' => $this->getIndexPolicy(),
 			// may contain arbitrary structures!
 			'ExtensionData' => $this->mExtensionData,
 			'LimitReportData' => $this->mLimitReportData,
@@ -3156,17 +3151,24 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			'CacheMessage' => $this->mCacheMessage,
 			'TimeProfile' => $this->mTimeProfile,
 			'ParseStartTime' => [], // don't serialize this
-			'PreventClickjacking' => $this->mPreventClickjacking,
 			'ExtraScriptSrcs' => $this->mExtraScriptSrcs,
 			'ExtraDefaultSrcs' => $this->mExtraDefaultSrcs,
 			'ExtraStyleSrcs' => $this->mExtraStyleSrcs,
-			'Flags' => $this->mFlags,
 			'SpeculativeRevId' => $this->mSpeculativeRevId,
 			'SpeculativePageIdUsed' => $this->speculativePageIdUsed,
 			'RevisionTimestampUsed' => $this->revisionTimestampUsed,
 			'RevisionUsedSha1Base36' => $this->revisionUsedSha1Base36,
 			'WrapperDivClasses' => $this->mWrapperDivClasses,
 		];
+		// Handle generic flags
+		$outputFlags = $this->mFlags;
+		foreach ( ParserOutputFlags::cases() as $flag ) {
+			if ( $this->getOutputFlag( $flag ) ) {
+				$outputFlags[$flag->value] = true;
+			}
+		}
+		$data['OutputFlags'] = array_keys( $outputFlags );
+
 		// TODO ultimately we'll change the serialization to directly
 		// encode the ContentHolder, but let's maintain compatibility for now.
 		if ( $this->contentHolder->isParsoidContent() ) {
@@ -3248,7 +3250,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		$this->mWarnings = $jsonData['Warnings'] ?? [];
 		$this->mWarningMsgs = $jsonData['WarningMsgs'] ?? [];
 
-		// Set flags stored as properties
+		// Set flags stored as properties (backward compatibility with MW<1.45)
 		$this->mFlags = $jsonData['Flags'] ?? [];
 		$this->mNoGallery = $jsonData['NoGallery'] ?? false;
 		$this->mEnableOOUI = $jsonData['EnableOOUI'] ?? false;
