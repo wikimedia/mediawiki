@@ -609,7 +609,7 @@ class SpecialUndelete extends SpecialPage {
 
 		if ( $revRecord->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
 			// Used in wikilinks, should not contain whitespaces
-			$titleText = $this->mTargetObj->getPrefixedDBkey();
+			$titleText = $this->mTargetObj->getPrefixedURL();
 			if ( !$revRecord->userCan( RevisionRecord::DELETED_TEXT, $this->getAuthority() ) ) {
 				$msg = $revRecord->isDeleted( RevisionRecord::DELETED_RESTRICTED )
 					? [ 'rev-suppressed-text-permission', $titleText ]

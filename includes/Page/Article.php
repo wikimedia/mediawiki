@@ -1717,7 +1717,7 @@ class Article implements Page {
 		}
 		$outputPage = $this->getContext()->getOutput();
 		// Used in wikilinks, should not contain whitespaces
-		$titleText = $this->getTitle()->getPrefixedDBkey();
+		$titleText = $this->getTitle()->getPrefixedURL();
 		$this->addMessageBoxStyles( $outputPage );
 		// If the user is not allowed to see it...
 		if ( !$this->mRevisionRecord->userCan(
@@ -2137,7 +2137,7 @@ class Article implements Page {
 				'missing-revision-permission',
 				$oldid,
 				$revRecord->getTimestamp(),
-				Title::newFromPageIdentity( $revRecord->getPage() )->getPrefixedDBkey()
+				Title::newFromPageIdentity( $revRecord->getPage() )->getPrefixedURL()
 			);
 		}
 		return $context->msg( 'missing-revision', $oldid );

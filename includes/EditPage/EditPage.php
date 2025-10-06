@@ -3383,7 +3383,7 @@ class EditPage implements IEditObject {
 					if ( !$revRecord->userCan( RevisionRecord::DELETED_TEXT, $user ) ) {
 						$out->addHTML(
 							Html::warningBox(
-								$out->msg( 'rev-deleted-text-permission', $this->mTitle->getPrefixedDBkey() )->parse(),
+								$out->msg( 'rev-deleted-text-permission', $this->mTitle->getPrefixedURL() )->parse(),
 								'plainlinks'
 							)
 						);
@@ -3391,7 +3391,7 @@ class EditPage implements IEditObject {
 						$out->addHTML(
 							Html::warningBox(
 								// title used in wikilinks, should not contain whitespaces
-								$out->msg( 'rev-deleted-text-view', $this->mTitle->getPrefixedDBkey() )->parse(),
+								$out->msg( 'rev-deleted-text-view', $this->mTitle->getPrefixedURL() )->parse(),
 								'plainlinks'
 							)
 						);

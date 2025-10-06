@@ -640,7 +640,7 @@ class ParserOutputAccess implements LoggerAwareInterface {
 					'missing-revision-permission',
 					$revision->getId(),
 					$revision->getTimestamp(),
-					$this->titleFormatter->getPrefixedDBkey( $page )
+					$this->titleFormatter->getPrefixedURL( $page )
 				);
 			}
 		}

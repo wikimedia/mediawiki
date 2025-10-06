@@ -168,6 +168,18 @@ class TitleFormatter {
 	}
 
 	/**
+	 * Return a URL-encoded title (not an actual URL)
+	 *
+	 * @since 1.45
+	 *
+	 * @param LinkTarget|PageReference $target
+	 * @return string
+	 */
+	public function getPrefixedURL( $target ) {
+		return wfUrlencode( $this->getPrefixedDBkey( $target ) );
+	}
+
+	/**
 	 * Returns the title formatted for display, with namespace and fragment.
 	 *
 	 * @param LinkTarget|PageReference $title The title to format

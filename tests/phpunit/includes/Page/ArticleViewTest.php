@@ -702,7 +702,7 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 		$article = TestingAccessWrapper::newFromObject( $article );
 		$article->fetchResult = Status::newFatal(
 			'rev-deleted-text-permission',
-			$page->getTitle()->getPrefixedDBkey()
+			$page->getTitle()->getPrefixedURL()
 		);
 
 		$article->view();
@@ -725,7 +725,7 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 		$article = TestingAccessWrapper::newFromObject( $article );
 		$article->fetchResult = Status::newFatal(
 			'rev-deleted-text-permission',
-			$page->getTitle()->getPrefixedDBkey()
+			$page->getTitle()->getPrefixedURL()
 		);
 
 		$article->view();

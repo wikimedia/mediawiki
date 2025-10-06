@@ -197,6 +197,30 @@ class TitleFormatterTest extends TitleCodecTestBase {
 		$this->assertEquals( $expected, $actual );
 	}
 
+	public static function provideGetPrefixedURL() {
+		return [
+			[ new TitleValue( NS_MAIN, 'Foo_Bar', '', '' ), 'en', 'Foo_Bar' ],
+
+			// Title with quotes
+			[ new TitleValue( NS_MAIN, 'Quoted_"title"', '', '' ), 'en', 'Quoted_%22title%22' ],
+
+			// getGenderCache() provides a mock that considers first
+			// names ending in "a" to be female.
+			[ new TitleValue( NS_USER, 'Lisa_Müller', '', '' ), 'de', 'Benutzerin:Lisa_M%C3%BCller' ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideGetPrefixedURL
+	 */
+	public function testGetPrefixedURL( $title, $lang, $expected
+	) {
+		$formatter = $this->makeFormatter( $lang );
+		$actual = $formatter->getPrefixedURL( $title );
+
+		$this->assertEquals( $expected, $actual );
+	}
+
 	public static function provideGetFullText() {
 		return [
 			[ new TitleValue( NS_MAIN, 'Foo_Bar', '' ), 'en', 'Foo Bar' ],
