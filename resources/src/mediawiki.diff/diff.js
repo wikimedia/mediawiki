@@ -43,6 +43,10 @@ const inlineFormatToggle = require( './inlineFormatToggle.js' );
 				// Right click.
 				return;
 			}
+			if ( !e.target || e.target.nodeType === Node.TEXT_NODE ) {
+				// Ignore, see T406613.
+				return;
+			}
 			const clickSide = getNodeSide( e.target );
 			setSideLock( clickSide );
 		}
