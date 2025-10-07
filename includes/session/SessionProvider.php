@@ -416,7 +416,7 @@ abstract class SessionProvider implements Stringable, SessionProviderInterface {
 	public function preventSessionsForUser( $username ) {
 		if ( !$this->canChangeUser() ) {
 			throw new \BadMethodCallException(
-				__METHOD__ . ' must be implemented when canChangeUser() is false'
+				get_called_class() . '::' . __FUNCTION__ . ' must be implemented when canChangeUser() is false'
 			);
 		}
 	}
