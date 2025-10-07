@@ -1143,12 +1143,6 @@ $wgDBTableOptions = null;
 $wgSQLMode = null;
 
 /**
- * Config variable stub for the DBDefaultGroup setting, for use by phpdoc and IDEs.
- * @see MediaWiki\MainConfigSchema::DBDefaultGroup
- */
-$wgDBDefaultGroup = null;
-
-/**
  * Config variable stub for the SQLiteDataDir setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::SQLiteDataDir
  */

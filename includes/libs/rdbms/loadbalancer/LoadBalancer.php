@@ -2090,4 +2090,8 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	public function setMockTime( &$time ) {
 		$this->loadMonitor->setMockTime( $time );
 	}
+
+	public function setDefaultGroupName( string $defaultGroup ): void {
+		$this->defaultGroup = $defaultGroup;
+	}
 }

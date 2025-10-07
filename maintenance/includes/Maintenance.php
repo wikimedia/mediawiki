@@ -965,19 +965,6 @@ abstract class Maintenance {
 		if ( $this->mDbPass ) {
 			$overrides['DBadminpassword'] = $this->mDbPass;
 		}
-		if ( $this->hasOption( 'dbgroupdefault' ) ) {
-			$overrides['DBDefaultGroup'] = $this->getOption( 'dbgroupdefault', null );
-			// TODO: once MediaWikiServices::getInstance() starts throwing exceptions
-			// and not deprecation warnings for premature access to service container,
-			// we can remove this line. This method is called before Setup.php,
-			// so it would be guaranteed DBLoadBalancerFactory is not yet initialized.
-			if ( MediaWikiServices::hasInstance() ) {
-				$service = $this->getServiceContainer()->peekService( 'DBLoadBalancerFactory' );
-				if ( $service ) {
-					$service->destroy();
-				}
-			}
-		}
 
 		if ( $this->getDbType() == self::DB_ADMIN && isset( $overrides[ 'DBadminuser' ] ) ) {
 			$overrides['DBuser'] = $overrides[ 'DBadminuser' ];
@@ -1123,8 +1110,7 @@ abstract class Maintenance {
 	 */
 	protected function getDB( $db, $groups = [], $dbDomain = false ) {
 		if ( $this->mDb === null ) {
-			return $this->getServiceContainer()
-				->getDBLoadBalancerFactory()
+			return $this->getLBFactory()
 				->getMainLB( $dbDomain )
 				->getMaintenanceConnectionRef( $db, $groups, $dbDomain );
 		}
@@ -1171,7 +1157,14 @@ abstract class Maintenance {
 	 * @return ILBFactory Injected LBFactory, if any, the service instance, otherwise
 	 */
 	private function getLBFactory() {
-		$this->lbFactory ??= $this->getServiceContainer()->getDBLoadBalancerFactory();
+		if ( $this->lbFactory === null ) {
+			$this->lbFactory = $this->getServiceContainer()->getDBLoadBalancerFactory();
+			if ( $this->hasOption( 'dbgroupdefault' ) ) {
+				$this->lbFactory->setDefaultGroupName(
+					$this->getOption( 'dbgroupdefault', '' )
+				);
+			}
+		}
 
 		return $this->lbFactory;
 	}

@@ -459,6 +459,14 @@ interface ILBFactory extends IConnectionProvider {
 	public function setDomainAliases( array $aliases );
 
 	/**
+	 * Set the default group name for all load balancers
+	 *
+	 * @param string $defaultGroup
+	 * @since 1.45
+	 */
+	public function setDefaultGroupName( string $defaultGroup ): void;
+
+	/**
 	 * Get the TransactionProfiler used by this instance
 	 *
 	 * @return TransactionProfiler

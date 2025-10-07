@@ -3003,17 +3003,6 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * Default group to use when getting database connections.
-	 *
-	 * Will be used as default query group in ILoadBalancer::getConnection.
-	 *
-	 * @since 1.32
-	 */
-	public const DBDefaultGroup = [
-		'default' => null,
-	];
-
-	/**
 	 * To override default SQLite data directory ($docroot/../data)
 	 */
 	public const SQLiteDataDir = [

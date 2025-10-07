@@ -12,9 +12,8 @@
 require_once __DIR__ . '/Maintenance.php';
 // @codeCoverageIgnoreEnd
 
-use MediaWiki\MainConfigNames;
 use MediaWiki\Maintenance\Maintenance;
-use MediaWiki\Settings\SettingsBuilder;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\BlobAccessException;
 use MediaWiki\Storage\BlobStore;
 use MediaWiki\Storage\SqlBlobStore;
@@ -35,18 +34,6 @@ class FetchText extends Maintenance {
 		);
 	}
 
-	public function finalSetup( SettingsBuilder $settingsBuilder ) {
-		// This script should always try to run all db queries in the 'dump' group if such
-		// a group exists, just like the BackupDumper and TextPassDumper modules.
-		// To account for parts of MediaWiki that get their own db connection outside of
-		// Maintenance::getDB(), we set this global variable so that they will attempt
-		// to use this group.
-		$settingsBuilder->putConfigValue( MainConfigNames::DBDefaultGroup, 'dump' );
-		// do this last so that options can override
-
-		parent::finalSetup( $settingsBuilder );
-	}
-
 	/**
 	 * @return BlobStore
 	 */
@@ -65,6 +52,7 @@ class FetchText extends Maintenance {
 	 * note that the text string itself is *not* followed by newline
 	 */
 	public function execute() {
+		MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->setDefaultGroupName( 'dump' );
 		$stdin = $this->getStdin();
 		while ( !feof( $stdin ) ) {
 			$line = fgets( $stdin );

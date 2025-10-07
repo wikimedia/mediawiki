@@ -247,4 +247,12 @@ interface ILoadBalancerForOwner extends ILoadBalancer {
 	 * @return bool
 	 */
 	public function laggedReplicaUsed();
+
+	/**
+	 * Set the default group name for all load balancers
+	 *
+	 * @param string $defaultGroup
+	 * @since 1.45
+	 */
+	public function setDefaultGroupName( string $defaultGroup ): void;
 }

@@ -60,7 +60,6 @@ class MWLBFactory {
 	 */
 	public const APPLY_DEFAULT_CONFIG_OPTIONS = [
 		MainConfigNames::DBcompress,
-		MainConfigNames::DBDefaultGroup,
 		MainConfigNames::DBmwschema,
 		MainConfigNames::DBname,
 		MainConfigNames::DBpassword,
@@ -159,7 +158,6 @@ class MWLBFactory {
 			'statsFactory' => $this->statsFactory,
 			'cliMode' => MW_ENTRY_POINT === 'cli',
 			'readOnlyReason' => $this->readOnlyMode->getReason(),
-			'defaultGroup' => $this->options->get( MainConfigNames::DBDefaultGroup ),
 			'criticalSectionProvider' => $this->csProvider,
 			'uniqueIdentifier' => $this->uniqueIdentifier,
 		];

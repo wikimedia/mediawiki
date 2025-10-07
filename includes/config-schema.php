@@ -381,7 +381,6 @@ return [
 			'SearchTypeAlternatives' => null,
 			'DBTableOptions' => 'ENGINE=InnoDB, DEFAULT CHARSET=binary',
 			'SQLMode' => '',
-			'DBDefaultGroup' => null,
 			'SQLiteDataDir' => '',
 			'SharedDB' => null,
 			'SharedPrefix' => false,

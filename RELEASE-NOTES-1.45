@@ -74,6 +74,8 @@ For notes on 1.44.x and older releases, see HISTORY.
   were removed.  New media markup is now always enabled.  More information:
   https://www.mediawiki.org/wiki/Parsoid/Parser_Unification/Media_structure/FAQ
 * $wgPageLinksSchemaMigrationStage has been removed.
+* (T405087) $wgDBDefaultGroup has been removed without deprecation.
+  Use ILBFactory::setDefaultGroupName() instead.
 * (T306325) $wgEnableSearchContributorsByIP has been removed.
 * (T299951) $wgCategoryLinksSchemaMigrationStage, a temporary setting which
   controls the database schema migration for the categorylinks table, has been

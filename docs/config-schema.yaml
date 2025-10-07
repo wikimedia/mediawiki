@@ -1833,12 +1833,6 @@ config-schema:
             null can be used to skip the setting for performance reasons and assume
             the DBA has done their best job.
             String override can be used for some additional fun :-)
-    DBDefaultGroup:
-        default: null
-        description: |-
-            Default group to use when getting database connections.
-            Will be used as default query group in ILoadBalancer::getConnection.
-            @since 1.32
     SQLiteDataDir:
         default: ''
         description: 'To override default SQLite data directory ($docroot/../data)'

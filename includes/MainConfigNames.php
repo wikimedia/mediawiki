@@ -1158,12 +1158,6 @@ class MainConfigNames {
 	public const SQLMode = 'SQLMode';
 
 	/**
-	 * Name constant for the DBDefaultGroup setting, for use with Config::get()
-	 * @see MainConfigSchema::DBDefaultGroup
-	 */
-	public const DBDefaultGroup = 'DBDefaultGroup';
-
-	/**
 	 * Name constant for the SQLiteDataDir setting, for use with Config::get()
 	 * @see MainConfigSchema::SQLiteDataDir
 	 */

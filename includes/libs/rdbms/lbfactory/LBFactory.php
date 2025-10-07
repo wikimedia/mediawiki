@@ -138,7 +138,6 @@ abstract class LBFactory implements ILBFactory {
 
 		$this->cliMode = $conf['cliMode'] ?? ( PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg' );
 		$this->agent = $conf['agent'] ?? '';
-		$this->defaultGroup = $conf['defaultGroup'] ?? null;
 		$this->replicationWaitTimeout = $this->cliMode ? 60 : 1;
 		$this->virtualDomainsMapping = $conf['virtualDomainsMapping'] ?? [];
 		$this->virtualDomains = $conf['virtualDomains'] ?? [];
@@ -685,6 +684,16 @@ abstract class LBFactory implements ILBFactory {
 
 	public function disableChronologyProtection() {
 		$this->chronologyProtector->setEnabled( false );
+	}
+
+	public function setDefaultGroupName( string $defaultGroup ): void {
+		// for future LBs
+		$this->defaultGroup = $defaultGroup;
+
+		// For existing LBs
+		foreach ( $this->getLBsForOwner() as $lb ) {
+			$lb->setDefaultGroupName( $defaultGroup );
+		}
 	}
 
 	/**
