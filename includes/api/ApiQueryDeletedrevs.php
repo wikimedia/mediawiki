@@ -24,6 +24,7 @@ use Wikimedia\ParamValidator\TypeDef\EnumDef;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\LikeValue;
+use Wikimedia\Rdbms\Subquery;
 
 /**
  * Query module to enumerate all deleted revisions.
@@ -135,6 +136,33 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			$this->addFields( [
 				'ts_tags' => $this->changeTagsStore->makeTagSummarySubquery( 'archive' )
 			] );
+		}
+
+		if ( $fld_sha1 ) {
+			$pairExpr = $db->buildGroupConcat(
+				$db->buildConcat( [ 'sr.role_name', $db->addQuotes( ':' ), 'c.content_sha1' ] ),
+				','
+			);
+			$sha1Subquery = $db->newSelectQueryBuilder()
+				->select( [
+					'ar_rev_id',
+					'ar_deleted',
+					'ar_slot_pairs' => $pairExpr,
+				] )
+				->from( 'archive' )
+				->join( 'slots', 's', [ 'ar_rev_id = s.slot_revision_id' ] )
+				->join( 'content', 'c', [ 's.slot_content_id = c.content_id' ] )
+				->join( 'slot_roles', 'sr', [ 's.slot_role_id = sr.role_id' ] )
+				->groupBy( [ 'ar_rev_id', 'ar_deleted' ] )
+				->caller( __METHOD__ )
+				->getSQL();
+
+			$this->addTables( [ 'arsha1' => new Subquery( $sha1Subquery ) ] );
+			$this->addFields( [
+				'ar_deleted' => 'arsha1.ar_deleted',
+				'ar_slot_pairs' => 'arsha1.ar_slot_pairs'
+			] );
+			$this->addJoinConds( [ 'arsha1' => [ 'LEFT JOIN', [ 'ar_rev_id = arsha1.ar_rev_id' ] ] ] );
 		}
 
 		if ( $params['tag'] !== null ) {
@@ -371,10 +399,29 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 					RevisionRecord::DELETED_TEXT,
 					$user
 				) ) {
-					if ( $row->ar_sha1 != '' ) {
-						$rev['sha1'] = \Wikimedia\base_convert( $row->ar_sha1, 36, 16, 40 );
-					} else {
-						$rev['sha1'] = '';
+					if ( $row->ar_slot_pairs !== null ) {
+						$combinedBase36 = '';
+						if ( $row->ar_slot_pairs !== '' ) {
+							$items = explode( ',', $row->ar_slot_pairs );
+							$slotHashes = [];
+							foreach ( $items as $item ) {
+								$parts = explode( ':', $item );
+								$slotHashes[$parts[0]] = $parts[1];
+							}
+							ksort( $slotHashes );
+
+							$accu = null;
+							foreach ( $slotHashes as $slotHash ) {
+								$accu = $accu === null
+									? $slotHash
+									: SlotRecord::base36Sha1( $accu . $slotHash );
+							}
+							$combinedBase36 = $accu ?? SlotRecord::base36Sha1( '' );
+						}
+
+						$rev['sha1'] = $combinedBase36 !== ''
+							? \Wikimedia\base_convert( $combinedBase36, 36, 16, 40 )
+							: '';
 					}
 				}
 			}
