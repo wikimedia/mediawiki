@@ -1179,7 +1179,6 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * @deprecated since 1.42; use ::setRevisionTimestamp() instead
 	 */
 	public function setTimestamp( $timestamp ) {
-		wfDeprecated( __METHOD__, '1.42' );
 		return wfSetVar( $this->mTimestamp, $timestamp );
 	}
 
