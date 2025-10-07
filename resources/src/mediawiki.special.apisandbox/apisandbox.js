@@ -1395,7 +1395,7 @@
 					).parse(),
 					mw.message( 'apisandbox-param-limit' ).parse()
 				];
-				helpLabel.addInfo( Util.parseHTML( tmp.join( mw.msg( 'word-separator' ) ) ) );
+				helpLabel.addInfo( Util.parseHTML( tmp.join( mw.message( 'word-separator' ).escaped() ) ) );
 				break;
 
 			case 'integer':
@@ -1440,7 +1440,7 @@
 				);
 			}
 			if ( tmp.length ) {
-				helpLabel.addInfo( Util.parseHTML( tmp.join( mw.msg( 'word-separator' ) ) ) );
+				helpLabel.addInfo( Util.parseHTML( tmp.join( mw.message( 'word-separator' ).escaped() ) ) );
 			}
 		}
 		if ( 'maxbytes' in ppi ) {
