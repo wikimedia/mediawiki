@@ -590,4 +590,20 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 		} );
 		return $memberships;
 	}
+
+	/**
+	 * @inheritDoc
+	 * @codeCoverageIgnore Merely declarative
+	 */
+	public function doesWrites() {
+		return true;
+	}
+
+	/**
+	 * @inheritDoc
+	 * @codeCoverageIgnore Merely declarative
+	 */
+	protected function getGroupName() {
+		return 'users';
+	}
 }

@@ -98,11 +98,6 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 		$this->tempUserConfig = $tempUserConfig ?? $services->getTempUserConfig();
 	}
 
-	/** @inheritDoc */
-	public function doesWrites() {
-		return true;
-	}
-
 	/**
 	 * Check whether the current user (from context) can change the target user's rights.
 	 *
@@ -928,11 +923,6 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 		// Autocomplete subpage as user list - public to allow caching
 		return $this->userNamePrefixSearch
 			->search( UserNamePrefixSearch::AUDIENCE_PUBLIC, $search, $limit, $offset );
-	}
-
-	/** @inheritDoc */
-	protected function getGroupName() {
-		return 'users';
 	}
 }
 
