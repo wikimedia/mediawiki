@@ -1,3 +1,5 @@
+@import 'mediawiki.skin.variables.less';
+
 /*
  * Titles, including username links, and also tag names
  * are prone to getting jumbled up
@@ -27,4 +29,22 @@
 	word-break: break-all;
 	word-wrap: break-word;
 	overflow-wrap: break-word;
+}
+
+.mw-add-icon {
+	.cdx-mixin-css-icon( @cdx-icon-add, @color-icon-success );
+}
+
+.mw-subtract-icon {
+	.cdx-mixin-css-icon( @cdx-icon-subtract, @color-icon-error );
+}
+
+.mw-update-icon {
+	.cdx-mixin-css-icon( @cdx-icon-update );
+	padding: 0 2px;
+}
+
+.mw-merge-icon {
+	.cdx-mixin-css-icon( @cdx-icon-merge );
+	padding: 0 2px;
 }
