@@ -19,7 +19,7 @@
  */
 function conditionGetField( $root, name ) {
 	const nameFilter = function () {
-		return this.name === name;
+		return this.name === name || this.name === name + '[]';
 	};
 	let $found = $root.find( '[name]' ).filter( nameFilter );
 	if ( !$found.length ) {
@@ -108,7 +108,8 @@ function conditionParse( $root, spec ) {
 			} ];
 
 		case '===':
-		case '!==': {
+		case '!==':
+		case 'CONTAINS': {
 			if ( l !== 3 ) {
 				throw new Error( op + ' takes exactly two parameters' );
 			}
@@ -154,6 +155,11 @@ function conditionParse( $root, spec ) {
 				case '!==':
 					func = function () {
 						return getVal() !== v;
+					};
+					break;
+				case 'CONTAINS':
+					func = function () {
+						return getVal().includes( v );
 					};
 					break;
 			}

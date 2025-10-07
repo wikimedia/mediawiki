@@ -282,6 +282,7 @@ abstract class HTMLFormField {
 
 			case '===':
 			case '!==':
+			case 'CONTAINS':
 				if ( count( $params ) !== 2 ) {
 					throw $makeException( "$op takes exactly two parameters" );
 				}
@@ -325,13 +326,16 @@ abstract class HTMLFormField {
 
 			case '===':
 			case '!==':
+			case 'CONTAINS':
 				[ $field, $value ] = $params;
-				$testValue = (string)$this->getNearestFieldValue( $alldata, $field, true, true );
+				$testValue = $this->getNearestFieldValue( $alldata, $field, true, true );
 				switch ( $op ) {
 					case '===':
-						return ( $value === $testValue );
+						return ( $value === (string)$testValue );
 					case '!==':
-						return ( $value !== $testValue );
+						return ( $value !== (string)$testValue );
+					case 'CONTAINS':
+						return in_array( $value, $testValue, true );
 				}
 		}
 	}
@@ -363,6 +367,7 @@ abstract class HTMLFormField {
 
 			case '===':
 			case '!==':
+			case 'CONTAINS':
 				[ $name, $value ] = $params;
 				$field = $this->getNearestField( $name, true );
 				return [ $op, $field->getName(), $value ];
