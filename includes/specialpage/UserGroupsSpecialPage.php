@@ -24,7 +24,11 @@ use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Debug\MWDebug;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
+use MediaWiki\Logging\LogEventsList;
+use MediaWiki\Logging\LogPage;
 use MediaWiki\Message\Message;
+use MediaWiki\Output\OutputPage;
+use MediaWiki\Title\Title;
 use MediaWiki\User\UserGroupMembership;
 use MediaWiki\User\UserGroupsSpecialPageTarget;
 use MediaWiki\Xml\XmlSelect;
@@ -470,6 +474,29 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 	}
 
 	/**
+	 * Shows a log fragment for the specified user. Uses log type and subtype specified by {@see getLogType}.
+	 *
+	 * @param UserGroupsSpecialPageTarget $target User to show log for
+	 * @param OutputPage $output OutputPage to use
+	 */
+	protected function showLogFragment( UserGroupsSpecialPageTarget $target, OutputPage $output ): void {
+		[ $logType, $logSubType ] = $this->getLogType();
+		$logPage = new LogPage( $logType );
+
+		$logTitle = $logPage->getName()
+			// setContext allows us to test it - otherwise, English text would be used in tests
+			->setContext( $this->getContext() )
+			->text();
+
+		$output->addHTML( Html::element( 'h2', [], $logTitle ) );
+		LogEventsList::showLogExtract(
+			$output,
+			$logSubType,
+			Title::makeTitle( NS_USER, $this->getDisplayUsername( $target ) )
+		);
+	}
+
+	/**
 	 * This function is invoked when constructing the "current user groups" part of the form. It can be
 	 * overridden by the implementations to split the user groups into several paragraphs or add more
 	 * groups to the list, which are not expected to be editable through the form.
@@ -539,6 +566,12 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 	 * Whether the current user can remove the target user from the given group.
 	 */
 	abstract protected function canRemove( string $group ): bool;
+
+	/**
+	 * Returns the log type and subtype that is specific to this special page.
+	 * @return array{0:string,1:string} The log type and subtype to use when logging changes
+	 */
+	abstract protected function getLogType(): array;
 
 	/**
 	 * Returns an array of annotations (messages or message keys) that should be displayed

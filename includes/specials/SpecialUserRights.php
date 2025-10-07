@@ -12,12 +12,9 @@ use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\Field\HTMLUserTextField;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Linker\Linker;
-use MediaWiki\Logging\LogEventsList;
-use MediaWiki\Logging\LogPage;
 use MediaWiki\Logging\ManualLogEntry;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Output\OutputPage;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\SpecialPage\UserGroupsSpecialPage;
 use MediaWiki\Status\Status;
@@ -893,17 +890,9 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 		return $target->userObject->getWikiId() === UserIdentity::LOCAL;
 	}
 
-	/**
-	 * Show a rights log fragment for the specified user
-	 *
-	 * @param UserGroupsSpecialPageTarget $target User to show log for
-	 * @param OutputPage $output OutputPage to use
-	 */
-	protected function showLogFragment( $target, $output ) {
-		$rightsLogPage = new LogPage( 'rights' );
-		$output->addHTML( Html::element( 'h2', [], $rightsLogPage->getName()->text() ) );
-		LogEventsList::showLogExtract( $output, 'rights',
-			Title::makeTitle( NS_USER, $this->getDisplayUsername( $target ) ) );
+	/** @inheritDoc */
+	protected function getLogType(): array {
+		return [ 'rights', 'rights' ];
 	}
 
 	/**

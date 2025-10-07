@@ -62,6 +62,7 @@ class SpecialUserRightsTest extends SpecialPageTestBase {
 		$targetName = $target->getName();
 		$this->assertStringContainsString( "(userrights-editusergroup: $targetName)", $html );
 		$this->assertStringContainsString( 'wpGroup-sysop', $html );
+		$this->assertStringContainsString( '(rightslog)', $html );
 		$this->assertStringContainsString( '(logempty)', $html );
 	}
 
