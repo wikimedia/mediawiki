@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Bellatrix10"
+			"Bellatrix10",
+			"ITZQing"
 		]
 	},
 	"january": "januar",
@@ -53,5 +54,6 @@
 	"thu": "čet",
 	"fri": "pet",
 	"sat": "sub",
-	"sun": "neđ"
+	"sun": "neđ",
+	"duration-days": "$1 {{PLURAL:$1|dan|dana}}"
 }

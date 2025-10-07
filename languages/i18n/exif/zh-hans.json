@@ -3,6 +3,7 @@
 		"authors": [
 			"A Retired User",
 			"Bencmq",
+			"GuoPC",
 			"Hydra",
 			"Impersonator 1",
 			"Lakejason0",
@@ -409,8 +410,24 @@
 	"exif-initialcameradolly": "初始相机位置",
 	"exif-stitchingsoftware": "拼接软件",
 	"exif-digitalsourcetype": "数码媒体来源",
+	"exif-digitalsourcetype-digitalcapture": "数码相机或录像机",
+	"exif-digitalsourcetype-computationalcapture": "数码相机或录像机（多帧组合）",
+	"exif-digitalsourcetype-negativefilm": "从透明负片数字化",
+	"exif-digitalsourcetype-positivefilm": "从透明正片数字化",
+	"exif-digitalsourcetype-print": "从不透明介质数字化",
+	"exif-digitalsourcetype-minorhumanedits": "经过少量人工编辑的原始媒体",
+	"exif-digitalsourcetype-humanedits": "人工编辑的媒体",
 	"exif-digitalsourcetype-compositewithtrainedalgorithmicmedia": "使用生成式人工智能做出的编辑",
+	"exif-digitalsourcetype-algorithmicallyenhanced": "算法改变的媒体",
 	"exif-digitalsourcetype-softwareimage": "由软件创作",
+	"exif-digitalsourcetype-digitalart": "由人类使用数字工具创建",
+	"exif-digitalsourcetype-digitalcreation": "由人类使用非人工智能工具创作的媒体",
+	"exif-digitalsourcetype-datadrivenmedia": "通过人工编程或创造力实现数据的数字媒体展示",
 	"exif-digitalsourcetype-trainedalgorithmicmedia": "使用生成式人工智能创作",
-	"exif-digitalsourcetype-screencapture": "屏幕截图"
+	"exif-digitalsourcetype-algorithmicmedia": "纯粹由非人工智能算法创建的媒体",
+	"exif-digitalsourcetype-screencapture": "屏幕截图",
+	"exif-digitalsourcetype-virtualrecording": "基于生成式人工智能或捕捉元素的虚拟事件的实时录制",
+	"exif-digitalsourcetype-composite": "多种元素的混合或合成，任何一个都可能是也可能不是生成式人工智能",
+	"exif-digitalsourcetype-compositecapture": "均来自捕捉现实生活多种元素的混合或合成",
+	"exif-digitalsourcetype-compositesynthetic": "多种元素的混合或合成，其中至少有一个是生成式人工智能"
 }

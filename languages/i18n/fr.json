@@ -782,7 +782,6 @@
 	"userpage-userdoesnotexist": "Le compte utilisateur « $1 » n’est pas enregistré sur ce wiki.\nVeuillez vérifier que vous voulez créer ou modifier cette page.",
 	"userpage-userdoesnotexist-view": "Le compte utilisateur « $1 » n’est pas enregistré sur ce wiki.",
 	"blocked-notice-logextract": "{{GENDER:$1|Cet utilisateur|Cette utilisatrice|Cet(te) utilisateur ou utilisatrice}} est actuellement {{GENDER:$1|bloqué|bloquée|bloqué(e)}}.\nLa dernière entrée active du journal des blocages est affichée ci-dessous pour référence :",
-	"blocked-notice-logextract-partial": "Cet utilisateur {{GENDER:$1| }} est actuellement partiellement bloqué.\nLa dernière entrée de journal de blocage active est fournie ci-dessous pour référence :",
 	"blocked-notice-logextract-anon": "Cette adresse IP est actuellement bloquée.\nLa dernière entrée de journal de blocage active est fournie ci-dessous pour référence :",
 	"blocked-notice-logextract-anon-partial": "Cette adresse IP est actuellement partiellement bloquée.\nLa dernière entrée de journal de blocage active est fournie ci-dessous pour référence :",
 	"blocked-notice-logextract-multi": "{{GENDER:$1|Cet utilisateur|Cette utilisatrice|Ce compte}} est actuellement {{GENDER:$1|bloqué|bloquée|bloqué}} $2 {{PLURAL:$2|fois}}.\nLa dernière entrée du journal des blocages actifs est affichée ci-dessous pour référence :",

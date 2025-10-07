@@ -392,5 +392,13 @@
 	"exif-digitalsourcetype": "Терахьийн хаамийн гӀирсийн хьост",
 	"exif-digitalsourcetype-digitalcapture": "Терахьийн камера йа диктофон",
 	"exif-digitalsourcetype-softwareimage": "Программин гӀоьнца кхоьллина",
-	"exif-digitalsourcetype-digitalart": "Терахьийн гӀирс лелош адамо кхоьллина"
+	"exif-digitalsourcetype-digitalart": "Терахьийн гӀирс лелош адамо кхоьллина",
+	"exif-digitalsourcetype-digitalcreation": "Адамо кхоьллина медиа, AI боцу гӀирс лелош",
+	"exif-digitalsourcetype-datadrivenmedia": "Терахьийн хаамийн гӀирсаша адаман программехула йа кхоллараллица хаамаш гайтар",
+	"exif-digitalsourcetype-trainedalgorithmicmedia": "Кхоьллина Generative AI лелош",
+	"exif-digitalsourcetype-algorithmicmedia": "ЦӀена AI йоцучу алгоритмо кхоьллина медиа",
+	"exif-digitalsourcetype-screencapture": "Экранан скриншот",
+	"exif-digitalsourcetype-virtualrecording": "Генераци йина  AI-н а,/йа дӀалаьцначу элементийн а буха тӀехь виртуалан хилам дийна дӀайазбар",
+	"exif-digitalsourcetype-composite": "Масех элементийн цхьаьнакхетар йа хӀоттам, царех муьлхха а генераци йина AI хила тарло йа ца хила тарло",
+	"exif-digitalsourcetype-compositesynthetic": "Масех элементийн цхьаьнакхетар йа хӀоттам, царех лаххара а цхьаъ генераци йина AI-но"
 }
