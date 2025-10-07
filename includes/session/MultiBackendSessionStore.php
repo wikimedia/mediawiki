@@ -271,6 +271,7 @@ class MultiBackendSessionStore implements SessionStore {
 					'sessionInfo' => (string)$info,
 					'user' => (string)$info->getUserInfo(),
 					'exception' => new RuntimeException(),
+					'flags' => (string)$flags
 				] );
 			}
 
@@ -279,6 +280,7 @@ class MultiBackendSessionStore implements SessionStore {
 					'sessionInfo' => (string)$info,
 					'user' => (string)$info->getUserInfo(),
 					'exception' => new RuntimeException(),
+					'flags' => (string)$flags
 				] );
 			}
 		}
