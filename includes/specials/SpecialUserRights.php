@@ -6,6 +6,7 @@
 
 namespace MediaWiki\Specials;
 
+use InvalidArgumentException;
 use MediaWiki\Exception\PermissionsError;
 use MediaWiki\Exception\UserBlockedError;
 use MediaWiki\Html\Html;
@@ -706,7 +707,10 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 
 	/** @inheritDoc */
 	protected function makeConflictCheckKey( UserGroupsSpecialPageTarget $target ): string {
-		return implode( ',', $this->userGroupManager->getUserGroups( $target->userObject ) );
+		$user = $target->userObject;
+		$this->assertIsUserIdentity( $user );
+		/** @var UserIdentity $user */
+		return implode( ',', $this->userGroupManager->getUserGroups( $user ) );
 	}
 
 	/** @inheritDoc */
@@ -717,6 +721,8 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 	/** @inheritDoc */
 	protected function getTargetUserToolLinks( UserGroupsSpecialPageTarget $target ): string {
 		$user = $target->userObject;
+		$this->assertIsUserIdentity( $user );
+		/** @var UserIdentity $user */
 		$systemUser = $user->getWikiId() === UserIdentity::LOCAL
 			&& $this->userFactory->newFromUserIdentity( $user )->isSystemUser();
 
@@ -732,10 +738,13 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 
 	/** @inheritDoc */
 	protected function getCurrentUserGroupsText( UserGroupsSpecialPageTarget $target ): string {
+		$user = $target->userObject;
+		$this->assertIsUserIdentity( $user );
+		/** @var UserIdentity $user */
+
 		$groupsText = parent::getCurrentUserGroupsText( $target );
 
 		// Apart from displaying the groups list, also display a note if this is a system user
-		$user = $target->userObject;
 		$systemUser = $user->getWikiId() === UserIdentity::LOCAL
 			&& $this->userFactory->newFromUserIdentity( $user )->isSystemUser();
 		if ( $systemUser ) {
@@ -756,9 +765,10 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 		array $userGroups,
 		UserGroupsSpecialPageTarget $target
 	): array {
-		$autoGroups = [];
-		/** @var UserIdentity $user */
 		$user = $target->userObject;
+		$this->assertIsUserIdentity( $user );
+		/** @var UserIdentity $user */
+		$autoGroups = [];
 
 		// Listing autopromote groups works only on the local wiki
 		if ( $user->getWikiId() === UserIdentity::LOCAL ) {
@@ -781,7 +791,10 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 
 	/** @inheritDoc */
 	protected function getGroupMemberships( UserGroupsSpecialPageTarget $target ): array {
-		return $this->userGroupManager->getUserGroupMemberships( $target->userObject );
+		$user = $target->userObject;
+		$this->assertIsUserIdentity( $user );
+		/** @var UserIdentity $user */
+		return $this->userGroupManager->getUserGroupMemberships( $user );
 	}
 
 	protected function getGroupAnnotations( string $group ): array {
@@ -864,7 +877,10 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 
 	/** @inheritDoc */
 	protected function getDisplayUsername( UserGroupsSpecialPageTarget $target ): string {
-		return $this->getUsernameWithInterwiki( $target->userObject );
+		$user = $target->userObject;
+		$this->assertIsUserIdentity( $user );
+		/** @var UserIdentity $user */
+		return $this->getUsernameWithInterwiki( $user );
 	}
 
 	/**
@@ -887,7 +903,10 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 
 	/** @inheritDoc */
 	protected function supportsWatchUser( UserGroupsSpecialPageTarget $target ): bool {
-		return $target->userObject->getWikiId() === UserIdentity::LOCAL;
+		$user = $target->userObject;
+		$this->assertIsUserIdentity( $user );
+		/** @var UserIdentity $user */
+		return $user->getWikiId() === UserIdentity::LOCAL;
 	}
 
 	/** @inheritDoc */
@@ -912,6 +931,18 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 		// Autocomplete subpage as user list - public to allow caching
 		return $this->userNamePrefixSearch
 			->search( UserNamePrefixSearch::AUDIENCE_PUBLIC, $search, $limit, $offset );
+	}
+
+	/**
+	 * A helper function to assert that an object is of type {@see UserIdentity}.
+	 * It's used when retrieving the user object from a {@see UserGroupsSpecialPageTarget}.
+	 * @throws InvalidArgumentException If the object is not of the expected type
+	 * @param mixed $object The object to check
+	 */
+	private function assertIsUserIdentity( mixed $object ): void {
+		if ( !$object instanceof UserIdentity ) {
+			throw new InvalidArgumentException( 'Target userObject must be a UserIdentity' );
+		}
 	}
 }
 
