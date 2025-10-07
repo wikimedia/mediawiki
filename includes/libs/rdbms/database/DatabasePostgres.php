@@ -343,7 +343,11 @@ class DatabasePostgres extends Database {
 		return [];
 	}
 
-	/** @inheritDoc */
+	/**
+	 * @param string $index
+	 * @param string|false $schema
+	 * @return string[][]|null
+	 */
 	public function indexAttributes( $index, $schema = false ) {
 		if ( $schema === false ) {
 			$schemas = $this->getCoreSchemas();
