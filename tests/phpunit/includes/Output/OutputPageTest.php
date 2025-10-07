@@ -1812,34 +1812,54 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$op->addParserOutputMetadata( $stubPOEmpty );
 		$this->assertSame( [], $op->getFileSearchOptions() );
 
+		// Test with some arbitrary template id's
+		$mkList = static function ( $ids ) {
+			$list = [];
+			foreach ( $ids as $dbkey => $arr ) {
+				$list[] = [
+					'link' => new TitleValue( NS_FILE, (string)$dbkey ),
+				] + $arr;
+			}
+			return $list;
+		};
+		$mkGetLinkList = static fn ( $ids ) => static fn ( $lt ) =>
+			match ( $lt ) {
+			ParserOutputLinkTypes::MEDIA => $mkList( $ids ),
+			default => [],
+			};
+
 		// Test with some arbitrary files
 		$files1 = [
-			'A' => [ 'time' => null, 'sha1' => '' ],
+			'A' => [ 'time' => null, 'sha1' => null ],
 			'B' => [
 				'time' => '12211221123321',
 				'sha1' => 'bf3ffa7047dc080f5855377a4f83cd18887e3b05',
 			],
 		];
 
-		$stubPO1 = $this->createParserOutputStub( 'getFileSearchOptions', $files1 );
+		$stubPO1 = $this->createParserOutputStub(
+			'getLinkList', $mkGetLinkList( $files1 )
+		);
 
 		$op->addParserOutput( $stubPO1, ParserOptions::newFromAnon() );
 		$this->assertSame( $files1, $op->getFileSearchOptions() );
 
 		// Test merging with a second set of files
 		$files2 = [
-			'C' => [ 'time' => null, 'sha1' => '' ],
-			'B' => [ 'time' => null, 'sha1' => '' ],
+			'C' => [ 'time' => null, 'sha1' => null ],
+			'B' => [ 'time' => null, 'sha1' => null ],
 		];
 
-		$stubPO2 = $this->createParserOutputStub( 'getFileSearchOptions', $files2 );
+		$stubPO2 = $this->createParserOutputStub(
+			'getLinkList', $mkGetLinkList( $files2 )
+		);
 
 		$op->addParserOutputMetadata( $stubPO2 );
-		$this->assertSame( array_merge( $files1, $files2 ), $op->getFileSearchOptions() );
+		$this->assertEqualsCanonicalizing( array_merge( $files2, $files1 ), $op->getFileSearchOptions() );
 
 		// Test merging with an empty set of files
 		$op->addParserOutput( $stubPOEmpty, ParserOptions::newFromAnon() );
-		$this->assertSame( array_merge( $files1, $files2 ), $op->getFileSearchOptions() );
+		$this->assertEqualsCanonicalizing( array_merge( $files2, $files1 ), $op->getFileSearchOptions() );
 	}
 
 	/**

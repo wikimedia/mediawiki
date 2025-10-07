@@ -259,12 +259,6 @@ class OutputPage extends ContextSource {
 	/** @var array<string,mixed> */
 	private $mJsConfigVars = [];
 
-	/** @var array<int,array<string,int>> */
-	private $mTemplateIds = [];
-
-	/** @var array */
-	protected $mImageTimeKeys = [];
-
 	/** @var string */
 	public $mRedirectCode = '';
 
@@ -2156,7 +2150,17 @@ class OutputPage extends ContextSource {
 	 * @since 1.18
 	 */
 	public function getFileSearchOptions() {
-		return $this->mImageTimeKeys;
+		$result = [];
+		foreach (
+			$this->metadata->getLinkList( ParserOutputLinkTypes::MEDIA ) as
+				$linkItem ) {
+			$link = $linkItem['link'];
+			unset( $linkItem['link'] );
+			$result[$link->getDBkey()] = $linkItem + [
+				'time' => null, 'sha1' => null,
+			];
+		}
+		return $result;
 	}
 
 	/**
@@ -2488,14 +2492,11 @@ class OutputPage extends ContextSource {
 		// Template versioning and File Search Options
 		foreach ( [
 			ParserOutputLinkTypes::TEMPLATE,
+			ParserOutputLinkTypes::MEDIA,
 		] as $linkType ) {
 			foreach ( $parserOutput->getLinkList( $linkType ) as $linkItem ) {
 				$this->metadata->appendLinkList( $linkType, $linkItem );
 			}
-		}
-		// File versioning...
-		foreach ( (array)$parserOutput->getFileSearchOptions() as $dbk => $data ) {
-			$this->mImageTimeKeys[$dbk] = $data;
 		}
 
 		// Enable OOUI if requested via ParserOutput

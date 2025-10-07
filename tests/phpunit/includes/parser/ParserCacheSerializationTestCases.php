@@ -353,8 +353,7 @@ abstract class ParserCacheSerializationTestCases {
 					$testCase->assertArrayEquals( [], $object->getLinks() );
 					$testCase->assertArrayEquals( [], $object->getLinkList( ParserOutputLinkTypes::SPECIAL ) );
 					$testCase->assertArrayEquals( [], $object->getLinkList( ParserOutputLinkTypes::TEMPLATE ) );
-					$testCase->assertArrayEquals( [], $object->getImages() );
-					$testCase->assertArrayEquals( [], $object->getFileSearchOptions() );
+					$testCase->assertArrayEquals( [], $object->getLinkList( ParserOutputLinkTypes::MEDIA ) );
 					$testCase->assertArrayEquals( [], $object->getExternalLinks() );
 					$testCase->assertFalse( $object->getNoGallery() );
 					$testCase->assertArrayEquals( [], $object->getHeadItems() );
@@ -533,10 +532,16 @@ abstract class ParserCacheSerializationTestCases {
 						static fn ( $item ) => ( [ 'link' => strval( $item['link'] ) ] + $item ),
 						$object->getLinkList( ParserOutputLinkTypes::TEMPLATE )
 					) );
-					$testCase->assertArrayEquals( [ 'Image1' => 1 ], $object->getImages() );
-					$testCase->assertArrayEquals( [ 'Image1' => [
-						'time' => MWTimestamp::convert( TS_MW, 123456789 ), 'sha1' => 'test_sha1'
-					] ], $object->getFileSearchOptions() );
+					$testCase->assertArrayEquals( [
+						[
+							'link' => '6:Image1',
+							'time' => MWTimestamp::convert( TS_MW, 123456789 ),
+							'sha1' => 'test_sha1',
+						]
+					], array_map(
+						static fn ( $item ) => ( [ 'link' => strval( $item['link'] ) ] + $item ),
+						$object->getLinkList( ParserOutputLinkTypes::MEDIA )
+					) );
 					$testCase->assertArrayEquals( [ 'https://test.com' => 1 ], $object->getExternalLinks() );
 					$testCase->assertArrayEquals( [ 'tag1' => 'head_item1' ], $object->getHeadItems() );
 					$testCase->assertArrayEquals( [ 'module1' ], $object->getModules() );

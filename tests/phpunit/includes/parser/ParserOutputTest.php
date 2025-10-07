@@ -867,6 +867,8 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 	 * @param array $expected
 	 */
 	public function testMergeTrackingMetaDataFrom( ParserOutput $a, ParserOutput $b, $expected ) {
+		$this->filterDeprecated( '/ParserOutput::getFileSearchOptions was deprecated/' );
+		$this->filterDeprecated( '/ParserOutput::getImages was deprecated/' );
 		$this->filterDeprecated( '/ParserOutput::getInterwikiLinks was deprecated/' );
 		$this->filterDeprecated( '/ParserOutput::getTemplates was deprecated/' );
 		$this->filterDeprecated( '/ParserOutput::getTemplateIds was deprecated/' );
@@ -889,6 +891,8 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 	 * @param array $expected
 	 */
 	public function testCollectMetaData( ParserOutput $a, ParserOutput $b, $expected ) {
+		$this->filterDeprecated( '/ParserOutput::getFileSearchOptions was deprecated/' );
+		$this->filterDeprecated( '/ParserOutput::getImages was deprecated/' );
 		$this->filterDeprecated( '/ParserOutput::getInterwikiLinks was deprecated/' );
 		$this->filterDeprecated( '/ParserOutput::getTemplates was deprecated/' );
 		$this->filterDeprecated( '/ParserOutput::getTemplateIds was deprecated/' );

@@ -229,6 +229,7 @@ because of Phabricator reports.
 * The PermissionErrorAudit hook has been removed.
 * OutputPage::showFatalError() has been removed.
 * OutputPage::showPermissionsErrorPage() has been removed.
+* OutputPage::$mImageTimeKeys has been removed.
 * PSR-4 namespace loading via Autoloader requires trailing slash at the path,
   an extra slash is no longer added unconditionally.
 * SessionProvider::setLogger(), setConfig(), setManager(), setHookContainer()
@@ -408,7 +409,7 @@ because of Phabricator reports.
 * ParserOutput::setLanguageLinks(), ::getTimestamp(), and
   ::setTimestamp, deprecated in 1.42, now emit deprecation warnings.
 * ParserOutput::getInterwikiLinks(), ::getLinksSpecial(), ::getTemplates(),
-  and ::getTemplateIds(), deprecated in
+  ::getTemplateIds(), and ::getFileSearchOptions(), deprecated in
   1.43, now emit deprecation warnings.
 * OutputPage::setLanguageLinks(), deprecated in 1.43, now emits deprecation
   warnings.
