@@ -610,6 +610,14 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * @deprecated since 1.43, use ::getLinkList(ParserOutputLinkTypes::LANGUAGE)
 	 */
 	public function getLanguageLinks() {
+		wfDeprecated( __METHOD__, '1.43' );
+		return $this->getLanguageLinksInternal();
+	}
+
+	/**
+	 * @return list<string>
+	 */
+	private function getLanguageLinksInternal(): array {
 		$result = [];
 		foreach ( $this->mLanguageLinkMap as $lang => $title ) {
 			$result[] = "$lang:$title";
@@ -1142,7 +1150,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 */
 	public function setLanguageLinks( $ll ) {
 		wfDeprecated( __METHOD__, '1.42' );
-		$old = $this->getLanguageLinks();
+		$old = $this->getLanguageLinksInternal();
 		$this->mLanguageLinkMap = [];
 		if ( $ll === null ) { // T376323
 			wfDeprecated( __METHOD__ . ' with null argument', '1.43' );
@@ -3109,7 +3117,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		// at <https://www.mediawiki.org/wiki/Manual:Parser_cache/Serialization_compatibility>!
 		$data = [
 			'Text' => $this->hasText() ? $this->getContentHolderText() : null,
-			'LanguageLinks' => $this->getLanguageLinks(),
+			'LanguageLinks' => $this->getLanguageLinksInternal(),
 			'Categories' => $this->mCategories,
 			'Indicators' => $this->mIndicators,
 			'TitleText' => $this->mTitleText,

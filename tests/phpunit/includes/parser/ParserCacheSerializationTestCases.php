@@ -348,7 +348,7 @@ abstract class ParserCacheSerializationTestCases {
 					$testCase->assertNull( $object->getSpeculativePageIdUsed() );
 					$testCase->assertNull( $object->getRevisionTimestampUsed() );
 					$testCase->assertNull( $object->getRevisionUsedSha1Base36() );
-					$testCase->assertArrayEquals( [], $object->getLanguageLinks() );
+					$testCase->assertArrayEquals( [], $object->getLinkList( ParserOutputLinkTypes::LANGUAGE ) );
 					$testCase->assertArrayEquals( [], $object->getLinkList( ParserOutputLinkTypes::INTERWIKI ) );
 					$testCase->assertArrayEquals( [], $object->getCategoryNames() );
 					$testCase->assertArrayEquals( [], $object->getCategoryMap() );
@@ -507,7 +507,13 @@ abstract class ParserCacheSerializationTestCases {
 				'instance' => $parserOutputWithMetadataPost1_44,
 				'assertions' => static function ( MediaWikiIntegrationTestCase $testCase, ParserOutput $object ) {
 					$testCase->assertSame( 42, $object->getSpeculativeRevIdUsed() );
-					$testCase->assertArrayEquals( [ 'm:link1', 'mw:link2' ], $object->getLanguageLinks() );
+					$testCase->assertEqualsCanonicalizing( [
+						'm:0:link1',
+						'mw:0:link2',
+					], array_map(
+						static fn ( $item ) => strval( $item['link'] ),
+						$object->getLinkList( ParserOutputLinkTypes::LANGUAGE )
+					) );
 					$testCase->assertEqualsCanonicalizing( [
 						'enwiki:0:interwiki1',
 						'enwiki:0:interwiki2',

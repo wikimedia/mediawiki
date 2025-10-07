@@ -1593,7 +1593,16 @@ class OutputPage extends ContextSource {
 	 * @return string[] Array of interwiki-prefixed (non DB key) titles (e.g. 'fr:Test page')
 	 */
 	public function getLanguageLinks() {
-		return $this->metadata->getLanguageLinks();
+		$result = [];
+		foreach ( $this->metadata->getLinkList( ParserOutputLinkTypes::LANGUAGE ) as [ 'link' => $link ] ) {
+			$ll = $link->getInterwiki() . ':' . $link->getDBkey();
+			# language links can have fragments
+			if ( $link->getFragment() !== '' ) {
+				$ll .= '#' . $link->getFragment();
+			}
+			$result[] = $ll;
+		}
+		return $result;
 	}
 
 	/**
@@ -2515,7 +2524,7 @@ class OutputPage extends ContextSource {
 		// Link flags are ignored for now, but may in the future be
 		// used to mark individual language links.
 		$linkFlags = [];
-		$languageLinks = $this->metadata->getLanguageLinks();
+		$languageLinks = $this->getLanguageLinks();
 		// This hook can be used to remove/replace language links
 		$this->getHookRunner()->onLanguageLinks( $this->getTitle(), $languageLinks, $linkFlags );
 		$this->metadata->clearLanguageLinks();
