@@ -439,7 +439,6 @@ class OutputPage extends ContextSource {
 		$this->deprecatePublicProperty( 'mIndicators', '1.38', __CLASS__ );
 		$this->deprecatePublicProperty( 'mHeadItems', '1.38', __CLASS__ );
 		$this->deprecatePublicProperty( 'mJsConfigVars', '1.38', __CLASS__ );
-		$this->deprecatePublicProperty( 'mTemplateIds', '1.38', __CLASS__ );
 		$this->deprecatePublicProperty( 'mEnableClientCache', '1.38', __CLASS__ );
 		$this->deprecatePublicProperty( 'mParserOptions', '1.44', __CLASS__ );
 		$this->setContext( $context );
@@ -2139,7 +2138,15 @@ class OutputPage extends ContextSource {
 	 * @since 1.18
 	 */
 	public function getTemplateIds() {
-		return $this->mTemplateIds;
+		$result = [];
+		foreach (
+			$this->metadata->getLinkList( ParserOutputLinkTypes::TEMPLATE ) as
+				[ 'link' => $link, 'pageid' => $pageid, 'revid' => $revid ] ) {
+			$ns = $link->getNamespace();
+			$dbk = $link->getDBkey();
+			$result[$ns][$dbk] = $revid;
+		}
+		return $result;
 	}
 
 	/**
@@ -2478,12 +2485,12 @@ class OutputPage extends ContextSource {
 			}
 		}
 
-		// Template versioning...
-		foreach ( (array)$parserOutput->getTemplateIds() as $ns => $dbks ) {
-			if ( isset( $this->mTemplateIds[$ns] ) ) {
-				$this->mTemplateIds[$ns] = $dbks + $this->mTemplateIds[$ns];
-			} else {
-				$this->mTemplateIds[$ns] = $dbks;
+		// Template versioning and File Search Options
+		foreach ( [
+			ParserOutputLinkTypes::TEMPLATE,
+		] as $linkType ) {
+			foreach ( $parserOutput->getLinkList( $linkType ) as $linkItem ) {
+				$this->metadata->appendLinkList( $linkType, $linkItem );
 			}
 		}
 		// File versioning...

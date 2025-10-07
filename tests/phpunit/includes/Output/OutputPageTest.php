@@ -1737,6 +1737,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testTemplateIds() {
+		$this->filterDeprecated( '/ParserOutput::getTemplateIds was deprecated/' );
 		$op = $this->newInstance();
 		$this->assertSame( [], $op->getTemplateIds() );
 
@@ -1746,22 +1747,45 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( [], $op->getTemplateIds() );
 
 		// Test with some arbitrary template id's
+		$mkList = static function ( $ids, $pageid ) {
+			$list = [];
+			foreach ( $ids as $ns => $arr ) {
+				foreach ( $arr as $dbkey => $revid ) {
+					$list[] = [
+						'link' => new TitleValue( $ns, (string)$dbkey ),
+						'pageid' => $pageid,
+						'revid' => $revid,
+					];
+				}
+			}
+			return $list;
+		};
+		$mkGetLinkList = static fn ( $ids, $pageid ) => static fn ( $lt ) =>
+			match ( $lt ) {
+			ParserOutputLinkTypes::TEMPLATE => $mkList( $ids, $pageid ),
+			default => [],
+			};
+
 		$ids = [
 			NS_MAIN => [ 'A' => 3, 'B' => 17 ],
 			NS_TALK => [ 'C' => 31 ],
 			NS_MEDIA => [ 'D' => -1 ],
 		];
-
-		$stubPO1 = $this->createParserOutputStub( 'getTemplateIds', $ids );
+		$stubPO1 = $this->createParserOutputStub(
+			'getLinkList', $mkGetLinkList( $ids, 42 )
+		);
 
 		$op->addParserOutputMetadata( $stubPO1 );
 		$this->assertSame( $ids, $op->getTemplateIds() );
 
 		// Test merging with a second set of id's
-		$stubPO2 = $this->createParserOutputStub( 'getTemplateIds', [
-			NS_MAIN => [ 'E' => 1234 ],
-			NS_PROJECT => [ 'F' => 5678 ],
-		] );
+		$ids2 = [
+				NS_MAIN => [ 'E' => 1234 ],
+				NS_PROJECT => [ 'F' => 5678 ],
+		];
+		$stubPO2 = $this->createParserOutputStub(
+			'getLinkList', $mkGetLinkList( $ids2, 4242 )
+		);
 
 		$finalIds = [
 			NS_MAIN => [ 'E' => 1234, 'A' => 3, 'B' => 17 ],
@@ -1771,11 +1795,11 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		];
 
 		$op->addParserOutput( $stubPO2, ParserOptions::newFromAnon() );
-		$this->assertSame( $finalIds, $op->getTemplateIds() );
+		$this->assertEqualsCanonicalizing( $finalIds, $op->getTemplateIds() );
 
 		// Test merging with an empty set of id's
 		$op->addParserOutputMetadata( $stubPOEmpty );
-		$this->assertSame( $finalIds, $op->getTemplateIds() );
+		$this->assertEqualsCanonicalizing( $finalIds, $op->getTemplateIds() );
 	}
 
 	public function testFileSearchOptions() {

@@ -868,6 +868,8 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 	 */
 	public function testMergeTrackingMetaDataFrom( ParserOutput $a, ParserOutput $b, $expected ) {
 		$this->filterDeprecated( '/ParserOutput::getInterwikiLinks was deprecated/' );
+		$this->filterDeprecated( '/ParserOutput::getTemplates was deprecated/' );
+		$this->filterDeprecated( '/ParserOutput::getTemplateIds was deprecated/' );
 		$a->mergeTrackingMetaDataFrom( $b );
 
 		$this->assertFieldValues( $a, $expected );
@@ -888,6 +890,8 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 	 */
 	public function testCollectMetaData( ParserOutput $a, ParserOutput $b, $expected ) {
 		$this->filterDeprecated( '/ParserOutput::getInterwikiLinks was deprecated/' );
+		$this->filterDeprecated( '/ParserOutput::getTemplates was deprecated/' );
+		$this->filterDeprecated( '/ParserOutput::getTemplateIds was deprecated/' );
 		$b->collectMetadata( $a );
 
 		$this->assertFieldValues( $a, $expected );

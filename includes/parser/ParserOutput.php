@@ -888,11 +888,13 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 
 	/** @deprecated since 1.43, use ::getLinkList(ParserOutputLinkTypes::TEMPLATE) */
 	public function &getTemplates() {
+		wfDeprecated( __METHOD__, '1.43' );
 		return $this->mTemplates;
 	}
 
 	/** @deprecated since 1.43, use ::getLinkList(ParserOutputLinkTypes::TEMPLATE) */
 	public function &getTemplateIds() {
+		wfDeprecated( __METHOD__, '1.43' );
 		return $this->mTemplateIds;
 	}
 

@@ -352,8 +352,7 @@ abstract class ParserCacheSerializationTestCases {
 					$testCase->assertNull( $object->getTOCData() );
 					$testCase->assertArrayEquals( [], $object->getLinks() );
 					$testCase->assertArrayEquals( [], $object->getLinkList( ParserOutputLinkTypes::SPECIAL ) );
-					$testCase->assertArrayEquals( [], $object->getTemplates() );
-					$testCase->assertArrayEquals( [], $object->getTemplateIds() );
+					$testCase->assertArrayEquals( [], $object->getLinkList( ParserOutputLinkTypes::TEMPLATE ) );
 					$testCase->assertArrayEquals( [], $object->getImages() );
 					$testCase->assertArrayEquals( [], $object->getFileSearchOptions() );
 					$testCase->assertArrayEquals( [], $object->getExternalLinks() );
@@ -525,11 +524,15 @@ abstract class ParserCacheSerializationTestCases {
 						NS_USER => [ 'Link2' => 43 ]
 					], $object->getLinks() );
 					$testCase->assertArrayEquals( [
-						NS_SPECIAL => [ 'Template1' => 42 ]
-					], $object->getTemplates() );
-					$testCase->assertArrayEquals( [
-						NS_SPECIAL => [ 'Template1' => 4242 ]
-					], $object->getTemplateIds() );
+						[
+							'link' => '10:Template1',
+							'pageid' => '42',
+							'revid' => '4242',
+						],
+					], array_map(
+						static fn ( $item ) => ( [ 'link' => strval( $item['link'] ) ] + $item ),
+						$object->getLinkList( ParserOutputLinkTypes::TEMPLATE )
+					) );
 					$testCase->assertArrayEquals( [ 'Image1' => 1 ], $object->getImages() );
 					$testCase->assertArrayEquals( [ 'Image1' => [
 						'time' => MWTimestamp::convert( TS_MW, 123456789 ), 'sha1' => 'test_sha1'
