@@ -406,7 +406,7 @@ because of Phabricator reports.
   warnings.
 * ParserOutput::getWarnings() has been deprecated. Use ::getWarningMsgs()
   instead.
-* ParserOutput::setLanguageLinks(), ::getTimestamp(), and
+* ParserOutput::setLanguageLinks(), ::getTimestamp(), ::setText() and
   ::setTimestamp, deprecated in 1.42, now emit deprecation warnings.
 * ParserOutput::getInterwikiLinks(), ::getLinksSpecial(), ::getTemplates(),
   ::getTemplateIds(), and ::getFileSearchOptions(), deprecated in

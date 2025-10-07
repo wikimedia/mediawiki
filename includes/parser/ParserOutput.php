@@ -1123,6 +1123,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 *  the getter ::getContentHolderText()
 	 */
 	public function setText( $text ) {
+		wfDeprecated( __METHOD__, '1.42' );
 		$ret = $this->hasText() ? $this->getContentHolderText() : null;
 		$this->setContentHolderText( $text );
 		return $ret;
