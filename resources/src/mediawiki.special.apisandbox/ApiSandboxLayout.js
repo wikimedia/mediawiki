@@ -96,7 +96,7 @@ ApiSandboxLayout.prototype.makeWidgetFieldLayouts = function ( ppi, name ) {
 				).parse(),
 				mw.message( 'apisandbox-param-limit' ).parse()
 			];
-			helpLabel.addInfo( Util.parseHTML( tmp.join( mw.msg( 'word-separator' ) ) ) );
+			helpLabel.addInfo( Util.parseHTML( tmp.join( mw.message( 'word-separator' ).escaped() ) ) );
 			break;
 
 		case 'integer':
@@ -141,7 +141,7 @@ ApiSandboxLayout.prototype.makeWidgetFieldLayouts = function ( ppi, name ) {
 			);
 		}
 		if ( tmp.length ) {
-			helpLabel.addInfo( Util.parseHTML( tmp.join( mw.msg( 'word-separator' ) ) ) );
+			helpLabel.addInfo( Util.parseHTML( tmp.join( mw.message( 'word-separator' ).escaped() ) ) );
 		}
 	}
 	if ( 'maxbytes' in ppi ) {
