@@ -12,7 +12,7 @@
 	"paramvalidator-badexpiry-duration-max": "Podana vrednost »$2« za parameter <var>$1</var> presega največjo dovoljeno vrednost »$3«. Uporabljena bo največja dovoljena vrednost.",
 	"paramvalidator-badexpiry-past": "Vrednost »$2« za parameter preteka »$1« je v preteklosti.",
 	"paramvalidator-badfloat": "Neveljavna vrednost »$2« za plavajoči parameter »$1«.",
-	"paramvalidator-badfloat-type": "Neveljavna vrednost »$2« za parameter s plavajočo vrednostjo »%1«. Namesto tega je bila pridobljena vrednost $3.",
+	"paramvalidator-badfloat-type": "Neveljavna vrednost »$2« za parameter s plavajočo vrednostjo »$1«. Namesto tega je bila pridobljena vrednost $3.",
 	"paramvalidator-badfloat-notfinite": "Vrednost »$2« za plavajoči parameter »$1« je prevelika ali ni število.",
 	"paramvalidator-badinteger": "Neveljavna vrednost »$2« za celošteviski parameter »$1«.",
 	"paramvalidator-badinteger-type": "Neveljavna vrednost »$2« za celoštevilski parameter »$1«. Namesto tega je bila pridobljena vrednost $3.",

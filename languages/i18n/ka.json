@@ -221,7 +221,6 @@
 	"versionrequired": "საჭიროა მედიავიკის ვერსია $1",
 	"versionrequiredtext": "მოცემული გვერდის გამოსაყენებლად საჭიროა მედიავიკის ვერსია $1. იხილეთ [[Special:Version|სპეციალური:ვერსია]]",
 	"ok": "კარგი",
-	"pagetitle": "$1 - {{SITENAME}}",
 	"backlinksubtitle": "← $1",
 	"retrievedfrom": "მოძიებულია „$1“-დან",
 	"new-messages": "თქვენ გაქვთ $1 ($2).",

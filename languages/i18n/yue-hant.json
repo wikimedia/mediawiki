@@ -2494,7 +2494,7 @@
 	"whatlinkshere-page": "頁：",
 	"linkshere": "呢啲頁連結到'''$1'''：",
 	"nolinkshere": "無一頁連結到'''$1'''。",
-	"nolinkshere-filter": "冇網頁連結去<strong>$2</strong>，而家嘅搜尋設定。",
+	"nolinkshere-filter": "按目前嘅搜尋設定，冇一頁連結到<strong>$2</strong>。",
 	"nolinkshere-ns": "響已經揀咗嘅空間名無嘢連結到'''$2'''。",
 	"isredirect": "跳轉頁",
 	"istemplate": "嵌入",

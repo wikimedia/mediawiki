@@ -147,7 +147,8 @@
 			"優枰",
 			"Emojiwiki",
 			"1F616EMO",
-			"SCP-2000"
+			"SCP-2000",
+			"Nvdtn19"
 		]
 	},
 	"sunday": "星期日",
@@ -927,7 +928,7 @@
 	"currentrev": "最新修訂",
 	"currentrev-asof": "於 $1 的最新修訂",
 	"revisionasof": "於 $1 的修訂",
-	"revision-info": "於 $1 由 {{GENDER:$6|$2}} 所做的修訂 $7",
+	"revision-info": "於 $1 由 {{GENDER:$6|$2}} 所作的修訂 $7",
 	"previousrevision": "←上個修訂",
 	"nextrevision": "下個修訂→",
 	"currentrevisionlink": "最新修訂",
@@ -3390,7 +3391,7 @@
 	"version-poweredby-translators": " translatewiki.net 翻譯人員",
 	"version-poweredby-various": "各作者",
 	"version-credits-summary": "我們感謝以下人士為 [[Special:Version|MediaWiki]] 作出的貢獻。",
-	"version-license-info": "MediaWiki 為自由軟體；您可依據自由軟體基金會所發表的 GNU 通用公共授權條款規定，將本程式重新發佈與/或修改；無論您依據的是本授權條款的第二版或（您可自行選擇）之後的任何版本。\n\n本程式發佈的目的是希望可以提供協助，但<em>不負任何擔保責任</em>；亦無隱含對<strong>適售性</strong>或<strong>特定用途方面適用性</strong>的情形擔保。詳情請參照 GNU 通用公共授權。\n\n您應已隨本程式收到 [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU 通用公共授權條款的副本]；如果沒有，請寄信通知自由軟體基金會，51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA，或[//www.gnu.org/licenses/old-licenses/gpl-2.0.html 線上閱讀]。",
+	"version-license-info": "MediaWiki 為自由軟體；您可依據自由軟體基金會所發表的 GNU 通用公共授權條款規定，將本程式重新發佈與/或修改；無論您依據的是本授權條款的第二版或（您可自行選擇）之後的任何版本。\n\n本程式發佈的目的是希望可以提供協助，但<em>不負任何擔保責任</em>；亦無隱含對<strong>適售性</strong>或<strong>特定用途方面適用性</strong>的情形擔保。詳情請參照 GNU 通用公共授權。\n\n您應已隨本程式收到 [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU 通用公共授權條款的副本]；如果沒有，可[//www.gnu.org/licenses/old-licenses/gpl-2.0.html 線上閱讀]。",
 	"version-software": "已安裝的軟體",
 	"version-software-product": "產品",
 	"version-software-version": "版本",

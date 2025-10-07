@@ -5,7 +5,8 @@
 			"Pietrasagh",
 			"Rail",
 			"Rainbow P",
-			"Woytecr"
+			"Woytecr",
+			"Nux"
 		]
 	},
 	"rest-prefix-mismatch": "Żądana ścieżka ($1) nie była wewnątrz ścieżki bazowej REST API ($2)",

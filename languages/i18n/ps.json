@@ -200,7 +200,6 @@
 	"versionrequired": "د مېډياويکي $1 بل‌بڼې ته اړتيا ده",
 	"versionrequiredtext": "د دې مخ په کارولو کې د مېډياويکي $1 بل‌بڼې ته اړتيا ده. \n[[Special:Version|د بل‌بڼې مخ وگورئ]].",
 	"ok": "ښه",
-	"pagetitle": "$1 - {{SITENAME}}",
 	"backlinksubtitle": "→ $1",
 	"retrievedfrom": "\"$1\" نه اخيستل شوی",
 	"new-messages": "{{PLURAL:$3|تاسو لرئ }} $1 ($2).",

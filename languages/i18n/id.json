@@ -287,7 +287,6 @@
 	"versionrequired": "Dibutuhkan MediaWiki versi $1",
 	"versionrequiredtext": "MediaWiki versi $1 dibutuhkan untuk menggunakan halaman ini. Lihat [[Special:Version|halaman versi]]",
 	"ok": "OK",
-	"pagetitle": "$1 - {{SITENAME}}",
 	"backlinksubtitle": "← $1",
 	"retrievedfrom": "Diperoleh dari \"$1\"",
 	"new-messages": "{{PLURAL:$3|Anda memiliki}} $1 ($2).",

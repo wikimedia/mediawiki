@@ -220,7 +220,6 @@
 	"versionrequired": "MediaWiki-ҙың $1 өлгөһө кәрәк",
 	"versionrequiredtext": "Был бит менән эшләү өсөн MediaWiki $1 өлгөһө кәрәк. [[Special:Version|Ҡулланылған өлгө тураһында мәғлүмәт битен]] ҡара.",
 	"ok": "Яҡшы",
-	"pagetitle": "$1 - {{SITENAME}}",
 	"backlinksubtitle": "← $1",
 	"retrievedfrom": "«$1» битенән алынған",
 	"new-messages": "{{PLURAL:$3|Һеҙгә}} $1 ($2) бар.",
