@@ -489,7 +489,7 @@ class UserGroupManager {
 
 		$groups = array_intersect(
 			$this->getUserEffectiveGroups( $user, $queryFlags, $recache ),
-			$this->options->get( 'PrivilegedGroups' )
+			$this->options->get( MainConfigNames::PrivilegedGroups )
 		);
 
 		$this->hookRunner->onUserPrivilegedGroups( $user, $groups );
