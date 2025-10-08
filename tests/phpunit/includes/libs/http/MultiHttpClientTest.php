@@ -271,7 +271,6 @@ class MultiHttpClientTest extends MediaWikiIntegrationTestCase {
 		// support pass-by-reference (T287318)
 		$class = new ReflectionClass( MultiHttpClient::class );
 		$func = $class->getMethod( 'useReverseProxy' );
-		$func->setAccessible( true );
 		$req = [
 			'url' => 'https://example.org/path?query=string',
 		];
@@ -285,7 +284,6 @@ class MultiHttpClientTest extends MediaWikiIntegrationTestCase {
 		// support pass-by-reference (T287318)
 		$class = new ReflectionClass( MultiHttpClient::class );
 		$func = $class->getMethod( 'normalizeRequests' );
-		$func->setAccessible( true );
 		$reqs = [
 			[ 'GET', 'https://example.org/path?query=string' ],
 			[
@@ -446,7 +444,6 @@ class MultiHttpClientTest extends MediaWikiIntegrationTestCase {
 	public function testNormalizeIllegalHeader( bool $valid, array $headers ) {
 		$class = new ReflectionClass( MultiHttpClient::class );
 		$func = $class->getMethod( 'getCurlHandle' );
-		$func->setAccessible( true );
 		$req = [
 			'method' => 'GET',
 			'url' => 'http://localhost:1234',
@@ -481,7 +478,6 @@ class MultiHttpClientTest extends MediaWikiIntegrationTestCase {
 		// support pass-by-reference (T287318)
 		$class = new ReflectionClass( MultiHttpClient::class );
 		$func = $class->getMethod( 'normalizeRequests' );
-		$func->setAccessible( true );
 		$reqs = [
 			[ 'GET', 'https://example.org/path?query=string' ],
 		];
