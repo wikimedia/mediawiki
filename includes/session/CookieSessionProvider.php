@@ -15,6 +15,7 @@ use MediaWiki\Request\WebRequest;
 use MediaWiki\User\User;
 use MediaWiki\User\UserRigorOptions;
 use MediaWiki\Utils\UrlUtils;
+use Wikimedia\IPUtils;
 use Wikimedia\LightweightObjectStore\ExpirationAwareness;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
@@ -491,6 +492,13 @@ class CookieSessionProvider extends SessionProvider {
 		$response = $request->response();
 		$expirationDuration = $this->getLoginCookieExpiration( self::JWT_COOKIE_NAME, $shouldRememberUser );
 		$expiration = $expirationDuration ? $expirationDuration + ConvertibleTimestamp::time() : null;
+
+		// Do not set JWT cookies for anonymous sessions. Not particularly useful, and makes
+		// cookie conflicts on a shared domain more likely.
+		if ( IPUtils::isValid( $user->getName() ) ) {
+			$response->clearCookie( self::JWT_COOKIE_NAME, $this->getJwtCookieOptions() );
+			return;
+		}
 
 		$jwtData = $this->getManager()->getJwtData( $user );
 		$jwtData = $this->getJwtClaimOverrides( $expirationDuration ) + $jwtData;

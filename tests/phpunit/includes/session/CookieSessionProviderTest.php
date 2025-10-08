@@ -543,6 +543,8 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 			$logger->clearBuffer();
 
 			// Anon user, anon JWT
+			// Note that we don't actually set JWT cookies for anon users. But it's conceptually
+			// possible to have a valid JWT describing an anonymous user, so let's cover that scenario.
 			$request = new FauxRequest();
 			$request->setCookies( [
 				'session' => $sessionId,
@@ -761,7 +763,7 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 			$this->assertSame( self::DELETED, $request->response()->getCookie( 'forceHTTPS' ) );
 		}
 		if ( $useSessionCookieJwt ) {
-			$expectedJwtCookie = [ 'sub' => 'mw:' . SessionManager::JWT_SUB_ANON ] + $jwtDefaults;
+			$expectedJwtCookie = self::DELETED;
 		} else {
 			$expectedJwtCookie = self::UNCHANGED;
 		}
