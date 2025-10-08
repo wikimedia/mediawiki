@@ -33,6 +33,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\UserGroupManager;
+use MediaWiki\User\UserRequirementsConditionChecker;
 use MediaWiki\Utils\ExtensionInfo;
 use MediaWiki\Utils\GitInfo;
 use MediaWiki\Utils\UrlUtils;
@@ -999,7 +1000,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		// First, checks if $cond is an array
 		if ( is_array( $cond ) ) {
 			// Checks if $cond[0] is a valid operand
-			if ( in_array( $cond[0], UserGroupManager::VALID_OPS, true ) ) {
+			if ( in_array( $cond[0], UserRequirementsConditionChecker::VALID_OPS, true ) ) {
 				$config['operand'] = $cond[0];
 				// Traversal checks conditions
 				foreach ( array_slice( $cond, 1 ) as $value ) {

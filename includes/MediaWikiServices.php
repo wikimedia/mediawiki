@@ -196,6 +196,8 @@ use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\User\UserIdentityUtils;
 use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
+use MediaWiki\User\UserRequirementsConditionChecker;
+use MediaWiki\User\UserRequirementsConditionCheckerFactory;
 use MediaWiki\Utils\UrlUtils;
 use MediaWiki\Watchlist\WatchedItemQueryService;
 use MediaWiki\Watchlist\WatchedItemStoreInterface;
@@ -2294,6 +2296,20 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getUserRegistrationLookup(): UserRegistrationLookup {
 		return $this->getService( 'UserRegistrationLookup' );
+	}
+
+	/**
+	 * @since 1.45
+	 */
+	public function getUserRequirementsConditionChecker(): UserRequirementsConditionChecker {
+		return $this->getService( 'UserRequirementsConditionChecker' );
+	}
+
+	/**
+	 * @since 1.45
+	 */
+	public function getUserRequirementsConditionCheckerFactory(): UserRequirementsConditionCheckerFactory {
+		return $this->getService( 'UserRequirementsConditionCheckerFactory' );
 	}
 
 	/**

@@ -7,7 +7,6 @@
 namespace MediaWiki\User;
 
 use InvalidArgumentException;
-use LogicException;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\HookContainer\HookContainer;
@@ -15,15 +14,11 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\JobQueue\JobQueueGroup;
 use MediaWiki\Logging\ManualLogEntry;
 use MediaWiki\MainConfigNames;
-use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Permissions\Authority;
-use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\WikiMap\WikiMap;
-use Psr\Log\LoggerInterface;
 use UserGroupExpiryJob;
 use Wikimedia\Assert\Assert;
-use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\IReadableDatabase;
@@ -43,13 +38,10 @@ class UserGroupManager {
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
 		MainConfigNames::AddGroups,
-		MainConfigNames::AutoConfirmAge,
-		MainConfigNames::AutoConfirmCount,
 		MainConfigNames::Autopromote,
 		MainConfigNames::AutopromoteOnce,
 		MainConfigNames::AutopromoteOnceLogInRC,
 		MainConfigNames::AutopromoteOnceRCExcludedGroups,
-		MainConfigNames::EmailAuthentication,
 		MainConfigNames::ImplicitGroups,
 		MainConfigNames::GroupInheritsPermissions,
 		MainConfigNames::GroupPermissions,
@@ -64,8 +56,9 @@ class UserGroupManager {
 	 * Logical operators recognized in $wgAutopromote.
 	 *
 	 * @since 1.42
+	 * @deprecated since 1.45; use UserRequirementsConditionChecker::VALID_OPS instead
 	 */
-	public const VALID_OPS = [ '&', '|', '^', '!' ];
+	public const VALID_OPS = UserRequirementsConditionChecker::VALID_OPS;
 
 	private HookRunner $hookRunner;
 
@@ -124,11 +117,9 @@ class UserGroupManager {
 	 * @param ReadOnlyMode $readOnlyMode
 	 * @param IConnectionProvider $connectionProvider
 	 * @param HookContainer $hookContainer
-	 * @param UserEditTracker $userEditTracker
-	 * @param GroupPermissionsLookup $groupPermissionsLookup
 	 * @param JobQueueGroup $jobQueueGroup
-	 * @param LoggerInterface $logger
 	 * @param TempUserConfig $tempUserConfig
+	 * @param UserRequirementsConditionCheckerFactory $userRequirementsConditionCheckerFactory
 	 * @param callable[] $clearCacheCallbacks
 	 * @param string|false $wikiId
 	 */
@@ -137,11 +128,9 @@ class UserGroupManager {
 		private readonly ReadOnlyMode $readOnlyMode,
 		private readonly IConnectionProvider $connectionProvider,
 		private readonly HookContainer $hookContainer,
-		private readonly UserEditTracker $userEditTracker,
-		private readonly GroupPermissionsLookup $groupPermissionsLookup,
 		private readonly JobQueueGroup $jobQueueGroup,
-		private readonly LoggerInterface $logger,
 		private readonly TempUserConfig $tempUserConfig,
+		private readonly UserRequirementsConditionCheckerFactory $userRequirementsConditionCheckerFactory,
 		private readonly array $clearCacheCallbacks = [],
 		private readonly string|false $wikiId = UserIdentity::LOCAL
 	) {
@@ -375,8 +364,12 @@ class UserGroupManager {
 		if ( $userObj->isTemp() ) {
 			return [];
 		}
+
+		$checker = $this->userRequirementsConditionCheckerFactory->getUserRequirementsConditionChecker(
+			$this, $this->wikiId
+		);
 		foreach ( $this->options->get( MainConfigNames::Autopromote ) as $group => $cond ) {
-			if ( $this->recCheckCondition( $cond, $userObj ) ) {
+			if ( $checker->recursivelyCheckCondition( $cond, $userObj ) ) {
 				$promote[] = $group;
 			}
 		}
@@ -413,6 +406,9 @@ class UserGroupManager {
 			}
 			$currentGroups = $this->getUserGroups( $user );
 			$formerGroups = $this->getUserFormerGroups( $user );
+			$checker = $this->userRequirementsConditionCheckerFactory->getUserRequirementsConditionChecker(
+				$this, $this->wikiId
+			);
 			foreach ( $autopromoteOnce[$event] as $group => $cond ) {
 				// Do not check if the user's already a member
 				if ( in_array( $group, $currentGroups ) ) {
@@ -423,7 +419,7 @@ class UserGroupManager {
 					continue;
 				}
 				// Finally - check the conditions
-				if ( $this->recCheckCondition( $cond, $userObj ) ) {
+				if ( $checker->recursivelyCheckCondition( $cond, $userObj ) ) {
 					$promote[] = $group;
 				}
 			}
@@ -483,163 +479,6 @@ class UserGroupManager {
 		);
 
 		return $this->userGroupCache[$userKey][self::CACHE_PRIVILEGED];
-	}
-
-	/**
-	 * Recursively check a condition.  Conditions are in the form
-	 *   [ '&' or '|' or '^' or '!', cond1, cond2, ... ]
-	 * where cond1, cond2, ... are themselves conditions; *OR*
-	 *   APCOND_EMAILCONFIRMED, *OR*
-	 *   [ APCOND_EMAILCONFIRMED ], *OR*
-	 *   [ APCOND_EDITCOUNT, number of edits ], *OR*
-	 *   [ APCOND_AGE, seconds since registration ], *OR*
-	 *   similar constructs defined by extensions.
-	 * This function evaluates the former type recursively and passes off to
-	 * checkCondition for evaluation of the latter type.
-	 *
-	 * If you change the logic of this method, please update
-	 * ApiQuerySiteinfo::appendAutoPromote(), as it depends on this method.
-	 *
-	 * @param mixed $cond A condition, possibly containing other conditions
-	 * @param User $user The user to check the conditions against
-	 *
-	 * @return bool Whether the condition is true
-	 */
-	private function recCheckCondition( $cond, User $user ): bool {
-		if ( is_array( $cond ) && count( $cond ) >= 2 && in_array( $cond[0], self::VALID_OPS ) ) {
-			// Recursive condition
-
-			// AND (all conds pass)
-			if ( $cond[0] === '&' ) {
-				foreach ( array_slice( $cond, 1 ) as $subcond ) {
-					if ( !$this->recCheckCondition( $subcond, $user ) ) {
-						return false;
-					}
-				}
-
-				return true;
-			}
-
-			// OR (at least one cond passes)
-			if ( $cond[0] === '|' ) {
-				foreach ( array_slice( $cond, 1 ) as $subcond ) {
-					if ( $this->recCheckCondition( $subcond, $user ) ) {
-						return true;
-					}
-				}
-
-				return false;
-			}
-
-			// XOR (exactly one cond passes)
-			if ( $cond[0] === '^' ) {
-				if ( count( $cond ) > 3 ) {
-					$this->logger->warning(
-						'recCheckCondition() given XOR ("^") condition on three or more conditions.' .
-						' Check your $wgAutopromote and $wgAutopromoteOnce settings.'
-					);
-				}
-				return $this->recCheckCondition( $cond[1], $user )
-					xor $this->recCheckCondition( $cond[2], $user );
-			}
-
-			// NOT (no conds pass)
-			if ( $cond[0] === '!' ) {
-				foreach ( array_slice( $cond, 1 ) as $subcond ) {
-					if ( $this->recCheckCondition( $subcond, $user ) ) {
-						return false;
-					}
-				}
-
-				return true;
-			}
-		}
-		// If we got here, the array presumably does not contain other conditions;
-		// it's not recursive. Pass it off to checkCondition.
-		if ( !is_array( $cond ) ) {
-			$cond = [ $cond ];
-		}
-
-		return $this->checkCondition( $cond, $user );
-	}
-
-	/**
-	 * As recCheckCondition, but *not* recursive.  The only valid conditions
-	 * are those whose first element is one of APCOND_* defined in Defines.php.
-	 * Other types will throw an exception if no extension evaluates them.
-	 *
-	 * @param array $cond A condition, which must not contain other conditions
-	 * @param User $user The user to check the condition against
-	 * @return bool Whether the condition is true for the user
-	 * @throws InvalidArgumentException if autopromote condition was not recognized.
-	 * @throws LogicException if APCOND_BLOCKED is checked again before returning a result.
-	 */
-	private function checkCondition( array $cond, User $user ): bool {
-		if ( count( $cond ) < 1 ) {
-			return false;
-		}
-
-		switch ( $cond[0] ) {
-			case APCOND_EMAILCONFIRMED:
-				return Sanitizer::validateEmail( $user->getEmail() ) &&
-					( !$this->options->get( MainConfigNames::EmailAuthentication ) ||
-						$user->getEmailAuthenticationTimestamp() );
-			case APCOND_EDITCOUNT:
-				$reqEditCount = $cond[1] ?? $this->options->get( MainConfigNames::AutoConfirmCount );
-
-				// T157718: Avoid edit count lookup if the specified edit count is 0 or invalid
-				if ( $reqEditCount <= 0 ) {
-					return true;
-				}
-				return (int)$this->userEditTracker->getUserEditCount( $user ) >= $reqEditCount;
-			case APCOND_AGE:
-				$reqAge = $cond[1] ?? $this->options->get( MainConfigNames::AutoConfirmAge );
-				$age = time() - (int)wfTimestampOrNull( TS_UNIX, $user->getRegistration() );
-				return $age >= $reqAge;
-			case APCOND_AGE_FROM_EDIT:
-				$age = time() - (int)wfTimestampOrNull(
-					TS_UNIX, $this->userEditTracker->getFirstEditTimestamp( $user ) );
-				return $age >= $cond[1];
-			case APCOND_INGROUPS:
-				$groups = array_slice( $cond, 1 );
-				return count( array_intersect( $groups, $this->getUserGroups( $user ) ) ) === count( $groups );
-			case APCOND_ISIP:
-				return $cond[1] === $user->getRequest()->getIP();
-			case APCOND_IPINRANGE:
-				return IPUtils::isInRange( $user->getRequest()->getIP(), $cond[1] );
-			case APCOND_BLOCKED:
-				// Because checking for ipblock-exempt leads back to here (thus infinite recursion),
-				// we if we've been here before for this user without having returned a value.
-				// See T270145 and T349608
-				$userKey = $this->getCacheKey( $user );
-				if ( $this->recursionMap[$userKey] ?? false ) {
-					throw new LogicException(
-						"Unexpected recursion! APCOND_BLOCKED is being checked during" .
-						" an existing APCOND_BLOCKED check for \"{$user->getName()}\"!"
-					);
-				}
-				$this->recursionMap[$userKey] = true;
-				// Setting the second parameter here to true prevents us from getting back here
-				// during standard MediaWiki core behavior
-				$block = $user->getBlock( IDBAccessObject::READ_LATEST, true );
-				$this->recursionMap[$userKey] = false;
-
-				return (bool)$block?->isSitewide();
-			case APCOND_ISBOT:
-				return in_array( 'bot', $this->groupPermissionsLookup
-					->getGroupPermissions( $this->getUserGroups( $user ) ) );
-			default:
-				$result = null;
-				$this->hookRunner->onAutopromoteCondition( $cond[0],
-					array_slice( $cond, 1 ), $user, $result );
-				if ( $result === null ) {
-					throw new InvalidArgumentException(
-						"Unrecognized condition {$cond[0]} for autopromotion!"
-					);
-				}
-
-				return (bool)$result;
-		}
 	}
 
 	/**

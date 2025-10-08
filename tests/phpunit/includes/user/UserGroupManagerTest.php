@@ -25,6 +25,8 @@ use MediaWiki\User\UserEditTracker;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
+use MediaWiki\User\UserRequirementsConditionChecker;
+use MediaWiki\User\UserRequirementsConditionCheckerFactory;
 use MediaWiki\Utils\MWTimestamp;
 use MediaWikiIntegrationTestCase;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -35,6 +37,7 @@ use Wikimedia\Rdbms\IDBAccessObject;
 
 /**
  * @covers \MediaWiki\User\UserGroupManager
+ * @covers \MediaWiki\User\UserRequirementsConditionChecker
  * @group Database
  */
 class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
@@ -49,14 +52,18 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 		?callable $callback = null
 	): UserGroupManager {
 		$services = $this->getServiceContainer();
-		return new UserGroupManager(
+
+		$userRequirementsConditionCheckerFactory = $this->createNoOpMock(
+			UserRequirementsConditionCheckerFactory::class,
+			[ 'getUserRequirementsConditionChecker' ]
+		);
+
+		$ugm = new UserGroupManager(
 			new ServiceOptions(
 				UserGroupManager::CONSTRUCTOR_OPTIONS,
 				$configOverrides,
 				[
 					MainConfigNames::AddGroups => [],
-					MainConfigNames::AutoConfirmAge => 0,
-					MainConfigNames::AutoConfirmCount => 0,
 					MainConfigNames::Autopromote => [
 						'autoconfirmed' => [ APCOND_EDITCOUNT, 0 ]
 					],
@@ -77,10 +84,7 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 			$services->getReadOnlyMode(),
 			$services->getDBLoadBalancerFactory(),
 			$services->getHookContainer(),
-			$userEditTrackerOverride ?? $services->getUserEditTracker(),
-			$services->getGroupPermissionsLookup(),
 			$services->getJobQueueGroup(),
-			new TestLogger(),
 			new RealTempUserConfig( [
 				'enabled' => true,
 				'expireAfterDays' => null,
@@ -90,8 +94,29 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 				'matchPattern' => '*Unregistered $1',
 				'genPattern' => '*Unregistered $1'
 			] ),
+			$userRequirementsConditionCheckerFactory,
 			$callback ? [ $callback ] : []
 		);
+
+		$userRequirementsConditionCheckerFactory->method( 'getUserRequirementsConditionChecker' )
+			->willReturn( new UserRequirementsConditionChecker(
+				new ServiceOptions(
+					UserRequirementsConditionChecker::CONSTRUCTOR_OPTIONS,
+					$configOverrides,
+					[
+						MainConfigNames::AutoConfirmAge => 0,
+						MainConfigNames::AutoConfirmCount => 0,
+					],
+					$services->getMainConfig()
+				),
+				$services->getGroupPermissionsLookup(),
+				$services->getHookContainer(),
+				new TestLogger(),
+				$userEditTrackerOverride ?? $services->getUserEditTracker(),
+				$ugm,
+			) );
+
+		return $ugm;
 	}
 
 	protected function setUp(): void {

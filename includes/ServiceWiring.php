@@ -271,6 +271,8 @@ use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\User\UserIdentityUtils;
 use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
+use MediaWiki\User\UserRequirementsConditionChecker;
+use MediaWiki\User\UserRequirementsConditionCheckerFactory;
 use MediaWiki\Utils\UrlUtils;
 use MediaWiki\Watchlist\NoWriteWatchedItemStore;
 use MediaWiki\Watchlist\WatchedItemQueryService;
@@ -2694,11 +2696,9 @@ return [
 			$services->getReadOnlyMode(),
 			$services->getDBLoadBalancerFactory(),
 			$services->getHookContainer(),
-			$services->getUserEditTracker(),
-			$services->getGroupPermissionsLookup(),
 			$services->getJobQueueGroupFactory(),
-			LoggerFactory::getInstance( 'UserGroupManager' ),
 			$services->getTempUserConfig(),
+			$services->getUserRequirementsConditionCheckerFactory(),
 			[ static function ( UserIdentity $user ) use ( $services ) {
 				if ( $user->getWikiId() === UserIdentity::LOCAL ) {
 					$services->getPermissionManager()->invalidateUsersRightsCache( $user );
@@ -2782,6 +2782,30 @@ return [
 			throw new ConfigException( 'UserRegistrationLookup: Local provider is required' );
 		}
 		return $lookup;
+	},
+
+	'UserRequirementsConditionChecker' => static function (
+		MediaWikiServices $services
+	): UserRequirementsConditionChecker
+	{
+		return $services->getUserRequirementsConditionCheckerFactory()
+			->getUserRequirementsConditionChecker( $services->getUserGroupManager() );
+	},
+
+	'UserRequirementsConditionCheckerFactory' => static function (
+		MediaWikiServices $services
+	): UserRequirementsConditionCheckerFactory
+	{
+		return new UserRequirementsConditionCheckerFactory(
+			new ServiceOptions(
+				UserRequirementsConditionChecker::CONSTRUCTOR_OPTIONS, $services->getMainConfig()
+			),
+			$services->getGroupPermissionsLookup(),
+			$services->getHookContainer(),
+			// TODO: Did anyone use this log group before? Should it be renamed? Or is there a better name we can use?
+			LoggerFactory::getInstance( 'UserGroupManager' ),
+			$services->getUserEditTracker(),
+		);
 	},
 
 	'WatchedItemQueryService' => static function ( MediaWikiServices $services ): WatchedItemQueryService {
