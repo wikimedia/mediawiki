@@ -43,7 +43,6 @@ class LessVarFileModuleTest extends ResourceLoaderTestCase {
 	 */
 	public function testEscapeMessage( $msg, $expected ) {
 		$method = new ReflectionMethod( LessVarFileModule::class, 'wrapAndEscapeMessage' );
-		$method->setAccessible( true );
 		$this->assertEquals( $expected, $method->invoke( null, $msg ) );
 	}
 

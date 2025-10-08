@@ -161,7 +161,6 @@ abstract class ExtensionServicesTestBase extends MediaWikiIntegrationTestCase {
 		static $cache = [];
 		if ( !isset( $cache[static::class] ) ) {
 			$reflectionProperty = new ReflectionProperty( static::class, 'className' );
-			$reflectionProperty->setAccessible( true );
 			$invokeObject = null;
 			if ( !$reflectionProperty->isStatic() ) {
 				$invokeObject = new static();

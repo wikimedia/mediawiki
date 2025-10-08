@@ -188,7 +188,6 @@ class FileTest extends MediaWikiMediaTestCase {
 
 		$reflection = new ReflectionClass( $fileMock );
 		$reflection_property = $reflection->getProperty( 'handler' );
-		$reflection_property->setAccessible( true );
 		$reflection_property->setValue( $fileMock, $handlerMock );
 
 		if ( $data['tmpBucketedThumbCache'] !== null ) {
@@ -196,7 +195,6 @@ class FileTest extends MediaWikiMediaTestCase {
 				$tmpBucketed = str_replace( '/tmp', $tempDir, $tmpBucketed );
 			}
 			$reflection_property = $reflection->getProperty( 'tmpBucketedThumbCache' );
-			$reflection_property->setAccessible( true );
 			$reflection_property->setValue( $fileMock, $data['tmpBucketedThumbCache'] );
 		}
 
@@ -286,7 +284,6 @@ class FileTest extends MediaWikiMediaTestCase {
 			->willReturn( $handlerMock );
 
 		$reflectionMethod = new ReflectionMethod( File::class, 'generateBucketsIfNeeded' );
-		$reflectionMethod->setAccessible( true );
 
 		$fileMock->method( 'getWidth' )
 			->willReturn( $data['width'] );
