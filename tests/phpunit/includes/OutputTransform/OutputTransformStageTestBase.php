@@ -7,8 +7,6 @@ use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
 use Mediawiki\MediaWikiServices;
 use MediaWiki\OutputTransform\OutputTransformStage;
-use MediaWiki\Parser\ParserOptions;
-use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWikiIntegrationTestCase;
 use Wikimedia\TestingAccessWrapper;
@@ -54,8 +52,7 @@ abstract class OutputTransformStageTestBase extends MediaWikiIntegrationTestCase
 	/**
 	 * @dataProvider provideTransform
 	 */
-	public function testTransform( ParserOutput $parserOutput, ?ParserOptions $parserOptions, array $options,
-								   ParserOutput $expected, string $message = '' ): void {
+	public function testTransform( $parserOutput, $parserOptions, $options, $expected, $message = '' ) {
 		$stage = $this->createStage();
 		$result = $stage->transform( $parserOutput, $parserOptions, $options );
 		// If this has Parsoid internal metadata, clear it in both the expected

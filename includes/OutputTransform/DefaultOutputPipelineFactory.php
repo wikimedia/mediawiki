@@ -14,8 +14,7 @@ use MediaWiki\OutputTransform\Stages\ExpandToAbsoluteUrls;
 use MediaWiki\OutputTransform\Stages\ExtractBody;
 use MediaWiki\OutputTransform\Stages\HandleParsoidSectionLinks;
 use MediaWiki\OutputTransform\Stages\HandleSectionLinks;
-use MediaWiki\OutputTransform\Stages\HandleTOCMarkersDOM;
-use MediaWiki\OutputTransform\Stages\HandleTOCMarkersText;
+use MediaWiki\OutputTransform\Stages\HandleTOCMarkers;
 use MediaWiki\OutputTransform\Stages\HardenNFC;
 use MediaWiki\OutputTransform\Stages\HydrateHeaderPlaceholders;
 use MediaWiki\OutputTransform\Stages\ParsoidLocalization;
@@ -97,16 +96,10 @@ class DefaultOutputPipelineFactory {
 			]
 		],
 		'HandleTOCMarkers' => [
-			'textStage' => [
-				'class' => HandleTOCMarkersText::class,
-				'services' => [
-					'Tidy',
-				],
+			'class' => HandleTOCMarkers::class,
+			'services' => [
+				'Tidy',
 			],
-			'domStage' => [
-				'class' => HandleTOCMarkersDOM::class
-			],
-			'exclusive' => false
 		],
 		'DeduplicateStyles' => [
 			'class' => DeduplicateStyles::class,
