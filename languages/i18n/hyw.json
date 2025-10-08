@@ -864,7 +864,7 @@
 	"blanknamespace": "(Գլխաւոր)",
 	"contributions": "Մասնակցի ներդրումներ",
 	"tool-link-contributions": "{{GENDER:$1|Մասնակիցի}} ներդրումներ",
-	"contributions-title": "$1 մասնակիցի ներդրումը",
+	"contributions-title": "{{GENDER:$2|Մասնակցի}} ներդրումները՝ $1-ի համար",
 	"mycontris": "Ներդրումներ",
 	"anoncontribs": "Ներդրումներ",
 	"nocontribs": "Այս չափանիշներուն համապատասխանող փոփոխութիւններ չգտնուեցան։",

@@ -122,7 +122,7 @@
 	"config-sqlite-readonly": "N'haller ket skrivañ er restr <code>$1</code>.",
 	"config-sqlite-cant-create-db": "N'haller ket krouiñ restr an diaz roadennoù <code>$1</code>.",
 	"config-sqlite-fts3-downgrade": "N'eo ket kenglotus ar PHP gant FTS3, o lakaat an taolennoù da glotañ gant ur stumm koshoc'h",
-	"config-can-upgrade": "Taolennoù MediaWiki zo en diaz titouroù.\nDa hizivaat anezho da VediaWiki $1, klikañ war '''Kenderc'hel'''.",
+	"config-can-upgrade": "Taolennoù MediaWiki zo en diaz roadennoù-mañ.\nDa hizivaat anezho da VediaWiki $1, klikañ war <strong>Kenderc'hel</strong>.",
 	"config-upgrade-done": "Hizivadenn bet kaset da benn vat.\n\nGallout a rit [$1 kregiñ da implijout ho wiki].\n\nMar fell deoc'h adc'henel ho restr <code>LocalSettings.php</code>, klikit war ar bouton dindan.\n<strong>N'eo ket un dra erbedet</strong> nemet ho pefe kudennoù gant ho wiki.",
 	"config-upgrade-done-no-regenerate": "Hizivadenn kaset da benn.\n\nGallout a rit [$1 kregiñ da implijout ho wiki].",
 	"config-regenerate": "Adgenel LocalSettings.php →",

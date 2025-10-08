@@ -3304,7 +3304,7 @@
 	"watchlisttools-raw": "Редагувати як текст",
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|обговорення]])",
 	"signature-temp": "[[{{#special:Contributions}}/$1|$2]] ([[{{ns:user_talk}}:$1|обговорення]])",
-	"duplicate-defaultsort": "{{#if:{{REVISIONID}}|<span class=\"t-test test\" style=\"display:none;>|\n}}<strong>Увага!</strong> Ключ сортування «$2» перекриває попередній ключ сортування «$1».{{\n#if:{{REVISIONID}}|</span>}}",
+	"duplicate-defaultsort": "<strong>Увага!</strong> Ключ сортування «$2» перекриває попередній ключ сортування «$1».",
 	"duplicate-displaytitle": "<strong>Увага:</strong> Відображений заголовок \"$2\" заміщує раніше відображений заголовок \"$1\".",
 	"restricted-displaytitle": "<strong>Увага:</strong> Відображувану назву «$1» було проігноровано, оскільки вона не відповідає чинній назві сторінки.",
 	"invalid-indicator-name": "<strong>Помилка:</strong> Сторінка індикатора стану <code>name</code> атрибута не може бути пуста.",
