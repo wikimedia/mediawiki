@@ -99,7 +99,7 @@
 	"rest-param-desc-media-file-title": "파일 제목",
 	"rest-param-desc-media-mediatype": "파일 유형",
 	"rest-param-desc-media-url": "파일을 다운로드할 URL",
-	"rest-param-desc-media-thumbnail": "썸네일 정보",
+	"rest-param-desc-media-thumbnail": "파일 썸네일 형식에 대한 정보",
 	"rest-param-desc-module-spec-version": "모듈 스펙 버전",
 	"rest-param-desc-pagehistory-count-title": "위키 문서 제목",
 	"rest-param-desc-pagehistory-title": "위키 문서 제목",

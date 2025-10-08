@@ -46,6 +46,7 @@
 	"rest-media-too-many-links": "Zu viele Medienlinks auf Titel $1 gefunden ($2 erlaubt)",
 	"rest-html-backend-error": "Parsoid-HTML kann nicht abgerufen werden: $1",
 	"rest-html-stash-failure": "Parsoid-HTML kann nicht gespeichert werden.",
+	"rest-lint-backend-error": "Parsoid-Lint-Fehler konnten nicht abgerufen werden: $1",
 	"rest-bad-json-body": "Schlechter Hauptteil der Anfrage, muss ein JSON-Objekt sein.",
 	"rest-json-body-parse-error": "Parsen des Hauptteils der Anfrage als JSON fehlgeschlagen: $1",
 	"rest-missing-body-field": "Pflichtfeld „$1“ fehlt im Hauptteil der Anfrage.",

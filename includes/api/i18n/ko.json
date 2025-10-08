@@ -52,7 +52,7 @@
 	"apihelp-acquiretempusername-extended-description": "사용자가 나중에 임시 계정을 생성하는 작업을 수행하면 숨겨진 사용자 이름이 해당 계정에 사용됩니다. 미리 보기에도 사용할 수 있습니다. 그러나 계정은 아직 생성되지 않았으며 이름은 다른 사용자에게 보이지 않습니다.",
 	"apihelp-block-summary": "사용자를 차단합니다.",
 	"apihelp-block-param-id": "수정할 차단 ID입니다.",
-	"apihelp-block-param-user": "차단할 사용자입니다.",
+	"apihelp-block-param-user": "차단할 사용자입니다. <var>$1id</var>와(과) 함께 사용할 수 없습니다.",
 	"apihelp-block-param-userid": "<kbd>$1user=#<var>ID</var></kbd>를 대신 지정해 주세요.",
 	"apihelp-block-param-expiry": "기한. 상대값(예시: <kbd>5 months</kbd> 또는 </kbd>2 weeks</kbd>) 또는 절대값(예시: <kbd>2014-09-18T12:34:56Z</kbd>)이 될 수 있습니다. <kbd>infinite</kbd>, <kbd>indefinite</kbd> 또는 <kbd>never</kbd>로 설정하면 무기한으로 설정됩니다.",
 	"apihelp-block-param-reason": "차단 이유.",
