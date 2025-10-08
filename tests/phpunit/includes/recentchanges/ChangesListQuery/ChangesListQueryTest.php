@@ -23,6 +23,9 @@ use Wikimedia\Rdbms\SelectQueryBuilder;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
+ * There is also a unit test.
+ * @see \MediaWiki\Tests\Unit\RecentChanges\ChangesListQuery\ChangesListQueryUnitTest
+ *
  * @covers \MediaWiki\RecentChanges\ChangesListQuery\ChangesListQuery
  * @covers \MediaWiki\RecentChanges\ChangesListQuery\ChangesListHighlight
  * @covers \MediaWiki\RecentChanges\ChangesListQuery\BooleanFieldCondition
@@ -53,6 +56,9 @@ class ChangesListQueryTest extends \MediaWikiIntegrationTestCase {
 		'bot',
 		'unseen',
 		'deleted',
+		'pl-source',
+		'tl-source',
+		'dest',
 	];
 
 	private const ALICE_ID = 1;
@@ -147,14 +153,27 @@ class ChangesListQueryTest extends \MediaWikiIntegrationTestCase {
 		$rc = $log->getRecentChange();
 		$rc->setAttribute( 'rc_deleted', LogPage::DELETED_ACTION );
 		$this->getServiceContainer()->getRecentChangeFactory()->insertRecentChange( $rc );
+
+		$assertName( 9, 'pl-source' );
+		$now++;
+		$this->edit( 'Page link source', $carol, 0, '[[Link destination]]' );
+
+		$assertName( 10, 'tl-source' );
+		$now++;
+		$this->edit( 'Template link source', $carol, 0, '{{:Link destination}}' );
+
+		$assertName( 11, 'dest' );
+		$now++;
+		$this->edit( 'Link destination', $carol );
 	}
 
-	private function edit( $titleText, $user, $flags = 0 ) {
+	private function edit( $titleText, $user, $flags = 0, $content = null ) {
 		$services = $this->getServiceContainer();
 		$title = $services->getTitleFactory()->newFromTextThrow( $titleText );
+		$content ??= (string)( self::$content++ );
 		$services->getPageUpdaterFactory()
 			->newPageUpdater( $title, $user )
-			->setContent( SlotRecord::MAIN, new WikitextContent( (string)( self::$content++ ) ) )
+			->setContent( SlotRecord::MAIN, new WikitextContent( $content ) )
 			->saveRevision( '', $flags );
 		return $title;
 	}
@@ -189,6 +208,7 @@ class ChangesListQueryTest extends \MediaWikiIntegrationTestCase {
 			$services->getWatchedItemStore(),
 			$services->getTempUserConfig(),
 			$services->getUserFactory(),
+			$services->getLinkTargetLookup(),
 			$this->getDb(),
 		);
 		$query
@@ -291,7 +311,8 @@ class ChangesListQueryTest extends \MediaWikiIntegrationTestCase {
 		$rcIds = self::getRcIds();
 		$allIds = array_values( $rcIds );
 		$alice = new UserIdentityValue( 1, 'Alice' );
-		$newIds = [ $rcIds['alice'], $rcIds['anon'], $rcIds['minor'], $rcIds['bot'] ];
+		$newIds = [ $rcIds['alice'], $rcIds['anon'], $rcIds['minor'], $rcIds['bot'],
+			$rcIds['pl-source'], $rcIds['tl-source'], $rcIds['dest'] ];
 
 		return [
 			'No actions' => [
@@ -767,5 +788,78 @@ class ChangesListQueryTest extends \MediaWikiIntegrationTestCase {
 			null,
 			[]
 		);
+	}
+
+	public static function provideRequireLink() {
+		$rcIds = self::getRcIds();
+		return [
+			'Link from non-existent' => [
+				ChangesListQuery::LINKS_FROM,
+				[ 'pagelinks' ],
+				'Nonexistent',
+				null,
+				[],
+			],
+			'Links from page with no links' => [
+				ChangesListQuery::LINKS_FROM,
+				[ 'pagelinks', 'templatelinks' ],
+				'Normal edit',
+				null,
+				[],
+			],
+			'Links from with result' => [
+				ChangesListQuery::LINKS_FROM,
+				[ 'pagelinks', 'templatelinks' ],
+				'Page link source',
+				null,
+				[ $rcIds['dest'] ],
+			],
+			'Links to, empty' => [
+				ChangesListQuery::LINKS_TO,
+				[ 'pagelinks', 'templatelinks' ],
+				'Normal edit',
+				null,
+				[],
+			],
+			'Links to with union result' => [
+				ChangesListQuery::LINKS_TO,
+				[ 'pagelinks', 'templatelinks' ],
+				'Link destination',
+				null,
+				[ $rcIds['tl-source'], $rcIds['pl-source'] ]
+			],
+			'Links to with truncated union result' => [
+				ChangesListQuery::LINKS_TO,
+				[ 'pagelinks', 'templatelinks' ],
+				'Link destination',
+				1,
+				[ $rcIds['tl-source'] ]
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideRequireLink
+	 * @param string $dir
+	 * @param string[] $tables
+	 * @param string $targetText
+	 * @param int|null $limit
+	 * @param int[] $expectedIds
+	 */
+	public function testRequireLink( $dir, $tables, $targetText, $limit, $expectedIds ) {
+		// link filtering is applied after this query info is captured
+		$expectedInfo = self::getDefaultInfo();
+		if ( count( $tables ) > 1 ) {
+			$expectedInfo['fields'][] = 'rc_timestamp';
+		}
+
+		$targetPage = $this->getServiceContainer()->getPageStore()->getPageByText( $targetText );
+		$query = $this->getQuery()
+			->requireLink( $dir, $tables, $targetPage );
+		if ( $limit !== null ) {
+			$query->limit( $limit );
+			$expectedInfo['options']['LIMIT'] = $limit;
+		}
+		$this->doQuery( $query, $expectedInfo, $expectedIds );
 	}
 }

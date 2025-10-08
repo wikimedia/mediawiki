@@ -540,6 +540,7 @@ return [
 			$services->getWatchedItemStore(),
 			$services->getTempUserConfig(),
 			$services->getUserFactory(),
+			$services->getLinkTargetLookup(),
 			$services->getConnectionProvider(),
 		);
 	},
