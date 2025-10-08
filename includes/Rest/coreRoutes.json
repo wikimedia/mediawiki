@@ -349,7 +349,9 @@
 		"openApiSpec": {
 			"x-i18n-description": "rest-endpoint-desc-post-transform-wikitext-to-html",
 			"x-i18n-summary": "rest-endpoint-summ-post-transform-wikitext-to-html",
-			"deprecationSettings": {}
+			"deprecationSettings": {
+				"since": 1759795200
+			}
 
 		}
 	},
@@ -375,7 +377,9 @@
 		"openApiSpec": {
 			"x-i18n-description": "rest-endpoint-desc-post-transform-html-to-wikitext",
 			"x-i18n-summary": "rest-endpoint-summ-post-transform-html-to-wikitext",
-			"deprecationSettings": {}
+			"deprecationSettings": {
+				"since": 1759795200
+			}
 		}
 	},
 	{
@@ -400,7 +404,9 @@
 		"openApiSpec": {
 			"x-i18n-description": "rest-endpoint-desc-post-transform-wikitext-to-lint",
 			"x-i18n-summary": "rest-endpoint-summ-post-transform-wikitext-to-lint",
-			"deprecationSettings": {}
+			"deprecationSettings": {
+				"since": 1759795200
+			}
 		}
 	},
 	{
@@ -425,7 +431,9 @@
 		"openApiSpec": {
 			"x-i18n-description": "rest-endpoint-desc-post-transform-wikitext-to-html",
 			"x-i18n-summary": "rest-endpoint-summ-post-transform-wikitext-to-html",
-			"deprecationSettings": {}
+			"deprecationSettings": {
+				"since": 1759795200
+			}
 		}
 	},
 	{
@@ -450,7 +458,9 @@
 		"openApiSpec": {
 			"x-i18n-description": "rest-endpoint-desc-post-transform-html-to-wikitext-title",
 			"x-i18n-summary": "rest-endpoint-summ-post-transform-html-to-wikitext",
-			"deprecationSettings": {}
+			"deprecationSettings": {
+				"since": 1759795200
+			}
 		}
 	},
 	{
@@ -475,7 +485,9 @@
 		"openApiSpec": {
 			"x-i18n-description": "rest-endpoint-desc-post-transform-wikitext-to-lint",
 			"x-i18n-summary": "rest-endpoint-summ-post-transform-wikitext-to-lint",
-			"deprecationSettings": {}
+			"deprecationSettings": {
+				"since": 1759795200
+			}
 		}
 	},
 	{
