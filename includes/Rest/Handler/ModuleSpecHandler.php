@@ -179,6 +179,11 @@ class ModuleSpecHandler extends SimpleHandler {
 	}
 
 	/** @inheritDoc */
+	public function needsWriteAccess() {
+		return false;
+	}
+
+	/** @inheritDoc */
 	public function getParamSettings() {
 		return [
 			'module' => [
