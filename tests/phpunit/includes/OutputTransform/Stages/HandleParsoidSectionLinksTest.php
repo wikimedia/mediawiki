@@ -60,9 +60,7 @@ class HandleParsoidSectionLinksTest extends OutputTransformStageTestBase {
 	}
 
 	/** @dataProvider provideTransform */
-	public function testTransform( ParserOutput $parserOutput, ?ParserOptions $parserOptions, array $options,
-		ParserOutput $expected, string $message = ''
-	): void {
+	public function testTransform( $parserOutput, $parserOptions, $options, $expected, $message = '' ) {
 		if ( array_key_exists( 'skin', $options ) ) {
 			$skin = $this->createNoOpMock(
 				Skin::class, [ 'getLanguage', 'doEditSectionLink' ]

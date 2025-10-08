@@ -22,7 +22,7 @@ use Wikimedia\Parsoid\Core\TOCData;
  * Inject table of contents (or empty string if there's no sections)
  * @internal
  */
-class HandleTOCMarkersText extends ContentTextTransformStage {
+class HandleTOCMarkers extends ContentTextTransformStage {
 
 	private TidyDriverBase $tidy;
 
