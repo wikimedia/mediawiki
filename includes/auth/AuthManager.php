@@ -2037,20 +2037,20 @@ class AuthManager implements LoggerAwareInterface {
 		}
 
 		// Is the IP user able to create accounts?
-		$performer ??= $this->userFactory->newAnonymous();
 		$bypassAuthorization = $session ? $session->getProvider()->canAlwaysAutocreate() : false;
 		if ( $source !== self::AUTOCREATE_SOURCE_MAINT && !$bypassAuthorization ) {
-			$status = $this->authorizeAutoCreateAccount( $performer );
+			$creator = $performer ?? $this->userFactory->newAnonymous();
+			$status = $this->authorizeAutoCreateAccount( $creator );
 			if ( !$status->isOk() ) {
-				if ( $this->autocreatingTempUserToAppealBlock( $status, $source, $performer ) ) {
+				if ( $this->autocreatingTempUserToAppealBlock( $status, $source, $creator ) ) {
 					$this->logger->info( __METHOD__ . ': autocreating temporary user to appeal a block', [
 						'username' => $username,
-						'creator' => $performer->getUser()->getName(),
+						'creator' => $creator->getUser()->getName(),
 					] );
 				} else {
 					$this->logger->debug( __METHOD__ . ': cannot create or autocreate accounts', [
 						'username' => $username,
-						'creator' => $performer->getUser()->getName(),
+						'creator' => $creator->getUser()->getName(),
 					] );
 					if ( $session ) {
 						$session->set( self::AUTOCREATE_BLOCKLIST, $status );
@@ -2084,6 +2084,7 @@ class AuthManager implements LoggerAwareInterface {
 			'flags' => IDBAccessObject::READ_LATEST,
 			'creating' => true,
 			'canAlwaysAutocreate' => $session && $session->getProvider()->canAlwaysAutocreate(),
+			'performer' => $performer,
 		];
 		$providers = $this->getPreAuthenticationProviders() +
 			$this->getPrimaryAuthenticationProviders() +
