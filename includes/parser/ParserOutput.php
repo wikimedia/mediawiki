@@ -721,11 +721,13 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * Media links optionally have 'time' and 'sha1' set.
 	 *
 	 * @param string|ParserOutputLinkTypes $linkType A link type
+	 * @param ?int $onlyNamespace (optional) if non-null, will return only
+	 *   links in the given namespace
 	 * @return list<array{link:ParsoidLinkTarget,pageid?:int,revid?:int,sort?:string,time?:string|false,sha1?:string|false}>
 	 * @since 1.43
 	 * @throws UnhandledMatchError if given an unknown link type
 	 */
-	public function getLinkList( string|ParserOutputLinkTypes $linkType ): array {
+	public function getLinkList( string|ParserOutputLinkTypes $linkType, ?int $onlyNamespace = null ): array {
 		if ( is_string( $linkType ) ) {
 			$linkType = ParserOutputLinkTypes::from( $linkType );
 		}
@@ -733,6 +735,9 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		$result = [];
 		switch ( $linkType ) {
 			case ParserOutputLinkTypes::CATEGORY:
+				if ( $onlyNamespace !== null && $onlyNamespace !== NS_CATEGORY ) {
+					return [];
+				}
 				foreach ( $this->mCategories as $dbkey => $sort ) {
 					$result[] = [
 						'link' => new TitleValue( NS_CATEGORY, (string)$dbkey ),
@@ -742,7 +747,10 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 				break;
 
 			case ParserOutputLinkTypes::EXISTENCE:
-				foreach ( $this->existenceLinks as $ns => $titles ) {
+				$links = $onlyNamespace === null ? $this->existenceLinks : [
+					$onlyNamespace => $this->existenceLinks[$onlyNamespace] ?? [],
+				];
+				foreach ( $links as $ns => $titles ) {
 					foreach ( $titles as $dbkey => $unused ) {
 						$result[] = [
 							'link' => new TitleValue( $ns, (string)$dbkey )
@@ -752,6 +760,10 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 				break;
 
 			case ParserOutputLinkTypes::INTERWIKI:
+				// By convention interwiki links belong to NS_MAIN
+				if ( $onlyNamespace !== null && $onlyNamespace !== NS_MAIN ) {
+					return [];
+				}
 				foreach ( $this->mInterwikiLinks as $prefix => $arr ) {
 					foreach ( $arr as $dbkey => $ignore ) {
 						$result[] = [
@@ -762,6 +774,10 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 				break;
 
 			case ParserOutputLinkTypes::LANGUAGE:
+				// By convention language links belong to NS_MAIN
+				if ( $onlyNamespace !== null && $onlyNamespace !== NS_MAIN ) {
+					return [];
+				}
 				foreach ( $this->mLanguageLinkMap as $lang => $title ) {
 					# language links can have fragments!
 					[ $title, $frag ] = array_pad( explode( '#', $title, 2 ), 2, '' );
@@ -772,7 +788,10 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 				break;
 
 			case ParserOutputLinkTypes::LOCAL:
-				foreach ( $this->mLinks as $ns => $arr ) {
+				$links = $onlyNamespace === null ? $this->mLinks : [
+					$onlyNamespace => $this->mLinks[$onlyNamespace] ?? [],
+				];
+				foreach ( $links as $ns => $arr ) {
 					foreach ( $arr as $dbkey => $id ) {
 						$result[] = [
 							'link' => new TitleValue( $ns, (string)$dbkey ),
@@ -783,6 +802,9 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 				break;
 
 			case ParserOutputLinkTypes::MEDIA:
+				if ( $onlyNamespace !== null && $onlyNamespace !== NS_FILE ) {
+					return [];
+				}
 				foreach ( $this->mImages as $dbkey => $ignore ) {
 					$extra = $this->mFileSearchOptions[$dbkey] ?? [];
 					$extra['link'] = new TitleValue( NS_FILE, (string)$dbkey );
@@ -791,6 +813,9 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 				break;
 
 			case ParserOutputLinkTypes::SPECIAL:
+				if ( $onlyNamespace !== null && $onlyNamespace !== NS_SPECIAL ) {
+					return [];
+				}
 				foreach ( $this->mLinksSpecial as $dbkey => $ignore ) {
 					$result[] = [
 						'link' => new TitleValue( NS_SPECIAL, (string)$dbkey ),
@@ -799,7 +824,10 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 				break;
 
 			case ParserOutputLinkTypes::TEMPLATE:
-				foreach ( $this->mTemplates as $ns => $arr ) {
+				$links = $onlyNamespace === null ? $this->mTemplates : [
+					$onlyNamespace => $this->mTemplates[$onlyNamespace] ?? [],
+				];
+				foreach ( $links as $ns => $arr ) {
 					foreach ( $arr as $dbkey => $pageid ) {
 						$result[] = [
 							'link' => new TitleValue( $ns, (string)$dbkey ),
