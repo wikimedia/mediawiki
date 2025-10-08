@@ -127,12 +127,7 @@ class FileBackendMultiWrite extends FileBackend {
 		$relevantPaths = $this->fileStoragePathsForOps( $ops );
 		// Clear any cache entries (after locks acquired)
 		$this->clearCache( $relevantPaths );
-		$opts['preserveCache'] = true; // only locked files are cached
-		// Check if the paths are valid and accessible on all backends
-		$status->merge( $this->accessibilityCheck( $relevantPaths ) );
-		if ( !$status->isOK() ) {
-			return $status; // abort
-		}
+		$opts['preserveCache'] = true;
 		// Actually attempt the operation batch on the master backend
 		$realOps = $this->substOpBatchPaths( $ops, $mbe );
 		$masterStatus = $mbe->doOperations( $realOps, $opts );
@@ -176,30 +171,6 @@ class FileBackendMultiWrite extends FileBackend {
 		$status->success = $masterStatus->success;
 		$status->successCount = $masterStatus->successCount;
 		$status->failCount = $masterStatus->failCount;
-
-		return $status;
-	}
-
-	/**
-	 * Check that a set of file paths are usable across all internal backends
-	 *
-	 * @param string[] $paths List of storage paths
-	 * @return StatusValue
-	 */
-	public function accessibilityCheck( array $paths ) {
-		$status = $this->newStatus();
-		if ( count( $this->backends ) <= 1 ) {
-			return $status; // skip checks
-		}
-
-		foreach ( $paths as $path ) {
-			foreach ( $this->backends as $backend ) {
-				$realPath = $this->substPaths( $path, $backend );
-				if ( !$backend->isPathUsableInternal( $realPath ) ) {
-					$status->fatal( 'backend-fail-usable', $path );
-				}
-			}
-		}
 
 		return $status;
 	}
@@ -311,13 +282,7 @@ class FileBackendMultiWrite extends FileBackend {
 		$paths = [];
 		foreach ( $ops as $op ) {
 			if ( isset( $op['src'] ) ) {
-				// For things like copy/move/delete with "ignoreMissingSource" and there
-				// is no source file, nothing should happen and there should be no errors.
-				if ( empty( $op['ignoreMissingSource'] )
-					|| $this->fileExists( [ 'src' => $op['src'] ] )
-				) {
-					$paths[] = $op['src'];
-				}
+				$paths[] = $op['src'];
 			}
 			if ( isset( $op['srcs'] ) ) {
 				$paths = array_merge( $paths, $op['srcs'] );
@@ -327,7 +292,10 @@ class FileBackendMultiWrite extends FileBackend {
 			}
 		}
 
-		return array_values( array_unique( array_filter( $paths, [ FileBackend::class, 'isStoragePath' ] ) ) );
+		return array_values( array_unique( array_filter(
+			$paths,
+			[ FileBackend::class, 'isStoragePath' ]
+		) ) );
 	}
 
 	/**
