@@ -26,7 +26,6 @@ use Wikimedia\Assert\Assert;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDBAccessObject;
-use Wikimedia\Rdbms\ILBFactory;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\ReadOnlyMode;
 use Wikimedia\Rdbms\SelectQueryBuilder;
@@ -68,22 +67,7 @@ class UserGroupManager {
 	 */
 	public const VALID_OPS = [ '&', '|', '^', '!' ];
 
-	private ServiceOptions $options;
-	private IConnectionProvider $dbProvider;
-	private HookContainer $hookContainer;
 	private HookRunner $hookRunner;
-	private ReadOnlyMode $readOnlyMode;
-	private UserEditTracker $userEditTracker;
-	private GroupPermissionsLookup $groupPermissionsLookup;
-	private JobQueueGroup $jobQueueGroup;
-	private LoggerInterface $logger;
-	private TempUserConfig $tempUserConfig;
-
-	/** @var callable[] */
-	private $clearCacheCallbacks;
-
-	/** @var string|false */
-	private $wikiId;
 
 	/** string key for implicit groups cache */
 	private const CACHE_IMPLICIT = 'implicit';
@@ -126,19 +110,19 @@ class UserGroupManager {
 	 *   self::CACHE_PRIVILEGED => privileged groups query flag
 	 * ]
 	 */
-	private $queryFlagsUsedForCaching = [];
+	private array $queryFlagsUsedForCaching = [];
 
 	/**
 	 * @internal For use preventing an infinite loop when checking APCOND_BLOCKED
-	 * @var array An assoc. array mapping the getCacheKey userKey to a bool indicating
+	 * @var array An associative array mapping the getCacheKey userKey to a bool indicating
 	 * an ongoing condition check.
 	 */
-	private $recursionMap = [];
+	private array $recursionMap = [];
 
 	/**
 	 * @param ServiceOptions $options
 	 * @param ReadOnlyMode $readOnlyMode
-	 * @param ILBFactory $lbFactory
+	 * @param IConnectionProvider $connectionProvider
 	 * @param HookContainer $hookContainer
 	 * @param UserEditTracker $userEditTracker
 	 * @param GroupPermissionsLookup $groupPermissionsLookup
@@ -149,54 +133,45 @@ class UserGroupManager {
 	 * @param string|false $wikiId
 	 */
 	public function __construct(
-		ServiceOptions $options,
-		ReadOnlyMode $readOnlyMode,
-		ILBFactory $lbFactory,
-		HookContainer $hookContainer,
-		UserEditTracker $userEditTracker,
-		GroupPermissionsLookup $groupPermissionsLookup,
-		JobQueueGroup $jobQueueGroup,
-		LoggerInterface $logger,
-		TempUserConfig $tempUserConfig,
-		array $clearCacheCallbacks = [],
-		$wikiId = UserIdentity::LOCAL
+		private readonly ServiceOptions $options,
+		private readonly ReadOnlyMode $readOnlyMode,
+		private readonly IConnectionProvider $connectionProvider,
+		private readonly HookContainer $hookContainer,
+		private readonly UserEditTracker $userEditTracker,
+		private readonly GroupPermissionsLookup $groupPermissionsLookup,
+		private readonly JobQueueGroup $jobQueueGroup,
+		private readonly LoggerInterface $logger,
+		private readonly TempUserConfig $tempUserConfig,
+		private readonly array $clearCacheCallbacks = [],
+		private readonly string|false $wikiId = UserIdentity::LOCAL
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
-		$this->options = $options;
-		$this->dbProvider = $lbFactory;
-		$this->hookContainer = $hookContainer;
 		$this->hookRunner = new HookRunner( $hookContainer );
-		$this->userEditTracker = $userEditTracker;
-		$this->groupPermissionsLookup = $groupPermissionsLookup;
-		$this->jobQueueGroup = $jobQueueGroup;
-		$this->logger = $logger;
-		$this->tempUserConfig = $tempUserConfig;
-		$this->readOnlyMode = $readOnlyMode;
-		$this->clearCacheCallbacks = $clearCacheCallbacks;
-		$this->wikiId = $wikiId;
 	}
 
 	/**
 	 * Return the set of defined explicit groups.
 	 * The implicit groups (by default *, 'user' and 'autoconfirmed')
 	 * are not included, as they are defined automatically, not in the database.
+	 *
 	 * @return string[] internal group names
 	 */
 	public function listAllGroups(): array {
-		return array_values( array_unique(
+		return array_values(
 			array_diff(
-				array_merge(
-					array_keys( $this->options->get( MainConfigNames::GroupPermissions ) ),
-					array_keys( $this->options->get( MainConfigNames::RevokePermissions ) ),
-					array_keys( $this->options->get( MainConfigNames::GroupInheritsPermissions ) )
-				),
+				array_keys( array_merge(
+					$this->options->get( MainConfigNames::GroupPermissions ),
+					$this->options->get( MainConfigNames::RevokePermissions ),
+					$this->options->get( MainConfigNames::GroupInheritsPermissions ),
+				) ),
 				$this->listAllImplicitGroups()
 			)
-		) );
+		);
 	}
 
 	/**
 	 * Get a list of all configured implicit groups
+	 *
 	 * @return string[]
 	 */
 	public function listAllImplicitGroups(): array {
@@ -254,7 +229,7 @@ class UserGroupManager {
 	 * Get the list of implicit group memberships this user has.
 	 *
 	 * This includes 'user' if logged in, '*' for all accounts,
-	 * and autopromoted groups
+	 * and any autopromote groups.
 	 *
 	 * @param UserIdentity $user
 	 * @param int $queryFlags
@@ -312,13 +287,16 @@ class UserGroupManager {
 		$userKey = $this->getCacheKey( $user );
 		// Ignore cache if the $recache flag is set, cached values can not be used
 		// or the cache value is missing
-		if ( $recache ||
-			!$this->canUseCachedValues( $user, self::CACHE_EFFECTIVE, $queryFlags ) ||
-			!isset( $this->userGroupCache[$userKey][self::CACHE_EFFECTIVE] )
+		if (
+			$recache ||
+			!isset( $this->userGroupCache[$userKey][self::CACHE_EFFECTIVE] ) ||
+			!$this->canUseCachedValues( $user, self::CACHE_EFFECTIVE, $queryFlags )
 		) {
 			$groups = array_unique( array_merge(
-				$this->getUserGroups( $user, $queryFlags ), // explicit groups
-				$this->getUserImplicitGroups( $user, $queryFlags, $recache ) // implicit groups
+				// explicit groups
+				$this->getUserGroups( $user, $queryFlags ),
+				// implicit groups
+				$this->getUserImplicitGroups( $user, $queryFlags, $recache )
 			) );
 			// TODO: Deprecate passing out user object in the hook by introducing
 			// an alternative hook
@@ -328,7 +306,7 @@ class UserGroupManager {
 				// Hook for additional groups
 				$this->hookRunner->onUserEffectiveGroups( $userObj, $groups );
 			}
-			// Force reindexation of groups when a hook has unset one of them
+			// Force re-indexing of groups when a hook has unset one of them
 			$effectiveGroups = array_values( array_unique( $groups ) );
 			$this->setCache( $userKey, self::CACHE_EFFECTIVE, $effectiveGroups, $queryFlags );
 		}
@@ -354,8 +332,9 @@ class UserGroupManager {
 		$user->assertWiki( $this->wikiId );
 		$userKey = $this->getCacheKey( $user );
 
-		if ( $this->canUseCachedValues( $user, self::CACHE_FORMER, $queryFlags ) &&
-			isset( $this->userGroupCache[$userKey][self::CACHE_FORMER] )
+		if (
+			isset( $this->userGroupCache[$userKey][self::CACHE_FORMER] ) &&
+			$this->canUseCachedValues( $user, self::CACHE_FORMER, $queryFlags )
 		) {
 			return $this->userGroupCache[$userKey][self::CACHE_FORMER];
 		}
@@ -455,7 +434,8 @@ class UserGroupManager {
 
 	/**
 	 * Returns the list of privileged groups that $user belongs to.
-	 * Privileged groups are ones that can be abused in a dangerous way.
+	 *
+	 * Privileged groups are ones that can be abused.
 	 *
 	 * Depending on how extensions extend this method, it might return values
 	 * that are not strictly user groups (ACL list names, etc.).
@@ -476,9 +456,10 @@ class UserGroupManager {
 	): array {
 		$userKey = $this->getCacheKey( $user );
 
-		if ( !$recache &&
-			$this->canUseCachedValues( $user, self::CACHE_PRIVILEGED, $queryFlags ) &&
-			isset( $this->userGroupCache[$userKey][self::CACHE_PRIVILEGED] )
+		if (
+			!$recache &&
+			isset( $this->userGroupCache[$userKey][self::CACHE_PRIVILEGED] ) &&
+			$this->canUseCachedValues( $user, self::CACHE_PRIVILEGED, $queryFlags )
 		) {
 			return $this->userGroupCache[$userKey][self::CACHE_PRIVILEGED];
 		}
@@ -513,7 +494,7 @@ class UserGroupManager {
 	 *   [ APCOND_EDITCOUNT, number of edits ], *OR*
 	 *   [ APCOND_AGE, seconds since registration ], *OR*
 	 *   similar constructs defined by extensions.
-	 * This function evaluates the former type recursively, and passes off to
+	 * This function evaluates the former type recursively and passes off to
 	 * checkCondition for evaluation of the latter type.
 	 *
 	 * If you change the logic of this method, please update
@@ -527,7 +508,9 @@ class UserGroupManager {
 	private function recCheckCondition( $cond, User $user ): bool {
 		if ( is_array( $cond ) && count( $cond ) >= 2 && in_array( $cond[0], self::VALID_OPS ) ) {
 			// Recursive condition
-			if ( $cond[0] == '&' ) { // AND (all conds pass)
+
+			// AND (all conds pass)
+			if ( $cond[0] === '&' ) {
 				foreach ( array_slice( $cond, 1 ) as $subcond ) {
 					if ( !$this->recCheckCondition( $subcond, $user ) ) {
 						return false;
@@ -535,7 +518,10 @@ class UserGroupManager {
 				}
 
 				return true;
-			} elseif ( $cond[0] == '|' ) { // OR (at least one cond passes)
+			}
+
+			// OR (at least one cond passes)
+			if ( $cond[0] === '|' ) {
 				foreach ( array_slice( $cond, 1 ) as $subcond ) {
 					if ( $this->recCheckCondition( $subcond, $user ) ) {
 						return true;
@@ -543,7 +529,10 @@ class UserGroupManager {
 				}
 
 				return false;
-			} elseif ( $cond[0] == '^' ) { // XOR (exactly one cond passes)
+			}
+
+			// XOR (exactly one cond passes)
+			if ( $cond[0] === '^' ) {
 				if ( count( $cond ) > 3 ) {
 					$this->logger->warning(
 						'recCheckCondition() given XOR ("^") condition on three or more conditions.' .
@@ -552,7 +541,10 @@ class UserGroupManager {
 				}
 				return $this->recCheckCondition( $cond[1], $user )
 					xor $this->recCheckCondition( $cond[2], $user );
-			} elseif ( $cond[0] == '!' ) { // NOT (no conds pass)
+			}
+
+			// NOT (no conds pass)
+			if ( $cond[0] === '!' ) {
 				foreach ( array_slice( $cond, 1 ) as $subcond ) {
 					if ( $this->recCheckCondition( $subcond, $user ) ) {
 						return false;
@@ -589,18 +581,13 @@ class UserGroupManager {
 
 		switch ( $cond[0] ) {
 			case APCOND_EMAILCONFIRMED:
-				if ( Sanitizer::validateEmail( $user->getEmail() ) ) {
-					if ( $this->options->get( MainConfigNames::EmailAuthentication ) ) {
-						return (bool)$user->getEmailAuthenticationTimestamp();
-					} else {
-						return true;
-					}
-				}
-				return false;
+				return Sanitizer::validateEmail( $user->getEmail() ) &&
+					( !$this->options->get( MainConfigNames::EmailAuthentication ) ||
+						$user->getEmailAuthenticationTimestamp() );
 			case APCOND_EDITCOUNT:
 				$reqEditCount = $cond[1] ?? $this->options->get( MainConfigNames::AutoConfirmCount );
 
-				// T157718: Avoid edit count lookup if specified edit count is 0 or invalid
+				// T157718: Avoid edit count lookup if the specified edit count is 0 or invalid
 				if ( $reqEditCount <= 0 ) {
 					return true;
 				}
@@ -615,9 +602,9 @@ class UserGroupManager {
 				return $age >= $cond[1];
 			case APCOND_INGROUPS:
 				$groups = array_slice( $cond, 1 );
-				return count( array_intersect( $groups, $this->getUserGroups( $user ) ) ) == count( $groups );
+				return count( array_intersect( $groups, $this->getUserGroups( $user ) ) ) === count( $groups );
 			case APCOND_ISIP:
-				return $cond[1] == $user->getRequest()->getIP();
+				return $cond[1] === $user->getRequest()->getIP();
 			case APCOND_IPINRANGE:
 				return IPUtils::isInRange( $user->getRequest()->getIP(), $cond[1] );
 			case APCOND_BLOCKED:
@@ -637,7 +624,7 @@ class UserGroupManager {
 				$block = $user->getBlock( IDBAccessObject::READ_LATEST, true );
 				$this->recursionMap[$userKey] = false;
 
-				return $block && $block->isSitewide();
+				return (bool)$block?->isSitewide();
 			case APCOND_ISBOT:
 				return in_array( 'bot', $this->groupPermissionsLookup
 					->getGroupPermissions( $this->getUserGroups( $user ) ) );
@@ -659,7 +646,7 @@ class UserGroupManager {
 	 * Add the user to the group if they meet given criteria.
 	 *
 	 * Contrary to autopromotion by $wgAutopromote, the group will be
-	 *   possible to remove manually via Special:UserRights. In such case it
+	 *   possible to remove manually via Special:UserRights. In such cases, it
 	 *   will not be re-added automatically. The user will also not lose the
 	 *   group if they no longer meet the criteria.
 	 *
@@ -695,13 +682,18 @@ class UserGroupManager {
 
 		$userObj = User::newFromIdentity( $user );
 		if ( !$userObj->checkAndSetTouched() ) {
-			return []; // raced out (bug T48834)
+			// @codeCoverageIgnoreStart
+			// raced out (bug T48834)
+			return [];
+			// @codeCoverageIgnoreEnd
 		}
 
-		$oldGroups = $this->getUserGroups( $user ); // previous groups
+		// previous groups
+		$oldGroups = $this->getUserGroups( $user );
 		$oldUGMs = $this->getUserGroupMemberships( $user );
 		$this->addUserToMultipleGroups( $user, $toPromote );
-		$newGroups = array_merge( $oldGroups, $toPromote ); // all groups
+		// all groups
+		$newGroups = array_merge( $oldGroups, $toPromote );
 		$newUGMs = $this->getUserGroupMemberships( $user );
 
 		// update groups in external authentication database
@@ -742,8 +734,6 @@ class UserGroupManager {
 	 * Get the list of explicit group memberships this user has.
 	 * The implicit * and user groups are not included.
 	 *
-	 * @param UserIdentity $user
-	 * @param int $queryFlags
 	 * @return string[]
 	 */
 	public function getUserGroups(
@@ -768,7 +758,8 @@ class UserGroupManager {
 		$user->assertWiki( $this->wikiId );
 		$userKey = $this->getCacheKey( $user );
 
-		if ( $this->canUseCachedValues( $user, self::CACHE_MEMBERSHIP, $queryFlags ) &&
+		if (
+			$this->canUseCachedValues( $user, self::CACHE_MEMBERSHIP, $queryFlags ) &&
 			isset( $this->userGroupCache[$userKey][self::CACHE_MEMBERSHIP] )
 		) {
 			/** @suppress PhanTypeMismatchReturn */
@@ -854,7 +845,7 @@ class UserGroupManager {
 		}
 
 		$oldUgms = $this->getUserGroupMemberships( $user, IDBAccessObject::READ_LATEST );
-		$dbw = $this->dbProvider->getPrimaryDatabase( $this->wikiId );
+		$dbw = $this->connectionProvider->getPrimaryDatabase( $this->wikiId );
 
 		$dbw->startAtomic( __METHOD__ );
 		$dbw->newInsertQueryBuilder()
@@ -869,7 +860,7 @@ class UserGroupManager {
 
 		$affected = $dbw->affectedRows();
 		if ( !$affected ) {
-			// Conflicting row already exists; it should be overridden if it is either expired
+			// A conflicting row already exists; it should be overridden if it is either expired
 			// or if $allowUpdate is true and the current row is different than the loaded row.
 			$conds = [
 				'ug_user' => $user->getId( $this->wikiId ),
@@ -896,7 +887,7 @@ class UserGroupManager {
 
 		// Purge old, expired memberships from the DB
 		DeferredUpdates::addCallableUpdate( function ( $fname ) {
-			$dbr = $this->dbProvider->getReplicaDatabase( $this->wikiId );
+			$dbr = $this->connectionProvider->getReplicaDatabase( $this->wikiId );
 			$hasExpiredRow = (bool)$dbr->newSelectQueryBuilder()
 				->select( '1' )
 				->from( 'user_groups' )
@@ -984,7 +975,7 @@ class UserGroupManager {
 
 		$oldUgms = $this->getUserGroupMemberships( $user, IDBAccessObject::READ_LATEST );
 		$oldFormerGroups = $this->getUserFormerGroups( $user, IDBAccessObject::READ_LATEST );
-		$dbw = $this->dbProvider->getPrimaryDatabase( $this->wikiId );
+		$dbw = $this->connectionProvider->getPrimaryDatabase( $this->wikiId );
 		$dbw->newDeleteQueryBuilder()
 			->deleteFrom( 'user_groups' )
 			->where( [ 'ug_user' => $user->getId( $this->wikiId ), 'ug_group' => $group ] )
@@ -1013,10 +1004,6 @@ class UserGroupManager {
 	}
 
 	/**
-	 * Return the query builder to build upon and query
-	 *
-	 * @param IReadableDatabase $db
-	 * @return SelectQueryBuilder
 	 * @internal
 	 */
 	public function newQueryBuilder( IReadableDatabase $db ): SelectQueryBuilder {
@@ -1041,13 +1028,17 @@ class UserGroupManager {
 			return false;
 		}
 
-		$ticket = $this->dbProvider->getEmptyTransactionTicket( __METHOD__ );
-		$dbw = $this->dbProvider->getPrimaryDatabase( $this->wikiId );
+		$ticket = $this->connectionProvider->getEmptyTransactionTicket( __METHOD__ );
+		$dbw = $this->connectionProvider->getPrimaryDatabase( $this->wikiId );
 
-		$lockKey = "{$dbw->getDomainID()}:UserGroupManager:purge"; // per-wiki
+		// per-wiki
+		$lockKey = "{$dbw->getDomainID()}:UserGroupManager:purge";
 		$scopedLock = $dbw->getScopedLockAndFlush( $lockKey, __METHOD__, 0 );
 		if ( !$scopedLock ) {
-			return false; // already running
+			// @codeCoverageIgnoreStart
+			// already running
+			return false;
+			// @codeCoverageIgnoreEnd
 		}
 
 		$now = time();
@@ -1062,8 +1053,10 @@ class UserGroupManager {
 				->fetchResultSet();
 
 			if ( $res->numRows() > 0 ) {
-				$insertData = []; // array of users/groups to insert to user_former_groups
-				$deleteCond = []; // array for deleting the rows that are to be moved around
+				// array of users/groups to insert to user_former_groups
+				$insertData = [];
+				// array for deleting the rows that are to be moved around
+				$deleteCond = [];
 				foreach ( $res as $row ) {
 					$insertData[] = [ 'ufg_user' => $row->ug_user, 'ufg_group' => $row->ug_group ];
 					$deleteCond[] = $dbw
@@ -1087,25 +1080,28 @@ class UserGroupManager {
 
 			$dbw->endAtomic( __METHOD__ );
 
-			$this->dbProvider->commitAndWaitForReplication( __METHOD__, $ticket );
+			$this->connectionProvider->commitAndWaitForReplication( __METHOD__, $ticket );
 		} while ( $res->numRows() > 0 );
 		return $purgedRows;
 	}
 
 	/**
-	 * @param array $config
-	 * @param string $group
 	 * @return string[]
 	 */
 	private function expandChangeableGroupConfig( array $config, string $group ): array {
 		if ( empty( $config[$group] ) ) {
 			return [];
-		} elseif ( $config[$group] === true ) {
+		}
+
+		if ( $config[$group] === true ) {
 			// You get everything
 			return $this->listAllGroups();
-		} elseif ( is_array( $config[$group] ) ) {
+		}
+
+		if ( is_array( $config[$group] ) ) {
 			return $config[$group];
 		}
+
 		return [];
 	}
 
@@ -1155,8 +1151,7 @@ class UserGroupManager {
 			// This group gives the right to modify everything (reverse-
 			// compatibility with old "userrights lets you change
 			// everything")
-			// Using array_merge to make the groups reindexed
-			$all = array_merge( $this->listAllGroups() );
+			$all = array_values( $this->listAllGroups() );
 			return [
 				'add' => $all,
 				'remove' => $all,
@@ -1165,25 +1160,20 @@ class UserGroupManager {
 			];
 		}
 
-		// Okay, it's not so simple, we will have to go through the arrays
-		$groups = [
+		// Okay, it's not so simple; we will have to go through the arrays
+		$actorGroups = $this->getUserEffectiveGroups( $authority->getUser() );
+		$changeableGroups = [];
+		foreach ( $actorGroups as $actorGroup ) {
+			$changeableGroups[] = $this->getGroupsChangeableByGroup( $actorGroup );
+		}
+		$groups = array_merge_recursive( [
 			'add' => [],
 			'remove' => [],
 			'add-self' => [],
 			'remove-self' => []
-		];
-		$actorGroups = $this->getUserEffectiveGroups( $authority->getUser() );
-
-		foreach ( $actorGroups as $actorGroup ) {
-			$groups = array_merge_recursive(
-				$groups, $this->getGroupsChangeableByGroup( $actorGroup )
-			);
-			$groups['add'] = array_unique( $groups['add'] );
-			$groups['remove'] = array_unique( $groups['remove'] );
-			$groups['add-self'] = array_unique( $groups['add-self'] );
-			$groups['remove-self'] = array_unique( $groups['remove-self'] );
-		}
-		return $groups;
+		], ...$changeableGroups );
+		// @phan-suppress-next-line PhanTypeMismatchReturn
+		return array_map( 'array_unique', $groups );
 	}
 
 	/**
@@ -1231,17 +1221,12 @@ class UserGroupManager {
 	 * @return IReadableDatabase
 	 */
 	private function getDBConnectionRefForQueryFlags( int $recency ): IReadableDatabase {
-		if ( ( IDBAccessObject::READ_LATEST & $recency ) == IDBAccessObject::READ_LATEST ) {
-			return $this->dbProvider->getPrimaryDatabase( $this->wikiId );
+		if ( ( IDBAccessObject::READ_LATEST & $recency ) === IDBAccessObject::READ_LATEST ) {
+			return $this->connectionProvider->getPrimaryDatabase( $this->wikiId );
 		}
-		return $this->dbProvider->getReplicaDatabase( $this->wikiId );
+		return $this->connectionProvider->getReplicaDatabase( $this->wikiId );
 	}
 
-	/**
-	 * Gets a unique key for various caches.
-	 * @param UserIdentity $user
-	 * @return string
-	 */
 	private function getCacheKey( UserIdentity $user ): string {
 		return $user->isRegistered() ? "u:{$user->getId( $this->wikiId )}" : "anon:{$user->getName()}";
 	}
