@@ -205,7 +205,6 @@ trait SerializationTestTrait {
 		}
 
 		foreach ( $class->getProperties() as $prop ) {
-			$prop->setAccessible( true );
 			$this->validateEquality(
 				$prop->getValue( $expected ),
 				$prop->getValue( $actual ),

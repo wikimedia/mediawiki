@@ -37,11 +37,9 @@ class RESTBagOStuffTest extends \MediaWikiUnitTestCase {
 		$classReflect = new ReflectionClass( RESTBagOStuff::class );
 
 		$serializationTypeReflect = $classReflect->getProperty( 'serializationType' );
-		$serializationTypeReflect->setAccessible( true );
 		$serializationTypeReflect->setValue( $this->bag, $serializationType );
 
 		$hmacKeyReflect = $classReflect->getProperty( 'hmacKey' );
-		$hmacKeyReflect->setAccessible( true );
 		$hmacKeyReflect->setValue( $this->bag, $hmacKey );
 
 		$this->client->expects( $this->once() )->method( 'run' )->with( [
@@ -106,11 +104,9 @@ class RESTBagOStuffTest extends \MediaWikiUnitTestCase {
 		$classReflect = new ReflectionClass( RESTBagOStuff::class );
 
 		$serializationTypeReflect = $classReflect->getProperty( 'serializationType' );
-		$serializationTypeReflect->setAccessible( true );
 		$serializationTypeReflect->setValue( $this->bag, $serializationType );
 
 		$hmacKeyReflect = $classReflect->getProperty( 'hmacKey' );
-		$hmacKeyReflect->setAccessible( true );
 		$hmacKeyReflect->setValue( $this->bag, $hmacKey );
 
 		$this->client->expects( $this->once() )->method( 'run' )->with( [

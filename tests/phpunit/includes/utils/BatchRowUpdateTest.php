@@ -185,7 +185,6 @@ class BatchRowUpdateTest extends MediaWikiIntegrationTestCase {
 		$reader->addConditions( $conditions );
 
 		$buildConditions = new ReflectionMethod( $reader, 'buildConditions' );
-		$buildConditions->setAccessible( true );
 
 		// On first iteration only the passed conditions must be used
 		$this->assertEquals( $conditions, $buildConditions->invoke( $reader ),
@@ -248,7 +247,6 @@ class BatchRowUpdateTest extends MediaWikiIntegrationTestCase {
 
 		$reflection = new ReflectionClass( $databaseMysql );
 		$reflectionProperty = $reflection->getProperty( 'platform' );
-		$reflectionProperty->setAccessible( true );
 		$reflectionProperty->setValue( $databaseMysql, new SQLPlatform( $databaseMysql ) );
 
 		$databaseMysql->method( 'isOpen' )

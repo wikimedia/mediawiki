@@ -937,7 +937,6 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		// TestingAccessWrapper can't handle methods with reference arguments, sigh.
 		$rClass = new ReflectionClass( $manager );
 		$rMethod = $rClass->getMethod( 'loadSessionInfoFromStore' );
-		$rMethod->setAccessible( true );
 		$loadSessionInfoFromStore = static function ( &$info ) use ( $rMethod, $manager, $request ) {
 			return $rMethod->invokeArgs( $manager, [ &$info, $request ] );
 		};

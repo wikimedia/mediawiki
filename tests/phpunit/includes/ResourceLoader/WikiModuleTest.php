@@ -70,7 +70,6 @@ class WikiModuleTest extends ResourceLoaderTestCase {
 
 		// Because getPages is protected..
 		$getPages = new ReflectionMethod( $module, 'getPages' );
-		$getPages->setAccessible( true );
 		$out = $getPages->invoke( $module, Context::newDummyContext() );
 		$this->assertSame( $expected, $out );
 	}

@@ -101,7 +101,6 @@ class ParserTest extends MediaWikiIntegrationTestCase {
 
 		$refObject = new ReflectionObject( $parser );
 		foreach ( $refObject->getProperties() as $prop ) {
-			$prop->setAccessible( true );
 			foreach ( $args as $idx => $mockTest ) {
 				if ( $prop->isInitialized( $parser ) && $prop->getValue( $parser ) === $mockTest ) {
 					unset( $args[$idx] );
@@ -113,7 +112,6 @@ class ParserTest extends MediaWikiIntegrationTestCase {
 		$preproc = $parser->getPreprocessor();
 		$refObject = new ReflectionObject( $preproc );
 		foreach ( $refObject->getProperties() as $prop ) {
-			$prop->setAccessible( true );
 			foreach ( $args as $idx => $mockTest ) {
 				if ( $prop->getValue( $preproc ) === $mockTest ) {
 					unset( $args[$idx] );
