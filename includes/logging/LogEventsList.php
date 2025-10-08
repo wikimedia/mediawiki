@@ -912,22 +912,20 @@ class LogEventsList extends ContextSource {
 			return null;
 		}
 
-		// TODO: Fully replace `sp-contributions-blocked-notice` messages with
-		// the newer `blocked-notice-logextract` ones (T393902)
 		$isAnon = !$user->isRegistered();
 		if ( count( $blocks ) === 1 ) {
 			if ( $isAnon ) {
 				$msgKey = $sitewide ?
-					'sp-contributions-blocked-notice-anon' :
-					'sp-contributions-blocked-notice-anon-partial';
+					'blocked-notice-logextract-anon' :
+					'blocked-notice-logextract-anon-partial';
 			} else {
 				$msgKey = $sitewide ?
 					'blocked-notice-logextract' :
-					'sp-contributions-blocked-notice-partial';
+					'blocked-notice-logextract-partial';
 			}
 		} else {
 			if ( $isAnon ) {
-				$msgKey = 'sp-contributions-blocked-notice-anon-multi';
+				$msgKey = 'blocked-notice-logextract-anon-multi';
 			} else {
 				$msgKey = 'blocked-notice-logextract-multi';
 			}

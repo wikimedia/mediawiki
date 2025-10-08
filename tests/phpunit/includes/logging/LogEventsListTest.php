@@ -15,8 +15,6 @@ use MediaWiki\User\UserIdentity;
  * @covers \MediaWiki\Logging\LogEventsList::getBlockLogWarningBox
  */
 class LogEventsListTest extends MediaWikiIntegrationTestCase {
-	// TODO: Fully replace `sp-contributions-blocked-notice` messages with
-	// the newer `blocked-notice-logextract` ones (T393902)
 
 	/** @var UltimateAuthority */
 	private static $admin;
@@ -97,7 +95,7 @@ class LogEventsListTest extends MediaWikiIntegrationTestCase {
 		$this->assertNotNull( $html, 'Expected a block notice' );
 		if ( $user->isAnon() ) {
 			$this->assertMatchesRegularExpression(
-				'/sp-contributions-blocked-notice-anon(?!-)/',
+				'/blocked-notice-logextract-anon(?!-)/',
 				$html,
 				'Should contain sitewide anon block message'
 			);
@@ -145,10 +143,10 @@ class LogEventsListTest extends MediaWikiIntegrationTestCase {
 		if ( $titleNs === NS_USER ) {
 			$this->assertNotNull( $html, 'Expected a block notice' );
 			if ( $user->isAnon() ) {
-				$pattern = 'sp-contributions-blocked-notice-anon-partial';
+				$pattern = 'blocked-notice-logextract-anon-partial';
 				$error = 'Should contain partial anon block message';
 			} else {
-				$pattern = 'sp-contributions-blocked-notice-partial';
+				$pattern = 'blocked-notice-logextract-partial';
 				$error = 'Should contain partial block message';
 			}
 			$this->assertStringContainsString( $pattern, $html, $error );
@@ -184,7 +182,7 @@ class LogEventsListTest extends MediaWikiIntegrationTestCase {
 		$html = $this->getBlockNotice( $user );
 		$this->assertNotNull( $html, 'Expected a block notice' );
 		if ( $user->isAnon() ) {
-			$pattern = 'sp-contributions-blocked-notice-anon-multi';
+			$pattern = 'blocked-notice-logextract-anon-multi';
 			$error = 'Should contain anon multi-block message';
 		} else {
 			$pattern = 'blocked-notice-logextract-multi';
