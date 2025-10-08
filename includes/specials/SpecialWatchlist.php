@@ -6,7 +6,6 @@
 
 namespace MediaWiki\Specials;
 
-use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\Exception\UserNotLoggedIn;
 use MediaWiki\Html\FormOptions;
 use MediaWiki\Html\Html;
@@ -64,13 +63,11 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	 * constants (e.g. EDIT_NORMAL)
 	 */
 	private $currentMode;
-	private ChangeTagsStore $changeTagsStore;
 
 	public function __construct(
 		WatchedItemStoreInterface $watchedItemStore,
 		WatchlistManager $watchlistManager,
 		UserOptionsLookup $userOptionsLookup,
-		ChangeTagsStore $changeTagsStore,
 		UserIdentityUtils $userIdentityUtils,
 		TempUserConfig $tempUserConfig,
 		RecentChangeFactory $recentChangeFactory,
@@ -88,7 +85,6 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$this->watchedItemStore = $watchedItemStore;
 		$this->watchlistManager = $watchlistManager;
 		$this->userOptionsLookup = $userOptionsLookup;
-		$this->changeTagsStore = $changeTagsStore;
 	}
 
 	/** @inheritDoc */
@@ -333,31 +329,6 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		}
 		$query->requireWatched()
 			->watchlistFields( [ 'wl_notificationtimestamp', 'we_expiry' ] );
-
-		// TODO: migrate to $query->requireChangeTags( ... )
-		$query->legacyMutator(
-			function ( &$tables, &$fields, &$conds, &$query_options, &$join_conds ) use ( $opts ) {
-				$tagFilter = $opts['tagfilter'] !== '' ? explode( '|', $opts['tagfilter'] ) : [];
-				$this->changeTagsStore->modifyDisplayQuery(
-					$tables,
-					$fields,
-					$conds,
-					$join_conds,
-					$query_options,
-					$tagFilter,
-					$opts['inverttags']
-				);
-				if ( in_array( 'DISTINCT', $query_options ) ) {
-					// ChangeTagsStore::modifyDisplayQuery() adds DISTINCT when filtering on multiple tags.
-					// In order to prevent DISTINCT from causing query performance problems,
-					// we have to GROUP BY the primary key. This in turn requires us to add
-					// the primary key to the end of the ORDER BY, and the old ORDER BY to the
-					// start of the GROUP BY
-					$query_options['ORDER BY'] = 'rc_timestamp DESC, rc_id DESC';
-					$query_options['GROUP BY'] = 'rc_timestamp, rc_id';
-				}
-			}
-		);
 	}
 
 	public function outputFeedLinks() {

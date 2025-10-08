@@ -35,6 +35,25 @@ interface QueryBackend {
 	public function joinForConds( string $table ): ChangesListJoinBuilder;
 
 	/**
+	 * Flag that the joins will inadvertently duplicate recentchanges rows and
+	 * that the query will have to deal with that somehow, maybe by adding a
+	 * DISTINCT option.
+	 *
+	 * @return $this
+	 */
+	public function distinct(): self;
+
+	/**
+	 * Adjust the density heuristic by multiplying it by the given factor.
+	 * This is the proportion of recentchanges rows likely to be matched by the
+	 * conditions.
+	 *
+	 * @param float|int $density
+	 * @return $this
+	 */
+	public function adjustDensity( $density ): self;
+
+	/**
 	 * Add a condition to the query
 	 *
 	 * @param IExpression $expr

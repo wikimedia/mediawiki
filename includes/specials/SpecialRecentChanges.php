@@ -7,7 +7,6 @@
 namespace MediaWiki\Specials;
 
 use MediaWiki\ChangeTags\ChangeTags;
-use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\Html\FormOptions;
 use MediaWiki\Html\Html;
 use MediaWiki\Language\MessageParser;
@@ -43,15 +42,10 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	private MessageParser $messageParser;
 	private UserOptionsLookup $userOptionsLookup;
 
-	/** @var int */
-	public $denseRcSizeThreshold = 10000;
-	private ChangeTagsStore $changeTagsStore;
-
 	public function __construct(
 		?WatchedItemStoreInterface $watchedItemStore = null,
 		?MessageParser $messageParser = null,
 		?UserOptionsLookup $userOptionsLookup = null,
-		?ChangeTagsStore $changeTagsStore = null,
 		?UserIdentityUtils $userIdentityUtils = null,
 		?TempUserConfig $tempUserConfig = null,
 		?RecentChangeFactory $recentChangeFactory = null,
@@ -71,7 +65,6 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$this->watchedItemStore = $watchedItemStore ?? $services->getWatchedItemStore();
 		$this->messageParser = $messageParser ?? $services->getMessageParser();
 		$this->userOptionsLookup = $userOptionsLookup ?? $services->getUserOptionsLookup();
-		$this->changeTagsStore = $changeTagsStore ?? $services->getChangeTagsStore();
 	}
 
 	protected function getExtraFilterGroupDefinitions(): array {
@@ -233,99 +226,6 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		if ( $this->needsWatchlistFeatures() ) {
 			$query->watchlistFields( [ 'wl_user', 'wl_notificationtimestamp', 'we_expiry' ] );
 		}
-
-		$query->legacyMutator(
-			function ( &$tables, &$fields, &$conds, &$query_options, &$join_conds ) use ( $opts ) {
-				$tagFilter = $opts['tagfilter'] !== '' ? explode( '|', $opts['tagfilter'] ) : [];
-				$this->changeTagsStore->modifyDisplayQuery(
-					$tables,
-					$fields,
-					$conds,
-					$join_conds,
-					$query_options,
-					$tagFilter,
-					$opts['inverttags']
-				);
-
-				// Workaround for T298225: MySQL's lack of awareness of LIMIT when
-				// choosing the join order.
-				$ctTableName = ChangeTags::DISPLAY_TABLE_ALIAS;
-				if ( isset( $join_conds[$ctTableName] )
-					&& $this->isDenseTagFilter( $conds["$ctTableName.ct_tag_id"] ?? [], $opts['limit'] )
-				) {
-					$join_conds[$ctTableName][0] = 'STRAIGHT_JOIN';
-				}
-
-				if ( in_array( 'DISTINCT', $query_options ) ) {
-					// ChangeTagsStore::modifyDisplayQuery() adds DISTINCT when filtering on multiple tags.
-					// In order to prevent DISTINCT from causing query performance problems,
-					// we have to GROUP BY the primary key. This in turn requires us to add
-					// the primary key to the end of the ORDER BY, and the old ORDER BY to the
-					// start of the GROUP BY
-					$query_options['ORDER BY'] = 'rc_timestamp DESC, rc_id DESC';
-					$query_options['GROUP BY'] = 'rc_timestamp, rc_id';
-				}
-			}
-		);
-	}
-
-	/**
-	 * Determine whether a tag filter matches a high proportion of the rows in
-	 * recentchanges. If so, it is more efficient to scan recentchanges,
-	 * filtering out non-matching rows, rather than scanning change_tag and
-	 * then filesorting on rc_timestamp. MySQL is especially bad at making this
-	 * judgement (T298225).
-	 *
-	 * @param int[] $tagIds
-	 * @param int $limit
-	 * @return bool
-	 */
-	protected function isDenseTagFilter( $tagIds, $limit ) {
-		$dbr = $this->getDB();
-		if ( !$tagIds
-			// This is a MySQL-specific hack
-			|| $dbr->getType() !== 'mysql'
-			// Unnecessary for small wikis
-			|| !$this->getConfig()->get( MainConfigNames::MiserMode )
-		) {
-			return false;
-		}
-
-		$rcInfo = $dbr->newSelectQueryBuilder()
-			->select( [
-				'min_id' => 'MIN(rc_id)',
-				'max_id' => 'MAX(rc_id)',
-			] )
-			->from( 'recentchanges' )
-			->caller( __METHOD__ )
-			->fetchRow();
-		if ( !$rcInfo || $rcInfo->min_id === null ) {
-			return false;
-		}
-		$rcSize = $rcInfo->max_id - $rcInfo->min_id;
-		if ( $rcSize < $this->denseRcSizeThreshold ) {
-			// RC is too small to worry about
-			return false;
-		}
-		$tagCount = $dbr->newSelectQueryBuilder()
-			->table( 'change_tag' )
-			->where( [
-				$dbr->expr( 'ct_rc_id', '>=', $rcInfo->min_id ),
-				'ct_tag_id' => $tagIds
-			] )
-			->caller( __METHOD__ )
-			->estimateRowCount();
-
-		// If we scan recentchanges first, the number of rows examined will be
-		// approximately the limit divided by the proportion of tagged rows,
-		// i.e. $limit / ( $tagCount / $rcSize ). If that's less than $tagCount,
-		// use a straight join. The inequality below is rearranged for
-		// simplicity and to avoid division by zero.
-		$isDense = $limit * $rcSize < $tagCount * $tagCount;
-
-		wfDebug( __METHOD__ . ": rcSize = $rcSize, tagCount = $tagCount, limit = $limit => " .
-			( $isDense ? 'dense' : 'sparse' ) );
-		return $isDense;
 	}
 
 	public function outputFeedLinks() {

@@ -6,7 +6,6 @@
 
 namespace MediaWiki\Specials;
 
-use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\Html\FormOptions;
 use MediaWiki\Html\Html;
 use MediaWiki\Language\MessageParser;
@@ -31,14 +30,12 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 	protected $rclTargetTitle;
 
 	private SearchEngineFactory $searchEngineFactory;
-	private ChangeTagsStore $changeTagsStore;
 
 	public function __construct(
 		WatchedItemStoreInterface $watchedItemStore,
 		MessageParser $messageParser,
 		UserOptionsLookup $userOptionsLookup,
 		SearchEngineFactory $searchEngineFactory,
-		ChangeTagsStore $changeTagsStore,
 		UserIdentityUtils $userIdentityUtils,
 		TempUserConfig $tempUserConfig,
 		RecentChangeFactory $recentChangeFactory,
@@ -48,7 +45,6 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 			$watchedItemStore,
 			$messageParser,
 			$userOptionsLookup,
-			$changeTagsStore,
 			$userIdentityUtils,
 			$tempUserConfig,
 			$recentChangeFactory,
@@ -56,7 +52,6 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 		);
 		$this->mName = 'Recentchangeslinked';
 		$this->searchEngineFactory = $searchEngineFactory;
-		$this->changeTagsStore = $changeTagsStore;
 	}
 
 	/** @inheritDoc */
@@ -99,42 +94,7 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 			$this->msg( 'recentchangeslinked-title' )->plaintextParams( $title->getPrefixedText() )
 		);
 
-		$dbr = $this->getDB();
 		$ns = $title->getNamespace();
-
-		// TODO: $query->requireChangeTags( ... )
-		$query->legacyMutator( function ( &$tables, &$fields, &$conds, &$query_options, &$join_conds )
-			use ( $dbr, $opts )
-		{
-			$tagFilter = $opts['tagfilter'] !== '' ? explode( '|', $opts['tagfilter'] ) : [];
-			$this->changeTagsStore->modifyDisplayQuery(
-				$tables,
-				$select,
-				$conds,
-				$join_conds,
-				$query_options,
-				$tagFilter,
-				$opts['inverttags']
-			);
-
-			if ( $dbr->unionSupportsOrderAndLimit() ) {
-				if ( in_array( 'DISTINCT', $query_options ) ) {
-					// ChangeTagsStore::modifyDisplayQuery() will have added DISTINCT.
-					// To prevent this from causing query performance problems, we need to add
-					// a GROUP BY, and add rc_id to the ORDER BY.
-					$order = [
-						'GROUP BY' => [ 'rc_timestamp', 'rc_id' ],
-						'ORDER BY' => [ 'rc_timestamp DESC', 'rc_id DESC' ]
-					];
-				} else {
-					$order = [ 'ORDER BY' => 'rc_timestamp DESC' ];
-				}
-			} else {
-				$order = [];
-			}
-			$query_options['ORDER'] = $order;
-		} );
-
 		if ( $ns === NS_CATEGORY && !$showlinkedto ) {
 			// special handling for categories
 			// XXX: should try to make this less kludgy

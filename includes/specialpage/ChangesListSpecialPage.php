@@ -1247,6 +1247,17 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			}
 		}
 
+		// Change tags
+		if ( $this->getConfig()->get( MainConfigNames::UseTagFilter ) ) {
+			$tagFilter = $opts['tagfilter'] !== '' ? explode( '|', $opts['tagfilter'] ) : [];
+			if ( $opts['inverttags'] ) {
+				$query->excludeChangeTags( $tagFilter );
+			} else {
+				$query->requireChangeTags( $tagFilter );
+			}
+		}
+		$query->addChangeTagSummaryField();
+
 		// Calculate cutoff
 		$cutoff_unixtime = ConvertibleTimestamp::time() - $opts['days'] * 3600 * 24;
 		$cutoff = $dbr->timestamp( $cutoff_unixtime );

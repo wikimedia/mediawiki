@@ -58,7 +58,6 @@ class SpecialWatchlistTest extends SpecialPageTestBase {
 			$services->getWatchedItemStore(),
 			$services->getWatchlistManager(),
 			$services->getUserOptionsLookup(),
-			$services->getChangeTagsStore(),
 			$services->getUserIdentityUtils(),
 			$services->getTempUserConfig(),
 			$services->getRecentChangeFactory(),
@@ -252,6 +251,11 @@ SELECT
 	rc_namespace,
 	rc_title,
 	wl_notificationtimestamp,
+	(
+		SELECT GROUP_CONCAT(ctd_name SEPARATOR ',') 
+		FROM change_tag JOIN change_tag_def ON ((ct_tag_id=ctd_id)) 
+		WHERE (ct_rc_id=rc_id)  
+	) AS ts_tags,
 	rc_id,
 	rc_cur_id,
 	rc_last_oldid,
@@ -268,12 +272,7 @@ SELECT
 	recentchanges_comment.comment_text AS rc_comment_text,
 	recentchanges_comment.comment_data AS rc_comment_data,
 	recentchanges_comment.comment_id AS rc_comment_id,
-	we_expiry,
-	(
-		SELECT GROUP_CONCAT(ctd_name SEPARATOR ',') 
-		FROM change_tag JOIN change_tag_def ON ((ct_tag_id=ctd_id)) 
-		WHERE (ct_rc_id=rc_id)  
-	) AS ts_tags 
+	we_expiry 
 FROM recentchanges 
 	JOIN actor recentchanges_actor ON ((actor_id=rc_actor)) 
 	JOIN comment recentchanges_comment ON ((comment_id=rc_comment_id)) 

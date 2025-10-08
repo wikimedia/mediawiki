@@ -4,6 +4,7 @@ namespace MediaWiki\RecentChanges\ChangesListQuery;
 
 use InvalidArgumentException;
 use LogicException;
+use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Linker\LinkTargetLookup;
@@ -36,6 +37,7 @@ use function array_key_exists;
 class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 	public const CONSTRUCTOR_OPTIONS = [
 		MainConfigNames::WatchlistExpiry,
+		MainConfigNames::MiserMode,
 		...ExperienceCondition::CONSTRUCTOR_OPTIONS
 	];
 
@@ -85,6 +87,9 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 	/** @var int|null The maximum number of rows to return */
 	private ?int $limit = null;
 
+	/** @var float|int */
+	private $density = 1;
+
 	/** @var Authority|null The authority to use for deleted bitfield checks */
 	private ?Authority $audience = null;
 
@@ -93,6 +98,9 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 
 	/** @var bool If true, return no results */
 	private $forceEmptySet = false;
+
+	/** @var bool If true, add DISTINCT and GROUP BY */
+	private $distinct = false;
 
 	/** @var string|null The caller to pass down to the DBMS */
 	private ?string $caller = null;
@@ -109,6 +117,7 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 		private TempUserConfig $tempUserConfig,
 		private UserFactory $userFactory,
 		private LinkTargetLookup $linkTargetLookup,
+		private ChangeTagsStore $changeTagsStore,
 		private IReadableDatabase $db
 	) {
 		$this->filterModules = [
@@ -144,11 +153,25 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 			'namespace' => new FieldEqualityCondition( 'rc_namespace' ),
 			'subpageof' => new SubpageOfCondition(),
 		];
+
+		// ChangeTagsCondition consumes the density heuristic so it has to
+		// be prepared after the other modules. Putting it late in the list
+		// serves that purpose.
+		$this->filterModules['changeTags'] = new ChangeTagsCondition(
+			$this->changeTagsStore,
+			$config->get( MainConfigNames::MiserMode ),
+		);
+
 		$this->joinModules = [
 			'actor' => new BasicJoin( 'actor', 'recentchanges_actor', 'actor_id=rc_actor' ),
+			'change_tag' => new BasicJoin(
+				'change_tag',
+				ChangeTagsStore::DISPLAY_TABLE_ALIAS,
+				'ct_rc_id=rc_id'
+			),
 			'comment' => new BasicJoin( 'comment', 'recentchanges_comment', 'comment_id=rc_comment_id' ),
-			'user' => new BasicJoin( 'user', '', 'user_id=actor_user', 'actor' ),
 			'page' => new BasicJoin( 'page', '', 'page_id=rc_cur_id' ),
+			'user' => new BasicJoin( 'user', '', 'user_id=actor_user', 'actor' ),
 			'watchlist' => new WatchlistJoin(),
 			'watchlist_expiry' => new BasicJoin( 'watchlist_expiry', '', 'we_item=wl_id', 'watchlist' )
 		];
@@ -265,6 +288,48 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 	}
 
 	/**
+	 * Require that the change has one of the specified change tags.
+	 *
+	 * @param string[] $tagNames
+	 * @return $this
+	 */
+	public function requireChangeTags( $tagNames ): self {
+		return $this->applyArrayAction( 'require', 'changeTags', $tagNames );
+	}
+
+	/**
+	 * Exclude changes matching any of the specified change tags.
+	 *
+	 * @param string[] $tagNames
+	 * @return $this
+	 */
+	public function excludeChangeTags( $tagNames ): self {
+		return $this->applyArrayAction( 'exclude', 'changeTags', $tagNames );
+	}
+
+	/**
+	 * Add the change tag summary field ts_tags
+	 *
+	 * @return $this
+	 */
+	public function addChangeTagSummaryField(): self {
+		$this->getChangeTagsFilter()->capture();
+		return $this;
+	}
+
+	/**
+	 * Set the minimum size of the recentchanges table at which change tag
+	 * queries will be conditionally modified based on estimated density.
+	 *
+	 * @param float|int $threshold
+	 * @return self
+	 */
+	public function denseRcSizeThreshold( $threshold ): self {
+		$this->getChangeTagsFilter()->setDenseRcSizeThreshold( $threshold );
+		return $this;
+	}
+
+	/**
 	 * Require that the change is viewable by the specified authority.
 	 * Or pass null to disable authority checks.
 	 *
@@ -324,6 +389,14 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 	 */
 	public function limit( int $limit ) {
 		$this->limit = $limit;
+		$this->getChangeTagsFilter()->setLimit( $limit );
+		return $this;
+	}
+
+	/** @inheritDoc */
+	public function adjustDensity( $density ): self {
+		$this->density *= $density;
+		$this->getChangeTagsFilter()->setDensity( $this->density );
 		return $this;
 	}
 
@@ -370,6 +443,10 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 
 	private function getSeenFilter(): SeenCondition {
 		return $this->filterModules['seen'];
+	}
+
+	private function getChangeTagsFilter(): ChangeTagsCondition {
+		return $this->filterModules['changeTags'];
 	}
 
 	/**
@@ -497,6 +574,9 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 	 * Call all modules asking them to populate fields, joins, etc.
 	 */
 	private function prepare() {
+		if ( $this->linkTables ) {
+			$this->adjustDensity( 0.1 );
+		}
 		foreach ( $this->filterModules as $module ) {
 			$module->prepareQuery( $this->db, $this );
 		}
@@ -585,13 +665,23 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 	}
 
 	/**
-	 * Set the ORDER BY, LIMIT, max execution time and caller options on a query
+	 * Set the ORDER BY, LIMIT, etc. on a query
 	 *
 	 * @param SelectQueryBuilder $sqb
 	 */
 	private function applyOptions( SelectQueryBuilder $sqb ) {
-		$sqb->orderBy( 'rc_timestamp', SelectQueryBuilder::SORT_DESC )
-			->caller( $this->caller ?? __CLASS__ );
+		if ( $this->distinct ) {
+			$sqb->distinct();
+			// In order to prevent DISTINCT from causing query performance problems,
+			// we have to GROUP BY the primary key. This in turn requires us to add
+			// the primary key to the end of the ORDER BY, and the old ORDER BY to the
+			// start of the GROUP BY.
+			$sqb->groupBy( [ 'rc_timestamp', 'rc_id' ] )
+				->orderBy( [ 'rc_timestamp DESC', 'rc_id DESC' ] );
+		} else {
+			$sqb->orderBy( 'rc_timestamp', SelectQueryBuilder::SORT_DESC );
+		}
+		$sqb->caller( $this->caller ?? __CLASS__ );
 		if ( $this->limit !== null ) {
 			$sqb->limit( $this->limit );
 		}
@@ -862,6 +952,21 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 			throw new InvalidArgumentException( "Unknown join module \"$name\"" );
 		}
 		return $this->joinModules[$name];
+	}
+
+	/** @inheritDoc */
+	public function distinct(): QueryBackend {
+		$this->distinct = true;
+		return $this;
+	}
+
+	/**
+	 * @internal
+	 * @param string $name
+	 * @param ChangesListCondition $module
+	 */
+	public function registerFilter( $name, ChangesListCondition $module ) {
+		$this->filterModules[$name] = $module;
 	}
 
 }

@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Tests\RecentChanges\ChangesListQuery;
 
+use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\WikitextContent;
 use MediaWiki\DAO\WikiAwareEntity;
@@ -11,6 +12,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Permissions\SimpleAuthority;
 use MediaWiki\RecentChanges\ChangesListQuery\ChangesListQuery;
+use MediaWiki\RecentChanges\ChangesListQuery\ChangeTagsCondition;
 use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Revision\SlotRecord;
@@ -19,6 +21,8 @@ use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IExpression;
+use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
@@ -28,6 +32,7 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  *
  * @covers \MediaWiki\RecentChanges\ChangesListQuery\ChangesListQuery
  * @covers \MediaWiki\RecentChanges\ChangesListQuery\ChangesListHighlight
+ * @covers \MediaWiki\RecentChanges\ChangesListQuery\ChangeTagsCondition
  * @covers \MediaWiki\RecentChanges\ChangesListQuery\BooleanFieldCondition
  * @covers \MediaWiki\RecentChanges\ChangesListQuery\EnumFieldCondition
  * @covers \MediaWiki\RecentChanges\ChangesListQuery\ExperienceCondition
@@ -59,6 +64,8 @@ class ChangesListQueryTest extends \MediaWikiIntegrationTestCase {
 		'pl-source',
 		'tl-source',
 		'dest',
+		'untagged',
+		'tagged',
 	];
 
 	private const ALICE_ID = 1;
@@ -165,6 +172,12 @@ class ChangesListQueryTest extends \MediaWikiIntegrationTestCase {
 		$assertName( 11, 'dest' );
 		$now++;
 		$this->edit( 'Link destination', $carol );
+
+		$assertName( 12, 'untagged' );
+		$this->edit( 'Tagged', $carol );
+
+		$assertName( 13, 'tagged' );
+		$this->edit( 'Tagged', $carol, 0, '' );
 	}
 
 	private function edit( $titleText, $user, $flags = 0, $content = null ) {
@@ -209,6 +222,7 @@ class ChangesListQueryTest extends \MediaWikiIntegrationTestCase {
 			$services->getTempUserConfig(),
 			$services->getUserFactory(),
 			$services->getLinkTargetLookup(),
+			$services->getChangeTagsStore(),
 			$this->getDb(),
 		);
 		$query
@@ -235,6 +249,19 @@ class ChangesListQueryTest extends \MediaWikiIntegrationTestCase {
 		);
 	}
 
+	private function normalizeJoinConds( $joinConds ) {
+		foreach ( $joinConds as $alias => &$info ) {
+			if ( is_array( $info[1] ) ) {
+				foreach ( $info[1] as &$cond ) {
+					if ( $cond instanceof IExpression ) {
+						$cond = $cond->toSql( $this->getDb() );
+					}
+				}
+			}
+		}
+		return $joinConds;
+	}
+
 	private function doQuery( ChangesListQuery $query, $expectedInfo, $expectedIds ) {
 		$queryInfo = null;
 		$query->sqbMutator( static function ( SelectQueryBuilder $sqb ) use ( &$queryInfo ) {
@@ -246,6 +273,7 @@ class ChangesListQueryTest extends \MediaWikiIntegrationTestCase {
 		} else {
 			$this->assertNotNull( $queryInfo, 'query was not done' );
 			$queryInfo['conds'] = $this->normalizeConds( $queryInfo['conds'] );
+			$queryInfo['join_conds'] = $this->normalizeJoinConds( $queryInfo['join_conds'] );
 			$this->assertArrayEquals( $expectedInfo, $queryInfo,
 				false, true, 'queryInfo' );
 		}
@@ -308,11 +336,19 @@ class ChangesListQueryTest extends \MediaWikiIntegrationTestCase {
 		$joinWatchlistExpiry['tables']['watchlist_expiry'] = 'watchlist_expiry';
 		$joinWatchlistExpiry['join_conds']['watchlist_expiry'] = [ 'LEFT JOIN', [ 'we_item=wl_id' ] ];
 
+		$joinChangeTag = $defaultInfo;
+		$joinChangeTag['tables']['changetagdisplay'] = 'change_tag';
+		$joinChangeTag['join_conds']['changetagdisplay'] = [ 'JOIN', [ 'ct_rc_id=rc_id' ] ];
+
+		$leftJoinChangeTag = $joinChangeTag;
+		$leftJoinChangeTag['join_conds']['changetagdisplay'][0] = 'LEFT JOIN';
+		$leftJoinChangeTag['join_conds']['changetagdisplay'][1][] = 'ct_tag_id = 1';
+
 		$rcIds = self::getRcIds();
 		$allIds = array_values( $rcIds );
 		$alice = new UserIdentityValue( 1, 'Alice' );
 		$newIds = [ $rcIds['alice'], $rcIds['anon'], $rcIds['minor'], $rcIds['bot'],
-			$rcIds['pl-source'], $rcIds['tl-source'], $rcIds['dest'] ];
+			$rcIds['pl-source'], $rcIds['tl-source'], $rcIds['dest'], $rcIds['untagged'] ];
 
 		return [
 			'No actions' => [
@@ -450,7 +486,7 @@ class ChangesListQueryTest extends \MediaWikiIntegrationTestCase {
 						'page' => [ 'LEFT JOIN', [ 'page_id=rc_cur_id' ] ],
 					],
 				] ),
-				array_diff( $allIds, [ $rcIds['alice'], $rcIds['bob'] ] ),
+				array_diff( $allIds, [ $rcIds['alice'], $rcIds['bob'], $rcIds['untagged'] ] ),
 			],
 			'exclude revisionType latest' => [
 				[ [ 'exclude', 'revisionType', 'latest' ] ],
@@ -464,7 +500,7 @@ class ChangesListQueryTest extends \MediaWikiIntegrationTestCase {
 						'page' => [ 'LEFT JOIN', [ 'page_id=rc_cur_id' ] ],
 					],
 				] ),
-				[ $rcIds['alice'], $rcIds['bob'], $rcIds['newuser'], $rcIds['deleted'] ],
+				[ $rcIds['alice'], $rcIds['bob'], $rcIds['newuser'], $rcIds['deleted'], $rcIds['untagged'] ],
 			],
 			'require/exclude conflict revisionType' => [
 				[
@@ -616,6 +652,20 @@ class ChangesListQueryTest extends \MediaWikiIntegrationTestCase {
 					'conds' => "(((rc_namespace = 1 AND rc_title LIKE 'Edit`_by`_anon/%' ESCAPE '`')))",
 				] ),
 				[ $rcIds['anon'] ],
+			],
+			'require changeTags mw-blank' => [
+				[ [ 'require', 'changeTags', 'mw-blank' ] ],
+				array_merge( $joinChangeTag, [
+					'conds' => '(ct_tag_id = 1)',
+				] ),
+				[ $rcIds['tagged' ] ],
+			],
+			'exclude changeTags mw-blank' => [
+				[ [ 'exclude', 'changeTags', 'mw-blank' ] ],
+				array_merge( $leftJoinChangeTag, [
+					'conds' => '(ct_tag_id IS NULL)',
+				] ),
+				array_diff( $allIds, [ $rcIds['tagged' ] ] ),
 			],
 		];
 	}
@@ -860,6 +910,81 @@ class ChangesListQueryTest extends \MediaWikiIntegrationTestCase {
 			$query->limit( $limit );
 			$expectedInfo['options']['LIMIT'] = $limit;
 		}
+		$this->doQuery( $query, $expectedInfo, $expectedIds );
+	}
+
+	public function testRequireChangeTags() {
+		[ $actions, $expectedInfo, $expectedIds ] = self::provideActions()['require changeTags mw-blank'];
+		$query = $this->getQuery()
+			->requireChangeTags( [ 'mw-blank' ] );
+		$this->doQuery( $query, $expectedInfo, $expectedIds );
+	}
+
+	public function testExcludeChangeTags() {
+		[ $actions, $expectedInfo, $expectedIds ] = self::provideActions()['exclude changeTags mw-blank'];
+		$query = $this->getQuery()
+			->excludeChangeTags( [ 'mw-blank' ] );
+		$this->doQuery( $query, $expectedInfo, $expectedIds );
+	}
+
+	/**
+	 * This integration test just tries to run the isDenseFilter() queries, to
+	 * check for syntax errors etc. It doesn't verify the logic.
+	 */
+	public function testIsDenseTagFilter() {
+		[ $actions, $expectedInfo, $expectedIds ] = self::provideActions()['require changeTags mw-blank'];
+		$query = $this->getQuery()
+			->requireChangeTags( [ 'mw-blank' ] )
+			// Make sure thresholds are passed
+			->denseRcSizeThreshold( 0 );
+		$this->doQuery( $query, $expectedInfo, $expectedIds );
+	}
+
+	public static function provideDenseTagFilter() {
+		return [
+			[ false ],
+			[ true ]
+		];
+	}
+
+	/**
+	 * This integration test injects the return value of isDenseFilter(),
+	 * verifying the correctness of the resulting STRAIGHT_JOIN.
+	 *
+	 * @dataProvider provideDenseTagFilter
+	 */
+	public function testDenseTagFilter( $dense ) {
+		[ $actions, $expectedInfo, $expectedIds ] = self::provideActions()['require changeTags mw-blank'];
+		if ( $dense ) {
+			$expectedInfo['join_conds']['changetagdisplay'][0] = 'STRAIGHT_JOIN';
+		}
+
+		$query = $this->getQuery();
+
+		$module = new class (
+			$dense,
+			$this->getServiceContainer()->getChangeTagsStore(),
+		)  extends ChangeTagsCondition {
+			/** @var bool */
+			private $dense;
+
+			public function __construct(
+				$dense,
+				ChangeTagsStore $changeTagsStore,
+			) {
+				parent::__construct( $changeTagsStore, true );
+				$this->dense = $dense;
+			}
+
+			protected function isDenseTagFilter( IReadableDatabase $dbr, array $tagIds ) {
+				return $this->dense;
+			}
+		};
+
+		$query->registerFilter( 'changeTags', $module );
+		$query->requireChangeTags( [ 'mw-blank' ] )
+			// Make sure thresholds are passed
+			->denseRcSizeThreshold( 0 );
 		$this->doQuery( $query, $expectedInfo, $expectedIds );
 	}
 }

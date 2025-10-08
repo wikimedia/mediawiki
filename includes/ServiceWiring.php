@@ -541,6 +541,7 @@ return [
 			$services->getTempUserConfig(),
 			$services->getUserFactory(),
 			$services->getLinkTargetLookup(),
+			$services->getChangeTagsStore(),
 			$services->getConnectionProvider(),
 		);
 	},

@@ -1,21 +1,13 @@
 <?php
 
-use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\Context\RequestContext;
-use MediaWiki\Language\MessageParser;
 use MediaWiki\MainConfigNames;
-use MediaWiki\RecentChanges\ChangesListQuery\ChangesListQueryFactory;
-use MediaWiki\RecentChanges\RecentChangeFactory;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Specials\SpecialRecentChanges;
 use MediaWiki\Tests\SpecialPage\AbstractChangesListSpecialPageTestCase;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\Title;
-use MediaWiki\User\Options\UserOptionsLookup;
-use MediaWiki\User\TempUser\TempUserConfig;
-use MediaWiki\User\UserIdentityUtils;
-use MediaWiki\Watchlist\WatchedItemStoreInterface;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -35,7 +27,6 @@ class SpecialRecentChangesTest extends AbstractChangesListSpecialPageTestCase {
 			$this->getServiceContainer()->getWatchedItemStore(),
 			$this->getServiceContainer()->getMessageParser(),
 			$this->getServiceContainer()->getUserOptionsLookup(),
-			$this->getServiceContainer()->getChangeTagsStore(),
 			$this->getServiceContainer()->getUserIdentityUtils(),
 			$this->getServiceContainer()->getTempUserConfig(),
 			$this->getServiceContainer()->getRecentChangeFactory(),
@@ -226,82 +217,5 @@ class SpecialRecentChangesTest extends AbstractChangesListSpecialPageTestCase {
 		);
 		$this->assertStringNotContainsString( 'rcshowhideliu', $html );
 		$this->assertStringNotContainsString( 'rcshowhideanons', $html );
-	}
-
-	/**
-	 * This integration test just tries to run the isDenseFilter() queries, to
-	 * check for syntax errors etc. It doesn't verify the logic.
-	 */
-	public function testIsDenseTagFilter() {
-		$this->getServiceContainer()->getChangeTagsStore()->defineTag( 'rc-test-tag' );
-		$req = new FauxRequest();
-		$req->setVal( 'tagfilter', 'rc-test-tag' );
-		$page = $this->getPage();
-
-		// Make sure thresholds are passed
-		$page->denseRcSizeThreshold = 0;
-		$this->overrideConfigValue( MainConfigNames::MiserMode, true );
-
-		( new SpecialPageExecutor() )->executeSpecialPage( $page, '', $req );
-		$this->assertTrue( true );
-	}
-
-	public static function provideDenseTagFilter() {
-		return [
-			[ false ],
-			[ true ]
-		];
-	}
-
-	/**
-	 * This integration test injects the return value of isDenseFilter(),
-	 * verifying the correctness of the resulting STRAIGHT_JOIN.
-	 *
-	 * @dataProvider provideDenseTagFilter
-	 */
-	public function testDenseTagFilter( $dense ) {
-		$services = $this->getServiceContainer();
-		$services->getChangeTagsStore()->defineTag( 'rc-test-tag' );
-		$req = new FauxRequest();
-		$req->setVal( 'tagfilter', 'rc-test-tag' );
-
-		$page = new class (
-			$dense,
-			$services->getWatchedItemStore(),
-			$services->getMessageParser(),
-			$services->getUserOptionsLookup(),
-			$services->getChangeTagsStore(),
-			$services->getUserIdentityUtils(),
-			$services->getTempUserConfig(),
-			$services->getRecentChangeFactory(),
-			$services->getChangesListQueryFactory(),
-		)  extends SpecialRecentChanges {
-			/** @var bool */
-			private $dense;
-
-			public function __construct(
-				$dense,
-				?WatchedItemStoreInterface $watchedItemStore = null,
-				?MessageParser $messageParser = null,
-				?UserOptionsLookup $userOptionsLookup = null,
-				?ChangeTagsStore $changeTagsStore = null,
-				?UserIdentityUtils $userIdentityUtils = null,
-				?TempUserConfig $tempUserConfig = null,
-				?RecentChangeFactory $recentChangeFactory = null,
-				?ChangesListQueryFactory $changesListQueryFactory = null,
-			) {
-				parent::__construct( $watchedItemStore, $messageParser, $userOptionsLookup,
-					$changeTagsStore, $userIdentityUtils, $tempUserConfig,
-					$recentChangeFactory, $changesListQueryFactory );
-				$this->dense = $dense;
-			}
-
-			protected function isDenseTagFilter( $tagIds, $limit ) {
-				return $this->dense;
-			}
-		};
-
-		( new SpecialPageExecutor() )->executeSpecialPage( $page, '', $req );
-		$this->assertTrue( true );
 	}
 }

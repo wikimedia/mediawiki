@@ -499,6 +499,25 @@ class ChangeTagsStore {
 	}
 
 	/**
+	 * Get tag IDs given a list of tag names. If any name is invalid, its ID
+	 * will be omitted from the return value.
+	 *
+	 * @since 1.45
+	 * @param string[] $tagNames
+	 * @return array<string,int>
+	 */
+	public function getTagIdsFromNames( $tagNames ) {
+		$tagIds = [];
+		foreach ( $tagNames as $name ) {
+			try {
+				$tagIds[$name] = $this->changeTagDefStore->getId( $name );
+			} catch ( NameTableAccessException ) {
+			}
+		}
+		return $tagIds;
+	}
+
+	/**
 	 * Add and remove tags to/from a change given its rc_id, rev_id and/or log_id,
 	 * without verifying that the tags exist or are valid. If a tag is present in
 	 * both $tagsToAdd and $tagsToRemove, it will be removed.
@@ -821,13 +840,7 @@ class ChangeTagsStore {
 		if ( $filter_tag !== [] && $filter_tag !== '' ) {
 			// Somebody wants to filter on a tag.
 			// Add an INNER JOIN on change_tag
-			$filterTagIds = [];
-			foreach ( (array)$filter_tag as $filterTagName ) {
-				try {
-					$filterTagIds[] = $this->changeTagDefStore->getId( $filterTagName );
-				} catch ( NameTableAccessException ) {
-				}
-			}
+			$filterTagIds = array_values( $this->getTagIdsFromNames( (array)$filter_tag ) );
 
 			if ( $exclude ) {
 				if ( $filterTagIds !== [] ) {
@@ -911,13 +924,7 @@ class ChangeTagsStore {
 		if ( $filter_tag !== [] && $filter_tag !== '' ) {
 			// Somebody wants to filter on a tag.
 			// Add an INNER JOIN on change_tag
-			$filterTagIds = [];
-			foreach ( (array)$filter_tag as $filterTagName ) {
-				try {
-					$filterTagIds[] = $this->changeTagDefStore->getId( $filterTagName );
-				} catch ( NameTableAccessException ) {
-				}
-			}
+			$filterTagIds = array_values( $this->getTagIdsFromNames( (array)$filter_tag ) );
 
 			if ( $exclude ) {
 				if ( $filterTagIds !== [] ) {

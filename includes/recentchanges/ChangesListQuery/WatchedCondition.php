@@ -114,6 +114,7 @@ class WatchedCondition extends ChangesListConditionBase {
 		}
 
 		if ( $selectedValues === [ 'watched' ] ) {
+			$query->adjustDensity( 0.1 );
 			$query->joinForConds( 'watchlist' )->reorderable();
 			$this->maybeJoinExpiry( $query );
 			if ( $isNotExpiredCond ) {
@@ -122,6 +123,7 @@ class WatchedCondition extends ChangesListConditionBase {
 		}
 
 		if ( $selectedValues === [ 'watchednew' ] ) {
+			$query->adjustDensity( 0.1 );
 			$query->joinForConds( 'watchlist' )->reorderable();
 			$this->maybeJoinExpiry( $query );
 			if ( $isNotExpiredCond ) {
@@ -148,6 +150,7 @@ class WatchedCondition extends ChangesListConditionBase {
 		}
 
 		if ( $selectedValues === [ 'watched', 'watchednew' ] ) {
+			$query->adjustDensity( 0.1 );
 			$query->joinForConds( 'watchlist' )->reorderable();
 			$this->maybeJoinExpiry( $query );
 			if ( $isNotExpiredCond ) {
