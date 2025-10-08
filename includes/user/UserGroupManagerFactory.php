@@ -23,19 +23,6 @@ use Wikimedia\Rdbms\ReadOnlyMode;
  * @ingroup User
  */
 class UserGroupManagerFactory {
-	private ServiceOptions $options;
-	private ReadOnlyMode $readOnlyMode;
-	private ILBFactory $dbLoadBalancerFactory;
-	private UserEditTracker $userEditTracker;
-	private GroupPermissionsLookup $groupPermissionLookup;
-	private JobQueueGroupFactory $jobQueueGroupFactory;
-	private LoggerInterface $logger;
-
-	/** @var callable[] */
-	private $clearCacheCallbacks;
-
-	private HookContainer $hookContainer;
-	private TempUserConfig $tempUserConfig;
 
 	/**
 	 * @var UserGroupManager[] User group manager instances indexed by wiki
@@ -55,27 +42,17 @@ class UserGroupManagerFactory {
 	 * @param callable[] $clearCacheCallbacks
 	 */
 	public function __construct(
-		ServiceOptions $options,
-		ReadOnlyMode $readOnlyMode,
-		ILBFactory $dbLoadBalancerFactory,
-		HookContainer $hookContainer,
-		UserEditTracker $userEditTracker,
-		GroupPermissionsLookup $groupPermissionsLookup,
-		JobQueueGroupFactory $jobQueueGroupFactory,
-		LoggerInterface $logger,
-		TempUserConfig $tempUserConfig,
-		array $clearCacheCallbacks = []
+		private readonly ServiceOptions $options,
+		private readonly ReadOnlyMode $readOnlyMode,
+		private readonly ILBFactory $dbLoadBalancerFactory,
+		private readonly HookContainer $hookContainer,
+		private readonly UserEditTracker $userEditTracker,
+		private readonly GroupPermissionsLookup $groupPermissionsLookup,
+		private readonly JobQueueGroupFactory $jobQueueGroupFactory,
+		private readonly LoggerInterface $logger,
+		private readonly TempUserConfig $tempUserConfig,
+		private readonly array $clearCacheCallbacks = [],
 	) {
-		$this->options = $options;
-		$this->readOnlyMode = $readOnlyMode;
-		$this->dbLoadBalancerFactory = $dbLoadBalancerFactory;
-		$this->hookContainer = $hookContainer;
-		$this->userEditTracker = $userEditTracker;
-		$this->groupPermissionLookup = $groupPermissionsLookup;
-		$this->jobQueueGroupFactory = $jobQueueGroupFactory;
-		$this->logger = $logger;
-		$this->tempUserConfig = $tempUserConfig;
-		$this->clearCacheCallbacks = $clearCacheCallbacks;
 	}
 
 	/**
@@ -94,7 +71,7 @@ class UserGroupManagerFactory {
 				$this->dbLoadBalancerFactory,
 				$this->hookContainer,
 				$this->userEditTracker,
-				$this->groupPermissionLookup,
+				$this->groupPermissionsLookup,
 				$this->jobQueueGroupFactory->makeJobQueueGroup( $wikiId ),
 				$this->logger,
 				$this->tempUserConfig,
