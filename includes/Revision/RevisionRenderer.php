@@ -104,7 +104,9 @@ class RevisionRenderer implements LoggerAwareInterface {
 		array $hints = []
 	) {
 		if ( $rev->getWikiId() !== $this->dbDomain ) {
-			throw new InvalidArgumentException( 'Mismatching wiki ID ' . $rev->getWikiId() );
+			throw new InvalidArgumentException(
+				"Mismatching wiki ID rev={$rev->getWikiId()}, this={$this->dbDomain}"
+			);
 		}
 
 		$audience = $hints['audience']

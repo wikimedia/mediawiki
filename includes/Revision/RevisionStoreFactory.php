@@ -14,6 +14,7 @@ namespace MediaWiki\Revision;
 
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Page\PageStoreFactory;
 use MediaWiki\RecentChanges\RecentChangeLookup;
@@ -139,6 +140,14 @@ class RevisionStoreFactory {
 	 */
 	private function getStore( $dbDomain, ActorStore $actorStore ) {
 		Assert::parameterType( [ 'string', 'false' ], $dbDomain, '$dbDomain' );
+		if (
+			// FIXME: We can't normalize the domain in tests, as RevisionStoreDbTest relies on this behaviour to test
+			// cross-wikiness, in absence of a better way (T261848).
+			!defined( 'MW_PHPUNIT_TEST' ) &&
+			is_string( $dbDomain ) && $this->dbLoadBalancerFactory->getLocalDomainID() === $dbDomain
+		) {
+			$dbDomain = WikiAwareEntity::LOCAL;
+		}
 
 		$store = new RevisionStore(
 			$this->dbLoadBalancerFactory->getMainLB( $dbDomain ),
