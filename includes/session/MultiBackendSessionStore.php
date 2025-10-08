@@ -133,33 +133,32 @@ class MultiBackendSessionStore implements SessionStore {
 				}
 			}
 
-			$anonUserId = $anonData['metadata']['userId'] ?? null;
-			$authUserId = $authData['metadata']['userId'] ?? null;
+			$anonUserName = $anonData['metadata']['userName'] ?? null;
+			$authUserName = $authData['metadata']['userName'] ?? null;
 
-			if ( $anonData && $anonUserId !== 0 ) {
+			if ( $anonData && $anonUserName !== null ) {
 				// The data does not match the store!
 				// This is actually expected when the two stores are the same
 				// (which is useful for testing in production).
 				if ( !$this->sameBackend ) {
-					$this->logger->warning( 'Authenticated data should not be in the anonymous store', [
+					$this->logger->warning( 'No userInfo: authenticated data should not be in the anonymous store', [
 						'sessionInfo' => (string)$sessionInfo,
 						'exception' => new RuntimeException(),
 					] );
 				}
 
 				$anonData = false;
-				$anonUserId = null;
+				$anonUserName = null;
 			}
 
-			if ( $authData && $authUserId === 0 ) {
+			if ( $authData && $authUserName === null ) {
 				if ( !$this->sameBackend ) {
-					$this->logger->warning( 'Anonymous data should not be in the authenticated store', [
+					$this->logger->warning( 'No userInfo: anonymous data should not be in the authenticated store', [
 						'sessionInfo' => (string)$sessionInfo,
 						'exception' => new RuntimeException(),
 					] );
 				}
 				$authData = false;
-				$authUserId = null;
 			}
 
 			if ( $anonData && $authData && !$this->sameBackend ) {
@@ -200,18 +199,18 @@ class MultiBackendSessionStore implements SessionStore {
 
 		$key = $store->makeKey( 'MWSession', $info->getId() );
 		$data = $store->get( $key );
-		$userId = $data['metadata']['userId'] ?? null;
+		$userName = $data['metadata']['userName'] ?? null;
 
-		if ( $isAuthenticated && $userId === 0 ) {
-			$this->logger->warning( 'Authenticated data should not be in the anonymous store', [
+		if ( $isAuthenticated && $data && $userName === null ) {
+			$this->logger->warning( 'Store is authenticated, but the user associated to the data is anonymous', [
 				'sessionInfo' => (string)$info,
 				'user' => (string)$info->getUserInfo(),
 				'exception' => new RuntimeException(),
 			] );
 		}
 
-		if ( !$isAuthenticated && $userId !== 0 && $userId !== null ) {
-			$this->logger->warning( 'Anonymous data should not be in the authenticated store', [
+		if ( !$isAuthenticated && $userName !== null ) {
+			$this->logger->warning( 'Store is anonymous, but the user associated to the data is authenticated', [
 				'sessionInfo' => (string)$info,
 				'user' => (string)$info->getUserInfo(),
 				'exception' => new RuntimeException(),
@@ -260,14 +259,14 @@ class MultiBackendSessionStore implements SessionStore {
 		[ $store, $isAuthenticated ] = $this->getActiveStore( $info );
 
 		$key = $store->makeKey( 'MWSession', $info->getId() );
-		$userId = $value['metadata']['userId'] ?? null;
+		$userName = $value['metadata']['userName'] ?? null;
 
 		// SessionManager::generateSessionId() can perform a cache warming
 		// operation by setting `false` as the cache value. We don't want to
 		// log those.
 		if ( $value ) {
-			if ( $isAuthenticated && $userId === 0 ) {
-				$this->logger->warning( 'Session data is authenticated, should not be an anonymous user', [
+			if ( $isAuthenticated && $userName === null ) {
+				$this->logger->warning( 'Store is authenticated, but the user associated to the data is anonymous', [
 					'sessionInfo' => (string)$info,
 					'user' => (string)$info->getUserInfo(),
 					'exception' => new RuntimeException(),
@@ -275,8 +274,8 @@ class MultiBackendSessionStore implements SessionStore {
 				] );
 			}
 
-			if ( !$isAuthenticated && $userId !== 0 && $userId !== null ) {
-				$this->logger->warning( 'Session data is anonymous, should not be an authenticated user', [
+			if ( !$isAuthenticated && $userName !== null ) {
+				$this->logger->warning( 'Store is anonymous, but the user associated to the data is authenticated', [
 					'sessionInfo' => (string)$info,
 					'user' => (string)$info->getUserInfo(),
 					'exception' => new RuntimeException(),
