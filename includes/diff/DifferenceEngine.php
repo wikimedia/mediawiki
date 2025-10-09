@@ -3,6 +3,7 @@
  * User interface for the difference engine.
  *
  * @license GPL-2.0-or-later
+ *
  * @file
  * @ingroup DifferenceEngine
  */
@@ -778,6 +779,7 @@ class DifferenceEngine extends ContextSource {
 
 		$revisionTools = [];
 		$breadCrumbs = '';
+		$newMobileFooter = '';
 
 		# mOldRevisionRecord is false if the difference engine is called with a "vague" query for
 		# a diff between a version V and its previous version V' AND the version V
@@ -824,6 +826,7 @@ class DifferenceEngine extends ContextSource {
 					if ( $rollbackLink ) {
 						$out->getMetadata()->setPreventClickjacking( true );
 						$rollback = "\u{00A0}\u{00A0}\u{00A0}" . $rollbackLink;
+						$newMobileFooter .= $rollback;
 					}
 				}
 
@@ -955,6 +958,7 @@ class DifferenceEngine extends ContextSource {
 				$tool
 			);
 			$formattedRevisionTools[] = $element;
+			$newMobileFooter .= $element;
 		}
 
 		$newRevRecord = $this->mNewRevisionRecord;
@@ -970,6 +974,9 @@ class DifferenceEngine extends ContextSource {
 			$defaultComment = $this->msg( 'changeslist-nocomment' )->escaped();
 			$newRevComment = "<span class=\"comment mw-comment-none\">$defaultComment</span>";
 		}
+
+		$newMobileFooter .= Linker::revUserTools( $newRevRecord, !$this->unhide ) .
+			$this->getUserMetaData( $newRevRecord->getUser() );
 
 		$newHeader = '<div id="mw-diff-ntitle1"><strong>' . $newRevisionHeader . '</strong></div>' .
 			'<div id="mw-diff-ntitle2">' . Linker::revUserTools( $newRevRecord, !$this->unhide ) .
@@ -989,6 +996,12 @@ class DifferenceEngine extends ContextSource {
 			Html::rawElement( 'div', [
 				'class' => 'mw-diff-revision-history-links'
 			], $breadCrumbs )
+		);
+
+		$out->addHTML(
+			Html::rawElement( 'div', [
+				'class' => 'mw-diff-mobile-footer'
+			], $newMobileFooter )
 		);
 		$addMessageBoxStyles = false;
 		# If the diff cannot be shown due to a deleted revision, then output
