@@ -286,7 +286,7 @@ class ContentHolder {
 			$siteConfig = MediaWikiServices::getInstance()->getParsoidSiteConfig();
 			$body = $this->domMap[ self::BODY_FRAGMENT ] ?? null;
 			unset( $this->domMap[ self::BODY_FRAGMENT ] );
-			if ( $body !== null ) {
+			if ( $body !== null && $body->hasChildNodes() ) {
 				DOMCompat::getBody( $this->ownerDocument )->appendChild( $body );
 			}
 			$pb = HtmlPageBundle::fromDomPageBundle(
