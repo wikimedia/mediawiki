@@ -35,6 +35,12 @@ class TempUserCreatorTest extends \MediaWikiIntegrationTestCase {
 			'serialProvider' => [ 'type' => 'local', 'useYear' => false ],
 			'matchPattern' => '~$1',
 		] );
+
+		// Disable account creation rate limiting for this test, as it tests something else
+		$this->overrideConfigValues( [
+			MainConfigNames::TempAccountCreationThrottle => [],
+		] );
+
 		$tuc = $this->getServiceContainer()->getTempUserCreator();
 		$this->assertTrue( $tuc->isAutoCreateAction( 'edit' ) );
 		$this->assertTrue( $tuc->isTempName( '~1' ) );
@@ -171,6 +177,11 @@ class TempUserCreatorTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	public function testCreateOnDuplicate_db() {
+		// Disable account creation rate limiting for this test, as it tests something else
+		$this->overrideConfigValues( [
+			MainConfigNames::TempAccountCreationThrottle => [],
+		] );
+
 		ConvertibleTimestamp::setFakeTime( '20000101000000' );
 		$this->enableAutoCreateTempUser();
 		$tuc = $this->getServiceContainer()->getTempUserCreator();
@@ -260,14 +271,21 @@ class TempUserCreatorTest extends \MediaWikiIntegrationTestCase {
 			'serialProvider' => [ 'type' => 'local', 'useYear' => false ],
 			'matchPattern' => '~$1',
 		] );
+
 		$this->overrideConfigValues( [
 			MainConfigNames::AccountCreationThrottle => [
 				'count' => 10,
 				'seconds' => 86400
 			],
 			MainConfigNames::TempAccountCreationThrottle => [
-				'count' => 1,
-				'seconds' => 86400
+				[
+					'count' => 1,
+					'seconds' => 600,
+				],
+				[
+					'count' => 6,
+					'seconds' => 86400,
+				],
 			],
 		] );
 		$tuc = $this->getServiceContainer()->getTempUserCreator();

@@ -8667,10 +8667,16 @@ class MainConfigSchema {
 	 * @since 1.42
 	 */
 	public const TempAccountCreationThrottle = [
-		'default' => [ [
-			'count' => 6,
-			'seconds' => 86400,
-		] ],
+		'default' => [
+			[
+				'count' => 1,
+				'seconds' => 600,
+			],
+			[
+				'count' => 6,
+				'seconds' => 86400,
+			]
+		],
 		'type' => 'list',
 	];
 
