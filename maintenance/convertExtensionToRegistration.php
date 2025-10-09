@@ -69,7 +69,6 @@ class ConvertExtensionToRegistration extends Maintenance {
 	protected function getAllGlobals(): array {
 		$processor = new ReflectionClass( ExtensionProcessor::class );
 		$settings = $processor->getProperty( 'globalSettings' );
-		$settings->setAccessible( true );
 		return array_merge( $settings->getValue(), self::FORMER_GLOBALS );
 	}
 
