@@ -63,6 +63,13 @@ class ApiResult implements ApiSerializable {
 	public const NO_VALIDATE = self::NO_SIZE_CHECK | 8;
 
 	/**
+	 * For addValue(), setValue() and similar functions, do allow override
+	 * of conflicting keys.
+	 * @since 1.45
+	 */
+	public const IGNORE_CONFLICT_KEYS = 16;
+
+	/**
 	 * Key for the 'indexed tag name' metadata item. Value is string.
 	 * @since 1.25
 	 */
@@ -298,7 +305,7 @@ class ApiResult implements ApiSerializable {
 			}
 		} elseif ( is_array( $arr[$name] ) && is_array( $value ) ) {
 			$conflicts = array_intersect_key( $arr[$name], $value );
-			if ( !$conflicts ) {
+			if ( !$conflicts || ( $flags & self::IGNORE_CONFLICT_KEYS ) ) {
 				$arr[$name] += $value;
 			} else {
 				$keys = implode( ', ', array_keys( $conflicts ) );
