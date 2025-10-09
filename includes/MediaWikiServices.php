@@ -187,6 +187,7 @@ use MediaWiki\User\TempUser\TempUserCreator;
 use MediaWiki\User\TempUser\TempUserDetailsLookup;
 use MediaWiki\User\UserEditTracker;
 use MediaWiki\User\UserFactory;
+use MediaWiki\User\UserGroupAssignmentService;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserGroupManagerFactory;
 use MediaWiki\User\UserIdentityLookup;
@@ -2202,6 +2203,13 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getUserFactory(): UserFactory {
 		return $this->getService( 'UserFactory' );
+	}
+
+	/**
+	 * @since 1.45
+	 */
+	public function getUserGroupAssignmentService(): UserGroupAssignmentService {
+		return $this->getService( 'UserGroupAssignmentService' );
 	}
 
 	/**

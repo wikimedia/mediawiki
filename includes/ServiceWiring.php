@@ -260,6 +260,7 @@ use MediaWiki\User\TempUser\TempUserCreator;
 use MediaWiki\User\TempUser\TempUserDetailsLookup;
 use MediaWiki\User\UserEditTracker;
 use MediaWiki\User\UserFactory;
+use MediaWiki\User\UserGroupAssignmentService;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserGroupManagerFactory;
 use MediaWiki\User\UserIdentity;
@@ -2638,6 +2639,18 @@ return [
 			$services->getDBLoadBalancerFactory(),
 			$services->getUserNameUtils(),
 			$services->getTempUserConfig()
+		);
+	},
+
+	'UserGroupAssignmentService' => static function ( MediaWikiServices $services ): UserGroupAssignmentService {
+		return new UserGroupAssignmentService(
+			$services->getUserGroupManagerFactory(),
+			$services->getUserNameUtils(),
+			$services->getUserFactory(),
+			new HookRunner( $services->getHookContainer() ),
+			new ServiceOptions(
+				UserGroupAssignmentService::CONSTRUCTOR_OPTIONS, $services->getMainConfig()
+			)
 		);
 	},
 
