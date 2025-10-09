@@ -154,7 +154,9 @@ class TitleValue implements Stringable, LinkTarget {
 		self::assertValidSpec( $namespace, $title, $fragment, $interwiki );
 
 		$this->namespace = $namespace;
-		$this->dbkey = strtr( $title, ' ', '_' );
+		$this->dbkey = $interwiki === '' ? strtr( $title, ' ', '_' ) :
+			// Preserve spaces in interwiki links
+			$title;
 		$this->fragment = $fragment;
 		$this->interwiki = $interwiki;
 	}

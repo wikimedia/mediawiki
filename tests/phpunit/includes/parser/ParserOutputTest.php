@@ -757,7 +757,7 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 			],
 			'getInterwikiLinks' => [
 				'de' => [ 'Kittens_DE' => 1 ],
-				'ru' => [ 'Kittens_RU' => 1, 'Dragons_RU' => 1, ],
+				'ru' => [ 'Kittens RU' => 1, 'Dragons RU' => 1, ],
 				'fr' => [ 'Kittens_FR' => 1 ],
 			],
 			'getLinkList!INTERWIKI' => [
@@ -766,10 +766,10 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 					'link' => new TitleValue( NS_MAIN, 'Kittens_DE', '', 'de' ),
 				],
 				[
-					'link' => new TitleValue( NS_MAIN, 'Kittens_RU', '', 'ru' ),
+					'link' => new TitleValue( NS_MAIN, 'Kittens RU', '', 'ru' ),
 				],
 				[
-					'link' => new TitleValue( NS_MAIN, 'Dragons_RU', '', 'ru' ),
+					'link' => new TitleValue( NS_MAIN, 'Dragons RU', '', 'ru' ),
 				],
 				[
 					'link' => new TitleValue( NS_MAIN, 'Kittens_FR', '', 'fr' ),
