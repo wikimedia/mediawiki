@@ -1414,6 +1414,10 @@ return [
 			],
 			'TempAccountCreationThrottle' => [
 				[
+					'count' => 1,
+					'seconds' => 600,
+				],
+				[
 					'count' => 6,
 					'seconds' => 86400,
 				],

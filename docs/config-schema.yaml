@@ -5490,6 +5490,7 @@ config-schema:
             @warning Requires $wgMainCacheType to be enabled
     TempAccountCreationThrottle:
         default:
+            - { count: 1, seconds: 600 }
             - { count: 6, seconds: 86400 }
         type: array
         description: |-

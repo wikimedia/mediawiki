@@ -112,8 +112,6 @@ class TempUserCreator implements TempUserConfig {
 		}
 
 		// Check temp account creation rate limits.
-		// TODO: This is duplicated from ThrottlePreAuthenticationProvider
-		// and should be factored out, see T261744
 		$result = $this->tempAccountCreationThrottler->increase(
 			null, $request->getIP(), 'TempUserCreator' );
 		if ( $result ) {

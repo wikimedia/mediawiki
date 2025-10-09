@@ -2473,7 +2473,8 @@ return [
 			$services->getUserFactory(),
 			$services->getAuthManager(),
 			$services->getCentralIdLookup(),
-			// This is supposed to match ThrottlePreAuthenticationProvider
+			// This should match ThrottlePreAuthenticationProvider's daily limit
+			// and also implements its own short-term throttling limit (See T405565).
 			new Throttler(
 				$services->getMainConfig()->get( MainConfigNames::TempAccountCreationThrottle ),
 				[
