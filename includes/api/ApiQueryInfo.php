@@ -9,6 +9,7 @@
 namespace MediaWiki\Api;
 
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\Deferred\LinksUpdate\ImageLinksTable;
 use MediaWiki\EditPage\IntroMessageBuilder;
 use MediaWiki\EditPage\PreloadedContentBuilder;
 use MediaWiki\Language\ILanguageConverter;
@@ -688,24 +689,44 @@ class ApiQueryInfo extends ApiQueryBase {
 		}
 
 		if ( count( $images ) ) {
-			// Images: check imagelinks
 			$this->resetQueryParams();
-			$this->addTables( [ 'page_restrictions', 'page', 'imagelinks' ] );
+			$this->addTables( [ 'page_restrictions', 'page' ] );
 			$this->addFields( [ 'pr_type', 'pr_level', 'pr_expiry',
-				'page_title', 'page_namespace', 'il_to' ] );
+				'page_title', 'page_namespace', 'page_id' ] );
 			$this->addWhere( 'pr_page = page_id' );
-			$this->addWhere( 'pr_page = il_from' );
 			$this->addWhereFld( 'pr_cascade', 1 );
-			$this->addWhereFld( 'il_to', $images );
 
 			$res = $this->select( __METHOD__ );
+
+			$protectedPages = [];
 			foreach ( $res as $row ) {
-				$this->protections[NS_FILE][$row->il_to][] = [
+				$protectedPages[$row->page_id] = [
 					'type' => $row->pr_type,
 					'level' => $row->pr_level,
 					'expiry' => ApiResult::formatExpiry( $row->pr_expiry ),
 					'source' => $this->titleFormatter->formatTitle( $row->page_namespace, $row->page_title ),
 				];
+			}
+
+			if ( $protectedPages ) {
+				$this->setVirtualDomain( ImageLinksTable::VIRTUAL_DOMAIN );
+
+				$res = $this->getDB()->newSelectQueryBuilder()
+					->select( [ 'il_from', 'il_to' ] )
+					->from( 'imagelinks' )
+					->where( [
+						'il_from' => array_keys( $protectedPages ),
+						'il_to' => $images
+					] )
+					->caller( __METHOD__ )
+					->fetchResultSet();
+
+				foreach ( $res as $row ) {
+					$protection = $protectedPages[$row->il_from];
+					$this->protections[NS_FILE][$row->il_to][] = $protection;
+				}
+
+				$this->resetVirtualDomain();
 			}
 		}
 	}

@@ -8,6 +8,7 @@
 
 namespace MediaWiki\Api;
 
+use MediaWiki\Deferred\LinksUpdate\ImageLinksTable;
 use MediaWiki\Title\Title;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
@@ -43,18 +44,17 @@ class ApiQueryImages extends ApiQueryGeneratorBase {
 		}
 
 		$params = $this->extractRequestParams();
+
 		$this->addFields( [
 			'il_from',
 			'il_to'
 		] );
-
 		$this->addTables( 'imagelinks' );
 		$this->addWhereFld( 'il_from', array_keys( $pages ) );
 		if ( $params['continue'] !== null ) {
-			$db = $this->getDB();
 			$cont = $this->parseContinueParamOrDie( $params['continue'], [ 'int', 'string' ] );
 			$op = $params['dir'] == 'descending' ? '<=' : '>=';
-			$this->addWhere( $db->buildComparison( $op, [
+			$this->addWhere( $this->getDB()->buildComparison( $op, [
 				'il_from' => $cont[0],
 				'il_to' => $cont[1],
 			] ) );
@@ -89,7 +89,9 @@ class ApiQueryImages extends ApiQueryGeneratorBase {
 			$this->addWhereFld( 'il_to', $images );
 		}
 
+		$this->setVirtualDomain( ImageLinksTable::VIRTUAL_DOMAIN );
 		$res = $this->select( __METHOD__ );
+		$this->resetVirtualDomain();
 
 		if ( $resultPageSet === null ) {
 			$count = 0;

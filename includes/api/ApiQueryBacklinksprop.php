@@ -11,6 +11,7 @@
 
 namespace MediaWiki\Api;
 
+use MediaWiki\Deferred\LinksUpdate\ImageLinksTable;
 use MediaWiki\Deferred\LinksUpdate\PageLinksTable;
 use MediaWiki\Deferred\LinksUpdate\TemplateLinksTable;
 use MediaWiki\Linker\LinksMigration;
@@ -69,6 +70,7 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 			'to_namespace' => NS_FILE,
 			'exampletitle' => 'File:Example.jpg',
 			'showredirects' => true,
+			'virtualdomain' => ImageLinksTable::VIRTUAL_DOMAIN,
 		],
 	];
 
