@@ -196,7 +196,8 @@ class ApiQueryImageInfo extends ApiQueryBase {
 					$info['badfile'] = (bool)$this->badFileLookup->isBadFile( $title, $badFileContextTitle );
 				}
 
-				$fit = $result->addValue( [ 'query', 'pages' ], (int)$pageId, $info );
+				// Use ApiResult::IGNORE_CONFLICT_KEYS, the module is extended and the value can be set twice (T402438)
+				$fit = $result->addValue( [ 'query', 'pages' ], (int)$pageId, $info, ApiResult::IGNORE_CONFLICT_KEYS );
 				if ( !$fit ) {
 					if ( count( $pageIds[NS_FILE] ) == 1 ) {
 						// The user is screwed. imageinfo can't be solely
