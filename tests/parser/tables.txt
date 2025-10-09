@@ -2076,3 +2076,20 @@ Autoinserted tr in html table
 <tbody><tr data-parsoid='{"autoInsertedStart":true,"autoInsertedEnd":true}'><td data-parsoid='{"stx":"html"}'>a</td></tr>
 </tbody></table>
 !! end
+
+!! test
+AttributeExpander regression test: Class attributes should be properly applied
+!! wikitext
+{| {{1x|1=class="foo {{{class}}} <!--x--> bar" style="font-size: 95%;"}}
+|foo
+|}
+!! html/php
+<table class="foo &#123;&#123;&#123;class&#125;&#125;&#125; bar" style="font-size: 95%;">
+<tbody><tr>
+<td>foo
+</td></tr></tbody></table>
+!! html/parsoid+standalone
+<table class="foo {{{class}}}  bar" style="font-size: 95%;" about="#mwt2" typeof="mw:ExpandedAttrs" data-mw='{"attribs":[[{"txt":"class","html":"&lt;span about=\"#mwt1\" typeof=\"mw:Transclusion\" data-parsoid=&apos;{\"pi\":[[{\"k\":\"1\",\"named\":true}]]}&apos; data-mw=&apos;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"1x\",\"href\":\"./Template:1x\"},\"params\":{\"1\":{\"wt\":\"class=\\\"foo {{{class}}} &amp;lt;!--x--> bar\\\" style=\\\"font-size: 95%;\\\"\"}},\"i\":0}}]}&apos;>class=\"foo {{{class}}} &lt;/span>&lt;span about=\"#mwt1\">&lt;!--x-->&lt;/span>&lt;span about=\"#mwt1\"> bar\" style=\"font-size: 95%;\"&lt;/span>"},{"html":""}]]}'>
+<tbody><tr><td>foo</td></tr>
+</tbody></table>
+!! end

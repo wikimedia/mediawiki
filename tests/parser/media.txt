@@ -2877,6 +2877,31 @@ File:Foobar.jpg
 !! end
 
 !! test
+Gallery in packed mode with heights
+!! wikitext
+<gallery mode="packed" heights="70">
+File:Foobar.jpg
+File:Tall.jpg
+</gallery>
+!! html/php
+<ul class="gallery mw-gallery-packed">
+		<li class="gallerybox" style="width: 620px">
+			<div class="thumb" style="width: 618px;"><span typeof="mw:File"><a href="/wiki/File:Foobar.jpg" class="mw-file-description"><img src="http://example.com/images/thumb/3/3a/Foobar.jpg/927px-Foobar.jpg" decoding="async" width="618" height="70" class="mw-file-element" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/1394px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/1853px-Foobar.jpg 2x" /></a></span></div>
+			<div class="gallerytext"></div>
+		</li>
+		<li class="gallerybox" style="width: 62px">
+			<div class="thumb" style="width: 60px;"><span typeof="mw:File"><a href="/wiki/File:Tall.jpg" class="mw-file-description"><img src="http://example.com/images/thumb/8/88/Tall.jpg/70px-Tall.jpg" decoding="async" width="47" height="70" class="mw-file-element" srcset="http://example.com/images/thumb/8/88/Tall.jpg/105px-Tall.jpg 1.5x, http://example.com/images/thumb/8/88/Tall.jpg/140px-Tall.jpg 2x" /></a></span></div>
+			<div class="gallerytext"></div>
+		</li>
+</ul>
+!! html/parsoid
+<ul class="gallery mw-gallery-packed" typeof="mw:Extension/gallery" about="#mwt1" data-mw='{"name":"gallery","attrs":{"mode":"packed","heights":"70"},"body":{}}'>
+<li class="gallerybox" style="width: 620px;"><div class="thumb" style="width: 618px;"><span typeof="mw:File"><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/927px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="70" width="618" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/1394px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/1853px-Foobar.jpg 2x" class="mw-file-element"/></a></span></div><div class="gallerytext"></div></li>
+<li class="gallerybox" style="width: 62px;"><div class="thumb" style="width: 60px;"><span typeof="mw:File"><a href="./File:Tall.jpg" class="mw-file-description"><img resource="./File:Tall.jpg" src="http://example.com/images/thumb/8/88/Tall.jpg/70px-Tall.jpg" decoding="async" data-file-width="400" data-file-height="600" data-file-type="bitmap" height="70" width="47" srcset="http://example.com/images/thumb/8/88/Tall.jpg/105px-Tall.jpg 1.5x, http://example.com/images/thumb/8/88/Tall.jpg/140px-Tall.jpg 2x" class="mw-file-element"/></a></span></div><div class="gallerytext"></div></li>
+</ul>
+!! end
+
+!! test
 Gallery in packed-overlay mode
 !! wikitext
 <gallery mode="packed-overlay" showfilenames="yes" caption="Packed Overlay!">
@@ -4223,4 +4248,36 @@ cat
 <p><span class="mw-default-size" typeof="mw:Error mw:File" data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./Special:FilePath/Foobaz.jpg" class="new" title="File:Foobaz.jpg"><span class="mw-file-element mw-broken-media" resource="./File:Foobaz.jpg">File:Foobaz.jpg</span></a></span></p>
 !! metadata
 cat=Pages_with_broken_file_links sort=
+!! end
+
+!! test
+Vertical alignment classes
+!! wikitext
+[[File:Foobar.jpg|baseline]]
+[[File:Foobar.jpg|sub]]
+[[File:Foobar.jpg|super]]
+[[File:Foobar.jpg|top]]
+[[File:Foobar.jpg|text-top]]
+[[File:Foobar.jpg|middle]]
+[[File:Foobar.jpg|bottom]]
+[[File:Foobar.jpg|text-bottom]]
+!! html/php
+<p><span class="mw-default-size mw-valign-baseline" typeof="mw:File"><a href="/wiki/File:Foobar.jpg" class="mw-file-description"><img src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" class="mw-file-element" /></a></span>
+<span class="mw-default-size mw-valign-sub" typeof="mw:File"><a href="/wiki/File:Foobar.jpg" class="mw-file-description"><img src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" class="mw-file-element" /></a></span>
+<span class="mw-default-size mw-valign-super" typeof="mw:File"><a href="/wiki/File:Foobar.jpg" class="mw-file-description"><img src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" class="mw-file-element" /></a></span>
+<span class="mw-default-size mw-valign-top" typeof="mw:File"><a href="/wiki/File:Foobar.jpg" class="mw-file-description"><img src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" class="mw-file-element" /></a></span>
+<span class="mw-default-size mw-valign-text-top" typeof="mw:File"><a href="/wiki/File:Foobar.jpg" class="mw-file-description"><img src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" class="mw-file-element" /></a></span>
+<span class="mw-default-size mw-valign-middle" typeof="mw:File"><a href="/wiki/File:Foobar.jpg" class="mw-file-description"><img src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" class="mw-file-element" /></a></span>
+<span class="mw-default-size mw-valign-bottom" typeof="mw:File"><a href="/wiki/File:Foobar.jpg" class="mw-file-description"><img src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" class="mw-file-element" /></a></span>
+<span class="mw-default-size mw-valign-text-bottom" typeof="mw:File"><a href="/wiki/File:Foobar.jpg" class="mw-file-description"><img src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" class="mw-file-element" /></a></span>
+</p>
+!! html/parsoid
+<p><span class="mw-default-size mw-valign-baseline" typeof="mw:File"><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941" class="mw-file-element"/></a></span>
+<span class="mw-default-size mw-valign-sub" typeof="mw:File"><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941" class="mw-file-element"/></a></span>
+<span class="mw-default-size mw-valign-super" typeof="mw:File"><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941" class="mw-file-element"/></a></span>
+<span class="mw-default-size mw-valign-top" typeof="mw:File"><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941" class="mw-file-element"/></a></span>
+<span class="mw-default-size mw-valign-text-top" typeof="mw:File"><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941" class="mw-file-element"/></a></span>
+<span class="mw-default-size mw-valign-middle" typeof="mw:File"><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941" class="mw-file-element"/></a></span>
+<span class="mw-default-size mw-valign-bottom" typeof="mw:File"><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941" class="mw-file-element"/></a></span>
+<span class="mw-default-size mw-valign-text-bottom" typeof="mw:File"><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941" class="mw-file-element"/></a></span></p>
 !! end

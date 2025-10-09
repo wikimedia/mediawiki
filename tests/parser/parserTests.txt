@@ -5832,7 +5832,7 @@ Template:Just tr
 !! endarticle
 
 !! test
-6. Non-token guing scenario where a templated tr is found in templated tr attribute position
+6. Non-token gluing scenario where a templated tr is found in templated tr attribute position
 !! wikitext
 {|
 {{just tr}}{{just tr}}
@@ -5845,6 +5845,27 @@ Template:Just tr
 <table>
 <tbody about="#mwt1" typeof="mw:Transclusion" class="mw-empty-elt" data-mw='{"parts":[{"template":{"target":{"wt":"just tr","href":"./Template:Just_tr"},"params":{},"i":0}},{"template":{"target":{"wt":"just tr","href":"./Template:Just_tr"},"params":{},"i":1}},"\n"]}'>
 </tbody></table>
+!! end
+
+!! test
+7. Unsupported token gluing scenario when includeonly tags show up
+!! wikitext
+{|
+{{1x|{{!}}-}}<includeonly>
+|+foo</includeonly>
+|bar
+|}
+!! html/php
+<table>
+
+<tbody><tr>
+<td>bar
+</td></tr></tbody></table>
+!! html/parsoid+integrated
+<meta typeof="mw:Includes/IncludeOnly" data-parsoid='{"fostered":true}' data-mw='{"src":"&lt;includeonly>\n|+foo&lt;/includeonly>"}'/><meta typeof="mw:Includes/IncludeOnly/End" data-parsoid='{"src":"","fostered":true}'/><table>
+<tbody about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"{{!}}-"}},"i":0}},"&lt;includeonly>\n|+foo&lt;/includeonly>\n|bar\n"]}'><tr>
+<td>bar
+</td></tr></tbody></table>
 !! end
 
 ###
