@@ -481,6 +481,10 @@ because of Phabricator reports.
 * SpecialUserRights::canProcessExpiries() has been deprecated and now emits
   deprecation warnings. It will no longer be possible to prevent the special
   page from allowing to set group expiration times.
+* SpecialUserRights::doSaveUserGroups() has been deprecated. Instead, use
+  UserGroupAssignmentService::saveChangesToUserGroups().
+* SpecialUserRights::userCanChangeRights() has been deprecated. Instead, use
+  UserGroupAssignmentService::canChangeUserGroups().
 * …
 
 === Other changes in 1.45 ===

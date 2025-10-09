@@ -13,7 +13,6 @@ use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\Field\HTMLUserTextField;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Linker\Linker;
-use MediaWiki\Logging\ManualLogEntry;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\SpecialPage\SpecialPage;
@@ -23,6 +22,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\ActorStoreFactory;
 use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\UserFactory;
+use MediaWiki\User\UserGroupAssignmentService;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserGroupManagerFactory;
 use MediaWiki\User\UserGroupMembership;
@@ -73,6 +73,7 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 	private ActorStoreFactory $actorStoreFactory;
 	private WatchlistManager $watchlistManager;
 	private TempUserConfig $tempUserConfig;
+	private UserGroupAssignmentService $userGroupAssignmentService;
 
 	public function __construct(
 		?UserGroupManagerFactory $userGroupManagerFactory = null,
@@ -81,7 +82,8 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 		?UserFactory $userFactory = null,
 		?ActorStoreFactory $actorStoreFactory = null,
 		?WatchlistManager $watchlistManager = null,
-		?TempUserConfig $tempUserConfig = null
+		?TempUserConfig $tempUserConfig = null,
+		?UserGroupAssignmentService $userGroupAssignmentService = null
 	) {
 		parent::__construct( 'Userrights' );
 		$services = MediaWikiServices::getInstance();
@@ -94,12 +96,14 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 		$this->actorStoreFactory = $actorStoreFactory ?? $services->getActorStoreFactory();
 		$this->watchlistManager = $watchlistManager ?? $services->getWatchlistManager();
 		$this->tempUserConfig = $tempUserConfig ?? $services->getTempUserConfig();
+		$this->userGroupAssignmentService = $userGroupAssignmentService ?? $services->getUserGroupAssignmentService();
 	}
 
 	/**
 	 * Check whether the current user (from context) can change the target user's rights.
 	 *
 	 * This function can be used without submitting the special page
+	 * @deprecated since 1.45, use {@see UserGroupAssignmentService::canChangeUserGroups()} instead
 	 *
 	 * @param UserIdentity $targetUser User whose rights are being changed
 	 * @param bool $checkIfSelf If false, assume that the current user can add/remove groups defined
@@ -386,7 +390,8 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 			}
 		}
 
-		$this->doSaveUserGroups( $user, $addgroup, $removegroup, $reason, [], $groupExpiries );
+		$this->userGroupAssignmentService->saveChangesToUserGroups( $this->getAuthority(), $user, $addgroup,
+			$removegroup, $groupExpiries, $reason, [] );
 
 		if ( $user->getWikiId() === UserIdentity::LOCAL && $this->getRequest()->getCheck( 'wpWatch' ) ) {
 			$this->watchlistManager->addWatchIgnoringRights(
@@ -403,6 +408,7 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 	 * instead, it ignores groups that the performer does not have permission to set.
 	 *
 	 * This function can be used without submitting the special page
+	 * @deprecated since 1.45, use {@see UserGroupAssignmentService::saveChangesToUserGroups()} instead
 	 *
 	 * @param UserIdentity $user The target user
 	 * @param string[] $add Array of groups to add
@@ -416,151 +422,8 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 	public function doSaveUserGroups( $user, array $add, array $remove, string $reason = '',
 		array $tags = [], array $groupExpiries = []
 	) {
-		// Set properties that other methods rely on if not already set, e.g. if called from the API
-		$this->mTarget ??= $user->getName();
-		$this->mFetchedUser ??= $user;
-
-		// Validate input set...
-		$isself = $user->getName() == $this->getUser()->getName();
-		if ( $this->userGroupManager === null ) {
-			// This is being called as a backend-function, rather than after form submit
-			$this->userGroupManager = $this->userGroupManagerFactory
-				->getUserGroupManager( $user->getWikiId() );
-		}
-		$groups = $this->userGroupManager->getUserGroups( $user );
-		$ugms = $this->userGroupManager->getUserGroupMemberships( $user );
-		$changeable = $this->changeableGroups();
-		$addable = array_merge( $changeable['add'], $isself ? $changeable['add-self'] : [] );
-		$removable = array_merge( $changeable['remove'], $isself ? $changeable['remove-self'] : [] );
-
-		$remove = array_unique( array_intersect( $remove, $removable, $groups ) );
-		$add = array_intersect( $add, $addable );
-
-		// add only groups that are not already present or that need their expiry updated,
-		// UNLESS the user can only add this group (not remove it) and the expiry time
-		// is being brought forward (T156784)
-		$add = array_filter( $add,
-			static function ( $group ) use ( $groups, $groupExpiries, $removable, $ugms ) {
-				if ( isset( $groupExpiries[$group] ) &&
-					!in_array( $group, $removable ) &&
-					isset( $ugms[$group] ) &&
-					( $ugms[$group]->getExpiry() ?: 'infinity' ) >
-						( $groupExpiries[$group] ?: 'infinity' )
-				) {
-					return false;
-				}
-				return !in_array( $group, $groups ) || array_key_exists( $group, $groupExpiries );
-			} );
-
-		if ( $user->getWikiId() === UserIdentity::LOCAL ) {
-			// For compatibility local changes are provided as User object to the hook
-			$hookUser = $this->userFactory->newFromUserIdentity( $user );
-		} else {
-			// Interwiki changes are provided as UserIdentity since 1.41, was UserRightsProxy before
-			$hookUser = $user;
-		}
-		$this->getHookRunner()->onChangeUserGroups( $this->getUser(), $hookUser, $add, $remove );
-
-		$oldGroups = $groups;
-		$oldUGMs = $this->userGroupManager->getUserGroupMemberships( $user );
-		$newGroups = $oldGroups;
-
-		// Remove groups, then add new ones/update expiries of existing ones
-		if ( $remove ) {
-			foreach ( $remove as $index => $group ) {
-				if ( !$this->userGroupManager->removeUserFromGroup( $user, $group ) ) {
-					unset( $remove[$index] );
-				}
-			}
-			$newGroups = array_diff( $newGroups, $remove );
-		}
-		if ( $add ) {
-			foreach ( $add as $index => $group ) {
-				$expiry = $groupExpiries[$group] ?? null;
-				if ( !$this->userGroupManager->addUserToGroup( $user, $group, $expiry, true ) ) {
-					unset( $add[$index] );
-				}
-			}
-			$newGroups = array_merge( $newGroups, $add );
-		}
-		$newGroups = array_unique( $newGroups );
-		$newUGMs = $this->userGroupManager->getUserGroupMemberships( $user );
-
-		// Ensure that caches are cleared
-		$this->userFactory->invalidateCache( $user );
-
-		// update groups in external authentication database
-		$this->getHookRunner()->onUserGroupsChanged( $hookUser, $add, $remove,
-			$this->getUser(), $reason, $oldUGMs, $newUGMs );
-
-		wfDebug( 'oldGroups: ' . print_r( $oldGroups, true ) );
-		wfDebug( 'newGroups: ' . print_r( $newGroups, true ) );
-		wfDebug( 'oldUGMs: ' . print_r( $oldUGMs, true ) );
-		wfDebug( 'newUGMs: ' . print_r( $newUGMs, true ) );
-
-		// Only add a log entry if something actually changed
-		if ( $newGroups != $oldGroups || $newUGMs != $oldUGMs ) {
-			$this->addLogEntry( $user, $oldGroups, $newGroups, $reason, $tags, $oldUGMs, $newUGMs );
-		}
-
-		return [ $add, $remove ];
-	}
-
-	/**
-	 * Serialise a UserGroupMembership object for storage in the log_params section
-	 * of the logging table. Only keeps essential data, removing redundant fields.
-	 *
-	 * @param UserGroupMembership|null $ugm May be null if things get borked
-	 * @return array|null
-	 */
-	protected static function serialiseUgmForLog( $ugm ) {
-		if ( !$ugm instanceof UserGroupMembership ) {
-			return null;
-		}
-		return [ 'expiry' => $ugm->getExpiry() ];
-	}
-
-	/**
-	 * Add a rights log entry for an action.
-	 * @param UserIdentity $user The target user
-	 * @param array $oldGroups
-	 * @param array $newGroups
-	 * @param string $reason
-	 * @param string[] $tags Change tags for the log entry
-	 * @param array $oldUGMs Associative array of (group name => UserGroupMembership)
-	 * @param array $newUGMs Associative array of (group name => UserGroupMembership)
-	 */
-	protected function addLogEntry( $user, array $oldGroups, array $newGroups, string $reason,
-		array $tags, array $oldUGMs, array $newUGMs
-	) {
-		// make sure $oldUGMs and $newUGMs are in the same order, and serialise
-		// each UGM object to a simplified array
-		$oldUGMs = array_map( static function ( $group ) use ( $oldUGMs ) {
-			return isset( $oldUGMs[$group] ) ?
-				self::serialiseUgmForLog( $oldUGMs[$group] ) :
-				null;
-		}, $oldGroups );
-		$newUGMs = array_map( static function ( $group ) use ( $newUGMs ) {
-			return isset( $newUGMs[$group] ) ?
-				self::serialiseUgmForLog( $newUGMs[$group] ) :
-				null;
-		}, $newGroups );
-
-		$logEntry = new ManualLogEntry( 'rights', 'rights' );
-		$logEntry->setPerformer( $this->getUser() );
-		$logEntry->setTarget( Title::makeTitle( NS_USER, $this->getUsernameWithInterwiki( $user ) ) );
-		$logEntry->setComment( $reason );
-		$logEntry->setParameters( [
-			'4::oldgroups' => $oldGroups,
-			'5::newgroups' => $newGroups,
-			'oldmetadata' => $oldUGMs,
-			'newmetadata' => $newUGMs,
-		] );
-		$logid = $logEntry->insert();
-		if ( count( $tags ) ) {
-			$logEntry->addTags( $tags );
-		}
-		$logEntry->publish( $logid );
+		return $this->userGroupAssignmentService->saveChangesToUserGroups( $this->getAuthority(), $user, $add, $remove,
+			$groupExpiries, $reason, $tags );
 	}
 
 	/**

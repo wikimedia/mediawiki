@@ -424,6 +424,7 @@ class ApiMain extends ApiBase {
 				'WatchedItemStore',
 				'WatchlistManager',
 				'UserOptionsLookup',
+				'UserGroupAssignmentService',
 			]
 		],
 		'options' => [

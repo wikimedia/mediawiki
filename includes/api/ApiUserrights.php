@@ -17,6 +17,7 @@ use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Specials\SpecialUserRights;
 use MediaWiki\Title\Title;
 use MediaWiki\User\Options\UserOptionsLookup;
+use MediaWiki\User\UserGroupAssignmentService;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\Watchlist\WatchedItemStoreInterface;
@@ -37,6 +38,7 @@ class ApiUserrights extends ApiBase {
 
 	private UserGroupManager $userGroupManager;
 	private WatchedItemStoreInterface $watchedItemStore;
+	private UserGroupAssignmentService $userGroupAssignmentService;
 
 	public function __construct(
 		ApiMain $mainModule,
@@ -44,7 +46,8 @@ class ApiUserrights extends ApiBase {
 		UserGroupManager $userGroupManager,
 		WatchedItemStoreInterface $watchedItemStore,
 		WatchlistManager $watchlistManager,
-		UserOptionsLookup $userOptionsLookup
+		UserOptionsLookup $userOptionsLookup,
+		UserGroupAssignmentService $userGroupAssignmentService
 	) {
 		parent::__construct( $mainModule, $moduleName );
 		$this->userGroupManager = $userGroupManager;
@@ -56,6 +59,7 @@ class ApiUserrights extends ApiBase {
 			$this->getConfig()->get( MainConfigNames::WatchlistExpiryMaxDuration );
 		$this->watchlistManager = $watchlistManager;
 		$this->userOptionsLookup = $userOptionsLookup;
+		$this->userGroupAssignmentService = $userGroupAssignmentService;
 	}
 
 	public function execute() {
@@ -117,19 +121,18 @@ class ApiUserrights extends ApiBase {
 			}
 		}
 
-		$form = new SpecialUserRights();
-		$form->setContext( $this->getContext() );
 		$r = [];
 		$r['user'] = $user->getName();
 		$r['userid'] = $user->getId( $user->getWikiId() );
-		[ $r['added'], $r['removed'] ] = $form->doSaveUserGroups(
+		[ $r['added'], $r['removed'] ] = $this->userGroupAssignmentService->saveChangesToUserGroups(
+			$this->getUser(),
 			$user,
 			$add,
-			// Don't pass null to doSaveUserGroups() for array params, cast to empty array
+			// Don't pass null to saveChangesToUserGroups() for array params, cast to empty array
 			(array)$params['remove'],
+			$groupExpiries,
 			$params['reason'],
-			(array)$tags,
-			$groupExpiries
+			(array)$tags
 		);
 
 		$userPage = Title::makeTitle( NS_USER, $user->getName() );
