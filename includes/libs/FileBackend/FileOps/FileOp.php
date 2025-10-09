@@ -184,16 +184,6 @@ abstract class FileOp {
 		}
 		$this->state = self::STATE_CHECKED;
 
-		$status = StatusValue::newGood();
-		foreach ( $this->storagePathsReadOrChanged() as $path ) {
-			if ( !$this->backend->isPathUsableInternal( $path ) ) {
-				$status->fatal( 'backend-fail-usable', $path );
-			}
-		}
-		if ( !$status->isOK() ) {
-			return $status;
-		}
-
 		$opPredicates = $predicates->snapshot( $this->storagePathsReadOrChanged() );
 		$status = $this->doPrecheck( $opPredicates, $predicates );
 		if ( !$status->isOK() ) {

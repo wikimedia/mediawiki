@@ -32,6 +32,12 @@ class StoreFileOp extends FileOp {
 	) {
 		$status = StatusValue::newGood();
 
+		if ( !$this->backend->isPathUsableInternal( $this->params['dst'] ) ) {
+			$status->fatal( 'backend-fail-usable', $this->params['dst'] );
+
+			return $status;
+		}
+
 		// Check if the source file exists in the file system
 		if ( !is_file( $this->params['src'] ) ) {
 			$status->fatal( 'backend-fail-notexists', $this->params['src'] );

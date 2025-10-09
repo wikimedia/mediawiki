@@ -30,6 +30,12 @@ class CreateFileOp extends FileOp {
 	) {
 		$status = StatusValue::newGood();
 
+		if ( !$this->backend->isPathUsableInternal( $this->params['dst'] ) ) {
+			$status->fatal( 'backend-fail-usable', $this->params['dst'] );
+
+			return $status;
+		}
+
 		// Check if the source data is too big
 		$sourceSize = $this->getSourceSize();
 		$maxFileSize = $this->backend->maxFileSizeInternal();

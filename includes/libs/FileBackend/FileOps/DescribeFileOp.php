@@ -29,6 +29,12 @@ class DescribeFileOp extends FileOp {
 	) {
 		$status = StatusValue::newGood();
 
+		if ( !$this->backend->isPathUsableInternal( $this->params['src'] ) ) {
+			$status->fatal( 'backend-fail-usable', $this->params['src'] );
+
+			return $status;
+		}
+
 		// Check source file existence
 		$srcExists = $this->resolveFileExistence( $this->params['src'], $opPredicates );
 		if ( $srcExists === false ) {

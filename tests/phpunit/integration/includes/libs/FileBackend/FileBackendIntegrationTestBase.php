@@ -101,8 +101,16 @@ abstract class FileBackendIntegrationTestBase extends MediaWikiIntegrationTestCa
 
 		$source = $op['src'];
 		$dest = $op['dst'];
-		$this->prepare( [ 'dir' => dirname( $source ) ] );
-		$this->prepare( [ 'dir' => dirname( $dest ) ] );
+		if ( $srcContent !== null ) {
+			$this->prepare( [ 'dir' => dirname( $source ) ] );
+		}
+		if ( $dstContent !== null ) {
+			$this->prepare( [ 'dir' => dirname( $dest ) ] );
+		}
+
+		// We used null as shorthand for "false but unprepared"
+		$srcContent ??= false;
+		$dstContent ??= false;
 
 		if ( is_string( $srcContent ) ) {
 			$status = $this->backend->create( [ 'content' => $srcContent, 'dst' => $source ] );
@@ -219,6 +227,10 @@ abstract class FileBackendIntegrationTestBase extends MediaWikiIntegrationTestCa
 		$cases[] = [ $op, false, 'xxx', true ];
 
 		$op = $opBase;
+		$op['ignoreMissingSource'] = true;
+		$cases[] = [ $op, null, 'xxx', true ];
+
+		$op = $opBase;
 		$op['src'] = 'mwstore://wrongbackend/unittest-cont1/e/file.txt';
 		$op['ignoreMissingSource'] = true;
 		$cases[] = [ $op, false, false, false ];
@@ -234,8 +246,16 @@ abstract class FileBackendIntegrationTestBase extends MediaWikiIntegrationTestCa
 
 		$source = $op['src'];
 		$dest = $op['dst'];
-		$this->prepare( [ 'dir' => dirname( $source ) ] );
-		$this->prepare( [ 'dir' => dirname( $dest ) ] );
+		if ( $srcContent !== null ) {
+			$this->prepare( [ 'dir' => dirname( $source ) ] );
+		}
+		if ( $dstContent !== null ) {
+			$this->prepare( [ 'dir' => dirname( $dest ) ] );
+		}
+
+		// We used null as shorthand for "false but unprepared"
+		$srcContent ??= false;
+		$dstContent ??= false;
 
 		if ( is_string( $srcContent ) ) {
 			$status = $this->backend->create( [ 'content' => $srcContent, 'dst' => $source ] );
@@ -349,6 +369,10 @@ abstract class FileBackendIntegrationTestBase extends MediaWikiIntegrationTestCa
 
 		$op = $opBase;
 		$op['ignoreMissingSource'] = true;
+		$cases[] = [ $op, null, false, true ];
+
+		$op = $opBase;
+		$op['ignoreMissingSource'] = true;
 		$cases[] = [ $op, false, 'xxx', true ];
 
 		$op = $opBase;
@@ -366,7 +390,12 @@ abstract class FileBackendIntegrationTestBase extends MediaWikiIntegrationTestCa
 		$backendName = $this->backendClass();
 
 		$source = $op['src'];
-		$this->prepare( [ 'dir' => dirname( $source ) ] );
+		if ( $srcContent !== null ) {
+			$this->prepare( [ 'dir' => dirname( $source ) ] );
+		}
+
+		// We used null as shorthand for "false but unprepared"
+		$srcContent ??= false;
 
 		if ( is_string( $srcContent ) ) {
 			$status = $this->backend->doOperation(
@@ -422,6 +451,10 @@ abstract class FileBackendIntegrationTestBase extends MediaWikiIntegrationTestCa
 		$op = $baseOp;
 		$op['ignoreMissingSource'] = true;
 		$cases[] = [ $op, false, true ];
+
+		$op = $baseOp;
+		$op['ignoreMissingSource'] = true;
+		$cases[] = [ $op, null, true ];
 
 		$op = $baseOp;
 		$op['ignoreMissingSource'] = true;

@@ -33,6 +33,21 @@ class CopyFileOp extends FileOp {
 	) {
 		$status = StatusValue::newGood();
 
+		if ( !$this->backend->isPathUsableInternal( $this->params['dst'] ) ) {
+			$status->fatal( 'backend-fail-usable', $this->params['dst'] );
+
+			return $status;
+		}
+
+		if (
+			!$this->getParam( 'ignoreMissingSource' ) &&
+			!$this->backend->isPathUsableInternal( $this->params['src'] )
+		) {
+			$status->fatal( 'backend-fail-usable', $this->params['src'] );
+
+			return $status;
+		}
+
 		// Check source file existence
 		$srcExists = $this->resolveFileExistence( $this->params['src'], $opPredicates );
 		if ( $srcExists === false ) {

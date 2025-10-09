@@ -123,9 +123,10 @@ abstract class FileBackendStore extends FileBackend {
 	/**
 	 * Check if a file can be created or changed at a given storage path in the backend
 	 *
-	 * FS backends should check that the parent directory exists, files can be written
-	 * under it, and that any file already there is both readable and writable.
-	 * Backends using key/value stores should check if the container exists.
+	 * This quickly checks to see if the path is already prepared for use to store files.
+	 * FS backends should check that the parent directory exists and that files can be written
+	 * to it for the current system user. Backends using key/value stores should check if the
+	 * container exists and that objects can be written to it for the configured account/user.
 	 *
 	 * @param string $storagePath
 	 * @return bool
@@ -1576,7 +1577,8 @@ abstract class FileBackendStore extends FileBackend {
 	}
 
 	/**
-	 * Is this a key/value store where directories are just virtual?
+	 * Whether this a key/value store where directories are merely virtual
+	 *
 	 * Virtual directories exists in so much as files exists that are
 	 * prefixed with the directory path followed by a forward slash.
 	 *
