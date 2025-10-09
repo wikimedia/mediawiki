@@ -2074,8 +2074,6 @@
 	"sp-contributions-logs": "regjistrat",
 	"sp-contributions-talk": "diskuto",
 	"sp-contributions-userrights": "menaxhimi i të drejtave të {{GENDER:$1|përdoruesit}}",
-	"sp-contributions-blocked-notice": "{{GENDER:$1|Ky përdorues|Kjo përdoruese}} është bllokuar.\nZëri më i ri i regjistrit të bllokimeve jepet më poshtë, për referencë:",
-	"sp-contributions-blocked-notice-anon": "Kjo adresë IP-je është aktualisht e bllokuar.\nHyrja më e fundit në regjistrin e bllokimeve është dhënë më poshtë për referim:",
 	"sp-contributions-search": "Kërko kontributet",
 	"sp-contributions-username": "Adresa IP ose emri i përdoruesit:",
 	"sp-contributions-toponly": "Shfaq vetëm redaktimet që janë versionet më të reja",

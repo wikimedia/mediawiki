@@ -1589,8 +1589,6 @@
 	"sp-contributions-logs": "લૉગ",
 	"sp-contributions-talk": "ચર્ચા",
 	"sp-contributions-userrights": "{{GENDER:$1|સભ્ય}} હક્ક પ્રબંધન",
-	"sp-contributions-blocked-notice": "આ {{GENDER:$1|સભ્ય}} પ્રતિબંધિત છે.\nતમારા સંદર્ભ માટે પ્રતિબંધિત સભ્યોની યાદી આપી છે:",
-	"sp-contributions-blocked-notice-anon": "આ  IP સરનામું  હમણા પ્રતિબંધિત છે\nતમરા સંદર્ભ માટે તાજી પ્રતિબંધ યાદિ આપી છે.",
 	"sp-contributions-search": "યોગદાન શોધો",
 	"sp-contributions-username": "IP સરનામું અથવા સભ્યનામ:",
 	"sp-contributions-toponly": "માત્ર છેલ્લી આવૃત્તિના ફેરફારો જ દર્શાવો",

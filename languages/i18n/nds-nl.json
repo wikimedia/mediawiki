@@ -1650,8 +1650,6 @@
 	"sp-contributions-logs": "logboken",
 	"sp-contributions-talk": "oaverleg",
 	"sp-contributions-userrights": "{{GENDER:$1|gebrukersrechtenbeheyr}}",
-	"sp-contributions-blocked-notice": "Disse gebruker is op t moment eblokkeerd.\nDe leste regel uut t blokkeerlogboek steet hieronder as referensie:",
-	"sp-contributions-blocked-notice-anon": "Dit IP-adres is eblokkeerd.\nDe leste regel uut t blokkeerlogboek steet as referensie",
 	"sp-contributions-search": "Söken nå bydragen",
 	"sp-contributions-username": "IP-adres of gebrukersname:",
 	"sp-contributions-toponly": "Allinnig de nyste versy låten seen",

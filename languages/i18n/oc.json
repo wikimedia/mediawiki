@@ -2052,8 +2052,6 @@
 	"sp-contributions-logs": "jornals",
 	"sp-contributions-talk": "Discutir",
 	"sp-contributions-userrights": "gerir los dreits d’utilizair{{GENDER:$1|e|a}}",
-	"sp-contributions-blocked-notice": "Aqueste utilizaire es actualament blocat. La darrièra entrada del jornal dels blocatges es indicada çaijós a títol d’informacion :",
-	"sp-contributions-blocked-notice-anon": "Aquesta adreça IP es actualament blocada.\nLa darrièra intrada del jornal dels blocatges es indicada çaijós a títol d’informacion :",
 	"sp-contributions-search": "Cercar las contribucions",
 	"sp-contributions-username": "Adreça IP o nom d’utilizaire :",
 	"sp-contributions-toponly": "Mostrar sonque las contribucions que son las darrièras dels articles",

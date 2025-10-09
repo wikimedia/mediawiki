@@ -1059,8 +1059,6 @@
 	"sp-contributions-logs": "djournås",
 	"sp-contributions-talk": "copiner",
 	"sp-contributions-userrights": "candjî les droets d' l' uzeu{{GENDER:$1||se}}",
-	"sp-contributions-blocked-notice": "{{GENDER:$1|Cist uzeu est bloké|Ciste uzeuse est blokêye}} pol moumint.\nLi dierinne intrêye e djournå des blocaedjes est dnêye cial pa dzo po infôrmåcion:",
-	"sp-contributions-blocked-notice-anon": "Ciste adresse IP est blokêye pol moumint.\nLi dierinne intrêye e djournå des blocaedjes est dnêye cial pa dzo po infôrmåcion:",
 	"sp-contributions-search": "Cweri les contribouwaedjes",
 	"sp-contributions-username": "Adresse IP ou no d’&nbsp;uzeu&nbsp;:",
 	"sp-contributions-toponly": "Èn mostrer k’&nbsp;les candjmints ki sont les dierins fwaits ez årtikes",

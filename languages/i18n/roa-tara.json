@@ -2054,8 +2054,6 @@
 	"sp-contributions-logs": "archivije",
 	"sp-contributions-talk": "parle",
 	"sp-contributions-userrights": "Gestione de le deritte {{GENDER:$1|utende}}",
-	"sp-contributions-blocked-notice": "Stu {{GENDER:$1|utende}} jè pe mò bloccate. L'urteme archivije de le bloccaminde se iacchie aqquà sotte pe referimende:",
-	"sp-contributions-blocked-notice-anon": "Stu indirizze IP jè pe mò bloccate.<br />\nL'urteme archivije de le bloccaminde se iacche aqquà sotte pe referimende:",
 	"sp-contributions-search": "Ricerche pe condrebbute",
 	"sp-contributions-username": "Indirizze IP o nome de l'utende:",
 	"sp-contributions-toponly": "Sulamende facenne vedè le cangiaminde de l'urteme revisiune",

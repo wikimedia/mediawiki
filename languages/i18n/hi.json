@@ -2343,8 +2343,6 @@
 	"sp-contributions-logs": "लॉग",
 	"sp-contributions-talk": "वार्ता",
 	"sp-contributions-userrights": "{{GENDER:$1|सदस्य}} अधिकार प्रबंधन",
-	"sp-contributions-blocked-notice": "यह सदस्य फ़िलहाल अवरोधित हैं। सदंर्भ के लिए ताज़ातरीन अवरोध चिट्ठा प्रविष्टि नीचे है:",
-	"sp-contributions-blocked-notice-anon": "यह आईपी पता अभी अवरोधित है। \nनवीनतम अवरोध अभिलेख प्रविष्टि सन्दर्भ के लिए नीचे दी गई है:",
 	"sp-contributions-search": "योगदान खोजें",
 	"sp-contributions-username": "IP पता या सदस्यनाम:",
 	"sp-contributions-toponly": "सिर्फ वे सम्पादन दिखाएँ जो नवीनतम अवतरण हैं",

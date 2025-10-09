@@ -2264,8 +2264,6 @@
 	"sp-contributions-logs": "laogy",
 	"sp-contributions-talk": "dinika",
 	"sp-contributions-userrights": "fitantanana ny satam-pikambana{{GENDER:$1|}}",
-	"sp-contributions-blocked-notice": "Ankehitriny ity mpikambana ity dia voasakana.\nNy fampidirana faran'ny laogin'ny fanakanam-pikambana dia naseho teo ambany ho an'ny fampahalalàna :{{GENDER:$1|}}",
-	"sp-contributions-blocked-notice-anon": "Voasakana ity adiresy IP ity amin'izao fotoana izao.\nAseho eo ambany ny iditra farany ao amin'ny laogim-panakanana  mba hampahalala :",
 	"sp-contributions-search": "Hikaroka fandraisan'anjara",
 	"sp-contributions-username": "Adiresy IP na anaram-pikambana :",
 	"sp-contributions-toponly": "Fiovana izay farany ihany no aseho",

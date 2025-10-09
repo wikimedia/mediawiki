@@ -236,8 +236,6 @@
 	"contributions-title": "$1的用戶貢獻",
 	"sp-contributions-deleted": "已刪除的{{GENDER:$1|用戶}}貢獻",
 	"sp-contributions-userrights": "{{GENDER:$1|用戶}}權限管理",
-	"sp-contributions-blocked-notice": "此用戶目前已封鎖，以下是最近的封鎖紀錄：",
-	"sp-contributions-blocked-notice-partial": "這用戶目前已局部封鎖，以下是最近的封鎖紀錄：",
 	"sp-contributions-username": "IP位址或用戶名：",
 	"whatlinkshere": "連結至此的頁面",
 	"block": "封鎖用戶",

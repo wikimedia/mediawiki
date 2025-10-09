@@ -1823,8 +1823,6 @@
 	"sp-contributions-logs": "لۆگەکان",
 	"sp-contributions-talk": "لێدوان",
 	"sp-contributions-userrights": "بەڕێوەبەرایەتیی مافە {{GENDER:$1|بەکارهێنەرییەکان}}",
-	"sp-contributions-blocked-notice": "ھەنووکە ئەم بەکارھێنەرە بەربەست کراوە.\nدوایین بابەتی لۆگی بەربەستن لە ژێرەوە ھاتووە:",
-	"sp-contributions-blocked-notice-anon": "ھەنووکە ئەم ناونیشانەی IPیە بەربەست کراوە.\nدوایین بابەتی لۆگی بەربەستن لە ژێرەوە ھاتووە:",
 	"sp-contributions-search": "گەڕان بۆ بەشدارییەکان",
 	"sp-contributions-username": "ناونیشانی ئایپی یان ناوی‌ بەکارھێنەر:",
 	"sp-contributions-toponly": "تەنیا ئەو دەستکارییانە نیشان بدە کە دوایین پێداچوونەوەن",

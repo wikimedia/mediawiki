@@ -1420,8 +1420,6 @@
 	"sp-contributions-logs": "qaydlar",
 	"sp-contributions-talk": "munozara",
 	"sp-contributions-userrights": "{{GENDER:$1|huquqlarini}} oʻzgartirish",
-	"sp-contributions-blocked-notice": "Ushbu foydalanuvchi hozirda '''chetlatilgan'''.\nQuyida chetlatish jurnalidan soʻnggi qaydni koʻrishingiz mumkin:",
-	"sp-contributions-blocked-notice-anon": "Ushbu IP-manzil hozirda '''chetlatilgan'''.\nQuyida chetlatish jurnalidan soʻnggi qaydni koʻrishingiz mumkin:",
 	"sp-contributions-search": "Hissalarni qidirish",
 	"sp-contributions-username": "IP-manzil yoki foydalanuvchi nomi:",
 	"sp-contributions-toponly": "Faqat oxirgi deb hisoblangan tahrirlarni koʻrsat",

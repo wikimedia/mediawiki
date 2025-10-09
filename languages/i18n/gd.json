@@ -1672,8 +1672,6 @@
 	"sp-contributions-logs": "logaichean",
 	"sp-contributions-talk": "deasbaireachd",
 	"sp-contributions-userrights": "stiùireadh ceadan a' chleachdaiche",
-	"sp-contributions-blocked-notice": "Tha an cleachdaiche seo 'ga bhacadh an-dràsta.\nSeo dhut loga a' bhacaidh mu dheireadh gu h-ìosal:",
-	"sp-contributions-blocked-notice-anon": "Tha an seòladh IP seo 'ga bhacadh an-dràsta.\nSeo dhut loga a' bhacaidh mu dheireadh gu h-ìosal:",
 	"sp-contributions-search": "Lorg airson obair a rinneadh",
 	"sp-contributions-username": "Seòladh IP no ainm-cleachdaiche:",
 	"sp-contributions-toponly": "Na seall deasachaidhean ach na mùthaidhean as ùire",

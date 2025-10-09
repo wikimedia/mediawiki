@@ -1342,8 +1342,6 @@
 	"sp-contributions-logs": "rechistros",
 	"sp-contributions-talk": "descusión",
 	"sp-contributions-userrights": "administración de dreitos d'usuario",
-	"sp-contributions-blocked-notice": "Iste usuario ye bloqueyato en istos momentos. A zaguer dentrada d'o rechistro de bloqueyos se presienta debaixo ta más información:",
-	"sp-contributions-blocked-notice-anon": "Ista adreza IP se troba acutalment bloqueyada.\nTa más información, s'amuestra contino a zaguera dentrada d'o rechistro de bloqueyos.",
 	"sp-contributions-search": "Mirar contribucions",
 	"sp-contributions-username": "Adreza IP u nombre d'usuario:",
 	"sp-contributions-toponly": "Mostrar nomás as zagueras versions",

@@ -1096,8 +1096,6 @@
 	"sp-contributions-logs": "መዝገቦች",
 	"sp-contributions-talk": "ውይይት",
 	"sp-contributions-userrights": "የአባል መብቶች ለማስተዳደር",
-	"sp-contributions-blocked-notice": "ይህ ተጠቃሚ $1 አሁን የታገደ ነው። \nከዚህ ታች የማገጃ መዝገብ መጨረሻ ድርጊት ይታያል።",
-	"sp-contributions-blocked-notice-anon": "ይህ IP ቁጥር አሁን የታገደ ነው። \nከዚህ ታች የማገጃ መዝገብ መጨረሻ ድርጊት ይታያል።",
 	"sp-contributions-search": "የሰውን አስተዋጽኦች ለመፈለግ፦",
 	"sp-contributions-username": "ብዕር ስም ወይም የቁ. አድራሻ፦",
 	"sp-contributions-toponly": "መጨረሻ ዕትም (ላይና) የሆኑት ለውጦች ብቻ ይታዩ።",

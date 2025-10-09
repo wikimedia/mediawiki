@@ -2103,8 +2103,6 @@
 	"sp-contributions-logs": "zapisnici",
 	"sp-contributions-talk": "razgovor",
 	"sp-contributions-userrights": "postavke {{GENDER:$1|korisničkih}} prava",
-	"sp-contributions-blocked-notice": "{{GENDER:$1|Ovaj korisnik|Ova korisnica}} je trenutno {{GENDER:$1|blokiran|blokirana}}.\nPosljednju stavku zapisnika blokiranja možete pogledati ispod:",
-	"sp-contributions-blocked-notice-anon": "Ova IP-adresa trenutno je blokirana.\nPosljednje stavke zapisnika blokiranja možete pogledati ispod:",
 	"sp-contributions-search": "Pretraži doprinose",
 	"sp-contributions-username": "IP-adresa ili korisničko ime:",
 	"sp-contributions-toponly": "Prikaži samo najnovije izmjene",

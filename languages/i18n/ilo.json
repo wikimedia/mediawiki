@@ -2040,8 +2040,6 @@
 	"sp-contributions-logs": "dagiti listaan",
 	"sp-contributions-talk": "tungtungan",
 	"sp-contributions-userrights": "panagtaripato kadagiti karbengan ti {{GENDER:$1|agar-aramat}}",
-	"sp-contributions-blocked-notice": "Agdama a naserraan daytoy nga agar-aramat.\nTi naudi a naikabil iti listaan ti pannakaserra ket naited dita baba para iti reperensia:",
-	"sp-contributions-blocked-notice-anon": "Daytoy nga adres ti IP ket agdama a naserraan.\nTi naudi a naikabil iti listaan ti pannakaserra ket adda dita baba para iti reperensia:",
 	"sp-contributions-search": "Agbiruk para kadagiti kontribusion",
 	"sp-contributions-username": "Adres ti IP wenno nagan ti agar-aramat:",
 	"sp-contributions-toponly": "Ipakita laeng dagiti inurnos dagiti kaudian a rebision",

@@ -2204,8 +2204,6 @@
 	"sp-contributions-logs": "ਚਿੱਠੇ",
 	"sp-contributions-talk": "ਗੱਲ-ਬਾਤ",
 	"sp-contributions-userrights": "{{GENDER:$1|ਵਰਤੋਂਕਾਰ}} ਹੱਕਾਂ ਦਾ ਪ੍ਰਬੰਧ",
-	"sp-contributions-blocked-notice": "ਇਹ {{GENDER:$1|ਵਰਤੋਂਕਾਰ}} ਇਸ ਵੇਲ਼ੇ ਪਾਬੰਦੀਸ਼ੁਦਾ ਹੈ।\nਪਾਬੰਦੀ ਚਿੱਠੇ ਦਾ ਤਾਜ਼ਾ ਦਾਖ਼ਲਾ ਹਵਾਲੇ ਲਈ ਹੇਠਾਂ ਦਿੱਤਾ ਗਿਆ ਹੈ:",
-	"sp-contributions-blocked-notice-anon": "ਇਹ IP ਪਤਾ ਇਸ ਵੇਲ਼ੇ ਪਾਬੰਦੀਸ਼ੁਦਾ ਹੈ।\nਪਾਬੰਦੀ ਚਿੱਠੇ ਦਾ ਤਾਜ਼ਾ ਦਾਖ਼ਲਾ ਹਵਾਲੇ ਲਈ ਹੇਠਾਂ ਦਿੱਤਾ ਗਿਆ ਹੈ:",
 	"sp-contributions-search": "ਯੋਗਦਾਨ ਖੋਜੋ",
 	"sp-contributions-username": "IP ਪਤਾ ਜਾਂ ਵਰਤੋਂਕਾਰ-ਨਾਂ:",
 	"sp-contributions-toponly": "ਸਿਰਫ ਉਹ ਸੋਧਾਂ ਵਿਖਾਓ ਜੋ ਸਭ ਤੋਂ ਤਾਜ਼ੀਆਂ ਸੋਧਾਂ ਹਨ",

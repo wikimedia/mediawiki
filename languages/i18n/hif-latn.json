@@ -1811,8 +1811,6 @@
 	"sp-contributions-uploads": "upload karaa gais file",
 	"sp-contributions-talk": "baat",
 	"sp-contributions-userrights": "{{GENDER:$1|sadasya}} rights management",
-	"sp-contributions-blocked-notice": "Ii sadasya ke hian pe ijajat nai hae.\nPahile waala block log entry ke reference ke khatir niche dekhawa jaawe hae:",
-	"sp-contributions-blocked-notice-anon": "Ii IP address abhi rok dewa gais hae.\nSab se nawaa roke ke suchi ke, aap ke khatir, niche dewa gais hae.",
 	"sp-contributions-search": "Yogdaan ke khojo",
 	"sp-contributions-username": "IP Address nai to username:",
 	"sp-contributions-toponly": "Khaali sab se nawaa badlao ke dekhao",

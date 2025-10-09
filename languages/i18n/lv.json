@@ -1879,8 +1879,6 @@
 	"sp-contributions-logs": "reģistri",
 	"sp-contributions-talk": "diskusija",
 	"sp-contributions-userrights": "{{GENDER:$1|dalībnieka|dalībnieces}} tiesību pārvaldība",
-	"sp-contributions-blocked-notice": "{{GENDER:$1|Šis dalībnieks|Šī dalībniece}} pašlaik ir {{GENDER:$1|bloķēts|bloķēta}}.\nPēdējais bloķēšanas reģistra ieraksts ir apskatāms zemāk:",
-	"sp-contributions-blocked-notice-anon": "Šī IP adrese pašlaik ir nobloķēta.\nPēdējais bloķēšanas reģistra ieraksts ir apskatāms zemāk:",
 	"sp-contributions-search": "Meklēt dalībnieka veiktās izmaiņas",
 	"sp-contributions-username": "IP adrese vai dalībnieka vārds:",
 	"sp-contributions-toponly": "Rādīt tikai labojumus, kas ir jaunākās versijas",

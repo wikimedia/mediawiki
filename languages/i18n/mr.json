@@ -1944,8 +1944,6 @@
 	"sp-contributions-logs": "नोंदी",
 	"sp-contributions-talk": "चर्चा",
 	"sp-contributions-userrights": "{{GENDER:$1|सदस्य}}अधिकार व्यवस्थापन",
-	"sp-contributions-blocked-notice": "हा सदस्य सध्या प्रतिबंधित आहे.\nसर्वांत नवीन प्रतिबंधन यादी खाली संदर्भासाठी दिली आहे:",
-	"sp-contributions-blocked-notice-anon": "हा अंकपत्ता सध्या प्रतिबंधित आहे.\nखाली, सर्वांत नवीनतम प्रतिबंधन नोंदप्रविष्टी संदर्भासाठी दिली आहे:",
 	"sp-contributions-search": "योगदान शोधयंत्र",
 	"sp-contributions-username": "आंतरजाल अंकपत्ता किंवा सदस्यनाम:",
 	"sp-contributions-toponly": "केवळ नवीनतम आवर्तने असलेलीच संपादने दाखवा",

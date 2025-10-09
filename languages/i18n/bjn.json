@@ -1684,8 +1684,6 @@
 	"sp-contributions-logs": "log",
 	"sp-contributions-talk": "pandir",
 	"sp-contributions-userrights": "Pangaturan hak masuk {{GENDER:$1|pamakai}}",
-	"sp-contributions-blocked-notice": "Pamakai ngini parhatan diblukir.\nLog blukir pahabisnya tasadia di bawah ngini gasan rujukan:",
-	"sp-contributions-blocked-notice-anon": "Alamat IP ngini parhatan ini diblukir.\nLog blukir pahabisannya tasadia di bawah ngini gasan rujukan:",
 	"sp-contributions-search": "Kikihi sumbangan",
 	"sp-contributions-username": "Alamat IP atawa ngaran-pamakai:",
 	"sp-contributions-toponly": "Tampaiakan wastu ralatan damini",

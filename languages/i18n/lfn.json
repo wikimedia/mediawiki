@@ -2089,8 +2089,6 @@
 	"sp-contributions-logs": "rejistras",
 	"sp-contributions-talk": "discute",
 	"sp-contributions-userrights": "Maneja de diretos de {{GENDER:$1|usor}}",
-	"sp-contributions-blocked-notice": "Esta usor es impedida a presente.\nLa entrada la plu resente de la rejistra de impedis es mostrada a su per clari:",
-	"sp-contributions-blocked-notice-anon": "Esta adirije IP es impedida a presente.\nLa entrada la plu resente de la rejistra de impedis es mostrada a su per clari:",
 	"sp-contributions-search": "Xerca contribuis",
 	"sp-contributions-username": "Adirije IP o nom de usor:",
 	"sp-contributions-toponly": "Mostra sola editas cual es revisas la plu resente.",

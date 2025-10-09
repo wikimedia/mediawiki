@@ -1435,8 +1435,6 @@
 	"sp-contributions-logs": "տեղեկամատյաններ",
 	"sp-contributions-talk": "քննարկում",
 	"sp-contributions-userrights": "{{GENDER:$1|մասնակցի}} իրավունքների կառավարում",
-	"sp-contributions-blocked-notice": "Այս մասնակիցը ներկա պահին արգելափակված է։\nՍտորև ներկայացված է արգելափակման տեղեկամատյանի վերջին գրառումը.",
-	"sp-contributions-blocked-notice-anon": "Այս IP հասցեն ներկա պահին արգելափակված է։\nՍտորև ներկայացված է արգելափակման տեղեկամատյանի վերջին գրառումը.",
 	"sp-contributions-search": "Որոնել ներդրումները",
 	"sp-contributions-username": "IP-հասցե կամ մասնակցի անուն.",
 	"sp-contributions-toponly": "Ցույց տալ միայն այն խմբագրումները, որոնք վերջին փոփոխություն են",

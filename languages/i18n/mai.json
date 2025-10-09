@@ -1851,8 +1851,6 @@
 	"sp-contributions-logs": "लौग",
 	"sp-contributions-talk": "वार्ता",
 	"sp-contributions-userrights": "{{GENDER:$1|user}}प्रयोक्ता अधिकारकऽ प्रबन्धन",
-	"sp-contributions-blocked-notice": "ई प्रयोक्ता अखन प्रतिबन्धित अछि।\nनव प्रतिबन्धित वृत्तलेख लेख सन्दर्भ नीचाँ देल अछि:",
-	"sp-contributions-blocked-notice-anon": "ई अनिकेत अखन प्रतिबन्धित अछि।\nअद्यतन प्रतिबन्धित  वृत्तलेख लेखा सन्दर्भ नीचाँ देल अछि:",
 	"sp-contributions-search": "योगदानक लेल ताकी",
 	"sp-contributions-username": "अनिकेत सङ्केत वा प्रयोक्तानाम:",
 	"sp-contributions-toponly": "मात्र ओ सम्पादन देखाबी जे नवीनतम संशोधन छी।",

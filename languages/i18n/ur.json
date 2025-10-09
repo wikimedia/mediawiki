@@ -2142,8 +2142,6 @@
 	"sp-contributions-logs": "نوشتہ جات",
 	"sp-contributions-talk": "تبادلۂ خیال",
 	"sp-contributions-userrights": "انتظام اختیارات {{GENDER:$1|صارف}}",
-	"sp-contributions-blocked-notice": "اس {{GENDER:$1|صارف}} پر پابندی لگائی گئی ہے۔\nحوالہ کے لیے نوشتہ پابندی کا تازہ ترین اندراج ذیل میں دستیاب ہے:",
-	"sp-contributions-blocked-notice-anon": "اس آئی پی پتے پر پابندی لگا دی گئی ہے۔\nحوالہ کے لیے نوشتہ پابندی کا تازہ ترین اندراج ذیل میں دستیاب ہے:",
 	"sp-contributions-search": "شراکتوں میں تلاش کریں",
 	"sp-contributions-username": "آئی پی پتا یا صارف نام:",
 	"sp-contributions-toponly": "محض نئے نسخوں پر مشتمل ترامیم دکھائیں",

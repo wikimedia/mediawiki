@@ -391,6 +391,14 @@
 	"exif-stitchingsoftware": "Стичинг программин гӀирс",
 	"exif-digitalsourcetype": "Терахьийн хаамийн гӀирсийн хьост",
 	"exif-digitalsourcetype-digitalcapture": "Терахьийн камера йа диктофон",
+	"exif-digitalsourcetype-computationalcapture": "Терахьийн камера йа регистратор (масех кадр цхьаьнатоьхна)",
+	"exif-digitalsourcetype-negativefilm": "Чекхсагуш йолу негатив тӀера скан йина",
+	"exif-digitalsourcetype-positivefilm": "Чекхсагуш йолу позитив тӀера скан йина",
+	"exif-digitalsourcetype-print": "Чекхсагуш доцу хӀост тӀера скан йина",
+	"exif-digitalsourcetype-minorhumanedits": "Оригиналан медиа, адаман кегийра хийцамаш а болуш",
+	"exif-digitalsourcetype-humanedits": "Адамо хийцамаш бина медиа",
+	"exif-digitalsourcetype-compositewithtrainedalgorithmicmedia": "Хийцамаш бина генерацин АӀ лелош",
+	"exif-digitalsourcetype-algorithmicallyenhanced": "Алгоритмца хийцамаш бина медиа",
 	"exif-digitalsourcetype-softwareimage": "Программин гӀоьнца кхоьллина",
 	"exif-digitalsourcetype-digitalart": "Терахьийн гӀирс лелош адамо кхоьллина",
 	"exif-digitalsourcetype-digitalcreation": "Адамо кхоьллина медиа, AI боцу гӀирс лелош",
@@ -400,5 +408,6 @@
 	"exif-digitalsourcetype-screencapture": "Экранан скриншот",
 	"exif-digitalsourcetype-virtualrecording": "Генераци йина  AI-н а,/йа дӀалаьцначу элементийн а буха тӀехь виртуалан хилам дийна дӀайазбар",
 	"exif-digitalsourcetype-composite": "Масех элементийн цхьаьнакхетар йа хӀоттам, царех муьлхха а генераци йина AI хила тарло йа ца хила тарло",
+	"exif-digitalsourcetype-compositecapture": "Масех элементийн композици йа хӀоттам, уьш дерриге а бакъдолчу дахаран йийсарш ду",
 	"exif-digitalsourcetype-compositesynthetic": "Масех элементийн цхьаьнакхетар йа хӀоттам, царех лаххара а цхьаъ генераци йина AI-но"
 }

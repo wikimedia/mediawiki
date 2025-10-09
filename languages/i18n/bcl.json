@@ -1861,8 +1861,6 @@
 	"sp-contributions-logs": "mga tala",
 	"sp-contributions-talk": "urulay",
 	"sp-contributions-userrights": "manihamento sa mga karapatan kan {{GENDER:$1|paragamit}}",
-	"sp-contributions-blocked-notice": "Ining paragamit sa presente pinagbarahan.\nAn pinakahuring entrada sa talaan nin pagbara nakahaya sa ibaba bilang reperensiya:",
-	"sp-contributions-blocked-notice-anon": "Ining IP adres sa presente pinagbarahan.\nAn pinakahuring entrada sa talaan nin pagbara nakahaya sa ibaba bilang reperensiya:",
 	"sp-contributions-search": "Maghanap nin ambag",
 	"sp-contributions-username": "IP address o ngaran-paragamit:",
 	"sp-contributions-toponly": "Ipahiling sana an mga pinakabagong pagbabago",

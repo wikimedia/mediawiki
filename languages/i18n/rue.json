@@ -1724,8 +1724,6 @@
 	"sp-contributions-logs": "лоґы",
 	"sp-contributions-talk": "діскусія",
 	"sp-contributions-userrights": "Справа хосновательскых прав",
-	"sp-contributions-blocked-notice": "Тот хоснователь є теперь блокованый.\nПослїднїй запис в лоґах блоковань є такый:",
-	"sp-contributions-blocked-notice-anon": "Тота IP адреса є теперь блокована.\nПослїднїй запис в лоґах блоковань є такый:",
 	"sp-contributions-search": "Глядати приспівкы",
 	"sp-contributions-username": "IP-адреса або імя хоснователя:",
 	"sp-contributions-toponly": "Вказати лем актуалны ревізії",

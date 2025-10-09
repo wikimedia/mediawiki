@@ -1429,8 +1429,6 @@
 	"sp-contributions-logs": "gerðalistar (logglistar)",
 	"sp-contributions-talk": "kjak",
 	"sp-contributions-userrights": "stýring av brúkararættindum",
-	"sp-contributions-blocked-notice": "Hesin brúkarin er í løtuni sperraður.\nTann seinasti sperringarloggurin verður vístur niðanfyri til kunningar:",
-	"sp-contributions-blocked-notice-anon": "Henda IP adressan er í løtuni sperrað.\nTann seinasti sperringarloggurin verður vístur niðanfyri til kunningar:",
 	"sp-contributions-search": "Leita eftir íkøstum",
 	"sp-contributions-username": "IP adressa ella brúkaranavn:",
 	"sp-contributions-toponly": "Vís bara rættingar sum eru tær seinastu versjónirnar",

@@ -1500,8 +1500,6 @@
 	"sp-contributions-logs": "логууд",
 	"sp-contributions-talk": "яриа",
 	"sp-contributions-userrights": "хэрэглэгчдийн эрхийн удирдлага",
-	"sp-contributions-blocked-notice": "Энэхүү хэрэглэгч одоогоор түгжигдсэн байна.\nЛавлагааны зориулалтаар түгжээний лог дээрх хамгийн сүүлийн нэмэлтийг доор оруулав:",
-	"sp-contributions-blocked-notice-anon": "Энэхүү IP хаягыг одоогоор түгжигдсэн байна.\nЛавлагааны зориулалтаар түгжээний лог дээрх хамгийн сүүлийн нэмэлтийг доор оруулав:",
 	"sp-contributions-search": "Хувь нэмрийг хайх",
 	"sp-contributions-username": "IP хаяг эсвэл хэрэглэгчийн нэр:",
 	"sp-contributions-toponly": "Хамгийн сүүлийн засваруудыг л үзүүлэх",

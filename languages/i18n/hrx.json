@@ -1534,8 +1534,6 @@
 	"sp-contributions-logs": "Logbücher",
 	"sp-contributions-talk": "Diskussion",
 	"sp-contributions-userrights": "Benutzerrechteverwaltung",
-	"sp-contributions-blocked-notice": "{{GENDER:$1|Der Benutzer|Die Benutzrin|Der Benutzer}} ist in derzeit gesperrt. Es follichtt der aktuell Introoch aus dem Benutzersperr-Logbuch:",
-	"sp-contributions-blocked-notice-anon": "Die IP-Adress ist zurzeit gesperrt.\nZur Information follich der aktuelle Auszuch aus dem Sperr-Logbuch:",
 	"sp-contributions-search": "Such noh Benutzerbeiträche",
 	"sp-contributions-username": "IP-Adress orrer Benutzernoome:",
 	"sp-contributions-toponly": "Nore aktuaale Vërsione zeiche",

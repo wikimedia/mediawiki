@@ -1755,8 +1755,6 @@
 	"sp-contributions-logs": "ژورناللار",
 	"sp-contributions-talk": "دانیشیق",
 	"sp-contributions-userrights": "ایستیفاده‌چی حاقلارین ایداره‌ ائتمه‌سی",
-	"sp-contributions-blocked-notice": "بو {{GENDER:$1|ایشلدن}} حال-حاضردا باغلانمیش‌دیر.\nباغلاما قئیدلری‌نین سونونجوسو آشاغیدا گؤستریلمیش‌دیر:",
-	"sp-contributions-blocked-notice-anon": "بو آی پی-عنوان حال-حاضردا باغلانمیش ‌دیر.\nبالانما قئیدلری‌نین سونونجوسو آشاغیدا گؤستریلمیش‌دیر:",
 	"sp-contributions-search": "چالیشمالاری آختار",
 	"sp-contributions-username": "آی‌پی آدرسی یوْخسا ایشلدن آدی:",
 	"sp-contributions-toponly": "تکجه سون نوسخه اولان دییشیکلری گؤستر",

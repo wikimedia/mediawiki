@@ -2090,7 +2090,6 @@
 	"sp-contributions-uploads": "مرفوعات",
 	"sp-contributions-logs": "سجلات",
 	"sp-contributions-talk": "كلام",
-	"sp-contributions-blocked-notice": "{{GENDER:$1|هاذه المستخدم محضور|هاي المستخدمه محظوره}} هسه.\nآخر شغله بسجل الحظر موجوده جوه كمرجع:",
 	"sp-contributions-search": "دور مساهمات",
 	"sp-contributions-username": "عنوان آيبي لو إسم مستخدم",
 	"sp-contributions-toponly": "طلع النسخ الحالية بس",

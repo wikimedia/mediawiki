@@ -2211,8 +2211,6 @@
 	"sp-contributions-logs": "logiau",
 	"sp-contributions-talk": "sgwrs",
 	"sp-contributions-userrights": "rheoli galluoedd {{GENDER:$1|defnyddwyr}}",
-	"sp-contributions-blocked-notice": "Mae'r {{GENDER:$1|defnyddiwr hwn}} wedi'i rwystro ar hyn o bryd.\nMae'r cofnod diweddaraf yn y lòg blocio i'w weld isod:",
-	"sp-contributions-blocked-notice-anon": "Mae'r cyfeiriad IP hwn wedi'i rwystro ar hyn o bryd.\nMae'r cofnod diweddaraf yn y lòg blocio i'w weld isod:",
 	"sp-contributions-search": "Chwilio am gyfraniadau",
 	"sp-contributions-username": "Cyfeiriad IP neu enw defnyddiwr:",
 	"sp-contributions-toponly": "Dangos y golygiadau diweddaraf yn unig",

@@ -1399,7 +1399,6 @@
 	"sp-contributions-logs": "السجلات",
 	"sp-contributions-talk": "مناقشه",
 	"sp-contributions-userrights": "ادارة حقوق {{GENDER:$1|اليوزر}}",
-	"sp-contributions-blocked-notice": "{{GENDER:$1|اليوزر ده}} ممنوع دلوقتى.\nآخر عمليه منع فى السجل موجوده تحت كمرجع:",
 	"sp-contributions-search": "دور على مساهمات",
 	"sp-contributions-username": "عنوان أيبى أو اسم يوزر:",
 	"sp-contributions-toponly": "اظهر اخر تعديل  بس",

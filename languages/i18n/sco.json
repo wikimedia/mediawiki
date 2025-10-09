@@ -1888,8 +1888,6 @@
 	"sp-contributions-logs": "logs",
 	"sp-contributions-talk": "tauk",
 	"sp-contributions-userrights": "uiser richts management",
-	"sp-contributions-blocked-notice": "This uiser is nou blockit.\nThe latest block log entrie is gien ablo fer referance:",
-	"sp-contributions-blocked-notice-anon": "This IP address is blockit the nou.\nThe latest block log entrie is gien ablo fer referance:",
 	"sp-contributions-search": "Rake fer contreebutions",
 	"sp-contributions-username": "IP address or uisername:",
 	"sp-contributions-toponly": "Anely shaw edits that is maist recent revisions",

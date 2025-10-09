@@ -1831,8 +1831,6 @@
 	"sp-contributions-logs": "riggistri",
 	"sp-contributions-talk": "discurruta",
 	"sp-contributions-userrights": "gistioni dî dritti di l'{{GENDER:$1|utenti}}",
-	"sp-contributions-blocked-notice": "St'{{GENDER:$1|utenti}} pi com'ora è bluccatu.\nComu rifirimentu ccassutta c'è l'ùrtima vuci dû riggistru dî blocchi:",
-	"sp-contributions-blocked-notice-anon": "Stu nnirizzu IP pi com'ora è bluccatu.\nComu rifirimentu ccassutta c'è l'ùrtima vuci dû riggistru dî blocchi:",
 	"sp-contributions-search": "Ricerca cuntribbuti",
 	"sp-contributions-username": "Nnirizzu IP o nomu utenti:",
 	"sp-contributions-toponly": "Ammustra sulu li canciamenti ca sunnu l'ùrtimi virsioni pâ pàggina",
