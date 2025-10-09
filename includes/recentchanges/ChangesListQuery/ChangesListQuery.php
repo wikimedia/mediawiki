@@ -20,12 +20,16 @@ use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\Watchlist\WatchedItemStoreInterface;
+use ObjectCacheFactory;
 use stdClass;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
+use Wikimedia\Rdbms\Platform\ISQLPlatform;
 use Wikimedia\Rdbms\RawSQLExpression;
 use Wikimedia\Rdbms\SelectQueryBuilder;
+use Wikimedia\Stats\StatsFactory;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 use function array_key_exists;
 
 /**
@@ -38,6 +42,8 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 	public const CONSTRUCTOR_OPTIONS = [
 		MainConfigNames::WatchlistExpiry,
 		MainConfigNames::MiserMode,
+		MainConfigNames::RCMaxAge,
+		MainConfigNames::EnableChangesListQueryPartitioning,
 		...ExperienceCondition::CONSTRUCTOR_OPTIONS
 	];
 
@@ -49,6 +55,20 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 		'templatelinks' => 'tl',
 		'categorylinks' => 'cl',
 		'imagelinks' => 'il'
+	];
+
+	/** Minimum number of estimated rows before timestamp partitioning is considered */
+	public const PARTITION_THRESHOLD = 10000;
+
+	private int|float $rcMaxAge;
+	private bool $enablePartitioning;
+	private bool $forcePartitioning = false;
+
+	private array $densityTunables = [
+		self::DENSITY_LINKS => 0.1,
+		self::DENSITY_WATCHLIST => 0.1,
+		self::DENSITY_USER => 0.1,
+		self::DENSITY_CHANGE_TAG_THRESHOLD => 0.5,
 	];
 
 	/** @var ChangesListCondition[] */
@@ -87,7 +107,7 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 	/** @var int|null The maximum number of rows to return */
 	private ?int $limit = null;
 
-	/** @var float|int */
+	/** @var float|int A naïve estimate of the fraction of rows matched by the conditions */
 	private $density = 1;
 
 	/** @var Authority|null The authority to use for deleted bitfield checks */
@@ -118,7 +138,10 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 		private UserFactory $userFactory,
 		private LinkTargetLookup $linkTargetLookup,
 		private ChangeTagsStore $changeTagsStore,
-		private IReadableDatabase $db
+		private ObjectCacheFactory $objectCacheFactory,
+		private StatsFactory $statsFactory,
+		private IReadableDatabase $db,
+		private TableStatsProvider $rcStats,
 	) {
 		$this->filterModules = [
 			'experience' => new ExperienceCondition(
@@ -145,7 +168,7 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 				]
 			),
 			'watched' => new WatchedCondition(
-				$config->get( MainConfigNames::WatchlistExpiry )
+				(bool)$config->get( MainConfigNames::WatchlistExpiry )
 			),
 			'seen' => new SeenCondition(
 				$this->watchedItemStore
@@ -159,7 +182,8 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 		// serves that purpose.
 		$this->filterModules['changeTags'] = new ChangeTagsCondition(
 			$this->changeTagsStore,
-			$config->get( MainConfigNames::MiserMode ),
+			$this->rcStats,
+			(bool)$config->get( MainConfigNames::MiserMode ),
 		);
 
 		$this->joinModules = [
@@ -175,6 +199,9 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 			'watchlist' => new WatchlistJoin(),
 			'watchlist_expiry' => new BasicJoin( 'watchlist_expiry', '', 'we_item=wl_id', 'watchlist' )
 		];
+
+		$this->rcMaxAge = (int)$config->get( MainConfigNames::RCMaxAge );
+		$this->enablePartitioning = (bool)$config->get( MainConfigNames::EnableChangesListQueryPartitioning );
 	}
 
 	/**
@@ -395,8 +422,17 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 
 	/** @inheritDoc */
 	public function adjustDensity( $density ): self {
+		if ( is_string( $density ) ) {
+			if ( isset( $this->densityTunables[$density] ) ) {
+				$density = $this->densityTunables[$density];
+			} else {
+				throw new \InvalidArgumentException( "Unknown density \"$density\"" );
+			}
+		}
 		$this->density *= $density;
-		$this->getChangeTagsFilter()->setDensity( $this->density );
+		$this->getChangeTagsFilter()->setDensityThresholdReached(
+			$this->density >= $this->densityTunables[self::DENSITY_CHANGE_TAG_THRESHOLD]
+		);
 		return $this;
 	}
 
@@ -430,6 +466,26 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 	 */
 	public function maxExecutionTime( float|int|null $time ) {
 		$this->maxExecutionTime = $time;
+		return $this;
+	}
+
+	/**
+	 * Enable query partitioning by timestamp, overriding the config
+	 *
+	 * @return $this
+	 */
+	public function enablePartitioning(): self {
+		$this->enablePartitioning = true;
+		return $this;
+	}
+
+	/**
+	 * Force partitioning, for testing
+	 *
+	 * @return $this
+	 */
+	public function forcePartitioning(): self {
+		$this->forcePartitioning = true;
 		return $this;
 	}
 
@@ -559,14 +615,38 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 			return $this->newResult();
 		}
 
+		$shouldPartition = $this->shouldDoPartitioning();
+		if ( $shouldPartition ) {
+			$this->prepareEmulatedUnion();
+		}
+
 		$sqb = $this->createQueryBuilder();
+		if ( !$shouldPartition ) {
+			$this->applyTimestampFilter( $sqb );
+		}
 		$sqb = $this->applyMutators( $sqb );
 		if ( !$sqb || $this->isEmptySet() ) {
 			return $this->newResult();
 		}
 
 		$queries = $this->applyLinkTarget( $sqb );
-		$res = $this->emulateUnion( $queries );
+
+		$timer = $this->statsFactory->getTiming( 'ChangesListQuery_query_seconds' )
+			->setLabel( 'caller', $this->caller ?? 'unknown' )
+			->setLabel( 'union', (string)count( $queries ) );
+
+		if ( $shouldPartition ) {
+			$timer->setLabel( 'strategy', 'partition' );
+			$timer->start();
+			$res = $this->doPartitionUnion( $queries );
+			$timer->stop();
+		} else {
+			$timer->setLabel( 'strategy', 'simple' );
+			$timer->start();
+			$res = $this->maybeEmulateUnion( $queries );
+			$timer->stop();
+		}
+
 		return $this->newResult( $res );
 	}
 
@@ -575,7 +655,7 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 	 */
 	private function prepare() {
 		if ( $this->linkTables ) {
-			$this->adjustDensity( 0.1 );
+			$this->adjustDensity( self::DENSITY_LINKS );
 		}
 		foreach ( $this->filterModules as $module ) {
 			$module->prepareQuery( $this->db, $this );
@@ -654,10 +734,6 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 
 		$this->applyOptions( $sqb );
 
-		if ( $this->minTimestamp !== null ) {
-			$sqb->andWhere( $this->db->expr( 'rc_timestamp', '>=',
-				$this->db->timestamp( $this->minTimestamp ) ) );
-		}
 		foreach ( $this->joinModules as $join ) {
 			$join->prepare( $sqb );
 		}
@@ -687,6 +763,18 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 		}
 		if ( $this->maxExecutionTime !== null ) {
 			$sqb->setMaxExecutionTime( $this->maxExecutionTime );
+		}
+	}
+
+	/**
+	 * Add conditions on rc_timestamp
+	 *
+	 * @param SelectQueryBuilder $sqb
+	 */
+	private function applyTimestampFilter( SelectQueryBuilder $sqb ) {
+		if ( $this->minTimestamp !== null ) {
+			$sqb->andWhere( $this->db->expr( 'rc_timestamp', '>=',
+				$this->db->timestamp( $this->minTimestamp ) ) );
 		}
 	}
 
@@ -836,39 +924,55 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 	}
 
 	/**
-	 * Perform a set of queries and merge the results as if a UNION were done.
+	 * If there is one query, run it directly. Otherwise, emulate a union.
 	 *
 	 * @param SelectQueryBuilder[] $queries
-	 * @return stdClass[]|IResultWrapper
+	 * @return IResultWrapper|stdClass[]
 	 */
-	private function emulateUnion( $queries ) {
+	private function maybeEmulateUnion( $queries ) {
 		if ( !$queries ) {
 			return [];
 		} elseif ( count( $queries ) === 1 ) {
 			return $queries[0]->fetchResultSet();
+		} else {
+			$rows = [];
+			$this->emulateUnion( $queries, $this->limit, $rows );
+			return $rows;
 		}
+	}
+
+	/**
+	 * Perform a set of queries and merge the results as if a UNION were done.
+	 *
+	 * @param SelectQueryBuilder[] $queries
+	 * @param int|null $limit
+	 * @param stdClass[] &$rows
+	 */
+	private function emulateUnion( array $queries, ?int $limit, &$rows ) {
 		if ( !$this->preparedEmulatedUnion ) {
 			throw new LogicException(
 				'emulateUnion() was called but not prepareEmulatedUnion()' );
 		}
-		$rows = [];
+		$unsortedRows = [];
 		foreach ( $queries as $query ) {
 			foreach ( $query->fetchResultSet() as $row ) {
-				$rows[] = $row;
+				$unsortedRows[] = $row;
 			}
 		}
-		return $this->sortAndTruncate( $rows );
+		$this->sortAndTruncate( $unsortedRows, $limit, $rows );
 	}
 
 	/**
 	 * Sort rows by rc_timestamp/rc_id, remove any duplicates, and then truncate
 	 * to the current query limit.
 	 *
-	 * @param stdClass[] $rows
-	 * @return stdClass[]
+	 * @internal public for testing
+	 * @param stdClass[] $inRows
+	 * @param int|null $limit
+	 * @param stdClass[] &$outRows
 	 */
-	private function sortAndTruncate( $rows ) {
-		usort( $rows, static function ( $a, $b ) {
+	public function sortAndTruncate( array $inRows, ?int $limit, &$outRows ) {
+		usort( $inRows, static function ( $a, $b ) {
 			if ( $a->rc_timestamp === $b->rc_timestamp ) {
 				return $b->rc_id <=> $a->rc_id;
 			} else {
@@ -877,17 +981,158 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 		} );
 		// Remove duplicates and slice
 		$prevId = null;
-		$finalRows = [];
-		foreach ( $rows as $row ) {
+		$numOut = 0;
+		foreach ( $inRows as $row ) {
 			if ( $prevId !== $row->rc_id ) {
-				$finalRows[] = $row;
-				if ( count( $finalRows ) === $this->limit ) {
+				$outRows[] = $row;
+				$numOut++;
+				if ( $numOut === $limit ) {
 					break;
 				}
 			}
 			$prevId = $row->rc_id;
 		}
-		return $finalRows;
+	}
+
+	/**
+	 * @return bool
+	 */
+	private function shouldDoPartitioning(): bool {
+		return $this->forcePartitioning
+			|| ( $this->enablePartitioning
+				&& $this->limit !== null
+				&& $this->minTimestamp !== null
+				&& $this->estimateSize() > self::PARTITION_THRESHOLD
+			);
+	}
+
+	/**
+	 * Estimate the number of rows likely to be matched by the query, ignoring
+	 * the limit.
+	 *
+	 * @return float|int
+	 */
+	private function estimateSize() {
+		$now = ConvertibleTimestamp::time();
+		$min = (int)ConvertibleTimestamp::convert( TS_UNIX, $this->minTimestamp );
+		$period = min( $now - $min, $this->rcMaxAge );
+		return $this->rcStats->getIdDelta() * $this->density * $period;
+	}
+
+	/**
+	 * @param SelectQueryBuilder[] $queries
+	 * @return stdClass[]
+	 */
+	private function doPartitionUnion( array $queries ) {
+		if ( !$this->preparedEmulatedUnion ) {
+			throw new LogicException(
+				'doPartitionUnion() was called but not prepareEmulatedUnion()' );
+		}
+		$unsortedRows = [];
+		foreach ( $queries as $query ) {
+			$this->doPartitionQuery( $query, $unsortedRows );
+		}
+		if ( count( $queries ) > 1 ) {
+			$rows = [];
+			$this->sortAndTruncate( $unsortedRows, $this->limit, $rows );
+			return $rows;
+		} else {
+			return $unsortedRows;
+		}
+	}
+
+	/**
+	 * Partition a query into timestamp ranges and run it separately on each
+	 * range, building up the result.
+	 *
+	 * @param SelectQueryBuilder $sqb
+	 * @param stdClass[] &$rows
+	 */
+	private function doPartitionQuery( SelectQueryBuilder $sqb, &$rows ) {
+		$queryHash = $this->getCondsHash( $sqb );
+		$now = ConvertibleTimestamp::time();
+		$minTime = (int)ConvertibleTimestamp::convert( TS_UNIX,
+			$this->minTimestamp ?? $now - $this->rcMaxAge );
+		$rateStore = $this->newRateEstimator( $queryHash );
+		$countsByBucket = [];
+		$bucketPeriod = $rateStore->getBucketPeriod();
+		$partitioner = new TimestampRangePartitioner(
+			$minTime,
+			$now,
+			$this->limit ?? 10_000,
+			$rateStore->fetchRate( $minTime, $now ),
+			$this->density,
+			$this->rcStats->getIdDelta(),
+			$this->rcMaxAge
+		);
+		do {
+			[ $min, $max, $limit ] = $partitioner->getNextPartition();
+
+			$partitionQuery = clone $sqb;
+			if ( $min !== null ) {
+				$partitionQuery->where( $this->db->expr(
+					'rc_timestamp', '>=', $this->db->timestamp( $min ) ) );
+			}
+			if ( $max !== null ) {
+				$partitionQuery->where( $this->db->expr(
+					'rc_timestamp', '<=', $this->db->timestamp( $max ) ) );
+			}
+			$partitionQuery->limit( $limit );
+
+			$time = null;
+			$res = $partitionQuery->fetchResultSet();
+			foreach ( $res as $row ) {
+				$rows[] = $row;
+				$time = (int)ConvertibleTimestamp::convert( TS_UNIX, $row->rc_timestamp );
+				$bucket = (int)( $time / $bucketPeriod );
+				$countsByBucket[$bucket] = ( $countsByBucket[$bucket] ?? 0 ) + 1;
+			}
+			$partitioner->notifyResult( $time, $res->numRows() );
+		} while ( !$partitioner->isDone() );
+
+		$rateStore->storeCounts(
+			$countsByBucket,
+				$partitioner->getMinFoundTime() ?? $minTime,
+			$now
+		);
+
+		$m = $partitioner->getMetrics();
+		$this->statsFactory->getCounter( 'ChangesListQuery_partition_queries_total' )
+			->incrementBy( $m['queryCount'] );
+		$this->statsFactory->getCounter( 'ChangesListQuery_partition_requests_total' )
+			->increment();
+		$this->statsFactory->getCounter( 'ChangesListQuery_partition_rows_total' )
+			->incrementBy( $m['actualRows' ] );
+		$this->statsFactory->getCounter( 'ChangesListQuery_partition_overrun_total' )
+			->incrementBy( $m['actualRows'] * ( $m['queryPeriod'] / $m['actualPeriod'] - 1 ) );
+	}
+
+	/**
+	 * Get a string hash describing the query conditions
+	 *
+	 * @param SelectQueryBuilder $sqb
+	 * @return string
+	 */
+	private function getCondsHash( SelectQueryBuilder $sqb ): string {
+		$info = $sqb->getQueryInfo();
+		$blob = $this->db->makeList( $info['conds'], ISQLPlatform::LIST_AND );
+		foreach ( $info['join_conds'] as $join ) {
+			if ( is_string( $join[1] ) ) {
+				$joinCond = $join[1];
+			} else {
+				$joinCond = $this->db->makeList( $join[1], ISQLPlatform::LIST_AND );
+			}
+			$blob .= ' AND ' . $joinCond;
+		}
+		return md5( $blob );
+	}
+
+	private function newRateEstimator( string $key ): QueryRateEstimator {
+		return new QueryRateEstimator(
+			$this->objectCacheFactory->getLocalClusterInstance(),
+			$this->rcMaxAge,
+			$key
+		);
 	}
 
 	/**

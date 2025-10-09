@@ -11116,6 +11116,17 @@ class MainConfigSchema {
 		'type' => 'boolean',
 	];
 
+	/**
+	 * Allow queries on the recentchanges table to be partitioned by rc_timestamp.
+	 * This may help with performance. (T403798)
+	 *
+	 * @since 1.45
+	 */
+	public const EnableChangesListQueryPartitioning = [
+		'default' => false,
+		'type' => 'bool',
+	];
+
 	// endregion -- end RC/watchlist
 
 	/***************************************************************************/

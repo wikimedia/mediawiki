@@ -10,10 +10,11 @@ class ChangeTagsCondition extends ChangesListConditionBase {
 	private float|int $denseRcSizeThreshold = 10000;
 
 	private ?int $limit = null;
-	private float|int $queryDensity = 1;
+	private bool $densityThresholdReached = true;
 
 	public function __construct(
 		private ChangeTagsStore $changeTagsStore,
+		private TableStatsProvider $rcStats,
 		private bool $miserMode,
 	) {
 	}
@@ -28,12 +29,11 @@ class ChangeTagsCondition extends ChangesListConditionBase {
 	}
 
 	/**
-	 * @param float|int $density The proportion of rows from the recentchanges table
-	 *   likely to be returned by the query, ignoring the query limit. A number between
-	 *   0 and 1.
+	 * @param bool $reached Whether the query density is high enough to apply
+	 *   heuristics for a straight join
 	 */
-	public function setDensity( $density ) {
-		$this->queryDensity = $density;
+	public function setDensityThresholdReached( bool $reached ) {
+		$this->densityThresholdReached = $reached;
 	}
 
 	/**
@@ -122,7 +122,7 @@ class ChangeTagsCondition extends ChangesListConditionBase {
 	protected function isDenseTagFilter( IReadableDatabase $dbr, array $tagIds ) {
 		if ( !$tagIds
 			// Only on RecentChanges or similar
-			|| $this->queryDensity < 0.5
+			|| !$this->densityThresholdReached
 			// Need a limit
 			|| !$this->limit
 			// This is a MySQL-specific hack
@@ -133,18 +133,7 @@ class ChangeTagsCondition extends ChangesListConditionBase {
 			return false;
 		}
 
-		$rcInfo = $dbr->newSelectQueryBuilder()
-			->select( [
-				'min_id' => 'MIN(rc_id)',
-				'max_id' => 'MAX(rc_id)',
-			] )
-			->from( 'recentchanges' )
-			->caller( __METHOD__ )
-			->fetchRow();
-		if ( !$rcInfo || $rcInfo->min_id === null ) {
-			return false;
-		}
-		$rcSize = $rcInfo->max_id - $rcInfo->min_id;
+		$rcSize = $this->rcStats->getIdDelta();
 		if ( $rcSize < $this->denseRcSizeThreshold ) {
 			// RC is too small to worry about
 			return false;
@@ -152,7 +141,7 @@ class ChangeTagsCondition extends ChangesListConditionBase {
 		$tagCount = $dbr->newSelectQueryBuilder()
 			->table( 'change_tag' )
 			->where( [
-				$dbr->expr( 'ct_rc_id', '>=', $rcInfo->min_id ),
+				$dbr->expr( 'ct_rc_id', '>=', $this->rcStats->getMinId() ),
 				'ct_tag_id' => $tagIds
 			] )
 			->caller( __METHOD__ )

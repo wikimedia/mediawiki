@@ -542,6 +542,8 @@ return [
 			$services->getUserFactory(),
 			$services->getLinkTargetLookup(),
 			$services->getChangeTagsStore(),
+			$services->getObjectCacheFactory(),
+			$services->getStatsFactory(),
 			$services->getConnectionProvider(),
 		);
 	},

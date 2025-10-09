@@ -3,12 +3,14 @@
 namespace MediaWiki\Tests\Unit\RecentChanges\ChangesListQuery;
 
 use MediaWiki\RecentChanges\ChangesListQuery\ChangesListQuery;
-use Wikimedia\TestingAccessWrapper;
+use MediaWiki\Tests\Unit\MockServiceDependenciesTrait;
 
 /**
  * @covers \MediaWiki\RecentChanges\ChangesListQuery\ChangesListQuery
  */
 class ChangesListQueryUnitTest extends \MediaWikiUnitTestCase {
+	use MockServiceDependenciesTrait;
+
 	public static function provideSortAndTruncate() {
 		return [
 			'empty' => [
@@ -46,13 +48,9 @@ class ChangesListQueryUnitTest extends \MediaWikiUnitTestCase {
 	 * @param int[] $expected
 	 */
 	public function testSortAndTruncate( $limit, $rows, $expected ) {
-		$query = $this->getMockBuilder( ChangesListQuery::class )
-			->disableOriginalConstructor()
-			->getMock();
-		/** @var ChangesListQuery $queryWrapper */
-		$queryWrapper = TestingAccessWrapper::newFromObject( $query );
-		$queryWrapper->limit = $limit;
-		$finalRows = $queryWrapper->sortAndTruncate( $rows );
+		$query = $this->newServiceInstance( ChangesListQuery::class, [] );
+		$finalRows = [];
+		$query->sortAndTruncate( $rows, $limit, $finalRows );
 		$result = [];
 		foreach ( $finalRows as $row ) {
 			$result[] = $row->rc_id;

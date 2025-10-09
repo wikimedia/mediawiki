@@ -12,7 +12,9 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Permissions\SimpleAuthority;
 use MediaWiki\RecentChanges\ChangesListQuery\ChangesListQuery;
+use MediaWiki\RecentChanges\ChangesListQuery\ChangesListQueryFactory;
 use MediaWiki\RecentChanges\ChangesListQuery\ChangeTagsCondition;
+use MediaWiki\RecentChanges\ChangesListQuery\TableStatsProvider;
 use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Revision\SlotRecord;
@@ -87,6 +89,7 @@ class ChangesListQueryTest extends \MediaWikiIntegrationTestCase {
 			'RecentChangeSources',
 			[]
 		);
+		ConvertibleTimestamp::setFakeTime( '20250105000000' );
 	}
 
 	private static function getRcIds() {
@@ -211,7 +214,7 @@ class ChangesListQueryTest extends \MediaWikiIntegrationTestCase {
 		if ( !empty( $options['watchlist-expiry'] ) ) {
 			$extraConfig[MainConfigNames::WatchlistExpiry] = true;
 		}
-		$query = new ChangesListQuery(
+		$factory = new ChangesListQueryFactory(
 			new ServiceOptions(
 				ChangesListQuery::CONSTRUCTOR_OPTIONS,
 				$extraConfig,
@@ -223,9 +226,11 @@ class ChangesListQueryTest extends \MediaWikiIntegrationTestCase {
 			$services->getUserFactory(),
 			$services->getLinkTargetLookup(),
 			$services->getChangeTagsStore(),
-			$this->getDb(),
+			$services->getObjectCacheFactory(),
+			$services->getStatsFactory(),
+			$services->getConnectionProvider(),
 		);
-		$query
+		$query = $factory->newQuery()
 			->caller( __CLASS__ )
 			->fields( [ 'rc_id' ] );
 		if ( empty( $options['anon-watchlist'] ) ) {
@@ -678,8 +683,26 @@ class ChangesListQueryTest extends \MediaWikiIntegrationTestCase {
 	 * @param array $options
 	 */
 	public function testActions( $actions, $expectedInfo, $expectedIds, $options = [] ) {
-		ConvertibleTimestamp::setFakeTime( '20250105000000' );
 		$query = $this->getQuery( $options );
+		foreach ( $actions as $action ) {
+			$query->applyAction( ...$action );
+		}
+		$this->doQuery( $query, $expectedInfo, $expectedIds );
+	}
+
+	/**
+	 * @dataProvider provideActions
+	 * @param array $actions
+	 * @param array $expectedInfo
+	 * @param int[] $expectedIds
+	 * @param array $options
+	 */
+	public function testActionsWithPartitioning( $actions, $expectedInfo, $expectedIds, $options = [] ) {
+		if ( $expectedInfo !== null ) {
+			$expectedInfo['fields'][] = 'rc_timestamp';
+		}
+		$query = $this->getQuery( $options );
+		$query->forcePartitioning();
 		foreach ( $actions as $action ) {
 			$query->applyAction( ...$action );
 		}
@@ -711,7 +734,6 @@ class ChangesListQueryTest extends \MediaWikiIntegrationTestCase {
 	 * @param array $options
 	 */
 	public function testHighlight( $action, array $expectedIds, array $options = [] ) {
-		ConvertibleTimestamp::setFakeTime( '20250105000000' );
 		$query = $this->getQuery( $options );
 		$query->highlight( '', ...$action );
 		$res = $query->fetchResult();
@@ -960,10 +982,12 @@ class ChangesListQueryTest extends \MediaWikiIntegrationTestCase {
 		}
 
 		$query = $this->getQuery();
+		$rcStats = $this->createNoOpMock( TableStatsProvider::class );
 
 		$module = new class (
 			$dense,
 			$this->getServiceContainer()->getChangeTagsStore(),
+			$rcStats
 		)  extends ChangeTagsCondition {
 			/** @var bool */
 			private $dense;
@@ -971,8 +995,9 @@ class ChangesListQueryTest extends \MediaWikiIntegrationTestCase {
 			public function __construct(
 				$dense,
 				ChangeTagsStore $changeTagsStore,
+				$rcStats
 			) {
-				parent::__construct( $changeTagsStore, true );
+				parent::__construct( $changeTagsStore, $rcStats, true );
 				$this->dense = $dense;
 			}
 

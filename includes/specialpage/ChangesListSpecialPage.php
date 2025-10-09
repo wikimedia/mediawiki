@@ -1270,6 +1270,11 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		}
 
 		$query->minTimestamp( $cutoff );
+
+		// Feature flag
+		if ( $this->getRequest()->getBool( 'enable_partitioning' ) ) {
+			$query->enablePartitioning();
+		}
 		return $query;
 	}
 

@@ -3784,6 +3784,12 @@ class MainConfigNames {
 	public const EditWatchlistPaginate = 'EditWatchlistPaginate';
 
 	/**
+	 * Name constant for the EnableChangesListQueryPartitioning setting, for use with Config::get()
+	 * @see MainConfigSchema::EnableChangesListQueryPartitioning
+	 */
+	public const EnableChangesListQueryPartitioning = 'EnableChangesListQueryPartitioning';
+
+	/**
 	 * Name constant for the RightsPage setting, for use with Config::get()
 	 * @see MainConfigSchema::RightsPage
 	 */

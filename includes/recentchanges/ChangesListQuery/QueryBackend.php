@@ -12,6 +12,15 @@ use Wikimedia\Rdbms\IExpression;
  * @since 1.45
  */
 interface QueryBackend {
+	/** The naive density of a RecentChangesLinked query */
+	public const DENSITY_LINKS = 'links';
+	/** The naive density of a watchlist query */
+	public const DENSITY_WATCHLIST = 'watchlist';
+	/** The naive density of a user/actor condition */
+	public const DENSITY_USER = 'user';
+	/** The minimum density to active change tag heuristics */
+	public const DENSITY_CHANGE_TAG_THRESHOLD = 'change-tag-threshold';
+
 	/**
 	 * Join on the specified table and declare that it will be used to provide
 	 * fields for the SELECT clause. The table name must be registered in the
@@ -44,11 +53,12 @@ interface QueryBackend {
 	public function distinct(): self;
 
 	/**
-	 * Adjust the density heuristic by multiplying it by the given factor.
-	 * This is the proportion of recentchanges rows likely to be matched by the
+	 * Adjust the density heuristic by multiplying it by the given factor. This
+	 * sets the proportion of recentchanges rows likely to be matched by the
 	 * conditions.
 	 *
-	 * @param float|int $density
+	 * @param float|int|string $density Either a number or one of the
+	 *   self::DENSITY_* constants.
 	 * @return $this
 	 */
 	public function adjustDensity( $density ): self;

@@ -3769,6 +3769,12 @@ $wgWatchlistExpiryMaxDuration = null;
 $wgEditWatchlistPaginate = null;
 
 /**
+ * Config variable stub for the EnableChangesListQueryPartitioning setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::EnableChangesListQueryPartitioning
+ */
+$wgEnableChangesListQueryPartitioning = null;
+
+/**
  * Config variable stub for the RightsPage setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::RightsPage
  */
