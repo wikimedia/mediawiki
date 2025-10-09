@@ -4,6 +4,7 @@ namespace MediaWiki\Tests\Integration\User\TempUser;
 
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Auth\Throttler;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Request\FauxRequest;
@@ -286,6 +287,60 @@ class TempUserCreatorTest extends \MediaWikiIntegrationTestCase {
 				->where( [ 'actor_name' => '~2', 'log_action' => 'autocreate' ] )
 				->fetchRowCount(),
 			'A logging entry indicating the autocreation of ~2 was not expected.'
+		);
+	}
+
+	public function testRateLimitIPv6() {
+		$this->enableAutoCreateTempUser( [
+			'serialProvider' => [ 'type' => 'local', 'useYear' => false ],
+			'matchPattern' => '~$1',
+		] );
+
+		$this->overrideConfigValues( [
+			MainConfigNames::AccountCreationThrottle => [
+				'count' => 10,
+				'seconds' => 86400
+			],
+			MainConfigNames::TempAccountCreationThrottle => [
+				[
+					'count' => 1,
+					'seconds' => 600,
+				],
+				[
+					'count' => 6,
+					'seconds' => 86400,
+				],
+			],
+		] );
+
+		$tuc = $this->getServiceContainer()->getTempUserCreator();
+		$this->assertTrue( $tuc->isAutoCreateAction( 'edit' ) );
+		$this->assertTrue( $tuc->isTempName( '~1' ) );
+
+		// Create a temporary account with an IPv6 IP
+		RequestContext::getMain()->getRequest()->setIP( '1:1:1:1:1:1:1:1' );
+		$status = $tuc->create( null, RequestContext::getMain()->getRequest() );
+		$this->assertSame( '~1', $status->getUser()->getName() );
+
+		// Create a temporary account on a different IPv6 IP range and assert it succeeds
+		RequestContext::getMain()->getRequest()->setIP( '2:2:2:2:2:2:2:2' );
+		$status = $tuc->create( null, RequestContext::getMain()->getRequest() );
+		$this->assertSame( '~2', $status->getUser()->getName() );
+
+		// Attempt to create another temporary account on an IP in the same /64 range as one of the
+		// already created temporary accounts and assert that it fails
+		RequestContext::getMain()->getRequest()->setIP( '1:1:1:1:1:1:1:2' );
+		$status = $tuc->create( null, RequestContext::getMain()->getRequest() );
+		$this->assertStatusError( 'acct_creation_throttle_hit', $status );
+		// If the temporary account creation failed due to the rate limit, then no log entry should have been created.
+		$this->assertSame(
+			0,
+			$this->getDb()->newSelectQueryBuilder()
+				->from( 'logging' )
+				->join( 'actor', null, 'log_actor=actor_id' )
+				->where( [ 'actor_name' => '~3', 'log_action' => 'autocreate' ] )
+				->fetchRowCount(),
+			'A logging entry indicating the autocreation of ~3 was not expected.'
 		);
 	}
 }

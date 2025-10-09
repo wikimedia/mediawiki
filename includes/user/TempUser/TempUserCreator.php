@@ -13,6 +13,7 @@ use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserRigorOptions;
 use MediaWiki\Utils\MWTimestamp;
 use UnexpectedValueException;
+use Wikimedia\IPUtils;
 use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\IReadableDatabase;
@@ -112,10 +113,15 @@ class TempUserCreator implements TempUserConfig {
 		}
 
 		// Check temp account creation rate limits.
-		// TODO: This is duplicated from ThrottlePreAuthenticationProvider
-		// and should be factored out, see T261744
+		// For IPv6 IPs, the throttle should apply to the /64 range
+		$ipToThrottle = $request->getIP();
+		if ( IPUtils::isIPv6( $ipToThrottle ) ) {
+			// Normalize to the beginning of the range
+			[ $ipHex ] = IPUtils::parseRange( $ipToThrottle . '/64' );
+			$ipToThrottle = IPUtils::formatHex( $ipHex ) . '/64';
+		}
 		$result = $this->tempAccountCreationThrottler->increase(
-			null, $request->getIP(), 'TempUserCreator' );
+			null, $ipToThrottle, 'TempUserCreator' );
 		if ( $result ) {
 			// TODO: Use a custom message here (T357777, T357802)
 			$message = wfMessage( 'acct_creation_throttle_hit' )->params( $result['count'] )
