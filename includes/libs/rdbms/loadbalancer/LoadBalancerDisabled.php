@@ -77,18 +77,6 @@ class LoadBalancerDisabled extends LoadBalancer {
 	 *
 	 * @return never
 	 */
-	public function getConnectionRef( $i, $groups = [], $domain = false, $flags = 0 ): never {
-		throw new RuntimeException( 'Database backend disabled' );
-	}
-
-	/**
-	 * @param int $i Specific (overrides $groups) or virtual (DB_PRIMARY/DB_REPLICA) server index
-	 * @param string[]|string $groups Query group(s) in preference order; [] for the default group
-	 * @param string|false $domain DB domain ID or false for the local domain
-	 * @param int $flags Bitfield of CONN_* class constants
-	 *
-	 * @return never
-	 */
 	public function getMaintenanceConnectionRef( $i, $groups = [], $domain = false, $flags = 0 ): never {
 		throw new RuntimeException( 'Database backend disabled' );
 	}

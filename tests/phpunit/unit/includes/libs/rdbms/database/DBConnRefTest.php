@@ -44,12 +44,6 @@ class DBConnRefTest extends TestCase {
 		$lb->method( 'getConnection' )->willReturnCallback( $getDatabaseMock );
 		$lb->method( 'getConnectionInternal' )->willReturnCallback( $getDatabaseMock );
 
-		$lb->method( 'getConnectionRef' )->willReturnCallback(
-			function () use ( $lb ) {
-				return $this->getDBConnRef( $lb );
-			}
-		);
-
 		return $lb;
 	}
 

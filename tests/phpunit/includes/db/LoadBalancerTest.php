@@ -9,7 +9,6 @@ use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\DBReadOnlyRoleError;
-use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 use Wikimedia\Rdbms\LoadBalancer;
 use Wikimedia\Rdbms\LoadMonitorNull;
@@ -675,25 +674,6 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 
 		$this->expectException( DBReadOnlyRoleError::class );
 		$rConn->insert( 'test', [ 't' => 1 ], __METHOD__ );
-	}
-
-	public function testGetConnectionRefDefaultGroup() {
-		$lb = $this->newMultiServerLocalLoadBalancer( [ 'defaultGroup' => 'vslow' ] );
-		$lbWrapper = TestingAccessWrapper::newFromObject( $lb );
-
-		$rVslow = $lb->getConnection( DB_REPLICA );
-		$vslowIndexPicked = $rVslow->getLBInfo( 'serverIndex' );
-
-		$this->assertSame( $vslowIndexPicked, $lbWrapper->getExistingReaderIndex( 'vslow' ) );
-	}
-
-	public function testGetConnectionRefUnknownDefaultGroup() {
-		$lb = $this->newMultiServerLocalLoadBalancer( [ 'defaultGroup' => 'invalid' ] );
-
-		$this->assertInstanceOf(
-			IDatabase::class,
-			$lb->getConnection( DB_REPLICA )
-		);
 	}
 
 	public function testQueryGroupIndex() {
