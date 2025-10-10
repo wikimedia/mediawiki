@@ -343,6 +343,8 @@ because of Phabricator reports.
   - ContentHandler::getAllContentFormats(), deprecated since 1.35
 * LoadBalancer::getConnectionRef(), deprecated since 1.39, has now been removed.
   Use ::getConnection() instead.
+* PasswordFactory::init(), deprecated since 1.32, has been removed. Instead, you
+  should initialise settings using the constructor.
 * …
 
 === Deprecations in 1.45 ===

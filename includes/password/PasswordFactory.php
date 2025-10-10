@@ -11,8 +11,6 @@ declare( strict_types = 1 );
 namespace MediaWiki\Password;
 
 use InvalidArgumentException;
-use MediaWiki\Config\Config;
-use MediaWiki\MainConfigNames;
 use MWCryptRand;
 use Wikimedia\ObjectFactory\ObjectFactory;
 
@@ -95,23 +93,6 @@ final class PasswordFactory {
 	 */
 	public function getDefaultType(): string {
 		return $this->default;
-	}
-
-	/**
-	 * @deprecated since 1.32 Initialize settings using the constructor
-	 *   Emitting deprecation warnings since 1.41.
-	 *
-	 * Initialize the internal static variables using the global variables
-	 *
-	 * @param Config $config Configuration object to load data from
-	 */
-	public function init( Config $config ): void {
-		wfDeprecated( __METHOD__, '1.32' );
-		foreach ( $config->get( MainConfigNames::PasswordConfig ) as $type => $options ) {
-			$this->register( $type, $options );
-		}
-
-		$this->setDefaultType( $config->get( MainConfigNames::PasswordDefault ) );
 	}
 
 	/**
