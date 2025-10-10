@@ -177,6 +177,7 @@ use MediaWiki\User\ActorStoreFactory;
 use MediaWiki\User\BotPasswordStore;
 use MediaWiki\User\CentralId\CentralIdLookup;
 use MediaWiki\User\CentralId\CentralIdLookupFactory;
+use MediaWiki\User\MultiFormatUserIdentityLookup;
 use MediaWiki\User\Options\StaticUserOptionsLookup;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\Options\UserOptionsManager;
@@ -1554,6 +1555,10 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getMovePageFactory(): MovePageFactory {
 		return $this->getService( 'MovePageFactory' );
+	}
+
+	public function getMultiFormatUserIdentityLookup(): MultiFormatUserIdentityLookup {
+		return $this->getService( 'MultiFormatUserIdentityLookup' );
 	}
 
 	/**

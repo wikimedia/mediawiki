@@ -248,6 +248,7 @@ use MediaWiki\User\ActorStoreFactory;
 use MediaWiki\User\BotPasswordStore;
 use MediaWiki\User\CentralId\CentralIdLookup;
 use MediaWiki\User\CentralId\CentralIdLookupFactory;
+use MediaWiki\User\MultiFormatUserIdentityLookup;
 use MediaWiki\User\Options\ConditionalDefaultsLookup;
 use MediaWiki\User\Options\DefaultOptionsLookup;
 use MediaWiki\User\Options\StaticUserOptionsLookup;
@@ -1479,6 +1480,14 @@ return [
 
 	'MovePageFactory' => static function ( MediaWikiServices $services ): MovePageFactory {
 		return $services->getService( '_PageCommandFactory' );
+	},
+
+	'MultiFormatUserIdentityLookup' => static function ( MediaWikiServices $services ): MultiFormatUserIdentityLookup {
+		return new MultiFormatUserIdentityLookup(
+			$services->getActorStoreFactory(),
+			$services->getUserFactory(),
+			new ServiceOptions( MultiFormatUserIdentityLookup::CONSTRUCTOR_OPTIONS, $services->getMainConfig() )
+		);
 	},
 
 	'NamespaceInfo' => static function ( MediaWikiServices $services ): NamespaceInfo {
