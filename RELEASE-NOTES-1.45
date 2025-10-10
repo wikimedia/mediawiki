@@ -340,6 +340,7 @@ because of Phabricator reports.
   - ContentHandler::getForModelID(), deprecated since 1.35
   - ContentHandler::getForContent(), deprecated since 1.35
   - ContentHandler::getContentModels(), deprecated since 1.35
+  - ContentHandler::getAllContentFormats(), deprecated since 1.35
 * …
 
 === Deprecations in 1.45 ===

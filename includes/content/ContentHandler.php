@@ -137,18 +137,6 @@ abstract class ContentHandler {
 		return $msg->exists() ? $msg->plain() : $name;
 	}
 
-	/**
-	 * @return string[]
-	 *
-	 * @deprecated since 1.35, use ContentHandlerFactory::getAllContentFormats
-	 *   Hard deprecated since 1.43.
-	 * @see ContentHandlerFactory::getAllContentFormats
-	 */
-	public static function getAllContentFormats() {
-		wfDeprecated( __METHOD__, '1.35' );
-		return MediaWikiServices::getInstance()->getContentHandlerFactory()->getAllContentFormats();
-	}
-
 	// ------------------------------------------------------------------------
 
 	/**
