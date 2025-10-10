@@ -2428,7 +2428,7 @@
 	"nolinkshere-filter": "Cari axtarış parametrləri ilə heç bir səhifə <strong>$2</strong> ilə əlaqələndirilmir.",
 	"nolinkshere-ns": "Seçilmiş ad aralığında heç bir səhifə '''$2''' səhifəsinə keçid vermir.",
 	"isredirect": "istiqamətləndirmə səhifəsi",
-	"istemplate": "daxil olmuş",
+	"istemplate": "şablonla",
 	"isimage": "şəkil keçidi",
 	"whatlinkshere-prev": "{{PLURAL:$1|əvvəlki|əvvəlki $1}}",
 	"whatlinkshere-next": "{{PLURAL:$1|növbəti|növbəti $1}}",

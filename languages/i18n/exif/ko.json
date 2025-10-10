@@ -9,6 +9,7 @@
 			"Mooozi",
 			"Revi",
 			"Ykhwong",
+			"메지로 아르당",
 			"아라"
 		]
 	},
@@ -395,5 +396,7 @@
 	"exif-croppedarealeftpixels": "파노라마 왼쪽 자르기",
 	"exif-croppedareatoppixels": "파노라마 위쪽 자르기",
 	"exif-initialcameradolly": "초기 카메라 돌리",
-	"exif-stitchingsoftware": "스티칭 소프트웨어"
+	"exif-stitchingsoftware": "스티칭 소프트웨어",
+	"exif-digitalsourcetype": "디지털 미디어의 출처",
+	"exif-digitalsourcetype-digitalcapture": "디지털 카메라 또는 녹음기"
 }

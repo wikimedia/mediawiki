@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"InNerdsWeTrust",
 			"Jonny84",
 			"Przemub",
 			"Teutonius",
@@ -10,7 +11,7 @@
 	"january": "Januar",
 	"february": "Februar",
 	"march": "März",
-	"april": "Oapril",
+	"april": "Oprill",
 	"may_long": "Mai",
 	"june": "Juni",
 	"july": "Juli",
@@ -22,7 +23,7 @@
 	"january-gen": "Januars",
 	"february-gen": "Februars",
 	"march-gen": "Märzes",
-	"april-gen": "Aprils",
+	"april-gen": "Oprills",
 	"may-gen": "Mais",
 	"june-gen": "Junis",
 	"july-gen": "Julis",
@@ -34,7 +35,7 @@
 	"jan": "Jan.",
 	"feb": "Feb.",
 	"mar": "Mär.",
-	"apr": "Apr.",
+	"apr": "Opr.",
 	"may": "Mai",
 	"jun": "Jun.",
 	"jul": "Jul.",
