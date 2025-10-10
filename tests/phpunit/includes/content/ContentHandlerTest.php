@@ -192,27 +192,6 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $expected, $lang->getCode() );
 	}
 
-	public function testGetContentText_Null() {
-		$this->hideDeprecated( 'MediaWiki\\Content\\ContentHandler::getContentText' );
-		$content = null;
-		$text = ContentHandler::getContentText( $content );
-		$this->assertSame( '', $text );
-	}
-
-	public function testGetContentText_TextContent() {
-		$this->hideDeprecated( 'MediaWiki\\Content\\ContentHandler::getContentText' );
-		$content = new WikitextContent( "hello world" );
-		$text = ContentHandler::getContentText( $content );
-		$this->assertEquals( $content->getText(), $text );
-	}
-
-	public function testGetContentText_NonTextContent() {
-		$this->hideDeprecated( 'MediaWiki\\Content\\ContentHandler::getContentText' );
-		$content = new DummyContentForTesting( "hello world" );
-		$text = ContentHandler::getContentText( $content );
-		$this->assertNull( $text );
-	}
-
 	public static function provideMakeContent() {
 		return [
 			[ 'hallo', 'Help:Test', null, null, CONTENT_MODEL_WIKITEXT, false ],

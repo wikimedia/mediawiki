@@ -334,6 +334,7 @@ because of Phabricator reports.
 * ParserOutput::SUPPORTS_STATELESS_TRANSFORMS and
   ParserOutput::SUPPORTS_UNWRAP_TRANSFORM, constants which were added as
   feature flags in MW 1.31, have been removed.
+* ContentHandler::getContentText(), deprecated in 1.37, has been now removed.
 * …
 
 === Deprecations in 1.45 ===

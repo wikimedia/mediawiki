@@ -73,7 +73,7 @@ Most importantly, the following functions have been deprecated:
 
 Also, the old `Article::getContent()` (which returns text) is superceded by `Article::getContentObject()`. However, both methods should be avoided since they do not provide clean access to the page's actual content. For instance, they may return a system message for non-existing pages. Use `WikiPage::getContent()` instead.
 
-Code that relies on a textual representation of the page content should eventually be rewritten. However, `ContentHandler::getContentText()` provides a stop-gap that can be used to get text for a page. It will return the text for text based content, and null for any other content.
+Code that relies on a textual representation of the page content should eventually be rewritten.
 
 For rendering page content, `Content::getParserOutput()` should be used instead of accessing the parser directly. `WikiPage::makeParserOptions()` can be used to construct appropriate options.
 

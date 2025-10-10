@@ -77,40 +77,6 @@ abstract class ContentHandler {
 	use ProtectedHookAccessorTrait;
 
 	/**
-	 * Convenience function for getting flat text from a Content object. This
-	 * should only be used in the context of backwards compatibility with code
-	 * that is not yet able to handle Content objects!
-	 *
-	 * If $content is null, this method returns the empty string.
-	 *
-	 * If $content is an instance of TextContent, this method returns the flat
-	 * text as returned by $content->getText().
-	 *
-	 * If $content is not a TextContent object, this method returns null.
-	 *
-	 * @since 1.21
-	 *
-	 * @deprecated since 1.37, use Content::getText() for TextContent instances
-	 * instead. Hard deprecated since 1.43.
-	 *
-	 * @param Content|null $content
-	 * @return string|null Textual form of the content, if available.
-	 */
-	public static function getContentText( ?Content $content = null ) {
-		wfDeprecated( __METHOD__, '1.37' );
-		if ( $content === null ) {
-			return '';
-		}
-
-		if ( $content instanceof TextContent ) {
-			return $content->getText();
-		}
-
-		wfDebugLog( 'ContentHandler', 'Accessing ' . $content->getModel() . ' content as text!' );
-		return null;
-	}
-
-	/**
 	 * Convenience function for creating a Content object from a given textual
 	 * representation.
 	 *
