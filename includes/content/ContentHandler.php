@@ -138,18 +138,6 @@ abstract class ContentHandler {
 	}
 
 	/**
-	 * @deprecated since 1.35, use ContentHandlerFactory::getContentModels
-	 *   Hard deprecated since 1.43.
-	 * @see ContentHandlerFactory::getContentModels
-	 *
-	 * @return string[]
-	 */
-	public static function getContentModels() {
-		wfDeprecated( __METHOD__, '1.35' );
-		return MediaWikiServices::getInstance()->getContentHandlerFactory()->getContentModels();
-	}
-
-	/**
 	 * @return string[]
 	 *
 	 * @deprecated since 1.35, use ContentHandlerFactory::getAllContentFormats

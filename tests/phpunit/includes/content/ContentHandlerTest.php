@@ -388,8 +388,9 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->setTemporaryHook( 'GetContentModels', static function ( &$models ) {
 			$models[] = 'Ferrari';
 		} );
-		$this->hideDeprecated( 'MediaWiki\\Content\\ContentHandler::getContentModels' );
-		$this->assertContains( 'Ferrari', ContentHandler::getContentModels() );
+
+		$contentModels = $this->getServiceContainer()->getContentHandlerFactory()->getContentModels();
+		$this->assertContains( 'Ferrari', $contentModels );
 	}
 
 	public function testGetSlotDiffRenderer_default() {
