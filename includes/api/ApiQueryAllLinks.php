@@ -18,7 +18,6 @@ use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
-use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\LikeValue;
 
@@ -48,15 +47,13 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 	private NamespaceInfo $namespaceInfo;
 	private GenderCache $genderCache;
 	private LinksMigration $linksMigration;
-	private IConnectionProvider $dbProvider;
 
 	public function __construct(
 		ApiQuery $query,
 		string $moduleName,
 		NamespaceInfo $namespaceInfo,
 		GenderCache $genderCache,
-		LinksMigration $linksMigration,
-		IConnectionProvider $dbProvider
+		LinksMigration $linksMigration
 	) {
 		switch ( $moduleName ) {
 			case 'alllinks':
@@ -103,7 +100,6 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 		$this->namespaceInfo = $namespaceInfo;
 		$this->genderCache = $genderCache;
 		$this->linksMigration = $linksMigration;
-		$this->dbProvider = $dbProvider;
 	}
 
 	public function execute() {
@@ -125,6 +121,7 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 	 * @return void
 	 */
 	private function run( $resultPageSet = null ) {
+		$this->setVirtualDomain( $this->virtualDomain );
 		$db = $this->getDB();
 		$params = $this->extractRequestParams();
 
@@ -239,9 +236,7 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 		}
 		$this->addOption( 'ORDER BY', $orderBy );
 
-		$this->getQueryBuilder()->connection( $this->dbProvider->getReplicaDatabase( $this->virtualDomain ) );
 		$res = $this->select( __METHOD__ );
-		$this->getQueryBuilder()->connection( $this->getDB() );
 
 		// Get gender information
 		if ( $resultPageSet === null && $res->numRows() && $this->namespaceInfo->hasGenderDistinction( $namespace ) ) {

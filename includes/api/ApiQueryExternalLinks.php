@@ -15,7 +15,6 @@ use MediaWiki\Title\Title;
 use MediaWiki\Utils\UrlUtils;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
-use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\LikeValue;
 
@@ -27,18 +26,15 @@ use Wikimedia\Rdbms\LikeValue;
 class ApiQueryExternalLinks extends ApiQueryBase {
 
 	private UrlUtils $urlUtils;
-	private IConnectionProvider $dbProvider;
 
 	public function __construct(
 		ApiQuery $query,
 		string $moduleName,
-		UrlUtils $urlUtils,
-		IConnectionProvider $dbProvider
+		UrlUtils $urlUtils
 	) {
 		parent::__construct( $query, $moduleName, 'el' );
 
 		$this->urlUtils = $urlUtils;
-		$this->dbProvider = $dbProvider;
 	}
 
 	public function execute() {
@@ -97,11 +93,9 @@ class ApiQueryExternalLinks extends ApiQueryBase {
 			$this->addWhere( $db->buildComparison( '>=', $conds ) );
 		}
 
-		$this->getQueryBuilder()->connection(
-			$this->dbProvider->getReplicaDatabase( ExternalLinksTable::VIRTUAL_DOMAIN )
-		);
+		$this->setVirtualDomain( ExternalLinksTable::VIRTUAL_DOMAIN );
 		$res = $this->select( __METHOD__ );
-		$this->getQueryBuilder()->connection( $this->getDB() );
+		$this->resetVirtualDomain();
 
 		$count = 0;
 		foreach ( $res as $row ) {

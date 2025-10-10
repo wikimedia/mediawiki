@@ -16,7 +16,6 @@ use MediaWiki\Title\Title;
 use MediaWiki\Utils\UrlUtils;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
-use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * A query module to list all interwiki links on a page
@@ -26,18 +25,15 @@ use Wikimedia\Rdbms\IConnectionProvider;
 class ApiQueryIWLinks extends ApiQueryBase {
 
 	private UrlUtils $urlUtils;
-	private IConnectionProvider $dbProvider;
 
 	public function __construct(
 		ApiQuery $query,
 		string $moduleName,
-		UrlUtils $urlUtils,
-		IConnectionProvider $dbProvider
+		UrlUtils $urlUtils
 	) {
 		parent::__construct( $query, $moduleName, 'iw' );
 
 		$this->urlUtils = $urlUtils;
-		$this->dbProvider = $dbProvider;
 	}
 
 	public function execute() {
@@ -66,22 +62,20 @@ class ApiQueryIWLinks extends ApiQueryBase {
 			$prop = [ 'url' => 1 ];
 		}
 
-		$db = $this->dbProvider->getReplicaDatabase( InterwikiLinksTable::VIRTUAL_DOMAIN );
-		$this->getQueryBuilder()->connection( $db );
+		$this->setVirtualDomain( InterwikiLinksTable::VIRTUAL_DOMAIN );
 
 		$this->addFields( [
 			'iwl_from',
 			'iwl_prefix',
 			'iwl_title'
 		] );
-
 		$this->addTables( 'iwlinks' );
 		$this->addWhereFld( 'iwl_from', array_keys( $pages ) );
 
 		if ( $params['continue'] !== null ) {
 			$cont = $this->parseContinueParamOrDie( $params['continue'], [ 'int', 'string', 'string' ] );
 			$op = $params['dir'] == 'descending' ? '<=' : '>=';
-			$this->addWhere( $db->buildComparison( $op, [
+			$this->addWhere( $this->getDB()->buildComparison( $op, [
 				'iwl_from' => $cont[0],
 				'iwl_prefix' => $cont[1],
 				'iwl_title' => $cont[2],

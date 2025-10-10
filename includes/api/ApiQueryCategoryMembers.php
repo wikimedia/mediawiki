@@ -15,7 +15,6 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
-use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * A query module to enumerate pages that belong to a category.
@@ -25,17 +24,14 @@ use Wikimedia\Rdbms\IConnectionProvider;
 class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 
 	private Collation $collation;
-	private IConnectionProvider $connProvider;
 
 	public function __construct(
 		ApiQuery $query,
 		string $moduleName,
-		CollationFactory $collationFactory,
-		IConnectionProvider $connProvider
+		CollationFactory $collationFactory
 	) {
 		parent::__construct( $query, $moduleName, 'cm' );
 		$this->collation = $collationFactory->getCategoryCollation();
-		$this->connProvider = $connProvider;
 	}
 
 	public function execute() {
@@ -81,8 +77,8 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 		$fld_timestamp = isset( $prop['timestamp'] );
 		$fld_type = isset( $prop['type'] );
 
-		$db = $this->connProvider->getReplicaDatabase( CategoryLinksTable::VIRTUAL_DOMAIN );
-		$this->getQueryBuilder()->connection( $db );
+		$this->setVirtualDomain( CategoryLinksTable::VIRTUAL_DOMAIN );
+		$db = $this->getDB();
 
 		if ( $resultPageSet === null ) {
 			$this->addFields( [ 'cl_from', 'cl_sortkey', 'cl_type', 'page_namespace', 'page_title' ] );

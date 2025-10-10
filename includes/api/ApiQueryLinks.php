@@ -16,7 +16,6 @@ use MediaWiki\ParamValidator\TypeDef\NamespaceDef;
 use MediaWiki\Title\Title;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
-use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * A query module to list all wiki links on a given set of pages.
@@ -36,14 +35,12 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 
 	private LinkBatchFactory $linkBatchFactory;
 	private LinksMigration $linksMigration;
-	private IConnectionProvider $dbProvider;
 
 	public function __construct(
 		ApiQuery $query,
 		string $moduleName,
 		LinkBatchFactory $linkBatchFactory,
-		LinksMigration $linksMigration,
-		IConnectionProvider $dbProvider
+		LinksMigration $linksMigration
 	) {
 		switch ( $moduleName ) {
 			case self::LINKS:
@@ -67,7 +64,6 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 		parent::__construct( $query, $moduleName, $this->prefix );
 		$this->linkBatchFactory = $linkBatchFactory;
 		$this->linksMigration = $linksMigration;
-		$this->dbProvider = $dbProvider;
 	}
 
 	public function execute() {
@@ -95,8 +91,7 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 
 		$params = $this->extractRequestParams();
 
-		$db = $this->dbProvider->getReplicaDatabase( $this->virtualdomain );
-		$this->getQueryBuilder()->connection( $db );
+		$this->setVirtualDomain( $this->virtualdomain );
 
 		if ( isset( $this->linksMigration::$mapping[$this->table] ) ) {
 			[ $nsField, $titleField ] = $this->linksMigration->getTitleFields( $this->table );
@@ -136,7 +131,7 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 				// No titles, no results!
 				return;
 			}
-			$cond = $lb->constructSet( $this->prefix, $db );
+			$cond = $lb->constructSet( $this->prefix, $this->getDB() );
 			$this->addWhere( $cond );
 			$multiNS = count( $lb->data ) !== 1;
 			$multiTitle = count( array_merge( ...$lb->data ) ) !== 1;
@@ -146,10 +141,9 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 		}
 
 		if ( $params['continue'] !== null ) {
-			$db = $this->getDB();
 			$cont = $this->parseContinueParamOrDie( $params['continue'], [ 'int', 'int', 'string' ] );
 			$op = $params['dir'] == 'descending' ? '<=' : '>=';
-			$this->addWhere( $db->buildComparison( $op, [
+			$this->addWhere( $this->getDB()->buildComparison( $op, [
 				"{$this->prefix}_from" => $cont[0],
 				$nsField => $cont[1],
 				$titleField => $cont[2],

@@ -18,7 +18,6 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
-use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * This implements prop=redirects, prop=linkshere, prop=catmembers,
@@ -74,17 +73,14 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 	];
 
 	private LinksMigration $linksMigration;
-	private IConnectionProvider $dbProvider;
 
 	public function __construct(
 		ApiQuery $query,
 		string $moduleName,
-		LinksMigration $linksMigration,
-		IConnectionProvider $dbProvider
+		LinksMigration $linksMigration
 	) {
 		parent::__construct( $query, $moduleName, self::$settings[$moduleName]['code'] );
 		$this->linksMigration = $linksMigration;
-		$this->dbProvider = $dbProvider;
 	}
 
 	public function execute() {
@@ -103,8 +99,8 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 		$settings = self::$settings[$this->getModuleName()];
 
 		$domain = $settings['virtualdomain'] ?? false;
-		$db = $this->dbProvider->getReplicaDatabase( $domain );
-		$this->getQueryBuilder()->connection( $db );
+		$this->setVirtualDomain( $domain );
+		$db = $this->getDB();
 
 		$params = $this->extractRequestParams();
 		$prop = array_fill_keys( $params['prop'], true );

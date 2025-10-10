@@ -15,7 +15,6 @@ use MediaWiki\Linker\LinksMigration;
 use MediaWiki\Title\Title;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
-use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * This is a three-in-one module to query:
@@ -33,7 +32,6 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 	private $rootTitle;
 
 	private LinksMigration $linksMigration;
-	private IConnectionProvider $dbProvider;
 
 	/** @var array */
 	private $params;
@@ -97,8 +95,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 	public function __construct(
 		ApiQuery $query,
 		string $moduleName,
-		LinksMigration $linksMigration,
-		IConnectionProvider $dbProvider,
+		LinksMigration $linksMigration
 	) {
 		$settings = $this->backlinksSettings[$moduleName];
 		$prefix = $settings['prefix'];
@@ -124,7 +121,6 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		$this->bl_code = $code;
 		$this->helpUrl = $settings['helpurl'];
 		$this->virtual_domain = $settings['virtualdomain'];
-		$this->dbProvider = $dbProvider;
 	}
 
 	public function execute() {
@@ -198,9 +194,9 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		$this->addOption( 'ORDER BY', $orderBy );
 		$this->addOption( 'STRAIGHT_JOIN' );
 
-		$this->getQueryBuilder()->connection( $this->dbProvider->getReplicaDatabase( $this->virtual_domain ) );
+		$this->setVirtualDomain( $this->virtual_domain );
 		$res = $this->select( __METHOD__ );
-		$this->getQueryBuilder()->connection( $this->getDB() );
+		$this->resetVirtualDomain();
 
 		if ( $resultPageSet === null ) {
 			$this->executeGenderCacheFromResultWrapper( $res, __METHOD__ );
