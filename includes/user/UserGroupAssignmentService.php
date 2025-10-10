@@ -12,6 +12,7 @@ use MediaWiki\Logging\ManualLogEntry;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Title\Title;
+use MediaWiki\User\TempUser\TempUserConfig;
 
 /**
  * This class represents a service that provides high-level operations on user groups.
@@ -39,8 +40,34 @@ class UserGroupAssignmentService {
 		private readonly UserFactory $userFactory,
 		private readonly HookRunner $hookRunner,
 		private readonly ServiceOptions $options,
+		private readonly TempUserConfig $tempUserConfig,
 	) {
 		$this->options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
+	}
+
+	/**
+	 * Checks whether the target user can have groups assigned at all.
+	 */
+	public function targetCanHaveUserGroups( UserIdentity $target ): bool {
+		// Basic stuff - don't assign groups to anons and temp. accounts
+		if ( !$target->isRegistered() ) {
+			return false;
+		}
+		if ( $this->userNameUtils->isTemp( $target->getName() ) ) {
+			return false;
+		}
+
+		// We also need to make sure that we don't assign groups to remote temp. accounts if they
+		// are disabled on the current wiki
+		if (
+			$target->getWikiId() !== UserIdentity::LOCAL &&
+			!$this->tempUserConfig->isKnown() &&
+			$this->tempUserConfig->isReservedName( $target->getName() )
+		) {
+			return false;
+		}
+
+		return true;
 	}
 
 	/**
@@ -50,9 +77,15 @@ class UserGroupAssignmentService {
 	 * @param UserIdentity $target User whose rights are being changed
 	 */
 	public function userCanChangeRights( Authority $performer, UserIdentity $target ): bool {
+		if ( !$this->targetCanHaveUserGroups( $target ) ) {
+			return false;
+		}
+
+		// If the target is an interwiki user, ensure that the performer is entitled to such changes
+		// It assumes that the target wiki exists at all
 		if (
-			!$target->isRegistered() ||
-			$this->userNameUtils->isTemp( $target->getName() )
+			$target->getWikiId() !== UserIdentity::LOCAL &&
+			!$performer->isAllowed( 'userrights-interwiki' )
 		) {
 			return false;
 		}

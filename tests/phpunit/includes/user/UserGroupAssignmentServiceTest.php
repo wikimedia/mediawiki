@@ -7,6 +7,7 @@
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
+use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\User\UserGroupAssignmentService;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserGroupManagerFactory;
@@ -20,9 +21,43 @@ use MediaWiki\User\UserIdentityValue;
  */
 class UserGroupAssignmentServiceTest extends MediaWikiIntegrationTestCase {
 	use MockAuthorityTrait;
+	use TempUserTestTrait;
+
+	/** @dataProvider provideTargetCanHaveGroups */
+	public function testTargetCanHaveGroups( UserIdentity $target, bool $expected ): void {
+		$service = $this->getServiceContainer()->getUserGroupAssignmentService();
+		$this->assertEquals( $expected, $service->targetCanHaveUserGroups( $target ) );
+	}
+
+	public static function provideTargetCanHaveGroups(): array {
+		return [
+			'Registered user' => [ new UserIdentityValue( 1, 'Test user' ), true ],
+			'Remote registered user' => [ new UserIdentityValue( 1, 'Test user', 'otherwiki' ), true ],
+			'Anonymous user' => [ new UserIdentityValue( 0, '127.0.0.1' ), false ],
+			'Remote anonymous user' => [ new UserIdentityValue( 0, '127.0.0.1', 'otherwiki' ), false ],
+			'Temporary user' => [ new UserIdentityValue( 2, '~2025-1' ), false ],
+			'Remote temporary user' => [ new UserIdentityValue( 2, '~2025-1', 'otherwiki' ), false ],
+		];
+	}
+
+	/** @dataProvider provideTargetCanHaveGroups_tempAccountsNotKnown */
+	public function testTargetCanHaveGroups_tempAccountsNotKnown( UserIdentity $target, bool $expected ): void {
+		$this->disableAutoCreateTempUser();
+		$service = $this->getServiceContainer()->getUserGroupAssignmentService();
+		$this->assertEquals( $expected, $service->targetCanHaveUserGroups( $target ) );
+	}
+
+	public static function provideTargetCanHaveGroups_tempAccountsNotKnown(): array {
+		return [
+			'Anonymous user' => [ new UserIdentityValue( 0, '127.0.0.1' ), false ],
+			'Remote anonymous user' => [ new UserIdentityValue( 0, '127.0.0.1', 'otherwiki' ), false ],
+			'Temporary (unknown) user' => [ new UserIdentityValue( 2, '~2025-1' ), true ],
+			'Remote temporary user' => [ new UserIdentityValue( 2, '~2025-1', 'otherwiki' ), false ],
+		];
+	}
 
 	/** @dataProvider provideUserCanChangeRights */
-	public function testUserCanChangeRights( UserIdentity $target, bool $expected ): void {
+	public function testUserCanChangeRights( UserIdentity $target, bool $hasInterwikiRight, bool $expected ): void {
 		$ugmMock = $this->createMock( UserGroupManager::class );
 		$ugmMock->method( 'getGroupsChangeableBy' )
 			->willReturn( [
@@ -39,16 +74,40 @@ class UserGroupAssignmentServiceTest extends MediaWikiIntegrationTestCase {
 		$this->setService( 'UserGroupManagerFactory', $ugmFactoryMock );
 		$service = $this->getServiceContainer()->getUserGroupAssignmentService();
 
-		$performer = $this->mockRegisteredNullAuthority();
+		$performer = $this->mockRegisteredAuthorityWithPermissions(
+			$hasInterwikiRight ? [ 'userrights-interwiki' ] : []
+		);
 		$canChange = $service->userCanChangeRights( $performer, $target );
 		$this->assertSame( $expected, $canChange );
 	}
 
 	public static function provideUserCanChangeRights(): array {
 		return [
-			'Registered target' => [ new UserIdentityValue( 1, 'Test user' ), true ],
-			'Anonymous target' => [ new UserIdentityValue( 0, '127.0.0.1' ), false ],
-			'Temporary user target' => [ new UserIdentityValue( 2, '~2025-1' ), false ],
+			'Registered target' => [
+				'target' => new UserIdentityValue( 1, 'Test user' ),
+				'hasInterwikiRight' => false,
+				'expected' => true,
+			],
+			'Anonymous target' => [
+				'target' => new UserIdentityValue( 0, '127.0.0.1' ),
+				'hasInterwikiRight' => false,
+				'expected' => false,
+			],
+			'Temporary user target' => [
+				'target' => new UserIdentityValue( 2, '~2025-1' ),
+				'hasInterwikiRight' => false,
+				'expected' => false,
+			],
+			'Registered remote target, no interwiki right' => [
+				'target' => new UserIdentityValue( 1, 'Test user', 'otherwiki' ),
+				'hasInterwikiRight' => false,
+				'expected' => false,
+			],
+			'Registered remote target, with interwiki right' => [
+				'target' => new UserIdentityValue( 1, 'Test user', 'otherwiki' ),
+				'hasInterwikiRight' => true,
+				'expected' => true,
+			],
 		];
 	}
 

@@ -2664,7 +2664,8 @@ return [
 			new HookRunner( $services->getHookContainer() ),
 			new ServiceOptions(
 				UserGroupAssignmentService::CONSTRUCTOR_OPTIONS, $services->getMainConfig()
-			)
+			),
+			$services->getTempUserConfig()
 		);
 	},
 
