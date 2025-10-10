@@ -15,7 +15,7 @@ Built-in content types are:
 
 In PHP, use the corresponding `CONTENT_MODEL_XXX` constant.
 
-A page's content model is available using the `Title::getContentModel()` method. A page's default model is determined by `ContentHandler::getDefaultModelFor($title)` as follows:
+A page's content model is available using the `Title::getContentModel()` method. A page's default model is determined by the slot's `getDefaultModel()` as follows:
 
 * The global setting `$wgNamespaceContentModels` specifies a content model for the given namespace.
 * The hook `ContentHandlerDefaultModelFor` may be used to override the page's default model.
@@ -95,7 +95,7 @@ Page content is stored in the database using the same mechanism as before. Non-t
 
 Each revision's content model and serialization format is stored in the revision table (resp. in the archive table, if the revision was deleted). The page's (current) content model (that is, the content model of the latest revision) is also stored in the page table.
 
-Note however that the content model and format is only stored if it differs from the page's default, as determined by `ContentHandler::getDefaultModelFor( $title )`. The default values are represented as `NULL` in the database, to preserve space.
+Note however that the content model and format is only stored if it differs from the page's default, as determined by `Title::getContentModel()`. The default values are represented as `NULL` in the database, to preserve space.
 
 ## Globals
 

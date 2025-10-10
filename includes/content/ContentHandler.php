@@ -112,47 +112,6 @@ abstract class ContentHandler {
 	}
 
 	/**
-	 * Returns the name of the default content model to be used for the page
-	 * with the given title.
-	 *
-	 * Note: There should rarely be need to call this method directly.
-	 * To determine the actual content model for a given page, use
-	 * Title::getContentModel().
-	 *
-	 * Which model is to be used by default for the page is determined based
-	 * on several factors:
-	 * - The global setting $wgNamespaceContentModels specifies a content model
-	 *   per namespace.
-	 * - The hook ContentHandlerDefaultModelFor may be used to override the page's default
-	 *   model.
-	 * - Pages in NS_MEDIAWIKI and NS_USER default to the CSS or JavaScript
-	 *   model if they end in .js or .css, respectively.
-	 * - Pages in NS_MEDIAWIKI default to the wikitext model otherwise.
-	 * - The hook TitleIsCssOrJsPage may be used to force a page to use the CSS
-	 *   or JavaScript model. This is a compatibility feature. The ContentHandlerDefaultModelFor
-	 *   hook should be used instead if possible.
-	 * - The hook TitleIsWikitextPage may be used to force a page to use the
-	 *   wikitext model. This is a compatibility feature. The ContentHandlerDefaultModelFor
-	 *   hook should be used instead if possible.
-	 *
-	 * If none of the above applies, the wikitext model is used.
-	 *
-	 * @since 1.21
-	 * @deprecated since 1.33, use SlotRoleHandler::getDefaultModel() together with
-	 *   SlotRoleRegistry::getRoleHandler(). Hard deprecated since 1.43.
-	 *
-	 * @param Title $title
-	 *
-	 * @return string Default model name for the page given by $title
-	 */
-	public static function getDefaultModelFor( Title $title ) {
-		wfDeprecated( __METHOD__, '1.33' );
-		$slotRoleregistry = MediaWikiServices::getInstance()->getSlotRoleRegistry();
-		$mainSlotHandler = $slotRoleregistry->getRoleHandler( 'main' );
-		return $mainSlotHandler->getDefaultModel( $title );
-	}
-
-	/**
 	 * Returns the appropriate ContentHandler singleton for the given Content
 	 * object.
 	 *

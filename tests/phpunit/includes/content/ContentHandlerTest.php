@@ -97,43 +97,6 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->insertPage( 'Smithee', 'A smithee is one who smiths. See also [[Alan Smithee]]' );
 	}
 
-	public static function provideGetDefaultModelFor() {
-		return [
-			[ 'Help:Foo', CONTENT_MODEL_WIKITEXT ],
-			[ 'Help:Foo.js', CONTENT_MODEL_WIKITEXT ],
-			[ 'Help:Foo.css', CONTENT_MODEL_WIKITEXT ],
-			[ 'Help:Foo.json', CONTENT_MODEL_WIKITEXT ],
-			[ 'Help:Foo/bar.js', CONTENT_MODEL_WIKITEXT ],
-			[ 'User:Foo', CONTENT_MODEL_WIKITEXT ],
-			[ 'User:Foo.js', CONTENT_MODEL_WIKITEXT ],
-			[ 'User:Foo.css', CONTENT_MODEL_WIKITEXT ],
-			[ 'User:Foo.json', CONTENT_MODEL_WIKITEXT ],
-			[ 'User:Foo/bar.js', CONTENT_MODEL_JAVASCRIPT ],
-			[ 'User:Foo/bar.css', CONTENT_MODEL_CSS ],
-			[ 'User:Foo/bar.json', CONTENT_MODEL_JSON ],
-			[ 'User:Foo/bar.json.nope', CONTENT_MODEL_WIKITEXT ],
-			[ 'User talk:Foo/bar.css', CONTENT_MODEL_WIKITEXT ],
-			[ 'User:Foo/bar.js.xxx', CONTENT_MODEL_WIKITEXT ],
-			[ 'User:Foo/bar.xxx', CONTENT_MODEL_WIKITEXT ],
-			[ 'MediaWiki:Foo.js', CONTENT_MODEL_JAVASCRIPT ],
-			[ 'MediaWiki:Foo.JS', CONTENT_MODEL_WIKITEXT ],
-			[ 'MediaWiki:Foo.css', CONTENT_MODEL_CSS ],
-			[ 'MediaWiki:Foo.css.xxx', CONTENT_MODEL_WIKITEXT ],
-			[ 'MediaWiki:Foo.CSS', CONTENT_MODEL_WIKITEXT ],
-			[ 'MediaWiki:Foo.json', CONTENT_MODEL_JSON ],
-			[ 'MediaWiki:Foo.JSON', CONTENT_MODEL_WIKITEXT ],
-		];
-	}
-
-	/**
-	 * @dataProvider provideGetDefaultModelFor
-	 */
-	public function testGetDefaultModelFor( $title, $expectedModelId ) {
-		$title = Title::newFromText( $title );
-		$this->hideDeprecated( 'MediaWiki\\Content\\ContentHandler::getDefaultModelFor' );
-		$this->assertEquals( $expectedModelId, ContentHandler::getDefaultModelFor( $title ) );
-	}
-
 	public static function provideGetLocalizedName() {
 		return [
 			[ null, null ],
