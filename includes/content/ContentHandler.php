@@ -112,28 +112,6 @@ abstract class ContentHandler {
 	}
 
 	/**
-	 * Returns the appropriate ContentHandler singleton for the given Content
-	 * object.
-	 *
-	 * @deprecated since 1.35, instead use
-	 *   ContentHandlerFactory::getContentHandler( $content->getModel() ).
-	 *   Hard deprecated since 1.43.
-	 *
-	 * @since 1.21
-	 *
-	 * @param Content $content
-	 *
-	 * @return ContentHandler
-	 * @throws MWUnknownContentModelException
-	 */
-	public static function getForContent( Content $content ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		return MediaWikiServices::getInstance()
-			->getContentHandlerFactory()
-			->getContentHandler( $content->getModel() );
-	}
-
-	/**
 	 * Returns the localized name for a given content model.
 	 *
 	 * Model names are localized using system messages. Message keys

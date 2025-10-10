@@ -94,8 +94,6 @@ interface Content {
 	 * Convenience method that returns the ContentHandler singleton for handling
 	 * the content model that this Content object uses.
 	 *
-	 * Shorthand for ContentHandler::getForContent( $this )
-	 *
 	 * @since 1.21
 	 *
 	 * @return ContentHandler
