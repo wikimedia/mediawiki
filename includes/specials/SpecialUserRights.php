@@ -707,9 +707,7 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 
 	/** @inheritDoc */
 	protected function makeConflictCheckKey( UserGroupsSpecialPageTarget $target ): string {
-		$user = $target->userObject;
-		$this->assertIsUserIdentity( $user );
-		/** @var UserIdentity $user */
+		$user = $this->assertIsUserIdentity( $target->userObject );
 		return implode( ',', $this->userGroupManager->getUserGroups( $user ) );
 	}
 
@@ -720,9 +718,7 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 
 	/** @inheritDoc */
 	protected function getTargetUserToolLinks( UserGroupsSpecialPageTarget $target ): string {
-		$user = $target->userObject;
-		$this->assertIsUserIdentity( $user );
-		/** @var UserIdentity $user */
+		$user = $this->assertIsUserIdentity( $target->userObject );
 		$systemUser = $user->getWikiId() === UserIdentity::LOCAL
 			&& $this->userFactory->newFromUserIdentity( $user )->isSystemUser();
 
@@ -738,10 +734,7 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 
 	/** @inheritDoc */
 	protected function getCurrentUserGroupsText( UserGroupsSpecialPageTarget $target ): string {
-		$user = $target->userObject;
-		$this->assertIsUserIdentity( $user );
-		/** @var UserIdentity $user */
-
+		$user = $this->assertIsUserIdentity( $target->userObject );
 		$groupsText = parent::getCurrentUserGroupsText( $target );
 
 		// Apart from displaying the groups list, also display a note if this is a system user
@@ -765,9 +758,7 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 		array $userGroups,
 		UserGroupsSpecialPageTarget $target
 	): array {
-		$user = $target->userObject;
-		$this->assertIsUserIdentity( $user );
-		/** @var UserIdentity $user */
+		$user = $this->assertIsUserIdentity( $target->userObject );
 		$autoGroups = [];
 
 		// Listing autopromote groups works only on the local wiki
@@ -791,9 +782,7 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 
 	/** @inheritDoc */
 	protected function getGroupMemberships( UserGroupsSpecialPageTarget $target ): array {
-		$user = $target->userObject;
-		$this->assertIsUserIdentity( $user );
-		/** @var UserIdentity $user */
+		$user = $this->assertIsUserIdentity( $target->userObject );
 		return $this->userGroupManager->getUserGroupMemberships( $user );
 	}
 
@@ -877,9 +866,7 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 
 	/** @inheritDoc */
 	protected function getDisplayUsername( UserGroupsSpecialPageTarget $target ): string {
-		$user = $target->userObject;
-		$this->assertIsUserIdentity( $user );
-		/** @var UserIdentity $user */
+		$user = $this->assertIsUserIdentity( $target->userObject );
 		return $this->getUsernameWithInterwiki( $user );
 	}
 
@@ -903,9 +890,7 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 
 	/** @inheritDoc */
 	protected function supportsWatchUser( UserGroupsSpecialPageTarget $target ): bool {
-		$user = $target->userObject;
-		$this->assertIsUserIdentity( $user );
-		/** @var UserIdentity $user */
+		$user = $this->assertIsUserIdentity( $target->userObject );
 		return $user->getWikiId() === UserIdentity::LOCAL;
 	}
 
@@ -938,11 +923,13 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 	 * It's used when retrieving the user object from a {@see UserGroupsSpecialPageTarget}.
 	 * @throws InvalidArgumentException If the object is not of the expected type
 	 * @param mixed $object The object to check
+	 * @return UserIdentity The input object, but with a type hint for IDEs
 	 */
-	private function assertIsUserIdentity( mixed $object ): void {
+	private function assertIsUserIdentity( mixed $object ): UserIdentity {
 		if ( !$object instanceof UserIdentity ) {
 			throw new InvalidArgumentException( 'Target userObject must be a UserIdentity' );
 		}
+		return $object;
 	}
 }
 
