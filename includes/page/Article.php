@@ -902,6 +902,10 @@ class Article implements Page {
 			if ( $pageLang ) {
 				$outputPage->setContentLangForJS( $pageLang );
 			}
+
+			// Fandom change - start
+			$this->getHookContainer()->run( 'FandomArticleViewParserOutput', [ $this, $pOutput ] );
+			// Fandom change - end
 		}
 
 		# Check for any __NOINDEX__ tags on the page using $pOutput
