@@ -345,6 +345,8 @@ because of Phabricator reports.
   Use ::getConnection() instead.
 * PasswordFactory::init(), deprecated since 1.32, has been removed. Instead, you
   should initialise settings using the constructor.
+* CentralIdLookup::factory(), deprecated since 1.37, has now been removed. Use
+  MediaWikiServices to obtain an instance instead.
 * …
 
 === Deprecations in 1.45 ===

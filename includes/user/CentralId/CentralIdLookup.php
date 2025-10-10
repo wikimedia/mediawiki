@@ -8,13 +8,11 @@ namespace MediaWiki\User\CentralId;
 
 use InvalidArgumentException;
 use LogicException;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\WikiMap\WikiMap;
-use Throwable;
 use Wikimedia\Rdbms\IDBAccessObject;
 
 /**
@@ -40,23 +38,6 @@ abstract class CentralIdLookup {
 
 	private UserIdentityLookup $userIdentityLookup;
 	private UserFactory $userFactory;
-
-	/**
-	 * Fetch a CentralIdLookup
-	 * @deprecated since 1.37 Use MediaWikiServices to obtain an instance.
-	 * @param string|null $providerId Provider ID from $wgCentralIdLookupProviders
-	 * @return CentralIdLookup|null
-	 */
-	public static function factory( $providerId = null ) {
-		wfDeprecated( __METHOD__, '1.37' );
-		try {
-			return MediaWikiServices::getInstance()
-				->getCentralIdLookupFactory()
-				->getLookup( $providerId );
-		} catch ( Throwable ) {
-			return null;
-		}
-	}
 
 	/**
 	 * Initialize the provider.
