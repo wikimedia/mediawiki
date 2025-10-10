@@ -425,6 +425,7 @@ class ApiMain extends ApiBase {
 				'WatchlistManager',
 				'UserOptionsLookup',
 				'UserGroupAssignmentService',
+				'MultiFormatUserIdentityLookup',
 			]
 		],
 		'options' => [

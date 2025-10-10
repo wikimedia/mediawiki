@@ -12,14 +12,17 @@ use MediaWiki\Exception\UserBlockedError;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\Field\HTMLUserTextField;
 use MediaWiki\HTMLForm\HTMLForm;
+use MediaWiki\Language\FormatterFactory;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\SpecialPage\UserGroupsSpecialPage;
 use MediaWiki\Status\Status;
+use MediaWiki\Status\StatusFormatter;
 use MediaWiki\Title\Title;
 use MediaWiki\User\ActorStoreFactory;
+use MediaWiki\User\MultiFormatUserIdentityLookup;
 use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserGroupAssignmentService;
@@ -31,7 +34,6 @@ use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\Watchlist\WatchlistManager;
-use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\Rdbms\IDBAccessObject;
 
 /**
@@ -70,10 +72,11 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 	private UserNameUtils $userNameUtils;
 	private UserNamePrefixSearch $userNamePrefixSearch;
 	private UserFactory $userFactory;
-	private ActorStoreFactory $actorStoreFactory;
 	private WatchlistManager $watchlistManager;
 	private TempUserConfig $tempUserConfig;
 	private UserGroupAssignmentService $userGroupAssignmentService;
+	private MultiFormatUserIdentityLookup $multiFormatUserIdentityLookup;
+	private StatusFormatter $statusFormatter;
 
 	public function __construct(
 		?UserGroupManagerFactory $userGroupManagerFactory = null,
@@ -83,7 +86,9 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 		?ActorStoreFactory $actorStoreFactory = null,
 		?WatchlistManager $watchlistManager = null,
 		?TempUserConfig $tempUserConfig = null,
-		?UserGroupAssignmentService $userGroupAssignmentService = null
+		?UserGroupAssignmentService $userGroupAssignmentService = null,
+		?MultiFormatUserIdentityLookup $multiFormatUserIdentityLookup = null,
+		?FormatterFactory $formatterFactory = null,
 	) {
 		parent::__construct( 'Userrights' );
 		$services = MediaWikiServices::getInstance();
@@ -93,10 +98,13 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 		$this->userFactory = $userFactory ?? $services->getUserFactory();
 		$this->userGroupManagerFactory = $userGroupManagerFactory ?? $services->getUserGroupManagerFactory();
 		$this->localUserGroupManager = $this->userGroupManagerFactory->getUserGroupManager();
-		$this->actorStoreFactory = $actorStoreFactory ?? $services->getActorStoreFactory();
 		$this->watchlistManager = $watchlistManager ?? $services->getWatchlistManager();
 		$this->tempUserConfig = $tempUserConfig ?? $services->getTempUserConfig();
 		$this->userGroupAssignmentService = $userGroupAssignmentService ?? $services->getUserGroupAssignmentService();
+		$this->multiFormatUserIdentityLookup = $multiFormatUserIdentityLookup
+			?? $services->getMultiFormatUserIdentityLookup();
+		$this->statusFormatter = ( $formatterFactory ?? $services->getFormatterFactory() )
+			->getStatusFormatter( $this->getContext() );
 	}
 
 	/**
@@ -151,7 +159,8 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 				$this->isself = true;
 			}
 
-			$fetchedStatus = $this->fetchUser( $this->mTarget, true );
+			$fetchedStatus = $this->multiFormatUserIdentityLookup->getUserIdentity(
+				$this->mTarget, $this->getAuthority() );
 		}
 
 		if ( $fetchedStatus->isOK() ) {
@@ -264,10 +273,27 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 			}
 		}
 
-		// show some more forms
-		if ( $this->mTarget !== null ) {
-			$this->editUserGroupsForm( $this->mTarget );
+		// If the target is valid, show the form (either edit or view)
+		if ( !$fetchedStatus->isOK() ) {
+			$out->addHTML( Html::warningBox(
+				$this->statusFormatter->getMessage( $fetchedStatus )->parse()
+			) );
+			return;
+		} elseif ( !$this->userGroupAssignmentService->targetCanHaveUserGroups( $this->mFetchedUser ) ) {
+			// It's safe to check `targetCanHaveUserGroups` only here, because the service itself
+			// also does the same check when trying to save the groups.
+			// Differentiate between temp accounts and IP addresses. Eventually we might want
+			// to edit the messages so that the same can be shown for both cases.
+			$messageKey = $this->mFetchedUser->isRegistered() ? 'userrights-no-group' : 'nosuchusershort';
+			$out->addHTML( Html::warningBox(
+				$this->msg( $messageKey, $this->mFetchedUser->getName() )->parse()
+			) );
+			return;
 		}
+
+		$target = new UserGroupsSpecialPageTarget( $this->mFetchedUser->getName(), $this->mFetchedUser );
+		$this->getOutput()->addHTML( $this->buildGroupsForm( $target ) );
+		$this->showLogFragment( $target, $this->getOutput() );
 	}
 
 	private function getSuccessURL(): string {
@@ -412,115 +438,18 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 	}
 
 	/**
-	 * Edit user groups membership
-	 * @param string $username Name of the user.
-	 */
-	private function editUserGroupsForm( $username ) {
-		$status = $this->fetchUser( $username, true );
-		if ( !$status->isOK() ) {
-			$this->getOutput()->addWikiTextAsInterface(
-				$status->getWikiText( false, false, $this->getLanguage() )
-			);
-
-			return;
-		}
-
-		/** @var UserIdentity $user */
-		$user = $status->value;
-		'@phan-var UserIdentity $user';
-
-		$target = new UserGroupsSpecialPageTarget( $user->getName(), $user );
-		$this->getOutput()->addHTML( $this->buildGroupsForm( $target ) );
-
-		// This isn't really ideal logging behavior, but let's not hide the
-		// interwiki logs if we're using them as is.
-		$this->showLogFragment( $target, $this->getOutput() );
-	}
-
-	/**
 	 * Normalize the input username, which may be local or remote, and
 	 * return a user identity object, use it on other services for manipulating rights
 	 *
 	 * Side effects: error output for invalid access
+	 * @deprecated since 1.45, use {@see MultiFormatUserIdentityLookup::getUserIdentity()} instead
 	 * @param string $username
 	 * @param bool $writing
 	 * @return Status
 	 */
 	public function fetchUser( $username, $writing = true ) {
-		$parts = explode( $this->getConfig()->get( MainConfigNames::UserrightsInterwikiDelimiter ),
-			$username );
-		if ( count( $parts ) < 2 ) {
-			$name = trim( $username );
-			$wikiId = UserIdentity::LOCAL;
-		} else {
-			[ $name, $wikiId ] = array_map( 'trim', $parts );
-
-			if ( WikiMap::isCurrentWikiId( $wikiId ) ) {
-				$wikiId = UserIdentity::LOCAL;
-			} else {
-				if ( $writing &&
-					!$this->getAuthority()->isAllowed( 'userrights-interwiki' )
-				) {
-					return Status::newFatal( 'userrights-no-interwiki' );
-				}
-				$localDatabases = $this->getConfig()->get( MainConfigNames::LocalDatabases );
-				if ( !in_array( $wikiId, $localDatabases ) ) {
-					return Status::newFatal( 'userrights-nodatabase', $wikiId );
-				}
-			}
-		}
-
-		if ( $name === '' ) {
-			return Status::newFatal( 'nouserspecified' );
-		}
-
-		$userIdentityLookup = $this->actorStoreFactory->getUserIdentityLookup( $wikiId );
-		if ( $name[0] == '#' ) {
-			// Numeric ID can be specified...
-			$id = intval( substr( $name, 1 ) );
-
-			$user = $userIdentityLookup->getUserIdentityByUserId( $id );
-			if ( !$user ) {
-				// Different error message for compatibility
-				return Status::newFatal( 'noname' );
-			}
-			$name = $user->getName();
-		} else {
-			$name = $this->userNameUtils->getCanonical( $name );
-			if ( $name === false ) {
-				// invalid name
-				return Status::newFatal( 'nosuchusershort', $username );
-			}
-			$user = $userIdentityLookup->getUserIdentityByName( $name );
-		}
-
-		if ( $this->userNameUtils->isTemp( $name ) ) {
-			return Status::newFatal( 'userrights-no-group' );
-		}
-
-		if ( !$user || !$user->isRegistered() ) {
-			return Status::newFatal( 'nosuchusershort', $username );
-		}
-
-		// Prevent cross-wiki assignment of groups to temporary accounts on wikis where the feature is not known.
-		// We have to check this here, as ApiUserrights uses this to validate before assigning user rights.
-		if (
-			$user->getWikiId() !== UserIdentity::LOCAL &&
-			!$this->tempUserConfig->isKnown() &&
-			$this->tempUserConfig->isReservedName( $name )
-		) {
-			return Status::newFatal( 'userrights-no-group' );
-		}
-
-		if ( $user->getWikiId() === UserIdentity::LOCAL &&
-			$this->userFactory->newFromUserIdentity( $user )->isHidden() &&
-			!$this->getAuthority()->isAllowed( 'hideuser' )
-		) {
-			// Cannot see hidden users, pretend they don't exist
-			return Status::newFatal( 'nosuchusershort', $username );
-		}
-
-		return Status::newGood( $user );
+		wfDeprecated( __METHOD__, '1.45' );
+		return $this->multiFormatUserIdentityLookup->getUserIdentity( $username, $this->getAuthority() );
 	}
 
 	/**
@@ -686,6 +615,21 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 			$groups = $this->localUserGroupManager->getGroupsChangeableBy( $authority );
 
 			if ( $this->mFetchedUser !== null ) {
+				// If the target is an interwiki user, ensure that the performer is entitled to such changes
+				// It assumes that the target wiki exists at all
+				if (
+					$this->mFetchedUser->getWikiId() !== UserIdentity::LOCAL &&
+					!$authority->isAllowed( 'userrights-interwiki' )
+				) {
+					return [
+						'add' => [],
+						'remove' => [],
+						'add-self' => [],
+						'remove-self' => [],
+						'restricted' => [],
+					];
+				}
+
 				// Allow extensions to define groups that cannot be added, given the target user and
 				// the performer. This allows policy restrictions to be enforced via software. This
 				// could be done via configuration in the future, as discussed in T393615.

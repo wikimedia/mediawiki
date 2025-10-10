@@ -16,6 +16,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Specials\SpecialUserRights;
 use MediaWiki\Title\Title;
+use MediaWiki\User\MultiFormatUserIdentityLookup;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\UserGroupAssignmentService;
 use MediaWiki\User\UserGroupManager;
@@ -39,6 +40,7 @@ class ApiUserrights extends ApiBase {
 	private UserGroupManager $userGroupManager;
 	private WatchedItemStoreInterface $watchedItemStore;
 	private UserGroupAssignmentService $userGroupAssignmentService;
+	private MultiFormatUserIdentityLookup $multiFormatUserIdentityLookup;
 
 	public function __construct(
 		ApiMain $mainModule,
@@ -47,7 +49,8 @@ class ApiUserrights extends ApiBase {
 		WatchedItemStoreInterface $watchedItemStore,
 		WatchlistManager $watchlistManager,
 		UserOptionsLookup $userOptionsLookup,
-		UserGroupAssignmentService $userGroupAssignmentService
+		UserGroupAssignmentService $userGroupAssignmentService,
+		MultiFormatUserIdentityLookup $multiFormatUserIdentityLookup,
 	) {
 		parent::__construct( $mainModule, $moduleName );
 		$this->userGroupManager = $userGroupManager;
@@ -60,6 +63,7 @@ class ApiUserrights extends ApiBase {
 		$this->watchlistManager = $watchlistManager;
 		$this->userOptionsLookup = $userOptionsLookup;
 		$this->userGroupAssignmentService = $userGroupAssignmentService;
+		$this->multiFormatUserIdentityLookup = $multiFormatUserIdentityLookup;
 	}
 
 	public function execute() {
@@ -170,18 +174,24 @@ class ApiUserrights extends ApiBase {
 
 		$this->requireOnlyOneParameter( $params, 'user', 'userid' );
 
-		$user = $params['user'] ?? '#' . $params['userid'];
-
-		$form = new SpecialUserRights();
-		$form->setContext( $this->getContext() );
-		$status = $form->fetchUser( $user );
+		$userDesignator = $params['user'] ?? '#' . $params['userid'];
+		$status = $this->multiFormatUserIdentityLookup->getUserIdentity( $userDesignator, $this->getAuthority() );
 		if ( !$status->isOK() ) {
 			$this->dieStatus( $status );
 		}
 
-		$this->mUser = $status->value;
+		$user = $status->value;
+		$canHaveRights = $this->userGroupAssignmentService->targetCanHaveUserGroups( $user );
+		if ( !$canHaveRights ) {
+			// Return different errors for anons and temp. accounts to keep consistent behavior
+			$this->dieWithError(
+				$user->isRegistered() ? [ 'userrights-no-group', $user->getName() ] : 'nosuchusershort'
+			);
+		}
 
-		return $status->value;
+		$this->mUser = $user;
+
+		return $user;
 	}
 
 	/** @inheritDoc */

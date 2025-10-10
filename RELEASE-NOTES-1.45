@@ -515,6 +515,8 @@ because of Phabricator reports.
   UserGroupAssignmentService::saveChangesToUserGroups().
 * SpecialUserRights::userCanChangeRights() has been deprecated. Instead, use
   UserGroupAssignmentService::canChangeUserGroups().
+* SpecialUserRights::fetchUser() has been deprecated and now emits deprecation
+  warnings. Use MultiFormatUserIdentityLookup::getUserIdentity() instead.
 * …
 
 === Other changes in 1.45 ===
