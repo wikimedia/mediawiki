@@ -258,7 +258,7 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 	 * @param string $text
 	 */
 	public function setText( $text ) {
-		$handler = ContentHandler::getForModelID( $this->getModel() );
+		$handler = $this->getContentHandler();
 		$content = $handler->unserializeContent( $text );
 		$this->setContent( SlotRecord::MAIN, $content );
 	}

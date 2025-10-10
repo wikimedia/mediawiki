@@ -249,8 +249,6 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 				return new DummySearchIndexFieldDefinition( $name, $type );
 			} );
 
-		$this->hideDeprecated( 'MediaWiki\\Content\\ContentHandler::getForModelID' );
-
 		$fields = $this->handler->getFieldsForSearchIndex( $searchEngine );
 
 		$this->assertArrayHasKey( 'category', $fields );

@@ -31,7 +31,7 @@ use Wikimedia\Stats\StatsFactory;
  *
  * If you want to use this without content objects (to call getTextDiff() on some
  * non-content-related texts), obtain an instance with
- *     ContentHandler::getForModelID( CONTENT_MODEL_TEXT )
+ *     ContentHandlerFactory::getContentHandler( CONTENT_MODEL_TEXT )
  *         ->getSlotDiffRenderer( RequestContext::getMain() )
  *
  * @ingroup DifferenceEngine

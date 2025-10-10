@@ -34,7 +34,7 @@ Two class hierarchies are used to provide the functionality associated with the 
 
 The most important function of ContentHandler is to act as a factory for the appropriate implementation of Content. These `Content` objects are to be used by MediaWiki everywhere, instead of passing page content around as text. All manipulation and analysis of page content must be done via the appropriate methods of the Content object.
 
-For each content model, a subclass of ContentHandler has to be registered with `$wgContentHandlers`. The ContentHandler object for a given content model can be obtained using `ContentHandler::getForModelID( $id )`. Also `Title` and `WikiPage` now have `getContentHandler()` methods for convenience.
+For each content model, a subclass of ContentHandler has to be registered with `$wgContentHandlers`. The ContentHandler object for a given content model can be obtained using `ContentHandlerFactor::getContentHandler( $id )`. Also `Title` and `WikiPage` now have `getContentHandler()` methods for convenience.
 
 `ContentHandler` objects are singletons that provide functionality specific to the content type, but not directly acting on the content of some page. `ContentHandler::makeEmptyContent()` and `ContentHandler::unserializeContent()` can be used to create a Content object of the appropriate type. However, it is recommended to instead use `WikiPage::getContent()` resp. `RevisionRecord::getContent()` to get a page's content as a Content object. These two methods should be the ONLY way in which page content is accessed.
 For `WikiPage::getContent()` the content of the main slot is returned, other slots can be retrieved by using `RevisionRecord::getContent()` and specifying the slot.

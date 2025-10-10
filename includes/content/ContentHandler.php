@@ -134,42 +134,6 @@ abstract class ContentHandler {
 	}
 
 	/**
-	 * Returns the ContentHandler singleton for the given model ID. Use the
-	 * CONTENT_MODEL_XXX constants to identify the desired content model.
-	 *
-	 * ContentHandler singletons are taken from the global $wgContentHandlers
-	 * array. Keys in that array are model names, the values are either
-	 * ContentHandler singleton objects, or strings specifying the appropriate
-	 * subclass of ContentHandler.
-	 *
-	 * If a class name is encountered when looking up the singleton for a given
-	 * model name, the class is instantiated and the class name is replaced by
-	 * the resulting singleton in $wgContentHandlers.
-	 *
-	 * If no ContentHandler is defined for the desired $modelId, the
-	 * ContentHandler may be provided by the ContentHandlerForModelID hook.
-	 * If no ContentHandler can be determined, an MWUnknownContentModelException is raised.
-	 *
-	 * @since 1.21
-	 *
-	 * @deprecated since 1.35, use ContentHandlerFactory::getContentHandler
-	 *   Hard deprecated since 1.43.
-	 * @see  ContentHandlerFactory::getContentHandler()
-	 *
-	 * @param string $modelId The ID of the content model for which to get a
-	 *    handler. Use CONTENT_MODEL_XXX constants.
-	 *
-	 * @throws MWUnknownContentModelException If no handler is known for the model ID.
-	 * @return ContentHandler The ContentHandler singleton for handling the model given by the ID.
-	 */
-	public static function getForModelID( $modelId ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		return MediaWikiServices::getInstance()
-			->getContentHandlerFactory()
-			->getContentHandler( $modelId );
-	}
-
-	/**
 	 * Returns the localized name for a given content model.
 	 *
 	 * Model names are localized using system messages. Message keys

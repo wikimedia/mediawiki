@@ -231,7 +231,7 @@ class WikiPage implements Stringable, Page, PageRecord {
 	/**
 	 * Returns the ContentHandler instance to be used to deal with the content of this WikiPage.
 	 *
-	 * Shorthand for ContentHandler::getForModelID( $this->getContentModel() );
+	 * Shorthand for ContentHandlerFactory::getContentHandler( $this->getContentModel() );
 	 *
 	 * @return ContentHandler
 	 *

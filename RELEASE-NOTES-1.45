@@ -337,6 +337,7 @@ because of Phabricator reports.
 * The following ContentHandler methods, previously deprecated, are now removed:
   - ContentHandler::getContentText(), deprecated in 1.37
   - ContentHandler::getDefaultModelFor(), deprecated since 1.33
+  - ContentHandler::getForModelID(), deprecated since 1.35
 * …
 
 === Deprecations in 1.45 ===
