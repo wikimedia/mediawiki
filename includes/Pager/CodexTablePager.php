@@ -58,11 +58,12 @@ abstract class CodexTablePager extends TablePager {
 		$navigation = $this->getNavigationBar();
 		// `<table>` element and its contents.
 		$body = parent::getBody();
+		$header = $this->getHeader();
 
 		$pout = new ParserOutput();
 		$pout->setRawText(
 			Html::openElement( 'div', [ 'class' => 'cdx-table' ] ) . "\n" .
-			// In the future, a visible caption + header content could go here.
+			$header . "\n" .
 			$navigation . "\n" .
 			Html::openElement( 'div', [ 'class' => 'cdx-table__table-wrapper' ] ) . "\n" .
 			$body . "\n" .
@@ -370,6 +371,26 @@ abstract class CodexTablePager extends TablePager {
 	 */
 	public function getModuleStyles(): array {
 		return [ 'mediawiki.pager.codex.styles' ];
+	}
+
+	protected function getHeader(): string {
+		if ( $this->mCaption === '' ) {
+			return '';
+		}
+		$captionAttributes = [
+			'class' => 'cdx-table__header__caption',
+			'aria-hidden' => 'true'
+		];
+
+		return Html::rawElement(
+			'div',
+			[ 'class' => 'cdx-table__header' ],
+			Html::element(
+				'div',
+				$captionAttributes,
+				$this->mCaption
+			)
+		);
 	}
 }
 
