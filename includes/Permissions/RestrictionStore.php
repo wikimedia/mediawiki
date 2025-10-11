@@ -574,7 +574,7 @@ class RestrictionStore {
 		$cascadePageIds = [];
 		$restrictionData = [];
 		foreach ( $cascadeRestrictions as $row ) {
-			$cascadePageIds[] = $row->pr_page;
+			$cascadePageIds[] = (int)$row->pr_page;
 			$restrictionData[$row->pr_page] = $row;
 		}
 
@@ -597,8 +597,8 @@ class RestrictionStore {
 			$expiry = $templateLinksDb->decodeExpiry( $row->pr_expiry );
 			if ( $expiry > $now ) {
 				$tlSources[$row->pr_page] = PageIdentityValue::localIdentity(
-					$row->pr_page,
-					$row->page_namespace,
+					(int)$row->pr_page,
+					(int)$row->page_namespace,
 					$row->page_title
 				);
 
@@ -629,8 +629,8 @@ class RestrictionStore {
 				$expiry = $imageLinksDb->decodeExpiry( $row->pr_expiry );
 				if ( $expiry > $now ) {
 					$ilSources[$row->pr_page] = PageIdentityValue::localIdentity(
-						$row->pr_page,
-						$row->page_namespace,
+						(int)$row->pr_page,
+						(int)$row->page_namespace,
 						$row->page_title
 					);
 
