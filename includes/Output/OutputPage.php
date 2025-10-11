@@ -1780,7 +1780,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Ensure that the category lists are sorted, so that we don't
 	 * inadvertently depend on the exact evaluation order of various
-	 * ParserOutput fragments.
+	 * ParserOutput fragments. Also, remove duplicates.
 	 */
 	private function maybeSortCategories(): void {
 		if ( $this->mCategoriesSorted ) {
@@ -1800,6 +1800,9 @@ class OutputPage extends ContextSource {
 					$a['link'] <=> $b['link'];
 			} );
 		}
+		// Remove duplicate entries
+		$this->mCategoryData = array_values( array_unique( $this->mCategoryData, SORT_REGULAR ) );
+
 		// Rebuild mCategories and mCategoryLinks
 		$this->mCategories = [
 			'hidden' => [],

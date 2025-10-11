@@ -495,6 +495,9 @@ class ApiParse extends ApiBase {
 			// Required for subtitle to appear
 			$outputPage->setArticleFlag( true );
 
+			// Some hooks are conditional on categories
+			$outputPage->addCategoryLinks( $p_result->getCategoryMap() );
+
 			if ( $this->content ) {
 				$outputPage->addContentOverride( $titleObj, $this->content );
 			}
