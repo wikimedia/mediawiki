@@ -86,7 +86,8 @@ class UserNameUtils implements UserRigorOptions {
 	 * @return bool
 	 */
 	public function isValid( string $name ): bool {
-		if ( $name === ''
+		if (
+			$name === ''
 			|| $this->isIP( $name )
 			|| $this->isValidIPRange( $name )
 			|| $this->isLikeIPv4DashRange( $name )
@@ -115,12 +116,18 @@ class UserNameUtils implements UserRigorOptions {
 		// Check an additional list of troublemaker characters.
 		// Should these be merged into the title char list?
 		$unicodeList = '/[' .
-			'\x{0080}-\x{009f}' . # iso-8859-1 control chars
-			'\x{00a0}' . # non-breaking space
-			'\x{2000}-\x{200f}' . # various whitespace
-			'\x{2028}-\x{202f}' . # breaks and control chars
-			'\x{3000}' . # ideographic space
-			'\x{e000}-\x{f8ff}' . # private use
+			# iso-8859-1 control chars
+			'\x{0080}-\x{009f}' .
+			# non-breaking space
+			'\x{00a0}' .
+			# various whitespace
+			'\x{2000}-\x{200f}' .
+			# breaks and control chars
+			'\x{2028}-\x{202f}' .
+			# ideographic space
+			'\x{3000}' .
+			# private use
+			'\x{e000}-\x{f8ff}' .
 			']/u';
 		if ( preg_match( $unicodeList, $name ) ) {
 			return false;
@@ -203,7 +210,8 @@ class UserNameUtils implements UserRigorOptions {
 
 		$invalid = $this->options->get( MainConfigNames::InvalidUsernameCharacters );
 		// Preg yells if you try to give it an empty string
-		if ( $invalid !== '' &&
+		if (
+			$invalid !== '' &&
 			preg_match( '/[' . preg_quote( $invalid, '/' ) . ']/', $name )
 		) {
 			$this->logger->debug(
@@ -268,7 +276,8 @@ class UserNameUtils implements UserRigorOptions {
 		}
 
 		// Check for invalid titles
-		if ( $title === null
+		if (
+			$title === null
 			|| $title->getNamespace() !== NS_USER
 			|| $title->isExternal()
 		) {
@@ -278,32 +287,27 @@ class UserNameUtils implements UserRigorOptions {
 		$name = $title->getText();
 
 		// RIGOR_NONE handled above
-		switch ( $validate ) {
-			case self::RIGOR_VALID:
-				return $this->isValid( $name ) ? $name : false;
-			case self::RIGOR_USABLE:
-				return $this->isUsable( $name ) ? $name : false;
-			case self::RIGOR_CREATABLE:
-				return $this->isCreatable( $name ) ? $name : false;
-			default:
-				throw new InvalidArgumentException(
-					"Invalid parameter value for validation ($validate) in " .
-					__METHOD__
-				);
-		}
+		return match ( $validate ) {
+			self::RIGOR_VALID => $this->isValid( $name ) ? $name : false,
+			self::RIGOR_USABLE => $this->isUsable( $name ) ? $name : false,
+			self::RIGOR_CREATABLE => $this->isCreatable( $name ) ? $name : false,
+			default => throw new InvalidArgumentException(
+				"Invalid parameter value for validation ($validate) in " . __METHOD__
+			),
+		};
 	}
 
 	/**
 	 * Does the string match an anonymous IP address?
 	 *
-	 * This function exists for username validation, in order to reject
+	 * This function exists for username validation, to reject
 	 * usernames which are similar in form to IP addresses. Strings such
 	 * as 300.300.300.300 will return true because it looks like an IP
 	 * address, despite not being strictly valid.
 	 *
 	 * We match "\d{1,3}\.\d{1,3}\.\d{1,3}\.xxx" as an anonymous IP
 	 * address because the usemod software would "cloak" anonymous IP
-	 * addresses like this, if we allowed accounts like this to be created
+	 * addresses like this, if we allowed accounts like this to be created,
 	 * new users could get the old edits of these anonymous users.
 	 *
 	 * This does //not// match IP ranges. See also T239527.
