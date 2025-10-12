@@ -11,10 +11,7 @@ use MediaWiki\Notification\Notification;
 
 class WelcomeNotification extends Notification implements AgentAware {
 
-	private UserIdentity $agent;
-
-	public function __construct( UserIdentity $agent ) {
-		$this->agent = $agent;
+	public function __construct( private readonly UserIdentity $agent ) {
 		parent::__construct( 'welcome' );
 	}
 
