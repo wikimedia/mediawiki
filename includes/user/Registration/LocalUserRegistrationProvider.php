@@ -10,15 +10,10 @@ class LocalUserRegistrationProvider implements IUserRegistrationProvider {
 
 	public const TYPE = 'local';
 
-	private UserFactory $userFactory;
-	private IConnectionProvider $connectionProvider;
-
 	public function __construct(
-		UserFactory $userFactory,
-		IConnectionProvider $connectionProvider
+		private readonly UserFactory $userFactory,
+		private readonly IConnectionProvider $connectionProvider
 	) {
-		$this->userFactory = $userFactory;
-		$this->connectionProvider = $connectionProvider;
 	}
 
 	/**
