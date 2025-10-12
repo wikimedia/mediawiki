@@ -21,10 +21,6 @@ use Wikimedia\Rdbms\SelectQueryBuilder;
  */
 class UserSelectQueryBuilder extends SelectQueryBuilder {
 
-	private ActorStore $actorStore;
-	private TempUserConfig $tempUserConfig;
-	private HideUserUtils $hideUserUtils;
-
 	private bool $userJoined = false;
 
 	/**
@@ -32,15 +28,12 @@ class UserSelectQueryBuilder extends SelectQueryBuilder {
 	 */
 	public function __construct(
 		IReadableDatabase $db,
-		ActorStore $actorStore,
-		TempUserConfig $tempUserConfig,
-		HideUserUtils $hideUserUtils
+		private readonly ActorStore $actorStore,
+		private readonly TempUserConfig $tempUserConfig,
+		private readonly HideUserUtils $hideUserUtils,
 	) {
 		parent::__construct( $db );
 
-		$this->actorStore = $actorStore;
-		$this->tempUserConfig = $tempUserConfig;
-		$this->hideUserUtils = $hideUserUtils;
 		$this->table( 'actor' );
 	}
 
@@ -67,7 +60,7 @@ class UserSelectQueryBuilder extends SelectQueryBuilder {
 	}
 
 	/**
-	 * Find by provided user names.
+	 * Find by provided usernames.
 	 *
 	 * @param string|string[] $userNames
 	 * @return UserSelectQueryBuilder
@@ -82,7 +75,7 @@ class UserSelectQueryBuilder extends SelectQueryBuilder {
 	}
 
 	/**
-	 * Find by provided user names.
+	 * Find by provided usernames.
 	 * @deprecated since 1.37, use whereUserNames instead
 	 * @param string|string[] $userNames
 	 * @return UserSelectQueryBuilder
@@ -167,8 +160,6 @@ class UserSelectQueryBuilder extends SelectQueryBuilder {
 
 	/**
 	 * Only return registered users.
-	 *
-	 * @return UserSelectQueryBuilder
 	 */
 	public function registered(): self {
 		$this->conds( $this->db->expr( 'actor_user', '!=', null ) );
@@ -177,8 +168,6 @@ class UserSelectQueryBuilder extends SelectQueryBuilder {
 
 	/**
 	 * Only return anonymous users.
-	 *
-	 * @return UserSelectQueryBuilder
 	 */
 	public function anon(): self {
 		$this->conds( [ 'actor_user' => null ] );
@@ -187,8 +176,6 @@ class UserSelectQueryBuilder extends SelectQueryBuilder {
 
 	/**
 	 * Only return named users.
-	 *
-	 * @return UserSelectQueryBuilder
 	 */
 	public function named(): self {
 		// All named accounts must be registered
@@ -204,8 +191,6 @@ class UserSelectQueryBuilder extends SelectQueryBuilder {
 
 	/**
 	 * Only return temp users
-	 *
-	 * @return UserSelectQueryBuilder
 	 */
 	public function temp(): self {
 		if ( !$this->tempUserConfig->isKnown() ) {
@@ -234,8 +219,6 @@ class UserSelectQueryBuilder extends SelectQueryBuilder {
 
 	/**
 	 * Fetch a single UserIdentity that matches specified criteria.
-	 *
-	 * @return UserIdentity|null
 	 */
 	public function fetchUserIdentity(): ?UserIdentity {
 		$this->fields( [ 'actor_id', 'actor_name', 'actor_user' ] );
@@ -262,7 +245,7 @@ class UserSelectQueryBuilder extends SelectQueryBuilder {
 	}
 
 	/**
-	 * Returns an array of user names matching the query.
+	 * Returns an array of usernames matching the query.
 	 *
 	 * @return string[]
 	 */
