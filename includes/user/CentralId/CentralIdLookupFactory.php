@@ -36,28 +36,20 @@ class CentralIdLookupFactory {
 	/** @var array ObjectFactory specs indexed by provider name */
 	private $providers;
 
-	/** @var string */
-	private $defaultProvider;
-
-	private ObjectFactory $objectFactory;
-	private UserIdentityLookup $userIdentityLookup;
-	private UserFactory $userFactory;
+	private string $defaultProvider;
 
 	/** @var CentralIdLookup[] */
 	private $instanceCache = [];
 
 	public function __construct(
 		ServiceOptions $options,
-		ObjectFactory $objectFactory,
-		UserIdentityLookup $userIdentityLookup,
-		UserFactory $userFactory
+		private readonly ObjectFactory $objectFactory,
+		private readonly UserIdentityLookup $userIdentityLookup,
+		private readonly UserFactory $userFactory
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->providers = $options->get( MainConfigNames::CentralIdLookupProviders );
 		$this->defaultProvider = $options->get( MainConfigNames::CentralIdLookupProvider );
-		$this->objectFactory = $objectFactory;
-		$this->userIdentityLookup = $userIdentityLookup;
-		$this->userFactory = $userFactory;
 	}
 
 	/**
