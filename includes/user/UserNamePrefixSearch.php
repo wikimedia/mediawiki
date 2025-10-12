@@ -24,27 +24,15 @@ class UserNamePrefixSearch {
 
 	public const AUDIENCE_PUBLIC = 'public';
 
-	private IConnectionProvider $dbProvider;
-	private UserNameUtils $userNameUtils;
-	private HideUserUtils $hideUserUtils;
-
-	/**
-	 * @param IConnectionProvider $dbProvider
-	 * @param UserNameUtils $userNameUtils
-	 * @param HideUserUtils $hideUserUtils
-	 */
 	public function __construct(
-		IConnectionProvider $dbProvider,
-		UserNameUtils $userNameUtils,
-		HideUserUtils $hideUserUtils
+		private readonly IConnectionProvider $dbProvider,
+		private readonly UserNameUtils $userNameUtils,
+		private readonly HideUserUtils $hideUserUtils
 	) {
-		$this->dbProvider = $dbProvider;
-		$this->userNameUtils = $userNameUtils;
-		$this->hideUserUtils = $hideUserUtils;
 	}
 
 	/**
-	 * Do a prefix search of user names and return a list of matching user names.
+	 * Do a prefix search of usernames and return a list of matching usernames.
 	 *
 	 * @param string|Authority $audience Either AUDIENCE_PUBLIC or a user to
 	 *    show the search for
@@ -63,7 +51,7 @@ class UserNamePrefixSearch {
 			);
 		}
 
-		// Invalid user names are treated as empty strings
+		// Invalid usernames are treated as empty strings
 		$prefix = $this->userNameUtils->getCanonical( $search ) ?: '';
 
 		$dbr = $this->dbProvider->getReplicaDatabase();
@@ -75,7 +63,7 @@ class UserNamePrefixSearch {
 			->limit( $limit )
 			->offset( $offset );
 
-		// Filter out hidden user names
+		// Filter out hidden usernames
 		if ( $audience === self::AUDIENCE_PUBLIC || !$audience->isAllowed( 'hideuser' ) ) {
 			$queryBuilder->andWhere( $this->hideUserUtils->getExpression( $dbr ) );
 		}
