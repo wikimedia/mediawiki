@@ -387,7 +387,7 @@
 	"usernameinprogress": "Xa se está a crear unha conta con este nome de usuario.\nPor favor, agarda.",
 	"userexists": "O nome de usuario que escribiches xa o usa alguén.\nEscolle un nome diferente.",
 	"createacct-normalization": "O teu nome de usuario quedará reducido a «$2» debido a restricións técnicas.",
-	"loginerror": "Erro ao acceder ao sistema",
+	"loginerror": "Erro de inicio de sesión",
 	"createacct-error": "Erro ao crear a conta",
 	"createaccounterror": "Non se puido crear a conta: $1",
 	"nocookieslogin": "{{SITENAME}} usa cookies para rexistrar os usuario, mais ti tes as cookies deshabilitadas.\nPor favor, habilítaas e téntao de novo.",

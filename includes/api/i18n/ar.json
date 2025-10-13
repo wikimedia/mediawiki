@@ -901,7 +901,7 @@
 	"apihelp-query+imageinfo-paramvalue-prop-mediatype": "يضيف نوع الوسائط للملف. لو أن الملف قد تم حذف مراجعته، فخاصية <samp>filehidden</samp> سيتم إرجاعها.",
 	"apihelp-query+imageinfo-paramvalue-prop-metadata": "يسرد بيانات تعريف Exif لإصدار الملف. لو أن الملف قد تم حذف مراجعته، فخاصية <samp>filehidden</samp> سيتم إرجاعها.",
 	"apihelp-query+imageinfo-paramvalue-prop-commonmetadata": "يسرد بيانات التعريف العامة لصيغة الملف لإصدار الملف. لو أن الملف قد تم حذف مراجعته، فخاصية <samp>filehidden</samp> سيتم إرجاعها.",
-	"apihelp-query+imageinfo-paramvalue-prop-extmetadata": "يسرد البيانات الوصفية المنسقة من مصادر متعددة، النتائج بتنسيق HTML. لو أن الملف قد تم حذف مراجعته، فخاصية <samp>filehidden</samp> سيتم إرجاعها.",
+	"apihelp-query+imageinfo-paramvalue-prop-extmetadata": "يعرض بيانات وصفية منسقة مجمعة من مصادر متعددة. النتائج بتنسيق HTML. إذا حُذف الملف من المراجعة، فسيتم إرجاع خاصية <samp>\"إخفاء الملف\"</samp>.\n\n<strong>ملاحظة:</strong> طلب هذه الخاصية مكلف، ويُنصح بتجنبها إلا إذا كنت بحاجة إليها. عند استخدامها، يُنصح بطلب عدد قليل من النتائج في كل مرة لتجنب التحميل الزائد.",
 	"apihelp-query+imageinfo-paramvalue-prop-archivename": "يضيف اسم ملف إصدار الأرشيف للإصدارات غير الأحدث. لو أن الملف قد تم حذف مراجعته، فخاصية <samp>filehidden</samp> سيتم إرجاعها.",
 	"apihelp-query+imageinfo-paramvalue-prop-bitdepth": "يضيف عمق البت للإصدار. لو أن الملف قد تم حذف مراجعته، فخاصية <samp>filehidden</samp> سيتم إرجاعها.",
 	"apihelp-query+imageinfo-paramvalue-prop-uploadwarning": "تُستخدَم من قبل صفحة Special:Upload للحصول على معلومات حول ملف موجود، غير مخصص للاستخدام خارج نواة ميدياويكي.",

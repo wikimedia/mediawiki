@@ -894,7 +894,7 @@
 	"apihelp-query+imageinfo-paramvalue-prop-mediatype": "הוספת סוג המדיה של הקובץ. אם הקובץ נמחק במחיקת גרסאות, יוחזר המאפיין <samp>filehidden</samp>.",
 	"apihelp-query+imageinfo-paramvalue-prop-metadata": "טעינת מטא־נתונים של Exif עבור גרסת הקובץ. אם הקובץ נמחק במחיקת גרסאות, יוחזר המאפיין <samp>filehidden</samp>.",
 	"apihelp-query+imageinfo-paramvalue-prop-commonmetadata": "רשימת מטא־נתונים כלליים על תסדיר הקובץ עבור גרסת הקובץ. אם הקובץ נמחק במחיקת גרסאות, יוחזר המאפיין <samp>filehidden</samp>.",
-	"apihelp-query+imageinfo-paramvalue-prop-extmetadata": "רשימת מטא־נתונים מעוצבים משולבים מכמה מקורות. התוצאה מעוצבת ב־HTML. אם הקובץ נמחק במחיקת גרסאות, יוחזר המאפיין <samp>filehidden</samp>.",
+	"apihelp-query+imageinfo-paramvalue-prop-extmetadata": "רשימת מטא־נתונים מעוצבים משולבים מכמה מקורות. התוצאה מעוצבת ב־HTML. אם הקובץ נמחק במחיקת גרסאות, יוחזר המאפיין <samp>filehidden</samp>.\n\n<strong>הערה:</strong> זהו מאפיין שיקר לבקש מבחינת מביצועים, ויש להימנע ממנו אלא אם כן הוא נחוץ לך. בעת השימוש בו, יש לבקש רק מספר מצומצם של תוצאות בכל פעם כדי למנוע עומס־יתר.",
 	"apihelp-query+imageinfo-paramvalue-prop-archivename": "הוספת שם הקובץ של גרסת הארכיון עבור הגרסאות שאינן האחרונה. אם הקובץ נמחק במחיקת גרסאות, יוחזר המאפיין <samp>filehidden</samp>.",
 	"apihelp-query+imageinfo-paramvalue-prop-bitdepth": "הוספת עומק הביטים של הגרסה. אם הקובץ נמחק במחיקת גרסאות, יוחזר המאפיין <samp>filehidden</samp>.",
 	"apihelp-query+imageinfo-paramvalue-prop-uploadwarning": "משמש את Special:Upload כדי לקבל מידע על קובץ קיים. לא נועד לשימוש מחוץ לליבת MediaWiki.",

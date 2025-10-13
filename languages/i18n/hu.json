@@ -3930,6 +3930,7 @@
 	"mycustomjsredirectprotected": "Nincs jogod szerkeszteni ezt a JavaScript-lapot, mert a lap egy olyan átirányítás, ami nem szerkesztői oldaladra mutat.",
 	"deflate-invaliddeflate": "A megadott tartalom nincs helyesen tömörítve",
 	"unprotected-js": "Biztonsági okokból JavaScript nem tölthető be védtelen lapokról. Kérlek egyedül a MediaWiki névtérben készíts JavaScriptet, vagy szerkesztői allapként.",
+	"userlogout-submit": "Kijelentkezés",
 	"userlogout-continue": "Biztos ki szeretnél jelentkezni?",
 	"userlogout-temp": "Ha egy többek által használt eszközt használsz (pl. könyvtárban vagy iskolában), bezárhatod a munkamenetet, megakadályozva, hogy mások használják ezt az ideiglenes fiókot.",
 	"userlogout-temp-moreinfo": "Figyelj rá, hogy több ideiglenes fiók használata ellenkezhet a jelen wiki szabályaival, és lehet, hogy blokkolnak, ha ez gyakran előfordul.",
