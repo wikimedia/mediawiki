@@ -409,7 +409,7 @@ class RemexCompatMunger implements TreeHandler {
 			$node = $wrapBase;
 		}
 
-		for ( $i = count( $nodes ) - 1; $i >= 0; $i-- ) {
+		for ( $i = count( $nodes ); $i--; ) {
 			$oldNode = $nodes[$i];
 			$oldData = $oldNode->snData;
 			$nodeParent = $node;

@@ -306,7 +306,7 @@ class GrammarKk_cyrl implements IGrammarTransformer {
 		$lastLetter = $ar[$lastKey] ?? '';
 
 		// Find the last vowel in the word
-		for ( $i = count( $ar ) - 1; $i >= 0; $i-- ) {
+		for ( $i = count( $ar ); $i--; ) {
 			$letter = $ar[$i];
 			if ( in_array( $letter, $allVowels, true ) ) {
 				return [
