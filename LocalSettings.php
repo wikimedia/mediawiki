@@ -21,7 +21,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 ## Uncomment this to disable output compression
 # $wgDisableOutputCompression = true;
 
-$wgSitename = env('WGSITENAME');
+$wgSitename = getenv('WGSITENAME');
 
 ## The URL base path to the directory containing the wiki;
 ## defaults for all runtime URL paths are based off of this.
@@ -31,7 +31,7 @@ $wgSitename = env('WGSITENAME');
 $wgScriptPath = "";
 
 ## The protocol and server name to use in fully-qualified URLs
-$wgServer = env('WGSERVER');
+$wgServer = getenv('WGSERVER');
 
 ## The URL path to static resources (images, scripts, etc.)
 $wgResourceBasePath = $wgScriptPath;
@@ -56,11 +56,11 @@ $wgEnotifWatchlist = false; # UPO
 $wgEmailAuthentication = true;
 
 ## Database settings
-$wgDBtype = env('WGDBTYPE');
-$wgDBserver = env('WGDBSERVER');
-$wgDBname = env('WGDBNAME');
-$wgDBuser = env('WGDBUSER');
-$wgDBpassword = env('WGDBPASSWORD');
+$wgDBtype = getenv('WGDBTYPE');
+$wgDBserver = getenv('WGDBSERVER');
+$wgDBname = getenv('WGDBNAME');
+$wgDBuser = getenv('WGDBUSER');
+$wgDBpassword = getenv('WGDBPASSWORD');
 
 # MySQL specific settings
 $wgDBprefix = "";
@@ -102,14 +102,14 @@ $wgLocaltimezone = "UTC";
 ## be publicly accessible from the web.
 #$wgCacheDirectory = "$IP/cache";
 
-$wgSecretKey = env('WGSECRETKEY');
+$wgSecretKey = getenv('WGSECRETKEY');
 
 # Changing this will log out all existing sessions.
 $wgAuthenticationTokenVersion = "1";
 
 # Site upgrade key. Must be set to a string (default provided) to turn on the
 # web installer while LocalSettings.php is in place
-$wgUpgradeKey = env('WGUPGRADEKEY');
+$wgUpgradeKey = getenv('WGUPGRADEKEY');
 
 ## For attaching licensing metadata to pages, and displaying an
 ## appropriate copyright notice / icon. GNU Free Documentation
