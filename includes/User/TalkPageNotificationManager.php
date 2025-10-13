@@ -200,7 +200,6 @@ class TalkPageNotificationManager {
 	/**
 	 * Remove the cached newtalk status for the given user
 	 * @internal There should be no need to call this other than from User::clearInstanceCache
-	 * @param UserIdentity $user
 	 */
 	public function clearInstanceCache( UserIdentity $user ): void {
 		$userKey = $this->getCacheKey( $user );
@@ -209,8 +208,6 @@ class TalkPageNotificationManager {
 
 	/**
 	 * Check whether the talk page is disabled for a user
-	 * @param UserIdentity $user
-	 * @return bool
 	 */
 	private function isTalkDisabled( UserIdentity $user ): bool {
 		return !$user->isRegistered() && $this->disableAnonTalk;
@@ -248,7 +245,7 @@ class TalkPageNotificationManager {
 
 		if ( $curRev ) {
 			$prevRev = $this->revisionLookup->getPreviousRevision( $curRev );
-			$ts = $prevRev ? $prevRev->getTimestamp() : null;
+			$ts = $prevRev?->getTimestamp();
 		} else {
 			$ts = null;
 		}
@@ -300,8 +297,6 @@ class TalkPageNotificationManager {
 
 	/**
 	 * Gets a unique key for various caches.
-	 * @param UserIdentity $user
-	 * @return string
 	 */
 	private function getCacheKey( UserIdentity $user ): string {
 		return $user->isRegistered() ? "u:{$user->getId()}" : "anon:{$user->getName()}";
