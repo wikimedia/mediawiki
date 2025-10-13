@@ -82,7 +82,10 @@
 		"wikimedia/wait-condition-loop": "2.0.2",
 		"wikimedia/wrappedstring": "4.0.1",
 		"wikimedia/xmp-reader": "0.9.4",
-		"zordius/lightncandy": "1.2.6"
+		"zordius/lightncandy": "1.2.6",
+		"ext-apcu": "*",
+		"ext-imagick": "*",
+		"ext-mysqli": "*"
 	},
 	"require-dev": {
 		"composer/spdx-licenses": "1.5.8",
@@ -115,16 +118,13 @@
 		"symfony/polyfill-php81": "1.99"
 	},
 	"suggest": {
-		"ext-apcu": "Faster web responses overall.",
 		"ext-bcmath": "Increased performance of some operations. Required especially on 32 bit machines. This or ext-gmp are needed for scrambling Temporary Accounts.",
 		"ext-curl": "Faster HTTP services, e.g. when using InstantCommons, Swift, or Etcd.",
 		"ext-exif": "Enable processing of EXIF information in file uploads.",
 		"ext-gd": "Enable thumbnails for file uploads.",
 		"ext-gmp": "Increased performance of some operations. Required especially on 32 bit machines. This or ext-bcmath are needed for scrambling Temporary Accounts.",
 		"ext-igbinary": "Enables use of igbinary for serialisation.",
-		"ext-imagick": "Enables use of imagemagick for image manipulation.",
 		"ext-memcached": "Enables use of Memcached for caching purposes.",
-		"ext-mysqli": "Enable the MySQL and MariaDB database type for MediaWiki.",
 		"ext-pdo": "Enable the SQLite database type for MediaWiki.",
 		"ext-pgsql": "Enable the PostgreSQL database type for MediaWiki.",
 		"ext-posix": "Enable CLI concurrent processing, e.g. for runJobs.php.",
