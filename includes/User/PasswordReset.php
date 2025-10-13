@@ -89,7 +89,6 @@ class PasswordReset implements LoggerAwareInterface {
 
 	/**
 	 * @since 1.42
-	 * @return StatusValue
 	 */
 	public function isEnabled(): StatusValue {
 		$resetRoutes = $this->config->get( MainConfigNames::PasswordResetRoutes );
@@ -291,13 +290,11 @@ class PasswordReset implements LoggerAwareInterface {
 	/**
 	 * Check whether the user is blocked.
 	 * Ignores certain types of system blocks that are only meant to force users to log in.
-	 * @param User $user
-	 * @return bool
 	 * @since 1.30
 	 */
-	private function isBlocked( User $user ) {
+	private function isBlocked( User $user ): bool {
 		$block = $user->getBlock();
-		return $block && $block->appliesToPasswordReset();
+		return (bool)$block?->appliesToPasswordReset();
 	}
 
 	/**
