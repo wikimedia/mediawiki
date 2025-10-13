@@ -34,7 +34,11 @@ class MoveBatch extends Maintenance {
 		$this->addOption( 'r', "Reason to move page", false, true );
 		$this->addOption( 'i', "Interval to sleep between moves" );
 		$this->addOption( 'noredirects', "Suppress creation of redirects" );
-		$this->addArg( 'listfile', 'List of pages to move, newline delimited', false );
+		$this->addArg(
+			'listfile',
+			'List of pages to move (newline delimited) in the format <existing page name>|<new name>',
+			false
+		);
 	}
 
 	public function execute() {
