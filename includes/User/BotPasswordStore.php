@@ -45,7 +45,6 @@ class BotPasswordStore {
 
 	/**
 	 * Get a database connection for the bot passwords database
-	 * @return IReadableDatabase
 	 * @internal
 	 */
 	public function getReplicaDatabase(): IReadableDatabase {
@@ -54,7 +53,6 @@ class BotPasswordStore {
 
 	/**
 	 * Get a database connection for the bot passwords database
-	 * @return IDatabase
 	 * @internal
 	 */
 	public function getPrimaryDatabase(): IDatabase {
@@ -101,7 +99,7 @@ class BotPasswordStore {
 			return null;
 		}
 
-		if ( ( $flags & IDBAccessObject::READ_LATEST ) == IDBAccessObject::READ_LATEST ) {
+		if ( ( $flags & IDBAccessObject::READ_LATEST ) === IDBAccessObject::READ_LATEST ) {
 			$db = $this->dbProvider->getPrimaryDatabase( 'virtual-botpasswords' );
 		} else {
 			$db = $this->dbProvider->getReplicaDatabase( 'virtual-botpasswords' );
@@ -277,9 +275,6 @@ class BotPasswordStore {
 	/**
 	 * Check if a BotPassword is valid to save in the database (either inserting a new
 	 * one or updating an existing one) based on the size of the restrictions and grants
-	 *
-	 * @param BotPassword $botPassword
-	 * @return StatusValue
 	 */
 	private function validateBotPassword( BotPassword $botPassword ): StatusValue {
 		$res = StatusValue::newGood();
@@ -299,9 +294,6 @@ class BotPasswordStore {
 
 	/**
 	 * Delete an existing BotPassword in the database
-	 *
-	 * @param BotPassword $botPassword
-	 * @return bool
 	 */
 	public function deleteBotPassword( BotPassword $botPassword ): bool {
 		$dbw = $this->getPrimaryDatabase();
