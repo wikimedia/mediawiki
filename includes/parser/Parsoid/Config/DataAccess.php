@@ -36,7 +36,6 @@ use Wikimedia\Parsoid\Core\ContentMetadataCollector;
 use Wikimedia\Parsoid\Core\LinkTarget as ParsoidLinkTarget;
 use Wikimedia\Parsoid\Fragments\HtmlPFragment;
 use Wikimedia\Parsoid\Fragments\PFragment;
-use Wikimedia\Parsoid\Fragments\WikitextPFragment;
 use Wikimedia\Rdbms\ReadOnlyMode;
 
 /**
@@ -391,9 +390,7 @@ class DataAccess extends IDataAccess {
 		if ( $wikitext instanceof PFragment ) {
 			$result = [];
 			$index = 1;
-			$split = $wikitext instanceof WikitextPFragment ?
-				$wikitext->split() : [ $wikitext ];
-			foreach ( $split as $fragment ) {
+			foreach ( $wikitext->split() as $fragment ) {
 				if ( is_string( $fragment ) ) {
 					$result[] = $fragment;
 				} else {
