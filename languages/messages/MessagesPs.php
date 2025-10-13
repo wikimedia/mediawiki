@@ -52,8 +52,8 @@ $namespaceNames = [
 	NS_PROJECT_TALK     => 'د_$1_خبرې_اترې',
 	NS_FILE             => 'دوتنه',
 	NS_FILE_TALK        => 'د_دوتنې_خبرې_اترې',
-	NS_MEDIAWIKI        => 'ميډياويکي',
-	NS_MEDIAWIKI_TALK   => 'د_ميډياويکي_خبرې_اترې',
+	NS_MEDIAWIKI        => 'مېډياويکي',
+	NS_MEDIAWIKI_TALK   => 'د_مېډياويکي_خبرې_اترې',
 	NS_TEMPLATE         => 'کينډۍ',
 	NS_TEMPLATE_TALK    => 'د_کينډۍ_خبرې_اترې',
 	NS_HELP             => 'لارښود',
@@ -68,6 +68,8 @@ $namespaceAliases = [
 	'د_کارونکي_خبرې_اترې' => NS_USER_TALK,
 	'انځور' => NS_FILE,
 	'د_انځور_خبرې_اترې' => NS_FILE_TALK,
+	'ميډياويکي' => NS_MEDIAWIKI,
+	'د_ميډياويکي_خبرې_اترې' => NS_MEDIAWIKI_TALK,
 ];
 
 /** @phpcs-require-sorted-array */
