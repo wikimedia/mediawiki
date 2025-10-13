@@ -12,8 +12,10 @@ namespace MediaWiki\SpecialPage;
 use Exception;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Config\Config;
+use MediaWiki\Exception\HttpError;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
+use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
@@ -54,6 +56,7 @@ use MediaWiki\Specials\SpecialWantedTemplates;
 use MediaWiki\Specials\SpecialWithoutInterwiki;
 use stdClass;
 use Wikimedia\Rdbms\DBError;
+use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -107,6 +110,9 @@ abstract class QueryPage extends SpecialPage {
 
 	/** @var LinkBatchFactory|null */
 	private $linkBatchFactory = null;
+
+	/** @var HttpRequestFactory|null */
+	private $httpRequestFactory = null;
 
 	/**
 	 * Get a list of query page classes and their associated special pages,
@@ -182,6 +188,18 @@ abstract class QueryPage extends SpecialPage {
 			$this->linkBatchFactory = MediaWikiServices::getInstance()->getLinkBatchFactory();
 		}
 		return $this->linkBatchFactory;
+	}
+
+	/**
+	 * @return HttpRequestFactory
+	 */
+	private function getHttpRequestFactory(): HttpRequestFactory {
+		if ( $this->httpRequestFactory === null ) {
+			// Fallback if not provided
+			// TODO Do not rely on global state
+			$this->httpRequestFactory = MediaWikiServices::getInstance()->getHttpRequestFactory();
+		}
+		return $this->httpRequestFactory;
 	}
 
 	/**
@@ -334,6 +352,22 @@ abstract class QueryPage extends SpecialPage {
 	 */
 	public function isSyndicated() {
 		return true;
+	}
+
+	/**
+	 * Check if this query page is configured to fetch data from an external source via HTTP.
+	 *
+	 * @since 1.45
+	 * @stable to override
+	 * @return bool True if configured to use an external data source, false otherwise
+	 */
+	public function usesExternalSource(): bool {
+		$config = $this->getConfig();
+		$externalSources = $config->get( MainConfigNames::ExternalQuerySources );
+		$pageName = $this->getName();
+
+		return !empty( $externalSources[$pageName]['enabled'] ) &&
+			!empty( $externalSources[$pageName]['url'] );
 	}
 
 	/**
@@ -516,7 +550,22 @@ abstract class QueryPage extends SpecialPage {
 	 * @since 1.18
 	 */
 	public function reallyDoQuery( $limit, $offset = false ) {
-		$fname = static::class . '::reallyDoQuery';
+		if ( $this->usesExternalSource() ) {
+			return $this->reallyDoQueryExternal( $limit, $offset );
+		}
+
+		return $this->reallyDoQueryInternal( $limit, $offset );
+	}
+
+	/**
+	 * Run the query and return the result
+	 *
+	 * @param int|false $limit Numerical limit or false for no limit
+	 * @param int|false $offset Numerical offset or false for no offset
+	 * @return IResultWrapper
+	 */
+	private function reallyDoQueryInternal( $limit, $offset = false ) {
+		$fname = static::class . '::reallyDoQueryInternal';
 		$dbr = $this->getRecacheDB();
 		$query = $this->getQueryInfo();
 		$order = $this->getOrderFields();
@@ -553,6 +602,74 @@ abstract class QueryPage extends SpecialPage {
 		}
 
 		return $queryBuilder->fetchResultSet();
+	}
+
+	/**
+	 * Run the query and return the result
+	 *
+	 * @param int|false $limit Numerical limit or false for no limit
+	 * @param int|false $offset Numerical offset or false for no offset
+	 * @return IResultWrapper
+	 */
+	private function reallyDoQueryExternal( $limit, $offset = false ) {
+		$fname = static::class . '::reallyDoQueryExternal';
+		$httpRequestFactory = $this->getHttpRequestFactory();
+		$externalSources = $this->getConfig()->get( MainConfigNames::ExternalQuerySources );
+		$pageName = $this->getName();
+		$config = $externalSources[$pageName];
+
+		$options = [];
+		if ( isset( $config['timeout'] ) ) {
+			$options['timeout'] = (int)$config['timeout'];
+		}
+
+		$request = $httpRequestFactory->create( $config['url'], $options, $fname );
+
+		$status = $request->execute();
+		if ( !$status->isOK() ) {
+			throw new HttpError( 520,
+				"Failed to fetch data from external source '{$pageName}': " . $status->getMessage()->text() );
+		}
+
+		$content = $request->getContent();
+		if ( $content === null || $content === '' ) {
+			throw new HttpError( 204, "Empty response received from external source '{$pageName}'", 'No Content' );
+		}
+
+		$decoded = json_decode( $content, true );
+		if ( $decoded === null ) {
+			throw new HttpError( 500, "Invalid JSON response from external source '{$pageName}': " .
+				json_last_error_msg() );
+		}
+
+		if ( !is_array( $decoded ) ) {
+			throw new HttpError( 500, "Expected array data from external source '{$pageName}', got " .
+				gettype( $decoded ) );
+		}
+
+		$result = [];
+		foreach ( $decoded as $i => $row ) {
+			if ( !is_array( $row ) ) {
+				throw new HttpError( 500, "Invalid row data at index {$i} from external source '{$pageName}': " .
+					'expected array, got ' . gettype( $row ) );
+			}
+
+			$requiredFields = [ 'qc_namespace', 'qc_title', 'qc_value' ];
+			foreach ( $requiredFields as $field ) {
+				if ( !array_key_exists( $field, $row ) ) {
+					throw new HttpError( 500,
+						"Missing required field '{$field}' in row {$i} from external source '{$pageName}'" );
+				}
+			}
+
+			$result[] = (object)[
+				'namespace' => $row['qc_namespace'],
+				'title' => $row['qc_title'],
+				'value' => $row['qc_value']
+			];
+		}
+
+		return new FakeResultWrapper( $result );
 	}
 
 	/**

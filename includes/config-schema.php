@@ -1612,6 +1612,8 @@ return [
 			],
 			'PutIPinRC' => true,
 			'QueryPageDefaultLimit' => 50,
+			'ExternalQuerySources' => [
+			],
 			'PasswordAttemptThrottle' => [
 				[
 					'count' => 5,
@@ -3045,6 +3047,7 @@ return [
 			'SoftBlockRanges' => 'array',
 			'RateLimits' => 'object',
 			'RateLimitsExcludedIPs' => 'array',
+			'ExternalQuerySources' => 'object',
 			'PasswordAttemptThrottle' => 'array',
 			'GrantPermissions' => 'object',
 			'GrantPermissionGroups' => 'object',
@@ -3532,6 +3535,30 @@ return [
 		'SoftBlockRanges' => [
 			'items' => [
 				'type' => 'string',
+			],
+		],
+		'ExternalQuerySources' => [
+			'additionalProperties' => [
+				'type' => 'object',
+				'properties' => [
+					'enabled' => [
+						'type' => 'boolean',
+						'default' => false,
+					],
+					'url' => [
+						'type' => 'string',
+						'format' => 'uri',
+					],
+					'timeout' => [
+						'type' => 'integer',
+						'default' => 10,
+					],
+				],
+				'required' => [
+					'enabled',
+					'url',
+				],
+				'additionalProperties' => false,
 			],
 		],
 		'GrantPermissions' => [

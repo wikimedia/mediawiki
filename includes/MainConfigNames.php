@@ -3003,6 +3003,12 @@ class MainConfigNames {
 	public const QueryPageDefaultLimit = 'QueryPageDefaultLimit';
 
 	/**
+	 * Name constant for the ExternalQuerySources setting, for use with Config::get()
+	 * @see MainConfigSchema::ExternalQuerySources
+	 */
+	public const ExternalQuerySources = 'ExternalQuerySources';
+
+	/**
 	 * Name constant for the PasswordAttemptThrottle setting, for use with Config::get()
 	 * @see MainConfigSchema::PasswordAttemptThrottle
 	 */

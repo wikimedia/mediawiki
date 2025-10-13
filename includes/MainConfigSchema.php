@@ -8975,6 +8975,49 @@ class MainConfigSchema {
 	];
 
 	/**
+	 * Configuration for external query sources.
+	 *
+	 * This allows query pages to fetch their data from external HTTP endpoints
+	 * instead of local database queries.
+	 *
+	 * **Example:**
+	 * ```php
+	 * $wgExternalQuerySources = [
+	 *     'SpecialPageName' => [
+	 *         'enabled' => true,
+	 *         'url' => '[https://api.example.com/data'](https://api.example.com/data'),
+	 *         'timeout' => 10, // seconds, optional
+	 *     ]
+	 * ];
+	 * ```
+	 *
+	 * @since 1.45
+	 */
+	public const ExternalQuerySources = [
+		'default' => [],
+		'type' => 'map',
+		'additionalProperties' => [
+			'type' => 'object',
+			'properties' => [
+				'enabled' => [
+					'type' => 'boolean',
+					'default' => false,
+				],
+				'url' => [
+					'type' => 'string',
+					'format' => 'uri',
+				],
+				'timeout' => [
+					'type' => 'integer',
+					'default' => 10,
+				],
+			],
+			'required' => [ 'enabled', 'url' ],
+			'additionalProperties' => false,
+		],
+	];
+
+	/**
 	 * Limit password attempts to X attempts per Y seconds per IP per account.
 	 *
 	 * Value is an array of arrays. Each sub-array must have a key for count

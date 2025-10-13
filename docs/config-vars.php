@@ -2988,6 +2988,12 @@ $wgPutIPinRC = null;
 $wgQueryPageDefaultLimit = null;
 
 /**
+ * Config variable stub for the ExternalQuerySources setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::ExternalQuerySources
+ */
+$wgExternalQuerySources = null;
+
+/**
  * Config variable stub for the PasswordAttemptThrottle setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::PasswordAttemptThrottle
  */
