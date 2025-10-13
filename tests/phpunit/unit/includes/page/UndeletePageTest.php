@@ -26,7 +26,7 @@ use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\ReadOnlyMode;
 
 /**
- * @coversDefaultClass \MediaWiki\Page\UndeletePage
+ * @covers \MediaWiki\Page\UndeletePage
  */
 class UndeletePageTest extends MediaWikiUnitTestCase {
 	/**
@@ -62,7 +62,6 @@ class UndeletePageTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers ::canProbablyUndeleteAssociatedTalk
 	 * @dataProvider provideAssociatedTalk
 	 */
 	public function testCanProbablyUndeleteAssociatedTalk(

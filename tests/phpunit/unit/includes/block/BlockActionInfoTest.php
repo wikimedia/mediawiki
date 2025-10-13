@@ -4,7 +4,7 @@ use MediaWiki\Block\BlockActionInfo;
 
 /**
  * @group Blocking
- * @coversDefaultClass \MediaWiki\Block\BlockActionInfo
+ * @covers \MediaWiki\Block\BlockActionInfo
  */
 class BlockActionInfoTest extends MediaWikiUnitTestCase {
 	private BlockActionInfo $blockActionInfo;
@@ -20,9 +20,6 @@ class BlockActionInfoTest extends MediaWikiUnitTestCase {
 		);
 	}
 
-	/**
-	 * @covers ::getAllBlockActions
-	 */
 	public function testAddBlockAction() {
 		// 'test' action in added by hook with id 100
 		$blockActions = $this->blockActionInfo->getAllBlockActions();
@@ -36,8 +33,6 @@ class BlockActionInfoTest extends MediaWikiUnitTestCase {
 	 * @dataProvider provideIdAndAction
 	 * @param string|false $action False if the id is invalid
 	 * @param int|false $id False if the action is invalid
-	 * @covers ::getIdFromAction
-	 * @covers ::getActionFromId
 	 */
 	public function testIdAndAction( $action, $id ) {
 		if ( $id !== false ) {

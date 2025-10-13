@@ -36,7 +36,7 @@ use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
- * @coversDefaultClass \MediaWiki\Page\DeletePage
+ * @covers \MediaWiki\Page\DeletePage
  */
 class DeletePageTest extends MediaWikiUnitTestCase {
 	use MockAuthorityTrait;
@@ -137,9 +137,6 @@ class DeletePageTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers ::deleteIfAllowed
-	 * @covers ::authorizeDeletion
-	 * @covers ::isBigDeletion
 	 * @dataProvider providePermissions
 	 */
 	public function testPermissions(
@@ -216,9 +213,6 @@ class DeletePageTest extends MediaWikiUnitTestCase {
 		yield 'Successful' => [ 'ultimate', true ];
 	}
 
-	/**
-	 * @covers ::getSuccessfulDeletionsIDs
-	 */
 	public function testGetSuccessfulDeletionsIDs(): void {
 		$delPage = $this->getDeletePage(
 			$this->createMock( ProperPageIdentity::class ),
@@ -228,9 +222,6 @@ class DeletePageTest extends MediaWikiUnitTestCase {
 		$this->assertArrayHasKey( DeletePage::PAGE_BASE, $delPage->getSuccessfulDeletionsIDs() );
 	}
 
-	/**
-	 * @covers ::getSuccessfulDeletionsIDs
-	 */
 	public function testGetSuccessfulDeletionsIDs__notAttempted(): void {
 		$delPage = $this->getDeletePage(
 			$this->createMock( ProperPageIdentity::class ),
@@ -240,9 +231,6 @@ class DeletePageTest extends MediaWikiUnitTestCase {
 		$delPage->getSuccessfulDeletionsIDs();
 	}
 
-	/**
-	 * @covers ::deletionsWereScheduled
-	 */
 	public function testDeletionsWereScheduled(): void {
 		$delPage = $this->getDeletePage(
 			$this->createMock( ProperPageIdentity::class ),
@@ -252,9 +240,6 @@ class DeletePageTest extends MediaWikiUnitTestCase {
 		$this->assertFalse( $delPage->deletionsWereScheduled()[DeletePage::PAGE_BASE] );
 	}
 
-	/**
-	 * @covers ::deletionsWereScheduled
-	 */
 	public function testDeletionsWereScheduled__notAttempted(): void {
 		$delPage = $this->getDeletePage(
 			$this->createMock( ProperPageIdentity::class ),
@@ -265,7 +250,6 @@ class DeletePageTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers ::canProbablyDeleteAssociatedTalk
 	 * @dataProvider provideAssociatedTalk
 	 */
 	public function testCanProbablyDeleteAssociatedTalk(

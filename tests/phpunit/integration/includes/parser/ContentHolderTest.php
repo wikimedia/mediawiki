@@ -15,7 +15,7 @@ use Wikimedia\Parsoid\Utils\DOMCompat;
 use Wikimedia\Parsoid\Utils\DOMUtils;
 
 /**
- * @coversDefaultClass \MediaWiki\Parser\ContentHolder
+ * @covers \MediaWiki\Parser\ContentHolder
  */
 class ContentHolderTest extends MediaWikiIntegrationTestCase {
 
@@ -46,21 +46,19 @@ EOD;
 		$htmlFiltered = preg_replace( "/ data-parsoid=\\\\?'[^']*\\\\?'/u", '', $html );
 		$htmlFiltered = preg_replace( '/ data-parsoid=\\\\?"[^\"]*\\\\?"/u', '', $htmlFiltered );
 		yield "Basic Parsoid test case" => [
-		[
-		'body' => $body,
-		'bodyFiltered' => $bodyFiltered,
-		'header' => $header,
-		'html' => $html,
-		'htmlFiltered' => $htmlFiltered,
-		'dom' => ContentUtils::createAndLoadDocument( $html ),
-		]
+			[
+				'body' => $body,
+				'bodyFiltered' => $bodyFiltered,
+				'header' => $header,
+				'html' => $html,
+				'htmlFiltered' => $htmlFiltered,
+				'dom' => ContentUtils::createAndLoadDocument( $html ),
+			]
 		];
 	}
 
 	/**
 	 * @dataProvider legacyHtmlProvider
-	 * @covers ::getAsHtmlString
-	 * @covers ::createFromLegacyString
 	 */
 	public function testShouldHandleTextOnlyOperationsLegacy( string $legacyHtml ): void {
 		$ch = ContentHolder::createFromLegacyString( $legacyHtml );
@@ -69,7 +67,6 @@ EOD;
 
 	/**
 	 * @dataProvider legacyHtmlProvider
-	 * @covers ::setAsHtmlString
 	 */
 	public function testShouldSetHtmlStringLegacy( string $legacyHtml ): void {
 		$ch = ContentHolder::createEmpty();
@@ -79,7 +76,6 @@ EOD;
 
 	/**
 	 * @dataProvider parsoidContentProvider
-	 * @covers ::setAsHtmlString
 	 */
 	public function testShouldSetHtmlStringParsoid( array $parsoidData ): void {
 		$ch = ContentHolder::createFromParsoidPageBundle( new HtmlPageBundle( '' ) );
@@ -89,7 +85,6 @@ EOD;
 
 	/**
 	 * @dataProvider legacyHtmlProvider
-	 * @covers ::setAsDom
 	 */
 	public function testShouldThrowUnadoptedFragment( string $legacyHtml ): void {
 		$ch = ContentHolder::createEmpty();
@@ -102,7 +97,6 @@ EOD;
 
 	/**
 	 * @dataProvider legacyHtmlProvider
-	 * @covers ::setAsDom
 	 */
 	public function testShouldSetDomLegacy( string $legacyHtml ): void {
 		$ch = ContentHolder::createEmpty();
@@ -113,7 +107,6 @@ EOD;
 
 	/**
 	 * @dataProvider parsoidContentProvider
-	 * @covers ::setAsDom
 	 */
 	public function testShouldSetDomParsoid( array $parsoidData ): void {
 		$dpb = DomPageBundle::fromLoadedDocument( $parsoidData['dom'], [
@@ -141,8 +134,6 @@ EOD;
 
 	/**
 	 * @dataProvider parsoidContentProvider
-	 * @covers ::getAsHtmlString
-	 * @covers ::createFromParsoidPageBundle
 	 */
 	public function testShouldHandleTextOnlyOperationsParsoidFullDocBundle( array $parsoidData ): void {
 		$dpb = DomPageBundle::fromLoadedDocument( $parsoidData['dom'], [
@@ -155,8 +146,6 @@ EOD;
 
 	/**
 	 * @dataProvider parsoidContentProvider
-	 * @covers ::getAsHtmlString
-	 * @covers ::createFromParsoidPageBundle
 	 */
 	public function testShouldHandleTextOnlyOperationsParsoidBodyBundle( array $parsoidData ): void {
 		$dpb = DomPageBundle::fromLoadedDocument( $parsoidData['dom'], [
@@ -176,7 +165,6 @@ EOD;
 
 	/**
 	 * @dataProvider legacyDomProvider
-	 * @covers ::convertHtmlToDom
 	 */
 	public function testShouldConvertHtmlStringToDomLegacy( string $legacyHtml, DocumentFragment $expected ): void {
 		$ch = ContentHolder::createFromLegacyString( $legacyHtml );
@@ -196,7 +184,6 @@ EOD;
 
 	/**
 	 * @dataProvider parsoidDomProvider
-	 * @covers ::convertHtmlToDom
 	 */
 	public function testShouldConvertHtmlStringToDomParsoid( Document $input, string $expected ): void {
 		$dpb = DomPageBundle::fromLoadedDocument( $input, [
@@ -211,8 +198,6 @@ EOD;
 
 	/**
 	 * @dataProvider parsoidContentProvider
-	 * @covers ::convertDomToHtml
-	 * @covers ::convertHtmlToDom
 	 */
 	public function testShouldConvertHtmlDocToDomToHtmlBodyParsoid( array $parsoidData ): void {
 		$dpb = DomPageBundle::fromLoadedDocument( $parsoidData[ 'dom' ], [
@@ -228,9 +213,6 @@ EOD;
 
 	/**
 	 * @dataProvider parsoidContentProvider
-	 * @covers ::createFromParsoidPageBundle
-	 * @covers ::convertDomToHtml
-	 * @covers ::convertHtmlToDom
 	 */
 	public function testShouldConvertHtmlBodyToDomToHtmlBodyParsoid( array $parsoidData ): void {
 		$dpb = DomPageBundle::fromLoadedDocument( $parsoidData['dom'], [
@@ -246,8 +228,6 @@ EOD;
 
 	/**
 	 * @dataProvider legacyHtmlProvider
-	 * @covers ::convertDomToHtml
-	 * @covers ::convertHtmlToDom
 	 */
 	public function testShouldConvertHtmlBodyToDomToHtmlBodyLegacy( string $legacyHtml ): void {
 		$ch = ContentHolder::createFromLegacyString( $legacyHtml );

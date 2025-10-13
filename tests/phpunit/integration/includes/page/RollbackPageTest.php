@@ -37,7 +37,7 @@ use Wikimedia\Rdbms\ReadOnlyMode;
 /**
  * @group Database
  * @covers \MediaWiki\Page\RollbackPage
- * @coversDefaultClass \MediaWiki\Page\RollbackPage
+ * @covers \MediaWiki\Page\RollbackPage
  * @method RollbackPage newServiceInstance(string $serviceClass, array $parameterOverrides)
  */
 class RollbackPageTest extends MediaWikiIntegrationTestCase {
@@ -76,7 +76,6 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers ::authorizeRollback
 	 * @dataProvider provideAuthorize
 	 */
 	public function testAuthorize( $authoritySpec, bool $expect ) {
@@ -107,9 +106,6 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 		$this->assertStatusNotOk( $rollback->authorizeRollback() );
 	}
 
-	/**
-	 * @covers ::authorizeRollback
-	 */
 	public function testAuthorizePingLimiter() {
 		$performer = $this->mockRegisteredUltimateAuthority();
 		$userMock = $this->createMock( User::class );

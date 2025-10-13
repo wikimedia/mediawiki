@@ -13,7 +13,7 @@ use Psr\Log\LogLevel;
 use Psr\Log\NullLogger;
 
 /**
- * @coversDefaultClass \MediaWiki\Actions\ActionFactory
+ * @covers \MediaWiki\Actions\ActionFactory
  *
  * @author DannyS712
  */
@@ -56,9 +56,6 @@ class ActionFactoryTest extends MediaWikiUnitTestCase {
 		return $article;
 	}
 
-	/**
-	 * @covers ::getAction
-	 */
 	public function testGetAction_simple() {
 		$context = $this->createMock( IContextSource::class );
 		$article = $this->getArticle();
@@ -85,9 +82,6 @@ class ActionFactoryTest extends MediaWikiUnitTestCase {
 		);
 	}
 
-	/**
-	 * @covers ::getAction
-	 */
 	public function testGetAction_override() {
 		$context = $this->createMock( IContextSource::class );
 		$factory = $this->getFactory( [
@@ -109,9 +103,6 @@ class ActionFactoryTest extends MediaWikiUnitTestCase {
 		);
 	}
 
-	/**
-	 * @covers ::getAction
-	 */
 	public function testGetAction_overrideNonexistent() {
 		$context = $this->createMock( IContextSource::class );
 		$factory = $this->getFactory( [] );
@@ -126,9 +117,6 @@ class ActionFactoryTest extends MediaWikiUnitTestCase {
 		);
 	}
 
-	/**
-	 * @covers ::getAction
-	 */
 	public function testGetAction_missingClass() {
 		// Make sure nothing explodes from a class missing, instead its treated as
 		// disabled, both for actions set to true and where the class comes from the
@@ -172,9 +160,6 @@ class ActionFactoryTest extends MediaWikiUnitTestCase {
 		$logger->clearBuffer();
 	}
 
-	/**
-	 * @covers ::getAction
-	 */
 	public function testGetAction_spec() {
 		$context = $this->createMock( IContextSource::class );
 
@@ -247,7 +232,6 @@ class ActionFactoryTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider provideGetActionName
-	 * @covers ::getActionName
 	 * @param string $requestAction Action requested in &action= in the URL
 	 * @param string $expectedActionName
 	 * @param array $hooks hooks to register
@@ -274,9 +258,6 @@ class ActionFactoryTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $expectedActionName, $actionName );
 	}
 
-	/**
-	 * @covers ::getActionName
-	 */
 	public function testGetActionName_noWikiPage() {
 		$context = $this->createMock( IContextSource::class );
 		$context->method( 'canUseWikiPage' )->willReturn( false );

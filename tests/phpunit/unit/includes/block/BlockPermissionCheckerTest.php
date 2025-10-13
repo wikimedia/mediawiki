@@ -14,7 +14,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 
 /**
  * @group Blocking
- * @coversDefaultClass \MediaWiki\Block\BlockPermissionChecker
+ * @covers \MediaWiki\Block\BlockPermissionChecker
  * @author DannyS712
  */
 class BlockPermissionCheckerTest extends MediaWikiUnitTestCase {
@@ -84,7 +84,6 @@ class BlockPermissionCheckerTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers ::checkBasePermissions
 	 * @dataProvider provideCheckBasePermissions
 	 */
 	public function testCheckBasePermissions( $rights, $checkHideuser, $expect ) {
@@ -99,9 +98,6 @@ class BlockPermissionCheckerTest extends MediaWikiUnitTestCase {
 		);
 	}
 
-	/**
-	 * @covers ::checkBlockPermissions
-	 */
 	public function testNotBlockedPerformer() {
 		// checkBlockPermissions has an early return true if the performer has no block
 		$blockPermissionChecker = $this->getBlockPermissionChecker(
@@ -113,9 +109,6 @@ class BlockPermissionCheckerTest extends MediaWikiUnitTestCase {
 		);
 	}
 
-	/**
-	 * @covers ::checkBlockPermissions
-	 */
 	public function testPartialBlockedPerformer() {
 		// checkBlockPermissions has an early return true if the performer is not sitewide blocked
 		$blocker = new UserIdentityValue( 1, 'blocker', UserIdentity::LOCAL );
@@ -144,7 +137,6 @@ class BlockPermissionCheckerTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers ::checkBlockPermissions
 	 * @dataProvider provideCheckBlockPermissions
 	 */
 	public function testCheckBlockPermissions(
@@ -186,7 +178,6 @@ class BlockPermissionCheckerTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers ::checkEmailPermissions
 	 * @dataProvider provideCheckEmailPermissions
 	 */
 	public function testCheckEmailPermissionOkay( $enableEmail, $rights, $expect ) {

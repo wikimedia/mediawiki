@@ -25,7 +25,7 @@ use Wikimedia\IPUtils;
 
 /**
  * @group Database
- * @coversDefaultClass \MediaWiki\Page\UndeletePage
+ * @covers \MediaWiki\Page\UndeletePage
  */
 class UndeletePageTest extends MediaWikiIntegrationTestCase {
 
@@ -82,8 +82,6 @@ class UndeletePageTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers ::undeleteUnsafe
-	 * @covers ::undeleteRevisions
 	 * @covers \MediaWiki\Revision\RevisionStoreFactory::getRevisionStoreForUndelete
 	 * @covers \MediaWiki\User\ActorStoreFactory::getActorStoreForUndelete
 	 */

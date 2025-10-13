@@ -11,7 +11,7 @@ use Wikimedia\ObjectCache\EmptyBagOStuff;
 use Wikimedia\ObjectCache\WANObjectCache;
 
 /**
- * @coversDefaultClass \MediaWiki\FileBackend\FileBackendGroup
+ * @covers \MediaWiki\FileBackend\FileBackendGroup
  */
 class FileBackendGroupTest extends MediaWikiUnitTestCase {
 	use DummyServicesTrait;

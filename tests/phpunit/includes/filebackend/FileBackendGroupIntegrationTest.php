@@ -8,7 +8,7 @@ use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\ObjectCache\EmptyBagOStuff;
 
 /**
- * @coversDefaultClass \MediaWiki\FileBackend\FileBackendGroup
+ * @covers \MediaWiki\FileBackend\FileBackendGroup
  */
 class FileBackendGroupIntegrationTest extends MediaWikiIntegrationTestCase {
 	use FileBackendGroupTestTrait;

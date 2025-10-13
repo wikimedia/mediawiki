@@ -14,20 +14,14 @@ use MediaWiki\Title\TitleFormatter;
 
 /**
  * @group Preferences
- * @coversDefaultClass \MediaWiki\Preferences\MultiTitleFilter
+ * @covers \MediaWiki\Preferences\MultiTitleFilter
  */
 class MultiTitleFilterTest extends MediaWikiUnitTestCase {
 
-	/**
-	 * @covers ::__construct
-	 */
 	public function testConstructNoArgs() {
 		$this->assertInstanceOf( MultiTitleFilter::class, new MultiTitleFilter() );
 	}
 
-	/**
-	 * @covers ::__construct
-	 */
 	public function testConstructTitleFactory() {
 		$this->assertInstanceOf(
 			MultiTitleFilter::class,
@@ -36,7 +30,6 @@ class MultiTitleFilterTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers ::filterForForm
 	 * @dataProvider filterForFormDataProvider
 	 */
 	public function testFilterForForm( $expected, $inputValue, $newFromIDsReturnValue ) {
@@ -98,7 +91,6 @@ class MultiTitleFilterTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers ::filterFromForm
 	 * @dataProvider filterFromFormDataProvider
 	 */
 	public function testFilterFromForm( $expected, $titles, $newFromTextValue ) {

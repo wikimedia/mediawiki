@@ -7,15 +7,10 @@ use MediaWikiUnitTestCase;
 use Wikimedia\ScopedCallback;
 
 /**
- * @coversDefaultClass \MediaWiki\Logger\LoggingContext
+ * @covers \MediaWiki\Logger\LoggingContext
  */
 class LoggingContextTest extends MediaWikiUnitTestCase {
 
-	/**
-	 * @covers ::add()
-	 * @covers ::addScoped()
-	 * @covers ::get()
-	 */
 	public function testContext() {
 		$loggingContext = new LoggingContext();
 		$this->assertSame( [], $loggingContext->get() );

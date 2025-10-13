@@ -11,7 +11,7 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @group Blocking
  * @group Database
- * @coversDefaultClass \MediaWiki\Specials\SpecialUnblock
+ * @covers \MediaWiki\Specials\SpecialUnblock
  */
 class SpecialUnblockTest extends SpecialPageTestBase {
 	/**
@@ -31,7 +31,6 @@ class SpecialUnblockTest extends SpecialPageTestBase {
 
 	/**
 	 * @dataProvider provideGetFields
-	 * @covers ::getFields
 	 */
 	public function testGetFields( $target, $expected ) {
 		$page = TestingAccessWrapper::newFromObject( $this->newSpecialPage() );
@@ -68,7 +67,6 @@ class SpecialUnblockTest extends SpecialPageTestBase {
 
 	/**
 	 * @dataProvider provideProcessUnblockErrors
-	 * @covers ::execute
 	 */
 	public function testProcessUnblockErrors( $options, $expected ) {
 		$performer = $this->getTestSysop()->getUser();
@@ -127,9 +125,6 @@ class SpecialUnblockTest extends SpecialPageTestBase {
 		];
 	}
 
-	/**
-	 * @covers ::execute
-	 */
 	public function testProcessUnblockErrorsUnblockSelf() {
 		$performer = $this->getTestSysop()->getUser();
 
@@ -152,9 +147,6 @@ class SpecialUnblockTest extends SpecialPageTestBase {
 		$this->assertStringContainsString( 'ipbnounblockself', $html );
 	}
 
-	/**
-	 * @covers ::execute
-	 */
 	public function testWatched() {
 		$performer = $this->getTestSysop()->getUser();
 

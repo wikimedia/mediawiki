@@ -87,9 +87,6 @@ trait FileBackendGroupTestTrait {
 		];
 	}
 
-	/**
-	 * @covers ::__construct
-	 */
 	public function testConstructor_overrideImplicitBackend() {
 		$obj = $this->newObj( [ MainConfigNames::FileBackends =>
 			[ [ 'name' => 'local-backend', 'class' => '', 'lockManager' => 'fsLockManager' ] ]
@@ -97,9 +94,6 @@ trait FileBackendGroupTestTrait {
 		$this->assertSame( '', $obj->config( 'local-backend' )['class'] );
 	}
 
-	/**
-	 * @covers ::__construct
-	 */
 	public function testConstructor_backendObject() {
 		// 'backend' being an object makes that repo from configuration ignored
 		// XXX This is not documented in MainConfigSchema, does it do anything useful?
@@ -113,7 +107,6 @@ trait FileBackendGroupTestTrait {
 	 * @param string|callable $expected Expected value of config()[$key], or callable returning it
 	 * @param array $extraBackendsOptions To add to the FileBackends entry passed to newObj()
 	 * @param array $otherExtraOptions To add to the array passed to newObj() (e.g., services)
-	 * @covers ::register
 	 */
 	public function testRegister(
 		$key, $expected, array $extraBackendsOptions = [], array $otherExtraOptions = []
@@ -171,8 +164,6 @@ trait FileBackendGroupTestTrait {
 	 * @param array $fileBackends Value of FileBackends to pass to constructor
 	 * @param string $class Expected exception class
 	 * @param string $msg Expected exception message
-	 * @covers ::__construct
-	 * @covers ::register
 	 */
 	public function testRegister_exception( $fileBackends, $class, $msg ) {
 		$this->expectException( $class );
@@ -198,29 +189,17 @@ trait FileBackendGroupTestTrait {
 		];
 	}
 
-	/**
-	 * @covers ::__construct
-	 * @covers ::config
-	 * @covers ::get
-	 */
 	public function testGet() {
 		$backend = $this->newObj()->get( 'local-backend' );
 		$this->assertTrue( $backend instanceof FSFileBackend );
 	}
 
-	/**
-	 * @covers ::get
-	 */
 	public function testGetUnrecognized() {
 		$this->expectException( InvalidArgumentException::class );
 		$this->expectExceptionMessage( "No backend defined with the name 'unrecognized'." );
 		$this->newObj()->get( 'unrecognized' );
 	}
 
-	/**
-	 * @covers ::__construct
-	 * @covers ::config
-	 */
 	public function testConfig() {
 		$obj = $this->newObj();
 		$config = $obj->config( 'local-backend' );
@@ -284,8 +263,6 @@ trait FileBackendGroupTestTrait {
 	 * @param string $inputName Name to set to null in LocalFileRepo setting
 	 * @param string|array $key Key to check in array returned by config(), or array [ 'key1',
 	 *   'key2' ] for nested key
-	 * @covers ::__construct
-	 * @covers ::config
 	 */
 	public function testConfig_defaultNull( $expected, $inputName, $key ) {
 		$config = self::getDefaultLocalFileRepo();
@@ -304,8 +281,6 @@ trait FileBackendGroupTestTrait {
 	 * @param string $inputName Name to unset in LocalFileRepo setting
 	 * @param string|array $key Key to check in array returned by config(), or array [ 'key1',
 	 *   'key2' ] for nested key
-	 * @covers ::__construct
-	 * @covers ::config
 	 */
 	public function testConfig_defaultUnset( $expected, $inputName, $key ) {
 		$config = self::getDefaultLocalFileRepo();
@@ -329,9 +304,6 @@ trait FileBackendGroupTestTrait {
 		];
 	}
 
-	/**
-	 * @covers ::config
-	 */
 	public function testConfigUnrecognized() {
 		$this->expectException( InvalidArgumentException::class );
 		$this->expectExceptionMessage( "No backend defined with the name 'unrecognized'." );
@@ -340,7 +312,6 @@ trait FileBackendGroupTestTrait {
 
 	/**
 	 * @dataProvider provideBackendFromPath
-	 * @covers ::backendFromPath
 	 * @param string|null $expected Name of backend that will be returned from 'get', or null
 	 * @param string $storagePath
 	 */
@@ -376,7 +347,6 @@ trait FileBackendGroupTestTrait {
 
 	/**
 	 * @dataProvider provideGuessMimeInternal
-	 * @covers ::guessMimeInternal
 	 * @param string $storagePath
 	 * @param string|null $content
 	 * @param string|null $fsPath

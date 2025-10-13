@@ -17,7 +17,7 @@ use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group Concurrency
- * @coversDefaultClass \MediaWiki\PoolCounter\PoolCounterWork
+ * @covers \MediaWiki\PoolCounter\PoolCounterWork
  */
 class PoolCounterWorkTest extends MediaWikiIntegrationTestCase {
 
@@ -193,7 +193,6 @@ class PoolCounterWorkTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideExecuteFlow
-	 * @covers ::execute
 	 */
 	public function testExecuteFlow(
 		bool $cacheable,
@@ -213,9 +212,6 @@ class PoolCounterWorkTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $expectedResult, $worker->execute( $skipCache ) );
 	}
 
-	/**
-	 * @covers ::execute
-	 */
 	public function testDoWorkRaiseException() {
 		$expectedException = new RuntimeException( __METHOD__ );
 		$worker = $this->configureFixture(
@@ -231,12 +227,6 @@ class PoolCounterWorkTest extends MediaWikiIntegrationTestCase {
 		$worker->execute();
 	}
 
-	/**
-	 * @covers ::getCachedWork
-	 * @covers ::error
-	 * @covers ::fallback
-	 * @covers ::__construct
-	 */
 	public function testDefaults() {
 		$worker = $this->configureFixture( [], [], [] );
 		$this->assertFalse( $worker->cacheable );

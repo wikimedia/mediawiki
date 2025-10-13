@@ -19,7 +19,7 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
 /**
  * @group Database
  * @group Blocking
- * @coversDefaultClass \MediaWiki\Block\DatabaseBlock
+ * @covers \MediaWiki\Block\DatabaseBlock
  */
 class DatabaseBlockTest extends MediaWikiLangTestCase {
 	use TempUserTestTrait;
@@ -51,9 +51,6 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		return $block;
 	}
 
-	/**
-	 * @covers ::newFromTarget
-	 */
 	public function testINewFromTargetReturnsCorrectBlock() {
 		$this->hideDeprecated( DatabaseBlock::class . '::newFromTarget' );
 		$user = $this->getUserForBlocking();
@@ -65,9 +62,6 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		);
 	}
 
-	/**
-	 * @covers ::newFromID
-	 */
 	public function testINewFromIDReturnsCorrectBlock() {
 		$this->hideDeprecated( DatabaseBlock::class . '::newFromID' );
 		$user = $this->getUserForBlocking();
@@ -81,7 +75,6 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 
 	/**
 	 * per T28425
-	 * @covers ::__construct
 	 */
 	public function testT28425BlockTimestampDefaultsToTime() {
 		$madeAt = wfTimestamp( TS_MW );
@@ -93,13 +86,6 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		$this->assertSame( $madeAt, $block->getTimestamp() );
 	}
 
-	/**
-	 * @covers ::getTargetName()
-	 * @covers ::getTargetUserIdentity()
-	 * @covers ::isBlocking()
-	 * @covers ::getBlocker()
-	 * @covers ::getByName()
-	 */
 	public function testCrossWikiBlocking() {
 		$this->overrideConfigValue( MainConfigNames::LocalDatabases, [ 'm' ] );
 		$dbMock = $this->createMock( IDatabase::class );
@@ -160,9 +146,6 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		$this->assertEquals( 'm>MetaWikiUser', $block->getByName(), 'Correct blocker name' );
 	}
 
-	/**
-	 * @covers ::equals
-	 */
 	public function testEquals() {
 		$block = new DatabaseBlock();
 
@@ -174,9 +157,6 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		$this->assertFalse( $block->equals( $partial ) );
 	}
 
-	/**
-	 * @covers ::getWikiId
-	 */
 	public function testGetWikiId() {
 		$this->overrideConfigValue( MainConfigNames::LocalDatabases, [ 'foo' ] );
 		$dbMock = $this->createMock( IDatabase::class );
@@ -196,9 +176,6 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		$this->assertSame( WikiAwareEntity::LOCAL, $localBlock->getWikiId() );
 	}
 
-	/**
-	 * @covers ::isSitewide
-	 */
 	public function testIsSitewide() {
 		$block = new DatabaseBlock();
 		$this->assertTrue( $block->isSitewide() );
@@ -220,10 +197,6 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		$this->assertTrue( $block->isSitewide() );
 	}
 
-	/**
-	 * @covers ::getRestrictions
-	 * @covers ::setRestrictions
-	 */
 	public function testRestrictions() {
 		$block = new DatabaseBlock();
 		$restrictions = [
@@ -234,9 +207,6 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		$this->assertSame( $restrictions, $block->getRestrictions() );
 	}
 
-	/**
-	 * @covers ::getRestrictions
-	 */
 	public function testRestrictionsFromDatabase() {
 		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
 		$targetFactory = $this->getServiceContainer()->getBlockTargetFactory();
@@ -260,9 +230,6 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		$this->assertTrue( $restriction->equals( $restrictions[0] ) );
 	}
 
-	/**
-	 * @covers ::appliesToTitle
-	 */
 	public function testAppliesToTitleReturnsTrueOnSitewideBlock() {
 		$this->overrideConfigValue( MainConfigNames::BlockDisablesLogin, false );
 		$user = $this->getTestUser()->getUser();
@@ -288,9 +255,6 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		$this->assertTrue( $block->appliesToTitle( $title ) );
 	}
 
-	/**
-	 * @covers ::appliesToTitle
-	 */
 	public function testAppliesToTitleOnPartialBlock() {
 		$this->overrideConfigValue( MainConfigNames::BlockDisablesLogin, false );
 		$user = $this->getTestUser()->getUser();
@@ -319,10 +283,6 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		$this->assertTrue( $block->appliesToTitle( $pageJohn->getTitle() ) );
 	}
 
-	/**
-	 * @covers ::appliesToNamespace
-	 * @covers ::appliesToPage
-	 */
 	public function testAppliesToReturnsTrueOnSitewideBlock() {
 		$this->overrideConfigValue( MainConfigNames::BlockDisablesLogin, false );
 		$user = $this->getTestUser()->getUser();
@@ -345,9 +305,6 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		$this->assertTrue( $block->appliesToNamespace( NS_USER_TALK ) );
 	}
 
-	/**
-	 * @covers ::appliesToPage
-	 */
 	public function testAppliesToPageOnPartialPageBlock() {
 		$this->overrideConfigValue( MainConfigNames::BlockDisablesLogin, false );
 		$user = $this->getTestUser()->getUser();
@@ -374,9 +331,6 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		$this->assertTrue( $block->appliesToPage( $title->getArticleID() ) );
 	}
 
-	/**
-	 * @covers ::appliesToNamespace
-	 */
 	public function testAppliesToNamespaceOnPartialNamespaceBlock() {
 		$this->overrideConfigValue( MainConfigNames::BlockDisablesLogin, false );
 		$user = $this->getTestUser()->getUser();
@@ -399,18 +353,12 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		$this->assertFalse( $block->appliesToNamespace( NS_USER ) );
 	}
 
-	/**
-	 * @covers ::appliesToRight
-	 */
 	public function testBlockAllowsRead() {
 		$this->overrideConfigValue( MainConfigNames::BlockDisablesLogin, false );
 		$block = new DatabaseBlock();
 		$this->assertFalse( $block->appliesToRight( 'read' ) );
 	}
 
-	/**
-	 * @covers ::isIndefinite
-	 */
 	public function testIsIndefinite() {
 		$block = new DatabaseBlock( [ 'expiry' => '20250301000000' ] );
 		$this->assertFalse( $block->isIndefinite() );

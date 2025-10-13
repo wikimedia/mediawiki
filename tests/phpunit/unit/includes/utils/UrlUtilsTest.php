@@ -2,8 +2,7 @@
 use MediaWiki\Utils\UrlUtils;
 
 /**
- * @coversDefaultClass \MediaWiki\Utils\UrlUtils
- * @covers ::__construct
+ * @covers \MediaWiki\Utils\UrlUtils
  */
 class UrlUtilsTest extends MediaWikiUnitTestCase {
 
@@ -14,7 +13,6 @@ class UrlUtilsTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers ::expand
 	 * @dataProvider UrlUtilsProviders::provideExpandException
 	 * @param array $options
 	 * @param string|int|null $defaultProto
@@ -32,7 +30,6 @@ class UrlUtilsTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers ::expand
 	 * @dataProvider UrlUtilsProviders::provideExpand
 	 * @param string $input
 	 * @param array $options
@@ -47,7 +44,6 @@ class UrlUtilsTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers ::getServer
 	 * @dataProvider UrlUtilsProviders::provideGetServer
 	 * @param array $options
 	 * @param string|int|null $defaultProto
@@ -59,29 +55,20 @@ class UrlUtilsTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers ::assemble
 	 * @dataProvider UrlUtilsProviders::provideAssemble
-	 * @param array $bits
-	 * @param string $expected
 	 */
 	public function testAssemble( array $bits, string $expected ): void {
 		$this->assertSame( $expected, UrlUtils::assemble( $bits ) );
 	}
 
 	/**
-	 * @covers ::removeDotSegments
 	 * @dataProvider UrlUtilsProviders::provideRemoveDotSegments
-	 * @param string $input
-	 * @param string $expected
 	 */
 	public function testRemoveDotSegments( string $input, string $expected ): void {
 		$this->assertSame( $expected, UrlUtils::removeDotSegments( $input ) );
 	}
 
 	/**
-	 * @covers ::validProtocols
-	 * @covers ::validAbsoluteProtocols
-	 * @covers ::validProtocolsInternal
 	 * @dataProvider UrlUtilsProviders::provideValidProtocols
 	 * @param string $method 'validProtocols' or 'validAbsoluteProtocols'
 	 * @param array|string $validProtocols Value of option passed to UrlUtils
@@ -97,7 +84,6 @@ class UrlUtilsTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers ::parse
 	 * @dataProvider UrlUtilsProviders::provideParse
 	 * @param string $url
 	 * @param ?array $expected
@@ -121,9 +107,6 @@ class UrlUtilsTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $expected, $actual );
 	}
 
-	/**
-	 * @covers ::expandIRI
-	 */
 	public function testExpandIRI(): void {
 		$this->assertSame( "https://te.wikibooks.org/wiki/ఉబుంటు_వాడుకరి_మార్గదర్శని",
 			( new UrlUtils )->expandIRI( "https://te.wikibooks.org/wiki/"
@@ -134,11 +117,7 @@ class UrlUtilsTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers ::matchesDomainList
 	 * @dataProvider UrlUtilsProviders::provideMatchesDomainList
-	 * @param string $url
-	 * @param array $domains
-	 * @param bool $expected
 	 */
 	public function testMatchesDomainList( string $url, array $domains, bool $expected ): void {
 		$this->assertSame( $expected, ( new UrlUtils )->matchesDomainList( $url, $domains ) );

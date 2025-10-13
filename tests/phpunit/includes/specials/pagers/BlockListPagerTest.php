@@ -24,7 +24,7 @@ use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group Database
- * @coversDefaultClass \MediaWiki\Pager\BlockListPager
+ * @covers \MediaWiki\Pager\BlockListPager
  */
 class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 
@@ -92,7 +92,6 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers ::formatValue
 	 * @dataProvider formatValueEmptyProvider
 	 * @dataProvider formatValueDefaultProvider
 	 */
@@ -188,10 +187,6 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
-	/**
-	 * @covers ::formatValue
-	 * @covers ::getRestrictionListHTML
-	 */
 	public function testFormatValueRestrictions() {
 		$this->overrideConfigValues( [
 			MainConfigNames::Script => '/w/index.php',
@@ -253,9 +248,6 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	/**
-	 * @covers ::preprocessResults
-	 */
 	public function testPreprocessResults() {
 		// Test the Link Cache.
 		$linkCache = $this->getServiceContainer()->getLinkCache();

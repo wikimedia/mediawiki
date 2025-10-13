@@ -13,8 +13,7 @@ use MediaWiki\User\UserIdentityValue;
 
 /**
  * @group Database
- * @coversDefaultClass \MediaWiki\Page\PageArchive
- * @covers ::__construct
+ * @covers \MediaWiki\Page\PageArchive
  */
 class PageArchiveTest extends MediaWikiIntegrationTestCase {
 
@@ -134,11 +133,6 @@ class PageArchiveTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
-	/**
-	 * @covers \MediaWiki\Page\PageArchive::listPagesBySearch
-	 * @covers \MediaWiki\Page\PageArchive::listPagesByPrefix
-	 * @covers \MediaWiki\Page\PageArchive::listPages
-	 */
 	public function testListPagesBySearch() {
 		$pages = PageArchive::listPagesBySearch( 'PageArchiveTest_thePage' );
 		$this->assertSame( 1, $pages->numRows() );
@@ -155,10 +149,6 @@ class PageArchiveTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	/**
-	 * @covers \MediaWiki\Page\PageArchive::listPagesByPrefix
-	 * @covers \MediaWiki\Page\PageArchive::listPages
-	 */
 	public function testListPagesByPrefix() {
 		$pages = PageArchive::listPagesByPrefix( 'PageArchiveTest' );
 		$this->assertSame( 1, $pages->numRows() );

@@ -20,7 +20,7 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @group Blocking
  * @group Database
- * @coversDefaultClass \MediaWiki\Specials\SpecialBlock
+ * @covers \MediaWiki\Specials\SpecialBlock
  */
 class SpecialBlockTest extends SpecialPageTestBase {
 	use MockAuthorityTrait;
@@ -41,9 +41,6 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		$this->blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
 	}
 
-	/**
-	 * @covers ::getFormFields
-	 */
 	public function testGetFormFields() {
 		$this->overrideConfigValues( [
 			MainConfigNames::BlockAllowsUTEdit => true,
@@ -71,7 +68,6 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	}
 
 	/**
-	 * @covers ::getFormFields
 	 * @dataProvider provideGetFormFieldsForDefaultExpiry
 	 */
 	public function testGetFormFieldsForDefaultExpiry( $defaultExpiryMessageText, $expectedDefaultExpiry ) {
@@ -97,7 +93,6 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	}
 
 	/**
-	 * @covers ::getFormFields
 	 * @dataProvider provideGetFormFieldsForDefaultExpiryWhenTargetIsIP
 	 */
 	public function testGetFormFieldsForDefaultExpiryWhenTargetIsIP(
@@ -133,7 +128,6 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	}
 
 	/**
-	 * @covers ::getFormFields
 	 * @dataProvider provideGetFormFieldsForDefaultExpiryWhenTargetIsTemporaryAccount
 	 */
 	public function testGetFormFieldsForDefaultExpiryWhenTargetIsTemporaryAccount(
@@ -173,9 +167,6 @@ class SpecialBlockTest extends SpecialPageTestBase {
 
 	/**
 	 * @dataProvider provideGetFormFieldsCodex
-	 * @covers ::getFormFields
-	 * @covers ::execute
-	 * @covers ::validateTarget
 	 */
 	public function testCodexFormData( array $params, array $expected, bool $multiblocks = false ): void {
 		$this->overrideConfigValues( [
@@ -230,9 +221,6 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		];
 	}
 
-	/**
-	 * @covers ::maybeAlterFormDefaults
-	 */
 	public function testMaybeAlterFormDefaults() {
 		$this->overrideConfigValues( [
 			MainConfigNames::BlockAllowsUTEdit => true,
@@ -260,9 +248,6 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		$this->assertSame( 'infinite', $fields['Expiry']['default'] );
 	}
 
-	/**
-	 * @covers ::maybeAlterFormDefaults
-	 */
 	public function testMaybeAlterFormDefaultsPartial() {
 		$this->overrideConfigValues( [
 			MainConfigNames::UseCodexSpecialBlock => false,
@@ -310,9 +295,6 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		$this->assertSame( [ $actionId ], $fields['ActionRestrictions']['default'] );
 	}
 
-	/**
-	 * @covers ::onSubmit
-	 */
 	public function testProcessForm() {
 		$badActor = $this->getTestUser()->getUserIdentity();
 		$context = RequestContext::getMain();
@@ -346,9 +328,6 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		$this->assertSame( $expiry, $block->getExpiry() );
 	}
 
-	/**
-	 * @covers ::onSubmit
-	 */
 	public function testProcessFormExisting() {
 		$badActor = $this->getTestUser()->getUser();
 		$sysop = $this->getTestSysop()->getUser();
@@ -393,9 +372,6 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		$this->assertTrue( $block->isAutoblocking() );
 	}
 
-	/**
-	 * @covers ::onSubmit
-	 */
 	public function testProcessFormRestrictions() {
 		$badActor = $this->getTestUser()->getUser();
 		$context = RequestContext::getMain();
@@ -448,9 +424,6 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		] ) );
 	}
 
-	/**
-	 * @covers ::onSubmit
-	 */
 	public function testProcessFormRestrictionsChange() {
 		$badActor = $this->getTestUser()->getUser();
 		$context = RequestContext::getMain();
@@ -554,7 +527,6 @@ class SpecialBlockTest extends SpecialPageTestBase {
 
 	/**
 	 * @dataProvider provideProcessFormUserTalkEditFlag
-	 * @covers ::onSubmit
 	 */
 	public function testProcessFormUserTalkEditFlag( $options, $expected ) {
 		$this->overrideConfigValue( MainConfigNames::BlockAllowsUTEdit, $options['configAllowsUserTalkEdit'] );
@@ -660,7 +632,6 @@ class SpecialBlockTest extends SpecialPageTestBase {
 
 	/**
 	 * @dataProvider provideProcessFormErrors
-	 * @covers ::onSubmit
 	 */
 	public function testProcessFormErrors( $data, $expected, $options = [] ) {
 		$this->overrideConfigValue( MainConfigNames::BlockAllowsUTEdit, true );
@@ -769,7 +740,6 @@ class SpecialBlockTest extends SpecialPageTestBase {
 
 	/**
 	 * @dataProvider provideProcessFormErrorsReblock
-	 * @covers ::onSubmit
 	 */
 	public function testProcessFormErrorsReblock( $data, $permissions, $expected ) {
 		$this->overrideConfigValue( MainConfigNames::BlockAllowsUTEdit, true );
@@ -852,7 +822,6 @@ class SpecialBlockTest extends SpecialPageTestBase {
 
 	/**
 	 * @dataProvider provideProcessFormErrorsHideUser
-	 * @covers ::onSubmit
 	 */
 	public function testProcessFormErrorsHideUser( $data, $permissions, $expected ) {
 		$performer = $this->getTestSysop()->getUser();
@@ -913,9 +882,6 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		];
 	}
 
-	/**
-	 * @covers ::onSubmit
-	 */
 	public function testProcessFormErrorsHideUserProlific() {
 		$this->overrideConfigValue( MainConfigNames::HideUserContribLimit, 0 );
 
@@ -958,7 +924,6 @@ class SpecialBlockTest extends SpecialPageTestBase {
 
 	/**
 	 * @dataProvider provideGetTargetInternal
-	 * @covers ::getTargetInternal
 	 */
 	public function testGetTargetInternal( $par, $requestData, $expectedTarget ) {
 		$request = new FauxRequest( $requestData );
@@ -1020,10 +985,6 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		];
 	}
 
-	/**
-	 * @covers ::validateTarget
-	 * @covers ::getTargetInternal
-	 */
 	public function testValidateTargetFromId(): void {
 		$badActor = $this->getTestUser()->getUser();
 		$block = $this->blockStore->insertBlockWithParams( [

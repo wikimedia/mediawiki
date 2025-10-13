@@ -13,13 +13,9 @@ use MediaWikiUnitTestCase;
 /**
  * @author DannyS712
  *
- * @coversDefaultClass \MediaWiki\Request\ProxyLookup
+ * @covers \MediaWiki\Request\ProxyLookup
  */
 class ProxyLookupTest extends MediaWikiUnitTestCase {
-
-	/**
-	 * @covers ::__construct
-	 */
 	public function testConstruct() {
 		$proxyLookup = new ProxyLookup(
 			[],
@@ -40,7 +36,6 @@ class ProxyLookupTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers ::isConfiguredProxy
 	 * @dataProvider provideIsConfiguredProxy
 	 */
 	public function testIsConfiguredProxy( string $ip, bool $expected ) {
@@ -73,7 +68,6 @@ class ProxyLookupTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers ::isTrustedProxy
 	 * @dataProvider provideIsTrustedProxy
 	 */
 	public function testIsTrustedProxy(

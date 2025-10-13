@@ -8,14 +8,13 @@ use MediaWikiIntegrationTestCase;
 /**
  * @group Blocking
  * @group Database
- * @coversDefaultClass \MediaWiki\Block\BlockPermissionChecker
+ * @covers \MediaWiki\Block\BlockPermissionChecker
  */
 class BlockPermissionCheckerTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * Moved from tests for old SpecialBlock::checkUnblockSelf
 	 *
-	 * @covers ::checkBlockPermissions
 	 * @dataProvider provideCheckUnblockSelf
 	 */
 	public function testCheckUnblockSelf(

@@ -10,7 +10,7 @@ use MockTitleTrait;
 
 /**
  * @group Database
- * @coversDefaultClass \MediaWiki\Logging\LogPage
+ * @covers \MediaWiki\Logging\LogPage
  */
 class LogPageTest extends \MediaWikiIntegrationTestCase {
 	use MockTitleTrait;
@@ -31,13 +31,6 @@ class LogPageTest extends \MediaWikiIntegrationTestCase {
 		] );
 	}
 
-	/**
-	 * @covers ::__construct
-	 * @covers ::getName
-	 * @covers ::getDescription
-	 * @covers ::getRestriction
-	 * @covers ::isRestricted
-	 */
 	public function testConstruct() {
 		$logPage = new LogPage( 'test_test' );
 		$this->assertSame( 'testing-log-message', $logPage->getName()->getKey() );
@@ -46,12 +39,6 @@ class LogPageTest extends \MediaWikiIntegrationTestCase {
 		$this->assertTrue( $logPage->isRestricted() );
 	}
 
-	/**
-	 * @covers ::addEntry
-	 * @covers ::getComment
-	 * @covers ::getRcComment
-	 * @covers ::getRcCommentIRC
-	 */
 	public function testAddEntrySetsProperties() {
 		$logPage = new LogPage( 'test_test' );
 		$user = new UserIdentityValue( 1, 'Bar' );
@@ -67,9 +54,6 @@ class LogPageTest extends \MediaWikiIntegrationTestCase {
 		$this->assertStringContainsString( 'testing_comment', $logPage->getRcCommentIRC() );
 	}
 
-	/**
-	 * @covers ::addEntry
-	 */
 	public function testAddEntrySave() {
 		$logPage = new LogPage( 'test_test' );
 		$user = new UserIdentityValue( 1, 'Foo' );
@@ -92,9 +76,6 @@ class LogPageTest extends \MediaWikiIntegrationTestCase {
 		$this->assertTrue( $user->equals( $savedLogEntry->getPerformerIdentity() ) );
 	}
 
-	/**
-	 * @covers ::actionText
-	 */
 	public function testUnknownAction() {
 		$title = $this->makeMockTitle( 'Test Title' );
 		$text = LogPage::actionText( 'unknown', 'action', $title, null, [ 'discarded' ] );

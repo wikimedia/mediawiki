@@ -12,7 +12,7 @@ use MockTitleTrait;
 use PHPUnit\Framework\Assert;
 
 /**
- * @coversDefaultClass \MediaWiki\Page\MovePage
+ * @covers \MediaWiki\Page\MovePage
  * @method MovePage newServiceInstance(string $serviceClass, array $parameterOverrides)
  */
 class MovePageTest extends MediaWikiUnitTestCase {
@@ -87,9 +87,6 @@ class MovePageTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider provideCheckPermissions
-	 * @covers \MediaWiki\Page\MovePage::checkPermissions
-	 * @covers \MediaWiki\Page\MovePage::authorizeMove
-	 * @covers \MediaWiki\Page\MovePage::probablyCanMove
 	 */
 	public function testCheckPermissions( $authoritySpec, bool $good ) {
 		$authority = $authoritySpec === 'ultimate'
@@ -111,11 +108,6 @@ class MovePageTest extends MediaWikiUnitTestCase {
 		}
 	}
 
-	/**
-	 * @covers \MediaWiki\Page\MovePage::checkPermissions
-	 * @covers \MediaWiki\Page\MovePage::authorizeMove
-	 * @covers \MediaWiki\Page\MovePage::probablyCanMove
-	 */
 	public function testCheckPermissions_spam() {
 		$spamChecker = $this->createNoOpMock( SpamChecker::class, [ 'checkSummary' ] );
 		$spamChecker->method( 'checkSummary' )

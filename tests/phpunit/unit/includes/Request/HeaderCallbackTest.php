@@ -3,13 +3,12 @@
 use MediaWiki\Request\HeaderCallback;
 
 /**
- * @coversDefaultClass \MediaWiki\Request\HeaderCallback
+ * @covers \MediaWiki\Request\HeaderCallback
  */
 class HeaderCallbackTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider provideSanitizeSetCookie
-	 * @covers ::sanitizeSetCookie
 	 */
 	public function testSanitizeSetCookie( $raw, $expectedSanitized ) {
 		$this->assertSame( $expectedSanitized, HeaderCallback::sanitizeSetCookie( $raw ) );

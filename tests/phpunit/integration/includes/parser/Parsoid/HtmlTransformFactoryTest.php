@@ -11,20 +11,14 @@ use Wikimedia\Parsoid\Utils\ContentUtils;
 use Wikimedia\Parsoid\Utils\DOMCompat;
 
 /**
- * @coversDefaultClass \MediaWiki\Parser\Parsoid\HtmlTransformFactory
+ * @covers \MediaWiki\Parser\Parsoid\HtmlTransformFactory
  */
 class HtmlTransformFactoryTest extends MediaWikiIntegrationTestCase {
-	/**
-	 * @covers ::__construct
-	 */
 	public function testGetContentTransformFactory() {
 		$factory = $this->getServiceContainer()->getHtmlTransformFactory();
 		$this->assertInstanceOf( HtmlTransformFactory::class, $factory );
 	}
 
-	/**
-	 * @covers ::getHtmlToContentTransform
-	 */
 	public function testGetHtmlToContentTransform() {
 		$factory = $this->getServiceContainer()->getHtmlTransformFactory();
 		$modifiedHTML = '<p>Hello World</p>';
