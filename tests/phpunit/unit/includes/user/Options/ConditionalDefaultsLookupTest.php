@@ -14,7 +14,7 @@ use MediaWiki\User\UserIdentityValue;
 use MediaWikiUnitTestCase;
 
 /**
- * @coversDefaultClass \MediaWiki\User\Options\ConditionalDefaultsLookup
+ * @covers \MediaWiki\User\Options\ConditionalDefaultsLookup
  */
 class ConditionalDefaultsLookupTest extends MediaWikiUnitTestCase {
 
@@ -77,7 +77,6 @@ class ConditionalDefaultsLookupTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers ::hasConditionalDefault
 	 * @dataProvider provideIsConditionallyDefault
 	 * @param bool $expected
 	 * @param string $option
@@ -114,9 +113,6 @@ class ConditionalDefaultsLookupTest extends MediaWikiUnitTestCase {
 		];
 	}
 
-	/**
-	 * @covers ::getOptionDefaultForUser
-	 */
 	public function testGetOptionDefaultForUser__notConditionallyDefault() {
 		$lookup = new ConditionalDefaultsLookup(
 			$this->createNoOpMock( HookRunner::class ),
@@ -134,9 +130,6 @@ class ConditionalDefaultsLookupTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers ::getOptionDefaultForUser
-	 * @covers ::checkConditionsForUser
-	 * @covers ::checkConditionForUser
 	 * @dataProvider provideGetOptionDefaultForUser__registration
 	 * @param string|null $expected
 	 * @param string|null $registrationTS
@@ -183,9 +176,6 @@ class ConditionalDefaultsLookupTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers ::getOptionDefaultForUser
-	 * @covers ::checkConditionsForUser
-	 * @covers ::checkConditionForUser
 	 * @dataProvider provideGetOptionDefaultForUser__anon
 	 * @param int $id the user ID
 	 * @param string|null $expected the default option or null if none apply
@@ -217,9 +207,6 @@ class ConditionalDefaultsLookupTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers ::getOptionDefaultForUser
-	 * @covers ::checkConditionsForUser
-	 * @covers ::checkConditionForUser
 	 * @dataProvider provideGetOptionDefaultForUser__named
 	 * @param bool $isNamed whether the user is named or not (logged in and not temporary)
 	 * @param string|null $expected the default option or null if none apply
@@ -255,9 +242,6 @@ class ConditionalDefaultsLookupTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers ::getOptionDefaultForUser
-	 * @covers ::checkConditionsForUser
-	 * @covers ::checkConditionForUser
 	 * @dataProvider provideGetOptionDefaultForUser__usergroup
 	 * @param array[string] $usergroups the user groups the user has
 	 * @param string|null $expected the default option or null if none apply
@@ -295,15 +279,14 @@ class ConditionalDefaultsLookupTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers ::getOptionDefaultForUser
-	 * @covers ::checkConditionsForUser
-	 * @covers ::checkConditionForUser
 	 * @dataProvider provideGetOptionDefaultForUser__extraCondition
 	 * @param array $configConditions An array of condition descriptors as described for $wgConditionalUserOptions
 	 * @param array $extraConditions Key is the condition name and value is a callable
 	 * @param string|null $expected the default option or null if none apply
 	 */
-	public function testGetOptionDefaultForUser__extraCondition( array $configConditions, array $extraConditions, ?string $expected ) {
+	public function testGetOptionDefaultForUser__extraCondition(
+		array $configConditions, array $extraConditions, ?string $expected
+	) {
 		$userIdentity = new UserIdentityValue( 1, 'test user' );
 
 		$hookRunner = $this->createNoOpMock( HookRunner::class, [ 'onConditionalDefaultOptionsAddCondition' ] );

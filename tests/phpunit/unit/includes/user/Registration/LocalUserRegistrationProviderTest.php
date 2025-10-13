@@ -98,7 +98,7 @@ class LocalUserRegistrationProviderTest extends MediaWikiUnitTestCase {
 		$secondBatchSelectQueryBuilder->method( 'fetchResultSet' )
 			->willReturn( new FakeResultWrapper(
 				array_map(
-					static fn ( int $userId ) => (object)[ 'user_id' => $userId, 'user_registration' => '20260101000000' ],
+					static fn ( int $userId ) =>(object)[ 'user_id' => $userId, 'user_registration' => '20260101000000' ],
 					$secondIdBatch
 				)
 			) );

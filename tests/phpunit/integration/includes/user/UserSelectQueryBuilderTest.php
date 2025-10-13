@@ -11,7 +11,6 @@ use Wikimedia\Rdbms\SelectQueryBuilder;
 /**
  * @group Database
  * @covers \MediaWiki\User\UserSelectQueryBuilder
- * @coversDefaultClass \MediaWiki\User\UserSelectQueryBuilder
  */
 class UserSelectQueryBuilderTest extends ActorStoreTestBase {
 
@@ -156,9 +155,6 @@ class UserSelectQueryBuilderTest extends ActorStoreTestBase {
 		}
 	}
 
-	/**
-	 * @covers ::fetchUserIdentity
-	 */
 	public function testFetchUserIdentity() {
 		$this->assertSameActors(
 			new UserIdentityValue( 24, 'TestUser' ),
@@ -169,9 +165,6 @@ class UserSelectQueryBuilderTest extends ActorStoreTestBase {
 		);
 	}
 
-	/**
-	 * @covers ::fetchUserNames
-	 */
 	public function testFetchUserNames() {
 		$this->assertArrayEquals(
 			[ 'TestUser', 'TestUser1' ],
@@ -182,9 +175,6 @@ class UserSelectQueryBuilderTest extends ActorStoreTestBase {
 		);
 	}
 
-	/**
-	 * @covers ::registered
-	 */
 	public function testRegistered() {
 		$actors = iterator_to_array(
 			$this->getStore()
@@ -200,9 +190,6 @@ class UserSelectQueryBuilderTest extends ActorStoreTestBase {
 		);
 	}
 
-	/**
-	 * @covers ::anon
-	 */
 	public function testAnon() {
 		$actors = iterator_to_array(
 			$this->getStore()
@@ -220,8 +207,6 @@ class UserSelectQueryBuilderTest extends ActorStoreTestBase {
 	}
 
 	/**
-	 * @covers ::anon
-	 * @covers ::named
 	 * @dataProvider provideNamedAndTempMethodNames
 	 */
 	public function testNamedAndTempWhenTempUserAutoCreateDisabled( $methodName ) {
@@ -269,9 +254,6 @@ class UserSelectQueryBuilderTest extends ActorStoreTestBase {
 		];
 	}
 
-	/**
-	 * @covers ::named
-	 */
 	public function testNamed() {
 		$this->enableAutoCreateTempUser();
 		// Add a temporary accounts for the test
@@ -294,9 +276,6 @@ class UserSelectQueryBuilderTest extends ActorStoreTestBase {
 		}
 	}
 
-	/**
-	 * @covers ::temp
-	 */
 	public function testTemp() {
 		$this->enableAutoCreateTempUser();
 		// Add a temporary accounts for the test
@@ -317,9 +296,6 @@ class UserSelectQueryBuilderTest extends ActorStoreTestBase {
 		$this->assertSameActors( $tempUser, $actors[0] );
 	}
 
-	/**
-	 * @covers ::hidden
-	 */
 	public function testHidden() {
 		$hiddenUser = $this->getMutableTestUser()->getUserIdentity();
 		$normalUser = $this->getMutableTestUser()->getUserIdentity();

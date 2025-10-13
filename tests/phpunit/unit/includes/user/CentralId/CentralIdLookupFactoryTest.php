@@ -17,7 +17,7 @@ use MediaWikiUnitTestCase;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
- * @coversDefaultClass \MediaWiki\User\CentralId\CentralIdLookupFactory
+ * @covers \MediaWiki\User\CentralId\CentralIdLookupFactory
  */
 class CentralIdLookupFactoryTest extends MediaWikiUnitTestCase {
 	use DummyServicesTrait;
@@ -67,10 +67,6 @@ class CentralIdLookupFactoryTest extends MediaWikiUnitTestCase {
 		);
 	}
 
-	/**
-	 * @covers ::__construct
-	 * @covers ::getLookup
-	 */
 	public function testCreation() {
 		$factory = $this->makeFactory();
 
@@ -90,36 +86,24 @@ class CentralIdLookupFactoryTest extends MediaWikiUnitTestCase {
 		$this->assertSame( 'local2', $local2->getProviderId() );
 	}
 
-	/**
-	 * @covers ::getLookup
-	 */
 	public function testUnconfiguredProvidersThrow() {
 		$this->expectException( InvalidArgumentException::class );
 		$factory = $this->makeFactory();
 		$factory->getLookup( 'unconfigured' );
 	}
 
-	/**
-	 * @covers ::getNonLocalLookup
-	 */
 	public function testGetNonLocal() {
 		$factory = $this->makeFactory();
 		$this->assertInstanceOf( CentralIdLookup::class, $factory->getNonLocalLookup() );
 		$this->assertNull( $factory->getNonLocalLookup( 'local' ) );
 	}
 
-	/**
-	 * @covers ::getProviderIds
-	 */
 	public function testGetProviderIds() {
 		$factory = $this->makeFactory();
 		$expected = [ 'local', 'local2', 'mock' ];
 		$this->assertSame( $expected, $factory->getProviderIds() );
 	}
 
-	/**
-	 * @covers ::getDefaultProviderId
-	 */
 	public function testGetDefaultProviderId() {
 		$factory = $this->makeFactory();
 		$this->assertSame( 'mock', $factory->getDefaultProviderId() );
