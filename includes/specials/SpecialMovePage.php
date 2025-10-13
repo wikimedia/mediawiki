@@ -832,15 +832,11 @@ class SpecialMovePage extends UnlistedSpecialPage {
 		$oldText = $ot->getPrefixedText();
 		$newText = $nt->getPrefixedText();
 
-		if ( $status->getValue()['redirectRevision'] !== null ) {
-			$msgName = 'movepage-moved-redirect';
-		} else {
-			$msgName = 'movepage-moved-noredirect';
-		}
-
 		$out->addHTML( $this->msg( 'movepage-moved' )->rawParams( $oldLink,
 			$newLink )->params( $oldText, $newText )->parseAsBlock() );
-		$out->addWikiMsg( $msgName );
+		$out->addWikiMsg( isset( $status->getValue()['redirectRevision'] ) ?
+			'movepage-moved-redirect' :
+			'movepage-moved-noredirect' );
 
 		$this->getHookRunner()->onSpecialMovepageAfterMove( $this, $ot, $nt );
 

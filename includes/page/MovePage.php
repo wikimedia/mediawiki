@@ -454,7 +454,7 @@ class MovePage {
 	 * @param string|null $reason
 	 * @param bool $createRedirect Ignored if user doesn't have suppressredirect permission
 	 * @param string[] $changeTags Change tags to apply to the entry in the move log
-	 * @return Status
+	 * @return Status<array>
 	 */
 	public function moveIfAllowed(
 		Authority $performer, $reason = null, $createRedirect = true, array $changeTags = []
@@ -608,7 +608,7 @@ class MovePage {
 	 * @param string $reason
 	 * @param bool $createRedirect
 	 * @param string[] $changeTags Change tags to apply to the entry in the move log
-	 * @return Status
+	 * @return Status<array>
 	 */
 	private function moveUnsafe( UserIdentity $user, $reason, $createRedirect, array $changeTags ) {
 		$status = Status::newGood();
@@ -796,7 +796,7 @@ class MovePage {
 	 * @param bool $createRedirect Whether to leave a redirect at the old title. Does not check
 	 *   if the user has the suppressredirect right
 	 * @param string[] $changeTags Change tags to apply to the entry in the move log
-	 * @return Status Status object with the following value on success:
+	 * @return Status<array> Status object with the following value on success:
 	 *   [
 	 *     'nullRevision' => The ("null") revision created by the move (RevisionRecord)
 	 *     'redirectRevision' => The initial revision of the redirect if it was created (RevisionRecord|null)
@@ -958,7 +958,7 @@ class MovePage {
 		return Status::newGood( [
 			'nullRevision' => $nullRevision,
 			'redirectRevision' => $redirectRevision,
-			'redirectPage' => $redirectArticle !== null ? $redirectArticle->toPageRecord() : null
+			'redirectPage' => $redirectArticle?->toPageRecord()
 		] );
 	}
 }
