@@ -2391,7 +2391,7 @@ parsoid=wt2html,html2html
 {| STYLE=__TOC__
 !! html/php
 <div class="mw-heading mw-heading2"><h2 id="a">a</h2><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: a">edit</a><span class="mw-editsection-bracket">]</span></span></div>
-<table style="&#95;_TOC&#95;_">
+<table style="&#95;&#95;TOC&#95;&#95;">
 <tbody><tr><td></td></tr>
 </tbody></table>
 !! html/parsoid
