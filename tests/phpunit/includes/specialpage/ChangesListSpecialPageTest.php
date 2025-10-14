@@ -101,7 +101,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		$this->changesListSpecialPage->setContext( $context );
 		$formOptions = $this->changesListSpecialPage->setup( null );
 		$query = $this->changesListSpecialPage->buildQuery( $formOptions );
-		$query->audience( null );
+		$query->allowDeletedLogAction();
 		$query->sqbMutator( static function ( &$sqb ) use ( &$queryConditions ) {
 			$queryConditions = $sqb->getQueryInfo()['conds'];
 			$sqb = null;

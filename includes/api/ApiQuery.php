@@ -431,13 +431,11 @@ class ApiQuery extends ApiBase {
 			'services' => [
 				'CommentStore',
 				'RowCommentFormatter',
-				'ChangeTagDefStore',
-				'ChangeTagsStore',
-				'SlotRoleStore',
 				'SlotRoleRegistry',
 				'UserNameUtils',
-				'TempUserConfig',
 				'LogFormatterFactory',
+				'ChangesListQueryFactory',
+				'RecentChangeLookup',
 			],
 		],
 		'search' => [

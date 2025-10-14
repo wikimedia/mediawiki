@@ -6,6 +6,7 @@ use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Linker\LinkTargetLookup;
 use MediaWiki\RecentChanges\RecentChangeLookup;
+use MediaWiki\Storage\NameTableStore;
 use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\UserFactory;
 use MediaWiki\Watchlist\WatchedItemStoreInterface;
@@ -28,6 +29,7 @@ class ChangesListQueryFactory {
 		private LinkTargetLookup $linkTargetLookup,
 		private ChangeTagsStore $changeTagsStore,
 		private StatsFactory $statsFactory,
+		private NameTableStore $slotRoleStore,
 		private LoggerInterface $logger,
 		private IConnectionProvider $connectionProvider,
 	) {
@@ -48,6 +50,7 @@ class ChangesListQueryFactory {
 			$this->linkTargetLookup,
 			$this->changeTagsStore,
 			$this->statsFactory,
+			$this->slotRoleStore,
 			$this->logger,
 			$this->connectionProvider->getReplicaDatabase(),
 			$this->rcStats

@@ -1195,6 +1195,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			->recentChangeFields()
 			->watchlistUser( $this->getUser() )
 			->audience( $this->getAuthority() )
+			->excludeDeletedLogAction()
 			->limit( $opts['limit'] )
 			->maxExecutionTime( $this->getConfig()->get(
 				MainConfigNames::MaxExecutionTimeForExpensiveQueries ) )

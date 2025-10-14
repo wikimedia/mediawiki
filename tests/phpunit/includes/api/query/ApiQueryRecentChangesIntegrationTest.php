@@ -685,7 +685,7 @@ class ApiQueryRecentChangesIntegrationTest extends ApiTestCase {
 			'rc_namespace' => $title->getNamespace(),
 			'rc_title' => $title->getDBkey(),
 			'rc_type' => RC_EXTERNAL,
-			'rc_source' => 'foo',
+			'rc_source' => 'external',
 			'rc_minor' => 0,
 			'rc_cur_id' => $title->getArticleID(),
 			'rc_user' => 0,
@@ -718,6 +718,8 @@ class ApiQueryRecentChangesIntegrationTest extends ApiTestCase {
 	}
 
 	public function testExternalTypeParameters() {
+		$this->getServiceContainer()->getRecentChangeStore()
+			->addSourceForTest( 'external', [] );
 		$user = $this->getLoggedInTestUser();
 		$subjectTarget = new TitleValue( NS_MAIN, 'Foo' );
 		$talkTarget = new TitleValue( NS_TALK, 'Foo' );

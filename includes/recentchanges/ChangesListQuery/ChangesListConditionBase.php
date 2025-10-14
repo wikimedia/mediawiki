@@ -2,6 +2,7 @@
 
 namespace MediaWiki\RecentChanges\ChangesListQuery;
 
+use Stringable;
 use Wikimedia\Rdbms\IReadableDatabase;
 
 /**
@@ -71,14 +72,33 @@ abstract class ChangesListConditionBase implements ChangesListCondition {
 	 * @return array|null
 	 */
 	protected function getEnumValues( $allValues ) {
-		$values = array_diff( $allValues, $this->excluded );
+		$values = array_udiff( $allValues, $this->excluded, $this->compareStrict( ... ) );
 		if ( $this->required ) {
-			$values = array_intersect( $values, $this->required );
+			$values = array_uintersect( $values, $this->required, $this->compareStrict( ... ) );
 		}
 		if ( count( $allValues ) === count( $values ) ) {
 			return null;
 		} else {
 			return array_values( $values );
+		}
+	}
+
+	/**
+	 * @param mixed $a
+	 * @param mixed $b
+	 * @return int
+	 */
+	private function compareStrict( $a, $b ) {
+		$typeA = gettype( $a );
+		$typeB = gettype( $b );
+		if ( $typeA < $typeB ) {
+			return -1;
+		} elseif ( $typeA > $typeB ) {
+			return 1;
+		} elseif ( $a instanceof Stringable && $b instanceof Stringable ) {
+			return (string)$a <=> (string)$b;
+		} else {
+			return $a <=> $b;
 		}
 	}
 

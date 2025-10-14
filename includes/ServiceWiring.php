@@ -545,6 +545,7 @@ return [
 			$services->getLinkTargetLookup(),
 			$services->getChangeTagsStore(),
 			$services->getStatsFactory(),
+			$services->getSlotRoleStore(),
 			LoggerFactory::getInstance( 'ChangesListQuery' ),
 			$services->getConnectionProvider(),
 		);

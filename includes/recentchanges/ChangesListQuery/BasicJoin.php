@@ -12,7 +12,7 @@ use Wikimedia\Rdbms\SelectQueryBuilder;
  */
 class BasicJoin implements ChangesListJoinModule {
 	/** @var ChangesListJoinBuilder[] */
-	private $instances = [];
+	protected $instances = [];
 
 	private string $tableName;
 	private string $defaultAlias;
@@ -84,7 +84,7 @@ class BasicJoin implements ChangesListJoinModule {
 			$this->instances[$alias] = new ChangesListJoinBuilder(
 				$this->tableName,
 				$alias,
-				[ ...$this->conds, ...$this->getExtraConds() ]
+				[ ...$this->conds, ...$this->getExtraConds( $alias ) ]
 			);
 		}
 		return $this->instances[$alias];
@@ -93,9 +93,10 @@ class BasicJoin implements ChangesListJoinModule {
 	/**
 	 * Subclasses may override this to add to the ON clause
 	 *
+	 * @param ?string $alias
 	 * @return array
 	 */
-	protected function getExtraConds() {
+	protected function getExtraConds( ?string $alias ) {
 		return [];
 	}
 }

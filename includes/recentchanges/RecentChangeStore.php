@@ -618,6 +618,17 @@ class RecentChangeStore implements RecentChangeFactory, RecentChangeLookup {
 		return $ip;
 	}
 
+	/**
+	 * Register an rc_source value
+	 *
+	 * @internal For testing
+	 * @param string $name
+	 * @param array $info
+	 */
+	public function addSourceForTest( $name, $info ) {
+		$this->extensionSourcesAttr[$name] = $info;
+	}
+
 	public function getPrimarySources(): array {
 		if ( $this->primarySources === null ) {
 			$this->primarySources = array_diff(
@@ -644,4 +655,41 @@ class RecentChangeStore implements RecentChangeFactory, RecentChangeLookup {
 		}
 		return $this->allSources;
 	}
+
+	/** @inheritDoc */
+	public function convertTypeToSources( $type ): array {
+		if ( is_array( $type ) ) {
+			$retval = [];
+			foreach ( $type as $t ) {
+				foreach ( self::convertTypeToSources( $t ) as $s ) {
+					$retval[] = $s;
+				}
+			}
+
+			return $retval;
+		}
+
+		return match ( $type ) {
+			'edit' => [ RecentChange::SRC_EDIT ],
+			'new' => [ RecentChange::SRC_NEW ],
+			'log' => [ RecentChange::SRC_LOG ],
+			'external' => array_diff(
+				$this->getAllSources(),
+				RecentChange::INTERNAL_SOURCES
+			),
+			'categorize' => [ RecentChange::SRC_CATEGORIZE ],
+		};
+	}
+
+	/** @inheritDoc */
+	public function convertSourceToType( string $source ): string {
+		return match ( $source ) {
+			RecentChange::SRC_EDIT => 'edit',
+			RecentChange::SRC_NEW => 'new',
+			RecentChange::SRC_LOG => 'log',
+			RecentChange::SRC_CATEGORIZE => 'categorize',
+			default => 'external'
+		};
+	}
+
 }

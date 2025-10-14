@@ -283,7 +283,7 @@ WHERE ((rc_this_oldid = page_latest OR rc_this_oldid = 0))
 	AND ((we_expiry IS NULL OR we_expiry > '20250101000000')) 
 	AND ((rc_source != 'mw.log' OR (rc_deleted & 1) != 1)) 
 	AND (rc_timestamp >= '20250101000000') 
-ORDER BY rc_timestamp DESC 
+ORDER BY rc_timestamp DESC,rc_id DESC 
 LIMIT 50
 SQL;
 

@@ -18,6 +18,7 @@ use MediaWiki\RecentChanges\ChangesListQuery\ChangeTagsCondition;
 use MediaWiki\RecentChanges\ChangesListQuery\TableStatsProvider;
 use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\Registration\ExtensionRegistry;
+use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\User\User;
@@ -39,6 +40,7 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  * @covers \MediaWiki\RecentChanges\ChangesListQuery\ChangesListHighlight
  * @covers \MediaWiki\RecentChanges\ChangesListQuery\ChangeTagsCondition
  * @covers \MediaWiki\RecentChanges\ChangesListQuery\BooleanFieldCondition
+ * @covers \MediaWiki\RecentChanges\ChangesListQuery\BooleanJoinFieldCondition
  * @covers \MediaWiki\RecentChanges\ChangesListQuery\EnumFieldCondition
  * @covers \MediaWiki\RecentChanges\ChangesListQuery\ExperienceCondition
  * @covers \MediaWiki\RecentChanges\ChangesListQuery\FieldEqualityCondition
@@ -46,7 +48,10 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  * @covers \MediaWiki\RecentChanges\ChangesListQuery\NamedConditionHelper
  * @covers \MediaWiki\RecentChanges\ChangesListQuery\RevisionTypeCondition
  * @covers \MediaWiki\RecentChanges\ChangesListQuery\SeenCondition
+ * @covers \MediaWiki\RecentChanges\ChangesListQuery\SlotsJoin
  * @covers \MediaWiki\RecentChanges\ChangesListQuery\SubpageOfCondition
+ * @covers \MediaWiki\RecentChanges\ChangesListQuery\TitleCondition
+ * @covers \MediaWiki\RecentChanges\ChangesListQuery\TitleConditionValue
  * @covers \MediaWiki\RecentChanges\ChangesListQuery\UserCondition
  * @covers \MediaWiki\RecentChanges\ChangesListQuery\WatchedCondition
  * @covers \MediaWiki\RecentChanges\ChangesListQuery\WatchlistJoin
@@ -71,6 +76,10 @@ class ChangesListQueryTest extends \MediaWikiIntegrationTestCase {
 		'dest',
 		'untagged',
 		'tagged',
+		'redirect',
+		'auxslot-create',
+		'auxslot',
+		'deleted-user',
 	];
 
 	private const ALICE_ID = 1;
@@ -94,6 +103,10 @@ class ChangesListQueryTest extends \MediaWikiIntegrationTestCase {
 			[]
 		);
 		ConvertibleTimestamp::setFakeTime( '20250105000000' );
+		$roleRegistry = $this->getServiceContainer()->getSlotRoleRegistry();
+		if ( !$roleRegistry->isDefinedRole( 'aux' ) ) {
+			$roleRegistry->defineRoleWithModel( 'aux', CONTENT_MODEL_WIKITEXT );
+		}
 	}
 
 	private static function getRcIds() {
@@ -105,6 +118,12 @@ class ChangesListQueryTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	public function addDBDataOnce() {
+		$services = $this->getServiceContainer();
+		$this->enableAutoCreateTempUser();
+		$services->getActorStore()->setAllowCreateIpActors( true );
+		$services->getSlotRoleRegistry()
+			->defineRoleWithModel( 'aux', CONTENT_MODEL_WIKITEXT );
+
 		// The data provider runs before addDBDataOnce so we can't set the IDs
 		// here and use them in the provider. But we can assert that the IDs
 		// are correct.
@@ -129,12 +148,10 @@ class ChangesListQueryTest extends \MediaWikiIntegrationTestCase {
 		$now = strtotime( '2025-01-02T00:00:00' );
 
 		$assertName( 2, 'anon' );
-		$this->disableAutoCreateTempUser();
 		$anon = new User;
 		$this->edit( 'Talk:Edit by anon/subpage', $anon );
 
 		$assertName( 3, 'bob' );
-		$this->enableAutoCreateTempUser();
 		$bob = User::createNew( 'Bob' );
 		$this->edit( 'Normal edit', $bob );
 
@@ -185,15 +202,35 @@ class ChangesListQueryTest extends \MediaWikiIntegrationTestCase {
 
 		$assertName( 13, 'tagged' );
 		$this->edit( 'Tagged', $carol, 0, '' );
+
+		$assertName( 14, 'redirect' );
+		$this->edit( 'Redirect', $carol, 0, '#REDIRECT [[Link destination]]' );
+
+		// If Carol does any more edits, she becomes a learner which breaks the experience test
+		$dan = User::createNew( 'Dan' );
+
+		$assertName( 15, 'auxslot-create' );
+		$this->edit( 'Aux slot', $dan );
+
+		$assertName( 16, 'auxslot' );
+		$this->edit( 'Aux slot', $dan, 0, null, 'aux' );
+
+		$assertName( 17, 'deleted-user' );
+		$deletedUserPage = $this->edit( 'Deleted user', $dan );
+		$this->getDb()->newUpdateQueryBuilder()
+			->update( 'recentchanges' )
+			->set( [ 'rc_deleted' => RevisionRecord::DELETED_USER ] )
+			->where( [ 'rc_this_oldid' => $deletedUserPage->getLatestRevID() ] )
+			->execute();
 	}
 
-	private function edit( $titleText, $user, $flags = 0, $content = null ) {
+	private function edit( $titleText, $user, $flags = 0, $content = null, $slotRole = null ) {
 		$services = $this->getServiceContainer();
 		$title = $services->getTitleFactory()->newFromTextThrow( $titleText );
 		$content ??= (string)( self::$content++ );
 		$services->getPageUpdaterFactory()
 			->newPageUpdater( $title, $user )
-			->setContent( SlotRecord::MAIN, new WikitextContent( $content ) )
+			->setContent( $slotRole ?? SlotRecord::MAIN, new WikitextContent( $content ) )
 			->saveRevision( '', $flags );
 		return $title;
 	}
@@ -231,6 +268,7 @@ class ChangesListQueryTest extends \MediaWikiIntegrationTestCase {
 			$services->getLinkTargetLookup(),
 			$services->getChangeTagsStore(),
 			$services->getStatsFactory(),
+			$services->getSlotRoleStore(),
 			$options['logger'] ?? LoggerFactory::getInstance( 'ChangesListQuery' ),
 			$services->getConnectionProvider(),
 		);
@@ -299,7 +337,10 @@ class ChangesListQueryTest extends \MediaWikiIntegrationTestCase {
 			'fields' => [ 'rc_id' ],
 			'conds' => '',
 			'options' => [
-				'ORDER BY' => [ 'rc_timestamp DESC' ],
+				'ORDER BY' => [
+					'rc_timestamp DESC',
+					'rc_id DESC',
+				],
 			],
 			'caller' => __CLASS__,
 			'join_conds' => [],
@@ -354,11 +395,27 @@ class ChangesListQueryTest extends \MediaWikiIntegrationTestCase {
 		$leftJoinChangeTag['join_conds']['changetagdisplay'][0] = 'LEFT JOIN';
 		$leftJoinChangeTag['join_conds']['changetagdisplay'][1][] = 'changetagdisplay.ct_tag_id = 1';
 
+		$joinPage = $defaultInfo;
+		$joinPage['tables']['page'] = 'page';
+		$joinPage['join_conds']['page'] = [ 'JOIN', [ 'page_id=rc_cur_id' ] ];
+
+		$leftJoinPage = $joinPage;
+		$leftJoinPage['join_conds']['page'][0] = 'LEFT JOIN';
+
 		$rcIds = self::getRcIds();
 		$allIds = array_values( $rcIds );
 		$alice = new UserIdentityValue( 1, 'Alice' );
+
 		$newIds = [ $rcIds['alice'], $rcIds['anon'], $rcIds['minor'], $rcIds['bot'],
-			$rcIds['pl-source'], $rcIds['tl-source'], $rcIds['dest'], $rcIds['untagged'] ];
+			$rcIds['pl-source'], $rcIds['tl-source'], $rcIds['dest'], $rcIds['untagged'],
+			$rcIds['redirect'], $rcIds['auxslot-create'], $rcIds['deleted-user'] ];
+
+		$logIds = [ $rcIds['newuser'], $rcIds['deleted'] ];
+
+		$oldIds = [ $rcIds['alice'], $rcIds['bob'], $rcIds['untagged'], $rcIds['auxslot-create'] ];
+
+		$makePage = static fn ( $ns, $dbKey ) =>
+			new PageReferenceValue( $ns, $dbKey, WikiAwareEntity::LOCAL );
 
 		return [
 			'No actions' => [
@@ -481,36 +538,40 @@ class ChangesListQueryTest extends \MediaWikiIntegrationTestCase {
 				] ),
 				[ $rcIds['bot'] ],
 			],
+			'exclude bot' => [
+				[ [ 'exclude', 'bot' ] ],
+				array_merge( $defaultInfo, [
+					'conds' => "(rc_bot = 0)",
+				] ),
+				array_diff( $allIds, [ $rcIds['bot'] ] ),
+			],
+			'require revisionType latest' => [
+				[ [ 'require', 'revisionType', 'latest' ] ],
+				array_merge(
+					// Could be plain join?
+					$leftJoinPage,
+					[
+						'conds' => "((rc_this_oldid = page_latest))",
+					]
+				),
+				array_diff( $allIds, $oldIds, $logIds ),
+			],
 			'require revisionType latest+none' => [
 				[
 					[ 'require', 'revisionType', 'latest' ],
 					[ 'require', 'revisionType', 'none' ],
 				],
-				array_merge( $defaultInfo, [
+				array_merge( $leftJoinPage, [
 					'conds' => "((rc_this_oldid = page_latest OR rc_this_oldid = 0))",
-					'tables' => [
-						'recentchanges',
-						'page' => 'page'
-					],
-					'join_conds' => [
-						'page' => [ 'LEFT JOIN', [ 'page_id=rc_cur_id' ] ],
-					],
 				] ),
-				array_diff( $allIds, [ $rcIds['alice'], $rcIds['bob'], $rcIds['untagged'] ] ),
+				array_diff( $allIds, $oldIds ),
 			],
 			'exclude revisionType latest' => [
 				[ [ 'exclude', 'revisionType', 'latest' ] ],
-				array_merge( $defaultInfo, [
+				array_merge( $leftJoinPage, [
 					'conds' => "((rc_this_oldid != page_latest OR rc_this_oldid = 0))",
-					'tables' => [
-						'recentchanges',
-						'page' => 'page'
-					],
-					'join_conds' => [
-						'page' => [ 'LEFT JOIN', [ 'page_id=rc_cur_id' ] ],
-					],
 				] ),
-				[ $rcIds['alice'], $rcIds['bob'], $rcIds['newuser'], $rcIds['deleted'], $rcIds['untagged'] ],
+				array_merge( $logIds, $oldIds ),
 			],
 			'require/exclude conflict revisionType' => [
 				[
@@ -548,6 +609,13 @@ class ChangesListQueryTest extends \MediaWikiIntegrationTestCase {
 					'conds' => "(rc_patrolled = 2)",
 				] ),
 				[ $rcIds['newuser'], $rcIds['deleted'] ],
+			],
+			'exclude autopatrolled' => [
+				[ [ 'exclude', 'patrolled', RecentChange::PRC_AUTOPATROLLED ] ],
+				array_merge( $defaultInfo, [
+					'conds' => "(rc_patrolled IN (0,1))",
+				] ),
+				array_diff( $allIds, [ $rcIds['newuser'], $rcIds['deleted'] ] ),
 			],
 			'require watched' => [
 				[ [ 'require', 'watched', 'watched' ] ],
@@ -653,15 +721,69 @@ class ChangesListQueryTest extends \MediaWikiIntegrationTestCase {
 				array_diff( $allIds, [ $rcIds['anon'] ] ),
 			],
 			'require subpageof' => [
-				[ [
-					'require',
-					'subpageof',
-					new PageReferenceValue( 1, 'Edit by anon', WikiAwareEntity::LOCAL )
-				] ],
+				[ [ 'require', 'subpageof', $makePage( 1, 'Edit by anon' ) ] ],
 				array_merge( $defaultInfo, [
 					'conds' => "(((rc_namespace = 1 AND rc_title LIKE 'Edit`_by`_anon/%' ESCAPE '`')))",
 				] ),
 				[ $rcIds['anon'] ],
+			],
+			'exclude subpageof' => [
+				[ [ 'exclude', 'subpageof', $makePage( 1, 'Edit by anon' ) ] ],
+				array_merge( $defaultInfo, [
+					'conds' => "(NOT (((rc_namespace = 1 AND rc_title LIKE 'Edit`_by`_anon/%' ESCAPE '`'))))",
+				] ),
+				array_diff( $allIds, [ $rcIds['anon'] ] ),
+			],
+			'require title' => [
+				[
+					[ 'require', 'title', $makePage( 1, 'Edit by anon/subpage' ) ],
+					[ 'require', 'title', $makePage( 0, 'Minor edit' ) ],
+				],
+				array_merge( $defaultInfo, [
+					'conds' => "(((rc_namespace = 0 AND rc_title = 'Minor_edit') " .
+						"OR (rc_namespace = 1 AND rc_title = 'Edit_by_anon/subpage')))"
+				] ),
+				[ $rcIds['anon'], $rcIds['minor'] ],
+			],
+			'exclude title' => [
+				[
+					[ 'exclude', 'title', $makePage( 1, 'Edit by anon/subpage' ) ],
+					[ 'exclude', 'title', $makePage( 0, 'Minor edit' ) ],
+				],
+				array_merge( $defaultInfo, [
+					'conds' => "(NOT ((rc_namespace = 0 AND rc_title = 'Minor_edit') " .
+						"OR (rc_namespace = 1 AND rc_title = 'Edit_by_anon/subpage')))"
+				] ),
+				array_diff( $allIds, [ $rcIds['anon'], $rcIds['minor'] ] ),
+			],
+			'require redirect' => [
+				[ [ 'require', 'redirect', true ] ],
+				array_merge( $joinPage, [
+					'conds' => '(page_is_redirect = 1)',
+				] ),
+				[ $rcIds['redirect'] ]
+			],
+			'exclude redirect' => [
+				[ [ 'exclude', 'redirect', true ] ],
+				array_merge( $leftJoinPage, [
+					'conds' => '((page_is_redirect = 0 OR page_is_redirect IS NULL))',
+				] ),
+				array_diff( $allIds, [ $rcIds['redirect'] ] ),
+			],
+			'require non-redirecting page' => [
+				[ [ 'require', 'redirect', false ] ],
+				array_merge( $joinPage, [
+					'conds' => '(page_is_redirect = 0)',
+				] ),
+				array_diff( $allIds, [ $rcIds['redirect'] ], $logIds ),
+			],
+			'require any page' => [
+				[
+					[ 'require', 'redirect', true ],
+					[ 'require', 'redirect', false ]
+				],
+				$joinPage,
+				array_diff( $allIds, $logIds ),
 			],
 			'require changeTags mw-blank' => [
 				[ [ 'require', 'changeTags', 'mw-blank' ] ],
@@ -774,7 +896,15 @@ class ChangesListQueryTest extends \MediaWikiIntegrationTestCase {
 		$this->doQuery( $query, $expectedInfo, $expectedIds );
 	}
 
-	public function requireWatched() {
+	public function testRequireTitle() {
+		$query = $this->getQuery();
+		[ $actions, $expectedInfo, $expectedIds ] = self::provideActions()['require title'];
+		$query->requireTitle( $actions[0][2] );
+		$query->requireTitle( $actions[1][2] );
+		$this->doQuery( $query, $expectedInfo, $expectedIds );
+	}
+
+	public function testRequireWatched() {
 		$query = $this->getQuery();
 		[ $actions, $expectedInfo, $expectedIds ] = self::provideActions()['require watched'];
 		$query->requireWatched();
@@ -787,6 +917,7 @@ class ChangesListQueryTest extends \MediaWikiIntegrationTestCase {
 		return [
 			'normal' => [
 				[],
+				[ 'action' ],
 				array_merge( self::getDefaultInfo(), [
 					'conds' => "((rc_source != 'mw.log' OR (rc_deleted & 1) != 1))",
 				] ),
@@ -794,6 +925,7 @@ class ChangesListQueryTest extends \MediaWikiIntegrationTestCase {
 			],
 			'deletedhistory' => [
 				[ 'deletedhistory' ],
+				[ 'action' ],
 				array_merge( self::getDefaultInfo(), [
 					'conds' => "((rc_source != 'mw.log' OR (rc_deleted & 9) != 9))",
 				] ),
@@ -801,6 +933,29 @@ class ChangesListQueryTest extends \MediaWikiIntegrationTestCase {
 			],
 			'suppressrevision' => [
 				[ 'deletedhistory', 'suppressrevision' ],
+				[ 'action' ],
+				self::getDefaultInfo(),
+				$allRcIds,
+			],
+			'normal with exclude deleted user' => [
+				[],
+				[ 'user' ],
+				array_merge( self::getDefaultInfo(), [
+					'conds' => "((rc_deleted & 4) != 4)",
+				] ),
+				array_diff( $allRcIds, [ $rcIds['deleted-user'] ] ),
+			],
+			'deletedhistory with exclude deleted user' => [
+				[ 'deletedhistory' ],
+				[ 'user' ],
+				array_merge( self::getDefaultInfo(), [
+					'conds' => "((rc_deleted & 12) != 12)",
+				] ),
+				$allRcIds,
+			],
+			'suppressrevision with exclude deleted user' => [
+				[ 'deletedhistory', 'suppressrevision' ],
+				[ 'user' ],
 				self::getDefaultInfo(),
 				$allRcIds,
 			],
@@ -811,16 +966,24 @@ class ChangesListQueryTest extends \MediaWikiIntegrationTestCase {
 	 * @dataProvider provideAudience
 	 *
 	 * @param string[] $rights
+	 * @param string[] $exclusions
 	 * @param array $expectedInfo
 	 * @param int[] $expectedIds
 	 */
-	public function testAudience( $rights, $expectedInfo, $expectedIds ) {
+	public function testAudience( $rights, $exclusions, $expectedInfo, $expectedIds ) {
 		$query = $this->getQuery();
 		$authority = new SimpleAuthority(
 			new UserIdentityValue( 1, 'Alice' ),
 			$rights
 		);
 		$query->audience( $authority );
+		foreach ( $exclusions as $exclusion ) {
+			if ( $exclusion === 'action' ) {
+				$query->excludeDeletedLogAction();
+			} elseif ( $exclusion === 'user' ) {
+				$query->excludeDeletedUser();
+			}
+		}
 		$this->doQuery( $query, $expectedInfo, $expectedIds );
 	}
 
@@ -835,6 +998,53 @@ class ChangesListQueryTest extends \MediaWikiIntegrationTestCase {
 				'conds' => "(rc_timestamp >= '20250102000000')"
 			] ),
 			$rcIds,
+		);
+	}
+
+	public function testStartAt() {
+		$rcIds = self::getRcIds();
+		$query = $this->getQuery()
+			->startAt( '20250102000000', $rcIds['alice'] );
+		$this->doQuery(
+			$query,
+			array_merge( self::getDefaultInfo(), [
+				'conds' => "(rc_timestamp < '20250102000000' OR (rc_timestamp = '20250102000000' AND (rc_id <= {$rcIds['alice']})))"
+			] ),
+			[ $rcIds['alice'] ],
+		);
+	}
+
+	public function testEndAt() {
+		$rcIds = self::getRcIds();
+		$allIds = array_values( $rcIds );
+		$query = $this->getQuery()
+			->endAt( '20250102000000', $rcIds['alice'] );
+		$this->doQuery(
+			$query,
+			array_merge( self::getDefaultInfo(), [
+				'conds' => "(rc_timestamp > '20250102000000' OR (rc_timestamp = '20250102000000' AND (rc_id >= {$rcIds['alice']})))"
+			] ),
+			array_diff( $allIds, [ $rcIds['alice'] ] ),
+		);
+	}
+
+	public function testOrderBy() {
+		$rcIds = self::getRcIds();
+		$query = $this->getQuery()
+			->orderBy( ChangesListQuery::SORT_TIMESTAMP_ASC )
+			->endAt( '20250101000000' );
+		$this->doQuery(
+			$query,
+			array_merge( self::getDefaultInfo(), [
+				'conds' => "(rc_timestamp <= '20250101000000')",
+				'options' => [
+					'ORDER BY' => [
+						'rc_timestamp ASC',
+						'rc_id ASC',
+					]
+				]
+			] ),
+			[ $rcIds['alice'] ],
 		);
 	}
 
@@ -903,14 +1113,14 @@ class ChangesListQueryTest extends \MediaWikiIntegrationTestCase {
 				[ 'pagelinks', 'templatelinks' ],
 				'Link destination',
 				null,
-				[ $rcIds['tl-source'], $rcIds['pl-source'] ]
+				[ $rcIds['redirect'], $rcIds['tl-source'], $rcIds['pl-source'] ]
 			],
 			'Links to with truncated union result' => [
 				ChangesListQuery::LINKS_TO,
 				[ 'pagelinks', 'templatelinks' ],
 				'Link destination',
 				1,
-				[ $rcIds['tl-source'] ]
+				[ $rcIds['redirect'] ]
 			],
 		];
 	}
@@ -952,6 +1162,74 @@ class ChangesListQueryTest extends \MediaWikiIntegrationTestCase {
 		$query = $this->getQuery()
 			->excludeChangeTags( [ 'mw-blank' ] );
 		$this->doQuery( $query, $expectedInfo, $expectedIds );
+	}
+
+	public function testRequireSources() {
+		[ $actions, $expectedInfo, $expectedIds ] = self::provideActions()['require source new'];
+		$query = $this->getQuery()
+			->requireSources( [ $actions[0][2] ] );
+		$this->doQuery( $query, $expectedInfo, $expectedIds );
+	}
+
+	public function testRequireUser() {
+		[ $actions, $expectedInfo, $expectedIds ] = self::provideActions()['require user alice'];
+		$query = $this->getQuery()
+			->requireUser( $actions[0][2] );
+		$this->doQuery( $query, $expectedInfo, $expectedIds );
+	}
+
+	public function testExcludeUser() {
+		[ $actions, $expectedInfo, $expectedIds ] = self::provideActions()['exclude user alice'];
+		$query = $this->getQuery()
+			->excludeUser( $actions[0][2] );
+		$this->doQuery( $query, $expectedInfo, $expectedIds );
+	}
+
+	public function testRequirePatrolled() {
+		[ $actions, $expectedInfo, $expectedIds ] = self::provideActions()['require autopatrolled'];
+		$query = $this->getQuery()
+			->requirePatrolled( $actions[0][2] );
+		$this->doQuery( $query, $expectedInfo, $expectedIds );
+	}
+
+	public function testRequireLatest() {
+		[ $actions, $expectedInfo, $expectedIds ] = self::provideActions()['require revisionType latest'];
+		$query = $this->getQuery()
+			->requireLatest();
+		$this->doQuery( $query, $expectedInfo, $expectedIds );
+	}
+
+	public function testRequireSlotChanged() {
+		$query = $this->getQuery()
+			->requireSlotChanged( 'aux' );
+		$this->doQuery(
+			$query,
+			array_merge( self::getDefaultInfo(), [
+				'tables' => [
+					'recentchanges',
+					'slot' => 'slots',
+					'parent_slot' => 'slots',
+				],
+				'join_conds' => [
+					'slot' => [
+						'LEFT JOIN',
+						[
+							'rc_this_oldid = slot.slot_revision_id',
+							'slot.slot_role_id' => 2
+						]
+					],
+					'parent_slot' => [
+						'LEFT JOIN',
+						[
+							'rc_last_oldid = parent_slot.slot_revision_id',
+							'parent_slot.slot_role_id' => 2
+						]
+					],
+				],
+				'conds' => '((slot.slot_origin = slot.slot_revision_id OR slot.slot_content_id != parent_slot.slot_content_id OR (slot.slot_content_id IS NULL AND parent_slot.slot_content_id IS NOT NULL) OR (slot.slot_content_id IS NOT NULL AND parent_slot.slot_content_id IS NULL)))',
+			] ),
+			[ self::getRcIds()['auxslot'] ]
+		);
 	}
 
 	/**

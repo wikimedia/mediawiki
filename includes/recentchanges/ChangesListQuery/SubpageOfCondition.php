@@ -2,12 +2,12 @@
 
 namespace MediaWiki\RecentChanges\ChangesListQuery;
 
-use LogicException;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\PageReference;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\LikeValue;
+use Wikimedia\Rdbms\RawSQLExpression;
 
 /**
  * Check if the changed title is a subpage of some specified title.
@@ -15,27 +15,14 @@ use Wikimedia\Rdbms\LikeValue;
  * @since 1.45
  */
 class SubpageOfCondition extends ChangesListConditionBase {
-	private array $prefixesByNs = [];
-
-	/** @inheritDoc */
-	public function require( $value ): void {
-		[ $ns, $dbk ] = $this->validateValue( $value );
-		$this->prefixesByNs[$ns][$dbk] = true;
-	}
-
 	/**
-	 * @param mixed $value
-	 * @return never
+	 * @param \stdClass $row
+	 * @param TitleConditionValue $value
+	 * @return bool
 	 */
-	public function exclude( $value ): void {
-		throw new LogicException( 'unimplemented' );
-	}
-
-	/** @inheritDoc */
 	public function evaluate( \stdClass $row, $value ): bool {
-		[ $ns, $dbk ] = $value;
-		return (int)$row->rc_namespace === $ns
-			&& str_starts_with( $row->rc_title, $dbk );
+		return (int)$row->rc_namespace === $value->namespace
+			&& str_starts_with( $row->rc_title, $value->dbKey );
 	}
 
 	/** @inheritDoc */
@@ -45,8 +32,28 @@ class SubpageOfCondition extends ChangesListConditionBase {
 
 	/** @inheritDoc */
 	public function prepareConds( IReadableDatabase $dbr, QueryBackend $query ) {
+		[ $required, $excluded ] = $this->getUniqueValues();
+		if ( $required === [] ) {
+			$query->forceEmptySet();
+		} elseif ( $required ) {
+			$query->where( $this->makeExpression( $dbr, $required ) );
+		} elseif ( $excluded ) {
+			$expr = $this->makeExpression( $dbr, $excluded );
+			$query->where(
+				new RawSQLExpression( 'NOT (' . $expr->toSql( $dbr ) . ')' )
+			);
+		}
+	}
+
+	/**
+	 * @param IReadableDatabase $dbr
+	 * @param TitleConditionValue[] $values
+	 * @return \Wikimedia\Rdbms\OrExpressionGroup
+	 */
+	private function makeExpression( IReadableDatabase $dbr, $values ) {
+		$prefixesByNs = TitleConditionValue::makeSet( $values );
 		$orConds = [];
-		foreach ( $this->prefixesByNs as $ns => $prefixes ) {
+		foreach ( $prefixesByNs as $ns => $prefixes ) {
 			$titleExpr = null;
 			foreach ( $prefixes as $prefix => $unused ) {
 				$prefixExpr = $dbr->expr(
@@ -65,7 +72,9 @@ class SubpageOfCondition extends ChangesListConditionBase {
 			}
 		}
 		if ( $orConds ) {
-			$query->where( $dbr->orExpr( $orConds ) );
+			return $dbr->orExpr( $orConds );
+		} else {
+			throw new \RuntimeException( 'Need at least one title' );
 		}
 	}
 
@@ -84,6 +93,6 @@ class SubpageOfCondition extends ChangesListConditionBase {
 		}
 		// Need a single trailing slash
 		$dbk = rtrim( $dbk, '/' );
-		return [ $ns, "$dbk/" ];
+		return new TitleConditionValue( $ns, "$dbk/" );
 	}
 }

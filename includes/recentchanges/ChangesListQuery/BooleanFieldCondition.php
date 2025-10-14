@@ -11,9 +11,6 @@ use Wikimedia\Rdbms\IReadableDatabase;
  */
 class BooleanFieldCondition extends ChangesListConditionBase {
 	/**
-	 * A table name parameter could be added if necessary by analogy with
-	 * FieldEqualityCondition.
-	 *
 	 * @param string $fieldName
 	 */
 	public function __construct( private $fieldName ) {

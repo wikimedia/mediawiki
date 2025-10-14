@@ -35,9 +35,10 @@ class WatchlistJoin extends BasicJoin {
 	/**
 	 * Add the wl_user condition
 	 *
+	 * @param string|null $alias
 	 * @return array
 	 */
-	protected function getExtraConds() {
+	protected function getExtraConds( ?string $alias ) {
 		if ( $this->userId === null ) {
 			// Call ChangesListQuery::watchlistUser() before executing the query
 			throw new \LogicException( 'User ID must be set for watchlist join' );
@@ -46,6 +47,10 @@ class WatchlistJoin extends BasicJoin {
 			// Don't ask for a watchlist join when the user is unregistered
 			throw new \LogicException( "Can't join on watchlist with wl_user=0" );
 		}
-		return [ 'wl_user' => $this->userId ];
+		$field = 'wl_user';
+		if ( $alias !== null && $alias !== '' ) {
+			$field = "$alias.$field";
+		}
+		return [ $field => $this->userId ];
 	}
 }

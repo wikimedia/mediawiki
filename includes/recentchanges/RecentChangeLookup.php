@@ -53,4 +53,23 @@ interface RecentChangeLookup {
 	 * @return string[]
 	 */
 	public function getAllSources(): array;
+
+	/**
+	 * Convert a legacy type string, as used by the API, or an array of such
+	 * strings, to an array of rc_source values.
+	 *
+	 * @since 1.45
+	 * @param string|string[] $type
+	 * @return string[]
+	 */
+	public function convertTypeToSources( $type ): array;
+
+	/**
+	 * Convert an rc_source value to a legacy type string
+	 *
+	 * @since 1.45
+	 * @param string $source
+	 * @return string
+	 */
+	public function convertSourceToType( string $source ): string;
 }

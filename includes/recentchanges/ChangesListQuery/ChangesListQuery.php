@@ -15,6 +15,9 @@ use MediaWiki\Page\PageReference;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\RecentChanges\RecentChangeLookup;
+use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Storage\NameTableAccessException;
+use MediaWiki\Storage\NameTableStore;
 use MediaWiki\Title\TitleValue;
 use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\UserFactory;
@@ -59,6 +62,9 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 	/** Minimum number of estimated rows before timestamp partitioning is considered */
 	public const PARTITION_THRESHOLD = 10000;
 
+	public const SORT_TIMESTAMP_DESC = 'timestamp-desc';
+	public const SORT_TIMESTAMP_ASC = 'timestamp-asc';
+
 	private int|float $rcMaxAge;
 	private bool $enablePartitioning;
 	private bool $forcePartitioning = false;
@@ -94,14 +100,25 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 	/** @var bool Whether the query was prepared for an emulated union */
 	private $preparedEmulatedUnion = false;
 
-	/** @var bool If true, include fields for constructing RecentChange objects */
-	private $recentChangeFields = false;
-
-	/** @var string[] */
-	private $watchlistFields = [];
+	/**
+	 * Internal functions to call during the prepare stage.
+	 * @var array<string,callable>
+	 */
+	private $prepareCallbacks = [];
 
 	/** @var string|null The minimum or earliest timestamp */
 	private $minTimestamp = null;
+
+	/** @var string|null The timestamp to start at */
+	private $startTimestamp = null;
+	/** @var int|null The ID to start at */
+	private $startId = null;
+	/** @var string|null The timestamp to end at */
+	private $endTimestamp = null;
+	/** @var int|null The ID to end at */
+	private $endId = null;
+	/** @var string The sort order */
+	private $sort = self::SORT_TIMESTAMP_DESC;
 
 	/** @var int|null The maximum number of rows to return */
 	private ?int $limit = null;
@@ -117,6 +134,11 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 
 	/** @var Authority|null The authority to use for deleted bitfield checks */
 	private ?Authority $audience = null;
+
+	/** @var bool Whether to exclude log entries with deleted actions */
+	private $excludeDeletedAction = false;
+	/** @var bool Whether to exclude rows with deleted users */
+	private $excludeDeletedUser = false;
 
 	/** @var float|int|null */
 	private $maxExecutionTime = null;
@@ -144,6 +166,7 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 		private LinkTargetLookup $linkTargetLookup,
 		private ChangeTagsStore $changeTagsStore,
 		private StatsFactory $statsFactory,
+		private NameTableStore $slotRoleStore,
 		private LoggerInterface $logger,
 		private IReadableDatabase $db,
 		private TableStatsProvider $rcStats,
@@ -158,6 +181,7 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 			'named' => new NamedCondition( $this->tempUserConfig ),
 			'bot' => new BooleanFieldCondition( 'rc_bot' ),
 			'minor' => new BooleanFieldCondition( 'rc_minor' ),
+			'redirect' => new BooleanJoinFieldCondition( 'page_is_redirect', 'page' ),
 			'revisionType' => new RevisionTypeCondition(),
 			'source' => new EnumFieldCondition(
 				'rc_source',
@@ -179,6 +203,7 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 				$this->watchedItemStore
 			),
 			'namespace' => new FieldEqualityCondition( 'rc_namespace' ),
+			'title' => new TitleCondition(),
 			'subpageof' => new SubpageOfCondition(),
 		];
 
@@ -201,6 +226,8 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 			),
 			'comment' => new BasicJoin( 'comment', 'recentchanges_comment', 'comment_id=rc_comment_id' ),
 			'page' => new BasicJoin( 'page', '', 'page_id=rc_cur_id' ),
+			'revision' => new BasicJoin( 'revision', '', 'rev_id=rc_this_oldid' ),
+			'slots' => new SlotsJoin(),
 			'user' => new BasicJoin( 'user', '', 'user_id=actor_user', 'actor' ),
 			'watchlist' => new WatchlistJoin(),
 			'watchlist_expiry' => new BasicJoin( 'watchlist_expiry', '', 'we_item=wl_id', 'watchlist' )
@@ -215,6 +242,20 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 	 * in ChangesListSpecialPage. Other callers should add/use a separate
 	 * mutator method. The details of the module names and values are internal
 	 * and unstable.
+	 *
+	 * Note regarding implicit unions:
+	 *
+	 * Conventionally, if you require two things of the same kind, like two
+	 * namespaces, you will get results matching either condition. But if you
+	 * require two different kinds of condition, like a namespace and a minor
+	 * edit, you will only get results matching both conditions. In other words,
+	 * filter modules implement an implicit union of required values.
+	 *
+	 * However, exclusions intersect with requirements of the same kind, so if
+	 * you require minor edits, and also exclude minor edits, you get no
+	 * results.
+	 *
+	 * This convention is flexible, consistent, and works well with the UI.
 	 *
 	 * @internal
 	 * @param string $verb May be "require" or "exclude"
@@ -279,8 +320,19 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 	 * @param LinkTarget|PageReference $page
 	 * @return $this
 	 */
-	public function requireSubpageOf( $page ) {
-		$this->getFilter( 'subpageof' )->require( $page );
+	public function requireSubpageOf( LinkTarget|PageReference $page ) {
+		$this->getSubpageOfCondition()->require( $page );
+		return $this;
+	}
+
+	/**
+	 * Return only changes to a given page.
+	 *
+	 * @param LinkTarget|PageReference $title
+	 * @return $this
+	 */
+	public function requireTitle( LinkTarget|PageReference $title ) {
+		$this->getTitleCondition()->require( $title );
 		return $this;
 	}
 
@@ -321,6 +373,49 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 	}
 
 	/**
+	 * Require that the changes come from the specified sources, e.g. RecentChange::SRC_EDIT
+	 *
+	 * @param array $sources
+	 * @return $this
+	 */
+	public function requireSources( array $sources ): self {
+		return $this->applyArrayAction( 'require', 'source', $sources );
+	}
+
+	/**
+	 * Require changes by a specific user.
+	 *
+	 * @param UserIdentity $user
+	 * @return $this
+	 */
+	public function requireUser( UserIdentity $user ): self {
+		$this->getUserFilter()->require( $user );
+		return $this;
+	}
+
+	/**
+	 * Exclude changes by a specific user.
+	 *
+	 * @param UserIdentity $user
+	 * @return $this
+	 */
+	public function excludeUser( UserIdentity $user ): self {
+		$this->getUserFilter()->exclude( $user );
+		return $this;
+	}
+
+	/**
+	 * Require a patrolled status.
+	 *
+	 * @param int $value One of the RecentChange::PRC_xxx constants
+	 * @return $this
+	 */
+	public function requirePatrolled( $value ): self {
+		$this->getPatrolledFilter()->require( $value );
+		return $this;
+	}
+
+	/**
 	 * Require that the change has one of the specified change tags.
 	 *
 	 * @param string[] $tagNames
@@ -341,12 +436,87 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 	}
 
 	/**
-	 * Add the change tag summary field ts_tags
+	 * Require that the change is the latest change to the page.
+	 * Changes that do not link to a page will not be shown.
 	 *
 	 * @return $this
 	 */
-	public function addChangeTagSummaryField(): self {
-		$this->getChangeTagsFilter()->capture();
+	public function requireLatest(): self {
+		$this->getRevisionTypeFilter()->require( 'latest' );
+		return $this;
+	}
+
+	/**
+	 * Require that a specified slot role was modified
+	 *
+	 * @param string $role
+	 * @return $this
+	 */
+	public function requireSlotChanged( string $role ): self {
+		try {
+			$roleId = $this->slotRoleStore->getId( $role );
+		} catch ( NameTableAccessException ) {
+			// No revisions changed this role yet
+			$this->forceEmptySet();
+			return $this;
+		}
+
+		$this->prepareCallbacks['slotChanged'] = function () use ( $roleId ) {
+			$slotsJoin = $this->getSlotsJoinModule();
+			$slotsJoin->setRoleId( $roleId );
+			$slotsJoin->forConds( $this )
+				->left();
+
+			$slotsJoin->parentAlias()
+				->forConds()
+				->left();
+
+			// Detecting whether the slot has been touched as follows:
+			// 1. if slot_origin=slot_revision_id then the slot has been newly created or edited
+			// with this revision
+			// 2. otherwise if the content of a slot is different to the content of its parent slot,
+			// then the content of the slot has been changed in this revision
+			// (probably by a revert)
+			$this->where( $this->db->orExpr( [
+				new RawSQLExpression( 'slot.slot_origin = slot.slot_revision_id' ),
+				new RawSQLExpression( 'slot.slot_content_id != parent_slot.slot_content_id' ),
+				$this->db->expr( 'slot.slot_content_id', '=', null )->and( 'parent_slot.slot_content_id', '!=', null ),
+				$this->db->expr( 'slot.slot_content_id', '!=', null )->and( 'parent_slot.slot_content_id', '=', null ),
+			] ) );
+		};
+		return $this;
+	}
+
+	/**
+	 * Exclude rows relating to log entries that have the DELETED_ACTION bit
+	 * set, unless the configured audience has permission to view such rows.
+	 *
+	 * @return $this
+	 */
+	public function excludeDeletedLogAction(): self {
+		$this->excludeDeletedAction = true;
+		return $this;
+	}
+
+	/**
+	 * Override a previous call to excludeDeletedLogAction(), allowing deleted
+	 * log rows to be shown.
+	 *
+	 * @return $this
+	 */
+	public function allowDeletedLogAction(): self {
+		$this->excludeDeletedAction = false;
+		return $this;
+	}
+
+	/**
+	 * Exclude rows with the DELETED_USER bit set, unless the configured
+	 * audience has permission to view such rows.
+	 *
+	 * @return $this
+	 */
+	public function excludeDeletedUser(): self {
+		$this->excludeDeletedUser = true;
 		return $this;
 	}
 
@@ -363,8 +533,7 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 	}
 
 	/**
-	 * Require that the change is viewable by the specified authority.
-	 * Or pass null to disable authority checks.
+	 * Set the Authority used for rc_deleted filters.
 	 *
 	 * @param Authority|null $authority
 	 * @return $this
@@ -411,6 +580,51 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 	 */
 	public function minTimestamp( $timestamp ) {
 		$this->minTimestamp = $timestamp;
+		return $this;
+	}
+
+	/**
+	 * Set the timestamp and ID for the start of the query results. If the sort
+	 * order is descending (the default) this is the maximum timestamp and ID.
+	 * If the sort order is ascending, this is the minimum timestamp and ID. The
+	 * ID, if specified, is used to break ties between results with equal
+	 * timestamps.
+	 *
+	 * @param string $timestamp
+	 * @param int|null $id
+	 * @return $this
+	 */
+	public function startAt( string $timestamp, ?int $id = null ): self {
+		$this->startTimestamp = $timestamp;
+		$this->startId = $id;
+		return $this;
+	}
+
+	/**
+	 * Set the timestamp and ID for the end of the query results. If the sort
+	 * order is descending (the default) this is the minimum timestamp and ID.
+	 * If the sort order is ascending, this is the maximum timestamp and ID. The
+	 * ID, if specified, is used to break ties between results with equal
+	 * timestamps.
+	 *
+	 * @param string $timestamp
+	 * @param int|null $id
+	 * @return $this
+	 */
+	public function endAt( string $timestamp, ?int $id = null ): self {
+		$this->endTimestamp = $timestamp;
+		$this->endId = $id;
+		return $this;
+	}
+
+	/**
+	 * Set the sort order. Must be one of the SORT_xxx constants.
+	 *
+	 * @param string $sort
+	 * @return $this
+	 */
+	public function orderBy( $sort ) {
+		$this->sort = $sort;
 		return $this;
 	}
 
@@ -505,6 +719,14 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 		return $this->joinModules['watchlist'];
 	}
 
+	private function getSlotsJoinModule(): SlotsJoin {
+		return $this->joinModules['slots'];
+	}
+
+	private function getUserFilter(): UserCondition {
+		return $this->filterModules['user'];
+	}
+
 	private function getWatchedFilter(): WatchedCondition {
 		return $this->filterModules['watched'];
 	}
@@ -515,6 +737,26 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 
 	private function getChangeTagsFilter(): ChangeTagsCondition {
 		return $this->filterModules['changeTags'];
+	}
+
+	private function getRedirectFilter(): BooleanJoinFieldCondition {
+		return $this->filterModules['redirect'];
+	}
+
+	private function getRevisionTypeFilter(): RevisionTypeCondition {
+		return $this->filterModules['revisionType'];
+	}
+
+	private function getPatrolledFilter(): EnumFieldCondition {
+		return $this->filterModules['patrolled'];
+	}
+
+	private function getTitleCondition(): TitleCondition {
+		return $this->filterModules['title'];
+	}
+
+	private function getSubpageOfCondition(): SubpageOfCondition {
+		return $this->filterModules['subpageof'];
 	}
 
 	/**
@@ -552,13 +794,27 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 	}
 
 	/**
+	 * Add the change tag summary field ts_tags
+	 *
+	 * @return $this
+	 */
+	public function addChangeTagSummaryField(): self {
+		$this->getChangeTagsFilter()->capture();
+		return $this;
+	}
+
+	/**
 	 * Add fields to the query sufficient for the subsequent construction of
 	 * RecentChange objects from the returned rows.
 	 *
 	 * @return $this
 	 */
 	public function recentChangeFields() {
-		$this->recentChangeFields = true;
+		$this->prepareCallbacks['recentChangeFields'] = function () {
+			$this->fields( RecentChange::getQueryInfo()['fields'] );
+			$this->joinForFields( 'actor' )->straight();
+			$this->joinForFields( 'comment' )->straight();
+		};
 		return $this;
 	}
 
@@ -572,7 +828,90 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 	public function watchlistFields(
 		$fields = [ 'wl_user', 'wl_notificationtimestamp', 'we_expiry' ]
 	) {
-		$this->watchlistFields = $fields;
+		$this->prepareCallbacks['watchlistFields'] = function () use ( $fields ) {
+			$wlFields = array_diff( $fields, [ 'we_expiry' ] );
+			$weFields = array_intersect( $fields, [ 'we_expiry' ] );
+			if ( $wlFields ) {
+				$this->fields( $wlFields );
+			}
+			$this->joinForFields( 'watchlist' )->weakLeft();
+			if ( $weFields && $this->config->get( MainConfigNames::WatchlistExpiry ) ) {
+				$this->fields( $weFields );
+				$this->joinForFields( 'watchlist_expiry' )->weakLeft();
+			}
+		};
+		return $this;
+	}
+
+	/**
+	 * Add the rev_deleted and rev_slot_pair fields, used by ApiQueryRecentChanges
+	 * to deliver SHA-1 hashes for modified content.
+	 *
+	 * @return self
+	 */
+	public function sha1Fields() {
+		$this->sqbMutators['sha1Fields'] = $this->applySha1Fields( ... );
+		return $this;
+	}
+
+	private function applySha1Fields( SelectQueryBuilder $query ) {
+		$pairExpr = $this->db->buildGroupConcat(
+			$this->db->buildConcat( [ 'sr.role_name', $this->db->addQuotes( ':' ), 'c.content_sha1' ] ),
+			','
+		);
+		$revSha1Subquery = $this->db->newSelectQueryBuilder()
+			->select( [
+				'rev_id',
+				'rev_deleted',
+				'rev_slot_pairs' => $pairExpr,
+			] )
+			->from( 'revision' )
+			->join( 'slots', 's', [ 'rev_id = s.slot_revision_id' ] )
+			->join( 'content', 'c', [ 's.slot_content_id = c.content_id' ] )
+			->join( 'slot_roles', 'sr', [ 's.slot_role_id = sr.role_id' ] )
+			->groupBy( [ 'rev_id', 'rev_deleted' ] )
+			->caller( __METHOD__ );
+
+		$query->leftJoin(
+			$revSha1Subquery,
+			'revsha1',
+			[ 'rc_this_oldid = revsha1.rev_id' ]
+		);
+		$query->fields( [
+			'rev_deleted' => 'revsha1.rev_deleted',
+			'rev_slot_pairs' => 'revsha1.rev_slot_pairs'
+		] );
+	}
+
+	/**
+	 * Add the page_is_redirect field
+	 *
+	 * @return $this
+	 */
+	public function addRedirectField(): self {
+		$this->getRedirectFilter()->capture();
+		return $this;
+	}
+
+	/**
+	 * Add CommentStore fields: rc_comment_text, rc_comment_data, rc_comment_cid.
+	 *
+	 * Note that recentChangeFields() also adds rc_comment_text and
+	 * rc_comment_data, but for comment_id it uses the alias rc_comment_id.
+	 * If you call both then you will get both aliases. But the joins will be
+	 * deduplicated.
+	 *
+	 * @return $this
+	 */
+	public function commentFields(): self {
+		$this->prepareCallbacks['commentFields'] = function () {
+			$this->joinForFields( 'comment' )->straight();
+			$this->fields( [
+				'rc_comment_text' => 'recentchanges_comment.comment_text',
+				'rc_comment_data' => 'recentchanges_comment.comment_data',
+				'rc_comment_cid' => 'recentchanges_comment.comment_id'
+			] );
+		};
 		return $this;
 	}
 
@@ -580,7 +919,7 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 	 * Add a callback which will be called when building an SQL query. It should
 	 * have a signature like
 	 *
-	 *    function mutator( &$tables, &$fields, &$conds, &$join_conds, &$options )
+	 *    function mutator( &$tables, &$fields, &$conds, &$options, &$join_conds )
 	 *
 	 * @see IReadableDatabase::select()
 	 *
@@ -672,26 +1011,10 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 		foreach ( $this->filterModules as $module ) {
 			$module->prepareQuery( $this->db, $this );
 		}
-		if ( $this->recentChangeFields ) {
-			$this->fields( RecentChange::getQueryInfo()['fields'] );
-			$this->joinForFields( 'actor' )->straight();
-			$this->joinForFields( 'comment' )->straight();
+		foreach ( $this->prepareCallbacks as $callback ) {
+			$callback();
 		}
-		if ( $this->watchlistFields ) {
-			$wlFields = array_diff( $this->watchlistFields, [ 'we_expiry' ] );
-			$weFields = array_intersect( $this->watchlistFields, [ 'we_expiry' ] );
-			if ( $wlFields ) {
-				$this->fields( $wlFields );
-			}
-			$this->joinForFields( 'watchlist' )->weakLeft();
-			if ( $weFields && $this->config->get( MainConfigNames::WatchlistExpiry ) ) {
-				$this->fields( $weFields );
-				$this->joinForFields( 'watchlist_expiry' )->weakLeft();
-			}
-		}
-		if ( $this->audience ) {
-			$this->prepareAudienceCondition( $this->audience );
-		}
+		$this->prepareAudienceCondition( $this->audience );
 		if ( count( $this->linkTables ) > 1 ) {
 			$this->prepareEmulatedUnion();
 		}
@@ -717,24 +1040,40 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 	 * Add conditions such that rows that cannot be viewed by the given authority
 	 * will not be returned.
 	 *
-	 * @param Authority $authority
+	 * @param Authority|null $authority
 	 */
-	private function prepareAudienceCondition( Authority $authority ) {
-		// Log entries with DELETED_ACTION must not show up unless the user has
-		// the necessary rights.
-		if ( !$authority->isAllowed( 'deletedhistory' ) ) {
-			$bitmask = LogPage::DELETED_ACTION;
-		} elseif ( !$authority->isAllowedAny( 'suppressrevision', 'viewsuppressed' ) ) {
-			$bitmask = LogPage::DELETED_ACTION | LogPage::DELETED_RESTRICTED;
-		} else {
-			$bitmask = 0;
-		}
-		if ( $bitmask ) {
-			$this->where( $this->db->expr( 'rc_source', '!=', RecentChange::SRC_LOG )
-				->orExpr( new RawSQLExpression(
+	private function prepareAudienceCondition( ?Authority $authority ) {
+		if ( $this->excludeDeletedUser ) {
+			if ( !$authority || !$authority->isAllowed( 'deletedhistory' ) ) {
+				$bitmask = RevisionRecord::DELETED_USER;
+			} elseif ( !$authority->isAllowedAny( 'suppressrevision', 'viewsuppressed' ) ) {
+				$bitmask = RevisionRecord::DELETED_USER | RevisionRecord::DELETED_RESTRICTED;
+			} else {
+				$bitmask = 0;
+			}
+			if ( $bitmask ) {
+				$this->where( new RawSQLExpression(
 					$this->db->bitAnd( 'rc_deleted', $bitmask ) . " != $bitmask"
-				) )
-			);
+				) );
+			}
+		}
+		if ( $this->excludeDeletedAction ) {
+			// Log entries with DELETED_ACTION must not show up unless the user has
+			// the necessary rights.
+			if ( !$authority || !$authority->isAllowed( 'deletedhistory' ) ) {
+				$bitmask = LogPage::DELETED_ACTION;
+			} elseif ( !$authority->isAllowedAny( 'suppressrevision', 'viewsuppressed' ) ) {
+				$bitmask = LogPage::DELETED_ACTION | LogPage::DELETED_RESTRICTED;
+			} else {
+				$bitmask = 0;
+			}
+			if ( $bitmask ) {
+				$this->where( $this->db->expr( 'rc_source', '!=', RecentChange::SRC_LOG )
+					->orExpr( new RawSQLExpression(
+						$this->db->bitAnd( 'rc_deleted', $bitmask ) . " != $bitmask"
+					) )
+				);
+			}
 		}
 	}
 
@@ -761,14 +1100,12 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 		if ( $this->distinct ) {
 			$sqb->distinct();
 			// In order to prevent DISTINCT from causing query performance problems,
-			// we have to GROUP BY the primary key. This in turn requires us to add
-			// the primary key to the end of the ORDER BY, and the old ORDER BY to the
-			// start of the GROUP BY.
-			$sqb->groupBy( [ 'rc_timestamp', 'rc_id' ] )
-				->orderBy( [ 'rc_timestamp DESC', 'rc_id DESC' ] );
-		} else {
-			$sqb->orderBy( 'rc_timestamp', SelectQueryBuilder::SORT_DESC );
+			// we have to GROUP BY the primary key.
+			$sqb->groupBy( [ 'rc_timestamp', 'rc_id' ] );
 		}
+		$dir = $this->sort === self::SORT_TIMESTAMP_ASC ? 'ASC' : 'DESC';
+		$sqb->orderBy( [ "rc_timestamp $dir", "rc_id $dir" ] );
+
 		$sqb->caller( $this->caller ?? __CLASS__ );
 		if ( $this->limit !== null ) {
 			$sqb->limit( $this->limit );
@@ -779,7 +1116,7 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 	}
 
 	/**
-	 * Add conditions on rc_timestamp
+	 * Add conditions on rc_timestamp and rc_id
 	 *
 	 * @param SelectQueryBuilder $sqb
 	 */
@@ -788,6 +1125,26 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 			$sqb->andWhere( $this->db->expr( 'rc_timestamp', '>=',
 				$this->db->timestamp( $this->minTimestamp ) ) );
 		}
+		$this->applyStartOrEnd( $sqb, true, $this->startTimestamp, $this->startId );
+		$this->applyStartOrEnd( $sqb, false, $this->endTimestamp, $this->endId );
+	}
+
+	/**
+	 * @param SelectQueryBuilder $sqb
+	 * @param bool $isStart True for the start, false for the end
+	 * @param string $ts
+	 * @param int $id
+	 */
+	private function applyStartOrEnd( SelectQueryBuilder $sqb, $isStart, $ts, $id ) {
+		if ( $ts === null ) {
+			return;
+		}
+		$op = ( $isStart === ( $this->sort === self::SORT_TIMESTAMP_ASC ) ) ? '>=' : '<=';
+		$conds = [ 'rc_timestamp' => $this->db->timestamp( $ts ) ];
+		if ( $id !== null ) {
+			$conds['rc_id'] = $id;
+		}
+		$sqb->andWhere( $this->db->buildComparison( $op, $conds ) );
 	}
 
 	/**
@@ -1023,6 +1380,7 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 				&& $this->limit !== null
 				&& $this->minTimestamp !== null
 				&& $this->joinOrderHint === self::JOIN_ORDER_OTHER
+				&& $this->sort === self::SORT_TIMESTAMP_DESC
 				&& $this->estimateSize() > self::PARTITION_THRESHOLD
 			);
 	}
