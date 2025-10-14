@@ -84,6 +84,6 @@ $magicWords = [
 	'language'                  => [ '0', '#LHENGUA', '#IDIOMA', '#LANGUAGE' ],
 	'pagesize'                  => [ '1', 'TAMANHOFEXEIRO', 'TAMANHODAPAGINA', 'TAMANHODAPÁGINA', 'PAGESIZE' ],
 	'redirect'                  => [ '0', '#ANCAMINAR', '#REDIRECIONAMENTO', '#REDIRECT' ],
-	'staticredirect'            => [ '1', '_ANCAMINARSTATICO_', '__REDIRECIONAMENTOESTATICO__', '__REDIRECIONAMENTOESTÁTICO__', '__STATICREDIRECT__' ],
+	'staticredirect'            => [ '1', '__ANCAMINARSTATICO__', '_ANCAMINARSTATICO_', '__REDIRECIONAMENTOESTATICO__', '__REDIRECIONAMENTOESTÁTICO__', '__STATICREDIRECT__' ],
 	'tag'                       => [ '0', 'eitiqueta', 'tag' ],
 ];

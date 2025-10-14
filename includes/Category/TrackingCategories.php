@@ -88,6 +88,7 @@ class TrackingCategories {
 		'unstrip-depth-category',
 		'unstrip-size-category',
 		'bad-language-code-category',
+		'bad-double-underscore-category',
 		'double-px-category',
 	];
 
