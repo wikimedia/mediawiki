@@ -1159,8 +1159,11 @@ class ParserOptions {
 	/**
 	 * Creates a "canonical" ParserOptions object
 	 *
-	 * For historical reasons, certain options have default values that are
-	 * different from the canonical values used for caching.
+	 * For historical reasons, certain options may have default values
+	 * that are different from the canonical values used for caching;
+	 * this is done to avoid expiring the entirety of an existing
+	 * ParserCache's contents in production when a default changes.
+	 * See the discussion in ::getDefaults() for more details.
 	 *
 	 * @since 1.30
 	 * @since 1.32 Added string and IContextSource as options for the first parameter
@@ -1205,11 +1208,16 @@ class ParserOptions {
 	}
 
 	/**
-	 * Get default option values
-	 * @warning If you change the default for an existing option, all existing
-	 *  parser cache entries will be invalid. To avoid bugs, you'll need to handle
-	 *  that somehow (e.g. with the RejectParserCacheValue hook) because
-	 *  MediaWiki won't do it for you.
+	 * Get default option values.
+	 * @warning If you change the default for an existing option, existing
+	 *  parser cache entries will match even though they were generated with
+	 *  the old default value.  Usually this is a feature, since you don't
+	 *  want to invalid the entire parser cache at once.  But to avoid bugs,
+	 *  you'll need to handle this somehow, either by tolerating the old
+	 *  value until the parser cache expires or by manually rejecting
+	 *  parser cache entries created with the old default (e.g. with the
+	 *  RejectParserCacheValue hook) although caution is warranted to avoid
+	 *  effectively invalidating the entire cache at once.
 	 * @return array
 	 */
 	private static function getDefaults() {
@@ -1234,6 +1242,17 @@ class ParserOptions {
 
 		if ( self::$defaults === null ) {
 			// *UPDATE* ParserOptions::matches() if any of this changes as needed
+			// Options matching the defaults are not included in the
+			// ParserCache key.  This is done to allow adding new parser
+			// options without invalidating the entire ParserCache, as long
+			// as those options are set to the default value specified here.
+			// It also allows deliberately serving old data from the parser
+			// cache when a default value is updated, which avoids the
+			// performance hit of invalidating the entire cache at once, but
+			// beware that changing the defaults here will *not* mean that
+			// all entries fetched from the cache will have been generated
+			// with the new default, at least until the current parser cache
+			// expires.
 			self::$defaults = [
 				'dateformat' => null,
 				'interfaceMessage' => false,
