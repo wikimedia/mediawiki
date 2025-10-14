@@ -308,21 +308,10 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 	 * @param string $expiry
 	 * @return string|null|false A string containing a valid timestamp, or null
 	 *   if the expiry is infinite, or false if the timestamp is not valid
+	 * @deprecated since 1.45, use UserGroupAssignmentService::expiryToTimestamp()
 	 */
 	public static function expiryToTimestamp( $expiry ) {
-		if ( wfIsInfinity( $expiry ) ) {
-			return null;
-		}
-
-		$unix = strtotime( $expiry );
-
-		if ( !$unix || $unix === -1 ) {
-			return false;
-		}
-
-		// @todo FIXME: Non-qualified absolute times are not in users specified timezone
-		// and there isn't notice about it in the ui (see ProtectionForm::getExpiry)
-		return wfTimestamp( TS_MW, $unix );
+		return UserGroupAssignmentService::expiryToTimestamp( $expiry );
 	}
 
 	/**
@@ -347,62 +336,20 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 			return Status::newFatal( 'userrights-cross-wiki-assignment-for-reserved-name' );
 		}
 
-		$allgroups = $this->userGroupManager->listAllGroups();
-		$addgroup = [];
-		$groupExpiries = []; // associative array of (group name => expiry)
-		$removegroup = [];
-		$existingUGMs = $this->userGroupManager->getUserGroupMemberships( $user );
-
 		// This could possibly create a highly unlikely race condition if permissions are changed between
-		//  when the form is loaded and when the form is saved. Ignoring it for the moment.
-		foreach ( $allgroups as $group ) {
-			// We'll tell it to remove all unchecked groups, and add all checked groups.
-			// Later on, this gets filtered for what can actually be removed
-			if ( $this->getRequest()->getCheck( "wpGroup-$group" ) ) {
-				$addgroup[] = $group;
+		// when the form is loaded and when the form is saved. Ignoring it for the moment.
+		$existingUGMs = $this->userGroupManager->getUserGroupMemberships( $user );
+		$newGroupsStatus = $this->readGroupsForm();
 
-				if ( $this->canProcessExpiries() ) {
-					// read the expiry information from the request
-					$expiryDropdown = $this->getRequest()->getVal( "wpExpiry-$group" );
-					if ( $expiryDropdown === 'existing' ) {
-						continue;
-					}
-
-					if ( $expiryDropdown === 'other' ) {
-						$expiryValue = $this->getRequest()->getVal( "wpExpiry-$group-other" );
-					} else {
-						$expiryValue = $expiryDropdown;
-					}
-
-					// validate the expiry
-					$groupExpiries[$group] = self::expiryToTimestamp( $expiryValue );
-
-					if ( $groupExpiries[$group] === false ) {
-						return Status::newFatal( 'userrights-invalid-expiry', $group );
-					}
-
-					// not allowed to have things expiring in the past
-					if ( $groupExpiries[$group] && $groupExpiries[$group] < wfTimestampNow() ) {
-						return Status::newFatal( 'userrights-expiry-in-past', $group );
-					}
-
-					// if the user can only add this group (not remove it), the expiry time
-					// cannot be brought forward (T156784)
-					if ( !$this->canRemove( $group ) &&
-						isset( $existingUGMs[$group] ) &&
-						( $existingUGMs[$group]->getExpiry() ?: 'infinity' ) >
-							( $groupExpiries[$group] ?: 'infinity' )
-					) {
-						return Status::newFatal( 'userrights-cannot-shorten-expiry', $group );
-					}
-				}
-			} else {
-				$removegroup[] = $group;
-			}
+		if ( !$newGroupsStatus->isOK() ) {
+			return $newGroupsStatus;
 		}
+		$newGroups = $newGroupsStatus->value;
 
+		// addgroup contains also existing groups with changed expiry
+		[ $addgroup, $removegroup, $groupExpiries ] = $this->splitGroupsIntoAddRemove( $newGroups, $existingUGMs );
 		$this->userGroupAssignmentService->saveChangesToUserGroups( $this->getAuthority(), $user, $addgroup,
-			$removegroup, $groupExpiries, $reason, [] );
+			$removegroup, $groupExpiries, $reason );
 
 		if ( $user->getWikiId() === UserIdentity::LOCAL && $this->getRequest()->getCheck( 'wpWatch' ) ) {
 			$this->watchlistManager->addWatchIgnoringRights(

@@ -1271,7 +1271,6 @@
 	"userrights-expiry-options": "Options for the duration of the user group membership.\n\n{{doc-mediawiki-options-list}}",
 	"userrights-invalid-expiry": "Error message on [[Special:UserRights]].\n\nParameters:\n* $1 - group name",
 	"userrights-expiry-in-past": "Error message on [[Special:UserRights]] when the user types an expiry date that has already passed.\n\nParameters:\n* $1 - group name",
-	"userrights-cannot-shorten-expiry": "Error message on [[Special:UserRights]] when the user tries to move the expiry date to be closer to the present and they do not have permission to do so. \"Bring forward\" is a phrasal verb meaning \"move to an earlier time\".\n\nParameters:\n* $1 - group name",
 	"userrights-no-tempuser": "Used as error message on [[Special:UserRights]] when the user is temporary user.",
 	"userrights-no-group": "Used as error message on [[Special:UserRights]] when the user is temporary user.",
 	"userrights-cross-wiki-assignment-for-reserved-name": "Used as an error message on [[Special:UserRights]] when a user tries to assign rights to a user on another wiki and the name is reserved by the temporary accounts system.",

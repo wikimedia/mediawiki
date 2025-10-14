@@ -14,7 +14,6 @@ namespace MediaWiki\Api;
 use MediaWiki\ChangeTags\ChangeTags;
 use MediaWiki\MainConfigNames;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
-use MediaWiki\Specials\SpecialUserRights;
 use MediaWiki\Title\Title;
 use MediaWiki\User\MultiFormatUserIdentityLookup;
 use MediaWiki\User\Options\UserOptionsLookup;
@@ -101,7 +100,7 @@ class ApiUserrights extends ApiBase {
 		$groupExpiries = [];
 		foreach ( $expiry as $index => $expiryValue ) {
 			$group = $add[$index];
-			$groupExpiries[$group] = SpecialUserRights::expiryToTimestamp( $expiryValue );
+			$groupExpiries[$group] = UserGroupAssignmentService::expiryToTimestamp( $expiryValue );
 
 			if ( $groupExpiries[$group] === false ) {
 				$this->dieWithError( [ 'apierror-invalidexpiry', wfEscapeWikiText( $expiryValue ) ] );

@@ -15,9 +15,11 @@ use MediaWiki\Logging\LogPage;
 use MediaWiki\Message\Message;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Title\Title;
+use MediaWiki\User\UserGroupAssignmentService;
 use MediaWiki\User\UserGroupMembership;
 use MediaWiki\User\UserGroupsSpecialPageTarget;
 use MediaWiki\Xml\XmlSelect;
+use Status;
 
 /**
  * A base class for special pages that allow to view and edit user groups.
@@ -405,6 +407,112 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 			: Html::rawElement( 'div', [], $checkboxHtml );
 
 		return [ $outHtml, !$fullyDisabled ];
+	}
+
+	/**
+	 * Reads the user groups set in the form. Returns them wrapped in a Status object.
+	 * On success, the value is an array of group name => expiry pairs. The expiry
+	 * is either a timestamp, null or 'existing' (meaning no change).
+	 * On failure, the status is fatal and contains an appropriate error message.
+	 *
+	 * NOTE: This method doesn't check whether the current user is actually allowed
+	 * to add/remove the groups. Normally, the result doesn't contain groups that
+	 * the user is not supposed to change.
+	 */
+	protected function readGroupsForm(): Status {
+		$allGroups = $this->listAllExplicitGroups();
+		// New state of the user groups, read from the form (group name => expiry)
+		// The expiry is either timestamp, null or 'existing' (meaning no change)
+		$newGroups = [];
+
+		foreach ( $allGroups as $group ) {
+			// We'll tell it to remove all unchecked groups, and add all checked groups.
+			// Later on, this gets filtered for what can actually be removed
+			if ( $this->getRequest()->getCheck( "wpGroup-$group" ) ) {
+				// Default expiry is infinity, may be changed below
+				$newGroups[$group] = null;
+
+				if ( $this->canProcessExpiries() ) {
+					// read the expiry information from the request
+					$expiryDropdown = $this->getRequest()->getVal( "wpExpiry-$group" );
+					if ( $expiryDropdown === 'existing' ) {
+						$newGroups[$group] = 'existing';
+						continue;
+					}
+
+					if ( $expiryDropdown === 'other' ) {
+						$expiryValue = $this->getRequest()->getVal( "wpExpiry-$group-other" );
+					} else {
+						$expiryValue = $expiryDropdown;
+					}
+
+					// validate the expiry
+					$expiry = UserGroupAssignmentService::expiryToTimestamp( $expiryValue );
+
+					if ( $expiry === false ) {
+						return Status::newFatal( 'userrights-invalid-expiry', $group );
+					}
+
+					// not allowed to have things expiring in the past
+					if ( $expiry && $expiry < wfTimestampNow() ) {
+						return Status::newFatal( 'userrights-expiry-in-past', $group );
+					}
+
+					$newGroups[$group] = $expiry;
+				}
+			}
+		}
+
+		return Status::newGood( $newGroups );
+	}
+
+	/**
+	 * Compares the current and new groups and splits them into groups to add, to remove, and prepares
+	 * the new expiries of the groups in 'add'. If a group has its expiry changed, but the user is already
+	 * a member of it, this group will be included in 'add' (to update the expiry).
+	 * @param array<string, ?string> $newGroups An array of group name => expiry pairs, as returned
+	 *   by {@see readGroupsForm()}. The expiry is either a timestamp, null (meaning infinity) or
+	 *   'existing' (meaning no change).
+	 * @param array<string, UserGroupMembership> $existingUGMs The current group memberships of
+	 *   the target user, as returned by {@see getGroupMemberships()}.
+	 * @return array{0:list<string>,1:list<string>,2:array<string,?string>} Respectively: the groups
+	 *   to add, to remove, and the expiries to set on the groups to add.
+	 */
+	protected function splitGroupsIntoAddRemove( array $newGroups, array $existingUGMs ): array {
+		$involvedGroups = array_unique( array_merge( array_keys( $existingUGMs ), array_keys( $newGroups ) ) );
+
+		$addGroups = [];
+		$removeGroups = [];
+		$groupExpiries = [];
+		foreach ( $involvedGroups as $group ) {
+			// By definition of $involvedGroups, at least one of $hasGroup and $wantsGroup is true
+			$hasGroup = array_key_exists( $group, $existingUGMs );
+			$wantsGroup = array_key_exists( $group, $newGroups );
+
+			if ( $wantsGroup && $newGroups[$group] === 'existing' ) {
+				// No change requested for this group
+				continue;
+			}
+
+			if ( $hasGroup && !$wantsGroup ) {
+				$removeGroups[] = $group;
+				continue;
+			}
+			if ( !$hasGroup && $wantsGroup ) {
+				$addGroups[] = $group;
+				$groupExpiries[$group] = $newGroups[$group];
+				continue;
+			}
+
+			$currentExpiry = $existingUGMs[$group]->getExpiry();
+			$wantedExpiry = $newGroups[$group];
+			if ( $currentExpiry !== $wantedExpiry ) {
+				$addGroups[] = $group;
+				$groupExpiries[$group] = $wantedExpiry;
+			}
+		}
+
+		return [ $addGroups, $removeGroups, $groupExpiries ];
 	}
 
 	/**

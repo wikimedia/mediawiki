@@ -139,7 +139,7 @@ class SpecialUserRightsTest extends SpecialPageTestBase {
 				'saveusergroups' => true,
 				'conflictcheck-originalgroups' => '',
 				'wpGroup-bot' => true,
-				'wpExpiry-bot' => 'existing',
+				'wpExpiry-bot' => 'infinity',
 				'wpEditToken' => $performer->getEditToken( $target->getName() ),
 			],
 			true
@@ -218,9 +218,9 @@ class SpecialUserRightsTest extends SpecialPageTestBase {
 				'saveusergroups' => true,
 				'conflictcheck-originalgroups' => 'sysop',
 				'wpGroup-sysop' => true,
-				'wpExpiry-sysop' => 'existing',
+				'wpExpiry-sysop' => 'infinity',
 				'wpGroup-bot' => true,
-				'wpExpiry-bot' => 'existing',
+				'wpExpiry-bot' => 'infinity',
 				'wpEditToken' => $performer->getEditToken( $target->getName() ),
 			],
 			true
@@ -419,6 +419,107 @@ class SpecialUserRightsTest extends SpecialPageTestBase {
 			'User on remote wiki' => [
 				'userIdentity' => new UserIdentityValue( 2, 'Test User 1', 'otherwiki' ),
 				'expected' => false,
+			],
+		];
+	}
+
+	public function testReadGroupsForm() {
+		$request = new FauxRequest( [
+			'wpGroup-bot' => true,
+			'wpExpiry-bot' => 'infinity',
+			'wpGroup-sysop' => true,
+			'wpExpiry-sysop' => '99990101000000',
+			'wpExpiry-bureaucrat' => 'infinity',
+			'wpGroup-interface-admin' => true,
+			'wpExpiry-interface-admin' => 'existing',
+		], true );
+		$context = new DerivativeContext( RequestContext::getMain() );
+		$context->setRequest( $request );
+
+		$specialPage = $this->newSpecialPage();
+		$specialPage->setContext( $context );
+		$wrappedPage = TestingAccessWrapper::newFromObject( $specialPage );
+		$wrappedPage->userGroupManager = $this->getServiceContainer()->getUserGroupManager();
+
+		$groupsStatus = $wrappedPage->readGroupsForm();
+		$this->assertStatusGood( $groupsStatus );
+		$groups = $groupsStatus->value;
+		$this->assertEquals( [
+			'bot' => null,
+			'sysop' => '99990101000000',
+			'interface-admin' => 'existing',
+		], $groups );
+	}
+
+	/** @dataProvider provideSplitGroupsIntoAddRemove */
+	public function testSplitGroupsIntoAddRemove( array $oldGroups, array $newGroups, array $expected ) {
+		$specialPage = $this->newSpecialPage();
+		$wrappedPage = TestingAccessWrapper::newFromObject( $specialPage );
+
+		$oldUGMs = [];
+		foreach ( $oldGroups as $group => $expiry ) {
+			$oldUGMs[$group] = new UserGroupMembership( 1, $group, $expiry );
+		}
+
+		$actual = $wrappedPage->splitGroupsIntoAddRemove( $newGroups, $oldUGMs );
+		$this->assertEquals( $expected, $actual );
+	}
+
+	public static function provideSplitGroupsIntoAddRemove() {
+		return [
+			'Add a permanent and temporary group' => [
+				'oldGroups' => [ 'static' => null ],
+				'newGroups' => [ 'static' => null, 'permanent' => null, 'temporary' => '20250101000000' ],
+				'expected' => [
+					[ 'permanent', 'temporary' ],
+					[],
+					[ 'permanent' => null, 'temporary' => '20250101000000' ],
+				],
+			],
+			'Remove a group' => [
+				'oldGroups' => [ 'static' => null, 'removed1' => null, 'removed2' => '20250101000000' ],
+				'newGroups' => [ 'static' => null ],
+				'expected' => [
+					[],
+					[ 'removed1', 'removed2' ],
+					[],
+				],
+			],
+			'Nothing changes' => [
+				'oldGroups' => [ 'static-perm' => null, 'static-temp' => '20250101000000' ],
+				'newGroups' => [ 'static-perm' => null, 'static-temp' => '20250101000000' ],
+				'expected' => [
+					[],
+					[],
+					[],
+				],
+			],
+			'Add and remove at once' => [
+				'oldGroups' => [ 'old-group' => null ],
+				'newGroups' => [ 'new-group' => null ],
+				'expected' => [
+					[ 'new-group' ],
+					[ 'old-group' ],
+					[ 'new-group' => null ],
+				],
+			],
+			'Change expiry' => [
+				'oldGroups' => [ 'group' => '20250101000000' ],
+				'newGroups' => [ 'group' => null ],
+				'expected' => [
+					[ 'group' ],
+					[],
+					[ 'group' => null ],
+				],
+			],
+			'Ignore "existing" expiry' => [
+				'oldGroups' => [ 'group' => '20250101000000' ],
+				'newGroups' => [ 'group' => 'existing', 'new-group' => 'existing' ],
+				'expected' => [
+					[],
+					[],
+					[],
+				],
 			],
 		];
 	}

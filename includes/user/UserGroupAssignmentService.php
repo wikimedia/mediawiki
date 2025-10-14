@@ -378,4 +378,29 @@ class UserGroupAssignmentService {
 			unset( $newExpiries[$group] );
 		}
 	}
+
+	/**
+	 * Converts a user group membership expiry string into a timestamp. Words like
+	 * 'existing' or 'other' should have been filtered out before calling this
+	 * function.
+	 *
+	 * @param string $expiry
+	 * @return string|null|false A string containing a valid timestamp, or null
+	 *   if the expiry is infinite, or false if the timestamp is not valid
+	 */
+	public static function expiryToTimestamp( $expiry ) {
+		if ( wfIsInfinity( $expiry ) ) {
+			return null;
+		}
+
+		$unix = strtotime( $expiry );
+
+		if ( !$unix || $unix === -1 ) {
+			return false;
+		}
+
+		// @todo FIXME: Non-qualified absolute times are not in users specified timezone
+		// and there isn't notice about it in the ui (see ProtectionForm::getExpiry)
+		return wfTimestamp( TS_MW, $unix );
+	}
 }
