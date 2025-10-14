@@ -10,6 +10,7 @@ namespace MediaWiki\Api;
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Deferred\LinksUpdate\ImageLinksTable;
+use MediaWiki\Deferred\LinksUpdate\TemplateLinksTable;
 use MediaWiki\EditPage\IntroMessageBuilder;
 use MediaWiki\EditPage\PreloadedContentBuilder;
 use MediaWiki\Language\ILanguageConverter;
@@ -658,33 +659,45 @@ class ApiQueryInfo extends ApiQueryBase {
 				array_values( $this->restrictionStore->listApplicableRestrictionTypes( $page ) );
 		}
 
-		[ $blNamespace, $blTitle ] = $this->linksMigration->getTitleFields( 'templatelinks' );
-		$queryInfo = $this->linksMigration->getQueryInfo( 'templatelinks' );
-
 		if ( count( $others ) ) {
-			// Non-images: check templatelinks
-			$lb = $this->linkBatchFactory->newLinkBatch( $others );
 			$this->resetQueryParams();
-			$this->addTables( [ 'page_restrictions', 'page', ...$queryInfo['tables'] ] );
-			// templatelinks must use PRIMARY index and not the tl_target_id.
-			$this->addOption( 'USE INDEX', [ 'templatelinks' => 'PRIMARY' ] );
+			$this->addTables( [ 'page_restrictions', 'page' ] );
 			$this->addFields( [ 'pr_type', 'pr_level', 'pr_expiry',
-				'page_title', 'page_namespace',
-				$blNamespace, $blTitle ] );
-			$this->addWhere( $lb->constructSet( 'tl', $db ) );
+				'page_title', 'page_namespace', 'page_id' ] );
 			$this->addWhere( 'pr_page = page_id' );
-			$this->addWhere( 'pr_page = tl_from' );
 			$this->addWhereFld( 'pr_cascade', 1 );
-			$this->addJoinConds( $queryInfo['joins'] );
 
 			$res = $this->select( __METHOD__ );
+
+			$protectedPages = [];
 			foreach ( $res as $row ) {
-				$this->protections[$row->$blNamespace][$row->$blTitle][] = [
+				$protectedPages[$row->page_id] = [
 					'type' => $row->pr_type,
 					'level' => $row->pr_level,
 					'expiry' => ApiResult::formatExpiry( $row->pr_expiry ),
 					'source' => $this->titleFormatter->formatTitle( $row->page_namespace, $row->page_title ),
 				];
+			}
+
+			if ( $protectedPages ) {
+				$this->setVirtualDomain( TemplateLinksTable::VIRTUAL_DOMAIN );
+
+				$queryInfo = $this->linksMigration->getQueryInfo( 'templatelinks' );
+				$res = $this->getDB()->newSelectQueryBuilder()
+					->select( [ 'tl_from', 'lt_namespace', 'lt_title' ] )
+					->tables( $queryInfo['tables'] )
+					->joinConds( $queryInfo['joins'] )
+					->where( [ 'tl_from' => array_keys( $protectedPages ) ] )
+					->useIndex( [ 'templatelinks' => 'PRIMARY' ] )
+					->caller( __METHOD__ )
+					->fetchResultSet();
+
+				foreach ( $res as $row ) {
+					$protection = $protectedPages[$row->tl_from];
+					$this->protections[$row->tl_namespace][$row->tl_title][] = $protection;
+				}
+
+				$this->resetVirtualDomain();
 			}
 		}
 
