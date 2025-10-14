@@ -354,6 +354,8 @@ because of Phabricator reports.
   have now been dropped.
 * MediaWikiIntegrationTestCase::removeTemporaryHook(), deprecated since 1.36, is
   now removed.
+* SkinFactory::getSkinNames(), deprecated since 1.37, has been removed. Instead,
+  use SkinFactory::getInstalledSkins().
 * …
 
 === Deprecations in 1.45 ===

@@ -11482,7 +11482,7 @@ class MainConfigSchema {
 	 *
 	 * Historically, the value was a properly cased name for the skin (and is still currently
 	 * supported). This value will be prefixed with "Skin" to create the class name of the
-	 * skin to load. Use Skin::getSkinNames() as an accessor if you wish to have access to the
+	 * skin to load. Use SkinFactory::getInstalledSkins() as an accessor if you wish to have access to the
 	 * full list.
 	 */
 	public const ValidSkinNames = [

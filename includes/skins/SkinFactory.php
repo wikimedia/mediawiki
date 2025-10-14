@@ -101,17 +101,6 @@ class SkinFactory {
 	}
 
 	/**
-	 * Return an associative array of `skin name => human readable name`.
-	 *
-	 * @deprecated since 1.37 Use getInstalledSkins instead
-	 * @return array
-	 */
-	public function getSkinNames() {
-		wfDeprecated( __METHOD__, '1.37' );
-		return $this->displayNames;
-	}
-
-	/**
 	 * Create a given Skin using the registered callback for $name.
 	 *
 	 * @param string $name Name of the skin you want
