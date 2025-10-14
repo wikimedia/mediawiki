@@ -20,7 +20,8 @@
 			"Timpul",
 			"ToBeFree",
 			"Äberlausitzer",
-			"아라"
+			"아라",
+			"InNerdsWeTrust"
 		]
 	},
 	"sunday": "Sunntich",
@@ -144,7 +145,7 @@
 	"viewhelppage": "Hilfeseite oazeiga",
 	"categorypage": "Kategorieseite oazeiga",
 	"viewtalkpage": "Dischkur",
-	"otherlanguages": "Ei andern Sproacha",
+	"otherlanguages": "Ei annern Sproacha",
 	"redirectedfrom": "(Wettergeleitet vu $1)",
 	"redirectpagesub": "Weiterleitung",
 	"redirectto": "Weiterleitung noach:",
@@ -199,7 +200,7 @@
 	"page-atom-feed": "Atom-Feed fer „$1“",
 	"red-link-title": "$1 (Seite ies nee doo)",
 	"nstab-main": "Seite",
-	"nstab-user": "{{GENDER:$1|Benutzerseite|Benutzerinnenseite|Benutzerseite}}",
+	"nstab-user": "{{GENDER:$1|Benieterseite|Benieterinnaseite|Benieterseite}}",
 	"nstab-media": "Medienseite",
 	"nstab-special": "Spezioalseite",
 	"nstab-project": "Projektseite",

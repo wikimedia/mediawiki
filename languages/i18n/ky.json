@@ -1472,7 +1472,7 @@
 	"svg-long-error": "туура эмес SVG-файл: $1",
 	"show-big-image": "Түп нуска файл",
 	"show-big-image-preview": "Учурда көрсөтүлүүчү өлчөм: $1",
-	"show-big-image-other": "Башка {{PLURAL:$2|уруксат|уруксаттар}}: $1.",
+	"show-big-image-other": "Башка {{PLURAL:$2|өлчөм|өлчөмдөр}}: $1.",
 	"show-big-image-size": "$1 × $2 пиксел",
 	"newimages": "Жаңы файлдардын галереясы",
 	"newimages-legend": "Чыпка",

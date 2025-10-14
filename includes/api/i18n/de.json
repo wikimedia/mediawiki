@@ -36,7 +36,8 @@
 			"Zenith",
 			"PretzelRocky",
 			"*surak*",
-			"JorgeElias2302"
+			"JorgeElias2302",
+			"Mukeber"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Dokumentation]]\n* [[mw:Special:MyLanguage/API:Etiquette|Etikette & Nutzungsrichtlinien]]\n* [[mw:Special:MyLanguage/API:FAQ|Häufig gestellte Fragen]]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api.lists.wikimedia.org/ Mailingliste]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API-Ankündigungen]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Fehlerberichte und Anfragen]\n</div>\n<strong>Status:</strong> Die MediaWiki-API ist eine ausgereifte und stabile Schnittstelle, die aktiv unterstützt und verbessert wird. Während wir versuchen, dies zu vermeiden, können wir gelegentlich Breaking Changes erforderlich machen. Abonniere die [https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ MediaWiki-API-Ankündigungs-Mailingliste] für Mitteilungen zu Aktualisierungen.\n\n<strong>Fehlerhafte Anfragen:</strong> Wenn fehlerhafte Anfragen an die API gesendet werden, wird ein HTTP-Header mit dem Schlüssel „MediaWiki-API-Error“ gesendet. Der Wert des Headers und der Fehlercode werden auf den gleichen Wert gesetzt. Für weitere Informationen siehe [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Fehler und Warnungen]].\n\n<p class=\"mw-apisandbox-link\"><strong>Testen:</strong> Zum einfachen Testen von API-Anfragen, siehe [[Special:ApiSandbox]].</p>",
@@ -1072,7 +1073,10 @@
 	"apihelp-query+pagepropnames-param-limit": "Die maximale Anzahl zurückzugebender Namen.",
 	"apihelp-query+pagepropnames-example-simple": "Ruft die ersten 10 Eigenschaftsnamen auf.",
 	"apihelp-query+pageprops-summary": "Ermittelt verschiedene Seiteneigenschaften, die im Seiteninhalt definiert sind.",
+	"apihelp-query+pageprops-param-prop": "Nur die Seiteneigenschaften auflisten (<kbd>[[Special:ApiHelp/query+pagepropnames|action=query&list=pagepropnames]]</kbd> gibt die verwendeten Seiteneigenschaftsnamen zurück). Nützlich, um zu überprüfen, ob Seiten eine bestimmte Seiteneigenschaft verwenden.",
+	"apihelp-query+pageprops-example-simple": "Hole Eigenschaften für die Seiten <kbd>{{MediaWiki:Mainpage}}</kbd> und <kbd>MediaWiki</kbd>.",
 	"apihelp-query+pageswithprop-summary": "Alle Seiten auflisten, die eine bestimmte Seiteneigenschaft verwenden.",
+	"apihelp-query+pageswithprop-param-propname": "Seiteneigenschaft, für die Seiten aufgezählt werden sollen (<kbd>[[Special:ApiHelp/query+pagepropnames|action=query&list=pagepropnames]]</kbd> gibt die verwendeten Seiteneigenschaftsnamen zurück).",
 	"apihelp-query+pageswithprop-param-prop": "Welche Informationsteile einbinden:",
 	"apihelp-query+pageswithprop-paramvalue-prop-ids": "Fügt die Seitenkennung hinzu.",
 	"apihelp-query+pageswithprop-paramvalue-prop-title": "Ergänzt den Titel und die Namensraumkennung der Seite.",

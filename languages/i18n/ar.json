@@ -119,7 +119,8 @@
 			"XIDME",
 			"مارك العبيدي",
 			"123Rkhader",
-			"Mdktb"
+			"Mdktb",
+			"SZX"
 		]
 	},
 	"sunday": "الأحد",
@@ -462,7 +463,7 @@
 	"userlogin-yourname-ph": "أدخل اسم المستخدم الخاص بك",
 	"createacct-another-username-ph": "أدخل اسم المستخدم",
 	"userlogin-yourpassword": "كلمة السر",
-	"userlogin-yourpassword-ph": "أدخل كلمة السر الخاصة بك",
+	"userlogin-yourpassword-ph": "أدخل كلمة السر",
 	"createacct-yourpassword-ph": "أدخل كلمة السر",
 	"yourpasswordagain": "أعد كتابة كلمة السر:",
 	"createacct-useuniquepass": "ننصحك أن تستخدم كلمة سر فريدة لا تستخدمها على أي موقع شبكي آخر.",
@@ -1402,7 +1403,7 @@
 	"action-editmyuserjs": "تحرير ملفات جافا سكريبت المستخدم الخاصة بك",
 	"action-editmyuserjsredirect": "تحرير ملفات جافا سكريبت المحولة الخاصة بالمستخدم",
 	"action-viewsuppressed": "عرض المراجعات المخفية بواسطة أي مستخدم",
-	"action-hideuser": "حظر أو إلغاء حظر اسم مستخدم ، وإخفائه أو عدم إخفائه عن العامة",
+	"action-hideuser": "منع أو رفع منع اسم مستخدم، وإخفائه أو عدم إخفائه عن العامة",
 	"action-ipblock-exempt": "تفادي عمليات منع الأيبي والمنع التلقائي ومنع النطاق",
 	"action-unblockself": "رفع المنع عن أنفسهم",
 	"action-noratelimit": "غير متأثر بحدود المعدل",
@@ -3822,7 +3823,7 @@
 	"rightsnone": "(لا شيء)",
 	"rightslogentry-temporary-group": "$1 (مؤقت، حتى $2)",
 	"feedback-cancel": "إلغاء",
-	"feedback-close": "تم",
+	"feedback-close": "نُفّذ",
 	"feedback-external-bug-report-button": "أرسل تقرير علة تقنية",
 	"feedback-dialog-title": "أرسل تغذية راجعة",
 	"feedback-dialog-intro": "أنت يمكنك استخدام الاستمارة السهلة بالأسفل لإرسال تعليقك. تعليقك ستتم إضافته للصفحة \"$1\"، مع اسم المستخدم الخاص بك.",
