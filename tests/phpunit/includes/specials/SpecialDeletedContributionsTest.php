@@ -35,6 +35,7 @@ class SpecialDeletedContributionsTest extends SpecialPageTestBase {
 			$services->getUserFactory(),
 			$services->getUserIdentityLookup(),
 			$services->getDatabaseBlockStore(),
+			$services->getUserGroupAssignmentService(),
 			$services->getTempUserConfig()
 		);
 	}

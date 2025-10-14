@@ -16,12 +16,12 @@ use MediaWiki\HTMLForm\Field\HTMLMultiSelectField;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Logging\LogEventsList;
 use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Pager\ContribsPager;
 use MediaWiki\Pager\ContributionsPager;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\PoolCounter\PoolCounterWorkViaCallback;
 use MediaWiki\Specials\Contribute\ContributeFactory;
-use MediaWiki\Specials\SpecialUserRights;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
@@ -29,6 +29,7 @@ use MediaWiki\User\ExternalUserNames;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\User;
 use MediaWiki\User\UserFactory;
+use MediaWiki\User\UserGroupAssignmentService;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\User\UserNamePrefixSearch;
@@ -71,6 +72,7 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 	protected UserFactory $userFactory;
 	protected UserIdentityLookup $userIdentityLookup;
 	protected DatabaseBlockStore $blockStore;
+	protected UserGroupAssignmentService $userGroupAssignmentService;
 
 	/**
 	 * @param PermissionManager $permissionManager
@@ -82,6 +84,7 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 	 * @param UserFactory $userFactory
 	 * @param UserIdentityLookup $userIdentityLookup
 	 * @param DatabaseBlockStore $blockStore
+	 * @param mixed $userGroupAssignmentService
 	 * @param string $name
 	 * @param string $restriction
 	 */
@@ -95,9 +98,21 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 		UserFactory $userFactory,
 		UserIdentityLookup $userIdentityLookup,
 		DatabaseBlockStore $blockStore,
-		$name,
+		$userGroupAssignmentService,
+		$name = '',
 		$restriction = ''
 	) {
+		// For backwards compatability, temporarily handle the $userGroupAssignmentService
+		// being a string
+		if ( $userGroupAssignmentService instanceof UserGroupAssignmentService ) {
+			$this->userGroupAssignmentService = $userGroupAssignmentService;
+		} else {
+			// Shift params by one
+			$restriction = $name;
+			$name = $userGroupAssignmentService;
+			$this->userGroupAssignmentService = MediaWikiServices::getInstance()
+				->getUserGroupAssignmentService();
+		}
 		parent::__construct( $name, $restriction );
 		$this->permissionManager = $permissionManager;
 		$this->dbProvider = $dbProvider;
@@ -702,9 +717,7 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 		# (T373988) Don't show some links for temporary accounts
 		if ( !$target->isTemp() ) {
 			# Add a link to change user rights for privileged users
-			$userrightsPage = new SpecialUserRights();
-			$userrightsPage->setContext( $sp->getContext() );
-			if ( $userrightsPage->userCanChangeRights( $target ) ) {
+			if ( $this->userGroupAssignmentService->userCanChangeRights( $sp->getUser(), $target ) ) {
 				$tools['userrights'] = $linkRenderer->makeKnownLink(
 					SpecialPage::getTitleFor( 'Userrights', $username ),
 					$sp->msg( 'sp-contributions-userrights', $username )->text(),

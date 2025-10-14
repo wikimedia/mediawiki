@@ -112,32 +112,17 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 	 * @return bool
 	 */
 	public function userCanChangeRights( UserIdentity $targetUser, $checkIfSelf = true ) {
-		if (
-			!$targetUser->isRegistered() ||
-			$this->userNameUtils->isTemp( $targetUser->getName() )
-		) {
-			return false;
-		}
-
+		// Some callers rely on this method to set the $userGroupManager property. These should be
+		// fixed before removing this.
 		if ( $this->userGroupManager === null ) {
 			$this->userGroupManager = $this->userGroupManagerFactory
 				->getUserGroupManager( $targetUser->getWikiId() );
 		}
-		$available = $this->changeableGroups();
-		if ( $available['add'] || $available['remove'] ) {
-			// can change some rights for any user
-			return true;
-		}
 
-		$isself = $this->getUser()->equals( $targetUser );
-		if ( ( $available['add-self'] || $available['remove-self'] )
-			&& ( $isself || !$checkIfSelf )
-		) {
-			// can change some rights for self
-			return true;
-		}
-
-		return false;
+		return $this->userGroupAssignmentService->userCanChangeRights(
+			$this->getAuthority(),
+			$targetUser
+		);
 	}
 
 	/**

@@ -595,6 +595,7 @@ class SpecialPageFactory {
 				'UserFactory',
 				'UserIdentityLookup',
 				'DatabaseBlockStore',
+				'UserGroupAssignmentService',
 				'TempUserConfig',
 			]
 		],
@@ -623,6 +624,7 @@ class SpecialPageFactory {
 				'UserFactory',
 				'UserIdentityLookup',
 				'DatabaseBlockStore',
+				'UserGroupAssignmentService',
 				'TempUserConfig',
 			]
 		],

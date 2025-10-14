@@ -19,6 +19,7 @@ use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\UserFactory;
+use MediaWiki\User\UserGroupAssignmentService;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\User\UserNamePrefixSearch;
@@ -51,6 +52,7 @@ class SpecialContributions extends ContributionsSpecialPage {
 		UserFactory $userFactory,
 		UserIdentityLookup $userIdentityLookup,
 		DatabaseBlockStore $blockStore,
+		UserGroupAssignmentService $userGroupAssignmentService,
 		TempUserConfig $tempUserConfig
 	) {
 		parent::__construct(
@@ -63,6 +65,7 @@ class SpecialContributions extends ContributionsSpecialPage {
 			$userFactory,
 			$userIdentityLookup,
 			$blockStore,
+			$userGroupAssignmentService,
 			'Contributions',
 			''
 		);

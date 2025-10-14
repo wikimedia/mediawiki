@@ -18,7 +18,6 @@ use MediaWiki\Parser\Sanitizer;
 use MediaWiki\ResourceLoader as RL;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\SpecialPage\SpecialPage;
-use MediaWiki\Specials\SpecialUserRights;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
 use MediaWiki\User\User;
@@ -1332,6 +1331,7 @@ abstract class Skin extends ContextSource {
 	 * @return array
 	 */
 	protected function buildNavUrls() {
+		$services = MediaWikiServices::getInstance();
 		$out = $this->getOutput();
 		$title = $this->getTitle();
 		$thispage = $title->getPrefixedDBkey();
@@ -1418,7 +1418,7 @@ abstract class Skin extends ContextSource {
 
 			if ( $this->getAuthority()->isAllowed( 'block' ) ) {
 				// Check if the user is already blocked
-				$userBlock = MediaWikiServices::getInstance()
+				$userBlock = $services
 					->getBlockManager()
 					->getBlock( $user, null );
 				if ( $userBlock ) {
@@ -1461,11 +1461,13 @@ abstract class Skin extends ContextSource {
 				}
 
 				// Don't show links to Special:UserRights for temporary accounts (as they cannot have groups)
-				$userNameUtils = MediaWikiServices::getInstance()->getUserNameUtils();
+				$userNameUtils = $services->getUserNameUtils();
+				$userGroupsAssignmentService = $services->getUserGroupAssignmentService();
 				if ( !$userNameUtils->isTemp( $user->getName() ) ) {
-					$sur = new SpecialUserRights;
-					$sur->setContext( $this->getContext() );
-					$canChange = $sur->userCanChangeRights( $user );
+					$canChange = $userGroupsAssignmentService->userCanChangeRights(
+						$this->getAuthority(),
+						$user
+					);
 					$delimiter = $this->getConfig()->get(
 						MainConfigNames::UserrightsInterwikiDelimiter );
 					if ( str_contains( $rootUser, $delimiter ) ) {

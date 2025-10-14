@@ -19,6 +19,7 @@ use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\User;
 use MediaWiki\User\UserFactory;
+use MediaWiki\User\UserGroupAssignmentService;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\User\UserNamePrefixSearch;
@@ -52,6 +53,7 @@ class SpecialDeletedContributions extends ContributionsSpecialPage {
 		UserFactory $userFactory,
 		UserIdentityLookup $userIdentityLookup,
 		DatabaseBlockStore $blockStore,
+		UserGroupAssignmentService $userGroupAssignmentService,
 		TempUserConfig $tempUserConfig
 	) {
 		parent::__construct(
@@ -64,6 +66,7 @@ class SpecialDeletedContributions extends ContributionsSpecialPage {
 			$userFactory,
 			$userIdentityLookup,
 			$blockStore,
+			$userGroupAssignmentService,
 			'DeletedContributions',
 			'deletedhistory'
 		);
