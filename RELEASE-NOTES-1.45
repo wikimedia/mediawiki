@@ -349,6 +349,7 @@ because of Phabricator reports.
   MediaWikiServices to obtain an instance instead.
 * The Less mixins .horizontal-gradient() and .vertical-gradient() in
   mediawiki.mixins.less, deprecated in 1.43 have been removed.
+* The SearchResult class, deprecated since 1.34, is now abstract.
 * …
 
 === Deprecations in 1.45 ===
