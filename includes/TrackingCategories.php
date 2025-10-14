@@ -80,6 +80,7 @@ class TrackingCategories {
 		'template-loop-category',
 		'unstrip-depth-category',
 		'unstrip-size-category',
+		'bad-double-underscore-category',
 	];
 
 	/**

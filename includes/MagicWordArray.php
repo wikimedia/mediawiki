@@ -22,7 +22,6 @@
  * @ingroup Parser
  */
 
-use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -227,28 +226,30 @@ class MagicWordArray {
 	 * Returns array(magic word ID, parameter value)
 	 * If there is no parameter value, that element will be false.
 	 *
-	 * @param array $m
-	 *
-	 * @throws MWException
-	 * @return array
+	 * @param array<string|int,string> $matches
+	 * @return array{0:string,1:string,2:string|false} Tuple of (magic word ID, magic word alias, parameter value),
+	 *  where the latter is instead false if there is no parameter value.
 	 */
-	public function parseMatch( $m ) {
-		reset( $m );
-		while ( ( $key = key( $m ) ) !== null ) {
-			$value = current( $m );
-			next( $m );
-			if ( $key === 0 || $value === '' ) {
-				continue;
+	private function parseMatch( array $matches ): array {
+		$magicName = null;
+		foreach ( $matches as $key => $match ) {
+			if ( $magicName !== null ) {
+				// The structure we found at this point is [ …,
+				//     'a_magicWordName' => 'matchedSynonym',
+				//     n                 => 'matchedSynonym (again)',
+				//     n + 1             => 'parameterValue',
+				// … ]
+				return [ $magicName, $match, $matches[$key + 1] ?? false ];
 			}
-			$parts = explode( '_', $key, 2 );
-			if ( count( $parts ) != 2 ) {
-				// This shouldn't happen
-				// continue;
-				throw new MWException( __METHOD__ . ': bad parameter name' );
+			// Skip the initial full match and any non-matching group
+			if ( $match !== '' && $key !== 0 ) {
+				$parts = explode( '_', $key, 2 );
+				if ( !isset( $parts[1] ) ) {
+					// This shouldn't happen
+					throw new MWException( __METHOD__ . ': Unexpected group name' );
+				}
+				$magicName = $parts[1];
 			}
-			list( /* $synIndex */, $magicName ) = $parts;
-			$paramValue = next( $m );
-			return [ $magicName, $paramValue ];
 		}
 		// This shouldn't happen either
 		throw new MWException( __METHOD__ . ': parameter not found' );
@@ -269,7 +270,8 @@ class MagicWordArray {
 		foreach ( $regexes as $regex ) {
 			$m = [];
 			if ( preg_match( $regex, $text, $m ) ) {
-				return $this->parseMatch( $m );
+				[ $id, $alias, $param ] = $this->parseMatch( $m );
+				return [ $id, $param ];
 			}
 		}
 		return [ false, false ];
@@ -297,45 +299,21 @@ class MagicWordArray {
 	 * Removes the matched items from the input string (passed by reference)
 	 *
 	 * @param string &$text
-	 *
-	 * @return array
+	 * @param bool $returnAlias When true, returns the localized alias as
+	 *   the value in the returned array. When false (the default), the
+	 *   value in the returned array is `false`.
+	 * @return array<string,string|false> Keyed by magic word ID
 	 */
-	public function matchAndRemove( &$text ) {
+	public function matchAndRemove( &$text, bool $returnAlias = false ): array {
 		$found = [];
 		$regexes = $this->getRegex();
-		foreach ( $regexes as $regex ) {
-			$matches = [];
-			$res = preg_match_all( $regex, $text, $matches, PREG_SET_ORDER );
-			if ( $res === false ) {
-				$error = preg_last_error();
-				// TODO: Remove function_exists when we require PHP8
-				$errorText = function_exists( 'preg_last_error_msg' ) ? preg_last_error_msg() : '';
-				LoggerFactory::getInstance( 'parser' )->warning( 'preg_match_all error: {code} {errorText}', [
-					'code' => $error,
-					'regex' => $regex,
-					'text' => $text,
-					'errorText' => $errorText
-				] );
-				throw new Exception( "preg_match_all error $error: $errorText" );
-			} elseif ( $res ) {
-				foreach ( $matches as $m ) {
-					list( $name, $param ) = $this->parseMatch( $m );
-					$found[$name] = $param;
-				}
-			}
-			$res = preg_replace( $regex, '', $text );
-			if ( $res === null ) {
-				$error = preg_last_error();
-				// TODO: Remove function_exists when we require PHP8
-				$errorText = function_exists( 'preg_last_error_msg' ) ? preg_last_error_msg() : '';
-				LoggerFactory::getInstance( 'parser' )->warning( 'preg_replace error: {code} {errorText}', [
-					'code' => $error,
-					'regex' => $regex,
-					'text' => $text,
-					'errorText' => $errorText
-				] );
-				throw new Exception( "preg_replace error $error: $errorText" );
-			}
+		$res = preg_replace_callback( $regexes, function ( $m ) use ( &$found, $returnAlias ) {
+			[ $name, $alias, $param ] = $this->parseMatch( $m );
+			$found[$name] = $returnAlias ? $alias : $param;
+			return '';
+		}, $text );
+		// T321234: Don't try to fix old revisions with broken UTF-8, just return $text as is
+		if ( $res !== null ) {
 			$text = $res;
 		}
 		return $found;
@@ -347,9 +325,9 @@ class MagicWordArray {
 	 * Return false if no match found and $text is not modified.
 	 * Does not match parameters.
 	 *
-	 * @param string &$text
-	 *
-	 * @return int|bool False on failure
+	 * @see MagicWord::matchStartAndRemove
+	 * @param string &$text Unmodified if no match is found.
+	 * @return string|false False if no match is found.
 	 */
 	public function matchStartAndRemove( &$text ) {
 		$regexes = $this->getRegexStart();

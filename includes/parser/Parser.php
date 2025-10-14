@@ -4096,9 +4096,12 @@ class Parser {
 	private function handleDoubleUnderscore( $text ) {
 		# The position of __TOC__ needs to be recorded
 		$mw = $this->magicWordFactory->get( 'toc' );
+		$tocAlias = null;
 		if ( $mw->match( $text ) ) {
 			$this->mShowToc = true;
 			$this->mForceTocPosition = true;
+			# record the alias used
+			preg_match( $mw->getRegex(), $text, $tocAlias );
 
 			# Set a placeholder. At the end we'll fill it in with the TOC.
 			$text = $mw->replace( self::TOC_PLACEHOLDER, $text, 1 );
@@ -4109,7 +4112,11 @@ class Parser {
 
 		# Now match and remove the rest of them
 		$mwa = $this->magicWordFactory->getDoubleUnderscoreArray();
-		$this->mDoubleUnderscores = $mwa->matchAndRemove( $text );
+		$this->mDoubleUnderscores = $mwa->matchAndRemove( $text, true );
+		if ( $tocAlias ) {
+			# For consistency with all other double-underscores (see below)
+			$this->mDoubleUnderscores['toc'] = $tocAlias[0];
+		}
 
 		if ( isset( $this->mDoubleUnderscores['nogallery'] ) ) {
 			$this->mOutput->setNoGallery( true );
@@ -4133,9 +4140,15 @@ class Parser {
 			$this->addTrackingCategory( 'index-category' );
 		}
 
-		# Cache all double underscores in the database
-		foreach ( $this->mDoubleUnderscores as $key => $val ) {
+		foreach ( $this->mDoubleUnderscores as $key => $alias ) {
+			# Cache all double underscores in the database
 			$this->mOutput->setPageProperty( $key, '' );
+			# Check for deprecated local aliases (T407289)
+			$ascii = str_starts_with( $alias, '__' ) && str_ends_with( $alias, '__' );
+			$wide = str_starts_with( $alias, '＿＿' ) && str_ends_with( $alias, '＿＿' );
+			if ( !( $ascii || $wide ) ) {
+				$this->addTrackingCategory( 'bad-double-underscore-category' );
+			}
 		}
 
 		return $text;
