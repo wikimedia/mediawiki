@@ -5,6 +5,7 @@ use MediaWiki\Block\SystemBlock;
 /**
  * @group Blocking
  * @covers \MediaWiki\Block\SystemBlock
+ * @covers \MediaWiki\Block\AbstractBlock
  */
 class SystemBlockTest extends MediaWikiUnitTestCase {
 

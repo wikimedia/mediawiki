@@ -13,6 +13,7 @@ use MediaWiki\MainConfigNames;
  * @group Database
  * @group Blocking
  * @covers \MediaWiki\Block\CompositeBlock
+ * @covers \MediaWiki\Block\AbstractBlock
  */
 class CompositeBlockTest extends MediaWikiLangTestCase {
 	private function getPartialBlocks() {

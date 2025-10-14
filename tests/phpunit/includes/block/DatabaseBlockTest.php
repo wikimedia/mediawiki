@@ -20,6 +20,7 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  * @group Database
  * @group Blocking
  * @covers \MediaWiki\Block\DatabaseBlock
+ * @covers \MediaWiki\Block\AbstractBlock
  */
 class DatabaseBlockTest extends MediaWikiLangTestCase {
 	use TempUserTestTrait;
