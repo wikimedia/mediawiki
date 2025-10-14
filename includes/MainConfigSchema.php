@@ -11348,16 +11348,19 @@ class MainConfigSchema {
 	 *
 	 * Associative array mapping extension name to the filename where messages can be
 	 * found. The file should contain variable assignments. Any of the variables
-	 * present in languages/messages/MessagesEn.php may be defined, but $messages
-	 * is the most common.
+	 * present in languages/messages/MessagesEn.php may be defined, but the most common
+	 * ones are $namespaceNames and $namespaceAliases for namespaces, $specialPageAliases
+	 * for special page names and $magicWords for magic words.
 	 *
 	 * Variables defined in extensions will override conflicting variables defined
 	 * in the core.
 	 *
-	 * Since MediaWiki 1.23, use of this variable to define messages is discouraged; instead, store
-	 * messages in JSON format and use $wgMessagesDirs. For setting other variables than
-	 * $messages, $wgExtensionMessagesFiles should still be used. Use a DIFFERENT key because
-	 * any entry having a key that also exists in $wgMessagesDirs will be ignored.
+	 * Before MediaWiki 1.23, this variable was most commonly used to define messages,
+	 * but since the introduction of $wgMessageDirs in that version, that is discouraged;
+	 * instead, store messages in JSON format and use $wgMessagesDirs. For setting other
+	 * variables than $messages, $wgExtensionMessagesFiles should still be used. Use a
+	 * DIFFERENT key, because any entry having a key that also exists in $wgMessagesDirs
+	 * will be ignored.
 	 *
 	 * Extensions using the JSON message format can preserve backward compatibility with
 	 * earlier versions of MediaWiki by using a compatibility shim, such as one generated
