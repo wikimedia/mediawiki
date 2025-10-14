@@ -352,6 +352,8 @@ because of Phabricator reports.
 * The SearchResult class, deprecated since 1.34, is now abstract.
 * Title::loadRestrictions() and flushRestrictions(), both deprecated in 1.37,
   have now been dropped.
+* MediaWikiIntegrationTestCase::removeTemporaryHook(), deprecated since 1.36, is
+  now removed.
 * …
 
 === Deprecations in 1.45 ===

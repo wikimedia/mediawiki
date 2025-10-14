@@ -2604,21 +2604,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * Remove a temporary hook previously added with setTemporaryHook().
-	 *
-	 * @note This is implemented to remove ALL handlers for the given hook
-	 *       for the duration of the current test case.
-	 * @deprecated since 1.36, use clearHook() instead, hard deprecated
-	 *    since 1.44.
-	 *
-	 * @param string $hookName
-	 */
-	protected function removeTemporaryHook( $hookName ) {
-		wfDeprecated( __METHOD__, '1.36' );
-		$this->clearHook( $hookName );
-	}
-
-	/**
 	 * Edits or creates a page/revision. This method requires database support, which can be enabled with
 	 * "@group Database".
 	 *
