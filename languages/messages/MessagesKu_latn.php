@@ -99,8 +99,8 @@ $magicWords = [
 	'img_link'                  => [ '1', 'girêdan=$1', 'link=$1' ],
 	'img_right'                 => [ '1', 'rast', 'right' ],
 	'language'                  => [ '0', '#ZIMAN', '#LANGUAGE' ],
-	'nogallery'                 => [ '0', '_GALERÎTUNE_', '__NOGALLERY__' ],
-	'notoc'                     => [ '0', '_NAVEROKTUNE_', '__NOTOC__' ],
+	'nogallery'                 => [ '0', '__GALERÎTUNE__', '_GALERÎTUNE_', '__NOGALLERY__' ],
+	'notoc'                     => [ '0', '__NAVEROKTUNE__', '_NAVEROKTUNE_', '__NOTOC__' ],
 	'numberofactiveusers'       => [ '1', 'HEJMARA_BIKARHÊNERÊN_ÇALAK', 'NUMBEROFACTIVEUSERS' ],
 	'numberofadmins'            => [ '1', 'HEJMARA_RÊVEBERAN', 'NUMBEROFADMINS' ],
 	'numberofarticles'          => [ '1', 'HEJMARA_GOTARAN', 'NUMBEROFARTICLES' ],
@@ -115,7 +115,7 @@ $magicWords = [
 	'sitename'                  => [ '1', 'NAVÊ_PROJEYÊ', 'SITENAME' ],
 	'special'                   => [ '0', 'taybet', 'special' ],
 	'subpagename'               => [ '1', 'BINRÛPEL', 'SUBPAGENAME' ],
-	'toc'                       => [ '0', '_NAVEROK_', '__TOC__' ],
+	'toc'                       => [ '0', '__NAVEROK__', '_NAVEROK_', '__TOC__' ],
 ];
 
 $linkTrail = '/^([a-zçêîşûẍḧÇÊÎŞÛẌḦ]+)(.*)$/sDu';

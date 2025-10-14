@@ -133,7 +133,7 @@ $magicWords = [
 	'numberofusers'             => [ '1', 'GEAVAHEDDJIIDMEARRI', ' GEAVAHEADDJIMEARRI', ' GEAVAHEADDJEMEARRI', 'NUMBEROFUSERS' ],
 	'redirect'                  => [ '0', '#STIVREN', '#OĐĐASITSTIVREN', '#REDIRECT' ],
 	'subst'                     => [ '0', 'LIIBME:', 'SUBST:' ],
-	'toc'                       => [ '0', '__SISDOALLU__', ' __SIS__', '__TOC__' ],
+	'toc'                       => [ '0', '__SISDOALLU__', '__SIS__', '__TOC__' ],
 ];
 
 $defaultDateFormat = 'mdy';
