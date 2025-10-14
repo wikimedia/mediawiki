@@ -1,20 +1,14 @@
 <?php
 
-use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Language\MessageParser;
 use MediaWiki\MainConfigNames;
-use MediaWiki\RecentChanges\ChangesListQuery\ChangesListQueryFactory;
-use MediaWiki\RecentChanges\RecentChangeFactory;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Specials\SpecialRecentChanges;
 use MediaWiki\Tests\SpecialPage\AbstractChangesListSpecialPageTestCase;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\Title;
-use MediaWiki\User\Options\UserOptionsLookup;
-use MediaWiki\User\TempUser\TempUserConfig;
-use MediaWiki\User\UserIdentityUtils;
 use MediaWiki\Watchlist\WatchedItemStoreInterface;
 use Wikimedia\TestingAccessWrapper;
 
@@ -37,9 +31,7 @@ class SpecialRecentChangesTest extends AbstractChangesListSpecialPageTestCase {
 			$this->getServiceContainer()->getUserOptionsLookup(),
 			$this->getServiceContainer()->getChangeTagsStore(),
 			$this->getServiceContainer()->getUserIdentityUtils(),
-			$this->getServiceContainer()->getTempUserConfig(),
-			$this->getServiceContainer()->getRecentChangeFactory(),
-			$this->getServiceContainer()->getChangesListQueryFactory(),
+			$this->getServiceContainer()->getTempUserConfig()
 		);
 	}
 
@@ -260,21 +252,15 @@ class SpecialRecentChangesTest extends AbstractChangesListSpecialPageTestCase {
 	 * @dataProvider provideDenseTagFilter
 	 */
 	public function testDenseTagFilter( $dense ) {
-		$services = $this->getServiceContainer();
-		$services->getChangeTagsStore()->defineTag( 'rc-test-tag' );
+		$this->getServiceContainer()->getChangeTagsStore()->defineTag( 'rc-test-tag' );
 		$req = new FauxRequest();
 		$req->setVal( 'tagfilter', 'rc-test-tag' );
 
 		$page = new class (
 			$dense,
-			$services->getWatchedItemStore(),
-			$services->getMessageParser(),
-			$services->getUserOptionsLookup(),
-			$services->getChangeTagsStore(),
-			$services->getUserIdentityUtils(),
-			$services->getTempUserConfig(),
-			$services->getRecentChangeFactory(),
-			$services->getChangesListQueryFactory(),
+			$this->getServiceContainer()->getWatchedItemStore(),
+			$this->getServiceContainer()->getMessageParser(),
+			$this->getServiceContainer()->getUserOptionsLookup()
 		)  extends SpecialRecentChanges {
 			/** @var bool */
 			private $dense;
@@ -283,16 +269,9 @@ class SpecialRecentChangesTest extends AbstractChangesListSpecialPageTestCase {
 				$dense,
 				?WatchedItemStoreInterface $watchedItemStore = null,
 				?MessageParser $messageParser = null,
-				?UserOptionsLookup $userOptionsLookup = null,
-				?ChangeTagsStore $changeTagsStore = null,
-				?UserIdentityUtils $userIdentityUtils = null,
-				?TempUserConfig $tempUserConfig = null,
-				?RecentChangeFactory $recentChangeFactory = null,
-				?ChangesListQueryFactory $changesListQueryFactory = null,
+				?\MediaWiki\User\Options\UserOptionsLookup $userOptionsLookup = null
 			) {
-				parent::__construct( $watchedItemStore, $messageParser, $userOptionsLookup,
-					$changeTagsStore, $userIdentityUtils, $tempUserConfig,
-					$recentChangeFactory, $changesListQueryFactory );
+				parent::__construct( $watchedItemStore, $messageParser, $userOptionsLookup );
 				$this->dense = $dense;
 			}
 

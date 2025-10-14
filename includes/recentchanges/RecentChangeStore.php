@@ -634,14 +634,4 @@ class RecentChangeStore implements RecentChangeFactory, RecentChangeLookup {
 	public function isFromPrimarySource( RecentChange $rc ): bool {
 		return in_array( $rc->getAttribute( 'rc_source' ), $this->getPrimarySources(), true );
 	}
-
-	public function getAllSources(): array {
-		if ( $this->allSources === null ) {
-			$this->allSources = [
-				...RecentChange::INTERNAL_SOURCES,
-				...array_keys( $this->extensionSourcesAttr )
-			];
-		}
-		return $this->allSources;
-	}
 }

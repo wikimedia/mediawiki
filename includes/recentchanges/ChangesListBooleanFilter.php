@@ -218,7 +218,9 @@ class ChangesListBooleanFilter extends ChangesListFilter {
 	}
 
 	/**
-	 * @inheritDoc
+	 * @param FormOptions $opts Query parameters merged with defaults
+	 * @param bool $isStructuredUI Whether the structured UI is currently enabled
+	 * @return bool Whether this filter should be considered active
 	 */
 	public function isActive( FormOptions $opts, $isStructuredUI ) {
 		if ( $this->isReplacedInStructuredUi && $isStructuredUI ) {

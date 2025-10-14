@@ -9,7 +9,6 @@ namespace MediaWiki\RecentChanges;
 use InvalidArgumentException;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Html\FormOptions;
-use MediaWiki\RecentChanges\ChangesListQuery\ChangesListQuery;
 
 /**
  * Represents a filter (used on ChangesListSpecialPage and descendants)
@@ -39,7 +38,7 @@ abstract class ChangesListFilter {
 	/**
 	 * Callable that returns true if and only if a row is attributed to this filter
 	 *
-	 * @var callable|null
+	 * @var callable
 	 */
 	protected $isRowApplicableCallable;
 
@@ -99,11 +98,6 @@ abstract class ChangesListFilter {
 	 */
 	protected $defaultHighlightColor;
 
-	/** @var array|null */
-	private $action = null;
-	/** @var array|null */
-	private $highlight = null;
-
 	private const RESERVED_NAME_CHAR = '_';
 
 	/**
@@ -127,13 +121,6 @@ abstract class ChangesListFilter {
 	 *     IContextSource, and the RecentChange object for the row, and returning true if
 	 *     the row is attributed to this filter.  The above CSS class will then be
 	 *     automatically added (optional, required if cssClassSuffix is used).
-	 * * $filterDefinition['action'] array Array of parameters to pass to
-	 *     ChangesListQuery::filter(). The first element is the verb "require" or "exclude", the
-	 *     second element is the module name, and the optional third element is the value.
-	 *     Or an array of such actions. This supersedes isRowApplicableCallable.
-	 * * $filterDefinition['highlight'] array An action in the same format as
-	 *    $filterDefinition['action'] to be used for highlighting. Falls back to 'action'
-	 *    if not set.
 	 * * $filterDefinition['group'] ChangesListFilterGroup Group.  Filter group this
 	 *     belongs to.
 	 * * $filterDefinition['label'] string i18n key of label for structured UI.
@@ -168,7 +155,8 @@ abstract class ChangesListFilter {
 
 		if ( isset( $filterDefinition['cssClassSuffix'] ) ) {
 			$this->cssClassSuffix = $filterDefinition['cssClassSuffix'];
-			$this->isRowApplicableCallable = $filterDefinition['isRowApplicableCallable'] ?? null;
+			// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset Documented as required
+			$this->isRowApplicableCallable = $filterDefinition['isRowApplicableCallable'];
 		}
 
 		if ( isset( $filterDefinition['label'] ) ) {
@@ -177,8 +165,6 @@ abstract class ChangesListFilter {
 		}
 
 		$this->priority = $filterDefinition['priority'];
-		$this->action = $filterDefinition['action'] ?? null;
-		$this->highlight = $filterDefinition['highlight'] ?? null;
 
 		$this->group->registerFilter( $this );
 	}
@@ -335,7 +321,7 @@ abstract class ChangesListFilter {
 	 *
 	 * @return string|null CSS class, or null if not defined
 	 */
-	public function getCssClass() {
+	protected function getCssClass() {
 		if ( $this->cssClassSuffix !== null ) {
 			return ChangesList::CSS_CLASS_PREFIX . $this->cssClassSuffix;
 		} else {
@@ -410,34 +396,6 @@ abstract class ChangesListFilter {
 	 * @return bool
 	 */
 	abstract public function isSelected( FormOptions $opts );
-
-	/**
-	 * @param FormOptions $opts Query parameters merged with defaults
-	 * @param bool $isStructuredUI Whether the structured UI is currently enabled
-	 * @return bool Whether this filter should be considered active
-	 */
-	abstract public function isActive( FormOptions $opts, $isStructuredUI );
-
-	/**
-	 * Get the action to apply to the ChangesListQuery for filtering. This may
-	 * also return an array of actions.
-	 *
-	 * @see ChangesListQuery::applyAction
-	 *
-	 * @return array|null
-	 */
-	public function getAction(): ?array {
-		return $this->action;
-	}
-
-	/**
-	 * Get the action to apply to the ChangesListQuery for highlighting.
-	 *
-	 * @return array|null
-	 */
-	public function getHighlightAction(): ?array {
-		return $this->highlight ?? $this->action;
-	}
 
 	/**
 	 * Get groups conflicting with this filter

@@ -8,7 +8,6 @@ namespace MediaWiki\RecentChanges;
 
 use InvalidArgumentException;
 use MediaWiki\Html\FormOptions;
-use MediaWiki\RecentChanges\ChangesListQuery\ChangesListQuery;
 use MediaWiki\SpecialPage\ChangesListSpecialPage;
 use Wikimedia\Rdbms\IReadableDatabase;
 
@@ -426,7 +425,7 @@ abstract class ChangesListFilterGroup {
 	}
 
 	/**
-	 * Modifies the query to include the filter group (legacy interface).
+	 * Modifies the query to include the filter group.
 	 *
 	 * The modification is only done if the filter group is in effect.  This means that
 	 * one or more valid and allowed filters were selected.
@@ -441,47 +440,9 @@ abstract class ChangesListFilterGroup {
 	 * @param FormOptions $opts Wrapper for the current request options and their defaults
 	 * @param bool $isStructuredFiltersEnabled True if the Structured UI is currently enabled
 	 */
-	public function modifyQuery( IReadableDatabase $dbr, ChangesListSpecialPage $specialPage,
+	abstract public function modifyQuery( IReadableDatabase $dbr, ChangesListSpecialPage $specialPage,
 		&$tables, &$fields, &$conds, &$query_options, &$join_conds,
-		FormOptions $opts, $isStructuredFiltersEnabled
-	) {
-	}
-
-	/**
-	 * Modifies the query to include the filter group.
-	 *
-	 * @param ChangesListQuery $query
-	 * @param FormOptions $opts
-	 * @param bool $isStructuredFiltersEnabled
-	 */
-	public function modifyChangesListQuery(
-		ChangesListQuery $query,
-		FormOptions $opts,
-		$isStructuredFiltersEnabled
-	) {
-		foreach ( $this->getFilters() as $filter ) {
-			$action = $filter->getAction();
-			if ( $action !== null ) {
-				if ( $filter->isActive( $opts, $isStructuredFiltersEnabled ) ) {
-					if ( is_array( $action[0] ) ) {
-						foreach ( $action as $singleAction ) {
-							// @phan-suppress-next-line PhanParamTooFewUnpack
-							$query->applyAction( ...$singleAction );
-						}
-					} else {
-						// @phan-suppress-next-line PhanParamTooFewUnpack
-						$query->applyAction( ...$action );
-					}
-				}
-				$highlightAction = $filter->getHighlightAction();
-				if ( $filter->getCssClass() !== null && $highlightAction ) {
-					$name = $this->getName() . '/' . $filter->getName();
-					// @phan-suppress-next-line PhanParamTooFewUnpack
-					$query->highlight( $name, ...$highlightAction );
-				}
-			}
-		}
-	}
+		FormOptions $opts, $isStructuredFiltersEnabled );
 
 	/**
 	 * Add all the options represented by this filter group to $opts

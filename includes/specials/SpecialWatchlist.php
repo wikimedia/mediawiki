@@ -7,19 +7,18 @@
 namespace MediaWiki\Specials;
 
 use MediaWiki\ChangeTags\ChangeTagsStore;
+use MediaWiki\Context\IContextSource;
 use MediaWiki\Exception\UserNotLoggedIn;
 use MediaWiki\Html\FormOptions;
 use MediaWiki\Html\Html;
+use MediaWiki\Logging\LogPage;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\RecentChanges\ChangesList;
 use MediaWiki\RecentChanges\ChangesListBooleanFilterGroup;
-use MediaWiki\RecentChanges\ChangesListQuery\ChangesListQuery;
-use MediaWiki\RecentChanges\ChangesListQuery\ChangesListQueryFactory;
 use MediaWiki\RecentChanges\ChangesListStringOptionsFilterGroup;
 use MediaWiki\RecentChanges\EnhancedChangesList;
 use MediaWiki\RecentChanges\RecentChange;
-use MediaWiki\RecentChanges\RecentChangeFactory;
 use MediaWiki\Request\DerivativeRequest;
 use MediaWiki\SpecialPage\ChangesListSpecialPage;
 use MediaWiki\SpecialPage\SpecialPage;
@@ -33,7 +32,10 @@ use MediaWiki\Watchlist\WatchedItemStoreInterface;
 use MediaWiki\Watchlist\WatchlistManager;
 use MediaWiki\Xml\XmlSelect;
 use Wikimedia\Message\MessageValue;
+use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
+use Wikimedia\Rdbms\RawSQLExpression;
+use Wikimedia\Rdbms\RawSQLValue;
 
 /**
  * @defgroup Watchlist Users watchlist handling
@@ -72,17 +74,13 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		UserOptionsLookup $userOptionsLookup,
 		ChangeTagsStore $changeTagsStore,
 		UserIdentityUtils $userIdentityUtils,
-		TempUserConfig $tempUserConfig,
-		RecentChangeFactory $recentChangeFactory,
-		ChangesListQueryFactory $changesListQueryFactory,
+		TempUserConfig $tempUserConfig
 	) {
 		parent::__construct(
 			'Watchlist',
 			'viewmywatchlist',
 			$userIdentityUtils,
-			$tempUserConfig,
-			$recentChangeFactory,
-			$changesListQueryFactory,
+			$tempUserConfig
 		);
 
 		$this->watchedItemStore = $watchedItemStore;
@@ -200,7 +198,12 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 						'isReplacedInStructuredUi' => true,
 						'activeValue' => false,
 						'default' => $this->userOptionsLookup->getBoolOption( $this->getUser(), 'extendwatchlist' ),
-						'action' => [ 'require', 'latest' ],
+						'queryCallable' => static function ( string $specialClassName, IContextSource $ctx,
+							IReadableDatabase $dbr, &$tables, &$fields, &$conds, &$query_options, &$join_conds
+						) {
+							$conds[] = $dbr->expr( 'rc_this_oldid', '=', new RawSQLValue( 'page_latest' ) )
+								->or( 'rc_this_oldid', '=', 0 );
+						},
 					]
 				],
 			],
@@ -216,17 +219,40 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 						'label' => 'rcfilters-filter-watchlistactivity-unseen-label',
 						'description' => 'rcfilters-filter-watchlistactivity-unseen-description',
 						'cssClassSuffix' => 'watchedunseen',
-						'action' => [ 'exclude', 'seen' ],
+						'isRowApplicableCallable' => function ( IContextSource $ctx, RecentChange $rc ) {
+							return !$this->isChangeEffectivelySeen( $rc );
+						},
 					],
 					[
 						'name' => 'seen',
 						'label' => 'rcfilters-filter-watchlistactivity-seen-label',
 						'description' => 'rcfilters-filter-watchlistactivity-seen-description',
 						'cssClassSuffix' => 'watchedseen',
-						'action' => [ 'require', 'seen' ],
+						'isRowApplicableCallable' => function ( IContextSource $ctx, RecentChange $rc ) {
+							return $this->isChangeEffectivelySeen( $rc );
+						}
 					],
 				],
 				'default' => ChangesListStringOptionsFilterGroup::NONE,
+				'queryCallable' => static function (
+					string $specialPageClassName,
+					IContextSource $context,
+					IReadableDatabase $dbr,
+					&$tables,
+					&$fields,
+					&$conds,
+					&$query_options,
+					&$join_conds,
+					$selectedValues
+				) {
+					if ( $selectedValues === [ 'seen' ] ) {
+						$conds[] = $dbr->expr( 'wl_notificationtimestamp', '=', null )
+							->orExpr( new RawSQLExpression( 'rc_timestamp < wl_notificationtimestamp' ) );
+					} elseif ( $selectedValues === [ 'unseen' ] ) {
+						$conds[] = $dbr->expr( 'wl_notificationtimestamp', '!=', null )
+							->andExpr( new RawSQLExpression( 'rc_timestamp >= wl_notificationtimestamp' ) );
+					}
+				}
 			]
 		];
 	}
@@ -325,39 +351,103 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	/**
 	 * @inheritDoc
 	 */
-	protected function modifyQuery( ChangesListQuery $query, FormOptions $opts ) {
-		if ( !$this->getUser()->isRegistered() ) {
-			// Broken but reachable from tests
-			$query->forceEmptySet();
-			return;
-		}
-		$query->requireWatched()
-			->watchlistFields( [ 'wl_notificationtimestamp', 'we_expiry' ] );
+	protected function doMainQuery( $tables, $fields, $conds, $query_options,
+		$join_conds, FormOptions $opts
+	) {
+		$dbr = $this->getDB();
+		$user = $this->getUser();
 
-		// TODO: migrate to $query->requireChangeTags( ... )
-		$query->legacyMutator(
-			function ( &$tables, &$fields, &$conds, &$query_options, &$join_conds ) use ( $opts ) {
-				$tagFilter = $opts['tagfilter'] !== '' ? explode( '|', $opts['tagfilter'] ) : [];
-				$this->changeTagsStore->modifyDisplayQuery(
-					$tables,
-					$fields,
-					$conds,
-					$join_conds,
-					$query_options,
-					$tagFilter,
-					$opts['inverttags']
-				);
-				if ( in_array( 'DISTINCT', $query_options ) ) {
-					// ChangeTagsStore::modifyDisplayQuery() adds DISTINCT when filtering on multiple tags.
-					// In order to prevent DISTINCT from causing query performance problems,
-					// we have to GROUP BY the primary key. This in turn requires us to add
-					// the primary key to the end of the ORDER BY, and the old ORDER BY to the
-					// start of the GROUP BY
-					$query_options['ORDER BY'] = 'rc_timestamp DESC, rc_id DESC';
-					$query_options['GROUP BY'] = 'rc_timestamp, rc_id';
-				}
-			}
+		$rcQuery = RecentChange::getQueryInfo( RecentChange::STRAIGHT_JOIN_ACTOR );
+		$tables = array_merge( $rcQuery['tables'], $tables, [ 'watchlist' ] );
+		$fields = array_merge( $rcQuery['fields'], $fields );
+
+		$join_conds = array_merge(
+			[
+				'watchlist' => [
+					'JOIN',
+					[
+						'wl_user' => $user->getId(),
+						'wl_namespace=rc_namespace',
+						'wl_title=rc_title'
+					],
+				],
+			],
+			$rcQuery['joins'],
+			$join_conds
 		);
+
+		if ( $this->getConfig()->get( MainConfigNames::WatchlistExpiry ) ) {
+			$tables[] = 'watchlist_expiry';
+			$fields[] = 'we_expiry';
+			$join_conds['watchlist_expiry'] = [ 'LEFT JOIN', 'wl_id = we_item' ];
+			$conds[] = $dbr->expr( 'we_expiry', '=', null )->or( 'we_expiry', '>', $dbr->timestamp() );
+		}
+
+		$tables[] = 'page';
+		$fields[] = 'page_latest';
+		$join_conds['page'] = [ 'LEFT JOIN', 'rc_cur_id=page_id' ];
+
+		$fields[] = 'wl_notificationtimestamp';
+
+		// Log entries with DELETED_ACTION must not show up unless the user has
+		// the necessary rights.
+		$authority = $this->getAuthority();
+		if ( !$authority->isAllowed( 'deletedhistory' ) ) {
+			$bitmask = LogPage::DELETED_ACTION;
+		} elseif ( !$authority->isAllowedAny( 'suppressrevision', 'viewsuppressed' ) ) {
+			$bitmask = LogPage::DELETED_ACTION | LogPage::DELETED_RESTRICTED;
+		} else {
+			$bitmask = 0;
+		}
+		if ( $bitmask ) {
+			$conds[] = $dbr->expr( 'rc_source', '!=', RecentChange::SRC_LOG )
+				->orExpr( new RawSQLExpression( $dbr->bitAnd( 'rc_deleted', $bitmask ) . " != $bitmask" ) );
+		}
+
+		$tagFilter = $opts['tagfilter'] !== '' ? explode( '|', $opts['tagfilter'] ) : [];
+		$this->changeTagsStore->modifyDisplayQuery(
+			$tables,
+			$fields,
+			$conds,
+			$join_conds,
+			$query_options,
+			$tagFilter,
+			$opts['inverttags']
+		);
+
+		$this->runMainQueryHook( $tables, $fields, $conds, $query_options, $join_conds, $opts );
+
+		if ( $this->areFiltersInConflict() ) {
+			return false;
+		}
+
+		$orderByAndLimit = [
+			'ORDER BY' => 'rc_timestamp DESC',
+			'LIMIT' => $opts['limit']
+		];
+		if ( in_array( 'DISTINCT', $query_options ) ) {
+			// ChangeTagsStore::modifyDisplayQuery() adds DISTINCT when filtering on multiple tags.
+			// In order to prevent DISTINCT from causing query performance problems,
+			// we have to GROUP BY the primary key. This in turn requires us to add
+			// the primary key to the end of the ORDER BY, and the old ORDER BY to the
+			// start of the GROUP BY
+			$orderByAndLimit['ORDER BY'] = 'rc_timestamp DESC, rc_id DESC';
+			$orderByAndLimit['GROUP BY'] = 'rc_timestamp, rc_id';
+		}
+		// array_merge() is used intentionally here so that hooks can, should
+		// they so desire, override the ORDER BY / LIMIT condition(s)
+		$query_options = array_merge( $orderByAndLimit, $query_options );
+		$query_options['MAX_EXECUTION_TIME'] =
+			$this->getConfig()->get( MainConfigNames::MaxExecutionTimeForExpensiveQueries );
+		$queryBuilder = $dbr->newSelectQueryBuilder()
+			->tables( $tables )
+			->conds( $conds )
+			->fields( $fields )
+			->options( $query_options )
+			->joinConds( $join_conds )
+			->caller( __METHOD__ );
+
+		return $queryBuilder->fetchResultSet();
 	}
 
 	public function outputFeedLinks() {
@@ -391,12 +481,14 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		}
 
 		// If there are no rows to display, show message before trying to render the list
-		if ( iterator_count( $rows ) == 0 ) {
+		if ( $rows->numRows() == 0 ) {
 			$output->wrapWikiMsg(
 				"<div class='mw-changeslist-empty'>\n$1\n</div>", 'recentchanges-noresult'
 			);
 			return;
 		}
+
+		$rows->seek( 0 );
 
 		$list = ChangesList::newFromContext( $this->getContext(), $this->filterGroups );
 		$list->setWatchlistDivs();
@@ -436,6 +528,8 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 				}
 			} );
 		}
+		$rows->seek( 0 );
+
 		$s = $list->beginRecentChangesList();
 
 		if ( $this->isStructuredFilterUiEnabled() ) {
@@ -446,7 +540,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$counter = 1;
 		foreach ( $rows as $obj ) {
 			// Make RC entry
-			$rc = $this->newRecentChangeFromRow( $obj );
+			$rc = RecentChange::newFromRow( $obj );
 
 			// Skip CatWatch entries for hidden cats based on user preference
 			if (

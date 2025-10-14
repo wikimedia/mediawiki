@@ -178,7 +178,6 @@ use MediaWiki\Preferences\DefaultPreferencesFactory;
 use MediaWiki\Preferences\PreferencesFactory;
 use MediaWiki\Preferences\SignatureValidator;
 use MediaWiki\Preferences\SignatureValidatorFactory;
-use MediaWiki\RecentChanges\ChangesListQuery\ChangesListQueryFactory;
 use MediaWiki\RecentChanges\ChangeTrackingEventIngress;
 use MediaWiki\RecentChanges\PatrolManager;
 use MediaWiki\RecentChanges\RecentChangeFactory;
@@ -529,17 +528,6 @@ return [
 			$services->getObjectFactory(),
 			$services->getUserIdentityLookup(),
 			$services->getUserFactory()
-		);
-	},
-
-	'ChangesListQueryFactory' => static function ( MediaWikiServices $services ): ChangesListQueryFactory {
-		return new ChangesListQueryFactory(
-			new ServiceOptions( ChangesListQueryFactory::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
-			$services->getRecentChangeLookup(),
-			$services->getWatchedItemStore(),
-			$services->getTempUserConfig(),
-			$services->getUserFactory(),
-			$services->getConnectionProvider(),
 		);
 	},
 

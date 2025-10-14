@@ -7,6 +7,7 @@
 namespace MediaWiki\SpecialPage;
 
 use MediaWiki\ChangeTags\ChangeTags;
+use MediaWiki\Context\IContextSource;
 use MediaWiki\Exception\MWExceptionHandler;
 use MediaWiki\Html\FormOptions;
 use MediaWiki\Html\Html;
@@ -18,12 +19,8 @@ use MediaWiki\RecentChanges\ChangesListBooleanFilterGroup;
 use MediaWiki\RecentChanges\ChangesListFilterFactory;
 use MediaWiki\RecentChanges\ChangesListFilterGroup;
 use MediaWiki\RecentChanges\ChangesListFilterGroupContainer;
-use MediaWiki\RecentChanges\ChangesListQuery\ChangesListQuery;
-use MediaWiki\RecentChanges\ChangesListQuery\ChangesListQueryFactory;
-use MediaWiki\RecentChanges\ChangesListQuery\ChangesListResult;
 use MediaWiki\RecentChanges\ChangesListStringOptionsFilterGroup;
 use MediaWiki\RecentChanges\RecentChange;
-use MediaWiki\RecentChanges\RecentChangeFactory;
 use MediaWiki\ResourceLoader as RL;
 use MediaWiki\Title\MalformedTitleException;
 use MediaWiki\User\TempUser\TempUserConfig;
@@ -32,10 +29,14 @@ use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityUtils;
 use MediaWiki\User\UserIdentityValue;
 use OOUI\IconWidget;
-use stdClass;
 use Wikimedia\Rdbms\DBQueryTimeoutError;
+use Wikimedia\Rdbms\FakeResultWrapper;
+use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
+use Wikimedia\Rdbms\LikeValue;
+use Wikimedia\Rdbms\Platform\ISQLPlatform;
+use Wikimedia\Rdbms\RawSQLValue;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
@@ -58,33 +59,23 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	protected TempUserConfig $tempUserConfig;
 
 	protected ChangesListFilterGroupContainer $filterGroups;
-	protected RecentChangeFactory $recentChangeFactory;
-	protected ChangesListQueryFactory $changesListQueryFactory;
-
-	private ?ChangesListResult $queryResult = null;
 
 	/**
 	 * @param string $name
 	 * @param string $restriction
 	 * @param UserIdentityUtils $userIdentityUtils
 	 * @param TempUserConfig $tempUserConfig
-	 * @param RecentChangeFactory $recentChangeFactory
-	 * @param ChangesListQueryFactory $changesListQueryFactory
 	 */
 	public function __construct(
 		$name,
 		$restriction,
 		UserIdentityUtils $userIdentityUtils,
-		TempUserConfig $tempUserConfig,
-		RecentChangeFactory $recentChangeFactory,
-		ChangesListQueryFactory $changesListQueryFactory,
+		TempUserConfig $tempUserConfig
 	) {
 		parent::__construct( $name, $restriction );
 
 		$this->userIdentityUtils = $userIdentityUtils;
 		$this->tempUserConfig = $tempUserConfig;
-		$this->recentChangeFactory = $recentChangeFactory;
-		$this->changesListQueryFactory = $changesListQueryFactory;
 		$this->filterGroups = new ChangesListFilterGroupContainer();
 	}
 
@@ -111,7 +102,12 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						// wlshowhideliu
 						'showHideSuffix' => 'showhideliu',
 						'default' => false,
-						'action' => [ 'require', 'named' ],
+						'queryCallable' => function ( string $specialClassName, IContextSource $ctx,
+							IReadableDatabase $dbr, &$tables, &$fields, &$conds, &$query_options, &$join_conds
+						) {
+							$conds[] = $this->getRegisteredExpr( false, $dbr );
+							$join_conds['recentchanges_actor'] = [ 'JOIN', 'actor_id=rc_actor' ];
+						},
 						'isReplacedInStructuredUi' => true,
 					],
 					[
@@ -120,7 +116,12 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						// wlshowhideanons
 						'showHideSuffix' => 'showhideanons',
 						'default' => false,
-						'action' => [ 'exclude', 'named' ],
+						'queryCallable' => function ( string $specialClassName, IContextSource $ctx,
+							IReadableDatabase $dbr, &$tables, &$fields, &$conds, &$query_options, &$join_conds
+						) {
+							$conds[] = $this->getRegisteredExpr( true, $dbr );
+							$join_conds['recentchanges_actor'] = [ 'JOIN', 'actor_id=rc_actor' ];
+						},
 						'isReplacedInStructuredUi' => true,
 					]
 				],
@@ -140,7 +141,9 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 							'rcfilters-filter-user-experience-level-unregistered-description-temp' :
 							'rcfilters-filter-user-experience-level-unregistered-description',
 						'cssClassSuffix' => 'user-unregistered',
-						'action' => [ 'require', 'experience', 'unregistered' ],
+						'isRowApplicableCallable' => function ( IContextSource $ctx, RecentChange $rc ) {
+							return !$this->userIdentityUtils->isNamed( $rc->getPerformerIdentity() );
+						}
 					],
 					[
 						'name' => 'registered',
@@ -148,7 +151,9 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'label' => 'rcfilters-filter-user-experience-level-registered-label',
 						'description' => 'rcfilters-filter-user-experience-level-registered-description',
 						'cssClassSuffix' => 'user-registered',
-						'action' => [ 'require', 'experience', 'registered' ],
+						'isRowApplicableCallable' => function ( IContextSource $ctx, RecentChange $rc ) {
+							return $this->userIdentityUtils->isNamed( $rc->getPerformerIdentity() );
+						},
 						'subsets' => [ 'newcomer', 'learner', 'experienced' ],
 					],
 					[
@@ -156,24 +161,46 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'label' => 'rcfilters-filter-user-experience-level-newcomer-label',
 						'description' => 'rcfilters-filter-user-experience-level-newcomer-description',
 						'cssClassSuffix' => 'user-newcomer',
-						'action' => [ 'require', 'experience', 'newcomer' ],
+						'isRowApplicableCallable' => static function ( IContextSource $ctx, RecentChange $rc ) {
+							$performer = $rc->getPerformerIdentity();
+							return $performer->isRegistered() &&
+								MediaWikiServices::getInstance()
+									->getUserFactory()
+									->newFromUserIdentity( $performer )
+									->getExperienceLevel() === 'newcomer';
+						}
 					],
 					[
 						'name' => 'learner',
 						'label' => 'rcfilters-filter-user-experience-level-learner-label',
 						'description' => 'rcfilters-filter-user-experience-level-learner-description',
 						'cssClassSuffix' => 'user-learner',
-						'action' => [ 'require', 'experience', 'learner' ],
+						'isRowApplicableCallable' => static function ( IContextSource $ctx, RecentChange $rc ) {
+							$performer = $rc->getPerformerIdentity();
+							return $performer->isRegistered() &&
+								MediaWikiServices::getInstance()
+									->getUserFactory()
+									->newFromUserIdentity( $performer )
+									->getExperienceLevel() === 'learner';
+						},
 					],
 					[
 						'name' => 'experienced',
 						'label' => 'rcfilters-filter-user-experience-level-experienced-label',
 						'description' => 'rcfilters-filter-user-experience-level-experienced-description',
 						'cssClassSuffix' => 'user-experienced',
-						'action' => [ 'require', 'experience', 'experienced' ],
+						'isRowApplicableCallable' => static function ( IContextSource $ctx, RecentChange $rc ) {
+							$performer = $rc->getPerformerIdentity();
+							return $performer->isRegistered() &&
+								MediaWikiServices::getInstance()
+									->getUserFactory()
+									->newFromUserIdentity( $performer )
+									->getExperienceLevel() === 'experienced';
+						},
 					]
 				],
 				'default' => ChangesListStringOptionsFilterGroup::NONE,
+				'queryCallable' => $this->filterOnUserExperienceLevel( ... ),
 			],
 
 			[
@@ -189,18 +216,38 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						// wlshowhidemine
 						'showHideSuffix' => 'showhidemine',
 						'default' => false,
-						'action' => [ 'exclude', 'user', $this->getUser() ],
-						'highlight' => [ 'require', 'user', $this->getUser() ],
+						'queryCallable' => static function ( string $specialClassName, IContextSource $ctx,
+							IReadableDatabase $dbr, &$tables, &$fields, &$conds, &$query_options, &$join_conds
+						) {
+							$user = $ctx->getUser();
+							$conds[] = $dbr->expr( 'actor_name', '!=', $user->getName() );
+							$join_conds['recentchanges_actor'] = [ 'JOIN', 'actor_id=rc_actor' ];
+						},
 						'cssClassSuffix' => 'self',
+						'isRowApplicableCallable' => static function ( IContextSource $ctx, RecentChange $rc ) {
+							return $ctx->getUser()->equals( $rc->getPerformerIdentity() );
+						},
 					],
 					[
 						'name' => 'hidebyothers',
 						'label' => 'rcfilters-filter-editsbyother-label',
 						'description' => 'rcfilters-filter-editsbyother-description',
 						'default' => false,
-						'action' => [ 'require', 'user', $this->getUser() ],
-						'highlight' => [ 'exclude', 'user', $this->getUser() ],
+						'queryCallable' => static function ( string $specialClassName, IContextSource $ctx,
+							IReadableDatabase $dbr, &$tables, &$fields, &$conds, &$query_options, &$join_conds
+						) {
+							$user = $ctx->getUser();
+							if ( $user->isAnon() ) {
+								$conds['actor_name'] = $user->getName();
+							} else {
+								$conds['actor_user'] = $user->getId();
+							}
+							$join_conds['recentchanges_actor'] = [ 'JOIN', 'actor_id=rc_actor' ];
+						},
 						'cssClassSuffix' => 'others',
+						'isRowApplicableCallable' => static function ( IContextSource $ctx, RecentChange $rc ) {
+							return !$ctx->getUser()->equals( $rc->getPerformerIdentity() );
+						},
 					]
 				]
 			],
@@ -218,18 +265,30 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						// wlshowhidebots
 						'showHideSuffix' => 'showhidebots',
 						'default' => false,
-						'action' => [ 'exclude', 'bot' ],
-						'highlight' => [ 'require', 'bot' ],
+						'queryCallable' => static function ( string $specialClassName, IContextSource $ctx,
+							IReadableDatabase $dbr, &$tables, &$fields, &$conds, &$query_options, &$join_conds
+						) {
+							$conds['rc_bot'] = 0;
+						},
 						'cssClassSuffix' => 'bot',
+						'isRowApplicableCallable' => static function ( IContextSource $ctx, RecentChange $rc ) {
+							return $rc->getAttribute( 'rc_bot' );
+						},
 					],
 					[
 						'name' => 'hidehumans',
 						'label' => 'rcfilters-filter-humans-label',
 						'description' => 'rcfilters-filter-humans-description',
 						'default' => false,
-						'action' => [ 'require', 'bot' ],
-						'highlight' => [ 'exclude', 'bot' ],
+						'queryCallable' => static function ( string $specialClassName, IContextSource $ctx,
+							IReadableDatabase $dbr, &$tables, &$fields, &$conds, &$query_options, &$join_conds
+						) {
+							$conds['rc_bot'] = 1;
+						},
 						'cssClassSuffix' => 'human',
+						'isRowApplicableCallable' => static function ( IContextSource $ctx, RecentChange $rc ) {
+							return !$rc->getAttribute( 'rc_bot' );
+						},
 					]
 				]
 			],
@@ -250,9 +309,15 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						// wlshowhideminor
 						'showHideSuffix' => 'showhideminor',
 						'default' => false,
-						'action' => [ 'exclude', 'minor' ],
-						'highlight' => [ 'require', 'minor' ],
+						'queryCallable' => static function ( string $specialClassName, IContextSource $ctx,
+							IReadableDatabase $dbr, &$tables, &$fields, &$conds, &$query_options, &$join_conds
+						) {
+							$conds[] = $dbr->expr( 'rc_minor', '=', 0 );
+						},
 						'cssClassSuffix' => 'minor',
+						'isRowApplicableCallable' => static function ( IContextSource $ctx, RecentChange $rc ) {
+							return $rc->getAttribute( 'rc_minor' );
+						},
 						'conflictOptions' => [
 							'globalKey' => 'rcfilters-hideminor-conflicts-typeofchange-global',
 							'forwardKey' => 'rcfilters-hideminor-conflicts-typeofchange',
@@ -272,9 +337,15 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'label' => 'rcfilters-filter-major-label',
 						'description' => 'rcfilters-filter-major-description',
 						'default' => false,
-						'action' => [ 'require', 'minor' ],
-						'highlight' => [ 'exclude', 'minor' ],
+						'queryCallable' => static function ( string $specialClassName, IContextSource $ctx,
+							IReadableDatabase $dbr, &$tables, &$fields, &$conds, &$query_options, &$join_conds
+						) {
+							$conds[] = $dbr->expr( 'rc_minor', '=', 1 );
+						},
 						'cssClassSuffix' => 'major',
+						'isRowApplicableCallable' => static function ( IContextSource $ctx, RecentChange $rc ) {
+							return !$rc->getAttribute( 'rc_minor' );
+						}
 					]
 				]
 			],
@@ -290,24 +361,32 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'label' => 'rcfilters-filter-lastrevision-label',
 						'description' => 'rcfilters-filter-lastrevision-description',
 						'default' => false,
-						'action' => [
-							[ 'require', 'revisionType', 'old' ],
-							[ 'require', 'revisionType', 'none' ],
-						],
-						'highlight' => [ 'require', 'revisionType', 'latest' ],
+						'queryCallable' => static function ( string $specialClassName, IContextSource $ctx,
+							IReadableDatabase $dbr, &$tables, &$fields, &$conds, &$query_options, &$join_conds
+						) {
+							$conds[] = $dbr->expr( 'rc_this_oldid', '!=', new RawSQLValue( 'page_latest' ) )
+								->or( 'rc_this_oldid', '=', 0 );
+						},
 						'cssClassSuffix' => 'last',
+						'isRowApplicableCallable' => static function ( IContextSource $ctx, RecentChange $rc ) {
+							return $rc->getAttribute( 'rc_this_oldid' ) === $rc->getAttribute( 'page_latest' );
+						}
 					],
 					[
 						'name' => 'hidepreviousrevisions',
 						'label' => 'rcfilters-filter-previousrevision-label',
 						'description' => 'rcfilters-filter-previousrevision-description',
 						'default' => false,
-						'action' => [
-							[ 'require', 'revisionType', 'latest' ],
-							[ 'require', 'revisionType', 'none' ],
-						],
-						'highlight' => [ 'require', 'revisionType', 'old' ],
+						'queryCallable' => static function ( string $specialClassName, IContextSource $ctx,
+							IReadableDatabase $dbr, &$tables, &$fields, &$conds, &$query_options, &$join_conds
+						) {
+							$conds[] = $dbr->expr( 'rc_this_oldid', '=', new RawSQLValue( 'page_latest' ) )
+								->or( 'rc_this_oldid', '=', 0 );
+						},
 						'cssClassSuffix' => 'previous',
+						'isRowApplicableCallable' => static function ( IContextSource $ctx, RecentChange $rc ) {
+							return $rc->getAttribute( 'rc_this_oldid' ) !== $rc->getAttribute( 'page_latest' );
+						}
 					]
 				]
 			],
@@ -325,9 +404,15 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'description' => 'rcfilters-filter-pageedits-description',
 						'default' => false,
 						'priority' => -2,
-						'action' => [ 'exclude', 'source', RecentChange::SRC_EDIT ],
-						'highlight' => [ 'require', 'source', RecentChange::SRC_EDIT ],
+						'queryCallable' => static function ( string $specialClassName, IContextSource $ctx,
+							IReadableDatabase $dbr, &$tables, &$fields, &$conds, &$query_options, &$join_conds
+						) {
+							$conds[] = $dbr->expr( 'rc_type', '!=', RC_EDIT );
+						},
 						'cssClassSuffix' => 'src-mw-edit',
+						'isRowApplicableCallable' => static function ( IContextSource $ctx, RecentChange $rc ) {
+							return $rc->getAttribute( 'rc_source' ) === RecentChange::SRC_EDIT;
+						},
 					],
 					[
 						'name' => 'hidenewpages',
@@ -335,9 +420,15 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'description' => 'rcfilters-filter-newpages-description',
 						'default' => false,
 						'priority' => -3,
-						'action' => [ 'exclude', 'source', RecentChange::SRC_NEW ],
-						'highlight' => [ 'require', 'source', RecentChange::SRC_NEW ],
+						'queryCallable' => static function ( string $specialClassName, IContextSource $ctx,
+							IReadableDatabase $dbr, &$tables, &$fields, &$conds, &$query_options, &$join_conds
+						) {
+							$conds[] = $dbr->expr( 'rc_type', '!=', RC_NEW );
+						},
 						'cssClassSuffix' => 'src-mw-new',
+						'isRowApplicableCallable' => static function ( IContextSource $ctx, RecentChange $rc ) {
+							return $rc->getAttribute( 'rc_source' ) === RecentChange::SRC_NEW;
+						},
 					],
 					[
 						'name' => 'hidecategorization',
@@ -349,9 +440,15 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'default' => false,
 						'priority' => -4,
 						'requireConfig' => [ 'RCWatchCategoryMembership' => true ],
-						'action' => [ 'exclude', 'source', RecentChange::SRC_CATEGORIZE ],
-						'highlight' => [ 'require', 'source', RecentChange::SRC_CATEGORIZE ],
+						'queryCallable' => static function ( string $specialClassName, IContextSource $ctx,
+							IReadableDatabase $dbr, &$tables, &$fields, &$conds, &$query_options, &$join_conds
+						) {
+							$conds[] = $dbr->expr( 'rc_type', '!=', RC_CATEGORIZE );
+						},
 						'cssClassSuffix' => 'src-mw-categorize',
+						'isRowApplicableCallable' => static function ( IContextSource $ctx, RecentChange $rc ) {
+							return $rc->getAttribute( 'rc_source' ) === RecentChange::SRC_CATEGORIZE;
+						},
 					],
 					[
 						'name' => 'hidelog',
@@ -359,9 +456,15 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'description' => 'rcfilters-filter-logactions-description',
 						'default' => false,
 						'priority' => -5,
-						'action' => [ 'exclude', 'source', RecentChange::SRC_LOG ],
-						'highlight' => [ 'require', 'source', RecentChange::SRC_LOG ],
+						'queryCallable' => static function ( string $specialClassName, IContextSource $ctx,
+							IReadableDatabase $dbr, &$tables, &$fields, &$conds, &$query_options, &$join_conds
+						) {
+							$conds[] = $dbr->expr( 'rc_type', '!=', RC_LOG );
+						},
 						'cssClassSuffix' => 'src-mw-log',
+						'isRowApplicableCallable' => static function ( IContextSource $ctx, RecentChange $rc ) {
+							return $rc->getAttribute( 'rc_source' ) === RecentChange::SRC_LOG;
+						}
 					],
 					[
 						'name' => 'hidenewuserlog',
@@ -369,9 +472,16 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'description' => 'rcfilters-filter-accountcreations-description',
 						'default' => false,
 						'priority' => -6,
-						'action' => [ 'exclude', 'logType', 'newusers' ],
-						'highlight' => [ 'require', 'logType', 'newusers' ],
+						'queryCallable' => static function ( string $specialClassName, IContextSource $ctx,
+							IReadableDatabase $dbr, &$tables, &$fields, &$conds, &$query_options, &$join_conds
+						) {
+							$conds[] = $dbr->expr( 'rc_log_type', '!=', 'newusers' )
+								->or( 'rc_log_type', '=', null );
+						},
 						'cssClassSuffix' => 'src-mw-newuserlog',
+						'isRowApplicableCallable' => static function ( IContextSource $ctx, RecentChange $rc ) {
+							return $rc->getAttribute( 'rc_log_type' ) === "newusers";
+						},
 					],
 				],
 			],
@@ -388,13 +498,21 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						// wlshowhidepatr
 						'showHideSuffix' => 'showhidepatr',
 						'default' => false,
-						'action' => [ 'require', 'patrolled', RecentChange::PRC_UNPATROLLED ],
+						'queryCallable' => static function ( string $specialClassName, IContextSource $ctx,
+							IReadableDatabase $dbr, &$tables, &$fields, &$conds, &$query_options, &$join_conds
+						) {
+							$conds['rc_patrolled'] = RecentChange::PRC_UNPATROLLED;
+						},
 						'isReplacedInStructuredUi' => true,
 					],
 					[
 						'name' => 'hideunpatrolled',
 						'default' => false,
-						'action' => [ 'exclude', 'patrolled', RecentChange::PRC_UNPATROLLED ],
+						'queryCallable' => static function ( string $specialClassName, IContextSource $ctx,
+							IReadableDatabase $dbr, &$tables, &$fields, &$conds, &$query_options, &$join_conds
+						) {
+							$conds[] = $dbr->expr( 'rc_patrolled', '!=', RecentChange::PRC_UNPATROLLED );
+						},
 						'isReplacedInStructuredUi' => true,
 					],
 				],
@@ -413,24 +531,46 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'label' => 'rcfilters-filter-reviewstatus-unpatrolled-label',
 						'description' => 'rcfilters-filter-reviewstatus-unpatrolled-description',
 						'cssClassSuffix' => 'reviewstatus-unpatrolled',
-						'action' => [ 'require', 'patrolled', RecentChange::PRC_UNPATROLLED ],
+						'isRowApplicableCallable' => static function ( IContextSource $ctx, RecentChange $rc ) {
+							return $rc->getAttribute( 'rc_patrolled' ) == RecentChange::PRC_UNPATROLLED;
+						},
 					],
 					[
 						'name' => 'manual',
 						'label' => 'rcfilters-filter-reviewstatus-manual-label',
 						'description' => 'rcfilters-filter-reviewstatus-manual-description',
 						'cssClassSuffix' => 'reviewstatus-manual',
-						'action' => [ 'require', 'patrolled', RecentChange::PRC_PATROLLED ],
+						'isRowApplicableCallable' => static function ( IContextSource $ctx, RecentChange $rc ) {
+							return $rc->getAttribute( 'rc_patrolled' ) == RecentChange::PRC_PATROLLED;
+						},
 					],
 					[
 						'name' => 'auto',
 						'label' => 'rcfilters-filter-reviewstatus-auto-label',
 						'description' => 'rcfilters-filter-reviewstatus-auto-description',
 						'cssClassSuffix' => 'reviewstatus-auto',
-						'action' => [ 'require', 'patrolled', RecentChange::PRC_AUTOPATROLLED ],
+						'isRowApplicableCallable' => static function ( IContextSource $ctx, RecentChange $rc ) {
+							return $rc->getAttribute( 'rc_patrolled' ) == RecentChange::PRC_AUTOPATROLLED;
+						},
 					],
 				],
 				'default' => ChangesListStringOptionsFilterGroup::NONE,
+				'queryCallable' => static function ( string $specialClassName, IContextSource $ctx,
+					IReadableDatabase $dbr, &$tables, &$fields, &$conds, &$query_options, &$join_conds, $selected
+				) {
+					if ( $selected === [] ) {
+						return;
+					}
+					$rcPatrolledValues = [
+						'unpatrolled' => RecentChange::PRC_UNPATROLLED,
+						'manual' => RecentChange::PRC_PATROLLED,
+						'auto' => RecentChange::PRC_AUTOPATROLLED,
+					];
+					// e.g. rc_patrolled IN (0, 2)
+					$conds['rc_patrolled'] = array_map( static function ( $s ) use ( $rcPatrolledValues ) {
+						return $rcPatrolledValues[ $s ];
+					}, $selected );
+				}
 			],
 		];
 	}
@@ -443,6 +583,15 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 */
 	protected function getExtraFilterGroupDefinitions(): array {
 		return [];
+	}
+
+	/**
+	 * Check if filters are in conflict and guaranteed to return no results.
+	 *
+	 * @return bool
+	 */
+	protected function areFiltersInConflict() {
+		return $this->filterGroups->areFiltersInConflict( $this->getOptions() );
 	}
 
 	/**
@@ -464,8 +613,10 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 
 		$opts = $this->getOptions();
 		try {
-			$result = $this->getQueryResult();
-			$rows = $result->getResultWrapper();
+			$rows = $this->getRows();
+			if ( $rows === false ) {
+				$rows = new FakeResultWrapper( [] );
+			}
 
 			// Used by Structured UI app to get results without MW chrome
 			if ( $this->getRequest()->getRawVal( 'action' ) === 'render' ) {
@@ -516,6 +667,8 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			$this->outputHeader();
 			$this->addModules();
 			$this->webOutput( $rows, $opts );
+
+			$rows->free();
 		} catch ( DBQueryTimeoutError $timeoutException ) {
 			MWExceptionHandler::logException( $timeoutException );
 
@@ -540,7 +693,6 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 */
 	public function setTempUserConfig( TempUserConfig $tempUserConfig ) {
 		$this->tempUserConfig = $tempUserConfig;
-		$this->changesListQueryFactory->setTempUserConfig( $tempUserConfig );
 	}
 
 	/**
@@ -772,38 +924,19 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	/**
 	 * Get the database result for this special page instance. Used by ApiFeedRecentChanges.
 	 *
-	 * @return IResultWrapper
+	 * @return IResultWrapper|false
 	 */
 	public function getRows() {
-		return $this->getQueryResult()->getResultWrapper();
-	}
+		$opts = $this->getOptions();
 
-	/**
-	 * Perform and cache the main query.
-	 *
-	 * @return ChangesListResult
-	 */
-	protected function getQueryResult(): ChangesListResult {
-		if ( !$this->queryResult ) {
-			$opts = $this->getOptions();
-			$query = $this->buildQuery( $opts );
-			$this->modifyQuery( $query, $opts );
-			$this->queryResult = $query->fetchResult();
-		}
-		return $this->queryResult;
-	}
+		$tables = [];
+		$fields = [];
+		$conds = [];
+		$query_options = [];
+		$join_conds = [];
+		$this->buildQuery( $tables, $fields, $conds, $query_options, $join_conds, $opts );
 
-	/**
-	 * Create a RecentChange object from a row, injecting highlights from the
-	 * current ChangesListQuery.
-	 *
-	 * @param stdClass $row
-	 * @return RecentChange
-	 */
-	protected function newRecentChangeFromRow( $row ) {
-		$rc = $this->recentChangeFactory->newRecentChangeFromRow( $row );
-		$rc->setHighlights( $this->getQueryResult()->getHighlightsFromRow( $row ) );
-		return $rc;
+		return $this->doMainQuery( $tables, $fields, $conds, $query_options, $join_conds, $opts );
 	}
 
 	/**
@@ -1156,50 +1289,30 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 * Sets appropriate tables, fields, conditions, etc. depending on which filters
 	 * the user requested.
 	 *
+	 * @param array &$tables Array of tables; see IReadableDatabase::select $table
+	 * @param array &$fields Array of fields; see IReadableDatabase::select $vars
+	 * @param array &$conds Array of conditions; see IReadableDatabase::select $conds
+	 * @param array &$query_options Array of query options; see IReadableDatabase::select $options
+	 * @param array &$join_conds Array of join conditions; see IReadableDatabase::select $join_conds
 	 * @param FormOptions $opts
-	 * @return ChangesListQuery
 	 */
-	protected function buildQuery( FormOptions $opts ) {
+	protected function buildQuery( &$tables, &$fields, &$conds, &$query_options,
+		&$join_conds, FormOptions $opts
+	) {
 		$dbr = $this->getDB();
 		$isStructuredUI = $this->isStructuredFilterUiEnabled();
 
-		$query = $this->changesListQueryFactory->newQuery()
-			->recentChangeFields()
-			->watchlistUser( $this->getUser() )
-			->audience( $this->getAuthority() )
-			->limit( $opts['limit'] )
-			->maxExecutionTime( $this->getConfig()->get(
-				MainConfigNames::MaxExecutionTimeForExpensiveQueries ) )
-			->caller( static::class . '::buildQuery' );
-
-		// Old filter groups interface
-		$query->legacyMutator(
-			function (
-				&$tables,
-				&$fields,
-				&$conds,
-				&$query_options,
-				&$join_conds,
-			) use ( $dbr, $opts, $isStructuredUI ) {
-				$this->filterGroups->modifyLegacyQuery(
-					$dbr,
-					$this,
-					$tables,
-					$fields,
-					$conds,
-					$query_options,
-					$join_conds,
-					$opts,
-					$isStructuredUI
-				);
-			}
+		$this->filterGroups->modifyQuery(
+			$dbr,
+			$this,
+			$tables,
+			$fields,
+			$conds,
+			$query_options,
+			$join_conds,
+			$opts,
+			$isStructuredUI
 		);
-
-		// New filter groups interface
-		$this->filterGroups->modifyChangesListQuery( $query, $opts, $isStructuredUI );
-
-		// Main query hook
-		$this->addMainQueryHook( $query, $opts );
 
 		// Namespace filtering
 		if ( $opts[ 'namespace' ] !== '' ) {
@@ -1222,11 +1335,9 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 					$namespaces = array_unique( array_merge( $namespaces, $associatedNamespaces ) );
 				}
 
-				if ( $opts['invert'] ) {
-					$query->excludeNamespaces( $namespaces );
-				} else {
-					$query->requireNamespaces( $namespaces );
-				}
+				$operator = $opts[ 'invert' ] ? '!=' : '=';
+				sort( $namespaces );
+				$conds[] = $dbr->expr( 'rc_namespace', $operator, $namespaces );
 			}
 		}
 
@@ -1234,6 +1345,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		if ( $opts['subpageof'] !== '' ) {
 			$titleParser = MediaWikiServices::getInstance()->getTitleParser();
 			$basePages = explode( '|', $opts['subpageof'] );
+			$prefixesByNs = [];
 			foreach ( $basePages as $basePageText ) {
 				// Strip any trailing slash
 				$basePageText = rtrim( $basePageText, '/' );
@@ -1243,7 +1355,29 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 					// Ignore invalid titles
 					continue;
 				}
-				$query->requireSubpageOf( $basePage );
+				$prefixesByNs[$basePage->getNamespace()][$basePage->getDBkey() . '/'] = true;
+			}
+			$orConds = [];
+			foreach ( $prefixesByNs as $ns => $prefixes ) {
+				$titleExpr = null;
+				foreach ( $prefixes as $prefix => $unused ) {
+					$prefixExpr = $dbr->expr(
+						'rc_title',
+						IExpression::LIKE,
+						new LikeValue(
+							$prefix,
+							$dbr->anyString()
+						)
+					);
+					$titleExpr = $titleExpr ? $titleExpr->orExpr( $prefixExpr ) : $prefixExpr;
+				}
+				if ( $titleExpr ) {
+					$orConds[] = $dbr->expr( 'rc_namespace', '=', $ns )
+						->andExpr( $titleExpr );
+				}
+			}
+			if ( $orConds ) {
+				$conds[] = $dbr->makeList( $orConds, ISQLPlatform::LIST_OR );
 			}
 		}
 
@@ -1258,17 +1392,54 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			$opts->reset( 'from' );
 		}
 
-		$query->minTimestamp( $cutoff );
-		return $query;
+		$conds[] = $dbr->expr( 'rc_timestamp', '>=', $cutoff );
 	}
 
 	/**
-	 * Allow subclasses to modify the main query
+	 * Process the query
 	 *
-	 * @param ChangesListQuery $query
+	 * @param array $tables Array of tables; see IReadableDatabase::select $table
+	 * @param array $fields Array of fields; see IReadableDatabase::select $vars
+	 * @param array $conds Array of conditions; see IReadableDatabase::select $conds
+	 * @param array $query_options Array of query options; see IReadableDatabase::select $options
+	 * @param array $join_conds Array of join conditions; see IReadableDatabase::select $join_conds
 	 * @param FormOptions $opts
+	 * @return bool|IResultWrapper Result or false
 	 */
-	protected function modifyQuery( ChangesListQuery $query, FormOptions $opts ) {
+	protected function doMainQuery( $tables, $fields, $conds,
+		$query_options, $join_conds, FormOptions $opts
+	) {
+		$rcQuery = RecentChange::getQueryInfo( RecentChange::STRAIGHT_JOIN_ACTOR );
+		$tables = array_merge( $tables, $rcQuery['tables'] );
+		$fields = array_merge( $rcQuery['fields'], $fields );
+		$join_conds = array_merge( $join_conds, $rcQuery['joins'] );
+
+		MediaWikiServices::getInstance()->getChangeTagsStore()->modifyDisplayQuery(
+			$tables,
+			$fields,
+			$conds,
+			$join_conds,
+			$query_options,
+			'',
+			$opts[ 'inverttags' ]
+		);
+
+		if (
+			!$this->runMainQueryHook( $tables, $fields, $conds, $query_options, $join_conds, $opts )
+		) {
+			return false;
+		}
+
+		$dbr = $this->getDB();
+
+		return $dbr->newSelectQueryBuilder()
+			->tables( $tables )
+			->fields( $fields )
+			->conds( $conds )
+			->caller( __METHOD__ )
+			->options( $query_options )
+			->joinConds( $join_conds )
+			->fetchResultSet();
 	}
 
 	/**
@@ -1285,22 +1456,6 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	) {
 		return $this->getHookRunner()->onChangesListSpecialPageQuery(
 			$this->getName(), $tables, $fields, $conds, $query_options, $join_conds, $opts );
-	}
-
-	/**
-	 * @param ChangesListQuery $query
-	 * @param FormOptions $opts FormOptions for this request
-	 */
-	protected function addMainQueryHook( $query, $opts ) {
-		if ( $this->getHookContainer()->isRegistered( 'ChangesListSpecialPageQuery' ) ) {
-			$query->legacyMutator(
-				function ( &$tables, &$fields, &$conds, &$query_options, &$join_conds )
-				use ( $opts ) {
-					return $this->runMainQueryHook( $tables, $fields, $conds,
-						$query_options, $join_conds, $opts );
-				}
-			);
-		}
 	}
 
 	/**
@@ -1495,6 +1650,138 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'changes';
+	}
+
+	/**
+	 * Return expression that is true when the user is or isn't registered.
+	 * @param bool $isRegistered
+	 * @param IReadableDatabase $dbr
+	 * @return IExpression
+	 */
+	private function getRegisteredExpr( $isRegistered, $dbr ): IExpression {
+		$expr = $dbr->expr( 'actor_user', $isRegistered ? '!=' : '=', null );
+		if ( !$this->tempUserConfig->isKnown() ) {
+			return $expr;
+		}
+		if ( $isRegistered ) {
+			return $expr->andExpr( $this->tempUserConfig->getMatchCondition( $dbr,
+				'actor_name', IExpression::NOT_LIKE ) );
+		} else {
+			return $expr->orExpr( $this->tempUserConfig->getMatchCondition( $dbr,
+				'actor_name', IExpression::LIKE ) );
+		}
+	}
+
+	/**
+	 * Return expression that is true when the user has reached the given experience level.
+	 * @param string $level 'learner' or 'experienced'
+	 * @param int $now Current time as UNIX timestamp (if 0, uses actual time)
+	 * @param IReadableDatabase $dbr
+	 * @param bool $asNotCondition
+	 * @return IExpression
+	 */
+	private function getExperienceExpr( $level, $now, IReadableDatabase $dbr, $asNotCondition = false ): IExpression {
+		$config = $this->getConfig();
+
+		$configSince = [
+			'learner' => $config->get( MainConfigNames::LearnerMemberSince ),
+			'experienced' => $config->get( MainConfigNames::ExperiencedUserMemberSince ),
+		][$level];
+		if ( $now === 0 ) {
+			$now = ConvertibleTimestamp::time();
+		}
+		$secondsPerDay = 86400;
+		$timeCutoff = $now - $configSince * $secondsPerDay;
+
+		$editCutoff = [
+			'learner' => $config->get( MainConfigNames::LearnerEdits ),
+			'experienced' => $config->get( MainConfigNames::ExperiencedUserEdits ),
+		][$level];
+
+		if ( $asNotCondition ) {
+			return $dbr->expr( 'user_editcount', '<', intval( $editCutoff ) )
+				->or( 'user_registration', '>', $dbr->timestamp( $timeCutoff ) );
+		}
+		return $dbr->expr( 'user_editcount', '>=', intval( $editCutoff ) )->andExpr(
+			// Users who don't have user_registration set are very old, so we assume they're above any cutoff
+			$dbr->expr( 'user_registration', '=', null )
+				->or( 'user_registration', '<=', $dbr->timestamp( $timeCutoff ) )
+		);
+	}
+
+	/**
+	 * Filter on users' experience levels; this will not be called if nothing is
+	 * selected.
+	 *
+	 * @param string $specialPageClassName Class name of current special page
+	 * @param IContextSource $context Context, for e.g. user
+	 * @param IReadableDatabase $dbr Database, for addQuotes, makeList, and similar
+	 * @param array &$tables Array of tables; see IReadableDatabase::select $table
+	 * @param array &$fields Array of fields; see IReadableDatabase::select $vars
+	 * @param array &$conds Array of conditions; see IReadableDatabase::select $conds
+	 * @param array &$query_options Array of query options; see IReadableDatabase::select $options
+	 * @param array &$join_conds Array of join conditions; see IReadableDatabase::select $join_conds
+	 * @param array $selectedExpLevels The allowed active values, sorted
+	 * @param int $now Current time as UNIX timestamp (if 0, uses actual time)
+	 */
+	public function filterOnUserExperienceLevel( $specialPageClassName, $context, $dbr,
+		&$tables, &$fields, &$conds, &$query_options, &$join_conds, $selectedExpLevels, $now = 0
+	) {
+		$selected = array_fill_keys( $selectedExpLevels, true );
+
+		$isUnregistered = $this->getRegisteredExpr( false, $dbr );
+		$isRegistered = $this->getRegisteredExpr( true, $dbr );
+		$aboveNewcomer = $this->getExperienceExpr( 'learner', $now, $dbr );
+		$notAboveNewcomer = $this->getExperienceExpr( 'learner', $now, $dbr, true );
+		$aboveLearner = $this->getExperienceExpr( 'experienced', $now, $dbr );
+		$notAboveLearner = $this->getExperienceExpr( 'experienced', $now, $dbr, true );
+
+		// We need to select some range of user experience levels, from the following table:
+		// | Unregistered |     --------- Registered ---------     |
+		// |              |  Newcomers  |  Learners  | Experienced |
+		// |<------------>|<----------->|<---------->|<----------->|
+		// We just need to define a condition for each of the columns, figure out which are selected,
+		// and then OR them together.
+		$columnConds = [
+			'unregistered' => $isUnregistered,
+			'registered' => $isRegistered,
+			'newcomer' => $dbr->andExpr( [ $isRegistered, $notAboveNewcomer ] ),
+			'learner' => $dbr->andExpr( [ $isRegistered, $aboveNewcomer, $notAboveLearner ] ),
+			'experienced' => $dbr->andExpr( [ $isRegistered, $aboveLearner ] ),
+		];
+
+		// There are some cases where we can easily optimize away some queries:
+		// | Unregistered |     --------- Registered ---------     |
+		// |              |  Newcomers  |  Learners  | Experienced |
+		// |              |<-------------------------------------->| (1)
+		// |<----------------------------------------------------->| (2)
+
+		// (1) Selecting all of "Newcomers", "Learners" and "Experienced users" is the same as "Registered".
+		if (
+			isset( $selected['registered'] ) ||
+			( isset( $selected['newcomer'] ) && isset( $selected['learner'] ) && isset( $selected['experienced'] ) )
+		) {
+			unset( $selected['newcomer'], $selected['learner'], $selected['experienced'] );
+			$selected['registered'] = true;
+		}
+		// (2) Selecting "Unregistered" and "Registered" covers all users.
+		if ( isset( $selected['registered'] ) && isset( $selected['unregistered'] ) ) {
+			unset( $selected['registered'], $selected['unregistered'] );
+		}
+
+		// Combine the conditions for the selected columns.
+		if ( !$selected ) {
+			return;
+		}
+		$selectedColumnConds = array_values( array_intersect_key( $columnConds, $selected ) );
+		$conds[] = $dbr->orExpr( $selectedColumnConds );
+
+		// Add necessary tables to the queries.
+		$join_conds['recentchanges_actor'] = [ 'JOIN', 'actor_id=rc_actor' ];
+		if ( isset( $selected['newcomer'] ) || isset( $selected['learner'] ) || isset( $selected['experienced'] ) ) {
+			$tables[] = 'user';
+			$join_conds['user'] = [ 'LEFT JOIN', 'actor_user=user_id' ];
+		}
 	}
 
 	/**

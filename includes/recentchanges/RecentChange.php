@@ -163,12 +163,6 @@ class RecentChange implements Taggable {
 	 */
 	private $editResult = null;
 
-	/**
-	 * @var array<string,bool> Highlighted filters, for ChangesList. The key
-	 *   is the group name and then a slash and then the filter name.
-	 */
-	private $highlights = [];
-
 	private const CHANGE_TYPES = [
 		'edit' => RC_EDIT,
 		'new' => RC_NEW,
@@ -894,24 +888,6 @@ class RecentChange implements Taggable {
 		}
 
 		return $user;
-	}
-
-	/**
-	 * @param array<string,bool> $highlights
-	 */
-	public function setHighlights( array $highlights ) {
-		$this->highlights = $highlights;
-	}
-
-	/**
-	 * @return array<string,bool>
-	 */
-	public function getHighlights() {
-		return $this->highlights;
-	}
-
-	public function isHighlighted( string $key ): bool {
-		return $this->highlights[$key] ?? false;
 	}
 }
 

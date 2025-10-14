@@ -8,17 +8,15 @@ namespace MediaWiki\Specials;
 
 use MediaWiki\ChangeTags\ChangeTags;
 use MediaWiki\ChangeTags\ChangeTagsStore;
+use MediaWiki\Context\IContextSource;
 use MediaWiki\Html\FormOptions;
 use MediaWiki\Html\Html;
 use MediaWiki\Language\MessageParser;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\RecentChanges\ChangesList;
-use MediaWiki\RecentChanges\ChangesListQuery\ChangesListQuery;
-use MediaWiki\RecentChanges\ChangesListQuery\ChangesListQueryFactory;
 use MediaWiki\RecentChanges\ChangesListStringOptionsFilterGroup;
 use MediaWiki\RecentChanges\RecentChange;
-use MediaWiki\RecentChanges\RecentChangeFactory;
 use MediaWiki\SpecialPage\ChangesListSpecialPage;
 use MediaWiki\Title\TitleValue;
 use MediaWiki\User\Options\UserOptionsLookup;
@@ -29,7 +27,9 @@ use MediaWiki\Watchlist\WatchedItemStoreInterface;
 use OOUI\ButtonWidget;
 use OOUI\HtmlSnippet;
 use Wikimedia\HtmlArmor\HtmlArmor;
+use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
+use Wikimedia\Rdbms\RawSQLExpression;
 
 /**
  * List of the last changes made to the wiki
@@ -53,9 +53,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		?UserOptionsLookup $userOptionsLookup = null,
 		?ChangeTagsStore $changeTagsStore = null,
 		?UserIdentityUtils $userIdentityUtils = null,
-		?TempUserConfig $tempUserConfig = null,
-		?RecentChangeFactory $recentChangeFactory = null,
-		?ChangesListQueryFactory $changesListQueryFactory = null,
+		?TempUserConfig $tempUserConfig = null
 	) {
 		// This class is extended and therefor fallback to global state - T265310
 		$services = MediaWikiServices::getInstance();
@@ -64,9 +62,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			'Recentchanges',
 			'',
 			$userIdentityUtils ?? $services->getUserIdentityUtils(),
-			$tempUserConfig ?? $services->getTempUserConfig(),
-			$recentChangeFactory ?? $services->getRecentChangeFactory(),
-			$changesListQueryFactory ?? $services->getChangesListQueryFactory(),
+			$tempUserConfig ?? $services->getTempUserConfig()
 		);
 		$this->watchedItemStore = $watchedItemStore ?? $services->getWatchedItemStore();
 		$this->messageParser = $messageParser ?? $services->getMessageParser();
@@ -89,7 +85,9 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 						'label' => 'rcfilters-filter-watchlist-watched-label',
 						'description' => 'rcfilters-filter-watchlist-watched-description',
 						'cssClassSuffix' => 'watched',
-						'action' => [ 'require', 'watched', 'watched' ],
+						'isRowApplicableCallable' => static function ( IContextSource $ctx, RecentChange $rc ) {
+							return $rc->getAttribute( 'wl_user' );
+						},
 						'subsets' => [ 'watchednew' ],
 					],
 					[
@@ -97,17 +95,81 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 						'label' => 'rcfilters-filter-watchlist-watchednew-label',
 						'description' => 'rcfilters-filter-watchlist-watchednew-description',
 						'cssClassSuffix' => 'watchednew',
-						'action' => [ 'require', 'watched', 'watchednew' ],
+						'isRowApplicableCallable' => static function ( IContextSource $ctx, RecentChange $rc ) {
+							return $rc->getAttribute( 'wl_user' ) &&
+								$rc->getAttribute( 'rc_timestamp' ) &&
+								$rc->getAttribute( 'wl_notificationtimestamp' ) &&
+								$rc->getAttribute( 'rc_timestamp' ) >= $rc->getAttribute( 'wl_notificationtimestamp' );
+						},
 					],
 					[
 						'name' => 'notwatched',
 						'label' => 'rcfilters-filter-watchlist-notwatched-label',
 						'description' => 'rcfilters-filter-watchlist-notwatched-description',
 						'cssClassSuffix' => 'notwatched',
-						'action' => [ 'exclude', 'watched', 'watched' ],
+						'isRowApplicableCallable' => static function ( IContextSource $ctx, RecentChange $rc ) {
+							return $rc->getAttribute( 'wl_user' ) === null;
+						},
 					]
 				],
 				'default' => ChangesListStringOptionsFilterGroup::NONE,
+				'queryCallable' => function ( string $specialClassName, IContextSource $ctx,
+					IReadableDatabase $dbr, &$tables, &$fields, &$conds, &$query_options, &$join_conds, $selectedValues
+				) {
+					sort( $selectedValues );
+					$notwatchedCond = $dbr->expr( 'wl_user', '=', null );
+					$watchedCond = $dbr->expr( 'wl_user', '!=', null );
+					if ( $this->getConfig()->get( MainConfigNames::WatchlistExpiry ) ) {
+						// Expired watchlist items stay in the DB after their expiry time until they're purged,
+						// so it's not enough to only check for wl_user.
+						$dbNow = $dbr->timestamp();
+						$notwatchedCond = $notwatchedCond
+							->orExpr( $dbr->expr( 'we_expiry', '!=', null )->and( 'we_expiry', '<', $dbNow ) );
+						$watchedCond = $watchedCond
+							->andExpr( $dbr->expr( 'we_expiry', '=', null )->or( 'we_expiry', '>=', $dbNow ) );
+					}
+					$newCond = new RawSQLExpression( 'rc_timestamp >= wl_notificationtimestamp' );
+
+					if ( $selectedValues === [ 'notwatched' ] ) {
+						$conds[] = $notwatchedCond;
+						return;
+					}
+
+					if ( $selectedValues === [ 'watched' ] ) {
+						$conds[] = $watchedCond;
+						return;
+					}
+
+					if ( $selectedValues === [ 'watchednew' ] ) {
+						$conds[] = $watchedCond
+							->andExpr( $newCond );
+						return;
+					}
+
+					if ( $selectedValues === [ 'notwatched', 'watched' ] ) {
+						// no filters
+						return;
+					}
+
+					if ( $selectedValues === [ 'notwatched', 'watchednew' ] ) {
+						$conds[] = $notwatchedCond
+							->orExpr(
+								$watchedCond
+									->andExpr( $newCond )
+							);
+						return;
+					}
+
+					if ( $selectedValues === [ 'watched', 'watchednew' ] ) {
+						$conds[] = $watchedCond;
+						return;
+					}
+
+					if ( $selectedValues === [ 'notwatched', 'watched', 'watchednew' ] ) {
+						// no filters
+						return;
+					}
+				}
 			],
 		];
 	}
@@ -227,46 +289,120 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	}
 
 	/**
-	 * @inheritDoc
+	 * Add required values to a query's $tables, $fields, $joinConds, and $conds arrays to join to
+	 * the watchlist and watchlist_expiry tables where appropriate.
+	 *
+	 * SpecialRecentChangesLinked should also be updated accordingly when something changed here.
+	 *
+	 * @param IReadableDatabase $dbr
+	 * @param string[] &$tables
+	 * @param string[] &$fields
+	 * @param mixed[] &$joinConds
+	 * @param mixed[] &$conds
 	 */
-	protected function modifyQuery( ChangesListQuery $query, FormOptions $opts ) {
-		if ( $this->needsWatchlistFeatures() ) {
-			$query->watchlistFields( [ 'wl_user', 'wl_notificationtimestamp', 'we_expiry' ] );
+	protected function addWatchlistJoins( IReadableDatabase $dbr, &$tables, &$fields, &$joinConds, &$conds ) {
+		if ( !$this->needsWatchlistFeatures() ) {
+			return;
 		}
 
-		$query->legacyMutator(
-			function ( &$tables, &$fields, &$conds, &$query_options, &$join_conds ) use ( $opts ) {
-				$tagFilter = $opts['tagfilter'] !== '' ? explode( '|', $opts['tagfilter'] ) : [];
-				$this->changeTagsStore->modifyDisplayQuery(
-					$tables,
-					$fields,
-					$conds,
-					$join_conds,
-					$query_options,
-					$tagFilter,
-					$opts['inverttags']
-				);
+		// Join on watchlist table.
+		$tables[] = 'watchlist';
+		$fields[] = 'wl_user';
+		$fields[] = 'wl_notificationtimestamp';
+		$joinConds['watchlist'] = [ 'LEFT JOIN', [
+			'wl_user' => $this->getUser()->getId(),
+			'wl_title=rc_title',
+			'wl_namespace=rc_namespace'
+		] ];
 
-				// Workaround for T298225: MySQL's lack of awareness of LIMIT when
-				// choosing the join order.
-				$ctTableName = ChangeTags::DISPLAY_TABLE_ALIAS;
-				if ( isset( $join_conds[$ctTableName] )
-					&& $this->isDenseTagFilter( $conds["$ctTableName.ct_tag_id"] ?? [], $opts['limit'] )
-				) {
-					$join_conds[$ctTableName][0] = 'STRAIGHT_JOIN';
-				}
+		// Exclude expired watchlist items.
+		if ( $this->getConfig()->get( MainConfigNames::WatchlistExpiry ) ) {
+			$tables[] = 'watchlist_expiry';
+			$fields[] = 'we_expiry';
+			$joinConds['watchlist_expiry'] = [ 'LEFT JOIN', 'wl_id = we_item' ];
+		}
+	}
 
-				if ( in_array( 'DISTINCT', $query_options ) ) {
-					// ChangeTagsStore::modifyDisplayQuery() adds DISTINCT when filtering on multiple tags.
-					// In order to prevent DISTINCT from causing query performance problems,
-					// we have to GROUP BY the primary key. This in turn requires us to add
-					// the primary key to the end of the ORDER BY, and the old ORDER BY to the
-					// start of the GROUP BY
-					$query_options['ORDER BY'] = 'rc_timestamp DESC, rc_id DESC';
-					$query_options['GROUP BY'] = 'rc_timestamp, rc_id';
-				}
-			}
+	/**
+	 * @inheritDoc
+	 */
+	protected function doMainQuery( $tables, $fields, $conds, $query_options,
+		$join_conds, FormOptions $opts
+	) {
+		$dbr = $this->getDB();
+
+		$rcQuery = RecentChange::getQueryInfo( RecentChange::STRAIGHT_JOIN_ACTOR );
+		$tables = array_merge( $rcQuery['tables'], $tables );
+		$fields = array_merge( $rcQuery['fields'], $fields );
+		$join_conds = array_merge( $rcQuery['joins'], $join_conds );
+
+		// Join with watchlist and watchlist_expiry tables to highlight watched rows.
+		$this->addWatchlistJoins( $dbr, $tables, $fields, $join_conds, $conds );
+
+		// JOIN on page, used for 'last revision' filter highlight
+		$tables[] = 'page';
+		$fields[] = 'page_latest';
+		$join_conds['page'] = [ 'LEFT JOIN', 'rc_cur_id=page_id' ];
+
+		$tagFilter = $opts['tagfilter'] !== '' ? explode( '|', $opts['tagfilter'] ) : [];
+		$this->changeTagsStore->modifyDisplayQuery(
+			$tables,
+			$fields,
+			$conds,
+			$join_conds,
+			$query_options,
+			$tagFilter,
+			$opts['inverttags']
 		);
+
+		if ( !$this->runMainQueryHook( $tables, $fields, $conds, $query_options, $join_conds,
+			$opts )
+		) {
+			return false;
+		}
+
+		if ( $this->areFiltersInConflict() ) {
+			return false;
+		}
+
+		$orderByAndLimit = [
+			'ORDER BY' => 'rc_timestamp DESC',
+			'LIMIT' => $opts['limit']
+		];
+
+		// Workaround for T298225: MySQL's lack of awareness of LIMIT when
+		// choosing the join order.
+		$ctTableName = ChangeTags::DISPLAY_TABLE_ALIAS;
+		if ( isset( $join_conds[$ctTableName] )
+			&& $this->isDenseTagFilter( $conds["$ctTableName.ct_tag_id"] ?? [], $opts['limit'] )
+		) {
+			$join_conds[$ctTableName][0] = 'STRAIGHT_JOIN';
+		}
+
+		if ( in_array( 'DISTINCT', $query_options ) ) {
+			// ChangeTagsStore::modifyDisplayQuery() adds DISTINCT when filtering on multiple tags.
+			// In order to prevent DISTINCT from causing query performance problems,
+			// we have to GROUP BY the primary key. This in turn requires us to add
+			// the primary key to the end of the ORDER BY, and the old ORDER BY to the
+			// start of the GROUP BY
+			$orderByAndLimit['ORDER BY'] = 'rc_timestamp DESC, rc_id DESC';
+			$orderByAndLimit['GROUP BY'] = 'rc_timestamp, rc_id';
+		}
+
+		// array_merge() is used intentionally here so that hooks can, should
+		// they so desire, override the ORDER BY / LIMIT condition(s); prior to
+		// MediaWiki 1.26 this used to use the plus operator instead, which meant
+		// that extensions weren't able to change these conditions
+		$query_options = array_merge( $orderByAndLimit, $query_options );
+		return $dbr->newSelectQueryBuilder()
+			->tables( $tables )
+			->fields( $fields )
+			->conds( $conds )
+			->caller( __METHOD__ )
+			->options( $query_options )
+			->joinConds( $join_conds )
+			->setMaxExecutionTime( $this->getConfig()->get( MainConfigNames::MaxExecutionTimeForExpensiveQueries ) )
+			->fetchResultSet();
 	}
 
 	/**
@@ -378,7 +514,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			if ( $limit == 0 ) {
 				break;
 			}
-			$rc = $this->newRecentChangeFromRow( $obj );
+			$rc = RecentChange::newFromRow( $obj );
 
 			# Skip CatWatch entries for hidden cats based on user preference
 			if (

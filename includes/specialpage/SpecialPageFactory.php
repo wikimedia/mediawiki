@@ -720,8 +720,6 @@ class SpecialPageFactory {
 				'ChangeTagsStore',
 				'UserIdentityUtils',
 				'TempUserConfig',
-				'RecentChangeFactory',
-				'ChangesListQueryFactory',
 			]
 		],
 		'Newpages' => [
@@ -747,8 +745,6 @@ class SpecialPageFactory {
 				'ChangeTagsStore',
 				'UserIdentityUtils',
 				'TempUserConfig',
-				'RecentChangeFactory',
-				'ChangesListQueryFactory',
 			]
 		],
 		'Recentchangeslinked' => [
@@ -761,8 +757,6 @@ class SpecialPageFactory {
 				'ChangeTagsStore',
 				'UserIdentityUtils',
 				'TempUserConfig',
-				'RecentChangeFactory',
-				'ChangesListQueryFactory',
 			]
 		],
 		'Tags' => [
