@@ -2361,30 +2361,6 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 	}
 
 	/**
-	 * Load restrictions from the page_restrictions table
-	 *
-	 * @deprecated since 1.37, no public replacement; hard-deprecated since 1.43
-	 *
-	 * @param int $flags A bit field. If IDBAccessObject::READ_LATEST is set, skip replicas and read
-	 *  from the primary DB.
-	 */
-	public function loadRestrictions( $flags = 0 ) {
-		wfDeprecated( __METHOD__, '1.37' );
-		MediaWikiServices::getInstance()->getRestrictionStore()->loadRestrictions( $this, $flags );
-	}
-
-	/**
-	 * Flush the protection cache in this object and force reload from the database.
-	 * This is used when updating protection from WikiPage::doUpdateRestrictions().
-	 *
-	 * @deprecated since 1.37, now internal; hard-deprecated since 1.43
-	 */
-	public function flushRestrictions() {
-		wfDeprecated( __METHOD__, '1.37' );
-		MediaWikiServices::getInstance()->getRestrictionStore()->flushRestrictions( $this );
-	}
-
-	/**
 	 * Purge expired restrictions from the page_restrictions table
 	 *
 	 * This will purge no more than $wgUpdateRowsPerQuery page_restrictions rows
