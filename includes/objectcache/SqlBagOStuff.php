@@ -64,8 +64,6 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	protected $writeBatchSize = 100;
 	/** @var string */
 	protected $tableName = 'objectcache';
-	/** @var bool Whether multi-primary mode is enabled */
-	protected $multiPrimaryMode;
 
 	/** @var IMaintainableDatabase[] Map of (shard index => DB handle) */
 	protected $conns;
@@ -124,7 +122,6 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	 *   - servers: string[]
 	 *   - loadBalancerCallback: A closure which provides a LoadBalancer object
 	 * 	 - dbDomain: string|false
-	 *   - multiPrimaryMode: bool
 	 *   - purgePeriod: int|float
 	 *   - purgeLimit: int
 	 *   - tableName: string
@@ -164,7 +161,6 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		$this->tableName = $params['tableName'] ?? $this->tableName;
 		$this->numTableShards = intval( $params['shards'] ?? $this->numTableShards );
 		$this->writeBatchSize = intval( $params['writeBatchSize'] ?? $this->writeBatchSize );
-		$this->multiPrimaryMode = $params['multiPrimaryMode'] ?? false;
 		$this->dataRedundancy = min( intval( $params['dataRedundancy'] ?? 1 ), count( $this->serverTags ) );
 
 		$this->attrMap[self::ATTR_DURABILITY] = self::QOS_DURABILITY_RDBMS;
@@ -629,11 +625,6 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	/**
 	 * Set key/value pairs belonging to a partition table on the given server
 	 *
-	 * In multi-primary mode, if the current row for a key exists and has a modification token
-	 * with a greater integral UNIX timestamp than that of the provided modification timestamp,
-	 * then the write to that key will be aborted with a "false" result. Successfully modified
-	 * key rows will be assigned a new modification token using the provided timestamp.
-	 *
 	 * @param IDatabase $db Handle to the database server where the argument keys belong
 	 * @param string $ptable Name of the partition table where the argument keys belong
 	 * @param float $mtime UNIX modification timestamp
@@ -650,33 +641,21 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	) {
 		$valueSizesByKey = [];
 
-		$mt = $this->makeTimestampedModificationToken( $mtime, $db );
-
 		$rows = [];
 		foreach ( $argsByKey as $key => [ $value, $exptime ] ) {
 			$expiry = $this->makeNewKeyExpiry( $exptime, (int)$mtime );
 			$serialValue = $this->getSerialized( $value, $key );
-			$rows[] = $this->buildUpsertRow( $db, $key, $serialValue, $expiry, $mt );
+			$rows[] = $this->buildUpsertRow( $db, $key, $serialValue, $expiry );
 
 			$valueSizesByKey[$key] = [ strlen( $serialValue ), 0 ];
 		}
 
-		if ( $this->multiPrimaryMode ) {
-			$db->newInsertQueryBuilder()
-				->insertInto( $ptable )
-				->rows( $rows )
-				->onDuplicateKeyUpdate()
-				->uniqueIndexFields( [ 'keyname' ] )
-				->set( $this->buildMultiUpsertSetForOverwrite( $db, $mt ) )
-				->caller( __METHOD__ )->execute();
-		} else {
-			// T288998: use REPLACE, if possible, to avoid cluttering the binlogs
-			$db->newReplaceQueryBuilder()
-				->replaceInto( $ptable )
-				->rows( $rows )
-				->uniqueIndexFields( [ 'keyname' ] )
-				->caller( __METHOD__ )->execute();
-		}
+		// T288998: use REPLACE, if possible, to avoid cluttering the binlogs
+		$db->newReplaceQueryBuilder()
+			->replaceInto( $ptable )
+			->rows( $rows )
+			->uniqueIndexFields( [ 'keyname' ] )
+			->caller( __METHOD__ )->execute();
 
 		foreach ( $argsByKey as $key => $unused ) {
 			$resByKey[$key] = true;
@@ -687,12 +666,6 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 
 	/**
 	 * Purge/tombstone key/value pairs belonging to a partition table on the given server
-	 *
-	 * In multi-primary mode, if the current row for a key exists and has a modification token
-	 * with a greater integral UNIX timestamp than that of the provided modification timestamp,
-	 * then the write to that key will be aborted with a "false" result. Successfully modified
-	 * key rows will be assigned a new modification token/timestamp, an empty value, and an
-	 * expiration timestamp dated slightly before the new modification timestamp.
 	 *
 	 * @param IDatabase $db Handle to the database server where the argument keys belong
 	 * @param string $ptable Name of the partition table where the argument keys belong
@@ -708,26 +681,11 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		array $argsByKey,
 		array &$resByKey
 	) {
-		if ( $this->multiPrimaryMode ) {
-			// Tombstone keys in order to respect eventual consistency
-			$mt = $this->makeTimestampedModificationToken( $mtime, $db );
-			$expiry = $this->makeNewKeyExpiry( self::TOMB_EXPTIME, (int)$mtime );
-			$queryBuilder = $db->newInsertQueryBuilder()
-				->insertInto( $ptable )
-				->onDuplicateKeyUpdate()
-				->uniqueIndexFields( [ 'keyname' ] )
-				->set( $this->buildMultiUpsertSetForOverwrite( $db, $mt ) );
-			foreach ( $argsByKey as $key => $arg ) {
-				$queryBuilder->row( $this->buildUpsertRow( $db, $key, self::TOMB_SERIAL, $expiry, $mt ) );
-			}
-			$queryBuilder->caller( __METHOD__ )->execute();
-		} else {
-			// Just purge the keys since there is only one primary (e.g. "source of truth")
-			$db->newDeleteQueryBuilder()
-				->deleteFrom( $ptable )
-				->where( [ 'keyname' => array_keys( $argsByKey ) ] )
-				->caller( __METHOD__ )->execute();
-		}
+		// Just purge the keys since there is only one primary (e.g. "source of truth")
+		$db->newDeleteQueryBuilder()
+			->deleteFrom( $ptable )
+			->where( [ 'keyname' => array_keys( $argsByKey ) ] )
+			->caller( __METHOD__ )->execute();
 
 		foreach ( $argsByKey as $key => $arg ) {
 			$resByKey[$key] = true;
@@ -744,11 +702,6 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	 * will be aborted with a "false" result. Acquisition of advisory key locks must be handled
 	 * by calling functions.
 	 *
-	 * In multi-primary mode, if the current row for a key exists and has a modification token
-	 * with a greater integral UNIX timestamp than that of the provided modification timestamp,
-	 * then the write to that key will be aborted with a "false" result. Successfully modified
-	 * key rows will be assigned a new modification token/timestamp.
-	 *
 	 * @param IDatabase $db Handle to the database server where the argument keys belong
 	 * @param string $ptable Name of the partition table where the argument keys belong
 	 * @param float $mtime UNIX modification timestamp
@@ -764,8 +717,6 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		array &$resByKey
 	) {
 		$valueSizesByKey = [];
-
-		$mt = $this->makeTimestampedModificationToken( $mtime, $db );
 
 		// This check must happen outside the write query to respect eventual consistency
 		$existingKeys = $db->newSelectQueryBuilder()
@@ -786,7 +737,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 			$serialValue = $this->getSerialized( $value, $key );
 			$expiry = $this->makeNewKeyExpiry( $exptime, (int)$mtime );
 			$valueSizesByKey[$key] = [ strlen( $serialValue ), 0 ];
-			$rows[] = $this->buildUpsertRow( $db, $key, $serialValue, $expiry, $mt );
+			$rows[] = $this->buildUpsertRow( $db, $key, $serialValue, $expiry );
 		}
 		if ( !$rows ) {
 			return;
@@ -796,7 +747,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 			->rows( $rows )
 			->onDuplicateKeyUpdate()
 			->uniqueIndexFields( [ 'keyname' ] )
-			->set( $this->buildMultiUpsertSetForOverwrite( $db, $mt ) )
+			->set( $this->buildMultiUpsertSetForOverwrite( $db ) )
 			->caller( __METHOD__ )->execute();
 
 		foreach ( $argsByKey as $key => $unused ) {
@@ -814,11 +765,6 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	 * the write to that key will be aborted with a "false" result. Acquisition of advisory key
 	 * locks must be handled by calling functions.
 	 *
-	 * In multi-primary mode, if the current row for a key exists and has a modification token
-	 * with a greater integral UNIX timestamp than that of the provided modification timestamp,
-	 * then the write to that key will be aborted with a "false" result. Successfully modified
-	 * key rows will be assigned a new modification token/timestamp.
-	 *
 	 * @param IDatabase $db Handle to the database server where the argument keys belong
 	 * @param string $ptable Name of the partition table where the argument keys belong
 	 * @param float $mtime UNIX modification timestamp
@@ -834,8 +780,6 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		array &$resByKey
 	) {
 		$valueSizesByKey = [];
-
-		$mt = $this->makeTimestampedModificationToken( $mtime, $db );
 
 		// This check must happen outside the write query to respect eventual consistency
 		$res = $db->newSelectQueryBuilder()
@@ -870,7 +814,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 			$expiry = $this->makeNewKeyExpiry( $exptime, (int)$mtime );
 			$valueSizesByKey[$key] = [ strlen( $serialValue ), 0 ];
 
-			$rows[] = $this->buildUpsertRow( $db, $key, $serialValue, $expiry, $mt );
+			$rows[] = $this->buildUpsertRow( $db, $key, $serialValue, $expiry );
 		}
 		if ( !$rows ) {
 			return;
@@ -880,7 +824,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 			->rows( $rows )
 			->onDuplicateKeyUpdate()
 			->uniqueIndexFields( [ 'keyname' ] )
-			->set( $this->buildMultiUpsertSetForOverwrite( $db, $mt ) )
+			->set( $this->buildMultiUpsertSetForOverwrite( $db ) )
 			->caller( __METHOD__ )->execute();
 
 		foreach ( $argsByKey as $key => $unused ) {
@@ -916,60 +860,24 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		array $argsByKey,
 		array &$resByKey
 	) {
-		if ( $this->multiPrimaryMode ) {
-			$mt = $this->makeTimestampedModificationToken( $mtime, $db );
+		$keysBatchesByExpiry = [];
+		foreach ( $argsByKey as $key => [ $exptime ] ) {
+			$expiry = $this->makeNewKeyExpiry( $exptime, (int)$mtime );
+			$keysBatchesByExpiry[$expiry][] = $key;
+		}
 
-			$res = $db->newSelectQueryBuilder()
-				->select( [ 'keyname', 'value' ] )
-				->from( $ptable )
-				->where( $this->buildExistenceConditions( $db, array_keys( $argsByKey ), (int)$mtime ) )
-				->caller( __METHOD__ )
-				->fetchResultSet();
-
-			$rows = [];
-			$existingKeys = [];
-			foreach ( $res as $curRow ) {
-				$key = $curRow->keyname;
-				$existingKeys[$key] = true;
-				$serialValue = $this->dbDecodeSerialValue( $db, $curRow->value );
-				[ $exptime ] = $argsByKey[$key];
-				$expiry = $this->makeNewKeyExpiry( $exptime, (int)$mtime );
-				$rows[] = $this->buildUpsertRow( $db, $key, $serialValue, $expiry, $mt );
-			}
-			if ( !$rows ) {
-				return;
-			}
-			$db->newInsertQueryBuilder()
-				->insertInto( $ptable )
-				->rows( $rows )
-				->onDuplicateKeyUpdate()
-				->uniqueIndexFields( [ 'keyname' ] )
-				->set( $this->buildMultiUpsertSetForOverwrite( $db, $mt ) )
+		$existingCount = 0;
+		foreach ( $keysBatchesByExpiry as $expiry => $keyBatch ) {
+			$db->newUpdateQueryBuilder()
+				->update( $ptable )
+				->set( [ 'exptime' => $this->encodeDbExpiry( $db, $expiry ) ] )
+				->where( $this->buildExistenceConditions( $db, $keyBatch, (int)$mtime ) )
 				->caller( __METHOD__ )->execute();
-
-			foreach ( $argsByKey as $key => $unused ) {
-				$resByKey[$key] = isset( $existingKeys[$key] );
-			}
-		} else {
-			$keysBatchesByExpiry = [];
-			foreach ( $argsByKey as $key => [ $exptime ] ) {
-				$expiry = $this->makeNewKeyExpiry( $exptime, (int)$mtime );
-				$keysBatchesByExpiry[$expiry][] = $key;
-			}
-
-			$existingCount = 0;
-			foreach ( $keysBatchesByExpiry as $expiry => $keyBatch ) {
-				$db->newUpdateQueryBuilder()
-					->update( $ptable )
-					->set( [ 'exptime' => $this->encodeDbExpiry( $db, $expiry ) ] )
-					->where( $this->buildExistenceConditions( $db, $keyBatch, (int)$mtime ) )
-					->caller( __METHOD__ )->execute();
-				$existingCount += $db->affectedRows();
-			}
-			if ( $existingCount === count( $argsByKey ) ) {
-				foreach ( $argsByKey as $key => $args ) {
-					$resByKey[$key] = true;
-				}
+			$existingCount += $db->affectedRows();
+		}
+		if ( $existingCount === count( $argsByKey ) ) {
+			foreach ( $argsByKey as $key => $args ) {
+				$resByKey[$key] = true;
 			}
 		}
 
@@ -1003,7 +911,6 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		array &$resByKey
 	) {
 		foreach ( $argsByKey as $key => [ $step, $init, $exptime ] ) {
-			$mt = $this->makeTimestampedModificationToken( $mtime, $db );
 			$expiry = $this->makeNewKeyExpiry( $exptime, (int)$mtime );
 
 			// Use a transaction so that changes from other threads are not visible due to
@@ -1014,10 +921,10 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 			try {
 				$db->newInsertQueryBuilder()
 					->insertInto( $ptable )
-					->rows( $this->buildUpsertRow( $db, $key, $init, $expiry, $mt ) )
+					->rows( $this->buildUpsertRow( $db, $key, $init, $expiry ) )
 					->onDuplicateKeyUpdate()
 					->uniqueIndexFields( [ 'keyname' ] )
-					->set( $this->buildIncrUpsertSet( $db, $step, $init, $expiry, $mt, (int)$mtime ) )
+					->set( $this->buildIncrUpsertSet( $db, $step, $init, $expiry, (int)$mtime ) )
 					->caller( __METHOD__ )->execute();
 				$affectedCount = $db->affectedRows();
 				$row = $db->newSelectQueryBuilder()
@@ -1068,14 +975,13 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		array &$resByKey
 	) {
 		foreach ( $argsByKey as $key => [ $step, $init, $exptime ] ) {
-			$mt = $this->makeTimestampedModificationToken( $mtime, $db );
 			$expiry = $this->makeNewKeyExpiry( $exptime, (int)$mtime );
 			$db->newInsertQueryBuilder()
 				->insertInto( $ptable )
-				->rows( $this->buildUpsertRow( $db, $key, $init, $expiry, $mt ) )
+				->rows( $this->buildUpsertRow( $db, $key, $init, $expiry ) )
 				->onDuplicateKeyUpdate()
 				->uniqueIndexFields( [ 'keyname' ] )
-				->set( $this->buildIncrUpsertSet( $db, $step, $init, $expiry, $mt, (int)$mtime ) )
+				->set( $this->buildIncrUpsertSet( $db, $step, $init, $expiry, (int)$mtime ) )
 				->caller( __METHOD__ )->execute();
 			if ( !$db->affectedRows() ) {
 				$this->logger->warning( __METHOD__ . ": failed to set new $key value" );
@@ -1134,48 +1040,6 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	}
 
 	/**
-	 * Make a `modtoken` column value with the original time and source database server of a write
-	 *
-	 * @param float $mtime UNIX modification timestamp
-	 * @param IDatabase $db Handle to the primary database server sourcing the write
-	 * @return string String of the form "<SECONDS_SOURCE><MICROSECONDS>", where SECONDS_SOURCE
-	 *  is "<35 bit seconds portion of UNIX time><32 bit database server ID>" as 13 base 36 chars,
-	 *  and MICROSECONDS is "<20 bit microseconds portion of UNIX time>" as 4 base 36 chars
-	 */
-	private function makeTimestampedModificationToken( float $mtime, IDatabase $db ) {
-		// We have reserved space for upto 6 digits in the microsecond portion of the token.
-		// This is for future use only (maybe CAS tokens) and not currently used.
-		// It is currently populated by the microsecond portion returned by microtime,
-		// which generally has fewer than 6 digits of meaningful precision but can still be useful
-		// in debugging (to see the token continuously change even during rapid testing).
-		$seconds = (int)$mtime;
-		[ , $microseconds ] = explode( '.', sprintf( '%.6F', $mtime ) );
-
-		$id = sprintf( '%u', crc32( $db->getServerName() ) );
-
-		$token = implode( '', [
-			// 67 bit integral portion of UNIX timestamp, qualified
-			\Wikimedia\base_convert(
-				// 35 bit integral seconds portion of UNIX timestamp
-				str_pad( base_convert( (string)$seconds, 10, 2 ), 35, '0', STR_PAD_LEFT ) .
-				// 32 bit ID of the primary database server handling the write
-				str_pad( base_convert( $id, 10, 2 ), 32, '0', STR_PAD_LEFT ),
-				2,
-				36,
-				13
-			),
-			// 20 bit fractional portion of UNIX timestamp, as integral microseconds
-			str_pad( base_convert( $microseconds, 10, 36 ), 4, '0', STR_PAD_LEFT )
-		] );
-
-		if ( strlen( $token ) !== 17 ) {
-			throw new RuntimeException( "Modification timestamp overflow detected" );
-		}
-
-		return $token;
-	}
-
-	/**
 	 * WHERE conditions that check for existence and liveness of keys
 	 *
 	 * @param IDatabase $db
@@ -1198,24 +1062,19 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	 * @param string $key
 	 * @param string|int $serialValue New value
 	 * @param int $expiry Expiration timestamp or TTL_INDEFINITE
-	 * @param string $mt Modification token
 	 * @return array
 	 */
 	private function buildUpsertRow(
 		IDatabase $db,
 		$key,
 		$serialValue,
-		int $expiry,
-		string $mt
+		int $expiry
 	) {
 		$row = [
 			'keyname' => $key,
 			'value'   => $this->dbEncodeSerialValue( $db, $serialValue ),
 			'exptime' => $this->encodeDbExpiry( $db, $expiry )
 		];
-		if ( $this->multiPrimaryMode ) {
-			$row['modtoken'] = $mt;
-		}
 
 		return $row;
 	}
@@ -1224,37 +1083,17 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	 * SET array for handling key overwrites when a live or stale key exists
 	 *
 	 * @param IDatabase $db
-	 * @param string $mt Modification token
 	 * @return array
 	 */
-	private function buildMultiUpsertSetForOverwrite( IDatabase $db, string $mt ) {
+	private function buildMultiUpsertSetForOverwrite( IDatabase $db ) {
 		$expressionsByColumn = [
 			'value'   => $db->buildExcludedValue( 'value' ),
 			'exptime' => $db->buildExcludedValue( 'exptime' )
 		];
 
 		$set = [];
-		if ( $this->multiPrimaryMode ) {
-			// The query might take a while to replicate, during which newer values might get
-			// written. Qualify the query so that it does not override such values. Note that
-			// duplicate tokens generated around the same time for a key should still result
-			// in convergence given the use of server_id in modtoken (providing a total order
-			// among primary DB servers) and MySQL binlog ordering (providing a total order
-			// for writes replicating from a given primary DB server).
-			$expressionsByColumn['modtoken'] = $db->addQuotes( $mt );
-			foreach ( $expressionsByColumn as $column => $updateExpression ) {
-				$rhs = $db->conditional(
-					$db->addQuotes( substr( $mt, 0, 13 ) ) . ' >= ' .
-						$db->buildSubString( 'modtoken', 1, 13 ),
-					$updateExpression,
-					$column
-				);
-				$set[$column] = new RawSQLValue( $rhs );
-			}
-		} else {
-			foreach ( $expressionsByColumn as $column => $updateExpression ) {
-				$set[$column] = new RawSQLValue( $updateExpression );
-			}
+		foreach ( $expressionsByColumn as $column => $updateExpression ) {
+			$set[$column] = new RawSQLValue( $updateExpression );
 		}
 
 		return $set;
@@ -1267,7 +1106,6 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	 * @param int $step Positive counter incrementation value
 	 * @param int $init Positive initial counter value
 	 * @param int $expiry Expiration timestamp or TTL_INDEFINITE
-	 * @param string $mt Modification token
 	 * @param int $mtUnixTs UNIX timestamp of modification token
 	 * @return array
 	 */
@@ -1276,7 +1114,6 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		int $step,
 		int $init,
 		int $expiry,
-		string $mt,
 		int $mtUnixTs
 	) {
 		// Map of (column => (SQL for non-expired key rows, SQL for expired key rows))
@@ -1290,9 +1127,6 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 				$db->addQuotes( $this->encodeDbExpiry( $db, $expiry ) )
 			]
 		];
-		if ( $this->multiPrimaryMode ) {
-			$expressionsByColumn['modtoken'] = [ 'modtoken', $db->addQuotes( $mt ) ];
-		}
 
 		$set = [];
 		foreach ( $expressionsByColumn as $column => [ $updateExpression, $initExpression ] ) {
@@ -1506,19 +1340,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		&$keysDeletedCount = 0,
 		?array $progress = null
 	) {
-		$cutoffUnix = ConvertibleTimestamp::convert( TS_UNIX, $timestamp );
-		if ( $this->multiPrimaryMode ) {
-			// Eventual consistency requires the preservation of any key that was recently
-			// modified. The key must exist on this database server long enough for the server
-			// to receive, via replication, all writes to the key with lower timestamps. Such
-			// writes should be no-ops since the existing key value should "win". If the network
-			// partitions between datacenters A and B for 30 minutes, the database servers in
-			// each datacenter will see an initial burst of writes with "old" timestamps via
-			// replication. This might include writes with lower timestamps that the existing
-			// key value. Therefore, clock skew and replication delay are both factors.
-			$cutoffUnixSafe = (int)$this->getCurrentTime() - self::SAFE_PURGE_DELAY_SEC;
-			$cutoffUnix = min( $cutoffUnix, $cutoffUnixSafe );
-		}
+		$cutoffUnix = (int)ConvertibleTimestamp::convert( TS_UNIX, $timestamp );
 		$tableIndexes = range( 0, $this->numTableShards - 1 );
 		shuffle( $tableIndexes );
 

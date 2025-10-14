@@ -77,6 +77,7 @@ For notes on 1.44.x and older releases, see HISTORY.
 * (T405087) $wgDBDefaultGroup has been removed without deprecation.
   Use ILBFactory::setDefaultGroupName() instead.
 * (T306325) $wgEnableSearchContributorsByIP has been removed.
+* (T389893) 'multiPrimaryMode' has been removed from SqlBagOStuff config.
 * (T299951) $wgCategoryLinksSchemaMigrationStage, a temporary setting which
   controls the database schema migration for the categorylinks table, has been
   removed.

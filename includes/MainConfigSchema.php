@@ -4006,12 +4006,6 @@ class MainConfigSchema {
 	 * SqlBagOStuff also accepts the following optional parameters:
 	 *
 	 *   - dbDomain: The database name to pass to the LoadBalancer.
-	 *   - multiPrimaryMode: Whether the portion of the dataset belonging to each tag/shard is
-	 *      replicated among one or more regions, with one "co-primary" server in each region.
-	 *      Queries are issued in a manner that provides Last-Write-Wins eventual consistency.
-	 *      This option requires the "server" or "servers" options. Only MySQL, with statement
-	 *      based replication (log_bin='ON' and binlog_format='STATEMENT') is supported. Also,
-	 *      the `modtoken` column must exist on the `objectcache` table(s).
 	 *   - purgePeriod: The average number of object cache writes in between garbage collection
 	 *      operations, where expired entries are removed from the database. Or in other words,
 	 *      the probability of performing a purge is one in every this number. If set to zero,
