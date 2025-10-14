@@ -5,6 +5,7 @@ namespace MediaWiki\RecentChanges;
 use ArrayIterator;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Html\FormOptions;
+use MediaWiki\RecentChanges\ChangesListQuery\ChangesListQuery;
 use MediaWiki\SpecialPage\ChangesListSpecialPage;
 use Wikimedia\Rdbms\IReadableDatabase;
 
@@ -223,13 +224,37 @@ class ChangesListFilterGroupContainer implements \IteratorAggregate {
 	 * @param FormOptions $opts Wrapper for the current request options and their defaults
 	 * @param bool $isStructuredFiltersEnabled True if the Structured UI is currently enabled
 	 */
-	public function modifyQuery( IReadableDatabase $dbr, ChangesListSpecialPage $specialPage,
+	public function modifyLegacyQuery( IReadableDatabase $dbr, ChangesListSpecialPage $specialPage,
 		&$tables, &$fields, &$conds, &$query_options, &$join_conds,
 		FormOptions $opts, $isStructuredFiltersEnabled
 	) {
 		foreach ( $this->filterGroups as $filterGroup ) {
 			$filterGroup->modifyQuery( $dbr, $specialPage, $tables, $fields, $conds,
 				$query_options, $join_conds, $opts, $isStructuredFiltersEnabled );
+		}
+	}
+
+	/**
+	 * Modifies the query according to the current filter groups
+	 *
+	 * The modification is only done if the filter group is in effect.  This means that
+	 * one or more valid and allowed filters were selected.
+	 *
+	 * @param ChangesListQuery $query
+	 * @param FormOptions $opts
+	 * @param bool $isStructuredFiltersEnabled
+	 */
+	public function modifyChangesListQuery(
+		ChangesListQuery $query,
+		FormOptions $opts,
+		$isStructuredFiltersEnabled
+	) {
+		if ( $this->areFiltersInConflict( $opts ) ) {
+			$query->forceEmptySet();
+			return;
+		}
+		foreach ( $this->filterGroups as $filterGroup ) {
+			$filterGroup->modifyChangesListQuery( $query, $opts, $isStructuredFiltersEnabled );
 		}
 	}
 
@@ -359,8 +384,16 @@ class ChangesListFilterGroupContainer implements \IteratorAggregate {
 	 * @param array &$classes Non-associative array of CSS class names; appended to if needed
 	 */
 	public function applyCssClassIfNeeded( IContextSource $ctx, RecentChange $rc, array &$classes ) {
-		foreach ( $this->filterGroups as $filterGroup ) {
-			foreach ( $filterGroup->getFilters() as $filter ) {
+		foreach ( $this->filterGroups as $groupName => $filterGroup ) {
+			foreach ( $filterGroup->getFilters() as $filterName => $filter ) {
+				// New system
+				if ( $rc->isHighlighted( "$groupName/$filterName" ) ) {
+					$class = $filter->getCssClass();
+					if ( $class !== null ) {
+						$classes[] = $class;
+					}
+				}
+				// Old system
 				$filter->applyCssClassIfNeeded( $ctx, $rc, $classes );
 			}
 		}

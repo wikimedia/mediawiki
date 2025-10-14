@@ -58,7 +58,7 @@ class ChangesListStringOptionsFilterGroup extends ChangesListFilterGroup {
 	/**
 	 * Callable used to do the actual query modification; see constructor
 	 *
-	 * @var callable
+	 * @var callable|null
 	 */
 	protected $queryCallable;
 
@@ -107,7 +107,7 @@ class ChangesListStringOptionsFilterGroup extends ChangesListFilterGroup {
 
 		parent::__construct( $groupDefinition );
 
-		$this->queryCallable = $groupDefinition['queryCallable'];
+		$this->queryCallable = $groupDefinition['queryCallable'] ?? null;
 
 		if ( isset( $groupDefinition['default'] ) ) {
 			$this->setDefault( $groupDefinition['default'] );
@@ -165,6 +165,9 @@ class ChangesListStringOptionsFilterGroup extends ChangesListFilterGroup {
 	) {
 		// STRING_OPTIONS filter groups are exclusively active on Structured UI
 		if ( !$isStructuredFiltersEnabled ) {
+			return;
+		}
+		if ( !$this->queryCallable ) {
 			return;
 		}
 

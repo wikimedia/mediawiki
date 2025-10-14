@@ -60,7 +60,9 @@ class SpecialWatchlistTest extends SpecialPageTestBase {
 			$services->getUserOptionsLookup(),
 			$services->getChangeTagsStore(),
 			$services->getUserIdentityUtils(),
-			$services->getTempUserConfig()
+			$services->getTempUserConfig(),
+			$services->getRecentChangeFactory(),
+			$services->getChangesListQueryFactory(),
 		);
 	}
 
@@ -238,34 +240,35 @@ class SpecialWatchlistTest extends SpecialPageTestBase {
 		// Warning: significant line-ending whitespace
 		$expected = <<<SQL
 SELECT 
-	rc_id,
+	recentchanges_actor.actor_user AS rc_user,
+	recentchanges_actor.actor_name AS rc_user_text,
+	rc_bot,
+	rc_minor,
+	rc_this_oldid,
+	page_latest,
+	rc_source,
+	rc_log_type,
 	rc_timestamp,
 	rc_namespace,
 	rc_title,
-	rc_minor,
-	rc_bot,
+	wl_notificationtimestamp,
+	rc_id,
 	rc_cur_id,
-	rc_this_oldid,
 	rc_last_oldid,
 	rc_type,
-	rc_source,
 	rc_patrolled,
 	rc_ip,
 	rc_old_len,
 	rc_new_len,
 	rc_deleted,
 	rc_logid,
-	rc_log_type,
 	rc_log_action,
 	rc_params,
 	rc_actor,
-	recentchanges_actor.actor_user AS rc_user,
-	recentchanges_actor.actor_name AS rc_user_text,
 	recentchanges_comment.comment_text AS rc_comment_text,
 	recentchanges_comment.comment_data AS rc_comment_data,
-	recentchanges_comment.comment_id AS rc_comment_id,we_expiry,
-	page_latest,
-	wl_notificationtimestamp,
+	recentchanges_comment.comment_id AS rc_comment_id,
+	we_expiry,
 	(
 		SELECT GROUP_CONCAT(ctd_name SEPARATOR ',') 
 		FROM change_tag JOIN change_tag_def ON ((ct_tag_id=ctd_id)) 
@@ -274,13 +277,13 @@ SELECT
 FROM recentchanges 
 	JOIN actor recentchanges_actor ON ((actor_id=rc_actor)) 
 	JOIN comment recentchanges_comment ON ((comment_id=rc_comment_id)) 
-	JOIN watchlist ON (wl_user = 1 AND (wl_namespace=rc_namespace) AND (wl_title=rc_title)) 
-	LEFT JOIN watchlist_expiry ON ((wl_id = we_item)) 
-	LEFT JOIN page ON ((rc_cur_id=page_id)) 
+	LEFT JOIN page ON ((page_id=rc_cur_id)) 
+	JOIN watchlist ON ((wl_namespace=rc_namespace) AND (wl_title=rc_title) AND wl_user = 1) 
+	LEFT JOIN watchlist_expiry ON ((we_item=wl_id)) 
 WHERE ((rc_this_oldid = page_latest OR rc_this_oldid = 0)) 
-	AND (rc_timestamp >= '20250101000000') 
 	AND ((we_expiry IS NULL OR we_expiry > '20250101000000')) 
 	AND ((rc_source != 'mw.log' OR (rc_deleted & 1) != 1)) 
+	AND (rc_timestamp >= '20250101000000') 
 ORDER BY rc_timestamp DESC 
 LIMIT 50
 SQL;

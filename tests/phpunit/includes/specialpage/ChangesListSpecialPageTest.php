@@ -7,6 +7,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\RecentChanges\ChangesListBooleanFilterGroup;
 use MediaWiki\RecentChanges\ChangesListFilterGroupContainer;
 use MediaWiki\RecentChanges\ChangesListStringOptionsFilterGroup;
+use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\SpecialPage\ChangesListSpecialPage;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
@@ -39,6 +40,8 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 	}
 
 	protected function setUp(): void {
+		ExtensionRegistry::getInstance()->setAttributeForTest(
+			'RecentChangeSources', [] );
 		$this->overrideConfigValue(
 			MainConfigNames::GroupPermissions,
 			[ '*' => [ 'edit' => true ] ]
@@ -65,7 +68,9 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 					'ChangesListSpecialPage',
 					'',
 					$this->getServiceContainer()->getUserIdentityUtils(),
-					$this->getServiceContainer()->getTempUserConfig()
+					$this->getServiceContainer()->getTempUserConfig(),
+					$this->getServiceContainer()->getRecentChangeFactory(),
+					$this->getServiceContainer()->getChangesListQueryFactory(),
 				]
 			)
 			->onlyMethods( [ 'getPageTitle', 'getDefaultDays' ] )
@@ -95,24 +100,13 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 
 		$this->changesListSpecialPage->setContext( $context );
 		$formOptions = $this->changesListSpecialPage->setup( null );
-
-		$tables = [];
-		$fields = [];
-		$queryConditions = [];
-		$query_options = [];
-		$join_conds = [];
-
-		call_user_func_array(
-			[ $this->changesListSpecialPage, 'buildQuery' ],
-			[
-				&$tables,
-				&$fields,
-				&$queryConditions,
-				&$query_options,
-				&$join_conds,
-				$formOptions
-			]
-		);
+		$query = $this->changesListSpecialPage->buildQuery( $formOptions );
+		$query->audience( null );
+		$query->sqbMutator( static function ( &$sqb ) use ( &$queryConditions ) {
+			$queryConditions = $sqb->getQueryInfo()['conds'];
+			$sqb = null;
+		} );
+		$query->fetchResult();
 
 		return $queryConditions;
 	}
@@ -314,8 +308,8 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		$this->assertConditions(
 			[
 				'((rc_namespace = 0 AND ' .
-				'(rc_title LIKE \'A/%\' ESCAPE \'`\' OR rc_title LIKE \'B/%\' ESCAPE \'`\')))' .
-				' OR ((rc_namespace = 1 AND ' .
+				'(rc_title LIKE \'A/%\' ESCAPE \'`\' OR rc_title LIKE \'B/%\' ESCAPE \'`\'))' .
+				' OR (rc_namespace = 1 AND ' .
 				'(rc_title LIKE \'C/%\' ESCAPE \'`\' OR rc_title LIKE \'D/%\' ESCAPE \'`\')))'
 			],
 			[
@@ -355,7 +349,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		$user = $this->getTestUser()->getUser();
 		$this->assertConditions(
 			[ # expected
-				'actor_user' => $user->getId(),
+				"actor_user = {$user->getId()}",
 			],
 			[
 				'hidebyothers' => 1,
@@ -367,7 +361,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		$user = User::newFromName( '10.11.12.13', false );
 		$this->assertConditions(
 			[ # expected
-				'actor_name' => '10.11.12.13',
+				"actor_name = '10.11.12.13'",
 			],
 			[
 				'hidebyothers' => 1,
@@ -380,7 +374,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 	public function testRcHidepageedits() {
 		$this->assertConditions(
 			[ # expected
-				"rc_type != 0",
+				"rc_source IN ('mw.new','mw.log','mw.categorize')",
 			],
 			[
 				'hidepageedits' => 1,
@@ -392,7 +386,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 	public function testRcHidenewpages() {
 		$this->assertConditions(
 			[ # expected
-				"rc_type != 1",
+				"rc_source IN ('mw.edit','mw.log','mw.categorize')",
 			],
 			[
 				'hidenewpages' => 1,
@@ -404,7 +398,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 	public function testRcHidelog() {
 		$this->assertConditions(
 			[ # expected
-				"rc_type != 3",
+				"rc_source IN ('mw.edit','mw.new','mw.categorize')",
 			],
 			[
 				'hidelog' => 1,
@@ -416,7 +410,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 	public function testRcHidehumans() {
 		$this->assertConditions(
 			[ # expected
-				'rc_bot' => 1,
+				'rc_bot = 1',
 			],
 			[
 				'hidebots' => 0,
@@ -460,7 +454,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		$user = $this->getTestSysop()->getUser();
 		$this->assertConditions(
 			[ # expected
-				'rc_patrolled' => 0,
+				'rc_patrolled = 0',
 			],
 			[
 				'hidepatrolled' => 1,
@@ -474,7 +468,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		$user = $this->getTestSysop()->getUser();
 		$this->assertConditions(
 			[ # expected
-				'rc_patrolled' => [ 1, 2 ],
+				'rc_patrolled IN (1,2)',
 			],
 			[
 				'hideunpatrolled' => 1,
@@ -488,7 +482,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		$user = $this->getTestSysop()->getUser();
 		$this->assertConditions(
 			[ # expected
-				'rc_patrolled' => 1,
+				'rc_patrolled = 1',
 			],
 			[
 				'reviewStatus' => 'manual'
@@ -498,7 +492,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		);
 		$this->assertConditions(
 			[ # expected
-				'rc_patrolled' => [ 0, 2 ],
+				'rc_patrolled IN (0,2)',
 			],
 			[
 				'reviewStatus' => 'unpatrolled;auto'
@@ -536,7 +530,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		$this->assertConditions(
 			[
 				# expected
-				"rc_type != 6"
+				"rc_source IN ('mw.edit','mw.new','mw.log')"
 			],
 			[
 				'hidecategorization' => 1
@@ -816,134 +810,6 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		$filterNames = array_keys(
 			$this->changesListSpecialPage->getFilterGroup( 'userExpLevel' )->getFilters() );
 		$this->assertSame( [ "unregistered", "registered", "newcomer", "learner", "experienced" ], $filterNames );
-	}
-
-	public function testFilterUserExpLevel() {
-		$now = time();
-		$this->overrideConfigValues( [
-			MainConfigNames::LearnerEdits => 10,
-			MainConfigNames::LearnerMemberSince => 4,
-			MainConfigNames::ExperiencedUserEdits => 500,
-			MainConfigNames::ExperiencedUserMemberSince => 30,
-		] );
-
-		$this->createUsers( [
-			'Newcomer1' => [ 'edits' => 2, 'days' => 2 ],
-			'Newcomer2' => [ 'edits' => 12, 'days' => 3 ],
-			'Newcomer3' => [ 'edits' => 8, 'days' => 5 ],
-			'Learner1' => [ 'edits' => 15, 'days' => 10 ],
-			'Learner2' => [ 'edits' => 450, 'days' => 20 ],
-			'Learner3' => [ 'edits' => 460, 'days' => 33 ],
-			'Learner4' => [ 'edits' => 525, 'days' => 28 ],
-			'Experienced1' => [ 'edits' => 538, 'days' => 33 ],
-		], $now );
-
-		// newcomers only
-		$this->assertArrayEquals(
-			[ 'Newcomer1', 'Newcomer2', 'Newcomer3' ],
-			$this->fetchUsers( [ 'newcomer' ], $now )
-		);
-
-		// newcomers and learner
-		$this->assertArrayEquals(
-			[
-				'Newcomer1', 'Newcomer2', 'Newcomer3',
-				'Learner1', 'Learner2', 'Learner3', 'Learner4',
-			],
-			$this->fetchUsers( [ 'newcomer', 'learner' ], $now )
-		);
-
-		// newcomers and more learner
-		$this->assertArrayEquals(
-			[
-				'Newcomer1', 'Newcomer2', 'Newcomer3',
-				'Experienced1',
-			],
-			$this->fetchUsers( [ 'newcomer', 'experienced' ], $now )
-		);
-
-		// learner only
-		$this->assertArrayEquals(
-			[ 'Learner1', 'Learner2', 'Learner3', 'Learner4' ],
-			$this->fetchUsers( [ 'learner' ], $now )
-		);
-
-		// more experienced only
-		$this->assertArrayEquals(
-			[ 'Experienced1' ],
-			$this->fetchUsers( [ 'experienced' ], $now )
-		);
-
-		// learner and more experienced
-		$this->assertArrayEquals(
-			[
-				'Learner1', 'Learner2', 'Learner3', 'Learner4',
-				'Experienced1',
-			],
-			$this->fetchUsers( [ 'learner', 'experienced' ], $now )
-		);
-	}
-
-	private function createUsers( array $specs, int $now ) {
-		$dbw = $this->getDb();
-		foreach ( $specs as $name => $spec ) {
-			User::createNew(
-				$name,
-				[
-					'editcount' => $spec['edits'],
-					'registration' => $dbw->timestamp( $this->daysAgo( $spec['days'], $now ) ),
-					'email' => 'ut',
-				]
-			);
-		}
-	}
-
-	private function fetchUsers( array $filters, int $now ): array {
-		$tables = [];
-		$conds = [];
-		$fields = [];
-		$query_options = [];
-		$join_conds = [];
-
-		sort( $filters );
-
-		call_user_func_array(
-			[ $this->changesListSpecialPage, 'filterOnUserExperienceLevel' ],
-			[
-				get_class( $this->changesListSpecialPage ),
-				$this->changesListSpecialPage->getContext(),
-				$this->changesListSpecialPage->getDB(),
-				&$tables,
-				&$fields,
-				&$conds,
-				&$query_options,
-				&$join_conds,
-				$filters,
-				$now
-			]
-		);
-
-		// @todo: This is not at all safe or sensible. It just blindly assumes
-		// nothing in $conds depends on any other tables.
-		$result = $this->getDb()->newSelectQueryBuilder()
-			->select( 'user_name' )
-			->from( 'user' )
-			->leftJoin( 'actor', null, 'actor_user=user_id' )
-			->where( $conds )
-			->andWhere( [ 'user_email' => 'ut' ] )
-			->fetchResultSet();
-
-		$usernames = [];
-		foreach ( $result as $row ) {
-			$usernames[] = $row->user_name;
-		}
-
-		return $usernames;
-	}
-
-	private function daysAgo( int $days, int $now ): int {
-		$secondsPerDay = 86400;
-		return $now - $days * $secondsPerDay;
 	}
 
 	public function testGetStructuredFilterJsData() {

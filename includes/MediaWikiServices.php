@@ -128,6 +128,7 @@ use MediaWiki\Permissions\RestrictionStore;
 use MediaWiki\PoolCounter\PoolCounterFactory;
 use MediaWiki\Preferences\PreferencesFactory;
 use MediaWiki\Preferences\SignatureValidatorFactory;
+use MediaWiki\RecentChanges\ChangesListQuery\ChangesListQueryFactory;
 use MediaWiki\RecentChanges\PatrolManager;
 use MediaWiki\RecentChanges\RecentChangeFactory;
 use MediaWiki\RecentChanges\RecentChangeLookup;
@@ -895,6 +896,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getCentralIdLookupFactory(): CentralIdLookupFactory {
 		return $this->getService( 'CentralIdLookupFactory' );
+	}
+
+	/**
+	 * @since 1.45
+	 * @return ChangesListQueryFactory
+	 */
+	public function getChangesListQueryFactory(): ChangesListQueryFactory {
+		return $this->getService( 'ChangesListQueryFactory' );
 	}
 
 	/**
