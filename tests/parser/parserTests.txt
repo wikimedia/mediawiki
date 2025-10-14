@@ -18852,7 +18852,7 @@ wgFragmentMode=[ "html5", "legacy" ]
 !! wikitext
 <span id="æ: v">byte</span>[[#æ: v|backlink]]
 !! html/php
-<p><span id="æ:_v">byte</span><a href="#æ:_v">backlink</a>
+<p><span id="æ:&#95;v">byte</span><a href="#æ:_v">backlink</a>
 </p>
 !! html/parsoid
 <p><span id="æ:_v" data-parsoid='{"stx":"html","a":{"id":"æ:_v"},"sa":{"id":"æ: v"}}'>byte</span><a rel="mw:WikiLink" href="./Main_Page#æ:_v" data-parsoid='{"stx":"piped","a":{"href":"./Main_Page#æ:_v"},"sa":{"href":"#æ: v"}}'>backlink</a></p>
@@ -18865,7 +18865,7 @@ wgFragmentMode=[ "legacy" ]
 !! wikitext
 <span id="æ: v">byte</span>[[#æ: v|backlink]]
 !! html/php
-<p><span id=".C3.A6:_v">byte</span><a href="#.C3.A6:_v">backlink</a>
+<p><span id=".C3.A6:&#95;v">byte</span><a href="#.C3.A6:_v">backlink</a>
 </p>
 !! end
 
@@ -19319,7 +19319,7 @@ parsoid=wt2html,html2html
 {| STYLE=__TOC__
 !! html/php
 <h2><span class="mw-headline" id="a">a</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: a">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-<table style="&#95;_TOC&#95;_">
+<table style="&#95;&#95;TOC&#95;&#95;">
 <tbody><tr><td></td></tr>
 </tbody></table>
 !! html/parsoid
@@ -23415,7 +23415,7 @@ Id starting with underscore
 !! wikitext
 <div id="_ref"></div>
 !! html/*
-<div id="_ref"></div>
+<div id="&#95;ref"></div>
 !! end
 
 !! test
@@ -23819,7 +23819,7 @@ HTML5 data attributes
 !! html/php
 <p><span data-foo="bar">Baz</span>
 </p>
-<p data-abc-def_hij="">Quuz</p>
+<p>Quuz</p>
 !! html/parsoid
 <p><span data-foo="bar" data-parsoid='{"stx":"html"}'>Baz</span></p>
 <p data-abc-def_hij="" data-parsoid='{"stx":"html"}'>Quuz</p>

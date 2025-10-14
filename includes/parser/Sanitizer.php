@@ -573,8 +573,10 @@ class Sanitizer {
 			# * Ensure attribute name will be accepted by the HTML
 			#   parser; see
 			#   https://github.com/whatwg/dom/issues/849#issuecomment-1007541209
+			# * Underscore and double-wide underscore (U+FF3F) is disallowed
+			#   here (but not in Parsoid): T407131
 			if ( (
-				!preg_match( '|^data-[^:= \t\r\n/>\0]*$|i', $attribute ) &&
+				!preg_match( '|^data-[^:= \t\r\n/>\0_＿]*$|i', $attribute ) &&
 				!array_key_exists( $attribute, $allowed )
 			) || self::isReservedDataAttribute( $attribute ) ) {
 				continue;
@@ -916,7 +918,8 @@ class Sanitizer {
 			'RFC'  => '&#82;FC',
 			'PMID' => '&#80;MID',
 			'|'    => '&#124;',
-			'__'   => '&#95;_',
+			'_'    => '&#95;',
+			'＿'    => '&#xFF3F;', // Japanese magic words
 		] );
 
 		# Stupid hack
