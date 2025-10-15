@@ -147,10 +147,11 @@ class BacklinkCache {
 	/**
 	 * Get the replica DB connection to the database
 	 *
+	 * @param string|false $domain
 	 * @return IReadableDatabase
 	 */
-	private function getDB() {
-		return $this->dbProvider->getReplicaDatabase();
+	private function getDB( string|false $domain = false ): IReadableDatabase {
+		return $this->dbProvider->getReplicaDatabase( $domain );
 	}
 
 	/**
@@ -537,47 +538,59 @@ class BacklinkCache {
 	 * @return stdClass[]
 	 */
 	private function getCascadeProtectedLinksInternal(): array {
-		$dbr = $this->getDB();
+		$cascadePages = $this->getDB()->newSelectQueryBuilder()
+			->select( [ 'page_id', 'page_namespace', 'page_title' ] )
+			->from( 'page' )
+			->join( 'page_restrictions', null, 'page_id = pr_page' )
+			->where( [ 'pr_cascade' => 1 ] )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 
-		// @todo: use UNION without breaking tests that use temp tables
-		$resSets = [];
+		if ( !$cascadePages->numRows() ) {
+			return [];
+		}
+
+		$cascadePagesById = [];
+		foreach ( $cascadePages as $row ) {
+			$cascadePagesById[$row->page_id] = $row;
+		}
+
 		$linkConds = $this->linksMigration->getLinksConditions(
 			'templatelinks', TitleValue::newFromPage( $this->page )
 		);
-		$resSets[] = $dbr->newSelectQueryBuilder()
-			->select( [ 'page_namespace', 'page_title', 'page_id' ] )
+		$templatelinkPages = $this->getDB( TemplateLinksTable::VIRTUAL_DOMAIN )->newSelectQueryBuilder()
+			->select( 'tl_from' )
 			->from( 'templatelinks' )
-			->join( 'page_restrictions', null, 'tl_from = pr_page' )
-			->join( 'page', null, 'page_id = tl_from' )
 			->where( $linkConds )
-			->andWhere( [ 'pr_cascade' => 1 ] )
-			->distinct()
-			->caller( __METHOD__ )->fetchResultSet();
-		if ( $this->page->getNamespace() === NS_FILE ) {
-			$resSets[] = $dbr->newSelectQueryBuilder()
-				->select( [ 'page_namespace', 'page_title', 'page_id' ] )
-				->from( 'imagelinks' )
-				->join( 'page_restrictions', null, 'il_from = pr_page' )
-				->join( 'page', null, 'page_id = il_from' )
-				->where( [
-					'il_to' => $this->page->getDBkey(),
-					'pr_cascade' => 1,
-				] )
-				->distinct()
-				->caller( __METHOD__ )->fetchResultSet();
+			->andWhere( [ 'tl_from' => array_keys( $cascadePagesById ) ] )
+			->caller( __METHOD__ )
+			->fetchFieldValues();
+
+		$result = [];
+		foreach ( $templatelinkPages as $pageId ) {
+			$result[] = $cascadePagesById[$pageId];
 		}
 
-		// Combine and de-duplicate the results
-		$mergedRes = [];
-		foreach ( $resSets as $res ) {
-			foreach ( $res as $row ) {
-				// Index by page_id to remove duplicates
-				$mergedRes[$row->page_id] = $row;
+		if ( $this->page->getNamespace() === NS_FILE ) {
+			$imagelinkPages = $this->getDB( ImageLinksTable::VIRTUAL_DOMAIN )->newSelectQueryBuilder()
+				->select( 'il_from' )
+				->from( 'imagelinks' )
+				->where( [
+					'il_from' => array_keys( $cascadePagesById ),
+					'il_to' => $this->page->getDBkey()
+				] )
+				->caller( __METHOD__ )
+				->fetchFieldValues();
+
+			foreach ( $imagelinkPages as $pageId ) {
+				if ( !isset( $cascadePagesById[$pageId] ) ) {
+					continue;
+				}
+				$result[] = $cascadePagesById[$pageId];
 			}
 		}
 
-		// Now that we've de-duplicated, throw away the keys
-		return array_values( $mergedRes );
+		return $result;
 	}
 }
 
