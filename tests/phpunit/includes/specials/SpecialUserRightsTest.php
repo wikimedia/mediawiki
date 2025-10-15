@@ -3,13 +3,13 @@
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Specials\SpecialUserRights;
+use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserGroupManagerFactory;
 use MediaWiki\User\UserGroupsSpecialPageTarget;
 use MediaWiki\User\UserIdentity;
-use MediaWiki\User\UserIdentityValue;
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\Parsoid\Utils\DOMCompat;
 use Wikimedia\Parsoid\Utils\DOMUtils;
@@ -23,6 +23,7 @@ use Wikimedia\TestingAccessWrapper;
 class SpecialUserRightsTest extends SpecialPageTestBase {
 
 	use TempUserTestTrait;
+	use MockAuthorityTrait;
 
 	/**
 	 * @inheritDoc
@@ -38,24 +39,6 @@ class SpecialUserRightsTest extends SpecialPageTestBase {
 			$services->getWatchlistManager(),
 			$services->getTempUserConfig()
 		);
-	}
-
-	/** @dataProvider provideUserCanChangeRights */
-	public function testUserCanChangeRights( $targetUser, $checkIfSelf, $expectedReturnValue ) {
-		$objectUnderTest = $this->newSpecialPage();
-		$this->assertSame( $expectedReturnValue, $objectUnderTest->userCanChangeRights( $targetUser, $checkIfSelf ) );
-	}
-
-	public static function provideUserCanChangeRights() {
-		return [
-			'Target user not registered' => [ UserIdentityValue::newAnonymous( 'Test' ), true, false ],
-		];
-	}
-
-	public function testUserCanChangeRightsForTemporaryAccount() {
-		$temporaryAccount = $this->getServiceContainer()->getTempUserCreator()
-			->create( null, new FauxRequest() )->getUser();
-		$this->testUserCanChangeRights( $temporaryAccount, false, false );
 	}
 
 	private function performBasicFormAssertions( $html, $target ) {
@@ -337,14 +320,15 @@ class SpecialUserRightsTest extends SpecialPageTestBase {
 	public function testDisplayCurrentGroups() {
 		$testUser = $this->getTestUser();
 		$userId = $testUser->getUserIdentity()->getId();
+		$memberships = [
+			new UserGroupMembership( $userId, 'sysop' ),
+			new UserGroupMembership( $userId, 'bureaucrat' ),
+			new UserGroupMembership( $userId, 'bot', '99990101000000' ),
+		];
 
 		$ugmMock = $this->createMock( UserGroupManager::class );
 		$ugmMock->method( 'getUserGroupMemberships' )
-			->willReturn( [
-				new UserGroupMembership( $userId, 'sysop' ),
-				new UserGroupMembership( $userId, 'bureaucrat' ),
-				new UserGroupMembership( $userId, 'bot', '99990101000000' ),
-			] );
+			->willReturn( $memberships );
 		$ugmMock->method( 'getGroupsChangeableBy' )
 			->willReturn( [ 'add' => [], 'remove' => [], 'add-self' => [], 'remove-self' => [] ] );
 		$ugmMock->method( 'getUserAutopromoteGroups' )
@@ -360,10 +344,10 @@ class SpecialUserRightsTest extends SpecialPageTestBase {
 		$context->setLanguage( 'qqx' );
 		$specialPage->setContext( $context );
 
-		// FIXME: We need to ensure that the special page creates the UserGroupManager object and the method below
-		// in one of the three that do so. Otherwise, we would be trying to call a method on null.
-		$specialPage->userCanChangeRights( $testUser->getUser() );
 		$wrappedPage = TestingAccessWrapper::newFromObject( $specialPage );
+		$wrappedPage->targetUser = $testUser->getUser();
+		$wrappedPage->userGroupManager = $ugmMock;
+		$wrappedPage->groupMemberships = $memberships;
 		$target = new UserGroupsSpecialPageTarget( $testUser->getUser()->getName(), $testUser->getUserIdentity() );
 
 		// This test is deliberately not using executeSpecialPage, as we want to ensure that these group names are
@@ -402,22 +386,30 @@ class SpecialUserRightsTest extends SpecialPageTestBase {
 	}
 
 	/** @dataProvider provideSupportsWatchUser */
-	public function testSupportsWatchUser( UserIdentity $userIdentity, bool $expected ) {
-		$specialPage = $this->newSpecialPage();
-		$wrappedPage = TestingAccessWrapper::newFromObject( $specialPage );
+	public function testSupportsWatchUser( callable $target, bool $expected ) {
+		$user = $this->getTestUser()->getUser();
+		[ $html ] = $this->executeSpecialPage(
+			$target( $user ),
+			null,
+			'qqx',
+			$this->mockAnonUltimateAuthority()
+		);
 
-		$target = new UserGroupsSpecialPageTarget( $userIdentity->getName(), $userIdentity );
-		$this->assertSame( $expected, $wrappedPage->supportsWatchUser( $target ) );
+		if ( $expected ) {
+			$this->assertStringContainsString( '(userrights-watchuser)', $html );
+		} else {
+			$this->assertStringNotContainsString( '(userrights-watchuser)', $html );
+		}
 	}
 
 	public static function provideSupportsWatchUser() {
 		return [
 			'User on local wiki' => [
-				'userIdentity' => new UserIdentityValue( 1, 'Test User 1' ),
+				'target' => static fn ( UserIdentity $user ) => $user->getName(),
 				'expected' => true,
 			],
 			'User on remote wiki' => [
-				'userIdentity' => new UserIdentityValue( 2, 'Test User 1', 'otherwiki' ),
+				'target' => static fn ( UserIdentity $user ) => $user->getName() . '@otherwiki',
 				'expected' => false,
 			],
 		];
@@ -439,7 +431,7 @@ class SpecialUserRightsTest extends SpecialPageTestBase {
 		$specialPage = $this->newSpecialPage();
 		$specialPage->setContext( $context );
 		$wrappedPage = TestingAccessWrapper::newFromObject( $specialPage );
-		$wrappedPage->userGroupManager = $this->getServiceContainer()->getUserGroupManager();
+		$wrappedPage->explicitGroups = [ 'bot', 'sysop', 'bureaucrat', 'interface-admin' ];
 
 		$groupsStatus = $wrappedPage->readGroupsForm();
 		$this->assertStatusGood( $groupsStatus );

@@ -30,6 +30,33 @@ use Status;
 abstract class UserGroupsSpecialPage extends SpecialPage {
 
 	/**
+	 * @var string The descriptor of the target user, e.g. "Foo", "Foo@wiki" or "#123". Will be used as a target in
+	 *   the edit groups form.
+	 */
+	protected string $targetDescriptor = '';
+
+	/** @var list<string> An array of all explicit groups in the system */
+	protected array $explicitGroups = [];
+
+	/**
+	 * @var array<string,UserGroupMembership> An array of group name => UserGroupMembership objects that the target
+	 *   user belongs to
+	 */
+	protected array $groupMemberships = [];
+
+	/** @var array<string> An array of group names that can be added by the current user to the current target */
+	protected array $addableGroups = [];
+
+	/** @var array<string> An array of group names that can be removed by the current user to the current target */
+	protected array $removableGroups = [];
+
+	/** @var array<string,list<Message|string>> An array of group name => list of annotations to show below the group */
+	protected array $groupAnnotations = [];
+
+	/** @var bool Whether the "Watch the user page" checkbox should be available on the page */
+	protected bool $enableWatchUser = true;
+
+	/**
 	 * Builds the user groups form, either in view or edit mode.
 	 * @param UserGroupsSpecialPageTarget $target The target user
 	 * @return string The HTML of the form
@@ -616,13 +643,19 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 	 * Returns a string that represents the current state of the target's groups. It is used to
 	 * detect attempts of concurrent modifications to the user groups.
 	 */
-	abstract protected function makeConflictCheckKey( UserGroupsSpecialPageTarget $target ): string;
+	protected function makeConflictCheckKey( UserGroupsSpecialPageTarget $target ): string {
+		$groups = array_keys( $this->getGroupMemberships( $target ) );
+		return implode( ',', $groups );
+	}
 
 	/**
-	 * Returns the descriptor of the current target, e.g. "Foo", "Foo@wiki" or "#123". This will
-	 * not be presented to the user, apart from using it as a value of the target field.
+	 * Returns the descriptor of the current target, e.g. "Foo", "Foo@wiki" or "#123".
+	 * The returned value is meant to be used as a value of the "user" field in the groups form
+	 * and in similar places.
 	 */
-	abstract protected function getTargetDescriptor(): string;
+	protected function getTargetDescriptor(): string {
+		return $this->targetDescriptor;
+	}
 
 	/**
 	 * Returns the target username in a format suitable for displaying. It will be used in the
@@ -643,23 +676,31 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 	 * Returns a list of all groups that should be presented in the form.
 	 * @return list<string>
 	 */
-	abstract protected function listAllExplicitGroups(): array;
+	protected function listAllExplicitGroups(): array {
+		return $this->explicitGroups;
+	}
 
 	/**
 	 * Returns the groups the target user currently belongs to, keyed by the group name.
 	 * @return array<string,UserGroupMembership>
 	 */
-	abstract protected function getGroupMemberships( UserGroupsSpecialPageTarget $target ): array;
+	protected function getGroupMemberships( UserGroupsSpecialPageTarget $target ): array {
+		return $this->groupMemberships;
+	}
 
 	/**
 	 * Whether the current user can add the target user to the given group.
 	 */
-	abstract protected function canAdd( string $group ): bool;
+	protected function canAdd( string $group ): bool {
+		return in_array( $group, $this->addableGroups );
+	}
 
 	/**
 	 * Whether the current user can remove the target user from the given group.
 	 */
-	abstract protected function canRemove( string $group ): bool;
+	protected function canRemove( string $group ): bool {
+		return in_array( $group, $this->removableGroups );
+	}
 
 	/**
 	 * Returns the log type and subtype that is specific to this special page.
@@ -676,7 +717,16 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 	 * @return list<Message|string>
 	 */
 	protected function getGroupAnnotations( string $group ): array {
-		return [];
+		return $this->groupAnnotations[$group] ?? [];
+	}
+
+	/**
+	 * Adds an annotation (message or message key) that should be displayed below the checkbox
+	 * for the given group. The annotation will be appended to any existing annotations
+	 * for this group.
+	 */
+	protected function addGroupAnnotation( string $group, Message|string $annotation ): void {
+		$this->groupAnnotations[$group][] = $annotation;
 	}
 
 	/**
@@ -695,7 +745,7 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 	 * Returns whether the "Watch user page" checkbox should be shown.
 	 */
 	protected function supportsWatchUser( UserGroupsSpecialPageTarget $target ): bool {
-		return true;
+		return $this->enableWatchUser;
 	}
 
 	/**
