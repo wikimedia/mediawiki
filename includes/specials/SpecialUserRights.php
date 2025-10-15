@@ -137,51 +137,67 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 	 * Manage forms to be shown according to posted data.
 	 * Depending on the submit button used, call a form or a save function.
 	 *
-	 * @param string|null $par String if any subpage provided, else null
+	 * @param string|null $subPage String if any subpage provided, else null
 	 * @throws UserBlockedError|PermissionsError
 	 */
-	public function execute( $par ) {
+	public function execute( $subPage ) {
 		$user = $this->getUser();
 		$request = $this->getRequest();
 		$session = $request->getSession();
 		$out = $this->getOutput();
 
+		$this->setHeaders();
+		$this->outputHeader();
+
 		$out->addModules( [ 'mediawiki.special.userrights' ] );
+		$out->addModuleStyles( 'mediawiki.special' );
+		$out->addModuleStyles( 'mediawiki.codex.messagebox.styles' );
+		$this->addHelpLink( 'Help:Assigning permissions' );
 
-		$this->mTarget = $par ?? $request->getVal( 'user' );
-		if ( $this->mTarget === null ) {
-			$fetchedStatus = Status::newFatal( 'nouserspecified' );
+		$targetName = $subPage ?? $request->getText( 'user' );
+		$this->switchForm( $targetName );
+		$this->mTarget = $targetName;
 
-		} else {
-			$this->mTarget = trim( $this->mTarget );
-
-			if ( $this->userNameUtils->getCanonical( $this->mTarget ) === $user->getName() ) {
-				$this->isself = true;
-			}
-
-			$fetchedStatus = $this->multiFormatUserIdentityLookup->getUserIdentity(
-				$this->mTarget, $this->getAuthority() );
+		// If the user just viewed this page, without trying to submit, return early
+		// It prevents from showing "nouserspecified" error message on first view
+		if ( $subPage === null && !$request->getCheck( 'user' ) ) {
+			return;
 		}
 
-		if ( $fetchedStatus->isOK() ) {
-			$this->mFetchedUser = $fetchedUser = $fetchedStatus->value;
-			// Phan false positive on Status object - T323205
-			'@phan-var UserIdentity $fetchedUser';
-			$wikiId = $fetchedUser->getWikiId();
-			if ( $wikiId === UserIdentity::LOCAL ) {
-				// Set the 'relevant user' in the skin, so it displays links like Contributions,
-				// User logs, UserRights, etc.
-				$this->getSkin()->setRelevantUser( $this->mFetchedUser );
-			}
-			$this->userGroupManager = $this->userGroupManagerFactory
-				->getUserGroupManager( $wikiId );
+		// No need to check if $target is non-empty or non-canonical, this is done in the lookup service
+		$fetchedStatus = $this->multiFormatUserIdentityLookup->getUserIdentity( $targetName, $this->getAuthority() );
+		if ( !$fetchedStatus->isOK() ) {
+			$out->addHTML( Html::warningBox(
+				$this->statusFormatter->getMessage( $fetchedStatus )->parse()
+			) );
+			return;
 		}
+
+		$fetchedUser = $fetchedStatus->value;
+		// Phan false positive on Status object - T323205
+		'@phan-var UserIdentity $fetchedUser';
+		$this->mFetchedUser = $fetchedUser;
+
+		if ( !$this->userGroupAssignmentService->targetCanHaveUserGroups( $fetchedUser ) ) {
+			// Differentiate between temp accounts and IP addresses. Eventually we might want
+			// to edit the messages so that the same can be shown for both cases.
+			$messageKey = $fetchedUser->isRegistered() ? 'userrights-no-group' : 'nosuchusershort';
+			$out->addHTML( Html::warningBox(
+				$this->msg( $messageKey, $fetchedUser->getName() )->parse()
+			) );
+			return;
+		}
+
+		$wikiId = $fetchedUser->getWikiId();
+		if ( $wikiId === UserIdentity::LOCAL ) {
+			// Set the 'relevant user' in the skin, so it displays links like Contributions,
+			// User logs, UserRights, etc.
+			$this->getSkin()->setRelevantUser( $fetchedUser );
+		}
+		$this->userGroupManager = $this->userGroupManagerFactory->getUserGroupManager( $wikiId );
 
 		// show a successbox, if the user rights was saved successfully
-		if (
-			$session->get( 'specialUserrightsSaveSuccess' ) &&
-			$this->mFetchedUser !== null
-		) {
+		if ( $session->get( 'specialUserrightsSaveSuccess' ) ) {
 			// Remove session data for the success message
 			$session->remove( 'specialUserrightsSaveSuccess' );
 
@@ -191,27 +207,17 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 					Html::element(
 						'p',
 						[],
-						$this->msg( 'savedrights', $this->getUsernameWithInterwiki( $this->mFetchedUser ) )->text()
+						$this->msg( 'savedrights', $this->getUsernameWithInterwiki( $fetchedUser ) )->text()
 					),
 					'mw-notify-success'
 				)
 			);
 		}
 
-		$this->setHeaders();
-		$this->outputHeader();
-
-		$out->addModuleStyles( 'mediawiki.special' );
-		$out->addModuleStyles( 'mediawiki.codex.messagebox.styles' );
-		$this->addHelpLink( 'Help:Assigning permissions' );
-
-		$this->switchForm();
-
 		if (
 			$request->wasPosted() &&
 			$request->getCheck( 'saveusergroups' ) &&
-			$this->mTarget !== null &&
-			$user->matchEditToken( $request->getVal( 'wpEditToken' ), $this->mTarget )
+			$user->matchEditToken( $request->getVal( 'wpEditToken' ), $targetName )
 		) {
 			/*
 			 * If the user is blocked and they only have "partial" access
@@ -232,19 +238,9 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 
 			$this->checkReadOnly();
 
-			// save settings
-			if ( !$fetchedStatus->isOK() ) {
-				$this->getOutput()->addWikiTextAsInterface(
-					$fetchedStatus->getWikiText( false, false, $this->getLanguage() )
-				);
-
-				return;
-			}
-
-			$targetUser = $this->mFetchedUser;
 			$conflictCheck = $request->getVal( 'conflictcheck-originalgroups' );
 			$conflictCheck = ( $conflictCheck === '' ) ? [] : explode( ',', $conflictCheck );
-			$userGroups = $this->userGroupManager->getUserGroups( $targetUser, IDBAccessObject::READ_LATEST );
+			$userGroups = $this->userGroupManager->getUserGroups( $fetchedUser, IDBAccessObject::READ_LATEST );
 
 			if ( $userGroups !== $conflictCheck ) {
 				$out->addHTML( Html::errorBox(
@@ -253,14 +249,14 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 			} else {
 				$status = $this->saveUserGroups(
 					$request->getText( 'user-reason' ),
-					$targetUser
+					$fetchedUser,
 				);
 
 				if ( $status->isOK() ) {
 					// Set session data for the success message
 					$session->set( 'specialUserrightsSaveSuccess', 1 );
 
-					$out->redirect( $this->getSuccessURL() );
+					$out->redirect( $this->getSuccessURL( $targetName ) );
 					return;
 				} else {
 					// Print an error message and redisplay the form
@@ -273,31 +269,14 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 			}
 		}
 
-		// If the target is valid, show the form (either edit or view)
-		if ( !$fetchedStatus->isOK() ) {
-			$out->addHTML( Html::warningBox(
-				$this->statusFormatter->getMessage( $fetchedStatus )->parse()
-			) );
-			return;
-		} elseif ( !$this->userGroupAssignmentService->targetCanHaveUserGroups( $this->mFetchedUser ) ) {
-			// It's safe to check `targetCanHaveUserGroups` only here, because the service itself
-			// also does the same check when trying to save the groups.
-			// Differentiate between temp accounts and IP addresses. Eventually we might want
-			// to edit the messages so that the same can be shown for both cases.
-			$messageKey = $this->mFetchedUser->isRegistered() ? 'userrights-no-group' : 'nosuchusershort';
-			$out->addHTML( Html::warningBox(
-				$this->msg( $messageKey, $this->mFetchedUser->getName() )->parse()
-			) );
-			return;
-		}
-
-		$target = new UserGroupsSpecialPageTarget( $this->mFetchedUser->getName(), $this->mFetchedUser );
+		// Show the form (either edit or view)
+		$target = new UserGroupsSpecialPageTarget( $fetchedUser->getName(), $fetchedUser );
 		$this->getOutput()->addHTML( $this->buildGroupsForm( $target ) );
 		$this->showLogFragment( $target, $this->getOutput() );
 	}
 
-	private function getSuccessURL(): string {
-		return $this->getPageTitle( $this->mTarget )->getFullURL();
+	private function getSuccessURL( string $target ): string {
+		return $this->getPageTitle( $target )->getFullURL();
 	}
 
 	/**
@@ -402,7 +381,7 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 	/**
 	 * Display a HTMLUserTextField form to allow searching for a named user only
 	 */
-	protected function switchForm() {
+	protected function switchForm( string $target ) {
 		$formDescriptor = [
 			'user' => [
 				'class' => HTMLUserTextField::class,
@@ -411,8 +390,8 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 				'ipallowed' => true,
 				'iprange' => true,
 				'excludetemp' => true, // Do not show temp users: T341684
-				'autofocus' => $this->mFetchedUser === null,
-				'default' => $this->mTarget,
+				'autofocus' => $target === '',
+				'default' => $target,
 			]
 		];
 
