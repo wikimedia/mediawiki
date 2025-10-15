@@ -72,10 +72,6 @@ class FormatJson {
 	 * @note Empty arrays are encoded as numeric arrays, not as objects, so cast any associative
 	 *       array that might be empty to an object before encoding it.
 	 *
-	 * @note In pre-1.22 versions of MediaWiki, using this function for generating inline script
-	 *       blocks may result in an XSS vulnerability, and quite likely will in XML documents
-	 *       (cf. FormatJson::XMLMETA_OK). Use Xml::encodeJsVar() instead in such cases.
-	 *
 	 * @param mixed $value The value to encode. Can be any type except a resource.
 	 * @param string|bool $pretty If a string, add non-significant whitespace to improve
 	 *   readability, using that string for indentation (must consist only of whitespace

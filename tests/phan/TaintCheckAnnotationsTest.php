@@ -1140,13 +1140,6 @@ class TaintCheckAnnotationsTest {
 		echo \MediaWiki\Xml\Xml::element( '', [], $_GET['a'] ); // Safe
 		echo \MediaWiki\Xml\Xml::element( '', [], '' ); // Safe
 		htmlspecialchars( \MediaWiki\Xml\Xml::element( '', [], '' ) ); // @phan-suppress-current-line SecurityCheck-DoubleEscaped
-
-		echo \MediaWiki\Xml\Xml::encodeJsVar( $_GET['a'] ); // Safe
-		echo \MediaWiki\Xml\Xml::encodeJsVar( htmlspecialchars( '' ) ); // @phan-suppress-current-line SecurityCheck-DoubleEscaped
-
-		echo \MediaWiki\Xml\Xml::encodeJsCall( $_GET['a'], [] ); // @phan-suppress-current-line SecurityCheck-XSS
-		echo \MediaWiki\Xml\Xml::encodeJsCall( '', $_GET['a'] ); // Safe
-		echo \MediaWiki\Xml\Xml::encodeJsCall( '', [ htmlspecialchars( '' ) ] ); // @phan-suppress-current-line SecurityCheck-DoubleEscaped
 	}
 
 	function testHtmlArmor() {

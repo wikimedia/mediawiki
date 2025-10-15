@@ -354,6 +354,27 @@ because of Phabricator reports.
   have now been dropped.
 * MediaWikiIntegrationTestCase::removeTemporaryHook(), deprecated since 1.36, is
   now removed.
+* Various deprecated static methods of Xml for creating Html, deprecated in
+  earlier versions, have now been removed:
+   - Xml::monthSelector(), since 1.42
+   - Xml::dateMenu(), since 1.42
+   - Xml::languageSelector(), since 1.42
+   - Xml::span(), since 1.42
+   - Xml::wrapClass(), since 1.42
+   - Xml::input(), since 1.42
+   - Xml::password(), since 1.42
+   - Xml::check(), since 1.42
+   - Xml::radio(), since 1.42
+   - Xml::inputLabel(), since 1.42
+   - Xml::inputLabelSep(), since 1.42
+   - Xml::checkLabel(), since 1.42
+   - Xml::radioLabel(), since 1.42
+   - Xml::submitButton(), since 1.42
+   - Xml::textarea(), since 1.42
+   - Xml::encodeJsVar(), since 1.41
+   - Xml::encodeJsCall(), since 1.41
+   - Xml::buildTable(), since 1.42
+   - Xml::buildTableRow(), since 1.42
 * SkinFactory::getSkinNames(), deprecated since 1.37, has been removed. Instead,
   use SkinFactory::getInstalledSkins().
 * …
