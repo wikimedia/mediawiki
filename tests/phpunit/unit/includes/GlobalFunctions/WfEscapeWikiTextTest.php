@@ -82,6 +82,10 @@ class WfEscapeWikiTextTest extends MediaWikiUnitTestCase {
 				'_FOO__',
 				'&#95;FOO_&#95;',
 			],
+			'left-side context: ＿＿FOO＿＿' => [
+				'＿FOO＿＿',
+				'&#xFF3F;FOO&#xFF3F;&#xFF3F;',
+			],
 			'left-side context: ~~~' => [
 				'~~ long string here',
 				'&#126;~ long string here',
@@ -97,6 +101,10 @@ class WfEscapeWikiTextTest extends MediaWikiUnitTestCase {
 			'right-side context: __FOO__' => [
 				'__FOO_',
 				'&#95;&#95;FOO&#95;',
+			],
+			'right-side context: ＿＿FOO＿＿' => [
+				'＿＿FOO＿',
+				'&#xFF3F;&#xFF3F;FOO&#xFF3F;',
 			],
 			'right-side context: newlines' => [
 				"foo\n\n\n",
@@ -115,6 +123,10 @@ class WfEscapeWikiTextTest extends MediaWikiUnitTestCase {
 			'both-side context: _' => [ // _ + _FOO as well as __FOO_ + _
 				'_',
 				'&#95;',
+			],
+			'both-side context: ＿' => [ // ＿ + ＿FOO as well as ＿＿FOO＿ + ＿
+				'＿',
+				'&#xFF3F;',
 			],
 			'both-side context: ~' => [ // ~ + ~~ as well as ~~ + ~
 				'~',

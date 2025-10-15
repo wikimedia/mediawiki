@@ -1107,6 +1107,8 @@ function wfEscapeWikiText( $input ): string {
 			"\n\t" => "\n&#9;", "\r\t" => "\r&#9;", // "\n\t\n" is treated like "\n\n"
 			"\n----" => "\n&#45;---", "\r----" => "\r&#45;---",
 			'__' => '_&#95;', '://' => '&#58;//',
+			// Japanese magic words start w/ wide underscore
+			'＿' => '&#xFF3F;',
 			'~~~' => '~~&#126;', // protect from PST, just to be safe(r)
 		];
 
@@ -1124,6 +1126,8 @@ function wfEscapeWikiText( $input ): string {
 		// string.  Tokens like -{ {{ [[ {| etc are already escaped because
 		// the second character is escaped above, but the following tokens
 		// are handled here: |+ |- __FOO__ ~~~
+		// (Only single-byte characters can go here; multibyte characters
+		// like 'wide underscore' must go into $repl above.)
 		$repl3 = [
 			'+' => '&#43;', '-' => '&#45;', '_' => '&#95;', '~' => '&#126;',
 		];
@@ -1131,7 +1135,8 @@ function wfEscapeWikiText( $input ): string {
 		// string, which could turn form the start of `__FOO__` or `~~~~`
 		// A trailing newline could also form the unintended start of a
 		// paragraph break if it is glued to a newline in the following
-		// context.
+		// context.  Again, only single-byte characters can be protected
+		// here; 'wide underscore' is protected by $repl above.
 		$repl4 = [
 			'_' => '&#95;', '~' => '&#126;',
 			"\n" => "&#10;", "\r" => "&#13;",
