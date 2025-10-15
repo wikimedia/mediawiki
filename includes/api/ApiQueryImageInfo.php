@@ -316,9 +316,9 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		if ( !isset( $thumbParams['width'] ) && isset( $thumbParams['height'] ) ) {
 			// We want to limit only by height in this situation, so pass the
 			// image's full width as the limiting width. But some file types
-			// don't have a width of their own, so pick something arbitrary so
-			// thumbnailing the default icon works.
-			if ( $image->getWidth() <= 0 ) {
+			// don't have a width of their own, or are scalable, so pick
+			// something arbitrary so thumbnailing the default icon works.
+			if ( $image->getWidth() <= 0 || $image->isVectorized() ) {
 				$thumbParams['width'] =
 					max( $this->getConfig()->get( MainConfigNames::ThumbLimits ) );
 			} else {
