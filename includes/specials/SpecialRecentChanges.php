@@ -82,7 +82,10 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 						'label' => 'rcfilters-filter-watchlist-watched-label',
 						'description' => 'rcfilters-filter-watchlist-watched-description',
 						'cssClassSuffix' => 'watched',
-						'action' => [ 'require', 'watched', 'watched' ],
+						'action' => [
+							[ 'require', 'watched', 'watchedold' ],
+							[ 'require', 'watched', 'watchednew' ],
+						],
 						'subsets' => [ 'watchednew' ],
 					],
 					[
@@ -97,7 +100,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 						'label' => 'rcfilters-filter-watchlist-notwatched-label',
 						'description' => 'rcfilters-filter-watchlist-notwatched-description',
 						'cssClassSuffix' => 'notwatched',
-						'action' => [ 'exclude', 'watched', 'watched' ],
+						'action' => [ 'require', 'watched', 'notwatched' ],
 					]
 				],
 				'default' => ChangesListStringOptionsFilterGroup::NONE,

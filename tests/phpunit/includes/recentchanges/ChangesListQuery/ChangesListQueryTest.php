@@ -617,8 +617,16 @@ class ChangesListQueryTest extends \MediaWikiIntegrationTestCase {
 				] ),
 				array_diff( $allIds, [ $rcIds['newuser'], $rcIds['deleted'] ] ),
 			],
-			'require watched' => [
-				[ [ 'require', 'watched', 'watched' ] ],
+			'require watchedold+watchednew (CLSP watched)' => [
+				[
+					[ 'require', 'watched', 'watchedold' ],
+					[ 'require', 'watched', 'watchednew' ],
+				],
+				array_merge( $defaultInfo, $joinWatchlist ),
+				[ $rcIds['alice'], $rcIds['bob'], $rcIds['unseen'] ],
+			],
+			'exclude notwatched' => [
+				[ [ 'exclude', 'watched', 'notwatched' ] ],
 				array_merge( $defaultInfo, $joinWatchlist ),
 				[ $rcIds['alice'], $rcIds['bob'], $rcIds['unseen'] ],
 			],
@@ -629,25 +637,26 @@ class ChangesListQueryTest extends \MediaWikiIntegrationTestCase {
 				] ),
 				[ $rcIds['unseen'] ],
 			],
-			'require watched+watchednew' => [
+			'require watched+2 watchednew (CLSP watched+watchednew)' => [
 				[
+					[ 'require', 'watched', 'watchedold' ],
 					[ 'require', 'watched', 'watchednew' ],
-					[ 'require', 'watched', 'watched' ]
+					[ 'require', 'watched', 'watchednew' ],
 				],
 				array_merge( $defaultInfo, $joinWatchlist ),
 				[ $rcIds['alice'], $rcIds['bob'], $rcIds['unseen'] ],
 			],
-			'exclude watched' => [
-				[ [ 'exclude', 'watched', 'watched' ] ],
+			'require notwatched' => [
+				[ [ 'require', 'watched', 'notwatched' ] ],
 				array_merge( $defaultInfo, $leftJoinWatchlist, [
 					'conds' => '(wl_user IS NULL)',
 				] ),
 				array_diff( $allIds, [ $rcIds['alice'], $rcIds['bob'], $rcIds['unseen'] ] ),
 			],
-			'exclude watched, require watchednew (b/c union)' => [
+			'require watchednew+notwatched' => [
 				[
 					[ 'require', 'watched', 'watchednew' ],
-					[ 'exclude', 'watched', 'watched' ]
+					[ 'require', 'watched', 'notwatched' ]
 				],
 				array_merge( $defaultInfo, $leftJoinWatchlist, [
 					'conds' => "((wl_user IS NULL OR " .
@@ -656,13 +665,13 @@ class ChangesListQueryTest extends \MediaWikiIntegrationTestCase {
 				array_diff( $allIds, [ $rcIds['alice'], $rcIds['bob'] ] ),
 			],
 			'require anon watched' => [
-				[ [ 'require', 'watched', 'watched' ] ],
+				[ [ 'exclude', 'watched', 'notwatched' ] ],
 				null,
 				[],
 				[ 'anon-watchlist' => true ],
 			],
 			'require watched with expiry' => [
-				[ [ 'require', 'watched', 'watched' ] ],
+				[ [ 'exclude', 'watched', 'notwatched' ] ],
 				array_merge( $defaultInfo, $joinWatchlistExpiry, [
 					'conds' => "((we_expiry IS NULL OR we_expiry > '20250105000000'))",
 				] ),
@@ -687,7 +696,7 @@ class ChangesListQueryTest extends \MediaWikiIntegrationTestCase {
 			],
 			'require watched+seen' => [
 				[
-					[ 'require', 'watched', 'watched' ],
+					[ 'exclude', 'watched', 'notwatched' ],
 					[ 'require', 'seen' ]
 				],
 				array_merge( $defaultInfo, $joinWatchlist, [
@@ -906,7 +915,7 @@ class ChangesListQueryTest extends \MediaWikiIntegrationTestCase {
 
 	public function testRequireWatched() {
 		$query = $this->getQuery();
-		[ $actions, $expectedInfo, $expectedIds ] = self::provideActions()['require watched'];
+		[ $actions, $expectedInfo, $expectedIds ] = self::provideActions()['exclude notwatched'];
 		$query->requireWatched();
 		$this->doQuery( $query, $expectedInfo, $expectedIds );
 	}

@@ -476,8 +476,15 @@ abstract class ChangesListFilterGroup {
 				$highlightAction = $filter->getHighlightAction();
 				if ( $filter->getCssClass() !== null && $highlightAction ) {
 					$name = $this->getName() . '/' . $filter->getName();
-					// @phan-suppress-next-line PhanParamTooFewUnpack
-					$query->highlight( $name, ...$highlightAction );
+					if ( is_array( $action[0] ) ) {
+						foreach ( $action as $singleAction ) {
+							// @phan-suppress-next-line PhanParamTooFewUnpack
+							$query->highlight( $name, ...$singleAction );
+						}
+					} else {
+						// @phan-suppress-next-line PhanParamTooFewUnpack
+						$query->highlight( $name, ...$highlightAction );
+					}
 				}
 			}
 		}
