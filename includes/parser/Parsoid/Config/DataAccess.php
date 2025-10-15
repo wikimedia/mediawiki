@@ -234,6 +234,7 @@ class DataAccess extends IDataAccess {
 				'mime' => $file->getMimeType(),
 				'url' => $file->getFullUrl(),
 				'mustRender' => $file->mustRender(),
+				'isVectorized' => $file->isVectorized(),
 				'badFile' => $this->badFileLookup->isBadFile( $filename, $page ),
 				'timestamp' => $file->getTimestamp(),
 				'sha1' => $file->getSha1(),
