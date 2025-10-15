@@ -495,6 +495,7 @@ $wgAutoloadLocalClasses = [
 	'GenerateCollationData' => __DIR__ . '/maintenance/language/generateCollationData.php',
 	'GenerateConfigSchema' => __DIR__ . '/maintenance/generateConfigSchema.php',
 	'GenerateJsonI18n' => __DIR__ . '/maintenance/generateJsonI18n.php',
+	'GenerateJwt' => __DIR__ . '/maintenance/generateJwt.php',
 	'GenerateNormalizerDataAr' => __DIR__ . '/maintenance/language/generateNormalizerDataAr.php',
 	'GenerateNormalizerDataMl' => __DIR__ . '/maintenance/language/generateNormalizerDataMl.php',
 	'GeneratePhpCharToUpperMappings' => __DIR__ . '/maintenance/mediawiki.Title/generatePhpCharToUpperMappings.php',
