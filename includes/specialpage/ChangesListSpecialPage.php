@@ -1172,6 +1172,9 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 				MainConfigNames::MaxExecutionTimeForExpensiveQueries ) )
 			->caller( static::class . '::buildQuery' );
 
+		// Main query hook
+		$this->addMainQueryHook( $query, $opts );
+
 		// Old filter groups interface
 		$query->legacyMutator(
 			function (
@@ -1197,9 +1200,6 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 
 		// New filter groups interface
 		$this->filterGroups->modifyChangesListQuery( $query, $opts, $isStructuredUI );
-
-		// Main query hook
-		$this->addMainQueryHook( $query, $opts );
 
 		// Namespace filtering
 		if ( $opts[ 'namespace' ] !== '' ) {
