@@ -374,6 +374,8 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 		if ( !$wgFullyInitialised && $this->mFrom === 'session' ) {
 			LoggerFactory::getInstance( 'session' )
 				->warning( 'User::loadFromSession called before the end of Setup.php', [
+					'userId' => $this->mId,
+					'userName' => $this->mName,
 					'exception' => new RuntimeException(
 						'User::loadFromSession called before the end of Setup.php'
 					),
