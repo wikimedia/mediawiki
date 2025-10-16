@@ -7,9 +7,7 @@ use MediaWiki\Title\Title;
 /**
  * A manually constructed search result, for use with FauxSearchResultSet.
  */
-class FauxSearchResult extends SearchResult {
-
-	use RevisionSearchResultTrait;
+class FauxSearchResult extends RevisionSearchResult {
 
 	public function __construct(
 		Title $title,
@@ -17,10 +15,16 @@ class FauxSearchResult extends SearchResult {
 		?File $image = null,
 		?string $text = ''
 	) {
-		$this->mTitle = $title;
+		parent::__construct( $title );
 		$this->mRevisionRecord = $revRecord;
 		$this->mImage = $image;
 		$this->mText = $text;
 	}
 
+	/**
+	 * @inheritDoc
+	 */
+	protected function initFromTitle( $title ) {
+		// everything's initialized in the constructor
+	}
 }
