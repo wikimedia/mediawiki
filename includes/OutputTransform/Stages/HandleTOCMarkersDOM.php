@@ -158,6 +158,7 @@ class HandleTOCMarkersDOM extends ContentDOMTransformStage {
 				$linkAnchor = $section->linkAnchor;
 				$tocNumber = $section->number;
 				$tocLine = $section->line;
+				$fragTocLine = DOMUtils::parseHTMLToFragment( $doc, $tocLine );
 				if ( $sectionIndex !== false && $sectionIndex !== '' && !str_starts_with( $sectionIndex, "T-" ) ) {
 					$classes .= " tocsection-$sectionIndex";
 				}
@@ -180,7 +181,7 @@ class HandleTOCMarkersDOM extends ContentDOMTransformStage {
 							$doc,
 							'span',
 							[ 'class' => 'toctext' ],
-							DOMUtils::parseHTMLToFragment( $doc, $tocLine )
+							$fragTocLine->hasChildNodes() ? $fragTocLine : ''
 						)
 					)
 				);
