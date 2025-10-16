@@ -290,8 +290,6 @@ class Parser {
 	# Deprecated "dynamic" properties
 	# These used to be dynamic properties added to the parser, but these
 	# have been deprecated since 1.42.
-	/** @deprecated since 1.42: T343230 */
-	public $extCite;
 	/** @deprecated since 1.42: T203531 */
 	public $mExtVariables;
 	/** @deprecated since 1.42: T203532 */
