@@ -37,6 +37,18 @@ class ExtensionJsonValidatorTest extends MediaWikiUnitTestCase {
 	public static function provideValidate() {
 		return [
 			[
+				'example-basic.json',
+				true
+			],
+			[
+				'example-edgecases1.json',
+				true
+			],
+			[
+				'example-edgecases2.json',
+				true
+			],
+			[
 				'notjson.txt',
 				'notjson.txt is not valid JSON'
 			],

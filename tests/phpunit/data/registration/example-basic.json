@@ -1,0 +1,475 @@
+{
+	"manifest_version": 2,
+	"name": "ExampleExtensionBasic",
+	"type": "other",
+	"author": "Example Author",
+	"version": "1.0.0",
+	"url": "https://www.example.org",
+	"description": "Basic extension example.",
+	"license-name": "GPL-2.0-or-later",
+	"requires": {
+		"MediaWiki": ">= 1.45",
+		"platform": {
+			"php": ">=7.4",
+			"ability-shell": true,
+			"ext-json": "*"
+		},
+		"extensions": {
+			"BetaFeatures": ">=0.1"
+		},
+		"skins": {
+			"Vector": ">=1.0"
+		}
+	},
+	"dev-requires": {
+		"MediaWiki": ">= 1.45",
+		"platform": {
+			"php": ">=7.4",
+			"ability-shell": true,
+			"ext-json": "*"
+		},
+		"extensions": {
+			"BetaFeatures": ">=0.1"
+		},
+		"skins": {
+			"Vector": ">=1.0"
+		}
+	},
+	"suggests": {
+		"platform": {
+			"php": ">=8.0",
+			"ability-shell": true,
+			"ext-curl": "*"
+		},
+		"extensions": {
+			"Echo": ">=1.0"
+		},
+		"skins": {
+			"MonoBook": ">=1.0"
+		}
+	},
+	"@notes": "Arbitrary notes",
+	"DefaultUserOptions": {
+		"ext-string": "string-value",
+		"ext-number": 42,
+		"ext-boolean": true,
+		"ext-nullable": null
+	},
+	"ConditionalUserOptions": {
+		"ext-conditional": [
+			[ true, [ "registered-after", "20240617000000" ] ]
+		]
+	},
+	"HiddenPrefs": [ "hidden-pref1", "hidden-pref2" ],
+	"ConfigRegistry": {
+		"ExampleConfig": "ExampleConfigFactory"
+	},
+	"config_prefix": "wgExample",
+	"config": {
+		"ExampleSetting1": {
+			"value": "foo",
+			"merge_strategy": "array_merge",
+			"path": false,
+			"description": "Example config setting",
+			"descriptionmsg": "example-setting-desc",
+			"public": true
+		},
+		"ExampleSetting12": {
+			"value": 123,
+			"merge_strategy": "array_plus",
+			"description": [
+				"Multi",
+				"line",
+				"description"
+			]
+		}
+	},
+	"attributes": {
+		"OtherExtension": {
+			"attr1": [ "val1", "val2" ],
+			"attr2": { "key": "val" }
+		}
+	},
+	"AutoloadClasses": {
+		"ExampleClass": "src/ExampleClass.php"
+	},
+	"AutoloadNamespaces": {
+		"Example\\": "src/"
+	},
+	"ServiceWiringFiles": [ "src/ServiceWiring.php" ],
+	"TestAutoloadNamespaces": {
+		"ExampleTest\\": "tests/"
+	},
+	"TestAutoloadClasses": {
+		"ExampleTestClass": "tests/ExampleTestClass.php"
+	},
+	"load_composer_autoloader": true,
+	"Hooks": {
+		"BeforePageDisplay": "onBeforePageDisplay",
+		"UserSaveOptions": {
+			"handler": "onUserSaveOptions",
+			"deprecated": false
+		},
+		"UserLogoutComplete": [ "onUserLogoutComplete", { "handler": "onUserLogoutCompleteObj" } ]
+	},
+	"HookHandlers": {
+		"ExampleHandler": {
+			"factory": "ExampleHandlerFactory"
+		}
+	},
+	"DeprecatedHooks": {
+		"OldHook": {
+			"deprecatedVersion": "1.0.0",
+			"component": "ExampleExtension",
+			"silent": true
+		}
+	},
+	"DomainEventSubscribers": [
+		{
+			"events": [ "event1", "event2" ],
+			"factory": "EventFactory"
+		}
+	],
+	"DomainEventIngresses": [
+		{
+			"events": [ "event3" ],
+			"class": "EventClass"
+		}
+	],
+	"callback": "onExtensionCallback",
+	"ExtensionFunctions": [ "onExtensionFunction1", "onExtensionFunction2" ],
+	"InstallerTasks": [
+		{
+			"class": "InstallerClass",
+			"factory": "InstallerFactory",
+			"args": [ "arg1" ],
+			"callback": "onInstallCallback",
+			"name": "InstallTask",
+			"description": "Installer task description",
+			"after": [ "OtherTask" ],
+			"postInstall": true,
+			"profile": "installer"
+		}
+	],
+	"JobClasses": {
+		"ExampleJob": "ExampleJobClass"
+	},
+	"NotificationMiddleware": [
+		{
+			"factory": "NotificationFactory"
+		}
+	],
+	"NotificationHandlers": [
+		{
+			"types": [ "type1", "type2" ],
+			"factory": "NotificationHandlerFactory"
+		}
+	],
+	"ExtensionMessagesFiles": {
+		"SpecialMyExtensionAliases": "MyExtension.alias.php",
+		"SpecialMyExtensionAliasesNoTranslate": "MyExtension.notranslate-alias.php"
+	},
+	"MessagesDirs": {
+		"Example": [ "i18n/" ]
+	},
+	"TranslationAliasesDirs": {
+		"SpecialPageAliases": "i18n/aliases/"
+	},
+	"RawHtmlMessages": [ "raw-message1", "raw-message2" ],
+	"ExtensionEntryPointListFiles": {
+		"entry": "entrypoints.json"
+	},
+	"ResourceFileModulePaths": {
+		"localBasePath": "modules/",
+		"remoteExtPath": "Example/modules/",
+		"remoteSkinPath": "skins/Example/"
+	},
+	"ResourceModules": {
+		"file.module": {
+			"localBasePath": "modules/",
+			"scripts": [ "file.js" ],
+			"styles": [ "file.css" ],
+			"messages": [ "file-msg" ],
+			"group": "file",
+			"deprecated": false,
+			"position": "bottom",
+			"templates": [ "file-template" ],
+			"targets": [ "desktop" ],
+			"noflip": false,
+			"packageFiles": [ "file-package.js" ],
+			"es6": true,
+			"skipStructureTest": false
+		},
+		"wiki.module": {
+			"class": "WikiModuleClass",
+			"group": "wiki",
+			"position": "top",
+			"targets": [ "mobile" ],
+			"scripts": [ "WikiPage:MediaWiki:Common.js" ],
+			"styles": [ "WikiPage:MediaWiki:Common.css" ]
+		},
+		"image.module": {
+			"class": "ImageModuleClass",
+			"localBasePath": "images/",
+			"defaultColor": "#fff",
+			"data": "image-data.json",
+			"prefix": "img-",
+			"selector": ".image-module",
+			"selectorWithoutVariant": ".image-module-novariant",
+			"selectorWithVariant": ".image-module-variant",
+			"useDataURI": true,
+			"variants": { "variant1": "v1" },
+			"images": { "img1": "img1.png" },
+			"position": "bottom"
+		},
+		"arbitrary.class.module": {
+			"class": "ArbitraryModuleClass"
+		},
+		"arbitrary.factory.module": {
+			"factory": "ArbitraryModuleFactory"
+		}
+	},
+	"QUnitTestModule": {
+		"localBasePath": "modules/test",
+		"scripts": [ "test.js", "test2.js" ],
+		"styles": [ "test.css" ],
+		"messages": [ "msg1", "msg2" ],
+		"group": "test",
+		"deprecated": false,
+		"position": "bottom",
+		"templates": [ "template1" ],
+		"targets": [ "desktop", "mobile" ],
+		"noflip": true,
+		"packageFiles": [ "pkg.js" ],
+		"es6": true
+	},
+	"ResourceModuleSkinStyles": {
+		"exampleSkin": {
+			"styles": "skin.css"
+		}
+	},
+	"ResourceLoaderSources": {
+		"exampleSource": "https://cdn.example.org/modules/"
+	},
+	"SkinLessImportPaths": {
+		"exampleSkin": "skins/less/"
+	},
+	"MessagePosterModule": {
+		"localBasePath": "modules/",
+		"scripts": [ "poster.js" ],
+		"dependencies": [ "dep1" ]
+	},
+	"ForeignResourcesDir": "foreign/",
+	"LateJSConfigVarNames": [ "var1", "var2" ],
+	"ValidSkinNames": {
+		"exampleSkin": "ExampleSkinClass"
+	},
+	"SkinOOUIThemes": {
+		"exampleSkin": "ooui-theme"
+	},
+	"OOUIThemePaths": {
+		"ExampleTheme": {
+			"localBasePath": "themes/",
+			"remoteExtPath": "themes/remote/",
+			"remoteSkinPath": "themes/skin/",
+			"scripts": "theme.js",
+			"styles": "theme.css",
+			"images": "theme-images.json"
+		}
+	},
+	"SkinCodexThemes": {
+		"exampleSkin": "codex-theme"
+	},
+	"Actions": {
+		"action1": "ActionClass"
+	},
+	"APIModules": {
+		"api1": "ApiClass"
+	},
+	"APIFormatModules": {
+		"format1": "FormatClass"
+	},
+	"APIMetaModules": {
+		"meta1": "MetaClass"
+	},
+	"APIPropModules": {
+		"prop1": "PropClass"
+	},
+	"APIListModules": {
+		"list1": "ListClass"
+	},
+	"RestModuleFiles": [ "rest1.php", "rest2.php" ],
+	"RestRoutes": [
+		{
+			"method": "GET",
+			"path": "/example",
+			"factory": "RestFactory"
+		}
+	],
+	"SpecialPages": {
+		"SpecialExample": {
+			"class": "SpecialExampleClass",
+			"services": [ "Service1", "Service2" ]
+		}
+	},
+	"SessionProviders": {
+		"CentralAuthSessionProvider": {
+			"class": "CentralAuthSessionProvider",
+			"args": [ { "priority": 50 } ],
+			"services": [ "Service1", "Service2" ]
+		}
+	},
+	"AuthManagerAutoConfig": {
+		"preauth": {
+			"PreAuthProvider": {
+				"class": "PreAuthProvider",
+				"services": [ "Service1", "Service2" ],
+				"sort": 5
+			}
+		},
+		"primaryauth": {
+			"PrimaryAuthProvider": {
+				"class": "PrimaryAuthProvider",
+				"services": [ "Service1", "Service2" ],
+				"sort": 5
+			}
+		},
+		"secondaryauth": {
+			"SecondaryAuthProvider": {
+				"class": "SecondaryAuthProvider",
+				"services": [ "Service1", "Service2" ],
+				"sort": 5
+			}
+		}
+	},
+	"CentralIdLookupProviders": {
+		"CentralAuth": {
+			"class": "CentralAuthIdLookup",
+			"services": [ "Service1", "Service2" ]
+		}
+	},
+	"TempUserSerialProviders": {
+		"serialProvider": { "factory": "SerialFactory" }
+	},
+	"TempUserSerialMappings": {
+		"serialMapping": { "factory": "MappingFactory" }
+	},
+	"UserRegistrationProviders": {
+		"MyExtension": {
+			"class": "MyExtension\\MyExtensionRegistrationProvider",
+			"services": [
+				"MyService1",
+				"MyService2"
+			]
+		}
+	},
+	"UserOptionsStoreProviders": {
+		"MyExtension": {
+			"class": "MyExtension\\MyExtensionStore",
+			"services": [
+				"MyService1",
+				"MyService2"
+			]
+		}
+	},
+	"PasswordPolicy": {
+		"policies": {
+			"bureaucrat": {
+				"MinimalPassWordLength": 10,
+				"MinimumPasswordLengthToLogin": 1
+			}
+		}
+	},
+	"ReauthenticateTime": {
+		"ext-enable": 120
+	},
+	"GroupPermissions": {
+		"steward": {
+			"centralauth-lock": true,
+			"centralauth-suppress": true
+		},
+		"sysop": {
+			"centralauth-createlocal": true
+		},
+		"*": {
+			"centralauth-merge": true
+		}
+	},
+	"PrivilegedGroups": [ "sysop", "bureaucrat" ],
+	"RevokePermissions": {
+		"no-ipinfo": { "no-ipinfo": true }
+	},
+	"GrantPermissions": {
+		"basic": { "autocreateaccount": true, "autoconfirmed": false }
+	},
+	"GrantPermissionGroups": {
+		"basic": "hidden",
+		"editpage": "page-interaction"
+	},
+	"GrantRiskGroups": {
+		"basic": "low",
+		"editpage": "high"
+	},
+	"ImplicitGroups": [ "*", "user" ],
+	"GroupsAddToSelf": { "sysop": [ "bot" ] },
+	"GroupsRemoveFromSelf": { "*": true },
+	"AddGroups": {
+		"sysop": [
+			"editor",
+			"autoreview"
+		]
+	},
+	"RemoveGroups": {
+		"sysop": [
+			"editor",
+			"autoreview"
+		]
+	},
+	"AvailableRights": [ "review", "validate" ],
+	"RateLimits": { "edit": 5 },
+	"namespaces": [
+		{
+			"id": 100,
+			"constant": "NS_EXAMPLE",
+			"name": "Example",
+			"gender": { "male": "ExampleMale", "female": "ExampleFemale" },
+			"subpages": true,
+			"content": true,
+			"defaultcontentmodel": "wikitext",
+			"protection": [ "edit" ],
+			"capitallinkoverride": true,
+			"conditional": false,
+			"movable": true,
+			"includable": true
+		}
+	],
+	"TrackingCategories": [ "tracking-cat1", "tracking-cat2" ],
+	"ContentHandlers": {
+		"wikitext": "WikitextContentHandler"
+	},
+	"OutputPipelineStages": {
+		"stage1": "StageClass"
+	},
+	"ParsoidModules": [ "ParsoidModuleClass" ],
+	"FileExtensions": [ "png", "jpg" ],
+	"MediaHandlers": {
+		"image/png": "PngHandlerClass"
+	},
+	"RecentChangeSources": {
+		"source1": { "primary": true, "revision": false }
+	},
+	"LogTypes": [ "logtype1", "logtype2" ],
+	"LogRestrictions": { "logtype1": "restriction1" },
+	"LogNames": { "logtype1": "LogTypeName" },
+	"LogHeaders": { "logtype1": "LogHeader" },
+	"LogActions": { "logtype1": "LogAction" },
+	"LogActionsHandlers": { "logtype1": "LogActionHandler" },
+	"FilterLogTypes": { "logtype1": "FilterType" },
+	"ActionFilteredLogs": {
+		"logtype1": { "action1": [ "filter1", "filter2" ] }
+	},
+	"DatabaseVirtualDomains": [ "virtual1", "virtual2" ],
+	"FeedClasses": { "feed1": "FeedClass" },
+	"RecentChangesFlags": { "flag1": "FlagClass" },
+	"SearchMappings": { "search1": "SearchClass" }
+}
