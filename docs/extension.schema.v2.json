@@ -705,14 +705,16 @@
 						{
 							"description": "A FileModule definition",
 							"additionalProperties": false,
-							"properties": {
+							"patternProperties": {
 								"^@": {
 									"type": [
 										"string",
 										"array"
 									],
 									"description": "Arbitrary notes, ignored by the parser."
-								},
+								}
+							},
+							"properties": {
 								"localBasePath": {
 									"type": "string",
 									"description": "Base path to prepend to all local paths. Defaults to $IP"
@@ -861,14 +863,16 @@
 						{
 							"description": "A WikiModule definition",
 							"additionalProperties": false,
-							"properties": {
+							"patternProperties": {
 								"^@": {
 									"type": [
 										"string",
 										"array"
 									],
 									"description": "Arbitrary notes, ignored by the parser."
-								},
+								}
+							},
+							"properties": {
 								"class": {
 									"type": "string"
 								},
@@ -910,14 +914,16 @@
 						{
 							"description": "An ImageModule definition",
 							"additionalProperties": false,
-							"properties": {
+							"patternProperties": {
 								"^@": {
 									"type": [
 										"string",
 										"array"
 									],
 									"description": "Arbitrary notes, ignored by the parser."
-								},
+								}
+							},
+							"properties": {
 								"class": {
 									"type": "string"
 								},
