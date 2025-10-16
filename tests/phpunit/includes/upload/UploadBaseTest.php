@@ -533,7 +533,142 @@ class UploadBaseTest extends MediaWikiIntegrationTestCase {
 				true,
 				'SVG with non-local filter (T69044)'
 			],
-
+			[
+				'<svg xmlns="http://www.w3.org/2000/svg"><text x="0" y="20" cursor="url(\'http://example.com/foo.png\'), pointer">here</text></svg>',
+				true,
+				true,
+				'External url via cursor attribute'
+			],
+			[
+				'<svg xmlns="http://www.w3.org/2000/svg"><text x="0" y="20" style="fill: url( bad">here</text></svg>',
+				true,
+				true,
+				'bad url'
+			],
+			[
+				'<svg xmlns="http://www.w3.org/2000/svg"><text x="0" y="20" cursor="url(http://example.com/foo.png), pointer">here</text></svg>',
+				true,
+				true,
+				'External url via cursor attribute non quoted'
+			],
+			[
+				'<svg xmlns="http://www.w3.org/2000/svg"><style>@charset "ISO-2022-JP";</style></svg>',
+				true,
+				true,
+				'@charset in stylesheet'
+			],
+			[
+				'<svg xmlns="http://www.w3.org/2000/svg"><style>svg { fill: url( "https://example.com/baz#bar" ); }</style></svg>',
+				true,
+				true,
+				'url in stylesheet'
+			],
+			[
+				'<svg xmlns="http://www.w3.org/2000/svg"> <rect width="100" height="100" style="&amp;#47;*;background-image:url(https://www.google.com/images/srpr/logo11w.png)"/> </svg>',
+				true,
+				true,
+				'Double escaping comments (T85085)'
+			],
+			[
+				'<svg xmlns="http://www.w3.org/2000/svg"> <rect width="100" height="100" style="\/*;background-image:url(https://www.google.com/images/srpr/logo11w.png)"/> </svg>',
+				true,
+				true,
+				'escaping comment (T85085)'
+			],
+			[
+				'<svg xmlns="http://www.w3.org/2000/svg"> <rect width="100" height="100" style="／*;background-image:url(https://www.google.com/images/srpr/logo11w.png)"/> </svg>',
+				true,
+				true,
+				'escaping comment full-width (T85085)'
+			],
+			[
+				'<?xml version="1.0" encoding="UTF-8"?>
+<svg viewbox="0 0 220 120" xmlns="http://www.w3.org/2000/svg">
+<style>
+text {
+	mask-image: url( "#foo
+;
+	mask-image: url( "https://example.com/evilmask.png" )
+}
+</style>
+<text x="0" y="15">Evil Test file</text>
+</svg>',
+				true,
+				true,
+				'Unclosed url (T85085)'
+			],
+			[
+				'<svg xmlns="http://www.w3.org/2000/svg"> <rect width="100" height="100" style="content: \'/*\'; fill: url( https://example.com ); bar: \'*/\'"/> </svg>',
+				true,
+				true,
+				'comment in string'
+			],
+			[
+				'<svg xmlns="http://www.w3.org/2000/svg"> <rect width="100" height="100" style="invalid;content: \'/*\'; fill: url( https://example.com ); bar: \'*/\'"/> </svg>',
+				true,
+				true,
+				'comment in string with invalid'
+			],
+			[
+				'<svg xmlns="http://www.w3.org/2000/svg"><style> @font-face { font-family:"ArialMT"; src:url("data:;base64,T1RUTwACACAAAQA") }</style></svg>',
+				true,
+				false,
+				'Allow embedded fonts with no mime in data url T71008#717580'
+			],
+			[
+				'<svg xmlns="http://www.w3.org/2000/svg"><style> @media print { color: red }</style></svg>',
+				true,
+				false,
+				'verify most at rules allowed'
+			],
+			[
+				'<!DOCTYPE svg [<!ENTITY foo "url" >] >
+<svg xmlns="http://www.w3.org/2000/svg">
+<style>
+* { cursor: &foo;( \'https://example.com\' ), pointer}
+</style>
+<text x="0" y="20">foo</text>
+</svg>',
+				true,
+				true,
+				'entity in style'
+			],
+			[
+				'<!DOCTYPE svg [<!ENTITY foo "url" >] >
+<svg xmlns="http://www.w3.org/2000/svg">
+<text x="0" y="20" cursor="&foo;(http://example.com)">foo</text>
+</svg>',
+				true,
+				true,
+				'entity in attribute'
+			],
+			[
+				'<!DOCTYPE svg [<!ENTITY foo "\') url(\'" >] >
+<svg xmlns="http://www.w3.org/2000/svg">
+<style>
+<![CDATA[
+* { fill: url( \'#foo&foo;http://example.com\' ); }
+* { fill: url( \'#foo&apos;)url(http://example.com\' ); }
+]]>
+</style>
+<text x="0" y="20">foo</text>
+</svg>',
+				true,
+				false,
+				'entities are not substituted in cdata'
+			],
+			[
+				'<svg xmlns="http://www.w3.org/2000/svg"><g style="fill:#000000;font-family=\'arial-boldmt\';font-size:20px"></g></svg>',
+				true,
+				false,
+				'Allow limited invalid CSS in style attributes'
+			],
+			[
+				'<svg xmlns="http://www.w3.org/2000/svg"><g style="font-size:200px;stroke;stroke-width:0;"></g></svg>',
+				true,
+				false,
+				'Allow limited invalid CSS in style attributes 2'
+			],
 		];
 		// phpcs:enable
 	}
