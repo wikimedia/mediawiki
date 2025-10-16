@@ -10,6 +10,7 @@ PHP 8.4 workboard: https://phabricator.wikimedia.org/tag/php_8.4_support/
 THIS IS NOT A RELEASE YET
 
 === Changes since 1.43.5 ===
+* (T85085) Improve CSS checking in SVG filter.
 * Localisation updates.
 
 == MediaWiki 1.43.5 ==
