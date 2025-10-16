@@ -350,9 +350,10 @@
 			thumb
 				.find( '.filename' ).text( file.name ).end()
 				.find( '.fileinfo' ).text( prettySize( file.size ) ).end()
-				.find( '.thumbinner' ).prepend( $spinner ).end();
+				.find( '.mw-file-description' ).prepend( $spinner ).end();
 
 			const $canvas = $( '<canvas>' ).attr( { width: previewSize, height: previewSize } );
+			$canvas.addClass( 'mw-file-element' );
 			const ctx = $canvas[ 0 ].getContext( '2d' );
 			$( '#mw-htmlform-source' ).parent().prepend( thumb );
 
