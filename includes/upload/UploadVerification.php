@@ -30,6 +30,7 @@ use Wikimedia\Mime\XmlTypeCheck;
  * or if the upload target is protected.
  *
  * @author Brian Wolff
+ * @since 1.45
  */
 class UploadVerification {
 
