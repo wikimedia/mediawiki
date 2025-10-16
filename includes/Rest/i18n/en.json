@@ -208,6 +208,8 @@
 	"rest-property-desc-revision-source": "The revision source content",
 	"rest-property-desc-revision-html": "Revision content in HTML, following the HTML specification",
 	"rest-property-desc-revision-url": "URL to the latest revision of the page",
+	"rest-property-desc-revision-url-older": "If available, URL to get the prior revision segment",
+	"rest-property-desc-revision-url-newer": " If available, URL to get the following revision segment",
 	"rest-property-desc-search-excerpt": "Excerpt of the page content matching the search query",
 	"rest-property-desc-search-matched-title": "Title of the page redirected from, if the search term matched a redirect page, or else null",
 	"rest-property-desc-search-description": "Short summary of the page topic or null if no summary exists.",

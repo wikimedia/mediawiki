@@ -73,6 +73,16 @@
 			"type": "string",
 			"format": "uri",
 			"x-i18n-description": "rest-property-desc-revision-url"
+		},
+		"older": {
+			"type": "string",
+			"format": "uri",
+			"x-i18n-description": "rest-property-desc-revision-url-older"
+		},
+		"newer": {
+			"type": "string",
+			"format": "uri",
+			"x-i18n-description": "rest-property-desc-revision-url-newer"
 		}
 	}
 }

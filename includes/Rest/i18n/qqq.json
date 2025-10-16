@@ -213,6 +213,8 @@
 	"rest-property-desc-revision-source": "{{Experimental}} The revision source content",
 	"rest-property-desc-revision-html": "{{Experimental}} Revision content in HTML, following the HTML specification",
 	"rest-property-desc-revision-url": "{{Experimental}} REST API response field description, for the link to the page's latest revision",
+	"rest-property-desc-revision-url-older": "{{Experimental}} REST API response field description, for the link to the page's prior revision segment",
+	"rest-property-desc-revision-url-newer": "{{Experimental}} REST API response field description, for the link to the page's following revision segment",
 	"rest-property-desc-search-excerpt": "{{Experimental}} REST API response field description, for the matching content",
 	"rest-property-desc-search-matched-title": "{{Experimental}} REST API response field description, for the redirection page",
 	"rest-property-desc-search-description": "{{Experimental}} REST API response field description, for the page summary",
