@@ -12,7 +12,6 @@ use MediaWiki\Tests\Api\ApiTestCase;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\TitleValue;
 use MediaWiki\User\User;
-use MediaWiki\Watchlist\WatchedItemQueryService;
 
 /**
  * @group medium
@@ -20,7 +19,6 @@ use MediaWiki\Watchlist\WatchedItemQueryService;
  * @group Database
  *
  * @covers \MediaWiki\Api\ApiQueryWatchlist
- * @covers \MediaWiki\Watchlist\WatchedItemQueryService
  */
 class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 	use TempUserTestTrait;
@@ -833,11 +831,11 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 		$this->watchPages( $user, [ $target ] );
 
 		$resultMinor = $this->doListWatchlistRequest( [
-			'wlshow' => WatchedItemQueryService::FILTER_MINOR,
+			'wlshow' => 'minor',
 			'wlprop' => 'flags'
 		] );
 		$resultNotMinor = $this->doListWatchlistRequest( [
-			'wlshow' => WatchedItemQueryService::FILTER_NOT_MINOR, 'wlprop' => 'flags'
+			'wlshow' => '!minor', 'wlprop' => 'flags'
 		] );
 
 		$this->assertArraySubsetsEqual(
@@ -862,10 +860,10 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 		$this->watchPages( $user, [ $target ] );
 
 		$resultBot = $this->doListWatchlistRequest( [
-			'wlshow' => WatchedItemQueryService::FILTER_BOT
+			'wlshow' => 'bot',
 		] );
 		$resultNotBot = $this->doListWatchlistRequest( [
-			'wlshow' => WatchedItemQueryService::FILTER_NOT_BOT
+			'wlshow' => '!bot'
 		] );
 
 		$this->assertArraySubsetsEqual(
@@ -890,11 +888,11 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 
 		$resultAnon = $this->doListWatchlistRequest( [
 			'wlprop' => 'user',
-			'wlshow' => WatchedItemQueryService::FILTER_ANON
+			'wlshow' => 'anon'
 		] );
 		$resultNotAnon = $this->doListWatchlistRequest( [
 			'wlprop' => 'user',
-			'wlshow' => WatchedItemQueryService::FILTER_NOT_ANON
+			'wlshow' => '!anon'
 		] );
 
 		$this->assertArraySubsetsEqual(
@@ -922,11 +920,11 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 
 		$resultAnon = $this->doListWatchlistRequest( [
 			'wlprop' => 'user',
-			'wlshow' => WatchedItemQueryService::FILTER_ANON
+			'wlshow' => 'anon'
 		] );
 		$resultNotAnon = $this->doListWatchlistRequest( [
 			'wlprop' => 'user',
-			'wlshow' => WatchedItemQueryService::FILTER_NOT_ANON
+			'wlshow' => '!anon'
 		] );
 
 		$this->assertArraySubsetsEqual(
@@ -969,11 +967,11 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 
 		$resultUnread = $this->doListWatchlistRequest( [
 			'wlprop' => 'notificationtimestamp|title',
-			'wlshow' => WatchedItemQueryService::FILTER_UNREAD
+			'wlshow' => 'unread'
 		] );
 		$resultNotUnread = $this->doListWatchlistRequest( [
 			'wlprop' => 'notificationtimestamp|title',
-			'wlshow' => WatchedItemQueryService::FILTER_NOT_UNREAD
+			'wlshow' => '!unread'
 		] );
 
 		$this->assertEquals(
@@ -1006,11 +1004,11 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 
 		$resultPatrolled = $this->doListWatchlistRequest( [
 			'wlprop' => 'patrol',
-			'wlshow' => WatchedItemQueryService::FILTER_PATROLLED
+			'wlshow' => 'patrolled'
 		], $user );
 		$resultNotPatrolled = $this->doListWatchlistRequest( [
 			'wlprop' => 'patrol',
-			'wlshow' => WatchedItemQueryService::FILTER_NOT_PATROLLED
+			'wlshow' => '!patrolled'
 		], $user );
 
 		$this->assertEquals(
@@ -1106,6 +1104,9 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 	}
 
 	private function getExternalRC( LinkTarget $target ) {
+		$this->getServiceContainer()->getRecentChangeStore()
+			->addSourceForTest( 'external', [] );
+
 		$title = $this->getServiceContainer()->getTitleFactory()->newFromLinkTarget( $target );
 
 		$rc = new RecentChange;
@@ -1114,7 +1115,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 			'rc_namespace' => $title->getNamespace(),
 			'rc_title' => $title->getDBkey(),
 			'rc_type' => RC_EXTERNAL,
-			'rc_source' => 'foo',
+			'rc_source' => 'external',
 			'rc_minor' => 0,
 			'rc_cur_id' => $title->getArticleID(),
 			'rc_user' => 0,

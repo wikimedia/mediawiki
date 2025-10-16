@@ -34,6 +34,8 @@ use Wikimedia\ParamValidator\TypeDef\IntegerDef;
  * A query action to enumerate the recent changes that were done to the wiki.
  * Various filters are supported.
  *
+ * TODO: Factor out a common base class with ApiQueryWatchlist
+ *
  * @ingroup RecentChanges
  * @ingroup API
  */

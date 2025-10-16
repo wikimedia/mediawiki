@@ -5417,7 +5417,7 @@
 			},
 			{
 				"name": "wl_notificationtimestamp",
-				"comment": "Timestamp used to send notification e-mails and show 'updated since last visit' markers. Set to NULL when the user visits the latest revision of the page, which means that they should be sent an e-mail on the next change.",
+				"comment": "The timestamp of the earliest unseen revision, or null if the current revision has been seen. Also the timestamp of the last watchlist notification email, if that feature is enabled, used to suppress consecutive emails for the same page. Used to show \"updated\" markers, in combination with the \"seen\" cache.",
 				"type": "mwtimestamp",
 				"options": {
 					"notnull": false

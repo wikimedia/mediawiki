@@ -8,23 +8,24 @@
 
 namespace MediaWiki\Api;
 
-use MediaWiki\Cache\GenderCache;
-use MediaWiki\CommentFormatter\CommentFormatter;
+use MediaWiki\CommentFormatter\RowCommentFormatter;
 use MediaWiki\CommentStore\CommentStore;
-use MediaWiki\Language\Language;
-use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logging\LogEventsList;
 use MediaWiki\Logging\LogFormatterFactory;
 use MediaWiki\Logging\LogPage;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\RecentChanges\ChangesList;
+use MediaWiki\RecentChanges\ChangesListQuery\ChangesListQuery;
+use MediaWiki\RecentChanges\ChangesListQuery\ChangesListQueryFactory;
 use MediaWiki\RecentChanges\RecentChange;
+use MediaWiki\RecentChanges\RecentChangeLookup;
 use MediaWiki\Revision\RevisionRecord;
-use MediaWiki\Title\NamespaceInfo;
-use MediaWiki\Title\Title;
+use MediaWiki\Title\TitleFormatter;
+use MediaWiki\Title\TitleValue;
 use MediaWiki\User\TempUser\TempUserConfig;
+use MediaWiki\User\User;
 use MediaWiki\Watchlist\WatchedItem;
-use MediaWiki\Watchlist\WatchedItemQueryService;
+use stdClass;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 
@@ -32,40 +33,42 @@ use Wikimedia\ParamValidator\TypeDef\IntegerDef;
  * This query action allows clients to retrieve a list of recently modified pages
  * that are part of the logged-in user's watchlist.
  *
+ * TODO: Factor out a common base class with ApiQueryRecentChanges
+ *
  * @ingroup API
  */
 class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 
 	private CommentStore $commentStore;
-	private WatchedItemQueryService $watchedItemQueryService;
-	private Language $contentLanguage;
-	private NamespaceInfo $namespaceInfo;
-	private GenderCache $genderCache;
-	private CommentFormatter $commentFormatter;
+	private RowCommentFormatter $commentFormatter;
 	private TempUserConfig $tempUserConfig;
 	private LogFormatterFactory $logFormatterFactory;
+	private ChangesListQueryFactory $changesListQueryFactory;
+	private RecentChangeLookup $recentChangeLookup;
+	private TitleFormatter $titleFormatter;
+
+	/** @var string[] */
+	private $formattedComments = [];
 
 	public function __construct(
 		ApiQuery $query,
 		string $moduleName,
 		CommentStore $commentStore,
-		WatchedItemQueryService $watchedItemQueryService,
-		Language $contentLanguage,
-		NamespaceInfo $namespaceInfo,
-		GenderCache $genderCache,
-		CommentFormatter $commentFormatter,
+		ChangesListQueryFactory $changesListQueryFactory,
+		RowCommentFormatter $commentFormatter,
 		TempUserConfig $tempUserConfig,
-		LogFormatterFactory $logFormatterFactory
+		LogFormatterFactory $logFormatterFactory,
+		RecentChangeLookup $recentChangeLookup,
+		TitleFormatter $titleFormatter,
 	) {
 		parent::__construct( $query, $moduleName, 'wl' );
 		$this->commentStore = $commentStore;
-		$this->watchedItemQueryService = $watchedItemQueryService;
-		$this->contentLanguage = $contentLanguage;
-		$this->namespaceInfo = $namespaceInfo;
-		$this->genderCache = $genderCache;
+		$this->changesListQueryFactory = $changesListQueryFactory;
 		$this->commentFormatter = $commentFormatter;
 		$this->tempUserConfig = $tempUserConfig;
 		$this->logFormatterFactory = $logFormatterFactory;
+		$this->recentChangeLookup = $recentChangeLookup;
+		$this->titleFormatter = $titleFormatter;
 	}
 
 	public function execute() {
@@ -102,6 +105,10 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		$user = $this->getUser();
 		$wlowner = $this->getWatchlistUser( $params );
 
+		$query = $this->changesListQueryFactory->newQuery()
+			->caller( __METHOD__ )
+			->watchlistUser( $wlowner );
+
 		if ( $params['prop'] !== null && $resultPageSet === null ) {
 			$prop = array_fill_keys( $params['prop'], true );
 
@@ -125,44 +132,60 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			}
 		}
 
-		$options = [
-			'dir' => $params['dir'] === 'older'
-				? WatchedItemQueryService::DIR_OLDER
-				: WatchedItemQueryService::DIR_NEWER,
-		];
+		$query->orderBy(
+			$params['dir'] === 'older'
+			? ChangesListQuery::SORT_TIMESTAMP_DESC
+			: ChangesListQuery::SORT_TIMESTAMP_ASC
+		);
 
-		if ( $resultPageSet === null ) {
-			$options['includeFields'] = $this->getFieldsToInclude();
+		$query->fields( [
+			'rc_id',
+			'rc_namespace',
+			'rc_title',
+			'rc_timestamp',
+			'rc_type',
+			'rc_source',
+			'rc_deleted',
+			'wl_notificationtimestamp'
+		] );
+
+		$rcIdFields = [
+			'rc_cur_id',
+			'rc_this_oldid',
+			'rc_last_oldid',
+		];
+		if ( $resultPageSet !== null ) {
+			if ( $params['allrev'] ) {
+				$rcIdFields = [ 'rc_this_oldid' ];
+			} else {
+				$rcIdFields = [ 'rc_cur_id' ];
+			}
 		} else {
-			$options['usedInGenerator'] = true;
+			$this->addFieldsToQuery( $query );
 		}
+		$query->fields( $rcIdFields );
 
 		if ( $params['start'] ) {
-			$options['start'] = $params['start'];
+			$query->startAt( $params['start'] );
 		}
 		if ( $params['end'] ) {
-			$options['end'] = $params['end'];
+			$query->endAt( $params['end'] );
 		}
 
-		$startFrom = null;
 		if ( $params['continue'] !== null ) {
 			$cont = $this->parseContinueParamOrDie( $params['continue'], [ 'string', 'int' ] );
-			$startFrom = $cont;
-		}
-
-		if ( $wlowner !== $user ) {
-			$options['watchlistOwner'] = $wlowner;
-			$options['watchlistOwnerToken'] = $params['token'];
+			$query->startAt( $cont[0], $cont[1] );
 		}
 
 		if ( $params['namespace'] !== null ) {
-			$options['namespaceIds'] = $params['namespace'];
+			$query->requireNamespaces( $params['namespace'] );
 		}
 
-		if ( $params['allrev'] ) {
-			$options['allRevisions'] = true;
+		if ( !$params['allrev'] ) {
+			$query->excludeOldRevisions();
 		}
 
+		$watchTypes = [ 'watchedold', 'watchednew' ];
 		if ( $params['show'] !== null ) {
 			$show = array_fill_keys( $params['show'], true );
 
@@ -172,75 +195,115 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			}
 
 			// Check permissions.
-			if ( isset( $show[WatchedItemQueryService::FILTER_PATROLLED] )
-				|| isset( $show[WatchedItemQueryService::FILTER_NOT_PATROLLED] )
-			) {
+			if ( isset( $show['patrolled'] ) || isset( $show['!patrolled'] ) ) {
 				if ( !$user->useRCPatrol() && !$user->useNPPatrol() ) {
 					$this->dieWithError( 'apierror-permissiondenied-patrolflag', 'permissiondenied' );
 				}
 			}
 
-			$options['filters'] = array_keys( $show );
+			$showActions = [
+				'minor' => [ 'require', 'minor' ],
+				'!minor' => [ 'exclude', 'minor' ],
+				'bot' => [ 'require', 'bot' ],
+				'!bot' => [ 'exclude', 'bot' ],
+				'anon' => [ 'exclude', 'named' ],
+				'!anon' => [ 'require', 'named' ],
+				'patrolled' => [ 'exclude', 'patrolled', RecentChange::PRC_UNPATROLLED ],
+				'!patrolled' => [ 'require', 'patrolled', RecentChange::PRC_UNPATROLLED ],
+				'autopatrolled' => [ 'require', 'patrolled', RecentChange::PRC_AUTOPATROLLED ],
+				'!autopatrolled' => [ 'exclude', 'patrolled', RecentChange::PRC_AUTOPATROLLED ],
+			];
+			foreach ( $show as $name => $unused ) {
+				if ( isset( $showActions[$name] ) ) {
+					$query->applyAction( ...$showActions[$name] );
+				}
+			}
+
+			if ( isset( $show['unread'] ) ) {
+				$watchTypes = [ 'watchednew' ];
+			}
+			if ( isset( $show['!unread'] ) ) {
+				$watchTypes = [ 'watchedold' ];
+			}
 		}
 
+		$query->requireWatched( $watchTypes );
+
 		if ( $params['type'] !== null ) {
-			$rcTypes = RecentChange::parseToRCType( $params['type'] );
-			if ( $rcTypes ) {
-				$options['rcTypes'] = $rcTypes;
+			$sources = $this->recentChangeLookup->convertTypeToSources( $params['type'] );
+			if ( $sources ) {
+				$query->requireSources( $sources );
 			}
 		}
 
 		$this->requireMaxOneParameter( $params, 'user', 'excludeuser' );
 		if ( $params['user'] !== null ) {
-			$options['onlyByUser'] = $params['user'];
+			$query->requireUser( $params['user'] );
 		}
 		if ( $params['excludeuser'] !== null ) {
-			$options['notByUser'] = $params['excludeuser'];
+			$query->excludeUser( $params['excludeuser'] );
 		}
 
-		$options['limit'] = $params['limit'];
+		// Paranoia: avoid brute force searches (T19342)
+		if ( $params['user'] !== null || $params['excludeuser'] !== null ) {
+			$query->excludeDeletedUser();
+		}
+		$query->excludeDeletedLogAction();
 
-		$this->getHookRunner()->onApiQueryWatchlistPrepareWatchedItemQueryServiceOptions(
-			$this, $params, $options );
+		$query->limit( $params['limit'] + 1 );
+
+		$hookData = [];
+		if ( $this->getHookContainer()->isRegistered( 'ApiQueryBaseBeforeQuery' ) ) {
+			$query->legacyMutator(
+				function ( &$tables, &$fields, &$conds, &$options, &$join_conds ) use ( &$hookData ) {
+					$this->getHookRunner()->onApiQueryBaseBeforeQuery(
+						$this, $tables, $fields, $conds,
+						$options, $join_conds, $hookData );
+				}
+			);
+		}
 
 		$ids = [];
-		$items = $this->watchedItemQueryService->getWatchedItemsWithRecentChangeInfo( $wlowner, $options, $startFrom );
+		$res = $query->fetchResult()->getResultWrapper();
 
-		// Get gender information
-		if ( $items !== [] && $resultPageSet === null && $this->fld_title &&
-			$this->contentLanguage->needsGenderDistinction()
-		) {
-			$usernames = [];
-			foreach ( $items as [ $watchedItem, ] ) {
-				/** @var WatchedItem $watchedItem */
-				$linkTarget = $watchedItem->getTarget();
-				if ( $this->namespaceInfo->hasGenderDistinction( $linkTarget->getNamespace() ) ) {
-					$usernames[] = $linkTarget->getText();
-				}
-			}
-			if ( $usernames !== [] ) {
-				$this->genderCache->doQuery( $usernames, __METHOD__ );
-			}
+		$this->getHookRunner()->onApiQueryBaseAfterQuery( $this, $res, $hookData );
+
+		// Do batch queries
+		if ( $this->fld_title && $resultPageSet === null ) {
+			$this->executeGenderCacheFromResultWrapper( $res, __METHOD__, 'rc' );
+		}
+		if ( $this->fld_parsedcomment ) {
+			$this->formattedComments = $this->commentFormatter->formatItems(
+				$this->commentFormatter->rows( $res )
+					->indexField( 'rc_id' )
+					->commentKey( 'rc_comment' )
+					->namespaceField( 'rc_namespace' )
+					->titleField( 'rc_title' )
+			);
 		}
 
-		foreach ( $items as [ $watchedItem, $recentChangeInfo ] ) {
-			/** @var WatchedItem $watchedItem */
+		$count = 0;
+		foreach ( $res as $row ) {
+			if ( ++$count > $params['limit'] ) {
+				// We've reached the one extra which shows that there are
+				// additional pages to be had. Stop here...
+				$this->setContinueEnumParameter( 'continue', "$row->rc_timestamp|$row->rc_id" );
+				break;
+			}
+
 			if ( $resultPageSet === null ) {
-				$vals = $this->extractOutputData( $watchedItem, $recentChangeInfo );
+				$vals = $this->extractOutputData( $row, $wlowner );
+				$this->processRow( $row, $vals, $hookData );
 				$fit = $this->getResult()->addValue( [ 'query', $this->getModuleName() ], null, $vals );
 				if ( !$fit ) {
-					$startFrom = [ $recentChangeInfo['rc_timestamp'], $recentChangeInfo['rc_id'] ];
+					$this->setContinueEnumParameter( 'continue', "$row->rc_timestamp|$row->rc_id" );
 					break;
 				}
 			} elseif ( $params['allrev'] ) {
-				$ids[] = (int)$recentChangeInfo['rc_this_oldid'];
+				$ids[] = (int)$row->rc_this_oldid;
 			} else {
-				$ids[] = (int)$recentChangeInfo['rc_cur_id'];
+				$ids[] = (int)$row->rc_cur_id;
 			}
-		}
-
-		if ( $startFrom !== null ) {
-			$this->setContinueEnumParameter( 'continue', implode( '|', $startFrom ) );
 		}
 
 		if ( $resultPageSet === null ) {
@@ -255,114 +318,107 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		}
 	}
 
-	private function getFieldsToInclude(): array {
-		$includeFields = [];
+	private function addFieldsToQuery( ChangesListQuery $query ) {
+		$fields = [];
+		if ( $this->fld_expiry ) {
+			$query->maybeAddWatchlistExpiryField();
+		}
 		if ( $this->fld_flags ) {
-			$includeFields[] = WatchedItemQueryService::INCLUDE_FLAGS;
+			$fields[] = 'rc_minor';
+			$fields[] = 'rc_bot';
 		}
 		if ( $this->fld_user || $this->fld_userid || $this->fld_loginfo ) {
-			$includeFields[] = WatchedItemQueryService::INCLUDE_USER_ID;
-		}
-		if ( $this->fld_user || $this->fld_loginfo ) {
-			$includeFields[] = WatchedItemQueryService::INCLUDE_USER;
+			$query->rcUserFields();
 		}
 		if ( $this->fld_comment || $this->fld_parsedcomment ) {
-			$includeFields[] = WatchedItemQueryService::INCLUDE_COMMENT;
+			$query->commentFields();
 		}
 		if ( $this->fld_patrol ) {
-			$includeFields[] = WatchedItemQueryService::INCLUDE_PATROL_INFO;
-			$includeFields[] = WatchedItemQueryService::INCLUDE_AUTOPATROL_INFO;
+			$fields[] = 'rc_patrolled';
+			$fields[] = 'rc_log_type';
 		}
 		if ( $this->fld_sizes ) {
-			$includeFields[] = WatchedItemQueryService::INCLUDE_SIZES;
+			$fields[] = 'rc_old_len';
+			$fields[] = 'rc_new_len';
 		}
 		if ( $this->fld_loginfo ) {
-			$includeFields[] = WatchedItemQueryService::INCLUDE_LOG_INFO;
+			$fields[] = 'rc_logid';
+			$fields[] = 'rc_log_type';
+			$fields[] = 'rc_log_action';
+			$fields[] = 'rc_params';
 		}
 		if ( $this->fld_tags ) {
-			$includeFields[] = WatchedItemQueryService::INCLUDE_TAGS;
+			$query->addChangeTagSummaryField();
 		}
-		return $includeFields;
+		$query->fields( $fields );
 	}
 
 	private function showParamsConflicting( array $show ): bool {
-		return ( isset( $show[WatchedItemQueryService::FILTER_MINOR] )
-			&& isset( $show[WatchedItemQueryService::FILTER_NOT_MINOR] ) )
-		|| ( isset( $show[WatchedItemQueryService::FILTER_BOT] )
-			&& isset( $show[WatchedItemQueryService::FILTER_NOT_BOT] ) )
-		|| ( isset( $show[WatchedItemQueryService::FILTER_ANON] )
-			&& isset( $show[WatchedItemQueryService::FILTER_NOT_ANON] ) )
-		|| ( isset( $show[WatchedItemQueryService::FILTER_PATROLLED] )
-			&& isset( $show[WatchedItemQueryService::FILTER_NOT_PATROLLED] ) )
-		|| ( isset( $show[WatchedItemQueryService::FILTER_AUTOPATROLLED] )
-			&& isset( $show[WatchedItemQueryService::FILTER_NOT_AUTOPATROLLED] ) )
-		|| ( isset( $show[WatchedItemQueryService::FILTER_AUTOPATROLLED] )
-			&& isset( $show[WatchedItemQueryService::FILTER_NOT_PATROLLED] ) )
-		|| ( isset( $show[WatchedItemQueryService::FILTER_UNREAD] )
-			&& isset( $show[WatchedItemQueryService::FILTER_NOT_UNREAD] ) );
+		return ( isset( $show['minor'] ) && isset( $show['!minor'] ) )
+		|| ( isset( $show['bot'] ) && isset( $show['!bot'] ) )
+		|| ( isset( $show['anon'] ) && isset( $show['!anon'] ) )
+		|| ( isset( $show['patrolled'] ) && isset( $show['!patrolled'] ) )
+		|| ( isset( $show['autopatrolled'] ) && isset( $show['!autopatrolled'] ) )
+		|| ( isset( $show['autopatrolled'] ) && isset( $show['!patrolled'] ) )
+		|| ( isset( $show['unread'] ) && isset( $show['!unread'] ) );
 	}
 
-	private function extractOutputData( WatchedItem $watchedItem, array $recentChangeInfo ): array {
-		/* Determine the title of the page that has been changed. */
-		$target = $watchedItem->getTarget();
-		if ( $target instanceof LinkTarget ) {
-			$title = Title::newFromLinkTarget( $target );
-		} else {
-			$title = Title::newFromPageIdentity( $target );
-		}
+	private function extractOutputData( stdClass $row, User $wlowner ): array {
 		$user = $this->getUser();
+		$title = new TitleValue( (int)$row->rc_namespace, $row->rc_title );
 
 		/* Our output data. */
 		$vals = [];
-		$type = (int)$recentChangeInfo['rc_type'];
-		$vals['type'] = RecentChange::parseFromRCType( $type );
+		$vals['type'] = $this->recentChangeLookup->convertSourceToType( $row->rc_source );
+		$isLog = $row->rc_source === RecentChange::SRC_LOG;
 		$anyHidden = false;
 
 		/* Create a new entry in the result for the title. */
 		if ( $this->fld_title || $this->fld_ids ) {
 			// These should already have been filtered out of the query, but just in case.
-			if ( $type === RC_LOG && ( $recentChangeInfo['rc_deleted'] & LogPage::DELETED_ACTION ) ) {
+			if ( $isLog && ( $row->rc_deleted & LogPage::DELETED_ACTION ) ) {
 				$vals['actionhidden'] = true;
 				$anyHidden = true;
 			}
-			if ( $type !== RC_LOG ||
+			if ( !$isLog ||
 				LogEventsList::userCanBitfield(
-					$recentChangeInfo['rc_deleted'],
+					$row->rc_deleted,
 					LogPage::DELETED_ACTION,
 					$user
 				)
 			) {
 				if ( $this->fld_title ) {
-					ApiQueryBase::addTitleInfo( $vals, $title );
+					$vals['ns'] = $title->getNamespace();
+					$vals['title'] = $this->titleFormatter->getPrefixedText( $title );
 				}
 				if ( $this->fld_ids ) {
-					$vals['pageid'] = (int)$recentChangeInfo['rc_cur_id'];
-					$vals['revid'] = (int)$recentChangeInfo['rc_this_oldid'];
-					$vals['old_revid'] = (int)$recentChangeInfo['rc_last_oldid'];
+					$vals['pageid'] = (int)$row->rc_cur_id;
+					$vals['revid'] = (int)$row->rc_this_oldid;
+					$vals['old_revid'] = (int)$row->rc_last_oldid;
 				}
 			}
 		}
 
 		if ( $this->fld_user || $this->fld_userid ) {
-			if ( $recentChangeInfo['rc_deleted'] & RevisionRecord::DELETED_USER ) {
+			if ( $row->rc_deleted & RevisionRecord::DELETED_USER ) {
 				$vals['userhidden'] = true;
 				$anyHidden = true;
 			}
 			if ( RevisionRecord::userCanBitfield(
-				$recentChangeInfo['rc_deleted'],
+				$row->rc_deleted,
 				RevisionRecord::DELETED_USER,
 				$user
 			) ) {
 				if ( $this->fld_userid ) {
-					$vals['userid'] = (int)$recentChangeInfo['rc_user'];
+					$vals['userid'] = (int)$row->rc_user;
 					// for backwards compatibility
-					$vals['user'] = (int)$recentChangeInfo['rc_user'];
+					$vals['user'] = (int)$row->rc_user;
 				}
 
 				if ( $this->fld_user ) {
-					$vals['user'] = $recentChangeInfo['rc_user_text'];
+					$vals['user'] = $row->rc_user_text;
 					$vals['temp'] = $this->tempUserConfig->isTempName(
-						$recentChangeInfo['rc_user_text']
+						$row->rc_user_text
 					);
 				}
 
@@ -370,87 +426,86 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 				// not include temporary users, though they are grouped with IP
 				// users for FILTER_NOT_ANON and FILTER_ANON, to match the
 				// recent changes filters (T343322).
-				$vals['anon'] = !$recentChangeInfo['rc_user'];
-
+				$vals['anon'] = !$row->rc_user;
 			}
 		}
 
 		/* Add flags, such as new, minor, bot. */
 		if ( $this->fld_flags ) {
-			$vals['bot'] = (bool)$recentChangeInfo['rc_bot'];
-			$vals['new'] = $recentChangeInfo['rc_source'] == RecentChange::SRC_NEW;
-			$vals['minor'] = (bool)$recentChangeInfo['rc_minor'];
+			$vals['bot'] = (bool)$row->rc_bot;
+			$vals['new'] = $row->rc_source == RecentChange::SRC_NEW;
+			$vals['minor'] = (bool)$row->rc_minor;
 		}
 
-		/* Add sizes of each revision. (Only available on 1.10+) */
+		/* Add sizes of each revision. */
 		if ( $this->fld_sizes ) {
-			$vals['oldlen'] = (int)$recentChangeInfo['rc_old_len'];
-			$vals['newlen'] = (int)$recentChangeInfo['rc_new_len'];
+			$vals['oldlen'] = (int)$row->rc_old_len;
+			$vals['newlen'] = (int)$row->rc_new_len;
 		}
 
 		/* Add the timestamp. */
 		if ( $this->fld_timestamp ) {
-			$vals['timestamp'] = wfTimestamp( TS_ISO_8601, $recentChangeInfo['rc_timestamp'] );
+			$vals['timestamp'] = wfTimestamp( TS_ISO_8601, $row->rc_timestamp );
 		}
 
 		if ( $this->fld_notificationtimestamp ) {
-			$vals['notificationtimestamp'] = ( $watchedItem->getNotificationTimestamp() == null )
+			$vals['notificationtimestamp'] = ( $row->wl_notificationtimestamp == null )
 				? ''
-				: wfTimestamp( TS_ISO_8601, $watchedItem->getNotificationTimestamp() );
+				: wfTimestamp( TS_ISO_8601, $row->wl_notificationtimestamp );
 		}
 
 		/* Add edit summary / log summary. */
 		if ( $this->fld_comment || $this->fld_parsedcomment ) {
-			if ( $recentChangeInfo['rc_deleted'] & RevisionRecord::DELETED_COMMENT ) {
+			if ( $row->rc_deleted & RevisionRecord::DELETED_COMMENT ) {
 				$vals['commenthidden'] = true;
 				$anyHidden = true;
 			}
 			if ( RevisionRecord::userCanBitfield(
-				$recentChangeInfo['rc_deleted'],
+				$row->rc_deleted,
 				RevisionRecord::DELETED_COMMENT,
 				$user
 			) ) {
-				$comment = $this->commentStore->getComment( 'rc_comment', $recentChangeInfo )->text;
+				$comment = $this->commentStore->getComment( 'rc_comment', $row )->text;
 				if ( $this->fld_comment ) {
 					$vals['comment'] = $comment;
 				}
 
 				if ( $this->fld_parsedcomment ) {
-					$vals['parsedcomment'] = $this->commentFormatter->format( $comment, $title );
+					$vals['parsedcomment'] = $this->formattedComments[$row->rc_id];
 				}
 			}
 		}
 
 		/* Add the patrolled flag */
 		if ( $this->fld_patrol ) {
-			$vals['patrolled'] = $recentChangeInfo['rc_patrolled'] != RecentChange::PRC_UNPATROLLED;
-			$vals['unpatrolled'] = ChangesList::isUnpatrolled( (object)$recentChangeInfo, $user );
-			$vals['autopatrolled'] = $recentChangeInfo['rc_patrolled'] == RecentChange::PRC_AUTOPATROLLED;
+			$vals['patrolled'] = $row->rc_patrolled != RecentChange::PRC_UNPATROLLED;
+			$vals['unpatrolled'] = ChangesList::isUnpatrolled( $row, $user );
+			$vals['autopatrolled'] = $row->rc_patrolled == RecentChange::PRC_AUTOPATROLLED;
 		}
 
-		if ( $this->fld_loginfo && $recentChangeInfo['rc_source'] == RecentChange::SRC_LOG ) {
-			if ( $recentChangeInfo['rc_deleted'] & LogPage::DELETED_ACTION ) {
+		if ( $this->fld_loginfo && $row->rc_source == RecentChange::SRC_LOG ) {
+			if ( $row->rc_deleted & LogPage::DELETED_ACTION ) {
 				$vals['actionhidden'] = true;
 				$anyHidden = true;
 			}
 			if ( LogEventsList::userCanBitfield(
-				$recentChangeInfo['rc_deleted'],
+				$row->rc_deleted,
 				LogPage::DELETED_ACTION,
 				$user
 			) ) {
-				$vals['logid'] = (int)$recentChangeInfo['rc_logid'];
-				$vals['logtype'] = $recentChangeInfo['rc_log_type'];
-				$vals['logaction'] = $recentChangeInfo['rc_log_action'];
+				$vals['logid'] = (int)$row->rc_logid;
+				$vals['logtype'] = $row->rc_log_type;
+				$vals['logaction'] = $row->rc_log_action;
 
-				$logFormatter = $this->logFormatterFactory->newFromRow( $recentChangeInfo );
+				$logFormatter = $this->logFormatterFactory->newFromRow( $row );
 				$vals['logparams'] = $logFormatter->formatParametersForApi();
 				$vals['logdisplay'] = $logFormatter->getActionText();
 			}
 		}
 
 		if ( $this->fld_tags ) {
-			if ( $recentChangeInfo['rc_tags'] ) {
-				$tags = explode( ',', $recentChangeInfo['rc_tags'] );
+			if ( $row->ts_tags ) {
+				$tags = explode( ',', $row->ts_tags );
 				ApiResult::setIndexedTagName( $tags, 'tag' );
 				$vals['tags'] = $tags;
 			} else {
@@ -460,16 +515,29 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 
 		if ( $this->fld_expiry ) {
 			// Add expiration, T263796
-			$expiry = $watchedItem->getExpiry( TS_ISO_8601 );
-			$vals['expiry'] = ( $expiry ?? false );
+			$expiryString = $row->we_expiry ?? null;
+			if ( $expiryString ) {
+				$vals['expiry'] = wfTimestamp( TS_ISO_8601, $expiryString );
+			} else {
+				$vals['expiry'] = false;
+			}
 		}
 
-		if ( $anyHidden && ( $recentChangeInfo['rc_deleted'] & RevisionRecord::DELETED_RESTRICTED ) ) {
+		if ( $anyHidden && ( $row->rc_deleted & RevisionRecord::DELETED_RESTRICTED ) ) {
 			$vals['suppressed'] = true;
 		}
 
-		$this->getHookRunner()->onApiQueryWatchlistExtractOutputData(
-			$this, $watchedItem, $recentChangeInfo, $vals );
+		if ( $this->getHookContainer()->isRegistered( 'ApiQueryWatchlistExtractOutputData' ) ) {
+			$watchedItem = new WatchedItem(
+				$wlowner,
+				$title,
+				$row->wl_notificationtimestamp,
+				$row->we_expiry ?? null
+			);
+			$recentChangeInfo = (array)$row;
+			$this->getHookRunner()->onApiQueryWatchlistExtractOutputData(
+				$this, $watchedItem, $recentChangeInfo, $vals );
+		}
 
 		return $vals;
 	}
@@ -490,10 +558,12 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			],
 			'user' => [
 				ParamValidator::PARAM_TYPE => 'user',
+				UserDef::PARAM_RETURN_OBJECT => true,
 				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name', 'ip', 'temp', 'id', 'interwiki' ],
 			],
 			'excludeuser' => [
 				ParamValidator::PARAM_TYPE => 'user',
+				UserDef::PARAM_RETURN_OBJECT => true,
 				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name', 'ip', 'temp', 'id', 'interwiki' ],
 			],
 			'dir' => [
@@ -539,18 +609,18 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			'show' => [
 				ParamValidator::PARAM_ISMULTI => true,
 				ParamValidator::PARAM_TYPE => [
-					WatchedItemQueryService::FILTER_MINOR,
-					WatchedItemQueryService::FILTER_NOT_MINOR,
-					WatchedItemQueryService::FILTER_BOT,
-					WatchedItemQueryService::FILTER_NOT_BOT,
-					WatchedItemQueryService::FILTER_ANON,
-					WatchedItemQueryService::FILTER_NOT_ANON,
-					WatchedItemQueryService::FILTER_PATROLLED,
-					WatchedItemQueryService::FILTER_NOT_PATROLLED,
-					WatchedItemQueryService::FILTER_AUTOPATROLLED,
-					WatchedItemQueryService::FILTER_NOT_AUTOPATROLLED,
-					WatchedItemQueryService::FILTER_UNREAD,
-					WatchedItemQueryService::FILTER_NOT_UNREAD,
+					'minor',
+					'!minor',
+					'bot',
+					'!bot',
+					'anon',
+					'!anon',
+					'patrolled',
+					'!patrolled',
+					'autopatrolled',
+					'!autopatrolled',
+					'unread',
+					'!unread',
 				]
 			],
 			'type' => [

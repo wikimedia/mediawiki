@@ -5,6 +5,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Title\TitleValue;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\User;
+use MediaWiki\Watchlist\WatchedItemQueryService;
 
 /**
  * @group Database
@@ -16,6 +17,8 @@ class WatchedItemQueryServiceIntegrationTest extends MediaWikiIntegrationTestCas
 	protected function setUp(): void {
 		parent::setUp();
 
+		$this->hideDeprecated( WatchedItemQueryService::class .
+			'::getWatchedItemsWithRecentChangeInfo' );
 		$this->overrideConfigValue( MainConfigNames::WatchlistExpiry, true );
 	}
 

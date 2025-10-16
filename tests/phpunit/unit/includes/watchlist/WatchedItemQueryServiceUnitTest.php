@@ -29,6 +29,11 @@ use Wikimedia\TestingAccessWrapper;
  */
 class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 
+	public function setUp(): void {
+		$this->hideDeprecated( WatchedItemQueryService::class .
+			'::getWatchedItemsWithRecentChangeInfo' );
+	}
+
 	/**
 	 * @return MockObject&CommentStore
 	 */

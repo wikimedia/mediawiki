@@ -485,13 +485,12 @@ class ApiQuery extends ApiBase {
 			'class' => ApiQueryWatchlist::class,
 			'services' => [
 				'CommentStore',
-				'WatchedItemQueryService',
-				'ContentLanguage',
-				'NamespaceInfo',
-				'GenderCache',
-				'CommentFormatter',
+				'ChangesListQueryFactory',
+				'RowCommentFormatter',
 				'TempUserConfig',
 				'LogFormatterFactory',
+				'RecentChangeLookup',
+				'TitleFormatter',
 			],
 		],
 		'watchlistraw' => [

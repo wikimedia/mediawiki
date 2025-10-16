@@ -340,13 +340,11 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 	 * Require that the changed page is watched by the watchlist user specified
 	 * in a call to watchlistUser().
 	 *
+	 * @param string[] $watchTypes
 	 * @return $this
 	 */
-	public function requireWatched() {
-		$filter = $this->getWatchedFilter();
-		$filter->require( 'watchedold' );
-		$filter->require( 'watchednew' );
-		return $this;
+	public function requireWatched( $watchTypes = [ 'watchedold', 'watchednew' ] ) {
+		return $this->applyArrayAction( 'require', 'watched', $watchTypes );
 	}
 
 	/**
@@ -445,6 +443,17 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 	 */
 	public function requireLatest(): self {
 		$this->getRevisionTypeFilter()->require( 'latest' );
+		return $this;
+	}
+
+	/**
+	 * Exclude old revisions. Latest revisions and changes that do not
+	 * link to a revision, such as log entries, are allowed by this filter.
+	 *
+	 * @return self
+	 */
+	public function excludeOldRevisions(): self {
+		$this->getRevisionTypeFilter()->exclude( 'old' );
 		return $this;
 	}
 
@@ -724,6 +733,10 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 		return $this->joinModules['watchlist'];
 	}
 
+	private function getWatchlistExpiryJoinModule(): BasicJoin {
+		return $this->joinModules['watchlist_expiry'];
+	}
+
 	private function getSlotsJoinModule(): SlotsJoin {
 		return $this->joinModules['slots'];
 	}
@@ -917,6 +930,19 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 				'rc_comment_cid' => 'recentchanges_comment.comment_id'
 			] );
 		};
+		return $this;
+	}
+
+	/**
+	 * Add the we_expiry field and its related join, if watchlist expiry is enabled
+	 *
+	 * @return $this
+	 */
+	public function maybeAddWatchlistExpiryField(): self {
+		if ( $this->config->get( MainConfigNames::WatchlistExpiry ) ) {
+			$this->getWatchlistExpiryJoinModule()->forFields( $this )->weakLeft();
+			$this->fields( 'we_expiry' );
+		}
 		return $this;
 	}
 

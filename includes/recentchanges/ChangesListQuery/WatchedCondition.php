@@ -113,7 +113,8 @@ class WatchedCondition extends ChangesListConditionBase {
 
 		if ( $watchedold xor $watchednew ) {
 			if ( $watchedold ) {
-				$oldExpr = new RawSQLExpression( 'rc_timestamp < wl_notificationtimestamp' );
+				$oldExpr = ( new RawSQLExpression( 'rc_timestamp < wl_notificationtimestamp' ) )
+					->or( 'wl_notificationtimestamp', '=', null );
 			} else {
 				$oldExpr = new RawSQLExpression( 'rc_timestamp >= wl_notificationtimestamp' );
 			}

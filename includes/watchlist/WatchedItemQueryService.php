@@ -135,6 +135,8 @@ class WatchedItemQueryService {
 	}
 
 	/**
+	 * @deprecated since 1.45 use ChangesListQuery
+	 *
 	 * @param User $user
 	 * @param array $options Allowed keys:
 	 *        'includeFields'       => string[] RecentChange fields to be included in the result,
@@ -181,6 +183,7 @@ class WatchedItemQueryService {
 	public function getWatchedItemsWithRecentChangeInfo(
 		User $user, array $options = [], &$startFrom = null
 	) {
+		wfDeprecated( __METHOD__, '1.45' );
 		$options += [
 			'includeFields' => [],
 			'namespaceIds' => [],

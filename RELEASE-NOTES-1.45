@@ -538,6 +538,8 @@ because of Phabricator reports.
   both start and end with a double underscore has been deprecated. In this
   release pages which use these synonyms are added to a tracking category;
   in a future release these synonyms will be disabled. (T407289)
+* WatchedItemQueryService::getWatchedItemsWithRecentChangeInfo() has been
+  deprecated. Instead, use ChangesListQuery.
 * …
 
 === Other changes in 1.45 ===
