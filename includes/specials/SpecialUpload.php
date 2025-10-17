@@ -571,9 +571,15 @@ class SpecialUpload extends SpecialPage {
 	 * @param string $message HTML message to be passed to mainUploadForm
 	 */
 	protected function showRecoverableUploadError( $message ) {
-		$stashStatus = $this->mUpload->tryStashFile( $this->getUser() );
-		if ( $stashStatus->isGood() ) {
-			$sessionKey = $stashStatus->getValue()->getFileKey();
+		$stashFile = $this->mUpload->getStashFile();
+		if ( !$stashFile ) {
+			$stashStatus = $this->mUpload->tryStashFile( $this->getUser() );
+			if ( $stashStatus->isGood() ) {
+				$stashFile = $stashStatus->getValue();
+			}
+		}
+		if ( $stashFile ) {
+			$sessionKey = $stashFile->getFileKey();
 			$uploadWarning = 'upload-tryagain';
 		} else {
 			$sessionKey = null;
@@ -609,9 +615,15 @@ class SpecialUpload extends SpecialPage {
 		}
 
 		if ( $this->mUpload ) {
-			$stashStatus = $this->mUpload->tryStashFile( $this->getUser() );
-			if ( $stashStatus->isGood() ) {
-				$sessionKey = $stashStatus->getValue()->getFileKey();
+			$stashFile = $this->mUpload->getStashFile();
+			if ( !$stashFile ) {
+				$stashStatus = $this->mUpload->tryStashFile( $this->getUser() );
+				if ( $stashStatus->isGood() ) {
+					$stashFile = $stashStatus->getValue();
+				}
+			}
+			if ( $stashFile ) {
+				$sessionKey = $stashFile->getFileKey();
 				$uploadWarning = 'uploadwarning-text';
 			} else {
 				$sessionKey = null;

@@ -105,6 +105,7 @@ class UploadFromStash extends UploadBase {
 		$this->mVirtualTempPath = $metadata['us_path'];
 		$this->mFileProps = $this->stash->getFileProps( $key );
 		$this->mSourceType = $metadata['us_source_type'];
+		$this->mStashFile = $this->stash->getFile( $key );
 	}
 
 	/**
