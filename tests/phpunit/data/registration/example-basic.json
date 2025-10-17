@@ -49,6 +49,11 @@
 		}
 	},
 	"@notes": "Arbitrary notes",
+	"@todo": [
+		"* Multi",
+		"* Line",
+		"* Note"
+	],
 	"DefaultUserOptions": {
 		"ext-string": "string-value",
 		"ext-number": 42,
@@ -186,6 +191,7 @@
 	},
 	"ResourceModules": {
 		"file.module": {
+			"@note": "Node",
 			"localBasePath": "modules/",
 			"scripts": [ "file.js" ],
 			"styles": [ "file.css" ],
@@ -201,6 +207,7 @@
 			"skipStructureTest": false
 		},
 		"wiki.module": {
+			"@todo": "Todo",
 			"class": "WikiModuleClass",
 			"group": "wiki",
 			"position": "top",
@@ -209,6 +216,10 @@
 			"styles": [ "WikiPage:MediaWiki:Common.css" ]
 		},
 		"image.module": {
+			"@see": [
+				"See something else",
+				"or this"
+			],
 			"class": "ImageModuleClass",
 			"localBasePath": "images/",
 			"defaultColor": "#fff",
@@ -223,9 +234,11 @@
 			"position": "bottom"
 		},
 		"arbitrary.class.module": {
+			"@note": "note",
 			"class": "ArbitraryModuleClass"
 		},
 		"arbitrary.factory.module": {
+			"@note": "note",
 			"factory": "ArbitraryModuleFactory"
 		}
 	},

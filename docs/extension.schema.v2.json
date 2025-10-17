@@ -67,6 +67,13 @@
 				}
 			]
 		},
+		"Notes": {
+			"type": [
+				"string",
+				"array"
+			],
+			"description": "Arbitrary notes, ignored by the parser."
+		},
 		"ObjectFactorySpec": {
 			"type": "object",
 			"properties": {
@@ -96,13 +103,7 @@
 	"type": "object",
 	"additionalProperties": false,
 	"patternProperties": {
-		"^@": {
-			"type": [
-				"string",
-				"array"
-			],
-			"description": "Arbitrary notes, ignored by the parser."
-		}
+		"^@": { "$ref": "#/definitions/Notes" }
 	},
 	"required": [
 		"manifest_version",
@@ -706,13 +707,7 @@
 							"description": "A FileModule definition",
 							"additionalProperties": false,
 							"patternProperties": {
-								"^@": {
-									"type": [
-										"string",
-										"array"
-									],
-									"description": "Arbitrary notes, ignored by the parser."
-								}
+								"^@": { "$ref": "#/definitions/Notes" }
 							},
 							"properties": {
 								"localBasePath": {
@@ -864,13 +859,7 @@
 							"description": "A WikiModule definition",
 							"additionalProperties": false,
 							"patternProperties": {
-								"^@": {
-									"type": [
-										"string",
-										"array"
-									],
-									"description": "Arbitrary notes, ignored by the parser."
-								}
+								"^@": { "$ref": "#/definitions/Notes" }
 							},
 							"properties": {
 								"class": {
@@ -915,13 +904,7 @@
 							"description": "An ImageModule definition",
 							"additionalProperties": false,
 							"patternProperties": {
-								"^@": {
-									"type": [
-										"string",
-										"array"
-									],
-									"description": "Arbitrary notes, ignored by the parser."
-								}
+								"^@": { "$ref": "#/definitions/Notes" }
 							},
 							"properties": {
 								"class": {
