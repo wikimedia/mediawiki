@@ -131,7 +131,6 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 
 		$targetName = $subPage ?? $request->getText( 'user' );
 		$this->switchForm( $targetName );
-		$this->targetDescriptor = $targetName;
 
 		// If the user just viewed this page, without trying to submit, return early
 		// It prevents from showing "nouserspecified" error message on first view
@@ -151,6 +150,7 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 		$fetchedUser = $fetchedStatus->value;
 		// Phan false positive on Status object - T323205
 		'@phan-var UserIdentity $fetchedUser';
+		$this->setTargetName( $fetchedUser->getName(), $this->getUsernameWithInterwiki( $fetchedUser ) );
 		$this->targetUser = $fetchedUser;
 
 		if ( !$this->userGroupAssignmentService->targetCanHaveUserGroups( $fetchedUser ) ) {
@@ -195,7 +195,7 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 					Html::element(
 						'p',
 						[],
-						$this->msg( 'savedrights', $this->getUsernameWithInterwiki() )->text()
+						$this->msg( 'savedrights', $this->getUsernameWithInterwiki( $fetchedUser ) )->text()
 					),
 					'mw-notify-success'
 				)
@@ -406,7 +406,7 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 		$flags = $systemUser ? 0 : Linker::TOOL_LINKS_EMAIL;
 		return Linker::userToolLinks(
 			$this->targetUser->getId( $targetWiki ),
-			$this->getDisplayUsername( $target ),
+			$this->getTargetDescriptor(),
 			false, /* default for redContribsWhenNoEdits */
 			$flags
 		);
@@ -473,19 +473,14 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 		return $result;
 	}
 
-	/** @inheritDoc */
-	protected function getDisplayUsername( UserGroupsSpecialPageTarget $target ): string {
-		return $this->getUsernameWithInterwiki();
-	}
-
 	/**
 	 * Returns the username together with an interwiki suffix if applicable (user{@}wiki).
 	 * This form of the username is suitable for display in logs and other user-facing messages.
 	 * However, it cannot be used for {{GENDER:}} - in that case, use UserIdentity::getName().
 	 */
-	private function getUsernameWithInterwiki(): string {
-		$userName = $this->targetUser->getName();
-		$targetWiki = $this->targetUser->getWikiId();
+	private function getUsernameWithInterwiki( UserIdentity $targetUser ): string {
+		$userName = $targetUser->getName();
+		$targetWiki = $targetUser->getWikiId();
 		if ( $targetWiki !== UserIdentity::LOCAL ) {
 			$userName .= $this->getConfig()->get( MainConfigNames::UserrightsInterwikiDelimiter ) . $targetWiki;
 		}

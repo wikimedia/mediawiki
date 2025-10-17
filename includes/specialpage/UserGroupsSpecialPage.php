@@ -29,11 +29,14 @@ use Status;
  */
 abstract class UserGroupsSpecialPage extends SpecialPage {
 
+	/** @var string The bare name of the target user, e.g. "Foo" in a form suitable for {{GENDER:}} */
+	protected string $targetBareName = '';
+
 	/**
-	 * @var string The descriptor of the target user, e.g. "Foo", "Foo@wiki" or "#123". Will be used as a target in
-	 *   the edit groups form.
+	 * @var string The display name of the target user, e.g. "Foo", "Foo@wiki". It will also be used as a value
+	 *   for the hidden target field in the edit groups form.
 	 */
-	protected string $targetDescriptor = '';
+	protected string $targetDisplayName = '';
 
 	/** @var list<string> An array of all explicit groups in the system */
 	protected array $explicitGroups = [];
@@ -55,6 +58,19 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 
 	/** @var bool Whether the "Watch the user page" checkbox should be available on the page */
 	protected bool $enableWatchUser = true;
+
+	/**
+	 * Sets the name of the target user. If this page uses a special notation for the username (e.g. "Foo@wiki"),
+	 * which is different from actual bare username, this additional form should be passed as the second parameter.
+	 * The second form will be used in the interface messages and in the hidden target field in the groups form.
+	 * @param string $bareName A form of the name that can be used with {{GENDER:}}
+	 * @param string|null $displayName A form of the name that will be used as a value of the target field
+	 *   in the edit groups form. If null, $targetName is used.
+	 */
+	protected function setTargetName( string $bareName, ?string $displayName = null ): void {
+		$this->targetBareName = $bareName;
+		$this->targetDisplayName = $displayName ?? $bareName;
+	}
 
 	/**
 	 * Builds the user groups form, either in view or edit mode.
@@ -100,7 +116,7 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 				$this->msg( 'userrights-viewusergroup', $target->userName )->text()
 			) .
 			$this->msg( 'viewinguserrights'	)->params(
-				wfEscapeWikiText( $this->getDisplayUsername( $target ) )
+				wfEscapeWikiText( $this->getTargetDescriptor() )
 			)->rawParams( $this->getTargetUserToolLinks( $target ) )->parse() .
 			$this->getCurrentUserGroupsText( $target ) .
 			Html::closeElement( 'fieldset' );
@@ -128,7 +144,7 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 				$this->msg( 'userrights-editusergroup',	$target->userName )->text()
 			) .
 			$this->msg( 'editinguser' )->params(
-				wfEscapeWikiText( $this->getDisplayUsername( $target ) )
+				wfEscapeWikiText( $this->getTargetDescriptor() )
 			)->rawParams( $this->getTargetUserToolLinks( $target ) )->parse() .
 			$this->msg( 'userrights-groups-help', $target->userName )->parse() .
 			$this->getCurrentUserGroupsText( $target );
@@ -613,7 +629,7 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 		LogEventsList::showLogExtract(
 			$output,
 			$logSubType,
-			Title::makeTitle( NS_USER, $this->getDisplayUsername( $target ) )
+			Title::makeTitle( NS_USER, $this->getTargetDescriptor() )
 		);
 	}
 
@@ -649,21 +665,11 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 	}
 
 	/**
-	 * Returns the descriptor of the current target, e.g. "Foo", "Foo@wiki" or "#123".
-	 * The returned value is meant to be used as a value of the "user" field in the groups form
-	 * and in similar places.
+	 * Returns the name of the target user in a form suitable for displaying it, e.g. "Foo" or "Foo@wiki".
+	 * It will also be used in as a value for the hidden target field in the edit groups form.
 	 */
 	protected function getTargetDescriptor(): string {
-		return $this->targetDescriptor;
-	}
-
-	/**
-	 * Returns the target username in a format suitable for displaying. It will be used in the
-	 * "Changing user groups of" header and as the target in logs.
-	 * The default implementation returns the raw username as specified in the target.
-	 */
-	protected function getDisplayUsername( UserGroupsSpecialPageTarget $target ): string {
-		return $target->userName;
+		return $this->targetDisplayName;
 	}
 
 	/**
