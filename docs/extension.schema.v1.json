@@ -2,6 +2,74 @@
 	"$schema": "http://json-schema.org/schema#",
 	"description": "MediaWiki extension.json schema",
 	"definitions": {
+		"ExtensionDependenciesRequires": {
+			"type": "object",
+			"description": "Indicates what versions of PHP, MediaWiki core, extensions or skins are required. This syntax may be extended in the future, for example to check dependencies between other services.",
+			"properties": {
+				"MediaWiki": { "description": "See the ExtensionDependenciesBase definition" },
+				"platform": { "description": "See the ExtensionDependenciesBase definition" },
+				"extensions": { "description": "See the ExtensionDependenciesBase definition" },
+				"skins": { "description": "See the ExtensionDependenciesBase definition" }
+			},
+			"allOf": [
+				{ "$ref": "#/definitions/ExtensionDependenciesBase" }
+			],
+			"additionalProperties": false
+		},
+		"ExtensionDependenciesSuggests": {
+			"type": "object",
+			"description": "Indicates what versions of PHP, MediaWiki core, extensions or skins are suggested. This syntax may be extended in the future, for example to check dependencies between other services.",
+			"properties": {
+				"platform": { "description": "See the ExtensionDependenciesBase definition" },
+				"extensions": { "description": "See the ExtensionDependenciesBase definition" },
+				"skins": { "description": "See the ExtensionDependenciesBase definition" }
+			},
+			"allOf": [
+				{ "$ref": "#/definitions/ExtensionDependenciesBase" }
+			],
+			"additionalProperties": false
+		},
+		"ExtensionDependenciesBase": {
+			"type": "object",
+			"description": "Defintion of all properties that could be in requires/suggests/dev-requires",
+			"properties": {
+				"MediaWiki": {
+					"type": "string",
+					"description": "Version constraint string against MediaWiki core."
+				},
+				"platform": {
+					"type": "object",
+					"description": "Indicates version constraints against platform services.",
+					"additionalProperties": false,
+					"properties": {
+						"php": {
+							"type": "string",
+							"description": "Version constraint string against PHP."
+						},
+						"ability-shell": {
+							"type": "boolean",
+							"default": false,
+							"description": "Whether this extension requires shell access."
+						}
+					},
+					"patternProperties": {
+						"^ext-": {
+							"type": "string",
+							"description": "Required PHP extension.",
+							"enum": [ "*" ]
+						}
+					}
+				},
+				"extensions": {
+					"type": "object",
+					"description": "Set of version constraint strings against specific extensions."
+				},
+				"skins": {
+					"type": "object",
+					"description": "Set of version constraint strings against specific skins."
+				}
+			}
+		},
 		"resourceLoaderFileInfo": {
 			"oneOf": [
 				{
@@ -148,128 +216,9 @@
 			"type": "string",
 			"description": "SPDX identifier for the license under which the extension is released."
 		},
-		"requires": {
-			"type": "object",
-			"description": "Indicates what versions of PHP, MediaWiki core, extensions or skins are required. This syntax may be extended in the future, for example to check dependencies between other services.",
-			"additionalProperties": false,
-			"properties": {
-				"MediaWiki": {
-					"type": "string",
-					"description": "Version constraint string against MediaWiki core."
-				},
-				"platform": {
-					"type": "object",
-					"description": "Indicates version constraints against platform services.",
-					"additionalProperties": false,
-					"properties": {
-						"php": {
-							"type": "string",
-							"description": "Version constraint string against PHP."
-						},
-						"ability-shell": {
-							"type": "boolean",
-							"default": false,
-							"description": "Whether this extension requires shell access."
-						}
-					},
-					"patternProperties": {
-						"^ext-": {
-							"type": "string",
-							"description": "Required PHP extension.",
-							"enum": [ "*" ]
-						}
-					}
-				},
-				"extensions": {
-					"type": "object",
-					"description": "Set of version constraint strings against specific extensions."
-				},
-				"skins": {
-					"type": "object",
-					"description": "Set of version constraint strings against specific skins."
-				}
-			}
-		},
-		"suggests": {
-			"type": "object",
-			"description": "Indicates what versions of PHP and MediaWiki extensions or skins are optional suggestions. This syntax may be extended in the future, for example to check dependencies between other services.",
-			"additionalProperties": false,
-			"properties": {
-				"platform": {
-					"type": "object",
-					"description": "Indicates optional version constraints against platform services.",
-					"additionalProperties": false,
-					"properties": {
-						"php": {
-							"type": "string",
-							"description": "Optional version constraint string against PHP."
-						},
-						"ability-shell": {
-							"type": "boolean",
-							"default": false,
-							"description": "Whether this extension requires shell access."
-						}
-					},
-					"patternProperties": {
-						"^ext-": {
-							"type": "string",
-							"description": "Optional PHP extension.",
-							"enum": [ "*" ]
-						}
-					}
-				},
-				"extensions": {
-					"type": "object",
-					"description": "Set of optional version constraint strings against specific extensions."
-				},
-				"skins": {
-					"type": "object",
-					"description": "Set of optional version constraint strings against specific skins."
-				}
-			}
-		},
-		"dev-requires": {
-			"type": "object",
-			"description": "Indicates what dependencies are required for development purposes such as running tests. This syntax may be extended in the future.",
-			"additionalProperties": false,
-			"properties": {
-				"MediaWiki": {
-					"type": "string",
-					"description": "Version constraint string against MediaWiki core."
-				},
-				"platform": {
-					"type": "object",
-					"description": "Indicates version constraints against platform services.",
-					"additionalProperties": false,
-					"properties": {
-						"php": {
-							"type": "string",
-							"description": "Version constraint string against PHP."
-						},
-						"ability-shell": {
-							"type": "boolean",
-							"default": false,
-							"description": "Whether this extension requires shell access."
-						}
-					},
-					"patternProperties": {
-						"^ext-": {
-							"type": "string",
-							"description": "Required PHP extension.",
-							"enum": [ "*" ]
-						}
-					}
-				},
-				"extensions": {
-					"type": "object",
-					"description": "Set of version constraint strings against specific extensions."
-				},
-				"skins": {
-					"type": "object",
-					"description": "Set of version constraint strings against specific skins."
-				}
-			}
-		},
+		"requires": { "$ref": "#/definitions/ExtensionDependenciesRequires" },
+		"dev-requires": { "$ref": "#/definitions/ExtensionDependenciesRequires" },
+		"suggests": { "$ref": "#/definitions/ExtensionDependenciesSuggests" },
 		"ResourceFileModulePaths": {
 			"type": "object",
 			"description": "Default paths to use for all ResourceLoader file modules",
