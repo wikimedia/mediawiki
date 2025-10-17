@@ -3743,6 +3743,7 @@
 	"mycustomjsredirectprotected": "Vi ne havas permeson redakti ĉi tiun JavaScript-paĝon, ĉar ĝi estas alidirektilo, kies celo ne estas en via uzantospaco.",
 	"deflate-invaliddeflate": "Provizita enhavo ne estas ĝuste densigita",
 	"unprotected-js": "Pro sekurecaj kialoj, JavaScript ne povas esti ŝargata el neprotektataj paĝoj. Bonvolu nur krei JavaScript en la nomspaco MediaWiki: aŭ kiel subpaĝo de Uzanto.",
+	"userlogout-submit": "Elsaluti",
 	"userlogout-continue": "Ĉu vi volas elsaluti?",
 	"userlogout-temp": "Ĉu vi certas, ke vi volas elsaluti? Ne estos maniero reensaluti al via portempa konto.",
 	"paramvalidator-baduser": "Malvalida valoro \"$2\" por uzanto-parametro <var>$1</var>.",

@@ -7,6 +7,7 @@
 			"Matma Rex",
 			"Matěj Suchánek",
 			"NoiX180",
+			"SaldırganSincap",
 			"Veracious",
 			"Zhoelyakin"
 		]
@@ -1067,7 +1068,7 @@
 	"skin-action-delete": "Luluta",
 	"skin-action-move": "Heyiya",
 	"blockedtext-made-by": "Lomubulo kilaraja lo $1",
-	"blockedtext-reason-comment": "Alasani u yilohi botiya <em>$1<em>.",
+	"blockedtext-reason-comment": "Alasani u yilohi botiya <em>$1</em>.",
 	"blockedtext-start-time": "Tilumula lomubulo: $1",
 	"blockedtext-expiration-time": "Pulitiyo lomubulo: $1",
 	"blockedtext-intended-blockee": "Taa bubulalo: $1",

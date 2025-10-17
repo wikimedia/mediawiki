@@ -1725,7 +1725,7 @@
 	"upload-scripted-pi-callback": "不能上传包含XML-stylesheet处理命令的文件。",
 	"upload-scripted-dtd": "不能上传包含非标准DTD声明的SVG文件。",
 	"uploaded-script-svg": "在上传的SVG文件中找到可编写脚本的元素“$1”。",
-	"uploaded-hostile-svg": "在上传的SVG文件中的样式元素中找到不安全的CSS。",
+	"uploaded-hostile-svg": "在上传的SVG文件中的样式元素中找到不安全的CSS。在&lt;style&gt;的第$2行第$3个字符处发现了$1",
 	"uploaded-event-handler-on-svg": "在SVG文件中不允许设置event-handler属性<code>$1=\"$2\"</code>。",
 	"uploaded-href-attribute-svg": "&lt;a&gt;元素只能链接（href）到data:（嵌入文件），http:// 或 https:// ，或片段（#，同一文档中）。对于其他元素，如&lt;image&gt;，只允许链接data:和片段。请在导出SVG时尝试嵌入图像。发现<code>&lt;$1 $2=\"$3\"&gt;</code>。",
 	"uploaded-href-unsafe-target-svg": "在上传的SVG文件中找到了至不安全数据的href：URI目标<code>&lt;$1 $2=\"$3\"&gt;</code>。",

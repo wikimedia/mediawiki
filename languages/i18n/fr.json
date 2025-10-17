@@ -829,7 +829,7 @@
 	"cascadeprotectedwarning": "<strong>Attention :</strong> cette page a été protégée de manière à ce que seuls les utilisateurs avec [[Special:ListGroupRights|des droits spécifiques]] puissent la modifier car elle est incluse dans {{PLURAL:$1|la page suivante, protégée en cascade|les pages suivantes, protégées en cascade}} :",
 	"titleprotectedwarning": "<strong>Avertissement : cette page a été protégée de telle manière que [[Special:ListGroupRights|des droits spécifiques]] sont nécessaires pour pouvoir la créer.</strong>\nLa dernière entrée du journal est affichée ci-dessous pour référence :",
 	"templatesused": "{{PLURAL:$1|Page incluse|Pages incluses}} dans cette page :",
-	"templatesusedpreview": "{{PLURAL:$1|Modèle utilisé|Modèles utilisés}} dans cette prévisualisation :",
+	"templatesusedpreview": "{{PLURAL:$1|Page incluse|Pages incluses}} dans cette prévisualisation :",
 	"templatesusedsection": "{{PLURAL:$1|Page utilisée|Pages utilisées}} dans cette section :",
 	"template-protected": "(protégé)",
 	"template-semiprotected": "(semi-protégé)",
