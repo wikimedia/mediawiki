@@ -81,15 +81,6 @@ class UserGroupAssignmentService {
 			return false;
 		}
 
-		// If the target is an interwiki user, ensure that the performer is entitled to such changes
-		// It assumes that the target wiki exists at all
-		if (
-			$target->getWikiId() !== UserIdentity::LOCAL &&
-			!$performer->isAllowed( 'userrights-interwiki' )
-		) {
-			return false;
-		}
-
 		// changeableGroups already checks for self-assignments, so no need to do that here.
 		$available = $this->getChangeableGroups( $performer, $target );
 		if ( $available['add'] || $available['remove'] ) {
@@ -127,6 +118,15 @@ class UserGroupAssignmentService {
 	 * Backend for {@see getChangeableGroups}, does actual computation without caching.
 	 */
 	private function computeChangeableGroups( Authority $performer, UserIdentity $target ): array {
+		// If the target is an interwiki user, ensure that the performer is entitled to such changes
+		// It assumes that the target wiki exists at all
+		if (
+			$target->getWikiId() !== UserIdentity::LOCAL &&
+			!$performer->isAllowed( 'userrights-interwiki' )
+		) {
+			return [ 'add' => [], 'remove' => [], 'restricted' => [] ];
+		}
+
 		$localUserGroupManager = $this->userGroupManagerFactory->getUserGroupManager();
 		$groups = $localUserGroupManager->getGroupsChangeableBy( $performer );
 
