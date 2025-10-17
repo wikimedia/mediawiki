@@ -230,7 +230,10 @@ class ActiveUsersPager extends UsersPager {
 			] )
 			->from( 'block_target' )
 			->join( 'block', null, 'bl_target=bt_id' )
-			->where( [ 'bt_user' => $uids ] )
+			->where( [
+				'bt_user' => $uids,
+				$dbr->expr( 'bl_expiry', '>=', $dbr->timestamp() ),
+			] )
 			->groupBy( [ 'bt_user' ] )
 			->caller( __METHOD__ )->fetchResultSet();
 		$this->blockStatusByUid = [];

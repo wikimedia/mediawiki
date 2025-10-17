@@ -144,7 +144,6 @@ class UsersPager extends AlphabeticPager {
 	public function getQueryInfo() {
 		$dbr = $this->getDatabase();
 		$conds = [];
-		$options = [];
 
 		// Don't show hidden names
 		if ( !$this->canSeeHideuser() ) {
@@ -201,8 +200,6 @@ class UsersPager extends AlphabeticPager {
 			$conds[] = $dbr->expr( 'user_editcount', '>', 0 );
 		}
 
-		$options['GROUP BY'] = $this->creationSort ? 'user_id' : 'user_name';
-
 		$query = [
 			'tables' => [
 				'user',
@@ -220,13 +217,16 @@ class UsersPager extends AlphabeticPager {
 				'deleted' => $deleted, // block/hide status
 				'sitewide' => 'MAX(bl_sitewide)'
 			],
-			'options' => $options,
+			'options' => [
+				'GROUP BY' => $this->creationSort ? 'user_id' : 'user_name',
+			],
 			'join_conds' => [
 				'user_groups' => [ 'LEFT JOIN', 'user_id=ug_user' ],
 				'block_with_target' => [
 					'LEFT JOIN', [
 						'user_id=bt_user',
-						'bt_auto' => 0
+						'bt_auto' => 0,
+						$dbr->expr( 'bl_expiry', '>=', $dbr->timestamp() ),
 					]
 				],
 				'block' => [ 'JOIN', 'bl_target=bt_id' ]
