@@ -16,13 +16,13 @@ abstract class SearchResult {
 	use SearchResultTrait;
 
 	/**
-	 * Return a new RevisionSearchResult and initializes it with a title.
+	 * Return a new SearchResult and initializes it with a title.
 	 *
 	 * @param Title $title
 	 * @param ISearchResultSet|null $parentSet
-	 * @return RevisionSearchResult|ISearchResultSet
+	 * @return SearchResult
 	 */
-	public static function newFromTitle( $title, ?ISearchResultSet $parentSet = null ) {
+	public static function newFromTitle( $title, ?ISearchResultSet $parentSet = null ): SearchResult {
 		$result = new RevisionSearchResult( $title );
 		if ( $parentSet ) {
 			$parentSet->augmentResult( $result );
