@@ -397,7 +397,7 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 	}
 
 	/** @inheritDoc */
-	protected function getTargetUserToolLinks( UserGroupsSpecialPageTarget $target ): string {
+	protected function getTargetUserToolLinks(): string {
 		$targetWiki = $this->targetUser->getWikiId();
 		$systemUser = $targetWiki === UserIdentity::LOCAL
 			&& $this->userFactory->newFromUserIdentity( $this->targetUser )->isSystemUser();
@@ -433,10 +433,7 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 	}
 
 	/** @inheritDoc */
-	protected function categorizeUserGroupsForDisplay(
-		array $userGroups,
-		UserGroupsSpecialPageTarget $target
-	): array {
+	protected function categorizeUserGroupsForDisplay( array $userGroups ): array {
 		$autoGroups = [];
 
 		// Listing autopromote groups works only on the local wiki

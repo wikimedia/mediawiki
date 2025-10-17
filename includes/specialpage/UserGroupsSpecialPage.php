@@ -117,7 +117,7 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 			) .
 			$this->msg( 'viewinguserrights'	)->params(
 				wfEscapeWikiText( $this->getTargetDescriptor() )
-			)->rawParams( $this->getTargetUserToolLinks( $target ) )->parse() .
+			)->rawParams( $this->getTargetUserToolLinks() )->parse() .
 			$this->getCurrentUserGroupsText( $target ) .
 			Html::closeElement( 'fieldset' );
 		return $formContent;
@@ -135,7 +135,7 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 			Html::hidden( 'wpEditToken', $this->getUser()->getEditToken( $this->getTargetDescriptor() ) ) .
 			Html::hidden(
 				'conflictcheck-originalgroups',
-				$this->makeConflictCheckKey( $target )
+				$this->makeConflictCheckKey()
 			) .
 			Html::openElement( 'fieldset' ) .
 			Html::element(
@@ -145,11 +145,11 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 			) .
 			$this->msg( 'editinguser' )->params(
 				wfEscapeWikiText( $this->getTargetDescriptor() )
-			)->rawParams( $this->getTargetUserToolLinks( $target ) )->parse() .
+			)->rawParams( $this->getTargetUserToolLinks() )->parse() .
 			$this->msg( 'userrights-groups-help', $target->userName )->parse() .
 			$this->getCurrentUserGroupsText( $target );
 
-		$memberships = $this->getGroupMemberships( $target );
+		$memberships = $this->getGroupMemberships();
 		$columns = [
 			'unchangeable' => [],
 			'changeable' => [],
@@ -212,7 +212,7 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 					) .
 				"</td>
 			</tr>";
-		if ( $this->supportsWatchUser( $target ) ) {
+		if ( $this->supportsWatchUser() ) {
 			$output .= "<tr>
 					<td></td>
 					<td class='mw-input'>" .
@@ -564,10 +564,10 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 	 * split them into several paragraphs etc.
 	 */
 	protected function getCurrentUserGroupsText( UserGroupsSpecialPageTarget $target ): string {
-		$userGroups = $this->getGroupMemberships( $target );
+		$userGroups = $this->getGroupMemberships();
 		$userGroups = $this->sortGroupMemberships( $userGroups );
 
-		$groupParagraphs = $this->categorizeUserGroupsForDisplay( $userGroups, $target );
+		$groupParagraphs = $this->categorizeUserGroupsForDisplay( $userGroups );
 
 		$context = $this->getContext();
 		$userName = $target->userName;
@@ -641,15 +641,11 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 	 * @param array<string,UserGroupMembership> $userGroups The user groups the target belongs to, as
 	 *   returned by {@see getGroupMemberships()}. The groups are sorted in such a way that permanent
 	 *   memberships are after temporary ones.
-	 * @param UserGroupsSpecialPageTarget $target The target user
 	 * @return array<string,list<UserGroupMembership>> List of groups to show, keyed by the message key to
 	 *   include at the beginning of the respective paragraph. The default implementation returns a single
 	 *   paragraph with all the groups, keyed by 'userrights-groupsmember'.
 	 */
-	protected function categorizeUserGroupsForDisplay(
-		array $userGroups,
-		UserGroupsSpecialPageTarget $target
-	): array {
+	protected function categorizeUserGroupsForDisplay( array $userGroups ): array {
 		return [
 			'userrights-groupsmember' => array_values( $userGroups ),
 		];
@@ -659,8 +655,8 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 	 * Returns a string that represents the current state of the target's groups. It is used to
 	 * detect attempts of concurrent modifications to the user groups.
 	 */
-	protected function makeConflictCheckKey( UserGroupsSpecialPageTarget $target ): string {
-		$groups = array_keys( $this->getGroupMemberships( $target ) );
+	protected function makeConflictCheckKey(): string {
+		$groups = array_keys( $this->getGroupMemberships() );
 		return implode( ',', $groups );
 	}
 
@@ -676,7 +672,7 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 	 * Returns an HTML snippet with links to pages like user talk, contributions etc. for the
 	 * target user. It will be used in the "Changing user groups of" header.
 	 */
-	abstract protected function getTargetUserToolLinks( UserGroupsSpecialPageTarget $target ): string;
+	abstract protected function getTargetUserToolLinks(): string;
 
 	/**
 	 * Returns a list of all groups that should be presented in the form.
@@ -690,7 +686,7 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 	 * Returns the groups the target user currently belongs to, keyed by the group name.
 	 * @return array<string,UserGroupMembership>
 	 */
-	protected function getGroupMemberships( UserGroupsSpecialPageTarget $target ): array {
+	protected function getGroupMemberships(): array {
 		return $this->groupMemberships;
 	}
 
@@ -750,7 +746,7 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 	/**
 	 * Returns whether the "Watch user page" checkbox should be shown.
 	 */
-	protected function supportsWatchUser( UserGroupsSpecialPageTarget $target ): bool {
+	protected function supportsWatchUser(): bool {
 		return $this->enableWatchUser;
 	}
 
