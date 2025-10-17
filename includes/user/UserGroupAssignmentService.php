@@ -98,7 +98,7 @@ class UserGroupAssignmentService {
 	 *   'restricted' => [ groupname => [
 	 *     'condition-met' => bool,
 	 *     'ignore-condition' => bool,
-	 *     'reason' => string
+	 *     'message' => string
 	 *   ] ]
 	 *  ]
 	 * @phan-return array{add:list<string>,remove:list<string>,restricted:array<string,array>}
