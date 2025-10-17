@@ -291,7 +291,7 @@ class SpecialUpload extends SpecialPage {
 
 				return;
 			}
-			$this->showUploadForm( $this->getUploadForm() );
+			$this->showUploadForm( $this->getUploadForm( '', $this->mUpload?->getStashFile()?->getFileKey() ) );
 		}
 
 		# Cleanup

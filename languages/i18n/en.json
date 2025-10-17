@@ -1636,6 +1636,7 @@
 	"uploadstash-header-thumb": "Thumbnail",
 	"uploadstash-header-dimensions": "Dimensions",
 	"uploadstash-pager-submit": "Show file list",
+	"uploadstash-pager-tryagain": "Start upload with this file",
 	"uploadstash-bad-path": "Path doesn't exist.",
 	"uploadstash-bad-path-invalid": "Path is not valid.",
 	"uploadstash-bad-path-unknown-type": "Unknown type \"$1\".",

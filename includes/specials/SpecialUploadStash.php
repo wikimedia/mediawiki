@@ -377,6 +377,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 		// sets the title, etc.
 		$this->setHeaders();
 		$this->outputHeader();
+		$this->getOutput()->addModuleStyles( 'mediawiki.special' );
 
 		// create the form, which will also be used to execute a callback to process incoming form data
 		// this design is extremely dubious, but supposedly HTMLForm is our standard now?

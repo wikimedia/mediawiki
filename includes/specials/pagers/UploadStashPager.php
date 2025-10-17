@@ -81,6 +81,7 @@ class UploadStashPager extends TablePager {
 				'us_path',
 				'us_sha1',
 				'us_mime',
+				'us_status',
 			],
 			'conds' => [ 'us_user' => $this->getUser()->getId() ],
 			'options' => [],
@@ -111,10 +112,22 @@ class UploadStashPager extends TablePager {
 				// We may want to make this a link to the "old" version when displaying old files
 				return htmlspecialchars( $this->getLanguage()->userTimeAndDate( $value, $this->getUser() ) );
 			case 'us_key':
-				return $this->getLinkRenderer()->makeKnownLink(
+				$linkRenderer = $this->getLinkRenderer();
+				$html = $linkRenderer->makeKnownLink(
 					SpecialPage::getTitleFor( 'UploadStash', "file/$value" ),
 					$value
 				);
+				if ( $this->mCurrentRow->us_status === 'finished' ) {
+					$html .= '<br />' . Html::rawElement( 'span', [ 'class' => 'mw-uploadstash-tryagain' ],
+						$this->msg( 'parentheses' )->rawParams( $linkRenderer->makeKnownLink(
+							SpecialPage::getTitleFor( 'Upload' ),
+							$this->msg( 'uploadstash-pager-tryagain' )->text(),
+							[],
+							[ 'wpSourceType' => 'Stash', 'wpSessionKey' => $value ]
+						) )->escaped()
+					);
+				}
+				return $html;
 			case 'thumb':
 				$file = $this->getCurrentFile();
 				if ( $file->allowInlineDisplay() ) {

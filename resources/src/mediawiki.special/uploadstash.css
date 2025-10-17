@@ -1,0 +1,7 @@
+/*!
+ * Styles for Special:UploadStash
+ */
+.mw-uploadstash-tryagain {
+	white-space: nowrap;
+	font-size: 90%;
+}

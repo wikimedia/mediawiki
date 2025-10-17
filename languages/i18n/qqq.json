@@ -1911,6 +1911,7 @@
 	"uploadstash-header-thumb": "Used as header of a table",
 	"uploadstash-header-dimensions": "Used as header of a table",
 	"uploadstash-pager-submit": "A submit button",
+	"uploadstash-pager-tryagain": "Used in parenthesis as link text on Special:UploadStash",
 	"uploadstash-bad-path": "Error message when the upload stash path doesn't exist.",
 	"uploadstash-bad-path-invalid": "Error message when the upload stash path is invalid.",
 	"uploadstash-bad-path-unknown-type": "Error message when the upload stash key is of an invalid type.\n\nParameters:\n* $1 - the type",
