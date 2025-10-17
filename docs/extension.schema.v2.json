@@ -563,24 +563,22 @@
 			"type": "array",
 			"description": "List of notification handlers (specs for ObjectFactory). The class should implement the NotificationHandler interface.",
 			"items": {
-				"allOf": [
-					{
-						"type": "object",
-						"properties": {
-							"types": {
-								"type": "array",
-								"description": "Notification types (or wildcards) supported by this handler. Currently, the only supported wildcard is setting the whole type to '*' (no partial matches allowed).",
-								"items": {
-									"type": "string"
-								}
-							},
-							"factory": { "description": "See the ObjectFactorySpec definition" },
-							"class": { "description": "See the ObjectFactorySpec definition" },
-							"args": { "description": "See the ObjectFactorySpec definition" },
-							"services": { "description": "See the ObjectFactorySpec definition" },
-							"optional_services": { "description": "See the ObjectFactorySpec definition" }
+				"type": "object",
+				"properties": {
+					"types": {
+						"type": "array",
+						"description": "Notification types (or wildcards) supported by this handler. Currently, the only supported wildcard is setting the whole type to '*' (no partial matches allowed).",
+						"items": {
+							"type": "string"
 						}
 					},
+					"factory": { "description": "See the ObjectFactorySpec definition" },
+					"class": { "description": "See the ObjectFactorySpec definition" },
+					"args": { "description": "See the ObjectFactorySpec definition" },
+					"services": { "description": "See the ObjectFactorySpec definition" },
+					"optional_services": { "description": "See the ObjectFactorySpec definition" }
+				},
+				"allOf": [
 					{ "$ref": "#/definitions/ObjectFactorySpec" }
 				]
 			}
@@ -1220,36 +1218,34 @@
 			"type": "array",
 			"description": "List of route specifications to be added to the REST API",
 			"items": {
-				"allOf": [
-					{
-						"type": "object",
-						"properties": {
-							"method": {
-								"oneOf": [
-									{
-										"type": "string",
-										"description": "The HTTP method name"
-									},
-									{
-										"type": "array",
-										"items": {
-											"type": "string",
-											"description": "An acceptable HTTP method name"
-										}
-									}
-								]
-							},
-							"path": {
+				"type": "object",
+				"properties": {
+					"method": {
+						"oneOf": [
+							{
 								"type": "string",
-								"description": "The path template. This should start with an initial slash, designating the root of the REST API. Path parameters are enclosed in braces, for example /endpoint/{param}."
+								"description": "The HTTP method name"
 							},
-							"factory": { "description": "See the ObjectFactorySpec definition" },
-							"class": { "description": "See the ObjectFactorySpec definition" },
-							"args": { "description": "See the ObjectFactorySpec definition" },
-							"services": { "description": "See the ObjectFactorySpec definition" },
-							"optional_services": { "description": "See the ObjectFactorySpec definition" }
-						}
+							{
+								"type": "array",
+								"items": {
+									"type": "string",
+									"description": "An acceptable HTTP method name"
+								}
+							}
+						]
 					},
+					"path": {
+						"type": "string",
+						"description": "The path template. This should start with an initial slash, designating the root of the REST API. Path parameters are enclosed in braces, for example /endpoint/{param}."
+					},
+					"factory": { "description": "See the ObjectFactorySpec definition" },
+					"class": { "description": "See the ObjectFactorySpec definition" },
+					"args": { "description": "See the ObjectFactorySpec definition" },
+					"services": { "description": "See the ObjectFactorySpec definition" },
+					"optional_services": { "description": "See the ObjectFactorySpec definition" }
+				},
+				"allOf": [
 					{ "$ref": "#/definitions/ObjectFactorySpec" }
 				]
 			}
