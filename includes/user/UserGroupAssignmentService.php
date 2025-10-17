@@ -316,7 +316,7 @@ class UserGroupAssignmentService {
 	): void {
 		$canAdd = $permittedChanges['add'];
 		$canRemove = $permittedChanges['remove'];
-		$involvedGroups = array_unique( array_merge( array_keys( $existingUGMs ), $addGroups ) );
+		$involvedGroups = array_unique( array_merge( array_keys( $existingUGMs ), $addGroups, $removeGroups ) );
 
 		// These do not reflect actual permissions, but rather the groups to remove from $addGroups and $removeGroups
 		$unaddableGroups = [];
@@ -327,6 +327,15 @@ class UserGroupAssignmentService {
 			$wantsAddGroup = in_array( $group, $addGroups );
 			$wantsRemoveGroup = in_array( $group, $removeGroups );
 
+			// Better safe than sorry - catch it if the input is contradictory
+			if (
+				( !$hasGroup && $wantsRemoveGroup ) ||
+				( $wantsAddGroup && $wantsRemoveGroup )
+			) {
+				$unaddableGroups[] = $group;
+				$irremovableGroups[] = $group;
+				continue;
+			}
 			// If there's no change, we don't have to change anything
 			if ( !$hasGroup && !$wantsAddGroup ) {
 				continue;
@@ -343,7 +352,6 @@ class UserGroupAssignmentService {
 			} elseif ( !$hasGroup && $wantsAddGroup ) {
 				if ( !in_array( $group, $canAdd ) ) {
 					$unaddableGroups[] = $group;
-					unset( $newExpiries[$group] );
 				}
 			} elseif ( $hasGroup && $wantsAddGroup ) {
 				$currentExpiry = $existingUGMs[$group]->getExpiry() ?? 'infinity';
@@ -360,12 +368,14 @@ class UserGroupAssignmentService {
 				if ( !$canChange ) {
 					// Restore the original group expiry if user can't change it
 					$unaddableGroups[] = $group;
-					unset( $newExpiries[$group] );
 				}
 			}
 		}
 
 		$addGroups = array_diff( $addGroups, $unaddableGroups );
 		$removeGroups = array_diff( $removeGroups, $irremovableGroups );
+		foreach ( $unaddableGroups as $group ) {
+			unset( $newExpiries[$group] );
+		}
 	}
 }

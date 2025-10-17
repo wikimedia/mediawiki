@@ -378,6 +378,37 @@ class UserGroupAssignmentServiceTest extends MediaWikiIntegrationTestCase {
 					'shortened-group2' => '20260101000000',
 				],
 			],
+			'User wants to remove non-existing group' => [
+				'add' => [],
+				'remove' => [ 'non-existing-group' ],
+				'newExpiries' => [],
+				'existingUGMs' => [],
+				'permittedChanges' => [
+					'add' => [],
+					'remove' => [ 'non-existing-group' ],
+				],
+				'expectedAdd' => [],
+				'expectedRemove' => [],
+				'expectedNewExpiries' => [],
+			],
+			'User wants to both add and remove the same group' => [
+				'add' => [ 'group1', 'group2' ],
+				'remove' => [ 'group1', 'group2' ],
+				'newExpiries' => [
+					'group1' => null,
+					'group2' => '20290101000000',
+				],
+				'existingUGMs' => [
+					'group2' => null,
+				],
+				'permittedChanges' => [
+					'add' => [ 'group1', 'group2' ],
+					'remove' => [ 'group1', 'group2' ],
+				],
+				'expectedAdd' => [],
+				'expectedRemove' => [],
+				'expectedNewExpiries' => [],
+			],
 		];
 	}
 

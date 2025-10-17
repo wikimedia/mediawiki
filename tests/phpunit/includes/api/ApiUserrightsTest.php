@@ -307,13 +307,12 @@ class ApiUserrightsTest extends ApiTestCase {
 			], 'Add and remove same new group' => [
 				null,
 				[ [ 'sysop' ], [ 'sysop' ] ],
-				// The userrights code does removals before adds, so it doesn't remove the sysop
-				// group here and only adds it.
-				[ 'bot', 'sysop' ],
+				// The userrights code ignores groups that are both added and removed.
+				[ 'bot' ],
 			], 'Add and remove same existing group' => [
 				null,
 				[ [ 'bot' ], [ 'bot' ] ],
-				// But here it first removes the existing group and then re-adds it.
+				// Here the change to bot is also ignored.
 				[ 'bot' ],
 			],
 		];
