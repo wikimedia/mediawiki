@@ -293,14 +293,19 @@ class UploadForm extends HTMLForm {
 			}
 			if ( $file ) {
 				$mto = $file->transform( [ 'width' => 120 ] );
-				if ( $mto ) {
+				if ( $mto && !$mto->isError() ) {
 					$this->addHeaderHtml(
-						'<div class="thumb t' .
-						$this->contentLanguage->alignEnd() . '">' .
-						Html::element( 'img', [
-							'src' => $mto->getUrl(),
-							'class' => 'thumbimage',
-						] ) . '</div>', 'description' );
+						Html::rawElement(
+							'figure',
+							[
+								'typeof' => 'mw:File',
+								// Uses: mw-halign-right or mw-halign-left
+								'class' => 'mw-halign-' . $this->contentLanguage->alignEnd(),
+							],
+							$mto->toHtml()
+						),
+						'description'
+					);
 				}
 			}
 		}
