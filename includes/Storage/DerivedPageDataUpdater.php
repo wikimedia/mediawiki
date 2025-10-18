@@ -219,7 +219,7 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 	private $renderedRevision = null;
 
 	/** @var ?PageLatestRevisionChangedEvent */
-	private $pageRevisionUpdatedEvent = null;
+	private $pageLatestRevisionChangedEvent = null;
 
 	/**
 	 * @var RevisionRenderer
@@ -1661,15 +1661,21 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 		$this->options['emitEvents'] = false;
 		$this->options['allowEvents'] = false;
 
-		$pageRevisionUpdatedEvent = $this->getPageLatestRevisionChangedEvent();
+		$pageLatestRevisionChangedEvent = $this->getPageLatestRevisionChangedEvent();
 		$pageCreatedEvent = $this->getPageCreatedEvent();
 
-		if ( $pageRevisionUpdatedEvent->getPageRecordBefore() === null && !$this->options['created'] ) {
+		if (
+			$pageLatestRevisionChangedEvent->getPageRecordBefore() === null &&
+			!$this->options['created']
+		) {
 			// if the page wasn't just created, we need the state before
 			throw new LogicException( 'Missing page state before update' );
 		}
 
-		$this->eventDispatcher->dispatch( $pageRevisionUpdatedEvent, $this->loadbalancerFactory );
+		$this->eventDispatcher->dispatch(
+			$pageLatestRevisionChangedEvent,
+			$this->loadbalancerFactory
+		);
 
 		if ( $pageCreatedEvent ) {
 			// NOTE: Emit PageCreated after PageLatestRevisionChanged, because the creation
@@ -1687,8 +1693,8 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 	}
 
 	private function getPageLatestRevisionChangedEvent(): PageLatestRevisionChangedEvent {
-		if ( $this->pageRevisionUpdatedEvent ) {
-			return $this->pageRevisionUpdatedEvent;
+		if ( $this->pageLatestRevisionChangedEvent ) {
+			return $this->pageLatestRevisionChangedEvent;
 		}
 
 		$this->assertHasRevision( __METHOD__ );
@@ -1734,7 +1740,7 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 			}
 		}
 
-		$this->pageRevisionUpdatedEvent = new PageLatestRevisionChangedEvent(
+		$this->pageLatestRevisionChangedEvent = new PageLatestRevisionChangedEvent(
 			$this->options['cause'] ?? PageUpdateCauses::CAUSE_EDIT,
 			$pageRecordBefore,
 			$pageRecordAfter,
@@ -1748,7 +1754,7 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 			$this->options['rcPatrolStatus'] ?? 0,
 		);
 
-		return $this->pageRevisionUpdatedEvent;
+		return $this->pageLatestRevisionChangedEvent;
 	}
 
 	private function getPageCreatedEvent(): ?PageCreatedEvent {

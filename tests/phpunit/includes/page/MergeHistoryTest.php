@@ -8,7 +8,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
 use MediaWiki\Message\Message;
 use MediaWiki\Page\Event\PageDeletedEvent;
-use MediaWiki\Page\Event\PageRevisionUpdatedEvent;
+use MediaWiki\Page\Event\PageLatestRevisionChangedEvent;
 use MediaWiki\Page\MergeHistory;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Revision\MutableRevisionRecord;
@@ -245,7 +245,7 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 		$this->insertPage( $title2 );
 
 		// Latest revision turned into redirect, no page deleted.
-		$this->expectDomainEvent( PageRevisionUpdatedEvent::TYPE, 1 );
+		$this->expectDomainEvent( PageLatestRevisionChangedEvent::TYPE, 1 );
 		$this->expectDomainEvent( PageDeletedEvent::TYPE, 0 );
 
 		$factory = $this->getServiceContainer()->getMergeHistoryFactory();
@@ -298,7 +298,7 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 		$this->insertPage( $title2 );
 
 		// Latest revision didn't change, page deleted.
-		$this->expectDomainEvent( PageRevisionUpdatedEvent::TYPE, 0 );
+		$this->expectDomainEvent( PageLatestRevisionChangedEvent::TYPE, 0 );
 		$this->expectDomainEvent( PageDeletedEvent::TYPE, 1 );
 
 		$factory = $this->getServiceContainer()->getMergeHistoryFactory();

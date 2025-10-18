@@ -17,7 +17,6 @@ use Wikimedia\Assert\Assert;
  * They are emitted by WikiPage::doUpdateRestrictions().
  *
  * @see RestrictionStore
- * @see PageRevisionUpdatedEvent
  *
  * @since 1.45
  */
