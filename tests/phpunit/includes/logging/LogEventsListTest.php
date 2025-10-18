@@ -9,6 +9,7 @@ use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserIdentityValue;
 
 /**
  * @group Database
@@ -189,5 +190,84 @@ class LogEventsListTest extends MediaWikiIntegrationTestCase {
 			$error = 'Should contain multi-block message';
 		}
 		$this->assertStringContainsString( $pattern, $html, $error );
+	}
+
+	public static function provideMultiIpBlockData(): array {
+		$ip = '255.255.255.255';
+		$cidr31 = '255.255.255.254/31';
+		$cidr30 = '255.255.255.252/30';
+		return [
+			'Single direct IP block' => [
+				'targets' => [ $ip ],
+				'expected' => $ip,
+				'blockId' => 1
+			],
+			'Direct IP + range block (direct preferred)' => [
+				'targets' => [ $ip, $cidr31 ],
+				'expected' => $ip,
+				'blockId' => 1
+			],
+			'Multiple identical direct IP blocks (latest wins)' => [
+				'targets' => [ $ip, $ip, $cidr31 ],
+				'expected' => $ip,
+				'blockId' => 2
+			],
+			'Interleaved IP and range blocks (latest direct IP wins)' => [
+				'targets' => [ $ip, $cidr31, $ip ],
+				'expected' => $ip,
+				'blockId' => 3
+			],
+			'Single range block' => [
+				'targets' => [ $cidr31 ],
+				'expected' => $cidr31,
+				'blockId' => 1
+			],
+			'Two different ranges (prefer more specific /31)' => [
+				'targets' => [ $cidr31, $cidr30 ],
+				'expected' => $cidr31,
+				'blockId' => 1
+			],
+			'Duplicate range blocks (latest wins)' => [
+				'targets' => [ $cidr31, $cidr31, $cidr30 ],
+				'expected' => $cidr31,
+				'blockId' => 2
+			],
+			'Interleaved range blocks (latest /31 wins)' => [
+				'targets' => [ $cidr31, $cidr30, $cidr31 ],
+				'expected' => $cidr31,
+				'blockId' => 3
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideMultiIpBlockData
+	 */
+	public function testBlockNoticeForMultiIpBlocks( array $rawIps, string $rawIpForLog, int $blockId ) {
+		$blockUserFactory = $this->getServiceContainer()->getBlockUserFactory();
+		foreach ( $rawIps as $i => $ipStr ) {
+			$id = $i + 1;
+			$block = $blockUserFactory->newBlockUser(
+				$ipStr,
+				self::$admin,
+				'infinity',
+				$id
+			)->placeBlock( BlockUser::CONFLICT_NEW );
+			$this->assertStatusGood( $block, "Block #$id for $ipStr was not placed" );
+		}
+
+		$html = $this->getBlockNotice( UserIdentityValue::newAnonymous( $rawIpForLog ) );
+		$this->assertNotNull( $html, 'Expected a block notice' );
+		if ( count( $rawIps ) > 1 ) {
+			$this->assertStringContainsString( 'blocked-notice-logextract-anon-multi', $html );
+		} else {
+			$this->assertMatchesRegularExpression( '/blocked-notice-logextract-anon(?!-)/', $html );
+		}
+		$this->assertStringContainsString( $rawIpForLog, $html,
+			'The block notice does not contain a log for ' . $rawIpForLog
+		);
+		$this->assertStringContainsString( "(parentheses: $blockId)", $html,
+			"Block log for ID: $blockId not shown"
+		);
 	}
 }

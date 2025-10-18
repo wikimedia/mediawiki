@@ -876,10 +876,11 @@ class LogEventsList extends ContextSource {
 			return null;
 		}
 
+		$isAnon = !$user->isRegistered();
 		$appliesToTitle = false;
-		$blockTargetName = '';
 		$logTargetPages = [];
 		$sitewide = false;
+		$matchingIpFound = false;
 		$newestBlockTimestamp = null;
 		$blockId = null;
 		foreach ( $blocks as $block ) {
@@ -896,13 +897,28 @@ class LogEventsList extends ContextSource {
 			// Track the most recent active block. Prefer newer timestamps; if two blocks
 			// share the same timestamp, fall back to the larger block ID to break ties.
 			// This avoids issues where overridden blocks may reuse smaller IDs.
-			if (
+			//
+			// IP blocks are a bit tricky here:
+			// - Prioritize direct blocks where $user and $block share the same IP.
+			// - The same IP can be directly blocked multiple times, in which case
+			//   the timestamp priority logic should work the same way.
+			// Once an exact IP match is found, it takes precedence over range blocks
+			// even if the range is newer or has a bigger ID, since it represents a more
+			// specific and directly applicable restriction.
+			$isExactIpMatch = $isAnon && $user->getName() === $blockTargetName;
+			if ( ( $isExactIpMatch || !$matchingIpFound ) && (
 				$newestBlockTimestamp === null ||
 				$block->getTimestamp() > $newestBlockTimestamp ||
 				( $block->getTimestamp() === $newestBlockTimestamp && $block->getId() > $blockId )
-			) {
+			) ) {
 				$newestBlockTimestamp = $block->getTimestamp();
 				$blockId = $block->getId();
+
+				// If this block is an exact IP match, mark it so future range blocks don't
+				// override it, regardless of newer timestamps or bigger IDs
+				if ( $isExactIpMatch ) {
+					$matchingIpFound = true;
+				}
 			}
 		}
 
@@ -912,7 +928,6 @@ class LogEventsList extends ContextSource {
 			return null;
 		}
 
-		$isAnon = !$user->isRegistered();
 		if ( count( $blocks ) === 1 ) {
 			if ( $isAnon ) {
 				$msgKey = $sitewide ?
@@ -971,7 +986,7 @@ class LogEventsList extends ContextSource {
 					SpecialPage::getTitleFor( 'BlockList' ),
 					$localizer->msg( 'blocked-notice-list-link' )->text(),
 					[],
-					[ 'wpTarget' => $blockTargetName ]
+					[ 'wpTarget' => $user->getName() ]
 				),
 			];
 		}
