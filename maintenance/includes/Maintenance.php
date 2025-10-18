@@ -1129,19 +1129,21 @@ abstract class Maintenance {
 	}
 
 	/**
+	 * @param string|false $virtualDomain
 	 * @return IReadableDatabase
 	 * @since 1.42
 	 */
-	protected function getReplicaDB(): IReadableDatabase {
-		return $this->getLBFactory()->getReplicaDatabase();
+	protected function getReplicaDB( string|false $virtualDomain = false ): IReadableDatabase {
+		return $this->getLBFactory()->getReplicaDatabase( $virtualDomain );
 	}
 
 	/**
+	 * @param string|false $virtualDomain
 	 * @return IDatabase
 	 * @since 1.42
 	 */
-	protected function getPrimaryDB(): IDatabase {
-		return $this->getLBFactory()->getPrimaryDatabase();
+	protected function getPrimaryDB( string|false $virtualDomain = false ): IDatabase {
+		return $this->getLBFactory()->getPrimaryDatabase( $virtualDomain );
 	}
 
 	/**
