@@ -63,6 +63,11 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 
 	private ?ChangesListResult $queryResult = null;
 
+	/** @var bool */
+	private $mainQueryHookRegistered = false;
+	/** @var bool */
+	private $mainQueryHookCalled = false;
+
 	/**
 	 * @param string $name
 	 * @param string $restriction
@@ -800,6 +805,18 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			$query = $this->buildQuery( $opts );
 			$this->modifyQuery( $query, $opts );
 			$this->queryResult = $query->fetchResult();
+
+			if ( $this->mainQueryHookRegistered && !$this->mainQueryHookCalled ) {
+				// When an empty result set is forced, ChangesListQuery doesn't run
+				// the hook, but some extensions need us to run it anyway to register
+				// form options.
+				// FIXME: risky to pass empty arrays here, and inefficient to
+				//  call this hook when most of what it does is not needed.
+				//  We need to deprecate it.
+				$tables = $fields = $conds = $options = $joins = [];
+				$this->runMainQueryHook( $tables, $fields, $conds, $options,
+					$joins, $opts );
+			}
 		}
 		return $this->queryResult;
 	}
@@ -1320,9 +1337,11 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 */
 	protected function addMainQueryHook( $query, $opts ) {
 		if ( $this->getHookContainer()->isRegistered( 'ChangesListSpecialPageQuery' ) ) {
+			$this->mainQueryHookRegistered = true;
 			$query->legacyMutator(
 				function ( &$tables, &$fields, &$conds, &$query_options, &$join_conds )
 				use ( $opts ) {
+					$this->mainQueryHookCalled = true;
 					return $this->runMainQueryHook( $tables, $fields, $conds,
 						$query_options, $join_conds, $opts );
 				}
