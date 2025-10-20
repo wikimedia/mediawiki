@@ -51,6 +51,7 @@
 		"symfony/polyfill-php82": "1.31.0",
 		"symfony/polyfill-php83": "1.31.0",
 		"symfony/polyfill-php84": "1.32.0",
+		"symfony/polyfill-php85": "1.33.0",
 		"symfony/yaml": "5.4.45",
 		"wikimedia/assert": "0.5.1",
 		"wikimedia/at-ease": "3.0.0",
