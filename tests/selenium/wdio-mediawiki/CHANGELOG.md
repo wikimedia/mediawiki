@@ -1,5 +1,30 @@
 # Changelog
 
+## 6.0.0 / 2025-10-20
+
+With wdio-mediawiki 6.0 we replaced mwbot with internal code. This is a breaking change if you use any API functionality in your test and use the API from wdio-mediawiki. If you miss API functionality for your test, please create a task in Phabricator with the Test Platform tag.
+
+The change was done in two steps:
+
+1. mwbot was exposed in the API, meaning you as a user could get hold of the mwbot instance by using something like:
+```
+import { mwbot } from 'wdio-mediawiki/Api.js';
+...
+const bot = await mwbot();
+```
+We changed that to not expose our implementation so it's easier in the future to change API backend. This change removed the exposed mwbot() and made Api.js expose the API functions directly. The change was done in T404596.
+
+2. The next step removed the actual mwbot dependency and implements our own functionality to talk to the API (using built in NodeJS fetch). The change was done in T404361. You can see can see what you need to do to upgrade to 6.0 if you used mwbot in https://gerrit.wikimedia.org/g/mediawiki/extensions/examples.
+
+If you don't pass on any user/password when setting up the API client the `browser.options.capabilities[ 'mw:user' ]` and `browser.options.capabilities[ 'mw:pwd' ]` will be used. For specific functions that need a username, you always need to pass on the username from this version.
+
+There where also a couple of minor changes to make the testing more stable in CI:
+
+* Disable infobars (T403827)
+* Disable settings in Chrome to make it more stable (T403357)
+* Log the URL that we use for the tests (T403004)
+* Wait for mw.loader.using in waitForModuleState() (T397014)
+
 ## 5.1.0 / 2025-07-18
 
 * Fix how to count number of tests for Prometheus. (T399677)

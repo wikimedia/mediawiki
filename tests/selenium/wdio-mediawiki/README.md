@@ -17,24 +17,30 @@ See [BlankPage](./BlankPage.js) and [specs/BlankPage](./specs/BlankPage.js) for 
 
 ### Api
 
-Utilities to interact with the MediaWiki API. Uses the [mwbot](https://github.com/gesinn-it-pub/mwbot) library.
+Utilities to interact with the MediaWiki API.
 
 Actions are performed logged-in using `browser.options.capabilities[ 'mw:user' ]` and `browser.options.capabilities[ 'mw:pwd' ]`,
 which typically come from `MEDIAWIKI_USER` and `MEDIAWIKI_PASSWORD` environment variables.
 
-* `bot([string username [, string password [, string baseUrl ] ] ])`
-* `createAccount(MWBot bot, string username, string password)`
-* `blockUser(MWBot bot, [ string username [, string expiry ] ])`
-* `unblockUser(MWBot bot, [ string username ])`
-* `addUserToGroup(MWBot bot, string username, string groupName)`
+* `createApiClient([string username [, string password [, string baseUrl ] ] ])`
+* `createAccount(string username, string password)`
+* `blockUser(string username [, string expiry ] ])`
+* `unblockUser([ string username ])`
+* `addUserToGroup(string username, string groupName)`
+* `login (string username, pstring assword)`
+* `read (string title)`
+* `edit (string title, string text [, string summary])`
+* `delete (string title[, string reason])`
+* `request(object params)` - generic function to call the API
 
 Example:
 
 ```js
-bot = await Api.bot();
-await bot.edit( 'Some page', 'Some initial content' );
-await bot.edit( 'Some page', 'Some other content', 'Optional edit reason here' );
-await bot.delete( 'Some page', 'Some deletion reason here' );
+import { createApiClient } from 'wdio-mediawiki/Api.js';
+const api = await createApiClient();
+await api.edit( 'Some page', 'Some initial content' );
+await api.edit( 'Some page', 'Some other content', 'Optional edit reason here' );
+await api.delete( 'Some page', 'Some deletion reason here' );
 ```
 
 ### RunJobs
