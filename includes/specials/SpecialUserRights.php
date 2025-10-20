@@ -276,6 +276,7 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 	 * @deprecated since 1.45, use UserGroupAssignmentService::expiryToTimestamp()
 	 */
 	public static function expiryToTimestamp( $expiry ) {
+		wfDeprecated( __METHOD__, '1.45' );
 		return UserGroupAssignmentService::expiryToTimestamp( $expiry );
 	}
 
@@ -345,6 +346,7 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 	public function doSaveUserGroups( $user, array $add, array $remove, string $reason = '',
 		array $tags = [], array $groupExpiries = []
 	) {
+		wfDeprecated( __METHOD__, '1.45' );
 		return $this->userGroupAssignmentService->saveChangesToUserGroups( $this->getAuthority(), $user, $add, $remove,
 			$groupExpiries, $reason, $tags );
 	}
