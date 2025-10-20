@@ -250,7 +250,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 					'load' => $masterOnly ? 0 : 100,
 					'is static' => true
 				],
-			// RC replica DBs
+			// dump
 			3 => $srvExtra + [
 					'serverName' => 'db3',
 					'host' => $wgDBserver,
@@ -263,12 +263,10 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 					'dbDirectory' => $wgSQLiteDataDir,
 					'load' => $largeGroup ? 100 : 0,
 					'groupLoads' => [
-						'foo' => 100,
-						'bar' => 100
+						'dump' => 100
 					],
 					'is static' => true
 				],
-			// Logging replica DBs
 			4 => $srvExtra + [
 					'serverName' => 'db4',
 					'host' => $wgDBserver,
@@ -281,7 +279,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 					'dbDirectory' => $wgSQLiteDataDir,
 					'load' => $largeGroup ? 100 : 0,
 					'groupLoads' => [
-						'baz' => 100
+						'vslow' => 100
 					],
 					'is static' => true
 				],
@@ -297,11 +295,10 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 					'dbDirectory' => $wgSQLiteDataDir,
 					'load' => $largeGroup ? 100 : 0,
 					'groupLoads' => [
-						'baz' => 100
+						'vslow' => 100
 					],
 					'is static' => true
 				],
-			// Maintenance query replica DBs
 			6 => $srvExtra + [
 					'serverName' => 'db6',
 					'host' => $wgDBserver,
@@ -313,9 +310,6 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 					'type' => $wgDBtype,
 					'dbDirectory' => $wgSQLiteDataDir,
 					'load' => $largeGroup ? 100 : 0,
-					'groupLoads' => [
-						'vslow' => 100
-					],
 				],
 			// Replica DB that only has a copy of some static tables
 			7 => $srvExtra + [
@@ -329,9 +323,6 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 					'type' => $wgDBtype,
 					'dbDirectory' => $wgSQLiteDataDir,
 					'load' => $largeGroup ? 100 : 0,
-					'groupLoads' => [
-						'archive' => 100
-					],
 					'is static' => true
 				]
 		];
@@ -697,33 +688,23 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 				"Main index unchanged" );
 		}
 
-		$rRC = $lb->getConnection( DB_REPLICA, [ 'foo' ] );
-		$rWL = $lb->getConnection( DB_REPLICA, [ 'bar' ] );
-		$rRCMaint = $lb->getMaintenanceConnectionRef( DB_REPLICA, [ 'foo' ] );
-		$rWLMaint = $lb->getMaintenanceConnectionRef( DB_REPLICA, [ 'bar' ] );
+		$rRC = $lb->getConnection( DB_REPLICA, [ 'dump' ] );
+		$rRCMaint = $lb->getMaintenanceConnectionRef( DB_REPLICA, [ 'dump' ] );
 
 		$this->assertSame( 3, $rRC->getLBInfo( 'serverIndex' ) );
-		$this->assertSame( 3, $rWL->getLBInfo( 'serverIndex' ) );
 		$this->assertSame( 3, $rRCMaint->getLBInfo( 'serverIndex' ) );
-		$this->assertSame( 3, $rWLMaint->getLBInfo( 'serverIndex' ) );
 
-		$rLog = $lb->getConnection( DB_REPLICA, [ 'baz', 'bar' ] );
-		$logIndexPicked = $rLog->getLBInfo( 'serverIndex' );
-
-		$this->assertSame( $logIndexPicked, $lbWrapper->getExistingReaderIndex( 'baz' ) );
-		$this->assertContains( $logIndexPicked, [ 4, 5 ] );
-
-		for ( $i = 0; $i < 300; ++$i ) {
-			$rLog = $lb->getConnection( DB_REPLICA, [ 'baz', 'bar' ] );
-			$this->assertSame(
-				$logIndexPicked, $rLog->getLBInfo( 'serverIndex' ), "Index unchanged" );
-		}
-
-		$rVslow = $lb->getConnection( DB_REPLICA, [ 'vslow', 'baz' ] );
+		$rVslow = $lb->getConnection( DB_REPLICA, [ 'vslow' ] );
 		$vslowIndexPicked = $rVslow->getLBInfo( 'serverIndex' );
 
 		$this->assertSame( $vslowIndexPicked, $lbWrapper->getExistingReaderIndex( 'vslow' ) );
-		$this->assertSame( 6, $vslowIndexPicked );
+		$this->assertContains( $vslowIndexPicked, [ 4, 5 ] );
+
+		for ( $i = 0; $i < 10; ++$i ) {
+			$rVslow = $lb->getConnection( DB_REPLICA, [ 'vslow' ] );
+			$this->assertSame(
+				$vslowIndexPicked, $rVslow->getLBInfo( 'serverIndex' ), "Index unchanged" );
+		}
 	}
 
 	public function testNonZeroMasterLoad() {

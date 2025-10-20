@@ -289,10 +289,16 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		if ( $groups === [] || $groups === false || $groups === $this->defaultGroup ) {
 			$resolvedGroup = $this->defaultGroup;
 		} elseif ( is_string( $groups ) ) {
+			if ( $groups !== 'dump' && $groups !== 'vslow' ) {
+				wfDeprecatedMsg( 'Asking for a replica from groups except dump/vslow is deprecated: ' . $groups );
+			}
 			$resolvedGroup = isset( $this->groupLoads[$groups] ) ? $groups : $this->defaultGroup;
 		} elseif ( is_array( $groups ) ) {
 			$resolvedGroup = $this->defaultGroup;
 			foreach ( $groups as $group ) {
+				if ( $group !== 'dump' && $group !== 'vslow' ) {
+					wfDeprecatedMsg( 'Asking for a replica from groups except dump/vslow is deprecated: ' . $group );
+				}
 				if ( isset( $this->groupLoads[$group] ) ) {
 					$resolvedGroup = $group;
 					break;
