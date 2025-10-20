@@ -608,13 +608,19 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 	}
 
 	/**
-	 * Shows a log fragment for the specified user. Uses log type and subtype specified by {@see getLogType}.
+	 * Shows a log fragment for the current target user, i.e. page "User:{$this->targetDisplayName}".
 	 *
-	 * @param UserGroupsSpecialPageTarget $target User to show log for
-	 * @param OutputPage $output OutputPage to use
+	 * @param UserGroupsSpecialPageTarget|string $logType The type of the log to show
+	 * @param OutputPage|string $logSubType The subtype of the log to show
 	 */
-	protected function showLogFragment( UserGroupsSpecialPageTarget $target, OutputPage $output ): void {
-		[ $logType, $logSubType ] = $this->getLogType();
+	protected function showLogFragment(
+		UserGroupsSpecialPageTarget|string $logType,
+		OutputPage|string $logSubType
+	): void {
+		if ( $logType instanceof UserGroupsSpecialPageTarget ) {
+			// TODO: Remove this branch when callers are updated to pass strings
+			[ $logType, $logSubType ] = $this->getLogType();
+		}
 		$logPage = new LogPage( $logType );
 
 		$logTitle = $logPage->getName()
@@ -622,6 +628,7 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 			->setContext( $this->getContext() )
 			->text();
 
+		$output = $this->getOutput();
 		$output->addHTML( Html::element( 'h2', [], $logTitle ) );
 		LogEventsList::showLogExtract(
 			$output,
@@ -697,7 +704,10 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 	 * Returns the log type and subtype that is specific to this special page.
 	 * @return array{0:string,1:string} The log type and subtype to use when logging changes
 	 */
-	abstract protected function getLogType(): array;
+	protected function getLogType(): array {
+		// Dummy values, the method will be dropped soon
+		return [ '', '' ];
+	}
 
 	/**
 	 * Returns an array of annotations (messages or message keys) that should be displayed

@@ -28,7 +28,6 @@ use MediaWiki\User\UserGroupAssignmentService;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserGroupManagerFactory;
 use MediaWiki\User\UserGroupMembership;
-use MediaWiki\User\UserGroupsSpecialPageTarget;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
@@ -258,9 +257,8 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 		}
 
 		// Show the form (either edit or view)
-		$target = new UserGroupsSpecialPageTarget( $fetchedUser->getName(), $fetchedUser );
 		$this->getOutput()->addHTML( $this->buildGroupsForm() );
-		$this->showLogFragment( $target, $this->getOutput() );
+		$this->showLogFragment( 'rights', 'rights' );
 	}
 
 	private function getSuccessURL( string $target ): string {
@@ -482,11 +480,6 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 			$userName .= $this->getConfig()->get( MainConfigNames::UserrightsInterwikiDelimiter ) . $targetWiki;
 		}
 		return $userName;
-	}
-
-	/** @inheritDoc */
-	protected function getLogType(): array {
-		return [ 'rights', 'rights' ];
 	}
 
 	/**
