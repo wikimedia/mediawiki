@@ -259,7 +259,7 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 
 		// Show the form (either edit or view)
 		$target = new UserGroupsSpecialPageTarget( $fetchedUser->getName(), $fetchedUser );
-		$this->getOutput()->addHTML( $this->buildGroupsForm( $target ) );
+		$this->getOutput()->addHTML( $this->buildGroupsForm() );
 		$this->showLogFragment( $target, $this->getOutput() );
 	}
 
@@ -406,15 +406,15 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 		$flags = $systemUser ? 0 : Linker::TOOL_LINKS_EMAIL;
 		return Linker::userToolLinks(
 			$this->targetUser->getId( $targetWiki ),
-			$this->getTargetDescriptor(),
+			$this->getUsernameWithInterwiki( $this->targetUser ),
 			false, /* default for redContribsWhenNoEdits */
 			$flags
 		);
 	}
 
 	/** @inheritDoc */
-	protected function getCurrentUserGroupsText( UserGroupsSpecialPageTarget $target ): string {
-		$groupsText = parent::getCurrentUserGroupsText( $target );
+	protected function getCurrentUserGroupsText(): string {
+		$groupsText = parent::getCurrentUserGroupsText();
 
 		// Apart from displaying the groups list, also display a note if this is a system user
 		$systemUser = $this->targetUser->getWikiId() === UserIdentity::LOCAL
