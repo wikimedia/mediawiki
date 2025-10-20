@@ -1126,7 +1126,7 @@
 	"apihelp-query+querypage-param-limit": "Anzahl der zurückzugebenden Ergebnisse.",
 	"apihelp-query+querypage-example-ancientpages": "Gibt Ergebnisse von [[Special:Ancientpages]] zurück.",
 	"apihelp-query+random-summary": "Ruft einen Satz an zufälligen Seiten ab.",
-	"apihelp-query+random-extended-description": "Die Seiten sind in einer festen Reihenfolge aufgeführt, nur der Ausgangspunkt ist zufällig. Das bedeutet, dass wenn zum Beispiel die <samp>Main Page</samp> die erste zufällige Seite in der Liste ist, die <samp>List of fictional monkeys</samp> <em>immer</em> zweite ist, die <samp>List of people on stamps of Vanuatu</samp> dritte, etc.",
+	"apihelp-query+random-extended-description": "Die Seiten sind in einer festen Reihenfolge aufgeführt, nur der Ausgangspunkt ist zufällig. Das bedeutet, dass wenn zum Beispiel die <samp>Main Page</samp> die erste zufällige Seite in der Liste ist, die <samp>List of fictional monkeys</samp> <em>immer</em> zweite ist, die <samp>List of people on stamps of Vanuatu</samp> dritte etc.",
 	"apihelp-query+random-param-namespace": "Gibt nur Seiten in diesen Namensräumen zurück.",
 	"apihelp-query+random-param-limit": "Begrenzung der Anzahl der zufälligen Seiten, die zurückgegeben werden.",
 	"apihelp-query+random-param-minsize": "Nur Seiten mit mindestens so vielen Bytes.",

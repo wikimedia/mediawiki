@@ -208,6 +208,8 @@
 	"rest-property-desc-revision-source": "O contido fonte da revisión",
 	"rest-property-desc-revision-html": "Contido da revisión en HTML, seguindo a especificación HTML",
 	"rest-property-desc-revision-url": "Enderezo URL á última revisión da páxina",
+	"rest-property-desc-revision-url-older": "Se está dispoñible, o enderezo URL para obter o segmento de revisión anterior",
+	"rest-property-desc-revision-url-newer": "Se está dispoñible, o enderezo URL para obter o segmento de revisión seguinte",
 	"rest-property-desc-search-excerpt": "Extracto do contido da páxina que coincide coa consulta de busca",
 	"rest-property-desc-search-matched-title": "Título da páxina desde a que se redirixe, se o termo de busca coincidiu cunha páxina de redirección; en caso contrario, «null»",
 	"rest-property-desc-search-description": "Resumo curto do tema da páxina ou «null» se non existe ningún resumo.",

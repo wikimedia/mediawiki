@@ -7,6 +7,7 @@
 			"Ebraminio",
 			"Huji",
 			"Jeeputer",
+			"LordProfo",
 			"Meisam",
 			"Reza1615",
 			"ZxxZxxZ"
@@ -176,8 +177,8 @@
 	"exif-originaldocumentid": "شناسهٔ یکتای سند اصلی",
 	"exif-licenseurl": "نشانی اینترنتی برای مجوز حق تکثیر",
 	"exif-morepermissionsurl": "اطلاعات مجوزهای جایگزین",
-	"exif-attributionurl": "در زمان استفاده مجدد، لطفاً پیوند دهید به",
-	"exif-preferredattributionname": "در زمان استفاده مجدد، لطفاً اعتبار دهید به",
+	"exif-attributionurl": "در زمان استفادهٔ دوباره، لطفاً پیوند دهید به",
+	"exif-preferredattributionname": "در زمان استفادهٔ دوباره، لطفاً اعتبار دهید به",
 	"exif-pngfilecomment": "توضیحات پرونده PNG",
 	"exif-disclaimer": "تکذیب‌نامه",
 	"exif-contentwarning": "هشدار محتوا",
@@ -204,6 +205,7 @@
 	"exif-photometricinterpretation-8": "CIE L*a*b*‎",
 	"exif-photometricinterpretation-9": "CIE L*a*b* (رمزنگاری ICC)",
 	"exif-photometricinterpretation-10": "CIE L*a*b* (رمزنگاری ITU)",
+	"exif-photometricinterpretation-32803": "آرایه فیلتر رنگ",
 	"exif-unknowndate": "تاریخ نامعلوم",
 	"exif-orientation-1": "عادی",
 	"exif-orientation-2": "افقی پشت و روشده",
@@ -376,5 +378,10 @@
 	"exif-usepanoramaviewer-true": "بله",
 	"exif-usepanoramaviewer-false": "خیر",
 	"exif-exposurelockused-true": "بله",
-	"exif-exposurelockused-false": "خیر"
+	"exif-exposurelockused-false": "خیر",
+	"exif-digitalsourcetype-humanedits": "رسانه‌های ویرایش‌شده توسط انسان",
+	"exif-digitalsourcetype-compositewithtrainedalgorithmicmedia": "ویرایش شده با بهره‌گیری از هوش مصنوعی",
+	"exif-digitalsourcetype-softwareimage": "پدیدآمده توسط نرم‌افزار",
+	"exif-digitalsourcetype-trainedalgorithmicmedia": "پدیدآمده با بهره‌گیری از هوش مصنوعی",
+	"exif-digitalsourcetype-screencapture": "ضبط صفحه نمایش"
 }

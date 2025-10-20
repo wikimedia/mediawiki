@@ -74,6 +74,7 @@
 	"apihelp-tag-param-reason": "د بدلون سبب.",
 	"apihelp-unblock-param-reason": "د بنديز ليرې کولو سبب.",
 	"apihelp-undelete-param-reason": "د بيازېرملو سبب.",
+	"apihelp-undelete-param-undeletetalk": "د اړوند خبرو اترو مخ ټولې بياليدنې ړنگول، که وي.",
 	"apihelp-upload-param-watch": "مخ کتل.",
 	"apihelp-upload-param-file": "د دوتنې مېنځپانگه.",
 	"apihelp-userrights-param-user": "کارن.",

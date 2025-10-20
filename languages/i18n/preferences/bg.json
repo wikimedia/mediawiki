@@ -193,6 +193,7 @@
 	"rcfilters-watchlist-preference-label": "Използване на интерфейс без JavaScript",
 	"rcfilters-watchlist-preference-help": "Зарежда [[{{#special:Watchlist}}|списъка за наблюдение]] без филтри за търсене и функционалност за оцветяване.",
 	"prefs-changeswatchlist": "Показвани промени",
+	"tog-watchstar-expiry": "Период от време по подразбиране в списъка за наблюдение за ръчно добавени страници:",
 	"tog-watchlisthideminor": "Скриване на малките промени в списъка ми за наблюдение",
 	"tog-watchlisthidebots": "Скриване на редакциите на ботове в списъка ми за наблюдение",
 	"tog-watchlisthideown": "Скриване на моите редакции в списъка ми за наблюдение",
