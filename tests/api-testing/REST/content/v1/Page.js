@@ -37,7 +37,7 @@ describe( 'Page Source', () => {
 	const page = utils.title( 'PageSource_' );
 	const pageWithSpaces = page.replace( '_', ' ' );
 	const variantPage = utils.title( 'PageSourceVariant' );
-	const fallbackVariantPage = 'MediaWiki:Tog-underline/sh-latn';
+	const fallbackVariantPage = utils.title( 'MediaWiki:Tog-underline' ) + '/sh-latn';
 
 	// Create a page (or "agepay") for the pig latin variant test.
 	const agepayHash = utils.title( '' ).replace( /\d/g, 'x' ).toLowerCase(); // only lower-case letters.
