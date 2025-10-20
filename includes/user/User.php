@@ -603,24 +603,16 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 	 */
 	public static function newFromName( $name, $validate = 'valid' ) {
 		// Backwards compatibility with strings / false
-		$validationLevels = [
+		$validation = match ( $validate ) {
 			'valid' => UserRigorOptions::RIGOR_VALID,
 			'usable' => UserRigorOptions::RIGOR_USABLE,
-			'creatable' => UserRigorOptions::RIGOR_CREATABLE
-		];
-		if ( $validate === true ) {
-			$validate = 'valid';
-		}
-		if ( $validate === false ) {
-			$validation = UserRigorOptions::RIGOR_NONE;
-		} elseif ( array_key_exists( $validate, $validationLevels ) ) {
-			$validation = $validationLevels[ $validate ];
-		} else {
+			'creatable' => UserRigorOptions::RIGOR_CREATABLE,
+			true => UserRigorOptions::RIGOR_VALID,
+			false => UserRigorOptions::RIGOR_NONE,
 			// Not a recognized value, probably a test for unsupported validation
 			// levels, regardless, just pass it along
-			$validation = $validate;
-		}
-
+			default => $validate,
+		};
 		return MediaWikiServices::getInstance()->getUserFactory()
 			->newFromName( (string)$name, $validation ) ?? false;
 	}
@@ -815,23 +807,17 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 		];
 
 		// Username validation
+		$validate = $options['validate'];
 		// Backwards compatibility with strings / false
-		$validationLevels = [
+		$validation = match ( $validate ) {
 			'valid' => UserRigorOptions::RIGOR_VALID,
 			'usable' => UserRigorOptions::RIGOR_USABLE,
-			'creatable' => UserRigorOptions::RIGOR_CREATABLE
-		];
-		$validate = $options['validate'];
-
-		if ( $validate === false ) {
-			$validation = UserRigorOptions::RIGOR_NONE;
-		} elseif ( array_key_exists( $validate, $validationLevels ) ) {
-			$validation = $validationLevels[ $validate ];
-		} else {
+			'creatable' => UserRigorOptions::RIGOR_CREATABLE,
+			false => UserRigorOptions::RIGOR_NONE,
 			// Not a recognized value, probably a test for unsupported validation
 			// levels, regardless, just pass it along
-			$validation = $validate;
-		}
+			default => $validate,
+		};
 
 		if ( $validation !== UserRigorOptions::RIGOR_VALID ) {
 			wfDeprecatedMsg(
