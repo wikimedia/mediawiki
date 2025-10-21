@@ -2175,6 +2175,73 @@ abstract class ApiBase extends ContextSource {
 
 	// endregion -- end of help message generation
 
+	/***************************************************************************/
+	// region   Data Unified metrics
+	/** @name   Data Unified metrics methods */
+
+	/**
+	 * Record unified metrics for the API
+	 *
+	 * @param float $latency Optional value for process runtime, in microseconds, for metrics
+	 * @param array $detailLabels Additional or override labels for the metrics
+	 */
+	protected function recordUnifiedMetrics( $latency, $detailLabels = [] ) {
+		// The concept of "module" is different in Action API and REST API
+		// in REST API, it represents the "collection" of endpoints
+		// in Action API, it represents the "module" of the API (or an endpoint)
+		// In order to make the metrics consistent, we want the module to also reflect
+		// the "collection" of endpoints. The closest we can get is to use the namespace
+		// of the API module, and get the area of the code or extension it belongs to.
+		// If module exists, we'll take the namespace for it, otherwise fall back on
+		// the current namespace. In both cases we'll remove the class name to only keep
+		// the namespace.
+		// Since this method can also be called from module classes (ApiQuery, etc)
+		// we need to allow for accepting the submodule's class name, too, if it's given.
+		$fullClass = get_class( $this );
+		$moduleNamespace = substr( $fullClass, 0, strrpos( $fullClass, '\\' ) );
+
+		// Get the endpoint representation, which for the moment is the module name.
+		$endpoint = $this->getModuleName();
+
+		// The "path" should give us useful and consistent information about the endpoint.
+		// The ->getModulePath() method should give us a string wih the module parent and
+		// its own name, which should be enough to identify the endpoint and work with
+		// RegEx patterns to extract information from the path.
+		$path = $this->getModulePath();
+
+		// Unified metrics
+		$metricsLabels = array_merge( [
+			// This should represent the "collection" of endpoints
+			'api_module' => $moduleNamespace,
+			// This is the endpoint that is being executed
+			'api_endpoint' => $endpoint,
+			'path' => $path,
+			'method' => $this->getRequest()->getMethod(),
+			'status' => "200", // Success
+		], $detailLabels );
+
+		// Hit metrics
+		$metricHitStats = $this->getMain()->getStatsFactory()->getCounter( 'action_api_modules_hit_total' )
+			->setLabel( 'api_type', 'ACTION_API' );
+		foreach ( $metricsLabels as $label => $value ) {
+			if ( $value ) {
+				$metricHitStats->setLabel( $label, $value );
+			}
+		}
+		$metricHitStats->increment();
+
+		// Latency metrics
+		$metricLatencyStats = $this->getMain()->getStatsFactory()->getTiming( 'action_api_modules_latency' )
+			->setLabel( 'api_type', 'ACTION_API' );
+		foreach ( $metricsLabels as $label => $value ) {
+			if ( $value ) {
+				$metricLatencyStats->setLabel( $label, $value );
+			}
+		}
+		$metricLatencyStats->observeNanoseconds( $latency );
+	}
+
+	// endregion -- end of Unified metrics methods
 }
 
 /*

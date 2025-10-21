@@ -794,6 +794,15 @@ class ApiMain extends ApiBase {
 	}
 
 	/**
+	 * Get the stats factory.
+	 *
+	 * @return StatsFactory
+	 */
+	public function getStatsFactory() {
+		return $this->getMain()->statsFactory;
+	}
+
+	/**
 	 * Get the result formatter object. Only works after setupExecuteAction()
 	 *
 	 * @return ApiFormatBase
@@ -953,7 +962,6 @@ class ApiMain extends ApiBase {
 				->observe( 1000 * $runTime );
 
 			$this->recordUnifiedMetrics( $runTime );
-
 		} catch ( Throwable $e ) {
 			// If executeAction threw before the time was set, reset it
 			$runTime ??= microtime( true ) - $t;
@@ -2547,82 +2555,6 @@ class ApiMain extends ApiBase {
 
 		return $agent;
 	}
-
-	/**
-	 * Record unified metrics for the API
-	 *
-	 * @param float $latency Optional value for process runtime, in microseconds, for metrics
-	 * @param array $detailLabels Additional or override labels for the metrics
-	 */
-	protected function recordUnifiedMetrics( $latency, $detailLabels = [] ) {
-		// The concept of "module" is different in Action API and REST API
-		// in REST API, it represents the "collection" of endpoints
-		// in Action API, it represents the "module" of the API (or an endpoint)
-		// In order to make the metrics consistent, we want the module to also reflect
-		// the "collection" of endpoints. The closest we can get is to use the namespace
-		// of the API module, and get the area of the code or extension it belongs to.
-		$module = __NAMESPACE__;
-
-		// Get the endpoint representation, which for the moment is the module name.
-		// However, there may be cases (in error states) where the module name is not
-		// yet set; for those cases, we will use 'main', as is used in the handleException method.
-		// The module path is still stored in `path` label, which should be enough to
-		// get information about the endpoint even in those cases.
-		$endpoint = $this->mModule ? $this->mModule->getModuleName() : 'main';
-
-		// The "path" should give us useful and consistent information about the endpoint.
-		// The ->getModulePath() method is calculating the module parents' names, and those
-		// aren't always available, and may miss some of the separation of props in the query
-		// that may result in the same endpoint being represented differently.
-		// So in order to be able to get consistent information about the endpoint, we will use
-		// the "path" label to represent the query parameters and their values.
-		// This will also allow us to use regular expressions to match whatever module we are
-		// interested in for dashboards or alerts more consistently.
-		$params = $this->extractRequestParams( [ 'safeMode' => true ] );
-		$path = implode(
-			'&',
-			array_map(
-				static function ( $key, $value ): string {
-					return $key . '=' . $value;
-				},
-				array_keys( $params ),
-				$params
-			)
-		);
-
-		// Unified metrics
-		$metricsLabels = array_merge( [
-			// This should represent the "collection" of endpoints
-			'api_module' => $module,
-			// This is the endpoint that is being executed
-			'api_endpoint' => $endpoint,
-			'path' => $path,
-			'method' => $this->getRequest()->getMethod(),
-			'status' => "200", // Success
-		], $detailLabels );
-
-		// Hit metrics
-		$metricHitStats = $this->statsFactory->getCounter( 'action_api_modules_hit_total' )
-			->setLabel( 'api_type', 'ACTION_API' );
-		foreach ( $metricsLabels as $label => $value ) {
-			if ( $value ) {
-				$metricHitStats->setLabel( $label, $value );
-			}
-		}
-
-		// Latency metrics
-		$metricLatencyStats = $this->statsFactory->getTiming( 'action_api_modules_latency' )
-			->setLabel( 'api_type', 'ACTION_API' );
-		foreach ( $metricsLabels as $label => $value ) {
-			if ( $value ) {
-				$metricLatencyStats->setLabel( $label, $value );
-			}
-		}
-		$metricLatencyStats->observeNanoseconds( $latency );
-
-		$metricHitStats->increment();
-	}
-
 }
 
 /**
