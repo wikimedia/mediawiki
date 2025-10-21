@@ -636,19 +636,18 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 
 		$timer = $this->statsFactory->getTiming( 'ChangesListQuery_query_seconds' )
 			->setLabel( 'caller', $this->caller ?? 'unknown' )
-			->setLabel( 'union', (string)count( $queries ) );
+			->setLabel( 'union', (string)count( $queries ) )
+			->start();
 
 		if ( $shouldPartition ) {
 			$timer->setLabel( 'strategy', 'partition' );
-			$timer->start();
 			$res = $this->doPartitionUnion( $queries );
-			$timer->stop();
 		} else {
 			$timer->setLabel( 'strategy', 'simple' );
-			$timer->start();
 			$res = $this->maybeEmulateUnion( $queries );
-			$timer->stop();
 		}
+
+		$timer->stop();
 
 		return $this->newResult( $res );
 	}
