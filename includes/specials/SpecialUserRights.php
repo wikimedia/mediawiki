@@ -122,10 +122,7 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 
 		$this->setHeaders();
 		$this->outputHeader();
-
-		$out->addModules( [ 'mediawiki.special.userrights' ] );
-		$out->addModuleStyles( 'mediawiki.special' );
-		$out->addModuleStyles( 'mediawiki.codex.messagebox.styles' );
+		$this->addModules();
 		$this->addHelpLink( 'Help:Assigning permissions' );
 
 		$targetName = $subPage ?? $request->getText( 'user' );
@@ -149,8 +146,6 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 		$fetchedUser = $fetchedStatus->value;
 		// Phan false positive on Status object - T323205
 		'@phan-var UserIdentity $fetchedUser';
-		$this->setTargetName( $fetchedUser->getName(), $this->getUsernameWithInterwiki( $fetchedUser ) );
-		$this->targetUser = $fetchedUser;
 
 		if ( !$this->userGroupAssignmentService->targetCanHaveUserGroups( $fetchedUser ) ) {
 			// Differentiate between temp accounts and IP addresses. Eventually we might want
@@ -162,26 +157,7 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 			return;
 		}
 
-		$wikiId = $fetchedUser->getWikiId();
-		if ( $wikiId === UserIdentity::LOCAL ) {
-			// Set the 'relevant user' in the skin, so it displays links like Contributions,
-			// User logs, UserRights, etc.
-			$this->getSkin()->setRelevantUser( $fetchedUser );
-		}
-		$this->userGroupManager = $this->userGroupManagerFactory->getUserGroupManager( $wikiId );
-		$this->explicitGroups = $this->userGroupManager->listAllGroups();
-		$this->groupMemberships = $this->userGroupManager->getUserGroupMemberships( $fetchedUser );
-		$this->enableWatchUser = $fetchedUser->getWikiId() === UserIdentity::LOCAL;
-
-		$changeableGroups = $this->userGroupAssignmentService->getChangeableGroups(
-			$this->getAuthority(), $fetchedUser );
-		$this->addableGroups = $changeableGroups['add'];
-		$this->removableGroups = $changeableGroups['remove'];
-		foreach ( $changeableGroups['restricted'] as $group => $details ) {
-			if ( !$details['condition-met'] ) {
-				$this->addGroupAnnotation( $group, $details['message'] );
-			}
-		}
+		$this->initialize( $fetchedUser );
 
 		// show a successbox, if the user rights was saved successfully
 		if ( $session->get( 'specialUserrightsSaveSuccess' ) ) {
@@ -257,8 +233,41 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 		}
 
 		// Show the form (either edit or view)
-		$this->getOutput()->addHTML( $this->buildGroupsForm() );
+		$out->addHTML( $this->buildGroupsForm() );
 		$this->showLogFragment( 'rights', 'rights' );
+	}
+
+	/**
+	 * Initializes the class with data related to the current target user. This method should be called
+	 * before delegating any operations related to viewing, editing or saving user groups to the parent class.
+	 */
+	private function initialize( UserIdentity $user ): void {
+		$this->targetUser = $user;
+		$this->setTargetName( $user->getName(), $this->getUsernameWithInterwiki( $user ) );
+
+		$wikiId = $user->getWikiId();
+		$userGroupManager = $this->userGroupManagerFactory->getUserGroupManager( $wikiId );
+		$this->explicitGroups = $userGroupManager->listAllGroups();
+		$this->groupMemberships = $userGroupManager->getUserGroupMemberships( $user );
+		$this->userGroupManager = $userGroupManager;
+
+		$changeableGroups = $this->userGroupAssignmentService->getChangeableGroups(
+			$this->getAuthority(), $user );
+		$this->addableGroups = $changeableGroups['add'];
+		$this->removableGroups = $changeableGroups['remove'];
+		foreach ( $changeableGroups['restricted'] as $group => $details ) {
+			if ( !$details['condition-met'] ) {
+				$this->addGroupAnnotation( $group, $details['message'] );
+			}
+		}
+
+		$isLocalWiki = $wikiId === UserIdentity::LOCAL;
+		$this->enableWatchUser = $isLocalWiki;
+		if ( $isLocalWiki ) {
+			// Set the 'relevant user' in the skin, so it displays links like Contributions,
+			// User logs, UserRights, etc.
+			$this->getSkin()->setRelevantUser( $user );
+		}
 	}
 
 	private function getSuccessURL( string $target ): string {

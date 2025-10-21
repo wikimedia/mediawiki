@@ -73,6 +73,15 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 	}
 
 	/**
+	 * Adds ResourceLoader modules that are used by this page.
+	 */
+	protected function addModules(): void {
+		$out = $this->getOutput();
+		$out->addModules( [ 'mediawiki.special.userrights' ] );
+		$out->addModuleStyles( [ 'mediawiki.special', 'mediawiki.codex.messagebox.styles' ] );
+	}
+
+	/**
 	 * Builds the user groups form, either in view or edit mode.
 	 * @param ?UserGroupsSpecialPageTarget $target No longer used
 	 * @return string The HTML of the form
