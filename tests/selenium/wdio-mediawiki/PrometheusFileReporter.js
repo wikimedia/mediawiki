@@ -254,8 +254,11 @@ function writeAllProjectMetrics( metricsDir, fileName ) {
 			lines.push( formatMetric( 'wdio_test_duration_max_seconds', test.maxDuration.toFixed( 3 ), { ...testLabels } ) );
 		}
 	}
-	const projectName = projectMetrics.labels.project;
-	writeFileSync( path.join( metricsDir, `${ projectName }-${ fileName }.prom` ), `${ lines.join( '\n' ) }\n`, 'utf-8' );
+	// Only write the file if we have any tests https://phabricator.wikimedia.org/T407831
+	if ( projectMetrics.totalTests > 0 ) {
+		const projectName = projectMetrics.labels.project;
+		writeFileSync( path.join( metricsDir, `${ projectName }-${ fileName }.prom` ), `${ lines.join( '\n' ) }\n`, 'utf-8' );
+	}
 }
 
 export {
