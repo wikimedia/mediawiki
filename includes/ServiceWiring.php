@@ -301,6 +301,7 @@ use Wikimedia\Rdbms\ReadOnlyMode;
 use Wikimedia\RequestTimeout\CriticalSectionProvider;
 use Wikimedia\RequestTimeout\RequestTimeout;
 use Wikimedia\Stats\IBufferingStatsdDataFactory;
+use Wikimedia\Stats\OutputFormats;
 use Wikimedia\Stats\PrefixingStatsdDataFactoryProxy;
 use Wikimedia\Stats\StatsCache;
 use Wikimedia\Stats\StatsFactory;
@@ -1015,13 +1016,10 @@ return [
 		$extHooks = $extRegistry->getAttribute( 'Hooks' );
 		$extDeprecatedHooks = $extRegistry->getAttribute( 'DeprecatedHooks' );
 
-		$hookRegistry = new StaticHookRegistry( $configHooks, $extHooks, $extDeprecatedHooks );
-		$hookContainer = new HookContainer(
-			$hookRegistry,
+		return new HookContainer(
+			new StaticHookRegistry( $configHooks, $extHooks, $extDeprecatedHooks ),
 			$services->getObjectFactory()
 		);
-
-		return $hookContainer;
 	},
 
 	'HtmlCacheUpdater' => static function ( MediaWikiServices $services ): HTMLCacheUpdater {
@@ -2459,14 +2457,14 @@ return [
 
 	'StatsFactory' => static function ( MediaWikiServices $services ): StatsFactory {
 		$config = $services->getMainConfig();
-		$format = \Wikimedia\Stats\OutputFormats::getFormatFromString(
+		$format = OutputFormats::getFormatFromString(
 			$config->get( MainConfigNames::StatsFormat ) ?? 'null'
 		);
 		$cache = new StatsCache;
-		$emitter = \Wikimedia\Stats\OutputFormats::getNewEmitter(
+		$emitter = OutputFormats::getNewEmitter(
 			$config->get( MainConfigNames::StatsPrefix ),
 			$cache,
-			\Wikimedia\Stats\OutputFormats::getNewFormatter( $format ),
+			OutputFormats::getNewFormatter( $format ),
 			$config->get( MainConfigNames::StatsTarget )
 		);
 		return new StatsFactory( $cache, $emitter, LoggerFactory::getInstance( 'Stats' ) );
@@ -2925,7 +2923,6 @@ return [
 	'_ConditionalDefaultsLookup' => static function (
 		MediaWikiServices $services
 	): ConditionalDefaultsLookup {
-		$extraConditions = [];
 		return new ConditionalDefaultsLookup(
 			new HookRunner( $services->getHookContainer() ),
 			new ServiceOptions(
