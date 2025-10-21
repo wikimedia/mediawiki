@@ -59,6 +59,9 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 	/** @var bool Whether the "Watch the user page" checkbox should be available on the page */
 	protected bool $enableWatchUser = true;
 
+	/** @var string Name of session flag that's saved when the user groups are successfully saved */
+	private const SAVE_SUCCESS_FLAG = 'specialUserrightsSaveSuccess';
+
 	/**
 	 * Sets the name of the target user. If this page uses a special notation for the username (e.g. "Foo@wiki"),
 	 * which is different from actual bare username, this additional form should be passed as the second parameter.
@@ -79,6 +82,40 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 		$out = $this->getOutput();
 		$out->addModules( [ 'mediawiki.special.userrights' ] );
 		$out->addModuleStyles( [ 'mediawiki.special', 'mediawiki.codex.messagebox.styles' ] );
+	}
+
+	/**
+	 * If the session contains a flag that the user rights were successfully saved,
+	 * shows a success message and removes the flag from the session.
+	 */
+	protected function showMessageOnSuccess(): void {
+		$session = $this->getRequest()->getSession();
+		if ( $session->get( self::SAVE_SUCCESS_FLAG ) ) {
+			// Remove session data for the success message
+			$session->remove( self::SAVE_SUCCESS_FLAG );
+
+			$out = $this->getOutput();
+			$out->addModuleStyles( 'mediawiki.notification.convertmessagebox.styles' );
+			$out->addHTML(
+				Html::successBox(
+					Html::element(
+						'p',
+						[],
+						$this->msg( 'savedrights', $this->targetDisplayName )->text()
+					),
+					'mw-notify-success'
+				)
+			);
+		}
+	}
+
+	/**
+	 * Sets a flag in the session that the user rights were successfully saved.
+	 * Next requests can call {@see showMessageOnSuccess()} to show a success message.
+	 */
+	protected function setSuccessFlag(): void {
+		$session = $this->getRequest()->getSession();
+		$session->set( self::SAVE_SUCCESS_FLAG, 1 );
 	}
 
 	/**

@@ -117,7 +117,6 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 	public function execute( $subPage ) {
 		$user = $this->getUser();
 		$request = $this->getRequest();
-		$session = $request->getSession();
 		$out = $this->getOutput();
 
 		$this->setHeaders();
@@ -158,24 +157,7 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 		}
 
 		$this->initialize( $fetchedUser );
-
-		// show a successbox, if the user rights was saved successfully
-		if ( $session->get( 'specialUserrightsSaveSuccess' ) ) {
-			// Remove session data for the success message
-			$session->remove( 'specialUserrightsSaveSuccess' );
-
-			$out->addModuleStyles( 'mediawiki.notification.convertmessagebox.styles' );
-			$out->addHTML(
-				Html::successBox(
-					Html::element(
-						'p',
-						[],
-						$this->msg( 'savedrights', $this->getUsernameWithInterwiki( $fetchedUser ) )->text()
-					),
-					'mw-notify-success'
-				)
-			);
-		}
+		$this->showMessageOnSuccess();
 
 		if (
 			$request->wasPosted() &&
@@ -216,9 +198,7 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 				);
 
 				if ( $status->isOK() ) {
-					// Set session data for the success message
-					$session->set( 'specialUserrightsSaveSuccess', 1 );
-
+					$this->setSuccessFlag();
 					$out->redirect( $this->getSuccessURL( $targetName ) );
 					return;
 				} else {
