@@ -62,6 +62,7 @@
 			"Ryo567",
 			"Sophocrat",
 			"Superzerocool",
+			"Theklan",
 			"Tiberius1701",
 			"Whovian Biologist",
 			"YoViajo"
@@ -1619,6 +1620,7 @@
 	"apihelp-none-summary": "No extraer nada.",
 	"apihelp-php-summary": "Extraer los datos de salida en formato serializado PHP.",
 	"apihelp-php-param-formatversion": "Formato de salida",
+	"apihelp-php-paramvalue-formatversion-2": "Formato moderno.",
 	"apihelp-phpfm-summary": "Producir los datos de salida en formato PHP serializado (con resaltado sintáctico en HTML).",
 	"apihelp-rawfm-summary": "Extraer los datos de salida, incluidos los elementos de depuración, en formato JSON (embellecido en HTML).",
 	"apihelp-xml-summary": "Producir los datos de salida en formato XML.",

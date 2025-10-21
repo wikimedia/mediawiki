@@ -206,6 +206,8 @@
 	"rest-property-desc-revision-source": "Le contento fonte del version",
 	"rest-property-desc-revision-html": "Le contento del version in HTML, sequente le specification de HTML",
 	"rest-property-desc-revision-url": "URL al ultime version del pagina",
+	"rest-property-desc-revision-url-older": "Si disponibile, adresse URL pro obtener le segmento precedente del version",
+	"rest-property-desc-revision-url-newer": "Si disponibile, adresse URL pro obtener le segmento sequente del version",
 	"rest-property-desc-search-excerpt": "Extracto del contento del pagina que corresponde al texto cercate",
 	"rest-property-desc-search-matched-title": "Le titulo del pagina desde le qual se ha essite redirigite, si le termino de recerca correspondeva a un pagina de redirection, alteremente nulle valor.",
 	"rest-property-desc-search-description": "Curte summario del topico del pagina, o nulle valor si necun summario existe.",

@@ -5,6 +5,7 @@
 			"AvatarTeam",
 			"Hex",
 			"Mainframe98",
+			"McDutchie",
 			"SPQRobin",
 			"Siebrand",
 			"Sjoerddebruin"
@@ -91,7 +92,7 @@
 	"duration-months": "$1 {{PLURAL:$1|maand|maanden}}",
 	"duration-weeks": "$1 {{PLURAL:$1|week|weken}}",
 	"duration-days": "$1 {{PLURAL:$1|dag|dagen}}",
-	"duration-hours": "$1 {{PLURAL:$1|uur|uren}}",
+	"duration-hours": "$1 {{PLURAL:$1|uur}}",
 	"duration-minutes": "$1 {{PLURAL:$1|minuut|minuten}}",
 	"duration-seconds": "$1 {{PLURAL:$1|seconde|seconden}}",
 	"monday-at": "maandag om $1",
