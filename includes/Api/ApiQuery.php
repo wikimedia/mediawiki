@@ -718,6 +718,7 @@ class ApiQuery extends ApiBase {
 			$timer = $statsFactory->getTiming( 'api_query_executeTiming_seconds' )
 				->setLabel( 'module', $module->getModuleName() )
 				->start();
+			$t = microtime( true );
 
 			$params = $module->extractRequestParams();
 			$cacheMode = $this->mergeCacheMode(
@@ -725,7 +726,24 @@ class ApiQuery extends ApiBase {
 			$scope = LoggerFactory::getContext()->addScoped( [
 				'context.api_query_module_name' => $module->getModuleName(),
 			] );
-			$module->execute();
+
+			// Wrap the execution in a try/catch to record metrics for success and errors
+			try {
+				$module->execute();
+				$module->recordUnifiedMetrics(
+					microtime( true ) - $t // Run time
+				);
+			} catch ( \Throwable $e ) {
+				// Unified metrics for errors
+				$module->recordUnifiedMetrics(
+					microtime( true ) - $t, // Run time
+					[
+						'status' => 'error_' . $e->getCode(), // Failure codes
+					]
+				);
+				// Re-throw the exception so it's bubbled up
+				throw $e;
+			}
 			ScopedCallback::consume( $scope );
 
 			$timer->stop();

@@ -961,7 +961,10 @@ class ApiMain extends ApiBase {
 				->setLabel( 'module', $this->mModule->getModuleName() )
 				->observe( 1000 * $runTime );
 
-			$this->recordUnifiedMetrics( $runTime );
+			if ( !$this->mModule || $this->mModule->getModuleName() !== 'query' ) {
+				// Skip query module metrics; we will record them in the query module itself.
+				$this->recordUnifiedMetrics( $runTime );
+			}
 		} catch ( Throwable $e ) {
 			// If executeAction threw before the time was set, reset it
 			$runTime ??= microtime( true ) - $t;
@@ -1053,12 +1056,16 @@ class ApiMain extends ApiBase {
 		$stats->increment();
 
 		// Unified metrics
-		$this->recordUnifiedMetrics(
-			$latency,
-			[
-				'status' => implode( '_', $errCodes ), // Failure codes
-			]
-		);
+		if ( !$this->mModule || $this->mModule->getModuleName() !== 'query' ) {
+			// Skip query module metrics; we will record them in the query module itself.
+			$this->recordUnifiedMetrics(
+				$latency,
+				[
+					'status' => implode( '_', $errCodes ), // Failure codes
+				]
+			);
+
+		}
 
 		// Get desired HTTP code from an ApiUsageException. Don't use codes from other
 		// exception types, as they are unlikely to be intended as an HTTP code.
