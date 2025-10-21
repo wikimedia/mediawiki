@@ -12,7 +12,8 @@
 			"Ven Suvannalinkara",
 			"YaThaWinTha",
 			"BOKESTART",
-			"Tejoebarsa"
+			"Tejoebarsa",
+			"SaldırganSincap"
 		]
 	},
 	"sunday": "တနင်းဂနီနိ",
@@ -741,7 +742,7 @@
 	"duplicate-args-category-desc": "စာမျက်နှာမှာ <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> မဟုတ်ကေ‌ <code><nowiki>{{foo|bar|1=baz}}</nowiki></code> ပိုင် တူညီရေ အကြောင်းပြချက်တိကို အသုံးပြုရေ နမူနာခေါ်ဆိုမှုတိ ပါဟိရေ။",
 	"expensive-parserfunction-warning": "<strong>သတိပီးချက်-</strong> ဒေစာမျက်နှာမှာ စျီးကြီးရေ parser function ခေါ်ဆိုမှုတိ အများအပြားပါဟိပါရေ။\n {{PLURAL:$2|call|calls}} $2 ထက်နည်းသင့်ရေ၊ {{PLURAL:$1|ယခု $1 ဖုန်းခေါ်ဆိုမှု| ယခု $1 ဖုန်းခေါ်ဆိုမှုတိဖြစ်တေ}}။",
 	"expensive-parserfunction-category": "စျေးကြီးသော parser function ခေါ်ဆိုမှုတိ အလွန်များရေ စာမျက်နှာတိ",
-	"post-expand-template-inclusion-warning": "<strong>သတိပေးချက် -<strong> တမ်းပလိတ်အရွယ်အစား ကြီးလွန်းနီပါရေ။\nတချို့တမ်းပလိတ်တိ ပါဝင်ဖို့မဟုတ်ပါ။",
+	"post-expand-template-inclusion-warning": "<strong>သတိပေးချက် -</strong> တမ်းပလိတ်အရွယ်အစား ကြီးလွန်းနီပါရေ။\nတချို့တမ်းပလိတ်တိ ပါဝင်ဖို့မဟုတ်ပါ။",
 	"post-expand-template-inclusion-category": "ထည့်သွင်းနိုင်ရေ တမ်းပလိတ်အရွယ်အစားပြည့်လားပြီးဖြစ်တေ စာမျက်နှာတိ",
 	"post-expand-template-argument-warning": "<strong>သတိပီးချက် -</strong> ဒေစာမျက်နှာမှာ ပမာဏအနီနန့် ကြီးမားကျယ်ပြန့်ရေ template argument တစ်ခုပါဝင်ရေ။\nယင်း arguments တိကို ဖယ်ထုတ်လိုက်‌တေ။",
 	"post-expand-template-argument-category": "ဖယ်ထုတ်ထားရေ template arguments တိပါ၀င်ရေ စာမျက်နှာတိ",

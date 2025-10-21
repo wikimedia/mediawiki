@@ -67,7 +67,8 @@
 			"Александр Сигачёв",
 			"לערי ריינהארט",
 			"נדב ס",
-			"아라"
+			"아라",
+			"Tymewalk"
 		]
 	},
 	"sunday": "dimanĉo",
@@ -467,6 +468,7 @@
 	"createacct-loginerror": "La konto estis sukcese kreita, sed vi ne povis esti ensalutita aŭtomate. Bonvolu procedi [[Special:UserLogin|malaŭtomatan ensaluton]].",
 	"createacct-temp-warning": "La redaktoj, kiujn vi faris per via provizora konto <strong>$1</strong>, ne estos transportitaj al via konstanta konto.",
 	"noname": "Vi ne entajpis validan uzantnomon.",
+	"userlogin-authpopup-cancel": "Nuligi",
 	"loginsuccesstitle": "Ensalutinta",
 	"loginsuccess": "<strong>Vi ensalutis en {{SITENAME}} kiel uzanto \"$1\".\n</strong>",
 	"nosuchuser": "Neniu uzanto havas la nomon \"$1\".\nNomoj por uzantoj estas usklecodistingaj.\nKontrolu vian literumadon, aŭ [[Special:CreateAccount|kreu novan konton]].",
@@ -1061,6 +1063,7 @@
 	"linterror-tidy-font-bug": "Fonta etikedo provas ŝanĝi koloron de ligilo",
 	"linterror-tidy-whitespace-bug": "Cimo pri sintaksa analizo de blankspacoj",
 	"linterror-unclosed-quotes-in-heading": "Nefermita citaĵo kiu likas for de la tabelo de enhavo",
+	"linterror-wikilink-in-extlink": "Ligiloj en ligiloj",
 	"email": "Retadreso",
 	"userrights": "Prizorgi rajtojn de uzantoj",
 	"userrights-lookup-user": "Elekti uzanton",
@@ -1708,6 +1711,7 @@
 	"uploadstash-errclear": "Malsukcesis la forigo de la dosieroj.",
 	"uploadstash-refresh": "Aktualigi la dosierliston.",
 	"uploadstash-exception": "Ne eblas alŝuti en kaŝkonservejon ($1): \"$2\".",
+	"uploadstash-header-date": "Dato",
 	"uploadstash-bad-path": "Vojo ne ekzistas.",
 	"uploadstash-bad-path-invalid": "Vojo ne estas valida.",
 	"uploadstash-bad-path-unknown-type": "Nekonata tipo \"$1\".",

@@ -25,7 +25,8 @@
 			"V6rg",
 			"Vito Genovese",
 			"Vlad5250",
-			"아라"
+			"아라",
+			"Saurmandal"
 		]
 	},
 	"sunday": "Etwaar",
@@ -608,7 +609,7 @@
 	"sectioneditnotsupported-text": "Ii panna pe aap khaali vibhag ke badle nai sakta hae",
 	"permissionserrors": "Permissions Errors",
 	"permissionserrorstext": "Aap ke uu chij kare ke ijajat nai hai, ii {{PLURAL:$1|kaaran|kaaran}} khatir:",
-	"permissionserrorstext-withaction": "Aap ke lage $2 kare khatir ijajat nai hai, ii {{PLURAL:$1|kaaran|kaaran}} se:",
+	"permissionserrorstext-withaction": "Aap ke lage $2 kare khatir ijajat nai hai, ii {{PLURAL:$1|kaaran}} se:",
 	"contentmodelediterror": "Aap iske badle nai saktaa hae kaaheki iske content model <code>$1</code> hae, aur ii  abhi ke content model <code>$2</code> ke rakam nai hae.",
 	"recreate-moveddeleted-warn": "'''Chetawani: Jon panna ke pahile hatae dewa gais rahaa ke aap fir se banata hai.'''\n\nAap socho ki ii panna ke sampadan aap ke karte rahe ke chaahi ki nai.\nAap ke aaram khatir hatae waala suchi hian pe dewa jaawe hai:",
 	"moveddeleted-notice": "Ii panna abhi nai hai.\nIi panna ke mitae waala aur hatae waala log aap ke dekhe khatir niche dewa gais hai.",

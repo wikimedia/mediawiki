@@ -82,7 +82,8 @@
 			"Jimkats",
 			"Marios Zindilis",
 			"JorgeElias2302",
-			"Warudo"
+			"Warudo",
+			"SaldırganSincap"
 		]
 	},
 	"sunday": "Κυριακή",
@@ -725,7 +726,7 @@
 	"sitecsspreview": "<strong>Θυμηθείτε ότι είναι απλώς μια προεπισκόπηση αυτού του CSS.\nΔεν έχει δημοσιευτεί ακόμα!</strong>",
 	"sitejsonpreview": "<strong>Θυμηθείτε ότι είναι απλώς μια προεπισκόπηση αυτής της ρύθμισης JSON.\nΔεν έχει δημοσιευτεί ακόμα!</strong>",
 	"sitejspreview": "<strong>Θυμηθείτε ότι κάνετε μόνο προεπισκόπηση σ' αυτόν τον κώδικα JavaScript.\nΔεν έχει δημοσιευτεί ακόμη!</strong>",
-	"userinvalidconfigtitle": "<strong>Προσοχή:<strong> Δεν υπάρχει skin με τίτλο «$1». \nΠροσαρμοσμένες σελίδες .css, .json, .js χρησιμοποιούν τίτλο με μικρά γράμματα, π.χ. {{ns:user}}:Foo/vector.css σε αντίθεση με το {{ns:user}}:Foo/Vector.css.",
+	"userinvalidconfigtitle": "<strong>Προσοχή:</strong> Δεν υπάρχει skin με τίτλο «$1». \nΠροσαρμοσμένες σελίδες .css, .json, .js χρησιμοποιούν τίτλο με μικρά γράμματα, π.χ. {{ns:user}}:Foo/vector.css σε αντίθεση με το {{ns:user}}:Foo/Vector.css.",
 	"updated": "(Ενημερώθηκε)",
 	"note": "'''Προσοχή: '''",
 	"previewnote": "<strong>Να θυμάστε ότι αυτό είναι απλώς προεπισκόπηση.</strong>\nΟι αλλαγές σας δεν έχουν δημοσιευτεί ακόμη!",

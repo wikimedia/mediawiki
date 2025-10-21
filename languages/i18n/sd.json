@@ -14,7 +14,8 @@
 			"Mehtab ahmed",
 			"Sindhu",
 			"Tweety",
-			"아라"
+			"아라",
+			"SaldırganSincap"
 		]
 	},
 	"sunday": "آچر",
@@ -529,7 +530,7 @@
 	"missing-revision": "صفحي \"{{FULLPAGENAME}}\" جو ورجاءُ #$1 وجود نٿو رکي.\n\nاڪثر اهو تڏهن ٿيندو آهي جڏهن اوهان ڪنھن مدي خارج پراڻي ڳنڍڻي تان اھڙي صفحي تي اچو جيڪو ڊاٿو ويو ھجي. تفصيل [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} ڊاھ لاگ] ۾ لھي سگهجن ٿا.",
 	"userpage-userdoesnotexist-view": "واپرائيندڙ کاتو \"$1\" ھن وڪيءَ تي درج ٿيل نہ آهي.",
 	"blocked-notice-logextract": "هن {{GENDER:$1|واپرائيندڙ}} تي في‌الحال بندش آهي.\nتازو بندش لاگ حوالي طور پيش ڪجي ٿو:",
-	"clearyourcache": "<strong>نوٽ:</strong> ڇاپڻ کانپوءِ تازين تبديلن کي کي ڏسڻ جي لاءِ توهان کي پنھنجي برائوزر جي ڪيشي کي صاف ڪرڻ جي ضرورت آهي.\n* <strong>فائرفاڪس:</strong> جڏهن <em>Reload</em> تي ڪلڪ ڪريو تہ <em>Shift</em> دٻائي رکو یا <em>Ctrl-F5</em> یا <em>Ctrl-R</em> دٻايو (Mac تي <em>R-⌘</em>)\n* <strong>گوگل ڪروم:</strong> <em>Ctrl-Shift-R</em> دٻايو (Mac تي </em>Shift-R-⌘</em>)\n* <strong>ايج:</strong> جڏهن <em>Refresh</em> تي ڪلڪ ڪريو تہ <em>Ctrl</em> یا <em>Ctrl-F5</em> دٻايو\n* <strong>اوپيرا:</strong> <em>Tools → Preferences</em> ۾ وڃو ۽ ڪيش صاف ڪريو.",
+	"clearyourcache": "<strong>نوٽ:</strong> ڇاپڻ کانپوءِ تازين تبديلن کي کي ڏسڻ جي لاءِ توهان کي پنھنجي برائوزر جي ڪيشي کي صاف ڪرڻ جي ضرورت آهي.\n* <strong>فائرفاڪس:</strong> جڏهن <em>Reload</em> تي ڪلڪ ڪريو تہ <em>Shift</em> دٻائي رکو یا <em>Ctrl-F5</em> یا <em>Ctrl-R</em> دٻايو (Mac تي <em>R-⌘</em>)\n* <strong>گوگل ڪروم:</strong> <em>Ctrl-Shift-R</em> دٻايو (Mac تي <em>⌘-Shift-R</em>)\n* <strong>ايج:</strong> جڏهن <em>Refresh</em> تي ڪلڪ ڪريو تہ <em>Ctrl</em> یا <em>Ctrl-F5</em> دٻايو",
 	"usercsspreview": "<strong>ياد رھي تہ توھان کي رڳو توھان جي واپرائيندڙ سي ايس ايس پيش-نگاھ ڪئي پئي وڃي.\nاھا اڃا ڇاپي ناھي وئي!</strong>",
 	"userjsonpreview": "<strong>ياد رھي تہ توھان کي رڳو توھان جي واپرائيندڙ جي ايس او اين ڪنگف پيش-نگاھ/آزمائي ڪئي پئي وڃي.\nاھا اڃا ڇاپي ناھي وئي!</strong>",
 	"userjspreview": "<strong>ياد رھي تہ توھان کي رڳو توھان جي واپرائيندڙ جاوا اسڪرپٽ پيش-نگاھ/آزمائي ڪئي پئي وڃي.\nاھا اڃا ڇاپي ناھي وئي!</strong>",

@@ -1562,7 +1562,7 @@
 	"largefileserver": "Ragiv at binon tu gretik: dünanünöm no kanon dälon oni.",
 	"emptyfile": "Ragiv fa ol pelöpüköl binon jiniko vägik. Kod atosa äbinon ba pöl pö ragivanem. Vilol-li jenöfo löpükön ragivi at?",
 	"windows-nonascii-filename": "Vükatoped at no dälon ad tölatön nünedanemis labü sümbols nekösömik.",
-	"fileexists": "Nüned labü nem at ya dabinon, vestigolös dinädi at kuratikumo, [[:$1]]</strong> üf {{GENDER:|no sevol fümiko}}, va vilol plaükön oni.\n[[$1|thumb]]",
+	"fileexists": "Nüned labü nem at ya dabinon, vestigolös dinädi at kuratikumo, <strong>[[:$1]]</strong> üf {{GENDER:|no sevol fümiko}}, va vilol plaükön oni.\n[[$1|thumb]]",
 	"filepageexists": "Bepenamapad ragiva at ya pejafon (<strong>[[:$1]]</strong>), ab ragiv nonik labü nem at dabinon anu.\nNaböfodönuam olik no opubon su bepenamapad.\nAd pübön oni us, onedol redakön oni ol it.\n[[$1|thumb]]",
 	"fileexists-extension": "Nüned labü nem sümik ya dabinon: [[$2|thumb]]\n* Nem nüneda palöpiokopedöl: <strong>[[:$1]]</strong>\n* Nem nüneda dabinöl: <strong>[[:$2]]</strong>\nVa vilol-li gebön nemi distikum?",
 	"fileexists-thumbnail-yes": "Ragiv at binon jiniko magoda gretota smalik ''(magodil)''. [[$1|thumb]]\nLogolös, begö! ragivi ya dabinöli: <strong>[[:$1]]</strong>.\nIf ragiv ya dabinöli binon magod ot gretota rigik, no zesüdos ad löpükön magodili pluik.",

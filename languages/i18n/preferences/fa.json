@@ -25,7 +25,8 @@
 			"Reza1615",
 			"Sunfyre",
 			"Taha",
-			"ZxxZxxZ"
+			"ZxxZxxZ",
+			"LordProfo"
 		]
 	},
 	"preferences": "ترجیحات",
@@ -50,7 +51,7 @@
 	"prefs-registration": "زمان ثبت‌نام:",
 	"yourrealname": "نام واقعی:",
 	"prefs-help-realname": "نام واقعی اختیاری است.\nاگر وارد شده است هنگام ارجاع به آثارتان و انتساب آن‌ها به شما ممکن است از نام واقعی‌تان استفاده شود.",
-	"yourpassword": "رمز عبور:",
+	"yourpassword": "گذرواژه:",
 	"prefs-resetpass": "تغییر رمز عبور",
 	"passwordtooshort": "رمزهای عبور باید حداقل {{PLURAL:$1|۱ حرف|$1 حرف}} داشته باشد.",
 	"passwordtoolong": "رمزهای عبور نمی‌تواند بیشتر از {{PLURAL:$1|۱ حرف|$1 حرف}}  باشد.",

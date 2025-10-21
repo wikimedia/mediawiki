@@ -27,7 +27,8 @@
 			"Sunfyre",
 			"درفش کاویانی",
 			"กิ๊ฟ เลิกล่ะ สายแข็ง",
-			"Jeeputer"
+			"Jeeputer",
+			"LordProfo"
 		]
 	},
 	"config-desc": "نصب‌کنندهٔ مدیاویکی",
@@ -175,7 +176,7 @@
 	"config-ns-conflict": "فضای نام تعیین شدهٔ \"<nowiki>$1</nowiki>\" با یک فضای نام پیش‌فرض مدیاویکی مغایرت دارد.\nیک فضای نام پروژه دیگری را تعیین کنید.",
 	"config-admin-box": "حساب مدیر",
 	"config-admin-name": "نام کاربری شما:",
-	"config-admin-password": "رمز عبور:",
+	"config-admin-password": "گذرواژه:",
 	"config-admin-password-confirm": "رمز عبور را دوباره وارد کنید:",
 	"config-admin-help": "نام کاربری مورد علاقهٔ خود را اینجا وارد کنید، برای مثال \" جو بلاگز \".\nاین نامی است که شما برای ورود به ویکی استفاده خواهید‌کرد.",
 	"config-admin-name-blank": "یک نام کاربری مدیر وارد کنید.",

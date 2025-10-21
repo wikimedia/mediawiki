@@ -4309,7 +4309,7 @@
 	"logentry-import-upload-details": "{{Logentry|[[Special:Log/import]]}}\nAdditional parameters:\n* $4 - number of imported revisions\n\nCf. {{msg-mw|logentry-import-upload}}",
 	"logentry-import-interwiki": "{{Logentry|[[Special:Log/import]]}}",
 	"logentry-import-interwiki-details": "{{Logentry|[[Special:Log/import]]}}\nAdditional parameters:\n* $4 - number of imported revisions\n* $5 - interwiki title\n\nCf. {{msg-mw|logentry-import-interwiki}}",
-	"logentry-merge-merge": "{{Logentry|[[Special:Log/merge]]}}\nAdditional parameters:\n* $4 - the page into which the content is merged\n* $5 - a timestamp of limit",
+	"logentry-merge-merge": "{{Logentry|[[Special:Log/merge]]}}\nAdditional parameters:\n* $4 - the page into which the content is merged\n* $5 - a timestamp of limit\n*$6 - a revision ID (for disambiguating revs with same timestamp)",
 	"logentry-move-move": "{{Logentry|[[Special:Log/move]]}}\nAdditional parameters:\n* $4 - the target page, is also not visible to parser functions.\n{{Related|Logentry-move}}",
 	"logentry-move-move-noredirect": "{{Logentry|[[Special:Log/move]]}}\nParameter $4, the target page, is also not visible to parser functions.\n{{Related|Logentry-move}}",
 	"logentry-move-move_redir": "{{Logentry|[[Special:Log/move]]}}\nParameter $4, the target page, is also not visible to parser functions.\n{{Related|Logentry-move}}",

@@ -826,7 +826,7 @@
 	"viewpagelogs-lowercase": "bu səhifə ilə bağlı jurnallara bax",
 	"nohistory": "Bu səhifənin dəyişikliklər tarixçəsi mövcud deyil.",
 	"currentrev": "Hal-hazırkı versiya",
-	"currentrev-asof": "Səhifəsinin $1 tarixinə olan son versiyası",
+	"currentrev-asof": "Səhifənin $1 tarixinə olan son versiyası",
 	"revisionasof": "$1 tarixinə olan versiya",
 	"revision-info": "{{GENDER:$6|$2}}$7 tərəfindən edilmiş $1 tarixli redaktə",
 	"previousrevision": "← Əvvəlki versiya",

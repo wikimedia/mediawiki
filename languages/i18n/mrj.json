@@ -6,7 +6,8 @@
 			"Angelika",
 			"Matma Rex",
 			"Nadezhda",
-			"아라"
+			"아라",
+			"SaldırganSincap"
 		]
 	},
 	"sunday": "рушӓрня",
@@ -2100,7 +2101,7 @@
 	"nonnumeric-formatnum": "Числадымы formatnum аргументӓн страницӓвлӓ",
 	"nonnumeric-formatnum-desc": "Formatnum синтаксический ланзылымаш функцилӓн страницӓштӹ числадымы аргумент улы.",
 	"noindex-category-desc": "Страницӓштӹ <code><nowiki>__NOINDEX__</nowiki></code> ямакыштышы шамак ылмы гишӓн, дӓ тӹдӹн ти флагым кычылташ лишӹ лӹмвлӓн вӓрӹштӹ ылмыжы гишӓн, тӹдӹм роботвлӓ ак индексируеп.",
-	"index-category-desc": "Страницӓштӹ <nowiki>__INDEX__</nowiki></code> ямакыштышы шамак улы (дӓ страницӓ ти флагым кычылташ лишӹ лӹмвлӓн вӓрӹштӹ ылеш), седӹндон тӹдӹ робот доно тӹштӹ индексируялтеш, кышты шукыжы годым тидӹ ак ли ыльы.",
+	"index-category-desc": "Страницӓштӹ <code><nowiki>__INDEX__</nowiki></code> ямакыштышы шамак улы (дӓ страницӓ ти флагым кычылташ лишӹ лӹмвлӓн вӓрӹштӹ ылеш), седӹндон тӹдӹ робот доно тӹштӹ индексируялтеш, кышты шукыжы годым тидӹ ак ли ыльы.",
 	"post-expand-template-inclusion-category-desc": "Цилӓ шаблоным кымдаэмдӹмӓш паштек страницӓн висӹкшӹ <code>$wgMaxArticleSize</code> гӹц когорак лин, седӹндон юж шаблонвлӓм кымдаэмдӹмӹ агыл.",
 	"post-expand-template-argument-category-desc": "Шаблонын аргументшӹм кымдаэмдӹмӹ паштек страницӓ <code>$wgMaxArticleSize</code> гӹц когорак лиэш (тама-ӓнят фигурный скобкышты, примереш, <code>{{{Foo}}}</code>).",
 	"expensive-parserfunction-category-desc": "Страницӓштӹ синтаксический ланзылымашын утыдон шукы «шергӹ» функцижӹ кычылталтеш (примереш, <code>#ifexist</code>).\nАнжы — [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgExpensiveParserFunctionLimit Manual:$wgExpensiveParserFunctionLimit] страницӓштӹ.",
