@@ -694,7 +694,7 @@ class ApiQueryInfo extends ApiQueryBase {
 
 				foreach ( $res as $row ) {
 					$protection = $protectedPages[$row->tl_from];
-					$this->protections[$row->tl_namespace][$row->tl_title][] = $protection;
+					$this->protections[$row->lt_namespace][$row->lt_title][] = $protection;
 				}
 
 				$this->resetVirtualDomain();
