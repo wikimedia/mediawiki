@@ -4126,5 +4126,6 @@
 	"benefit-3-description": "Preferences that allow you to customize your experience.",
 	"temp-user-unable-to-acquire": "Unable to acquire a temporary account username. Please try again.",
 	"table-of-contents-show-button-aria-label": "Show the table of contents",
-	"table-of-contents-hide-button-aria-label": "Hide the table of contents"
+	"table-of-contents-hide-button-aria-label": "Hide the table of contents",
+	"diff-usergroups": "$1 user groups"
 }

@@ -779,7 +779,6 @@ class DifferenceEngine extends ContextSource {
 
 		$revisionTools = [];
 		$breadCrumbs = '';
-		$newMobileFooter = '';
 
 		# mOldRevisionRecord is false if the difference engine is called with a "vague" query for
 		# a diff between a version V and its previous version V' AND the version V
@@ -826,7 +825,6 @@ class DifferenceEngine extends ContextSource {
 					if ( $rollbackLink ) {
 						$out->getMetadata()->setPreventClickjacking( true );
 						$rollback = "\u{00A0}\u{00A0}\u{00A0}" . $rollbackLink;
-						$newMobileFooter .= $rollback;
 					}
 				}
 
@@ -958,7 +956,6 @@ class DifferenceEngine extends ContextSource {
 				$tool
 			);
 			$formattedRevisionTools[] = $element;
-			$newMobileFooter .= $element;
 		}
 
 		$newRevRecord = $this->mNewRevisionRecord;
@@ -975,8 +972,7 @@ class DifferenceEngine extends ContextSource {
 			$newRevComment = "<span class=\"comment mw-comment-none\">$defaultComment</span>";
 		}
 
-		$newMobileFooter .= Linker::revUserTools( $newRevRecord, !$this->unhide ) .
-			$this->getUserMetaData( $newRevRecord->getUser() );
+		$newMobileFooter = $this->getMobileFooter( $newRevRecord, $formattedRevisionTools );
 
 		$newHeader = '<div id="mw-diff-ntitle1"><strong>' . $newRevisionHeader . '</strong></div>' .
 			'<div id="mw-diff-ntitle2">' . Linker::revUserTools( $newRevRecord, !$this->unhide ) .
@@ -2388,6 +2384,90 @@ class DifferenceEngine extends ContextSource {
 	 */
 	public function getTextDiffFormat() {
 		return $this->slotDiffOptions['diff-type'] ?? 'table';
+	}
+
+	/**
+	 * @param RevisionRecord|null $newRevRecord
+	 * @param array $formattedRevisionTools
+	 * @return string
+	 */
+	private function getMobileFooter( ?RevisionRecord $newRevRecord, array $formattedRevisionTools ): string {
+		$this->getOutput()->addModuleStyles( [ 'codex-styles' ] );
+		$summary = Html::rawElement(
+			'summary',
+			[ "class" => "cdx-accordion--has-icon" ],
+			Html::rawElement(
+				'h3',
+				[ "class" => "cdx-accordion__header" ],
+				Html::rawElement(
+					'span',
+					[ 'class' => 'cdx-accordion__header__title mw-diff-new-mobile-footer-user-link' ],
+					Linker::revUserTools( $newRevRecord, !$this->unhide )
+				)
+			)
+		);
+		$rollbackLink = '';
+		if ( $this->mNewRevisionRecord->isCurrent() &&
+			$this->getAuthority()->probablyCan( 'rollback', $this->mNewPage )
+		) {
+			$rollbackLink = Linker::generateRollback(
+				$this->mNewRevisionRecord,
+				$this->getContext(),
+				[ 'noBrackets' ]
+			);
+		}
+		$user = $newRevRecord->getUser();
+		$userGroups = [];
+		if ( $user !== null ) {
+			$userGroups = $this->userGroupManager->getUserGroups( $user );
+		}
+		$userGroupCount = count( $userGroups );
+		if ( $userGroupCount == 0 ) {
+			$userGroupsPopover = '';
+		} else {
+			$popover = Html::rawElement(
+				'div',
+				[ 'class' => 'cdx-popover mw-diff-usergroups-popover', 'role' => 'tooltip' ],
+				Html::rawElement(
+					'div',
+					[ 'class' => 'cdx-popover__body' ],
+					implode( ', ', $userGroups )
+				) . Html::rawElement( 'div', [ 'class' => 'cdx-popover__arrow' ] )
+			);
+			$popoverTrigger = Html::element(
+				'span',
+				[ 'class' => 'cdx-popover-trigger cdx-button__icon cdx-icon cdx-icon--info ', 'tabindex' => '0' ],
+			);
+			$userEditCount = $user !== null ? $this->getUserEditCount( $user ) : '';
+			$userGroupsPopover = Html::rawElement(
+				'div',
+				[ 'class' => 'mw-diff-usermetadata' ],
+				Html::element( 'span', [ 'class' => 'mw-diff-usergroups-popover-text' ],
+					$this->msg( 'diff-usergroups', $userGroupCount )->text()
+				) . Html::rawElement(
+					'div',
+					[ 'class' => 'mw-diff-usergroups-popover-wrapper' ],
+					$popoverTrigger . $popover
+				) . $userEditCount . Html::rawElement(
+					'span',
+					[ 'class' => 'mw-diff-usergroups-popover-separator' ],
+					'|'
+				)
+			);
+		}
+
+		$content = Html::rawElement(
+			'div',
+			[ "class" => "cdx-accordion__content" ],
+			$userGroupsPopover
+			. $rollbackLink
+			. implode( '', $formattedRevisionTools )
+		);
+		return Html::rawElement(
+			'details',
+			[ "class" => "mw-diff-new-mobile-footer-accordion cdx-accordion cdx-accordion--separation-minimal" ],
+			$summary . $content
+		);
 	}
 
 }

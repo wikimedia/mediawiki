@@ -767,6 +767,7 @@ return [
 		'packageFiles' => [
 			'resources/src/mediawiki.diff/diff.js',
 			'resources/src/mediawiki.diff/inlineFormatToggle.js',
+			'resources/src/mediawiki.diff/undoButtonToggle.js',
 		],
 		'styles' => [
 			'resources/src/mediawiki.diff/styles.less'
