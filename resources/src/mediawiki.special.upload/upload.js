@@ -350,7 +350,7 @@
 			thumb
 				.find( '.filename' ).text( file.name ).end()
 				.find( '.fileinfo' ).text( prettySize( file.size ) ).end()
-				.find( '.mw-file-description' ).prepend( $spinner ).end();
+				.children().first().prepend( $spinner ).end();
 
 			const $canvas = $( '<canvas>' ).attr( { width: previewSize, height: previewSize } );
 			$canvas.addClass( 'mw-file-element' );
