@@ -219,13 +219,7 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 
 		$changeableGroups = $this->userGroupAssignmentService->getChangeableGroups(
 			$this->getAuthority(), $user );
-		$this->addableGroups = $changeableGroups['add'];
-		$this->removableGroups = $changeableGroups['remove'];
-		foreach ( $changeableGroups['restricted'] as $group => $details ) {
-			if ( !$details['condition-met'] ) {
-				$this->addGroupAnnotation( $group, $details['message'] );
-			}
-		}
+		$this->setChangeableGroups( $changeableGroups );
 
 		$isLocalWiki = $wikiId === UserIdentity::LOCAL;
 		$this->enableWatchUser = $isLocalWiki;

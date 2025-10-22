@@ -79,6 +79,22 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 	}
 
 	/**
+	 * Sets the groups that can be added and removed by the current user to/from the target user.
+	 * If there are any restricted groups, adds appropriate annotations for them. This method accepts
+	 * the same input structure as returned by {@see UserGroupAssignmentService::getChangeableGroups()}.
+	 * @param array{add:list<string>,remove:list<string>,restricted:array<string,array>} $changeableGroups
+	 */
+	protected function setChangeableGroups( array $changeableGroups ): void {
+		$this->addableGroups = $changeableGroups['add'];
+		$this->removableGroups = $changeableGroups['remove'];
+		foreach ( $changeableGroups['restricted'] as $group => $details ) {
+			if ( !$details['condition-met'] ) {
+				$this->addGroupAnnotation( $group, $details['message'] );
+			}
+		}
+	}
+
+	/**
 	 * Adds ResourceLoader modules that are used by this page.
 	 */
 	protected function addModules(): void {
