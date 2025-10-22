@@ -667,9 +667,10 @@ class SpecialPageFactory {
 				'UserNameUtils',
 				'UserNamePrefixSearch',
 				'UserFactory',
-				'ActorStoreFactory',
 				'WatchlistManager',
-				'TempUserConfig',
+				'UserGroupAssignmentService',
+				'MultiFormatUserIdentityLookup',
+				'FormatterFactory',
 			]
 		],
 		'EditWatchlist' => [

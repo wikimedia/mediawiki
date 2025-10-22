@@ -2,7 +2,6 @@
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
-use MediaWiki\Specials\SpecialUserRights;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\User\UserFactory;
@@ -29,15 +28,7 @@ class SpecialUserRightsTest extends SpecialPageTestBase {
 	 */
 	protected function newSpecialPage() {
 		$services = $this->getServiceContainer();
-		return new SpecialUserRights(
-			$services->getUserGroupManagerFactory(),
-			$services->getUserNameUtils(),
-			$services->getUserNamePrefixSearch(),
-			$services->getUserFactory(),
-			$services->getActorStoreFactory(),
-			$services->getWatchlistManager(),
-			$services->getTempUserConfig()
-		);
+		return $services->getSpecialPageFactory()->getPage( 'UserRights' );
 	}
 
 	private function performBasicFormAssertions( $html, $target ) {

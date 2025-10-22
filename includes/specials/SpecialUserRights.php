@@ -20,9 +20,7 @@ use MediaWiki\SpecialPage\UserGroupsSpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\Status\StatusFormatter;
 use MediaWiki\Title\Title;
-use MediaWiki\User\ActorStoreFactory;
 use MediaWiki\User\MultiFormatUserIdentityLookup;
-use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserGroupAssignmentService;
 use MediaWiki\User\UserGroupManager;
@@ -56,7 +54,6 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 	private UserNamePrefixSearch $userNamePrefixSearch;
 	private UserFactory $userFactory;
 	private WatchlistManager $watchlistManager;
-	private TempUserConfig $tempUserConfig;
 	private UserGroupAssignmentService $userGroupAssignmentService;
 	private MultiFormatUserIdentityLookup $multiFormatUserIdentityLookup;
 	private StatusFormatter $statusFormatter;
@@ -66,9 +63,7 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 		?UserNameUtils $userNameUtils = null,
 		?UserNamePrefixSearch $userNamePrefixSearch = null,
 		?UserFactory $userFactory = null,
-		?ActorStoreFactory $actorStoreFactory = null,
 		?WatchlistManager $watchlistManager = null,
-		?TempUserConfig $tempUserConfig = null,
 		?UserGroupAssignmentService $userGroupAssignmentService = null,
 		?MultiFormatUserIdentityLookup $multiFormatUserIdentityLookup = null,
 		?FormatterFactory $formatterFactory = null,
@@ -81,7 +76,6 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 		$this->userFactory = $userFactory ?? $services->getUserFactory();
 		$this->userGroupManagerFactory = $userGroupManagerFactory ?? $services->getUserGroupManagerFactory();
 		$this->watchlistManager = $watchlistManager ?? $services->getWatchlistManager();
-		$this->tempUserConfig = $tempUserConfig ?? $services->getTempUserConfig();
 		$this->userGroupAssignmentService = $userGroupAssignmentService ?? $services->getUserGroupAssignmentService();
 		$this->multiFormatUserIdentityLookup = $multiFormatUserIdentityLookup
 			?? $services->getMultiFormatUserIdentityLookup();
@@ -282,19 +276,6 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 	 * @return Status
 	 */
 	protected function saveUserGroups( string $reason, UserIdentity $user ) {
-		if ( $this->userNameUtils->isTemp( $user->getName() ) ) {
-			return Status::newFatal( 'userrights-no-tempuser' );
-		}
-
-		// Prevent cross-wiki assignment of groups to temporary accounts on wikis where the feature is not known.
-		if (
-			$user->getWikiId() !== UserIdentity::LOCAL &&
-			!$this->tempUserConfig->isKnown() &&
-			$this->tempUserConfig->isReservedName( $user->getName() )
-		) {
-			return Status::newFatal( 'userrights-cross-wiki-assignment-for-reserved-name' );
-		}
-
 		// This could possibly create a highly unlikely race condition if permissions are changed between
 		// when the form is loaded and when the form is saved. Ignoring it for the moment.
 		$newGroupsStatus = $this->readGroupsForm();
