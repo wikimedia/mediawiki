@@ -334,6 +334,5 @@
 	"watchlist-unwatch": "{{ignored}}\n\nSymbol used for the link to unwatch a page from the watchlist.",
 	"watchlist-unwatch-undo": "{{ignored}}\nSymbol used for the link to re-watch a page that has been unwatched from the watchlist.",
 	"whatlinkshere-summary": "{{doc-specialpagesummary|whatlinkshere}}",
-	"word-separator": "{{optional}}\nThis is a string which is (usually) put between words of the language. It is used, e.g. when messages are concatenated (appended to each other). Note that you must express a space as html entity &amp;#32; because the editing and updating process strips leading and trailing spaces from messages.\n\nMost languages use a space, but some Asian languages, such as Thai and Chinese, do not.\n{{Format|plain}}",
 	"renderedwith-legacy": "{{notranslate}}\nThis message is shown below each page, in the footer with the logos and links, when the page has been rendered with the legacy parser. See also: {{msg-mw:Renderedwith-parsoid}}"
 }
