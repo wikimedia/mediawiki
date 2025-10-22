@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Tests\SpecialPage;
 
-use HttpError;
 use MediaWiki\Config\Config;
 use MediaWiki\Config\HashConfig;
 use MediaWiki\Http\HttpRequestFactory;
@@ -14,6 +13,7 @@ use MediaWikiUnitTestCase;
 use PHPUnit\Framework\MockObject\MockObject;
 use ReflectionClass;
 use ReflectionProperty;
+use RuntimeException;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
@@ -102,7 +102,7 @@ class QueryPageTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testHandlesEmptyResponse() {
-		$this->expectException( HttpError::class );
+		$this->expectException( RuntimeException::class );
 		$this->expectExceptionMessage( 'Empty response' );
 
 		$reflection = new ReflectionClass( $this->queryPage );
@@ -124,7 +124,7 @@ class QueryPageTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testHandlesInvalidJson() {
-		$this->expectException( HttpError::class );
+		$this->expectException( RuntimeException::class );
 		$this->expectExceptionMessage( 'Invalid JSON' );
 
 		$reflection = new ReflectionClass( $this->queryPage );
@@ -136,7 +136,7 @@ class QueryPageTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testHandlesNonArrayResponse() {
-		$this->expectException( HttpError::class );
+		$this->expectException( RuntimeException::class );
 		$this->expectExceptionMessage( 'Expected array' );
 
 		$reflection = new ReflectionClass( $this->queryPage );
@@ -154,7 +154,7 @@ class QueryPageTest extends MediaWikiUnitTestCase {
 			[ 'missing' => 'fields' ]
 		];
 
-		$this->expectException( HttpError::class );
+		$this->expectException( RuntimeException::class );
 		$this->expectExceptionMessage( 'Invalid row data' );
 
 		$reflection = new ReflectionClass( $this->queryPage );

@@ -12,7 +12,6 @@ namespace MediaWiki\SpecialPage;
 use Exception;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Config\Config;
-use MediaWiki\Exception\HttpError;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
 use MediaWiki\Http\HttpRequestFactory;
@@ -54,6 +53,7 @@ use MediaWiki\Specials\SpecialWantedFiles;
 use MediaWiki\Specials\SpecialWantedPages;
 use MediaWiki\Specials\SpecialWantedTemplates;
 use MediaWiki\Specials\SpecialWithoutInterwiki;
+use RuntimeException;
 use stdClass;
 use Wikimedia\Rdbms\DBError;
 use Wikimedia\Rdbms\FakeResultWrapper;
@@ -627,37 +627,37 @@ abstract class QueryPage extends SpecialPage {
 
 		$status = $request->execute();
 		if ( !$status->isOK() ) {
-			throw new HttpError( 520,
-				"Failed to fetch data from external source '{$pageName}': " . $status->getMessage()->text() );
+			throw new RuntimeException( "Failed to fetch data from external source '{$pageName}': " .
+				$status->getMessage()->text() );
 		}
 
 		$content = $request->getContent();
 		if ( $content === null || $content === '' ) {
-			throw new HttpError( 204, "Empty response received from external source '{$pageName}'", 'No Content' );
+			throw new RuntimeException( "Empty response received from external source '{$pageName}'" );
 		}
 
 		$decoded = json_decode( $content, true );
 		if ( $decoded === null ) {
-			throw new HttpError( 500, "Invalid JSON response from external source '{$pageName}': " .
+			throw new RuntimeException( "Invalid JSON response from external source '{$pageName}': " .
 				json_last_error_msg() );
 		}
 
 		if ( !is_array( $decoded ) ) {
-			throw new HttpError( 500, "Expected array data from external source '{$pageName}', got " .
+			throw new RuntimeException( "Expected array data from external source '{$pageName}', got " .
 				gettype( $decoded ) );
 		}
 
 		$result = [];
 		foreach ( $decoded as $i => $row ) {
 			if ( !is_array( $row ) ) {
-				throw new HttpError( 500, "Invalid row data at index {$i} from external source '{$pageName}': " .
+				throw new RuntimeException( "Invalid row data at index {$i} from external source '{$pageName}': " .
 					'expected array, got ' . gettype( $row ) );
 			}
 
 			$requiredFields = [ 'qc_namespace', 'qc_title', 'qc_value' ];
 			foreach ( $requiredFields as $field ) {
 				if ( !array_key_exists( $field, $row ) ) {
-					throw new HttpError( 500,
+					throw new RuntimeException(
 						"Missing required field '{$field}' in row {$i} from external source '{$pageName}'" );
 				}
 			}
