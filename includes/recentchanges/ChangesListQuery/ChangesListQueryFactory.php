@@ -10,6 +10,7 @@ use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\UserFactory;
 use MediaWiki\Watchlist\WatchedItemStoreInterface;
 use ObjectCacheFactory;
+use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Stats\StatsFactory;
 
@@ -29,6 +30,7 @@ class ChangesListQueryFactory {
 		private ChangeTagsStore $changeTagsStore,
 		private ObjectCacheFactory $objectCacheFactory,
 		private StatsFactory $statsFactory,
+		private LoggerInterface $logger,
 		private IConnectionProvider $connectionProvider,
 	) {
 		$this->rcStats = new TableStatsProvider(
@@ -49,6 +51,7 @@ class ChangesListQueryFactory {
 			$this->changeTagsStore,
 			$this->objectCacheFactory,
 			$this->statsFactory,
+			$this->logger,
 			$this->connectionProvider->getReplicaDatabase(),
 			$this->rcStats
 		);

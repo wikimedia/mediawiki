@@ -57,18 +57,34 @@ class QueryRateEstimator {
 	public function fetchRate( int $startTime, int $endTime ) {
 		$cache = $this->cache;
 		$period = $this->getBucketPeriod();
-		$startBucket = (int)( ( $startTime - $this->maxAge ) / $period );
+		$startBucket = (int)( $startTime / $period );
 		$endBucket = (int)( $endTime / $period );
 		$keys = [];
 		for ( $b = $startBucket; $b <= $endBucket; $b++ ) {
-			$keys[] = $cache->makeKey( 'ChangesListQueryRate', $this->key, $b );
+			$keys[$b] = $cache->makeKey( 'ChangesListQueryRate', $this->key, $b );
 		}
 		$this->results = $cache->getMulti( $keys );
 		if ( !$this->results ) {
 			return null;
-		} else {
-			return array_sum( $this->results ) / count( $keys ) / $period;
 		}
+
+		$totalPeriod = 0;
+		$totalCount = 0;
+		foreach ( $keys as $b => $key ) {
+			if ( !isset( $this->results[$key] ) ) {
+				// No information about this bucket, don't include in rate
+				continue;
+			}
+			if ( $b === $endBucket ) {
+				// Don't round up the end time, since it's presumed to be now,
+				// so the rate is zero after it
+				$totalPeriod += $endTime - $b * $period;
+			} else {
+				$totalPeriod += $period;
+			}
+			$totalCount += $this->results[$key];
+		}
+		return $totalCount / $totalPeriod;
 	}
 
 	/**
@@ -86,7 +102,7 @@ class QueryRateEstimator {
 		$startBucket = (int)( $startTime / $period );
 		$endBucket = (int)( $endTime / $period );
 		$batch = [];
-		for ( $b = $startBucket; $b < $endBucket; $b++ ) {
+		for ( $b = $startBucket; $b <= $endBucket; $b++ ) {
 			$bucketKey = $cache->makeKey( 'ChangesListQueryRate', $this->key, $b );
 			$prevResult = $this->results[$bucketKey] ?? null;
 			$newResult = $counts[$b] ?? 0;
