@@ -1170,7 +1170,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 							// The following element IDs are used here:
 							// mw-createaccount, mw-createaccount-cta
 							[ 'id' => 'mw-createaccount' . ( !$isLoggedIn ? '-cta' : '' ),
-								'class' => ( $isLoggedIn ? 'mw-form-related-link-container' : 'mw-ui-vform-field' ) ],
+								'class' => ( $isLoggedIn ? 'mw-form-related-link-container' : '' ) ],
 							( $isLoggedIn ? '' : $this->msg( 'userlogin-noaccount' )->escaped() )
 							. Html::element( 'a',
 								[
