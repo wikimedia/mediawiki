@@ -954,7 +954,6 @@
 	"userrights-expiry-options": "Egun bat:1 day,astebete:1 week,hilabete:1 month,3 hilabete:3 months,6 hilabete:6 months,urtebete:1 year",
 	"userrights-invalid-expiry": "$1 talderako iraungitze denbora ez du balio.",
 	"userrights-expiry-in-past": "$1 taldearentzako iraungitze denbora iraganean dago.",
-	"userrights-cannot-shorten-expiry": "Ezin duzu \"$1\" taldeko bazkidetza iraungitzea aurrera eraman. Talde hau gehitzeko eta kentzeko baimena duten erabiltzaileek soilik iraungitze-denborak aldatu ditzakete.",
 	"userrights-conflict": "Gatazka gertatu da erabiltzaile eskubideak aldatzean. Mesedez, berrikusi eta baieztatu zure aldaketak.",
 	"group": "Taldea:",
 	"group-user": "Erabiltzaileak",

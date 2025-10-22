@@ -894,7 +894,6 @@
 	"userrights-expiry-options": "1 di:1 day,1 sman-a:1 week,1 mèis:1 month,3 mèis:3 months,6 mèis:6 months,1 ann:1 year",
 	"userrights-invalid-expiry": "La scadensa për la partìa \"$1\" a va nen bin.",
 	"userrights-expiry-in-past": "La scadensa për la partìa \"$1\" a l'é ant ël passà.",
-	"userrights-cannot-shorten-expiry": "A peul pa porté anans la scadensa dl'apartenensa a la partìa \"$1\". Mach j'utent con ij përmess ëd gionté o gavé da sta partìa a peulo porté anans la scadensa.",
 	"userrights-conflict": "Conflit ëd modìfica ëd drit utent! Për piasì, ch'a lesa torna e ch'a confirma soe modìfiche.",
 	"group": "Partìa:",
 	"group-user": "Utent",

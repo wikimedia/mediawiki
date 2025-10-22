@@ -945,7 +945,6 @@
 	"userrights-expiry-options": "1 deň:1 day,1 týždeň:1 week,1 mesiac:1 month,3 mesiace:3 months,6 mesiacov:6 months,1 rok:1 year",
 	"userrights-invalid-expiry": "Čas exspirácie pre skupinu „$1“ je neplatný.",
 	"userrights-expiry-in-past": "Čas exspirácie pre skupinu „$1“ je v minulosti.",
-	"userrights-cannot-shorten-expiry": "Čas do vypršania členstva v skupine „$1“ nemôžete skrátiť. Vykonať to môžu len používatelia oprávnení k jeho priradeniu alebo odstráneniu.",
 	"userrights-conflict": "Konflikt zmien práv používateľov! Prosím, skontrolujte ho a potvrďte svoje zmeny.",
 	"group": "Skupina:",
 	"group-user": "Používatelia",

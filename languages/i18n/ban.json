@@ -989,7 +989,6 @@
 	"userrights-expiry-options": "arahina:1 day,awuku:1 week,asasih:1 month,3 sasih:3 months,6 sasih:6 months,awarsa:1 year",
 	"userrights-invalid-expiry": "Galah kadaluwarsa antuk seka \"$1\" nénten patut.",
 	"userrights-expiry-in-past": "Galah kadaluwarsa antuk seka \"$1\" sampun lintang.",
-	"userrights-cannot-shorten-expiry": "Ida nénten prasida ngamajuang kala kadaluwarsa saking kaanggotaan ring seka \"$1\". Wantah sang anganggé antuk hak aksés prasida minambahin, nyabut seka puniki taler nngamajuang kala kadaluwarsa.",
 	"userrights-no-tempuser": "Panganggé sauntara nenten prasida kawewehang ring sekaa.",
 	"userrights-no-group": "Panganggé sauntara nénten madué sekaa.",
 	"userrights-cross-wiki-assignment-for-reserved-name": "Ragané nénten dados netepang sekaa ring wiki ten-lokal antuk wastan anganggé sané kacawis olih sistem akun sauntara, mangda nénten netepang seka ring anganggé sauntara.",

@@ -939,7 +939,6 @@
 	"userrights-expiry-options": "1 roce:1 day,1 hefte:1 week,1 aşme:1 month,3 aşmi:3 months,6 aşmi:6 months,1 serre:1 year",
 	"userrights-invalid-expiry": "Demê peyniya gruba \"$1\" nêraverdiya.",
 	"userrights-expiry-in-past": "Qediyayışê demê gruba \"$1\" veror dero",
-	"userrights-cannot-shorten-expiry": "Wextê ezayiye qediyayışi gruba  \"$1\"  nêşenê ravêr berê. Teyna karberê ke icazetê cı esto ke ena grube vıraştış u wedarnê ê şenê wextê qediyayışê cı biyarê.",
 	"userrights-conflict": "Heqan de karberi de dıbare vıcyayo! Kerem ke vurnayışane xo çımser ra ravyarne  u tesdiq keri.",
 	"group": "Grube:",
 	"group-user": "Karberi",

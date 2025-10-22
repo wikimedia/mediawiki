@@ -907,7 +907,6 @@
 	"userrights-expiry-options": "1 day:1 day,1 week:1 week,1 month:1 month,3 months:3 months,6 months:6 months,1 year:1 year",
 	"userrights-invalid-expiry": "Sõng-n-taarã sẽn be sullã \"$1\" pʋgẽ wã pa zems ye.",
 	"userrights-expiry-in-past": "Sõng-y tɩ y bãng tɩ \"$1\" sullã sẽn na n sa wã yaa wakat sẽn loogame.",
-	"userrights-cannot-shorten-expiry": "Fo pa tõe n wa n wa n kɩt tɩ sullã \"$1\" sẽn lebg n lebg n lebg a zoeta, sã n wa n sa. Sẽn na yɩl n paas la b yiis sull kãngã, yaa sẽn na n paam-b sor n dat n wilg tɩ b sẽn na n wa n wa n pa le tar sor n na n wa paam n yãk a soabã bal n tõe n wa n wilg tɩ wakat ning b sẽn na yɩl n yãk a soaba yaa wakat ning b na n yãk tɩ b na n wa yãk a soabã.",
 	"userrights-no-tempuser": "B pa tõe n naag wakat sẽn kaoosd nin-tɩrsã ne sull ye.",
 	"userrights-no-group": "Sẽn yaa b sẽn pa tar tar-b wakat bilfã pa tar sull ye.",
 	"userrights-conflict": "Sõngr ning sẽn be b sẽn segd n maan n paas nin-tɩrsã vɩɩm wɛɛngẽ wã! Bɩ y vaees n bãng y sẽn toeemã.",

@@ -408,7 +408,6 @@
 	"userrights-expiry-options": "1 päivä:1 day,1 viikko:1 week,1 kuukausi:1 month,3 kuukautta:3 months,6 kuukautta:6 months,1 vuosi:1 year",
 	"userrights-invalid-expiry": "Joukon ”$1” vanhentumisaika oon virheellinen.",
 	"userrights-expiry-in-past": "Joukon ”$1” vanhentumisaika oon mennyt.",
-	"userrights-cannot-shorten-expiry": "Et voi aikaistaa joukon ”$1” jäsenyyen erääntymisaikoja. Vain käyttäjät, joilla oon oikeus lisätä ja ottaa poies ryhmiä, voivat aikaistaa erääntymisaikoja.",
 	"group": "Joukko:",
 	"group-bot": "ropootit",
 	"group-all": "(kaikki)",

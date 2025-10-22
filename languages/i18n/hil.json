@@ -977,7 +977,6 @@
 	"userrights-expiry-options": "1 day:1 day,1 week:1 week,1 month:1 month,3 months:3 months,6 months:6 months,1 year:1 year",
 	"userrights-invalid-expiry": "Ang oras sang pag-expire para sa grupo nga \" $1 \" indi balido.",
 	"userrights-expiry-in-past": "Ang oras sang pag-expire para sa grupo nga \" $1 \" nagligad na.",
-	"userrights-cannot-shorten-expiry": "Indi mo mahimo nga ipaabot ang pag-expire sang pagkamiyembro sa grupo nga \" $1 \". Ang mga user lamang nga may pahanugot sa pagdugang kag pagkuha sini nga grupo ang makadala sang mga oras sang pag-expire.",
 	"userrights-no-tempuser": "Ang mga temporaryo nga user indi mahimo nga idugang sa mga grupo.",
 	"userrights-no-group": "Ang mga temporaryo nga tiggamit wala’y mga grupo.",
 	"userrights-cross-wiki-assignment-for-reserved-name": "Indi ka maka-assign sang mga grupo sa isa ka indi lokal nga wiki para sa isa ka username nga gintigana sang sistema sang temporaryo nga mga account, agud malikawan ang pag-assign sang mga grupo sa temporaryo nga mga user.",

@@ -868,7 +868,6 @@
 	"userrights-expiry-options": "1 sciurne:1 day,1 sumàne:1 week,1 mese:1 month,3 mise:3 mise,6 mesi:6 months,1 anne:1 year",
 	"userrights-invalid-expiry": "'A scadenze pu gruppe \"$1\" non g'è valide.",
 	"userrights-expiry-in-past": "'A scadenze pu gruppe \"$1\" ave ggià passate.",
-	"userrights-cannot-shorten-expiry": "Non ge puè andicipà 'a scadenze de l'appartenenze a 'u gruppe \"$1\". Sulamende le utinde cu 'u permesse de aggiungere e luà stu gruppe ponne andicipà 'a scadenze.",
 	"userrights-conflict": "Conflitte sus a le cangiaminde de le deritte utende! Pe piacere revide e conferme le cangiaminde tune.",
 	"group": "Gruppe:",
 	"group-user": "Utinde",

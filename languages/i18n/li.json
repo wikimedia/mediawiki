@@ -812,7 +812,6 @@
 	"userrights-expiry-options": "1 daag:1 day,1 waek:1 week,1 maondj:1 month,3 maondj:3 months,6 maondj:6 months,1 jaor:1 year",
 	"userrights-invalid-expiry": "De verlouptied veur gróp \"$1\" is óngeljig.",
 	"userrights-expiry-in-past": "De verlouptied veure groep \"$1\" is al gewaes.",
-	"userrights-cannot-shorten-expiry": "Doe kans de verlouptied van 't groepslidmaotsjap van groep \"$1\" neet verkorte. Allein gebroekers mit 't rech óm dees groep tou te veuge of eweg te sjaffe kónne de verlouptied verkorte.",
 	"userrights-conflict": "Kónflik mit gebroekersrechteverangering! Controleer en bevestig dien verangeringe.",
 	"group": "Gróp:",
 	"group-user": "Gebroekers",

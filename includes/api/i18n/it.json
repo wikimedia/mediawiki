@@ -217,7 +217,7 @@
 	"apihelp-mergehistory-param-fromid": "L'ID della pagina da cui cronologia sarà unita. Non può essere usato insieme a <var>$1from</var>.",
 	"apihelp-mergehistory-param-to": "Il titolo della pagina in cui cronologia sarà unita. Non può essere usato insieme a <var>$1toid</var>.",
 	"apihelp-mergehistory-param-toid": "L'ID della pagina in cui cronologia sarà unita. Non può essere usato insieme a <var>$1to</var>.",
-	"apihelp-mergehistory-param-timestamp": "Il timestamp fino a cui le versioni saranno spostate dalla cronologia della pagina di origine a quella della pagina di destinazione. Se omesso, l'intera cronologia della pagina di origine sarà unita nella pagina di destinazione.",
+	"apihelp-mergehistory-param-timestamp": "Il timestamp fino a cui le versioni saranno spostate dalla cronologia della pagina di origine a quella della pagina di destinazione. Se omesso, l'intera cronologia della pagina di origine sarà unita nella pagina di destinazione. Puoi specificare \"timestamp|revid\" per dividere due versioni con lo stesso timestamp.",
 	"apihelp-mergehistory-param-reason": "Motivo per l'unione della cronologia.",
 	"apihelp-mergehistory-example-merge": "Unisci l'intera cronologia di <kbd>Oldpage</kbd> in <kbd>Newpage</kbd>.",
 	"apihelp-mergehistory-example-merge-timestamp": "Unisci le versioni della pagina <kbd>Oldpage</kbd> fino a <kbd>2015-12-31T04:37:41Z</kbd> in <kbd>Newpage</kbd>.",

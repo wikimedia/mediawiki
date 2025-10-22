@@ -780,7 +780,6 @@
 	"userrights-expiry-options": "1 hari:1 day,1 minggu:1 week,1 bulan:1 month,3 bulan:3 months,6 bulan:6 months,1 tahun:1 year",
 	"userrights-invalid-expiry": "Waktu kadaluarsa gasan galambang \"$1\" kada sah.",
 	"userrights-expiry-in-past": "Waktu kadaluarsa gasan galambang \"$1\" sudah liwat.",
-	"userrights-cannot-shorten-expiry": "Pian kada kawa mamajuakan waktu kadaluarsa matan kaanggutaan dalam galambang \"$1\". Wastu pamakai lawan hak masuk nang kawa manambahakan wan mancabut galambang ngini kawa mamajuakan waktu kadaluarsa.",
 	"userrights-conflict": "Bacakut paubahan hak pamakai! Minta rila janaki imbal wan tagasi paubahan Pian.",
 	"group": "Galambang:",
 	"group-user": "Pamakai",

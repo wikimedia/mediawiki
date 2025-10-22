@@ -934,7 +934,6 @@
 	"userrights-expiry-options": "1 دن:1 day,1 ہفتہ:1 week,1 مہینہ:1 month,3 مہینے:3 months,6 مہینے:6 months,1 سال:1 year",
 	"userrights-invalid-expiry": "حلقہ «$1» کا وقت اختتام درست نہیں ہے۔",
 	"userrights-expiry-in-past": "حلقہ «$1» کا وقت اختتام بیت چکا ہے۔",
-	"userrights-cannot-shorten-expiry": "آپ «$1» کے حلقہ کے وقت اختتام میں اضافہ نہیں کر سکتے۔ صرف مجاز صارفین ہی اس تبدیلی کا اختیار رکھتے ہیں۔",
 	"userrights-conflict": "اختیارات کی تبدیلی میں تنازع! براہ کرم نظر ثانی کریں اور اپنی تبدیلیوں کی تصدیق کریں۔",
 	"group": "حلقہ:",
 	"group-user": "صارفین",

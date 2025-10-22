@@ -1734,7 +1734,7 @@
 	"change-blocklink": "badilisha zuia",
 	"contribslink": "michango",
 	"emaillink": "tuma barua pepe",
-	"autoblocker": "Imezuiwa kiotomatiki kwa sababu anwani yako ya IP imetumiwa hivi majuzi na \"[[Mtumiaji: $1 | $1 ]]\".\nSababu iliyotolewa ya kizuizi cha $1 ni: <em>$2</em>",
+	"autoblocker": "Imezuiwa kiotomatiki kwa sababu anwani yako ya IP imetumiwa hivi majuzi na \"[[Mtumiaji: $1 | $1 ]]\".\nSababu iliyotolewa ya kizuizi cha $1 ni: \"$2\"",
 	"blocklogpage": "Kumbukumbu ya uzuio",
 	"block-log-flags-nocreate": "uwezo wa kuunda akaunti imesitishwa",
 	"block-log-flags-noemail": "barua pepe imezuiliwa",

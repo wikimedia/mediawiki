@@ -814,7 +814,6 @@
 	"userrights-expiry-options": "1 day:1 day,1 week:1 week,1 month:1 month,3 months:3 months,6 months:6 months,1 year:1 year",
 	"userrights-invalid-expiry": "The expiry time for group \"$1\" is invalid.",
 	"userrights-expiry-in-past": "The expiry time for group \"$1\" is in the past.",
-	"userrights-cannot-shorten-expiry": "Ye canna bring forrit the expiry o membership in group \"$1\". Anely uisers wi permission tae add an remuive this group can bring forrit expiry times.",
 	"userrights-conflict": "Conflict o uiser richts chynges! Please luikower n confirm yer chynges.",
 	"group": "Groop:",
 	"group-user": "Uisers",

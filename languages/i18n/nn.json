@@ -885,7 +885,6 @@
 	"userrights-expiry-options": "1 dag:1 day,1 veke:1 week,1 månad:1 month,3 månader:3 months,6 månader:6 months,1 år:1 year",
 	"userrights-invalid-expiry": "Utløpstida for gruppa «$1» er ugyldig.",
 	"userrights-expiry-in-past": "Utløpstida for gruppa «$1» ligg i fortida.",
-	"userrights-cannot-shorten-expiry": "Du kan ikkje forkorta utløpstida for medlemskap i gruppa «$1». Berre brukarar som har løyve til å leggja til og fjerna denne gruppa kan forkorta utlaupstider.",
 	"userrights-no-tempuser": "Mellombels brukarar kan ikkje leggjast til i grupper.",
 	"userrights-no-group": "Mellombels brukarar har ikkje grupper.",
 	"userrights-conflict": "Konflikt i endringane av brukerrettar. Dobbelsjekk og stadfest endringane dine.",

@@ -990,7 +990,6 @@
 	"userrights-expiry-options": "1 jorn:1 day,1 semana:1 week,1 mês:1 month,3 mês:3 months,6 mês:6 months,1 an:1 year",
 	"userrights-invalid-expiry": "La dâta de fin por la tropa « $1 » est pas valida.",
 	"userrights-expiry-in-past": "La dâta de fin por la tropa « $1 » est passâye.",
-	"userrights-cannot-shorten-expiry": "Vos pouede pas racorciér lo temps d’èxpiracion de l’apartegnence a la tropa « $1 ». Solament los utilisators qu’ant la pèrmission d’apondre et d’enlevar cela tropa pôvont racorciér los temps d’èxpiracion.",
 	"userrights-no-tempuser": "Los utilisators temporèros pôvont pas étre apondus a des tropes.",
 	"userrights-no-group": "Los utilisators temporèros ant gins de tropa.",
 	"userrights-conflict": "Disputa de changement de drêts d’utilisator ! Se vos plét, controlâd et pués confirmâd voutros changements.",

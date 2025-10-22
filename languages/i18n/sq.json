@@ -2173,7 +2173,7 @@
 	"change-blocklink": "ndryshoje bllokun",
 	"contribslink": "kontributet",
 	"emaillink": "dërgo e-mail",
-	"autoblocker": "Bllokuar automatikisht sepse adresa jote IP është përdorur së fundmi nga \"[[User:$1|$1]]\".\nArsyeja e dhënë për bllokimin e $1 është: <em>$2</em>",
+	"autoblocker": "Bllokuar automatikisht sepse adresa jote IP është përdorur së fundmi nga \"[[User:$1|$1]]\".\nArsyeja e dhënë për bllokimin e $1 është: \"$2\"",
 	"blocklogpage": "Regjistri i bllokimeve",
 	"blocklog-showlog": "{{GENDER:$1|Ky përdorues|Kjo përdoruese}} ka qenë bllokuar më parë.\nMë poshtë jepet regjistri i bllokimeve, për referencë:",
 	"blocklog-showsuppresslog": "{{GENDER:$1|Ky përdorues|Kjo përdoruese}} është bllokuar dhe fshehur më parë.\nRegjistri i shtypjes jepet më poshtë për referim:",

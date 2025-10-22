@@ -944,7 +944,6 @@
 	"userrights-expiry-options": "1 dan:1 day,1 tjedan:1 week,1 mjesec:1 month,3 mjeseca:3 months,6 mjeseci:6 months,1 godina:1 year",
 	"userrights-invalid-expiry": "Rok isteka prava iz skupine »$1« nije valjano upisano.",
 	"userrights-expiry-in-past": "Rok isteka prava iz skupine »$1« zadan je u vremenu koje je proteklo.",
-	"userrights-cannot-shorten-expiry": "Ne možete ubrzati vrijeme isteka pripadništva skupini »$1«. Prethodno navedeno jedino mogu ubrzati suradnici koji mogu dodjeljivati i uklanjati ovu suradničku skupinu.",
 	"userrights-no-tempuser": "Privremeni suradnici ne mogu se dodavati u grupe.",
 	"userrights-no-group": "Privremeni suradnici nemaju grupe.",
 	"userrights-conflict": "Sukob promjene suradničkih prava! Molimo provjerite i potvrdite svoje promjene.",

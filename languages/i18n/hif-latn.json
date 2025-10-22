@@ -784,7 +784,6 @@
 	"userrights-expiry-options": "1 din:1 day,1 haptaa:1 week,1 mahina:1 month,3 mahina:3 months,6 mahina:6 months,1 saal:1 year",
 	"userrights-invalid-expiry": "Group ke expiry time \"$1\" invalid hai.",
 	"userrights-expiry-in-past": "Group ke expiry time \"$1\" biit gais hai.",
-	"userrights-cannot-shorten-expiry": "Aap group \"$1\" ke membership ke expiry ke aage nai kare saktaa hai.\nKhaali uu sadasya, jiske lage jorre aur hatae ke adhikaar hai, ii group ke expiry date ke aage kare sake hai.",
 	"userrights-conflict": "User right me conflict hae! Meharbaani kar ke aapan badlao ke fir se review aur confirm karo.",
 	"group": "Jhund:",
 	"group-user": "Sadasya",

@@ -766,7 +766,6 @@
 	"userrights-expiry-options": "1 a demiad:1 day,1 lipay:1 week,1 a bulad:1 month,3 a bulad:3 months,6 a bulad:6 months,1 a mihca:1 year",
 	"userrights-invalid-expiry": "luyaluy \"$1\" a kakatekuhan la’cus tu.",
 	"userrights-expiry-in-past": "luyaluy \"$1\" a kakatekuhan mangliw tu.",
-	"userrights-cannot-shorten-expiry": "la’cus kisu maluayaw i luyaluy \"$1\" sakawaway i kakatekuhan. izaway dada’ micunusen atu misipu tina a luyaluy tungusay misaungayay kapah tu a maliayaw i kakatekuhan.",
 	"userrights-conflict": "misaungayay tungus misumad sasula’cus! piciwsace atu malucekay sumad nu misu",
 	"group": "luyaluy:",
 	"group-user": "misaungayay",

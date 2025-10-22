@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Bangrapip",
+			"Jawadywn",
 			"Matma Rex",
 			"Naval Scene",
 			"NoiX180",
@@ -79,7 +80,7 @@
 	"unprotect": "Robah perlindungan",
 	"newpage": "Halaman baru",
 	"newpage-desc": "Bikin halaman baru bakal topik lu punya minta'.",
-	"view-missing-pages": "Deleng halaman nyang kurang",
+	"view-missing-pages": "Mulain halaman anyar",
 	"talkpagelinktext": "ngomong",
 	"specialpage": "Halaman istimèwa",
 	"personaltools": "Peranti perorangan",
@@ -338,7 +339,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} dibuat ama orang-orang kaya' lu.",
 	"createacct-benefit-text1": "$2 {{PLURAL:$1|permakan}}",
 	"createacct-benefit-text2": "$2 {{PLURAL:$1|halaman}}",
-	"createacct-benefit-text3": "$2 {{PLURAL:$1|penyumbang}} paling baru",
+	"createacct-benefit-text3": "$2 {{PLURAL:$1|tukang nyumbang}} paling baru",
 	"badretype": "Kata sandi lu punya masupin kaga' cocok.",
 	"usernameinprogress": "Pengejaan rèkening bakal ni nama pemaké lagi jalan. Tunggu bentaran.",
 	"userexists": "Nama pemaké nyang dimasupin udah dipaké.\nPadol dah, pilih nama nyang laèn.",
@@ -925,7 +926,6 @@
 	"userrights-expiry-options": "1 ari:1 day,1 minggu:1 week,1 bulan:1 month,3 bulan:3 months,6 bulan:6 months,1 tahon:1 year",
 	"userrights-invalid-expiry": "Waktu bonto bakal rombongan \"$1\" kaga' aci.",
 	"userrights-expiry-in-past": "Waktu bonto bakal rombongan \"$1\" udah liwat.",
-	"userrights-cannot-shorten-expiry": "Lu kaga' bisa majuin waktu bonto keanggotaan di rombongan \"$1\". Cuman pemaké dengen ijin bakal nambahin èn ngebuang ni rombongan nyang bisa majuin waktu bonto.",
 	"userrights-conflict": "Bentrok perobahan hak pemaké! Dimohon perèksa èn tandesin lu punya perobahan.",
 	"group": "Rombongan:",
 	"group-user": "Pemaké",

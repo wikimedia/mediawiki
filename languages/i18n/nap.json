@@ -846,7 +846,6 @@
 	"userrights-expiry-options": "1 juorne:1 day,1 semmana:1 week,1 mese:1 month,3 mise:3 mise,6 mesi:6 months,1 anno:1 year",
 	"userrights-invalid-expiry": "'O tiempo pe' quanno ammatura 'o gruppo \"$1\" nun è buono.",
 	"userrights-expiry-in-past": "'O tiempo pe' quanno ammatura 'o gruppo \"$1\" fosse int' 'o passato.",
-	"userrights-cannot-shorten-expiry": "Nun putite turnà arreto 'o tiempo ammatura int' 'o gruppo \"$1\". Surtanto ll'utente cu nu permesso pe' puté azzeccà o luvà stu gruppo ponno ffà annanze 'e tiempe ammaturamiento.",
 	"userrights-conflict": "Conflitto 'e cagnamiento 'e deritte utente! Cuntrullate e cunfermate 'e cagnamiente vuoste.",
 	"group": "Gruppo:",
 	"group-user": "Utente",

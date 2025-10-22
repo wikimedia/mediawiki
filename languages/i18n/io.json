@@ -990,7 +990,6 @@
 	"userrights-expiry-options": "1 dio:1 day,1 semano:1 week,1 monato:1 month,3 monati:3 months,6 monati:6 months,1 yaro:1 year",
 	"userrights-invalid-expiry": "L'expiro-tempo por la grupo \"$1\" esas nevalida.",
 	"userrights-expiry-in-past": "L'expiro-tempo por la grupo \"$1\" esas en pasinta tempo.",
-	"userrights-cannot-shorten-expiry": "Vu ne povas aktualigar l'expiro di membreso en la grupo \"$1\". Nur uzeri kun permiso por adjuntar e removar ca grupo povas modifikar expiro-dati.",
 	"userrights-no-tempuser": "Tempala uzeri ne povas adjuntesar a grupi.",
 	"userrights-no-group": "Tempala uzeri ne havas grupi.",
 	"userrights-cross-wiki-assignment-for-reserved-name": "Vu ne povas atribuar grupi de altra wiki (ne-lokala) ad uzeronomo kreita por la sistemo di tempala konti. To preventas l'inkluzo di tempala uzeri en grupi.",

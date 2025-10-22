@@ -390,5 +390,20 @@
 	"exif-croppedarealeftpixels": "Panorama beskåret venstre",
 	"exif-croppedareatoppixels": "Panorama beskåret topp",
 	"exif-initialcameradolly": "Opprinnelig kameraposisjon",
-	"exif-stitchingsoftware": "Fletteprogramvare"
+	"exif-stitchingsoftware": "Fletteprogramvare",
+	"exif-digitalsourcetype": "Kilde for digitale data",
+	"exif-digitalsourcetype-digitalcapture": "Digitalkamera eller opptaksenhet",
+	"exif-digitalsourcetype-computationalcapture": "Digitalkamera eller opptaksenhet (flere bilder kombinert)",
+	"exif-digitalsourcetype-negativefilm": "Digitalisert fra transparent negativ",
+	"exif-digitalsourcetype-positivefilm": "Digitalisert fra transparent positiv",
+	"exif-digitalsourcetype-print": "Digitalisert fra ikke-transparent medium",
+	"exif-digitalsourcetype-minorhumanedits": "Originalt medium med mindre redigeringer av mennesker",
+	"exif-digitalsourcetype-humanedits": "Menneskeredigerte medier",
+	"exif-digitalsourcetype-compositewithtrainedalgorithmicmedia": "Redigert med generativ KI",
+	"exif-digitalsourcetype-algorithmicallyenhanced": "Algoritmisk endrede medier",
+	"exif-digitalsourcetype-softwareimage": "Skapt med programvare",
+	"exif-digitalsourcetype-digitalart": "Skapt av et menneske ved hjelp av digitale verktøy",
+	"exif-digitalsourcetype-digitalcreation": "Medier skapt av mennesker med verktøy (ikke KI)",
+	"exif-digitalsourcetype-datadrivenmedia": "Digital medierepresentasjon av data via menneskelig programmering eller kreativitet",
+	"exif-digitalsourcetype-trainedalgorithmicmedia": "Skapt med generativ KI"
 }

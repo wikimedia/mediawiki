@@ -983,7 +983,6 @@
 	"userrights-expiry-options": "del 1:1 day,vig 1:1 week,mul 1:1 month,muls 3:3 months,muls 6:6 months,yel 1:1 year",
 	"userrights-invalid-expiry": "Tim letafinikama tefü grup \"$1\" neveräton.",
 	"userrights-expiry-in-past": "Tim letafinikama tefü grup \"$1\" binon pasetik.",
-	"userrights-cannot-shorten-expiry": "No dalol vedükön letafinikami limanama tefü grup: \"$1\" gölikumi. Te gebans ko däl ad läükön e moükön grupi at dalons vedükön letafinikami gölikumi.",
 	"userrights-no-tempuser": "Gebans nelaidüpik no dalons paläükön lü grup.",
 	"userrights-no-group": "Gebans nelaidüpik no labons grupis.",
 	"userrights-cross-wiki-assignment-for-reserved-name": "No dalol givülön grupi in vükatoped no topädik ma gebananem pekipedöl fa sit lönaspadas nelaidüpik, ad büoneletön givüli grupas gebanes nelaidüpik.",

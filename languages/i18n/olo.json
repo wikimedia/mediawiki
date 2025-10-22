@@ -927,7 +927,6 @@
 	"userrights-expiry-options": "1 päivy:1 day,1 nedäli:1 week,1 kuu:1 month,3 kuudu:3 months,6 kuudu:6 months,1 vuozi:1 year",
 	"userrights-invalid-expiry": "Joukon $1 ruadoaijan lopundu on viäry.",
 	"userrights-expiry-in-past": "Joukon $1 ruadoaijan lopundu on mennyh.",
-	"userrights-cannot-shorten-expiry": "Et voi siirdiä aijembazele aijale joukon ”$1” ozanotandan aigoi. Vai käyttäjät, kudamil on oigevus ližätä da ottua iäre joukkoloi, voijah siirdiä sidä aijembazele aijale.",
 	"userrights-no-tempuser": "Väliaigazii käyttäjii ei sua ližätä joukkoloih.",
 	"userrights-no-group": "Väliaigazil käyttäjil ei ole joukkoloi.",
 	"userrights-conflict": "Konfliktu käyttäjänoigevuksien muutandas! Tarkasta luajittuloi muutoksii da ota net käyttöh uvvessah.",

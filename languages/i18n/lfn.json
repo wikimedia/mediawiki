@@ -841,7 +841,6 @@
 	"userrights-expiry-options": "1 dia:1 day,1 semana:1 week,1 mense:1 month,3 menses:3 months,6 menses:6 months,1 anio:1 year",
 	"userrights-invalid-expiry": "La tempo de desvalidi per grupo \"$1\" es nonvalida.",
 	"userrights-expiry-in-past": "La tempo de desvalidi per grupo \"$1\" ia pasa ja.",
-	"userrights-cannot-shorten-expiry": "Tu no pote avansa la desvalidi de membria en grupo \"$1\". Sola usores permeteda a ajunta e sutrae esta grupo pote avansa tempos de desvalidi.",
 	"userrights-conflict": "Desacorda de cambias de diretos de usor! Per favore, revisa e confirma tua cambias.",
 	"group": "Grupo:",
 	"group-user": "Usores",

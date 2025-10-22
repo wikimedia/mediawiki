@@ -627,7 +627,6 @@
 	"userrights-expiry-options": "१ दिन:1 day,१ सप्ताह:1 week,१ महीना:1 month,३ महीना:3 months,६ महीने:6 months,१ बरिस:1 year",
 	"userrights-invalid-expiry": "\"$1\" समूहला समाप्ति समय अमान्य हे ।",
 	"userrights-expiry-in-past": "\"$1\" समूहला समाप्ति समय पहिलहीँ बीत चुकल हे ।",
-	"userrights-cannot-shorten-expiry": "अपने \"$1\" समूहके समाप्तिके आगे नै बढ़ा सकही । खाली ई समूहमे जोड़े आउ निकालेके अनुमतिवाला सदस्से समाप्ति समयके आगे बढ़ा सकहथन ।",
 	"group": "समूह:",
 	"group-user": "सदस्य",
 	"group-temp": "अस्थायी सदस्य",

@@ -944,7 +944,6 @@
 	"userrights-expiry-options": "1 dì:1 day,1 setimana:1 week,1 mes:1 month,3 mes:3 months,6 mes:6 months,1 an:1 year",
 	"userrights-invalid-expiry": "La scadenza per el grup \"$1\" l va minga ben",
 	"userrights-expiry-in-past": "La scadenza per el grup \"$1\" l'è sgiamò passada.",
-	"userrights-cannot-shorten-expiry": "Te podet no sposta indree la fin de l'aderenza al grup \"$1\". Doma i utent cont el permess de sgiontà o toeu via quell grup chì poden tirann indree la scadenza.",
 	"userrights-conflict": "Conflit de modifica di dirit de l'utent! Per piesè varda anmò e conferma i to cambiament.",
 	"group": "Grup:",
 	"group-user": "Utent",

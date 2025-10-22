@@ -877,7 +877,6 @@
 	"userrights-expiry-options": "1 día:1 day,1 selmana:1 week,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 añu:1 year",
 	"userrights-invalid-expiry": "La hora de caducidá del grupu «$1» nun ye válida.",
 	"userrights-expiry-in-past": "La hora de caducidá del grupu «$1» ta nel pasáu",
-	"userrights-cannot-shorten-expiry": "Nun puedes adelantar la caducidá de la pertenencia al grupu «$1». Sólo los usuarios con permisu p'amestar y desaniciar esti grupu pueden adelantar les dates de caducidá.",
 	"userrights-conflict": "¡Conflictu de cambiu de permisos d'usuariu! Por favor, revise y confirme los cambios.",
 	"group": "Grupu:",
 	"group-user": "Usuarios",
