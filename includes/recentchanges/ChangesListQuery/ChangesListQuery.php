@@ -21,6 +21,7 @@ use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\Watchlist\WatchedItemStoreInterface;
 use ObjectCacheFactory;
+use Psr\Log\LoggerInterface;
 use stdClass;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\IReadableDatabase;
@@ -140,6 +141,7 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 		private ChangeTagsStore $changeTagsStore,
 		private ObjectCacheFactory $objectCacheFactory,
 		private StatsFactory $statsFactory,
+		private LoggerInterface $logger,
 		private IReadableDatabase $db,
 		private TableStatsProvider $rcStats,
 	) {
@@ -1053,18 +1055,26 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 		$now = ConvertibleTimestamp::time();
 		$minTime = (int)ConvertibleTimestamp::convert( TS_UNIX,
 			$this->minTimestamp ?? $now - $this->rcMaxAge );
+		$limit = $this->limit ?? 10_000;
 		$rateStore = $this->newRateEstimator( $queryHash );
 		$countsByBucket = [];
 		$bucketPeriod = $rateStore->getBucketPeriod();
-		$partitioner = new TimestampRangePartitioner(
-			$minTime,
-			$now,
-			$this->limit ?? 10_000,
-			$rateStore->fetchRate( $minTime, $now ),
-			$this->density,
-			$this->rcStats->getIdDelta(),
-			$this->rcMaxAge
+		$rate = $rateStore->fetchRate( $minTime, $now );
+		$rcSize = $this->rcStats->getIdDelta();
+
+		$this->logger->debug( 'Beginning partition request with ' .
+			'rate={rate}, density={density}, period={period}',
+			[
+				'period' => $now - $minTime,
+				'limit' => $limit,
+				'rate' => $rate,
+				'density' => $this->density,
+				'rcSize' => $rcSize,
+			]
 		);
+
+		$partitioner = new TimestampRangePartitioner( $minTime, $now, $limit,
+			$rate, $this->density, $rcSize, $this->rcMaxAge );
 		do {
 			[ $min, $max, $limit ] = $partitioner->getNextPartition();
 
@@ -1097,6 +1107,11 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 		);
 
 		$m = $partitioner->getMetrics();
+		$this->logger->debug( 'Finished partition request: ' .
+			'got {actualRows} rows in {queryCount} queries, period={actualPeriod}',
+			$m
+		);
+
 		$this->statsFactory->getCounter( 'ChangesListQuery_partition_queries_total' )
 			->incrementBy( $m['queryCount'] );
 		$this->statsFactory->getCounter( 'ChangesListQuery_partition_requests_total' )

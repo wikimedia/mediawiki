@@ -546,6 +546,7 @@ return [
 			$services->getChangeTagsStore(),
 			$services->getObjectCacheFactory(),
 			$services->getStatsFactory(),
+			LoggerFactory::getInstance( 'ChangesListQuery' ),
 			$services->getConnectionProvider(),
 		);
 	},

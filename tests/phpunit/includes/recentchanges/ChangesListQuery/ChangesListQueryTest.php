@@ -6,6 +6,7 @@ use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\WikitextContent;
 use MediaWiki\DAO\WikiAwareEntity;
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Logging\LogPage;
 use MediaWiki\Logging\ManualLogEntry;
 use MediaWiki\MainConfigNames;
@@ -228,6 +229,7 @@ class ChangesListQueryTest extends \MediaWikiIntegrationTestCase {
 			$services->getChangeTagsStore(),
 			$services->getObjectCacheFactory(),
 			$services->getStatsFactory(),
+			LoggerFactory::getInstance( 'ChangesListQuery' ),
 			$services->getConnectionProvider(),
 		);
 		$query = $factory->newQuery()
