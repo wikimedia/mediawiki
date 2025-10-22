@@ -192,8 +192,8 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 			'actor' => new BasicJoin( 'actor', 'recentchanges_actor', 'actor_id=rc_actor' ),
 			'change_tag' => new BasicJoin(
 				'change_tag',
-				ChangeTagsStore::DISPLAY_TABLE_ALIAS,
-				'ct_rc_id=rc_id'
+				'changetagdisplay',
+				'changetagdisplay.ct_rc_id=rc_id'
 			),
 			'comment' => new BasicJoin( 'comment', 'recentchanges_comment', 'comment_id=rc_comment_id' ),
 			'page' => new BasicJoin( 'page', '', 'page_id=rc_cur_id' ),

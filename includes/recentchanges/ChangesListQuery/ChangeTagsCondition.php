@@ -92,7 +92,7 @@ class ChangeTagsCondition extends ChangesListConditionBase {
 				$join->reorderable();
 			}
 
-			$query->where( $dbr->expr( 'ct_tag_id', '=', $ids ) );
+			$query->where( $dbr->expr( 'changetagdisplay.ct_tag_id', '=', $ids ) );
 			if ( count( $ids ) > 1 ) {
 				$query->distinct();
 			}
@@ -103,8 +103,8 @@ class ChangeTagsCondition extends ChangesListConditionBase {
 				return;
 			}
 			$query->joinForConds( 'change_tag' )->left()
-				->on( $dbr->expr( 'ct_tag_id', '=', $ids ) );
-			$query->where( $dbr->expr( 'ct_tag_id', '=', null ) );
+				->on( $dbr->expr( 'changetagdisplay.ct_tag_id', '=', $ids ) );
+			$query->where( $dbr->expr( 'changetagdisplay.ct_tag_id', '=', null ) );
 		}
 	}
 
@@ -141,8 +141,8 @@ class ChangeTagsCondition extends ChangesListConditionBase {
 		$tagCount = $dbr->newSelectQueryBuilder()
 			->table( 'change_tag' )
 			->where( [
-				$dbr->expr( 'ct_rc_id', '>=', $this->rcStats->getMinId() ),
-				'ct_tag_id' => $tagIds
+				$dbr->expr( 'changetagdisplay.ct_rc_id', '>=', $this->rcStats->getMinId() ),
+				'changetagdisplay.ct_tag_id' => $tagIds
 			] )
 			->caller( __METHOD__ )
 			->estimateRowCount();
