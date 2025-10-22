@@ -159,6 +159,10 @@ class IcuCollation extends Collation {
 		'ig' => [ "Ch", "Gb", "Gh", "Gw", "Ị", "Kp", "Kw", "Ṅ", "Nw", "Ny", "Ọ", "Sh", "Ụ" ],
 		'is' => [ "Á", "Ð", "É", "Í", "Ó", "Ú", "Ý", "Þ", "Æ", "Ö", "Å" ],
 		'it' => [],
+		'jab' => [
+			"A̱", "Dz", "E̱", "Gb", "Gh", "Hw", "Hyw", "I̱", "Kh", "Kp", "Ng", "Ny",
+			"Sh", "Th", "Thn", "Ts", "Yw", "Zh"
+		],
 		'ka' => [],
 		'kk' => [ "Ё", "Ү", "І" ],
 		'kl' => [ "Æ", "Ø", "Å" ],
