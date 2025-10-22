@@ -198,7 +198,7 @@
 	"search": "Ricerca",
 	"search-ignored-headings": " #<!-- lascia questa riga esattamente come è --> <pre>\n# Elenco delle intestazioni che saranno ignorate dalla ricerca.\n# Le modifiche a questa pagina saranno effettive non appena la pagina sarà indicizzata.\n# Puoi forzare la re-indicizzazione di una pagina effettuando una modifica nulla.\n# La sintassi è la seguente:\n#   * Tutto dal carattere \"#\" alla fine della riga è un commento\n#   * Tutte le righe non vuote sono le intestazioni esatte da ignorare, maiuscolo/minuscolo e tutto\nNote\nVoci correlate\nCollegamenti esterni\n #</pre> <!-- lascia questa riga esattamente come è -->",
 	"searchbutton": "Ricerca",
-	"searchsuggest-containing-html": "Ricerca le pagine che contenenti <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>",
+	"searchsuggest-containing-html": "Ricerca le pagine che contenengono <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>",
 	"search-loader": "Caricamento dei suggerimenti di ricerca",
 	"go": "Vai",
 	"searcharticle": "Vai",

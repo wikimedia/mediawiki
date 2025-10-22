@@ -3,7 +3,8 @@
 		"authors": [
 			"Fohanno",
 			"Fulup",
-			"Huñvreüs"
+			"Huñvreüs",
+			"Y-M D"
 		]
 	},
 	"exif-imagewidth": "Ledander",
@@ -344,5 +345,9 @@
 	"exif-urgency-normal": "Normal ($1)",
 	"exif-urgency-low": "Izel ($1)",
 	"exif-urgency-high": "Uhel ($1)",
-	"exif-urgency-other": "Priorelezh termenet gant an aozer ($1)"
+	"exif-urgency-other": "Priorelezh termenet gant an aozer ($1)",
+	"exif-usepanoramaviewer-true": "Ya",
+	"exif-usepanoramaviewer-false": "Ket",
+	"exif-exposurelockused-true": "Ya",
+	"exif-exposurelockused-false": "Ket"
 }

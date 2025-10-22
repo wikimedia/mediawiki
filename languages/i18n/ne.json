@@ -42,7 +42,8 @@
 			"राम प्रसाद जोशी",
 			"सरोज कुमार ढकाल",
 			"हिमाल सुबेदी",
-			"아라"
+			"아라",
+			"SaldırganSincap"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|श्रेणी|श्रेणीहरू}}",
@@ -2038,7 +2039,7 @@
 	"undelete-comment-dropdown": "* सामान्य पुनर्स्थापित गर्ने कारणहरू\n** लेखकको अनुरोध",
 	"undelete-edit-commentlist": "पुनर्थापना गर्ने कारणहरू सम्पादन गर्ने",
 	"undelete-edit-commentlist-unsuppress": "नदखाउने कारणहरू सम्पादन गर्ने",
-	"undeletedpage": "</strong>$1लाई पूर्वावस्थामा ल्याइयो</strong>\n\nभर्खरै मेटाइएको लेख तथा पुनर्स्थापनाहरू हेर्न [[Special:Log/delete|मेटाइएको लग]]मा जानुहोस्।",
+	"undeletedpage": "<strong>$1लाई पूर्वावस्थामा ल्याइयो</strong>\n\nभर्खरै मेटाइएको लेख तथा पुनर्स्थापनाहरू हेर्न [[Special:Log/delete|मेटाइएको लग]]मा जानुहोस्।",
 	"undelete-header": "भर्खर मेटिएका पृष्ठहरू हेर्न [[Special:Log/delete|मेटाइएका लग]]मा जानुहोस्।",
 	"undelete-search-title": "मेटिएका पृष्ठहरू खोज्नुहोस्",
 	"undelete-search-box": "मेटिएका पृष्ठहरू खोज्नुहोस्",
@@ -2689,7 +2690,8 @@
 	"confirm-purge-bottom": "पृष्ठ ताजा गर्नाले सङ्कलन खाली गर्छ र सबैभन्दा हालको संशोधन देखा पर्न बाध्य बनाउँछ।",
 	"confirm-watch-button": "ठीक",
 	"confirm-watch-top": "के यस पृष्ठलाई निगरानी सुचीमा थप्ने हो ?",
-	"watchlist-expiry-options": "स्थायी:अनन्त,१ हप्ता:१ हप्ता,१ महिना:१ महिना,३ महिना:३ महिना,६ महिना,६ महिना,१ वर्ष:१ वर्ष",
+	"confirm-watch-label": "अवलोकनसूची समयावधि:",
+	"watchlist-expiry-options": "स्थायी: अनन्त,१ हप्ता:१ हप्ता,१ महिना:१ महिना,३ महिना:३ महिना,६ महिना:६ महिना,१ वर्ष:१ वर्ष",
 	"confirm-watch-button-expiry": "अवलोकन",
 	"confirm-unwatch-button": "ठीक",
 	"confirm-unwatch-top": "के यो पृष्ठलाई निगरानी सुचीबाट हटाउने हो ?",
@@ -3102,6 +3104,7 @@
 	"logentry-tag-update-logentry": "$1 {{GENDER:$2|अपडेट गरियो}} ट्याग संशोधन $5 मा पृष्ठ $3 सँग ({{PLURAL:$7|जोडियो}} $6; {{PLURAL:$9|हटाइयो}} $8)",
 	"rightsnone": "(कुनैपनि होइन)",
 	"rightslogentry-temporary-group": "$1 (अस्थायी, $2 सम्म)",
+	"rightslogentry-expiry-set": "$1 ($2 सम्म, स्थायी: थियो)",
 	"feedback-cancel": "रद्द गर्नुहोस्",
 	"feedback-close": "गरियो",
 	"feedback-external-bug-report-button": "प्राविधिक कार्य पेश गर्नुहोस्",

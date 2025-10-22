@@ -3,7 +3,8 @@
 		"authors": [
 			"IJzeren Jan",
 			"Matma Rex",
-			"Polda18"
+			"Polda18",
+			"SaldırganSincap"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Kategorija|Kategorije|Kategorij}}",
@@ -1405,7 +1406,7 @@
 	"rcfilters-target-page-placeholder": "Vvedite nazvu stranice (ili kategorije)",
 	"rcfilters-allcontents-label": "Vse sodržanje",
 	"rcfilters-alldiscussions-label": "Vse diskusije",
-	"rcnotefrom": "Niže {{PLURAL:$5|pokazana jest izměna|pokazane sut izměny}} od dnja <strong>$3 č. $4 (ne veče neželi <strong>$1</strong>).",
+	"rcnotefrom": "Niže {{PLURAL:$5|pokazana jest izměna|pokazane sut izměny}} od dnja <strong>$3 č. $4</strong> (ne veče neželi <strong>$1</strong>).",
 	"rclistfromreset": "Resetovati izbor daty",
 	"rclistfrom": "Pokazati nove pravky od dnja $2 č. $3",
 	"rcshowhideminor": "$1 male pravky",
@@ -1509,7 +1510,7 @@
 	"filepageexists": "Opisna stranica za tutoj fajl uže jest stvorjena tu: <strong>[[:$1]]</strong>. Jednakože nijedin fajl s tutoju nazvoju ne jestvuje.\nOpis, ktore vpišete, ne pojavi se na opisnoj stranici.\nAko hočete, že vaš opis pojavi se tamo, trěba ju izpraviti ručno.\n[[$1|thumb]]",
 	"fileexists-extension": "Uže jestvuje fajl s podobnoju nazvoju: [[$2|thumb]]\n* Nazva dodavanogo fajla: <strong>[[:$1]]</strong>\n* Nazva jestvujučego fajla: <strong>[[:$2]]</strong>\nNe htěli byste raděje upotrěbiti bolje odličajuču se nazvu?",
 	"fileexists-thumbnail-yes": "Izdavaje se, že fajl jest obrazok imaje smenšene razměry <em>(miniatura)</em>.\n[[$1|thumb]]\nProsimo, prověrite fajl <strong>[[:$1]]</strong>.\nAko toj fajl jest tojže sam obrazok, nemaje potrěby, že dodate ješče smenšenu kopiju.",
-	"file-thumbnail-no": "Nazva fajla načinaje se s <strong>$1</strong>.\nIzdavaje se, že to jest obrazok s smenšenymi razměrami (miniatura)</em>.\nAko imajete toj obrazok v polnoj razdělnosti, prosimo, že dodate tamtu versiju ili izměnite nazvu fajla.",
+	"file-thumbnail-no": "Nazva fajla načinaje se s <strong>$1</strong>.\nIzdavaje se, že to jest obrazok s smenšenymi razměrami <em>(miniatura)</em>.\nAko imajete toj obrazok v polnoj razdělnosti, prosimo, že dodate tamtu versiju ili izměnite nazvu fajla.",
 	"fileexists-forbidden": "Uže jestvuje fajl s tutoju nazvoju, ktory ne može byti prěpisany.\nAko vse ravno hočete dodati svoj fajl, prosimo, vratite se i izberite novu nazvu.\n[[File:$1|thumb|center|$1]]",
 	"fileexists-shared-forbidden": "Uže jestvuje fajl s tutoju nazvoju v občem hranilišču fajlov.\nAko vse ravno hočete dodati svoj fajl, prosimo, vratite se i izberite novu nazvu.\n[[File:$1|thumb|center|$1]]",
 	"fileexists-no-change": "Dodavany vami fajl jest točna kopija nyněšnjej versije <strong>[[:$1]]</strong>.",
@@ -2307,7 +2308,7 @@
 	"skin-action-viewdeleted": "Pokazati $1?",
 	"undeletepagetext": "{{PLURAL:$1|Slědujuča stranica byla odstranjena, ale nahodi se ješče v arhivu i može byti vračena.|Slědujuče $1 stranice byli odstranjene, ale nahodet se ješče v arhivu i mogut byti vračene.|Slědujučih $1 stranic bylo odstranjenyh, ale nahodet se ješče v arhivu i mogut byti vračene.}}\nArhiv periodično može byti izčiščeny.",
 	"undelete-fieldset-title": "Vratiti versije",
-	"undeleteextrahelp": "Ako hočete vratiti cělu historiju stranice, ostavite vse polja neoznačene i natisknite <em>{{int:undeletebtn}}</em></strong>.\nAko hočete vratiti samo specifične versije, označite te versije, ktore hočete vratiti, i natisknite <em>{{int:undeletebtn}}</em></strong>.",
+	"undeleteextrahelp": "Ako hočete vratiti cělu historiju stranice, ostavite vse polja neoznačene i natisknite <strong><em>{{int:undeletebtn}}</em></strong>.\nAko hočete vratiti samo specifične versije, označite te versije, ktore hočete vratiti, i natisknite <strong><em>{{int:undeletebtn}}</em></strong>.",
 	"undeleterevisions": "$1 {{PLURAL:$1|versija jest odstranjena|versije sut odstranjene|versij jest odstranjenyh}}",
 	"undeletehistory": "Ako vratiti stranicu, vse prědhodne versije takože budut vračene.\nAko od časa odstranjenja byla iztvorjena nova stranica s toju že samoju nazvoju, vračene versije budut dodane v historiju tamtoj stranice.",
 	"undeleterevdel": "Vračenje ne bude izpolnjeno, ako to može vesti k čestičnomu odstranjenju nyněšnjej versije stranice ili fajla.\nV takyh slučajah trěba, že odznačite ili odkryjete poslědnju odstranjenu versiju.",
@@ -3176,7 +3177,7 @@
 	"version-poweredby-translators": "prěvoditelji na translatewiki.net",
 	"version-poweredby-various": "Razni avtori",
 	"version-credits-summary": "Htěli byhmo poblagodariti slědujučim osobam za jihny vklad v razvitje [[Special:Version|MediaWiki]].",
-	"version-license-info": "MediaWiki jest svobodny softver: možete go razprostraniti ili izměniti pod uslovjami licencije GNU General Public License, publikovanoj fundacijeju Free Software Foundation, ili v versiji 2 tutoj licencije, ili v dovoljnoj pozdnějšej versiji.\n\nMediaWiki razprostranjaje se v naději, že bude upotrěbimy, ale <em>BEZ NIKAKOJ GARANCIJE</em>, daže bez standardnoj garancije <strong>TRGOVOJ PRIGODNOSTI</strong> ili <strong>PRIGODNOSTI ZA OSOBLIVY CĚLJ</strong>. Gledite licenciju GNU General Public License za veče podrobnostij.\n\nVy trěbovali jeste dostati [{{SERVER}}{{SCRIPTPATH}}/COPYING kopiju licencije GNU General Public License] zajedno s tutoju programoju. Ako ne, pišite na adres: Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA, ili [//www.gnu.org/licenses/old-licenses/gpl-2.0.html pročitajte ju tu].",
+	"version-license-info": "MediaWiki jest svobodny softver: možete go razprostraniti ili izměniti pod uslovjami licencije GNU General Public License, publikovanoj fundacijeju Free Software Foundation, ili v versiji 2 tutoj licencije, ili v dovoljnoj pozdnějšej versiji.\n\nMediaWiki razprostranjaje se v naději, že bude upotrěbimy, ale <em>BEZ NIKAKOJ GARANCIJE</em>, daže bez standardnoj garancije <strong>TRGOVOJ PRIGODNOSTI</strong> ili <strong>PRIGODNOSTI ZA OSOBLIVY CĚLJ</strong>. Gledite licenciju GNU General Public License za veče podrobnostij.\n\nVy trěbovali jeste dostati [{{SERVER}}{{SCRIPTPATH}}/COPYING kopiju licencije GNU General Public License] zajedno s tutoju programoju. Ako ne, [//www.gnu.org/licenses/old-licenses/gpl-2.0.html pročitajte ju tu].",
 	"version-software": "Instalovany softver",
 	"version-software-product": "Produkt",
 	"version-software-version": "Versija",

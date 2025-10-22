@@ -1957,7 +1957,7 @@
 	"sharedupload": "本文件来自$1并可能被其他项目使用。",
 	"sharedupload-desc-there": "本文件来自$1并可能被其他项目使用。\n更多信息请见[$2 文件描述页]。",
 	"sharedupload-desc-here": "本文件来自$1并可能被其他项目使用。\n其[$2 文件描述页]上的描述显示在下面。",
-	"sharedupload-desc-edit": "本文件来自$1并可能被其他项目使用。\n也许你想要编辑其[$2 文件描述页]上的描述。",
+	"sharedupload-desc-edit": "此文件来自$1，并可能被其他项目使用。也许你想要编辑其[$2 文件描述页]上的描述。",
 	"sharedupload-desc-create": "本文件来自$1并可能被其他项目使用。\n也许你想要编辑其[$2 文件描述页]上的描述。",
 	"filepage-nofile": "不存在此名称的文件。",
 	"filepage-nofile-link": "不存在此名称的文件，但您可以[$1 上传它]。",

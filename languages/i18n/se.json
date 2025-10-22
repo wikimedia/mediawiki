@@ -27,7 +27,8 @@
 			"Yupik",
 			"Zache",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"SaldırganSincap"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Kategoriija|Kategoriijat}}",
@@ -3081,7 +3082,7 @@
 	"duplicate-defaultsort": "<strong>Várrehus:</strong> Dábálaš sirrenčoavdda \"$2\" buhtte ovddit dábálaš sirrenčoavdaga \"$1\".",
 	"duplicate-displaytitle": "<strong>Várrehus:</strong> Čájáhusnamma «$2», vurkejuvvo ovddeš čájáhusnama «$1» sadjái.",
 	"restricted-displaytitle": "<strong>Várrehus:</strong> Čájáhusnamma «$1» hilgojuvvui danne go dat ii vástit siiddu duohta nammii.",
-	"invalid-indicator-name": "<p>Meattáhus:</strong> Siidodilli-indikahtoriid <code>name</code>-attribuhtta ii sáhte leat guoros.",
+	"invalid-indicator-name": "<strong>Meattáhus:</strong> Siidodilli-indikahtoriid <code>name</code>-attribuhtta ii sáhte leat guoros.",
 	"invalid-langconvert-attrs": "<strong>Meattáhus:</strong> Langcovert-gilkora <code>from</code>- ja <code>to</code>-attribuhtat eai ábut leat guorosin, ja fertejit sisttisdoallat BCP 47-kodaid seamma giela jorgalanvejolaš variánttaid dihte.",
 	"version": "Veršuvdna",
 	"version-extensions": "Ásahuvvon viiddidanoasit",

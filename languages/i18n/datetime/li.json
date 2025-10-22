@@ -71,7 +71,7 @@
 	"duration-decades": "$1 {{PLURAL:$1|decennium|decennia}}",
 	"duration-years": "$1 {{PLURAL:$1|jaor|jaor}}",
 	"duration-weeks": "$1 {{PLURAL:$1|waek|waek}}",
-	"duration-days": "$1 {{PLURAL:$1|daag|daag}}",
+	"duration-days": "$1 {{PLURAL:$1|daag}}",
 	"duration-hours": "$1 {{PLURAL:$1|oer|oer}}",
 	"duration-minutes": "$1 {{PLURAL:$1|menuut|menuut}}",
 	"duration-seconds": "$1 {{PLURAL:$1|sekond|sekond}}",

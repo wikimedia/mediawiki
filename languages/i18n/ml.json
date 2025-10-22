@@ -916,7 +916,7 @@
 	"searchrelated": "ബന്ധപ്പെട്ടവ",
 	"searchall": "എല്ലാം",
 	"showingresultsinrange": "#<strong>$2</strong> മുതൽ #<strong>$3</strong> വരെയുള്ള പരിധിയിലെ {{PLURAL:$1|<strong>ഒരു</strong> ഫലം|<strong>$1</strong> ഫലങ്ങൾ}} താഴെ പ്രദർശിപ്പിക്കുന്നു.",
-	"search-showingresults": "{{PLURAL:$4|<strong>$3</strong> ഫലത്തിൽ<strong>$1</strong>|<strong>$3</strong> ഫലത്തിൽ <strong>$1 മുതൽ $2</strong> വരെയുള്ളവ}}",
+	"search-showingresults": "{{PLURAL:$4|1=<strong>$3</strong> ഫലത്തിൽ<strong>$1</strong>|<strong>$3</strong> ഫലത്തിൽ <strong>$1 മുതൽ $2</strong> വരെയുള്ളവ}}",
 	"search-nonefound": "താങ്കൾ തിരഞ്ഞ പദത്തിനു യോജിച്ച ഫലങ്ങളൊന്നും ലഭിച്ചില്ല.",
 	"search-nonefound-thiswiki": "ഈ അന്വേഷണത്തിനു യോജിച്ച ഫലങ്ങളൊന്നും ഈ സൈറ്റിൽ നിന്നും ലഭിച്ചില്ല.",
 	"powersearch-legend": "വിപുലീകൃത തിരച്ചിൽ",
