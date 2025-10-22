@@ -8985,7 +8985,7 @@ class MainConfigSchema {
 	 * $wgExternalQuerySources = [
 	 *     'SpecialPageName' => [
 	 *         'enabled' => true,
-	 *         'url' => '[https://api.example.com/data'](https://api.example.com/data'),
+	 *         'url' => 'https://api.example.com/data',
 	 *         'timeout' => 10, // seconds, optional
 	 *     ]
 	 * ];
