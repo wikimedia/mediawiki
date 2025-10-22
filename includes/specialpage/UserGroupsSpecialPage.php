@@ -691,7 +691,7 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 	 * @param array<string,UserGroupMembership> $userGroups The user groups the target belongs to, as
 	 *   returned by {@see getGroupMemberships()}. The groups are sorted in such a way that permanent
 	 *   memberships are after temporary ones.
-	 * @return array<string,list<UserGroupMembership>> List of groups to show, keyed by the message key to
+	 * @return array<string,list<UserGroupMembership|string>> List of groups to show, keyed by the message key to
 	 *   include at the beginning of the respective paragraph. The default implementation returns a single
 	 *   paragraph with all the groups, keyed by 'userrights-groupsmember'.
 	 */

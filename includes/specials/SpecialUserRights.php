@@ -27,7 +27,6 @@ use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserGroupAssignmentService;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserGroupManagerFactory;
-use MediaWiki\User\UserGroupMembership;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
@@ -47,8 +46,11 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 
 	private UserGroupManagerFactory $userGroupManagerFactory;
 
-	/** @var UserGroupManager|null The UserGroupManager of the target username or null */
-	private $userGroupManager = null;
+	/** @var UserGroupManager The UserGroupManager of the target username */
+	private UserGroupManager $userGroupManager;
+
+	/** @var list<string> Names of the groups the current target is automatically in */
+	private array $autopromoteGroups = [];
 
 	private UserNameUtils $userNameUtils;
 	private UserNamePrefixSearch $userNamePrefixSearch;
@@ -244,6 +246,8 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 		$isLocalWiki = $wikiId === UserIdentity::LOCAL;
 		$this->enableWatchUser = $isLocalWiki;
 		if ( $isLocalWiki ) {
+			// Listing autopromote groups is only available on the local wiki
+			$this->autopromoteGroups = $userGroupManager->getUserAutopromoteGroups( $this->targetUser );
 			// Set the 'relevant user' in the skin, so it displays links like Contributions,
 			// User logs, UserRights, etc.
 			$this->getSkin()->setRelevantUser( $user );
@@ -423,19 +427,9 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 
 	/** @inheritDoc */
 	protected function categorizeUserGroupsForDisplay( array $userGroups ): array {
-		$autoGroups = [];
-
-		// Listing autopromote groups works only on the local wiki
-		if ( $this->targetUser->getWikiId() === UserIdentity::LOCAL ) {
-			foreach ( $this->userGroupManager->getUserAutopromoteGroups( $this->targetUser ) as $group ) {
-				$autoGroups[$group] = new UserGroupMembership( $this->targetUser->getId(), $group );
-			}
-			ksort( $autoGroups );
-		}
-
 		return [
 			'userrights-groupsmember' => array_values( $userGroups ),
-			'userrights-groupsmember-auto' => $autoGroups,
+			'userrights-groupsmember-auto' => $this->autopromoteGroups,
 		];
 	}
 

@@ -8,7 +8,6 @@ use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserGroupManagerFactory;
-use MediaWiki\User\UserGroupsSpecialPageTarget;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\Parsoid\Utils\DOMCompat;
@@ -345,14 +344,11 @@ class SpecialUserRightsTest extends SpecialPageTestBase {
 		$specialPage->setContext( $context );
 
 		$wrappedPage = TestingAccessWrapper::newFromObject( $specialPage );
-		$wrappedPage->targetUser = $testUser->getUser();
-		$wrappedPage->userGroupManager = $ugmMock;
-		$wrappedPage->groupMemberships = $memberships;
-		$target = new UserGroupsSpecialPageTarget( $testUser->getUser()->getName(), $testUser->getUserIdentity() );
+		$wrappedPage->initialize( $testUser->getUser() );
 
 		// This test is deliberately not using executeSpecialPage, as we want to ensure that these group names are
 		// present in the correct places. The full output of this special page would contain them in many other places.
-		$groupsText = $wrappedPage->getCurrentUserGroupsText( $target );
+		$groupsText = $wrappedPage->getCurrentUserGroupsText();
 
 		$paragraphs = explode( '<p>', $groupsText );
 
