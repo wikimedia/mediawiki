@@ -300,4 +300,28 @@ SQL;
 		$sql = preg_replace( '/SELECT|FROM|LEFT JOIN|JOIN|AND|WHERE|ORDER BY|LIMIT/', "\n$0", $sql );
 		return $sql;
 	}
+
+	/**
+	 * Regression test for T407996
+	 */
+	public function testUnstructuredFilters() {
+		$user = $this->getTestUser()->getUser();
+		$userOptionsLookup = new StaticUserOptionsLookup( [], [
+			'wlenhancedfilters-disable' => true,
+			'extendwatchlist' => false,
+		] );
+		$this->setService(
+			'UserOptionsLookup',
+			$userOptionsLookup
+		);
+		$page = $this->newSpecialPage();
+		TestingAccessWrapper::newFromObject( $page )->userOptionsLookup
+			= $userOptionsLookup;
+		$page->getContext()->setUser( $user );
+		$page->getRows();
+		$this->assertTrue(
+			$page->getFilterGroup( 'extended-group' )->getFilter( 'extended' )
+				->isActive( $page->getOptions(), false )
+		);
+	}
 }
