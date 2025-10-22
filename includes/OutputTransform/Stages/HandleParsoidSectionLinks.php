@@ -13,10 +13,13 @@ use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Skin\Skin;
 use MediaWiki\Title\TitleFactory;
 use Psr\Log\LoggerInterface;
+use Wikimedia\Parsoid\Core\SectionMetadata;
 use Wikimedia\Parsoid\DOM\DocumentFragment;
 use Wikimedia\Parsoid\DOM\Element;
+use Wikimedia\Parsoid\DOM\Node;
 use Wikimedia\Parsoid\Utils\DOMCompat;
 use Wikimedia\Parsoid\Utils\DOMDataUtils;
+use Wikimedia\Parsoid\Utils\DOMTraverser;
 use Wikimedia\Parsoid\Utils\DOMUtils;
 
 /**
@@ -24,6 +27,9 @@ use Wikimedia\Parsoid\Utils\DOMUtils;
  * @internal
  */
 class HandleParsoidSectionLinks extends ContentDOMTransformStage {
+	// See below: if/when PHP implements DocumentFragment::getElementById()
+	// efficiently, set this to true.
+	private static bool $useGetElementById = false;
 
 	private TitleFactory $titleFactory;
 
@@ -44,7 +50,7 @@ class HandleParsoidSectionLinks extends ContentDOMTransformStage {
 	 *
 	 * In the Parsoid default future, we might prefer checking for stx=html.
 	 */
-	private function isHtmlHeading( Element $h ): bool {
+	private static function isHtmlHeading( Element $h ): bool {
 		foreach ( $h->attributes as $attr ) {
 			// Condition matches DiscussionTool's CommentFormatter::handleHeading
 			if (
@@ -67,7 +73,6 @@ class HandleParsoidSectionLinks extends ContentDOMTransformStage {
 		DocumentFragment $df, ParserOutput $po, ?ParserOptions $popts, array &$options
 	): DocumentFragment {
 		$skin = $this->resolveSkin( $options );
-		$titleText = $po->getTitleText();
 		// Transform:
 		//  <section data-mw-section-id=...>
 		//   <h2 id=...><span id=... typeof="mw:FallbackId"></span> ... </h2>
@@ -87,7 +92,7 @@ class HandleParsoidSectionLinks extends ContentDOMTransformStage {
 		// around the section *contents*.
 		$toc = $po->getTOCData();
 		$sections = ( $toc !== null ) ? $toc->getSections() : [];
-		// use the TOC data to extract the headings:
+		$sectionMap = [];
 		foreach ( $sections as $section ) {
 			if ( $section->anchor === '' ) {
 				// T375002 / T368722: The empty string isn't a valid id so
@@ -96,84 +101,147 @@ class HandleParsoidSectionLinks extends ContentDOMTransformStage {
 				// error since it's a common enough occurrence at present.
 				continue;
 			}
-			$h = DOMCompat::getElementById( $df, $section->anchor );
-			if ( $h === null ) {
+			$sectionMap[$section->anchor] = [
+				'processed' => false,
+				'section' => $section
+			];
+		}
+
+		if ( self::$useGetElementById ) {
+			// This version will be faster if we have an efficient O(1)
+			// implementation of DocumentFragment::getElementById()
+			// https://github.com/php/php-src/issues/20282
+			foreach ( $sectionMap as $anchor => &$info ) {
+				$h = DOMCompat::getElementById( $df, $anchor );
+				if ( $h !== null ) {
+					$this->transformHeading( $df, $h, $po, $options, $skin, $info );
+				}
+			}
+		} else {
+			// Older PHP versions must traverse the entire DOM to find the
+			// heading nodes.
+			$traverser = new DOMTraverser( false, false );
+			$headings = array_fill_keys(
+				[ 'h1', 'h2', 'h3', 'h4', 'h5', 'h6' ], true
+			);
+			$traverser->addHandler( null, function ( Node $node ) use (
+				$df, $po, $options, $skin, &$sectionMap, $headings
+			) {
+				if ( !( $headings[DOMUtils::nodeName( $node )] ?? false ) ) {
+					return true;
+				}
+				'@phan-var Element $node';
+				$id = DOMCompat::getAttribute( $node, 'id' );
+				if ( $id === null ) {
+					return true;
+				}
+				if ( !isset( $sectionMap[$id] ) ) {
+					return true;
+				}
+				return $this->transformHeading(
+					$df, $node, $po, $options, $skin, $sectionMap[$id]
+				);
+			} );
+			$traverser->traverse( null, $df );
+		}
+
+		foreach ( $sectionMap as $id => $sectionInfo ) {
+			if ( !$sectionInfo['processed'] ) {
 				$this->logger->error(
 					__METHOD__ . ': Heading missing for anchor',
-					$section->toLegacy()
+					$sectionInfo['section']->toLegacy()
 				);
-				continue;
-			}
-
-			if ( $this->isHtmlHeading( $h ) ) {
-				// This is a <h#> tag with attributes added using HTML syntax.
-				// Mark it with a class to make them easier to distinguish (T68637).
-				DOMCompat::getClassList( $h )->add( 'mw-html-heading' );
-
-				// Do not add the wrapper if the heading has attributes added using HTML syntax (T353489).
-				continue;
-			}
-
-			$fromTitle = $section->fromTitle;
-			$div = $df->ownerDocument->createElement( 'div' );
-			if (
-				$fromTitle !== null &&
-				( $options['enableSectionEditLinks'] ?? true ) &&
-				!$po->getOutputFlag( ParserOutputFlags::NO_SECTION_EDIT_LINKS )
-			) {
-				$editPage = $this->titleFactory->newFromTextThrow( $fromTitle );
-				$html = $skin->doEditSectionLink(
-					$editPage, $section->index, $h->textContent,
-					$skin->getLanguage()
-				);
-				DOMCompat::setInnerHTML( $div, $html );
-			}
-
-			// Reuse existing wrapper if present.
-			$maybeWrapper = $h->parentNode;
-			'@phan-var \Wikimedia\Parsoid\DOM\Element $maybeWrapper';
-			if (
-				DOMUtils::nodeName( $maybeWrapper ) === 'div' &&
-				DOMCompat::getClassList( $maybeWrapper )->contains( 'mw-heading' )
-			) {
-				// Transfer section edit link children to existing wrapper
-				// All contents of the div (the section edit link) will be
-				// inserted immediately following the <h> tag
-				$ref = $h->nextSibling;
-				while ( $div->firstChild !== null ) {
-					// @phan-suppress-next-line PhanTypeMismatchArgumentNullableInternal firstChild is non-null (PHP81)
-					$maybeWrapper->insertBefore( $div->firstChild, $ref );
-				}
-				$div = $maybeWrapper; // for use below
-			} else {
-				// Move <hX> to new wrapper: the div contents are currently
-				// the section edit link. We first replace the h with the
-				// div, then insert the <h> as the first child of the div
-				// so the section edit link is immediately following the <h>.
-				$div->setAttribute(
-					'class', 'mw-heading mw-heading' . $section->hLevel
-				);
-				$h->parentNode->replaceChild( $div, $h );
-				// Work around bug in phan (https://github.com/phan/phan/pull/4837)
-				// by asserting that $div->firstChild is non-null here.  Actually,
-				// ::insertBefore will work fine if $div->firstChild is null (if
-				// "doEditSectionLink" returned nothing, for instance), but
-				// phan incorrectly thinks the second argument must be non-null.
-				$divFirstChild = $div->firstChild;
-				'@phan-var \DOMNode $divFirstChild'; // asserting non-null (PHP81)
-				$div->insertBefore( $h, $divFirstChild );
-			}
-			// Create collapsible section wrapper if requested.
-			if ( $po->getOutputFlag( ParserOutputFlags::COLLAPSIBLE_SECTIONS ) ) {
-				$contentsDiv = $df->ownerDocument->createElement( 'div' );
-				while ( $div->nextSibling !== null ) {
-					// @phan-suppress-next-line PhanTypeMismatchArgumentNullableInternal
-					$contentsDiv->appendChild( $div->nextSibling );
-				}
-				$div->parentNode->appendChild( $contentsDiv );
 			}
 		}
 		return $df;
+	}
+
+	/**
+	 * @param DocumentFragment $df
+	 * @param Element $h
+	 * @param ParserOutput $po
+	 * @param array $options
+	 * @param Skin $skin
+	 * @param array{section:SectionMetadata,processed:bool} &$sectionInfo
+	 * @return Node|null|bool
+	 */
+	private function transformHeading(
+		DocumentFragment $df, Element $h, ParserOutput $po, array $options, Skin $skin, array &$sectionInfo
+	) {
+		$sectionInfo['processed'] = true;
+		$section = $sectionInfo['section'];
+
+		if ( self::isHtmlHeading( $h ) ) {
+			// This is a <h#> tag with attributes added using HTML syntax.
+			// Mark it with a class to make them easier to distinguish (T68637).
+			DOMCompat::getClassList( $h )->add( 'mw-html-heading' );
+
+			// Do not add the wrapper if the heading has attributes added using HTML syntax (T353489).
+			return true;
+		}
+
+		$next = $h->nextSibling;
+
+		$fromTitle = $section->fromTitle;
+		$div = $df->ownerDocument->createElement( 'div' );
+		if (
+			$fromTitle !== null &&
+			( $options['enableSectionEditLinks'] ?? true ) &&
+			!$po->getOutputFlag( ParserOutputFlags::NO_SECTION_EDIT_LINKS )
+		) {
+			$editPage = $this->titleFactory->newFromTextThrow( $fromTitle );
+			$html = $skin->doEditSectionLink(
+				$editPage, $section->index, $h->textContent,
+				$skin->getLanguage()
+			);
+			DOMCompat::setInnerHTML( $div, $html );
+		}
+
+		// Reuse existing wrapper if present.
+		$maybeWrapper = $h->parentNode;
+		'@phan-var \Wikimedia\Parsoid\DOM\Element $maybeWrapper';
+		if (
+			DOMUtils::nodeName( $maybeWrapper ) === 'div' &&
+			DOMCompat::getClassList( $maybeWrapper )->contains( 'mw-heading' )
+		) {
+			// Transfer section edit link children to existing wrapper
+			// All contents of the div (the section edit link) will be
+			// inserted immediately following the <h> tag
+			$ref = $h->nextSibling;
+			while ( $div->firstChild !== null ) {
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullableInternal firstChild is non-null (PHP81)
+				$maybeWrapper->insertBefore( $div->firstChild, $ref );
+			}
+			$div = $maybeWrapper; // for use below
+		} else {
+			// Move <hX> to new wrapper: the div contents are currently
+			// the section edit link. We first replace the h with the
+			// div, then insert the <h> as the first child of the div
+			// so the section edit link is immediately following the <h>.
+			$div->setAttribute(
+				'class', 'mw-heading mw-heading' . $section->hLevel
+			);
+			$h->parentNode->replaceChild( $div, $h );
+			// Work around bug in phan (https://github.com/phan/phan/pull/4837)
+			// by asserting that $div->firstChild is non-null here.  Actually,
+			// ::insertBefore will work fine if $div->firstChild is null (if
+			// "doEditSectionLink" returned nothing, for instance), but
+			// phan incorrectly thinks the second argument must be non-null.
+			$divFirstChild = $div->firstChild;
+			'@phan-var \DOMNode $divFirstChild'; // asserting non-null (PHP81)
+			$div->insertBefore( $h, $divFirstChild );
+		}
+		// Create collapsible section wrapper if requested.
+		if ( $po->getOutputFlag( ParserOutputFlags::COLLAPSIBLE_SECTIONS ) ) {
+			$contentsDiv = $df->ownerDocument->createElement( 'div' );
+			while ( $div->nextSibling !== null ) {
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullableInternal
+				$contentsDiv->appendChild( $div->nextSibling );
+			}
+			$div->parentNode->appendChild( $contentsDiv );
+		}
+
+		return $next;
 	}
 
 	/**
