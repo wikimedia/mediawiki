@@ -377,6 +377,18 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 		return $groupsText;
 	}
 
+	protected function buildFormExtraInfo(): ?string {
+		// Display a note if this is a system user
+		$systemUser = $this->targetUser->getWikiId() === UserIdentity::LOCAL
+			&& $this->userFactory->newFromUserIdentity( $this->targetUser )->isSystemUser();
+		if ( $systemUser ) {
+			return $this->msg( 'userrights-systemuser' )
+				->params( $this->targetUser->getName() )
+				->parse();
+		}
+		return null;
+	}
+
 	/** @inheritDoc */
 	protected function categorizeUserGroupsForDisplay( array $userGroups ): array {
 		return [
