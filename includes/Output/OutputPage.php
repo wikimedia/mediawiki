@@ -3194,9 +3194,14 @@ class OutputPage extends ContextSource {
 
 		if ( $this->mRedirect != '' ) {
 			$services = MediaWikiServices::getInstance();
-			// Modern standards don't require redirect URLs to be absolute, but make it so just in case.
-			// Note that this doesn't actually guarantee an absolute URL: relative-path URLs are left intact.
-			$this->mRedirect = (string)$services->getUrlUtils()->expand( $this->mRedirect, PROTO_CURRENT );
+			// We do not expand redirect destinations to a full URL, because:
+			// * Relative URLs are widely supported and valid under the HTTP 1.1 spec (RFC 7131).
+			// * Expanding a absolute-path URL like "/wiki/Foo" can cause surprising cross-domain
+			//   redirects (T406402).
+			// * Expanding a relative-path URL like "../Foo" using UrlUtils::expand would corrupt
+			//   the path instead of resolving against the current document location.
+			// * Expanding a protocol-relative URL like "//example.org/Foo" would compromise
+			//   cacheability of the redirect response.
 
 			$redirect = $this->mRedirect;
 			$code = $this->mRedirectCode;
