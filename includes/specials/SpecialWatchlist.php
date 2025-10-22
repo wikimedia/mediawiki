@@ -196,7 +196,10 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 						'isReplacedInStructuredUi' => true,
 						'activeValue' => false,
 						'default' => $this->userOptionsLookup->getBoolOption( $this->getUser(), 'extendwatchlist' ),
-						'action' => [ 'require', 'latest' ],
+						'action' => [
+							[ 'require', 'revisionType', 'latest' ],
+							[ 'require', 'revisionType', 'none' ]
+						],
 					]
 				],
 			],
