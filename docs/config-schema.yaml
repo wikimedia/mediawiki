@@ -5695,14 +5695,23 @@ config-schema:
             additionalProperties: false
         description: |-
             Configuration for external query sources.
-            This allows query pages to fetch their data from external HTTP endpoints
-            instead of local database queries.
+            This allows system administrators to off-load expensive QueryPage subclasses
+            to alternative query sources by fetching results over HTTP.
+            For example, you might periodically run your own version of a query via Hadoop,
+            and serve the result as a JSON file from a static HTTP server (T309738).
+            While your external source will likely be a static file serving cached
+            results, MediaWiki will treat this external source as drop-in replacement
+            for the database, not as replacement for the cache.
+            This means if you enable $wgMiserMode, your external service does not
+            require high-availabilty and high-traffic support because you still benefit
+            from persistent cache (in the querycache table) and offline pull (via
+            maintenance/updateSpecialPages.php, instead of a live user request).
             **Example:**
             ```php
             $wgExternalQuerySources = [
-                'SpecialPageName' => [
+                'Mostlinkedtemplates' => [
                     'enabled' => true,
-                    'url' => 'https://api.example.com/data',
+                    'url' => 'https://example.org/data/Mostlinkedtemplates.json',
                     'timeout' => 10, // seconds, optional
                 ]
             ];
