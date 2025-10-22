@@ -993,10 +993,12 @@ abstract class HTMLFormField {
 	 *
 	 * @stable to override
 	 * @since 1.25
+	 * @deprecated since 1.45
 	 * @param string $value The value to set the input to.
 	 * @return string Complete HTML field.
 	 */
 	public function getVForm( $value ) {
+		wfDeprecated( __METHOD__, '1.45' );
 		// Ewwww
 		$this->mVFormClass = ' mw-ui-vform-field';
 		return $this->getDiv( $value );

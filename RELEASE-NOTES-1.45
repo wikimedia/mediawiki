@@ -507,6 +507,11 @@ because of Phabricator reports.
   - save()
   - markPatrolled()
   - reallyMarkPatrolled()
+* The 'vform' HTMLForm display format has been deprecated. Use the
+  'codex' display format introduced in 1.41, or the 'ooui' format
+  if you need form fields that are not supported by Codex yet.
+* The VFormHTMLForm class and the HTMLFormField::getVForm() method
+  have been deprecated.
 * XmlSelect::setTagName() is deprecated, use the Html class instead.
 * CategoryViewer::getSubcategorySortChar() is deprecated, treat sortkey for
   sub-category the same as for others instead.

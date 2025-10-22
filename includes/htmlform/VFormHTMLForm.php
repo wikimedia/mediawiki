@@ -9,12 +9,14 @@ namespace MediaWiki\HTMLForm;
  * @file
  */
 
+use MediaWiki\Context\IContextSource;
 use MediaWiki\Html\Html;
 
 /**
  * Compact stacked vertical format for forms.
  *
  * @stable to extend
+ * @deprecated since 1.45
  */
 class VFormHTMLForm extends HTMLForm {
 	/**
@@ -25,6 +27,12 @@ class VFormHTMLForm extends HTMLForm {
 
 	/** @inheritDoc */
 	protected $displayFormat = 'vform';
+
+	/** @inheritDoc */
+	public function __construct( $descriptor, IContextSource $context, $messagePrefix = '' ) {
+		wfDeprecated( __CLASS__, '1.45' );
+		parent::__construct( $descriptor, $context, $messagePrefix );
+	}
 
 	/** @inheritDoc */
 	public static function loadInputFromParameters( $fieldname, $descriptor,
