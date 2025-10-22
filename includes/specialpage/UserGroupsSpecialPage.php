@@ -62,6 +62,9 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 	/** @var string Name of session flag that's saved when the user groups are successfully saved */
 	private const SAVE_SUCCESS_FLAG = 'specialUserrightsSaveSuccess';
 
+	/** @var string Name of the form field, which stores the conflict check key */
+	private const CONFLICT_CHECK_FIELD = 'conflictcheck-originalgroups';
+
 	/**
 	 * Sets the name of the target user. If this page uses a special notation for the username (e.g. "Foo@wiki"),
 	 * which is different from actual bare username, this additional form should be passed as the second parameter.
@@ -178,7 +181,7 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 			Html::hidden( 'user', $this->targetDisplayName ) .
 			Html::hidden( 'wpEditToken', $this->getUser()->getEditToken( $this->targetDisplayName ) ) .
 			Html::hidden(
-				'conflictcheck-originalgroups',
+				self::CONFLICT_CHECK_FIELD,
 				$this->makeConflictCheckKey()
 			) .
 			Html::openElement( 'fieldset' ) .
@@ -704,10 +707,33 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 	/**
 	 * Returns a string that represents the current state of the target's groups. It is used to
 	 * detect attempts of concurrent modifications to the user groups.
+	 * @param ?array<string,UserGroupMembership> $groupMemberships The group memberships to use
+	 *   in the conflict key generation. If null, defaults to the value of {@see $groupMemberships}.
+	 *   It's advised to use set this parameter to memberships fetched from the primary database when
+	 *   trying to detect conflicts on handling a request to save changes to user groups.
 	 */
-	protected function makeConflictCheckKey(): string {
-		$groups = array_keys( $this->getGroupMemberships() );
+	protected function makeConflictCheckKey( ?array $groupMemberships = null ): string {
+		$groupMemberships ??= $this->groupMemberships;
+		$groups = array_keys( $groupMemberships );
+		// Sort, so that the keys are safe to compare
+		sort( $groups );
 		return implode( ',', $groups );
+	}
+
+	/**
+	 * Tests if a conflict occurred when trying to save changes to user groups, by comparing
+	 * the conflict check key received from the form with the expected one.
+	 * @param ?array<string,UserGroupMembership> $groupMembershipsPrimary The group memberships
+	 *   to use when generating the expected conflict check key. If null, defaults to the value
+	 *   of {@see $groupMemberships}. It's recommended to pass memberships fetched from the primary
+	 *   database, so that concurrent changes made by other requests are detected.
+	 */
+	protected function conflictOccured( ?array $groupMembershipsPrimary = null ): bool {
+		$request = $this->getRequest();
+		$receivedConflictCheck = $request->getVal( self::CONFLICT_CHECK_FIELD );
+		$expectedConflictCheck = $this->makeConflictCheckKey( $groupMembershipsPrimary );
+
+		return $receivedConflictCheck !== $expectedConflictCheck;
 	}
 
 	/**

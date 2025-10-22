@@ -179,31 +179,21 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 
 			$this->checkReadOnly();
 
-			$conflictCheck = $request->getVal( 'conflictcheck-originalgroups' );
-			$conflictCheck = ( $conflictCheck === '' ) ? [] : explode( ',', $conflictCheck );
-			$userGroups = $this->userGroupManager->getUserGroups( $fetchedUser, IDBAccessObject::READ_LATEST );
+			$status = $this->saveUserGroups(
+				$request->getText( 'user-reason' ),
+				$fetchedUser,
+			);
 
-			if ( $userGroups !== $conflictCheck ) {
-				$out->addHTML( Html::errorBox(
-					$this->msg( 'userrights-conflict' )->parse()
-				) );
+			if ( $status->isOK() ) {
+				$this->setSuccessFlag();
+				$out->redirect( $this->getSuccessURL( $targetName ) );
+				return;
 			} else {
-				$status = $this->saveUserGroups(
-					$request->getText( 'user-reason' ),
-					$fetchedUser,
-				);
-
-				if ( $status->isOK() ) {
-					$this->setSuccessFlag();
-					$out->redirect( $this->getSuccessURL( $targetName ) );
-					return;
-				} else {
-					// Print an error message and redisplay the form
-					foreach ( $status->getMessages() as $msg ) {
-						$out->addHTML( Html::errorBox(
-							$this->msg( $msg )->parse()
-						) );
-					}
+				// Print an error message and redisplay the form
+				foreach ( $status->getMessages() as $msg ) {
+					$out->addHTML( Html::errorBox(
+						$this->msg( $msg )->parse()
+					) );
 				}
 			}
 		}
@@ -276,8 +266,13 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 	 * @return Status
 	 */
 	protected function saveUserGroups( string $reason, UserIdentity $user ) {
-		// This could possibly create a highly unlikely race condition if permissions are changed between
-		// when the form is loaded and when the form is saved. Ignoring it for the moment.
+		// This conflict check doesn't prevent from a situation when two concurrent DB transactions
+		// update the same user's groups, but that's highly unlikely.
+		$userGroupsPrimary = $this->userGroupManager->getUserGroupMemberships( $user, IDBAccessObject::READ_LATEST );
+		if ( $this->conflictOccured( $userGroupsPrimary ) ) {
+			return Status::newFatal( 'userrights-conflict' );
+		}
+
 		$newGroupsStatus = $this->readGroupsForm();
 
 		if ( !$newGroupsStatus->isOK() ) {
