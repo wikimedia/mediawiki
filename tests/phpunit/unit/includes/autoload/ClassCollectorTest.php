@@ -1,6 +1,7 @@
 <?php
 
 /**
+ * @group Autoload
  * @covers \ClassCollector
  */
 class ClassCollectorTest extends MediaWikiUnitTestCase {

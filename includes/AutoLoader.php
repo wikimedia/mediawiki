@@ -1,7 +1,5 @@
 <?php
 /**
- * This defines autoloading handler for whole MediaWiki framework
- *
  * @license GPL-2.0-or-later
  * @file
  */
@@ -14,6 +12,21 @@
  */
 require_once __DIR__ . '/../autoload.php';
 
+/**
+ * @defgroup Autoload Autoload
+ */
+
+/**
+ * This initializes autoloading for MediaWiki core, extensions, and vendored libs.
+ *
+ * NOTE: This file sets up the PHP autoloader and so its stable contract is not this
+ * class, but the act of initializing spl_autoload_register and vendor.
+ * This file is widely referenced (akin to includes/Defines.php) and is therefore
+ * not renamed or moved to /includes/autoload.
+ *
+ * @since 1.7
+ * @ingroup Autoload
+ */
 class AutoLoader {
 
 	/**

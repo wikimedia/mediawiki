@@ -5,7 +5,10 @@
  */
 
 /**
- * Reads PHP code and returns the FQCN of every class defined within it.
+ * Read a PHP file and return the FQCN of every class defined within it.
+ *
+ * @internal For use by AutoloadGenerator
+ * @ingroup Autoload
  */
 class ClassCollector {
 

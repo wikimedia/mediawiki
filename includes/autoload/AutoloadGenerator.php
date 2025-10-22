@@ -7,6 +7,8 @@
 use MediaWiki\Json\FormatJson;
 
 /**
+ * Scan given directories and files and create an autoload class map.
+ *
  * Accepts a list of files and directories to search for
  * php files and generates $wgAutoloadLocalClasses or $wgAutoloadClasses
  * lines for all detected classes. These lines are written out
@@ -18,6 +20,10 @@ use MediaWiki\Json\FormatJson;
  *     $gen->readDir( __DIR__ . '/includes' );
  *     $gen->readFile( __DIR__ . '/foo.php' )
  *     $gen->getAutoload();
+ *
+ * @see \MediaWiki\Maintenance\Maintenance\GenerateAutoload
+ * @since 1.25
+ * @ingroup Autoload
  */
 class AutoloadGenerator {
 	private const FILETYPE_JSON = 'json';

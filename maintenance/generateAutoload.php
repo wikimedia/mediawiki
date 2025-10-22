@@ -15,6 +15,11 @@ define( 'MW_NO_SESSION_HANDLER', 1 );
 define( 'MW_NO_SESSION', 1 );
 // @codeCoverageIgnoreEnd
 
+/**
+ * @since 1.25
+ * @ingroup Autoload
+ * @ingroup Maintenance
+ */
 class GenerateAutoload extends Maintenance {
 
 	public function canExecuteWithoutLocalSettings(): bool {

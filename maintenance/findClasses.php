@@ -2,7 +2,6 @@
 /**
  * @license GPL-2.0-or-later
  * @file
- * @ingroup Maintenance
  */
 
 use MediaWiki\Maintenance\Maintenance;
@@ -12,10 +11,11 @@ require_once __DIR__ . '/Maintenance.php';
 // @codeCoverageIgnoreEnd
 
 /**
- * Maintenance script for finding the files that contain classes
+ * Find the files that contain classes
  *
- * @ingroup Maintenance
  * @since 1.37
+ * @ingroup Autoload
+ * @ingroup Maintenance
  */
 class FindClasses extends Maintenance {
 

@@ -3,6 +3,7 @@
 use Wikimedia\TestingAccessWrapper;
 
 /**
+ * @group Autoload
  * @covers \AutoLoader
  */
 class AutoLoaderTest extends MediaWikiIntegrationTestCase {

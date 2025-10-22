@@ -1,6 +1,7 @@
 <?php
 
 /**
+ * @group Autoload
  * @coversNothing
  */
 class AutoLoaderStructureTest extends MediaWikiIntegrationTestCase {
