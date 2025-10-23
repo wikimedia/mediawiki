@@ -13,11 +13,9 @@ use MediaWiki\Linker\Linker;
 use MediaWiki\Logging\LogEventsList;
 use MediaWiki\Logging\LogPage;
 use MediaWiki\Message\Message;
-use MediaWiki\Output\OutputPage;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserGroupAssignmentService;
 use MediaWiki\User\UserGroupMembership;
-use MediaWiki\User\UserGroupsSpecialPageTarget;
 use MediaWiki\Xml\XmlSelect;
 use Status;
 
@@ -139,10 +137,9 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 
 	/**
 	 * Builds the user groups form, either in view or edit mode.
-	 * @param ?UserGroupsSpecialPageTarget $target No longer used
 	 * @return string The HTML of the form
 	 */
-	protected function buildGroupsForm( ?UserGroupsSpecialPageTarget $target = null ): string {
+	protected function buildGroupsForm(): string {
 		$groups = $this->prepareAvailableGroups();
 
 		$canChangeAny = array_any(
@@ -675,17 +672,10 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 	/**
 	 * Shows a log fragment for the current target user, i.e. page "User:{$this->targetDisplayName}".
 	 *
-	 * @param UserGroupsSpecialPageTarget|string $logType The type of the log to show
-	 * @param OutputPage|string $logSubType The subtype of the log to show
+	 * @param string $logType The type of the log to show
+	 * @param string $logSubType The subtype of the log to show
 	 */
-	protected function showLogFragment(
-		UserGroupsSpecialPageTarget|string $logType,
-		OutputPage|string $logSubType
-	): void {
-		if ( $logType instanceof UserGroupsSpecialPageTarget ) {
-			// TODO: Remove this branch when callers are updated to pass strings
-			[ $logType, $logSubType ] = $this->getLogType();
-		}
+	protected function showLogFragment( string $logType, string $logSubType ): void {
 		$logPage = new LogPage( $logType );
 
 		$logTitle = $logPage->getName()
@@ -786,15 +776,6 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 	 */
 	protected function canRemove( string $group ): bool {
 		return in_array( $group, $this->removableGroups );
-	}
-
-	/**
-	 * Returns the log type and subtype that is specific to this special page.
-	 * @return array{0:string,1:string} The log type and subtype to use when logging changes
-	 */
-	protected function getLogType(): array {
-		// Dummy values, the method will be dropped soon
-		return [ '', '' ];
 	}
 
 	/**
