@@ -14,7 +14,6 @@ use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Language\FormatterFactory;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\SpecialPage\UserGroupsSpecialPage;
 use MediaWiki\Status\Status;
@@ -42,45 +41,26 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 	 */
 	protected UserIdentity $targetUser;
 
-	private UserGroupManagerFactory $userGroupManagerFactory;
-
 	/** @var UserGroupManager The UserGroupManager of the target username */
 	private UserGroupManager $userGroupManager;
 
 	/** @var list<string> Names of the groups the current target is automatically in */
 	private array $autopromoteGroups = [];
 
-	private UserNameUtils $userNameUtils;
-	private UserNamePrefixSearch $userNamePrefixSearch;
-	private UserFactory $userFactory;
-	private WatchlistManager $watchlistManager;
-	private UserGroupAssignmentService $userGroupAssignmentService;
-	private MultiFormatUserIdentityLookup $multiFormatUserIdentityLookup;
 	private StatusFormatter $statusFormatter;
 
 	public function __construct(
-		?UserGroupManagerFactory $userGroupManagerFactory = null,
-		?UserNameUtils $userNameUtils = null,
-		?UserNamePrefixSearch $userNamePrefixSearch = null,
-		?UserFactory $userFactory = null,
-		?WatchlistManager $watchlistManager = null,
-		?UserGroupAssignmentService $userGroupAssignmentService = null,
-		?MultiFormatUserIdentityLookup $multiFormatUserIdentityLookup = null,
-		?FormatterFactory $formatterFactory = null,
+		private readonly UserGroupManagerFactory $userGroupManagerFactory,
+		private readonly UserNameUtils $userNameUtils,
+		private readonly UserNamePrefixSearch $userNamePrefixSearch,
+		private readonly UserFactory $userFactory,
+		private readonly WatchlistManager $watchlistManager,
+		private readonly UserGroupAssignmentService $userGroupAssignmentService,
+		private readonly MultiFormatUserIdentityLookup $multiFormatUserIdentityLookup,
+		FormatterFactory $formatterFactory,
 	) {
 		parent::__construct( 'Userrights' );
-		$services = MediaWikiServices::getInstance();
-		// This class is extended and therefore falls back to global state - T263207
-		$this->userNameUtils = $userNameUtils ?? $services->getUserNameUtils();
-		$this->userNamePrefixSearch = $userNamePrefixSearch ?? $services->getUserNamePrefixSearch();
-		$this->userFactory = $userFactory ?? $services->getUserFactory();
-		$this->userGroupManagerFactory = $userGroupManagerFactory ?? $services->getUserGroupManagerFactory();
-		$this->watchlistManager = $watchlistManager ?? $services->getWatchlistManager();
-		$this->userGroupAssignmentService = $userGroupAssignmentService ?? $services->getUserGroupAssignmentService();
-		$this->multiFormatUserIdentityLookup = $multiFormatUserIdentityLookup
-			?? $services->getMultiFormatUserIdentityLookup();
-		$this->statusFormatter = ( $formatterFactory ?? $services->getFormatterFactory() )
-			->getStatusFormatter( $this->getContext() );
+		$this->statusFormatter = $formatterFactory->getStatusFormatter( $this->getContext() );
 	}
 
 	/**
