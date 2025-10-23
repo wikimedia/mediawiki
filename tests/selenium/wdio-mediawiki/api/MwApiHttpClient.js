@@ -37,8 +37,11 @@ export class MwApiHttpClient {
 			// eslint-disable-next-line n/no-unsupported-features/node-builtins
 			const signal = AbortSignal.timeout( 60000 );
 			// fetch was introduced in 18 and stable in 21.
+			// We do not follow redirects because fetch will switch POST to GET and set
+			// the response body to null
+			// See https://fetch.spec.whatwg.org/#http-redirect-fetch
 			// eslint-disable-next-line n/no-unsupported-features/node-builtins
-			const response = await fetch( url, { method: 'POST', headers, body, signal } );
+			const response = await fetch( url, { method: 'POST', headers, body, signal, redirect: 'error' } );
 			const text = await response.text();
 
 			if ( this.verbose ) {
