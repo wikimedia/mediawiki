@@ -24,27 +24,27 @@ class CacheTime implements ParserCacheMetadata, JsonCodecable {
 	use JsonCodecableTrait;
 
 	/**
-	 * @var true[] ParserOptions which have been taken into account
+	 * @var array<string,true> ParserOptions which have been taken into account
 	 * to produce output, option names stored in array keys.
 	 */
-	protected $mParseUsedOptions = [];
+	protected array $mParseUsedOptions = [];
 
 	/**
 	 * @var string|int TS_MW timestamp when this object was generated, or -1 for not cacheable. Used
 	 * in ParserCache.
 	 */
-	protected $mCacheTime = '';
+	protected string|int $mCacheTime = '';
 
 	/**
 	 * @var int|null Seconds after which the object should expire, use 0 for not cacheable. Used in
 	 * ParserCache.
 	 */
-	protected $mCacheExpiry = null;
+	protected ?int $mCacheExpiry = null;
 
 	/**
 	 * @var int|null Revision ID that was parsed
 	 */
-	protected $mCacheRevisionId = null;
+	protected ?int $mCacheRevisionId = null;
 
 	/**
 	 * @return string|int TS_MW timestamp

@@ -116,12 +116,12 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	/**
 	 * @var array<string,string> Array mapping interwiki prefix to (non DB key) Titles (e.g. 'fr' => 'Test page')
 	 */
-	private $mLanguageLinkMap = [];
+	private array $mLanguageLinkMap = [];
 
 	/**
 	 * @var array<string,string> Map of category names to sort keys
 	 */
-	private $mCategories = [];
+	private array $mCategories = [];
 
 	/**
 	 * @var array<string,string> Page status indicators, usually displayed in top-right corner.
@@ -137,35 +137,35 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * @var array<int,array<string,int>> 2-D map of NS/DBK to ID for the links in the document.
 	 *  ID=zero for broken.
 	 */
-	private $mLinks = [];
+	private array $mLinks = [];
 
 	/**
 	 * @var array<string,int> Keys are DBKs for the links to special pages in the document.
 	 * @since 1.35
 	 */
-	private $mLinksSpecial = [];
+	private array $mLinksSpecial = [];
 
 	/**
 	 * @var array<int,array<string,int>> 2-D map of NS/DBK to ID for the template references.
 	 *  ID=zero for broken.
 	 */
-	private $mTemplates = [];
+	private array $mTemplates = [];
 
 	/**
 	 * @var array<int,array<string,int>> 2-D map of NS/DBK to rev ID for the template references.
 	 *  ID=zero for broken.
 	 */
-	private $mTemplateIds = [];
+	private array $mTemplateIds = [];
 
 	/**
 	 * @var array<string,int> DB keys of the images used, in the array key only
 	 */
-	private $mImages = [];
+	private array $mImages = [];
 
 	/**
 	 * @var array<string,array<string,string>> DB keys of the images used mapped to sha1 and MW timestamp.
 	 */
-	private $mFileSearchOptions = [];
+	private array $mFileSearchOptions = [];
 
 	/**
 	 * @var array<string,int> External link URLs, in the key only.
@@ -176,138 +176,138 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * @var array<string,array<string,int>> 2-D map of prefix/DBK (in keys only)
 	 *  for the inline interwiki links in the document.
 	 */
-	private $mInterwikiLinks = [];
+	private array $mInterwikiLinks = [];
 
 	/**
 	 * @var array<int,array<string,bool>> 2-D map of NS/DBK to true for #ifexist and similar
 	 */
-	private $existenceLinks = [];
+	private array $existenceLinks = [];
 
 	/**
 	 * @var bool Show a new section link?
 	 */
-	private $mNewSection = false;
+	private bool $mNewSection = false;
 
 	/**
 	 * @var bool Hide the new section link?
 	 */
-	private $mHideNewSection = false;
+	private bool $mHideNewSection = false;
 
 	/**
 	 * @var bool No gallery on category page? (__NOGALLERY__).
 	 */
-	private $mNoGallery = false;
+	private bool $mNoGallery = false;
 
 	/**
-	 * @var string[] Items to put in the <head> section
+	 * @var array<string|int,string> Items to put in the <head> section
 	 */
-	private $mHeadItems = [];
+	private array $mHeadItems = [];
 
 	/**
 	 * @var array<string,true> Modules to be loaded by ResourceLoader
 	 */
-	private $mModuleSet = [];
+	private array $mModuleSet = [];
 
 	/**
 	 * @var array<string,true> Modules of which only the CSS will be loaded by ResourceLoader.
 	 */
-	private $mModuleStyleSet = [];
+	private array $mModuleStyleSet = [];
 
 	/**
 	 * @var array JavaScript config variable for mw.config combined with this page.
 	 */
-	private $mJsConfigVars = [];
+	private array $mJsConfigVars = [];
 
 	/**
 	 * @var array<string,int> Warning text to be returned to the user.
 	 *  Wikitext formatted, in the key only.
 	 * @deprecated since 1.45; use ::$mWarningMsgs instead
 	 */
-	private $mWarnings = [];
+	private array $mWarnings = [];
 
 	/**
 	 * @var array<string,MessageValue> *Unformatted* warning messages and
 	 * arguments to be returned to the user.
 	 */
-	private $mWarningMsgs = [];
+	private array $mWarningMsgs = [];
 
 	/**
 	 * @var ?TOCData Table of contents data, or null if it hasn't been set.
 	 */
-	private $mTOCData;
+	private ?TOCData $mTOCData = null;
 
 	/**
-	 * @var array Name/value pairs to be cached in the DB.
+	 * @var array<string,int|float|string> Name/value pairs to be cached in the DB.
 	 */
-	private $mProperties = [];
+	private array $mProperties = [];
 
 	/**
 	 * @var ?string Timestamp of the revision.
 	 */
-	private $mTimestamp;
+	private ?string $mTimestamp = null;
 
 	/**
 	 * @var bool Whether OOUI should be enabled.
 	 */
-	private $mEnableOOUI = false;
+	private bool $mEnableOOUI = false;
 
 	/**
 	 * @var bool Whether the index policy has been set to 'index'.
 	 */
-	private $mIndexSet = false;
+	private bool $mIndexSet = false;
 
 	/**
 	 * @var bool Whether the index policy has been set to 'noindex'.
 	 */
-	private $mNoIndexSet = false;
+	private bool $mNoIndexSet = false;
 
 	/**
-	 * @var array extra data used by extensions.
+	 * @var array<string,mixed> extra data used by extensions.
 	 */
-	private $mExtensionData = [];
+	private array $mExtensionData = [];
 
 	/**
 	 * @var array Parser limit report data.
 	 */
-	private $mLimitReportData = [];
+	private array $mLimitReportData = [];
 
 	/** @var array Parser limit report data for JSON */
-	private $mLimitReportJSData = [];
+	private array $mLimitReportJSData = [];
 
 	/** @var string Debug message added by ParserCache */
-	private $mCacheMessage = '';
+	private string $mCacheMessage = '';
 
 	/**
 	 * @var array Timestamps for getTimeProfile().
 	 */
-	private $mParseStartTime = [];
+	private array $mParseStartTime = [];
 
 	/**
 	 * @var array Durations for getTimeProfile().
 	 */
-	private $mTimeProfile = [];
+	private array $mTimeProfile = [];
 
 	/**
 	 * @var bool Whether to emit X-Frame-Options: DENY.
 	 * This controls if anti-clickjacking / frame-breaking headers will
 	 * be sent. This should be done for pages where edit actions are possible.
 	 */
-	private $mPreventClickjacking = false;
+	private bool $mPreventClickjacking = false;
 
 	/**
-	 * @var string[] Extra script-src for CSP
+	 * @var list<string> Extra script-src for CSP
 	 */
-	private $mExtraScriptSrcs = [];
+	private array $mExtraScriptSrcs = [];
 
 	/**
-	 * @var string[] Extra default-src for CSP [Everything but script and style]
+	 * @var list<string> Extra default-src for CSP [Everything but script and style]
 	 */
-	private $mExtraDefaultSrcs = [];
+	private array $mExtraDefaultSrcs = [];
 
 	/**
-	 * @var string[] Extra style-src for CSP
+	 * @var list<string> Extra style-src for CSP
 	 */
-	private $mExtraStyleSrcs = [];
+	private array $mExtraStyleSrcs = [];
 
 	/**
 	 * @var array<string,true> Generic flags.
@@ -321,20 +321,20 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	];
 
 	/** @var int|null Assumed rev ID for {{REVISIONID}} if no revision is set */
-	private $mSpeculativeRevId;
+	private ?int $mSpeculativeRevId = null;
 	/** @var int|null Assumed page ID for {{PAGEID}} if no revision is set */
-	private $speculativePageIdUsed;
+	private ?int $speculativePageIdUsed = null;
 	/** @var string|null Assumed rev timestamp for {{REVISIONTIMESTAMP}} if no revision is set */
-	private $revisionTimestampUsed;
+	private ?string $revisionTimestampUsed = null;
 
 	/** @var string|null SHA-1 base 36 hash of any self-transclusion */
-	private $revisionUsedSha1Base36;
+	private ?string $revisionUsedSha1Base36 = null;
 
 	/** string CSS classes to use for the wrapping div, stored in the array keys.
 	 * If no class is given, no wrapper is added.
 	 * @var array<string,true>
 	 */
-	private $mWrapperDivClasses = [];
+	private array $mWrapperDivClasses = [];
 
 	/**
 	 * @var ?int Upper bound of expiry based on parse duration;
@@ -1357,11 +1357,11 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	}
 
 	public function getHideNewSection(): bool {
-		return (bool)$this->mHideNewSection;
+		return $this->mHideNewSection;
 	}
 
 	public function getNewSection(): bool {
-		return (bool)$this->mNewSection;
+		return $this->mNewSection;
 	}
 
 	/**
@@ -1974,10 +1974,6 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * @since 1.38
 	 */
 	public function getPageProperties(): array {
-		// @phan-suppress-next-line MediaWikiNoIssetIfDefined
-		if ( !isset( $this->mProperties ) ) {
-			$this->mProperties = [];
-		}
 		return $this->mProperties;
 	}
 
