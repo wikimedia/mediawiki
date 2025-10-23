@@ -3,6 +3,7 @@
 namespace MediaWiki\RecentChanges\ChangesListQuery;
 
 use MediaWiki\ChangeTags\ChangeTagsStore;
+use Psr\Log\LoggerInterface;
 use stdClass;
 use Wikimedia\Rdbms\IReadableDatabase;
 
@@ -15,6 +16,7 @@ class ChangeTagsCondition extends ChangesListConditionBase {
 	public function __construct(
 		private ChangeTagsStore $changeTagsStore,
 		private TableStatsProvider $rcStats,
+		private LoggerInterface $logger,
 		private bool $miserMode,
 	) {
 	}
@@ -141,8 +143,8 @@ class ChangeTagsCondition extends ChangesListConditionBase {
 		$tagCount = $dbr->newSelectQueryBuilder()
 			->table( 'change_tag' )
 			->where( [
-				$dbr->expr( 'changetagdisplay.ct_rc_id', '>=', $this->rcStats->getMinId() ),
-				'changetagdisplay.ct_tag_id' => $tagIds
+				$dbr->expr( 'ct_rc_id', '>=', $this->rcStats->getMinId() ),
+				'ct_tag_id' => $tagIds
 			] )
 			->caller( __METHOD__ )
 			->estimateRowCount();
@@ -154,7 +156,8 @@ class ChangeTagsCondition extends ChangesListConditionBase {
 		// simplicity and to avoid division by zero.
 		$isDense = $this->limit * $rcSize < $tagCount * $tagCount;
 
-		wfDebug( __METHOD__ . ": rcSize = $rcSize, tagCount = $tagCount, limit = {$this->limit} => " .
+		$this->logger->debug( __METHOD__ .
+			": rcSize = $rcSize, tagCount = $tagCount, limit = {$this->limit} => " .
 			( $isDense ? 'dense' : 'sparse' ) );
 		return $isDense;
 	}
