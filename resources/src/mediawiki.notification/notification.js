@@ -56,6 +56,8 @@
 			// The following classes are used here:
 			// * mw-notification-type-error
 			// * mw-notification-type-warn
+			// * mw-notification-type-success
+			// * mw-notification-type-notice
 			$notification.addClass( 'mw-notification-type-' + options.type );
 		}
 
@@ -451,7 +453,7 @@
 		 * @property {string|null} title Title for the notification. Will be displayed
 		 *   above the content. Usually in bold.
 		 * @property {string|null} type The type of the message used for styling.
-		 *   Examples: `info`, `warn`, `error`, `success`.
+		 *   Examples: `info`, `warn`, `error`, `success`, `notice`.
 		 * @property {boolean} visibleTimeout Whether the autoHide timeout should be
 		 *   based on time the page was visible to user. Or if it should use wall
 		 *   clock time.
