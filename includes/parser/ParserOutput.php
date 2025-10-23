@@ -336,8 +336,11 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 */
 	private $mWrapperDivClasses = [];
 
-	/** @var int Upper bound of expiry based on parse duration */
-	private $mMaxAdaptiveExpiry = INF;
+	/**
+	 * @var ?int Upper bound of expiry based on parse duration;
+	 *    null means "infinite" or "not set"
+	 */
+	private ?int $mMaxAdaptiveExpiry = null;
 
 	// finalizeAdaptiveCacheExpiry() uses TTL = MAX( m * PARSE_TIME + b, MIN_AR_TTL)
 	// Current values imply that m=3933.333333 and b=-333.333333
@@ -2489,7 +2492,8 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * @param int $ttl
 	 * @since 1.28
 	 */
-	public function updateRuntimeAdaptiveExpiry( $ttl ): void {
+	public function updateRuntimeAdaptiveExpiry( int $ttl ): void {
+		$this->mMaxAdaptiveExpiry ??= $ttl;
 		$this->mMaxAdaptiveExpiry = min( $ttl, $this->mMaxAdaptiveExpiry );
 		$this->updateCacheExpiry( $ttl );
 	}
@@ -2535,7 +2539,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * @since 1.28
 	 */
 	public function finalizeAdaptiveCacheExpiry(): void {
-		if ( is_infinite( $this->mMaxAdaptiveExpiry ) ) {
+		if ( $this->mMaxAdaptiveExpiry === null ) {
 			return; // not set
 		}
 
@@ -2546,10 +2550,9 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			// SLOW_AR_TTL = PARSE_SLOW_SEC * $slope + $point
 			$point = self::SLOW_AR_TTL - self::PARSE_SLOW_SEC * $slope;
 
-			$adaptiveTTL = min(
-				max( $slope * $runtime + $point, self::MIN_AR_TTL ),
-				$this->mMaxAdaptiveExpiry
-			);
+			$adaptiveTTL = intval( $slope * $runtime + $point );
+			$adaptiveTTL = max( $adaptiveTTL, self::MIN_AR_TTL );
+			$adaptiveTTL = min( $adaptiveTTL, $this->mMaxAdaptiveExpiry );
 			$this->updateCacheExpiry( $adaptiveTTL );
 		}
 	}
@@ -2676,7 +2679,10 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		$this->addModules( $source->getModules() );
 		$this->addModuleStyles( $source->getModuleStyles() );
 		$this->mJsConfigVars = self::mergeMapStrategy( $this->mJsConfigVars, $source->mJsConfigVars );
-		$this->mMaxAdaptiveExpiry = min( $this->mMaxAdaptiveExpiry, $source->mMaxAdaptiveExpiry );
+		if ( $source->mMaxAdaptiveExpiry !== null ) {
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable
+			$this->updateRuntimeAdaptiveExpiry( $source->mMaxAdaptiveExpiry );
+		}
 		$this->mExtraStyleSrcs = self::mergeList(
 			$this->mExtraStyleSrcs,
 			$source->getExtraCSPStyleSrcs()
@@ -2925,7 +2931,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			foreach ( $this->getUsedOptions() as $opt ) {
 				$metadata->recordOption( $opt );
 			}
-			if ( !is_infinite( $this->mMaxAdaptiveExpiry ) ) {
+			if ( $this->mMaxAdaptiveExpiry !== null ) {
 				$metadata->updateRuntimeAdaptiveExpiry( $this->mMaxAdaptiveExpiry );
 			}
 			if ( $this->mCacheExpiry !== null ) {
@@ -3165,8 +3171,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 
 		// TODO: make more fields optional!
 
-		if ( $this->mMaxAdaptiveExpiry !== INF ) {
-			// NOTE: JSON can't encode infinity!
+		if ( $this->mMaxAdaptiveExpiry !== null ) {
 			$data['MaxAdaptiveExpiry'] = $this->mMaxAdaptiveExpiry;
 		}
 
@@ -3291,7 +3296,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		$this->revisionTimestampUsed = $jsonData['RevisionTimestampUsed'];
 		$this->revisionUsedSha1Base36 = $jsonData['RevisionUsedSha1Base36'];
 		$this->mWrapperDivClasses = $jsonData['WrapperDivClasses'];
-		$this->mMaxAdaptiveExpiry = $jsonData['MaxAdaptiveExpiry'] ?? INF;
+		$this->mMaxAdaptiveExpiry = $jsonData['MaxAdaptiveExpiry'] ?? null;
 	}
 
 	/**
