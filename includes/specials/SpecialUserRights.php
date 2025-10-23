@@ -13,7 +13,6 @@ use MediaWiki\HTMLForm\Field\HTMLUserTextField;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Language\FormatterFactory;
 use MediaWiki\Linker\Linker;
-use MediaWiki\MainConfigNames;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\SpecialPage\UserGroupsSpecialPage;
 use MediaWiki\Status\Status;
@@ -189,7 +188,10 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 	 */
 	private function initialize( UserIdentity $user ): void {
 		$this->targetUser = $user;
-		$this->setTargetName( $user->getName(), $this->getUsernameWithInterwiki( $user ) );
+		$this->setTargetName(
+			$user->getName(),
+			$this->userGroupAssignmentService->getPageTitleForTargetUser( $user )
+		);
 
 		$wikiId = $user->getWikiId();
 		$userGroupManager = $this->userGroupManagerFactory->getUserGroupManager( $wikiId );
@@ -349,7 +351,7 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 		$flags = $systemUser ? 0 : Linker::TOOL_LINKS_EMAIL;
 		return Linker::userToolLinks(
 			$this->targetUser->getId( $targetWiki ),
-			$this->getUsernameWithInterwiki( $this->targetUser ),
+			$this->targetDisplayName,
 			false, /* default for redContribsWhenNoEdits */
 			$flags
 		);
@@ -401,20 +403,6 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 		$result['add-self'] = [];
 		$result['remove-self'] = [];
 		return $result;
-	}
-
-	/**
-	 * Returns the username together with an interwiki suffix if applicable (user{@}wiki).
-	 * This form of the username is suitable for display in logs and other user-facing messages.
-	 * However, it cannot be used for {{GENDER:}} - in that case, use UserIdentity::getName().
-	 */
-	private function getUsernameWithInterwiki( UserIdentity $targetUser ): string {
-		$userName = $targetUser->getName();
-		$targetWiki = $targetUser->getWikiId();
-		if ( $targetWiki !== UserIdentity::LOCAL ) {
-			$userName .= $this->getConfig()->get( MainConfigNames::UserrightsInterwikiDelimiter ) . $targetWiki;
-		}
-		return $userName;
 	}
 
 	/**
