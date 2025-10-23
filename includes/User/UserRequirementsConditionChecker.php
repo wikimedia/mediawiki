@@ -65,11 +65,12 @@ class UserRequirementsConditionChecker {
 	 *
 	 * @param array $cond A condition, which must not contain other conditions
 	 * @param User $user The user to check the condition against
+	 * @param bool $isPerformingRequest Whether $user is the user who performs the current request
 	 * @return bool Whether the condition is true for the user
 	 * @throws InvalidArgumentException if autopromote condition was not recognized.
 	 * @throws LogicException if APCOND_BLOCKED is checked again before returning a result.
 	 */
-	private function checkCondition( array $cond, User $user ): bool {
+	private function checkCondition( array $cond, User $user, bool $isPerformingRequest ): bool {
 		if ( count( $cond ) < 1 ) {
 			return false;
 		}
@@ -104,9 +105,11 @@ class UserRequirementsConditionChecker {
 						$this->userGroupManager->getUserGroups( $user )
 					) ) === count( $groups );
 			case APCOND_ISIP:
-				return $cond[1] === $user->getRequest()->getIP();
+				// Since the IPs are not permanently bound to users, the IP conditions can only be checked
+				// for the requesting user. Otherwise, assume the condition is false.
+				return $isPerformingRequest && $cond[1] === $user->getRequest()->getIP();
 			case APCOND_IPINRANGE:
-				return IPUtils::isInRange( $user->getRequest()->getIP(), $cond[1] );
+				return $isPerformingRequest && IPUtils::isInRange( $user->getRequest()->getIP(), $cond[1] );
 			case APCOND_BLOCKED:
 				// Because checking for ipblock-exempt leads back to here (thus infinite recursion),
 				// we if we've been here before for this user without having returned a value.
@@ -162,17 +165,18 @@ class UserRequirementsConditionChecker {
 	 *
 	 * @param mixed $cond A condition, possibly containing other conditions
 	 * @param User $user The user to check the conditions against
+	 * @param bool $isPerformingRequest Whether $user is the user who performs the current request
 	 *
 	 * @return bool Whether the condition is true
 	 */
-	public function recursivelyCheckCondition( $cond, User $user ): bool {
+	public function recursivelyCheckCondition( $cond, User $user, bool $isPerformingRequest = true ): bool {
 		if ( is_array( $cond ) && count( $cond ) >= 2 && in_array( $cond[0], self::VALID_OPS ) ) {
 			// Recursive condition
 
 			// AND (all conditions pass)
 			if ( $cond[0] === '&' ) {
 				foreach ( array_slice( $cond, 1 ) as $subcond ) {
-					if ( !$this->recursivelyCheckCondition( $subcond, $user ) ) {
+					if ( !$this->recursivelyCheckCondition( $subcond, $user, $isPerformingRequest ) ) {
 						return false;
 					}
 				}
@@ -183,7 +187,7 @@ class UserRequirementsConditionChecker {
 			// OR (at least one condition passes)
 			if ( $cond[0] === '|' ) {
 				foreach ( array_slice( $cond, 1 ) as $subcond ) {
-					if ( $this->recursivelyCheckCondition( $subcond, $user ) ) {
+					if ( $this->recursivelyCheckCondition( $subcond, $user, $isPerformingRequest ) ) {
 						return true;
 					}
 				}
@@ -199,14 +203,14 @@ class UserRequirementsConditionChecker {
 						' Check your $wgAutopromote and $wgAutopromoteOnce settings.'
 					);
 				}
-				return $this->recursivelyCheckCondition( $cond[1], $user )
-					xor $this->recursivelyCheckCondition( $cond[2], $user );
+				return $this->recursivelyCheckCondition( $cond[1], $user, $isPerformingRequest )
+					xor $this->recursivelyCheckCondition( $cond[2], $user, $isPerformingRequest );
 			}
 
 			// NOT (no conditions pass)
 			if ( $cond[0] === '!' ) {
 				foreach ( array_slice( $cond, 1 ) as $subcond ) {
-					if ( $this->recursivelyCheckCondition( $subcond, $user ) ) {
+					if ( $this->recursivelyCheckCondition( $subcond, $user, $isPerformingRequest ) ) {
 						return false;
 					}
 				}
@@ -220,7 +224,7 @@ class UserRequirementsConditionChecker {
 			$cond = [ $cond ];
 		}
 
-		return $this->checkCondition( $cond, $user );
+		return $this->checkCondition( $cond, $user, $isPerformingRequest );
 	}
 
 	/**
