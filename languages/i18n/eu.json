@@ -2360,7 +2360,7 @@
 	"empty-username": "(erabiltzaile izenik ez dago erabilgarri)",
 	"contribslink": "ekarpenak",
 	"emaillink": "E-maila bidali",
-	"autoblocker": "\"[[User:$1|$1]]\"(e)k berriki erabili duen IP helbidea duzulako autoblokeatu zaizu. $1(e)k emandako arrazoia zera da: \"'''$2'''\"",
+	"autoblocker": "\"[[User:$1|$1]]\"(e)k berriki erabili duen IP helbidea duzulako autoblokeatu zaizu.\n$1(e)k emandako arrazoia zera da: \"$2\"",
 	"blocklogpage": "Blokeo erregistroa",
 	"blocklog-showlog": "Lankide hau blokeatua izan da lehenago ere.\nHona hemen blokeoen erregistroa, erreferentzia gisa:",
 	"blocklog-showsuppresslog": "Lankide hau blokeatua eta ezkutatua izan da lehenago ere. Hona hemen erregistroa, erreferentzia gisa:",

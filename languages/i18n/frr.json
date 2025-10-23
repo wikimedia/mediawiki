@@ -1806,7 +1806,7 @@
 	"change-blocklink": "Sper feranre",
 	"contribslink": "Bidracher",
 	"emaillink": "E-mail sjüür",
-	"autoblocker": "Automaatisk speret, auer dü en gemiansoom IP-adres mä [[User:$1|brüker:$1]] brükst. Grünj för det brükersper: „$2“.",
+	"autoblocker": "Automaatisk speret, auer dü en gemiansoom IP-adres mä [[User:$1|brüker:$1]] brükst.\nGrünj för det brükersper: „$2“.",
 	"blocklogpage": "Brükersper-Logbuk",
 	"blocklog-showlog": "Didiar brüker as al ans speret wurden.\nUun't sperlogbuk stäänt:",
 	"blocklog-showsuppresslog": "Didiar brüker as al ans speret an ferbürgen wurden.\nUun't logbuk stäänt:",

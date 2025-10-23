@@ -866,7 +866,7 @@
 	"change-blocklink": "Sperr endan",
 	"contribslink": "Beidreg",
 	"emaillink": "E-Mail vaschicka",
-	"autoblocker": "Autómaatische Sperr, wei du a gmoahsaume IP-Adress mim [[User:$1|$1]] bnutzd. Grund voh da Benutzersperrn: „$2“.",
+	"autoblocker": "Autómaatische Sperr, wei du a gmoahsaume IP-Adress mim [[User:$1|$1]] bnutzd.\nGrund voh da Benutzersperrn: „$2“.",
 	"blocklogpage": "Sperrlogbuach",
 	"blocklog-showlog": "{{GENDER:$1|Der Benutzer|Dé Benutzerrin|Der Benutzer}} do is schoh friarer gsperrd worn. Es fóigt a Eihtrog aus'm Benutzersperrlogbiaché:",
 	"blocklog-showsuppresslog": "{{GENDER:$1|Der Benutzer|Dé Benutzerrin|Der Benutzer}} do is schoh friarer gsperrd und vastéckt worn. Es fóigt a Eihtrog aus'm Benutzersperrlogbiaché:",

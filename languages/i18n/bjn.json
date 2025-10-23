@@ -1779,7 +1779,7 @@
 	"change-blocklink": "ubah blukir",
 	"contribslink": "sumbangan",
 	"emaillink": "kirim surél",
-	"autoblocker": "Utumatis blukir maraga alamat IP Pian hanyar haja dipakai ulih \"[[User:$1|$1]]\".\nAlasan nang diunjuk gasan blukir $1 yaitu \"$2\"",
+	"autoblocker": "Utumatis blukir maraga alamat IP Pian hanyar haja dipakai ulih \"[[User:$1|$1]]\".\nAlasan nang diunjuk gasan blukir $1 yaitu: \"$2\"",
 	"blocklogpage": "Log blukir",
 	"blocklog-showlog": "Pamakai ngini diblukir sabalumnya.\nLog blukir disadiaakan di bawah gasan rujukan:",
 	"blocklog-showsuppresslog": "Pamakai ngini diblukir wan disungkupakan sabalumnya.\nLog panikinan disadiaakan di bawah gasan rujukan:",

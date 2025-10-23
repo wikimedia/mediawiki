@@ -1119,7 +1119,7 @@
 	"change-blocklink": "candjî l' blocaedje",
 	"contribslink": "contribouwaedjes",
 	"emaillink": "evoyî èn emile",
-	"autoblocker": "Bloké otomaticmint paski vos eployîz li minme adresse IP ki «[[User:$1|$1]]». Råjhon do blocaedje «'''$2'''».",
+	"autoblocker": "Bloké otomaticmint paski vos eployîz li minme adresse IP ki «[[User:$1|$1]]».\nRåjhon do blocaedje: «$2».",
 	"blocklogpage": "Djournå des blocaedjes",
 	"blocklogtext": "Çouchal, c' est on djournå des blocaedjes eyet disblocaedjes d' uzeus.\nLes adresses IP blokêyes otomaticmint èn sont nén håynêyes.\nLoukîz li [[Special:BlockList|djivêye des blocaedjes]] po vey les blocaedjes èn alaedje pol moumint.",
 	"block-log-flags-nocreate": "ahivaedje di conte disfindou",

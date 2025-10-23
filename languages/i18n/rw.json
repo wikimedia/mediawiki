@@ -312,7 +312,7 @@
 	"nolinkshere": "Nta rupapuro rwerekeza kuri <strong>$2</strong>.",
 	"blocklink": "hagarika",
 	"contribslink": "Umusanzu",
-	"autoblocker": "Ifunzwe\n kubera ko aderesi ya IP yawe iherutse gukoreshwa na \"[[Umukoresha: $ 1 | $ 1]]\".\nImpamvu yatanzwe kuri $ 1 yo guhagarika ni: <em> $ 2 </em>",
+	"autoblocker": "Ifunzwe kubera ko aderesi ya IP yawe iherutse gukoreshwa na \"[[Umukoresha:$1|$1]]\".\nImpamvu yatanzwe kuri $1 yo guhagarika ni: \"$2\"",
 	"block-log-flags-nocreate": "gufungura konti byahagaritswe",
 	"newtitle": "Intangiriro nshya:",
 	"movereason": "Impamvu:",

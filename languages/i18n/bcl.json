@@ -1969,7 +1969,7 @@
 	"change-blocklink": "ribayan an bagat",
 	"contribslink": "ambag",
 	"emaillink": "ipadara an e-surat",
-	"autoblocker": "Enseguidang binagat an saimong IP ta kaaaging ginamit ini ni \"[[User:$1|$1]]\". An rason nin pagbagat ni $1: \"$2\"",
+	"autoblocker": "Enseguidang binagat an saimong IP ta kaaaging ginamit ini ni \"[[User:$1|$1]]\".\nAn rason nin pagbagat ni $1: \"$2\"",
 	"blocklogpage": "Katalaanan nin bagat",
 	"blocklog-showlog": "Ining paragamit dati nang pinagbarahan.\nAn talaan nin pagbara nakahaya sa ibaba bilang reperensiya:",
 	"blocklog-showsuppresslog": "Ining paragamit pinagkubkob asin dati nang ipinagtago.\nAn talaan nin pagpaunlok ipinagtao sa ibaba para hilingan.",

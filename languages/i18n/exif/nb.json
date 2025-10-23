@@ -405,5 +405,11 @@
 	"exif-digitalsourcetype-digitalart": "Skapt av et menneske ved hjelp av digitale verktøy",
 	"exif-digitalsourcetype-digitalcreation": "Medier skapt av mennesker med verktøy (ikke KI)",
 	"exif-digitalsourcetype-datadrivenmedia": "Digital medierepresentasjon av data via menneskelig programmering eller kreativitet",
-	"exif-digitalsourcetype-trainedalgorithmicmedia": "Skapt med generativ KI"
+	"exif-digitalsourcetype-trainedalgorithmicmedia": "Skapt med generativ KI",
+	"exif-digitalsourcetype-algorithmicmedia": "Medier skapt utelukkende av algoritmer som ikke er KI",
+	"exif-digitalsourcetype-screencapture": "Skjermbilde",
+	"exif-digitalsourcetype-virtualrecording": "Liveopptak av virtuell hendelse basert på generativ KI og/eller elementer som det er tatt skjermbilde av",
+	"exif-digitalsourcetype-composite": "Blanding eller sammensetning av flere elementer, hvorav alle kan eller ikke kan være generativ KI",
+	"exif-digitalsourcetype-compositecapture": "Blanding eller sammensetning av flere elementer som alle er gjengivelser av virkeligheten",
+	"exif-digitalsourcetype-compositesynthetic": "Blanding eller sammensetning av flere elementer, hvorav minst ett er generativ KI"
 }

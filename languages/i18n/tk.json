@@ -1955,7 +1955,7 @@
 	"empty-username": "(ulanyjy ady ýok)",
 	"contribslink": "goşantlar",
 	"emaillink": "e-poçta iber",
-	"autoblocker": "Awtomatik usulda blokirlendiňiz, çünki ýaňy-ýakynda IP adresiňiz \"[[User:$1|$1]]\" ulanyjysy tarapyndan ulanyldy. $1 atly ulanyjynyň blokirlenmegi üçin görkezilen sebäp: \"'''$2'''\"",
+	"autoblocker": "Awtomatik usulda blokirlendiňiz, çünki ýaňy-ýakynda IP adresiňiz \"[[User:$1|$1]]\" ulanyjysy tarapyndan ulanyldy.\n$1 atly ulanyjynyň blokirlenmegi üçin görkezilen sebäp: \"$2\"",
 	"blocklogpage": "Blokirleme gündeligi",
 	"blocklog-showlog": "Bu ulanyjy ozal hem blokirlenipdir.\nSalgylanmak üçin blokirleme gündeligi aşakda berilýär:",
 	"blocklog-showsuppresslog": "Bu ulanyjy ozaldan blokirlenipdir hem-de gizlenilipdir.\nBökdeme gündeligi salgylanmak üçin aşakda berilýär:",

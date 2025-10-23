@@ -969,7 +969,6 @@
 	"userrights-expiry-options": "1 beaivi:1 day,1 vahkku:1 week,1 mánotbadji:1 month,3 mánotbaji:3 months,6 mánotbaji:6 months,1 jahki:1 year",
 	"userrights-invalid-expiry": "Joavkku «$1» doaibmanáigi ii gusto.",
 	"userrights-expiry-in-past": "Joavkku «$1» doaibmanáigi lea juo nohkan.",
-	"userrights-no-tempuser": "Gaskaboddosaš geavaheddjiid ii sáhte lasihit joavkkuide.",
 	"userrights-no-group": "Gaskasboddosaš geavaheddjiin eai leat joavkkut.",
 	"userrights-conflict": "Soahpatmeahttunvuohta šattai geavaheaddjivuoigatvuođa rievdadettiin! Iskka ja nanne oktii vel iežat rievdadusaid.",
 	"group": "Joavku:",

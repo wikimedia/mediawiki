@@ -2218,7 +2218,7 @@
 	"empty-username": "(korisničko ime nije dostupno)",
 	"contribslink": "doprinosi",
 	"emaillink": "pošalji e-poruku",
-	"autoblocker": "Automatski ste blokirani jer dijelite IP-adresu sa \"[[User:$1|$1]]\".\nRazlog za blokiranje korisnika $1 je ''$2''",
+	"autoblocker": "Automatski ste blokirani jer dijelite IP-adresu sa \"[[User:$1|$1]]\".\nRazlog za blokiranje korisnika $1 je: \"$2\"",
 	"blocklogpage": "Zapisnik blokiranja",
 	"blocklog-showlog": "Ovaj korisnik je ranije blokiran. Zapisnik blokiranja je prikazan ispod kao referenca:",
 	"blocklog-showsuppresslog": "Ovaj korisnik je ranije blokiran i sakriven. Zapisnik sakrivanja je prikazan ispod kao referenca:",

@@ -2291,7 +2291,7 @@
 	"empty-username": "(nun ta disponible'l nome d'usuariu)",
 	"contribslink": "contribuciones",
 	"emaillink": "unviar corréu",
-	"autoblocker": "Bloquiáu automáticamente porque la so direición IP usóla de recién «[[User:$1|$1]]». El motivu del bloquéu de $1 ye «$2»",
+	"autoblocker": "Bloquiáu automáticamente porque la so direición IP usóla de recién «[[User:$1|$1]]».\nEl motivu del bloquéu de $1 ye: «$2»",
 	"blocklogpage": "Rexistru de bloqueos",
 	"blocklog-showlog": "{{GENDER:$1|Esti usuariu|Esta usuaria}} recibió un bloquéu previamente.\nEl rexistru de bloqueos s'ufre darréu pa referencia:",
 	"blocklog-showsuppresslog": "Esti usuariu recibió un bloquéu y s'anubrió previamente.\nEl rexistru de desanicios s'ufre darréu pa referencia:",

@@ -2390,7 +2390,7 @@
 	"empty-username": "(bê namey karberi nêbeno)",
 	"contribslink": "iştıraki",
 	"emaillink": "e-poste bırışe",
-	"autoblocker": "Şıma otomatikmen kılit biy, çıke adresa şımaya ''IP''y terefê \"[[User:$1|$1]]\" ra gureniyena.\nSebebê kılitbiyayışê $1'i \"$2\"o",
+	"autoblocker": "Şıma otomatikmen kılit biy, çıke adresa şımaya ''IP''y terefê \"[[User:$1|$1]]\" ra gureniyena.\nSebebê kılitbiyayışê $1'i: \"$2\"o",
 	"blocklogpage": "Qeydê kılitkerdışi",
 	"blocklog-showlog": "verniyê {{GENDER:$1| no/na karberi}} cıwa ver geriyayo/ya.",
 	"blocklog-showsuppresslog": "verniyê no/na karberi cıwa ver geriyayo/ya.",

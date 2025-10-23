@@ -966,7 +966,6 @@
 	"userrights-expiry-options": "1 dydd:1 day,1 wythnos:1 week,1 mis:1 month,3 mis:3 months,6 mis:6 months,1 blynedd:1 year",
 	"userrights-invalid-expiry": "Mae terfyn amser y grwp \"$1\" yn annilys.",
 	"userrights-expiry-in-past": "Mae'r amser dod i ben ar gyfer grŵp \"$1\" yn y gorffennol.",
-	"userrights-no-tempuser": "Ni ellir ychwanegu defnyddwyr dros dro i grwpiau.",
 	"userrights-no-group": "Nid oes gan ddefnyddwyr dros dro grwpiau.",
 	"userrights-conflict": "Gwrthdaro oherwydd newid i hawliau defnyddiwr! Adolygwch eich newidiadau a'u cadarnhau.",
 	"group": "Grŵp:",

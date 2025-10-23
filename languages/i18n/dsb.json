@@ -1665,7 +1665,7 @@
 	"change-blocklink": "Blokěrowanje změniś",
 	"contribslink": "pśinoski",
 	"emaillink": "E-mail pósłaś",
-	"autoblocker": "Awtomatiski blokěrowany, dokulaž twója IP-adresa jo se rowno wót \"[[User:$1|$1]]\" wužyła. Pśicyna za blokěrowanje wužywarja $1 jo: \"$2\".",
+	"autoblocker": "Awtomatiski blokěrowany, dokulaž twója IP-adresa jo se rowno wót \"[[User:$1|$1]]\" wužyła.\nPśicyna za blokěrowanje wužywarja $1 jo: \"$2\".",
 	"blocklogpage": "Protokol blokěrowanjow",
 	"blocklog-showlog": "Toś ten wužywaŕ jo se pjerwjej zablokěrował. Protokol blokěrowanjow pódawa se dołojce ako referenca:",
 	"blocklog-showsuppresslog": "Toś ten wužywaŕ jo se pjerwjej zablokěrował a schował. Protokol pódtłocowanjow pódawa se dołojce ako referenca:",

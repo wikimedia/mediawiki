@@ -903,7 +903,6 @@
 	"userrights-expiry-current": "$1 காலாவதியாகும்",
 	"userrights-expiry-none": "காலாவதியாகாது",
 	"userrights-expiry": "காலாவதியாவது:",
-	"userrights-no-tempuser": "தற்காலிகப் பயனர்களைக் குழுக்களிற் சேர்க்க முடியாது.",
 	"userrights-conflict": "பயனர் உரிமைகளின் மாற்றங்களில் முரண்பாடு உள்ளது! மறு ஆய்வு செய்து, உங்கள் மாற்றங்களை உறுதி செய்க.",
 	"group": "குழு:",
 	"group-user": "பயனர்கள்",

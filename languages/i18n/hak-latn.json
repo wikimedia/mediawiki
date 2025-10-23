@@ -557,7 +557,7 @@
 	"ipblocklist-no-results": "Só chhiáng-khiù ke IP thi-chí fe̍t yung-fu-miàng mò-fûn chhà-fûng.",
 	"blocklink": "chhà-fûng",
 	"contribslink": "Kung-hien",
-	"autoblocker": "Ngì-ke IP lâu pûn fûng-liáu ke \"$1\" he yit-yong ke. Fûng-só ngièn-yîn: \"$2\".",
+	"autoblocker": "Ngì-ke IP lâu pûn fûng-liáu ke [[User:$1|$1]] he yit-yong ke.\nFûng-só ngièn-yîn: \"$2\".",
 	"blocklogtext": "Liá-he kôan-yî yung-fu fûng-kim lâu kié-chhù fûng-kim chhâu-chok ke ki-liu̍k. Pûn chhṳ-thung fûng-kim ke IP thi-tiám mò-yû lie̍t-chhut. Chhiáng chhâm-kháu [[Special:BlockList|Pûn chhà-fûng ke IP thi-tiám lâu yung-fu lie̍t-péu]].",
 	"block-log-flags-anononly": "tân-chhiang nit-miàng yung-fu",
 	"block-log-flags-noautoblock": "kim-yung chhṳ-thûng chhà-fûng",

@@ -1840,7 +1840,7 @@
 	"change-blocklink": "beddel asewḥel",
 	"contribslink": "attekki",
 	"emaillink": "Ceggaɛ e-mail",
-	"autoblocker": "Tweḥleḍ s wudem awurman acku tansa-ik IP yeseqdac-itt \"[[User:$1|$1]]\"\nTaɣzint i d-ittunefken i usewḥel n $1 d \"$2\"",
+	"autoblocker": "Tweḥleḍ s wudem awurman acku tansa-ik IP yeseqdac-itt \"[[User:$1|$1]]\"\nTaɣzint i d-ittunefken i usewḥel n $1 d: \"$2\"",
 	"blocklogpage": "Aɣmis n isewḥelen",
 	"blocklog-showlog": "Amseqdac agi, yetseweḥel uqbel. Ad affeḍ aɣmis n isewḥal ddaw-agi :",
 	"blocklog-showsuppresslog": "Amseqdac agi, yetseweḥel dɣa yeweffer uqbel. Ad affeḍ aɣmis n tukksiwin ddaw-agi :",

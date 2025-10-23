@@ -1526,7 +1526,7 @@
 	"change-blocklink": "útsluting feroarje",
 	"contribslink": "bydragen",
 	"emaillink": "e-mail stjoere:",
-	"autoblocker": "Automatysk útsletten om't jo YP-adres okkerdeis brûkt is troch \"[[User:$1|$1]]\".\nAs reden foar de útsluting fan $1 is opjûn \"$2\"",
+	"autoblocker": "Automatysk útsletten om't jo YP-adres okkerdeis brûkt is troch \"[[User:$1|$1]]\".\nAs reden foar de útsluting fan $1 is opjûn: \"$2\"",
 	"blocklogpage": "Utslútloch",
 	"blocklogtext": "Dit is in loch fan it útsluten en talitten fan meidoggers. Fansels útsletten YP-adressen binne net opnaam. Sjoch de [[Special:BlockList|útslútlist]] foar de no jildende útslutings.",
 	"block-log-flags-anononly": "allinne anonime meidoggers",

@@ -956,7 +956,7 @@
 	"blocklink": "buğattaw",
 	"unblocklink": "buğattamaw",
 	"contribslink": "ülesı",
-	"autoblocker": "IP mekenjaýıñızdı jwıqta «[[{{ns:user}}:1|$1]]» paýdalanğan, sondıqtan özbuğattalğan.\n$1 buğattawı üşin keltirilgen sebebi: «$2».",
+	"autoblocker": "IP mekenjaýıñızdı jwıqta «[[User:$1|$1]]» paýdalanğan, sondıqtan özbuğattalğan.\n$1 buğattawı üşin keltirilgen sebebi: «$2».",
 	"blocklogpage": "Buğattaw_jwrnalı",
 	"blocklogtext": "Bul qatıswşılardı buğattaw/buğattamaw äreketteriniñ jwrnalı.\nÖzdiktik buğattalğan IP mekenjaýlar osında tizimdelgemegen.\nAğımdağı belsendi tïımdar men buğattawlardı [[{{#special:Ipblocklist}}|IP buğattaw tiziminen]] qarañız.",
 	"block-log-flags-anononly": "tek tirkelgisizder",

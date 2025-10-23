@@ -1258,7 +1258,7 @@
 	"change-blocklink": "blok etüvni deñiştir",
 	"contribslink": "isseler",
 	"emaillink": "e-mail yolla",
-	"autoblocker": "Avtomatik olaraq blok etildiñiz çünki keçenlerde IP adresiñiz \"[[User:$1|$1]]\" qullanıcısı tarafından qullanıldı. $1 adlı qullanıcınıñ blok etilüvi içün bildirilgen sebep: \"'''$2'''\"",
+	"autoblocker": "Avtomatik olaraq blok etildiñiz çünki keçenlerde IP adresiñiz \"[[User:$1|$1]]\" qullanıcısı tarafından qullanıldı.\n$1 adlı qullanıcınıñ blok etilüvi içün bildirilgen sebep: \"$2\"",
 	"blocklogpage": "Blok etüv jurnalı",
 	"blocklogtext": "Mında qullanıcı irişimine yönelik blok etüv ve blok çıqaruv qaydları kösterile. Avtomatik IP adresi blok etüvleri cedvelge kirsetilmedi. Şimdi irişimi toqtatılğan qullanıcılarnı [[Special:BlockList|IP blok etüv cedveli]] saifesinden körip olasıñız.",
 	"block-log-flags-nocreate": "yañı qullanıcı esabı yaratmaq yasaq etildi",

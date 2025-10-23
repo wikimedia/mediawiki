@@ -2126,7 +2126,7 @@
 	"change-blocklink": "blokkaasj verangere",
 	"contribslink": "biedrages",
 	"emaillink": "sjik mail",
-	"autoblocker": "Autematis geblokkeerd ómdet dien IP-adres recèntelik is gebroek door \"[[User:$1|$1]]\".\nDe raeje veur de blokkaasj van $1 is: ''$2''",
+	"autoblocker": "Autematis geblokkeerd ómdet dien IP-adres recèntelik is gebroek door \"[[User:$1|$1]]\".\nDe raeje veur de blokkaasj van $1 is: \"$2\"",
 	"blocklogpage": "Blokkeerlogbook",
 	"blocklog-showlog": "Dizze gebroeker is eerder geblokkeerd gewaes.\n't Blokkeerlogbook wört hiejonger weergaeve:",
 	"blocklog-showsuppresslog": "Deze gebroeker is al geblok gewaes en d'r zeen (deil van) bewerkinge van deze gebroeker verbórge. 't Verbèrgingslogbook steit hieónger:",

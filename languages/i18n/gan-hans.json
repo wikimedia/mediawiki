@@ -935,7 +935,7 @@
 	"unblocklink": "解封",
 	"change-blocklink": "改动封禁",
 	"contribslink": "贡献",
-	"autoblocker": "倷同\"[[$1]]\"共用一只IP，故系倷也拖自动锁到嘞。$1封锁𠮶缘故系\"$2\"。",
+	"autoblocker": "倷同\"[[User:$1|$1]]\"共用一只IP，故系倷也拖自动锁到嘞。\n$1封锁𠮶缘故系: \"$2\"。",
 	"blocklogpage": "封锁日志",
 	"blocklogtext": "个系用户封锁同解封操作𠮶日志。拖自动封锁𠮶IP冇列出。请参看[[Special:BlockList|拖封IP地址列表]]。",
 	"block-log-flags-anononly": "单限制匿名用户",

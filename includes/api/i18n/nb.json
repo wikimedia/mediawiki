@@ -315,7 +315,7 @@
 	"apihelp-mergehistory-param-fromid": "Side-ID-en til siden historikken skal flettes fra. Kan ikke brukes sammen med <var>$1from</var>.",
 	"apihelp-mergehistory-param-to": "Tittelen på siden historikken skal flettes til. Kan ikke brukes sammen med <var>$1toid</var>.",
 	"apihelp-mergehistory-param-toid": "Side-ID-en til siden historikken skal flettes til. Kan ikke brukes sammen med <var>$1to</var>.",
-	"apihelp-mergehistory-param-timestamp": "Det seneste tidsstempelet for sideversjoner som skal flyttes fra kildesidens historikk til målsidens historikk. Hvis denne ikke tas med vil hele sidehistorikken til kildesiden bli flettet til målsiden.",
+	"apihelp-mergehistory-param-timestamp": "Det seneste tidsstempelet for sideversjoner som skal flyttes fra kildesidens historikk til målsidens historikk. Hvis denne ikke tas med vil hele sidehistorikken til kildesiden bli flettet til målsiden. Man kan angi «timestamp|revid» for å dele to sideversjoner med samme tidsstempel.",
 	"apihelp-mergehistory-param-reason": "Årsak for fletting av historikk.",
 	"apihelp-mergehistory-example-merge": "Flett hele historikken til <kbd>Oldpage</kbd> inn i <kbd>Newpage</kbd>.",
 	"apihelp-mergehistory-example-merge-timestamp": "Flett sideversjonene av <kbd>Oldpage</kbd> til og med <kbd>2015-12-31T04:37:41Z</kbd> inn i <kbd>Newpage</kbd>.",

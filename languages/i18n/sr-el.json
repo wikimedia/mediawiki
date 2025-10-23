@@ -994,7 +994,6 @@
 	"userrights-expiry-options": "1 dan:1 day,1 nedelja:1 week,1 mesec:1 month,3 meseca:3 months,6 meseci:6 months,1 godina:1 year",
 	"userrights-invalid-expiry": "Vreme isticanja grupe „$1” nije važeće.",
 	"userrights-expiry-in-past": "Vreme isticanja grupe „$1” je u prošlosti.",
-	"userrights-no-tempuser": "Privremeni korisnici ne mogu biti dodati u grupe.",
 	"userrights-no-group": "Privremeni korisnici nemaju grupe.",
 	"userrights-conflict": "Sukob promena korisničkih prava. Pregledajte i proverite promene.",
 	"group": "Grupa:",

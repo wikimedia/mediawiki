@@ -1200,7 +1200,7 @@
 	"unblocklink": "desatarugal",
 	"change-blocklink": "chambal tarugu",
 	"contribslink": "portas.",
-	"autoblocker": "Autu-atarugau ebiu a que la tu IP á siu gastá hazi pocu pol \"[[User:$1|$1]]\". La razón el tarugu de $1 es: \"$2\"",
+	"autoblocker": "Autu-atarugau ebiu a que la tu IP á siu gastá hazi pocu pol \"[[User:$1|$1]]\".\nLa razón el tarugu de $1 es: \"$2\"",
 	"blocklogpage": "Registru de bloqueus",
 	"block-log-flags-anononly": "sólu esuarius alónimus",
 	"block-log-flags-nocreate": "Desativau la criación de cuentas",

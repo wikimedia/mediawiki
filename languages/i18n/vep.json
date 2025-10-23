@@ -954,7 +954,6 @@
 	"userrights-expiry-options": "1 päiv:1 day,1 nedal':1 week,1 ku:1 month,3 kud:3 months,6 kud:6 months,1 voz':1 year",
 	"userrights-invalid-expiry": "Gruppan radonaig \"$1\" om vär.",
 	"userrights-expiry-in-past": "Gruppan radonaig \"$1\" lopihe.",
-	"userrights-no-tempuser": "Keskaigaižed kävutajad ei voigoi olda gruppoiš.",
 	"userrights-no-group": "Keskaigaižil kävutajil ei ole gruppoid.",
 	"userrights-conflict": "Kävutajan oiktusiden vajehtusiden rida!\nOle hüvä, kacu tehtud vajehtused da tošta ned.",
 	"group": "Grupp:",

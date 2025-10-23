@@ -1483,7 +1483,7 @@
 	"change-blocklink": "Midar opziuns da bloccar",
 	"contribslink": "contribuziuns",
 	"emaillink": "Trametter in e-mail",
-	"autoblocker": "Vossa adressa dad IP è vegnida bloccada perquai che vus utilisais ina adressa dad IP cun [[User:$1|$1]]. Motiv per bolccar $1: '''$2'''.",
+	"autoblocker": "Vossa adressa dad IP è vegnida bloccada perquai che vus utilisais ina adressa dad IP cun [[User:$1|$1]].\nMotiv per bolccar $1: \"$2\".",
 	"blocklogpage": "Protocol da bloccadas",
 	"blocklog-showlog": "Quest utilisader è gia vegnì bloccà pli baud.\nQua il protocol da bloccadas sco infurmaziun:",
 	"blocklog-showsuppresslog": "Quest utilisader è gia vegnì bloccà e zuppentà pli baud.\nQuai è il protocol da suppressiuns sco infurmaziun:",

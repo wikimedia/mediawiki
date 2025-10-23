@@ -934,7 +934,6 @@
 	"userrights-expiry-options": "1 кӱн:1 day,1 неделя:1 week,1 ай:1 month,3 ай:3 months,6 ай:6 months,1 чыл:1 year",
 	"userrights-invalid-expiry": "\"$1\" группаа пирілген тус саба турғызылған",
 	"userrights-expiry-in-past": "\"$1\" группаа пирілген тус ирт парған.",
-	"userrights-no-tempuser": "Ӱр нимеске кирілген араласчыларны группаларға хозарға чарабас",
 	"userrights-no-group": "Ӱр нимеске кирілген араласчыларның группалары чоғыл.",
 	"userrights-conflict": "Араласчының правозын алыстырар талас! Сыныхтап, пазох алыстыр кӧріңер.",
 	"group": "Группа:",

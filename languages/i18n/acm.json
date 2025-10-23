@@ -949,7 +949,6 @@
 	"userrights-expiry-options": "1 يوم:1 day,1 أسبوع:1 week,1 شهر:1 month,3 شهور:3 months,6 شهور:6 months,1 سنة:1 year",
 	"userrights-invalid-expiry": "تاريخ انتهاء المجموعه \"$1\" مو صحيح.",
 	"userrights-expiry-in-past": "تاريخ انتهاء المجموعه \"$1\" هو في الماضي.",
-	"userrights-no-tempuser": "ما يصير تخلي الحسابات المؤقته بمجموعات.",
 	"userrights-no-group": "المستخدمين المؤقتين ما عدهم مجموعات.",
 	"userrights-conflict": "تضارب في تغيير صلاحيات المستخدم! الرجاء مراجعة تغييراتك مره ثانيه واكدها.",
 	"group": "المجموعه:",

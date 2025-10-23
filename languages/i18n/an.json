@@ -1429,7 +1429,7 @@
 	"change-blocklink": "cambear bloqueyo",
 	"contribslink": "contrebucions",
 	"emaillink": "ninviar correu electronico",
-	"autoblocker": "Ye bloqueyato automaticament porque a suya adreza IP l'ha feito servir recientement \"[[User:$1|$1]]\". A razón data ta bloqueyar a \"[[User:$1|$1]]\" estió \"$2\".",
+	"autoblocker": "Ye bloqueyato automaticament porque a suya adreza IP l'ha feito servir recientement \"[[User:$1|$1]]\".\nA razón data ta bloqueyar a \"[[User:$1|$1]]\" estió: \"$2\".",
 	"blocklogpage": "Rechistro de bloqueyos",
 	"blocklog-showlog": "Iste usuario ya ha estau bloqueyau.\nTa más detalles, debaixo s'amuestro o rechistro de bloqueyos:",
 	"blocklog-showsuppresslog": "Iste usuario ha estau bloqueyau y amagau.\nTa más detalles, debaixo s'amuestra o rechistro de supresions:",

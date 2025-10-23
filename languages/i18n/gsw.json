@@ -1783,7 +1783,7 @@
 	"change-blocklink": "Sperri ändere",
 	"contribslink": "Byträg",
 	"emaillink": "E-Mail abschicke",
-	"autoblocker": "Automatischi Sperrig, wil dyni IP-Adrässe chürzlech vo [[User:$1|Benutzer:$1]] isch ’bruucht worde. Grund für d Sperrig vo $1: «$2».",
+	"autoblocker": "Automatischi Sperrig, wil dyni IP-Adrässe chürzlech vo [[User:$1|Benutzer:$1]] isch ’bruucht worde.\nGrund für d Sperrig vo $1: «$2».",
 	"blocklogpage": "Sperrigs-Protokoll",
 	"blocklog-showlog": "Dää Benutzer isch schon emol gsperrt wore. S Sperrine-Logbuech git s do as Referänz:",
 	"blocklog-showsuppresslog": "Dää Benutzer isch schon emol gsperrt wore un syyni Bearbeitige sin uusblädet wore. S Uusbländigs-Logbuech git s do as Referänz:",

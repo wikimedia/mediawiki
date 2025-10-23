@@ -1988,7 +1988,7 @@
 	"change-blocklink": "owahi blokiran",
 	"contribslink": "pasumbang",
 	"emaillink": "kirim layang-èl",
-	"autoblocker": "Kablokir otomatis amarga alamat IP panjenengan mentas dianggo \"[[User:$1|$1]]\".\nAlesané $1 kablokir iku \"$2\"",
+	"autoblocker": "Kablokir otomatis amarga alamat IP panjenengan mentas dianggo \"[[User:$1|$1]]\".\nAlesané $1 kablokir iku: \"$2\"",
 	"blocklogpage": "Log blokir",
 	"blocklog-showlog": "Naraguna iki wis tau diblokir sakdurungé.\nLog blokiran sumadhiya ing ngisor kanggo rujukan:",
 	"blocklog-showsuppresslog": "Naraguna iki wis tau diblokir lan didhelikaké sakdurungé.\nLog brèdèlan sumadhiya ing ngisor kanggo rujukan:",

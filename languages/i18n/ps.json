@@ -881,7 +881,6 @@
 	"userrights-expiry-options": "۱ ورځ:1 day,۱ اوونۍ:1 week,۱ مياشت:1 month,۳ مياشتې:3 months,۶ مياشتې:6 months,۱ کال:1 year",
 	"userrights-invalid-expiry": "د ډلې لپاره د ختمولو \"$1\" ناباوره دی.",
 	"userrights-expiry-in-past": "د ډلې لپاره د ختمولو وخت \"$1\" په تیرو کې دی.",
-	"userrights-no-tempuser": "لنډمهاله کارنان ډلگيو ته نشي ورگېدای.",
 	"userrights-no-group": "لنډمهاله کارنان ډلگي نه لري.",
 	"userrights-conflict": "شخړه د کارن د حقونو بدلونونه! مهرباني وکړئ خپل بدلونونه بیاکتنه تایید کړئ.",
 	"group": "ډله:",

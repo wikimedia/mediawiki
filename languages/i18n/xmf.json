@@ -989,7 +989,6 @@
 	"userrights-expiry-options": "1 დღა:1 day,1 მარა:1 week,1 თუთა:1 month,3 თითა:3 months,6 თუთა:6 months,1 წანა:1 year",
 	"userrights-invalid-expiry": "ვადაშ გულაშ თარიღი ბუნაშო „$1“ ჩილათირი რე.",
 	"userrights-expiry-in-past": "ვადაშ გულაშ თარიღი ბუნაშო „$1“ მეწურაფილი რე ულირი ბორჯით.",
-	"userrights-no-tempuser": "ობორჯე მახვარებუეფიშ ბუნეფშა გეძინა ვეშილებე.",
 	"userrights-no-group": "ობორჯე მახვარებუეფს ვაუღჷნა ბუნეფი.",
 	"userrights-conflict": "მახვარებუეფიშ ნებეფიშ კონფლიქტი! ქორთხინთ ხემაჟირაშა დოჩუათ თქვანი თირუეფი.",
 	"group": "ბუნა:",

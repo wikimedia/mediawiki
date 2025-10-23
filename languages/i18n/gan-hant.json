@@ -1057,7 +1057,7 @@
 	"unblocklink": "解封",
 	"change-blocklink": "改動封禁",
 	"contribslink": "貢獻",
-	"autoblocker": "倷同\"[[$1]]\"共用一隻IP，故係倷也拕自動鎖到嘞。$1封鎖嗰緣故係\"$2\"。",
+	"autoblocker": "倷同\"[[User:$1|$1]]\"共用一隻IP，故係倷也拕自動鎖到嘞。\n$1封鎖嗰緣故係: \"$2\"。",
 	"blocklogpage": "封鎖日誌",
 	"blocklogtext": "箇係用戶封鎖同解封操作嗰日誌。拕自動封鎖嗰IP冇列出。請參看[[Special:BlockList|拕封IP地址列表]]。",
 	"block-log-flags-anononly": "單限制匿名用戶",

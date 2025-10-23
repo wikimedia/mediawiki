@@ -1015,7 +1015,6 @@
 	"userrights-expiry-options": "1 diena:1 day,1 savaitė:1 week,1 mėnuo:1 month,3 mėnesiai:3 months,6 mėnesiai:6 months,1 metai:1 year",
 	"userrights-invalid-expiry": "„$1“ grupės galiojimo laikas negalimas.",
 	"userrights-expiry-in-past": "„$1“ grupės galiojimo laikas yra praeityje.",
-	"userrights-no-tempuser": "Laikinų naudotojų negalima įtraukti į grupes.",
 	"userrights-no-group": "Laikini naudotojai neturi grupių.",
 	"userrights-conflict": "Naudotojo teisių konfliktas! Prašome dar kartą taikyti savo keitimus.",
 	"group": "Grupė:",

@@ -2388,7 +2388,7 @@
 	"empty-username": "(nama pemaké kaga' derak)",
 	"contribslink": "sumbang",
 	"emaillink": "kirim surlès",
-	"autoblocker": "Digibang sendèwèk bahna lu punya aderès IP barusan dipaké ama \"[[User:$1|$1]]\".\nAlasan nyang dikasi bakal $1 punya penggibangan ièlah \"$2\"",
+	"autoblocker": "Digibang sendèwèk bahna lu punya aderès IP barusan dipaké ama \"[[User:$1|$1]]\".\nAlasan nyang dikasi bakal $1 punya penggibangan ièlah: \"$2\"",
 	"blocklogpage": "Rekeman penggibangan",
 	"blocklog-showlog": "Ni {{GENDER:$1|pemaké}} udah digibang sebelonnya.\nRekeman penggibangan ada di bawah ni sebagé ruju'an:",
 	"blocklog-showsuppresslog": "Ni {{GENDER:$1|pemaké}} udah digibang èn diumpetin sebelonnya.\nRekeman pembrangusan ada di bawah ni sebagé ruju'an:",

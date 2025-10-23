@@ -995,7 +995,6 @@
 	"userrights-expiry-options": "1 tago:1 tago,1 semajno:1 semajno,1 monato:1 monato,3 monatoj:3 monatoj,6 monatoj:6 monatoj,1 jaro:1 jaro",
 	"userrights-invalid-expiry": "La eksvalidiĝa tempo por la grupo „$1“ estas nevalida.",
 	"userrights-expiry-in-past": "La eksvalidiĝas tempo por la grupo „$1“ jam pasis.",
-	"userrights-no-tempuser": "Portempaj uzantoj ne povas esti aldonitaj al grupoj.",
 	"userrights-no-group": "Portempaj uzantoj ne havas grupojn.",
 	"userrights-conflict": "Konflikto ĉe la ŝanĝo de uzantorajtoj! Bonvolu kontroli kaj konfirmi viajn ŝanĝojn.",
 	"group": "Grupo:",

@@ -552,7 +552,7 @@
 	"blocklink": "blòkia",
 	"unblocklink": "desblokia",
 	"contribslink": "kontrib'nan",
-	"autoblocker": "Bo tabata outomatikamente blokiá pasombra \"[[User:$1|$1]]\" a uza e IP adrès aki resientemente. E rason ku $1 tabata blokiá ta: \"'''$2'''\"",
+	"autoblocker": "Bo tabata outomatikamente blokiá pasombra \"[[User:$1|$1]]\" a uza e IP adrès aki resientemente.\nE rason ku $1 tabata blokiá ta: \"$2\"",
 	"block-log-flags-nocreate": "a desaktivá kreashon di kuenta nobo",
 	"proxyblocker": "blòkdó di proxy",
 	"newtitle": "Título nobo:",

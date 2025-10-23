@@ -1513,7 +1513,7 @@
 	"change-blocklink": "broyt blokkering",
 	"contribslink": "íkøst",
 	"emaillink": "send teldupost",
-	"autoblocker": "Sjálvvirkandi sperring tí at tín IP adressa nýliga er blivin brúkt av \"[[User:$1|$1]]\".\nOrsøkin ið varð nevnd fyri at sperra $1 er \"$2\"",
+	"autoblocker": "Sjálvvirkandi sperring tí at tín IP adressa nýliga er blivin brúkt av \"[[User:$1|$1]]\".\nOrsøkin ið varð nevnd fyri at sperra $1 er: \"$2\"",
 	"blocklogpage": "Bannagerðabók",
 	"blocklog-showlog": "Hesin brúkarin hevur fyrr verið sperraður.\nSperringarloggurin er vístur niðanfyri til kunningar:",
 	"blocklog-showsuppresslog": "Hesin brúkarin hevur fyrr verið sperraður og duldur.\nFjalingarloggurin er vístur niðanfyri til kunningar:",

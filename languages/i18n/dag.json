@@ -1188,7 +1188,6 @@
 	"redirect-revision": "Labyuli yaɣali",
 	"redirect-file": "Kɔliguyuli",
 	"specialpages": "Yaɣa din gahim",
-	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Tag|Tags}}]]: $2",
 	"tags-active-yes": "Eii",
 	"tags-active-no": "Aayi",
 	"tags-hitcount": "$1{{PLURAL:$1taɣbu|taɣbu}}",

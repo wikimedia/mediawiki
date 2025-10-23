@@ -751,7 +751,7 @@
 	"change-blocklink": "mani bıvurne",
 	"contribslink": "iştıraki",
 	"emaillink": "e-poste bırusne",
-	"autoblocker": "Sıma otomatikmen kılit biy, çıke adresa sımawa ''IP''y terefê \"[[User:$1|$1]]\" gurenina.\nSebebê kılitbiyaena $1'i \"$2\"o",
+	"autoblocker": "Sıma otomatikmen kılit biy, çıke adresa sımawa ''IP''y terefê \"[[User:$1|$1]]\" gurenina.\nSebebê kılitbiyaena $1'i: \"$2\"o",
 	"blocklogpage": "Protokolê kilıti",
 	"blocklogtext": "No jü protokolê faeliyetê kilıt- u rakerdena karberuno.\nOtomatikmen kilıt biyaiyê adresê ''IP''y lista de çinê.\nSerba men- u kilıt-biyaene nıkaêne qaytê [[Special:BlockList|lista kilıt-kerdena ''IP''y]] ke.",
 	"block-log-flags-anononly": "teyna karberê bênamey",
