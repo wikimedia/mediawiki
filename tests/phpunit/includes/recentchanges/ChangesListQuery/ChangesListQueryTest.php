@@ -23,6 +23,8 @@ use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
+use Psr\Log\NullLogger;
+use Psr\Log\Test\TestLogger;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\IReadableDatabase;
@@ -85,6 +87,7 @@ class ChangesListQueryTest extends \MediaWikiIntegrationTestCase {
 			MainConfigNames::NewUserLog => true,
 			MainConfigNames::LearnerEdits => 10,
 			MainConfigNames::LearnerMemberSince => 4,
+			MainConfigNames::MiserMode => true,
 		] );
 		ExtensionRegistry::getInstance()->setAttributeForTest(
 			'RecentChangeSources',
@@ -229,7 +232,7 @@ class ChangesListQueryTest extends \MediaWikiIntegrationTestCase {
 			$services->getChangeTagsStore(),
 			$services->getObjectCacheFactory(),
 			$services->getStatsFactory(),
-			LoggerFactory::getInstance( 'ChangesListQuery' ),
+			$options['logger'] ?? LoggerFactory::getInstance( 'ChangesListQuery' ),
 			$services->getConnectionProvider(),
 		);
 		$query = $factory->newQuery()
@@ -957,12 +960,22 @@ class ChangesListQueryTest extends \MediaWikiIntegrationTestCase {
 	 * check for syntax errors etc. It doesn't verify the logic.
 	 */
 	public function testIsDenseTagFilter() {
+		if ( $this->getDb()->getType() !== 'mysql' ) {
+			$this->markTestSkipped( 'the code under test checks the DB type' );
+		}
 		[ $actions, $expectedInfo, $expectedIds ] = self::provideActions()['require changeTags mw-blank'];
-		$query = $this->getQuery()
+		$logger = new TestLogger();
+		$query = $this->getQuery( [ 'logger' => $logger ] )
 			->requireChangeTags( [ 'mw-blank' ] )
 			// Make sure thresholds are passed
 			->denseRcSizeThreshold( 0 );
+
+		// Need a limit
+		$query->limit( 50 );
+		$expectedInfo['options']['LIMIT'] = 50;
+
 		$this->doQuery( $query, $expectedInfo, $expectedIds );
+		$this->assertTrue( $logger->hasDebugThatContains( 'isDenseTagFilter' ) );
 	}
 
 	public static function provideDenseTagFilter() {
@@ -1000,7 +1013,7 @@ class ChangesListQueryTest extends \MediaWikiIntegrationTestCase {
 				ChangeTagsStore $changeTagsStore,
 				$rcStats
 			) {
-				parent::__construct( $changeTagsStore, $rcStats, true );
+				parent::__construct( $changeTagsStore, $rcStats, new NullLogger, true );
 				$this->dense = $dense;
 			}
 

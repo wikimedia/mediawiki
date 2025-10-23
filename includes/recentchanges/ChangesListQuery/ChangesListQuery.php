@@ -185,6 +185,7 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 		$this->filterModules['changeTags'] = new ChangeTagsCondition(
 			$this->changeTagsStore,
 			$this->rcStats,
+			$this->logger,
 			(bool)$config->get( MainConfigNames::MiserMode ),
 		);
 
