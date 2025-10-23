@@ -1,6 +1,6 @@
 <?php
 /**
- * Check that database usernames are actually valid.
+ * Maintenance script to generate a JWT token
  *
  * @license GPL-2.0-or-later
  * @file
