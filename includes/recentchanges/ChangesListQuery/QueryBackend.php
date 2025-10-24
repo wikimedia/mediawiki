@@ -21,6 +21,11 @@ interface QueryBackend {
 	/** The minimum density to active change tag heuristics */
 	public const DENSITY_CHANGE_TAG_THRESHOLD = 'change-tag-threshold';
 
+	/** The recentchanges table will likely be first in the join */
+	public const JOIN_ORDER_RECENTCHANGES = 'recentchanges';
+	/** Another table will likely be first in the join */
+	public const JOIN_ORDER_OTHER = 'other';
+
 	/**
 	 * Join on the specified table and declare that it will be used to provide
 	 * fields for the SELECT clause. The table name must be registered in the
@@ -62,6 +67,15 @@ interface QueryBackend {
 	 * @return $this
 	 */
 	public function adjustDensity( $density ): self;
+
+	/**
+	 * Set the join order hint. Whether recentchanges or some other table will
+	 * likely be first in the join. If this is JOIN_ORDER_OTHER, partitioning
+	 * the query by timestamp will be considered.
+	 *
+	 * @param string $order
+	 */
+	public function joinOrderHint( string $order ): self;
 
 	/**
 	 * Add a condition to the query

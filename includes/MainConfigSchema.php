@@ -11111,8 +11111,8 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * Allow queries on the recentchanges table to be partitioned by rc_timestamp.
-	 * This may help with performance. (T403798)
+	 * Allow Watchlist and RecentChangesLinked queries to be partitioned by
+	 * rc_timestamp. This may help with performance. (T403798)
 	 *
 	 * @since 1.45
 	 */

@@ -114,7 +114,8 @@ class WatchedCondition extends ChangesListConditionBase {
 		}
 
 		if ( $selectedValues === [ 'watched' ] ) {
-			$query->adjustDensity( ChangesListQuery::DENSITY_WATCHLIST );
+			$query->adjustDensity( ChangesListQuery::DENSITY_WATCHLIST )
+				->joinOrderHint( QueryBackend::JOIN_ORDER_OTHER );
 			$query->joinForConds( 'watchlist' )->reorderable();
 			$this->maybeJoinExpiry( $query );
 			if ( $isNotExpiredCond ) {
@@ -123,7 +124,8 @@ class WatchedCondition extends ChangesListConditionBase {
 		}
 
 		if ( $selectedValues === [ 'watchednew' ] ) {
-			$query->adjustDensity( ChangesListQuery::DENSITY_WATCHLIST );
+			$query->adjustDensity( ChangesListQuery::DENSITY_WATCHLIST )
+				->joinOrderHint( QueryBackend::JOIN_ORDER_OTHER );
 			$query->joinForConds( 'watchlist' )->reorderable();
 			$this->maybeJoinExpiry( $query );
 			if ( $isNotExpiredCond ) {
@@ -150,7 +152,8 @@ class WatchedCondition extends ChangesListConditionBase {
 		}
 
 		if ( $selectedValues === [ 'watched', 'watchednew' ] ) {
-			$query->adjustDensity( ChangesListQuery::DENSITY_WATCHLIST );
+			$query->adjustDensity( ChangesListQuery::DENSITY_WATCHLIST )
+				->joinOrderHint( QueryBackend::JOIN_ORDER_OTHER );
 			$query->joinForConds( 'watchlist' )->reorderable();
 			$this->maybeJoinExpiry( $query );
 			if ( $isNotExpiredCond ) {

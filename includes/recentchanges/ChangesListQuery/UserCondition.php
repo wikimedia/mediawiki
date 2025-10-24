@@ -47,7 +47,7 @@ class UserCondition extends ChangesListConditionBase {
 			}
 			$query->where( count( $orConds ) > 1 ? $dbr->orExpr( $orConds ) : $orConds[0] );
 			$query->joinForConds( 'actor' )->reorderable();
-			$query->adjustDensity( ChangesListQuery::DENSITY_USER );
+			$query->adjustDensity( QueryBackend::DENSITY_USER );
 		} elseif ( $excluded ) {
 			$names = $this->makeNames( $excluded );
 			$query->where( $dbr->expr( 'actor_name', '!=', $names ) );

@@ -109,6 +109,12 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 	/** @var float|int A naïve estimate of the fraction of rows matched by the conditions */
 	private $density = 1;
 
+	/**
+	 * @var string Whether recentchanges or some other table will likely be
+	 *   first in the join.
+	 */
+	private $joinOrderHint = self::JOIN_ORDER_RECENTCHANGES;
+
 	/** @var Authority|null The authority to use for deleted bitfield checks */
 	private ?Authority $audience = null;
 
@@ -436,6 +442,12 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 		return $this;
 	}
 
+	/** @inheritDoc */
+	public function joinOrderHint( $order ): self {
+		$this->joinOrderHint = $order;
+		return $this;
+	}
+
 	/**
 	 * Set a flag forcing the query to return no rows when it is executed. Like
 	 * adding a 0=1 condition.
@@ -654,7 +666,8 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 	 */
 	private function prepare() {
 		if ( $this->linkTables ) {
-			$this->adjustDensity( self::DENSITY_LINKS );
+			$this->adjustDensity( self::DENSITY_LINKS )
+				->joinOrderHint( self::JOIN_ORDER_OTHER );
 		}
 		foreach ( $this->filterModules as $module ) {
 			$module->prepareQuery( $this->db, $this );
@@ -994,6 +1007,14 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 	}
 
 	/**
+	 * Determine whether to partition the query by timestamp range.
+	 *
+	 * Partitioning is a useful strategy on Special:Watchlist and
+	 * Special:RecentChangesLinked when the DB decides to put the other table
+	 * first despite there being a large number of matching rows in it. The size
+	 * of the resulting temporary table can be limited by choosing a small
+	 * timestamp range.
+	 *
 	 * @return bool
 	 */
 	private function shouldDoPartitioning(): bool {
@@ -1001,6 +1022,7 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 			|| ( $this->enablePartitioning
 				&& $this->limit !== null
 				&& $this->minTimestamp !== null
+				&& $this->joinOrderHint === self::JOIN_ORDER_OTHER
 				&& $this->estimateSize() > self::PARTITION_THRESHOLD
 			);
 	}
@@ -1043,6 +1065,8 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 	/**
 	 * Partition a query into timestamp ranges and run it separately on each
 	 * range, building up the result.
+	 *
+	 * @see shouldDoPartitioning
 	 *
 	 * @param SelectQueryBuilder $sqb
 	 * @param stdClass[] &$rows
