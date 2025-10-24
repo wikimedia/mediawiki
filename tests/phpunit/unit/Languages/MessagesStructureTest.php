@@ -3,9 +3,12 @@
 namespace MediaWiki\Tests\Unit\Languages;
 
 use LocalisationCache;
+use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Language\Language;
+use MediaWiki\Parser\MagicWordFactory;
 use MediaWikiUnitTestCase;
 use MessageCache;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * Validate the Messages*.php files
@@ -113,12 +116,19 @@ class MessagesStructureTest extends MediaWikiUnitTestCase {
 
 	private function validateMagicWords( $magicWords ) {
 		$enWords = $this->getEnData()['magicWords'];
+		$doubleUnderscoreIds = TestingAccessWrapper::newFromObject(
+			new MagicWordFactory(
+				$this->createNoOpMock( Language::class ),
+				$this->createNoOpMock( HookContainer::class )
+			)
+		)->mDoubleUnderscoreIDs;
 		$this->assertSame(
 			[],
 			array_diff( array_keys( $magicWords ), array_keys( $enWords ) ),
 			'unrecognised magic word IDs'
 		);
 		foreach ( $magicWords as $id => $parts ) {
+			$isBehaviorSwitch = in_array( $id, $doubleUnderscoreIds, true );
 			// Ideally the case should be an integer, but some script writes it as a string
 			$case = $parts[0];
 			$this->assertThat(
@@ -130,11 +140,20 @@ class MessagesStructureTest extends MediaWikiUnitTestCase {
 			foreach ( $parts as $i => $syn ) {
 				$this->assertIsString( $syn, "$id syn $i should be string" );
 				$this->assertNotSame( '', $syn, "$id syn $i should not be empty" );
+				if ( $isBehaviorSwitch ) {
+					# check for behavior switch validity (T407289)
+					$ascii = str_starts_with( $syn, '__' ) && str_ends_with( $syn, '__' );
+					$wide = str_starts_with( $syn, '＿＿' ) && str_ends_with( $syn, '＿＿' );
+					$this->assertTrue( $ascii || $wide, "$id syn $i should start and end with double underscore" );
+				}
 			}
 			$canonical = $enWords[$id][1];
 			$this->assertContains( $canonical, $parts,
 				"$id should contain English synonym $canonical" );
 		}
+
+		// Behavior switch localizations should begin and end with
+		// double underscore
 	}
 
 	private function validateSpecialPageAliases( $pages ) {

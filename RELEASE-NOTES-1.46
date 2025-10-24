@@ -104,6 +104,11 @@ because of Phabricator reports.
   extensions should ensure that rc_this_oldid is set to zero on recent changes
   entries that do not relate to any particular revision.
 * MutableRevisionRecord::setSha1() has been removed without deprecation.
+* Localizations of behavior switches must begin and end with double
+  underscore (`_` or U+FF3F).  Some localizations present in 1.45 which
+  did not do so have been removed; check the category named by
+  [[MediaWiki::Bad-double-underscore-category]] before upgrade to see
+  if your local wiki contains affected wikitext.
 * Passing something other than an Authority for the $performer parameter to
   WatchlistManager methods clearTitleUserNotifications() and
   clearAllUserNotifications, deprecated since 1.37, will now throw. User
