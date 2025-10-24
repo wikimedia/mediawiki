@@ -220,7 +220,11 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		$out = $this->getOutput();
 		$out->setPageTitleMsg( $this->msg( 'watchlistedit-normal-title' ) );
 
+		$watchlistInfo = $this->getWatchlistInfo();
+		$this->getHookRunner()->onWatchlistEditorBeforeFormRender( $watchlistInfo );
+
 		// @todo remove this condition when the EditWatchlistPaginate feature flag is removed
+		$namespaceSelectForm = null;
 		if ( $this->paginationEnabled ) {
 			$namespaceFormDescriptor = [
 				'namespace' => [
@@ -238,12 +242,9 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 				->setMethod( 'get' )
 				->setTitle( $this->getPageTitle() ) // Remove subpage
 				->setSubmitTextMsg( 'allpagessubmit' )
-				->prepareForm()
-				->displayForm( false );
+				->prepareForm();
 		}
 
-		$watchlistInfo = $this->getWatchlistInfo();
-		$this->getHookRunner()->onWatchlistEditorBeforeFormRender( $watchlistInfo );
 		if ( count( $watchlistInfo ) > 0 ) {
 			$form = $this->getNormalForm( $watchlistInfo );
 			$form->prepareForm();
@@ -257,6 +258,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 
 			// @todo remove this condition when the EditWatchlistPaginate feature flag is removed
 			if ( $this->paginationEnabled ) {
+				$namespaceSelectForm?->displayForm( false );
 				$out->addHTML( $this->pager->getNavigationBar() );
 			}
 
@@ -267,7 +269,12 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 				$out->addHTML( $this->pager->getNavigationBar() );
 			}
 		} else {
-			$out->addWikiMsg( 'nowatchlist' );
+			if ( $this->getContext()->getRequest()->getIntOrNull( 'namespace' ) ) {
+				$namespaceSelectForm?->displayForm( false );
+				$out->addWikiMsg( 'nowatchlistnamespace' );
+			} else {
+				$out->addWikiMsg( 'nowatchlist' );
+			}
 		}
 	}
 

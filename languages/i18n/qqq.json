@@ -2389,6 +2389,7 @@
 	"mywatchlist": "Link at the upper right corner of the screen.\n\nSee also:\n* {{msg-mw|Mywatchlist}}\n* {{msg-mw|Accesskey-pt-watchlist}}\n* {{msg-mw|Tooltip-pt-watchlist}}\n{{Identical|Watchlist}}",
 	"watchlistfor2": "Subtitle on [[Special:Watchlist]].\nParameters:\n* $1 - Username of current user\n\n{{Identical|For $1}}",
 	"nowatchlist": "Displayed when there is no pages in the watchlist.",
+	"nowatchlistnamespace": "Displayed when there are no pages in a particular namespace in the watchlist.",
 	"watchlistanontext": "Shown on Special:Userlogin when user tries to access their watchlist before logging in",
 	"watchlistanontext-for-temp-user": "Shown on Special:CreateAccount when a temporary account tries to access their watchlist and temporary accounts cannot edit their watchlist.",
 	"watchnologin": "Used as error page title.\n\nThe error message for this title is:\n* {{msg-mw|Watchnologintext}}\n{{Identical|Not logged in}}",
