@@ -35,3 +35,9 @@ input.mw-userrights-groupcheckbox:not( :checked ) ~ .mw-userrights-nested {
 .client-js .mw-userrights-expiryfield {
 	display: none;
 }
+
+/* Temporary styles until the form is modernized: T117884 */
+.mw-userrights-edit-fieldset {
+	border: 0;
+	padding: 0;
+}

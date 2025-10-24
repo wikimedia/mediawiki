@@ -220,6 +220,22 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 	 * @return string The HTML of the form
 	 */
 	private function buildEditGroupsFormContent( array $groups ): string {
+		$panelLabel = $this->buildFormHeader( 'userrights-editusergroup' );
+
+		$panelItems = array_filter( [
+			$this->buildFormDescription( 'editinguser' ),
+			$this->msg( 'userrights-groups-help', $this->targetBareName )->parse(),
+			...$this->buildFormGroupsLists(),
+			$this->buildFormExtraInfo(),
+		] );
+		$panelItems = array_map( static function ( $label ) {
+			return new FieldLayout(
+				new LabelWidget( [
+					'label' => new HtmlSnippet( $label )
+				] )
+			);
+		}, $panelItems );
+
 		$formContent =
 			Html::hidden( 'user', $this->targetDisplayName ) .
 			Html::hidden( 'wpEditToken', $this->getUser()->getEditToken( $this->targetDisplayName ) ) .
@@ -227,17 +243,7 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 				self::CONFLICT_CHECK_FIELD,
 				$this->makeConflictCheckKey()
 			) .
-			Html::openElement( 'fieldset' ) .
-			Html::element(
-				'legend',
-				[],
-				$this->msg( 'userrights-editusergroup',	$this->targetBareName )->text()
-			) .
-			$this->msg( 'editinguser' )->params(
-				wfEscapeWikiText( $this->targetDisplayName )
-			)->rawParams( $this->getTargetUserToolLinks() )->parse() .
-			$this->msg( 'userrights-groups-help', $this->targetBareName )->parse() .
-			$this->getCurrentUserGroupsText();
+			Html::openElement( 'fieldset', [ 'class' => 'mw-userrights-edit-fieldset' ] );
 
 		$memberships = $this->groupMemberships;
 		$columns = [
@@ -269,7 +275,7 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 			$this->buildReasonFields() .
 			Html::closeElement( 'fieldset' );
 
-		return Html::rawElement(
+		$form = Html::rawElement(
 			'form',
 			[
 				'method' => 'post',
@@ -279,6 +285,22 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 			],
 			$formContent
 		);
+
+		return new PanelLayout( [
+			'expanded' => false,
+			'padded' => true,
+			'framed' => true,
+			'content' => [
+				new FieldsetLayout( [
+					'label' => $panelLabel,
+					'items' => $panelItems,
+				] ),
+				new PanelLayout( [
+					'expanded' => false,
+					'content' => new HtmlSnippet( $form ),
+				] )
+			],
+		] );
 	}
 
 	/**
