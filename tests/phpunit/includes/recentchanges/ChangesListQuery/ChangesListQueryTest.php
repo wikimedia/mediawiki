@@ -230,7 +230,6 @@ class ChangesListQueryTest extends \MediaWikiIntegrationTestCase {
 			$services->getUserFactory(),
 			$services->getLinkTargetLookup(),
 			$services->getChangeTagsStore(),
-			$services->getObjectCacheFactory(),
 			$services->getStatsFactory(),
 			$options['logger'] ?? LoggerFactory::getInstance( 'ChangesListQuery' ),
 			$services->getConnectionProvider(),

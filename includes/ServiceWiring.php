@@ -544,7 +544,6 @@ return [
 			$services->getUserFactory(),
 			$services->getLinkTargetLookup(),
 			$services->getChangeTagsStore(),
-			$services->getObjectCacheFactory(),
 			$services->getStatsFactory(),
 			LoggerFactory::getInstance( 'ChangesListQuery' ),
 			$services->getConnectionProvider(),

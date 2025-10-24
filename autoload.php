@@ -2427,7 +2427,6 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\RecentChanges\\ChangesListQuery\\NamedCondition' => __DIR__ . '/includes/recentchanges/ChangesListQuery/NamedCondition.php',
 	'MediaWiki\\RecentChanges\\ChangesListQuery\\NamedConditionHelper' => __DIR__ . '/includes/recentchanges/ChangesListQuery/NamedConditionHelper.php',
 	'MediaWiki\\RecentChanges\\ChangesListQuery\\QueryBackend' => __DIR__ . '/includes/recentchanges/ChangesListQuery/QueryBackend.php',
-	'MediaWiki\\RecentChanges\\ChangesListQuery\\QueryRateEstimator' => __DIR__ . '/includes/recentchanges/ChangesListQuery/QueryRateEstimator.php',
 	'MediaWiki\\RecentChanges\\ChangesListQuery\\RevisionTypeCondition' => __DIR__ . '/includes/recentchanges/ChangesListQuery/RevisionTypeCondition.php',
 	'MediaWiki\\RecentChanges\\ChangesListQuery\\SeenCondition' => __DIR__ . '/includes/recentchanges/ChangesListQuery/SeenCondition.php',
 	'MediaWiki\\RecentChanges\\ChangesListQuery\\SubpageOfCondition' => __DIR__ . '/includes/recentchanges/ChangesListQuery/SubpageOfCondition.php',

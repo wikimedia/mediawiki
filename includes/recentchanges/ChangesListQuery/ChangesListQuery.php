@@ -20,13 +20,11 @@ use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\Watchlist\WatchedItemStoreInterface;
-use ObjectCacheFactory;
 use Psr\Log\LoggerInterface;
 use stdClass;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
-use Wikimedia\Rdbms\Platform\ISQLPlatform;
 use Wikimedia\Rdbms\RawSQLExpression;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 use Wikimedia\Stats\StatsFactory;
@@ -139,7 +137,6 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 		private UserFactory $userFactory,
 		private LinkTargetLookup $linkTargetLookup,
 		private ChangeTagsStore $changeTagsStore,
-		private ObjectCacheFactory $objectCacheFactory,
 		private StatsFactory $statsFactory,
 		private LoggerInterface $logger,
 		private IReadableDatabase $db,
@@ -1051,30 +1048,23 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 	 * @param stdClass[] &$rows
 	 */
 	private function doPartitionQuery( SelectQueryBuilder $sqb, &$rows ) {
-		$queryHash = $this->getCondsHash( $sqb );
 		$now = ConvertibleTimestamp::time();
 		$minTime = (int)ConvertibleTimestamp::convert( TS_UNIX,
 			$this->minTimestamp ?? $now - $this->rcMaxAge );
 		$limit = $this->limit ?? 10_000;
-		$rateStore = $this->newRateEstimator( $queryHash );
-		$countsByBucket = [];
-		$bucketPeriod = $rateStore->getBucketPeriod();
-		$rate = $rateStore->fetchRate( $minTime, $now );
 		$rcSize = $this->rcStats->getIdDelta();
 
-		$this->logger->debug( 'Beginning partition request with ' .
-			'rate={rate}, density={density}, period={period}',
+		$this->logger->debug( 'Beginning partition request with density={density}, period={period}',
 			[
 				'period' => $now - $minTime,
 				'limit' => $limit,
-				'rate' => $rate,
 				'density' => $this->density,
 				'rcSize' => $rcSize,
 			]
 		);
 
 		$partitioner = new TimestampRangePartitioner( $minTime, $now, $limit,
-			$rate, $this->density, $rcSize, $this->rcMaxAge );
+			null, $this->density, $rcSize, $this->rcMaxAge );
 		do {
 			[ $min, $max, $limit ] = $partitioner->getNextPartition();
 
@@ -1089,22 +1079,16 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 			}
 			$partitionQuery->limit( $limit );
 
-			$time = null;
+			$row = null;
 			$res = $partitionQuery->fetchResultSet();
 			foreach ( $res as $row ) {
 				$rows[] = $row;
-				$time = (int)ConvertibleTimestamp::convert( TS_UNIX, $row->rc_timestamp );
-				$bucket = (int)( $time / $bucketPeriod );
-				$countsByBucket[$bucket] = ( $countsByBucket[$bucket] ?? 0 ) + 1;
 			}
-			$partitioner->notifyResult( $time, $res->numRows() );
+			$partitioner->notifyResult(
+				$row ? (int)ConvertibleTimestamp::convert( TS_UNIX, $row->rc_timestamp ) : null,
+				$res->numRows()
+			);
 		} while ( !$partitioner->isDone() );
-
-		$rateStore->storeCounts(
-			$countsByBucket,
-				$partitioner->getMinFoundTime() ?? $minTime,
-			$now
-		);
 
 		$m = $partitioner->getMetrics();
 		$this->logger->debug( 'Finished partition request: ' .
@@ -1120,34 +1104,6 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 			->incrementBy( $m['actualRows' ] );
 		$this->statsFactory->getCounter( 'ChangesListQuery_partition_overrun_total' )
 			->incrementBy( $m['actualRows'] * ( $m['queryPeriod'] / $m['actualPeriod'] - 1 ) );
-	}
-
-	/**
-	 * Get a string hash describing the query conditions
-	 *
-	 * @param SelectQueryBuilder $sqb
-	 * @return string
-	 */
-	private function getCondsHash( SelectQueryBuilder $sqb ): string {
-		$info = $sqb->getQueryInfo();
-		$blob = $this->db->makeList( $info['conds'], ISQLPlatform::LIST_AND );
-		foreach ( $info['join_conds'] as $join ) {
-			if ( is_string( $join[1] ) ) {
-				$joinCond = $join[1];
-			} else {
-				$joinCond = $this->db->makeList( $join[1], ISQLPlatform::LIST_AND );
-			}
-			$blob .= ' AND ' . $joinCond;
-		}
-		return md5( $blob );
-	}
-
-	private function newRateEstimator( string $key ): QueryRateEstimator {
-		return new QueryRateEstimator(
-			$this->objectCacheFactory->getLocalClusterInstance(),
-			$this->rcMaxAge,
-			$key
-		);
 	}
 
 	/**
