@@ -726,26 +726,6 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 	}
 
 	/**
-	 * Returns an HTML snippet that describes the current user groups the target belongs to.
-	 * There are no specific requirements on the format, e.g. the implementation may choose to
-	 * split them into several paragraphs etc.
-	 */
-	protected function getCurrentUserGroupsText(): string {
-		$fields = $this->getCurrentUserGroupsFields();
-		$output = '';
-
-		foreach ( $fields as $field ) {
-			$output .= Html::rawElement(
-				'p',
-				[],
-				$field['label'] . ' ' . $field['list']
-			);
-		}
-
-		return $output;
-	}
-
-	/**
 	 * Shows a log fragment for the current target user, i.e. page "User:{$this->targetDisplayName}".
 	 *
 	 * @param string $logType The type of the log to show

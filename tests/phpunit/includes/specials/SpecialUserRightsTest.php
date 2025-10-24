@@ -339,18 +339,16 @@ class SpecialUserRightsTest extends SpecialPageTestBase {
 
 		// This test is deliberately not using executeSpecialPage, as we want to ensure that these group names are
 		// present in the correct places. The full output of this special page would contain them in many other places.
-		$groupsText = $wrappedPage->getCurrentUserGroupsText();
+		$groupsLists = $wrappedPage->buildFormGroupsLists();
 
-		$paragraphs = explode( '<p>', $groupsText );
-
-		// The 0th element is empty, then explicit groups and finally implicit groups
-		$permanentGroups = $paragraphs[1];
+		// The lists are explicit groups and then implicit groups
+		$permanentGroups = $groupsLists[0];
 		$this->assertStringContainsString( '(userrights-groupsmember: 3,', $permanentGroups );
 		$this->assertStringContainsString( '(group-bot)</a>, 00:00, 1 (january) 9999', $permanentGroups );
 		$this->assertStringContainsString( '(group-sysop)', $permanentGroups );
 		$this->assertStringContainsString( '(group-bureaucrat)', $permanentGroups );
 
-		$implicitGroups = $paragraphs[2];
+		$implicitGroups = $groupsLists[1];
 		$this->assertStringContainsString( '(userrights-groupsmember-auto: 1,', $implicitGroups );
 		$this->assertStringContainsString( '(group-autoconfirmed)', $implicitGroups );
 	}

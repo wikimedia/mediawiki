@@ -283,26 +283,6 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 		);
 	}
 
-	/** @inheritDoc */
-	protected function getCurrentUserGroupsText(): string {
-		$groupsText = parent::getCurrentUserGroupsText();
-
-		// Apart from displaying the groups list, also display a note if this is a system user
-		$systemUser = $this->targetUser->getWikiId() === UserIdentity::LOCAL
-			&& $this->userFactory->newFromUserIdentity( $this->targetUser )->isSystemUser();
-		if ( $systemUser ) {
-			$systemUserNote = $this->msg( 'userrights-systemuser' )
-				->params( $this->targetUser->getName() )
-				->parse();
-			$groupsText .= Html::rawElement(
-				'p',
-				[],
-				$systemUserNote
-			);
-		}
-		return $groupsText;
-	}
-
 	protected function buildFormExtraInfo(): ?string {
 		// Display a note if this is a system user
 		$systemUser = $this->targetUser->getWikiId() === UserIdentity::LOCAL
