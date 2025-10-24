@@ -9,11 +9,14 @@ namespace MediaWiki\User;
 use InvalidArgumentException;
 use LogicException;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Context\IContextSource;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Permissions\GroupPermissionsLookup;
+use MediaWiki\User\Registration\UserRegistrationLookup;
+use MediaWiki\WikiMap\WikiMap;
 use Psr\Log\LoggerInterface;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\IDBAccessObject;
@@ -52,6 +55,9 @@ class UserRequirementsConditionChecker {
 		HookContainer $hookContainer,
 		private readonly LoggerInterface $logger,
 		private readonly UserEditTracker $userEditTracker,
+		private readonly UserRegistrationLookup $userRegistrationLookup,
+		private readonly UserFactory $userFactory,
+		private readonly IContextSource $context,
 		private readonly UserGroupManager $userGroupManager,
 		private readonly string|false $wikiId = UserIdentity::LOCAL,
 	) {
@@ -64,22 +70,31 @@ class UserRequirementsConditionChecker {
 	 * Other types will throw an exception if no extension evaluates them.
 	 *
 	 * @param array $cond A condition, which must not contain other conditions
-	 * @param User $user The user to check the condition against
+	 * @param UserIdentity $user The user to check the condition against
 	 * @param bool $isPerformingRequest Whether $user is the user who performs the current request
 	 * @return bool Whether the condition is true for the user
 	 * @throws InvalidArgumentException if autopromote condition was not recognized.
 	 * @throws LogicException if APCOND_BLOCKED is checked again before returning a result.
 	 */
-	private function checkCondition( array $cond, User $user, bool $isPerformingRequest ): bool {
+	private function checkCondition( array $cond, UserIdentity $user, bool $isPerformingRequest ): bool {
 		if ( count( $cond ) < 1 ) {
 			return false;
 		}
 
+		// Some checks depend on hooks or other dynamically-determined state, so we can fetch them only
+		// for the local wiki and not for remote users. The latter may require API requests to the remote
+		// wiki, which has not been implemented for now due to performance concerns.
+		$isCurrentWiki = ( $user->getWikiId() === false ) || WikiMap::isCurrentWikiId( $user->getWikiId() );
+
 		switch ( $cond[0] ) {
 			case APCOND_EMAILCONFIRMED:
-				return Sanitizer::validateEmail( $user->getEmail() ) &&
+				if ( !$isCurrentWiki ) {
+					return false;
+				}
+				$userObject = $this->userFactory->newFromUserIdentity( $user );
+				return Sanitizer::validateEmail( $userObject->getEmail() ) &&
 					( !$this->options->get( MainConfigNames::EmailAuthentication ) ||
-						$user->getEmailAuthenticationTimestamp() );
+						$userObject->getEmailAuthenticationTimestamp() );
 			case APCOND_EDITCOUNT:
 				$reqEditCount = $cond[1] ?? $this->options->get( MainConfigNames::AutoConfirmCount );
 
@@ -90,7 +105,8 @@ class UserRequirementsConditionChecker {
 				return (int)$this->userEditTracker->getUserEditCount( $user ) >= $reqEditCount;
 			case APCOND_AGE:
 				$reqAge = $cond[1] ?? $this->options->get( MainConfigNames::AutoConfirmAge );
-				$age = time() - (int)wfTimestampOrNull( TS_UNIX, $user->getRegistration() );
+				$registration = $this->userRegistrationLookup->getRegistration( $user );
+				$age = time() - (int)wfTimestampOrNull( TS_UNIX, $registration );
 				return $age >= $reqAge;
 			case APCOND_AGE_FROM_EDIT:
 				$age = time() - (int)wfTimestampOrNull(
@@ -99,6 +115,9 @@ class UserRequirementsConditionChecker {
 				);
 				return $age >= $cond[1];
 			case APCOND_INGROUPS:
+				if ( !$isCurrentWiki ) {
+					return false;
+				}
 				$groups = array_slice( $cond, 1 );
 				return count( array_intersect(
 						$groups,
@@ -107,10 +126,15 @@ class UserRequirementsConditionChecker {
 			case APCOND_ISIP:
 				// Since the IPs are not permanently bound to users, the IP conditions can only be checked
 				// for the requesting user. Otherwise, assume the condition is false.
-				return $isPerformingRequest && $cond[1] === $user->getRequest()->getIP();
+				return $isPerformingRequest && $cond[1] === $this->context->getRequest()->getIP();
 			case APCOND_IPINRANGE:
-				return $isPerformingRequest && IPUtils::isInRange( $user->getRequest()->getIP(), $cond[1] );
+				return $isPerformingRequest && IPUtils::isInRange( $this->context->getRequest()->getIP(), $cond[1] );
 			case APCOND_BLOCKED:
+				if ( !$isCurrentWiki ) {
+					// This condition is more likely to be used as "! APCOND_BLOCKED", so ensure it can't be bypassed
+					// when tested from a remote wiki.
+					return true;
+				}
 				// Because checking for ipblock-exempt leads back to here (thus infinite recursion),
 				// we if we've been here before for this user without having returned a value.
 				// See T270145 and T349608
@@ -124,11 +148,15 @@ class UserRequirementsConditionChecker {
 				$this->recursionMap[$userKey] = true;
 				// Setting the second parameter here to true prevents us from getting back here
 				// during standard MediaWiki core behavior
-				$block = $user->getBlock( IDBAccessObject::READ_LATEST, true );
+				$userObject = $this->userFactory->newFromUserIdentity( $user );
+				$block = $userObject->getBlock( IDBAccessObject::READ_LATEST, true );
 				$this->recursionMap[$userKey] = false;
 
 				return (bool)$block?->isSitewide();
 			case APCOND_ISBOT:
+				if ( !$isCurrentWiki ) {
+					return false;
+				}
 				return in_array( 'bot', $this->groupPermissionsLookup
 					->getGroupPermissions(
 						$this->userGroupManager->getUserGroups( $user )
@@ -136,8 +164,18 @@ class UserRequirementsConditionChecker {
 				);
 			default:
 				$result = null;
+				if ( !$isPerformingRequest || !$isCurrentWiki ) {
+					// The current hook is run only if the tested user is the one performing
+					// the request (for autopromote), and the only possible option is that the
+					// user is from the local wiki. If any of these conditions is not met, we
+					// cannot invoke the hook, as it may produce incorrect results.
+					// TODO: Create a new hook, instead of the original one, with broader scope (T408184)
+					return false;
+				}
+
+				$userObject = $this->userFactory->newFromUserIdentity( $user );
 				$this->hookRunner->onAutopromoteCondition( $cond[0],
-					array_slice( $cond, 1 ), $user, $result );
+					array_slice( $cond, 1 ), $userObject, $result );
 				if ( $result === null ) {
 					throw new InvalidArgumentException(
 						"Unrecognized condition $cond[0] for autopromotion!"
@@ -164,12 +202,12 @@ class UserRequirementsConditionChecker {
 	 * ApiQuerySiteinfo::appendAutoPromote(), as it depends on this method.
 	 *
 	 * @param mixed $cond A condition, possibly containing other conditions
-	 * @param User $user The user to check the conditions against
+	 * @param UserIdentity $user The user to check the conditions against
 	 * @param bool $isPerformingRequest Whether $user is the user who performs the current request
 	 *
 	 * @return bool Whether the condition is true
 	 */
-	public function recursivelyCheckCondition( $cond, User $user, bool $isPerformingRequest = true ): bool {
+	public function recursivelyCheckCondition( $cond, UserIdentity $user, bool $isPerformingRequest = true ): bool {
 		if ( is_array( $cond ) && count( $cond ) >= 2 && in_array( $cond[0], self::VALID_OPS ) ) {
 			// Recursive condition
 

@@ -2806,6 +2806,9 @@ return [
 			// TODO: Did anyone use this log group before? Should it be renamed? Or is there a better name we can use?
 			LoggerFactory::getInstance( 'UserGroupManager' ),
 			$services->getUserEditTracker(),
+			$services->getUserRegistrationLookup(),
+			$services->getUserFactory(),
+			RequestContext::getMain(),
 		);
 	},
 

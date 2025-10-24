@@ -19,6 +19,7 @@ use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Session\PHPSessionHandler;
 use MediaWiki\Session\SessionManager;
+use MediaWiki\User\Registration\UserRegistrationLookup;
 use MediaWiki\User\TempUser\RealTempUserConfig;
 use MediaWiki\User\User;
 use MediaWiki\User\UserEditTracker;
@@ -49,7 +50,8 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 	private function getManager(
 		array $configOverrides = [],
 		?UserEditTracker $userEditTrackerOverride = null,
-		?callable $callback = null
+		?callable $callback = null,
+		?UserRegistrationLookup $userRegistrationLookupOverride = null,
 	): UserGroupManager {
 		$services = $this->getServiceContainer();
 
@@ -113,6 +115,9 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 				$services->getHookContainer(),
 				new TestLogger(),
 				$userEditTrackerOverride ?? $services->getUserEditTracker(),
+				$userRegistrationLookupOverride ?? $services->getUserRegistrationLookup(),
+				$services->getUserFactory(),
+				RequestContext::getMain(),
 				$ugm,
 			) );
 
@@ -531,9 +536,10 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 		array $expected
 	) {
 		$user = $this->createNoOpMock(
-			User::class, array_merge( [ 'getEmail', 'isTemp', 'assertWiki' ],
+			User::class, array_merge( [ 'getEmail', 'isTemp', 'assertWiki', 'getWikiId' ],
 				( array_key_exists( 'timestamp', $userSpec ) ? [ 'getEmailAuthenticationTimestamp' ] : [] ) )
 		);
+		$user->method( 'getWikiId' )->willReturn( UserIdentity::LOCAL );
 		$user->method( 'assertWiki' )->willReturn( true );
 		$user->expects( $this->once() )
 			->method( 'getEmail' )
@@ -627,14 +633,17 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 		string $registrationTs,
 		array $expected
 	) {
+		$registrationLookupMock = $this->createNoOpMock( UserRegistrationLookup::class, [ 'getRegistration' ] );
+		$registrationLookupMock->method( 'getRegistration' )
+			->willReturn( $registrationTs );
+
 		$manager = $this->getManager( [
 			MainConfigNames::AutoConfirmAge => 10000000,
 			MainConfigNames::Autopromote => [ 'test_autoconfirmed' => $requiredCondition ]
-		] );
-		$user = $this->createNoOpMock( User::class, [ 'getRegistration', 'isTemp', 'assertWiki' ] );
+		], null, null, $registrationLookupMock );
+		$user = $this->createNoOpMock( User::class, [ 'isTemp', 'assertWiki', 'getWikiId' ] );
+		$user->method( 'getWikiId' )->willReturn( UserIdentity::LOCAL );
 		$user->method( 'assertWiki' )->willReturn( true );
-		$user->method( 'getRegistration' )
-			->willReturn( $registrationTs );
 		$this->assertArrayEquals( $expected, $manager->getUserAutopromoteGroups( $user ) );
 	}
 
@@ -723,11 +732,10 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 		] );
 		$request = new FauxRequest();
 		$request->setIP( $userIp );
-		$user = $this->createNoOpMock( User::class, [ 'getRequest', 'isTemp', 'assertWiki' ] );
+		$this->setRequest( $request );
+		$user = $this->createNoOpMock( User::class, [ 'getRequest', 'isTemp', 'assertWiki', 'getWikiId' ] );
+		$user->method( 'getWikiId' )->willReturn( UserIdentity::LOCAL );
 		$user->method( 'assertWiki' )->willReturn( true );
-		$user->expects( $this->once() )
-			->method( 'getRequest' )
-			->willReturn( $request );
 		$this->assertArrayEquals( $expected, $manager->getUserAutopromoteGroups( $user ) );
 	}
 

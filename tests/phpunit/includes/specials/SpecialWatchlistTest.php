@@ -6,6 +6,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Specials\SpecialWatchlist;
+use MediaWiki\User\Registration\UserRegistrationLookup;
 use MediaWiki\User\StaticUserOptionsLookup;
 use Wikimedia\Rdbms\LBFactorySingle;
 use Wikimedia\TestingAccessWrapper;
@@ -230,6 +231,13 @@ class SpecialWatchlistTest extends SpecialPageTestBase {
 		$this->setService(
 			'UserOptionsLookup',
 			$userOptionsLookup
+		);
+		$userRegistrationLookup = $this->createMock( UserRegistrationLookup::class );
+		$userRegistrationLookup->method( 'getRegistration' )
+			->willReturn( '20250101000000' );
+		$this->setService(
+			'UserRegistrationLookup',
+			$userRegistrationLookup
 		);
 		$page = $this->newSpecialPage();
 		TestingAccessWrapper::newFromObject( $page )->userOptionsLookup
