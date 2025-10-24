@@ -808,7 +808,6 @@ class WANObjectCache implements
 		$this->stats->getCounter( 'wanobjectcache_set_total' )
 			->setLabel( 'keygroup', $keygroup )
 			->setLabel( 'result', ( $ok ? 'ok' : 'error' ) )
-			->copyToStatsdAt( "wanobjectcache.$keygroup.set." . ( $ok ? 'ok' : 'error' ) )
 			->increment();
 
 		return $ok;
@@ -1074,7 +1073,6 @@ class WANObjectCache implements
 		$this->stats->getCounter( 'wanobjectcache_delete_total' )
 			->setLabel( 'keygroup', $keygroup )
 			->setLabel( 'result', ( $ok ? 'ok' : 'error' ) )
-			->copyToStatsdAt( "wanobjectcache.$keygroup.delete." . ( $ok ? 'ok' : 'error' ) )
 			->increment();
 
 		return $ok;
@@ -1252,7 +1250,6 @@ class WANObjectCache implements
 		$this->stats->getCounter( 'wanobjectcache_check_total' )
 			->setLabel( 'keygroup', $keygroup )
 			->setLabel( 'result', ( $ok ? 'ok' : 'error' ) )
-			->copyToStatsdAt( "wanobjectcache.$keygroup.ck_touch." . ( $ok ? 'ok' : 'error' ) )
 			->increment();
 
 		return $ok;
@@ -1297,7 +1294,6 @@ class WANObjectCache implements
 		$this->stats->getCounter( 'wanobjectcache_reset_total' )
 			->setLabel( 'keygroup', $keygroup )
 			->setLabel( 'result', ( $ok ? 'ok' : 'error' ) )
-			->copyToStatsdAt( "wanobjectcache.$keygroup.ck_reset." . ( $ok ? 'ok' : 'error' ) )
 			->increment();
 
 		return $ok;
@@ -1691,7 +1687,6 @@ class WANObjectCache implements
 					->setLabel( 'keygroup', $keygroup )
 					->setLabel( 'result', 'hit' )
 					->setLabel( 'reason', 'good' )
-					->copyToStatsdAt( "wanobjectcache.$keygroup.hit.good" )
 					->observe( 1e3 * ( $this->getCurrentTime() - $startTime ) );
 
 				return [ $curValue, $curState[self::RES_VERSION], $curState[self::RES_AS_OF] ];
@@ -1702,7 +1697,6 @@ class WANObjectCache implements
 					->setLabel( 'keygroup', $keygroup )
 					->setLabel( 'result', 'hit' )
 					->setLabel( 'reason', 'refresh' )
-					->copyToStatsdAt( "wanobjectcache.$keygroup.hit.refresh" )
 					->observe( 1e3 * ( $this->getCurrentTime() - $startTime ) );
 
 				return [ $curValue, $curState[self::RES_VERSION], $curState[self::RES_AS_OF] ];
@@ -1747,7 +1741,6 @@ class WANObjectCache implements
 				->setLabel( 'keygroup', $keygroup )
 				->setLabel( 'result', 'hit' )
 				->setLabel( 'reason', 'volatile' )
-				->copyToStatsdAt( "wanobjectcache.$keygroup.hit.volatile" )
 				->observe( 1e3 * ( $this->getCurrentTime() - $startTime ) );
 
 			return [ $volValue, $volState[self::RES_VERSION], $curState[self::RES_AS_OF] ];
@@ -1795,7 +1788,6 @@ class WANObjectCache implements
 					->setLabel( 'keygroup', $keygroup )
 					->setLabel( 'result', 'hit' )
 					->setLabel( 'reason', 'stale' )
-					->copyToStatsdAt( "wanobjectcache.$keygroup.hit.stale" )
 					->observe( 1e3 * ( $this->getCurrentTime() - $startTime ) );
 
 				return [ $volValue, $volState[self::RES_VERSION], $curState[self::RES_AS_OF] ];
@@ -1807,7 +1799,6 @@ class WANObjectCache implements
 					->setLabel( 'keygroup', $keygroup )
 					->setLabel( 'result', $miss )
 					->setLabel( 'reason', 'busy' )
-					->copyToStatsdAt( "wanobjectcache.$keygroup.$miss.busy" )
 					->observe( 1e3 * ( $this->getCurrentTime() - $startTime ) );
 
 				$placeholderValue = ( $busyValue instanceof Closure ) ? $busyValue() : $busyValue;
@@ -1841,7 +1832,6 @@ class WANObjectCache implements
 
 		$this->stats->getTiming( 'wanobjectcache_regen_seconds' )
 			->setLabel( 'keygroup', $keygroup )
-			->copyToStatsdAt( "wanobjectcache.$keygroup.regen_walltime" )
 			->observe( 1e3 * $walltime );
 
 		// Attempt to save the newly generated value if applicable
@@ -1892,7 +1882,6 @@ class WANObjectCache implements
 			->setLabel( 'keygroup', $keygroup )
 			->setLabel( 'result', $miss )
 			->setLabel( 'reason', 'compute' )
-			->copyToStatsdAt( "wanobjectcache.$keygroup.$miss.compute" )
 			->observe( 1e3 * ( $this->getCurrentTime() - $startTime ) );
 
 		return [ $value, $version, $curState[self::RES_AS_OF] ];
