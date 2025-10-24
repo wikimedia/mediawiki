@@ -4309,7 +4309,7 @@ class Parser {
 		$refers = [];
 
 		$maxTocLevel = $this->svcOptions->get( MainConfigNames::MaxTocLevel );
-		$domDocument = DOMUtils::parseHTML( '' );
+		$domDocument = DOMCompat::newDocument();
 		foreach ( $matches[3] as $headline ) {
 			// $headline is half-parsed HTML
 			$isTemplate = false;

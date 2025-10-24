@@ -63,7 +63,7 @@ class ContentHolder {
 	 */
 	public static function createFromLegacyString( string $html ): ContentHolder {
 		$ch = new ContentHolder(
-			ownerDocument: DOMUtils::parseHTML( '' ),
+			ownerDocument: DOMCompat::newDocument(),
 			htmlMap: [ self::BODY_FRAGMENT => $html ],
 			isParsoidContent: false,
 		);
@@ -93,7 +93,7 @@ class ContentHolder {
 	 */
 	public static function createEmpty(): ContentHolder {
 		return new ContentHolder(
-			ownerDocument: DOMUtils::parseHTML( '' ),
+			ownerDocument: DOMCompat::newDocument(),
 			isParsoidContent: false,
 		);
 	}
