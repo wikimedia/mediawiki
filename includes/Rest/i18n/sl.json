@@ -207,6 +207,8 @@
 	"rest-property-desc-revision-source": "Izvorna vsebina redakcije",
 	"rest-property-desc-revision-html": "Vsebina redakcije v HTML-ju v skladu s specifikacijo HTML",
 	"rest-property-desc-revision-url": "URL do zadnje redakcije strani",
+	"rest-property-desc-revision-url-older": "Če je na voljo, URL za pridobitev segmenta prejšnje redakcije",
+	"rest-property-desc-revision-url-newer": "Če je na voljo, URL za pridobitev segmenta naslednje redakcije",
 	"rest-property-desc-search-excerpt": "Izvleček vsebine strani, ki se ujema z iskalno poizvedbo",
 	"rest-property-desc-search-matched-title": "Naslov strani, s katerega se preusmerja, če se iskalni izraz ujema s preusmeritveno stranjo, sicer pa »null«.",
 	"rest-property-desc-search-description": "Kratek povzetek teme strani ali »null«, če povzetek ne obstaja.",

@@ -88,5 +88,7 @@
 	"rest-unsupported-language-conversion": "Conversão de língua não suportada: $1 para $2",
 	"rest-unknown-content-model": "Modelo de conteúdo desconhecido: $1",
 	"rest-page-bundle-validation-error": "PageBundle não coincide com contentVersion: $1",
-	"rest-param-desc-media-links-title": "Título da página"
+	"rest-param-desc-media-links-title": "Título da página",
+	"rest-property-desc-revision-url-older": "Se disponível, o URL para obter o segmento da revisão anterior",
+	"rest-property-desc-revision-url-newer": "Se disponível, o URL para obter o seguinte segmento da revisão"
 }

@@ -3102,6 +3102,7 @@
 	"semicolon-separator": "；",
 	"comma-separator": "、",
 	"colon-separator": "：",
+	"word-separator": "",
 	"parentheses": "（$1）",
 	"parentheses-start": "（",
 	"parentheses-end": "）",

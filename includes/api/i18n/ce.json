@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"SaldırganSincap",
 			"Исмаил Садуев",
 			"Умар"
 		]
@@ -109,7 +110,7 @@
 	"apihelp-compare-paramvalue-prop-rel": "Хьалха хиллачу «from» а, рогӀерчу «to» а версин идентификаторш.",
 	"apihelp-compare-paramvalue-prop-ids": "АгӀонан а, версин а билгалонаш «from» а, «to» а.",
 	"apihelp-compare-paramvalue-prop-title": "«from» а, «to» а версешна агӀонийн цӀераш.",
-	"apihelp-compare-paramvalue-prop-user": "«from» а, «to» а версешна лерина декъашхочун цӀе а, ID а. Нагахь санна декъашхочун верси дӀайаьккхина йелахь, <samp>fromuserhidden</samp> йа samp>touserhidden</samp> башхалла йухайерзор йу.",
+	"apihelp-compare-paramvalue-prop-user": "«from» а, «to» а версешна лерина декъашхочун цӀе а, ID а. Нагахь санна декъашхочун верси дӀайаьккхина йелахь, <samp>fromuserhidden</samp> йа <samp>touserhidden</samp> башхалла йухайерзор йу.",
 	"apihelp-compare-paramvalue-prop-comment": "«from» а, «to» а версешна лерина хийцамаш баран дийцарш. Нагахь санна комментарийн верси дӀайаьккхина йелахь, <samp>fromcommenthidden</samp> йа <samp>tocommenthidden</samp> башхалла йухайерзор йу.",
 	"apihelp-compare-paramvalue-prop-parsedcomment": "хаамийн парсир хийцар «from» а, «to» а версешна. Нагахь санна комментарин верси дӀайаьккхина йелахь, <samp>fromcommenthidden</samp> йа <samp>tocommenthidden</samp> хьашташ йухайерзор йу.",
 	"apihelp-compare-paramvalue-prop-size": "«from» а, «to» а версин барам.",
@@ -1743,7 +1744,7 @@
 	"apierror-compare-nosuchtosection": "«to» чулацамехь $1 дакъа дац.",
 	"apierror-compare-nofromrevision": "Цхьа а «from» верси. Билгалдаккха <var>fromrev</var>, <var>fromtitle</var> йа <var>fromid</var>.",
 	"apierror-compare-notext": "<var>$1</var> параметр лело йиш йац <var>$2</var> йоцуш.",
-	"apierror-compare-notorevision": "Цхьа а «to» верси йац. Билгалдаккха var>torev</var>, <var>totitle</var>, or <var>toid</var>.",
+	"apierror-compare-notorevision": "Цхьа а «to» верси йац. Билгалдаккха <var>torev</var>, <var>totitle</var>, or <var>toid</var>.",
 	"apierror-concurrency-limit": "Цхьана хенахь леларан доза тӀехдаьккхина. ХӀора дехар йухадерзаре хьоьжуш хила, рогӀерниг дӀадахьийталца.",
 	"apierror-compare-relative-to-deleted": "<kbd>torelative=$1</kbd> лело мегар дац дӀайаьккхинчу ревизица доьзна.",
 	"apierror-compare-relative-to-nothing": "<var>torelative</var> йоьзна йолу 'from' верси йац.",

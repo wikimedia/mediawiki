@@ -2554,7 +2554,7 @@
 	"ipbother": "Altra durata:",
 	"ipboptions": "2 ore:2 hours,1 giorno:1 day,3 giorni:3 days,1 settimana:1 week,2 settimane:2 weeks,1 mese:1 month,3 mesi:3 months,6 mesi:6 months,1 anno:1 year,infinito:infinite",
 	"ipbhidename": "Nascondi il nome utente dalle modifiche e dagli elenchi.",
-	"ipbwatchuser": "Segui la pagina utente e le discussioni utente del destinatario del blocco",
+	"ipbwatchuser": "Segui la pagina utente e le discussioni utente dell'utenza bloccata",
 	"ipb-disableusertalk": "Modificare la propria pagina di discussione",
 	"ipb-change-block": "Ri-blocca l'utente con queste impostazioni",
 	"ipb-confirm": "Conferma il blocco",

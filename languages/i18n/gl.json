@@ -1337,7 +1337,7 @@
 	"rcfilters-filter-user-experience-level-newcomer-label": "Persoas principiantes",
 	"rcfilters-filter-user-experience-level-newcomer-description": "Editores rexistrados con menos de 10 edicións ou 4 días de actividade.",
 	"rcfilters-filter-user-experience-level-learner-label": "Aprendices",
-	"rcfilters-filter-user-experience-level-learner-description": "Editores rexistrados cuxa experiencia está entre os «usuarios novatos» e os «usuarios experimentados».",
+	"rcfilters-filter-user-experience-level-learner-description": "Editores rexistrados cuxa experiencia está entre as «persoas principiantes» e os «usuarios experimentados».",
 	"rcfilters-filter-user-experience-level-experienced-label": "Usuarios experimentados",
 	"rcfilters-filter-user-experience-level-experienced-description": "Editores rexistrados con máis de 500 edicións e 30 días de actividade.",
 	"rcfilters-filtergroup-automated": "Contribucións automatizadas",

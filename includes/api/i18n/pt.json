@@ -315,7 +315,7 @@
 	"apihelp-mergehistory-param-fromid": "Identificador da página cujo historial será fundido. Não pode ser usado em conjunto com <var>$1from</var>.",
 	"apihelp-mergehistory-param-to": "Título da página à qual o historial será fundido. Não pode ser usado em conjunto com <var>$1toid</var>.",
 	"apihelp-mergehistory-param-toid": "Identificador da página à qual o historial será fundido. Não pode ser usado em conjunto com <var>$1to</var>.",
-	"apihelp-mergehistory-param-timestamp": "Data e hora até a qual as revisões serão movidas do historial da página de origem para o historial das páginas de destino. Se omitido, todo o historial da página de origem será fundido com a página de destino.",
+	"apihelp-mergehistory-param-timestamp": "Data e hora até a qual as revisões serão movidas do histórico da página fonte para o histórico das páginas de destino. Se omitido, todo o histórico da página fonte será unido com a página de destino. Pode especificar \"timestamp|revid\" para dividir as duas revisões com a mesma data/hora.",
 	"apihelp-mergehistory-param-reason": "Motivo para fundir o historial.",
 	"apihelp-mergehistory-example-merge": "Fundir todo o historial da página <kbd>Oldpage</kbd> com o da página <kbd>Newpage</kbd>.",
 	"apihelp-mergehistory-example-merge-timestamp": "Fundir as revisões de <kbd>Oldpage</kbd> até à data e hora <kbd>2015-12-31T04:37:41Z</kbd> com <kbd>Newpage</kbd>.",

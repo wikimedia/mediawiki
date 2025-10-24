@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Misbahu umar"
+			"Misbahu umar",
+			"SaldırganSincap"
 		]
 	},
 	"botpasswords": "Giyeko bot",
@@ -19,7 +20,7 @@
 	"botpasswords-label-delete": "Nuya",
 	"botpasswords-label-resetpassword": "Zhe giyeko ban",
 	"botpasswords-label-grants": "Ele nan zhi danbo wo'e nan",
-	"botpasswords-help-grants": "Ele zhi jin yeda ya gbami wo'e.yeda jin ya ele babo wun wugwa gan gbami ezaloci wo'a de ndoci'a nyan.cinle [[specials:ListGrants|table of grants]] ebo egan yekpe'o.ele dede zhi de eli. Ele nan zhi de eli'a nan zo nyin go gwata zana de niyan wangi'a nan.\nEle be biban wo'e (<span class=\"mw-grantriskgroup-vandalism\">{{int:grantriskgroup-vandalism}}</span>)de lulo wo ya damuwa wun man zo yin nuya.ele be egbzhe tswitswa'e (<span class=\"mw-grantriskgroup-security\">)wun la egwatso nan lokpa nan be wo(ke yigbe nyan etun suso chi nan).ele nyan nin zhi(<span class=\"mw-grantriskgroup-internal\">{{int:grantriskgroup-internal}}</span>)kpata'e de lulo gwata eza loci'o. Jin ankuri ga li ele egbazhe zhi man sai de wun ga zhe dole nan wo'a wa'u nan.",
+	"botpasswords-help-grants": "Ele zhi jin yeda ya gbami wo'e.yeda jin ya ele babo wun wugwa gan gbami ezaloci wo'a de ndoci'a nyan.cinle [[specials:ListGrants|table of grants]] ebo egan yekpe'o.ele dede zhi de eli. Ele nan zhi de eli'a nan zo nyin go gwata zana de niyan wangi'a nan.\nEle be biban wo'e (<span class=\"mw-grantriskgroup-vandalism\">{{int:grantriskgroup-vandalism}}</span>)de lulo wo ya damuwa wun man zo yin nuya.ele be egbzhe tswitswa'e (<span class=\"mw-grantriskgroup-security\">{{int:grantriskgroup-security}}</span>) wun la egwatso nan lokpa nan be wo(ke yigbe nyan etun suso chi nan).ele nyan nin zhi(<span class=\"mw-grantriskgroup-internal\">{{int:grantriskgroup-internal}}</span>)kpata'e de lulo gwata eza loci'o. Jin ankuri ga li ele egbazhe zhi man sai de wun ga zhe dole nan wo'a wa'u nan.",
 	"botpasswords-label-grants-column": "Ele a de lila ya",
 	"botpasswords-bad-appid": "Sunna boy \"$1\" lo'a.",
 	"botpasswords-toolong-restrictions": "IP address koma range kaman danbo",

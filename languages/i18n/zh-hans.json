@@ -3306,6 +3306,7 @@
 	"semicolon-separator": "；",
 	"comma-separator": "、​",
 	"colon-separator": "：​",
+	"word-separator": "​",
 	"ellipsis": "…",
 	"percent": "$1%",
 	"parentheses": "（$1）",

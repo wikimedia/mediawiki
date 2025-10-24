@@ -1785,6 +1785,7 @@
 	"comma-separator": "、",
 	"colon-separator": "：",
 	"pipe-separator": "｜",
+	"word-separator": "​",
 	"ellipsis": "……",
 	"imgmultipageprev": "←前頁",
 	"imgmultipagenext": "次頁→",

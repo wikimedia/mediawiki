@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Ahmed-Najib-Biabani-Ibrahimkhel",
+			"SaldırganSincap",
 			"شاه زمان پټان"
 		]
 	},
@@ -14,7 +15,7 @@
 	"interwiki_prefix_intro": "ويکي‌خپلمنځي مختاړی چې په <code>[<nowiki />[prefix:<em>pagename</em>]]</code> ويکي‌ليک غونډل‌پوهه کې کارېدلی دی.",
 	"interwiki_url": "وېبتړ",
 	"interwiki-url-label": "وېبتړ:",
-	"interwiki_url_intro": "وېبتړونو لپاره کينډۍ. ځای‌نيوونکی  $1 به د <em>pagename</em> له خوا په code>[<nowiki />[prefix:<em>pagename</em>]]</code> کې ځايناستی شي.",
+	"interwiki_url_intro": "وېبتړونو لپاره کينډۍ. ځای‌نيوونکی  $1 به د <em>pagename</em> له خوا په <code>[<nowiki />[prefix:<em>pagename</em>]]</code> کې ځايناستی شي.",
 	"interwiki_local": "مخته‌وړل",
 	"interwiki-local-label": "مخته‌وړل",
 	"interwiki_local_0_intro": "په وېبتړ کې د دې ويکي‌خپلمنځي مختاړي په کارولو سره سيمه‌ييزې ويکي ته بهرنۍ اېچ‌ټي‌ټي‌پي غوښتنې به د \"{{int:badtitle}}\" تېروتنې مخ پايله ولري.",
