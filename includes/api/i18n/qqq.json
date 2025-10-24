@@ -1269,6 +1269,7 @@
 	"apihelp-query+siteinfo-paramvalue-prop-functionhooks": "{{doc-apihelp-paramvalue|query+siteinfo|prop|functionhooks}}",
 	"apihelp-query+siteinfo-paramvalue-prop-showhooks": "{{doc-apihelp-paramvalue|query+siteinfo|prop|showhooks}}",
 	"apihelp-query+siteinfo-paramvalue-prop-variables": "{{doc-apihelp-paramvalue|query+siteinfo|prop|variables}}",
+	"apihelp-query+siteinfo-paramvalue-prop-doubleunderscores": "{{doc-apihelp-paramvalue|query+siteinfo|prop|doubleunderscores}}",
 	"apihelp-query+siteinfo-paramvalue-prop-protocols": "{{doc-apihelp-paramvalue|query+siteinfo|prop|protocols}}",
 	"apihelp-query+siteinfo-paramvalue-prop-defaultoptions": "{{doc-apihelp-paramvalue|query+siteinfo|prop|defaultoptions}}",
 	"apihelp-query+siteinfo-paramvalue-prop-uploaddialog": "{{doc-apihelp-paramvalue|query+siteinfo|prop|uploaddialog}}",

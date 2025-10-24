@@ -298,6 +298,11 @@ class SiteConfigTest extends MediaWikiUnitTestCase {
 		yield 'getVariableIDs' => [
 			MagicWordFactory::class, 'getVariableIDs', [], [ 'blabla' ], 'getVariableIDs', [ 'blabla' ]
 		];
+		yield 'getDoubleUnderscoreIDs' => [
+			MagicWordFactory::class, 'getDoubleUnderscoreArray', [],
+			static fn ( $test ) => new MagicWordArray( [ 'tick', 'toc' ], $test->createMock( MagicWordFactory::class ) ),
+			'getDoubleUnderscoreIDs', [ 'tick', 'toc' ]
+		];
 		yield 'getFunctionSynonyms' => [
 			[ ParserFactory::class, 'getMainInstance' ], [ Parser::class, 'getFunctionSynonyms' ], [], [ 0 => [ 'blabla' ], 1 => [ 'blabla' ] ],
 			'getFunctionSynonyms', [ 0 => [ 'blabla' ], 1 => [ 'blabla' ] ]
@@ -324,6 +329,7 @@ class SiteConfigTest extends MediaWikiUnitTestCase {
 	 * @covers \MediaWiki\Parser\Parsoid\Config\SiteConfig::rtl
 	 * @covers \MediaWiki\Parser\Parsoid\Config\SiteConfig::widthOption
 	 * @covers \MediaWiki\Parser\Parsoid\Config\SiteConfig::getVariableIDs
+	 * @covers \MediaWiki\Parser\Parsoid\Config\SiteConfig::getDoubleUnderscoreIDs
 	 * @covers \MediaWiki\Parser\Parsoid\Config\SiteConfig::getFunctionSynonyms
 	 * @covers \MediaWiki\Parser\Parsoid\Config\SiteConfig::getMagicWords
 	 * @covers \MediaWiki\Parser\Parsoid\Config\SiteConfig::getNonNativeExtensionTags
@@ -354,6 +360,9 @@ class SiteConfigTest extends MediaWikiUnitTestCase {
 				// No factory, use the service mock directly
 				$mock = $serviceMock;
 				$serviceMethod = $serviceMethodSpec;
+			}
+			if ( is_callable( $returnValue ) ) {
+				$returnValue = $returnValue( $this );
 			}
 			// Let the mock return the expected arguments
 			$mock
