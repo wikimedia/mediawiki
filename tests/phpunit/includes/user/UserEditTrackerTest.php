@@ -183,4 +183,15 @@ class UserEditTrackerTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 10, $tracker->getUserEditCount( $user ) );
 	}
 
+	public function testCachesFromDifferentWikisAreDisjoint() {
+		$userLocal = new UserIdentityValue( 123, __METHOD__ );
+		$userRemote = new UserIdentityValue( 123, __METHOD__, 'otherwiki' );
+
+		$tracker = $this->getServiceContainer()->getUserEditTracker();
+		$tracker->setCachedUserEditCount( $userLocal, 10 );
+		$tracker->setCachedUserEditCount( $userRemote, 20 );
+
+		$this->assertSame( 10, $tracker->getUserEditCount( $userLocal ) );
+		$this->assertSame( 20, $tracker->getUserEditCount( $userRemote ) );
+	}
 }
