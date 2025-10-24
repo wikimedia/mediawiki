@@ -187,6 +187,9 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				case 'variables':
 					$fit = $this->appendVariables( $p );
 					break;
+				case 'doubleunderscores':
+					$fit = $this->appendDoubleUnderscores( $p );
+					break;
 				case 'protocols':
 					$fit = $this->appendProtocols( $p );
 					break;
@@ -918,6 +921,14 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		return $this->getResult()->addValue( 'query', $property, $variables );
 	}
 
+	public function appendDoubleUnderscores( string $property ): bool {
+		$ids = $this->magicWordFactory->getDoubleUnderscoreArray()->getNames();
+		ApiResult::setArrayType( $ids, 'BCarray' );
+		ApiResult::setIndexedTagName( $ids, 'v' );
+
+		return $this->getResult()->addValue( 'query', $property, $ids );
+	}
+
 	public function appendProtocols( string $property ): bool {
 		// Make a copy of the global so we don't try to set the _element key of it - T47130
 		$protocols = array_values( $this->getConfig()->get( MainConfigNames::UrlProtocols ) );
@@ -1104,6 +1115,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 					'functionhooks',
 					'showhooks',
 					'variables',
+					'doubleunderscores',
 					'protocols',
 					'defaultoptions',
 					'uploaddialog',

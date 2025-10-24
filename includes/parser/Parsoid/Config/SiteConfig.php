@@ -648,9 +648,21 @@ class SiteConfig extends ISiteConfig {
 		return $this->config->get( MainConfigNames::ThumbLimits )[$thumbsize];
 	}
 
-	/** @inheritDoc */
+	/**
+	 * Return list of magic word IDs used for magic variables
+	 * (memoized zero-argument parser functions).
+	 * @return list<string>
+	 */
 	protected function getVariableIDs(): array {
 		return $this->magicWordFactory->getVariableIDs();
+	}
+
+	/**
+	 * Return list of magic word IDs used for behavior switches.
+	 * @return list<string>
+	 */
+	protected function getDoubleUnderscoreIDs(): array {
+		return $this->magicWordFactory->getDoubleUnderscoreArray()->getNames();
 	}
 
 	/** @inheritDoc */
