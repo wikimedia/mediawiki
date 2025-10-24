@@ -940,6 +940,23 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 		$this->assertArrayEquals( [ 'test_autoconfirmed' ], $manager->getUserAutopromoteGroups( $user ) );
 	}
 
+	public function testGetUserAutopromoteUserRequirementsConditionHook() {
+		$user = new UserIdentityValue( 1, 'TestUser' );
+		$this->setTemporaryHook(
+			'UserRequirementsCondition',
+			function ( $type, array $arg, UserIdentity $hookUser, $isPerformer, &$result ) use ( $user ){
+				$this->assertTrue( $user->equals( $hookUser ) );
+				$this->assertSame( 999, $type );
+				$this->assertSame( 'ARGUMENT', $arg[0] );
+				$result = true;
+			}
+		);
+		$manager = $this->getManager( [
+			MainConfigNames::Autopromote => [ 'test_autoconfirmed' => [ 999, 'ARGUMENT' ] ]
+		] );
+		$this->assertArrayEquals( [ 'test_autoconfirmed' ], $manager->getUserAutopromoteGroups( $user ) );
+	}
+
 	public static function provideGetUserAutopromoteOnce() {
 		yield 'Events are not matching' => [
 			[ 'NOT_EVENT' => [ 'autopromoteonce' => [ APCOND_EDITCOUNT, 0 ] ] ], [], [], []

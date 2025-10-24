@@ -568,6 +568,7 @@ class HookRunner implements
 	\MediaWiki\User\Hook\UserArrayFromResultHook,
 	\MediaWiki\User\Hook\UserCanSendEmailHook,
 	\MediaWiki\User\Hook\UserClearNewTalkNotificationHook,
+	\MediaWiki\User\Hook\UserRequirementsConditionHook,
 	\MediaWiki\User\Hook\UserEffectiveGroupsHook,
 	\MediaWiki\User\Hook\UserGetDefaultOptionsHook,
 	\MediaWiki\User\Hook\UserGetEmailAuthenticationTimestampHook,
@@ -5076,6 +5077,17 @@ class HookRunner implements
 		return $this->container->run(
 			'UserRemoveGroup',
 			[ $user, &$group ]
+		);
+	}
+
+	/** @inheritDoc */
+	public function onUserRequirementsCondition( $type, array $args, UserIdentity $user,
+		bool $isPerformingRequest, ?bool &$result
+	): void {
+		$this->container->run(
+			'UserRequirementsCondition',
+			[ $type, $args, $user, $isPerformingRequest, &$result ],
+			[ 'abortable' => false ]
 		);
 	}
 

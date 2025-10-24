@@ -127,6 +127,9 @@ because of Phabricator reports.
     - Wikimedia\Stats\IBufferingStatsdDataFactory
     - Wikimedia\Stats\NullStatsdDataFactory
     - Wikimedia\Stats\StatsdAwareInterface
+* The AutopromoteCondition hook has been deprecated. Use
+  UserRequirementsCondition hook, instead.
+* …
 
 === Other changes in 1.46 ===
 

@@ -164,21 +164,22 @@ class UserRequirementsConditionChecker {
 				);
 			default:
 				$result = null;
-				if ( !$isPerformingRequest || !$isCurrentWiki ) {
-					// The current hook is run only if the tested user is the one performing
-					// the request (for autopromote), and the only possible option is that the
-					// user is from the local wiki. If any of these conditions is not met, we
-					// cannot invoke the hook, as it may produce incorrect results.
-					// TODO: Create a new hook, instead of the original one, with broader scope (T408184)
-					return false;
+				$type = $cond[0];
+				$args = array_slice( $cond, 1 );
+				$this->hookRunner->onUserRequirementsCondition( $type, $args, $user, $isPerformingRequest, $result );
+
+				if ( $isPerformingRequest && $isCurrentWiki ) {
+					// The legacy hook is run only if the tested user is the one performing
+					// the request (like for autopromote), and the user is from the local wiki.
+					// If any of these conditions is not met, we cannot invoke the hook,
+					// as it may produce incorrect results.
+					$userObject = $this->userFactory->newFromUserIdentity( $user );
+					$this->hookRunner->onAutopromoteCondition( $type, $args, $userObject, $result );
 				}
 
-				$userObject = $this->userFactory->newFromUserIdentity( $user );
-				$this->hookRunner->onAutopromoteCondition( $cond[0],
-					array_slice( $cond, 1 ), $userObject, $result );
 				if ( $result === null ) {
 					throw new InvalidArgumentException(
-						"Unrecognized condition $cond[0] for autopromotion!"
+						"Unrecognized condition $type in UserRequirementsCondition!"
 					);
 				}
 

@@ -9,6 +9,7 @@ use MediaWiki\User\User;
  * Use the hook name "AutopromoteCondition" to register handlers implementing this interface.
  *
  * @stable to implement
+ * @deprecated since 1.46 Use UserRequirementsConditionHook instead
  * @ingroup Hooks
  */
 interface AutopromoteConditionHook {
