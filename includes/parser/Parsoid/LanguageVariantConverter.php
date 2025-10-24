@@ -145,8 +145,7 @@ class LanguageVariantConverter {
 				'content-language' => $pageVariant->toBcp47Code(),
 				'vary' => [ 'Accept', 'Accept-Language' ]
 			];
-			$doc = DOMUtils::parseHTML( '' );
-			$doc->appendChild( $doc->createElement( 'head' ) );
+			$doc = DOMUtils::parseHTML( '<head></head><body></body>' );
 			DOMUtils::addHttpEquivHeaders( $doc, $headers );
 			$docElt = $doc->documentElement;
 			'@phan-var Element $docElt';
