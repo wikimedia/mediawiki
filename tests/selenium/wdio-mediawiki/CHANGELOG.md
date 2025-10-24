@@ -14,7 +14,7 @@ const bot = await mwbot();
 ```
 We changed that to not expose our implementation so it's easier in the future to change API backend. This change removed the exposed mwbot() and made Api.js expose the API functions directly. The change was done in T404596.
 
-2. The next step removed the actual mwbot dependency and implements our own functionality to talk to the API (using built in NodeJS fetch). The change was done in T404361. You can see can see what you need to do to upgrade to 6.0 if you used mwbot in https://gerrit.wikimedia.org/g/mediawiki/extensions/examples.
+2. The next step removed the actual mwbot dependency and implements our own functionality to talk to the API (using built in NodeJS fetch). The change was done in T404361. There's an example in https://gerrit.wikimedia.org/r/c/mediawiki/extensions/examples/+/1197258 e what you need to do to upgrade to 6.0 if you used mwbot.
 
 If you don't pass on any user/password when setting up the API client the `browser.options.capabilities[ 'mw:user' ]` and `browser.options.capabilities[ 'mw:pwd' ]` will be used. For specific functions that need a username, you always need to pass on the username from this version.
 
