@@ -45,9 +45,12 @@ class LocalSettingsLoader {
 			$$var = $config->get( $key ); // XXX: slow?! Can we get the entire array in one go?
 		}
 
-		// make available some non-config globals available
-		// phpcs:ignore MediaWiki.VariableAnalysis.UnusedGlobalVariables.UnusedGlobal$wgCommandLineMode, MediaWiki.Usage.DeprecatedGlobalVariables
-		global $wgCommandLineMode;
+		// Non-config globals available to LocalSettings
+		//
+		// NOTE: Keep in sync with Installer::getExistingLocalSettings
+		//
+		// phpcs:ignore MediaWiki.VariableAnalysis.UnusedGlobalVariables, MediaWiki.Usage.DeprecatedGlobalVariables
+		global $wgCommandLineMode, $wgConf;
 
 		// make additional variables available
 		// phpcs:ignore MediaWiki.VariableAnalysis.MisleadingGlobalNames.Misleading$wgSettings

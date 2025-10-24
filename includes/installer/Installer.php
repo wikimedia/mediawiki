@@ -692,6 +692,13 @@ abstract class Installer {
 		$wgExtensionDirectory = "$IP/extensions";
 		$wgStyleDirectory = "$IP/skins";
 
+		// Non-config globals available to LocalSettings
+		//
+		// NOTE: Keep in sync with LocalSettingsLoader, normally called from Setup.php
+		//
+		// phpcs:ignore MediaWiki.VariableAnalysis.UnusedGlobalVariables, MediaWiki.Usage.DeprecatedGlobalVariables
+		global $wgCommandLineMode, $wgConf;
+
 		// NOTE: To support YAML settings files, this needs to start using SettingsBuilder.
 		//       However, as of 1.38, YAML settings files are still experimental and
 		//       SettingsBuilder is still unstable. For now, the installer will fail if
