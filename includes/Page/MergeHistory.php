@@ -452,13 +452,12 @@ class MergeHistory {
 
 			$this->updateSourcePage( $status, $performer, $revisionComment, $updater );
 
+			// Duplicate watchers of the old article to the new article
+			$this->watchedItemStore->duplicateAllAssociatedEntries( $this->source, $this->dest );
 		} else {
 			$legacySource->invalidateCache();
 		}
 		$legacyDest->invalidateCache();
-
-		// Duplicate watchers of the old article to the new article
-		$this->watchedItemStore->duplicateAllAssociatedEntries( $this->source, $this->dest );
 
 		// Update our logs
 		$logEntry = new ManualLogEntry( 'merge', 'merge' );
