@@ -3766,6 +3766,12 @@ class MainConfigNames {
 	public const WatchlistExpiry = 'WatchlistExpiry';
 
 	/**
+	 * Name constant for the EnableWatchlistLabels setting, for use with Config::get()
+	 * @see MainConfigSchema::EnableWatchlistLabels
+	 */
+	public const EnableWatchlistLabels = 'EnableWatchlistLabels';
+
+	/**
 	 * Name constant for the WatchlistPurgeRate setting, for use with Config::get()
 	 * @see MainConfigSchema::WatchlistPurgeRate
 	 */

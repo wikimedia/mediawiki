@@ -3751,6 +3751,12 @@ $wgRecentChangesFlags = null;
 $wgWatchlistExpiry = null;
 
 /**
+ * Config variable stub for the EnableWatchlistLabels setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::EnableWatchlistLabels
+ */
+$wgEnableWatchlistLabels = null;
+
+/**
  * Config variable stub for the WatchlistPurgeRate setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::WatchlistPurgeRate
  */

@@ -11078,6 +11078,16 @@ class MainConfigSchema {
 	];
 
 	/**
+	 * Whether to enable the watchlist labels feature.
+	 *
+	 * @since 1.46
+	 */
+	public const EnableWatchlistLabels = [
+		'default' => false,
+		'type' => 'boolean',
+	];
+
+	/**
 	 * Chance of expired watchlist items being purged on any page edit.
 	 *
 	 * Only has effect if $wgWatchlistExpiry is true.

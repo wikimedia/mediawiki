@@ -6943,6 +6943,12 @@ config-schema:
         description: |-
             Whether to enable the watchlist expiry feature.
             @since 1.35
+    EnableWatchlistLabels:
+        default: false
+        type: boolean
+        description: |-
+            Whether to enable the watchlist labels feature.
+            @since 1.46
     WatchlistPurgeRate:
         default: 0.1
         type: number

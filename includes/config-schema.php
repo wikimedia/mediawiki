@@ -2113,6 +2113,7 @@ return [
 				],
 			],
 			'WatchlistExpiry' => false,
+			'EnableWatchlistLabels' => false,
 			'WatchlistPurgeRate' => 0.1,
 			'WatchlistExpiryMaxDuration' => '1 year',
 			'EditWatchlistPaginate' => false,
@@ -3123,6 +3124,7 @@ return [
 			'SoftwareTags' => 'object',
 			'RecentChangesFlags' => 'object',
 			'WatchlistExpiry' => 'boolean',
+			'EnableWatchlistLabels' => 'boolean',
 			'WatchlistPurgeRate' => 'number',
 			'WatchlistExpiryMaxDuration' => [
 				'string',
