@@ -65,7 +65,7 @@ class ApiResult implements ApiSerializable {
 	/**
 	 * For addValue(), setValue() and similar functions, do allow override
 	 * of conflicting keys.
-	 * @since 1.45
+	 * @since 1.45 (also backported to 1.43.6, 1.44.3)
 	 */
 	public const IGNORE_CONFLICT_KEYS = 16;
 
