@@ -384,7 +384,8 @@ because of Phabricator reports.
    - Xml::buildTableRow(), since 1.42
 * SkinFactory::getSkinNames(), deprecated since 1.37, has been removed. Instead,
   use SkinFactory::getInstalledSkins().
-* …
+* Skin::makeSpecialUrl and Skin::makeSpecialUrlSubpage, deprecated in 1.39 has
+  been removed. Instead, use the replacements in SkinComponentUtils.
 
 === Deprecations in 1.45 ===
 

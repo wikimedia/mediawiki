@@ -1131,35 +1131,6 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * Make a URL for a Special Page using the given query and protocol.
-	 *
-	 * If $proto is set to null, make a local URL. Otherwise, make a full
-	 * URL with the protocol specified.
-	 *
-	 * @deprecated since 1.39 - Moved to SkinComponentUtils::makeSpecialUrl
-	 * @param string $name Name of the Special page
-	 * @param string|array $urlaction Query to append
-	 * @param string|null $proto Protocol to use or null for a local URL
-	 * @return string
-	 */
-	public static function makeSpecialUrl( $name, $urlaction = '', $proto = null ) {
-		wfDeprecated( __METHOD__, '1.39' );
-		return SkinComponentUtils::makeSpecialUrl( $name, $urlaction, $proto );
-	}
-
-	/**
-	 * @deprecated since 1.39 - Moved to SkinComponentUtils::makeSpecialUrlSubpage
-	 * @param string $name
-	 * @param string|bool $subpage false for no subpage
-	 * @param string|array $urlaction
-	 * @return string
-	 */
-	public static function makeSpecialUrlSubpage( $name, $subpage, $urlaction = '' ) {
-		wfDeprecated( __METHOD__, '1.39' );
-		return SkinComponentUtils::makeSpecialUrlSubpage( $name, $subpage, $urlaction );
-	}
-
-	/**
 	 * If url string starts with http, consider as external URL, else
 	 * internal
 	 * @param string $name
