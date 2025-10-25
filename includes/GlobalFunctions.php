@@ -518,21 +518,6 @@ function wfExpandUrl( $url, $defaultProto = PROTO_CURRENT ) {
 }
 
 /**
- * Get the wiki's "server", i.e. the protocol and host part of the URL, with a
- * protocol specified using a PROTO_* constant as in wfExpandUrl()
- *
- * @deprecated since 1.39, use UrlUtils::getServer(); hard-deprecated since 1.43
- * @since 1.32
- * @param string|int|null $proto One of the PROTO_* constants.
- * @return string The URL
- */
-function wfGetServerUrl( $proto ) {
-	wfDeprecated( __FUNCTION__, '1.39' );
-
-	return wfGetUrlUtils()->getServer( $proto ) ?? '';
-}
-
-/**
  * This function will reassemble a URL parsed with wfParseURL.  This is useful
  * if you need to edit part of a URL and put it back together.
  *
@@ -608,21 +593,6 @@ function wfParseUrl( $url ) {
 	wfDeprecated( __FUNCTION__, '1.39' );
 
 	return wfGetUrlUtils()->parse( (string)$url ) ?? false;
-}
-
-/**
- * Take a URL, make sure it's expanded to fully qualified, and replace any
- * encoded non-ASCII Unicode characters with their UTF-8 original forms
- * for more compact display and legibility for local audiences.
- *
- * @deprecated since 1.39, use UrlUtils::expandIRI(); hard-deprecated since 1.43
- * @param string $url
- * @return string
- */
-function wfExpandIRI( $url ) {
-	wfDeprecated( __FUNCTION__, '1.39' );
-
-	return wfGetUrlUtils()->expandIRI( (string)$url ) ?? '';
 }
 
 /**
