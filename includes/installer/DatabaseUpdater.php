@@ -480,8 +480,8 @@ abstract class DatabaseUpdater {
 			$this->output( "done.\n" );
 		}
 		if ( isset( $what['core'] ) ) {
-			$this->doCollationUpdate();
 			$this->runUpdates( $this->getCoreUpdateList(), false );
+			$this->doCollationUpdate();
 		}
 		if ( isset( $what['extensions'] ) ) {
 			$this->loadExtensionSchemaUpdates();
