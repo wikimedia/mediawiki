@@ -67,6 +67,8 @@ class MailAddressTest extends MediaWikiIntegrationTestCase {
 			[ true, 'foo@bar.baz', 'AUser', 'My "B\C" test', '"My \"B\\\\C\" test" <foo@bar.baz>' ],
 			[ true, 'foo@bar.baz', 'A.user.name', 'my@real.name', '"my@real.name" <foo@bar.baz>' ],
 			[ false, 'foo@bar.baz', 'AUserName', 'Some real name', '"AUserName" <foo@bar.baz>' ],
+			[ false, 'foo@example', 'Name, User', '', '"Name, User" <foo@example>' ],
+			[ false, 'foo@example', 'User Näme, With Umlauts', '', '=?UTF-8?Q?User=20N=C3=A4me=2C=20With=20Umlauts?= <foo@example>' ],
 			[ false, 'foo@bar.baz', '', '', 'foo@bar.baz' ],
 			[ true, 'foo@bar.baz', '', '', 'foo@bar.baz' ],
 			[ true, '', '', '', '' ],
