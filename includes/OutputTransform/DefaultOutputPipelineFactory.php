@@ -9,6 +9,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\OutputTransform\Stages\AddRedirectHeader;
 use MediaWiki\OutputTransform\Stages\AddWrapperDivClass;
 use MediaWiki\OutputTransform\Stages\DeduplicateStyles;
+use MediaWiki\OutputTransform\Stages\DeduplicateStylesDOM;
 use MediaWiki\OutputTransform\Stages\ExecutePostCacheTransformHooks;
 use MediaWiki\OutputTransform\Stages\ExpandToAbsoluteUrls;
 use MediaWiki\OutputTransform\Stages\ExtractBody;
@@ -108,8 +109,15 @@ class DefaultOutputPipelineFactory {
 			],
 			'exclusive' => false
 		],
-		'DeduplicateStyles' =>
-			DeduplicateStyles::class,
+		'DeduplicateStyles' => [
+			'textStage' => [
+				'class' => DeduplicateStyles::class,
+			],
+			'domStage' => [
+				'class' => DeduplicateStylesDOM::class,
+			],
+			'exclusive' => false
+		],
 
 		'ExpandToAbsoluteUrls' =>
 			ExpandToAbsoluteUrls::class,
