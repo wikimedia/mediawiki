@@ -367,6 +367,9 @@ because of Phabricator reports.
   use SkinFactory::getInstalledSkins().
 * Skin::makeSpecialUrl and Skin::makeSpecialUrlSubpage, deprecated in 1.39 has
   been removed. Instead, use the replacements in SkinComponentUtils.
+* wfExpandIRI() and wfGetServerUrl(), deprecated since 1.39, has been removed.
+  Instead, use UrlUtils::expandIRI() and UrlUtils::getServer().
+*
 
 === Deprecations in 1.45 ===
 
