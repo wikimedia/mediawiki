@@ -57,10 +57,16 @@ async function startVideo( ffmpeg, title ) {
 		const { spawn } = await import( 'child_process' );
 		ffmpeg = spawn( 'ffmpeg', [
 			'-f', 'x11grab', //  grab the X11 display
-			'-video_size', '1280x1024', // video size
-			'-i', process.env.DISPLAY, // input file url
+			'-video_size', '1280x1024', // video size need to match our XVFB setup
+			'-framerate', '10', // Capture framerate is 10 fps
+			'-i', process.env.DISPLAY, // display used for input
+			'-draw_mouse', '0', // skip the mouse (do we need it?)
 			'-loglevel', 'error', // log only errors
 			'-y', // overwrite output files without asking
+			'-an', // skip sound
+			'-c:v', 'libx264', // specify encoder
+			'-preset', 'ultrafast', // fastest preset, reduse CPU overhead, creates larger files
+			'-crf', '42', // 23 is default, higher number makes files smaller but lower quality
 			'-pix_fmt', 'yuv420p', // QuickTime Player support, "Use -pix_fmt yuv420p for compatibility with outdated media players"
 			videoPath // output file
 		] );
