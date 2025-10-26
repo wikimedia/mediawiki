@@ -13,6 +13,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\Title\NamespaceInfo;
+use MediaWiki\User\StaticUserOptionsLookup;
 use MediaWiki\User\UserIdentityValue;
 use Wikimedia\TestingAccessWrapper;
 
@@ -2507,4 +2508,136 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 		);
 	}
 
+	/**
+	 * @dataProvider provideHumanTimestampTests
+	 */
+	public function testGetHumanTimestamp(
+		$tsTime, // The timestamp to format
+		$currentTime, // The time to consider "now"
+		$timeCorrection, // The time offset to use
+		$dateFormat, // The date preference to use
+		$expectedOutput, // The expected output
+		$desc // Description
+	) {
+		$defaults = $this->getServiceContainer()->getMainConfig()->get( MainConfigNames::DefaultUserOptions );
+		$userOptionsLookup = new StaticUserOptionsLookup(
+			[ 'user' => [
+				'timecorrection' => $timeCorrection,
+				'date' => $dateFormat
+			] ],
+			$defaults
+		);
+		$this->setService( 'UserOptionsLookup', $userOptionsLookup );
+
+		$tsTime = new MWTimestamp( $tsTime );
+		$currentTime = new MWTimestamp( $currentTime );
+		$user = new UserIdentityValue( 1, 'user' );
+
+		$this->assertSame(
+			$expectedOutput,
+			$this->getLang()->getHumanTimestamp( $tsTime, $currentTime, $user ),
+			$desc
+		);
+	}
+
+	public static function provideHumanTimestampTests() {
+		return [
+			[
+				'20111231170000',
+				'20120101000000',
+				'Offset|0',
+				'mdy',
+				'Yesterday at 17:00',
+				'"Yesterday" across years',
+			],
+			[
+				'20120717190900',
+				'20120717190929',
+				'Offset|0',
+				'mdy',
+				'just now',
+				'"Just now"',
+			],
+			[
+				'20120717190900',
+				'20120717191530',
+				'Offset|0',
+				'mdy',
+				'6 minutes ago',
+				'X minutes ago',
+			],
+			[
+				'20121006173100',
+				'20121006173200',
+				'Offset|0',
+				'mdy',
+				'1 minute ago',
+				'"1 minute ago"',
+			],
+			[
+				'20120617190900',
+				'20120717190900',
+				'Offset|0',
+				'mdy',
+				'June 17',
+				'Another month'
+			],
+			[
+				'19910130151500',
+				'20120716193700',
+				'Offset|0',
+				'mdy',
+				'January 30, 1991',
+				'Different year',
+			],
+			[
+				'20120101050000',
+				'20120101080000',
+				'Offset|-360',
+				'mdy',
+				'Yesterday at 23:00',
+				'"Yesterday" across years with time correction',
+			],
+			[
+				'20120714184300',
+				'20120716184300',
+				'Offset|-420',
+				'mdy',
+				'Saturday at 11:43',
+				'Recent weekday with time correction',
+			],
+			[
+				'20120714184300',
+				'20120715040000',
+				'Offset|-420',
+				'mdy',
+				'11:43',
+				'Today at another time with time correction',
+			],
+			[
+				'20120617190900',
+				'20120717190900',
+				'Offset|0',
+				'dmy',
+				'17 June',
+				'Another month with dmy'
+			],
+			[
+				'20120617190900',
+				'20120717190900',
+				'Offset|0',
+				'ISO 8601',
+				'06-17',
+				'Another month with ISO-8601'
+			],
+			[
+				'19910130151500',
+				'20120716193700',
+				'Offset|0',
+				'ISO 8601',
+				'1991-01-30',
+				'Different year with ISO-8601',
+			],
+		];
+	}
 }
