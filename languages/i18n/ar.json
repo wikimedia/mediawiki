@@ -119,7 +119,8 @@
 			"XIDME",
 			"مارك العبيدي",
 			"123Rkhader",
-			"Mdktb"
+			"Mdktb",
+			"SZX"
 		]
 	},
 	"tog-underline": "سطر تحت الوصلات:",
@@ -505,7 +506,7 @@
 	"yourpassword": "كلمة السر:",
 	"prefs-help-yourpassword": "استعادة الحساب مفعلة. انظر $1 لمزيد من الإعدادات.",
 	"userlogin-yourpassword": "كلمة السر",
-	"userlogin-yourpassword-ph": "أدخل كلمة السر الخاصة بك",
+	"userlogin-yourpassword-ph": "أدخل كلمة السر",
 	"createacct-yourpassword-ph": "أدخل كلمة السر",
 	"yourpasswordagain": "أعد كتابة كلمة السر:",
 	"createacct-useuniquepass": "ننصحك أن تستخدم كلمة سر فريدة لا تستخدمها على أي موقع شبكي آخر.",

@@ -28,7 +28,8 @@
 			"Y-M D",
 			"לערי ריינהארט",
 			"아라",
-			"Base"
+			"Base",
+			"SaldırganSincap"
 		]
 	},
 	"tog-underline": "Liammoù islinennet",
@@ -3192,7 +3193,7 @@
 	"version-poweredby-translators": "troerien translatewiki.net",
 	"version-poweredby-various": "Aozerien disheñvel",
 	"version-credits-summary": "Karout a rafemp trugarekaat an dud-mañ evit ho kenlabour e [[Special:Version|MediaWiki]].",
-	"version-license-info": "Ur meziant frank eo MediaWiki; gallout a rit skignañ anezhañ ha/pe kemmañ anezhañ dindan termenoù ar GNU Aotre-implijout Foran Hollek evel m'emañ embannet gant Diazezadur ar Meziantoù Frank; pe diouzh stumm 2 an aotre-implijout, pe (evel mar karit) ne vern pe stumm nevesoc'h.\n\nIngalet eo MediaWiki gant ar spi e vo talvoudus met n'eus <em>TAMM GWARANT EBET</em>; hep zoken gwarant empleg ar <strong>VARC'HADUSTED</strong> pe an <strong>AZASTER OUZH UR PAL BENNAK</strong>. Gwelet an Aotre-Implijout Foran Hollek GNU evit muioc'h a ditouroù.\n\nSañset oc'h bezañ resevet [{{SERVER}}{{SCRIPTPATH}}/COPYING un eilskrid eus ar GNU Aotre-implijout Foran Hollek] a-gevret gant ar programm-mañ; ma n'hoc'h eus ket, skrivit da Diazezadur ar Meziantoù Frank/Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, SUA pe [//www.gnu.org/licenses/old-licenses/gpl-2.0.html lennit anezhañ enlinenn].",
+	"version-license-info": "Ur meziant frank eo MediaWiki; gallout a rit skignañ anezhañ ha/pe kemmañ anezhañ dindan termenoù ar GNU Aotre-implijout Foran Hollek evel m'emañ embannet gant Diazezadur ar Meziantoù Frank; pe diouzh stumm 2 an aotre-implijout, pe (evel mar karit) ne vern pe stumm nevesoc'h.\n\nIngalet eo MediaWiki gant ar spi e vo talvoudus met n'eus <em>TAMM GWARANT EBET</em>; hep zoken gwarant empleg ar <strong>VARC'HADUSTED</strong> pe an <strong>AZASTER OUZH UR PAL BENNAK</strong>. Gwelet an Aotre-Implijout Foran Hollek GNU evit muioc'h a ditouroù.\n\nSañset oc'h bezañ resevet [{{SERVER}}{{SCRIPTPATH}}/COPYING un eilskrid eus ar GNU Aotre-implijout Foran Hollek] a-gevret gant ar programm-mañ; ma n'hoc'h eus ket, [//www.gnu.org/licenses/old-licenses/gpl-2.0.html lennit anezhañ enlinenn].",
 	"version-software": "Meziant staliet",
 	"version-software-product": "Produ",
 	"version-software-version": "Stumm",
@@ -3700,6 +3701,7 @@
 	"log-action-filter-contentmodel-new": "Krouiñ pajennoù gant ur patrom danvez n'eo ket raktermenet",
 	"log-action-filter-delete-delete": "Diverkañ pajennoù",
 	"log-action-filter-delete-delete_redir": "Frikañ un adkas",
+	"log-action-filter-delete-delete_redir2": "Frikañ un adkas",
 	"log-action-filter-delete-restore": "Diziverkañ pajennoù",
 	"log-action-filter-delete-event": "Diverkañ ar marilh",
 	"log-action-filter-delete-revision": "Diverkañ an adweladennoù",

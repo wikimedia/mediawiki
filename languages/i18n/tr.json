@@ -4126,7 +4126,7 @@
 	"passwordpolicies-group": "Grup",
 	"passwordpolicies-policies": "Politikalar",
 	"passwordpolicies-policy-minimalpasswordlength": "Parola en az $1 karakter uzunluğunda olmalıdır",
-	"passwordpolicies-policy-minimumpasswordlengthtologin": "Şifre giriş yapabilmek için en az $1 karakter uzunluğunda olmalı",
+	"passwordpolicies-policy-minimumpasswordlengthtologin": "Parola {{PLURAL:$1|giriş}} yapabilmek için en az $1 karakter uzunluğunda olmalı",
 	"passwordpolicies-policy-passwordcannotbesubstringinusername": "Parola kullanıcı adı içinde bir alt dize olamaz",
 	"passwordpolicies-policy-passwordcannotmatchdefaults": "Parola, belirli bir varsayılan parola listesiyle eşleşemiyor",
 	"passwordpolicies-policy-maximalpasswordlength": "Parola $1 karakterden kısa olmalı",

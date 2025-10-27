@@ -6,8 +6,11 @@
 		]
 	},
 	"rest-nonexistent-title": "Den Titel \"$1\", deen ugi gouf, gëtt et net",
-	"rest-nonexistent-revision": "Déi spezifizéiert Versioun ($1) gëtt et net",
-	"rest-invalid-user": "De Benotzernumm, deen ugi gouf, ass ongülteg ($1)",
+	"rest-nonexistent-title-revision": "D'Versioun, déi ugi gouf, ($1) gëtt et net fir d'Säit, déi ugi gouf ($2)",
+	"rest-nonexistent-revision": "D'Versioun, déi ugi gouf, ($1) gëtt et net",
+	"rest-nonexistent-user": "De Benotzer, deen ugi gouf, ($1) gëtt et net",
+	"rest-invalid-user": "De Benotzernumm, deen ugi gouf, ($1) ass ongülteg",
+	"rest-permission-denied-anon": "Net zougänglech fir anonym Benotzer",
 	"rest-permission-denied-title": "De Benotzer huet net d'Rechter fir den Titel ($1) ze liesen",
 	"rest-cannot-load-file": "De Fichier fir den Titel ''$1'' kann net geluede ginn.",
 	"rest-badtoken": "De CSRF-Token, deen ugi gouf, ass ongülteg."

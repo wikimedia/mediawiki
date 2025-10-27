@@ -151,7 +151,6 @@
 	"password-name-match": "Ihr Passwort muss sich von Ihrem Benutzernamen unterscheiden.",
 	"password-substring-username-match": "Ihr Passwort darf nicht innerhalb Ihres Benutzernamens vorkommen.",
 	"noemailcreate": "Sie müssen eine gültige E-Mail-Adresse angeben",
-	"blocked-mailpassword": "Die von Ihnen verwendete IP-Adresse ist für das Ändern von Seiten gesperrt. Um einen Missbrauch zu verhindern, wurde die Möglichkeit zur Anforderung eines neuen Passwortes von dieser IP-Adresse ebenfalls gesperrt.",
 	"emailauthenticated": "Ihre E-Mail-Adresse wurde am $2 um $3 Uhr bestätigt.",
 	"emailnotauthenticated": "Ihre E-Mail-Adresse ist noch nicht bestätigt. Die folgenden E-Mail-Funktionen stehen erst nach erfolgreicher Bestätigung zur Verfügung.",
 	"noemailprefs": "Geben Sie eine E-Mail-Adresse in den Einstellungen an, damit die nachfolgenden Funktionen zur Verfügung stehen.",

@@ -1249,7 +1249,7 @@
 	"group-bureaucrat": "Byråkrater",
 	"group-suppress": "Historikkryddere",
 	"group-all": "(alle)",
-	"group-user-member": "!{{GENDER:$1|bruker}}",
+	"group-user-member": "{{GENDER:$1|bruker}}",
 	"group-autoconfirmed-member": "{{GENDER:$1|autobekreftet bruker}}",
 	"group-bot-member": "{{GENDER:$1|bot}}",
 	"group-sysop-member": "{{GENDER:$1|administrator}}",

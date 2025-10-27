@@ -676,6 +676,7 @@
 	"editpage-invalidcontentmodel-text": "Taneɣruft n ugbur \"$1\" ur tettwasefrak ara.",
 	"editpage-notsupportedcontentformat-title": "Amasal n ugbur ur d-yetwarfed ara",
 	"editpage-notsupportedcontentformat-text": "Amasal n ugbur $1 ur d-yetwarfed ara sɣur talɣa n ugbur $2.",
+	"slot-name-main": "Agejdan",
 	"content-model-wikitext": "wikiaḍris",
 	"content-model-text": "aḍris afraray",
 	"content-json-empty-object": "Asentel d ilem",

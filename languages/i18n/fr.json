@@ -2205,7 +2205,7 @@
 	"withoutinterwiki-legend": "Préfixe",
 	"withoutinterwiki-submit": "Afficher",
 	"fewestrevisions": "Pages les moins modifiées",
-	"nbytes": "$1 octet{{PLURAL:$1||s}}",
+	"nbytes": "$1 {{PLURAL:$1|octet|octets}}",
 	"ncategories": "$1 catégorie{{PLURAL:$1||s}}",
 	"ninterwikis": "$1 interwiki{{PLURAL:$1||s}}",
 	"nlinks": "$1 page{{PLURAL:$1||s}} liée{{PLURAL:$1||s}}",

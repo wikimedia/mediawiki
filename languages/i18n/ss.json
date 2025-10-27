@@ -4,7 +4,8 @@
 			"Bobbyshabangu",
 			"Jatrobat",
 			"MF-Warburg",
-			"Sibande"
+			"Sibande",
+			"SaldırganSincap"
 		]
 	},
 	"sunday": "LiSontfo",
@@ -60,7 +61,7 @@
 	"category_header": "Makhasi lakulomkhakha \"$1\"",
 	"subcategories": "Mikhakha lengaphansi",
 	"category-media-header": "Tinkundla kulomkhakha \"$1\"",
-	"category-empty": "''Lomkhakha ute makhasi nobe tinkundla letiwuphetse.'",
+	"category-empty": "<em>Lomkhakha ute makhasi nobe tinkundla letiwuphetse.</em>",
 	"hidden-category-category": "Mikhakha lefihliwe",
 	"index-category": "Makhasi lacokelelwe",
 	"noindex-category": "Makhasi lasabalele",

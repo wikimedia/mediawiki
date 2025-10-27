@@ -12,7 +12,8 @@
 			"Vlad5250",
 			"לערי ריינהארט",
 			"아라",
-			"Matma Rex"
+			"Matma Rex",
+			"SaldırganSincap"
 		]
 	},
 	"tog-underline": "Hanipika ny rohy:",
@@ -1651,7 +1652,7 @@
 	"uploaded-script-svg": "Zavatra azo atao ho azy \"$1\" ao amin'ny rakitra SVG nampiakarina.",
 	"uploaded-hostile-svg": "Nahitana CSS tsy azo antoka ao amin'ny zava-pisehoan'ny rakitra SVG nampiakarina.",
 	"uploaded-event-handler-on-svg": "Tsy azo atao amin'ny rakitra SVG ny fametrahana toetra mpikirakira hetsika <code>$1=\"$2\"</code>.",
-	"uploaded-href-unsafe-target-svg": "Nahitana href mikendry angona tsy azo antoka: tanjona URIcode>&lt;$1 $2=\"$3\"&gt;</code> ao amin'ny rakitra SVG nampidirina.",
+	"uploaded-href-unsafe-target-svg": "Nahitana href mikendry angona tsy azo antoka: tanjona URI <code>&lt;$1 $2=\"$3\"&gt;</code> ao amin'ny rakitra SVG nampidirina.",
 	"uploaded-animate-svg": "Hita ny tag \"animate\" izay mety manova href, mampiasa ny toetra \"from\" <code>&lt;$1 $2=\"$3\"&gt;</code> ao amin'ny rakitra SVG nampakarina.",
 	"uploaded-setting-event-handler-svg": "Voasakana ny fametrahana toetran'ny mpandrindra hetsika, nahita <code>&lt;$1 $2=\"$3\"&gt;</code> tao amin'ny rakitra nalefa.",
 	"uploaded-setting-href-svg": "Tsy azo atao ny mampiasa ny balizy \"set\" hanampiana toetra \"href\" ao amin'ny zavatra reny.",
