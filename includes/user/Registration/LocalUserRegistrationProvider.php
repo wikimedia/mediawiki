@@ -8,9 +8,6 @@ use Wikimedia\Rdbms\IConnectionProvider;
 class LocalUserRegistrationProvider implements IUserRegistrationProvider {
 
 	public const TYPE = 'local';
-	private const CACHE_MAX_SIZE = 100;
-
-	private array $cache = [];
 
 	public function __construct(
 		private readonly IConnectionProvider $connectionProvider
@@ -27,13 +24,7 @@ class LocalUserRegistrationProvider implements IUserRegistrationProvider {
 			return false;
 		}
 
-		if ( !isset( $this->cache[$id] ) ) {
-			if ( count( $this->cache ) >= self::CACHE_MAX_SIZE ) {
-				$evictId = array_key_first( $this->cache );
-				unset( $this->cache[$evictId] );
-			}
-
-			$userRegistration = $this->connectionProvider->getReplicaDatabase()
+		$userRegistration = $this->connectionProvider->getReplicaDatabase()
 				->newSelectQueryBuilder()
 				->select( 'user_registration' )
 				->from( 'user' )
@@ -41,10 +32,7 @@ class LocalUserRegistrationProvider implements IUserRegistrationProvider {
 				->caller( __METHOD__ )
 				->fetchField();
 
-			$this->cache[$id] = wfTimestampOrNull( TS_MW, $userRegistration );
-		}
-
-		return $this->cache[$id];
+		return wfTimestampOrNull( TS_MW, $userRegistration );
 	}
 
 	/**

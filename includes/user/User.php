@@ -1207,6 +1207,9 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 			$this->mEmailToken = $row->user_email_token;
 			$this->mEmailTokenExpires = wfTimestampOrNull( TS_MW, $row->user_email_token_expires );
 			$this->mRegistration = wfTimestampOrNull( TS_MW, $row->user_registration );
+			MediaWikiServices::getInstance()
+				->getUserRegistrationLookup()
+				->setCachedRegistration( $this, $this->mRegistration );
 		} else {
 			$all = false;
 		}
@@ -3063,6 +3066,7 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 	/**
 	 * Get the timestamp of account creation.
 	 *
+	 * @deprecated since 1.45 use UserRegistrationLookup instead.
 	 * @return string|false|null Timestamp of account creation, false for
 	 *  non-existent/anonymous user accounts, or null if existing account
 	 *  but information is not in database.

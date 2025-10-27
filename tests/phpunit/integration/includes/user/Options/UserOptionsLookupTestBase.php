@@ -6,8 +6,7 @@ use MediaWiki\Language\LanguageCode;
 use MediaWiki\MainConfigNames;
 use MediaWiki\User\Options\DefaultOptionsLookup;
 use MediaWiki\User\Options\UserOptionsLookup;
-use MediaWiki\User\Registration\IUserRegistrationProvider;
-use MediaWiki\User\Registration\LocalUserRegistrationProvider;
+use MediaWiki\User\Registration\UserRegistrationLookup;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 
@@ -27,19 +26,14 @@ abstract class UserOptionsLookupTestBase extends MediaWikiIntegrationTestCase {
 			3 => '20230101000000'
 		];
 
-		$registrationProvider = $this->createMock( IUserRegistrationProvider::class );
-		$registrationProvider->method( 'fetchRegistration' )
+		$registrationLookup = $this->createMock( UserRegistrationLookup::class );
+		$registrationLookup->method( 'getRegistration' )
 			->willReturnCallback(
 				static fn ( UserIdentity $user ) => $registrationTimestampsById[$user->getId()] ?? false
 			);
+		$this->setService( 'UserRegistrationLookup', $registrationLookup );
 
 		$this->overrideConfigValues( [
-			MainConfigNames::UserRegistrationProviders => [
-				// Redefine the LocalUserRegistrationProvider with a mock provider
-				LocalUserRegistrationProvider::TYPE => [
-					'factory' => static fn () => $registrationProvider
-				]
-			],
 			MainConfigNames::ConditionalUserOptions => [
 				'conditional_option' => [
 					[

@@ -65,6 +65,28 @@ class UserRegistrationLookupTest extends MediaWikiUnitTestCase {
 		$this->assertSame( '20200101000000', $lookup->getRegistration( $userIdentity ) );
 	}
 
+	public function testGetRegistrationWithCachedValue() {
+		$userIdentity = new UserIdentityValue( 123, 'Admin' );
+		$objectFactoryMock = $this->createMock( ObjectFactory::class );
+		$objectFactoryMock->expects( $this->never() )
+			->method( 'createObject' )
+			->with( [ 'class' => LocalUserRegistrationProvider::class ] );
+
+		$lookup = new UserRegistrationLookup(
+			new ServiceOptions( UserRegistrationLookup::CONSTRUCTOR_OPTIONS, [
+				MainConfigNames::UserRegistrationProviders => [
+					'local' => [
+						'class' => LocalUserRegistrationProvider::class
+					],
+				]
+			] ),
+			$objectFactoryMock
+		);
+		$lookup->setCachedRegistration( $userIdentity, '20200101000000' );
+
+		$this->assertSame( '20200101000000', $lookup->getRegistration( $userIdentity ) );
+	}
+
 	public function testGetRegistrationFails() {
 		$this->expectException( InvalidArgumentException::class );
 
@@ -194,5 +216,80 @@ class UserRegistrationLookupTest extends MediaWikiUnitTestCase {
 		$earliestTimestampsById = $lookup->getFirstRegistrationBatch( [] );
 
 		$this->assertSame( [], $earliestTimestampsById );
+	}
+
+	public function testShouldEvictOldCacheEntries() {
+		$userIdentity = new UserIdentityValue( 123, 'Admin' );
+		$userRegistrationProviderMock = $this->createMock( IUserRegistrationProvider::class );
+		$userRegistrationProviderMock->expects( $this->once() )
+			->method( 'fetchRegistration' )
+			->with( $userIdentity )
+			->willReturn( '20200101000000' );
+		$objectFactoryMock = $this->createMock( ObjectFactory::class );
+		$objectFactoryMock->expects( $this->once() )
+			->method( 'createObject' )
+			->with( [ 'class' => LocalUserRegistrationProvider::class ] )
+			->willReturn( $userRegistrationProviderMock );
+
+		$lookup = new UserRegistrationLookup(
+			new ServiceOptions( UserRegistrationLookup::CONSTRUCTOR_OPTIONS, [
+				MainConfigNames::UserRegistrationProviders => [
+					'local' => [
+						'class' => LocalUserRegistrationProvider::class
+					],
+				]
+			] ),
+			$objectFactoryMock
+		);
+
+		// Incorrect value, to detect whether we're using the cache or not
+		$lookup->setCachedRegistration( $userIdentity, '20210101000000', 'local' );
+		for ( $i = 0; $i < 100; $i++ ) {
+			$lookup->setCachedRegistration(
+				new UserIdentityValue( $i + 1000, 'User' . ( $i + 1000 ) ),
+				'20220101000000',
+				'local'
+			);
+		}
+
+		$this->assertSame( '20200101000000', $lookup->getRegistration( $userIdentity ) );
+	}
+
+	public function testSeparateCacheForWikisAndProviders() {
+		$objectFactoryMock = $this->createMock( ObjectFactory::class );
+		$objectFactoryMock->expects( $this->never() )
+			->method( 'createObject' );
+		$lookup = new UserRegistrationLookup(
+			new ServiceOptions( UserRegistrationLookup::CONSTRUCTOR_OPTIONS, [
+				MainConfigNames::UserRegistrationProviders => []
+			] ),
+			$objectFactoryMock
+		);
+
+		$localUser = new UserIdentityValue( 1, 'LocalUser' );
+		$remoteUser = new UserIdentityValue( 1, 'RemoteUser', 'otherwiki' );
+
+		$lookup->setCachedRegistration( $localUser, '20200101000000', 'local' );
+		$lookup->setCachedRegistration( $remoteUser, '20210101000000', 'local' );
+		$lookup->setCachedRegistration( $localUser, '20220101000000', 'other' );
+		$this->assertSame( '20200101000000', $lookup->getRegistration( $localUser, 'local' ) );
+		$this->assertSame( '20210101000000', $lookup->getRegistration( $remoteUser, 'local' ) );
+		$this->assertSame( '20220101000000', $lookup->getRegistration( $localUser, 'other' ) );
+	}
+
+	public function testCantCacheUnregisteredUsers() {
+		$objectFactoryMock = $this->createMock( ObjectFactory::class );
+		$objectFactoryMock->expects( $this->never() )
+			->method( 'createObject' );
+		$lookup = new UserRegistrationLookup(
+			new ServiceOptions( UserRegistrationLookup::CONSTRUCTOR_OPTIONS, [
+				MainConfigNames::UserRegistrationProviders => []
+			] ),
+			$objectFactoryMock
+		);
+
+		$this->expectException( InvalidArgumentException::class );
+		$unregisteredUser = UserIdentityValue::newAnonymous( '127.0.0.1' );
+		$lookup->setCachedRegistration( $unregisteredUser, false );
 	}
 }
