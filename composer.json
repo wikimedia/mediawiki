@@ -22,7 +22,6 @@
 	"prefer-stable": true,
 	"require": {
 		"composer/semver": "3.3.2",
-		"cssjanus/cssjanus": "2.1.1",
 		"ext-calendar": "*",
 		"ext-ctype": "*",
 		"ext-dom": "*",
@@ -59,6 +58,7 @@
 		"wikimedia/cldr-plural-rule-parser": "2.0.0",
 		"wikimedia/common-passwords": "0.4.0",
 		"wikimedia/composer-merge-plugin": "2.0.1",
+		"wikimedia/cssjanus": "2.1.1",
 		"wikimedia/html-formatter": "4.0.3",
 		"wikimedia/ip-utils": "5.0.0",
 		"wikimedia/less.php": "4.4.1",
