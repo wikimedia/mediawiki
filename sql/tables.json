@@ -5492,5 +5492,85 @@
 		"pk": [
 			"we_item"
 		]
+	},
+	{
+		"name": "watchlist_label",
+		"comment": "Watchlist label names",
+		"columns": [
+			{
+				"name": "wll_id",
+				"comment": "Unique ID for row",
+				"type": "integer",
+				"options": {
+					"unsigned": true,
+					"notnull": true,
+					"autoincrement": true
+				}
+			},
+			{
+				"name": "wll_user",
+				"comment": "user_id for label owner",
+				"type": "integer",
+				"options": {
+					"unsigned": true,
+					"notnull": true
+				}
+			},
+			{
+				"name": "wll_name",
+				"comment": "Label text",
+				"type": "binary",
+				"options": {
+					"length": 255,
+					"notnull": true
+				}
+			}
+		],
+		"indexes": [
+			{
+				"name": "wll_user_name",
+				"columns": [
+					"wll_user",
+					"wll_name"
+				],
+				"unique": true
+			}
+		],
+		"pk": [ "wll_id" ]
+	},
+	{
+		"name": "watchlist_label_member",
+		"comment": "Label to watchlist item associations",
+		"columns": [
+			{
+				"name": "wlm_label",
+				"comment": "Key to watchlist_label.wll_id",
+				"type": "integer",
+				"options": {
+					"unsigned": true,
+					"notnull": true
+				}
+			},
+			{
+				"name": "wlm_item",
+				"comment": "Key to watchlist.wl_id",
+				"type": "integer",
+				"options": {
+					"unsigned": true,
+					"notnull": true
+				}
+			}
+		],
+		"indexes": [
+			{
+				"name": "wlm_item",
+				"columns": [ "wlm_item" ],
+				"unique": false
+			}
+		],
+		"pk": [
+			"wlm_label",
+			"wlm_item"
+		]
 	}
 ]

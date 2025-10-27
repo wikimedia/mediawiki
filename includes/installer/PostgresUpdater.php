@@ -123,6 +123,9 @@ class PostgresUpdater extends DatabaseUpdater {
 				'patch-recentchanges-rc_name_source_patrolled_timestamp.sql' ],
 			[ 'dropField', 'recentchanges', 'rc_new', 'patch-recentchanges-drop-rc_new.sql' ],
 			[ 'dropField', 'categorylinks', 'cl_to', 'patch-categorylinks-drop-cl_to-cl_collation.sql' ],
+
+			// 1.46
+			[ 'addTable', 'watchlist_label', 'patch-watchlist_label.sql' ],
 		];
 	}
 
