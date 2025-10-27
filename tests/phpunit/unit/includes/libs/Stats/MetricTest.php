@@ -399,24 +399,28 @@ class MetricTest extends MediaWikiUnitTestCase {
 		);
 	}
 
-	public int $recursions = 0;
-	public int $maxRecursions = 2;
+	private int $recursions = 0;
+	private int $maxRecursions = 2;
+	private array $testLabels = [ 'foo', 'bar', 'baz', 'ignore_me' ];
 
-	public function recur( $statsFactory ) {
-		$timing = $statsFactory->getTiming( 'metricName' )->start();
+	private function recur( $statsFactory, $name ) {
+		$timing = $statsFactory->getTiming( 'metricName' )->setLabel( 'name', $name )->start();
 		if ( $this->recursions > $this->maxRecursions ) {
 			return;
 		} else {
 			$this->recursions += 1;
-			$this->recur( $statsFactory );
+			$this->recur( $statsFactory, $this->testLabels[$this->recursions] );
 		}
 		$timing->stop();
 	}
 
 	public function testTimingRecursion() {
 		$statsHelper = StatsFactory::newUnitTestingHelper();
-		$this->recur( $statsHelper->getStatsFactory() );
+		$this->recur( $statsHelper->getStatsFactory(), $this->testLabels[$this->recursions] );
 		$this->assertSame( 3, $statsHelper->count( 'metricName' ) );
+		$this->assertSame( 1, $statsHelper->count( 'metricName{name="foo"}' ) );
+		$this->assertSame( 1, $statsHelper->count( 'metricName{name="bar"}' ) );
+		$this->assertSame( 1, $statsHelper->count( 'metricName{name="baz"}' ) );
 	}
 
 	public function testStopRunningTimerWarning() {

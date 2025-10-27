@@ -50,7 +50,7 @@ class TimingMetric implements MetricInterface {
 	 */
 	public function start() {
 		$this->startTime = ConvertibleTimestamp::hrtime();
-		return new RunningTimer( $this->startTime, $this );
+		return new RunningTimer( $this->startTime, $this, $this->baseMetric->getLabels() );
 	}
 
 	/**
