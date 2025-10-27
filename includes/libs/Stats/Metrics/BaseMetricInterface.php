@@ -88,6 +88,13 @@ interface BaseMetricInterface {
 	public function addLabel( string $key, string $value ): void;
 
 	/**
+	 * Returns the defined labels as an associative array.
+	 *
+	 * @return array<string,string>
+	 */
+	public function getLabels(): array;
+
+	/**
 	 * Returns array of label keys.
 	 *
 	 * @return string[]
