@@ -125,7 +125,6 @@ class RefreshImageMetadata extends Maintenance {
 
 		$upgraded = 0;
 		$leftAlone = 0;
-		$error = 0;
 		$batchSize = intval( $this->getBatchSize() );
 		if ( $batchSize <= 0 ) {
 			$this->fatalError( "Batch size is too low...", 12 );
@@ -192,11 +191,10 @@ class RefreshImageMetadata extends Maintenance {
 		if ( $force ) {
 			$this->output( "\nFinished refreshing file metadata for $total files. "
 				. "$upgraded needed to be refreshed, $leftAlone did not need to "
-				. "be but were refreshed anyways, and $error refreshes were suspicious.\n" );
+				. "be but were refreshed anyways.\n" );
 		} else {
 			$this->output( "\nFinished refreshing file metadata for $total files. "
-				. "$upgraded were refreshed, $leftAlone were already up to date, "
-				. "and $error refreshes were suspicious.\n" );
+				. "$upgraded were refreshed, $leftAlone were already up to date.\n" );
 		}
 	}
 
