@@ -3,7 +3,7 @@
 namespace MediaWiki\Hook;
 
 use MediaWiki\Page\WikiPage;
-use MediaWiki\User\User;
+use MediaWiki\User\UserIdentity;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.
@@ -18,7 +18,7 @@ interface WatchArticleCompleteHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param User $user User that watched
+	 * @param UserIdentity $user User that watched
 	 * @param WikiPage $page WikiPage object watched
 	 * @return bool|void True or no return value to continue or false to abort
 	 */

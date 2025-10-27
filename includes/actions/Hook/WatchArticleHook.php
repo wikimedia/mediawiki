@@ -4,7 +4,7 @@ namespace MediaWiki\Hook;
 
 use MediaWiki\Page\WikiPage;
 use MediaWiki\Status\Status;
-use MediaWiki\User\User;
+use MediaWiki\User\UserIdentity;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.
@@ -19,7 +19,7 @@ interface WatchArticleHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param User $user User that will watch
+	 * @param UserIdentity $user User that will watch
 	 * @param WikiPage $page WikiPage object to be watched
 	 * @param Status &$status Status object to be returned if the hook returns false
 	 * @param string|null $expiry Optional expiry timestamp in any format acceptable to wfTimestamp()

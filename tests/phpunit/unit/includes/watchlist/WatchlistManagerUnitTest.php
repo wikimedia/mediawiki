@@ -9,7 +9,6 @@ use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\Title\Title;
-use MediaWiki\Title\TitleValue;
 use MediaWiki\User\TalkPageNotificationManager;
 use MediaWiki\User\User;
 use MediaWiki\User\UserFactory;
@@ -120,7 +119,6 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 			'watchedItemStore' => $watchedItemStore
 		] );
 
-		$manager->clearAllUserNotifications( $userIdentity );
 		$manager->clearAllUserNotifications( $authority );
 	}
 
@@ -136,7 +134,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 			->method( 'resetAllNotificationTimestampsForUser' );
 
 		$talkPageNotificationManager = $this->createMock( TalkPageNotificationManager::class );
-		$talkPageNotificationManager->expects( $this->exactly( 2 ) )
+		$talkPageNotificationManager->expects( $this->once() )
 			->method( 'removeUserHasNewMessages' )
 			->with( $userIdentity );
 
@@ -146,7 +144,6 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 			'userFactory' => $userFactory
 		] );
 
-		$manager->clearAllUserNotifications( $userIdentity );
 		$manager->clearAllUserNotifications( $authority );
 	}
 
@@ -161,7 +158,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 		);
 
 		$talkPageNotificationManager = $this->createMock( TalkPageNotificationManager::class );
-		$talkPageNotificationManager->expects( $this->exactly( 2 ) )
+		$talkPageNotificationManager->expects( $this->once() )
 			->method( 'removeUserHasNewMessages' );
 
 		$watchedItemStore = $this->createMock( WatchedItemStoreInterface::class );
@@ -174,7 +171,6 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 			'userFactory' => $userFactory
 		] );
 
-		$manager->clearAllUserNotifications( $userIdentity );
 		$manager->clearAllUserNotifications( $authority );
 	}
 
@@ -202,7 +198,6 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 			'userFactory' => $userFactory
 		] );
 
-		$manager->clearAllUserNotifications( $userIdentity );
 		$manager->clearAllUserNotifications( $authority );
 	}
 
@@ -221,7 +216,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 		);
 
 		$watchedItemStore = $this->createMock( WatchedItemStoreInterface::class );
-		$watchedItemStore->expects( $this->exactly( 2 ) )
+		$watchedItemStore->expects( $this->once() )
 			->method( 'resetAllNotificationTimestampsForUser' );
 
 		$manager = $this->getManager( [
@@ -230,14 +225,10 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 			'userFactory' => $userFactory
 		] );
 
-		$manager->clearAllUserNotifications( $userIdentity );
 		$manager->clearAllUserNotifications( $authority );
 	}
 
 	public static function provideTestPageFactory() {
-		yield [ static function ( $pageId, $namespace, $dbKey ) {
-			return new TitleValue( $namespace, $dbKey );
-		} ];
 		yield [ static function ( $pageId, $namespace, $dbKey ) {
 			return PageIdentityValue::localIdentity( $pageId, $namespace, $dbKey );
 		} ];
@@ -270,7 +261,6 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 			'watchedItemStore' => $watchedItemStore
 		] );
 
-		$manager->clearTitleUserNotifications( $userIdentity, $title );
 		$manager->clearTitleUserNotifications( $authority, $title );
 	}
 
@@ -295,7 +285,6 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 			'userFactory' => $userFactory
 		] );
 
-		$manager->clearTitleUserNotifications( $userIdentity, $title );
 		$manager->clearTitleUserNotifications( $authority, $title );
 	}
 
@@ -323,7 +312,6 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 			'userFactory' => $userFactory
 		] );
 
-		$manager->clearTitleUserNotifications( $userIdentity, $title );
 		$manager->clearTitleUserNotifications( $authority, $title );
 	}
 
@@ -356,7 +344,6 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 			'watchedItemStore' => $watchedItemStore
 		] );
 
-		$manager->clearTitleUserNotifications( $userIdentity, $title );
 		$manager->clearTitleUserNotifications( $authority, $title );
 	}
 
@@ -380,7 +367,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 		);
 
 		$watchedItemStore = $this->createMock( WatchedItemStoreInterface::class );
-		$watchedItemStore->expects( $this->exactly( 2 ) )
+		$watchedItemStore->expects( $this->once() )
 			->method( 'resetNotificationTimestamp' );
 
 		$manager = $this->getManager( [
@@ -389,7 +376,6 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 			'watchedItemStore' => $watchedItemStore
 		] );
 
-		$manager->clearTitleUserNotifications( $userIdentity, $title );
 		$manager->clearTitleUserNotifications( $authority, $title );
 	}
 

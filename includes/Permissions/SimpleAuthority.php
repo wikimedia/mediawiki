@@ -60,7 +60,7 @@ class SimpleAuthority implements Authority {
 
 	/** @inheritDoc */
 	public function isAllowed( string $permission, ?PermissionStatus $status = null ): bool {
-		return isset( $this->permissions[ $permission ] );
+		return $this->checkPermission( $permission, $status );
 	}
 
 	/** @inheritDoc */
@@ -94,7 +94,7 @@ class SimpleAuthority implements Authority {
 	}
 
 	private function checkPermission( string $permission, ?PermissionStatus $status ): bool {
-		$ok = $this->isAllowed( $permission );
+		$ok = isset( $this->permissions[ $permission ] );
 
 		if ( !$ok && $status ) {
 			// TODO: use a message that at includes the permission name

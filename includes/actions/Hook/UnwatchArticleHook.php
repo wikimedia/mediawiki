@@ -4,7 +4,7 @@ namespace MediaWiki\Hook;
 
 use MediaWiki\Page\WikiPage;
 use MediaWiki\Status\Status;
-use MediaWiki\User\User;
+use MediaWiki\User\UserIdentity;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.
@@ -19,7 +19,7 @@ interface UnwatchArticleHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param User $user User watching
+	 * @param UserIdentity $user User watching
 	 * @param WikiPage $page WikiPage object to be removed
 	 * @param Status &$status Status object to be returned if the hook returns false
 	 * @return bool|void True or no return value to continue or false to abort and
