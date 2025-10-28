@@ -371,7 +371,7 @@
 	"apihelp-mergehistory-param-fromid": "将被合并历史的页面的页面ID。不能与<var>$1from</var>一起使用。",
 	"apihelp-mergehistory-param-to": "将要合并历史的页面的标题。不能与<var>$1toid</var>一起使用。",
 	"apihelp-mergehistory-param-toid": "将要合并历史的页面的页面ID。不能与<var>$1to</var>一起使用。",
-	"apihelp-mergehistory-param-timestamp": "指定时间戳，决定源页面的哪些修订历史被移动到目标页面的历史中。如果省略，源页面的所有历史记录都将被合并到目标页面。",
+	"apihelp-mergehistory-param-timestamp": "指定时间戳，决定源页面的哪些修订历史被移动到目标页面的历史中。如果省略，源页面的所有历史记录都将被合并到目标页面。可指定“timestamp|revid”来拆分两个具有相同时间戳的修订。",
 	"apihelp-mergehistory-param-reason": "历史合并的原因。",
 	"apihelp-mergehistory-example-merge": "将<kbd>Oldpage</kbd>的完整历史合并至<kbd>Newpage</kbd>。",
 	"apihelp-mergehistory-example-merge-timestamp": "将<kbd>Oldpage</kbd>直到<kbd>2015-12-31T04:37:41Z</kbd>的页面修订版本合并至<kbd>Newpage</kbd>。",
