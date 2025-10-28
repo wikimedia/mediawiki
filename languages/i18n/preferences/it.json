@@ -43,7 +43,7 @@
 	"searchprefs-noresults": "Nessun risultato",
 	"searchprefs-results": "$1 {{PLURAL:$1|risultato|risultati}}",
 	"saveprefs": "Salva",
-	"tooltip-preferences-save": "Salva le preferenze",
+	"tooltip-preferences-save": "Salva preferenze",
 	"savedprefs": "Le preferenze sono state salvate.",
 	"prefs-back-title": "Torna alle preferenze",
 	"prefs-tabs-navigation-hint": "Suggerimento: è possibile utilizzare i tasti freccia sinistra e destra per spostarsi tra le schede nell'elenco delle schede.",

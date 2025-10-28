@@ -20,7 +20,8 @@
 			"Urhixidur",
 			"Vlad5250",
 			"아라",
-			"Lhanars"
+			"Lhanars",
+			"SaldırganSincap"
 		]
 	},
 	"sunday": "soldi",
@@ -621,7 +622,7 @@
 	"copyrightwarning2": "Per favore, nota ce tota contribuis a {{SITENAME}} pote es editada, alterada o sutraeda par otra contribuores.\nSi tu no desira ce on edita tua scrives sin compatia, alora no ajunta los asi.<br />\nTu promete ance a nos ce tu mesma ia scrive esta, o ia copia lo de un recurso de domina publica o simil libre (vide $1 per detalias).\n<strong>No ajunta testo restrinjeda par direto de autor sin permete!</strong>",
 	"editpage-cannot-use-custom-model": "La model de contenida de esta paje no pote es cambiada.",
 	"longpageerror": "<strong>Era: La testo cual tu ia envia ave un longia de {{PLURAL:$1|un cilobait|$1 cilobaites}}, cual es plu ca la masima de {{PLURAL:$2|un cilobait|$2 cilobaites}}.</strong>\nLo no pote es publicida.",
-	"readonlywarning": "<strong>Avisa:</strong> La banco de datos es cluida per manteni, donce tu no va pote publici tua editas a esta tempo.</strong>\nCisa tu ta vole copia e coli tua testo a un fix de testo e fisa lo per plu tarda.\n\nLa dirijor ci ia fa la clui ia ofre esta esplica: $1",
+	"readonlywarning": "<strong>Avisa: La banco de datos es cluida per manteni, donce tu no va pote publici tua editas a esta tempo.</strong>\nCisa tu ta vole copia e coli tua testo a un fix de testo e fisa lo per plu tarda.\n\nLa dirijor ci ia fa la clui ia ofre esta esplica: $1",
 	"protectedpagewarning": "<strong>Avisa: Esta paje es protejeda, tal ce sola usores con diretos dirijal pote edita lo.</strong>\nLa entrada la plu resente de la rejistra es presentada a su per clari:",
 	"semiprotectedpagewarning": "<strong>Nota:</strong> Esta paje es protejeda, tal ce sola usores rejistrada pote edita lo.\nLa entrada la plu resente de la rejistra es presentada a su per clari:",
 	"cascadeprotectedwarning": "<strong>Avisa:</strong> Esta paje es protejeda, tal ce sola usores con [[Special:ListGroupRights|diretos spesifada]] pote edita lo, car lo es transcluida en la {{PLURAL:$1|paje|pajes}} seguente cual es cascadin protejeda:",

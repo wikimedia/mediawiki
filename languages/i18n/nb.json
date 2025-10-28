@@ -1133,7 +1133,7 @@
 	"group-bureaucrat": "Byråkrater",
 	"group-suppress": "Historikkryddere",
 	"group-all": "(alle)",
-	"group-user-member": "!{{GENDER:$1|bruker}}",
+	"group-user-member": "{{GENDER:$1|bruker}}",
 	"group-named-member": "{{GENDER:$1|registrert bruker}}",
 	"group-temp-member": "{{GENDER:$1|midlertidig bruker}}",
 	"group-autoconfirmed-member": "{{GENDER:$1|autobekreftet bruker}}",

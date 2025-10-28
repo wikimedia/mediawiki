@@ -20,7 +20,8 @@
 			"Wyvernoid",
 			"לערי ריינהארט",
 			"아라",
-			"JorgeElias2302"
+			"JorgeElias2302",
+			"SaldırganSincap"
 		]
 	},
 	"sunday": "sundio",
@@ -2787,7 +2788,7 @@
 	"show-big-image-preview-differ": "Grandezo di la previdado $3 de ica arkivo $2: $1.",
 	"show-big-image-other": "Altra {{PLURAL:$2|qualeso dil imajo|qualeso, en pixel-i}}: $1.",
 	"show-big-image-size": "$1 x $2 pixels",
-	"file-no-thumb-animation": "<strong>Noto: Pro teknikala limitizi, previdado di ca arkivo ne animesos.</small>",
+	"file-no-thumb-animation": "<strong>Noto: Pro teknikala limitizi, previdado di ca arkivo ne animesos.</strong>",
 	"file-no-thumb-animation-gif": "'''Noto: Pro teknikala motivi, miniaturi de granda imaji GIF quale ca ne animesos.'''",
 	"newimages": "Galerio di nova arkivi",
 	"imagelisttext": "Infre esas listo di '''$1''' {{PLURAL:$1|arkivo|arkivi}} rangizita $2.",

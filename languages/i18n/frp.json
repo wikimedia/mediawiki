@@ -1856,7 +1856,7 @@
 	"withoutinterwiki-summary": "Cetes pâges ant gins de lim de vers les vèrsions en ôtres lengoues.",
 	"withoutinterwiki-submit": "Montrar",
 	"fewestrevisions": "Pâges les muens changiêes",
-	"nbytes": "$1 octèt{{PLURAL:$1||s}}",
+	"nbytes": "$1 {{PLURAL:$1|octèt|octèts}}",
 	"ncategories": "$1 catègori{{PLURAL:$1|a|es}}",
 	"ninterwikis": "$1 {{PLURAL:$1|lim entèrvouiqui|lims entèrvouiquis}}",
 	"nlinks": "$1 lim{{PLURAL:$1||s}}",

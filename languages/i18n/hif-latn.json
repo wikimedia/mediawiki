@@ -2538,7 +2538,6 @@
 	"intentionallyblankpage": "Ii panna ke jaan ke khaliya chhorraa gais hae.",
 	"external_image_whitelist": "#Leave this line exactly as it is<pre>\n#Put regular expression fragments (just the part that goes between the //) below\n#These will be matched with the URLs of external (hotlinked) images\n#Those that match will be displayed as images, otherwise only a link to the image will be shown\n#Lines beginning with # are treated as comments\n#This is case-insensitive\n\n# Ii line ke yahii rakam chhorr do<pre>\n#Sab regular expression fragments (wahii hissa jon ki // ke biich me jaawe hae) ke niche rakkho\n#Iske bahaari URLs  (hotlinked) chapa se link karaa jaai",
 	"tag-filter": "[[Special:Tags|Tag]] filter karo:",
-	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Tag|Tags}}]]: $2",
 	"tag-mw-contentmodelchange": "Content model ke badlao",
 	"tag-mw-contentmodelchange-description": "Badlao, jon ki [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel change the content model] of a page",
 	"tags-intro": "Ii panna uu tag ke list kare hae jiske software edit with, aur their meaning se mark kare hae.",

@@ -18,7 +18,8 @@
 			"Tokvo",
 			"Urhixidur",
 			"Xuacu",
-			"아라"
+			"아라",
+			"SaldırganSincap"
 		]
 	},
 	"sunday": "Domingu",
@@ -512,7 +513,7 @@
 	"permissionserrors": "Marrus conos premissus",
 	"permissionserrorstext": "Nu t´está premitiu hazel esu, {{PLURAL:$1|pola siguienti razón|polas siguientis razonis}}:",
 	"permissionserrorstext-withaction": "Non tien premisu pa $2, {{PLURAL:$1|pola siguienti razón|polas siguientis razonis}}:",
-	"recreate-moveddeleted-warn": "</strong>Avissu: Vai a golvel a crial una página que ya hue aborrá.</strong>\n\nDevería consideral acontinal ditandu esta página.\nEmbaxu se muestra el registru d'aborruu:",
+	"recreate-moveddeleted-warn": "<strong>Avissu: Vai a golvel a crial una página que ya hue aborrá.</strong>\n\nDevería consideral acontinal ditandu esta página.\nEmbaxu se muestra el registru d'aborruu:",
 	"moveddeleted-notice": "Esta página non essesti.\nLos registrus d'aborru, afíu i movición dela página apaicin embaxu comu referencia.",
 	"log-fulllog": "Visoreal el rustriju compretu",
 	"edit-gone-missing": "Nu es possibri atualizal la página.\nPaci bel siu esborrá.",

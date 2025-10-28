@@ -3,7 +3,8 @@
 		"authors": [
 			"Alicia Agyeiwaa",
 			"Obed554",
-			"Yaw tuba"
+			"Yaw tuba",
+			"SaldırganSincap"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Nkyekyɛmu|Nkyekyɛmu ahorow}}",
@@ -292,7 +293,7 @@
 	"loginreqlink": "Wura mu",
 	"newarticletext": "Woadi link bi a ɛkɔ simoie bi a ennya mmaeɛ akyi. Sɛ wopɛ sɛ woyɛ simpie he a, fi ase kyerɛw nsɛm wɔ adaka a ɛwɔ ase hɔ he mu (hwɛ [$1 mmoa simpie] he ma woanya nsɛm pii). \nSɛ wudi mfomsoɔ wɔ ha a, klik wo browser he <strong>back</strong> button he so.",
 	"anontalkpagetext": "---- \n<em>Eyi yɛ nkɔmmɔbɔ krataafa ma obi a ɔmmɔ ne din a onnya nyɛɛ akontaabu bi de besi nnɛ, anaasɛ hwan na ɔmfa nni dwuma.</em> \nEnti ɛsɛ sɛ yɛde akontabuo IP address no di dwuma de hunu. \nIP address a ɛte saa no, nnipa pii a wɔde di dwuma no betumi akyɛ. Sɛ woyɛ obi a wɔmmɔ wo din na wote nka sɛ wɔde nsɛm a ɛho nhia akyerɛ wo a, yɛsrɛ [[Special:CreateAccount|yɛ account foforɔ]] anaa [[Special:UserLogin|kɔ mu]] ne bɛakwati daakye adwene a ɛyɛ basaa ne afoforɔ a bɛmmɔ bɛ dini a bɛde di dwuma a bɛmmɔ bɛ dini.",
-	"noarticletext": "Seesei ara deɛ,tɛsete biaa nni saa simpie yi mu.\nWobɛtim[[Special:Search/{{PAGENAME}}|search for this page title]] wɔ simpie  foforɔ mu,\n<span class=\"plainlinks\">[{{fullurl:{{#Special\n:Log}}|page={{FULLPAGENAMEE}}}} search the related logs],\nor [{{fullurl:{{FULLPAGENAME}}|action=edit}} create this page]</span>.",
+	"noarticletext": "Seesei ara deɛ,tɛsete biaa nni saa simpie yi mu.\nWobɛtim[[Special:Search/{{PAGENAME}}|search for this page title]] wɔ simpie  foforɔ mu,\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} search the related logs],\nor [{{fullurl:{{FULLPAGENAME}}|action=edit}} create this page]</span>.",
 	"noarticletext-nopermission": "Sesea nsɛm biara nni simpie yi mu. \nBɛbetumi [[Special:Search/{{PAGENAME}}|hwehwɛ simpie yi asɛmti]] wɔ simpie afoforɔ mu, anaa <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|simpie={{LPULAGENAMEE}}}}\nhwehwɛ logs a ɛfa ho he]</span>, nanso wunni kwane sɛ bɛ bɛyɛ simpie yi.",
 	"userpage-userdoesnotexist-view": "Dwumadini akonta \"$1\" he, bɛankyerɛw dini wɔ saa wiki yi so.",
 	"previewnote": "<strong>Kae hunu sɛ wei yɛ nea bɛrehwɛ ansa. \n</strong>\nWɔnnya ntintim nsakraeɛ a bɛ ayɛ he!",

@@ -2543,7 +2543,6 @@
 	"specialpages-group-users": "ၽူႈၸႂ်ႉတိုဝ်း လႄႈ သုၼ်ႇ",
 	"tag-filter": "ၶတ်းလိူၵ်ႈဢဝ်[[Special:Tags|Tag]]:",
 	"tag-filter-submit": "တူဝ်ထွင်",
-	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Tag|Tags}}]]: $2",
 	"tag-mw-contentmodelchange-description": "မႄးထတ်း ဢၼ် [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel လႅၵ်ႈလၢႆႈ ပိူင်ၶၢပ်ႈ လမ်းၼႂ်း] ႁင်းၼႃႈလိၵ်ႈ",
 	"tag-mw-new-redirect-description": "မႄးထတ်း ဢၼ် ၵေႃႇသၢင်ႈ လွင်ႈပိၼ်ႇၸီႉဢၼ်မႂ်ႇ ဢမ်ႇၼၼ် လႅၵ်ႈလၢႆႈၼႃႈလိၵ်ႈၸူး လွင်ႈပိၼ်ႇၸီႉ",
 	"tag-mw-removed-redirect-description": "မႄးထတ်း ဢၼ် လႅၵ်ႈလၢႆႈ လွင်ႈပိၼ်ႇၸီႉဢၼ်မီးယူႇယၢမ်းလဵဝ်ၼၼ်ႉ ၸူး ဢၼ်ဢမ်ႇပႆႇမီး လွင်ႈပိၼ်ႇၸီႉ။",

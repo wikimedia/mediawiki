@@ -20,7 +20,8 @@
 			"Taylortheturtle",
 			"Vlad5250",
 			"아라",
-			"Exec8"
+			"Exec8",
+			"SaldırganSincap"
 		]
 	},
 	"sunday": "Dominggo",
@@ -1903,7 +1904,7 @@
 	"wantedpages-summary": "Listahan sang mga wala nagaluntad nga mga pahina nga may pinakamadamo nga mga link sa ila, wala labot ang mga pahina nga may mga redirect lamang nga naga-link sa ila. Para sa listahan sang mga wala nagaluntad nga mga pahina nga may mga redirect nga nagaangot sa ila, tan-awa ang [[{{#special:BrokenRedirects}}|ang listahan sang mga nabali nga mga redirect]].",
 	"wantedpages-badtitle": "Indi balido nga titulo sa set sang resulta: $1",
 	"wantedfiles": "Mga ginapangita nga mga file",
-	"wantedfiletext-cat": "Ang masunod nga mga file ginagamit apang wala nagaluntad. Ang mga file gikan sa mga dumuluong nga mga repository mahimo nga malista bisan pa nga nagaluntad. Ang bisan ano nga amo nga mga sayop nga positibo pagadulaon</del>. Dugang pa, ang mga pahina nga naga-embed sang mga file nga wala nagaluntad nalista sa [[:$1]].",
+	"wantedfiletext-cat": "Ang masunod nga mga file ginagamit apang wala nagaluntad. Ang mga file gikan sa mga dumuluong nga mga repository mahimo nga malista bisan pa nga nagaluntad. Ang bisan ano nga amo nga mga sayop nga positibo <del>pagadulaon</del>. Dugang pa, ang mga pahina nga naga-embed sang mga file nga wala nagaluntad nalista sa [[:$1]].",
 	"wantedfiletext-cat-noforeign": "Ang masunod nga mga file ginagamit apang wala nagaluntad. Dugang pa, ang mga pahina nga naga-embed sang mga file nga wala nagaluntad nalista sa [[:$1]].",
 	"wantedfiletext-nocat": "Ang masunod nga mga file ginagamit apang wala nagaluntad. Ang mga file gikan sa mga dumuluong nga mga repository mahimo nga malista bisan pa nga nagaluntad. Ang bisan ano nga amo nga mga sayop nga positibo mangin<del> gin-utod</del> .",
 	"wantedfiletext-nocat-noforeign": "Ang masunod nga mga file ginagamit apang wala nagaluntad.",

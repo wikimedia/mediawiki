@@ -21,7 +21,8 @@
 			"ToBeFree",
 			"Äberlausitzer",
 			"아라",
-			"InNerdsWeTrust"
+			"InNerdsWeTrust",
+			"SaldırganSincap"
 		]
 	},
 	"sunday": "Sunntich",
@@ -511,7 +512,7 @@
 	"shown-title": "Zeige $1 {{PLURAL:$1|Ergebnis|Ergebnisse}} pro Seite",
 	"viewprevnext": "Zeige ($1 {{int:pipe-separator}} $2) ($3)",
 	"searchmenu-exists": "'S existiert anne Seite, de dan Noama „[[:$1]]“ ei {{SITENAME}} hoat. {{PLURAL:$2|0=|Wettere Suchergebnisse.}}",
-	"searchmenu-new": "Erstelle de Seite „[[:$1]]“ ei diesem Wiki.</strong> {{PLURAL:$2|0=|Siehe ooch de ieber deine Suche gefundene Seite.|Siehe ooch de gefundna Suchergebnisse.}}",
+	"searchmenu-new": "Erstelle de Seite „[[:$1]]“ ei diesem Wiki. {{PLURAL:$2|0=|Siehe ooch de ieber deine Suche gefundene Seite.|Siehe ooch de gefundna Suchergebnisse.}}",
 	"searchprofile-articles": "Inhaltsseita",
 	"searchprofile-images": "Multimedia",
 	"searchprofile-everything": "Olles",

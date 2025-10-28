@@ -176,7 +176,7 @@
 	"page-atom-feed": "\"$1\" Atòm fid",
 	"red-link-title": "$1 (pej nɔ de)",
 	"nstab-main": "Pej",
-	"nstab-user": "{{GENDER:$1| Yuza pej}}",
+	"nstab-user": "{{GENDER:$1|Yuza pej}}",
 	"nstab-media": "Prɛs pej",
 	"nstab-special": "Spɛshal pej",
 	"nstab-project": "Projɛkt pej",

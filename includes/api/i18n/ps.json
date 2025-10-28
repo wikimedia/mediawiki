@@ -4,7 +4,8 @@
 			"1233qwer1234qwer4",
 			"Ahmed-Najib-Biabani-Ibrahimkhel",
 			"Macofe",
-			"شاه زمان پټان"
+			"شاه زمان پټان",
+			"SaldırganSincap"
 		]
 	},
 	"apihelp-main-param-action": "کومه چاره ترسره کړم.",
@@ -13,7 +14,7 @@
 	"apihelp-main-param-requestid": "دلته ورکړل‌شوی هر ارزښت به په ځواب کې راونغاړل شي. د غوښتنو د توپير لپاره کارېدای شي.",
 	"apihelp-main-param-servedby": "په پايلو کې د هغه کوربه نوم راونغاړئ چې غوښتنه يې کړې ده.",
 	"apihelp-main-param-curtimestamp": "په پايلو کې د اوسني وخت‌ټاپې راونغاړئ.",
-	"apihelp-main-param-responselanginfo": "په پايله کې د var>uselang</var> او <var>errorlang</var> لپاره کارول‌شوې ژبې راونغاړئ.",
+	"apihelp-main-param-responselanginfo": "په پايله کې د <var>uselang</var> او <var>errorlang</var> لپاره کارول‌شوې ژبې راونغاړئ.",
 	"apihelp-main-param-errorformat": "د خبرداري او تېروتنې ليک د زېږندې د کارولو بڼه",
 	"apihelp-main-paramvalue-errorformat-bc": "د مېډياويکي .۱.۲۹ څخه مخکې کارول شوې بڼه <var>errorlang</var> او <var>errorsuselocal</var> له پامه‌غورځول‌شوې دي.",
 	"apihelp-main-param-errorsuselocal": "که ورکړل شي، د تېروتنې ليکونه به د {{ns:MediaWiki}} نوم‌تشيال څخه په سيمه‌ييز ډول دوديزشوي پيغامونه وکاروي.",

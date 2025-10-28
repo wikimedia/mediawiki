@@ -7,7 +7,8 @@
 			"NoiX180",
 			"Salomo Christian Hutajulu",
 			"Simartampua",
-			"Veracious"
+			"Veracious",
+			"SaldırganSincap"
 		]
 	},
 	"sunday": "Akad",
@@ -671,7 +672,7 @@
 	"post-expand-template-argument-category": "Alaman dohot argumen templat na i abaion on.",
 	"template-equals-category": "Alaman na manggunaon = ima sabgai templat.",
 	"template-equals-category-desc": "Alaman-alaman na mandung <code><nowiki>{{=}}</nowiki></code> tetapi di wiki ini tidak dikembangkan menjadi <code>=</code>. Penggunaan ini telah diusangkan; sebuah versi MediaWiki mendatang akan mengimplementasikan <code><nowiki>{{=}}</nowiki></code> sabagai sada fungsi parser.",
-	"template-equals-warning": "<strong>Peringatan:</strong> Halaman ini menggunakan <code><nowiki>{{=}}</nowiki></code> tetapi di wiki ini yang tidak dikembangkan menjadi code>=</code>. Penggunaan ini telah diusangkan; sebuah versi MediaWiki mendatang akan mengimplementasikan <code><nowiki>{{=}}</nowiki></code> sabagai sada fungsi parser.",
+	"template-equals-warning": "<strong>Peringatan:</strong> Halaman ini menggunakan <code><nowiki>{{=}}</nowiki></code> tetapi di wiki ini yang tidak dikembangkan menjadi <code>=</code>. Penggunaan ini telah diusangkan; sebuah versi MediaWiki mendatang akan mengimplementasikan <code><nowiki>{{=}}</nowiki></code> sabagai sada fungsi parser.",
 	"parser-template-loop-warning": "hubungan marulak templat tardeteksi: [[:$1]]",
 	"template-loop-category": "Alaman on dohot templat na merupakan",
 	"template-loop-category-desc": "Alaman on mandung templat malingkar, ima templat na mamio dirinia sandiri sacara pupupaulu.",

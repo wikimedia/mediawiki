@@ -9,7 +9,8 @@
 			"TMg",
 			"BOKOBA VEROLY",
 			"Lydie maliki",
-			"Marphy 123"
+			"Marphy 123",
+			"SaldırganSincap"
 		]
 	},
 	"sunday": "Lomíngo",
@@ -252,7 +253,7 @@
 	"newarticle": "(Sika)",
 	"newarticletext": "Olandi lien ya lokasa oyo ezali nanu te.\nMpo na kosala lokasa, banda kokoma na esika oyo ezali awa na nse (tala [ lokasa ya lisalisi $1 ] mpo na koyeba makambo mosusu).\nSoki ozali awa na libunga, finá na bouton <strong>ya sima</strong> ya navigateur na yo.",
 	"anontalkpagetext": "----\n <em>Oyo ezali lokasa ya masolo mpo na mosaleli oyo ayebani te oyo asali naino compte te, to oyo azali kosalela yango te.</em> \nNa yango, tosengeli kosalela adresse IP numérique mpo na koyeba bango.\nAdresse IP ya boye ekoki kokabolama na basaleli mingi.\nSoki ozali mosaleli oyo ayebani te mpe ozali komona ete makanisi oyo ezali na ntina te epesameli yo, tosɛngi yo [[Special:CreateAccount|sala compte]] to [[Special:UserLogin|kokɔta]] mpo na koboya mobulungano na mikolo ezali koya na bato mosusu oyo bayebani te basaleli.",
-	"noarticletext": "Sikawa makomi ezali te na lokasa oyo.\nOkoki [[Special:Search/{{PAGENAME}}|koluka motó ya likambo ya lokasa oyo]] na nkasa mosusu,\n <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} luka ba journal oyo etali yango],\nto [{{fullurl:{{FULLPAGENAME}}|action=edit}} sala lokasa oyo]</span> .",
+	"noarticletext": "Sikawa makomi ezali te na lokasa oyo.\nOkoki [[Special:Search/{{PAGENAME}}|koluka motó ya likambo ya lokasa oyo]] na nkasa mosusu,\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} luka ba journal oyo etali yango],\nto [{{fullurl:{{FULLPAGENAME}}|action=edit}} sala lokasa oyo]</span>.",
 	"noarticletext-nopermission": "Sikawa makomi ezali te na lokasa oyo.\nOkoki [[Special:Search/{{PAGENAME}}|koluka titre ya lokasa oyo]] na nkasa mosusu, to <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} koluka ba journal oyo etali yango]</span> , kasi ozali na ndingisa te ya kosala lokasa oyo.",
 	"userpage-userdoesnotexist-view": "Compte ya mosaleli \" $1 \" ekomisami na wiki oyo te.",
 	"previewnote": "<strong>Kobosana te ete oyo ezali kaka aperçu.</strong> \nBa changements na bino ebimi nanu te!",

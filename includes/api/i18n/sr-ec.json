@@ -106,6 +106,7 @@
 	"api-help-examples": "{{PLURAL:$1|Пример|Примери}}:",
 	"api-help-permissions": "{{PLURAL:$1|Дозвола|Дозволе}}:",
 	"api-help-permissions-granted-to": "{{PLURAL:$1|Додељено}}: $2",
+	"apierror-alreadyregistered": "Већ имате кориснички налог.",
 	"apierror-articleexists": "Страница коју сте покушали направити већ је направљена.",
 	"apierror-badtoken": "Невалидан CSRF токен.",
 	"apierror-blocked-partial": "Блокирано вам је уређивање ове странице.",
@@ -116,11 +117,14 @@
 	"apierror-filedoesnotexist": "Датотека не постоји.",
 	"apierror-invalidmethod": "Неважећи HTTP метод. Размотрите коришћење команде GET или POST.",
 	"apierror-mustbeloggedin-generic": "Морате бити пријављени.",
+	"apierror-permissiondenied-generic": "Приступ одбијен.",
 	"apierror-readonly": "Вики је тренутно у режиму само за читање.",
 	"apierror-revisions-badid": "Није пронађена измена за параметар <var>$1</var>.",
 	"apierror-unknownerror-nocode": "Непозната грешка.",
 	"apierror-unknownerror": "Непозната грешка: „$1”.",
+	"apiwarn-invalidcategory": "„$1” није категорија.",
 	"apiwarn-notfile": "„$1“ није датотека.",
 	"api-feed-error-title": "Грешка ($1)",
-	"api-credits-header": "Заслуге"
+	"api-credits-header": "Заслуге",
+	"api-credits": "Творци API-ја:\n* Yuri Astrakhan (творац, главни програмер септ. 2006 – септ. 2007)\n* Roan Kattouw (главни програмер септ. 2007 – 2009)\n* Victor Vasiliev\n* Bryan Tong Minh\n* Sam Reed\n* Brad Jorsch (главни програмер 2013–2020)\n\nВаше коментаре, сугестије и питања шаљите на mediawiki-api@lists.wikimedia.org или пријавите баг на https://phabricator.wikimedia.org/."
 }
