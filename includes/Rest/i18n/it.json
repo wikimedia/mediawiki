@@ -54,6 +54,8 @@
 	"rest-property-desc-search-pages": "Elenco delle pagine dei risultati di ricerca",
 	"rest-property-desc-user": "Utente che ha effettuato la modifica",
 	"rest-property-desc-user-name": "Nome utente o indirizzo IP di origine per utenti anonimi",
+	"rest-property-desc-revision-url-older": "Se disponibile, URL per ottenere le versioni precedenti",
+	"rest-property-desc-revision-url-newer": "Se disponibile, URL per ottenere le versioni successive",
 	"rest-endpoint-desc-post-page": "Crea una pagina.",
 	"rest-endpoint-desc-post-transform-wikitext-to-html-title-revision": "Converte il wikitesto di una determinata versione in HTML. Il parametro del corpo della richiesta del wikitesto deve essere specificato, ma può essere lasciato vuoto per ricevere la versione completa. Il corpo della risposta contiene il codice HTML renderizzato della versione.",
 	"rest-endpoint-desc-post-transform-html-to-wikitext-title": "Converte l'HTML in wikitesto. Il parametro \"HTML request body\" deve essere specificato, ma può essere vuoto per ricevere la pagina completa. Il corpo della risposta contiene il wikitesto della pagina.",

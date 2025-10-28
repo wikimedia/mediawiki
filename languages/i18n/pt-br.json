@@ -3243,7 +3243,6 @@
 	"mcrundo-changed": "Esta página foi alterada desde que começou a ver as diferenças. Reveja a nova mudança, por favor.",
 	"mcrundo-parse-failed": "Falha ao analisar a nova revisão: $1",
 	"semicolon-separator": ";&#32;",
-	"comma-separator": ",&#32;",
 	"colon-separator": ":&#32;",
 	"ellipsis": "...",
 	"percent": "$1%",

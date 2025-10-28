@@ -3086,7 +3086,6 @@
 	"mcrundo-changed": "Башхалыкъланы кёрюндюргенигизден бери бет тюрленнгенди. Джангы тюрлениулени тинтигиз.",
 	"mcrundo-parse-failed": "Джангы версия танылмады: $1",
 	"semicolon-separator": ";&#32;",
-	"comma-separator": ",&#32;",
 	"colon-separator": ":&#32;",
 	"ellipsis": "...",
 	"percent": "$1%",

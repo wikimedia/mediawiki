@@ -3056,7 +3056,6 @@
 	"mcrundo-missingparam": "Prašyme trūksta būtinų parametrų.",
 	"mcrundo-changed": "Puslapis buvo pakeistas nuo tada, kai peržiūrėjote skirtumą. Peržiūrėkite naują pakeitimą.",
 	"semicolon-separator": ";&#32;",
-	"comma-separator": ",&#32;",
 	"colon-separator": ":&#32;",
 	"ellipsis": "...",
 	"percent": "$1%",

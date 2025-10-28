@@ -3115,7 +3115,6 @@
 	"mcrundo-changed": "Această pagină a fost schimbată de când ați văzut diferența. Vă rugăm să revizuiți noua schimbare.",
 	"mcrundo-parse-failed": "Nu am putut evalua noua versiune: $1",
 	"semicolon-separator": ";&#32;",
-	"comma-separator": ",&#32;",
 	"colon-separator": ":&#32;",
 	"ellipsis": "...",
 	"percent": "$1&#160;%",

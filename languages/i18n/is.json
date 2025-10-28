@@ -3104,7 +3104,6 @@
 	"mcrundo-changed": "Síðan hefur breyst eftir að þú skoðaðir breytingaryfirlitið. Farðu yfir nýju breytinguna.",
 	"mcrundo-parse-failed": "Mistókst að birta nýja útgáfuna: $1",
 	"semicolon-separator": ";&#32;",
-	"comma-separator": ",&#32;",
 	"colon-separator": ":&#32;",
 	"ellipsis": "...",
 	"percent": "$1%",

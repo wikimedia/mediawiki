@@ -23,7 +23,7 @@
 	"interwiki_trans": "لنډول",
 	"interwiki-trans-label": "لنډول",
 	"interwiki_trans_1_intro": "که <code>{<nowiki />{prefix:<em>pagename</em>}}</code>  ويکي‌ليک غونډلپوهه کارېدلی وي؛ له باندنۍ ويکي نه کينډۍ/مخ ته اجازه ورکړئ که چېرې ويکي‌خپلمنځي لېږدونې په ټولواله ([https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgEnableScaryTranscluding وېروونکې لنډونې]) کې چارن وي.",
-	"interwiki_trans_0_intro": "<code>{<nowiki />{prefix:<em>pagename</em>}} ته اجازه مه ورکوئ چې باندنۍ کينډۍ/مخونه لنډ کړي بلکې پرځای يې په کينډۍ نوم‌تشيال کې د يو ځايي مخ په لټه کې شئ.",
+	"interwiki_trans_0_intro": "<code>{<nowiki />{prefix:<em>pagename</em>}}</code> ته اجازه مه ورکوئ چې باندنۍ کينډۍ/مخونه لنډ کړي بلکې پرځای يې په کينډۍ نوم‌تشيال کې د يو ځايي مخ په لټه کې شئ.",
 	"interwiki_1": "هو",
 	"interwiki_0": "نه",
 	"interwiki_error": "تېروتنه: ويکي‌خپلمنځي لښتيال تش دی، يا يو بل څه ناسم دي‌.",

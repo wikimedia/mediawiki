@@ -9,7 +9,7 @@
 			"Stonecy"
 		]
 	},
-	"rest-prefix-mismatch": "İstenen yol ($1), REST API kök yolunun içinde değildi ($2)",
+	"rest-prefix-mismatch": "İstenen yol ($1), REST API temel yolunun ($2) içinde değildi",
 	"rest-wrong-method": "İstek yöntemi ($1), {{PLURAL:$3|bu yol için izin verilen yöntem|bu yol için izin verilen yöntemlerden biri}}  değildi ($2)",
 	"rest-no-match": "İstenen göreceli yol ($1) bilinen herhangi bir işleyiciyle eşleşmedi",
 	"rest-nonexistent-title": "Belirtilen sayfa ($1) yok",

@@ -17,7 +17,7 @@
 	"botpasswords-label-update": "Aktualiséieren",
 	"botpasswords-label-cancel": "Ofbriechen",
 	"botpasswords-label-delete": "Läschen",
-	"botpasswords-label-resetpassword": "D'Passwuert zrécksetzen",
+	"botpasswords-label-resetpassword": "D'Passwuert zerécksetzen",
 	"botpasswords-label-grants": "Applikabel Rechter:",
 	"botpasswords-help-grants": "Berechtegunge ginn Zougang op déi Benotzerrechter déi Äre Benotzerkont schonn huet. D'Aktivéiere vun enger Berechtegung hei gëtt Iech keen Zougang op Rechter déi Äre Benotzerkont net scho souwisou huet. Kuckt d'[[Special:ListGrants|Tabell vun de Berechtigunge]] fir méi Informatiounen.",
 	"botpasswords-label-grants-column": "Accordéiert",
