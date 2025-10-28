@@ -270,6 +270,7 @@ class Names {
 		'kaa' => 'Qaraqalpaqsha', # Karakalpak
 		'kab' => 'Taqbaylit', # Kabyle
 		'kai' => 'Karai-karai', # Karekare
+		'kaj' => 'Jju', # Jju
 		'kbd' => 'адыгэбзэ', # Kabardian
 		'kbd-cyrl' => 'адыгэбзэ', # Kabardian (Cyrillic)
 		'kbp' => 'Kabɩyɛ', # Kabiyè
