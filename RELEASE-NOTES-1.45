@@ -221,6 +221,7 @@ because of Phabricator reports.
 * (T398790) Added language support for Antigua and Barbuda Creole English (aig).
 * (T402159) Added language support for Sasak (sas).
 * (T406198) Added language support for Bono (abr).
+* (T408150) Added language support for Jju (kaj).
 * …
 
 === Breaking changes in 1.45 ===
