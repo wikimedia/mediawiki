@@ -223,15 +223,9 @@ Preprocessor precedence 9: groups of braces
 <dd>Four</dd>
 <dt>7</dt>
 <dd>{Bullet}</dd></dl>
-!! html/parsoid+standalone
+!! html/parsoid
 <dl about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"Preprocessor precedence 9","href":"./Template:Preprocessor_precedence_9"},"params":{"1":{"wt":"Four"},"2":{"wt":"Bullet"},"3":{"wt":"1"},"4":{"wt":"2"}},"i":0}}]}'><dt>4</dt><dd>{Four}</dd>
 <dt>5</dt><dd></dd></dl><ul about="#mwt1"><li>Bar</li></ul><span about="#mwt1">
-</span><dl about="#mwt1"><dt>6</dt><dd>Four</dd>
-<dt>7</dt><dd>{Bullet}</dd></dl>
-!! html/parsoid+integrated
-<dl about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"Preprocessor precedence 9","href":"./Template:Preprocessor_precedence_9"},"params":{"1":{"wt":"Four"},"2":{"wt":"Bullet"},"3":{"wt":"1"},"4":{"wt":"2"}},"i":0}}]}'><dt>4</dt><dd>{Four}</dd>
-<dt>5</dt><dd></dd></dl><span about="#mwt1">
-</span><ul about="#mwt1"><li>Bar</li></ul><span about="#mwt1">
 </span><dl about="#mwt1"><dt>6</dt><dd>Four</dd>
 <dt>7</dt><dd>{Bullet}</dd></dl>
 !! end
@@ -259,22 +253,12 @@ language=zh
 <dd>-Three-</dd>
 <dt>7</dt>
 <dd>raw2</dd></dl>
-!! html/parsoid+standalone
+!! html/parsoid
 <dl about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1"},{"k":"2"},{"k":"3"},{"k":"4"},{"k":"5"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"Preprocessor precedence 10","href":"./Template:Preprocessor_precedence_10"},"params":{"1":{"wt":"Three"},"2":{"wt":"raw2"},"3":{"wt":"Bullet"},"4":{"wt":"1"},"5":{"wt":"2"}},"i":0}}]}'><dt>1</dt><dd><span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"raw"}}'></span></dd>
 <dt>2</dt><dd>-</dd></dl><ul about="#mwt1"><li>Bar-</li></ul><span about="#mwt1">
 </span><dl about="#mwt1"><dt>3</dt><dd>-Three-</dd>
 <dt>4</dt><dd><span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"raw2"}}'></span></dd>
 <dt>5</dt><dd>-</dd></dl><ul about="#mwt1"><li>Bar-</li></ul><span about="#mwt1">
-</span><dl about="#mwt1"><dt>6</dt><dd>-Three-</dd>
-<dt>7</dt><dd><span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"raw2"}}'></span></dd></dl>
-!! html/parsoid+integrated
-<dl about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1"},{"k":"2"},{"k":"3"},{"k":"4"},{"k":"5"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"Preprocessor precedence 10","href":"./Template:Preprocessor_precedence_10"},"params":{"1":{"wt":"Three"},"2":{"wt":"raw2"},"3":{"wt":"Bullet"},"4":{"wt":"1"},"5":{"wt":"2"}},"i":0}}]}'><dt>1</dt><dd><span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"raw"}}'></span></dd>
-<dt>2</dt><dd>-</dd></dl><span about="#mwt1">
-</span><ul about="#mwt1"><li>Bar-</li></ul><span about="#mwt1">
-</span><dl about="#mwt1"><dt>3</dt><dd>-Three-</dd>
-<dt>4</dt><dd><span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"raw2"}}'></span></dd>
-<dt>5</dt><dd>-</dd></dl><span about="#mwt1">
-</span><ul about="#mwt1"><li>Bar-</li></ul><span about="#mwt1">
 </span><dl about="#mwt1"><dt>6</dt><dd>-Three-</dd>
 <dt>7</dt><dd><span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"raw2"}}'></span></dd></dl>
 !! end
