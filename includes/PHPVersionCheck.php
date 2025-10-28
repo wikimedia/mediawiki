@@ -67,7 +67,7 @@ class PHPVersionCheck {
 	function checkRequiredPHPVersion() {
 		// This value should match the PHP version specified in composer.json,
 		// .phan/config.php, and ScopeStructureTest.php
-		$minimumVersion = '8.1.4';
+		$minimumVersion = '8.2.0';
 
 		/**
 		 * This is a list of known-bad ranges of PHP versions. Syntax is like SemVer – either:
@@ -120,7 +120,7 @@ class PHPVersionCheck {
 			$web['longHtml'] = <<<HTML
 		<p>
 			Please consider <a href="https://www.php.net/downloads.php">upgrading your copy of PHP</a>.
-			PHP versions less than v8.1.0 are no longer <a href="https://www.php.net/supported-versions.php">supported</a>
+			PHP versions less than v8.2.0 are no longer <a href="https://www.php.net/supported-versions.php">supported</a>
 			by the PHP Group and will not receive security or bugfix updates.
 		</p>
 		<p>
