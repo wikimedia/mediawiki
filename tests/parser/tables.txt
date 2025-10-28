@@ -1164,9 +1164,11 @@ Build table with {{!}}
 !header
 !second header
 {{!}}- style="color:red;"
-{{!}}data{{!}}{{!}} style="color:red;" {{!}}second data
+{{!}}data{{!}}{{!}} style="color:red;"{{!}}second data
+{{!}}data{{!}}| style="color:green;"{{!}}third data
+{{!}}data|{{!}} style="color:blue;"{{!}}fourth data
 {{!}}}
-!! html
+!! html/php
 <table class="wikitable">
 <tbody><tr>
 <th>header
@@ -1176,7 +1178,22 @@ Build table with {{!}}
 <tr style="color:red;">
 <td>data</td>
 <td style="color:red;">second data
+</td>
+<td>data</td>
+<td style="color:green;">third data
+</td>
+<td>data</td>
+<td style="color:blue;">fourth data
 </td></tr></tbody></table>
+!! html/parsoid
+<table class="wikitable" data-parsoid='{"startTagSrc":"{{{!}}","endTagSrc":"{{!}}}"}'>
+<tbody><tr data-parsoid='{"autoInsertedStart":true}'><th>header</th>
+<th>second header</th></tr>
+<tr style="color:red;" data-parsoid='{"startTagSrc":"{{!}}-"}'>
+<td data-parsoid='{"startTagSrc":"{{!}}"}'>data</td><td style="color:red;" data-parsoid='{"attrSepSrc":"{{!}}","stx":"row","startTagSrc":"{{!}}{{!}}"}'>second data</td>
+<td data-parsoid='{"startTagSrc":"{{!}}"}'>data</td><td style="color:green;" data-parsoid='{"attrSepSrc":"{{!}}","stx":"row","startTagSrc":"{{!}}|"}'>third data</td>
+<td data-parsoid='{"startTagSrc":"{{!}}"}'>data</td><td style="color:blue;" data-parsoid='{"attrSepSrc":"{{!}}","stx":"row","startTagSrc":"|{{!}}"}'>fourth data</td></tr>
+</tbody></table>
 !! end
 
 !! test
@@ -2091,5 +2108,137 @@ AttributeExpander regression test: Class attributes should be properly applied
 !! html/parsoid+standalone
 <table class="foo {{{class}}}  bar" style="font-size: 95%;" about="#mwt2" typeof="mw:ExpandedAttrs" data-mw='{"attribs":[[{"txt":"class","html":"&lt;span about=\"#mwt1\" typeof=\"mw:Transclusion\" data-parsoid=&apos;{\"pi\":[[{\"k\":\"1\",\"named\":true}]]}&apos; data-mw=&apos;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"1x\",\"href\":\"./Template:1x\"},\"params\":{\"1\":{\"wt\":\"class=\\\"foo {{{class}}} &amp;lt;!--x--> bar\\\" style=\\\"font-size: 95%;\\\"\"}},\"i\":0}}]}&apos;>class=\"foo {{{class}}} &lt;/span>&lt;span about=\"#mwt1\">&lt;!--x-->&lt;/span>&lt;span about=\"#mwt1\"> bar\" style=\"font-size: 95%;\"&lt;/span>"},{"html":""}]]}'>
 <tbody><tr><td>foo</td></tr>
+</tbody></table>
+!! end
+
+## Note that we are choosing to support this in Parsoid
+## The legacy parser output is arbitrary
+!! test
+Exclamation points in wikilink content in table precedence
+!! wikitext
+{|
+![[Foo|Bar!!]]
+|}
+!! html/php
+<table>
+<tbody><tr>
+<th><a href="/index.php?title=Foo&amp;action=edit&amp;redlink=1" class="new" title="Foo (page does not exist)">Bar</a></th>
+<th>
+</th></tr></tbody></table>
+!! html/parsoid
+<table>
+<tbody><tr><th><a rel="mw:WikiLink" href="./Foo?action=edit&amp;redlink=1" title="Foo" class="new" typeof="mw:LocalizedAttrs" data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["Foo"]}}'>Bar!!</a></th></tr>
+</tbody></table>
+!! end
+
+!! test
+Multi-line extension tags should not interrupt table-cell parsing in the same row
+!! options
+parsoid=wt2html,wt2wt
+!! wikitext
+{|
+|-
+|a1||b1 <spantag>
+{{1x|c1}}</spantag>||d1||e1
+|-
+|a2||[[Main Page]] <spantag>
+{{1x|c2}}</spantag>||d2||e2
+|}
+
+{|
+|-
+!a3!!b3 <spantag>
+{{1x|c3}}</spantag>!!d3!!e3
+|-
+!a4!![[Main Page]] <spantag>
+{{1x|c4}}</spantag>!!d4!!e4
+|}
+!! html/php
+<table>
+
+<tbody><tr>
+<td>a1</td>
+<td>b1 <span>
+c1</span></td>
+<td>d1</td>
+<td>e1
+</td></tr>
+<tr>
+<td>a2</td>
+<td><a href="/wiki/Main_Page" title="Main Page">Main Page</a> <span>
+c2</span></td>
+<td>d2</td>
+<td>e2
+</td></tr></tbody></table>
+<table>
+
+<tbody><tr>
+<th>a3</th>
+<th>b3 <span>
+c3</span></th>
+<th>d3</th>
+<th>e3
+</th></tr>
+<tr>
+<th>a4</th>
+<th><a href="/wiki/Main_Page" title="Main Page">Main Page</a> <span>
+c4</span></th>
+<th>d4</th>
+<th>e4
+</th></tr></tbody></table>
+!! html/parsoid
+<table>
+<tbody><tr>
+<td>a1</td><td data-parsoid='{"stx":"row"}'>b1 <span typeof="mw:Extension/spantag" about="#mwt2" data-mw='{"name":"spantag","attrs":{},"body":{"extsrc":"\n{{1x|c1}}"}}'>
+<span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"c1"}},"i":0}}]}'>c1</span></span></td><td data-parsoid='{"stx":"row"}'>d1</td><td data-parsoid='{"stx":"row"}'>e1</td></tr>
+<tr>
+<td>a2</td><td data-parsoid='{"stx":"row"}'><a rel="mw:WikiLink" href="./Main_Page" title="Main Page">Main Page</a> <span typeof="mw:Extension/spantag" about="#mwt4" data-mw='{"name":"spantag","attrs":{},"body":{"extsrc":"\n{{1x|c2}}"}}'>
+<span about="#mwt3" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"c2"}},"i":0}}]}'>c2</span></span></td><td data-parsoid='{"stx":"row"}'>d2</td><td data-parsoid='{"stx":"row"}'>e2</td></tr>
+</tbody></table>
+
+<table>
+<tbody><tr>
+<th>a3</th><th data-parsoid='{"stx":"row"}'>b3 <span typeof="mw:Extension/spantag" about="#mwt6" data-mw='{"name":"spantag","attrs":{},"body":{"extsrc":"\n{{1x|c3}}"}}'>
+<span about="#mwt5" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"c3"}},"i":0}}]}'>c3</span></span></th><th data-parsoid='{"stx":"row"}'>d3</th><th data-parsoid='{"stx":"row"}'>e3</th></tr>
+<tr>
+<th>a4</th><th data-parsoid='{"stx":"row"}'><a rel="mw:WikiLink" href="./Main_Page" title="Main Page">Main Page</a> <span typeof="mw:Extension/spantag" about="#mwt8" data-mw='{"name":"spantag","attrs":{},"body":{"extsrc":"\n{{1x|c4}}"}}'>
+<span about="#mwt7" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"c4"}},"i":0}}]}'>c4</span></span></th><th data-parsoid='{"stx":"row"}'>d4</th><th data-parsoid='{"stx":"row"}'>e4</th></tr>
+</tbody></table>
+!! end
+
+!! test
+Multi-line transclusions should not interrupt table-cell parsing in the same row
+!! wikitext
+{|
+! class="c1" |Col 1.1!! class="c2" |{{1x|
+1=Col 1.2}}!! class="c3" |Col 1.3!! class="c4" |Col 1.4
+! class="d1" |Col 2.1!! class="d2" |{{1x|
+1=Col 2.2}}!! class="d3" |Col 2.3! abcd!! class="d4" |Col 2.4
+| class="e1" |Col 3.1|| class="e2" |{{1x|
+1=Col 3.2}}|| class="e3" |Col 3.3| abcd|| class="e4" |Col 3.4
+|}
+!! html/php
+<table>
+<tbody><tr>
+<th class="c1">Col 1.1</th>
+<th class="c2">Col 1.2</th>
+<th class="c3">Col 1.3</th>
+<th class="c4">Col 1.4
+</th>
+<th class="d1">Col 2.1</th>
+<th class="d2">Col 2.2</th>
+<th class="d3">Col 2.3! abcd</th>
+<th class="d4">Col 2.4
+</th>
+<td class="e1">Col 3.1</td>
+<td class="e2">Col 3.2</td>
+<td class="e3">Col 3.3| abcd</td>
+<td class="e4">Col 3.4
+</td></tr></tbody></table>
+!! html/parsoid
+<table>
+<tbody><tr><th class="c1">Col 1.1</th><th class="c2" data-parsoid='{"stx":"row"}'><span about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1","named":true,"spc":["\n","","",""]}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"Col 1.2"}},"i":0}}]}'>Col 1.2</span></th><th class="c3" data-parsoid='{"stx":"row"}'>Col 1.3</th><th class="c4" data-parsoid='{"stx":"row"}'>Col 1.4</th>
+<th class="d1">Col 2.1</th><th class="d2" data-parsoid='{"stx":"row"}'><span about="#mwt2" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1","named":true,"spc":["\n","","",""]}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"Col 2.2"}},"i":0}}]}'>Col 2.2</span></th><th class="d3" data-parsoid='{"stx":"row"}'>Col 2.3! abcd</th><th class="d4" data-parsoid='{"stx":"row"}'>Col 2.4</th>
+<td class="e1">Col 3.1</td><td class="e2" data-parsoid='{"stx":"row"}'><span about="#mwt3" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1","named":true,"spc":["\n","","",""]}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"Col 3.2"}},"i":0}}]}'>Col 3.2</span></td><td class="e3" data-parsoid='{"stx":"row"}'>Col 3.3| abcd</td><td class="e4" data-parsoid='{"stx":"row"}'>Col 3.4</td></tr>
 </tbody></table>
 !! end

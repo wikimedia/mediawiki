@@ -1283,3 +1283,14 @@ flags=mw-NewSection
 <section data-mw-section-id="0"><meta property="mw:PageProp/newsectionlink" about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"magicSrc":"__NEWSECTIONLINK__","pi":[[]]}' data-mw='{"parts":[{"template":{"target":{"wt":"NewSectionLink","href":"./Template:NewSectionLink"},"params":{},"i":0}}]}'/></section>
 !! end
 
+# html2wt disabled because it uses a different preferred localization
+!! test
+Japanese magic words with U+FF3F (T407289)
+!! options
+language=ja
+parsoid=wt2html,wt2wt,html2html
+!! wikitext
+＿＿目次非表示＿＿
+!! html/parsoid
+<meta property="mw:PageProp/notoc"/>
+!! end
