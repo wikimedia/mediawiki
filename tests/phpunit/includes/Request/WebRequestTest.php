@@ -11,6 +11,7 @@ use MediaWiki\User\UserIdentityValue;
  * @covers \MediaWiki\Request\WebRequest
  *
  * @group WebRequest
+ * @group Database
  */
 class WebRequestTest extends MediaWikiIntegrationTestCase {
 	private const INTERNAL_SERVER = 'http://wiki.site';
@@ -776,6 +777,7 @@ class WebRequestTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( '127.0.0.1', $context['clientIp'] );
 		if ( $user ) {
 			$this->assertSame( $user->getName(), $context['user'] );
+			$this->assertFalse( $context['user_is_bot'] );
 		} else {
 			$this->assertArrayNotHasKey( 'user', $context );
 		}

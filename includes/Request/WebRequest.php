@@ -1558,15 +1558,17 @@ class WebRequest {
 			$context['originalUserAgent'] = $userAgent;
 		}
 
+		$services = MediaWikiServices::getInstance();
 		if ( $user ) {
 			$context += [
 				'user' => $user->getName(),
 				'user_exists_locally' => $user->isRegistered(),
+				'user_is_bot' => $services->getUserFactory()->newFromUserIdentity( $user )->isBot(),
 			];
 		}
 
 		$info = [ 'request' => $this, 'user' => $user ];
-		$hookRunner = new HookRunner( MediaWikiServices::getInstance()->getHookContainer() );
+		$hookRunner = new HookRunner( $services->getHookContainer() );
 		$hookRunner->onGetSecurityLogContext( $info, $context );
 
 		$this->securityLogContext->set( $cacheKey, $context );
