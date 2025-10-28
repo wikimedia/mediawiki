@@ -7,7 +7,7 @@ use ReflectionMethod;
 
 /**
  * @group ResourceLoader
- * @covers \MediaWiki\ResourceLoader\LessVarFileModule
+ * @covers \MediaWiki\ResourceLoader\FileModule
  */
 class LessVarFileModuleTest extends ResourceLoaderTestCase {
 
