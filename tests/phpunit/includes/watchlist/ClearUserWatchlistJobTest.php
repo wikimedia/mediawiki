@@ -1,7 +1,7 @@
 <?php
 
 use MediaWiki\MainConfigNames;
-use MediaWiki\Title\TitleValue;
+use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\Watchlist\ClearUserWatchlistJob;
@@ -24,19 +24,23 @@ class ClearUserWatchlistJobTest extends MediaWikiIntegrationTestCase {
 		return $this->getServiceContainer()->getWatchedItemStore();
 	}
 
+	private static function makeTitle( $ns, $dbKey ) {
+		return PageReferenceValue::localReference( $ns, $dbKey );
+	}
+
 	public function testRun() {
 		$user = $this->getUser();
 		$watchedItemStore = $this->getWatchedItemStore();
 
-		$watchedItemStore->addWatch( $user, new TitleValue( 0, 'A' ) );
-		$watchedItemStore->addWatch( $user, new TitleValue( 1, 'A' ) );
-		$watchedItemStore->addWatch( $user, new TitleValue( 0, 'B' ) );
-		$watchedItemStore->addWatch( $user, new TitleValue( 1, 'B' ) );
+		$watchedItemStore->addWatch( $user, self::makeTitle( 0, 'A' ) );
+		$watchedItemStore->addWatch( $user, self::makeTitle( 1, 'A' ) );
+		$watchedItemStore->addWatch( $user, self::makeTitle( 0, 'B' ) );
+		$watchedItemStore->addWatch( $user, self::makeTitle( 1, 'B' ) );
 
 		$maxId = $watchedItemStore->getMaxId();
 
-		$watchedItemStore->addWatch( $user, new TitleValue( 0, 'C' ) );
-		$watchedItemStore->addWatch( $user, new TitleValue( 1, 'C' ) );
+		$watchedItemStore->addWatch( $user, self::makeTitle( 0, 'C' ) );
+		$watchedItemStore->addWatch( $user, self::makeTitle( 1, 'C' ) );
 
 		$this->overrideConfigValue( MainConfigNames::UpdateRowsPerQuery, 2 );
 
@@ -59,8 +63,8 @@ class ClearUserWatchlistJobTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 0, $jobQueueGroup->getQueueSizes()['clearUserWatchlist'] );
 		$this->assertEquals( 2, $watchedItemStore->countWatchedItems( $user ) );
 
-		$this->assertTrue( $watchedItemStore->isWatched( $user, new TitleValue( 0, 'C' ) ) );
-		$this->assertTrue( $watchedItemStore->isWatched( $user, new TitleValue( 1, 'C' ) ) );
+		$this->assertTrue( $watchedItemStore->isWatched( $user, self::makeTitle( 0, 'C' ) ) );
+		$this->assertTrue( $watchedItemStore->isWatched( $user, self::makeTitle( 1, 'C' ) ) );
 	}
 
 	public function testRunWithWatchlistExpiry() {
@@ -70,8 +74,8 @@ class ClearUserWatchlistJobTest extends MediaWikiIntegrationTestCase {
 		$watchedItemStore = $this->getWatchedItemStore();
 
 		// Add two watched items, one with an expiry.
-		$watchedItemStore->addWatch( $user, new TitleValue( 0, __METHOD__ . 'no expiry' ) );
-		$watchedItemStore->addWatch( $user, new TitleValue( 0, __METHOD__ . 'has expiry' ), '1 week' );
+		$watchedItemStore->addWatch( $user, self::makeTitle( 0, __METHOD__ . 'no expiry' ) );
+		$watchedItemStore->addWatch( $user, self::makeTitle( 0, __METHOD__ . 'has expiry' ), '1 week' );
 
 		// Get the IDs of these items.
 		$itemIds = $this->getDb()->newSelectQueryBuilder()

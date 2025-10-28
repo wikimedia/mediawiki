@@ -20,6 +20,7 @@ use MediaWiki\Logger\LoggingContext;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\PageReference;
 use MediaWiki\Page\WikiPage;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Permissions\Authority;
@@ -2653,7 +2654,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		$services = $this->getServiceContainer();
 		if ( $page instanceof WikiPage ) {
 			return $page;
-		} elseif ( $page instanceof PageIdentity ) {
+		} elseif ( $page instanceof PageReference ) {
 			return $services->getWikiPageFactory()->newFromTitle( $page );
 		} elseif ( $page instanceof LinkTarget ) {
 			return $services->getWikiPageFactory()->newFromLinkTarget( $page );

@@ -13,6 +13,7 @@ use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Logging\LogEventsList;
 use MediaWiki\Logging\LogFormatterFactory;
 use MediaWiki\Logging\LogPage;
+use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\RecentChanges\ChangesList;
 use MediaWiki\RecentChanges\ChangesListQuery\ChangesListQuery;
@@ -21,7 +22,6 @@ use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\RecentChanges\RecentChangeLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Title\TitleFormatter;
-use MediaWiki\Title\TitleValue;
 use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\User;
 use MediaWiki\Watchlist\WatchedItem;
@@ -365,7 +365,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 
 	private function extractOutputData( stdClass $row, User $wlowner ): array {
 		$user = $this->getUser();
-		$title = new TitleValue( (int)$row->rc_namespace, $row->rc_title );
+		$title = PageReferenceValue::localReference( (int)$row->rc_namespace, $row->rc_title );
 
 		/* Our output data. */
 		$vals = [];

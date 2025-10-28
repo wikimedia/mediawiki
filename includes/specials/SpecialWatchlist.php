@@ -11,6 +11,7 @@ use MediaWiki\Html\FormOptions;
 use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\RecentChanges\ChangesList;
 use MediaWiki\RecentChanges\ChangesListBooleanFilterGroup;
 use MediaWiki\RecentChanges\ChangesListQuery\ChangesListQuery;
@@ -22,7 +23,6 @@ use MediaWiki\RecentChanges\RecentChangeFactory;
 use MediaWiki\Request\DerivativeRequest;
 use MediaWiki\SpecialPage\ChangesListSpecialPage;
 use MediaWiki\SpecialPage\SpecialPage;
-use MediaWiki\Title\TitleValue;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\UserIdentity;
@@ -442,8 +442,8 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			if ( $this->getConfig()->get( MainConfigNames::RCShowWatchingUsers )
 				&& $this->userOptionsLookup->getBoolOption( $user, 'shownumberswatching' )
 			) {
-				$rcTitleValue = new TitleValue( (int)$obj->rc_namespace, $obj->rc_title );
-				$rc->numberofWatchingusers = $this->watchedItemStore->countWatchers( $rcTitleValue );
+				$rcPageRef = PageReferenceValue::localReference( (int)$obj->rc_namespace, $obj->rc_title );
+				$rc->numberofWatchingusers = $this->watchedItemStore->countWatchers( $rcPageRef );
 			} else {
 				$rc->numberofWatchingusers = 0;
 			}

@@ -17,9 +17,10 @@ use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\HTMLForm\OOUIHTMLForm;
 use MediaWiki\Linker\LinkRenderer;
-use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageReference;
+use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Pager\EditWatchlistPager;
 use MediaWiki\Request\WebRequest;
@@ -30,7 +31,6 @@ use MediaWiki\Title\MalformedTitleException;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleParser;
-use MediaWiki\Title\TitleValue;
 use MediaWiki\Watchlist\WatchedItemStoreInterface;
 use MediaWiki\Watchlist\WatchlistManager;
 
@@ -291,7 +291,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 * (prefixed) strings; unwatchable titles are ignored
 	 *
 	 * @param string $list
-	 * @return array
+	 * @return string[]
 	 */
 	private function extractTitles( $list ) {
 		$list = explode( "\n", trim( $list ) );
@@ -596,7 +596,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	/**
 	 * Add a list of targets to a user's watchlist
 	 *
-	 * @param string[]|LinkTarget[] $targets
+	 * @param string[] $targets
 	 */
 	private function watchTitles( array $targets ): void {
 		if ( $targets &&
@@ -614,7 +614,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 * $titles can be an array of strings or Title objects; the former
 	 * is preferred, since Titles are very memory-heavy
 	 *
-	 * @param string[]|LinkTarget[] $targets
+	 * @param string[] $targets
 	 */
 	private function unwatchTitles( array $targets ): void {
 		if ( $targets &&
@@ -629,13 +629,11 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	/**
 	 * @param string $action
 	 *   Can be "Watch" or "Unwatch"
-	 * @param string[]|LinkTarget[] $targets
+	 * @param string[] $targets
 	 */
 	private function runWatchUnwatchCompleteHook( string $action, array $targets ): void {
 		foreach ( $targets as $target ) {
-			$title = $target instanceof LinkTarget ?
-				Title::newFromLinkTarget( $target ) :
-				Title::newFromText( $target );
+			$title = Title::newFromText( $target );
 			$page = $this->wikiPageFactory->newFromTitle( $title );
 			$user = $this->getUser();
 			if ( $action === 'Watch' ) {
@@ -647,26 +645,30 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	}
 
 	/**
-	 * @param string[]|LinkTarget[] $targets
-	 * @return TitleValue[]
+	 * @param string[] $targets
+	 * @return PageReference[]
 	 */
 	private function getExpandedTargets( array $targets ) {
 		$expandedTargets = [];
 		foreach ( $targets as $target ) {
-			if ( !$target instanceof LinkTarget ) {
-				try {
-					$target = $this->titleParser->parseTitle( $target, NS_MAIN );
-				} catch ( MalformedTitleException ) {
-					continue;
-				}
+			try {
+				$target = $this->titleParser->parseTitle( $target, NS_MAIN );
+			} catch ( MalformedTitleException ) {
+				continue;
 			}
 
 			$ns = $target->getNamespace();
 			$dbKey = $target->getDBkey();
 			$expandedTargets[] =
-				new TitleValue( $this->nsInfo->getSubject( $ns ), $dbKey );
+				PageReferenceValue::localReference(
+					$this->nsInfo->getSubject( $ns ),
+					$dbKey
+				);
 			$expandedTargets[] =
-				new TitleValue( $this->nsInfo->getTalk( $ns ), $dbKey );
+				PageReferenceValue::localReference(
+					$this->nsInfo->getTalk( $ns ),
+					$dbKey
+				);
 		}
 		return $expandedTargets;
 	}

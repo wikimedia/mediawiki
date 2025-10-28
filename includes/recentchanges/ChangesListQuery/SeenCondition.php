@@ -2,7 +2,7 @@
 
 namespace MediaWiki\RecentChanges\ChangesListQuery;
 
-use MediaWiki\Title\TitleValue;
+use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\Watchlist\WatchedItemStoreInterface;
 use stdClass;
@@ -46,10 +46,13 @@ class SeenCondition extends ChangesListConditionBase {
 	 * @return string|null TS_MW timestamp of first unseen revision or null if there isn't one
 	 */
 	private function getLatestNotificationTimestamp( $row ) {
+		if ( $row->rc_title === '' ) {
+			return null;
+		}
 		return $this->watchedItemStore->getLatestNotificationTimestamp(
 			$row->wl_notificationtimestamp,
 			$this->user,
-			new TitleValue( (int)$row->rc_namespace, $row->rc_title )
+			new PageReferenceValue( (int)$row->rc_namespace, $row->rc_title, PageReferenceValue::LOCAL )
 		);
 	}
 

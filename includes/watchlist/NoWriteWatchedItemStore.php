@@ -10,6 +10,8 @@
 
 namespace MediaWiki\Watchlist;
 
+use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\PageReference;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Rdbms\DBReadOnlyError;
 
@@ -36,12 +38,12 @@ class NoWriteWatchedItemStore implements WatchedItemStoreInterface {
 	}
 
 	/** @inheritDoc */
-	public function countWatchers( $target ) {
+	public function countWatchers( PageReference $target ) {
 		return $this->actualStore->countWatchers( $target );
 	}
 
 	/** @inheritDoc */
-	public function countVisitingWatchers( $target, $threshold ) {
+	public function countVisitingWatchers( PageReference $target, $threshold ) {
 		return $this->actualStore->countVisitingWatchers( $target, $threshold );
 	}
 
@@ -65,12 +67,12 @@ class NoWriteWatchedItemStore implements WatchedItemStoreInterface {
 	}
 
 	/** @inheritDoc */
-	public function getWatchedItem( UserIdentity $user, $target ) {
+	public function getWatchedItem( UserIdentity $user, PageReference $target ) {
 		return $this->actualStore->getWatchedItem( $user, $target );
 	}
 
 	/** @inheritDoc */
-	public function loadWatchedItem( UserIdentity $user, $target ) {
+	public function loadWatchedItem( UserIdentity $user, PageReference $target ) {
 		return $this->actualStore->loadWatchedItem( $user, $target );
 	}
 
@@ -85,12 +87,12 @@ class NoWriteWatchedItemStore implements WatchedItemStoreInterface {
 	}
 
 	/** @inheritDoc */
-	public function isWatched( UserIdentity $user, $target ) {
+	public function isWatched( UserIdentity $user, PageReference $target ) {
 		return $this->actualStore->isWatched( $user, $target );
 	}
 
 	/** @inheritDoc */
-	public function isTempWatched( UserIdentity $user, $target ): bool {
+	public function isTempWatched( UserIdentity $user, PageReference $target ): bool {
 		return $this->actualStore->isTempWatched( $user, $target );
 	}
 
@@ -105,17 +107,17 @@ class NoWriteWatchedItemStore implements WatchedItemStoreInterface {
 	}
 
 	/** @inheritDoc */
-	public function duplicateAllAssociatedEntries( $oldTarget, $newTarget ) {
+	public function duplicateAllAssociatedEntries( PageReference $oldTarget, PageReference $newTarget ) {
 		throw new DBReadOnlyError( null, self::DB_READONLY_ERROR );
 	}
 
 	/** @inheritDoc */
-	public function duplicateEntry( $oldTarget, $newTarget ) {
+	public function duplicateEntry( PageReference $oldTarget, PageReference $newTarget ) {
 		throw new DBReadOnlyError( null, self::DB_READONLY_ERROR );
 	}
 
 	/** @inheritDoc */
-	public function addWatch( UserIdentity $user, $target, ?string $expiry = null ) {
+	public function addWatch( UserIdentity $user, PageReference $target, ?string $expiry = null ) {
 		throw new DBReadOnlyError( null, self::DB_READONLY_ERROR );
 	}
 
@@ -129,7 +131,7 @@ class NoWriteWatchedItemStore implements WatchedItemStoreInterface {
 	}
 
 	/** @inheritDoc */
-	public function removeWatch( UserIdentity $user, $target ) {
+	public function removeWatch( UserIdentity $user, PageReference $target ) {
 		throw new DBReadOnlyError( null, self::DB_READONLY_ERROR );
 	}
 
@@ -157,7 +159,7 @@ class NoWriteWatchedItemStore implements WatchedItemStoreInterface {
 	/** @inheritDoc */
 	public function resetNotificationTimestamp(
 		UserIdentity $user,
-		$title,
+		PageIdentity $title,
 		$force = '',
 		$oldid = 0
 	) {
@@ -191,7 +193,7 @@ class NoWriteWatchedItemStore implements WatchedItemStoreInterface {
 
 	/** @inheritDoc */
 	public function getLatestNotificationTimestamp(
-		$timestamp, UserIdentity $user, $target
+		$timestamp, UserIdentity $user, PageReference $target
 	) {
 		return wfTimestampOrNull( TS_MW, $timestamp );
 	}

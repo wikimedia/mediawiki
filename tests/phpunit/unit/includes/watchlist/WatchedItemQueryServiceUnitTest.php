@@ -2,9 +2,9 @@
 
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Logging\LogPage;
+use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\Revision\RevisionRecord;
-use MediaWiki\Title\TitleValue;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\User;
@@ -196,6 +196,10 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 		return $mock;
 	}
 
+	private static function makeTitle( int $ns, string $dbKey ): PageReferenceValue {
+		return PageReferenceValue::localReference( $ns, $dbKey );
+	}
+
 	public function testGetWatchedItemsWithRecentChangeInfo() {
 		$mockDb = $this->getMockDb();
 		$mockDb->expects( $this->once() )
@@ -287,7 +291,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 		}
 
 		$this->assertEquals(
-			new WatchedItem( $user, new TitleValue( 0, 'Foo1' ), '20151212010101' ),
+			new WatchedItem( $user, self::makeTitle( 0, 'Foo1' ), '20151212010101' ),
 			$items[0][0]
 		);
 		$this->assertEquals(
@@ -304,7 +308,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 		);
 
 		$this->assertEquals(
-			new WatchedItem( $user, new TitleValue( 1, 'Foo2' ), null ),
+			new WatchedItem( $user, self::makeTitle( 1, 'Foo2' ), null ),
 			$items[1][0]
 		);
 		$this->assertEquals(
@@ -451,7 +455,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 		}
 
 		$this->assertEquals(
-			new WatchedItem( $user, new TitleValue( 0, 'Foo1' ), '20151212010101' ),
+			new WatchedItem( $user, self::makeTitle( 0, 'Foo1' ), '20151212010101' ),
 			$items[0][0]
 		);
 		$this->assertEquals(
@@ -469,7 +473,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 		);
 
 		$this->assertEquals(
-			new WatchedItem( $user, new TitleValue( 1, 'Foo2' ), null ),
+			new WatchedItem( $user, self::makeTitle( 1, 'Foo2' ), null ),
 			$items[1][0]
 		);
 		$this->assertEquals(
@@ -926,11 +930,11 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 		$this->assertCount( 2, $items );
 		$this->assertContainsOnlyInstancesOf( WatchedItem::class, $items );
 		$this->assertEquals(
-			new WatchedItem( $user, new TitleValue( 0, 'Foo1' ), '20151212010101' ),
+			new WatchedItem( $user, self::makeTitle( 0, 'Foo1' ), '20151212010101' ),
 			$items[0]
 		);
 		$this->assertEquals(
-			new WatchedItem( $user, new TitleValue( 1, 'Foo2' ), null ),
+			new WatchedItem( $user, self::makeTitle( 1, 'Foo2' ), null ),
 			$items[1]
 		);
 	}
@@ -1027,7 +1031,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 		return [
 			[
 				[
-					'from' => new TitleValue( 0, 'SomeDbKey' ),
+					'from' => self::makeTitle( 0, 'SomeDbKey' ),
 					'sort' => WatchedItemQueryService::SORT_ASC
 				],
 				[ "wl_namespace > '0' OR (wl_namespace = '0' AND (wl_title >= 'SomeDbKey'))", ],
@@ -1035,7 +1039,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 			],
 			[
 				[
-					'from' => new TitleValue( 0, 'SomeDbKey' ),
+					'from' => self::makeTitle( 0, 'SomeDbKey' ),
 					'sort' => WatchedItemQueryService::SORT_DESC,
 				],
 				[ "wl_namespace < '0' OR (wl_namespace = '0' AND (wl_title <= 'SomeDbKey'))", ],
@@ -1043,7 +1047,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 			],
 			[
 				[
-					'until' => new TitleValue( 0, 'SomeDbKey' ),
+					'until' => self::makeTitle( 0, 'SomeDbKey' ),
 					'sort' => WatchedItemQueryService::SORT_ASC
 				],
 				[ "wl_namespace < '0' OR (wl_namespace = '0' AND (wl_title <= 'SomeDbKey'))", ],
@@ -1051,7 +1055,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 			],
 			[
 				[
-					'until' => new TitleValue( 0, 'SomeDbKey' ),
+					'until' => self::makeTitle( 0, 'SomeDbKey' ),
 					'sort' => WatchedItemQueryService::SORT_DESC
 				],
 				[ "wl_namespace > '0' OR (wl_namespace = '0' AND (wl_title >= 'SomeDbKey'))", ],
@@ -1059,9 +1063,9 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 			],
 			[
 				[
-					'from' => new TitleValue( 0, 'AnotherDbKey' ),
-					'until' => new TitleValue( 0, 'SomeOtherDbKey' ),
-					'startFrom' => new TitleValue( 0, 'SomeDbKey' ),
+					'from' => self::makeTitle( 0, 'AnotherDbKey' ),
+					'until' => self::makeTitle( 0, 'SomeOtherDbKey' ),
+					'startFrom' => self::makeTitle( 0, 'SomeDbKey' ),
 					'sort' => WatchedItemQueryService::SORT_ASC
 				],
 				[
@@ -1073,9 +1077,9 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 			],
 			[
 				[
-					'from' => new TitleValue( 0, 'SomeOtherDbKey' ),
-					'until' => new TitleValue( 0, 'AnotherDbKey' ),
-					'startFrom' => new TitleValue( 0, 'SomeDbKey' ),
+					'from' => self::makeTitle( 0, 'SomeOtherDbKey' ),
+					'until' => self::makeTitle( 0, 'AnotherDbKey' ),
+					'startFrom' => self::makeTitle( 0, 'SomeDbKey' ),
 					'sort' => WatchedItemQueryService::SORT_DESC
 				],
 				[
@@ -1141,15 +1145,15 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 				'Bad value for parameter $options[\'filter\']'
 			],
 			[
-				[ 'from' => new TitleValue( 0, 'SomeDbKey' ), ],
+				[ 'from' => self::makeTitle( 0, 'SomeDbKey' ), ],
 				'Bad value for parameter $options[\'sort\']: must be provided'
 			],
 			[
-				[ 'until' => new TitleValue( 0, 'SomeDbKey' ), ],
+				[ 'until' => self::makeTitle( 0, 'SomeDbKey' ), ],
 				'Bad value for parameter $options[\'sort\']: must be provided'
 			],
 			[
-				[ 'startFrom' => new TitleValue( 0, 'SomeDbKey' ), ],
+				[ 'startFrom' => self::makeTitle( 0, 'SomeDbKey' ), ],
 				'Bad value for parameter $options[\'sort\']: must be provided'
 			],
 		];

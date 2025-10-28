@@ -1,7 +1,7 @@
 <?php
 
 use MediaWiki\Message\Message;
-use MediaWiki\Title\TitleValue;
+use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\Watchlist\WatchedItem;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
@@ -13,7 +13,7 @@ class WatchedItemUnitTest extends MediaWikiUnitTestCase {
 
 	public function testIsExpired() {
 		$user = new UserIdentityValue( 7, 'MockUser' );
-		$target = new TitleValue( 0, 'SomeDbKey' );
+		$target = PageReferenceValue::localReference( 0, 'SomeDbKey' );
 
 		$notExpired1 = new WatchedItem( $user, $target, null, '20500101000000' );
 		$this->assertFalse( $notExpired1->isExpired() );
@@ -27,7 +27,7 @@ class WatchedItemUnitTest extends MediaWikiUnitTestCase {
 
 	public function testgetExpiryInDays() {
 		$user = new UserIdentityValue( 7, 'MockUser' );
-		$target = new TitleValue( 0, 'SomeDbKey' );
+		$target = PageReferenceValue::localReference( 0, 'SomeDbKey' );
 
 		// Fake current time to be 2020-05-27T00:00:00Z
 		ConvertibleTimestamp::setFakeTime( '20200527000000' );
@@ -60,7 +60,7 @@ class WatchedItemUnitTest extends MediaWikiUnitTestCase {
 
 	public function testgetExpiryInDaysText() {
 		$user = new UserIdentityValue( 7, 'MockUser' );
-		$target = new TitleValue( 0, 'SomeDbKey' );
+		$target = PageReferenceValue::localReference( 0, 'SomeDbKey' );
 
 		$messageLocalizer = $this->createMock( MessageLocalizer::class );
 		$messageLocalizer->method( 'msg' )->willReturnCallback(

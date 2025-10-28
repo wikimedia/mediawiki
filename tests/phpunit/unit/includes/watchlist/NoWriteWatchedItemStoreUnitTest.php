@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Page\PageIdentityValue;
+use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Title\TitleValue;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\Watchlist\NoWriteWatchedItemStore;
@@ -44,7 +46,9 @@ class NoWriteWatchedItemStoreUnitTest extends \MediaWikiUnitTestCase {
 
 		$this->expectException( DBReadOnlyError::class );
 		$noWriteService->addWatch(
-			new UserIdentityValue( 1, 'MockUser' ), new TitleValue( 0, 'Foo' ) );
+			new UserIdentityValue( 1, 'MockUser' ),
+			PageReferenceValue::localReference( 0, 'Foo' )
+		);
 	}
 
 	public function testAddWatchBatchForUser() {
@@ -59,7 +63,9 @@ class NoWriteWatchedItemStoreUnitTest extends \MediaWikiUnitTestCase {
 
 		$this->expectException( DBReadOnlyError::class );
 		$noWriteService->removeWatch(
-			new UserIdentityValue( 1, 'MockUser' ), new TitleValue( 0, 'Foo' ) );
+			new UserIdentityValue( 1, 'MockUser' ),
+			PageReferenceValue::localReference( 0, 'Foo' )
+		);
 	}
 
 	public function testSetNotificationTimestampsForUser() {
@@ -79,7 +85,7 @@ class NoWriteWatchedItemStoreUnitTest extends \MediaWikiUnitTestCase {
 		$this->expectException( DBReadOnlyError::class );
 		$noWriteService->updateNotificationTimestamp(
 			new UserIdentityValue( 1, 'MockUser' ),
-			new TitleValue( 0, 'Foo' ),
+			PageReferenceValue::localReference( 0, 'Foo' ),
 			'timestamp'
 		);
 	}
@@ -90,7 +96,7 @@ class NoWriteWatchedItemStoreUnitTest extends \MediaWikiUnitTestCase {
 		$this->expectException( DBReadOnlyError::class );
 		$noWriteService->resetNotificationTimestamp(
 			new UserIdentityValue( 1, 'MockUser' ),
-			new TitleValue( 0, 'Foo' )
+			PageIdentityValue::localIdentity( 1, 0, 'Foo' )
 		);
 	}
 
@@ -107,7 +113,7 @@ class NoWriteWatchedItemStoreUnitTest extends \MediaWikiUnitTestCase {
 		$noWriteService = $this->getNoWriteStoreForProxyCall( 'countWatchers', __METHOD__ );
 
 		$return = $noWriteService->countWatchers(
-			new TitleValue( 0, 'Foo' )
+			PageReferenceValue::localReference( 0, 'Foo' )
 		);
 		$this->assertEquals( __METHOD__, $return );
 	}
@@ -116,7 +122,7 @@ class NoWriteWatchedItemStoreUnitTest extends \MediaWikiUnitTestCase {
 		$noWriteService = $this->getNoWriteStoreForProxyCall( 'countVisitingWatchers', __METHOD__ );
 
 		$return = $noWriteService->countVisitingWatchers(
-			new TitleValue( 0, 'Foo' ),
+			PageReferenceValue::localReference( 0, 'Foo' ),
 			9
 		);
 		$this->assertEquals( __METHOD__, $return );
@@ -126,7 +132,7 @@ class NoWriteWatchedItemStoreUnitTest extends \MediaWikiUnitTestCase {
 		$noWriteService = $this->getNoWriteStoreForProxyCall( 'countWatchersMultiple', __METHOD__ );
 
 		$return = $noWriteService->countWatchersMultiple(
-			[ new TitleValue( 0, 'Foo' ) ],
+			[ PageReferenceValue::localReference( 0, 'Foo' ) ],
 			[]
 		);
 		$this->assertEquals( __METHOD__, $return );
@@ -136,7 +142,7 @@ class NoWriteWatchedItemStoreUnitTest extends \MediaWikiUnitTestCase {
 		$noWriteService = $this->getNoWriteStoreForProxyCall( 'countVisitingWatchersMultiple', __METHOD__ );
 
 		$return = $noWriteService->countVisitingWatchersMultiple(
-			[ [ new TitleValue( 0, 'Foo' ), 99 ] ],
+			[ [ PageReferenceValue::localReference( 0, 'Foo' ), 99 ] ],
 			11
 		);
 		$this->assertEquals( __METHOD__, $return );
@@ -147,7 +153,7 @@ class NoWriteWatchedItemStoreUnitTest extends \MediaWikiUnitTestCase {
 
 		$return = $noWriteService->getWatchedItem(
 			new UserIdentityValue( 1, 'MockUser' ),
-			new TitleValue( 0, 'Foo' )
+			PageReferenceValue::localReference( 0, 'Foo' )
 		);
 		$this->assertEquals( __METHOD__, $return );
 	}
@@ -157,7 +163,7 @@ class NoWriteWatchedItemStoreUnitTest extends \MediaWikiUnitTestCase {
 
 		$return = $noWriteService->loadWatchedItem(
 			new UserIdentityValue( 1, 'MockUser' ),
-			new TitleValue( 0, 'Foo' )
+			PageReferenceValue::localReference( 0, 'Foo' )
 		);
 		$this->assertEquals( __METHOD__, $return );
 	}
@@ -177,7 +183,7 @@ class NoWriteWatchedItemStoreUnitTest extends \MediaWikiUnitTestCase {
 
 		$return = $noWriteService->isWatched(
 			new UserIdentityValue( 1, 'MockUser' ),
-			new TitleValue( 0, 'Foo' )
+			PageReferenceValue::localReference( 0, 'Foo' )
 		);
 		$this->assertEquals( __METHOD__, $return );
 	}
@@ -207,8 +213,8 @@ class NoWriteWatchedItemStoreUnitTest extends \MediaWikiUnitTestCase {
 
 		$this->expectException( DBReadOnlyError::class );
 		$noWriteService->duplicateAllAssociatedEntries(
-			new TitleValue( 0, 'Foo' ),
-			new TitleValue( 0, 'Bar' )
+			PageReferenceValue::localReference( 0, 'Foo' ),
+			PageReferenceValue::localReference( 0, 'Bar' )
 		);
 	}
 

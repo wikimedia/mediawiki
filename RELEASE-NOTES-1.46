@@ -101,6 +101,9 @@ because of Phabricator reports.
 * Passing something other than a PageIdentity for the $title parameter to
   WatchlistManager::getTitleNotificationTimestamp and
   clearTitleUserNotifications, deprecated since 1.37, will now throw.
+* Many WatchedItemStore methods took either PageIdentity or LinkTarget, with
+  LinkTarget being deprecated since 1.37. Passing a LinkTarget which is not a
+  PageReference will now throw.
 * …
 
 === Deprecations in 1.46 ===

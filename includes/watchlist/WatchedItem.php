@@ -8,7 +8,7 @@
 namespace MediaWiki\Watchlist;
 
 use MediaWiki\Linker\LinkTarget;
-use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\PageReference;
 use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\Title\TitleValue;
 use MediaWiki\User\UserIdentity;
@@ -27,7 +27,7 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  */
 class WatchedItem {
 	/**
-	 * @var LinkTarget|PageIdentity deprecated LinkTarget since 1.36
+	 * @var PageReference
 	 */
 	private $target;
 
@@ -58,13 +58,13 @@ class WatchedItem {
 
 	/**
 	 * @param UserIdentity $user
-	 * @param LinkTarget|PageIdentity $target deprecated passing LinkTarget since 1.36
+	 * @param PageReference $target
 	 * @param bool|null|string $notificationTimestamp the value of the wl_notificationtimestamp field
 	 * @param null|string $expiry Optional expiry timestamp in any format acceptable to wfTimestamp()
 	 */
 	public function __construct(
 		UserIdentity $user,
-		$target,
+		PageReference $target,
 		$notificationTimestamp,
 		?string $expiry = null
 	) {
@@ -108,14 +108,12 @@ class WatchedItem {
 	 * @deprecated since 1.36, use getTarget() instead
 	 */
 	public function getLinkTarget() {
-		if ( !$this->target instanceof LinkTarget ) {
-			return TitleValue::newFromPage( $this->target );
-		}
-		return $this->getTarget();
+		wfDeprecated( __METHOD__, '1.36' );
+		return TitleValue::newFromPage( $this->getTarget() );
 	}
 
 	/**
-	 * @return LinkTarget|PageIdentity deprecated returning LinkTarget since 1.36
+	 * @return PageReference
 	 * @since 1.36
 	 */
 	public function getTarget() {

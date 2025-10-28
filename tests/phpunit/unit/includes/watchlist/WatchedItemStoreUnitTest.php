@@ -14,12 +14,12 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
+use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\Tests\Unit\Libs\Rdbms\AddQuoterMock;
 use MediaWiki\Title\TitleFormatter;
-use MediaWiki\Title\TitleValue;
 use MediaWiki\User\TempUser\TempUserDetailsLookup;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\Watchlist\ActivityUpdateJob;
@@ -362,9 +362,6 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 
 	public static function provideTestPageFactory() {
 		yield [ static function ( $pageId, $namespace, $dbKey ) {
-			return new TitleValue( $namespace, $dbKey );
-		} ];
-		yield [ static function ( $pageId, $namespace, $dbKey ) {
 			return PageIdentityValue::localIdentity( $pageId, $namespace, $dbKey );
 		} ];
 		yield [ static function ( $pageId, $namespace, $dbKey, $testCase ) {
@@ -702,8 +699,8 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 			[ $testPageFactory( 100, 0, 'SomeDbKey', $this ), '111' ],
 			[ $testPageFactory( 101, 0, 'OtherDbKey', $this ), '111' ],
 			[ $testPageFactory( 102, 1, 'AnotherDbKey', $this ), '123' ],
-			[ new TitleValue( 0, 'SomeNotExisitingDbKey' ), null ],
-			[ new TitleValue( 0, 'OtherNotExisitingDbKey' ), null ],
+			[ PageReferenceValue::localReference( 0, 'SomeNotExisitingDbKey' ), null ],
+			[ PageReferenceValue::localReference( 0, 'OtherNotExisitingDbKey' ), null ],
 		];
 
 		$dbResult = [
@@ -1768,14 +1765,14 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 		$this->assertEquals(
 			new WatchedItem(
 				$user,
-				new TitleValue( 0, 'Foo1' ),
+				PageReferenceValue::localReference( 0, 'Foo1' ),
 				'20151212010101',
 				'20300101000000'
 			),
 			$watchedItems[0]
 		);
 		$this->assertEquals(
-			new WatchedItem( $user, new TitleValue( 1, 'Foo2' ), null ),
+			new WatchedItem( $user, PageReferenceValue::localReference( 1, 'Foo2' ), null ),
 			$watchedItems[1]
 		);
 	}
@@ -1898,14 +1895,14 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 		$this->assertEquals(
 			new WatchedItem(
 				$user,
-				new TitleValue( 0, 'Foo1' ),
+				PageReferenceValue::localReference( 0, 'Foo1' ),
 				'20151212010101',
 				'20300101000000'
 			),
 			$watchedItems[0]
 		);
 		$this->assertEquals(
-			new WatchedItem( $user, new TitleValue( 1, 'Foo4' ), null ),
+			new WatchedItem( $user, PageReferenceValue::localReference( 1, 'Foo4' ), null ),
 			$watchedItems[3]
 		);
 	}
@@ -3410,7 +3407,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 	/** @dataProvider provideGetLatestNotificationTimestamp */
 	public function testGetLatestNotificationTimestamp( $cacheValue, $expectNonNull ) {
 		$user = new UserIdentityValue( 1, 'User' );
-		$title = new TitleValue( 0, 'Title' );
+		$title = PageReferenceValue::localReference( 0, 'Title' );
 		$stash = new HashBagOStuff;
 		$stash->set(
 			$stash->makeGlobalKey(

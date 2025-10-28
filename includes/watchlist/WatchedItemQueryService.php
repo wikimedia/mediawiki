@@ -13,10 +13,11 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logging\LogPage;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageReference;
+use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\Revision\RevisionRecord;
-use MediaWiki\Title\TitleValue;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\User;
@@ -273,7 +274,7 @@ class WatchedItemQueryService {
 				break;
 			}
 
-			$target = new TitleValue( (int)$row->rc_namespace, $row->rc_title );
+			$target = PageReferenceValue::localReference( (int)$row->rc_namespace, $row->rc_title );
 			$items[] = [
 				new WatchedItem(
 					$user,
@@ -304,13 +305,13 @@ class WatchedItemQueryService {
 	 *        'namespaceIds' => int[] optional namespace IDs to filter by (defaults to all namespaces)
 	 *        'limit'        => int maximum number of items to return
 	 *        'filter'       => string optional filter, one of the self::FILTER_* constants
-	 *        'from'         => LinkTarget requires 'sort' key, only return items starting from
+	 *        'from'         => PageReference|LinkTarget requires 'sort' key, only return items
+	 *                          starting from those related to the link target
+	 *        'until'        => PageReference|LinkTarget requires 'sort' key, only return items until
 	 *                          those related to the link target
-	 *        'until'        => LinkTarget requires 'sort' key, only return items until
-	 *                          those related to the link target
-	 *        'startFrom'    => LinkTarget requires 'sort' key, only return items starting from
-	 *                          those related to the link target, allows to skip some link targets
-	 *                          specified using the form option
+	 *        'startFrom'    => PageReference|LinkTarget requires 'sort' key, only return items
+	 *                          starting from those related to the link target, allows to skip some
+	 *                          link targets specified using the form option
 	 * @return WatchedItem[]
 	 */
 	public function getWatchedItemsForUser( UserIdentity $user, array $options = [] ) {
@@ -359,7 +360,7 @@ class WatchedItemQueryService {
 
 		$watchedItems = [];
 		foreach ( $res as $row ) {
-			$target = new TitleValue( (int)$row->wl_namespace, $row->wl_title );
+			$target = PageReferenceValue::localReference( (int)$row->wl_namespace, $row->wl_title );
 			// todo these could all be cached at some point?
 			$watchedItems[] = new WatchedItem(
 				$user,
@@ -703,11 +704,11 @@ class WatchedItemQueryService {
 	 * (while ordering using $sort mode)
 	 *
 	 * @param IReadableDatabase $db
-	 * @param LinkTarget $target
+	 * @param PageReference|LinkTarget $target
 	 * @param string $op comparison operator to use in the conditions
 	 * @return string
 	 */
-	private function getFromUntilTargetConds( IReadableDatabase $db, LinkTarget $target, $op ) {
+	private function getFromUntilTargetConds( IReadableDatabase $db, PageReference|LinkTarget $target, $op ) {
 		return $db->buildComparison( $op, [
 			'wl_namespace' => $target->getNamespace(),
 			'wl_title' => $target->getDBkey(),

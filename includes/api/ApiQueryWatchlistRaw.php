@@ -114,9 +114,10 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 		) {
 			$usernames = [];
 			foreach ( $items as $item ) {
-				$linkTarget = $item->getTarget();
-				if ( $this->namespaceInfo->hasGenderDistinction( $linkTarget->getNamespace() ) ) {
-					$usernames[] = $linkTarget->getText();
+				$target = $item->getTarget();
+				if ( $this->namespaceInfo->hasGenderDistinction( $target->getNamespace() ) ) {
+					// GenderCache is able to deal with underscores in usernames
+					$usernames[] = $target->getDBkey();
 				}
 			}
 			if ( $usernames !== [] ) {

@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Tests\Api\Query;
 
+use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Tests\Api\ApiTestCase;
-use MediaWiki\Title\TitleValue;
 use MediaWiki\User\User;
 use MediaWiki\Watchlist\WatchedItemQueryService;
 
@@ -40,6 +40,10 @@ class ApiQueryWatchlistRawIntegrationTest extends ApiTestCase {
 		return $this->getServiceContainer()->getWatchedItemStore();
 	}
 
+	private static function makeTitle( int $ns, string $dbKey ): PageReferenceValue {
+		return PageReferenceValue::localReference( $ns, $dbKey );
+	}
+
 	private function doListWatchlistRawRequest( array $params = [] ) {
 		return $this->doApiRequest( array_merge(
 			[ 'action' => 'query', 'list' => 'watchlistraw' ],
@@ -62,7 +66,7 @@ class ApiQueryWatchlistRawIntegrationTest extends ApiTestCase {
 		$store = $this->getWatchedItemStore();
 		$store->addWatch(
 			$this->getLoggedInTestUser(),
-			new TitleValue( NS_MAIN, 'ApiQueryWatchlistRawIntegrationTestPage' )
+			self::makeTitle( NS_MAIN, 'ApiQueryWatchlistRawIntegrationTestPage' )
 		);
 
 		$result = $this->doListWatchlistRawRequest();
@@ -81,7 +85,7 @@ class ApiQueryWatchlistRawIntegrationTest extends ApiTestCase {
 	}
 
 	public function testPropChanged_addsNotificationTimestamp() {
-		$target = new TitleValue( NS_MAIN, 'ApiQueryWatchlistRawIntegrationTestPage' );
+		$target = self::makeTitle( NS_MAIN, 'ApiQueryWatchlistRawIntegrationTestPage' );
 		$otherUser = $this->getNotLoggedInTestUser();
 
 		$store = $this->getWatchedItemStore();
@@ -111,8 +115,8 @@ class ApiQueryWatchlistRawIntegrationTest extends ApiTestCase {
 		$store = $this->getWatchedItemStore();
 
 		$store->addWatchBatchForUser( $this->getLoggedInTestUser(), [
-			new TitleValue( NS_MAIN, 'ApiQueryWatchlistRawIntegrationTestPage' ),
-			new TitleValue( NS_TALK, 'ApiQueryWatchlistRawIntegrationTestPage' ),
+			self::makeTitle( NS_MAIN, 'ApiQueryWatchlistRawIntegrationTestPage' ),
+			self::makeTitle( NS_TALK, 'ApiQueryWatchlistRawIntegrationTestPage' ),
 		] );
 
 		$result = $this->doListWatchlistRawRequest( [ 'wrnamespace' => '0' ] );
@@ -129,8 +133,8 @@ class ApiQueryWatchlistRawIntegrationTest extends ApiTestCase {
 	}
 
 	public function testShowChangedParams() {
-		$subjectTarget = new TitleValue( NS_MAIN, 'ApiQueryWatchlistRawIntegrationTestPage' );
-		$talkTarget = new TitleValue( NS_TALK, 'ApiQueryWatchlistRawIntegrationTestPage' );
+		$subjectTarget = self::makeTitle( NS_MAIN, 'ApiQueryWatchlistRawIntegrationTestPage' );
+		$talkTarget = self::makeTitle( NS_TALK, 'ApiQueryWatchlistRawIntegrationTestPage' );
 		$otherUser = $this->getNotLoggedInTestUser();
 
 		$store = $this->getWatchedItemStore();
@@ -178,9 +182,9 @@ class ApiQueryWatchlistRawIntegrationTest extends ApiTestCase {
 		$store = $this->getWatchedItemStore();
 
 		$store->addWatchBatchForUser( $this->getLoggedInTestUser(), [
-			new TitleValue( NS_MAIN, 'ApiQueryWatchlistRawIntegrationTestPage1' ),
-			new TitleValue( NS_TALK, 'ApiQueryWatchlistRawIntegrationTestPage1' ),
-			new TitleValue( NS_MAIN, 'ApiQueryWatchlistRawIntegrationTestPage2' ),
+			self::makeTitle( NS_MAIN, 'ApiQueryWatchlistRawIntegrationTestPage1' ),
+			self::makeTitle( NS_TALK, 'ApiQueryWatchlistRawIntegrationTestPage1' ),
+			self::makeTitle( NS_MAIN, 'ApiQueryWatchlistRawIntegrationTestPage2' ),
 		] );
 
 		$resultWithoutLimit = $this->doListWatchlistRawRequest();
@@ -226,9 +230,9 @@ class ApiQueryWatchlistRawIntegrationTest extends ApiTestCase {
 		$store = $this->getWatchedItemStore();
 
 		$store->addWatchBatchForUser( $this->getLoggedInTestUser(), [
-			new TitleValue( NS_MAIN, 'ApiQueryWatchlistRawIntegrationTestPage1' ),
-			new TitleValue( NS_TALK, 'ApiQueryWatchlistRawIntegrationTestPage1' ),
-			new TitleValue( NS_MAIN, 'ApiQueryWatchlistRawIntegrationTestPage2' ),
+			self::makeTitle( NS_MAIN, 'ApiQueryWatchlistRawIntegrationTestPage1' ),
+			self::makeTitle( NS_TALK, 'ApiQueryWatchlistRawIntegrationTestPage1' ),
+			self::makeTitle( NS_MAIN, 'ApiQueryWatchlistRawIntegrationTestPage2' ),
 		] );
 
 		$resultDirAsc = $this->doListWatchlistRawRequest( [ 'wrdir' => 'ascending' ] );
@@ -275,9 +279,9 @@ class ApiQueryWatchlistRawIntegrationTest extends ApiTestCase {
 		$store = $this->getWatchedItemStore();
 
 		$store->addWatchBatchForUser( $this->getLoggedInTestUser(), [
-			new TitleValue( NS_MAIN, 'ApiQueryWatchlistRawIntegrationTestPage1' ),
-			new TitleValue( NS_TALK, 'ApiQueryWatchlistRawIntegrationTestPage1' ),
-			new TitleValue( NS_MAIN, 'ApiQueryWatchlistRawIntegrationTestPage2' ),
+			self::makeTitle( NS_MAIN, 'ApiQueryWatchlistRawIntegrationTestPage1' ),
+			self::makeTitle( NS_TALK, 'ApiQueryWatchlistRawIntegrationTestPage1' ),
+			self::makeTitle( NS_MAIN, 'ApiQueryWatchlistRawIntegrationTestPage2' ),
 		] );
 
 		$resultNoDir = $this->doListWatchlistRawRequest();
@@ -293,9 +297,9 @@ class ApiQueryWatchlistRawIntegrationTest extends ApiTestCase {
 		$store = $this->getWatchedItemStore();
 
 		$store->addWatchBatchForUser( $this->getLoggedInTestUser(), [
-			new TitleValue( NS_MAIN, 'ApiQueryWatchlistRawIntegrationTestPage1' ),
-			new TitleValue( NS_MAIN, 'ApiQueryWatchlistRawIntegrationTestPage2' ),
-			new TitleValue( NS_MAIN, 'ApiQueryWatchlistRawIntegrationTestPage3' ),
+			self::makeTitle( NS_MAIN, 'ApiQueryWatchlistRawIntegrationTestPage1' ),
+			self::makeTitle( NS_MAIN, 'ApiQueryWatchlistRawIntegrationTestPage2' ),
+			self::makeTitle( NS_MAIN, 'ApiQueryWatchlistRawIntegrationTestPage3' ),
 		] );
 
 		$result = $this->doListWatchlistRawRequest( [
@@ -321,9 +325,9 @@ class ApiQueryWatchlistRawIntegrationTest extends ApiTestCase {
 		$store = $this->getWatchedItemStore();
 
 		$store->addWatchBatchForUser( $this->getLoggedInTestUser(), [
-			new TitleValue( NS_MAIN, 'ApiQueryWatchlistRawIntegrationTestPage1' ),
-			new TitleValue( NS_MAIN, 'ApiQueryWatchlistRawIntegrationTestPage2' ),
-			new TitleValue( NS_MAIN, 'ApiQueryWatchlistRawIntegrationTestPage3' ),
+			self::makeTitle( NS_MAIN, 'ApiQueryWatchlistRawIntegrationTestPage1' ),
+			self::makeTitle( NS_MAIN, 'ApiQueryWatchlistRawIntegrationTestPage2' ),
+			self::makeTitle( NS_MAIN, 'ApiQueryWatchlistRawIntegrationTestPage3' ),
 		] );
 
 		$result = $this->doListWatchlistRawRequest( [
@@ -349,9 +353,9 @@ class ApiQueryWatchlistRawIntegrationTest extends ApiTestCase {
 		$store = $this->getWatchedItemStore();
 
 		$store->addWatchBatchForUser( $this->getLoggedInTestUser(), [
-			new TitleValue( NS_MAIN, 'ApiQueryWatchlistRawIntegrationTestPage1' ),
-			new TitleValue( NS_MAIN, 'ApiQueryWatchlistRawIntegrationTestPage2' ),
-			new TitleValue( NS_MAIN, 'ApiQueryWatchlistRawIntegrationTestPage3' ),
+			self::makeTitle( NS_MAIN, 'ApiQueryWatchlistRawIntegrationTestPage1' ),
+			self::makeTitle( NS_MAIN, 'ApiQueryWatchlistRawIntegrationTestPage2' ),
+			self::makeTitle( NS_MAIN, 'ApiQueryWatchlistRawIntegrationTestPage3' ),
 		] );
 
 		$firstResult = $this->doListWatchlistRawRequest( [ 'wrlimit' => 2 ] );
@@ -423,9 +427,9 @@ class ApiQueryWatchlistRawIntegrationTest extends ApiTestCase {
 		$store = $this->getWatchedItemStore();
 
 		$store->addWatchBatchForUser( $this->getLoggedInTestUser(), [
-			new TitleValue( NS_MAIN, 'ApiQueryWatchlistRawIntegrationTestPage1' ),
-			new TitleValue( NS_MAIN, 'ApiQueryWatchlistRawIntegrationTestPage2' ),
-			new TitleValue( NS_MAIN, 'ApiQueryWatchlistRawIntegrationTestPage3' ),
+			self::makeTitle( NS_MAIN, 'ApiQueryWatchlistRawIntegrationTestPage1' ),
+			self::makeTitle( NS_MAIN, 'ApiQueryWatchlistRawIntegrationTestPage2' ),
+			self::makeTitle( NS_MAIN, 'ApiQueryWatchlistRawIntegrationTestPage3' ),
 		] );
 
 		$result = $this->doListWatchlistRawRequest( $params );
@@ -464,8 +468,8 @@ class ApiQueryWatchlistRawIntegrationTest extends ApiTestCase {
 		$store = $this->getWatchedItemStore();
 
 		$store->addWatchBatchForUser( $this->getLoggedInTestUser(), [
-			new TitleValue( NS_MAIN, 'ApiQueryWatchlistRawIntegrationTestPage1' ),
-			new TitleValue( NS_MAIN, 'ApiQueryWatchlistRawIntegrationTestPage2' ),
+			self::makeTitle( NS_MAIN, 'ApiQueryWatchlistRawIntegrationTestPage1' ),
+			self::makeTitle( NS_MAIN, 'ApiQueryWatchlistRawIntegrationTestPage2' ),
 		] );
 
 		$result = $this->doListWatchlistRawRequest( $params );
@@ -484,8 +488,8 @@ class ApiQueryWatchlistRawIntegrationTest extends ApiTestCase {
 
 		$store = $this->getWatchedItemStore();
 		$store->addWatchBatchForUser( $otherUser, [
-			new TitleValue( NS_MAIN, 'ApiQueryWatchlistRawIntegrationTestPage1' ),
-			new TitleValue( NS_TALK, 'ApiQueryWatchlistRawIntegrationTestPage1' ),
+			self::makeTitle( NS_MAIN, 'ApiQueryWatchlistRawIntegrationTestPage1' ),
+			self::makeTitle( NS_TALK, 'ApiQueryWatchlistRawIntegrationTestPage1' ),
 		] );
 
 		$services->getMainWANObjectCache()->clearProcessCache();
@@ -537,7 +541,7 @@ class ApiQueryWatchlistRawIntegrationTest extends ApiTestCase {
 		$store = $this->getWatchedItemStore();
 		$store->addWatch(
 			$this->getLoggedInTestUser(),
-			new TitleValue( NS_MAIN, 'ApiQueryWatchlistRawIntegrationTestPage' )
+			self::makeTitle( NS_MAIN, 'ApiQueryWatchlistRawIntegrationTestPage' )
 		);
 
 		$result = $this->doGeneratorWatchlistRawRequest( [ 'prop' => 'info' ] );

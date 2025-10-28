@@ -59,7 +59,7 @@ class WatchedItemStoreIntegrationTest extends MediaWikiIntegrationTestCase {
 		foreach ( $watchedItemsForUser as $watchedItem ) {
 			if (
 				$watchedItem->getUserIdentity()->equals( $user ) &&
-				$watchedItem->getTarget() == $title->getTitleValue()
+				$watchedItem->getTarget()->isSamePageAs( $title )
 			) {
 				$watchedItemsForUserHasExpectedItem = true;
 			}
@@ -98,7 +98,7 @@ class WatchedItemStoreIntegrationTest extends MediaWikiIntegrationTestCase {
 		foreach ( $watchedItemsForUser as $watchedItem ) {
 			if (
 				$watchedItem->getUserIdentity()->equals( $user ) &&
-				$watchedItem->getTarget() == $title->getTitleValue()
+				$watchedItem->getTarget()->isSamePageAs( $title )
 			) {
 				$watchedItemsForUserHasExpectedItem = true;
 			}

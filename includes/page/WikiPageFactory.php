@@ -33,27 +33,27 @@ class WikiPageFactory {
 	/**
 	 * Create a WikiPage object from a title.
 	 *
-	 * @param PageIdentity $pageIdentity
+	 * @param PageReference $pageReference
 	 * @return WikiPage
 	 */
-	public function newFromTitle( PageIdentity $pageIdentity ): WikiPage {
-		if ( $pageIdentity instanceof WikiPage ) {
-			return $pageIdentity;
+	public function newFromTitle( PageReference $pageReference ): WikiPage {
+		if ( $pageReference instanceof WikiPage ) {
+			return $pageReference;
 		}
 
-		if ( !$pageIdentity->canExist() ) {
+		if ( $pageReference instanceof PageIdentity && !$pageReference->canExist() ) {
 			// BC with the Title class
 			throw new PageAssertionException(
 				'The given PageIdentity {pageIdentity} does not represent a proper page',
-				[ 'pageIdentity' => $pageIdentity ]
+				[ 'pageIdentity' => $pageReference ]
 			);
 		}
 
-		$ns = $pageIdentity->getNamespace();
+		$ns = $pageReference->getNamespace();
 
 		// TODO: remove the need for casting to Title. We'll have to create a new hook to
 		//       replace the WikiPageFactory hook.
-		$title = Title::newFromPageIdentity( $pageIdentity );
+		$title = Title::newFromPageReference( $pageReference );
 
 		$page = null;
 		if ( !$this->wikiPageFactoryHookRunner->onWikiPageFactory( $title, $page ) ) {
