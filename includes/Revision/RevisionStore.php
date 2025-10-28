@@ -27,6 +27,7 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\LegacyArticleIdAccess;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
+use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageStore;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\RecentChanges\RecentChange;
@@ -1219,7 +1220,7 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	 *      IDBAccessObject::READ_LATEST: Select the data from the primary DB
 	 *      IDBAccessObject::READ_LOCKING : Select & lock the data from the primary DB
 	 *
-	 * @param LinkTarget|PageIdentity $page Calling with LinkTarget is deprecated since 1.36
+	 * @param LinkTarget|PageReference $page Calling with LinkTarget is deprecated since 1.36
 	 * @param int $revId (optional)
 	 * @param int $flags Bitfield (optional)
 	 * @return RevisionRecord|null
@@ -1230,7 +1231,9 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 			return null;
 		}
 		if ( !( $page instanceof PageIdentity ) ) {
-			wfDeprecated( __METHOD__ . ' with a LinkTarget', '1.45' );
+			if ( !( $page instanceof PageReference ) ) {
+				wfDeprecated( __METHOD__ . ' with a LinkTarget', '1.45' );
+			}
 			$page = null;
 		}
 
@@ -1301,7 +1304,7 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	 *
 	 * MCR migration note: this replaced Revision::loadFromTimestamp
 	 *
-	 * @param LinkTarget|PageIdentity $page Calling with LinkTarget is deprecated since 1.36
+	 * @param LinkTarget|PageReference $page Calling with LinkTarget is deprecated since 1.36
 	 * @param string $timestamp
 	 * @param int $flags Bitfield (optional) include:
 	 *      IDBAccessObject::READ_LATEST: Select the data from the primary DB
@@ -1319,7 +1322,9 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 			return null;
 		}
 		if ( !( $page instanceof PageIdentity ) ) {
-			wfDeprecated( __METHOD__ . ' with a LinkTarget', '1.45' );
+			if ( !( $page instanceof PageReference ) ) {
+				wfDeprecated( __METHOD__ . ' with a LinkTarget', '1.45' );
+			}
 			$page = null;
 		}
 
@@ -2956,7 +2961,7 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	 * Get the first revision of a given page.
 	 *
 	 * @since 1.35
-	 * @param LinkTarget|PageIdentity $page Calling with LinkTarget is deprecated since 1.36
+	 * @param LinkTarget|PageReference $page Calling with LinkTarget is deprecated since 1.36
 	 * @param int $flags
 	 * @return RevisionRecord|null
 	 */
@@ -2969,7 +2974,9 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 			return null;
 		}
 		if ( !( $page instanceof PageIdentity ) ) {
-			wfDeprecated( __METHOD__ . ' with a LinkTarget', '1.45' );
+			if ( !( $page instanceof PageReference ) ) {
+				wfDeprecated( __METHOD__ . ' with a LinkTarget', '1.45' );
+			}
 			$page = null;
 		}
 
@@ -3021,12 +3028,20 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	}
 
 	/**
-	 * @param LinkTarget|PageIdentity $page Calling with LinkTarget is deprecated since 1.36
+	 * @param LinkTarget|PageReference $page Calling with LinkTarget is deprecated since 1.36
 	 * @return array|null
 	 */
-	private function getPageConditions( object $page ): ?array {
+	private function getPageConditions( LinkTarget|PageReference $page ): ?array {
 		if ( $page instanceof PageIdentity ) {
 			return $page->exists() ? [ 'page_id' => $page->getId( $this->wikiId ) ] : null;
+		} elseif ( $page instanceof PageReference ) {
+			if ( $page->getWikiId() !== $this->wikiId ) {
+				throw new InvalidArgumentException( 'Non-matching wiki ID for PageReference' );
+			}
+			return [
+				'page_namespace' => $page->getNamespace(),
+				'page_title' => $page->getDBkey(),
+			];
 		} else {
 			// Only resolve LinkTarget when operating in the context of the local wiki (T248756)
 			if ( $this->wikiId !== WikiAwareEntity::LOCAL ) {

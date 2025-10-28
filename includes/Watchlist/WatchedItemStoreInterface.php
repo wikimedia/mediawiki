@@ -7,7 +7,6 @@
 
 namespace MediaWiki\Watchlist;
 
-use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
 use MediaWiki\User\UserIdentity;
 
@@ -270,9 +269,7 @@ interface WatchedItemStoreInterface {
 	 * @since 1.31
 	 *
 	 * @param UserIdentity $user
-	 * @param PageIdentity $title Needs to be a PageIdentity for RevisionLookup.
-	 *   If RevisionLookup::getRevisionByTitle() did what its name said then
-	 *   this could be a PageReference.
+	 * @param PageReference $title
 	 * @param string $force Whether to force the write query to be executed even if the
 	 *    page is not watched or the notification timestamp is already NULL.
 	 *    'force' in order to force
@@ -282,7 +279,7 @@ interface WatchedItemStoreInterface {
 	 * @return bool success Whether a job was enqueued
 	 */
 	public function resetNotificationTimestamp(
-		UserIdentity $user, PageIdentity $title, $force = '', $oldid = 0 );
+		UserIdentity $user, PageReference $title, $force = '', $oldid = 0 );
 
 	/**
 	 * @since 1.31

@@ -101,7 +101,7 @@ because of Phabricator reports.
   WatchlistManager methods clearTitleUserNotifications() and
   clearAllUserNotifications, deprecated since 1.37, will now throw. User
   implements Authority and so is still permitted.
-* Passing something other than a PageIdentity for the $title parameter to
+* Passing something other than a PageReference for the $title parameter to
   WatchlistManager::getTitleNotificationTimestamp and
   clearTitleUserNotifications, deprecated since 1.37, will now throw.
 * Many WatchedItemStore methods took either PageIdentity or LinkTarget, with

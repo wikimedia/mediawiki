@@ -164,14 +164,14 @@ class WatchlistManager {
 	 * @note If the user doesn't have 'editmywatchlist', this will do nothing.
 	 *
 	 * @param Authority $performer
-	 * @param PageIdentity $title
+	 * @param PageReference $title
 	 * @param int $oldid The revision id being viewed. If not given or 0, latest revision is assumed.
 	 * @param RevisionRecord|null $oldRev The revision record associated with $oldid, or null if
 	 *   the latest revision is used
 	 */
 	public function clearTitleUserNotifications(
 		Authority $performer,
-		PageIdentity $title,
+		PageReference $title,
 		int $oldid = 0,
 		?RevisionRecord $oldRev = null
 	) {

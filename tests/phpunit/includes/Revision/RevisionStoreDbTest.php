@@ -846,7 +846,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @dataProvider provideRevisionByTitle
+	 * @dataProvider provideRevisionByPageReference
 	 *
 	 * @param callable $getTitle
 	 */
@@ -878,6 +878,14 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 				return $testCase->getTestPageTitle()->toPageIdentity();
 			} ]
 		];
+	}
+
+	public static function provideRevisionByPageReference() {
+		$cases = self::provideRevisionByTitle();
+		$cases[] = [ static function ( self $testCase ) {
+			return $testCase->getTestPageTitle()->toPageReference();
+		} ];
+		return $cases;
 	}
 
 	private function executeWithForeignStore( string $dbDomain, callable $callback ) {
@@ -921,7 +929,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
-	public function testGetLatestKnownRevision_foreigh() {
+	public function testGetLatestKnownRevision_foreign() {
 		$page = $this->getTestPage();
 		$status = $this->editPage( $page, __METHOD__ );
 		$this->assertStatusGood( $status, 'edited a page' );
@@ -993,7 +1001,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @dataProvider provideRevisionByTitle
+	 * @dataProvider provideRevisionByPageReference
 	 *
 	 * @param callable $getTitle
 	 */

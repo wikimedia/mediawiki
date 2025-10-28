@@ -10,7 +10,6 @@
 
 namespace MediaWiki\Watchlist;
 
-use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Rdbms\DBReadOnlyError;
@@ -159,7 +158,7 @@ class NoWriteWatchedItemStore implements WatchedItemStoreInterface {
 	/** @inheritDoc */
 	public function resetNotificationTimestamp(
 		UserIdentity $user,
-		PageIdentity $title,
+		PageReference $title,
 		$force = '',
 		$oldid = 0
 	) {

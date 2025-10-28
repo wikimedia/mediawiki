@@ -35,6 +35,7 @@ use MediaWiki\Page\ExistingPageRecord;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\PageReference;
+use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Page\PageStoreRecord;
 use MediaWiki\Page\ProperPageIdentity;
 use MediaWiki\Page\WikiPage;
@@ -3853,6 +3854,22 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 				'page_lang' => $this->getDbPageLanguageCode( $flags ),
 			],
 			PageIdentity::LOCAL
+		);
+	}
+
+	/**
+	 * Returns the page represented by this Title as a PageReferenceValue.
+	 * This is an object which implements PageReference but not PageIdentity.
+	 *
+	 * @since 1.46
+	 * @return PageReference
+	 */
+	public function toPageReference(): PageReference {
+		$this->assertProperPage();
+		return new PageReferenceValue(
+			$this->getNamespace(),
+			$this->getDBkey(),
+			PageReferenceValue::LOCAL
 		);
 	}
 

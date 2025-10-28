@@ -9,7 +9,6 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\JobQueue\JobQueueGroup;
 use MediaWiki\MainConfigNames;
-use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Revision\RevisionLookup;
@@ -1380,16 +1379,14 @@ class WatchedItemStore implements WatchedItemStoreInterface {
 	/**
 	 * @since 1.27
 	 * @param UserIdentity $user
-	 * @param PageIdentity $title Needs to be a PageIdentity for RevisionLookup.
-	 *   If RevisionLookup::getRevisionByTitle() did what its name said then
-	 *   this could be a PageReference.
+	 * @param PageReference $title
 	 * @param string $force
 	 * @param int $oldid
 	 * @return bool
 	 */
 	public function resetNotificationTimestamp(
 		UserIdentity $user,
-		PageIdentity $title,
+		PageReference $title,
 		$force = '',
 		$oldid = 0
 	): bool {
