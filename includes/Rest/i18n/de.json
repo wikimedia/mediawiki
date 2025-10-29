@@ -189,7 +189,7 @@
 	"rest-property-desc-revision-html": "Versionsinhalt in HTML, entsprechend der HTML-Spezifikation",
 	"rest-property-desc-revision-url": "URL zur neuesten Version der Seite",
 	"rest-property-desc-revision-url-older": "Falls verfügbar, URL zum Abrufen der vorherigen Version",
-	"rest-property-desc-revision-url-newer": "Falls verfügbar, URL zum Abrufen der folgenden Versions",
+	"rest-property-desc-revision-url-newer": "Falls verfügbar, URL zum Abrufen der folgenden Versionen",
 	"rest-property-desc-search-excerpt": "Auszug des Seiteninhalts passend zur Suchanfrage",
 	"rest-property-desc-search-matched-title": "Titel der Seite, von der umgeleitet wurde, wenn der Suchbegriff mit einer Umleitungsseite übereinstimmte, andernfalls null",
 	"rest-property-desc-search-description": "Kurze Zusammenfassung des Seitenthemas oder null, wenn keine Zusammenfassung vorhanden ist.",

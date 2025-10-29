@@ -398,5 +398,14 @@
 	"exif-initialcameradolly": "초기 카메라 돌리",
 	"exif-stitchingsoftware": "스티칭 소프트웨어",
 	"exif-digitalsourcetype": "디지털 미디어의 출처",
-	"exif-digitalsourcetype-digitalcapture": "디지털 카메라 또는 녹음기"
+	"exif-digitalsourcetype-digitalcapture": "디지털 카메라 또는 녹음기",
+	"exif-digitalsourcetype-computationalcapture": "디지털 카메라 또는 레코더 (여러 프레임 합쳐짐)",
+	"exif-digitalsourcetype-minorhumanedits": "사람이 사소하게 수정한 원본 미디어",
+	"exif-digitalsourcetype-humanedits": "사람이 수정한 미디어",
+	"exif-digitalsourcetype-compositewithtrainedalgorithmicmedia": "생성형 AI를 사용해 수정한 미디어",
+	"exif-digitalsourcetype-algorithmicallyenhanced": "알고리즘에 의해 변형된 미디어",
+	"exif-digitalsourcetype-softwareimage": "소프트웨어에 의해 생성됨",
+	"exif-digitalsourcetype-digitalart": "사람이 디지털 도구로 생성한 미디어",
+	"exif-digitalsourcetype-trainedalgorithmicmedia": "생성형 AI를 사용해 생성됨",
+	"exif-digitalsourcetype-screencapture": "스크린 캡쳐"
 }
