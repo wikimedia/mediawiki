@@ -949,6 +949,7 @@ return [
 	],
 	'mediawiki.notification' => [
 		'styles' => [
+			'resources/src/mediawiki.notification/aria-live-region.less',
 			'resources/src/mediawiki.notification/common.css',
 			'resources/src/mediawiki.notification/print.css'
 				=> [ 'media' => 'print' ],

@@ -3911,6 +3911,15 @@ class OutputPage extends ContextSource {
 
 		$pieces[] = Html::openElement( 'body', $bodyAttrs );
 
+		// Add aria-live region for accessibility notifications.
+		$pieces[] = Html::rawElement( 'div', [
+			'id' => 'mw-live-region',
+			'class' => 'mw-live-region',
+			'aria-live' => 'polite',
+			'aria-atomic' => 'false',
+			'aria-relevant' => 'additions text',
+		], '' );
+
 		return self::combineWrappedStrings( $pieces );
 	}
 
