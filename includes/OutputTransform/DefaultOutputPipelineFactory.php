@@ -95,6 +95,7 @@ class DefaultOutputPipelineFactory {
 			'class' => ParsoidLocalization::class,
 			'services' => [
 				'TitleFactory',
+				'LanguageFactory',
 			]
 		],
 		'HandleTOCMarkers' => [

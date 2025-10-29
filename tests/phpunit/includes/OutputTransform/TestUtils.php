@@ -101,7 +101,7 @@ HTML;
 <div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"><p>Test document for multiple stages.
 </p>
 <div class="mw-heading mw-heading1" id="mwAA"><h2 id="Section_1">Section 1<mw:editsection page="Test Page" section="1">Section 1</mw:editsection></h2><span class="mw-editsection" id="mwAQ"><span class="mw-editsection-bracket" id="mwAg">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=1" title="Edit section: Section 1Section 1" id="mwAw">edit</a><span class="mw-editsection-bracket" id="mwBA">]</span></span></div>
-<p>One <span typeof="mw:I18n" data-mw-i18n='{"/":{"lang":"x-user","key":"testparam","params":["hello"]}}'>english hello</span>
+<p>One <span typeof="mw:I18n" lang="en" dir="ltr" data-mw-i18n='{"/":{"lang":"x-user","key":"testparam","params":["hello"]}}'>english hello</span>
 </p></div>
 HTML;
 
