@@ -58,7 +58,13 @@ class ExperienceCondition extends ChangesListConditionBase {
 
 	/** @inheritDoc */
 	public function evaluate( stdClass $row, $value ): bool {
-		return $this->getExperienceFromRow( $row ) === $value;
+		if ( $value === 'registered' || $value === 'unregistered' ) {
+			$rowValue = $this->namedConditionHelper->isNamed( $row )
+				? 'registered' : 'unregistered';
+			return $value === $rowValue;
+		} else {
+			return $this->getExperienceFromRow( $row ) === $value;
+		}
 	}
 
 	private function getExperienceFromRow( stdClass $row ): string {
