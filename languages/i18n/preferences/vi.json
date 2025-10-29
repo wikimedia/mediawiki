@@ -75,7 +75,7 @@
 	"gender-unknown": "Khi nhắc đến bạn, phần mềm sẽ sử dụng các từ chỉ giới tính trung tính bất cứ khi nào có thể",
 	"gender-female": "Nữ",
 	"gender-male": "Nam",
-	"prefs-help-gender": "Tùy chỉnh này không được bắt buộc.\nPhần mềm sử dụng giá trị này để xưng hô bạn với giới tính đúng.\nThông tin này là công khai.",
+	"prefs-help-gender": "Không bắt buộc đặt tùy chọn này.\nPhần mềm sử dụng giá trị này để xưng hô bạn với giới tính đúng.\nThông tin này là công khai.",
 	"yourvariant": "Dạng chữ của nội dung:",
 	"prefs-help-variant": "Bộ chữ để hiển thị nội dung của các trang tại wiki này.",
 	"prefs-signature": "Chữ ký",

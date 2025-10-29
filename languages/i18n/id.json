@@ -103,7 +103,8 @@
 			"WongKentir",
 			"Zulf",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Jawadywn"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Kategori|Kategori}}",
@@ -3285,7 +3286,6 @@
 	"mcrundo-changed": "Halaman ini telah diubah sejak Anda melihat diff. Mohon tinjau perubahan terbaru.",
 	"mcrundo-parse-failed": "Galat dalam menguraikan revisi baru: $1",
 	"semicolon-separator": ";&#32;",
-	"comma-separator": ",&#32;",
 	"colon-separator": ":&#32;",
 	"pipe-separator": "&#32;|&#32;",
 	"word-separator": "&#32;",

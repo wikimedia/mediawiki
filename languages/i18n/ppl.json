@@ -12,7 +12,8 @@
 			"MeryemBenzemroun",
 			"Taty Flores de Constante",
 			"TimumachtikanNawat",
-			"Valery"
+			"Valery",
+			"SaldırganSincap"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Datka|Dajdatka}}",
@@ -304,7 +305,7 @@
 	"newarticletext": "Tikpachujtuk se ilpika pal se iswat ne teuk kanaj. Su tikneki tikchiwa ini iswat, weli tipewa titajkwilua ka nikan (shikita [$1 se iswat pal metzpalewia] ka nikan). Su te tiknekituya tiajsi ka nikan, shikpachu ne boton \"atras\" pal ne munavegador.",
 	"anontalkpagetext": "----\n<em>Ini se amat kaj tesu kipia itekuyu u tesu kalaktuk.</em>\nKunij nemi pal tikilwitiat ne kal IP pal tikmatit kaj yaja.\nAnka miak tuijikniwan kipia ne kal IP kenha.\nSu taja tikalaki timinaya wan su metzilwijket dajdatka, shikita [[Special:CreateAccount|create an account]] or [[Special:UserLogin|log in]] Pal tikekchiwa muchi taja wan ujukse tuijikniwan minayat.",
 	"noarticletext": "Anhan ini amat teuk kanaj tajtaketzalis.\nWeli [[Special:Search/{{PAGENAME}}|tiktemua ne itukay pal ini amat]] tik ne ukseuk ajamat,\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} shiktemu tik ne tajtaanalis sajsanse],\nush [{{fullurl:{{FULLPAGENAME}}|action=edit}} titajkwilua ini amat]</span>.",
-	"noarticletext-nopermission": "Anhan ini amat teuk kanaj tajtaketzalis.\nWeli [[Special:Search/{{PAGENAME}}|tiktemua ne itukay pal ini amat]] tik ne ukseuk ajamat,\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} shiktemu tik ne tajtaanalis sajsanse]<span class=\"plainlinks\"></span>, peroj tesu tiweli tikchiwa ini amat",
+	"noarticletext-nopermission": "Anhan ini amat teuk kanaj tajtaketzalis.\nWeli [[Special:Search/{{PAGENAME}}|tiktemua ne itukay pal ini amat]] tik ne ukseuk ajamat,\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} shiktemu tik ne tajtaanalis sajsanse]</span>, peroj tesu tiweli tikchiwa ini amat",
 	"userpage-userdoesnotexist-view": "Ne itakutuchin  \"$1\" tesu nemi tik ini wiki.",
 	"note": "'''Pal tikmati:'''",
 	"previewnote": "'''Shikelnamiki ka ini semaya se achtutachialis.'''\nNe mutajtapatalis teuk muantiwit.",

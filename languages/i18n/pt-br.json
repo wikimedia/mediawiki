@@ -160,7 +160,8 @@
 			"아라",
 			"Jessicamss93",
 			"BraunOBruno",
-			"ACheJu"
+			"ACheJu",
+			"Rkieferbaum"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Categoria|Categorias}}",
@@ -2744,7 +2745,7 @@
 	"unblocklink": "desbloquear",
 	"change-blocklink": "alterar bloqueio",
 	"remove-blocklink": "remover bloqueio",
-	"manage-blocklink": "gerenciar blocos",
+	"manage-blocklink": "gerenciar bloqueios",
 	"empty-username": "(sem nome de usuário disponível)",
 	"blocklist-hidden-placeholder": "(nome de usuário ocultado)",
 	"blocklist-hidden-param": "nome de usuário oculto",
@@ -3291,7 +3292,6 @@
 	"mcrundo-changed": "Esta página foi alterada desde que começou a ver as diferenças. Reveja a nova mudança, por favor.",
 	"mcrundo-parse-failed": "Falha ao analisar a nova revisão: $1",
 	"semicolon-separator": ";&#32;",
-	"comma-separator": ",&#32;",
 	"colon-separator": ":&#32;",
 	"ellipsis": "...",
 	"percent": "$1%",

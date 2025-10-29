@@ -56,6 +56,5 @@
 	"fri": "Fri",
 	"sat": "Sat",
 	"sun": "Ntangu",
-	"period-am": "KELE",
-	"duration-days": "$1 {{PLURAL:$1|day|days}}"
+	"period-am": "KELE"
 }
