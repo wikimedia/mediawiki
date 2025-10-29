@@ -580,9 +580,6 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testPreemptiveRefresh() {
-		// (T353180) Flaky test, to fix and re-enable
-		self::markTestSkippedIfPhp( '>=', '8.2' );
-
 		$value = 'KatCafe';
 		$wasSet = 0;
 		$func = static function ( $old, &$ttl, &$opts, $asOf ) use ( &$wasSet, &$value )
@@ -597,7 +594,7 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 
 		$wasSet = 0;
 		$key = wfRandomString();
-		$opts = [ 'lowTTL' => 30 ];
+		$opts = [ 'lowTTL' => 30, 'hotTTR' => 0 ];
 		$v = $cache->getWithSetCallback( $key, 20, $func, $opts );
 		$this->assertSame( $value, $v, "Value returned" );
 		$this->assertSame( 1, $wasSet, "Value calculated" );
@@ -608,7 +605,7 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 
 		$wasSet = 0;
 		$key = wfRandomString();
-		$opts = [ 'lowTTL' => 1 ];
+		$opts = [ 'lowTTL' => 1, 'hotTTR' => 0 ];
 		$v = $cache->getWithSetCallback( $key, 30, $func, $opts );
 		$this->assertSame( $value, $v, "Value returned" );
 		$this->assertSame( 1, $wasSet, "Value calculated" );
@@ -630,7 +627,7 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 
 		$wasSet = 0;
 		$key = wfRandomString();
-		$opts = [ 'lowTTL' => 100 ];
+		$opts = [ 'lowTTL' => 100, 'hotTTR' => 0 ];
 		$v = $cache->getWithSetCallback( $key, 300, $func, $opts );
 		$this->assertSame( $value, $v, "Value returned" );
 		$this->assertSame( 1, $wasSet, "Value calculated" );
@@ -660,7 +657,7 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 
 		$wasSet = 0;
 		$key = wfRandomString();
-		$opts = [ 'hotTTR' => 900 ];
+		$opts = [ 'hotTTR' => 900, 'lowTTL' => 0 ];
 		$v = $cache->getWithSetCallback( $key, 60, $func, $opts );
 		$this->assertSame( $value, $v, "Value returned" );
 		$this->assertSame( 1, $wasSet, "Value calculated" );
@@ -673,7 +670,7 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 		$mockWallClock = $priorTime;
 		$wasSet = 0;
 		$key = wfRandomString();
-		$opts = [ 'hotTTR' => 10 ];
+		$opts = [ 'hotTTR' => 10, 'lowTTL' => 0 ];
 		$v = $cache->getWithSetCallback( $key, 60, $func, $opts );
 		$this->assertSame( $value, $v, "Value returned" );
 		$this->assertSame( 1, $wasSet, "Value calculated" );
