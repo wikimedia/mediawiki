@@ -14,10 +14,6 @@ Don't forget to always back up your database before upgrading!
 See the file UPGRADE for more detailed per-version upgrade instructions from the
 oldest supported upgrading version, MediaWiki 1.35.
 
-Some specific notes for MediaWiki 1.45 upgrades are below:
-
-* …
-
 For notes on 1.44.x and older releases, see HISTORY.
 
 === Configuration changes for system administrators in 1.45 ===
@@ -47,7 +43,6 @@ For notes on 1.44.x and older releases, see HISTORY.
 * $wgEnableProtectionIndicators is now enabled by default.
   If your community already uses protection indicators you might want to disable
   this setting, or customize them with site CSS.
-* …
 
 ==== New configuration ====
 
@@ -55,7 +50,6 @@ For notes on 1.44.x and older releases, see HISTORY.
   functions for grammar, plural, gender, formality, and bidi use the
   Leximorph library’s modular handlers instead of the legacy Language methods.
   When disabled, the legacy methods are used.
-* …
 
 ==== Changed configuration ====
 
@@ -81,7 +75,6 @@ For notes on 1.44.x and older releases, see HISTORY.
 * (T299951) $wgCategoryLinksSchemaMigrationStage, a temporary setting which
   controls the database schema migration for the categorylinks table, has been
   removed.
-* …
 
 === New user-facing features in 1.45 ===
 
@@ -102,11 +95,6 @@ For notes on 1.44.x and older releases, see HISTORY.
   what it can merge. It can now merge sections taken from the middle of the
   history of the source (rather than only the start) and insert revisions
   anywhere in the history of the destination page (rather than only the start)
-* …
-
-=== New features for sysadmins in 1.45 ===
-
-* …
 
 === New developer features in 1.45 ===
 
@@ -140,7 +128,6 @@ For notes on 1.44.x and older releases, see HISTORY.
   From now on, such messages should be added to the en.json and qqq.json file
   under nontranslatable/.
 * (T315128) The UserCanChangeEmail hook was added.
-* …
 
 === External library changes in 1.45 ===
 
@@ -149,60 +136,46 @@ For notes on 1.44.x and older releases, see HISTORY.
 * Added lcobucci/jwt 4.1.5.
 * Added symfony/polyfill-php8.5 v1.33.0.
 * Added wikimedia/codex ("Codex-PHP") v0.7.1.
-* …
-
-===== New development-only external libraries =====
-
-* …
 
 ==== Changed external libraries ====
 
 * Updated codex, codex-design-tokens and codex-icons
   from v1.23.0 to v2.3.2.
 * Updated composer/semver from 3.4.3 to 3.4.4.
+* Renamed cssjanus/cssjanus to wikimedia/cssjanus.
+* Updated guzzlehttp/guzzle from 7.9.3 to 7.10.0.
 * Updated mck89/peast from v1.17.0 to 1.17.2.
+* Updated oojs/oojs-ui from v0.51.7 to v0.53.0.
 * Updated psr/container from 1.1.2 to 2.0.2.
-* Updated symfony/polyfill-php82 from 1.32.0 to 1.33.0
-* Updated symfony/polyfill-php83 from 1.32.0 to 1.33.0
-* Updated symfony/polyfill-php84 from 1.32.0 to 1.33.0
+* Updated symfony/polyfill-php82 from 1.32.0 to 1.33.0.
+* Updated symfony/polyfill-php83 from 1.32.0 to 1.33.0.
+* Updated symfony/polyfill-php84 from 1.32.0 to 1.33.0.
 * Updated symfony/yaml from 5.4.45 to 6.4.25.
+* Updated wikimedia/css-sanitizer from 5.5.0 to 6.1.0
+* Updated wikimedia/json-codec from 3.0.3 to 4.0.0.
 * Updated wikimedia/less.php from 5.2.1 to 5.2.2.
+* Updated wikimedia/parsoid from 0.21.1 to 0.22.0.
 * Updated wikimedia/php-session-serializer from 3.0.1 to 3.0.2.
+* Updated wikimedia/remex-html from 4.1.2 to 5.1.0.
 * Updated wikimedia/request-timeout from 2.0.2 to 3.0.0.
 * Updated wikimedia/shellbox from 4.2.0 to 4.3.0.
+* Updated wikimedia/timestamp from 4.2.0 to 5.0.0.
 * Updated wikimedia/xmp-reader from 0.9.4 to 0.10.1.
-* Updated OOUI from v0.51.7 to v0.53.0.
-* Updated guzzlehttp/guzzle from 7.9.3 to 7.10.0.
-* …
 
 ===== Changed development-only external libraries =====
 
-* Updated eslint-config-wikimedia from 0.29.1 to 0.31.0.
+* Updated composer/spdx-licenses from 1.5.8 to 1.5.9.
 * Updated doctrine/dbal from 3.9.4 to 3.10.0.
 * Updated doctrine/sql-formatter from 1.3.0 to 1.5.2.
-* Updated mediawiki/mediawiki-codesniffer from 47.0.0 to 48.0.0.
-* Updated mediawiki/mediawiki-phan-config from 0.16.0 to 0.17.0.
-* Updated composer/spdx-licenses from 1.5.8 to 1.5.9.
-* …
-
-==== Removed external libraries ====
-
-* …
-
-=== Bug fixes in 1.45 ===
-
-* …
+* Updated eslint-config-wikimedia from 0.29.1 to 0.31.0.
+* Updated mediawiki/mediawiki-codesniffer from 46.0.0 to 48.0.0.
+* Updated mediawiki/mediawiki-phan-config from 0.15.0 to 0.17.0.
 
 === Action API changes in 1.45 ===
 * (T396049) The list of domains supported by the upload-by-URL feature is now
   exposed via meta=siteinfo.
 * (T399897) The `parsoid` parameter to `action=parse` has been deprecated.
   Use `parser=parsoid` instead.
-* …
-
-=== Action API internal changes in 1.45 ===
-
-* …
 
 === Languages updated in 1.45 ===
 MediaWiki supports over 350 languages. Many localisations are updated regularly.
@@ -223,7 +196,6 @@ because of Phabricator reports.
 * (T402159) Added language support for Sasak (sas).
 * (T406198) Added language support for Bono (abr).
 * (T408150) Added language support for Jju (kaj).
-* …
 
 === Breaking changes in 1.45 ===
 
@@ -542,7 +514,6 @@ because of Phabricator reports.
   in a future release these synonyms will be disabled. (T407289)
 * WatchedItemQueryService::getWatchedItemsWithRecentChangeInfo() has been
   deprecated. Instead, use ChangesListQuery.
-* …
 
 === Other changes in 1.45 ===
 
@@ -556,8 +527,6 @@ because of Phabricator reports.
   ($wgParserCacheExpireTime) elapses before upgrading to this release.
 
   <https://www.mediawiki.org/wiki/Manual:Parser_cache/Serialization_compatibility>
-
-* …
 
 == Compatibility ==
 
