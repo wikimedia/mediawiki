@@ -431,11 +431,7 @@ class ChangesListQueryTest extends \MediaWikiIntegrationTestCase {
 				[ $rcIds['anon'] ],
 			],
 			'experience registered' => [
-				[
-					[ 'require', 'experience', 'newcomer' ],
-					[ 'require', 'experience', 'learner' ],
-					[ 'require', 'experience', 'experienced' ],
-				],
+				[ [ 'require', 'experience', 'registered' ] ],
 				array_merge( $defaultInfo, $straightJoinActor, [
 					'conds' => "(((actor_user IS NOT NULL AND actor_name NOT LIKE '~%' ESCAPE '`')))",
 				] ),
