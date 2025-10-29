@@ -1562,20 +1562,27 @@ class WANObjectCache implements
 	 *      This is useful if the source of a key is suspected of having possibly changed
 	 *      recently, and the caller wants any such changes to be reflected.
 	 *      Default: WANObjectCache::MIN_TIMESTAMP_NONE.
-	 *   - hotTTR: Expected time-till-refresh (TTR) in seconds for keys that average ~1 hit per
-	 *      second (e.g. 1Hz). Keys with a hit rate higher than 1Hz will refresh sooner than this
-	 *      TTR and vise versa. Such refreshes won't happen until keys are "ageNew" seconds old.
-	 *      This uses randomization to avoid triggering cache stampedes. The TTR is useful at
-	 *      reducing the impact of missed cache purges, since the effect of a heavily referenced
-	 *      key being stale is worse than that of a rarely referenced key. Unlike simply lowering
-	 *      $ttl, seldomly used keys are largely unaffected by this option, which makes it
-	 *      possible to have a high hit rate for the "long-tail" of less-used keys.
-	 *      Default: WANObjectCache::HOT_TTR.
-	 *   - lowTTL: Consider pre-emptive updates when the current TTL (seconds) of the key is less
-	 *      than this. It becomes more likely over time, becoming certain once the key is expired.
-	 *      This helps avoid cache stampedes that might be triggered due to the key expiring.
+	 *   - lowTTL: Consider pre-emptive updates once the current TTL (seconds) of the key is less
+	 *      than this. It becomes more likely over time, and is more likely when a key is popular,
+	 *      becoming certain as the key approaches expiry. This can avoid cache stampedes by
+	 *      regenerating your value on a random request before the key expires, instead of letting
+	 *      it expire and all requests having to regen together.
+	 *      This feature is enabled by default (LOW_TTL=60s) but should have little to no impact
+	 *      on most keys, while automatically avoiding stampedes on hot keys. Set to 0 to disable.
+	 *      See also: WANObjectCache::worthRefreshExpiring.
 	 *      Default: WANObjectCache::LOW_TTL.
-	 *   - ageNew: Consider popularity refreshes only once a key reaches this age in seconds.
+	 *   - hotTTR: Schedule pre-emptive updates on popular keys once every $hotTTR seconds.
+	 *      If one of your keys becomes popular (more than 1 req/s), we schedule an async refresh on
+	 *      a random request roughly once every $hotTTR seconds. For keys with an even higher rate,
+	 *      this will happen sooner. During the first few seconds after a value is generated,
+	 *      this option is ignored as controlled by the "ageNew" option. This feature is enabled by
+	 *      default to avoid stale data on heavily referenced keys (e.g. due to lost purges),
+	 *      and should only impact keys that are hot. Set to 0 to disable this feature.
+	 *      See also: WANObjectCache::worthRefreshPopular.
+	 *      Default: WANObjectCache::HOT_TTR.
+	 *   - ageNew: Start pre-emptive "hotTTR" updates after a key reaches this age in seconds.
+	 *      Set `hotTTR: 0` to disable this feature. Setting ageNew to zero does not disable
+	 *      the hotTTR feature.
 	 *      Default: WANObjectCache::AGE_NEW.
 	 *   - staleTTL: Seconds to keep the key around if it is stale. This means that on cache
 	 *      miss the callback may get $oldValue/$oldAsOf values for keys that have already been
@@ -2646,20 +2653,42 @@ class WANObjectCache implements
 	/**
 	 * Check if a key is due for randomized regeneration due to its popularity
 	 *
-	 * This is used so that popular keys can preemptively refresh themselves for higher
-	 * consistency (especially in the case of purge loss/delay). Unpopular keys can remain
-	 * in cache with their high nominal TTL. This means popular keys keep good consistency,
-	 * whether the data changes frequently or not, and long-tail keys get to stay in cache
-	 * and get hits too. Similar to worthRefreshExpiring(), randomization is used.
+	 * Suppose we cache a value with a TTL of 50min (3000 seconds) and use the default
+	 * ageNew=60s and hotTTR=900s options. During the first 60s your key is safe from refreshes.
+	 * Then we ramp up the chance for the 30s from age 60s to 90s. After that, we apply a constant
+	 * chance until the key expires. The chance is calculated such that if your key is very hot
+	 * (>1 req/s), we automatically refresh it roughly once every 900s.
+	 *
+	 * See also WANObjectCache::worthRefreshExpiring which plays a role closer to the expiry.
+	 *
+	 * The chance is calculated as follows: At 1 req/s, a 1:900 chance of refresh should trigger
+	 * every 900s. We adjust for 60s being safe (ageNew) and 30s lower chance (RAMPUP_TTL), which
+	 * works out to 1:825 requests, or a 0.1212% chance to truly trigger every 900s.
+	 *
+	 * | Age  | Description
+	 * | ---- | -----------
+	 * | 0s   | miss, regen, set
+	 * | 1s   | get, hit (0% chance of async regen)
+	 * | 60s  | get, hit (0% chance of async regen)
+	 * | 63s  | get, hit (0.01212% chance of async regen, or 1:8250 requests)
+	 * | 70s  | get, hit (0.04040% chance of async regen, or 1:2475 requests)
+	 * | 90s  | get, hit (0.12% chance of async regen, or 1:825 requests)
+	 * | >90s | get, hit (0.12% chance of async regen, or 1:825 requests)
+	 *
+	 * This feature exists to reduce negative impact of lost or delayed cache purges. The impact
+	 * of a heavily referenced key being stale is worse than that of a rarely referenced key.
+	 * Unlike simply lowering $ttl, rare keys are largely unaffected to allow for a high cache-hit
+	 * ratio for the "long-tail" of less-used keys. Similar to worthRefreshExpiring(), this uses
+	 * randomization to avoid causing cache stampedes.
 	 *
 	 * @param float $asOf UNIX timestamp of the value
-	 * @param int $ageNew Age of key when this might recommend refreshing (seconds)
-	 * @param int $timeTillRefresh Age of key when it should be refreshed if popular (seconds)
+	 * @param int $ageNew Age of key when this may recommend a refresh (seconds)
+	 * @param int $hotTTR Age of key by which this should recommend a refresh if popular (seconds)
 	 * @param float $now The current UNIX timestamp
 	 * @return bool
 	 */
-	protected function worthRefreshPopular( $asOf, $ageNew, $timeTillRefresh, $now ) {
-		if ( $ageNew < 0 || $timeTillRefresh <= 0 ) {
+	protected function worthRefreshPopular( $asOf, $ageNew, $hotTTR, $now ) {
+		if ( $ageNew < 0 || $hotTTR <= 0 ) {
 			return false;
 		}
 
@@ -2673,7 +2702,7 @@ class WANObjectCache implements
 		// Lifecycle is: new, ramp-up refresh chance, full refresh chance.
 		// Note that the "expected # of refreshes" for the ramp-up time range is half
 		// of what it would be if P(refresh) was at its full value during that time range.
-		$refreshWindowSec = max( $timeTillRefresh - $ageNew - self::RAMPUP_TTL / 2, 1 );
+		$refreshWindowSec = max( $hotTTR - $ageNew - self::RAMPUP_TTL / 2, 1 );
 		// P(refresh) * (# hits in $refreshWindowSec) = (expected # of refreshes)
 		// P(refresh) * ($refreshWindowSec * $popularHitsPerSec) = 1 (by definition)
 		// P(refresh) = 1/($refreshWindowSec * $popularHitsPerSec)
@@ -2685,21 +2714,39 @@ class WANObjectCache implements
 	}
 
 	/**
-	 * Check if a key is nearing expiration and thus due for randomized regeneration
+	 * Check if a key is nearing expiration and thus due for randomized regeneration.
 	 *
-	 * If $curTTL is greater than the "low" threshold (e.g. not nearing expiration) then this
-	 * returns false. If $curTTL <= 0 (e.g. value already expired), then this returns false.
-	 * Otherwise, the chance of this returning true increases steadily from 0% to 100% as
-	 * $curTTL moves from the "low" threshold down to 0 seconds.
+	 * Suppose we cache a value with a TTL of 50min (3000 seconds), and a lowTTL of 100s.
 	 *
-	 * The logical TTL will be used as the "low" threshold if it is less than $lowTTL.
+	 * | Time passed | Remaining TTL | Description
+	 * | ----------- | ------------- | -----------
+	 * | t=0         | 3000s         | miss, regen, set
+	 * | t=100       | 2900s         | get, hit
+	 * | t=2899      | 101s          | get, hit
+	 * | t=2900      | 100s          | get, hit (0% chance of async regen)
+	 * | t=2950      | 50s           | get, hit (6% chance of async regen)
+	 * | t=2975      | 25s           | get, hit (31% chance of async regen)
+	 * | t=2995      | 5s            | get, hit (81% chance of async regen)
+	 * | t=2999      | 1s            | get, hit (96% chance of async regen)
+	 * | t=3000      | 0s            | miss, regen, set
 	 *
-	 * This method uses deadline-aware randomization in order to handle wide variations
-	 * of cache access traffic without the need for configuration or expensive state.
+	 * We only consider randomized regeneration once $curTTL is less than $lowTTL (i.e. near expiry).
+	 * We do not consider it once $curTTL is <= 0 (i.e. value expired).
+	 *
+	 * The chance of returning true increases steadily from 0% to 100% as
+	 * $curTTL counts down from the "low" threshold to 0 seconds.
+	 *
+	 * If the original TTL passed to WANObjectCache::getWithSetCallback is below $lowTTL (the author
+	 * choose a TTL under 60s, and did not set a custom 'lowTTL' option), then we use the original
+	 * TTL as the low threshold. This ensures the ramp up always starts slowly at 0%,
+	 * instead of breaking caching for intentionally short TTLs (T264787).
+	 *
+	 * This method uses deadline-aware randomization in order to handle wide ranges
+	 * of request rates without the need for complex options or state keeping.
 	 *
 	 * @param float $curTTL Approximate TTL left on the key
 	 * @param float $logicalTTL Full logical TTL assigned to the key; 0 for "infinite"
-	 * @param float $lowTTL Consider a refresh when $curTTL is less than this; the "low" threshold
+	 * @param float $lowTTL Consider a refresh once $curTTL is less than this; the "low" threshold
 	 * @return bool
 	 */
 	protected function worthRefreshExpiring( $curTTL, $logicalTTL, $lowTTL ) {
