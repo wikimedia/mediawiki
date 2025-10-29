@@ -103,6 +103,7 @@ export const config = {
 				...( fs.existsSync( '/.dockerenv' ) ? [ '--no-sandbox', '--disable-gpu', '--disable-dev-shm-usage' ] : [] ),
 				// Disable as much as possible to make Chrome clean
 				// https://github.com/GoogleChrome/chrome-launcher/blob/main/docs/chrome-flags-for-tools.md
+				// https://peter.sh/experiments/chromium-command-line-switches/
 				'--ash-no-nudges',
 				'--disable-background-networking',
 				'--disable-background-timer-throttling',
