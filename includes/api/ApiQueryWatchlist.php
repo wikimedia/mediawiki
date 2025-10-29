@@ -202,10 +202,10 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			}
 
 			$showActions = [
-				'minor' => [ 'require', 'minor' ],
-				'!minor' => [ 'exclude', 'minor' ],
-				'bot' => [ 'require', 'bot' ],
-				'!bot' => [ 'exclude', 'bot' ],
+				'minor' => [ 'require', 'minor', true ],
+				'!minor' => [ 'exclude', 'minor', true ],
+				'bot' => [ 'require', 'bot', true ],
+				'!bot' => [ 'exclude', 'bot', true ],
 				'anon' => [ 'exclude', 'named' ],
 				'!anon' => [ 'require', 'named' ],
 				'patrolled' => [ 'exclude', 'patrolled', RecentChange::PRC_UNPATROLLED ],
