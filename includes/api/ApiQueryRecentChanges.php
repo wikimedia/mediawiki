@@ -198,16 +198,16 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
 			/* Add additional conditions to query depending upon parameters. */
 			$showActions = [
-				'minor' => [ 'require', 'minor' ],
-				'!minor' => [ 'exclude', 'minor' ],
-				'bot' => [ 'require', 'bot' ],
-				'!bot' => [ 'exclude', 'bot' ],
+				'minor' => [ 'require', 'minor', true ],
+				'!minor' => [ 'exclude', 'minor', true ],
+				'bot' => [ 'require', 'bot', true ],
+				'!bot' => [ 'exclude', 'bot', true ],
 				'anon' => [ 'exclude', 'named' ],
 				'!anon' => [ 'require', 'named' ],
 				'patrolled' => [ 'exclude', 'patrolled', RecentChange::PRC_UNPATROLLED ],
 				'!patrolled' => [ 'require', 'patrolled', RecentChange::PRC_UNPATROLLED ],
-				'redirect' => [ 'require', 'redirect' ],
-				'!redirect' => [ 'exclude', 'redirect' ],
+				'redirect' => [ 'require', 'redirect', true ],
+				'!redirect' => [ 'exclude', 'redirect', true ],
 				'autopatrolled' => [ 'require', 'patrolled', RecentChange::PRC_AUTOPATROLLED ],
 				'!autopatrolled' => [ 'exclude', 'patrolled', RecentChange::PRC_AUTOPATROLLED ],
 			];
