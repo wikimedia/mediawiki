@@ -160,7 +160,6 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 		'mEmailAuthenticated',
 		'mEmailToken',
 		'mEmailTokenExpires',
-		'mRegistration',
 		// actor table
 		'mActorId',
 	];
@@ -196,8 +195,6 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 	protected $mEmailToken;
 	/** @var string|null */
 	protected $mEmailTokenExpires;
-	/** @var string|null */
-	protected $mRegistration;
 	// @}
 
 	// @{
@@ -1015,7 +1012,6 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 		$this->mEmailAuthenticated = null;
 		$this->mEmailToken = '';
 		$this->mEmailTokenExpires = null;
-		$this->mRegistration = wfTimestamp( TS_MW );
 
 		$this->getHookRunner()->onUserLoadDefaults( $this, $name );
 	}
@@ -1206,10 +1202,10 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 			$this->mEmailAuthenticated = wfTimestampOrNull( TS_MW, $row->user_email_authenticated );
 			$this->mEmailToken = $row->user_email_token;
 			$this->mEmailTokenExpires = wfTimestampOrNull( TS_MW, $row->user_email_token_expires );
-			$this->mRegistration = wfTimestampOrNull( TS_MW, $row->user_registration );
+			$registration = wfTimestampOrNull( TS_MW, $row->user_registration );
 			MediaWikiServices::getInstance()
 				->getUserRegistrationLookup()
-				->setCachedRegistration( $this, $this->mRegistration );
+				->setCachedRegistration( $this, $registration );
 		} else {
 			$all = false;
 		}
@@ -2462,7 +2458,7 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 			'user_email_authenticated' => $dbw->timestampOrNull( $user->mEmailAuthenticated ),
 			'user_real_name' => $user->mRealName,
 			'user_token' => strval( $user->mToken ),
-			'user_registration' => $dbw->timestamp( $user->mRegistration ),
+			'user_registration' => $dbw->timestamp(),
 			'user_editcount' => 0,
 			'user_touched' => $dbw->timestamp( $user->newTouchedTimestamp() ),
 		];
@@ -2547,7 +2543,7 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 					'user_email_authenticated' => $dbw->timestampOrNull( $this->mEmailAuthenticated ),
 					'user_real_name' => $this->mRealName,
 					'user_token' => strval( $this->mToken ),
-					'user_registration' => $dbw->timestamp( $this->mRegistration ),
+					'user_registration' => $dbw->timestamp(),
 					'user_editcount' => 0,
 					'user_touched' => $dbw->timestamp( $this->mTouched ),
 					'user_is_temp' => $this->isTemp(),
@@ -3091,11 +3087,9 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 	 *  but information is not in database.
 	 */
 	public function getRegistration() {
-		if ( $this->isAnon() ) {
-			return false;
-		}
-		$this->load();
-		return $this->mRegistration;
+		return MediaWikiServices::getInstance()
+			->getUserRegistrationLookup()
+			->getRegistration( $this );
 	}
 
 	/**
