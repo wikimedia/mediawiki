@@ -561,7 +561,7 @@ class GlobalIdGenerator {
 	 * @return int|bool Timestamp or false
 	 */
 	protected function timeWaitUntil( $time ) {
-		$start = microtime( true );
+		$hrStart = hrtime( true );
 		do {
 			$ct = time();
 			// https://www.php.net/manual/en/language.operators.comparison.php
@@ -570,7 +570,7 @@ class GlobalIdGenerator {
 				return $ct;
 			}
 			// up to 10ms
-		} while ( ( microtime( true ) - $start ) <= 0.010 );
+		} while ( ( hrtime( true ) - $hrStart ) <= 0.010e9 );
 
 		return false;
 	}
