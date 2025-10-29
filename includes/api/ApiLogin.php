@@ -220,6 +220,7 @@ class ApiLogin extends ApiBase {
 		switch ( $authRes ) {
 			case 'Success':
 				$user = $session->getUser();
+				$user->debouncedDBTouch();
 
 				// Deprecated hook
 				$injected_html = '';

@@ -1679,6 +1679,25 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 	}
 
 	/**
+	 * Update the db touched timestamp for the user if it hasn't been updated recently
+	 *
+	 * @since 1.45
+	 */
+	public function debouncedDBTouch() {
+		$oldTouched = (int)ConvertibleTimestamp::convert( TS_UNIX, $this->getDBTouched() );
+		$newTouched = (int)ConvertibleTimestamp::now( TS_UNIX );
+
+		if ( ( $newTouched - $oldTouched ) < ( 300 + mt_rand( 1, 20 ) ) ) {
+			// Touched would be updated too soon, skip this round
+			// Adding jitter to avoid stampede.
+			return;
+		}
+
+		// Too old, definitely update.
+		$this->checkAndSetTouched();
+	}
+
+	/**
 	 * Validate the cache for this account.
 	 * @param string $timestamp A timestamp in TS_MW format
 	 * @return bool
