@@ -98,6 +98,9 @@ For notes on 1.47.x and older releases, see HISTORY.
 
 * ResourceLoader::inDebugMode(), deprecated since 1.47, has been
   removed.
+* MediaWikiServices::getPerDbNameStatsdDataFactory(), deprecated since 1.44,
+  has been removed. Use StatsFactory with wiki ID from
+  WikiMap::getCurrentWikiId() as label instead.
 * TextSlotDiffRenderer::setStatsdDataFactory(), deprecated since 1.43,
   has been removed.
 * LanguageQqx::getMessage(), deprecated since 1.41, has been removed
