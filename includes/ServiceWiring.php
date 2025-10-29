@@ -29,7 +29,6 @@
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\HttpFactory;
-use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Actions\ActionFactory;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Auth\Throttler;
@@ -342,7 +341,6 @@ use Wikimedia\RequestTimeout\RequestTimeout;
 use Wikimedia\Stats\IBufferingStatsdDataFactory;
 use Wikimedia\Stats\NullStatsdDataFactory;
 use Wikimedia\Stats\OutputFormats;
-use Wikimedia\Stats\PrefixingStatsdDataFactoryProxy;
 use Wikimedia\Stats\StatsCache;
 use Wikimedia\Stats\StatsFactory;
 use Wikimedia\Telemetry\Clock;
@@ -2076,15 +2074,6 @@ return [
 			$services->getUserFactory(),
 			$services->getHookContainer(),
 			$services->getRevertedTagUpdateManager()
-		);
-	},
-
-	'PerDbNameStatsdDataFactory' => static function ( MediaWikiServices $services ): StatsdDataFactoryInterface {
-		$config = $services->getMainConfig();
-		$wiki = $config->get( MainConfigNames::DBname );
-		return new PrefixingStatsdDataFactoryProxy(
-			$services->getStatsdDataFactory(),
-			$wiki
 		);
 	},
 

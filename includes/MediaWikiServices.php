@@ -6,7 +6,6 @@
 
 namespace MediaWiki;
 
-use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use LogicException;
 use MediaWiki\Actions\ActionFactory;
 use MediaWiki\Auth\AuthManager;
@@ -1873,22 +1872,6 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getPatrolManager(): PatrolManager {
 		return $this->getService( 'PatrolManager' );
-	}
-
-	/**
-	 * @since 1.32
-	 * @deprecated since 1.44 Use StatsFactory with `setLabel()` instead
-	 *
-	 * For example:
-	 *
-	 * ```
-	 * $statsFactory
-	 *      ->getCounter( 'example_total' )
-	 *      ->setLabel( 'wiki', WikiMap::getCurrentWikiId() )
-	 * ```
-	 */
-	public function getPerDbNameStatsdDataFactory(): StatsdDataFactoryInterface {
-		return $this->getService( 'PerDbNameStatsdDataFactory' );
 	}
 
 	/**
