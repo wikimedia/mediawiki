@@ -101,7 +101,6 @@ class AutoLoader {
 		'MediaWiki\\Specials\\' => __DIR__ . '/specials/',
 		'MediaWiki\\Specials\\Contribute\\' => __DIR__ . '/specials/Contribute/',
 		'MediaWiki\\Specials\\Redirects\\' => __DIR__ . '/specials/redirects/',
-		'MediaWiki\\Tidy\\' => __DIR__ . '/tidy/',
 		'MediaWiki\\Title\\' => __DIR__ . '/title/',
 		'MediaWiki\\User\\' => __DIR__ . '/user/',
 		'MediaWiki\\Utils\\' => __DIR__ . '/utils/',
