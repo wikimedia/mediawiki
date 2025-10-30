@@ -88,7 +88,6 @@ class AutoLoader {
 		'MediaWiki\\Logger\\' => __DIR__ . '/debug/logger/',
 		'MediaWiki\\Logger\\Monolog\\' => __DIR__ . '/debug/logger/monolog/',
 		'MediaWiki\\Logging\\' => __DIR__ . '/logging/',
-		'MediaWiki\\Mail\\' => __DIR__ . '/mail/',
 		'MediaWiki\\Maintenance\\' => __DIR__ . '/../maintenance/includes/',
 		'MediaWiki\\Page\\' => __DIR__ . '/page/',
 		'MediaWiki\\Parser\\' => __DIR__ . '/parser/',
