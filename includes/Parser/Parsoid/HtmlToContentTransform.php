@@ -146,12 +146,13 @@ class HtmlToContentTransform {
 
 	/** @throws ClientError */
 	private function validatePageBundle( HtmlPageBundle $pb ) {
-		if ( !$pb->version ) {
+		$version = $pb->version;
+		if ( !$version ) {
 			return;
 		}
 
 		$errorMessage = '';
-		if ( !$pb->validate( $pb->version, $errorMessage ) ) {
+		if ( !$pb->validate( $version, $errorMessage ) ) {
 			throw new ClientError( $errorMessage );
 		}
 	}

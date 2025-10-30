@@ -82,7 +82,6 @@ class AutoLoader {
 		'MediaWiki\\Logging\\' => __DIR__ . '/logging/',
 		'MediaWiki\\Maintenance\\' => __DIR__ . '/../maintenance/includes/',
 		'MediaWiki\\Page\\' => __DIR__ . '/page/',
-		'MediaWiki\\Parser\\' => __DIR__ . '/parser/',
 		'MediaWiki\\Preferences\\' => __DIR__ . '/preferences/',
 		'MediaWiki\\Profiler\\' => __DIR__ . '/profiler/',
 		'MediaWiki\\RCFeed\\' => __DIR__ . '/recentchanges/RCFeed/',

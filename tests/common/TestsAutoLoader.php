@@ -20,21 +20,21 @@ $wgAutoloadClasses += [
 	'TestThrowerDummy' => "$testDir/phpunit/data/exception/TestThrowerDummy.php",
 
 	# tests/parser
-	'DbTestPreviewer' => "$testDir/parser/DbTestPreviewer.php",
-	'DbTestRecorder' => "$testDir/parser/DbTestRecorder.php",
-	'DjVuSupport' => "$testDir/parser/DjVuSupport.php",
-	'MediaWiki\\Tests\\AnsiTermColorer' => "$testDir/parser/AnsiTermColorer.php",
-	'MediaWiki\\Tests\\DummyTermColorer' => "$testDir/parser/DummyTermColorer.php",
-	'MultiTestRecorder' => "$testDir/parser/MultiTestRecorder.php",
-	'ParserTestMockParser' => "$testDir/parser/ParserTestMockParser.php",
-	'ParserTestParserHook' => "$testDir/parser/ParserTestParserHook.php",
-	'ParserTestPrinter' => "$testDir/parser/ParserTestPrinter.php",
-	'ParserTestResult' => "$testDir/parser/ParserTestResult.php",
-	'ParserTestResultNormalizer' => "$testDir/parser/ParserTestResultNormalizer.php",
-	'ParserTestRunner' => "$testDir/parser/ParserTestRunner.php",
-	'PhpunitTestRecorder' => "$testDir/parser/PhpunitTestRecorder.php",
-	'TestFileEditor' => "$testDir/parser/TestFileEditor.php",
-	'TestRecorder' => "$testDir/parser/TestRecorder.php",
+	'DbTestPreviewer' => "$testDir/common/Parser/DbTestPreviewer.php",
+	'DbTestRecorder' => "$testDir/common/Parser/DbTestRecorder.php",
+	'DjVuSupport' => "$testDir/common/Parser/DjVuSupport.php",
+	'MediaWiki\\Tests\\AnsiTermColorer' => "$testDir/common/Parser/AnsiTermColorer.php",
+	'MediaWiki\\Tests\\DummyTermColorer' => "$testDir/common/Parser/DummyTermColorer.php",
+	'MultiTestRecorder' => "$testDir/common/Parser/MultiTestRecorder.php",
+	'ParserTestMockParser' => "$testDir/common/Parser/ParserTestMockParser.php",
+	'ParserTestParserHook' => "$testDir/common/Parser/ParserTestParserHook.php",
+	'ParserTestPrinter' => "$testDir/common/Parser/ParserTestPrinter.php",
+	'ParserTestResult' => "$testDir/common/Parser/ParserTestResult.php",
+	'ParserTestResultNormalizer' => "$testDir/common/Parser/ParserTestResultNormalizer.php",
+	'ParserTestRunner' => "$testDir/common/Parser/ParserTestRunner.php",
+	'PhpunitTestRecorder' => "$testDir/common/Parser/PhpunitTestRecorder.php",
+	'TestFileEditor' => "$testDir/common/Parser/TestFileEditor.php",
+	'TestRecorder' => "$testDir/common/Parser/TestRecorder.php",
 
 	# tests/phpunit
 	'EmptyResourceLoader' => "$testDir/phpunit/ResourceLoaderTestCase.php",
@@ -145,12 +145,12 @@ $wgAutoloadClasses += [
 	# tests/phpunit/includes/page
 	'LinkCacheTestTrait' => "$testDir/phpunit/includes/page/LinkCacheTestTrait.php",
 
-	# tests/phpunit/includes/parser
-	'MediaWiki\\Tests\\Parser\\CacheTimeTest' => "$testDir/phpunit/includes/parser/CacheTimeTest.php",
-	'MediaWiki\\Tests\\Parser\\ParserOutputTest' => "$testDir/phpunit/includes/parser/ParserOutputTest.php",
+	# tests/phpunit/includes/Parser
+	'MediaWiki\\Tests\\Parser\\CacheTimeTest' => "$testDir/phpunit/includes/Parser/CacheTimeTest.php",
+	'MediaWiki\\Tests\\Parser\\ParserOutputTest' => "$testDir/phpunit/includes/Parser/ParserOutputTest.php",
 	'ParserIntegrationTest' => "$testDir/phpunit/suites/ParserIntegrationTest.php",
 	'MediaWiki\\Tests\\Parser\\ParserCacheSerializationTestCases' =>
-		"$testDir/phpunit/includes/parser/ParserCacheSerializationTestCases.php",
+		"$testDir/phpunit/includes/Parser/ParserCacheSerializationTestCases.php",
 	'Wikimedia\\Tests\\SerializationTestTrait' =>
 		"$testDir/phpunit/includes/libs/serialization/SerializationTestTrait.php",
 	'Wikimedia\\Tests\\SerializationTestUtils' =>
