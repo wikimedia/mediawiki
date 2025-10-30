@@ -151,6 +151,7 @@ class UploadFromStash extends UploadBase {
 	 * @return bool Success
 	 */
 	public function unsaveUploadedFile() {
+		$this->mStashFile = null;
 		return $this->stash->removeFile( $this->mFileKey );
 	}
 
