@@ -78,7 +78,6 @@ class AutoLoader {
 		'MediaWiki\\Languages\\Data\\' => __DIR__ . '/languages/data/',
 		'MediaWiki\\Language\\' => __DIR__ . '/language/',
 		'MediaWiki\\Linker\\' => __DIR__ . '/linker/',
-		'MediaWiki\\Logger\\' => __DIR__ . '/debug/logger/',
 		'MediaWiki\\Logger\\Monolog\\' => __DIR__ . '/debug/logger/monolog/',
 		'MediaWiki\\Logging\\' => __DIR__ . '/logging/',
 		'MediaWiki\\Maintenance\\' => __DIR__ . '/../maintenance/includes/',
