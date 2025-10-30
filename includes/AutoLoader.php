@@ -96,7 +96,6 @@ class AutoLoader {
 		'MediaWiki\\Profiler\\' => __DIR__ . '/profiler/',
 		'MediaWiki\\RCFeed\\' => __DIR__ . '/recentchanges/RCFeed/',
 		'MediaWiki\\RecentChanges\\' => __DIR__ . '/recentchanges/',
-		'MediaWiki\\Registration\\' => __DIR__ . '/registration/',
 		'MediaWiki\\Search\\' => __DIR__ . '/search/',
 		'MediaWiki\\Search\\SearchWidgets\\' => __DIR__ . '/search/searchwidgets/',
 		'MediaWiki\\Session\\' => __DIR__ . '/session/',
