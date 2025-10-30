@@ -985,10 +985,22 @@ class RestrictionStoreTest extends MediaWikiUnitTestCase {
 					return new FakeResultWrapper( [
 						(object)[ 'pr_page' => 1, 'page_namespace' => NS_MAIN, 'page_title' => 'test',
 							'pr_expiry' => 'infinity', 'pr_type' => 'edit', 'pr_level' => 'Sysop',
-							'tl_from' => 1 ]
+							'type' => 'tl' ]
 					] );
 				},
-				2
+				1
+			],
+			'addQuotes' => [
+				static function () {
+					return 'noop';
+				},
+				1
+			],
+			'selectFieldValues' => [
+				static function () {
+					return [];
+				},
+				1
 			]
 		] ] ] );
 
@@ -1002,19 +1014,37 @@ class RestrictionStoreTest extends MediaWikiUnitTestCase {
 
 	public function testGetCascadeProtectionSourcesFile() {
 		$obj = $this->newRestrictionStore( [ 'db' => [ DB_REPLICA => [
-			'select' => [
+			'addQuotes' => [
 				static function () {
-					return new FakeResultWrapper( [
-						(object)[ 'pr_page' => 1, 'page_namespace' => NS_MAIN, 'page_title' => 'test1',
-							'pr_expiry' => 'infinity', 'pr_type' => 'edit', 'pr_level' => 'Sysop',
-							'tl_from' => 1, 'il_from' => 2 ],
-						(object)[ 'pr_page' => 2, 'page_namespace' => NS_MAIN, 'page_title' => 'test2',
-							'pr_expiry' => 'infinity', 'pr_type' => 'edit', 'pr_level' => 'Sysop',
-							'tl_from' => 1, 'il_from' => 2 ]
-					] );
+					return 'noop';
 				},
-				3
-			]
+				2
+			],
+			'selectSQLText' => [
+				static function () {
+					return 'noop';
+				},
+				2
+			],
+			'unionQueries' => static function () {
+				return 'noop';
+			},
+			'selectFieldValues' => [
+				static function () {
+					return [ 1, 2 ];
+				},
+				2
+			],
+			'query' => static function () {
+				return new FakeResultWrapper( [
+					(object)[ 'pr_page' => 1, 'page_namespace' => NS_MAIN, 'page_title' => 'test1',
+						'pr_expiry' => 'infinity', 'pr_type' => 'edit', 'pr_level' => 'Sysop',
+						'type' => 'il' ],
+					(object)[ 'pr_page' => 2, 'page_namespace' => NS_MAIN, 'page_title' => 'test2',
+						'pr_expiry' => 'infinity', 'pr_type' => 'edit', 'pr_level' => 'Sysop',
+						'type' => 'tl' ]
+				] );
+			},
 		] ] ] );
 
 		$page = PageIdentityValue::localIdentity( 1, NS_FILE, 'Image.jpg' );
