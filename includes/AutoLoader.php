@@ -102,7 +102,6 @@ class AutoLoader {
 		'MediaWiki\\Shell\\' => __DIR__ . '/shell/',
 		'MediaWiki\\Site\\' => __DIR__ . '/site/',
 		'MediaWiki\\Skin\\' => __DIR__ . '/skins/',
-		'MediaWiki\\Sparql\\' => __DIR__ . '/sparql/',
 		'MediaWiki\\SpecialPage\\' => __DIR__ . '/specialpage/',
 		'MediaWiki\\Specials\\' => __DIR__ . '/specials/',
 		'MediaWiki\\Specials\\Contribute\\' => __DIR__ . '/specials/Contribute/',
