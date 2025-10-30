@@ -158,6 +158,7 @@ class PermissionManager {
 		'edituserjson',
 		'edituserjs',
 		'hideuser',
+		'ignore-restricted-groups',
 		'import',
 		'importupload',
 		'interwiki',

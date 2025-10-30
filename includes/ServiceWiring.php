@@ -257,6 +257,7 @@ use MediaWiki\User\Options\UserOptionsManager;
 use MediaWiki\User\PasswordReset;
 use MediaWiki\User\Registration\LocalUserRegistrationProvider;
 use MediaWiki\User\Registration\UserRegistrationLookup;
+use MediaWiki\User\RestrictedUserGroupChecker;
 use MediaWiki\User\TalkPageNotificationManager;
 use MediaWiki\User\TempUser\RealTempUserConfig;
 use MediaWiki\User\TempUser\TempUserCreator;
@@ -2105,6 +2106,15 @@ return [
 		}
 
 		return $rl;
+	},
+
+	'RestrictedUserGroupChecker' => static function ( MediaWikiServices $services ): RestrictedUserGroupChecker {
+		return new RestrictedUserGroupChecker(
+			new ServiceOptions(
+				RestrictedUserGroupChecker::CONSTRUCTOR_OPTIONS, $services->getMainConfig()
+			),
+			$services->getUserRequirementsConditionChecker(),
+		);
 	},
 
 	'RestrictionStore' => static function ( MediaWikiServices $services ): RestrictionStore {

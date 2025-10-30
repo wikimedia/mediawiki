@@ -8248,6 +8248,32 @@ class MainConfigSchema {
 	];
 
 	/**
+	 * A map of group names to the conditions under which the group can be granted.
+	 * The requirements are specified in the same way as for autopromotion.
+	 *
+	 * If `canBeIgnored` is set to true, these restrictions can be bypassed by users
+	 * who have the `ignore-restricted-groups` permission.
+	 *
+	 * If either of the `memberConditions` or `updaterConditions` keys are omitted,
+	 * they default to an empty array (i.e. no conditions). The default value for
+	 * `canBeIgnored` is false.
+	 *
+	 * ```
+	 * $wgRestrictedGroups = [
+	 *     'sysop' => [
+	 *         'memberConditions' => [ APCOND_EDITCOUNT, 1000 ],
+	 *         'updaterConditions' => [ !, APCOND_ISBOT ],
+	 *         'canBeIgnored' => false,
+	 *     ]
+	 * ]
+	 * ```
+	 */
+	public const RestrictedGroups = [
+		'default' => [],
+		'type' => 'map',
+	];
+
+	/**
 	 * Set of available actions that can be restricted via action=protect
 	 * You probably shouldn't change this.
 	 *

@@ -1352,6 +1352,8 @@ return [
 			],
 			'GroupsRemoveFromSelf' => [
 			],
+			'RestrictedGroups' => [
+			],
 			'RestrictionTypes' => [
 				'create',
 				'edit',
@@ -3021,6 +3023,7 @@ return [
 			'ImplicitGroups' => 'array',
 			'GroupsAddToSelf' => 'object',
 			'GroupsRemoveFromSelf' => 'object',
+			'RestrictedGroups' => 'object',
 			'RestrictionTypes' => 'array',
 			'RestrictionLevels' => 'array',
 			'CascadingRestrictionLevels' => 'array',

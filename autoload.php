@@ -3102,6 +3102,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\User\\Registration\\IUserRegistrationProvider' => __DIR__ . '/includes/User/Registration/IUserRegistrationProvider.php',
 	'MediaWiki\\User\\Registration\\LocalUserRegistrationProvider' => __DIR__ . '/includes/User/Registration/LocalUserRegistrationProvider.php',
 	'MediaWiki\\User\\Registration\\UserRegistrationLookup' => __DIR__ . '/includes/User/Registration/UserRegistrationLookup.php',
+	'MediaWiki\\User\\RestrictedUserGroupChecker' => __DIR__ . '/includes/User/RestrictedUserGroupChecker.php',
 	'MediaWiki\\User\\StaticUserOptionsLookup' => __DIR__ . '/includes/User/Options/StaticUserOptionsLookup.php',
 	'MediaWiki\\User\\TalkPageNotificationManager' => __DIR__ . '/includes/User/TalkPageNotificationManager.php',
 	'MediaWiki\\User\\TempUser\\CreateStatus' => __DIR__ . '/includes/User/TempUser/CreateStatus.php',

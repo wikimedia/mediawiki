@@ -2790,6 +2790,12 @@ $wgGroupsAddToSelf = null;
 $wgGroupsRemoveFromSelf = null;
 
 /**
+ * Config variable stub for the RestrictedGroups setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::RestrictedGroups
+ */
+$wgRestrictedGroups = null;
+
+/**
  * Config variable stub for the RestrictionTypes setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::RestrictionTypes
  */

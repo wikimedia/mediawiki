@@ -2805,6 +2805,12 @@ class MainConfigNames {
 	public const GroupsRemoveFromSelf = 'GroupsRemoveFromSelf';
 
 	/**
+	 * Name constant for the RestrictedGroups setting, for use with Config::get()
+	 * @see MainConfigSchema::RestrictedGroups
+	 */
+	public const RestrictedGroups = 'RestrictedGroups';
+
+	/**
 	 * Name constant for the RestrictionTypes setting, for use with Config::get()
 	 * @see MainConfigSchema::RestrictionTypes
 	 */
