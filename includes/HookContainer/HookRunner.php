@@ -393,7 +393,6 @@ class HookRunner implements
 	\MediaWiki\Hook\SpecialUploadCompleteHook,
 	\MediaWiki\Hook\SpecialUserRightsChangeableGroupsHook,
 	\MediaWiki\Hook\SpecialVersionVersionUrlHook,
-	\MediaWiki\Hook\SpecialWatchlistGetNonRevisionTypesHook,
 	\MediaWiki\Hook\SpecialWhatLinksHereQueryHook,
 	\MediaWiki\Hook\TestCanonicalRedirectHook,
 	\MediaWiki\Hook\ThumbnailBeforeProduceHTMLHook,
@@ -4467,14 +4466,6 @@ class HookRunner implements
 		return $this->container->run(
 			'SpecialVersionVersionUrl',
 			[ $version, &$versionUrl ]
-		);
-	}
-
-	/** @inheritDoc */
-	public function onSpecialWatchlistGetNonRevisionTypes( &$nonRevisionTypes ) {
-		return $this->container->run(
-			'SpecialWatchlistGetNonRevisionTypes',
-			[ &$nonRevisionTypes ]
 		);
 	}
 
