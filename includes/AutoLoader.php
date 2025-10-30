@@ -63,7 +63,6 @@ class AutoLoader {
 		'MediaWiki\\Deferred\\LinksUpdate\\' => __DIR__ . '/deferred/LinksUpdate/',
 		'MediaWiki\\Diff\\' => __DIR__ . '/diff/',
 		'MediaWiki\\EditPage\\' => __DIR__ . '/editpage/',
-		'MediaWiki\\Edit\\' => __DIR__ . '/edit/',
 		'MediaWiki\\Exception\\' => __DIR__ . '/exception/',
 		'MediaWiki\\Export\\' => __DIR__ . '/export/',
 		'MediaWiki\\FileBackend\\' => __DIR__ . '/filebackend/',
