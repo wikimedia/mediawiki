@@ -54,7 +54,6 @@ class AutoLoader {
 		'MediaWiki\\Collation\\' => __DIR__ . '/collation/',
 		'MediaWiki\\Content\\' => __DIR__ . '/content/',
 		'MediaWiki\\Context\\' => __DIR__ . '/context/',
-		'MediaWiki\\Debug\\' => __DIR__ . '/debug/',
 		'MediaWiki\\Deferred\\' => __DIR__ . '/deferred/',
 		'MediaWiki\\Deferred\\LinksUpdate\\' => __DIR__ . '/deferred/LinksUpdate/',
 		'MediaWiki\\Diff\\' => __DIR__ . '/diff/',
