@@ -2640,6 +2640,12 @@ $wgConditionalUserOptions = null;
 $wgHiddenPrefs = null;
 
 /**
+ * Config variable stub for the UserJsPrefLimit setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::UserJsPrefLimit
+ */
+$wgUserJsPrefLimit = null;
+
+/**
  * Config variable stub for the InvalidUsernameCharacters setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::InvalidUsernameCharacters
  */

@@ -7656,6 +7656,14 @@ class MainConfigSchema {
 	];
 
 	/**
+	 * Maximum number of userjs preferences allowed for each user
+	 */
+	public const UserJsPrefLimit = [
+		'default' => 100,
+		'type' => 'int',
+	];
+
+	/**
 	 * Characters to prevent during new account creations.
 	 *
 	 * This is used in a regular expression character class during

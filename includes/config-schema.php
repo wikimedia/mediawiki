@@ -1156,6 +1156,7 @@ return [
 			],
 			'HiddenPrefs' => [
 			],
+			'UserJsPrefLimit' => 100,
 			'InvalidUsernameCharacters' => '@:>=',
 			'UserrightsInterwikiDelimiter' => '@',
 			'SecureLogin' => false,
@@ -3002,6 +3003,7 @@ return [
 			'DefaultUserOptions' => 'object',
 			'ConditionalUserOptions' => 'object',
 			'HiddenPrefs' => 'array',
+			'UserJsPrefLimit' => 'integer',
 			'AuthenticationTokenVersion' => [
 				'string',
 				'null',

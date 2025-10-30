@@ -2076,6 +2076,7 @@
 	"apiwarn-validationfailed-cannotset": "cannot be set by this module.",
 	"apiwarn-validationfailed-keytoolong": "key too long (no more than $1 {{PLURAL:$1|byte|bytes}} allowed).",
 	"apiwarn-validationfailed-valuetoolong": "value too long (no more than $1 {{PLURAL:$1|byte|bytes}} allowed).",
+	"apiwarn-validationfailed-toomanyuserjs": "Too many userjs preference values have been set (no more than $1 allowed).",
 	"apiwarn-validationfailed": "Validation error for <kbd>$1</kbd>: $2",
 	"apiwarn-wgdebugapi": "<strong>Security Warning:</strong> <var>$wgDebugAPI</var> is enabled.",
 

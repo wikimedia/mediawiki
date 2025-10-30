@@ -1979,6 +1979,7 @@
 	"apiwarn-validationfailed-cannotset": "{{doc-apierror}}\n\nUsed with {{msg-mw|apiwarn-validationfailed}}.",
 	"apiwarn-validationfailed-keytoolong": "{{doc-apierror}}\n\nUsed with {{msg-mw|apiwarn-validationfailed}}.\n\nParameters:\n* $1 - Maximum allowed key length in bytes.",
 	"apiwarn-validationfailed-valuetoolong": "{{doc-apierror}}\n\nUsed with {{msg-mw|apiwarn-validationfailed}}.\n\nParameters:\n* $1 - Maximum allowed value length in bytes.",
+	"apiwarn-validationfailed-toomanyuserjs": "{{doc-apierror}}\n\nUsed with {{msg-mw|apiwarn-validationfailed}}.\n\nParameters:\n* $1 - Maximum allowed number of userjs prefs to be stored",
 	"apiwarn-validationfailed": "{{doc-apierror}}\n\nParameters:\n* $1 - User preference name.\n* $2 - Failure message, such as {{msg-mw|apiwarn-validationfailed-badpref}}. Probably already ends with punctuation",
 	"apiwarn-wgdebugapi": "{{doc-apierror}}",
 	"api-feed-error-title": "Used as a feed item title when an error occurs in <kbd>action=feedwatchlist</kbd>.\n\nParameters:\n* $1 - API error code\n{{Identical|Error}}",

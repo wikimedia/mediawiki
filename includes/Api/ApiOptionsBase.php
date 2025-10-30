@@ -10,9 +10,11 @@ namespace MediaWiki\Api;
 
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Message\Message;
 use MediaWiki\Preferences\DefaultPreferencesFactory;
 use MediaWiki\Preferences\PreferencesFactory;
+use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\Options\UserOptionsManager;
 use MediaWiki\User\User;
 use Wikimedia\ParamValidator\ParamValidator;
@@ -38,6 +40,7 @@ abstract class ApiOptionsBase extends ApiBase {
 
 	/** @var string[]|null */
 	private $prefsKinds;
+	private int $userJsLimit;
 
 	public function __construct(
 		ApiMain $main,
@@ -48,6 +51,7 @@ abstract class ApiOptionsBase extends ApiBase {
 		parent::__construct( $main, $action );
 		$this->userOptionsManager = $userOptionsManager;
 		$this->preferencesFactory = $preferencesFactory;
+		$this->userJsLimit = $this->getConfig()->get( MainConfigNames::UserJsPrefLimit );
 	}
 
 	/**
@@ -203,6 +207,11 @@ abstract class ApiOptionsBase extends ApiBase {
 					$validation = $this->msg( 'apiwarn-validationfailed-keytoolong', Message::numParam( 255 ) );
 				} elseif ( preg_match( '/[^a-zA-Z0-9_-]/', $key ) !== 0 ) {
 					$validation = $this->msg( 'apiwarn-validationfailed-badchars' );
+				} elseif ( $this->countUserJsOptions() >= $this->userJsLimit ) {
+					$validation = $this->msg(
+						'apiwarn-validationfailed-toomanyuserjs',
+						Message::numParam( $this->userJsLimit )
+					);
 				} else {
 					$validation = true;
 				}
@@ -238,6 +247,20 @@ abstract class ApiOptionsBase extends ApiBase {
 			);
 		}
 		return $validation;
+	}
+
+	private function countUserJsOptions(): int {
+		$options = $this->userOptionsManager->getOptions(
+			$this->getUserFromPrimary(),
+			UserOptionsLookup::EXCLUDE_DEFAULTS
+		);
+		$userJsCount = 0;
+		foreach ( $options as $prefName => $value ) {
+			if ( str_starts_with( $prefName, 'userjs-' ) ) {
+				$userJsCount += 1;
+			}
+		}
+		return $userJsCount;
 	}
 
 	/**

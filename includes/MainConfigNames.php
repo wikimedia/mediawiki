@@ -2655,6 +2655,12 @@ class MainConfigNames {
 	public const HiddenPrefs = 'HiddenPrefs';
 
 	/**
+	 * Name constant for the UserJsPrefLimit setting, for use with Config::get()
+	 * @see MainConfigSchema::UserJsPrefLimit
+	 */
+	public const UserJsPrefLimit = 'UserJsPrefLimit';
+
+	/**
 	 * Name constant for the InvalidUsernameCharacters setting, for use with Config::get()
 	 * @see MainConfigSchema::InvalidUsernameCharacters
 	 */

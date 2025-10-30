@@ -4865,6 +4865,10 @@ config-schema:
         default: []
         type: array
         description: 'An array of preferences to not show for the user'
+    UserJsPrefLimit:
+        default: 100
+        type: integer
+        description: 'Maximum number of userjs preferences allowed for each user'
     InvalidUsernameCharacters:
         default: '@:>='
         description: |-
