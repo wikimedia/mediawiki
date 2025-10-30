@@ -103,7 +103,6 @@ class AutoLoader {
 		'MediaWiki\\User\\' => __DIR__ . '/user/',
 		'MediaWiki\\Watchlist\\' => __DIR__ . '/watchlist/',
 		'MediaWiki\\Widget\\' => __DIR__ . '/widget/',
-		'MediaWiki\\Xml\\' => __DIR__ . '/xml/',
 		'Wikimedia\\' => __DIR__ . '/libs/',
 		'Wikimedia\\DependencyStore\\' => __DIR__ . '/ResourceLoader/dependencystore/',
 		'Wikimedia\\EventRelayer\\' => __DIR__ . '/libs/eventrelayer/',
