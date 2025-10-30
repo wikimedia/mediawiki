@@ -111,7 +111,7 @@ $cfg['exclude_analysis_directory_list'] = [
 	'tests/phpunit/',
 	// The referenced classes are not available in vendor, only when
 	// included from composer.
-	'includes/composer/',
+	'includes/Composer/',
 	// Directly references classes that only exist in Translate extension
 	'maintenance/language/',
 	// External class
