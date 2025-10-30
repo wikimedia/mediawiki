@@ -87,7 +87,6 @@ class AutoLoader {
 		'MediaWiki\\Maintenance\\' => __DIR__ . '/../maintenance/includes/',
 		'MediaWiki\\Page\\' => __DIR__ . '/page/',
 		'MediaWiki\\Parser\\' => __DIR__ . '/parser/',
-		'MediaWiki\\Password\\' => __DIR__ . '/password/',
 		'MediaWiki\\Preferences\\' => __DIR__ . '/preferences/',
 		'MediaWiki\\Profiler\\' => __DIR__ . '/profiler/',
 		'MediaWiki\\RCFeed\\' => __DIR__ . '/recentchanges/RCFeed/',
