@@ -52,7 +52,6 @@ class AutoLoader {
 		'MediaWiki\\Cache\\' => __DIR__ . '/cache/',
 		'MediaWiki\\ChangeTags\\' => __DIR__ . '/changetags/',
 		'MediaWiki\\Collation\\' => __DIR__ . '/collation/',
-		'MediaWiki\\Config\\' => __DIR__ . '/config/',
 		'MediaWiki\\Content\\' => __DIR__ . '/content/',
 		'MediaWiki\\Context\\' => __DIR__ . '/context/',
 		'MediaWiki\\DB\\' => __DIR__ . '/db/',
