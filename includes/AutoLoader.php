@@ -56,7 +56,6 @@ class AutoLoader {
 		'MediaWiki\\Config\\' => __DIR__ . '/config/',
 		'MediaWiki\\Content\\' => __DIR__ . '/content/',
 		'MediaWiki\\Context\\' => __DIR__ . '/context/',
-		'MediaWiki\\DAO\\' => __DIR__ . '/dao/',
 		'MediaWiki\\DB\\' => __DIR__ . '/db/',
 		'MediaWiki\\Debug\\' => __DIR__ . '/debug/',
 		'MediaWiki\\Deferred\\' => __DIR__ . '/deferred/',
