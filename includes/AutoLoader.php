@@ -81,7 +81,6 @@ class AutoLoader {
 		'MediaWiki\\Logger\\Monolog\\' => __DIR__ . '/debug/logger/monolog/',
 		'MediaWiki\\Logging\\' => __DIR__ . '/logging/',
 		'MediaWiki\\Maintenance\\' => __DIR__ . '/../maintenance/includes/',
-		'MediaWiki\\Page\\' => __DIR__ . '/page/',
 		'MediaWiki\\Preferences\\' => __DIR__ . '/preferences/',
 		'MediaWiki\\Profiler\\' => __DIR__ . '/profiler/',
 		'MediaWiki\\RCFeed\\' => __DIR__ . '/recentchanges/RCFeed/',

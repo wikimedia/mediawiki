@@ -150,7 +150,7 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 	 *
 	 * @var array
 	 * @phpcs:ignore Generic.Files.LineLength
-	 * @phan-var array{changed:bool,created:bool,moved:bool,cause:string,oldrevision:null|RevisionRecord,triggeringUser:null|UserIdentity,oldredirect:bool|null|string,oldcountable:bool|null|string,causeAction:null|string,causeAgent:null|string,editResult:null|EditResult}
+	 * @phan-var array{changed:bool,created:bool,cause:string,oldrevision:null|RevisionRecord,triggeringUser:null|UserIdentity,oldredirect:bool|null|string,oldcountable:bool|null|string,causeAction:null|string,causeAgent:null|string,editResult:null|EditResult,newrev:bool,oldtitle:null|PageIdentity,rcPatrolStatus:int,tags:array<string>,reason:null|string,emitEvents:bool}
 	 */
 	private $options = [
 		'changed' => true,
@@ -1448,7 +1448,6 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 			$this->isRedirect() || $this->wasRedirect()
 		);
 		if ( $this->options['cause'] === PageLatestRevisionChangedEvent::CAUSE_MOVE ) {
-			// @phan-suppress-next-line PhanTypeMismatchArgument Oldtitle is set along with moved
 			$linksUpdate->setMoveDetails( $this->options['oldtitle'] );
 		}
 

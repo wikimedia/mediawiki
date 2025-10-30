@@ -142,8 +142,8 @@ $wgAutoloadClasses += [
 	'MediaWiki\\Tests\\OutputTransform\\OutputTransformStageTestBase' => "$testDir/phpunit/includes/OutputTransform/OutputTransformStageTestBase.php",
 	'MediaWiki\\Tests\\OutputTransform\\Stages\\HandleTOCMarkersTestCommon' => "$testDir/phpunit/includes/OutputTransform/Stages/HandleTOCMarkersTestCommon.php",
 
-	# tests/phpunit/includes/page
-	'LinkCacheTestTrait' => "$testDir/phpunit/includes/page/LinkCacheTestTrait.php",
+	# tests/phpunit/includes/Page
+	'LinkCacheTestTrait' => "$testDir/phpunit/includes/Page/LinkCacheTestTrait.php",
 
 	# tests/phpunit/includes/Parser
 	'MediaWiki\\Tests\\Parser\\CacheTimeTest' => "$testDir/phpunit/includes/Parser/CacheTimeTest.php",
