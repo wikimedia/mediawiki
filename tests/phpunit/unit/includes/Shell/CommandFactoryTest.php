@@ -1,8 +1,11 @@
 <?php
 
+namespace MediaWiki\Tests\Unit\Shell;
+
 use MediaWiki\Shell\Command;
 use MediaWiki\Shell\CommandFactory;
 use MediaWiki\Shell\ShellboxClientFactory;
+use MediaWikiUnitTestCase;
 use Psr\Log\NullLogger;
 use Wikimedia\TestingAccessWrapper;
 

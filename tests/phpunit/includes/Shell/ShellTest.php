@@ -1,8 +1,11 @@
 <?php
 
+namespace MediaWiki\Tests\Shell;
+
 use MediaWiki\MainConfigNames;
 use MediaWiki\Shell\Command;
 use MediaWiki\Shell\Shell;
+use MediaWikiIntegrationTestCase;
 
 /**
  * @covers \MediaWiki\Shell\Shell

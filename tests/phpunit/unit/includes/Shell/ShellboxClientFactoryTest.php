@@ -1,7 +1,11 @@
 <?php
 
+namespace MediaWiki\Tests\Unit\Shell;
+
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Shell\ShellboxClientFactory;
+use MediaWikiUnitTestCase;
+use RuntimeException;
 use Shellbox\RPC\RpcClient;
 
 /**

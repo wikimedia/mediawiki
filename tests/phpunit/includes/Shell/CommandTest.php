@@ -1,14 +1,20 @@
 <?php
 
+namespace MediaWiki\Tests\Shell;
+
 use MediaWiki\Shell\Command;
 use MediaWiki\Shell\Shell;
+use MediaWikiCoversValidator;
+use MediaWikiTestCaseTrait;
+use PHPUnit\Framework\TestCase;
 use Shellbox\Shellbox;
+use TestLogger;
 
 /**
  * @covers \MediaWiki\Shell\Command
  * @group Shell
  */
-class CommandTest extends PHPUnit\Framework\TestCase {
+class CommandTest extends TestCase {
 
 	use MediaWikiCoversValidator;
 	use MediaWikiTestCaseTrait;
@@ -143,7 +149,7 @@ class CommandTest extends PHPUnit\Framework\TestCase {
 
 	public function testLogStderr() {
 		$logger = new TestLogger( true, static function ( $message, $level, $context ) {
-			return $level === Psr\Log\LogLevel::ERROR ? '1' : null;
+			return $level === \Psr\Log\LogLevel::ERROR ? '1' : null;
 		}, true );
 		$command = $this->getPhpCommand( 'echo_args.php' );
 		$command->setLogger( $logger );
