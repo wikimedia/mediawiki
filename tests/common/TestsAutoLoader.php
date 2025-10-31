@@ -19,7 +19,7 @@ $wgAutoloadClasses += [
 	# tests/exception
 	'TestThrowerDummy' => "$testDir/phpunit/data/exception/TestThrowerDummy.php",
 
-	# tests/parser
+	# tests/common/Parser
 	'DbTestPreviewer' => "$testDir/common/Parser/DbTestPreviewer.php",
 	'DbTestRecorder' => "$testDir/common/Parser/DbTestRecorder.php",
 	'DjVuSupport' => "$testDir/common/Parser/DjVuSupport.php",

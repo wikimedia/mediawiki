@@ -295,7 +295,7 @@ class ParserTestRunner {
 			}
 		} else {
 			// Auto-discover core test files
-			$ptDirs = [ 'core' => __DIR__ ];
+			$ptDirs = [ 'core' => __DIR__ . '/../../parser' ];
 
 			// Auto-discover extension parser tests
 			$registry = ExtensionRegistry::getInstance();
