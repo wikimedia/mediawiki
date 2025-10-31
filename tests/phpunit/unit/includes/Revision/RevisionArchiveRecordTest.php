@@ -2,13 +2,13 @@
 
 namespace MediaWiki\Tests\Unit\Revision;
 
-use DummyContentForTesting;
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Revision\RevisionArchiveRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionSlots;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Tests\Mocks\Content\DummyContentForTesting;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiUnitTestCase;
 

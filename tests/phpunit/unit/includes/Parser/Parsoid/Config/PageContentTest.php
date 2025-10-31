@@ -7,13 +7,13 @@ declare( strict_types = 1 );
 
 namespace MediaWiki\Tests\Unit\Parser\Parsoid\Config;
 
-use DummyContentForTesting;
 use InvalidArgumentException;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Parser\Parsoid\Config\PageContent;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Tests\Mocks\Content\DummyContentForTesting;
 use MediaWikiUnitTestCase;
 
 /**

@@ -13,6 +13,8 @@ use MediaWiki\Request\FauxRequest;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Tests\Mocks\Content\DummyContentHandlerForTesting;
+use MediaWiki\Tests\Mocks\Content\DummyNonTextContentHandler;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentityValue;
 

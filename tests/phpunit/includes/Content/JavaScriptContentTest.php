@@ -3,7 +3,6 @@ declare( strict_types = 1 );
 
 namespace MediaWiki\Tests\Content;
 
-use JavaScriptContentHandlerTest;
 use MediaWiki\Content\CssContent;
 use MediaWiki\Content\JavaScriptContent;
 use MediaWiki\MainConfigNames;

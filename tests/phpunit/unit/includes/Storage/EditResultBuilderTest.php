@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Tests\Storage;
 
-use DummyContentForTesting;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Revision\MutableRevisionRecord;
@@ -12,6 +11,7 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\EditResult;
 use MediaWiki\Storage\EditResultBuilder;
 use MediaWiki\Storage\PageUpdateException;
+use MediaWiki\Tests\Mocks\Content\DummyContentForTesting;
 use MediaWikiUnitTestCase;
 use MockTitleTrait;
 

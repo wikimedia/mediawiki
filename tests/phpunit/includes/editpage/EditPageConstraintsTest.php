@@ -11,6 +11,7 @@ use MediaWiki\Page\WikiPage;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Request\FauxRequest;
+use MediaWiki\Tests\Mocks\Content\DummyContentHandlerForTesting;
 use MediaWiki\Tests\Unit\MockBlockTrait;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\Title;
@@ -45,7 +46,7 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 		] );
 		$this->mergeMwGlobalArrayValue(
 			'wgContentHandlers',
-			[ 'testing' => 'DummyContentHandlerForTesting' ]
+			[ 'testing' => DummyContentHandlerForTesting::class ]
 		);
 	}
 

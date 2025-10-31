@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Tests\Parser;
 
-use DummyContentForTesting;
 use InvalidArgumentException;
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\IContextSource;
@@ -14,6 +13,7 @@ use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Tests\Mocks\Content\DummyContentForTesting;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;

@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\Tests\Content;
+
 use MediaWiki\Content\Renderer\ContentParseParams;
 use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\Linker\LinkTarget;

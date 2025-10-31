@@ -6,6 +6,8 @@ use MediaWiki\Context\RequestContext;
 use MediaWiki\Diff\TextDiffer\ManifoldTextDiffer;
 use MediaWiki\Diff\TextDiffer\Wikidiff2TextDiffer;
 use MediaWiki\Tests\Diff\TextDiffer\TextDifferData;
+use MediaWiki\Tests\Mocks\Content\DummyContentHandlerForTesting;
+use MediaWiki\Tests\Mocks\Content\DummyNonTextContentHandler;
 use Wikimedia\Assert\ParameterTypeException;
 use Wikimedia\Stats\StatsFactory;
 

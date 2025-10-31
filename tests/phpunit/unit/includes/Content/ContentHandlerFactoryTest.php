@@ -2,13 +2,13 @@
 
 namespace MediaWiki\Tests\Unit\Content;
 
-use DummyContentHandlerForTesting;
 use Error;
 use InvalidArgumentException;
 use MediaWiki\Content\ContentHandler;
 use MediaWiki\Content\ContentHandlerFactory;
 use MediaWiki\Exception\MWUnknownContentModelException;
 use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\Tests\Mocks\Content\DummyContentHandlerForTesting;
 use MediaWikiUnitTestCase;
 use Psr\Log\LogLevel;
 use TestLogger;

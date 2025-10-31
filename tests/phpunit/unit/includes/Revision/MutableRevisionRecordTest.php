@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Tests\Unit\Revision;
 
-use DummyContentForTesting;
 use InvalidArgumentException;
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Page\PageIdentity;
@@ -14,6 +13,7 @@ use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\RevisionSlotsUpdate;
+use MediaWiki\Tests\Mocks\Content\DummyContentForTesting;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiUnitTestCase;

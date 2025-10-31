@@ -1,5 +1,10 @@
 <?php
 
+namespace MediaWiki\Tests\Content;
+
+use DifferenceEngine;
+use DifferenceEngineSlotDiffRenderer;
+use DummySearchIndexFieldDefinition;
 use MediaWiki\Content\ContentHandler;
 use MediaWiki\Content\CssContentHandler;
 use MediaWiki\Content\JavaScriptContentHandler;
@@ -22,8 +27,13 @@ use MediaWiki\Parser\MagicWordFactory;
 use MediaWiki\Parser\ParserFactory;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\Parsoid\ParsoidParserFactory;
+use MediaWiki\Tests\Mocks\Content\DummyContentHandlerForTesting;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
+use MediaWikiIntegrationTestCase;
+use SearchEngine;
+use SlotDiffRenderer;
+use TextSlotDiffRenderer;
 use Wikimedia\TestingAccessWrapper;
 use Wikimedia\UUID\GlobalIdGenerator;
 

@@ -16,6 +16,7 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Status\Status;
 use MediaWiki\Storage\EditResult;
+use MediaWiki\Tests\Mocks\Content\DummyContentHandlerForTesting;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\User\StaticUserOptionsLookup;
@@ -46,7 +47,7 @@ class EditPageTest extends MediaWikiLangTestCase {
 			],
 			MainConfigNames::NamespaceContentModels => [ 12312 => 'testing' ],
 			MainConfigNames::ContentHandlers =>
-				[ 'testing' => 'DummyContentHandlerForTesting' ] +
+				[ 'testing' => DummyContentHandlerForTesting::class ] +
 				MainConfigSchema::getDefaultValue( MainConfigNames::ContentHandlers ),
 		] );
 

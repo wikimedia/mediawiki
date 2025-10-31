@@ -3,6 +3,8 @@
  * @license GPL-2.0-or-later
  */
 
+namespace MediaWiki\Tests\Mocks\Content;
+
 use MediaWiki\Content\Content;
 use MediaWiki\Exception\MWContentSerializationException;
 

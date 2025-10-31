@@ -1,8 +1,11 @@
 <?php
 
+namespace MediaWiki\Tests\Content;
+
 use MediaWiki\Content\JavaScriptContent;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
+use MediaWikiLangTestCase;
 
 /**
  * @covers \MediaWiki\Content\JavaScriptContentHandler

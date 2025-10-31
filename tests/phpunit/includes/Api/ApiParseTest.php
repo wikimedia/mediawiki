@@ -15,6 +15,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Skin\SkinFactory;
 use MediaWiki\Skin\SkinFallback;
+use MediaWiki\Tests\Mocks\Content\DummySerializeErrorContentHandler;
 use MediaWiki\Tests\Mocks\PoolCounter\MockPoolCounterFailing;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\Title\TitleValue;
@@ -499,7 +500,7 @@ class ApiParseTest extends ApiTestCase {
 		$this->expectApiErrorCode( 'parseerror' );
 
 		$this->mergeMwGlobalArrayValue( 'wgContentHandlers',
-			[ 'testing-serialize-error' => 'DummySerializeErrorContentHandler' ] );
+			[ 'testing-serialize-error' => DummySerializeErrorContentHandler::class ] );
 
 		$this->doApiRequest( [
 			'action' => 'parse',

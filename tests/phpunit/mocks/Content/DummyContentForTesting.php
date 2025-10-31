@@ -1,15 +1,19 @@
 <?php
 
+namespace MediaWiki\Tests\Mocks\Content;
+
 use MediaWiki\Content\AbstractContent;
 use MediaWiki\Content\Content;
 
-class DummyNonTextContent extends AbstractContent {
+class DummyContentForTesting extends AbstractContent {
+
+	public const MODEL_ID = "testing";
 
 	/** @var mixed */
 	private $data;
 
 	public function __construct( mixed $data ) {
-		parent::__construct( "testing-nontext" );
+		parent::__construct( self::MODEL_ID );
 
 		$this->data = $data;
 	}
@@ -97,3 +101,5 @@ class DummyNonTextContent extends AbstractContent {
 		return false;
 	}
 }
+// @deprecated since 1.46
+class_alias( DummyContentForTesting::class, 'DummyContentForTesting' );

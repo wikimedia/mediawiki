@@ -2,10 +2,10 @@
 
 namespace MediaWiki\Tests\Maintenance;
 
-use DummyNonTextContent;
-use DummyNonTextContentHandler;
 use MediaWiki\Content\TextContent;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Tests\Mocks\Content\DummyNonTextContent;
+use MediaWiki\Tests\Mocks\Content\DummyNonTextContentHandler;
 use ViewCLI;
 
 /**

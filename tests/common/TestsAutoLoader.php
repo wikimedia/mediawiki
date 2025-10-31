@@ -103,20 +103,21 @@ $wgAutoloadClasses += [
 	'LoggedServiceOptions' => "$testDir/phpunit/includes/Config/LoggedServiceOptions.php",
 
 	# tests/phpunit/includes/Content
+	'DummyNonTextContent' => "$testDir/phpunit/mocks/Content/DummyNonTextContent.php",
+	'DummyContentForTesting' => "$testDir/phpunit/mocks/Content/DummyContentForTesting.php",
 	'MediaWiki\\Tests\\Content\\CssContentTest' => "$testDir/phpunit/includes/Content/CssContentTest.php",
-	'DummyContentHandlerForTesting' =>
-		"$testDir/phpunit/mocks/content/DummyContentHandlerForTesting.php",
-	'DummyContentForTesting' => "$testDir/phpunit/mocks/content/DummyContentForTesting.php",
-	'DummyNonTextContentHandler' => "$testDir/phpunit/mocks/content/DummyNonTextContentHandler.php",
-	'DummyNonTextContent' => "$testDir/phpunit/mocks/content/DummyNonTextContent.php",
-	'DummySerializeErrorContentHandler' =>
-		"$testDir/phpunit/mocks/content/DummySerializeErrorContentHandler.php",
+	'MediaWiki\\Tests\\Mocks\\Content\\DummyContentHandlerForTesting' =>
+		"$testDir/phpunit/mocks/Content/DummyContentHandlerForTesting.php",
+	'MediaWiki\\Tests\\Mocks\\Content\\DummyContentForTesting' => "$testDir/phpunit/mocks/Content/DummyContentForTesting.php",
+	'MediaWiki\\Tests\\Mocks\\Content\\DummyNonTextContentHandler' => "$testDir/phpunit/mocks/Content/DummyNonTextContentHandler.php",
+	'MediaWiki\\Tests\\Mocks\\Content\\DummyNonTextContent' => "$testDir/phpunit/mocks/Content/DummyNonTextContent.php",
+	'MediaWiki\\Tests\\Mocks\\Content\\DummySerializeErrorContentHandler' =>
+		"$testDir/phpunit/mocks/Content/DummySerializeErrorContentHandler.php",
 	'MediaWiki\\Tests\\Content\\JavaScriptContentTest' => "$testDir/phpunit/includes/Content/JavaScriptContentTest.php",
-	'TextContentTest' => "$testDir/phpunit/includes/Content/TextContentTest.php",
 	'MediaWiki\\Tests\\Content\\TextContentTest' => "$testDir/phpunit/includes/Content/TextContentTest.php",
-	'TextContentHandlerIntegrationTest' => "$testDir/phpunit/includes/Content/TextContentHandlerIntegrationTest.php",
+	'MediaWiki\\Tests\\Content\\TextContentHandlerIntegrationTest' => "$testDir/phpunit/includes/Content/TextContentHandlerIntegrationTest.php",
 	'MediaWiki\\Tests\\Content\\WikitextContentTest' => "$testDir/phpunit/includes/Content/WikitextContentTest.php",
-	'JavaScriptContentHandlerTest' => "$testDir/phpunit/includes/Content/JavaScriptContentHandlerTest.php",
+	'MediaWiki\\Tests\\Content\\JavaScriptContentHandlerTest' => "$testDir/phpunit/includes/Content/JavaScriptContentHandlerTest.php",
 	'MediaWiki\\Tests\\Content\\ContentSerializationTestTrait' => "$testDir/phpunit/includes/Content/ContentSerializationTestTrait.php",
 
 	# tests/phpunit/includes/DB

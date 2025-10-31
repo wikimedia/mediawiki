@@ -1,6 +1,9 @@
 <?php
 
+namespace MediaWiki\Tests\Content;
+
 use MediaWiki\Parser\ParserOutputLinkTypes;
+use MediaWiki\Title\TitleValue;
 
 /**
  * @group ContentHandler

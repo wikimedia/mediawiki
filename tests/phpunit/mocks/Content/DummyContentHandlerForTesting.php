@@ -1,14 +1,22 @@
 <?php
 
+namespace MediaWiki\Tests\Mocks\Content;
+
 use MediaWiki\Content\Content;
+use MediaWiki\Content\ContentHandler;
 use MediaWiki\Content\Renderer\ContentParseParams;
 use MediaWiki\Parser\ParserOutput;
 
-class DummyNonTextContentHandler extends DummyContentHandlerForTesting {
+class DummyContentHandlerForTesting extends ContentHandler {
 
 	/** @inheritDoc */
-	public function __construct( $dataModel ) {
-		parent::__construct( $dataModel, [ "testing-nontext" ] );
+	public function __construct( $dataModel, $formats = [ DummyContentForTesting::MODEL_ID ] ) {
+		parent::__construct( $dataModel, $formats );
+	}
+
+	/** @inheritDoc */
+	protected function getContentClass() {
+		return DummyContentForTesting::class;
 	}
 
 	/**
@@ -32,20 +40,19 @@ class DummyNonTextContentHandler extends DummyContentHandlerForTesting {
 	 * @return Content
 	 */
 	public function unserializeContent( $blob, $format = null ) {
-		return new DummyNonTextContent( $blob );
+		return new DummyContentForTesting( $blob );
 	}
 
 	/**
 	 * Creates an empty Content object of the type supported by this ContentHandler.
-	 * @return DummyNonTextContent
+	 * @return DummyContentForTesting
 	 */
 	public function makeEmptyContent() {
-		return new DummyNonTextContent( '' );
+		return new DummyContentForTesting( '' );
 	}
 
-	/** @inheritDoc */
-	public function supportsDirectApiEditing() {
-		return true;
+	public function generateHTMLOnEdit(): bool {
+		return false;
 	}
 
 	/**
@@ -59,7 +66,7 @@ class DummyNonTextContentHandler extends DummyContentHandlerForTesting {
 		ContentParseParams $cpoParams,
 		ParserOutput &$output
 	) {
-			'@phan-var DummyNonTextContent $content';
-			$output = new ParserOutput( $content->serialize() );
+			'@phan-var DummyContentForTesting $content';
+			$output = new ParserOutput( $content->getNativeData() );
 	}
 }

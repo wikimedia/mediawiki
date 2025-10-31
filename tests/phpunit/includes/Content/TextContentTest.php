@@ -292,4 +292,3 @@ class TextContentTest extends MediaWikiLangTestCase {
 	}
 
 }
-class_alias( TextContentTest::class, 'TextContentTest' );

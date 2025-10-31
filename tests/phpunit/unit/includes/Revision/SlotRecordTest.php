@@ -2,12 +2,12 @@
 
 namespace MediaWiki\Tests\Revision;
 
-use DummyContentForTesting;
 use InvalidArgumentException;
 use LogicException;
 use MediaWiki\Revision\IncompleteRevisionException;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SuppressedDataException;
+use MediaWiki\Tests\Mocks\Content\DummyContentForTesting;
 use MediaWikiUnitTestCase;
 
 /**

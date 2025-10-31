@@ -1,10 +1,13 @@
 <?php
 
+namespace MediaWiki\Tests\Content;
+
 use MediaWiki\Content\Content;
 use MediaWiki\Content\FallbackContent;
 use MediaWiki\Content\FallbackContentHandler;
 use MediaWiki\Content\JavaScriptContent;
 use MediaWiki\Content\WikitextContent;
+use MediaWikiLangTestCase;
 
 /**
  * @group ContentHandler

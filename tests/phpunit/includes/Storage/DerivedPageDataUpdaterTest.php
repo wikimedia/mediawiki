@@ -3,7 +3,6 @@
 namespace MediaWiki\Tests\Storage;
 
 use ArrayUtils;
-use DummyContentHandlerForTesting;
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\Content;
@@ -39,6 +38,7 @@ use MediaWiki\Storage\EditResult;
 use MediaWiki\Storage\EditResultCache;
 use MediaWiki\Storage\RevisionSlotsUpdate;
 use MediaWiki\Tests\ExpectCallbackTrait;
+use MediaWiki\Tests\Mocks\Content\DummyContentHandlerForTesting;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;

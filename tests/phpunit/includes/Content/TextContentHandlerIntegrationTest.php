@@ -1,9 +1,12 @@
 <?php
 
+namespace MediaWiki\Tests\Content;
+
 use MediaWiki\Content\ContentHandler;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutputLinkTypes;
 use MediaWiki\Title\Title;
+use MediaWikiLangTestCase;
 use Wikimedia\Parsoid\ParserTests\TestUtils;
 
 /**

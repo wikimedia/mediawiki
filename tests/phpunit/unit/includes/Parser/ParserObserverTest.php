@@ -2,10 +2,10 @@
 
 namespace MediaWiki\Tests\Parser;
 
-use DummyContentForTesting;
 use MediaWiki\Parser\ParserObserver;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
+use MediaWiki\Tests\Mocks\Content\DummyContentForTesting;
 use MediaWiki\Title\Title;
 use MediaWikiUnitTestCase;
 use TestLogger;
