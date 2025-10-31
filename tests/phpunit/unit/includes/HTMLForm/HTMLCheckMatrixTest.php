@@ -1,10 +1,13 @@
 <?php
 
+namespace MediaWiki\Tests\Unit\HTMLForm;
+
 use MediaWiki\HTMLForm\Field\HTMLCheckMatrix;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\HTMLForm\HTMLFormField;
 use MediaWiki\HTMLForm\HTMLFormFieldRequiredOptionsException;
 use MediaWiki\Message\Message;
+use MediaWikiUnitTestCase;
 
 /**
  * @covers \MediaWiki\HTMLForm\Field\HTMLCheckMatrix

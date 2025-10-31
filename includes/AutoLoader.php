@@ -63,8 +63,6 @@ class AutoLoader {
 		'MediaWiki\\FileBackend\\LockManager\\' => __DIR__ . '/filebackend/lockmanager/',
 		'MediaWiki\\FileRepo\\' => __DIR__ . '/filerepo/',
 		'MediaWiki\\FileRepo\\File\\' => __DIR__ . '/filerepo/file/',
-		'MediaWiki\\HTMLForm\\' => __DIR__ . '/htmlform/',
-		'MediaWiki\\HTMLForm\\Field\\' => __DIR__ . '/htmlform/fields/',
 		'MediaWiki\\Http\\' => __DIR__ . '/http/',
 		'MediaWiki\\Installer\\' => __DIR__ . '/installer/',
 		'MediaWiki\\Interwiki\\' => __DIR__ . '/interwiki/',
