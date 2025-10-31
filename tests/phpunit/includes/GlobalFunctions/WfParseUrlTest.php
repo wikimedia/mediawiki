@@ -28,7 +28,7 @@ class WfParseUrlTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * Same tests as the UrlUtils method
-	 * @dataProvider UrlUtilsProviders::provideParse
+	 * @dataProvider \MediaWiki\Tests\Unit\Utils\UrlUtilsProviders::provideParse
 	 */
 	public function testWfParseUrl( $url, $parts ) {
 		$this->hideDeprecated( 'wfParseUrl' );

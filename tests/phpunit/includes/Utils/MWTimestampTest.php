@@ -1,9 +1,12 @@
 <?php
 
+namespace MediaWiki\Tests\Utils;
+
 use MediaWiki\MainConfigNames;
 use MediaWiki\User\Options\StaticUserOptionsLookup;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\Utils\MWTimestamp;
+use MediaWikiLangTestCase;
 
 /**
  * @covers \MediaWiki\Utils\MWTimestamp

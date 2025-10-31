@@ -1,9 +1,14 @@
 <?php
 
+namespace MediaWiki\Tests\Utils;
+
+use FileContentsHasher;
+use MediaWikiCoversValidator;
+
 /**
  * @covers \FileContentsHasher
  */
-class FileContentsHasherTest extends PHPUnit\Framework\TestCase {
+class FileContentsHasherTest extends \PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 

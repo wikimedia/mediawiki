@@ -6,7 +6,7 @@
 class WfAssembleUrlTest extends MediaWikiUnitTestCase {
 	/**
 	 * Same tests as the UrlUtils method to ensure they don't fall out of sync
-	 * @dataProvider UrlUtilsProviders::provideAssemble
+	 * @dataProvider \MediaWiki\Tests\Unit\Utils\UrlUtilsProviders::provideAssemble
 	 */
 	public function testWfAssembleUrl( $parts, $output ) {
 		$this->hideDeprecated( 'wfAssembleUrl' );

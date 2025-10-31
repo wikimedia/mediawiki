@@ -310,8 +310,8 @@ $wgAutoloadClasses += [
 	'Wikimedia\\Tests\\Message\\ScalarParamTest' => "$testDir/phpunit/unit/includes/libs/Message/ScalarParamTest.php",
 	'Wikimedia\\Tests\\Message\\T377912TestCase' => "$testDir/phpunit/unit/includes/libs/Message/T377912TestCase.php",
 
-	# tests/phpunit/unit/includes/utils
-	'UrlUtilsProviders' => "$testDir/phpunit/unit/includes/utils/UrlUtilsProviders.php",
+	# tests/phpunit/unit/includes/Utils
+	'MediaWiki\\Tests\\Unit\\Utils\\UrlUtilsProviders' => "$testDir/phpunit/unit/includes/Utils/UrlUtilsProviders.php",
 
 	# tests/phpunit/unit/includes/password
 	'PasswordTestCase' => "$testDir/phpunit/unit/includes/password/PasswordTestCase.php",

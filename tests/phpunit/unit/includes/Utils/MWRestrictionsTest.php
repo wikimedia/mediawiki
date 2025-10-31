@@ -1,8 +1,14 @@
 <?php
 
+namespace MediaWiki\Tests\Unit\Utils;
+
+use InvalidArgumentException;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Status\Status;
+use MediaWikiUnitTestCase;
+use MWRestrictions;
+use StatusValue;
 
 class MWRestrictionsTest extends MediaWikiUnitTestCase {
 

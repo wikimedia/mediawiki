@@ -1,5 +1,10 @@
 <?php
 
+namespace MediaWiki\Tests\Unit\Utils;
+
+use BadMethodCallException;
+use Exception;
+use Generator;
 use MediaWiki\Utils\UrlUtils;
 use Wikimedia\ArrayUtils\ArrayUtils;
 

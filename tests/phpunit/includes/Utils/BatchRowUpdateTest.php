@@ -1,5 +1,12 @@
 <?php
 
+namespace MediaWiki\Tests\Utils;
+
+use BatchRowIterator;
+use BatchRowWriter;
+use MediaWikiIntegrationTestCase;
+use ReflectionClass;
+use ReflectionMethod;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\Platform\SQLPlatform;
 use Wikimedia\Rdbms\SelectQueryBuilder;
@@ -240,7 +247,7 @@ class BatchRowUpdateTest extends MediaWikiIntegrationTestCase {
 	protected function mockDb( $methods = [] ) {
 		// @TODO: mock from Database
 		// FIXME: the constructor normally sets mAtomicLevels and mSrvCache, and platform
-		$databaseMysql = $this->getMockBuilder( Wikimedia\Rdbms\DatabaseMySQL::class )
+		$databaseMysql = $this->getMockBuilder( \Wikimedia\Rdbms\DatabaseMySQL::class )
 			->disableOriginalConstructor()
 			->onlyMethods( array_merge( [ 'isOpen' ], $methods ) )
 			->getMock();

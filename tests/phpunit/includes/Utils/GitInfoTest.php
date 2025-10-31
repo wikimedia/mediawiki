@@ -1,7 +1,10 @@
 <?php
 
+namespace MediaWiki\Tests\Utils;
+
 use MediaWiki\MainConfigNames;
 use MediaWiki\Utils\GitInfo;
+use MediaWikiIntegrationTestCase;
 
 /**
  * @covers \MediaWiki\Utils\GitInfo
