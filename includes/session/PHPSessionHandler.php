@@ -199,7 +199,19 @@ class PHPSessionHandler implements SessionHandlerInterface {
 			throw new \BadMethodCallException( 'Attempt to use PHP session management' );
 		}
 
-		$session = $this->manager->getSessionById( $id, false );
+		// NOTE: PHPUnit tests also run in CLI mode, so we need to ignore them
+		// otherwise tests will break in CI.
+		if ( wfIsCLI() && !defined( 'MW_PHPUNIT_TEST' ) ) {
+			// T405450: Don't reuse a reference of the cached session manager
+			// object in command-line mode when spawning child processes. Always
+			// get a fresh instance. This is because during service reset, there
+			// could be references to services container that is disabled.
+			$session = MediaWikiServices::getInstance()->getSessionManager()
+				->getSessionById( $id, false );
+		} else {
+			$session = $this->manager->getSessionById( $id, false );
+		}
+
 		if ( !$session ) {
 			return '';
 		}
