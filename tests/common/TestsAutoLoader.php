@@ -169,10 +169,10 @@ $wgAutoloadClasses += [
 	'MediaWiki\\Tests\\Session\\TestBagOStuff' => "$testDir/phpunit/includes/session/TestBagOStuff.php",
 	'MediaWiki\\Tests\\Session\\TestUtils' => "$testDir/phpunit/includes/session/TestUtils.php",
 
-	# tests/phpunit/includes/site
-	'TestSites' => "$testDir/phpunit/includes/site/TestSites.php",
-	'MediaWiki\\Tests\\Site\\SiteTest' => "$testDir/phpunit/includes/site/SiteTest.php",
-	'MediaWiki\\Tests\\Site\\TestSites' => "$testDir/phpunit/includes/site/TestSites.php",
+	# tests/phpunit/includes/Site
+	'TestSites' => "$testDir/phpunit/includes/Site/TestSites.php",
+	'MediaWiki\\Tests\\Site\\SiteTest' => "$testDir/phpunit/includes/Site/SiteTest.php",
+	'MediaWiki\\Tests\\Site\\TestSites' => "$testDir/phpunit/includes/Site/TestSites.php",
 
 	# tests/phpunit/includes/specialpage
 	'MediaWiki\\Tests\\SpecialPage\\SpecialPageTestHelper' => "$testDir/phpunit/includes/specialpage/SpecialPageTestHelper.php",

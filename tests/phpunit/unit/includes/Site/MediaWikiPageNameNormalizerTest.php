@@ -3,7 +3,7 @@
  * @license GPL-2.0-or-later
  * @file
  */
-namespace MediaWiki\Tests\Site;
+namespace MediaWiki\Tests\Unit\Site;
 
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Site\MediaWikiPageNameNormalizer;
