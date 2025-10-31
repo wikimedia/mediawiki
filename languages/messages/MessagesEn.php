@@ -562,6 +562,7 @@ $specialPageAliases = [
 	'Wantedpages'                => [ 'WantedPages', 'BrokenLinks' ],
 	'Wantedtemplates'            => [ 'WantedTemplates' ],
 	'Watchlist'                  => [ 'Watchlist' ],
+	'WatchlistLabels'            => [ 'WatchlistLabels' ],
 	'Whatlinkshere'              => [ 'WhatLinksHere' ],
 	'Withoutinterwiki'           => [ 'WithoutInterwiki' ],
 ];

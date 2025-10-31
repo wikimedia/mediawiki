@@ -30,6 +30,7 @@ use MediaWiki\User\UserIdentityUtils;
 use MediaWiki\Watchlist\WatchedItem;
 use MediaWiki\Watchlist\WatchedItemStoreInterface;
 use MediaWiki\Watchlist\WatchlistManager;
+use MediaWiki\Watchlist\WatchlistSpecialPage;
 use MediaWiki\Xml\XmlSelect;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Rdbms\IResultWrapper;
@@ -47,9 +48,13 @@ use Wikimedia\Rdbms\IResultWrapper;
  */
 class SpecialWatchlist extends ChangesListSpecialPage {
 
+	use WatchlistSpecialPage;
+
+	// @todo Move this to WatchlistSpecialPage trait.
 	public const WATCHLIST_TAB_PATHS = [
 		'Special:Watchlist',
 		'Special:EditWatchlist',
+		'Special:WatchlistLabels',
 		'Special:EditWatchlist/raw',
 		'Special:EditWatchlist/clear'
 	];
@@ -462,40 +467,6 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	}
 
 	/**
-	 * @inheritDoc
-	 */
-	public function getAssociatedNavigationLinks() {
-		return self::WATCHLIST_TAB_PATHS;
-	}
-
-	/**
-	 * @param SpecialPage $specialPage
-	 * @param string $path
-	 * @return string
-	 */
-	public static function getShortDescriptionHelper( SpecialPage $specialPage, string $path = '' ): string {
-		switch ( $path ) {
-			case 'Watchlist':
-				return $specialPage->msg( 'watchlisttools-view' )->text();
-			case 'EditWatchlist':
-				return $specialPage->msg( 'watchlisttools-edit' )->text();
-			case 'EditWatchlist/raw':
-				return $specialPage->msg( 'watchlisttools-raw' )->text();
-			case 'EditWatchlist/clear':
-				return $specialPage->msg( 'watchlisttools-clear' )->text();
-			default:
-				return $path;
-		}
-	}
-
-	/**
-	 * @inheritDoc
-	 */
-	public function getShortDescription( string $path = '' ): string {
-		return self::getShortDescriptionHelper( $this, $path );
-	}
-
-	/**
 	 * Set the text to be displayed above the changes
 	 *
 	 * @param FormOptions $opts
@@ -514,19 +485,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 					$this->currentMode
 				);
 
-		$out->addSubtitle(
-			Html::element(
-				'span',
-				[
-					'class' => 'mw-watchlist-owner'
-				],
-				// Previously the watchlistfor2 message took 2 parameters.
-				// It now only takes 1 so empty string is passed.
-				// Empty string parameter can be removed when all messages
-				// are updated to not use $2
-				$this->msg( 'watchlistfor2', $this->getUser()->getName(), '' )->text()
-			) . $subpageSubtitle
-		);
+		$out->addSubtitle( $this->getWatchlistOwnerHtml() . $subpageSubtitle );
 
 		$this->setTopText( $opts );
 

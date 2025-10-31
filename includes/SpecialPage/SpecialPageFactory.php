@@ -156,6 +156,7 @@ use MediaWiki\Specials\SpecialWantedFiles;
 use MediaWiki\Specials\SpecialWantedPages;
 use MediaWiki\Specials\SpecialWantedTemplates;
 use MediaWiki\Specials\SpecialWatchlist;
+use MediaWiki\Specials\SpecialWatchlistLabels;
 use MediaWiki\Specials\SpecialWhatLinksHere;
 use MediaWiki\Specials\SpecialWithoutInterwiki;
 use MediaWiki\Title\Title;
@@ -724,6 +725,11 @@ class SpecialPageFactory {
 				'TempUserConfig',
 				'RecentChangeFactory',
 				'ChangesListQueryFactory',
+			]
+		],
+		'WatchlistLabels' => [
+			'class' => SpecialWatchlistLabels::class,
+			'services' => [
 			]
 		],
 		'Newpages' => [

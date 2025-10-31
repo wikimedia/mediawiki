@@ -33,6 +33,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleParser;
 use MediaWiki\Watchlist\WatchedItemStoreInterface;
 use MediaWiki\Watchlist\WatchlistManager;
+use MediaWiki\Watchlist\WatchlistSpecialPage;
 
 /**
  * Users can edit their watchlist via this page.
@@ -42,6 +43,8 @@ use MediaWiki\Watchlist\WatchlistManager;
  * @author Rob Church <robchur@gmail.com>
  */
 class SpecialEditWatchlist extends UnlistedSpecialPage {
+
+	use WatchlistSpecialPage;
 
 	/**
 	 * Editing modes. EDIT_CLEAR is no longer used; the "Clear" link scared people
@@ -184,33 +187,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 					$this->getLinkRenderer(),
 					$this->currentMode
 				);
-		$out->addSubtitle(
-			Html::element(
-				'span',
-				[
-					'class' => 'mw-watchlist-owner'
-				],
-				// Previously the watchlistfor2 message took 2 parameters.
-				// It now only takes 1 so empty string is passed.
-				// Empty string parameter can be removed when all messages
-				// are updated to not use $2
-				$this->msg( 'watchlistfor2', $this->getUser()->getName(), '' )->text()
-			) . $subpageSubtitle
-		);
-	}
-
-	/**
-	 * @inheritDoc
-	 */
-	public function getAssociatedNavigationLinks() {
-		return SpecialWatchlist::WATCHLIST_TAB_PATHS;
-	}
-
-	/**
-	 * @inheritDoc
-	 */
-	public function getShortDescription( string $path = '' ): string {
-		return SpecialWatchlist::getShortDescriptionHelper( $this, $path );
+		$out->addSubtitle( $this->getWatchlistOwnerHtml() . $subpageSubtitle );
 	}
 
 	/**
