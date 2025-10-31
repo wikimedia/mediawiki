@@ -22,6 +22,7 @@ use MediaWiki\Revision\RevisionRenderer;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Status\Status;
+use MediaWiki\Tests\Mocks\PoolCounter\MockPoolCounterFailing;
 use MediaWiki\Utils\MWTimestamp;
 use Psr\Log\NullLogger;
 use Wikimedia\ObjectCache\EmptyBagOStuff;

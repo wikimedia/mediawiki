@@ -15,9 +15,9 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Skin\SkinFactory;
 use MediaWiki\Skin\SkinFallback;
+use MediaWiki\Tests\Mocks\PoolCounter\MockPoolCounterFailing;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\Title\TitleValue;
-use MockPoolCounterFailing;
 
 /**
  * @group API

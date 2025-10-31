@@ -1,6 +1,10 @@
 <?php
 
+namespace MediaWiki\Tests\Unit\PoolCounter;
+
 use MediaWiki\PoolCounter\PoolCounter;
+use MediaWikiUnitTestCase;
+use ReflectionMethod;
 
 /**
  * @covers \MediaWiki\PoolCounter\PoolCounter

@@ -4,6 +4,8 @@
  * @file
  */
 
+namespace MediaWiki\Tests\Mocks\PoolCounter;
+
 use MediaWiki\PoolCounter\PoolCounter;
 use MediaWiki\Status\Status;
 

@@ -7,12 +7,16 @@
  * @file
  */
 
+namespace MediaWiki\Tests\Integration\PoolCounter;
+
 use MediaWiki\PoolCounter\PoolCounter;
 use MediaWiki\PoolCounter\PoolCounterWork;
 use MediaWiki\Status\Status;
+use MediaWikiIntegrationTestCase;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\MockObject\Stub\Stub;
 use Psr\Log\LoggerInterface;
+use RuntimeException;
 use Wikimedia\TestingAccessWrapper;
 
 /**
