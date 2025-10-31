@@ -372,7 +372,6 @@ class LocalisationCache {
 			return $this->shallowFallbacks[$code];
 		}
 
-		// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 		return $this->data[$code][$key];
 	}
 
@@ -643,7 +642,6 @@ class LocalisationCache {
 
 		if ( isset( $this->data[$code] ) ) {
 			foreach ( $preload as $key => $value ) {
-				// @phan-suppress-next-line PhanTypeArraySuspiciousNullable -- see isset() above
 				$this->mergeItem( $key, $this->data[$code][$key], $value );
 			}
 		} else {
@@ -1035,7 +1033,6 @@ class LocalisationCache {
 		$coreData['deps'] = $deps;
 		foreach ( $coreData as $key => $item ) {
 			$this->data[$code][$key] ??= null;
-			// @phan-suppress-next-line PhanTypeArraySuspiciousNullable -- we just set a default null
 			$this->mergeItem( $key, $this->data[$code][$key], $item );
 			if (
 				in_array( $key, self::CORE_ONLY_KEYS, true ) ||
@@ -1074,7 +1071,6 @@ class LocalisationCache {
 		$this->coreDataLoaded[$code] = false;
 		$this->loadCoreData( $code );
 		$coreData = $this->data[$code];
-		// @phan-suppress-next-line PhanTypeArraySuspiciousNullable -- guaranteed by loadCoreData()
 		$deps = $coreData['deps'];
 		$coreData += $this->readPluralFilesAndRegisterDeps( $code, $deps );
 

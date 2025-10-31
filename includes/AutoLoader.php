@@ -47,7 +47,6 @@ class AutoLoader {
 		'MediaWiki\\' => __DIR__ . '/',
 		'MediaWiki\\Actions\\' => __DIR__ . '/actions/',
 		'MediaWiki\\Api\\' => __DIR__ . '/api/',
-		'MediaWiki\\Auth\\' => __DIR__ . '/auth/',
 		'MediaWiki\\Block\\' => __DIR__ . '/block/',
 		'MediaWiki\\Cache\\' => __DIR__ . '/cache/',
 		'MediaWiki\\ChangeTags\\' => __DIR__ . '/changetags/',

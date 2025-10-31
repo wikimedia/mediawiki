@@ -85,11 +85,11 @@ $wgAutoloadClasses += [
 	'MediaWiki\\Tests\\Api\\MockApiQueryBase' => "$testDir/phpunit/includes/api/MockApiQueryBase.php",
 	'MediaWiki\\Tests\\Api\\RandomImageGenerator' => "$testDir/phpunit/includes/api/RandomImageGenerator.php",
 
-	# tests/phpunit/includes/auth
+	# tests/phpunit/includes/Auth
 	'MediaWiki\\Auth\\AuthenticationRequestTestCase' =>
-		"$testDir/phpunit/includes/auth/AuthenticationRequestTestCase.php",
+		"$testDir/phpunit/includes/Auth/AuthenticationRequestTestCase.php",
 	'MediaWiki\\Tests\\Auth\\AuthenticationRequestTestCase' =>
-		"$testDir/phpunit/includes/auth/AuthenticationRequestTestCase.php",
+		"$testDir/phpunit/includes/Auth/AuthenticationRequestTestCase.php",
 
 	# tests/phpunit/includes/block
 	'MediaWiki\\Tests\\Block\\Restriction\\RestrictionTestCase' => "$testDir/phpunit/includes/block/Restriction/RestrictionTestCase.php",
@@ -261,8 +261,8 @@ $wgAutoloadClasses += [
 	'MediaWiki\Tests\FileRepo\TestRepoTrait' => "$testDir/phpunit/mocks/filerepo/TestRepoTrait.php",
 	'MediaWiki\\Tests\\MockEnvironment' => "$testDir/phpunit/mocks/MockEnvironment.php",
 
-	# tests/phpunit/unit/includes/auth
-	'MediaWiki\\Tests\\Unit\\Auth\\AuthenticationProviderTestTrait' => "$testDir/phpunit/unit/includes/auth/AuthenticationProviderTestTrait.php",
+	# tests/phpunit/unit/includes/Auth
+	'MediaWiki\\Tests\\Unit\\Auth\\AuthenticationProviderTestTrait' => "$testDir/phpunit/unit/includes/Auth/AuthenticationProviderTestTrait.php",
 
 	# tests/phpunit/unit/includes/CommentFormatter
 	'MediaWiki\\Tests\\Unit\\CommentFormatter\\CommentFormatterTestUtils' => "$testDir/phpunit/unit/includes/CommentFormatter/CommentFormatterTestUtils.php",
