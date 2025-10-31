@@ -7,7 +7,7 @@
  * @file
  */
 
-namespace MediaWiki\Tests\Unit;
+namespace MediaWiki\Tests\Unit\Password;
 
 use MediaWiki\Password\PasswordPolicyChecks;
 use MediaWiki\User\User;

@@ -6,9 +6,13 @@
  * @file
  */
 
+namespace MediaWiki\Tests\Password;
+
 use MediaWiki\Password\UserPasswordPolicy;
 use MediaWiki\Status\Status;
 use MediaWiki\User\User;
+use MediaWikiIntegrationTestCase;
+use StatusValue;
 
 /**
  * @group Database

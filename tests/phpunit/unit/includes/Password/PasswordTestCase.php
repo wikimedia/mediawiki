@@ -4,7 +4,10 @@
  * @file
  */
 
+namespace MediaWiki\Tests\Unit\Password;
+
 use MediaWiki\Password\PasswordFactory;
+use MediaWikiUnitTestCase;
 
 /**
  * Testing framework for the password hashes

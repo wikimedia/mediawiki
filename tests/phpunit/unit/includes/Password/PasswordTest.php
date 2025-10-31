@@ -6,10 +6,14 @@
  * @file
  */
 
+namespace MediaWiki\Tests\Unit\Password;
+
+use Exception;
 use MediaWiki\Password\MWOldPassword;
 use MediaWiki\Password\Password;
 use MediaWiki\Password\PasswordError;
 use MediaWiki\Password\PasswordFactory;
+use MediaWikiUnitTestCase;
 
 /**
  * @covers \MediaWiki\Password\Password

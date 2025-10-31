@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\Tests\Unit\Password;
+
 use MediaWiki\Password\BcryptPassword;
 use MediaWiki\Password\LayeredParameterizedPassword;
 use MediaWiki\Password\ParameterizedPassword;

@@ -1,10 +1,14 @@
 <?php
 
+namespace MediaWiki\Tests\Unit\Password;
+
+use Exception;
 use MediaWiki\Password\InvalidPassword;
 use MediaWiki\Password\MWOldPassword;
 use MediaWiki\Password\MWSaltedPassword;
 use MediaWiki\Password\PasswordError;
 use MediaWiki\Password\PasswordFactory;
+use MediaWikiUnitTestCase;
 
 /**
  * @covers \MediaWiki\Password\PasswordFactory
