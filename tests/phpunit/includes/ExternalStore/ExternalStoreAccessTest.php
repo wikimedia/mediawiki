@@ -1,7 +1,14 @@
 <?php
 
+namespace MediaWiki\Tests\ExternalStore;
+
+use ExternalStoreAccess;
+use ExternalStoreFactory;
+use ExternalStoreMedium;
+use ExternalStoreMemory;
 use MediaWiki\Exception\ReadOnlyError;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
+use MediaWikiIntegrationTestCase;
 use PHPUnit\Framework\MockObject\MockObject;
 
 /**

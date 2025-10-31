@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\Tests\ExternalStore;
+
 class ExternalStoreForTesting {
 
 	/** @var array */
@@ -53,3 +55,5 @@ class ExternalStoreForTesting {
 	}
 
 }
+// ExternalStoreFactory still expects no namespace.
+class_alias( ExternalStoreForTesting::class, "ExternalStoreForTesting" );

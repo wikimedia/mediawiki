@@ -130,8 +130,9 @@ $wgAutoloadClasses += [
 	'CustomDifferenceEngine' => "$testDir/phpunit/includes/diff/CustomDifferenceEngine.php",
 	'MediaWiki\\Tests\\Diff\\TextDiffer\\TextDifferData' => "$testDir/phpunit/includes/diff/TextDiffer/TextDifferData.php",
 
-	# tests/phpunit/includes/externalstore
-	'ExternalStoreForTesting' => "$testDir/phpunit/includes/externalstore/ExternalStoreForTesting.php",
+	# tests/phpunit/includes/ExternalStore
+	'ExternalStoreForTesting' => "$testDir/phpunit/includes/ExternalStore/ExternalStoreForTesting.php",
+	'MediaWiki\\Tests\\ExternalStore\\ExternalStoreForTesting' => "$testDir/phpunit/includes/ExternalStore/ExternalStoreForTesting.php",
 
 	# tests/phpunit/includes/logging
 	'LogFormatterTestCase' => "$testDir/phpunit/includes/logging/LogFormatterTestCase.php",
