@@ -1,7 +1,10 @@
 <?php
 
+namespace MediaWiki\Tests\Unit\RevisionList;
+
 use MediaWiki\RevisionList\RevisionItemBase;
 use MediaWiki\RevisionList\RevisionListBase;
+use MediaWikiUnitTestCase;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\TestingAccessWrapper;
 

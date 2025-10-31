@@ -1,9 +1,12 @@
 <?php
 
+namespace MediaWiki\Tests\Integration\RevisionList;
+
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\RevisionList\RevisionItem;
 use MediaWiki\RevisionList\RevisionList;
+use MediaWikiIntegrationTestCase;
 
 /**
  * @covers \MediaWiki\RevisionList\RevisionList
