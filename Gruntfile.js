@@ -69,7 +69,7 @@ module.exports = function ( grunt ) {
 			interwiki: 'languages/i18n/interwiki/',
 			preferences: 'languages/i18n/preferences/',
 			languageconverter: 'languages/i18n/languageconverter/',
-			api: 'includes/api/i18n/',
+			api: 'includes/Api/i18n/',
 			rest: 'includes/Rest/i18n/',
 			installer: 'includes/installer/i18n/',
 			paramvalidator: 'includes/libs/ParamValidator/i18n/'

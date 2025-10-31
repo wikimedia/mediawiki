@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Tests\Api;
+namespace MediaWiki\Tests\Unit\Api;
 
 use InvalidArgumentException;
 use MediaWiki\Api\ApiDisabled;

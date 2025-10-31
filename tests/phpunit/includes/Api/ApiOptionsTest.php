@@ -2,8 +2,6 @@
 
 namespace MediaWiki\Tests\Api;
 
-namespace MediaWiki\Tests\Api;
-
 use MediaWiki\Api\ApiMain;
 use MediaWiki\Api\ApiOptions;
 use MediaWiki\Api\ApiUsageException;
