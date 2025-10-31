@@ -275,6 +275,14 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		return $defaults;
 	}
 
+	/** @inheritDoc */
+	public function getDefaultOptions() {
+		$opts = parent::getDefaultOptions();
+		$opts->add( 'wllabel', '' );
+		$opts->add( 'invertwllabels', false );
+		return $opts;
+	}
+
 	/**
 	 * Fetch values for a FormOptions object from the WebRequest associated with this instance.
 	 *
@@ -337,6 +345,25 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		}
 		$query->requireWatched()
 			->watchlistFields( [ 'wl_notificationtimestamp', 'we_expiry' ] );
+
+		if ( $this->getConfig()->get( MainConfigNames::EnableWatchlistLabels ) ) {
+			if ( $opts['wllabel'] ) {
+				$ids = [];
+				foreach ( explode( ';', $opts['wllabel'] ) as $id ) {
+					if ( preg_match( '/^[0-9]+$/', $id ) ) {
+						$ids[] = (int)$id;
+					}
+				}
+				if ( $ids ) {
+					if ( $opts['invertwllabels'] ) {
+						$query->excludeWatchlistLabelIds( $ids );
+					} else {
+						$query->requireWatchlistLabelIds( $ids );
+					}
+
+				}
+			}
+		}
 	}
 
 	public function outputFeedLinks() {

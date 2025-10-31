@@ -202,6 +202,7 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 			'seen' => new SeenCondition(
 				$this->watchedItemStore
 			),
+			'watchlistLabel' => new WatchlistLabelCondition(),
 			'namespace' => new FieldEqualityCondition( 'rc_namespace' ),
 			'title' => new TitleCondition(),
 			'subpageof' => new SubpageOfCondition(),
@@ -230,7 +231,13 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 			'slots' => new SlotsJoin(),
 			'user' => new BasicJoin( 'user', '', 'user_id=actor_user', 'actor' ),
 			'watchlist' => new WatchlistJoin(),
-			'watchlist_expiry' => new BasicJoin( 'watchlist_expiry', '', 'we_item=wl_id', 'watchlist' )
+			'watchlist_expiry' => new BasicJoin( 'watchlist_expiry', '', 'we_item=wl_id', 'watchlist' ),
+			'watchlist_label_member' => new BasicJoin(
+				'watchlist_label_member',
+				'',
+				'wlm_item=wl_id',
+				[ 'watchlist' ]
+			),
 		];
 
 		$this->rcMaxAge = (int)$config->get( MainConfigNames::RCMaxAge );
@@ -345,6 +352,30 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 	 */
 	public function requireWatched( $watchTypes = [ 'watchedold', 'watchednew' ] ) {
 		return $this->applyArrayAction( 'require', 'watched', $watchTypes );
+	}
+
+	/**
+	 * Require that the changed page is watched with one of the specified
+	 * watchlist label IDs.
+	 *
+	 * @since 1.46
+	 * @param int[] $labelIds
+	 * @return $this
+	 */
+	public function requireWatchlistLabelIds( array $labelIds ) {
+		return $this->applyArrayAction( 'require', 'watchlistLabel', $labelIds );
+	}
+
+	/**
+	 * Require that the changed page is not watched with one of the specified
+	 * watchlist label IDs.
+	 *
+	 * @since 1.46
+	 * @param int[] $labelIds
+	 * @return $this
+	 */
+	public function excludeWatchlistLabelIds( array $labelIds ) {
+		return $this->applyArrayAction( 'exclude', 'watchlistLabel', $labelIds );
 	}
 
 	/**

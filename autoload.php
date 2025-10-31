@@ -2514,6 +2514,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\RecentChanges\\ChangesListQuery\\UserCondition' => __DIR__ . '/includes/RecentChanges/ChangesListQuery/UserCondition.php',
 	'MediaWiki\\RecentChanges\\ChangesListQuery\\WatchedCondition' => __DIR__ . '/includes/RecentChanges/ChangesListQuery/WatchedCondition.php',
 	'MediaWiki\\RecentChanges\\ChangesListQuery\\WatchlistJoin' => __DIR__ . '/includes/RecentChanges/ChangesListQuery/WatchlistJoin.php',
+	'MediaWiki\\RecentChanges\\ChangesListQuery\\WatchlistLabelCondition' => __DIR__ . '/includes/RecentChanges/ChangesListQuery/WatchlistLabelCondition.php',
 	'MediaWiki\\RecentChanges\\ChangesListStringOptionsFilter' => __DIR__ . '/includes/RecentChanges/ChangesListStringOptionsFilter.php',
 	'MediaWiki\\RecentChanges\\ChangesListStringOptionsFilterGroup' => __DIR__ . '/includes/RecentChanges/ChangesListStringOptionsFilterGroup.php',
 	'MediaWiki\\RecentChanges\\EnhancedChangesList' => __DIR__ . '/includes/RecentChanges/EnhancedChangesList.php',
