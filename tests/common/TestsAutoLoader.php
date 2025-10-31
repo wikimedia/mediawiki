@@ -102,8 +102,8 @@ $wgAutoloadClasses += [
 	'TestAllServiceOptionsUsed' => "$testDir/phpunit/includes/config/TestAllServiceOptionsUsed.php",
 	'LoggedServiceOptions' => "$testDir/phpunit/includes/config/LoggedServiceOptions.php",
 
-	# tests/phpunit/includes/content
-	'MediaWiki\\Tests\\Content\\CssContentTest' => "$testDir/phpunit/includes/content/CssContentTest.php",
+	# tests/phpunit/includes/Content
+	'MediaWiki\\Tests\\Content\\CssContentTest' => "$testDir/phpunit/includes/Content/CssContentTest.php",
 	'DummyContentHandlerForTesting' =>
 		"$testDir/phpunit/mocks/content/DummyContentHandlerForTesting.php",
 	'DummyContentForTesting' => "$testDir/phpunit/mocks/content/DummyContentForTesting.php",
@@ -111,13 +111,13 @@ $wgAutoloadClasses += [
 	'DummyNonTextContent' => "$testDir/phpunit/mocks/content/DummyNonTextContent.php",
 	'DummySerializeErrorContentHandler' =>
 		"$testDir/phpunit/mocks/content/DummySerializeErrorContentHandler.php",
-	'MediaWiki\\Tests\\Content\\JavaScriptContentTest' => "$testDir/phpunit/includes/content/JavaScriptContentTest.php",
-	'TextContentTest' => "$testDir/phpunit/includes/content/TextContentTest.php",
-	'MediaWiki\\Tests\\Content\\TextContentTest' => "$testDir/phpunit/includes/content/TextContentTest.php",
-	'TextContentHandlerIntegrationTest' => "$testDir/phpunit/includes/content/TextContentHandlerIntegrationTest.php",
-	'MediaWiki\\Tests\\Content\\WikitextContentTest' => "$testDir/phpunit/includes/content/WikitextContentTest.php",
-	'JavaScriptContentHandlerTest' => "$testDir/phpunit/includes/content/JavaScriptContentHandlerTest.php",
-	'MediaWiki\\Tests\\Content\\ContentSerializationTestTrait' => "$testDir/phpunit/includes/content/ContentSerializationTestTrait.php",
+	'MediaWiki\\Tests\\Content\\JavaScriptContentTest' => "$testDir/phpunit/includes/Content/JavaScriptContentTest.php",
+	'TextContentTest' => "$testDir/phpunit/includes/Content/TextContentTest.php",
+	'MediaWiki\\Tests\\Content\\TextContentTest' => "$testDir/phpunit/includes/Content/TextContentTest.php",
+	'TextContentHandlerIntegrationTest' => "$testDir/phpunit/includes/Content/TextContentHandlerIntegrationTest.php",
+	'MediaWiki\\Tests\\Content\\WikitextContentTest' => "$testDir/phpunit/includes/Content/WikitextContentTest.php",
+	'JavaScriptContentHandlerTest' => "$testDir/phpunit/includes/Content/JavaScriptContentHandlerTest.php",
+	'MediaWiki\\Tests\\Content\\ContentSerializationTestTrait' => "$testDir/phpunit/includes/Content/ContentSerializationTestTrait.php",
 
 	# tests/phpunit/includes/db
 	'DatabaseTestHelper' => "$testDir/phpunit/includes/db/DatabaseTestHelper.php",
