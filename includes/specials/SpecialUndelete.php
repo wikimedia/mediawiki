@@ -387,7 +387,8 @@ class SpecialUndelete extends SpecialPage {
 	 * redirect the request
 	 */
 	private function redirectToRevDel() {
-		$revisions = [];
+		$revisionIds = [];
+		$fileArchiveIds = [];
 
 		foreach ( $this->getRequest()->getValues() as $key => $val ) {
 			$matches = [];
@@ -395,19 +396,51 @@ class SpecialUndelete extends SpecialPage {
 				$revisionRecord = $this->archivedRevisionLookup
 					->getRevisionRecordByTimestamp( $this->mTargetObj, $matches[1] );
 				if ( $revisionRecord ) {
-					// Can return null
-					$revisions[ $revisionRecord->getId() ] = 1;
+					$revisionIds[] = (int)$revisionRecord->getId();
 				}
+			} elseif ( preg_match( '/^fileid(\d+)$/', $key, $matches ) ) {
+				$fileArchiveIds[] = (int)$matches[1];
 			}
 		}
 
+		$hasRevisions = count( $revisionIds ) > 0;
+		$hasFiles = count( $fileArchiveIds ) > 0;
+
+		// Check selection validity, see if mixed or nothing selected
+		if ( $hasRevisions && $hasFiles ) {
+			$this->renderUndeleteSelectionError( 'mixed' );
+			return;
+		} elseif ( !$hasRevisions && !$hasFiles ) {
+			$this->renderUndeleteSelectionError( 'none' );
+			return;
+		}
+
+		// Exp. assoc array of id => 1 (ids[123]=1)
+		$idsForQuery = $hasFiles
+			? array_fill_keys( $fileArchiveIds, 1 )
+			: array_fill_keys( $revisionIds, 1 );
+
 		$query = [
-			'type' => 'revision',
-			'ids' => $revisions,
+			'type' => $hasFiles ? 'filearchive' : 'revision',
+			'ids' => $idsForQuery,
 			'target' => $this->mTargetObj->getPrefixedText()
 		];
+
 		$url = SpecialPage::getTitleFor( 'Revisiondelete' )->getFullURL( $query );
 		$this->getOutput()->redirect( $url );
+	}
+
+	/**
+	 * Render a clearer error box for undelete selection problems
+	 *
+	 * @param string $case 'mixed' = both page and file selected, 'none' = nothing selected
+	 */
+	private function renderUndeleteSelectionError( string $case ): void {
+		$msg = $case === 'mixed'
+			? $this->msg( 'undelete-error-mixed' )
+			: $this->msg( 'undelete-error-none' );
+
+		$this->getOutput()->addHTML( Html::errorBox( $msg->parse() ) );
 	}
 
 	private function showSearchForm() {
