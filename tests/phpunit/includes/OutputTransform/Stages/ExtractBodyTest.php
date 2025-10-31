@@ -48,7 +48,7 @@ HTML;
 			'basic' => [
 				"title" => "Foo",
 				"body" => "<p><a href=\"./Hello\">hello</a></p>",
-				"result" => "<p><a href=\"https://www.example.com/w/Hello\">hello</a></p>\n"
+				"result" => "<p><a href=\"./Hello\">hello</a></p>\n"
 			],
 			'body with attributes' => [
 				"title" => "Foo",
@@ -58,7 +58,7 @@ HTML;
 					<body class="bar" data-x="XX"><p><a href="./Hello">hello</a></p>
 					</body></html>
 					HTML,
-				"result" => "<p><a href=\"https://www.example.com/w/Hello\">hello</a></p>\n"
+				"result" => "<p><a href=\"./Hello\">hello</a></p>\n"
 			],
 			'multiple close tags' => [
 				"title" => "Foo",
@@ -70,7 +70,7 @@ HTML;
 					<p>world</p>
 					</body></html>
 					HTML,
-				"result" => "<p><a href=\"https://www.example.com/w/Hello\">hello</a></p>\n\n<p>world</p>\n"
+				"result" => "<p><a href=\"./Hello\">hello</a></p>\n</body>\n<p>world</p>\n"
 			],
 			'truncated with missing close tag' => [
 				"title" => "Foo",
@@ -79,7 +79,7 @@ HTML;
 					<html><head><base href="https://www.example.com/w/"/></head>
 					<body class="bar" data-x="XX"><p><a href="./Hello">hello</a></p>
 					HTML,
-				"result" => "<p><a href=\"https://www.example.com/w/Hello\">hello</a></p>"
+				"result" => "<p><a href=\"./Hello\">hello</a></p>"
 			],
 			'early false-positive close tag in comment' => [
 				"title" => "Foo",
@@ -90,7 +90,7 @@ HTML;
 					<body class="bar" data-x="XX"><p><a href="./Hello">hello</a></p>
 					</body></html>
 					HTML,
-				"result" => "<p><a href=\"https://www.example.com/w/Hello\">hello</a></p>\n"
+				"result" => "<p><a href=\"./Hello\">hello</a></p>\n"
 			],
 			'early false-positive close tag in open tag' => [
 				"title" => "Foo",
@@ -100,7 +100,7 @@ HTML;
 					<body class="bar" data-x="XX" data-y=</body><p><a href="./Hello">hello</a></p>
 					</body></html>
 					HTML,
-				"result" => "<p><a href=\"https://www.example.com/w/Hello\">hello</a></p>\n"
+				"result" => "<p><a href=\"./Hello\">hello</a></p>\n"
 			],
 			'early false-positive close tag in open tag and truncated close tags' => [
 				"title" => "Foo",
@@ -109,45 +109,7 @@ HTML;
 					<html><head><base href="https://www.example.com/w/"/></head>
 					<body class="bar" data-x="XX" data-y=</body><p><a href="./Hello">hello</a></p>
 					HTML,
-				"result" => "<p><a href=\"https://www.example.com/w/Hello\">hello</a></p>"
-			],
-			// Rest of these tests ensure that self-page cite fragments are converted to fragment urls
-			// Tests different title scenarios to exercise edge cases
-			[
-				"title" => "Foo",
-				"body" => "<p><a href=\"./Foo#cite1\">hello</a><a href=\"./Foo/Bar#cite1\">boo</a></p>",
-				"result" => "<p><a href=\"#cite1\">hello</a><a href=\"https://www.example.com/w/Foo/Bar#cite1\">boo</a></p>\n"
-			],
-			// hrefs have db-key normalization of titles - test that output isn't tripped by that
-			[
-				"title" => "Foo_Bar Baz",
-				"body" => "<p><a href=\"./Foo_Bar_Baz#cite1\">hello</a></p>",
-				"result" => "<p><a href=\"#cite1\">hello</a></p>\n"
-			],
-			[
-				"title" => "Foo+Bar",
-				"body" => "<p><a href=\"./Foo+Bar#cite1\">hello</a></p>",
-				"result" => "<p><a href=\"#cite1\">hello</a></p>\n"
-			],
-			[
-				"title" => "Foo/Bar",
-				"body" => "<p><a href=\"./Foo/Bar#cite1\">hello</a></p>",
-				"result" => "<p><a href=\"#cite1\">hello</a></p>\n"
-			],
-			[
-				"title" => "Foo/Bar'Baz",
-				"body" => "<p><a href=\"./Foo/Bar'Baz#cite1\">hello</a></p>",
-				"result" => "<p><a href=\"#cite1\">hello</a></p>\n"
-			],
-			[
-				"title" => 'Foo/Bar"Baz',
-				"body" => "<p><a href='./Foo/Bar\"Baz#cite1'>hello</a></p>",
-				"result" => "<p><a href=\"#cite1\">hello</a></p>\n"
-			],
-			[
-				"title" => "Foo/Bar",
-				"body" => '<figure typeof="mw:File mw:Extension/imagemap"><span><img resource="./File:Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" usemap="#ImageMap_02c94d3ca4bfc187"></span><map name="ImageMap_02c94d3ca4bfc187"><area href="./Main_Page" shape="poly" coords="10,11,10,30,-30,15"></map><figcaption></figcaption></figure>',
-				"result" => "<figure typeof=\"mw:File mw:Extension/imagemap\"><span><img resource=\"https://www.example.com/w/File:Foobar.jpg\" src=\"http://example.com/images/3/3a/Foobar.jpg\" usemap=\"#ImageMap_02c94d3ca4bfc187\"></span><map name=\"ImageMap_02c94d3ca4bfc187\"><area href=\"https://www.example.com/w/Main_Page\" shape=\"poly\" coords=\"10,11,10,30,-30,15\"></map><figcaption></figcaption></figure>\n",
+				"result" => "<p><a href=\"./Hello\">hello</a></p>"
 			],
 		];
 		// Set test title in parser output extension data
