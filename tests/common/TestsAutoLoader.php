@@ -98,9 +98,9 @@ $wgAutoloadClasses += [
 	'TestRecentChangesHelper' => "$testDir/phpunit/includes/recentchanges/TestRecentChangesHelper.php",
 	'MediaWiki\Tests\Recentchanges\ChangeTrackingUpdateSpyTrait' => "$testDir/phpunit/includes/recentchanges/ChangeTrackingUpdateSpyTrait.php",
 
-	# tests/phpunit/includes/config
-	'TestAllServiceOptionsUsed' => "$testDir/phpunit/includes/config/TestAllServiceOptionsUsed.php",
-	'LoggedServiceOptions' => "$testDir/phpunit/includes/config/LoggedServiceOptions.php",
+	# tests/phpunit/includes/Config
+	'TestAllServiceOptionsUsed' => "$testDir/phpunit/includes/Config/TestAllServiceOptionsUsed.php",
+	'LoggedServiceOptions' => "$testDir/phpunit/includes/Config/LoggedServiceOptions.php",
 
 	# tests/phpunit/includes/Content
 	'MediaWiki\\Tests\\Content\\CssContentTest' => "$testDir/phpunit/includes/Content/CssContentTest.php",
