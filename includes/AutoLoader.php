@@ -49,8 +49,6 @@ class AutoLoader {
 		'MediaWiki\\Api\\' => __DIR__ . '/api/',
 		'MediaWiki\\Block\\' => __DIR__ . '/block/',
 		'MediaWiki\\Cache\\' => __DIR__ . '/cache/',
-		'MediaWiki\\Deferred\\' => __DIR__ . '/deferred/',
-		'MediaWiki\\Deferred\\LinksUpdate\\' => __DIR__ . '/deferred/LinksUpdate/',
 		'MediaWiki\\Diff\\' => __DIR__ . '/diff/',
 		'MediaWiki\\EditPage\\' => __DIR__ . '/editpage/',
 		'MediaWiki\\Exception\\' => __DIR__ . '/exception/',
