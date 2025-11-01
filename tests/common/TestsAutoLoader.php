@@ -126,9 +126,9 @@ $wgAutoloadClasses += [
 	'TestDeprecatedClass' => "$testDir/phpunit/includes/Debug/TestDeprecatedClass.php",
 	'TestDeprecatedSubclass' => "$testDir/phpunit/includes/Debug/TestDeprecatedSubclass.php",
 
-	# tests/phpunit/includes/diff
-	'CustomDifferenceEngine' => "$testDir/phpunit/includes/diff/CustomDifferenceEngine.php",
-	'MediaWiki\\Tests\\Diff\\TextDiffer\\TextDifferData' => "$testDir/phpunit/includes/diff/TextDiffer/TextDifferData.php",
+	# tests/phpunit/includes/Diff
+	'CustomDifferenceEngine' => "$testDir/phpunit/includes/Diff/CustomDifferenceEngine.php",
+	'MediaWiki\\Tests\\Diff\\TextDiffer\\TextDifferData' => "$testDir/phpunit/includes/Diff/TextDiffer/TextDifferData.php",
 
 	# tests/phpunit/includes/ExternalStore
 	'ExternalStoreForTesting' => "$testDir/phpunit/includes/ExternalStore/ExternalStoreForTesting.php",
