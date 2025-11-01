@@ -119,8 +119,8 @@ $wgAutoloadClasses += [
 	'JavaScriptContentHandlerTest' => "$testDir/phpunit/includes/Content/JavaScriptContentHandlerTest.php",
 	'MediaWiki\\Tests\\Content\\ContentSerializationTestTrait' => "$testDir/phpunit/includes/Content/ContentSerializationTestTrait.php",
 
-	# tests/phpunit/includes/db
-	'DatabaseTestHelper' => "$testDir/phpunit/includes/db/DatabaseTestHelper.php",
+	# tests/phpunit/includes/DB
+	'DatabaseTestHelper' => "$testDir/phpunit/includes/DB/DatabaseTestHelper.php",
 
 	# tests/phpunit/includes/debug
 	'TestDeprecatedClass' => "$testDir/phpunit/includes/debug/TestDeprecatedClass.php",
