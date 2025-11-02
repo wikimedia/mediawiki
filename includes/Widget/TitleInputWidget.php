@@ -22,6 +22,8 @@ class TitleInputWidget extends TextInputWidget {
 	protected $highlightFirst = null;
 	/** @var bool|null */
 	protected $validateTitle = null;
+	/** @var bool|null */
+	protected $excludeDynamicNamespaces = null;
 
 	/**
 	 * @param array $config Configuration options
@@ -33,6 +35,8 @@ class TitleInputWidget extends TextInputWidget {
 	 *     the first result (default: true)
 	 *   - bool|null $config['validateTitle'] Whether the input must
 	 *     be a valid title (default: true)
+	 *   - bool|null $config['excludeDynamicNamespaces'] Whether to exclude
+	 *     pages in negative namespaces (default: false)
 	 */
 	public function __construct( array $config = [] ) {
 		parent::__construct(
@@ -54,6 +58,10 @@ class TitleInputWidget extends TextInputWidget {
 		}
 		if ( isset( $config['validateTitle'] ) ) {
 			$this->validateTitle = $config['validateTitle'];
+		}
+
+		if ( isset( $config['excludeDynamicNamespaces'] ) ) {
+			$this->excludeDynamicNamespaces = $config['excludeDynamicNamespaces'];
 		}
 
 		// Initialization
@@ -82,6 +90,10 @@ class TitleInputWidget extends TextInputWidget {
 		if ( $this->validateTitle !== null ) {
 			$config['validateTitle'] = $this->validateTitle;
 		}
+		if ( $this->excludeDynamicNamespaces !== null ) {
+			$config['excludeDynamicNamespaces'] = $this->excludeDynamicNamespaces;
+		}
+
 		$config['$overlay'] = true;
 		return parent::getConfig( $config );
 	}

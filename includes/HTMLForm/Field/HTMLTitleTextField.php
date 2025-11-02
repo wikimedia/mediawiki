@@ -103,6 +103,11 @@ class HTMLTitleTextField extends HTMLTextField {
 		if ( $this->mParams['namespace'] !== false ) {
 			$params['namespace'] = $this->mParams['namespace'];
 		}
+
+		if ( isset( $this->mParams['excludeDynamicNamespaces'] ) ) {
+			$params['excludeDynamicNamespaces'] = $this->mParams['excludeDynamicNamespaces'];
+		}
+
 		$params['relative'] = $this->mParams['relative'];
 		return new TitleInputWidget( $params );
 	}
