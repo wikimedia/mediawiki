@@ -48,7 +48,6 @@ class AutoLoader {
 		'MediaWiki\\Actions\\' => __DIR__ . '/actions/',
 		'MediaWiki\\Api\\' => __DIR__ . '/api/',
 		'MediaWiki\\Block\\' => __DIR__ . '/block/',
-		'MediaWiki\\EditPage\\' => __DIR__ . '/editpage/',
 		'MediaWiki\\Exception\\' => __DIR__ . '/exception/',
 		'MediaWiki\\Export\\' => __DIR__ . '/export/',
 		'MediaWiki\\FileBackend\\' => __DIR__ . '/filebackend/',
