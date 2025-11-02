@@ -102,7 +102,7 @@
 			Continue to allow existing violations, but enable the sniff to prevent
 			any new occurrences.
 		-->
-		<exclude-pattern>*/includes/export/DumpPipeOutput\.php</exclude-pattern>
+		<exclude-pattern>*/includes/Export/DumpPipeOutput\.php</exclude-pattern>
 		<exclude-pattern>*/includes/ResourceLoader/Image\.php</exclude-pattern>
 		<exclude-pattern>*/includes/shell/Command\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/includes/TextPassDumper\.php</exclude-pattern>

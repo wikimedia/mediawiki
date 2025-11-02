@@ -15,7 +15,7 @@ namespace MediaWiki\Maintenance;
 
 // @codeCoverageIgnoreStart
 require_once __DIR__ . '/BackupDumper.php';
-require_once __DIR__ . '/../../includes/export/WikiExporter.php';
+require_once __DIR__ . '/../../includes/Export/WikiExporter.php';
 // @codeCoverageIgnoreEnd
 
 use BaseDump;
