@@ -66,7 +66,6 @@ class AutoLoader {
 		'MediaWiki\\JobQueue\\Utils\\' => __DIR__ . '/jobqueue/utils/',
 		'MediaWiki\\Json\\' => __DIR__ . '/json/',
 		'MediaWiki\\Languages\\Data\\' => __DIR__ . '/languages/data/',
-		'MediaWiki\\Language\\' => __DIR__ . '/language/',
 		'MediaWiki\\Linker\\' => __DIR__ . '/linker/',
 		'MediaWiki\\Logger\\Monolog\\' => __DIR__ . '/debug/logger/monolog/',
 		'MediaWiki\\Logging\\' => __DIR__ . '/logging/',
