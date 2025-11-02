@@ -59,7 +59,6 @@ class AutoLoader {
 		'MediaWiki\\FileRepo\\File\\' => __DIR__ . '/filerepo/file/',
 		'MediaWiki\\Http\\' => __DIR__ . '/http/',
 		'MediaWiki\\Installer\\' => __DIR__ . '/installer/',
-		'MediaWiki\\Interwiki\\' => __DIR__ . '/interwiki/',
 		'MediaWiki\\JobQueue\\' => __DIR__ . '/jobqueue/',
 		'MediaWiki\\JobQueue\\Exceptions\\' => __DIR__ . '/jobqueue/exception/',
 		'MediaWiki\\JobQueue\\Jobs\\' => __DIR__ . '/jobqueue/jobs/',
