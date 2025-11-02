@@ -49,7 +49,6 @@ class AutoLoader {
 		'MediaWiki\\Api\\' => __DIR__ . '/api/',
 		'MediaWiki\\Block\\' => __DIR__ . '/block/',
 		'MediaWiki\\FileBackend\\FSFile\\' => __DIR__ . '/libs/filebackend/fsfile/',
-		'MediaWiki\\Http\\' => __DIR__ . '/http/',
 		'MediaWiki\\Installer\\' => __DIR__ . '/installer/',
 		'MediaWiki\\JobQueue\\' => __DIR__ . '/jobqueue/',
 		'MediaWiki\\JobQueue\\Exceptions\\' => __DIR__ . '/jobqueue/exception/',
