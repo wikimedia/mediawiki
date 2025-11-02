@@ -8,12 +8,14 @@ namespace MediaWiki\Specials;
 
 use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Message\Message;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Password\UserPasswordPolicy;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserGroupMembership;
+use Wikimedia\Message\ListType;
 
 /**
  * This special page lists the defined password policies for user groups.
@@ -147,7 +149,8 @@ class SpecialPasswordPolicies extends SpecialPage {
 			$flagMsgs = [];
 			foreach ( array_filter( $flags ) as $flag => $value ) {
 				$flagMsg = $this->msg( 'passwordpolicies-policyflag-' . strtolower( $flag ) );
-				$flagMsg->params( $value );
+				// FIXME: What's the point of passing this? It's currently unused. Numbers would also need proper l10n.
+				$flagMsg->params( is_bool( $value ) ? (int)$value : $value );
 				$flagMsgs[] = $flagMsg;
 			}
 			if ( $flagMsgs ) {
@@ -155,7 +158,7 @@ class SpecialPasswordPolicies extends SpecialPage {
 					'passwordpolicies-policy-displaywithflags',
 					$msg,
 					'<span class="mw-passwordpolicies-policy-name">' . $gp . '</span>',
-					$this->getLanguage()->commaList( $flagMsgs )
+					Message::listParam( $flagMsgs, ListType::COMMA )
 				)->parse();
 			} else {
 				$ret[] = $this->msg(
