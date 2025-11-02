@@ -72,7 +72,6 @@ class AutoLoader {
 		'MediaWiki\\Search\\SearchWidgets\\' => __DIR__ . '/search/searchwidgets/',
 		'MediaWiki\\Session\\' => __DIR__ . '/session/',
 		'MediaWiki\\Skin\\' => __DIR__ . '/skins/',
-		'MediaWiki\\SpecialPage\\' => __DIR__ . '/specialpage/',
 		'MediaWiki\\Specials\\' => __DIR__ . '/specials/',
 		'MediaWiki\\Specials\\Contribute\\' => __DIR__ . '/specials/Contribute/',
 		'MediaWiki\\Specials\\Redirects\\' => __DIR__ . '/specials/redirects/',
