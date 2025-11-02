@@ -33,6 +33,7 @@ use stdClass;
 use Wikimedia\HtmlArmor\HtmlArmor;
 use Wikimedia\MapCacheLRU\MapCacheLRU;
 use Wikimedia\Rdbms\IDBAccessObject;
+use Wikimedia\Timestamp\TimestampException;
 
 /**
  * @ingroup Pager
@@ -136,6 +137,16 @@ class HistoryPager extends ReverseChronologicalPager {
 			? $this->watchlistManager->getTitleNotificationTimestamp( $this->getUser(), $this->getTitle() )
 			: false;
 		$this->changeTagsStore = $changeTagsStore ?? $services->getChangeTagsStore();
+
+		// T345793: Use proper Database-compatible time offset for query
+		if ( $this->mOffset ) {
+			try {
+				$this->mOffset = $this->mDb->timestamp( $this->mOffset );
+			} catch ( TimestampException ) {
+				// Ignore invalid offsets
+				$this->mOffset = '';
+			}
+		}
 	}
 
 	/**
