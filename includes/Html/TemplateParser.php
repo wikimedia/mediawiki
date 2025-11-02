@@ -50,7 +50,7 @@ class TemplateParser {
 	 * @param BagOStuff|null $cache Read-write cache
 	 */
 	public function __construct( $templateDir = null, ?BagOStuff $cache = null ) {
-		$this->templateDir = $templateDir ?: __DIR__ . '/../templates';
+		$this->templateDir = $templateDir ?: __DIR__ . '/../../resources/templates';
 		$this->cache = $cache ?: MediaWikiServices::getInstance()->getObjectCacheFactory()
 			->getLocalServerInstance( CACHE_ANYTHING );
 
