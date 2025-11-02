@@ -476,8 +476,8 @@ abstract class ChangesListFilterGroup {
 				$highlightAction = $filter->getHighlightAction();
 				if ( $filter->getCssClass() !== null && $highlightAction ) {
 					$name = $this->getName() . '/' . $filter->getName();
-					if ( is_array( $action[0] ) ) {
-						foreach ( $action as $singleAction ) {
+					if ( is_array( $highlightAction[0] ) ) {
+						foreach ( $highlightAction as $singleAction ) {
 							// @phan-suppress-next-line PhanParamTooFewUnpack
 							$query->highlight( $name, ...$singleAction );
 						}
