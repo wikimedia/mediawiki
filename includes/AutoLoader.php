@@ -85,7 +85,6 @@ class AutoLoader {
 		'MediaWiki\\Specials\\Redirects\\' => __DIR__ . '/specials/redirects/',
 		'MediaWiki\\Title\\' => __DIR__ . '/title/',
 		'MediaWiki\\User\\' => __DIR__ . '/user/',
-		'MediaWiki\\Watchlist\\' => __DIR__ . '/watchlist/',
 		'MediaWiki\\Widget\\' => __DIR__ . '/widget/',
 		'Wikimedia\\' => __DIR__ . '/libs/',
 		'Wikimedia\\DependencyStore\\' => __DIR__ . '/ResourceLoader/dependencystore/',
