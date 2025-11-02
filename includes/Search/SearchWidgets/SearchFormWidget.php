@@ -317,7 +317,7 @@ class SearchFormWidget {
 	}
 
 	private function createPowerSearchRememberCheckBoxHtml(): string {
-		return new FieldLayout(
+		return ( new FieldLayout(
 			new CheckboxInputWidget( [
 				'name' => 'nsRemember',
 				'selected' => false,
@@ -331,7 +331,7 @@ class SearchFormWidget {
 			'label' => $this->specialSearch->msg( 'powersearch-remember' )->text(),
 			'align' => 'inline'
 			]
-		);
+		) )->toString();
 	}
 
 	private function createNamespaceToggleBoxHtml(): string {
@@ -363,7 +363,7 @@ class SearchFormWidget {
 	private function createNamespaceCheckbox( int $namespace, array $activeNamespaces ): string {
 		$namespaceDisplayName = $this->getNamespaceDisplayName( $namespace );
 
-		return new FieldLayout(
+		return ( new FieldLayout(
 			new CheckboxInputWidget( [
 				'name' => "ns{$namespace}",
 				'selected' => in_array( $namespace, $activeNamespaces ),
@@ -374,7 +374,7 @@ class SearchFormWidget {
 			'label' => $namespaceDisplayName,
 			'align' => 'inline'
 			]
-		);
+		) )->toString();
 	}
 
 	private function getNamespaceDisplayName( int $namespace ): string {

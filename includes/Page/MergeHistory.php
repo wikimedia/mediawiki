@@ -335,11 +335,12 @@ class MergeHistory {
 			->join( 'revision', null, 'rev_id = page_latest' )
 			->where( [ 'page_id' => $this->dest->getId() ] )
 			->caller( __METHOD__ )->fetchRow();
-		$destTs = new MWTimestamp( $row->rev_timestamp );
-		if ( $this->timestampLimit > $destTs ) {
+		$tsLimitString = $this->timestampLimit !== false ? $this->timestampLimit?->getTimestamp() : null;
+		$destTsString = ( new MWTimestamp( $row->rev_timestamp ) )->getTimestamp();
+		if ( $tsLimitString > $destTsString ) {
 			// Easy case
 			return true;
-		} elseif ( $this->timestampLimit == $destTs ) {
+		} elseif ( $tsLimitString === $destTsString ) {
 			// Life is full of suffering; fetch the maximum rev ID that would be merged
 			$maxRevidMerged = $this->dbw->newSelectQueryBuilder()
 				->select( 'MAX(rev_id)' )
@@ -348,7 +349,7 @@ class MergeHistory {
 				->where( [
 					 'page_id' => $this->source->getId(),
 					 ...$this->getTimeWhere(),
-					 'rev_timestamp' => $this->dbw->timestamp( $destTs )
+					 'rev_timestamp' => $this->dbw->timestamp( $destTsString )
 				] )
 				->caller( __METHOD__ )->fetchField();
 			return $maxRevidMerged > $row->rev_id;
@@ -632,15 +633,14 @@ class MergeHistory {
 				} else {
 					$timestamp = $this->timestamp;
 				}
-				// If we have a requested timestamp, use the
-				// latest revision up to that point as the insertion point
-				$mwTimestamp = new MWTimestamp( $timestamp );
 
 				$lastWorkingTimestamp = $this->dbw->newSelectQueryBuilder()
 					->select( 'MAX(rev_timestamp)' )
 					->from( 'revision' )
 					->where( [
-						$this->dbw->expr( 'rev_timestamp', '<=', $this->dbw->timestamp( $mwTimestamp ) ),
+						// If we have a requested timestamp, use the
+						// latest revision up to that point as the insertion point
+						$this->dbw->expr( 'rev_timestamp', '<=', $this->dbw->timestamp( $timestamp ) ),
 						'rev_page' => $this->source->getId()
 					] )
 					->caller( __METHOD__ )->fetchField();
@@ -681,14 +681,14 @@ class MergeHistory {
 				} else {
 					$timestampStart = $this->timestampStart;
 				}
-				// If we have a requested timestamp, use the
-				// earliest revision after that point as the insertion point
-				$mwTimestamp = new MWTimestamp( $timestampStart );
+
 				$lastWorkingTimestamp = $this->dbw->newSelectQueryBuilder()
 					->select( 'MIN(rev_timestamp)' )
 					->from( 'revision' )
 					->where( [
-						$this->dbw->expr( 'rev_timestamp', '>=', $this->dbw->timestamp( $mwTimestamp ) ),
+						// If we have a requested timestamp, use the
+						// earliest revision after that point as the insertion point
+						$this->dbw->expr( 'rev_timestamp', '>=', $this->dbw->timestamp( $timestampStart ) ),
 						'rev_page' => $this->source->getId()
 					] )
 					->caller( __METHOD__ )->fetchField();
@@ -698,7 +698,7 @@ class MergeHistory {
 			} else {
 				$this->timestampStartLimit = null;
 			}
-			$dbLimit = $this->dbw->timestamp( $timeInsert );
+			$dbLimit = $this->dbw->timestamp( $timeInsert->getTimestamp() );
 			if ( $this->revidLimit ) {
 				$endQuery = $this->dbw->buildComparison( '<=',
 					[ 'rev_timestamp' => $dbLimit, 'rev_id' => $this->revidLimit ]
@@ -709,7 +709,7 @@ class MergeHistory {
 				);
 			}
 			if ( $this->timestampStartLimit ) {
-				$dbLimitStart = $this->dbw->timestamp( $this->timestampStartLimit );
+				$dbLimitStart = $this->dbw->timestamp( $this->timestampStartLimit->getTimestamp() );
 				if ( $this->revidStart ) {
 					$startQuery = $this->dbw->buildComparison( '>=',
 						[ 'rev_timestamp' => $dbLimitStart, 'rev_id' => $this->revidStart ]

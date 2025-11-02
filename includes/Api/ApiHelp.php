@@ -403,13 +403,14 @@ class ApiHelp extends ApiBase {
 					)
 				);
 
-				$link = SpecialPage::getTitleFor( 'Version', 'License/' . $sourceInfo['name'] );
+				$linkText = SpecialPage::getTitleFor( 'Version', 'License/' . $sourceInfo['name'] )
+					->getPrefixedText();
 				if ( isset( $sourceInfo['license-name'] ) ) {
-					$msg = $context->msg( 'api-help-license', $link,
+					$msg = $context->msg( 'api-help-license', $linkText,
 						Html::element( 'span', [ 'dir' => 'ltr', 'lang' => 'en' ], $sourceInfo['license-name'] )
 					);
 				} elseif ( ExtensionInfo::getLicenseFileNames( dirname( $sourceInfo['path'] ) ) ) {
-					$msg = $context->msg( 'api-help-license-noname', $link );
+					$msg = $context->msg( 'api-help-license-noname', $linkText );
 				} else {
 					$msg = $context->msg( 'api-help-license-unknown' );
 				}

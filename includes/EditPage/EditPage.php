@@ -1394,11 +1394,12 @@ class EditPage implements IEditObject {
 
 		if ( !$content ) {
 			$out = $this->context->getOutput();
+			// FIXME Why is this double-parsing?
 			$this->editFormPageTop .= Html::errorBox(
 				$out->parseAsInterface( $this->context->msg( 'missing-revision-content',
 					$this->oldid,
 					Message::plaintextParam( $this->mTitle->getPrefixedText() )
-				) )
+				)->parse() )
 			);
 		} elseif ( !$this->isSupportedContentModel( $content->getModel() ) ) {
 			$modelMsg = $this->getContext()->msg( 'content-model-' . $content->getModel() );
@@ -3486,7 +3487,7 @@ class EditPage implements IEditObject {
 				$isSubjectPreview ? $this->sectiontitle : $this->summary,
 				$labelText,
 				[ 'class' => $summaryClass ]
-			)
+			)->toString()
 		);
 	}
 

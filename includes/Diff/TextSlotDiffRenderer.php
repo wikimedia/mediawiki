@@ -254,7 +254,7 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 			unset( $values[ 'title' ] );
 			$parts[self::INLINE_SWITCHER_KEY] = Html::rawElement( 'div',
 				[ 'class' => 'mw-diffPage-inlineToggle-container' ],
-				new OOUI\FieldLayout(
+				( new OOUI\FieldLayout(
 					new ToggleSwitchWidget( [
 						'id' => 'mw-diffPage-inline-toggle-switch',
 						'href' => $newTitle->getLocalURL( $values ),
@@ -267,7 +267,7 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 						'infusable' => true,
 						'title' => $context->msg( 'diff-inline-switch-desc' )->plain()
 					]
-				),
+				) )->toString(),
 			);
 		}
 		// Add an empty placeholder for the legend is added when it's not in

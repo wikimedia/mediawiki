@@ -121,7 +121,7 @@ class SpecialUnblock extends SpecialPage {
 
 				if ( $status->hasMessage( 'ipb_cant_unblock_multiple_blocks' ) ) {
 					// Add additional message sending users to [[Special:Block/Username]]
-					$status->error( 'unblock-error-multiblocks', $this->target );
+					$status->error( 'unblock-error-multiblocks', $this->target->toString() );
 				}
 				return $status;
 			} )

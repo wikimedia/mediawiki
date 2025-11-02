@@ -305,10 +305,10 @@ abstract class TablePager extends IndexPager {
 				'disabled' => $queries[ $type ] === false
 			] );
 		}
-		return new ButtonGroupWidget( [
+		return ( new ButtonGroupWidget( [
 			'classes' => [ $this->getNavClass() ],
 			'items' => $buttons,
-		] );
+		] ) )->toString();
 	}
 
 	/**

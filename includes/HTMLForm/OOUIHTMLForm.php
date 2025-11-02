@@ -259,7 +259,7 @@ class OOUIHTMLForm extends HTMLForm {
 		} else {
 			$element = new \OOUI\Widget( [] );
 		}
-		return new \OOUI\FieldLayout(
+		return ( new \OOUI\FieldLayout(
 			$element,
 			[
 				'align' => 'top',
@@ -267,7 +267,7 @@ class OOUIHTMLForm extends HTMLForm {
 				'notices' => $this->oouiWarnings,
 				'classes' => $classes,
 			]
-		);
+		) )->toString();
 	}
 
 	/** @inheritDoc */

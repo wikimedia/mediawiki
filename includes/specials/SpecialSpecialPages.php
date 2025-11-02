@@ -128,7 +128,7 @@ class SpecialSpecialPages extends UnlistedSpecialPage {
 			$out->addModuleStyles( 'mediawiki.special.changeslist.legend' );
 		}
 
-		$out->addHTML( new FieldLayout(
+		$out->addHTML( ( new FieldLayout(
 			new SearchInputWidget( [
 				'placeholder' => $this->msg( 'specialpages-header-search' )->text(),
 			] ),
@@ -138,7 +138,7 @@ class SpecialSpecialPages extends UnlistedSpecialPage {
 				'invisibleLabel' => true,
 				'infusable' => true,
 			]
-		) );
+		) )->toString() );
 
 		// Format table of contents
 		$tocData = new TOCData();

@@ -81,7 +81,7 @@ class LocalRepo extends FileRepo {
 	public function __construct( ?array $info = null ) {
 		parent::__construct( $info );
 
-		$this->dbDomain = WikiMap::getCurrentWikiDbDomain();
+		$this->dbDomain = WikiMap::getCurrentWikiDbDomain()->getId();
 		$this->hasAccessibleSharedCache = true;
 
 		$this->hasSha1Storage = ( $info['storageLayout'] ?? null ) === 'sha1';

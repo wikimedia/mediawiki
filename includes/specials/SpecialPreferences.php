@@ -110,7 +110,7 @@ class SpecialPreferences extends SpecialPage {
 		}
 		$out->addJsConfigVars( 'wgPreferencesTabs', $prefTabs );
 
-		$out->addHTML( new FieldLayout(
+		$out->addHTML( ( new FieldLayout(
 			new SearchInputWidget( [
 				'placeholder' => $this->msg( 'searchprefs' )->text(),
 			] ),
@@ -120,7 +120,7 @@ class SpecialPreferences extends SpecialPage {
 				'invisibleLabel' => true,
 				'infusable' => true,
 			]
-		) );
+		) )->toString() );
 		$htmlForm->show();
 	}
 

@@ -775,7 +775,8 @@ class BlockUser {
 	private function prepareLogEntry( bool $isReblock ) {
 		$logType = $this->isHideUser ? 'suppress' : 'block';
 		$logAction = $isReblock ? 'reblock' : 'block';
-		$title = Title::makeTitle( NS_USER, $this->target );
+		// FIXME: Shouldn't this use BlockTarget::getLogPage?
+		$title = Title::makeTitle( NS_USER, $this->target->toString() );
 		// Preload the page_id: needed for log_page in ManualLogEntry::insert()
 		$title->getArticleID();
 

@@ -250,14 +250,14 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 		$isOwnContributionPage = $user->getName() === $target;
 		if ( $contributeEnabled && $isOwnContributionPage ) {
 			$out->enableOOUI();
-			$out->addHTML( new ButtonWidget( [
+			$out->addHTML( ( new ButtonWidget( [
 				'id' => 'mw-specialcontributions-newcontribution',
 				'href' => SpecialPage::getTitleFor( 'Contribute' )->getLinkURL(),
 				'label' => $this->msg( 'sp-contributions-newcontribution' )->text(),
 				'icon' => 'add',
 				'framed' => true,
 				'flags' => 'progressive',
-			] ) );
+			] ) )->toString() );
 		}
 
 		# For IP ranges, we want the contributionsSub, but not the skin-dependent
@@ -559,7 +559,7 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 	 */
 	protected function shouldDisplayActionLinks( User $userObj ): bool {
 		// T211910. Don't show action links if a range is outside block limit
-		$showForIp = $this->isValidIPOrQueryableRange( $userObj, $this->getConfig() );
+		$showForIp = $this->isValidIPOrQueryableRange( $userObj->getName(), $this->getConfig() );
 
 		$talk = $userObj->getTalkPage();
 

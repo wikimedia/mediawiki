@@ -78,24 +78,24 @@ class SpecialUserLogout extends FormSpecialPage {
 		$form->setSubmitTextMsg( 'userlogout-submit' );
 		if ( $this->getUser()->isTemp() ) {
 			$form->addHeaderHtml(
-				Html::rawElement( 'p', [], $this->msg( 'userlogout-temp' ) ) .
-				Html::rawElement( 'p', [], $this->msg( 'userlogout-temp-moreinfo' ) ) .
-				new MessageWidget( [
+				Html::element( 'p', [], $this->msg( 'userlogout-temp' )->text() ) .
+				Html::rawElement( 'p', [], $this->msg( 'userlogout-temp-moreinfo' )->parse() ) .
+				( new MessageWidget( [
 					'type' => 'notice',
 					'label' => new HtmlSnippet(
-						Html::rawElement(
+						Html::element(
 							'strong',
 							[],
-							$this->msg( 'userlogout-temp-messagebox-title' )
+							$this->msg( 'userlogout-temp-messagebox-title' )->text()
 						) .
 						Html::element( 'br' ) .
-						$this->msg( 'userlogout-temp-messagebox-body' )
+						$this->msg( 'userlogout-temp-messagebox-body' )->parse()
 					),
-				] )
+				] ) )->toString()
 			);
 		} else {
 			$form->addHeaderHtml(
-				Html::rawElement( 'p', [], $this->msg( 'userlogout-continue' ) )
+				Html::element( 'p', [], $this->msg( 'userlogout-continue' )->text() )
 			);
 		}
 

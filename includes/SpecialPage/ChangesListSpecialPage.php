@@ -1492,7 +1492,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			$legend .= Html::rawElement(
 				'dt',
 				[ 'class' => 'mw-changeslist-legend-watchlistexpiry' ],
-				$widget
+				$widget->toString()
 			);
 			$legend .= Html::element(
 				'dd',

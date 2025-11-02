@@ -494,12 +494,12 @@ class SpecialUndelete extends SpecialPage {
 		);
 
 		$out->addHTML(
-			new PanelLayout( [
+			( new PanelLayout( [
 				'expanded' => false,
 				'padded' => true,
 				'framed' => true,
 				'content' => $form,
-			] )
+			] ) )->toString()
 		);
 
 		# List undeletable articles

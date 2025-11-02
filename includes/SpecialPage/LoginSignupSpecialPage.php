@@ -91,7 +91,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	protected $mLoadedRequest = false;
 	/** @var string|null */
 	protected $mSecureLoginUrl;
-	/** @var string|true|null */
+	/** @var Message|true|null */
 	private $reasonValidatorResult = null;
 
 	/** @var string */

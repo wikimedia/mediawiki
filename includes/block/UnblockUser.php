@@ -152,14 +152,14 @@ class UnblockUser {
 		}
 
 		if ( $this->block === null ) {
-			return $status->fatal( 'ipb_cant_unblock', $this->target );
+			return $status->fatal( 'ipb_cant_unblock', $this->target->toString() );
 		}
 
 		if (
 			$this->block->getType() === AbstractBlock::TYPE_RANGE &&
 			$this->target->getType() === AbstractBlock::TYPE_IP
 		) {
-			return $status->fatal( 'ipb_blocked_as_range', $this->target, $this->block->getTargetName() );
+			return $status->fatal( 'ipb_blocked_as_range', $this->target->toString(), $this->block->getTargetName() );
 		}
 
 		$denyReason = [ 'hookaborted' ];
@@ -217,7 +217,7 @@ class UnblockUser {
 		$activeBlocks = $this->blockStore->newListFromTarget(
 			$this->target, null, false, DatabaseBlockStore::AUTO_SPECIFIED );
 		if ( !$activeBlocks ) {
-			$status->fatal( 'ipb_cant_unblock', $this->target );
+			$status->fatal( 'ipb_cant_unblock', $this->target->toString() );
 			return null;
 		}
 

@@ -307,7 +307,7 @@ class PreferencesFormOOUI extends OOUIHTMLForm {
 	/**
 	 * Creates the contents for each section of the mobile layout.
 	 * @param string $key
-	 * @param string $label
+	 * @param string|OOUI\Tag $label
 	 * @param string $content
 	 * @return OOUI\Tag
 	 */

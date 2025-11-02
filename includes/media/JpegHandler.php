@@ -151,7 +151,7 @@ class JpegHandler extends ExifBitmapHandler {
 			if ( $result->getExitCode() !== 0 ) {
 				$this->logErrorForExternalProcess( $result->getExitCode(),
 					$result->getStdout(),
-					$command
+					$command->__toString()
 				);
 
 				return new MediaTransformError( 'thumbnail_error', 0, 0, $result->getStdout() );
@@ -288,7 +288,7 @@ class JpegHandler extends ExifBitmapHandler {
 		if ( $result->getExitCode() !== 0 ) {
 			$this->logErrorForExternalProcess( $result->getExitCode(),
 				$result->getStdout(),
-				$command
+				$command->__toString()
 			);
 
 			return false;

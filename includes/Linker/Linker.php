@@ -707,7 +707,7 @@ class Linker {
 
 		$isBadFile = $exists && $thumb && $parser &&
 			$parser->getBadFileLookup()->isBadFile(
-				$manualthumb ? $manual_title : $title->getDBkey(),
+				$manualthumb ? $manual_title->getDBkey() : $title->getDBkey(),
 				$parser->getTitle()
 			);
 

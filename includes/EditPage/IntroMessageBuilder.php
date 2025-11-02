@@ -11,6 +11,7 @@ use MediaWiki\Language\RawMessage;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Logging\LogEventsList;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Page\PageReference;
 use MediaWiki\Page\ProperPageIdentity;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionManager;
@@ -103,7 +104,7 @@ class IntroMessageBuilder {
 	 * context), which should not be relied upon.
 	 *
 	 * @param string|array $types See LogEventsList::showLogExtract()
-	 * @param string $page See LogEventsList::showLogExtract()
+	 * @param string|PageReference $page See LogEventsList::showLogExtract()
 	 * @param string $user See LogEventsList::showLogExtract()
 	 * @param array $param See LogEventsList::showLogExtract()
 	 * @return string

@@ -164,14 +164,14 @@ class ApiFeedWatchlist extends ApiBase {
 					// @phan-suppress-next-line PhanUndeclaredMethod
 					$msg = ApiMessage::create( $msg )
 						->inLanguage( $this->getLanguage() );
-					$errorTitle = $this->msg( 'api-feed-error-title', $msg->getApiCode() );
+					$errorTitle = $this->msg( 'api-feed-error-title', $msg->getApiCode() )->text();
 					$errorText = $msg->text();
 					$feedItems[] = new FeedItem( $errorTitle, $errorText, '', '', '' );
 				}
 			} else {
 				// Something is seriously wrong
 				$errorCode = 'internal_api_error';
-				$errorTitle = $this->msg( 'api-feed-error-title', $errorCode );
+				$errorTitle = $this->msg( 'api-feed-error-title', $errorCode )->text();
 				$errorText = $e->getMessage();
 				$feedItems[] = new FeedItem( $errorTitle, $errorText, '', '', '' );
 			}

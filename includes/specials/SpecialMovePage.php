@@ -662,13 +662,13 @@ class SpecialMovePage extends UnlistedSpecialPage {
 		);
 
 		$out->addHTML(
-			new PanelLayout( [
+			( new PanelLayout( [
 				'classes' => [ 'movepage-wrapper' ],
 				'expanded' => false,
 				'padded' => true,
 				'framed' => true,
 				'content' => $form,
-			] )
+			] ) )->toString()
 		);
 		if ( $this->getAuthority()->isAllowed( 'editinterface' ) ) {
 			$link = $this->getLinkRenderer()->makeKnownLink(
@@ -748,7 +748,7 @@ class SpecialMovePage extends UnlistedSpecialPage {
 				return;
 			}
 
-			$reason = $this->msg( 'delete_and_move_reason', $ot )->inContentLanguage()->text();
+			$reason = $this->msg( 'delete_and_move_reason', $ot->getPrefixedText() )->inContentLanguage()->text();
 
 			// Delete an associated image if there is
 			if ( $nt->getNamespace() === NS_FILE ) {
