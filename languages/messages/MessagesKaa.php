@@ -145,8 +145,8 @@ $dateFormats = [
 	'dmy both' => 'H:i, j F, Y "j."',
 
 	'ymd time' => 'H:i',
-	'ymd date' => 'Y "j." xg j',
-	'ymd both' => 'H:i, Y "j." xg j',
+	'ymd date' => 'Y-"jıl" j-F',
+	'ymd both' => 'H:i, Y-"jıl" j-F',
 
 	'yyyy-mm-dd time' => 'xnH:xni:xns',
 	'yyyy-mm-dd date' => 'xnY-xnm-xnd',
