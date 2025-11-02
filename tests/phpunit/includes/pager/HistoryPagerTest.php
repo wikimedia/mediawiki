@@ -31,7 +31,7 @@ class HistoryPagerTest extends MediaWikiIntegrationTestCase {
 			->onlyMethods( [ 'getRequest', 'getWikiPage', 'getTitle' ] )
 			->getMock();
 		$contextMock->method( 'getRequest' )->willReturn(
-			new FauxRequest( [] )
+			new FauxRequest( [ 'offset' => '20251105123000' ] )
 		);
 		$title = Title::makeTitle( NS_MAIN, 'HistoryPagerTest' );
 		$contextMock->method( 'getTitle' )->willReturn( $title );
@@ -90,6 +90,16 @@ class HistoryPagerTest extends MediaWikiIntegrationTestCase {
 		}, $results );
 
 		return $pager;
+	}
+
+	/**
+	 * @covers \MediaWiki\Pager\HistoryPager::__construct
+	 */
+	public function testQueryOffset() {
+		$queryOffset = $this->getHistoryPager( [] )->getOffset();
+		$dbTimestamp = $this->getDb()->timestamp( $queryOffset );
+
+		$this->assertSame( $queryOffset, $dbTimestamp );
 	}
 
 	/**
