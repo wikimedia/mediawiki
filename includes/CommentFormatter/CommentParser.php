@@ -243,10 +243,6 @@ class CommentParser {
 						']]'
 					], '', $section );
 
-					// We don't want any links in the auto text to be linked, but we still
-					// want to show any [[ ]]
-					$sectionText = str_replace( '[[', '&#91;[', $auto );
-
 					$section = substr( Parser::guessSectionNameFromStrippedText( $section ), 1 );
 					if ( $section !== '' ) {
 						if ( $samePage ) {
@@ -256,7 +252,7 @@ class CommentParser {
 						}
 						$auto = $this->makeSectionLink(
 							$sectionTitle,
-							$this->userLang->getArrow() . $this->userLang->getDirMark() . $sectionText,
+							$this->userLang->getArrow() . $this->userLang->getDirMark() . $auto,
 							$wikiId
 						);
 					}
@@ -273,8 +269,10 @@ class CommentParser {
 					$auto = '<span dir="auto"><span class="autocomment">' . $auto . '</span>';
 					$append .= '</span>';
 				}
-				$comment = $pre . $auto;
-				return $comment;
+
+				// Make sure any brackets (which the user could have input in the edit summary)
+				// in the generated autocomment HTML don't trigger additional link processing (T406664).
+				return str_replace( [ '[', ']' ], [ '&#91;', '&#93;' ], $pre . $auto );
 			},
 			$comment
 		);

@@ -99,7 +99,7 @@ class CommentParserTest extends \MediaWikiIntegrationTestCase {
 				"/* autocomment */",
 			],
 			[
-				'<span dir="auto"><span class="autocomment"><a href="/wiki/Special:BlankPage#linkie.3F" title="Special:BlankPage">→‎&#91;[linkie?]]</a></span></span>',
+				'<span dir="auto"><span class="autocomment"><a href="/wiki/Special:BlankPage#linkie.3F" title="Special:BlankPage">→‎&#91;&#91;linkie?&#93;&#93;</a></span></span>',
 				"/* [[linkie?]] */",
 			],
 			[
@@ -161,22 +161,22 @@ class CommentParserTest extends \MediaWikiIntegrationTestCase {
 				null
 			],
 			[
-				'<span dir="auto"><span class="autocomment">[[</span></span>',
+				'<span dir="auto"><span class="autocomment">&#91;&#91;</span></span>',
 				"/* [[ */",
 				false, true
 			],
 			[
-				'<span dir="auto"><span class="autocomment">[[</span></span>',
+				'<span dir="auto"><span class="autocomment">&#91;&#91;</span></span>',
 				"/* [[ */",
 				null
 			],
 			[
-				"foo <span dir=\"auto\"><span class=\"autocomment\"><a href=\"#.23\">→‎&#91;[#_\t_]]</a></span></span>",
+				"foo <span dir=\"auto\"><span class=\"autocomment\"><a href=\"#.23\">→‎&#91;&#91;#_\t_&#93;&#93;</a></span></span>",
 				"foo /* [[#_\t_]] */",
 				false, true
 			],
 			[
-				"foo <span dir=\"auto\"><span class=\"autocomment\"><a href=\"#_.09\">#_\t_</a></span></span>",
+				"foo <span dir=\"auto\"><span class=\"autocomment\">&#91;&#91;#_\t_&#93;&#93;</span></span>",
 				"foo /* [[#_\t_]] */",
 				null
 			],
