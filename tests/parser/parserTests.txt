@@ -12369,7 +12369,7 @@ comment local title=[[Main Page]]
 !! wikitext
 /* [[A link]] */
 !! html/php
-<span class="autocomment"><a href="#A_link">→<bdi dir="ltr">&#91;[A link]]</bdi></a></span>
+<span class="autocomment"><a href="#A_link">→<bdi dir="ltr">&#91;&#91;A link&#93;&#93;</bdi></a></span>
 !! end
 
 !! test
