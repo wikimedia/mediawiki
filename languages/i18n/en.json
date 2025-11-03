@@ -2351,7 +2351,7 @@
 	"undelete-talk-summary-prefix": "Undeleted together with the associated page with reason: $1",
 	"undelete-error": "Error undeleting page",
 	"undelete-error-mixed": "Please select either page revisions or file versions — not both. Select only the kind you want to change visibility for.",
-	"undelete-error-none": "No revisions or file versions selected. Pick one or more items to change visibility.",
+	"undelete-error-none": "No page revisions or file versions selected. Pick one or more items to change visibility.",
 	"undelete-error-associated-alreadytalk": "Cannot undelete associated talk page of a talk page.",
 	"undelete-error-associated-notdeleted": "The associated talk page has no revisions that can be undeleted.",
 	"undelete-show-file-confirm": "Are you sure you want to view the deleted revision of the file \"<nowiki>$1</nowiki>\" from $2 at $3?",
