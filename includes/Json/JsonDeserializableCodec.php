@@ -17,6 +17,7 @@ use Wikimedia\JsonCodec\JsonClassCodec;
  * @see JsonClassCodec
  * @since 1.43
  * @internal
+ * @implements JsonClassCodec<JsonDeserializable>
  */
 class JsonDeserializableCodec implements JsonClassCodec {
 	private JsonDeserializer $codec;

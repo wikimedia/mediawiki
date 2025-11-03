@@ -9,7 +9,6 @@ namespace MediaWiki\FileRepo\File;
 use MediaWiki\FileRepo\ForeignDBRepo;
 use MediaWiki\Language\Language;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\ObjectCache\WANObjectCache;
@@ -33,18 +32,16 @@ class ForeignDBFile extends LocalFile {
 	 * @param string $srcPath
 	 * @param int $flags
 	 * @param array $options
-	 * @return Status
 	 */
-	public function publish( $srcPath, $flags = 0, array $options = [] ) {
+	public function publish( $srcPath, $flags = 0, array $options = [] ): never {
 		$this->readOnlyError();
 	}
 
 	/**
 	 * @param int[] $versions
 	 * @param bool $unsuppress
-	 * @return Status
 	 */
-	public function restore( $versions = [], $unsuppress = false ) {
+	public function restore( $versions = [], $unsuppress = false ): never {
 		$this->readOnlyError();
 	}
 
@@ -52,17 +49,15 @@ class ForeignDBFile extends LocalFile {
 	 * @param string $reason
 	 * @param UserIdentity $user
 	 * @param bool $suppress
-	 * @return Status
 	 */
-	public function deleteFile( $reason, UserIdentity $user, $suppress = false ) {
+	public function deleteFile( $reason, UserIdentity $user, $suppress = false ): never {
 		$this->readOnlyError();
 	}
 
 	/**
 	 * @param Title $target
-	 * @return Status
 	 */
-	public function move( $target ) {
+	public function move( $target ): never {
 		$this->readOnlyError();
 	}
 

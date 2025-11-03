@@ -118,7 +118,7 @@ class FeedUtils {
 	 * except with preformatted comments.
 	 *
 	 * @param Title $title
-	 * @param int $oldid Old revision's id
+	 * @param int|null $oldid Old revision's id
 	 * @param int $newid New revision's id
 	 * @param string $timestamp New revision's timestamp
 	 * @param string $formattedComment New revision's comment in HTML format

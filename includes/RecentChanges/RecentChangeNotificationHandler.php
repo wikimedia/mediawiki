@@ -51,7 +51,7 @@ class RecentChangeNotificationHandler implements NotificationHandler {
 		foreach ( $recipients as $recipient ) {
 			$user = $this->userFactory->newFromUserIdentity( $recipient );
 			if ( $this->checkNotificationRequirements( $notification, $user ) ) {
-				$composer->compose( $recipient, $source );
+				$composer->compose( $user, $source );
 			}
 		}
 	}

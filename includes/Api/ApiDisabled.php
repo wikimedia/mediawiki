@@ -20,7 +20,7 @@ namespace MediaWiki\Api;
  */
 class ApiDisabled extends ApiBase {
 
-	public function execute() {
+	public function execute(): never {
 		$this->dieWithError( [ 'apierror-moduledisabled', $this->getModuleName() ] );
 	}
 

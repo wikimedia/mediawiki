@@ -211,7 +211,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			return;
 		}
 
-		$primaryIndexExists = $this->db->indexExists( 'searchindex', 'PRIMARY' );
+		$primaryIndexExists = $this->db->indexExists( 'searchindex', 'PRIMARY', __METHOD__ );
 		if ( $this->updateRowExists( $updateKey ) || $primaryIndexExists ) {
 			$this->output( "...searchindex table has already been migrated.\n" );
 			if ( !$this->updateRowExists( $updateKey ) ) {

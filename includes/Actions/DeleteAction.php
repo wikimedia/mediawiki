@@ -30,7 +30,7 @@ use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\TitleFactory;
 use MediaWiki\Title\TitleFormatter;
 use MediaWiki\User\Options\UserOptionsLookup;
-use MediaWiki\Watchlist\WatchedItemStore;
+use MediaWiki\Watchlist\WatchedItemStoreInterface;
 use MediaWiki\Watchlist\WatchlistManager;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
 use Wikimedia\Rdbms\IConnectionProvider;
@@ -59,7 +59,7 @@ class DeleteAction extends FormAction {
 	protected const MSG_EDIT_REASONS_SUPPRESS = 'edit-reasons-suppress';
 
 	protected WatchlistManager $watchlistManager;
-	private WatchedItemStore $watchedItemStore;
+	private WatchedItemStoreInterface $watchedItemStore;
 	protected LinkRenderer $linkRenderer;
 	private BacklinkCacheFactory $backlinkCacheFactory;
 	protected ReadOnlyMode $readOnlyMode;

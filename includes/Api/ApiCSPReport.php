@@ -244,9 +244,8 @@ class ApiCSPReport extends ApiBase {
 	 *
 	 * @param string $code error code
 	 * @param string $method method that made error
-	 * @throws ApiUsageException Always
 	 */
-	private function error( $code, $method ) {
+	private function error( $code, $method ): never {
 		$this->log->info( 'Error reading CSP report: ' . $code, [
 			'method' => $method,
 			'user-agent' => $this->getRequest()->getHeader( 'user-agent' )

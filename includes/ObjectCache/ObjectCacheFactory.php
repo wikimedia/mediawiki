@@ -173,13 +173,16 @@ class ObjectCacheFactory {
 	 *   is discouraged. Use getInstance() instead and supply the ID
 	 *   of the cache instance to be looked up.
 	 *
-	 * @param array $params Must have 'factory' or 'class' property.
+	 * @template T of BagOStuff
+	 * @param array{factory?:callable,class?:class-string<T>,loggroup?:string} $params
+	 *  Must have 'factory' or 'class' property.
 	 *  - factory: Callback passed $params that returns BagOStuff.
 	 *  - class: BagOStuff subclass constructed with $params.
 	 *  - loggroup: Alias to set 'logger' key with LoggerFactory group.
 	 *  - .. Other parameters passed to factory or class.
 	 *
-	 * @return BagOStuff
+	 * @return T
+	 * @suppress PhanTypeMismatchDeclaredReturn Phan < 6 does not understand constrained templates
 	 */
 	public function newFromParams( array $params ): BagOStuff {
 		$logger = $this->logger->getLogger( $params['loggroup'] ?? 'objectcache' );

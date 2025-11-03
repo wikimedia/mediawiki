@@ -20,6 +20,7 @@ use Wikimedia\JsonCodec\JsonClassCodec;
  * @see JsonClassCodec
  * @since 1.43
  * @internal
+ * @implements JsonClassCodec<JsonSerializable>
  */
 class JsonSerializableCodec implements JsonClassCodec {
 

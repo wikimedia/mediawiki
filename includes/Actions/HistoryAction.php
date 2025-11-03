@@ -443,7 +443,7 @@ class HistoryAction extends FormlessAction {
 		$revComment = $rev->getComment() === null ? null : $rev->getComment()->text;
 		$text = FeedUtils::formatDiffRow2(
 			$this->getTitle(),
-			$prevRev ? $prevRev->getId() : false,
+			$prevRev ? $prevRev->getId() : null,
 			$rev->getId(),
 			$rev->getTimestamp(),
 			$formattedComment

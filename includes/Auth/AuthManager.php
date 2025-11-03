@@ -2800,9 +2800,10 @@ class AuthManager implements LoggerAwareInterface {
 
 	/**
 	 * Create an array of AuthenticationProviders from an array of ObjectFactory specs
-	 * @param class-string<AuthenticationProvider> $class
+	 * @template T of AuthenticationProvider
+	 * @param class-string<T> $class
 	 * @param array[] $specs
-	 * @return AuthenticationProvider[]
+	 * @return T[]
 	 */
 	protected function providerArrayFromSpecs( $class, array $specs ) {
 		$i = 0;

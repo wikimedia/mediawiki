@@ -117,7 +117,7 @@ class ApiParse extends ApiBase {
 						$content, $page, $revision, $popts
 					);
 				},
-				'error' => function () {
+				'error' => function (): never {
 					$this->dieWithError( 'apierror-concurrency-limit' );
 				},
 			]
@@ -147,7 +147,7 @@ class ApiParse extends ApiBase {
 				'doWork' => static function () use ( $page, $revId, $popts, $suppressCache ) {
 					return $page->getParserOutput( $popts, $revId, $suppressCache );
 				},
-				'error' => function () {
+				'error' => function (): never {
 					$this->dieWithError( 'apierror-concurrency-limit' );
 				},
 			]

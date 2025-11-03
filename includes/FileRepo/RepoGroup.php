@@ -12,6 +12,7 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Title\Title;
 use MWFileProps;
+use Wikimedia\FileBackend\FileBackend;
 use Wikimedia\MapCacheLRU\MapCacheLRU;
 use Wikimedia\Mime\MimeAnalyzer;
 use Wikimedia\ObjectCache\WANObjectCache;
@@ -20,6 +21,10 @@ use Wikimedia\ObjectCache\WANObjectCache;
  * Prioritized list of file repositories.
  *
  * @ingroup FileRepo
+ *
+ * @todo Add the remaining array keys when we upgrade to phan 6 (which supports multiline types)
+ * @phpcs:ignore Generic.Files.LineLength.TooLong
+ * @phan-type FileRepoInfo = array{class:class-string<LocalRepo>,name:string,backend?:string|FileBackend,lockManager?:string,favicon?:string,zones?:array,url?:string,hashLevels?:int,transformVia404?:bool}
  */
 class RepoGroup {
 	/** @var LocalRepo */
@@ -34,7 +39,10 @@ class RepoGroup {
 	/** @var bool */
 	protected $reposInitialised = false;
 
-	/** @var array */
+	/**
+	 * @var array
+	 * @phan-var FileRepoInfo
+	 */
 	protected $localInfo;
 
 	/** @var array */
@@ -54,6 +62,7 @@ class RepoGroup {
 	 * MediaWikiServices::getRepoGroup.
 	 *
 	 * @param array $localInfo Associative array for local repo's info
+	 * @phan-param FileRepoInfo $localInfo
 	 * @param array $foreignInfo Array of repository info arrays.
 	 *   Each info array is an associative array with the 'class' member
 	 *   giving the class name. The entire array is passed to the repository
@@ -391,14 +400,16 @@ class RepoGroup {
 	 * @return LocalRepo
 	 */
 	public function newCustomLocalRepo( $info = [] ) {
-		// @phan-suppress-next-line PhanTypeMismatchReturnSuperType
 		return $this->newRepo( $info + $this->localInfo );
 	}
 
 	/**
 	 * Create a repo class based on an info structure
-	 * @param array $info
-	 * @return FileRepo
+	 * @template T of FileRepo
+	 * @todo Add the remaining array keys when we upgrade to phan 6 (which supports multiline types)
+	 * @phpcs:ignore Generic.Files.LineLength.TooLong
+	 * @param array{class:class-string<T>,name:string,backend?:string|FileBackend,lockManager?:string,favicon?:string,zones?:array,url?:string,hashLevels?:int,transformVia404?:bool} $info
+	 * @return T
 	 */
 	protected function newRepo( $info ) {
 		$class = $info['class'];

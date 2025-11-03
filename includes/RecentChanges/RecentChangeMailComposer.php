@@ -9,7 +9,7 @@ namespace MediaWiki\RecentChanges;
 use MediaWiki\Config\Config;
 use MediaWiki\Language\Language;
 use MediaWiki\Language\MessageParser;
-use MediaWiki\Mail\Emailer;
+use MediaWiki\Mail\IEmailer;
 use MediaWiki\Mail\MailAddress;
 use MediaWiki\Mail\UserEmailContact;
 use MediaWiki\MainConfigNames;
@@ -76,7 +76,7 @@ class RecentChangeMailComposer {
 	private UrlUtils $urlUtils;
 	private MessageParser $messageParser;
 	private Language $contentLanguage;
-	private Emailer $emailer;
+	private IEmailer $emailer;
 
 	public function __construct(
 		Authority $editor,
@@ -266,7 +266,6 @@ class RecentChangeMailComposer {
 			$headers['List-Help'] = 'https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Watchlist';
 		}
 
-		// @phan-suppress-next-line SecurityCheck-XSS
 		$this->emailer->send(
 				[ $to ],
 				$this->from,

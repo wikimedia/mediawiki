@@ -782,7 +782,7 @@ END;
 			return;
 		}
 
-		$primaryIndexExists = $this->db->indexExists( 'searchindex', 'searchindex_pkey' );
+		$primaryIndexExists = $this->db->indexExists( 'searchindex', 'searchindex_pkey', __METHOD__ );
 		if ( $this->updateRowExists( $updateKey ) || ( $primaryIndexExists ) ) {
 			$this->output( "...searchindex table has already been migrated.\n" );
 			if ( !$this->updateRowExists( $updateKey ) ) {

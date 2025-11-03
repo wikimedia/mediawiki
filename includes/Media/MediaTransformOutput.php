@@ -252,7 +252,7 @@ abstract class MediaTransformOutput {
 		if ( isset( $linkAttribs['href'] ) ) {
 			return Html::rawElement( 'a', $linkAttribs, $contents );
 		}
-		return Html::rawElement( 'span', $linkAttribs ?: null, $contents );
+		return Html::rawElement( 'span', $linkAttribs ?: [], $contents );
 	}
 
 	/**

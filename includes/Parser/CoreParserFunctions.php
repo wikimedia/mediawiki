@@ -2066,7 +2066,7 @@ class CoreParserFunctions {
 
 		try {
 			return new TitleValue( NS_MAIN, $title, $frag, $prefix );
-		} catch ( InvalidArgumentException $_ ) {
+		} catch ( InvalidArgumentException ) {
 			return null;
 		}
 	}

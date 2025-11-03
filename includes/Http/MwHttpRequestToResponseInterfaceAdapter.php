@@ -40,7 +40,7 @@ class MwHttpRequestToResponseInterfaceAdapter implements ResponseInterface {
 	}
 
 	/** @inheritDoc */
-	public function withProtocolVersion( $version ): self {
+	public function withProtocolVersion( $version ): never {
 		$this->throwExceptionForBuilderMethod( __METHOD__ );
 	}
 
@@ -67,17 +67,17 @@ class MwHttpRequestToResponseInterfaceAdapter implements ResponseInterface {
 	}
 
 	/** @inheritDoc */
-	public function withHeader( $name, $value ): self {
+	public function withHeader( $name, $value ): never {
 		$this->throwExceptionForBuilderMethod( __METHOD__ );
 	}
 
 	/** @inheritDoc */
-	public function withAddedHeader( $name, $value ): self {
+	public function withAddedHeader( $name, $value ): never {
 		$this->throwExceptionForBuilderMethod( __METHOD__ );
 	}
 
 	/** @inheritDoc */
-	public function withoutHeader( $name ): self {
+	public function withoutHeader( $name ): never {
 		$this->throwExceptionForBuilderMethod( __METHOD__ );
 	}
 
@@ -86,7 +86,7 @@ class MwHttpRequestToResponseInterfaceAdapter implements ResponseInterface {
 		return Utils::streamFor( $this->mwHttpRequest->getContent() );
 	}
 
-	public function withBody( StreamInterface $body ): self {
+	public function withBody( StreamInterface $body ): never {
 		$this->throwExceptionForBuilderMethod( __METHOD__ );
 	}
 
@@ -96,7 +96,7 @@ class MwHttpRequestToResponseInterfaceAdapter implements ResponseInterface {
 	}
 
 	/** @inheritDoc */
-	public function withStatus( $code, $reasonPhrase = '' ): self {
+	public function withStatus( $code, $reasonPhrase = '' ): never {
 		$this->throwExceptionForBuilderMethod( __METHOD__ );
 	}
 
