@@ -62,7 +62,6 @@ class AutoLoader {
 		'MediaWiki\\Session\\' => __DIR__ . '/session/',
 		'MediaWiki\\Skin\\' => __DIR__ . '/skins/',
 		'MediaWiki\\Specials\\' => __DIR__ . '/specials/',
-		'MediaWiki\\Specials\\Redirects\\' => __DIR__ . '/specials/redirects/',
 		'MediaWiki\\Title\\' => __DIR__ . '/title/',
 		'Wikimedia\\' => __DIR__ . '/libs/',
 		'Wikimedia\\DependencyStore\\' => __DIR__ . '/ResourceLoader/dependencystore/',
