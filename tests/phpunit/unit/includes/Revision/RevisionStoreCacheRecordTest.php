@@ -4,6 +4,7 @@ namespace MediaWiki\Tests\Unit\Revision;
 
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Page\PageIdentityValue;
+use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionSlots;
 use MediaWiki\Revision\RevisionStoreCacheRecord;
@@ -30,9 +31,6 @@ class RevisionStoreCacheRecordTest extends RevisionStoreRecordTest {
 	protected function newRevision( array $rowOverrides = [], $callback = false ) {
 		$wikiId = $rowOverrides['wikiId'] ?? RevisionRecord::LOCAL;
 
-		$title = new PageIdentityValue( 17, NS_MAIN, 'Dummy', $wikiId );
-
-		$user = new UserIdentityValue( 11, 'Tester' );
 		$comment = CommentStoreComment::newUnsavedComment( 'Hello World' );
 
 		$main = SlotRecord::newUnsaved( SlotRecord::MAIN, new DummyContentForTesting( 'Lorem Ipsum' ) );
@@ -52,6 +50,9 @@ class RevisionStoreCacheRecordTest extends RevisionStoreRecordTest {
 		];
 
 		$row = array_merge( $row, $rowOverrides );
+
+		$title = new PageIdentityValue( $row['rev_page'], NS_MAIN, 'Dummy', $wikiId );
+		$user = new UserIdentityValue( $row['rev_user'], 'Tester' );
 
 		if ( !$callback ) {
 			$callback = function ( $revId ) use ( $row ) {
@@ -92,6 +93,42 @@ class RevisionStoreCacheRecordTest extends RevisionStoreRecordTest {
 		$this->assertSame( RevisionRecord::DELETED_TEXT, $rev->getVisibility() );
 		$this->assertSame( 12, $rev->getUser()->getId() );
 		$this->assertSame( 1, $callbackInvoked );
+	}
+
+	public function testCallbackWithException() {
+		// Provide a callback that returns null.
+		// This simulates a failed database lookup of rev_deleted and rev_user values.
+		// This will cause a RevisionAccessException to be thrown.
+		// We need to be sure we can access the possibly stale values of
+		// rev_deleted and rev_user if we are sure we intend to.
+		// See: https://phabricator.wikimedia.org/T400380#11207694
+		$callback = static function ( $revId ) use ( &$callbackInvoked ) {
+			return [ null, null ];
+		};
+
+		$rev_deleted = RevisionRecord::DELETED_COMMENT;
+		$rev_user = 12;
+
+		$rev = $this->newRevision(
+			[
+				'rev_deleted' => $rev_deleted,
+				'rev_user' => strval( $rev_user ),
+			],
+			$callback,
+		);
+
+		// calling a method like getVisibility for the first time will
+		// invoke the callback, causing a RevisionAccessException.
+		try {
+			$rev->getVisibility();
+		} catch ( RevisionAccessException ) {
+			// noop
+		}
+
+		// After the exception is thrown and caught, we should still be able to access
+		// cached (and maybe stale) RevisionRecord data.
+		$this->assertSame( $rev_deleted, $rev->getVisibility() );
+		$this->assertSame( $rev_user, $rev->getUser()->getId() );
 	}
 
 }

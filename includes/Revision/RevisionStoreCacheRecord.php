@@ -33,6 +33,7 @@ class RevisionStoreCacheRecord extends RevisionStoreRecord {
 	 *
 	 * @param callable $callback Callback for loading data.
 	 *        Signature: function ( int $revId ): [ int $rev_deleted, UserIdentity $user ]
+	 *        This function will only be called once.
 	 * @param PageIdentity $page The page this RevisionRecord is associated with.
 	 * @param UserIdentity $user
 	 * @param CommentStoreComment $comment
@@ -82,7 +83,15 @@ class RevisionStoreCacheRecord extends RevisionStoreRecord {
 	}
 
 	/**
-	 * Load a fresh row from the database to ensure we return updated information
+	 * Load a fresh row from the database to ensure we return updated information.
+	 * Once loading a fresh row is attempted on this RevisionStoreCacheRecord instance,
+	 * it will not be attempted again. Subsequent calls to methods on this instance
+	 * will not go back to the database for a 'fresh row'.
+	 *
+	 * If a RevisionAccessException is thrown and is caught in the caller, it is possible
+	 * to continue using this RevisionStoreCacheRecord instance to access RevisionRecord
+	 * data, but there is no guarantee that the data will be 'fresh'.
+	 * See: https://phabricator.wikimedia.org/T400380#11207694
 	 *
 	 * @throws RevisionAccessException if the row could not be loaded
 	 */
