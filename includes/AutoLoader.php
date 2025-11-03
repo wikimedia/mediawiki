@@ -69,7 +69,6 @@ class AutoLoader {
 		'Wikimedia\\Rdbms\\Database\\' => __DIR__ . '/libs/rdbms/database/',
 		'Wikimedia\\Rdbms\\Platform\\' => __DIR__ . '/libs/rdbms/platform/',
 		'Wikimedia\\Rdbms\\Replication\\' => __DIR__ . '/libs/rdbms/database/replication/',
-		'Wikimedia\\Telemetry\\' => __DIR__ . '/libs/telemetry/',
 	];
 
 	/**
