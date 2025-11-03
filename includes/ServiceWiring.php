@@ -277,6 +277,7 @@ use MediaWiki\Utils\UrlUtils;
 use MediaWiki\Watchlist\NoWriteWatchedItemStore;
 use MediaWiki\Watchlist\WatchedItemQueryService;
 use MediaWiki\Watchlist\WatchedItemStore;
+use MediaWiki\Watchlist\WatchlistLabelStore;
 use MediaWiki\Watchlist\WatchlistManager;
 use MediaWiki\WikiMap\WikiMap;
 use Psr\Http\Client\ClientInterface;
@@ -2845,6 +2846,10 @@ return [
 		}
 
 		return $store;
+	},
+
+	'WatchlistLabelStore' => static function ( MediaWikiServices $services ): WatchlistLabelStore {
+		return new WatchlistLabelStore( $services->getConnectionProvider() );
 	},
 
 	'WatchlistManager' => static function ( MediaWikiServices $services ): WatchlistManager {

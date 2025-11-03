@@ -201,6 +201,7 @@ use MediaWiki\User\UserRequirementsConditionCheckerFactory;
 use MediaWiki\Utils\UrlUtils;
 use MediaWiki\Watchlist\WatchedItemQueryService;
 use MediaWiki\Watchlist\WatchedItemStoreInterface;
+use MediaWiki\Watchlist\WatchlistLabelStore;
 use MediaWiki\Watchlist\WatchlistManager;
 use MessageCache;
 use MWLBFactory;
@@ -2324,6 +2325,13 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getWatchedItemStore(): WatchedItemStoreInterface {
 		return $this->getService( 'WatchedItemStore' );
+	}
+
+	/**
+	 * @since 1.46
+	 */
+	public function getWatchlistLabelStore(): WatchlistLabelStore {
+		return $this->getService( 'WatchlistLabelStore' );
 	}
 
 	/**
