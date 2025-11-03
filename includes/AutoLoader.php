@@ -60,8 +60,6 @@ class AutoLoader {
 		'MediaWiki\\Maintenance\\' => __DIR__ . '/../maintenance/includes/',
 		'MediaWiki\\RCFeed\\' => __DIR__ . '/recentchanges/RCFeed/',
 		'MediaWiki\\RecentChanges\\' => __DIR__ . '/recentchanges/',
-		'MediaWiki\\Search\\' => __DIR__ . '/search/',
-		'MediaWiki\\Search\\SearchWidgets\\' => __DIR__ . '/search/searchwidgets/',
 		'MediaWiki\\Session\\' => __DIR__ . '/session/',
 		'MediaWiki\\Skin\\' => __DIR__ . '/skins/',
 		'MediaWiki\\Specials\\' => __DIR__ . '/specials/',
