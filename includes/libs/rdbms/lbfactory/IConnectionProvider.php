@@ -46,7 +46,7 @@ interface IConnectionProvider {
 	 * @param string|null $group Query group; null for the default group
 	 * @return IReadableDatabase
 	 */
-	public function getReplicaDatabase( $domain = false, $group = null ): IReadableDatabase;
+	public function getReplicaDatabase( string|false $domain = false, $group = null ): IReadableDatabase;
 
 	/**
 	 * Commit primary DB transactions and wait for replication (if $ticket indicates it is safe).

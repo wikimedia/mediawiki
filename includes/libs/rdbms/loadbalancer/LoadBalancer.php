@@ -243,15 +243,11 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	}
 
 	/** @inheritDoc */
-	public function resolveDomainID( $domain ): string {
+	public function resolveDomainID( DatabaseDomain|string|false $domain ): string {
 		return $this->resolveDomainInstance( $domain )->getId();
 	}
 
-	/**
-	 * @param DatabaseDomain|string|false $domain
-	 * @return DatabaseDomain
-	 */
-	final protected function resolveDomainInstance( $domain ): DatabaseDomain {
+	final protected function resolveDomainInstance( DatabaseDomain|string|false $domain ): DatabaseDomain {
 		if ( $domain instanceof DatabaseDomain ) {
 			return $domain; // already a domain instance
 		} elseif ( $domain === false || $domain === $this->localDomain->getId() ) {
@@ -784,7 +780,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	}
 
 	/** @inheritDoc */
-	public function getConnection( $i, $groups = [], $domain = false, $flags = 0 ) {
+	public function getConnection( $i, $groups = [], string|false $domain = false, $flags = 0 ) {
 		if ( self::fieldHasBit( $flags, self::CONN_SILENCE_ERRORS ) ) {
 			throw new UnexpectedValueException(
 				__METHOD__ . ' got CONN_SILENCE_ERRORS; connection is already deferred'

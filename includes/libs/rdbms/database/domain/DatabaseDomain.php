@@ -62,13 +62,9 @@ class DatabaseDomain implements Stringable {
 	 * @param DatabaseDomain|string $domain Result of DatabaseDomain::toString()
 	 * @return DatabaseDomain
 	 */
-	public static function newFromId( $domain ): self {
+	public static function newFromId( DatabaseDomain|string $domain ): self {
 		if ( $domain instanceof self ) {
 			return $domain;
-		}
-
-		if ( !is_string( $domain ) ) {
-			throw new InvalidArgumentException( "Domain must be a string or " . __CLASS__ );
 		}
 
 		$parts = explode( '-', $domain );

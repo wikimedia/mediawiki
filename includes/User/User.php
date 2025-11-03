@@ -263,9 +263,8 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 	 * Returns self::LOCAL to indicate the user is associated with the local wiki.
 	 *
 	 * @since 1.36
-	 * @return string|false
 	 */
-	public function getWikiId() {
+	public function getWikiId(): string|false {
 		return self::LOCAL;
 	}
 

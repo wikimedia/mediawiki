@@ -36,6 +36,8 @@ interface WikiAwareEntity {
 
 	/**
 	 * Wiki ID value to use with instances that are defined relative to the local wiki.
+	 * @note The value `false` is hardcoded in many type declarations and it cannot therefore be changed.
+	 * Nonetheless, code outside of type declarations should not rely on it.
 	 */
 	public const LOCAL = false;
 

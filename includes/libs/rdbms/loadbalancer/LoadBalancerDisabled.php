@@ -53,7 +53,7 @@ class LoadBalancerDisabled extends LoadBalancer {
 	 *
 	 * @return never
 	 */
-	public function getConnection( $i, $groups = [], $domain = false, $flags = 0 ): never {
+	public function getConnection( $i, $groups = [], string|false $domain = false, $flags = 0 ): never {
 		throw new RuntimeException( 'Database backend disabled' );
 	}
 
