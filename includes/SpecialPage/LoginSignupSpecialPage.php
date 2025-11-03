@@ -604,11 +604,11 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 				// User is accessing the login or signup page while already logged in.
 				// Add a big warning and a button to leave this page (T284927),
 				// but allow using the form if they really want to.
-				$submitStatus->warning(
-					$this->isSignup() ? 'createacct-loggedin' : 'userlogin-loggedin',
-					$this->getUser()->getName()
-				);
-				$form->addHeaderHtml(
+				$form->addPreHtml(
+					Html::warningBox( $this->msg(
+						$this->isSignup() ? 'createacct-loggedin' : 'userlogin-loggedin',
+						$this->getUser()->getName()
+					)->parse() ) .
 					'<div class="cdx-field"><div class="cdx-field__control">' .
 					Html::element( 'a',
 						[
