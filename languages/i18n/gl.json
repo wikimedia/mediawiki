@@ -2367,6 +2367,8 @@
 	"undelete-missing-filearchive": "Non foi posible restaurar o ficheiro do arquivo con identificador $1 porque non figura na base de datos.\nPoida que xa se restaurase con anterioridade.",
 	"undelete-talk-summary-prefix": "Restaurada canda a páxina asociada co seguinte motivo: $1",
 	"undelete-error": "Erro ao restaurar a páxina",
+	"undelete-error-mixed": "Selecciona ou ben revisións de páxina ou ben versións de ficheiro, pero non ambas. Selecciona só o tipo cuxa visibilidade queres cambiar.",
+	"undelete-error-none": "Non se seleccionaron revisións nin versións de ficheiro. Escolle un ou máis elementos para cambiar a visibilidade.",
 	"undelete-error-associated-alreadytalk": "Non se pode recuperar a páxina de conversa asociada a unha páxina de conversa.",
 	"undelete-error-associated-notdeleted": "A páxina de conversa asociada non ten revisións que se poidan restaurar.",
 	"undelete-show-file-confirm": "Queres ver unha revisión borrada do ficheiro «<nowiki>$1</nowiki>» do día $2 ás $3?",

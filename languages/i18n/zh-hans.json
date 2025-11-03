@@ -2555,6 +2555,8 @@
 	"undelete-missing-filearchive": "无法还原文件归档ID $1，因为它不在数据库中。\n它可能已经被还原了。",
 	"undelete-talk-summary-prefix": "已因下列理由与关联页面一并还原：$1",
 	"undelete-error": "还原页面出错",
+	"undelete-error-mixed": "同时选中的必须都为页面修订版本或者都为文件版本，不可混选。选择您要更改可见性的版本时请仅选择其中一类。",
+	"undelete-error-none": "没有选择任何修订版本或文件版本。请选择一个或多个项目以更改可见性。",
 	"undelete-error-associated-alreadytalk": "无法删除讨论页的关联讨论页。",
 	"undelete-error-associated-notdeleted": "关联讨论页没有可还原的修订。",
 	"undelete-show-file-confirm": "确定要查看文件“<nowiki>$1</nowiki>”于$2$3被删除的版本吗？",

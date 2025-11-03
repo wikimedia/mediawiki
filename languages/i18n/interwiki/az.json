@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Gadir",
 			"Nemoralis",
 			"Wertuose"
 		]
@@ -13,8 +14,8 @@
 	"interwiki-prefix-label": "Prefiks:",
 	"interwiki_prefix_intro": "<code>[<nowiki />[prefix:<em>pagename</em>]]</code> sintaksisində istifadə olunacaq interviki prefiksi.",
 	"interwiki_url_intro": "URL üçün şablon. $1 <code>[<nowiki />[prefix:<em>səhifə adı</em>]]</code> kodunda <em>səhifə adı</em> ilə əvəz olunacaq.",
-	"interwiki_local": "Yönləndir",
-	"interwiki-local-label": "Yönləndir",
+	"interwiki_local": "İstiqamətləndir",
+	"interwiki-local-label": "İstiqamətləndir",
 	"interwiki_local_0_intro": "URL-də bu interviki prefiksdən istifadə edərək lokal vikiyə edilən xarici HTTP sorğuları \"{{int:badtitle}}\" xəta səhifəsi ilə üzləşəcək.",
 	"interwiki_local_1_intro": "Bu interviki prefiksindən istifadə edərək lokal vikiyə edilən xarici HTTP sorğuları intervikinin hədəf URL-inə yönləndiriləcək (yəni lokal səhifələrə keçidlər kimi qəbul edilir).",
 	"interwiki_trans": "Göstər",

@@ -2342,6 +2342,8 @@
 	"undelete-missing-filearchive": "Impossibile restaurar le file con ID de archivo $1 perque illo non es presente in le base de datos.\nEs possibile que illo ha ja essite restaurate.",
 	"undelete-talk-summary-prefix": "Restaurate insimul con le pagina associate pro le sequente motivo: $1",
 	"undelete-error": "Error durante le restauration del pagina",
+	"undelete-error-mixed": "Per favor selige versiones o de pagina o de file, non de ambe typos. Selige solmente le typo pro le qual tu vole cambiar le visibilitate.",
+	"undelete-error-none": "Necun version de pagina o de file seligite. Selige un o plus versiones pro cambiar lor visibilitate.",
 	"undelete-error-associated-alreadytalk": "Impossibile restaurar le pagina de discussion associate a un pagina de discussion.",
 	"undelete-error-associated-notdeleted": "Le pagina de discussion associate non ha versiones que pote esser restaurate.",
 	"undelete-show-file-confirm": "Es tu secur de voler vider un version delite del file “<nowiki>$1</nowiki>” del $2 a $3?",

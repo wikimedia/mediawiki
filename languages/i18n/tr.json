@@ -2460,6 +2460,8 @@
 	"undelete-missing-filearchive": "Veritabanında olmadığı için $1 dosya arşiv kimliği geri alınamıyor.\nZaten geri getirilmiş olabilir.",
 	"undelete-talk-summary-prefix": "Nedeniyle ilişkili sayfayla birlikte geri getirildi: $1",
 	"undelete-error": "Sayfa silinirken hata oluştu",
+	"undelete-error-mixed": "Lütfen sayfa revizyonlarını ya da dosya sürümlerini seçin; ikisini birden değil. Yalnızca görünürlüğünü değiştirmek istediğiniz türü seçin.",
+	"undelete-error-none": "Hiçbir revizyon ya da dosya sürümü seçilmedi. Görünürlüğü değiştirmek için bir ya da daha fazla öge seçin.",
 	"undelete-error-associated-alreadytalk": "Bir tartışma sayfasının ilişkili tartışma sayfasının silinmesi geri getiremez.",
 	"undelete-error-associated-notdeleted": "İlişkili tartışma sayfasında geri getirecek hiçbir revizyon yok.",
 	"undelete-show-file-confirm": "\"<nowiki>$1</nowiki>\" dosyasının $2 $3 tarihli silinmiş bir revizyonunu görmek istediğinize emin misiniz?",
