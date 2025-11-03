@@ -32,7 +32,9 @@
 			"Kalakpagh",
 			"Reedy",
 			"Alhassan Abdul-Manan",
-			"Munkaila Sulemana"
+			"Munkaila Sulemana",
+			"Joris Darlington Quarshie",
+			"SIR SUCCESS (NAA JAHINFO)"
 		]
 	},
 	"tog-underline": "Zaŋ gɔhi din gbunni booi",
@@ -1108,6 +1110,7 @@
 	"ncategories": "$1 {{PLURAL:$1|category|categories}}",
 	"ninterwikis": "$1 {{PLURAL:$1|interwiki|interwikis}}",
 	"nlinks": "$1 {{PLURAL:$1|link|links}}",
+	"nmembers": "$1 {{PLURAL:$1|ti nira|ti niriba}}",
 	"nmemberschanged": "$1 → $2 {{PLURAL:$2|member|members}}",
 	"nrevisions": "$1 {{PLURAL:$1|revision|revisions}}",
 	"nimagelinks": "Used on $1 {{PLURAL:$1|page|pages}}",

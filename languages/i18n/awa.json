@@ -13,7 +13,8 @@
 			"Nawabji",
 			"Sfic",
 			"राम प्रसाद जोशी",
-			"Proabscorp!"
+			"Proabscorp!",
+			"SaldırganSincap"
 		]
 	},
 	"tog-underline": "कड़ि अधोरेखन:",
@@ -3066,7 +3067,6 @@
 	"mcrundo-changed": "आपके परिवर्तन देखने के बाद पृष्ठ बदल चुका है। कृपया नये परिवर्तनों का पुनरीक्षण करें।",
 	"mcrundo-parse-failed": "नये अवतरण की व्याख्या असफल रही: $1",
 	"semicolon-separator": ";&#32;",
-	"comma-separator": ",&#32;",
 	"colon-separator": ":&#32;",
 	"ellipsis": "...",
 	"percent": "$1%",

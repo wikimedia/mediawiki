@@ -3222,7 +3222,6 @@
 	"mcrundo-changed": "ხასჷლაქ დითირუ თიშ უკული, მუთ თქვა ძირით გინორთინ. ქორთხინთ გეგნაჯინით ახალ თირუას.",
 	"mcrundo-parse-failed": "ვემიხუჯინჷ ახალ ვერსიაშ ეშაჩინებაქ: $1",
 	"semicolon-separator": ";&#32;",
-	"comma-separator": ",&#32;",
 	"colon-separator": ":&#32;",
 	"ellipsis": "...",
 	"percent": "$1%",

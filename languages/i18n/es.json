@@ -3452,7 +3452,6 @@
 	"mcrundo-missingparam": "Faltan parámetros requeridos en la solicitud.",
 	"mcrundo-changed": "La página ha sido cambiada desde que viste el diff. Por favor revisa el nuevo cambio.",
 	"mcrundo-parse-failed": "Error al analizar la nueva revisión: $1",
-	"comma-separator": ",&#32;",
 	"ellipsis": "…",
 	"percent": "$1&#160;%",
 	"quotation-marks": "«$1»",

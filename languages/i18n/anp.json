@@ -727,6 +727,8 @@
 	"recentchangeslinked-summary": "कोनो पन्ना विशेष या ओकरा सँ जुड़लौ पन्ना प बदलाव देखै वास्तें पन्ना के नाँव डालौ। (कोनो श्रेणी के सदस्य सिनी क देखै लेली {{ns:category}}:श्रेणी के नाँव दर्ज करौ)। [[Special:Watchlist|your Watchlist]] के पन्ना मँ बदलाव <strong>मोटौ अक्षरौ</strong> मँ छै।",
 	"recentchangeslinked-page": "पृष्ठ नाम:",
 	"recentchangeslinked-to": "ऐकरौ बदला मँ देलौ पन्ना सीनी सँ जुडलौ पन्ना सीनी के बदलाव दिखलाबौ",
+	"recentchanges-page-added-to-category": "[[:$1]] श्रेणी मँ जुटलै",
+	"recentchanges-page-removed-from-category": "[[:$1]] श्रेणी सँ हटलै",
 	"upload": "फाईल अपलोड करौ",
 	"uploadlogpage": "अपलोड सूची",
 	"filedesc": "सारांश",

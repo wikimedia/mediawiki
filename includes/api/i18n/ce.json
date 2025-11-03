@@ -945,7 +945,7 @@
 	"apihelp-query+languageinfo-param-prop": "ХӀора маттана муьлха информаци схьаэца йеза.",
 	"apihelp-query+languageinfo-paramvalue-prop-code": "Меттан код. (ХӀара код MediaWiki-на лерина йу, кхечу стандарташца цхьаьнадогӀуш делахь а.)",
 	"apihelp-query+languageinfo-paramvalue-prop-bcp47": "BCP-47 форматехь меттан код.",
-	"apihelp-query+languageinfo-paramvalue-prop-dir": "Меттан йозанан агӀо (<code>ltr</code> йа <code>rtl</ code>).",
+	"apihelp-query+languageinfo-paramvalue-prop-dir": "Меттан йозанан агӀо (<code>ltr</code> йа <code>rtl</code>).",
 	"apihelp-query+languageinfo-paramvalue-prop-autonym": "Меттан автоним, вуьшта аьлча, цу маттахь йолу цӀе.",
 	"apihelp-query+languageinfo-paramvalue-prop-name": "<var>uselang</var> параметро билгалбаьккхинчу маттахь меттан цӀе, оьшуш хилча меттан резерван варианташ лелош.",
 	"apihelp-query+languageinfo-paramvalue-prop-fallbacks": "Оцу маттана лерина дӀахӀиттийначу меттанийн меттанийн кодаш. Хууш доцу чаккхенан 'en' тӀе йухадерзар йукъа ца догӀу (амма цхьадолу меттанаш 'en' тӀе йухадерза тарло).",

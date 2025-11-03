@@ -3232,7 +3232,6 @@
 	"mcrundo-changed": "ఈ పేజీ తేడాను చూసిన తరువాత, పేజీలో దిద్దుబాటు జరిగింది. కొత్త మార్పును పరిశీలించండి.",
 	"mcrundo-parse-failed": "కొత్త కూర్పును పార్స్ చెయ్యలేక పోయాం: $1",
 	"semicolon-separator": ";&#32;",
-	"comma-separator": ",&#32;",
 	"colon-separator": ":&#32;",
 	"ellipsis": "...",
 	"percent": "$1%",

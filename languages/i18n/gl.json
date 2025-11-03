@@ -3229,7 +3229,6 @@
 	"mcrundo-changed": "A páxina sufriu modificación desde que viches as diferenzas. Revisa os cambios.",
 	"mcrundo-parse-failed": "Erro ó procesar a nova revisión: $1",
 	"semicolon-separator": ";&#32;",
-	"comma-separator": ",&#32;",
 	"colon-separator": ":&#32;",
 	"ellipsis": "...",
 	"percent": "$1&#160;%",

@@ -2515,7 +2515,7 @@
 	"block-target": "Anv implijer, chomlec'h IP, pe lijorenn IP :",
 	"block-target-placeholder": "AnvImplijer, 1.1.1.42, pe 1.1.1.42/16",
 	"unblockip": "Distankañ ur chomlec'h IP",
-	"unblockiptext": "Grit gant ar furmskrid a-is evit adsevel ar moned skrivañ ouzh ur chomlec'h IP bet stanket a-gent.",
+	"unblockiptext": "Implijit ar furmskrid amañ dindan evit adaotren ur chomlec'h IP pe un anv implijer bet stanket en a-raok da zegas kemmoù.",
 	"ipusubmit": "Paouez gant ar stankadenn-mañ",
 	"unblocked": "Distanket eo bet [[User:$1|$1]]",
 	"unblocked-range": "Distanket eo bet $1",
