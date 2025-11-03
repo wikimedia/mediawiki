@@ -1,6 +1,6 @@
 <?php
 
-namespace Wikimedia\Tests\Http;
+namespace Tests\Unit\Wikimedia\Http;
 
 use MediaWikiCoversValidator;
 use PHPUnit\Framework\TestCase;
