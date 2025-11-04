@@ -26,8 +26,8 @@ interface AuthManagerLoginAuthenticateAuditHook {
 	 * @param string|null $username A guess at the username being authenticated, or null if we can't
 	 *   even determine that. When $user is not null, it can be in the form of
 	 *   <username>@<more info> (e.g. for bot passwords).
-	 * @param array{appId?:string,performer:User} $extraData Array with extra information, intended to be
-	 *   added to log contexts. Fields it might include:
+	 * @param array{appId?:string,performer?:User} $extraData Array with extra
+	 *   information, intended to be added to log contexts. Fields it might include:
 	 *   - appId: application ID, only if the login was with a bot password
 	 *   - performer: the user performing the login authentication request
 	 * @return bool|void True or no return value to continue or false to abort
