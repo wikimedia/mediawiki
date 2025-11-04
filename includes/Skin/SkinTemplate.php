@@ -949,7 +949,7 @@ class SkinTemplate extends Skin {
 			// Set a data-mw=interface attribute, which the mediawiki.page.ajax
 			// module will look for to make sure it's a trusted link
 			'data' => [
-				'mw' => 'interface',
+				'mw-interface' => '1',
 				'mw-expiry' => $watchExpiry,
 			],
 		];
