@@ -90,6 +90,8 @@ use MediaWiki\Linker\LinksMigration;
 use MediaWiki\Linker\LinkTargetLookup;
 use MediaWiki\Linker\UserLinkRenderer;
 use MediaWiki\Logging\LogFormatterFactory;
+use MediaWiki\Mail\ConfirmEmail\ConfirmEmailBuilderFactory;
+use MediaWiki\Mail\ConfirmEmail\ConfirmEmailSender;
 use MediaWiki\Mail\EmailUserFactory;
 use MediaWiki\Mail\IEmailer;
 use MediaWiki\Notification\NotificationService;
@@ -989,6 +991,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getConfigSchema(): ConfigSchema {
 		return $this->getService( 'ConfigSchema' );
+	}
+
+	public function getConfirmEmailBuilderFactory(): ConfirmEmailBuilderFactory {
+		return $this->getService( 'ConfirmEmailBuilderFactory' );
+	}
+
+	public function getConfirmEmailSender(): ConfirmEmailSender {
+		return $this->getService( 'ConfirmEmailSender' );
 	}
 
 	/**
