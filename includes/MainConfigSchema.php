@@ -2672,6 +2672,16 @@ class MainConfigSchema {
 	];
 
 	/**
+	 * Whether the modern email confirmation message is used
+	 *
+	 * @since 1.46
+	 */
+	public const UserEmailConfirmationUseHTML = [
+		'default' => false,
+		'type' => 'boolean',
+	];
+
+	/**
 	 * The number of days that a user's password is good for. After this number of days, the
 	 * user will be asked to reset their password. Set to false to disable password expiration.
 	 */

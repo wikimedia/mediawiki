@@ -21,6 +21,7 @@ use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Exception\MWExceptionHandler;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\Mail\ConfirmEmail\ConfirmEmailData;
 use MediaWiki\Mail\MailAddress;
 use MediaWiki\Mail\UserEmailContact;
 use MediaWiki\MainConfigNames;
@@ -2777,47 +2778,22 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 	 * @return Status
 	 */
 	public function sendConfirmationMail( $type = 'created' ) {
-		global $wgLang;
-		$expiration = null; // gets passed-by-ref and defined in next line.
+		$emailer = MediaWikiServices::getInstance()->getConfirmEmailSender();
+		$expiration = null; // gets passed-by-ref and defined in next line
 		$token = $this->getConfirmationToken( $expiration );
-		$url = $this->getConfirmationTokenUrl( $token );
-		$invalidateURL = $this->getInvalidationTokenUrl( $token );
-		$this->saveSettings();
+		$confirmationUrl = $this->getConfirmationTokenUrl( $token );
+		$invalidateUrl = $this->getInvalidationTokenUrl( $token );
 
-		if ( $type == 'created' || $type === false ) {
-			$message = 'confirmemail_body';
-			$type = 'created';
-		} elseif ( $type === true ) {
-			$message = 'confirmemail_body_changed';
-			$type = 'changed';
-		} else {
-			// Messages: confirmemail_body_changed, confirmemail_body_set
-			$message = 'confirmemail_body_' . $type;
-		}
-
-		$mail = [
-			'subject' => wfMessage( 'confirmemail_subject' )->text(),
-			'body' => wfMessage( $message,
-				$this->getRequest()->getIP(),
-				$this->getName(),
-				$url,
-				$wgLang->userTimeAndDate( $expiration, $this ),
-				$invalidateURL,
-				$wgLang->userDate( $expiration, $this ),
-				$wgLang->userTime( $expiration, $this ) )->text(),
-			'from' => null,
-			'replyTo' => null,
-		];
-		$info = [
-			'type' => $type,
-			'ip' => $this->getRequest()->getIP(),
-			'confirmURL' => $url,
-			'invalidateURL' => $invalidateURL,
-			'expiration' => $expiration
-		];
-
-		$this->getHookRunner()->onUserSendConfirmationMail( $this, $mail, $info );
-		return $this->sendMail( $mail['subject'], $mail['body'], $mail['from'], $mail['replyTo'] );
+		return Status::wrap( $emailer->sendConfirmationMail(
+			RequestContext::getMain(),
+			$type,
+			new ConfirmEmailData(
+				$this->getUser(),
+				$confirmationUrl,
+				$invalidateUrl,
+				$expiration
+			)
+		) );
 	}
 
 	/**

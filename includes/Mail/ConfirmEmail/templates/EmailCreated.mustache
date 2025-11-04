@@ -1,0 +1,23 @@
+<style>
+	.mw-confirm-email-button {
+		background: #36C;
+		color: white;
+		padding: 0.45em 0.6em;
+		font-weight: bold;
+		text-align: center;
+		text-decoration: none;
+	}
+</style>
+{{#logo}}
+	{{>Logo}}
+{{/logo}}
+<section>
+	<p>{{{par1}}}</p>
+	<p>{{{par2}}}</p>
+	<a class="mw-confirm-email-button" href="{{confirmationUrl}}">
+		{{buttonLabel}}
+	</a>
+	<p>
+		<small>{{{footer}}}</small>
+	</p>
+</section>

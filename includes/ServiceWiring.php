@@ -128,6 +128,8 @@ use MediaWiki\Linker\LinkTargetStore;
 use MediaWiki\Linker\UserLinkRenderer;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Logging\LogFormatterFactory;
+use MediaWiki\Mail\ConfirmEmail\ConfirmEmailBuilderFactory;
+use MediaWiki\Mail\ConfirmEmail\ConfirmEmailSender;
 use MediaWiki\Mail\Emailer;
 use MediaWiki\Mail\EmailUser;
 use MediaWiki\Mail\EmailUserFactory;
@@ -677,6 +679,30 @@ return [
 		return new ConfiguredReadOnlyMode(
 			$config->get( MainConfigNames::ReadOnly ),
 			$config->get( MainConfigNames::ReadOnlyFile )
+		);
+	},
+
+	'ConfirmEmailBuilderFactory' => static function ( MediaWikiServices $services ): ConfirmEmailBuilderFactory {
+		return new ConfirmEmailBuilderFactory(
+			new ServiceOptions(
+				ConfirmEmailBuilderFactory::CONSTRUCTOR_OPTIONS,
+				$services->getMainConfig()
+			),
+			$services->getLocalServerObjectCache(),
+			$services->getUrlUtils()
+		);
+	},
+
+	'ConfirmEmailSender' => static function ( MediaWikiServices $services ): ConfirmEmailSender {
+		return new ConfirmEmailSender(
+			new ServiceOptions(
+				ConfirmEmailSender::CONSTRUCTOR_OPTIONS,
+				$services->getMainConfig()
+			),
+			new HookRunner( $services->getHookContainer() ),
+			$services->getUserFactory(),
+			$services->getEmailer(),
+			$services->getConfirmEmailBuilderFactory()
 		);
 	},
 
