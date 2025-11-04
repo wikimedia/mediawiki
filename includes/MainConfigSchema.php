@@ -7069,8 +7069,7 @@ class MainConfigSchema {
 	 * every check should have a corresponding passwordpolicies-policy-<check> message,
 	 * and every settings field other than 'value' should have a corresponding
 	 * passwordpolicies-policyflag-<flag> message (<check> and <flag> are in lowercase).
-	 * The check message receives the policy value as a parameter, the flag message
-	 * receives the flag value (or values if it's an array).
+	 * The check message receives the policy value as a parameter.
 	 *
 	 * @since 1.26
 	 * @see \MediaWiki\Password\PasswordPolicyChecks

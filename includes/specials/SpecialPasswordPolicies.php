@@ -147,10 +147,8 @@ class SpecialPasswordPolicies extends SpecialPage {
 			}
 
 			$flagMsgs = [];
-			foreach ( array_filter( $flags ) as $flag => $value ) {
+			foreach ( array_filter( $flags ) as $flag => $unused ) {
 				$flagMsg = $this->msg( 'passwordpolicies-policyflag-' . strtolower( $flag ) );
-				// FIXME: What's the point of passing this? It's currently unused. Numbers would also need proper l10n.
-				$flagMsg->params( is_bool( $value ) ? (int)$value : $value );
 				$flagMsgs[] = $flagMsg;
 			}
 			if ( $flagMsgs ) {
