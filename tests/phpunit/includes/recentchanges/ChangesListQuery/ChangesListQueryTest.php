@@ -675,7 +675,7 @@ class ChangesListQueryTest extends \MediaWikiIntegrationTestCase {
 				[ 'watchlist-expiry' => true ],
 			],
 			'require seen' => [
-				[ [ 'require', 'seen' ] ],
+				[ [ 'require', 'seen', true ] ],
 				array_merge( $defaultInfo, $leftJoinWatchlist, [
 					'conds' => '((wl_notificationtimestamp IS NULL ' .
 						'OR rc_timestamp < wl_notificationtimestamp))',
@@ -683,17 +683,33 @@ class ChangesListQueryTest extends \MediaWikiIntegrationTestCase {
 				array_diff( $allIds, [ $rcIds['unseen'] ] ),
 			],
 			'exclude seen' => [
-				[ [ 'exclude', 'seen' ] ],
+				[ [ 'exclude', 'seen', true ] ],
 				array_merge( $defaultInfo, $leftJoinWatchlist, [
 					'conds' => '((wl_notificationtimestamp IS NOT NULL ' .
 						'AND rc_timestamp >= wl_notificationtimestamp))',
 				] ),
 				[ $rcIds['unseen'] ],
 			],
+			'require seen false' => [
+				[ [ 'require', 'seen', false ] ],
+				array_merge( $defaultInfo, $leftJoinWatchlist, [
+					'conds' => '((wl_notificationtimestamp IS NOT NULL ' .
+						'AND rc_timestamp >= wl_notificationtimestamp))',
+				] ),
+				[ $rcIds['unseen'] ],
+			],
+			'require seen+unseen (T408167)' => [
+				[
+					[ 'require', 'seen', true ],
+					[ 'require', 'seen', false ],
+				],
+				$defaultInfo,
+				$allIds,
+			],
 			'require watched+seen' => [
 				[
 					[ 'exclude', 'watched', 'notwatched' ],
-					[ 'require', 'seen' ]
+					[ 'require', 'seen', true ]
 				],
 				array_merge( $defaultInfo, $joinWatchlist, [
 					'conds' => '((wl_notificationtimestamp IS NULL ' .
