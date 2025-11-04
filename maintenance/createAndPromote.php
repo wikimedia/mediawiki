@@ -18,6 +18,7 @@ use MediaWiki\Deferred\SiteStatsUpdate;
 use MediaWiki\Logging\ManualLogEntry;
 use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Password\PasswordError;
+use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\User\User;
 use MediaWiki\WikiMap\WikiMap;
 
@@ -149,7 +150,9 @@ class CreateAndPromote extends Maintenance {
 			$status = $this->getServiceContainer()->getAuthManager()->autoCreateUser(
 				$user,
 				AuthManager::AUTOCREATE_SOURCE_MAINT,
-				false
+				false,
+				true,
+				new UltimateAuthority( User::newSystemUser( User::MAINTENANCE_SCRIPT_USER, [ 'steal' => true ] ) )
 			);
 			if ( !$status->isGood() ) {
 				$this->fatalError( $status );

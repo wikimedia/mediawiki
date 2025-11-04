@@ -1927,8 +1927,9 @@ class AuthManager implements LoggerAwareInterface {
 	 * @param bool $login Whether to also log the user in
 	 * @param bool $log Whether to generate a user creation log entry (since 1.36)
 	 * @param Authority|null $performer The performer of the action to use for user rights
-	 *   checking. Normally null to indicate an anonymous performer. Added in 1.42 for
-	 *   Special:CreateLocalAccount (T234371).
+	 *   checking
+	 *   NOTE: In 1.46, for callers passing the performer as NULL, the user to
+	 *   be auto-created will be used as the performer (T408724).
 	 * @param string[] $tags Tags to apply to the user creation log entry if `$log` is true
 	 * and the creation succeeds
 	 *
@@ -2004,7 +2005,10 @@ class AuthManager implements LoggerAwareInterface {
 
 		// If there is a non-anonymous performer, don't use their session
 		$session = null;
-		if ( !$performer || $performer->getUser()->equals( $user ) ) {
+		$performer ??= $user;
+		if ( !$performer->isRegistered() || $performer->getUser()->equals( $user ) ) {
+			// $performer is anonymous, or refers to the same user as $user (i.e., this isn't
+			// an autocreation attempt via Special:CreateLocalAccount or by the maintenance script)
 			$session = $this->request->getSession();
 		}
 
@@ -2041,20 +2045,19 @@ class AuthManager implements LoggerAwareInterface {
 		}
 
 		// Is the IP user able to create accounts?
-		$bypassAuthorization = $session ? $session->getProvider()->canAlwaysAutocreate() : false;
+		$bypassAuthorization = $session && $session->getProvider()->canAlwaysAutocreate();
 		if ( $source !== self::AUTOCREATE_SOURCE_MAINT && !$bypassAuthorization ) {
-			$creator = $performer ?? $this->userFactory->newAnonymous();
-			$status = $this->authorizeAutoCreateAccount( $creator );
+			$status = $this->authorizeAutoCreateAccount( $performer );
 			if ( !$status->isOk() ) {
-				if ( $this->autocreatingTempUserToAppealBlock( $status, $source, $creator ) ) {
+				if ( $this->autocreatingTempUserToAppealBlock( $status, $source, $performer ) ) {
 					$this->logger->info( __METHOD__ . ': autocreating temporary user to appeal a block', [
 						'username' => $username,
-						'creator' => $creator->getUser()->getName(),
+						'creator' => $performer->getUser()->getName(),
 					] );
 				} else {
 					$this->logger->debug( __METHOD__ . ': cannot create or autocreate accounts', [
 						'username' => $username,
-						'creator' => $creator->getUser()->getName(),
+						'creator' => $performer->getUser()->getName(),
 					] );
 					if ( $session ) {
 						$session->set( self::AUTOCREATE_BLOCKLIST, $status );
