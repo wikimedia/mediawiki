@@ -16,7 +16,6 @@ use MediaWiki\HTMLForm\Field\HTMLMultiSelectField;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Logging\LogEventsList;
 use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Pager\ContribsPager;
 use MediaWiki\Pager\ContributionsPager;
 use MediaWiki\Permissions\PermissionManager;
@@ -84,7 +83,7 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 	 * @param UserFactory $userFactory
 	 * @param UserIdentityLookup $userIdentityLookup
 	 * @param DatabaseBlockStore $blockStore
-	 * @param mixed $userGroupAssignmentService
+	 * @param UserGroupAssignmentService $userGroupAssignmentService
 	 * @param string $name
 	 * @param string $restriction
 	 */
@@ -98,21 +97,10 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 		UserFactory $userFactory,
 		UserIdentityLookup $userIdentityLookup,
 		DatabaseBlockStore $blockStore,
-		$userGroupAssignmentService,
-		$name = '',
+		UserGroupAssignmentService $userGroupAssignmentService,
+		$name,
 		$restriction = ''
 	) {
-		// For backwards compatability, temporarily handle the $userGroupAssignmentService
-		// being a string
-		if ( $userGroupAssignmentService instanceof UserGroupAssignmentService ) {
-			$this->userGroupAssignmentService = $userGroupAssignmentService;
-		} else {
-			// Shift params by one
-			$restriction = $name;
-			$name = $userGroupAssignmentService;
-			$this->userGroupAssignmentService = MediaWikiServices::getInstance()
-				->getUserGroupAssignmentService();
-		}
 		parent::__construct( $name, $restriction );
 		$this->permissionManager = $permissionManager;
 		$this->dbProvider = $dbProvider;
@@ -123,6 +111,7 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 		$this->userFactory = $userFactory;
 		$this->userIdentityLookup = $userIdentityLookup;
 		$this->blockStore = $blockStore;
+		$this->userGroupAssignmentService = $userGroupAssignmentService;
 	}
 
 	/**
