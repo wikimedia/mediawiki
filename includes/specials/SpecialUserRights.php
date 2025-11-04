@@ -63,26 +63,6 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 	}
 
 	/**
-	 * Check whether the current user (from context) can change the target user's rights.
-	 *
-	 * This function can be used without submitting the special page
-	 * @deprecated since 1.45, use {@see UserGroupAssignmentService::canChangeUserGroups()} instead
-	 *
-	 * @param UserIdentity $targetUser User whose rights are being changed
-	 * @param bool $checkIfSelf If false, assume that the current user can add/remove groups defined
-	 *   in $wgGroupsAddToSelf / $wgGroupsRemoveFromSelf, without checking if it's the same as target
-	 *   user
-	 * @return bool
-	 */
-	public function userCanChangeRights( UserIdentity $targetUser, $checkIfSelf = true ) {
-		wfDeprecated( __METHOD__, '1.45' );
-		return $this->userGroupAssignmentService->userCanChangeRights(
-			$this->getAuthority(),
-			$targetUser
-		);
-	}
-
-	/**
 	 * Manage forms to be shown according to posted data.
 	 * Depending on the submit button used, call a form or a save function.
 	 *
@@ -219,21 +199,6 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 	}
 
 	/**
-	 * Converts a user group membership expiry string into a timestamp. Words like
-	 * 'existing' or 'other' should have been filtered out before calling this
-	 * function.
-	 *
-	 * @param string $expiry
-	 * @return string|null|false A string containing a valid timestamp, or null
-	 *   if the expiry is infinite, or false if the timestamp is not valid
-	 * @deprecated since 1.45, use UserGroupAssignmentService::expiryToTimestamp()
-	 */
-	public static function expiryToTimestamp( $expiry ) {
-		wfDeprecated( __METHOD__, '1.45' );
-		return UserGroupAssignmentService::expiryToTimestamp( $expiry );
-	}
-
-	/**
 	 * Save user groups changes in the database.
 	 * Data comes from the editUserGroupsForm() form function
 	 *
@@ -270,45 +235,6 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 		}
 
 		return Status::newGood();
-	}
-
-	/**
-	 * Save user groups changes in the database. This function does not throw errors;
-	 * instead, it ignores groups that the performer does not have permission to set.
-	 *
-	 * This function can be used without submitting the special page
-	 * @deprecated since 1.45, use {@see UserGroupAssignmentService::saveChangesToUserGroups()} instead
-	 *
-	 * @param UserIdentity $user The target user
-	 * @param string[] $add Array of groups to add
-	 * @param string[] $remove Array of groups to remove
-	 * @param string $reason Reason for group change
-	 * @param string[] $tags Array of change tags to add to the log entry
-	 * @param array<string,?string> $groupExpiries Associative array of (group name => expiry),
-	 *   containing only those groups that are to have new expiry values set
-	 * @return array Tuple of added, then removed groups
-	 */
-	public function doSaveUserGroups( $user, array $add, array $remove, string $reason = '',
-		array $tags = [], array $groupExpiries = []
-	) {
-		wfDeprecated( __METHOD__, '1.45' );
-		return $this->userGroupAssignmentService->saveChangesToUserGroups( $this->getAuthority(), $user, $add, $remove,
-			$groupExpiries, $reason, $tags );
-	}
-
-	/**
-	 * Normalize the input username, which may be local or remote, and
-	 * return a user identity object, use it on other services for manipulating rights
-	 *
-	 * Side effects: error output for invalid access
-	 * @deprecated since 1.45, use {@see MultiFormatUserIdentityLookup::getUserIdentity()} instead
-	 * @param string $username
-	 * @param bool $writing
-	 * @return Status
-	 */
-	public function fetchUser( $username, $writing = true ) {
-		wfDeprecated( __METHOD__, '1.45' );
-		return $this->multiFormatUserIdentityLookup->getUserIdentity( $username, $this->getAuthority() );
 	}
 
 	/**
@@ -395,26 +321,6 @@ class SpecialUserRights extends UserGroupsSpecialPage {
 			'userrights-groupsmember' => array_values( $userGroups ),
 			'userrights-groupsmember-auto' => $this->autopromoteGroups,
 		];
-	}
-
-	/**
-	 * @deprecated since 1.45, use {@see UserGroupAssignmentService::getChangeableGroups()} instead
-	 * @return array [
-	 *   'add' => [ addablegroups ],
-	 *   'remove' => [ removablegroups ],
-	 *   'add-self' => [ addablegroups to self ],
-	 *   'remove-self' => [ removable groups from self ]
-	 *   'restricted' => [ map of restricted groups to details about them ]
-	 *  ]
-	 * @phan-return array{add:list<string>,remove:list<string>,add-self:list<string>,remove-self:list<string>}
-	 */
-	protected function changeableGroups() {
-		wfDeprecated( __METHOD__, '1.45' );
-		$result = $this->userGroupAssignmentService->getChangeableGroups( $this->getAuthority(), $this->targetUser );
-		// Add missing keys, just in case
-		$result['add-self'] = [];
-		$result['remove-self'] = [];
-		return $result;
 	}
 
 	/**
