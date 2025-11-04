@@ -50,7 +50,6 @@ class AutoLoader {
 		'MediaWiki\\Installer\\' => __DIR__ . '/installer/',
 		'MediaWiki\\JobQueue\\' => __DIR__ . '/jobqueue/',
 		'MediaWiki\\Languages\\Data\\' => __DIR__ . '/languages/data/',
-		'MediaWiki\\Logger\\Monolog\\' => __DIR__ . '/debug/logger/monolog/',
 		'MediaWiki\\Logging\\' => __DIR__ . '/logging/',
 		'MediaWiki\\Maintenance\\' => __DIR__ . '/../maintenance/includes/',
 		'MediaWiki\\RCFeed\\' => __DIR__ . '/recentchanges/RCFeed/',
