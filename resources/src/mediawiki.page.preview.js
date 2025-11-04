@@ -282,7 +282,7 @@
 				( m ) => mw.message( m ).parse()
 			);
 			// There's no commaList in JS, so just join with commas (doesn't handle the last item).
-			return parenthesesWrap( localizedMessages.join( mw.msg( 'comma-separator' ) ) );
+			return parenthesesWrap( localizedMessages.join( mw.message( 'comma-separator' ).escaped() ) );
 		} );
 	}
 
