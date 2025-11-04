@@ -163,8 +163,8 @@ class ApiExpandTemplates extends ApiBase {
 				if ( isset( $prop['volatile'] ) ) {
 					$retval['volatile'] = $frame->isVolatile();
 				}
-				if ( isset( $prop['ttl'] ) && $frame->getTTL() !== null ) {
-					$retval['ttl'] = $frame->getTTL();
+				if ( isset( $prop['ttl'] ) && $p_output->hasReducedExpiry() ) {
+					$retval['ttl'] = $p_output->getCacheExpiry();
 				}
 				if ( isset( $prop['wikitext'] ) ) {
 					$retval['wikitext'] = $wikitext;

@@ -172,6 +172,7 @@ interface PPFrame {
 	 * It is not relevant to caching the entire rendered output of a page.
 	 *
 	 * @return int|null
+	 * @deprecated since 1.46, use ParserOutput::getCacheExpiry()
 	 */
 	public function getTTL();
 

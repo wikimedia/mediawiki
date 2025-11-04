@@ -610,8 +610,10 @@ class PPFrame_Hash implements Stringable, PPFrame {
 
 	/**
 	 * @param int $ttl
+	 * @deprecated since 1.44, use ParserOutput::updateCacheExpiry()
 	 */
 	public function setTTL( $ttl ) {
+		wfDeprecated( __METHOD__, '1.44' );
 		if ( $ttl !== null && ( $this->ttl === null || $ttl < $this->ttl ) ) {
 			$this->ttl = $ttl;
 		}
@@ -619,8 +621,10 @@ class PPFrame_Hash implements Stringable, PPFrame {
 
 	/**
 	 * @return int|null
+	 * @deprecated since 1.46, use ParserOutput::getCacheExpiry()
 	 */
 	public function getTTL() {
+		wfDeprecated( __METHOD__, '1.46' );
 		return $this->ttl;
 	}
 }
