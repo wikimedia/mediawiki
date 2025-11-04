@@ -269,11 +269,11 @@ $wgAutoloadClasses += [
 	# tests/phpunit/unit/includes/CommentFormatter
 	'MediaWiki\\Tests\\Unit\\CommentFormatter\\CommentFormatterTestUtils' => "$testDir/phpunit/unit/includes/CommentFormatter/CommentFormatterTestUtils.php",
 
-	# tests/phpunit/unit/includes/editpage/Constraint and tests/phpunit/integration/includes/editpage/Constraint
-	'EditConstraintTestTrait' => "$testDir/phpunit/unit/includes/editpage/Constraint/EditConstraintTestTrait.php",
+	# tests/phpunit/unit/includes/EditPage/Constraint and tests/phpunit/integration/includes/EditPage/Constraint
+	'EditConstraintTestTrait' => "$testDir/phpunit/unit/includes/EditPage/Constraint/EditConstraintTestTrait.php",
 
-	# tests/phpunit/unit/includes/filebackend
-	'FileBackendGroupTestTrait' => "$testDir/phpunit/unit/includes/filebackend/FileBackendGroupTestTrait.php",
+	# tests/phpunit/unit/includes/FileBackend
+	'FileBackendGroupTestTrait' => "$testDir/phpunit/unit/includes/FileBackend/FileBackendGroupTestTrait.php",
 	'FileBackendIntegrationTestBase' => "$testDir/phpunit/integration/includes/libs/filebackend/FileBackendIntegrationTestBase.php",
 
 	# tests/phpunit/unit/includes/HookContainer
@@ -290,10 +290,10 @@ $wgAutoloadClasses += [
 	'MediaWiki\\Tests\\Json\\SampleObject' => "$testDir/phpunit/mocks/json/SampleObject.php",
 	'MediaWiki\\Tests\\Json\\SampleObjectAlias' => "$testDir/phpunit/mocks/json/SampleObject.php",
 
-	# tests/phpunit/unit/includes/language
-	'LanguageCodeTest' => "$testDir/phpunit/unit/includes/language/LanguageCodeTest.php",
-	'LanguageFallbackTestTrait' => "$testDir/phpunit/unit/includes/language/LanguageFallbackTestTrait.php",
-	'LanguageNameUtilsTestTrait' => "$testDir/phpunit/unit/includes/language/LanguageNameUtilsTestTrait.php",
+	# tests/phpunit/unit/includes/Language
+	'LanguageCodeTest' => "$testDir/phpunit/unit/includes/Language/LanguageCodeTest.php",
+	'LanguageFallbackTestTrait' => "$testDir/phpunit/unit/includes/Language/LanguageFallbackTestTrait.php",
+	'LanguageNameUtilsTestTrait' => "$testDir/phpunit/unit/includes/Language/LanguageNameUtilsTestTrait.php",
 	'MediaWiki\Tests\Language\LocalizationUpdateSpyTrait' => "$testDir/phpunit/includes/language/LocalizationUpdateSpyTrait.php",
 
 	# tests/phpunit/unit/includes/libs/filebackend/fsfile
@@ -375,9 +375,9 @@ $wgAutoloadClasses += [
 	# tests/phpunit/unit/includes/Settings/Source
 	'MediaWiki\\Tests\\Unit\\Settings\\Source\\ExampleDefinitionsClass' => "$testDir/phpunit/unit/includes/Settings/Source/ExampleDefinitionsClass.php",
 
-	# tests/phpunit/unit/includes/session
-	'MediaWiki\\Tests\\Session\\SessionProviderTestTrait' => "$testDir/phpunit/unit/includes/session/SessionProviderTestTrait.php",
-	'MediaWiki\\Tests\\Session\\SessionStoreTestTrait' => "$testDir/phpunit/unit/includes/session/SessionStoreTestTrait.php",
+	# tests/phpunit/unit/includes/Session
+	'MediaWiki\\Tests\\Session\\SessionProviderTestTrait' => "$testDir/phpunit/unit/includes/Session/SessionProviderTestTrait.php",
+	'MediaWiki\\Tests\\Session\\SessionStoreTestTrait' => "$testDir/phpunit/unit/includes/Session/SessionStoreTestTrait.php",
 
 	# tests/suites
 	'ParserTestFileSuite' => "$testDir/phpunit/suites/ParserTestFileSuite.php",
