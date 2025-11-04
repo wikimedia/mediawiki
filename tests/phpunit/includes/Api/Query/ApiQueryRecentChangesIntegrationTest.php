@@ -13,7 +13,6 @@ use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\TitleValue;
 use MediaWiki\User\User;
-use MediaWiki\Watchlist\WatchedItemQueryService;
 
 /**
  * @group API
@@ -309,7 +308,7 @@ class ApiQueryRecentChangesIntegrationTest extends ApiTestCase {
 		$this->disableAutoCreateTempUser();
 		$result = $this->doListRecentChangesRequest( [
 			'rcprop' => 'user',
-			'rcshow' => WatchedItemQueryService::FILTER_NOT_ANON,
+			'rcshow' => '!anon',
 		] );
 		$this->assertEquals(
 			[
@@ -578,11 +577,11 @@ class ApiQueryRecentChangesIntegrationTest extends ApiTestCase {
 
 		$resultAnon = $this->doListRecentChangesRequest( [
 			'rcprop' => 'user',
-			'rcshow' => WatchedItemQueryService::FILTER_ANON
+			'rcshow' => 'anon'
 		] );
 		$resultNotAnon = $this->doListRecentChangesRequest( [
 			'rcprop' => 'user',
-			'rcshow' => WatchedItemQueryService::FILTER_NOT_ANON
+			'rcshow' => '!anon'
 		] );
 
 		$items = $this->getItemsFromRecentChangesResult( $resultAnon );

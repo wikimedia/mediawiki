@@ -119,6 +119,10 @@ because of Phabricator reports.
 * Many WatchedItemStore methods took either PageIdentity or LinkTarget, with
   LinkTarget being deprecated since 1.37. Passing a LinkTarget which is not a
   PageReference will now throw.
+* WatchedItemQueryService::getWatchedItemsWithRecentChangeInfo, deprecated since
+  1.45, has been removed. The associated constants, which were used as
+  parameters to that method, like WatchedItemQueryService::FILTER_MINOR, have
+  also been removed.
 * The following methods of SpecialUserRights, deprecated in 1.45, have been
   removed: userCanChangeRights, expiryToTimestamp, doSaveUserGroups,
   fetchUser, changeableGroups. Callers should now use the equivalent methods
@@ -207,6 +211,9 @@ because of Phabricator reports.
   LanguageFallbackModes::{MESSAGES,STRICT} instead.
 * The AutopromoteCondition hook has been deprecated. Use
   UserRequirementsCondition hook, instead.
+* The WatchedItemQueryServiceExtensions hook is deprecated and is no longer
+  called. Use ApiQueryBaseBeforeQuery, ApiQueryBaseAfterQuery,
+  ApiQueryBaseProcessRow and ApiQueryWatchlistExtractOutputData.
 * …
 
 === Other changes in 1.46 ===

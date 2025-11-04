@@ -2825,11 +2825,7 @@ return [
 	'WatchedItemQueryService' => static function ( MediaWikiServices $services ): WatchedItemQueryService {
 		return new WatchedItemQueryService(
 			$services->getConnectionProvider(),
-			$services->getCommentStore(),
 			$services->getWatchedItemStore(),
-			$services->getHookContainer(),
-			$services->getUserOptionsLookup(),
-			$services->getTempUserConfig(),
 			$services->getMainConfig()->get( MainConfigNames::WatchlistExpiry ),
 			$services->getMainConfig()->get( MainConfigNames::MaxExecutionTimeForExpensiveQueries )
 		);

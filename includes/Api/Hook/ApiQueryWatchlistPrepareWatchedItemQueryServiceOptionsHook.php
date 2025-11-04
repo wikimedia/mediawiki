@@ -9,7 +9,7 @@ use MediaWiki\Api\ApiQueryWatchlist;
  * Use the hook name "ApiQueryWatchlistPrepareWatchedItemQueryServiceOptions"
  * to register handlers implementing this interface.
  *
- * @stable to implement
+ * @deprecated since 1.46 use ApiQueryBaseBeforeQueryHook
  * @ingroup Hooks
  */
 interface ApiQueryWatchlistPrepareWatchedItemQueryServiceOptionsHook {
@@ -18,6 +18,7 @@ interface ApiQueryWatchlistPrepareWatchedItemQueryServiceOptionsHook {
 	 * to WatchedItemQueryService.
 	 *
 	 * @since 1.35
+	 * @deprecated since 1.46 use ApiQueryBaseBeforeQueryHook
 	 *
 	 * @param ApiQueryWatchlist $module
 	 * @param array $params Array of parameters, as would be returned by
