@@ -13,7 +13,8 @@
 			SwaggerUIStandalonePreset
 		],
 		// specUrl is set dynamically by SpecialRestSandbox
-		url: mw.config.get( 'specUrl' )
+		url: mw.config.get( 'specUrl' ),
+		deepLinking: true
 	};
 
 	window.ui = SwaggerUI( uiConfig );
