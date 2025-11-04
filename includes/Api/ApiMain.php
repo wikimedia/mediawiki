@@ -166,6 +166,7 @@ class ApiMain extends ApiBase {
 				'UserFactory',
 				'UrlUtils',
 				'TitleFormatter',
+				'JsonCodec',
 			]
 		],
 		'stashedit' => [
