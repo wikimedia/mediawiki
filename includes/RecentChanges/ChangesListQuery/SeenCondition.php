@@ -34,11 +34,13 @@ class SeenCondition extends ChangesListConditionBase {
 	/** @inheritDoc */
 	public function evaluate( stdClass $row, $value ): bool {
 		if ( !$this->user ) {
-			return false;
+			$seen = false;
+		} else {
+			$firstUnseen = $this->getLatestNotificationTimestamp( $row );
+			$seen = $firstUnseen === null
+				|| $firstUnseen > ConvertibleTimestamp::convert( TS_MW, $row->rc_timestamp );
 		}
-		$firstUnseen = $this->getLatestNotificationTimestamp( $row );
-		return $firstUnseen === null
-			|| $firstUnseen > ConvertibleTimestamp::convert( TS_MW, $row->rc_timestamp );
+		return $seen === $value;
 	}
 
 	/**
@@ -57,13 +59,13 @@ class SeenCondition extends ChangesListConditionBase {
 	}
 
 	/**
-	 * @param null $value
-	 * @return null
+	 * @param bool $value
+	 * @return bool
 	 */
 	public function validateValue( $value ) {
-		if ( $value !== null ) {
+		if ( !is_bool( $value ) ) {
 			throw new \InvalidArgumentException(
-				'boolean filter "named" does not take a value' );
+				'filter "seen" requires a boolean value' );
 		}
 		return $value;
 	}
@@ -78,24 +80,25 @@ class SeenCondition extends ChangesListConditionBase {
 
 	/** @inheritDoc */
 	protected function prepareConds( IReadableDatabase $dbr, QueryBackend $query ) {
-		if ( !$this->user ) {
-			if ( $this->required ) {
+		$values = $this->getEnumValues( [ true, false ] );
+		if ( $values === [] ) {
+			$query->forceEmptySet();
+		} elseif ( $values === [ true ] ) {
+			// Require seen
+			if ( $this->user ) {
+				$query->joinForConds( 'watchlist' )->weakLeft();
+				$query->where( $dbr->expr( 'wl_notificationtimestamp', '=', null )
+					->orExpr( new RawSQLExpression( 'rc_timestamp < wl_notificationtimestamp' ) ) );
+			} else {
 				$query->forceEmptySet();
 			}
-			return;
-		}
-
-		[ $required, $excluded ] = $this->getUniqueValues();
-		if ( $required === [] ) {
-			$query->forceEmptySet();
-		} elseif ( $required ) {
-			$query->joinForConds( 'watchlist' )->weakLeft();
-			$query->where( $dbr->expr( 'wl_notificationtimestamp', '=', null )
-				->orExpr( new RawSQLExpression( 'rc_timestamp < wl_notificationtimestamp' ) ) );
-		} elseif ( $excluded ) {
-			$query->joinForConds( 'watchlist' )->weakLeft();
-			$query->where( $dbr->expr( 'wl_notificationtimestamp', '!=', null )
-				->andExpr( new RawSQLExpression( 'rc_timestamp >= wl_notificationtimestamp' ) ) );
+		} elseif ( $values === [ false ] ) {
+			// Require unseen
+			if ( $this->user ) {
+				$query->joinForConds( 'watchlist' )->weakLeft();
+				$query->where( $dbr->expr( 'wl_notificationtimestamp', '!=', null )
+					->andExpr( new RawSQLExpression( 'rc_timestamp >= wl_notificationtimestamp' ) ) );
+			}
 		}
 	}
 }
