@@ -55,8 +55,9 @@ class ExpandRelativeAttrs extends ContentDOMTransformStage {
 		UrlUtils $urlUtils
 	): void {
 		// T350952: Expand relative links
-		// What we should be doing here is parsing as a title and then
-		// using Title::getLocalURL()
+		// It would be nice if we could share more code with Title::getLocalURL
+		// but we don't want to have to reparse the Title.  Maybe if
+		// TitleValue::getLocalURL() existed we could use that.
 		$attr = self::EXPAND_ELEMENTS[DOMUtils::nodeName( $node )] ?? null;
 		if ( $attr == null ) {
 			return;
