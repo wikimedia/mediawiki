@@ -1912,13 +1912,13 @@ class AuthManager implements LoggerAwareInterface {
 	}
 
 	/**
-	 * Auto-create an account, and optionally log into that account
+	 * Auto-create an account and optionally log into that account
 	 *
 	 * PrimaryAuthenticationProviders can invoke this method by returning a PASS from
-	 * beginPrimaryAuthentication/continuePrimaryAuthentication with the username of a
-	 * non-existing user. SessionProviders can invoke it by returning a SessionInfo with
-	 * the username of a non-existing user from provideSessionInfo(). Calling this method
-	 * explicitly (e.g. from a maintenance script) is also fine.
+	 * beginPrimaryAuthentication() or continuePrimaryAuthentication() with the username
+	 * of a non-existing user. SessionProviders can invoke it by returning a SessionInfo
+	 * with the username of a non-existing user from provideSessionInfo(). Calling this
+	 * method explicitly (e.g., from a maintenance script) is also fine.
 	 *
 	 * @param User $user User to auto-create
 	 * @param string $source What caused the auto-creation? This must be one of:
@@ -1930,7 +1930,8 @@ class AuthManager implements LoggerAwareInterface {
 	 *   checking. Normally null to indicate an anonymous performer. Added in 1.42 for
 	 *   Special:CreateLocalAccount (T234371).
 	 *
-	 * @return Status Good if user was created, Ok if user already existed, otherwise Fatal
+	 * @return Status Good if the user was created, OK if the user already existed, or
+	 *   otherwise Fatal
 	 */
 	public function autoCreateUser(
 		User $user,
