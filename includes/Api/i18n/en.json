@@ -1612,7 +1612,12 @@
 	"apihelp-tag-param-tags": "Tags to apply to the log entry that will be created as a result of this action.",
 	"apihelp-tag-example-rev": "Add the <kbd>vandalism</kbd> tag to revision ID 123 without specifying a reason",
 	"apihelp-tag-example-log": "Remove the <kbd>spam</kbd> tag from log entry ID 123 with the reason <kbd>Wrongly applied</kbd>",
-
+	"apihelp-languagesearch-summary": "Search for language names in any script.",
+	"apihelp-languagesearch-param-search": "Search string.",
+	"apihelp-languagesearch-param-typos": "Number of spelling mistakes allowed in the search string.",
+	"apihelp-languagesearch-example-1": "Search for \"Te\"",
+	"apihelp-languagesearch-example-2": "Search for \"ഫി\"",
+	"apihelp-languagesearch-example-3": "Search for \"ഫി\", allowing one typo",
 	"apihelp-unblock-summary": "Unblock a user.",
 	"apihelp-unblock-param-id": "ID of the block to unblock (obtained through <kbd>list=blocks</kbd>). Cannot be used together with <var>$1user</var>.",
 	"apihelp-unblock-param-user": "User to unblock. Cannot be used together with <var>$1id</var>.",

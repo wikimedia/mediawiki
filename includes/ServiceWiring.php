@@ -112,6 +112,7 @@ use MediaWiki\Json\RsaJwtCodec;
 use MediaWiki\Language\FormatterFactory;
 use MediaWiki\Language\Language;
 use MediaWiki\Language\LanguageCode;
+use MediaWiki\Language\LanguageNameSearch;
 use MediaWiki\Language\LazyLocalizationContext;
 use MediaWiki\Language\LeximorphFactory;
 use MediaWiki\Language\MessageParser;
@@ -1199,6 +1200,12 @@ return [
 		return new LanguageFallback(
 			$services->getMainConfig()->get( MainConfigNames::LanguageCode ),
 			$services->getLocalisationCache(),
+			$services->getLanguageNameUtils()
+		);
+	},
+
+	'LanguageNameSearch' => static function ( MediaWikiServices $services ): LanguageNameSearch {
+		return new LanguageNameSearch(
 			$services->getLanguageNameUtils()
 		);
 	},

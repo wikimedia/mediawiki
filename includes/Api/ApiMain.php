@@ -486,6 +486,12 @@ class ApiMain extends ApiBase {
 				'TempUserCreator',
 			]
 		],
+		'languagesearch' => [
+			'class' => ApiLanguageSearch::class,
+			'services' => [
+				'LanguageNameSearch',
+			],
+		],
 	];
 
 	/**

@@ -78,6 +78,7 @@ use MediaWiki\Json\JwtCodec;
 use MediaWiki\Language\FormatterFactory;
 use MediaWiki\Language\Language;
 use MediaWiki\Language\LanguageCode;
+use MediaWiki\Language\LanguageNameSearch;
 use MediaWiki\Language\LeximorphFactory;
 use MediaWiki\Language\MessageParser;
 use MediaWiki\Languages\LanguageConverterFactory;
@@ -1390,6 +1391,13 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getLanguageNameUtils(): LanguageNameUtils {
 		return $this->getService( 'LanguageNameUtils' );
+	}
+
+	/**
+	 * @since 1.46
+	 */
+	public function getLanguageNameSearch(): LanguageNameSearch {
+		return $this->getService( 'LanguageNameSearch' );
 	}
 
 	/** @since 1.45 */
