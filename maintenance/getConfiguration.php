@@ -40,6 +40,9 @@ class GetConfiguration extends Maintenance {
 	/** @var string|null */
 	protected $regex = null;
 
+	/** @var string|null */
+	protected $format = null;
+
 	/** @var array */
 	protected $settings_list = [];
 
@@ -73,9 +76,9 @@ class GetConfiguration extends Maintenance {
 		$error_out = false;
 
 		# Get the format and make sure it is set to a valid default value
-		$format = strtolower( $this->getOption( 'format', 'PHP' ) );
+		$this->format = strtolower( $this->getOption( 'format', 'PHP' ) );
 
-		$validFormat = in_array( $format, self::OUT_FORMATS );
+		$validFormat = in_array( $this->format, self::OUT_FORMATS );
 		if ( !$validFormat ) {
 			$this->error( "--format set to an unrecognized format" );
 			$error_out = true;
@@ -125,7 +128,13 @@ class GetConfiguration extends Maintenance {
 
 		# Default: dump any wg / wmg variable
 		if ( !$this->regex && !$this->getOption( 'settings' ) ) {
-			$this->regex = '/^wm?g/';
+			// Avoid fatal "Exception: Serialization of Closure is not allowed"
+			//
+			// * Exclude legacy singletons that are not configuration but
+			//   non-serializable objects, such as $wgUser.
+			// * Exclude config arrays such as wgHooks which may contain closures
+			//   via LocalSettings.php.
+			$this->regex = '/^wm?g(?!User|Out|Request|Hooks).*$/';
 		}
 
 		# Filter out globals based on the regex
@@ -146,7 +155,7 @@ class GetConfiguration extends Maintenance {
 
 		ksort( $res );
 
-		switch ( strtolower( $this->getOption( 'format' ) ) ) {
+		switch ( $this->format ) {
 			case 'serialize':
 			case 'php':
 				$out = serialize( $res );
