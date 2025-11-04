@@ -825,6 +825,8 @@
 	"unstrip-size-category-desc": "Siden overskrider størrelsesgrensen for unstrip.",
 	"bad-language-code-category": "Sider med ugyldige språkkoder",
 	"bad-language-code-category-desc": "Sidene inneholder en <code><nowiki>{{#dir}}</nowiki></code> med en ugyldig språkkode.",
+	"bad-double-underscore-category": "Sider med ugyldige atferdsbrytere",
+	"bad-double-underscore-category-desc": "Siden inneholder en ugyldig [[mw:Special:MyLanguage/Help:Magic_words#Behavior_switches|atferdsbryter]]. Gyldige varianter begynner og slutter med doble understreker.",
 	"double-px-category": "Sider der bildestørrelser har en ekstra «px»",
 	"double-px-category-desc": "Siden inneholder et bilde der bildestørrelsen inneholder en ekstra <code>px</code>, som f.eks. <code>100pxpx</code>.",
 	"converter-manual-rule-error": "En feil ble oppdaget i en manuell språkkonverteringsregel",

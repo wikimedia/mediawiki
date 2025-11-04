@@ -14,7 +14,8 @@
 			"Omnipaedista",
 			"Protnet",
 			"SucreRouge",
-			"ZaDiak"
+			"ZaDiak",
+			"Jimkats"
 		]
 	},
 	"exif-imagewidth": "Πλάτος",
@@ -199,7 +200,9 @@
 	"exif-compression-4": "Κωδικοποίηση Φαξ CCITT Ομάδας 4",
 	"exif-copyrighted-true": "Προστατεύεται από πνευματικά δικαιώματα",
 	"exif-copyrighted-false": "Δεν έχει οριστεί καθεστώς πνευματικών δικαιωμάτων",
+	"exif-photometricinterpretation-0": "Μαύρο και άσπρο (Άσπρο είναι 0)",
 	"exif-photometricinterpretation-1": "Μαύρο και λευκό (Μαύρο 0)",
+	"exif-photometricinterpretation-3": "Παλέτα",
 	"exif-unknowndate": "Άγνωστη ημερομηνία",
 	"exif-orientation-1": "Φυσικός",
 	"exif-orientation-2": "Έχει αντιστραφεί οριζόντια.",

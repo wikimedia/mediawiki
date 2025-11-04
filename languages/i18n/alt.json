@@ -3129,7 +3129,6 @@
 	"mcrundo-changed": "Бу бӱк слер кӧргӧннӧҥ бери солынып калды. Јаҥы солынтыларды кӧрӱп ийер.",
 	"mcrundo-parse-failed": "Јаҥы версияны аайлап болбоды: $1",
 	"semicolon-separator": ";&#32;",
-	"comma-separator": ",&#32;",
 	"colon-separator": ":&#32;",
 	"pipe-separator": "&#32;|&#32;",
 	"word-separator": "&#32;",

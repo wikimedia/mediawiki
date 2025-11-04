@@ -8,7 +8,8 @@
 			"Macofe",
 			"Matma Rex",
 			"Songhay",
-			"Vlad5250"
+			"Vlad5250",
+			"SaldırganSincap"
 		]
 	},
 	"sunday": "Alhadi",
@@ -744,7 +745,7 @@
 	"shown-title": "Cebe {{PLURAL:$1|hunyan}} $1 moo ra",
 	"viewprevnext": "Guna ($1 {{int:pipe-separator}} $2) ($3)",
 	"searchmenu-exists": "<strong>Moo goo kaŋ maaɲoo ti \"[[:$1]]\" wikiyoo woo ga.</strong> {{PLURAL:$2|0=|Guna da ceeci hunyan taney kaŋ fatta.}}",
-	"searchmenu-new": "<strong>\"[[:$1]]\" moŋoo tee wikiyoo woo ga!{{PLURAL:$2|0=|Guna da moɲoo kaŋ duwandi war ceeciroo ra.|Guna da ceeci hunyaney kaŋ duwandi.}}",
+	"searchmenu-new": "\"[[:$1]]\" moŋoo tee wikiyoo woo ga!{{PLURAL:$2|0=|Guna da moɲoo kaŋ duwandi war ceeciroo ra.|Guna da ceeci hunyaney kaŋ duwandi.}}",
 	"searchprofile-articles": "Gundekuna moɲey",
 	"searchprofile-images": "Hẽenandi jinawey",
 	"searchprofile-everything": "Hayakul",
@@ -2212,7 +2213,6 @@
 	"confirm-unwatch-button": "Ayyo",
 	"confirm-unwatch-top": "Moɲoo woo kaa war hawgayhayey ra wala?",
 	"semicolon-separator": ";&#32;",
-	"comma-separator": ",&#32;",
 	"colon-separator": ":&#32;",
 	"ellipsis": "...",
 	"percent": "$1%",

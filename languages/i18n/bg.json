@@ -3100,7 +3100,6 @@
 	"mcrundo-changed": "Страницата е била променена, след като прегледахте разликите. Моля, проверете новите промени.",
 	"mcrundo-parse-failed": "Неуспех при разпознаване на новата версия: $1",
 	"semicolon-separator": ";&#32;",
-	"comma-separator": ",&#32;",
 	"colon-separator": ":&#32;",
 	"ellipsis": "...",
 	"percent": "$1%",

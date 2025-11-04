@@ -3141,7 +3141,6 @@
 	"mcrundo-missingparam": "Хила декхарийлахь йолу параметраш йац.",
 	"mcrundo-changed": "ХӀара агӀо хийцина, шун башхаллашка хьевсинчул тӀехьа. Дехар до, талла керла хийцамаш.",
 	"mcrundo-parse-failed": "Керла верси йовза ца йелла: $1",
-	"comma-separator": ",&#32;",
 	"quotation-marks": "«$1»",
 	"formatnum-nan": "Лоьмар йац",
 	"imgmultipageprev": "← хьалхара агӀо",

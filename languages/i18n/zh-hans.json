@@ -982,6 +982,8 @@
 	"unstrip-size-category-desc": "此页面超出了unstrip的规模极限。",
 	"bad-language-code-category": "带有无效语言代码的页面",
 	"bad-language-code-category-desc": "页面包含传入了无效语言代码的<code><nowiki>{{#dir}}</nowiki></code>。",
+	"bad-double-underscore-category": "具有无效行为开关的页面",
+	"bad-double-underscore-category-desc": "该页面包含无效的本地化[[mw:Special:MyLanguage/Help:Magic_words#Behavior_switches|行为开关]]。有效的应以双下划线开头和结尾。",
 	"double-px-category": "图像尺寸大小带有额外px字符的页面",
 	"double-px-category-desc": "页面包含指定大小时误写了多余<code>px</code>后缀的图片，例如<code>100pxpx</code>。",
 	"converter-manual-rule-error": "在手动字词转换规则中检测到错误",

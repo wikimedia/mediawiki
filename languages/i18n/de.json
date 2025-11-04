@@ -893,6 +893,8 @@
 	"unstrip-size-category-desc": "Diese Seite überschreitet das Unstrip-Größen-Limit.",
 	"bad-language-code-category": "Seiten mit ungültigem Sprachcode",
 	"bad-language-code-category-desc": "Die Seite enthält <code><nowiki>{{#dir}}</nowiki></code> mit einem ungültigen Sprachcode.",
+	"bad-double-underscore-category": "Seiten mit ungültigen Verhaltensschaltern",
+	"bad-double-underscore-category-desc": "Die Seite enthält einen ungültigen lokalisierten [[mw:Special:MyLanguage/Help:Magic_words#Behavior_switches|Verhaltensschalter]]. Gültige Lokalisierungen beginnen und enden mit doppelten Unterstrichen.",
 	"double-px-category": "Seiten mit Bildgrößen, die eine zusätzliche px-Angabe enthalten",
 	"double-px-category-desc": "Die Seite enthält ein Bild, dessen Größe ein zusätzliches <code>px</code> enthält, etwa <code>100pxpx</code>.",
 	"converter-manual-rule-error": "Bei der manuellen Sprachkonvertierungsregel wurde ein Fehler entdeckt.",

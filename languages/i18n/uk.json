@@ -3246,7 +3246,6 @@
 	"mcrundo-changed": "Сторінку змінили з часу Вашого перегляду різниці версій. Будь ласка, перевірте нову зміну.",
 	"mcrundo-parse-failed": "Не вдалося опрацювати нову версію: $1",
 	"semicolon-separator": ";&#32;",
-	"comma-separator": ",&#32;",
 	"colon-separator": ":&#32;",
 	"ellipsis": "...",
 	"percent": "$1%",

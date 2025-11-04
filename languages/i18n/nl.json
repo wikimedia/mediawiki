@@ -876,6 +876,8 @@
 	"unstrip-size-category-desc": "Deze pagina overschrijdt de \"unstrip\"-groottelimiet.",
 	"bad-language-code-category": "Pagina's met ongeldige taalcodes",
 	"bad-language-code-category-desc": "De pagina bevat een <code><nowiki>{{#dir}}</nowiki></code> met een ongeldige taalcode.",
+	"bad-double-underscore-category": "Pagina's met ongeldige gedragsschakelaars",
+	"bad-double-underscore-category-desc": "De pagina bevat een ongeldige gelokaliseerde [[mw:Special:MyLanguage/Help:Magic_words#Behavior_switches|gedragsschakelaar]]. Geldige lokalisaties beginnen en eindigen met dubbele onderstrepingstekens (underscores).",
 	"double-px-category": "Pagina's met afbeeldingsgrootten met extra px",
 	"double-px-category-desc": "De pagina bevat een afbeelding waarvan de grootte een extra achtervoegsel <code>px</code> bevat, bijvoorbeeld <code>100pxpx</code>.",
 	"converter-manual-rule-error": "Er is een fout gedetecteerd in een handmatig toegevoegde taalconversieregel.",

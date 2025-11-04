@@ -928,7 +928,7 @@
 	"diff-newline": "↲ novi red",
 	"difference-missing-revision": "{{PLURAL:$2|1=Uređivanje|$2 uređivanje|$2 uređivanja}} počevši od šifre ($1) ne {{PLURAL:$2|postoji|postoje}}.\n\nOvo je obično uzrokovano kada kliknete na zastarjelu razlikovnu poveznicu prema stranici koja je izbrisana.\nViše informacija možete pronaći u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} evidenciji brisanja].",
 	"searchresults": "Rezultati pretrage",
-	"search-filter-title-prefix": "Pretraži samo stranice koje počinju prefiksom »$1«",
+	"search-filter-title-prefix": "Pretraga samo stranica koje počinju prefiksom »$1«",
 	"search-filter-title-prefix-reset": "Pretraži sve stranice",
 	"searchresults-title": "Rezultati pretrage za \"$1\"",
 	"titlematches": "Pronađene stranice prema naslovu",

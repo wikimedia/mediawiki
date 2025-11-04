@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Tacsipacsi"
+			"Tacsipacsi",
+			"Boro"
 		]
 	},
 	"cdx-input-chip-aria-description": "Nyomd le az Enter billentyűt a szerkesztéshez vagy a Delete billentyűt az eltávolításhoz.",

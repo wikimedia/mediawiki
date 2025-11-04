@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"ChiK"
+		]
+	},
+	"cdx-dialog-close-button-label": "ಮುಚ್ಚಿಲೆ",
+	"cdx-message-dismiss-button-label": "ಮುಚ್ಚಿಲೆ",
+	"cdx-search-input-search-button-label": "ನಾಡ್‍ಲೆ",
+	"cdx-table-pager-button-first-page": "ಸುರುತ ಪುಟೊ",
+	"cdx-table-pager-button-last-page": "ಕಡೆತ ಪುಟೊ",
+	"cdx-table-pager-button-next-page": "ನನತಾ ಪುಟೊ",
+	"cdx-table-pager-button-prev-page": "ಪಿರದ ಪುಟೊ"
+}

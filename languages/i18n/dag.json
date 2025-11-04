@@ -32,7 +32,9 @@
 			"Shahadusadik",
 			"Sir Amugi",
 			"Yakubu Fadilatu",
-			"Zak Raha"
+			"Zak Raha",
+			"Joris Darlington Quarshie",
+			"SIR SUCCESS (NAA JAHINFO)"
 		]
 	},
 	"sunday": "Alahari",
@@ -1042,6 +1044,7 @@
 	"ncategories": "$1 {{PLURAL:$1|category|categories}}",
 	"ninterwikis": "$1 {{PLURAL:$1|interwiki|interwikis}}",
 	"nlinks": "$1 {{PLURAL:$1|link|links}}",
+	"nmembers": "$1 {{PLURAL:$1|ti nira|ti niriba}}",
 	"nmemberschanged": "$1 → $2 {{PLURAL:$2|member|members}}",
 	"nrevisions": "$1 {{PLURAL:$1|revision|revisions}}",
 	"nimagelinks": "Used on $1 {{PLURAL:$1|page|pages}}",

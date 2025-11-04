@@ -39,7 +39,8 @@
 			"Zamwan",
 			"Zulfadli51",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Mirlim"
 		]
 	},
 	"sunday": "Ahad",
@@ -2297,8 +2298,8 @@
 	"rollback-confirmation-yes": "Undur",
 	"rollback-confirmation-no": "Batal",
 	"rollbacklink": "undur",
-	"rollbacklinkcount": "mengundurkan $1 {{PLURAL:$1|suntingan}}",
-	"rollbacklinkcount-morethan": "mengundurkan lebih daripada $1 {{PLURAL:$1|suntingan}}",
+	"rollbacklinkcount": "undurkan $1 {{PLURAL:$1|suntingan}}",
+	"rollbacklinkcount-morethan": "undurkan lebih daripada $1 {{PLURAL:$1|suntingan}}",
 	"rollbackfailed": "Pengunduran gagal",
 	"rollback-missingparam": "Parameter yang diperlukan hilang atas permintaan.",
 	"rollback-missingrevision": "Tidak dapat memuat data semakan.",

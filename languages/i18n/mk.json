@@ -793,6 +793,8 @@
 	"unstrip-size-category-desc": "Страницата го ја надминува дозволената големина на отслекувањето.",
 	"bad-language-code-category": "Страници со неважечки јазични кодови",
 	"bad-language-code-category-desc": "Оваа страница содржи <code><nowiki>{{#dir}}</nowiki></code> со неважечки јазичен код.",
+	"bad-double-underscore-category": "Страници со наеважечки префрлачи на поведение",
+	"bad-double-underscore-category-desc": "Оваа страница содржи неважечки локализиран [[mw:Special:MyLanguage/Help:Magic_words#Behavior_switches|префрлач на поведение]]. Важечките локализации почнуваат и завршуваат со двојни долни црти.",
 	"double-px-category": "Страници со излишни големински наставки px",
 	"double-px-category-desc": "Оваа страница содржи слика чија големинска наставка содржи излишно <code>px</code>, како на пр. <code>100pxpx</code>.",
 	"converter-manual-rule-error": "Пронајдов грешка во правилото за рачно претворање на јазик",
