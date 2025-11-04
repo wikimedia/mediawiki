@@ -296,6 +296,8 @@
 	"tags-summary": "",
 	"talkpageheader": "-",
 	"talkpagetext": "<!-- MediaWiki:talkpagetext -->",
+	"template-protected": "-",
+	"template-semiprotected": "-",
 	"tempuser-helppage": "mw:Special:MyLanguage/Help:Temporary_accounts",
 	"tooltip-ca-view": "",
 	"tooltip-n-help-mediawiki": "",

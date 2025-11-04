@@ -29,14 +29,15 @@
 	 *
 	 * @private
 	 * @param {string} str
+	 * @param {mw.Message} [wrapperMsg] Message to wrap in, if other than `parentheses`
 	 * @return {string}
 	 */
-	function parenthesesWrap( str ) {
+	function parenthesesWrap( str, wrapperMsg = mw.message( 'parentheses' ) ) {
 		if ( str === '' ) {
 			return str;
 		}
 		// There is no equivalent to rawParams
-		return mw.message( 'parentheses' ).escaped()
+		return wrapperMsg.escaped()
 			// Specify a function as the replacement,
 			// so that "$" characters in str are not interpreted.
 			.replace( '$1', () => str );
@@ -238,39 +239,31 @@
 	 * @return {jQuery.Promise}
 	 */
 	function getRestrictionsText( restrictions ) {
-		let msg = '';
-		if ( !restrictions ) {
-			return $.Deferred().resolve( msg );
-		}
+		// API also returns e.g. move protections, which we don't want here
+		restrictions = restrictions.filter( ( r ) => r.type === 'edit' );
 
-		// Record other restriction levels, in case it's protected for others.
-		const restrictionLevels = [];
-		restrictions.forEach( ( r ) => {
-			if ( r.type !== 'edit' ) {
-				return;
-			}
-			if ( r.level === 'sysop' ) {
-				msg = mw.msg( 'template-protected' );
-			} else if ( r.level === 'autoconfirmed' ) {
-				msg = mw.msg( 'template-semiprotected' );
-			} else {
-				restrictionLevels.push( r.level );
-			}
-		} );
-
-		// If sysop or autoconfirmed, use that.
-		if ( msg !== '' ) {
-			return $.Deferred().resolve( msg );
-		}
-
-		// Otherwise, if the edit restriction isn't one of the backwards-compatible ones,
-		// use the (possibly custom) restriction-level-* messages.
-		const msgs = [];
-		restrictionLevels.forEach( ( level ) => {
-			msgs.push( 'restriction-level-' + level );
-		} );
-		if ( msgs.length === 0 ) {
+		if ( restrictions.length === 0 ) {
 			return $.Deferred().resolve( '' );
+		}
+
+		// Construct the message from restriction-level-*
+		// e.g. restriction-level-sysop, restriction-level-autoconfirmed
+		const msgs = [];
+		restrictions.forEach( ( r ) => {
+			msgs.push( 'restriction-level-' + r.level );
+		} );
+
+		// Check backwards-compatible messages for the built-in protection levels,
+		// wrap custom levels in parentheses
+		let msg;
+		if ( restrictions.length === 1 && restrictions[ 0 ].level === 'sysop' ) {
+			msg = mw.message( 'template-protected' );
+		} else if ( restrictions.length === 1 && restrictions[ 0 ].level === 'autoconfirmed' ) {
+			msg = mw.message( 'template-semiprotected' );
+		}
+		if ( !msg || !msg.exists() || msg.plain() === '' || msg.plain() === '-' ) {
+			// By default wrap protection levels in parentheses
+			msg = mw.message( 'parentheses' );
 		}
 
 		// Custom restriction levels don't have their messages loaded, so we have to do that.
@@ -282,7 +275,7 @@
 				( m ) => mw.message( m ).parse()
 			);
 			// There's no commaList in JS, so just join with commas (doesn't handle the last item).
-			return parenthesesWrap( localizedMessages.join( mw.message( 'comma-separator' ).escaped() ) );
+			return parenthesesWrap( localizedMessages.join( mw.message( 'comma-separator' ).escaped() ), msg );
 		} );
 	}
 

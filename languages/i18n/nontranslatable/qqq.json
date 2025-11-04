@@ -288,6 +288,8 @@
 	"talkpageheader": "{{notranslate}}",
 	"talkpagetext": "{{notranslate}}",
 	"tempuser-helppage": "{{notranslate}}\nDefines a link to the documentation page for temporary accounts.",
+	"template-protected": "{{notranslate}}\nCan be used to customize the label for fully protected templates used on the current page (see {{msg-mw|templatesused}}). This message is no longer used by default since additional protection levels were introduced.\n\nThe default label is {{msg-mw|restriction-level-sysop}} wrapped in parentheses.",
+	"template-semiprotected": "{{notranslate}}\nCan be used to customize the label for semi-protected templates used on the current page (see {{msg-mw|templatesused}}). This message is no longer used by default since additional protection levels were introduced.\n\nThe default label is {{msg-mw|restriction-level-autoconfirmed}} wrapped in parentheses.",
 	"tooltip-ca-view": "{{notranslate}}\nTooltip for the view tab, normally blank.",
 	"tooltip-n-help-mediawiki": "{{notranslate}}\nTooltip for the help, should be blank.",
 	"tooltip-p-lang": "{{notranslate}}\nTooltip for the languages portlet, should be blank.",

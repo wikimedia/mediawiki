@@ -10,10 +10,12 @@ use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\Message\Message;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Permissions\RestrictionStore;
 use MediaWiki\Title\Title;
+use Wikimedia\Message\ListType;
 
 /**
  * Handles formatting for the "templates used on this page"
@@ -157,27 +159,26 @@ class TemplatesOnThisPageFormatter {
 			return $protected;
 		}
 
-		// Check backwards-compatible messages
+		// Construct the message from restriction-level-*
+		// e.g. restriction-level-sysop, restriction-level-autoconfirmed
+		$msgs = [];
+		foreach ( $restrictions as $r ) {
+			$msgs[] = $this->context->msg( "restriction-level-$r" );
+		}
+
+		// Check backwards-compatible messages for the built-in protection levels
 		$msg = null;
 		if ( $restrictions === [ 'sysop' ] ) {
 			$msg = $this->context->msg( 'template-protected' );
 		} elseif ( $restrictions === [ 'autoconfirmed' ] ) {
 			$msg = $this->context->msg( 'template-semiprotected' );
 		}
-		if ( $msg && !$msg->isDisabled() ) {
-			$protected = $msg->parse();
-		} else {
-			// Construct the message from restriction-level-*
-			// e.g. restriction-level-sysop, restriction-level-autoconfirmed
-			$msgs = [];
-			foreach ( $restrictions as $r ) {
-				$msgs[] = $this->context->msg( "restriction-level-$r" )->parse();
-			}
-			$protected = $this->context->msg( 'parentheses' )
-				->rawParams( $this->context->getLanguage()->commaList( $msgs ) )->escaped();
+		if ( !$msg || $msg->isDisabled() ) {
+			// By default wrap protection levels in parentheses
+			$msg = $this->context->msg( 'parentheses' );
 		}
 
-		return $protected;
+		return $msg->params( Message::listParam( $msgs, ListType::COMMA ) )->parse();
 	}
 
 	/**
