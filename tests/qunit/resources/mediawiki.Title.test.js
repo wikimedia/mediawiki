@@ -301,6 +301,25 @@
 		assert.strictEqual( title.toString(), 'Penguins:Flightless_yet_cute.jpg' );
 	} );
 
+	// T409154
+	QUnit.test( 'Namespace matches Object.prototype property', ( assert ) => {
+		let title;
+
+		// Namespace is not registered
+		title = new mw.Title( 'constructor:foo' );
+		assert.strictEqual( title.toString(), 'Constructor:foo' );
+		assert.strictEqual( title.getMainText(), 'Constructor:foo' );
+		assert.strictEqual( title.getNamespaceId(), 0 );
+
+		// Namespace is registered
+		mw.config.get( 'wgFormattedNamespaces' )[ 102 ] = 'Constructor';
+		mw.config.get( 'wgNamespaceIds' ).constructor = 102;
+		title = new mw.Title( 'constructor:foo' );
+		assert.strictEqual( title.toString(), 'Constructor:Foo' );
+		assert.strictEqual( title.getMainText(), 'Foo' );
+		assert.strictEqual( title.getNamespaceId(), 102 );
+	} );
+
 	QUnit.test( 'isTalkPage/getTalkPage/getSubjectPage', ( assert ) => {
 		let title = new mw.Title( 'User:Foo' );
 		assert.false( title.isTalkPage(), 'Non-talk page detected as such' );
