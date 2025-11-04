@@ -280,15 +280,16 @@ $wgAutoloadClasses += [
 	'MediaWiki\\Tests\\HookContainer\\HookRunnerTestBase' => "$testDir/phpunit/unit/includes/HookContainer/HookRunnerTestBase.php",
 
 	# tests/phpunit/unit/includes/json
-	'MediaWiki\\Tests\\Json\\JsonDeserializableSubClass' => "$testDir/phpunit/mocks/json/JsonDeserializableSubClass.php",
-	'MediaWiki\\Tests\\Json\\JsonDeserializableSubClassAlias' => "$testDir/phpunit/mocks/json/JsonDeserializableSubClass.php",
-	'MediaWiki\\Tests\\Json\\JsonDeserializableSuperClass' => "$testDir/phpunit/mocks/json/JsonDeserializableSuperClass.php",
-	'MediaWiki\\Tests\\Json\\ManagedObject' => "$testDir/phpunit/mocks/json/ManagedObject.php",
-	'MediaWiki\\Tests\\Json\\ManagedObjectFactory' => "$testDir/phpunit/mocks/json/ManagedObjectFactory.php",
-	'MediaWiki\\Tests\\Json\\PlainJsonJwtCodec' => "$testDir/phpunit/mocks/json/PlainJsonJwtCodec.php",
-	'MediaWiki\\Tests\\Json\\SampleContainerObject' => "$testDir/phpunit/mocks/json/SampleContainerObject.php",
-	'MediaWiki\\Tests\\Json\\SampleObject' => "$testDir/phpunit/mocks/json/SampleObject.php",
-	'MediaWiki\\Tests\\Json\\SampleObjectAlias' => "$testDir/phpunit/mocks/json/SampleObject.php",
+	'MediaWiki\\Tests\\Json\\JsonDeserializableSubClass' => "$testDir/phpunit/mocks/Json/JsonDeserializableSubClass.php",
+	'MediaWiki\\Tests\\Mocks\\Json\\JsonDeserializableSubClass' => "$testDir/phpunit/mocks/Json/JsonDeserializableSubClass.php",
+	'MediaWiki\\Tests\\Mocks\\Json\\JsonDeserializableSubClassAlias' => "$testDir/phpunit/mocks/Json/JsonDeserializableSubClass.php",
+	'MediaWiki\\Tests\\Mocks\\Json\\JsonDeserializableSuperClass' => "$testDir/phpunit/mocks/Json/JsonDeserializableSuperClass.php",
+	'MediaWiki\\Tests\\Mocks\\Json\\ManagedObject' => "$testDir/phpunit/mocks/Json/ManagedObject.php",
+	'MediaWiki\\Tests\\Mocks\\Json\\ManagedObjectFactory' => "$testDir/phpunit/mocks/Json/ManagedObjectFactory.php",
+	'MediaWiki\\Tests\\Mocks\\Json\\PlainJsonJwtCodec' => "$testDir/phpunit/mocks/Json/PlainJsonJwtCodec.php",
+	'MediaWiki\\Tests\\Mocks\\Json\\SampleContainerObject' => "$testDir/phpunit/mocks/Json/SampleContainerObject.php",
+	'MediaWiki\\Tests\\Mocks\\Json\\SampleObject' => "$testDir/phpunit/mocks/Json/SampleObject.php",
+	'MediaWiki\\Tests\\Mocks\\Json\\SampleObjectAlias' => "$testDir/phpunit/mocks/Json/SampleObject.php",
 
 	# tests/phpunit/unit/includes/Language
 	'LanguageCodeTest' => "$testDir/phpunit/unit/includes/Language/LanguageCodeTest.php",

@@ -8,7 +8,7 @@ use MediaWiki\Parser\CacheTime;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Parser\ParserOutputLinkTypes;
-use MediaWiki\Tests\Json\JsonDeserializableSubClass;
+use MediaWiki\Tests\Mocks\Json\JsonDeserializableSubClass;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
 use MediaWiki\Utils\MWTimestamp;

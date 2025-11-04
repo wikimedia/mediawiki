@@ -16,7 +16,7 @@ use MediaWiki\Session\SessionBackend;
 use MediaWiki\Session\SessionId;
 use MediaWiki\Session\SessionInfo;
 use MediaWiki\Session\SessionManager;
-use MediaWiki\Tests\Json\PlainJsonJwtCodec;
+use MediaWiki\Tests\Mocks\Json\PlainJsonJwtCodec;
 use MediaWiki\User\CentralId\CentralIdLookup;
 use MediaWiki\User\User;
 use MediaWiki\Utils\UrlUtils;

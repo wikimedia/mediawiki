@@ -14,7 +14,7 @@ use MediaWiki\Parser\ParserCache;
 use MediaWiki\Parser\ParserCacheFilter;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
-use MediaWiki\Tests\Json\JsonDeserializableSuperClass;
+use MediaWiki\Tests\Mocks\Json\JsonDeserializableSuperClass;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
 use MediaWiki\User\User;

@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Tests\Json;
+namespace MediaWiki\Tests\Mocks\Json;
 
 use MediaWiki\Json\JsonDeserializable;
 use MediaWiki\Json\JsonDeserializableTrait;

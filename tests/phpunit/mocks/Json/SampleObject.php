@@ -1,5 +1,5 @@
 <?php
-namespace MediaWiki\Tests\Json;
+namespace MediaWiki\Tests\Mocks\Json;
 
 use Wikimedia\Assert\Assert;
 use Wikimedia\JsonCodec\JsonCodecable;
@@ -49,4 +49,4 @@ class SampleObject implements JsonCodecable {
 
 // This class_alias exists for testing alias support in JsonCodec and
 // should not be removed.
-class_alias( SampleObject::class, 'MediaWiki\\Tests\\Json\\SampleObjectAlias' );
+class_alias( SampleObject::class, 'MediaWiki\\Tests\\Mocks\\Json\\SampleObjectAlias' );

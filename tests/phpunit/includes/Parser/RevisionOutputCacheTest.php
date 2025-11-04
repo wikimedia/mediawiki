@@ -12,7 +12,7 @@ use MediaWiki\Parser\RevisionOutputCache;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
-use MediaWiki\Tests\Json\JsonDeserializableSuperClass;
+use MediaWiki\Tests\Mocks\Json\JsonDeserializableSuperClass;
 use MediaWiki\User\User;
 use MediaWiki\Utils\MWTimestamp;
 use MediaWikiIntegrationTestCase;

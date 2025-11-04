@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Tests\Json;
+namespace MediaWiki\Tests\Unit\Json;
 
 use InvalidArgumentException;
 use JsonException;
@@ -8,6 +8,11 @@ use JsonSerializable;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\Json\JsonCodec;
 use MediaWiki\Json\JsonConstants;
+use MediaWiki\Tests\Mocks\Json\JsonDeserializableSubClass;
+use MediaWiki\Tests\Mocks\Json\JsonDeserializableSuperClass;
+use MediaWiki\Tests\Mocks\Json\ManagedObjectFactory;
+use MediaWiki\Tests\Mocks\Json\SampleContainerObject;
+use MediaWiki\Tests\Mocks\Json\SampleObject;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiUnitTestCase;
@@ -340,7 +345,7 @@ class JsonCodecTest extends MediaWikiUnitTestCase {
 		$codec = $this->getCodec();
 		// Note that the class name in _type_ is an *alias*, not the
 		// *actual* class name.
-		$json = '{"property":"alias!","_type_":"MediaWiki\\\\Tests\\\\Json\\\\SampleObjectAlias","_complex_":true}';
+		$json = '{"property":"alias!","_type_":"MediaWiki\\\\Tests\\\\Mocks\\\\Json\\\\SampleObjectAlias","_complex_":true}';
 		$v = $codec->deserialize( $json, SampleObject::class );
 		$this->assertInstanceOf( SampleObject::class, $v );
 	}
@@ -349,7 +354,7 @@ class JsonCodecTest extends MediaWikiUnitTestCase {
 		$codec = $this->getCodec();
 		// Note that the class name in _type_ is an *alias*, not the
 		// *actual* class name.
-		$json = '{"super_class_field":1,"sub_class_field":"2","_type_":"MediaWiki\\\\Tests\\\\Json\\\\JsonDeserializableSubClassAlias","_complex_":true}';
+		$json = '{"super_class_field":1,"sub_class_field":"2","_type_":"MediaWiki\\\\Tests\\\\Mocks\\\\Json\\\\JsonDeserializableSubClassAlias","_complex_":true}';
 		$v = $codec->deserialize( $json, JsonDeserializableSubClass::class );
 		$this->assertInstanceOf( JsonDeserializableSubClass::class, $v );
 	}
