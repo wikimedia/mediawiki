@@ -325,6 +325,7 @@
 	"uploadfooter": "-",
 	"userlogin-loggedin-prompt": "",
 	"userlogout-summary": "",
+	"userrights-checkbox-help-message-separator": "<br>",
 	"userrights-summary": "",
 	"version-db-mariadb-url": "https://mariadb.org/",
 	"version-db-mysql-url": "https://www.mysql.com/",

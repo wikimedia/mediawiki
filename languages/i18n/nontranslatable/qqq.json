@@ -316,6 +316,7 @@
 	"uploadfooter": "{{notranslate}}",
 	"userlogin-loggedin-prompt": "{{notranslate}} Optional message shown below {{msg-mw|userlogin-loggedin-heading}}, which can be used by websites to display policies or help about using multiple accounts.",
 	"userlogout-summary": "{{ignored}}",
+	"userrights-checkbox-help-message-separator": "{{optional}}\nUsed to separate help messages for checkboxes on [[Special:Userrights]] and related pages.",
 	"userrights-summary": "{{doc-specialpagesummary|userrights}}",
 	"version-db-mariadb-url": "{{ignored}}URL to the website of MariaDB",
 	"version-db-mysql-url": "{{ignored}}URL to the website of MySQL",

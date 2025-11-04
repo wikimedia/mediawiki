@@ -1,43 +1,38 @@
 /*!
  * Styles for Special:UserRights
  */
-.mw-userrights-nested,
-.mw-userrights-annotation {
-	margin-left: 1.2em;
+
+#mw-userrights-form2 .mw-htmlform-field-HTMLSelectOrOtherField {
+	margin-left: 26px;
 }
 
-.mw-userrights-nested span {
-	margin-right: 0.3em;
-	display: inline-block;
-	vertical-align: middle;
-}
+/* Customizations for 2-column layout of form for editing groups */
 
-.mw-userrights-disabled {
-	color: #72777d;
-}
-
-.mw-userrights-groups * td,
-.mw-userrights-groups * th {
-	padding-right: 1.5em;
-}
-
-.mw-userrights-groups * th {
-	text-align: left;
-}
-
-/* Dynamically show/hide the expiry selection underneath each checkbox */
-input.mw-userrights-groupcheckbox:not( :checked ) ~ .mw-userrights-nested {
-	display: none;
-}
-
-/* Initial hide the expiry fields to prevent a FOUC on loading */
-/* The input fields gets unhidden by JavaScript when needed */
-.client-js .mw-userrights-expiryfield {
-	display: none;
-}
-
-/* Temporary styles until the form is modernized: T117884 */
-.mw-userrights-edit-fieldset {
+#mw-userrights-form2 .oo-ui-panelLayout-framed {
 	border: 0;
+	display: inline-block;
+	box-sizing: border-box;
+	width: 50%;
+	vertical-align: top;
+}
+
+#mw-userrights-form2 .oo-ui-panelLayout-padded {
 	padding: 0;
+}
+
+#mw-userrights-form2 .mw-widget-selectWithInputWidget .oo-ui-textInputWidget {
+	padding-top: 0.5em;
+
+	/*
+	 * Make maximum width consistent with the dropdown, as defined in
+	 * mw.widgets.SelectWithInputWidget.base.less
+	 */
+	max-width: 20em;
+
+	/*
+	 * Avoid FOUC on page load, since the default value will never be "Other".
+	 * When the user selects "Other", OOUI adds styles that will make this
+	 * visible again.
+	 */
+	display: none;
 }

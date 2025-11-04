@@ -1000,7 +1000,7 @@
 	"userrights-expiry-current": "Expires $1",
 	"userrights-expiry-none": "Does not expire",
 	"userrights-expiry": "Expires:",
-	"userrights-expiry-existing": "Existing expiration time: $3, $2",
+	"userrights-expiry-existing": "$3, $2",
 	"userrights-expiry-othertime": "Other time:",
 	"userrights-expiry-options": "1 day:1 day,1 week:1 week,1 month:1 month,3 months:3 months,6 months:6 months,1 year:1 year",
 	"userrights-invalid-expiry": "The expiry time for group \"$1\" is invalid.",
