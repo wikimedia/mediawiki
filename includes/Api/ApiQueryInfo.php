@@ -660,46 +660,58 @@ class ApiQueryInfo extends ApiQueryBase {
 
 		if ( count( $others ) ) {
 			$this->resetQueryParams();
-			$this->addTables( [ 'page_restrictions', 'page' ] );
-			$this->addFields( [ 'pr_type', 'pr_level', 'pr_expiry',
-				'page_title', 'page_namespace', 'page_id' ] );
-			$this->addWhere( 'pr_page = page_id' );
-			$this->addWhereFld( 'pr_cascade', 1 );
+			$this->setVirtualDomain( TemplateLinksTable::VIRTUAL_DOMAIN );
 
-			$res = $this->select( __METHOD__ );
+			$queryInfo = $this->linksMigration->getQueryInfo( 'templatelinks' );
+			$lb = $this->linkBatchFactory->newLinkBatch( $others );
+			$res = $this->getDB()->newSelectQueryBuilder()
+				->select( [ 'tl_from', 'lt_namespace', 'lt_title' ] )
+				->tables( $queryInfo['tables'] )
+				->joinConds( $queryInfo['joins'] )
+				->where( $lb->constructSet( 'tl', $this->getDB() ) )
+				->useIndex( [ 'templatelinks' => 'PRIMARY' ] )
+				->caller( __METHOD__ )
+				->fetchResultSet();
 
-			$protectedPages = [];
+			$pageIds = [];
+			$templateLinks = [];
 			foreach ( $res as $row ) {
-				$protectedPages[$row->page_id] = [
-					'type' => $row->pr_type,
-					'level' => $row->pr_level,
-					'expiry' => ApiResult::formatExpiry( $row->pr_expiry ),
-					'source' => $this->titleFormatter->formatTitle( $row->page_namespace, $row->page_title ),
+				$pageIds[] = $row->tl_from;
+				$templateLinks[$row->tl_from][] = [
+					'namespace' => $row->lt_namespace,
+					'title' => $row->lt_title
 				];
 			}
 
-			if ( $protectedPages ) {
-				$this->setVirtualDomain( TemplateLinksTable::VIRTUAL_DOMAIN );
+			$this->resetVirtualDomain();
 
-				$lb = $this->linkBatchFactory->newLinkBatch( $others );
+			if ( $pageIds ) {
+				$this->resetQueryParams();
 
-				$queryInfo = $this->linksMigration->getQueryInfo( 'templatelinks' );
-				$res = $this->getDB()->newSelectQueryBuilder()
-					->select( [ 'tl_from', 'lt_namespace', 'lt_title' ] )
-					->tables( $queryInfo['tables'] )
-					->joinConds( $queryInfo['joins'] )
-					->where( [ 'tl_from' => array_keys( $protectedPages ) ] )
-					->andWhere( $lb->constructSet( 'tl', $this->getDB() ) )
-					->useIndex( [ 'templatelinks' => 'PRIMARY' ] )
-					->caller( __METHOD__ )
-					->fetchResultSet();
+				$this->addTables( [ 'page_restrictions', 'page' ] );
+				$this->addFields( [ 'pr_type', 'pr_level', 'pr_expiry',
+					'page_title', 'page_namespace', 'page_id' ] );
+				$this->addWhereFld( 'pr_page', $pageIds );
+				$this->addWhereFld( 'pr_cascade', 1 );
+
+				$res = $this->select( __METHOD__ );
 
 				foreach ( $res as $row ) {
-					$protection = $protectedPages[$row->tl_from];
-					$this->protections[$row->lt_namespace][$row->lt_title][] = $protection;
-				}
+					if ( !isset( $templateLinks[$row->page_id] ) ) {
+						continue;
+					}
 
-				$this->resetVirtualDomain();
+					$protection = [
+						'type' => $row->pr_type,
+						'level' => $row->pr_level,
+						'expiry' => ApiResult::formatExpiry( $row->pr_expiry ),
+						'source' => $this->titleFormatter->formatTitle( $row->page_namespace, $row->page_title ),
+					];
+
+					foreach ( $templateLinks[$row->page_id] as $link ) {
+						$this->protections[$link['namespace']][$link['title']][] = $protection;
+					}
+				}
 			}
 		}
 
