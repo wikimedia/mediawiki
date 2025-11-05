@@ -169,6 +169,11 @@ $( () => {
 				if ( text.includes( val ) ) {
 					index[ text ].forEach( ( item ) => {
 						// eslint-disable-next-line no-jquery/no-class-state
+						if ( item.$field.hasClass( 'oo-ui-element-hidden' ) ) {
+							// T332620: If the field is hidden, there's no result to show
+							return;
+						}
+						// eslint-disable-next-line no-jquery/no-class-state
 						if ( !item.$field.hasClass( 'mw-prefs-search-matched' ) ) {
 							// Count each matched preference as one result, not the number of matches in the text
 							countResults++;
