@@ -82,22 +82,32 @@ class ImportableOldRevisionImporter implements OldRevisionImporter {
 
 			// Note: sha1 has been in XML dumps since 2012. If you have an
 			// older dump, the duplicate detection here won't work.
-			if ( $importableRevision->getSha1Base36() !== false ) {
-				$prior = (bool)$dbw->newSelectQueryBuilder()
-					->select( '1' )
+			$importContentHash = $importableRevision->getSha1Base36();
+
+			if ( $importContentHash ) {
+				// Get revision IDs for the page at the given timestamp
+				$revIds = $dbw->newSelectQueryBuilder()
+					->select( 'rev_id' )
 					->from( 'revision' )
 					->where( [
 						'rev_page' => $pageId,
 						'rev_timestamp' => $dbw->timestamp( $importableRevision->getTimestamp() ),
-						'rev_sha1' => $importableRevision->getSha1Base36()
 					] )
-					->caller( __METHOD__ )->fetchField();
-				if ( $prior ) {
-					// @todo FIXME: This could fail slightly for multiple matches :P
-					$this->logger->debug( __METHOD__ . ": skipping existing revision for [[" .
-						$importableRevision->getTitle()->getPrefixedText() . "]], timestamp " .
-						$importableRevision->getTimestamp() . "\n" );
-					return false;
+					->caller( __METHOD__ )
+					->fetchFieldValues();
+
+				foreach ( $revIds as $revId ) {
+					$revision = $this->revisionStore->getRevisionById( $revId );
+					if ( !$revision ) {
+						throw new RuntimeException( "Revision $revId not found" );
+					}
+
+					if ( $revision->getSha1() === $importContentHash ) {
+						$this->logger->debug( __METHOD__ . ": skipping existing revision for [[" .
+							$importableRevision->getTitle()->getPrefixedText() . "]], timestamp " .
+							$importableRevision->getTimestamp() . "\n" );
+						return false;
+					}
 				}
 			}
 		}

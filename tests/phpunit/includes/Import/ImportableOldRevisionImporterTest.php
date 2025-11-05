@@ -69,8 +69,7 @@ class ImportableOldRevisionImporterTest extends MediaWikiIntegrationTestCase {
 			$services->getSlotRoleRegistry(),
 			$services->getWikiPageFactory(),
 			$services->getPageUpdaterFactory(),
-			$services->getUserFactory(),
-			$services->getDomainEventDispatcher()
+			$services->getUserFactory()
 		);
 	}
 
