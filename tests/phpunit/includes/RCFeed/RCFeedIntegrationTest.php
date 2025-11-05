@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\Tests\RCFeed;
+
 use MediaWiki\Logging\LogEntryBase;
 use MediaWiki\MainConfigNames;
 use MediaWiki\RCFeed\FormattedRCFeed;
@@ -7,6 +9,7 @@ use MediaWiki\RCFeed\JSONRCFeedFormatter;
 use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
+use MediaWikiIntegrationTestCase;
 
 /**
  * @group medium

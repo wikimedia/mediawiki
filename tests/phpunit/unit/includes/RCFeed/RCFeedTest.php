@@ -1,8 +1,12 @@
 <?php
 
+namespace MediaWiki\Tests\Unit\RCFeed;
+
+use InvalidArgumentException;
 use MediaWiki\RCFeed\RCFeed;
 use MediaWiki\RCFeed\RedisPubSubFeedEngine;
 use MediaWiki\RCFeed\UDPRCFeedEngine;
+use MediaWikiUnitTestCase;
 
 /**
  * @covers \MediaWiki\RCFeed\RCFeed
