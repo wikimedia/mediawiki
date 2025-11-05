@@ -130,6 +130,10 @@ because of Phabricator reports.
     - Wikimedia\Stats\IBufferingStatsdDataFactory
     - Wikimedia\Stats\NullStatsdDataFactory
     - Wikimedia\Stats\StatsdAwareInterface
+* Using an int for the $mode parameter of LanguageFallback::getAll() is now
+  deprecated.  Use the new LanguageFallbackMode enumeration instead.
+* LanguageFallback::MESSAGES and LanguageFallback::STRICT are deprecated; use
+  LanguageFallbackModes::{MESSAGES,STRICT} instead.
 * The AutopromoteCondition hook has been deprecated. Use
   UserRequirementsCondition hook, instead.
 * …

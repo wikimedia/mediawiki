@@ -3,9 +3,10 @@
 // phpcs:disable MediaWiki.Commenting.FunctionComment.MissingDocumentationPublic -- Test traits are not excluded
 namespace MediaWiki\Tests\Unit\Language;
 
-use InvalidArgumentException;
 use LocalisationCache;
-use MediaWiki\Languages\LanguageFallback;
+use MediaWiki\Language\LanguageFallback;
+use MediaWiki\Language\LanguageFallbackMode;
+use ValueError;
 
 /**
  * @internal For LanguageFallbackTest and LanguageFallbackIntegrationTest
@@ -77,7 +78,7 @@ trait LanguageFallbackTestTrait {
 	 */
 	public function testGetAll_messages( $code, array $expected, array $options = [] ) {
 		$this->assertSame( $expected,
-			$this->getCallee( $options )->getAll( $code, LanguageFallback::MESSAGES )
+			$this->getCallee( $options )->getAll( $code, LanguageFallbackMode::MESSAGES )
 		);
 	}
 
@@ -100,7 +101,7 @@ trait LanguageFallbackTestTrait {
 	 */
 	public function testGetAll_strict( $code, array $expected, array $options = [] ) {
 		$this->assertSame( $expected,
-			$this->getCallee( $options )->getAll( $code, LanguageFallback::STRICT )
+			$this->getCallee( $options )->getAll( $code, LanguageFallbackMode::STRICT )
 		);
 	}
 
@@ -116,8 +117,8 @@ trait LanguageFallbackTestTrait {
 	}
 
 	public function testGetAll_invalidMode() {
-		$this->expectException( InvalidArgumentException::class );
-		$this->expectExceptionMessage( 'Invalid fallback mode "7"' );
+		$this->expectException( ValueError::class );
+		$this->expectExceptionMessage( '7 is not a valid backing value' );
 
 		$callee = $this->getCallee( [ 'expectedGets' => 0 ] );
 

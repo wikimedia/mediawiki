@@ -1951,6 +1951,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Language\\LanguageEventIngress' => __DIR__ . '/includes/Language/LanguageEventIngress.php',
 	'MediaWiki\\Language\\LanguageFactory' => __DIR__ . '/includes/Language/LanguageFactory.php',
 	'MediaWiki\\Language\\LanguageFallback' => __DIR__ . '/includes/Language/LanguageFallback.php',
+	'MediaWiki\\Language\\LanguageFallbackMode' => __DIR__ . '/includes/Language/LanguageFallbackMode.php',
 	'MediaWiki\\Language\\LanguageNameUtils' => __DIR__ . '/includes/Language/LanguageNameUtils.php',
 	'MediaWiki\\Language\\LazyLocalizationContext' => __DIR__ . '/includes/Language/LazyLocalizationContext.php',
 	'MediaWiki\\Language\\LeximorphFactory' => __DIR__ . '/includes/Language/LeximorphFactory.php',

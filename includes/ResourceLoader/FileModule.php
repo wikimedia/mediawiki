@@ -12,7 +12,7 @@ use CSSJanus;
 use FileContentsHasher;
 use InvalidArgumentException;
 use LogicException;
-use MediaWiki\Languages\LanguageFallback;
+use MediaWiki\Language\LanguageFallbackMode;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\OutputPage;
@@ -791,7 +791,7 @@ class FileModule extends Module {
 		if ( $this->languageScripts ) {
 			$fallbacks = MediaWikiServices::getInstance()
 				->getLanguageFallback()
-				->getAll( $lang, LanguageFallback::MESSAGES );
+				->getAll( $lang, LanguageFallbackMode::MESSAGES );
 			foreach ( $fallbacks as $lang ) {
 				$scripts = self::tryForKey( $this->languageScripts, $lang );
 				if ( $scripts ) {
