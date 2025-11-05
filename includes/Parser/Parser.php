@@ -10,6 +10,8 @@
 namespace MediaWiki\Parser;
 
 use BadMethodCallException;
+use DateTime;
+use DateTimeZone;
 use Exception;
 use ImageGalleryClassNotFoundException;
 use InvalidArgumentException;
@@ -549,6 +551,26 @@ class Parser {
 	public function resetOutput() {
 		$this->mOutput = new ParserOutput;
 		$this->mOptions->registerWatcher( [ $this->mOutput, 'recordOption' ] );
+	}
+
+	/**
+	 * Return the parse time.  This is the timestamp recorded in
+	 * ParserOptions, except that it can also be modified by the
+	 * ParserGetVariableValueTs hook.
+	 * @return DateTime (UTC time zone)
+	 * @since 1.46
+	 */
+	public function getParseTime(): DateTime {
+		$ts = $this->mOptions->getTimestamp(); /* TS_MW */
+		$date = DateTime::createFromFormat(
+			'YmdHis', $ts, new DateTimeZone( 'UTC' )
+		);
+		if ( $this->hookContainer->isRegistered( 'ParserGetVariableValueTs' ) ) {
+			$s = $date->format( 'U' );
+			$this->hookRunner->onParserGetVariableValueTs( $this, $s );
+			$date = ( new MWTimestamp( $s ) )->timestamp;
+		}
+		return $date;
 	}
 
 	/**
@@ -2760,15 +2782,9 @@ class Parser {
 			return $this->mVarCache[$index];
 		}
 
-		$ts = new MWTimestamp( $this->mOptions->getTimestamp() /* TS_MW */ );
-		if ( $this->hookContainer->isRegistered( 'ParserGetVariableValueTs' ) ) {
-			$s = $ts->getTimestamp( TS_UNIX );
-			$this->hookRunner->onParserGetVariableValueTs( $this, $s );
-			$ts = new MWTimestamp( $s );
-		}
-
 		$value = CoreMagicVariables::expand(
-			$this, $index, $ts, $this->svcOptions, $this->logger
+			$this, $index, new MWTimestamp( $this->getParseTime() ),
+			$this->svcOptions, $this->logger
 		);
 
 		if ( $value === null ) {

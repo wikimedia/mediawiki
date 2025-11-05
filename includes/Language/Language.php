@@ -20,6 +20,7 @@ namespace MediaWiki\Language;
 use CLDRPluralRuleParser\Evaluator;
 use DateTime;
 use DateTimeImmutable;
+use DateTimeInterface;
 use DateTimeZone;
 use InvalidArgumentException;
 use Locale;
@@ -287,6 +288,27 @@ class Language implements Bcp47Code {
 	 * @var int[]
 	 */
 	public static $durationIntervals = self::DURATION_INTERVALS;
+
+	/** Map of (time unit => relative datetime specifier) */
+	private const DEADLINE_DATE_SPEC_BY_UNIT = [
+		'Y' => 'first day of January next year midnight',
+		'M' => 'first day of next month midnight',
+		'W' => 'monday next week midnight',
+		'D' => 'next day midnight',
+		// Note that this may be before the current time, in which case
+		// we advance by a calendar year; the ISOY is actually 1 week past
+		// this, since dec 28 is always in "the last week of the ISO year".
+		'ISOY' => 'december 28 midnight',
+		// Note that this may be before the current time, in which case 'D'
+		// is used.
+		'AM' => 'today noon',
+		// Note that this relative datetime specifier does not zero out
+		// minutes/seconds, but we will do so manually in
+		// ::computeUnitTimestampDeadline() when given the unit 'H'/'m'/'s'
+		'H' => 'next hour',
+		'm' => 'next minute',
+		's' => 'next second',
+	];
 
 	/**
 	 * Unicode directional formatting characters
@@ -766,6 +788,23 @@ class Language implements Bcp47Code {
 	}
 
 	/**
+	 * Create a DateTime object, if it doesn't already exist.
+	 *
+	 * @param DateTime|false|null &$dateTimeObj
+	 * @param string $ts
+	 * @param DateTimeZone|false|null $zone
+	 * @return DateTime
+	 */
+	private static function dateTimeObj( &$dateTimeObj, $ts, $zone ): DateTime {
+		if ( !$dateTimeObj ) {
+			$dateTimeObj = DateTime::createFromFormat(
+				'YmdHis', $ts, $zone ?: new DateTimeZone( 'UTC' )
+			);
+		}
+		return $dateTimeObj;
+	}
+
+	/**
 	 * Pass through the result from $dateTimeObj->format()
 	 *
 	 * @param DateTime|false|null &$dateTimeObj
@@ -775,12 +814,7 @@ class Language implements Bcp47Code {
 	 * @return string
 	 */
 	private static function dateTimeObjFormat( &$dateTimeObj, $ts, $zone, $code ) {
-		if ( !$dateTimeObj ) {
-			$dateTimeObj = DateTime::createFromFormat(
-				'YmdHis', $ts, $zone ?: new DateTimeZone( 'UTC' )
-			);
-		}
-		return $dateTimeObj->format( $code );
+		return self::dateTimeObj( $dateTimeObj, $ts, $zone )->format( $code );
 	}
 
 	/**
@@ -846,7 +880,7 @@ class Language implements Bcp47Code {
 	 *      01234567890123
 	 * @param DateTimeZone|null $zone Timezone of $ts
 	 * @param int|null &$ttl The amount of time (in seconds) the output may be cached for.
-	 * Only makes sense if $ts is the current time.
+	 *   Only makes sense if $ts is the current time.
 	 * @todo handling of "o" format character for Iranian, Hebrew, Hijri & Thai?
 	 *
 	 * @return string
@@ -1288,17 +1322,21 @@ class Language implements Bcp47Code {
 			}
 		}
 
+		if ( $ttl !== 'unused' ) {
+			// Ensure $dateTimeObj is set.
+			self::dateTimeObj( $dateTimeObj, $ts, $zone );
+		}
+		'@phan-var DateTime $dateTimeObj';
 		if ( $ttl === 'unused' ) {
 			// No need to calculate the TTL, the caller won't use it anyway.
 		} elseif ( $usedSecond ) {
-			$ttl = 1;
+			$ttl = self::computeUnitTimestampDeadline( $dateTimeObj, 's' );
 		} elseif ( $usedMinute ) {
-			$ttl = 60 - (int)substr( $ts, 12, 2 );
+			$ttl = self::computeUnitTimestampDeadline( $dateTimeObj, 'm' );
 		} elseif ( $usedHour ) {
-			$ttl = 3600 - (int)substr( $ts, 10, 2 ) * 60 - (int)substr( $ts, 12, 2 );
+			$ttl = self::computeUnitTimestampDeadline( $dateTimeObj, 'H' );
 		} elseif ( $usedAMPM ) {
-			$ttl = 43200 - ( (int)substr( $ts, 8, 2 ) % 12 ) * 3600 -
-				(int)substr( $ts, 10, 2 ) * 60 - (int)substr( $ts, 12, 2 );
+			$ttl = self::computeUnitTimestampDeadline( $dateTimeObj, 'AM' );
 		} elseif (
 			$usedDay ||
 			$usedHebrewMonth ||
@@ -1311,49 +1349,30 @@ class Language implements Bcp47Code {
 		) {
 			// @todo Someone who understands the non-Gregorian calendars
 			// should write proper logic for them so that they don't need purged every day.
-			$ttl = 86400 - (int)substr( $ts, 8, 2 ) * 3600 -
-				(int)substr( $ts, 10, 2 ) * 60 - (int)substr( $ts, 12, 2 );
+			$ttl = self::computeUnitTimestampDeadline( $dateTimeObj, 'D' );
 		} else {
 			$possibleTtls = [];
-			$timeRemainingInDay = 86400 - (int)substr( $ts, 8, 2 ) * 3600 -
-				(int)substr( $ts, 10, 2 ) * 60 - (int)substr( $ts, 12, 2 );
 			if ( $usedWeek ) {
 				$possibleTtls[] =
-					( 7 - (int)self::dateTimeObjFormat( $dateTimeObj, $ts, $zone, 'N' ) ) * 86400 +
-					$timeRemainingInDay;
+					self::computeUnitTimestampDeadline( $dateTimeObj, 'W' );
 			} elseif ( $usedISOYear ) {
 				// December 28th falls on the last ISO week of the year, every year.
 				// The last ISO week of a year can be 52 or 53.
-				$lastWeekOfISOYear = (int)DateTime::createFromFormat(
-					'Ymd',
-					(int)substr( $ts, 0, 4 ) . '1228',
-					$zone ?: new DateTimeZone( 'UTC' )
-				)->format( 'W' );
-				$currentISOWeek = (int)self::dateTimeObjFormat( $dateTimeObj, $ts, $zone, 'W' );
-				$weeksRemaining = $lastWeekOfISOYear - $currentISOWeek;
-				$timeRemainingInWeek =
-					( 7 - (int)self::dateTimeObjFormat( $dateTimeObj, $ts, $zone, 'N' ) ) * 86400
-					+ $timeRemainingInDay;
-				$possibleTtls[] = $weeksRemaining * 604800 + $timeRemainingInWeek;
+				$possibleTtls[] =
+					self::computeUnitTimestampDeadline( $dateTimeObj, 'ISOY' );
 			}
 
 			if ( $usedMonth ) {
 				$possibleTtls[] =
-					( (int)self::dateTimeObjFormat( $dateTimeObj, $ts, $zone, 't' ) -
-						(int)substr( $ts, 6, 2 ) ) * 86400
-					+ $timeRemainingInDay;
+					self::computeUnitTimestampDeadline( $dateTimeObj, 'M' );
 			} elseif ( $usedYear ) {
 				$possibleTtls[] =
-					( (int)self::dateTimeObjFormat( $dateTimeObj, $ts, $zone, 'L' ) + 364 -
-						(int)self::dateTimeObjFormat( $dateTimeObj, $ts, $zone, 'z' ) ) * 86400
-					+ $timeRemainingInDay;
+					self::computeUnitTimestampDeadline( $dateTimeObj, 'Y' );
 			} elseif ( $usedIsLeapYear ) {
 				$year = (int)substr( $ts, 0, 4 );
-				$timeRemainingInYear =
-					( (int)self::dateTimeObjFormat( $dateTimeObj, $ts, $zone, 'L' ) + 364 -
-						(int)self::dateTimeObjFormat( $dateTimeObj, $ts, $zone, 'z' ) ) * 86400
-					+ $timeRemainingInDay;
 				$mod = $year % 4;
+				$timeRemainingInYear =
+					self::computeUnitTimestampDeadline( $dateTimeObj, 'Y' );
 				if ( $mod || ( !( $year % 100 ) && $year % 400 ) ) {
 					// this isn't a leap year. see when the next one starts
 					$nextCandidate = $year - $mod + 4;
@@ -1376,6 +1395,65 @@ class Language implements Bcp47Code {
 		}
 
 		return $s;
+	}
+
+	/**
+	 * Compute a cache expiry to account for a dynamic timestamp displayed in output
+	 *
+	 * @param DateTimeInterface $date Current timestamp with the display timezone
+	 * @param string $unit The unit the timestamp is expressed in; one of ("Y", "M", "W", "D", "H", "ISOY" or "AM")
+	 * @return int TTL in seconds, staggered and limited to prevent expiry
+	 *  stampedes.
+	 * @since 1.46
+	 */
+	public static function computeUnitTimestampDeadline(
+		DateTimeInterface $date,
+		string $unit
+	): int {
+		// Ensure we don't mutate our argument
+		$date = DateTimeImmutable::createFromInterface( $date );
+		$tsUnix = $date->getTimestamp();
+
+		$date = $date->modify( self::DEADLINE_DATE_SPEC_BY_UNIT[$unit] );
+		if ( $unit === 'AM' ) {
+			if ( $date->getTimestamp() <= $tsUnix ) {
+				$date = $date->modify( self::DEADLINE_DATE_SPEC_BY_UNIT['D'] );
+			}
+		} elseif ( $unit === 'ISOY' ) {
+			// December 28th falls on the last ISO week of the year, every year.
+			// but we could be in the same, next, or previous ISO year as
+			// December 28 of this calendar year.
+			// Compute all three and use the first which is in the future.
+			$lastYear = $date->modify(
+				'december 28 midnight last year'
+			)->modify( 'monday next week midnight' );
+			$nextYear = $date->modify(
+				'december 28 midnight next year'
+			)->modify( 'monday next week midnight' );
+			// Advance to first week of next ISO year
+			$date = $date->modify( 'monday next week midnight' );
+			if ( $lastYear->getTimestamp() > $tsUnix ) {
+				$date = $lastYear;
+			} elseif ( $date->getTimestamp() <= $tsUnix ) {
+				$date = $nextYear;
+			}
+		} elseif ( $unit === 'H' ) {
+			// Zero out the minutes/seconds
+			$date = $date->setTime( intval( $date->format( 'H' ), 10 ), 0, 0 );
+		} elseif ( $unit === 'm' ) {
+			// Zero out the seconds
+			$date = $date->setTime( intval( $date->format( 'H' ), 10 ),
+									intval( $date->format( 'i' ), 10 ), 0 );
+		} elseif ( $unit === 's' ) {
+			// Zero out the fractional seconds
+			$date = $date->setTime( intval( $date->format( 'H' ), 10 ),
+									intval( $date->format( 'i' ), 10 ),
+									intval( $date->format( 's' ), 10 ) );
+		} else {
+			$date = $date->setTime( 0, 0, 0 );
+		}
+		$deadlineUnix = (int)$date->format( 'U' );
+		return $deadlineUnix - $tsUnix;
 	}
 
 	/**
