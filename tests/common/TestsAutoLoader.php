@@ -188,6 +188,7 @@ $wgAutoloadClasses += [
 
 	# tests/phpunit/includes/Storage
 	'MediaWiki\\Tests\\Storage\\PageEditStashContentsTest' => "$testDir/phpunit/includes/Storage/PageEditStashContentsTest.php",
+	'MediaWiki\\Tests\\Storage\\TestMutableRevisionRecord' => "$testDir/phpunit/unit/includes/Storage/TestMutableRevisionRecord.php",
 
 	# tests/phpunit/includes/title
 	'TitleCodecTestBase' => "$testDir/phpunit/includes/title/TitleCodecTestBase.php",

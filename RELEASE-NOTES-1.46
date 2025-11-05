@@ -97,6 +97,7 @@ because of Phabricator reports.
 * The SpecialWatchlistGetNonRevisionTypesHook has been removed. Instead,
   extensions should ensure that rc_this_oldid is set to zero on recent changes
   entries that do not relate to any particular revision.
+* MutableRevisionRecord::setSha1() has been removed without deprecation.
 * Passing something other than an Authority for the $performer parameter to
   WatchlistManager methods clearTitleUserNotifications() and
   clearAllUserNotifications, deprecated since 1.37, will now throw. User

@@ -328,7 +328,6 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		isset( $details['parent'] ) ? $rev->setParentId( $details['parent'] ) : null;
 		isset( $details['page'] ) ? $rev->setPageId( $details['page'] ) : null;
 		isset( $details['size'] ) ? $rev->setSize( $details['size'] ) : null;
-		isset( $details['sha1'] ) ? $rev->setSha1( $details['sha1'] ) : null;
 		isset( $details['comment'] ) ? $rev->setComment( $details['comment'] ) : null;
 		isset( $details['timestamp'] ) ? $rev->setTimestamp( $details['timestamp'] ) : null;
 		isset( $details['minor'] ) ? $rev->setMinorEdit( $details['minor'] ) : null;
@@ -562,16 +561,6 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 				'timestamp' => '20171117010101',
 				'user' => true,
 				'size' => 123456
-			],
-			new PreconditionException( 'T239717' )
-		];
-		yield 'sha1 mismatch' => [
-			[
-				'slot' => SlotRecord::newUnsaved( SlotRecord::MAIN, new WikitextContent( 'Chicken' ) ),
-				'comment' => self::getRandomCommentStoreComment(),
-				'timestamp' => '20171117010101',
-				'user' => true,
-				'sha1' => 'DEADBEEF',
 			],
 			new PreconditionException( 'T239717' )
 		];
