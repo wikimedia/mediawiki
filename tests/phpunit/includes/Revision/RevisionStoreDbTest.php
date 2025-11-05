@@ -1446,7 +1446,6 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 			'rev_deleted' => '0',
 			'rev_len' => '78',
 			'rev_parent_id' => '0',
-			'rev_sha1' => 'deadbeef',
 			'rev_comment_text' => 'whatever',
 			'rev_comment_data' => null,
 			'rev_comment_cid' => null,
@@ -1466,7 +1465,6 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $record->getId(), (int)$row->rev_id );
 		$this->assertSame( $record->getPageId(), $row->rev_page );
 		$this->assertSame( $record->getSize(), (int)$row->rev_len );
-		$this->assertSame( $record->getSha1(), $row->rev_sha1 );
 	}
 
 	/**
