@@ -107,6 +107,14 @@ because of Phabricator reports.
 * Many WatchedItemStore methods took either PageIdentity or LinkTarget, with
   LinkTarget being deprecated since 1.37. Passing a LinkTarget which is not a
   PageReference will now throw.
+* The following methods of SpecialUserRights, deprecated in 1.45, have been
+  removed: userCanChangeRights, expiryToTimestamp, doSaveUserGroups,
+  fetchUser, changeableGroups. Callers should now use the equivalent methods
+  from UserGroupAssignmentService or MultiFormatUserIdentityLookup.
+* UserGroupsSpecialPage::canProcessExpiries (formerly
+  SpecialUserRights::canProcessExpiries), deprecated in 1.45, has been removed.
+  There's no replacement; the special page always assumes it can process
+  expiries.
 * …
 
 === Deprecations in 1.46 ===
