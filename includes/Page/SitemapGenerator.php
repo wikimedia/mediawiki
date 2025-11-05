@@ -17,7 +17,8 @@ use Wikimedia\Rdbms\IReadableDatabase;
  * @internal
  */
 class SitemapGenerator {
-	private ?array $namespaces = null;
+	private ?array $selectedNamespaces = null;
+	private ?array $allowedNamespaces = null;
 	private ?array $excludedNamespaces = null;
 	private ?int $startId = null;
 	private ?int $endId = null;
@@ -58,13 +59,30 @@ class SitemapGenerator {
 	}
 
 	/**
-	 * Optionally limit the namespace IDs
+	 * Set the selected namespaces
 	 *
 	 * @param int[]|null $namespaces
 	 * @return $this
 	 */
 	public function namespaces( ?array $namespaces ) {
-		$this->namespaces = $namespaces;
+		$this->selectedNamespaces = $namespaces;
+		return $this;
+	}
+
+	/**
+	 * Add namespaces to the selected namespace list. If namespacesFromConfig()
+	 * was already called, the selected namespace list will include namespaces
+	 * from both $wgSitemapNamespaces and $namespaces.
+	 *
+	 * @param array|null $namespaces
+	 * @return $this
+	 */
+	public function additionalNamespaces( ?array $namespaces ) {
+		if ( $namespaces && $this->selectedNamespaces !== null ) {
+			$this->selectedNamespaces = array_unique( array_merge(
+				$this->selectedNamespaces, $namespaces
+			) );
+		}
 		return $this;
 	}
 
@@ -75,14 +93,14 @@ class SitemapGenerator {
 	 * @return $this
 	 */
 	public function namespacesFromConfig( Config $config ) {
-		$this->namespaces = null;
+		$this->allowedNamespaces = null;
 		$this->excludedNamespaces = null;
 
-		$namespaces = $config->get( MainConfigNames::SitemapNamespaces );
-		if ( $namespaces ) {
-			$this->namespaces = $namespaces;
-			return $this;
+		$sitemapNamespaces = $config->get( MainConfigNames::SitemapNamespaces );
+		if ( $sitemapNamespaces ) {
+			$this->selectedNamespaces = $sitemapNamespaces;
 		}
+
 		$defaultPolicy = $config->get( MainConfigNames::DefaultRobotPolicy );
 		$namespacePolicies = $config->get( MainConfigNames::NamespaceRobotPolicies );
 		if ( self::isNoIndex( $defaultPolicy ) ) {
@@ -92,7 +110,7 @@ class SitemapGenerator {
 					$namespaces[] = $ns;
 				}
 			}
-			$this->namespaces = $namespaces;
+			$this->allowedNamespaces = $namespaces;
 		} else {
 			$excluded = [];
 			foreach ( $namespacePolicies as $ns => $policy ) {
@@ -194,11 +212,12 @@ class SitemapGenerator {
 		if ( $this->endId !== null ) {
 			$sqb->where( $dbr->expr( 'page_id', '<', $this->endId ) );
 		}
-		if ( $this->namespaces !== null ) {
-			if ( $this->namespaces === [] ) {
+		$namespaces = $this->getSelectedAndAllowedNamespaces();
+		if ( $namespaces !== null ) {
+			if ( $namespaces === [] ) {
 				$empty = true;
 			} else {
-				$sqb->where( [ 'page_namespace' => $this->namespaces ] );
+				$sqb->where( [ 'page_namespace' => $namespaces ] );
 			}
 		}
 		if ( $this->excludedNamespaces !== null ) {
@@ -245,5 +264,23 @@ class SitemapGenerator {
 		}
 
 		return $xml;
+	}
+
+	/**
+	 * Get namespaces that are both selected and allowed, or null if all
+	 * namespaces are selected.
+	 *
+	 * @return array|null
+	 */
+	private function getSelectedAndAllowedNamespaces() {
+		if ( $this->selectedNamespaces !== null ) {
+			if ( $this->allowedNamespaces !== null ) {
+				return array_intersect( $this->selectedNamespaces, $this->allowedNamespaces );
+			} else {
+				return $this->selectedNamespaces;
+			}
+		} else {
+			return $this->allowedNamespaces;
+		}
 	}
 }

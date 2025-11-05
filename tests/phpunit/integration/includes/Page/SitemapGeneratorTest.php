@@ -139,9 +139,33 @@ XML;
 				],
 				$main
 			],
-			'user noindex (like production)' => [
+			'user noindex' => [
 				[
 					MainConfigNames::SitemapNamespaces => false,
+					MainConfigNames::DefaultRobotPolicy => 'index',
+					MainConfigNames::NamespaceRobotPolicies => [ NS_USER => 'noindex' ],
+				],
+				$main
+			],
+			'empty intersection' => [
+				[
+					MainConfigNames::SitemapNamespaces => [ NS_USER ],
+					MainConfigNames::DefaultRobotPolicy => 'noindex',
+					MainConfigNames::NamespaceRobotPolicies => [ NS_MAIN => 'index' ],
+				],
+				''
+			],
+			'intersection with one namespace' => [
+				[
+					MainConfigNames::SitemapNamespaces => [ NS_MAIN ],
+					MainConfigNames::DefaultRobotPolicy => 'noindex',
+					MainConfigNames::NamespaceRobotPolicies => [ NS_MAIN => 'index' ],
+				],
+				$main
+			],
+			'configured namespace excluded by policy' => [
+				[
+					MainConfigNames::SitemapNamespaces => [ NS_MAIN, NS_USER ],
 					MainConfigNames::DefaultRobotPolicy => 'index',
 					MainConfigNames::NamespaceRobotPolicies => [ NS_USER => 'noindex' ],
 				],
@@ -159,6 +183,17 @@ XML;
 		$sg = $this->getSitemapGenerator();
 		$result = $sg
 			->namespacesFromConfig( new HashConfig( $configArray ) )
+			->getXml( $this->getDb() );
+		$this->assertSitemap( $expected, $result );
+	}
+
+	public function testAdditionalNamespaces() {
+		$sg = $this->getSitemapGenerator();
+		[ $configArray, $expected ] = self::provideNamespacesFromConfig()['defaults'];
+		$configArray[MainConfigNames::SitemapNamespaces] = [ NS_MAIN ];
+		$result = $sg
+			->namespacesFromConfig( new HashConfig( $configArray ) )
+			->additionalNamespaces( [ NS_USER ] )
 			->getXml( $this->getDb() );
 		$this->assertSitemap( $expected, $result );
 	}
