@@ -116,7 +116,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						// wlshowhideliu
 						'showHideSuffix' => 'showhideliu',
 						'default' => false,
-						'action' => [ 'require', 'named' ],
+						'action' => [ 'exclude', 'named' ],
 						'isReplacedInStructuredUi' => true,
 					],
 					[
@@ -125,7 +125,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						// wlshowhideanons
 						'showHideSuffix' => 'showhideanons',
 						'default' => false,
-						'action' => [ 'exclude', 'named' ],
+						'action' => [ 'require', 'named' ],
 						'isReplacedInStructuredUi' => true,
 					]
 				],
