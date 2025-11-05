@@ -1546,7 +1546,7 @@ class Article implements Page {
 		);
 
 		$outputPage->addModuleStyles( 'mediawiki.action.styles' );
-		$outputPage->addHTML( "<div class='patrollink' data-mw='interface'>$link</div>" );
+		$outputPage->addHTML( "<div class='patrollink' data-mw-interface>$link</div>" );
 
 		return true;
 	}

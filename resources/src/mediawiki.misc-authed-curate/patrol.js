@@ -46,7 +46,7 @@
 	}
 
 	$( () => {
-		$( '.patrollink[data-mw="interface"] a' ).on( 'click', function ( e ) {
+		$( '.patrollink[data-mw-interface] a, .patrollink[data-mw="interface"] a' ).on( 'click', function ( e ) {
 			patrol( this );
 			e.preventDefault();
 		} );

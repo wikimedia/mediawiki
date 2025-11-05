@@ -13,7 +13,7 @@ module.exports = function ( $inlineToggleSwitchLayout ) {
 	} );
 	inlineToggleSwitch.on( 'disable', onDiffTypeInlineDisabled );
 
-	const $wikitextDiffContainer = $( 'table.diff[data-mw="interface"]' );
+	const $wikitextDiffContainer = $( 'table.diff[data-mw-interface], table.diff[data-mw="interface"]' );
 	const $wikitextDiffHeader = $wikitextDiffContainer.find( 'tr.diff-title' )
 		.add( $wikitextDiffContainer.find( 'td.diff-multi, td.diff-notice' ).parent() );
 	let $wikitextDiffBody = $wikitextDiffContainer.find( 'tr' ).not( $wikitextDiffHeader );

@@ -1101,7 +1101,8 @@ class DifferenceEngine extends ContextSource {
 				$this->mMarkPatrolledLink = '';
 			} else {
 				$patrolLinkClass = 'patrollink';
-				$this->mMarkPatrolledLink = ' <span class="' . $patrolLinkClass . '" data-mw="interface">[' .
+				$this->mMarkPatrolledLink = ' <span class="' . $patrolLinkClass . '"' .
+					' data-mw-interface>[' .
 					$this->linkRenderer->makeKnownLink(
 						$this->mNewPage,
 						$this->msg( 'markaspatrolleddiff' )->text(),
@@ -2000,7 +2001,7 @@ class DifferenceEngine extends ContextSource {
 					'editfont'
 				)
 			],
-			'data-mw' => 'interface',
+			'data-mw-interface' => '',
 		] );
 		$userLang = htmlspecialchars( $this->getLanguage()->getHtmlCode() );
 

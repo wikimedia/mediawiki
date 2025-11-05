@@ -1706,7 +1706,7 @@ class Linker {
 		];
 
 		$attrs = [
-			'data-mw' => 'interface',
+			'data-mw-interface' => '',
 			'title' => $context->msg( 'tooltip-rollback' )->text()
 		];
 
