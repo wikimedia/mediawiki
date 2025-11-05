@@ -842,6 +842,8 @@
 	"unstrip-size-category-desc": "الصفحة تتجاوز حد حجم unstrip.",
 	"bad-language-code-category": "صفحات تحتوي على أكواد لغة غير صالحة",
 	"bad-language-code-category-desc": "تحتوي الصفحة على <code><nowiki>{{#dir}}</nowiki></code> مع رمز لغة غير صالح.",
+	"bad-double-underscore-category": "الصفحات التي تحتوي على تبديلات سلوك غير صالحة",
+	"bad-double-underscore-category-desc": "تحتوي الصفحة على [[mw:Special:MyLanguage/Help:Magic_words#Behavior_switches|تبديل سلوك]] مترجم غير صالح. تبدأ الترجمات الصالحة وتنتهي بعلامتي سفلية مزدوجتين.",
 	"double-px-category": "صفحات تحتوي على أحجام صور مع أحجام بكسل إضافية",
 	"double-px-category-desc": "تحتوي الصفحة على صورة حجمها يحتوي على لاحقة <code>px</code> إضافية، مثل <code>100pxpx</code>.",
 	"converter-manual-rule-error": "خطأ تم اكتشافه في قاعدة تحويل اللغة اليدوية",

@@ -825,6 +825,7 @@
 	"viewprevnext": "Vis ($1 {{int:pipe-separator}} $2) ($3)",
 	"searchmenu-exists": "Det finst ei side med namn «[[:$1]]» på {{SITENAME}}. {{PLURAL:$2|0=|Sjå også dei andre søkeresultata.}}",
 	"searchmenu-new": "Opprett sida «[[:$1|$1]]» på denne wikien. {{PLURAL:$2|0=|Sjå også sida som vart funnen med søket ditt.|Sjå også søkeresultata som blei funne.}}",
+	"searchmenu-new-external": "Sida «[[:$1]]» ser ut til å liggja på ein annan wiki. Du kan vitja henne der. {{PLURAL:$2|0=|Sjå elles sida som var funna med søket ditt.|Sjå elles søkjeresultata som vart funne.}}",
 	"searchprofile-articles": "Innhaldssider",
 	"searchprofile-images": "Multimedia",
 	"searchprofile-everything": "Alt",
