@@ -47,7 +47,8 @@ class SpecialWatchlistTest extends SpecialPageTestBase {
 					'watchlistunwatchlinks' => 0,
 					'timecorrection' => '0'
 				],
-			MainConfigNames::WatchlistExpiry => true
+			MainConfigNames::WatchlistExpiry => true,
+			MainConfigNames::EnableWatchlistLabels => true
 		] );
 	}
 
@@ -66,6 +67,7 @@ class SpecialWatchlistTest extends SpecialPageTestBase {
 			$services->getTempUserConfig(),
 			$services->getRecentChangeFactory(),
 			$services->getChangesListQueryFactory(),
+			$services->getWatchlistLabelStore(),
 		);
 	}
 

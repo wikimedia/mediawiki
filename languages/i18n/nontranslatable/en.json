@@ -249,6 +249,7 @@
 	"rawmessage": "$1",
 	"rcfilters-tag-prefix-namespace": ":$1",
 	"rcfilters-tag-prefix-tags": "#$1",
+	"watchlist-filters-tag-prefix-labels": "=$1",
 	"reblock-logentry": "changed block settings for [[$1]] with an expiration time of $2 $3",
 	"recentchanges-legend-bot": "{{int:recentchanges-label-bot}}",
 	"recentchanges-legend-minor": "{{int:recentchanges-label-minor}}",

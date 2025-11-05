@@ -25,10 +25,12 @@ use MediaWiki\SpecialPage\ChangesListSpecialPage;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\TempUser\TempUserConfig;
+use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityUtils;
 use MediaWiki\Watchlist\WatchedItem;
 use MediaWiki\Watchlist\WatchedItemStoreInterface;
+use MediaWiki\Watchlist\WatchlistLabelStore;
 use MediaWiki\Watchlist\WatchlistManager;
 use MediaWiki\Watchlist\WatchlistSpecialPage;
 use MediaWiki\Xml\XmlSelect;
@@ -62,6 +64,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	private WatchedItemStoreInterface $watchedItemStore;
 	private WatchlistManager $watchlistManager;
 	private UserOptionsLookup $userOptionsLookup;
+	private WatchlistLabelStore $watchlistLabelStore;
 
 	/**
 	 * @var int|false where the value is one of the SpecialEditWatchlist:EDIT_ prefixed
@@ -77,6 +80,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		TempUserConfig $tempUserConfig,
 		RecentChangeFactory $recentChangeFactory,
 		ChangesListQueryFactory $changesListQueryFactory,
+		WatchlistLabelStore $watchlistLabelStore,
 	) {
 		parent::__construct(
 			'Watchlist',
@@ -90,6 +94,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$this->watchedItemStore = $watchedItemStore;
 		$this->watchlistManager = $watchlistManager;
 		$this->userOptionsLookup = $userOptionsLookup;
+		$this->watchlistLabelStore = $watchlistLabelStore;
 	}
 
 	/** @inheritDoc */
@@ -158,6 +163,31 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		if ( $this->isStructuredFilterUiEnabled() ) {
 			$output->addModuleStyles( [ 'mediawiki.rcfilters.highlightCircles.seenunseen.styles' ] );
 		}
+
+		if ( $this->getConfig()->get( MainConfigNames::EnableWatchlistLabels ) ) {
+			$watchlistLabels = $this->getWatchlistLabelsForFiltering( $this->getUser() );
+			$output->addJsConfigVars( [
+				'enableWatchlistLabels' => true,
+				'watchlistLabels' => $watchlistLabels,
+			] );
+		}
+	}
+
+	/**
+	 * @param User $user
+	 * @return array
+	 */
+	private function getWatchlistLabelsForFiltering( User $user ): array {
+		$idAndNames = [];
+		$labels = $this->watchlistLabelStore->loadAllForUser( $user );
+		foreach ( $labels as $label ) {
+			$idAndNames[] = [
+				'name' => (string)$label->getId(),
+				'label' => $label->getName(),
+				'cssClass' => 'mw-changeslist-label-' . $label->getId(),
+			];
+		}
+		return $idAndNames;
 	}
 
 	/**

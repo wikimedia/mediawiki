@@ -2783,9 +2783,14 @@ return [
 			'tooltip-ca-unwatch',
 			'tooltip-ca-unwatch-expiring',
 			'tooltip-ca-unwatch-expiring-hours',
+			'watchlist-filters-labels-title',
+			'watchlist-filters-labels-list-title',
+			'watchlist-filters-tag-prefix-labels',
+			'watchlist-filters-tag-prefix-labels-inverted',
+			'watchlist-filters-view-labels-tooltip',
 			'watchlist-unwatch',
 			'watchlist-unwatch-undo',
-			'watchlistedit-normal-check-all'
+			'watchlistedit-normal-check-all',
 		],
 		'dependencies' => [
 			'mediawiki.api',

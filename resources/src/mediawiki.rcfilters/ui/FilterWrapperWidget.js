@@ -20,6 +20,7 @@ const FilterTagMultiselectWidget = require( './FilterTagMultiselectWidget.js' ),
  * @param {jQuery} [config.$wrapper] A jQuery object for the wrapper of the general
  *  system. If not given, falls back to this widget's $element
  * @param {boolean} [config.collapsed] Filter area is collapsed
+ * @param {string} [config.specialPage] Title of the special page on which this widget is getting created
  */
 const FilterWrapperWidget = function MwRcfiltersUiFilterWrapperWidget(
 	controller, model, savedQueriesModel, changesListModel, config
@@ -46,7 +47,8 @@ const FilterWrapperWidget = function MwRcfiltersUiFilterWrapperWidget(
 			$overlay: this.$overlay,
 			collapsed: config.collapsed,
 			$wrapper: this.$wrapper,
-			isMobile: OO.ui.isMobile()
+			isMobile: OO.ui.isMobile(),
+			specialPage: config.specialPage
 		}
 	);
 

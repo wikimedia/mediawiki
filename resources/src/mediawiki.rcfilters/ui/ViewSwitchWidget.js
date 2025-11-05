@@ -10,7 +10,28 @@
  * @param {Object} [config] Configuration object
  */
 const ViewSwitchWidget = function MwRcfiltersUiViewSwitchWidget( controller, model, config ) {
+	const items = [
+		new OO.ui.ButtonWidget( {
+			data: 'namespaces',
+			icon: 'article',
+			label: mw.msg( 'namespaces' )
+		} ),
+		new OO.ui.ButtonWidget( {
+			data: 'tags',
+			icon: 'tag',
+			label: mw.msg( 'rcfilters-view-tags' )
+		} )
+	];
 	config = config || {};
+	if ( mw.config.get( 'enableWatchlistLabels' ) && config.specialPage === 'Watchlist' ) {
+		items.push(
+			new OO.ui.ButtonWidget( {
+				data: 'wllabels',
+				icon: 'folderPlaceholder',
+				label: mw.msg( 'watchlist-filters-labels-title' )
+			} )
+		);
+	}
 
 	// Parent
 	ViewSwitchWidget.super.call( this, config );
@@ -19,18 +40,7 @@ const ViewSwitchWidget = function MwRcfiltersUiViewSwitchWidget( controller, mod
 	this.model = model;
 
 	this.buttons = new OO.ui.ButtonGroupWidget( {
-		items: [
-			new OO.ui.ButtonWidget( {
-				data: 'namespaces',
-				icon: 'article',
-				label: mw.msg( 'namespaces' )
-			} ),
-			new OO.ui.ButtonWidget( {
-				data: 'tags',
-				icon: 'tag',
-				label: mw.msg( 'rcfilters-view-tags' )
-			} )
-		]
+		items: items
 	} );
 
 	this.buttons.aggregate( { click: 'buttonClick' } );

@@ -24,6 +24,7 @@ const SavedLinksListWidget = require( './SavedLinksListWidget.js' ),
  * @param {jQuery} config.$formContainer
  * @param {boolean} [config.collapsed] Filter area is collapsed
  * @param {jQuery} [config.$wrapper] A jQuery object for the wrapper of the general
+ * @param {string} [config.specialPage] Title of the special page on which this widget is getting created
  *  system. If not given, falls back to this widget's $element
  */
 const MainWrapperWidget = function MwRcfiltersUiMainWrapperWidget(
@@ -56,7 +57,8 @@ const MainWrapperWidget = function MwRcfiltersUiMainWrapperWidget(
 		{
 			$overlay: this.$overlay,
 			$wrapper: this.$wrapper,
-			collapsed: config.collapsed
+			collapsed: config.collapsed,
+			specialPage: config.specialPage
 		}
 	);
 

@@ -932,6 +932,21 @@ FiltersViewModel.prototype.areTagsEffectivelyInverted = function () {
 };
 
 /**
+ * Check whether the label invert state is a valid one. A valid invert state is one
+ * where there are actual labels selected.
+ *
+ * This is done to compare states to previous ones that may have had the invert model
+ * selected but effectively had no tags, so are not effectively different than
+ * ones where invert is not selected.
+ *
+ * @return {boolean} Invert is effectively selected
+ */
+FiltersViewModel.prototype.areWLLabelsEffectivelyInverted = function () {
+	return this.getWLLabelsInvertModel().isSelected() &&
+		this.findSelectedItems().some( ( itemModel ) => itemModel.getGroupModel().getName() === 'wllabel' );
+};
+
+/**
  * Get the item that matches the given name
  *
  * @ignore
@@ -1264,6 +1279,16 @@ FiltersViewModel.prototype.toggleInvertedTags = function ( enable ) {
 };
 
 /**
+ * Toggle the inverted labels property on and off.
+ * Propagate the change to tag filter items.
+ *
+ * @param {boolean} enable Inverted property is enabled
+ */
+FiltersViewModel.prototype.toggleInvertedWLLabels = function ( enable ) {
+	this.toggleFilterSelected( this.getWLLabelsInvertModel().getName(), enable );
+};
+
+/**
  * Toggle the inverted namespaces property on and off.
  * Propagate the change to namespace filter items.
  *
@@ -1287,12 +1312,15 @@ FiltersViewModel.prototype.getInvertModel = function ( view ) {
 	if ( view === 'tags' ) {
 		return this.getTagsInvertModel();
 	}
+	if ( view === 'wllabels' ) {
+		return this.getWLLabelsInvertModel();
+	}
 
 	return null;
 };
 
 /**
- * Get the model object that represents the 'invert' filter
+ * Get the model object that represents the 'invert' filter for namespaces
  *
  * @ignore
  * @return {mw.rcfilters.dm.FilterItem}
@@ -1302,13 +1330,23 @@ FiltersViewModel.prototype.getNamespacesInvertModel = function () {
 };
 
 /**
- * Get the model object that represents the 'invert' filter
+ * Get the model object that represents the 'invert' filter for tags
  *
  * @ignore
  * @return {mw.rcfilters.dm.FilterItem}
  */
 FiltersViewModel.prototype.getTagsInvertModel = function () {
 	return this.getGroup( 'invertTagsGroup' ).getItemByParamName( 'inverttags' );
+};
+
+/**
+ * Get the model object that represents the 'invert' filter for labels
+ *
+ * @ignore
+ * @return {mw.rcfilters.dm.FilterItem}
+ */
+FiltersViewModel.prototype.getWLLabelsInvertModel = function () {
+	return this.getGroup( 'invertWLLabelsGroup' ).getItemByParamName( 'invertwllabels' );
 };
 
 /**

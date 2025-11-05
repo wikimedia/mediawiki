@@ -240,6 +240,7 @@
 	"rawmessage": "{{notranslate}} Used to pass arbitrary text as a message specifier array",
 	"rcfilters-tag-prefix-namespace": "Prefix for the namespace tags in [[Special:RecentChanges]]. Namespace tags use a colon (:) as prefix. Please keep this format.\n\nParameters:\n* $1 - Filter name.",
 	"rcfilters-tag-prefix-tags": "Prefix for the edit tags in [[Special:RecentChanges]]. Edit tags use a hash (#) as prefix. Please keep this format.\n\nParameters:\n* $1 - Tag display name.",
+	"watchlist-filters-tag-prefix-labels": "Prefix for the watchlist labels in [[Special:Watchlist]]. Watchlist labels use an equals sign (=) as prefix. Please keep this format.\n\nParameters:\n* $1 - Tag display name.",
 	"reblock-logentry": "{{MW legacy IRC logentry}}\n\nParameters:\n* $1 - the user being reblocked\n* $2 - the expiry time of the block\n* $3 - extra parameters like \"account creation blocked\" (they are automatically between brackets)",
 	"recentchanges-legend-bot": "{{ignored}}\n\nUsed as legend on [[Special:RecentChanges]] and [[Special:Watchlist]].\n\nRefers to {{msg-mw|Recentchanges-label-bot}}.",
 	"recentchanges-legend-minor": "{{ignored}}\n\nUsed as legend on [[Special:RecentChanges]] and [[Special:Watchlist]].\n\nRefers to {{msg-mw|Recentchanges-label-minor}}.",

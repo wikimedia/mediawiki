@@ -725,6 +725,7 @@ class SpecialPageFactory {
 				'TempUserConfig',
 				'RecentChangeFactory',
 				'ChangesListQueryFactory',
+				'WatchlistLabelStore',
 			]
 		],
 		'WatchlistLabels' => [

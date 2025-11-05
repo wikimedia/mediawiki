@@ -573,6 +573,24 @@ Controller.prototype.toggleInvertedTags = function () {
 };
 
 /**
+ * Toggle the inverted labels feature on and off
+ */
+Controller.prototype.toggleInvertedWLLabels = function () {
+	this.filtersModel.toggleInvertedWLLabels();
+
+	if (
+		this.filtersModel.getFiltersByView( 'wllabels' ).filter(
+			( filterItem ) => filterItem.isSelected()
+		).length
+	) {
+		// Only re-fetch results if there are tags items that are actually selected
+		this.updateChangesList();
+	} else {
+		this.uriProcessor.updateURL();
+	}
+};
+
+/**
  * Toggle the inverted namespaces feature on and off
  */
 Controller.prototype.toggleInvertedNamespaces = function () {

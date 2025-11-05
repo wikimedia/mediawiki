@@ -11,6 +11,7 @@
  * @param {jQuery} [config.$overlay] A jQuery object serving as overlay for popups
  * @param {boolean} [config.isMobile] a boolean flag that determines whether some
  * elements should be displayed based on whether the UI is mobile or not.
+ * @param {boolean} [config.specialPage] title of the page this is loaded on
  */
 const FilterMenuHeaderWidget = function MwRcfiltersUiFilterMenuHeaderWidget( controller, model, config ) {
 	config = config || {};
@@ -18,6 +19,7 @@ const FilterMenuHeaderWidget = function MwRcfiltersUiFilterMenuHeaderWidget( con
 	this.controller = controller;
 	this.model = model;
 	this.$overlay = config.$overlay || this.$element;
+	this.specialPage = config.specialPage || '';
 
 	// Parent
 	FilterMenuHeaderWidget.super.call( this, config );
@@ -67,6 +69,11 @@ const FilterMenuHeaderWidget = function MwRcfiltersUiFilterMenuHeaderWidget( con
 		classes: [ 'mw-rcfilters-ui-filterMenuHeaderWidget-invertNamespacesButton' ]
 	} );
 	this.invertNamespacesButton.toggle( this.model.getCurrentView() === 'namespaces' );
+	this.invertWLLabelsButton = new OO.ui.ToggleButtonWidget( {
+		icon: '',
+		classes: [ 'mw-rcfilters-ui-filterMenuHeaderWidget-invertWLLabelsButton' ]
+	} );
+	this.invertWLLabelsButton.toggle( this.model.getCurrentView() === 'wllabels' );
 
 	// Events
 	this.backButton.connect( this, { click: 'onBackButtonClick' } );
@@ -78,6 +85,8 @@ const FilterMenuHeaderWidget = function MwRcfiltersUiFilterMenuHeaderWidget( con
 		.connect( this, { click: 'onInvertTagsButtonClick' } );
 	this.invertNamespacesButton
 		.connect( this, { click: 'onInvertNamespacesButtonClick' } );
+	this.invertWLLabelsButton
+		.connect( this, { click: 'onInvertWLLabelsButtonClick' } );
 	this.model.connect( this, {
 		highlightChange: 'onModelHighlightChange',
 		searchChange: 'onModelSearchChange',
@@ -114,13 +123,18 @@ const FilterMenuHeaderWidget = function MwRcfiltersUiFilterMenuHeaderWidget( con
 								.append( this.invertNamespacesButton.$element ),
 							$( '<div>' )
 								.addClass( 'mw-rcfilters-ui-cell' )
-								.addClass( 'mw-rcfilters-ui-filterMenuHeaderWidget-header-highlight' )
-								.append( config.isMobile ? undefined : this.highlightButton.$element )
+								.addClass( 'mw-rcfilters-ui-filterMenuHeaderWidget-header-invert' )
+								.append( this.invertWLLabelsButton.$element )
 						)
 				)
 		);
-	if ( config.isMobile ) {
-		this.$element.find( '.mw-rcfilters-ui-filterMenuHeaderWidget-header-highlight' ).remove();
+	if ( !config.isMobile ) {
+		this.$element.find( '.mw-rcfilters-ui-row' ).append(
+			$( '<div>' )
+				.addClass( 'mw-rcfilters-ui-cell' )
+				.addClass( 'mw-rcfilters-ui-filterMenuHeaderWidget-header-highlight' )
+				.append( this.highlightButton.$element )
+		);
 	}
 };
 
@@ -146,6 +160,12 @@ FilterMenuHeaderWidget.prototype.onModelInitialize = function () {
 	this.invertTagsModel = this.model.getTagsInvertModel();
 	this.updateInvertTagsButton();
 	this.invertTagsModel.connect( this, { update: 'updateInvertTagsButton' } );
+
+	if ( mw.config.get( 'enableWatchlistLabels' ) && this.specialPage === 'Watchlist' ) {
+		this.invertWLLabelsModel = this.model.getWLLabelsInvertModel();
+		this.updateInvertWLLabelsButton();
+		this.invertWLLabelsModel.connect( this, { update: 'updateInvertWLLabelsButton' } );
+	}
 };
 
 /**
@@ -159,6 +179,7 @@ FilterMenuHeaderWidget.prototype.onModelSearchChange = function () {
 
 		this.invertTagsButton.toggle( currentView === 'tags' );
 		this.invertNamespacesButton.toggle( currentView === 'namespaces' );
+		this.invertWLLabelsButton.toggle( currentView === 'wllabels' );
 		this.backButton.toggle( currentView !== 'default' );
 		this.helpIcon.toggle( currentView === 'tags' );
 		this.view = currentView;
@@ -198,6 +219,18 @@ FilterMenuHeaderWidget.prototype.updateInvertNamespacesButton = function () {
 	);
 };
 
+/**
+ * Update the state of the labels invert button
+ */
+FilterMenuHeaderWidget.prototype.updateInvertWLLabelsButton = function () {
+	this.invertWLLabelsButton.setActive( this.invertWLLabelsModel.isSelected() );
+	this.invertWLLabelsButton.setLabel(
+		this.invertWLLabelsModel.isSelected() ?
+			mw.msg( 'rcfilters-exclude-button-on' ) :
+			mw.msg( 'rcfilters-exclude-button-off' )
+	);
+};
+
 FilterMenuHeaderWidget.prototype.onBackButtonClick = function () {
 	this.controller.switchView( 'default' );
 };
@@ -221,6 +254,13 @@ FilterMenuHeaderWidget.prototype.onInvertTagsButtonClick = function () {
  */
 FilterMenuHeaderWidget.prototype.onInvertNamespacesButtonClick = function () {
 	this.controller.toggleInvertedNamespaces();
+};
+
+/**
+ * Respond to invert labels button click
+ */
+FilterMenuHeaderWidget.prototype.onInvertWLLabelsButtonClick = function () {
+	this.controller.toggleInvertedWLLabels();
 };
 
 module.exports = FilterMenuHeaderWidget;
