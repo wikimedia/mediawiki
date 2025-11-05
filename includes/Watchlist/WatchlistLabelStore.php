@@ -78,13 +78,13 @@ class WatchlistLabelStore {
 	public function loadAllForUser( UserIdentity $user ): array {
 		$select = $this->dbProvider->getReplicaDatabase()->newSelectQueryBuilder();
 		$results = $select->table( self::TABLE_WATCHLIST_LABEL )
-			->field( 'wll_name' )
+			->fields( [ 'wll_id', 'wll_name' ] )
 			->where( [ 'wll_user' => $user->getId() ] )
 			->caller( __METHOD__ )
 			->fetchResultSet();
 		$labels = [];
 		foreach ( $results as $result ) {
-			$labels[] = new WatchlistLabel( $user, $result->wll_name );
+			$labels[] = new WatchlistLabel( $user, $result->wll_name, $result->wll_id );
 		}
 		return $labels;
 	}

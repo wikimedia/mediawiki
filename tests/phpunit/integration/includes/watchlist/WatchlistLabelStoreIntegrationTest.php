@@ -32,7 +32,9 @@ class WatchlistLabelStoreIntegrationTest extends MediaWikiIntegrationTestCase {
 		// Alter the label's name and save it again.
 		$label->setName( 'Test one changed' );
 		$store->save( $label );
-		$this->assertCount( 1, $store->loadAllForUser( $user ) );
+		$loaded = $store->loadAllForUser( $user );
+		$this->assertCount( 1, $loaded );
+		$this->assertSame( 1, $loaded[0]->getId() );
 		// Add another label, and check count.
 		$label2 = new WatchlistLabel( $user, 'Test two' );
 		$store->save( $label2 );
