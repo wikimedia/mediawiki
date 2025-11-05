@@ -730,6 +730,7 @@ class SpecialPageFactory {
 		'WatchlistLabels' => [
 			'class' => SpecialWatchlistLabels::class,
 			'services' => [
+				'WatchlistLabelStore',
 			]
 		],
 		'Newpages' => [

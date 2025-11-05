@@ -39,6 +39,7 @@ class WatchlistLabelStore {
 			$dbw->newInsertQueryBuilder()
 				->insertInto( self::TABLE_WATCHLIST_LABEL )
 				->row( [ 'wll_user' => $userId, 'wll_name' => $label->getName() ] )
+				->ignore()
 				->caller( __METHOD__ )
 				->execute();
 			if ( $dbw->affectedRows() > 0 ) {
