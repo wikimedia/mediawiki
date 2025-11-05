@@ -59,8 +59,7 @@ class AutoLoader {
 		'Wikimedia\\' => __DIR__ . '/libs/',
 		'Wikimedia\\DependencyStore\\' => __DIR__ . '/ResourceLoader/DependencyStore/',
 		'Wikimedia\\LightweightObjectStore\\' => __DIR__ . '/libs/ObjectCache/Utils/',
-		'Wikimedia\\Rdbms\\Database\\' => __DIR__ . '/libs/rdbms/Database/',
-		'Wikimedia\\Rdbms\\Platform\\' => __DIR__ . '/libs/rdbms/Platform/',
+		'Wikimedia\\Rdbms\\' => __DIR__ . '/libs/rdbms/',
 		'Wikimedia\\Rdbms\\Replication\\' => __DIR__ . '/libs/rdbms/Database/Replication/',
 	];
 
