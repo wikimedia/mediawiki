@@ -834,7 +834,8 @@ abstract class Skin extends ContextSource {
 
 		return Html::rawElement(
 			'div',
-			[ 'id' => 'catlinks', 'class' => $classes, 'data-mw' => 'interface' ],
+			[ 'id' => 'catlinks', 'class' => $classes,
+			  'data-mw-interface' => '' ],
 			$catlinks
 		);
 	}

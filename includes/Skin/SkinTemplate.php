@@ -963,7 +963,7 @@ class SkinTemplate extends Skin {
 			'single-id' => $tooltip ?? null,
 			'tooltip-params' => $msgParams ?? null,
 			'href' => $title->getLocalURL( [ 'action' => $mode ] ),
-			// Set a data-mw=interface attribute, which the mediawiki.page.ajax
+			// Set a data-mw-interface attribute, which the mediawiki.page.ajax
 			// module will look for to make sure it's a trusted link
 			'data' => [
 				'mw-interface' => '1',

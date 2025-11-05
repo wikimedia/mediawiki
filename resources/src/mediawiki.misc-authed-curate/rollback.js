@@ -40,7 +40,7 @@
 			yes: mw.msg( 'rollback-confirmation-yes' ),
 			no: mw.msg( 'rollback-confirmation-no' )
 		},
-		delegate: '.mw-rollback-link a[data-mw="interface"]',
+		delegate: '.mw-rollback-link a[data-mw-interface], .mw-rollback-link a[data-mw="interface"]',
 		handler: function ( e ) {
 			e.preventDefault();
 			postRollback( $( this ).attr( 'href' ) );
