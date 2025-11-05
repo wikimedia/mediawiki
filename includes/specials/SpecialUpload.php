@@ -395,7 +395,7 @@ class SpecialUpload extends SpecialPage {
 				$statusmsg = $this->getOutput()->parseAsInterface(
 					$status->getWikiText( false, false, $this->getLanguage() )
 				);
-				$message = '<h2>' . $this->msg( 'uploaderror' )->escaped() . '</h2>' . HTML::errorBox( $statusmsg );
+				$message = '<h2>' . $this->msg( 'uploaderror' )->escaped() . '</h2>' . Html::errorBox( $statusmsg );
 				$this->addMessageBoxStyling();
 				$this->showUploadForm( $this->getUploadForm( $message ) );
 				break;

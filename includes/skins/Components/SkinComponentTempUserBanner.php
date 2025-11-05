@@ -71,18 +71,18 @@ class SkinComponentTempUserBanner implements SkinComponent {
 				$this->localizer->msg( 'colon-separator' )->escaped() .
 				Html::element( 'span', [ 'class' => 'mw-temp-user-banner-username' ], $this->username )
 			) .
-			HTML::rawElement( 'div', [ 'class' => 'mw-temp-user-banner-tooltip' ],
-				HTML::rawElement( 'button', [
+			Html::rawElement( 'div', [ 'class' => 'mw-temp-user-banner-tooltip' ],
+				Html::rawElement( 'button', [
 					'id' => 'mw-temp-user-banner-tooltip-button',
 					'class' => 'mw-temp-user-banner-tooltip-summary cdx-button '
 						. 'cdx-button--icon-only cdx-button--weight-quiet',
 					'aria-label' => $this->localizer->msg( 'temp-user-banner-tooltip-label' )->text()
 					],
-					HTML::element( 'span', [ 'class' => 'mw-temp-user-banner-tooltip-icon ' ] )
+					Html::element( 'span', [ 'class' => 'mw-temp-user-banner-tooltip-icon ' ] )
 				)
 
 			) .
-			HTML::rawElement( 'div', [ 'class' => 'mw-temp-user-banner-buttons' ],
+			Html::rawElement( 'div', [ 'class' => 'mw-temp-user-banner-buttons' ],
 				$this->createLoginLink() .
 				$this->createAccountLink()
 			)
