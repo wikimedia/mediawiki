@@ -227,9 +227,7 @@
 	 * @private
 	 */
 	function init() {
-		let $pageWatchLinks = $(
-			'.mw-watchlink a[data-mw-interface], a.mw-watchlink[data-mw="interface"]'
-		);
+		let $pageWatchLinks = $( '.mw-watchlink a[data-mw-interface]' );
 		if ( !$pageWatchLinks.length ) {
 			// Fallback to the class-based exclusion method for backwards-compatibility
 			$pageWatchLinks = $( '.mw-watchlink a, a.mw-watchlink' );

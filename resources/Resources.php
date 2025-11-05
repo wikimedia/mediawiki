@@ -1746,7 +1746,7 @@ return [
 					'searchModule' => 'mediawiki.searchSuggest',
 					'collapsible' => true,
 					'sortable' => true,
-					'selectorLogoutLink' => '#pt-logout a[data-mw="interface"], #pt-logout a[data-mw-interface]'
+					'selectorLogoutLink' => '#pt-logout a[data-mw-interface]'
 				];
 
 				( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )

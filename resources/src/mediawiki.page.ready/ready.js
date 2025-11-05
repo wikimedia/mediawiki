@@ -124,7 +124,7 @@ $( () => {
 		mw.hook( 'wikipage.content' ).fire( $content );
 	}
 
-	let $nodes = $( '.catlinks[data-mw="interface"],.catlinks[data-mw-interface]' );
+	let $nodes = $( '.catlinks[data-mw-interface]' );
 	if ( $nodes.length ) {
 		/**
 		 * Fired when categories are being added to the DOM.
@@ -144,7 +144,7 @@ $( () => {
 		mw.hook( 'wikipage.categories' ).fire( $nodes );
 	}
 
-	$nodes = $( 'table.diff[data-mw="interface"], table.diff[data-mw-interface]' );
+	$nodes = $( 'table.diff[data-mw-interface]' );
 	if ( $nodes.length ) {
 		/**
 		 * Fired when the diff is added to a page containing a diff.

@@ -398,7 +398,7 @@
 		if ( response.parse.categorieshtml ) {
 			$content = $( $.parseHTML( response.parse.categorieshtml ) );
 			mw.hook( 'wikipage.categories' ).fire( $content );
-			$( '.catlinks[data-mw="interface"], .catlinks[data-mw-interface]' ).replaceWith( $content );
+			$( '.catlinks[data-mw-interface]' ).replaceWith( $content );
 		}
 
 		// Table of contents.

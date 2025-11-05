@@ -377,9 +377,7 @@
 
 		// Look for a preset notification area in the skin.
 		// 'data-mw*' attributes are banned from user content in Sanitizer.
-		$area = $(
-			'.mw-notification-area[data-mw-interface], .mw-notification-area[data-mw="interface"]'
-		).first();
+		$area = $( '.mw-notification-area[data-mw-interface]' ).first();
 		if ( !$area.length ) {
 			$area = $( '<div>' ).addClass( 'mw-notification-area' );
 			// Create overlay div for the notification area
