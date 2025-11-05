@@ -6,6 +6,8 @@
 			"Yupik"
 		]
 	},
+	"cdx-breadcrumb-navigation-label": "Navigeringssökvägar",
+	"cdx-breadcrumb-overflow-label": "Fler navigeringsalternativ",
 	"cdx-chip-input-chip-added": "Chip $1 lades till.",
 	"cdx-chip-input-chip-removed": "Chip $1 togs bort.",
 	"cdx-input-chip-aria-description": "Tryck på Enter för att redigera eller Delete för att ta bort.",

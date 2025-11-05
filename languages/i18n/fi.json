@@ -2174,6 +2174,7 @@
 	"mywatchlist": "Tarkkailulista",
 	"watchlistfor2": "Käyttäjälle $1",
 	"nowatchlist": "Tarkkailulistallasi ei ole sivuja.",
+	"nowatchlistnamespace": "Sinulla ei ole tässä nimiavaruudessa olevia kohteita tarkkailulistallasi.",
 	"watchlistanontext": "Sinun täytyy kirjautua sisään, jos haluat nähdä oman tarkkailulistasi.",
 	"watchlistanontext-for-temp-user": "Luo tunnus nähdäksesi tai muokataksesi tarkkailulistaa.",
 	"watchnologin": "Et ole kirjautunut sisään",

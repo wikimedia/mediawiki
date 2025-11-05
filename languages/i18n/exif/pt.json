@@ -395,5 +395,19 @@
 	"exif-croppedarealeftpixels": "Corte esquerdo do panorama",
 	"exif-croppedareatoppixels": "Corte de topo do panorama",
 	"exif-initialcameradolly": "Posição inicial da câmara",
-	"exif-stitchingsoftware": "Programa de colagem de imagens"
+	"exif-stitchingsoftware": "Programa de colagem de imagens",
+	"exif-digitalsourcetype": "Fonte de multimédia digital",
+	"exif-digitalsourcetype-digitalcapture": "Câmara digital ou gravador",
+	"exif-digitalsourcetype-computationalcapture": "Câmara digital ou gravador (múltiplos imagens combinadas)",
+	"exif-digitalsourcetype-negativefilm": "Digitalizado a partir de um negativo transparente",
+	"exif-digitalsourcetype-positivefilm": "Digitalizado a partir de um positivo transparente",
+	"exif-digitalsourcetype-print": "Digitalizado a partir de um meio não transparente",
+	"exif-digitalsourcetype-minorhumanedits": "Multimédia original com pequenas edições humanas.",
+	"exif-digitalsourcetype-humanedits": "Multimédia editada por humanos",
+	"exif-digitalsourcetype-compositewithtrainedalgorithmicmedia": "Editado utilizando a IA generativa",
+	"exif-digitalsourcetype-algorithmicallyenhanced": "Multimédia alterada algoritmicamente",
+	"exif-digitalsourcetype-softwareimage": "Criado por programa",
+	"exif-digitalsourcetype-digitalart": "Criado por um humano utilizando ferramentas digitais",
+	"exif-digitalsourcetype-trainedalgorithmicmedia": "Criado utilizando a IA generativa",
+	"exif-digitalsourcetype-screencapture": "Captura de ecrã"
 }

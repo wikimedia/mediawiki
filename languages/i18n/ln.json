@@ -382,7 +382,6 @@
 	"unusedtemplates": "Bimekoli na mosálá tɛ̂",
 	"randompage": "Lonkásá na mbɛsɛ",
 	"statistics": "Mitúya",
-	"statistics-articles-desc": "Tala [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgArticleCountMethod article count documentation] mpo na koyeba makambo mosusu",
 	"doubleredirects": "Boyendisi mbala míbalé",
 	"nbytes": "$1 {{PLURAL:$1|okté|baokté}}",
 	"nmembers": "{{PLURAL:$1|ekakoli|bikakoli}} $1",
@@ -503,7 +502,6 @@
 	"blockip": "Kotɛ́lɛmisa mosáleli",
 	"ipboptions": "ngonga 2:2 hours, mokɔlɔ 1:1 day, mikɔlɔ 3:3 days,mpɔ́sɔ 1:1 week,mpɔ́sɔ 2:2 weeks,sánzá 1:1 month,sánzá 3:3 months,sánzá 6:6 months,mobú 1:1 year,na nsúka tɛ̂:infinite",
 	"ipblocklist": "Adɛ́lɛsɛ IP mpé basáleli batɛ́lɛmísámí",
-	"blocklist-actions-header": "Misala",
 	"infiniteblock": "oyo ezangi nsuka",
 	"blocklink": "kotɛ́lɛmisa",
 	"unblocklink": "koboma botɛ́lɛmisi",
@@ -599,7 +597,6 @@
 	"htmlform-submit": "Kotínda",
 	"htmlform-selectorother-other": "Mosúsu",
 	"revdelete-content-hid": "makambo oyo ezali na kati oyo ebombami",
-	"logentry-rights-autopromote-kept": "{{GENDER:$2| ebombami}} $1 ebongwanaki te",
 	"searchsuggest-search": "Boluki {{SITENAME}}",
 	"searchsuggest-containing": "Luká nkasa oyo ezali na",
 	"nstab-mainpage": "Lokásá ya libosó",
@@ -614,6 +611,5 @@
 	"blockedtext-intended-blockee": "Blockee oyo ekanamaki: $1",
 	"blockedtext-contact-blocker-admin": "Okoki kokutana na $1 to [[{{MediaWiki:Grouppage-sysop}}|mokambi]] mosusu mpo na kolobela bloc.",
 	"blockedtext-block-ip": "Addresse IP na yo ya lelo ezali $1 .",
-	"blockedtext-include-details-queries": "Tosengi otia makambo nyonso oyo ezali likolo na mituna nyonso oyo okosala.",
-	"renameuser-error-global-detaching": "Moto oyo azali kosalela yango azali na boyokani na mokili mobimba. Salelá CentralAuth mpo na kobenga nkombo ya sika."
+	"blockedtext-include-details-queries": "Tosengi otia makambo nyonso oyo ezali likolo na mituna nyonso oyo okosala."
 }

@@ -1238,7 +1238,7 @@
 	"apihelp-query+siteinfo-paramvalue-prop-extensiontags": "Devolve uma lista dos elementos de extensões do analisador sintático.",
 	"apihelp-query+siteinfo-paramvalue-prop-functionhooks": "Devolve uma lista dos ''hooks'' de funções do analisador sintático.",
 	"apihelp-query+siteinfo-paramvalue-prop-showhooks": "Devolve uma lista de todos os ''hooks'' subscritos (conteúdo de <var>[[mw:Special:MyLanguage/Manual:$wgHooks|$wgHooks]]</var>).",
-	"apihelp-query+siteinfo-paramvalue-prop-variables": "Devolve uma lista de identificadores de variáveis.",
+	"apihelp-query+siteinfo-paramvalue-prop-variables": "Devolve uma lista de identificadores de palavra mágica para as [[mw:Special:MyLanguage/Help:Magic_words#Variables|variáveis mágicas]].",
 	"apihelp-query+siteinfo-paramvalue-prop-protocols": "Devolve uma lista dos protocolos permitidos nas hiperligações externas.",
 	"apihelp-query+siteinfo-paramvalue-prop-defaultoptions": "Devolve os valores padrão para as preferências dos utilizadores.",
 	"apihelp-query+siteinfo-paramvalue-prop-uploaddialog": "Devolve a configuração do diálogo de carregamento.",
