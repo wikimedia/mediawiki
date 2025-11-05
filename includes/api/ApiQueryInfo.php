@@ -602,7 +602,6 @@ class ApiQueryInfo extends ApiQueryBase {
 	 */
 	private function getProtectionInfo() {
 		$this->protections = [];
-		$db = $this->getDB();
 
 		// Get normal protections for existing titles
 		if ( count( $this->titles ) ) {
@@ -634,7 +633,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			$lb = $this->linkBatchFactory->newLinkBatch( $this->missing );
 			$this->addTables( 'protected_titles' );
 			$this->addFields( [ 'pt_title', 'pt_namespace', 'pt_create_perm', 'pt_expiry' ] );
-			$this->addWhere( $lb->constructSet( 'pt', $db ) );
+			$this->addWhere( $lb->constructSet( 'pt', $this->getDB() ) );
 			$res = $this->select( __METHOD__ );
 			foreach ( $res as $row ) {
 				$this->protections[$row->pt_namespace][$row->pt_title][] = [
@@ -682,12 +681,15 @@ class ApiQueryInfo extends ApiQueryBase {
 			if ( $protectedPages ) {
 				$this->setVirtualDomain( TemplateLinksTable::VIRTUAL_DOMAIN );
 
+				$lb = $this->linkBatchFactory->newLinkBatch( $others );
+
 				$queryInfo = $this->linksMigration->getQueryInfo( 'templatelinks' );
 				$res = $this->getDB()->newSelectQueryBuilder()
 					->select( [ 'tl_from', 'lt_namespace', 'lt_title' ] )
 					->tables( $queryInfo['tables'] )
 					->joinConds( $queryInfo['joins'] )
 					->where( [ 'tl_from' => array_keys( $protectedPages ) ] )
+					->andWhere( $lb->constructSet( 'tl', $this->getDB() ) )
 					->useIndex( [ 'templatelinks' => 'PRIMARY' ] )
 					->caller( __METHOD__ )
 					->fetchResultSet();
