@@ -538,42 +538,59 @@ class BacklinkCache {
 	 * @return stdClass[]
 	 */
 	private function getCascadeProtectedLinksInternal(): array {
-		$linkConds = $this->linksMigration->getLinksConditions(
-			'templatelinks', TitleValue::newFromPage( $this->page )
-		);
-		$pageIds = $this->getDB( TemplateLinksTable::VIRTUAL_DOMAIN )->newSelectQueryBuilder()
-			->select( 'tl_from' )
-			->from( 'templatelinks' )
-			->where( $linkConds )
-			->caller( __METHOD__ )
-			->fetchFieldValues();
-
-		if ( $this->page->getNamespace() === NS_FILE ) {
-			$imagelinksPageIds = $this->getDB( ImageLinksTable::VIRTUAL_DOMAIN )->newSelectQueryBuilder()
-				->select( 'il_from' )
-				->from( 'imagelinks' )
-				->where( [ 'il_to' => $this->page->getDBkey() ] )
-				->caller( __METHOD__ )
-				->fetchFieldValues();
-			$pageIds = array_merge( $pageIds, $imagelinksPageIds );
-		}
-
-		if ( !$pageIds ) {
-			return [];
-		}
-
 		$cascadePages = $this->getDB()->newSelectQueryBuilder()
 			->select( [ 'page_id', 'page_namespace', 'page_title' ] )
 			->from( 'page' )
 			->join( 'page_restrictions', null, 'page_id = pr_page' )
-			->where( [
-				'page_id' => $pageIds,
-				'pr_cascade' => 1
-			] )
+			->where( [ 'pr_cascade' => 1 ] )
 			->caller( __METHOD__ )
 			->fetchResultSet();
 
-		return iterator_to_array( $cascadePages );
+		if ( !$cascadePages->numRows() ) {
+			return [];
+		}
+
+		$cascadePagesById = [];
+		foreach ( $cascadePages as $row ) {
+			$cascadePagesById[$row->page_id] = $row;
+		}
+
+		$linkConds = $this->linksMigration->getLinksConditions(
+			'templatelinks', TitleValue::newFromPage( $this->page )
+		);
+		$templatelinkPages = $this->getDB( TemplateLinksTable::VIRTUAL_DOMAIN )->newSelectQueryBuilder()
+			->select( 'tl_from' )
+			->from( 'templatelinks' )
+			->where( $linkConds )
+			->andWhere( [ 'tl_from' => array_keys( $cascadePagesById ) ] )
+			->caller( __METHOD__ )
+			->fetchFieldValues();
+
+		$result = [];
+		foreach ( $templatelinkPages as $pageId ) {
+			$result[] = $cascadePagesById[$pageId];
+		}
+
+		if ( $this->page->getNamespace() === NS_FILE ) {
+			$imagelinkPages = $this->getDB( ImageLinksTable::VIRTUAL_DOMAIN )->newSelectQueryBuilder()
+				->select( 'il_from' )
+				->from( 'imagelinks' )
+				->where( [
+					'il_from' => array_keys( $cascadePagesById ),
+					'il_to' => $this->page->getDBkey()
+				] )
+				->caller( __METHOD__ )
+				->fetchFieldValues();
+
+			foreach ( $imagelinkPages as $pageId ) {
+				if ( !isset( $cascadePagesById[$pageId] ) ) {
+					continue;
+				}
+				$result[] = $cascadePagesById[$pageId];
+			}
+		}
+
+		return $result;
 	}
 }
 
