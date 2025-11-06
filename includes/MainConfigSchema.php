@@ -4810,7 +4810,7 @@ class MainConfigSchema {
 	/** @name   Language, regional and character encoding settings */
 
 	/**
-	 * Site language code. See includes/languages/data/Names.php for languages
+	 * Site language code. See includes/Languages/Data/Names.php for languages
 	 * supported by MediaWiki out of the box. Not all languages listed there have
 	 * translations, see languages/messages/ for the list of languages with some
 	 * localisation.

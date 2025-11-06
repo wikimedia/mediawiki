@@ -1,2 +1,2 @@
-../../../includes/languages/data/ZhConversion.php: Makefile.py $(wildcard *.manual)
+../../../includes/Languages/Data/ZhConversion.php: Makefile.py $(wildcard *.manual)
 	./Makefile.py
