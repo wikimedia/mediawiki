@@ -134,7 +134,7 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 	 * Version number to tag cached versions of serialized User objects. Should be increased when
 	 * {@link $mCacheVars} or one of its members changes.
 	 */
-	private const VERSION = 17;
+	private const VERSION = 18;
 
 	/**
 	 * Username used for various maintenance scripts.
