@@ -51,7 +51,6 @@ class AutoLoader {
 		'MediaWiki\\Maintenance\\' => __DIR__ . '/../maintenance/includes/',
 		'MediaWiki\\Session\\' => __DIR__ . '/session/',
 		'MediaWiki\\Specials\\' => __DIR__ . '/specials/',
-		'MediaWiki\\Title\\' => __DIR__ . '/title/',
 		'Wikimedia\\' => __DIR__ . '/libs/',
 		'Wikimedia\\DependencyStore\\' => __DIR__ . '/ResourceLoader/DependencyStore/',
 		'Wikimedia\\LightweightObjectStore\\' => __DIR__ . '/libs/ObjectCache/Utils/',
