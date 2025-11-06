@@ -36,10 +36,19 @@ class SpecialCreateAccountTest extends SpecialPageTestBase {
 	public function testCheckPermissions() {
 		$readOnlyMode = $this->getServiceContainer()->getReadOnlyMode();
 		$readOnlyMode->setReason( 'Test' );
+		$testLogger = new TestLogger( true, null, true );
+		$this->setLogger( 'authevents', $testLogger );
 
-		$this->expectException( ErrorPageError::class );
 		$specialPage = $this->newSpecialPage();
-		$specialPage->checkPermissions();
+		try {
+			$specialPage->checkPermissions();
+		} catch ( ErrorPageError $e ) {
+			$buffer = $testLogger->getBuffer();
+			$this->assertEquals( 'Account creation attempt', $buffer[0][1] );
+			$this->assertArrayHasKey( 'ua', $buffer[0][2] );
+			return;
+		}
+		$this->fail( 'ErrorPageError exception was not thrown' );
 	}
 
 	/**
