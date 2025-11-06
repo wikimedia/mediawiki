@@ -2394,7 +2394,7 @@ return [
 						'sitesubtitle',
 						'sitetitle',
 					],
-					'templateDirectory' => __DIR__ . '/Skinstemplates/authentication-popup',
+					'templateDirectory' => __DIR__ . '/Skin/templates/authentication-popup',
 				]
 			]
 		], true );
@@ -2406,7 +2406,7 @@ return [
 					'name' => 'json',
 					'styles' => [],
 					'format' => 'json',
-					'templateDirectory' => __DIR__ . '/Skinstemplates/apioutput',
+					'templateDirectory' => __DIR__ . '/Skin/templates/apioutput',
 				]
 			]
 		], true );
