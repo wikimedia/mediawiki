@@ -3,6 +3,7 @@
 use MediaWiki\Exception\ErrorPageError;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\UltimateAuthority;
+use MediaWiki\Tests\Specials\SpecialPageExecutor;
 use MediaWiki\User\UserIdentityValue;
 
 /**

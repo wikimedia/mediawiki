@@ -182,10 +182,12 @@ $wgAutoloadClasses += [
 	'MediaWiki\\Tests\\SpecialPage\\AbstractChangesListSpecialPageTestCase' => "$testDir/phpunit/includes/specialpage/AbstractChangesListSpecialPageTestCase.php",
 	'MediaWiki\\Tests\\SpecialPage\\FormSpecialPageTestCase' => "$testDir/phpunit/includes/specialpage/FormSpecialPageTestCase.php",
 
-	# tests/phpunit/includes/specials
-	'SpecialPageTestBase' => "$testDir/phpunit/includes/specials/SpecialPageTestBase.php",
-	'SpecialPageExecutor' => "$testDir/phpunit/includes/specials/SpecialPageExecutor.php",
-	'SpecialSearchTestMockResultSet' => "$testDir/phpunit/includes/specials/SpecialSearchTestMockResultSet.php",
+	# tests/phpunit/includes/Specials
+	'SpecialPageTestBase' => "$testDir/phpunit/includes/Specials/SpecialPageTestBase.php",
+	'MediaWiki\\Tests\\Specials\\SpecialPageTestBase' => "$testDir/phpunit/includes/Specials/SpecialPageTestBase.php",
+	'SpecialPageExecutor' => "$testDir/phpunit/includes/Specials/SpecialPageExecutor.php",
+	'MediaWiki\\Tests\\Specials\\SpecialPageExecutor' => "$testDir/phpunit/includes/Specials/SpecialPageExecutor.php",
+	'MediaWiki\\Tests\\Specials\\SpecialSearchTestMockResultSet' => "$testDir/phpunit/includes/Specials/SpecialSearchTestMockResultSet.php",
 
 	# tests/phpunit/includes/Storage
 	'MediaWiki\\Tests\\Storage\\PageEditStashContentsTest' => "$testDir/phpunit/includes/Storage/PageEditStashContentsTest.php",

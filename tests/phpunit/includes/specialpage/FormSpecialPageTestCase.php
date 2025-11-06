@@ -8,9 +8,9 @@ use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\Exception\UserBlockedError;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\SpecialPage\FormSpecialPage;
+use MediaWiki\Tests\Specials\SpecialPageTestBase;
 use MediaWiki\User\User;
 use MediaWiki\Utils\MWTimestamp;
-use SpecialPageTestBase;
 use Wikimedia\Rdbms\ReadOnlyMode;
 use Wikimedia\TestingAccessWrapper;
 
