@@ -52,7 +52,6 @@ class AutoLoader {
 		'Wikimedia\\' => __DIR__ . '/libs/',
 		'Wikimedia\\DependencyStore\\' => __DIR__ . '/ResourceLoader/DependencyStore/',
 		'Wikimedia\\LightweightObjectStore\\' => __DIR__ . '/libs/ObjectCache/Utils/',
-		'Wikimedia\\Rdbms\\' => __DIR__ . '/libs/rdbms/',
 	];
 
 	/**

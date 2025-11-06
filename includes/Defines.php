@@ -7,7 +7,7 @@
  */
 
 require_once __DIR__ . '/libs/Mime/defines.php';
-require_once __DIR__ . '/libs/rdbms/defines.php';
+require_once __DIR__ . '/libs/Rdbms/defines.php';
 
 use Wikimedia\Rdbms\IDatabase;
 
