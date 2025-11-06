@@ -71,7 +71,7 @@ module.exports = function ( grunt ) {
 			languageconverter: 'languages/i18n/languageconverter/',
 			api: 'includes/Api/i18n/',
 			rest: 'includes/Rest/i18n/',
-			installer: 'includes/installer/i18n/',
+			installer: 'includes/Installer/i18n/',
 			paramvalidator: 'includes/libs/ParamValidator/i18n/'
 		},
 		stylelint: {

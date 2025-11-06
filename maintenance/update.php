@@ -66,9 +66,9 @@ class UpdateMediaWiki extends Maintenance {
 
 	public function setup() {
 		global $wgMessagesDirs;
-		// T206765: We need to load the installer i18n files as some of errors come installer/updater code
+		// T206765: We need to load the installer i18n files as some errors come from installer/updater code
 		// T310378: We have to ensure we do this before execute()
-		$wgMessagesDirs['MediaWikiInstaller'] = dirname( __DIR__ ) . '/includes/installer/i18n';
+		$wgMessagesDirs['MediaWikiInstaller'] = dirname( __DIR__ ) . '/includes/Installer/i18n';
 	}
 
 	public function execute() {

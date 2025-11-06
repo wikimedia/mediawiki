@@ -19,6 +19,9 @@ class ConnectionStatus extends Status {
 	}
 
 	public function getDB(): IMaintainableDatabase {
+		// phan is right, technically this could return null, but
+		// we will always setDB() before we getDB().
+		// @phan-suppress-next-line PhanTypeMismatchReturnNullable
 		return $this->value;
 	}
 }

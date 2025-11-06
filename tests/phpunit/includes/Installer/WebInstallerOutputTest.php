@@ -1,7 +1,9 @@
 <?php
+namespace MediaWiki\Tests\Installer;
 
 use MediaWiki\Installer\WebInstaller;
 use MediaWiki\Installer\WebInstallerOutput;
+use MediaWikiIntegrationTestCase;
 
 class WebInstallerOutputTest extends MediaWikiIntegrationTestCase {
 	/**

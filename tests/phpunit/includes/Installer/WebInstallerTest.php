@@ -1,7 +1,9 @@
 <?php
+namespace MediaWiki\Tests\Installer;
 
 use MediaWiki\Installer\WebInstaller;
 use MediaWiki\Request\FauxRequest;
+use MediaWikiIntegrationTestCase;
 
 class WebInstallerTest extends MediaWikiIntegrationTestCase {
 	/**
