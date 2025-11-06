@@ -15,6 +15,7 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Status\Status;
 use MediaWiki\User\User;
 use UploadBase;
+use UploadStashException;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -99,7 +100,10 @@ trait UploadJobTrait {
 
 			// Cleanup any temporary local file
 			$this->getUpload()->cleanupTempFile();
-
+		} catch ( UploadStashException $e ) {
+			$this->setStatus( 'publish', 'Failure', Status::newFatal( $e->getMessageObject() ) );
+			$this->setLastError( get_class( $e ) . ": " . $e->getMessage() );
+			return false;
 		} catch ( Exception $e ) {
 			$this->setStatus( 'publish', 'Failure', Status::newFatal( 'api-error-publishfailed' ) );
 			$this->setLastError( get_class( $e ) . ": " . $e->getMessage() );

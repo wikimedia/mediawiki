@@ -18,6 +18,7 @@ use MediaWiki\Status\Status;
 use UnexpectedValueException;
 use UploadBase;
 use UploadFromChunks;
+use UploadStashException;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -166,6 +167,18 @@ class AssembleUploadChunksJob extends Job implements GenericParameterJob {
 					'status' => (string)$status
 				]
 			);
+		} catch ( UploadStashException $e ) {
+			UploadBase::setSessionStatus(
+				$user,
+				$this->params['filekey'],
+				[
+					'result' => 'Failure',
+					'stage' => 'assembling',
+					'status' => Status::newFatal( $e->getMessageObject() ),
+				]
+			);
+			$this->setLastError( get_class( $e ) . ": " . $e->getMessage() );
+			return false;
 		} catch ( Exception $e ) {
 			UploadBase::setSessionStatus(
 				$user,
