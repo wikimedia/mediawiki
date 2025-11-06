@@ -48,7 +48,6 @@ class AutoLoader {
 		'MediaWiki\\Actions\\' => __DIR__ . '/actions/',
 		'MediaWiki\\Block\\' => __DIR__ . '/block/',
 		'MediaWiki\\Maintenance\\' => __DIR__ . '/../maintenance/includes/',
-		'MediaWiki\\Specials\\' => __DIR__ . '/specials/',
 		'Wikimedia\\' => __DIR__ . '/libs/',
 	];
 
