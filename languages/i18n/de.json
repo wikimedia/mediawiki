@@ -2275,6 +2275,8 @@
 	"watchlist-options": "Anzeigeoptionen",
 	"watching": "Beobachten …",
 	"unwatching": "Nicht mehr beobachten …",
+	"watchlistlabels-title": "Bearbeiten der Beobachtungsliste-Bezeichnungen",
+	"watchlistlabels-not-enabled": "Die Funktio Beobachtungsliste-Bezeichnungen ist in diesem Wiki nicht aktiviert.",
 	"enotif_reset": "Alle Seiten als besucht markieren",
 	"enotif_impersonal_salutation": "{{SITENAME}}-Benutzer",
 	"enotif_subject_deleted": "{{SITENAME}}-Seite $1 wurde von {{GENDER:$2|$2}} gelöscht",

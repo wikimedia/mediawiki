@@ -56,5 +56,6 @@
 	"sat": "ꦱꦼꦠꦸ",
 	"sun": "ꦔ",
 	"period-am": "ꦫꦶꦤ",
-	"period-pm": "ꦫꦠꦿꦶ"
+	"period-pm": "ꦫꦠꦿꦶ",
+	"duration-days": "$1{{PLURAL:$1|ꦢꦶꦤ}}"
 }

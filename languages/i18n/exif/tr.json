@@ -447,5 +447,8 @@
 	"exif-digitalsourcetype-trainedalgorithmicmedia": "Üretken yapay zeka kullanılarak oluşturulmuş",
 	"exif-digitalsourcetype-algorithmicmedia": "Tümüyle yapay zeka dışı bir algoritma tarafından oluşturulmuş medya",
 	"exif-digitalsourcetype-screencapture": "Ekran görüntüsü",
-	"exif-digitalsourcetype-virtualrecording": "Üretken Yapay Zeka ve/veya yakalanan öğelere dayalı sanal etkinliğin canlı kaydı"
+	"exif-digitalsourcetype-virtualrecording": "Üretken Yapay Zeka ve/veya yakalanan öğelere dayalı sanal etkinliğin canlı kaydı",
+	"exif-digitalsourcetype-composite": "Herhangi biri üretken yapay zeka olabilen veya olmayabilen birkaç öğenin karışımı veya bileşimi",
+	"exif-digitalsourcetype-compositecapture": "Hepsi de gerçek hayattan kesitler sunan birkaç öğenin karışımı veya bileşimi",
+	"exif-digitalsourcetype-compositesynthetic": "En az biri üretken yapay zeka olan birkaç öğenin karışımı veya bileşimi"
 }

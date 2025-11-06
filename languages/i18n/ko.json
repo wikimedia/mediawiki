@@ -3615,7 +3615,7 @@
 	"logentry-move-move": "$1님이 $3 문서를 $4 문서로 {{GENDER:$2|이동했습니다}}",
 	"logentry-move-move-noredirect": "$1님이 $3 문서를 넘겨주기를 만들지 않고 $4 문서로 {{GENDER:$2|이동했습니다}}",
 	"logentry-move-move_redir": "$1님이 $3 문서를 $4 문서로 {{GENDER:$2|이동하면서}} 넘겨주기를 덮어썼습니다",
-	"logentry-move-move_redir-noredirect": "$1님이 $3 문서를 $4 문서로 넘겨주기를 남기지 않고 {{GENDER:$2|이동하면서}} 이동할 대상에 있던 넘겨주기를 덮어썼습니다",
+	"logentry-move-move_redir-noredirect": "$1님이 $3 문서를 넘겨주기를 만들지 않고 $4 문서로 {{GENDER:$2|이동하면서}} 이동할 대상에 있던 넘겨주기를 덮어썼습니다",
 	"logentry-patrol-patrol": "$1님이 $3 문서의 $4판을 점검한 것으로 {{GENDER:$2|표시했습니다}}",
 	"logentry-patrol-patrol-auto": "$1님이 자동으로 $3 문서의 $4판을 점검한 것으로 {{GENDER:$2|표시했습니다}}",
 	"logentry-newusers-newusers": "$1 사용자 계정을 {{GENDER:$2|만들었습니다}}",

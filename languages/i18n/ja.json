@@ -1005,7 +1005,7 @@
 	"difference-multipage": "(ページ間の差分)",
 	"lineno": "$1行目:",
 	"lineno-inline": "$1 ⟶ $2行目:",
-	"compareselectedversions": "選択した版どうしを比較",
+	"compareselectedversions": "選択した版を比較",
 	"showhideselectedversions": "選択した版を表示/非表示",
 	"showhideselectedfileversions": "選択したファイルの版の閲覧レベルを変更",
 	"editundo": "取り消し",
