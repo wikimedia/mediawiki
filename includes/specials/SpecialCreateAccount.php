@@ -70,7 +70,14 @@ class SpecialCreateAccount extends LoginSignupSpecialPage {
 
 		if ( !$status->isGood() ) {
 			$formatter = $this->formatterFactory->getStatusFormatter( $this->getContext() );
-			$this->logAuthResult( false, $performer->getUser(), $status );
+			$messages = [];
+			foreach ( $status->getMessages() as $message ) {
+				$messages[] = $message->getKey();
+			}
+			$this->logAuthResult(
+				false, $performer->getUser(),
+				implode( '|', $messages )
+			);
 			throw new ErrorPageError(
 				'createacct-error',
 				$formatter->getMessage( $status )

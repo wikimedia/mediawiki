@@ -45,6 +45,7 @@ class SpecialCreateAccountTest extends SpecialPageTestBase {
 		} catch ( ErrorPageError $e ) {
 			$buffer = $testLogger->getBuffer();
 			$this->assertEquals( 'Account creation attempt', $buffer[0][1] );
+			$this->assertEquals( 'readonlytext', $buffer[0][2]['status'] );
 			$this->assertArrayHasKey( 'ua', $buffer[0][2] );
 			return;
 		}
