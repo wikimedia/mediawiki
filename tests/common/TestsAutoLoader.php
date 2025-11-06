@@ -196,11 +196,12 @@ $wgAutoloadClasses += [
 	# test/phpunit/includes/user
 	'UserOptionsLookupTestBase' => "$testDir/phpunit/integration/includes/user/Options/UserOptionsLookupTestBase.php",
 
-	# tests/phpunit/includes/language
-	'DummyConverter' => "$testDir/phpunit/mocks/languages/DummyConverter.php",
-	'LanguageClassesTestCase' => "$testDir/phpunit/includes/language/LanguageClassesTestCase.php",
-	'LanguageConverterTestTrait' => "$testDir/phpunit/includes/language/LanguageConverterTestTrait.php",
-	'MessageTest' => "$testDir/phpunit/includes/language/MessageTest.php",
+	# tests/phpunit/includes/Language
+	'MediaWiki\\Tests\\Mocks\\Language\\DummyConverter' => "$testDir/phpunit/mocks/Language/DummyConverter.php",
+	'MediaWiki\\Tests\\Language\\LanguageClassesTestCase' => "$testDir/phpunit/includes/Language/LanguageClassesTestCase.php",
+	'MediaWiki\\Tests\\Language\\LanguageConverterTestTrait' => "$testDir/phpunit/includes/Language/LanguageConverterTestTrait.php",
+	'MediaWiki\\Tests\\Language\\LocalizationUpdateSpyTrait' => "$testDir/phpunit/includes/Language/LocalizationUpdateSpyTrait.php",
+	'MediaWiki\\Tests\\Language\\MessageTest' => "$testDir/phpunit/includes/Language/MessageTest.php",
 
 	# tests/phpunit/includes/libs
 	'BagOStuffTestBase' => "$testDir/phpunit/includes/libs/objectcache/BagOStuffTestBase.php",
@@ -240,7 +241,7 @@ $wgAutoloadClasses += [
 	'MediaWiki\\Tests\\Unit\\FakeQqxMessageLocalizer' => "$testDir/phpunit/mocks/FakeQqxMessageLocalizer.php",
 	'MediaWiki\\Tests\\Unit\\MockBlockTrait' => "$testDir/phpunit/mocks/MockBlockTrait.php",
 	'MediaWiki\\Tests\\Unit\\MockServiceDependenciesTrait' => "$testDir/phpunit/mocks/MockServiceDependenciesTrait.php",
-	'MediaWiki\\Tests\\Language\\MockLocalisationCacheTrait' => "$testDir/phpunit/mocks/languages/MockLocalisationCacheTrait.php",
+	'MediaWiki\\Tests\\Mocks\\Language\\MockLocalisationCacheTrait' => "$testDir/phpunit/mocks/Language/MockLocalisationCacheTrait.php",
 	'MockBitmapHandler' => "$testDir/phpunit/mocks/media/MockBitmapHandler.php",
 	'MockChangesListFilter' => "$testDir/phpunit/mocks/MockChangesListFilter.php",
 	'MockChangesListFilterGroup' => "$testDir/phpunit/mocks/MockChangesListFilterGroup.php",
@@ -293,10 +294,9 @@ $wgAutoloadClasses += [
 	'MediaWiki\\Tests\\Mocks\\Json\\SampleObjectAlias' => "$testDir/phpunit/mocks/Json/SampleObject.php",
 
 	# tests/phpunit/unit/includes/Language
-	'LanguageCodeTest' => "$testDir/phpunit/unit/includes/Language/LanguageCodeTest.php",
-	'LanguageFallbackTestTrait' => "$testDir/phpunit/unit/includes/Language/LanguageFallbackTestTrait.php",
-	'LanguageNameUtilsTestTrait' => "$testDir/phpunit/unit/includes/Language/LanguageNameUtilsTestTrait.php",
-	'MediaWiki\Tests\Language\LocalizationUpdateSpyTrait' => "$testDir/phpunit/includes/language/LocalizationUpdateSpyTrait.php",
+	'MediaWiki\\Tests\\Unit\\Language\\LanguageCodeTest' => "$testDir/phpunit/unit/includes/Language/LanguageCodeTest.php",
+	'MediaWiki\\Tests\\Unit\\Language\\LanguageFallbackTestTrait' => "$testDir/phpunit/unit/includes/Language/LanguageFallbackTestTrait.php",
+	'MediaWiki\\Tests\\Unit\\Language\\LanguageNameUtilsTestTrait' => "$testDir/phpunit/unit/includes/Language/LanguageNameUtilsTestTrait.php",
 
 	# tests/phpunit/unit/includes/libs/filebackend/fsfile
 	'Wikimedia\\Tests\\FileBackend\\FSFile\\TempFSFileTestTrait' => "$testDir/phpunit/unit/includes/libs/filebackend/fsfile/TempFSFileTestTrait.php",

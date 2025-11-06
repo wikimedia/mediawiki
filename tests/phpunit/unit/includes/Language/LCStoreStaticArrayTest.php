@@ -1,5 +1,11 @@
 <?php
 
+namespace MediaWiki\Tests\Unit\Language;
+
+use DateTimeZone;
+use LCStoreStaticArray;
+use MediaWikiUnitTestCase;
+
 /**
  * @covers \LCStoreStaticArray
  * @group Language

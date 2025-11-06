@@ -1,5 +1,7 @@
 <?php
+namespace MediaWiki\Tests\Unit\Language;
 
+use LocalisationCache;
 use MediaWiki\Config\HashConfig;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\Language\Language;
@@ -8,6 +10,7 @@ use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\StubObject\StubObject;
 use MediaWiki\Title\NamespaceInfo;
+use MediaWikiUnitTestCase;
 use Wikimedia\Bcp47Code\Bcp47CodeValue;
 use Wikimedia\TestingAccessWrapper;
 

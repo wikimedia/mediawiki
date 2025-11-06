@@ -6,7 +6,7 @@
  */
 namespace MediaWiki\Tests\Languages;
 
-use LanguageClassesTestCase;
+use MediaWiki\Tests\Language\LanguageClassesTestCase;
 
 /**
  * Tests for Serbo-Croatian (srpskohrvatski / српскохрватски)

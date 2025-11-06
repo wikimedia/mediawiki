@@ -1,7 +1,11 @@
 <?php
 
+namespace MediaWiki\Tests\Unit\Message;
+
 use MediaWiki\Message\Message;
 use MediaWiki\Message\MessageFormatterFactory;
+use MediaWikiCoversValidator;
+use MediaWikiUnitTestCase;
 
 /**
  * @covers \MediaWiki\Message\MessageFormatterFactory

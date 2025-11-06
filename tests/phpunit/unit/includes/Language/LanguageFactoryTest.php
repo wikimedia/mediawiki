@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Tests\Languages;
+namespace MediaWiki\Tests\Unit\Languages;
 
 use LocalisationCache;
 use MediaWiki\Config\HashConfig;

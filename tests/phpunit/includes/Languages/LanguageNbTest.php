@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Tests\Languages;
 
-use LanguageClassesTestCase;
+use MediaWiki\Tests\Language\LanguageClassesTestCase;
 
 class LanguageNbTest extends LanguageClassesTestCase {
 	/**

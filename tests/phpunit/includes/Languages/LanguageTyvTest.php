@@ -1,7 +1,7 @@
 <?php
 namespace MediaWiki\Tests\Languages;
 
-use LanguageClassesTestCase;
+use MediaWiki\Tests\Language\LanguageClassesTestCase;
 
 /**
  * @group Language

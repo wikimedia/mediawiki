@@ -4,7 +4,7 @@ namespace MediaWiki\Tests\Maintenance;
 
 use DumpMessages;
 use MediaWiki\Json\FormatJson;
-use MediaWiki\Tests\Language\MockLocalisationCacheTrait;
+use MediaWiki\Tests\Mocks\Language\MockLocalisationCacheTrait;
 
 /**
  * @covers \DumpMessages

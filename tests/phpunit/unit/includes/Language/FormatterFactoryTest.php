@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\Tests\Unit\Language;
+
 use MediaWiki\Context\IContextSource;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Language\FormatterFactory;
@@ -7,6 +9,8 @@ use MediaWiki\Language\MessageParser;
 use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Title\TitleFormatter;
 use MediaWiki\User\UserIdentityUtils;
+use MediaWikiUnitTestCase;
+use MessageLocalizer;
 use Psr\Log\NullLogger;
 
 /**

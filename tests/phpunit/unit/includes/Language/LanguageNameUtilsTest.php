@@ -1,9 +1,11 @@
 <?php
+namespace MediaWiki\Tests\Unit\Language;
 
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MainConfigNames;
+use MediaWikiUnitTestCase;
 
 /**
  * @group Language

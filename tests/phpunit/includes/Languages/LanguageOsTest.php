@@ -3,7 +3,7 @@ declare( strict_types=1 );
 
 namespace MediaWiki\Tests\Languages;
 
-use LanguageClassesTestCase;
+use MediaWiki\Tests\Language\LanguageClassesTestCase;
 
 /**
  * @group Language

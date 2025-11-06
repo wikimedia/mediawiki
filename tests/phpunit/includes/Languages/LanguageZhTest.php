@@ -1,8 +1,8 @@
 <?php
 namespace MediaWiki\Tests\Languages;
 
-use LanguageClassesTestCase;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Tests\Language\LanguageClassesTestCase;
 use TextSlotDiffRenderer;
 
 /**

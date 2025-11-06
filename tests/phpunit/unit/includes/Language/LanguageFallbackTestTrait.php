@@ -1,7 +1,10 @@
 <?php
 
 // phpcs:disable MediaWiki.Commenting.FunctionComment.MissingDocumentationPublic -- Test traits are not excluded
+namespace MediaWiki\Tests\Unit\Language;
 
+use InvalidArgumentException;
+use LocalisationCache;
 use MediaWiki\Languages\LanguageFallback;
 
 /**
