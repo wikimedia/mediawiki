@@ -552,7 +552,7 @@ class RestrictionStore {
 
 		$dbr = $this->loadBalancerFactory->getReplicaDatabase();
 
-		$baseQuery = $dbr->newSelectQueryBuilder()
+		$cascadeRestrictions = $dbr->newSelectQueryBuilder()
 			->select( [
 				'pr_page',
 				'pr_expiry',
@@ -563,72 +563,44 @@ class RestrictionStore {
 			] )
 			->from( 'page_restrictions' )
 			->join( 'page', null, 'page_id=pr_page' )
-			->where( [ 'pr_cascade' => 1 ] );
+			->where( [ 'pr_cascade' => 1 ] )
+			->caller( __METHOD__ )
+			->fetchResultSet();
+
+		if ( $cascadeRestrictions->numRows() === 0 ) {
+			return [ [], [], [], [] ];
+		}
+
+		$cascadePageIds = [];
+		$restrictionData = [];
+		foreach ( $cascadeRestrictions as $row ) {
+			$cascadePageIds[] = (int)$row->pr_page;
+			$restrictionData[$row->pr_page] = $row;
+		}
 
 		$templateLinksDb = $this->loadBalancerFactory->getReplicaDatabase( TemplateLinksTable::VIRTUAL_DOMAIN );
-		$templatePageIds = $templateLinksDb->newSelectQueryBuilder()
+		$templateLinks = $templateLinksDb->newSelectQueryBuilder()
 			->select( 'tl_from' )
 			->from( 'templatelinks' )
-			->where( $this->linksMigration->getLinksConditions( 'templatelinks', TitleValue::newFromPage( $page ) ) )
+			->where( [ 'tl_from' => $cascadePageIds ] )
+			->andWhere( $this->linksMigration->getLinksConditions( 'templatelinks', TitleValue::newFromPage( $page ) ) )
 			->caller( __METHOD__ )
-			->fetchFieldValues();
-
-		$templateQuery = clone $baseQuery;
-		$templateQuery->fields( [ 'type' => $dbr->addQuotes( 'tl' ) ] );
-		if ( $templatePageIds ) {
-			$templateQuery->andWhere( [ 'pr_page' => $templatePageIds ] );
-		} else {
-			$templateQuery->andWhere( '0=1' );
-		}
-
-		if ( $page->getNamespace() === NS_FILE ) {
-			$imageLinksDb = $this->loadBalancerFactory->getReplicaDatabase( ImageLinksTable::VIRTUAL_DOMAIN );
-			$imagePageIds = $imageLinksDb->newSelectQueryBuilder()
-				->select( 'il_from' )
-				->from( 'imagelinks' )
-				->where( [ 'il_to' => $page->getDBkey() ] )
-				->caller( __METHOD__ )
-				->fetchFieldValues();
-
-			if ( $imagePageIds ) {
-				$imageQuery = clone $baseQuery;
-				$imageQuery
-					->fields( [ 'type' => $dbr->addQuotes( 'il' ) ] )
-					->andWhere( [ 'pr_page' => $imagePageIds ] );
-
-				$res = $dbr->newUnionQueryBuilder()
-					->add( $imageQuery )
-					->add( $templateQuery )
-					->all()
-					->caller( __METHOD__ )
-					->fetchResultSet();
-			} else {
-				$res = $templateQuery->caller( __METHOD__ )->fetchResultSet();
-			}
-		} else {
-			$res = $templateQuery->caller( __METHOD__ )->fetchResultSet();
-		}
+			->fetchResultSet();
 
 		$tlSources = [];
 		$ilSources = [];
 		$pageRestrictions = [];
 		$now = wfTimestampNow();
-		foreach ( $res as $row ) {
-			$expiry = $dbr->decodeExpiry( $row->pr_expiry );
+
+		foreach ( $templateLinks as $link ) {
+			$row = $restrictionData[$link->tl_from];
+			$expiry = $templateLinksDb->decodeExpiry( $row->pr_expiry );
 			if ( $expiry > $now ) {
-				if ( $row->type === 'il' ) {
-					$ilSources[$row->pr_page] = PageIdentityValue::localIdentity(
-						(int)$row->pr_page,
-						(int)$row->page_namespace,
-						$row->page_title
-					);
-				} elseif ( $row->type === 'tl' ) {
-					$tlSources[$row->pr_page] = PageIdentityValue::localIdentity(
-						(int)$row->pr_page,
-						(int)$row->page_namespace,
-						$row->page_title
-					);
-				}
+				$tlSources[$row->pr_page] = PageIdentityValue::localIdentity(
+					(int)$row->pr_page,
+					(int)$row->page_namespace,
+					$row->page_title
+				);
 
 				if ( !isset( $pageRestrictions[$row->pr_type] ) ) {
 					$pageRestrictions[$row->pr_type] = [];
@@ -636,6 +608,38 @@ class RestrictionStore {
 
 				if ( !in_array( $row->pr_level, $pageRestrictions[$row->pr_type] ) ) {
 					$pageRestrictions[$row->pr_type][] = $row->pr_level;
+				}
+			}
+		}
+
+		if ( $page->getNamespace() === NS_FILE ) {
+			$imageLinksDb = $this->loadBalancerFactory->getReplicaDatabase( ImageLinksTable::VIRTUAL_DOMAIN );
+			$imageLinks = $imageLinksDb->newSelectQueryBuilder()
+				->select( 'il_from' )
+				->from( 'imagelinks' )
+				->where( [
+					'il_from' => $cascadePageIds,
+					'il_to' => $page->getDBkey()
+				] )
+				->caller( __METHOD__ )
+				->fetchResultSet();
+
+			foreach ( $imageLinks as $link ) {
+				$row = $restrictionData[$link->il_from];
+				$expiry = $imageLinksDb->decodeExpiry( $row->pr_expiry );
+				if ( $expiry > $now ) {
+					$ilSources[$row->pr_page] = PageIdentityValue::localIdentity(
+						(int)$row->pr_page,
+						(int)$row->page_namespace,
+						$row->page_title
+					);
+
+					if ( !isset( $pageRestrictions[$row->pr_type] ) ) {
+						$pageRestrictions[$row->pr_type] = [];
+					}
+					if ( !in_array( $row->pr_level, $pageRestrictions[$row->pr_type] ) ) {
+						$pageRestrictions[$row->pr_type][] = $row->pr_level;
+					}
 				}
 			}
 		}
