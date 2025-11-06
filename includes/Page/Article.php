@@ -477,7 +477,8 @@ class Article implements Page {
 		$outputPage->setPageTitle( Parser::formatPageTitle(
 			str_replace( '_', ' ', $this->getTitle()->getNsText() ),
 			':',
-			$this->getTitle()->getText()
+			$this->getTitle()->getText(),
+			$this->getTitle()->getPageLanguage()
 		) );
 
 		$outputPage->setArticleFlag( true );
@@ -1024,6 +1025,8 @@ class Article implements Page {
 		# Adjust the title if it was set by displaytitle, -{T|}- or language conversion
 		$titleText = $pOutput->getTitleText();
 		if ( $titleText !== '' ) {
+			# XXX T36514 / T314399 / T306440: we should have a language here
+			# and split the namespace
 			$out->setPageTitle( $titleText );
 			$out->setDisplayTitle( $titleText );
 		}

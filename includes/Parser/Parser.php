@@ -6439,15 +6439,23 @@ class Parser {
 	 * @param string|HtmlArmor $nsText
 	 * @param string|HtmlArmor $nsSeparator
 	 * @param string|HtmlArmor $mainText
+	 * @param ?Language $titleLang If present, the title will be wrapped with
+	 *  a <span> setting appropriate `lang` and `dir` attributes.
 	 * @return string HTML
 	 */
-	public static function formatPageTitle( $nsText, $nsSeparator, $mainText ): string {
+	public static function formatPageTitle( $nsText, $nsSeparator, $mainText, ?Language $titleLang = null ): string {
 		$html = '';
 		if ( $nsText !== '' ) {
 			$html .= '<span class="mw-page-title-namespace">' . HtmlArmor::getHtml( $nsText ) . '</span>';
 			$html .= '<span class="mw-page-title-separator">' . HtmlArmor::getHtml( $nsSeparator ) . '</span>';
 		}
 		$html .= '<span class="mw-page-title-main">' . HtmlArmor::getHtml( $mainText ) . '</span>';
+		if ( $titleLang !== null ) {
+			$html = Html::rawElement( 'span', [
+				'lang' => $titleLang->getHtmlCode(),
+				'dir' => $titleLang->getDir(),
+			], $html );
+		}
 		return $html;
 	}
 
