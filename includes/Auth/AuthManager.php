@@ -2124,9 +2124,10 @@ class AuthManager implements LoggerAwareInterface {
 		// Checks passed, create the user...
 		$from = $_SERVER['REQUEST_URI'] ?? 'CLI';
 		$this->logger->info( __METHOD__ . ': creating new user ({username}) - from: {from}', [
-			'username' => $username,
-			'from' => $from,
-		] );
+				'username' => $username,
+				'from' => $from
+			] + $this->request->getSecurityLogContext( $user )
+		);
 
 		// Ignore warnings about primary connections/writes...hard to avoid here
 		$fname = __METHOD__;
