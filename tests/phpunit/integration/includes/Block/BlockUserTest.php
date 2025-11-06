@@ -1,11 +1,14 @@
 <?php
 
+namespace MediaWiki\Tests\Integration\Block;
+
 use MediaWiki\Block\BlockUserFactory;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\User\User;
+use MediaWikiIntegrationTestCase;
 
 /**
  * @group Blocking

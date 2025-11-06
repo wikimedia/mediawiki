@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\Tests\Block;
+
 use MediaWiki\Block\AnonIpBlockTarget;
 use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\Block\CompositeBlock;
@@ -8,6 +10,7 @@ use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\SystemBlock;
 use MediaWiki\MainConfigNames;
+use MediaWikiLangTestCase;
 
 /**
  * @group Database

@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\Tests\Integration\Block;
+
 use MediaWiki\Block\AnonIpBlockTarget;
 use MediaWiki\Block\AutoBlockTarget;
 use MediaWiki\Block\BlockTargetFactory;
@@ -11,12 +13,14 @@ use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\User\UserSelectQueryBuilder;
+use MediaWikiIntegrationTestCase;
+use StatusValue;
 use Wikimedia\Rdbms\IDBAccessObject;
 
 /**
  * @covers \MediaWiki\Block\BlockTargetFactory
  */
-class BlockTargetFactoryTest extends \MediaWikiIntegrationTestCase {
+class BlockTargetFactoryTest extends MediaWikiIntegrationTestCase {
 	private function getBlockTargetFactory( $wikiId = false ) {
 		return new BlockTargetFactory(
 			new ServiceOptions(

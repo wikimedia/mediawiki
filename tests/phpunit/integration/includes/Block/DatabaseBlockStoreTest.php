@@ -1,5 +1,8 @@
 <?php
 
+namespace MediaWiki\Tests\Integration\Block;
+
+use InvalidArgumentException;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
@@ -11,6 +14,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\User\User;
+use MediaWikiIntegrationTestCase;
 use Psr\Log\NullLogger;
 use Wikimedia\IPUtils;
 use Wikimedia\ScopedCallback;

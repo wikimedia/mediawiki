@@ -1,7 +1,10 @@
 <?php
 
+namespace MediaWiki\Tests\Integration\Block;
+
 use MediaWiki\Block\HideUserUtils;
 use MediaWiki\User\User;
+use MediaWikiIntegrationTestCase;
 
 /**
  * @group Database

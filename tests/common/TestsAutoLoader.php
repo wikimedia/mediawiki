@@ -91,8 +91,8 @@ $wgAutoloadClasses += [
 	'MediaWiki\\Tests\\Auth\\AuthenticationRequestTestCase' =>
 		"$testDir/phpunit/includes/Auth/AuthenticationRequestTestCase.php",
 
-	# tests/phpunit/includes/block
-	'MediaWiki\\Tests\\Block\\Restriction\\RestrictionTestCase' => "$testDir/phpunit/includes/block/Restriction/RestrictionTestCase.php",
+	# tests/phpunit/includes/Block
+	'MediaWiki\\Tests\\Block\\Restriction\\RestrictionTestCase' => "$testDir/phpunit/includes/Block/Restriction/RestrictionTestCase.php",
 
 	# tests/phpunit/includes/recentchanges
 	'TestRecentChangesHelper' => "$testDir/phpunit/includes/recentchanges/TestRecentChangesHelper.php",

@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\Tests\Block;
+
 use MediaWiki\Block\BlockErrorFormatter;
 use MediaWiki\Block\CompositeBlock;
 use MediaWiki\Block\DatabaseBlock;
@@ -10,6 +12,7 @@ use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Message\Message;
 use MediaWiki\User\UserIdentityValue;
+use MediaWikiIntegrationTestCase;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\Rdbms\LoadBalancer;

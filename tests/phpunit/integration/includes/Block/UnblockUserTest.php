@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Tests\Block;
+namespace MediaWiki\Tests\Integration\Block;
 
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\DatabaseBlockStore;
