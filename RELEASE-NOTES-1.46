@@ -29,6 +29,9 @@ For notes on 1.45.x and older releases, see HISTORY.
   feature (see https://www.mediawiki.org/wiki/Help:Watchlist_labels for info).
   Note that the two new database tables for watchlist labels will be created
   regardless of the value of this flag. Defaults to false.
+* $wgUserJsPrefLimit – (T408733) This setting lets you limit the maximum number
+  of supported custom JS preferences each user can have, to reduce load. The
+  default value is 100.
 * …
 
 ==== Changed configuration ====
