@@ -3911,13 +3911,13 @@ class OutputPage extends ContextSource {
 
 		$pieces[] = Html::openElement( 'body', $bodyAttrs );
 
-		// Add aria-live region for accessibility notifications.
+		// Add dedicated ARIA live region container for notifications to assistive technology users.
+		// Note that `aria-atomic="false"` and `aria-relevant="additions text"` are the default
+		// values and therefore not duplicated below.
 		$pieces[] = Html::rawElement( 'div', [
-			'id' => 'mw-live-region',
-			'class' => 'mw-live-region',
+			'id' => 'mw-aria-live-region',
+			'class' => 'mw-aria-live-region',
 			'aria-live' => 'polite',
-			'aria-atomic' => 'false',
-			'aria-relevant' => 'additions text',
 		], '' );
 
 		return self::combineWrappedStrings( $pieces );

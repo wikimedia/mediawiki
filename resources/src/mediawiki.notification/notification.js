@@ -10,7 +10,7 @@
 	const preReadyNotifQueue = [];
 
 	/**
-	 * Announce notification message to aria-live region for screen readers.
+	 * Announce notification message to dedicated ARIA live region for assistive technology.
 	 *
 	 * For notifications with form controls/widgets, callers should provide
 	 * options.ariaText with a clean text message. Otherwise, the announcement
@@ -20,7 +20,7 @@
 	 * @param {mw.notification.NotificationOptions} options The options for the notification
 	 */
 	function announceToAriaLive( $notificationContent, options ) {
-		const ariaLiveRegion = document.getElementById( 'mw-live-region' );
+		const ariaLiveRegion = document.getElementById( 'mw-aria-live-region' );
 		if ( !ariaLiveRegion ) {
 			return;
 		}
@@ -31,7 +31,7 @@
 		if ( options.ariaText ) {
 			announcementText = options.ariaText;
 		} else {
-			// Check if notification was marked as complex during construction
+			// Check if notification was marked as complex during construction.
 			if ( $notificationContent[ 0 ].classList.contains( 'mw-notification-complex-content' ) ) {
 				// Skip announcement for complex notifications without explicit ariaText
 				// to avoid announcing all widget options and labels.
@@ -51,12 +51,14 @@
 			ariaLiveRegion.setAttribute( 'aria-live', 'assertive' );
 		}
 
-		// Clear first to force a DOM change, ensuring screen readers detect and announce the update.
-		// Without this, setting the same text twice would be detected as "no change" and not announced.
+		// Clear first to force a DOM change, ensuring screen readers detect and
+		// announce the update.
+		// Without this, setting the same text twice would be detected as "no change" and
+		// not announced.
 		ariaLiveRegion.textContent = '';
 		ariaLiveRegion.textContent = announcementText;
 
-		// Reset to polite for next notification if we changed it
+		// Reset to polite for next notification if we changed it.
 		if ( options.type === 'error' ) {
 			ariaLiveRegion.setAttribute( 'aria-live', 'polite' );
 		}
