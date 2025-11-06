@@ -2363,7 +2363,7 @@ return [
 				[
 					'name' => 'fallback',
 					'styles' => [ 'mediawiki.skinning.interface', 'mediawiki.codex.messagebox.styles' ],
-					'templateDirectory' => __DIR__ . '/skins/templates/fallback',
+					'templateDirectory' => __DIR__ . '/Skin/templates/fallback',
 				]
 			]
 		], true );
@@ -2374,7 +2374,7 @@ return [
 				[
 					'name' => 'apioutput',
 					'styles' => [ 'mediawiki.skinning.interface' ],
-					'templateDirectory' => __DIR__ . '/skins/templates/apioutput',
+					'templateDirectory' => __DIR__ . '/Skin/templates/apioutput',
 				]
 			]
 		], true );
@@ -2394,7 +2394,7 @@ return [
 						'sitesubtitle',
 						'sitetitle',
 					],
-					'templateDirectory' => __DIR__ . '/skins/templates/authentication-popup',
+					'templateDirectory' => __DIR__ . '/Skinstemplates/authentication-popup',
 				]
 			]
 		], true );
@@ -2406,7 +2406,7 @@ return [
 					'name' => 'json',
 					'styles' => [],
 					'format' => 'json',
-					'templateDirectory' => __DIR__ . '/skins/templates/apioutput',
+					'templateDirectory' => __DIR__ . '/Skinstemplates/apioutput',
 				]
 			]
 		], true );
