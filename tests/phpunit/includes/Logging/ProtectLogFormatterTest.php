@@ -1,4 +1,5 @@
 <?php
+namespace MediaWiki\Tests\Logging;
 
 use MediaWiki\Cache\LinkCache;
 use MediaWiki\Context\RequestContext;

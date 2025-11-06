@@ -1,4 +1,5 @@
 <?php
+namespace MediaWiki\Tests\Logging;
 
 use MediaWiki\Cache\GenderCache;
 use MediaWiki\Cache\LinkCache;
@@ -12,6 +13,7 @@ use MediaWiki\Page\ExistingPageRecord;
 use MediaWiki\Page\PageStore;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\User\UserFactory;
+use MediaWikiLangTestCase;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Stats\StatsFactory;
@@ -177,3 +179,6 @@ abstract class LogFormatterTestCase extends MediaWikiLangTestCase {
 		return $val;
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( LogFormatterTestCase::class, 'LogFormatterTestCase' );

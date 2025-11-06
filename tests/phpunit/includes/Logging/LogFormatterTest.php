@@ -1,4 +1,5 @@
 <?php
+namespace MediaWiki\Tests\Logging;
 
 use MediaWiki\Api\ApiResult;
 use MediaWiki\Context\DerivativeContext;
@@ -15,6 +16,7 @@ use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentityValue;
+use MediaWikiLangTestCase;
 
 /**
  * @group Database

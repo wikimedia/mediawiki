@@ -1,4 +1,5 @@
 <?php
+namespace MediaWiki\Tests\Logging;
 
 use MediaWiki\Block\BlockUser;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
@@ -10,6 +11,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
+use MediaWikiIntegrationTestCase;
 
 /**
  * @group Database

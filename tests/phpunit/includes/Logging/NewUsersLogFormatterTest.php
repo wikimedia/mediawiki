@@ -1,4 +1,5 @@
 <?php
+namespace MediaWiki\Tests\Logging;
 
 use MediaWiki\Logging\NewUsersLogFormatter;
 

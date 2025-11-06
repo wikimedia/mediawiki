@@ -135,8 +135,9 @@ $wgAutoloadClasses += [
 	'ExternalStoreForTesting' => "$testDir/phpunit/includes/ExternalStore/ExternalStoreForTesting.php",
 	'MediaWiki\\Tests\\ExternalStore\\ExternalStoreForTesting' => "$testDir/phpunit/includes/ExternalStore/ExternalStoreForTesting.php",
 
-	# tests/phpunit/includes/logging
-	'LogFormatterTestCase' => "$testDir/phpunit/includes/logging/LogFormatterTestCase.php",
+	# tests/phpunit/includes/Logging
+	'LogFormatterTestCase' => "$testDir/phpunit/includes/Logging/LogFormatterTestCase.php",
+	'MediaWiki\\Tests\\Logging\\LogFormatterTestCase' => "$testDir/phpunit/includes/Logging/LogFormatterTestCase.php",
 
 	# tests/phpunit/includes/OutputTransform
 	'MediaWiki\\Tests\\OutputTransform\\DummyDOMTransformStage' => "$testDir/phpunit/includes/OutputTransform/DummyDOMTransformStage.php",

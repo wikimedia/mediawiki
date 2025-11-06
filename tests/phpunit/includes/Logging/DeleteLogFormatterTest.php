@@ -1,4 +1,5 @@
 <?php
+namespace MediaWiki\Tests\Logging;
 
 /**
  * @covers \MediaWiki\Logging\DeleteLogFormatter
