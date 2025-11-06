@@ -123,13 +123,6 @@ because of Phabricator reports.
 
 === Deprecations in 1.46 ===
 
-* Classes supporting the legacy StatsD service have been deprecated.  Usage of
-  StatsLib (https://www.mediawiki.org/wiki/Manual:Stats) is recommended going
-  forward.  The deprecated classes are:
-    - Wikimedia\Stats\BufferingStatsdDataFactory
-    - Wikimedia\Stats\IBufferingStatsdDataFactory
-    - Wikimedia\Stats\NullStatsdDataFactory
-    - Wikimedia\Stats\StatsdAwareInterface
 * Using an int for the $mode parameter of LanguageFallback::getAll() is now
   deprecated.  Use the new LanguageFallbackMode enumeration instead.
 * LanguageFallback::MESSAGES and LanguageFallback::STRICT are deprecated; use
