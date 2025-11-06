@@ -266,6 +266,7 @@ class RecentChangeMailComposer {
 			$headers['List-Help'] = 'https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Watchlist';
 		}
 
+		// @phan-suppress-next-line SecurityCheck-XSS
 		$this->emailer->send(
 				[ $to ],
 				$this->from,

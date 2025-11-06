@@ -245,7 +245,10 @@ class ContentHolder {
 			// the page bundle.
 			$this->convertDomToHtml();
 		}
-		return $this->pageBundle;
+		$pb = $this->pageBundle;
+		// Parsoid content implies page bundle is non-null
+		'@phan-var BasePageBundle $pb';
+		return $pb;
 	}
 
 	private function convertHtmlToDom() {

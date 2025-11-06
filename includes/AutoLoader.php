@@ -45,7 +45,6 @@ class AutoLoader {
 	 */
 	public const CORE_NAMESPACES = [
 		'MediaWiki\\' => __DIR__ . '/',
-		'MediaWiki\\Actions\\' => __DIR__ . '/actions/',
 		'MediaWiki\\Maintenance\\' => __DIR__ . '/../maintenance/includes/',
 		'Wikimedia\\' => __DIR__ . '/libs/',
 	];

@@ -391,6 +391,7 @@ class HistoryPager extends ReverseChronologicalPager {
 			$lastlink = $this->lastLink( $revRecord, null );
 		} else {
 			// Do not display a link, because this is the oldest revision of the page
+			// @phan-suppress-next-line SecurityCheck-DoubleEscaped
 			$lastlink = Html::element( 'span', [
 				'class' => 'mw-history-histlinks-previous',
 			], $this->historyPage->message['last'] );
@@ -553,6 +554,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		if ( $latest === $rev->getId()
 			|| !$rev->userCan( RevisionRecord::DELETED_TEXT, $this->getAuthority() )
 		) {
+			// @phan-suppress-next-line SecurityCheck-DoubleEscaped
 			return Html::element( 'span', [
 				'class' => 'mw-history-histlinks-current',
 			], $cur );
@@ -586,6 +588,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		if ( !$prevRev->userCan( RevisionRecord::DELETED_TEXT, $this->getAuthority() ) ||
 			( $nextRev && !$nextRev->userCan( RevisionRecord::DELETED_TEXT, $this->getAuthority() ) )
 		) {
+			// @phan-suppress-next-line SecurityCheck-DoubleEscaped
 			return Html::element( 'span', [
 				'class' => 'mw-history-histlinks-previous',
 			], $last );

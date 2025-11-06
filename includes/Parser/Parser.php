@@ -2142,7 +2142,6 @@ class Parser {
 			# This was changed in August 2004
 			$s .= $this->getLinkRenderer()->makeExternalLink(
 				$url,
-				// @phan-suppress-next-line SecurityCheck-XSS
 				new HtmlArmor( $text ),
 				$this->getTitle(),
 				$linktype,
