@@ -1,4 +1,5 @@
 <?php
+namespace MediaWiki\Tests\JobQueue;
 
 use MediaWiki\JobQueue\Job;
 use MediaWiki\JobQueue\JobQueue;
@@ -7,6 +8,7 @@ use MediaWiki\JobQueue\Jobs\DuplicateJob;
 use MediaWiki\JobQueue\Jobs\NullJob;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\WikiMap\WikiMap;
+use MediaWikiIntegrationTestCase;
 use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\ObjectCache\WANObjectCache;
 

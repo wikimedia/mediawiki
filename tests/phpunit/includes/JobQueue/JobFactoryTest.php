@@ -1,10 +1,12 @@
 <?php
+namespace MediaWiki\Tests\JobQueue;
 
 use MediaWiki\JobQueue\JobFactory;
 use MediaWiki\JobQueue\Jobs\NullJob;
 use MediaWiki\JobQueue\Jobs\ParsoidCachePrewarmJob;
 use MediaWiki\Page\DeleteLinksJob;
 use MediaWiki\Title\Title;
+use MediaWikiIntegrationTestCase;
 
 /**
  * @author Addshore

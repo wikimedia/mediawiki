@@ -1,4 +1,8 @@
 <?php
+namespace MediaWiki\Tests\JobQueue\Jobs;
+
+use MediaWikiIntegrationTestCase;
+use UserEditCountInitJob;
 
 /**
  * @group JobQueue

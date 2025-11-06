@@ -1,9 +1,11 @@
 <?php
+namespace MediaWiki\Tests\JobQueue\Jobs;
 
 use MediaWiki\Category\Category;
 use MediaWiki\JobQueue\Jobs\CategoryCountUpdateJob;
 use MediaWiki\Page\WikiPage;
 use MediaWiki\Title\Title;
+use MediaWikiIntegrationTestCase;
 
 /**
  * @covers \MediaWiki\JobQueue\Jobs\CategoryCountUpdateJob

@@ -1,5 +1,7 @@
 <?php
+namespace MediaWiki\Tests\JobQueue;
 
+use InvalidArgumentException;
 use MediaWiki\JobQueue\IJobSpecification;
 use MediaWiki\JobQueue\Job;
 use MediaWiki\JobQueue\Jobs\NullJob;
@@ -9,6 +11,8 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Page\DeleteLinksJob;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Title\Title;
+use MediaWikiIntegrationTestCase;
+use stdClass;
 
 /**
  * @author Addshore

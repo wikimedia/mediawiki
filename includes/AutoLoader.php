@@ -48,7 +48,6 @@ class AutoLoader {
 		'MediaWiki\\Actions\\' => __DIR__ . '/actions/',
 		'MediaWiki\\Block\\' => __DIR__ . '/block/',
 		'MediaWiki\\Installer\\' => __DIR__ . '/installer/',
-		'MediaWiki\\JobQueue\\' => __DIR__ . '/jobqueue/',
 		'MediaWiki\\Maintenance\\' => __DIR__ . '/../maintenance/includes/',
 		'MediaWiki\\Session\\' => __DIR__ . '/session/',
 		'MediaWiki\\Skin\\' => __DIR__ . '/skins/',

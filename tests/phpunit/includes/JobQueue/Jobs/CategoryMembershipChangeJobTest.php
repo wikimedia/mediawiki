@@ -1,4 +1,5 @@
 <?php
+namespace MediaWiki\Tests\JobQueue\Jobs;
 
 use MediaWiki\JobQueue\Jobs\CategoryMembershipChangeJob;
 use MediaWiki\MainConfigNames;
@@ -6,6 +7,7 @@ use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Title\Title;
 use MediaWiki\Utils\MWTimestamp;
+use MediaWikiIntegrationTestCase;
 
 /**
  * @covers \MediaWiki\JobQueue\Jobs\CategoryMembershipChangeJob

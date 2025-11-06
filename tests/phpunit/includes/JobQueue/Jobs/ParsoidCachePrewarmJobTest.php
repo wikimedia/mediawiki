@@ -1,4 +1,5 @@
 <?php
+namespace MediaWiki\Tests\JobQueue\Jobs;
 
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\JobQueue\Jobs\ParsoidCachePrewarmJob;
@@ -8,6 +9,7 @@ use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\PageRecord;
 use MediaWiki\Parser\ParserOptions;
+use MediaWikiIntegrationTestCase;
 use Psr\Log\NullLogger;
 use Wikimedia\TestingAccessWrapper;
 
