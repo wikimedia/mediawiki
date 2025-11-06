@@ -1,6 +1,9 @@
 <?php
 
+namespace MediaWiki\Tests\Unit\Actions;
+
 use MediaWiki\Actions\ActionInfo;
+use MediaWikiUnitTestCase;
 
 /**
  * @covers \MediaWiki\Actions\ActionInfo

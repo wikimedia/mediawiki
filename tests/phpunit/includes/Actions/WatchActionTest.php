@@ -1,5 +1,8 @@
 <?php
 
+namespace MediaWiki\Tests\Actions;
+
+use Generator;
 use MediaWiki\Actions\WatchAction;
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\IContextSource;
@@ -21,6 +24,8 @@ use MediaWiki\User\User;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\Watchlist\WatchedItem;
+use MediaWikiIntegrationTestCase;
+use MockMessageLocalizer;
 use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\TestingAccessWrapper;

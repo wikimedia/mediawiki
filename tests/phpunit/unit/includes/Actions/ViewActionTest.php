@@ -1,8 +1,11 @@
 <?php
 
+namespace MediaWiki\Tests\Unit\Actions;
+
 use MediaWiki\Actions\ViewAction;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Page\Article;
+use MediaWikiUnitTestCase;
 
 /**
  * @covers \MediaWiki\Actions\ViewAction

@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\Tests\Unit\Actions;
+
 use MediaWiki\Actions\Action;
 use MediaWiki\Actions\ActionFactory;
 use MediaWiki\Actions\EditAction;
@@ -8,9 +10,11 @@ use MediaWiki\Context\IContextSource;
 use MediaWiki\Page\Article;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
+use MediaWikiUnitTestCase;
 use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Log\LogLevel;
 use Psr\Log\NullLogger;
+use TestLogger;
 
 /**
  * @covers \MediaWiki\Actions\ActionFactory
