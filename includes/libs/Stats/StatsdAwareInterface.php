@@ -10,6 +10,7 @@ use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
  * @stable to implement
  *
  * @since 1.27
+ * @deprecated since 1.45, use https://www.mediawiki.org/wiki/Manual:Stats
  * @author Addshore
  */
 interface StatsdAwareInterface {

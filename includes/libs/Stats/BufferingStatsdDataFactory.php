@@ -29,6 +29,7 @@ use Liuggio\StatsdClient\Factory\StatsdDataFactory;
  * for statsd-php-client 1.0.12 at the time.
  *
  * @since 1.25
+ * @deprecated since 1.45, use https://www.mediawiki.org/wiki/Manual:Stats
  * @method StatsdData produceStatsdDataEntity() We use StatsdData::setKey, which is not in
  *  StatsdDataInterface https://gerrit.wikimedia.org/r/643976
  */

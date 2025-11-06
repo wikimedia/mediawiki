@@ -514,6 +514,14 @@ because of Phabricator reports.
   in a future release these synonyms will be disabled. (T407289)
 * WatchedItemQueryService::getWatchedItemsWithRecentChangeInfo() has been
   deprecated. Instead, use ChangesListQuery.
+* Classes supporting the legacy StatsD service have been deprecated.  Usage of
+  StatsLib (https://www.mediawiki.org/wiki/Manual:Stats) is recommended going
+  forward.  The deprecated classes are:
+  - Wikimedia\Stats\BufferingStatsdDataFactory
+  - Wikimedia\Stats\IBufferingStatsdDataFactory
+  - Wikimedia\Stats\NullStatsdDataFactory
+  - Wikimedia\Stats\StatsdAwareInterface
+* …
 
 === Other changes in 1.45 ===
 

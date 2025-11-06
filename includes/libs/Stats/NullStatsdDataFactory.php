@@ -7,6 +7,7 @@ use Liuggio\StatsdClient\Entity\StatsdDataInterface;
 
 /**
  * @author Addshore
+ * @deprecated since 1.45, use StatsFactory::newNull() instead
  * @since 1.27
  */
 class NullStatsdDataFactory implements IBufferingStatsdDataFactory {
