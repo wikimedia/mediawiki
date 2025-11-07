@@ -104,8 +104,8 @@ class HTMLTitleTextField extends HTMLTextField {
 			$params['namespace'] = $this->mParams['namespace'];
 		}
 
-		if ( isset( $this->mParams['excludeDynamicNamespaces'] ) ) {
-			$params['excludeDynamicNamespaces'] = $this->mParams['excludeDynamicNamespaces'];
+		if ( $this->mParams['creatable'] ) {
+			$params['creatable'] = $this->mParams['creatable'];
 		}
 
 		$params['relative'] = $this->mParams['relative'];

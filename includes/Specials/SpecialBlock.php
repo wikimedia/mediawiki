@@ -421,7 +421,7 @@ class SpecialBlock extends FormSpecialPage {
 			'cssclass' => 'mw-htmlform-checkradio-indent mw-block-partial-restriction',
 			'default' => '',
 			'showMissing' => false,
-			'excludeDynamicNamespaces' => true,
+			'creatable' => true,
 			'input' => [
 				'autocomplete' => false
 			],

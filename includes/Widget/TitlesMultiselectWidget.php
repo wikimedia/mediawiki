@@ -12,23 +12,24 @@ class TitlesMultiselectWidget extends TagMultiselectWidget {
 
 	/** @var bool|null */
 	protected $showMissing = null;
-	/** @var bool|null */
-	protected $excludeDynamicNamespaces = null;
 	/** @var int|null */
 	protected $namespace = null;
 	/** @var bool|null */
 	protected $relative = null;
 	/** @var bool|null */
 	protected $allowEditTags = null;
+	/** @var bool|null */
+	protected $creatable = null;
 
 	/**
 	 * @param array $config Configuration options
 	 *   - bool $config['showMissing'] Show missing pages in the typeahead dropdown
 	 *     (ie. allow adding pages that don't exist)
-	 *   - bool $config['excludeDynamicNamespaces'] Exclude pages in negative namespaces
 	 *   - bool $config['namespace'] Shows pages only from the specified namespace
 	 *   - bool $config['relative'] Include namespace names in form data, if 'namespace' config is used
 	 *   - bool $config['allowEditTags'] Allow editing of the tags by clicking them
+	 *   - bool $config['creatable'] Whether to validate the title  is creatable
+	 *     (not a special page)
 	 */
 	public function __construct( array $config = [] ) {
 		parent::__construct( $config );
@@ -36,9 +37,6 @@ class TitlesMultiselectWidget extends TagMultiselectWidget {
 		// Properties
 		if ( isset( $config['showMissing'] ) ) {
 			$this->showMissing = $config['showMissing'];
-		}
-		if ( isset( $config['excludeDynamicNamespaces'] ) ) {
-			$this->excludeDynamicNamespaces = $config['excludeDynamicNamespaces'];
 		}
 		if ( isset( $config['namespace'] ) ) {
 			$this->namespace = $config['namespace'];
@@ -48,6 +46,9 @@ class TitlesMultiselectWidget extends TagMultiselectWidget {
 		}
 		if ( isset( $config['allowEditTags'] ) ) {
 			$this->allowEditTags = $config['allowEditTags'];
+		}
+		if ( isset( $config['creatable'] ) ) {
+			$this->creatable = $config['creatable'];
 		}
 
 		$this->addClasses( [ 'mw-widgets-titlesMultiselectWidget' ] );
@@ -63,9 +64,6 @@ class TitlesMultiselectWidget extends TagMultiselectWidget {
 		if ( $this->showMissing !== null ) {
 			$config['showMissing'] = $this->showMissing;
 		}
-		if ( $this->excludeDynamicNamespaces !== null ) {
-			$config['excludeDynamicNamespaces'] = $this->excludeDynamicNamespaces;
-		}
 		if ( $this->namespace !== null ) {
 			$config['namespace'] = $this->namespace;
 		}
@@ -74,6 +72,9 @@ class TitlesMultiselectWidget extends TagMultiselectWidget {
 		}
 		if ( $this->allowEditTags !== null ) {
 			$config['allowEditTags'] = $this->allowEditTags;
+		}
+		if ( $this->creatable !== null ) {
+			$config['creatable'] = $this->creatable;
 		}
 
 		return parent::getConfig( $config );

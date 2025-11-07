@@ -110,9 +110,6 @@ class HTMLTitlesMultiselectField extends HTMLTitleTextField {
 		if ( isset( $this->mParams['showMissing'] ) ) {
 			$params['showMissing'] = $this->mParams['showMissing'];
 		}
-		if ( isset( $this->mParams['excludeDynamicNamespaces'] ) ) {
-			$params['excludeDynamicNamespaces'] = $this->mParams['excludeDynamicNamespaces'];
-		}
 		if ( $this->mParams['namespace'] !== false ) {
 			$params['namespace'] = $this->mParams['namespace'];
 		}
@@ -123,6 +120,10 @@ class HTMLTitlesMultiselectField extends HTMLTitleTextField {
 
 		if ( isset( $this->mParams['input'] ) ) {
 			$params['input'] = $this->mParams['input'];
+		}
+
+		if ( isset( $this->mParams['creatable'] ) ) {
+			$params['creatable'] = $this->mParams['creatable'];
 		}
 
 		if ( $value !== null ) {

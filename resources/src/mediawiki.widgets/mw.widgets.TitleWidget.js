@@ -32,7 +32,7 @@
 	 * @param {boolean} [config.searchFragments=false] Search for hash fragments on a specific page when typed
 	 * @param {boolean} [config.addQueryInput=true] Add exact user's input query to results
 	 * @param {boolean} [config.excludeCurrentPage=false] Exclude the current page from suggestions
-	 * @param {boolean} [config.excludeDynamicNamespaces=false] Exclude pages whose namespace is negative
+	 * @param {boolean} [config.creatable=false] Show only pages that can be created (not special pages)
 	 * @param {boolean} [config.validateTitle=true] Whether the input must be a valid title
 	 * @param {boolean} [config.required=false] Whether the input must not be empty
 	 * @param {boolean} [config.highlightSearchQuery=true] Highlight the partial query the user used for this title
@@ -58,7 +58,7 @@
 		this.searchFragments = !!config.searchFragments;
 		this.addQueryInput = config.addQueryInput !== false;
 		this.excludeCurrentPage = !!config.excludeCurrentPage;
-		this.excludeDynamicNamespaces = !!config.excludeDynamicNamespaces;
+		this.creatable = !!config.creatable;
 		this.validateTitle = config.validateTitle !== false;
 		this.highlightSearchQuery = config.highlightSearchQuery !== false;
 		this.cache = config.cache;
@@ -367,8 +367,8 @@
 				continue;
 			}
 
-			// When excludeDynamicNamespaces is set, ignore all pages with negative namespace
-			if ( this.excludeDynamicNamespaces && suggestionPage.ns < 0 ) {
+			// If requested, ignore all pages that cannot be created (pages in negative namespace)
+			if ( this.creatable && suggestionPage.ns < 0 ) {
 				continue;
 			}
 			pageData[ suggestionPage.title ] = {
