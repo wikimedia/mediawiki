@@ -38,7 +38,10 @@ class MemoizedCallable {
 	private $ttl;
 
 	/**
-	 * @param callable $callable Function or method to memoize.
+	 * @param callable&string|callable&array $callable Function or method to memoize.
+	 *   This class does not support Closure objects, as it uses the function/method name as a cache key.
+	 *   To memoize the results of closures, use Wikimedia\ObjectCache\BagOStuff::getWithSetCallback() instead
+	 *   with your chosen cache key.
 	 * @param int $ttl TTL in seconds. Defaults to 3600 (1hr). Capped at 86400 (24h).
 	 */
 	public function __construct( $callable, $ttl = 3600 ) {
@@ -129,7 +132,7 @@ class MemoizedCallable {
 	 * Shortcut method for creating a MemoizedCallable and invoking it
 	 * with the specified arguments.
 	 *
-	 * @param callable $callable
+	 * @param callable&string|callable&array $callable
 	 * @param array $args
 	 * @param int $ttl
 	 * @return mixed
