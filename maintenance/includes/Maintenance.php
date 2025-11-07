@@ -547,7 +547,7 @@ abstract class Maintenance {
 		// If running PHPUnit tests we don't want to call exit, as it will end the test suite early.
 		// Instead, throw an exception that will still cause the relevant test to fail if the ::fatalError
 		// call was not expected.
-		if ( defined( 'MW_PHPUNIT_TEST' ) ) {
+		if ( defined( 'MW_PHPUNIT_TEST' ) && !defined( 'MW_PARSER_TEST' ) ) {
 			throw new MaintenanceFatalError( $exitCode );
 		} else {
 			exit( $exitCode );

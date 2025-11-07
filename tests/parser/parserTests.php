@@ -99,6 +99,8 @@ class ParserTestsMaintenance extends Maintenance {
 		// Some methods which are discouraged for normal code throw exceptions unless
 		// we declare this is just a test.
 		define( 'MW_PHPUNIT_TEST', true );
+		// To be used when parser tests desire different behaviour from phpunit tests
+		define( 'MW_PARSER_TEST', true );
 
 		parent::finalSetup( $settingsBuilder );
 		TestSetup::applyInitialConfig();
