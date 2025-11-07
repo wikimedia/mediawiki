@@ -525,7 +525,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 				$vals['slots'][$role] = $this->extractSlotInfo( $slot, $revDel, $content );
 				// @todo Move this into extractSlotInfo() (and remove its $content parameter)
 				// when extractDeprecatedContent() is no more.
-				if ( $content ) {
+				if ( $content && $this->getAuthority()->authorizeRead( 'read', $revision->getPage() ) ) {
 					/** @var Content $content */
 					$model = $content->getModel();
 					$format = $this->slotContentFormats[$role] ?? $content->getDefaultFormat();
@@ -624,6 +624,10 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 	private function extractDeprecatedContent( Content $content, RevisionRecord $revision ) {
 		$vals = [];
 		$title = Title::newFromPageIdentity( $revision->getPage() );
+
+		if ( !$this->getAuthority()->authorizeRead( 'read', $title ) ) {
+			return [];
+		}
 
 		if ( $this->fld_parsetree || ( $this->fld_content && $this->generateXML ) ) {
 			if ( $content->getModel() === CONTENT_MODEL_WIKITEXT ) {
