@@ -62,6 +62,7 @@ For notes on 1.45.x and older releases, see HISTORY.
 
 ===== New development-only external libraries =====
 
+* Updated symfony/yaml from 6.4.25 to 6.4.26.
 * …
 
 ==== Changed external libraries ====
