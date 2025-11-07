@@ -57,7 +57,7 @@ async function startVideo( ffmpeg, title ) {
 		const { spawn } = await import( 'child_process' );
 		ffmpeg = spawn( 'ffmpeg', [
 			'-f', 'x11grab', //  grab the X11 display
-			'-video_size', '1280x1024', // video size need to match our XVFB setup
+			'-video_size', `${ browser.options.capabilities[ 'mw:width' ] }x${ browser.options.capabilities[ 'mw:height' ] }`, // video size need to match our XVFB setup
 			'-framerate', '10', // Capture framerate is 10 fps
 			'-i', process.env.DISPLAY, // display used for input
 			'-draw_mouse', '0', // skip the mouse (do we need it?)

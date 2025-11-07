@@ -83,6 +83,10 @@ export const config = {
 		// https://www.mediawiki.org/wiki/Selenium/How-to/Record_videos_of_test_runs
 		'mw:recordVideo': true,
 
+		// Browser width and height
+		'mw:width': 1280,
+		'mw:height': 1024,
+
 		// For Chrome/Chromium https://www.w3.org/TR/webdriver
 		browserName: 'chrome',
 		// Use correct browser and driver in CI
@@ -217,6 +221,18 @@ export const config = {
 	beforeSession: function () {
 		// eslint-disable-next-line n/no-unsupported-features/node-builtins
 		dns.setDefaultResultOrder( 'ipv4first' );
+	},
+
+	/**
+	 * Gets executed before test execution begins. At this point you can access to all global
+	 * variables like `browser`. It is the perfect place to define custom commands.
+	 *
+	 * @param {Array.<Object>} capabilities list of capabilities details
+	 * @param {Array.<string>} specs        List of spec file paths that are to be run
+	 * @param {Object}         browser      instance of created browser/device session
+	 */
+	before: async function () {
+		await browser.setWindowSize( browser.options.capabilities[ 'mw:width' ], browser.options.capabilities[ 'mw:height' ] );
 	},
 
 	/**
