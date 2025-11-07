@@ -198,7 +198,9 @@ const ApiSandbox = {
 	 *   The form fields will be updated to match.
 	 */
 	sendRequest: function ( params ) {
-		let method = 'get';
+		let method = 'get',
+			infoMessage;
+
 		const paramsAreForced = !!params,
 			deferreds = [],
 			displayParams = {},
@@ -229,6 +231,7 @@ const ApiSandbox = {
 			checkPage.getQueryParams( params, displayParams, ajaxOptions );
 			if ( checkPage.paramInfo.mustbeposted !== undefined ) {
 				method = 'post';
+				infoMessage = mw.message( 'apisandbox-request-post' ).parseDom();
 			}
 			const subpages = checkPage.getSubpages();
 			subpages.forEach( ( subpage ) => {
@@ -315,6 +318,12 @@ const ApiSandbox = {
 
 			const query = $.param( displayParams );
 
+			// Force POST if we have huge payload (T406283)
+			if ( method !== 'post' && query.length > 7500 ) {
+				method = 'post';
+				infoMessage = mw.message( 'apisandbox-request-post2' ).parseDom();
+			}
+
 			const formatItems = Util.formatRequest( displayParams, params, method, ajaxOptions );
 
 			// Force a 'fm' format with wrappedhtml=1, if available
@@ -372,7 +381,7 @@ const ApiSandbox = {
 
 			if ( method === 'post' ) {
 				page.$element.append( new OO.ui.LabelWidget( {
-					label: mw.message( 'apisandbox-request-post' ).parseDom(),
+					label: infoMessage,
 					classes: [ 'oo-ui-inline-help' ]
 				} ).$element );
 			}
