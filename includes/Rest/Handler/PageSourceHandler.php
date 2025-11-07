@@ -161,18 +161,10 @@ class PageSourceHandler extends SimpleHandler {
 	}
 
 	public function getResponseBodySchemaFileName( string $method ): ?string {
-		switch ( $this->getConfig()['format'] ) {
-			case 'bare':
-				$schema = 'includes/Rest/Handler/Schema/ExistingPageBare.json';
-				break;
-			case 'source':
-				$schema = 'includes/Rest/Handler/Schema/ExistingPageSource.json';
-				break;
-			default:
-				$schema = null;
-				break;
-		}
-
-		return $schema;
+		return match ( $this->getConfig()['format'] ) {
+			'bare' => 'includes/Rest/Handler/Schema/ExistingPageBare.json',
+			'source' => 'includes/Rest/Handler/Schema/ExistingPageSource.json',
+			default => null
+		};
 	}
 }

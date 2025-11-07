@@ -1020,17 +1020,13 @@ class ParserTestRunner {
 	 * @param array[] $requirements
 	 * @return bool
 	 */
-	public function meetsRequirements( $requirements ) {
+	public function meetsRequirements( array $requirements ): bool {
 		foreach ( $requirements as $requirement ) {
-			$ok = true;
-			switch ( $requirement['type'] ) {
-				case 'hook':
-					$ok = $this->requireHook( $requirement['name'] );
-					break;
-				case 'functionHook':
-					$ok = $this->requireFunctionHook( $requirement['name'] );
-					break;
-			}
+			$ok = match ( $requirement['type'] ) {
+				'hook' => $this->requireHook( $requirement['name'] ),
+				'functionHook' => $this->requireFunctionHook( $requirement['name'] ),
+				default => true
+			};
 			if ( !$ok ) {
 				return false;
 			}

@@ -23,28 +23,20 @@ class ApiFormatPhp extends ApiFormatBase {
 
 	public function execute() {
 		$params = $this->extractRequestParams();
-
-		switch ( $params['formatversion'] ) {
-			case 1:
-				$transforms = [
-					'BC' => [],
-					'Types' => [],
-					'Strip' => 'all',
-				];
-				break;
-
-			case 2:
-			case 'latest':
-				$transforms = [
-					'Types' => [],
-					'Strip' => 'all',
-				];
-				break;
-
-			default:
-				// Should have been caught during parameter validation
-				self::dieDebug( __METHOD__, 'Unknown value for \'formatversion\'' );
-		}
+		$transforms = match ( $params['formatversion'] ) {
+			'1' => [
+				'BC' => [],
+				'Types' => [],
+				'Strip' => 'all',
+			],
+			'2', 'latest' => [
+				'Types' => [],
+				'Strip' => 'all',
+			],
+			// Should have been caught during parameter validation
+			// @phan-suppress-next-line PhanUseReturnValueOfNever
+			default => self::dieDebug( __METHOD__, 'Unknown value for \'formatversion\'' )
+		};
 		$this->printText( serialize( $this->getResult()->getResultData( null, $transforms ) ) );
 	}
 

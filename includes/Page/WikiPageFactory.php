@@ -60,18 +60,11 @@ class WikiPageFactory {
 			return $page;
 		}
 
-		switch ( $ns ) {
-			case NS_FILE:
-				$page = new WikiFilePage( $title );
-				break;
-			case NS_CATEGORY:
-				$page = new WikiCategoryPage( $title );
-				break;
-			default:
-				$page = new WikiPage( $title );
-		}
-
-		return $page;
+		return match ( $ns ) {
+			NS_FILE => new WikiFilePage( $title ),
+			NS_CATEGORY => new WikiCategoryPage( $title ),
+			default => new WikiPage( $title )
+		};
 	}
 
 	/**

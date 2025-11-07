@@ -573,18 +573,11 @@ class Exif {
 			$charCode = substr( $this->mFilteredExifData[$prop], 0, 8 );
 			$val = substr( $this->mFilteredExifData[$prop], 8 );
 
-			switch ( $charCode ) {
-				case "JIS\x00\x00\x00\x00\x00":
-					$charset = "Shift-JIS";
-					break;
-				case "UNICODE\x00":
-					$charset = "UTF-16" . $this->byteOrder;
-					break;
-				default:
-					// ascii or undefined.
-					$charset = "";
-					break;
-			}
+			$charset = match ( $charCode ) {
+				"JIS\x00\x00\x00\x00\x00" => 'Shift-JIS',
+				"UNICODE\x00" => 'UTF-16' . $this->byteOrder,
+				default => null
+			};
 			if ( $charset ) {
 				AtEase::suppressWarnings();
 				$val = iconv( $charset, 'UTF-8//IGNORE', $val );

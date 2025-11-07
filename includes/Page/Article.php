@@ -184,18 +184,12 @@ class Article implements Page {
 		( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )
 			// @phan-suppress-next-line PhanTypeMismatchArgument Type mismatch on pass-by-ref args
 			->onArticleFromTitle( $title, $page, $context );
-		if ( !$page ) {
-			switch ( $title->getNamespace() ) {
-				case NS_FILE:
-					$page = new ImagePage( $title );
-					break;
-				case NS_CATEGORY:
-					$page = new CategoryPage( $title );
-					break;
-				default:
-					$page = new Article( $title );
-			}
-		}
+
+		$page ??= match ( $title->getNamespace() ) {
+			NS_FILE => new ImagePage( $title ),
+			NS_CATEGORY => new CategoryPage( $title ),
+			default => new Article( $title )
+		};
 		$page->setContext( $context );
 
 		return $page;

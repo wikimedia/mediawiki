@@ -117,100 +117,40 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$params = $this->extractRequestParams();
 		$done = [];
 		foreach ( $params['prop'] as $p ) {
-			switch ( $p ) {
-				case 'general':
-					$fit = $this->appendGeneralInfo( $p );
-					break;
-				case 'namespaces':
-					$fit = $this->appendNamespaces( $p );
-					break;
-				case 'namespacealiases':
-					$fit = $this->appendNamespaceAliases( $p );
-					break;
-				case 'specialpagealiases':
-					$fit = $this->appendSpecialPageAliases( $p );
-					break;
-				case 'magicwords':
-					$fit = $this->appendMagicWords( $p );
-					break;
-				case 'interwikimap':
-					$fit = $this->appendInterwikiMap( $p, $params['filteriw'] );
-					break;
-				case 'dbrepllag':
-					$fit = $this->appendDbReplLagInfo( $p, $params['showalldb'] );
-					break;
-				case 'statistics':
-					$fit = $this->appendStatistics( $p );
-					break;
-				case 'usergroups':
-					$fit = $this->appendUserGroups( $p, $params['numberingroup'] );
-					break;
-				case 'autocreatetempuser':
-					$fit = $this->appendAutoCreateTempUser( $p );
-					break;
-				case 'clientlibraries':
-					$fit = $this->appendInstalledClientLibraries( $p );
-					break;
-				case 'libraries':
-					$fit = $this->appendInstalledLibraries( $p );
-					break;
-				case 'extensions':
-					$fit = $this->appendExtensions( $p );
-					break;
-				case 'fileextensions':
-					$fit = $this->appendFileExtensions( $p );
-					break;
-				case 'rightsinfo':
-					$fit = $this->appendRightsInfo( $p );
-					break;
-				case 'restrictions':
-					$fit = $this->appendRestrictions( $p );
-					break;
-				case 'languages':
-					$fit = $this->appendLanguages( $p );
-					break;
-				case 'languagevariants':
-					$fit = $this->appendLanguageVariants( $p );
-					break;
-				case 'skins':
-					$fit = $this->appendSkins( $p );
-					break;
-				case 'extensiontags':
-					$fit = $this->appendExtensionTags( $p );
-					break;
-				case 'functionhooks':
-					$fit = $this->appendFunctionHooks( $p );
-					break;
-				case 'showhooks':
-					$fit = $this->appendSubscribedHooks( $p );
-					break;
-				case 'variables':
-					$fit = $this->appendVariables( $p );
-					break;
-				case 'doubleunderscores':
-					$fit = $this->appendDoubleUnderscores( $p );
-					break;
-				case 'protocols':
-					$fit = $this->appendProtocols( $p );
-					break;
-				case 'defaultoptions':
-					$fit = $this->appendDefaultOptions( $p );
-					break;
-				case 'uploaddialog':
-					$fit = $this->appendUploadDialog( $p );
-					break;
-				case 'autopromote':
-					$fit = $this->appendAutoPromote( $p );
-					break;
-				case 'autopromoteonce':
-					$fit = $this->appendAutoPromoteOnce( $p );
-					break;
-				case 'copyuploaddomains':
-					$fit = $this->appendCopyUploadDomains( $p );
-					break;
-				default:
-					ApiBase::dieDebug( __METHOD__, "Unknown prop=$p" ); // @codeCoverageIgnore
-			}
+			$fit = match ( $p ) {
+				'general' => $this->appendGeneralInfo( $p ),
+				'namespaces' => $this->appendNamespaces( $p ),
+				'namespacealiases' => $this->appendNamespaceAliases( $p ),
+				'specialpagealiases' => $this->appendSpecialPageAliases( $p ),
+				'magicwords' => $this->appendMagicWords( $p ),
+				'interwikimap' => $this->appendInterwikiMap( $p, $params['filteriw'] ),
+				'dbrepllag' => $this->appendDbReplLagInfo( $p, $params['showalldb'] ),
+				'statistics' => $this->appendStatistics( $p ),
+				'usergroups' => $this->appendUserGroups( $p, $params['numberingroup'] ),
+				'autocreatetempuser' => $this->appendAutoCreateTempUser( $p ),
+				'clientlibraries' => $this->appendInstalledClientLibraries( $p ),
+				'libraries' => $this->appendInstalledLibraries( $p ),
+				'extensions' => $this->appendExtensions( $p ),
+				'fileextensions' => $this->appendFileExtensions( $p ),
+				'rightsinfo' => $this->appendRightsInfo( $p ),
+				'restrictions' => $this->appendRestrictions( $p ),
+				'languages' => $this->appendLanguages( $p ),
+				'languagevariants' => $this->appendLanguageVariants( $p ),
+				'skins' => $this->appendSkins( $p ),
+				'extensiontags' => $this->appendExtensionTags( $p ),
+				'functionhooks' => $this->appendFunctionHooks( $p ),
+				'showhooks' => $this->appendSubscribedHooks( $p ),
+				'variables' => $this->appendVariables( $p ),
+				'doubleunderscores' => $this->appendDoubleUnderscores( $p ),
+				'protocols' => $this->appendProtocols( $p ),
+				'defaultoptions' => $this->appendDefaultOptions( $p ),
+				'uploaddialog' => $this->appendUploadDialog( $p ),
+				'autopromote' => $this->appendAutoPromote( $p ),
+				'autopromoteonce' => $this->appendAutoPromoteOnce( $p ),
+				'copyuploaddomains' => $this->appendCopyUploadDomains( $p ),
+				// @phan-suppress-next-line PhanUseReturnValueOfNever
+				default => ApiBase::dieDebug( __METHOD__, "Unknown prop=$p" ) // @codeCoverageIgnore
+			};
 			if ( !$fit ) {
 				// Abuse siprop as a query-continue parameter
 				// and set it to all unprocessed props

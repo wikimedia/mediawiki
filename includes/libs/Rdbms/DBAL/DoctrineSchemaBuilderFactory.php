@@ -34,19 +34,12 @@ class DoctrineSchemaBuilderFactory {
 	 * @return AbstractPlatform
 	 */
 	private function getPlatform( string $platform ) {
-		switch ( $platform ) {
-			case 'mysql':
-				$platformObject = new MWMySQLPlatform;
-				break;
-			case 'postgres':
-				$platformObject = new MWPostgreSqlPlatform;
-				break;
-			case 'sqlite':
-				$platformObject = new SqlitePlatform;
-				break;
-			default:
-				throw new InvalidArgumentException( 'Unknown platform: ' . $platform );
-		}
+		$platformObject = match ( $platform ) {
+			'mysql' => new MWMySQLPlatform(),
+			'postgres' => new MWPostgreSqlPlatform(),
+			'sqlite' => new SqlitePlatform(),
+			default => throw new InvalidArgumentException( "Unknown platform: $platform" )
+		};
 
 		$customTypes = [
 			'Enum' => [ EnumType::class, EnumType::ENUM ],

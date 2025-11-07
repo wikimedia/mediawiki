@@ -209,26 +209,14 @@ class SpecialRedirect extends FormSpecialPage {
 	 */
 	private function dispatch() {
 		// the various namespaces supported by Special:Redirect
-		switch ( $this->mType ) {
-			case 'user':
-				$status = $this->dispatchUser();
-				break;
-			case 'file':
-				$status = $this->dispatchFile();
-				break;
-			case 'revision':
-				$status = $this->dispatchRevision();
-				break;
-			case 'page':
-				$status = $this->dispatchPage();
-				break;
-			case 'logid':
-				$status = $this->dispatchLog();
-				break;
-			default:
-				$status = null;
-				break;
-		}
+		$status = match ( $this->mType ) {
+			'user' => $this->dispatchUser(),
+			'file' => $this->dispatchFile(),
+			'revision' => $this->dispatchRevision(),
+			'page' => $this->dispatchPage(),
+			'logid' => $this->dispatchLog(),
+			default => null
+		};
 		if ( $status && $status->isGood() ) {
 			// These urls can sometimes be linked from prominent places,
 			// so varnish cache.

@@ -67,47 +67,29 @@ class SkinComponentRegistry {
 	 */
 	private function registerComponent( string $name ) {
 		$skin = $this->skinContext;
-		switch ( $name ) {
-			case 'copyright':
-				$component = new SkinComponentCopyright(
-					$skin
-				);
-				break;
-			case 'logos':
-				$component = new SkinComponentLogo(
-					$skin->getConfig(),
-					$skin->getLanguage()
-				);
-				break;
-			case 'search-box':
-				$component = new SkinComponentSearch(
-					$skin->getConfig(),
-					$skin->getMessageLocalizer(),
-					SpecialPage::newSearchPage( $skin->getUser() )
-				);
-				break;
-			case 'toc':
-				$component = new SkinComponentTableOfContents( $skin->getOutput() );
-				break;
-			case 'last-modified':
-				$component = new SkinComponentLastModified(
-					$skin,
-					$skin->getOutput()->getRevisionTimestamp()
-				);
-				break;
-			case 'rendered-with':
-				$component = new SkinComponentRenderedWith(
-					$skin,
-					$skin->getOutput()->getOutputFlag( ParserOutputFlags::USE_PARSOID )
-				);
-				break;
-			case 'footer':
-				$component = new SkinComponentFooter( $skin );
-				break;
-			default:
-				throw new RuntimeException( 'Unknown component: ' . $name );
-		}
-		$this->components[$name] = $component;
+		$this->components[$name] = match ( $name ) {
+			'copyright' => new SkinComponentCopyright( $skin ),
+			'logos' => new SkinComponentLogo(
+				$skin->getConfig(),
+				$skin->getLanguage()
+			),
+			'search-box' => new SkinComponentSearch(
+				$skin->getConfig(),
+				$skin->getMessageLocalizer(),
+				SpecialPage::newSearchPage( $skin->getUser() )
+			),
+			'toc' => new SkinComponentTableOfContents( $skin->getOutput() ),
+			'last-modified' => new SkinComponentLastModified(
+				$skin,
+				$skin->getOutput()->getRevisionTimestamp()
+			),
+			'rendered-with' => new SkinComponentRenderedWith(
+				$skin,
+				$skin->getOutput()->getOutputFlag( ParserOutputFlags::USE_PARSOID )
+			),
+			'footer' => new SkinComponentFooter( $skin ),
+			default => throw new RuntimeException( "Unknown component: $name" )
+		};
 	}
 
 	/**

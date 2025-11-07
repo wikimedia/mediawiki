@@ -42,17 +42,11 @@ abstract class ChangeTagsList extends RevisionListBase {
 	public static function factory( $typeName, IContextSource $context,
 		PageIdentity $page, array $ids
 	) {
-		switch ( $typeName ) {
-			case 'revision':
-				$className = ChangeTagsRevisionList::class;
-				break;
-			case 'logentry':
-				$className = ChangeTagsLogList::class;
-				break;
-			default:
-				throw new InvalidArgumentException( "Class $typeName requested, but does not exist" );
-		}
-
+		$className = match ( $typeName ) {
+			'revision' => ChangeTagsRevisionList::class,
+			'logentry' => ChangeTagsLogList::class,
+			default => throw new InvalidArgumentException( "Class $typeName requested, but does not exist" )
+		};
 		return new $className( $context, $page, $ids );
 	}
 

@@ -735,23 +735,13 @@ class CategoryViewer extends ContextSource {
 	 * @return LinkTarget
 	 */
 	private function addFragmentToTitle( PageReference $page, string $section ): LinkTarget {
-		switch ( $section ) {
-			case 'page':
-				$fragment = 'mw-pages';
-				break;
-			case 'subcat':
-				$fragment = 'mw-subcategories';
-				break;
-			case 'file':
-				$fragment = 'mw-category-media';
-				break;
-			default:
-				throw new InvalidArgumentException( __METHOD__ .
-					" Invalid section $section." );
-		}
-
-		return new TitleValue( $page->getNamespace(),
-			$page->getDBkey(), $fragment );
+		$fragment = match ( $section ) {
+			'page' => 'mw-pages',
+			'subcat' => 'mw-subcategories',
+			'file' => 'mw-category-media',
+			default => throw new InvalidArgumentException( __METHOD__ . " Invalid section $section." )
+		};
+		return new TitleValue( $page->getNamespace(), $page->getDBkey(), $fragment );
 	}
 
 	/**
