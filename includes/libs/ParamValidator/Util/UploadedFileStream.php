@@ -80,10 +80,8 @@ class UploadedFileStream implements Stringable, StreamInterface {
 		if ( $this->fp ) {
 			// Spec doesn't care about close errors.
 			try {
-				// PHP 7 emits warnings, suppress
-				AtEase::quietCall( 'fclose', $this->fp );
+				fclose( $this->fp );
 			} catch ( \TypeError ) {
-				// While PHP 8 throws exceptions, ignore
 			}
 			$this->fp = null;
 		}

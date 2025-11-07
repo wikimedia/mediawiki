@@ -44,12 +44,9 @@ class UploadedFileStreamTest extends UploadedFileTestBase {
 		$fp = TestingAccessWrapper::newFromObject( $stream )->fp;
 		$this->assertSame( 'f', fread( $fp, 1 ), 'read check' );
 		unset( $stream );
-		try {
-			// PHP 7 raises warnings
-			$this->assertFalse( @fread( $fp, 1 ) );
-		} catch ( TypeError ) {
-			// PHP 8 throws
-		}
+
+		$this->expectException( TypeError::class );
+		fread( $fp, 1 );
 	}
 
 	public function testToString() {
