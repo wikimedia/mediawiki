@@ -266,34 +266,17 @@ TEXT
 	protected function processFileOpt( string $opt ): string {
 		$split = explode( ':', $opt, 2 );
 		$val = $split[0];
-		$param = '';
-		if ( count( $split ) === 2 ) {
-			$param = $split[1];
-		}
-		$fileURIs = explode( ';', $param );
+		$param = $split[1] ?? '';
 		$newFileURIs = [];
-		foreach ( $fileURIs as $URI ) {
-			switch ( $val ) {
-				case "file":
-					$newURI = $URI;
-					break;
-				case "gzip":
-					$newURI = "compress.zlib://$URI";
-					break;
-				case "bzip2":
-					$newURI = "compress.bzip2://$URI";
-					break;
-				case "7zip":
-					$newURI = "mediawiki.compress.7z://$URI";
-					break;
-				default:
-					$newURI = $URI;
-			}
-			$newFileURIs[] = $newURI;
+		foreach ( explode( ';', $param ) as $uri ) {
+			$newFileURIs[] = match ( $val ) {
+				'gzip' => "compress.zlib://$uri",
+				'bzip2' => "compress.bzip2://$uri",
+				'7zip' => "mediawiki.compress.7z://$uri",
+				default => $uri,
+			};
 		}
-		$val = implode( ';', $newFileURIs );
-
-		return $val;
+		return implode( ';', $newFileURIs );
 	}
 
 	/**
