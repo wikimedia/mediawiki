@@ -107,7 +107,7 @@ class DeletePageTest extends MediaWikiUnitTestCase {
 		$db = $this->createMock( IDatabase::class );
 		$db->method( 'select' )->willReturn( $this->createMock( IResultWrapper::class ) );
 		$db->method( 'selectRowCount' )->willReturn( 42 );
-		$db->method( 'newSelectQueryBuilder' )->willReturn( new SelectQueryBuilder( $db ) );
+		$db->method( 'newSelectQueryBuilder' )->willReturnCallback( static fn () => new SelectQueryBuilder( $db ) );
 
 		$lbFactory = $this->createMock( LBFactory::class );
 		$lbFactory->method( 'getPrimaryDatabase' )->willReturn( $db );

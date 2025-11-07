@@ -2397,7 +2397,6 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 				'rev_deleted',
 				'rev_len',
 				'rev_parent_id',
-				'rev_sha1',
 			],
 			'joins' => [
 				'actor_rev_user' => [ 'JOIN', "actor_rev_user.actor_id = rev_actor" ],
@@ -2590,7 +2589,6 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 				'ar_deleted',
 				'ar_len',
 				'ar_parent_id',
-				'ar_sha1',
 				'ar_actor',
 				'ar_user' => 'archive_actor.actor_user',
 				'ar_user_text' => 'archive_actor.actor_name',

@@ -734,6 +734,7 @@ class DeletePage {
 		// unusual case where there were exactly $deleteBatchSize revisions remaining.
 		$res = $dbw->newSelectQueryBuilder()
 			->queryInfo( $revQuery )
+			->field( 'rev_sha1' ) // To be removed soon (T389026)
 			->where( [ 'rev_page' => $id ] )
 			->orderBy( [ 'rev_timestamp', 'rev_id' ] )
 			->limit( $deleteBatchSize + 1 )

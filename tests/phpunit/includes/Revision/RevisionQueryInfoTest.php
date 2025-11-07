@@ -22,7 +22,6 @@ class RevisionQueryInfoTest extends MediaWikiIntegrationTestCase {
 			'rev_deleted',
 			'rev_len',
 			'rev_parent_id',
-			'rev_sha1',
 		];
 		if ( $returnTextIdField ) {
 			$fields[] = 'rev_text_id';
@@ -42,7 +41,6 @@ class RevisionQueryInfoTest extends MediaWikiIntegrationTestCase {
 			'ar_deleted',
 			'ar_len',
 			'ar_parent_id',
-			'ar_sha1',
 		];
 		if ( $returnTextFields ) {
 			$fields[] = 'ar_text_id';
