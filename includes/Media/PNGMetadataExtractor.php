@@ -125,26 +125,14 @@ class PNGMetadataExtractor {
 				$bitDepth = ord( substr( $buf, 8, 1 ) );
 				// Detect the color type in British English as per the spec
 				// https://www.w3.org/TR/PNG/#11IHDR
-				switch ( ord( substr( $buf, 9, 1 ) ) ) {
-					case 0:
-						$colorType = 'greyscale';
-						break;
-					case 2:
-						$colorType = 'truecolour';
-						break;
-					case 3:
-						$colorType = 'index-coloured';
-						break;
-					case 4:
-						$colorType = 'greyscale-alpha';
-						break;
-					case 6:
-						$colorType = 'truecolour-alpha';
-						break;
-					default:
-						$colorType = 'unknown';
-						break;
-				}
+				$colorType = match ( ord( substr( $buf, 9, 1 ) ) ) {
+					0 => 'greyscale',
+					2 => 'truecolour',
+					3 => 'index-coloured',
+					4 => 'greyscale-alpha',
+					6 => 'truecolour-alpha',
+					default => 'unknown'
+				};
 			} elseif ( $chunk_type === "acTL" ) {
 				if ( $chunk_size < 4 ) {
 					wfDebug( __METHOD__ . ": acTL chunk too small" );
