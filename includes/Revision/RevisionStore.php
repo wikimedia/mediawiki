@@ -2542,6 +2542,10 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 		$queryInfo = $table === 'archive' ? $this->getArchiveQueryInfo() : $this->getQueryInfo();
 		foreach ( $queryInfo['fields'] as $alias => $field ) {
 			$name = is_numeric( $alias ) ? $field : $alias;
+			if ( $name === 'rev_sha1' || $name === 'ar_sha1' ) {
+				// Do not require rev_sha1 or ar_sha1 to be present, it will be dropped in the future - T389026
+				continue;
+			}
 			if ( !property_exists( $row, $name ) ) {
 				return false;
 			}
