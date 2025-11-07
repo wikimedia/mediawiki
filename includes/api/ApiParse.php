@@ -33,6 +33,7 @@ use MediaWiki\Context\DerivativeContext;
 use MediaWiki\EditPage\EditPage;
 use MediaWiki\Exception\MWContentSerializationException;
 use MediaWiki\Json\FormatJson;
+use MediaWiki\Json\JsonCodec;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Message\Message;
@@ -65,6 +66,7 @@ use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\EnumDef;
 use Wikimedia\Parsoid\Core\LinkTarget as ParsoidLinkTarget;
+use Wikimedia\Parsoid\Core\TOCData;
 
 /**
  * @ingroup API
@@ -98,6 +100,7 @@ class ApiParse extends ApiBase {
 	private UserFactory $userFactory;
 	private UrlUtils $urlUtils;
 	private TitleFormatter $titleFormatter;
+	private JsonCodec $jsonCodec;
 
 	public function __construct(
 		ApiMain $main,
@@ -116,7 +119,8 @@ class ApiParse extends ApiBase {
 		TempUserCreator $tempUserCreator,
 		UserFactory $userFactory,
 		UrlUtils $urlUtils,
-		TitleFormatter $titleFormatter
+		TitleFormatter $titleFormatter,
+		JsonCodec $jsonCodec
 	) {
 		parent::__construct( $main, $action );
 		$this->revisionLookup = $revisionLookup;
@@ -134,6 +138,7 @@ class ApiParse extends ApiBase {
 		$this->userFactory = $userFactory;
 		$this->urlUtils = $urlUtils;
 		$this->titleFormatter = $titleFormatter;
+		$this->jsonCodec = $jsonCodec;
 	}
 
 	private function getPoolKey(): string {
@@ -627,6 +632,13 @@ class ApiParse extends ApiBase {
 		}
 		if ( isset( $prop['sections'] ) ) {
 			$result_array['sections'] = $p_result->getSections();
+		}
+		if ( isset( $prop['tocdata'] ) ) {
+			$result_array['tocdata'] = $this->jsonCodec->toJsonArray(
+				$p_result->getTOCData(), TOCData::class
+			);
+		}
+		if ( isset( $prop['sections'] ) || isset( $prop['tocdata'] ) ) {
 			$result_array['showtoc'] = $p_result->getOutputFlag( ParserOutputFlags::SHOW_TOC );
 		}
 		if ( isset( $prop['parsewarnings'] ) ) {
@@ -762,6 +774,7 @@ class ApiParse extends ApiBase {
 			'externallinks' => 'el',
 			'iwlinks' => 'iw',
 			'sections' => 's',
+			'tocdata' => 'toc',
 			'headitems' => 'hi',
 			'modules' => 'm',
 			'indicators' => 'ind',
@@ -1119,7 +1132,7 @@ class ApiParse extends ApiBase {
 			],
 			'prop' => [
 				ParamValidator::PARAM_DEFAULT => 'text|langlinks|categories|links|templates|' .
-					'images|externallinks|sections|revid|displaytitle|iwlinks|' .
+					'images|externallinks|sections|tocdata|revid|displaytitle|iwlinks|' .
 					'properties|parsewarnings',
 				ParamValidator::PARAM_ISMULTI => true,
 				ParamValidator::PARAM_TYPE => [
@@ -1132,6 +1145,7 @@ class ApiParse extends ApiBase {
 					'images',
 					'externallinks',
 					'sections',
+					'tocdata',
 					'revid',
 					'displaytitle',
 					'subtitle',
