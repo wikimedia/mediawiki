@@ -129,7 +129,7 @@ class WikitextContentHandlerIntegrationTest extends TextContentHandlerIntegratio
 			'title' => 'WikitextContentTest_testGetParserOutput',
 			'model' => CONTENT_MODEL_WIKITEXT,
 			'text' => "== Hello ==",
-			'expectedHtml' => "<div class=\"mw-content-ltr mw-parser-output\" lang=\"en\" dir=\"ltr\" $parsoidVersion id=\"mwAw\">" . '<section data-mw-section-id="0" id="mwAQ"></section><section data-mw-section-id="1" id="mwAg"><div class="mw-heading mw-heading2" id="mwBA"><h2 id="Hello">Hello</h2><span class="mw-editsection" id="mwBQ"><span class="mw-editsection-bracket" id="mwBg">[</span><a href="/w/index.php?title=WikitextContentTest_testGetParserOutput&amp;action=edit&amp;section=1" title="Edit section: Hello" id="mwBw"><span id="mwCA">edit</span></a><span class="mw-editsection-bracket" id="mwCQ">]</span></span></div></section></div>',
+			'expectedHtml' => "<div class=\"mw-content-ltr mw-parser-output\" lang=\"en\" dir=\"ltr\" $parsoidVersion id=\"mwAw\">" . '<section data-mw-section-id="0" id="mwAQ"></section><section data-mw-section-id="1" id="mwAg" aria-labelledby="Hello"><div class="mw-heading mw-heading2" id="mwBA"><h2 id="Hello">Hello</h2><span class="mw-editsection" id="mwBQ"><span class="mw-editsection-bracket" id="mwBg">[</span><a href="/w/index.php?title=WikitextContentTest_testGetParserOutput&amp;action=edit&amp;section=1" title="Edit section: Hello" id="mwBw"><span id="mwCA">edit</span></a><span class="mw-editsection-bracket" id="mwCQ">]</span></span></div></section></div>',
 			'expectedFields' => [
 				'LinkList!LOCAL' => [
 					'_args_' => [ ParserOutputLinkTypes::LOCAL ],

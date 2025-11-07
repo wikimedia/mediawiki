@@ -171,6 +171,27 @@ class HandleParsoidSectionLinks extends ContentDOMTransformStage {
 		$sectionInfo['processed'] = true;
 		$section = $sectionInfo['section'];
 
+		// T406897: Transfer ID from heading to aria-labelledby attribute
+		// on the <section> tag.
+		$s = $h->parentNode;
+		if (
+			$s instanceof Element &&
+			DOMUtils::nodeName( $s ) === 'div' &&
+			DOMCompat::getClassList( $s )->contains( 'mw-heading' )
+		) {
+			// Handle existing wrapper (T357826)
+			$s = $s->parentNode;
+		}
+		if (
+			$s instanceof Element &&
+			DOMUtils::nodeName( $s ) === 'section'
+		) {
+			$id = DOMCompat::getAttribute( $h, 'id' );
+			if ( $id !== null ) {
+				$s->setAttribute( 'aria-labelledby', $id );
+			}
+		}
+
 		if ( self::isHtmlHeading( $h ) ) {
 			// This is a <h#> tag with attributes added using HTML syntax.
 			// Mark it with a class to make them easier to distinguish (T68637).
