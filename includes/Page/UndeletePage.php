@@ -455,7 +455,7 @@ class UndeletePage {
 			'ar_title' => $page->getDBkey(),
 		];
 		if ( $timestamps ) {
-			$oldWhere['ar_timestamp'] = array_map( [ $dbw, 'timestamp' ], $timestamps );
+			$oldWhere['ar_timestamp'] = array_map( $dbw->timestamp( ... ), $timestamps );
 		}
 
 		$revisionStore = $this->revisionStore;

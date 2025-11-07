@@ -95,17 +95,17 @@ class MWExceptionHandler {
 		//   Same as previous case, but more common to bubble to here instead of
 		//   caught locally because they tend to not be safe to recover from.
 		//   (e.g. argument TypeError, division by zero, etc.)
-		set_exception_handler( [ self::class, 'handleUncaughtException' ] );
+		set_exception_handler( self::handleUncaughtException( ... ) );
 
 		// This catches recoverable errors (e.g. PHP Notice, PHP Warning, PHP Error) that do not
 		// interrupt execution in any way. We log these in the background and then continue execution.
-		set_error_handler( [ self::class, 'handleError' ] );
+		set_error_handler( self::handleError( ... ) );
 
 		// This catches fatal errors for which no Throwable is thrown,
 		// including Out-Of-Memory and Timeout fatals.
 		// Reserve 16k of memory so we can report OOM fatals.
 		self::$reservedMemory = str_repeat( ' ', 16384 );
-		register_shutdown_function( [ self::class, 'handleFatalError' ] );
+		register_shutdown_function( self::handleFatalError( ... ) );
 	}
 
 	/**

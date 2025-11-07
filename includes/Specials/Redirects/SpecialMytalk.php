@@ -84,7 +84,7 @@ class SpecialMytalk extends RedirectSpecialArticle {
 		$form = HTMLForm::factory( 'ooui', [], $this->getContext() );
 		$form->setMethod( 'post' )
 			->setSubmitTextMsg( 'mytalk-appeal-submit' )
-			->setSubmitCallback( [ $this, 'onSubmit' ] );
+			->setSubmitCallback( $this->onSubmit( ... ) );
 		return $form;
 	}
 

@@ -524,7 +524,7 @@ class HistoryPager extends ReverseChronologicalPager {
 
 		$this->hookRunner->onPageHistoryLineEnding( $this, $row, $s, $classes, $attribs );
 		$attribs = array_filter( $attribs,
-			[ Sanitizer::class, 'isReservedDataAttribute' ],
+			Sanitizer::isReservedDataAttribute( ... ),
 			ARRAY_FILTER_USE_KEY
 		);
 		$attribs['class'] = $classes;

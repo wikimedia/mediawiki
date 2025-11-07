@@ -635,7 +635,7 @@ class SiteConfig extends ISiteConfig {
 		return [
 			'base' => $this->languageFactory->getLanguage( $tuple['base'] ),
 			'fallbacks' => array_map(
-				[ $this->languageFactory, 'getLanguage' ],
+				$this->languageFactory->getLanguage( ... ),
 				$tuple['fallbacks']
 			),
 		];

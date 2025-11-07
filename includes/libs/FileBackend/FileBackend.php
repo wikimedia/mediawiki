@@ -1444,7 +1444,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 * @return StatusValue
 	 */
 	final public function lockFiles( array $paths, $type, $timeout = 0 ) {
-		$paths = array_map( [ self::class, 'normalizeStoragePath' ], $paths );
+		$paths = array_map( self::normalizeStoragePath( ... ), $paths );
 
 		return $this->wrapStatus( $this->lockManager->lock( $paths, $type, $timeout ) );
 	}
@@ -1457,7 +1457,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 * @return StatusValue
 	 */
 	final public function unlockFiles( array $paths, $type ) {
-		$paths = array_map( [ self::class, 'normalizeStoragePath' ], $paths );
+		$paths = array_map( self::normalizeStoragePath( ... ), $paths );
 
 		return $this->wrapStatus( $this->lockManager->unlock( $paths, $type ) );
 	}
@@ -1483,10 +1483,10 @@ abstract class FileBackend implements LoggerAwareInterface {
 	) {
 		if ( $type === 'mixed' ) {
 			foreach ( $paths as &$typePaths ) {
-				$typePaths = array_map( [ self::class, 'normalizeStoragePath' ], $typePaths );
+				$typePaths = array_map( self::normalizeStoragePath( ... ), $typePaths );
 			}
 		} else {
-			$paths = array_map( [ self::class, 'normalizeStoragePath' ], $paths );
+			$paths = array_map( self::normalizeStoragePath( ... ), $paths );
 		}
 
 		return ScopedLock::factory( $this->lockManager, $paths, $type, $status, $timeout );

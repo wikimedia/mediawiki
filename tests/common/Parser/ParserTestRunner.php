@@ -1888,7 +1888,7 @@ class ParserTestRunner {
 			// Passing 'null' for expected output here asks normalizeHTML
 			// to look it up for us, based on parsoid-only & standalone status
 			isset( $test->options['nohtml'] ) ? '' : null,
-			$origOut, [ $test, "normalizeHTML" ]
+			$origOut, $test->normalizeHTML( ... )
 		);
 		if ( $metadataExpected !== null && !$mode->isCachingMode() ) {
 			$nullNormalizer = static function ( $actual, $expected, $ignore ) {
@@ -1941,7 +1941,7 @@ class ParserTestRunner {
 		}
 
 		return $this->processResults(
-			$test, $mode, $expectedWT, $origWT, [ $test, "normalizeWT" ]
+			$test, $mode, $expectedWT, $origWT, $test->normalizeWT( ... )
 		);
 	}
 
@@ -1970,7 +1970,7 @@ class ParserTestRunner {
 		$test->cachedWTstr = $origWT = $parsoid->html2wikitext( $pageConfig, $html );
 
 		return $this->processResults(
-			$test, $mode, $test->wikitext ?? '', $origWT, [ $test, "normalizeWT" ]
+			$test, $mode, $test->wikitext ?? '', $origWT, $test->normalizeWT( ... )
 		);
 	}
 
@@ -2005,7 +2005,7 @@ class ParserTestRunner {
 		] );
 
 		return $this->processResults(
-			$test, $mode, $test->cachedNormalizedHTML, $newHtml, [ $test, "normalizeHTML" ]
+			$test, $mode, $test->cachedNormalizedHTML, $newHtml, $test->normalizeHTML( ... )
 		);
 	}
 
@@ -2058,7 +2058,7 @@ class ParserTestRunner {
 		}
 
 		return $this->processResults(
-			$test, $mode, $expectedWT, $origWT, [ $test, "normalizeWT" ]
+			$test, $mode, $expectedWT, $origWT, $test->normalizeWT( ... )
 		);
 	}
 
@@ -2086,7 +2086,7 @@ class ParserTestRunner {
 			static function () use ( $parsoid, $pageConfig, $editedHTML ): string {
 				return $parsoid->html2wikitext( $pageConfig, $editedHTML );
 			},
-			$origWT, [ $test, "normalizeWT" ]
+			$origWT, $test->normalizeWT( ... )
 		);
 
 		return [ $ptResult->actual, $ptResult->expected ];

@@ -727,7 +727,7 @@ TEXT
 		}
 		if ( file_exists( $mwscriptpath ) ) {
 			$cmd = implode( " ",
-				array_map( [ Shell::class, 'escape' ],
+				array_map( Shell::escape( ... ),
 					[
 						$this->php[0],
 						$mwscriptpath,
@@ -735,7 +735,7 @@ TEXT
 						'--wiki', $wiki ] ) );
 		} else {
 			$cmd = implode( " ",
-				array_map( [ Shell::class, 'escape' ],
+				array_map( Shell::escape( ... ),
 					[
 						$this->php[0],
 						"$IP/maintenance/fetchText.php",

@@ -83,7 +83,7 @@ class Xml {
 	 */
 	public static function elementClean( $element, $attribs = [], $contents = '' ) {
 		if ( $attribs ) {
-			$attribs = array_map( [ Validator::class, 'cleanUp' ], $attribs );
+			$attribs = array_map( Validator::cleanUp( ... ), $attribs );
 		}
 		if ( $contents ) {
 			$contents =

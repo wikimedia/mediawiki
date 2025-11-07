@@ -315,7 +315,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 		$this->hookRunner->onNewPagesLineEnding(
 			$this, $ret, $row, $classes, $attribs );
 		$attribs = array_filter( $attribs,
-			[ Sanitizer::class, 'isReservedDataAttribute' ],
+			Sanitizer::isReservedDataAttribute( ... ),
 			ARRAY_FILTER_USE_KEY
 		);
 

@@ -383,7 +383,7 @@ class UserMailer {
 			self::$mErrorString = '';
 			$html_errors = ini_get( 'html_errors' );
 			ini_set( 'html_errors', '0' );
-			set_error_handler( [ self::class, 'errorHandler' ] );
+			set_error_handler( self::errorHandler( ... ) );
 
 			try {
 				foreach ( $to as $recip ) {

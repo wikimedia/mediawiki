@@ -55,7 +55,7 @@ class DeleteEqualMessages extends Maintenance {
 		$l10nCache = $services->getLocalisationCache();
 		$messageNames = $l10nCache->getSubitemList( 'en', 'messages' );
 		// Normalise message names for NS_MEDIAWIKI page_title
-		$messageNames = array_map( [ $contLang, 'ucfirst' ], $messageNames );
+		$messageNames = array_map( $contLang->ucfirst( ... ), $messageNames );
 
 		$statuses = AllMessagesTablePager::getCustomisedStatuses(
 			$messageNames,

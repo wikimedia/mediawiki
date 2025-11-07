@@ -1329,7 +1329,7 @@ abstract class HTMLFormField {
 	 */
 	public static function forceToStringRecursive( $array ) {
 		if ( is_array( $array ) ) {
-			return array_map( [ self::class, 'forceToStringRecursive' ], $array );
+			return array_map( self::forceToStringRecursive( ... ), $array );
 		} else {
 			return strval( $array );
 		}

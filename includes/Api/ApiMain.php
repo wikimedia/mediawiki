@@ -2276,6 +2276,8 @@ class ApiMain extends ApiBase {
 		if ( count( $unusedParams ) ) {
 			$this->addWarning( [
 				'apierror-unrecognizedparams',
+				// Do not use `wfEscapeWikiText( ... )` here for compatibility with PHP <8.1.4
+				// https://gerrit.wikimedia.org/r/c/mediawiki/core/+/1160800/comment/92e67687_ab221188/
 				Message::listParam( array_map( 'wfEscapeWikiText', $unusedParams ), ListType::COMMA ),
 				count( $unusedParams )
 			] );

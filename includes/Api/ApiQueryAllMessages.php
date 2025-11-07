@@ -125,7 +125,7 @@ class ApiQueryAllMessages extends ApiQueryBase {
 		if ( $customiseFilterEnabled ) {
 			$customisedMessages = AllMessagesTablePager::getCustomisedStatuses(
 				array_map(
-					[ $langObj, 'ucfirst' ],
+					$langObj->ucfirst( ... ),
 					$messages_target
 				),
 				$langObj->getCode(),

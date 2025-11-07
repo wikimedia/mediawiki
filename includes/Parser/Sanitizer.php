@@ -656,7 +656,7 @@ class Sanitizer {
 				)/xu";
 		}
 		$value = preg_replace_callback( $decodeRegex,
-			[ self::class, 'cssDecodeCallback' ], $value );
+			self::cssDecodeCallback( ... ), $value );
 
 		// Let the value through if it's nothing but a single comment, to
 		// allow other functions which may reject it to pass some error
@@ -1177,7 +1177,7 @@ class Sanitizer {
 	public static function normalizeCharReferences( string $text ): string {
 		return preg_replace_callback(
 			self::CHAR_REFS_REGEX,
-			[ self::class, 'normalizeCharReferencesCallback' ],
+			self::normalizeCharReferencesCallback( ... ),
 			$text, -1, $count, PREG_UNMATCHED_AS_NULL
 		);
 	}
@@ -1269,7 +1269,7 @@ class Sanitizer {
 	public static function decodeCharReferences( string $text ): string {
 		return preg_replace_callback(
 			self::CHAR_REFS_REGEX,
-			[ self::class, 'decodeCharReferencesCallback' ],
+			self::decodeCharReferencesCallback( ... ),
 			$text, -1, $count, PREG_UNMATCHED_AS_NULL
 		);
 	}
@@ -1287,7 +1287,7 @@ class Sanitizer {
 	public static function decodeCharReferencesAndNormalize( string $text ): string {
 		$text = preg_replace_callback(
 			self::CHAR_REFS_REGEX,
-			[ self::class, 'decodeCharReferencesCallback' ],
+			self::decodeCharReferencesCallback( ... ),
 			$text, -1, $count, PREG_UNMATCHED_AS_NULL
 		);
 

@@ -115,7 +115,7 @@ class AllMessagesTablePager extends TablePager {
 		$messageNames = $this->localisationCache->getSubitemList( 'en', 'messages' );
 
 		// Normalise message names so they look like page titles and sort correctly - T86139
-		$messageNames = array_map( [ $this->lang, 'ucfirst' ], $messageNames );
+		$messageNames = array_map( $this->lang->ucfirst( ... ), $messageNames );
 
 		if ( $descending ) {
 			rsort( $messageNames );

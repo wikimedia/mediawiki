@@ -84,7 +84,7 @@ class SearchMySQL extends SearchDatabase {
 				// around problems with minimum lengths and encoding in MySQL's
 				// fulltext engine.
 				// For Chinese this also inserts spaces between adjacent Han characters.
-				$strippedVariants = array_map( [ $contLang, 'normalizeForSearch' ], $variants );
+				$strippedVariants = array_map( $contLang->normalizeForSearch( ... ), $variants );
 
 				// Some languages such as Chinese force all variants to a canonical
 				// form when stripping to the low-level search index, so to be sure

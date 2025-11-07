@@ -90,7 +90,7 @@ class BenchmarkSanitizer extends Benchmarker {
 						new \MediaWiki\Config\ServiceOptions( [ MainConfigNames::TidyConfig ], [
 							MainConfigNames::TidyConfig => [ 'pwrap' => false ],
 						] ) );
-					$textWithTags = $tidy->tidy( $text, [ Sanitizer::class, 'armorFrenchSpaces' ] );
+					$textWithTags = $tidy->tidy( $text, Sanitizer::armorFrenchSpaces( ... ) );
 					$textWithTags = Sanitizer::normalizeCharReferences(
 						Sanitizer::internalRemoveHtmlTags( $textWithTags )
 					);

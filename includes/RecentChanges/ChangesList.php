@@ -785,7 +785,7 @@ class ChangesList extends ContextSource {
 		// Let extensions add data to the outputted log entry in a similar way to the LogEventsListLineEnding hook
 		$this->getHookRunner()->onChangesListInsertLogEntry( $entry, $this->getContext(), $html, $classes, $attribs );
 		$attribs = array_filter( $attribs,
-			[ Sanitizer::class, 'isReservedDataAttribute' ],
+			Sanitizer::isReservedDataAttribute( ... ),
 			ARRAY_FILTER_USE_KEY
 		);
 		$attribs['class'] = $classes;

@@ -273,7 +273,7 @@ class RepoGroup {
 		foreach ( $this->foreignRepos as $repo ) {
 			$result = array_merge( $result, $repo->findBySha1( $hash ) );
 		}
-		usort( $result, [ File::class, 'compare' ] );
+		usort( $result, File::compare( ... ) );
 
 		return $result;
 	}
@@ -295,7 +295,7 @@ class RepoGroup {
 		}
 		// sort the merged (and presorted) sublist of each hash
 		foreach ( $result as $hash => $files ) {
-			usort( $result[$hash], [ File::class, 'compare' ] );
+			usort( $result[$hash], File::compare( ... ) );
 		}
 
 		return $result;

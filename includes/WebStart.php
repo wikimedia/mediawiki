@@ -60,7 +60,7 @@ function wfWebStartSetup( SettingsBuilder $settings ) {
 		// premature sending of HTTP headers due to output from PHP warnings and notices.
 		// They also can be used to implement gzip support in PHP without the webserver knowing
 		// which requests yield HTML and which yield large files that can be streamed.
-		ob_start( [ MediaWiki\Output\OutputHandler::class, 'handle' ] );
+		ob_start( MediaWiki\Output\OutputHandler::handle( ... ) );
 	}
 }
 

@@ -251,7 +251,7 @@ class AutoLoader {
 
 }
 
-spl_autoload_register( [ 'AutoLoader', 'autoload' ] );
+spl_autoload_register( AutoLoader::autoload( ... ) );
 
 // Load composer's autoloader if present
 if ( is_readable( __DIR__ . '/../vendor/autoload.php' ) ) {

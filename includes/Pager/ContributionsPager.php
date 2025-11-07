@@ -1056,7 +1056,7 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 		}
 
 		$attribs = array_filter( $attribs,
-			[ Sanitizer::class, 'isReservedDataAttribute' ],
+			Sanitizer::isReservedDataAttribute( ... ),
 			ARRAY_FILTER_USE_KEY
 		);
 

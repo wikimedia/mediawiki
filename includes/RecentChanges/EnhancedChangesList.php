@@ -446,7 +446,7 @@ class EnhancedChangesList extends ChangesList {
 			return [];
 		}
 		$attribs = array_filter( $attribs,
-			[ Sanitizer::class, 'isReservedDataAttribute' ],
+			Sanitizer::isReservedDataAttribute( ... ),
 			ARRAY_FILTER_USE_KEY
 		);
 

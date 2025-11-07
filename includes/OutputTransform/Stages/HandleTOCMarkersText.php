@@ -56,7 +56,7 @@ class HandleTOCMarkersText extends ContentTextTransformStage {
 		} else {
 			$toc = self::generateTOC( $tocData, $lang );
 			// TODO: This may no longer be needed since Ic0a805f29c928d0c2edf266ea045b0d29bb45a28
-			$toc = $this->tidy->tidy( $toc, [ Sanitizer::class, 'armorFrenchSpaces' ] );
+			$toc = $this->tidy->tidy( $toc, Sanitizer::armorFrenchSpaces( ... ) );
 		}
 
 		return Parser::replaceTableOfContentsMarker( $text, $toc );

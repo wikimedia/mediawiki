@@ -234,7 +234,7 @@ class RevisionRenderer implements LoggerAwareInterface {
 		$slotOutput = [];
 
 		$options = $rrev->getOptions();
-		$options->registerWatcher( [ $combinedOutput, 'recordOption' ] );
+		$options->registerWatcher( $combinedOutput->recordOption( ... ) );
 
 		foreach ( $slots as $role => $slot ) {
 			$h = [ 'previous-output' => $previousOutputs[$role] ] + $hints;

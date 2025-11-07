@@ -118,26 +118,26 @@ class CoreParserFunctions {
 			'contentmodel',
 		];
 		foreach ( $noHashFunctions as $func ) {
-			$parser->setFunctionHook( $func, [ self::class, $func ], Parser::SFH_NO_HASH );
+			$parser->setFunctionHook( $func, self::$func( ... ), Parser::SFH_NO_HASH );
 		}
 
-		$parser->setFunctionHook( 'int', [ self::class, 'intFunction' ], Parser::SFH_NO_HASH );
-		$parser->setFunctionHook( 'special', [ self::class, 'special' ] );
-		$parser->setFunctionHook( 'speciale', [ self::class, 'speciale' ] );
-		$parser->setFunctionHook( 'tag', [ self::class, 'tagObj' ], Parser::SFH_OBJECT_ARGS );
-		$parser->setFunctionHook( 'formatdate', [ self::class, 'formatDate' ] );
+		$parser->setFunctionHook( 'int', self::intFunction( ... ), Parser::SFH_NO_HASH );
+		$parser->setFunctionHook( 'special', self::special( ... ) );
+		$parser->setFunctionHook( 'speciale', self::speciale( ... ) );
+		$parser->setFunctionHook( 'tag', self::tagObj( ... ), Parser::SFH_OBJECT_ARGS );
+		$parser->setFunctionHook( 'formatdate', self::formatDate( ... ) );
 
 		if ( $allowDisplayTitle ) {
 			$parser->setFunctionHook(
 				'displaytitle',
-				[ self::class, 'displaytitle' ],
+				self::displaytitle( ... ),
 				Parser::SFH_NO_HASH
 			);
 		}
 		if ( $allowSlowParserFunctions ) {
 			$parser->setFunctionHook(
 				'pagesinnamespace',
-				[ self::class, 'pagesinnamespace' ],
+				self::pagesinnamespace( ... ),
 				Parser::SFH_NO_HASH
 			);
 		}
@@ -279,7 +279,7 @@ class CoreParserFunctions {
 	 * @return string
 	 */
 	public static function lc( $parser, $s = '' ) {
-		return $parser->markerSkipCallback( $s, [ $parser->getContentLanguage(), 'lc' ] );
+		return $parser->markerSkipCallback( $s, $parser->getContentLanguage()->lc( ... ) );
 	}
 
 	/**
@@ -288,7 +288,7 @@ class CoreParserFunctions {
 	 * @return string
 	 */
 	public static function uc( $parser, $s = '' ) {
-		return $parser->markerSkipCallback( $s, [ $parser->getContentLanguage(), 'uc' ] );
+		return $parser->markerSkipCallback( $s, $parser->getContentLanguage()->uc( ... ) );
 	}
 
 	/**

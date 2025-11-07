@@ -218,7 +218,7 @@ class ApiBlock extends ApiBase {
 		$restrictions = [];
 		if ( $params['partial'] ) {
 			$pageRestrictions = array_map(
-				[ PageRestriction::class, 'newFromTitle' ],
+				PageRestriction::newFromTitle( ... ),
 				(array)$params['pagerestrictions']
 			);
 

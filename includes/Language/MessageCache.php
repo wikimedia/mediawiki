@@ -1568,7 +1568,7 @@ class MessageCache implements LoggerAwareInterface {
 		$cache = array_diff( $cache, [ '!NONEXISTENT' ] );
 
 		// Keys may appear with a capital first letter. lcfirst them.
-		return array_map( [ $this->contLang, 'lcfirst' ], array_keys( $cache ) );
+		return array_map( $this->contLang->lcfirst( ... ), array_keys( $cache ) );
 	}
 
 	/**

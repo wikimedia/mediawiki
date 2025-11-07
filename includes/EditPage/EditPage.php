@@ -4621,6 +4621,8 @@ class EditPage implements IEditObject {
 
 		if ( $match ) {
 			if ( is_array( $match ) ) {
+				// Do not use `wfEscapeWikiText( ... )` here for compatibility with PHP <8.1.4
+				// https://gerrit.wikimedia.org/r/c/mediawiki/core/+/1160800/comment/92e67687_ab221188/
 				$matchText = $this->context->getLanguage()->listToText( array_map( 'wfEscapeWikiText', $match ) );
 			} else {
 				$matchText = wfEscapeWikiText( $match );

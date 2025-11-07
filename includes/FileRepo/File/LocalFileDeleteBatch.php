@@ -231,7 +231,7 @@ class LocalFileDeleteBatch {
 			$joins = [];
 
 			$fields += array_map(
-				[ $dbw, 'addQuotes' ],
+				$dbw->addQuotes( ... ),
 				$commentStore->insert( $dbw, 'fa_deleted_reason', $this->reason )
 			);
 

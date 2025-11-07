@@ -55,7 +55,7 @@ class OldChangesList extends ChangesList {
 			return false;
 		}
 		$attribs = array_filter( $attribs,
-			[ Sanitizer::class, 'isReservedDataAttribute' ],
+			Sanitizer::isReservedDataAttribute( ... ),
 			ARRAY_FILTER_USE_KEY
 		);
 

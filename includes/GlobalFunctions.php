@@ -988,6 +988,8 @@ function wfGetAllCallers( $limit = 3 ) {
 		$limit = count( $trace ) - 1;
 	}
 	$trace = array_slice( $trace, -$limit - 1, $limit );
+	// Do not use `wfFormatStackFrame( ... )` here for compatibility with PHP <8.1.4
+	// https://gerrit.wikimedia.org/r/c/mediawiki/core/+/1160800/comment/92e67687_ab221188/
 	return implode( '/', array_map( 'wfFormatStackFrame', $trace ) );
 }
 

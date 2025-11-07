@@ -173,7 +173,7 @@ class SearchEngineConfig {
 	 * @return string[] List of names
 	 */
 	public function namespacesAsText( $namespaces ) {
-		$formatted = array_map( [ $this->language, 'getFormattedNsText' ], $namespaces );
+		$formatted = array_map( $this->language->getFormattedNsText( ... ), $namespaces );
 		foreach ( $formatted as $key => $ns ) {
 			if ( !$ns ) {
 				$formatted[$key] = wfMessage( 'blanknamespace' )->text();

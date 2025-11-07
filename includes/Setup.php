@@ -159,7 +159,7 @@ HeaderCallback::register();
 // Tell HttpStatus to use HeaderCallback for reporting warnings when
 // attempting to set headers after the headers have already been sent.
 HttpStatus::registerHeadersSentCallback(
-	[ HeaderCallback::class, 'warnIfHeadersSent' ]
+	HeaderCallback::warnIfHeadersSent( ... )
 );
 
 // Set the encoding used by PHP for reading HTTP input, and writing output.

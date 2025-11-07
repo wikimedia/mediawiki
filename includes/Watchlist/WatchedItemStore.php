@@ -158,7 +158,7 @@ class WatchedItemStore implements WatchedItemStoreInterface {
 		$this->cache = $cache;
 		$this->readOnlyMode = $readOnlyMode;
 		$this->deferredUpdatesAddCallableUpdateCallback =
-			[ DeferredUpdates::class, 'addCallableUpdate' ];
+			DeferredUpdates::addCallableUpdate( ... );
 		$this->nsInfo = $nsInfo;
 		$this->revisionLookup = $revisionLookup;
 		$this->linkBatchFactory = $linkBatchFactory;

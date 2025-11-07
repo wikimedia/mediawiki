@@ -550,7 +550,7 @@ class Parser {
 	 */
 	public function resetOutput() {
 		$this->mOutput = new ParserOutput;
-		$this->mOptions->registerWatcher( [ $this->mOutput, 'recordOption' ] );
+		$this->mOptions->registerWatcher( $this->mOutput->recordOption( ... ) );
 	}
 
 	/**
@@ -1677,7 +1677,7 @@ class Parser {
 
 		$text = $this->mStripState->unstripGeneral( $text );
 
-		$text = $this->tidy->tidy( $text, [ Sanitizer::class, 'armorFrenchSpaces' ] );
+		$text = $this->tidy->tidy( $text, Sanitizer::armorFrenchSpaces( ... ) );
 
 		if ( $isMain ) {
 			$this->hookRunner->onParserAfterTidy( $this, $text );
@@ -4370,7 +4370,7 @@ class Parser {
 
 			// Run Tidy to convert wikitext entities to HTML entities (T355386),
 			// conveniently also giving us a way to handle French spaces (T324763)
-			$fullyParsedHeadline = $this->tidy->tidy( $fullyParsedHeadline, [ Sanitizer::class, 'armorFrenchSpaces' ] );
+			$fullyParsedHeadline = $this->tidy->tidy( $fullyParsedHeadline, Sanitizer::armorFrenchSpaces( ... ) );
 
 			// Wrap the safe headline to parse the heading attributes
 			// Literal HTML tags should be sanitized at this point

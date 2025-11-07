@@ -180,7 +180,7 @@ class HistoryAction extends FormlessAction {
 		if ( HTMLFileCache::useFileCache( $this->getContext() ) ) {
 			$cache = new HTMLFileCache( $this->getTitle(), 'history' );
 			if ( !$cache->isCacheGood( /* Assume up to date */ ) ) {
-				ob_start( [ $cache, 'saveToFileCache' ] );
+				ob_start( $cache->saveToFileCache( ... ) );
 			}
 		}
 

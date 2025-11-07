@@ -76,8 +76,7 @@ class SearchSqlite extends SearchDatabase {
 				// fulltext engine.
 				// For Chinese this also inserts spaces between adjacent Han characters.
 				$strippedVariants = array_map(
-					[ MediaWikiServices::getInstance()->getContentLanguage(),
-						'normalizeForSearch' ],
+					MediaWikiServices::getInstance()->getContentLanguage()->normalizeForSearch( ... ),
 					$variants );
 
 				// Some languages such as Chinese force all variants to a canonical

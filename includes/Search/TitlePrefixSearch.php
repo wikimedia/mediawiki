@@ -29,7 +29,7 @@ class TitlePrefixSearch extends PrefixSearch {
 	 * @return Title[]
 	 */
 	protected function strings( array $strings ) {
-		$titles = array_map( [ Title::class, 'newFromText' ], $strings );
+		$titles = array_map( Title::newFromText( ... ), $strings );
 		$linkBatchFactory = MediaWikiServices::getInstance()->getLinkBatchFactory();
 		$linkBatchFactory->newLinkBatch( $titles )
 			->setCaller( __METHOD__ )

@@ -65,7 +65,7 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 		// But, ensure that any option use by extensions, parser functions,
 		// recursive parses, or (in the unlikely future scenario) Parsoid itself
 		// are recorded as used.
-		$options->registerWatcher( [ $parserOutput, 'recordOption' ] );
+		$options->registerWatcher( $parserOutput->recordOption( ... ) );
 
 		// The enable/disable logic here matches that in Parser::internalParseHalfParsed(),
 		// although __NOCONTENTCONVERT__ is handled internal to Parsoid.
@@ -167,7 +167,7 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 
 		// Register a watcher again because the $parserOutput arg
 		// and $parserOutput return value above are different objects!
-		$options->registerWatcher( [ $parserOutput, 'recordOption' ] );
+		$options->registerWatcher( $parserOutput->recordOption( ... ) );
 
 		$parserOutput->setFromParserOptions( $options );
 

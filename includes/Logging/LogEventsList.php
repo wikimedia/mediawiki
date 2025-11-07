@@ -412,7 +412,7 @@ class LogEventsList extends ContextSource {
 		// hook interface consistent with DiffTools and HistoryTools.
 		$this->hookRunner->onLogEventsListLineEnding( $this, $ret, $entry, $classes, $attribs );
 		$attribs = array_filter( $attribs,
-			[ Sanitizer::class, 'isReservedDataAttribute' ],
+			Sanitizer::isReservedDataAttribute( ... ),
 			ARRAY_FILTER_USE_KEY
 		);
 		$ret .= Html::closeElement( 'span' );

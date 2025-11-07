@@ -40,7 +40,7 @@ trait JsonSchemaTrait {
 				unset( $jsonSchemaType[$nullIndex] );
 			}
 
-			$jsonSchemaType = array_map( [ self::class, 'jsonToPhpDoc' ], $jsonSchemaType );
+			$jsonSchemaType = array_map( self::jsonToPhpDoc( ... ), $jsonSchemaType );
 			$type = implode( '|', $jsonSchemaType );
 		} else {
 			$type = $phpTypes[ strtolower( $jsonSchemaType ) ] ?? $jsonSchemaType;

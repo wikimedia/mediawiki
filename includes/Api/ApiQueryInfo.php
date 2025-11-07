@@ -260,7 +260,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			);
 		}
 
-		uasort( $this->everything, [ Title::class, 'compare' ] );
+		uasort( $this->everything, Title::compare( ... ) );
 		if ( $this->params['continue'] !== null ) {
 			// Throw away any titles we're gonna skip so they don't
 			// clutter queries
