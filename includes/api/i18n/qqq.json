@@ -396,6 +396,7 @@
 	"apihelp-parse-paramvalue-prop-images": "{{doc-apihelp-paramvalue|parse|prop|images}}",
 	"apihelp-parse-paramvalue-prop-externallinks": "{{doc-apihelp-paramvalue|parse|prop|externallinks}}",
 	"apihelp-parse-paramvalue-prop-sections": "{{doc-apihelp-paramvalue|parse|prop|sections}}",
+	"apihelp-parse-paramvalue-prop-tocdata": "{{doc-apihelp-paramvalue|parse|prop|tocdata}}",
 	"apihelp-parse-paramvalue-prop-revid": "{{doc-apihelp-paramvalue|parse|prop|revid}}",
 	"apihelp-parse-paramvalue-prop-displaytitle": "{{doc-apihelp-paramvalue|parse|prop|displaytitle}}",
 	"apihelp-parse-paramvalue-prop-subtitle": "{{doc-apihelp-paramvalue|parse|prop|subtitle}}",
