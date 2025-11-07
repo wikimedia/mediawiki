@@ -27,23 +27,13 @@ use Wikimedia\UUID\GlobalIdGenerator;
  * @see https://www.mediawiki.org/wiki/Foreign_resources
  */
 class ForeignResourceManager {
-	/** @var string */
-	private $defaultAlgo = 'sha384';
+	private string $defaultAlgo = 'sha384';
 
-	/** @var bool */
-	private $hasErrors = false;
+	private bool $hasErrors = false;
 
-	/** @var string */
-	private $registryFile;
+	private string $tmpParentDir;
 
-	/** @var string */
-	private $libDir;
-
-	/** @var string */
-	private $tmpParentDir;
-
-	/** @var string */
-	private $cacheDir;
+	private string $cacheDir;
 
 	/**
 	 * @var callable|Closure
@@ -79,15 +69,13 @@ class ForeignResourceManager {
 	 *  progress information from the run.
 	 */
 	public function __construct(
-		$registryFile,
-		$libDir,
+		private readonly string $registryFile,
+		private readonly string $libDir,
 		?callable $infoPrinter = null,
 		?callable $errorPrinter = null,
 		?callable $verbosePrinter = null
 	) {
 		$this->globalIdGenerator = MediaWikiServices::getInstance()->getGlobalIdGenerator();
-		$this->registryFile = $registryFile;
-		$this->libDir = $libDir;
 		$this->infoPrinter = $infoPrinter ?? static function ( $_ ) {
 		};
 		$this->errorPrinter = $errorPrinter ?? $this->infoPrinter;
@@ -110,12 +98,9 @@ class ForeignResourceManager {
 	}
 
 	/**
-	 * @param string $action
-	 * @param string $module
-	 * @return bool
 	 * @throws LogicException
 	 */
-	public function run( $action, $module ) {
+	public function run( string $action, string $module ): bool {
 		$actions = [ 'update', 'verify', 'make-sri', 'make-cdx' ];
 		if ( !in_array( $action, $actions ) ) {
 			$this->error( "Invalid action.\n\nMust be one of " . implode( ', ', $actions ) . '.' );
@@ -166,9 +151,9 @@ class ForeignResourceManager {
 				$this->output( "... checking '{$moduleName}'\n" );
 			}
 
-			// Do checks on yaml content (such as license existence, validity and type keys)
+			// Do checks on YAML content (such as license existence, validity and type keys)
 			// before doing any potentially destructive actions (potentially deleting directories,
-			// depending on action.
+			// depending on the action.
 
 			if ( !isset( $info['type'] ) ) {
 				throw new LogicException( "Module '$moduleName' must have a 'type' key." );
@@ -242,10 +227,8 @@ class ForeignResourceManager {
 
 	/**
 	 * Choose the temp parent directory
-	 *
-	 * @param string $action
 	 */
-	private function setupTempDir( $action ) {
+	private function setupTempDir( string $action ): void {
 		if ( $action === 'verify' ) {
 			$this->tmpParentDir = wfTempDir() . '/ForeignResourceManager';
 		} else {
@@ -256,48 +239,28 @@ class ForeignResourceManager {
 		}
 	}
 
-	/**
-	 * @param string $src
-	 * @param string $integrity
-	 * @param string $moduleName
-	 * @return string
-	 */
-	private function cacheKey( $src, $integrity, $moduleName ) {
+	private function cacheKey( string $src, string $integrity, string $moduleName ): string {
 		$key = $moduleName
 			. '_' . hash( 'fnv132', $integrity )
 			. '_' . hash( 'fnv132', $src )
-			// Append readable filename to aid cache inspection and debugging
+			// Append a readable filename to aid cache inspection and debugging
 			. '_' . basename( $src );
 		$key = preg_replace( '/[.\/+?=_-]+/', '_', $key );
 		return rtrim( $key, '_' );
 	}
 
-	/**
-	 * @param string $key
-	 * @return string|false
-	 */
-	private function cacheGet( $key ) {
+	private function cacheGet( string $key ): string|false {
 		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
 		return @file_get_contents( "{$this->cacheDir}/$key.data" );
 	}
 
-	/**
-	 * @param string $key
-	 * @param mixed $data
-	 */
-	private function cacheSet( $key, $data ) {
+	private function cacheSet( string $key, mixed $data ): void {
 		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
 		@mkdir( $this->cacheDir, 0o777, true );
 		file_put_contents( "{$this->cacheDir}/$key.data", $data, LOCK_EX );
 	}
 
-	/**
-	 * @param string $src
-	 * @param string|null $integrity
-	 * @param string $moduleName
-	 * @return string
-	 */
-	private function fetch( string $src, $integrity, string $moduleName ) {
+	private function fetch( string $src, ?string $integrity, string $moduleName ): string {
 		if ( $integrity !== null ) {
 			$key = $this->cacheKey( $src, $integrity, $moduleName );
 			$data = $this->cacheGet( $key );
@@ -340,12 +303,7 @@ class ForeignResourceManager {
 		return $data;
 	}
 
-	/**
-	 * @param string $moduleName
-	 * @param string $destDir
-	 * @param array $info
-	 */
-	private function handleTypeFile( $moduleName, $destDir, array $info ) {
+	private function handleTypeFile( string $moduleName, string $destDir, array $info ): void {
 		if ( !isset( $info['src'] ) ) {
 			throw new LogicException( "Module '$moduleName' must have a 'src' key." );
 		}
@@ -361,12 +319,7 @@ class ForeignResourceManager {
 		}
 	}
 
-	/**
-	 * @param string $moduleName
-	 * @param string $destDir
-	 * @param array $info
-	 */
-	private function handleTypeMultiFile( $moduleName, $destDir, array $info ) {
+	private function handleTypeMultiFile( string $moduleName, string $destDir, array $info ): void {
 		if ( !isset( $info['files'] ) ) {
 			throw new LogicException( "Module '$moduleName' must have a 'files' key." );
 		}
@@ -385,13 +338,7 @@ class ForeignResourceManager {
 		}
 	}
 
-	/**
-	 * @param string $moduleName
-	 * @param string $destDir
-	 * @param array $info
-	 * @param string $fileType
-	 */
-	private function handleTypeTar( $moduleName, $destDir, array $info, string $fileType ) {
+	private function handleTypeTar( string $moduleName, string $destDir, array $info, string $fileType ): void {
 		$info += [ 'src' => null, 'integrity' => null, 'dest' => null ];
 		if ( $info['src'] === null ) {
 			throw new LogicException( "Module '$moduleName' must have a 'src' key." );
@@ -454,29 +401,20 @@ class ForeignResourceManager {
 		}
 	}
 
-	/**
-	 * @param string $text
-	 */
-	private function verbose( $text ) {
+	private function verbose( string $text ): void {
 		( $this->verbosePrinter )( $text );
 	}
 
-	/**
-	 * @param string $text
-	 */
-	private function output( $text ) {
+	private function output( string $text ): void {
 		( $this->infoPrinter )( $text );
 	}
 
-	/**
-	 * @param string $text
-	 */
-	private function error( $text ) {
+	private function error( string $text ): void {
 		$this->hasErrors = true;
 		( $this->errorPrinter )( $text );
 	}
 
-	private function cleanUp() {
+	private function cleanUp(): void {
 		wfRecursiveRemoveDir( $this->tmpParentDir );
 
 		// Prune the cache of files we don't recognise.
@@ -497,11 +435,7 @@ class ForeignResourceManager {
 		}
 	}
 
-	/**
-	 * @param string $moduleName
-	 * @param array $info
-	 */
-	private function validateLicense( $moduleName, $info ) {
+	private function validateLicense( string $moduleName, array $info ): void {
 		if ( !isset( $info['license'] ) || !is_string( $info['license'] ) ) {
 			throw new LogicException(
 				"Module '$moduleName' needs a valid SPDX license; no license is currently present"
