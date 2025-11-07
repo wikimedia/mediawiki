@@ -83,6 +83,8 @@ For notes on 1.45.x and older releases, see HISTORY.
 
 === Action API changes in 1.46 ===
 
+* In the `action=parse` API endpoint, the value `prop=sections` has been
+  deprecated. Use `prop=tocdata` instead (T319141).
 * …
 
 === Action API internal changes in 1.46 ===

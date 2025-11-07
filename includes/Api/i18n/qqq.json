@@ -1950,6 +1950,7 @@
 	"apiwarn-deprecation-missingparam": "{{doc-apierror}}\n\nParameters:\n* $1 - Parameter name.",
 	"apiwarn-deprecation-parameter": "{{doc-apierror}}\n\nParameters:\n* $1 - Parameter name.",
 	"apiwarn-deprecation-parse-headitems": "{{doc-apierror}}",
+	"apiwarn-deprecation-parse-sections": "{{doc-apierror}}",
 	"apiwarn-deprecation-post-without-content-type": "{{doc-apierror}}",
 	"apiwarn-deprecation-purge-get": "{{doc-apierror}}",
 	"apiwarn-deprecation-withreplacement": "{{doc-apierror}}\n\nParameters:\n* $1 - Query string fragment that is deprecated, e.g. \"action=tokens\".\n* $2 - Query string fragment to use instead, e.g. \"action=tokens\".",
