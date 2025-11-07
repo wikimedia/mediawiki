@@ -432,11 +432,12 @@ class UserMailer {
 	 * @param int $code Error number
 	 * @param string $string Error message
 	 */
-	private static function errorHandler( $code, $string ) {
+	private static function errorHandler( $code, $string ): bool {
 		if ( self::$mErrorString !== '' ) {
 			self::$mErrorString .= "\n";
 		}
 		self::$mErrorString .= preg_replace( '/^mail\(\)(\s*\[.*?\])?: /', '', $string );
+		return false;
 	}
 
 	/**

@@ -329,16 +329,15 @@ class MWExceptionHandler {
 	 * Composer or other means.
 	 *
 	 * @since 1.25
-	 * @return bool Always returns false
 	 */
-	public static function handleFatalError() {
+	public static function handleFatalError(): void {
 		// Free reserved memory so that we have space to process OOM
 		// errors
 		self::$reservedMemory = null;
 
 		$lastError = error_get_last();
 		if ( $lastError === null ) {
-			return false;
+			return;
 		}
 
 		$level = $lastError['type'];
@@ -349,7 +348,7 @@ class MWExceptionHandler {
 		if ( !in_array( $level, self::FATAL_ERROR_TYPES ) ) {
 			// Only interested in fatal errors, others should have been
 			// handled by MWExceptionHandler::handleError
-			return false;
+			return;
 		}
 
 		$msgParts = [
@@ -378,8 +377,6 @@ TXT;
 		$e = new ErrorException( "PHP Fatal Error: {$message}", 0, $level, $file, $line );
 		$logger = LoggerFactory::getInstance( 'exception' );
 		$logger->error( $msg, self::getLogContext( $e, self::CAUGHT_BY_HANDLER ) );
-
-		return false;
 	}
 
 	/**
