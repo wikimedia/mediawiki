@@ -7,6 +7,7 @@
 namespace MediaWiki\Auth;
 
 use InvalidArgumentException;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
@@ -213,6 +214,10 @@ class Throttler implements LoggerAwareInterface {
 		// It should be noted that once the throttle is hit, every attempt to login will
 		// generate the log message until the throttle expires, not just the attempt that
 		// puts the throttle over the top.
+		$user = $context['username'] ?
+			MediaWikiServices::getInstance()->getUserFactory()->newFromName( $context['username'] ) :
+			null;
+		$context += RequestContext::getMain()->getRequest()->getSecurityLogContext( $user );
 		$this->logger->log( $level, $logMsg, $context );
 	}
 
