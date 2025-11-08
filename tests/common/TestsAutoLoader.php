@@ -94,9 +94,9 @@ $wgAutoloadClasses += [
 	# tests/phpunit/includes/Block
 	'MediaWiki\\Tests\\Block\\Restriction\\RestrictionTestCase' => "$testDir/phpunit/includes/Block/Restriction/RestrictionTestCase.php",
 
-	# tests/phpunit/includes/recentchanges
-	'TestRecentChangesHelper' => "$testDir/phpunit/includes/recentchanges/TestRecentChangesHelper.php",
-	'MediaWiki\Tests\Recentchanges\ChangeTrackingUpdateSpyTrait' => "$testDir/phpunit/includes/recentchanges/ChangeTrackingUpdateSpyTrait.php",
+	# tests/phpunit/includes/RecentChanges
+	'TestRecentChangesHelper' => "$testDir/phpunit/includes/RecentChanges/TestRecentChangesHelper.php",
+	'MediaWiki\Tests\Recentchanges\ChangeTrackingUpdateSpyTrait' => "$testDir/phpunit/includes/RecentChanges/ChangeTrackingUpdateSpyTrait.php",
 
 	# tests/phpunit/includes/Config
 	'TestAllServiceOptionsUsed' => "$testDir/phpunit/includes/Config/TestAllServiceOptionsUsed.php",
@@ -155,9 +155,9 @@ $wgAutoloadClasses += [
 	'MediaWiki\\Tests\\Parser\\ParserCacheSerializationTestCases' =>
 		"$testDir/phpunit/includes/Parser/ParserCacheSerializationTestCases.php",
 	'Wikimedia\\Tests\\SerializationTestTrait' =>
-		"$testDir/phpunit/includes/libs/serialization/SerializationTestTrait.php",
+		"$testDir/phpunit/includes/libs/Serialization/SerializationTestTrait.php",
 	'Wikimedia\\Tests\\SerializationTestUtils' =>
-		"$testDir/phpunit/includes/libs/serialization/SerializationTestUtils.php",
+		"$testDir/phpunit/includes/libs/Serialization/SerializationTestUtils.php",
 
 	# tests/phpunit/includes/ResourceLoader
 	'MediaWiki\\Tests\\ResourceLoader\\ImageModuleTest' =>
@@ -167,20 +167,20 @@ $wgAutoloadClasses += [
 	'MediaWiki\Tests\ResourceLoader\ResourceLoaderUpdateSpyTrait' =>
 		"$testDir/phpunit/includes/ResourceLoader/ResourceLoaderUpdateSpyTrait.php",
 
-	# tests/phpunit/includes/session
-	'MediaWiki\\Session\\TestBagOStuff' => "$testDir/phpunit/includes/session/TestBagOStuff.php",
-	'MediaWiki\\Tests\\Session\\TestBagOStuff' => "$testDir/phpunit/includes/session/TestBagOStuff.php",
-	'MediaWiki\\Tests\\Session\\TestUtils' => "$testDir/phpunit/includes/session/TestUtils.php",
+	# tests/phpunit/includes/Session
+	'MediaWiki\\Session\\TestBagOStuff' => "$testDir/phpunit/includes/Session/TestBagOStuff.php",
+	'MediaWiki\\Tests\\Session\\TestBagOStuff' => "$testDir/phpunit/includes/Session/TestBagOStuff.php",
+	'MediaWiki\\Tests\\Session\\TestUtils' => "$testDir/phpunit/includes/Session/TestUtils.php",
 
 	# tests/phpunit/includes/Site
 	'TestSites' => "$testDir/phpunit/includes/Site/TestSites.php",
 	'MediaWiki\\Tests\\Site\\SiteTest' => "$testDir/phpunit/includes/Site/SiteTest.php",
 	'MediaWiki\\Tests\\Site\\TestSites' => "$testDir/phpunit/includes/Site/TestSites.php",
 
-	# tests/phpunit/includes/specialpage
-	'MediaWiki\\Tests\\SpecialPage\\SpecialPageTestHelper' => "$testDir/phpunit/includes/specialpage/SpecialPageTestHelper.php",
-	'MediaWiki\\Tests\\SpecialPage\\AbstractChangesListSpecialPageTestCase' => "$testDir/phpunit/includes/specialpage/AbstractChangesListSpecialPageTestCase.php",
-	'MediaWiki\\Tests\\SpecialPage\\FormSpecialPageTestCase' => "$testDir/phpunit/includes/specialpage/FormSpecialPageTestCase.php",
+	# tests/phpunit/includes/SpecialPage
+	'MediaWiki\\Tests\\SpecialPage\\SpecialPageTestHelper' => "$testDir/phpunit/includes/SpecialPage/SpecialPageTestHelper.php",
+	'MediaWiki\\Tests\\SpecialPage\\AbstractChangesListSpecialPageTestCase' => "$testDir/phpunit/includes/SpecialPage/AbstractChangesListSpecialPageTestCase.php",
+	'MediaWiki\\Tests\\SpecialPage\\FormSpecialPageTestCase' => "$testDir/phpunit/includes/SpecialPage/FormSpecialPageTestCase.php",
 
 	# tests/phpunit/includes/Specials
 	'SpecialPageTestBase' => "$testDir/phpunit/includes/Specials/SpecialPageTestBase.php",
@@ -193,10 +193,10 @@ $wgAutoloadClasses += [
 	'MediaWiki\\Tests\\Storage\\PageEditStashContentsTest' => "$testDir/phpunit/includes/Storage/PageEditStashContentsTest.php",
 	'MediaWiki\\Tests\\Storage\\TestMutableRevisionRecord' => "$testDir/phpunit/unit/includes/Storage/TestMutableRevisionRecord.php",
 
-	# tests/phpunit/includes/title
-	'TitleCodecTestBase' => "$testDir/phpunit/includes/title/TitleCodecTestBase.php",
+	# tests/phpunit/includes/Title
+	'TitleCodecTestBase' => "$testDir/phpunit/includes/Title/TitleCodecTestBase.php",
 
-	# test/phpunit/includes/user
+	# test/phpunit/includes/User
 	'UserOptionsLookupTestBase' => "$testDir/phpunit/integration/includes/User/Options/UserOptionsLookupTestBase.php",
 
 	# tests/phpunit/includes/Language
@@ -207,7 +207,7 @@ $wgAutoloadClasses += [
 	'MediaWiki\\Tests\\Language\\MessageTest' => "$testDir/phpunit/includes/Language/MessageTest.php",
 
 	# tests/phpunit/includes/libs
-	'BagOStuffTestBase' => "$testDir/phpunit/includes/libs/objectcache/BagOStuffTestBase.php",
+	'BagOStuffTestBase' => "$testDir/phpunit/includes/libs/ObjectCache/BagOStuffTestBase.php",
 	'Wikimedia\\Tests\\Diff\FakeDiffOp' => "$testDir/phpunit/unit/includes/libs/Diff/FakeDiffOp.php",
 	'Wikimedia\\Tests\\ParamValidator\\TypeDef\\TypeDefTestCase' => "$testDir/phpunit/unit/includes/libs/ParamValidator/TypeDef/TypeDefTestCase.php",
 	'Wikimedia\\Tests\\ParamValidator\\TypeDef\\TypeDefTestCaseTrait' => "$testDir/phpunit/unit/includes/libs/ParamValidator/TypeDef/TypeDefTestCaseTrait.php",
@@ -219,7 +219,7 @@ $wgAutoloadClasses += [
 	'MediaWiki\\Tests\\ParamValidator\\TypeDef\\TypeDefUnitTestCase' => "$testDir/phpunit/unit/includes/ParamValidator/TypeDef/TypeDefUnitTestCase.php",
 
 	# tests/phpunit/unit/includes/Search
-	'MediaWiki\Tests\Search\SearchUpdateSpyTrait' => "$testDir/phpunit/includes/search/SearchUpdateSpyTrait.php",
+	'MediaWiki\Tests\Search\SearchUpdateSpyTrait' => "$testDir/phpunit/includes/Search/SearchUpdateSpyTrait.php",
 
 	# tests/phpunit/maintenance
 	'MediaWiki\\Tests\\Maintenance\\DumpAsserter' => "$testDir/phpunit/maintenance/DumpAsserter.php",
@@ -227,9 +227,9 @@ $wgAutoloadClasses += [
 	'MediaWiki\\Tests\\Maintenance\\MaintenanceBaseTestCase' => "$testDir/phpunit/maintenance/MaintenanceBaseTestCase.php",
 	'MediaWiki\\Tests\\Maintenance\\PageDumpTestDataTrait' => "$testDir/phpunit/maintenance/PageDumpTestDataTrait.php",
 
-	# tests/phpunit/media
-	'FakeDimensionFile' => "$testDir/phpunit/includes/media/FakeDimensionFile.php",
-	'MediaWikiMediaTestCase' => "$testDir/phpunit/includes/media/MediaWikiMediaTestCase.php",
+	# tests/phpunit/includes/Media
+	'FakeDimensionFile' => "$testDir/phpunit/includes/Media/FakeDimensionFile.php",
+	'MediaWikiMediaTestCase' => "$testDir/phpunit/includes/Media/MediaWikiMediaTestCase.php",
 
 	# tests/phpunit/mocks
 	'DummySessionProvider' => "$testDir/phpunit/mocks/session/DummySessionProvider.php",
