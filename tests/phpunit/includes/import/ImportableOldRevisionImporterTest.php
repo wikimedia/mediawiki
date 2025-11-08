@@ -222,4 +222,39 @@ class ImportableOldRevisionImporterTest extends MediaWikiIntegrationTestCase {
 		$importer->import( $revision );
 	}
 
+	/**
+	 * Test that importing the same revision twice results in the second import being skipped
+	 * due to duplicate detection.
+	 */
+	public function testDuplicateRevisionDetection() {
+		$title = Title::newFromText( __CLASS__ . rand() );
+		$page = $this->getExistingTestPage( $title );
+		$pageId = $page->getId();
+
+		$services = $this->getServiceContainer();
+		$dbw = $services->getConnectionProvider()->getPrimaryDatabase();
+		$revisionStore = $services->getRevisionStore();
+		$startRevisionCount = $revisionStore->countRevisionsByPageId( $dbw, $pageId );
+
+		$revision = $this->getWikiRevision( $title );
+		$revision->setTimestamp( '20230101000000' );
+		$revision->setText( 'Test content' );
+		$sha1 = Wikimedia\base_convert( sha1( 'Test content' ), 16, 36, 31 );
+		$revision->setSha1Base36( $sha1 );
+
+		$importer1 = $this->getImporter();
+		$result1 = $importer1->import( $revision );
+		$this->assertTrue( $result1, 'First import should succeed' );
+
+		$importer2 = $this->getImporter();
+		$result2 = $importer2->import( $revision );
+		$this->assertFalse( $result2, 'Second import should be detected as duplicate' );
+
+		$revisionCount = $revisionStore->countRevisionsByPageId( $dbw, $pageId );
+		$this->assertSame(
+			$startRevisionCount + 1,
+			$revisionCount,
+			'Should only be one more revision in the database'
+		);
+	}
 }
