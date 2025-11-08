@@ -284,7 +284,7 @@ $wgAutoloadClasses += [
 	# tests/phpunit/unit/includes/HookContainer
 	'MediaWiki\\Tests\\HookContainer\\HookRunnerTestBase' => "$testDir/phpunit/unit/includes/HookContainer/HookRunnerTestBase.php",
 
-	# tests/phpunit/unit/includes/json
+	# tests/phpunit/unit/includes/Json
 	'MediaWiki\\Tests\\Json\\JsonDeserializableSubClass' => "$testDir/phpunit/mocks/Json/JsonDeserializableSubClass.php",
 	'MediaWiki\\Tests\\Mocks\\Json\\JsonDeserializableSubClass' => "$testDir/phpunit/mocks/Json/JsonDeserializableSubClass.php",
 	'MediaWiki\\Tests\\Mocks\\Json\\JsonDeserializableSubClassAlias' => "$testDir/phpunit/mocks/Json/JsonDeserializableSubClass.php",
@@ -301,12 +301,12 @@ $wgAutoloadClasses += [
 	'MediaWiki\\Tests\\Unit\\Language\\LanguageFallbackTestTrait' => "$testDir/phpunit/unit/includes/Language/LanguageFallbackTestTrait.php",
 	'MediaWiki\\Tests\\Unit\\Language\\LanguageNameUtilsTestTrait' => "$testDir/phpunit/unit/includes/Language/LanguageNameUtilsTestTrait.php",
 
-	# tests/phpunit/unit/includes/libs/filebackend/fsfile
-	'Wikimedia\\Tests\\FileBackend\\FSFile\\TempFSFileTestTrait' => "$testDir/phpunit/unit/includes/libs/filebackend/fsfile/TempFSFileTestTrait.php",
+	# tests/phpunit/unit/includes/libs/FileBackend/FSFile
+	'Wikimedia\\Tests\\FileBackend\\FSFile\\TempFSFileTestTrait' => "$testDir/phpunit/unit/includes/libs/FileBackend/FSFile/TempFSFileTestTrait.php",
 
-	# tests/phpunit/unit/includes/libs/filebackend/fsfile
-	'MediaWiki\\Tests\\Unit\\Libs\\Rdbms\\AddQuoterMock' => "$testDir/phpunit/unit/includes/libs/rdbms/AddQuoterMock.php",
-	'MediaWiki\\Tests\\Unit\\Libs\\Rdbms\\SQLPlatformTestHelper' => "$testDir/phpunit/unit/includes/libs/rdbms/SQLPlatformTestHelper.php",
+	# tests/phpunit/unit/includes/libs/Rdbms
+	'MediaWiki\\Tests\\Unit\\Libs\\Rdbms\\AddQuoterMock' => "$testDir/phpunit/unit/includes/libs/Rdbms/AddQuoterMock.php",
+	'MediaWiki\\Tests\\Unit\\Libs\\Rdbms\\SQLPlatformTestHelper' => "$testDir/phpunit/unit/includes/libs/Rdbms/SQLPlatformTestHelper.php",
 
 	# tests/phpunit/unit/includes/libs/Message
 	'Wikimedia\\Tests\\Message\\DataMessageValueTest' => "$testDir/phpunit/unit/includes/libs/Message/DataMessageValueTest.php",
