@@ -193,16 +193,17 @@ $( () => {
 
 		if ( mw.user.isTemp() ) {
 			// Since temporary accounts cannot be logged into again, show a confirmation dialog.
-			confirmedPromise = mw.loader.using( 'oojs-ui-windows' ).then( () => {
+			confirmedPromise = mw.loader.using( [ 'oojs-ui-windows', 'mediawiki.jqueryMsg' ] ).then( () => {
+				// Keep in sync with SpecialUserLogout
 				const $confirmDialogContent = $( '<div>' ).append(
-					$( '<p>' ).text( mw.msg( 'userlogout-temp' ) ),
-					$( '<p>' ).text( mw.msg( 'userlogout-temp-moreinfo' ) ),
+					$( '<p>' ).append( mw.message( 'userlogout-temp' ).parseDom() ),
+					$( '<p>' ).append( mw.message( 'userlogout-temp-moreinfo' ).parseDom() ),
 					new OO.ui.MessageWidget( {
 						type: 'notice',
 						label: $( '<div>' ).append(
 							$( '<strong>' ).text( mw.msg( 'userlogout-temp-messagebox-title' ) ),
 							$( '<br>' ),
-							document.createTextNode( mw.msg( 'userlogout-temp-messagebox-body' ) )
+							mw.message( 'userlogout-temp-messagebox-body' ).parseDom()
 						)
 					} ).$element
 				);

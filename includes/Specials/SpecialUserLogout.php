@@ -78,7 +78,8 @@ class SpecialUserLogout extends FormSpecialPage {
 		$form->setSubmitTextMsg( 'userlogout-submit' );
 		if ( $this->getUser()->isTemp() ) {
 			$form->addHeaderHtml(
-				Html::element( 'p', [], $this->msg( 'userlogout-temp' )->text() ) .
+				// Keep in sync with mediawiki.page.ready/ready.js
+				Html::rawElement( 'p', [], $this->msg( 'userlogout-temp' )->parse() ) .
 				Html::rawElement( 'p', [], $this->msg( 'userlogout-temp-moreinfo' )->parse() ) .
 				( new MessageWidget( [
 					'type' => 'notice',
