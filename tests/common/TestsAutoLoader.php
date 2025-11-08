@@ -197,7 +197,7 @@ $wgAutoloadClasses += [
 	'TitleCodecTestBase' => "$testDir/phpunit/includes/title/TitleCodecTestBase.php",
 
 	# test/phpunit/includes/user
-	'UserOptionsLookupTestBase' => "$testDir/phpunit/integration/includes/user/Options/UserOptionsLookupTestBase.php",
+	'UserOptionsLookupTestBase' => "$testDir/phpunit/integration/includes/User/Options/UserOptionsLookupTestBase.php",
 
 	# tests/phpunit/includes/Language
 	'MediaWiki\\Tests\\Mocks\\Language\\DummyConverter' => "$testDir/phpunit/mocks/Language/DummyConverter.php",
@@ -279,7 +279,7 @@ $wgAutoloadClasses += [
 
 	# tests/phpunit/unit/includes/FileBackend
 	'FileBackendGroupTestTrait' => "$testDir/phpunit/unit/includes/FileBackend/FileBackendGroupTestTrait.php",
-	'FileBackendIntegrationTestBase' => "$testDir/phpunit/integration/includes/libs/filebackend/FileBackendIntegrationTestBase.php",
+	'FileBackendIntegrationTestBase' => "$testDir/phpunit/integration/includes/libs/FileBackend/FileBackendIntegrationTestBase.php",
 
 	# tests/phpunit/unit/includes/HookContainer
 	'MediaWiki\\Tests\\HookContainer\\HookRunnerTestBase' => "$testDir/phpunit/unit/includes/HookContainer/HookRunnerTestBase.php",
@@ -328,26 +328,26 @@ $wgAutoloadClasses += [
 	'MediaWiki\\Tests\\ExtensionJsonTestBase' => "$testDir/phpunit/integration/includes/ExtensionJsonTestBase.php",
 	'MediaWiki\\Tests\\ExtensionServicesTestBase' => "$testDir/phpunit/integration/includes/ExtensionServicesTestBase.php",
 
-	# tests/phpunit/integration/includes/edit
-	'MediaWiki\\Tests\\Integration\\Edit\\SimpleParsoidOutputStashSerializationTest' => "$testDir/phpunit/integration/includes/edit/SimpleParsoidOutputStashSerializationTest.php",
+	# tests/phpunit/integration/includes/Edit
+	'MediaWiki\\Tests\\Integration\\Edit\\SimpleParsoidOutputStashSerializationTest' => "$testDir/phpunit/integration/includes/Edit/SimpleParsoidOutputStashSerializationTest.php",
 
 	# tests/phpunit/integration/includes/HTMLForm
 	'MediaWiki\\Tests\\Integration\\HTMLForm\\HTMLFormFieldTestCase' => "$testDir/phpunit/integration/includes/HTMLForm/HTMLFormFieldTestCase.php",
 
 	# tests/phpunit/integration/includes/libs
-	'LockManagerIntegrationTestBase' => "$testDir/phpunit/integration/includes/libs/lockmanager/LockManagerIntegrationTestBase.php",
+	'LockManagerIntegrationTestBase' => "$testDir/phpunit/integration/includes/libs/LockManager/LockManagerIntegrationTestBase.php",
 
 	# tests/phpunit/integration/includes/Rest/Handler
 	'MediaWiki\\Tests\\Rest\\Handler\\HandlerIntegrationTestTrait' => "$testDir/phpunit/integration/includes/Rest/Handler/HandlerIntegrationTestTrait.php",
 
-	# tests/phpunit/integration/includes/user
-	'MediaWiki\\Tests\\User\\ActorStoreTestBase' => "$testDir/phpunit/integration/includes/user/ActorStoreTestBase.php",
+	# tests/phpunit/integration/includes/User
+	'MediaWiki\\Tests\\User\\ActorStoreTestBase' => "$testDir/phpunit/integration/includes/User/ActorStoreTestBase.php",
 
-	# tests/phpunit/integration/includes/user/Options
-	'MediaWiki\\Tests\\User\\Options\\MockUserOptionsStore' => "$testDir/phpunit/integration/includes/user/Options/MockUserOptionsStore.php",
+	# tests/phpunit/integration/includes/User/Options
+	'MediaWiki\\Tests\\User\\Options\\MockUserOptionsStore' => "$testDir/phpunit/integration/includes/User/Options/MockUserOptionsStore.php",
 
-	# tests/phpunit/integration/includes/user/TempUser
-	'MediaWiki\\Tests\\User\\TempUser\\TempUserTestTrait' => "$testDir/phpunit/integration/includes/user/TempUser/TempUserTestTrait.php",
+	# tests/phpunit/integration/includes/User/TempUser
+	'MediaWiki\\Tests\\User\\TempUser\\TempUserTestTrait' => "$testDir/phpunit/integration/includes/User/TempUser/TempUserTestTrait.php",
 
 	# tests/phpunit/structure
 	'MediaWiki\\Tests\\Structure\\AbstractSchemaTestBase' => "$testDir/phpunit/structure/AbstractSchemaTestBase.php",
