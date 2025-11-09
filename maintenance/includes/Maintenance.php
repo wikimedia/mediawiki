@@ -185,6 +185,12 @@ abstract class Maintenance {
 	private ?ILBFactory $lbFactory = null;
 
 	/**
+	 * Convert fatalError() to a throw in order to allow this class to be
+	 * tested.
+	 */
+	private bool $isTesting = false;
+
+	/**
 	 * Default constructor. Children should call this *first* if implementing
 	 * their own constructors
 	 *
@@ -547,7 +553,7 @@ abstract class Maintenance {
 		// If running PHPUnit tests we don't want to call exit, as it will end the test suite early.
 		// Instead, throw an exception that will still cause the relevant test to fail if the ::fatalError
 		// call was not expected.
-		if ( defined( 'MW_PHPUNIT_TEST' ) && !defined( 'MW_PARSER_TEST' ) ) {
+		if ( defined( 'MW_PHPUNIT_TEST' ) && $this->isTesting ) {
 			throw new MaintenanceFatalError( $exitCode );
 		} else {
 			exit( $exitCode );

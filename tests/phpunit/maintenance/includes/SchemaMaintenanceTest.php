@@ -21,6 +21,16 @@ class SchemaMaintenanceTest extends MaintenanceBaseTestCase {
 		return GenerateSchemaSql::class;
 	}
 
+	// This is a *different* maintenance base class
+	protected function createGenerateSchemaChangeSql() {
+		$mbc = new class extends MaintenanceBaseTestCase {
+			protected function getMaintenanceClass() {
+				return GenerateSchemaChangeSql::class;
+			}
+		};
+		return $mbc->createMaintenance();
+	}
+
 	/** @dataProvider provideExecuteForFatalError */
 	public function testExecuteForFatalError( $options, $expectedOutputRegex ) {
 		foreach ( $options as $name => $value ) {
@@ -67,7 +77,7 @@ class SchemaMaintenanceTest extends MaintenanceBaseTestCase {
 	}
 
 	public function testExecuteForSchemaChangeWhenNoSchemaChangesMade() {
-		$maintenance = new GenerateSchemaChangeSql();
+		$maintenance = $this->createGenerateSchemaChangeSql();
 		$maintenance->setOption( 'json', self::DATA_DIR . '/patch-no_change.json' );
 		$this->expectCallToFatalError();
 		$this->expectOutputRegex( '/No schema changes detected/' );
@@ -82,7 +92,7 @@ class SchemaMaintenanceTest extends MaintenanceBaseTestCase {
 	}
 
 	public function testExecuteForSuccessfulValidationOfJsonSchemaChangeFile() {
-		$maintenance = new GenerateSchemaChangeSql();
+		$maintenance = $this->createGenerateSchemaChangeSql();
 		$maintenance->setOption( 'validate', 1 );
 		$maintenance->setOption( 'json', self::DATA_DIR . '/patch-drop-ct_tag.json' );
 		$maintenance->execute();
@@ -190,7 +200,7 @@ class SchemaMaintenanceTest extends MaintenanceBaseTestCase {
 		$sqlPath = $this->getNewTempDirectory();
 		mkdir( $sqlPath . '/mysql' );
 		// Run the maintenance script
-		$maintenance = new GenerateSchemaChangeSql();
+		$maintenance = $this->createGenerateSchemaChangeSql();
 		$maintenance->setOption( 'json', realpath( self::DATA_DIR . '/patch-drop-ct_tag.json' ) );
 		$maintenance->setOption( 'sql', $sqlPath );
 		foreach ( $options as $name => $value ) {

@@ -7,6 +7,7 @@ use RebuildAll;
 use RebuildRecentchanges;
 use RebuildTextIndex;
 use RefreshLinks;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers \RebuildAll
@@ -20,9 +21,10 @@ class RebuildAllTest extends MaintenanceBaseTestCase {
 	}
 
 	protected function createMaintenance() {
-		return $this->getMockBuilder( RebuildAll::class )
+		$mock = $this->getMockBuilder( RebuildAll::class )
 			->onlyMethods( [ 'createChild' ] )
 			->getMock();
+		return TestingAccessWrapper::newFromObject( $mock );
 	}
 
 	public function testExecute() {
