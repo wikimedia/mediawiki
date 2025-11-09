@@ -8,6 +8,14 @@ use SebastianBergmann\FileIterator\Facade;
  * @coversNothing
  */
 class StructureTest extends \PHPUnit\Framework\TestCase {
+	private const FOLDER_TO_CHECK = [
+		'tests/phpunit/includes',
+		'tests/phpunit/integration/includes',
+		'tests/phpunit/unit/includes',
+		'tests/phpunit/mocks',
+		'tests/common/',
+	];
+
 	/**
 	 * Verify all files that appear to be tests have file names ending in
 	 * Test.  If the file names do not end in Test, they will not be run.
@@ -47,6 +55,38 @@ class StructureTest extends \PHPUnit\Framework\TestCase {
 			$results,
 			"Unit test file in $rootPath must end with Test."
 		);
+	}
+
+	/**
+	 * See T398513
+	 * See AutoloaderTest::testCapitaliseFolder for the real classes.
+	 */
+	public function testCapitaliseFolder() {
+		global $IP;
+
+		$error = [];
+		$rootLen = strlen( $IP ) + 1;
+		foreach ( self::FOLDER_TO_CHECK as $checkFolder ) {
+			$checkPath = $IP . '/' . $checkFolder;
+			$this->assertDirectoryExists( $checkPath );
+			$testFiles = $this->recurseFiles( $checkPath );
+
+			$checkFolderLen = strlen( $checkFolder );
+			foreach ( $testFiles as $testFile ) {
+				$testFile = strtr( $testFile, [ '\\' => '/' ] );
+				if ( preg_match( '#/(data|fixtures|bin)/#', $testFile ) ) {
+					continue;
+				}
+
+				$slash = strrpos( $testFile, '/' );
+				$filename = substr( $testFile, $slash + 1 );
+				$testPath = substr( $testFile, $rootLen, $slash - $rootLen );
+				if ( preg_match( '#/(?!libs)[^A-Z]#', substr( $testPath, $checkFolderLen ) ) ) {
+					$error[$filename] = $testPath;
+				}
+			}
+		}
+		$this->assertSame( [], $error, 'All folder in /includes/ with php classes must start with upper case' );
 	}
 
 	private function recurseFiles( $dir ) {
