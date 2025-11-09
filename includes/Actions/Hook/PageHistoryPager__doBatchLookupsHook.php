@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Actions\Hook;
 
 use MediaWiki\Pager\HistoryPager;
 use Wikimedia\Rdbms\IResultWrapper;
@@ -27,3 +27,6 @@ interface PageHistoryPager__doBatchLookupsHook {
 	 */
 	public function onPageHistoryPager__doBatchLookups( $pager, $result );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( PageHistoryPager__doBatchLookupsHook::class, 'MediaWiki\\Hook\\PageHistoryPager__doBatchLookupsHook' );

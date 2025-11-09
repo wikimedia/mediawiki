@@ -134,6 +134,24 @@ because of Phabricator reports.
   In this release of MediaWiki, XXX classes now have a namespace and XXX do
   not yet (XXX% done, up from XX% in MediaWiki 1.45.0). The following have newly
   been moved:
+  - MediaWiki\Collation:
+    - AbkhazUppercaseCollation
+    - BashkirUppercaseCollation
+    - CentralKurdishUppercaseCollation
+    - Collation
+    - CollationCkb
+    - CustomUppercaseCollation
+    - IcuCollation
+    - IdentityCollation
+    - InariSaamiUppercaseCollation
+    - NumericUppercaseCollation
+    - RemoteIcuCollation
+    - UppercaseCollation
+  - MediaWiki\DB:
+    - CloneDatabase
+    - MWLBFactory
+  - MediaWiki\Debug:
+    - MW
   - MediaWiki\Skins\Hook => MediaWiki\Language\Skin
     - SkinAfterPortletHook
     - SkinPageReadyConfigHook
@@ -153,37 +171,28 @@ because of Phabricator reports.
 	- SkinTemplateGetLanguageLinkHook
 	- SkinTemplateNavigation__UniversalHook
     - UndeletePageToolLinksHook
+  - Actions related hooks: MediaWiki\Hook => MediaWiki\Actions\Hook
+    - ActionBeforeFormDisplayHook
+	- ActionModifyFormFieldsHook
+	- CustomEditorHook
+	- HistoryPageToolLinksHook
+	- HistoryToolsHook
+	- InfoActionHook
+	- PageHistoryBeforeListHook
+	- PageHistoryLineEndingHook
+	- PageHistoryPager__doBatchLookupsHook
+	- PageHistoryPager__getQueryInfoHook
+	- RawPageViewBeforeOutputHook
+	- UnwatchArticleCompleteHook
+	- UnwatchArticleHook
+	- WatchArticleCompleteHook
+	- WatchArticleHook
 * Using an int for the $mode parameter of LanguageFallback::getAll() is now
   deprecated.  Use the new LanguageFallbackMode enumeration instead.
 * LanguageFallback::MESSAGES and LanguageFallback::STRICT are deprecated; use
   LanguageFallbackModes::{MESSAGES,STRICT} instead.
 * The AutopromoteCondition hook has been deprecated. Use
   UserRequirementsCondition hook, instead.
-* (T166010) All PHP code in MediaWiki is slowly being moved to be in a class
-  namespace as appropriate, so that we can use PSR-4 auto-loading, which will
-  speed up general code loading of MediaWiki. The old global namespace class
-  names are being left behind as deprecated aliases.
-  In this release of MediaWiki, XXX classes now have a namespace and XXX do
-  not yet (XXX% done, up from XX% in MediaWiki 1.45.0). The following have newly
-  been moved:
-  - MediaWiki\Collation:
-    - AbkhazUppercaseCollation
-    - BashkirUppercaseCollation
-    - CentralKurdishUppercaseCollation
-    - Collation
-    - CollationCkb
-    - CustomUppercaseCollation
-    - IcuCollation
-    - IdentityCollation
-    - InariSaamiUppercaseCollation
-    - NumericUppercaseCollation
-    - RemoteIcuCollation
-    - UppercaseCollation
-  - MediaWiki\DB:
-    - CloneDatabase
-    - MWLBFactory
-  - MediaWiki\Debug:
-    - MW
 * …
 
 === Other changes in 1.46 ===

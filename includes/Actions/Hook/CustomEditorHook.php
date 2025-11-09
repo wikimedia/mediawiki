@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Actions\Hook;
 
 use MediaWiki\Page\Article;
 use MediaWiki\User\User;
@@ -25,3 +25,6 @@ interface CustomEditorHook {
 	 */
 	public function onCustomEditor( $article, $user );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( CustomEditorHook::class, 'MediaWiki\\Hook\\CustomEditorHook' );

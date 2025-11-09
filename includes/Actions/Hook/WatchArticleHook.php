@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Actions\Hook;
 
 use MediaWiki\Page\WikiPage;
 use MediaWiki\Status\Status;
@@ -28,3 +28,6 @@ interface WatchArticleHook {
 	 */
 	public function onWatchArticle( $user, $page, &$status, $expiry );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( WatchArticleHook::class, 'MediaWiki\\Hook\\WatchArticleHook' );

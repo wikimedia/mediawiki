@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Actions\Hook;
 
 use MediaWiki\Page\WikiPage;
 use MediaWiki\User\UserIdentity;
@@ -24,3 +24,6 @@ interface WatchArticleCompleteHook {
 	 */
 	public function onWatchArticleComplete( $user, $page );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( WatchArticleCompleteHook::class, 'MediaWiki\\Hook\\WatchArticleCompleteHook' );

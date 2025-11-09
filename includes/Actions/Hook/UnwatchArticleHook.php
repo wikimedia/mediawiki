@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Actions\Hook;
 
 use MediaWiki\Page\WikiPage;
 use MediaWiki\Status\Status;
@@ -27,3 +27,6 @@ interface UnwatchArticleHook {
 	 */
 	public function onUnwatchArticle( $user, $page, &$status );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( UnwatchArticleHook::class, 'MediaWiki\\Hook\\UnwatchArticleHook' );

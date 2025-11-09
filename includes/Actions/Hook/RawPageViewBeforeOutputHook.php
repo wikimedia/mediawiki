@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Actions\Hook;
 
 use MediaWiki\Actions\RawAction;
 
@@ -23,3 +23,6 @@ interface RawPageViewBeforeOutputHook {
 	 */
 	public function onRawPageViewBeforeOutput( $obj, &$text );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( RawPageViewBeforeOutputHook::class, 'MediaWiki\\Hook\\RawPageViewBeforeOutputHook' );

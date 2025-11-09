@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Actions\Hook;
 
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Message\Message;
@@ -25,3 +25,6 @@ interface InfoActionHook {
 	 */
 	public function onInfoAction( $context, &$pageInfo );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( InfoActionHook::class, 'MediaWiki\\Hook\\InfoActionHook' );
