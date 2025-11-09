@@ -402,6 +402,95 @@ class ApiUploadTest extends ApiUploadTestCase {
 		$this->assertEquals( 'Success', $result['upload']['result'] );
 	}
 
+	public function testUploadStashPublishWithWarnings() {
+		$fileName = 'TestUploadStash.jpg';
+		$mimeType = 'image/jpeg';
+		$filePath = $this->filePath( 'yuv420.jpg' );
+
+		// Normal upload of a file
+		$this->fakeUploadFile( 'file', $fileName, $mimeType, $filePath );
+		[ $result ] = $this->doApiRequestWithToken( [
+			'action' => 'upload',
+			'filename' => $fileName,
+			'file' => 'dummy content',
+		], null, $this->uploader );
+
+		$this->assertArrayHasKey( 'upload', $result );
+
+		// Stashed upload of the same file to produce a warning on publish
+		$this->fakeUploadFile( 'file', $fileName, $mimeType, $filePath );
+		[ $result ] = $this->doApiRequestWithToken( [
+			'action' => 'upload',
+			'stash' => 1,
+			'filename' => $fileName,
+			'file' => 'dummy content',
+		], null, $this->uploader );
+
+		$this->assertArrayHasKey( 'upload', $result );
+		$filekey = $result['upload']['filekey'];
+
+		// Publish with warning
+		$this->clearFakeUploads();
+		[ $result ] = $this->doApiRequestWithToken( [
+			'action' => 'upload',
+			'filekey' => $filekey,
+			'filename' => $fileName,
+			'comment' => 'dummy comment',
+			'text' => "This is the page text for $fileName, altered",
+		], null, $this->uploader );
+		$this->assertArrayHasKey( 'upload', $result );
+		$this->assertEquals( 'Warning', $result['upload']['result'] );
+		$this->assertArrayHasKey( 'warnings', $result['upload'] );
+		$this->assertArrayNotHasKey( 'stasherrors', $result['upload'] );
+		$this->assertArrayNotHasKey( 'filekey', $result['upload'] );
+	}
+
+	public function testUploadStashAsyncPublishWithWarnings() {
+		$this->overrideConfigValue( MainConfigNames::EnableAsyncUploads, true );
+
+		$fileName = 'TestUploadStash.jpg';
+		$mimeType = 'image/jpeg';
+		$filePath = $this->filePath( 'yuv420.jpg' );
+
+		// Normal upload of a file
+		$this->fakeUploadFile( 'file', $fileName, $mimeType, $filePath );
+		[ $result ] = $this->doApiRequestWithToken( [
+			'action' => 'upload',
+			'filename' => $fileName,
+			'file' => 'dummy content',
+		], null, $this->uploader );
+
+		$this->assertArrayHasKey( 'upload', $result );
+
+		// Stashed upload of the same file to produce a warning on publish
+		$this->fakeUploadFile( 'file', $fileName, $mimeType, $filePath );
+		[ $result ] = $this->doApiRequestWithToken( [
+			'action' => 'upload',
+			'stash' => 1,
+			'filename' => $fileName,
+			'file' => 'dummy content',
+		], null, $this->uploader );
+
+		$this->assertArrayHasKey( 'upload', $result );
+		$filekey = $result['upload']['filekey'];
+
+		// Publish with warning
+		$this->clearFakeUploads();
+		[ $result ] = $this->doApiRequestWithToken( [
+			'action' => 'upload',
+			'filekey' => $filekey,
+			'filename' => $fileName,
+			'async' => 1,
+			'comment' => 'dummy comment',
+			'text' => "This is the page text for $fileName, altered",
+		], null, $this->uploader );
+		$this->assertArrayHasKey( 'upload', $result );
+		$this->assertEquals( 'Warning', $result['upload']['result'] );
+		$this->assertArrayHasKey( 'warnings', $result['upload'] );
+		$this->assertArrayNotHasKey( 'stasherrors', $result['upload'] );
+		$this->assertArrayNotHasKey( 'filekey', $result['upload'] );
+	}
+
 	public function testUploadChunks() {
 		$fileName = 'TestUploadChunks.jpg';
 		$mimeType = 'image/jpeg';
