@@ -73,12 +73,12 @@ class ApiOptions extends ApiOptionsBase {
 	 * @param mixed $value
 	 */
 	protected function setPreference( $preference, $value ) {
-		$globalUpdateType = [
+		$globalUpdateType = match ( $this->getGlobalParam() ) {
 			'ignore' => UserOptionsManager::GLOBAL_IGNORE,
 			'update' => UserOptionsManager::GLOBAL_UPDATE,
 			'override' => UserOptionsManager::GLOBAL_OVERRIDE,
 			'create' => UserOptionsManager::GLOBAL_CREATE,
-		][ $this->getGlobalParam() ];
+		};
 
 		$this->getUserOptionsManager()->setOption(
 			$this->getUserFromPrimary(),
