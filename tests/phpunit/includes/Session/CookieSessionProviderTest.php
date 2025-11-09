@@ -662,7 +662,6 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 
 		$expectedCookies = [
 			'MyCookiePrefixToken',
-			'MyCookiePrefixLoggedOut',
 			'MySessionName',
 			'forceHTTPS',
 		];
@@ -1020,43 +1019,6 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 		);
 
 		$provider->unpersistSession( $this->getSentRequest() );
-	}
-
-	public function testSetLoggedOutCookie() {
-		$provider = new CookieSessionProvider(
-			$this->createNoOpMock( JwtCodec::class ),
-			$this->createNoOpMock( UrlUtils::class ),
-			[
-				'priority' => 1,
-				'sessionName' => 'MySessionName',
-				'cookieOptions' => [ 'prefix' => 'x' ],
-			]
-		);
-		$providerPriv = TestingAccessWrapper::newFromObject( $provider );
-		$this->initProvider(
-			$provider, null, $this->getConfig(), SessionManager::singleton(), $this->createHookContainer()
-		);
-
-		$t1 = time();
-		$t2 = time() - 86400 * 2;
-
-		// Set it
-		$request = new FauxRequest();
-		$providerPriv->setLoggedOutCookie( $t1, $request );
-		$this->assertSame( (string)$t1, $request->response()->getCookie( 'xLoggedOut' ) );
-
-		// Too old
-		$request = new FauxRequest();
-		$providerPriv->setLoggedOutCookie( $t2, $request );
-		$this->assertSame( self::UNCHANGED, $request->response()->getCookie( 'xLoggedOut' ) );
-
-		// Don't reset if it's already set
-		$request = new FauxRequest();
-		$request->setCookies( [
-			'xLoggedOut' => $t1,
-		], prefix: '' );
-		$providerPriv->setLoggedOutCookie( $t1, $request );
-		$this->assertSame( self::UNCHANGED, $request->response()->getCookie( 'xLoggedOut' ) );
 	}
 
 	public function testGetCookie() {

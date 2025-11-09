@@ -248,7 +248,6 @@ class CookieSessionProvider extends SessionProvider {
 		}
 
 		$this->setForceHTTPSCookie( $forceHTTPS, $session, $request );
-		$this->setLoggedOutCookie( $session->getLoggedOutTimestamp(), $request );
 		if ( $this->useJwtCookie() ) {
 			$this->setJwtCookie( $session->getUser(), $request, $session->shouldRememberUser() );
 		}
@@ -320,26 +319,12 @@ class CookieSessionProvider extends SessionProvider {
 		}
 	}
 
-	/**
-	 * @param int $loggedOut timestamp
-	 * @param WebRequest $request
-	 */
-	protected function setLoggedOutCookie( $loggedOut, WebRequest $request ) {
-		if ( $loggedOut + 86400 > ConvertibleTimestamp::time() &&
-			$loggedOut !== (int)$this->getCookie( $request, 'LoggedOut', $this->cookieOptions['prefix'] )
-		) {
-			$request->response()->setCookie( 'LoggedOut', (string)$loggedOut, $loggedOut + 86400,
-				$this->cookieOptions );
-		}
-	}
-
 	/** @inheritDoc */
 	public function getVaryCookies() {
 		$cookies = [
 			// Vary on token and session because those are the real authn
 			// determiners. UserID and UserName don't matter without those.
 			$this->cookieOptions['prefix'] . 'Token',
-			$this->cookieOptions['prefix'] . 'LoggedOut',
 			$this->params['sessionName'],
 			'forceHTTPS',
 		];
