@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Skin\Hook;
 
 // phpcs:disable Squiz.Classes.ValidClassName.NotCamelCaps
 use MediaWiki\Skin\SkinTemplate;
@@ -26,3 +26,6 @@ interface SkinTemplateNavigation__UniversalHook {
 	 */
 	public function onSkinTemplateNavigation__Universal( $sktemplate, &$links ): void;
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( SkinTemplateNavigation__UniversalHook::class, 'MediaWiki\\Hook\\SkinTemplateNavigation__UniversalHook' );

@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Skins\Hook;
+namespace MediaWiki\Skin\Hook;
 
 use MediaWiki\Skin\Skin;
 
@@ -25,3 +25,6 @@ interface SkinAfterPortletHook {
 	 */
 	public function onSkinAfterPortlet( $skin, $portletName, &$html );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( SkinAfterPortletHook::class, 'MediaWiki\\Skins\\Hook\\SkinAfterPortletHook' );

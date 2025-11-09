@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Skin\Hook;
 
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Linker\LinkRenderer;
@@ -26,3 +26,6 @@ interface UndeletePageToolLinksHook {
 	 */
 	public function onUndeletePageToolLinks( IContextSource $context, LinkRenderer $linkRenderer, array &$links );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( UndeletePageToolLinksHook::class, 'MediaWiki\\Hook\\UndeletePageToolLinksHook' );

@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Skin\Hook;
 
 use MediaWiki\Skin\Skin;
 
@@ -23,3 +23,6 @@ interface SkinBuildSidebarHook {
 	 */
 	public function onSkinBuildSidebar( $skin, &$bar );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( SkinBuildSidebarHook::class, 'MediaWiki\\Hook\\SkinBuildSidebarHook' );

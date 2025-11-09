@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Skin\Hook;
 
 use MediaWiki\Output\OutputPage;
 use MediaWiki\User\User;
@@ -31,3 +31,6 @@ interface GetNewMessagesAlertHook {
 		$out
 	);
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( GetNewMessagesAlertHook::class, 'MediaWiki\\Hook\\GetNewMessagesAlertHook' );

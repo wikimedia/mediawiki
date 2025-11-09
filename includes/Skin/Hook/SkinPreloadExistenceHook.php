@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Skin\Hook;
 
 use MediaWiki\Skin\Skin;
 use MediaWiki\Title\Title;
@@ -25,3 +25,6 @@ interface SkinPreloadExistenceHook {
 	 */
 	public function onSkinPreloadExistence( &$titles, $skin );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( SkinPreloadExistenceHook::class, 'MediaWiki\\Hook\\SkinPreloadExistenceHook' );

@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Skin\Hook;
 
 use MediaWiki\Title\Title;
 use Wikimedia\Message\MessageSpecifier;
@@ -27,3 +27,6 @@ interface SkinCopyrightFooterMessageHook {
 	 */
 	public function onSkinCopyrightFooterMessage( $title, $type, &$msg );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( SkinCopyrightFooterMessageHook::class, 'MediaWiki\\Hook\\SkinCopyrightFooterMessageHook' );

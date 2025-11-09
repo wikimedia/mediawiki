@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Skin\Hook;
 
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Title\Title;
@@ -30,3 +30,6 @@ interface SkinTemplateGetLanguageLinkHook {
 		$languageLinkTitle, $title, $outputPage
 	);
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( SkinTemplateGetLanguageLinkHook::class, 'MediaWiki\\Hook\\SkinTemplateGetLanguageLinkHook' );

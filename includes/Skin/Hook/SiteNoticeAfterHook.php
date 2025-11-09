@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Skin\Hook;
 
 use MediaWiki\Skin\Skin;
 
@@ -24,3 +24,6 @@ interface SiteNoticeAfterHook {
 	 */
 	public function onSiteNoticeAfter( &$siteNotice, $skin );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( SiteNoticeAfterHook::class, 'MediaWiki\\Hook\\SiteNoticeAfterHook' );

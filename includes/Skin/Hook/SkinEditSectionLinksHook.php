@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Skin\Hook;
 
 use MediaWiki\Language\Language;
 use MediaWiki\Skin\Skin;
@@ -39,3 +39,6 @@ interface SkinEditSectionLinksHook {
 		&$result, $lang
 	);
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( SkinEditSectionLinksHook::class, 'MediaWiki\\Hook\\SkinEditSectionLinksHook' );

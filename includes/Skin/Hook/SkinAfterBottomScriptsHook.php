@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Skin\Hook;
 
 use MediaWiki\Skin\Skin;
 
@@ -25,3 +25,6 @@ interface SkinAfterBottomScriptsHook {
 	 */
 	public function onSkinAfterBottomScripts( $skin, &$text );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( SkinAfterBottomScriptsHook::class, 'MediaWiki\\Hook\\SkinAfterBottomScriptsHook' );

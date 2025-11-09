@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Skins\Hook;
+namespace MediaWiki\Skin\Hook;
 
 use MediaWiki\ResourceLoader as RL;
 
@@ -24,3 +24,6 @@ interface SkinPageReadyConfigHook {
 		array &$config
 	);
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( SkinPageReadyConfigHook::class, 'MediaWiki\\Skins\\Hook\\SkinPageReadyConfigHook' );

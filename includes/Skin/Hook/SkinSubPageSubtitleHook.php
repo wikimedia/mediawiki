@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Skin\Hook;
 
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Skin\Skin;
@@ -28,3 +28,6 @@ interface SkinSubPageSubtitleHook {
 	 */
 	public function onSkinSubPageSubtitle( &$subpages, $skin, $out );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( SkinSubPageSubtitleHook::class, 'MediaWiki\\Hook\\SkinSubPageSubtitleHook' );

@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Skin\Hook;
 
 use MediaWiki\Skin\Skin;
 
@@ -26,3 +26,6 @@ interface SidebarBeforeOutputHook {
 	 */
 	public function onSidebarBeforeOutput( $skin, &$sidebar ): void;
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( SidebarBeforeOutputHook::class, 'MediaWiki\\Hook\\SidebarBeforeOutputHook' );

@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Skin\Hook;
 
 use MediaWiki\Skin\Skin;
 
@@ -28,3 +28,6 @@ interface SkinAddFooterLinksHook {
 	 */
 	public function onSkinAddFooterLinks( Skin $skin, string $key, array &$footerItems );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( SkinAddFooterLinksHook::class, 'MediaWiki\\Hook\\SkinAddFooterLinksHook' );
