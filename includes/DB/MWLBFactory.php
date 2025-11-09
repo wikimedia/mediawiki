@@ -172,10 +172,10 @@ class MWLBFactory {
 			} elseif ( is_array( $this->options->get( MainConfigNames::DBservers ) ) ) {
 				$lbConf['servers'] = [];
 				foreach ( $this->options->get( MainConfigNames::DBservers ) as $i => $server ) {
-					$lbConf['servers'][$i] = self::initServerInfo( $server, $this->options );
+					$lbConf['servers'][$i] = $this->initServerInfo( $server, $this->options );
 				}
 			} else {
-				$server = self::initServerInfo(
+				$server = $this->initServerInfo(
 					[
 						'host' => $this->options->get( MainConfigNames::DBserver ),
 						'user' => $this->options->get( MainConfigNames::DBuser ),
@@ -212,7 +212,7 @@ class MWLBFactory {
 			}
 		}
 
-		self::assertValidServerConfigs(
+		$this->assertValidServerConfigs(
 			$serversCheck,
 			$this->options->get( MainConfigNames::DBname ),
 			$this->options->get( MainConfigNames::DBprefix )
@@ -260,7 +260,7 @@ class MWLBFactory {
 			$server += [ 'port' => $options->get( MainConfigNames::DBport ) ];
 		}
 
-		if ( in_array( $server['type'], self::getDbTypesWithSchemas(), true ) ) {
+		if ( in_array( $server['type'], $this->getDbTypesWithSchemas(), true ) ) {
 			$server += [ 'schema' => $options->get( MainConfigNames::DBmwschema ) ];
 		}
 
@@ -296,16 +296,16 @@ class MWLBFactory {
 				// A DB name is not needed to connect to mysql; 'dbname' is useless.
 				// This field only defines the DB to use for unspecified DB domains.
 				if ( $srvDB !== null && $srvDB !== $ldDB ) {
-					self::reportMismatchedDBs( $srvDB, $ldDB );
+					$this->reportMismatchedDBs( $srvDB, $ldDB );
 				}
 			} elseif ( $type === 'postgres' ) {
 				if ( $srvTP !== '' ) {
-					self::reportIfPrefixSet( $srvTP, $type );
+					$this->reportIfPrefixSet( $srvTP, $type );
 				}
 			}
 
 			if ( $srvTP !== '' && $srvTP !== $ldTP ) {
-				self::reportMismatchedPrefixes( $srvTP, $ldTP );
+				$this->reportMismatchedPrefixes( $srvTP, $ldTP );
 			}
 		}
 	}
