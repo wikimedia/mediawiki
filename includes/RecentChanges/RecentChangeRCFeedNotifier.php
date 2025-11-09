@@ -70,7 +70,7 @@ class RecentChangeRCFeedNotifier {
 				( $params['omit_user'] && $performer->isRegistered() ) ||
 				( $params['omit_minor'] && $recentChange->getAttribute( 'rc_minor' ) ) ||
 				( $params['omit_patrolled'] && $recentChange->getAttribute( 'rc_patrolled' ) ) ||
-				$recentChange->getAttribute( 'rc_type' ) == RC_EXTERNAL
+				!in_array( $recentChange->getAttribute( 'rc_source' ), RecentChange::INTERNAL_SOURCES )
 			) {
 				continue;
 			}

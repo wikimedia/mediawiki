@@ -43,6 +43,7 @@ abstract class MachineReadableRCFeedFormatter implements RCFeedFormatter {
 	public function getLine( array $feed, RecentChange $rc, $actionComment ) {
 		$services = MediaWikiServices::getInstance();
 		$recentChangeRCFeedNotifier = $services->getRecentChangeRCFeedNotifier();
+		$recentChangeLookup = $services->getRecentChangeLookup();
 		$mainConfig = $services->getMainConfig();
 		$canonicalServer = $mainConfig->get( MainConfigNames::CanonicalServer );
 		$serverName = $mainConfig->get( MainConfigNames::ServerName );
@@ -52,7 +53,7 @@ abstract class MachineReadableRCFeedFormatter implements RCFeedFormatter {
 			// but there is no real reason not to expose it in other cases,
 			// and I can see how this may be potentially useful for clients.
 			'id' => $rc->getAttribute( 'rc_id' ),
-			'type' => RecentChange::parseFromRCType( $rc->getAttribute( 'rc_type' ) ),
+			'type' => $recentChangeLookup->convertSourceToType( $rc->getAttribute( 'rc_source' ) ),
 			'namespace' => $rc->getTitle()->getNamespace(),
 			'title' => $rc->getTitle()->getPrefixedText(),
 			'title_url' => $rc->getTitle()->getCanonicalURL(),

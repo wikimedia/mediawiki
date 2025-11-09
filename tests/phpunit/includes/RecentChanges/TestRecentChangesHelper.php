@@ -46,7 +46,6 @@ class TestRecentChangesHelper {
 				'rc_last_oldid' => 0,
 				'rc_old_len' => null,
 				'rc_new_len' => null,
-				'rc_type' => 3,
 				'rc_logid' => 25,
 				'rc_log_type' => $logType,
 				'rc_log_action' => $logAction,
@@ -87,7 +86,6 @@ class TestRecentChangesHelper {
 				'rc_this_oldid' => $thisid,
 				'rc_last_oldid' => $lastid,
 				'rc_cur_id' => $curid,
-				'rc_type' => 1,
 				'rc_bot' => 1,
 				'rc_source' => RecentChange::SRC_NEW
 			]
@@ -121,7 +119,6 @@ class TestRecentChangesHelper {
 		$attribs = array_merge(
 			$this->getDefaultAttributes( $titleText, $timestamp ),
 			[
-				'rc_type' => RC_CATEGORIZE,
 				'rc_source' => RecentChange::SRC_CATEGORIZE,
 				'rc_user' => $user->getId(),
 				'rc_user_text' => $user->getName(),
@@ -155,7 +152,6 @@ class TestRecentChangesHelper {
 			'rc_comment_data' => null,
 			'rc_minor' => 0,
 			'rc_bot' => 0,
-			'rc_type' => 0,
 			'rc_patrolled' => 1,
 			'rc_deleted' => 0,
 			'rc_logid' => 0,

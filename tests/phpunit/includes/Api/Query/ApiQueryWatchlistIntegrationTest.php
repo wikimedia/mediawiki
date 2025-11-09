@@ -1118,7 +1118,6 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 			'rc_timestamp' => wfTimestamp( TS_MW ),
 			'rc_namespace' => $title->getNamespace(),
 			'rc_title' => $title->getDBkey(),
-			'rc_type' => RC_EXTERNAL,
 			'rc_source' => 'external',
 			'rc_minor' => 0,
 			'rc_cur_id' => $title->getArticleID(),

@@ -270,7 +270,6 @@ SELECT
 	rc_id,
 	rc_cur_id,
 	rc_last_oldid,
-	rc_type,
 	rc_patrolled,
 	rc_ip,
 	rc_old_len,

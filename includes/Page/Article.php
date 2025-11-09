@@ -1408,7 +1408,7 @@ class Article implements Page {
 		// File patrol: Get the timestamp of the latest upload for this page,
 		// check whether it is within the RC lifespan and if it is, we try
 		// to get the recentchanges row belonging to that entry
-		// (with rc_type = RC_LOG, rc_log_type = upload).
+		// (with rc_source = SRC_LOG, rc_log_type = upload).
 		$recentFileUpload = false;
 		if ( ( !$rc || $rc->getAttribute( 'rc_patrolled' ) ) && $useFilePatrol
 			&& $title->getNamespace() === NS_FILE ) {

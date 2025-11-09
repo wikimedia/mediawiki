@@ -330,7 +330,6 @@ class RecentChange implements Taggable {
 				'rc_cur_id',
 				'rc_this_oldid',
 				'rc_last_oldid',
-				'rc_type',
 				'rc_source',
 				'rc_patrolled',
 				'rc_ip',

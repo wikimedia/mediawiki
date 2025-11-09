@@ -35,7 +35,6 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 			'rc_timestamp' => wfTimestamp( TS_MW ),
 			'rc_namespace' => NS_USER,
 			'rc_title' => 'Tony',
-			'rc_type' => RC_EDIT,
 			'rc_source' => RecentChange::SRC_EDIT,
 			'rc_minor' => 0,
 			'rc_cur_id' => 77,
@@ -60,7 +59,6 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 
 		yield 'external user' => [
 			[
-				'rc_type' => RC_EXTERNAL,
 				'rc_source' => 'foo',
 				'rc_user' => 0,
 				'rc_user_text' => 'm>External User',
@@ -69,7 +67,6 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 
 		yield 'anon user' => [
 			[
-				'rc_type' => RC_EXTERNAL,
 				'rc_source' => 'foo',
 				'rc_user' => 0,
 				'rc_user_text' => '192.168.0.1',
@@ -80,7 +77,6 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 			[
 				'rc_namespace' => NS_SPECIAL,
 				'rc_title' => 'Log',
-				'rc_type' => RC_LOG,
 				'rc_source' => RecentChange::SRC_LOG,
 				'rc_log_type' => 'delete',
 				'rc_log_action' => 'delete',
@@ -91,7 +87,6 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 			[
 				'rc_namespace' => NS_MAIN,
 				'rc_title' => '',
-				'rc_type' => RC_LOG,
 				'rc_source' => RecentChange::SRC_LOG,
 				'rc_log_type' => 'delete',
 				'rc_log_action' => 'delete',

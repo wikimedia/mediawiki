@@ -256,7 +256,6 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			'rc_namespace',
 			'rc_title',
 			'rc_cur_id',
-			'rc_type',
 			'rc_source',
 			'rc_deleted'
 		] );
@@ -272,7 +271,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 				$query->fields( [ 'rc_this_oldid', 'rc_last_oldid' ] );
 			}
 			if ( $this->fld_flags ) {
-				$query->fields( [ 'rc_minor', 'rc_type', 'rc_bot' ] );
+				$query->fields( [ 'rc_minor', 'rc_bot' ] );
 			}
 			if ( $this->fld_sizes ) {
 				$query->fields( [ 'rc_old_len', 'rc_new_len' ] );

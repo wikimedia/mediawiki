@@ -143,7 +143,6 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			'rc_namespace',
 			'rc_title',
 			'rc_timestamp',
-			'rc_type',
 			'rc_source',
 			'rc_deleted',
 			'wl_notificationtimestamp'
