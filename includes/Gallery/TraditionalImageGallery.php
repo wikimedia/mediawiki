@@ -5,6 +5,11 @@
  * @file
  */
 
+namespace MediaWiki\Gallery;
+
+use MediaHandler;
+use MediaTransformError;
+use MediaTransformOutput;
 use MediaWiki\FileRepo\File\File;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
@@ -88,7 +93,7 @@ class TraditionalImageGallery extends ImageGalleryBase {
 					# Give extensions a chance to select the file revision for us
 					$options = [];
 					$hookRunner->onBeforeParserFetchFileAndTitle(
-						// @phan-suppress-next-line PhanTypeMismatchArgument Type mismatch on pass-by-ref args
+					// @phan-suppress-next-line PhanTypeMismatchArgument Type mismatch on pass-by-ref args
 						$this->mParser, $nt, $options, $descQuery );
 					# Fetch and register the file (file title may be different via hooks)
 					[ $img, $nt ] = $this->mParser->fetchFileAndTitle( $nt, $options );
@@ -128,13 +133,13 @@ class TraditionalImageGallery extends ImageGalleryBase {
 				$thumbhtml = Html::rawElement( 'span', [ 'typeof' => $rdfaType ], $thumbhtml );
 
 				$thumbhtml = "\n\t\t\t" . Html::rawElement(
-					'div',
-					[
-						'class' => 'thumb',
-						'style' => 'height: ' . ( $this->getThumbPadding() + $this->mHeights ) . 'px;'
-					],
-					$thumbhtml
-				);
+						'div',
+						[
+							'class' => 'thumb',
+							'style' => 'height: ' . ( $this->getThumbPadding() + $this->mHeights ) . 'px;'
+						],
+						$thumbhtml
+					);
 
 				if ( !$img && $resolveFilesViaParser ) {
 					$this->mParser->addTrackingCategory( 'broken-file-category' );
@@ -163,8 +168,8 @@ class TraditionalImageGallery extends ImageGalleryBase {
 					$params['title'] = $imageOptions['title'];
 					$params['img-class'] = 'mw-file-element';
 					$imageParameters = Linker::getImageLinkMTOParams(
-						$imageOptions, $descQuery, $this->mParser
-					) + $params;
+							$imageOptions, $descQuery, $this->mParser
+						) + $params;
 				}
 
 				if ( $loading === ImageGalleryBase::LOADING_LAZY ) {
@@ -184,10 +189,10 @@ class TraditionalImageGallery extends ImageGalleryBase {
 				$width = $this->getThumbDivWidth( $thumb->getWidth() );
 				$height = $this->getThumbPadding() + $this->mHeights;
 				$thumbhtml = "\n\t\t\t" . Html::rawElement( 'div', [
-					'class' => 'thumb',
-					'style' => "width: {$width}px;" .
-						( $this->mMode === 'traditional' ? " height: {$height}px;" : '' ),
-				], $thumbhtml );
+						'class' => 'thumb',
+						'style' => "width: {$width}px;" .
+							( $this->mMode === 'traditional' ? " height: {$height}px;" : '' ),
+					], $thumbhtml );
 
 				// Call parser transform hook
 				if ( $resolveFilesViaParser ) {
@@ -227,13 +232,13 @@ class TraditionalImageGallery extends ImageGalleryBase {
 			# Weird double wrapping (the extra div inside the li) needed due to FF2 bug
 			# Can be safely removed if FF2 falls completely out of existence
 			$output .= "\n\t\t" .
-			Html::rawElement(
-				'li',
-				[ 'class' => 'gallerybox', 'style' => 'width: ' . $gbWidth ],
-				$thumbhtml
+				Html::rawElement(
+					'li',
+					[ 'class' => 'gallerybox', 'style' => 'width: ' . $gbWidth ],
+					$thumbhtml
 					. $galleryText
 					. "\n\t\t"
-			);
+				);
 		}
 		$output .= "\n" . Html::closeElement( 'ul' );
 
@@ -249,15 +254,15 @@ class TraditionalImageGallery extends ImageGalleryBase {
 	protected function getCaptionHtml( Title $nt, Language $lang, LinkRenderer $linkRenderer ) {
 		// Preloaded into LinkCache in toHTML
 		return $linkRenderer->makeKnownLink(
-			$nt,
-			is_int( $this->getCaptionLength() ) ?
-				$lang->truncateForVisual( $nt->getText(), $this->getCaptionLength() ) :
-				$nt->getText(),
-			[
-				'class' => 'galleryfilename' .
-					( $this->getCaptionLength() === true ? ' galleryfilename-truncate' : '' )
-			]
-		) . "\n";
+				$nt,
+				is_int( $this->getCaptionLength() ) ?
+					$lang->truncateForVisual( $nt->getText(), $this->getCaptionLength() ) :
+					$nt->getText(),
+				[
+					'class' => 'galleryfilename' .
+						( $this->getCaptionLength() === true ? ' galleryfilename-truncate' : '' )
+				]
+			) . "\n";
 	}
 
 	/**
@@ -409,3 +414,6 @@ class TraditionalImageGallery extends ImageGalleryBase {
 	protected function adjustImageParameters( $thumb, &$imageParameters ) {
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( TraditionalImageGallery::class, 'TraditionalImageGallery' );

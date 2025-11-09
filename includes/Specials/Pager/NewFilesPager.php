@@ -7,10 +7,10 @@
 
 namespace MediaWiki\Pager;
 
-use ImageGalleryBase;
 use ImageGalleryClassNotFoundException;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Context\IContextSource;
+use MediaWiki\Gallery\ImageGalleryBase;
 use MediaWiki\Html\FormOptions;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MainConfigNames;

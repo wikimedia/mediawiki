@@ -4,6 +4,9 @@
  * @file
  */
 
+namespace MediaWiki\Gallery;
+
+use ImageGalleryClassNotFoundException;
 use MediaWiki\Context\ContextSource;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
@@ -286,14 +289,14 @@ abstract class ImageGalleryBase extends ContextSource {
 	 * @param ?array $imageOptions To supercede the $link param
 	 */
 	public function add(
-			$title,
-			$html = '',
-			$alt = '',
-			$link = '',
-			$handlerOpts = [],
-			$loading = self::LOADING_DEFAULT,
-			?array $imageOptions = null
-		) {
+		$title,
+		$html = '',
+		$alt = '',
+		$link = '',
+		$handlerOpts = [],
+		$loading = self::LOADING_DEFAULT,
+		?array $imageOptions = null
+	) {
 		if ( $title instanceof File ) {
 			// Old calling convention
 			$title = $title->getTitle();
@@ -315,14 +318,14 @@ abstract class ImageGalleryBase extends ContextSource {
 	 * @param ?array $imageOptions To supercede the $link param
 	 */
 	public function insert(
-			$title,
-			$html = '',
-			$alt = '',
-			$link = '',
-			$handlerOpts = [],
-			$loading = self::LOADING_DEFAULT,
-			?array $imageOptions = null
-		) {
+		$title,
+		$html = '',
+		$alt = '',
+		$link = '',
+		$handlerOpts = [],
+		$loading = self::LOADING_DEFAULT,
+		?array $imageOptions = null
+	) {
 		if ( $title instanceof File ) {
 			// Old calling convention
 			$title = $title->getTitle();
@@ -432,3 +435,6 @@ abstract class ImageGalleryBase extends ContextSource {
 			: $this->getLanguage();
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( ImageGalleryBase::class, 'ImageGalleryBase' );

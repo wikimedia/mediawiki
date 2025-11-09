@@ -4,6 +4,10 @@
  * @file
  */
 
+namespace MediaWiki\Gallery;
+
+use MediaTransformOutput;
+
 /**
  * Packed overlay image gallery. All images adjusted to be same height and
  * image caption being placed over top of image.
@@ -34,3 +38,6 @@ class PackedOverlayImageGallery extends PackedImageGallery {
 			. "\n\t\t\t</div>";
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( PackedOverlayImageGallery::class, 'PackedOverlayImageGallery' );

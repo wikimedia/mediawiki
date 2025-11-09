@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Hook;
 
-use ImageGalleryBase;
+use MediaWiki\Gallery\ImageGalleryBase;
 use MediaWiki\Parser\Parser;
 
 /**

@@ -9,7 +9,7 @@
 
 namespace MediaWiki\SpecialPage;
 
-use ImageGalleryBase;
+use MediaWiki\Gallery\ImageGalleryBase;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Skin\Skin;
 use MediaWiki\Title\Title;

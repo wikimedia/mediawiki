@@ -7,7 +7,6 @@
 namespace MediaWiki\Specials;
 
 use BitmapHandler;
-use ImageGalleryBase;
 use MediaWiki\ChangeTags\ChangeTags;
 use MediaWiki\Config\Config;
 use MediaWiki\Exception\ErrorPageError;
@@ -16,6 +15,7 @@ use MediaWiki\Exception\UserBlockedError;
 use MediaWiki\FileRepo\File\LocalFile;
 use MediaWiki\FileRepo\LocalRepo;
 use MediaWiki\FileRepo\RepoGroup;
+use MediaWiki\Gallery\ImageGalleryBase;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;

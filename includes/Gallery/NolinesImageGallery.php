@@ -4,6 +4,8 @@
  * @file
  */
 
+namespace MediaWiki\Gallery;
+
 /**
  * Nolines image gallery. Like "traditional" but without borders and
  * less padding.
@@ -25,3 +27,6 @@ class NolinesImageGallery extends TraditionalImageGallery {
 		return 0;
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( NolinesImageGallery::class, 'NolinesImageGallery' );

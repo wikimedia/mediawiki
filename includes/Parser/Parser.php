@@ -11,7 +11,6 @@ namespace MediaWiki\Parser;
 
 use BadMethodCallException;
 use Exception;
-use ImageGalleryBase;
 use ImageGalleryClassNotFoundException;
 use InvalidArgumentException;
 use LogicException;
@@ -23,6 +22,7 @@ use MediaWiki\Content\TextContent;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Debug\DeprecationHelper;
 use MediaWiki\FileRepo\File\File;
+use MediaWiki\Gallery\ImageGalleryBase;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
