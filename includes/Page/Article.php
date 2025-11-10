@@ -41,6 +41,7 @@ use MediaWiki\Revision\BadRevisionException;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Skin\Skin;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\User\Options\UserOptionsLookup;
@@ -722,7 +723,9 @@ class Article implements Page {
 			);
 
 			if ( $pOutput ) {
-				$this->doOutputFromParserCache( $pOutput, $parserOptions, $outputPage, $textOptions );
+				$skin = $outputPage->getSkin();
+				$this->postProcessOutput( $pOutput, $parserOptions, $textOptions, $skin );
+				$this->doOutputFromPostProcessedParserCache( $pOutput, $outputPage );
 				$this->doOutputMetaData( $pOutput, $outputPage );
 				return true;
 			}
@@ -757,7 +760,9 @@ class Article implements Page {
 				);
 
 				if ( $pOutput ) {
-					$this->doOutputFromParserCache( $pOutput, $parserOptions, $outputPage, $textOptions );
+					$skin = $outputPage->getSkin();
+					$this->postProcessOutput( $pOutput, $parserOptions, $textOptions, $skin );
+					$this->doOutputFromPostProcessedParserCache( $pOutput, $outputPage );
 					$this->doOutputMetaData( $pOutput, $outputPage );
 					return true;
 				}
@@ -862,7 +867,7 @@ class Article implements Page {
 			$renderStatus,
 			$outputPage,
 			$parserOptions,
-			$textOptions
+			$textOptions,
 		);
 
 		if ( !$renderStatus->isOK() ) {
@@ -897,24 +902,32 @@ class Article implements Page {
 		$this->mParserOutput = $pOutput;
 	}
 
-	/**
-	 * @param ParserOutput $pOutput
-	 * @param ParserOptions $pOptions
-	 * @param OutputPage $outputPage
-	 * @param array $textOptions
-	 */
-	private function doOutputFromParserCache(
+	private function postProcessOutput(
+		ParserOutput $pOutput, ParserOptions $parserOptions, array $textOptions, Skin $skin
+	) {
+		$skinOptions = $skin->getOptions();
+		$textOptions += [
+			// T371022
+			'allowClone' => false,
+			'skin' => $skin,
+			'injectTOC' => $skinOptions['toc'],
+		];
+		$pipeline = MediaWikiServices::getInstance()->getDefaultOutputPipeline();
+		$pipeline->run( $pOutput, $parserOptions, $textOptions );
+	}
+
+	private function doOutputFromPostProcessedParserCache(
 		ParserOutput $pOutput,
-		ParserOptions $pOptions,
 		OutputPage $outputPage,
-		array $textOptions
 	) {
 		# Ensure that UI elements requiring revision ID have
 		# the correct version information.
 		$oldid = $pOutput->getCacheRevisionId() ?? $this->getRevIdFetched();
 		$outputPage->setRevisionId( $oldid );
 		$outputPage->setRevisionIsCurrent( $oldid === $this->mPage->getLatest() );
-		$outputPage->addParserOutput( $pOutput, $pOptions, $textOptions );
+
+		$outputPage->addPostProcessedParserOutput( $pOutput );
+
 		# Preload timestamp to avoid a DB hit
 		$cachedTimestamp = $pOutput->getRevisionTimestamp();
 		if ( $cachedTimestamp !== null ) {
@@ -923,19 +936,12 @@ class Article implements Page {
 		}
 	}
 
-	/**
-	 * @param RevisionRecord $rev
-	 * @param Status $renderStatus
-	 * @param OutputPage $outputPage
-	 * @param ParserOptions $parserOptions
-	 * @param array $textOptions
-	 */
 	private function doOutputFromRenderStatus(
 		RevisionRecord $rev,
 		Status $renderStatus,
 		OutputPage $outputPage,
 		ParserOptions $parserOptions,
-		array $textOptions
+		array $textOptions,
 	) {
 		$context = $this->getContext();
 		if ( !$renderStatus->isOK() ) {
@@ -965,7 +971,10 @@ class Article implements Page {
 			}
 		}
 
-		$outputPage->addParserOutput( $pOutput, $parserOptions, $textOptions );
+		// TODO this will probably need to be conditional on cache access and/or hoisted one level above but for
+		// now let's keep things in the same place and avoid editing StatusValues.
+		$this->postProcessOutput( $pOutput, $parserOptions, $textOptions, $outputPage->getSkin() );
+		$outputPage->addPostProcessedParserOutput( $pOutput );
 
 		if ( $this->getRevisionRedirectTarget( $rev ) ) {
 			$outputPage->addSubtitle( "<span id=\"redirectsub\">" .

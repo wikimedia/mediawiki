@@ -2660,9 +2660,16 @@ class OutputPage extends ContextSource {
 			$parserOptions = $this->internalParserOptions( false );
 		}
 		$poOptions ??= [];
+
+		/** @deprecated please postprocess then use ::addPostProcessedParserOutput() */
 		$text = $this->getParserOutputText( $parserOutput, $parserOptions, $poOptions );
 		$this->addParserOutputMetadata( $parserOutput );
 		$this->addParserOutputText( $text, $poOptions );
+	}
+
+	public function addPostProcessedParserOutput( ParserOutput $parserOutput ) {
+		$this->addParserOutputMetadata( $parserOutput );
+		$this->addParserOutputText( $parserOutput->getContentHolderText() );
 	}
 
 	/**
