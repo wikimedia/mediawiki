@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Mail\Hook;
 
 use MediaWiki\Mail\MailAddress;
 
@@ -29,3 +29,6 @@ interface AlternateUserMailerHook {
 	 */
 	public function onAlternateUserMailer( $headers, $to, $from, $subject, $body );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( AlternateUserMailerHook::class, 'MediaWiki\\Hook\\AlternateUserMailerHook' );

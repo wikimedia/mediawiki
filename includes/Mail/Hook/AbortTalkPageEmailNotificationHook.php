@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Mail\Hook;
 
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
@@ -25,3 +25,6 @@ interface AbortTalkPageEmailNotificationHook {
 	 */
 	public function onAbortTalkPageEmailNotification( $targetUser, $title );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( AbortTalkPageEmailNotificationHook::class, 'MediaWiki\\Hook\\AbortTalkPageEmailNotificationHook' );

@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Mail\Hook;
 
 use MediaWiki\Mail\MailAddress;
 
@@ -27,3 +27,6 @@ interface UserMailerTransformContentHook {
 	 */
 	public function onUserMailerTransformContent( $to, $from, &$body, &$error );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( UserMailerTransformContentHook::class, 'MediaWiki\\Hook\\UserMailerTransformContentHook' );

@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Mail\Hook;
 
 use MediaWiki\Mail\MailAddress;
 
@@ -24,3 +24,6 @@ interface UserMailerChangeReturnPathHook {
 	 */
 	public function onUserMailerChangeReturnPath( $to, &$returnPath );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( UserMailerChangeReturnPathHook::class, 'MediaWiki\\Hook\\UserMailerChangeReturnPathHook' );

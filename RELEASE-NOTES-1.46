@@ -187,6 +187,15 @@ because of Phabricator reports.
 	- UnwatchArticleHook
 	- WatchArticleCompleteHook
 	- WatchArticleHook
+  - Mail related hooks: MediaWiki\Hook => MediaWiki\Mail\Hook
+    - AbortTalkPageEmailNotificationHook
+    - AlternateUserMailerHook
+    - SendWatchlistEmailNotificationHook
+    - UpdateUserMailerFormattedPageStatusHook
+    - UserMailerChangeReturnPathHook
+    - UserMailerSplitToHook
+    - UserMailerTransformContentHook
+    - UserMailerTransformMessageHook
 * Using an int for the $mode parameter of LanguageFallback::getAll() is now
   deprecated.  Use the new LanguageFallbackMode enumeration instead.
 * LanguageFallback::MESSAGES and LanguageFallback::STRICT are deprecated; use

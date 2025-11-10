@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Mail\Hook;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.
@@ -20,3 +20,7 @@ interface UpdateUserMailerFormattedPageStatusHook {
 	 */
 	public function onUpdateUserMailerFormattedPageStatus( &$formattedPageStatus );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( UpdateUserMailerFormattedPageStatusHook::class,
+	'MediaWiki\\Hook\\UpdateUserMailerFormattedPageStatusHook' );
