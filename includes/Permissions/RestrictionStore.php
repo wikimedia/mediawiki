@@ -574,6 +574,11 @@ class RestrictionStore {
 		$cascadePageIds = [];
 		$restrictionData = [];
 		foreach ( $cascadeRestrictions as $row ) {
+			// We only set pr_cascade=1 if pr_type='edit'. There may be old rows with pr_cascade=1
+			// but a different pr_type. Ignore those so there's only one row per page (T409743).
+			if ( $row->pr_type !== 'edit' ) {
+				continue;
+			}
 			$cascadePageIds[] = (int)$row->pr_page;
 			$restrictionData[$row->pr_page] = $row;
 		}
