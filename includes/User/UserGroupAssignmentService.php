@@ -38,6 +38,7 @@ class UserGroupAssignmentService {
 		private readonly UserGroupManagerFactory $userGroupManagerFactory,
 		private readonly UserNameUtils $userNameUtils,
 		private readonly UserFactory $userFactory,
+		private readonly RestrictedUserGroupChecker $restrictedGroupChecker,
 		private readonly HookRunner $hookRunner,
 		private readonly ServiceOptions $options,
 		private readonly TempUserConfig $tempUserConfig,
@@ -129,10 +130,34 @@ class UserGroupAssignmentService {
 
 		$localUserGroupManager = $this->userGroupManagerFactory->getUserGroupManager();
 		$groups = $localUserGroupManager->getGroupsChangeableBy( $performer );
+		$groups['restricted'] = [];
 
-		// Allow extensions to define groups that cannot be added, given the target user and
-		// the performer. This allows policy restrictions to be enforced via software. This
-		// could be done via configuration in the future, as discussed in T393615.
+		$checker = $this->restrictedGroupChecker;
+		$cannotAdd = [];
+		foreach ( $groups['add'] as $group ) {
+			if ( $checker->isGroupRestricted( $group ) ) {
+				$groups['restricted'][$group] = [
+					'condition-met' => $this->restrictedGroupChecker
+						->doPerformerAndTargetMeetConditionsForAddingToGroup(
+							$performer->getUser(),
+							$target,
+							$group
+						),
+					'ignore-condition' => $this->restrictedGroupChecker
+						->canPerformerIgnoreGroupRestrictions(
+							$performer,
+							$group
+						),
+				];
+				if ( !$checker->canPerformerAddTargetToGroup( $performer, $target, $group ) ) {
+					$cannotAdd[] = $group;
+				}
+			}
+		}
+		$groups['add'] = array_diff( $groups['add'], $cannotAdd );
+
+		// Legacy hook to allow extensions to define groups that cannot be added, given the
+		// target user and the performer. Instead, use the RestrictedGroups config.
 		$restrictedGroups = [];
 		$this->hookRunner->onSpecialUserRightsChangeableGroups(
 			$performer,
@@ -147,7 +172,7 @@ class UserGroupAssignmentService {
 		);
 
 		$groups['add'] = array_diff( $groups['add'], $unAddableRestrictedGroups );
-		$groups['restricted'] = array_filter(
+		$groups['restricted'] += array_filter(
 			$restrictedGroups,
 			static fn ( $group ) => !$group['condition-met']
 		);

@@ -109,6 +109,37 @@ class SpecialUserRightsTest extends SpecialPageTestBase {
 		$this->assertStringContainsString( '(sysop-unaddable-reason)', $html );
 	}
 
+	public function testShowFormWithRestrictedGroup() {
+		$this->overrideConfigValue(
+			MainConfigNames::RestrictedGroups,
+			[
+				'sysop' => [
+					'memberConditions' => [
+						'&',
+						[ APCOND_EDITCOUNT, 300 ],
+						[ APCOND_AGE, 3 * 86400 * 30 ],
+					],
+					'canBeIgnored' => false,
+				],
+			]
+		);
+
+		$target = $this->getTestUser()->getUser();
+		$performer = $this->getTestSysop()->getUser();
+
+		[ $html ] = $this->executeSpecialPage(
+			$target->getName(),
+			null,
+			'qqx',
+			$performer
+		);
+
+		$this->performBasicFormAssertions( $html, $target );
+
+		// The custom message exists because we are in qqx
+		$this->assertStringContainsString( '(userrights-restricted-group-sysop)', $html );
+	}
+
 	public function testSaveUserGroups() {
 		$target = $this->getTestUser()->getUser();
 		$performer = $this->getTestSysop()->getUser();

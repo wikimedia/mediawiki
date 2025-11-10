@@ -91,7 +91,15 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 		$this->removableGroups = $changeableGroups['remove'];
 		foreach ( $changeableGroups['restricted'] as $group => $details ) {
 			if ( !$details['condition-met'] ) {
-				$this->addGroupAnnotation( $group, $details['message'] );
+				if ( isset( $details['message'] ) ) {
+					$messageKey = $details['message'];
+				} else {
+					$customMessageKey = 'userrights-restricted-group-' . $group;
+					$messageKey = $this->msg( $customMessageKey )->exists() ?
+						$customMessageKey :
+						'userrights-restricted-group-warning';
+				}
+				$this->addGroupAnnotation( $group, $messageKey );
 			}
 		}
 	}

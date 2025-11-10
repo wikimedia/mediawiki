@@ -2683,6 +2683,7 @@ return [
 			$services->getUserGroupManagerFactory(),
 			$services->getUserNameUtils(),
 			$services->getUserFactory(),
+			$services->getRestrictedUserGroupChecker(),
 			new HookRunner( $services->getHookContainer() ),
 			new ServiceOptions(
 				UserGroupAssignmentService::CONSTRUCTOR_OPTIONS, $services->getMainConfig()

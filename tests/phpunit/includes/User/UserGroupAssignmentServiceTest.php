@@ -179,7 +179,7 @@ class UserGroupAssignmentServiceTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
-	public function testGetChangeableGroupsWithRestrictions(): void {
+	public function testGetChangeableGroupsWithRestrictionsHook(): void {
 		$ugmMock = $this->createMock( UserGroupManager::class );
 		$ugmMock->method( 'getGroupsChangeableBy' )
 			->willReturn( [
@@ -239,6 +239,139 @@ class UserGroupAssignmentServiceTest extends MediaWikiIntegrationTestCase {
 				],
 			],
 		], $groups );
+	}
+
+	/** @dataProvider provideGetChangeableGroupsWithRestrictions */
+	public function testGetChangeableGroupsWithRestrictions(
+		array $restrictedGroups,
+		bool $canIgnore,
+		array $expected
+	): void {
+		$ugmMock = $this->createMock( UserGroupManager::class );
+		$ugmMock->method( 'getGroupsChangeableBy' )
+			->willReturn( [
+				'add' => array_keys( $restrictedGroups ),
+				'remove' => array_keys( $restrictedGroups ),
+				'add-self' => [],
+				'remove-self' => [],
+			] );
+
+		$ugmFactoryMock = $this->createMock( UserGroupManagerFactory::class );
+		$ugmFactoryMock->method( 'getUserGroupManager' )
+			->willReturn( $ugmMock );
+
+		$this->setService( 'UserGroupManagerFactory', $ugmFactoryMock );
+
+		$this->overrideConfigValue( MainConfigNames::RestrictedGroups, $restrictedGroups );
+
+		$service = $this->getServiceContainer()->getUserGroupAssignmentService();
+
+		$performer = $canIgnore ?
+			$this->mockRegisteredUltimateAuthority() :
+			$this->mockAnonNullAuthority();
+		$target = $performer->getUser();
+
+		$groups = $service->getChangeableGroups( $performer, $target );
+		$this->assertSame( $expected, $groups );
+	}
+
+	public static function provideGetChangeableGroupsWithRestrictions() {
+		$passingConditions = [
+			'|',
+			[ APCOND_EDITCOUNT, 0 ],
+			[ APCOND_AGE, 3 * 86400 * 30 ],
+		];
+		$failingConditions = [
+			'&',
+			[ APCOND_EDITCOUNT, 300 ],
+			[ APCOND_AGE, 3 * 86400 * 30 ],
+		];
+
+		return [
+			'Conditions not met, cannot be ignored' => [
+				'restrictedGroups' => [
+					'group1' => [
+						'memberConditions' => $failingConditions,
+						'canBeIgnored' => false,
+					],
+					'group2' => [
+						'updaterConditions' => $failingConditions,
+						'canBeIgnored' => false,
+					],
+				],
+				'canIgnore' => true,
+				'expected' => [
+					'add' => [],
+					'remove' => [ 'group1', 'group2' ],
+					'restricted' => [
+						'group1' => [
+							'condition-met' => false,
+							'ignore-condition' => false,
+						],
+						'group2' => [
+							'condition-met' => false,
+							'ignore-condition' => false,
+						],
+					],
+				],
+			],
+			'Conditions not met, can be ignored' => [
+				'restrictedGroups' => [
+					'group1' => [
+						'memberConditions' => $failingConditions,
+						'updaterConditions' => $failingConditions,
+						'canBeIgnored' => true,
+					],
+				],
+				'canIgnore' => true,
+				'expected' => [
+					'add' => [ 'group1' ],
+					'remove' => [ 'group1' ],
+					'restricted' => [
+						'group1' => [
+							'condition-met' => false,
+							'ignore-condition' => true,
+						],
+					],
+				],
+			],
+			'Conditions met' => [
+				'restrictedGroups' => [
+					'group1' => [
+						'memberConditions' => $passingConditions,
+						'canBeIgnored' => false,
+					],
+					'group2' => [
+						'updaterConditions' => $passingConditions,
+						'canBeIgnored' => false,
+					],
+				],
+				'canIgnore' => false,
+				'expected' => [
+					'add' => [ 'group1', 'group2' ],
+					'remove' => [ 'group1', 'group2' ],
+					'restricted' => [
+						'group1' => [
+							'condition-met' => true,
+							'ignore-condition' => false,
+						],
+						'group2' => [
+							'condition-met' => true,
+							'ignore-condition' => false,
+						]
+					],
+				],
+			],
+			'No restricted groups' => [
+				'restrictedGroups' => [],
+				'canIgnore' => false,
+				'expected' => [
+					'add' => [],
+					'remove' => [],
+					'restricted' => [],
+				],
+			],
+		];
 	}
 
 	/** @dataProvider provideGetPageTitleForTargetUser */
