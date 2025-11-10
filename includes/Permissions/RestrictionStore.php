@@ -551,6 +551,7 @@ class RestrictionStore {
 		}
 
 		$dbr = $this->loadBalancerFactory->getReplicaDatabase();
+		$now = wfTimestampNow();
 
 		$cascadeRestrictions = $dbr->newSelectQueryBuilder()
 			->select( [
@@ -571,23 +572,32 @@ class RestrictionStore {
 			return [ [], [], [], [] ];
 		}
 
-		$cascadePageIds = [];
-		$restrictionData = [];
+		$restrictionsByPage = [];
 		foreach ( $cascadeRestrictions as $row ) {
-			// We only set pr_cascade=1 if pr_type='edit'. There may be old rows with pr_cascade=1
-			// but a different pr_type. Ignore those so there's only one row per page (T409743).
-			if ( $row->pr_type !== 'edit' ) {
-				continue;
+			$expiry = $dbr->decodeExpiry( $row->pr_expiry );
+			if ( $expiry > $now ) {
+				if ( !isset( $restrictionsByPage[$row->pr_page] ) ) {
+					$restrictionsByPage[$row->pr_page] = [
+						'title' => PageIdentityValue::localIdentity(
+							(int)$row->pr_page,
+							(int)$row->page_namespace,
+							$row->page_title
+						),
+						'restrictions' => [
+							$row->pr_type => $row->pr_level
+						]
+					];
+				} else {
+					$restrictionsByPage[$row->pr_page]['restrictions'][$row->pr_type] = $row->pr_level;
+				}
 			}
-			$cascadePageIds[] = (int)$row->pr_page;
-			$restrictionData[$row->pr_page] = $row;
 		}
 
 		$templateLinksDb = $this->loadBalancerFactory->getReplicaDatabase( TemplateLinksTable::VIRTUAL_DOMAIN );
 		$templateLinks = $templateLinksDb->newSelectQueryBuilder()
 			->select( 'tl_from' )
 			->from( 'templatelinks' )
-			->where( [ 'tl_from' => $cascadePageIds ] )
+			->where( [ 'tl_from' => array_keys( $restrictionsByPage ) ] )
 			->andWhere( $this->linksMigration->getLinksConditions( 'templatelinks', TitleValue::newFromPage( $page ) ) )
 			->caller( __METHOD__ )
 			->fetchResultSet();
@@ -595,24 +605,17 @@ class RestrictionStore {
 		$tlSources = [];
 		$ilSources = [];
 		$pageRestrictions = [];
-		$now = wfTimestampNow();
 
 		foreach ( $templateLinks as $link ) {
-			$row = $restrictionData[$link->tl_from];
-			$expiry = $templateLinksDb->decodeExpiry( $row->pr_expiry );
-			if ( $expiry > $now ) {
-				$tlSources[$row->pr_page] = PageIdentityValue::localIdentity(
-					(int)$row->pr_page,
-					(int)$row->page_namespace,
-					$row->page_title
-				);
-
-				if ( !isset( $pageRestrictions[$row->pr_type] ) ) {
-					$pageRestrictions[$row->pr_type] = [];
+			$pageData = $restrictionsByPage[$link->tl_from];
+			$tlSources[$link->tl_from] = $pageData['title'];
+			foreach ( $pageData['restrictions'] as $type => $level ) {
+				if ( !isset( $pageRestrictions[$type] ) ) {
+					$pageRestrictions[$type] = [];
 				}
 
-				if ( !in_array( $row->pr_level, $pageRestrictions[$row->pr_type] ) ) {
-					$pageRestrictions[$row->pr_type][] = $row->pr_level;
+				if ( !in_array( $level, $pageRestrictions[$type] ) ) {
+					$pageRestrictions[$type][] = $level;
 				}
 			}
 		}
@@ -623,27 +626,22 @@ class RestrictionStore {
 				->select( 'il_from' )
 				->from( 'imagelinks' )
 				->where( [
-					'il_from' => $cascadePageIds,
+					'il_from' => array_keys( $restrictionsByPage ),
 					'il_to' => $page->getDBkey()
 				] )
 				->caller( __METHOD__ )
 				->fetchResultSet();
 
 			foreach ( $imageLinks as $link ) {
-				$row = $restrictionData[$link->il_from];
-				$expiry = $imageLinksDb->decodeExpiry( $row->pr_expiry );
-				if ( $expiry > $now ) {
-					$ilSources[$row->pr_page] = PageIdentityValue::localIdentity(
-						(int)$row->pr_page,
-						(int)$row->page_namespace,
-						$row->page_title
-					);
-
-					if ( !isset( $pageRestrictions[$row->pr_type] ) ) {
-						$pageRestrictions[$row->pr_type] = [];
+				$pageData = $restrictionsByPage[$link->il_from];
+				$ilSources[$link->il_from] = $pageData['title'];
+				foreach ( $pageData['restrictions'] as $type => $level ) {
+					if ( !isset( $pageRestrictions[$type] ) ) {
+						$pageRestrictions[$type] = [];
 					}
-					if ( !in_array( $row->pr_level, $pageRestrictions[$row->pr_type] ) ) {
-						$pageRestrictions[$row->pr_type][] = $row->pr_level;
+
+					if ( !in_array( $level, $pageRestrictions[$type] ) ) {
+						$pageRestrictions[$type][] = $level;
 					}
 				}
 			}
