@@ -596,7 +596,7 @@
 	"nosuchsectiontext": "Siz mövcud olmayan alt səhifəni redaktə etməyə çalışırsınız.\nHəmin alt səhifə ola bilsin siz səhifəyə baxan zaman silinib.",
 	"loginreqtitle": "Daxil olmalısınız",
 	"loginreqlink": "daxil olmalısınız",
-	"loginreqpagetext": "Digər səhifələri görmək üçün $1 olmalısınız.",
+	"loginreqpagetext": "Digər səhifələri görmək üçün $1.",
 	"accmailtitle": "Parol göndərildi.",
 	"accmailtext": "[[User talk:$1|$1]] üçün təsadüfi yolla yaradılmış parol $2 ünvanına göndərildi.\nHesabınıza daxil olduqdan sonra, parolunuzu ''[[Special:ChangePassword|parolu dəyiş]]'' səhifəsində dəyişdirə bilərsiniz.",
 	"newarticle": "(Yeni)",

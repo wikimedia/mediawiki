@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Bennylin",
+			"SaldırganSincap",
 			"Sumbukompor"
 		]
 	},
@@ -249,7 +250,7 @@
 	"newarticletext": "ꦥꦚ꧀ꦗꦼꦤꦼꦁꦔꦤ꧀ꦲꦔꦼꦠꦸꦠ꧀ꦠꦶ​ꦥꦿꦤꦭ​ꦏꦁ​ꦢꦸꦫꦸꦁ​ꦲꦤ꧉​ꦏꦁꦒꦺꦴ​ꦲꦁꦒꦮꦺ​ꦏꦕ꧈​ꦒꦒꦺꦪ​ꦔꦼꦠꦶꦏ꧀ꦲꦶꦁ​​ꦏꦺꦴꦛꦏ꧀ꦔꦶꦱꦺꦴꦂ​ꦲꦶꦏꦶ​(ꦢꦼꦊꦁ[$1 ꦏꦕ​ꦥꦶꦠꦸꦭꦸꦁ]ꦔꦼꦤꦤꦶ​ꦏꦠꦼꦫꦁꦔꦤ꧀ꦤꦺ)꧉​ꦩꦤꦮ​ꦥꦚ꧀ꦗꦼꦤꦼꦁꦔꦤ꧀ꦠꦼꦏꦤ꧀ꦏꦺꦤꦺ​ꦲꦮꦶꦠ꧀ꦲꦺꦴꦫ​ꦱꦼꦔꦗ꧈​ꦏ꧀ꦭꦶꦏ꧀ꦏꦼꦤ꧀ꦠꦸꦩ꧀ꦧꦸꦭ꧀​<strong>ꦧꦭꦶꦏ꧀</strong>ꦲꦤ​ꦲꦶꦁ​ꦥꦔ꧀ꦭꦸꦫꦸꦤꦺ​ꦥꦚ꧀ꦗꦼꦤꦼꦁꦔꦤ꧀꧈",
 	"anontalkpagetext": "----\n<em>Iki kaca parembugané naraguna anonim kang durung gawé akun, utawa kang ora nganggo akuné.</em>\nMula, awak dhéwé kudu nganggo alamat IP wujud angka kanggo nglacak dhèwèké.\nAlamat IP mangkono bisa dianggo sawatara wong.\nManawa kowé minangka naraguna anonim lan rumasa yèn ana tanggepan kang ora ilok dieneraké marang awakmu, mangga [[Special:CreateAccount|gawéa akun]] utawa [[Special:UserLogin|mlebua log]] kanggo ngéndhani bingung marang naraguna anonim liyané ing tembé buri.",
 	"noarticletext": "ꦱꦲꦶꦏꦶ​ꦏꦕ​ꦲꦶꦏꦶ​ꦢꦸꦫꦸꦁ​ꦲꦤ​ꦠꦸꦭꦶꦱ꧀ꦱꦤ꧀ꦤꦺ꧉​ꦥꦚ꧀ꦗꦼꦤꦼꦁꦔꦤ꧀ꦧꦶꦱ꧇(꧑) [[Special:Search/{{PAGENAME}}|ꦲꦁꦔꦺꦴꦭꦺꦏ꧀ꦏꦶ​ꦱꦼꦱꦶꦫꦃꦲꦶꦁ​ꦏꦕ​ꦲꦶꦏꦶ]] ꦲꦶꦁ​ꦏꦕ​ꦭꦶꦪꦤꦺ꧈(꧒)\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ꦲꦁꦔꦺꦴꦭꦺꦏ꧀ꦏꦶ​ꦕꦛꦼꦠ꧀ꦠꦤ꧀ꦏꦁ​ꦩꦒꦼꦥꦺꦴꦏ꧀ꦏꦤ꧀]꧈​ꦲꦸꦠꦮ(꧓) [{{fullurl:{{FULLPAGENAME}}|action=edit}} ꦲꦁꦒꦮꦺ​ꦏꦕ​ꦲꦶꦏꦶ]</span>.",
-	"noarticletext-nopermission": "ꦱꦲꦶꦏꦶ​ꦏꦕ​ꦲꦶꦏꦶ​ꦢꦸꦫꦸꦁ​ꦲꦤ​ꦠꦸꦭꦶꦱ꧀ꦱꦤ꧀ꦤꦺ꧉​ꦥꦚ꧀ꦗꦼꦤꦼꦁꦔꦤ꧀ꦧꦶꦱ꧇(꧑) [[Special:Search/{{PAGENAME}}|ꦲꦁꦔꦺꦴꦭꦺꦏ꧀ꦏꦶ​ꦱꦼꦱꦶꦫꦃꦲꦶꦁ​ꦏꦕ​ꦲꦶꦏꦶ]] ꦲꦶꦁ​ꦏꦕ​ꦭꦶꦪꦤꦺ꧈(꧒)\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ꦲꦁꦔꦺꦴꦭꦺꦏ꧀ꦏꦶ​ꦕꦛꦼꦠ꧀ꦠꦤ꧀ꦏꦁ​ꦩꦒꦼꦥꦺꦴꦏ꧀ꦏꦤ꧀]꧈​ꦤꦔꦶꦁ​ꦥꦚ꧀ꦗꦼꦤꦼꦁꦔꦤ꧀ꦲꦺꦴꦫ​ꦏꦮꦺꦴꦒ꧀ꦒꦤ꧀ꦲꦁꦒꦮꦺ​ꦏꦕ​ꦲꦶꦏꦶ꧉",
+	"noarticletext-nopermission": "ꦱꦲꦶꦏꦶ​ꦏꦕ​ꦲꦶꦏꦶ​ꦢꦸꦫꦸꦁ​ꦲꦤ​ꦠꦸꦭꦶꦱ꧀ꦱꦤ꧀ꦤꦺ꧉​ꦥꦚ꧀ꦗꦼꦤꦼꦁꦔꦤ꧀ꦧꦶꦱ꧇(꧑) [[Special:Search/{{PAGENAME}}|ꦲꦁꦔꦺꦴꦭꦺꦏ꧀ꦏꦶ​ꦱꦼꦱꦶꦫꦃꦲꦶꦁ​ꦏꦕ​ꦲꦶꦏꦶ]] ꦲꦶꦁ​ꦏꦕ​ꦭꦶꦪꦤꦺ꧈(꧒)\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ꦲꦁꦔꦺꦴꦭꦺꦏ꧀ꦏꦶ​ꦕꦛꦼꦠ꧀ꦠꦤ꧀ꦏꦁ​ꦩꦒꦼꦥꦺꦴꦏ꧀ꦏꦤ꧀]</span>꧈​ꦤꦔꦶꦁ​ꦥꦚ꧀ꦗꦼꦤꦼꦁꦔꦤ꧀ꦲꦺꦴꦫ​ꦏꦮꦺꦴꦒ꧀ꦒꦤ꧀ꦲꦁꦒꦮꦺ​ꦏꦕ​ꦲꦶꦏꦶ꧉",
 	"userpage-userdoesnotexist-view": "ꦲꦏꦸꦤ꧀ꦤꦫꦒꦸꦤ\"$1\"ꦲꦺꦴꦫ​ꦏꦝꦥ꦳꧀ꦠꦂ​ꦲꦶꦁ​ꦮꦶꦏꦶ​ꦲꦶꦏꦶ꧉",
 	"previewnote": "<strong>ꦲꦺꦭꦶꦁꦔ​ꦪꦺꦤ꧀ꦲꦶꦏꦶ​ꦩꦸꦁ​ꦥꦿꦠꦸꦢꦸꦃ</strong>\nꦲꦺꦴꦮꦃꦲꦤ꧀ꦩꦸ​ꦢꦸꦫꦸꦁ​ꦏꦱꦶꦩ꧀ꦥꦼꦤ꧀!",
 	"continue-editing": "ꦩꦼꦚꦁ​ꦥꦩ꧀ꦧꦼꦱꦸꦠ꧀ꦠꦤ꧀",

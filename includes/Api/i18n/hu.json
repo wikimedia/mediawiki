@@ -33,7 +33,7 @@
 	"apihelp-main-param-errorlang": "A figyelmeztetésekhez és hibaüzenetekhez használandó nyelv (az <kbd>[[Special:ApiHelp/query+siteinfo|action=query&meta=siteinfo&siprop=languages]]</kbd> visszaadja a lehetséges nyelvkódok listáját), vagy <kbd>content</kbd> a wiki nyelvbeállításához, illetve <kbd>uselang</kbd> a <var>uselang</var> paraméter értékéhez.",
 	"apihelp-main-param-errorsuselocal": "Ha meg van adva, a hibaüzenetek a helyileg testreszabott üzeneteket fogják használni a {{ns:MediaWiki}} névtérből.",
 	"apihelp-block-summary": "Szerkesztő blokkolása",
-	"apihelp-block-param-user": "A blokkolandó felhasználó.",
+	"apihelp-block-param-user": "A blokkolandó felhasználó. Nem használható a(z) <var>$1id</var> paraméterrel együtt.",
 	"apihelp-block-param-userid": "Használd helyette a <kbd>$1user=#<var>ID</var></kbd> paramétert.",
 	"apihelp-block-param-expiry": "Lejárat ideje. Lehet relatív (pl. <kbd>5 months</kbd>, <kbd>2 weeks</kbd>) vagy abszolút (pl. <kbd>2014-09-18T12:34:56Z</kbd>). Ha <kbd>infinite</kbd>-re, <kbd>indefinite</kbd>-re vagy <kbd>never</kbd>-re állítod, a blokk soha nem fog lejárni.",
 	"apihelp-block-param-reason": "Blokkolás oka.",

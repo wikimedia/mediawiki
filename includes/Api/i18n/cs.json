@@ -15,6 +15,7 @@
 			"Patriccck",
 			"Patrik L.",
 			"Pavreh",
+			"Polda18",
 			"Utar",
 			"YjM"
 		]
@@ -282,6 +283,7 @@
 	"apierror-nosuchsection-what": "$2 neobsahuje sekci $1.",
 	"apierror-readonly": "Wiki je právě v módu pro čtení a nelze ji editovat.",
 	"apierror-sectionsnotsupported-what": "$1 nepodporuje sekce.",
+	"apiwarn-deprecation-parse-sections": "<kbd>prop=sections</kbd> je od verze MediaWiki 1.46 zastaralé. Použijte místo toho <kbd>prop=tocdata</kbd>.",
 	"api-credits-header": "Zásluhy",
 	"api-credits": "Vývojáři API:\n* Jurij Astrachan (tvůrce, hlavní vývojář září 2006 – září 2007)\n* Roan Kattouw (hlavní vývojář září 2007–2009)\n* Viktor Vasiljev\n* Bryan Tong Minh\n* Sam Reed\n* Brad Jorsch (hlavní vývojář 2013–2020)\n\nSvé komentáře, návrhy či dotazy posílejte na mediawiki-api@lists.wikimedia.org\nnebo založte chybové hlášení na https://phabricator.wikimedia.org/."
 }

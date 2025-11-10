@@ -1952,6 +1952,7 @@
 	"apiwarn-validationfailed-cannotset": "non pote esser definite per iste modulo.",
 	"apiwarn-validationfailed-keytoolong": "clave troppo longe (non plus de $1 byte{{PLURAL:$1||s}} permittite).",
 	"apiwarn-validationfailed-valuetoolong": "valor troppo longe (non plus de $1 byte{{PLURAL:$1||s}} permittite).",
+	"apiwarn-validationfailed-toomanyuserjs": "Un excesso de valores de preferentia userjs ha essite definite (non plus de $1 valores permittite).",
 	"apiwarn-validationfailed": "Error de validation pro <kbd>$1</kbd>: $2",
 	"apiwarn-wgdebugapi": "<strong>Aviso de securitate:</strong> <var>$wgDebugAPI</var> es activate.",
 	"api-feed-error-title": "Error ($1)",

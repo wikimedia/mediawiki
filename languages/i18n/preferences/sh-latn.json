@@ -43,7 +43,7 @@
 	"prefs-user-restoreprefs-info": "Vrati sve postavke na predodređene vrijednosti (u svim odjeljcima)",
 	"prefs-i18n": "Internacionalizacija",
 	"yourlanguage": "Jezik interfejsa:",
-	"yourgender": "Vas rodni identitet:",
+	"yourgender": "Rodni identitet:",
 	"gender-notknown": "neutralan",
 	"gender-unknown": "Kad vas spominje, softver će se koristiti rodno neutralnim riječima kad god je to moguće",
 	"gender-female": "ženski",

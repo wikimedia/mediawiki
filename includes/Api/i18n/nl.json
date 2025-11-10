@@ -1978,6 +1978,7 @@
 	"apiwarn-validationfailed-cannotset": "kan niet worden ingesteld door deze module.",
 	"apiwarn-validationfailed-keytoolong": "sleutel te lang (niet meer dan $1 byte{{PLURAL:$1||s}} toegestaan).",
 	"apiwarn-validationfailed-valuetoolong": "waarde te lang (niet meer dan $1 byte{{PLURAL:$1||s}} toegestaan).",
+	"apiwarn-validationfailed-toomanyuserjs": "Er zijn teveel userjs-voorkeurwaarden ingesteld (niet meer dan $1 toegestaan).",
 	"apiwarn-validationfailed": "Validatiefout voor <kbd>$1</kbd>: $2",
 	"apiwarn-wgdebugapi": "<strong>Beveiligingswaarschuwing:</strong> <var>$wgDebugAPI</var> is ingeschakeld.",
 	"api-feed-error-title": "Fout ($1)",

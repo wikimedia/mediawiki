@@ -364,9 +364,12 @@
 	"exif-urgency-other": "ระดับความสำคัญที่ผู้ใช้กำหนด ($1)",
 	"exif-firstphotodate": "วันที่ถ่ายภาพแรก",
 	"exif-lastphotodate": "วันที่ถ่ายภาพสุดท้าย",
+	"exif-projectiontype": "ประเภทการฉายภาพ",
 	"exif-usepanoramaviewer-true": "ใช่",
 	"exif-usepanoramaviewer-false": "ไม่",
 	"exif-exposurelockused": "ใช้การล็อกแสง",
 	"exif-exposurelockused-true": "ใช่",
-	"exif-exposurelockused-false": "ไม่"
+	"exif-exposurelockused-false": "ไม่",
+	"exif-digitalsourcetype-computationalcapture": "กล้องดิจิทัลหรือเครื่องบันทึกภาพ (รวมหลายเฟรม)",
+	"exif-digitalsourcetype-softwareimage": "สร้างขึ้นโดยซอฟต์แวร์"
 }

@@ -3259,6 +3259,7 @@
 	"watchlisttools-clear": "svuota la lista degli osservati speciali",
 	"watchlisttools-view": "visualizza le modifiche pertinenti",
 	"watchlisttools-edit": "visualizza e modifica la lista degli osservati speciali",
+	"watchlisttools-labels": "Gestisci etichette",
 	"watchlisttools-raw": "modifica la lista in formato testo",
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|discussioni]])",
 	"signature-temp": "[[{{#special:Contributions}}/$1|$2]] ([[{{ns:user_talk}}:$1|discussione]])",

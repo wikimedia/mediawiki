@@ -20,5 +20,6 @@
 	"apihelp-userrights-param-user": "Колдонуучу.",
 	"api-help-parameters": "{{PLURAL:$1|Белгилүү бир параметр|Белгилүү бир параметрлер}}:",
 	"api-help-examples": "{{PLURAL:$1|Мисал|Мисалдар}}:",
+	"apierror-maxbytes": "\"<var>$1</var>\" параметри $2 {{PLURAL:$2|байттан}} ашпашы керек",
 	"api-feed-error-title": "Ката ($1)"
 }

@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"BaRaN6161 TURK",
+			"Eleman",
 			"Grkn gll",
 			"Joseph",
 			"MuratTheTurkish",
@@ -52,5 +53,9 @@
 	"rest-requires-safe-against-csrf": "Bu uç nokta, CSRF güvenli bir oturum sağlayıcısı gerektirir.",
 	"rest-badtoken": "Sağlanan CSRF anahtarı geçersiz.",
 	"rest-badtoken-missing": "<var>token</var> değişkeni, CSRF-safe kimlik doğrulama yöntemi kullanılmıyorsa gereklidir.",
-	"rest-badtoken-nosession": "CSRF hatası - oturum yok."
+	"rest-badtoken-nosession": "CSRF hatası - oturum yok.",
+	"rest-transform-missing-html": "Herhangi bir html verilmedi.",
+	"rest-module": "Modül",
+	"rest-module-default": "Varsayılan Modül",
+	"rest-module-content.v1-title": "Sayfa içeriği"
 }
