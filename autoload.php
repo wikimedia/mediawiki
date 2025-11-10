@@ -2110,6 +2110,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Mail\\ConfirmEmail\\ConfirmEmailContent' => __DIR__ . '/includes/Mail/ConfirmEmail/ConfirmEmailContent.php',
 	'MediaWiki\\Mail\\ConfirmEmail\\ConfirmEmailData' => __DIR__ . '/includes/Mail/ConfirmEmail/ConfirmEmailData.php',
 	'MediaWiki\\Mail\\ConfirmEmail\\ConfirmEmailSender' => __DIR__ . '/includes/Mail/ConfirmEmail/ConfirmEmailSender.php',
+	'MediaWiki\\Mail\\ConfirmEmail\\HTMLConfirmEmailBuilder' => __DIR__ . '/includes/Mail/ConfirmEmail/HTMLConfirmEmailBuilder.php',
 	'MediaWiki\\Mail\\ConfirmEmail\\IConfirmEmailBuilder' => __DIR__ . '/includes/Mail/ConfirmEmail/IConfirmEmailBuilder.php',
 	'MediaWiki\\Mail\\ConfirmEmail\\PlaintextConfirmEmailBuilder' => __DIR__ . '/includes/Mail/ConfirmEmail/PlaintextConfirmEmailBuilder.php',
 	'MediaWiki\\Mail\\EmailUser' => __DIR__ . '/includes/Mail/EmailUser.php',

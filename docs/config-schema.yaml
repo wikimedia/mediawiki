@@ -1635,6 +1635,12 @@ config-schema:
     UserEmailConfirmationTokenExpiry:
         default: 604800
         description: 'The time, in seconds, when an email confirmation email expires'
+    UserEmailConfirmationUseHTML:
+        default: false
+        type: boolean
+        description: |-
+            Whether the modern email confirmation message is used
+            @since 1.46
     PasswordExpirationDays:
         default: false
         description: |-

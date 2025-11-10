@@ -683,7 +683,14 @@ return [
 	},
 
 	'ConfirmEmailBuilderFactory' => static function ( MediaWikiServices $services ): ConfirmEmailBuilderFactory {
-		return new ConfirmEmailBuilderFactory();
+		return new ConfirmEmailBuilderFactory(
+			new ServiceOptions(
+				ConfirmEmailBuilderFactory::CONSTRUCTOR_OPTIONS,
+				$services->getMainConfig()
+			),
+			$services->getLocalServerObjectCache(),
+			$services->getUrlUtils()
+		);
 	},
 
 	'ConfirmEmailSender' => static function ( MediaWikiServices $services ): ConfirmEmailSender {

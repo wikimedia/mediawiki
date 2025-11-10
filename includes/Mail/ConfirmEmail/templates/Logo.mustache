@@ -1,0 +1,27 @@
+<style>
+	.mw-logo {
+		display: flex;
+		align-items: center;
+	}
+	.mw-logo-icon {
+		margin-right: 10px;
+	}
+	.mw-logo-container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+</style>
+<div class="mw-logo">
+	{{#icon}}
+		<img class="mw-logo-icon" src="{{src}}" alt="{{alt}}" {{#multipart-logo}}height="50" width="50"{{/multipart-logo}}>
+	{{/icon}}
+	<span class="mw-logo-container">
+		{{#wordmark}}
+			<img class="mw-logo-wordmark" src="{{src}}" alt="{{alt}}">
+		{{/wordmark}}
+		{{#tagline}}
+			<img class="mw-logo-tagline" src="{{src}}" alt="{{alt}}">
+		{{/tagline}}
+	</span>
+</div>

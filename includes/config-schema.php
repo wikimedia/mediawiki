@@ -350,6 +350,7 @@ return [
 			'PasswordReminderResendTime' => 24,
 			'NewPasswordExpiry' => 604800,
 			'UserEmailConfirmationTokenExpiry' => 604800,
+			'UserEmailConfirmationUseHTML' => false,
 			'PasswordExpirationDays' => false,
 			'PasswordExpireGrace' => 604800,
 			'SMTP' => false,
@@ -2850,6 +2851,7 @@ return [
 				'string',
 				'null',
 			],
+			'UserEmailConfirmationUseHTML' => 'boolean',
 			'SMTP' => [
 				'boolean',
 				'object',

@@ -963,6 +963,12 @@ $wgNewPasswordExpiry = null;
 $wgUserEmailConfirmationTokenExpiry = null;
 
 /**
+ * Config variable stub for the UserEmailConfirmationUseHTML setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::UserEmailConfirmationUseHTML
+ */
+$wgUserEmailConfirmationUseHTML = null;
+
+/**
  * Config variable stub for the PasswordExpirationDays setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::PasswordExpirationDays
  */
