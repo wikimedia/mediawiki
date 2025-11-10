@@ -17,7 +17,7 @@ use Wikimedia\Minify\CSSMin;
  * @ingroup ResourceLoader
  * @internal
  */
-class SkinModule extends FileModule {
+class SkinModule extends LessVarFileModule {
 
 	/**
 	 * Every skin should define which features it would like to reuse for core inside a
