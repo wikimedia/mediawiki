@@ -102,6 +102,7 @@ class Names {
 		'bm' => 'bamanankan', # Bambara
 		'bn' => 'বাংলা', # Bengali
 		'bo' => 'བོད་ཡིག', # Tibetan
+		'bol' => 'bòo pìkkà', # Bole
 		'bpy' => 'বিষ্ণুপ্রিয়া মণিপুরী', # Bishnupriya Manipuri
 		'bqi' => 'بختیاری', # Bakthiari
 		'br' => 'brezhoneg', # Breton
