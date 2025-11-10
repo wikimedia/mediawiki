@@ -11,6 +11,8 @@
 namespace MediaWiki\Utils;
 
 use DateInterval;
+use DateTime;
+use DateTimeZone;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Language\Language;
@@ -39,6 +41,21 @@ class MWTimestamp extends ConvertibleTimestamp {
 	 */
 	public static function getInstance( $ts = false ): static {
 		return new static( $ts );
+	}
+
+	/**
+	 * Convert a TS_MW format string, with optional time zone, to
+	 * a MWTimestamp.
+	 *
+	 * This is more efficient that using the general constructor,
+	 * which has a long list of string formats that it attempts to
+	 * match against.
+	 */
+	public static function fromMW( string $ts_mw, ?DateTimeZone $zone = null ): static {
+		$date = DateTime::createFromFormat(
+			'YmdHis', $ts_mw, $zone ?: new DateTimeZone( 'UTC' )
+		);
+		return new static( $date );
 	}
 
 	/**
