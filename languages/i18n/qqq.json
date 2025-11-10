@@ -274,7 +274,8 @@
 			"codeofdusk",
 			"Foomin10",
 			"Nemoralis",
-			"Tamzin"
+			"Tamzin",
+			"E75ti"
 		]
 	},
 	"sidebar": "{{notranslate}}",
@@ -3888,10 +3889,10 @@
 	"watchlistedit-clear-jobqueue": "A message which appears after the watchlist has been scheduled to be cleared using [[Special:Watchlist/clear]] and the Job Queue.",
 	"watchlistedit-clear-removed": "Message on [[Special:EditWatchlist/clear]].\n\nThe message appears once the watchlist has been cleared.",
 	"watchlistedit-too-many": "Message on [[Special:EditWatchlist]] that is used when there are too many titles to display.\n\nShown instead of list of the pages.",
-	"watchlisttools-clear": "[[Special:Watchlist]]: Navigation link under the title.\n{{Identical|Clear watchlist}}",
-	"watchlisttools-view": "[[Special:Watchlist]]: Navigation link under the title.\n\nSee also:\n* {{msg-mw|watchlisttools-edit}}\n* {{msg-mw|watchlisttools-raw}}",
-	"watchlisttools-edit": "[[Special:Watchlist]]: Navigation link under the title.\n\nSee also:\n* {{msg-mw|Watchlisttools-view}}\n* {{msg-mw|Watchlisttools-raw}}",
-	"watchlisttools-raw": "[[Special:Watchlist]]: Navigation link under the title.\n\nSee also:\n* {{msg-mw|watchlisttools-view}}\n* {{msg-mw|watchlisttools-edit}}\n{{Identical|Edit raw watchlist}}",
+	"watchlisttools-clear": "Navigation link under the title on all watchlist special pages (Special:Watchlist, Special:EditWatchlist, and Special:WatchlistLabels).\n\nSee also:\n* {{msg-mw|watchlisttools-view}}\n* {{msg-mw|watchlisttools-edit}}\n* {{msg-mw|watchlisttools-labels}}\n* {{msg-mw|watchlisttools-raw}}",
+	"watchlisttools-view": "Navigation link under the title on all watchlist special pages (Special:Watchlist, Special:EditWatchlist, and Special:WatchlistLabels).\n\nSee also:\n* {{msg-mw|watchlisttools-clear}}\n* {{msg-mw|watchlisttools-edit}}\n* {{msg-mw|watchlisttools-labels}}\n* {{msg-mw|watchlisttools-raw}}",
+	"watchlisttools-edit": "Navigation link under the title on all watchlist special pages (Special:Watchlist, Special:EditWatchlist, and Special:WatchlistLabels).\n\nSee also:\n* {{msg-mw|watchlisttools-clear}}\n* {{msg-mw|watchlisttools-view}}\n* {{msg-mw|watchlisttools-labels}}\n* {{msg-mw|watchlisttools-raw}}",
+	"watchlisttools-raw": "Navigation link under the title on the watchlist special pages (Special:Watchlist, Special:EditWatchlist, and Special:WatchlistLabels).\n\n{{Identical|Edit raw watchlist}}\n\nSee also:\n* {{msg-mw|watchlisttools-clear}}\n* {{msg-mw|watchlisttools-view}}\n* {{msg-mw|watchlisttools-edit}}\n* {{msg-mw|watchlisttools-labels}}",
 	"iranian-calendar-m1": "{{optional}}\nName of month in Iranian calendar.",
 	"iranian-calendar-m2": "{{optional}}\nName of month in Iranian calendar.",
 	"iranian-calendar-m3": "{{optional}}\nName of month in Iranian calendar.",

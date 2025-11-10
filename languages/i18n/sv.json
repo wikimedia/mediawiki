@@ -879,6 +879,8 @@
 	"unstrip-size-category": "Sidor där storleksgränsen för unstrip är nådd",
 	"unstrip-size-category-desc": "Sidan överskrider storleksgränsen för unstrip.",
 	"converter-manual-rule-error": "Fel upptäcktes i manuell språkkonverteringsregel",
+	"bad-double-underscore-category": "Sidor med ogiltiga beteendebrytare",
+	"bad-double-underscore-category-desc": "Sidan innehåller en ogiltigt lokaliserad [[mw:Special:MyLanguage/Help:Magic_words#Behavior_switches|beteendebrytare]]. Giltiga lokaliseringar börjar och slutar med dubbla understreck.",
 	"undo-success": "Redigeringen kan göras ogjord.\nVar god och kontrollera jämförelsen nedan för att bekräfta att detta är vad du avser att göra, och publicera sedan ändringarna nedan för att göra redigeringen ogjord.",
 	"undo-failure": "Redigeringen kunde inte göras ogjord på grund av konflikt med mellanliggande redigeringar.",
 	"undo-main-slot-only": "Redigeringen kunde inte göras ogjord eftersom den omfattar innehåll utanför huvudplatsen.",

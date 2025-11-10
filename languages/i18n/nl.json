@@ -893,6 +893,8 @@
 	"unstrip-size-category": "Pagina's waar de \"unstrip\"-groottelimiet is overschreden",
 	"unstrip-size-category-desc": "Deze pagina overschrijdt de \"unstrip\"-groottelimiet.",
 	"converter-manual-rule-error": "Er is een fout gedetecteerd in een handmatig toegevoegde taalconversieregel.",
+	"bad-double-underscore-category": "Pagina's met ongeldige gedragsschakelaars",
+	"bad-double-underscore-category-desc": "De pagina bevat een ongeldige gelokaliseerde [[mw:Special:MyLanguage/Help:Magic_words#Behavior_switches|gedragsschakelaar]]. Geldige lokalisaties beginnen en eindigen met dubbele onderstrepingstekens (underscores).",
 	"undo-success": "Deze bewerking kan ongedaan gemaakt worden.\nHieronder staat de tekst waarin de wijziging ongedaan is gemaakt.\nControleer voor het publiceren of het resultaat gewenst is.",
 	"undo-failure": "De wijziging kan niet ongedaan gemaakt worden vanwege andere strijdige wijzigingen.",
 	"undo-main-slot-only": "De wijziging kan niet ongedaan gemaakt worden omdat deze inhoud zich niet in het hoofdsegment bevindt.",

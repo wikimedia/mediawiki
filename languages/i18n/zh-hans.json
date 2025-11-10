@@ -999,6 +999,8 @@
 	"unstrip-size-category": "超出unstrip大小限制的页面",
 	"unstrip-size-category-desc": "此页面超出了unstrip的规模极限。",
 	"converter-manual-rule-error": "在手动字词转换规则中检测到错误",
+	"bad-double-underscore-category": "具有无效行为开关的页面",
+	"bad-double-underscore-category-desc": "该页面包含无效的本地化[[mw:Special:MyLanguage/Help:Magic_words#Behavior_switches|行为开关]]。有效的应以双下划线开头和结尾。",
 	"undo-success": "该编辑可以被撤销。\n请检查下面的对比以核实您想要撤销的内容，然后发布下面的更改以完成撤销。",
 	"undo-failure": "因存在冲突的中间编辑，本编辑不能撤销。",
 	"undo-main-slot-only": "编辑无法撤销，因为其涉及主位置以外的内容。",

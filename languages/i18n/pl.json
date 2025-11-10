@@ -589,7 +589,7 @@
 	"eauthentsent": "Potwierdzenie zostało wysłane na adres e‐mail.\nZanim jakiekolwiek inne wiadomości zostaną wysłane na ten adres, należy wykonać zawarte w mailu instrukcje. Potwierdzisz w ten sposób, że ten adres e‐mail należy do Ciebie.",
 	"throttled-mailpassword": "Przypomnienie hasła zostało już wysłane w ciągu {{PLURAL:$1|ostatniej godziny|ostatnich $1 godzin}}.\nAby zapobiec nadużyciom nadużyć możliwość wysyłania przypomnień została ograniczona do jednego na {{PLURAL:$1|godzinę|$1 godziny|$1 godzin}}.",
 	"mailerror": "W trakcie wysyłania wiadomości e‐mail wystąpił błąd: $1",
-	"acct_creation_throttle_hit": "Z adresu IP, z którego korzystasz {{PLURAL:$1|ktoś już utworzył dziś konto|utworzono dziś $1 konta|utworzono dziś $1 kont}} w ciągu ostatnich $2, co jest maksymalną dopuszczalną liczbą w tym czasie.\nW związku z tym, osoby korzystające z tego adresu IP w chwili obecnej nie mogą założyć kolejnego.",
+	"acct_creation_throttle_hit": "Z adresu IP, z którego korzystasz, {{PLURAL:$1|ktoś utworzył już konto|utworzono już $1 konta|utworzono już $1 kont}} w ciągu ostatnich $2 {{PLURAL:$1|godzina|godziny|godzin}}, co jest maksymalną dopuszczalną liczbą w tym czasie.\nW związku z tym osoby korzystające z tego adresu IP nie mogą w tym momencie założyć kolejnego.",
 	"emailauthenticated": "Twój adres e‐mail został potwierdzony $2 o $3.",
 	"emailnotauthenticated": "Twój adres '''e‐mail nie został potwierdzony'''.\nPoniższe funkcje poczty nie działają.",
 	"noemailprefs": "Podaj adres e‐mail w preferencjach, by skorzystać z tych funkcji.",

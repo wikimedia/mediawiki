@@ -910,6 +910,8 @@
 	"unstrip-size-category": "Seiten, auf denen die Unstrip-Größengrenze überschritten ist",
 	"unstrip-size-category-desc": "Diese Seite überschreitet das Unstrip-Größen-Limit.",
 	"converter-manual-rule-error": "Bei der manuellen Sprachkonvertierungsregel wurde ein Fehler entdeckt.",
+	"bad-double-underscore-category": "Seiten mit ungültigen Verhaltensschaltern",
+	"bad-double-underscore-category-desc": "Die Seite enthält einen ungültigen lokalisierten [[mw:Special:MyLanguage/Help:Magic_words#Behavior_switches|Verhaltensschalter]]. Gültige Lokalisierungen beginnen und enden mit doppelten Unterstrichen.",
 	"undo-success": "Die Bearbeitung kann rückgängig gemacht werden.\nBitte prüfe den Vergleich unten, um sicherzustellen, dass du dies tun möchtest, und veröffentliche dann unten deine Änderungen, um die Bearbeitung rückgängig zu machen.",
 	"undo-failure": "Die Änderung konnte nicht rückgängig gemacht werden, da der betroffene Abschnitt zwischenzeitlich verändert wurde.",
 	"undo-main-slot-only": "Die Bearbeitung konnte nicht rückgängig gemacht werden, da sie Inhalte außerhalb der Hauptspalte enthält.",

@@ -842,6 +842,8 @@
 	"unstrip-size-category": "Sider hvor størrelsesgrensen for unstrip er nådd",
 	"unstrip-size-category-desc": "Siden overskrider størrelsesgrensen for unstrip.",
 	"converter-manual-rule-error": "En feil ble oppdaget i en manuell språkkonverteringsregel",
+	"bad-double-underscore-category": "Sider med ugyldige atferdsbrytere",
+	"bad-double-underscore-category-desc": "Siden inneholder en ugyldig [[mw:Special:MyLanguage/Help:Magic_words#Behavior_switches|atferdsbryter]]. Gyldige varianter begynner og slutter med doble understreker.",
 	"undo-success": "Redigeringen kan omgjøres. Sjekk sammenligningen under for å bekrefte at du vil gjøre dette, og publisere endringene for å fullføre omgjøringen.",
 	"undo-failure": "Redigeringen kunne ikke omgjøres på grunn av konflikt med etterfølgende redigeringer.",
 	"undo-main-slot-only": "Redigeringen kunne ikke omgjøres fordi den involverer innhold utenfor hovedspalten.",

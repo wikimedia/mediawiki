@@ -836,6 +836,8 @@
 	"unstrip-size-category": "דפים שגודל ה־unstrip בהם עבר את המגבלה",
 	"unstrip-size-category-desc": "הדף הזה עובר את מגבלת הגודל של unstrip.",
 	"converter-manual-rule-error": "התגלתה שגיאה בכלל המרת שפה ידני",
+	"bad-double-underscore-category": "דפים עם מתגי התנהגות לא תקינים",
+	"bad-double-underscore-category-desc": "הדף הזה מכיל [[mw:Special:MyLanguage/Help:Magic_words#Behavior_switches|מתג התנהגות]] מתורגם שאינו תקין. תרגומים תקינים מתחילים ומסתיימים בקו תחתי כפול.",
 	"undo-success": "ניתן לבטל את העריכה.\nנא לבדוק את השוואת הגרסאות שלהלן כדי לוודא שזה אכן מה {{GENDER:|שאתה רוצה|שאת רוצה|שאתם רוצים}} לעשות, ולאחר מכן לפרסם את השינויים למטה כדי לסיים את ביטול העריכה.",
 	"undo-failure": "לא ניתן היה לבטל את העריכה עקב התנגשות עם עריכות מאוחרות יותר.",
 	"undo-main-slot-only": "לא ניתן לבטל את העריכה, כיוון שהיא כוללת תוכן במשבצת שונה מהמשבצת הראשית.",
