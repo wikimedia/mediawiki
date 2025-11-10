@@ -3380,6 +3380,8 @@ class OutputPage extends ContextSource {
 			$this->addWikiMsgArray( $msg, $params );
 		}
 
+		$this->addJsConfigVars( 'wgErrorPageMessageKey', is_string( $msg ) ? $msg : $msg->getKey() );
+
 		$this->returnToMain( null, $returnto, $returntoquery );
 	}
 
