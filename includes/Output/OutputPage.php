@@ -3286,7 +3286,7 @@ class OutputPage extends ContextSource {
 			if ( $skinOptions['format'] === 'json' ) {
 				$response->header( 'Content-type: application/json; charset=UTF-8' );
 				return json_encode( [
-					$this->msg( 'skin-json-warning' )->escaped() => $this->msg( 'skin-json-warning-message' )->escaped()
+					'@WARNING' => $this->msg( 'skin-json-warning-message' )->escaped()
 				] + $sk->getTemplateData() );
 			}
 			$response->header( 'Content-type: ' . $config->get( MainConfigNames::MimeType ) . '; charset=UTF-8' );

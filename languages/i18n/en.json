@@ -4038,7 +4038,6 @@
 	"skin-action-undelete": "Undelete",
 	"skin-action-delete": "Delete",
 	"skin-action-move": "Move",
-	"skin-json-warning": "@WARNING",
 	"skin-json-warning-message": "This is not an API, it is only for debugging! Do not use in gadgets or production code.",
 	"parsoid-async-not-ready-fallback": "Content not ready",
 	"parsoid-stash-rate-limit-error": "Stashing failed because rate limit was exceeded. Please try again later.",
