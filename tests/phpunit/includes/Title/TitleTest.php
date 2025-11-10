@@ -692,7 +692,7 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 
 	public static function provideMakeTitleSafe_invalid() {
 		yield 'bad namespace' => [ -1234, 'Foo' ];
-		yield 'empty' => [ '', NS_MAIN, '' ];
+		yield 'empty' => [ NS_MAIN, '' ];
 		yield 'bad character' => [ NS_MAIN, 'Foo|Bar' ];
 	}
 
@@ -700,8 +700,8 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideMakeTitleSafe_invalid
 	 * @covers \MediaWiki\Title\Title::makeTitleSafe
 	 */
-	public function testMakeTitleSafe_invalid( $ns, $text, $fragment = '', $interwiki = '' ) {
-		$title = Title::makeTitleSafe( $ns, $text, $fragment, $interwiki );
+	public function testMakeTitleSafe_invalid( int $ns, string $text ) {
+		$title = Title::makeTitleSafe( $ns, $text );
 
 		$this->assertNull( $title );
 	}

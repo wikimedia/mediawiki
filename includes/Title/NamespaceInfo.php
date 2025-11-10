@@ -8,7 +8,6 @@
 
 namespace MediaWiki\Title;
 
-use InvalidArgumentException;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Exception\MWException;
 use MediaWiki\HookContainer\HookContainer;
@@ -32,13 +31,13 @@ class NamespaceInfo {
 	private const ALWAYS_CAPITALIZED_NAMESPACES = [ NS_SPECIAL, NS_USER, NS_MEDIAWIKI ];
 
 	/** @var array<int,string>|null Canonical namespaces cache */
-	private $canonicalNamespaces = null;
+	private ?array $canonicalNamespaces = null;
 
-	/** @var array<string,int>|false Canonical namespaces index cache */
-	private $namespaceIndexes = false;
+	/** @var array<string,int>|null Canonical namespaces index cache */
+	private ?array $namespaceIndexes = null;
 
 	/** @var int[]|null Valid namespaces cache */
-	private $validNamespaces = null;
+	private ?array $validNamespaces = null;
 
 	private readonly HookRunner $hookRunner;
 
@@ -105,47 +104,17 @@ class NamespaceInfo {
 	 * for a given namespace where it does not make sense.
 	 * Special namespaces are defined in includes/Defines.php and have
 	 * a value below 0 (ex: NS_SPECIAL = -1 , NS_MEDIA = -2)
-	 *
-	 * @param int $index
-	 * @param string $method
 	 */
-	private function isMethodValidFor( $index, string $method ): void {
+	private function isMethodValidFor( int $index, string $method ): void {
 		if ( $index < NS_MAIN ) {
 			throw new MWException( "$method does not make any sense for given namespace $index" );
 		}
 	}
 
 	/**
-	 * Throw if given index isn't an integer or integer-like string and so can't be a valid namespace.
-	 *
-	 * @param int|string $index
-	 * @param string $method
-	 *
-	 * @throws InvalidArgumentException
-	 * @return int Cleaned up namespace index
-	 */
-	private function makeValidNamespace( $index, $method ) {
-		if ( !(
-			is_int( $index )
-			// Namespace index numbers as strings
-			|| ctype_digit( $index )
-			// Negative numbers as strings
-			|| ( $index[0] === '-' && ctype_digit( substr( $index, 1 ) ) )
-		) ) {
-			throw new InvalidArgumentException(
-				"$method called with non-integer (" . get_debug_type( $index ) . ") namespace '$index'"
-			);
-		}
-
-		return intval( $index );
-	}
-
-	/**
 	 * Can pages in the given namespace be moved?
-	 *
-	 * @param int $index Namespace index
 	 */
-	public function isMovable( $index ): bool {
+	public function isMovable( int $index ): bool {
 		// Special and virtual namespaces can never be moved
 		if ( $index < NS_MAIN ) {
 			return false;
@@ -163,21 +132,15 @@ class NamespaceInfo {
 
 	/**
 	 * Is the given namespace is a subject (non-talk) namespace?
-	 *
-	 * @param int $index Namespace index
 	 */
-	public function isSubject( $index ): bool {
+	public function isSubject( int $index ): bool {
 		return !$this->isTalk( $index );
 	}
 
 	/**
 	 * Is the given namespace a talk namespace?
-	 *
-	 * @param int $index Namespace index
 	 */
-	public function isTalk( $index ): bool {
-		$index = $this->makeValidNamespace( $index, __METHOD__ );
-
+	public function isTalk( int $index ): bool {
 		return $index > NS_MAIN
 			&& $index % 2 === 1;
 	}
@@ -185,13 +148,10 @@ class NamespaceInfo {
 	/**
 	 * Get the talk namespace index for a given namespace
 	 *
-	 * @param int $index Namespace index
 	 * @throws MWException if the given namespace doesn't have an associated talk namespace
 	 *         (e.g. NS_SPECIAL).
 	 */
-	public function getTalk( $index ): int {
-		$index = $this->makeValidNamespace( $index, __METHOD__ );
-
+	public function getTalk( int $index ): int {
 		$this->isMethodValidFor( $index, __METHOD__ );
 		return $this->isTalk( $index )
 			? $index
@@ -243,12 +203,8 @@ class NamespaceInfo {
 	/**
 	 * Get the subject namespace index for a given namespace
 	 * Special namespaces (NS_MEDIA, NS_SPECIAL) are always the subject.
-	 *
-	 * @param int $index Namespace index
 	 */
-	public function getSubject( $index ): int {
-		$index = $this->makeValidNamespace( $index, __METHOD__ );
-
+	public function getSubject( int $index ): int {
 		# Handle special namespaces
 		if ( $index < NS_MAIN ) {
 			return $index;
@@ -275,10 +231,9 @@ class NamespaceInfo {
 	 * For talk namespaces, returns the subject (non-talk) namespace
 	 * For subject (non-talk) namespaces, returns the talk namespace
 	 *
-	 * @param int $index Namespace index
 	 * @throws MWException if called on a namespace that has no talk pages (e.g., NS_SPECIAL)
 	 */
-	public function getAssociated( $index ): int {
+	public function getAssociated( int $index ): int {
 		$this->isMethodValidFor( $index, __METHOD__ );
 
 		if ( $this->isSubject( $index ) ) {
@@ -308,10 +263,8 @@ class NamespaceInfo {
 
 	/**
 	 * Returns whether the specified namespace exists
-	 *
-	 * @param int $index
 	 */
-	public function exists( $index ): bool {
+	public function exists( int $index ): bool {
 		$nslist = $this->getCanonicalNamespaces();
 		return isset( $nslist[$index] );
 	}
@@ -327,7 +280,7 @@ class NamespaceInfo {
 	 * @param int $ns1 The first namespace index
 	 * @param int $ns2 The second namespace index
 	 */
-	public function equals( $ns1, $ns2 ): bool {
+	public function equals( int $ns1, int $ns2 ): bool {
 		return $ns1 == $ns2;
 	}
 
@@ -339,7 +292,7 @@ class NamespaceInfo {
 	 * @param int $ns1 The first namespace index
 	 * @param int $ns2 The second namespace index
 	 */
-	public function subjectEquals( $ns1, $ns2 ): bool {
+	public function subjectEquals( int $ns1, int $ns2 ): bool {
 		return $this->getSubject( $ns1 ) == $this->getSubject( $ns2 );
 	}
 
@@ -365,10 +318,9 @@ class NamespaceInfo {
 	/**
 	 * Returns the canonical (English) name for a given index
 	 *
-	 * @param int $index Namespace index
 	 * @return string|false If no canonical definition.
 	 */
-	public function getCanonicalName( $index ): string|false {
+	public function getCanonicalName( int $index ): string|false {
 		$nslist = $this->getCanonicalNamespaces();
 		return $nslist[$index] ?? false;
 	}
@@ -380,7 +332,7 @@ class NamespaceInfo {
 	 * @param string $name Namespace name
 	 */
 	public function getCanonicalIndex( string $name ): ?int {
-		if ( $this->namespaceIndexes === false ) {
+		if ( $this->namespaceIndexes === null ) {
 			$this->namespaceIndexes = [];
 			foreach ( $this->getCanonicalNamespaces() as $i => $text ) {
 				$this->namespaceIndexes[strtolower( $text )] = $i;
@@ -412,20 +364,17 @@ class NamespaceInfo {
 	/**
 	 * Does this namespace ever have a talk namespace?
 	 *
-	 * @param int $index Namespace ID
 	 * @return bool True if this namespace either is or has a corresponding talk namespace.
 	 */
-	public function hasTalkNamespace( $index ): bool {
+	public function hasTalkNamespace( int $index ): bool {
 		return $index >= NS_MAIN;
 	}
 
 	/**
 	 * Does this namespace contain content, for the purposes of calculating
 	 * statistics, etc?
-	 *
-	 * @param int $index Index to check
 	 */
-	public function isContent( $index ): bool {
+	public function isContent( int $index ): bool {
 		return $index == NS_MAIN ||
 			in_array( $index, $this->options->get( MainConfigNames::ContentNamespaces ) );
 	}
@@ -433,30 +382,24 @@ class NamespaceInfo {
 	/**
 	 * Might pages in this namespace require the use of the Signature button on
 	 * the edit toolbar?
-	 *
-	 * @param int $index Index to check
 	 */
-	public function wantSignatures( $index ): bool {
+	public function wantSignatures( int $index ): bool {
 		return $this->isTalk( $index ) ||
 			in_array( $index, $this->options->get( MainConfigNames::ExtraSignatureNamespaces ) );
 	}
 
 	/**
 	 * Can pages in a namespace be watched?
-	 *
-	 * @param int $index
 	 */
-	public function isWatchable( $index ): bool {
+	public function isWatchable( int $index ): bool {
 		return $index >= NS_MAIN;
 	}
 
 	/**
 	 * Does the namespace allow subpages? Note that this refers to structured
 	 * handling of subpages, and does not include SpecialPage subpage parameters.
-	 *
-	 * @param int $index Index to check
 	 */
-	public function hasSubpages( $index ): bool {
+	public function hasSubpages( int $index ): bool {
 		return !empty( $this->options->get( MainConfigNames::NamespacesWithSubpages )[$index] );
 	}
 
@@ -503,10 +446,8 @@ class NamespaceInfo {
 
 	/**
 	 * Is the namespace first-letter capitalized?
-	 *
-	 * @param int $index Index to check
 	 */
-	public function isCapitalized( $index ): bool {
+	public function isCapitalized( int $index ): bool {
 		// Turn NS_MEDIA into NS_FILE
 		$index = $index === NS_MEDIA ? NS_FILE : $index;
 
@@ -529,19 +470,15 @@ class NamespaceInfo {
 	/**
 	 * Does the namespace (potentially) have different aliases for different
 	 * genders. Not all languages make a distinction here.
-	 *
-	 * @param int $index Index to check
 	 */
-	public function hasGenderDistinction( $index ): bool {
+	public function hasGenderDistinction( int $index ): bool {
 		return $index == NS_USER || $index == NS_USER_TALK;
 	}
 
 	/**
 	 * It is not possible to use pages from this namespace as template?
-	 *
-	 * @param int $index Index to check
 	 */
-	public function isNonincludable( $index ): bool {
+	public function isNonincludable( int $index ): bool {
 		$namespaces = $this->options->get( MainConfigNames::NonincludableNamespaces );
 		return $namespaces && in_array( $index, $namespaces );
 	}
@@ -553,10 +490,9 @@ class NamespaceInfo {
 	 * @note To determine the default model for a new page's main slot, or any slot in general,
 	 * use SlotRoleHandler::getDefaultModel() together with SlotRoleRegistry::getRoleHandler().
 	 *
-	 * @param int $index Index to check
 	 * @return null|string Default model name for the given namespace, if set
 	 */
-	public function getNamespaceContentModel( $index ): ?string {
+	public function getNamespaceContentModel( int $index ): ?string {
 		return $this->options->get( MainConfigNames::NamespaceContentModels )[$index] ?? null;
 	}
 
@@ -566,10 +502,9 @@ class NamespaceInfo {
 	 * This determines which section of a category page titles
 	 * in the namespace will appear within.
 	 *
-	 * @param int $index Namespace index
 	 * @return string One of 'subcat', 'file', 'page'
 	 */
-	public function getCategoryLinkType( $index ): string {
+	public function getCategoryLinkType( int $index ): string {
 		$this->isMethodValidFor( $index, __METHOD__ );
 
 		return match ( $index ) {
