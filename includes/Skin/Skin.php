@@ -2467,6 +2467,7 @@ abstract class Skin extends ContextSource {
 				'views',
 				'actions',
 				'variants',
+				'personal',
 				// Opt-in menus
 				// * 'associated-pages'
 				// * 'notifications'

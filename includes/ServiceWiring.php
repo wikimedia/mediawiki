@@ -2408,6 +2408,7 @@ return [
 			'args' => [
 				[
 					'name' => 'fallback',
+					'menus' => [],
 					'styles' => [ 'mediawiki.skinning.interface', 'mediawiki.codex.messagebox.styles' ],
 					'templateDirectory' => dirname( __DIR__ ) . '/resources/templates/skins/fallback',
 				]
@@ -2419,6 +2420,7 @@ return [
 			'args' => [
 				[
 					'name' => 'apioutput',
+					'menus' => [],
 					'styles' => [ 'mediawiki.skinning.interface' ],
 					'templateDirectory' => dirname( __DIR__ ) . '/resources/templates/skins/apioutput',
 				]
@@ -2430,6 +2432,7 @@ return [
 			'args' => [
 				[
 					'name' => 'authentication-popup',
+					'menus' => [],
 					'styles' => [
 						'mediawiki.skinning.interface',
 						'mediawiki.special.userlogin.authentication-popup',
@@ -2450,6 +2453,7 @@ return [
 			'args' => [
 				[
 					'name' => 'json',
+					'menus' => [],
 					'styles' => [],
 					'format' => 'json',
 					'templateDirectory' => dirname( __DIR__ ) . '/resources/templates/skins/apioutput',

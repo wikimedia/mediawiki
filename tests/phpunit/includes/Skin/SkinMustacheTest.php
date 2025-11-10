@@ -111,6 +111,7 @@ class SkinMustacheTest extends MediaWikiIntegrationTestCase {
 		$this->overrideConfigValue( MainConfigNames::Logos, [] );
 		$skin = new SkinMustache( [
 			'name' => 'test',
+			'menus' => [],
 			'templateDirectory' => __DIR__,
 		] );
 		$context->setConfig( $config );

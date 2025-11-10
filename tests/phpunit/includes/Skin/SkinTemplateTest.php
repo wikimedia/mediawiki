@@ -149,6 +149,7 @@ class SkinTemplateTest extends MediaWikiIntegrationTestCase {
 	) {
 		$wrapper = TestingAccessWrapper::newFromObject( new SkinTemplate() );
 
+		$this->hideDeprecated( 'MediaWiki\Skin\SkinTemplate::injectLegacyMenusIntoPersonalTools' );
 		$this->assertEquals(
 			$expected,
 			$wrapper->injectLegacyMenusIntoPersonalTools( $contentNavigation )
@@ -254,13 +255,22 @@ class SkinTemplateTest extends MediaWikiIntegrationTestCase {
 
 	public function testGenerateHTML() {
 		$wrapper = TestingAccessWrapper::newFromObject(
-			new SkinTemplate( [ 'template' => 'SkinQuickTemplateTest', 'name' => 'test' ] )
+			new SkinTemplate( [
+				'menus' => [ 'actions', 'associated-pages', 'dock-bottom', 'variants', 'views' ],
+				'template' => 'SkinQuickTemplateTest',
+				'name' => 'test'
+			] )
 		);
 
 		$wrapper->getContext()->setTitle( Title::makeTitle( NS_MAIN, 'PrepareQuickTemplateTest' ) );
 		$tpl = $wrapper->prepareQuickTemplate();
 		$contentNav = $tpl->get( 'content_navigation' );
 
-		$this->assertEquals( [ 'dock-bottom', 'namespaces', 'views', 'actions', 'variants' ], array_keys( $contentNav ) );
+		$this->assertEqualsCanonicalizing(
+			[
+				'associated-pages', 'dock-bottom', 'views', 'actions', 'variants'
+			],
+			array_keys( $contentNav )
+		);
 	}
 }

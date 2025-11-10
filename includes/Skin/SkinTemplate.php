@@ -305,9 +305,10 @@ class SkinTemplate extends Skin {
 		$content_navigation = $this->buildContentNavigationUrlsInternal();
 		$requestedMenus = $this->getOptions()['menus'];
 		# Personal toolbar
-		if ( !in_array( 'user-menu', $requestedMenus ) ) {
+		if ( in_array( 'personal', $requestedMenus ) ) {
 			$tpl->set( 'personal_urls', $this->makeSkinTemplatePersonalUrls( $content_navigation ) );
 		}
+		$tpl->deprecate( 'personal_urls', 'Use content_navigation instead' );
 		// The user-menu, notifications, and user-interface-preferences are new content navigation entries which aren't
 		// expected to be part of content_navigation or content_actions. Adding them in there breaks skins that do not
 		// expect it. (See T316196)
@@ -400,7 +401,8 @@ class SkinTemplate extends Skin {
 	/**
 	 * Build array of urls for personal toolbar
 	 *
-	 * @param bool $includeNotifications Since 1.36, notifications are optional
+	 * @param bool $includeNotifications Since 1.36, notifications are optional,
+	 *   since 1.46 sending this flag will also add user page.
 	 * @return array
 	 */
 	protected function buildPersonalUrls( bool $includeNotifications = true ) {
@@ -654,14 +656,30 @@ class SkinTemplate extends Skin {
 			$portlets['data-' . $name] = $this->getPortletData( $name, $items );
 		}
 
-		// A menu that includes the notifications. This will be deprecated in future versions
-		// of the skin API spec.
-		$portlets['data-personal'] = $this->getPortletData(
-			'personal',
-			$this->getPersonalToolsForMakeListItem(
-				$this->injectLegacyMenusIntoPersonalTools( $contentNavigation )
-			)
-		);
+		$menuOptions = $this->getOptions()['menus'];
+		$intro = 'Skins must now pass `menus` key to skin definition in skin.json. Default value is: '
+			. "['namespaces', 'views', 'actions', 'variants', 'personal']. <br>";
+		if ( in_array( 'namespaces', $menuOptions ) ) {
+			wfDeprecatedMsg(
+				$intro . 'Menu "namespaces" is deprecated. Please replace with "associated-pages".',
+				'1.46'
+			);
+		}
+
+		// A menu that includes the notifications. Now deprecated.
+		if ( in_array( 'personal', $menuOptions ) ) {
+			wfDeprecatedMsg(
+				$intro . 'Menu "personal" is deprecated. Replace with "user-page", "user-interface-preferences",'
+					. '"notifications" and "user-menu".',
+				'1.46'
+			);
+			$portlets['data-personal'] = $this->getPortletData(
+				'personal',
+				$this->getPersonalToolsForMakeListItem(
+					$this->injectLegacyMenusIntoPersonalTools( $contentNavigation )
+				)
+			);
+		}
 
 		$this->portletsCached = [
 			'data-portlets' => $portlets,
@@ -982,12 +1000,16 @@ class SkinTemplate extends Skin {
 	 * @since 1.37
 	 */
 	protected function runOnSkinTemplateNavigationHooks( SkinTemplate $skin, &$content_navigation ) {
-		$beforeHookAssociatedPages = array_keys( $content_navigation['associated-pages'] );
-		$beforeHookNamespaces = array_keys( $content_navigation['namespaces'] );
+		$beforeHookAssociatedPages = array_keys( $content_navigation['associated-pages'] ?? [] );
+		$beforeHookNamespaces = array_keys( $content_navigation['namespaces'] ?? [] );
+		$fallbackNeeded = count( $beforeHookAssociatedPages ) === count( $beforeHookNamespaces );
 
 		// Equiv to SkinTemplateContentActions, run
 		$this->getHookRunner()->onSkinTemplateNavigation__Universal(
 			$skin, $content_navigation );
+		if ( !$fallbackNeeded ) {
+			return;
+		}
 		// The new `associatedPages` menu (added in 1.39)
 		// should be backwards compatibile with `namespaces`.
 		// To do this we look for hook modifications to both keys. If modifications are not
@@ -995,8 +1017,8 @@ class SkinTemplate extends Skin {
 		// links in the namespaces menu.
 		// It's expected in future that `namespaces` menu will become an alias for `associatedPages`
 		// at which point this code can be removed.
-		$afterHookNamespaces = array_keys( $content_navigation[ 'namespaces' ] );
-		$afterHookAssociatedPages = array_keys( $content_navigation[ 'associated-pages' ] );
+		$afterHookNamespaces = array_keys( $content_navigation[ 'namespaces' ] ?? [] );
+		$afterHookAssociatedPages = array_keys( $content_navigation[ 'associated-pages' ] ?? [] );
 		$associatedPagesChanged = count( array_diff( $afterHookAssociatedPages, $beforeHookAssociatedPages ) ) > 0;
 		$namespacesChanged = count( array_diff( $afterHookNamespaces, $beforeHookNamespaces ) ) > 0;
 		// If some change occurred to namespaces via the hook, revert back to namespaces.
@@ -1067,6 +1089,8 @@ class SkinTemplate extends Skin {
 		if ( in_array( 'user-page', $requestedMenus ) ) {
 			unset( $userMenu['userpage' ] );
 		}
+		$legacySupportNamespaces = in_array( 'namespaces', $requestedMenus );
+		$legacyUserMenuSupport = in_array( 'personal', $requestedMenus );
 		$content_navigation = $categoriesData + [
 			// Modern keys: Please ensure these get unset inside Skin::prepareQuickTemplate
 			'user-interface-preferences' => [],
@@ -1077,11 +1101,13 @@ class SkinTemplate extends Skin {
 			// Added in 1.44: a fixed position menu at bottom of page
 			'dock-bottom' => [],
 			// Legacy keys
-			'namespaces' => [],
 			'views' => [],
 			'actions' => [],
-			'variants' => []
+			'variants' => [],
 		];
+		if ( $legacySupportNamespaces ) {
+			$content_navigation['namespaces'] = [];
+		}
 
 		$associatedPages = [];
 		$namespaces = [];
@@ -1398,7 +1424,9 @@ class SkinTemplate extends Skin {
 			$associatedPages += $this->getSpecialPageAssociatedNavigationLinks( $title );
 		}
 
-		$content_navigation['namespaces'] = $namespaces;
+		if ( $legacySupportNamespaces ) {
+			$content_navigation['namespaces'] = $namespaces;
+		}
 		$content_navigation['associated-pages'] = $associatedPages;
 		$this->runOnSkinTemplateNavigationHooks( $this, $content_navigation );
 
@@ -1532,12 +1560,15 @@ class SkinTemplate extends Skin {
 	 *
 	 * @internal
 	 *
+	 * @deprecated 1.46 Update your skin options to request the menu "notification" and "user-menu" instead.
 	 * @param array $contentNavigation
 	 * @return array
 	 */
 	final protected function injectLegacyMenusIntoPersonalTools(
 		array $contentNavigation
 	): array {
+		wfDeprecated( __METHOD__, '1.46', 'Please make sure Skin option menus contains `user-menu` '
+			. '(and possibly `notifications`, `user-interface-preferences`, `user-page`)' );
 		$userMenu = $contentNavigation['user-menu'] ?? [];
 		if ( isset( $contentNavigation['user-page']['userpage'] ) ) {
 			$userMenu = [
