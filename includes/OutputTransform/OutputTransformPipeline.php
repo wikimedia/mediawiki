@@ -27,7 +27,8 @@ class OutputTransformPipeline {
 	 * hence not mutated by this method, but if $options['allowClone'] is
 	 * set it to false WILL be mutated!
 	 * @param ?ParserOptions $popts - will eventually replace options as container
-	 *    for transformation options
+	 *    for transformation options.  Passing `null` has been deprecated since
+	 *    MW 1.46.
 	 * @param array $options Transformations to apply to the HTML
 	 *  - allowClone: (bool) Whether to clone the ParserOutput before
 	 *     applying transformations. Default is true.
@@ -61,6 +62,9 @@ class OutputTransformPipeline {
 	 *  - includeDebugInfo: (bool) render PP limit report in HTML. Default: false
 	 */
 	public function run( ParserOutput $in, ?ParserOptions $popts, array $options ): ParserOutput {
+		if ( $popts === null ) {
+			wfDeprecated( __METHOD__ . ' without ParserOptions', '1.45' );
+		}
 		// Initialize some $options from the ParserOutput
 		$options += [
 			'enableSectionEditLinks' => !$in->getOutputFlag( ParserOutputFlags::NO_SECTION_EDIT_LINKS ),

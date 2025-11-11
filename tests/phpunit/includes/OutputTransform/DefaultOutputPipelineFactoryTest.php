@@ -6,6 +6,7 @@ namespace MediaWiki\Tests\OutputTransform;
 use LogicException;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWiki\Parser\Parsoid\ParsoidParser;
@@ -53,8 +54,9 @@ class DefaultOutputPipelineFactoryTest extends MediaWikiLangTestCase {
 		}
 
 		TestUtils::initSections( $po );
+		$popts = ParserOptions::newFromAnon();
 		$actual = $this->getServiceContainer()->getDefaultOutputPipeline()
-			->run( $po, null, $options )->getContentHolderText();
+			->run( $po, $popts, $options )->getContentHolderText();
 		$this->assertSame( $expect, $actual );
 	}
 
@@ -158,6 +160,6 @@ EOF
 
 		$this->expectException( LogicException::class );
 		$this->getServiceContainer()->getDefaultOutputPipeline()
-			->run( $po, null, [] );
+			->run( $po, ParserOptions::newFromAnon(), [] );
 	}
 }
