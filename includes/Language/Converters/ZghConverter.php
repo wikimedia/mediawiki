@@ -44,6 +44,7 @@ class ZghConverter extends LanguageConverterSpecific {
 		'ⵍ' => 'l',
 		'ⵎ' => 'm',
 		'ⵏ' => 'n',
+		'ⵒ' => 'p',
 		'ⵓ' => 'u',
 		'ⵔ' => 'r',
 		'ⵕ' => 'ṛ',
