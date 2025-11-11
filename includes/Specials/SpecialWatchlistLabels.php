@@ -125,8 +125,13 @@ class SpecialWatchlistLabels extends SpecialPage {
 		);
 
 		// Buttons in the table header.
-		$href = $this->getPageTitle( self::SUBPAGE_EDIT )->getLinkURL();
-		$addNew = Html::element( 'a', [ 'href' => $href ], $this->msg( 'watchlistlabels-table-new-link' )->text() );
+		$params = [
+			'href' => $this->getPageTitle( self::SUBPAGE_EDIT )->getLinkURL(),
+			// @todo Remove Codex classes when T406372 is resolved.
+			'class' => 'cdx-button cdx-button--fake-button cdx-button--fake-button--enabled'
+				. ' cdx-button--action-progressive cdx-button--weight-primary'
+		];
+		$addNew = Html::element( 'a', $params, $this->msg( 'watchlistlabels-table-new-link' )->text() );
 
 		// Data.
 		$data = [];
