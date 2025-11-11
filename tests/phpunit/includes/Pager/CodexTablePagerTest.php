@@ -22,6 +22,8 @@ class CodexTablePagerTest extends MediaWikiIntegrationTestCase {
 		// Create a concrete implementation of the abstract CodexTablePager.
 		// The parent class requires a constructor argument, hence the parentheses.
 		$pager = new class( "Dummy Caption" ) extends CodexTablePager {
+			private bool $shouldShowVisibleCaption = false;
+
 			public function getFieldNames() {
 				return [
 					'id' => 'ID',
@@ -51,6 +53,14 @@ class CodexTablePagerTest extends MediaWikiIntegrationTestCase {
 
 			public function getDefaultSort() {
 				return '';
+			}
+
+			protected function shouldShowVisibleCaption(): bool {
+				return $this->shouldShowVisibleCaption;
+			}
+
+			public function setShouldShowVisibleCaption( bool $shouldShowVisibleCaption ): void {
+				$this->shouldShowVisibleCaption = $shouldShowVisibleCaption;
 			}
 
 			public function reallyDoQuery( $offset, $limit, $order ) {
@@ -134,5 +144,23 @@ class CodexTablePagerTest extends MediaWikiIntegrationTestCase {
 		// Test that the table includes a <caption> element
 		$this->assertCount( 1, $caption );
 		$this->assertEquals( "Dummy Caption", $captionText );
+	}
+
+	/** @dataProvider provideGetHeaderForVisibleCaption */
+	public function testGetHeaderForVisibleCaption( bool $shouldShowVisibleCaption ) {
+		$this->pager->setShouldShowVisibleCaption( $shouldShowVisibleCaption );
+
+		if ( $shouldShowVisibleCaption ) {
+			$this->assertStringContainsString( 'Dummy Caption', $this->pager->getHeader() );
+		} else {
+			$this->assertSame( '', $this->pager->getHeader() );
+		}
+	}
+
+	public static function provideGetHeaderForVisibleCaption() {
+		return [
+			'Should not show visible caption' => [ false ],
+			'Should show visible caption' => [ true ],
+		];
 	}
 }
