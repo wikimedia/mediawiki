@@ -445,8 +445,9 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 
 		// Do we need to point out that this action is irreversible?
 		$irreversible = !$disabledCheckbox && (
-				( $isMember && !$groupData['canAdd'] ) ||
-				( !$isMember && !$groupData['canRemove'] ) );
+			( $isMember && !$groupData['canAdd'] ) ||
+			( !$isMember && !$groupData['canRemove'] )
+		);
 
 		if ( $irreversible ) {
 			$text = $this->msg( 'userrights-irreversible-marker', $member )->text();
