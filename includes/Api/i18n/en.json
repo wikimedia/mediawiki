@@ -1712,7 +1712,6 @@
 	"apihelp-phpfm-summary": "Output data in serialized PHP format (pretty-print in HTML).",
 	"apihelp-rawfm-summary": "Output data, including debugging elements, in JSON format (pretty-print in HTML).",
 	"apihelp-xml-summary": "Output data in XML format.",
-	"apihelp-xml-param-xslt": "If specified, adds the named page as an XSL stylesheet. The value must be a title in the {{ns:MediaWiki}} namespace ending in <code>.xsl</code>.",
 	"apihelp-xml-param-includexmlnamespace": "If specified, adds an XML namespace.",
 	"apihelp-xmlfm-summary": "Output data in XML format (pretty-print in HTML).",
 
@@ -2057,9 +2056,6 @@
 	"apiwarn-ignoring-invalid-templated-value": "Ignoring value <kbd>$2</kbd> in <var>$1</var> when processing templated parameters.",
 	"apiwarn-invalidcategory": "\"$1\" is not a category.",
 	"apiwarn-invalidtitle": "\"$1\" is not a valid title.",
-	"apiwarn-invalidxmlstylesheetext": "Stylesheet should have <code>.xsl</code> extension.",
-	"apiwarn-invalidxmlstylesheet": "Invalid or non-existent stylesheet specified.",
-	"apiwarn-invalidxmlstylesheetns": "Stylesheet should be in the {{ns:MediaWiki}} namespace.",
 	"apiwarn-moduleswithoutvars": "Property <kbd>modules</kbd> was set but not <kbd>jsconfigvars</kbd> or <kbd>encodedjsconfigvars</kbd>. Configuration variables are necessary for proper module usage.",
 	"apiwarn-notfile": "\"$1\" is not a file.",
 	"apiwarn-nothumb-noimagehandler": "Could not create thumbnail because $1 does not have an associated image handler.",

@@ -92,7 +92,8 @@ For notes on 1.45.x and older releases, see HISTORY.
 
 * In the `action=parse` API endpoint, the value `prop=sections` has been
   deprecated. Use `prop=tocdata` instead (T319141).
-* …
+* When specifying the Action API output format as `xml` or `xmlfm`, the
+  `xslt` parameter has been removed.  No alternative is provided.
 
 === Action API internal changes in 1.46 ===
 
