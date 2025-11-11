@@ -124,14 +124,26 @@ class HistoryPager extends ReverseChronologicalPager {
 			: false;
 		$this->changeTagsStore = $changeTagsStore ?? $services->getChangeTagsStore();
 
-		// T345793: Use proper Database-compatible time offset for query
-		if ( $this->mOffset ) {
-			try {
-				$this->mOffset = $this->mDb->timestamp( $this->mOffset );
-			} catch ( TimestampException ) {
-				// Ignore invalid offsets
-				$this->mOffset = '';
-			}
+		$this->fixQueryOffset();
+	}
+
+	/**
+	 * Fix request offset to use current database time style for query offset
+	 * See T345793, T409831
+	 */
+	private function fixQueryOffset() {
+		if ( !$this->mOffset ) {
+			return;
+		}
+
+		[ $timestamp, $otherIndex ] = array_pad( explode( '|', $this->mOffset, 2 ), 2, null );
+
+		try {
+			$timestamp = $this->mDb->timestamp( $timestamp );
+			$this->mOffset = $otherIndex !== null ? "$timestamp|$otherIndex" : $timestamp;
+		} catch ( TimestampException ) {
+			// Ignore invalid offsets
+			$this->mOffset = '';
 		}
 	}
 
