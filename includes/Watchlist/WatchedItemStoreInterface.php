@@ -129,7 +129,7 @@ interface WatchedItemStoreInterface {
 	 * @param UserIdentity $user
 	 * @param PageReference[] $targets
 	 *
-	 * @return WatchedItem[]|false
+	 * @return WatchedItem[]
 	 */
 	public function loadWatchedItemsBatch( UserIdentity $user, array $targets );
 
@@ -364,7 +364,7 @@ interface WatchedItemStoreInterface {
 	 * @param UserIdentity $user
 	 * @param PageReference[] $targets
 	 *
-	 * @return bool success
+	 * @return bool Whether any watched items were removed
 	 */
 	public function removeWatchBatchForUser( UserIdentity $user, array $targets );
 
@@ -404,6 +404,28 @@ interface WatchedItemStoreInterface {
 	 * two extra queries, so is only done from the purgeExpiredWatchlistItems.php maintenance script.
 	 */
 	public function removeExpired( int $limit, bool $deleteOrphans = false ): void;
+
+	/**
+	 * Add a labels to a set of watchlist items. The same labels are applied to
+	 * each item. Ignore existing labels.
+	 *
+	 * @since 1.46
+	 * @param UserIdentity $user
+	 * @param PageReference[] $targets
+	 * @param (WatchlistLabel|int)[] $labels The label objects or IDs
+	 */
+	public function addLabels( UserIdentity $user, array $targets, array $labels ): void;
+
+	/**
+	 * Remove labels from a set of watchlist items. The same labels are removed
+	 * from each item. Ignore missing label members.
+	 *
+	 * @since 1.46
+	 * @param UserIdentity $user
+	 * @param PageReference[] $targets
+	 * @param (WatchlistLabel|int)[] $labels
+	 */
+	public function removeLabels( UserIdentity $user, array $targets, array $labels ): void;
 }
 /** @deprecated class alias since 1.43 */
 class_alias( WatchedItemStoreInterface::class, 'WatchedItemStoreInterface' );

@@ -33,7 +33,6 @@ use MediaWiki\Title\TitleValue;
 use MediaWiki\User\TempUser\TempUserCreator;
 use MediaWiki\User\UserFactory;
 use MediaWiki\Utils\UrlUtils;
-use MediaWiki\Watchlist\WatchedItem;
 use MediaWiki\Watchlist\WatchedItemStore;
 use MessageLocalizer;
 use Wikimedia\ParamValidator\ParamValidator;
@@ -897,7 +896,6 @@ class ApiQueryInfo extends ApiQueryBase {
 		$this->watchlistExpiries = [];
 		$this->notificationtimestamps = [];
 
-		/** @var WatchedItem[] $items */
 		$items = $this->watchedItemStore->loadWatchedItemsBatch( $user, $this->everything );
 
 		foreach ( $items as $item ) {

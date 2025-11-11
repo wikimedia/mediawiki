@@ -206,6 +206,16 @@ class NoWriteWatchedItemStore implements WatchedItemStoreInterface {
 	public function removeExpired( int $limit, bool $deleteOrphans = false ): void {
 		throw new DBReadOnlyError( null, self::DB_READONLY_ERROR );
 	}
+
+	/** @inheritDoc */
+	public function addLabels( UserIdentity $user, array $targets, array $labels ): void {
+		throw new DBReadOnlyError( null, self::DB_READONLY_ERROR );
+	}
+
+	/** @inheritDoc */
+	public function removeLabels( UserIdentity $user, array $targets, array $labels ): void {
+		throw new DBReadOnlyError( null, self::DB_READONLY_ERROR );
+	}
 }
 /** @deprecated class alias since 1.43 */
 class_alias( NoWriteWatchedItemStore::class, 'NoWriteWatchedItemStore' );

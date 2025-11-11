@@ -2839,7 +2839,8 @@ return [
 			$services->getNamespaceInfo(),
 			$services->getRevisionLookup(),
 			$services->getLinkBatchFactory(),
-			$services->getStatsFactory()
+			$services->getStatsFactory(),
+			$services->getWatchlistLabelStore()
 		);
 
 		if ( $services->getMainConfig()->get( MainConfigNames::ReadOnlyWatchedItemStore ) ) {

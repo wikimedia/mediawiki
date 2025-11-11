@@ -25,6 +25,7 @@ use MediaWiki\User\UserIdentityValue;
 use MediaWiki\Watchlist\ActivityUpdateJob;
 use MediaWiki\Watchlist\WatchedItem;
 use MediaWiki\Watchlist\WatchedItemStore;
+use MediaWiki\Watchlist\WatchlistLabelStore;
 use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\MapCacheLRU\MapCacheLRU;
 use Wikimedia\ObjectCache\HashBagOStuff;
@@ -192,6 +193,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 			MainConfigNames::WatchlistExpiry => $mocks['expiryEnabled'] ?? true,
 			MainConfigNames::WatchlistExpiryMaxDuration => $mocks['maxExpiryDuration'] ?? null,
 			MainConfigNames::WatchlistPurgeRate => $mocks['watchlistPurgeRate'] ?? 0.1,
+			MainConfigNames::EnableWatchlistLabels => false
 		] );
 
 		$db = $mocks['db'] ?? $this->getMockDb();
@@ -210,50 +212,12 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 			$nsInfo,
 			$mocks['revisionLookup'] ?? $this->getMockRevisionLookup(),
 			$this->getMockLinkBatchFactory( $db ),
-			$this->statsFactory
+			$this->statsFactory,
+			$this->createNoOpMock( WatchlistLabelStore::class )
 		);
 	}
 
 	public function testClearWatchedItems() {
-		$user = new UserIdentityValue( 7, 'MockUser' );
-
-		$mockDb = $this->getMockDb();
-		$mockDb->expects( $this->once() )
-			->method( 'selectField' )
-			->with(
-				[ 'watchlist' ],
-				'COUNT(*)',
-				[
-					'wl_user' => $user->getId(),
-				],
-				$this->isType( 'string' )
-			)
-			->willReturn( 12 );
-		$mockDb->expects( $this->once() )
-			->method( 'delete' )
-			->with(
-				'watchlist',
-				[ 'wl_user' => 7 ],
-				$this->isType( 'string' )
-			);
-
-		$mockCache = $this->getMockCache( [ 'delete' ] );
-		$mockCache->expects( $this->once() )
-			->method( 'delete' )
-			->with( 'RM-KEY' );
-
-		$store = $this->newWatchedItemStore( [
-			'db' => $mockDb,
-			'cache' => $mockCache,
-			'expiryEnabled' => false,
-		] );
-		TestingAccessWrapper::newFromObject( $store )
-			->cacheIndex = [ 0 => [ 'F' => [ 7 => 'RM-KEY', 9 => 'KEEP-KEY' ] ] ];
-
-		$this->assertTrue( $store->clearUserWatchedItems( $user ) );
-	}
-
-	public function testClearWatchedItems_watchlistExpiry() {
 		$user = new UserIdentityValue( 7, 'MockUser' );
 
 		$mockDb = $this->getMockDb();
@@ -1315,17 +1279,17 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 		$mockDb->expects( $this->once() )
 			->method( 'timestamp' )
 			->willReturn( '20200101000000' );
-		$makeListSql = "wl_namespace = 0 AND wl_title = 'SomeDbKey'";
-		$mockDb->expects( $this->exactly( 2 ) )
-			->method( 'makeList' )
-			->willReturnOnConsecutiveCalls( $makeListSql, $makeListSql );
+		$makeWhereFrom2dSql = "wl_namespace = 0 AND wl_title = 'SomeDbKey'";
+		$mockDb->expects( $this->once() )
+			->method( 'makeWhereFrom2d' )
+			->willReturn( $makeWhereFrom2dSql );
 		$selectArgs = [
 			[
 				[ 'watchlist', 'watchlist_expiry' => 'watchlist_expiry' ],
 				[ 'wl_namespace', 'wl_title', 'wl_notificationtimestamp', 'we_expiry' ],
 				[
 					'wl_user' => 1,
-					$makeListSql,
+					$makeWhereFrom2dSql,
 					'(we_expiry IS NULL OR we_expiry > \'20200101000000\')'
 				],
 				new FakeResultWrapper( [
@@ -1450,7 +1414,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 				$this->assertSame( $nextTable, $table );
 				$this->assertSame( $nextConds, $conds );
 			} );
-		$mockDb->expects( $this->exactly( 2 ) )
+		$mockDb->expects( $this->once() )
 			->method( 'affectedRows' )
 			->willReturn( 2 );
 
@@ -1537,17 +1501,17 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 		$mockDb->expects( $this->once() )
 			->method( 'timestamp' )
 			->willReturn( '20200101000000' );
-		$makeListSql = "wl_namespace = 0 AND wl_title = 'SomeDbKey'";
-		$mockDb->expects( $this->exactly( 2 ) )
-			->method( 'makeList' )
-			->willReturnOnConsecutiveCalls( $makeListSql, $makeListSql );
+		$makeWhereFrom2dSql = "wl_namespace = 0 AND wl_title = 'SomeDbKey'";
+		$mockDb->expects( $this->once() )
+			->method( 'makeWhereFrom2d' )
+			->willReturn( $makeWhereFrom2dSql );
 		$selectArgs = [
 			[
 				[ 'watchlist', 'watchlist_expiry' => 'watchlist_expiry' ],
 				[ 'wl_namespace', 'wl_title', 'wl_notificationtimestamp', 'we_expiry' ],
 				[
 					'wl_user' => 1,
-					$makeListSql,
+					$makeWhereFrom2dSql,
 					'(we_expiry IS NULL OR we_expiry > \'20200101000000\')'
 				],
 				new FakeResultWrapper( [
@@ -1640,17 +1604,17 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 		$mockDb->expects( $this->once() )
 			->method( 'timestamp' )
 			->willReturn( '20200101000000' );
-		$makeListSql = "wl_namespace = 0 AND wl_title = 'SomeDbKey'";
-		$mockDb->expects( $this->exactly( 2 ) )
-			->method( 'makeList' )
-			->willReturnOnConsecutiveCalls( $makeListSql, $makeListSql );
+		$makeWhereFrom2dSql = "wl_namespace = 0 AND wl_title = 'SomeDbKey'";
+		$mockDb->expects( $this->once() )
+			->method( 'makeWhereFrom2d' )
+			->willReturn( $makeWhereFrom2dSql );
 		$selectArgs = [
 			[
 				[ 'watchlist', 'watchlist_expiry' => 'watchlist_expiry' ],
 				[ 'wl_namespace', 'wl_title', 'wl_notificationtimestamp', 'we_expiry' ],
 				[
 					'wl_user' => 1,
-					$makeListSql,
+					$makeWhereFrom2dSql,
 					'(we_expiry IS NULL OR we_expiry > \'20200101000000\')'
 				],
 				new FakeResultWrapper( [] ),
@@ -1922,17 +1886,17 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 		$mockDb->expects( $this->once() )
 			->method( 'timestamp' )
 			->willReturn( '20200101000000' );
-		$makeListSql = "wl_namespace = 0 AND wl_title = 'SomeDbKey'";
-		$mockDb->expects( $this->exactly( 2 ) )
-			->method( 'makeList' )
-			->willReturnOnConsecutiveCalls( $makeListSql, $makeListSql );
+		$makeWhereFrom2dSql = "wl_namespace = 0 AND wl_title = 'SomeDbKey'";
+		$mockDb->expects( $this->once() )
+			->method( 'makeWhereFrom2d' )
+			->willReturn( $makeWhereFrom2dSql );
 		$selectArgs = [
 			[
 				[ 'watchlist', 'watchlist_expiry' => 'watchlist_expiry' ],
 				[ 'wl_namespace', 'wl_title', 'wl_notificationtimestamp', 'we_expiry' ],
 				[
 					'wl_user' => 1,
-					$makeListSql,
+					$makeWhereFrom2dSql,
 					'(we_expiry IS NULL OR we_expiry > \'20200101000000\')'
 				],
 				new FakeResultWrapper( [
@@ -1983,17 +1947,17 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 		$mockDb->expects( $this->once() )
 			->method( 'timestamp' )
 			->willReturn( '20200101000000' );
-		$makeListSql = "wl_namespace = 0 AND wl_title = 'SomeDbKey'";
-		$mockDb->expects( $this->exactly( 2 ) )
-			->method( 'makeList' )
-			->willReturnOnConsecutiveCalls( $makeListSql, $makeListSql );
+		$makeWhereFrom2dSql = "wl_namespace = 0 AND wl_title = 'SomeDbKey'";
+		$mockDb->expects( $this->once() )
+			->method( 'makeWhereFrom2d' )
+			->willReturn( $makeWhereFrom2dSql );
 		$selectArgs = [
 			[
 				[ 'watchlist', 'watchlist_expiry' => 'watchlist_expiry' ],
 				[ 'wl_namespace', 'wl_title', 'wl_notificationtimestamp', 'we_expiry' ],
 				[
 					'wl_user' => 1,
-					$makeListSql,
+					$makeWhereFrom2dSql,
 					'(we_expiry IS NULL OR we_expiry > \'20200101000000\')'
 				],
 				new FakeResultWrapper( [] ),
@@ -2313,17 +2277,17 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 		$mockDb->expects( $this->once() )
 			->method( 'timestamp' )
 			->willReturn( '20200101000000' );
-		$makeListSql = "wl_namespace = 0 AND wl_title = 'SomeDbKey'";
-		$mockDb->expects( $this->exactly( 2 ) )
-			->method( 'makeList' )
-			->willReturnOnConsecutiveCalls( $makeListSql, $makeListSql );
+		$makeWhereFrom2dSql = "wl_namespace = 0 AND wl_title = 'SomeDbKey'";
+		$mockDb->expects( $this->once() )
+			->method( 'makeWhereFrom2d' )
+			->willReturn( $makeWhereFrom2dSql );
 		$selectArgs = [
 			[
 				[ 'watchlist', 'watchlist_expiry' => 'watchlist_expiry' ],
 				[ 'wl_namespace', 'wl_title', 'wl_notificationtimestamp', 'we_expiry' ],
 				[
 					'wl_user' => 1,
-					$makeListSql,
+					$makeWhereFrom2dSql,
 					'(we_expiry IS NULL OR we_expiry > \'20200101000000\')'
 				],
 				new FakeResultWrapper( [] ),
@@ -2370,17 +2334,17 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 		$mockDb->expects( $this->once() )
 			->method( 'timestamp' )
 			->willReturn( '20200101000000' );
-		$makeListSql = "wl_namespace = 0 AND wl_title = 'SomeDbKey'";
-		$mockDb->expects( $this->exactly( 2 ) )
-			->method( 'makeList' )
-			->willReturnOnConsecutiveCalls( $makeListSql, $makeListSql );
+		$makeWhereFrom2dSql = "wl_namespace = 0 AND wl_title = 'SomeDbKey'";
+		$mockDb->expects( $this->once() )
+			->method( 'makeWhereFrom2d' )
+			->willReturn( $makeWhereFrom2dSql );
 		$selectArgs = [
 			[
 				[ 'watchlist', 'watchlist_expiry' => 'watchlist_expiry' ],
 				[ 'wl_namespace', 'wl_title', 'wl_notificationtimestamp', 'we_expiry' ],
 				[
 					'wl_user' => 1,
-					$makeListSql,
+					$makeWhereFrom2dSql,
 					'(we_expiry IS NULL OR we_expiry > \'20200101000000\')'
 				],
 				new FakeResultWrapper( [
@@ -2592,17 +2556,17 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 		$mockDb->expects( $this->once() )
 			->method( 'timestamp' )
 			->willReturn( '20200101000000' );
-		$makeListSql = "wl_namespace = 0 AND wl_title = 'SomeDbKey'";
-		$mockDb->expects( $this->exactly( 2 ) )
-			->method( 'makeList' )
-			->willReturnOnConsecutiveCalls( $makeListSql, $makeListSql );
+		$makeWhereFrom2dSql = "wl_namespace = 0 AND wl_title = 'SomeDbKey'";
+		$mockDb->expects( $this->once() )
+			->method( 'makeWhereFrom2d' )
+			->willReturn( $makeWhereFrom2dSql );
 		$selectArgs = [
 			[
 				[ 'watchlist', 'watchlist_expiry' => 'watchlist_expiry' ],
 				[ 'wl_namespace', 'wl_title', 'wl_notificationtimestamp', 'we_expiry' ],
 				[
 					'wl_user' => 1,
-					$makeListSql,
+					$makeWhereFrom2dSql,
 					'(we_expiry IS NULL OR we_expiry > \'20200101000000\')'
 				],
 				new FakeResultWrapper( [
@@ -2697,17 +2661,17 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 		$mockDb->expects( $this->once() )
 			->method( 'timestamp' )
 			->willReturn( '20200101000000' );
-		$makeListSql = "wl_namespace = 0 AND wl_title = 'SomeDbKey'";
-		$mockDb->expects( $this->exactly( 2 ) )
-			->method( 'makeList' )
-			->willReturnOnConsecutiveCalls( $makeListSql, $makeListSql );
+		$makeWhereFrom2dSql = "wl_namespace = 0 AND wl_title = 'SomeDbKey'";
+		$mockDb->expects( $this->once() )
+			->method( 'makeWhereFrom2d' )
+			->willReturn( $makeWhereFrom2dSql );
 		$selectArgs = [
 			[
 				[ 'watchlist', 'watchlist_expiry' => 'watchlist_expiry' ],
 				[ 'wl_namespace', 'wl_title', 'wl_notificationtimestamp', 'we_expiry' ],
 				[
 					'wl_user' => 1,
-					$makeListSql,
+					$makeWhereFrom2dSql,
 					'(we_expiry IS NULL OR we_expiry > \'20200101000000\')'
 				],
 				new FakeResultWrapper( [] ),
@@ -2796,17 +2760,17 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 		$mockDb->expects( $this->once() )
 			->method( 'timestamp' )
 			->willReturn( '20200101000000' );
-		$makeListSql = "wl_namespace = 0 AND wl_title = 'SomeDbKey'";
-		$mockDb->expects( $this->exactly( 2 ) )
-			->method( 'makeList' )
-			->willReturnOnConsecutiveCalls( $makeListSql, $makeListSql );
+		$makeWhereFrom2dSql = "wl_namespace = 0 AND wl_title = 'SomeDbKey'";
+		$mockDb->expects( $this->once() )
+			->method( 'makeWhereFrom2d' )
+			->willReturn( $makeWhereFrom2dSql );
 		$selectArgs = [
 			[
 				[ 'watchlist', 'watchlist_expiry' => 'watchlist_expiry' ],
 				[ 'wl_namespace', 'wl_title', 'wl_notificationtimestamp', 'we_expiry' ],
 				[
 					'wl_user' => 1,
-					$makeListSql,
+					$makeWhereFrom2dSql,
 					'(we_expiry IS NULL OR we_expiry > \'20200101000000\')'
 				],
 				new FakeResultWrapper( [
@@ -2904,17 +2868,17 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 		$mockDb->expects( $this->once() )
 			->method( 'timestamp' )
 			->willReturn( '20200101000000' );
-		$makeListSql = "wl_namespace = 0 AND wl_title = 'SomeDbKey'";
-		$mockDb->expects( $this->exactly( 2 ) )
-			->method( 'makeList' )
-			->willReturnOnConsecutiveCalls( $makeListSql, $makeListSql );
+		$makeWhereFrom2dSql = "wl_namespace = 0 AND wl_title = 'SomeDbKey'";
+		$mockDb->expects( $this->once() )
+			->method( 'makeWhereFrom2d' )
+			->willReturn( $makeWhereFrom2dSql );
 		$selectArgs = [
 			[
 				[ 'watchlist', 'watchlist_expiry' => 'watchlist_expiry' ],
 				[ 'wl_namespace', 'wl_title', 'wl_notificationtimestamp', 'we_expiry' ],
 				[
 					'wl_user' => 1,
-					$makeListSql,
+					$makeWhereFrom2dSql,
 					'(we_expiry IS NULL OR we_expiry > \'20200101000000\')',
 				],
 				new FakeResultWrapper( [
@@ -3054,13 +3018,17 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 		$timestamp = '20100101010101';
 		$targets = [ $testPageFactory( 100, 0, 'Foo', $this ), $testPageFactory( 101, 0, 'Bar', $this ) ];
 
+		$makeWhereFrom2dSql = "SQL conforming to developer assumptions";
 		$mockDb = $this->getMockDb();
+		$mockDb->expects( $this->once() )
+			->method( 'makeWhereFrom2d' )
+			->willReturn( $makeWhereFrom2dSql );
 		$mockDb->expects( $this->once() )
 			->method( 'selectFieldValues' )
 			->with(
 				[ 'watchlist' ],
 				'wl_id',
-				[ 'wl_user' => 1, 'wl_namespace' => 0, 'wl_title' => [ 'Foo', 'Bar' ] ]
+				[ 'wl_user' => 1, $makeWhereFrom2dSql ]
 			)
 			->willReturn( [ '2', '3' ] );
 		$mockDb->expects( $this->once() )

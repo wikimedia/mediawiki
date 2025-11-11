@@ -48,6 +48,11 @@ class WatchedItem {
 	private $expiry;
 
 	/**
+	 * @var WatchlistLabel[]
+	 */
+	private $labels;
+
+	/**
 	 * Used to calculate how many days are remaining until a watched item will expire.
 	 * Uses a different algorithm from Language::getDurationIntervals for calculating
 	 * days remaining in an interval of time
@@ -61,12 +66,14 @@ class WatchedItem {
 	 * @param PageReference $target
 	 * @param bool|null|string $notificationTimestamp the value of the wl_notificationtimestamp field
 	 * @param null|string $expiry Optional expiry timestamp in any format acceptable to wfTimestamp()
+	 * @param WatchlistLabel[] $labels
 	 */
 	public function __construct(
 		UserIdentity $user,
 		PageReference $target,
 		$notificationTimestamp,
-		?string $expiry = null
+		?string $expiry = null,
+		array $labels = []
 	) {
 		$this->user = $user;
 		$this->target = $target;
@@ -79,6 +86,8 @@ class WatchedItem {
 		if ( $this->expiry === 'infinity' ) {
 			$this->expiry = null;
 		}
+
+		$this->labels = $labels;
 	}
 
 	/**
@@ -223,6 +232,16 @@ class WatchedItem {
 		}
 
 		return $msgLocalizer->msg( 'watchlist-expiring-days-full-text' )->numParams( $expiryInDays )->text();
+	}
+
+	/**
+	 * Get labels associated with a watched item
+	 *
+	 * @since 1.46
+	 * @return WatchlistLabel[]
+	 */
+	public function getLabels(): array {
+		return $this->labels;
 	}
 }
 /** @deprecated class alias since 1.43 */

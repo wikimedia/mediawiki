@@ -74,7 +74,7 @@ class WatchlistLabelStore {
 	 *
 	 * @param UserIdentity $user
 	 *
-	 * @return WatchlistLabel[]
+	 * @return WatchlistLabel[] Labels indexed by ID
 	 */
 	public function loadAllForUser( UserIdentity $user ): array {
 		$select = $this->dbProvider->getReplicaDatabase()->newSelectQueryBuilder();
@@ -85,7 +85,7 @@ class WatchlistLabelStore {
 			->fetchResultSet();
 		$labels = [];
 		foreach ( $results as $result ) {
-			$labels[] = new WatchlistLabel( $user, $result->wll_name, $result->wll_id );
+			$labels[ (int)$result->wll_id ] = new WatchlistLabel( $user, $result->wll_name, $result->wll_id );
 		}
 		return $labels;
 	}
