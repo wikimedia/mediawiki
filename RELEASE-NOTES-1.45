@@ -526,6 +526,10 @@ because of Phabricator reports.
   - Wikimedia\Stats\IBufferingStatsdDataFactory
   - Wikimedia\Stats\NullStatsdDataFactory
   - Wikimedia\Stats\StatsdAwareInterface
+* Passing a null ParserOptions to OutputTransformPipeline::run() has been
+  deprecated and emits warnings.  All callers which passed `null` should
+  have been removed with the deprecation (in MW 1.44) and removal (in this
+  release) of ParserOutput::getText().
 * …
 
 === Other changes in 1.45 ===

@@ -427,7 +427,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * @unstable This method is transitional and will be replaced by a method
 	 * in another class, maybe ContentRenderer.  It allows us to break our
 	 * porting work into two steps; in the first we bring ParserOptions to
-	 * to each ::getText() callsite to ensure it is made available to the
+	 * to each callsite to ensure it is made available to the
 	 * postprocessing pipeline.  In the second we move this functionality
 	 * into the Content hierarchy and out of ParserOutput, which should become
 	 * a pure value object.
@@ -469,14 +469,6 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * @return ParserOutput
 	 */
 	public function runOutputPipeline( ParserOptions $popts, array $options = [] ): ParserOutput {
-		return $this->runPipelineInternal( $popts, $options );
-	}
-
-	/**
-	 * Temporary helper method to allow running the pipeline with null $popts for now, although
-	 * passing a null ParserOptions is a temporary backward-compatibility hack and will be deprecated.
-	 */
-	private function runPipelineInternal( ?ParserOptions $popts, array $options = [] ): ParserOutput {
 		$pipeline = MediaWikiServices::getInstance()->getDefaultOutputPipeline();
 		$options += [
 			'allowClone' => true,
