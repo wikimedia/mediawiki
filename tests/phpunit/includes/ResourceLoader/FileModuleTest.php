@@ -994,7 +994,7 @@ class FileModuleTest extends ResourceLoaderTestCase {
 		$context->getResourceLoader()->setMessageBlobStore( $msgBlobStore );
 
 		$options = [
-			'messages' => [ 'test-hello' ]
+			'messages' => [ 'test-message' ]
 		];
 
 		$module = new class( $options ) extends FileModule {
@@ -1019,11 +1019,14 @@ class FileModuleTest extends ResourceLoaderTestCase {
 
 		$msgBlobStore = $this->createMock( MessageBlobStore::class );
 		$msgBlobStore->method( 'getBlob' )->willReturn( '{"test-hello":"Hello",' .
-			'"test-world":"World","parentheses-start":"{","parentheses-end":"}"}' );
+			'"test-world":"World","parentheses-start":"{","parentheses-end":"}",' .
+			'"colon-separator":":"}' );
 		$context->getResourceLoader()->setMessageBlobStore( $msgBlobStore );
 
 		$options = [
 			'messages' => [ 'test-hello', 'parentheses-start', 'parentheses-end' ],
+			'lessMessages' => [ 'test-world', 'colon-separator', 'parentheses-start',
+				'parentheses-end' ]
 		];
 		$module = new class( $options ) extends LessVarFileModule {
 			public function __construct( $options = [] ) {
@@ -1039,9 +1042,11 @@ class FileModuleTest extends ResourceLoaderTestCase {
 		};
 		$module->setName( 'testing-two' );
 
-		// Known issue: LessVarFileModule discards extended getMessages, e.g. "test-world"
-		$this->assertEquals( '{"test-hello":"Hello",' .
+		$this->assertEquals( '{"test-hello":"Hello","test-world":"World",' .
 			'"parentheses-start":"{","parentheses-end":"}"}', $module->getModuleContent( $context )['messagesBlob'] );
+		$this->assertEquals( [ 'msg-colon-separator' => '":"', 'msg-parentheses-end' => '"}"',
+				'msg-parentheses-start' => '"{"', 'msg-test-world' => '"World"' ],
+				$module->getDefinitionSummary( $context )[1]['lessVars'] );
 	}
 
 	public function newModuleRequest( $moduleInfo, $context ) {

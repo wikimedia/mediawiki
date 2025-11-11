@@ -20,6 +20,9 @@ use MediaWiki\Registration\ExtensionRegistry;
 use RuntimeException;
 use Wikimedia\Minify\CSSMin;
 
+// Per https://phabricator.wikimedia.org/T241091
+// phpcs:disable MediaWiki.Commenting.FunctionAnnotations.UnrecognizedAnnotation
+
 /**
  * Module based on local JavaScript/CSS files.
  *
@@ -138,6 +141,9 @@ class FileModule extends Module {
 	 */
 	protected $missingLocalFileRefs = [];
 
+	/** @var array */
+	protected $lessMessages = [];
+
 	/**
 	 * Construct a new module from an options array.
 	 *
@@ -199,6 +205,7 @@ class FileModule extends Module {
 				// Lists of strings
 				case 'dependencies':
 				case 'messages':
+				case 'lessMessages':
 					// Normalise
 					$option = array_values( array_unique( (array)$option ) );
 					sort( $option );
@@ -435,7 +442,99 @@ class FileModule extends Module {
 	 * @return string[] List of message keys
 	 */
 	public function getMessages() {
-		return $this->messages;
+		return array_merge( $this->messages, $this->lessMessages );
+	}
+
+	/**
+	 * Return a subset of messages from a JSON string representation.
+	 *
+	 * @param string|null $blob JSON, or null if module has no declared messages
+	 * @param string[] $allowed
+	 * @return array
+	 */
+	private function pluckFromMessageBlob( $blob, array $allowed ): array {
+		$data = $blob ? json_decode( $blob, true ) : [];
+		// Keep only the messages intended for script or Less export
+		// (opposite of getMessages essentially).
+		return array_intersect_key( $data, array_fill_keys( $allowed, true ) );
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	protected function getMessageBlob( Context $context ) {
+		$blob = parent::getMessageBlob( $context );
+		if ( !$blob ) {
+			// If module has no blob, preserve null to avoid needless WAN cache allocation
+			// client output for modules without messages.
+			return $blob;
+		}
+
+		// T409619: Support for lessMessages should not break getMessages subclassing
+		//
+		// Avoid array_diff because it removes all matches instead of just one,
+		// whereas we allow a getMessage() subclass to add the same message in lessMessages.
+		$reducedMessages = $this->getMessages();
+		foreach ( $this->lessMessages as $messageKey ) {
+			$i = array_search( $messageKey, $reducedMessages );
+			if ( $i !== false ) {
+				unset( $reducedMessages[$i] );
+			}
+		}
+		return json_encode( (object)$this->pluckFromMessageBlob( $blob, $reducedMessages ) );
+	}
+
+	// phpcs:disable MediaWiki.Commenting.DocComment.SpacingDocTag, Squiz.WhiteSpace.FunctionSpacing.Before
+	/**
+	 * Escape and wrap a message value as literal string for LESS.
+	 *
+	 * This mostly lets CSSMin escape it and wrap it, but also escape single quotes
+	 * for compatibility with LESS's feature of variable interpolation into other strings.
+	 * This is relatively rare for most use of LESS, but for messages it is quite common.
+	 *
+	 * Example:
+	 *
+	 * @code
+	 *     @x: "foo's";
+	 *     .eg { content: 'Value is @{x}'; }
+	 * @endcode
+	 *
+	 * Produces output: `.eg { content: 'Value is foo's'; }`.
+	 * (Tested in less.php 1.8.1, and Less.js 2.7)
+	 *
+	 * @param string $msg
+	 * @return string wrapped LESS variable value
+	 */
+	private static function wrapAndEscapeMessage( $msg ) {
+		return str_replace( "'", "\'", CSSMin::serializeStringValue( $msg ) );
+	}
+
+	// phpcs:enable
+
+	/**
+	 * Get language-specific LESS variables for this module.
+	 *
+	 * @param Context $context
+	 * @return array LESS variables
+	 */
+	protected function getLessVars( Context $context ) {
+		$vars = parent::getLessVars( $context );
+
+		if ( $this->lessMessages ) {
+			$blob = parent::getMessageBlob( $context );
+			$messages = $this->pluckFromMessageBlob( $blob, $this->lessMessages );
+
+			// It is important that we iterate the declared list from $this->lessMessages,
+			// and not $messages since in the case of undefined messages, the key is
+			// omitted entirely from the blob. This emits a log warning for developers,
+			// but we must still carry on and produce a valid LESS variable declaration,
+			// to avoid a LESS syntax error (T267785).
+			foreach ( $this->lessMessages as $msgKey ) {
+				$vars['msg-' . $msgKey] = self::wrapAndEscapeMessage( $messages[$msgKey] ?? "⧼{$msgKey}⧽" );
+			}
+		}
+
+		return $vars;
 	}
 
 	/**
@@ -1465,3 +1564,5 @@ class FileModule extends Module {
 		return $input;
 	}
 }
+
+class_alias( FileModule::class, 'MediaWiki\ResourceLoader\LessVarFileModule' );
