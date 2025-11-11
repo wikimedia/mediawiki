@@ -2174,7 +2174,7 @@
 	"watchlistlabels-form-header-new": "New label",
 	"watchlistlabels-form-header-edit": "Rename",
 	"watchlistlabels-form-field-name": "Label name",
-	"watchlistlabels-form-name-too-long": "Label name is too long. Please keep it under 256 bytes (supplied value is $1 bytes).",
+	"watchlistlabels-form-name-too-long": "Label name is too long. Please keep it under 256 bytes (supplied value is $1 {{PLURAL:$1|byte|bytes}}).",
 	"watchlistlabels-form-submit-new": "Create",
 	"watchlistlabels-form-submit-edit": "Save",
 	"enotif_reset": "Mark all pages visited",
