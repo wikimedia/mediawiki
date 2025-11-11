@@ -1,0 +1,46 @@
+/*!
+ * Styles for Special:UserRights
+ */
+@import 'mediawiki.skin.variables.less';
+
+.mw-special-UserGroupsSpecialPage {
+	#mw-userrights-form2 {
+
+		/* Customizations for 2-column layout of form for editing groups */
+
+		.oo-ui-panelLayout-framed {
+			border: 0;
+			display: inline-block;
+			box-sizing: border-box;
+			width: 50%;
+			vertical-align: top;
+		}
+
+		.oo-ui-panelLayout-padded {
+			padding: 0;
+		}
+
+		/* Customizations for group expiry field */
+
+		.mw-htmlform-field-HTMLSelectOrOtherField {
+			padding-left: 26px;
+		}
+
+		.mw-widget-selectWithInputWidget .oo-ui-textInputWidget {
+			padding-top: @spacing-25;
+
+			/*
+			 * Make maximum width consistent with the dropdown, as defined in
+			 * mw.widgets.SelectWithInputWidget.base.less
+			 */
+			max-width: 20em;
+
+			/*
+			 * Avoid FOUC on page load, since the default value will never be "Other".
+			 * When the user selects "Other", OOUI adds styles that will make this
+			 * visible again.
+			 */
+			display: none;
+		}
+	}
+}

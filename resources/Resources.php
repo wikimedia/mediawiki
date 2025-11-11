@@ -2068,7 +2068,7 @@ return [
 			'resources/src/mediawiki.special/pagesWithProp.css',
 			'resources/src/mediawiki.special/upload.css',
 			'resources/src/mediawiki.special/uploadstash.css',
-			'resources/src/mediawiki.special/userrights.css',
+			'resources/src/mediawiki.special/userrights.less',
 			'resources/src/mediawiki.special/watchlist.css',
 			'resources/src/mediawiki.special/whatlinkshere.less',
 			'resources/src/mediawiki.special/block.less',

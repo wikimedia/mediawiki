@@ -152,6 +152,8 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 	 * @return string The HTML of the form
 	 */
 	protected function buildGroupsForm(): string {
+		$this->getOutput()->addBodyClasses( 'mw-special-UserGroupsSpecialPage' );
+
 		$groups = $this->prepareAvailableGroups();
 
 		$canChangeAny = array_any(
