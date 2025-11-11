@@ -97,6 +97,7 @@ Below only new and removed languages are listed, as well as changes to languages
 because of Phabricator reports.
 
 * (T409708) Added language support for Bole (bol).
+* (T409393) Added language support for Javanese (Javanese script) (jv-java).
 * …
 
 === Breaking changes in 1.46 ===

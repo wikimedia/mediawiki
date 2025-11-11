@@ -267,6 +267,7 @@ class Names {
 		'jbo' => 'la .lojban.', # Lojban
 		'jut' => 'jysk', # Jutish / Jutlandic
 		'jv' => 'Jawa', # Javanese
+		'jv-java' => 'ꦗꦮ', # Javanese (Javanese script)
 		'ka' => 'ქართული', # Georgian
 		'kaa' => 'Qaraqalpaqsha', # Karakalpak
 		'kab' => 'Taqbaylit', # Kabyle
