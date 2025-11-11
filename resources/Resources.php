@@ -2794,6 +2794,17 @@ return [
 			'user.options',
 		],
 	],
+	'mediawiki.special.watchlistlabels' => [
+		'class' => CodexModule::class,
+		'localBasePath' => MW_INSTALL_PATH . '/resources/src/mediawiki.special.watchlistlabels',
+		'styles' => [
+			'labelmanager.less',
+		],
+		'codexStyleOnly' => true,
+		'dependencies' => [
+			'codex-styles',
+		],
+	],
 	'mediawiki.tempUserBanner.styles' => [
 		'styles' => [
 			'resources/src/mediawiki.tempUserBanner/tempUserBanner.less',

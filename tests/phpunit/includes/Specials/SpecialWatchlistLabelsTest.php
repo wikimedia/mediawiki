@@ -3,6 +3,7 @@ namespace MediaWiki\Tests\Specials;
 
 use InvalidArgumentException;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Request\FauxRequest;
 use MediaWiki\Specials\SpecialWatchlist;
 use MediaWiki\Specials\SpecialWatchlistLabels;
 
@@ -65,6 +66,8 @@ class SpecialWatchlistLabelsTest extends SpecialPageTestBase {
 		$this->assertStatusGood( $sp->validateName( 'test', null, null ) );
 		$this->assertStatusGood( $sp->validateName( str_repeat( 't', 255 ), null, null ) );
 		$this->assertStatusNotGood( $sp->validateName( str_repeat( 't', 256 ), null, null ) );
+		$this->assertStatusNotGood( $sp->validateName( '', null, null ) );
+		$this->assertStatusNotGood( $sp->validateName( '  ', null, null ) );
 	}
 
 	/**
@@ -77,13 +80,67 @@ class SpecialWatchlistLabelsTest extends SpecialPageTestBase {
 	}
 
 	/**
-	 * Submitting form data saves a watchlist label that is then shown on the page.
+	 * Test the read, create, and edit functions of the special page.
 	 */
-	public function testOnSubmit(): void {
-		$sp = $this->newSpecialPage();
-		$sp->getContext()->setUser( $this->getTestUser()->getUser() );
-		$sp->onSubmit( [ 'name' => 'Lorem the label' ] );
-		$sp->execute( null );
-		$this->assertStringContainsString( 'Lorem the label', $sp->getOutput()->getHTML() );
+	public function testExecute(): void {
+		// Empty label list.
+		[ $html, ] = $this->executeSpecialPage(
+			null,
+			null,
+			null,
+			$this->getTestUser()->getUser()
+		);
+		$this->assertStringContainsString( 'There is no data available', $html );
+
+		// New form with no text.
+		[ $html, ] = $this->executeSpecialPage(
+			'edit',
+			null,
+			null,
+			$this->getTestUser()->getUser()
+		);
+		$this->assertStringContainsString( '<input id="mw-input-wll_name" name="wll_name" size="45" class="cdx-text-input__input" required="">', $html );
+
+		// Open the form for editing.
+		[ $html, ] = $this->executeSpecialPage(
+			'edit',
+			new FauxRequest( [ 'wll_name' => 'Lorem the label' ] ),
+			null,
+			$this->getTestUser()->getUser()
+		);
+		$this->assertStringContainsString( 'value="Lorem the label"', $html );
+
+		// Save the form and be redirected back to the table, where the new label is listed.
+		[ , $res ] = $this->executeSpecialPage(
+			'edit',
+			new FauxRequest( [ 'wll_name' => 'Lorem the label' ], true ),
+			null,
+			$this->getTestUser()->getUser()
+		);
+		$this->assertStringEndsWith( 'Special:WatchlistLabels', $res->getHeader( 'location' ) );
+		[ $html, ] = $this->executeSpecialPage(
+			null,
+			null,
+			null,
+			$this->getTestUser()->getUser()
+		);
+		$this->assertStringContainsString( 'Lorem the label', $html );
+
+		// Save the same label ID.
+		[ , $res ] = $this->executeSpecialPage(
+			'edit',
+			new FauxRequest( [ 'wll_name' => 'Lorem updated label', 'wll_id' => '1' ], true ),
+			null,
+			$this->getTestUser()->getUser()
+		);
+		$this->assertStringEndsWith( 'Special:WatchlistLabels', $res->getHeader( 'location' ) );
+		[ $html, ] = $this->executeSpecialPage(
+			null,
+			null,
+			null,
+			$this->getTestUser()->getUser()
+		);
+		$this->assertStringNotContainsString( 'Lorem the label', $html );
+		$this->assertStringContainsString( 'Lorem updated label', $html );
 	}
 }
