@@ -1183,4 +1183,27 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
+	public function testGetIpRangeBlock() {
+		$blockStatus = $this->getServiceContainer()->getBlockUserFactory()
+			->newBlockUser(
+				'1.2.3.4/16',
+				$this->getTestSysop()->getUser(),
+				'infinity'
+			)
+			->placeBlock();
+		$this->assertTrue( $blockStatus->isGood() );
+		$this->assertNotNull( $this->getServiceContainer()->getBlockManager()->getIpRangeBlock( '1.2.3.4/16' ) );
+	}
+
+	public function testGetIpRangeBlockInvalidTarget() {
+		$blockStatus = $this->getServiceContainer()->getBlockUserFactory()
+			->newBlockUser(
+				'1.2.3.4',
+				$this->getTestSysop()->getUser(),
+				'infinity'
+			)
+			->placeBlock();
+		$this->assertTrue( $blockStatus->isGood() );
+		$this->assertNull( $this->getServiceContainer()->getBlockManager()->getIpRangeBlock( '1.2.3.4' ) );
+	}
 }

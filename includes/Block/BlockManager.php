@@ -376,6 +376,24 @@ class BlockManager {
 	}
 
 	/**
+	 * Given an IP range, check if a block applies to that range specifically
+	 *
+	 * @since 1.46
+	 * @param string $ipRange
+	 * @param bool $fromReplica
+	 * @return DatabaseBlock|null
+	 */
+	public function getIpRangeBlock( string $ipRange, bool $fromReplica = true ): ?DatabaseBlock {
+		if ( !IPUtils::isValidRange( $ipRange ) ) {
+			return null;
+		}
+
+		return $this->blockStore->newFromTarget(
+			$ipRange, null, !$fromReplica
+		);
+	}
+
+	/**
 	 * Get the cookie block, if there is one.
 	 *
 	 * @param UserIdentity $user

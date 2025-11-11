@@ -2094,6 +2094,29 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 	}
 
 	/**
+	 * Get the entire subpage string of a title
+	 *
+	 * @par Example:
+	 * @code
+	 * Title::newFromText('Special:Page/Foo/Bar/Baz')->getFullSubpageText();
+	 * # returns: "Foo/Bar/Baz"
+	 * @endcode
+	 *
+	 * @return string Subpage name
+	 * @since 1.46
+	 */
+	public function getFullSubpageText() {
+		$text = $this->getText();
+		$slashPos = strpos( $text, '/' );
+
+		if ( $slashPos === false ) {
+			return '';
+		}
+
+		return substr( $text, $slashPos + 1 );
+	}
+
+	/**
 	 * Get a URL-encoded form of the subpage text
 	 *
 	 * @return string URL-encoded subpage name

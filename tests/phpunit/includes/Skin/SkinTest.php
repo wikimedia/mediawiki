@@ -561,6 +561,60 @@ class SkinTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $user->getId(), $skin->getRelevantUser()->getId() );
 	}
 
+	public function testGetPageTarget_fromRelevantUser() {
+		$skin = new class extends Skin {
+			public function outputPage() {
+			}
+		};
+		$user = new UserIdentityValue( 0, '1.2.3.4' );
+		$userIdentityLookup = $this->createMock( UserIdentityLookup::class );
+		$userIdentityLookup->method( 'getUserIdentityByName' )
+			->willReturnCallback( function ( $name ) use ( $user ) {
+				if ( $name === $user->getName() ) {
+					return $user;
+				}
+				return $this->createMock( UserIdentity::class );
+			} );
+		$this->setService( 'UserIdentityLookup', $userIdentityLookup );
+		$skin->setRelevantTitle(
+			Title::makeTitle( NS_USER, $user->getName() )
+		);
+		$this->assertSame( $user->getName(), $skin->getPageTarget() );
+	}
+
+	/**
+	 * @dataProvider provideTestGetPageTarget_fromTitle
+	 */
+	public function testGetPageTarget_fromTitle( string $title, array $parameters, string $expected ) {
+		$skin = new class extends Skin {
+			public function outputPage() {
+			}
+		};
+		$context = RequestContext::newExtraneousContext( Title::makeTitle( NS_SPECIAL, $title ), $parameters );
+		$skin->setContext( $context );
+		$this->assertSame( $expected, $skin->getPageTarget() );
+	}
+
+	public static function provideTestGetPageTarget_fromTitle() {
+		return [
+			'target from subpage' => [
+				'title' => 'Contributions/1.2.3.4/16',
+				'parameters' => [],
+				'expected' => '1.2.3.4/16',
+			],
+			'target from parameter' => [
+				'title' => 'Contributions',
+				'parameters' => [ 'target' => '1.2.3.4/16' ],
+				'expected' => '1.2.3.4/16',
+			],
+			'no target' => [
+				'title' => 'Contributions',
+				'parameters' => [],
+				'expected' => '',
+			],
+		];
+	}
+
 	public function testBuildSidebarCache() {
 		// T303007: Skin subclasses and Skin hooks may vary their sidebar contents.
 		$this->overrideConfigValues( [
@@ -644,6 +698,89 @@ class SkinTest extends MediaWikiIntegrationTestCase {
 		}
 
 		$this->assertSame( false, $hasUserDefinedLinks, 'Languages does not support user defined links' );
+	}
+
+	public static function provideTestBuildSidebarRegisteredUserLinks() {
+		return [
+			[
+				'useRelevantUser' => true, // tests users that return a UserIdentity
+				'shouldBlock' => false,
+			],
+			[
+				'useRelevantUser' => true, // tests users that return a UserIdentity
+				'shouldBlock' => true,
+			],
+			[
+				'useRelevantUser' => false, // tests IP ranges
+				'shouldBlock' => false,
+			],
+			[
+				'useRelevantUser' => false, // tests IP ranges
+				'shouldBlock' => true,
+			]
+		];
+	}
+
+	/**
+	 * @dataProvider provideTestBuildSidebarRegisteredUserLinks
+	 */
+	public function testBuildSidebarRegisteredUserLinks( bool $useRelevantUser, bool $shouldBlock ) {
+		// Don't allow extensions to modify the TOOLBOX array
+		$this->clearHook( 'SidebarBeforeOutput' );
+
+		$this->overrideConfigValues( [
+			MainConfigNames::UploadNavigationUrl => false,
+			MainConfigNames::EnableUploads => false,
+			MainConfigNames::EnableSpecialMute => false,
+		] );
+
+		$skin = new class extends Skin {
+			public function outputPage() {
+			}
+		};
+
+		if ( $useRelevantUser ) {
+			$user = $this->getTestUser()->getUser();
+			$target = $user->getName();
+			$skin->setRelevantUser( $user );
+			$context = RequestContext::newExtraneousContext(
+				Title::makeTitle( NS_SPECIAL, 'Contributions/' . $target )
+			);
+			$context->setUser( $this->getTestSysop()->getUser() );
+			$skin->setContext( $context );
+			$skin->setRelevantTitle(
+				Title::makeTitle( NS_SPECIAL, 'Contributions/' . $target )
+			);
+		} else {
+			$context = RequestContext::newExtraneousContext( Title::makeTitle( NS_SPECIAL, 'Contributions/1.2.3.4/16' ) );
+			$context->setUser( $this->getTestSysop()->getUser() );
+			$skin->setContext( $context );
+			$target = $skin->getPageTarget();
+		}
+
+		if ( !$shouldBlock ) {
+			$result = array_keys( $skin->buildSidebar()['TOOLBOX'] );
+			$expected = [ 'contributions', 'log', 'blockip' ];
+			$this->assertArrayEquals(
+				$expected,
+				array_intersect( $expected, $result )
+			);
+		} else {
+			$blockStatus = $this->getServiceContainer()->getBlockUserFactory()
+				->newBlockUser(
+					$target,
+					$this->getTestSysop()->getUser(),
+					'infinity'
+				)
+				->placeBlock();
+			$this->assertTrue( $blockStatus->isGood() );
+			$result = array_keys( $skin->buildSidebar()['TOOLBOX'] );
+			$expected = [ 'changeblockip', 'contributions', 'log', 'unblockip' ];
+			$this->assertArrayEquals(
+				$expected,
+				array_intersect( $expected, $result )
+			);
+		}
 	}
 
 	public function testBuildSidebarForContributionsPageOfTemporaryAccount() {

@@ -25,6 +25,7 @@ use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\WikiMap\WikiMap;
 use UploadBase;
+use Wikimedia\IPUtils;
 use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\Rdbms\IDBAccessObject;
 
@@ -1372,52 +1373,88 @@ abstract class Skin extends ContextSource {
 		}
 
 		$user = $this->getRelevantUser();
-
+		$target = false;
+		$targetIsIpRange = false;
 		if ( $user ) {
-			$rootUser = $user->getName();
+			// This will either be an account or an IP
+			$target = $user->getName();
+		} else {
+			// Support finding the IP range if its the target
+			$pageTarget = $this->getPageTarget();
+			if ( $pageTarget ) {
+				$CIDRLimit = $this->getConfig()
+					->get( MainConfigNames::BlockCIDRLimit );
+				[ $ip, $range ] = explode( '/', $pageTarget, 2 );
+				if (
+					( IPUtils::isIPv4( $ip ) && $range >= $CIDRLimit['IPv4'] ) ||
+					( IPUtils::isIPv6( $ip ) && $range >= $CIDRLimit['IPv6'] )
+				) {
+					$target = IPUtils::sanitizeRange( $pageTarget );
+					$targetIsIpRange = true;
+				}
+			}
+		}
+		if ( !$target ) {
+			return $nav_urls;
+		}
 
-			$nav_urls['contributions'] = [
-				'text' => $this->msg( 'tool-link-contributions', $rootUser )->text(),
-				'href' => SkinComponentUtils::makeSpecialUrlSubpage( 'Contributions', $rootUser ),
-				'tooltip-params' => [ $rootUser ],
-			];
+		$nav_urls['contributions'] = [
+			'text' => $this->msg( 'tool-link-contributions', $target )->text(),
+			'href' => SkinComponentUtils::makeSpecialUrlSubpage( 'Contributions', $target ),
+			'tooltip-params' => [ $target ],
+		];
+		$nav_urls['log'] = [
+			'icon' => 'listBullet',
+			'href' => SkinComponentUtils::makeSpecialUrlSubpage( 'Log', $target )
+		];
 
-			$nav_urls['log'] = [
-				'icon' => 'listBullet',
-				'href' => SkinComponentUtils::makeSpecialUrlSubpage( 'Log', $rootUser )
-			];
-
-			if ( $this->getAuthority()->isAllowed( 'block' ) ) {
-				// Check if the user is already blocked
+		// Check if the user/ip/ip range is blocked
+		if ( $this->getAuthority()->isAllowed( 'block' ) ) {
+			$userBlock = null;
+			if ( $targetIsIpRange ) {
+				// getBlock doesn't support ip range lookups so check independently if the target is a range
+				$userBlock = $services
+					->getBlockManager()
+					->getIpRangeBlock( $target );
+			} elseif ( $user ) {
+				// Check if the user or IP is already blocked
 				$userBlock = $services
 					->getBlockManager()
 					->getBlock( $user, null );
-				if ( $userBlock ) {
-					$useCodex = $this->getConfig()->get( MainConfigNames::UseCodexSpecialBlock );
-					$nav_urls[ $useCodex ? 'block-manage-blocks' : 'changeblockip' ] = [
-						'icon' => 'block',
-						'href' => SkinComponentUtils::makeSpecialUrlSubpage( 'Block', $rootUser )
-					];
-					if ( !$useCodex ) {
-						$nav_urls['unblockip'] = [
-							'icon' => 'unBlock',
-							'href' => SkinComponentUtils::makeSpecialUrlSubpage( 'Unblock', $rootUser )
-						];
-					}
-				} else {
-					$nav_urls['blockip'] = [
-						'icon' => 'block',
-						'text' => $this->msg( 'blockip', $rootUser )->text(),
-						'href' => SkinComponentUtils::makeSpecialUrlSubpage( 'Block', $rootUser )
-					];
-				}
 			}
 
+			if ( $userBlock ) {
+				$useCodex = $this->getConfig()->get( MainConfigNames::UseCodexSpecialBlock );
+				$nav_urls[ $useCodex ? 'block-manage-blocks' : 'changeblockip' ] = [
+					'icon' => 'block',
+					'href' => SkinComponentUtils::makeSpecialUrlSubpage( 'Block', $target )
+				];
+				if ( !$useCodex ) {
+					$nav_urls['unblockip'] = [
+						'icon' => 'unBlock',
+						'href' => SkinComponentUtils::makeSpecialUrlSubpage( 'Unblock', $target ),
+						'text' => $this->msg(
+							$targetIsIpRange ? 'unblockiprange' : 'unblockip'
+						)->text(),
+					];
+				}
+			} else {
+				$nav_urls['blockip'] = [
+					'icon' => 'block',
+					'text' => $this->msg(
+						$targetIsIpRange ? 'blockiprange' : 'blockip'
+					)->text(),
+					'href' => SkinComponentUtils::makeSpecialUrlSubpage( 'Block', $target ),
+				];
+			}
+		}
+
+		if ( $user ) {
 			if ( $this->showEmailUser( $user ) ) {
 				$nav_urls['emailuser'] = [
-					'text' => $this->msg( 'tool-link-emailuser', $rootUser )->text(),
-					'href' => SkinComponentUtils::makeSpecialUrlSubpage( 'Emailuser', $rootUser ),
-					'tooltip-params' => [ $rootUser ],
+					'text' => $this->msg( 'tool-link-emailuser', $target )->text(),
+					'href' => SkinComponentUtils::makeSpecialUrlSubpage( 'Emailuser', $target ),
+					'tooltip-params' => [ $target ],
 				];
 			}
 
@@ -1427,7 +1464,7 @@ abstract class Skin extends ContextSource {
 				) {
 					$nav_urls['mute'] = [
 						'text' => $this->msg( 'mute-preferences' )->text(),
-						'href' => SkinComponentUtils::makeSpecialUrlSubpage( 'Mute', $rootUser )
+						'href' => SkinComponentUtils::makeSpecialUrlSubpage( 'Mute', $target )
 					];
 				}
 
@@ -1441,18 +1478,18 @@ abstract class Skin extends ContextSource {
 					);
 					$delimiter = $this->getConfig()->get(
 						MainConfigNames::UserrightsInterwikiDelimiter );
-					if ( str_contains( $rootUser, $delimiter ) ) {
+					if ( str_contains( $target, $delimiter ) ) {
 						// Username contains interwiki delimiter, link it via the
 						// #{userid} syntax. (T260222)
 						$linkArgs = [ false, [ 'user' => '#' . $user->getId() ] ];
 					} else {
-						$linkArgs = [ $rootUser ];
+						$linkArgs = [ $target ];
 					}
 					$nav_urls['userrights'] = [
 						'icon' => 'userGroup',
 						'text' => $this->msg(
 							$canChange ? 'tool-link-userrights' : 'tool-link-userrights-readonly',
-							$rootUser
+							$target
 						)->text(),
 						'href' => SkinComponentUtils::makeSpecialUrlSubpage( 'Userrights', ...$linkArgs )
 					];
@@ -2482,6 +2519,48 @@ abstract class Skin extends ContextSource {
 			$this->getAfterPortlet( $name )
 		);
 		return $portletComponent->getTemplateData();
+	}
+
+	/**
+	 * @since 1.46
+	 *
+	 * Return a string representing the target of the current page.
+	 *
+	 * If you only need to confirm that a user is the target, defined by the presence
+	 * of a UserIdentity, use Skin->getRelevantUser() instead. This function should be
+	 * used if you need to support a wider set of users, ie. IP ranges.
+	 *
+	 * @return string String if a valid user/range is found, empty if not
+	 */
+	public function getPageTarget() {
+		$target = '';
+		// Check if the target user is a valid user or IP
+		$relUser = $this->getRelevantUser();
+		if ( $relUser ) {
+			$target = $relUser->getName();
+		}
+
+		// Otherwise, check if the target is an IP range which should also be supported
+		if ( !$target ) {
+			// Check for the target parameter first
+			$pageTarget = trim( $this->getRequest()->getText( 'target' ) );
+
+			// If it doesn't exist, check for the subpage next
+			if ( !$pageTarget ) {
+				$pageTarget = $this->getTitle()->getFullSubpageText();
+			}
+
+			// If it exists, only set the target if it's an IP range
+			// as that's the only case not covered by Skin->getRelevantUser()
+			if (
+				$pageTarget &&
+				IPUtils::isValidRange( $pageTarget )
+			) {
+				$target = $pageTarget;
+			}
+		}
+
+		return $target;
 	}
 }
 

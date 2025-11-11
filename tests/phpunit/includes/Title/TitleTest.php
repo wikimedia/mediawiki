@@ -1006,6 +1006,32 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $expected->equals( $actual ), 'Title equality' );
 	}
 
+	public static function provideTestGetFullSubpageText() {
+		return [
+			[
+				'title' => 'Contributions',
+				'expected' => '',
+			],
+			[
+				'title' => 'Contributions/1.2.3.4',
+				'expected' => '1.2.3.4',
+			],
+			[
+				'title' => 'Contributions/1.2.3.4/16',
+				'expected' => '1.2.3.4/16',
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideTestGetFullSubpageText
+	 * @covers \MediaWiki\Title\Title::getFullSubpageText
+	 */
+	public function testGetFullSubpageText( string $title, string $expected ) {
+		$title = Title::newFromText( $title );
+		$this->assertSame( $expected, $title->getFullSubpageText() );
+	}
+
 	public static function provideIsAlwaysKnown() {
 		return [
 			[ 'Some nonexistent page' . wfRandomString(), false ],
