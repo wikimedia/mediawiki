@@ -24,7 +24,7 @@ abstract class CodexTablePager extends TablePager {
 	/**
 	 * @stable to call
 	 *
-	 * @param string $caption Text for visually-hidden caption element
+	 * @param string $caption Text for the caption element
 	 * @param ?IContextSource $context
 	 * @param ?LinkRenderer $linkRenderer
 	 */
@@ -373,10 +373,21 @@ abstract class CodexTablePager extends TablePager {
 		return [ 'mediawiki.pager.codex.styles' ];
 	}
 
+	/**
+	 * Returns whether a visible table caption should be shown.
+	 *
+	 * @since 1.46
+	 * @stable to override
+	 */
+	protected function shouldShowVisibleCaption(): bool {
+		return false;
+	}
+
 	protected function getHeader(): string {
-		if ( $this->mCaption === '' ) {
+		if ( !$this->shouldShowVisibleCaption() ) {
 			return '';
 		}
+
 		$captionAttributes = [
 			'class' => 'cdx-table__header__caption',
 			'aria-hidden' => 'true'
