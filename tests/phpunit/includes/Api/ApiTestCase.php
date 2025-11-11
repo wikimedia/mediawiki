@@ -45,8 +45,8 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 
 		// HACK: Avoid creating test users in the DB if the test may not need them.
 		$getters = [
-			'sysop' => fn () => $this->getTestSysop(),
-			'uploader' => fn () => $this->getTestUser(),
+			'sysop' => $this->getTestSysop( ... ),
+			'uploader' => $this->getTestUser( ... ),
 		];
 		$fakeUserArray = new class ( $getters ) implements ArrayAccess {
 			private array $getters;

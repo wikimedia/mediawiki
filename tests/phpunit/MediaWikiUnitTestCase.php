@@ -178,9 +178,7 @@ abstract class MediaWikiUnitTestCase extends TestCase {
 
 			$this->serviceContainer
 				->method( 'getService' )
-				->willReturnCallback( function ( $name ) {
-					return $this->getService( $name );
-				} );
+				->willReturnCallback( $this->getService( ... ) );
 		}
 
 		return $this->serviceContainer;

@@ -277,14 +277,10 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 		$rewrittenQuery,
 		array $resultTitles
 	) {
-		$results = array_map( static function ( $title ) {
-			return SearchResult::newFromTitle( $title );
-		}, $resultTitles );
-
 		$searchResults = new SpecialSearchTestMockResultSet(
 			$suggestion,
 			$rewrittenQuery,
-			$results
+			array_map( SearchResult::newFromTitle( ... ), $resultTitles )
 		);
 
 		$mockSearchEngine = $this->mockSearchEngine( $searchResults );

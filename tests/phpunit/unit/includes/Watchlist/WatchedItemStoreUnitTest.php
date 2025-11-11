@@ -361,9 +361,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 	}
 
 	public static function provideTestPageFactory() {
-		yield [ static function ( $pageId, $namespace, $dbKey ) {
-			return PageIdentityValue::localIdentity( $pageId, $namespace, $dbKey );
-		} ];
+		yield [ PageIdentityValue::localIdentity( ... ) ];
 		yield [ static function ( $pageId, $namespace, $dbKey, $testCase ) {
 			return $testCase->makeMockTitle( $dbKey, [
 				'id' => $pageId,

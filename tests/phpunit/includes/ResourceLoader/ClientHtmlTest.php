@@ -411,8 +411,6 @@ class ClientHtmlTest extends TestCase {
 			'test.ordering.d' => [ 'shouldEmbed' => true, 'styles' => '.orderingD{}' ],
 			'test.ordering.e' => [ 'shouldEmbed' => false ],
 		];
-		return array_map( static function ( $options ) {
-			return self::makeModule( $options );
-		}, $modules );
+		return array_map( self::makeModule( ... ), $modules );
 	}
 }

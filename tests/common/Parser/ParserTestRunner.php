@@ -413,9 +413,7 @@ class ParserTestRunner {
 		// there should be no need to change global variables.
 		MediaWikiServices::getInstance()->disableService( 'RepoGroup' );
 		MediaWikiServices::getInstance()->redefineService( 'RepoGroup',
-			function () {
-				return $this->createRepoGroup();
-			}
+			$this->createRepoGroup( ... )
 		);
 		$teardown[] = static function () {
 			MediaWikiServices::getInstance()->resetServiceForTesting( 'RepoGroup' );

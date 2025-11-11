@@ -728,11 +728,7 @@ END
 			->onlyMethods( [ 'outputErrorAndLog' ] )->getMock();
 		$rl->register( [
 			'foo' => [ 'class' => ResourceLoaderTestModule::class ],
-			'ferry' => [
-				'factory' => function () {
-					return $this->getFailFerryMock();
-				}
-			],
+			'ferry' => [ 'factory' => fn () => $this->getFailFerryMock() ],
 			'bar' => [ 'class' => ResourceLoaderTestModule::class ],
 		] );
 		$context = $this->getResourceLoaderContext( [ 'debug' => 'false' ], $rl );
@@ -818,9 +814,7 @@ END
 	 */
 	public function testMakeModuleResponseConcat( $scripts, $expected, $debug, $message = null ) {
 		$rl = new EmptyResourceLoader();
-		$modules = array_map( function ( $script ) {
-			return $this->getSimpleModuleMock( $script );
-		}, $scripts );
+		$modules = array_map( $this->getSimpleModuleMock( ... ), $scripts );
 
 		$context = $this->getResourceLoaderContext(
 			[
@@ -934,9 +928,7 @@ END
 			'foo' => [ 'factory' => function () {
 				return $this->getSimpleModuleMock( 'foo();' );
 			} ],
-			'ferry' => [ 'factory' => function () {
-				return $this->getFailFerryMock();
-			} ],
+			'ferry' => [ 'factory' => fn () => $this->getFailFerryMock() ],
 			'bar' => [ 'factory' => function () {
 				return $this->getSimpleModuleMock( 'bar();' );
 			} ],

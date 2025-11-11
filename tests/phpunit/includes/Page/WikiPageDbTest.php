@@ -878,23 +878,17 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		// Default canonical parser options for a normal wikitext page
 		yield [
 			NS_MAIN, 'Main Page', CONTENT_MODEL_WIKITEXT, 'canonical',
-			static function () {
-				return ParserOptions::newFromAnon();
-			},
+			ParserOptions::newFromAnon( ... ),
 		];
 		// JavaScript should have Table Of Contents suppressed
 		yield [
 			NS_MAIN, 'JavaScript Test', CONTENT_MODEL_JAVASCRIPT, 'canonical',
-			static function () {
-				return ParserOptions::newFromAnon();
-			},
+			ParserOptions::newFromAnon( ... ),
 		];
 		// CSS should have Table Of Contents suppressed
 		yield [
 			NS_MAIN, 'CSS Test', CONTENT_MODEL_CSS, 'canonical',
-			static function () {
-				return ParserOptions::newFromAnon();
-			},
+			ParserOptions::newFromAnon( ... ),
 		];
 		// Language Conversion tables have content conversion disabled
 		yield [

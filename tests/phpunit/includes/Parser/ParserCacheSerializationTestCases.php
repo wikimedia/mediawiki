@@ -455,8 +455,8 @@ abstract class ParserCacheSerializationTestCases {
 					self::assertPagePropSame( $testCase, self::MOCK_EXT_DATA['array'], $object->getPageProperty( 'array' ) );
 					self::assertPagePropSame( $testCase, self::MOCK_EXT_DATA['map'], $object->getPageProperty( 'map' ) );
 					$testCase->assertArrayEquals(
-						array_map( fn ( $v )=>self::pagePropEncode( $v ), self::MOCK_EXT_DATA ),
-						array_map( fn ( $v )=>self::pagePropEncode( $v ), $object->getPageProperties() )
+						array_map( self::pagePropEncode( ... ), self::MOCK_EXT_DATA ),
+						array_map( self::pagePropEncode( ... ), $object->getPageProperties() )
 					);
 				}
 			],
@@ -713,17 +713,15 @@ abstract class ParserCacheSerializationTestCases {
 	 */
 	public static function getSupportedSerializationFormats( string $class ): array {
 		$jsonCodec = new JsonCodec();
-		$serializationFormats = [
+		return [
 			[
 				'ext' => 'json',
-				'serializer' => static fn ( $obj ) =>
-					$jsonCodec->serialize( $obj ),
+				'serializer' => $jsonCodec->serialize( ... ),
 				'deserializer' => static function ( $data ) use ( $jsonCodec ) {
 					MWDebug::filterDeprecationForTest( '/::setOutputFlag with non-standard flag/' );
 					return $jsonCodec->deserialize( $data );
 				},
 			],
 		];
-		return $serializationFormats;
 	}
 }
