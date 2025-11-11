@@ -420,9 +420,9 @@ class IcuCollation extends Collation {
 				INTL_ICU_VERSION,
 				self::FIRST_LETTER_VERSION
 			);
-			$this->firstLetterData = $cache->getWithSetCallback( $cacheKey, $cache::TTL_WEEK, function () {
-				return $this->fetchFirstLetterData();
-			} );
+			$this->firstLetterData = $cache->getWithSetCallback( $cacheKey, $cache::TTL_WEEK,
+				$this->fetchFirstLetterData( ... )
+			);
 		}
 		return $this->firstLetterData;
 	}

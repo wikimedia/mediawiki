@@ -342,9 +342,7 @@ class PagerNavigationBuilder {
 		$html .= $this->msg( 'viewprevnext' )->params(
 			Message::rawParam( $prevLink ),
 			Message::rawParam( $nextLink ),
-			Message::listParam( array_map( static function ( $limitLink ) {
-				return Message::rawParam( $limitLink );
-			}, $limitLinks ), ListType::PIPE )
+			Message::listParam( array_map( Message::rawParam( ... ), $limitLinks ), ListType::PIPE )
 		)->escaped();
 
 		return Html::rawElement( 'div', [ 'class' => 'mw-pager-navigation-bar' ], $html );

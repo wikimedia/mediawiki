@@ -66,7 +66,7 @@ class CoreTagHooks {
 		// Backwards-compatibility hack
 		$content = StringUtils::delimiterReplace( '<nowiki>', '</nowiki>', '$1', $content ?? '', 'i' );
 
-		$attribs = array_map( static fn ( $s ) => $parser->killMarkers( $s ), $attribs );
+		$attribs = array_map( $parser->killMarkers( ... ), $attribs );
 		$attribs = Sanitizer::validateTagAttributes( $attribs, 'pre' );
 		// We need to let both '"' and '&' through,
 		// for strip markers and entities respectively.

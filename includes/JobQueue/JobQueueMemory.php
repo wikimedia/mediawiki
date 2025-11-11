@@ -162,16 +162,9 @@ class JobQueueMemory extends JobQueue {
 	 */
 	public function getAllQueuedJobs() {
 		$unclaimed = $this->getQueueData( 'unclaimed' );
-		if ( !$unclaimed ) {
-			return new ArrayIterator( [] );
-		}
-
-		return new MappedIterator(
-			$unclaimed,
-			function ( $value ) {
-				return $this->jobFromSpecInternal( $value );
-			}
-		);
+		return $unclaimed ?
+			new MappedIterator( $unclaimed, $this->jobFromSpecInternal( ... ) ) :
+			new ArrayIterator( [] );
 	}
 
 	/**
@@ -181,16 +174,9 @@ class JobQueueMemory extends JobQueue {
 	 */
 	public function getAllAcquiredJobs() {
 		$claimed = $this->getQueueData( 'claimed' );
-		if ( !$claimed ) {
-			return new ArrayIterator( [] );
-		}
-
-		return new MappedIterator(
-			$claimed,
-			function ( $value ) {
-				return $this->jobFromSpecInternal( $value );
-			}
-		);
+		return $claimed ?
+			new MappedIterator( $claimed, $this->jobFromSpecInternal( ... ) ) :
+			new ArrayIterator( [] );
 	}
 
 	/**

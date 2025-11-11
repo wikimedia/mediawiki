@@ -132,7 +132,7 @@ class Expression implements IExpression {
 					throw new LogicException( "Operator $this->op can't take array as value" );
 				}
 			}
-			$list = implode( ',', array_map( static fn ( $value ) => $dbQuoter->addQuotes( $value ), $this->value ) );
+			$list = implode( ',', array_map( $dbQuoter->addQuotes( ... ), $this->value ) );
 			if ( $this->op === '=' ) {
 				return $this->field . " IN ($list)";
 			} elseif ( $this->op === '!=' ) {

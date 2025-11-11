@@ -423,9 +423,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 				];
 			},
 			[
-				'touchedCallback' => function (){
-					return $this->getLastModified();
-				},
+				'touchedCallback' => $this->getLastModified( ... ),
 				'version' => 2,
 				'lockTSE' => WANObjectCache::TTL_MINUTE * 5
 			]

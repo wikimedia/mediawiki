@@ -453,9 +453,7 @@ return [
 
 	'BlockErrorFormatter' => static function ( MediaWikiServices $services ): BlockErrorFormatter {
 		return $services->getFormatterFactory()->getBlockErrorFormatter(
-			new LazyLocalizationContext( static function () {
-				return RequestContext::getMain();
-			} )
+			new LazyLocalizationContext( RequestContext::getMain( ... ) )
 		);
 	},
 
@@ -1878,9 +1876,7 @@ return [
 			$services->getUserGroupManager(),
 			$services->getBlockManager(),
 			$services->getFormatterFactory()->getBlockErrorFormatter(
-				new LazyLocalizationContext( static function () {
-					return RequestContext::getMain();
-				} )
+				new LazyLocalizationContext( RequestContext::getMain( ... ) )
 			),
 			$services->getHookContainer(),
 			$services->getUserIdentityLookup(),

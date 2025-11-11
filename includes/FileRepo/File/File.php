@@ -1544,11 +1544,7 @@ abstract class File implements MediaHandlerState {
 		// everyone does it at once.
 		if ( $this->getSize() >= 1e7 ) { // 10 MB
 			$work = new PoolCounterWorkViaCallback( 'GetLocalFileCopy', sha1( $this->getName() ),
-				[
-					'doWork' => function () {
-						return $this->getLocalRefPath();
-					}
-				]
+				[ 'doWork' => $this->getLocalRefPath( ... ) ]
 			);
 			$srcPath = $work->execute();
 		} else {

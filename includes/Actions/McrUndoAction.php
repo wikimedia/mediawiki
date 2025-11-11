@@ -465,9 +465,7 @@ class McrUndoAction extends FormAction {
 			'diff' => [
 				'type' => 'info',
 				'raw' => true,
-				'default' => function () {
-					return $this->generateDiffOrPreview();
-				}
+				'default' => $this->generateDiffOrPreview( ... )
 			],
 			'summary' => [
 				'type' => 'text',

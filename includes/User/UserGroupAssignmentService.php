@@ -253,10 +253,10 @@ class UserGroupAssignmentService {
 	) {
 		ksort( $oldUGMs );
 		ksort( $newUGMs );
-		$oldUGMs = array_map( static fn ( $ugm ) => self::serialiseUgmForLog( $ugm ), $oldUGMs );
+		$oldUGMs = array_map( self::serialiseUgmForLog( ... ), $oldUGMs );
 		$oldGroups = array_keys( $oldUGMs );
 		$oldUGMs = array_values( $oldUGMs );
-		$newUGMs = array_map( static fn ( $ugm ) => self::serialiseUgmForLog( $ugm ), $newUGMs );
+		$newUGMs = array_map( self::serialiseUgmForLog( ... ), $newUGMs );
 		$newGroups = array_keys( $newUGMs );
 		$newUGMs = array_values( $newUGMs );
 

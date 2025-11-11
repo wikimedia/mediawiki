@@ -548,9 +548,9 @@ abstract class Handler {
 			// We can't make them public without breaking all subclasses that
 			// override them. So we pass closures for now.
 			$this->conditionalHeaderUtil->setValidators(
-				fn () => $this->getETag(),
-				fn () => $this->getLastModified(),
-				fn () => $this->hasRepresentation()
+				$this->getETag( ... ),
+				$this->getLastModified( ... ),
+				$this->hasRepresentation( ... )
 			);
 		}
 		return $this->conditionalHeaderUtil;
