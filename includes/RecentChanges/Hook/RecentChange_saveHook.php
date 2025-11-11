@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\RecentChanges\Hook;
 
 // phpcs:disable Squiz.Classes.ValidClassName.NotCamelCaps
 use MediaWiki\RecentChanges\RecentChange;
@@ -23,3 +23,6 @@ interface RecentChange_saveHook {
 	 */
 	public function onRecentChange_save( $recentChange );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( RecentChange_saveHook::class, 'MediaWiki\\Hook\\RecentChange_saveHook' );

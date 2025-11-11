@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\RecentChanges\Hook;
 
 // phpcs:disable Squiz.Classes.ValidClassName.NotCamelCaps
 use MediaWiki\RecentChanges\EnhancedChangesList;
@@ -30,3 +30,6 @@ interface EnhancedChangesList__getLogTextHook {
 		$block
 	);
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( EnhancedChangesList__getLogTextHook::class, 'MediaWiki\\Hook\\EnhancedChangesList__getLogTextHook' );

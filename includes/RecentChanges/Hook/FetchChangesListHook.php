@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\RecentChanges\Hook;
 
 use MediaWiki\RecentChanges\ChangesList;
 use MediaWiki\RecentChanges\ChangesListFilterGroupContainer;
@@ -30,3 +30,6 @@ interface FetchChangesListHook {
 	 */
 	public function onFetchChangesList( $user, $skin, &$list, $groups );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( FetchChangesListHook::class, 'MediaWiki\\Hook\\FetchChangesListHook' );

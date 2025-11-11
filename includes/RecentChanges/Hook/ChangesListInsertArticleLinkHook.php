@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\RecentChanges\Hook;
 
 use MediaWiki\RecentChanges\ChangesList;
 use MediaWiki\RecentChanges\RecentChange;
@@ -30,3 +30,6 @@ interface ChangesListInsertArticleLinkHook {
 		&$s, $rc, $unpatrolled, $watched
 	);
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( ChangesListInsertArticleLinkHook::class, 'MediaWiki\\Hook\\ChangesListInsertArticleLinkHook' );

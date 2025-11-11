@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\RecentChanges\Hook;
 
 use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\Title\Title;
@@ -26,3 +26,6 @@ interface AbortEmailNotificationHook {
 	 */
 	public function onAbortEmailNotification( $editor, $title, $rc );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( AbortEmailNotificationHook::class, 'MediaWiki\\Hook\\AbortEmailNotificationHook' );
