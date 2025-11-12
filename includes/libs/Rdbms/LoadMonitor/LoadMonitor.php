@@ -260,7 +260,6 @@ class LoadMonitor implements ILoadMonitor {
 			$this->statsFactory->getGauge( 'rdbms_open_connection_total' )
 				->setLabel( 'db_cluster', $cluster )
 				->setLabel( 'db_server', $serverName )
-				->copyToStatsdAt( "loadbalancer.connCount.$cluster.$statServerName" )
 				->set( (int)$connCount );
 
 			if ( $connCount > $this->maxConnCount ) {

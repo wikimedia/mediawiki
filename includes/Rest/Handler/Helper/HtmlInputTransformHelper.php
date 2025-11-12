@@ -390,7 +390,6 @@ class HtmlInputTransformHelper {
 					->setLabel( 'original_html_given', 'false' )
 					->setLabel( 'page_exists', 'true' )
 					->setLabel( 'status', 'unknown' )
-					->copyToStatsdAt( 'html_input_transform.original_html.not_given.page_exists' )
 					->increment();
 			} else {
 				$this->statsFactory
@@ -398,7 +397,6 @@ class HtmlInputTransformHelper {
 					->setLabel( 'original_html_given', 'false' )
 					->setLabel( 'page_exists', 'false' )
 					->setLabel( 'status', 'unknown' )
-					->copyToStatsdAt( 'html_input_transform.original_html.not_given.page_not_exist' )
 					->increment();
 			}
 		}
@@ -460,7 +458,6 @@ class HtmlInputTransformHelper {
 					->setLabel( 'original_html_given', 'as_renderid' )
 					->setLabel( 'page_exists', 'unknown' )
 					->setLabel( 'status', 'bad_renderid' )
-					->copyToStatsdAt( 'html_input_transform.original_html.given.as_renderid.bad' )
 					->increment();
 				throw new LocalizedHttpException( new MessageValue( "rest-bad-stash-key" ),
 					400,
@@ -509,14 +506,12 @@ class HtmlInputTransformHelper {
 					->setLabel( 'original_html_given', 'as_revid' )
 					->setLabel( 'page_exists', 'unknown' )
 					->setLabel( 'status', 'found' )
-					->copyToStatsdAt( 'html_input_transform.original_html.given.as_revid.found' )
 					->increment();
 			} else {
 				$this->statsFactory->getCounter( 'html_input_transform_total' )
 					->setLabel( 'original_html_given', 'as_revid' )
 					->setLabel( 'page_exists', 'unknown' )
 					->setLabel( 'status', 'not_found' )
-					->copyToStatsdAt( 'html_input_transform.original_html.given.as_revid.not_found' )
 					->increment();
 			}
 		} elseif ( $originalRendering ) {
@@ -524,7 +519,6 @@ class HtmlInputTransformHelper {
 				->setLabel( 'original_html_given', 'true' )
 				->setLabel( 'page_exists', 'unknown' )
 				->setLabel( 'status', 'verbatim' )
-				->copyToStatsdAt( 'html_input_transform.original_html.given.verbatim' )
 				->increment();
 		}
 
@@ -715,7 +709,6 @@ class HtmlInputTransformHelper {
 		$counter = $this->statsFactory->getCounter( 'html_input_transform_total' );
 		if ( $selserContext ) {
 			$counter->setLabels( $labels )
-				->copyToStatsdAt( 'html_input_transform.original_html.given.as_renderid.stash_hit.found.hit' )
 				->increment();
 			return $selserContext;
 		} else {
@@ -727,9 +720,7 @@ class HtmlInputTransformHelper {
 
 				if ( !$parserOutput ) {
 					$labels[ 'status' ] = 'miss-fallback_not_found';
-					$counter->setLabels( $labels )->copyToStatsdAt(
-						'html_input_transform.original_html.given.as_renderid.stash_miss_pc_fallback.not_found.miss'
-					)->increment();
+					$counter->setLabels( $labels )->increment();
 					return null;
 				}
 
@@ -737,10 +728,6 @@ class HtmlInputTransformHelper {
 				if ( $cachedRenderID->getKey() !== $renderID->getKey() ) {
 					$labels[ 'status' ] = 'mismatch-fallback_not_found';
 					$counter->setLabels( $labels )
-						->copyToStatsdAt(
-							'html_input_transform.original_html.given.as_renderid.' .
-							'stash_miss_pc_fallback.not_found.mismatch'
-						)
 						->increment();
 
 					// It's not the correct rendering.
@@ -748,10 +735,6 @@ class HtmlInputTransformHelper {
 				}
 				$labels[ 'status' ] = 'hit-fallback_found';
 				$counter->setLabels( $labels )
-					->copyToStatsdAt(
-						'html_input_transform.original_html.given.as_renderid.' .
-						'stash_miss_pc_fallback.found.hit'
-					)
 					->increment();
 
 				$pb = PageBundleParserOutputConverter::pageBundleFromParserOutput( $parserOutput );
@@ -759,10 +742,6 @@ class HtmlInputTransformHelper {
 			} catch ( HttpException ) {
 				$labels[ 'status' ] = 'failed-fallback_not_found';
 				$counter->setLabels( $labels )
-					->copyToStatsdAt(
-						'html_input_transform.original_html.given.as_renderid.' .
-						'stash_miss_pc_fallback.not_found.failed'
-					)
 					->increment();
 
 				// If the revision isn't found, don't trigger a 404. Return null to trigger a 412.

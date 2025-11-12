@@ -179,7 +179,6 @@ class RateLimiter {
 		if ( !$this->hookRunner->onPingLimiter( $legacyUser, $action, $result, $incrBy ) ) {
 			$statsResult = ( $result ? 'tripped_by_hook' : 'passed_by_hook' );
 			$actionMetric->setLabel( 'result', $statsResult )
-				->copyToStatsdAt( "RateLimiter.limit.$action.result." . $statsResult )
 				->increment();
 			return $result;
 		}
@@ -191,7 +190,6 @@ class RateLimiter {
 		// Some groups shouldn't trigger the ping limiter, ever
 		if ( $this->canBypass( $action ) && $this->isExempt( $subject ) ) {
 			$actionMetric->setLabel( 'result', 'exempt' )
-				->copyToStatsdAt( "RateLimiter.limit.$action.result.exempt" )
 				->increment();
 			return false;
 		}
@@ -315,14 +313,12 @@ class RateLimiter {
 				] + $loggerInfo
 			);
 			$failedMetric->setLabel( 'tripped_by', $type )
-				->copyToStatsdAt( "RateLimiter.limit.$action.tripped_by.$type" )
 				->increment();
 		}
 
 		$allowed = $batchResult->isAllowed();
 
 		$actionMetric->setLabel( 'result', ( $allowed ? 'passed' : 'tripped' ) )
-			->copyToStatsdAt( "RateLimiter.limit.$action.result." . ( $allowed ? 'passed' : 'tripped' ) )
 			->increment();
 
 		return !$allowed;

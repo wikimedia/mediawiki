@@ -78,12 +78,9 @@ class HtmlToContentTransform {
 		$this->metrics = $metrics;
 	}
 
-	private function incrementMetrics( string $key, array $labels, ?string $statsdKey ) {
+	private function incrementMetrics( string $key, array $labels ) {
 		if ( $this->metrics ) {
 			$counter = $this->metrics->getCounter( $key )->setLabels( $labels );
-			if ( $statsdKey ) {
-				$counter = $counter->copyToStatsdAt( $statsdKey );
-			}
 			$counter->increment();
 		}
 	}
@@ -402,8 +399,7 @@ class HtmlToContentTransform {
 		if ( !$inputContentVersion ) {
 			$this->incrementMetrics(
 				'html2wt_original_version_total',
-				[ 'input_content_version' => 'none' ],
-				'html2wt.original.version.notinline'
+				[ 'input_content_version' => 'none' ]
 			);
 			$inputContentVersion = $this->originalPageBundle->version ?: Parsoid::defaultHTMLVersion();
 		}
@@ -472,8 +468,7 @@ class HtmlToContentTransform {
 
 		$this->incrementMetrics(
 			"downgrade_total",
-			[ 'from' => $downgrade['from'], 'to' => $downgrade['to'] ],
-			"downgrade.from.{$downgrade['from']}.to.{$downgrade['to']}"
+			[ 'from' => $downgrade['from'], 'to' => $downgrade['to'] ]
 		);
 
 		$downgradeTime = microtime( true );
@@ -481,7 +476,6 @@ class HtmlToContentTransform {
 		if ( $this->metrics ) {
 			$this->metrics
 				->getTiming( 'downgrade_time_ms' )
-				->copyToStatsdAt( 'downgrade.time' )
 				->observe( ( microtime( true ) - $downgradeTime ) * 1000 );
 		}
 		// NOTE: Set $this->originalBody to null so getOriginalBody() will re-generate it.

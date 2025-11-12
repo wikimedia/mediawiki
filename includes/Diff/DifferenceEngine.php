@@ -1367,7 +1367,6 @@ class DifferenceEngine extends ContextSource {
 		$stats = MediaWikiServices::getInstance()->getStatsFactory();
 		$stats->getCounter( 'diff_cache_total' )
 			->setLabel( 'status', $cacheStatus )
-			->copyToStatsdAt( 'diff_cache.' . $cacheStatus )
 			->increment();
 	}
 

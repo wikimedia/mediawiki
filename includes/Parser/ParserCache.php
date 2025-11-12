@@ -210,7 +210,6 @@ class ParserCache {
 	 */
 	private function incrementStats( PageRecord $page, $status, $reason = null ) {
 		$contentModel = $this->getContentModelFromPage( $page );
-		$metricSuffix = $reason ? "{$status}_{$reason}" : $status;
 
 		$this->stats->getCounter( 'ParserCache_operation_total' )
 			->setLabel( 'name', $this->name )

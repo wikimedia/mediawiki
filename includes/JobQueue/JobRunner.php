@@ -399,9 +399,6 @@ class JobRunner {
 			$pickupDelay = max( 0, $jobStartTime - $readyTs );
 			$this->statsFactory->getTiming( 'jobqueue_pickup_delay_seconds' )
 				->setLabel( 'jobtype', $jType )
-				->copyToStatsdAt( [
-					"jobqueue_pickup_delay_all_mean", "jobqueue.pickup_delay.$jType"
-				] )
 				->observe( 1000 * $pickupDelay );
 		}
 		// Record root job age for jobs being run
@@ -411,19 +408,16 @@ class JobRunner {
 
 			$this->statsFactory->getTiming( "jobqueue_pickup_root_age_seconds" )
 				->setLabel( 'jobtype', $jType )
-				->copyToStatsdAt( "jobqueue.pickup_root_age.$jType" )
 				->observe( 1000 * $age );
 		}
 		// Track the execution time for jobs
 		$this->statsFactory->getTiming( 'jobqueue_runtime_seconds' )
 			->setLabel( 'jobtype', $jType )
-			->copyToStatsdAt( "jobqueue.run.$jType" )
 			->observe( $timeMs );
 		// Track RSS increases for jobs (in case of memory leaks)
 		if ( $rssStart && $rssEnd ) {
 			$this->statsFactory->getCounter( 'jobqueue_rss_delta_total' )
 				->setLabel( 'rss_delta', $jType )
-				->copyToStatsdAt( "jobqueue.rss_delta.$jType" )
 				->incrementBy( $rssEnd - $rssStart );
 		}
 

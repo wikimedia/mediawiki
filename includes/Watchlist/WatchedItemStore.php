@@ -215,7 +215,6 @@ class WatchedItemStore implements WatchedItemStoreInterface {
 		$this->cache->set( $key, $item );
 		$this->cacheIndex[$target->getNamespace()][$target->getDBkey()][$user->getId()] = $key;
 		$this->statsFactory->getCounter( 'WatchedItemStore_cache_total' )
-			->copyToStatsdAt( 'WatchedItemStore.cache' )
 			->increment();
 	}
 
@@ -223,21 +222,18 @@ class WatchedItemStore implements WatchedItemStoreInterface {
 		$this->cache->delete( $this->getCacheKey( $user, $target ) );
 		unset( $this->cacheIndex[$target->getNamespace()][$target->getDBkey()][$user->getId()] );
 		$this->statsFactory->getCounter( 'WatchedItemStore_uncache_total' )
-			->copyToStatsdAt( 'WatchedItemStore.uncache' )
 			->increment();
 	}
 
 	private function uncacheTitle( PageReference $target ) {
 		$this->statsFactory->getCounter( 'WatchedItemStore_uncacheLinkTarget_total' )
-			->copyToStatsdAt( 'WatchedItemStore.uncacheLinkTarget' )
 			->increment();
 		if ( !isset( $this->cacheIndex[$target->getNamespace()][$target->getDBkey()] ) ) {
 			return;
 		}
 
 		$uncacheLinkTargetItemsTotal = $this->statsFactory
-			->getCounter( 'WatchedItemStore_uncacheLinkTarget_items_total' )
-			->copyToStatsdAt( 'WatchedItemStore.uncacheLinkTarget.items' );
+			->getCounter( 'WatchedItemStore_uncacheLinkTarget_items_total' );
 
 		foreach ( $this->cacheIndex[$target->getNamespace()][$target->getDBkey()] as $key ) {
 			$uncacheLinkTargetItemsTotal->increment();
@@ -247,10 +243,8 @@ class WatchedItemStore implements WatchedItemStoreInterface {
 
 	private function uncacheUser( UserIdentity $user ) {
 		$this->statsFactory->getCounter( 'WatchedItemStore_uncacheUser_total' )
-			->copyToStatsdAt( 'WatchedItemStore.uncacheUser' )
 			->increment();
-		$uncacheUserItemsTotal = $this->statsFactory->getCounter( 'WatchedItemStore_uncacheUser_items_total' )
-			->copyToStatsdAt( 'WatchedItemStore.uncacheUser.items' );
+		$uncacheUserItemsTotal = $this->statsFactory->getCounter( 'WatchedItemStore_uncacheUser_items_total' );
 
 		foreach ( $this->cacheIndex as $dbKeyArray ) {
 			foreach ( $dbKeyArray as $userArray ) {
@@ -683,13 +677,11 @@ class WatchedItemStore implements WatchedItemStoreInterface {
 		if ( $cached && !$cached->isExpired() ) {
 			$this->statsFactory->getCounter( 'WatchedItemStore_getWatchedItem_accesses_total' )
 				->setLabel( 'status', 'hit' )
-				->copyToStatsdAt( 'WatchedItemStore.getWatchedItem.cached' )
 				->increment();
 			return $cached;
 		}
 		$this->statsFactory->getCounter( 'WatchedItemStore_getWatchedItem_accesses_total' )
 			->setLabel( 'status', 'miss' )
-			->copyToStatsdAt( 'WatchedItemStore.getWatchedItem.load' )
 			->increment();
 		return $this->loadWatchedItem( $user, $target );
 	}

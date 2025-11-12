@@ -488,7 +488,6 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 			if ( !$stashSuccess ) {
 				$this->statsFactory->getCounter( 'htmloutputrendererhelper_stash_total' )
 					->setLabel( 'status', 'fail' )
-					->copyToStatsdAt( 'htmloutputrendererhelper.stash.fail' )
 					->increment();
 
 				$errorData = [ 'parsoid-stash-key' => $parsoidStashKey ];
@@ -504,7 +503,6 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 			}
 			$this->statsFactory->getCounter( 'htmloutputrendererhelper_stash_total' )
 				->setLabel( 'status', 'save' )
-				->copyToStatsdAt( 'htmloutputrendererhelper.stash.save' )
 				->increment();
 		}
 

@@ -4208,7 +4208,6 @@ class EditPage implements IEditObject {
 			->setLabel( 'cause', $failureType )
 			->setLabel( 'namespace', 'n/a' )
 			->setLabel( 'user_bucket', 'n/a' )
-			->copyToStatsdAt( 'edit.failures.' . $failureType )
 			->increment();
 	}
 

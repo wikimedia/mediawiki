@@ -89,14 +89,12 @@ class RevisionOutputCache {
 	 */
 	private function incrementStats( RevisionRecord $revision, string $status, ?string $reason = null ) {
 		$contentModel = $this->getContentModelFromRevision( $revision );
-		$metricSuffix = $reason ? "{$status}_{$reason}" : $status;
 
 		$this->stats->getCounter( 'RevisionOutputCache_operation_total' )
 			->setLabel( 'name', $this->name )
 			->setLabel( 'contentModel', $contentModel )
 			->setLabel( 'status', $status )
 			->setLabel( 'reason', $reason ?: 'n/a' )
-			->copyToStatsdAt( "RevisionOutputCache.{$this->name}.{$metricSuffix}" )
 			->increment();
 	}
 

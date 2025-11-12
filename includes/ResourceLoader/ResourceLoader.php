@@ -782,7 +782,6 @@ class ResourceLoader implements LoggerAwareInterface {
 			$statTiming = microtime( true ) - $requestStart;
 
 			$this->statsFactory->getTiming( 'resourceloader_response_time_seconds' )
-				->copyToStatsdAt( 'resourceloader.responseTime' )
 				->observe( 1000 * $statTiming );
 		} );
 	}
@@ -1150,13 +1149,9 @@ MESSAGE;
 			);
 
 			$mapType = $context->isSourceMap() ? 'map-js' : 'minify-js';
-			$statsdNamespace = implode( '.', [
-				"resourceloader_cache", $mapType, $isHit ? 'hit' : 'miss'
-			] );
 			$this->statsFactory->getCounter( 'resourceloader_cache_total' )
 				->setLabel( 'type', $mapType )
 				->setLabel( 'status', $isHit ? 'hit' : 'miss' )
-				->copyToStatsdAt( [ $statsdNamespace ] )
 				->increment();
 		} else {
 			[ $response, $offsetArray ] = $callback();
@@ -2071,20 +2066,17 @@ MESSAGE;
 		);
 
 		$status = 'hit';
-		$incKey = "resourceloader_cache.$filter.$status";
 		$result = $cache->getWithSetCallback(
 			$key,
 			BagOStuff::TTL_DAY,
-			static function () use ( $filter, $data, &$incKey, &$status ) {
+			static function () use ( $filter, $data, &$status ) {
 				$status = 'miss';
-				$incKey = "resourceloader_cache.$filter.$status";
 				return self::applyFilter( $filter, $data );
 			}
 		);
 		$statsFactory->getCounter( 'resourceloader_cache_total' )
 			->setLabel( 'type', $filter )
 			->setLabel( 'status', $status )
-			->copyToStatsdAt( [ $incKey ] )
 			->increment();
 
 		// Use $data on cache failure

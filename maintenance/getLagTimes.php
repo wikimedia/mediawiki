@@ -66,7 +66,6 @@ class GetLagTimes extends Maintenance {
 						$stats->getGauge( 'loadbalancer_lag_milliseconds' )
 							->setLabel( 'group', $group )
 							->setLabel( 'host', $host )
-							->copyToStatsdAt( "loadbalancer.lag.$group.$host" )
 							->set( (int)( $lag * 1e3 ) );
 
 						// emit seconds also to align with Prometheus' recommendations

@@ -950,7 +950,6 @@ class ApiMain extends ApiBase {
 
 			$this->statsFactory->getTiming( 'api_executeTiming_seconds' )
 				->setLabel( 'module', $this->mModule->getModuleName() )
-				->copyToStatsdAt( 'api.' . $this->mModule->getModuleName() . '.executeTiming' )
 				->observe( 1000 * $runTime );
 
 			$this->recordUnifiedMetrics( $runTime );

@@ -91,11 +91,9 @@ class PageStore implements PageLookup {
 	 * @return void
 	 */
 	private function incrementLinkCacheHitOrMiss( $hitOrMiss, $reason ) {
-		$legacyReason = strtr( $reason, '_', '.' );
 		$this->stats->getCounter( 'pagestore_linkcache_accesses_total' )
 			->setLabel( 'reason', $reason )
 			->setLabel( 'status', $hitOrMiss )
-			->copyToStatsdAt( "LinkCache.$hitOrMiss.$legacyReason" )
 			->increment();
 	}
 

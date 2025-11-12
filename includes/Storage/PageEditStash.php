@@ -351,14 +351,10 @@ class PageEditStash {
 	}
 
 	private function incrCacheReadStats( string $result, string $reason, Content $content ): void {
-		static $subtypeByResult = [ 'miss' => 'cache_misses', 'hit' => 'cache_hits' ];
 		$this->stats->getCounter( "editstash_cache_checks_total" )
 			->setLabel( 'reason', $reason )
 			->setLabel( 'result', $result )
 			->setLabel( 'model', $content->getModel() )
-			->copyToStatsdAt( [
-				'editstash.' . $subtypeByResult[ $result ] . '.' . $reason,
-				'editstash_by_model.' . $content->getModel() . '.' . $subtypeByResult[ $result ] . '.' . $reason ] )
 			->increment();
 	}
 

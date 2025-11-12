@@ -519,7 +519,6 @@ class TransactionProfiler implements LoggerAwareInterface {
 			$this->statsFactory->getCounter( 'rdbms_trxprofiler_warnings_total' )
 				->setLabel( 'event', $event )
 				->setLabel( 'method', $this->method )
-				->copyToStatsdAt( "rdbms_trxprofiler_warnings.$event.{$this->method}" )
 				->increment();
 		}
 

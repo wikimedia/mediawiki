@@ -804,7 +804,6 @@ EOT;
 
 			if ( $status->isOK() ) {
 				$stats->getTiming( 'media_thumbnail_stream_seconds' )
-					->copyToStatsdAt( 'media.thumbnail.stream' )
 					->observe( $streamtime * 1000 );
 			} else {
 				$this->thumbError(

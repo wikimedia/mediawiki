@@ -346,7 +346,6 @@ abstract class Module {
 				->setLabel( 'path', $pathForMetrics )
 				->setLabel( 'method', $requestMethod )
 				->setLabel( 'status', "$statusCode" )
-				->copyToStatsdAt( [ "rest_api_errors.$pathForMetrics.$requestMethod.$statusCode" ] )
 				->increment();
 		} else {
 			// measure how long it takes to generate a response
@@ -354,7 +353,6 @@ abstract class Module {
 				->setLabel( 'path', $pathForMetrics )
 				->setLabel( 'method', $requestMethod )
 				->setLabel( 'status', "$statusCode" )
-				->copyToStatsdAt( "rest_api_latency.$pathForMetrics.$requestMethod.$statusCode" )
 				->observeNanoseconds( $latency );
 		}
 

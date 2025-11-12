@@ -697,7 +697,6 @@ class ApiQuery extends ApiBase {
 				// Augment api-query.$module.executeTiming metric with timings for requestExtraData()
 				$timer = $statsFactory->getTiming( 'api_query_extraDataTiming_seconds' )
 					->setLabel( 'module', $module->getModuleName() )
-					->copyToStatsdAt( 'api-query.' . $module->getModuleName() . '.extraDataTiming' )
 					->start();
 				$module->requestExtraData( $this->mPageSet );
 				$timer->stop();
@@ -717,7 +716,6 @@ class ApiQuery extends ApiBase {
 			// Break down of the api.query.executeTiming metric by query module.
 			$timer = $statsFactory->getTiming( 'api_query_executeTiming_seconds' )
 				->setLabel( 'module', $module->getModuleName() )
-				->copyToStatsdAt( 'api-query.' . $module->getModuleName() . '.executeTiming' )
 				->start();
 
 			$params = $module->extractRequestParams();

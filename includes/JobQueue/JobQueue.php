@@ -771,7 +771,6 @@ abstract class JobQueue {
 		$this->stats->getCounter( 'jobqueue_events_total' )
 			->setLabel( 'event', $event )
 			->setLabel( 'type', $type )
-			->copyToStatsdAt( [ "jobqueue.{$event}.all", "jobqueue.{$event}.{$type}" ] )
 			->incrementBy( $delta );
 	}
 

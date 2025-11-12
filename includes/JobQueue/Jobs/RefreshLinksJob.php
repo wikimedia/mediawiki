@@ -174,7 +174,6 @@ class RefreshLinksJob extends Job {
 					$stats = $services->getStatsFactory();
 					$stats->getCounter( 'refreshlinks_warnings_total' )
 						->setLabel( 'reason', 'lag_wait_failed' )
-						->copyToStatsdAt( 'refreshlinks_warning.lag_wait_failed' )
 						->increment();
 				}
 			}
@@ -267,7 +266,6 @@ class RefreshLinksJob extends Job {
 			// this job has been superseded, e.g. by overlapping recursive job
 			// for a different template edit, or by direct edit or purge.
 			$stats->getCounter( 'refreshlinks_superseded_updates_total' )
-				->copyToStatsdAt( 'refreshlinks_outcome.good_update_superseded' )
 				->increment();
 			// treat as success
 			return true;
@@ -385,7 +383,6 @@ class RefreshLinksJob extends Job {
 			$statsCounter
 				->setLabel( 'status', 'cache_hit' )
 				->setLabel( 'html_changed', 'n/a' )
-				->copyToStatsdAt( 'refreshlinks.parser_cached' )
 				->increment();
 
 			return $cachedOutput;
@@ -473,7 +470,6 @@ class RefreshLinksJob extends Job {
 				$output->getOutputFlag( ParserOutputFlags::HAS_ASYNC_CONTENT ) ? 'true' : 'false' )
 			->setLabel( 'async_not_ready',
 				$output->getOutputFlag( ParserOutputFlags::ASYNC_NOT_READY ) ? 'true' : 'false' )
-			->copyToStatsdAt( 'refreshlinks.parser_uncached' )
 			->increment();
 
 		return $output;
@@ -584,7 +580,6 @@ class RefreshLinksJob extends Job {
 	private function incrementFailureCounter( StatsFactory $stats, $reason ): void {
 		$stats->getCounter( 'refreshlinks_failures_total' )
 			->setLabel( 'reason', $reason )
-			->copyToStatsdAt( "refreshlinks_outcome.bad_$reason" )
 			->increment();
 	}
 

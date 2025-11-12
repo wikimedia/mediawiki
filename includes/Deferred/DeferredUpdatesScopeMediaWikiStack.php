@@ -68,7 +68,6 @@ class DeferredUpdatesScopeMediaWikiStack extends DeferredUpdatesScopeStack {
 		$stats->getCounter( 'deferred_updates_total' )
 			->setLabel( 'http_method', $httpMethod )
 			->setLabel( 'type', $type )
-			->copyToStatsdAt( "deferred_updates.$httpMethod.$type" )
 			->increment();
 
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
