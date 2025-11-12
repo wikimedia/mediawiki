@@ -342,8 +342,8 @@ because of Phabricator reports.
   deprecated.  Use the new LanguageFallbackMode enumeration instead.
 * LanguageFallback::MESSAGES and LanguageFallback::STRICT are deprecated; use
   LanguageFallbackModes::{MESSAGES,STRICT} instead.
-* The AutopromoteCondition hook has been deprecated. Use
-  UserRequirementsCondition hook, instead.
+* The AutopromoteCondition hook has been deprecated and will now trigger
+  deprecation warnings. Use UserRequirementsCondition hook, instead.
 * The WatchedItemQueryServiceExtensions hook is deprecated and is no longer
   called. Use ApiQueryBaseBeforeQuery, ApiQueryBaseAfterQuery,
   ApiQueryBaseProcessRow and ApiQueryWatchlistExtractOutputData.

@@ -6,7 +6,6 @@
 
 namespace MediaWiki\Tests\User;
 
-use InvalidArgumentException;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\User\Registration\UserRegistrationLookup;
 use MediaWiki\User\User;
@@ -164,27 +163,6 @@ class UserRequirementsConditionCheckerTest extends MediaWikiIntegrationTestCase 
 				'expected' => true,
 			],
 		];
-	}
-
-	/** @dataProvider provideIsRemote */
-	public function testAutopromoteHookNotInvokedForNonPerformingUsers( bool $isRemote ): void {
-		$this->expectException( InvalidArgumentException::class );
-		$conditions = [ 999 ]; // A condition not supported by core
-
-		$hookCalled = false;
-		$this->setTemporaryHook(
-			'AutopromoteCondition',
-			static function ( $type, array $arg, User $hookUser, &$result ) use ( &$hookCalled ) {
-				$hookCalled = true;
-				$result = true;
-			}
-		);
-
-		$user = new UserIdentityValue( 1, 'Test User', $isRemote ? 'otherwiki' : UserIdentity::LOCAL );
-		$checker = $this->getServiceContainer()->getUserRequirementsConditionChecker();
-		$result = $checker->recursivelyCheckCondition( $conditions, $user, false );
-		$this->assertFalse( $result );
-		$this->assertFalse( $hookCalled, 'Hook should not be called' );
 	}
 
 	/** @dataProvider provideIsRemote */

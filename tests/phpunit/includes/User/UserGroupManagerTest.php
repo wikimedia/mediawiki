@@ -923,23 +923,6 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 		$manager->getUserAutopromoteGroups( $user );
 	}
 
-	public function testGetUserAutopromoteConditionHook() {
-		$user = $this->getTestUser()->getUser();
-		$this->setTemporaryHook(
-			'AutopromoteCondition',
-			function ( $type, array $arg, User $hookUser, &$result ) use ( $user ){
-				$this->assertTrue( $user->equals( $hookUser ) );
-				$this->assertSame( 999, $type );
-				$this->assertSame( 'ARGUMENT', $arg[0] );
-				$result = true;
-			}
-		);
-		$manager = $this->getManager( [
-			MainConfigNames::Autopromote => [ 'test_autoconfirmed' => [ 999, 'ARGUMENT' ] ]
-		] );
-		$this->assertArrayEquals( [ 'test_autoconfirmed' ], $manager->getUserAutopromoteGroups( $user ) );
-	}
-
 	public function testGetUserAutopromoteUserRequirementsConditionHook() {
 		$user = new UserIdentityValue( 1, 'TestUser' );
 		$this->setTemporaryHook(
