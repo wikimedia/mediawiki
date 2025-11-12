@@ -1400,7 +1400,7 @@
 	"action-mergehistory": "fusionar o historial desta páxina",
 	"action-userrights": "editar todos os permisos de usuario",
 	"action-userrights-interwiki": "editar os permisos de usuario dos usuarios doutros wikis",
-	"action-siteadmin": "bloquear ou desbloquear a base de datos",
+	"action-siteadmin": "pechar e abrir a base de datos",
 	"action-sendemail": "enviar correos electrónicos",
 	"action-editmyoptions": "editar as túas preferencias",
 	"action-editmywatchlist": "editar a túa lista de vixilancia",

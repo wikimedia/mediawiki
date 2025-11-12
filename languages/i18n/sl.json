@@ -807,6 +807,8 @@
 	"unstrip-size-category": "Strani s preseženo omejitvijo velikosti unstrip",
 	"unstrip-size-category-desc": "Stran presega omejitev velikosti unstrip.",
 	"converter-manual-rule-error": "Odkrita je bila napaka v pravilu ročne pretvorbe jezikov",
+	"bad-double-underscore-category": "Strani z neveljavnimi stikali obnašanja",
+	"bad-double-underscore-category-desc": "Stran vsebuje neveljavno lokalizirano [[mw:Special:MyLanguage/Help:Magic_words#Behavior_switches|stikalo obnašanja]]. Veljavne lokalizacije se začnejo in končajo z dvojnimi podčrtaji.",
 	"undo-success": "To urejanje je mogoče razveljaviti.\nProsimo, preverite prikazano primerjavo redakcij in objavite spremembe, če ustrezajo.",
 	"undo-failure": "Urejanja ni mogoče razveljaviti zaradi navzkrižja z vmesnimi urejanji.",
 	"undo-main-slot-only": "Urejanja ni bilo mogoče razveljaviti, ker vključuje vsebino zunaj glavne reže.",

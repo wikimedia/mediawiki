@@ -129,7 +129,8 @@
 			"Pedian4169",
 			"Karacehennem",
 			"Wooze",
-			"Eleman"
+			"Eleman",
+			"Sakblue"
 		]
 	},
 	"tog-underline": "Bağlantıların altını çizme:",
@@ -1081,7 +1082,7 @@
 	"next-page": "sonraki sayfa",
 	"prevn-title": "Önceki $1 sonuç",
 	"nextn-title": "Sonraki $1 sonuç",
-	"shown-title": "Sayfa başına $1 sonuç göster",
+	"shown-title": "Sayfa başına $1 {{PLURAL:$1|sonuç}} göster",
 	"viewprevnext": "($1 {{int:pipe-separator}} $2) ($3) gör",
 	"searchmenu-exists": "{{SITENAME}} sitesinde \"[[:$1]]\" adında bir sayfa mevcut {{PLURAL:$2|0=|Ayrıca bulunan diğer arama sonuçlarına da bakın.}}",
 	"searchmenu-new": "Bu vikide \"[[:$1]]\" sayfasını oluşturabilirsiniz! {{PLURAL:$2|0=|Ayrıca aramanız sonucunda bulunan sayfayı görüntüleyebilirsiniz.|Ayrıca bulunan arama sonuçlarını görüntüleyebilirsiniz.}}",

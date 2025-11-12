@@ -220,7 +220,8 @@
 			"1F616EMO",
 			"Peterxy12",
 			"Teetrition",
-			"Nvdtn19"
+			"Nvdtn19",
+			"TeaSummer"
 		]
 	},
 	"tog-underline": "链接下划线：",
@@ -3144,7 +3145,7 @@
 	"tooltip-p-personal": "用户菜单",
 	"tooltip-n-mainpage": "访问首页",
 	"tooltip-n-mainpage-description": "访问首页",
-	"tooltip-n-portal": "关于本计划，您可做的事，何处找到您所需",
+	"tooltip-n-portal": "关于本项目，你可以做什么，以及何处能找到相关资料",
 	"tooltip-n-currentevents": "寻找当前事件的背景信息",
 	"tooltip-n-recentchanges": "本wiki的最近更改列表",
 	"tooltip-n-randompage": "随机加载页面",

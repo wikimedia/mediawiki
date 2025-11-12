@@ -816,6 +816,8 @@
 	"unstrip-size-category": "Laman di mana saiz unstrip melebihi hadnya",
 	"unstrip-size-category-desc": "Laman melebihi had saiz nyahjalur.",
 	"converter-manual-rule-error": "Ralat dikesan dalam aturan penukaran bahasa manual",
+	"bad-double-underscore-category": "Laman dengan suis tingkah laku tidak sah",
+	"bad-double-underscore-category-desc": "Laman tersebut mengandungi [[mw:Special:MyLanguage/Help:Magic_words#Behavior_switches|suis tingkah laku]] setempat yang tidak sah. Penyetempatan yang sah bermula dan berakhir dengan garis bawah berganda.",
 	"undo-success": "Suntingan ini boleh dibatalkan. Sila semak perbandingan di bawah untuk mengesahkan bahawa ini yang anda mahu lakukan. Kemudian, terbit perubahan di bawah untuk menyelesaikan membatal suntingan.",
 	"undo-failure": "Suntingan tersebut tidak boleh dibatalkan kerana terdapat suntingan pertengahan yang bercanggah.",
 	"undo-main-slot-only": "Suntingan tidak dapat dibalikkan kerana ia melibatkan kandungan di luar slot utama.",

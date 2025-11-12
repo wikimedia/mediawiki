@@ -148,7 +148,8 @@
 			"Emojiwiki",
 			"1F616EMO",
 			"SCP-2000",
-			"Nvdtn19"
+			"Nvdtn19",
+			"TeaSummer"
 		]
 	},
 	"tog-underline": "底線標示連結：",
@@ -3061,7 +3062,7 @@
 	"tooltip-p-personal": "使用者選單",
 	"tooltip-n-mainpage": "前往首頁",
 	"tooltip-n-mainpage-description": "前往首頁",
-	"tooltip-n-portal": "關於本專案、您可以做什麼、哪裡可以找到您需要的事物",
+	"tooltip-n-portal": "關於本專案，你可以做什麼，以及何處能找到相關資料",
 	"tooltip-n-currentevents": "查看當前事件的背景資訊",
 	"tooltip-n-recentchanges": "列出此 Wiki 中的近期變更清單",
 	"tooltip-n-randompage": "進入隨機頁面",
