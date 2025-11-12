@@ -12,6 +12,7 @@ use MediaWiki\Config\Config;
 use MediaWiki\Exception\ErrorPageError;
 use MediaWiki\Exception\PermissionsError;
 use MediaWiki\Exception\UserBlockedError;
+use MediaWiki\FileRepo\File\File;
 use MediaWiki\FileRepo\File\LocalFile;
 use MediaWiki\FileRepo\LocalRepo;
 use MediaWiki\FileRepo\RepoGroup;
@@ -1105,7 +1106,7 @@ class SpecialUpload extends SpecialPage {
 	 * Formats a result of UploadBase::getExistsWarning as HTML
 	 * This check is static and can be done pre-upload via AJAX
 	 *
-	 * @param array $exists The result of UploadBase::getExistsWarning
+	 * @param array|false $exists The result of UploadBase::getExistsWarning
 	 * @return string Empty string if there is no warning or an HTML fragment
 	 */
 	public static function getExistsWarning( $exists ) {
@@ -1114,6 +1115,12 @@ class SpecialUpload extends SpecialPage {
 		}
 
 		$file = $exists['file'];
+		if ( !$file instanceof File ) {
+			// File deleted while showing entry from cache for async-url-upload
+			// Or serialize error, see T409830
+			return '';
+		}
+
 		$filename = $file->getTitle()->getPrefixedText();
 		$warnMsg = null;
 
