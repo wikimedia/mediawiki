@@ -1,0 +1,31 @@
+{
+	"@metadata": {
+		"authors": [
+			"Nemoralis"
+		],
+		"comment": "Ordinal suffix rules for Azerbaijani numerals based on vowel harmony. Rules are ordered largest-magnitude-first so each number matches exactly one rule."
+	},
+	"ordinal": [
+		[ "@metadata", [ "comment", "Pure-zero inputs (sıfır): last vowel 'ı' → cı" ] ],
+		[ "^(0+)$", "$1-cı" ],
+
+		[ "@metadata", [ "comment", "Multiples of named units — order matters (milyard before milyon before min)" ] ],
+		[ "^(\\d+0{9})$", "$1-cı" ],
+		[ "^(\\d+0{6})$", "$1-cu" ],
+		[ "^(\\d+0{3})$", "$1-ci" ],
+
+		[ "@metadata", [ "comment", "Multiples of 100, not caught above" ] ],
+		[ "^(\\d+00)$", "$1-cü" ],
+
+		[ "@metadata", [ "comment", "Multiples of 10: last two digits determine suffix" ] ],
+		[ "^(\\d*(?:10|30))$", "$1-cu" ],
+		[ "^(\\d*(?:20|50|70|80))$", "$1-ci" ],
+		[ "^(\\d*(?:40|60|90))$", "$1-cı" ],
+
+		[ "@metadata", [ "comment", "Non-zero final digit" ] ],
+		[ "^(\\d*9)$", "$1-cu" ],
+		[ "^(\\d*[12578])$", "$1-ci" ],
+		[ "^(\\d*[34])$", "$1-cü" ],
+		[ "^(\\d*6)$", "$1-cı" ]
+	]
+}

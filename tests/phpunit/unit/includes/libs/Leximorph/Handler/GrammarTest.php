@@ -178,6 +178,34 @@ class GrammarTest extends TestCase {
 		yield 'Ukrainian Wikibooks Genitive' => [ 'uk', 'Вікіпідручник', 'genitive', 'Вікіпідручника' ];
 		yield 'Ukrainian Wikipedia Accusative' => [ 'uk', 'Вікіпедія', 'accusative', 'Вікіпедію' ];
 		yield 'Ukrainian MediaWiki Locative' => [ 'uk', 'MediaWiki', 'locative', 'у MediaWiki' ];
+
+		// Azerbaijani ordinal — JSON rules in includes/libs/Leximorph/data/grammarTransformations/az.json
+		yield 'Azerbaijani ordinal 0 → cı'         => [ 'az', '0', 'ordinal', '0-cı' ];
+		yield 'Azerbaijani ordinal 1 → ci'         => [ 'az', '1', 'ordinal', '1-ci' ];
+		yield 'Azerbaijani ordinal 2 → ci'         => [ 'az', '2', 'ordinal', '2-ci' ];
+		yield 'Azerbaijani ordinal 3 → cü'         => [ 'az', '3', 'ordinal', '3-cü' ];
+		yield 'Azerbaijani ordinal 4 → cü'         => [ 'az', '4', 'ordinal', '4-cü' ];
+		yield 'Azerbaijani ordinal 5 → ci'         => [ 'az', '5', 'ordinal', '5-ci' ];
+		yield 'Azerbaijani ordinal 6 → cı'         => [ 'az', '6', 'ordinal', '6-cı' ];
+		yield 'Azerbaijani ordinal 7 → ci'         => [ 'az', '7', 'ordinal', '7-ci' ];
+		yield 'Azerbaijani ordinal 8 → ci'         => [ 'az', '8', 'ordinal', '8-ci' ];
+		yield 'Azerbaijani ordinal 9 → cu'         => [ 'az', '9', 'ordinal', '9-cu' ];
+		yield 'Azerbaijani ordinal 10 → cu'        => [ 'az', '10', 'ordinal', '10-cu' ];
+		yield 'Azerbaijani ordinal 20 → ci'        => [ 'az', '20', 'ordinal', '20-ci' ];
+		yield 'Azerbaijani ordinal 30 → cu'        => [ 'az', '30', 'ordinal', '30-cu' ];
+		yield 'Azerbaijani ordinal 40 → cı'        => [ 'az', '40', 'ordinal', '40-cı' ];
+		yield 'Azerbaijani ordinal 50 → ci'        => [ 'az', '50', 'ordinal', '50-ci' ];
+		yield 'Azerbaijani ordinal 60 → cı'        => [ 'az', '60', 'ordinal', '60-cı' ];
+		yield 'Azerbaijani ordinal 70 → ci'        => [ 'az', '70', 'ordinal', '70-ci' ];
+		yield 'Azerbaijani ordinal 80 → ci'        => [ 'az', '80', 'ordinal', '80-ci' ];
+		yield 'Azerbaijani ordinal 90 → cı'        => [ 'az', '90', 'ordinal', '90-cı' ];
+		yield 'Azerbaijani ordinal 100 → cü'       => [ 'az', '100', 'ordinal', '100-cü' ];
+		yield 'Azerbaijani ordinal 110 → cu'       => [ 'az', '110', 'ordinal', '110-cu' ];
+		yield 'Azerbaijani ordinal 190 → cı'       => [ 'az', '190', 'ordinal', '190-cı' ];
+		yield 'Azerbaijani ordinal 23 → cü'        => [ 'az', '23', 'ordinal', '23-cü' ];
+		yield 'Azerbaijani ordinal 1000 → ci'      => [ 'az', '1000', 'ordinal', '1000-ci' ];
+		yield 'Azerbaijani ordinal 1000000 → cu'   => [ 'az', '1000000', 'ordinal', '1000000-cu' ];
+		yield 'Azerbaijani ordinal 1000000000 → cı' => [ 'az', '1000000000', 'ordinal', '1000000000-cı' ];
 	}
 
 	/**

@@ -9,7 +9,7 @@ namespace MediaWiki\Languages;
 use MediaWiki\Language\Language;
 
 /**
- * Azerbaijani (Azərbaycan) specific code.
+ * Azerbaijani (Azərbaycanca) specific code.
  *
  * @ingroup Languages
  */
