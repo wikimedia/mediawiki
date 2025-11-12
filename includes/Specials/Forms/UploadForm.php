@@ -50,7 +50,6 @@ class UploadForm extends HTMLForm {
 	protected $mMaxUploadSize = [];
 
 	private LocalRepo $localRepo;
-	private Language $contentLanguage;
 	private NamespaceInfo $nsInfo;
 	private HookRunner $hookRunner;
 
@@ -59,7 +58,7 @@ class UploadForm extends HTMLForm {
 		?IContextSource $context = null,
 		?LinkRenderer $linkRenderer = null,
 		?LocalRepo $localRepo = null,
-		?Language $contentLanguage = null,
+		?Language $unused = null,
 		?NamespaceInfo $nsInfo = null,
 		?HookContainer $hookContainer = null
 	) {
@@ -74,14 +73,10 @@ class UploadForm extends HTMLForm {
 		if ( !$localRepo ) {
 			$localRepo = $services->getRepoGroup()->getLocalRepo();
 		}
-		if ( !$contentLanguage ) {
-			$contentLanguage = $services->getContentLanguage();
-		}
 		if ( !$nsInfo ) {
 			$nsInfo = $services->getNamespaceInfo();
 		}
 		$this->localRepo = $localRepo;
-		$this->contentLanguage = $contentLanguage;
 		$this->nsInfo = $nsInfo;
 		$this->hookRunner = new HookRunner( $hookContainer ?? $services->getHookContainer() );
 
@@ -299,8 +294,7 @@ class UploadForm extends HTMLForm {
 							'figure',
 							[
 								'typeof' => 'mw:File',
-								// Uses: mw-halign-right or mw-halign-left
-								'class' => 'mw-halign-' . $this->contentLanguage->alignEnd(),
+								'class' => 'mw-upload-halign-end',
 							],
 							$mto->toHtml()
 						),

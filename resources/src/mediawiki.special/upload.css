@@ -19,3 +19,9 @@ p.mw-upload-editlicenses {
 	font-size: 90%;
 	text-align: right;
 }
+
+.mw-upload-halign-end {
+	margin: 0 0 0.5em 0.5em;
+	clear: right;
+	float: right;
+}
