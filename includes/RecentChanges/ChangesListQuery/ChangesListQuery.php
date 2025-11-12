@@ -1516,7 +1516,9 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 		$this->statsFactory->getCounter( 'ChangesListQuery_partition_rows_total' )
 			->incrementBy( $m['actualRows' ] );
 		$this->statsFactory->getCounter( 'ChangesListQuery_partition_overrun_total' )
-			->incrementBy( $m['actualRows'] * ( $m['queryPeriod'] / $m['actualPeriod'] - 1 ) );
+			->incrementBy(
+				$m['actualRows'] * ( $m['queryPeriod'] / ( $m['actualPeriod'] ?: 1 ) - 1 )
+			);
 	}
 
 	/**

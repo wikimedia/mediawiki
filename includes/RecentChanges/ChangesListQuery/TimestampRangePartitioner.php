@@ -135,8 +135,8 @@ class TimestampRangePartitioner {
 	public function getMetrics() {
 		return [
 			'queryCount' => $this->queryCount,
-			'actualPeriod' => $this->now - $this->minFoundTime,
-			'queryPeriod' => $this->now - $this->prevPartitionStart,
+			'actualPeriod' => $this->minFoundTime ? $this->now - $this->minFoundTime : 0,
+			'queryPeriod' => $this->prevPartitionStart ? $this->now - $this->prevPartitionStart : 0,
 			'actualRows' => $this->rowsFoundCount,
 		];
 	}
