@@ -130,8 +130,8 @@ class BlockErrorFormatter {
 			'reason' => $block->getReasonComment(),
 			'expiry' => $block->getExpiry(),
 			'timestamp' => $block->getTimestamp(),
-			'talkPageDisabled' => $block->getTargetUserIdentity() ? $block->appliesToUsertalk() : false,
-			'emailDisabled' => $block->isEmailBlocked(),
+			'talkPageDisabled' => $block->getTargetUserIdentity() && $block->appliesToUsertalk() ? '1' : '',
+			'emailDisabled' => $block->isEmailBlocked() ? '1' : '',
 		];
 	}
 
