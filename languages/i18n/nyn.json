@@ -51,7 +51,7 @@
 	"search-close": "Kingaho ekiganiiro",
 	"search-ignored-headings": "#<! -- orugambo oru rukureke nk'oku ruri---<pre> \n# Emitwe erikwija kurekyerwa okuronda. \n# Empindahinduka omuri eki nizitandika kukora ahonaaho orupapura orurimu omutwe rwaheza kuhandiikwa. \n# Noobaasa kugyemesereza orupapura kugaruka kuteera akaruuru orikukora empindahinduka ya busha. \n# Enkora n'ey'omuringo ogu: \n# * Buri kimwe kuruga aha \"#\" okuhisya aha muheru gw'orunyiriri n'ekiteiso. # * Buri runyiriri orutarimu busha nirwo mutwe oguhikire ogurikwetegyerezibwa, enshonga n'ebintu byona. Ebirikukwata aha bikwatireine n'eby'aheeru Reeba \n#</pre> <! -- reka enyiriri egi nk'oku eri---",
 	"searchbutton": "Sherura",
-	"searchsuggest-containing-html": "Ronda emiko erimu <strong class=\"cdx-typehead-search__search-footer__query\">$1</strong>",
+	"searchsuggest-containing-html": "Ronda emiko erimu <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>",
 	"search-loader": "Okutwara ebiteiso by'okuronda",
 	"go": "Tsimbura",
 	"searcharticle": "Tsimbura",

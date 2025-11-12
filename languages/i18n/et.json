@@ -3982,7 +3982,6 @@
 	"skin-action-undelete": "Taasta",
 	"skin-action-delete": "Kustuta",
 	"skin-action-move": "Teisalda",
-	"skin-json-warning": "@HOIATUS",
 	"skin-json-warning-message": "See ei ole API, see on ainult silumiseks! Ära kasuta tööriistades ega töökoodis.",
 	"parsoid-async-not-ready-fallback": "Sisu pole valmis",
 	"parsoid-stash-rate-limit-error": "Ajutine salvestamine nurjus, sest ületati piirmäära. Palun proovi hiljem uuesti.",

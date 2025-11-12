@@ -3866,7 +3866,6 @@
 	"skin-action-undelete": "Dulaon ang pagpanas",
 	"skin-action-delete": "Panason",
 	"skin-action-move": "Saylohon",
-	"skin-json-warning": "@PAANDAM",
 	"skin-json-warning-message": "Indi ini API, para lang ini sa pag-debug! Ayaw gamita sa mga gadyet o code sa produksyon.",
 	"parsoid-stash-rate-limit-error": "Napaslawan ang pagtago bangod nalampasan ang limitasyon sang rate. Palihog tilawi liwat sa ulihi.",
 	"parsoid-resource-limit-exceeded": "Ang limitasyon sang mga kapanguhaan sang parsoid nalampasan: $1",

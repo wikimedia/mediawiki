@@ -4078,7 +4078,6 @@
 	"skin-action-undelete": "Відновити",
 	"skin-action-delete": "Вилучити",
 	"skin-action-move": "Перейменувати",
-	"skin-json-warning": "@ПОПЕРЕДЖЕННЯ",
 	"skin-json-warning-message": "Це не API, це тільки для зневадження! Не використовуйте у додатках чи продуктивному коді.",
 	"parsoid-async-not-ready-fallback": "Вміст не готовий",
 	"parsoid-stash-rate-limit-error": "Не вдалось зберегти до тимчасового сховища через перевищення ліміту швидкості. Будь ласка, спробуйте знову пізніше.",

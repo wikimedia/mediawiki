@@ -3970,7 +3970,6 @@
 	"skin-action-undelete": "Tan kausap",
 	"skin-action-delete": "Usap",
 	"skin-action-move": "Gingsirang",
-	"skin-json-warning": "@PARINGATAN",
 	"skin-json-warning-message": "Puniki boya ja API, niki wantah kaanggén pangawakutuan! Sampunang nganggén ring gawai utawi kode produksi.",
 	"parsoid-async-not-ready-fallback": "Kontén durung sayaga",
 	"parsoid-stash-rate-limit-error": "Gagal nyimpen krana wates standar sampun kalangkungin. Durus indayang malih nyanan.",

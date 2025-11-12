@@ -4048,7 +4048,6 @@
 	"skin-action-undelete": "Odizbriši",
 	"skin-action-delete": "Izbriši",
 	"skin-action-move": "Preimenuj",
-	"skin-json-warning": "@OPOZORILO",
 	"skin-json-warning-message": "To ni API; uporablja se samo za odpravljanje napak! Ne uporabljajte v pripomočkih ali produkcijski kodi.",
 	"parsoid-async-not-ready-fallback": "Vsebina ni pripravljena",
 	"parsoid-stash-rate-limit-error": "Ločeno hranjenje je spodletelo, ker je omejitev hitrosti presežena. Prosimo, poskusite znova pozneje.",

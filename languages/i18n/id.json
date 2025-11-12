@@ -4107,7 +4107,6 @@
 	"skin-action-undelete": "Pembatalan penghapusan",
 	"skin-action-delete": "Hapus",
 	"skin-action-move": "Pindahkan",
-	"skin-json-warning": "@PERINGATAN",
 	"skin-json-warning-message": "Ini bukan API, ini hanya untuk pengawakutuan! Jangan gunakan pada gawai atau kode produksi.",
 	"parsoid-async-not-ready-fallback": "Konten belum siap",
 	"parsoid-stash-rate-limit-error": "Gagal menyimpan karena batas tarif telah dilampaui. Silahkan coba lagi nanti.",

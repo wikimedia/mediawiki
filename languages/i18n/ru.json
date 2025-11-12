@@ -4176,7 +4176,6 @@
 	"skin-action-undelete": "Восстановить",
 	"skin-action-delete": "Удалить",
 	"skin-action-move": "Переименовать",
-	"skin-json-warning": "@ПРЕДУПРЕЖДЕНИЕ",
 	"skin-json-warning-message": "Это не API, это только для отладки! Не используйте в гаджетах или продуктивном коде.",
 	"parsoid-async-not-ready-fallback": "Содержимое не готово",
 	"parsoid-stash-rate-limit-error": "Сбой сохранения во временное хранилище, так как превышен предел скорости. Пожалуйста, попробуйте позже.",

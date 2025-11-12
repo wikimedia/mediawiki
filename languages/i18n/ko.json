@@ -4041,7 +4041,6 @@
 	"skin-action-undelete": "삭제 취소",
 	"skin-action-delete": "삭제",
 	"skin-action-move": "이동",
-	"skin-json-warning": "@경고",
 	"skin-json-warning-message": "이것은 API가 아니며 디버깅 전용입니다! 소도구나 생산 코드에는 사용하지 마세요.",
 	"parsoid-async-not-ready-fallback": "콘텐츠가 준비되지 않았습니다",
 	"parsoid-stash-rate-limit-error": "비율 제한을 초과하여 스태싱에 실패했습니다. 나중에 다시 시도하세요.",

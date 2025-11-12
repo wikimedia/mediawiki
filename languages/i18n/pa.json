@@ -3319,7 +3319,6 @@
 	"skin-action-undelete": "ਹਟਾਉਣਾ-ਵਾਪਸ",
 	"skin-action-delete": "ਹਟਾਓ",
 	"skin-action-move": "ਭੇਜੋ",
-	"skin-json-warning": "@ਖ਼ਬਰਦਾਰ",
 	"parsoid-async-not-ready-fallback": "ਸਮੱਗਰੀ ਤਿਆਰ ਨਹੀਂ ਹੈ",
 	"parsoid-stash-rate-limit-error": "ਅਸਥਾਈ ਭੰਡਾਰ ਦਰ ਸੀਮਾ ਤੋਂ ਵੱਧ ਹੋਣ ਕਾਰਨ ਨਾਕਾਮ ਰਿਹਾ। ਕਿਰਪਾ ਕਰਕੇ ਬਾਅਦ ਵਿੱਚ ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ।",
 	"parsoid-resource-limit-exceeded": "ਪਾਰਸੋਇਡ(Parsoid) ਸਰੋਤ ਸੀਮਾ ਤੋਂ ਵੱਧ: $1",

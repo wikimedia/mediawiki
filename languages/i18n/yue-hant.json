@@ -3957,7 +3957,6 @@
 	"skin-action-undelete": "取消剷走",
 	"skin-action-delete": "剷走",
 	"skin-action-move": "搬",
-	"skin-json-warning": "@警告",
 	"skin-json-warning-message": "呢個唔係API，淨係用嚟調試！唔好喺小工具或者生產程式碼入面用。",
 	"parsoid-async-not-ready-fallback": "內容未準備好",
 	"parsoid-stash-rate-limit-error": "因為超過咗速率限制，所以儲存失敗。請遲啲再試。",

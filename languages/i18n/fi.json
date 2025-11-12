@@ -4051,7 +4051,6 @@
 	"skin-action-undelete": "Palauta",
 	"skin-action-delete": "Poista",
 	"skin-action-move": "Siirrä",
-	"skin-json-warning": "@VAROITUS",
 	"parsoid-async-not-ready-fallback": "Sisältö ei ole valmis",
 	"parsoid-resource-limit-exceeded": "Parsoidin resurssiraja ylittyi: $1",
 	"parsoid-revision-access": "Jäsennin ei pääse versioon: $1",

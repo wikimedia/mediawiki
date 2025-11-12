@@ -4150,7 +4150,6 @@
 	"skin-action-undelete": "Restaurar",
 	"skin-action-delete": "Excluir",
 	"skin-action-move": "Mover",
-	"skin-json-warning": "@AVISO",
 	"skin-json-warning-message": "Isso não é um API, é apenas para debugging! Não use em aparelhos ou códigos de produção.",
 	"parsoid-async-not-ready-fallback": "Conteúdo não lido",
 	"parsoid-stash-rate-limit-error": "Falha no armazenamento porque o limite de taxa foi excedido. Por favor, tente novamente mais tarde.",

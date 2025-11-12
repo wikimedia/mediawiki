@@ -3996,7 +3996,6 @@
 	"skin-action-undelete": "Restaura",
 	"skin-action-delete": "Esborra",
 	"skin-action-move": "Reanomena",
-	"skin-json-warning": "@AVÍS",
 	"skin-json-warning-message": "Això no és una API, només serveix per a la depuració! No l'utilitzeu en gadgets ni en codi de producció.",
 	"parsoid-async-not-ready-fallback": "El contingut no està llest",
 	"parsoid-stash-rate-limit-error": "L'emmagatzemament ha fallat perquè s'ha superat la freqüència límit. Torneu-ho a provar després.",

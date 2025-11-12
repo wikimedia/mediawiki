@@ -3775,7 +3775,6 @@
 	"skin-action-undelete": "Пӧртӹлтӓш",
 	"skin-action-delete": "Карангдаш",
 	"skin-action-move": "Лӹмӹм вашталташ",
-	"skin-json-warning": "@ШИЖТӒРӸМӒШ",
 	"skin-json-warning-message": "Тидӹ API агыл, тидӹ отладкылан веле. Гаджетӹштӹ ӓли производственный кодышты ит кычылт.",
 	"parsoid-stash-rate-limit-error": "Скоростьын лимитшӹм эртӹмӹ, седӹндон данныйвлӓм переген кодаш ӹш ли. Пожалуйста, варарак цацен анжы.",
 	"parsoid-resource-limit-exceeded": "Parsoid ресурсын лимитшӹм эртӹмӹ: $1",

@@ -3896,7 +3896,6 @@
 	"skin-action-undelete": "Vrati",
 	"skin-action-delete": "Izbriši",
 	"skin-action-move": "Premesti",
-	"skin-json-warning": "@UPOZORENjE",
 	"parsoid-async-not-ready-fallback": "Sadržaj nije spreman",
 	"newpages-showhide-bots": "$1 botove",
 	"newpages-showhide-patrolled": "$1 patrolirane izmene",

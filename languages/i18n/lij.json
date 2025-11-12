@@ -3944,7 +3944,6 @@
 	"skin-action-undelete": "Ricùpera",
 	"skin-action-delete": "Scancélla",
 	"skin-action-move": "Méscia",
-	"skin-json-warning": "@ATENÇIÓN",
 	"skin-json-warning-message": "Sta chi a no l'é 'n'API, ma a fonçiónn-a sôlo pò-u debugging! No dêuviâ di acesòri ò di còdichi prodûto.",
 	"parsoid-async-not-ready-fallback": "Contegnûo no prónto",
 	"parsoid-stash-rate-limit-error": "O stashing o no l'é ariêscîo perché l'é stæto superòu o lìmite de velocitæ. Prêuva tórna ciù tàrdi.",

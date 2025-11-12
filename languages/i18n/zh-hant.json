@@ -4107,7 +4107,6 @@
 	"skin-action-undelete": "取消刪除",
 	"skin-action-delete": "刪除",
 	"skin-action-move": "移動",
-	"skin-json-warning": "@警告",
 	"skin-json-warning-message": "這不是 API，這僅用來偵錯！請不要在小工具或是正式環境的程式碼中使用。",
 	"parsoid-async-not-ready-fallback": "內容尚未就緒",
 	"parsoid-stash-rate-limit-error": "由於超出速率限制，暫存失敗。請稍後再試。",

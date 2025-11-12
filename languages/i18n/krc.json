@@ -4000,7 +4000,6 @@
 	"skin-action-undelete": "Къайтар",
 	"skin-action-delete": "Кетер",
 	"skin-action-move": "Ташы",
-	"skin-json-warning": "@ЭС БЁЛ",
 	"skin-json-warning-message": "Бу API тюлдю, джангыз халат тюзетиу амаллыды! Гаджетледе неда чыгъарыу кодда хайырланмагъыз.",
 	"parsoid-async-not-ready-fallback": "Контент хазыр тюлдю",
 	"parsoid-stash-rate-limit-error": "Терклик мардадан чыгъылгъаны ючюн, сакълау джетишимсиз болду. Тилейбиз, кечирек энтда бир кере сынагъыз.",

@@ -158,6 +158,7 @@
 	"apihelp-options-param-reset": "Vrátit nastavení na výchozí hodnoty.",
 	"apihelp-options-example-reset": "Vrátit všechna nastavení.",
 	"apihelp-parse-param-summary": "Shrnutí, které se má parsovat.",
+	"apihelp-parse-paramvalue-prop-tocdata": "Poskytuje informace o obsahu v analyzovaném wikitextu.",
 	"apihelp-parse-paramvalue-prop-displaytitle": "Přidává název parsovaného wikitextu.",
 	"apihelp-parse-param-disablestylededuplication": "Neodstraňovat duplicitní in-line styly ve výstupu parseru.",
 	"apihelp-parse-param-preview": "Parsovat v režimu náhledu.",

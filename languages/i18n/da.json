@@ -3988,7 +3988,6 @@
 	"skin-action-undelete": "Gendan",
 	"skin-action-delete": "Slet",
 	"skin-action-move": "Flyt",
-	"skin-json-warning": "@ADVARSEL",
 	"skin-json-warning-message": "Dette er ikke en API og det skal bruges til fejlsøgning! Må ikke bruges i gadgets eller produktionskode.",
 	"parsoid-async-not-ready-fallback": "Indholdet er ikke klar",
 	"parsoid-stash-rate-limit-error": "Stashing fejlede fordi hastighedsgrænsen blev overskredet. Prøv igen senere.",

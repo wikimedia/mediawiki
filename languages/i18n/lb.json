@@ -3600,7 +3600,6 @@
 	"skin-action-undelete": "Restauréieren",
 	"skin-action-delete": "Läschen",
 	"skin-action-move": "Réckelen",
-	"skin-json-warning": "@OPGEPASST",
 	"parsoid-async-not-ready-fallback": "Inhalt net prett",
 	"parsoid-revision-access": "Parsoid kann net op d'Versioun zougräifen: $1",
 	"parsoid-client-error": "Ongültege Parsoid-Input: $1",

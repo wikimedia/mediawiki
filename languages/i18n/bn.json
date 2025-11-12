@@ -3992,7 +3992,6 @@
 	"skin-action-undelete": "পুনরুদ্ধার",
 	"skin-action-delete": "অপসারণ",
 	"skin-action-move": "স্থানান্তর",
-	"skin-json-warning": "@সতর্কতা",
 	"skin-json-warning-message": "এটি এপিআই নয়, এটি কেবল ডিবাগিংয়ের জন্য! গ্যাজেট বা প্রোডাকশন কোডে ব্যবহার করবেন না।",
 	"parsoid-async-not-ready-fallback": "বিষয়বস্তু প্রস্তুত নয়",
 	"parsoid-stash-rate-limit-error": "হারের সীমা অতিক্রমের কারণে স্ট্যাশিং ব্যর্থ হয়েছে। অনুগ্রহ করে একটু পরে আবার চেষ্টা করুন।",

@@ -3785,7 +3785,6 @@
 	"skin-action-undelete": "Вратити",
 	"skin-action-delete": "Одстранити",
 	"skin-action-move": "Прєименовати",
-	"skin-json-warning": "@ПРЄДУПРЄДЖЕНЈЕ",
 	"skin-json-warning-message": "Туто не јест API, служи само за изјавјење и одстрањење погрєшек в софтверу! Не употрєбите го в гаджетах или в продуктивном коду.",
 	"parsoid-stash-rate-limit-error": "Складовање неуспєшно из причины прєвышења лимит брзины. Просимо, попробујте позднєје.",
 	"parsoid-resource-limit-exceeded": "Прєвышены лимит срєдств Parsoid’а: $1",

@@ -4063,7 +4063,6 @@
 	"skin-action-undelete": "Odtwórz",
 	"skin-action-delete": "Usuń",
 	"skin-action-move": "Przenieś",
-	"skin-json-warning": "@UWAGA",
 	"skin-json-warning-message": "To nie jest API, służy tylko w celu debugowania! Nie wykorzystuj tego interfejsu w gadżetach ani kodzie na funkcjonującej wiki.",
 	"parsoid-async-not-ready-fallback": "Zawartość nie jest gotowa",
 	"parsoid-stash-rate-limit-error": "Przechowywanie nie powiodło się, ponieważ przekroczono limit przepustowości. Spróbuj ponownie później.",

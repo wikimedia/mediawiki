@@ -3765,7 +3765,6 @@
 	"skin-action-undelete": "हटाना वापस लें",
 	"skin-action-delete": "हटाएँ",
 	"skin-action-move": "स्थानांतरित करें",
-	"skin-json-warning": "@चेतावनी",
 	"skin-json-warning-message": "यह कोई API नहीं है, यह केवल डीबगिंग के लिए है! गैजेट्स या उत्पाद कोड में इसका प्रयोग न करें।",
 	"parsoid-async-not-ready-fallback": "सामग्री तैयार नहीं है",
 	"blockedtext-made-by": "अवरोध $1 द्वारा किया गया था।",

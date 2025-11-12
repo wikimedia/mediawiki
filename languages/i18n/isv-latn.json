@@ -3905,7 +3905,6 @@
 	"skin-action-undelete": "Vratiti",
 	"skin-action-delete": "Odstraniti",
 	"skin-action-move": "Prěimenovati",
-	"skin-json-warning": "@PRĚDUPRĚDŽENJE",
 	"skin-json-warning-message": "Tuto ne jest API, služi samo za izjavjenje i odstranjenje pogrěšek v softveru! Ne upotrěbite go v gadžetah ili v produktivnom kodu.",
 	"parsoid-async-not-ready-fallback": "Sodržanje ne jest gotovo",
 	"parsoid-stash-rate-limit-error": "Skladovanje neuspěšno iz pričiny prěvyšenja limit brziny. Prosimo, poprobujte pozdněje.",

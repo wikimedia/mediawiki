@@ -4204,7 +4204,6 @@
 	"skin-action-undelete": "Restaurar",
 	"skin-action-delete": "Borrar",
 	"skin-action-move": "Trasladar",
-	"skin-json-warning": "@ADVERTENCIA",
 	"skin-json-warning-message": "Esto no es una API, ¡es solo para depuración! No usar en accesorios o código de producción.",
 	"parsoid-async-not-ready-fallback": "Contenido incompleto",
 	"parsoid-stash-rate-limit-error": "El almacenamiento ha fallado porque se ha superado el límite de velocidad. Por favor, inténtelo de nuevo más tarde.",

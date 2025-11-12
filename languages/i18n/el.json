@@ -4009,7 +4009,6 @@
 	"skin-action-undelete": "Επαναφορά",
 	"skin-action-delete": "Διαγραφή",
 	"skin-action-move": "Μετακίνηση",
-	"skin-json-warning": "@ΠΡΟΣΟΧΗ",
 	"skin-json-warning-message": "Αυτό δεν είναι API, είναι μόνο για αποσφαλμάτωση! Μην το χρησιμοποιείτε σε gadgets ή σε κώδικα παραγωγής.",
 	"parsoid-async-not-ready-fallback": "Το περιεχόμενο δεν είναι έτοιμο",
 	"parsoid-stash-rate-limit-error": "Η αποθήκευση απέτυχε επειδή έγινε υπέρβαση του ορίου χρέωσης. Παρακαλούμε προσπαθήστε ξανά αργότερα.",

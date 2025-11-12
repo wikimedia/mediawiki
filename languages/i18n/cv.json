@@ -3839,7 +3839,6 @@
 	"skin-action-undelete": "Каялла тавӑр",
 	"skin-action-delete": "Кӑларса пӑрах",
 	"skin-action-move": "Ятне улӑштар",
-	"skin-json-warning": "@АСӐРХАТТАРУ",
 	"skin-json-warning-message": "Ку API мар, вӑл тӗрӗслеме кӑна кирлӗ! Гаджетсенче е продукт кодӗнче усӑ курмалла мар.",
 	"parsoid-stash-rate-limit-error": "Вӑхӑтлӑ управӑша ҫырнӑ чухне кӗтменлӗх сиксе тухрӗ — хӑвӑртлӑх виҫинчен иртнӗ. Тархасшӑн, каярах тепре туса пӑхӑр.",
 	"parsoid-resource-limit-exceeded": "parsoid ресурсӗн лимичӗ пӗтнӗ: $1",

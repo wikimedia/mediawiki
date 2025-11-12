@@ -4137,7 +4137,6 @@
 	"skin-action-undelete": "復元",
 	"skin-action-delete": "削除",
 	"skin-action-move": "移動",
-	"skin-json-warning": "@警告",
 	"skin-json-warning-message": "これはAPIではなく、デバッグ目的で存在します！ガジェットや本番環境のコードでは使用しないでください。",
 	"parsoid-async-not-ready-fallback": "コンテンツの準備ができていません",
 	"parsoid-stash-rate-limit-error": "レート制限を超えたため、スタッシュに失敗しました。後で再試行してください。",

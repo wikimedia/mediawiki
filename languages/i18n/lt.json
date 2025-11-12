@@ -3886,7 +3886,6 @@
 	"skin-action-undelete": "Atkurti",
 	"skin-action-delete": "Ištrinti",
 	"skin-action-move": "Pervardyti",
-	"skin-json-warning": "@ĮSPĖJIMAS",
 	"skin-json-warning-message": "Tai nėra API, ji skirta tik derinimui! Nenaudokite programėlėse ar gamybos kode.",
 	"parsoid-stash-rate-limit-error": "Nepavyko išsaugoti, nes viršytas normos limitas. Bandykite dar kartą vėliau.",
 	"newpages-showhide-bots": "$1 robotus",

@@ -4055,7 +4055,6 @@
 	"skin-action-undelete": "Phục hồi",
 	"skin-action-delete": "Xóa",
 	"skin-action-move": "Di chuyển",
-	"skin-json-warning": "@CẢNH BÁO",
 	"skin-json-warning-message": "Đây không phải là API, nó chỉ dùng để gỡ lỗi! Không sử dụng trong tiện ích hoặc mã sản xuất.",
 	"parsoid-async-not-ready-fallback": "Nội dung chưa sẵn sàng",
 	"parsoid-stash-rate-limit-error": "Hàng đợi bị lỗi vì vượt quá giới hạn tốc độ. Vui lòng thử lại sau.",

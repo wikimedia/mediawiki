@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Aca",
 			"BadDog",
 			"Conquistador",
 			"Kolega2357",
@@ -110,7 +111,7 @@
 	"exif-gpstrack": "Smjer kretanja",
 	"exif-gpsimgdirectionref": "Referenca za smjer slike",
 	"exif-gpsimgdirection": "Smjer slike",
-	"exif-gpsmapdatum": "Upotrijebljeni podaci geodetskih mjerenja",
+	"exif-gpsmapdatum": "Korišteni podaci geodetskih mjerenja",
 	"exif-gpsdestlatituderef": "Referenca za geografsku širinu odredišta",
 	"exif-gpsdestlatitude": "Širina odredišta",
 	"exif-gpsdestlongituderef": "Referenca za geografsku dužinu odredišta",

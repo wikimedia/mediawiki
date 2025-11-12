@@ -3943,7 +3943,6 @@
 	"skin-action-undelete": "Орныктырар",
 	"skin-action-delete": "Јоголтор",
 	"skin-action-move": "Адын солыыр",
-	"skin-json-warning": "@АЈАРТУ",
 	"parsoid-async-not-ready-fallback": "Толынтызы белен эмес",
 	"parsoid-stash-rate-limit-error": "Тӱргенниҥ кемин ашкан учун, бир канча ӧйдиҥ салгыш јерге артызары келишпеди. Эмеш оноҥ умзанар.",
 	"parsoid-resource-limit-exceeded": "Parsoid-тыҥ ресурстарыныҥ кирелеткен кеми божоды: $1",
