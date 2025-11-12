@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Parser\Hook;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.
@@ -29,3 +29,6 @@ interface ParserLimitReportFormatHook {
 		$localize
 	);
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( ParserLimitReportFormatHook::class, 'MediaWiki\\Hook\\ParserLimitReportFormatHook' );

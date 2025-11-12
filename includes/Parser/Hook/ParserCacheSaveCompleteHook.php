@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Parser\Hook;
 
 use MediaWiki\Parser\ParserCache;
 use MediaWiki\Parser\ParserOptions;
@@ -32,3 +32,6 @@ interface ParserCacheSaveCompleteHook {
 		$popts, $revId
 	);
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( ParserCacheSaveCompleteHook::class, 'MediaWiki\\Hook\\ParserCacheSaveCompleteHook' );

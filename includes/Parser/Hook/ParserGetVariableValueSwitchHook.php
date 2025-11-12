@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Parser\Hook;
 
 use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\PPFrame;
@@ -33,3 +33,6 @@ interface ParserGetVariableValueSwitchHook {
 		$magicWordId, &$ret, $frame
 	);
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( ParserGetVariableValueSwitchHook::class, 'MediaWiki\\Hook\\ParserGetVariableValueSwitchHook' );

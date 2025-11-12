@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Parser\Hook;
 
 use MediaWiki\Page\WikiPage;
 use MediaWiki\Parser\ParserOptions;
@@ -31,3 +31,6 @@ interface RejectParserCacheValueHook {
 		$parserOptions
 	);
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( RejectParserCacheValueHook::class, 'MediaWiki\\Hook\\RejectParserCacheValueHook' );

@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Parser\Hook;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.
@@ -34,3 +34,6 @@ interface ParserFetchTemplateDataHook {
 		array &$tplData
 	): bool;
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( ParserFetchTemplateDataHook::class, 'MediaWiki\\Hook\\ParserFetchTemplateDataHook' );

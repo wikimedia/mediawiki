@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Parser\Hook;
 
 use MediaWiki\FileRepo\File\File;
 use MediaWiki\Parser\Parser;
@@ -28,3 +28,6 @@ interface ParserMakeImageParamsHook {
 	 */
 	public function onParserMakeImageParams( $title, $file, &$params, $parser );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( ParserMakeImageParamsHook::class, 'MediaWiki\\Hook\\ParserMakeImageParamsHook' );

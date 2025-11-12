@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Parser\Hook;
 
 use MediaWiki\Parser\Parser;
 
@@ -24,3 +24,6 @@ interface ParserGetVariableValueTsHook {
 	 */
 	public function onParserGetVariableValueTs( $parser, &$time );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( ParserGetVariableValueTsHook::class, 'MediaWiki\\Hook\\ParserGetVariableValueTsHook' );

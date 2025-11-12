@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Parser\Hook;
 
 use MediaWiki\User\User;
 
@@ -27,3 +27,6 @@ interface PageRenderingHashHook {
 	 */
 	public function onPageRenderingHash( &$confstr, $user, &$forOptions );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( PageRenderingHashHook::class, 'MediaWiki\\Hook\\PageRenderingHashHook' );

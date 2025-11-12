@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Parser\Hook;
 
 use MediaWiki\Parser\Parser;
 use MediaWiki\Title\Title;
@@ -30,3 +30,6 @@ interface BeforeParserFetchFileAndTitleHook {
 		&$descQuery
 	);
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( BeforeParserFetchFileAndTitleHook::class, 'MediaWiki\\Hook\\BeforeParserFetchFileAndTitleHook' );

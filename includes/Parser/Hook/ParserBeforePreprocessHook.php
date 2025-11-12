@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Parser\Hook;
 
 use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\StripState;
@@ -25,3 +25,6 @@ interface ParserBeforePreprocessHook {
 	 */
 	public function onParserBeforePreprocess( $parser, &$text, $stripState );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( ParserBeforePreprocessHook::class, 'MediaWiki\\Hook\\ParserBeforePreprocessHook' );

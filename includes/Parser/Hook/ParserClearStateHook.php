@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Parser\Hook;
 
 use MediaWiki\Parser\Parser;
 
@@ -22,3 +22,6 @@ interface ParserClearStateHook {
 	 */
 	public function onParserClearState( $parser );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( ParserClearStateHook::class, 'MediaWiki\\Hook\\ParserClearStateHook' );

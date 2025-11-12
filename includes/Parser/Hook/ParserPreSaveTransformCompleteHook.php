@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Parser\Hook;
 
 use MediaWiki\Parser\Parser;
 
@@ -25,3 +25,6 @@ interface ParserPreSaveTransformCompleteHook {
 	 */
 	public function onParserPreSaveTransformComplete( $parser, &$text );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( ParserPreSaveTransformCompleteHook::class, 'MediaWiki\\Hook\\ParserPreSaveTransformCompleteHook' );

@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Parser\Hook;
 
 use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\ParserOutput;
@@ -27,3 +27,6 @@ interface ParserLimitReportPrepareHook {
 	 */
 	public function onParserLimitReportPrepare( $parser, $output );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( ParserLimitReportPrepareHook::class, 'MediaWiki\\Hook\\ParserLimitReportPrepareHook' );

@@ -205,6 +205,47 @@ because of Phabricator reports.
     - UserMailerSplitToHook
     - UserMailerTransformContentHook
     - UserMailerTransformMessageHook
+  - RecentChanges related hooks: MediaWiki\Hook => MediaWiki\RecentChanges\Hook
+    - AbortEmailNotificationHook
+    - ChangesListInitRowsHook
+    - ChangesListInsertArticleLinkHook
+    - ChangesListInsertLogEntryHook
+    - EnhancedChangesListModifyBlockLineDataHook
+    - EnhancedChangesListModifyLineDataHook
+    - EnhancedChangesList__getLogTextHook
+    - FetchChangesListHook
+    - MarkPatrolledCompleteHook
+    - MarkPatrolledHook
+    - OldChangesListRecentChangesLineHook
+    - RecentChange_saveHook
+  - Parser related hooks: MediaWiki\Hook => MediaWiki\Parser\Hook
+    - AfterParserFetchFileAndTitleHook
+    - BeforeParserFetchFileAndTitleHook
+    - BeforeParserFetchTemplateRevisionRecordHook
+    - GetLinkColoursHook
+    - InternalParseBeforeLinksHook
+    - IsValidEmailAddrHook
+    - PageRenderingHashHook
+    - ParserAfterParseHook
+    - ParserAfterTidyHook
+    - ParserBeforeInternalParseHook
+    - ParserBeforePreprocessHook
+    - ParserCacheSaveCompleteHook
+    - ParserClearStateHook
+    - ParserClonedHook
+    - ParserFetchTemplateDataHook
+    - ParserFirstCallInitHook
+    - ParserGetVariableValueSwitchHook
+    - ParserGetVariableValueTsHook
+    - ParserLimitReportFormatHook
+    - ParserLimitReportPrepareHook
+    - ParserLogLinterDataHook
+    - ParserMakeImageParamsHook
+    - ParserModifyImageHTMLHook
+    - ParserOptionsRegisterHook
+    - ParserOutputPostCacheTransformHook
+    - ParserPreSaveTransformCompleteHook
+    - RejectParserCacheValueHook
 * Using an int for the $mode parameter of LanguageFallback::getAll() is now
   deprecated.  Use the new LanguageFallbackMode enumeration instead.
 * LanguageFallback::MESSAGES and LanguageFallback::STRICT are deprecated; use

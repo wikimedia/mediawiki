@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Parser\Hook;
 
 use MediaWiki\FileRepo\File\File;
 use MediaWiki\Parser\Parser;
@@ -31,3 +31,6 @@ interface ParserModifyImageHTMLHook {
 
 /** @deprecated class alias since 1.41 */
 class_alias( ParserModifyImageHTMLHook::class, 'MediaWiki\Hook\ParserModifyImageHTML' );
+
+/** @deprecated class alias since 1.46 */
+class_alias( ParserModifyImageHTMLHook::class, 'MediaWiki\\Hook\\ParserModifyImageHTMLHook' );

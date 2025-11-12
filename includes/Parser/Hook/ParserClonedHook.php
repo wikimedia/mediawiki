@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Parser\Hook;
 
 use MediaWiki\Parser\Parser;
 
@@ -22,3 +22,6 @@ interface ParserClonedHook {
 	 */
 	public function onParserCloned( $parser );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( ParserClonedHook::class, 'MediaWiki\\Hook\\ParserClonedHook' );

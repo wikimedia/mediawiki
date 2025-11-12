@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Parser\Hook;
 
 use MediaWiki\Gallery\ImageGalleryBase;
 use MediaWiki\Parser\Parser;
@@ -27,3 +27,6 @@ interface AfterParserFetchFileAndTitleHook {
 	 */
 	public function onAfterParserFetchFileAndTitle( $parser, $ig, &$html );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( AfterParserFetchFileAndTitleHook::class, 'MediaWiki\\Hook\\AfterParserFetchFileAndTitleHook' );

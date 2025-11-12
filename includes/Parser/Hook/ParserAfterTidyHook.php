@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Parser\Hook;
 
 use MediaWiki\Parser\Parser;
 
@@ -23,3 +23,6 @@ interface ParserAfterTidyHook {
 	 */
 	public function onParserAfterTidy( $parser, &$text );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( ParserAfterTidyHook::class, 'MediaWiki\\Hook\\ParserAfterTidyHook' );

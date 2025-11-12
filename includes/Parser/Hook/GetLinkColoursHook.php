@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Parser\Hook;
 
 use MediaWiki\Title\Title;
 
@@ -25,3 +25,6 @@ interface GetLinkColoursHook {
 	 */
 	public function onGetLinkColours( $linkcolour_ids, &$colours, $title );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( GetLinkColoursHook::class, 'MediaWiki\\Hook\\GetLinkColoursHook' );
