@@ -33,11 +33,11 @@ abstract class OutputTransformStage {
 	 * Decides whether or not the stage should be run
 	 * @param ParserOutput $po
 	 * @unstable
-	 * @param ParserOptions|null $popts
+	 * @param ParserOptions $popts
 	 * @param array $options
 	 * @return bool
 	 */
-	abstract public function shouldRun( ParserOutput $po, ?ParserOptions $popts, array $options = [] ): bool;
+	abstract public function shouldRun( ParserOutput $po, ParserOptions $popts, array $options = [] ): bool;
 
 	/**
 	 * Transforms the input ParserOutput into the returned ParserOutput.
@@ -49,5 +49,5 @@ abstract class OutputTransformStage {
 	 * Modifying $options during this pass is considered deprecated.
 	 * @unstable
 	 */
-	abstract public function transform( ParserOutput $po, ?ParserOptions $popts, array &$options ): ParserOutput;
+	abstract public function transform( ParserOutput $po, ParserOptions $popts, array &$options ): ParserOutput;
 }

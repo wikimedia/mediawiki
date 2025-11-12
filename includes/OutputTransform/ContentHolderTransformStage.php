@@ -36,7 +36,7 @@ class ContentHolderTransformStage extends OutputTransformStage {
 		parent::__construct( $options, $logger );
 	}
 
-	public function shouldRun( ParserOutput $po, ?ParserOptions $popts, array $options = [] ): bool {
+	public function shouldRun( ParserOutput $po, ParserOptions $popts, array $options = [] ): bool {
 		$textShouldRun = $this->textTransform->shouldRun( $po, $popts, $options );
 		$domShouldRun = $this->domTransform->shouldRun( $po, $popts, $options );
 		$textClass = $this->textTransform::class;
@@ -48,7 +48,7 @@ class ContentHolderTransformStage extends OutputTransformStage {
 		return $textShouldRun || $domShouldRun;
 	}
 
-	public function transform( ParserOutput $po, ?ParserOptions $popts, array &$options ): ParserOutput {
+	public function transform( ParserOutput $po, ParserOptions $popts, array &$options ): ParserOutput {
 		$useDom = $this->exclusive ?
 			$this->domTransform->shouldRun( $po, $popts, $options ) :
 			$po->getContentHolder()->preferDom();

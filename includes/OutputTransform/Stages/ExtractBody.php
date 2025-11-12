@@ -23,11 +23,11 @@ class ExtractBody extends ContentTextTransformStage {
 		parent::__construct( $options, $logger );
 	}
 
-	public function shouldRun( ParserOutput $po, ?ParserOptions $popts, array $options = [] ): bool {
+	public function shouldRun( ParserOutput $po, ParserOptions $popts, array $options = [] ): bool {
 		return $po->getContentHolder()->isParsoidContent();
 	}
 
-	protected function transformText( string $text, ParserOutput $po, ?ParserOptions $popts, array &$options ): string {
+	protected function transformText( string $text, ParserOutput $po, ParserOptions $popts, array &$options ): string {
 		return Parser::extractBody( $text );
 	}
 }

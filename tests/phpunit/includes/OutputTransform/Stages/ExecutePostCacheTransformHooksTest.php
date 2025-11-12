@@ -83,7 +83,7 @@ class ExecutePostCacheTransformHooksTest extends \MediaWikiIntegrationTestCase {
 					$options['enableSectionEditLinks'] = true;
 				} );
 		$options = [];
-		self::assertTrue( $transform->shouldRun( new ParserOutput(), null, $options ) );
+		self::assertTrue( $transform->shouldRun( new ParserOutput(), ParserOptions::newFromAnon(), $options ) );
 	}
 
 	/**
@@ -93,6 +93,6 @@ class ExecutePostCacheTransformHooksTest extends \MediaWikiIntegrationTestCase {
 		$transform = $this->createStage();
 		$this->clearHook( 'ParserOutputPostCacheTransform' );
 		$options = [];
-		self::assertFalse( $transform->shouldRun( new ParserOutput(), null, $options ) );
+		self::assertFalse( $transform->shouldRun( new ParserOutput(), ParserOptions::newFromAnon(), $options ) );
 	}
 }

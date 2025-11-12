@@ -40,7 +40,7 @@ class HandleParsoidSectionLinks extends ContentDOMTransformStage {
 		$this->titleFactory = $titleFactory;
 	}
 
-	public function shouldRun( ParserOutput $po, ?ParserOptions $popts, array $options = [] ): bool {
+	public function shouldRun( ParserOutput $po, ParserOptions $popts, array $options = [] ): bool {
 		// Only run this stage if it is parsoid content
 		return $po->getContentHolder()->isParsoidContent();
 	}
@@ -70,7 +70,7 @@ class HandleParsoidSectionLinks extends ContentDOMTransformStage {
 	}
 
 	public function transformDOM(
-		DocumentFragment $df, ParserOutput $po, ?ParserOptions $popts, array &$options
+		DocumentFragment $df, ParserOutput $po, ParserOptions $popts, array &$options
 	): DocumentFragment {
 		$skin = $this->resolveSkin( $options );
 		// Transform:

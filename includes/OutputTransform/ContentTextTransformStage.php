@@ -13,7 +13,7 @@ use MediaWiki\Parser\ParserOutput;
  */
 abstract class ContentTextTransformStage extends OutputTransformStage {
 
-	public function transform( ParserOutput $po, ?ParserOptions $popts, array &$options ): ParserOutput {
+	public function transform( ParserOutput $po, ParserOptions $popts, array &$options ): ParserOutput {
 		$text = $po->getContentHolderText();
 		$text = $this->transformText( $text, $po, $popts, $options );
 		$po->setContentHolderText( $text );
@@ -21,6 +21,6 @@ abstract class ContentTextTransformStage extends OutputTransformStage {
 	}
 
 	abstract protected function transformText(
-		string $text, ParserOutput $po, ?ParserOptions $popts, array &$options
+		string $text, ParserOutput $po, ParserOptions $popts, array &$options
 	): string;
 }

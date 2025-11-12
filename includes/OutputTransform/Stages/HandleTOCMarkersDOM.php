@@ -20,12 +20,12 @@ use Wikimedia\Parsoid\Utils\DOMUtils;
 
 class HandleTOCMarkersDOM extends ContentDOMTransformStage {
 
-	public function shouldRun( ParserOutput $po, ?ParserOptions $popts, array $options = [] ): bool {
+	public function shouldRun( ParserOutput $po, ParserOptions $popts, array $options = [] ): bool {
 		return !( $options['allowTOC'] ?? true ) || ( $options['injectTOC'] ?? true );
 	}
 
 	public function transformDOM(
-		DocumentFragment $df, ParserOutput $po, ?ParserOptions $popts, array &$options
+		DocumentFragment $df, ParserOutput $po, ParserOptions $popts, array &$options
 	): DocumentFragment {
 		$markers = DOMCompat::querySelectorAll( $df, "meta[property='mw:PageProp/toc']" );
 		$replaced = false;

@@ -14,11 +14,11 @@ use MediaWiki\Parser\ParserOutput;
  */
 class ExpandToAbsoluteUrls extends ContentTextTransformStage {
 
-	public function shouldRun( ParserOutput $po, ?ParserOptions $popts, array $options = [] ): bool {
+	public function shouldRun( ParserOutput $po, ParserOptions $popts, array $options = [] ): bool {
 		return $options['absoluteURLs'] ?? false;
 	}
 
-	protected function transformText( string $text, ParserOutput $po, ?ParserOptions $popts, array &$options ): string {
+	protected function transformText( string $text, ParserOutput $po, ParserOptions $popts, array &$options ): string {
 		return Linker::expandLocalLinks( $text );
 	}
 

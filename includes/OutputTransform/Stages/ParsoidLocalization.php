@@ -41,7 +41,7 @@ class ParsoidLocalization extends ContentDOMTransformStage {
 	}
 
 	public function transformDOM(
-		DocumentFragment $df, ParserOutput $po, ?ParserOptions $popts, array &$options
+		DocumentFragment $df, ParserOutput $po, ParserOptions $popts, array &$options
 	): DocumentFragment {
 		$poLang = $po->getLanguage();
 		if ( $poLang == null ) {
@@ -68,7 +68,7 @@ class ParsoidLocalization extends ContentDOMTransformStage {
 		return $df;
 	}
 
-	public function shouldRun( ParserOutput $po, ?ParserOptions $popts, array $options = [] ): bool {
+	public function shouldRun( ParserOutput $po, ParserOptions $popts, array $options = [] ): bool {
 		return $po->getContentHolder()->isParsoidContent();
 	}
 

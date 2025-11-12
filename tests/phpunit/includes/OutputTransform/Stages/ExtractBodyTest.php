@@ -7,6 +7,7 @@ use Generator;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\OutputTransform\OutputTransformStage;
 use MediaWiki\OutputTransform\Stages\ExtractBody;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWiki\Parser\Parsoid\ParsoidParser;
@@ -27,14 +28,14 @@ class ExtractBodyTest extends OutputTransformStageTestBase {
 
 	public static function provideShouldRun(): array {
 		return [
-			[ PageBundleParserOutputConverter::parserOutputFromPageBundle( new HtmlPageBundle( '' ) ), null, [] ],
+			[ PageBundleParserOutputConverter::parserOutputFromPageBundle( new HtmlPageBundle( '' ) ), ParserOptions::newFromAnon(), [] ],
 		];
 	}
 
 	public static function provideShouldNotRun(): array {
 		return [
-			[ new ParserOutput(), null, [] ],
-			[ new ParserOutput(), null, [] ],
+			[ new ParserOutput(), ParserOptions::newFromAnon(), [] ],
+			[ new ParserOutput(), ParserOptions::newFromAnon(), [] ],
 		];
 	}
 
@@ -120,7 +121,7 @@ HTML;
 			$poOutput = new ParserOutput( $t['result'] );
 			$poInput->setExtensionData( ParsoidParser::PARSOID_TITLE_KEY, $titleDBKey );
 			$poOutput->setExtensionData( ParsoidParser::PARSOID_TITLE_KEY, $titleDBKey );
-			yield $label => [ $poInput, null, [], $poOutput ];
+			yield $label => [ $poInput, ParserOptions::newFromAnon(), [], $poOutput ];
 		}
 	}
 }

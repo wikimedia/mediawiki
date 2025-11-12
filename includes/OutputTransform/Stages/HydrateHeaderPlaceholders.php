@@ -13,13 +13,13 @@ use MediaWiki\Parser\ParserOutput;
  */
 class HydrateHeaderPlaceholders extends ContentTextTransformStage {
 
-	public function shouldRun( ParserOutput $po, ?ParserOptions $popts, array $options = [] ): bool {
+	public function shouldRun( ParserOutput $po, ParserOptions $popts, array $options = [] ): bool {
 		// If this method ever returns something else than unconditional "true",
 		// HydrateHeaderPlaceholderTest::provideShouldNotRun should be updated to not be skipped.
 		return true;
 	}
 
-	protected function transformText( string $text, ParserOutput $po, ?ParserOptions $popts, array &$options ): string {
+	protected function transformText( string $text, ParserOutput $po, ParserOptions $popts, array &$options ): string {
 		return preg_replace_callback( '#<mw:slotheader>(.*?)</mw:slotheader>#', static function ( $m ) {
 			$role = htmlspecialchars_decode( $m[1] );
 			// TODO: map to message, using the interface language. Set lang="xyz" accordingly.

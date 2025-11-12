@@ -6,6 +6,7 @@ namespace MediaWiki\Tests\OutputTransform\Stages;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\OutputTransform\OutputTransformStage;
 use MediaWiki\OutputTransform\Stages\AddWrapperDivClass;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Tests\OutputTransform\OutputTransformStageTestBase;
 use MediaWiki\Tests\OutputTransform\TestUtils;
@@ -26,14 +27,14 @@ class AddWrapperDivClassTest extends OutputTransformStageTestBase {
 
 	public static function provideShouldRun(): array {
 		return( [
-			[ new ParserOutput(), null, [ 'wrapperDivClass' => 'some string' ] ]
+			[ new ParserOutput(), ParserOptions::newFromAnon(), [ 'wrapperDivClass' => 'some string' ] ]
 		] );
 	}
 
 	public static function provideShouldNotRun(): array {
 		return( [
-			[ new ParserOutput(), null, [ 'wrapperDivClass' => '' ] ],
-			[ new ParserOutput(), null, [] ]
+			[ new ParserOutput(), ParserOptions::newFromAnon(), [ 'wrapperDivClass' => '' ] ],
+			[ new ParserOutput(), ParserOptions::newFromAnon(), [] ]
 		] );
 	}
 
@@ -59,7 +60,7 @@ class AddWrapperDivClassTest extends OutputTransformStageTestBase {
 EOF;
 		$expected = new ParserOutput( $wrappedText );
 		return [
-			[ $po, null, $opts, $expected ]
+			[ $po, ParserOptions::newFromAnon(), $opts, $expected ]
 		];
 	}
 }

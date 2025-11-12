@@ -26,18 +26,18 @@ abstract class HandleTOCMarkersTestCommon extends OutputTransformStageTestBase {
 
 	public static function provideShouldRun(): array {
 		return [
-			[ new ParserOutput(), null, [] ],
-			[ new ParserOutput(), null, [ 'allowTOC' => false, 'injectTOC' => false ] ],
-			[ new ParserOutput(), null, [ 'allowTOC' => false, 'injectTOC' => true ] ],
-			[ new ParserOutput(), null, [ 'allowTOC' => true, 'injectTOC' => true ] ],
-			[ new ParserOutput(), null, [ 'injectTOC' => true ] ],
-			[ new ParserOutput(), null, [ 'allowTOC' => true ] ],
+			[ new ParserOutput(), ParserOptions::newFromAnon(), [] ],
+			[ new ParserOutput(), ParserOptions::newFromAnon(), [ 'allowTOC' => false, 'injectTOC' => false ] ],
+			[ new ParserOutput(), ParserOptions::newFromAnon(), [ 'allowTOC' => false, 'injectTOC' => true ] ],
+			[ new ParserOutput(), ParserOptions::newFromAnon(), [ 'allowTOC' => true, 'injectTOC' => true ] ],
+			[ new ParserOutput(), ParserOptions::newFromAnon(), [ 'injectTOC' => true ] ],
+			[ new ParserOutput(), ParserOptions::newFromAnon(), [ 'allowTOC' => true ] ],
 		];
 	}
 
 	public static function provideShouldNotRun(): array {
 		return [
-			[ new ParserOutput(), null, [ 'allowTOC' => true, 'injectTOC' => false ] ]
+			[ new ParserOutput(), ParserOptions::newFromAnon(), [ 'allowTOC' => true, 'injectTOC' => false ] ]
 		];
 	}
 
@@ -69,7 +69,7 @@ abstract class HandleTOCMarkersTestCommon extends OutputTransformStageTestBase {
 		TestUtils::initSections( $poTest1 );
 		$expectedWith = new ParserOutput( $withToc );
 		TestUtils::initSections( $expectedWith );
-		yield [ $poTest1, null, [
+		yield [ $poTest1, ParserOptions::newFromAnon(), [
 			'userLang' => null,
 			'skin' => null,
 			'allowTOC' => true,
@@ -80,13 +80,13 @@ abstract class HandleTOCMarkersTestCommon extends OutputTransformStageTestBase {
 		TestUtils::initSections( $poTest2 );
 		$expectedWithout = new ParserOutput( $withoutToc );
 		TestUtils::initSections( $expectedWithout );
-		yield [ $poTest2, null, [ 'allowTOC' => false ], $expectedWithout, 'should not insert TOC' ];
+		yield [ $poTest2, ParserOptions::newFromAnon(), [ 'allowTOC' => false ], $expectedWithout, 'should not insert TOC' ];
 
 		$poTest3 = new ParserOutput( TestUtils::TEST_DOC . '<meta property="mw:PageProp/toc" />' );
 		TestUtils::initSections( $poTest3 );
 		$expectedWith = new ParserOutput( $withToc );
 		TestUtils::initSections( $expectedWith );
-		yield [ $poTest3, null, [
+		yield [ $poTest3, ParserOptions::newFromAnon(), [
 			'userLang' => null,
 			'skin' => null,
 			'allowTOC' => true,
@@ -106,7 +106,7 @@ abstract class HandleTOCMarkersTestCommon extends OutputTransformStageTestBase {
 			$poTest4->getTOCData()->setExtensionData( $key, $value );
 			$expected->getTOCData()->setExtensionData( $key, $value );
 		}
-		yield "with custom TOC" => [ $poTest4, null, [
+		yield "with custom TOC" => [ $poTest4, ParserOptions::newFromAnon(), [
 			'userLang' => null,
 			'skin' => null,
 			'allowTOC' => true,

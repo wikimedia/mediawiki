@@ -30,12 +30,12 @@ class HandleSectionLinksTest extends OutputTransformStageTestBase {
 	}
 
 	public static function provideShouldRun(): array {
-		return [ [ new ParserOutput(), null, [] ] ];
+		return [ [ new ParserOutput(), ParserOptions::newFromAnon(), [] ] ];
 	}
 
 	public static function provideShouldNotRun(): array {
 		return [
-			[ PageBundleParserOutputConverter::parserOutputFromPageBundle( new HtmlPageBundle( '' ) ), null, [] ]
+			[ PageBundleParserOutputConverter::parserOutputFromPageBundle( new HtmlPageBundle( '' ) ), ParserOptions::newFromAnon(), [] ]
 		];
 	}
 
@@ -57,7 +57,7 @@ class HandleSectionLinksTest extends OutputTransformStageTestBase {
 	public static function provideTransform(): iterable {
 		yield "TEST_DOC default: with links" => [
 			self::newParserOutput( TestUtils::TEST_DOC ),
-			null, [],
+			ParserOptions::newFromAnon(), [],
 			self::newParserOutput( TestUtils::TEST_DOC_WITH_LINKS )
 		];
 		yield "TEST_DOC default ParserOptions: with links" => [
@@ -67,7 +67,7 @@ class HandleSectionLinksTest extends OutputTransformStageTestBase {
 		];
 		yield 'TEST_DOC disabled via $options: no links' => [
 			self::newParserOutput( TestUtils::TEST_DOC ),
-			null, [ 'enableSectionEditLinks' => false ],
+			ParserOptions::newFromAnon(), [ 'enableSectionEditLinks' => false ],
 			self::newParserOutput( TestUtils::TEST_DOC_WITHOUT_LINKS )
 		];
 		$pOptsNoLinks = ParserOptions::newFromAnon();
@@ -79,17 +79,17 @@ class HandleSectionLinksTest extends OutputTransformStageTestBase {
 		];
 		yield 'TEST_DOC enabled via $options: with links' => [
 			self::newParserOutput( TestUtils::TEST_DOC ),
-			null, [ 'enableSectionEditLinks' => true ],
+			ParserOptions::newFromAnon(), [ 'enableSectionEditLinks' => true ],
 			self::newParserOutput( TestUtils::TEST_DOC_WITH_LINKS )
 		];
 		yield 'TEST_DOC_ANGLE_BRACKETS default: with links' => [
 			self::newParserOutput( TestUtils::TEST_DOC_ANGLE_BRACKETS ),
-			null, [],
+			ParserOptions::newFromAnon(), [],
 			self::newParserOutput( TestUtils::TEST_DOC_ANGLE_BRACKETS_WITH_LINKS )
 		];
 		yield 'TEST_DOC_ANGLE_BRACKETS disabled via $options: no links' => [
 			self::newParserOutput( TestUtils::TEST_DOC_ANGLE_BRACKETS ),
-			null, [ 'enableSectionEditLinks' => false ],
+			ParserOptions::newFromAnon(), [ 'enableSectionEditLinks' => false ],
 			self::newParserOutput( TestUtils::TEST_DOC_ANGLE_BRACKETS_WITHOUT_LINKS )
 		];
 		yield 'TEST_DOC_ANGLE_BRACKETS disabled via ParserOptions: no links' => [
@@ -99,7 +99,7 @@ class HandleSectionLinksTest extends OutputTransformStageTestBase {
 		];
 		yield 'TEST_DOC_ANGLE_BRACKETS enabled via $options: with links' => [
 			self::newParserOutput( TestUtils::TEST_DOC_ANGLE_BRACKETS ),
-			null, [ 'enableSectionEditLinks' => true ],
+			ParserOptions::newFromAnon(), [ 'enableSectionEditLinks' => true ],
 			self::newParserOutput( TestUtils::TEST_DOC_ANGLE_BRACKETS_WITH_LINKS )
 		];
 	}

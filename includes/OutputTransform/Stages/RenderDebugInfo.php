@@ -28,11 +28,11 @@ class RenderDebugInfo extends ContentTextTransformStage {
 		$this->hookRunner = new HookRunner( $hookContainer );
 	}
 
-	public function shouldRun( ParserOutput $po, ?ParserOptions $popts, array $options = [] ): bool {
+	public function shouldRun( ParserOutput $po, ParserOptions $popts, array $options = [] ): bool {
 		return $options['includeDebugInfo'] ?? false;
 	}
 
-	protected function transformText( string $text, ParserOutput $po, ?ParserOptions $popts, array &$options ): string {
+	protected function transformText( string $text, ParserOutput $po, ParserOptions $popts, array &$options ): string {
 		$debugInfo = $this->debugInfo( $po );
 		return $text . $debugInfo;
 	}

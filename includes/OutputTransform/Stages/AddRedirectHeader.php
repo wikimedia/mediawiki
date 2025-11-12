@@ -13,11 +13,11 @@ use MediaWiki\Parser\ParserOutput;
  */
 class AddRedirectHeader extends ContentTextTransformStage {
 
-	public function shouldRun( ParserOutput $po, ?ParserOptions $popts, array $options = [] ): bool {
+	public function shouldRun( ParserOutput $po, ParserOptions $popts, array $options = [] ): bool {
 		return $po->getRedirectHeader() !== null;
 	}
 
-	protected function transformText( string $text, ParserOutput $po, ?ParserOptions $popts, array &$options ): string {
+	protected function transformText( string $text, ParserOutput $po, ParserOptions $popts, array &$options ): string {
 		return $po->getRedirectHeader() . $text;
 	}
 }

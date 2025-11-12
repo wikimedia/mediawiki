@@ -25,7 +25,7 @@ abstract class OutputTransformStageTestBase extends MediaWikiIntegrationTestCase
 	/**
 	 * @dataProvider provideShouldRun
 	 */
-	public function testShouldRun( $parserOutput, $parserOptions, $options ) {
+	public function testShouldRun( ParserOutput $parserOutput, ParserOptions $parserOptions, array $options ) {
 		$stage = $this->createStage();
 		$this->assertTrue( $stage->shouldRun( $parserOutput, $parserOptions, $options ) );
 	}
@@ -46,7 +46,7 @@ abstract class OutputTransformStageTestBase extends MediaWikiIntegrationTestCase
 	/**
 	 * @dataProvider provideShouldNotRun
 	 */
-	public function testShouldNotRun( $parserOutput, $parserOptions, $options ) {
+	public function testShouldNotRun( ParserOutput $parserOutput, ParserOptions $parserOptions, array $options ) {
 		$stage = $this->createStage();
 		$this->assertFalse( $stage->shouldRun( $parserOutput, $parserOptions, $options ) );
 	}
@@ -54,7 +54,7 @@ abstract class OutputTransformStageTestBase extends MediaWikiIntegrationTestCase
 	/**
 	 * @dataProvider provideTransform
 	 */
-	public function testTransform( ParserOutput $parserOutput, ?ParserOptions $parserOptions, array $options,
+	public function testTransform( ParserOutput $parserOutput, ParserOptions $parserOptions, array $options,
 								   ParserOutput $expected, string $message = '' ): void {
 		$stage = $this->createStage();
 		$result = $stage->transform( $parserOutput, $parserOptions, $options );

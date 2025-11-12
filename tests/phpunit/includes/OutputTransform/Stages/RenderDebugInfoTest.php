@@ -6,6 +6,7 @@ namespace MediaWiki\Tests\OutputTransform\Stages;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\OutputTransform\OutputTransformStage;
 use MediaWiki\OutputTransform\Stages\RenderDebugInfo;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Tests\OutputTransform\OutputTransformStageTestBase;
 use Psr\Log\NullLogger;
@@ -25,14 +26,14 @@ class RenderDebugInfoTest extends OutputTransformStageTestBase {
 
 	public static function provideShouldRun(): array {
 		return [
-			[ new ParserOutput(), null, [ 'includeDebugInfo' => true ] ],
+			[ new ParserOutput(), ParserOptions::newFromAnon(), [ 'includeDebugInfo' => true ] ],
 		];
 	}
 
 	public static function provideShouldNotRun(): array {
 		return [
-			[ new ParserOutput(), null, [] ],
-			[ new ParserOutput(), null, [ 'includeDebugInfo' => false ] ],
+			[ new ParserOutput(), ParserOptions::newFromAnon(), [] ],
+			[ new ParserOutput(), ParserOptions::newFromAnon(), [ 'includeDebugInfo' => false ] ],
 		];
 	}
 
@@ -52,7 +53,7 @@ EOF;
 		$expected = new ParserOutput( $expectedText );
 		$expected->setLimitReportData( 'test', 'limit' );
 		return [
-			[ $po, null, [], $expected ],
+			[ $po, ParserOptions::newFromAnon(), [], $expected ],
 		];
 	}
 }

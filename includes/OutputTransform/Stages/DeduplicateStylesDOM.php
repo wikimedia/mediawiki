@@ -18,12 +18,12 @@ use Wikimedia\Parsoid\Utils\DOMTraverser;
  */
 class DeduplicateStylesDOM extends ContentDOMTransformStage {
 
-	public function shouldRun( ParserOutput $po, ?ParserOptions $popts, array $options = [] ): bool {
+	public function shouldRun( ParserOutput $po, ParserOptions $popts, array $options = [] ): bool {
 		return ( $options['deduplicateStyles'] ?? true );
 	}
 
 	public function transformDOM(
-		DocumentFragment $df, ParserOutput $po, ?ParserOptions $popts, array &$options
+		DocumentFragment $df, ParserOutput $po, ParserOptions $popts, array &$options
 	): DocumentFragment {
 		$seen = [];
 		$traverser = new DOMTraverser( false, false );

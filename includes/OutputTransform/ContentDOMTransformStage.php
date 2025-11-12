@@ -25,7 +25,7 @@ abstract class ContentDOMTransformStage extends OutputTransformStage {
 	 * @inheritDoc
 	 */
 	public function transform(
-		ParserOutput $po, ?ParserOptions $popts, array &$options
+		ParserOutput $po, ParserOptions $popts, array &$options
 	): ParserOutput {
 		$contentHolder = $po->getContentHolder();
 		$df = $contentHolder->getAsDom( ContentHolder::BODY_FRAGMENT ) ??
@@ -39,7 +39,7 @@ abstract class ContentDOMTransformStage extends OutputTransformStage {
 
 	/** Applies the transformation to a DOM document */
 	abstract public function transformDOM(
-		DocumentFragment $df, ParserOutput $po, ?ParserOptions $popts, array &$options
+		DocumentFragment $df, ParserOutput $po, ParserOptions $popts, array &$options
 	): DocumentFragment;
 
 	/**

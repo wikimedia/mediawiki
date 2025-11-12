@@ -36,7 +36,7 @@ class ExpandRelativeAttrs extends ContentDOMTransformStage {
 		parent::__construct( $options, $logger );
 	}
 
-	public function shouldRun( ParserOutput $po, ?ParserOptions $popts, array $options = [] ): bool {
+	public function shouldRun( ParserOutput $po, ParserOptions $popts, array $options = [] ): bool {
 		return $po->getContentHolder()->isParsoidContent();
 	}
 
@@ -80,7 +80,7 @@ class ExpandRelativeAttrs extends ContentDOMTransformStage {
 	}
 
 	public function transformDOM(
-		DocumentFragment $df, ParserOutput $po, ?ParserOptions $popts, array &$options
+		DocumentFragment $df, ParserOutput $po, ParserOptions $popts, array &$options
 	): DocumentFragment {
 		$title = $po->getExtensionData( ParsoidParser::PARSOID_TITLE_KEY );
 		if ( !$title ) {

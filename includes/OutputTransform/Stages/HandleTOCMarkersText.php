@@ -33,11 +33,11 @@ class HandleTOCMarkersText extends ContentTextTransformStage {
 		$this->tidy = $tidy;
 	}
 
-	public function shouldRun( ParserOutput $po, ?ParserOptions $popts, array $options = [] ): bool {
+	public function shouldRun( ParserOutput $po, ParserOptions $popts, array $options = [] ): bool {
 		return !( $options['allowTOC'] ?? true ) || ( $options['injectTOC'] ?? true );
 	}
 
-	protected function transformText( string $text, ParserOutput $po, ?ParserOptions $popts, array &$options ): string {
+	protected function transformText( string $text, ParserOutput $po, ParserOptions $popts, array &$options ): string {
 		if ( ( $options['allowTOC'] ?? true ) && ( $options['injectTOC'] ?? true ) ) {
 			return $this->injectTOC( $text, $po, $options );
 		}

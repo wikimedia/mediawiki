@@ -16,11 +16,11 @@ use Wikimedia\RemexHtml\Tokenizer\PlainAttributes;
  */
 class DeduplicateStyles extends ContentTextTransformStage {
 
-	public function shouldRun( ParserOutput $po, ?ParserOptions $popts, array $options = [] ): bool {
+	public function shouldRun( ParserOutput $po, ParserOptions $popts, array $options = [] ): bool {
 		return $options['deduplicateStyles'] ?? true;
 	}
 
-	protected function transformText( string $text, ParserOutput $po, ?ParserOptions $popts, array &$options ): string {
+	protected function transformText( string $text, ParserOutput $po, ParserOptions $popts, array &$options ): string {
 		$seen = [];
 		$isParsoidContent = $po->getContentHolder()->isParsoidContent();
 

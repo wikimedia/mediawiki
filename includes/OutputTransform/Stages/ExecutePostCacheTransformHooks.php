@@ -28,11 +28,11 @@ class ExecutePostCacheTransformHooks extends ContentTextTransformStage {
 		$this->hookContainer = $hookContainer;
 	}
 
-	public function shouldRun( ParserOutput $po, ?ParserOptions $popts, array $options = [] ): bool {
+	public function shouldRun( ParserOutput $po, ParserOptions $popts, array $options = [] ): bool {
 		return $this->hookContainer->isRegistered( 'ParserOutputPostCacheTransform' );
 	}
 
-	protected function transformText( string $text, ParserOutput $po, ?ParserOptions $popts, array &$options
+	protected function transformText( string $text, ParserOutput $po, ParserOptions $popts, array &$options
 	): string {
 		$this->hookRunner->onParserOutputPostCacheTransform( $po, $text, $options );
 		return $text;

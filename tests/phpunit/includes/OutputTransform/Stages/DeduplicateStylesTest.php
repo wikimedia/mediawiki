@@ -6,6 +6,7 @@ namespace MediaWiki\Tests\OutputTransform\Stages;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\OutputTransform\OutputTransformStage;
 use MediaWiki\OutputTransform\Stages\DeduplicateStyles;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWiki\Tests\OutputTransform\OutputTransformStageTestBase;
@@ -27,14 +28,14 @@ class DeduplicateStylesTest extends OutputTransformStageTestBase {
 
 	public static function provideShouldRun(): array {
 		return( [
-			[ new ParserOutput(), null, [ 'deduplicateStyles' => true ] ],
-			[ new ParserOutput(), null, [] ],
+			[ new ParserOutput(), ParserOptions::newFromAnon(), [ 'deduplicateStyles' => true ] ],
+			[ new ParserOutput(), ParserOptions::newFromAnon(), [] ],
 		] );
 	}
 
 	public static function provideShouldNotRun(): array {
 		return( [
-			[ new ParserOutput(), null, [ 'deduplicateStyles' => false ] ],
+			[ new ParserOutput(), ParserOptions::newFromAnon(), [ 'deduplicateStyles' => false ] ],
 		] );
 	}
 
@@ -86,7 +87,7 @@ EOF
 			}
 			yield $name => [
 				$in,
-				null,
+				ParserOptions::newFromAnon(),
 				[],
 				$out
 			];
