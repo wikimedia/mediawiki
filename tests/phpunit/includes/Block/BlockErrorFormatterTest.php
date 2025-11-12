@@ -124,8 +124,8 @@ class BlockErrorFormatterTest extends MediaWikiIntegrationTestCase {
 					'00:00, 1 (january) 2001',
 					'',
 					'00:00, 1 (january) 2000',
-					false,
-					false,
+					(string)false,
+					(string)false,
 				],
 			],
 			'Database block (autoblock)' => [
@@ -145,8 +145,8 @@ class BlockErrorFormatterTest extends MediaWikiIntegrationTestCase {
 					'00:00, 1 (january) 2001',
 					'',
 					'00:00, 1 (january) 2000',
-					false,
-					false,
+					(string)false,
+					(string)false,
 				],
 			],
 			'Database block (partial block)' => [
@@ -166,8 +166,9 @@ class BlockErrorFormatterTest extends MediaWikiIntegrationTestCase {
 					'00:00, 1 (january) 2001',
 					'',
 					'00:00, 1 (january) 2000',
-					false,
-					false,
+					// These parameters are booleans in a string format (empty string for false and '1' for true)
+					(string)false,
+					(string)false,
 				],
 			],
 			'Database block (talk page and email allowed)' => [
@@ -189,8 +190,8 @@ class BlockErrorFormatterTest extends MediaWikiIntegrationTestCase {
 					'00:00, 1 (january) 2001',
 					"\u{202A}Alice\u{202C}",
 					'00:00, 1 (january) 2000',
-					false,
-					false,
+					(string)false,
+					(string)false,
 				],
 			],
 			'Database block (talk page only allowed)' => [
@@ -213,8 +214,8 @@ class BlockErrorFormatterTest extends MediaWikiIntegrationTestCase {
 					//
 					"\u{202A}Alice\u{202C}",
 					'00:00, 1 (january) 2000',
-					false,
-					true,
+					(string)false,
+					(string)true,
 				],
 			],
 			'Database block (email only allowed)' => [
@@ -236,8 +237,8 @@ class BlockErrorFormatterTest extends MediaWikiIntegrationTestCase {
 					'00:00, 1 (january) 2001',
 					"\u{202A}Alice\u{202C}",
 					'00:00, 1 (january) 2000',
-					true,
-					false,
+					(string)true,
+					(string)false,
 				],
 			],
 			'Database block (talk page and email disallowed)' => [
@@ -259,8 +260,8 @@ class BlockErrorFormatterTest extends MediaWikiIntegrationTestCase {
 					'00:00, 1 (january) 2001',
 					"\u{202A}Alice\u{202C}",
 					'00:00, 1 (january) 2000',
-					true,
-					true,
+					(string)true,
+					(string)true,
 				],
 			],
 			'System block (type \'test\')' => [
@@ -276,8 +277,8 @@ class BlockErrorFormatterTest extends MediaWikiIntegrationTestCase {
 					'(infiniteblock)',
 					'',
 					'00:00, 1 (january) 2000',
-					false,
-					false,
+					(string)false,
+					(string)false,
 				],
 			],
 			'System block (type \'test\') with reason parameters' => [
@@ -297,8 +298,8 @@ class BlockErrorFormatterTest extends MediaWikiIntegrationTestCase {
 					'(infiniteblock)',
 					'',
 					'00:00, 1 (january) 2000',
-					false,
-					false,
+					(string)false,
+					(string)false,
 				],
 			],
 			'Composite block (original blocks not inserted)' => [
@@ -314,8 +315,8 @@ class BlockErrorFormatterTest extends MediaWikiIntegrationTestCase {
 					'(infiniteblock)',
 					'',
 					'00:00, 1 (january) 2000',
-					false,
-					false,
+					(string)false,
+					(string)false,
 				],
 			],
 		];
