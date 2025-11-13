@@ -53,6 +53,8 @@
 	"interwiki-submit-empty": "คำนำหน้าและ URL ต้องไม่ว่างเปล่า",
 	"interwiki-submit-invalidurl": "โปรโตคอลของ URL ไม่ถูกต้อง",
 	"log-name-interwiki": "บันทึกตารางอินเทอร์วิกิ",
+	"logentry-interwiki-iw_add": "$1 {{GENDER:$2|เพิ่ม}}คำนำหน้า \"$4\" ($5) (ใช้แม่แบบ: $6; ท้องถิ่น: $7) ลงในตารางอินเทอร์วิกิ",
+	"logentry-interwiki-iw_edit": "$1 {{GENDER:$2|แก้ไข}}คำนำหน้า \"$4\" ($5) (ใช้แม่แบบ: $6; ท้องถิ่น: $7) ในตารางอินเทอร์วิกิ",
 	"logentry-interwiki-iw_delete": "$1 ได้{{GENDER:$2|ลบ}}คำนำหน้า \"$4\" ออกจากตารางอินเทอร์วิกิ",
 	"log-description-interwiki": "นี่คือบันทึกการเปลี่ยนแปลงที่ทำกับ[[Special:Interwiki|ตารางอินเทอร์วิกิ]]",
 	"right-interwiki": "แก้ไขข้อมูลอินเทอร์วิกิ",
