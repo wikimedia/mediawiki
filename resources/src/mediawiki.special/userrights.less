@@ -20,6 +20,22 @@
 			padding: 0;
 		}
 
+		@media ( max-width: @max-width-breakpoint-mobile ) {
+			display: flex;
+			flex-direction: column;
+
+			.oo-ui-panelLayout:has( #mw-htmlform-unchangeable-col ) {
+				// Place this last; use a large number in case more elements are added to the form
+				order: 100;
+				width: 100%;
+			}
+
+			.oo-ui-panelLayout-framed {
+				display: block;
+				width: 100%;
+			}
+		}
+
 		/* Customizations for group expiry field */
 
 		.mw-htmlform-field-HTMLSelectOrOtherField {
