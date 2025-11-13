@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Specials\Hook;
 
 use MediaWiki\User\User;
 
@@ -25,3 +25,6 @@ interface EmailUserPermissionsErrorsHook {
 	 */
 	public function onEmailUserPermissionsErrors( $user, $editToken, &$hookErr );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( EmailUserPermissionsErrorsHook::class, 'MediaWiki\\Hook\\EmailUserPermissionsErrorsHook' );

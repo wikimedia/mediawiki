@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Specials\Hook;
 
 use MediaWiki\Html\FormOptions;
 
@@ -23,3 +23,6 @@ interface SpecialRecentChangesPanelHook {
 	 */
 	public function onSpecialRecentChangesPanel( &$extraOpts, $opts );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( SpecialRecentChangesPanelHook::class, 'MediaWiki\\Hook\\SpecialRecentChangesPanelHook' );

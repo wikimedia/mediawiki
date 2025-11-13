@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Specials\Hook;
 
 use MediaWiki\Specials\SpecialMovePage;
 use MediaWiki\Title\Title;
@@ -25,3 +25,6 @@ interface SpecialMovepageAfterMoveHook {
 	 */
 	public function onSpecialMovepageAfterMove( $movePage, $oldTitle, $newTitle );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( SpecialMovepageAfterMoveHook::class, 'MediaWiki\\Hook\\SpecialMovepageAfterMoveHook' );

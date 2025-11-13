@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Specials\Hook;
 
 use MediaWiki\Specials\SpecialTrackingCategories;
 
@@ -27,3 +27,7 @@ interface SpecialTrackingCategories__preprocessHook {
 		$trackingCategories
 	);
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( SpecialTrackingCategories__preprocessHook::class,
+	'MediaWiki\\Hook\\SpecialTrackingCategories__preprocessHook' );

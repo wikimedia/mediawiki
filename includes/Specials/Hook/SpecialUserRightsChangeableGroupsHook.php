@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Specials\Hook;
 
 use MediaWiki\Permissions\Authority;
 use MediaWiki\User\UserIdentity;
@@ -42,3 +42,6 @@ interface SpecialUserRightsChangeableGroupsHook {
 		array &$restrictedGroups
 	): void;
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( SpecialUserRightsChangeableGroupsHook::class, 'MediaWiki\\Hook\\SpecialUserRightsChangeableGroupsHook' );

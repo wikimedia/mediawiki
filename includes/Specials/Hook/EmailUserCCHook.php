@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Specials\Hook;
 
 use MediaWiki\Mail\MailAddress;
 
@@ -25,3 +25,6 @@ interface EmailUserCCHook {
 	 */
 	public function onEmailUserCC( &$to, &$from, &$subject, &$text );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( EmailUserCCHook::class, 'MediaWiki\\Hook\\EmailUserCCHook' );

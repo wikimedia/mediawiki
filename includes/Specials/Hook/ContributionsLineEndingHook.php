@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Specials\Hook;
 
 use MediaWiki\Pager\ContributionsPager;
 use stdClass;
@@ -31,3 +31,6 @@ interface ContributionsLineEndingHook {
 		&$attribs
 	);
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( ContributionsLineEndingHook::class, 'MediaWiki\\Hook\\ContributionsLineEndingHook' );

@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Specials\Hook;
 
 use MediaWiki\Page\PageReference;
 
@@ -23,3 +23,6 @@ interface SpecialExportGetExtraPagesHook {
 	 */
 	public function onSpecialExportGetExtraPages( array $inputPages, array &$extraPages );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( SpecialExportGetExtraPagesHook::class, 'MediaWiki\\Hook\\SpecialExportGetExtraPagesHook' );

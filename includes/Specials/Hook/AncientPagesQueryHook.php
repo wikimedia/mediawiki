@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Specials\Hook;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.
@@ -22,3 +22,6 @@ interface AncientPagesQueryHook {
 	 */
 	public function onAncientPagesQuery( &$tables, &$conds, &$joinConds );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( AncientPagesQueryHook::class, 'MediaWiki\\Hook\\AncientPagesQueryHook' );

@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Specials\Hook;
 
 use ISearchResultSet;
 
@@ -24,3 +24,6 @@ interface SpecialSearchResultsHook {
 	 */
 	public function onSpecialSearchResults( $term, &$titleMatches, &$textMatches );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( SpecialSearchResultsHook::class, 'MediaWiki\\Hook\\SpecialSearchResultsHook' );

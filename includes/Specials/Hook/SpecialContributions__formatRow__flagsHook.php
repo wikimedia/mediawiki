@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Specials\Hook;
 
 use MediaWiki\Context\IContextSource;
 use stdClass;
@@ -28,3 +28,7 @@ interface SpecialContributions__formatRow__flagsHook {
 		&$flags
 	);
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( SpecialContributions__formatRow__flagsHook::class,
+	'MediaWiki\\Hook\\SpecialContributions__formatRow__flagsHook' );

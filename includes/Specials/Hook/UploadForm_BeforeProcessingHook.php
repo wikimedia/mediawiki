@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Specials\Hook;
 
 use MediaWiki\Specials\SpecialUpload;
 
@@ -27,3 +27,6 @@ interface UploadForm_BeforeProcessingHook {
 	 */
 	public function onUploadForm_BeforeProcessing( $upload );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( UploadForm_BeforeProcessingHook::class, 'MediaWiki\\Hook\\UploadForm_BeforeProcessingHook' );

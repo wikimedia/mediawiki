@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Specials\Hook;
 
 use MediaWiki\Title\Title;
 
@@ -29,3 +29,6 @@ interface SpecialSearchGoResultHook {
 	 */
 	public function onSpecialSearchGoResult( $term, $title, &$url );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( SpecialSearchGoResultHook::class, 'MediaWiki\\Hook\\SpecialSearchGoResultHook' );

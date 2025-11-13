@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Specials\Hook;
 
 use MediaWiki\Title\Title;
 
@@ -23,3 +23,6 @@ interface SpecialSearchCreateLinkHook {
 	 */
 	public function onSpecialSearchCreateLink( $t, &$params );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( SpecialSearchCreateLinkHook::class, 'MediaWiki\\Hook\\SpecialSearchCreateLinkHook' );

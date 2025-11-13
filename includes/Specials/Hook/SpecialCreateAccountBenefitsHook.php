@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Specials\Hook;
 
 use MediaWiki\HTMLForm\HTMLForm;
 
@@ -34,3 +34,6 @@ interface SpecialCreateAccountBenefitsHook {
 	public function onSpecialCreateAccountBenefits( ?string &$html, array $info, array &$options );
 
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( SpecialCreateAccountBenefitsHook::class, 'MediaWiki\\Hook\\SpecialCreateAccountBenefitsHook' );

@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Specials\Hook;
 
 use MediaWiki\Config\Config;
 
@@ -27,3 +27,6 @@ interface UploadForm_getInitialPageTextHook {
 	 */
 	public function onUploadForm_getInitialPageText( &$pageText, $msg, $config );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( UploadForm_getInitialPageTextHook::class, 'MediaWiki\\Hook\\UploadForm_getInitialPageTextHook' );

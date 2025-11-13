@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Specials\Hook;
 
 use MediaWiki\SpecialPage\ContributionsSpecialPage;
 use MediaWiki\User\User;
@@ -27,3 +27,7 @@ interface SpecialContributionsBeforeMainOutputHook {
 	 */
 	public function onSpecialContributionsBeforeMainOutput( $id, $user, $sp );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( SpecialContributionsBeforeMainOutputHook::class,
+	'MediaWiki\\Hook\\SpecialContributionsBeforeMainOutputHook' );

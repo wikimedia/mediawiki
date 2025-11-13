@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Specials\Hook;
 
 use MediaWiki\Context\IContextSource;
 
@@ -29,3 +29,6 @@ interface SpecialStatsAddExtraHook {
 	 */
 	public function onSpecialStatsAddExtra( &$extraStats, $context );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( SpecialStatsAddExtraHook::class, 'MediaWiki\\Hook\\SpecialStatsAddExtraHook' );

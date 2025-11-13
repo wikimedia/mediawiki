@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Specials\Hook;
 
 use MediaWiki\Pager\ContributionsPager;
 use stdClass;
@@ -34,3 +34,6 @@ interface DeletedContributionsLineEndingHook {
 		&$classes, &$attribs
 	);
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( DeletedContributionsLineEndingHook::class, 'MediaWiki\\Hook\\DeletedContributionsLineEndingHook' );

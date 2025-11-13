@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Specials\Hook;
 
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
@@ -27,3 +27,6 @@ interface FileUndeleteCompleteHook {
 	 */
 	public function onFileUndeleteComplete( $title, $fileVersions, $user, $reason );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( FileUndeleteCompleteHook::class, 'MediaWiki\\Hook\\FileUndeleteCompleteHook' );

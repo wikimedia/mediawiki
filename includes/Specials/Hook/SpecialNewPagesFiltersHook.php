@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Specials\Hook;
 
 use MediaWiki\Specials\SpecialNewPages;
 
@@ -25,3 +25,6 @@ interface SpecialNewPagesFiltersHook {
 	 */
 	public function onSpecialNewPagesFilters( $special, &$filters );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( SpecialNewPagesFiltersHook::class, 'MediaWiki\\Hook\\SpecialNewPagesFiltersHook' );

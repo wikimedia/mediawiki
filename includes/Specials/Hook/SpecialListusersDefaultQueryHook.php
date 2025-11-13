@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Specials\Hook;
 
 use MediaWiki\Pager\UsersPager;
 
@@ -23,3 +23,6 @@ interface SpecialListusersDefaultQueryHook {
 	 */
 	public function onSpecialListusersDefaultQuery( $pager, &$query );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( SpecialListusersDefaultQueryHook::class, 'MediaWiki\\Hook\\SpecialListusersDefaultQueryHook' );

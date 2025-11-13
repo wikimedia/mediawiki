@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Specials\Hook;
 
 use MediaWiki\Specials\SpecialWantedPages;
 
@@ -24,3 +24,6 @@ interface WantedPages__getQueryInfoHook {
 	 */
 	public function onWantedPages__getQueryInfo( $wantedPages, &$query );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( WantedPages__getQueryInfoHook::class, 'MediaWiki\\Hook\\WantedPages__getQueryInfoHook' );

@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Specials\Hook;
 
 use MediaWiki\Output\OutputPage;
 
@@ -23,3 +23,6 @@ interface LanguageSelectorHook {
 	 */
 	public function onLanguageSelector( $out, $cssClassName );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( LanguageSelectorHook::class, 'MediaWiki\\Hook\\LanguageSelectorHook' );

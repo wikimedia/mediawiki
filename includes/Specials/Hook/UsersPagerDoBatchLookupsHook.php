@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Specials\Hook;
 
 use Wikimedia\Rdbms\IReadableDatabase;
 
@@ -31,3 +31,6 @@ interface UsersPagerDoBatchLookupsHook {
 	 */
 	public function onUsersPagerDoBatchLookups( $dbr, $userIds, &$cache, &$groups );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( UsersPagerDoBatchLookupsHook::class, 'MediaWiki\\Hook\\UsersPagerDoBatchLookupsHook' );

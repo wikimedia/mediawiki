@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Specials\Hook;
 
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Specials\SpecialTrackingCategories;
@@ -28,3 +28,7 @@ interface SpecialTrackingCategories__generateCatLinkHook {
 		$catTitle, &$html
 	);
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( SpecialTrackingCategories__generateCatLinkHook::class,
+	'MediaWiki\\Hook\\SpecialTrackingCategories__generateCatLinkHook' );

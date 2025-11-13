@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Specials\Hook;
 
 use MediaWiki\Specials\SpecialUpload;
 
@@ -26,3 +26,6 @@ interface UploadForm_initialHook {
 	 */
 	public function onUploadForm_initial( $upload );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( UploadForm_initialHook::class, 'MediaWiki\\Hook\\UploadForm_initialHook' );

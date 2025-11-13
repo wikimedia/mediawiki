@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Specials\Hook;
 
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
@@ -32,3 +32,6 @@ interface SpecialWhatLinksHereQueryHook {
 		$queryBuilder
 	);
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( SpecialWhatLinksHereQueryHook::class, 'MediaWiki\\Hook\\SpecialWhatLinksHereQueryHook' );

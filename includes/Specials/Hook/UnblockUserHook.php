@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Specials\Hook;
 
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\User\User;
@@ -25,3 +25,6 @@ interface UnblockUserHook {
 	 */
 	public function onUnblockUser( $block, $user, &$reason );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( UnblockUserHook::class, 'MediaWiki\\Hook\\UnblockUserHook' );

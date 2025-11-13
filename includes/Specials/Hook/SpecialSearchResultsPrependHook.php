@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Specials\Hook;
 
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Specials\SpecialSearch;
@@ -28,3 +28,6 @@ interface SpecialSearchResultsPrependHook {
 	 */
 	public function onSpecialSearchResultsPrepend( $specialSearch, $output, $term );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( SpecialSearchResultsPrependHook::class, 'MediaWiki\\Hook\\SpecialSearchResultsPrependHook' );

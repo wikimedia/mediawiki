@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Specials\Hook;
 
 use MediaWiki\Title\Title;
 
@@ -25,3 +25,6 @@ interface SpecialSearchNogomatchHook {
 	 */
 	public function onSpecialSearchNogomatch( &$title );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( SpecialSearchNogomatchHook::class, 'MediaWiki\\Hook\\SpecialSearchNogomatchHook' );

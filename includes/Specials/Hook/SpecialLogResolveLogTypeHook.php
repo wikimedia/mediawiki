@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Specials\Hook;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.
@@ -27,3 +27,6 @@ interface SpecialLogResolveLogTypeHook {
 		string &$type
 	): void;
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( SpecialLogResolveLogTypeHook::class, 'MediaWiki\\Hook\\SpecialLogResolveLogTypeHook' );

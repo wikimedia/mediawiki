@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Specials\Hook;
 
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\User\User;
@@ -24,3 +24,6 @@ interface UnblockUserCompleteHook {
 	 */
 	public function onUnblockUserComplete( $block, $user );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( UnblockUserCompleteHook::class, 'MediaWiki\\Hook\\UnblockUserCompleteHook' );

@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Specials\Hook;
 
 use MediaWiki\SpecialPage\ContributionsSpecialPage;
 
@@ -26,3 +26,7 @@ interface SpecialContributions__getForm__filtersHook {
 	 */
 	public function onSpecialContributions__getForm__filters( $sp, &$filters );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( SpecialContributions__getForm__filtersHook::class,
+	'MediaWiki\\Hook\\SpecialContributions__getForm__filtersHook' );

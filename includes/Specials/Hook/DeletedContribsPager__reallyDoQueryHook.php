@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Specials\Hook;
 
 use MediaWiki\Pager\ContributionsPager;
 use stdClass;
@@ -32,3 +32,7 @@ interface DeletedContribsPager__reallyDoQueryHook {
 		$limit, $descending
 	);
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( DeletedContribsPager__reallyDoQueryHook::class,
+	'MediaWiki\\Hook\\DeletedContribsPager__reallyDoQueryHook' );

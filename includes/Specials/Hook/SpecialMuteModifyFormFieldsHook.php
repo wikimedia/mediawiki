@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Specials\Hook;
 
 use MediaWiki\User\User;
 
@@ -24,3 +24,6 @@ interface SpecialMuteModifyFormFieldsHook {
 	 */
 	public function onSpecialMuteModifyFormFields( $target, $user, &$fields );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( SpecialMuteModifyFormFieldsHook::class, 'MediaWiki\\Hook\\SpecialMuteModifyFormFieldsHook' );

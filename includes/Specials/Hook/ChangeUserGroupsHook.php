@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Specials\Hook;
 
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
@@ -27,3 +27,6 @@ interface ChangeUserGroupsHook {
 	 */
 	public function onChangeUserGroups( $performer, $user, &$add, &$remove );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( ChangeUserGroupsHook::class, 'MediaWiki\\Hook\\ChangeUserGroupsHook' );

@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Specials\Hook;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.
@@ -24,3 +24,6 @@ interface UploadFormSourceDescriptorsHook {
 		$selectedSourceType
 	);
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( UploadFormSourceDescriptorsHook::class, 'MediaWiki\\Hook\\UploadFormSourceDescriptorsHook' );
