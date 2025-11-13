@@ -213,13 +213,14 @@ class RollbackAction extends FormAction {
 			) {
 				/** @var RevisionRecord $current */
 				$current = $data['current-revision-record'];
+				$comment = $current->getComment()?->text;
 
-				if ( $current->getComment() != null ) {
+				if ( $comment !== null && $comment !== '' ) {
 					$this->getOutput()->addWikiMsg(
 						'editcomment',
 						Message::rawParam(
 							$this->commentFormatter
-								->format( $current->getComment()->text )
+								->format( $comment )
 						)
 					);
 				}
