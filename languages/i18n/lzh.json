@@ -618,7 +618,7 @@
 	"showhideselectedversions": "示／藏之擇",
 	"editundo": "悔",
 	"diff-empty": "（無異）",
-	"diff-multi-sameuser": "（多作未示之審有{{PLURAL:$1|$1次修訂}}）",
+	"diff-multi-sameuser": "（同一{{GENDER:$3|文士}}，間所易{{PLURAL:$1|$1筆}}，皆略之）",
 	"diff-multi-manyusers": "（$2多作未示之審有$1）",
 	"searchresults": "得尋",
 	"searchresults-title": "「$1」得尋",

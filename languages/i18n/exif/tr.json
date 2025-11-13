@@ -28,7 +28,8 @@
 			"ToprakM",
 			"Uğur Başak",
 			"Vito Genovese",
-			"Vugar 1981"
+			"Vugar 1981",
+			"Eleman"
 		]
 	},
 	"exif-imagewidth": "Genişlik",
@@ -428,5 +429,26 @@
 	"exif-croppedarealeftpixels": "Panorama sol kesim",
 	"exif-croppedareatoppixels": "Panorama üst kesim",
 	"exif-initialcameradolly": "İlk kamera bebek arabası",
-	"exif-stitchingsoftware": "Dikiş yazılımı"
+	"exif-stitchingsoftware": "Dikiş yazılımı",
+	"exif-digitalsourcetype": "Dijital medyanın kaynağı",
+	"exif-digitalsourcetype-digitalcapture": "Dijital kamera veya kaydedici",
+	"exif-digitalsourcetype-computationalcapture": "Dijital kamera veya kaydedici (birden fazla karenin birleştirilmesi)",
+	"exif-digitalsourcetype-negativefilm": "Negatif filmden dijitalleştirilmiş",
+	"exif-digitalsourcetype-positivefilm": "Pozitif filmden dijitalleştirilmiş",
+	"exif-digitalsourcetype-print": "Film dışı bir ortamdan dijitalleştirilmiş",
+	"exif-digitalsourcetype-minorhumanedits": "Küçük manuel düzenlemeler içeren orijinal medya",
+	"exif-digitalsourcetype-humanedits": "Manuel düzenlemeler içeren medya",
+	"exif-digitalsourcetype-compositewithtrainedalgorithmicmedia": "Üretken yapay zeka kullanılarak düzenlenmiş",
+	"exif-digitalsourcetype-algorithmicallyenhanced": "Algoritmik olarak değiştirilmiş medya",
+	"exif-digitalsourcetype-softwareimage": "Yazılım tarafından oluşturulmuş",
+	"exif-digitalsourcetype-digitalart": "Dijital araçlar kullanan bir insan tarafından oluşturulmuş",
+	"exif-digitalsourcetype-digitalcreation": "Yapay zeka dışı araçlar kullanan bir insan tarafından oluşturulmuş",
+	"exif-digitalsourcetype-datadrivenmedia": "Verilerin insan programlaması veya yaratıcılığı yoluyla dijital medyada temsili",
+	"exif-digitalsourcetype-trainedalgorithmicmedia": "Üretken yapay zeka kullanılarak oluşturulmuş",
+	"exif-digitalsourcetype-algorithmicmedia": "Tümüyle yapay zeka dışı bir algoritma tarafından oluşturulmuş medya",
+	"exif-digitalsourcetype-screencapture": "Ekran görüntüsü",
+	"exif-digitalsourcetype-virtualrecording": "Üretken Yapay Zeka ve/veya yakalanan öğelere dayalı sanal etkinliğin canlı kaydı",
+	"exif-digitalsourcetype-composite": "Herhangi biri üretken yapay zeka olabilen veya olmayabilen birkaç öğenin karışımı veya bileşimi",
+	"exif-digitalsourcetype-compositecapture": "Hepsi de gerçek hayattan kesitler sunan birkaç öğenin karışımı veya bileşimi",
+	"exif-digitalsourcetype-compositesynthetic": "En az biri üretken yapay zeka olan birkaç öğenin karışımı veya bileşimi"
 }

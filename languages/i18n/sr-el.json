@@ -3038,7 +3038,6 @@
 	"mcrundo-changed": "Stranica je promenjena dok ste gledali razliku. Pregledajte novu promenu.",
 	"mcrundo-parse-failed": "Raščlanjivanje novih izmena nije uspelo: $1",
 	"semicolon-separator": ";&#32;",
-	"comma-separator": ",&#32;",
 	"colon-separator": ":&#32;",
 	"ellipsis": "…",
 	"percent": "$1%",

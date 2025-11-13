@@ -2,12 +2,13 @@
 	"@metadata": {
 		"authors": [
 			"Abdeaitali",
-			"Ayoubbouamri"
+			"Ayoubbouamri",
+			"Ideophagous"
 		]
 	},
 	"botpasswords": "كلمات مرور البوت",
 	"botpasswords-disabled": "موضپاصات لبوت ماخدامينش",
-	"botpasswords-existing": "موضپباصات لبوت لي كاينة",
+	"botpasswords-existing": "موضپاصات د لبوت لي كاينين",
 	"botpasswords-createnew": "ڭاد موضپاص جديد ديال لبوت",
 	"botpasswords-label-appid": "سميت البوت:",
 	"botpasswords-label-create": "أنشئ",

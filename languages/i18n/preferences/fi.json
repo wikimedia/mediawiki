@@ -139,7 +139,7 @@
 	"localtime": "Paikallinen aika:",
 	"timezonelegend": "Aikavyöhyke:",
 	"timezoneuseserverdefault": "Käytä oletusta ($1)",
-	"timezoneuseoffset": "Muu (aikaero koordinoituun yleisaikaan)",
+	"timezoneuseoffset": "Muu (aikaero UTC-aikaan)",
 	"timezone-useoffset-placeholder": "Esimerkkiarvoja: \"-07:00\" tai \"01:00\"",
 	"timezone-invalid": "Virheellinen aikavyöhyke tai aikaero.",
 	"guesstimezone": "Utele selaimelta",

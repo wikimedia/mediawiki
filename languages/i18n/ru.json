@@ -199,7 +199,8 @@
 			"Умар",
 			"Ядерный Трамвай",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"EneshTranslates"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|1=Категория|Категории}}",
@@ -889,6 +890,8 @@
 	"unstrip-size-category-desc": "Эта страница превышает предел размера для unstrip.",
 	"bad-language-code-category": "Страницы с неверными языковыми кодами",
 	"bad-language-code-category-desc": "Страница содержит <code><nowiki>{{#dir}}</nowiki></code> с неверным языковым кодом.",
+	"bad-double-underscore-category": "Страницы с недопустимыми переключателями поведения",
+	"bad-double-underscore-category-desc": "Страница содержит некорректный локализованный [[mw:Special:MyLanguage/Help:Magic_words#Behavior_switches|переключатель поведения]]. Допустимые локализации начинаются и заканчиваются двойными подчёркиваниями.",
 	"double-px-category": "Страницы, размер изображений на которых содержит лишний px",
 	"double-px-category-desc": "Страница содержит изображение, в размере которых есть лишний суффикс <code>px</code>, например <code>100pxpx</code>.",
 	"undo-success": "Правка может быть отменена.\nПожалуйста, просмотрите сравнение версий ниже, чтобы убедиться, что это нужная вам правка, и запишите страницу ниже, чтобы отменить правку.",
@@ -4175,13 +4178,6 @@
 	"newpages-showhide-patrolled": "$1 проверенные правки",
 	"newpages-showhide-redirect": "$1 перенаправления",
 	"newpages-showhide-registered": "$1 зарегистрированных",
-	"restsandbox": "REST-песочница",
-	"restsandbox-text": "Используйте эту страницу для экспериментов с REST API MediaWiki. Вызовы API, сделанные через интерфейс песочницы, будут взаимодействовать с активным вики-контентом и могут изменить вики. Более подробную информацию об использовании API см. в [https://www.mediawiki.org/wiki/Special:MyLanguage/API:REST_API документации].",
-	"restsandbox-disclaimer": "Хотите оставить отзыв об этой песочнице? Пожалуйста, оставьте его [https://www.mediawiki.org/wiki/MediaWiki_Interfaces_Team/Feature_Feedback/REST_Sandbox здесь].<br /> Примечание: пользовательский интерфейс и элементы навигации песочницы пока не поддерживают перевод.<br />",
-	"restsandbox-select-api": "Выберите API для исследования.",
-	"restsandbox-no-specs-configured": "Никакие REST API не были настроены для исследования. Используйте настройку RestSandboxSpecs.",
-	"restsandbox-no-such-api": "Данный параметр API не поддерживается: $1",
-	"restsandbox-jsonly": "Для просмотра спецификации REST требуется JavaScript.",
 	"blockedtext-made-by": "Блокировка произведена администратором $1.",
 	"blockedtext-reason-comment": "Причина блокировки: <em>$1</em>",
 	"blockedtext-start-time": "Начало блокировки: $1",

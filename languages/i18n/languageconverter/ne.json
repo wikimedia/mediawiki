@@ -3,10 +3,11 @@
 		"authors": [
 			"Nirjal stha",
 			"RajeshPandey",
-			"पर्वत सुबेदी"
+			"पर्वत सुबेदी",
+			"बडा काजी"
 		]
 	},
 	"variantname-zh": "चिनियाँ",
-	"converter-manual-rule-error": "म्यानुअल भाषा अनुवाद सिध्दान्तमा समस्या देखियो",
-	"language-converter-depth-warning": "भाषा परिवर्तनकर्ता गहिराई  ($1) नाघेको छ"
+	"converter-manual-rule-error": "म्यानुअल भाषा रूपान्तरण नियममा त्रुटि पत्ता लाग्यो",
+	"language-converter-depth-warning": "भाषा रूपान्तरण गहिराई सीमा नाघ्यो ($1)"
 }
