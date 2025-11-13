@@ -2287,7 +2287,7 @@ describe( '/transform/ and related endpoints', () => {
 				client.req
 					.post( endpointPrefix + '/v1/transform/pagebundle/to/pagebundle/' )
 					.set( 'Content-Language', 'sr' )
-					.set( 'Accept-Language', 'sr-el' )
+					.set( 'Accept-Language', 'sr-el, sr;q=0.9, en;q=0.2' )
 					.send( {
 						updates: {
 							variant: { /* target implicit from accept-language */}
