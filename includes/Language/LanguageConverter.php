@@ -912,8 +912,8 @@ abstract class LanguageConverter implements ILanguageConverter {
 				case '}-':
 					// Apply the rule
 					$startPos += 2;
-					$rule = new ConverterRule( $inner, $this );
-					$rule->parse( $variant );
+					$rule = new ConverterRule( $this );
+					$rule->parse( $inner, $variant );
 					$this->applyManualConv( $rule );
 					return $rule->getDisplay();
 				default:
