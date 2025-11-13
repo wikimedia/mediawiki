@@ -83,23 +83,6 @@ class RestrictedUserGroupChecker {
 	}
 
 	/**
-	 * Checks whether the performer can remove the target from the given restricted group.
-	 *
-	 * Note: This method only tests against the restrictions defined for the group. It doesn't take into account
-	 * other permission checks that may apply (e.g., whether the performer has the right to edit user groups at all).
-	 * Note: Currently, it's unsupported to define restrictions for removing users from groups, so this method
-	 * always returns true.
-	 */
-	public function canPerformerRemoveTargetFromGroup(
-		Authority $performer,
-		UserIdentity $target,
-		string $groupName
-	): bool {
-		// This was beyond the scope of T406544, so we assume that restricted groups can always be removed
-		return true;
-	}
-
-	/**
 	 * Returns true if the performer can ignore the conditions for adding or removing users to/from the given group.
 	 * This is the case if the group allows ignoring restrictions and the performer has the 'ignore-restricted-groups'
 	 * permission.

@@ -225,26 +225,4 @@ class RestrictedUserGroupCheckerTest extends MediaWikiUnitTestCase {
 			],
 		];
 	}
-
-	public function testPerformerCanRemoveTargetFromGroup() {
-		// Test in a most restrictive scenario to ensure nothing is really checked for removing the group.
-		$restrictions = [
-			'sysop' => [
-				'performerConditions' => [ self::CONDITION ],
-			]
-		];
-		$options = $this->createOptions( $restrictions );
-
-		$conditionCheckerMock = $this->createMock( UserRequirementsConditionChecker::class );
-		$conditionCheckerMock->method( 'recursivelyCheckCondition' )
-			->willReturn( false );
-
-		$groupChecker = new RestrictedUserGroupChecker( $options, $conditionCheckerMock );
-
-		$performer = $this->mockAnonAuthorityWithPermissions( [ 'ignore-restricted-groups' ] );
-		$target = UserIdentityValue::newAnonymous( '127.0.0.1' );
-		$result = $groupChecker->canPerformerRemoveTargetFromGroup( $performer, $target, 'sysop' );
-
-		$this->assertTrue( $result );
-	}
 }
