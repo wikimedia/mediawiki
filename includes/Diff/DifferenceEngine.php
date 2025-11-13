@@ -1257,10 +1257,12 @@ class DifferenceEngine extends ContextSource {
 					$wikiPage,
 					$parserOptions,
 					$this->mNewRevisionRecord,
-					// we already checked
-					ParserOutputAccess::OPT_NO_AUDIENCE_CHECK |
-					// Update cascading protection
-					ParserOutputAccess::OPT_LINKS_UPDATE
+					[
+						// we already checked
+						ParserOutputAccess::OPT_NO_AUDIENCE_CHECK => true,
+						// Update cascading protection
+						ParserOutputAccess::OPT_LINKS_UPDATE => true,
+					],
 				);
 				if ( $status->isOK() ) {
 					$parserOutput = $status->getValue();

@@ -1342,7 +1342,7 @@ abstract class ContentHandler {
 			$page,
 			$parserOptions,
 			$revision,
-			ParserOutputAccess::OPT_NO_UPDATE_CACHE
+			[ ParserOutputAccess::OPT_NO_UPDATE_CACHE => true ],
 		)->getValue();
 	}
 

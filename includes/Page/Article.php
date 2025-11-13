@@ -771,7 +771,10 @@ class Article implements Page {
 					$this->getPage(),
 					$parserOptions,
 					$rev,
-					ParserOutputAccess::OPT_NO_AUDIENCE_CHECK // we already checked in fetchRevisionRecord
+					[
+						 // we already checked in fetchRevisionRecord
+						ParserOutputAccess::OPT_NO_AUDIENCE_CHECK => true,
+					],
 				);
 
 				if ( $pOutput ) {
