@@ -706,6 +706,26 @@ class Article implements Page {
 			return false; // skip all further output to OutputPage
 		}
 
+		// Augment the parser options
+		$skin = $outputPage->getSkin();
+		$skinOptions = $skin->getOptions();
+		$textOptions += [
+			// T371022
+			'allowClone' => false,
+			'skin' => $skin,
+			'injectTOC' => $skinOptions['toc'],
+		];
+		foreach ( $textOptions as $key => $value ) {
+			if ( $key === 'allowClone' ) {
+				continue;
+			}
+			if ( !in_array( $key, ParserOptions::$postprocOptions, true ) ) {
+				wfDeprecated( __METHOD__ . " with unknown textOption $key", "1.46" );
+			} else {
+				$parserOptions->setOption( $key, $value );
+			}
+		}
+
 		// Try the latest parser cache
 		// NOTE: try latest-revision cache first to avoid loading revision.
 		if ( $useParserCache && !$oldid ) {
@@ -713,11 +733,13 @@ class Article implements Page {
 				$this->getPage(),
 				$parserOptions,
 				null,
-				ParserOutputAccess::OPT_NO_AUDIENCE_CHECK // we already checked
+				[
+					// we already checked
+					ParserOutputAccess::OPT_NO_AUDIENCE_CHECK => true,
+				],
 			);
 
 			if ( $pOutput ) {
-				$skin = $outputPage->getSkin();
 				$this->postProcessOutput( $pOutput, $parserOptions, $textOptions, $skin );
 				$this->doOutputFromPostProcessedParserCache( $pOutput, $outputPage );
 				$this->doOutputMetaData( $pOutput, $outputPage );
@@ -754,7 +776,6 @@ class Article implements Page {
 				);
 
 				if ( $pOutput ) {
-					$skin = $outputPage->getSkin();
 					$this->postProcessOutput( $pOutput, $parserOptions, $textOptions, $skin );
 					$this->doOutputFromPostProcessedParserCache( $pOutput, $outputPage );
 					$this->doOutputMetaData( $pOutput, $outputPage );

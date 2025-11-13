@@ -10,9 +10,11 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Parser\ParserOptions;
+use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Skin\Skin;
 use MediaWiki\Tests\Mocks\Content\DummyContentForTesting;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\Title;
@@ -23,6 +25,7 @@ use MediaWiki\User\UserIdentityValue;
 use MediaWikiLangTestCase;
 use stdClass;
 use Wikimedia\ScopedCallback;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers \MediaWiki\Parser\ParserOptions
@@ -171,11 +174,17 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 	 * @param bool $expect Expected value
 	 * @param array $options Options to set
 	 * @param array|null $usedOptions
+	 * @param bool $postproc whether the options should include postprocessing
 	 */
-	public function testIsSafeToCache( bool $expect, array $options, ?array $usedOptions = null ) {
+	public function testIsSafeToCache( bool $expect, array $options, ?array $usedOptions = null, $postproc = false ) {
 		$popt = ParserOptions::newFromAnon();
+		$skin = $this->getMockBuilder( Skin::class )->getMock();
 		foreach ( $options as $name => $value ) {
 			$popt->setOption( $name, $value );
+		}
+		$popt->setOption( 'skin', $skin );
+		if ( $postproc ) {
+			$popt->enablePostproc();
 		}
 		$this->assertSame( $expect, $popt->isSafeToCache( $usedOptions ) );
 	}
@@ -216,6 +225,26 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 			'Callback not default' => [ true, [
 				'speculativeRevIdCallback' => $seven,
 			] ],
+			'Post-processing options are ignored by default' => [ true,
+				[ 'wrapperDivClass' => 'my-test-wrapper-class' ],
+				[ 'wrapperDivClass' ],
+				false
+			],
+			'Post-processing options are ok if nothing used' => [ true,
+				[ 'wrapperDivClass' => 'my-test-wrapper-class' ],
+				[],
+				true
+			],
+			'Post-processing options are not ok if not default' => [ false,
+				[ 'wrapperDivClass' => 'my-test-wrapper-class' ],
+				[ 'wrapperDivClass' ],
+				true
+			],
+			'Post-processing options are ok if default' => [ true,
+				[ 'wrapperDivClass' => 'mw-parser-output' ],
+				[ 'wrapperDivClass' ],
+				true
+			],
 		];
 	}
 
@@ -224,24 +253,32 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 	 * @param array $usedOptions
 	 * @param string $expect Expected value
 	 * @param array $options Options to set
+	 * @param bool $postproc whether the options should include postprocessing
 	 * @param array $globals Globals to set
 	 * @param callable|null $hookFunc PageRenderingHash hook function
 	 */
 	public function testOptionsHash(
-		$usedOptions, $expect, $options, $globals = [], $hookFunc = null
+		$usedOptions, $expect, $options, $postproc = false, $globals = [], $hookFunc = null
 	) {
 		$this->overrideConfigValues( $globals );
 		$this->setTemporaryHook( 'PageRenderingHash', $hookFunc ?: HookContainer::NOOP );
 
 		$popt = ParserOptions::newFromAnon();
+		$skin = $this->getMockBuilder( Skin::class )->getMock();
+		$skin->method( 'getSkinName' )->willReturn( 'testskin' );
+		$options[ 'skin' ] = $skin;
 		foreach ( $options as $name => $value ) {
 			$popt->setOption( $name, $value );
+		}
+		if ( $postproc ) {
+			$popt->enablePostproc();
+			$usedOptions[] = 'postproc';
 		}
 		$this->assertSame( $expect, $popt->optionsHash( $usedOptions ) );
 	}
 
 	public static function provideOptionsHash() {
-		$used = [ 'thumbsize', 'printable' ];
+		$used = [ 'thumbsize', 'printable', 'skin' ];
 
 		$allUsableOptions = array_diff(
 			ParserOptions::allCacheVaryingOptions(),
@@ -266,6 +303,26 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 				[],
 				'canonical!wgRenderHashAppend!onPageRenderingHash',
 				[],
+				false,
+				[ MainConfigNames::RenderHashAppend => '!wgRenderHashAppend' ],
+				[ self::class, 'onPageRenderingHash' ],
+			],
+			'Canonical options, postproc, nothing used' => [ [], 'postproc=1', [], true ],
+			'Canonical options, postproc, used some options' => [ $used, 'postproc=1!skin=testskin', [], true ],
+			'Used some options, postproc, non-default values' => [
+				$used,
+				'postproc=1!printable=1!skin=testskin!thumbsize=200',
+				[
+					'thumbsize' => 200,
+					'printable' => true,
+				],
+				true
+			],
+			'Canonical options, nothing used, but with postproc, hooks and $wgRenderHashAppend' => [
+				[],
+				'postproc=1!wgRenderHashAppend!onPageRenderingHash',
+				[],
+				true,
 				[ MainConfigNames::RenderHashAppend => '!wgRenderHashAppend' ],
 				[ self::class, 'onPageRenderingHash' ],
 			],
@@ -417,15 +474,31 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 			$this->getServiceContainer()->getLanguageFactory()->getLanguage( 'zh' )
 		);
 		$this->assertFalse( $cOpts->matchesForCacheKey( $uOpts ) );
+
+		$uOpts = ParserOptions::newFromAnon();
+		$opts2 = ParserOptions::newFromAnon();
+		$uOpts->setOption( 'injectTOC', false );
+		$this->assertTrue( $uOpts->matchesForCacheKey( $opts2 ) );
+		$uOpts->enablePostproc();
+		$this->assertFalse( $uOpts->matchesForCacheKey( $opts2 ) );
+		$opts2->enablePostproc();
+		$this->assertFalse( $uOpts->matchesForCacheKey( $opts2 ) );
+		$opts2->setOption( 'injectTOC', false );
+		$this->assertTrue( $uOpts->matchesForCacheKey( $opts2 ) );
 	}
 
 	public function testAllCacheVaryingOptions() {
 		$this->setTemporaryHook( 'ParserOptionsRegister', HookContainer::NOOP );
 		$this->assertSame( [
 			'collapsibleSections',
-			'dateformat', 'printable', 'suppressSectionEditLinks',
+			'dateformat', 'postproc', 'printable', 'suppressSectionEditLinks',
 			'thumbsize', 'useParsoid', 'userlang',
-		], ParserOptions::allCacheVaryingOptions() );
+		], array_values( ParserOptions::allCacheVaryingOptions() ) );
+		$this->assertSame( [
+			'collapsibleSections',
+			'dateformat', 'injectTOC', 'postproc', 'printable', 'skin', 'suppressSectionEditLinks',
+			'thumbsize', 'useParsoid', 'userlang',
+		], array_values( ParserOptions::allCacheVaryingOptions( true ) ) );
 
 		ParserOptions::clearStaticCache();
 
@@ -442,9 +515,9 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 		} );
 		$this->assertSame( [
 			'collapsibleSections',
-			'dateformat', 'foo', 'printable', 'suppressSectionEditLinks',
+			'dateformat', 'foo', 'postproc', 'printable', 'suppressSectionEditLinks',
 			'thumbsize', 'useParsoid', 'userlang',
-		], ParserOptions::allCacheVaryingOptions() );
+		], array_values( ParserOptions::allCacheVaryingOptions() ) );
 	}
 
 	public function testGetSpeculativeRevid() {
@@ -544,5 +617,18 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 
 		$options->setCollapsibleSections();
 		$this->assertTrue( $options->getCollapsibleSections() );
+	}
+
+	public function testPostprocRegistration() {
+		$options = TestingAccessWrapper::newFromObject( ParserOptions::newFromAnon() );
+		$po = new ParserOutput( 'plop' );
+		$options->registerWatcher( [ $po, 'recordOption' ] );
+		$this->assertEquals( [], $po->getUsedOptions() );
+		$options->shouldIncludePostproc();
+		$this->assertEquals( [], $po->getUsedOptions() );
+		$options->setOption( 'postproc', true );
+		$this->assertEquals( [], $po->getUsedOptions() );
+		$options->enablePostproc();
+		$this->assertEquals( [ 'postproc' ], $po->getUsedOptions() );
 	}
 }

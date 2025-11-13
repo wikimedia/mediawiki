@@ -22,6 +22,7 @@ use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\PageRecord;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Skin\Skin;
 use MediaWiki\StubObject\StubObject;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
@@ -107,6 +108,24 @@ class ParserOptions {
 		'useParsoid' => true,
 		'suppressSectionEditLinks' => true,
 		'collapsibleSections' => true,
+		'postproc' => true,
+		'skin' => true,
+		'injectTOC' => true
+	];
+
+	/**
+	 * List of "postprocessing options", excluded from most ParserOption
+	 * operations by default.
+	 * @var list<string>
+	 * @internal
+	 */
+	public static array $postprocOptions = [
+		'skin',
+		'injectTOC',
+		'includeDebugInfo',
+		'enableSectionEditLinks',
+		'wrapperDivClass',
+		'deduplicateStyles',
 	];
 
 	/**
@@ -1292,6 +1311,15 @@ class ParserOptions {
 				'speculativePageIdCallback' => null,
 				'speculativePageId' => null,
 				'useParsoid' => false,
+				'postproc' => false,
+				// postproc options - if 'postproc' above is false, these are ignored
+				'skin' => null,
+				'allowTOC' => true,
+				'injectTOC' => true,
+				'includeDebugInfo' => true,
+				'enableSectionEditLinks' => true,
+				'wrapperDivClass' => 'mw-parser-output',
+				'deduplicateStyles' => true,
 			];
 
 			self::$cacheVaryingOptionsHash = self::$initialCacheVaryingOptionsHash;
@@ -1428,7 +1456,7 @@ class ParserOptions {
 	 * @since 1.33
 	 */
 	public function matchesForCacheKey( ParserOptions $other ) {
-		foreach ( self::allCacheVaryingOptions() as $option ) {
+		foreach ( self::allCacheVaryingOptions( $this->shouldIncludePostproc() ) as $option ) {
 			// Populate any lazy options
 			$this->lazyLoadOption( $option );
 			$other->lazyLoadOption( $option );
@@ -1474,10 +1502,16 @@ class ParserOptions {
 	/**
 	 * Return all option keys that vary the options hash
 	 * @since 1.30
-	 * @return string[]
+	 * @param bool $includePostproc When false (the default) removes all
+	 *  options from self::$postprocOptions from the return value
+	 * @return list<string>
 	 */
-	public static function allCacheVaryingOptions() {
-		return array_keys( array_filter( self::getCacheVaryingOptionsHash() ) );
+	public static function allCacheVaryingOptions( bool $includePostproc = false ) {
+		$result = array_keys( array_filter( self::getCacheVaryingOptionsHash() ) );
+		if ( !$includePostproc ) {
+			$result = array_diff( $result, self::$postprocOptions );
+		}
+		return $result;
 	}
 
 	/**
@@ -1494,6 +1528,8 @@ class ParserOptions {
 			return '';
 		} elseif ( $value instanceof Language ) {
 			return $value->getCode();
+		} elseif ( $value instanceof Skin ) {
+			return $value->getSkinName();
 		} elseif ( is_array( $value ) ) {
 			return '[' . implode( ',', array_map( $this->optionToString( ... ), $value ) ) . ']';
 		} else {
@@ -1516,7 +1552,7 @@ class ParserOptions {
 	public function optionsHash( $forOptions, $title = null ) {
 		$renderHashAppend = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::RenderHashAppend );
 
-		$inCacheKey = self::allCacheVaryingOptions();
+		$inCacheKey = self::allCacheVaryingOptions( $this->shouldIncludePostproc() );
 
 		// Resolve any lazy options
 		$lazyOpts = array_intersect( $forOptions,
@@ -1587,6 +1623,13 @@ class ParserOptions {
 		$defaults = self::getDefaults();
 		$inCacheKey = self::getCacheVaryingOptionsHash();
 		$usedOptions ??= array_keys( $this->options );
+		// TODO for now this will do the job. But we might eventually want to be more defensive here - if you're
+		// passing $usedOptions and it contains postproc options and you're setting includePostproc to false,
+		// something might be fishy. This wouldn't apply to the fallback $this->options, though. And maybe the
+		// point will become moot if we get rid of $includePostproc one way or another.
+		if ( !$this->shouldIncludePostproc() ) {
+			$usedOptions = array_diff( $usedOptions, self::$postprocOptions );
+		}
 		foreach ( $usedOptions as $option ) {
 			if ( empty( $inCacheKey[$option] ) && empty( self::$callbacks[$option] ) ) {
 				$v = $this->optionToString( $this->options[$option] ?? null );
@@ -1692,6 +1735,41 @@ class ParserOptions {
 	 */
 	public function setRenderReason( string $renderReason ): void {
 		$this->renderReason = $renderReason;
+	}
+
+	/**
+	 * Returns usage of postprocessing (and splits the cache accordingly)
+	 * @since 1.46
+	 * @unstable
+	 * @see shouldIncludePostproc for a non-cache-splitting alternative
+	 */
+	public function getPostproc(): bool {
+		return $this->getOption( 'postproc' );
+	}
+
+	/**
+	 * Indicates that these options should apply post-processing options, and ensures that the cache is split
+	 * accordingly.
+	 * @since 1.46
+	 * @unstable
+	 * @see setPostProc for a non-cache-splitting alternative
+	 */
+	public function enablePostproc(): void {
+		$this->setOption( 'postproc', true );
+		// make the option part of the used options, explicitly
+		$this->getOption( 'postproc' );
+	}
+
+	/**
+	 * Check if these options should apply post-processing.
+	 * Note that this bypasses the storage in used options (allowing for a check that doesn't touch the cache
+	 * key to be able to manipulate other options if needed)
+	 * @since 1.45
+	 * @unstable
+	 * @see getPostProc for a cache-splitting alternative
+	 */
+	private function shouldIncludePostproc(): bool {
+		return $this->options[ 'postproc' ];
 	}
 }
 
