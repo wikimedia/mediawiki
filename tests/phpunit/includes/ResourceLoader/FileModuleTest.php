@@ -8,6 +8,8 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\ResourceLoader\FileModule;
 use MediaWiki\ResourceLoader\FilePath;
+use MediaWiki\ResourceLoader\LessVarFileModule;
+use MediaWiki\ResourceLoader\MessageBlobStore;
 use MediaWiki\ResourceLoader\ResourceLoader;
 use MediaWiki\Skin\SkinFactory;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
@@ -981,6 +983,65 @@ class FileModuleTest extends ResourceLoaderTestCase {
 			[ 'resources/mymodule/pink.less' ],
 			$module->getFileDependencies( $context )
 		);
+	}
+
+	public function testGetMessagesOverride() {
+		$context = $this->getResourceLoaderContext();
+
+		$msgBlobStore = $this->createMock( MessageBlobStore::class );
+		$msgBlobStore->method( 'getBlob' )->willReturn( '{"test-message":"Hello",' .
+			'"test-world":"World"}' );
+		$context->getResourceLoader()->setMessageBlobStore( $msgBlobStore );
+
+		$options = [
+			'messages' => [ 'test-hello' ]
+		];
+
+		$module = new class( $options ) extends FileModule {
+			public function __construct( $options = [] ) {
+				parent::__construct( $options );
+			}
+
+			public function getMessages() {
+				$messages = parent::getMessages();
+				$messages[] = 'test-world';
+				return $messages;
+			}
+		};
+		$module->setName( 'testing' );
+
+		$this->assertEquals( '{"test-message":"Hello","test-world":"World"}',
+			$module->getModuleContent( $context )['messagesBlob'] );
+	}
+
+	public function testGetMessagesOverrideWithLessMessages() {
+		$context = $this->getResourceLoaderContext();
+
+		$msgBlobStore = $this->createMock( MessageBlobStore::class );
+		$msgBlobStore->method( 'getBlob' )->willReturn( '{"test-hello":"Hello",' .
+			'"test-world":"World","parentheses-start":"{","parentheses-end":"}"}' );
+		$context->getResourceLoader()->setMessageBlobStore( $msgBlobStore );
+
+		$options = [
+			'messages' => [ 'test-hello', 'parentheses-start', 'parentheses-end' ],
+		];
+		$module = new class( $options ) extends LessVarFileModule {
+			public function __construct( $options = [] ) {
+				parent::__construct( $options );
+			}
+
+			public function getMessages() {
+				$messages = parent::getMessages();
+				$messages[] = 'test-world';
+				return $messages;
+			}
+
+		};
+		$module->setName( 'testing-two' );
+
+		// Known issue: LessVarFileModule discards extended getMessages, e.g. "test-world"
+		$this->assertEquals( '{"test-hello":"Hello",' .
+			'"parentheses-start":"{","parentheses-end":"}"}', $module->getModuleContent( $context )['messagesBlob'] );
 	}
 
 	public function newModuleRequest( $moduleInfo, $context ) {
