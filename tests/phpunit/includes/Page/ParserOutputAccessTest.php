@@ -345,6 +345,19 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 		$this->setTemporaryHook( 'OpportunisticLinksUpdate', $opportunisticUpdateHook );
 	}
 
+	public function testNormalizeOptions() {
+		/** @var ParserOutputAccess $access */
+		$access = TestingAccessWrapper::newFromClass( ParserOutputAccess::class );
+
+		$normalized = $access->normalizeOptions( [ ParserOutputAccess::OPT_NO_CACHE => true ] );
+		$this->assertTrue( $normalized[ParserOutputAccess::OPT_NO_CHECK_CACHE] );
+		$this->assertTrue( $normalized[ParserOutputAccess::OPT_NO_UPDATE_CACHE] );
+
+		$normalized = $access->normalizeOptions( [ ParserOutputAccess::OPT_NO_CACHE => false ] );
+		$this->assertFalse( $normalized[ParserOutputAccess::OPT_NO_CHECK_CACHE] );
+		$this->assertFalse( $normalized[ParserOutputAccess::OPT_NO_UPDATE_CACHE] );
+	}
+
 	/**
 	 * Tests that we can get rendered output for the latest revision.
 	 */
@@ -1535,14 +1548,8 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	private static function arrayContainsSubstring( string $prefix, array $array ): bool {
-		foreach ( $array as $value ) {
-			if ( strpos( $value, $prefix ) !== false ) {
-				return true;
-			}
-		}
-
-		return false;
+	private static function arrayContainsSubstring( string $needle, array $array ): bool {
+		return array_any( $array, static fn ( $s ) => str_contains( $s, $needle ) );
 	}
 
 }

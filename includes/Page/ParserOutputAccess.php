@@ -196,8 +196,6 @@ class ParserOutputAccess implements LoggerAwareInterface {
 	 * If the input is an array, any integer key that has multiple bits set will
 	 * be split into separate keys for each bit. String keys remain unchanged.
 	 *
-	 * This method supports up to 32 bits.
-	 *
 	 * @param int|array $options
 	 *
 	 * @return array An associative array with one key for each bit,
@@ -216,9 +214,9 @@ class ParserOutputAccess implements LoggerAwareInterface {
 
 			// Collect all bits from array keys, in case one of the keys
 			// sets multiple bits.
-			foreach ( $options as $key => $value ) {
-				if ( is_int( $key ) ) {
-					$bits |= $key;
+			foreach ( $options as $opt => $enabled ) {
+				if ( is_int( $opt ) && $enabled === true ) {
+					$bits |= $opt;
 				}
 			}
 		} else {
@@ -226,10 +224,9 @@ class ParserOutputAccess implements LoggerAwareInterface {
 			$options = [];
 		}
 
-		$b = 1;
-		for ( $i = 0; $i < 32; $i++ ) {
-			$options[$b] = ( $bits & $b ) > 0;
-			$b <<= 1;
+		// From the (numerically) smallest to the largest option that can possibly exist
+		for ( $b = self::OPT_NO_CHECK_CACHE; $b <= self::OPT_IGNORE_PROFILE_VERSION; $b <<= 1 ) {
+			$options[$b] = (bool)( $bits & $b );
 		}
 
 		if ( $options[ self::OPT_FOR_ARTICLE_VIEW ] ) {
