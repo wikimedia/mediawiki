@@ -568,6 +568,7 @@ class ParserTestRunner {
 			MediaWikiServices::getInstance()->resetServiceForTesting( 'LanguageFactory' );
 			MediaWikiServices::getInstance()->resetServiceForTesting( 'ContentLanguage' );
 			MediaWikiServices::getInstance()->resetServiceForTesting( 'LanguageConverterFactory' );
+			MediaWikiServices::getInstance()->resetServiceForTesting( 'ParsoidSiteConfig' );
 			// Don't destroy the link cache, because various things hold a
 			// copy of it.  Just clear it.
 			MediaWikiServices::getInstance()->getLinkCache()->clear();
