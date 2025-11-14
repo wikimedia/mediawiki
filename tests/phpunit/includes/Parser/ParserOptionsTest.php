@@ -41,6 +41,7 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 		$this->overrideConfigValues( [
 			MainConfigNames::RenderHashAppend => '',
 			MainConfigNames::UsePigLatinVariant => false,
+			MainConfigNames::UsePostprocCache => true,
 		] );
 		$this->setTemporaryHook( 'PageRenderingHash', HookContainer::NOOP );
 	}

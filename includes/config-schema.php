@@ -555,6 +555,16 @@ return [
 						'minCpuTime' => 0,
 					],
 				],
+				'postproc-pcache' => [
+					'default' => [
+						'minCpuTime' => 9223372036854775807,
+					],
+				],
+				'postproc-parsoid-pcache' => [
+					'default' => [
+						'minCpuTime' => 9223372036854775807,
+					],
+				],
 			],
 			'ChronologyProtectorSecret' => '',
 			'ParserCacheExpireTime' => 86400,
@@ -2721,6 +2731,7 @@ return [
 			],
 			'CloneArticleParserOutput' => true,
 			'UseLeximorph' => false,
+			'UsePostprocCache' => false,
 		],
 		'type' => [
 			'ConfigRegistry' => 'object',
@@ -3231,6 +3242,7 @@ return [
 			'FeatureShutdown' => 'array',
 			'CloneArticleParserOutput' => 'boolean',
 			'UseLeximorph' => 'boolean',
+			'UsePostprocCache' => 'boolean',
 		],
 		'mergeStrategy' => [
 			'TiffThumbnailType' => 'replace',

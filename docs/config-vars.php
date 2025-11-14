@@ -4549,3 +4549,9 @@ $wgCloneArticleParserOutput = null;
  * @see MediaWiki\MainConfigSchema::UseLeximorph
  */
 $wgUseLeximorph = null;
+
+/**
+ * Config variable stub for the UsePostprocCache setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::UsePostprocCache
+ */
+$wgUsePostprocCache = null;

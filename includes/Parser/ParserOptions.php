@@ -1628,10 +1628,13 @@ class ParserOptions {
 		$defaults = self::getDefaults();
 		$inCacheKey = self::getCacheVaryingOptionsHash();
 		$usedOptions ??= array_keys( $this->options );
-		// TODO for now this will do the job. But we might eventually want to be more defensive here - if you're
-		// passing $usedOptions and it contains postproc options and you're setting includePostproc to false,
-		// something might be fishy. This wouldn't apply to the fallback $this->options, though. And maybe the
-		// point will become moot if we get rid of $includePostproc one way or another.
+		if (
+			!MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::UsePostprocCache ) &&
+			$this->shouldIncludePostproc()
+		) {
+			return false;
+		}
+
 		if ( !$this->shouldIncludePostproc() ) {
 			$usedOptions = array_diff( $usedOptions, self::$postprocOptions );
 		}
@@ -1775,6 +1778,12 @@ class ParserOptions {
 	 */
 	private function shouldIncludePostproc(): bool {
 		return $this->options[ 'postproc' ];
+	}
+
+	public function clearPostproc(): ParserOptions {
+		$res = clone $this;
+		$res->setOption( 'postproc', false );
+		return $res;
 	}
 }
 

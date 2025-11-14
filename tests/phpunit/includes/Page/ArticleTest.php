@@ -1,21 +1,32 @@
 <?php
 
 use MediaWiki\Context\RequestContext;
+use MediaWiki\Json\JsonCodec;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
 use MediaWiki\Message\Message;
 use MediaWiki\Page\Article;
 use MediaWiki\Page\ParserOutputAccess;
+use MediaWiki\Parser\ParserCacheFactory;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
+use Psr\Log\NullLogger;
+use Wikimedia\Stats\UnitTestingHelper;
 
 /**
  * @group Database
  */
 class ArticleTest extends \MediaWikiIntegrationTestCase {
+	private UnitTestingHelper $statsHelper;
+
+	public function setUp(): void {
+		parent::setUp();
+
+		$this->statsHelper = new UnitTestingHelper();
+	}
 
 	/**
 	 * @param Title $title
@@ -276,5 +287,124 @@ class ArticleTest extends \MediaWikiIntegrationTestCase {
 			$output->getIndicators(),
 			'Protection indicators are shown when a page protected using cascade protection'
 		);
+	}
+
+	private function getParserCache( $bag = null ) {
+		$parserCache = new ParserCache(
+			'test',
+			$bag ?: new HashBagOStuff(),
+			'19900220000000',
+			$this->getServiceContainer()->getHookContainer(),
+			new JsonCodec( $this->getServiceContainer() ),
+			$this->statsHelper->getStatsFactory(),
+			new NullLogger(),
+			$this->getServiceContainer()->getTitleFactory(),
+			$this->getServiceContainer()->getWikiPageFactory(),
+			$this->getServiceContainer()->getGlobalIdGenerator()
+		);
+
+		return $parserCache;
+	}
+
+	/** @covers \MediaWiki\Page\Article::view */
+	public function testPostprocFeatureflagFalse(): void {
+		$this->overrideConfigValue( 'UsePostprocCache', false );
+		$parserCacheFactory = $this->createMock( ParserCacheFactory::class );
+		$caches = [
+			$this->getParserCache( new HashBagOStuff() ),
+			$this->getParserCache( new HashBagOStuff() ),
+		];
+		$calls = [];
+		$parserCacheFactory
+			->method( 'getParserCache' )
+			->willReturnCallback( static function ( $cacheName ) use ( &$calls, $caches ) {
+				static $cacheList = [];
+				$calls[] = $cacheName;
+				$which = array_search( $cacheName, $cacheList );
+				if ( $which === false ) {
+					$which = count( $cacheList );
+					$cacheList[] = $cacheName;
+				}
+				return $caches[$which];
+			} );
+		$this->overrideMwServices( null, [
+			'ParserCacheFactory' => static function () use ( $parserCacheFactory ) {
+				return $parserCacheFactory;
+			}
+		] );
+		$title = $this->getExistingTestPage()->getTitle();
+		$article = $this->newArticle( $title );
+		$this->editPage( $title, '== Hello ==' );
+		$article->view();
+		$this->assertArrayEquals( [ 'pcache', 'pcache' ], $calls, true );
+		$html = $article->getContext()->getOutput()->getHTML();
+		// check that we're running postprocessing (if the headers are wrapped then that's a good sign)
+		$this->assertStringContainsString(
+			'<div class="mw-heading mw-heading2"><h2 id="Hello">Hello</h2><span class="mw-editsection">',
+				$html
+		);
+		$article = $this->newArticle( $title );
+		$article->view();
+		$this->assertArrayEquals( [ 'pcache', 'pcache', 'pcache' ], $calls, true );
+		$html2 = $article->getContext()->getOutput()->getHTML();
+		$this->assertEquals( $html, $html2 );
+	}
+
+	/** @covers \MediaWiki\Page\Article::view */
+	public function testPostprocFeatureflagTrue(): void {
+		$this->overrideConfigValue( 'UsePostprocCache', true );
+		$parserCacheFactory = $this->createMock( ParserCacheFactory::class );
+		$caches = [
+			$this->getParserCache( new HashBagOStuff() ),
+			$this->getParserCache( new HashBagOStuff() ),
+		];
+		$calls = [];
+		$parserCacheFactory
+			->method( 'getParserCache' )
+			->willReturnCallback( static function ( $cacheName ) use ( &$calls, $caches ) {
+				static $cacheList = [];
+				$calls[] = $cacheName;
+				$which = array_search( $cacheName, $cacheList );
+				if ( $which === false ) {
+					$which = count( $cacheList );
+					$cacheList[] = $cacheName;
+				}
+				return $caches[$which];
+			} );
+		$this->overrideMwServices( null, [
+			'ParserCacheFactory' => static function () use ( $parserCacheFactory ) {
+				return $parserCacheFactory;
+			}
+		] );
+		$title = $this->getExistingTestPage()->getTitle();
+		$article = $this->newArticle( $title );
+		$this->editPage( $title, '== Hello ==' );
+		// here we only hit the main parser cache for now
+		$this->assertArrayEquals( [ 'pcache' ], $calls, true );
+
+		$calls = [];
+		$article->view();
+		$this->assertArrayEquals( [
+			'postproc-pcache', // first view, get postproc, miss
+			'postproc-pcache', // creates worker to render the page
+			'pcache', // first view, get pcache, hit
+			'postproc-pcache', // first view, store postproc
+		], $calls, true );
+		$html = $article->getContext()->getOutput()->getHTML();
+		// check that we're running postprocessing (if the headers are wrapped then that's a good sign)
+		$this->assertStringContainsString(
+			'<div class="mw-heading mw-heading2"><h2 id="Hello">Hello</h2><span class="mw-editsection">',
+			$html
+		);
+		$article = $this->newArticle( $title );
+
+		$calls = [];
+		$article->view();
+		$html2 = $article->getContext()->getOutput()->getHTML();
+		// second run, we're cached, we hit the postproc cache once
+		$this->assertArrayEquals( [
+			'postproc-pcache'
+		], $calls, true );
+		$this->assertEquals( $html, $html2 );
 	}
 }

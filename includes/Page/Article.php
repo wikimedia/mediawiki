@@ -119,6 +119,7 @@ class Article implements Page {
 	protected IConnectionProvider $dbProvider;
 	protected DatabaseBlockStore $blockStore;
 	protected RestrictionStore $restrictionStore;
+	private bool $usePostprocessCache;
 
 	/**
 	 * @var RevisionRecord|null Revision to be shown
@@ -149,6 +150,7 @@ class Article implements Page {
 		$this->dbProvider = $services->getConnectionProvider();
 		$this->blockStore = $services->getDatabaseBlockStore();
 		$this->restrictionStore = $services->getRestrictionStore();
+		$this->usePostprocessCache = $services->getMainConfig()->get( MainConfigNames::UsePostprocCache );
 	}
 
 	/**
@@ -728,6 +730,9 @@ class Article implements Page {
 				$parserOptions->setOption( $key, $value );
 			}
 		}
+		if ( $this->usePostprocessCache ) {
+			$parserOptions->enablePostproc();
+		}
 
 		// Try the latest parser cache
 		// NOTE: try latest-revision cache first to avoid loading revision.
@@ -743,7 +748,9 @@ class Article implements Page {
 			);
 
 			if ( $pOutput ) {
-				$pOutput = $this->postProcessOutput( $pOutput, $parserOptions, $textOptions, $skin );
+				if ( !$this->usePostprocessCache ) {
+					$pOutput = $this->postProcessOutput( $pOutput, $parserOptions, $textOptions, $skin );
+				}
 				$this->doOutputFromPostProcessedParserCache( $pOutput, $outputPage );
 				$this->doOutputMetaData( $pOutput, $outputPage );
 				return true;
@@ -782,7 +789,9 @@ class Article implements Page {
 				);
 
 				if ( $pOutput ) {
-					$pOutput = $this->postProcessOutput( $pOutput, $parserOptions, $textOptions, $skin );
+					if ( !$this->usePostprocessCache ) {
+						$pOutput = $this->postProcessOutput( $pOutput, $parserOptions, $textOptions, $skin );
+					}
 					$this->doOutputFromPostProcessedParserCache( $pOutput, $outputPage );
 					$this->doOutputMetaData( $pOutput, $outputPage );
 					return true;
@@ -824,8 +833,13 @@ class Article implements Page {
 
 		$opt = [];
 
-		// we already checked the cache in case 2, don't check again.
-		$opt[ ParserOutputAccess::OPT_NO_CHECK_CACHE ] = true;
+		// we already checked the cache in case 2, don't check again; but if we're using postproc,
+		// we still want to check if we have a main parser cache entry.
+		if ( $this->usePostprocessCache ) {
+			$opt[ ParserOutputAccess::OPT_NO_POSTPROC_CACHE ] = true;
+		} else {
+			$opt[ ParserOutputAccess::OPT_NO_CHECK_CACHE ] = true;
+		}
 
 		// we already checked in fetchRevisionRecord()
 		$opt[ ParserOutputAccess::OPT_NO_AUDIENCE_CHECK ] = true;
@@ -995,7 +1009,10 @@ class Article implements Page {
 
 		// TODO this will probably need to be conditional on cache access and/or hoisted one level above but for
 		// now let's keep things in the same place and avoid editing StatusValues.
-		$pOutput = $this->postProcessOutput( $pOutput, $parserOptions, $textOptions, $outputPage->getSkin() );
+		if ( !$this->usePostprocessCache ) {
+			$pOutput = $this->postProcessOutput( $pOutput, $parserOptions, $textOptions, $outputPage->getSkin() );
+		}
+
 		$outputPage->addPostProcessedParserOutput( $pOutput );
 
 		if ( $this->getRevisionRedirectTarget( $rev ) ) {

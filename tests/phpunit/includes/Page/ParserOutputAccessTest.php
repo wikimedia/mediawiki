@@ -52,16 +52,21 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 			MainConfigNames::ParsoidSelectiveUpdateSampleRate,
 			1
 		);
+		$this->overrideConfigValue( MainConfigNames::UsePostprocCache, true );
 	}
 
-	private function getHtml( $value ) {
+	private function getHtml( $value, $postproc = true ) {
 		if ( $value instanceof StatusValue ) {
 			$value = $value->getValue();
 		}
 
 		if ( $value instanceof ParserOutput ) {
-			$pipeline = MediaWikiServices::getInstance()->getDefaultOutputPipeline();
-			$value = $pipeline->run( $value, $this->getParserOptions(), [] )->getContentHolderText();
+			if ( $postproc ) {
+				$pipeline = MediaWikiServices::getInstance()->getDefaultOutputPipeline();
+				$value = $pipeline->run( $value, $this->getParserOptions(), [] )->getContentHolderText();
+			} else {
+				$value = $value->getContentHolderText();
+			}
 		}
 
 		$html = preg_replace( '/<!--.*?-->/s', '', $value );
@@ -70,34 +75,34 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 		return $html;
 	}
 
-	private function assertContainsHtml( $needle, $actual, $msg = '' ) {
+	private function assertContainsHtml( $needle, $actual, $msg = '', $postproc = true ) {
 		$this->assertNotNull( $actual );
 
 		if ( $actual instanceof StatusValue ) {
 			$this->assertStatusOK( $actual, 'isOK' );
 		}
 
-		$this->assertStringContainsString( $needle, $this->getHtml( $actual ), $msg );
+		$this->assertStringContainsString( $needle, $this->getHtml( $actual, $postproc ), $msg );
 	}
 
-	private function assertSameHtml( $expected, $actual, $msg = '' ) {
+	private function assertSameHtml( $expected, $actual, $msg = '', $postproc = true ) {
 		$this->assertNotNull( $actual );
 
 		if ( $actual instanceof StatusValue ) {
 			$this->assertStatusOK( $actual, 'isOK' );
 		}
 
-		$this->assertSame( $this->getHtml( $expected ), $this->getHtml( $actual ), $msg );
+		$this->assertSame( $this->getHtml( $expected, $postproc ), $this->getHtml( $actual, $postproc ), $msg );
 	}
 
-	private function assertNotSameHtml( $expected, $actual, $msg = '' ) {
+	private function assertNotSameHtml( $expected, $actual, $msg = '', $postproc = true ) {
 		$this->assertNotNull( $actual );
 
 		if ( $actual instanceof StatusValue ) {
 			$this->assertStatusOK( $actual, 'isOK' );
 		}
 
-		$this->assertNotSame( $this->getHtml( $expected ), $this->getHtml( $actual ), $msg );
+		$this->assertNotSame( $this->getHtml( $expected, $postproc ), $this->getHtml( $actual, $postproc ), $msg );
 	}
 
 	private function getParserCache( $bag = null ) {
@@ -1268,6 +1273,234 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( array_fill( 0, count( $calls ), $parsoid ), $calls );
 	}
 
+	public function testPostprocCacheSplit() {
+		$parserCacheFactory = $this->createMock( ParserCacheFactory::class );
+		$revisionOutputCache = $this->getRevisionOutputCache( new HashBagOStuff() );
+		$caches = [
+			$this->getParserCache( new HashBagOStuff() ),
+			$this->getParserCache( new HashBagOStuff() ),
+		];
+		$calls = [];
+		$parserCacheFactory
+			->method( 'getParserCache' )
+			->willReturnCallback( static function ( $cacheName ) use ( &$calls, $caches ) {
+				static $cacheList = [];
+				$calls[] = $cacheName;
+				$which = array_search( $cacheName, $cacheList );
+				if ( $which === false ) {
+					$which = count( $cacheList );
+					$cacheList[] = $cacheName;
+				}
+				return $caches[$which];
+			} );
+		$parserCacheFactory
+			->method( 'getRevisionOutputCache' )
+			->willReturn( $revisionOutputCache );
+
+		$access = $this->getParserOutputAccess( [
+			'parserCacheFactory' => $parserCacheFactory
+		] );
+		$parserOptions0 = $this->getParserOptions();
+		$page = $this->getNonexistingTestPage( __METHOD__ );
+		$output = $access->getCachedParserOutput( $page, $parserOptions0 );
+		$this->assertNull( $output );
+		// $calls[0] will remember what cache name we used.
+		$this->assertCount( 1, $calls );
+
+		$parserOptions1 = $this->getParserOptions();
+		$parserOptions1->enablePostproc();
+		$output = $access->getCachedParserOutput( $page, $parserOptions1 );
+		$this->assertNull( $output );
+		$this->assertCount( 2, $calls );
+		// Check that we used a different cache name this time.
+		$this->assertNotEquals( $calls[1], $calls[0], "Should use different caches" );
+
+		// Try this again, with actual content.
+		$calls = [];
+		$this->editPage( $page, "== Hello ==" );
+		$status0 = $access->getParserOutput( $page, $parserOptions0 );
+		$this->assertContainsHtml( '<mw:editsection page="', $status0, '', false );
+		$status1 = $access->getParserOutput( $page, $parserOptions1 );
+		$this->assertContainsHtml( '<div class="mw-heading mw-heading2"><h2 id="Hello">Hello</h2><span class="mw-editsection">', $status1, '', false );
+		$this->assertNotSameHtml( $status0, $status1, '', false );
+	}
+
+	public function testPostprocOptionsCacheSplit() {
+		$parserCacheFactory = $this->createMock( ParserCacheFactory::class );
+		$caches = [
+			$this->getParserCache( new HashBagOStuff() ),
+			$this->getParserCache( new HashBagOStuff() ),
+		];
+		$calls = [];
+		$parserCacheFactory
+			->method( 'getParserCache' )
+			->willReturnCallback( static function ( $cacheName ) use ( &$calls, $caches ) {
+				static $cacheList = [];
+				$calls[] = $cacheName;
+				$which = array_search( $cacheName, $cacheList );
+				if ( $which === false ) {
+					$which = count( $cacheList );
+					$cacheList[] = $cacheName;
+				}
+				return $caches[$which];
+			} );
+
+		$access = $this->getParserOutputAccess( [
+			'parserCacheFactory' => $parserCacheFactory
+		] );
+		$parserOptions0 = $this->getParserOptions();
+		$page = $this->getExistingTestPage( __METHOD__ );
+
+		$calls = [];
+		$this->editPage( $page, "__TOC__\n== one ==" );
+		$parserOptions0->enablePostproc();
+		$parserOptions0->setUseParsoid();
+		$parserOptions0->setOption( 'injectTOC', false );
+
+		$calls = [];
+		$status0 = $access->getParserOutput( $page, $parserOptions0, $page->getRevisionRecord() );
+		$this->assertContainsHtml( '<meta property="mw:PageProp/toc"', $status0, '', false );
+		$this->assertArrayEquals(
+			[ 'postproc-parsoid-pcache', 'postproc-parsoid-pcache', 'parsoid-pcache',
+				'parsoid-pcache', 'parsoid-pcache', 'parsoid-pcache', 'postproc-parsoid-pcache' ],
+			$calls, true
+		);
+
+		$calls = [];
+		$access->getParserOutput( $page, $parserOptions0, $page->getRevisionRecord() );
+		$this->assertArrayEquals( [ 'postproc-parsoid-pcache' ], $calls, true );
+
+		$parserOptions1 = $this->getParserOptions();
+		$parserOptions1->enablePostproc();
+		$parserOptions1->setUseParsoid();
+		$parserOptions1->setOption( 'injectTOC', true );
+
+		$calls = [];
+		$status1 = $access->getParserOutput( $page, $parserOptions1, $page->getRevisionRecord() );
+		$this->assertArrayEquals( [ 'postproc-parsoid-pcache', 'postproc-parsoid-pcache', 'parsoid-pcache', 'postproc-parsoid-pcache' ],
+			$calls, true );
+		$this->assertContainsHtml( '<div id="toc"', $status1, '', false );
+		$calls = [];
+		$access->getParserOutput( $page, $parserOptions1, $page->getRevisionRecord() );
+		$this->assertArrayEquals( [ 'postproc-parsoid-pcache' ], $calls, true );
+	}
+
+	public function testPostprocOptionsUnsafeCache() {
+		$parserCacheFactory = $this->createMock( ParserCacheFactory::class );
+		$caches = [
+			$this->getParserCache( new HashBagOStuff() ),
+			$this->getParserCache( new HashBagOStuff() ),
+		];
+		$calls = [];
+		$parserCacheFactory
+			->method( 'getParserCache' )
+			->willReturnCallback( static function ( $cacheName ) use ( &$calls, $caches ) {
+				static $cacheList = [];
+				$calls[] = $cacheName;
+				$which = array_search( $cacheName, $cacheList );
+				if ( $which === false ) {
+					$which = count( $cacheList );
+					$cacheList[] = $cacheName;
+				}
+				return $caches[$which];
+			} );
+
+		$access = $this->getParserOutputAccess( [
+			'parserCacheFactory' => $parserCacheFactory
+		] );
+		$parserOptions0 = $this->getParserOptions();
+		$page = $this->getExistingTestPage( __METHOD__ );
+
+		$calls = [];
+		$this->editPage( $page, "__TOC__\n== one ==" );
+
+		$parserOptions0->enablePostproc();
+		$parserOptions0->setUseParsoid();
+		$parserOptions0->setOption( 'enableSectionEditLinks', false );
+
+		$calls = [];
+		$access->getParserOutput( $page, $parserOptions0, $page->getRevisionRecord() );
+		$this->assertArrayEquals(
+			[ 'postproc-parsoid-pcache', 'postproc-parsoid-pcache', 'parsoid-pcache', 'parsoid-pcache',
+				'parsoid-pcache', 'parsoid-pcache', 'postproc-parsoid-pcache' ],
+			$calls, true
+		);
+
+		$calls = [];
+		$access->getParserOutput( $page, $parserOptions0, $page->getRevisionRecord() );
+		$this->assertArrayEquals(
+			[ 'postproc-parsoid-pcache', 'postproc-parsoid-pcache',
+				'parsoid-pcache', 'postproc-parsoid-pcache' ], $calls, true );
+
+		$parserOptions1 = $this->getParserOptions();
+		$parserOptions1->enablePostproc();
+		$parserOptions1->setUseParsoid();
+		$parserOptions1->setOption( 'enableSectionEditLinks', true );
+
+		$calls = [];
+		$access->getParserOutput( $page, $parserOptions1, $page->getRevisionRecord() );
+		$this->assertArrayEquals(
+			[ 'postproc-parsoid-pcache', 'postproc-parsoid-pcache', 'parsoid-pcache', 'postproc-parsoid-pcache' ],
+			$calls, true
+		);
+
+		$calls = [];
+		$access->getParserOutput( $page, $parserOptions1, $page->getRevisionRecord() );
+		$this->assertArrayEquals( [ 'postproc-parsoid-pcache' ], $calls, true );
+	}
+
+	public function testPostprocRevisionCacheSplit() {
+		$parserCacheFactory = $this->createMock( ParserCacheFactory::class );
+		$parserCache = $this->getParserCache( new HashBagOStuff() );
+		$caches = [
+			$this->getRevisionOutputCache( new HashBagOStuff() ),
+			$this->getRevisionOutputCache( new HashBagOStuff() ),
+		];
+		$calls = [];
+		$parserCacheFactory
+			->method( 'getParserCache' )
+			->willReturn( $parserCache );
+		$parserCacheFactory
+			->method( 'getRevisionOutputCache' )
+			->willReturnCallback( static function ( $cacheName ) use ( &$calls, $caches ) {
+				static $cacheList = [];
+				$calls[] = $cacheName;
+				$which = array_search( $cacheName, $cacheList );
+				if ( $which === false ) {
+					$which = count( $cacheList );
+					$cacheList[] = $cacheName;
+				}
+				return $caches[$which];
+			} );
+
+		$access = $this->getParserOutputAccess( [
+			'parserCacheFactory' => $parserCacheFactory
+		] );
+		$page = $this->getNonexistingTestPage( __METHOD__ );
+		$firstRev = $this->editPage( $page, '== First ==' )->getNewRevision();
+		$secondRev = $this->editPage( $page, '== Second ==' )->getNewRevision();
+
+		$parserOptions0 = $this->getParserOptions();
+		$status = $access->getParserOutput( $page, $parserOptions0, $firstRev );
+		$this->assertContainsHtml( 'First', $status );
+		// Check that we used the "not parsoid" revision cache
+		$this->assertNotEmpty( $calls );
+		$notPostproc = $calls[0];
+		$this->assertEquals( array_fill( 0, count( $calls ), $notPostproc ), $calls );
+		$callsNotPostproc = count( $calls );
+
+		$calls = [];
+		$parserOptions1 = $this->getParserOptions();
+		$parserOptions1->enablePostproc();
+		$status = $access->getParserOutput( $page, $parserOptions1, $firstRev );
+		$this->assertContainsHtml( 'First', $status, false );
+		$this->assertContainsHtml( '<div class="mw-heading mw-heading2"><h2 id="First">First</h2><span class="mw-editsection">', $status, false );
+		$this->assertNotEmpty( $calls );
+		$postproc = $calls[0];
+		$this->assertNotEquals( $notPostproc, $postproc, "Should use different caches" );
+		$this->assertEquals( $callsNotPostproc, array_count_values( $calls )[$postproc] );
+	}
+
 	///////////////////////////////////////////////
 
 	/**
@@ -1427,19 +1660,25 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 		$access = $this->getParserOutputAccess();
 
 		$status = $access->getParserOutput(
-			$this->getExistingTestPage(),
-			$this->getParserOptions()
+			$page,
+			$parserOptions,
 		);
 
 		$this->assertStatusGood( $status );
 
-		// Cache miss, because not cacheable
+		// Cache hit, because it's in the local cache (T301310)
 		$cached = $access->getCachedParserOutput(
 			$page,
 			$parserOptions,
-			$page->getRevisionRecord()
 		);
-		$this->assertNull( $cached );
+		$this->assertNotNull( $cached );
+
+		// but if we clear the local cache it's not ACTUALLY cached
+		$access->clearLocalCache();
+		$this->assertNull( $access->getCachedParserOutput(
+			$page,
+			$parserOptions,
+		) );
 	}
 
 	public function testRenderFakeRevision() {
@@ -1513,6 +1752,84 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertTrue( $status->isOK() );
 		$this->assertSame( $output->getRawText(), $status->getValue()->getRawText() );
+	}
+
+	public function testInvalidate() {
+		$parserCacheFactory = $this->createMock( ParserCacheFactory::class );
+		$caches = [
+			$this->getParserCache( new HashBagOStuff() ),
+			$this->getParserCache( new HashBagOStuff() ),
+			$this->getParserCache( new HashBagOStuff() ),
+		];
+		$parserCacheFactory
+			->method( 'getParserCache' )
+			->willReturnCallback( static function ( $cacheName ) use ( $caches ) {
+				static $cacheList = [];
+				$which = array_search( $cacheName, $cacheList );
+				if ( $which === false ) {
+					$which = count( $cacheList );
+					$cacheList[] = $cacheName;
+				}
+				return $caches[$which];
+			} );
+
+		$access = $this->getParserOutputAccess( [
+			'parserCacheFactory' => $parserCacheFactory
+		] );
+
+		$parserOptions = $this->getParserOptions();
+		$page = $this->getExistingTestPage( __METHOD__ );
+
+		// get from the legacy non-postprocessed cache
+		$this->assertNull( $access->getCachedParserOutput( $page, $parserOptions ) );
+		$this->assertNotNull( $access->getParserOutput( $page, $parserOptions ) );
+
+		$parsoidParserOptions = $this->getParserOptions();
+		$parsoidParserOptions->setUseParsoid();
+		$postprocParserOptions = $this->getParserOptions();
+		$postprocParserOptions->enablePostproc();
+
+		// parsoid cache and postproc cache still null
+		$this->assertNull( $access->getCachedParserOutput( $page, $parsoidParserOptions ) );
+		$this->assertNull( $access->getCachedParserOutput( $page, $postprocParserOptions ) );
+
+		// fill in parsoid cache, postproc cache still null
+		$this->assertNotNull( $access->getParserOutput( $page, $parsoidParserOptions ) );
+		$this->assertNotNull( $access->getCachedParserOutput( $page, $parsoidParserOptions ) );
+		$this->assertNull( $access->getCachedParserOutput( $page, $postprocParserOptions ) );
+
+		// fill in postproc cache
+		$this->assertNotNull( $access->getParserOutput( $page, $postprocParserOptions ) );
+		$this->assertNotNull( $access->getCachedParserOutput( $page, $postprocParserOptions ) );
+
+		// check that we can get the page back from the DB and still have cached content for everything
+		$page = $this->getExistingTestPage( __METHOD__ );
+		$this->assertNotNull( $access->getCachedParserOutput( $page, $parserOptions ) );
+		$this->assertNotNull( $access->getCachedParserOutput( $page, $parsoidParserOptions ) );
+		$this->assertNotNull( $access->getCachedParserOutput( $page, $postprocParserOptions ) );
+
+		$cachedTime = $access->getCachedParserOutput( $page, $postprocParserOptions )->getCacheTime();
+
+		// invalidate the cache by indicating the page has been touched one minute after it got cached
+		$page->getTitle()->invalidateCache(
+			strval( ( new DateTime() )->setTimestamp( intval( $cachedTime ) )
+				->modify( "+1 min" )
+				->getTimestamp() ) );
+		// ensure the DB is actually updated
+		DeferredUpdates::doUpdates();
+
+		// clear local POA cache as it is not checked for expiry (should it??)
+		$access->clearLocalCache();
+
+		// check that the cache has been cleared for all three parserOptions
+		$page = $this->getExistingTestPage( __METHOD__ );
+		$this->assertNull( $access->getCachedParserOutput( $page, $parserOptions ) );
+		$this->assertNull( $access->getCachedParserOutput( $page, $parsoidParserOptions ) );
+		$this->assertNull( $access->getCachedParserOutput( $page, $postprocParserOptions ) );
+
+		// but if we do get PostprocOutput, then we also fill in the cache for the base version
+		$this->assertNotNull( $access->getParserOutput( $page, $postprocParserOptions ) );
+		$this->assertNotNull( $access->getCachedParserOutput( $page, $parserOptions ) );
 	}
 
 	private function flushStats(): void {

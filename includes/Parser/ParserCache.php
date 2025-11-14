@@ -325,7 +325,7 @@ class ParserCache {
 		ParserOptions $options,
 		?array $usedOptions = null
 	): string {
-		$usedOptions ??= ParserOptions::allCacheVaryingOptions();
+		$usedOptions ??= ParserOptions::allCacheVaryingOptions( $options->getPostproc() );
 		$title = $this->titleFactory->newFromPageIdentity( $page );
 		$hash = $options->optionsHash( $usedOptions, $title );
 		// idhash seem to mean 'page id' + 'rendering hash' (r3710)

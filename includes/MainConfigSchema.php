@@ -4229,6 +4229,20 @@ class MainConfigSchema {
 					'minCpuTime' => 0
 				],
 			],
+			'postproc-pcache' => [ // postprocessing output cache
+				'default' => [ // all namespaces
+					// 0 means no threshold.
+					// Use PHP_INT_MAX to disable cache.
+					'minCpuTime' => PHP_INT_MAX
+				],
+			],
+			'postproc-parsoid-pcache' => [ // parsoid postprocessing output cache
+				'default' => [ // all namespaces
+					// 0 means no threshold.
+					// Use PHP_INT_MAX to disable cache.
+					'minCpuTime' => PHP_INT_MAX
+				],
+			],
 		],
 		'additionalProperties' => [ // caches
 			'type' => 'map',
@@ -13422,6 +13436,17 @@ class MainConfigSchema {
 	 * @since 1.45
 	 */
 	public const UseLeximorph = [
+		'default' => false,
+		'type' => 'boolean',
+	];
+
+	/**
+	 * Whether to use the post-OutputTransform cache
+	 *
+	 * @unstable Temporary feature flag, T348255
+	 * @since 1.46
+	 */
+	public const UsePostprocCache = [
 		'default' => false,
 		'type' => 'boolean',
 	];

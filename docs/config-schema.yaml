@@ -2612,6 +2612,8 @@ config-schema:
         default:
             pcache: { default: { minCpuTime: 0 } }
             parsoid-pcache: { default: { minCpuTime: 0 } }
+            postproc-pcache: { default: { minCpuTime: 9223372036854775807 } }
+            postproc-parsoid-pcache: { default: { minCpuTime: 9223372036854775807 } }
         additionalProperties:
             type: object
             description: 'A map of namespace IDs to filter definitions.'
@@ -8360,3 +8362,10 @@ config-schema:
             Whether parser functions should use Leximorph handlers instead of Language methods.
             @unstable Temporary feature flag, T389281
             @since 1.45
+    UsePostprocCache:
+        default: false
+        type: boolean
+        description: |-
+            Whether to use the post-OutputTransform cache
+            @unstable Temporary feature flag, T348255
+            @since 1.46
