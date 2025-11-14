@@ -11,6 +11,8 @@ use LogicException;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Config\SiteConfiguration;
+use MediaWiki\Context\DerivativeContext;
+use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Logging\LogEntryBase;
 use MediaWiki\MainConfigNames;
@@ -52,6 +54,7 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 		?UserEditTracker $userEditTrackerOverride = null,
 		?callable $callback = null,
 		?UserRegistrationLookup $userRegistrationLookupOverride = null,
+		?IContextSource $context = null,
 	): UserGroupManager {
 		$services = $this->getServiceContainer();
 
@@ -117,7 +120,7 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 				$userEditTrackerOverride ?? $services->getUserEditTracker(),
 				$userRegistrationLookupOverride ?? $services->getUserRegistrationLookup(),
 				$services->getUserFactory(),
-				RequestContext::getMain(),
+				$context ?? RequestContext::getMain(),
 				$ugm,
 			) );
 
@@ -536,7 +539,7 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 		array $expected
 	) {
 		$user = $this->createNoOpMock(
-			User::class, array_merge( [ 'getEmail', 'isTemp', 'assertWiki', 'getWikiId' ],
+			User::class, array_merge( [ 'equals', 'getEmail', 'isTemp', 'assertWiki', 'getWikiId' ],
 				( array_key_exists( 'timestamp', $userSpec ) ? [ 'getEmailAuthenticationTimestamp' ] : [] ) )
 		);
 		$user->method( 'getWikiId' )->willReturn( UserIdentity::LOCAL );
@@ -549,10 +552,12 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 				->method( 'getEmailAuthenticationTimestamp' )
 				->willReturn( $userSpec['timestamp'] );
 		}
+		$context = new DerivativeContext( RequestContext::getMain() );
+		$context->setUser( $user );
 		$manager = $this->getManager( [
 			MainConfigNames::Autopromote => [ 'test_autoconfirmed' => [ APCOND_EMAILCONFIRMED ] ],
 			MainConfigNames::EmailAuthentication => $emailAuthentication
-		] );
+		], null, null, null, $context );
 		$this->assertArrayEquals( $expected, $manager->getUserAutopromoteGroups( $user ) );
 	}
 
@@ -598,12 +603,14 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 		} else {
 			$user = User::newFromName( 'UTUser1' );
 		}
+		$context = new DerivativeContext( RequestContext::getMain() );
+		$context->setUser( $user );
 		$manager = $this->getManager(
 			[
 				MainConfigNames::AutoConfirmCount => 11,
 				MainConfigNames::Autopromote => [ 'test_autoconfirmed' => $requiredCond ]
 			],
-			$userEditTrackerMock
+			$userEditTrackerMock, null, null, $context
 		);
 		$this->assertArrayEquals( $expected, $manager->getUserAutopromoteGroups( $user ) );
 	}
@@ -641,9 +648,7 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 			MainConfigNames::AutoConfirmAge => 10000000,
 			MainConfigNames::Autopromote => [ 'test_autoconfirmed' => $requiredCondition ]
 		], null, null, $registrationLookupMock );
-		$user = $this->createNoOpMock( User::class, [ 'isTemp', 'assertWiki', 'getWikiId' ] );
-		$user->method( 'getWikiId' )->willReturn( UserIdentity::LOCAL );
-		$user->method( 'assertWiki' )->willReturn( true );
+		$user = RequestContext::getMain()->getUser();
 		$this->assertArrayEquals( $expected, $manager->getUserAutopromoteGroups( $user ) );
 	}
 
@@ -666,7 +671,7 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 		string $firstEditTs,
 		array $expected
 	) {
-		$user = $this->getTestUser()->getUser();
+		$user = RequestContext::getMain()->getUser();
 		$mockUserEditTracker = $this->createNoOpMock( UserEditTracker::class, [ 'getFirstEditTimestamp' ] );
 		$mockUserEditTracker->expects( $this->once() )
 			->method( 'getFirstEditTimestamp' )
@@ -696,11 +701,13 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 		array $expected
 	) {
 		$user = $this->getTestUser( $userGroups )->getUser();
+		$context = new DerivativeContext( RequestContext::getMain() );
+		$context->setUser( $user );
 		$manager = $this->getManager( [
 			MainConfigNames::Autopromote => [
 				'test_autoconfirmed' => array_merge( [ APCOND_INGROUPS ], $requiredGroups )
 			]
-		] );
+		], null, null, null, $context );
 		$this->assertArrayEquals( $expected, $manager->getUserAutopromoteGroups( $user ) );
 	}
 
@@ -733,15 +740,13 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 		$request = new FauxRequest();
 		$request->setIP( $userIp );
 		$this->setRequest( $request );
-		$user = $this->createNoOpMock( User::class, [ 'getRequest', 'isTemp', 'assertWiki', 'getWikiId' ] );
-		$user->method( 'getWikiId' )->willReturn( UserIdentity::LOCAL );
-		$user->method( 'assertWiki' )->willReturn( true );
+		$user = RequestContext::getMain()->getUser();
 		$this->assertArrayEquals( $expected, $manager->getUserAutopromoteGroups( $user ) );
 	}
 
 	public function testGetUserAutopromoteGroupsHook() {
 		$manager = $this->getManager( [ MainConfigNames::Autopromote => [] ] );
-		$user = $this->getTestUser()->getUser();
+		$user = RequestContext::getMain()->getUser();
 		$this->setTemporaryHook(
 			'GetAutoPromoteGroups',
 			function ( User $hookUser, array &$promote ) use ( $user ) {
@@ -753,7 +758,11 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 		$this->assertArrayEquals( [ 'from_hook' ], $manager->getUserAutopromoteGroups( $user ) );
 	}
 
-	public function testGetUserAutopromoteComplexCondition() {
+	/** @dataProvider provideGetUserAutopromoteComplexCondition */
+	public function testGetUserAutopromoteComplexCondition( array $groups, array $expected ) {
+		$user = $this->getTestUser( $groups )->getUser();
+		$context = new DerivativeContext( RequestContext::getMain() );
+		$context->setUser( $user );
 		$manager = $this->getManager( [
 			MainConfigNames::Autopromote => [
 				'test_autoconfirmed' => [ '&',
@@ -763,51 +772,67 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 					[ '|', [ APCOND_INGROUPS, 'group5' ], [ APCOND_INGROUPS, 'group6' ] ]
 				]
 			]
-		] );
-		$this->assertSame( [], $manager->getUserAutopromoteGroups(
-			$this->getTestUser( [ 'group1' ] )->getUser() )
-		);
-		$this->assertSame( [], $manager->getUserAutopromoteGroups(
-			$this->getTestUser( [ 'group1', 'group2' ] )->getUser() )
-		);
-		$this->assertSame( [], $manager->getUserAutopromoteGroups(
-			$this->getTestUser( [ 'group1', 'group3', 'group4' ] )->getUser() )
-		);
-		$this->assertSame( [], $manager->getUserAutopromoteGroups(
-			$this->getTestUser( [ 'group1', 'group3' ] )->getUser() )
-		);
-		$this->assertArrayEquals(
-			[ 'test_autoconfirmed' ],
-			$manager->getUserAutopromoteGroups( $this->getTestUser( [ 'group1', 'group3', 'group5' ] )->getUser() )
-		);
+		], null, null, null, $context );
+		$this->assertSame( $expected, $manager->getUserAutopromoteGroups( $user ) );
 	}
 
-	public function testGetUserAutopromoteBot() {
+	public static function provideGetUserAutopromoteComplexCondition() {
+		yield 'In group1' => [
+			[ 'group1' ], []
+		];
+		yield 'In group1, group2' => [
+			[ 'group1', 'group2' ], []
+		];
+		yield 'In group1, group3, group4' => [
+			[ 'group1', 'group3', 'group4' ], []
+		];
+		yield 'In group1, group3' => [
+			[ 'group1', 'group3' ], []
+		];
+		yield 'In group1, group3, group5' => [
+			[ 'group1', 'group3', 'group5' ],
+			[ 'test_autoconfirmed' ]
+		];
+	}
+
+	/** @dataProvider provideGetUserAutopromoteBot */
+	public function testGetUserAutopromoteBot( bool $isBot, array $expected ) {
+		$user = $this->getTestUser( $isBot ? [ 'bot' ] : [] )->getUser();
+		$context = new DerivativeContext( RequestContext::getMain() );
+		$context->setUser( $user );
 		$manager = $this->getManager( [
 			MainConfigNames::Autopromote => [ 'test_autoconfirmed' => [ APCOND_ISBOT ] ]
-		] );
-		$notBot = $this->getTestUser()->getUser();
-		$this->assertSame( [], $manager->getUserAutopromoteGroups( $notBot ) );
-		$bot = $this->getTestUser( [ 'bot' ] )->getUser();
-		$this->assertArrayEquals( [ 'test_autoconfirmed' ],
-			$manager->getUserAutopromoteGroups( $bot ) );
+		], null, null, null, $context );
+		$this->assertArrayEquals( $expected, $manager->getUserAutopromoteGroups( $user ) );
 	}
 
-	public function testGetUserAutopromoteBlocked() {
+	public static function provideGetUserAutopromoteBot() {
+		yield 'Bot user' => [ true, [ 'test_autoconfirmed' ] ];
+		yield 'Non-bot user' => [ false, [] ];
+	}
+
+	/** @dataProvider provideGetUserAutopromoteBlocked */
+	public function testGetUserAutopromoteBlocked( bool $isBlocked, array $expected ) {
+		$user = $this->getTestUser()->getUser();
+		$context = new DerivativeContext( RequestContext::getMain() );
+		$context->setUser( $user );
 		$manager = $this->getManager( [
 			MainConfigNames::Autopromote => [ 'test_autoconfirmed' => [ APCOND_BLOCKED ] ]
-		] );
-		$nonBlockedUser = $this->getTestUser()->getUser();
-		$this->assertSame( [], $manager->getUserAutopromoteGroups( $nonBlockedUser ) );
-		$blockedUser = $this->getTestUser( [ 'blocked' ] )->getUser();
-		$block = new DatabaseBlock();
-		$block->setTarget( $this->getServiceContainer()->getBlockTargetFactory()
-			->newUserBlockTarget( $blockedUser ) );
-		$block->setBlocker( $this->getTestSysop()->getUser() );
-		$block->isSitewide( true );
-		$this->getServiceContainer()->getDatabaseBlockStore()->insertBlock( $block );
-		$this->assertArrayEquals( [ 'test_autoconfirmed' ],
-			$manager->getUserAutopromoteGroups( $blockedUser ) );
+		], null, null, null, $context );
+		if ( $isBlocked ) {
+			$block = new DatabaseBlock();
+			$block->setTarget( $this->getServiceContainer()->getBlockTargetFactory()
+				->newUserBlockTarget( $user ) );
+			$block->setBlocker( $this->getTestSysop()->getUser() );
+			$block->isSitewide( true );
+			$this->getServiceContainer()->getDatabaseBlockStore()->insertBlock( $block );
+		}
+		$this->assertArrayEquals( $expected, $manager->getUserAutopromoteGroups( $user ) );
+	}
+
+	public static function provideGetUserAutopromoteBlocked() {
+		yield 'Blocked user' => [ true, [ 'test_autoconfirmed' ] ];
+		yield 'Non-blocked user' => [ false, [] ];
 	}
 
 	public function testGetUserAutopromoteBlockedDoesNotRecurse() {
@@ -918,13 +943,13 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 		$manager = $this->getManager( [
 			MainConfigNames::Autopromote => [ 'test_autoconfirmed' => [ 999 ] ]
 		] );
-		$user = $this->getTestUser()->getUser();
+		$user = RequestContext::getMain()->getUser();
 		$this->expectException( InvalidArgumentException::class );
 		$manager->getUserAutopromoteGroups( $user );
 	}
 
 	public function testGetUserAutopromoteUserRequirementsConditionHook() {
-		$user = new UserIdentityValue( 1, 'TestUser' );
+		$user = RequestContext::getMain()->getUser();
 		$this->setTemporaryHook(
 			'UserRequirementsCondition',
 			function ( $type, array $arg, UserIdentity $hookUser, $isPerformer, &$result ) use ( $user ) {
