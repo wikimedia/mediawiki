@@ -843,9 +843,10 @@ class EditPage implements IEditObject {
 		if ( !$this->tempUserCreateActive ) {
 			return Status::newGood();
 		}
+		$request = $this->context->getRequest();
 		$status = $this->tempUserCreator->create(
 			$this->tempUserName,
-			$this->context->getRequest()
+			$request
 		);
 		if ( $status->isOK() ) {
 			$this->placeholderTempUser = null;
@@ -854,6 +855,13 @@ class EditPage implements IEditObject {
 			$this->authManager->setRequestContextUserFromSessionUser();
 			$this->tempUserCreateDone = true;
 		}
+		LoggerFactory::getInstance( 'authevents' )->info(
+			'Temporary account creation attempt: {user}',
+			[
+				'user' => $this->tempUserName,
+				'success' => $status->isOK(),
+			] + $request->getSecurityLogContext( $status->isOK() ? $status->getUser() : null )
+		);
 		return $status;
 	}
 
