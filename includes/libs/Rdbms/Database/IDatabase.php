@@ -639,7 +639,7 @@ interface IDatabase extends IReadableDatabase {
 	 * (if $cancelable is ATOMIC_CANCELABLE), and track the given section name to enforce
 	 * that the transaction is not committed prematurely. The end of the section must be
 	 * signified exactly once, either by endAtomic() or cancelAtomic(). Sections can have
-	 * have layers of inner sections (sub-sections), but all sections must be ended in order
+	 * layers of inner sections (sub-sections), but all sections must be ended in order
 	 * of innermost to outermost. Transactions cannot be started or committed until all
 	 * atomic sections are closed.
 	 *

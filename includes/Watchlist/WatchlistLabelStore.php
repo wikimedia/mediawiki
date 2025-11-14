@@ -14,6 +14,7 @@ use Wikimedia\Rdbms\IConnectionProvider;
 class WatchlistLabelStore {
 
 	public const TABLE_WATCHLIST_LABEL = 'watchlist_label';
+	public const TABLE_WATCHLIST_LABEL_MEMBER = 'watchlist_label_member';
 
 	public function __construct( private IConnectionProvider $dbProvider ) {
 	}
@@ -46,6 +47,45 @@ class WatchlistLabelStore {
 				$label->setId( $dbw->insertId() );
 			}
 		}
+	}
+
+	/**
+	 * Delete a set of watchlist labels, by ID.
+	 *
+	 * @param UserIdentity $user
+	 * @param int[] $ids watchlist_label IDs to delete.
+	 *
+	 * @return bool True on success, false on failure.
+	 */
+	public function delete( UserIdentity $user, array $ids ): bool {
+		$dbw = $this->dbProvider->getPrimaryDatabase();
+		$dbw->startAtomic( __METHOD__ );
+		// Confirm that the user owns all the supplied labels.
+		sort( $ids );
+		$confirmedIdValues = $dbw->newSelectQueryBuilder()
+			->from( self::TABLE_WATCHLIST_LABEL )
+			->field( 'wll_id' )
+			->where( [ 'wll_id' => $ids, 'wll_user' => $user->getId() ] )
+			->orderBy( 'wll_id' )
+			->caller( __METHOD__ )
+			->fetchFieldValues();
+		$confirmedIds = array_map( 'intval', $confirmedIdValues );
+		if ( $confirmedIds !== $ids ) {
+			$dbw->cancelAtomic( __METHOD__ );
+			return false;
+		}
+		$dbw->newDeleteQueryBuilder()
+			->deleteFrom( self::TABLE_WATCHLIST_LABEL_MEMBER )
+			->where( [ 'wlm_label' => $confirmedIds ] )
+			->caller( __METHOD__ )
+			->execute();
+		$dbw->newDeleteQueryBuilder()
+			->deleteFrom( self::TABLE_WATCHLIST_LABEL )
+			->where( [ 'wll_id' => $confirmedIds ] )
+			->caller( __METHOD__ )
+			->execute();
+		$dbw->endAtomic( __METHOD__ );
+		return true;
 	}
 
 	/**

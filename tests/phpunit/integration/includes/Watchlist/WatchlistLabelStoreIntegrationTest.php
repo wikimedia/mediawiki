@@ -40,4 +40,28 @@ class WatchlistLabelStoreIntegrationTest extends MediaWikiIntegrationTestCase {
 		$store->save( $label2 );
 		$this->assertSame( 2, $store->countAllForUser( $user ) );
 	}
+
+	/**
+	 * Labels can be deleted in batches.
+	 */
+	public function testDeleteLabels(): void {
+		// Create 10 labels for a test user.
+		$user = $this->getTestUser()->getUser();
+		$store = $this->getServiceContainer()->getWatchlistLabelStore();
+		for ( $i = 0; $i < 10; $i++ ) {
+			$label = new WatchlistLabel( $user, "Test label $i" );
+			$store->save( $label );
+		}
+		// Create a label for a different user.
+		$otherUser = TestUserRegistry::getMutableTestUser( 'Other user' )->getUser();
+		$otherUserLabel = new WatchlistLabel( $otherUser, 'Test label 1' );
+		$store->save( $otherUserLabel );
+
+		$this->assertCount( 10, $store->loadAllForUser( $user ) );
+		$deleted = $store->delete( $user, [ 2, 3, 4, 6 ] );
+		$this->assertSame( true, $deleted );
+		$this->assertCount( 6, $store->loadAllForUser( $user ) );
+		$notDeleted = $store->delete( $user, [ 9, 10, $otherUserLabel->getId() ] );
+		$this->assertSame( false, $notDeleted );
+	}
 }
