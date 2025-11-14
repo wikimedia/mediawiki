@@ -1534,7 +1534,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 
 	public function testSpreadAnyEditBlockForAnonUser() {
 		$hookCalled = false;
-		$this->setTemporaryHook( 'SpreadAnyEditBlock', static function () use ( &$hookCalled ){
+		$this->setTemporaryHook( 'SpreadAnyEditBlock', static function () use ( &$hookCalled ) {
 			$hookCalled = true;
 		} );
 		$user = new User;

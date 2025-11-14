@@ -35,7 +35,7 @@ class MiddlewareChainTest extends MediaWikiIntegrationTestCase {
 		$scope = ExtensionRegistry::getInstance()->setAttributeForTest(
 			'NotificationMiddleware', [
 				[
-					"factory" => static function ()  {
+					"factory" => static function () {
 						return new class implements NotificationMiddlewareInterface {
 							public function handle( $batch, callable $next ): void {
 								MediaWikiServices::getInstance()

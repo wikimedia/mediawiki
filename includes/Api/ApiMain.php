@@ -2581,7 +2581,7 @@ class ApiMain extends ApiBase {
 		$path = implode(
 			'&',
 			array_map(
-				static function ( $key, $value ): string	 {
+				static function ( $key, $value ): string {
 					return $key . '=' . $value;
 				},
 				array_keys( $params ),

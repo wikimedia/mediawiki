@@ -744,7 +744,7 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 		$user = $this->getTestUser()->getUser();
 		$this->setTemporaryHook(
 			'GetAutoPromoteGroups',
-			function ( User $hookUser, array &$promote ) use ( $user ){
+			function ( User $hookUser, array &$promote ) use ( $user ) {
 				$this->assertTrue( $user->equals( $hookUser ) );
 				$this->assertSame( [], $promote );
 				$promote[] = 'from_hook';
@@ -927,7 +927,7 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 		$user = new UserIdentityValue( 1, 'TestUser' );
 		$this->setTemporaryHook(
 			'UserRequirementsCondition',
-			function ( $type, array $arg, UserIdentity $hookUser, $isPerformer, &$result ) use ( $user ){
+			function ( $type, array $arg, UserIdentity $hookUser, $isPerformer, &$result ) use ( $user ) {
 				$this->assertTrue( $user->equals( $hookUser ) );
 				$this->assertSame( 999, $type );
 				$this->assertSame( 'ARGUMENT', $arg[0] );

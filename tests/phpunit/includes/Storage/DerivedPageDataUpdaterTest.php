@@ -746,7 +746,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 
 		$this->mergeMwGlobalArrayValue(
 			'wgContentHandlers', [
-				$name => static function () use ( $handler ){
+				$name => static function () use ( $handler ) {
 					return $handler;
 				}
 			]

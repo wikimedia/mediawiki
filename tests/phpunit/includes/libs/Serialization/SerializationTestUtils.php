@@ -172,7 +172,7 @@ class SerializationTestUtils {
 	 */
 	public function getSerializedInstances(): array {
 		$instances = $this->getTestInstances();
-		return array_map( function ( $object )  {
+		return array_map( function ( $object ) {
 			return ( $this->serializer )( $object );
 		}, $instances );
 	}
