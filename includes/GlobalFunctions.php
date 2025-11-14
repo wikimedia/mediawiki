@@ -983,14 +983,10 @@ function wfGetCaller( $level = 2 ) {
  * @return string
  */
 function wfGetAllCallers( $limit = 3 ) {
-	$trace = array_reverse( wfDebugBacktrace() );
-	if ( !$limit || $limit > count( $trace ) - 1 ) {
-		$limit = count( $trace ) - 1;
-	}
-	$trace = array_slice( $trace, -$limit - 1, $limit );
-	// Do not use `wfFormatStackFrame( ... )` here for compatibility with PHP <8.1.4
-	// https://gerrit.wikimedia.org/r/c/mediawiki/core/+/1160800/comment/92e67687_ab221188/
-	return implode( '/', array_map( 'wfFormatStackFrame', $trace ) );
+	$limit = $limit ? $limit + 1 : 0;
+	// Strip the own "wfGetAllCallers" from the list
+	$trace = array_reverse( array_slice( wfDebugBacktrace( $limit ), 1 ) );
+	return implode( '/', array_map( wfFormatStackFrame( ... ), $trace ) );
 }
 
 /**
