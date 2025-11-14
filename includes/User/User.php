@@ -89,17 +89,37 @@ use Wikimedia\Timestamp\TimestampFormat as TS;
  * free to use it in new code (instead of duplicating business logic).
  *
  * - UserIdentityValue, to represent a user name/id.
- * - UserOptionsManager service, to read-write user options.
+ *
  * - Authority via RequestContext::getAuthority, to represent the current user
  *   with a easy shortcuts to interpret user permissions (can user X do Y on page Z)
  *   without needing te call low-level PermissionManager and RateLimiter services.
- *   Authority replaces methods like User::isAllowed, User::definitelyCan,
+ *   This replaces methods like User::isAllowed, User::definitelyCan,
  *   and User::pingLimiter.
+ *
+ * - UserOptionsManager service, to read-write user options from user_properties.
+ *   These were previously stored in a user.user_options field and moved to
+ *   a new user_properties table in MediaWiki 1.19 (T33204).
+ *   The service was extracted in MediaWiki 1.35 (T248527) to support alternative
+ *   providers via $wgUserOptionsStoreProviders for GlobalPreferences.
+ *   This replaces methods like User::getOption, User::setOption,
+ *   User::getDefaultOptions, and User::resetOptions.
+ *
+ * - TalkPageNotificationManager service, to read-write data from user_newtalk.
+ *   This replaces User::getNewtalk.
+ *
  * - PermissionManager service, to interpret rights and permissions of any user.
- * - TalkPageNotificationManager service, replacing User::getNewtalk.
- * - WatchlistManager service, replacing methods like User::isWatched,
- *   User::addWatch, and User::clearNotification.
+ *
+ * - WatchlistManager service, to read-write from the watchlist table.
+ *   This replaces methods like User::isWatched, User::addWatch,
+ *   and User::clearNotification.
+ *
  * - BlockManager service, replacing User::getBlock.
+ *
+ * - UserRegistrationLookup service, for read-only access to user_registration.
+ *   The service was extracted in MediaWiki 1.41 (T352871) to support batching
+ *   and alternative providers via $wgUserRegistrationProviders for CentralAuth.
+ *   This replaces User::getRegistration.
+ *   Writes to user_registration remain in the User class for account creation!
  *
  * @note User implements Authority to ease transition. Always prefer
  * using existing Authority or obtaining a proper Authority implementation.
