@@ -192,6 +192,23 @@ because of Phabricator reports.
 	- SkinTemplateGetLanguageLinkHook
 	- SkinTemplateNavigation__UniversalHook
     - UndeletePageToolLinksHook
+  - Skin component related classes: MediaWiki\Skin => MediaWiki\Skin\Components
+    - ComponentRegistryContext
+    - SkinComponent
+    - SkinComponentCopyright
+    - SkinComponentFooter
+    - SkinComponentLastModified
+    - SkinComponentLink
+    - SkinComponentListItem
+    - SkinComponentLogo
+    - SkinComponentMenu
+    - SkinComponentRegistry
+    - SkinComponentRegistryContext
+    - SkinComponentRenderedWith
+    - SkinComponentSearch
+    - SkinComponentTableOfContents
+    - SkinComponentTempUserBanner
+    - SkinComponentUtils
   - Actions related hooks: MediaWiki\Hook => MediaWiki\Actions\Hook
     - ActionBeforeFormDisplayHook
 	- ActionModifyFormFieldsHook

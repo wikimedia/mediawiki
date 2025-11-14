@@ -3,7 +3,7 @@
  * @license GPL-2.0-or-later
  */
 
-namespace MediaWiki\Skin;
+namespace MediaWiki\Skin\Components;
 
 /**
  * @internal for use inside Skin and SkinTemplate classes only
@@ -19,3 +19,6 @@ interface SkinComponent {
 	 */
 	public function getTemplateData(): array;
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( SkinComponent::class, 'MediaWiki\\Skin\\SkinComponent' );

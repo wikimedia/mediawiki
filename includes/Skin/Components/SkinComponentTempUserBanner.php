@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Skin;
+namespace MediaWiki\Skin\Components;
 
 use MediaWiki\Html\Html;
 use MediaWiki\User\User;
@@ -98,3 +98,6 @@ class SkinComponentTempUserBanner implements SkinComponent {
 		];
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( SkinComponentTempUserBanner::class, 'MediaWiki\\Skin\\SkinComponentTempUserBanner' );

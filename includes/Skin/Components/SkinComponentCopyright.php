@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Skin;
+namespace MediaWiki\Skin\Components;
 
 use MediaWiki\Config\Config;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
@@ -91,3 +91,6 @@ class SkinComponentCopyright implements SkinComponent {
 		return '';
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( SkinComponentCopyright::class, 'MediaWiki\\Skin\\SkinComponentCopyright' );

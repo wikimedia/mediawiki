@@ -3,13 +3,14 @@
  * @license GPL-2.0-or-later
  */
 
-namespace MediaWiki\Skin;
+namespace MediaWiki\Skin\Components;
 
 use MediaWiki\Config\Config;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Language\Language;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Page\WikiPage;
+use MediaWiki\Skin\Skin;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MessageLocalizer;
@@ -91,3 +92,6 @@ class SkinComponentRegistryContext implements ComponentRegistryContext {
 		return $this->skin->getWikiPage();
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( SkinComponentRegistryContext::class, 'MediaWiki\\Skin\\SkinComponentRegistryContext' );

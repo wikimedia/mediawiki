@@ -3,7 +3,7 @@
  * @license GPL-2.0-or-later
  */
 
-namespace MediaWiki\Skin;
+namespace MediaWiki\Skin\Components;
 
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Parser\ParserOutputFlags;
@@ -86,3 +86,6 @@ class SkinComponentTableOfContents implements SkinComponent {
 		return $this->getTOCDataInternal();
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( SkinComponentTableOfContents::class, 'MediaWiki\\Skin\\SkinComponentTableOfContents' );

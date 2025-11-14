@@ -1,12 +1,12 @@
 <?php
 
 use MediaWiki\Output\OutputPage;
-use MediaWiki\Skin\SkinComponentTableOfContents;
+use MediaWiki\Skin\Components\SkinComponentTableOfContents;
 use Wikimedia\Parsoid\Core\SectionMetadata;
 use Wikimedia\Parsoid\Core\TOCData;
 
 /**
- * @covers \MediaWiki\Skin\SkinComponentTableOfContents
+ * @covers \MediaWiki\Skin\Components\SkinComponentTableOfContents
  * @group Skin
  */
 class SkinComponentTableOfContentsTest extends MediaWikiUnitTestCase {

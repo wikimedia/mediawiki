@@ -1,11 +1,11 @@
 <?php
 
 use MediaWiki\Message\Message;
-use MediaWiki\Skin\SkinComponentListItem;
+use MediaWiki\Skin\Components\SkinComponentListItem;
 
 /**
- * @covers \MediaWiki\Skin\SkinComponentListItem
- * @covers \MediaWiki\Skin\SkinComponentLink
+ * @covers \MediaWiki\Skin\Components\SkinComponentListItem
+ * @covers \MediaWiki\Skin\Components\SkinComponentLink
  * @group Skin
  */
 class SkinComponentListItemTest extends MediaWikiUnitTestCase {

@@ -3,7 +3,7 @@
  * @license GPL-2.0-or-later
  */
 
-namespace MediaWiki\Skin;
+namespace MediaWiki\Skin\Components;
 
 use MediaWiki\Config\Config;
 use MediaWiki\Language\Language;
@@ -45,3 +45,6 @@ class SkinComponentLogo implements SkinComponent {
 		return RL\SkinModule::getAvailableLogos( $this->getConfig(), $this->getLanguage() );
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( SkinComponentLogo::class, 'MediaWiki\\Skin\\SkinComponentLogo' );

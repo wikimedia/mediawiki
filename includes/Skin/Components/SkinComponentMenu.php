@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Skin;
+namespace MediaWiki\Skin\Components;
 
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
@@ -170,3 +170,6 @@ class SkinComponentMenu implements SkinComponent {
 		return $data;
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( SkinComponentMenu::class, 'MediaWiki\\Skin\\SkinComponentMenu' );

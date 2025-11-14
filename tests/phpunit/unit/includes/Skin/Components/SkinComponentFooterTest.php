@@ -1,10 +1,10 @@
 <?php
 use MediaWiki\Config\HashConfig;
-use MediaWiki\Skin\SkinComponentFooter;
-use MediaWiki\Skin\SkinComponentRegistryContext;
+use MediaWiki\Skin\Components\SkinComponentFooter;
+use MediaWiki\Skin\Components\SkinComponentRegistryContext;
 
 /**
- * @covers \MediaWiki\Skin\SkinComponentFooter
+ * @covers \MediaWiki\Skin\Components\SkinComponentFooter
  * @group Skin
  */
 class SkinComponentFooterTest extends MediaWikiUnitTestCase {

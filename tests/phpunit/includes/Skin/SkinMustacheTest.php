@@ -95,10 +95,10 @@ class SkinMustacheTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers \MediaWiki\Skin\Skin
-	 * @covers \MediaWiki\Skin\SkinComponentLogo
-	 * @covers \MediaWiki\Skin\SkinComponentSearch
-	 * @covers \MediaWiki\Skin\SkinComponentTableOfContents
-	 * @covers \MediaWiki\Skin\SkinComponentFooter
+	 * @covers \MediaWiki\Skin\Components\SkinComponentLogo
+	 * @covers \MediaWiki\Skin\Components\SkinComponentSearch
+	 * @covers \MediaWiki\Skin\Components\SkinComponentTableOfContents
+	 * @covers \MediaWiki\Skin\Components\SkinComponentFooter
 	 */
 	public function testGetTemplateData() {
 		$config = $this->getServiceContainer()->getMainConfig();

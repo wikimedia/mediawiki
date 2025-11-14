@@ -3,7 +3,7 @@
  * @license GPL-2.0-or-later
  */
 
-namespace MediaWiki\Skin;
+namespace MediaWiki\Skin\Components;
 
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
@@ -247,3 +247,6 @@ class SkinComponentLink implements SkinComponent {
 		return $this->makeLink( $this->key, $this->item, $this->options );
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( SkinComponentLink::class, 'MediaWiki\\Skin\\SkinComponentLink' );

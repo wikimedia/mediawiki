@@ -3,7 +3,7 @@
  * @license GPL-2.0-or-later
  */
 
-namespace MediaWiki\Skin;
+namespace MediaWiki\Skin\Components;
 
 use MediaWiki\Html\Html;
 use MessageLocalizer;
@@ -216,3 +216,6 @@ class SkinComponentListItem implements SkinComponent {
 		];
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( SkinComponentListItem::class, 'MediaWiki\\Skin\\SkinComponentListItem' );

@@ -3,7 +3,7 @@
  * @license GPL-2.0-or-later
  */
 
-namespace MediaWiki\Skin;
+namespace MediaWiki\Skin\Components;
 
 use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\SpecialPage\SpecialPage;
@@ -104,3 +104,6 @@ class SkinComponentRegistry {
 		$this->registerComponent( 'footer' );
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( SkinComponentRegistry::class, 'MediaWiki\\Skin\\SkinComponentRegistry' );

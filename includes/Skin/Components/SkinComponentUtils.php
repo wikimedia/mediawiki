@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Skin;
+namespace MediaWiki\Skin\Components;
 
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
@@ -101,3 +101,6 @@ class SkinComponentUtils {
 		return $title->getLocalURL( $urlaction );
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( SkinComponentUtils::class, 'MediaWiki\\Skin\\SkinComponentUtils' );

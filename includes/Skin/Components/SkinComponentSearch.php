@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Skin;
+namespace MediaWiki\Skin\Components;
 
 use InvalidArgumentException;
 use MediaWiki\Config\Config;
@@ -216,3 +216,6 @@ class SkinComponentSearch implements SkinComponent {
 		return $this->cachedData;
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( SkinComponentSearch::class, 'MediaWiki\\Skin\\SkinComponentSearch' );

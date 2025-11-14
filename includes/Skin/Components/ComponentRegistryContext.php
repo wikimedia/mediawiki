@@ -3,7 +3,7 @@
  * @license GPL-2.0-or-later
  */
 
-namespace MediaWiki\Skin;
+namespace MediaWiki\Skin\Components;
 
 use MediaWiki\Config\Config;
 use MediaWiki\Title\Title;
@@ -27,3 +27,6 @@ interface ComponentRegistryContext {
 	 */
 	public function getTitle(): Title;
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( ComponentRegistryContext::class, 'MediaWiki\\Skin\\ComponentRegistryContext' );

@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Skin;
+namespace MediaWiki\Skin\Components;
 
 use MediaWiki\Language\Language;
 use MediaWiki\MediaWikiServices;
@@ -65,3 +65,6 @@ class SkinComponentLastModified implements SkinComponent {
 		];
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( SkinComponentLastModified::class, 'MediaWiki\\Skin\\SkinComponentLastModified' );

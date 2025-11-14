@@ -9,6 +9,8 @@ namespace MediaWiki\Skin;
 use MediaWiki\Html\Html;
 use MediaWiki\Html\TemplateParser;
 use MediaWiki\Language\Language;
+use MediaWiki\Skin\Components\SkinComponentTempUserBanner;
+use MediaWiki\Skin\Components\SkinComponentUtils;
 use MediaWiki\Title\Title;
 
 /**
