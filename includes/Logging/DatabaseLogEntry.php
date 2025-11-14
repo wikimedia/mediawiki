@@ -156,7 +156,7 @@ class DatabaseLogEntry extends LogEntryBase {
 	}
 
 	/** @inheritDoc */
-	public function isLegacy() {
+	public function isLegacy(): bool {
 		// This extracts the property
 		$this->getParameters();
 		return $this->legacy;

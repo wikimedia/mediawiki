@@ -543,7 +543,7 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 	 * @since 1.25
 	 * @return bool
 	 */
-	public function isLegacy() {
+	public function isLegacy(): bool {
 		return $this->legacy;
 	}
 

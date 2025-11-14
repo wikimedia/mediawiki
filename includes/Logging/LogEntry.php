@@ -92,6 +92,12 @@ interface LogEntry {
 	 * @return bool
 	 */
 	public function isDeleted( $field );
+
+	/**
+	 * Whether the parameters for this log are stored in new or
+	 * old format.
+	 */
+	public function isLegacy(): bool;
 }
 
 /** @deprecated class alias since 1.44 */

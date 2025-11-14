@@ -79,7 +79,7 @@ class LogFormatter {
 
 	// Nonstatic->
 
-	/** @var LogEntryBase */
+	/** @var LogEntry */
 	protected $entry;
 
 	/** @var int Constant for handling log_deleted */

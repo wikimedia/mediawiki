@@ -122,6 +122,9 @@ because of Phabricator reports.
 * Many WatchedItemStore methods took either PageIdentity or LinkTarget, with
   LinkTarget being deprecated since 1.37. Passing a LinkTarget which is not a
   PageReference will now throw.
+* Added an `isLegacy()` method to the `LogEntry` interface. All implementors in
+  core already defined this method, and the interface is not stable to
+  implement.
 * WatchedItemQueryService::getWatchedItemsWithRecentChangeInfo, deprecated since
   1.45, has been removed. The associated constants, which were used as
   parameters to that method, like WatchedItemQueryService::FILTER_MINOR, have
