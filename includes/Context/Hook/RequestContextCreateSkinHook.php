@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Context\Hook;
 
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Skin\Skin;
@@ -27,3 +27,6 @@ interface RequestContextCreateSkinHook {
 	 */
 	public function onRequestContextCreateSkin( $context, &$skin );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( RequestContextCreateSkinHook::class, 'MediaWiki\\Hook\\RequestContextCreateSkinHook' );

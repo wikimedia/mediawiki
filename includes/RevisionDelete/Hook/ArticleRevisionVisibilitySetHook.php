@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\RevisionDelete\Hook;
 
 use MediaWiki\Title\Title;
 
@@ -30,3 +30,6 @@ interface ArticleRevisionVisibilitySetHook {
 		$visibilityChangeMap
 	);
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( ArticleRevisionVisibilitySetHook::class, 'MediaWiki\\Hook\\ArticleRevisionVisibilitySetHook' );

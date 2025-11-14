@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\FileRepo\Hook;
 
 use MediaWiki\FileRepo\File\File;
 
@@ -24,3 +24,6 @@ interface LocalFilePurgeThumbnailsHook {
 	 */
 	public function onLocalFilePurgeThumbnails( $file, $archiveName, $urls );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( LocalFilePurgeThumbnailsHook::class, 'MediaWiki\\Hook\\LocalFilePurgeThumbnailsHook' );

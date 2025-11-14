@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Media\Hook;
 
 use ThumbnailImage;
 
@@ -27,3 +27,6 @@ interface ThumbnailBeforeProduceHTMLHook {
 		&$linkAttribs
 	);
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( ThumbnailBeforeProduceHTMLHook::class, 'MediaWiki\\Hook\\ThumbnailBeforeProduceHTMLHook' );

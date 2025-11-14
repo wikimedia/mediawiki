@@ -338,6 +338,70 @@ because of Phabricator reports.
     - WatchlistEditorBeforeFormRenderHook
     - WatchlistEditorBuildRemoveLineHook
     - WhatLinksHerePropsHook
+  - Collation related hook: MediaWiki\Hook => MediaWiki\Collation\Hook
+    - Collation__factoryHook
+  - Context related hooks: MediaWiki\Hook => MediaWiki\Context\Hook
+    - RequestContextCreateSkinHook
+    - UserGetLanguageObjectHook
+  - Deferred related hooks: MediaWiki\Hook => MediaWiki\Deferred\Hook
+    - LinksUpdateCompleteHook
+    - LinksUpdateHook
+    - UserEditCountUpdateHook
+  - Exception related hook: MediaWiki\Hook => MediaWiki\Exception\Hook
+    - LogExceptionHook
+  - Export related hooks: MediaWiki\Hook => MediaWiki\Export\Hook
+    - ModifyExportQueryHook
+    - WikiExporter__dumpStableQueryHook
+    - XmlDumpWriterOpenPageHook
+    - XmlDumpWriterWriteRevisionHook
+  - FileRepo related hooks: MediaWiki\Hook => MediaWiki\FileRepo\Hook
+    - FileTransformedHook
+    - FileUploadHook
+    - LocalFilePurgeThumbnailsHook
+    - LocalFile__getHistoryHook
+  - Gallery related hook: MediaWiki\Hook => MediaWiki\Gallery\Hook
+    - GalleryGetModesHook
+  - Import related hooks: MediaWiki\Hook => MediaWiki\Import\Hook
+    - AfterImportPageHook
+    - ImportHandleContentXMLTagHook
+    - ImportHandleLogItemXMLTagHook
+    - ImportHandlePageXMLTagHook
+    - ImportHandleRevisionXMLTagHook
+    - ImportHandleToplevelXMLTagHook
+    - ImportHandleUploadXMLTagHook
+  - Jobs related hook: MediaWiki\Hook => MediaWiki\JobQueue\Jobs\Hook
+    - RecentChangesPurgeRowsHook
+  - Logging related hooks: MediaWiki\Hook => MediaWiki\Logging\Hook
+    - LogEventsListGetExtraInputsHook
+    - LogEventsListLineEndingHook
+    - LogEventsListShowLogExtractHook
+    - LogLineHook
+    - ManualLogEntryBeforePublishHook
+  - Media related hooks: MediaWiki\Hook => MediaWiki\Media\Hook
+    - BitmapHandlerCheckImageAreaHook
+    - BitmapHandlerTransformHook
+    - GetExtendedMetadataHook
+    - GetMetadataVersionHook
+    - ThumbnailBeforeProduceHTMLHook
+    - ValidateExtendedMetadataCacheHook
+  - Password related hook: MediaWiki\Hook => MediaWiki\Password\Hook
+    - PasswordPoliciesForUserHook
+  - RCFeed related hook: MediaWiki\Hook => MediaWiki\RCFeed\Hook
+    - IRCLineURLHook
+  - RevisionDelete related hook: MediaWiki\Hook => MediaWiki\RevisionDelete\Hook
+    - ArticleRevisionVisibilitySetHook
+  - Title related hooks: MediaWiki\Hook => MediaWiki\Title\Hook
+    - CanonicalNamespacesHook
+    - NamespaceIsMovableHook
+  - Upload related hooks: MediaWiki\Hook => MediaWiki\Upload\Hook
+    - IsUploadAllowedFromUrlHook
+    - UploadCompleteHook
+    - UploadCreateFromRequestHook
+    - UploadStashFileHook
+    - UploadVerifyFileHook
+    - UploadVerifyUploadHook
+  - Watchlist related hook: MediaWiki\Hook => MediaWiki\Watchlist\Hook
+    - WatchedItemQueryServiceExtensionsHook
 * Using an int for the $mode parameter of LanguageFallback::getAll() is now
   deprecated.  Use the new LanguageFallbackMode enumeration instead.
 * LanguageFallback::MESSAGES and LanguageFallback::STRICT are deprecated; use

@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Title\Hook;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.
@@ -24,3 +24,6 @@ interface NamespaceIsMovableHook {
 	 */
 	public function onNamespaceIsMovable( $index, &$result );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( NamespaceIsMovableHook::class, 'MediaWiki\\Hook\\NamespaceIsMovableHook' );

@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Upload\Hook;
 
 use UploadBase;
 
@@ -23,3 +23,6 @@ interface UploadCompleteHook {
 	 */
 	public function onUploadComplete( $uploadBase );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( UploadCompleteHook::class, 'MediaWiki\\Hook\\UploadCompleteHook' );

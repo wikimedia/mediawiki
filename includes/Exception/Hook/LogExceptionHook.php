@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Exception\Hook;
 
 use Throwable;
 
@@ -26,3 +26,6 @@ interface LogExceptionHook {
 	 */
 	public function onLogException( $e, $suppressed );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( LogExceptionHook::class, 'MediaWiki\\Hook\\LogExceptionHook' );

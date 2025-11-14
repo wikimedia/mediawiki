@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\FileRepo\Hook;
 
 use MediaWiki\FileRepo\File\File;
 
@@ -26,3 +26,6 @@ interface FileUploadHook {
 	 */
 	public function onFileUpload( $file, $reupload, $hasDescription );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( FileUploadHook::class, 'MediaWiki\\Hook\\FileUploadHook' );

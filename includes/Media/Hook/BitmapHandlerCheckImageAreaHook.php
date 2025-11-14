@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Media\Hook;
 
 use MediaWiki\FileRepo\File\File;
 
@@ -28,3 +28,6 @@ interface BitmapHandlerCheckImageAreaHook {
 		&$checkImageAreaHookResult
 	);
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( BitmapHandlerCheckImageAreaHook::class, 'MediaWiki\\Hook\\BitmapHandlerCheckImageAreaHook' );

@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Export\Hook;
 
 use MediaWiki\Title\Title;
 use stdClass;
@@ -28,3 +28,6 @@ interface XmlDumpWriterOpenPageHook {
 	 */
 	public function onXmlDumpWriterOpenPage( $obj, &$out, $row, $title );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( XmlDumpWriterOpenPageHook::class, 'MediaWiki\\Hook\\XmlDumpWriterOpenPageHook' );

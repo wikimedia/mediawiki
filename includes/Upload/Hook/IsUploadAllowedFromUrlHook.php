@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Upload\Hook;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.
@@ -21,3 +21,6 @@ interface IsUploadAllowedFromUrlHook {
 	 */
 	public function onIsUploadAllowedFromUrl( $url, &$allowed );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( IsUploadAllowedFromUrlHook::class, 'MediaWiki\\Hook\\IsUploadAllowedFromUrlHook' );

@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Context\Hook;
 
 use MediaWiki\Context\IContextSource;
 use MediaWiki\User\User;
@@ -25,3 +25,6 @@ interface UserGetLanguageObjectHook {
 	 */
 	public function onUserGetLanguageObject( $user, &$code, $context );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( UserGetLanguageObjectHook::class, 'MediaWiki\\Hook\\UserGetLanguageObjectHook' );

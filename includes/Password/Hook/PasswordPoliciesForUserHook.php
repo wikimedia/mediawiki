@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Password\Hook;
 
 use MediaWiki\User\User;
 
@@ -23,3 +23,6 @@ interface PasswordPoliciesForUserHook {
 	 */
 	public function onPasswordPoliciesForUser( $user, &$effectivePolicy );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( PasswordPoliciesForUserHook::class, 'MediaWiki\\Hook\\PasswordPoliciesForUserHook' );

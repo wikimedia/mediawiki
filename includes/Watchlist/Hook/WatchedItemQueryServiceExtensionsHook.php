@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Watchlist\Hook;
 
 use MediaWiki\Watchlist\WatchedItemQueryService;
 
@@ -26,3 +26,6 @@ interface WatchedItemQueryServiceExtensionsHook {
 		$watchedItemQueryService
 	);
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( WatchedItemQueryServiceExtensionsHook::class, 'MediaWiki\\Hook\\WatchedItemQueryServiceExtensionsHook' );

@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Upload\Hook;
 
 use MediaWiki\User\User;
 use UploadBase;
@@ -38,3 +38,6 @@ interface UploadVerifyUploadHook {
 		$pageText, &$error
 	);
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( UploadVerifyUploadHook::class, 'MediaWiki\\Hook\\UploadVerifyUploadHook' );

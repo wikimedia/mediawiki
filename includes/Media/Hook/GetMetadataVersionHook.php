@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Media\Hook;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.
@@ -25,3 +25,6 @@ interface GetMetadataVersionHook {
 	 */
 	public function onGetMetadataVersion( &$version );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( GetMetadataVersionHook::class, 'MediaWiki\\Hook\\GetMetadataVersionHook' );

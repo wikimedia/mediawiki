@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\RCFeed\Hook;
 
 use MediaWiki\RecentChanges\RecentChange;
 
@@ -25,3 +25,6 @@ interface IRCLineURLHook {
 	 */
 	public function onIRCLineURL( &$url, &$query, $rc );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( IRCLineURLHook::class, 'MediaWiki\\Hook\\IRCLineURLHook' );

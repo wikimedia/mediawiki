@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Logging\Hook;
 
 use MediaWiki\Logging\ManualLogEntry;
 
@@ -23,3 +23,6 @@ interface ManualLogEntryBeforePublishHook {
 	 */
 	public function onManualLogEntryBeforePublish( $logEntry ): void;
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( ManualLogEntryBeforePublishHook::class, 'MediaWiki\\Hook\\ManualLogEntryBeforePublishHook' );

@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Media\Hook;
 
 use MediaWiki\Context\IContextSource;
 use MediaWiki\FileRepo\File\File;
@@ -35,3 +35,6 @@ interface GetExtendedMetadataHook {
 		$single, &$maxCacheTime
 	);
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( GetExtendedMetadataHook::class, 'MediaWiki\\Hook\\GetExtendedMetadataHook' );

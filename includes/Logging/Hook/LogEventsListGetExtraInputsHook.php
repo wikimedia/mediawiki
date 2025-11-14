@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Logging\Hook;
 
 use MediaWiki\Logging\LogEventsList;
 
@@ -29,3 +29,6 @@ interface LogEventsListGetExtraInputsHook {
 		&$formDescriptor
 	);
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( LogEventsListGetExtraInputsHook::class, 'MediaWiki\\Hook\\LogEventsListGetExtraInputsHook' );

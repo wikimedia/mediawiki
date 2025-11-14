@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\FileRepo\Hook;
 
 use MediaTransformOutput;
 use MediaWiki\FileRepo\File\File;
@@ -26,3 +26,6 @@ interface FileTransformedHook {
 	 */
 	public function onFileTransformed( $file, $thumb, $tmpThumbPath, $thumbPath );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( FileTransformedHook::class, 'MediaWiki\\Hook\\FileTransformedHook' );

@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Upload\Hook;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.
@@ -21,3 +21,6 @@ interface UploadCreateFromRequestHook {
 	 */
 	public function onUploadCreateFromRequest( $type, &$className );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( UploadCreateFromRequestHook::class, 'MediaWiki\\Hook\\UploadCreateFromRequestHook' );

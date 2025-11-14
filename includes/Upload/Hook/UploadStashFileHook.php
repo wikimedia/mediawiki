@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\Upload\Hook;
 
 use MediaWiki\User\User;
 use UploadBase;
@@ -35,3 +35,6 @@ interface UploadStashFileHook {
 	 */
 	public function onUploadStashFile( UploadBase $upload, User $user, ?array $props, &$error );
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( UploadStashFileHook::class, 'MediaWiki\\Hook\\UploadStashFileHook' );
