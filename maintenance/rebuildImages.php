@@ -25,7 +25,7 @@ use MediaWiki\FileRepo\LocalRepo;
 use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Specials\SpecialUpload;
 use MediaWiki\User\User;
-use Wikimedia\Rdbms\IMaintainableDatabase;
+use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
@@ -35,7 +35,7 @@ use Wikimedia\Rdbms\SelectQueryBuilder;
  */
 class ImageBuilder extends Maintenance {
 	/**
-	 * @var IMaintainableDatabase
+	 * @var IDatabase
 	 */
 	protected $dbw;
 

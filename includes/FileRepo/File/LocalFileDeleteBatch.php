@@ -43,13 +43,13 @@ class LocalFileDeleteBatch {
 	private $user;
 
 	/**
-	 * @param File $file
+	 * @param LocalFile $file
 	 * @param UserIdentity $user
 	 * @param string $reason
 	 * @param bool $suppress
 	 */
 	public function __construct(
-		File $file,
+		LocalFile $file,
 		UserIdentity $user,
 		$reason = '',
 		$suppress = false

@@ -254,7 +254,7 @@ class CompareLanguageConverterOutput extends Maintenance {
 			$diff = new Diff( $parsoidWords, $parserWords );
 		} catch ( ComplexityException $e ) {
 			$this->output( $e->getMessage() );
-			$this->error( 'Encountered ComplexityException while computing diff' );
+			$this->fatalError( 'Encountered ComplexityException while computing diff' );
 		}
 
 		// Print the difference between the words

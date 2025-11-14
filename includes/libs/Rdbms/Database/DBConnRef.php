@@ -37,7 +37,7 @@ use Stringable;
 class DBConnRef implements Stringable, IMaintainableDatabase, IDatabaseForOwner {
 	/** @var ILoadBalancer */
 	private $lb;
-	/** @var Database|null Live connection handle */
+	/** @var IDatabase|null Live connection handle */
 	private $conn;
 	/**
 	 * @var array Map of (DBConnRef::FLD_* constant => connection parameter)
@@ -98,7 +98,7 @@ class DBConnRef implements Stringable, IMaintainableDatabase, IDatabaseForOwner 
 			// to take effect. The primary use case are replica servers being taken out of
 			// rotation, or the primary database changing.
 			if ( $this->conn && !$this->conn->trxLevel() ) {
-				$this->conn->close();
+				$this->conn->close( wfGetCaller() );
 				$this->conn = null;
 			}
 		}

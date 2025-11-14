@@ -1067,7 +1067,8 @@ class DifferenceEngine extends ContextSource {
 			$parts += $slotDiffRenderer->getTablePrefix( $this->getContext(), $this->mNewPage );
 		}
 		ksort( $parts );
-		if ( count( array_filter( $parts ) ) > 0 ) {
+		$nonEmptyParts = array_values( array_filter( $parts ) );
+		if ( $nonEmptyParts ) {
 			$language = $this->getLanguage();
 			$attrs = [
 				'class' => 'mw-diff-table-prefix',
@@ -1075,7 +1076,7 @@ class DifferenceEngine extends ContextSource {
 				'lang' => $language->getCode(),
 			];
 			$this->getOutput()->addHTML(
-				Html::rawElement( 'div', $attrs, implode( '', $parts ) ) );
+				Html::rawElement( 'div', $attrs, implode( '', $nonEmptyParts ) ) );
 		}
 	}
 

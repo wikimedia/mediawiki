@@ -87,7 +87,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	/** @var bool Whether the session consistency callback already executed */
 	private $chronologyProtectorCalled = false;
 
-	/** @var Database|null The last connection handle that caused a problem */
+	/** @var IDatabaseForOwner|null The last connection handle that caused a problem */
 	private $lastErrorConn;
 
 	/** @var DatabaseDomain[] Map of (domain ID => domain instance) */
@@ -2081,6 +2081,10 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	 * @codeCoverageIgnore
 	 */
 	public function setMockTime( &$time ) {
+		if ( !$this->loadMonitor instanceof LoadMonitor ) {
+			throw new LogicException( 'Cannot set mock time on ' . $this::class . ' (consider adding ' .
+				'setMockTime to ILoadMonitor).' );
+		}
 		$this->loadMonitor->setMockTime( $time );
 	}
 

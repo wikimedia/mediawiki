@@ -600,6 +600,7 @@ class RefreshLinksJob extends Job {
 		];
 		if ( !empty( $this->params['triggeringUser'] ) ) {
 			$userInfo = $this->params['triggeringUser'];
+			'@phan-var array{userId:int,userName:string} $userInfo';
 			if ( $userInfo['userId'] ) {
 				$options['triggeringUser'] = User::newFromId( $userInfo['userId'] );
 			} else {

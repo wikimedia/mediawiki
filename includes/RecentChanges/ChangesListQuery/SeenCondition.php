@@ -36,7 +36,7 @@ class SeenCondition extends ChangesListConditionBase {
 		if ( !$this->user ) {
 			$seen = false;
 		} else {
-			$firstUnseen = $this->getLatestNotificationTimestamp( $row );
+			$firstUnseen = $this->getLatestNotificationTimestamp( $row, $this->user );
 			$seen = $firstUnseen === null
 				|| $firstUnseen > ConvertibleTimestamp::convert( TS_MW, $row->rc_timestamp );
 		}
@@ -44,16 +44,15 @@ class SeenCondition extends ChangesListConditionBase {
 	}
 
 	/**
-	 * @param stdClass $row
 	 * @return string|null TS_MW timestamp of first unseen revision or null if there isn't one
 	 */
-	private function getLatestNotificationTimestamp( $row ) {
+	private function getLatestNotificationTimestamp( stdClass $row, UserIdentity $user ) {
 		if ( $row->rc_title === '' ) {
 			return null;
 		}
 		return $this->watchedItemStore->getLatestNotificationTimestamp(
 			$row->wl_notificationtimestamp,
-			$this->user,
+			$user,
 			new PageReferenceValue( (int)$row->rc_namespace, $row->rc_title, PageReferenceValue::LOCAL )
 		);
 	}

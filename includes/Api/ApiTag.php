@@ -13,7 +13,7 @@ use MediaWiki\RecentChanges\RecentChangeLookup;
 use MediaWiki\Revision\RevisionStore;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\Rdbms\IConnectionProvider;
-use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 
 /**
  * @ingroup API
@@ -23,7 +23,7 @@ class ApiTag extends ApiBase {
 
 	use ApiBlockInfoTrait;
 
-	private IDatabase $dbr;
+	private IReadableDatabase $dbr;
 	private RevisionStore $revisionStore;
 	private ChangeTagsStore $changeTagsStore;
 	private RecentChangeLookup $recentChangeLookup;

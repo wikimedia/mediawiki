@@ -415,7 +415,7 @@ class ChronologyProtector {
 	}
 
 	/**
-	 * @return array<string,DBPrimaryPos>
+	 * @return array<string,DBPrimaryPos|null>
 	 */
 	protected function getStartupSessionPositions() {
 		$this->lazyStartup();

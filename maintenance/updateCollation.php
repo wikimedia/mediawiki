@@ -20,8 +20,8 @@ use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Storage\NameTableStore;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
-use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
@@ -57,7 +57,7 @@ class UpdateCollation extends Maintenance {
 
 	private bool $normalization = false;
 
-	/** @var IDatabase */
+	/** @var IReadableDatabase */
 	private $dbr;
 
 	/** @var IMaintainableDatabase */
@@ -134,7 +134,7 @@ TEXT
 		$this->force = $this->getOption( 'force' );
 		$this->dryRun = $this->getOption( 'dry-run' );
 		$this->verboseStats = $this->getOption( 'verbose-stats' );
-		$this->dbw = $this->getPrimaryDB();
+		$this->dbw = $this->getDB( DB_PRIMARY );
 		$this->dbr = $this->getReplicaDB();
 		$this->targetTable = $this->getOption( 'target-table' );
 		$this->normalization = $this->getOption( 'only-migrate-normalization', false );

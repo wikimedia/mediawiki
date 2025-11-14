@@ -5,6 +5,7 @@
  */
 namespace Wikimedia\Rdbms;
 
+use Exception;
 use InvalidArgumentException;
 use LogicException;
 use Psr\Log\LoggerAwareInterface;
@@ -117,7 +118,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 	private $csmId;
 	/** @var string|null Last critical section caller name */
 	private $csmFname;
-	/** @var DBUnexpectedError|null Last unresolved critical section error */
+	/** @var Exception|null Last unresolved critical section error */
 	private $csmError;
 
 	/** Whether the database is a file on disk */

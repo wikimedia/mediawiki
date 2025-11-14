@@ -16,7 +16,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Page\SitemapGenerator;
 use MediaWiki\WikiMap\WikiMap;
-use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 
 // @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
@@ -83,7 +83,7 @@ class GenerateSitemap extends Maintenance {
 	/**
 	 * A database replica DB object
 	 *
-	 * @var IDatabase
+	 * @var IReadableDatabase
 	 */
 	public $dbr;
 

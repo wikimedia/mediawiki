@@ -37,9 +37,9 @@ use UnexpectedValueException;
  * @ingroup Database
  */
 class LBFactoryMulti extends LBFactory {
-	/** @var array<string,LoadBalancer> Map of (main section => tracked LoadBalancer) */
+	/** @var array<string,ILoadBalancerForOwner> Map of (main section => tracked LoadBalancer) */
 	private $mainLBs = [];
-	/** @var array<string,LoadBalancer> Map of (external cluster => tracked LoadBalancer) */
+	/** @var array<string,ILoadBalancerForOwner> Map of (external cluster => tracked LoadBalancer) */
 	private $externalLBs = [];
 
 	/** @var string[] Map of (server name => IP address) */

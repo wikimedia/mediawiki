@@ -66,6 +66,8 @@ abstract class EditHandler extends ActionModuleBasedHandler {
 
 	/**
 	 * @inheritDoc
+	 * @phpcs:ignore Generic.Files.LineLength.TooLong
+	 * @param array{error?:string,edit?:array{result:string,title:string,newrevid:int,pageid:int,newtimestamp:string,contentmodel:string}} $data
 	 */
 	protected function mapActionModuleResult( array $data ) {
 		if ( isset( $data['error'] ) ) {

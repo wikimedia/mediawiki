@@ -161,9 +161,10 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 			static fn ( $group ) => $group['canAdd'] || $group['canRemove']
 		);
 
-		return $canChangeAny ?
+		$panel = $canChangeAny ?
 			$this->buildEditGroupsFormContent( $groups ) :
 			$this->buildViewGroupsFormContent();
+		return $panel->toString();
 	}
 
 	private function buildFormHeader( string $messageKey ): string {
@@ -194,9 +195,8 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 
 	/**
 	 * Builds the user groups form in view-only mode.
-	 * @return string The HTML of the form
 	 */
-	private function buildViewGroupsFormContent(): string {
+	private function buildViewGroupsFormContent(): PanelLayout {
 		$panelLabel = $this->buildFormHeader( 'userrights-viewusergroup' );
 
 		$panelItems = array_filter( [
@@ -226,9 +226,8 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 	/**
 	 * Builds the user groups form in edit mode.
 	 * @param array $groups Prepared list of groups to show, {@see prepareAvailableGroups()}
-	 * @return string The HTML of the form
 	 */
-	private function buildEditGroupsFormContent( array $groups ): string {
+	private function buildEditGroupsFormContent( array $groups ): PanelLayout {
 		$panelLabel = $this->buildFormHeader( 'userrights-editusergroup' );
 
 		$panelItems = array_filter( [

@@ -1665,7 +1665,7 @@ class SQLPlatform implements ISQLPlatform {
 		$condsSql = " SET " . $this->makeList( $set, self::LIST_SET );
 		$cleanCondsSql = " SET " . $this->scrubArray( $set, self::LIST_SET );
 
-		if ( $conds && $conds !== self::ALL_ROWS && $conds !== [ self::ALL_ROWS ] ) {
+		if ( $conds !== self::ALL_ROWS && $conds !== [ self::ALL_ROWS ] ) {
 			$cleanCondsSql .= ' WHERE ' . $this->scrubArray( $conds );
 			if ( is_array( $conds ) ) {
 				$conds = $this->makeList( $conds, self::LIST_AND );

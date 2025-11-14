@@ -333,13 +333,8 @@ class DiffHistoryBlob implements HistoryBlob {
 		$this->uncompress();
 	}
 
-	/**
-	 * Helper function for compression jobs
-	 * Returns true until the object is "full" and ready to be committed
-	 *
-	 * @return bool
-	 */
-	public function isHappy() {
+	/** @inheritDoc */
+	public function isHappy(): bool {
 		return $this->mSize < $this->mMaxSize
 			&& count( $this->mItems ) < $this->mMaxCount;
 	}

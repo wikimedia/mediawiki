@@ -697,7 +697,7 @@ class CgzCopyTransaction {
 	public $parent;
 	/** @var class-string<HistoryBlob> */
 	public $blobClass;
-	/** @var ConcatenatedGzipHistoryBlob|false */
+	/** @var HistoryBlob|false */
 	public $cgz;
 	/** @var string[] */
 	public $referrers;
