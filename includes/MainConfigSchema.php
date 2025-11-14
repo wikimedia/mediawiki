@@ -3095,9 +3095,6 @@ class MainConfigSchema {
 	 *                  sent to it. It will be excluded from lag checks in maintenance scripts.
 	 *                  The only way it can receive traffic is if groupLoads is used.
 	 *
-	 *   - groupLoads:  (optional) Array of load ratios, the key is the query group name. A query
-	 *                  may belong to several groups, the most specific group defined here is used.
-	 *
 	 *   - flags:       (optional) Bit field of properties:
 	 *                  - DBO_DEFAULT:    Transactional-ize web requests and use autocommit otherwise
 	 *                  - DBO_DEBUG:      Equivalent of $wgDebugDumpSql

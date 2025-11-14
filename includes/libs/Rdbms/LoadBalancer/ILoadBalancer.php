@@ -184,7 +184,7 @@ interface ILoadBalancer {
 	 * Subsequent calls with the same $group will not need to make new connection attempts
 	 * since the acquired connection for each group is preserved.
 	 *
-	 * @param string|false $group Query group or false for the generic group
+	 * @param string|false|string[] $group Query group or false for the generic group
 	 * @return int|false Specific server index, or false if no DB handle can be obtained
 	 */
 	public function getReaderIndex( $group = false );
