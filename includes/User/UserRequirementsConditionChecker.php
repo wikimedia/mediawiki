@@ -71,15 +71,16 @@ class UserRequirementsConditionChecker {
 	 *
 	 * @param array $cond A condition, which must not contain other conditions
 	 * @param UserIdentity $user The user to check the condition against
-	 * @param bool $isPerformingRequest Whether $user is the user who performs the current request
 	 * @return bool Whether the condition is true for the user
 	 * @throws InvalidArgumentException if autopromote condition was not recognized.
 	 * @throws LogicException if APCOND_BLOCKED is checked again before returning a result.
 	 */
-	private function checkCondition( array $cond, UserIdentity $user, bool $isPerformingRequest ): bool {
+	private function checkCondition( array $cond, UserIdentity $user ): bool {
 		if ( count( $cond ) < 1 ) {
 			return false;
 		}
+
+		$isPerformingRequest = $user->equals( $this->context->getUser() );
 
 		// Some checks depend on hooks or other dynamically-determined state, so we can fetch them only
 		// for the local wiki and not for remote users. The latter may require API requests to the remote
@@ -204,18 +205,17 @@ class UserRequirementsConditionChecker {
 	 *
 	 * @param mixed $cond A condition, possibly containing other conditions
 	 * @param UserIdentity $user The user to check the conditions against
-	 * @param bool $isPerformingRequest Whether $user is the user who performs the current request
 	 *
 	 * @return bool Whether the condition is true
 	 */
-	public function recursivelyCheckCondition( $cond, UserIdentity $user, bool $isPerformingRequest = true ): bool {
+	public function recursivelyCheckCondition( $cond, UserIdentity $user ): bool {
 		if ( is_array( $cond ) && count( $cond ) >= 2 && in_array( $cond[0], self::VALID_OPS ) ) {
 			// Recursive condition
 
 			// AND (all conditions pass)
 			if ( $cond[0] === '&' ) {
 				foreach ( array_slice( $cond, 1 ) as $subcond ) {
-					if ( !$this->recursivelyCheckCondition( $subcond, $user, $isPerformingRequest ) ) {
+					if ( !$this->recursivelyCheckCondition( $subcond, $user ) ) {
 						return false;
 					}
 				}
@@ -226,7 +226,7 @@ class UserRequirementsConditionChecker {
 			// OR (at least one condition passes)
 			if ( $cond[0] === '|' ) {
 				foreach ( array_slice( $cond, 1 ) as $subcond ) {
-					if ( $this->recursivelyCheckCondition( $subcond, $user, $isPerformingRequest ) ) {
+					if ( $this->recursivelyCheckCondition( $subcond, $user ) ) {
 						return true;
 					}
 				}
@@ -242,14 +242,14 @@ class UserRequirementsConditionChecker {
 						' Check your $wgAutopromote and $wgAutopromoteOnce settings.'
 					);
 				}
-				return $this->recursivelyCheckCondition( $cond[1], $user, $isPerformingRequest )
-					xor $this->recursivelyCheckCondition( $cond[2], $user, $isPerformingRequest );
+				return $this->recursivelyCheckCondition( $cond[1], $user )
+					xor $this->recursivelyCheckCondition( $cond[2], $user );
 			}
 
 			// NOT (no conditions pass)
 			if ( $cond[0] === '!' ) {
 				foreach ( array_slice( $cond, 1 ) as $subcond ) {
-					if ( $this->recursivelyCheckCondition( $subcond, $user, $isPerformingRequest ) ) {
+					if ( $this->recursivelyCheckCondition( $subcond, $user ) ) {
 						return false;
 					}
 				}
@@ -263,7 +263,7 @@ class UserRequirementsConditionChecker {
 			$cond = [ $cond ];
 		}
 
-		return $this->checkCondition( $cond, $user, $isPerformingRequest );
+		return $this->checkCondition( $cond, $user );
 	}
 
 	/**

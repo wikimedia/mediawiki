@@ -82,24 +82,23 @@ class RestrictedUserGroupCheckerTest extends MediaWikiUnitTestCase {
 		];
 		$options = $this->createOptions( $restrictions );
 
+		$performer = $this->mockAnonNullAuthority();
+		$target = UserIdentityValue::newAnonymous( '127.0.0.2' );
+
 		$conditionCheckerMock = $this->createMock( UserRequirementsConditionChecker::class );
 		$conditionCheckerMock->expects( $this->exactly( $expectedCalls ) )
 			->method( 'recursivelyCheckCondition' )
-			->willReturnCallback( function ( $cond, $_, $isPerforming ) use ( $updaterConditions, $memberConditions ) {
+			->willReturnCallback( function ( $cond, $user ) use ( $target, $updaterConditions, $memberConditions ) {
 				$this->assertNotSame( [], $cond );
-				if ( $isPerforming ) {
-					$this->assertSame( $updaterConditions, $cond, 'Updater conditions do not match' );
-				} else {
+				if ( $target->equals( $user ) ) {
 					$this->assertSame( $memberConditions, $cond, 'Member conditions do not match' );
+				} else {
+					$this->assertSame( $updaterConditions, $cond, 'Updater conditions do not match' );
 				}
 				return true;
 			} );
 
 		$groupChecker = new RestrictedUserGroupChecker( $options, $conditionCheckerMock );
-
-		$performer = $this->mockAnonNullAuthority();
-		$target = UserIdentityValue::newAnonymous( '127.0.0.1' );
-
 		$result = $groupChecker->canPerformerAddTargetToGroup( $performer, $target, 'sysop' );
 		$this->assertTrue( $result );
 	}
@@ -150,16 +149,17 @@ class RestrictedUserGroupCheckerTest extends MediaWikiUnitTestCase {
 			];
 		}
 		$options = $this->createOptions( $restrictions );
+
+		$performer = $this->mockAnonAuthorityWithPermissions( $performerRights );
+		$target = UserIdentityValue::newAnonymous( '127.0.0.2' );
+
 		$conditionCheckerMock = $this->createMock( UserRequirementsConditionChecker::class );
 		$conditionCheckerMock->method( 'recursivelyCheckCondition' )
 			->willReturnCallback(
-				static fn ( $cond, $user, $isPerformer ) => $isPerformer ? $performerMeets : $targetMeets
+				static fn ( $cond, $user ) => $target->equals( $user ) ? $targetMeets : $performerMeets
 			);
 
 		$groupChecker = new RestrictedUserGroupChecker( $options, $conditionCheckerMock );
-
-		$performer = $this->mockAnonAuthorityWithPermissions( $performerRights );
-		$target = UserIdentityValue::newAnonymous( '127.0.0.1' );
 
 		$result = $groupChecker->canPerformerAddTargetToGroup( $performer, $target, 'sysop' );
 		$this->assertSame( $expected, $result );

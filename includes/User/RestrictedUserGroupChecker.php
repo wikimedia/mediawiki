@@ -104,8 +104,7 @@ class RestrictedUserGroupChecker {
 
 		return $this->userRequirementsConditionChecker->recursivelyCheckCondition(
 			$performerRestrictions,
-			$performer,
-			true
+			$performer
 		);
 	}
 
@@ -118,8 +117,7 @@ class RestrictedUserGroupChecker {
 
 		return $this->userRequirementsConditionChecker->recursivelyCheckCondition(
 			$targetRestrictions,
-			$target,
-			false
+			$target
 		);
 	}
 

@@ -6,6 +6,7 @@
 
 namespace MediaWiki\Tests\User;
 
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\User\Registration\UserRegistrationLookup;
 use MediaWiki\User\User;
@@ -30,13 +31,17 @@ class UserRequirementsConditionCheckerTest extends MediaWikiIntegrationTestCase 
 		$this->setRequest( $request );
 
 		$user = new UserIdentityValue( 1, 'Test User' );
+		if ( $isPerformer ) {
+			$user = RequestContext::getMain()->getUser();
+		}
+
 		$registrationLookupMock = $this->createMock( UserRegistrationLookup::class );
 		$registrationLookupMock->method( 'getRegistration' )
 			->willReturn( '20000101000000' );
 		$this->setService( 'UserRegistrationLookup', $registrationLookupMock );
 
 		$checker = $this->getServiceContainer()->getUserRequirementsConditionChecker();
-		$result = $checker->recursivelyCheckCondition( $conditions, $user, $isPerformer );
+		$result = $checker->recursivelyCheckCondition( $conditions, $user );
 		$this->assertSame( $expected, $result );
 	}
 
@@ -94,7 +99,7 @@ class UserRequirementsConditionCheckerTest extends MediaWikiIntegrationTestCase 
 
 		$user = new UserIdentityValue( 1, 'Test User', 'otherwiki' );
 		$checker = $this->getServiceContainer()->getUserRequirementsConditionChecker();
-		$result = $checker->recursivelyCheckCondition( $conditions, $user, false );
+		$result = $checker->recursivelyCheckCondition( $conditions, $user );
 		$this->assertFalse( $result );
 	}
 
@@ -132,7 +137,7 @@ class UserRequirementsConditionCheckerTest extends MediaWikiIntegrationTestCase 
 
 		$user = new UserIdentityValue( 1, 'Test User', 'otherwiki' );
 		$checker = $this->getServiceContainer()->getUserRequirementsConditionChecker();
-		$result = $checker->recursivelyCheckCondition( $conditions, $user, false );
+		$result = $checker->recursivelyCheckCondition( $conditions, $user );
 		$this->assertSame( $expected, $result );
 	}
 
@@ -180,7 +185,7 @@ class UserRequirementsConditionCheckerTest extends MediaWikiIntegrationTestCase 
 
 		$user = new UserIdentityValue( 1, 'Test User', $isRemote ? 'otherwiki' : UserIdentity::LOCAL );
 		$checker = $this->getServiceContainer()->getUserRequirementsConditionChecker();
-		$result = $checker->recursivelyCheckCondition( $conditions, $user, false );
+		$result = $checker->recursivelyCheckCondition( $conditions, $user );
 		$this->assertTrue( $result );
 		$this->assertTrue( $hookCalled, 'Hook should be called' );
 	}
