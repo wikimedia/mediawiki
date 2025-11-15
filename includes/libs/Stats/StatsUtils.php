@@ -189,7 +189,7 @@ class StatsUtils {
 		// Compute buckets around the quantized starting position
 		// By using the E12 series and powers of ten our cutoffs will
 		// be compact (not too many digits) and consistent.
-		return array_map( static function ( $x ) use ( $pos, $skip ) {
+		return array_map( static function ( int $x ) use ( $pos, $skip ) {
 			$y = $pos + ( $x * $skip );
 			$rem = $y % 12;
 			if ( $rem < 0 ) {

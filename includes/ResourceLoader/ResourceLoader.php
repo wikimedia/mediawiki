@@ -1600,10 +1600,10 @@ MESSAGE;
 	 *  - string: module name
 	 *  - string: module version
 	 *  - array|null: List of dependencies (optional)
-	 *  - string|null: Module group (optional)
+	 *  - int|null: Module group (optional)
 	 *  - string|null: Name of foreign module source, or 'local' (optional)
 	 *  - string|null: Script body of a skip function (optional)
-	 * @phan-param array<int,array{0:string,1:string,2?:?array,3?:?string,4?:?string,5?:?string}> $modules
+	 * @phan-param array<int,array{0:string,1:string,2?:?array,3?:?int,4?:?string,5?:?string}> $modules
 	 * @return string JavaScript code
 	 */
 	public static function makeLoaderRegisterScript(

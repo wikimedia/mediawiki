@@ -127,7 +127,7 @@ class JpegHandler extends ExifBitmapHandler {
 
 	/**
 	 * @param File $file
-	 * @param array $params Rotate parameters.
+	 * @param array{rotation:int,srcPath:string,dstPath:string} $params Rotate parameters.
 	 *    'rotation' clockwise rotation in degrees, allowed are multiples of 90
 	 * @since 1.21
 	 * @return MediaTransformError|false

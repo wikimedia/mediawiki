@@ -44,7 +44,7 @@ class Version extends Maintenance {
 
 		// See: https://www.mediawiki.org/wiki/Topic:U4u94htjqupsosea
 		if ( $strictVersion >= '1.19' ) {
-			$x = (float)explode( '.', $strictVersion )[1];
+			$x = (int)explode( '.', $strictVersion )[1];
 			$isLTS = ( $x - 19 ) % 4 === 0;
 		}
 

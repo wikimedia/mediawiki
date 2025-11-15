@@ -245,18 +245,15 @@ class DatabaseBlockStore {
 
 		$orConds = [];
 		if ( $userIds ) {
-			// @phan-suppress-next-line PhanTypeMismatchArgument -- array_unique() result is non-empty
-			$orConds[] = $db->expr( 'bt_user', '=', array_unique( $userIds ) );
+			$orConds[] = $db->expr( 'bt_user', '=', array_values( array_unique( $userIds ) ) );
 		}
 		if ( $userNames ) {
 			// Add bt_ip_hex to the condition since it is in the index
 			$orConds[] = $db->expr( 'bt_ip_hex', '=', null )
-				// @phan-suppress-next-line PhanTypeMismatchArgument -- array_unique() result is non-empty
-				->and( 'bt_user_text', '=', array_unique( $userNames ) );
+				->and( 'bt_user_text', '=', array_values( array_unique( $userNames ) ) );
 		}
 		if ( $addresses ) {
-			// @phan-suppress-next-line PhanTypeMismatchArgument
-			$orConds[] = $db->expr( 'bt_address', '=', array_unique( $addresses ) );
+			$orConds[] = $db->expr( 'bt_address', '=', array_values( array_unique( $addresses ) ) );
 		}
 		foreach ( $this->getConditionForRanges( $ranges ) as $cond ) {
 			$orConds[] = new RawSQLExpression( $cond );

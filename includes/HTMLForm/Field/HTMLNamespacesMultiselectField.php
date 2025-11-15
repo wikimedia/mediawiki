@@ -68,7 +68,7 @@ class HTMLNamespacesMultiselectField extends HTMLSelectNamespace {
 	/** @inheritDoc */
 	public function getInputHTML( $value ) {
 		$this->mParent->getOutput()->enableOOUI();
-		return $this->getInputOOUI( $value );
+		return $this->getInputOOUI( $value )->toString();
 	}
 
 	/** @inheritDoc */

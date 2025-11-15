@@ -11,6 +11,7 @@
  *
  * @stable to extend
  * @ingroup Search
+ * @method ArrayIterator getIterator()
  */
 abstract class BaseSearchResultSet implements ISearchResultSet {
 

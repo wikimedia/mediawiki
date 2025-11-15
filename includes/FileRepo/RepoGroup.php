@@ -459,7 +459,7 @@ class RepoGroup {
 
 	/**
 	 * Clear RepoGroup process cache used for finding a file
-	 * @param PageIdentity|string|null $title File page or file name, or null to clear all files
+	 * @param PageIdentity|LinkTarget|string|null $title File page or file name, or null to clear all files
 	 */
 	public function clearCache( $title = null ) {
 		if ( $title == null ) {

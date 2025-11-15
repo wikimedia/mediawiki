@@ -357,7 +357,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 	 * @param File $image File associated with this thumbnail
 	 * @param array $params Array with scaler params
 	 *
-	 * @return MediaTransformError Error object if error occurred, false (=no error) otherwise
+	 * @return MediaTransformError|false Error object if error occurred, false (=no error) otherwise
 	 */
 	protected function transformImageMagick( $image, $params ) {
 		return $this->getMediaTransformError( $params, "Unimplemented" );
@@ -576,7 +576,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 	 *
 	 * @stable to override
 	 * @param File $file
-	 * @param array $params Rotate parameters.
+	 * @param array{rotation:int,srcPath:string,dstPath:string} $params Rotate parameters.
 	 *   'rotation' clockwise rotation in degrees, allowed are multiples of 90
 	 * @since 1.24 Is non-static. From 1.21 it was static
 	 * @return MediaTransformError|false

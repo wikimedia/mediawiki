@@ -450,7 +450,8 @@ class MWDebug {
 	 *
 	 * @internal For use by MWExceptionHandler to override 'exception.file' in error logs.
 	 * @param string $msg Formatted message from formatCallerDescription() and getCallerDescription()
-	 * @return null|array<string,string> Null if unable to recognise all parts, or array with:
+	 * @return null|array{file:string,line:int,func:string,message:string} Null if unable to recognise all parts,
+	 *  or array with:
 	 *  - 'file': string of file path
 	 *  - 'line': string of line number
 	 *  - 'func': string of function or method name
@@ -465,7 +466,7 @@ class MWDebug {
 				'message' => "{$match[1]} [Called from {$match[2]}]",
 				'func' => $match[2],
 				'file' => $match[3],
-				'line' => $match[4],
+				'line' => (int)$match[4],
 			];
 		} else {
 			return null;

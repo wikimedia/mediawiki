@@ -305,7 +305,7 @@ class BitmapHandler extends TransformationalImageHandler {
 					[ $radius, $sigma ] = explode( 'x', $sharpenParameter, 2 );
 					$im->sharpenImage( (float)$radius, (float)$sigma );
 				}
-				$qualityVal = isset( $params['quality'] ) ? (string)$params['quality'] : null;
+				$qualityVal = isset( $params['quality'] ) ? (int)$params['quality'] : null;
 				$im->setCompressionQuality( $qualityVal ?: $jpegQuality );
 				if ( $params['interlace'] ) {
 					$im->setInterlaceScheme( Imagick::INTERLACE_JPEG );
@@ -568,7 +568,7 @@ class BitmapHandler extends TransformationalImageHandler {
 	/**
 	 * @stable to override
 	 * @param File $file
-	 * @param array $params Rotate parameters.
+	 * @param array{rotation:int,srcPath:string,dstPath:string} $params Rotate parameters.
 	 *   'rotation' clockwise rotation in degrees, allowed are multiples of 90
 	 * @since 1.21
 	 * @return MediaTransformError|false

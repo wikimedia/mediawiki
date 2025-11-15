@@ -119,27 +119,25 @@ class LineFormatter extends MonologLineFormatter {
 	/**
 	 * Convert an array of Throwable data to a string.
 	 *
-	 * @param array $e
+	 * @param array{class:class-string,message:string,code:int,file:string,line:int,trace:array,previous?:array} $e
 	 * @return string
 	 */
 	protected function normalizeExceptionArray( array $e ) {
 		$defaults = [
 			'class' => 'Unknown',
 			'file' => 'unknown',
-			'line' => null,
+			'line' => 0,
 			'message' => 'unknown',
 			'trace' => [],
 		];
 		$e = array_merge( $defaults, $e );
 
-		// @phan-suppress-next-line PhanTypeMismatchArgumentNullableInternal class is always set
 		$which = is_a( $e['class'], Error::class, true ) ? 'Error' : 'Exception';
 		$str = "\n[$which {$e['class']}] (" .
 			"{$e['file']}:{$e['line']}) {$e['message']}";
 
 		if ( $this->includeStacktraces && $e['trace'] ) {
 			$str .= "\n" .
-				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable trace is always set
 				MWExceptionHandler::prettyPrintTrace( $e['trace'], '  ' );
 		}
 

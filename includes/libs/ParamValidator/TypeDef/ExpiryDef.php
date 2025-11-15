@@ -39,11 +39,11 @@ class ExpiryDef extends TypeDef {
 		try {
 			$expiry = self::normalizeExpiry( $value, TS_ISO_8601 );
 		} catch ( InvalidArgumentException ) {
-			$this->failure( 'badexpiry', $name, $value, $settings, $options );
+			$this->fatal( 'badexpiry', $name, $value, $settings, $options );
 		}
 
 		if ( $expiry !== 'infinity' && $expiry < ConvertibleTimestamp::now( TS_ISO_8601 ) ) {
-			$this->failure( 'badexpiry-past', $name, $value, $settings, $options );
+			$this->fatal( 'badexpiry-past', $name, $value, $settings, $options );
 		}
 
 		$max = $settings[self::PARAM_MAX] ?? null;

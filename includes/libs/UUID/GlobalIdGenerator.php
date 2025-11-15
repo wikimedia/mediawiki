@@ -592,7 +592,7 @@ class GlobalIdGenerator {
 	}
 
 	/**
-	 * @param array $time Array of second and millisecond integers
+	 * @param array{0:int,1:int} $time Array of second and millisecond integers
 	 * @param int $delta Number of intervals to add on to the timestamp
 	 * @return string 60 bits of "100ns intervals since 15 October 1582" (rolls over in 3400)
 	 * @throws RuntimeException
@@ -616,7 +616,7 @@ class GlobalIdGenerator {
 			$id_bin = str_pad( gmp_strval( $ts, 2 ), 60, '0', STR_PAD_LEFT );
 		} elseif ( extension_loaded( 'bcmath' ) ) {
 			// ms
-			$ts = bcadd( bcmul( $sec, '1000' ), $msec );
+			$ts = bcadd( bcmul( (string)$sec, '1000' ), (string)$msec );
 			// 100ns intervals
 			$ts = bcadd( bcmul( $ts, '10000' ), $offset );
 			$ts = bcadd( $ts, (string)$delta );

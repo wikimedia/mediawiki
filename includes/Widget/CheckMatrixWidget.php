@@ -194,7 +194,7 @@ class CheckMatrixWidget extends Widget {
 	 *
 	 * @param string $label Label name
 	 *
-	 * @return string Tooltip. Null if none is available.
+	 * @return string|HtmlSnippet Tooltip. Null if none is available.
 	 */
 	private function getTooltip( $label ) {
 		if ( isset( $this->tooltipsHtml[ $label ] ) ) {

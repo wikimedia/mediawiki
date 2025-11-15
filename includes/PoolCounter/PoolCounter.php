@@ -225,7 +225,7 @@ abstract class PoolCounter implements LoggerAwareInterface {
 	 * @return string Slot key with the type and slot number
 	 */
 	protected function hashKeyIntoSlots( $type, $key, $slots ) {
-		return $type . ':' . ( hexdec( substr( sha1( $key ), 0, 4 ) ) % $slots );
+		return $type . ':' . ( (int)hexdec( substr( sha1( $key ), 0, 4 ) ) % $slots );
 	}
 
 	/**

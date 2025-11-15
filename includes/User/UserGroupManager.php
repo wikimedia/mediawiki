@@ -1011,8 +1011,7 @@ class UserGroupManager {
 			'add-self' => [],
 			'remove-self' => []
 		], ...$changeableGroups );
-		// @phan-suppress-next-line PhanTypeMismatchReturn
-		return array_map( 'array_unique', $groups );
+		return array_map( array_values( ... ), array_map( array_unique( ... ), $groups ) );
 	}
 
 	/**
