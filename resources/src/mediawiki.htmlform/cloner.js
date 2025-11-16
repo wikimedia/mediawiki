@@ -40,9 +40,11 @@ mw.hook( 'htmlform.enhance' ).add( ( $root ) => {
 
 		// eslint-disable-next-line no-jquery/no-class-state
 		if ( $element.hasClass( 'oo-ui-widget' ) ) {
-			const deleteButton = OO.ui.infuse( $element );
-			deleteButton.on( 'click', () => {
-				deleteButton.$element.closest( 'li.mw-htmlform-cloner-li' ).remove();
+			mw.loader.using( 'mediawiki.htmlform.ooui' ).then( () => {
+				const deleteButton = OO.ui.infuse( $element );
+				deleteButton.on( 'click', () => {
+					deleteButton.$element.closest( 'li.mw-htmlform-cloner-li' ).remove();
+				} );
 			} );
 		} else {
 			// eslint-disable-next-line no-jquery/no-sizzle
@@ -58,9 +60,11 @@ mw.hook( 'htmlform.enhance' ).add( ( $root ) => {
 
 		// eslint-disable-next-line no-jquery/no-class-state
 		if ( $element.hasClass( 'oo-ui-widget' ) ) {
-			const createButton = OO.ui.infuse( $element );
-			createButton.on( 'click', () => {
-				appendToCloner( createButton.$element );
+			mw.loader.using( 'mediawiki.htmlform.ooui' ).then( () => {
+				const createButton = OO.ui.infuse( $element );
+				createButton.on( 'click', () => {
+					appendToCloner( createButton.$element );
+				} );
 			} );
 		} else {
 			// eslint-disable-next-line no-jquery/no-sizzle
