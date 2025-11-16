@@ -51,8 +51,7 @@ use Wikimedia\AtEase\AtEase;
  *  rc_timestamp    time the entry was made
  *  rc_namespace    namespace #
  *  rc_title        non-prefixed db key
- *  rc_type         obsolete, use rc_source
- *  rc_source       string representation of change source
+ *  rc_source       change source
  *  rc_minor        is minor
  *  rc_cur_id       page_id of associated page entry
  *  rc_user         user id who made the entry

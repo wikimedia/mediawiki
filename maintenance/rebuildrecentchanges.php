@@ -158,7 +158,6 @@ class RebuildRecentchanges extends Maintenance {
 					'rc_cur_id' => $row->page_id,
 					'rc_this_oldid' => $row->rev_id,
 					'rc_last_oldid' => 0, // is this ok?
-					'rc_type' => $row->page_is_new ? RC_NEW : RC_EDIT,
 					'rc_source' => $row->page_is_new ? RecentChange::SRC_NEW : RecentChange::SRC_EDIT,
 					'rc_deleted' => $row->rev_deleted
 					] + $commentStore->insert( $dbw, 'rc_comment', $comment ) )
@@ -239,7 +238,6 @@ class RebuildRecentchanges extends Maintenance {
 					->update( 'recentchanges' )
 					->set( [
 						'rc_last_oldid' => $lastOldId,
-						'rc_type' => $new ? RC_NEW : RC_EDIT,
 						'rc_source' => $new === 1 ? RecentChange::SRC_NEW : RecentChange::SRC_EDIT,
 						'rc_old_len' => $lastSize,
 						'rc_new_len' => $size,
@@ -326,7 +324,6 @@ class RebuildRecentchanges extends Maintenance {
 					'rc_patrolled' => $row->log_type == 'upload' ? 0 : 2,
 					'rc_this_oldid' => 0,
 					'rc_last_oldid' => 0,
-					'rc_type' => RC_LOG,
 					'rc_source' => RecentChange::SRC_LOG,
 					'rc_cur_id' => $field->isNullable()
 						? $row->log_page
