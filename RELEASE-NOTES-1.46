@@ -408,6 +408,8 @@ because of Phabricator reports.
   LanguageFallbackModes::{MESSAGES,STRICT} instead.
 * The AutopromoteCondition hook has been deprecated and will now trigger
   deprecation warnings. Use UserRequirementsCondition hook, instead.
+* The RecentChange::parseToRCType and RecentChange::parseFromRCType methods are
+  deprecated and will now trigger deprecation warnings.
 * The WatchedItemQueryServiceExtensions hook is deprecated and is no longer
   called. Use ApiQueryBaseBeforeQuery, ApiQueryBaseAfterQuery,
   ApiQueryBaseProcessRow and ApiQueryWatchlistExtractOutputData.

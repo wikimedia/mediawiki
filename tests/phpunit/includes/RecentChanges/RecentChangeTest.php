@@ -187,30 +187,4 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 		$timestamp = time() + $offset;
 		$this->assertEquals( $expected, RecentChange::isInRCLifespan( $timestamp, $tolerance ) );
 	}
-
-	public static function provideRCTypes() {
-		return [
-			[ RC_EDIT, 'edit' ],
-			[ RC_NEW, 'new' ],
-			[ RC_LOG, 'log' ],
-			[ RC_EXTERNAL, 'external' ],
-			[ RC_CATEGORIZE, 'categorize' ],
-		];
-	}
-
-	/**
-	 * @dataProvider provideRCTypes
-	 * @covers \MediaWiki\RecentChanges\RecentChange::parseFromRCType
-	 */
-	public function testParseFromRCType( $rcType, $type ) {
-		$this->assertEquals( $type, RecentChange::parseFromRCType( $rcType ) );
-	}
-
-	/**
-	 * @dataProvider provideRCTypes
-	 * @covers \MediaWiki\RecentChanges\RecentChange::parseToRCType
-	 */
-	public function testParseToRCType( $rcType, $type ) {
-		$this->assertEquals( $rcType, RecentChange::parseToRCType( $type ) );
-	}
 }

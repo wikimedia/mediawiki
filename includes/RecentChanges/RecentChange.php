@@ -91,6 +91,14 @@ use Wikimedia\AtEase\AtEase;
 class RecentChange implements Taggable {
 	use DeprecationHelper;
 
+	private const CHANGE_TYPES = [
+		'edit' => RC_EDIT,
+		'new' => RC_NEW,
+		'log' => RC_LOG,
+		'external' => RC_EXTERNAL,
+		'categorize' => RC_CATEGORIZE,
+	];
+
 	// Constants for the rc_source field.  Extensions may also have
 	// their own source constants.
 	public const SRC_EDIT = 'mw.edit';
@@ -169,14 +177,6 @@ class RecentChange implements Taggable {
 	 */
 	private $highlights = [];
 
-	private const CHANGE_TYPES = [
-		'edit' => RC_EDIT,
-		'new' => RC_NEW,
-		'log' => RC_LOG,
-		'external' => RC_EXTERNAL,
-		'categorize' => RC_CATEGORIZE,
-	];
-
 	public function __construct(
 		?PageReference $page = null,
 		?UserIdentity $performer = null
@@ -213,11 +213,15 @@ class RecentChange implements Taggable {
 
 	/**
 	 * Parsing text to RC_* constants
+	 *
+	 * @deprecated since 1.46
 	 * @since 1.24
 	 * @param string|array $type Callers must make sure that the given types are valid RC types.
 	 * @return int|array RC_TYPE
 	 */
 	public static function parseToRCType( $type ) {
+		wfDeprecated( __METHOD__, '1.46' );
+
 		if ( is_array( $type ) ) {
 			$retval = [];
 			foreach ( $type as $t ) {
@@ -235,11 +239,15 @@ class RecentChange implements Taggable {
 
 	/**
 	 * Parsing RC_* constants to human-readable test
+	 *
+	 * @deprecated since 1.46
 	 * @since 1.24
 	 * @param int $rcType
 	 * @return string
 	 */
 	public static function parseFromRCType( $rcType ) {
+		wfDeprecated( __METHOD__, '1.46' );
+
 		return array_search( $rcType, self::CHANGE_TYPES, true ) ?: "$rcType";
 	}
 
