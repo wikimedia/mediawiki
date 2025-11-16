@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Tests\Api;
 
+use DummySessionProvider;
 use Generator;
 use InvalidArgumentException;
 use LogicException;
@@ -1242,6 +1243,11 @@ class ApiMainTest extends ApiTestCase {
 		?string $expectedVary,
 		string $expectedCacheControl
 	) {
+		$this->overrideConfigValues( [
+			MainConfigNames::VaryOnXFP => false,
+			MainConfigNames::SessionProviders => [ [ 'class' => DummySessionProvider::class ] ]
+		] );
+
 		$api->setCacheMode( $cacheMode );
 		$this->assertSame( $cacheMode, $api->mCacheMode, 'Cache mode precondition' );
 		$api->sendCacheHeaders( $isError );
