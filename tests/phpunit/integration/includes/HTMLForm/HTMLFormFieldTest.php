@@ -21,6 +21,7 @@ use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers \MediaWiki\HTMLForm\HTMLFormField
+ * @covers \MediaWiki\HTMLForm\Field\HTMLFormFieldCloner
  */
 class HTMLFormFieldTest extends MediaWikiIntegrationTestCase {
 	use MediaWikiCoversValidator;
@@ -36,6 +37,9 @@ class HTMLFormFieldTest extends MediaWikiIntegrationTestCase {
 		} )->prepareForm();
 		$status = $form->trySubmit();
 		$this->assertTrue( $status );
+		// HTMLFormFieldCloner would create special template fields for JS users,
+		// make sure no warnings come from there.
+		$form->getHTML( $status );
 		return $form;
 	}
 
@@ -369,6 +373,40 @@ class HTMLFormFieldTest extends MediaWikiIntegrationTestCase {
 			'callback' => static function ( $form, $fieldData ) {
 				Assert::assertTrue( self::getFieldInCloner( $form, 'cloner', 0, 'check1' )
 					->isDisabled( $fieldData ) );
+			}
+		];
+		yield 'Reset "check1" to default, chained dependency works' => [
+			'fieldInfo' => [
+				'check1' => [ 'hide-if' => [ '===', 'select1', 'a' ] ],
+				'text1' => [ 'hide-if' => [ '===', 'check1', '' ] ],
+			],
+			'requestData' => [
+				'wpselect1' => 'a',
+				'wpcheck1' => '1',
+			],
+			'callback' => static function ( $form, $fieldData ) {
+				Assert::assertTrue( $form->getField( 'check1' )->isDisabled( $fieldData ),
+					'Assert check1 in is disabled' );
+				Assert::assertTrue( $form->getField( 'text1' )->isDisabled( $fieldData ),
+					'Assert text1 is disabled' );
+			}
+		];
+		yield 'Reset "check1" in cloner to default, chained dependency works' => [
+			'fieldInfo' => [
+				'cloner' => [ 'fields' => [
+					'check1' => [ 'hide-if' => [ '===', 'select1', 'a' ] ],
+					'check2' => [ 'hide-if' => [ '===', 'check1', '' ] ],
+				] ]
+			],
+			'requestData' => [
+				'wpselect1' => 'a',
+				'wpcloner' => [ 0 => [ 'check1' => '1' ] ],
+			],
+			'callback' => static function ( $form, $fieldData ) {
+				Assert::assertTrue( self::getFieldInCloner( $form, 'cloner', 0, 'check1' )
+					->isHidden( $fieldData ), 'Assert check1 in cloner is hidden' );
+				Assert::assertTrue( self::getFieldInCloner( $form, 'cloner', 0, 'check2' )
+					->isHidden( $fieldData ), 'Assert check2 in cloner is hidden' );
 			}
 		];
 	}
