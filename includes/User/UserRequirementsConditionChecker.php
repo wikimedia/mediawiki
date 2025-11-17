@@ -80,7 +80,7 @@ class UserRequirementsConditionChecker {
 			return false;
 		}
 
-		$isPerformingRequest = $user->equals( $this->context->getUser() );
+		$isPerformingRequest = !defined( 'MW_NO_SESSION' ) && $user->equals( $this->context->getUser() );
 
 		// Some checks depend on hooks or other dynamically-determined state, so we can fetch them only
 		// for the local wiki and not for remote users. The latter may require API requests to the remote
