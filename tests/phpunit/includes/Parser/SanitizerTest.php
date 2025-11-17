@@ -90,6 +90,11 @@ class SanitizerTest extends MediaWikiIntegrationTestCase {
 				'<dfn><abbr title="Garage Door Opener">GDO</abbr></dfn>',
 				'<abbr> inside <dfn>',
 			],
+			[
+				'a<!-- some comment -->b',
+				'ab',
+				'comments are stripped'
+			]
 		];
 	}
 
@@ -105,6 +110,38 @@ class SanitizerTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testRemoveSomeTags( $input, $output, $msg = null ) {
 		$this->assertEquals( $output, Sanitizer::removeSomeTags( $input ), $msg );
+	}
+
+	public static function provideRemoveSomeTagsWithComment() {
+		return [
+			'simple case' => [
+				'hello<script>world</script>',
+				'hello&lt;script&gt;world&lt;/script&gt;',
+			],
+			'comment matching regex' => [
+				'abc<!--Q9830--><script>test</script>',
+				'abc<!--Q9830-->&lt;script&gt;test&lt;/script&gt;'
+			],
+			'comment not matching regex' => [
+				'a<!--b-->c',
+				'ac'
+			],
+			'unclosed comment does not match regex' => [
+				'<!--Q9830-- -><script>test</script>',
+				''
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideRemoveSomeTagsWithComment
+	 */
+	public function testRemoveSomeTagsWithComment( $input, $expected ) {
+		$actual = Sanitizer::removeSomeTags(
+			$input,
+			[ 'commentRegex' => '/^Q[0-9]*$/' ]
+		);
+		$this->assertEquals( $expected, $actual );
 	}
 
 	/**

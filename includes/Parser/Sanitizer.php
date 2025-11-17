@@ -321,6 +321,8 @@ class Sanitizer {
 	 *      and not for external use.
 	 *    array $options['attrCallbackArgs'] Additional arguments for the
 	 *      attribute callback
+	 *    string $options['commentRegex'] If present, allow comments with
+	 *      inner text matching the specified regular expression.
 	 * @param-taint $options tainted
 	 * @return string The cleaned up HTML
 	 * @return-taint escaped
@@ -351,7 +353,8 @@ class Sanitizer {
 		$tokenHandler = $dispatcher;
 		$remover = new RemexRemoveTagHandler(
 			$tokenHandler, $text, $tagData,
-			$attrCallback, $attrCallbackArgs
+			$attrCallback, $attrCallbackArgs,
+			[ 'commentRegex' => $options['commentRegex'] ?? null ]
 		);
 		$tokenizer = new RemexTokenizer( $remover, $text, [
 			'ignoreErrors' => true,

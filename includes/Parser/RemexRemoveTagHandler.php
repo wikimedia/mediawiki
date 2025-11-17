@@ -34,6 +34,9 @@ class RemexRemoveTagHandler extends RelayTokenHandler {
 	 */
 	private $htmlelements;
 
+	/** @var ?string */
+	private $commentRegex;
+
 	/**
 	 * @var ?callable(Attributes,mixed...):Attributes Callback to mutate or
 	 * sanitize attributes.
@@ -53,13 +56,17 @@ class RemexRemoveTagHandler extends RelayTokenHandler {
 	 * @param ?callable $attrCallback Attribute handler callback.
 	 *   The full signature is ?callable(Attributes,mixed...):Attributes
 	 * @param ?array $callbackArgs Optional arguments to attribute handler.
+	 * @param array $options Associative array of options:
+	 *    - commentRegex: If present, allow comments with inner text matching
+	 *      the specified regular expression.
 	 */
 	public function __construct(
 		TokenHandler $nextHandler,
 		string $source,
 		array $tagData,
 		?callable $attrCallback,
-		?array $callbackArgs
+		?array $callbackArgs,
+		array $options
 	) {
 		parent::__construct( $nextHandler );
 		$this->source = $source;
@@ -68,13 +75,16 @@ class RemexRemoveTagHandler extends RelayTokenHandler {
 		$this->htmlelements = $tagData['htmlelements'];
 		$this->attrCallback = $attrCallback;
 		$this->callbackArgs = $callbackArgs ?? [];
+		$this->commentRegex = $options['commentRegex'] ?? null;
 	}
 
 	/**
 	 * @inheritDoc
 	 */
 	public function comment( $text, $sourceStart, $sourceLength ) {
-		// Don't relay comments.
+		if ( $this->commentRegex !== null && preg_match( $this->commentRegex, $text ) ) {
+			$this->nextHandler->comment( $text, $sourceStart, $sourceLength );
+		}
 	}
 
 	/**
