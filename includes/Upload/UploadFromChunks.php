@@ -2,7 +2,6 @@
 
 use MediaWiki\Deferred\AutoCommitUpdate;
 use MediaWiki\Deferred\DeferredUpdates;
-use MediaWiki\FileRepo\FileRepo;
 use MediaWiki\FileRepo\LocalRepo;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
@@ -52,7 +51,7 @@ class UploadFromChunks extends UploadFromFile {
 	 *
 	 * @param User $user
 	 * @param UploadStash|false $stash Default: false
-	 * @param FileRepo|false $repo Default: false
+	 * @param LocalRepo|false $repo Default: false
 	 */
 	public function __construct( User $user, $stash = false, $repo = false ) {
 		$this->user = $user;

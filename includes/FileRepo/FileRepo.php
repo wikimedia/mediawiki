@@ -22,13 +22,11 @@ use MediaWiki\Page\PageIdentity;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
-use MediaWiki\User\UserIdentity;
 use MediaWiki\Utils\MWTimestamp;
 use MWFileProps;
 use RuntimeException;
 use Shellbox\Command\BoxedCommand;
 use StatusValue;
-use UploadStash;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\FileBackend\FileBackend;
 use Wikimedia\FileBackend\FSFile\FSFile;
@@ -1957,16 +1955,6 @@ class FileRepo {
 			'hashLevels' => $this->hashLevels, // performance
 			'isPrivate' => true // all in temp zone
 		] );
-	}
-
-	/**
-	 * Get an UploadStash associated with this repo.
-	 *
-	 * @param UserIdentity|null $user
-	 * @return UploadStash
-	 */
-	public function getUploadStash( ?UserIdentity $user = null ) {
-		return new UploadStash( $this, $user );
 	}
 
 	/**

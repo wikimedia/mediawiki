@@ -8,7 +8,6 @@
 
 use MediaWiki\Context\RequestContext;
 use MediaWiki\FileRepo\File\File;
-use MediaWiki\FileRepo\FileRepo;
 use MediaWiki\FileRepo\LocalRepo;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
@@ -74,15 +73,15 @@ class UploadStash {
 	 * Designed to be compatible with the session stashing code in UploadBase
 	 * (should replace it eventually).
 	 *
-	 * @param FileRepo $repo
+	 * @param LocalRepo $repo
 	 * @param UserIdentity|null $user
 	 */
-	public function __construct( FileRepo $repo, ?UserIdentity $user = null ) {
+	public function __construct( LocalRepo $repo, ?UserIdentity $user = null ) {
 		// this might change based on wiki's configuration.
 		$this->repo = $repo;
 
 		// if a user was passed, use it. otherwise, attempt to use the global request context.
-		// this keeps FileRepo from breaking when it creates an UploadStash object
+		// this keeps LocalRepo from breaking when it creates an UploadStash object
 		$this->user = $user ?? RequestContext::getMain()->getUser();
 	}
 

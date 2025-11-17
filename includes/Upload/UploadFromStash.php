@@ -7,7 +7,7 @@
  * @ingroup Upload
  */
 
-use MediaWiki\FileRepo\FileRepo;
+use MediaWiki\FileRepo\LocalRepo;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\User\UserIdentity;
@@ -29,13 +29,13 @@ class UploadFromStash extends UploadBase {
 	/** @var UploadStash */
 	private $stash;
 
-	/** @var FileRepo */
+	/** @var LocalRepo */
 	private $repo;
 
 	/**
 	 * @param UserIdentity|null $user Default: null Sometimes this won't exist, as when running from cron.
 	 * @param UploadStash|false $stash Default: false
-	 * @param FileRepo|false $repo Default: false
+	 * @param LocalRepo|false $repo Default: false
 	 */
 	public function __construct( ?UserIdentity $user = null, $stash = false, $repo = false ) {
 		if ( $repo ) {

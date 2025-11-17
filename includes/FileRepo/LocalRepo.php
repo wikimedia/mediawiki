@@ -20,8 +20,10 @@ use MediaWiki\Permissions\Authority;
 use MediaWiki\Status\Status;
 use MediaWiki\Storage\BlobStore;
 use MediaWiki\Title\Title;
+use MediaWiki\User\UserIdentity;
 use MediaWiki\WikiMap\WikiMap;
 use stdClass;
+use UploadStash;
 use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IConnectionProvider;
@@ -679,6 +681,16 @@ class LocalRepo extends FileRepo {
 				->newBlobStore( $this->dbDomain );
 		}
 		return $this->blobStore;
+	}
+
+	/**
+	 * Get an UploadStash associated with this repo.
+	 *
+	 * @param UserIdentity|null $user
+	 * @return UploadStash
+	 */
+	public function getUploadStash( ?UserIdentity $user = null ) {
+		return new UploadStash( $this, $user );
 	}
 }
 

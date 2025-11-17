@@ -144,6 +144,7 @@ because of Phabricator reports.
   SpecialUserRights::canProcessExpiries), deprecated in 1.45, has been removed.
   There's no replacement; the special page always assumes it can process
   expiries.
+* FileRepo no longer implements getUploadStash(), only LocalRepo does.
 * …
 
 === Deprecations in 1.46 ===

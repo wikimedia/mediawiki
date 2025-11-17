@@ -6,6 +6,7 @@
 
 use MediaWiki\FileRepo\File\UnregisteredLocalFile;
 use MediaWiki\FileRepo\FileRepo;
+use MediaWiki\FileRepo\LocalRepo;
 use MediaWiki\SpecialPage\SpecialPage;
 
 /**
@@ -27,7 +28,7 @@ class UploadStashFile extends UnregisteredLocalFile {
 	 * UnregisteredLocalFile should be handling its own file repo but that
 	 * class is a bit retarded currently.
 	 *
-	 * @param FileRepo $repo Repository where we should find the path
+	 * @param LocalRepo $repo Repository where we should find the path
 	 * @param string $path Path to file
 	 * @param string $key Key to store the path and any stashed data under
 	 * @param string|null $sha1 SHA1 of file. Will calculate if not set
