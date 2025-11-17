@@ -388,7 +388,6 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 
 		// Checks
 		$this->failOnNull( $rev->getSize(), 'size field' );
-		$this->failOnEmpty( $rev->getSha1(), 'sha1 field' );
 		$this->failOnEmpty( $rev->getTimestamp(), 'timestamp field' );
 		$comment = $this->failOnNull( $rev->getComment( RevisionRecord::RAW ), 'comment' );
 		$user = $this->failOnNull( $rev->getUser( RevisionRecord::RAW ), 'user' );
@@ -408,10 +407,6 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 			Assert::precondition(
 				$mainSlot->getSize() === $rev->getSize(),
 				'The revisions\'s size must match the main slot\'s size (see T239717)'
-			);
-			Assert::precondition(
-				$mainSlot->getSha1() === $rev->getSha1(),
-				'The revisions\'s SHA1 hash must match the main slot\'s SHA1 hash (see T239717)'
 			);
 		}
 
@@ -843,7 +838,6 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 			'rev_timestamp'  => $dbw->timestamp( $rev->getTimestamp() ),
 			'rev_deleted'    => $rev->getVisibility(),
 			'rev_len'        => $rev->getSize(),
-			'rev_sha1'       => $rev->getSha1(),
 		];
 
 		if ( $rev->getId( $this->wikiId ) !== null ) {
@@ -2541,10 +2535,6 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 		$queryInfo = $table === 'archive' ? $this->getArchiveQueryInfo() : $this->getQueryInfo();
 		foreach ( $queryInfo['fields'] as $alias => $field ) {
 			$name = is_numeric( $alias ) ? $field : $alias;
-			if ( $name === 'rev_sha1' || $name === 'ar_sha1' ) {
-				// Do not require rev_sha1 or ar_sha1 to be present, it will be dropped in the future - T389026
-				continue;
-			}
 			if ( !property_exists( $row, $name ) ) {
 				return false;
 			}

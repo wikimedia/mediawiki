@@ -505,7 +505,6 @@ trait RevisionRecordTests {
 				'rev_minor_edit' => 0,
 				'rev_parent_id' => '5',
 				'rev_len' => $slots->computeSize(),
-				'rev_sha1' => $slots->computeSha1(),
 				'page_latest' => '18',
 			],
 			$slots

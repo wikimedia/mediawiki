@@ -1039,7 +1039,6 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 			'rev_deleted' => (string)$revRecord->getVisibility(),
 			'rev_len' => (string)$revRecord->getSize(),
 			'rev_parent_id' => (string)$revRecord->getParentId(),
-			'rev_sha1' => (string)$revRecord->getSha1(),
 		];
 
 		if ( in_array( 'page', $options ) ) {
@@ -1367,7 +1366,6 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 			'ar_deleted' => '0',
 			'ar_len' => '78',
 			'ar_parent_id' => '0',
-			'ar_sha1' => 'deadbeef',
 			'ar_comment_text' => 'whatever',
 			'ar_comment_data' => null,
 			'ar_comment_cid' => null,
@@ -1401,7 +1399,6 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 			'ar_deleted' => '0',
 			'ar_len' => '78',
 			'ar_parent_id' => '0',
-			'ar_sha1' => 'deadbeef',
 			'ar_comment_text' => 'whatever',
 			'ar_comment_data' => null,
 			'ar_comment_cid' => null,
@@ -1484,7 +1481,6 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 			'ar_deleted' => '0',
 			'ar_len' => '78',
 			'ar_parent_id' => '0',
-			'ar_sha1' => 'deadbeef',
 			'ar_comment_text' => 'whatever',
 			'ar_comment_data' => null,
 			'ar_comment_cid' => null,

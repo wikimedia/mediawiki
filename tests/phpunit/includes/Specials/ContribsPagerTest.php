@@ -247,7 +247,6 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 			'rev_deleted' => '0',
 			'rev_len' => '700',
 			'rev_parent_id' => '0',
-			'rev_sha1' => 'deadbeef',
 			'rev_comment_text' => 'whatever',
 			'rev_comment_data' => null,
 			'rev_comment_cid' => null,

@@ -734,7 +734,6 @@ class DeletePage {
 		// unusual case where there were exactly $deleteBatchSize revisions remaining.
 		$res = $dbw->newSelectQueryBuilder()
 			->queryInfo( $revQuery )
-			->field( 'rev_sha1' ) // To be removed soon (T389026)
 			->where( [ 'rev_page' => $id ] )
 			->orderBy( [ 'rev_timestamp', 'rev_id' ] )
 			->limit( $deleteBatchSize + 1 )
@@ -767,7 +766,6 @@ class DeletePage {
 					'ar_len'        => $row->rev_len,
 					'ar_page_id'    => $id,
 					'ar_deleted'    => $this->suppress ? $bitfield : $row->rev_deleted,
-					'ar_sha1'       => $row->rev_sha1,
 				] + $this->commentStore->insert( $dbw, 'ar_comment', $comment );
 
 			$rowsInsert[] = $rowInsert;

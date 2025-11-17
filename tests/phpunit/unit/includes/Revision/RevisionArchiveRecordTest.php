@@ -52,7 +52,6 @@ class RevisionArchiveRecordTest extends MediaWikiUnitTestCase {
 			'ar_minor_edit' => 0,
 			'ar_parent_id' => '5',
 			'ar_len' => $slots->computeSize(),
-			'ar_sha1' => $slots->computeSha1(),
 		];
 
 		foreach ( $rowOverrides as $field => $value ) {
