@@ -276,6 +276,13 @@ abstract class ReverseChronologicalPager extends IndexPager {
 			$year++;
 		}
 
+		// T402541 Do not overflow beyond end of the year 9999
+		if ( $year > 9999 ) {
+			$year = 9999;
+			$month = 12;
+			$day = 31;
+		}
+
 		$ymd = sprintf( "%04d%02d%02d", $year, $month, $day );
 
 		return MWTimestamp::getInstance( "{$ymd}000000" );

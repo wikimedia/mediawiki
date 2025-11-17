@@ -51,6 +51,9 @@ class ReverseChronologicalPagerTest extends MediaWikiIntegrationTestCase {
 		yield 'Test last day of year' => [
 			[ 2006, 12, 31 ], '20070101000000'
 		];
+		yield 'Test last day of year (T402541)' => [
+			[ 9999, 12, 31 ], '99991231000000'
+		];
 		yield 'Test invalid day that overflows to next year' => [
 			[ 2006, 12, 32 ], '20070101000000'
 		];
