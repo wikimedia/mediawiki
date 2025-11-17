@@ -837,7 +837,7 @@
 	"userrights-expiry-current": "Desvalidi a $1",
 	"userrights-expiry-none": "No desvalidi",
 	"userrights-expiry": "Desvalidi:",
-	"userrights-expiry-existing": "Tempo esistente de desvalidi: $3, $2",
+	"userrights-expiry-existing": "$3, $2",
 	"userrights-expiry-othertime": "Otra tempo:",
 	"userrights-expiry-options": "1 dia:1 day,1 semana:1 week,1 mense:1 month,3 menses:3 months,6 menses:6 months,1 anio:1 year",
 	"userrights-invalid-expiry": "La tempo de desvalidi per grupo \"$1\" es nonvalida.",

@@ -837,7 +837,7 @@
 	"userrights-expiry-current": "Mandung Bari (Kadaluarsa)$1",
 	"userrights-expiry-none": "Indape bari",
 	"userrights-expiry": "Mandung bari:",
-	"userrights-expiry-existing": "waktu mandung bari sannari: $3,$2",
+	"userrights-expiry-existing": "$3,$2",
 	"userrights-expiry-othertime": "Waktu nalain:",
 	"userrights-no-group": "Pamake samantaro tu inda mampunai grup.",
 	"group": "Kalompok:",

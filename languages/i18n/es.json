@@ -1249,7 +1249,7 @@
 	"userrights-expiry-current": "Caduca el $1",
 	"userrights-expiry-none": "No caduca",
 	"userrights-expiry": "Caduca:",
-	"userrights-expiry-existing": "Fecha de caducidad actual: $2 a las $3",
+	"userrights-expiry-existing": "$2 a las $3",
 	"userrights-expiry-othertime": "En otro momento:",
 	"userrights-expiry-options": "1 día:1 day,1 semana:1 week,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 año:1 year",
 	"userrights-invalid-expiry": "El tiempo de caducidad del grupo \"$1\" no es válido.",

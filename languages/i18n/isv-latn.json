@@ -984,7 +984,7 @@
 	"userrights-expiry-current": "Iztekaje $1",
 	"userrights-expiry-none": "Ne izteče",
 	"userrights-expiry": "Izteče:",
-	"userrights-expiry-existing": "Data i čas iztečenja: $2 č, $3",
+	"userrights-expiry-existing": "$2 č, $3",
 	"userrights-expiry-othertime": "Drugy čas:",
 	"userrights-expiry-options": "1 denj:1 day,1 sedmica:1 week,1 měsec:1 month,3 měsece:3 months,6 měsecev:6 months,1 god:1 year",
 	"userrights-invalid-expiry": "Čas iztečenja za grupu «$1» jest nepravilny.",

@@ -727,7 +727,7 @@
 	"userrights-expiry-current": "သက်တမ်းကုန်ချိန် $1",
 	"userrights-expiry-none": "သက်တမ်းကုန်ဆုံးခြင်း မရှိ",
 	"userrights-expiry": "သက်တမ်းကုန်လွန်မည်:",
-	"userrights-expiry-existing": "ရှိနေပြီးသား သက်တမ်းကုန်ချိန်: $3၊ $2",
+	"userrights-expiry-existing": "$3၊ $2",
 	"userrights-expiry-othertime": "အခြားအချိန်:",
 	"userrights-expiry-options": "1 ရက်:1 day,၁ ပတ်:1 week,၁ လ:1 month,၃ လ:3 months,၆ လ:6 months,၁ နှစ်:1 year",
 	"userrights-invalid-expiry": "အုပ်စု \"$1\" အတွက် သက်တမ်းကုန်ချိန်မှာ မဆီလျော်ပါ။",

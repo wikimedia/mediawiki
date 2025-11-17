@@ -958,7 +958,7 @@
 	"userrights-expiry-current": "Закончує ше $1",
 	"userrights-expiry-none": "Нє закончує ше",
 	"userrights-expiry": "Закончує ше:",
-	"userrights-expiry-existing": "Еґзистуюци час законченя: $3, $2",
+	"userrights-expiry-existing": "$3, $2",
 	"userrights-expiry-othertime": "Иншаки час:",
 	"userrights-expiry-options": "1 дзень:1 day,1 тидзень:1 week,1 мешац:1 month,3 мешаци:3 months,6 мешаци:6 months,1 рок:1 year",
 	"userrights-invalid-expiry": "Час вицеканя ґрупи „$1” погришни.",

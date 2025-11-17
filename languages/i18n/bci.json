@@ -735,7 +735,7 @@
 	"userrights-expiry-current": "I tchin ô si'n lé $1",
 	"userrights-expiry-none": "Ô si'n man lé",
 	"userrights-expiry": "Tchin nga ô si'n :",
-	"userrights-expiry-existing": "I tchin nga ô si'n : lé $2, dô $3 sou",
+	"userrights-expiry-existing": "lé $2, dô $3 sou",
 	"userrights-expiry-othertime": "Dô ouflè:",
 	"userrights-expiry-options": "tchin 1:1 day,lé môtchouè 1:1 week,anglo 1:1 month,anglo 3:3 months,anglo 6:6 months,afouè 1:1 year",
 	"userrights-invalid-expiry": "\"$1\" akpassoua i dô nga ô si'n sou ô timan sou.",

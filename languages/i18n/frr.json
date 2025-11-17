@@ -779,7 +779,7 @@
 	"userrights-expiry-current": "Lääpt uf: $1",
 	"userrights-expiry-none": "Lääpt ei uf",
 	"userrights-expiry": "Lääpt uf:",
-	"userrights-expiry-existing": "Lääpt uf: $3, $2",
+	"userrights-expiry-existing": "$3, $2",
 	"userrights-expiry-othertime": "Ööder tidj:",
 	"userrights-expiry-options": "1 dai:1 day,1 weg:1 week,1 muun:1 month,3 muuner:3 months,6 muuner:6 months,1 juar:1 year",
 	"userrights-invalid-expiry": "Det ufluuptidj för det skööl „$1“ gongt ei.",

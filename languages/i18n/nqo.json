@@ -758,7 +758,7 @@
 	"userrights-expiry-current": "ߊ߬ ߛߕߊ ߓߘߊ߫ ߝߊ߫ $1",
 	"userrights-expiry-none": "ߊ߬ ߛߕߊ ߡߊ߫ ߝߊ߫ ߡߎߣߎ߲߬",
 	"userrights-expiry": "ߊ߬ ߛߕߊ ߓߘߊ߫ ߝߊ߫:",
-	"userrights-expiry-existing": "ߕߋ߲߭ߕߋ߲߭ ߛߕߊߝߊ߫ ߕߎߡߊ: $3߸ $2",
+	"userrights-expiry-existing": "$3߸ $2",
 	"userrights-expiry-othertime": "ߕߎ߬ߡߊ߬ ߜߘߍ:",
 	"userrights-expiry-options": "ߕߟߋ߬ ߁: ߕߟߋ߬ ߁߸ ߞߎ߲߬ߢߐ߰ ߁: ߞߎ߲߬ߢߐ߰ ߁߸ ߞߊߙߏ߫ ߁: ߞߊߙߏ߫ ߁߸ ߞߊߙߏ߫ ߃: ߞߊߙߏ߫ ߃߸ ߞߊߙߏ߫ ߆: ߞߊߙߏ߫ ߆߸ ߛߊ߲߬ ߁: ߛߊ߲߬ ߁",
 	"userrights-invalid-expiry": "ߞߙߎ  \"$1\" ߛߕߊ ߝߊ߫ ߕߎߡߊ ߓߍ߲߬ߣߍ߲߫ ߕߍ߫.",

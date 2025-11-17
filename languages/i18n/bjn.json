@@ -775,7 +775,7 @@
 	"userrights-expiry-current": "Kadaluarsa $1",
 	"userrights-expiry-none": "Kada bawatas waktu",
 	"userrights-expiry": "Kadaluarsa:",
-	"userrights-expiry-existing": "Waktu kadaluarsa wayahini: $3, $2",
+	"userrights-expiry-existing": "$3, $2",
 	"userrights-expiry-othertime": "Waktu lain:",
 	"userrights-expiry-options": "1 hari:1 day,1 minggu:1 week,1 bulan:1 month,3 bulan:3 months,6 bulan:6 months,1 tahun:1 year",
 	"userrights-invalid-expiry": "Waktu kadaluarsa gasan galambang \"$1\" kada sah.",

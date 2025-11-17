@@ -949,7 +949,7 @@
 	"userrights-expiry-current": "Изтекаје $1",
 	"userrights-expiry-none": "Не изтече",
 	"userrights-expiry": "Изтече:",
-	"userrights-expiry-existing": "Дата и час изтечења: $2 ч. $3",
+	"userrights-expiry-existing": "$2 ч. $3",
 	"userrights-expiry-othertime": "Другы час:",
 	"userrights-expiry-options": "1 дењ:1 day,1 седмица:1 week,1 мєсец:1 month,3 мєсеце:3 months,6 мєсецев:6 months,1 год:1 year",
 	"userrights-invalid-expiry": "Час изтечења за групу «$1» јест неправилны.",

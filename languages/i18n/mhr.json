@@ -954,7 +954,7 @@
 	"userrights-expiry-current": "$1 жаплан мучашлалтеш",
 	"userrights-expiry-none": "Жапым ончыктыде",
 	"userrights-expiry": "Права мучашлалтеш:",
-	"userrights-expiry-existing": "Улшо лийме жап: $2, $3",
+	"userrights-expiry-existing": "$2, $3",
 	"userrights-expiry-othertime": "Вес жап:",
 	"userrights-expiry-options": "1 кече:1 day,1 арня:1 week,1 тылзе:1 month,3 тылзе:3 months,6 тылзе:6 months,1 ий:1 year",
 	"userrights-invalid-expiry": "«$1» тӱшкалан мучашлыме жапым чын огыл ончыктымо.",

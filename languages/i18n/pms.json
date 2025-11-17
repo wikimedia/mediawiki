@@ -889,7 +889,7 @@
 	"userrights-expiry-current": "a finiss $1",
 	"userrights-expiry-none": "A finiss pa",
 	"userrights-expiry": "A finiss:",
-	"userrights-expiry-existing": "Scadensa esistenta: $3, $2",
+	"userrights-expiry-existing": "$3, $2",
 	"userrights-expiry-othertime": "N'àutra durà",
 	"userrights-expiry-options": "1 di:1 day,1 sman-a:1 week,1 mèis:1 month,3 mèis:3 months,6 mèis:6 months,1 ann:1 year",
 	"userrights-invalid-expiry": "La scadensa për la partìa \"$1\" a va nen bin.",

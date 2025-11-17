@@ -623,7 +623,7 @@
 	"userrights-expiry-current": "समाप्ति $1",
 	"userrights-expiry-none": "समाप्त नै होतै",
 	"userrights-expiry": "समाप्ति:",
-	"userrights-expiry-existing": "वर्तमान समाप्ति समय: $3, $2",
+	"userrights-expiry-existing": "$3, $2",
 	"userrights-expiry-othertime": "अन्य समय:",
 	"userrights-expiry-options": "१ दिन:1 day,१ सप्ताह:1 week,१ महीना:1 month,३ महीना:3 months,६ महीने:6 months,१ बरिस:1 year",
 	"userrights-invalid-expiry": "\"$1\" समूहला समाप्ति समय अमान्य हे ।",

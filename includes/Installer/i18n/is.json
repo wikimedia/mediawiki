@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Danniel07",
+			"SaldırganSincap",
 			"Snævar",
 			"Stefán Örvar Sigmundsson",
 			"Sveinn í Felli",
@@ -35,7 +36,7 @@
 	"config-page-upgradedoc": "Uppfærsla",
 	"config-page-existingwiki": "Fyrirliggjandi wiki",
 	"config-restart": "Já, endurræsa",
-	"config-welcome-section-copyright": "=== Höfundaréttur og skilmálar ===\n\n$1\n\nÞetta er frjáls hugbúnaður; þú mátt dreifa honum og/eða breyta samkvæmt skilmálum í almenna GNU GPL notkunarleyfinu eins og það er gefið út af Frjálsu hugbúnaðarstofnuninni; annaðhvort útgáfu 2 af GPL-leyfinu, eða (ef þér sýnist svo) einhverri nýrri útgáfu leyfisins.\n\nHugbúnaði þessum er dreift í þeirri von að hann geti verið gagnlegur, en <strong>ÁN ALLRAR ÁBYRGÐAR</strong>; einnig án þeirrar ábyrgðar sem gefin er í skyn með <strong>SELJANLEIKA</strong> eða <strong>EIGINLEIKUM TIL TILTEKINNA NOTA</strong>. Sjá almenna GNU GPL notkunarleyfið fyrir nánari upplýsingar.\n\nÞað ætti að hafa fylgt afrit af almenna [$2 GNU GPL notkunarleyfinu] með forritinu; ef ekki skrifið þá Fjálsu hugbúnarstofnuninni: Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA, eða [https://www.gnu.org/copyleft/gpl.html lestu það á netinu].",
+	"config-welcome-section-copyright": "=== Höfundarréttur og skilmálar ===\n\n$1\n\nMediaWiki er frjáls hugbúnaður; þú mátt endurútgefa það og/eða breyta undir GNU General Public notkunarleyfi eins og það er gefið út af Free Software Foundation stofnuninni, annaðhvort útgáfu 2 eða (að þínu mati) hvaða nýrri útgáfu sem er.\n\nMediaWiki er útgefið í þeirri von að það sé gagnlegt, en <em>ÁN ALLRAR ÁBYRGÐAR</em>; þar meðtalið er undanskilin ábyrgð við <strong>MARKAÐSETNINGU</strong> og að hugbúnaðurinn <strong>VIRKI Í ÁKVEÐNUM TILGANGI</strong>. Sjá GNU General Public notkunarleyfið fyrir frekari upplýsingar.\n\nÞú ættir að hafa fengið [$2 afrit af  GNU General Public notkunarleyfinu] með þessum hugbúnaði, en ef ekki, geturðu [//www.gnu.org/licenses/old-licenses/gpl-2.0.html lesið það á netinu].",
 	"config-sidebar-license": "Afritun",
 	"config-sidebar-upgrade": "Uppfærsla",
 	"config-env-good": "Umhverfið hefur verið athugað.\nÞú getur halað niður MediaWiki.",
@@ -89,7 +90,7 @@
 	"config-skins": "Skinn",
 	"config-install-step-done": "lokið",
 	"config-install-step-failed": "mistókst",
-	"config-install-tables": "Bý til töflur, fyrsta þrep",
+	"config-install-tables": "Bý til töflur",
 	"config-download-localsettings": "Ná í <code>LocalSettings.php</code>",
 	"config-help": "hjálp",
 	"config-help-tooltip": "Smella til að þenja út",

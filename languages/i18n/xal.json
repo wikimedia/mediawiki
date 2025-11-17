@@ -929,7 +929,7 @@
 	"userrights-expiry-current": "$1 хуһцан дуусх",
 	"userrights-expiry-none": "Хуһцан уга",
 	"userrights-expiry": "Эрк дуусна:",
-	"userrights-expiry-existing": "Ода бәәһә дуусх хуһцан: $3, $2",
+	"userrights-expiry-existing": "$3, $2",
 	"userrights-expiry-othertime": "Оңдан цаг:",
 	"userrights-expiry-options": "1 өдр:1 day,1 долан хонг:1 week,1 сар:1 month,3 сар:3 months,6 сар:6 months,1 җил:1 year",
 	"userrights-invalid-expiry": "\"$1\" бөлгин хуһцан күчн уга бәәнә.",

@@ -712,7 +712,7 @@
 	"userrights-unchangeable-col": "Ґрупы, котры не можете змінити",
 	"userrights-expiry-current": "Кінчіть ся $1",
 	"userrights-expiry": "Кінчіть:",
-	"userrights-expiry-existing": "Сучасный час експірації: $3, $2",
+	"userrights-expiry-existing": "$3, $2",
 	"userrights-expiry-othertime": "Іншый час:",
 	"userrights-expiry-options": "1 день:1 day,1 тыждень:1 week,1 місяць:1 month,3 місяцї:3 months,6 місяцїв:6 months,1 рік:1 year",
 	"userrights-conflict": "Конфлікт змін прав хоснователїв! Просиме, перевірьте зміны і потвердьте їх.",

@@ -948,7 +948,7 @@
 	"userrights-expiry-current": "$1 болзор дүүрэжэ байна",
 	"userrights-expiry-none": "Болзоргүй",
 	"userrights-expiry": "Эрхэнүүдэй болзор дүүрэжэ байна:",
-	"userrights-expiry-existing": "Байгша сагай болзор: $3, $2",
+	"userrights-expiry-existing": "$3, $2",
 	"userrights-expiry-othertime": "Ондоо саг:",
 	"userrights-expiry-options": "1 үдэр:1 day, нэгэ долоо:1 week,1 һара:1 month, 3 һара:3 months, 6 һара:6 months,1 жэл:1 year",
 	"userrights-invalid-expiry": "$1 бүлэгтэ үгтэһэн сагай дүүрэхэ болзор буруу заагдаһан байна.",

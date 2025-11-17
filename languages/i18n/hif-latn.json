@@ -779,7 +779,7 @@
 	"userrights-expiry-current": "$1 khalaas hoe hai",
 	"userrights-expiry-none": "Khalaas nai hoe hai",
 	"userrights-expiry": "Khalas hoe hai:",
-	"userrights-expiry-existing": "Abhi ke khatam hoe waala time: $3, $2",
+	"userrights-expiry-existing": "$3, $2",
 	"userrights-expiry-othertime": "Duusra time:",
 	"userrights-expiry-options": "1 din:1 day,1 haptaa:1 week,1 mahina:1 month,3 mahina:3 months,6 mahina:6 months,1 saal:1 year",
 	"userrights-invalid-expiry": "Group ke expiry time \"$1\" invalid hai.",

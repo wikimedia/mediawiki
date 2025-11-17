@@ -902,7 +902,7 @@
 	"userrights-expiry-current": "A sã n wa n wa n paame, a sã n wa paame$1",
 	"userrights-expiry-none": "Pa tar wakat ye",
 	"userrights-expiry": "B sẽn dat n maan bũmb ninsã:",
-	"userrights-expiry-existing": "B sẽn da na n maan bũmb ningã: $3, $2",
+	"userrights-expiry-existing": "$3, $2",
 	"userrights-expiry-othertime": "Wakat a to:",
 	"userrights-expiry-options": "1 day:1 day,1 week:1 week,1 month:1 month,3 months:3 months,6 months:6 months,1 year:1 year",
 	"userrights-invalid-expiry": "Sõng-n-taarã sẽn be sullã \"$1\" pʋgẽ wã pa zems ye.",

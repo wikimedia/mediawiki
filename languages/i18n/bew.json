@@ -921,7 +921,7 @@
 	"userrights-expiry-current": "Bonto $1",
 	"userrights-expiry-none": "Kaga' bonto",
 	"userrights-expiry": "Bonto:",
-	"userrights-expiry-existing": "Waktu bonto nyang nanggrak: $3, $2",
+	"userrights-expiry-existing": "$3, $2",
 	"userrights-expiry-othertime": "Waktu laèn:",
 	"userrights-expiry-options": "1 ari:1 day,1 minggu:1 week,1 bulan:1 month,3 bulan:3 months,6 bulan:6 months,1 tahon:1 year",
 	"userrights-invalid-expiry": "Waktu bonto bakal rombongan \"$1\" kaga' aci.",

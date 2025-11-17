@@ -850,7 +850,7 @@
 	"userrights-expiry-current": "$1 समाप्ती",
 	"userrights-expiry-none": "समाप्त नहीं होत",
 	"userrights-expiry": "खतम:",
-	"userrights-expiry-existing": "वर्तमान समाप्ति समय: $3, $2",
+	"userrights-expiry-existing": "$3, $2",
 	"userrights-expiry-othertime": "कवनो अउर समय:",
 	"userrights-expiry-options": "एक दिन:1 day,एक सप्ताह:1 week,एक महीना:1 month,तीन महीना:3 months,छः महीने:6 months,एक वर्ष:1 year",
 	"userrights-invalid-expiry": "\"$1\" समूह के बरे तिथि अमान्य अहय।",

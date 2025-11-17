@@ -823,7 +823,7 @@
 	"userrights-expiry-current": "Jiskadi $1",
 	"userrights-expiry-none": "Ma jiskadix",
 	"userrights-expiry": "Jiskadi:",
-	"userrights-expiry-existing": "Skadenza attwali: $3, $2",
+	"userrights-expiry-existing": "$3, $2",
 	"userrights-expiry-othertime": "Ħin ieħor:",
 	"userrights-expiry-options": "1 jum:1 day,1 ġimgħa:1 week,1 xahar:1 month,3 xhur:3 months,6 xhur:6 months,1 sena:1 year",
 	"userrights-invalid-expiry": "Il-ħin tal-iskadenza għall-grupp \"$1\" huwa invalidu.",

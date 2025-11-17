@@ -709,7 +709,7 @@
 	"userrights-changeable-col": "Kupki, kótarež móžoš změniś",
 	"userrights-unchangeable-col": "Kupki, kótarež njamóžoš změniś",
 	"userrights-expiry": "Pśepadnjo:",
-	"userrights-expiry-existing": "Eksistěrujucy cas pśepadnjenja: $2, $3",
+	"userrights-expiry-existing": "$2, $3",
 	"userrights-expiry-othertime": "Drugi cas:",
 	"userrights-conflict": "Konflikt změnow wužywarskich pšawow! Pšosym pśeglědaj a wobkšuś swóje změny.",
 	"group": "Kupka:",

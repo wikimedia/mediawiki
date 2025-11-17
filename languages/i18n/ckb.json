@@ -808,7 +808,7 @@
 	"userrights-expiry-current": "بەسەردەچێ لە $1",
 	"userrights-expiry-none": "بەسەرناچێت",
 	"userrights-expiry": "بەسەردەچێت:",
-	"userrights-expiry-existing": "کاتی بەسەرچوونی ئێستا: $3، $2",
+	"userrights-expiry-existing": "$3، $2",
 	"userrights-expiry-othertime": "کاتی تر:",
 	"userrights-expiry-options": "١ ڕۆژ:1 day,١ حەفتە:1 week,١ مانگ:1 month,٣ مانگ:3 months,٦ مانگ:6 months,١ ساڵ:1 year",
 	"userrights-invalid-expiry": "کاتی بەسەرچوون بۆ گرووپی «$1» ھەڵەیە.",

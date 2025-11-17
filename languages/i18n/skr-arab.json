@@ -613,7 +613,7 @@
 	"userrights-expiry-current": "مکسی $1",
 	"userrights-expiry-none": "لامحدود",
 	"userrights-expiry": "مُکسی:",
-	"userrights-expiry-existing": "موجودہ مکݨ ویلا: $3، $2",
+	"userrights-expiry-existing": "$3، $2",
 	"userrights-expiry-othertime": "ٻیا ویلا:",
 	"userrights-expiry-options": "1 ݙین٘٠:1 day,1 ہفتہ:1 week,1 مہینہ:1 month,3 مہینے:3 months,6 مہینے:6 months,1 سال:1 year",
 	"userrights-invalid-expiry": "گروپ \"$1\" کیتے مکݨ ویلا ٹھیک کائنی۔",

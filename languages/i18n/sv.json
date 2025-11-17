@@ -1085,7 +1085,7 @@
 	"userrights-expiry-current": "Förfaller $1",
 	"userrights-expiry-none": "Förfaller inte",
 	"userrights-expiry": "Förfaller:",
-	"userrights-expiry-existing": "Befintlig förfallotid: $3, $2",
+	"userrights-expiry-existing": "$3, $2",
 	"userrights-expiry-othertime": "Annan tid:",
 	"userrights-expiry-options": "1 dag:1 day,1 vecka:1 week,1 månad:1 month,3 månader:3 months,6 månader:6 months,1 år:1 year",
 	"userrights-invalid-expiry": "Förfallotiden för gruppen ”$1” är ogiltig.",

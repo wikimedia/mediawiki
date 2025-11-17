@@ -1215,7 +1215,7 @@
 	"userrights-expiry-current": "Expire le $1",
 	"userrights-expiry-none": "N’expire pas",
 	"userrights-expiry": "Date d’expiration :",
-	"userrights-expiry-existing": "Date d’expiration existante : $2 à $3",
+	"userrights-expiry-existing": "$2 à $3",
 	"userrights-expiry-othertime": "Autre durée :",
 	"userrights-expiry-options": "1 jour:1 day,1 semaine:1 week,1 mois:1 month,3 mois:3 months,6 mois:6 months,1 an:1 year",
 	"userrights-invalid-expiry": "La date d’expiration pour le groupe « $1 » n’est pas valide.",

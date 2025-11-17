@@ -1034,7 +1034,7 @@
 	"userrights-expiry-current": "Expiră pe $1",
 	"userrights-expiry-none": "Nu expiră",
 	"userrights-expiry": "Expiră:",
-	"userrights-expiry-existing": "Data expirării: $2, $3",
+	"userrights-expiry-existing": "$2, $3",
 	"userrights-expiry-othertime": "Alt termen:",
 	"userrights-expiry-options": "1 oră:1 hour, 1 zi:1 day, 1 săptămână:1 week, 1 lună:1 month, 3 luni:3 months, 6 luni:6 months, 1 an:1 year",
 	"userrights-invalid-expiry": "Timpul de expirare pentru grupul \"$1\" este invalid",

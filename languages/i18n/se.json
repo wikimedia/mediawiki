@@ -964,7 +964,7 @@
 	"userrights-expiry-current": "Boarásnuvvá $1",
 	"userrights-expiry-none": "Ii boarásnuva",
 	"userrights-expiry": "Boarásnuvvá:",
-	"userrights-expiry-existing": "Gustovaš doaibmanáigi: $2 $3",
+	"userrights-expiry-existing": "$2 $3",
 	"userrights-expiry-othertime": "Eará áigi:",
 	"userrights-expiry-options": "1 beaivi:1 day,1 vahkku:1 week,1 mánotbadji:1 month,3 mánotbaji:3 months,6 mánotbaji:6 months,1 jahki:1 year",
 	"userrights-invalid-expiry": "Joavkku «$1» doaibmanáigi ii gusto.",

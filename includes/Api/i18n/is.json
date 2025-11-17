@@ -8,6 +8,7 @@
 	"apihelp-clearhasmsg-summary": "Hreinsar <code>hasmsg</code>-markið fyrir núverandi notanda.",
 	"apihelp-clearhasmsg-example-1": "Hreinsa <code>hasmsg</code>-markið fyrir núverandi notanda.",
 	"apihelp-feedrecentchanges-param-showlinkedto": "Sýna í staðinn breytingar á síðum sem tengjast í völdu síðuna.",
+	"apihelp-parse-paramvalue-parser-legacy": "Framleiða HTML með því að nota eldri túlkara.",
 	"apihelp-query+alltransclusions-example-generator": "Sækja síður sem innihalda innifalningarnar.",
 	"apihelp-query+embeddedin-summary": "Finna allar síður sem innifela hinn tiltekna titil.",
 	"apihelp-query+embeddedin-example-simple": "Sýna síður sem innifela <kbd>Template:Stub</kbd>.",

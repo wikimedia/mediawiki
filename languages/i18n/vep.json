@@ -949,7 +949,7 @@
 	"userrights-expiry-current": "Radonaig lopiše $1",
 	"userrights-expiry-none": "Radonaig ei lopte",
 	"userrights-expiry": "Lopiše:",
-	"userrights-expiry-existing": "Nügüdläine radonaig: $3, $2",
+	"userrights-expiry-existing": "$3, $2",
 	"userrights-expiry-othertime": "Toižel kerdal:",
 	"userrights-expiry-options": "1 päiv:1 day,1 nedal':1 week,1 ku:1 month,3 kud:3 months,6 kud:6 months,1 voz':1 year",
 	"userrights-invalid-expiry": "Gruppan radonaig \"$1\" om vär.",

@@ -710,7 +710,7 @@
 	"userrights-changeable-col": "Gruppen dee jy beheyren künnet",
 	"userrights-unchangeable-col": "Gruppen dee jy neet beheyren künnet",
 	"userrights-expiry-none": "vervalt neet",
-	"userrights-expiry-existing": "Bestånde verloupdatum: $3, $2",
+	"userrights-expiry-existing": "$3, $2",
 	"userrights-conflict": "Konflikt bie t wiezigen van gebrukersrechten! Kiek joew wiezigingen nao en bevestig t.",
 	"group": "Groep:",
 	"group-user": "gebrukers",

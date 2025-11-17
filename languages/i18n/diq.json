@@ -934,7 +934,7 @@
 	"userrights-expiry-current": "$1 de qediyeno",
 	"userrights-expiry-none": "Nêxelesiyo",
 	"userrights-expiry": "Qediyayış:",
-	"userrights-expiry-existing": "Wextê qediyayışiyê mewcudi: $3, $2",
+	"userrights-expiry-existing": "$3, $2",
 	"userrights-expiry-othertime": "Wexto bin:",
 	"userrights-expiry-options": "1 roce:1 day,1 hefte:1 week,1 aşme:1 month,3 aşmi:3 months,6 aşmi:6 months,1 serre:1 year",
 	"userrights-invalid-expiry": "Demê peyniya gruba \"$1\" nêraverdiya.",

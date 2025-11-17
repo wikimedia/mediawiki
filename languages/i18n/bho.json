@@ -801,7 +801,7 @@
 	"userrights-expiry-current": "$1 के खतम होखी",
 	"userrights-expiry-none": "एक्सपायर ना होखी",
 	"userrights-expiry": "एक्सपायर हो जाई:",
-	"userrights-expiry-existing": "वर्तमान में एकरा एक्सपायर होखे के टाइम बा: $3, $2",
+	"userrights-expiry-existing": "$3, $2",
 	"userrights-expiry-othertime": "अन्य समय:",
 	"userrights-expiry-options": "1 दिन:1 दिन,1 हप्ता:1 हप्ता,1 महीना:1 महीना,3 महीना:3 महीना,6 महीना:6 महीना,1 बरिस:1 बरिस",
 	"userrights-invalid-expiry": "मंडली \"$1\" खातिर एक्सपायरी समय अबैध बा।",

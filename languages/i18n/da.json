@@ -1057,7 +1057,7 @@
 	"userrights-expiry-current": "Udløber $1",
 	"userrights-expiry-none": "Udløber ikke",
 	"userrights-expiry": "Udløber:",
-	"userrights-expiry-existing": "Nugældende udløbstid: $2 $3",
+	"userrights-expiry-existing": "$2 $3",
 	"userrights-expiry-othertime": "Anden tid:",
 	"userrights-expiry-options": "1 dag:1 day,1 uge:1 week,1 måned:1 month,3 måneder:3 months,6 måneder:6 months,1 år:1 year",
 	"userrights-invalid-expiry": "Udløbstiden for gruppen \"$1\" er ugyldig.",

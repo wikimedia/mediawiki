@@ -897,7 +897,7 @@
 	"userrights-expiry-current": "לאזט אויס $1",
 	"userrights-expiry-none": "לאזט נישט אויס",
 	"userrights-expiry": "גייט אויס:",
-	"userrights-expiry-existing": "עקזיסטירנדע אויסלאז צײַט: $3, $2",
+	"userrights-expiry-existing": "$3, $2",
 	"userrights-expiry-othertime": "אַנדער צײט:",
 	"userrights-expiry-options": "1 טאג:1 day,1 וואך:1 week,1 Monat:1 month,3 מאנאט:3 months,6 מאנאטן:6 months,1 יאר:1 year",
 	"userrights-invalid-expiry": "די אויסלאז צייט פאר גרופע \"$1\" איז אומגילטיק.",

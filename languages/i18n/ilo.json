@@ -814,7 +814,7 @@
 	"userrights-expiry-current": "Agpaso $1",
 	"userrights-expiry-none": "Saan nga agpaso",
 	"userrights-expiry": "Agpaso:",
-	"userrights-expiry-existing": "Ti adda a panagpaso ti oras: $3, $2",
+	"userrights-expiry-existing": "$3, $2",
 	"userrights-expiry-othertime": "Sabali nga oras:",
 	"userrights-expiry-options": "1 nga aldaw:1 day,1 a lawas:1 week,1 a bulan:1 month,3 a bulan:3 months,6 a bulan:6 months,1 a tawen:1 year",
 	"userrights-invalid-expiry": "Imbalido ti oras a panagpaso para iti grupo \"$1\".",

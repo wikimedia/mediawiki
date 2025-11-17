@@ -967,7 +967,7 @@
 	"userrights-expiry-current": "$1 вӑхӑт тухать",
 	"userrights-expiry-none": "Яланлӑха",
 	"userrights-expiry": "Вӑхӑт тухать:",
-	"userrights-expiry-existing": "Вӑхӑт тухнин пӗлтерӗшӗ: $3, $2",
+	"userrights-expiry-existing": "$3, $2",
 	"userrights-expiry-othertime": "Ытти вӑхӑт:",
 	"userrights-expiry-options": "1 кун:1 day,1 эрне:1 week,1 уйӑх:1 month,3 уйӑх:3 months,6 уйӑх:6 months,1 ҫул:1 year",
 	"userrights-invalid-expiry": "«$1» ушкӑн валли вӑхӑт тухнине тӗрӗс мар палӑртнӑ.",

@@ -938,7 +938,7 @@
 	"userrights-expiry-current": " $1 дырыз ортче",
 	"userrights-expiry-none": "Дырыз ӧвӧл пусъемын",
 	"userrights-expiry": "дырыз ортче",
-	"userrights-expiry-existing": "Пуктэм дырлэн ортчемез: $3, $2",
+	"userrights-expiry-existing": "$3, $2",
 	"userrights-expiry-othertime": "Мукет дыре:",
 	"userrights-expiry-options": "1 нунал:1 day,1 арня:1 week,1 толэзь:1 month,3 толэзь:3 months,6 толэзь:6 months,1 ар:1 year",
 	"userrights-invalid-expiry": " \"$1\" огинлэнн ортчоно дырыз шонертэм пуктэмын",

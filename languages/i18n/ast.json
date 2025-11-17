@@ -872,7 +872,7 @@
 	"userrights-expiry-current": "Caduca el $1",
 	"userrights-expiry-none": "Nun caduca",
 	"userrights-expiry": "Caduca:",
-	"userrights-expiry-existing": "Hora de caducidá actual: $3 del $2",
+	"userrights-expiry-existing": "$3 del $2",
 	"userrights-expiry-othertime": "Otru periodu:",
 	"userrights-expiry-options": "1 día:1 day,1 selmana:1 week,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 añu:1 year",
 	"userrights-invalid-expiry": "La hora de caducidá del grupu «$1» nun ye válida.",
