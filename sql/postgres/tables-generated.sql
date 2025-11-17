@@ -686,7 +686,6 @@ CREATE TABLE recentchanges (
   rc_cur_id INT DEFAULT 0 NOT NULL,
   rc_this_oldid INT DEFAULT 0 NOT NULL,
   rc_last_oldid INT DEFAULT 0 NOT NULL,
-  rc_type SMALLINT DEFAULT 0 NOT NULL,
   rc_source TEXT NOT NULL,
   rc_patrolled SMALLINT DEFAULT 0 NOT NULL,
   rc_ip TEXT DEFAULT '' NOT NULL,
@@ -717,11 +716,6 @@ CREATE INDEX rc_ip ON recentchanges (rc_ip);
 CREATE INDEX rc_ns_actor ON recentchanges (rc_namespace, rc_actor);
 
 CREATE INDEX rc_actor ON recentchanges (rc_actor, rc_timestamp);
-
-CREATE INDEX rc_name_type_patrolled_timestamp ON recentchanges (
-  rc_namespace, rc_type, rc_patrolled,
-  rc_timestamp
-);
 
 CREATE INDEX rc_name_source_patrolled_timestamp ON recentchanges (
   rc_namespace, rc_source, rc_patrolled,

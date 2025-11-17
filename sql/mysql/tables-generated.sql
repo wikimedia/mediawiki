@@ -651,7 +651,6 @@ CREATE TABLE /*_*/recentchanges (
   rc_cur_id INT UNSIGNED DEFAULT 0 NOT NULL,
   rc_this_oldid INT UNSIGNED DEFAULT 0 NOT NULL,
   rc_last_oldid INT UNSIGNED DEFAULT 0 NOT NULL,
-  rc_type TINYINT UNSIGNED DEFAULT 0 NOT NULL,
   rc_source VARBINARY(16) NOT NULL,
   rc_patrolled TINYINT UNSIGNED DEFAULT 0 NOT NULL,
   rc_ip VARBINARY(40) DEFAULT '' NOT NULL,
@@ -673,10 +672,6 @@ CREATE TABLE /*_*/recentchanges (
   INDEX rc_ip (rc_ip),
   INDEX rc_ns_actor (rc_namespace, rc_actor),
   INDEX rc_actor (rc_actor, rc_timestamp),
-  INDEX rc_name_type_patrolled_timestamp (
-    rc_namespace, rc_type, rc_patrolled,
-    rc_timestamp
-  ),
   INDEX rc_name_source_patrolled_timestamp (
     rc_namespace, rc_source, rc_patrolled,
     rc_timestamp

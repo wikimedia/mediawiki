@@ -3833,18 +3833,8 @@
 				}
 			},
 			{
-				"name": "rc_type",
-				"comment": "The type of change entry (RC_EDIT,RC_NEW,RC_LOG,RC_EXTERNAL)",
-				"type": "mwtinyint",
-				"options": {
-					"unsigned": true,
-					"notnull": true,
-					"default": 0
-				}
-			},
-			{
 				"name": "rc_source",
-				"comment": "The source of the change entry (replaces rc_type)",
+				"comment": "The source of the change entry",
 				"type": "binary",
 				"options": {
 					"notnull": true,
@@ -4001,19 +3991,8 @@
 				"unique": false
 			},
 			{
-				"name": "rc_name_type_patrolled_timestamp",
-				"comment": "ApiQueryRecentChanges (T140108)",
-				"columns": [
-					"rc_namespace",
-					"rc_type",
-					"rc_patrolled",
-					"rc_timestamp"
-				],
-				"unique": false
-			},
-			{
 				"name": "rc_name_source_patrolled_timestamp",
-				"comment": "ApiQueryRecentChanges (T140108), using rc_source instead of rc_type (T74157)",
+				"comment": "ApiQueryRecentChanges (T140108), migrated to rc_source (T74157)",
 				"columns": [
 					"rc_namespace",
 					"rc_source",
