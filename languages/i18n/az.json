@@ -3236,7 +3236,7 @@
 	"autosumm-replace": "Səhifənin məzmunu '$1' yazısı ilə dəyişdirildi",
 	"autoredircomment": "[[$1]] səhifəsinə istiqamətləndirilir",
 	"autosumm-removed-redirect": "[[$1]] yönləndirməsi silindi",
-	"autosumm-changed-redirect-target": "[[$1]] yönləndirməsini [[$2]] olaraq dəyişdi",
+	"autosumm-changed-redirect-target": "[[$1]] istiqamətləndirməsini [[$2]] olaraq dəyişdi",
 	"autosumm-new": "Səhifə \"$1\" məzmunu ilə yaradıldı",
 	"autosumm-newblank": "Boş səhifə yaradıldı",
 	"size-bytes": "$1 bayt",
