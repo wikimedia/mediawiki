@@ -121,29 +121,21 @@ class EmailNotificationSecondaryAuthenticationProviderTest extends MediaWikiInte
 			$mwServices->getSessionManager(),
 		);
 
-		$creator = $this->createMock( User::class );
-		$userWithoutEmail = $this->createMock( User::class );
+		$creator = $this->createNoOpMock( User::class );
+		$userWithoutEmail = $this->createNoOpMock( User::class, [ 'getEmail' ] );
 		$userWithoutEmail->method( 'getEmail' )->willReturn( '' );
-		$userWithoutEmail->method( 'getInstanceForUpdate' )->willReturnSelf();
-		$userWithoutEmail->expects( $this->never() )->method( 'sendConfirmationMail' );
 		$userWithEmailError = $this->createMock( User::class );
 		$userWithEmailError->method( 'getEmail' )->willReturn( 'foo@bar.baz' );
-		$userWithEmailError->method( 'getInstanceForUpdate' )->willReturnSelf();
 		$userWithEmailError->method( 'sendConfirmationMail' )
 			->willReturn( Status::newFatal( 'fail' ) );
 		$userExpectsConfirmation = $this->createMock( User::class );
 		$userExpectsConfirmation->method( 'getEmail' )
 			->willReturn( 'foo@bar.baz' );
-		$userExpectsConfirmation->method( 'getInstanceForUpdate' )
-			->willReturnSelf();
 		$userExpectsConfirmation->expects( $this->once() )->method( 'sendConfirmationMail' )
 			->willReturn( Status::newGood() );
-		$userNotExpectsConfirmation = $this->createMock( User::class );
+		$userNotExpectsConfirmation = $this->createNoOpMock( User::class, [ 'getEmail' ] );
 		$userNotExpectsConfirmation->method( 'getEmail' )
 			->willReturn( 'foo@bar.baz' );
-		$userNotExpectsConfirmation->method( 'getInstanceForUpdate' )
-			->willReturnSelf();
-		$userNotExpectsConfirmation->expects( $this->never() )->method( 'sendConfirmationMail' );
 
 		$provider = $this->getProvider( [
 			'sendConfirmationEmail' => false,
