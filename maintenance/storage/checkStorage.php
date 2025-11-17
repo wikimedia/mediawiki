@@ -218,7 +218,7 @@ class CheckStorage extends Maintenance {
 			if ( count( $externalNormalBlobs ) ) {
 				if ( $this->dbStore === null ) {
 					$esFactory = $this->getServiceContainer()->getExternalStoreFactory();
-					$this->dbStore = $esFactory->getStore( 'DB' );
+					$this->dbStore = $esFactory->getDatabaseStore();
 				}
 				foreach ( $externalConcatBlobs as $cluster => $xBlobIds ) {
 					$blobIds = array_keys( $xBlobIds );
@@ -421,7 +421,7 @@ class CheckStorage extends Maintenance {
 
 		if ( $this->dbStore === null ) {
 			$esFactory = $this->getServiceContainer()->getExternalStoreFactory();
-			$this->dbStore = $esFactory->getStore( 'DB' );
+			$this->dbStore = $esFactory->getDatabaseStore();
 		}
 
 		foreach ( $externalConcatBlobs as $cluster => $oldIds ) {

@@ -114,6 +114,15 @@ class ExternalStoreFactory implements LoggerAwareInterface {
 	}
 
 	/**
+	 * Shorthand for better type inference.
+	 * @since 1.46
+	 */
+	public function getDatabaseStore( array $params = [] ): ExternalStoreDB {
+		// @phan-suppress-next-line PhanTypeMismatchReturnSuperType
+		return $this->getStore( 'DB', $params );
+	}
+
+	/**
 	 * Get the ExternalStoreMedium for a given URL
 	 *
 	 * $url is either of the form:

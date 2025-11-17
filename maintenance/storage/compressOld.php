@@ -181,8 +181,7 @@ class CompressOld extends Maintenance {
 		# Store in external storage if required
 		if ( $extdb !== '' ) {
 			$esFactory = $this->getServiceContainer()->getExternalStoreFactory();
-			/** @var ExternalStoreDB $storeObj */
-			$storeObj = $esFactory->getStore( 'DB' );
+			$storeObj = $esFactory->getDatabaseStore();
 			$compress = $storeObj->store( $extdb, $compress );
 			if ( $compress === false ) {
 				$this->error( "Unable to store object" );
@@ -227,8 +226,7 @@ class CompressOld extends Maintenance {
 		# Set up external storage
 		if ( $extdb != '' ) {
 			$esFactory = $this->getServiceContainer()->getExternalStoreFactory();
-			/** @var ExternalStoreDB $storeObj */
-			$storeObj = $esFactory->getStore( 'DB' );
+			$storeObj = $esFactory->getDatabaseStore();
 		}
 
 		$blobStore = $this->getServiceContainer()
