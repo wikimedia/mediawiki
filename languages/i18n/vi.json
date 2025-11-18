@@ -2499,7 +2499,7 @@
 	"block-multiblocks-new-feature": "Có tính năng mới cho phép bạn cấm một tài khoản nhiều lần.",
 	"ipaddressorusername": "Địa chỉ IP, tên thành viên, hoặc số tác vụ cấm:",
 	"ipbreason": "Lý do:",
-	"ipbreason-dropdown": "*Một số lý do cấm thường gặp\n** Phá hoại\n** Thêm thông tin sai lệch\n** Xóa nội dung trang\n** Thêm liên kết rác\n** Cho thông tin rác vào trang\n** Có thái độ dọa dẫm/quấy rối\n** Lạm dụng nhiều tài khoản\n** Tên thành viên không thể chấp nhận",
+	"ipbreason-dropdown": "*Một số lý do cấm thường gặp\n** Phá hoại\n** Thêm thông tin sai lệch\n** Xóa nội dung trang\n** Thêm liên kết rác\n** Cho thông tin rác vào trang\n** Có thái độ dọa dẫm/quấy rối\n** Lạm dụng nhiều tài khoản\n** Tên người dùng không phù hợp",
 	"ipb-hardblock": "Áp dụng tác vụ cấm cho các thành viên đăng nhập từ địa chỉ IP này",
 	"ipbcreateaccount": "Mở tài khoản",
 	"ipbemailban": "Gửi thư điện tử",

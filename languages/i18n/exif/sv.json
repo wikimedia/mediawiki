@@ -397,6 +397,7 @@
 	"exif-croppedareatoppixels": "Panorama med beskuren topp",
 	"exif-initialcameradolly": "Ursprunglig kameraposition",
 	"exif-stitchingsoftware": "Flätningsprogramvara",
+	"exif-digitalsourcetype": "Källa till digital media",
 	"exif-digitalsourcetype-digitalcapture": "Digitalkamera eller inspelningsenhet",
 	"exif-digitalsourcetype-computationalcapture": "Digitalkamera eller inspelningsenhet (flera kombinerade bilder)",
 	"exif-digitalsourcetype-negativefilm": "Digitaliserad från ett transparent negativ",

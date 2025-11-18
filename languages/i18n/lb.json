@@ -1972,6 +1972,8 @@
 	"watching": "Iwwerwaachen …",
 	"unwatching": "Net méi iwwerwaachen …",
 	"watchlistlabels-table-col-name": "Numm",
+	"watchlistlabels-table-col-actions": "Aktiounen",
+	"watchlistlabels-table-edit": "Änneren",
 	"watchlistlabels-form-header-edit": "Ëmbenennen",
 	"watchlistlabels-form-submit-new": "Uleeën",
 	"watchlistlabels-form-submit-edit": "Späicheren",

@@ -536,7 +536,7 @@
 	"createacct-another-realname-tip": "Der bürgerliche Name ist optional.\nWenn {{#FORMAL:du|Sie}} ihn {{#FORMAL:angibst|angeben}}, wird er für die Zuordnung der Beiträge verwendet.",
 	"pt-login": "Anmelden",
 	"pt-login-button": "Anmelden",
-	"pt-login-continue-button": "Anmeldung fortfahren",
+	"pt-login-continue-button": "Mit der Anmeldung fortfahren",
 	"pt-createaccount": "Benutzerkonto erstellen",
 	"pt-userlogout": "Abmelden",
 	"php-mail-error-unknown": "Unbekannter Fehler in der PHP-Funktion mail().",
@@ -4178,5 +4178,6 @@
 	"benefit-3-description": "Voreinstellungen, mit denen du dein Konto individuell gestalten kannst.",
 	"temp-user-unable-to-acquire": "Es ist nicht möglich, einen temporären Benutzernamen für das Konto zu erstellen. Bitte versuche es erneut.",
 	"table-of-contents-show-button-aria-label": "Inhaltsverzeichnis anzeigen",
-	"table-of-contents-hide-button-aria-label": "Inhaltsverzeichnis ausblenden"
+	"table-of-contents-hide-button-aria-label": "Inhaltsverzeichnis ausblenden",
+	"diff-usergroups": "$1 Benutzergruppen"
 }

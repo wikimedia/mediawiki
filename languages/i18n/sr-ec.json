@@ -2137,6 +2137,8 @@
 	"watching": "Надгледам…",
 	"unwatching": "Престајем да надгледам...",
 	"watchlistlabels-table-col-name": "Име",
+	"watchlistlabels-table-col-actions": "Радње",
+	"watchlistlabels-table-edit": "Уреди",
 	"watchlistlabels-form-header-edit": "Преименуј",
 	"watchlistlabels-form-submit-new": "Направи",
 	"watchlistlabels-form-submit-edit": "Сачувај",

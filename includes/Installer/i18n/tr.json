@@ -294,7 +294,7 @@
 	"config-install-user-missing-create": "Belirtilen kullanıcı \"$1\" yok.\nOluşturmak istiyorsanız, lütfen aşağıdaki \"hesap oluştur\" onay kutusunu tıklayın.",
 	"config-install-logo-blank": "Geçerli bir simgi URL'si girin.",
 	"config-install-restore-services": "MediaWiki hizmetleri geri yükleniyor",
-	"config-install-tables": "Tablo oluşturuluyor, ilk adım",
+	"config-install-tables": "Tablolar oluşturuluyor",
 	"config-install-tables-exist": "<strong>Uyarı:</strong> MediaWiki tabloları zaten var gibi görünüyor.\nOluşturma atlanıyor.",
 	"config-install-tables-failed": "<strong>Hata:</strong> Tablo oluşturma aşağıdaki hata ile başarısız oldu: $1",
 	"config-install-interwiki": "Varsayılan vikiarası tablosu doldurma",
