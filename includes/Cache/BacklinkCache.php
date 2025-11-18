@@ -28,11 +28,11 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\PageReference;
+use MediaWiki\Permissions\RestrictionStore;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
 use Psr\Log\LoggerInterface;
 use RuntimeException;
-use stdClass;
 use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IConnectionProvider;
@@ -104,6 +104,7 @@ class BacklinkCache {
 	private IConnectionProvider $dbProvider;
 	private ServiceOptions $options;
 	private LinksMigration $linksMigration;
+	private RestrictionStore $restrictionStore;
 	private LoggerInterface $logger;
 
 	/**
@@ -114,6 +115,7 @@ class BacklinkCache {
 	 * @param WANObjectCache $wanCache
 	 * @param HookContainer $hookContainer
 	 * @param IConnectionProvider $dbProvider
+	 * @param RestrictionStore $restrictionStore
 	 * @param LoggerInterface $logger
 	 * @param PageReference $page Page to create a backlink cache for
 	 */
@@ -123,6 +125,7 @@ class BacklinkCache {
 		WANObjectCache $wanCache,
 		HookContainer $hookContainer,
 		IConnectionProvider $dbProvider,
+		RestrictionStore $restrictionStore,
 		LoggerInterface $logger,
 		PageReference $page
 	) {
@@ -132,6 +135,7 @@ class BacklinkCache {
 		$this->wanCache = $wanCache;
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->dbProvider = $dbProvider;
+		$this->restrictionStore = $restrictionStore;
 		$this->logger = $logger;
 		$this->page = $page;
 	}
@@ -526,71 +530,15 @@ class BacklinkCache {
 	 * @since 1.37
 	 */
 	public function getCascadeProtectedLinkPages(): Iterator {
-		foreach ( $this->getCascadeProtectedLinksInternal() as $row ) {
-			yield PageIdentityValue::localIdentity(
-				$row->page_id, $row->page_namespace, $row->page_title );
+		$pageIdentity = PageIdentityValue::localIdentity( 0, $this->page->getNamespace(), $this->page->getDBkey() );
+		$cascadeSources = $this->restrictionStore->getCascadeProtectionSources( $pageIdentity );
+
+		// getCascadeProtectionSources returns [ $sources, $pageRestrictions, $tlSources, $ilSources ]
+		$sources = $cascadeSources[0];
+
+		foreach ( $sources as $pageIdentityValue ) {
+			yield $pageIdentityValue;
 		}
-	}
-
-	/**
-	 * Get an array of cascade-protected template/file use backlinks
-	 *
-	 * @return stdClass[]
-	 */
-	private function getCascadeProtectedLinksInternal(): array {
-		$cascadePages = $this->getDB()->newSelectQueryBuilder()
-			->select( [ 'page_id', 'page_namespace', 'page_title' ] )
-			->from( 'page' )
-			->join( 'page_restrictions', null, 'page_id = pr_page' )
-			->where( [ 'pr_cascade' => 1 ] )
-			->caller( __METHOD__ )
-			->fetchResultSet();
-
-		if ( !$cascadePages->numRows() ) {
-			return [];
-		}
-
-		$cascadePagesById = [];
-		foreach ( $cascadePages as $row ) {
-			$cascadePagesById[$row->page_id] = $row;
-		}
-
-		$linkConds = $this->linksMigration->getLinksConditions(
-			'templatelinks', TitleValue::newFromPage( $this->page )
-		);
-		$templatelinkPages = $this->getDB( TemplateLinksTable::VIRTUAL_DOMAIN )->newSelectQueryBuilder()
-			->select( 'tl_from' )
-			->from( 'templatelinks' )
-			->where( $linkConds )
-			->andWhere( [ 'tl_from' => array_keys( $cascadePagesById ) ] )
-			->caller( __METHOD__ )
-			->fetchFieldValues();
-
-		$result = [];
-		foreach ( $templatelinkPages as $pageId ) {
-			$result[] = $cascadePagesById[$pageId];
-		}
-
-		if ( $this->page->getNamespace() === NS_FILE ) {
-			$imagelinkPages = $this->getDB( ImageLinksTable::VIRTUAL_DOMAIN )->newSelectQueryBuilder()
-				->select( 'il_from' )
-				->from( 'imagelinks' )
-				->where( [
-					'il_from' => array_keys( $cascadePagesById ),
-					'il_to' => $this->page->getDBkey()
-				] )
-				->caller( __METHOD__ )
-				->fetchFieldValues();
-
-			foreach ( $imagelinkPages as $pageId ) {
-				if ( !isset( $cascadePagesById[$pageId] ) ) {
-					continue;
-				}
-				$result[] = $cascadePagesById[$pageId];
-			}
-		}
-
-		return $result;
 	}
 }
 

@@ -417,6 +417,7 @@ return [
 			$services->getMainWANObjectCache(),
 			$services->getHookContainer(),
 			$services->getConnectionProvider(),
+			$services->getRestrictionStore(),
 			LoggerFactory::getInstance( 'BacklinkCache' )
 		);
 	},

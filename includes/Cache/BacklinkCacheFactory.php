@@ -13,6 +13,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Linker\LinksMigration;
 use MediaWiki\Page\PageReference;
+use MediaWiki\Permissions\RestrictionStore;
 use Psr\Log\LoggerInterface;
 use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\Rdbms\IConnectionProvider;
@@ -33,6 +34,7 @@ class BacklinkCacheFactory {
 	private IConnectionProvider $dbProvider;
 	private ServiceOptions $options;
 	private LinksMigration $linksMigration;
+	private RestrictionStore $restrictionStore;
 	private LoggerInterface $logger;
 
 	public function __construct(
@@ -41,6 +43,7 @@ class BacklinkCacheFactory {
 		WANObjectCache $wanCache,
 		HookContainer $hookContainer,
 		IConnectionProvider $dbProvider,
+		RestrictionStore $restrictionStore,
 		LoggerInterface $logger
 	) {
 		$this->options = $options;
@@ -48,6 +51,7 @@ class BacklinkCacheFactory {
 		$this->wanCache = $wanCache;
 		$this->hookContainer = $hookContainer;
 		$this->dbProvider = $dbProvider;
+		$this->restrictionStore = $restrictionStore;
 		$this->logger = $logger;
 	}
 
@@ -69,6 +73,7 @@ class BacklinkCacheFactory {
 				$this->wanCache,
 				$this->hookContainer,
 				$this->dbProvider,
+				$this->restrictionStore,
 				$this->logger,
 				$page
 			);

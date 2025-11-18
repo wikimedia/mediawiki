@@ -5,6 +5,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Linker\LinksMigration;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Page\PageReferenceValue;
+use MediaWiki\Permissions\RestrictionStore;
 use Wikimedia\ObjectCache\EmptyBagOStuff;
 use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\Rdbms\IConnectionProvider;
@@ -27,6 +28,7 @@ class BacklinkCacheFactoryTest extends MediaWikiUnitTestCase {
 			$wanCache,
 			$this->createHookContainer(),
 			$dbProvider,
+			$this->createMock( RestrictionStore::class ),
 			LoggerFactory::getInstance( 'BacklinkCache' )
 		);
 		$cache = $factory->getBacklinkCache( $page );
