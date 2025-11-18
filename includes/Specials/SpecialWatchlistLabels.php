@@ -78,13 +78,15 @@ class SpecialWatchlistLabels extends SpecialPage {
 		$msgSuffix = 'new';
 		if ( $id ) {
 			$this->watchlistLabel = $this->labelStore->loadById( $this->getUser(), $id );
-			$descriptor[self::PARAM_NAME]['default'] = $this->watchlistLabel->getName();
-			$descriptor[self::PARAM_ID] = [
-				'type' => 'hidden',
-				'name' => self::PARAM_ID,
-				'default' => $this->watchlistLabel->getId(),
-			];
-			$msgSuffix = 'edit';
+			if ( $this->watchlistLabel ) {
+				$descriptor[self::PARAM_NAME]['default'] = $this->watchlistLabel->getName();
+				$descriptor[self::PARAM_ID] = [
+					'type' => 'hidden',
+					'name' => self::PARAM_ID,
+					'default' => $this->watchlistLabel->getId(),
+				];
+				$msgSuffix = 'edit';
+			}
 		}
 		$form = HTMLForm::factory( 'codex', $descriptor, $this->getContext() )
 			// Messages used here:
