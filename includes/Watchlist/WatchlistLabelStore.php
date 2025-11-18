@@ -131,6 +131,31 @@ class WatchlistLabelStore {
 	}
 
 	/**
+	 * Get counts of all items with the given labels.
+	 *
+	 * @param int[] $labelIds
+	 *
+	 * @return array Keys are the label ID, values the integer count.
+	 */
+	public function countItems( array $labelIds ): array {
+		if ( count( $labelIds ) === 0 ) {
+			return [];
+		}
+		$select = $this->dbProvider->getReplicaDatabase()->newSelectQueryBuilder();
+		$results = $select->table( self::TABLE_WATCHLIST_LABEL_MEMBER )
+			->fields( [ 'wlm_label', 'item_count' => 'COUNT(wlm_label)' ] )
+			->where( [ 'wlm_label' => $labelIds ] )
+			->groupBy( [ 'wlm_label' ] )
+			->caller( __METHOD__ )
+			->fetchResultSet();
+		$counts = array_combine( $labelIds, array_fill( 0, count( $labelIds ), 0 ) );
+		foreach ( $results as $result ) {
+			$counts[ $result->wlm_label ] = (int)$result->item_count;
+		}
+		return $counts;
+	}
+
+	/**
 	 * Get the current total count of a user's watchlist labels.
 	 *
 	 * @param UserIdentity $user

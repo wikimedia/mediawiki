@@ -2449,6 +2449,7 @@
 	"watchlistlabels-table-header": "Table caption for the watchlist labels' table on Special:WatchlistLabels.",
 	"watchlistlabels-table-new-link": "Text for the link to the 'new label' form, shown in the table header on Special:WatchlistLabels.",
 	"watchlistlabels-table-col-name": "Table column header for the label name column on Special:WatchlistLabels.",
+	"watchlistlabels-table-col-count": "Table column header for the label name column on Special:WatchlistLabels.",
 	"watchlistlabels-table-col-actions": "Table column header for the actions column on Special:WatchlistLabels.",
 	"watchlistlabels-table-edit": "Tooltip text for the edit link on each row of the labels table on Special:WatchlistLabels.",
 	"watchlistlabels-form-header-new": "Form header text to show above the watchlist label creation form.",

@@ -165,8 +165,14 @@ class SpecialWatchlistLabels extends SpecialPage {
 
 		// Data.
 		$data = [];
-		foreach ( $this->labelStore->loadAllForUser( $this->getUser() ) as $label ) {
-			$url = $this->getPageTitle( self::SUBPAGE_EDIT )->getLocalURL( [ self::PARAM_ID => $label->getId() ] );
+		$labels = $this->labelStore->loadAllForUser( $this->getUser() );
+		$labelCounts = $this->labelStore->countItems( array_keys( $labels ) );
+		foreach ( $labels as $label ) {
+			$id = $label->getId();
+			if ( !$id ) {
+				continue;
+			}
+			$url = $this->getPageTitle( self::SUBPAGE_EDIT )->getLocalURL( [ self::PARAM_ID => $id ] );
 			$params = [
 				'href' => $url,
 				'class' => 'mw-specialwatchlistlabels-icon--edit',
@@ -174,6 +180,7 @@ class SpecialWatchlistLabels extends SpecialPage {
 			];
 			$data[] = [
 				'name' => htmlspecialchars( $label->getName() ),
+				'count' => $this->getLanguage()->formatNum( $labelCounts[ $id ] ),
 				'edit' => Html::element( 'a', $params ),
 			];
 		}
@@ -185,6 +192,7 @@ class SpecialWatchlistLabels extends SpecialPage {
 			->setHeaderContent( $addNew )
 			->setColumns( [
 				[ 'id' => 'name', 'label' => $this->msg( 'watchlistlabels-table-col-name' )->escaped() ],
+				[ 'id' => 'count', 'label' => $this->msg( 'watchlistlabels-table-col-count' )->escaped() ],
 				[ 'id' => 'edit', 'label' => $this->msg( 'watchlistlabels-table-col-actions' )->escaped() ],
 			] )
 			->setData( $data )

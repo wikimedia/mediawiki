@@ -2172,6 +2172,7 @@
 	"watchlistlabels-table-header": "Labels",
 	"watchlistlabels-table-new-link": "+ New label",
 	"watchlistlabels-table-col-name": "Name",
+	"watchlistlabels-table-col-count": "Items",
 	"watchlistlabels-table-col-actions": "Actions",
 	"watchlistlabels-table-edit": "Edit",
 	"watchlistlabels-form-header-new": "New label",

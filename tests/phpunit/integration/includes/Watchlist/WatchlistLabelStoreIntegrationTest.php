@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\Watchlist\WatchlistLabel;
 
@@ -63,5 +64,27 @@ class WatchlistLabelStoreIntegrationTest extends MediaWikiIntegrationTestCase {
 		$this->assertCount( 6, $store->loadAllForUser( $user ) );
 		$notDeleted = $store->delete( $user, [ 9, 10, $otherUserLabel->getId() ] );
 		$this->assertSame( false, $notDeleted );
+	}
+
+	public function testCountItems(): void {
+		$this->overrideConfigValues( [ 'EnableWatchlistLabels' => true ] );
+		$labelStore = $this->getServiceContainer()->getWatchlistLabelStore();
+		$itemStore = $this->getServiceContainer()->getWatchedItemStore();
+		$user = $this->getTestUser()->getUser();
+
+		// Empty list.
+		$this->assertSame( [], $labelStore->countItems( [] ) );
+
+		// Non-existent IDs.
+		$this->assertSame( [ 34 => 0, 43 => 0 ], $labelStore->countItems( [ 34, 43 ] ) );
+
+		// Watch some pages, and label some of them.
+		$title1 = Title::newFromText( 'Test page 1' );
+		$title2 = Title::newFromText( 'Test page 2' );
+		$itemStore->addWatchBatchForUser( $user, [ $title1, $title2 ] );
+		$label = new WatchlistLabel( $user, 'Test label' );
+		$labelStore->save( $label );
+		$itemStore->addLabels( $user, [ $title1 ], [ $label ] );
+		$this->assertSame( [ 1 => 1, 2 => 0 ], $labelStore->countItems( [ 1, 2 ] ) );
 	}
 }
