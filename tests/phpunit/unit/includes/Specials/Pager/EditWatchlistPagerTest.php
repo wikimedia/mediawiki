@@ -2,7 +2,10 @@
 
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
+use MediaWiki\Navigation\CodexPagerNavigationBuilder;
+use MediaWiki\Output\OutputPage;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\PageReference;
 use MediaWiki\Pager\EditWatchlistPager;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Title\NamespaceInfo;
@@ -34,9 +37,17 @@ class EditWatchlistPagerTest extends MediaWikiUnitTestCase {
 		];
 		$options = array_merge( $defaultOptions, $options );
 
+		$output = $this->createMock( OutputPage::class );
+		$output->method( 'addModuleStyles' );
+		$output->method( 'addModules' );
+		$title = $this->createMock( PageReference::class );
 		$context = $this->createMock( RequestContext::class );
 		$context->method( 'getUser' )
 			->willReturn( $options['user'] );
+		$context->method( 'getTitle' )
+			->willReturn( $title );
+		$context->method( 'getOutput' )
+			->willReturn( $output );
 		// need to mock the request because FauxRequest uses MediaWikiServices
 		$request = new class(
 			$options['request']['data'],
@@ -226,5 +237,10 @@ class EditWatchlistPagerTest extends MediaWikiUnitTestCase {
 				] ),
 			],
 		];
+	}
+
+	public function testGetNavigationBuilder() {
+		$pager = $this->instantiatePager( [] );
+		$this->assertInstanceOf( CodexPagerNavigationBuilder::class, $pager->getNavigationBuilder() );
 	}
 }

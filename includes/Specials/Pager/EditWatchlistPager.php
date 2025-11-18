@@ -8,6 +8,7 @@
 namespace MediaWiki\Specials\Pager;
 
 use MediaWiki\Context\IContextSource;
+use MediaWiki\Navigation\CodexPagerNavigationBuilder;
 use MediaWiki\Pager\AlphabeticPager;
 use MediaWiki\Pager\IndexPager;
 use MediaWiki\Title\NamespaceInfo;
@@ -30,6 +31,14 @@ class EditWatchlistPager extends AlphabeticPager {
 		IContextSource $context, protected WatchedItemStoreInterface $wis, protected NamespaceInfo $namespaceInfo,
 	) {
 		parent::__construct( $context, null );
+	}
+
+	protected function createNavigationBuilder(): CodexPagerNavigationBuilder {
+		return new CodexPagerNavigationBuilder( $this->getContext(), $this->getRequest()->getQueryValues() );
+	}
+
+	public function isNavigationBarShown(): bool {
+		return true;
 	}
 
 	/**

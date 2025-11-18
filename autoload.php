@@ -2169,6 +2169,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Message\\Message' => __DIR__ . '/includes/Language/Message/Message.php',
 	'MediaWiki\\Message\\MessageFormatterFactory' => __DIR__ . '/includes/Language/Message/MessageFormatterFactory.php',
 	'MediaWiki\\Message\\TextFormatter' => __DIR__ . '/includes/Language/Message/TextFormatter.php',
+	'MediaWiki\\Navigation\\CodexPagerNavigationBuilder' => __DIR__ . '/includes/Navigation/CodexPagerNavigationBuilder.php',
 	'MediaWiki\\Navigation\\PagerNavigationBuilder' => __DIR__ . '/includes/Navigation/PagerNavigationBuilder.php',
 	'MediaWiki\\Notification\\AgentAware' => __DIR__ . '/includes/Notification/AgentAware.php',
 	'MediaWiki\\Notification\\MiddlewareChain' => __DIR__ . '/includes/Notification/MiddlewareChain.php',

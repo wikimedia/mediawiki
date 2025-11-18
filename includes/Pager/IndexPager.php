@@ -139,6 +139,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	protected $mPastTheEndIndex;
 	/** @var array|null */
 	protected $mDefaultQuery;
+	protected ?PagerNavigationBuilder $navigationBuilder = null;
 	/** @var string|null */
 	protected $mNavigationBar;
 
@@ -830,11 +831,30 @@ abstract class IndexPager extends ContextSource implements Pager {
 	}
 
 	/**
+	 * Create a new navigation builder instance.
+	 *
+	 * Subclasses can override this method to provide a custom navigation builder,
+	 * such as CodexPagerNavigationBuilder for Codex-styled navigation.
+	 *
+	 * @stable to override
+	 * @since 1.46
+	 * @return PagerNavigationBuilder
+	 */
+	protected function createNavigationBuilder(): PagerNavigationBuilder {
+		return new PagerNavigationBuilder( $this->getContext() );
+	}
+
+	/**
+	 * Get a configured navigation builder for this pager.
+	 *
 	 * @stable to override
 	 * @since 1.39
 	 * @return PagerNavigationBuilder
 	 */
 	public function getNavigationBuilder(): PagerNavigationBuilder {
+		if ( $this->navigationBuilder ) {
+			return $this->navigationBuilder;
+		}
 		$pagingQueries = $this->getPagingQueries();
 		$baseQuery = array_merge( $this->getDefaultQuery(), [
 			// These query parameters are all defined here, even though some are null,
@@ -844,7 +864,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 			'limit' => null,
 		] );
 
-		$navBuilder = new PagerNavigationBuilder( $this->getContext() );
+		$navBuilder = $this->createNavigationBuilder();
 		$navBuilder
 			->setPage( $this->getTitle() )
 			->setLinkQuery( $baseQuery )
@@ -856,6 +876,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 			->setFirstLinkQuery( $pagingQueries['first'] ?: null )
 			->setLastLinkQuery( $pagingQueries['last'] ?: null );
 
+		$this->navigationBuilder = $navBuilder;
 		return $navBuilder;
 	}
 
