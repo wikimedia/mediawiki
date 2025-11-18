@@ -13,26 +13,46 @@ use UnexpectedValueException;
  * LoadBalancer manager for sites with several "main" database clusters
  *
  * Each database cluster consists of a "primary" server and any number of replica servers,
- * all of which converge, as soon as possible, to contain the same schemas and records. If
+ * all of which converge, as soon as possible, to contain the same tables and rows. If
  * a replication topology has multiple primaries, then the "primary" is merely the preferred
- * co-primary for the current context (e.g. datacenter).
+ * co-primary in the current local datacenter.
  *
- * For single-primary topologies, the schemas and records of the primary define the "dataset".
+ * For single-primary topologies, the tables and rows of the primary define the "dataset".
  * For multiple-primary topologies, the "dataset" is the convergent result of applying/merging
- * all committed events (regardless of the co-primary they originated on); it possible that no
- * co-primary has yet converged upon this state at any given time (especially when there are
+ * all committed transactions (regardless of which co-primary they originate on); it possible that
+ * no co-primary has yet converged upon this state at any given time (especially when there are
  * frequent writes and co-primaries are geographically distant).
  *
- * A "main" cluster contain a "main" dataset, which consists of data that is compact, highly
- * relational (e.g. read by JOIN queries), and essential to one or more sites. The "external"
- * clusters each store an "external" dataset, which consists of data that is non-relational
- * (e.g. key/value pairs), self-contained (e.g. JOIN queries and transactions thereof never
- * involve a main dataset), or too bulky to reside in a main dataset (e.g. text blobs).
+ * There are two kinds of database clusters:
+ *
+ * - "main" sections, which hold the "core" databases for one or more web sites and are generally
+ *   compact and highly relational (e.g. reads may join with other tables).
+ *
+ *   Section names are purely for internal runtime state and should only be referred to in
+ *   site configuration, not in source code or datasets. Connect via LBFactory::getReplicaDatabase
+ *   or LoadBalancer::getConnection, which takes a database name. This is automatically resolved
+ *   to a "main" section via the `sectionsByDB` option. Open connections are shared within a given
+ *   section even across different database names, because they share same physical database cluster.
+ *
+ * - "external" clusters, which typically hold data that is non-relational (e.g. key/value pairs),
+ *   self-contained (e.g. read queries don't join tables, and transactions don't write to a "main"
+ *   section at the same time), or too bulky to reside in a "main" section (e.g. large binary blobs).
+ *
+ *   Depending on the use case, an external cluster name may be considered long-term stable and
+ *   referenced inside a primary dataset. External clusters are defined via the `externalLoads`
+ *   option and may be referenced in the `virtualDomainsMapping` option ($wgVirtualDomainsMapping
+ *   in MediaWiki).
+ *
+ *   If MediaWiki is configured with the $wgExternalStores "DB option, then $wgDefaultExternalStore
+ *   and the immutable rows stored in the `content` or `text` table (via SqlBlobStore and
+ *   ExternalStoreDB) refer to external clusters by name.
+ *   See also <https://www.mediawiki.org/wiki/Manual:External_storage>.
  *
  * The class allows for large site farms to split up their data in the following ways:
- *   - Vertically shard compact site-specific data by site (e.g. page/comment metadata)
- *   - Vertically shard compact global data by module (e.g. account/notification data)
- *   - Horizontally shard any bulk data by blob key (e.g. page/comment content blobs)
+ *
+ * - Vertically shard compact site-specific data by web site (e.g. page metadata)
+ * - Vertically shard compact global data by module (e.g. account data)
+ * - Horizontally shard any bulk data by blob key (e.g. page content blobs)
  *
  * @ingroup Database
  */
@@ -47,7 +67,7 @@ class LBFactoryMulti extends LBFactory {
 	/** @var string[] Map of (database name => main section) */
 	private $sectionsByDB;
 	/** @var int[][] Map of (main section => server name => load ratio) */
-	private $loadsBySection;
+	private $sectionLoads;
 	/** @var int[][] Map of (external cluster => server name => load ratio) */
 	private $externalLoadsByCluster;
 	/** @var array Server config map ("host", "serverName", and "load" ignored) */
@@ -119,9 +139,10 @@ class LBFactoryMulti extends LBFactory {
 		parent::__construct( $conf );
 
 		$this->hostsByServerName = $conf['hostsByName'] ?? [];
-		$this->sectionsByDB = $conf['sectionsByDB'];
-		$this->sectionsByDB += [ self::CLUSTER_MAIN_DEFAULT => self::CLUSTER_MAIN_DEFAULT ];
-		$this->loadsBySection = $conf['sectionLoads'] ?? [];
+		$this->sectionsByDB = ( $conf['sectionsByDB'] ?? [] ) + [
+			self::CLUSTER_MAIN_DEFAULT => self::CLUSTER_MAIN_DEFAULT
+		];
+		$this->sectionLoads = $conf['sectionLoads'] ?? [];
 		$this->externalLoadsByCluster = $conf['externalLoads'] ?? [];
 		$this->serverTemplate = $conf['serverTemplate'] ?? [];
 		$this->externalTemplateOverrides = $conf['externalTemplateOverrides'] ?? [];
@@ -140,7 +161,7 @@ class LBFactoryMulti extends LBFactory {
 		}
 
 		foreach ( $this->externalLoadsByCluster as $cluster => $_ ) {
-			if ( isset( $this->loadsBySection[$cluster] ) ) {
+			if ( isset( $this->sectionLoads[$cluster] ) ) {
 				throw new LogicException(
 					"External cluster '$cluster' has the same name as a main section/cluster"
 				);
@@ -154,7 +175,7 @@ class LBFactoryMulti extends LBFactory {
 		$database = $domainInstance->getDatabase();
 		$section = $this->getSectionFromDatabase( $database );
 
-		if ( !isset( $this->loadsBySection[$section] ) ) {
+		if ( !isset( $this->sectionLoads[$section] ) ) {
 			throw new UnexpectedValueException( "Section '$section' has no hosts defined." );
 		}
 
@@ -164,7 +185,7 @@ class LBFactoryMulti extends LBFactory {
 				$this->serverTemplate,
 				$this->templateOverridesBySection[$section] ?? []
 			),
-			$this->loadsBySection[$section],
+			$this->sectionLoads[$section],
 			// Use the LB-specific read-only reason if everything isn't already read-only
 			is_string( $this->readOnlyReason )
 				? $this->readOnlyReason

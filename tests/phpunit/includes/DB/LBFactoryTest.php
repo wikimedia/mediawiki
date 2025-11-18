@@ -377,7 +377,6 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		global $wgSQLiteDataDir;
 
 		return new LBFactoryMulti( $baseOverride + [
-			'sectionsByDB' => [],
 			'sectionLoads' => [
 				'DEFAULT' => [
 					'test-db1' => 1,
