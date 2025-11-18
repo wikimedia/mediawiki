@@ -133,6 +133,20 @@ class PHPSessionHandler implements SessionHandlerInterface {
 		}
 	}
 
+	private function getSessionManager(): SessionManagerInterface {
+		// NOTE: PHPUnit tests also run in CLI mode, so we need to ignore them
+		// otherwise tests will break in CI.
+		if ( wfIsCLI() && !defined( 'MW_PHPUNIT_TEST' ) ) {
+			// T405450: Don't reuse a reference of the cached session manager
+			// object in command-line mode when spawning child processes. Always
+			// get a fresh instance. This is because during service reset, there
+			// could be references to services container that is disabled.
+			return MediaWikiServices::getInstance()->getSessionManager();
+		}
+
+		return $this->manager;
+	}
+
 	/**
 	 * @internal Use self::install().
 	 * @param SessionManagerInterface $manager
@@ -199,18 +213,7 @@ class PHPSessionHandler implements SessionHandlerInterface {
 			throw new \BadMethodCallException( 'Attempt to use PHP session management' );
 		}
 
-		// NOTE: PHPUnit tests also run in CLI mode, so we need to ignore them
-		// otherwise tests will break in CI.
-		if ( wfIsCLI() && !defined( 'MW_PHPUNIT_TEST' ) ) {
-			// T405450: Don't reuse a reference of the cached session manager
-			// object in command-line mode when spawning child processes. Always
-			// get a fresh instance. This is because during service reset, there
-			// could be references to services container that is disabled.
-			$session = MediaWikiServices::getInstance()->getSessionManager()
-				->getSessionById( $id, false );
-		} else {
-			$session = $this->manager->getSessionById( $id, false );
-		}
+		$session = $this->getSessionManager()->getSessionById( $id, false );
 
 		if ( !$session ) {
 			return '';
@@ -259,7 +262,7 @@ class PHPSessionHandler implements SessionHandlerInterface {
 			throw new \BadMethodCallException( 'Attempt to use PHP session management' );
 		}
 
-		$session = $this->manager->getSessionById( $id, true );
+		$session = $this->getSessionManager()->getSessionById( $id, true );
 		if ( !$session ) {
 			// This can happen under normal circumstances, if the session exists but is
 			// invalid. Let's emit a log warning instead of a PHP warning.
@@ -377,7 +380,7 @@ class PHPSessionHandler implements SessionHandlerInterface {
 		if ( !$this->enable ) {
 			throw new \BadMethodCallException( 'Attempt to use PHP session management' );
 		}
-		$session = $this->manager->getSessionById( $id, false );
+		$session = $this->getSessionManager()->getSessionById( $id, false );
 		if ( $session ) {
 			$session->clear();
 		}
