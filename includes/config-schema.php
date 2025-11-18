@@ -2717,6 +2717,7 @@ return [
 			],
 			'FeatureShutdown' => [
 			],
+			'CloneArticleParserOutput' => true,
 			'UseLeximorph' => false,
 		],
 		'type' => [
@@ -3225,6 +3226,7 @@ return [
 			'EnableProtectionIndicators' => 'boolean',
 			'OutputPipelineStages' => 'object',
 			'FeatureShutdown' => 'array',
+			'CloneArticleParserOutput' => 'boolean',
 			'UseLeximorph' => 'boolean',
 		],
 		'mergeStrategy' => [

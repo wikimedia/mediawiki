@@ -4548,6 +4548,12 @@ class MainConfigNames {
 	public const FeatureShutdown = 'FeatureShutdown';
 
 	/**
+	 * Name constant for the CloneArticleParserOutput setting, for use with Config::get()
+	 * @see MainConfigSchema::CloneArticleParserOutput
+	 */
+	public const CloneArticleParserOutput = 'CloneArticleParserOutput';
+
+	/**
 	 * Name constant for the UseLeximorph setting, for use with Config::get()
 	 * @see MainConfigSchema::UseLeximorph
 	 */

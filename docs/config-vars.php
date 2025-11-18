@@ -4533,6 +4533,12 @@ $wgOutputPipelineStages = null;
 $wgFeatureShutdown = null;
 
 /**
+ * Config variable stub for the CloneArticleParserOutput setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::CloneArticleParserOutput
+ */
+$wgCloneArticleParserOutput = null;
+
+/**
  * Config variable stub for the UseLeximorph setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::UseLeximorph
  */
