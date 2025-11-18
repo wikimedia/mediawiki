@@ -2030,6 +2030,7 @@
 	"apisandbox-request-php-label": "Побарај PHP-строј:",
 	"apisandbox-request-time": "Време за барањето: {{PLURAL:$1|$1 милисекунда|$1 милисекунди}}",
 	"apisandbox-request-post": "Ова барање мора да се испрати користејќи го HTTP-методот POST.",
+	"apisandbox-request-post2": "Поради големината на товарот, ова барање е испратено по методот HTTP POST.",
 	"apisandbox-request-formdata": "Ова барање мора да се испрати како подигната податотека (т.е. користејќи <code>multipart/form-data</code>).",
 	"apisandbox-results-fixtoken": "Исправи ја шифрата и поднеси одново",
 	"apisandbox-results-fixtoken-fail": "Не успеав да ја добијам шифрата „$1“.",

@@ -4,12 +4,16 @@
 			"Sveinn í Felli"
 		]
 	},
+	"cdx-chip-input-chip-added": "Flís $1 var bætt við.",
+	"cdx-chip-input-chip-removed": "Flís $1 var fjarlægð.",
+	"cdx-input-chip-aria-description": "Ýttu á Enter til að breyta eða Delete til að fjarlægja.",
 	"cdx-dialog-close-button-label": "Loka",
 	"cdx-label-optional-flag": "(valfrjálst)",
 	"cdx-message-dismiss-button-label": "Loka",
 	"cdx-search-input-search-button-label": "Leita",
 	"cdx-table-select-all-label": "Velja allar raðir",
 	"cdx-table-select-row-label": "Velja röð $1 af $2",
+	"cdx-table-sort-caption": "$1 (dálkahausar með hnöppum eru raðanlegir).",
 	"cdx-typeahead-search-search-results-label": "Leitarniðurstöður",
 	"cdx-table-pager-button-first-page": "Fyrsta síða",
 	"cdx-table-pager-button-last-page": "Síðasta síða",

@@ -3215,6 +3215,7 @@
 	"specialmute-submit": "Stadfest",
 	"specialmute-label-mute-email": "Demp e-postar frå denne {{GENDER:$1|brukaren}}",
 	"specialmute-header": "Under kan du setja dempeinnstillingane dine for brukaren <b>{{BIDI:[[User:$1|$1]]}}</b>.",
+	"specialmute-email-footer": "Gå til denne adressa for å handsama e-postinnstillingane som gjeld brukaren {{BIDI:$2}}:\n$1",
 	"mute-preferences": "Demp brukar",
 	"revid": "versjon $1",
 	"userlogout-continue": "Ynskjer du å logga ut?",

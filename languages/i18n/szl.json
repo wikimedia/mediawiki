@@ -870,6 +870,8 @@
 	"recentchangeslinked-summary": "Wkludź miano zajty, żeby ôbejzdrzeć zmiany na zajtach linkowanych do nij abo co dō nij linkujōm. (Żeby ôbejzdrzeć zajty z kategoryje, wkludź {{ns:category}}:Miano kategoryje). Zajty ze [[Special:Watchlist|Ôbserwowanych]] sōm <strong>porubiōne</strong>.",
 	"recentchangeslinked-page": "Miano zajty:",
 	"recentchangeslinked-to": "Pokŏż zmiany na zajtach, co linkujōm do podanyj zajty",
+	"recentchanges-page-added-to-category": "[[:$1]] przidano do kategoryje",
+	"recentchanges-page-removed-from-category": "[[:$1]] wyciepano ze kategoryje",
 	"upload": "Zaladuj zbiōr",
 	"uploadbtn": "Prziślij zbiōr",
 	"reuploaddesc": "Pociep przesyłanie i wrōć do formulara.",

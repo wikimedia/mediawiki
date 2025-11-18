@@ -90,7 +90,6 @@
 	"exif-originalimageheight": "Tèngghina ghâmbhâr sabelluna èketthok",
 	"exif-originalimagewidth": "Lèbârâ ghâmbhâr sabelluna èketthok",
 	"exif-contact-value": "$1\n\n$2\n<div class=\"adr\">\n$3\n\n$4, $5, $6 $7\n</div>\n$8",
-	"exif-subjectnewscode-value": "$2 ($1)",
 	"exif-compression-5": "LZW",
 	"exif-compression-6": "JPEG (abit)",
 	"exif-compression-7": "JPEG",

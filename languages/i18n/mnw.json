@@ -1106,6 +1106,7 @@
 	"protectedtitles-submit": "က္ဍိုပ်လိက် မထ္ၜးပျး",
 	"listusers": "စရင် ညးလွပ်",
 	"listusers-editsonly": "ထ္ၜးဆညးလွပ်သီုကဵုမဒါန်တအ်",
+	"usercreated": "{{GENDER:$3|မခၞံဗဒှ်လဝ်}}နကဵု အခိၚ် $1 အပ္ဍဲ $2 ရ",
 	"newpages": "မုက်လိက် တၟိ",
 	"newpages-submit": "ထ္ၜး",
 	"newpages-username": "ယၟုညးလွပ်-",

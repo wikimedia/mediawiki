@@ -2013,6 +2013,7 @@
 	"apisandbox-request-php-label": "Requestar matrice PHP:",
 	"apisandbox-request-time": "Duration del requesta: {{PLURAL:$1|$1 ms}}",
 	"apisandbox-request-post": "Iste requesta debe esser inviate con le methodo HTTP POST.",
+	"apisandbox-request-post2": "A causa del dimension del cargo utile, iste requesta ha essite inviate con le methodo HTTP POST.",
 	"apisandbox-request-formdata": "Iste requesta debe esser inviate como incargamento de file (i.e. usante <code>multipart/form-data</code>).",
 	"apisandbox-results-fixtoken": "Corrige le token e reinvia",
 	"apisandbox-results-fixtoken-fail": "Impossibile recuperar le token “$1”.",

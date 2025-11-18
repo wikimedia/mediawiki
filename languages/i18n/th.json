@@ -4035,6 +4035,7 @@
 	"skin-action-delete": "ลบ",
 	"skin-action-move": "ย้าย",
 	"skin-json-warning": "@คำเตือน",
+	"skin-json-warning-message": "นี่ไม่ใช่ API แต่มีไว้สำหรับการแก้จุดบกพร่องเท่านั้น! ห้ามนำไปใช้ในอุปกรณ์เสริมหรือโค้ดสำหรับการใช้งานจริง",
 	"parsoid-stash-rate-limit-error": "ไม่สามารถทำการ Stash ได้เนื่องจากเกินขีดจำกัดอัตรา กรุณาลองใหม่อีกครั้งในภายหลัง",
 	"parsoid-resource-limit-exceeded": "เกินขีดจำกัดทรัพยากร Parsoid: $1",
 	"parsoid-revision-access": "Parsoid ไม่สามารถเข้าถึงรุ่นการแก้ไขนี้ได้: $1",

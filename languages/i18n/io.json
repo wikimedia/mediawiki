@@ -2428,6 +2428,7 @@
 	"block-expiry": "Expiro:",
 	"block-expiry-preset-placeholder": "Selektez durado",
 	"block-expiry-custom": "Ordinara durado",
+	"block-expiry-datetime": "Specifika dato e durado",
 	"block-options": "Plusa agadi:",
 	"block-reason": "Motivo:",
 	"block-reason-other": "Altra o plusa motivo",

@@ -56,6 +56,7 @@
 	"rest-badtoken": "Den gitte CSRF-nøkkelen er ugyldig.",
 	"rest-badtoken-missing": "Parameteren <var>token</var> er påkrevd med mindre man bruker en CSRF-trygg autentiseringsmetode.",
 	"rest-badtoken-nosession": "CSRF-feil – ingen økt.",
+	"rest-mock-error": "Testfeil.",
 	"rest-specified-revision-unavailable": "Den angitte siderevisjonen er slettet eller sensurert.",
 	"rest-previous-revision-unavailable": "Kunne ikke finne tidligere sideversjon. Har siden blitt låst eller slettet?",
 	"rest-requires-content-type-header": "En Content-Type-header må angis med forespørselen.",

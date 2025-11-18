@@ -2131,6 +2131,7 @@
 	"apisandbox-request-php-label": "PHP-Array anfordern:",
 	"apisandbox-request-time": "Dauer der Anfrage: {{PLURAL:$1|Eine Millisekunde|$1 Millisekunden}}",
 	"apisandbox-request-post": "Diese Anfrage muss mit der HTTP-POST-Methode gesendet werden.",
+	"apisandbox-request-post2": "Aufgrund der Größe der Nutzdaten wurde diese Anfrage mit der HTTP-POST-Methode gesendet.",
 	"apisandbox-request-formdata": "Diese Anfrage muss als Datei-Upload gesendet werden (d.h. unter Verwendung von <code>multipart/form-data</code> ).",
 	"apisandbox-results-fixtoken": "Token korrigieren und erneut übertragen",
 	"apisandbox-results-fixtoken-fail": "Der „$1“-Token konnte nicht abgerufen werden.",

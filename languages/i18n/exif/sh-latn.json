@@ -6,7 +6,8 @@
 			"Kolega2357",
 			"OC Ripper",
 			"Vlad5250",
-			"Winston Sung"
+			"Winston Sung",
+			"Aca"
 		]
 	},
 	"exif-imagewidth": "Širina",
@@ -110,7 +111,7 @@
 	"exif-gpstrack": "Smjer kretanja",
 	"exif-gpsimgdirectionref": "Referenca za smjer slike",
 	"exif-gpsimgdirection": "Smjer slike",
-	"exif-gpsmapdatum": "Upotrijebljeni podaci geodetskih mjerenja",
+	"exif-gpsmapdatum": "Korišteni podaci geodetskih mjerenja",
 	"exif-gpsdestlatituderef": "Referenca za geografsku širinu odredišta",
 	"exif-gpsdestlatitude": "Širina odredišta",
 	"exif-gpsdestlongituderef": "Referenca za geografsku dužinu odredišta",

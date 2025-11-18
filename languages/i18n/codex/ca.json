@@ -1,0 +1,30 @@
+{
+	"@metadata": {
+		"authors": [
+			"Tiputini"
+		]
+	},
+	"cdx-chip-input-chip-added": "S'ha afegit la fitxa $1.",
+	"cdx-chip-input-chip-removed": "S'ha eliminat la fitxa $1.",
+	"cdx-input-chip-aria-description": "Premeu Retorn per editar o Suprimir per eliminar.",
+	"cdx-dialog-close-button-label": "Tancar",
+	"cdx-label-optional-flag": "(opcional)",
+	"cdx-message-dismiss-button-label": "Tancar",
+	"cdx-search-input-search-button-label": "Cercar",
+	"cdx-table-select-all-label": "Seleccionar totes les files",
+	"cdx-table-select-row-label": "Seleccionar la fila $1 de $2",
+	"cdx-table-sort-caption": "$1 (les capçaleres de columna amb botons es poden ordenar).",
+	"cdx-typeahead-search-search-results-label": "Resultats de la cerca",
+	"cdx-table-pager-button-first-page": "Primera pàgina",
+	"cdx-table-pager-button-last-page": "Última pàgina",
+	"cdx-table-pager-button-next-page": "Pàgina següent",
+	"cdx-table-pager-button-prev-page": "Pàgina anterior",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 fila|$1 files}}",
+	"cdx-table-pager-items-per-page-default": "Resultats per pàgina",
+	"cdx-table-pagination-status-message-determinate-long": "Mostrant els resultats $1 al $2 de $3",
+	"cdx-table-pagination-status-message-determinate-short": "$1 – $2 de $3",
+	"cdx-table-pagination-status-message-indeterminate-long": "Mostrant els resultats $1 a $2 de molts",
+	"cdx-table-pagination-status-message-indeterminate-short": "$1 – $2 de molts",
+	"cdx-table-pagination-status-message-indeterminate-final": "Mostrant els últims {{PLURAL:$1| $1 resultat| $1 resultats}}",
+	"cdx-table-pagination-status-message-pending": "S'estan carregant els resultats..."
+}

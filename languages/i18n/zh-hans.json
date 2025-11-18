@@ -220,7 +220,9 @@
 			"1F616EMO",
 			"Peterxy12",
 			"Teetrition",
-			"Nvdtn19"
+			"Nvdtn19",
+			"Srapoj",
+			"TeaSummer"
 		]
 	},
 	"sunday": "星期日",
@@ -2221,6 +2223,7 @@
 	"apisandbox-request-php-label": "请求PHP数组：",
 	"apisandbox-request-time": "请求时间：{{PLURAL:$1|$1毫秒}}",
 	"apisandbox-request-post": "此请求必须使用HTTP的POST方法发送。",
+	"apisandbox-request-post2": "由于负载较大，此请求已通过HTTP的POST方法发送。",
 	"apisandbox-request-formdata": "此请求必须作为文件上传发送（即需要使用<code>multipart/form-data</code>）。",
 	"apisandbox-results-fixtoken": "改正令牌并重新提交",
 	"apisandbox-results-fixtoken-fail": "检索“$1”令牌失败。",
@@ -3087,7 +3090,7 @@
 	"tooltip-p-personal": "用户菜单",
 	"tooltip-n-mainpage": "访问首页",
 	"tooltip-n-mainpage-description": "访问首页",
-	"tooltip-n-portal": "关于本计划，您可做的事，何处找到您所需",
+	"tooltip-n-portal": "关于本项目，你可以做什么，以及何处能找到相关资料",
 	"tooltip-n-currentevents": "寻找当前事件的背景信息",
 	"tooltip-n-recentchanges": "本wiki的最近更改列表",
 	"tooltip-n-randompage": "随机加载页面",
@@ -3856,7 +3859,7 @@
 	"logentry-import-upload-details": "$1通过文件上传{{GENDER:$2|导入了}}$3（$4个{{PLURAL:$4|版本}}）",
 	"logentry-import-interwiki": "$1从其他wiki{{GENDER:$2|导入}}了$3",
 	"logentry-import-interwiki-details": "$1从$5{{GENDER:$2|导入了}}$3（$4个{{PLURAL:$4|版本}}）",
-	"logentry-merge-merge": "$1将$3{{GENDER:$2|合并}}至$4（修订版本至$5）",
+	"logentry-merge-merge": "$1将$3{{GENDER:$2|合并}}至$4（修订版本截至$5）",
 	"logentry-move-move": "$1{{GENDER:$2|移动}}页面$3至$4",
 	"logentry-move-move-noredirect": "$1{{GENDER:$2|移动}}页面$3至$4，不留重定向",
 	"logentry-move-move_redir": "$1{{GENDER:$2|移动}}页面$3至$4，覆盖重定向",

@@ -2067,6 +2067,8 @@
 	"import": "Ssekcem isebtar",
 	"importinterwiki": "kter seg uwiki-nniḍen",
 	"import-interwiki-text": "Fren yiwen wiki d yiwen azwel n usebtar ad ketreḍ.\nIzemzen n ileqman d isemawen n ittekkiyen ad qqimen.\nAkkw tigawin n taktert ager-wiki ad illint deg [[Special:Log/import|umezruy n tiketrin]].",
+	"import-interwiki-sourcewiki": "Aɣbalu wiki:",
+	"import-interwiki-sourcepage": "Asebter aɣbalu:",
 	"import-interwiki-history": "Xdem alsaru n akk tisiwal umezruy n usebter-agi",
 	"import-interwiki-templates": "Sekcem akkw talɣiwin",
 	"import-interwiki-submit": "Ssekcem",

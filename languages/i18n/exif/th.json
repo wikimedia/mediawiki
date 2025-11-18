@@ -364,6 +364,7 @@
 	"exif-urgency-other": "ระดับความสำคัญที่ผู้ใช้กำหนด ($1)",
 	"exif-firstphotodate": "วันที่ถ่ายภาพแรก",
 	"exif-lastphotodate": "วันที่ถ่ายภาพสุดท้าย",
+	"exif-projectiontype": "ประเภทการฉายภาพ",
 	"exif-usepanoramaviewer-true": "ใช่",
 	"exif-usepanoramaviewer-false": "ไม่",
 	"exif-exposurelockused": "ใช้การล็อกแสง",

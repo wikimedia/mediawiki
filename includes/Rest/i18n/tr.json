@@ -6,7 +6,8 @@
 			"Joseph",
 			"MuratTheTurkish",
 			"SaldırganSincap",
-			"Stonecy"
+			"Stonecy",
+			"Eleman"
 		]
 	},
 	"rest-prefix-mismatch": "İstenen yol ($1), REST API temel yolunun ($2) içinde değildi",
@@ -52,5 +53,6 @@
 	"rest-requires-safe-against-csrf": "Bu uç nokta, CSRF güvenli bir oturum sağlayıcısı gerektirir.",
 	"rest-badtoken": "Sağlanan CSRF anahtarı geçersiz.",
 	"rest-badtoken-missing": "<var>token</var> değişkeni, CSRF-safe kimlik doğrulama yöntemi kullanılmıyorsa gereklidir.",
-	"rest-badtoken-nosession": "CSRF hatası - oturum yok."
+	"rest-badtoken-nosession": "CSRF hatası - oturum yok.",
+	"rest-transform-missing-html": "Herhangi bir html verilmedi."
 }
