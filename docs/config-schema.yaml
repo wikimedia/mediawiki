@@ -8338,6 +8338,13 @@ config-schema:
             ];
             @encdode
             @since 1.44
+    CloneArticleParserOutput:
+        default: true
+        type: boolean
+        description: |-
+            Whether Article should clone the ParserOutput before postprocessing.
+            @unstable Temporary feature flag, T410923
+            @since 1.45
     UseLeximorph:
         default: false
         type: boolean
