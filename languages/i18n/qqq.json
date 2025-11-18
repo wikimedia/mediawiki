@@ -4403,5 +4403,5 @@
 	"temp-user-unable-to-acquire": "The error message shown when the server was unable to acquire a temporary account username for the user.",
 	"table-of-contents-show-button-aria-label": "ARIA label for the table of contents show toggle button",
 	"table-of-contents-hide-button-aria-label": "ARIA label for the table of contents hide toggle button",
-	"diff-usergroups": "The text for displaying user groups on diff view."
+	"diff-usergroups": "The text for displaying user groups on diff view.\n\nParameters:\n* $1 - number of user groups"
 }
