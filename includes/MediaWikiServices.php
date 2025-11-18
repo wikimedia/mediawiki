@@ -38,6 +38,7 @@ use MediaWiki\Cache\LinkCache;
 use MediaWiki\Cache\UserCache;
 use MediaWiki\Category\TrackingCategories;
 use MediaWiki\ChangeTags\ChangeTagsStore;
+use MediaWiki\ChangeTags\ChangeTagsStoreFactory;
 use MediaWiki\Collation\CollationFactory;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\CommentFormatter\CommentParserFactory;
@@ -923,6 +924,13 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getChangeTagsStore(): ChangeTagsStore {
 		return $this->getService( 'ChangeTagsStore' );
+	}
+
+	/**
+	 * @since 1.46
+	 */
+	public function getChangeTagsStoreFactory(): ChangeTagsStoreFactory {
+		return $this->getService( 'ChangeTagsStoreFactory' );
 	}
 
 	/**

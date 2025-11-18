@@ -60,6 +60,7 @@ use MediaWiki\Cache\LinkCache;
 use MediaWiki\Cache\UserCache;
 use MediaWiki\Category\TrackingCategories;
 use MediaWiki\ChangeTags\ChangeTagsStore;
+use MediaWiki\ChangeTags\ChangeTagsStoreFactory;
 use MediaWiki\Collation\CollationFactory;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\CommentFormatter\CommentParserFactory;
@@ -559,9 +560,13 @@ return [
 	},
 
 	'ChangeTagsStore' => static function ( MediaWikiServices $services ): ChangeTagsStore {
-		return new ChangeTagsStore(
+		return $services->getChangeTagsStoreFactory()->getChangeTagsStore();
+	},
+
+	'ChangeTagsStoreFactory' => static function ( MediaWikiServices $services ): ChangeTagsStoreFactory {
+		return new ChangeTagsStoreFactory(
 			$services->getConnectionProvider(),
-			$services->getChangeTagDefStore(),
+			$services->getNameTableStoreFactory(),
 			$services->getMainWANObjectCache(),
 			$services->getHookContainer(),
 			LoggerFactory::getInstance( 'ChangeTags' ),

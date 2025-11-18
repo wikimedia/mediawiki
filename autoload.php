@@ -1129,6 +1129,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\ChangeTags\\ChangeTagsRevisionItem' => __DIR__ . '/includes/ChangeTags/ChangeTagsRevisionItem.php',
 	'MediaWiki\\ChangeTags\\ChangeTagsRevisionList' => __DIR__ . '/includes/ChangeTags/ChangeTagsRevisionList.php',
 	'MediaWiki\\ChangeTags\\ChangeTagsStore' => __DIR__ . '/includes/ChangeTags/ChangeTagsStore.php',
+	'MediaWiki\\ChangeTags\\ChangeTagsStoreFactory' => __DIR__ . '/includes/ChangeTags/ChangeTagsStoreFactory.php',
 	'MediaWiki\\ChangeTags\\Hook\\ChangeTagAfterDeleteHook' => __DIR__ . '/includes/ChangeTags/Hook/ChangeTagAfterDeleteHook.php',
 	'MediaWiki\\ChangeTags\\Hook\\ChangeTagCanCreateHook' => __DIR__ . '/includes/ChangeTags/Hook/ChangeTagCanCreateHook.php',
 	'MediaWiki\\ChangeTags\\Hook\\ChangeTagCanDeleteHook' => __DIR__ . '/includes/ChangeTags/Hook/ChangeTagCanDeleteHook.php',

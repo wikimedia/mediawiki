@@ -7,6 +7,7 @@
 namespace MediaWiki\ChangeTags;
 
 use InvalidArgumentException;
+use LogicException;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
@@ -29,6 +30,8 @@ use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
  * Read-write access to the change_tags table.
+ *
+ * This class also provides a limited functionality for querying tags on remote wikis.
  *
  * @since 1.41
  * @ingroup ChangeTags
@@ -81,6 +84,7 @@ class ChangeTagsStore {
 	private HookRunner $hookRunner;
 	private UserFactory $userFactory;
 	private HookContainer $hookContainer;
+	private string|false $wiki;
 
 	public function __construct(
 		IConnectionProvider $dbProvider,
@@ -89,7 +93,8 @@ class ChangeTagsStore {
 		HookContainer $hookContainer,
 		LoggerInterface $logger,
 		UserFactory $userFactory,
-		ServiceOptions $options
+		ServiceOptions $options,
+		string|false $wiki = false
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->dbProvider = $dbProvider;
@@ -100,16 +105,23 @@ class ChangeTagsStore {
 		$this->hookContainer = $hookContainer;
 		$this->userFactory = $userFactory;
 		$this->hookRunner = new HookRunner( $hookContainer );
+		$this->wiki = $wiki;
 	}
 
 	/**
 	 * Loads defined core tags, checks for invalid types (if not array),
 	 * and filters for supported and enabled (if $all is false) tags only.
 	 *
+	 * This operation is supported only for the local wiki.
+	 *
 	 * @param bool $all If true, return all valid defined tags. Otherwise, return only enabled ones.
 	 * @return array Array of all defined/enabled tags.
 	 */
 	public function getSoftwareTags( $all = false ): array {
+		if ( $this->wiki !== false ) {
+			throw new LogicException( 'ChangeTagsStore does not support listing software tags on remote wikis' );
+		}
+
 		$coreTags = $this->options->get( MainConfigNames::SoftwareTags );
 		if ( !is_array( $coreTags ) ) {
 			$this->logger->warning( 'wgSoftwareTags should be associative array of enabled tags.
@@ -204,7 +216,7 @@ class ChangeTagsStore {
 			throw new InvalidArgumentException( 'Unable to determine appropriate JOIN condition for tagging.' );
 		}
 
-		return $this->dbProvider->getReplicaDatabase()
+		return $this->dbProvider->getReplicaDatabase( $this->wiki )
 			->newSelectQueryBuilder()
 			->table( self::CHANGE_TAG )
 			->join( self::CHANGE_TAG_DEF, null, 'ct_tag_id=ctd_id' )
@@ -218,10 +230,16 @@ class ChangeTagsStore {
 	 * Extensions should NOT use this function; they can use the ListDefinedTags
 	 * hook instead.
 	 *
+	 * This operation is supported only for the local wiki.
+	 *
 	 * @param string $tag Tag to create
 	 * @since 1.41
 	 */
 	public function defineTag( $tag ) {
+		if ( $this->wiki !== false ) {
+			throw new LogicException( 'ChangeTagsStore does not support defining tags on remote wikis' );
+		}
+
 		$dbw = $this->dbProvider->getPrimaryDatabase();
 		$dbw->newInsertQueryBuilder()
 			->insertInto( self::CHANGE_TAG_DEF )
@@ -244,10 +262,16 @@ class ChangeTagsStore {
 	 * The tag may remain in use by extensions, and may still show up as 'defined'
 	 * if an extension is setting it from the ListDefinedTags hook.
 	 *
+	 * This operation is supported only for the local wiki.
+	 *
 	 * @param string $tag Tag to remove
 	 * @since 1.41
 	 */
 	public function undefineTag( $tag ) {
+		if ( $this->wiki !== false ) {
+			throw new LogicException( 'ChangeTagsStore does not support undefining tags on remote wikis' );
+		}
+
 		$dbw = $this->dbProvider->getPrimaryDatabase();
 
 		$dbw->newUpdateQueryBuilder()
@@ -268,6 +292,8 @@ class ChangeTagsStore {
 	/**
 	 * Writes a tag action into the tag management log.
 	 *
+	 * This operation is supported only for the local wiki.
+	 *
 	 * @param string $action
 	 * @param string $tag
 	 * @param string $reason
@@ -282,6 +308,9 @@ class ChangeTagsStore {
 	public function logTagManagementAction( string $action, string $tag, string $reason,
 		UserIdentity $user, $tagCount = null, array $logEntryTags = []
 	) {
+		if ( $this->wiki !== false ) {
+			throw new LogicException( 'ChangeTagsStore does not support logging actions on remote wikis' );
+		}
 		$dbw = $this->dbProvider->getPrimaryDatabase();
 
 		$logEntry = new ManualLogEntry( 'managetags', $action );
@@ -312,11 +341,17 @@ class ChangeTagsStore {
 	 * by user-facing code. See deleteTagWithChecks() for functionality that can
 	 * safely be exposed to users.
 	 *
+	 * This operation is supported only for the local wiki.
+	 *
 	 * @param string $tag Tag to remove
 	 * @return Status The returned status will be good unless a hook changed it
 	 * @since 1.41
 	 */
 	public function deleteTagEverywhere( $tag ) {
+		if ( $this->wiki !== false ) {
+			throw new LogicException( 'ChangeTagsStore does not support deleting tags on remote wikis' );
+		}
+
 		$dbw = $this->dbProvider->getPrimaryDatabase();
 		$dbw->startAtomic( __METHOD__ );
 
@@ -358,10 +393,10 @@ class ChangeTagsStore {
 	 * @since 1.41
 	 */
 	public function purgeTagCacheAll() {
-		$this->wanCache->touchCheckKey( $this->wanCache->makeKey( 'active-tags' ) );
-		$this->wanCache->touchCheckKey( $this->wanCache->makeKey( 'valid-tags-db' ) );
-		$this->wanCache->touchCheckKey( $this->wanCache->makeKey( 'valid-tags-hook' ) );
-		$this->wanCache->touchCheckKey( $this->wanCache->makeKey( 'tags-usage-statistics' ) );
+		$this->wanCache->touchCheckKey( $this->wanCache->makeKey( 'active-tags', $this->wiki ) );
+		$this->wanCache->touchCheckKey( $this->wanCache->makeKey( 'valid-tags-db', $this->wiki ) );
+		$this->wanCache->touchCheckKey( $this->wanCache->makeKey( 'valid-tags-hook', $this->wiki ) );
+		$this->wanCache->touchCheckKey( $this->wanCache->makeKey( 'tags-usage-statistics', $this->wiki ) );
 
 		$this->changeTagDefStore->reloadMap();
 	}
@@ -375,12 +410,13 @@ class ChangeTagsStore {
 	public function tagUsageStatistics(): array {
 		$fname = __METHOD__;
 		$dbProvider = $this->dbProvider;
+		$wiki = $this->wiki;
 
 		return $this->wanCache->getWithSetCallback(
-			$this->wanCache->makeKey( 'tags-usage-statistics' ),
+			$this->wanCache->makeKey( 'tags-usage-statistics', $wiki ),
 			WANObjectCache::TTL_HOUR,
-			static function ( $oldValue, &$ttl, array &$setOpts ) use ( $fname, $dbProvider ) {
-				$dbr = $dbProvider->getReplicaDatabase();
+			static function ( $oldValue, &$ttl, array &$setOpts ) use ( $fname, $dbProvider, $wiki ) {
+				$dbr = $dbProvider->getReplicaDatabase( $wiki );
 				$res = $dbr->newSelectQueryBuilder()
 					->select( [ 'ctd_name', 'ctd_count' ] )
 					->from( self::CHANGE_TAG_DEF )
@@ -396,7 +432,7 @@ class ChangeTagsStore {
 				return $out;
 			},
 			[
-				'checkKeys' => [ $this->wanCache->makeKey( 'tags-usage-statistics' ) ],
+				'checkKeys' => [ $this->wanCache->makeKey( 'tags-usage-statistics', $this->wiki ) ],
 				'lockTSE' => WANObjectCache::TTL_HOUR,
 				'pcTTL' => WANObjectCache::TTL_PROC_LONG
 			]
@@ -414,12 +450,13 @@ class ChangeTagsStore {
 	public function listExplicitlyDefinedTags() {
 		$fname = __METHOD__;
 		$dbProvider = $this->dbProvider;
+		$wiki = $this->wiki;
 
 		return $this->wanCache->getWithSetCallback(
-			$this->wanCache->makeKey( 'valid-tags-db' ),
+			$this->wanCache->makeKey( 'valid-tags-db', $wiki ),
 			WANObjectCache::TTL_HOUR,
-			static function ( $oldValue, &$ttl, array &$setOpts ) use ( $fname, $dbProvider ) {
-				$dbr = $dbProvider->getReplicaDatabase();
+			static function ( $oldValue, &$ttl, array &$setOpts ) use ( $fname, $dbProvider, $wiki ) {
+				$dbr = $dbProvider->getReplicaDatabase( $wiki );
 				$setOpts += Database::getCacheSetOptions( $dbr );
 				$tags = $dbr->newSelectQueryBuilder()
 					->select( 'ctd_name' )
@@ -431,7 +468,7 @@ class ChangeTagsStore {
 				return array_unique( $tags );
 			},
 			[
-				'checkKeys' => [ $this->wanCache->makeKey( 'valid-tags-db' ) ],
+				'checkKeys' => [ $this->wanCache->makeKey( 'valid-tags-db', $this->wiki ) ],
 				'lockTSE' => WANObjectCache::TTL_HOUR,
 				'pcTTL' => WANObjectCache::TTL_PROC_LONG
 			]
@@ -455,16 +492,17 @@ class ChangeTagsStore {
 		}
 		$hookRunner = $this->hookRunner;
 		$dbProvider = $this->dbProvider;
+		$wiki = $this->wiki;
 		return $this->wanCache->getWithSetCallback(
-			$this->wanCache->makeKey( 'valid-tags-hook' ),
+			$this->wanCache->makeKey( 'valid-tags-hook', $wiki ),
 			WANObjectCache::TTL_HOUR,
-			static function ( $oldValue, &$ttl, array &$setOpts ) use ( $tags, $hookRunner, $dbProvider ) {
-				$setOpts += Database::getCacheSetOptions( $dbProvider->getReplicaDatabase() );
+			static function ( $oldValue, &$ttl, array &$setOpts ) use ( $tags, $hookRunner, $dbProvider, $wiki ) {
+				$setOpts += Database::getCacheSetOptions( $dbProvider->getReplicaDatabase( $wiki ) );
 				$hookRunner->onListDefinedTags( $tags );
 				return array_unique( $tags );
 			},
 			[
-				'checkKeys' => [ $this->wanCache->makeKey( 'valid-tags-hook' ) ],
+				'checkKeys' => [ $this->wanCache->makeKey( 'valid-tags-hook', $this->wiki ) ],
 				'lockTSE' => WANObjectCache::TTL_HOUR,
 				'pcTTL' => WANObjectCache::TTL_PROC_LONG
 			]
@@ -526,6 +564,8 @@ class ChangeTagsStore {
 	 * have registered using the ListDefinedTags hook. When dealing with user
 	 * input, call updateTagsWithChecks() instead.
 	 *
+	 * This operation is supported only for the local wiki.
+	 *
 	 * @param string|array|null $tagsToAdd Tags to add to the change
 	 * @param string|array|null $tagsToRemove Tags to remove from the change
 	 * @param int|null &$rc_id The rc_id of the change to add the tags to.
@@ -548,6 +588,10 @@ class ChangeTagsStore {
 		&$rev_id = null, &$log_id = null, $params = null, ?RecentChange $rc = null,
 		?UserIdentity $user = null
 	) {
+		if ( $this->wiki !== false ) {
+			throw new LogicException( 'ChangeTagsStore does not support updating tags on remote wikis' );
+		}
+
 		$tagsToAdd = array_filter(
 			(array)$tagsToAdd, // Make sure we're submitting all tags...
 			static function ( $value ) {
@@ -759,19 +803,20 @@ class ChangeTagsStore {
 		}
 		$hookRunner = $this->hookRunner;
 		$dbProvider = $this->dbProvider;
+		$wiki = $this->wiki;
 
 		return $this->wanCache->getWithSetCallback(
-			$this->wanCache->makeKey( 'active-tags' ),
+			$this->wanCache->makeKey( 'active-tags', $wiki ),
 			WANObjectCache::TTL_HOUR,
-			static function ( $oldValue, &$ttl, array &$setOpts ) use ( $tags, $hookRunner, $dbProvider ) {
-				$setOpts += Database::getCacheSetOptions( $dbProvider->getReplicaDatabase() );
+			static function ( $oldValue, &$ttl, array &$setOpts ) use ( $tags, $hookRunner, $dbProvider, $wiki ) {
+				$setOpts += Database::getCacheSetOptions( $dbProvider->getReplicaDatabase( $wiki ) );
 
 				// Ask extensions which tags they consider active
 				$hookRunner->onChangeTagsListActive( $tags );
 				return $tags;
 			},
 			[
-				'checkKeys' => [ $this->wanCache->makeKey( 'active-tags' ) ],
+				'checkKeys' => [ $this->wanCache->makeKey( 'active-tags', $this->wiki ) ],
 				'lockTSE' => WANObjectCache::TTL_HOUR,
 				'pcTTL' => WANObjectCache::TTL_PROC_LONG
 			]
@@ -782,6 +827,9 @@ class ChangeTagsStore {
 	 * Applies all tags-related changes to a query.
 	 * Handles selecting tags, and filtering.
 	 * Needs $tables to be set up properly, so we can figure out which join conditions to use.
+	 *
+	 * When querying table from a remote wiki, this function honors the local wiki's UseTagFilter
+	 * configuration setting.
 	 *
 	 * WARNING: If $filter_tag contains more than one tag and $exclude is false, this function
 	 * will add DISTINCT, which may cause performance problems for your query unless you put
@@ -875,6 +923,9 @@ class ChangeTagsStore {
 	 * Applies all tags-related changes to a query builder object.
 	 *
 	 * Handles selecting tags, and filtering.
+	 *
+	 * When querying table from a remote wiki, this function honors the local wiki's UseTagFilter
+	 * configuration setting.
 	 *
 	 * WARNING: If $filter_tag contains more than one tag and $exclude is false, this function
 	 * will add DISTINCT, which may cause performance problems for your query unless you put
