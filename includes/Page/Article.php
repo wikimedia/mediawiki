@@ -710,8 +710,7 @@ class Article implements Page {
 		$skin = $outputPage->getSkin();
 		$skinOptions = $skin->getOptions();
 		$textOptions += [
-			// T371022
-			'allowClone' => false,
+			'allowClone' => true,
 			'skin' => $skin,
 			'injectTOC' => $skinOptions['toc'],
 		];
@@ -740,7 +739,7 @@ class Article implements Page {
 			);
 
 			if ( $pOutput ) {
-				$this->postProcessOutput( $pOutput, $parserOptions, $textOptions, $skin );
+				$pOutput = $this->postProcessOutput( $pOutput, $parserOptions, $textOptions, $skin );
 				$this->doOutputFromPostProcessedParserCache( $pOutput, $outputPage );
 				$this->doOutputMetaData( $pOutput, $outputPage );
 				return true;
@@ -776,7 +775,7 @@ class Article implements Page {
 				);
 
 				if ( $pOutput ) {
-					$this->postProcessOutput( $pOutput, $parserOptions, $textOptions, $skin );
+					$pOutput = $this->postProcessOutput( $pOutput, $parserOptions, $textOptions, $skin );
 					$this->doOutputFromPostProcessedParserCache( $pOutput, $outputPage );
 					$this->doOutputMetaData( $pOutput, $outputPage );
 					return true;
@@ -919,16 +918,16 @@ class Article implements Page {
 
 	private function postProcessOutput(
 		ParserOutput $pOutput, ParserOptions $parserOptions, array $textOptions, Skin $skin
-	) {
+	): ParserOutput {
 		$skinOptions = $skin->getOptions();
 		$textOptions += [
-			// T371022
-			'allowClone' => false,
+			'allowClone' => true,
 			'skin' => $skin,
 			'injectTOC' => $skinOptions['toc'],
 		];
 		$pipeline = MediaWikiServices::getInstance()->getDefaultOutputPipeline();
-		$pipeline->run( $pOutput, $parserOptions, $textOptions );
+		$pOutput = $pipeline->run( $pOutput, $parserOptions, $textOptions );
+		return $pOutput;
 	}
 
 	private function doOutputFromPostProcessedParserCache(
@@ -988,7 +987,7 @@ class Article implements Page {
 
 		// TODO this will probably need to be conditional on cache access and/or hoisted one level above but for
 		// now let's keep things in the same place and avoid editing StatusValues.
-		$this->postProcessOutput( $pOutput, $parserOptions, $textOptions, $outputPage->getSkin() );
+		$pOutput = $this->postProcessOutput( $pOutput, $parserOptions, $textOptions, $outputPage->getSkin() );
 		$outputPage->addPostProcessedParserOutput( $pOutput );
 
 		if ( $this->getRevisionRedirectTarget( $rev ) ) {
