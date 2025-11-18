@@ -16,10 +16,9 @@ class PhpUnitConsoleOutputProcessorTest extends TestCase {
 	use MediaWikiCoversValidator;
 
 	private function loadFixture( string $filename ): string {
-		$fixtureData = file_get_contents(
-			implode( DIRECTORY_SEPARATOR, [ __DIR__, "fixtures", $filename ] ) );
-		$this->assertNotNull( $fixtureData, "Unable to load fixture data for fixture " . $filename );
-		return $fixtureData;
+		$text = file_get_contents( __DIR__ . "/fixtures/$filename" );
+		$this->assertIsString( $text, "Unable to load fixture data for fixture $filename" );
+		return $text;
 	}
 
 	public function testSplitGoodOutputBySections(): void {

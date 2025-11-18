@@ -247,7 +247,7 @@ LUA;
 	 */
 	protected function recordKeyForPath( $path, $type ) {
 		return implode( ':',
-			[ __CLASS__, 'locks', "$type:" . $this->sha1Base36Absolute( $path ) ] );
+			[ __CLASS__, 'locks', $type, $this->sha1Base36Absolute( $path ) ] );
 	}
 
 	/**
