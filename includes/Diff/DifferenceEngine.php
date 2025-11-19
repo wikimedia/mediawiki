@@ -2402,7 +2402,7 @@ class DifferenceEngine extends ContextSource {
 				[ "class" => "cdx-accordion__header" ],
 				Html::rawElement(
 					'span',
-					[ 'class' => 'cdx-accordion__header__title mw-diff-new-mobile-footer-user-link' ],
+					[ 'class' => 'cdx-accordion__header__title' ],
 					Linker::revUserTools( $newRevRecord, !$this->unhide )
 				)
 			)
@@ -2423,6 +2423,11 @@ class DifferenceEngine extends ContextSource {
 			$userGroups = $this->userGroupManager->getUserGroups( $user );
 		}
 		$userGroupCount = count( $userGroups );
+		$userEditCount = $user === null ? '' : $this->getUserEditCount( $user );
+		$userGroupList = [];
+		foreach ( $userGroups as $userGroup ) {
+			$userGroupList[] = $this->msg( "group-$userGroup" )->escaped();
+		}
 		if ( $userGroupCount == 0 ) {
 			$userGroupsPopover = '';
 		} else {
@@ -2432,27 +2437,24 @@ class DifferenceEngine extends ContextSource {
 				Html::rawElement(
 					'div',
 					[ 'class' => 'cdx-popover__body' ],
-					implode( ', ', $userGroups )
+					$this->msg( 'diff-usergroups-list', $this->getLanguage()->commaList( $userGroupList ) )->escaped()
 				) . Html::rawElement( 'div', [ 'class' => 'cdx-popover__arrow' ] )
 			);
 			$popoverTrigger = Html::element(
 				'span',
 				[ 'class' => 'cdx-popover-trigger cdx-button__icon cdx-icon cdx-icon--info ', 'tabindex' => '0' ],
 			);
-			$userEditCount = $user !== null ? $this->getUserEditCount( $user ) : '';
 			$userGroupsPopover = Html::rawElement(
 				'div',
 				[ 'class' => 'mw-diff-usermetadata' ],
-				Html::element( 'span', [ 'class' => 'mw-diff-usergroups-popover-text' ],
-					$this->msg( 'diff-usergroups', $userGroupCount )->text()
-				) . Html::rawElement(
+				Html::rawElement(
 					'div',
 					[ 'class' => 'mw-diff-usergroups-popover-wrapper' ],
 					$popoverTrigger . $popover
-				) . $userEditCount . Html::rawElement(
-					'span',
-					[ 'class' => 'mw-diff-usergroups-popover-separator' ],
-					'|'
+				) .
+				Html::element( 'span',
+					[ 'class' => 'mw-diff-usergroups-popover-text' ],
+					$this->msg( 'diff-usergroups', $userGroupCount )->text()
 				)
 			);
 		}
@@ -2461,6 +2463,7 @@ class DifferenceEngine extends ContextSource {
 			'div',
 			[ "class" => "cdx-accordion__content" ],
 			$userGroupsPopover
+			. $userEditCount
 			. $rollbackLink
 			. implode( '', $formattedRevisionTools )
 		);
