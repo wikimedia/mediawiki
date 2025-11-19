@@ -25,7 +25,6 @@ CREATE TABLE /*_*/archive (
   ar_len INT UNSIGNED DEFAULT NULL,
   ar_page_id INT UNSIGNED DEFAULT NULL,
   ar_parent_id INT UNSIGNED DEFAULT NULL,
-  ar_sha1 VARBINARY(32) DEFAULT '' NOT NULL,
   INDEX ar_name_title_timestamp (
     ar_namespace, ar_title, ar_timestamp
   ),

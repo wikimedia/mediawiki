@@ -104,6 +104,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			// 1.46
 			[ 'addTable', 'watchlist_label', 'patch-watchlist_label.sql' ],
 			[ 'dropField', 'recentchanges', 'rc_type', 'patch-recentchanges-drop-rc_type.sql' ],
+			[ 'dropField', 'archive', 'ar_sha1', 'patch-archive-drop-ar_sha1.sql' ],
 		];
 	}
 

@@ -23,8 +23,7 @@ CREATE TABLE /*_*/archive (
   ar_deleted SMALLINT UNSIGNED DEFAULT 0 NOT NULL,
   ar_len INTEGER UNSIGNED DEFAULT NULL,
   ar_page_id INTEGER UNSIGNED DEFAULT NULL,
-  ar_parent_id INTEGER UNSIGNED DEFAULT NULL,
-  ar_sha1 BLOB DEFAULT '' NOT NULL
+  ar_parent_id INTEGER UNSIGNED DEFAULT NULL
 );
 
 CREATE INDEX ar_name_title_timestamp ON /*_*/archive (

@@ -166,16 +166,6 @@
 					"notnull": false,
 					"default": null
 				}
-			},
-			{
-				"name": "ar_sha1",
-				"comment": "Copied from rev_sha1, SHA-1 text content hash in base-36 @since 1.19",
-				"type": "binary",
-				"options": {
-					"notnull": true,
-					"default": "",
-					"length": 32
-				}
 			}
 		],
 		"indexes": [

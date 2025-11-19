@@ -27,7 +27,6 @@ CREATE TABLE archive (
   ar_len INT DEFAULT NULL,
   ar_page_id INT DEFAULT NULL,
   ar_parent_id INT DEFAULT NULL,
-  ar_sha1 TEXT DEFAULT '' NOT NULL,
   PRIMARY KEY(ar_id)
 );
 
