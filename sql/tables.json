@@ -4157,16 +4157,6 @@
 					"unsigned": true,
 					"notnull": false
 				}
-			},
-			{
-				"name": "rev_sha1",
-				"comment": "SHA-1 text content hash in base-36",
-				"type": "binary",
-				"options": {
-					"length": 32,
-					"notnull": true,
-					"default": ""
-				}
 			}
 		],
 		"indexes": [

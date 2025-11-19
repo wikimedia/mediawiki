@@ -684,8 +684,7 @@ CREATE TABLE /*_*/revision (
   rev_timestamp BLOB NOT NULL, rev_minor_edit SMALLINT UNSIGNED DEFAULT 0 NOT NULL,
   rev_deleted SMALLINT UNSIGNED DEFAULT 0 NOT NULL,
   rev_len INTEGER UNSIGNED DEFAULT NULL,
-  rev_parent_id BIGINT UNSIGNED DEFAULT NULL,
-  rev_sha1 BLOB DEFAULT '' NOT NULL
+  rev_parent_id BIGINT UNSIGNED DEFAULT NULL
 );
 
 CREATE INDEX rev_timestamp ON /*_*/revision (rev_timestamp);

@@ -746,7 +746,6 @@ CREATE TABLE revision (
   rev_deleted SMALLINT DEFAULT 0 NOT NULL,
   rev_len INT DEFAULT NULL,
   rev_parent_id BIGINT DEFAULT NULL,
-  rev_sha1 TEXT DEFAULT '' NOT NULL,
   PRIMARY KEY(rev_id)
 );
 

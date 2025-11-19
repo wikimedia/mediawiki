@@ -701,7 +701,6 @@ CREATE TABLE /*_*/revision (
   rev_deleted TINYINT UNSIGNED DEFAULT 0 NOT NULL,
   rev_len INT UNSIGNED DEFAULT NULL,
   rev_parent_id BIGINT UNSIGNED DEFAULT NULL,
-  rev_sha1 VARBINARY(32) DEFAULT '' NOT NULL,
   INDEX rev_timestamp (rev_timestamp),
   INDEX rev_page_timestamp (rev_page, rev_timestamp),
   INDEX rev_actor_timestamp (rev_actor, rev_timestamp, rev_id),
