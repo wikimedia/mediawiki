@@ -261,7 +261,10 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 					'password' => $wgDBpassword,
 					'type' => $wgDBtype,
 					'dbDirectory' => $wgSQLiteDataDir,
-					'load' => 50,
+					'load' => $largeGroup ? 100 : 0,
+					'groupLoads' => [
+						'dump' => 100
+					],
 					'is static' => true
 				],
 			4 => $srvExtra + [
@@ -275,6 +278,9 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 					'type' => $wgDBtype,
 					'dbDirectory' => $wgSQLiteDataDir,
 					'load' => $largeGroup ? 100 : 0,
+					'groupLoads' => [
+						'vslow' => 100
+					],
 					'is static' => true
 				],
 			5 => $srvExtra + [
@@ -288,6 +294,9 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 					'type' => $wgDBtype,
 					'dbDirectory' => $wgSQLiteDataDir,
 					'load' => $largeGroup ? 100 : 0,
+					'groupLoads' => [
+						'vslow' => 100
+					],
 					'is static' => true
 				],
 			6 => $srvExtra + [
@@ -689,7 +698,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 		$vslowIndexPicked = $rVslow->getLBInfo( 'serverIndex' );
 
 		$this->assertSame( $vslowIndexPicked, $lbWrapper->getExistingReaderIndex( 'vslow' ) );
-		$this->assertSame( 3, $vslowIndexPicked );
+		$this->assertContains( $vslowIndexPicked, [ 4, 5 ] );
 
 		for ( $i = 0; $i < 10; ++$i ) {
 			$rVslow = $lb->getConnection( DB_REPLICA, [ 'vslow' ] );

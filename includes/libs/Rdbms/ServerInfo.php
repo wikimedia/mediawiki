@@ -155,6 +155,7 @@ class ServerInfo {
 			}
 			$indexBySrvName[$srvName] = $i;
 			$servers[$i]['serverName'] = $srvName;
+			$servers[$i]['groupLoads'] ??= [];
 		}
 		return $servers;
 	}

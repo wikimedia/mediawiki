@@ -60,6 +60,10 @@ class ServerInfoTest extends TestCase {
 					'type' => 'mysql',
 					'flags' => $flags,
 					'load' => 0,
+					'groupLoads' => [
+						'foo' => 100,
+						'bar' => 100
+					],
 				],
 			// Logging replica DBs
 			4 => $extra + [
@@ -72,6 +76,9 @@ class ServerInfoTest extends TestCase {
 					'type' => 'mysql',
 					'flags' => $flags,
 					'load' => 0,
+					'groupLoads' => [
+						'baz' => 100
+					],
 				],
 			5 => $extra + [
 					'host' => 'db5',
@@ -83,6 +90,9 @@ class ServerInfoTest extends TestCase {
 					'type' => 'mysql',
 					'flags' => $flags,
 					'load' => 0,
+					'groupLoads' => [
+						'baz' => 100
+					],
 				],
 			// Maintenance query replica DBs
 			6 => $extra + [
@@ -95,6 +105,9 @@ class ServerInfoTest extends TestCase {
 					'type' => 'mysql',
 					'flags' => $flags,
 					'load' => 0,
+					'groupLoads' => [
+						'vslow' => 100
+					],
 				],
 			// Replica DB that only has a copy of some static tables
 			7 => $extra + [
@@ -107,6 +120,9 @@ class ServerInfoTest extends TestCase {
 					'type' => 'mysql',
 					'flags' => $flags,
 					'load' => 0,
+					'groupLoads' => [
+						'archive' => 100
+					],
 					'is static' => true
 				]
 		];
@@ -124,6 +140,7 @@ class ServerInfoTest extends TestCase {
 	public function testWithoutReplica() {
 		$primaryInfo = $this->serverConfigs()[0];
 		$holder = $this->createInfoHolderFromArray( [ $primaryInfo ] );
+		$primaryInfo['groupLoads'] = [];
 
 		$this->assertSame( 1, $holder->getServerCount() );
 		$this->assertFalse( $holder->hasReplicaServers() );
