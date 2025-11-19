@@ -1001,7 +1001,6 @@
 	"userrights-expiry-current": "$1 ਨੂੰ ਮਿਆਦ ਪੁੱਗੇਗੀ",
 	"userrights-expiry-none": "ਮਿਆਦ ਖਤਮ ਨਹੀਂ ਹੋਵੇਗੀ",
 	"userrights-expiry": "ਮਿਆਦ:",
-	"userrights-expiry-existing": "$3, $2",
 	"userrights-expiry-othertime": "ਹੋਰ ਸਮਾਂ:",
 	"userrights-expiry-options": "1 ਦਿਨ:1 day,1 ਹਫ਼ਤਾ:1 week,1 ਮਹੀਨਾ:1 month,3 ਮਹੀਨੇ:3 months,6 ਮਹੀਨੇ:6 months,1 ਸਾਲ:1 year",
 	"userrights-invalid-expiry": "ਸਮੂਹ \"$1\" ਲਈ ਮਿਆਦ ਪੁੱਗਣ ਦਾ ਸਮਾਂ ਅਵੈਧ ਹੈ।",

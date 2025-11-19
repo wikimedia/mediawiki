@@ -851,7 +851,6 @@
 	"userrights-expiry-current": "$1 ಮುಗಿವುಂಡು",
 	"userrights-expiry-none": "ಮುಗಿಯುಜಿ",
 	"userrights-expiry": "ಮುಗಿವುಂಡು:",
-	"userrights-expiry-existing": "$3, $2",
 	"userrights-expiry-othertime": "ಇತರೆ ಕಾಲ:",
 	"userrights-expiry-options": "1 ದಿನ:1 ದಿನ,1 ವಾರ:1 ವಾರ,1 ತಿಂಗೊಲು:1 ತಿಂಗೊಲು,3 ತಿಂಗೊಲುಲು:3 ತಿಂಗೊಲುಲು,6 ತಿಂಗೊಲುಲು:6 ತಿಂಗೊಲುಲು,1 ವರ್ಷ:1 ವರ್ಷ",
 	"userrights-invalid-expiry": "\"$1\" ಗುಂಪುದ ಮುಗಿಕಾಲ ಅಮಾನ್ಯ ಆದುಂಡು.",

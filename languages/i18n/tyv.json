@@ -921,7 +921,6 @@
 	"userrights-expiry-current": "$1 хуусаазы эртер",
 	"userrights-expiry-none": "Хуусаа чок",
 	"userrights-expiry": "Эргелериңиң хуусаазының төнери:",
-	"userrights-expiry-existing": "$3, $2",
 	"userrights-expiry-othertime": "Өске шак:",
 	"userrights-expiry-options": "1 хүн:1 day,1 чедилик:1 week,1 ай:1 month,3 ай:3 months,6 ай:6 months,1 чыл:1 year",
 	"userrights-invalid-expiry": "\"$1\" бөлүкке хуусаазының эртерин шын эвес айыткан.",

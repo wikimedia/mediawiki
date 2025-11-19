@@ -950,7 +950,6 @@
 	"userrights-expiry-current": "$1 жеплӓн пӹтӓ",
 	"userrights-expiry-none": "Жепӹм пӓлемдӹде",
 	"userrights-expiry": "Жеп пӹтӓ:",
-	"userrights-expiry-existing": "Действин кӹзӹтшӹ пӹтӹмӹ жепшӹ:: $3, $2",
 	"userrights-expiry-othertime": "Вес жеп:",
 	"userrights-expiry-options": "1 кечӹ:1 day,1 ӓрня:1 week,1 тӹлзӹ:1 month,3 тӹлзӹ:3 months,6 тӹлзӹ:6 months,1 и:1 year",
 	"userrights-invalid-expiry": "«$1» тӹшкӓн действижӹн жепшӹ лин керддӹмӹ.",

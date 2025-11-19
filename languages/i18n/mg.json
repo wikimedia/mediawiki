@@ -985,7 +985,6 @@
 	"userrights-expiry-current": "Mitsahatra ny $1",
 	"userrights-expiry-none": "Tsy mitsahatra",
 	"userrights-expiry": "Fitsaharana:",
-	"userrights-expiry-existing": "$3, $2",
 	"userrights-expiry-othertime": "Fotoana hafa:",
 	"userrights-expiry-options": "1 andro:1 day,herinandro:1 week,1 volana:1 month,3 volana:3 months,6 volana:6 months,herintaona:1 year",
 	"userrights-invalid-expiry": "Tsy azo raisina ny fotoam-pitsaharana ho an'ny vondrona \"$1\".",

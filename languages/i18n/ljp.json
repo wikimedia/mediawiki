@@ -957,7 +957,6 @@
 	"userrights-expiry-current": "Kedaluwarsa $1",
 	"userrights-expiry-none": "Mak kedaluwarsa",
 	"userrights-expiry": "Kedaluwarsa:",
-	"userrights-expiry-existing": "$3, $2",
 	"userrights-expiry-othertime": "Waktu baghih:",
 	"userrights-expiry-options": "1 ghani:1 day,1 minggu:1 week,1 bulan:1 month,3 bulan:3 months,6 bulan:6 months,1 tahun:1 year",
 	"userrights-invalid-expiry": "Waktu kedaluwarsa guway kelompok \"$1\" mak buyun.",

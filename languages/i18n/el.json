@@ -1069,7 +1069,6 @@
 	"userrights-expiry-current": "Λήγει $1",
 	"userrights-expiry-none": "Δεν λήγει",
 	"userrights-expiry": "Λήγει:",
-	"userrights-expiry-existing": "$3, $2",
 	"userrights-expiry-othertime": "Άλλη ώρα:",
 	"userrights-expiry-options": "1 ημέρα:1 day,1 εβδομάδα:1 week,1 μήνας:1 month,3 μήνες:3 months,6 μήνες:6 months,1 έτος:1 year",
 	"userrights-invalid-expiry": "Ο χρόνος λήξης για την ομάδα «$1» δεν είναι έγκυρος.",

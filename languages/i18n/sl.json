@@ -1011,7 +1011,6 @@
 	"userrights-expiry-current": "Preteče $1",
 	"userrights-expiry-none": "Ne preteče",
 	"userrights-expiry": "Preteče:",
-	"userrights-expiry-existing": "$3, $2",
 	"userrights-expiry-othertime": "Drug čas:",
 	"userrights-expiry-options": "1 dan:1 day,1 teden:1 week,1 mesec:1 month,3 mesece:3 months,6 mesecev:6 months,1 leto:1 year",
 	"userrights-invalid-expiry": "Čas preteka skupine »$1« ni veljaven.",

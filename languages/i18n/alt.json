@@ -983,7 +983,6 @@
 	"userrights-expiry-current": "Ӧдӧтӧн ӧйи $1",
 	"userrights-expiry-none": "Ӧйи ӧтпӧс",
 	"userrights-expiry": "Аргалардыҥ ӧдӧтӧн ӧйи:",
-	"userrights-expiry-existing": "Тургуза ӧдип јаткан ӧйи $3, $2",
 	"userrights-expiry-othertime": "Ӧскӧ ӧйи:",
 	"userrights-expiry-options": "1 кӱн:1 day,1 неделе:1 week,1 ай:1 month,3 ай:3 months,6 ай:6 months,1 јыл:1 year",
 	"userrights-invalid-expiry": "\"$1\" группаныҥ ӧдӧтӧн ӧйи јастыра тургузылган.",

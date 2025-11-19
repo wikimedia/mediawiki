@@ -2192,10 +2192,13 @@
 	"watchlistlabels-table-header": "Etiquetas",
 	"watchlistlabels-table-new-link": "+ Etiqueta nova",
 	"watchlistlabels-table-col-name": "Nome",
+	"watchlistlabels-table-col-actions": "Accións",
+	"watchlistlabels-table-edit": "Editar",
 	"watchlistlabels-form-header-new": "Etiqueta nova",
 	"watchlistlabels-form-header-edit": "Renomear",
 	"watchlistlabels-form-field-name": "Nome da etiqueta",
 	"watchlistlabels-form-name-too-long": "O nome da etiqueta é demasiado longo. Intenta mantelo por debaixo dos 256 bytes (o valor proporcionado é de $1 {{PLURAL:$1|byte|bytes}}).",
+	"watchlistlabels-form-name-too-short": "O nome da etiqueta non pode estar baleiro.",
 	"watchlistlabels-form-submit-new": "Crear",
 	"watchlistlabels-form-submit-edit": "Gardar",
 	"enotif_reset": "Marcar todas as páxinas como visitadas",
@@ -4099,5 +4102,6 @@
 	"benefit-3-description": "Preferencias que che permiten personalizar a túa experiencia.",
 	"temp-user-unable-to-acquire": "Non se puido adquirir un nome de usuario para a conta temporal. Inténtao de novo.",
 	"table-of-contents-show-button-aria-label": "Amosar a táboa de contidos",
-	"table-of-contents-hide-button-aria-label": "Agochar a táboa de contidos"
+	"table-of-contents-hide-button-aria-label": "Agochar a táboa de contidos",
+	"diff-usergroups": "$1 os grupos de usuario"
 }

@@ -1276,7 +1276,7 @@
 	"userrights-expiry-current": "Indicates when a user's membership of a user group expires.\n\nParameters:\n* $1 - time and date of expiry\n* $2 - date of expiry\n* $3 - time of expiry\n{{Identical|Expire}}",
 	"userrights-expiry-none": "Indicates that a user's membership of a user group lasts indefinitely, and does not expire.",
 	"userrights-expiry": "Used as a label for a form element which can be used to select an expiry date/time.\n{{Identical|Expire}}",
-	"userrights-expiry-existing": "Shows the existing expiry time in the drop-down menu underneath the individual user right on Special:UserRights.\n\nParameters:\n* $1 - Date and time of the existing expiry (not used)\n* $2 - date of the existing expiry\n* $3 - time of the existing expiry\n\nSee also:\n* {{msg-mw|protect-existing-expiry}}",
+	"userrights-expiry-existing": "{{optional}}\nShows the existing expiry time in the drop-down menu underneath the individual user right on Special:UserRights.\n\nParameters:\n* $1 - Date and time of the existing expiry (unused)\n* $2 - date of the existing expiry\n* $3 - time of the existing expiry\n\nSee also:\n* {{msg-mw|protect-existing-expiry}}",
 	"userrights-expiry-othertime": "{{Identical|Other time}}",
 	"userrights-expiry-options": "Options for the duration of the user group membership.\n\n{{doc-mediawiki-options-list}}",
 	"userrights-invalid-expiry": "Error message on [[Special:UserRights]].\n\nParameters:\n* $1 - group name",

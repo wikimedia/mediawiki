@@ -990,7 +990,6 @@
 	"userrights-expiry-current": "Eksvalidiĝas je $1",
 	"userrights-expiry-none": "Ne eksvalidiĝas",
 	"userrights-expiry": "Eksvalidiĝos:",
-	"userrights-expiry-existing": "$3, $2",
 	"userrights-expiry-othertime": "Alia tempo:",
 	"userrights-expiry-options": "1 tago:1 tago,1 semajno:1 semajno,1 monato:1 monato,3 monatoj:3 monatoj,6 monatoj:6 monatoj,1 jaro:1 jaro",
 	"userrights-invalid-expiry": "La eksvalidiĝa tempo por la grupo „$1“ estas nevalida.",

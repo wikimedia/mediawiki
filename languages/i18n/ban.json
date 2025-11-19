@@ -984,7 +984,6 @@
 	"userrights-expiry-current": "Kadaluwarsa $1",
 	"userrights-expiry-none": "Nénten kadaluwarsa",
 	"userrights-expiry": "Kadaluwarsa:",
-	"userrights-expiry-existing": "$3, $2",
 	"userrights-expiry-othertime": "Galah liyané:",
 	"userrights-expiry-options": "arahina:1 day,awuku:1 week,asasih:1 month,3 sasih:3 months,6 sasih:6 months,awarsa:1 year",
 	"userrights-invalid-expiry": "Galah kadaluwarsa antuk seka \"$1\" nénten patut.",

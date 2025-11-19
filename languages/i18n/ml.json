@@ -984,7 +984,6 @@
 	"userrights-expiry-current": "$1-നു കാലഹരണപ്പെടുന്നു",
 	"userrights-expiry-none": "കാലഹരണപ്പെടില്ല",
 	"userrights-expiry": "കാലഹരണപ്പെടേണ്ടത്:",
-	"userrights-expiry-existing": "$3, $2",
 	"userrights-expiry-othertime": "മറ്റ് കാലയളവ്:",
 	"userrights-expiry-options": "ഒരു ദിവസം:1 day,ഒരു ആഴ്ച:1 week,ഒരു മാസം:1 month,3 മാസം:3 months,6 മാസം:6 months,ഒരു വർഷം:1 year",
 	"userrights-invalid-expiry": "ഗണം \"$1\" കാലഹരണപ്പെടാനുള്ള സമയം അസാധുവാണ്.",

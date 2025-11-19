@@ -979,7 +979,7 @@
 	"userrights-expiry-current": "$1 ғәмәлдә булыу ваҡыты бөтөп бара",
 	"userrights-expiry-none": "Ғәмәлдә булыу ваҡыты сикләнмәгән",
 	"userrights-expiry": "Ваҡыты тамамлана:",
-	"userrights-expiry-existing": "Ҡулланыу ваҡыты:$2, $3",
+	"userrights-expiry-existing": "$2, $3",
 	"userrights-expiry-othertime": "Башҡа ваҡыт:",
 	"userrights-expiry-options": "1 көн:1 day, 1 аҙна:1 week, 1 ай:1 month, 3 ай:3 months, 6 ай:6 months, 1 йыл:1 year",
 	"userrights-invalid-expiry": "«$1» төркөмө өсөн ваҡыт бөтөүе яңылыш бирелгән.",

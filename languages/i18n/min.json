@@ -843,7 +843,6 @@
 	"userrights-expiry-current": "Usang $1",
 	"userrights-expiry-none": "Indak usang",
 	"userrights-expiry": "Usang:",
-	"userrights-expiry-existing": "$3, $2",
 	"userrights-expiry-othertime": "Wakatu lain:",
 	"userrights-expiry-options": "1 hari:1 hari,1 minggu:1 minggu,1 bulan:1 bulan,3 bulan:3 bulan,6 bulan:6bulan,1 taun:1 taun",
 	"userrights-invalid-expiry": "Wakatu usang untuak kalompok \"$1\" indak sah.",

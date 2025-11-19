@@ -857,7 +857,6 @@
 	"userrights-expiry-current": "E na fó tò $1",
 	"userrights-expiry-none": "E ma dó fifó whenu",
 	"userrights-expiry": "Na dohó to:",
-	"userrights-expiry-existing": "$3, $2",
 	"userrights-expiry-othertime": "ojlẹ devo:",
 	"userrights-expiry-options": "Azan 1:1 day,osẹ̀ 1:1 week, osùn 1:1 month, osùn 3:3 months,osùn 6:6 months, owhè 1:1 year",
 	"userrights-invalid-expiry": "Whenu he yin nina bọ ogbẹ́ \"$1\" tọn nido dohó ma yin alọkẹyi",

@@ -1120,7 +1120,6 @@
 	"userrights-expiry-current": "$1 tarihi itibarıyla sona eriyor",
 	"userrights-expiry-none": "Süresiz",
 	"userrights-expiry": "Bitiş:",
-	"userrights-expiry-existing": "$3, $2",
 	"userrights-expiry-othertime": "Diğer zaman:",
 	"userrights-expiry-options": "1 gün:1 day,1 hafta:1 week,1 ay:1 month,3 ay:3 months,6 ay:6 months,1 yıl:1 year",
 	"userrights-invalid-expiry": "\"$1\" grubunun süre sonu geçersiz.",
@@ -2287,10 +2286,13 @@
 	"watchlistlabels-table-header": "Etiketler",
 	"watchlistlabels-table-new-link": "+ Yeni etiket",
 	"watchlistlabels-table-col-name": "Ad",
+	"watchlistlabels-table-col-actions": "Eylemler",
+	"watchlistlabels-table-edit": "Düzenle",
 	"watchlistlabels-form-header-new": "Yeni etiket",
 	"watchlistlabels-form-header-edit": "Yeniden adlandır",
 	"watchlistlabels-form-field-name": "Etiket adı",
 	"watchlistlabels-form-name-too-long": "Etiket adı çok uzun. Lütfen 256 baytın altında tutun (sağlanan değer {{PLURAL:$1|$1 bayttır}}).",
+	"watchlistlabels-form-name-too-short": "Etiket adı boş olamaz.",
 	"watchlistlabels-form-submit-new": "Oluştur",
 	"watchlistlabels-form-submit-edit": "Sakla",
 	"enotif_reset": "Tüm sayfaları ziyaret edilmiş olarak işaretle",
@@ -4175,5 +4177,6 @@
 	"benefit-3-description": "Deneyiminizi özelleştirmenize olanak tanıyan seçenekler.",
 	"temp-user-unable-to-acquire": "Geçici bir hesap kullanıcı adı alınamıyor. Lütfen tekrar deneyin.",
 	"table-of-contents-show-button-aria-label": "İçindekiler tablosunu göster",
-	"table-of-contents-hide-button-aria-label": "İçindekiler tablosunu gizle"
+	"table-of-contents-hide-button-aria-label": "İçindekiler tablosunu gizle",
+	"diff-usergroups": "$1 kullanıcı grupları"
 }

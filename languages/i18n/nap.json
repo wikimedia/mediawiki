@@ -841,7 +841,6 @@
 	"userrights-expiry-current": "Ammatura 'o $1",
 	"userrights-expiry-none": "Nun fernisce",
 	"userrights-expiry": "Ammatura:",
-	"userrights-expiry-existing": "$3, $2",
 	"userrights-expiry-othertime": "N'ata durata:",
 	"userrights-expiry-options": "1 juorne:1 day,1 semmana:1 week,1 mese:1 month,3 mise:3 mise,6 mesi:6 months,1 anno:1 year",
 	"userrights-invalid-expiry": "'O tiempo pe' quanno ammatura 'o gruppo \"$1\" nun è buono.",

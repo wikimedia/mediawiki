@@ -1023,7 +1023,6 @@
 	"userrights-expiry-current": "หมดอายุ $1",
 	"userrights-expiry-none": "ไม่มีวันหมดอายุ",
 	"userrights-expiry": "หมดอายุ:",
-	"userrights-expiry-existing": "$3, $2",
 	"userrights-expiry-othertime": "เวลาอื่น:",
 	"userrights-expiry-options": "1 วัน:1 day,1 สัปดาห์:1 week,1 เดือน:1 month,3 เดือน:3 months,6 เดือน:6 months,1 ปี:1 year",
 	"userrights-invalid-expiry": "เวลาหมดอายุสำหรับกลุ่ม \"$1\" ไม่สมเหตุสมผล",

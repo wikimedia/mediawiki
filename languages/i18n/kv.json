@@ -929,7 +929,6 @@
 	"userrights-expiry-current": "Кадыс помасяс $1",
 	"userrights-expiry-none": "Кад урчиттӧг",
 	"userrights-expiry": "Кадыс помасяс:",
-	"userrights-expiry-existing": "$3, $2",
 	"userrights-expiry-othertime": "Мӧд кад:",
 	"userrights-expiry-options": "1 лун:1 day,1 вежон:1 week,1 тӧлысь:1 month,3 тӧлысь:3 months,6 тӧлысь:6 months,1 во:1 year",
 	"userrights-invalid-expiry": "\"$1\" котырлы помасян кадыс индӧма абу колана ногӧн.",

@@ -1122,7 +1122,6 @@
 	"userrights-expiry-current": "Ablauf: $1",
 	"userrights-expiry-none": "Kein Ablauf",
 	"userrights-expiry": "Ablauf:",
-	"userrights-expiry-existing": "$3, $2",
 	"userrights-expiry-othertime": "Andere Zeit:",
 	"userrights-expiry-options": "1 Tag:1 day,1 Woche:1 week,1 Monat:1 month,3 Monate:3 months,6 Monate:6 months,1 Jahr:1 year",
 	"userrights-invalid-expiry": "Die Ablaufzeit für die Gruppe „$1“ ist ungültig.",
@@ -4179,5 +4178,5 @@
 	"temp-user-unable-to-acquire": "Es ist nicht möglich, einen temporären Benutzernamen für das Konto zu erstellen. Bitte versuche es erneut.",
 	"table-of-contents-show-button-aria-label": "Inhaltsverzeichnis anzeigen",
 	"table-of-contents-hide-button-aria-label": "Inhaltsverzeichnis ausblenden",
-	"diff-usergroups": "$1 Benutzergruppen"
+	"diff-usergroups": "$1 {{PLURAL:$1|Benutzergruppe|Benutzergruppen}}"
 }

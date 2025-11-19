@@ -867,7 +867,6 @@
 	"userrights-expiry-current": "ვადის გასვლის თარიღია $1",
 	"userrights-expiry-none": "უვადოდ",
 	"userrights-expiry": "ვადა:",
-	"userrights-expiry-existing": "$3, $2",
 	"userrights-expiry-othertime": "სხვა დრო:",
 	"userrights-expiry-options": "1 დღე:1 day,1 კვირა:1 week,1 თვე:1 month,3 თვე:3 months,6 თვე:6 months,1 წელი:1 year",
 	"userrights-invalid-expiry": "ვადის გასვლის თარიღი ჯგუფისთვის „$1“ არასწორია.",

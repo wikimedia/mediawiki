@@ -1048,7 +1048,6 @@
 	"userrights-expiry-current": "মেয়াদোত্তীর্ণের সময় $1",
 	"userrights-expiry-none": "মেয়াদোত্তীর্ণের সময় নেই",
 	"userrights-expiry": "মেয়াদোত্তীর্ণ হবে:",
-	"userrights-expiry-existing": "$3, $2",
 	"userrights-expiry-othertime": "অন্য সময়:",
 	"userrights-expiry-options": "১ দিন:1 day,১ সপ্তাহ:1 week,১ মাস:1 month,৩ মাস:3 months,৬ মাস:6 months,১ বছর:1 year",
 	"userrights-invalid-expiry": "\"$1\" দলের জন্য মেয়াদোত্তীর্ণের সময় অবৈধ।",

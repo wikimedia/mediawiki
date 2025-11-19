@@ -974,7 +974,6 @@
 	"userrights-expiry-current": "Daw i ben $1",
 	"userrights-expiry-none": "Nid yw'n dod i ben",
 	"userrights-expiry": "Daw i ben:",
-	"userrights-expiry-existing": "$3, $2",
 	"userrights-expiry-othertime": "Cyfnod arall:",
 	"userrights-expiry-options": "1 dydd:1 day,1 wythnos:1 week,1 mis:1 month,3 mis:3 months,6 mis:6 months,1 blynedd:1 year",
 	"userrights-invalid-expiry": "Mae terfyn amser y grwp \"$1\" yn annilys.",

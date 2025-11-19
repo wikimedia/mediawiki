@@ -940,7 +940,6 @@
 	"userrights-expiry-current": "istječe $1",
 	"userrights-expiry-none": "Neograničeno trajanje statusa",
 	"userrights-expiry": "Istječe:",
-	"userrights-expiry-existing": "$3, $2",
 	"userrights-expiry-othertime": "Drugo vrijeme:",
 	"userrights-expiry-options": "1 dan:1 day,1 tjedan:1 week,1 mjesec:1 month,3 mjeseca:3 months,6 mjeseci:6 months,1 godina:1 year",
 	"userrights-invalid-expiry": "Rok isteka prava iz skupine »$1« nije valjano upisano.",

@@ -1049,7 +1049,6 @@
 	"userrights-expiry-current": "समाप्ती $1",
 	"userrights-expiry-none": "समाप्त नहीं होता",
 	"userrights-expiry": "समाप्ति:",
-	"userrights-expiry-existing": "$3, $2",
 	"userrights-expiry-othertime": "अन्य समय:",
 	"userrights-expiry-options": "एक दिन:1 day,एक सप्ताह:1 week,एक महीना:1 month,तीन महीने:3 months,छः महीने:6 months,एक वर्ष:1 year",
 	"userrights-invalid-expiry": "\"$1\" समूह के लिए समाप्ती तिथि अमान्य है।",

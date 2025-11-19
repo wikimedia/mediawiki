@@ -725,7 +725,7 @@
 	"userrights-expiry-current": "အခိင်အိုတ် $1",
 	"userrights-expiry-none": "အခိင်အိုတ် ဟွံမဲ",
 	"userrights-expiry": "အခိင်အိုတ်ဏောင် -",
-	"userrights-expiry-existing": "ကာလ အခိင်မအိုတ် လၟုဟ်ဂှ် - $3၊ $2",
+	"userrights-expiry-existing": "$3၊ $2",
 	"userrights-expiry-othertime": "အခိင် တၞဟ်:",
 	"userrights-expiry-options": "1 တ္ၚဲ:1 day,၁ သတ္တဟ:1 week,၁ ဂိတု:1 month,၃ ဂိတု:3 months,၆ ဂိတု:6 months,၁ သၞာံ:1 year",
 	"userrights-invalid-expiry": "အခိင် အာယုက်အိုတ် သွက် ဂကောံ \"$1\"ဂှ် ဟွံကိတ်ညဳ။",

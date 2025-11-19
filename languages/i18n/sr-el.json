@@ -989,7 +989,6 @@
 	"userrights-expiry-current": "Ističe $1",
 	"userrights-expiry-none": "Ne ističe",
 	"userrights-expiry": "Ističe:",
-	"userrights-expiry-existing": "$3, $2",
 	"userrights-expiry-othertime": "Drugo vreme:",
 	"userrights-expiry-options": "1 dan:1 day,1 nedelja:1 week,1 mesec:1 month,3 meseca:3 months,6 meseci:6 months,1 godina:1 year",
 	"userrights-invalid-expiry": "Vreme isticanja grupe „$1” nije važeće.",

@@ -492,7 +492,6 @@
 	"userrights-expiry-current": "Lalu timpuh kena $1",
 	"userrights-expiry-none": "Enda lalu timpuh",
 	"userrights-expiry": "Lalu timpuh kena:",
-	"userrights-expiry-existing": "$3, $2",
 	"userrights-expiry-othertime": "Awak ke bukai:",
 	"userrights-expiry-options": "1 hari:1 hari,1 minggu:1 minggu,1 bulan:1 bulan,3 bulan:3 bulan,6 bulan:6 bulan,1 taun:1 taun",
 	"group": "Raban:",

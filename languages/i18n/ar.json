@@ -1107,6 +1107,7 @@
 	"userrights-watchuser": "راقب صفحتي المستخدم والنقاش لهذا المستخدم",
 	"userrights-no-interwiki": "أنت لا تمتلك الصلاحية لتعديل صلاحيات المستخدمين على الويكيات الأخرى.",
 	"userrights-nodatabase": "قاعدة البيانات $1 غير موجودة أو ليست محلية.",
+	"userrights-restricted-group-warning": "هذه المجموعة لديها قيود",
 	"userrights-changeable-col": "المجموعات التي يمكنك تغييرها",
 	"userrights-unchangeable-col": "المجموعات التي لا يمكنك تغييرها",
 	"userrights-no-shorten-expiry-marker": "$1#",
@@ -2069,6 +2070,7 @@
 	"apisandbox-request-php-label": "اطلب مصفوفة PHP:",
 	"apisandbox-request-time": "وقت الطلب: {{PLURAL:$1|$1 ms}}",
 	"apisandbox-request-post": "يجب إرسال هذا الطلب باستخدام طريقة HTTP POST.",
+	"apisandbox-request-post2": "نظرًا لحجم الحمولة، تم إرسال هذا الطلب باستخدام طريقة HTTP POST.",
 	"apisandbox-request-formdata": "يجب إرسال هذا الطلب كتحميل ملف (أي باستخدام <code>multipart/form-data</code> ).",
 	"apisandbox-results-fixtoken": "رمز الصحيح وإعادة الموافقة",
 	"apisandbox-results-fixtoken-fail": "فشل جلب توكين \"$1\"",
@@ -2280,10 +2282,13 @@
 	"watchlistlabels-table-header": "العلامات",
 	"watchlistlabels-table-new-link": "+ ملصق جديد",
 	"watchlistlabels-table-col-name": "الاسم",
+	"watchlistlabels-table-col-actions": "الإجراءات",
+	"watchlistlabels-table-edit": "عدل",
 	"watchlistlabels-form-header-new": "ملصق جديد",
 	"watchlistlabels-form-header-edit": "إعادة التسمية",
 	"watchlistlabels-form-field-name": "اسم الملصق",
-	"watchlistlabels-form-name-too-long": "اسم الملصق طويل جدًا. يُرجى إبقاءه أقل من 256 بايت (القيمة المُقدّمة هي $1 بايت).",
+	"watchlistlabels-form-name-too-long": "اسم الملصق طويل جدًا. يُرجى إبقاءه أقل من 256 بايت (القيمة المُدخلة هي $1 {{PLURAL:$1|بايت}}).",
+	"watchlistlabels-form-name-too-short": "لا يجب أن يكون اسم الملصق فارغًا.",
 	"watchlistlabels-form-submit-new": "إنشاء",
 	"watchlistlabels-form-submit-edit": "حفظ",
 	"enotif_reset": "علم كل الصفحات كما لو كنت زرتها بالفعل",
@@ -4216,5 +4221,6 @@
 	"benefit-3-description": "تفضيلات تسمح لك بتخصيص تجربتك.",
 	"temp-user-unable-to-acquire": "تعذر الحصول على اسم مستخدم مؤقت للحساب. يرجى المحاولة مرة أخرى.",
 	"table-of-contents-show-button-aria-label": "إظهار جدول المحتويات",
-	"table-of-contents-hide-button-aria-label": "إخفاء جدول المحتويات."
+	"table-of-contents-hide-button-aria-label": "إخفاء جدول المحتويات.",
+	"diff-usergroups": "مجموعات المستخدمين $1"
 }

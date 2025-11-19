@@ -1017,7 +1017,6 @@
 	"userrights-expiry-current": "Mmebi $1",
 	"userrights-expiry-none": "Anaghị emebi emebi",
 	"userrights-expiry": "Mmebi:",
-	"userrights-expiry-existing": "$3, $2",
 	"userrights-expiry-othertime": "Oge ọzọ",
 	"userrights-expiry-options": "Otú ụbọchị: 1 day,otu izu:1 week,otu ọnwa:1 month,ọnwa atọ:3 months,ọnwa isii:6 months,otu afọ:1 year",
 	"userrights-invalid-expiry": "Oge ngwụcha maka otu \" $1 \" ezighi ezi.",

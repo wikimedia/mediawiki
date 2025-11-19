@@ -814,7 +814,6 @@
 	"userrights-expiry-current": "Kadaluwarsa $1",
 	"userrights-expiry-none": "Mak kadaluwarsa",
 	"userrights-expiry": "Kadaluwarsa:",
-	"userrights-expiry-existing": "$3, $2",
 	"userrights-expiry-othertime": "Waktu barih:",
 	"userrights-expiry-options": "1 harani:1 day,1 minggu:1 week,1 bulan:1 month,3 bulan:3 months,6 bulan:6 months,1 tahun:1 year",
 	"userrights-invalid-expiry": "Waktu kadaluwarsa untuk kalompok \"$1\" mak sah.",

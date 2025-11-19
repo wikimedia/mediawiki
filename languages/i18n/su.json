@@ -780,7 +780,6 @@
 	"userrights-expiry-current": "Kadaluwarsa $1",
 	"userrights-expiry-none": "Teu kadaluwarsa",
 	"userrights-expiry": "Kadaluwarsa:",
-	"userrights-expiry-existing": "$3, $2",
 	"userrights-expiry-othertime": "Séjén waktu:",
 	"userrights-invalid-expiry": "Waktu kadaluwarsa pikeun gorombolan \"$1\" teu sah.",
 	"userrights-expiry-in-past": "Waktu kadaluwarsa pikeun gorombolan \"$1\" geus kaliwat berlalu.",

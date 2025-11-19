@@ -806,7 +806,6 @@
 	"userrights-expiry-current": "$1 ম্যাদ উকলিব",
 	"userrights-expiry-none": "ম্যাদ উকলি নাযায়",
 	"userrights-expiry": "ম্য়াদ উকলিব:",
-	"userrights-expiry-existing": "$3, $2",
 	"userrights-expiry-othertime": "অন্য সময়:",
 	"userrights-expiry-options": "১ দিন:1 day,১ সপ্তাহ:1 week,১ মাহ:1 month,৩ মাহ:3 months,৬ মাহ:6 months,১ বছৰ:1 year",
 	"userrights-invalid-expiry": "\"$1\" গোটৰ ম্যাদ উকলা সময় অবৈধ।",

@@ -4152,5 +4152,6 @@
 	"benefit-3-description": "Voorkeuren, waarmee u uw account naar uw hand kunt zetten.",
 	"temp-user-unable-to-acquire": "Het is niet gelukt een gebruikersnaam voor het tijdelijke account te verkrijgen. Probeer het opnieuw.",
 	"table-of-contents-show-button-aria-label": "Inhoudsopgave weergeven",
-	"table-of-contents-hide-button-aria-label": "Inhoudsopgave verbergen"
+	"table-of-contents-hide-button-aria-label": "Inhoudsopgave verbergen",
+	"diff-usergroups": "$1 gebruikersgroepen"
 }

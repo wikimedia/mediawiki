@@ -994,7 +994,6 @@
 	"userrights-expiry-current": "$1 датада бошалады",
 	"userrights-expiry-none": "Болджалсыз",
 	"userrights-expiry": "Бошалады:",
-	"userrights-expiry-existing": "$3, $2",
 	"userrights-expiry-othertime": "Башха заман:",
 	"userrights-expiry-options": "1 кюн:1 day,1 ыйыкъ:1 week,1 ай:1 month,3 ай:3 months,6 ай:6 months,1 джыл:1 year",
 	"userrights-invalid-expiry": "\"$1\" къауумну тауусулуу заманы терсди.",

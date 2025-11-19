@@ -836,7 +836,6 @@
 	"userrights-expiry-current": "$1 ला संपते",
 	"userrights-expiry-none": "समाप्त होत नाही",
 	"userrights-expiry": "समाप्त होते:",
-	"userrights-expiry-existing": "सध्याचा समाप्ती वेळ:$3, $2",
 	"userrights-expiry-othertime": "इतर वेळ:",
 	"userrights-invalid-expiry": "गट \"$1\"साठी समाप्ती वेळ अवैध आहे.",
 	"userrights-expiry-in-past": "गट \"$1\"साठी असलेली समाप्ती वेळ निघून गेली.",

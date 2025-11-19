@@ -786,7 +786,6 @@
 	"userrights-expiry-current": "ផុតកំណត់ $1",
 	"userrights-expiry-none": "គ្មានថ្ងៃផុតកំណត់",
 	"userrights-expiry": "ផុតកំណត់៖",
-	"userrights-expiry-existing": "$3, $2",
 	"userrights-expiry-othertime": "រយៈពេលផ្សេងទៀត៖",
 	"userrights-expiry-options": "១ថ្ងៃ:1 day,១សប្ដាហ៍:1 week,១ខែ:1 month,៣ខែ:3 months,៦ខែ:6 months,១ឆ្នាំ:1 year",
 	"userrights-invalid-expiry": "កាលបរិច្ឆេទផុតកំណត់សម្រាប់ក្រុម \"$1\" មិនត្រឹមត្រូវ។",

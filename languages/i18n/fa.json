@@ -931,6 +931,7 @@
 	"mergehistory-fail-bad-timestamp": "برچسب زمانی نامعتبر است.",
 	"mergehistory-fail-invalid-source": "صفحه مبدا نامعتبر است.",
 	"mergehistory-fail-invalid-dest": "صفحه مقصد نامعتبر است.",
+	"mergehistory-fail-start-after-end": "برچسب زمان آغازین پس از برچسب زمان پایانی یا پس از آخرین نسخهٔ صفحه است.",
 	"mergehistory-fail-no-change": "ادغام تاریخچه هیچ‌‌کدام از  نسخه‌ها را ادغام نکرد. لطفاً پارامترهای زمانی و صفحه را مجدداً کنترل کنید.",
 	"mergehistory-fail-permission": "مجوزهای ناکافی برای ادغام تاریخچه.",
 	"mergehistory-fail-self-merge": "صفحهٔ مبدأ و مقصد یکی است.",
@@ -1551,6 +1552,7 @@
 	"upload-progress-processing": "در حال پردازش تصویر. برای بررسی دوباره‌، لطفا روی دکمهٔ تازه‌سازی کلیک کنید.",
 	"upload-tryagain": "ارسال توضیحات تغییر یافته پرونده",
 	"upload-tryagain-nostash": "فرستادن پرونده دوباره بارگذاری شده و توضیحات تغییر یافته",
+	"upload-stash-error": "خطای ذخیره‌سازی در بارگذاری: $1",
 	"uploadnologin": "به سامانه وارد نشده‌اید",
 	"uploadnologintext": "برای بارگذاری پرونده باید $1.",
 	"upload_directory_missing": "شاخهٔ بارگذاری ($1) وجود ندارد و قابل ایجاد نیست.",
@@ -3101,7 +3103,7 @@
 	"widthheightpage": "$1×$2، $3 {{PLURAL:$3|صفحه|صفحه}}",
 	"file-info": "اندازهٔ پرونده: $1، نوع  MIME $2",
 	"file-info-size": "<span dir=\"ltr\">$1 × $2</span> پیکسل، اندازهٔ پرونده: $3، نوع MIME پرونده: $4",
-	"file-info-size-pages": "<span style=\"direction:ltr\">$1 × $2</span> پیکسل، حجم پرونده: $3، نوع MIME پرونده: $4، $5 {{PLURAL:$5|صفحه}}",
+	"file-info-size-pages": "<span dir=\"ltr\">$1 × $2</span> پیکسل، حجم پرونده: $3، نوع MIME پرونده: $4، $5 {{PLURAL:$5|صفحه}}",
 	"file-nohires": "تفکیک‌پذیری بالاتری در دسترس نیست.",
 	"svg-long-desc": "پروندهٔ اس‌وی‌جی، با ابعاد <span dir=\"ltr\">$1 × $2</span> پیکسل، اندازهٔ پرونده: $3",
 	"svg-long-desc-animated": "پروندهٔ اس‌وی‌جی متحرک، با ابعاد <span dir=\"ltr\">$1 × $2</span> پیکسل، اندازهٔ پرونده: $3",
@@ -4121,5 +4123,6 @@
 	"benefit-3-description": "ترجیحاتی که امکان سفارشی‌سازی تجربهٔ خود را برای شما فراهم می‌کند.",
 	"temp-user-unable-to-acquire": "ناتولن در اکتساب نام کاربری حساب موقت. لطفاً دوباره تلاش کنید.",
 	"table-of-contents-show-button-aria-label": "نمایش فهرست محتویات",
-	"table-of-contents-hide-button-aria-label": "نهفتن فهرست محتویات"
+	"table-of-contents-hide-button-aria-label": "نهفتن فهرست محتویات",
+	"diff-usergroups": "$1 گروه کاربری"
 }
