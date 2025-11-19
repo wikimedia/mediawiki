@@ -10,7 +10,7 @@ PHP 8.5 workboard: https://phabricator.wikimedia.org/tag/php_8.5_support/
 
 THIS IS NOT A RELEASE YET
 
-MediaWiki 1.45 is an alpha-quality development branch, and is not recommended
+MediaWiki 1.45 is a pre-release testing branch, and is not recommended
 for use in production.
 
 == Upgrading notes for 1.45 ==
@@ -369,7 +369,6 @@ because of Phabricator reports.
   been removed. Instead, use the replacements in SkinComponentUtils.
 * wfExpandIRI() and wfGetServerUrl(), deprecated since 1.39, has been removed.
   Instead, use UrlUtils::expandIRI() and UrlUtils::getServer().
-*
 
 === Deprecations in 1.45 ===
 
@@ -535,7 +534,6 @@ because of Phabricator reports.
   deprecated and emits warnings.  All callers which passed `null` should
   have been removed with the deprecation (in MW 1.44) and removal (in this
   release) of ParserOutput::getText().
-* …
 
 === Other changes in 1.45 ===
 
