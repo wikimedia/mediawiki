@@ -684,6 +684,9 @@
 	 * @param {module:mediawiki.page.preview~responseHandler} [config.responseHandler=null] Callback
 	 *   to run right after the API responses are received. This allows the config and response
 	 *   objects to be modified before the preview is shown.
+	 * @param {jQuery|string} [config.responseValidationError=null] This may be set by the response
+	 *   handler. If it is set, the specified error message will be shown and the response will not
+	 *   be handled.
 	 * @param {boolean} [config.createSpinner=false] Creates `$spinnerNode` and inserts it before
 	 *   `$previewNode` if one doesn't already exist and the module `jquery.spinner` is loaded.
 	 * @param {string[]} [config.loadingSelectors=getLoadingSelectors()] An array of query selectors
@@ -819,6 +822,15 @@
 						config.responseHandler( config, parseResponse[ 0 ], diffResponse[ 0 ] );
 					} else {
 						config.responseHandler( config, parseResponse[ 0 ] );
+					}
+					const error = config.responseValidationError;
+					if ( error !== undefined && error !== null ) {
+						if ( typeof error === 'string' ) {
+							showError( config, $( '<div>' ).text( error ) );
+						} else {
+							showError( config, error );
+						}
+						return;
 					}
 				}
 
