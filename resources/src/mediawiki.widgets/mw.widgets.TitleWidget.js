@@ -371,17 +371,10 @@
 			if ( this.creatable && suggestionPage.ns < 0 ) {
 				continue;
 			}
-			pageData[ suggestionPage.title ] = {
-				known: suggestionPage.known !== undefined,
-				missing: suggestionPage.missing !== undefined,
-				redirect: suggestionPage.redirect !== undefined,
-				disambiguation: OO.getProp( suggestionPage, 'pageprops', 'disambiguation' ) !== undefined,
-				imageUrl: OO.getProp( suggestionPage, 'thumbnail', 'source' ),
-				description: suggestionPage.description,
-				// Sort index
-				index: suggestionPage.index !== undefined ? suggestionPage.index : redirectIndices[ suggestionPage.title ],
-				originalData: suggestionPage
-			};
+			pageData[ suggestionPage.title ] = this.getPageData(
+				suggestionPage,
+				redirectIndices[ suggestionPage.title ]
+			);
 
 			// Throw away pages from wrong namespaces. This can happen when 'showRedirectTargets' is true
 			// and we encounter a cross-namespace redirect.
@@ -449,6 +442,28 @@
 		}
 
 		return items.concat( disambigs );
+	};
+
+	/**
+	 * Get the data to pass to createOptionWidget from the relevant part of the API response
+	 *
+	 * @param {Object} page The page properties from the API response.pages[i]
+	 * @param {number|undefined} redirectIndex The index of the redirect, or
+	 *   undefined if there is no redirect to this page
+	 * @return {Object}
+	 */
+	mw.widgets.TitleWidget.prototype.getPageData = function ( page, redirectIndex ) {
+		return {
+			known: page.known !== undefined,
+			missing: page.missing !== undefined,
+			redirect: page.redirect !== undefined,
+			disambiguation: OO.getProp( page, 'pageprops', 'disambiguation' ) !== undefined,
+			imageUrl: OO.getProp( page, 'thumbnail', 'source' ),
+			description: page.description,
+			// Sort index
+			index: page.index !== undefined ? page.index : redirectIndex,
+			originalData: page
+		};
 	};
 
 	/**
