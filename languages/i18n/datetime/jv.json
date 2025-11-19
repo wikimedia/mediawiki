@@ -74,7 +74,7 @@
 	"duration-years": "$1 {{PLURAL:$1|taun|taun}}",
 	"duration-months": "$1 {{PLURAL:$1|wulan}}",
 	"duration-weeks": "$1 {{PLURAL:$1|minggu|minggu}}",
-	"duration-days": "$1 {{PLURAL:$1|dina|dina}}",
+	"duration-days": "$1 {{PLURAL:$1|dina}}",
 	"duration-hours": "$1 {{PLURAL:$1|jam|jam}}",
 	"duration-minutes": "$1 {{PLURAL:$1|menit|menit}}",
 	"duration-seconds": "$1 {{PLURAL:$1|sekon|sekon}}",

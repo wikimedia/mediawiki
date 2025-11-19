@@ -134,6 +134,7 @@
 	"duration-centuries": "$1 {{PLURAL:$1|शताब्दि|शताब्दिहरू}}",
 	"duration-decades": "$1 {{PLURAL:$1|दशक|दशकहरू}}",
 	"duration-years": "$1 {{PLURAL:$1|वर्ष|वर्षहरू}}",
+	"duration-months": "{{PLURAL:$1|महिना|महिनाहरू}}",
 	"duration-weeks": "$1 {{PLURAL:$1|हप्ता|हप्ताहरू}}",
 	"duration-days": "$1 {{PLURAL:$1|दिन|दिनहरू}}",
 	"duration-hours": "$1 {{PLURAL:$1|घण्टा|घण्टाहरू}}",

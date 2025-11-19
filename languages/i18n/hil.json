@@ -21,7 +21,8 @@
 			"Taylortheturtle",
 			"Vlad5250",
 			"아라",
-			"SaldırganSincap"
+			"SaldırganSincap",
+			"Ralffralff"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Kategorya|Mga Kategorya}}",
@@ -2361,7 +2362,7 @@
 	"blanknamespace": "(Puno)",
 	"contributions": "Mga naamot sang Taga-gamit",
 	"tool-link-contributions": "{{GENDER:$1| Mga kontribusyon sang User}}",
-	"contributions-title": "Mga Kontribusyon sang Naga-Usar para $1",
+	"contributions-title": "{{GENDER:$2|Naga-usar}} nga mga kontribusyon para sa $1",
 	"contributions-title-for-ip-when-temporary-accounts-enabled": "Legacy IP nga mga kontribusyon para sa $1",
 	"contribute-title": "Mga kontribusyon sang user",
 	"mycontris": "Kontribusyon",

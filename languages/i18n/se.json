@@ -939,7 +939,7 @@
 	"searchrelated": "sullásaš",
 	"searchall": "buot",
 	"showingresultsinrange": "Vulobealde čájehuvvojit gitta {{PLURAL:$1|okta<strong></strong>boađus|<strong>$1</strong> bohtosa}} dán nummára rájes <strong>$2</strong> gitta ja oktan dáinna nummariin <strong>$3</strong>.",
-	"search-showingresults": "{{PLURAL:$4|Boađus <strong>$1</strong>/<strong>$3</strong>|Bohtosat <strong>$1–$2</strong>/<strong>$3</strong>}}",
+	"search-showingresults": "{{PLURAL:$4|1=Boađus <strong>$1</strong>/<strong>$3</strong>|Bohtosat <strong>$1–$2</strong>/<strong>$3</strong>}}",
 	"search-nonefound": "Ii oktage boađus dan ohcamii.",
 	"search-nonefound-thiswiki": "Ii oktage boađus dan ohcamii dan siiddus.",
 	"powersearch-legend": "Aiddostahttojuvvon ohcan",
