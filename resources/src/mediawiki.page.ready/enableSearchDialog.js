@@ -3,6 +3,7 @@ const clearAddressBar = require( './clearAddressBar.js' );
 const searchRoute = new RegExp( /\/search/ );
 
 let tempInput = null;
+let searchDialogOpened = false;
 
 /**
  * @param {module:mediawiki.router} router
@@ -10,28 +11,29 @@ let tempInput = null;
  * @ignore
  */
 function addRoutes( router, trigger ) {
-	let searchOpen = false;
 	clearAddressBar( router, searchRoute );
 	router.addRoute( searchRoute, () => {
-		searchOpen = true;
 		const searchModuleName = config.searchModule;
 		mw.loader.using( searchModuleName ).then( () => {
 			const { init } = require( searchModuleName );
 			// If it exports an init function execute that immediately.
 			if ( init ) {
 				init();
-
-				if ( tempInput ) {
-					transferFocusToRealInput();
-				}
 			}
 		} );
 	} );
 
 	router.on( 'route', ( ev ) => {
-		if ( searchOpen && !ev.path.match( searchRoute ) ) {
-			searchOpen = false;
-			// Return focus to the search button after exiting the search overlay
+		const currentlySearch = ev.path.match( searchRoute );
+
+		// Transfer focus to the real search input after the dialog has been loaded
+		if ( currentlySearch && searchDialogOpened ) {
+			transferFocusToRealInput();
+		}
+
+		// Return focus to the search button after exiting the search overlay
+		if ( searchDialogOpened && !currentlySearch ) {
+			searchDialogOpened = false;
 			requestAnimationFrame( () => {
 				trigger.focus();
 			} );
@@ -71,15 +73,16 @@ function createTempInput() {
  * @ignore
  */
 function transferFocusToRealInput() {
-	const realInput = document.querySelector( '.cdx-typeahead-search .cdx-text-input__input' );
-
-	if ( realInput && tempInput ) {
-		requestAnimationFrame( () => {
+	requestAnimationFrame( () => {
+		const realInput = document.querySelector( '.cdx-typeahead-search .cdx-text-input__input' );
+		if ( realInput ) {
 			realInput.focus();
+		}
+		if ( tempInput ) {
 			tempInput.remove();
 			tempInput = null;
-		} );
-	}
+		}
+	} );
 }
 
 /**
@@ -96,6 +99,7 @@ module.exports = function ( trigger ) {
 		addRoutes( router, trigger );
 	} );
 
+	// Open search dialog when search trigger is clicked
 	trigger.addEventListener( 'click', ( ev ) => {
 		ev.preventDefault();
 
@@ -109,7 +113,8 @@ module.exports = function ( trigger ) {
 		 * to trigger the virtual keyboard and maintain the keyboard context. Then after
 		 * TAHS is finished loading, we transfer focus to the real search input.
 		 */
-		window.location.hash = '/search';
+		searchDialogOpened = true;
 		createTempInput();
+		window.location.hash = '/search';
 	} );
 };

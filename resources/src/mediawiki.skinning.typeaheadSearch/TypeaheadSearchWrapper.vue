@@ -47,17 +47,34 @@ module.exports = exports = defineComponent( {
 	emits: [
 		'exit'
 	],
+	data() {
+		return {
+			handleViewportResize: null
+		};
+	},
 	mounted() {
-		// Adjust the bottom position of the typeahead search menu on mobile devices
-		// to account for the virtual keyboard covering the bottom part of the viewport
-		if ( this.mobileExperience && window.visualViewport ) {
-			window.visualViewport.addEventListener( 'resize', () => {
-				const menu = document.querySelector( '.cdx-typeahead-search__menu' );
-				if ( menu ) {
-					const bottom = window.innerHeight - ( visualViewport.offsetTop + visualViewport.height );
-					menu.style.bottom = `${ Math.round( bottom ) }px`;
+		if ( window.visualViewport ) {
+			this.handleViewportResize = () => {
+				// Adjust the bottom position of the typeahead search menu when in mobile search experience
+				// to account for the virtual keyboard covering the bottom part of the viewport on mobile devices
+				// Note: the mobile search experience depends on the viewport, and can be enabled in both
+				// mobile and desktop environments
+				if ( this.mobileExperience ) {
+					const menu = document.querySelector( '.cdx-typeahead-search__menu' );
+					if ( menu ) {
+						const bottom = window.innerHeight - ( window.visualViewport.offsetTop + window.visualViewport.height );
+						menu.style.bottom = `${ Math.round( bottom ) }px`;
+					}
 				}
-			} );
+			};
+			window.visualViewport.addEventListener( 'resize', mw.util.throttle( () => {
+				this.handleViewportResize();
+			}, 200 ) );
+		}
+	},
+	beforeUnmount() {
+		if ( window.visualViewport && this.handleViewportResize ) {
+			window.visualViewport.removeEventListener( 'resize', this.handleViewportResize );
 		}
 	}
 } );
