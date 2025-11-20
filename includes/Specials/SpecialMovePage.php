@@ -26,6 +26,7 @@ use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Permissions\RestrictionStore;
 use MediaWiki\SpecialPage\UnlistedSpecialPage;
+use MediaWiki\Status\Status;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleArrayFromResult;
@@ -49,9 +50,6 @@ use StatusValue;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDBAccessObject;
-use Wikimedia\Rdbms\IExpression;
-use Wikimedia\Rdbms\LikeValue;
-use Wikimedia\StringUtils\StringUtils;
 use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
@@ -340,7 +338,6 @@ class SpecialMovePage extends UnlistedSpecialPage {
 				$user,
 				$this->oldTitle
 			);
-
 		# We also want to be able to move assoc. subpage talk-pages even if base page
 		# has no associated talk page, so || with $oldTitleTalkSubpages.
 		$considerTalk = !$this->oldTitle->isTalkPage() &&
@@ -977,21 +974,23 @@ class SpecialMovePage extends UnlistedSpecialPage {
 		$mp = $this->movePageFactory->newMovePage( $ot, $nt );
 		$permStatusMain = $mp->authorizeMove( $this->getAuthority(), $this->reason );
 		$permStatusMain->merge( $mp->isValidMove() );
+
+		$onlyMovingTalkSubpages = false;
 		if ( $this->moveTalk ) {
 			$mpTalk = $this->movePageFactory->newMovePage( $oldTalk, $newTalk );
 			$permStatusTalk = $mpTalk->authorizeMove( $this->getAuthority(), $this->reason );
 			$permStatusTalk->merge( $mpTalk->isValidMove() );
 			// Per the definition of $considerTalk in showForm you might be trying to move
 			// subpages of the talk even if the talk itself doesn't exist, so let that happen
-			if ( !$permStatusTalk->hasMessagesExcept( 'movepage-source-doesnt-exist' ) ) {
+			if ( !$permStatusTalk->isOK() &&
+				 !$permStatusTalk->hasMessagesExcept( 'movepage-source-doesnt-exist' )
+			) {
 				$permStatusTalk->setOK( true );
+				$onlyMovingTalkSubpages = true;
 			}
 		} else {
 			$permStatusTalk = StatusValue::newGood();
-		}
-
-		if ( $this->moveSubpages ) {
-			 $this->moveSubpages = $this->permManager->userCan( 'move-subpages', $user, $ot );
+			$mpTalk = null;
 		}
 
 		if ( $this->deleteAndMove ) {
@@ -1030,17 +1029,53 @@ class SpecialMovePage extends UnlistedSpecialPage {
 
 		// Now we've confirmed you can do all of the moves you want and proceeding won't leave things inconsistent
 		// so actually move the main page
-		$status = $mp->moveIfAllowed( $this->getAuthority(), $this->reason, $createRedirect );
-		if ( !$status->isOK() ) {
-			$this->showForm( $status );
+		$mainStatus = $mp->moveIfAllowed( $this->getAuthority(), $this->reason, $createRedirect );
+		if ( !$mainStatus->isOK() ) {
+			$this->showForm( $mainStatus );
 			return;
 		}
-		// Moving the talk page is handled in the foreach loop below
 
-		if ( $this->getConfig()->get( MainConfigNames::FixDoubleRedirects ) && $this->fixRedirects ) {
+		$fixRedirects = $this->fixRedirects && $this->getConfig()->get( MainConfigNames::FixDoubleRedirects );
+		if ( $fixRedirects ) {
 			DoubleRedirectJob::fixRedirects( 'move', $ot );
 		}
 
+		// Now try to move the talk page
+		$maximumMovedPages = $this->getConfig()->get( MainConfigNames::MaximumMovedPages );
+
+		$moveStatuses = [];
+		$talkStatus = null;
+		if ( $this->moveTalk && !$onlyMovingTalkSubpages ) {
+			$talkStatus = $mpTalk->moveIfAllowed( $this->getAuthority(), $this->reason, $createRedirect );
+			// moveIfAllowed returns a Status with an array as a value, however moveSubpages per-title statuses
+			// have strings as values. Massage this status into the moveSubpages format so it fits in with
+			// the later calls
+			'@phan-var Status<string> $talkStatus';
+			$talkStatus->value = $newTalk->getPrefixedText();
+			$moveStatuses[$oldTalk->getPrefixedText()] = $talkStatus;
+		}
+
+		// Now try to move subpages if asked
+		if ( $this->moveSubpages ) {
+			if ( $this->permManager->userCan( 'move-subpages', $user, $ot ) ) {
+				$mp->setMaximumMovedPages( $maximumMovedPages - count( $moveStatuses ) );
+				$subpageStatus = $mp->moveSubpagesIfAllowed( $this->getAuthority(), $this->reason, $createRedirect );
+				$moveStatuses = array_merge( $moveStatuses, $subpageStatus->value );
+			}
+			if ( $this->moveTalk && $maximumMovedPages > count( $moveStatuses ) &&
+				 $this->permManager->userCan( 'move-subpages', $user, $oldTalk ) &&
+				 ( $onlyMovingTalkSubpages || $talkStatus->isOK() )
+			) {
+				$mpTalk->setMaximumMovedPages( $maximumMovedPages - count( $moveStatuses ) );
+				$talkSubStatus = $mpTalk->moveSubpagesIfAllowed(
+					$this->getAuthority(), $this->reason, $createRedirect
+				);
+				$moveStatuses = array_merge( $moveStatuses, $talkSubStatus->value );
+			}
+		}
+
+		// Now we've moved everything we're going to move, so post-process the output,
+		// create the UI, and fix double redirects
 		$out = $this->getOutput();
 		$out->setPageTitleMsg( $this->msg( 'pagemovedsub' ) );
 
@@ -1061,141 +1096,46 @@ class SpecialMovePage extends UnlistedSpecialPage {
 
 		$out->addHTML( $this->msg( 'movepage-moved' )->rawParams( $oldLink,
 			$newLink )->params( $oldText, $newText )->parseAsBlock() );
-		$out->addWikiMsg( isset( $status->getValue()['redirectRevision'] ) ?
+		$out->addWikiMsg( isset( $mainStatus->getValue()['redirectRevision'] ) ?
 			'movepage-moved-redirect' :
 			'movepage-moved-noredirect' );
 
 		$this->getHookRunner()->onSpecialMovepageAfterMove( $this, $ot, $nt );
 
-		/*
-		 * Now we move extra pages we've been asked to move: subpages and talk
-		 * pages.
-		 *
-		 * First, make a list of id's.  This might be marginally less efficient
-		 * than a more direct method, but this is not a highly performance-cri-
-		 * tical code path and readable code is more important here.
-		 *
-		 * If the target namespace doesn't allow subpages, moving with subpages
-		 * would mean that you couldn't move them back in one operation, which
-		 * is bad.
-		 * @todo FIXME: A specific error message should be given in this case.
-		 */
-
-		// @todo FIXME: Use MovePage::moveSubpages() here
-		$dbr = $this->dbProvider->getReplicaDatabase();
-		if ( $this->moveSubpages && (
-			$this->nsInfo->hasSubpages( $nt->getNamespace() ) || (
-				$this->moveTalk
-					&& $this->nsInfo->hasSubpages( $nt->getTalkPage()->getNamespace() )
-			)
-		) ) {
-			$conds = [
-				$dbr->expr(
-					'page_title',
-					IExpression::LIKE,
-					new LikeValue( $ot->getDBkey() . '/', $dbr->anyString() )
-				)->or( 'page_title', '=', $ot->getDBkey() )
-			];
-			$conds['page_namespace'] = [];
-			if ( $this->nsInfo->hasSubpages( $nt->getNamespace() ) ) {
-				$conds['page_namespace'][] = $ot->getNamespace();
-			}
-			if ( $this->moveTalk &&
-				$this->nsInfo->hasSubpages( $nt->getTalkPage()->getNamespace() )
-			) {
-				$conds['page_namespace'][] = $ot->getTalkPage()->getNamespace();
-			}
-		} elseif ( $this->moveTalk ) {
-			$conds = [
-				'page_namespace' => $ot->getTalkPage()->getNamespace(),
-				'page_title' => $ot->getDBkey()
-			];
-		} else {
-			# Skip the query
-			$conds = null;
-		}
-
-		$extraPages = [];
-		if ( $conds !== null ) {
-			$extraPages = $this->titleFactory->newTitleArrayFromResult(
-				$dbr->newSelectQueryBuilder()
-					->select( [ 'page_id', 'page_namespace', 'page_title' ] )
-					->from( 'page' )
-					->where( $conds )
-					->caller( __METHOD__ )->fetchResultSet()
-			);
-		}
-
 		$extraOutput = [];
-		$count = 1;
-		foreach ( $extraPages as $oldSubpage ) {
-			if ( $ot->equals( $oldSubpage ) || $nt->equals( $oldSubpage ) ) {
-				# Already did this one.
-				continue;
+		foreach ( $moveStatuses as $oldSubpage => $subpageStatus ) {
+			if ( $subpageStatus->hasMessage( 'movepage-max-pages' ) ) {
+				$extraOutput[] = $this->msg( 'movepage-max-pages' )
+					->numParams( $maximumMovedPages )->escaped();
+					continue;
 			}
+			$oldSubpage = Title::newFromText( $oldSubpage );
+			$newSubpage = Title::newFromText( $subpageStatus->value );
+			if ( $subpageStatus->isGood() ) {
+				if ( $fixRedirects ) {
+					DoubleRedirectJob::fixRedirects( 'move', $oldSubpage );
+				}
+				$oldLink = $linkRenderer->makeLink( $oldSubpage, null, [], [ 'redirect' => "no" ] );
+				$newLink = $linkRenderer->makeKnownLink( $newSubpage );
 
-			$newPageName = preg_replace(
-				'#^' . preg_quote( $ot->getDBkey(), '#' ) . '#',
-				StringUtils::escapeRegexReplacement( $nt->getDBkey() ), # T23234
-				$oldSubpage->getDBkey()
-			);
-
-			if ( $oldSubpage->isSubpage() && ( $ot->isTalkPage() xor $nt->isTalkPage() ) ) {
-				// Moving a subpage from a subject namespace to a talk namespace or vice-versa
-				$newNs = $nt->getNamespace();
-			} elseif ( $oldSubpage->isTalkPage() ) {
-				$newNs = $nt->getTalkPage()->getNamespace();
-			} else {
-				$newNs = $nt->getSubjectPage()->getNamespace();
-			}
-
-			# T16385: we need makeTitleSafe because the new page names may
-			# be longer than 255 characters.
-			$newSubpage = Title::makeTitleSafe( $newNs, $newPageName );
-			if ( !$newSubpage ) {
-				$oldLink = $linkRenderer->makeKnownLink( $oldSubpage );
-				$extraOutput[] = $this->msg( 'movepage-page-unmoved' )->rawParams( $oldLink )
-					->params( Title::makeName( $newNs, $newPageName ) )->escaped();
-				continue;
-			}
-
-			$mp = $this->movePageFactory->newMovePage( $oldSubpage, $newSubpage );
-			# This was copy-pasted from Renameuser, bleh.
-			if ( $newSubpage->exists() && !$mp->isValidMove()->isOK() ) {
+				$extraOutput[] = $this->msg( 'movepage-page-moved' )->rawParams(
+					$oldLink, $newLink
+				)->escaped();
+			} elseif ( $subpageStatus->hasMessage( 'articleexists' )
+				|| $subpageStatus->hasMessage( 'redirectexists' )
+			) {
 				$link = $linkRenderer->makeKnownLink( $newSubpage );
 				$extraOutput[] = $this->msg( 'movepage-page-exists' )->rawParams( $link )->escaped();
 			} else {
-				$status = $mp->moveIfAllowed( $this->getAuthority(), $this->reason, $createRedirect );
-
-				if ( $status->isOK() ) {
-					if ( $this->fixRedirects ) {
-						DoubleRedirectJob::fixRedirects( 'move', $oldSubpage );
-					}
-					$oldLink = $linkRenderer->makeLink(
-						$oldSubpage,
-						null,
-						[],
-						[ 'redirect' => 'no' ]
-					);
-
-					$newLink = $linkRenderer->makeKnownLink( $newSubpage );
-					$extraOutput[] = $this->msg( 'movepage-page-moved' )
-						->rawParams( $oldLink, $newLink )->escaped();
-					++$count;
-
-					$maximumMovedPages =
-						$this->getConfig()->get( MainConfigNames::MaximumMovedPages );
-					if ( $count >= $maximumMovedPages ) {
-						$extraOutput[] = $this->msg( 'movepage-max-pages' )
-							->numParams( $maximumMovedPages )->escaped();
-						break;
-					}
-				} else {
-					$oldLink = $linkRenderer->makeKnownLink( $oldSubpage );
+				$oldLink = $linkRenderer->makeKnownLink( $oldSubpage );
+				if ( $newSubpage ) {
 					$newLink = $linkRenderer->makeLink( $newSubpage );
-					$extraOutput[] = $this->msg( 'movepage-page-unmoved' )
-						->rawParams( $oldLink, $newLink )->escaped();
+				} else {
+					// It's not a valid title
+					$newLink = htmlspecialchars( $subpageStatus->value );
 				}
+				$extraOutput[] = $this->msg( 'movepage-page-unmoved' )
+						->rawParams( $oldLink, $newLink )->escaped();
 			}
 		}
 

@@ -494,7 +494,8 @@ class MovePage {
 	 * @param string[] $changeTags Applied to entries in the move log and redirect page revision
 	 * @return Status Good if no errors occurred. Ok if at least one page succeeded. The "value"
 	 *  of the top-level status is an array containing the per-title status for each page. For any
-	 *  move that succeeded, the "value" of the per-title status is the new page title.
+	 *  move that succeeded, the "value" of the per-title status is the new page title. For any
+	 *  move that failed, the "value" of the per-title status is the subpage it tried to move to.
 	 */
 	public function moveSubpages(
 		UserIdentity $user, $reason = null, $createRedirect = true, array $changeTags = []
@@ -519,7 +520,10 @@ class MovePage {
 	 * @param string[] $changeTags Applied to entries in the move log and redirect page revision
 	 * @return Status Good if no errors occurred. Ok if at least one page succeeded. The "value"
 	 *  of the top-level status is an array containing the per-title status for each page. For any
-	 *  move that succeeded, the "value" of the per-title status is the new page title.
+	 * move that succeeded, the "value" of the per-title status is the new page title. For any
+	 * move that failed, the "value" of the per-title status is the subpage it tried to move to.
+	 * This may not be a valid title; for example the new title could possibly exceed the maximum
+	 * title size,
 	 */
 	public function moveSubpagesIfAllowed(
 		Authority $performer, $reason = null, $createRedirect = true, array $changeTags = []
@@ -536,6 +540,14 @@ class MovePage {
 		);
 	}
 
+	private function constructNoSubpagesStatus( int $ns ): Status {
+		$status = Status::newFatal( 'namespace-nosubpages',
+			$this->nsInfo->getCanonicalName( $ns ) );
+		// No pages were moved, so the array of per-page statuses is empty
+		$status->value = [];
+		return $status;
+	}
+
 	/**
 	 * @param callable $subpageMoveCallback
 	 * @return Status
@@ -543,12 +555,10 @@ class MovePage {
 	private function moveSubpagesInternal( callable $subpageMoveCallback ) {
 		// Do the source and target namespaces support subpages?
 		if ( !$this->nsInfo->hasSubpages( $this->oldTitle->getNamespace() ) ) {
-			return Status::newFatal( 'namespace-nosubpages',
-				$this->nsInfo->getCanonicalName( $this->oldTitle->getNamespace() ) );
+			return $this->constructNoSubpagesStatus( $this->oldTitle->getNamespace() );
 		}
 		if ( !$this->nsInfo->hasSubpages( $this->newTitle->getNamespace() ) ) {
-			return Status::newFatal( 'namespace-nosubpages',
-				$this->nsInfo->getCanonicalName( $this->newTitle->getNamespace() ) );
+			return $this->constructNoSubpagesStatus( $this->newTitle->getNamespace() );
 		}
 
 		// Return a status for the overall result. Its value will be an array with per-title
@@ -589,9 +599,12 @@ class MovePage {
 			// T16385: we need makeTitleSafe because the new page names may be longer than 255
 			// characters.
 			$newSubpage = Title::makeTitleSafe( $newNs, $newPageName );
-			$status = $subpageMoveCallback( $oldSubpage, $newSubpage );
-			if ( $status->isOK() ) {
-				$status->setResult( true, $newSubpage->getPrefixedText() );
+			if ( !$newSubpage ) {
+				$status = Status::newFatal( 'title-invalid', $newPageName );
+				$status->value = Title::makeName( $newNs, $newPageName );
+			} else {
+				$status = $subpageMoveCallback( $oldSubpage, $newSubpage );
+				$status->value = $newSubpage->getPrefixedText();
 			}
 			$perTitleStatus[$oldSubpage->getPrefixedText()] = $status;
 			$topStatus->merge( $status );
