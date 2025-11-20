@@ -51,6 +51,13 @@ For notes on 1.45.x and older releases, see HISTORY.
 
 === New user-facing features in 1.46 ===
 
+* (T12814) Special:MovePage can now move over existing pages when moving the
+  talk page (following the same logic as for moving the subject page).
+* (T12814) Special:MovePage will now fail loudly if you ask to move the
+  the talk page but it couldn't be moved (rather than not moving the
+  talk page and displaying an easy-to-miss error message)
+* (T85393) Special:MovePage will now require explicit confirmation if the
+  page you are trying to move to is protected against creation.
 * …
 
 === New features for sysadmins in 1.46 ===
