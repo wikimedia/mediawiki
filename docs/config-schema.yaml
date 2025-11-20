@@ -5896,6 +5896,12 @@ config-schema:
             This should be set in LocalSettings.php, otherwise $wgSecretKey will
             be used.
             @since 1.27
+    EnableUnsafeXsltOption:
+        default: false
+        description: |-
+            Enable the deprecated xslt option in the Action API.
+            This is unsafe and allows users with the editinterface right to perform XSS.
+            @see https://phabricator.wikimedia.org/T401995
     CookieExpiration:
         default: 2592000
         description: 'Default cookie lifetime, in seconds. Setting to 0 makes all cookies session-only.'

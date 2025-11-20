@@ -9417,6 +9417,17 @@ class MainConfigSchema {
 		'default' => false,
 	];
 
+	/**
+	 * Enable the deprecated xslt option in the Action API.
+	 *
+	 * This is unsafe and allows users with the editinterface right to perform XSS.
+	 *
+	 * @see https://phabricator.wikimedia.org/T401995
+	 */
+	public const EnableUnsafeXsltOption = [
+		'default' => false,
+	];
+
 	// endregion -- end of security
 
 	/***************************************************************************/

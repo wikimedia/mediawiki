@@ -3141,6 +3141,12 @@ class MainConfigNames {
 	public const SessionSecret = 'SessionSecret';
 
 	/**
+	 * Name constant for the EnableUnsafeXsltOption setting, for use with Config::get()
+	 * @see MainConfigSchema::EnableUnsafeXsltOption
+	 */
+	public const EnableUnsafeXsltOption = 'EnableUnsafeXsltOption';
+
+	/**
 	 * Name constant for the CookieExpiration setting, for use with Config::get()
 	 * @see MainConfigSchema::CookieExpiration
 	 */

@@ -3126,6 +3126,12 @@ $wgRestAllowCrossOriginCookieAuth = null;
 $wgSessionSecret = null;
 
 /**
+ * Config variable stub for the EnableUnsafeXsltOption setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::EnableUnsafeXsltOption
+ */
+$wgEnableUnsafeXsltOption = null;
+
+/**
  * Config variable stub for the CookieExpiration setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::CookieExpiration
  */
