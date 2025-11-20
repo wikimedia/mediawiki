@@ -1909,6 +1909,7 @@
 	"apiwarn-validationfailed-valuetoolong": "{{doc-apierror}}\n\nUsed with {{msg-mw|apiwarn-validationfailed}}.\n\nParameters:\n* $1 - Maximum allowed value length in bytes.",
 	"apiwarn-validationfailed": "{{doc-apierror}}\n\nParameters:\n* $1 - User preference name.\n* $2 - Failure message, such as {{msg-mw|apiwarn-validationfailed-badpref}}. Probably already ends with punctuation",
 	"apiwarn-wgdebugapi": "{{doc-apierror}}",
+	"apiwarn-xslt-disabled": "{{doc-apierror}}",
 	"api-feed-error-title": "Used as a feed item title when an error occurs in <kbd>action=feedwatchlist</kbd>.\n\nParameters:\n* $1 - API error code\n{{Identical|Error}}",
 	"api-usage-docref": "\n\nParameters:\n* $1 - URL of the API auto-generated documentation.",
 	"api-usage-mailinglist-ref": "{{doc-apierror}} Also used in the error response.",

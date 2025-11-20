@@ -1751,6 +1751,7 @@ return [
 			'SessionInsecureSecrets' => false,
 			'HKDFSecret' => false,
 			'HKDFAlgorithm' => 'sha256',
+			'EnableUnsafeXsltOption' => false,
 			'CookieExpiration' => 2592000,
 			'ExtendedLoginCookieExpiration' => 15552000,
 			'CookieDomain' => '',

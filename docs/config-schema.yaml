@@ -5598,6 +5598,12 @@ config-schema:
             cryptographically secure random numbers).
             See also: $wgHKDFSecret
             @since 1.24
+    EnableUnsafeXsltOption:
+        default: false
+        description: |-
+            Enable the deprecated xslt option in the Action API.
+            This is unsafe and allows users with the editinterface right to perform XSS.
+            @see https://phabricator.wikimedia.org/T401995
     CookieExpiration:
         default: 2592000
         description: 'Default cookie lifetime, in seconds. Setting to 0 makes all cookies session-only.'
