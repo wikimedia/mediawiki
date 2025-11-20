@@ -8,6 +8,7 @@
 
 namespace MediaWiki\Api;
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
 use MediaWiki\Xml\Xml;
 use Wikimedia\ParamValidator\ParamValidator;
@@ -254,6 +255,10 @@ class ApiFormatXml extends ApiFormatBase {
 	}
 
 	protected function addXslt() {
+		if ( !$this->getConfig()->get( MainConfigNames::EnableUnsafeXsltOption ) ) {
+			$this->addWarning( 'apiwarn-xslt-disabled' );
+			return;
+		}
 		$nt = Title::newFromText( $this->mXslt );
 		if ( $nt === null || !$nt->exists() ) {
 			$this->addWarning( 'apiwarn-invalidxmlstylesheet' );
