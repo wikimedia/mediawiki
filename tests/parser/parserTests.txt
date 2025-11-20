@@ -947,6 +947,17 @@ Entities inside template parameters
 !! end
 
 !! test
+T408631: Invalid templates inside template parameters
+!! wikitext
+{{1x|{{|foo}}}}
+!! html/php
+<p>{{|foo}}
+</p>
+!! html/parsoid
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"{{|foo}}"}},"i":0}}]}'>{{|foo}}</span></p>
+!! end
+
+!! test
 Properly escape nowiki when combined with other wiki markup
 !! options
 parsoid=html2wt

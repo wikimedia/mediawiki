@@ -77,7 +77,7 @@ language=sr htmlVariantLanguage=sr-Cyrl
 !! html/parsoid
 <p>абвгšđžčć</p>
 !! html/parsoid+langconv
-<p data-mw-variant-lang="sr-ec"><span typeof="mw:LanguageVariant" data-mw-variant-lang="sr-el" data-mw-variant='{"twoway":[{"l":"sr-el","t":"абвгšđžčć"},{"l":"sr-ec","t":"абвгшђжчћ"}],"rt":true}'>абвгшђжчћ</span></p>
+<p data-mw-variant-lang="sr-ec"><span typeof="mw:LanguageVariant" data-mw-variant-lang="sr-el" data-mw-variant='{"rt":true,"twoway":[{"l":"sr-el","t":"абвгšđžčć"},{"l":"sr-ec","t":"абвгшђжчћ"}]}'>абвгшђжчћ</span></p>
 !! end
 
 !! test
@@ -92,7 +92,7 @@ language=sr htmlVariantLanguage=sr-Cyrl
 !! html/parsoid
 <p><span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"lj"}}'></span>абвг<span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"nj"}}'></span>šđžčć<span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"dž"}}'></span></p>
 !! html/parsoid+langconv
-<p data-mw-variant-lang="sr-el"><span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"lj"}}'>lj</span><span typeof="mw:LanguageVariant" data-mw-variant='{"twoway":[{"l":"sr-el","t":"абвг"},{"l":"sr-ec","t":"абвг"}],"rt":true}'>абвг</span><span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"nj"}}'>nj</span>шђжчћ<span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"dž"}}'>dž</span></p>
+<p data-mw-variant-lang="sr-el"><span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"lj"}}'>lj</span><span typeof="mw:LanguageVariant" data-mw-variant='{"rt":true,"twoway":[{"l":"sr-el","t":"абвг"},{"l":"sr-ec","t":"абвг"}]}'>абвг</span><span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"nj"}}'>nj</span>шђжчћ<span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"dž"}}'>dž</span></p>
 !! end
 
 !! test
@@ -154,7 +154,7 @@ abcdшђжчћ
 !! html/parsoid
 <p>abcdшђжчћ</p>
 !! html/parsoid+langconv
-<p data-mw-variant-lang="sr-ec"><span typeof="mw:LanguageVariant" data-mw-variant='{"twoway":[{"l":"sr-ec","t":"abcdшђжчћ"},{"l":"sr-el","t":"abcdšđžčć"}],"rt":true}'>abcdšđžčć</span></p>
+<p data-mw-variant-lang="sr-ec"><span typeof="mw:LanguageVariant" data-mw-variant='{"rt":true,"twoway":[{"l":"sr-ec","t":"abcdшђжчћ"},{"l":"sr-el","t":"abcdšđžčć"}]}'>abcdšđžčć</span></p>
 !! end
 
 !! test
@@ -1112,7 +1112,7 @@ Nested: -{zh-hans:Hi -{zh-cn:China;zh-sg:Singapore;}-;zh-hant:Hello -{zh-tw:Taiw
 <p>Nested: Hello Hong Kong!
 </p>
 !! html/parsoid
-<p>Nested: <span typeof="mw:LanguageVariant" data-mw-variant='{"twoway":[{"l":"zh-hans","t":"Hi &lt;span typeof=\"mw:LanguageVariant\" data-mw-variant=&apos;{\"twoway\":[{\"l\":\"zh-cn\",\"t\":\"China\"},{\"l\":\"zh-sg\",\"t\":\"Singapore\"}]}&apos; data-parsoid=&apos;{\"fl\":[],\"src\":\"-{zh-cn:China;zh-sg:Singapore;}-\",\"tSp\":[7],\"dsr\":[21,53,2,2]}&apos;>&lt;/span>"},{"l":"zh-hant","t":"Hello &lt;span typeof=\"mw:LanguageVariant\" data-mw-variant=&apos;{\"twoway\":[{\"l\":\"zh-tw\",\"t\":\"Taiwan\"},{\"l\":\"zh-hk\",\"t\":\"H&amp;lt;span typeof=\\\"mw:LanguageVariant\\\" data-mw-variant=&amp;apos;{\\\"disabled\\\":{\\\"t\\\":\\\"ong\\\"}}&amp;apos; data-parsoid=&amp;apos;{\\\"fl\\\":[],\\\"src\\\":\\\"-{ong}-\\\",\\\"dsr\\\":[90,97,2,2]}&amp;apos;>&amp;lt;/span> K&amp;lt;span typeof=\\\"mw:LanguageVariant\\\" data-mw-variant=&amp;apos;{\\\"disabled\\\":{\\\"t\\\":\\\"\\\"}}&amp;apos; data-parsoid=&amp;apos;{\\\"fl\\\":[],\\\"src\\\":\\\"-{}-\\\",\\\"dsr\\\":[99,103,2,2]}&amp;apos;>&amp;lt;/span>ong\"}]}&apos; data-parsoid=&apos;{\"fl\":[],\"src\":\"-{zh-tw:Taiwan;zh-hk:H-{ong}- K-{}-ong;}-\",\"tSp\":[7],\"dsr\":[68,109,2,2]}&apos;>&lt;/span>"}]}' data-parsoid='{"fl":[],"src":"-{zh-hans:Hi -{zh-cn:China;zh-sg:Singapore;}-;zh-hant:Hello -{zh-tw:Taiwan;zh-hk:H-{ong}- K-{}-ong;}-;}-","tSp":[7]}'></span>!</p>
+<p>Nested: <span typeof="mw:LanguageVariant" data-mw-variant='{"twoway":[{"l":"zh-hans","t":"Hi &lt;span typeof=\"mw:LanguageVariant\" data-mw-variant=&apos;{\"twoway\":[{\"l\":\"zh-cn\",\"t\":\"China\"},{\"l\":\"zh-sg\",\"t\":\"Singapore\"}]}&apos; data-parsoid=&apos;{\"fl\":[],\"src\":\"-{zh-cn:China;zh-sg:Singapore;}-\",\"tSp\":[7],\"dsr\":[21,53,2,2]}&apos;>&lt;/span>"},{"l":"zh-hant","t":"Hello &lt;span typeof=\"mw:LanguageVariant\" data-mw-variant=&apos;{\"twoway\":[{\"l\":\"zh-tw\",\"t\":\"Taiwan\"},{\"l\":\"zh-hk\",\"t\":\"H&amp;lt;span typeof=\\\"mw:LanguageVariant\\\" data-parsoid=&amp;apos;{\\\"fl\\\":[],\\\"src\\\":\\\"-{ong}-\\\",\\\"dsr\\\":[90,97,2,2]}&amp;apos; data-mw-variant=&amp;apos;{\\\"disabled\\\":{\\\"t\\\":\\\"ong\\\"}}&amp;apos;>&amp;lt;/span> K&amp;lt;span typeof=\\\"mw:LanguageVariant\\\" data-parsoid=&amp;apos;{\\\"fl\\\":[],\\\"src\\\":\\\"-{}-\\\",\\\"dsr\\\":[99,103,2,2]}&amp;apos; data-mw-variant=&amp;apos;{\\\"disabled\\\":{\\\"t\\\":\\\"\\\"}}&amp;apos;>&amp;lt;/span>ong\"}]}&apos; data-parsoid=&apos;{\"fl\":[],\"src\":\"-{zh-tw:Taiwan;zh-hk:H-{ong}- K-{}-ong;}-\",\"tSp\":[7],\"dsr\":[68,109,2,2]}&apos;>&lt;/span>"}]}' data-parsoid='{"fl":[],"src":"-{zh-hans:Hi -{zh-cn:China;zh-sg:Singapore;}-;zh-hant:Hello -{zh-tw:Taiwan;zh-hk:H-{ong}- K-{}-ong;}-;}-","tSp":[7]}'></span>!</p>
 !! end
 
 !! test
@@ -1125,7 +1125,7 @@ language=zh htmlVariantLanguage=zh-Hans-CN
 <p><span title="X">A</span>
 </p>
 !! html/parsoid
-<p><span typeof="mw:LanguageVariant" data-mw-variant='{"filter":{"l":["zh","zh-hans","zh-hant"],"t":"&lt;span title=\"\" about=\"#mwt1\" typeof=\"mw:ExpandedAttrs\" data-parsoid=&apos;{\"stx\":\"html\",\"a\":{\"title\":\"\"},\"sa\":{\"title\":\"-{X}-\"},\"dsr\":[21,49,20,7]}&apos; data-mw=&apos;{\"attribs\":[[{\"txt\":\"title\"},{\"html\":\"&amp;lt;span typeof=\\\"mw:LanguageVariant\\\" data-mw-variant=&amp;apos;{\\\"disabled\\\":{\\\"t\\\":\\\"X\\\"}}&amp;apos; data-parsoid=&amp;apos;{\\\"fl\\\":[],\\\"src\\\":\\\"-{X}-\\\",\\\"dsr\\\":[34,39,2,2]}&amp;apos;>&amp;lt;/span>\"}]]}&apos;>A&lt;/span>"}}' data-parsoid='{"fl":["zh","zh-hans","zh-hant"],"src":"-{zh;zh-hans;zh-hant|&lt;span title=\"-{X}-\">A&lt;/span>}-"}'></span></p>
+<p><span typeof="mw:LanguageVariant" data-mw-variant='{"filter":{"l":["zh","zh-hans","zh-hant"],"t":"&lt;span title=\"\" about=\"#mwt1\" typeof=\"mw:ExpandedAttrs\" data-parsoid=&apos;{\"stx\":\"html\",\"a\":{\"title\":\"\"},\"sa\":{\"title\":\"-{X}-\"},\"dsr\":[21,49,20,7]}&apos; data-mw=&apos;{\"attribs\":[[{\"txt\":\"title\"},{\"html\":\"&amp;lt;span typeof=\\\"mw:LanguageVariant\\\" data-parsoid=&amp;apos;{\\\"fl\\\":[],\\\"src\\\":\\\"-{X}-\\\",\\\"dsr\\\":[34,39,2,2]}&amp;apos; data-mw-variant=&amp;apos;{\\\"disabled\\\":{\\\"t\\\":\\\"X\\\"}}&amp;apos;>&amp;lt;/span>\"}]]}&apos;>A&lt;/span>"}}' data-parsoid='{"fl":["zh","zh-hans","zh-hant"],"src":"-{zh;zh-hans;zh-hant|&lt;span title=\"-{X}-\">A&lt;/span>}-"}'></span></p>
 !! end
 
 !! test
@@ -1138,7 +1138,7 @@ language=zh htmlVariantLanguage=zh-Hans-CN
 <p><span title="X">A</span>
 </p>
 !! html/parsoid
-<p><span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"&lt;span title=\"\" about=\"#mwt1\" typeof=\"mw:ExpandedAttrs\" data-parsoid=&apos;{\"stx\":\"html\",\"a\":{\"title\":\"\"},\"sa\":{\"title\":\"-{X}-\"},\"dsr\":[2,30,20,7]}&apos; data-mw=&apos;{\"attribs\":[[{\"txt\":\"title\"},{\"html\":\"&amp;lt;span typeof=\\\"mw:LanguageVariant\\\" data-mw-variant=&amp;apos;{\\\"disabled\\\":{\\\"t\\\":\\\"X\\\"}}&amp;apos; data-parsoid=&amp;apos;{\\\"fl\\\":[],\\\"src\\\":\\\"-{X}-\\\",\\\"dsr\\\":[15,20,2,2]}&amp;apos;>&amp;lt;/span>\"}]]}&apos;>A&lt;/span>"}}' data-parsoid='{"fl":[],"src":"-{&lt;span title=\"-{X}-\">A&lt;/span>}-"}'></span></p>
+<p><span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"&lt;span title=\"\" about=\"#mwt1\" typeof=\"mw:ExpandedAttrs\" data-parsoid=&apos;{\"stx\":\"html\",\"a\":{\"title\":\"\"},\"sa\":{\"title\":\"-{X}-\"},\"dsr\":[2,30,20,7]}&apos; data-mw=&apos;{\"attribs\":[[{\"txt\":\"title\"},{\"html\":\"&amp;lt;span typeof=\\\"mw:LanguageVariant\\\" data-parsoid=&amp;apos;{\\\"fl\\\":[],\\\"src\\\":\\\"-{X}-\\\",\\\"dsr\\\":[15,20,2,2]}&amp;apos; data-mw-variant=&amp;apos;{\\\"disabled\\\":{\\\"t\\\":\\\"X\\\"}}&amp;apos;>&amp;lt;/span>\"}]]}&apos;>A&lt;/span>"}}' data-parsoid='{"fl":[],"src":"-{&lt;span title=\"-{X}-\">A&lt;/span>}-"}'></span></p>
 !! end
 
 # Parsoid and PHP disagree on how to parse this example: Parsoid
@@ -1352,7 +1352,7 @@ language=sr htmlVariantLanguage=sr-Cyrl
 <p>foo
 </p>
 !! html/parsoid
-<p><span typeof="mw:Transclusion mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"foo"}}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Шаблон:1x"},"params":{"1":{"wt":"-{R|foo}-"}},"i":0}}]}'></span></p>
+<p><span typeof="mw:Transclusion mw:LanguageVariant" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Шаблон:1x"},"params":{"1":{"wt":"-{R|foo}-"}},"i":0}}]}' data-mw-variant='{"disabled":{"t":"foo"}}'></span></p>
 !! end
 
 !! test

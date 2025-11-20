@@ -2242,3 +2242,22 @@ Multi-line transclusions should not interrupt table-cell parsing in the same row
 <td class="e1">Col 3.1</td><td class="e2" data-parsoid='{"stx":"row"}'><span about="#mwt3" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1","named":true,"spc":["\n","","",""]}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"Col 3.2"}},"i":0}}]}'>Col 3.2</span></td><td class="e3" data-parsoid='{"stx":"row"}'>Col 3.3| abcd</td><td class="e4" data-parsoid='{"stx":"row"}'>Col 3.4</td></tr>
 </tbody></table>
 !! end
+
+!! test
+Row syntax td starting with closing curly brace
+!! wikitext
+{|
+|a||}||b
+|}
+!! html/php
+<table>
+<tbody><tr>
+<td>a</td>
+<td>}</td>
+<td>b
+</td></tr></tbody></table>
+!! html/parsoid
+<table>
+<tbody><tr><td>a</td><td data-parsoid='{"stx":"row"}'>}</td><td data-parsoid='{"stx":"row"}'>b</td></tr>
+</tbody></table>
+!! end
