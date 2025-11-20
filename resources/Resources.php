@@ -125,6 +125,47 @@ return [
 			'searchsuggest-containing-html'
 		]
 	],
+	'mediawiki.languageselector' => [
+		'class' => 'MediaWiki\\ResourceLoader\\CodexModule',
+		'localBasePath' => MW_INSTALL_PATH . '/resources/src/mediawiki.languageselector',
+		'remoteBasePath' => '',
+		'packageFiles' => [
+			'index.js',
+			'LanguageSelector.vue',
+			'LookupLanguageSelector.vue',
+			'languageSearch.js',
+			'factory.js',
+			'debounce.js',
+			[
+				'name' => 'supportedLanguages.json',
+				'callback' => static function ( Context $context ) {
+					$services = MediaWikiServices::getInstance();
+
+					return $services->getLanguageNameUtils()
+						->getLanguageNames(
+							$context->getLanguage(),
+							LanguageNameUtils::SUPPORTED
+						);
+				},
+				'versionCallback' => static function ( Context $context ) {
+					return [
+						$context->getLanguage(),
+						// In case a new language is added
+						MediaWikiServices::getInstance()->getMainConfig()->get( 'CacheEpoch' )
+					];
+				},
+			],
+		],
+		'codexComponents' => [
+			'CdxLookup'
+		],
+		'messages' => [
+			'languageselector-no-results'
+		],
+		'dependencies' => [
+			'vue'
+		]
+	],
 
 	/* Polyfills */
 	'web2017-polyfills' => [

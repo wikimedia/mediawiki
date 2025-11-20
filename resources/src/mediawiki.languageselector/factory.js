@@ -1,0 +1,57 @@
+const Vue = require( 'vue' );
+const { h } = Vue;
+const LookupLanguageSelector = require( './LookupLanguageSelector.vue' );
+
+/**
+ * Create a Vue application for the LookupLanguageSelector component.
+ *
+ * @typedef {Object} LookupLanguageSelectorConfig
+ * @property {Object|null} [selectableLanguages=null] An object mapping language codes to labels for selectable languages.
+ * @property {string|null} [selectedLanguage=null] The language code to select initially.
+ * @property {Object} [menuConfig={}] Configuration for the Codex Lookup menu. See https://doc.wikimedia.org/codex/latest/components/types-and-constants.html#menuconfig
+ * @property {string|null} [apiUrl=null] The API URL to use for language search. Defaults to the current wiki's API.
+ * @property {Function|null} [menuItemSlot=null] Slot function for the menu item. Receives the slot props object `{ menuItem, languageCode, languageName }` as an argument and should return a VNodeChild (see https://vuejs.org/api/options-rendering#render).
+ * @property {Function|null} [onLanguageChange=null] Callback function when language is selected. Received the selected language code as an argument.
+ *
+ * @param {LookupLanguageSelectorConfig} config The configuration object for the selector.
+ * @return {Object} The Vue application instance.
+ */
+function getLookupLanguageSelector( config ) {
+	const {
+		selectableLanguages = null,
+		selectedLanguage = null,
+		menuConfig = {},
+		apiUrl = null,
+		menuItemSlot = null,
+		onLanguageChange = null
+	} = config;
+
+	return Vue.createMwApp( {
+		data() {
+			return {
+				apiUrl: apiUrl || mw.util.wikiScript( 'api' ),
+				selectedLanguage,
+				selectableLanguages,
+				menuConfig
+			};
+		},
+		render() {
+			return h( LookupLanguageSelector, {
+				searchApiUrl: this.apiUrl,
+				selectableLanguages: this.selectableLanguages,
+				selected: this.selectedLanguage,
+				'onUpdate:selected': ( newValue ) => {
+					this.selectedLanguage = newValue;
+					if ( onLanguageChange ) {
+						onLanguageChange( newValue );
+					}
+				},
+				menuConfig: this.menuConfig
+			}, {
+				'menu-item': menuItemSlot
+			} );
+		}
+	} );
+}
+
+module.exports = getLookupLanguageSelector;
