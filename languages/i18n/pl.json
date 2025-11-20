@@ -2546,6 +2546,7 @@
 	"block-cancel": "Anuluj",
 	"block-create": "Dodaj blokadę",
 	"blockip": "Zablokuj {{GENDER:$1|użytkownika|użytkowniczkę}}",
+	"blockiprange": "Zablokuj zakres IP",
 	"blockiptext": "Blokowanie jest stosowane w celu zapobiegania wandalizmom oraz innym złośliwym działaniom ([[{{MediaWiki:Policy-url}}|dowiedz się więcej]]). Możesz zablokować zakres adresów, stosując składnię [https://pl.wikipedia.org/wiki/Classless_Inter-Domain_Routing CIDR]. Najszerszym dozwolonym zakresem jest /$1 dla IPv4 i /$2 dla IPv6.",
 	"block-multiblocks-new-feature": "Została dodana nowa funkcja pozwalająca nakładać kilka blokad na jedno konto.",
 	"ipaddressorusername": "Adres IP, nazwa użytkownika lub ID blokady:",
@@ -2637,6 +2638,7 @@
 	"block-reblock-multi-legacy": "Użytkownik ma kilka trwających blokad, w związku z czym nie może być zablokowany ponownie z użyciem tego formularza.",
 	"block-view-target": "Zobacz",
 	"unblockip": "Odblokuj użytkownika",
+	"unblockiprange": "Odblokuj zakres IP",
 	"unblockiptext": "Użyj poniższego formularza, by przywrócić możliwość edycji z wcześniej zablokowanego adresu IP lub użytkownikowi.",
 	"unblock-target": "Odblokuj cel",
 	"unblock-target-label": "Wprowadź nazwę użytkownika, adres IP lub identyfikator blokady:",
@@ -4159,5 +4161,6 @@
 	"benefit-3-description": "Preferencje pozwalające dostosować twoje korzystanie z projektu.",
 	"temp-user-unable-to-acquire": "Nie udało się uzyskać nazwy tymczasowego konta użytkownika. Spróbuj ponownie.",
 	"table-of-contents-show-button-aria-label": "Pokaż spis treści",
-	"table-of-contents-hide-button-aria-label": "Ukryj spis treści"
+	"table-of-contents-hide-button-aria-label": "Ukryj spis treści",
+	"diff-usergroups": "$1 {{PLURAL:$1|grupa|grupy|grup}} użytkowników"
 }

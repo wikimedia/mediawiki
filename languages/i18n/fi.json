@@ -2508,6 +2508,7 @@
 	"block-cancel": "Peruuta",
 	"block-create": "Lisää esto",
 	"blockip": "Estä {{GENDER:$1|käyttäjä}}",
+	"blockiprange": "Estä IP-alue",
 	"blockiptext": "Estämisen tarkoituksena on ehkäistä vandalismia ja muita häiriköinnin muotoja ([[{{MediaWiki:Policy-url}}|lisätietoja]]).\nVoit estää IP-osoiteavaruuksia käyttämällä [https://fi.wikipedia.org/wiki/Luokaton_reititys CIDR]-syntaksia. Suurin sallittu alue IPv4-protokollalle on /$1 ja IPv6-protokollalle /$2.",
 	"block-multiblocks-new-feature": "On tullut käyttöön uusi ominaisuus, jonka mahdollistaa useiden estojen antamisen samalle tunnukselle.",
 	"ipaddressorusername": "IP-osoite, käyttäjänimi tai eston tunniste:",
@@ -2599,6 +2600,7 @@
 	"block-reblock-multi-legacy": "Tämä käyttäjä on jo estetty useampaan kertaa, eikä sille pysty asettamaan uusia estoja tällä lomakkeella.",
 	"block-view-target": "Näytä",
 	"unblockip": "Muokkauseston poisto käyttäjältä",
+	"unblockiprange": "Poista IP-alueen esto",
 	"unblockiptext": "Tällä lomakkeella voit poistaa käyttäjän tai IP-osoitteen muokkauseston.",
 	"unblock-target": "Poista kohteen esto",
 	"unblock-target-label": "Anna käyttäjänimi, IP-osoite tai eston tunnus:",
@@ -4136,5 +4138,6 @@
 	"benefit-3-description": "Asetukset, joiden avulla voit mukauttaa kokemustasi.",
 	"temp-user-unable-to-acquire": "Tilapäisen tunnuksen käyttäjänimen hankkiminen ei onnistunut. Yritä uudelleen.",
 	"table-of-contents-show-button-aria-label": "Näytä sisällysluettelo",
-	"table-of-contents-hide-button-aria-label": "Piilota sisällysluettelo"
+	"table-of-contents-hide-button-aria-label": "Piilota sisällysluettelo",
+	"diff-usergroups": "$1 {{PLURAL:$1| käyttäjäryhmä|käyttäjäryhmää}}"
 }

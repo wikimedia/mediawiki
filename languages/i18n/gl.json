@@ -2470,7 +2470,8 @@
 	"block-cancel": "Cancelar",
 	"block-create": "Engadir o bloqueo",
 	"blockip": "Bloquear {{GENDER:$1|o usuario|a usuaria}}",
-	"blockiptext": "Os bloqueos utilízanse para evitar o vandalismo e outras accións inadecuadas ([[{{MediaWiki:Policy-url}}|máis información]]). Podes bloquear intervalos de enderezos IP mediante a sintaxe \n[https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing CIDR]. O intervalo máis grande permitido é /$1 para IPv4 e /$2 para IPv6.",
+	"blockiprange": "Bloquear o rango de IP",
+	"blockiptext": "Os bloqueos utilízanse para evitar o vandalismo e outras accións inadecuadas ([[{{MediaWiki:Policy-url}}|máis información]]). Podes bloquear rangos de enderezos IP mediante a sintaxe \n[https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing CIDR]. O rango máis grande permitido é /$1 para IPv4 e /$2 para IPv6.",
 	"block-multiblocks-new-feature": "Hai unha nova función que che permite emitir varios bloqueos contra unha única conta.",
 	"ipaddressorusername": "Enderezo IP, nome de usuario ou identificador de bloqueo:",
 	"ipbreason": "Motivo:",
@@ -2561,6 +2562,7 @@
 	"block-reblock-multi-legacy": "Este usuario xa está bloqueado varias veces e non se pode volver bloquear con este formulario.",
 	"block-view-target": "Ver",
 	"unblockip": "Desbloquear un usuario",
+	"unblockiprange": "Desbloquear o rango de IP",
 	"unblockiptext": "Utiliza o seguinte formulario para dar de novo acceso de escritura a un enderezo IP ou usuario que estea bloqueado.",
 	"unblock-target": "Desbloquear un obxectivo",
 	"unblock-target-label": "Indica un nome de usuario, enderezo IP ou identificador de bloqueo:",
@@ -4103,5 +4105,5 @@
 	"temp-user-unable-to-acquire": "Non se puido adquirir un nome de usuario para a conta temporal. Inténtao de novo.",
 	"table-of-contents-show-button-aria-label": "Amosar a táboa de contidos",
 	"table-of-contents-hide-button-aria-label": "Agochar a táboa de contidos",
-	"diff-usergroups": "$1 os grupos de usuario"
+	"diff-usergroups": "$1 {{PLURAL:$1|grupo|grupos}} de usuario"
 }

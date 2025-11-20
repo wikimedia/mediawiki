@@ -4099,5 +4099,6 @@
 	"createacct-benefit-subheading-temp-user": "{{SITENAME}} è fatto da persone come te. Con un account puoi avere un'identità permanente e sicura, ed accedere a funzionalità come:",
 	"benefit-2-description": "Elenco permanente dei contributi che hai apportato al progetto.",
 	"table-of-contents-show-button-aria-label": "Mostra l'indice",
-	"table-of-contents-hide-button-aria-label": "Nascondi l'indice"
+	"table-of-contents-hide-button-aria-label": "Nascondi l'indice",
+	"diff-usergroups": "$1 {{PLURAL:$1|gruppo utente|gruppi utente}}"
 }

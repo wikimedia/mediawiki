@@ -2715,7 +2715,7 @@
 	"blocklist-hidden-param": "利用者名は隠されています",
 	"contribslink": "投稿記録",
 	"emaillink": "メールを送信",
-	"autoblocker": "この IP アドレスを「[[User:$1|$1]]」が最近使用したため、自動ブロックされています。\n$1 のブロック理由: \"$2\"",
+	"autoblocker": "この IP アドレスを「[[User:$1|$1]]」が最近使用したため、自動ブロックされています。\n$1 のブロックの理由は「$2」です。",
 	"blocklogpage": "ブロック記録",
 	"blocklog-showlog": "この{{GENDER:$1|利用者}}にはブロック歴があります。\n該当のブロック記録は以下の通りです:",
 	"blocklog-showsuppresslog": "この{{GENDER:$1|利用者}}には利用者名の秘匿化を伴ったブロック歴があります。\n該当の秘匿記録は以下の通りです:",

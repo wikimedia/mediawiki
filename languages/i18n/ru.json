@@ -2140,6 +2140,7 @@
 	"apisandbox-request-php-label": "Запросить PHP-массив:",
 	"apisandbox-request-time": "Время запроса: {{PLURAL:$1|$1 мс}}",
 	"apisandbox-request-post": "Этот запрос должен быть отправлен с использованием HTTP-метода POST.",
+	"apisandbox-request-post2": "Из-за размера полезной нагрузки этот запрос был отправлен с использованием HTTP-метода POST.",
 	"apisandbox-request-formdata": "Этот запрос должен быть отправлен как загрузка файла (т.е. с использованием <code>multipart/form-data</code>).",
 	"apisandbox-results-fixtoken": "Исправьте токен и повторите отправку",
 	"apisandbox-results-fixtoken-fail": "Не удалось вызвать токен «$1».",
@@ -2351,6 +2352,8 @@
 	"watchlistlabels-table-header": "Метки",
 	"watchlistlabels-table-new-link": "+ Новая метка",
 	"watchlistlabels-table-col-name": "Имя",
+	"watchlistlabels-table-col-actions": "Действия",
+	"watchlistlabels-table-edit": "Править",
 	"watchlistlabels-form-header-new": "Новая метка",
 	"watchlistlabels-form-header-edit": "Переименовать",
 	"watchlistlabels-form-field-name": "Название метки",
@@ -2545,6 +2548,7 @@
 	"undelete-missing-filearchive": "Невозможно восстановить файл с архивным идентификатором $1, так как он отсутствует в базе данных. Возможно, файл уже был восстановлен.",
 	"undelete-talk-summary-prefix": "Восстановлено вместе со связанной страницей по причине: $1",
 	"undelete-error": "Ошибка восстановления страницы",
+	"undelete-error-mixed": "Выберите либо версии страницы, либо версии файла, но не то и другое сразу. Выберите только тот тип, видимость которого вы хотите изменить.",
 	"undelete-error-none": "Не выбраны версии страницы или файла. Выберите один или несколько элементов, чтобы изменить их видимость.",
 	"undelete-error-associated-alreadytalk": "Восстановить связанную страницу обсуждения страницы обсуждения невозможно.",
 	"undelete-error-associated-notdeleted": "У связанной страницы обсуждения нет версий, которые можно восстановить.",
@@ -4264,5 +4268,6 @@
 	"benefit-3-description": "Настройки, которые позволяют вам персонализировать свой опыт.",
 	"temp-user-unable-to-acquire": "Не удалось получить имя участника для временной учётной записи. Пожалуйста, попробуйте ещё раз.",
 	"table-of-contents-show-button-aria-label": "Показать содержание",
-	"table-of-contents-hide-button-aria-label": "Скрыть содержание"
+	"table-of-contents-hide-button-aria-label": "Скрыть содержание",
+	"diff-usergroups": "$1 {{PLURAL:$1|группа участника|группы участника|групп участника}}"
 }

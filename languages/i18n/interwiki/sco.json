@@ -44,6 +44,6 @@
 	"logentry-interwiki-iw_edit": "$1 {{GENDER:$2|modified}} prefix \"$4\" ($5) (trans: $6; local: $7) in the interwiki buird",
 	"logentry-interwiki-iw_delete": "$1 {{GENDER:$2|removed}} prefix \"$4\" fae the interwiki buird",
 	"log-description-interwiki": "This is ae log o chynges til the [[Special:Interwiki|interwiki buird]].",
-	"right-interwiki": "Eidit interwiki data",
+	"right-interwiki": "Edit interwiki data",
 	"action-interwiki": "chynge this interwiki entrie"
 }
