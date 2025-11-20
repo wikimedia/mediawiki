@@ -4,6 +4,8 @@
 			"Samoasambia"
 		]
 	},
+	"cdx-breadcrumb-navigation-label": "Linkkipolku",
+	"cdx-breadcrumb-overflow-label": "Lisää navigointivaihtoehtoja",
 	"cdx-chip-input-chip-added": "Chip $1 lisättiin.",
 	"cdx-chip-input-chip-removed": "Chip $1 poistettiin.",
 	"cdx-input-chip-aria-description": "Paina Enter muokataksesi tai Delete poistaaksesi.",

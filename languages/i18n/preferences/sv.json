@@ -216,6 +216,8 @@
 	"rcfilters-watchlist-preference-label": "Använd gränssnitt som inte använder JavaScript",
 	"rcfilters-watchlist-preference-help": "Läser in [[{{#special:Watchlist}}|bevakningslistan]] utan filtersökning eller markeringsfunktionalitet.",
 	"prefs-changeswatchlist": "Ändringar som visas",
+	"tog-watchstar-expiry": "Standardtidsperiod för manuellt tillagda sidor i bevakningslista:",
+	"tog-watch-expiry": "Standardtidsperiod:",
 	"tog-watchlisthideminor": "Dölj mindre ändringar i bevakningslistan",
 	"tog-watchlisthidebots": "Visa inte robotredigeringar i bevakningslistan",
 	"tog-watchlisthideown": "Dölj mina redigeringar i bevakningslistan",
