@@ -261,7 +261,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 					'password' => $wgDBpassword,
 					'type' => $wgDBtype,
 					'dbDirectory' => $wgSQLiteDataDir,
-					'load' => 50,
+					'load' => $masterOnly ? 0 : 50,
 					'is static' => true
 				],
 			4 => $srvExtra + [
