@@ -5,7 +5,7 @@
  * @ingroup Pager
  */
 
-namespace MediaWiki\Pager;
+namespace MediaWiki\Specials\Pager;
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\ChangeTags\ChangeTags;
@@ -19,6 +19,7 @@ use MediaWiki\Html\FormOptions;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\Pager\ReverseChronologicalPager;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\RecentChanges\ChangesList;
@@ -378,3 +379,6 @@ class NewPagesPager extends ReverseChronologicalPager {
  * @deprecated since 1.41
  */
 class_alias( NewPagesPager::class, 'NewPagesPager' );
+
+/** @deprecated class alias since 1.46 */
+class_alias( NewPagesPager::class, 'MediaWiki\\Pager\\NewPagesPager' );

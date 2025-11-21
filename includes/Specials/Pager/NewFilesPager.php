@@ -5,7 +5,7 @@
  * @ingroup Pager
  */
 
-namespace MediaWiki\Pager;
+namespace MediaWiki\Specials\Pager;
 
 use ImageGalleryClassNotFoundException;
 use MediaWiki\Cache\LinkBatchFactory;
@@ -14,6 +14,7 @@ use MediaWiki\Gallery\ImageGalleryBase;
 use MediaWiki\Html\FormOptions;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Pager\RangeChronologicalPager;
 use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\Title\Title;
@@ -229,3 +230,6 @@ class NewFilesPager extends RangeChronologicalPager {
  * @deprecated since 1.41
  */
 class_alias( NewFilesPager::class, 'NewFilesPager' );
+
+/** @deprecated class alias since 1.46 */
+class_alias( NewFilesPager::class, 'MediaWiki\\Pager\\NewFilesPager' );

@@ -5,7 +5,7 @@
  * @ingroup Pager
  */
 
-namespace MediaWiki\Pager;
+namespace MediaWiki\Specials\Pager;
 
 use MediaWiki\Block\BlockActionInfo;
 use MediaWiki\Block\BlockRestrictionStore;
@@ -25,6 +25,8 @@ use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Pager\IndexPager;
+use MediaWiki\Pager\TablePager;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\Utils\MWTimestamp;
@@ -592,3 +594,6 @@ class BlockListPager extends TablePager {
  * @deprecated since 1.41
  */
 class_alias( BlockListPager::class, 'BlockListPager' );
+
+/** @deprecated class alias since 1.46 */
+class_alias( BlockListPager::class, 'MediaWiki\\Pager\\BlockListPager' );

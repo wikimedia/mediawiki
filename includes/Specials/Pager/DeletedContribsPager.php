@@ -5,13 +5,14 @@
  * @ingroup Pager
  */
 
-namespace MediaWiki\Pager;
+namespace MediaWiki\Specials\Pager;
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\Pager\ContributionsPager;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\User\UserFactory;
@@ -90,3 +91,6 @@ class DeletedContribsPager extends ContributionsPager {
  * @deprecated since 1.41
  */
 class_alias( DeletedContribsPager::class, 'DeletedContribsPager' );
+
+/** @deprecated class alias since 1.46 */
+class_alias( DeletedContribsPager::class, 'MediaWiki\\Pager\\DeletedContribsPager' );

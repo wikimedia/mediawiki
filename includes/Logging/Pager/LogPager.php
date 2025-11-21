@@ -9,7 +9,7 @@
  * @file
  */
 
-namespace MediaWiki\Pager;
+namespace MediaWiki\Logging\Pager;
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Logging\DatabaseLogEntry;
@@ -19,6 +19,7 @@ use MediaWiki\Logging\LogPage;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
+use MediaWiki\Pager\ReverseChronologicalPager;
 use MediaWiki\Title\Title;
 use MediaWiki\User\ActorNormalization;
 use MediaWiki\User\UserIdentityValue;
@@ -606,3 +607,6 @@ class LogPager extends ReverseChronologicalPager {
 
 /** @deprecated class alias since 1.41 */
 class_alias( LogPager::class, 'LogPager' );
+
+/** @deprecated class alias since 1.46 */
+class_alias( LogPager::class, 'MediaWiki\\Pager\\LogPager' );

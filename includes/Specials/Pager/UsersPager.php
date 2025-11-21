@@ -9,7 +9,7 @@
  * @ingroup Pager
  */
 
-namespace MediaWiki\Pager;
+namespace MediaWiki\Specials\Pager;
 
 use MediaWiki\Block\HideUserUtils;
 use MediaWiki\Cache\LinkBatchFactory;
@@ -26,6 +26,8 @@ use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Pager\AlphabeticPager;
+use MediaWiki\Pager\IndexPager;
 use MediaWiki\Title\Title;
 use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\UserGroupManager;
@@ -546,3 +548,6 @@ class UsersPager extends AlphabeticPager {
  * @deprecated since 1.41
  */
 class_alias( UsersPager::class, 'UsersPager' );
+
+/** @deprecated class alias since 1.46 */
+class_alias( UsersPager::class, 'MediaWiki\\Pager\\UsersPager' );

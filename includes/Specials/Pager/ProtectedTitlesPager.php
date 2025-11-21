@@ -5,13 +5,14 @@
  * @ingroup Pager
  */
 
-namespace MediaWiki\Pager;
+namespace MediaWiki\Specials\Pager;
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\Pager\AlphabeticPager;
 use MediaWiki\Title\Title;
 use Wikimedia\Rdbms\IConnectionProvider;
 
@@ -128,3 +129,6 @@ class ProtectedTitlesPager extends AlphabeticPager {
  * @deprecated since 1.41
  */
 class_alias( ProtectedTitlesPager::class, 'ProtectedTitlesPager' );
+
+/** @deprecated class alias since 1.46 */
+class_alias( ProtectedTitlesPager::class, 'MediaWiki\\Pager\\ProtectedTitlesPager' );

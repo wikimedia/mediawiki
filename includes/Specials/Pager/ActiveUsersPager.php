@@ -5,7 +5,7 @@
  * @ingroup Pager
  */
 
-namespace MediaWiki\Pager;
+namespace MediaWiki\Specials\Pager;
 
 use MediaWiki\Block\HideUserUtils;
 use MediaWiki\Cache\LinkBatchFactory;
@@ -303,3 +303,6 @@ class ActiveUsersPager extends UsersPager {
  * @deprecated since 1.41
  */
 class_alias( ActiveUsersPager::class, 'ActiveUsersPager' );
+
+/** @deprecated class alias since 1.46 */
+class_alias( ActiveUsersPager::class, 'MediaWiki\\Pager\\ActiveUsersPager' );

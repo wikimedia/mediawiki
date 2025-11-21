@@ -5,7 +5,7 @@
  * @ingroup Pager
  */
 
-namespace MediaWiki\Pager;
+namespace MediaWiki\Specials\Pager;
 
 use DateTime;
 use MediaWiki\Cache\LinkBatchFactory;
@@ -14,6 +14,8 @@ use MediaWiki\Context\IContextSource;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Pager\ContributionsPager;
+use MediaWiki\Pager\ReverseChronologicalPager;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\SpecialPage\ContributionsRangeTrait;
 use MediaWiki\Title\NamespaceInfo;
@@ -226,3 +228,6 @@ class ContribsPager extends ContributionsPager {
  * @deprecated since 1.41
  */
 class_alias( ContribsPager::class, 'ContribsPager' );
+
+/** @deprecated class alias since 1.46 */
+class_alias( ContribsPager::class, 'MediaWiki\\Pager\\ContribsPager' );

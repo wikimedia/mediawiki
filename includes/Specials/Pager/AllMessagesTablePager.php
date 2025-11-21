@@ -5,7 +5,7 @@
  * @ingroup Pager
  */
 
-namespace MediaWiki\Pager;
+namespace MediaWiki\Specials\Pager;
 
 use LocalisationCache;
 use MediaWiki\Context\IContextSource;
@@ -15,6 +15,8 @@ use MediaWiki\Language\Language;
 use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Pager\IndexPager;
+use MediaWiki\Pager\TablePager;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
@@ -400,3 +402,6 @@ class AllMessagesTablePager extends TablePager {
  * @deprecated since 1.41
  */
 class_alias( AllMessagesTablePager::class, 'AllMessagesTablePager' );
+
+/** @deprecated class alias since 1.46 */
+class_alias( AllMessagesTablePager::class, 'MediaWiki\\Pager\\AllMessagesTablePager' );

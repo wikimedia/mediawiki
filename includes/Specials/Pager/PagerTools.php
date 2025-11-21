@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Pager;
+namespace MediaWiki\Specials\Pager;
 
 use MediaWiki\Context\IContextSource;
 use MediaWiki\HookContainer\HookRunner;
@@ -119,3 +119,6 @@ class PagerTools {
  * @deprecated since 1.41
  */
 class_alias( PagerTools::class, 'PagerTools' );
+
+/** @deprecated class alias since 1.46 */
+class_alias( PagerTools::class, 'MediaWiki\\Pager\\PagerTools' );

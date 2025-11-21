@@ -5,7 +5,7 @@
  * @ingroup Pager
  */
 
-namespace MediaWiki\Pager;
+namespace MediaWiki\Specials\Pager;
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentFormatter\RowCommentFormatter;
@@ -16,6 +16,7 @@ use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Logging\LogEventsList;
 use MediaWiki\Logging\LogPage;
+use MediaWiki\Pager\TablePager;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentityValue;
 use UnexpectedValueException;
@@ -362,3 +363,6 @@ class ProtectedPagesPager extends TablePager {
  * @deprecated since 1.41
  */
 class_alias( ProtectedPagesPager::class, 'ProtectedPagesPager' );
+
+/** @deprecated class alias since 1.46 */
+class_alias( ProtectedPagesPager::class, 'MediaWiki\\Pager\\ProtectedPagesPager' );

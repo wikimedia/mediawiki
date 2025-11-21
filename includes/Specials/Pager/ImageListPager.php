@@ -5,7 +5,7 @@
  * @ingroup Pager
  */
 
-namespace MediaWiki\Pager;
+namespace MediaWiki\Specials\Pager;
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentFormatter\RowCommentFormatter;
@@ -18,6 +18,8 @@ use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Pager\IndexPager;
+use MediaWiki\Pager\TablePager;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
@@ -720,3 +722,6 @@ class ImageListPager extends TablePager {
  * @deprecated since 1.41
  */
 class_alias( ImageListPager::class, 'ImageListPager' );
+
+/** @deprecated class alias since 1.46 */
+class_alias( ImageListPager::class, 'MediaWiki\\Pager\\ImageListPager' );

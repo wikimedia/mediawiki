@@ -5,13 +5,14 @@
  * @ingroup Pager
  */
 
-namespace MediaWiki\Pager;
+namespace MediaWiki\Specials\Pager;
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\Pager\AlphabeticPager;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
 use Wikimedia\Rdbms\IConnectionProvider;
@@ -121,3 +122,6 @@ class CategoryPager extends AlphabeticPager {
  * @deprecated since 1.41
  */
 class_alias( CategoryPager::class, 'CategoryPager' );
+
+/** @deprecated class alias since 1.46 */
+class_alias( CategoryPager::class, 'MediaWiki\\Pager\\CategoryPager' );

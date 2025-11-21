@@ -226,6 +226,8 @@ because of Phabricator reports.
 	- UnwatchArticleHook
 	- WatchArticleCompleteHook
 	- WatchArticleHook
+  - Actions related pager: MediaWiki\Pager => MediaWiki\Actions\Pager
+    - HistoryPager
   - Mail related hooks: MediaWiki\Hook => MediaWiki\Mail\Hook
     - AbortTalkPageEmailNotificationHook
     - AlternateUserMailerHook
@@ -366,6 +368,23 @@ because of Phabricator reports.
     - WatchlistEditorBeforeFormRenderHook
     - WatchlistEditorBuildRemoveLineHook
     - WhatLinksHerePropsHook
+  - Specials related pager: MediaWiki\Pager => MediaWiki\Specials\Pager
+    - ActiveUsersPager
+    - AllMessagesTablePager
+    - BlockListPager
+    - CategoryPager
+    - ContribsPager
+    - DeletedContribsPager
+    - EditWatchlistPager
+    - ImageListPager
+    - MergeHistoryPager
+    - NewFilesPager
+    - NewPagesPager
+    - PagerTools
+    - ProtectedPagesPager
+    - ProtectedTitlesPager
+    - UploadStashPager
+    - UsersPager
   - Collation related hook: MediaWiki\Hook => MediaWiki\Collation\Hook
     - Collation__factoryHook
   - Context related hooks: MediaWiki\Hook => MediaWiki\Context\Hook
@@ -405,6 +424,8 @@ because of Phabricator reports.
     - LogEventsListShowLogExtractHook
     - LogLineHook
     - ManualLogEntryBeforePublishHook
+  - Logging related pager: MediaWiki\Pager => MediaWiki\Logging\Pager
+    - LogPager
   - Media related hooks: MediaWiki\Hook => MediaWiki\Media\Hook
     - BitmapHandlerCheckImageAreaHook
     - BitmapHandlerTransformHook

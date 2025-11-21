@@ -19,9 +19,11 @@
  * @ingroup Pager
  */
 
-namespace MediaWiki\Pager;
+namespace MediaWiki\Specials\Pager;
 
 use MediaWiki\Context\IContextSource;
+use MediaWiki\Pager\AlphabeticPager;
+use MediaWiki\Pager\IndexPager;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Watchlist\WatchedItemStoreInterface;
 use Wikimedia\Rdbms\FakeResultWrapper;
@@ -145,3 +147,6 @@ class EditWatchlistPager extends AlphabeticPager {
 		return new FakeResultWrapper( $titles );
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( EditWatchlistPager::class, 'MediaWiki\\Pager\\EditWatchlistPager' );

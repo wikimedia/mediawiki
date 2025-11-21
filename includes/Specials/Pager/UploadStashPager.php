@@ -5,7 +5,7 @@
  * @ingroup Pager
  */
 
-namespace MediaWiki\Pager;
+namespace MediaWiki\Specials\Pager;
 
 use MediaWiki\Context\IContextSource;
 use MediaWiki\FileRepo\File\File;
@@ -13,6 +13,7 @@ use MediaWiki\FileRepo\LocalRepo;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\Pager\TablePager;
 use MediaWiki\SpecialPage\SpecialPage;
 use UnexpectedValueException;
 use UploadStash;
@@ -213,3 +214,6 @@ class UploadStashPager extends TablePager {
 		return parent::getSortHeaderClass() . ' uploadstash_sort';
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( UploadStashPager::class, 'MediaWiki\\Pager\\UploadStashPager' );

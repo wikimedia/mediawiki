@@ -7,7 +7,7 @@
  * @ingroup Actions
  */
 
-namespace MediaWiki\Pager;
+namespace MediaWiki\Actions\Pager;
 
 use MediaWiki\Actions\HistoryAction;
 use MediaWiki\Cache\LinkBatchFactory;
@@ -22,6 +22,8 @@ use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\Article;
+use MediaWiki\Pager\PagerTools;
+use MediaWiki\Pager\ReverseChronologicalPager;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\RecentChanges\ChangesList;
 use MediaWiki\Revision\RevisionRecord;
@@ -687,3 +689,6 @@ class HistoryPager extends ReverseChronologicalPager {
 
 /** @deprecated class alias since 1.41 */
 class_alias( HistoryPager::class, 'HistoryPager' );
+
+/** @deprecated class alias since 1.46 */
+class_alias( HistoryPager::class, 'MediaWiki\\Pager\\HistoryPager' );

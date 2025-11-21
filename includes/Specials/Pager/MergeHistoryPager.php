@@ -5,7 +5,7 @@
  * @ingroup Pager
  */
 
-namespace MediaWiki\Pager;
+namespace MediaWiki\Specials\Pager;
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\ChangeTags\ChangeTags;
@@ -16,6 +16,7 @@ use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Pager\ReverseChronologicalPager;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\User\UserIdentityValue;
@@ -210,3 +211,6 @@ class MergeHistoryPager extends ReverseChronologicalPager {
  * @deprecated since 1.41
  */
 class_alias( MergeHistoryPager::class, 'MergeHistoryPager' );
+
+/** @deprecated class alias since 1.46 */
+class_alias( MergeHistoryPager::class, 'MediaWiki\\Pager\\MergeHistoryPager' );
