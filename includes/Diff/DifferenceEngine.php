@@ -2448,14 +2448,15 @@ class DifferenceEngine extends ContextSource {
 			$userGroupsPopover = Html::rawElement(
 				'div',
 				[ 'class' => 'mw-diff-usermetadata' ],
+
+				Html::element( 'span',
+					[ 'class' => 'mw-diff-usergroups-popover-text' ],
+					$this->msg( 'diff-usergroups', $userGroupCount )->text()
+				) .
 				Html::rawElement(
 					'div',
 					[ 'class' => 'mw-diff-usergroups-popover-wrapper' ],
 					$popoverTrigger . $popover
-				) .
-				Html::element( 'span',
-					[ 'class' => 'mw-diff-usergroups-popover-text' ],
-					$this->msg( 'diff-usergroups', $userGroupCount )->text()
 				)
 			);
 		}
