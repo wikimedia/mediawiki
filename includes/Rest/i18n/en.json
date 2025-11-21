@@ -97,6 +97,8 @@
 	"rest-module-specs.v0-desc": "Self-documentation module providing discovery, specs, and schemas for all available modules.",
 	"rest-module-content.v1-title": "Page content",
 	"rest-module-content.v1-desc": "Provides access to the content and metadata of pages and revisions",
+	"rest-module-site.v1-title": "Site API",
+	"rest-module-site.v1-desc": "Information about the site as a whole, such as sitemaps",
 	"rest-param-desc-mock-desc": "Mock description.",
 	"rest-param-desc-revision-id": "Revision identifier",
 	"rest-param-desc-html-input-title": "HTML input transform title",

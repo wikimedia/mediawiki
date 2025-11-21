@@ -102,6 +102,8 @@
 	"rest-module-specs.v0-desc": "Description of the specs.v0 REST module",
 	"rest-module-content.v1-title": "Title of the content.v1 REST module",
 	"rest-module-content.v1-desc": "Description of the content.v1 REST module",
+	"rest-module-site.v1-title": "Title of the site.v1 REST module",
+	"rest-module-site.v1-desc": "Description of the site.v1 REST module",
 	"rest-param-desc-mock-desc": "{{Experimental}} Mock description for use in tests",
 	"rest-param-desc-revision-id": "{{Experimental}} Revision id parameter description",
 	"rest-param-desc-html-input-title": "{{Experimental}} HTML input transform title parameter description",
