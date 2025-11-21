@@ -2396,7 +2396,7 @@
 	"blanknamespace": "(Aðalnafnrými)",
 	"contributions": "Breytingar notanda",
 	"tool-link-contributions": "Framlög {{GENDER:$1|notanda}}",
-	"contributions-title": "Framlög frá {{GENDER:$2|notanda}} fyrir $1",
+	"contributions-title": "Framlög frá {{GENDER:$2|notandanum}} $1",
 	"contributions-title-for-ip-when-temporary-accounts-enabled": "Eldri breytingar frá IP-staðfanginu $1",
 	"contribute-title": "Framlög notanda",
 	"mycontris": "Framlög",

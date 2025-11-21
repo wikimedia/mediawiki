@@ -2493,6 +2493,7 @@
 	"block-cancel": "Avbryt",
 	"block-create": "Legg til blokkering",
 	"blockip": "Blokker {{GENDER:$1|bruker}}",
+	"blockiprange": "Blokker IP-intervall",
 	"blockiptext": "Blokkering brukes for å forhindre vandalisme og annen forstyrrende atferd ([[{{MediaWiki:Policy-url}}|les mer]]). Du kan blokkere IP-intervaller med [https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing CIDR]-syntaks; det største tillatte intervallet er /$1 for IPv4 og /$2 for IPv6.",
 	"block-multiblocks-new-feature": "En ny funksjon lar deg blokkere samme konto flere ganger.",
 	"ipaddressorusername": "IP-adresse, brukernavn eller blokkerings-ID:",
@@ -2584,6 +2585,7 @@
 	"block-reblock-multi-legacy": "Denne brukeren er allerede blokkert flere ganger, og kan ikke blokkeres på nytt med dette skjemaet.",
 	"block-view-target": "Vis",
 	"unblockip": "Opphev blokkering",
+	"unblockiprange": "Avblokker IP-intervall",
 	"unblockiptext": "Bruk skjemaet under for å gjenopprette skriveadgangen for en tidligere blokkert adresse eller bruker.",
 	"unblock-target": "Fjern blokkering av målet",
 	"unblock-target-label": "Angi et brukernavn, ei IP-adresse eller en blokkerings-ID:",
@@ -4104,5 +4106,6 @@
 	"benefit-3-description": "Innstillinger som lar deg tilpasse brukeropplevelsen din.",
 	"temp-user-unable-to-acquire": "Kunne ikke hente brukernavn for midlertidig konto. Prøv gjerne på nytt.",
 	"table-of-contents-show-button-aria-label": "Vis innholdsfortegnelsen",
-	"table-of-contents-hide-button-aria-label": "Skjul innholdsfortegnelsen"
+	"table-of-contents-hide-button-aria-label": "Skjul innholdsfortegnelsen",
+	"diff-usergroups": "$1 {{PLURAL:$1|brukergruppe|brukergrupper}}"
 }

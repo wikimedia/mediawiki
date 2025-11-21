@@ -2488,6 +2488,7 @@
 	"block-cancel": "ביטול",
 	"block-create": "הוספת חסימה",
 	"blockip": "חסימת ה{{GENDER:$1|משתמש|משתמשת}}",
+	"blockiprange": "חסימת טווח IP",
 	"blockiptext": "חסימה משמשת למניעת השחתה וצורות אחרות של הפרעה ([[{{MediaWiki:Policy-url}}|מידע נוסף]]). באפשרותך לחסום טווחי כתובות IP באמצעות תחביר [https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing CIDR]. הטווח הגדול ביותר שניתן לחסום הוא <span dir=\"ltr\">/$1</span> עבור IPv4 ו־<span dir=\"ltr\">/$2</span> עבור IPv6.",
 	"block-multiblocks-new-feature": "יש אפשרות חדשה שמאפשרת לך להטיל כמה חסימות כנגד חשבון בודד.",
 	"ipaddressorusername": "כתובת IP, שם משתמש, או מזהה חסימה:",
@@ -2579,6 +2580,7 @@
 	"block-reblock-multi-legacy": "החשבון הזה כבר חסום כמה פעמים ולא ניתן לחסום אותו מחדש באמצעות הטופס הזה.",
 	"block-view-target": "צפייה",
 	"unblockip": "שחרור חסימה של משתמש",
+	"unblockiprange": "שחרור חסימת טווח IP",
 	"unblockiptext": "ניתן להשתמש בטופס שלהלן כדי להחזיר את הרשאות הכתיבה לכתובת IP חסומה או למשתמש חסום.",
 	"unblock-target": "לשחרר את חסימת היעד",
 	"unblock-target-label": "נא לספק שם משתמש, כתובת IP או מזהה חסימה:",
@@ -4124,5 +4126,6 @@
 	"benefit-3-description": "העדפות שמאפשרות לך להתאים אישית את החוויה שלך.",
 	"temp-user-unable-to-acquire": "לא ניתן לקבל שם חשבון חולף. נא לנסות שוב.",
 	"table-of-contents-show-button-aria-label": "להציג את תוכן העניינים",
-	"table-of-contents-hide-button-aria-label": "להסתיר את תוכן העניינים"
+	"table-of-contents-hide-button-aria-label": "להסתיר את תוכן העניינים",
+	"diff-usergroups": "{{PLURAL:$1|קבוצת משתמשים אחת|$1 קבוצות משתמשים}}"
 }

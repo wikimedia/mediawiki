@@ -2444,6 +2444,7 @@
 	"block-cancel": "Cancellar",
 	"block-create": "Adder blocada",
 	"blockip": "Blocar usat{{GENDER:$1|or|rice}}",
+	"blockiprange": "Blocar intervallo IP",
 	"blockiptext": "Le blocage es usate pro impedir le vandalismo e altere formas de perturbation ([[{{MediaWiki:Policy-url}}|leger plus]]). Tu pote blocar intervallos de adresses IP con le syntaxe [https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing CIDR]. Le intervallo le plus grande permittite es /$1 pro IPv4 e /$2 pro IPv6.",
 	"block-multiblocks-new-feature": "Il ha un nove function que permitte emitter plure blocages contra un sol conto.",
 	"ipaddressorusername": "Adresse IP, nomine de usator o ID de blocada:",
@@ -2535,6 +2536,7 @@
 	"block-reblock-multi-legacy": "Iste usator es ja blocate plure vices e non pote esser reblocate con iste formulario.",
 	"block-view-target": "Vider",
 	"unblockip": "Disblocar usator",
+	"unblockiprange": "Disblocar intervallo IP",
 	"unblockiptext": "Usa le formulario infra pro restaurar le accesso de scriptura a un adresse IP o nomine de usator blocate previemente.",
 	"unblock-target": "Disblocar objectivo",
 	"unblock-target-label": "Forni un nomine de usator, adresse IP, o ID de blocada:",
@@ -4050,5 +4052,6 @@
 	"benefit-3-description": "Preferentias que te permitte personalisar tu experientia.",
 	"temp-user-unable-to-acquire": "Fallimento del acquisition de un nomine de usator pro le conto temporari. Per favor tenta lo de novo.",
 	"table-of-contents-show-button-aria-label": "Monstrar le tabula de contento",
-	"table-of-contents-hide-button-aria-label": "Celar le tabula de contento"
+	"table-of-contents-hide-button-aria-label": "Celar le tabula de contento",
+	"diff-usergroups": "$1 gruppo{{PLURAL:$1||s}} de usatores"
 }

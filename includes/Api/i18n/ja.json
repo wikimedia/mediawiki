@@ -1126,7 +1126,6 @@
 	"apihelp-phpfm-summary": "データを PHP のシリアル化した形式 (HTML に埋め込んだ形式) で出力します。",
 	"apihelp-rawfm-summary": "データをデバッグ要素付きで JSON 形式 (HTML に埋め込んだ形式) で出力します。",
 	"apihelp-xml-summary": "データを XML 形式で出力します。",
-	"apihelp-xml-param-xslt": "指定すると、XSLスタイルシートとして名付けられたページを追加します。値は、必ず、{{ns:MediaWiki}} 名前空間の、ページ名の末尾が <code>.xsl</code> でのタイトルである必要があります。",
 	"apihelp-xml-param-includexmlnamespace": "指定すると、XML 名前空間を追加します。",
 	"apihelp-xmlfm-summary": "データを XML 形式 (HTML に埋め込んだ形式) で出力します。",
 	"api-format-title": "MediaWiki API の結果",

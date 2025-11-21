@@ -243,7 +243,6 @@
 	"apihelp-phpfm-summary": "Vypisuje data v serializačním formátu PHP (v čitelné HTML podobě).",
 	"apihelp-rawfm-summary": "Data včetně ladicích prvků vypisuje ve formátu JSON (v čitelné HTML podobě).",
 	"apihelp-xml-summary": "Vypisuje data ve formátu XML.",
-	"apihelp-xml-param-xslt": "Pokud je uvedeno, přidá uvedenou stránku jako stylopis XSL. Hodnotou musí být název stránky ve jmenném prostoru MediaWiki, jejíž název končí na <code>.xsl</code>.",
 	"apihelp-xml-param-includexmlnamespace": "Pokud je uvedeno, přidá jmenný prostor XML.",
 	"apihelp-xmlfm-summary": "Vypisuje data ve formátu XML (v čitelné HTML podobě).",
 	"api-format-title": "Odpověď z MediaWiki API",

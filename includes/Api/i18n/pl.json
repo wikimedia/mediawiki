@@ -804,7 +804,6 @@
 	"apihelp-php-paramvalue-formatversion-latest": "Użyj najnowszego formatu (obecnie <kbd>2</kbd>), może ulec zmianie bez ostrzeżenia.",
 	"apihelp-phpfm-summary": "Dane wyjściowe w serializowanym formacie PHP (prawidłowo wyświetlane w HTML).",
 	"apihelp-xml-summary": "Dane wyjściowe w formacie XML.",
-	"apihelp-xml-param-xslt": "Jeśli określony, dodaje podaną stronę jako arkusz styli XSL. Powinna to być strona wiki w przestrzeni nazw MediaWiki, której nazwa kończy się na <code>.xsl</code>.",
 	"apihelp-xml-param-includexmlnamespace": "Jeśli zaznaczono, dodaje przestrzeń nazw XML.",
 	"apihelp-xmlfm-summary": "Dane wyjściowe w formacie XML (prawidłowo wyświetlane w HTML).",
 	"api-format-title": "Wynik zapytania API MediaWiki",

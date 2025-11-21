@@ -2564,6 +2564,7 @@
 	"block-cancel": "İptal",
 	"block-create": "Engelleme ekle",
 	"blockip": "{{GENDER:$1|Kullanıcıyı}} engelle",
+	"blockiprange": "IP aralığını engelle",
 	"blockiptext": "Engelleme, vandalizm ve diğer kesinti biçimlerini önlemek için kullanılır ([[{{MediaWiki:Policy-url}}|daha fazla oku]]). IP adresi aralıklarını [https://tr.wikipedia.org/wiki/Sınıfsız_alanlar_arası_yönlendirme SAAY (CIDR)] sözdizimini kullanarak engelleyebilirsiniz. İzin verilen en büyük aralık IPv4 için /$1 ve IPv6 için /$2.",
 	"block-multiblocks-new-feature": "Tek bir hesaba karşı birden fazla engel koymanıza olanak tanıyan yeni bir özellik var",
 	"ipaddressorusername": "IP adresi, kullanıcı adı veya engel kimliği:",
@@ -2655,6 +2656,7 @@
 	"block-reblock-multi-legacy": "Bu kullanıcı daha önce birden fazla kez engellenmiş ve bu formla yeniden engellenemez.",
 	"block-view-target": "Görüntüle",
 	"unblockip": "Kullanıcının engelini kaldır",
+	"unblockiprange": "IP aralığının engellemesini kaldır",
 	"unblockiptext": "Daha önceden engellenmiş bir IP adresine ya da kullanıcı adına yazma erişimini geri vermek için aşağıdaki formu kullanın.",
 	"unblock-target": "Hedefin engellemesini kaldır",
 	"unblock-target-label": "Bir kullanıcı adı, IP adresi ya da engelleme kimliği sağlayın:",
@@ -4178,5 +4180,5 @@
 	"temp-user-unable-to-acquire": "Geçici bir hesap kullanıcı adı alınamıyor. Lütfen tekrar deneyin.",
 	"table-of-contents-show-button-aria-label": "İçindekiler tablosunu göster",
 	"table-of-contents-hide-button-aria-label": "İçindekiler tablosunu gizle",
-	"diff-usergroups": "$1 kullanıcı grupları"
+	"diff-usergroups": "$1 {{PLURAL:$1|kullanıcı grubu}}"
 }

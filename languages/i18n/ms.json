@@ -2466,6 +2466,7 @@
 	"block-cancel": "Batalkan",
 	"block-create": "Tambah sekatan",
 	"blockip": "Sekat {{GENDER:$1|pengguna}}",
+	"blockiprange": "Sekat julat IP",
 	"blockiptext": "Penyekatan digunakan untuk mengelakkan vandalisme dan sebarang bentuk gangguan lain ([[{{MediaWiki:Policy-url}}|maklumat lanjut]]). Anda boleh menyekat julat alamat IP menggunakan sintaks [https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing CIDR]. Julat terbesar yang dibenarkan ialah /$1 untuk IPv4 dan /$2 untuk IPv6.",
 	"block-multiblocks-new-feature": "Terdapat ciri baharu yang membolehkan anda mengeluarkan sekatan berbilang terhadap satu akaun.",
 	"ipaddressorusername": "Alamat IP, nama pengguna atau sekat ID:",
@@ -2557,6 +2558,7 @@
 	"block-reblock-multi-legacy": "Pengguna ini telah disekat beberapa kali dan tidak boleh disekat semula menggunakan borang ini.",
 	"block-view-target": "Paparkan",
 	"unblockip": "Nyahsekat pengguna",
+	"unblockiprange": "Nyahsekat julat IP",
 	"unblockiptext": "Gunakan borang di bawah untuk membuang sekatan bagialamat IP atau nama pengguna yang telah disekat.",
 	"unblock-target": "Nyahsekat sasaran",
 	"unblock-target-label": "Berikan nama pengguna, alamat IP atau ID sekatan:",
@@ -4075,5 +4077,5 @@
 	"temp-user-unable-to-acquire": "Tidak dapat memperoleh nama pengguna akaun sementara. Sila cuba lagi.",
 	"table-of-contents-show-button-aria-label": "Tunjukkan jadual kandungan",
 	"table-of-contents-hide-button-aria-label": "Sembunyikan jadual kandungan",
-	"diff-usergroups": "$1 kumpulan pengguna"
+	"diff-usergroups": "$1 {{PLURAL:$1|kumpulan pengguna}}"
 }

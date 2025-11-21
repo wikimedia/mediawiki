@@ -2480,6 +2480,7 @@
 	"block-cancel": "İmtina",
 	"block-create": "Blok əlavə et",
 	"blockip": "{{GENDER:$1|İstifadəçini}} blokla",
+	"blockiprange": "IP diapazonunu blokla",
 	"blockiptext": "Bloklama vandalizmin və digər pozulma formalarının qarşısını almaq üçün istifadə olunur ([[{{MediaWiki:Policy-url}}|ətraflı oxu]]). Siz [https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing CIDR] sintaksisindən istifadə edərək IP ünvan diapazonlarını bloklaya bilərsiniz. İcazə verilən ən böyük diapazon IPv4 üçün /$1, IPv6 üçün isə /$2 aralığıdır.",
 	"block-multiblocks-new-feature": "Bir hesaba birdən çox blok tətbiq etməyə imkan verən yeni xüsusiyyət əlavə edilib.",
 	"ipaddressorusername": "IP ünvanı, istifadəçi adı və ya block ID-si:",
@@ -2571,6 +2572,7 @@
 	"block-reblock-multi-legacy": "Bu istifadəçi artıq bir neçə dəfə bloklanıb və bu forma ilə yenidən bloklana bilməz.",
 	"block-view-target": "Bax",
 	"unblockip": "İstifadəçinin blokunu götür",
+	"unblockiprange": "IP diapazonunun blokunu aç",
 	"unblockiptext": "Əvvəlcədən bloklanmış bir IP ünvanına və ya istifadəçi adına yazma geri vermek için aşağıdakı formadan istifadə edin.",
 	"unblock-target": "Hədəfin blokunu aç",
 	"unblock-target-label": "İstifadəçi adı, IP ünvanı və ya blok ID təqdim et:",
@@ -4086,5 +4088,6 @@
 	"benefit-3-description": "Təcrübənizi fərdiləşdirməyə imkan verən nizamlamalar.",
 	"temp-user-unable-to-acquire": "Müvəqqəti istifadəçi adı əldə etmək mümkün deyil. Zəhmət olmasa, bir daha cəhd edin.",
 	"table-of-contents-show-button-aria-label": "Mündəricatı göstər",
-	"table-of-contents-hide-button-aria-label": "Mündəricatı gizlət"
+	"table-of-contents-hide-button-aria-label": "Mündəricatı gizlət",
+	"diff-usergroups": "$1 {{PLURAL:$1|istifadəçi qrupu}}"
 }
