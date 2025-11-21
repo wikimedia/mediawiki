@@ -470,7 +470,7 @@ class HtmlToContentTransform {
 		);
 
 		$downgradeTime = microtime( true );
-		Parsoid::downgrade( $downgrade, $pb );
+		Parsoid::downgrade( $downgrade, $pb, $this->siteConfig );
 		if ( $this->metrics ) {
 			$this->metrics
 				->getTiming( 'downgrade_time_ms' )
