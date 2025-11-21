@@ -81,10 +81,10 @@ class PrewarmParsoidParserCacheTest extends MaintenanceBaseTestCase {
 		$mockParserOutputAccess = $this->createMock( ParserOutputAccess::class );
 		$mockParserOutputAccess->expects( $this->once() )
 			->method( 'getParserOutput' )
-			->willReturnCallback( function ( PageRecord $page, $parserOptions, $revision, int $options ) {
+			->willReturnCallback( function ( PageRecord $page, $parserOptions, $revision, array $options ) {
 				$this->assertSame( NS_TEMPLATE, $page->getNamespace() );
 				$this->assertSame( 'Test', $page->getDBkey() );
-				$this->assertSame( ParserOutputAccess::OPT_FORCE_PARSE, $options );
+				$this->assertSame( [ ParserOutputAccess::OPT_FORCE_PARSE => true ], $options );
 				return Status::newFatal( 'test' );
 			} );
 		$this->setService( 'ParserOutputAccess', $mockParserOutputAccess );

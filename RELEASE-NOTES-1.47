@@ -776,6 +776,9 @@ because of Phabricator reports.
 * Title::estimateRevisionCount() is unused and has been deprecated.
 * WikiPage::shouldCheckParserCache() has been deprecated. Use
   ParserOutputAccess::shouldUseCache() instead.
+* (T436997) Passing an int bitmask as the $options parameter to
+  ParserOutputAccess::getParserOutput() and ::getCachedParserOutput() is
+  deprecated and emits deprecation warnings. Pass an options array instead.
 * …
 
 === Other changes in 1.47 ===

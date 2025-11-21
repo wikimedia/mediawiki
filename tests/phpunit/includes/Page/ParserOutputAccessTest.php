@@ -466,7 +466,9 @@ class ParserOutputAccessTest extends ParserCacheTestBase {
 		$parserOptions = $this->getParserOptions();
 		// With ParserOutputAccess::OPT_LINKS_UPDATE WikiPage::triggerOpportunisticLinksUpdate can be called
 		$this->installOpportunisticUpdateHook( true );
-		$status = $access->getParserOutput( $page, $parserOptions, null, ParserOutputAccess::OPT_LINKS_UPDATE );
+		$status = $access->getParserOutput( $page, $parserOptions, null, [
+			ParserOutputAccess::OPT_LINKS_UPDATE => true,
+		] );
 		$this->assertContainsHtml( 'Hello <i[^>]*>World</i>!', $status );
 	}
 
@@ -489,8 +491,10 @@ class ParserOutputAccessTest extends ParserCacheTestBase {
 			$page,
 			$parserOptions,
 			null,
-			// keep bitmap form of options, so we keep testing that
-			ParserOutputAccess::OPT_LINKS_UPDATE | ParserOutputAccess::OPT_FOR_ARTICLE_VIEW
+			[
+				ParserOutputAccess::OPT_LINKS_UPDATE => true,
+				ParserOutputAccess::OPT_FOR_ARTICLE_VIEW => true,
+			]
 		);
 		$this->assertContainsHtml( 'Hello <i[^>]*>World</i>!', $status );
 	}
@@ -1611,10 +1615,11 @@ class ParserOutputAccessTest extends ParserCacheTestBase {
 			$page,
 			$this->getParserOptions(),
 			null,
-			// keep bitmap form of options, so we keep testing that.
 			// Note that OPT_FOR_ARTICLE_VIEW implies OPT_POOL_COUNTER_FALLBACK.
-			ParserOutputAccess::OPT_NO_CHECK_CACHE
-			| ParserOutputAccess::OPT_FOR_ARTICLE_VIEW
+			[
+				ParserOutputAccess::OPT_NO_CHECK_CACHE => true,
+				ParserOutputAccess::OPT_FOR_ARTICLE_VIEW => true,
+			]
 		);
 
 		$this->assertStatusOk( $status );

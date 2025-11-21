@@ -26,7 +26,7 @@ require_once __DIR__ . '/Maintenance.php';
  * @author Richika Rana
  */
 class PrewarmParsoidParserCache extends Maintenance {
-	private int $forceParse = 0;
+	private array $forceParse = [];
 	private ParserOutputAccess $parserOutputAccess;
 	private PageLookup $pageLookup;
 	private RevisionLookup $revisionLookup;
@@ -132,7 +132,7 @@ class PrewarmParsoidParserCache extends Maintenance {
 		if ( $force !== null ) {
 			// If --force is supplied, for a parse for supported pages or supported
 			// pages in the specified batch.
-			$this->forceParse = ParserOutputAccess::OPT_FORCE_PARSE;
+			$this->forceParse = [ ParserOutputAccess::OPT_FORCE_PARSE => true ];
 		}
 
 		$startFrom = (int)$startFrom;
