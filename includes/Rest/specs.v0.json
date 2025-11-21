@@ -3,7 +3,7 @@
 	"moduleId": "specs/v0",
 	"audience": "dev",
 	"info": {
-		"title": "Specs",
+		"title": "Specs API",
 		"x-i18n-title": "rest-module-specs.v0-title",
 		"x-i18n-description": "rest-module-specs.v0-desc",
 		"version": "0.1.0"

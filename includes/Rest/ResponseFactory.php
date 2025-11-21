@@ -328,6 +328,20 @@ class ResponseFactory {
 	}
 
 	/**
+	 * Returns an array of all language codes supported by this instance's text formatters,
+	 * in fallback order. Useful for constructing cache keys.
+	 *
+	 * @return string[]
+	 */
+	public function getLangCodes(): array {
+		$codes = [];
+		foreach ( $this->textFormatters as $formatter ) {
+			$codes[] = $formatter->getLangCode();
+		}
+		return $codes;
+	}
+
+	/**
 	 * Tries to return the formatted string(s) for a message value object using the
 	 * response factory's text formatters. The returned array will either be empty (if there are
 	 * no text formatters), or have exactly one key, "messageTranslations", whose value

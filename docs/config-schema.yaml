@@ -7991,6 +7991,8 @@ config-schema:
               Ignored if msg is given.
             - msg: a message key for the name of the API, to be shown on
               Special:RestSandbox.
+            - file: optional module definition file name. If supplied, information therein is used for
+              name and/or url. Info supplied directly in config (via url/name/msg) takes precedence.
             @unstable Introduced in 1.43. We may want to rename or change this to
             accommodate the need to list external APIs in a central discovery
             document.

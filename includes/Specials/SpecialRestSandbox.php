@@ -6,11 +6,15 @@
 
 namespace MediaWiki\Specials;
 
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
-use MediaWiki\MainConfigNames;
+use MediaWiki\Message\MessageFormatterFactory;
+use MediaWiki\Rest\Module\ModuleManager;
+use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Utils\UrlUtils;
+use Wikimedia\ObjectCache\BagOStuff;
 
 /**
  * A special page showing a Swagger UI for exploring REST APIs.
@@ -21,28 +25,31 @@ use MediaWiki\Utils\UrlUtils;
 class SpecialRestSandbox extends SpecialPage {
 
 	private UrlUtils $urlUtils;
+	private ModuleManager $moduleManager;
 
-	public function __construct( UrlUtils $urlUtils ) {
+	public function __construct(
+		UrlUtils $urlUtils, MessageFormatterFactory $messageFormatterFactory, BagOStuff $srvCache
+	) {
 		parent::__construct( 'RestSandbox' );
 
 		$this->urlUtils = $urlUtils;
-	}
 
-	/**
-	 * Returns the available choices for APIs to explore.
-	 *
-	 * @see MainConfigSchema::RestSandboxSpecs for the structure of the array
-	 *
-	 * @return array[]
-	 */
-	private function getApiSpecs(): array {
-		return $this->getConfig()->get( MainConfigNames::RestSandboxSpecs );
+		$textFormatter = $messageFormatterFactory->getTextFormatter(
+			$this->getContentLanguage()->getCode()
+		);
+		$responseFactory = new ResponseFactory( [ $textFormatter ] );
+
+		$this->moduleManager = new ModuleManager(
+			new ServiceOptions( ModuleManager::CONSTRUCTOR_OPTIONS, $this->getConfig() ),
+			$srvCache,
+			$responseFactory
+		);
 	}
 
 	/** @inheritDoc */
 	public function isListed() {
 		// Hide the special pages if there are no APIs to explore.
-		return $this->getApiSpecs() !== [];
+		return $this->moduleManager->hasApiSpecs();
 	}
 
 	/** @inheritDoc */
@@ -50,9 +57,7 @@ class SpecialRestSandbox extends SpecialPage {
 		return 'wiki';
 	}
 
-	private function getSpecUrl( string $apiId ): ?string {
-		$apiSpecs = $this->getApiSpecs();
-
+	private function getSpecUrl( array $apiSpecs, string $apiId ): ?string {
 		if ( $apiId !== '' ) {
 			$spec = $apiSpecs[$apiId] ?? null;
 		} else {
@@ -67,15 +72,14 @@ class SpecialRestSandbox extends SpecialPage {
 	}
 
 	/** @inheritDoc */
-	public function execute( $sub ) {
+	public function execute( $subPage ) {
 		$this->setHeaders();
 		$out = $this->getOutput();
 		$this->addHelpLink( 'Help:RestSandbox' );
 
-		$apiId = $this->getRequest()->getRawVal( 'api' ) ?? $sub ?? '';
-		$specUrl = $this->getSpecUrl( $apiId );
-
-		$apiSpecs = $this->getApiSpecs();
+		$apiId = $this->getRequest()->getRawVal( 'api' ) ?? $subPage ?? '';
+		$apiSpecs = $this->moduleManager->getApiSpecs();
+		$specUrl = $this->getSpecUrl( $apiSpecs, $apiId );
 
 		$out->addJsConfigVars( [
 			'specUrl' => $specUrl
@@ -141,15 +145,7 @@ class SpecialRestSandbox extends SpecialPage {
 		$apis = [];
 
 		foreach ( $apiSpecs as $key => $spec ) {
-			if ( isset( $spec['msg'] ) ) {
-				$text = $this->msg( $spec['msg'] )->plain();
-			} elseif ( isset( $spec['name'] ) ) {
-				$text = $spec['name'];
-			} else {
-				$text = $key;
-			}
-
-			$apis[$text] = $key;
+			$apis[$spec['name']] = $key;
 		}
 
 		$formDescriptor = [

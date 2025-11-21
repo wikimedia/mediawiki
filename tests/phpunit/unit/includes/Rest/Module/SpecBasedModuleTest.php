@@ -291,4 +291,16 @@ class SpecBasedModuleTest extends \MediaWikiUnitTestCase {
 		$this->assertArrayHasKey( 'Deprecation', $responseHeaders );
 		$this->assertSame( '@1735689600', $responseHeaders['Deprecation'][0] );
 	}
+
+	public function testLoadModuleDefinition() {
+		$specFile = __DIR__ . '/moduleTestRoutes.json';
+		$formatter = $this->getDummyTextFormatter( true );
+		$responseFactory = new ResponseFactory( [ 'qqx' => $formatter ] );
+
+		$moduleDef = SpecBasedModule::loadModuleDefinition( $specFile, $responseFactory );
+
+		$this->assertSame( 'test.v1', $moduleDef['moduleId'] );
+		$this->assertSame( 'test', $moduleDef['info']['title'] );
+		$this->assertArrayHasKey( 'paths', $moduleDef );
+	}
 }

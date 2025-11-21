@@ -284,9 +284,8 @@ class Router {
 
 			if ( $moduleInfo ) {
 				if ( isset( $modules[$id] ) ) {
-					$otherFiles = implode( ' and ', $modules[$id]['routeFiles'] );
 					throw new ModuleConfigurationException(
-						"Duplicate module $id in $file, also used in $otherFiles"
+						"Duplicate module $id in $file"
 					);
 				}
 

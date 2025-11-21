@@ -867,6 +867,8 @@ class SpecialPageFactory {
 			'class' => SpecialRestSandbox::class,
 			'services' => [
 				'UrlUtils',
+				'MessageFormatterFactory',
+				'LocalServerObjectCache'
 			]
 		],
 		'Statistics' => [

@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\StaticHookRegistry;
@@ -12,6 +13,7 @@ use MediaWiki\Request\WebRequest;
 use MediaWiki\Rest\CorsUtils;
 use MediaWiki\Rest\EntryPoint;
 use MediaWiki\Rest\Handler;
+use MediaWiki\Rest\Module\ModuleManager;
 use MediaWiki\Rest\PathTemplateMatcher\PathMatcher;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\ResponseFactory;
@@ -333,9 +335,14 @@ class RestStructureTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public static function provideModuleDefinitionFiles() {
-		$conf = MediaWikiServices::getInstance()->getMainConfig();
-		$entryPoint = TestingAccessWrapper::newFromClass( EntryPoint::class );
-		$routeFiles = $entryPoint->getRouteFiles( $conf );
+		$services = MediaWikiServices::getInstance();
+		$conf = $services->getMainConfig();
+		$moduleManager = new ModuleManager(
+			new ServiceOptions( ModuleManager::CONSTRUCTOR_OPTIONS, $conf ),
+			$services->getLocalServerObjectCache(),
+			new ResponseFactory( [] ),
+		);
+		$routeFiles = $moduleManager->getRouteFiles();
 
 		foreach ( $routeFiles as $file ) {
 			$moduleSpec = self::loadJsonData( $file );

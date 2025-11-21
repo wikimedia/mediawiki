@@ -2905,6 +2905,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Rest\\Module\\ExtraRoutesModule' => __DIR__ . '/includes/Rest/Module/ExtraRoutesModule.php',
 	'MediaWiki\\Rest\\Module\\MatcherBasedModule' => __DIR__ . '/includes/Rest/Module/MatcherBasedModule.php',
 	'MediaWiki\\Rest\\Module\\Module' => __DIR__ . '/includes/Rest/Module/Module.php',
+	'MediaWiki\\Rest\\Module\\ModuleManager' => __DIR__ . '/includes/Rest/Module/ModuleManager.php',
 	'MediaWiki\\Rest\\Module\\SpecBasedModule' => __DIR__ . '/includes/Rest/Module/SpecBasedModule.php',
 	'MediaWiki\\Rest\\PathTemplateMatcher\\ModuleConfigurationException' => __DIR__ . '/includes/Rest/PathTemplateMatcher/ModuleConfigurationException.php',
 	'MediaWiki\\Rest\\PathTemplateMatcher\\PathConflict' => __DIR__ . '/includes/Rest/PathTemplateMatcher/PathConflict.php',

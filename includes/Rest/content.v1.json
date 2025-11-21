@@ -3,7 +3,7 @@
 	"moduleId": "content/v1",
 	"info": {
 		"version": "1.0.0",
-		"title": "Page content",
+		"title": "Content API",
 		"x-i18n-title": "rest-module-content.v1-title",
 		"x-i18n-description": "rest-module-content.v1-desc"
 	},

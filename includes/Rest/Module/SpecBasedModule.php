@@ -98,17 +98,31 @@ class SpecBasedModule extends MatcherBasedModule {
 		}
 
 		$this->routeFileTimestamp = filemtime( $this->definitionFile );
-		$moduleDef = $this->loadJsonFile( $this->definitionFile );
+		$this->moduleDef = static::loadModuleDefinition( $this->definitionFile, $this->responseFactory );
+
+		return $this->moduleDef;
+	}
+
+	/**
+	 * Load the module definition file.
+	 *
+	 * @param string $file The module definition file to load
+	 * @param ResponseFactory $responseFactory
+	 *
+	 * @return array
+	 */
+	public static function loadModuleDefinition( string $file, ResponseFactory $responseFactory ): array {
+		$moduleDef = static::loadJsonFile( $file );
 
 		if ( !$moduleDef ) {
 			throw new ModuleConfigurationException(
-				'Malformed module definition file: ' . $this->definitionFile
+				'Malformed module definition file: ' . $file
 			);
 		}
 
 		if ( !isset( $moduleDef['mwapi'] ) ) {
 			throw new ModuleConfigurationException(
-				'Missing mwapi version field in ' . $this->definitionFile
+				'Missing mwapi version field in ' . $file
 			);
 		}
 
@@ -117,16 +131,13 @@ class SpecBasedModule extends MatcherBasedModule {
 			version_compare( $moduleDef['mwapi'], '1.1.999', '>' )
 		) {
 			throw new ModuleConfigurationException(
-				"Unsupported openapi version {$moduleDef['mwapi']} in "
-					. $this->definitionFile
+				"Unsupported mwapi version {$moduleDef['mwapi']} in "
+				. $file
 			);
 		}
 
-		$localizer = new JsonLocalizer( $this->responseFactory );
-		$moduleDef = $localizer->localizeJson( $moduleDef );
-
-		$this->moduleDef = $moduleDef;
-		return $this->moduleDef;
+		$localizer = new JsonLocalizer( $responseFactory );
+		return $localizer->localizeJson( $moduleDef );
 	}
 
 	/**

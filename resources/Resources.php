@@ -2236,11 +2236,7 @@ return [
 		'packageFiles' => [
 			"src/mediawiki.special.restsandbox/restsandbox.js",
 			"lib/swagger-ui/swagger-ui-bundle.js",
-			"lib/swagger-ui/swagger-ui-standalone-preset.js",
-			[
-				'name' => 'src/mediawiki.special.restsandbox/config.json',
-				'config' => [ 'RestSandboxSpecs' ],
-			],
+			"lib/swagger-ui/swagger-ui-standalone-preset.js"
 		],
 		'styles' => [
 			'lib/swagger-ui/swagger-ui.css',

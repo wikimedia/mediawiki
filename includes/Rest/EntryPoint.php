@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Rest;
 
-use MediaWiki\Config\Config;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
@@ -14,6 +13,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Rest\BasicAccess\CompoundAuthorizer;
 use MediaWiki\Rest\BasicAccess\MWBasicAuthorizer;
+use MediaWiki\Rest\Module\ModuleManager;
 use MediaWiki\Rest\Reporter\MWErrorReporter;
 use MediaWiki\Rest\Validator\Validator;
 use Wikimedia\Message\ITextFormatter;
@@ -61,8 +61,14 @@ class EntryPoint extends MediaWikiEntryPoint {
 
 		$stats = $services->getStatsFactory();
 
+		$moduleManager = new ModuleManager(
+			new ServiceOptions( ModuleManager::CONSTRUCTOR_OPTIONS, $conf ),
+			$services->getLocalServerObjectCache(),
+			$responseFactory
+		);
+
 		return ( new Router(
-			self::getRouteFiles( $conf ),
+			$moduleManager->getRouteFiles(),
 			ExtensionRegistry::getInstance()->getAttribute( 'RestRoutes' ),
 			new ServiceOptions( Router::CONSTRUCTOR_OPTIONS, $conf ),
 			$services->getLocalServerObjectCache(),
@@ -144,38 +150,6 @@ class EntryPoint extends MediaWikiEntryPoint {
 		}
 
 		return $textFormatters;
-	}
-
-	/**
-	 * @param Config $conf
-	 *
-	 * @return string[]
-	 */
-	private static function getRouteFiles( $conf ) {
-		global $IP;
-		$extensionsDir = $conf->get( MainConfigNames::ExtensionDirectory );
-		// Always include the "official" routes. Include additional routes if specified.
-		$routeFiles = [
-			'includes/Rest/coreRoutes.json',
-			...$conf->get( MainConfigNames::RestAPIAdditionalRouteFiles ),
-		];
-		foreach ( $routeFiles as &$file ) {
-			if (
-				str_starts_with( $file, '/' )
-			) {
-				// Allow absolute paths on non-Windows
-			} elseif (
-				str_starts_with( $file, 'extensions/' )
-			) {
-				// Support hacks like Wikibase.ci.php
-				$file = substr_replace( $file, $extensionsDir,
-					0, strlen( 'extensions' ) );
-			} else {
-				$file = "$IP/$file";
-			}
-		}
-
-		return $routeFiles;
 	}
 
 	public function __construct(

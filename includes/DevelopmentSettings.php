@@ -117,7 +117,6 @@ $wgEnableJavaScriptTest = true;
 // Enable development/experimental endpoints
 $wgRestAPIAdditionalRouteFiles[] = 'includes/Rest/coreDevelopmentRoutes.json';
 $wgRestAPIAdditionalRouteFiles[] = 'includes/Rest/content.v1.json';
-$wgRestAPIAdditionalRouteFiles[] = 'includes/Rest/site.v1.json';
 $wgRestAPIAdditionalRouteFiles[] = 'includes/Rest/specs.v0.json';
 
 // Greatly raise the limits on short/long term login attempts,

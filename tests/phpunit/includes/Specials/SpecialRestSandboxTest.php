@@ -16,9 +16,9 @@ class SpecialRestSandboxTest extends SpecialPageTestBase {
 		$scriptPath = $this->getConfVar( MainConfigNames::ScriptPath );
 		$this->overrideConfigValues( [
 			MainConfigNames::RestSandboxSpecs => [
-				'mw' => [
+				'mw-test' => [
 					'url' => $scriptPath . '/rest.php/specs/v0/module/-',
-					'name' => 'MediaWiki REST API',
+					'name' => 'MediaWiki Test REST API',
 				]
 			]
 		] );
@@ -30,7 +30,11 @@ class SpecialRestSandboxTest extends SpecialPageTestBase {
 	 * @return SpecialRestSandbox
 	 */
 	protected function newSpecialPage() {
-		return new SpecialRestSandbox( $this->getServiceContainer()->getUrlUtils() );
+		return new SpecialRestSandbox(
+			$this->getServiceContainer()->getUrlUtils(),
+			$this->getServiceContainer()->getMessageFormatterFactory(),
+			$this->getServiceContainer()->getLocalServerObjectCache()
+		);
 	}
 
 	public function testEnglishDisclaimerNotPresent() {
@@ -41,5 +45,18 @@ class SpecialRestSandboxTest extends SpecialPageTestBase {
 	public function testNonEnglishDisclaimerPresent() {
 		[ $html ] = $this->executeSpecialPage( '', null, 'qqx' );
 		$this->assertStringContainsString( 'cdx-message--notice', $html );
+	}
+
+	public function testCoreRoutesPresent() {
+		[ $html ] = $this->executeSpecialPage( '', null, 'qqx' );
+		$this->assertStringContainsString( 'MediaWiki REST API', $html );
+
+		// TODO: When we add more modules to core whose specs are visible by default,
+		//  check for them here (or add a data provider)
+	}
+
+	public function testConfigRoutesPresent() {
+		[ $html ] = $this->executeSpecialPage( '', null, 'qqx' );
+		$this->assertStringContainsString( 'MediaWiki Test REST API', $html );
 	}
 }
