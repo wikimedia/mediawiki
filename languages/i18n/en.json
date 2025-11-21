@@ -2251,7 +2251,7 @@
 	"rollback-missingrevision": "Unable to load revision data.",
 	"cantrollback": "Cannot revert the edit.\nThe last contributor is the only author of this page.",
 	"alreadyrolled": "Cannot rollback the last edit of [[:$1]] by [[User:$2|$2]] ([[User talk:$2|talk]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]).\nSomeone else has edited or rolled back the page already.\n\nThe last edit to the page was by [[User:$3|$3]] ([[User talk:$3|talk]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
-	"rollback-nochange": "Rolling back the last edits to [[:$1]]  by [[User:$2|$2]] ([[User talk:$2|talk]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) would result in no change to the text, either because {{GENDER:$2|he|she|they}} already reverted {{GENDER:$2|his|her|their}} own edits or because {{GENDER:$2|he|she|they}} made only dummy revisions.",
+	"rollback-nochange": "Rolling back the last edits to [[:$1]] by [[User:$2|$2]] ([[User talk:$2|talk]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) would result in no change to the text, either because {{GENDER:$2|he|she|they}} already reverted {{GENDER:$2|his|her|their}} own edits or because {{GENDER:$2|he|she|they}} made only dummy revisions.",
 	"editcomment": "The edit summary was: <em>$1</em>.",
 	"revertpage": "Reverted {{PLURAL:$7|edit|edits}} by [[Special:Contributions/$2|$2]] ([[User talk:$2|talk]]) to last revision by [[User:$1|$1]]",
 	"revertpage-anon": "Reverted {{PLURAL:$7|edit|edits}} by [[Special:Contributions/$2|$2]] to last revision by [[User:$1|$1]]",
