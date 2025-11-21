@@ -519,8 +519,8 @@ class CookieSessionProvider extends SessionProvider {
 	protected function verifyJwtCookie( WebRequest $request, SessionInfo &$sessionInfo ): void {
 		$jwt = $this->getCookie( $request, self::JWT_COOKIE_NAME, $this->getJwtCookieOptions()['prefix'] );
 		if ( $jwt === null ) {
-			// This is normal: the JWT cookie has a shorter lifetime and will expire before the other cookies.
-			if ( $sessionInfo->wasPersisted() ) {
+			if ( $sessionInfo->wasPersisted() && $sessionInfo->getUserInfo()?->isAnon() === false ) {
+				// This is normal: the JWT cookie has a shorter lifetime and will expire before the other cookies.
 				// Make sure it's re-persisted so the JWT cookie is updated.
 				$sessionInfo = new SessionInfo( $sessionInfo->getPriority(), [
 					'needsRefresh' => true,

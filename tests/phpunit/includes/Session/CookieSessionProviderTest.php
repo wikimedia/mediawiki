@@ -288,8 +288,7 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $sessionId, $info->getId() );
 		$this->assertNotNull( $info->getUserInfo() );
 		$this->assertSame( 0, $info->getUserInfo()->getId() );
-		// With JWTs enabled, the missing JWT cookie should force a refresh
-		$this->assertSame( $useSessionCookieJwt, $info->needsRefresh() );
+		$this->assertFalse( $info->needsRefresh() );
 		$this->assertNull( $info->getUserInfo()->getName() );
 		$this->assertFalse( $info->forceHTTPS() );
 		$this->assertSame( [
@@ -313,6 +312,7 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 		$this->assertNotNull( $info->getUserInfo() );
 		$this->assertSame( $id, $info->getUserInfo()->getId() );
 		$this->assertSame( $name, $info->getUserInfo()->getName() );
+		// With JWTs enabled, the missing JWT cookie should force a refresh for logged-in users
 		$this->assertSame( $useSessionCookieJwt, $info->needsRefresh() );
 		$this->assertFalse( $info->forceHTTPS() );
 		$this->assertSame( [], $logger->getBuffer() );
