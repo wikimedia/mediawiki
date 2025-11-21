@@ -20,8 +20,9 @@ use MediaWiki\Revision\SlotRecord;
 use Wikimedia\Bcp47Code\Bcp47Code;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Parsoid\Config\PageConfig;
+use Wikimedia\Parsoid\Config\SiteConfig;
+use Wikimedia\Parsoid\Core\BasePageBundle;
 use Wikimedia\Parsoid\Core\ClientError;
-use Wikimedia\Parsoid\Core\DomPageBundle;
 use Wikimedia\Parsoid\Core\HtmlPageBundle;
 use Wikimedia\Parsoid\Core\ResourceLimitExceededException;
 use Wikimedia\Parsoid\Core\SelserData;
@@ -62,6 +63,7 @@ class HtmlToContentTransform {
 		private readonly PageIdentity $page,
 		private readonly Parsoid $parsoid,
 		private readonly array $parsoidSettings,
+		private readonly SiteConfig $siteConfig,
 		private readonly PageConfigFactory $pageConfigFactory,
 		private readonly IContentHandlerFactory $contentHandlerFactory,
 	) {
@@ -145,13 +147,15 @@ class HtmlToContentTransform {
 	}
 
 	/** @throws ClientError */
-	private function validatePageBundle( HtmlPageBundle $pb ) {
+	private function validatePageBundle( BasePageBundle $pb ) {
 		$version = $pb->version;
 		if ( !$version ) {
 			return;
 		}
 
 		$errorMessage = '';
+		// XXX HtmlPageBundle::validate() should be moved to BasePageBundle
+		$pb = $pb->withHtml( '' );
 		if ( !$pb->validate( $version, $errorMessage ) ) {
 			throw new ClientError( $errorMessage );
 		}
@@ -270,8 +274,9 @@ class HtmlToContentTransform {
 		$doc = $this->getModifiedDocumentRaw();
 
 		if ( !$this->docHasBeenProcessed ) {
-			$this->applyPageBundle( $this->doc, $this->modifiedPageBundle );
+			$doc = $this->applyPageBundle( $doc, $this->modifiedPageBundle );
 
+			$this->doc = $doc;
 			$this->docHasBeenProcessed = true;
 		}
 
@@ -370,7 +375,7 @@ class HtmlToContentTransform {
 
 		$doc = $this->parseHTML( $this->originalPageBundle->html );
 
-		$this->applyPageBundle( $doc, $this->originalPageBundle );
+		$doc = $this->applyPageBundle( $doc, $this->originalPageBundle );
 
 		$this->originalBody = DOMCompat::getBody( $doc );
 
@@ -488,13 +493,15 @@ class HtmlToContentTransform {
 
 	/**
 	 * @param Document $doc
-	 * @param HtmlPageBundle $pb
+	 * @param BasePageBundle $pb
+	 * @return Document $doc The Document with page bundle information in
+	 *   inline-attribute form
 	 *
 	 * @throws ClientError
 	 */
-	private function applyPageBundle( Document $doc, HtmlPageBundle $pb ): void {
+	private function applyPageBundle( Document $doc, BasePageBundle $pb ): Document {
 		if ( $pb->parsoid === null && $pb->mw === null ) {
-			return;
+			return $doc;
 		}
 
 		// Verify that the top-level parsoid object either doesn't contain
@@ -511,11 +518,14 @@ class HtmlToContentTransform {
 		}
 
 		$this->validatePageBundle( $pb );
-		$dpb = new DomPageBundle(
-			$doc, $pb->parsoid, $pb->mw, $pb->version,
-			$pb->headers, $pb->contentmodel
-		);
-		$dpb->toDom( false );
+		$dpb = $pb->withDocument( $doc );
+		// This is being executed for side-effects
+		// ::toInlineAttributeDocument() will be more efficient, once it
+		// is available.
+		$dpb->toInlineAttributeHtml( [
+			'siteConfig' => $this->siteConfig,
+		] );
+		return $doc;
 	}
 
 	/**

@@ -1377,6 +1377,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 			$page,
 			$parsoid,
 			[],
+			$this->getServiceContainer()->getParsoidSiteConfig(),
 			$this->getPageConfigFactory( $page ),
 			$this->getServiceContainer()->getContentHandlerFactory()
 		) );
