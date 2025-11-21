@@ -512,7 +512,10 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 			$pb = $this->getPageBundle();
 
 			// Inject data-parsoid and data-mw attributes.
-			$parserOutput->setRawText( $pb->toInlineAttributeHtml() );
+			$options = [
+				'siteConfig' => $this->parsoidSiteConfig,
+			];
+			$parserOutput->setRawText( $pb->toInlineAttributeHtml( $options ) );
 		}
 
 		// Check if variant conversion has to be performed
