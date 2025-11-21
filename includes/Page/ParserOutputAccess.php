@@ -344,7 +344,6 @@ class ParserOutputAccess implements LoggerAwareInterface {
 			->setLabel( 'cache', $useCache )
 			->setLabel( 'reason', $statReason )
 			->setLabel( 'type', $statType )
-			->copyToStatsdAt( "ParserOutputAccess.Cache.$useCache.$statReason" )
 			->increment();
 
 		return $output ?: null; // convert false to null
@@ -439,7 +438,6 @@ class ParserOutputAccess implements LoggerAwareInterface {
 			$this->statsFactory
 				->getCounter( 'parseroutputaccess_case' )
 				->setLabel( 'case', 'error' )
-				->copyToStatsdAt( 'ParserOutputAccess.Case.error' )
 				->increment();
 			return $error;
 		}
@@ -449,13 +447,11 @@ class ParserOutputAccess implements LoggerAwareInterface {
 			$this->statsFactory
 				->getCounter( 'parseroutputaccess_case' )
 				->setLabel( 'case', 'old' )
-				->copyToStatsdAt( 'ParserOutputAccess.Case.old' )
 				->increment();
 		} else {
 			$this->statsFactory
 				->getCounter( 'parseroutputaccess_case' )
 				->setLabel( 'case', 'current' )
-				->copyToStatsdAt( 'ParserOutputAccess.Case.current' )
 				->increment();
 		}
 
@@ -474,7 +470,6 @@ class ParserOutputAccess implements LoggerAwareInterface {
 				$this->statsFactory
 					->getCounter( 'parseroutputaccess_status' )
 					->setLabel( 'status', 'norev' )
-					->copyToStatsdAt( "ParserOutputAccess.Status.norev" )
 					->increment();
 				return Status::newFatal( 'missing-revision', $revId );
 			}
@@ -490,7 +485,6 @@ class ParserOutputAccess implements LoggerAwareInterface {
 			$this->statsFactory->getCounter( 'parseroutputaccess_render_total' )
 				->setLabel( 'pool', 'none' )
 				->setLabel( 'cache', self::CACHE_NONE )
-				->copyToStatsdAt( 'ParserOutputAccess.PoolWork.None' )
 				->increment();
 
 			$status = $this->renderRevision( $page, $parserOptions, $revision, $options, null );
@@ -508,17 +502,14 @@ class ParserOutputAccess implements LoggerAwareInterface {
 		if ( $status->isGood() ) {
 			$this->statsFactory->getCounter( 'parseroutputaccess_status' )
 				->setLabel( 'status', 'good' )
-				->copyToStatsdAt( 'ParserOutputAccess.Status.good' )
 				->increment();
 		} elseif ( $status->isOK() ) {
 			$this->statsFactory->getCounter( 'parseroutputaccess_status' )
 				->setLabel( 'status', 'ok' )
-				->copyToStatsdAt( 'ParserOutputAccess.Status.ok' )
 				->increment();
 		} else {
 			$this->statsFactory->getCounter( 'parseroutputaccess_status' )
 				->setLabel( 'status', 'error' )
-				->copyToStatsdAt( 'ParserOutputAccess.Status.error' )
 				->increment();
 		}
 
@@ -697,7 +688,6 @@ class ParserOutputAccess implements LoggerAwareInterface {
 		$this->statsFactory->getCounter( 'parseroutputaccess_render_total' )
 			->setLabel( 'pool', 'articleview' )
 			->setLabel( 'cache', $useCache )
-			->copyToStatsdAt( "ParserOutputAccess.PoolWork.$statCacheLabelLegacy" )
 			->increment();
 
 		switch ( $useCache ) {

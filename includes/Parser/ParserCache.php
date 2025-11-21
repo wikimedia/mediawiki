@@ -217,7 +217,6 @@ class ParserCache {
 			->setLabel( 'contentModel', $contentModel )
 			->setLabel( 'status', $status )
 			->setLabel( 'reason', $reason ?: 'n/a' )
-			->copyToStatsdAt( "{$this->name}.{$contentModel}.{$metricSuffix}" )
 			->increment();
 	}
 
@@ -233,7 +232,6 @@ class ParserCache {
 			->setLabel( 'name', $this->name )
 			->setLabel( 'contentModel', $contentModel )
 			->setLabel( 'reason', $renderReason )
-			->copyToStatsdAt( "{$this->name}.{$contentModel}.reason.{$renderReason}" )
 			->increment();
 	}
 
