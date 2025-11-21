@@ -231,7 +231,7 @@
 	"cannotdelete-title": "Cannot delete page \"$1\"",
 	"delete-scheduled": "The page \"$1\" is scheduled for deletion.\nPlease be patient.",
 	"delete-hook-aborted": "Deletion aborted by hook.\nIt gave no explanation.",
-	"no-null-revision": "Could not create new null revision for page \"$1\"",
+	"no-null-revision": "Could not create new dummy revision for page \"$1\"",
 	"badtitle": "Bad title",
 	"badtitletext": "The requested page title was invalid, empty, or an incorrectly linked inter-language or inter-wiki title.\nIt may contain one or more characters that cannot be used in titles.",
 	"title-invalid": "The requested page title is invalid",

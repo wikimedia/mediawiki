@@ -297,7 +297,7 @@
 	"apihelp-import-param-templates": "For interwiki imports: import all included templates as well.",
 	"apihelp-import-param-namespace": "Import to this namespace. Cannot be used together with <var>$1rootpage</var>.",
 	"apihelp-import-param-rootpage": "Import as subpage of this page. Cannot be used together with <var>$1namespace</var>.",
-	"apihelp-import-param-tags": "Change tags to apply to the entry in the import log and to the null revision on the imported pages.",
+	"apihelp-import-param-tags": "Change tags to apply to the entry in the import log and to the dummy revision on the imported pages.",
 	"apihelp-import-example-import": "Import [[meta:Help:ParserFunctions]] to namespace 100 with full history.",
 
 	"apihelp-linkaccount-summary": "Link an account from a third-party provider to the current user.",
@@ -352,7 +352,7 @@
 	"apihelp-move-param-watchlist": "Unconditionally add or remove the page from the current user's watchlist, use preferences (ignored for bot users) or do not change watch.",
 	"apihelp-move-param-watchlistexpiry": "Watchlist expiry timestamp. Omit this parameter entirely to leave the current expiry unchanged.",
 	"apihelp-move-param-ignorewarnings": "Ignore any warnings.",
-	"apihelp-move-param-tags": "Change tags to apply to the entry in the move log and to the null revision on the destination page.",
+	"apihelp-move-param-tags": "Change tags to apply to the entry in the move log and to the dummy revision on the destination page.",
 	"apihelp-move-example-move": "Move <kbd>Badtitle</kbd> to <kbd>Goodtitle</kbd> without leaving a redirect.",
 
 	"apihelp-opensearch-summary": "Search the wiki using the OpenSearch protocol.",
