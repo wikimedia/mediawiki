@@ -151,8 +151,6 @@ class HtmlToContentTransform {
 		}
 
 		$errorMessage = '';
-		// XXX HtmlPageBundle::validate() should be moved to BasePageBundle
-		$pb = $pb->withHtml( '' );
 		if ( !$pb->validate( $version, $errorMessage ) ) {
 			throw new ClientError( $errorMessage );
 		}
@@ -512,14 +510,9 @@ class HtmlToContentTransform {
 		}
 
 		$this->validatePageBundle( $pb );
-		$dpb = $pb->withDocument( $doc );
-		// This is being executed for side-effects
-		// ::toInlineAttributeDocument() will be more efficient, once it
-		// is available.
-		$dpb->toInlineAttributeHtml( [
-			'siteConfig' => $this->siteConfig,
-		] );
-		return $doc;
+		return $pb->withDocument( $doc )->toInlineAttributeDocument(
+			siteConfig: $this->siteConfig,
+		);
 	}
 
 	/**
