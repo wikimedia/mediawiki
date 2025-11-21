@@ -17,37 +17,26 @@ require_once __DIR__ . '/../autoload.php';
  */
 
 /**
- * This initializes autoloading for MediaWiki core, extensions, and vendored libs.
+ * This initializes autoloading for MediaWiki core, extensions, and vendored
+ * libraries. Namespaces must follow the PSR-4 standard for autoloading.
+ *
+ * MediaWiki core does not use PSR-4 autoloading due to performance issues
+ * but enforces the mapping to be maintained for future use. Instead of using
+ * PSR-0, a class map stored in autoload.php generated via a script:
+ * php maintenance/run.php generateLocalAutoload
+ *
+ * @see <https://www.php-fig.org/psr/psr-4/>
+ * @see <https://techblog.wikimedia.org/2024/01/16/web-perf-hero-mate-szabo/>
  *
  * NOTE: This file sets up the PHP autoloader and so its stable contract is not this
  * class, but the act of initializing spl_autoload_register and vendor.
  * This file is widely referenced (akin to includes/Defines.php) and is therefore
- * not renamed or moved to /includes/autoload.
+ * not renamed or moved to /includes/Autoload.
  *
  * @since 1.7
  * @ingroup Autoload
  */
 class AutoLoader {
-
-	/**
-	 * A mapping of namespace => file path for MediaWiki core.
-	 * The namespaces must follow the PSR-4 standard for autoloading.
-	 *
-	 * MediaWiki core does not use PSR-4 autoloading due to performance issues,
-	 * but enforce the mapping to be maintained for future use.
-	 * Instead using PSR-0, class map stored in autoload.php generated via script:
-	 * php maintenance/run.php generateLocalAutoload
-	 *
-	 * @see <https://www.php-fig.org/psr/psr-4/>
-	 * @see <https://techblog.wikimedia.org/2024/01/16/web-perf-hero-mate-szabo/>
-	 * @internal Only public for usage in AutoloadGenerator/AutoLoaderTest
-	 * @phpcs-require-sorted-array
-	 */
-	public const CORE_NAMESPACES = [
-		'MediaWiki\\' => __DIR__ . '/',
-		'MediaWiki\\Maintenance\\' => __DIR__ . '/../maintenance/includes/',
-		'Wikimedia\\' => __DIR__ . '/libs/',
-	];
 
 	/**
 	 * @var string[] Namespace (ends with \) => Path (ends with /)
