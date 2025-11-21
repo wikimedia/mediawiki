@@ -2900,9 +2900,6 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 				wfDeprecated( __METHOD__ . ' with unusual page property', '1.45' );
 			}
 		}
-		foreach ( $this->mWarningMsgs as $key => $msg ) {
-			$metadata->addWarningMsgVal( $msg, (string)$key );
-		}
 		foreach ( $this->mLimitReportData as $key => $value ) {
 			$metadata->setLimitReportData( (string)$key, $value );
 		}
@@ -2953,6 +2950,9 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 				foreach ( $this->getLinkList( $linkType ) as $linkItem ) {
 					$metadata->appendLinkList( $linkType, $linkItem );
 				}
+			}
+			foreach ( $this->mWarningMsgs as $key => $msg ) {
+				$metadata->addWarningMsgVal( $msg, (string)$key );
 			}
 		}
 	}
