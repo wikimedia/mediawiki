@@ -136,9 +136,32 @@ const priv = {
 	 */
 	partsToInfo( parts ) {
 		const info = {};
+
 		for ( const part of parts ) {
-			info[ part.type ] = part.value;
+			const suffix = part.source === 'startRange' ?
+				'1' :
+				part.source === 'endRange' ?
+					'2' :
+					'';
+
+			if ( !( part.type in info ) ) {
+				info[ part.type ] = part.value;
+			}
+
+			if ( suffix ) {
+				info[ `${ part.type }${ suffix }` ] = part.value;
+			}
+
+			if ( part.source === 'shared' ) {
+				if ( info[ `${ part.type }1` ] === undefined ) {
+					info[ `${ part.type }1` ] = part.value;
+				}
+				if ( info[ `${ part.type }2` ] === undefined ) {
+					info[ `${ part.type }2` ] = part.value;
+				}
+			}
 		}
+
 		return info;
 	},
 
@@ -685,12 +708,72 @@ class DateFormatter {
 		const formatter = this.getIntlFormatInternal( formatName );
 		const pattern = this.formats[ formatName ].rangePattern;
 		if ( pattern ) {
-			return priv.formatPattern(
-				priv.partsToInfo( formatter.formatRangeToParts( date1, date2 ) ),
-				pattern
-			);
+			const parts = formatter.formatRangeToParts( date1, date2 );
+			if ( parts.length === 0 ) {
+				return formatter.formatRange( date1, date2 );
+			}
+
+			const info = priv.partsToInfo( parts );
+			this.fillRangeMonthInfo( info, date1, date2, pattern );
+			this.fillRangeZoneOffsetInfo( info, pattern );
+			return priv.formatPattern( info, pattern );
 		} else {
 			return formatter.formatRange( date1, date2 );
+		}
+	}
+
+	fillRangeMonthInfo( info, date1, date2, pattern ) {
+		if ( !pattern.includes( '{mwMonth' ) &&
+			!pattern.includes( '{mwMonthGen' ) &&
+			!pattern.includes( '{mwMonthAbbrev' ) ) {
+			return;
+		}
+
+		const monthFormatter = this.getIntlFormatInternal( 'monthNumber' );
+		const month1 = Number( monthFormatter.format( date1 ) );
+		const month2 = Number( monthFormatter.format( date2 ) );
+
+		const applyMonthData = ( suffix, index ) => {
+			const monthData = config.months[ index ] || [];
+			if ( monthData[ 0 ] ) {
+				info[ `mwMonth${ suffix }` ] = monthData[ 0 ];
+			}
+			if ( monthData[ 1 ] ) {
+				info[ `mwMonthGen${ suffix }` ] = monthData[ 1 ];
+			}
+			if ( monthData[ 2 ] ) {
+				info[ `mwMonthAbbrev${ suffix }` ] = monthData[ 2 ];
+			}
+		};
+
+		applyMonthData( '1', month1 );
+		applyMonthData( '2', month2 );
+		if ( info.mwMonth1 && !info.mwMonth ) {
+			info.mwMonth = info.mwMonth1;
+		}
+		if ( info.mwMonthGen1 && !info.mwMonthGen ) {
+			info.mwMonthGen = info.mwMonthGen1;
+		}
+		if ( info.mwMonthAbbrev1 && !info.mwMonthAbbrev ) {
+			info.mwMonthAbbrev = info.mwMonthAbbrev1;
+		}
+	}
+
+	fillRangeZoneOffsetInfo( info, pattern ) {
+		if ( !pattern.includes( '{mwZoneOffset' ) ) {
+			return;
+		}
+		const applyOffset = ( suffix, zoneName ) => {
+			if ( zoneName ) {
+				info[ `mwZoneOffset${ suffix }` ] = priv.longOffsetToIsoOffset( zoneName );
+			}
+		};
+		applyOffset( '1', info.timeZoneName1 );
+		applyOffset( '2', info.timeZoneName2 );
+		if ( info.timeZoneName ) {
+			info.mwZoneOffset = priv.longOffsetToIsoOffset( info.timeZoneName );
+		} else if ( info.mwZoneOffset1 ) {
+			info.mwZoneOffset = info.mwZoneOffset1;
 		}
 	}
 

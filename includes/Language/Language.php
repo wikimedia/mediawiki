@@ -1981,6 +1981,8 @@ class Language implements Bcp47Code {
 	 * as used by the client-side mediawiki.DateFormatter.
 	 *
 	 * @param string $format
+	 * @param array $options Optional options array. If 'includeRange' is set to true,
+	 *   the returned array will include a 'rangePattern' key.
 	 * @return array An associative array with the following keys:
 	 *   - pattern: A string with parameters surrounded by braces, like {year},
 	 *     where the parameter names are those returned by Intl.DateTimeFormat.formatToParts(),
@@ -1990,8 +1992,9 @@ class Language implements Bcp47Code {
 	 *     - mwMonthAbbrev:  The abbreviated month name message text
 	 *   - locale: A fixed locale to override the default one
 	 *   - options: Associative options to pass to the Intl.DateTimeFormat constructor
+	 *   - rangePattern: Only included if 'includeRange' option is set to true
 	 */
-	private function convertDateFormatToJs( $format ) {
+	private function convertDateFormatToJs( $format, $options = [] ) {
 		// CLDR calendar IDs by format code
 		$calendars = [
 			'j' => 'hebrew',
@@ -2330,11 +2333,40 @@ class Language implements Bcp47Code {
 		}
 		$mwOpts['options'] = $intlOpts;
 		$mwOpts['pattern'] = $s;
+		if ( isset( $options['includeRange'] ) && $options['includeRange'] ) {
+			$mwOpts['rangePattern'] = $this->convertJsRangePattern( $s );
+		}
 		if ( $unsupported ) {
 			$mwOpts['error'] = 'Unsupported format code(s): ' .
 				implode( ', ', $unsupported );
 		}
 		return $mwOpts;
+	}
+
+	/**
+	 * Generate a client-side range pattern by duplicating tokens for start
+	 * and end dates, joined with an en-dash separator.
+	 *
+	 * @param string $pattern
+	 * @return string
+	 */
+	private function convertJsRangePattern( $pattern ) {
+		if ( $pattern === '' ) {
+			return '';
+		}
+
+		$start = preg_replace_callback(
+			'/\{(\w+)}/',
+			static fn ( $matches ) => '{' . $matches[1] . '1}',
+			$pattern
+		);
+		$end = preg_replace_callback(
+			'/\{(\w+)}/',
+			static fn ( $matches ) => '{' . $matches[1] . '2}',
+			$pattern
+		);
+
+		return "{$start} – {$end}";
 	}
 
 	/**
@@ -5072,7 +5104,9 @@ class Language implements Bcp47Code {
 				}
 
 				$jsFormat = $this->convertDateFormatToJs(
-					$this->getDateFormatString( $resolvedType, $resolvedStyle ) );
+					$this->getDateFormatString( $resolvedType, $resolvedStyle ),
+					[ 'includeRange' => true ]
+				);
 				if ( isset( $jsLcFormats[$resolvedKey] ) ) {
 					$results[$key] = array_merge_recursive( $jsFormat, $jsLcFormats[$resolvedKey] );
 				} else {

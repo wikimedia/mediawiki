@@ -2,6 +2,12 @@ const DateFormatter = require( 'mediawiki.DateFormatter' );
 const midnightZulu = new Date( '2025-01-01T00:00:00Z' );
 const oneZulu = new Date( '2025-01-01T01:00:00Z' );
 const nextDay = new Date( '2025-01-02T00:00:00Z' );
+const marchStart = new Date( '2025-03-01T00:00:00Z' );
+const marchEnd = new Date( '2025-03-05T00:00:00Z' );
+const march31 = new Date( '2025-03-31T00:00:00Z' );
+const april02 = new Date( '2025-04-02T00:00:00Z' );
+const dec31 = new Date( '2024-12-31T00:00:00Z' );
+const jan02 = new Date( '2025-01-02T00:00:00Z' );
 
 // Output of Intl.DateTimeFormat#formatRange varies across browsers.
 // Firefox 139+ outputs "x - y" with regular spaces around the en-dash.
@@ -123,9 +129,7 @@ QUnit.module( 'mediawiki.DateFormatter static functions', ( hooks ) => {
 		const { formatTimeAndDateRange } = DateFormatter;
 		assert.strictEqual(
 			norm( formatTimeAndDateRange( midnightZulu, oneZulu ) ),
-			// Just descriptive, we don't supply fixed patterns for ranges
-			// Ideally it would at least use our month name "(january)"
-			'January 1, 2025, 01:00 – 02:00'
+			'01:00, 1 (january) 2025 – 02:00, 1 (january) 2025'
 		);
 	} );
 
@@ -142,8 +146,31 @@ QUnit.module( 'mediawiki.DateFormatter static functions', ( hooks ) => {
 		const { formatDateRange } = DateFormatter;
 		assert.strictEqual(
 			norm( formatDateRange( midnightZulu, nextDay ) ),
-			// Just descriptive
-			'January 1 – 2, 2025'
+			'1 (january) 2025 – 2 (january) 2025'
+		);
+	} );
+
+	QUnit.test( 'formatDateRange (same month)', ( assert ) => {
+		const { formatDateRange } = DateFormatter;
+		assert.strictEqual(
+			norm( formatDateRange( marchStart, marchEnd ) ),
+			'1 (march) 2025 – 5 (march) 2025'
+		);
+	} );
+
+	QUnit.test( 'formatDateRange (different month)', ( assert ) => {
+		const { formatDateRange } = DateFormatter;
+		assert.strictEqual(
+			norm( formatDateRange( march31, april02 ) ),
+			'31 (march) 2025 – 2 (april) 2025'
+		);
+	} );
+
+	QUnit.test( 'formatDateRange (different year)', ( assert ) => {
+		const { formatDateRange } = DateFormatter;
+		assert.strictEqual(
+			norm( formatDateRange( dec31, jan02 ) ),
+			'31 (december) 2024 – 2 (january) 2025'
 		);
 	} );
 
@@ -329,8 +356,7 @@ QUnit.module( 'mediawiki.DateFormatter instance methods', ( hooks ) => {
 	QUnit.test( 'formatTimeAndDateRange', ( assert ) => {
 		assert.strictEqual(
 			norm( getInstance().formatTimeAndDateRange( midnightZulu, oneZulu ) ),
-			// Just descriptive, we don't supply fixed patterns for ranges
-			'January 1, 2025, 00:00 – 01:00'
+			'00:00, 1 (january) 2025 – 01:00, 1 (january) 2025'
 		);
 	} );
 
@@ -345,9 +371,28 @@ QUnit.module( 'mediawiki.DateFormatter instance methods', ( hooks ) => {
 	QUnit.test( 'formatDateRange', ( assert ) => {
 		assert.strictEqual(
 			norm( getInstance().formatDateRange( midnightZulu, nextDay ) ),
-			// Just descriptive
-			'January 1 – 2, 2025'
+			'1 (january) 2025 – 2 (january) 2025'
 		);
 	} );
 
+	QUnit.test( 'formatDateRange (same month)', ( assert ) => {
+		assert.strictEqual(
+			norm( getInstance().formatDateRange( marchStart, marchEnd ) ),
+			'1 (march) 2025 – 5 (march) 2025'
+		);
+	} );
+
+	QUnit.test( 'formatDateRange (different month)', ( assert ) => {
+		assert.strictEqual(
+			norm( getInstance().formatDateRange( march31, april02 ) ),
+			'31 (march) 2025 – 2 (april) 2025'
+		);
+	} );
+
+	QUnit.test( 'formatDateRange (different year)', ( assert ) => {
+		assert.strictEqual(
+			norm( getInstance().formatDateRange( dec31, jan02 ) ),
+			'31 (december) 2024 – 2 (january) 2025'
+		);
+	} );
 } );

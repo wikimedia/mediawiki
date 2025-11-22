@@ -2524,7 +2524,8 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 					'month' => 'long',
 					'year' => 'numeric',
 				],
-				'pattern' => '{hour}:{minute}, {day} {mwMonth} {year}'
+				'pattern' => '{hour}:{minute}, {day} {mwMonth} {year}',
+				'rangePattern' => '{hour1}:{minute1}, {day1} {mwMonth1} {year1} – {hour2}:{minute2}, {day2} {mwMonth2} {year2}',
 			],
 			$result['dmy both']
 		);
