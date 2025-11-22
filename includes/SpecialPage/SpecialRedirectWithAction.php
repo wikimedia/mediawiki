@@ -9,8 +9,6 @@ namespace MediaWiki\SpecialPage;
 
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Status\Status;
-use MediaWiki\Title\MalformedTitleException;
 use MediaWiki\Title\Title;
 use SearchEngineFactory;
 
@@ -84,10 +82,11 @@ abstract class SpecialRedirectWithAction extends RedirectSpecialPage {
 		// Each special page that extends this should include those as comments for grep
 		$form = HTMLForm::factory( 'ooui', [
 			'page' => [
-				'type' => 'text',
+				'type' => 'title',
 				'name' => 'page',
 				'label-message' => 'special' . $this->msgPrefix . '-page',
 				'required' => true,
+				'creatable' => true,
 			],
 		], $this->getContext(), $this->msgPrefix );
 		$form->setSubmitTextMsg( 'special' . $this->msgPrefix . '-submit' );
@@ -99,16 +98,10 @@ abstract class SpecialRedirectWithAction extends RedirectSpecialPage {
 	 * @stable to override
 	 *
 	 * @param array $formData
-	 *
-	 * @return Status|null
 	 */
 	public function onFormSubmit( $formData ) {
 		$title = $formData['page'];
-		try {
-			$page = Title::newFromTextThrow( $title );
-		} catch ( MalformedTitleException $e ) {
-			return Status::newFatal( $e->getMessageObject() );
-		}
+		$page = Title::newFromText( $title );
 		$query = [ 'action' => $this->action ];
 		$url = $page->getFullUrlForRedirect( $query );
 		$this->getOutput()->redirect( $url );
