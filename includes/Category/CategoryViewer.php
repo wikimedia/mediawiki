@@ -9,12 +9,12 @@
 namespace MediaWiki\Category;
 
 use Collation;
-use ImageGalleryClassNotFoundException;
 use InvalidArgumentException;
 use MediaWiki\Cache\LinkCache;
 use MediaWiki\Context\ContextSource;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Debug\DeprecationHelper;
+use MediaWiki\Gallery\Exception\ImageGalleryClassNotFoundException;
 use MediaWiki\Gallery\ImageGalleryBase;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Html\Html;

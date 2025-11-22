@@ -6,11 +6,11 @@
 
 namespace MediaWiki\Gallery;
 
-use ImageGalleryClassNotFoundException;
 use MediaWiki\Context\ContextSource;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\FileRepo\File\File;
+use MediaWiki\Gallery\Exception\ImageGalleryClassNotFoundException;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Language\Language;
 use MediaWiki\MainConfigNames;

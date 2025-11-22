@@ -7,9 +7,9 @@
 
 namespace MediaWiki\Specials\Pager;
 
-use ImageGalleryClassNotFoundException;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Context\IContextSource;
+use MediaWiki\Gallery\Exception\ImageGalleryClassNotFoundException;
 use MediaWiki\Gallery\ImageGalleryBase;
 use MediaWiki\Html\FormOptions;
 use MediaWiki\Linker\LinkRenderer;
