@@ -4130,6 +4130,5 @@
 	"temp-user-unable-to-acquire": "Unable to acquire a temporary account username. Please try again.",
 	"table-of-contents-show-button-aria-label": "Show the table of contents",
 	"table-of-contents-hide-button-aria-label": "Hide the table of contents",
-	"diff-usergroups": "$1 {{PLURAL:$1|user group|user groups}}",
-	"diff-usergroups-list": "$1"
+	"diff-usergroups": "$1 {{PLURAL:$1|user group|user groups}}"
 }

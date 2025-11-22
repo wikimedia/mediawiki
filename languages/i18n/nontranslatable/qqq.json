@@ -337,5 +337,6 @@
 	"watchlist-unwatch": "{{ignored}}\n\nSymbol used for the link to unwatch a page from the watchlist.",
 	"watchlist-unwatch-undo": "{{ignored}}\nSymbol used for the link to re-watch a page that has been unwatched from the watchlist.",
 	"whatlinkshere-summary": "{{doc-specialpagesummary|whatlinkshere}}",
-	"renderedwith-legacy": "{{notranslate}}\nThis message is shown below each page, in the footer with the logos and links, when the page has been rendered with the legacy parser. See also: {{msg-mw:Renderedwith-parsoid}}"
+	"renderedwith-legacy": "{{notranslate}}\nThis message is shown below each page, in the footer with the logos and links, when the page has been rendered with the legacy parser. See also: {{msg-mw:Renderedwith-parsoid}}",
+	"diff-usergroups-list": "The text for displaying user groups on diff view popover.\n\nParameters:\n* $1 - list of user groups"
 }

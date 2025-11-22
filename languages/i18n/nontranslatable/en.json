@@ -346,5 +346,6 @@
 	"watchlist-unwatch": "×",
 	"watchlist-unwatch-undo": "+",
 	"whatlinkshere-summary": "",
-	"renderedwith-legacy": "-"
+	"renderedwith-legacy": "-",
+	"diff-usergroups-list": "$1"
 }
