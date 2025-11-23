@@ -175,6 +175,7 @@ $specialPageAliases = [
 	'Wantedpages'               => [ 'صفح_مطلوبه', 'لينكات_مكسوره' ],
 	'Wantedtemplates'           => [ 'قوالب_مطلوبه' ],
 	'Watchlist'                 => [ 'ليستة_المراقبه' ],
+	'WatchlistLabels'           => [ 'علامات_ليستة_المراقبه' ],
 	'Whatlinkshere'             => [ 'ايه_بيوصل_هنا' ],
 	'Withoutinterwiki'          => [ 'من-غير_interwiki' ],
 ];
@@ -191,6 +192,9 @@ $magicWords = [
 	'canonicalurle'             => [ '0', 'مسار_قاعده:', 'مسار_قاعدة:', 'CANONICALURLE:' ],
 	'cascadingsources'          => [ '1', 'مصادر_متضمنه', 'CASCADINGSOURCES' ],
 	'contentlanguage'           => [ '1', 'لغة_المحتوى', 'لغة_محتوى', 'CONTENTLANGUAGE', 'CONTENTLANG' ],
+	'contentmodel'              => [ '1', '#النموذج_بتاع_المحتوى', '#contentmodel' ],
+	'contentmodel_canonical'    => [ '1', 'قانونى', 'canonical' ],
+	'contentmodel_local'        => [ '1', 'محلى', 'local' ],
 	'currentday'                => [ '1', 'يوم_حالى', 'يوم_حالي', 'CURRENTDAY' ],
 	'currentday2'               => [ '1', 'يوم_حالى2', 'يوم_حالي2', 'CURRENTDAY2' ],
 	'currentdayname'            => [ '1', 'اسم_اليوم_الحالى', 'اسم_اليوم_الحالي', 'CURRENTDAYNAME' ],

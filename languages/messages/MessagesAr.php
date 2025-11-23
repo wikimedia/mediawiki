@@ -149,6 +149,9 @@ $magicWords = [
 	'canonicalurle'             => [ '0', 'مسار_قاعدة:', 'CANONICALURLE:' ],
 	'cascadingsources'          => [ '1', 'مصادر_مضمنة', 'CASCADINGSOURCES' ],
 	'contentlanguage'           => [ '1', 'لغة_المحتوى', 'لغة_محتوى', 'CONTENTLANGUAGE', 'CONTENTLANG' ],
+	'contentmodel'              => [ '1', '#نموذج_المحتوى', '#نموذج_محتوى', '#contentmodel' ],
+	'contentmodel_canonical'    => [ '1', 'قانوني', 'canonical' ],
+	'contentmodel_local'        => [ '1', 'محلي', 'local' ],
 	'currentday'                => [ '1', 'يوم_حالي', 'CURRENTDAY' ],
 	'currentday2'               => [ '1', 'يوم_حالي2', 'CURRENTDAY2' ],
 	'currentdayname'            => [ '1', 'اسم_اليوم_الحالي', 'CURRENTDAYNAME' ],
@@ -461,6 +464,7 @@ $specialPageAliases = [
 	'Wantedpages'               => [ 'صفحات_مطلوبة', 'وصلات_مكسورة' ],
 	'Wantedtemplates'           => [ 'قوالب_مطلوبة' ],
 	'Watchlist'                 => [ 'قائمة_المراقبة' ],
+	'WatchlistLabels'           => [ 'علامات_قائمة_المراقبة' ],
 	'Whatlinkshere'             => [ 'ماذا_يصل_هنا' ],
 	'Withoutinterwiki'          => [ 'بدون_إنترويكي' ],
 ];
