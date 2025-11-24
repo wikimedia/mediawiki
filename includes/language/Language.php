@@ -3165,13 +3165,13 @@ class Language implements Bcp47Code {
 		if ( $number === '' ) {
 			return $number;
 		}
-		if ( $number === (string)NAN ) {
+		if ( $number === 'NAN' ) {
 			return $this->msg( 'formatnum-nan' )->text();
 		}
-		if ( $number === (string)INF ) {
+		if ( $number === 'INF' ) {
 			return "∞";
 		}
-		if ( $number === (string)-INF ) {
+		if ( $number === '-INF' ) {
 			return "\u{2212}∞";
 		}
 		if ( !is_numeric( $number ) ) {
