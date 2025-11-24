@@ -77,6 +77,12 @@ export const config = {
 		// It is also used by afterTest for capturing screenshots.
 		'mw:screenshotPath': logPath,
 
+		// Setting that enables video recording of the test.
+		// Recording videos is currently supported only on Linux,
+		// and is triggered by the DISPLAY value starting with a colon.
+		// https://www.mediawiki.org/wiki/Selenium/How-to/Record_videos_of_test_runs
+		'mw:recordVideo': true,
+
 		// For Chrome/Chromium https://www.w3.org/TR/webdriver
 		browserName: 'chrome',
 		// Use correct browser and driver in CI
@@ -219,7 +225,9 @@ export const config = {
 	 * @param {Object} test Mocha Test object
 	 */
 	beforeTest: async function ( test ) {
-		ffmpeg = await startVideo( ffmpeg, `${ test.parent }-${ test.title }` );
+		if ( browser.options.capabilities[ 'mw:recordVideo' ] === true ) {
+			ffmpeg = await startVideo( ffmpeg, `${ test.parent }-${ test.title }` );
+		}
 	},
 
 	/**
@@ -233,7 +241,9 @@ export const config = {
 		try {
 			await saveScreenshot( `${ test.parent }-${ test.title }${ result.passed ? '' : '-failed' }` );
 		} finally {
-			stopVideo( ffmpeg );
+			if ( browser.options.capabilities[ 'mw:recordVideo' ] === true ) {
+				stopVideo( ffmpeg );
+			}
 		}
 	},
 
