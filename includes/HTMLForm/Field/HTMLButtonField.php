@@ -115,6 +115,7 @@ class HTMLButtonField extends HTMLFormField {
 			'classes' => [ 'mw-htmlform-submit', $this->mClass ],
 			'id' => $this->mID,
 			'flags' => $this->mFlags,
+			'formNoValidate' => $this->mFormnovalidate,
 		] + \OOUI\Element::configFromHtmlAttributes(
 			$this->getAttributes( [ 'disabled', 'tabindex' ] )
 		) );
