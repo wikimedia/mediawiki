@@ -429,7 +429,7 @@ newline}}
 <li>{{#interlanguagelink:mi|Template:Bar</li></ul>
 <p>newline}}
 </p>
-!! html/parsoid
+!! html/parsoid+integrated
 <ul typeof="mw:Transclusion" data-mw='{"parts":["*",{"template":{"target":{"wt":"#interlanguagelink:mi","function":"interlanguagelink"},"params":{"1":{"wt":"_"}},"i":0}},"\n*",{"template":{"target":{"wt":"#interlanguagelink:mi","function":"interlanguagelink"},"params":{"1":{"wt":"_Template:Bar"}},"i":1}},"\n*",{"template":{"target":{"wt":"#interlanguagelink:mi","function":"interlanguagelink"},"params":{"1":{"wt":"Template:Bar_"}},"i":2}},"\n*",{"template":{"target":{"wt":"#interlanguagelink:mi","function":"interlanguagelink"},"params":{"1":{"wt":"Template:Bar\nnewline"}},"i":3}}]}'>
 <li>{{#interlanguagelink:mi|_}}</li>
 <li>{{#interlanguagelink:mi|_Template:Bar}}</li>
