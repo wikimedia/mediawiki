@@ -86,7 +86,8 @@ export const config = {
 		// Browser width and height
 		'mw:width': 1280,
 		'mw:height': 1024,
-
+		// If DISPLAY is setup, default usage is to not use browser headless
+		'mw:useBrowserHeadless': !process.env.DISPLAY,
 		// For Chrome/Chromium https://www.w3.org/TR/webdriver
 		browserName: 'chrome',
 		// Use correct browser and driver in CI
@@ -105,7 +106,6 @@ export const config = {
 			// If DISPLAY is set, assume developer asked non-headless or CI with Xvfb.
 			// Otherwise, use --headless.
 			args: [
-				...( process.env.DISPLAY ? [] : [ '--headless' ] ),
 				// Chrome sandbox does not work in Docker. Disable GPU to prevent crashes (T389536#10677201)
 				// For disable-dev-shm-usage: We map /tmp to tmpfs for the container in CI
 				...( fs.existsSync( '/.dockerenv' ) ? [ '--no-sandbox', '--disable-gpu', '--disable-dev-shm-usage' ] : [] ),
@@ -224,14 +224,18 @@ export const config = {
 	 * Gets executed just before initializing the webdriver session and test framework.
 	 * It allows you to manipulate configurations depending on the capability or spec.
 	 *
-	 * @param {Object} config wdio configuration object
+	 * @param {Object} configuration wdio configuration object
 	 * @param {Array.<Object>} capabilities list of capabilities details
-	 * @param {Array.<string>} specs List of spec file paths that are to be run
 	 */
-	// T355556: remove when T324766 is resolved
-	beforeSession: function () {
+	beforeSession: function ( configuration, capabilities ) {
+		// T355556: remove when T324766 is resolved
 		// eslint-disable-next-line n/no-unsupported-features/node-builtins
 		dns.setDefaultResultOrder( 'ipv4first' );
+
+		const useBrowserHeadless = capabilities[ 'mw:useBrowserHeadless' ];
+		if ( useBrowserHeadless === true ) {
+			capabilities[ 'goog:chromeOptions' ].args.push( '--headless' );
+		}
 	},
 
 	/**
