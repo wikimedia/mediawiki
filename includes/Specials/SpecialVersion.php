@@ -1126,9 +1126,9 @@ class SpecialVersion extends SpecialPage {
 			$memcKey = $cache->makeKey(
 				'specialversion-ext-version-text', $extension['path'], $this->coreId
 			);
-			[ $vcsVersion, $vcsLink, $vcsDate ] = $cache->get( $memcKey );
+			$res = $cache->get( $memcKey );
 
-			if ( !$vcsVersion ) {
+			if ( $res === false ) {
 				wfDebug( "Getting VCS info for extension {$extension['name']}" );
 				$gitInfo = new GitInfo( $extensionPath );
 				$vcsVersion = $gitInfo->getHeadSHA1();
@@ -1140,6 +1140,7 @@ class SpecialVersion extends SpecialPage {
 				$cache->set( $memcKey, [ $vcsVersion, $vcsLink, $vcsDate ], 60 * 60 * 24 );
 			} else {
 				wfDebug( "Pulled VCS info for extension {$extension['name']} from cache" );
+				[ $vcsVersion, $vcsLink, $vcsDate ] = $res;
 			}
 		}
 
