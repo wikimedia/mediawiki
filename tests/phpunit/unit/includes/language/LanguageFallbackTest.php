@@ -5,7 +5,7 @@ use MediaWiki\Tests\Unit\DummyServicesTrait;
 
 /**
  * @group Language
- * @covers \MediaWiki\Languages\LanguageFallback
+ * @covers \MediaWiki\Language\LanguageFallback
  */
 class LanguageFallbackTest extends MediaWikiUnitTestCase {
 	use DummyServicesTrait;

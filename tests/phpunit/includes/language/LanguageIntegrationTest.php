@@ -19,7 +19,7 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @group Language
  * @covers \MediaWiki\Language\Language
- * @covers \MediaWiki\Languages\LanguageNameUtils
+ * @covers \MediaWiki\Language\LanguageNameUtils
  */
 class LanguageIntegrationTest extends LanguageClassesTestCase {
 	use DummyServicesTrait;

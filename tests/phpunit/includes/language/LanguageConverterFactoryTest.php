@@ -10,7 +10,7 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @group large
  * @group Language
- * @covers \MediaWiki\Languages\LanguageConverterFactory
+ * @covers \MediaWiki\Language\LanguageConverterFactory
  */
 class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 	/**

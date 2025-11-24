@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Tests\Languages;
+namespace MediaWiki\Tests\Unit\Language;
 
 use LocalisationCache;
 use MediaWiki\Config\HashConfig;
@@ -16,7 +16,7 @@ use Wikimedia\Bcp47Code\Bcp47CodeValue;
 
 /**
  * @group Language
- * @covers \MediaWiki\Languages\LanguageFactory
+ * @covers \MediaWiki\Language\LanguageFactory
  */
 class LanguageFactoryTest extends MediaWikiUnitTestCase {
 	private function createFactory() {
