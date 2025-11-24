@@ -82,7 +82,8 @@
 			"V27t",
 			"Pere prlpz",
 			"Sma1997",
-			"SaldırganSincap"
+			"SaldırganSincap",
+			"Tiputini"
 		]
 	},
 	"tog-underline": "Subratlla els enllaços:",
@@ -858,6 +859,8 @@
 	"unstrip-size-category": "Pàgines en què s'excedeix el límit de mida de substitució",
 	"unstrip-size-category-desc": "La pàgina excedeix el límit de mida de substitució.",
 	"converter-manual-rule-error": "Error detectat a la norma de conversió de llengua manual",
+	"bad-double-underscore-category": "Pàgines amb canvis de comportament no vàlids",
+	"bad-double-underscore-category-desc": "La pàgina conté un [[mw:Special:MyLanguage/Help:Magic_words#Behavior_switches|canviador de comportament]] localitzat no vàlid. Les localitzacions vàlides comencen i acaben amb doble subratllat.",
 	"undo-success": "L'edició es pot desfer. <br>Comproveu la comparació següent per verificar que això és el que voleu fer, i després publiqueu els canvis següents per acabar de desfer l'edició.",
 	"undo-failure": "No pot desfer-se la modificació perquè hi ha edicions intermèdies en conflicte.",
 	"undo-main-slot-only": "No s'ha pogut desfer la modificació perquè implicava contingut de fora de l'espai principal.",
@@ -3364,7 +3367,7 @@
 	"version-poweredby-translators": "Traductors de translatewiki.net",
 	"version-poweredby-various": "Diferents autors",
 	"version-credits-summary": "El nostre reconeixement a les següents persones per la seva aportació a [[Special:Version|MediaWiki]]",
-	"version-license-info": "MediaWiki és programari lliure, podeu redistribuir-lo i/o modificar-lo sota els termes de la Llicència Pública General GNU publicada per la Free Software Foundation, sigui de la seva versió 2 o (a elecció vostra) de qualsevol versió posterior. \n\nMediaWiki es distribueix en l'esperança de ser d'utilitat, però <em>SENSE CAP GARANTIA</em>; ni tan sols la garantia implícita de <strong>COMERCIALITZACIÓ</strong> o <strong>ADEQUACIÓ A UNA FINALITAT DETERMINADA</strong>. Vegeu la Llicència Pública General GNU per a més informació.\n\nAmb aquest programa heu d'haver rebut [{{SERVER}}{{SCRIPTPATH}}/COPYING una còpia de la Llicència Pública General GNU]; si no és així, adreceu-vos a la Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA o bé [//www.gnu.org/licenses/old-licenses/gpl-2.0.html llegiu-la en línia].",
+	"version-license-info": "MediaWiki és programari lliure; podeu redistribuir-lo i/o modificar-lo segons els termes de la Llicència Pública General de GNU publicada per la Free Software Foundation; ja sigui la versió 2 de la Llicència o (a la vostra elecció) qualsevol versió posterior.\n\nMediaWiki es distribueix amb l'esperança que sigui útil, però <em>SENSE CAP GARANTIA</em> ; sense ni tan sols la garantia implícita de <strong>COMERCIABILITAT</strong> o <strong>IDONEÏTAT PER A UN PROPÒSIT PARTICULAR</strong>. Vegeu la Llicència Pública General de GNU per a més detalls.\n\nHauríeu d'haver rebut [{{SERVER}}{{SCRIPTPATH}}/COPYING una còpia de la Llicència Pública General de GNU] juntament amb aquest programa; si no, [//www.gnu.org/licenses/old-licenses/gpl-2.0.html llegiu-la en línia].",
 	"version-software": "Programari instal·lat",
 	"version-software-product": "Producte",
 	"version-software-version": "Versió",

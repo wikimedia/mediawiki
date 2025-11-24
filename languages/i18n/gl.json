@@ -1769,7 +1769,7 @@
 	"upload-form-label-infoform-name": "Nome",
 	"upload-form-label-infoform-name-tooltip": "Un título único descritivo para o ficheiro, que servirá como un nome de ficheiro. Podes usar unha linguaxe clara con espazos. Non inclúas a extensión do ficheiro.",
 	"upload-form-label-infoform-description": "Descrición",
-	"upload-form-label-infoform-description-tooltip": "Describa brevemente todo o destacable acerca do traballo.\nPara unha foto, mencione as cousas principais que se representan, a ocasión ou o lugar.",
+	"upload-form-label-infoform-description-tooltip": "Describe brevemente todo o que sexa destacable da obra.\nNo caso das fotos, menciona os elementos principais que se representan, a ocasión ou o lugar.",
 	"upload-form-label-usage-title": "Uso",
 	"upload-form-label-usage-filename": "Nome do ficheiro",
 	"upload-form-label-own-work": "Isto é unha obra propia",

@@ -856,7 +856,6 @@
 	"content-model-wikitext": "विकिटेक्स्ट",
 	"content-model-text": "सादा टेक्स्ट",
 	"content-model-javascript": "जावास्क्रिप्ट",
-	"content-model-json": "JSON",
 	"content-json-empty-object": "रिक्त ऑब्जेक्ट",
 	"content-json-empty-array": "रिक्त ऐरे",
 	"unsupported-content-model": "<strong>चेतावनी:</strong> इस विकि पर सामग्री मॉडल $1 समर्थित नहीं है।",

@@ -4053,7 +4053,7 @@
 	"paramvalidator-help-type-user-subtype-name": "brukernavn",
 	"paramvalidator-help-type-user-subtype-ip": "IP",
 	"paramvalidator-help-type-user-subtype-cidr": "IP-intervall",
-	"paramvalidator-help-type-user-subtype-interwiki": "interwikinavn (f.eks. \"prefiks>Eksempelnavn\")",
+	"paramvalidator-help-type-user-subtype-interwiki": "interwikinavn (f.eks. «prefiks>Eksempelnavn»)",
 	"paramvalidator-help-type-user-subtype-id": "bruker-ID (f.eks. «#12345»)",
 	"paramvalidator-badtitle": "Ugyldig verdi «$2» for tittelparameteren <var>$1</var>: ikke en gyldig tittelstreng.",
 	"paramvalidator-missingtitle": "Ugyldig verdi «$2» for tittelparameteren <var>$1</var>: siden finnes ikke.",

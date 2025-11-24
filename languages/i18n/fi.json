@@ -2600,7 +2600,7 @@
 	"date": "Alkaen päivämäärästä (ja sitä aiemmat):",
 	"sp-contributions-blocklog": "estoloki",
 	"sp-contributions-suppresslog": "{{GENDER:$1|käyttäjän}} häivytetyt muokkaukset",
-	"sp-contributions-deleted": "{{GENDER:$1|käyttäjän}} poistetut muokkaukset",
+	"sp-contributions-deleted": "{{GENDER:$1|poistetut muokkaukset}}",
 	"sp-contributions-uploads": "tallennukset",
 	"sp-contributions-logs": "lokit",
 	"sp-contributions-talk": "keskustelu",

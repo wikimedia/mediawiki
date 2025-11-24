@@ -895,6 +895,8 @@
 	"unstrip-size-category": "Strony, które przekraczają dopuszczalny rozmiar dla funkcji unstrip",
 	"unstrip-size-category-desc": "Ta strona przekracza limit rozmiaru funkcji „unstrip”.",
 	"converter-manual-rule-error": "Błąd w językowych regułach konwersji",
+	"bad-double-underscore-category": "Strony z nieprawidłowymi przełącznikami zachowania",
+	"bad-double-underscore-category-desc": "Strona zawiera nieprawidłowy zlokalizowany [[mw:Special:MyLanguage/Help:Magic_words#Behavior_switches|przełącznik zachowania]]. Prawidłowe wystąpienia zaczynają się i kończą podwójnym podkreśleniem.",
 	"undo-success": "Edycja może zostać wycofana.\nPorównaj ukazane poniżej różnice między wersjami, a następnie opublikuj zmiany, jeśli na pewno chcesz wycofać edycję.",
 	"undo-failure": "Edycja nie może zostać wycofana z powodu konfliktu z wersjami pośrednimi.",
 	"undo-main-slot-only": "Zmiany nie można cofnąć, ponieważ dotyczy treści znajdujących się poza głównym wątkiem.",
