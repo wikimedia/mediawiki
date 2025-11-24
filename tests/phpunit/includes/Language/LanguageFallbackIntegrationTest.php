@@ -9,7 +9,7 @@ use MediaWikiIntegrationTestCase;
 
 /**
  * @group Language
- * @covers \MediaWiki\Languages\LanguageFallback
+ * @covers \MediaWiki\Language\LanguageFallback
  */
 class LanguageFallbackIntegrationTest extends MediaWikiIntegrationTestCase {
 	use LanguageFallbackTestTrait;

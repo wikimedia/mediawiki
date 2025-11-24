@@ -9,7 +9,7 @@ use MediaWikiUnitTestCase;
 
 /**
  * @group Language
- * @covers \MediaWiki\Languages\LanguageNameUtils
+ * @covers \MediaWiki\Language\LanguageNameUtils
  */
 class LanguageNameUtilsTest extends MediaWikiUnitTestCase {
 	use LanguageNameUtilsTestTrait;

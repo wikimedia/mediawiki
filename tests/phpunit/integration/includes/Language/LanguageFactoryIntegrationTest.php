@@ -6,7 +6,7 @@ use Wikimedia\Bcp47Code\Bcp47CodeValue;
 
 /**
  * @group Language
- * @covers \MediaWiki\Languages\LanguageFactory
+ * @covers \MediaWiki\Language\LanguageFactory
  */
 class LanguageFactoryIntegrationTest extends MediaWikiIntegrationTestCase {
 	private function createFactory() {
