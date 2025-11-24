@@ -443,8 +443,6 @@ TEXT
 					$byte . ( $chunk === false ? '' : ( '; "' . substr( $chunk, $byte - $offset, 16 ) . '"' ) ),
 					xml_error_string( xml_get_error_code( $parser ) ) )->escaped();
 
-				xml_parser_free( $parser );
-
 				throw new MWException( $msg );
 			}
 			$offset += strlen( $chunk );
@@ -476,7 +474,6 @@ TEXT
 				$this->egress->closeAndRename( $newFilenames );
 			}
 		}
-		xml_parser_free( $parser );
 
 		return true;
 	}
