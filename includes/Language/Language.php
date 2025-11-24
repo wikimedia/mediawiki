@@ -2981,7 +2981,7 @@ class Language implements Bcp47Code {
 			return '';
 		}
 
-		$octetCode = ord( $str );
+		$octetCode = ord( $str[0] );
 		// See https://en.wikipedia.org/wiki/ASCII#Printable_characters
 		if ( $octetCode < 96 ) {
 			// Assume this is an uppercase/uncased ASCII character
@@ -3027,7 +3027,7 @@ class Language implements Bcp47Code {
 	 * @return string The string with lowercase conversion applied to the first character
 	 */
 	public function lcfirst( $str ) {
-		$octetCode = ord( $str );
+		$octetCode = ord( $str[0] );
 		// See https://en.wikipedia.org/wiki/ASCII#Printable_characters
 		if ( $octetCode < 96 ) {
 			// Assume this is an uppercase/uncased ASCII character
