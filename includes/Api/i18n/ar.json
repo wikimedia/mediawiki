@@ -1978,7 +1978,7 @@
 	"apiwarn-validationfailed-cannotset": "لا يمكن ضبطها بواسطة هذه الوحدة.",
 	"apiwarn-validationfailed-keytoolong": "المفتاح طويل جدًا (لا يُسمح بأكثر من $1 {{PLURAL:$1| byte|bytes}}).",
 	"apiwarn-validationfailed-valuetoolong": "القيمة طويلة جدًا (لا يُسمح بأكثر من $1 {{PLURAL:$1| بايت}}).",
-	"apiwarn-validationfailed-toomanyuserjs": "تم تعيين عدد كبير جدًا من قيم تفضيلات userjs (لا يُسمح بأكثر من $1 ).",
+	"apiwarn-validationfailed-toomanyuserjs": "تم تعيين عدد كبير جدًا من قيم تفضيلات userjs (لا يزيد عن $1 {{PLURAL:$1|مسموح به}}).",
 	"apiwarn-validationfailed": "خطأ في التحقق من <kbd>$1</kbd>: $2",
 	"apiwarn-wgdebugapi": "<strong>تحذير الأمان:</strong> تم تمكين <var>$wgDebugAPI</var>.",
 	"api-feed-error-title": "خطأ ($1)",

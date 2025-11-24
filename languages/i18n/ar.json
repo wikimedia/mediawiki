@@ -2360,6 +2360,7 @@
 	"rollback-missingrevision": "غير قادر على تحميل بيانات المراجعة.",
 	"cantrollback": "لم يمكن استرجاع التعديل.\nآخر مساهم هو المؤلف الوحيد لهذه الصفحة.",
 	"alreadyrolled": "لم يمكن استرجاع آخر تعديل ل[[:$1]] بواسطة [[User:$2|$2]] ([[User talk:$2|نقاش]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]).\nشخص آخر عدل أو استرجع الصفحة بالفعل.\n\nآخر تعديل كان بواسطة [[User:$3|$3]] ([[User talk:$3|نقاش]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
+	"rollback-nochange": "إن التراجع عن آخر التعديلات التي تم إجراؤها على [[:$1]] بواسطة [[User:$2|$2]] ([[User talk:$2|نقاش]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) لن يؤدي إلى أي تغيير في النص، إما لأن {{GENDER:$2| ه|ها}} قد قام بالفعل بإرجاع {{GENDER:$2| his|her|their}} تعديلاته الخاصة أو لأن {{GENDER:$2| ه|ها}} قاموا فقط بمراجعات وهمية.",
 	"editcomment": "ملخص التعديل كان:<em>$1</em>.",
 	"revertpage": "استرجع {{PLURAL:$7|تعديل|تعديلات}} [[Special:Contributions/$2|$2]] ([[User talk:$2|نقاش]]) حتى آخر مراجعة ل[[User:$1|$1]]",
 	"revertpage-anon": "استرجع {{PLURAL:$7|تعديلات}} [[Special:Contributions/$2|$2]] حتى آخر مراجعة بواسطة [[User:$1|$1]]",
@@ -2560,6 +2561,7 @@
 	"block-cancel": "إلغاء",
 	"block-create": "إضافة منع",
 	"blockip": "منع {{GENDER:$1|المستخدم|المستخدمة}}",
+	"blockiprange": "حظر نطاق IP",
 	"blockiptext": "يتم استخدام الحظر لمنع التخريب وأشكال أخرى من التعطيل ([[{{MediaWiki:Policy-url}}|اقرأ المزيد]]). يمكنك حظر نطاقات عناوين IP باستخدام صيغة [https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing CIDR]. أكبر نطاق مسموح به هو / $1 لـ IPv4 و / $2 لـ IPv6.",
 	"block-multiblocks-new-feature": "هناك ميزة جديدة تسمح لك بإصدار عدة عمليات منع على حساب واحد.",
 	"ipaddressorusername": "عنوان الآيبي أو اسم المستخدم أو معرف المنع:",
@@ -2651,6 +2653,7 @@
 	"block-reblock-multi-legacy": "تم حظر هذا المستخدم عدة مرات بالفعل ولا يمكن إعادة حظره باستخدام هذا النموذج.",
 	"block-view-target": "منظر",
 	"unblockip": "رفع المنع عن المستخدم",
+	"unblockiprange": "إلغاء حظر نطاق IP",
 	"unblockiptext": "استخدم النموذج أدناه لإعادة صلاحية التعديل إلى عنوان الآي بي أو اسم المستخدم المحظور مسبقًا.",
 	"unblock-target": "إلغاء منع الهدف",
 	"unblock-target-label": "قم بتوفير اسم المستخدم أو عنوان IP أو معرف المنع:",
@@ -4222,5 +4225,5 @@
 	"temp-user-unable-to-acquire": "تعذر الحصول على اسم مستخدم مؤقت للحساب. يرجى المحاولة مرة أخرى.",
 	"table-of-contents-show-button-aria-label": "إظهار جدول المحتويات",
 	"table-of-contents-hide-button-aria-label": "إخفاء جدول المحتويات.",
-	"diff-usergroups": "مجموعات المستخدمين $1"
+	"diff-usergroups": "$1 {{PLURAL:$1|مجموعة مستخدمين|مجموعات المستخدمين}}"
 }

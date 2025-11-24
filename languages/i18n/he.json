@@ -2289,6 +2289,7 @@
 	"rollback-missingrevision": "לא ניתן לטעון את המידע על הגרסה.",
 	"cantrollback": "לא ניתן לשחזר את העריכה.\nהתורם האחרון הוא היחיד שכתב בדף הזה.",
 	"alreadyrolled": "לא ניתן לשחזר את העריכה האחרונה של [[User:$2|$2]] ([[User talk:$2|שיחה]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) בדף [[:$1]].\nמישהו כבר ערך או שחזר את הדף.\n\nהעריכה האחרונה לדף הייתה של [[User:$3|$3]] ([[User talk:$3|שיחה]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
+	"rollback-nochange": "שחזור העריכות האחרונות לדף[[:$1]] של [[User:$2|$2]] ([[User talk:$2|שיחה]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) לא יביא לשינוי בטקסט כי {{GENDER:$2|הוא כבר שחזר את העריכות שלו|היא כבר שחזרה את העריכות שלה}} או כי {{GENDER:$2|הוא יצר|היא יצרה}} רק גרסאות־דמה.",
 	"editcomment": "תקציר העריכה היה: <em>$1</em>.",
 	"revertpage": "שוחזר {{PLURAL:$7|מעריכה|מעריכות}} של [[Special:Contributions/$2|$2]] ([[User talk:$2|שיחה]]) לעריכה האחרונה של [[User:$1|$1]]",
 	"revertpage-anon": "שוחזר {{PLURAL:$7|מעריכה|מעריכות}} של [[Special:Contributions/$2|$2]] לעריכה האחרונה של [[User:$1|$1]]",

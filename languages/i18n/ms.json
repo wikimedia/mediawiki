@@ -2267,6 +2267,7 @@
 	"rollback-missingrevision": "Tidak dapat memuat data semakan.",
 	"cantrollback": "Suntingan tersebut tidak dapat dibalikkan.\nPenyumbang terakhir ialah satu-satunya pengarang bagi laman ini.",
 	"alreadyrolled": "Tidak dapat undur suntingan terakhir [[:$1]] oleh [[User:$2|$2]] ([[User talk:$2|perbincangan]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]).\nOrang lain telah menyunting atau mengundurkan kembali laman.\n\nSuntingan terakhir kepada laman tersebut oleh [[User:$3|$3]] ([[User talk:$3|talk]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
+	"rollback-nochange": "Pengunduran suntingan terakhir kepada [[:$1]] oleh [[User:$2|$2]] ([[User talk:$2|perbincangan]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) akan menyebabkan tiada perubahan pada teks, sama ada kerana {{GENDER:$2|dia}} sudah membalikkan suntingan {{GENDER:$2|dirinya}} atau kerana {{GENDER:$2| dia}} membuat semakan olokan sahaja.",
 	"editcomment": "Ringkasan sutingan: <em>$1</em>.",
 	"revertpage": "{{PLURAL:$7|Suntingan}} oleh [[Special:Contributions/$2|$2]] ([[User talk:$2|perbincangan]]) dikembalikan kepada semakan terdahulu oleh [[User:$1|$1]]",
 	"revertpage-anon": "{{PLURAL:$7|suntingan}} dibalikkan oleh [[Special:Contributions/$2|$2]] untuk semakan terakhir oleh [[User:$1|1]]",

@@ -2335,6 +2335,7 @@
 	"rollback-missingrevision": "ناتوان از بارگیری اطلاعات نسخه.",
 	"cantrollback": "نمی‌توان ویرایش را واگرداند؛\nآخرین مشارکت‌کننده تنها مؤلف این مقاله است.",
 	"alreadyrolled": "واگردانی آخرین ویرایش [[:$1]] توسط [[User:$2|$2]] ([[User talk:$2|بحث]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) ممکن نیست؛\nپیش از این شخص دیگری مقاله را ویرایش یا واگردانی کرده است.\n\nآخرین ویرایش توسط [[User:$3|$3]] ([[User talk:$3|بحث]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]) انجام شده است.",
+	"rollback-nochange": "واگردانی آخرین ویرایش‌ها در [[:$1]] توسط [[User:$2|$2]] ([[User talk:$2|بحث]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) تغییری در متن ایجاد نخواهد کرد، زیرا {{GENDER:$2|او}} ویرایش‌های {{GENDER:$2|خود}} را واگردانی کرده یا این که تنها ویرایش‌های تصنعی انجام داده است.",
 	"editcomment": "خلاصهٔ ویرایش این بود:  <em>«$1»</em>.",
 	"revertpage": "{{PLURAL:$7|ویرایش|ویرایش‌های}} [[Special:Contributions/$2|$2]] ([[User talk:$2|بحث]]) به آخرین تغییری که [[User:$1|$1]] انجام داده بود واگردانده شد",
 	"revertpage-anon": "{{PLURAL:$7|ویرایش|ویرایش‌های}} [[Special:Contributions/$2|$2]] به آخرین تغییری که [[User:$1|$1]] انجام داده بود واگردانده {{PLURAL:$7|شد|شدند}}",

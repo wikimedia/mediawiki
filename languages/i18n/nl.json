@@ -2345,6 +2345,7 @@
 	"rollback-missingrevision": "Laden van versiegegevens mislukt.",
 	"cantrollback": "Ongedaan maken van de bewerking is niet mogelijk.\nDeze pagina heeft slechts één auteur.",
 	"alreadyrolled": "Het is niet mogelijk om de bewerking van de pagina [[:$1]] door [[User:$2|$2]] ([[User talk:$2|overleg]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) terug te draaien.\nIemand anders heeft deze pagina al bewerkt of teruggedraaid naar een eerdere versie.\n\nDe meest recente bewerking is gemaakt door [[User:$3|$3]] ([[User talk:$3|overleg]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
+	"rollback-nochange": "Het terugdraaien van de laatste door [[User:$2|$2]] ([[User talk:$2|overleg]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) aangebrachte bewerkingen van [[:$1]] zou niet leiden tot enige verandering in de tekst, omdat {{GENDER:$2|hij|zij|$2}} ofwel {{GENDER:$2|zijn|haar|de}} eigen bewerkingen al heeft teruggedraaid ofwel alleen nulbewerkingen heeft aangebracht.",
 	"editcomment": "De bewerkingssamenvatting was: <em>$1</em>.",
 	"revertpage": "{{PLURAL:$7|Wijziging|Wijzigingen}} van [[Special:Contributions/$2|$2]] ([[User talk:$2|Overleg]]) teruggedraaid naar de laatste versie van [[User:$1|$1]]",
 	"revertpage-anon": "{{PLURAL:$7|Wijziging|Wijzigingen}} van [[Special:Contributions/$2|$2]] teruggedraaid naar de laatste versie van [[User:$1|$1]]",

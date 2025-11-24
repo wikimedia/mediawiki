@@ -326,7 +326,7 @@
 	"querypage-no-updates": "Việc cập nhật trang này hiện đã bị tắt. Dữ liệu ở đây có thể bị lỗi thời.",
 	"querypage-updates-periodical": "Trang này được cập nhật tỉnh thoảng.",
 	"viewsource": "Xem mã nguồn",
-	"protection-indicator-title-infinity": "Trang này bị khóa nên chỉ thành viên có quyền “$1” mới sửa đổi.",
+	"protection-indicator-title-infinity": "Trang này đã bị khóa nên chỉ các thành viên có quyền “$1” mới được sửa đổi.",
 	"protection-indicator-title": "Trang này bị khóa nên chỉ thành viên có quyền “$1” mới sửa đổi đến $2.",
 	"skin-action-viewsource": "Xem mã nguồn",
 	"viewsource-title": "Xem mã nguồn của $1",

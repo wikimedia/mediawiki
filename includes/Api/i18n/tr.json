@@ -718,7 +718,7 @@
 	"apihelp-query+categorymembers-example-generator": "<kbd>Category:Physics</kbd> içindeki ilk 10 sayfa hakkında sayfa bilgisi alın.",
 	"apihelp-query+codexicons-param-names": "Simgelerin adları",
 	"apihelp-query+codexicons-example": "cdxIconInfo ve cdxIconTrash için simge al",
-	"apihelp-query+contributors-summary": "Bir sayfaya oturum açık şekilde katkıda bulunmuşların listesini ve oturum açmadan katkıda bulunanların sayısını öğrenin.",
+	"apihelp-query+contributors-summary": "Bir sayfaya oturum açık şekilde katkıda bulunanların listesini alın ve oturum açmadan katkıda bulunanların sayısını öğrenin.",
 	"apihelp-query+contributors-param-group": "Yalnızca belirli gruplardaki kullanıcıları dahil et. *, kullanıcı veya otomatik onaylı gibi örtük veya otomatik olarak tanıtılan grupları içermez.",
 	"apihelp-query+contributors-param-excludegroup": "Verilen gruplardaki kullanıcıları hariç tutun. *, kullanıcı veya otomatik onaylı gibi örtük veya otomatik olarak tanıtılan grupları içermez.",
 	"apihelp-query+contributors-param-rights": "Yalnızca verilen haklara sahip kullanıcıları dahil edin. *, kullanıcı veya otomatik onaylı gibi örtük veya otomatik olarak tanıtılan gruplar tarafından verilen hakları içermez.",

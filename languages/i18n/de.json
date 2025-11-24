@@ -2363,6 +2363,7 @@
 	"rollback-missingrevision": "Die Versionsdaten konnten nicht geladen werden.",
 	"cantrollback": "Die Änderung kann nicht zurückgesetzt werden. Der letzte Beitragende ist der einzige Autor dieser Seite.",
 	"alreadyrolled": "Das Zurücksetzen der letzten Änderung von [[User:$2|$2]] ([[User talk:$2|Diskussion]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) an [[:$1]] ist gescheitert. Ein anderer Benutzer hat die Seite geändert.\n\nDie letzte Änderung stammt von [[User:$3|$3]] ([[User talk:$3|Diskussion]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
+	"rollback-nochange": "Das Zurücksetzen der letzten Änderungen an [[:$1]] durch [[User:$2| $2]] ([[User talk:$2|Diskussion]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) würde keine Änderung am Text zur Folge haben, entweder weil {{GENDER:$2|er|sie}} bereits {{GENDER:$2|seine|ihre}} eigene Änderungen rückgängig gemacht hat oder weil {{GENDER:$2|er|sie}} nur Dummy-Änderungen vorgenommen hat.",
 	"editcomment": "Die Änderungszusammenfassung lautet: <em>$1</em>.",
 	"revertpage": "{{PLURAL:$7|Änderung|Änderungen}} von [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskussion]]) {{PLURAL:$7|wurde|wurden}} auf die letzte Version von [[User:$1|$1]] zurückgesetzt",
 	"revertpage-anon": "{{PLURAL:$7|Änderung|Änderungen}} von [[Special:Contributions/$2|$2]] {{PLURAL:$7|wurde|wurden}} auf die letzte Version von [[User:$1|$1]] zurückgesetzt",

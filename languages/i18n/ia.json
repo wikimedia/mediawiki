@@ -2245,6 +2245,7 @@
 	"rollback-missingrevision": "Impossibile cargar le datos del version.",
 	"cantrollback": "Impossibile reverter le modification.\nLe ultime contributor es le sol autor de iste pagina.",
 	"alreadyrolled": "Non pote revocar le ultime modification de [[:$1]] per [[User:$2|$2]] ([[User talk:$2|discussion]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]).\nUn altere persona ha ja modificate o revocate le pagina.\n\nLe ultime modification esseva facite per [[User:$3|$3]] ([[User talk:$3|discussion]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
+	"rollback-nochange": "Le revocation del ultime modificationes de [[:$1]] apportate per [[User:$2|$2]] ([[User talk:$2|discussion]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) non cambiarea le texto, o perque {{GENDER:$2|ille|illa|$2}} ha ja revertite su proprie modificationes o perque {{GENDER:$2|ille|illa|$2}} ha effectuate solo modificationes nulle.",
 	"editcomment": "Le summario del modification esseva: <em>$1</em>.",
 	"revertpage": "Modification{{PLURAL:$7||es}} de [[Special:Contributions/$2|$2]] ([[User talk:$2|discussion]]) revertite; ultime version de [[User:$1|$1]] restaurate",
 	"revertpage-anon": "Modification{{PLURAL:$7||es}} de [[Special:Contributions/$2|$2]] revertite; ultime version de [[User:$1|$1]] restaurate",

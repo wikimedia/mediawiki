@@ -1857,6 +1857,8 @@
 	"watching": "د کتلو په حال کې...",
 	"unwatching": "د نه کتلو په حال کې...",
 	"watchlistlabels-title": "کتنلړ نښکې مهارول",
+	"watchlistlabels-table-col-actions": "چارې",
+	"watchlistlabels-table-edit": "سمول",
 	"enotif_reset": "ټول مخونه کتل شوي نښه کول",
 	"enotif_impersonal_salutation": "{{SITENAME}} کارن",
 	"enotif_subject_deleted": "د {{SITENAME}} مخ $1 د {{gender:$2|$2}} لخوا ړنگ شوی",

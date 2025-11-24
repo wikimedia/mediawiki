@@ -3382,6 +3382,7 @@
 	"userlogout-temp": "Ako uređujete na dijeljenom uređaju, poput računala u knjižnici ili školi, možete napustiti ovu sesiju i tako spriječiti druge u uporabi ovog privremenog računa.",
 	"userlogout-temp-messagebox-title": "Jeste li sigurni da želite završiti sesiju i odjaviti se?",
 	"userlogout-temp-messagebox-body": "Nakon što se odjavite, nećete više moći pristupiti ovom privremenom računu.",
+	"temp-user-logout-confirm-title": "Napuštanje sesije",
 	"paramvalidator-baduser": "Pogrješna vrijednost »$2« suraničkoga parametra <var>$1</var>.",
 	"paramvalidator-help-type-user-subtype-name": "suradničko ime",
 	"paramvalidator-help-type-user-subtype-ip": "IP-adresa",
