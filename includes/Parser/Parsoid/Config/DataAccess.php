@@ -133,7 +133,7 @@ class DataAccess extends IDataAccess {
 	}
 
 	/** @inheritDoc */
-	public function getPageInfo( $pageConfigOrTitle, array $titles ): array {
+	public function getPageInfo( $pageConfigOrTitle, array $titles, bool $defaultLinkCaption = false ): array {
 		if ( $pageConfigOrTitle instanceof IPageConfig ) {
 			$context_title = Title::newFromLinkTarget(
 				$pageConfigOrTitle->getLinkTarget()
@@ -177,7 +177,7 @@ class DataAccess extends IDataAccess {
 		foreach ( $titleObjs as $obj ) {
 			$pdbk = $obj->getPrefixedDBkey();
 			$pagemap[$obj->getArticleID()] = $pdbk;
-			$classes[$pdbk] = $this->linkRenderer->getLinkClasses( $obj );
+			$classes[$pdbk] = $this->linkRenderer->getLinkClasses( $obj, $defaultLinkCaption );
 		}
 		$this->hookRunner->onGetLinkColours(
 			# $classes is passed by reference and mutated
