@@ -65,7 +65,7 @@ class ImportReporter extends ContextSource {
 	}
 
 	/**
-	 * Sets change tags to apply to the import log entry and null revision.
+	 * Sets change tags to apply to the import log entry and dummy revision.
 	 *
 	 * @param string[] $tags
 	 * @since 1.29
@@ -164,7 +164,7 @@ class ImportReporter extends ContextSource {
 			$logEntry->setComment( $this->reason );
 			$logEntry->setPerformer( $this->getUser() );
 			$logEntry->setParameters( $logParams );
-			// Make sure the null revision will be tagged as well
+			// Make sure the dummy revision will be tagged as well
 			$logEntry->setAssociatedRevId( $dummyRevRecord->getId() );
 			if ( count( $this->logTags ) ) {
 				$logEntry->addTags( $this->logTags );

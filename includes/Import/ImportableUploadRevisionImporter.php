@@ -26,7 +26,7 @@ class ImportableUploadRevisionImporter implements UploadRevisionImporter {
 	}
 
 	/**
-	 * Setting this to false will deactivate the creation of a null revision as part of the upload
+	 * Setting this to false will deactivate the creation of a dummy revision as part of the upload
 	 * process logging in LocalFile::recordUpload3, see T193621
 	 *
 	 * @param bool $shouldCreateNullRevision

@@ -549,7 +549,7 @@ class RevertedTagUpdateTest extends MediaWikiUnitTestCase {
 	/**
 	 * Test marking multiple revisions as reverted.
 	 *
-	 * Also ensures that null revisions (e.g. move and protection entries) are not
+	 * Also ensures that dummy revisions (e.g. move and protection entries) are not
 	 * marked as 'reverted', see: T265312
 	 */
 	public function testMultipleRevertedRevisions() {

@@ -369,7 +369,7 @@ class RestrictionStore {
 					$rows = [];
 				} else {
 					$rows = $this->wanCache->getWithSetCallback(
-						// Page protections always leave a new null revision
+						// Page protections always leave a new dummy revision
 						$this->wanCache->makeKey( 'page-restrictions', 'v1', $id, $latestRev ),
 						$this->wanCache::TTL_DAY,
 						function ( $curValue, &$ttl, array &$setOpts ) use ( $loadRestrictionsFromDb ) {

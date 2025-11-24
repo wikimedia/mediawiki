@@ -369,11 +369,11 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 			$this->assertMoved( $old, $new, $oldPageId, $createRedirect );
 
 			[
-				'nullRevision' => $nullRevision,
+				'nullRevision' => $dummyRevision,
 				'redirectRevision' => $redirectRevision
 			] = $status->getValue();
-			$this->assertInstanceOf( RevisionRecord::class, $nullRevision );
-			$this->assertSame( $oldPageId, $nullRevision->getPageId() );
+			$this->assertInstanceOf( RevisionRecord::class, $dummyRevision );
+			$this->assertSame( $oldPageId, $dummyRevision->getPageId() );
 			if ( $createRedirect ) {
 				$this->assertInstanceOf( RevisionRecord::class, $redirectRevision );
 				$this->assertSame( $old->getArticleID( IDBAccessObject::READ_LATEST ), $redirectRevision->getPageId() );

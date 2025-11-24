@@ -1768,7 +1768,7 @@ class LocalFile extends File {
 	 * @param Authority|null $uploader object or null to use the context authority
 	 * @param string[] $tags Change tags to add to the log entry and page revision.
 	 *   (This doesn't check $uploader's permissions.)
-	 * @param bool $createNullRevision Set to false to avoid creation of a null revision on file
+	 * @param bool $createDummyRevision Set to false to avoid creation of a dummy revision on file
 	 *   upload, see T193621
 	 * @param bool $revert If this file upload is a revert
 	 * @return Status On success, the value member contains the
@@ -1776,7 +1776,7 @@ class LocalFile extends File {
 	 */
 	public function upload( $src, $comment, $pageText, $flags = 0, $props = false,
 		$timestamp = false, ?Authority $uploader = null, $tags = [],
-		$createNullRevision = true, $revert = false
+		$createDummyRevision = true, $revert = false
 	) {
 		if ( $this->getRepo()->getReadOnlyReason() !== false ) {
 			return $this->readOnlyFatalStatus();
@@ -1840,7 +1840,7 @@ class LocalFile extends File {
 				$props,
 				$timestamp,
 				$tags,
-				$createNullRevision,
+				$createDummyRevision,
 				$revert
 			);
 			if ( !$uploadStatus->isOK() ) {
@@ -1867,7 +1867,7 @@ class LocalFile extends File {
 	 * @param array|false $props
 	 * @param string|false $timestamp Can be in any format accepted by ConvertibleTimestamp
 	 * @param string[] $tags
-	 * @param bool $createNullRevision Set to false to avoid creation of a null revision on file
+	 * @param bool $createDummyRevision Set to false to avoid creation of a dummy revision on file
 	 *   upload, see T193621
 	 * @param bool $revert If this file upload is a revert
 	 * @return Status
@@ -1880,7 +1880,7 @@ class LocalFile extends File {
 		$props = false,
 		$timestamp = false,
 		$tags = [],
-		bool $createNullRevision = true,
+		bool $createDummyRevision = true,
 		bool $revert = false
 	): Status {
 		$dbw = $this->repo->getPrimaryDB();
@@ -2104,19 +2104,19 @@ class LocalFile extends File {
 		$logId = $logEntry->insert();
 
 		if ( $descTitle->exists() ) {
-			if ( $createNullRevision ) {
+			if ( $createDummyRevision ) {
 				$services = MediaWikiServices::getInstance();
 				// Use own context to get the action text in content language
 				$formatter = $services->getLogFormatterFactory()->newFromEntry( $logEntry );
 				$formatter->setContext( RequestContext::newExtraneousContext( $descTitle ) );
 				$editSummary = $formatter->getPlainActionText();
 
-				$nullRevRecord = $wikiPage->newPageUpdater( $performer->getUser() )
+				$dummyRevRecord = $wikiPage->newPageUpdater( $performer->getUser() )
 					->setCause( PageUpdater::CAUSE_UPLOAD )
 					->saveDummyRevision( $editSummary, EDIT_SILENT );
 
-				// Associate null revision id
-				$logEntry->setAssociatedRevId( $nullRevRecord->getId() );
+				// Associate dummy revision id
+				$logEntry->setAssociatedRevId( $dummyRevRecord->getId() );
 			}
 
 			$newPageContent = null;

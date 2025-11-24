@@ -23,7 +23,7 @@ interface RevisionFromEditCompleteHook {
 	 * @param WikiPage $wikiPage WikiPage edited
 	 * @param RevisionRecord $rev New revision
 	 * @param int|false $originalRevId If the edit restores or repeats an earlier revision (such as a
-	 *   rollback or a null revision), the ID of that earlier revision. False otherwise.
+	 *   rollback or a dummy revision), the ID of that earlier revision. False otherwise.
 	 *   (Used to be called $baseID.)
 	 * @param UserIdentity $user Editing user
 	 * @param string[] &$tags Tags to apply to the edit and recent change. This is empty, and

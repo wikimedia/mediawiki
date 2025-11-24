@@ -281,7 +281,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		$this->assertFalse( $updater->getEditResult()->isNew(), 'EditResult::isNew()' );
 		$this->assertFalse( $updater->getEditResult()->isRevert(), 'EditResult::isRevert()' );
 
-		// TODO: Test null revision (with different user): new revision!
+		// TODO: Test dummy revision (with different user): new revision!
 
 		$rev = $updater->getNewRevision();
 		$revContent = $rev->getContent( SlotRecord::MAIN );

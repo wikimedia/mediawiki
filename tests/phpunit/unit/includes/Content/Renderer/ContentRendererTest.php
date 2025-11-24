@@ -83,10 +83,10 @@ class ContentRendererTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * This method tests the getParserOutput method with a null revision. It is expected that the method will
+	 * This method tests the getParserOutput method with a dummy revision. It is expected that the method will
 	 * return a ParserOutput object with a render ID.
 	 */
-	public function testGetParserOutputWithNullRevision() {
+	public function testGetParserOutputWithDummyRevision() {
 		$page = PageIdentityValue::localIdentity( 1, NS_MAIN, 'TestPage' );
 		$parserOptions = $this->createMock( ParserOptions::class );
 

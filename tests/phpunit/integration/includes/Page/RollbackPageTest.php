@@ -214,7 +214,7 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $rev2->getId(), $mainSlot->getOrigin(), 'getOrigin' );
 	}
 
-	public function testRollbackFailNotCreateNullRevision() {
+	public function testRollbackFailNotCreateDummyRevision() {
 		$admin = $this->getTestSysop()->getUser();
 		$user1 = $this->getTestUser()->getUser();
 

@@ -442,7 +442,7 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 			throw new InvalidArgumentException( '$parentId should match the parent of $revision' );
 		}
 
-		// NOTE: For null revisions, $user may be different from $this->revision->getUser
+		// NOTE: For dummy revisions, $user may be different from $this->revision->getUser
 		// and also from $revision->getUser.
 		// But $user should always match $this->user.
 		if ( $user && $this->user && $user->getName() !== $this->user->getName() ) {
@@ -490,7 +490,7 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 
 	/**
 	 * Set whether null-edits should create a revision. Enabling this allows the creation of dummy
-	 * revisions ("null revisions") to mark events such as renaming in the page history.
+	 * revisions (aka null revisions) to mark events such as renaming in the page history.
 	 *
 	 * Must not be called once prepareContent() or prepareUpdate() have been called.
 	 *
@@ -1033,7 +1033,7 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 	/**
 	 * Whether the content of the current revision after the edit is different from the content of the
 	 * current revision before the edit. This will return false for a null-edit (no revision created),
-	 * as well as for a dummy revision (a "null-revision" that has the same content as its parent).
+	 * as well as for a dummy revision (a revision that has the same content as its parent).
 	 *
 	 * @warning at present, dummy revision would return false after prepareContent(),
 	 * but true after prepareUpdate()!
@@ -1258,7 +1258,7 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 			// and "new revision without new content" (dummy revision).
 
 			if ( $oldId === $revision->getParentId() ) {
-				// NOTE: this may still be a NullRevision!
+				// NOTE: this may still be a dummy revision!
 				// New revision!
 				$this->options['changed'] = true;
 			} elseif ( $oldId === $revision->getId() ) {

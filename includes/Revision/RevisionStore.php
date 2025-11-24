@@ -954,7 +954,7 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	}
 
 	/**
-	 * Create a new null-revision for insertion into a page's
+	 * Create a new dummy revision for insertion into a page's
 	 * history. This will not re-save the text, but simply refer
 	 * to the text from the previous version.
 	 *
@@ -962,7 +962,7 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	 * operations and other such meta-modifications.
 	 *
 	 * @note This method grabs a FOR UPDATE lock on the relevant row of the page table,
-	 * to prevent a new revision from being inserted before the null revision has been written
+	 * to prevent a new revision from being inserted before the dummy revision has been written
 	 * to the database.
 	 *
 	 * MCR migration note: this replaced Revision::newNullRevision
@@ -999,7 +999,7 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 			->caller( __METHOD__ )->fetchField();
 
 		if ( !$pageLatest ) {
-			$msg = 'T235589: Failed to select table row during null revision creation' .
+			$msg = 'T235589: Failed to select table row during dummy revision creation' .
 				" Page id '$pageId' does not exist.";
 			$this->logger->error(
 				$msg,

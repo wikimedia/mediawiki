@@ -136,7 +136,7 @@ class RevertedTagUpdate implements DeferrableUpdate {
 			if ( $previousRevision !== null &&
 				$revertedRevision->hasSameContent( $previousRevision )
 			) {
-				// This is a null revision (e.g. a page move or protection record)
+				// This is a dummy revision (e.g. a page move or protection record)
 				// See: T265312
 				continue;
 			}

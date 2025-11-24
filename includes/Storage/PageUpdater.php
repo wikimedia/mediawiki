@@ -406,7 +406,7 @@ class PageUpdater implements PageUpdateCauses {
 
 	/**
 	 * Set whether null-edits should create a revision. Enabling this allows the creation of dummy
-	 * revisions ("null revisions") to mark events such as renaming in the page history.
+	 * revisions (aka null revisions) to mark events such as renaming in the page history.
 	 *
 	 * Callers should typically also call setOriginalRevisionId() to indicate the ID of the revision
 	 * that is being repeated. That ID can be obtained from grabParentRevision()->getId().

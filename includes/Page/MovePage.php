@@ -639,8 +639,8 @@ class MovePage {
 			$dbw->cancelAtomic( __METHOD__ );
 			return $moveAttemptResult;
 		} else {
-			$nullRevision = $moveAttemptResult->getValue()['nullRevision'];
-			'@phan-var \MediaWiki\Revision\RevisionRecord $nullRevision';
+			$dummyRevision = $moveAttemptResult->getValue()['nullRevision'];
+			'@phan-var \MediaWiki\Revision\RevisionRecord $dummyRevision';
 		}
 
 		$redirid = $this->oldTitle->getArticleID();
@@ -724,7 +724,7 @@ class MovePage {
 
 		$this->hookRunner->onPageMoveCompleting(
 			$this->oldTitle, $this->newTitle,
-			$user, $pageid, $redirid, $reason, $nullRevision
+			$user, $pageid, $redirid, $reason, $dummyRevision
 		);
 
 		// Emit an event describing the move
@@ -743,7 +743,7 @@ class MovePage {
 			new AtomicSectionUpdate(
 				$dbw,
 				__METHOD__,
-				function () use ( $user, $pageid, $redirid, $reason, $nullRevision ) {
+				function () use ( $user, $pageid, $redirid, $reason, $dummyRevision ) {
 					$this->hookRunner->onPageMoveComplete(
 						$this->oldTitle,
 						$this->newTitle,
@@ -751,7 +751,7 @@ class MovePage {
 						$pageid,
 						$redirid,
 						$reason,
-						$nullRevision
+						$dummyRevision
 					);
 				}
 			)
@@ -798,7 +798,7 @@ class MovePage {
 	 * @param string[] $changeTags Change tags to apply to the entry in the move log
 	 * @return Status<array> Status object with the following value on success:
 	 *   [
-	 *     'nullRevision' => The ("null") revision created by the move (RevisionRecord)
+	 *     'nullRevision' => The dummy revision created by the move (RevisionRecord)
 	 *     'redirectRevision' => The initial revision of the redirect if it was created (RevisionRecord|null)
 	 *   ]
 	 */
@@ -901,7 +901,7 @@ class MovePage {
 			->where( [ 'page_id' => $oldid ] )
 			->caller( __METHOD__ )->execute();
 
-		// Reset $nt before using it to create the null revision (T248789).
+		// Reset $nt before using it to create the dummy revision (T248789).
 		// But not $this->oldTitle yet, see below (T47348).
 		$nt->resetArticleID( $oldid );
 
@@ -922,7 +922,7 @@ class MovePage {
 		// NOTE: The dummy revision will not be counted as a user contribution.
 		// NOTE: Use FLAG_SILENT to avoid redundant RecentChanges entry.
 		//       The move log already generates one.
-		$nullRevision = $newpage->newPageUpdater( $user )
+		$dummyRevision = $newpage->newPageUpdater( $user )
 			->setCause( PageLatestRevisionChangedEvent::CAUSE_MOVE )
 			->setHints( [
 				'oldtitle' => $this->oldTitle,
@@ -930,7 +930,7 @@ class MovePage {
 			] )
 			->saveDummyRevision( $comment, EDIT_SILENT | EDIT_MINOR );
 
-		$logEntry->setAssociatedRevId( $nullRevision->getId() );
+		$logEntry->setAssociatedRevId( $dummyRevision->getId() );
 
 		WikiPage::onArticleCreate( $nt );
 
@@ -956,7 +956,7 @@ class MovePage {
 		$logEntry->publish( $logid );
 
 		return Status::newGood( [
-			'nullRevision' => $nullRevision,
+			'nullRevision' => $dummyRevision,
 			'redirectRevision' => $redirectRevision,
 			'redirectPage' => $redirectArticle?->toPageRecord()
 		] );

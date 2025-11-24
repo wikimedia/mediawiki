@@ -1120,10 +1120,10 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		$page = $this->getPage( __METHOD__ );
 		$content = [ SlotRecord::MAIN => new WikitextContent( '[[Test]]' ) ];
 		$rev = $this->createRevision( $page, 'first', $content );
-		$nullRevision = MutableRevisionRecord::newFromParentRevision( $rev );
-		$nullRevision->setId( 14 );
-		$updater = $this->getDerivedPageDataUpdater( $page, $nullRevision );
-		$updater->prepareUpdate( $nullRevision );
+		$dummyRevision = MutableRevisionRecord::newFromParentRevision( $rev );
+		$dummyRevision->setId( 14 );
+		$updater = $this->getDerivedPageDataUpdater( $page, $dummyRevision );
+		$updater->prepareUpdate( $dummyRevision );
 		$this->assertTrue( $updater->isCountable() );
 	}
 

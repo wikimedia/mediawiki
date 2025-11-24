@@ -1994,7 +1994,7 @@ class WikiPage implements Stringable, Page, PageRecord {
 		$logParamsDetails = [];
 
 		// Null revision (used for change tag insertion)
-		$nullRevisionRecord = null;
+		$dummyRevisionRecord = null;
 
 		$legacyUser = $services->getUserFactory()->newFromUserIdentity( $user );
 		if ( !$this->getHookRunner()->onArticleProtect( $this, $legacyUser, $limit, $reason ) ) {
@@ -2029,7 +2029,7 @@ class WikiPage implements Stringable, Page, PageRecord {
 			}
 
 			// insert dummy revision to identify the page protection change as edit summary
-			$nullRevisionRecord = $this->insertNullProtectionRevision(
+			$dummyRevisionRecord = $this->insertNullProtectionRevision(
 				$revCommentMsg,
 				$limit,
 				$expiry,
@@ -2038,7 +2038,7 @@ class WikiPage implements Stringable, Page, PageRecord {
 				$user
 			);
 
-			if ( $nullRevisionRecord === null ) {
+			if ( $dummyRevisionRecord === null ) {
 				return Status::newFatal( 'no-null-revision', $this->mTitle->getPrefixedText() );
 			}
 
@@ -2142,8 +2142,8 @@ class WikiPage implements Stringable, Page, PageRecord {
 		$logEntry->setComment( $reason );
 		$logEntry->setPerformer( $user );
 		$logEntry->setParameters( $params );
-		if ( $nullRevisionRecord !== null ) {
-			$logEntry->setAssociatedRevId( $nullRevisionRecord->getId() );
+		if ( $dummyRevisionRecord !== null ) {
+			$logEntry->setAssociatedRevId( $dummyRevisionRecord->getId() );
 		}
 		$logEntry->addTags( $tags );
 		if ( $logRelationsField !== null && count( $logRelationsValues ) ) {
@@ -2220,7 +2220,7 @@ class WikiPage implements Stringable, Page, PageRecord {
 		string $reason,
 		UserIdentity $user
 	): ?RevisionRecord {
-		// Prepare a null revision to be added to the history
+		// Prepare a dummy revision to be added to the history
 		$editComment = wfMessage(
 			$revCommentMsg,
 			$this->mTitle->getPrefixedText(),

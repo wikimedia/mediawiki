@@ -32,7 +32,7 @@ class MutableRevisionRecord extends RevisionRecord {
 	/**
 	 * Returns an incomplete MutableRevisionRecord which uses $parent as its
 	 * parent revision, and inherits all slots form it. If saved unchanged,
-	 * the new revision will act as a null-revision.
+	 * the new revision will act as a dummy revision.
 	 *
 	 * @param RevisionRecord $parent
 	 *
