@@ -252,12 +252,9 @@ class ParserTestPrinter extends TestRecorder {
 			$position = xml_get_current_byte_index( $parser );
 			$fragment = $this->extractFragment( $html, $position );
 			$this->xmlError = "$err at byte $position:\n$fragment";
-			xml_parser_free( $parser );
 
 			return false;
 		}
-
-		xml_parser_free( $parser );
 
 		return true;
 	}
