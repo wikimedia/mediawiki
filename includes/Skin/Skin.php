@@ -2202,7 +2202,10 @@ abstract class Skin extends ContextSource {
 				'dir',
 				'data',
 				'exists',
+				// @todo: Remove data-mw once migration from data-mw to data-mw-interface is complete.
+				// this should probably go through the deprecation process for 3rd party support.
 				'data-mw',
+				'data-mw-interface',
 				'link-html',
 			];
 			if ( !$applyClassesToListItems ) {
