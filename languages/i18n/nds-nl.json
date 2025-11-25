@@ -1894,7 +1894,7 @@
 	"movenosubpage": "Onder disse zied hangen gien aandere ziejen.",
 	"movereason": "Readen:",
 	"revertmove": "weerummedreien",
-	"delete_and_move_text": "==Mut vortedaon wörden==\n<div style=\"color: red\"> De zied \"[[:$1]]\" besteet al. Wi'j t vortdoon um te kunnen herneumen?</div>",
+	"delete_and_move_text": "==Mut vortedaon wörden==\nDe zied \"[[:$1]]\" besteet al. Wi'j t vortdoon um te kunnen herneumen?",
 	"delete_and_move_confirm": "Ja, disse zied vortdoon",
 	"delete_and_move_reason": "Vordsmeaten vanweagen de hernöming van \"[[$1]]\"",
 	"selfmove": "De naam kan niet ewiezigd wörden naor de naam die t al hef.",

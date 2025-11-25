@@ -837,7 +837,7 @@
 	"mergehistory-reason": "tan:",
 	"mergelog": "pini pi wan lipu",
 	"history-title": "ante pini pi lipu \"$1\"",
-	"difference-title": "lipu \"$1\": ante pi tenpo tu",
+	"difference-title": "lipu \"$1\" la tenpo tu la ante li ni",
 	"difference-title-multipage": "$1 en $2: ante",
 	"lineno": "linja #$1:",
 	"lineno-inline": "linja $1 ⟶ $2:",

@@ -2113,6 +2113,7 @@
 	"apisandbox-request-php-label": "Verzoek PHP-array:",
 	"apisandbox-request-time": "Doorlooptijd verzoek: {{PLURAL:$1|$1 ms}}",
 	"apisandbox-request-post": "Dit verzoek moet worden verzonden met de HTTP POST-methode.",
+	"apisandbox-request-post2": "Vanwege de omvang van de inhoud is dit verzoek verzonden via de HTTP POST-methode.",
 	"apisandbox-request-formdata": "Dit verzoek moet worden verzonden als bestandsupload (d.w.z. met gebruik van <code>multipart/form-data</code>).",
 	"apisandbox-results-fixtoken": "Token corrigeren en opnieuw verzenden",
 	"apisandbox-results-fixtoken-fail": "Het ophalen van het token van type \"$1\" is mislukt.",

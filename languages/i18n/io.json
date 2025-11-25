@@ -2371,6 +2371,7 @@
 	"whatlinkshere-page": "Pagino:",
 	"linkshere": "Ca pagini esas ligilizita a(d) <strong>$2</strong>:",
 	"nolinkshere": "Nula pagino ligas ad <strong>$2</strong>.",
+	"nolinkshere-filter": "Nula pagini ligesas a <strong>$2</strong> kun la nuna parametri pri serchado.",
 	"isredirect": "ridirektanta pagino",
 	"istemplate": "inkluzo",
 	"isimage": "arkivo-ligilo",

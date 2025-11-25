@@ -2125,6 +2125,7 @@
 	"apisandbox-request-php-label": "اطلب مصفوفة PHP:",
 	"apisandbox-request-time": "وقت الطلب: {{PLURAL:$1|$1 ms}}",
 	"apisandbox-request-post": "يجب إرسال هذا الطلب باستخدام طريقة HTTP POST.",
+	"apisandbox-request-post2": "نظرًا لحجم الحمولة، تم إرسال هذا الطلب باستخدام طريقة HTTP POST.",
 	"apisandbox-request-formdata": "يجب إرسال هذا الطلب كتحميل ملف (أي باستخدام <code>multipart/form-data</code> ).",
 	"apisandbox-results-fixtoken": "رمز الصحيح وإعادة الموافقة",
 	"apisandbox-results-fixtoken-fail": "فشل جلب توكين \"$1\"",

@@ -44,7 +44,7 @@
 	"prefs-tabs-navigation-hint": "Mẹo: Bạn có thể bấm các phím mũi tên trái phải để luân chuyển qua các thẻ trong danh sách thẻ.",
 	"prefs-sections-navigation-hint": "Mẹo: Bạn có thể sử dụng phím Tab và Shift + Tab để điều hướng giữa các phần tùy chọn.",
 	"prefs-personal": "Thông tin cá nhân",
-	"prefs-description-personal": "Kiểm soát cách bạn xuất hiện, kết nối, và giao tiếp.",
+	"prefs-description-personal": "Kiểm soát cách bạn hiển thị với người khác, kết nối, và giao tiếp.",
 	"prefs-info": "Thông tin cơ bản",
 	"username": "{{GENDER:$1}}Tên người dùng:",
 	"prefs-memberingroups": "{{GENDER:$2}}Thành viên của {{PLURAL:$1|nhóm|các nhóm}}:",

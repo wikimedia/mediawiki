@@ -3580,7 +3580,7 @@
 	"logentry-newusers-create2": "Le conto de usator $3 ha essite {{GENDER:$2|create}} per $1",
 	"logentry-newusers-byemail": "Le conto de usator $3 ha essite {{GENDER:$2|create}} per $1 e le contrasigno ha essite inviate per e-mail",
 	"logentry-newusers-autocreate": "Le conto $1 ha essite {{GENDER:$2|create}} automaticamente",
-	"logentry-protect-move_prot": "$1 {{GENDER:$2|displaciava}} le parametros de protection de $4 a $3",
+	"logentry-protect-move_prot": "$1 {{GENDER:$2|ha transferite}} le parametros de protection de $4 a $3",
 	"logentry-protect-unprotect": "$1 {{GENDER:$2|removeva}} le protection de $3",
 	"logentry-protect-protect": "$1 {{GENDER:$2|ha protegite}} $3 $4",
 	"logentry-protect-protect-cascade": "$1 {{GENDER:$2|ha protegite}} $3 $4 [in cascada]",

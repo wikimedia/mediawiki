@@ -2024,7 +2024,7 @@
 	"ncategories": "$1 個分類",
 	"ninterwikis": "$1 個 Interwiki 連結",
 	"nlinks": "$1 個連結",
-	"nmembers": "$1 個{{PLURAL:$1|成員}}",
+	"nmembers": "$1 個{{PLURAL:$1|項目}}",
 	"nmemberschanged": "$1 → $2 個成員",
 	"nrevisions": "$1 次修訂",
 	"nimagelinks": "用於 $1 個{{PLURAL:$1|頁面}}上",

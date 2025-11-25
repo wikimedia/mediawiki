@@ -1491,7 +1491,7 @@
 	"nextdiff": "آلشدکاری تازاْتر ←",
 	"widthheightpage": "$1 × $2, $3 {{PLURAL:$3|بلگاْ|بلگاْیٱل}}",
 	"file-info-size": "$1 × $2 پیکسل, ٱندازاْ جانیا: $3, MIME جۊر: $4",
-	"file-info-size-pages": "<span style=\"direction:ltr\">$1 × $2</span> نوخڌاْ، مٱشلٱقی پٱرڤٱناْ: $3، نوع MIME پٱرڤٱناْ: $4، $5 بٱلٛگاْ",
+	"file-info-size-pages": "<span dir=\"ltr\">$1 × $2</span> نوخڌاْ، مٱشلٱقی پٱرڤٱناْ: $3، نوع MIME پٱرڤٱناْ: $4، $5 بٱلٛگاْ",
 	"file-nohires": "ٱسگ بیتری زس نی",
 	"svg-long-desc": "SVG جانیا، تٱقریڤٱن $1 × $2 پیکسل، ٱندازاْ جانیا: $3",
 	"show-big-image": "جانیا ٱسلی",

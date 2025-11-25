@@ -579,7 +579,7 @@
 	"createacct-another-realname-tip": "Der bürgerliche Name ist optional.\nWenn du ihn angibst, wird er für die Zuordnung der Beiträge verwendet.",
 	"pt-login": "Anmelden",
 	"pt-login-button": "Anmelden",
-	"pt-login-continue-button": "Anmeldung fortfahren",
+	"pt-login-continue-button": "Mit der Anmeldung fortfahren",
 	"pt-createaccount": "Benutzerkonto erstellen",
 	"pt-userlogout": "Abmelden",
 	"php-mail-error-unknown": "Unbekannter Fehler in der PHP-Funktion mail().",

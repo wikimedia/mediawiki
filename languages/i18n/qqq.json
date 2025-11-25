@@ -275,7 +275,8 @@
 			"codeofdusk",
 			"Nemoralis",
 			"Tamzin",
-			"E75ti"
+			"E75ti",
+			"Ильгиз"
 		]
 	},
 	"sidebar": "{{notranslate}}",
@@ -2700,7 +2701,7 @@
 	"rollback-missingparam": "Used as error message that rollback is accessed without the required parameters\n\nSee also:\n* {{msg-mw|Rollbackfailed}}",
 	"rollback-missingrevision": "Used as error message that rollback failed to load revision data\n\nSee also:\n* {{msg-mw|Rollbackfailed}}",
 	"cantrollback": "Used as error message when rollback fails due to there not being a valid revision to revert back to.\n\nSee also:\n* {{msg-mw|Notvisiblerev}}\n{{Identical|Revert}}\n{{Identical|Rollback}}",
-	"alreadyrolled": "Appear when there's rollback and/or edit collision.\n\nRefers to:\n* {{msg-mw|Pipe-separator}}\n* {{msg-mw|Contribslink}}\nParameters:\n* $1 - the page to be rolled back\n* $2 - the editor to be rolled-back of that page\n* $3 - the editor that cause collision\n{{Identical|Rollback}}",
+	"alreadyrolled": "Appear when there's rollback and/or edit collision.\n\nRefers to:\n* {{msg-mw|Pipe-separator}}\n* {{msg-mw|Contribslink}}\nParameters:\n* $1 - the page to be rolled back\n* $2 - the editor to be rolled-back of that page\n* $3 - the editor that cause collision\nSimilar message: {{msg-mw|Rollback-nochange}}\n{{Identical|Rollback}}",
 	"editcomment": "Only shown if there is an edit {{msg-mw|Summary}}. Parameters:\n* $1 - the edit summary",
 	"revertpage": "Summary shown after rollbacking.\n\nParameters:\n* $1 - username of the author of the edit that is being restored\n* $2 - username of the author of the edits that are being reverted\n* $7 - the number of edits that have been reverted\n\nThese parameters are passed, but not used in the message ([https://phabricator.wikimedia.org/T337092 T337092]):\n* $3 - revision ID of the revision reverted to\n* $4 - timestamp of the revision reverted to\n* $5 - revision ID of the revision reverted from\n* $6 - timestamp of the revision reverted from\n\nSee also:\n* {{msg-mw|Revertpage-anon}}\n* {{msg-mw|Revertpage-nouser}}\n{{Identical|Revert}}",
 	"revertpage-anon": "This is a confirmation message a user sees after reverting an anonymous user's edits.\n\nParameters:\n* $1 - username of the author of the edit that is being restored\n* $2 - username of the author of the edits that are being reverted\n* $7 - the number of edits that have been reverted\n\nThese parameters are passed, but not used in the message ([https://phabricator.wikimedia.org/T337092 T337092]):\n* $3 - revision ID of the revision reverted to\n* $4 - timestamp of the revision reverted to\n* $5 - revision ID of the revision reverted from\n* $6 - timestamp of the revision reverted from\n\nSee also:\n* {{msg-mw|Revertpage}}\n* {{msg-mw|Revertpage-nouser}}\n{{Identical|Revert}}",

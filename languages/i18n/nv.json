@@ -124,7 +124,7 @@
 	"preview": "dooleełígíí",
 	"showpreview": "dooleełígíí yishʼį́ nisin",
 	"showdiff": "łahgo áshłaaígíí yishʼį́ nisin",
-	"anoneditwarning": "<div style=\"background:#aaddff; text-align:center;\">'''Doo \"login\" íinilaa da.''' Éí biniinaa nizhiʼ doo ééhozin da áádóó ni-''IP'' naaltsoos bikááʼ náázhdíyóosoh.<br /><small>('''You are not logged in.''' Your name is thus unknown, and your IP will be recorded.)</small></div>",
+	"anoneditwarning": "<strong>Doo \"login\" íinilaa da.</strong> Éí biniinaa nizhiʼ doo ééhozin da áádóó ni-''IP'' naaltsoos bikááʼ náázhdíyóosoh.<br /><small>('''You are not logged in.''' Your name is thus unknown, and your IP will be recorded.)</small>",
 	"newarticle": "(Naaltsoos ániidí)",
 	"previewnote": "'''Díí kweʼé éí \"dooleełígíí\" tʼéiyá átʼé!'''\n::<small>'''(This is only a preview.)'''</small>",
 	"editing": "\"$1\" łahgo áshłééh...",

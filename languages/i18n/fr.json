@@ -2226,6 +2226,7 @@
 	"apisandbox-request-php-label": "Demande de tableau PHP :",
 	"apisandbox-request-time": "Durée de la requête : $1 ms{{PLURAL:$1|}}",
 	"apisandbox-request-post": "Cette requête doit être envoyée en utilisant la méthode HTTP POST.",
+	"apisandbox-request-post2": "En raison de la taille de la charge utile, cette requête a été envoyée en utilisant la méthode HTTP POST.",
 	"apisandbox-request-formdata": "Cette requête doit être envoyée sous forme de téléversement de fichier (c'est-à-dire en utilisant <code>multipart/form-data</code> ).",
 	"apisandbox-results-fixtoken": "Corriger le jeton et envoyer à nouveau",
 	"apisandbox-results-fixtoken-fail": "Impossible de récupérer le jeton « $1 ».",

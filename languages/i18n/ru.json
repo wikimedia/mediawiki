@@ -2198,6 +2198,7 @@
 	"apisandbox-request-php-label": "Запросить PHP-массив:",
 	"apisandbox-request-time": "Время запроса: {{PLURAL:$1|$1 мс}}",
 	"apisandbox-request-post": "Этот запрос должен быть отправлен с использованием HTTP-метода POST.",
+	"apisandbox-request-post2": "Из-за размера полезной нагрузки этот запрос был отправлен с использованием HTTP-метода POST.",
 	"apisandbox-request-formdata": "Этот запрос должен быть отправлен как загрузка файла (т.е. с использованием <code>multipart/form-data</code>).",
 	"apisandbox-results-fixtoken": "Исправьте токен и повторите отправку",
 	"apisandbox-results-fixtoken-fail": "Не удалось вызвать токен «$1».",

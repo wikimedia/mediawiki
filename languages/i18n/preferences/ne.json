@@ -169,7 +169,7 @@
 	"recentchangesdays": "हालको परिवर्तनमा देखाउने दिनहरू:",
 	"recentchangesdays-max": "अधिकतम $1 {{PLURAL:$1|दिन|दिन}}",
 	"recentchangescount": "पूर्व निर्धारितरुपमा देखाउनुपर्ने सम्पादनहरू :",
-	"prefs-help-recentchangescount": "यसमा हालका परि्वर्तनहरु , पृष्ठ इतिहासहरु , र लग समाविष्ठ छन् ।",
+	"prefs-help-recentchangescount": "अधिकतम संख्या: 1000",
 	"prefs-advancedrc": "उन्नत विकल्पहरू",
 	"tog-usenewrc": "पृष्ठका भर्खरका परिवर्तन र अवलोकन सूचीको आधारमा सामूहिक परिवर्तनहरू",
 	"rcfilters-preference-label": "गैर-जाभास्क्रिप्ट अन्तरमोहडा प्रयोग गर्नुहोस्",
