@@ -173,7 +173,7 @@ class SpecialWatchlistLabels extends SpecialPage {
 				'title' => $this->msg( 'watchlistlabels-table-edit' )->text(),
 			];
 			$data[] = [
-				'name' => $label->getName(),
+				'name' => htmlspecialchars( $label->getName() ),
 				'edit' => Html::element( 'a', $params ),
 			];
 		}
