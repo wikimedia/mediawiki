@@ -28,11 +28,13 @@ class PageBundleParserOutputConverterIntegrationTest extends MediaWikiIntegratio
 
 		$original = new ParserOutput();
 		$output = PageBundleParserOutputConverter::parserOutputFromPageBundle( $pageBundle, $original );
-		$this->assertSame( $defaultExpiration, $output->getCacheExpiry(), "aa" );
+		$this->assertSame( $defaultExpiration, $output->getCacheExpiry(),
+			"Cache expiration doesn't match default expiry." );
 
 		$original->updateCacheExpiry( 100 );
 		$output = PageBundleParserOutputConverter::parserOutputFromPageBundle( $pageBundle, $original );
-		$this->assertSame( 100, $output->getCacheExpiry(), "bb" );
+		$this->assertSame( 100, $output->getCacheExpiry(),
+			"Cache expiration doesn't matched updated reduced expiry." );
 	}
 
 }
