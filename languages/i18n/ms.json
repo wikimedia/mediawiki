@@ -1026,7 +1026,6 @@
 	"userrights-unchangeable-col": "Kumpulan yang anda tak boleh ubah",
 	"userrights-expiry-current": "Mansuh pada $1",
 	"userrights-expiry-none": "Tidak mansuh",
-	"userrights-expiry": "Mansuh pada:",
 	"userrights-expiry-othertime": "Waktu lain:",
 	"userrights-expiry-options": "1 hari:1 hari,1 minggu:1 minggu,1 bulan:1 bulan,3 bulan:3 bulan,6 bulan:6bulan,1 tahun:1 tahun",
 	"userrights-invalid-expiry": "Waktu mansuh bagi kumpulan \"$1\" tidak sah.",

@@ -665,7 +665,6 @@
 	"userrights-no-shorten-expiry-marker": "$1#",
 	"userrights-expiry-current": "$1da tugaydi",
 	"userrights-expiry-none": "Muddatsiz",
-	"userrights-expiry": "Tugash sanasi:",
 	"userrights-expiry-othertime": "Boshqa muddat:",
 	"userrights-expiry-options": "1 kun:1 day,1 hafta:1 week,1 oy:1 month,3 oy:3 months,6 oy:6 months,1 yil:1 year",
 	"group": "Guruh",

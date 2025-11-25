@@ -1004,7 +1004,6 @@
 	"userrights-no-shorten-expiry-marker": "$1#",
 	"userrights-expiry-current": "Чекхйолу $1",
 	"userrights-expiry-none": "Цкъа а",
-	"userrights-expiry": "Бакъо дӀайолу:",
 	"userrights-expiry-existing": "$2, $3",
 	"userrights-expiry-othertime": "Кхин хан:",
 	"userrights-expiry-options": "1 де:1 day,1 кӀира:1 week,1 бутт:1 month,3 months,6 бутт:6 months,1 шо:1 year",

@@ -1092,7 +1092,6 @@
 	"userrights-unchangeable-col": "گروه‌هایی که نمی‌توانید تغییر دهید",
 	"userrights-expiry-current": "منقضی$1",
 	"userrights-expiry-none": "بدون انقضا",
-	"userrights-expiry": "زمان سرآمدن:",
 	"userrights-expiry-existing": "$2، $3",
 	"userrights-expiry-othertime": "زمانی دیگر:",
 	"userrights-expiry-options": "۱ روز:1 day,۱ هفته:1 week,۱ ماه:1 month,۳ ماه:3 months,۶ ماه:6 months,۱ سال:1 year",

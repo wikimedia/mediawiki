@@ -948,7 +948,6 @@
 	"userrights-unchangeable-col": "Aldatu ezin ditzakezun taldeak",
 	"userrights-expiry-current": "Iraungitze data: $1",
 	"userrights-expiry-none": "Ez da iraungitzen",
-	"userrights-expiry": "Iraungintze data:",
 	"userrights-expiry-othertime": "Beste denbora:",
 	"userrights-expiry-options": "Egun bat:1 day,astebete:1 week,hilabete:1 month,3 hilabete:3 months,6 hilabete:6 months,urtebete:1 year",
 	"userrights-invalid-expiry": "$1 talderako iraungitze denbora ez du balio.",

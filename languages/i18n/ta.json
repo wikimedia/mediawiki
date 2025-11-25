@@ -904,7 +904,6 @@
 	"userrights-unchangeable-col": "நீங்கள் மாற்ற முடியாத குழுக்கள்",
 	"userrights-expiry-current": "$1 காலாவதியாகும்",
 	"userrights-expiry-none": "காலாவதியாகாது",
-	"userrights-expiry": "காலாவதியாவது:",
 	"userrights-conflict": "பயனர் உரிமைகளின் மாற்றங்களில் முரண்பாடு உள்ளது! மறு ஆய்வு செய்து, உங்கள் மாற்றங்களை உறுதி செய்க.",
 	"group": "குழு:",
 	"group-user": "பயனர்கள்",

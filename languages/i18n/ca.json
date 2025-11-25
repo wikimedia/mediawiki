@@ -1068,7 +1068,6 @@
 	"userrights-unchangeable-col": "Grups que no podeu canviar",
 	"userrights-expiry-current": "Venç el $1",
 	"userrights-expiry-none": "No venç",
-	"userrights-expiry": "Venciment:",
 	"userrights-expiry-othertime": "Altre temps:",
 	"userrights-expiry-options": "1 dia:1 day,1 setmana:1 week,1 mes:1 month,3 mesos:3 months,6 mesos:6 months,1 any:1 year",
 	"userrights-invalid-expiry": "La data d'expiració per al grup «$1» no és vàlida.",

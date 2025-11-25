@@ -984,7 +984,6 @@
 	"userrights-no-shorten-expiry-marker": "$1#",
 	"userrights-expiry-current": "ვადაშ გულაშ თარიღი რე $1",
 	"userrights-expiry-none": "უვადე",
-	"userrights-expiry": "ვადა:",
 	"userrights-expiry-othertime": "შხვა ბორჯი:",
 	"userrights-expiry-options": "1 დღა:1 day,1 მარა:1 week,1 თუთა:1 month,3 თითა:3 months,6 თუთა:6 months,1 წანა:1 year",
 	"userrights-invalid-expiry": "ვადაშ გულაშ თარიღი ბუნაშო „$1“ ჩილათირი რე.",

@@ -794,7 +794,6 @@
 	"userrights-unchangeable-col": "वर्ग जे अहाँ नै बदलि सकै छी",
 	"userrights-expiry-current": "खतम होइए $1",
 	"userrights-expiry-none": "खतम नै हएत:",
-	"userrights-expiry": "खतम हएत:",
 	"userrights-expiry-othertime": "दोसर समए:",
 	"userrights-conflict": "प्रयोक्ता अधिकार बदलावक समयमे अंतर्विरोध! कृपया अपन बदलाव जाँच करु आ पुनः सुनिश्चित करु।",
 	"group": "समूह:",

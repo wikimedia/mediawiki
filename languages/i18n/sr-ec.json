@@ -1016,7 +1016,6 @@
 	"userrights-no-shorten-expiry-marker": "$1#",
 	"userrights-expiry-current": "Истиче $1",
 	"userrights-expiry-none": "Не истиче",
-	"userrights-expiry": "Истиче:",
 	"userrights-expiry-othertime": "Друго време:",
 	"userrights-expiry-options": "1 дан:1 day,1 недеља:1 week,1 месец:1 month,3 месеца:3 months,6 месеци:6 months,1 година:1 year",
 	"userrights-invalid-expiry": "Време истицања групе „$1” није важеће.",

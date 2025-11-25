@@ -984,7 +984,6 @@
 	"userrights-no-shorten-expiry-marker": "$1#",
 	"userrights-expiry-current": "కాలంతీరే వ్యవధి $1",
 	"userrights-expiry-none": "ఎన్నటికీ కాలం తీరిపోదు",
-	"userrights-expiry": "కాలం తీరిపోయే వ్యవధి",
 	"userrights-expiry-othertime": "ఇతర సమయం:",
 	"userrights-expiry-options": "1 రోజు:1 day,1 వారం:1 week,1 నెల:1 month,3 నెలలు:3 months,6 నెలలు:6 months,1 సంవత్సరం:1 year",
 	"userrights-invalid-expiry": "\"$1\" గుంపుకు ఇచ్చిన కాలం తీరిపోయే వ్యవధి సరైనది కాదు.",

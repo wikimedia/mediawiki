@@ -821,7 +821,6 @@
 	"userrights-unchangeable-col": "Skupiny, kotrež njemóžeš změnić",
 	"userrights-expiry-current": "płaćiwy hač do $1",
 	"userrights-expiry-none": "Njewuběži",
-	"userrights-expiry": "Wuběži:",
 	"userrights-expiry-othertime": "Druhi čas:",
 	"userrights-expiry-options": "1 dźeń:1 day,1 tydźeń:1 week,1 měsac:1 month,3 měsacy:3 months,6 měsacow:6 months,1 lěto:1 year",
 	"userrights-invalid-expiry": "Wuběženski čas za skupinu „$1“ njeje płaćiwy.",

@@ -862,7 +862,6 @@
 	"userrights-no-shorten-expiry-marker": "$1#",
 	"userrights-expiry-current": "Scade 'u $1",
 	"userrights-expiry-none": "Non ge scade",
-	"userrights-expiry": "Scadenze:",
 	"userrights-expiry-othertime": "Otre tiembe:",
 	"userrights-expiry-options": "1 sciurne:1 day,1 sumàne:1 week,1 mese:1 month,3 mise:3 mise,6 mesi:6 months,1 anne:1 year",
 	"userrights-invalid-expiry": "'A scadenze pu gruppe \"$1\" non g'è valide.",

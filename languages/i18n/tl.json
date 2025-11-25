@@ -825,7 +825,6 @@
 	"userrights-unchangeable-col": "Mga pangkat na hindi mo mababago",
 	"userrights-expiry-current": "Mapapaso sa $1",
 	"userrights-expiry-none": "Hindi napapaso",
-	"userrights-expiry": "Mapapaso ng:",
 	"userrights-expiry-othertime": "Ibang oras:",
 	"userrights-expiry-options": "Isang araw:1 day,Isang linggo:1 week,Isang buwan:1 month,Tatlong buwan:3 months,Anim na buwan:6 months,Isang taon:1 year",
 	"userrights-invalid-expiry": "Sa oras na mapaso ang grupong \"$1\" ay hindi na magagamit.",

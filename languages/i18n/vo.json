@@ -977,7 +977,6 @@
 	"userrights-unchangeable-col": "Grups fa ol nevotükoviks",
 	"userrights-expiry-current": "Tüp finikon tü $1",
 	"userrights-expiry-none": "Tüp neföro ofinikon",
-	"userrights-expiry": "Dul:",
 	"userrights-expiry-existing": "jü $2, tü $3",
 	"userrights-expiry-othertime": "Tim votik:",
 	"userrights-expiry-options": "del 1:1 day,vig 1:1 week,mul 1:1 month,muls 3:3 months,muls 6:6 months,yel 1:1 year",

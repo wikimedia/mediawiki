@@ -1043,7 +1043,6 @@
 	"userrights-no-shorten-expiry-marker": "$1#",
 	"userrights-expiry-current": "Vyprší $1",
 	"userrights-expiry-none": "Bez vypršení",
-	"userrights-expiry": "Čas vypršení:",
 	"userrights-expiry-existing": "$2, $3",
 	"userrights-expiry-othertime": "Jiný čas:",
 	"userrights-expiry-options": "1 den:1 day,1 týden:1 week,1 měsíc:1 month,3 měsíce:3 months,6 měsíců:6 months,1 rok:1 year",

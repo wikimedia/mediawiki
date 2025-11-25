@@ -100,6 +100,8 @@
 	"rest-module-specs.v0-desc": "Selbstdokumentationsmodul, das Entdeckung, Spezifikationen und Schemata für alle verfügbaren Module bereitstellt.",
 	"rest-module-content.v1-title": "Seiteninhalt",
 	"rest-module-content.v1-desc": "Bietet Zugriff auf den Inhalt und die Metadaten von Seiten und Versionen",
+	"rest-module-site.v1-title": "Site-API",
+	"rest-module-site.v1-desc": "Informationen über die Website als Ganzes, wie zum Beispiel Sitemaps",
 	"rest-param-desc-revision-id": "Versionskennung",
 	"rest-param-desc-html-input-contentmodel": "Seiteninhaltsformat: Wikitext (Standard), CSS, JavaScript, JSON oder Text.",
 	"rest-param-desc-page-content-title": "Seitentitel im lesefreundlichen Format",

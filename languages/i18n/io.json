@@ -985,7 +985,6 @@
 	"userrights-unchangeable-col": "Grupi quin vu ne povas chanjar",
 	"userrights-expiry-current": "Finos ye $1",
 	"userrights-expiry-none": "Ne finos",
-	"userrights-expiry": "Finas:",
 	"userrights-expiry-othertime": "Altra tempo:",
 	"userrights-expiry-options": "1 dio:1 day,1 semano:1 week,1 monato:1 month,3 monati:3 months,6 monati:6 months,1 yaro:1 year",
 	"userrights-invalid-expiry": "L'expiro-tempo por la grupo \"$1\" esas nevalida.",

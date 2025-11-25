@@ -888,7 +888,6 @@
 	"userrights-unchangeable-col": "Los gropes que podètz pas cambiar",
 	"userrights-expiry-current": "Expira lo $1",
 	"userrights-expiry-none": "Expira pas",
-	"userrights-expiry": "Data d’expiracion :",
 	"userrights-expiry-existing": "$2 à $3",
 	"userrights-expiry-othertime": "Autre temps :",
 	"userrights-expiry-options": "1 jorn:1 day,1 setmana:1 week,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 an:1 year",

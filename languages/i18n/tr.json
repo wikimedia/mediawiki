@@ -1119,7 +1119,6 @@
 	"userrights-no-shorten-expiry-marker": "$1#",
 	"userrights-expiry-current": "$1 tarihi itibarıyla sona eriyor",
 	"userrights-expiry-none": "Süresiz",
-	"userrights-expiry": "Bitiş:",
 	"userrights-expiry-othertime": "Diğer zaman:",
 	"userrights-expiry-options": "1 gün:1 day,1 hafta:1 week,1 ay:1 month,3 ay:3 months,6 ay:6 months,1 yıl:1 year",
 	"userrights-invalid-expiry": "\"$1\" grubunun süre sonu geçersiz.",

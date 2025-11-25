@@ -944,7 +944,6 @@
 	"userrights-unchangeable-col": "المجموعات اللي ما تكدر تغيرها",
 	"userrights-expiry-current": "تنتهي $1",
 	"userrights-expiry-none": "مو منتهيه",
-	"userrights-expiry": "يكضي بيوم:",
 	"userrights-expiry-existing": "$2 الساعه $3",
 	"userrights-expiry-othertime": "وكت ثاني:",
 	"userrights-expiry-options": "1 يوم:1 day,1 أسبوع:1 week,1 شهر:1 month,3 شهور:3 months,6 شهور:6 months,1 سنة:1 year",

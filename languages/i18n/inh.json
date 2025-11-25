@@ -943,7 +943,6 @@
 	"userrights-unchangeable-col": "Хьа хувца йиш йоаца тоабаш",
 	"userrights-expiry-current": "Ха чакхйоалл $1",
 	"userrights-expiry-none": "Хадданза",
-	"userrights-expiry": "Бокъонаш дӀайоалл:",
 	"userrights-expiry-existing": "$2, $3",
 	"userrights-expiry-othertime": "Кхыйола ха:",
 	"userrights-expiry-options": "1 ди:1 day,1 кӀира:1 week,1 бутт:1 month,3 бутт:3 months,6 бутт:6 months,1 шу:1 year",

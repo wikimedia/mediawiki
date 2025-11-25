@@ -1045,7 +1045,6 @@
 	"userrights-unchangeable-col": "{{PLURAL:$1|קבוצה|קבוצות}} שאין באפשרותך לשנות",
 	"userrights-expiry-current": "פגה ב־$1",
 	"userrights-expiry-none": "אינה פגה",
-	"userrights-expiry": "תפוגה:",
 	"userrights-expiry-othertime": "זמן אחר:",
 	"userrights-expiry-options": "יום:1 day,שבוע:1 week,חודש:1 month,שלושה חודשים:3 months,שישה חודשים:6 months,שנה:1 year",
 	"userrights-invalid-expiry": "זמן התפוגה לקבוצה \"$1\" אינו תקין.",

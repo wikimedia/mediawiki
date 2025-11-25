@@ -942,7 +942,6 @@
 	"userrights-unchangeable-col": "Skupiny, ktoré nemôžete zmeniť",
 	"userrights-expiry-current": "Vyprší $1",
 	"userrights-expiry-none": "Bez expirácie",
-	"userrights-expiry": "Vyprší:",
 	"userrights-expiry-existing": "$2, $3",
 	"userrights-expiry-othertime": "Iný čas:",
 	"userrights-expiry-options": "1 deň:1 day,1 týždeň:1 week,1 mesiac:1 month,3 mesiace:3 months,6 mesiacov:6 months,1 rok:1 year",

@@ -684,7 +684,6 @@
 	"userrights-unchangeable-col": "နာꩻပြောင်ꩻလုဲင်ႏဖေႏနွောင်ꩻဒါႏအစွိုꩻဖိုင်ႏ",
 	"userrights-expiry-current": "သက်တန်ꩻလို့ခိန်ႏ $1",
 	"userrights-expiry-none": "သက်တန်ꩻလို့ထိုꩻ အဝ်ႏတဝ်း",
-	"userrights-expiry": "သက်တန်ꩻလို့ထိုꩻသွူ:",
 	"userrights-expiry-othertime": "အခိန်ႏလင်:",
 	"userrights-expiry-options": "၁ နီꩻ:1 day,၁ ပတ်:1 week,၁ လာ:1 month,၃ လာ:3 months,၆ လာ:6 months,၁ နေင်ႏ:1 year",
 	"userrights-invalid-expiry": "အစွိုꩻ \"$1\" တာႏ သက်တန်ꩻလို့ခိန်ႏနဝ်ꩻ တရော့ꩻသင်ꩻတဝ်း။",

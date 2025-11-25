@@ -881,7 +881,6 @@
 	"userrights-unchangeable-col": "Grupper du ikkje kan endre",
 	"userrights-expiry-current": "Endar $1",
 	"userrights-expiry-none": "Aldri",
-	"userrights-expiry": "Endar:",
 	"userrights-expiry-existing": "$2 $3",
 	"userrights-expiry-othertime": "Anna tid:",
 	"userrights-expiry-options": "1 dag:1 day,1 veke:1 week,1 månad:1 month,3 månader:3 months,6 månader:6 months,1 år:1 year",

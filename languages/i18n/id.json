@@ -1076,7 +1076,6 @@
 	"userrights-no-shorten-expiry-marker": "$1#",
 	"userrights-expiry-current": "Kedaluwarsa $1",
 	"userrights-expiry-none": "Tidak kedaluwarsa",
-	"userrights-expiry": "Kedaluwarsa:",
 	"userrights-expiry-othertime": "Waktu lain:",
 	"userrights-expiry-options": "1 hari:1 day,1 minggu:1 week,1 bulan:1 month,3 bulan:3 months,6 bulan:6 months,1 tahun:1 year",
 	"userrights-invalid-expiry": "Waktu kedaluwarsa untuk kelompok \"$1\" tidak sah.",

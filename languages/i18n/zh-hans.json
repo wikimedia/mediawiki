@@ -1212,7 +1212,6 @@
 	"userrights-no-shorten-expiry-marker": "$1#",
 	"userrights-expiry-current": "期限为$1",
 	"userrights-expiry-none": "不会过期",
-	"userrights-expiry": "期限：",
 	"userrights-expiry-existing": "$3，$2",
 	"userrights-expiry-othertime": "其他时间：",
 	"userrights-expiry-options": "1天:1 day,1周:1 week,1个月:1 month,3个月:3 months,6个月:6 months,1年:1 year",

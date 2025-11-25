@@ -779,7 +779,6 @@
 	"userrights-unchangeable-col": "Jumplukan anu teu bisa Anjeun robah",
 	"userrights-expiry-current": "Kadaluwarsa $1",
 	"userrights-expiry-none": "Teu kadaluwarsa",
-	"userrights-expiry": "Kadaluwarsa:",
 	"userrights-expiry-othertime": "Séjén waktu:",
 	"userrights-invalid-expiry": "Waktu kadaluwarsa pikeun gorombolan \"$1\" teu sah.",
 	"userrights-expiry-in-past": "Waktu kadaluwarsa pikeun gorombolan \"$1\" geus kaliwat berlalu.",

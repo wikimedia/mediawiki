@@ -1009,7 +1009,6 @@
 	"userrights-no-shorten-expiry-marker": "$1#",
 	"userrights-expiry-current": "Baigiasi $1",
 	"userrights-expiry-none": "Nesibaigia",
-	"userrights-expiry": "Baigiasi:",
 	"userrights-expiry-othertime": "Kitas laikas:",
 	"userrights-expiry-options": "1 diena:1 day,1 savaitė:1 week,1 mėnuo:1 month,3 mėnesiai:3 months,6 mėnesiai:6 months,1 metai:1 year",
 	"userrights-invalid-expiry": "„$1“ grupės galiojimo laikas negalimas.",

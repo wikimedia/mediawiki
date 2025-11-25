@@ -1006,7 +1006,6 @@
 	"userrights-unchangeable-col": "Mga grupo nga indi mo pwede baguhon.",
 	"userrights-expiry-current": "Nagatapos $1",
 	"userrights-expiry-none": "Wala naga-expire",
-	"userrights-expiry": "Nagatapos:",
 	"userrights-expiry-existing": "$3 , $2",
 	"userrights-expiry-othertime": "Sa iban nga tion:",
 	"userrights-expiry-options": "1 day:1 day,1 week:1 week,1 month:1 month,3 months:3 months,6 months:6 months,1 year:1 year",

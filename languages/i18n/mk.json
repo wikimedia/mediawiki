@@ -1020,7 +1020,6 @@
 	"userrights-unchangeable-col": "Групи кои не може да ги промените",
 	"userrights-expiry-current": "Истекува $1",
 	"userrights-expiry-none": "Не истекува",
-	"userrights-expiry": "Истекува:",
 	"userrights-expiry-othertime": "Друго време:",
 	"userrights-expiry-options": "1 ден:1 day,1 недела:1 week,1 месец:1 month,3 месеци:3 months,6 месеци:6 months,1 година:1 year",
 	"userrights-invalid-expiry": "Истекот за групата „$1“ е неважечки.",

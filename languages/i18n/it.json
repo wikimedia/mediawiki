@@ -1128,7 +1128,6 @@
 	"userrights-unchangeable-col": "Gruppi non modificabili",
 	"userrights-expiry-current": "Scade il $1",
 	"userrights-expiry-none": "Non ha scadenza",
-	"userrights-expiry": "Scadenza:",
 	"userrights-expiry-existing": "$2, $3",
 	"userrights-expiry-othertime": "Altra durata:",
 	"userrights-expiry-options": "1 giorno:1 day,1 settimana:1 week,1 mese:1 month,3 mesi:3 months,6 mesi:6 months,1 anno:1 year",

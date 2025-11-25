@@ -1248,7 +1248,6 @@
 	"userrights-unchangeable-col": "Grupos que no puedes cambiar",
 	"userrights-expiry-current": "Caduca el $1",
 	"userrights-expiry-none": "No caduca",
-	"userrights-expiry": "Caduca:",
 	"userrights-expiry-existing": "$2 a las $3",
 	"userrights-expiry-othertime": "En otro momento:",
 	"userrights-expiry-options": "1 día:1 day,1 semana:1 week,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 año:1 year",

@@ -912,7 +912,6 @@
 	"userrights-unchangeable-col": "Grupe që s'mund të ndryshoni",
 	"userrights-expiry-current": "Skadon $1",
 	"userrights-expiry-none": "Nuk skadon",
-	"userrights-expiry": "Skadon:",
 	"userrights-expiry-othertime": "Kohë tjetër:",
 	"userrights-expiry-options": "1 ditë:1 day,1 javë:1 week,1 muaj:1 month,3 muaj:3 months,6 muaj:6 months,1 vit:1 year",
 	"userrights-invalid-expiry": "Koha e skadimit për grupin \"$1\" është jo i vlefshëm.",

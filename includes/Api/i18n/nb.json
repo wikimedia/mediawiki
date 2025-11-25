@@ -1959,7 +1959,7 @@
 	"apiwarn-validationfailed-cannotset": "kan ikke settes av denne modulen.",
 	"apiwarn-validationfailed-keytoolong": "nøkkelen er for lang (ikke mer enn $1 {{PLURAL:$1|byte}} tillates).",
 	"apiwarn-validationfailed-valuetoolong": "verdien er for lang (ikke mer enn $1 {{PLURAL:$1|byte}} tillates).",
-	"apiwarn-validationfailed-toomanyuserjs": "For mange userjs-innstillinger er satt (maksimalt $1 er tillatt).",
+	"apiwarn-validationfailed-toomanyuserjs": "For mange userjs-innstillinger er satt (maksimalt $1 er {{PLURAL:$1|tillatt}}).",
 	"apiwarn-validationfailed": "Bekreftelsesfeil <kbd>$1</kbd>: $2",
 	"apiwarn-wgdebugapi": "<strong>Sikkerhetsadvarsel:</strong> <var>$wgDebugAPI</var> er slått på.",
 	"api-feed-error-title": "Feil ($1)",

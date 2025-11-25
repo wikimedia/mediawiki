@@ -928,7 +928,6 @@
 	"userrights-unchangeable-col": "Сiрер алыстыр полбас группалар",
 	"userrights-expiry-current": "$1 тоозылча",
 	"userrights-expiry-none": "Хаҷанға даа",
-	"userrights-expiry": "Правонаң тузаланар оңдай иртче:",
 	"userrights-expiry-othertime": "Пасха тус:",
 	"userrights-expiry-options": "1 кӱн:1 day,1 неделя:1 week,1 ай:1 month,3 ай:3 months,6 ай:6 months,1 чыл:1 year",
 	"userrights-invalid-expiry": "\"$1\" группаа пирілген тус саба турғызылған",

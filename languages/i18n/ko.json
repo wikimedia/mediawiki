@@ -1092,7 +1092,6 @@
 	"userrights-unchangeable-col": "바꿀 수 없는 권한",
 	"userrights-expiry-current": "$1에 만료",
 	"userrights-expiry-none": "만료하지 않음",
-	"userrights-expiry": "기한:",
 	"userrights-expiry-existing": "$2 $3",
 	"userrights-expiry-othertime": "다른 시간:",
 	"userrights-expiry-options": "1일:1 day,1주일:1 week,1개월:1 month,3개월:3 months,6개월:6 months,1년:1 year",

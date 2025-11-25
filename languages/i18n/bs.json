@@ -884,7 +884,6 @@
 	"userrights-unchangeable-col": "Grupe koje ne možete mijenjati",
 	"userrights-expiry-current": "Ističe $1",
 	"userrights-expiry-none": "Ne ističe",
-	"userrights-expiry": "Ističe:",
 	"userrights-expiry-othertime": "Drugo vrijeme:",
 	"userrights-expiry-options": "1 dan:1 day,1 sedmica:1 week,1 mjesec:1 month,3 mjeseca:3 months,6 mjeseci:6 months,1 godina:1 year",
 	"userrights-invalid-expiry": "Vrijeme isticanja grupe \"$1\" nije ispravno.",

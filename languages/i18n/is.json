@@ -1019,7 +1019,6 @@
 	"userrights-no-shorten-expiry-marker": "$1#",
 	"userrights-expiry-current": "Fyrnist $1",
 	"userrights-expiry-none": "Fyrnist ekki",
-	"userrights-expiry": "Fyrnist:",
 	"userrights-expiry-othertime": "Annar tími:",
 	"userrights-expiry-options": "1 dagur:1 dagur,1 vika:1 vika,1 mánuður:1 mánuður,3 mánuðir:3 mánuðir,6 mánuðir:6 mánuðir,1 ár:1 ár",
 	"userrights-invalid-expiry": "Gildistími hópsins „$1“ er ógildur.",

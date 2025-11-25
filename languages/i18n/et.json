@@ -1022,7 +1022,6 @@
 	"userrights-unchangeable-col": "Rühmad, mida sa ei saa muuta",
 	"userrights-expiry-current": "Aegumistähtaeg $1",
 	"userrights-expiry-none": "Ei aegu",
-	"userrights-expiry": "Aegumistähtaeg:",
 	"userrights-expiry-existing": "$2, kell $3",
 	"userrights-expiry-othertime": "Muu tähtaeg:",
 	"userrights-expiry-options": "1 päev:1 day,1 nädal:1 week,1 kuu:1 month,3 kuud:3 months,6 kuud:6 months,1 aasta:1 year",

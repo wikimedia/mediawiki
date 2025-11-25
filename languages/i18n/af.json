@@ -807,7 +807,6 @@
 	"userrights-unchangeable-col": "Groepe wat u nie kan verander nie",
 	"userrights-expiry-current": "Verval op $1",
 	"userrights-expiry-none": "Verval nie",
-	"userrights-expiry": "Verval:",
 	"userrights-expiry-existing": "$2 om $3",
 	"userrights-expiry-othertime": "Ander tyd:",
 	"userrights-conflict": "Konflik met gebruikersregte! Pas asseblief weer u wysigings toe.",

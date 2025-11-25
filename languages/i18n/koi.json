@@ -928,7 +928,6 @@
 	"userrights-unchangeable-col": "Чукӧррез, кӧднӧ одӧ вермӧ вежны",
 	"userrights-expiry-current": "Чулалӧ $1",
 	"userrights-expiry-none": "Кад иньдытӧг",
-	"userrights-expiry": "Чулалӧ :",
 	"userrights-expiry-othertime": "Мöдiк кад:",
 	"userrights-expiry-options": "1 лун:1 day, 1 неделя:1 week,1 тӧлісь:1 month,3 тӧлісь:3 months,6 тӧлісь:6 months,1 во:1 year",
 	"userrights-invalid-expiry": "Чулалан кадыс \"$1\" чукӧрлӧ лӧсявтӧм",

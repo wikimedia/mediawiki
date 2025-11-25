@@ -923,7 +923,6 @@
 	"userrights-no-shorten-expiry-marker": "$1#",
 	"userrights-expiry-current": "A ya d'e dermen d'an $1",
 	"userrights-expiry-none": "Didermen",
-	"userrights-expiry": "Termen :",
 	"userrights-expiry-othertime": "Termen all :",
 	"userrights-expiry-options": "1 deiz:1 day,1 sizhun:1 week,1 miz:1 month,3 miz:3 months,6 miz:6 months, bloaz:1 year",
 	"userrights-invalid-expiry": "Direizh eo termen echuiñ ar strollad \"$1\".",

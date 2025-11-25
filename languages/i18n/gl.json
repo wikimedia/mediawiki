@@ -1025,7 +1025,6 @@
 	"userrights-no-shorten-expiry-marker": "$1#",
 	"userrights-expiry-current": "Caduca o $1",
 	"userrights-expiry-none": "Non caduca",
-	"userrights-expiry": "Caduca:",
 	"userrights-expiry-existing": "$2 ás $3",
 	"userrights-expiry-othertime": "Outra duración:",
 	"userrights-expiry-options": "1 día:1 day,1 semana:1 week,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 ano:1 year",

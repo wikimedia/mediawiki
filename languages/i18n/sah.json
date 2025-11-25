@@ -928,7 +928,6 @@
 	"userrights-unchangeable-col": "Бу бөлөхтөрү уларытар кыаҕыҥ суох",
 	"userrights-expiry-current": "Болдьоҕо баччаҕа бүтэр: $1",
 	"userrights-expiry-none": "Хаһан да",
-	"userrights-expiry": "Болдьоҕо баччаҕа бүтэр:",
 	"userrights-expiry-othertime": "Атын болдьох:",
 	"userrights-expiry-options": "1 күн:1 day,1 нэдиэлэ:1 week,1 ый:1 month,3 ый:3 months,6 ый:6 months,1 сыл:1 year",
 	"userrights-invalid-expiry": "«$1» бөлөх болдьоҕо алҕастаах ыйыллыбыт.",

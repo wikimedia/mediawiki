@@ -725,7 +725,6 @@
 	"userrights-no-shorten-expiry-marker": "$1#",
 	"userrights-expiry-current": "مدو پورو $1",
 	"userrights-expiry-none": "مدي خارج نٿو ٿي",
-	"userrights-expiry": "مدو پورو:",
 	"userrights-expiry-existing": "$3، $2",
 	"userrights-expiry-othertime": "ٻيو وقت:",
 	"userrights-expiry-options": "1 ڏينھن:1 ڏينھن،1 ھفتو:1 ھفتا،1 مھينو:1 مھينو،3 مھينا:3 مھينا،6 مھينا:6 مھينا،1 سال:1 سال",

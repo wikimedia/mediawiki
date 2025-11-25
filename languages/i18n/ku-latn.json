@@ -648,7 +648,6 @@
 	"userrights-unchangeable-col": "Komên ku tu nikarî biguherînî",
 	"userrights-expiry-current": "$1 xilas dibe",
 	"userrights-expiry-none": "Xilas nabe",
-	"userrights-expiry": "Heta:",
 	"userrights-expiry-othertime": "Wextekî dî:",
 	"userrights-expiry-options": "1 roj:1 day,1 heftî:1 week,1 meh:1 month,3 meh:3 months,6 meh:6 months,1 sal:1 year",
 	"userrights-invalid-expiry": "Wextê xilasbûnê ji bonî koma \"$1\" bixeletî ye.",

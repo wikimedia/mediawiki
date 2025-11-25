@@ -708,7 +708,6 @@
 	"userrights-nodatabase": "Datowa banka $1 njeeksistěrujo abo njejo lokalna.",
 	"userrights-changeable-col": "Kupki, kótarež móžoš změniś",
 	"userrights-unchangeable-col": "Kupki, kótarež njamóžoš změniś",
-	"userrights-expiry": "Pśepadnjo:",
 	"userrights-expiry-existing": "$2, $3",
 	"userrights-expiry-othertime": "Drugi cas:",
 	"userrights-conflict": "Konflikt změnow wužywarskich pšawow! Pšosym pśeglědaj a wobkšuś swóje změny.",

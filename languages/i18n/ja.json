@@ -1142,7 +1142,6 @@
 	"userrights-no-shorten-expiry-marker": "$1#",
 	"userrights-expiry-current": "期限 $1",
 	"userrights-expiry-none": "無期限",
-	"userrights-expiry": "有効期限:",
 	"userrights-expiry-existing": "$2 $3",
 	"userrights-expiry-othertime": "その他の期間:",
 	"userrights-expiry-options": "1日:1 day,1週間:1 week,1か月:1 month,3か月:3 months,6か月:6 months,1年:1 year",

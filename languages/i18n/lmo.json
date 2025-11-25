@@ -938,7 +938,6 @@
 	"userrights-unchangeable-col": "Grup che te podet minga modifegà",
 	"userrights-expiry-current": "La scad el $1",
 	"userrights-expiry-none": "Senza scadenza",
-	"userrights-expiry": "Scadenza:",
 	"userrights-expiry-existing": "$3 $2",
 	"userrights-expiry-othertime": "Altra durada:",
 	"userrights-expiry-options": "1 dì:1 day,1 setimana:1 week,1 mes:1 month,3 mes:3 months,6 mes:6 months,1 an:1 year",

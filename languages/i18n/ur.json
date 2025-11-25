@@ -926,7 +926,6 @@
 	"userrights-unchangeable-col": "جن حلقوں کو آپ تبدیل نہیں کر سکتے",
 	"userrights-expiry-current": "وقت اختتام $1",
 	"userrights-expiry-none": "دائمی",
-	"userrights-expiry": "اختتام:",
 	"userrights-expiry-existing": "$3، $2",
 	"userrights-expiry-othertime": "دوسری مدت:",
 	"userrights-expiry-options": "1 دن:1 day,1 ہفتہ:1 week,1 مہینہ:1 month,3 مہینے:3 months,6 مہینے:6 months,1 سال:1 year",

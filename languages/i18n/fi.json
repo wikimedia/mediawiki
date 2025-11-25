@@ -1069,7 +1069,6 @@
 	"userrights-no-shorten-expiry-marker": "$1#",
 	"userrights-expiry-current": "Vanhentuu $1",
 	"userrights-expiry-none": "Ei vanhennu",
-	"userrights-expiry": "Vanhentuu:",
 	"userrights-expiry-existing": "$2 kello $3",
 	"userrights-expiry-othertime": "Muu aika:",
 	"userrights-expiry-options": "1 päivä:1 day,1 viikko:1 week,1 kuukausi:1 month,3 kuukautta:3 months,6 kuukautta:6 months,1 vuosi:1 year",

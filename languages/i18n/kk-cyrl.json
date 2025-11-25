@@ -948,7 +948,6 @@
 	"userrights-unchangeable-col": "Сіз өзгерте алмайтын топтар",
 	"userrights-expiry-current": "Аяқталу мерзімі — $1",
 	"userrights-expiry-none": "Мүшелігі аяқталмайды",
-	"userrights-expiry": "Аяқталу мерзімі:",
 	"userrights-expiry-othertime": "Басқа мерзім:",
 	"userrights-expiry-options": "1 күн:1 day,1 апта:1 week,1 ай:1 month,3 ай:3 months,6 ай:6 months,1 жыл:1 year",
 	"userrights-invalid-expiry": "«$1» тобының мүшелігінің аяқталу мерзімі жарамсыз.",

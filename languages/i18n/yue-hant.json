@@ -1027,7 +1027,6 @@
 	"userrights-unchangeable-col": "你唔可以改嘅組",
 	"userrights-expiry-current": "$1 到期",
 	"userrights-expiry-none": "唔會到期",
-	"userrights-expiry": "到期:",
 	"userrights-expiry-existing": "$2 $3",
 	"userrights-expiry-othertime": "第啲時間:",
 	"userrights-expiry-options": "1日:1 day,1個禮拜:1 week,1個月:1 month,3個月:3 months,6個月:6 months,1年:1 year",

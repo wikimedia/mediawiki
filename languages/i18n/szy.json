@@ -760,7 +760,6 @@
 	"userrights-unchangeable-col": "amana kisu misumad tu luyaluy",
 	"userrights-expiry-current": "kakatekuhan $1",
 	"userrights-expiry-none": "inayi’ kakatekuhan",
-	"userrights-expiry": "kakatekuhan:",
 	"userrights-expiry-othertime": "zuma a tatukian:",
 	"userrights-expiry-options": "1 a demiad:1 day,1 lipay:1 week,1 a bulad:1 month,3 a bulad:3 months,6 a bulad:6 months,1 a mihca:1 year",
 	"userrights-invalid-expiry": "luyaluy \"$1\" a kakatekuhan la’cus tu.",

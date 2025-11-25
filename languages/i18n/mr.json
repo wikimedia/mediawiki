@@ -835,7 +835,6 @@
 	"userrights-unchangeable-col": "गट जे तुम्ही बदलू शकत नाही",
 	"userrights-expiry-current": "$1 ला संपते",
 	"userrights-expiry-none": "समाप्त होत नाही",
-	"userrights-expiry": "समाप्त होते:",
 	"userrights-expiry-othertime": "इतर वेळ:",
 	"userrights-invalid-expiry": "गट \"$1\"साठी समाप्ती वेळ अवैध आहे.",
 	"userrights-expiry-in-past": "गट \"$1\"साठी असलेली समाप्ती वेळ निघून गेली.",
