@@ -208,7 +208,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 
 		$index = $this->getIndexField(); // column to sort on
 		$extraSort = $this->getExtraSortFields(); // extra columns to sort on for query planning
-		$order = $this->mRequest->getVal( 'order' );
+		$order = $this->mRequest->getVal( 'order', '' );
 
 		if ( is_array( $index ) && isset( $index[$order] ) ) {
 			$this->mOrderType = $order;
