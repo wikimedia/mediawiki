@@ -2,7 +2,6 @@
 /**
  * @license GPL-2.0-or-later
  * @file
- * @author Ori Livneh
  */
 
 /**
@@ -25,6 +24,8 @@
  * @endcode
  *
  * @since 1.27
+ * @ingroup Cache
+ * @author Ori Livneh
  */
 class MemoizedCallable {
 
@@ -40,9 +41,9 @@ class MemoizedCallable {
 	/**
 	 * @param callable&string|callable&array $callable Function or method to memoize.
 	 *   This class does not support Closure objects, as it uses the function/method name as a cache key.
-	 *   To memoize the results of closures, use Wikimedia\ObjectCache\BagOStuff::getWithSetCallback() instead
-	 *   with your chosen cache key.
-	 * @param int $ttl TTL in seconds. Defaults to 3600 (1hr). Capped at 86400 (24h).
+	 *   To memoize a closure, use Wikimedia\ObjectCache\APCUBagOStuff::getWithSetCallback() instead
+	 *   and pass a unique name for your closure and its parameters to `makeGlobalKey`.
+	 * @param int $ttl TTL in seconds. Defaults to 3600 (1 hour). Capped at 86400 (24 hours).
 	 */
 	public function __construct( $callable, $ttl = 3600 ) {
 		if ( !is_callable( $callable, false, $this->callableName ) ) {

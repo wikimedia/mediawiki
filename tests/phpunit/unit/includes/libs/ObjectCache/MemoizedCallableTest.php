@@ -11,6 +11,7 @@ use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers \MemoizedCallable
+ * @group BagOStuff
  */
 class MemoizedCallableTest extends TestCase {
 
