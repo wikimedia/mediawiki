@@ -1929,6 +1929,8 @@ class AuthManager implements LoggerAwareInterface {
 	 * @param Authority|null $performer The performer of the action to use for user rights
 	 *   checking. Normally null to indicate an anonymous performer. Added in 1.42 for
 	 *   Special:CreateLocalAccount (T234371).
+	 * @param string[] $tags Tags to apply to the user creation log entry if `$log` is true
+	 * and the creation succeeds
 	 *
 	 * @return Status Good if the user was created, OK if the user already existed, or
 	 *   otherwise Fatal
@@ -1938,7 +1940,8 @@ class AuthManager implements LoggerAwareInterface {
 		$source,
 		$login = true,
 		$log = true,
-		?Authority $performer = null
+		?Authority $performer = null,
+		array $tags = []
 	) {
 		$validSources = [
 			self::AUTOCREATE_SOURCE_SESSION,
@@ -2067,7 +2070,8 @@ class AuthManager implements LoggerAwareInterface {
 		}
 
 		// Avoid account creation races on double submissions
-		$cache = MediaWikiServices::getInstance()->getObjectCacheFactory()->getLocalClusterInstance();
+		$services = MediaWikiServices::getInstance();
+		$cache = $services->getObjectCacheFactory()->getLocalClusterInstance();
 		$lock = $cache->getScopedLock( $cache->makeGlobalKey( 'account', md5( $username ) ) );
 		if ( !$lock ) {
 			$this->logger->debug( __METHOD__ . ': Could not acquire account creation lock', [
@@ -2202,7 +2206,12 @@ class AuthManager implements LoggerAwareInterface {
 			$logEntry->setParameters( [
 				'4::userid' => $user->getId(),
 			] );
-			$logEntry->insert();
+			$logid = $logEntry->insert();
+
+			if ( $tags !== [] ) {
+				// ManualLogEntry::insert doesn't insert tags
+				$services->getChangeTagsStore()->addTags( $tags, null, null, $logid );
+			}
 		}
 
 		if ( $login ) {

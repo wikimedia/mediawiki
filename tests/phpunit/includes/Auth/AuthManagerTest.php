@@ -121,6 +121,8 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 	private NotificationService $notificationService;
 	private SessionManager $sessionManager;
 
+	private const TAG = 'foo';
+
 	/**
 	 * Registers a mock hook.
 	 * Note this should be called after initializeManager( true ) as that removes mock hooks.
@@ -3315,6 +3317,73 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( [ '4::userid' => $user->getId() ], $entry->getParameters() );
 
 		$workaroundPHPUnitBug = true;
+	}
+
+	public static function provideTestAutoAccountCreationWithTags() {
+		return [
+			'Auto-create user without a log' => [
+				'log' => false
+			],
+			'Auto-create user with a untagged log' => [
+				'log' => true
+			],
+			'Auto-create user with a tagged log' => [
+				'log' => true,
+				'tags' => [ self::TAG ]
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideTestAutoAccountCreationWithTags
+	 */
+	public function testAutoAccountCreationWithTags( bool $log, array $tags = [] ) {
+		$this->initializeManager();
+		$this->config->set( MainConfigNames::NewUserLog, true );
+
+		$logger = new TestLogger( true, static function ( $m ) {
+			$m = str_replace( 'MediaWiki\\Auth\\AuthManager::autoCreateUser: ', '', $m );
+			return $m;
+		} );
+		$this->logger = $logger;
+		$this->manager->setLogger( $logger );
+
+		$changeTagsStore = $this->getServiceContainer()->getChangeTagsStore();
+		$changeTagsStore->defineTag( self::TAG );
+
+		$user = User::newFromName( self::usernameForCreation() );
+		$status = $this->manager->autoCreateUser(
+			$user, AuthManager::AUTOCREATE_SOURCE_SESSION, false, $log, null, $tags
+		);
+		$this->assertStatusOK( $status, 'Failed to auto-create user' );
+		$this->assertSame( [
+			[ LogLevel::INFO, 'creating new user ({username}) - from: {from}' ],
+		], $logger->getBuffer() );
+
+		$db = $this->getDb();
+		$builder = $db->newSelectQueryBuilder();
+		$logid = $builder
+			->select( 'log_id' )
+			->from( 'logging' )
+			->where( [
+				'log_type' => 'newusers',
+				'log_action' => 'autocreate',
+				'log_namespace' => NS_USER,
+				'log_title' => $user->getTitleKey()
+			] )
+			->orderBy( 'log_timestamp', $builder::SORT_DESC )
+			->limit( 1 )
+			->caller( __METHOD__ )
+			->fetchField();
+
+		if ( !$log ) {
+			$this->assertFalse( $logid, 'Auto-creation is incorrectly logged' );
+		} else {
+			$this->assertNotFalse( $logid, 'Auto-creation is not logged' );
+
+			$actualTags = $changeTagsStore->getTags( $db, null, null, (int)$logid );
+			$this->assertSame( $tags, $actualTags, 'Tag mismatch for the auto-creation log' );
+		}
 	}
 
 	/**
