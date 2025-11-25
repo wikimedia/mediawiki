@@ -2086,6 +2086,7 @@ return [
 				'mw-manual-revert' => true,
 				'mw-reverted' => true,
 				'mw-server-side-upload' => true,
+				'mw-ipblock-appeal' => true,
 			],
 			'UnwatchedPageThreshold' => false,
 			'RecentChangesFlags' => [

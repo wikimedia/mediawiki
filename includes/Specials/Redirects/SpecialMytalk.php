@@ -8,6 +8,7 @@
 namespace MediaWiki\Specials\Redirects;
 
 use MediaWiki\Auth\AuthManager;
+use MediaWiki\ChangeTags\ChangeTags;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\SpecialPage\RedirectSpecialArticle;
 use MediaWiki\Status\Status;
@@ -96,7 +97,8 @@ class SpecialMytalk extends RedirectSpecialArticle {
 	public function onSubmit() {
 		return $this->tempUserCreator->create(
 			null,
-			$this->getContext()->getRequest()
+			$this->getContext()->getRequest(),
+			[ ChangeTags::TAG_IPBLOCK_APPEAL ]
 		);
 	}
 

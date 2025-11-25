@@ -41,35 +41,46 @@ class TempUserCreatorTest extends \MediaWikiIntegrationTestCase {
 			MainConfigNames::TempAccountCreationThrottle => [],
 		] );
 
-		$tuc = $this->getServiceContainer()->getTempUserCreator();
+		$services = $this->getServiceContainer();
+		$cts = $services->getChangeTagsStore();
+		$tag = 'foo';
+		$cts->defineTag( $tag );
+
+		$tuc = $services->getTempUserCreator();
 		$this->assertTrue( $tuc->isAutoCreateAction( 'edit' ) );
 		$this->assertTrue( $tuc->isTempName( '~1' ) );
 
 		// Create a temporary account
 		$status = $tuc->create( null, new FauxRequest() );
 		$this->assertSame( '~1', $status->getUser()->getName() );
+		$res = $this->getDb()->newSelectQueryBuilder()
+			->select( '*' )
+			->from( 'logging' )
+			->join( 'actor', null, 'log_actor=actor_id' )
+			->where( [ 'actor_name' => '~1', 'log_action' => 'autocreate' ] )
+			->fetchResultSet();
 		$this->assertSame(
-			1,
-			$this->getDb()->newSelectQueryBuilder()
-				->from( 'logging' )
-				->join( 'actor', null, 'log_actor=actor_id' )
-				->where( [ 'actor_name' => '~1', 'log_action' => 'autocreate' ] )
-				->fetchRowCount(),
+			1, $res->count(),
 			'A logging entry indicating the autocreation of ~1 was expected.'
 		);
+		$tags = $cts->getTags( $this->getDb(), null, null, (int)$res->fetchRow()['log_id'] );
+		$this->assertSame( [], $tags );
 
 		// Repeat the test to verify that the serial number increments
-		$status = $tuc->create( null, new FauxRequest() );
+		$status = $tuc->create( null, new FauxRequest(), [ $tag ] );
 		$this->assertSame( '~2', $status->getUser()->getName() );
+		$res = $this->getDb()->newSelectQueryBuilder()
+			->select( '*' )
+			->from( 'logging' )
+			->join( 'actor', null, 'log_actor=actor_id' )
+			->where( [ 'actor_name' => '~2', 'log_action' => 'autocreate' ] )
+			->fetchResultSet();
 		$this->assertSame(
-			1,
-			$this->getDb()->newSelectQueryBuilder()
-				->from( 'logging' )
-				->join( 'actor', null, 'log_actor=actor_id' )
-				->where( [ 'actor_name' => '~2', 'log_action' => 'autocreate' ] )
-				->fetchRowCount(),
+			1, $res->count(),
 			'A logging entry indicating the autocreation of ~2 was expected.'
 		);
+		$tags = $cts->getTags( $this->getDb(), null, null, (int)$res->fetchRow()['log_id'] );
+		$this->assertSame( [ $tag ], $tags );
 	}
 
 	private function getTempUserCreatorUnit() {

@@ -2,6 +2,7 @@
 namespace MediaWiki\Tests\Specials\Redirects;
 
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\ChangeTags\ChangeTags;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Exception\UserNotLoggedIn;
 use MediaWiki\Permissions\Authority;
@@ -105,7 +106,8 @@ class SpecialMytalkTest extends SpecialPageTestBase {
 		string $blockTargetName
 	) {
 		$this->enableAutoCreateTempUser();
-		$blockTarget = $this->getServiceContainer()
+		$services = $this->getServiceContainer();
+		$blockTarget = $services
 			->getBlockTargetFactory()
 			->newFromString( $blockTargetName );
 
@@ -116,7 +118,7 @@ class SpecialMytalkTest extends SpecialPageTestBase {
 			'createAccount' => true,
 			'allowUsertalk' => true,
 		] );
-		$this->getServiceContainer()
+		$services
 			->getDatabaseBlockStoreFactory()
 			->getDatabaseBlockStore( $block->getWikiId() )
 			->insertBlock( $block );
@@ -143,11 +145,32 @@ class SpecialMytalkTest extends SpecialPageTestBase {
 			$context
 		);
 
-		$tempUserName = $request->getSession()->getUser()->getName();
+		$tempUser = $request->getSession()->getUser();
 		$this->assertStringContainsString(
-			'User_talk:' . $tempUserName,
+			'User_talk:' . $tempUser->getName(),
 			$response->getHeader( 'LOCATION' )
 		);
+
+		$db = $this->getDb();
+		$builder = $db->newSelectQueryBuilder();
+		$logid = $builder
+			->select( 'log_id' )
+			->from( 'logging' )
+			->where( [
+				'log_type' => 'newusers',
+				'log_action' => 'autocreate',
+				'log_namespace' => NS_USER,
+				'log_title' => $tempUser->getTitleKey()
+			] )
+			->orderBy( 'log_timestamp', $builder::SORT_DESC )
+			->limit( 1 )
+			->caller( __METHOD__ )
+			->fetchField();
+		$this->assertNotFalse( $logid, 'Auto-creation is not logged' );
+
+		$tags = $services->getChangeTagsStore()->getTags( $db, null, null, (int)$logid );
+		$ipblockAppeal = ChangeTags::TAG_IPBLOCK_APPEAL;
+		$this->assertSame( [ $ipblockAppeal ], $tags, "$ipblockAppeal tag missing in the auto-creation log" );
 	}
 
 	public static function provideBlockTarget() {

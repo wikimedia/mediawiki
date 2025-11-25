@@ -11019,6 +11019,7 @@ class MainConfigSchema {
 	 * @see \MediaWiki\ChangeTags\ChangeTags::TAG_MANUAL_REVERT
 	 * @see \MediaWiki\ChangeTags\ChangeTags::TAG_REVERTED
 	 * @see \MediaWiki\ChangeTags\ChangeTags::TAG_SERVER_SIDE_UPLOAD
+	 * @see \MediaWiki\ChangeTags\ChangeTags::TAG_IPBLOCK_APPEAL
 	 */
 	public const SoftwareTags = [
 		'default' => [
@@ -11034,6 +11035,7 @@ class MainConfigSchema {
 			'mw-manual-revert' => true,
 			'mw-reverted' => true,
 			'mw-server-side-upload' => true,
+			'mw-ipblock-appeal' => true,
 		],
 		'type' => 'map',
 		'additionalProperties' => [ 'type' => 'boolean', ],
