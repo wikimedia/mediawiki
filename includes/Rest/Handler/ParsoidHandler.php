@@ -948,7 +948,7 @@ abstract class ParsoidHandler extends Handler {
 				$revision['data-mw']['body'] ?? null
 			);
 			$this->validatePb( $pb, $attribs['envOptions']['inputContentVersion'] );
-			Parsoid::downgrade( $downgrade, $pb );
+			Parsoid::downgrade( $downgrade, $pb, $this->siteConfig );
 
 			if ( !empty( $attribs['body_only'] ) ) {
 				$doc = $this->parseHTML( $pb->html );
