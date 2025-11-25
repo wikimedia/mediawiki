@@ -3027,6 +3027,11 @@ class Language implements Bcp47Code {
 	 * @return string The string with lowercase conversion applied to the first character
 	 */
 	public function lcfirst( $str ) {
+		// T410920: ord() doesn't like an empty string, so just return early
+		if ( $str === '' ) {
+			return '';
+		}
+
 		$octetCode = ord( $str[0] );
 		// See https://en.wikipedia.org/wiki/ASCII#Printable_characters
 		if ( $octetCode < 96 ) {
