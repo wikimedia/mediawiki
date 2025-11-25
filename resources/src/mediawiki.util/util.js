@@ -1076,6 +1076,44 @@ const util = {
 	},
 
 	/**
+	 * Adjust the thumbnail size to fit the width steps defined in config via
+	 * config.ThumbnailSteps, according to whether config.ThumbnailStepsRatio
+	 * is set.
+	 *
+	 * This logic is duplicated server-side in File::adjustThumbWidthForSteps.
+	 *
+	 * @param {number} thumbWidth target width in pixels
+	 * @param {number} originalWidth original file width
+	 */
+	adjustThumbWidthForSteps(
+		thumbWidth,
+		originalWidth
+	) {
+		const steps = config.ThumbnailSteps;
+		const ratio = config.ThumbnailStepsRatio;
+		if ( !steps || !ratio ) {
+			return thumbWidth;
+		}
+
+		// Note: non-integral thumbnailStepsRatio values are treated
+		// as equivalent to 1 here. This is a transitional setting
+		// for content generation and should be ok to ignore client-side.
+
+		for ( const widthStep of steps ) {
+			if ( widthStep > originalWidth ) {
+				return thumbWidth;
+			}
+			if ( widthStep === thumbWidth ) {
+				return thumbWidth;
+			}
+			if ( widthStep > thumbWidth ) {
+				return widthStep;
+			}
+		}
+		return thumbWidth;
+	},
+
+	/**
 	 * Escape string for safe inclusion in regular expression.
 	 *
 	 * The following characters are escaped:

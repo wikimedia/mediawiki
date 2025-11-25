@@ -1134,6 +1134,12 @@ abstract class File implements MediaHandlerState {
 		return $thumbName;
 	}
 
+	/**
+	 * Adjust the thumbnail size to fit the width steps defined in config via
+	 * $wgThumbnailSteps, according to whether $wgThumbnailStepsRatio is set.
+	 *
+	 * This logic is duplicated client-side in mw.util.adjustThumbWidthForSteps.
+	 */
 	private function adjustThumbWidthForSteps( array $params ): array {
 		$thumbnailSteps = MediaWikiServices::getInstance()
 			->getMainConfig()->get( MainConfigNames::ThumbnailSteps );
