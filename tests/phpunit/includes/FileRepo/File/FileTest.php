@@ -498,8 +498,11 @@ class FileTest extends MediaWikiMediaTestCase {
 	/**
 	 * @covers \MediaWiki\FileRepo\File\File::thumbName
 	 * @covers \MediaWiki\FileRepo\File\File::generateThumbName
+	 * @covers \MediaWiki\FileRepo\File\File::adjustThumbWidthForSteps
 	 */
 	public function testThumbNameSteps() {
+		// See also client-side logic test for mw.util.adjustThumbWidthForSteps in util.test.js
+
 		$this->overrideConfigValue( MainConfigNames::ThumbnailSteps, [ 10, 100, 200 ] );
 		// Fully enabled
 		$this->overrideConfigValue( MainConfigNames::ThumbnailStepsRatio, 1 );
