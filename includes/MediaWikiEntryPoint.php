@@ -13,7 +13,6 @@ use MediaWiki\Context\IContextSource;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Deferred\TransactionRoundDefiningUpdate;
 use MediaWiki\Exception\MWExceptionHandler;
-use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\JobQueue\JobQueueGroup;
 use MediaWiki\JobQueue\JobQueueGroupFactory;
 use MediaWiki\JobQueue\JobRunner;
@@ -43,7 +42,7 @@ use Wikimedia\Telemetry\TracerState;
 /**
  * @defgroup entrypoint Entry points
  *
- * Web entry points reside in top-level MediaWiki directory (i.e. installation path).
+ * Web entry points reside in the top-level MediaWiki directory (i.e., installation path).
  * These entry points handle web requests to interact with the wiki. Other PHP files
  * in the repository are not accessed directly from the web, but instead included by
  * an entry point.
@@ -59,8 +58,6 @@ use Wikimedia\Telemetry\TracerState;
  * @since 1.42, factored out of the previously existing MediaWiki class.
  */
 abstract class MediaWikiEntryPoint {
-	use ProtectedHookAccessorTrait;
-
 	private IContextSource $context;
 	private Config $config;
 	private ?int $outputCaptureLevel = null;
@@ -83,7 +80,7 @@ abstract class MediaWikiEntryPoint {
 
 	protected EntryPointEnvironment $environment;
 
-	private MediaWikiServices $mediaWikiServices;
+	protected MediaWikiServices $mediaWikiServices;
 
 	/**
 	 * @param IContextSource $context

@@ -9,6 +9,7 @@ use MediaWiki\Exception\ErrorPageError;
 use MediaWiki\Exception\HttpError;
 use MediaWiki\Exception\MWExceptionRenderer;
 use MediaWiki\Exception\PermissionsError;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiEntryPoint;
@@ -342,6 +343,10 @@ class ActionEntryPoint extends MediaWikiEntryPoint {
 	 */
 	public function getAction(): string {
 		return $this->getContext()->getActionName();
+	}
+
+	private function getHookRunner(): HookRunner {
+		return new HookRunner( $this->mediaWikiServices->getHookContainer() );
 	}
 
 	/**
