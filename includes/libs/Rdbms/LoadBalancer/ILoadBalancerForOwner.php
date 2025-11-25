@@ -30,7 +30,6 @@ interface ILoadBalancerForOwner extends ILoadBalancer {
 	 *     Each server configuration map has the same format as the Database::factory() $params
 	 *     argument, with the following additional optional fields:
 	 *      - type: the DB type (sqlite, mysql, postgres,...)
-	 *      - groupLoads: map of (group => weight for this server) [optional]
 	 *      - max lag: per-server override of the "max lag" [optional]
 	 *      - is static: whether the dataset is static *and* this server has a copy [optional]
 	 *  - localDomain: A DatabaseDomain or domain ID string
