@@ -1217,6 +1217,8 @@ return [
 				MainConfigNames::GenerateThumbnailOnParse,
 				MainConfigNames::LoadScript,
 				MainConfigNames::AutoCreateTempUser,
+				MainConfigNames::ThumbnailSteps,
+				MainConfigNames::ThumbnailStepsRatio,
 			] ],
 			[ 'name' => 'portletLinkOptions.json', 'callback' => [ Skin::class, 'getPortletLinkOptions' ] ],
 			[

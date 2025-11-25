@@ -660,6 +660,27 @@ QUnit.module( 'mediawiki.util', QUnit.newMwEnvironment( {
 		assert.strictEqual( resizeUrl( 500 ), '/w?title=Special:Redirect/file/Princess_Alexandra_of_Denmark_(later_Queen_Alexandra,_wife_of_Edward_VII)_with_her_two_eldest_sons,_Prince_Albert_Victor_(Eddy)_and_George_Frederick_Ernest_Albert_(later_George_V).jpg&width=500', 'Resized URL is correct' );
 	} );
 
+	QUnit.test( 'adjustThumbWidthForSteps returns expected sizes', ( assert ) => {
+		// See also server-side logic test for File::adjustThumbWidthForSteps in FileTest.php
+		mw.util.setOptionsForTest( {
+			ThumbnailSteps: [ 10, 100, 200 ],
+			ThumbnailStepsRatio: 1
+		} );
+
+		// Round up
+		const originalWidth = 500;
+		let thumbWidth = 90;
+		let expected = 100;
+		let actual = mw.util.adjustThumbWidthForSteps( thumbWidth, originalWidth );
+		assert.strictEqual( actual, expected, `${ thumbWidth } req from ${ originalWidth } should round up` );
+
+		// Beyond available steps
+		thumbWidth = 250;
+		expected = 250;
+		actual = mw.util.adjustThumbWidthForSteps( thumbWidth, originalWidth );
+		assert.strictEqual( actual, expected, `${ thumbWidth } req from ${ originalWidth } should give larger size 250` );
+	} );
+
 	QUnit.test( 'escapeRegExp [normal]', ( assert ) => {
 		const normal = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' +
 			'abcdefghijklmnopqrstuvwxyz' +
