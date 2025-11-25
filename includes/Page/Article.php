@@ -716,7 +716,9 @@ class Article implements Page {
 			'injectTOC' => $skinOptions['toc'],
 		];
 		foreach ( $textOptions as $key => $value ) {
-			if ( $key === 'allowClone' ) {
+			// allowClone will disappear and should not impact cache
+			// userLang is a duplicate of userlang and should be reconciled with it
+			if ( $key === 'allowClone' || $key === 'userLang' ) {
 				continue;
 			}
 			if ( !in_array( $key, ParserOptions::$postprocOptions, true ) ) {

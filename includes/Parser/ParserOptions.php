@@ -121,11 +121,14 @@ class ParserOptions {
 	 */
 	public static array $postprocOptions = [
 		'skin',
+		'allowTOC',
 		'injectTOC',
 		'includeDebugInfo',
 		'enableSectionEditLinks',
 		'wrapperDivClass',
 		'deduplicateStyles',
+		'unwrap',
+		'absoluteURLs',
 	];
 
 	/**
@@ -1320,6 +1323,8 @@ class ParserOptions {
 				'enableSectionEditLinks' => true,
 				'wrapperDivClass' => 'mw-parser-output',
 				'deduplicateStyles' => true,
+				'unwrap' => false,
+				'absoluteURLs' => true,
 			];
 
 			self::$cacheVaryingOptionsHash = self::$initialCacheVaryingOptionsHash;
