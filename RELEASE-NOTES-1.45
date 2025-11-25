@@ -133,6 +133,8 @@ For notes on 1.44.x and older releases, see HISTORY.
   From now on, such messages should be added to the en.json and qqq.json file
   under nontranslatable/.
 * (T315128) The UserCanChangeEmail hook was added.
+* (T295568) The jqueryMsg parser now supports self-closing HTML tags (<br>,
+  <wbr> and <hr>).
 
 === External library changes in 1.45 ===
 
