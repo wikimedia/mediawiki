@@ -2741,6 +2741,10 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			$this->mExtensionData,
 			$source->mExtensionData
 		);
+
+		if ( $source->mCacheExpiry !== null ) {
+			$this->updateCacheExpiry( $source->mCacheExpiry );
+		}
 	}
 
 	/**
