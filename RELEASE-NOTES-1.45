@@ -552,7 +552,7 @@ because of Phabricator reports.
 
 == Compatibility ==
 
-MediaWiki 1.45 requires PHP 8.1.0 or later and the following PHP extensions:
+MediaWiki 1.45 requires PHP 8.2.0 or later and the following PHP extensions:
 
 * ctype
 * dom

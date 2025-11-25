@@ -32,7 +32,7 @@ class ScopeStructureTest extends MediaWikiUnitTestCase {
 	public function testAutoloadNoFileScope( $file ) {
 		// This value should match the PHP version specified in composer.json,
 		// PHPVersionCheck.php, and .phan/config.php
-		$version = PhpVersion::fromComponents( 8, 1 );
+		$version = PhpVersion::fromComponents( 8, 2 );
 		$parser = ( new ParserFactory )->createForVersion( $version );
 		$ast = $parser->parse( file_get_contents( $file ) );
 		foreach ( $ast as $node ) {
