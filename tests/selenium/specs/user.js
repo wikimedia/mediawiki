@@ -61,7 +61,12 @@ describe( 'User', () => {
 		const pageText = getTestString();
 
 		await EditPage.edit( pageTitle, pageText );
-		await EditPage.openCreateAccountPageAsTempUser();
+
+		// Wait for the edit to succeed, which when it has the
+		// temporary account should have been created
+		await expect( EditPage.heading ).toHaveText( pageTitle );
+
+		await CreateAccountPage.open();
 
 		await expect( CreateAccountPage.username ).toExist();
 		await expect( CreateAccountPage.password ).toExist();
@@ -78,7 +83,12 @@ describe( 'User', () => {
 		const pageText = getTestString();
 
 		await EditPage.edit( pageTitle, pageText );
-		await EditPage.openCreateAccountPageAsTempUser();
+
+		// Wait for the edit to succeed, which when it has the
+		// temporary account should have been created
+		await expect( EditPage.heading ).toHaveText( pageTitle );
+
+		await CreateAccountPage.open();
 
 		await CreateAccountPage.submitForm( username, password );
 		await expect( await LoginPage.getActualUsername() ).toBe( username );
