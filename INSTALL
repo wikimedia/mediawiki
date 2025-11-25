@@ -7,7 +7,7 @@ the necessary prerequisites available.
 
 Required software as of MediaWiki 1.46.0:
 
-* Web server with PHP 8.1.0 or higher, plus the following extensions:
+* Web server with PHP 8.1.4 or higher, plus the following extensions:
 ** ctype
 ** dom
 ** fileinfo
