@@ -71,6 +71,7 @@ For notes on 1.45.x and older releases, see HISTORY.
 
 * Updated mck89/peast from 1.17.2 to 1.17.4.
 * Updated symfony/yaml from 6.4.25 to 6.4.26.
+* Updated wikimedia/ip-utuls from 5.0.0 to 6.0.0.
 * …
 
 ==== Changed external libraries ====

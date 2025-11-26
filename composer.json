@@ -66,7 +66,7 @@
 		"wikimedia/cssjanus": "2.3.0",
 		"wikimedia/css-sanitizer": "6.1.0",
 		"wikimedia/html-formatter": "4.1.0",
-		"wikimedia/ip-utils": "5.0.0",
+		"wikimedia/ip-utils": "6.0.0",
 		"wikimedia/json-codec": "4.0.0",
 		"wikimedia/less.php": "5.2.2",
 		"wikimedia/minify": "2.9.0",
