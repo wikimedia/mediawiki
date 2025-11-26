@@ -275,7 +275,8 @@
 			"codeofdusk",
 			"Nemoralis",
 			"Tamzin",
-			"E75ti"
+			"E75ti",
+			"Ильгиз"
 		]
 	},
 	"sidebar": "{{notranslate}}",
@@ -1314,7 +1315,7 @@
 	"linterror-duplicate-ids": "Error message, follows {{msg-mw|badsightml}}.\n\nSee also {{msg-mw|linter-pager-duplicate-ids-details}}.",
 	"linterror-empty-heading": "Error message, follows {{msg-mw|badsightml}}.\n\nSee also {{msg-mw|linter-pager-empty-heading}}.",
 	"linterror-fostered": "Error message, follows {{msg-mw|badsightml}}.\n\nSee also {{msg-mw|linter-pager-fostered}}.",
-	"linterror-fostered-transparent": "Error message, follows {{msg-mw|badsightml}}.\n\nSee also {{msg-mw|linter-pager-fostered-transparent-details}}.",
+	"linterror-fostered-transparent": "Хата турында хәбәрнамә, {{msg-mw|badsightml}} белән чыга.\n\nШулай ук карагыз: {{msg-mw|linter-pager-fostered-transparent-details}}.",
 	"linterror-html5-misnesting": "Error message, follows {{msg-mw|badsightml}}.\n\nSee also {{msg-mw|linter-pager-html5-misnesting-details}}.",
 	"linterror-inline-media-caption": "Error message, follows {{msg-mw|badsightml}}.\n\nSee also {{msg-mw|linter-pager-inline-media-caption-details}}.",
 	"linterror-large-tables": "Error message, follows {{msg-mw|badsightml}}.\n\nSee also {{msg-mw|linter-pager-large-tables-details}}.",
@@ -1355,8 +1356,8 @@
 	"userrights-watchuser": "This is an option on [[Special:UserRights]] to watch the user page and talk page of the changed user.",
 	"userrights-no-interwiki": "Error message when editing user groups",
 	"userrights-nodatabase": "Error message when editing user groups.\n\n\"Local\" means databases/wikis of the same farm/cluster; that is, meta, enwiki, dewiki, commons, etc are all local databases of the Wikimedia Foundation.\n\nSee [{{canonicalurl:meta:Special:Log|type=rights}} meta:Special:Log?type=rights] for a usage of local databases: username@barwiki\n\nParameters:\n* $1 - database name",
-	"userrights-changeable-col": "Used when editing user groups in [[Special:Userrights]].\n\nThe message is the head of a column of group assignments.\n\nParameters:\n* $1 - The number of items in the column following the message.",
-	"userrights-unchangeable-col": "Used when editing user groups in [[Special:Userrights]]. The message is the head of a column of group assignments.\n\nParameters:\n* $1 - (Optional) for PLURAL use, the number of items in the column following the message. Avoid PLURAL, if your language allows that.",
+	"userrights-changeable-col": "Used when editing user groups in [[Special:Userrights]].\n\nThe message is the head of a column of group assignments.\n\nParameters:\n* $1 - (Optional) for PLURAL use, the number of items in the column following the message. Avoid PLURAL, if your language allows that.",
+	"userrights-unchangeable-col": "Used when editing user groups in [[Special:Userrights]].\n\nThe message is the head of a column of group assignments.\n\nParameters:\n* $1 - (Optional) for PLURAL use, the number of items in the column following the message. Avoid PLURAL, if your language allows that.",
 	"userrights-irreversible-marker": "{{optional}}\nParameters:\n* $1 - group member",
 	"userrights-no-shorten-expiry-marker": "{{optional}}\nParameters:\n* $1 - group member",
 	"userrights-expiry-current": "Indicates when a user's membership of a user group expires.\n\nParameters:\n* $1 - time and date of expiry\n* $2 - date of expiry\n* $3 - time of expiry\n{{Identical|Expire}}",
@@ -2658,7 +2659,7 @@
 	"rollback-missingparam": "Used as error message that rollback is accessed without the required parameters\n\nSee also:\n* {{msg-mw|Rollbackfailed}}",
 	"rollback-missingrevision": "Used as error message that rollback failed to load revision data\n\nSee also:\n* {{msg-mw|Rollbackfailed}}",
 	"cantrollback": "Used as error message when rollback fails due to there not being a valid revision to revert back to.\n\nSee also:\n* {{msg-mw|Notvisiblerev}}\n{{Identical|Revert}}\n{{Identical|Rollback}}",
-	"alreadyrolled": "Appear when there's rollback and/or edit collision.\n\nRefers to:\n* {{msg-mw|Pipe-separator}}\n* {{msg-mw|Contribslink}}\nParameters:\n* $1 - the page to be rolled back\n* $2 - the editor to be rolled-back of that page\n* $3 - the editor that cause collision\n{{Identical|Rollback}}",
+	"alreadyrolled": "Appear when there's rollback and/or edit collision.\n\nRefers to:\n* {{msg-mw|Pipe-separator}}\n* {{msg-mw|Contribslink}}\nParameters:\n* $1 - the page to be rolled back\n* $2 - the editor to be rolled-back of that page\n* $3 - the editor that cause collision\nSimilar message: {{msg-mw|Rollback-nochange}}\n{{Identical|Rollback}}",
 	"editcomment": "Only shown if there is an edit {{msg-mw|Summary}}. Parameters:\n* $1 - the edit summary",
 	"revertpage": "Summary shown after rollbacking.\n\nParameters:\n* $1 - username of the author of the edit that is being restored\n* $2 - username of the author of the edits that are being reverted\n* $7 - the number of edits that have been reverted\n\nThese parameters are passed, but not used in the message ([https://phabricator.wikimedia.org/T337092 T337092]):\n* $3 - revision ID of the revision reverted to\n* $4 - timestamp of the revision reverted to\n* $5 - revision ID of the revision reverted from\n* $6 - timestamp of the revision reverted from\n\nSee also:\n* {{msg-mw|Revertpage-anon}}\n* {{msg-mw|Revertpage-nouser}}\n{{Identical|Revert}}",
 	"revertpage-anon": "This is a confirmation message a user sees after reverting an anonymous user's edits.\n\nParameters:\n* $1 - username of the author of the edit that is being restored\n* $2 - username of the author of the edits that are being reverted\n* $7 - the number of edits that have been reverted\n\nThese parameters are passed, but not used in the message ([https://phabricator.wikimedia.org/T337092 T337092]):\n* $3 - revision ID of the revision reverted to\n* $4 - timestamp of the revision reverted to\n* $5 - revision ID of the revision reverted from\n* $6 - timestamp of the revision reverted from\n\nSee also:\n* {{msg-mw|Revertpage}}\n* {{msg-mw|Revertpage-nouser}}\n{{Identical|Revert}}",
