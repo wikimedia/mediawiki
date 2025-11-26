@@ -58,8 +58,8 @@ abstract class ApiOptionsBase extends ApiBase {
 	 * Changes preferences of the current user.
 	 */
 	public function execute() {
-		$user = $this->getUserFromPrimaryOrNull();
-		if ( !$user || !$user->isNamed() ) {
+		$user = $this->getUser();
+		if ( !$user->isNamed() ) {
 			$this->dieWithError(
 				[ 'apierror-mustbeloggedin', $this->msg( 'action-editmyoptions' ) ], 'notloggedin'
 			);
@@ -190,7 +190,7 @@ abstract class ApiOptionsBase extends ApiBase {
 					$field = $this->getHtmlForm()->getField( $key );
 					$validation = $field->validate(
 						$value,
-						$this->userOptionsManager->getOptions( $this->getUserFromPrimary() )
+						$this->userOptionsManager->getOptions( $this->getUser() )
 					);
 				}
 				break;
@@ -224,7 +224,7 @@ abstract class ApiOptionsBase extends ApiBase {
 						'OptionValue' => substr( $value ?? '', 0, 255 ),
 						'OptionSize' => strlen( $value ?? '' ),
 						'OptionValidation' => $validation,
-						'UserId' => $this->getUserFromPrimary()->getId(),
+						'UserId' => $this->getUser()->getId(),
 						'RequestIP' => $this->getRequest()->getIP(),
 						'RequestUA' => $this->getRequest()->getHeader( 'User-Agent' )
 					]
@@ -251,7 +251,7 @@ abstract class ApiOptionsBase extends ApiBase {
 
 	private function countUserJsOptions(): int {
 		$options = $this->userOptionsManager->getOptions(
-			$this->getUserFromPrimary(),
+			$this->getUser(),
 			UserOptionsLookup::EXCLUDE_DEFAULTS
 		);
 		$userJsCount = 0;
@@ -290,7 +290,7 @@ abstract class ApiOptionsBase extends ApiBase {
 	protected function getPreferences() {
 		if ( !$this->preferences ) {
 			$this->preferences = $this->preferencesFactory->getFormDescriptor(
-				$this->getUserFromPrimary(),
+				$this->getUser(),
 				$this->getContext()
 			);
 		}

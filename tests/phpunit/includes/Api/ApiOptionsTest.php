@@ -44,9 +44,6 @@ class ApiOptionsTest extends ApiTestCase {
 
 		$this->mUserMock = $this->createMock( User::class );
 
-		// No actual DB data
-		$this->mUserMock->method( 'getInstanceFromPrimary' )->willReturn( $this->mUserMock );
-
 		$this->mUserMock->method( 'isAllowedAny' )->willReturn( true );
 
 		// Create a new context

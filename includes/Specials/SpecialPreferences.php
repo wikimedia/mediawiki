@@ -6,7 +6,6 @@
 
 namespace MediaWiki\Specials;
 
-use LogicException;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Exception\PermissionsError;
 use MediaWiki\Html\Html;
@@ -169,7 +168,7 @@ class SpecialPreferences extends SpecialPage {
 			throw new PermissionsError( 'editmyoptions' );
 		}
 
-		$user = $this->getUser()->getInstanceFromPrimary() ?? throw new LogicException( 'No user' );
+		$user = $this->getUser();
 		$this->userOptionsManager->resetAllOptions( $user );
 		$this->userOptionsManager->saveOptions( $user );
 

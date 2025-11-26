@@ -525,6 +525,10 @@ class UserOptionsManagerTest extends UserOptionsLookupTestBase {
 		$manager = $this->getManager();
 		$manager->setOption( $user, 'test_option', 'test_value' );
 		$manager->saveOptions( $user );
+
+		ConvertibleTimestamp::setFakeTime(
+			intval( ConvertibleTimestamp::convert( TS_UNIX, $userTouched ) ) + 200
+		);
 		$this->assertSame( $newTouched, $user->getDBTouched() );
 		$user->clearInstanceCache();
 		$this->assertSame( $newTouched, $user->getDBTouched() );

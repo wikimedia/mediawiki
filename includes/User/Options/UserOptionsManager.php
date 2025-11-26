@@ -347,7 +347,7 @@ class UserOptionsManager extends UserOptionsLookup {
 		$this->hookRunner->onUserSaveSettings( $legacyUser );
 		if ( $changed ) {
 			$dbw->onTransactionCommitOrIdle( static function () use ( $legacyUser ) {
-				$legacyUser->checkAndSetTouched();
+				$legacyUser->getInstanceFromPrimary()?->checkAndSetTouched();
 			}, __METHOD__ );
 		}
 	}
