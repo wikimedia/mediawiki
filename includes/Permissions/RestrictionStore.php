@@ -593,6 +593,10 @@ class RestrictionStore {
 			}
 		}
 
+		if ( $restrictionsByPage === [] ) {
+			return [ [], [], [], [] ];
+		}
+
 		$templateLinksDb = $this->loadBalancerFactory->getReplicaDatabase( TemplateLinksTable::VIRTUAL_DOMAIN );
 		$templateLinks = $templateLinksDb->newSelectQueryBuilder()
 			->select( 'tl_from' )
