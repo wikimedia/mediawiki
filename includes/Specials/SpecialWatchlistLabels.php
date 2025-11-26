@@ -30,7 +30,9 @@ use Wikimedia\Codex\Utility\Codex;
 class SpecialWatchlistLabels extends SpecialPage {
 
 	private const SUBPAGE_EDIT = 'edit';
+	private const SUBPAGE_DELETE = 'delete';
 	private const PARAM_ID = 'wll_id';
+	private const PARAM_IDS = 'wll_ids';
 	private const PARAM_NAME = 'wll_name';
 
 	use WatchlistSpecialPage;
@@ -81,7 +83,9 @@ class SpecialWatchlistLabels extends SpecialPage {
 		$output->addSubtitle( $subtitle );
 
 		if ( $subPage === self::SUBPAGE_EDIT ) {
-			$this->showForm();
+			$this->showEditForm();
+		} elseif ( $subPage === self::SUBPAGE_DELETE ) {
+			$this->showDeleteConfirmation();
 		} else {
 			$this->showTable();
 		}
@@ -90,7 +94,7 @@ class SpecialWatchlistLabels extends SpecialPage {
 	/**
 	 * Get the label editing form.
 	 */
-	private function showForm() {
+	private function showEditForm() {
 		$id = $this->getRequest()->getInt( self::PARAM_ID );
 		$descriptor = [
 			self::PARAM_NAME => [
@@ -126,7 +130,7 @@ class SpecialWatchlistLabels extends SpecialPage {
 			// - watchlistlabels-form-submit-new
 			// - watchlistlabels-form-submit-edit
 			->setSubmitTextMsg( "watchlistlabels-form-submit-$msgSuffix" )
-			->setSubmitCallback( [ $this, 'onSubmit' ] );
+			->setSubmitCallback( [ $this, 'onEditFormSubmit' ] );
 		$form->show();
 	}
 
@@ -173,7 +177,7 @@ class SpecialWatchlistLabels extends SpecialPage {
 	 * @param mixed $data Form submission data.
 	 * @return Status
 	 */
-	public function onSubmit( $data ): Status {
+	public function onEditFormSubmit( $data ): Status {
 		if ( !isset( $data[self::PARAM_NAME] ) ) {
 			throw new InvalidArgumentException( 'No name data submitted.' );
 		}
@@ -187,6 +191,83 @@ class SpecialWatchlistLabels extends SpecialPage {
 			$this->getOutput()->redirect( $this->getPageTitle()->getLocalURL() );
 		}
 		return $saved;
+	}
+
+	private function showDeleteConfirmation(): void {
+		$ids = $this->getRequest()->getArray( self::PARAM_IDS ) ?? [];
+		$labels = $this->labelStore->loadAllForUser( $this->getUser() );
+		$toDelete = array_intersect_key( $labels, array_flip( $ids ) );
+		$labelCounts = $this->labelStore->countItems( array_keys( $labels ) );
+		$listItems = '';
+		foreach ( $toDelete as $label ) {
+			$listItems .= Html::rawElement( 'li', [], $this->getDeleteConfirmationListItem( $label, $labelCounts ) );
+		}
+		$count = count( $toDelete );
+		$formattedCount = $this->getLanguage()->formatNum( $count );
+		$msg = $this->msg( 'watchlistlabels-delete-warning', $count, $formattedCount )->text();
+		$warning = Html::element( 'p', [], $msg );
+		$list = Html::rawElement( 'ol', [], $listItems );
+		$descriptor = [
+			'list' => [
+				'type' => 'info',
+				'default' => $warning . $list,
+				'rawrow' => true,
+			],
+			self::PARAM_IDS => [
+				'type' => 'hidden',
+				'name' => self::PARAM_IDS,
+				'default' => implode( ',', array_keys( $toDelete ) ),
+			],
+		];
+		$header = $this->msg( 'watchlistlabels-delete-header', $count )->text();
+		HTMLForm::factory( 'codex', $descriptor, $this->getContext() )
+			->setHeaderHtml( Html::element( 'h3', [], $header ) )
+			->showCancel( true )
+			->setCancelTarget( $this->getPageTitle() )
+			->setSubmitTextMsg( 'delete' )
+			->setSubmitDestructive()
+			->setSubmitCallback( [ $this, 'onDeleteFormSubmit' ] )
+			->show();
+	}
+
+	private function getDeleteConfirmationListItem( WatchlistLabel $label, array $labelCounts ): string {
+		$id = $label->getId();
+		if ( !$id ) {
+			return '';
+		}
+		$itemCount = $labelCounts[ $id ];
+		if ( $labelCounts[ $id ] > 0 ) {
+			$labelCountMsg = $this->msg(
+				'watchlistlabels-delete-count',
+				$this->getLanguage()->formatNum( $itemCount ),
+				$itemCount
+			)->escaped();
+		} else {
+			$labelCountMsg = $this->msg( 'watchlistlabels-delete-unused' )->escaped();
+		}
+		return Html::element( 'span', [], $label->getName() )
+			. $this->msg( 'word-separator' )->escaped()
+			. $this->msg( 'parentheses-start' )->escaped()
+			. Html::rawElement( 'em', [], $labelCountMsg )
+			. $this->msg( 'parentheses-end' )->escaped();
+	}
+
+	/**
+	 * Handle the delete confirmation form submission.
+	 *
+	 * @param mixed $data Form submission data.
+	 * @return Status
+	 */
+	public function onDeleteFormSubmit( $data ) {
+		if ( !isset( $data[self::PARAM_IDS] ) ) {
+			throw new InvalidArgumentException( 'No name data submitted.' );
+		}
+		$ids = array_map( 'intval', array_filter( explode( ',', $data[self::PARAM_IDS] ) ) );
+		if ( $this->labelStore->delete( $this->getUser(), $ids ) ) {
+			$this->getOutput()->redirect( $this->getPageTitle()->getLocalURL() );
+			return Status::newGood();
+		}
+		return Status::newFatal( 'watchlistlabels-delete-failed' );
 	}
 
 	/**
@@ -209,7 +290,14 @@ class SpecialWatchlistLabels extends SpecialPage {
 			'class' => 'cdx-button cdx-button--fake-button cdx-button--fake-button--enabled'
 				. ' cdx-button--action-progressive cdx-button--weight-primary'
 		];
-		$addNew = Html::element( 'a', $params, $this->msg( 'watchlistlabels-table-new-link' )->text() );
+		$createButton = Html::element( 'a', $params, $this->msg( 'watchlistlabels-table-new-link' )->text() );
+		$deleteButton = $codex->button()
+			->setLabel( $this->msg( 'delete' )->text() )
+			->setIconClass( 'mw-specialwatchlistlabels-icon--trash' )
+			->setType( 'submit' )
+			->setAction( 'destructive' )
+			->build()
+			->getHtml();
 
 		// Data.
 		$data = [];
@@ -229,8 +317,10 @@ class SpecialWatchlistLabels extends SpecialPage {
 					. ' cdx-button--weight-quiet cdx-button--icon-only cdx-button--size-small',
 				'title' => $this->msg( 'watchlistlabels-table-edit' )->text(),
 			];
+			$checkboxId = self::PARAM_IDS . '_' . $id;
 			$data[] = [
-				'name' => htmlspecialchars( $label->getName() ),
+				'select' => $this->getCheckbox( $checkboxId, (string)$id ),
+				'name' => Html::label( $label->getName(), $checkboxId ),
 				'count' => $this->getLanguage()->formatNum( $labelCounts[ $id ] ),
 				'edit' => Html::rawElement( 'a', $params, $editIcon ),
 			];
@@ -254,8 +344,12 @@ class SpecialWatchlistLabels extends SpecialPage {
 			->setCurrentSortDirection( $sortDir )
 			->setAttributes( [ 'class' => 'mw-specialwatchlistlabels-table' ] )
 			->setCaption( $this->msg( 'watchlistlabels-table-header' )->text() )
-			->setHeaderContent( $addNew )
+			->setHeaderContent( "$createButton $deleteButton" )
 			->setColumns( [
+				[
+					'id' => 'select',
+					'label' => '',
+				],
 				[
 					'id' => 'name',
 					'label' => $this->msg( 'watchlistlabels-table-col-name' )->escaped(),
@@ -274,6 +368,31 @@ class SpecialWatchlistLabels extends SpecialPage {
 			->setData( $data )
 			->setPaginate( false )
 			->build();
-		$this->getOutput()->addHTML( $table->getHtml() );
+		$deleteUrl = $this->getPageTitle( self::SUBPAGE_DELETE )->getLocalURL();
+		$form = Html::rawElement( 'form', [ 'action' => $deleteUrl ], $table->getHtml() );
+		$this->getOutput()->addHTML( $form );
+	}
+
+	/**
+	 * Get a Codex-structured HTML checkbox.
+	 *
+	 * @param string $id
+	 * @param string $value
+	 *
+	 * @return string HTML of the checkbox wrapper.
+	 */
+	private function getCheckbox( string $id, string $value ): string {
+		$checkbox = Html::check(
+			self::PARAM_IDS . '[]',
+			false,
+			[ 'value' => $value, 'class' => 'cdx-checkbox__input', 'id' => $id ]
+		);
+		$checkboxIcon = Html::element( 'span', [ 'class' => 'cdx-checkbox__icon' ] );
+		$checkboxWrapper = Html::rawElement(
+			'div',
+			[ 'class' => 'cdx-checkbox__wrapper' ],
+			$checkbox . $checkboxIcon
+		);
+		return Html::rawElement( 'div', [ 'class' => 'cdx-checkbox' ], $checkboxWrapper );
 	}
 }

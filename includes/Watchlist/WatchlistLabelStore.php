@@ -85,6 +85,9 @@ class WatchlistLabelStore {
 	 * @return bool True on success, false on failure.
 	 */
 	public function delete( UserIdentity $user, array $ids ): bool {
+		if ( $ids === [] ) {
+			return true;
+		}
 		$dbw = $this->dbProvider->getPrimaryDatabase();
 		$dbw->startAtomic( __METHOD__ );
 		// Confirm that the user owns all the supplied labels.

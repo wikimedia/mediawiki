@@ -5,8 +5,17 @@
 	text-align: right;
 }
 
+.mw-specialwatchlistlabels-table .cdx-table__header__header-content {
+	display: flex;
+	gap: @size-50;
+}
+
 .mw-specialwatchlistlabels-icon {
 	&--edit {
 		.cdx-mixin-css-icon( @cdx-icon-edit, @param-is-button-icon: true );
+	}
+
+	&--trash {
+		.cdx-mixin-css-icon( @cdx-icon-trash );
 	}
 }

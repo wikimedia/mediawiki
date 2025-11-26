@@ -78,10 +78,10 @@ class SpecialWatchlistLabelsTest extends SpecialPageTestBase {
 	/**
 	 * Submitting form data without a 'name' property fails.
 	 */
-	public function testOnSubmitEmpty(): void {
+	public function testOnEditFormSubmitEmpty(): void {
 		$sp = $this->newSpecialPage();
 		$this->expectException( InvalidArgumentException::class );
-		$sp->onSubmit( [] );
+		$sp->onEditFormSubmit( [] );
 	}
 
 	/**
@@ -131,7 +131,7 @@ class SpecialWatchlistLabelsTest extends SpecialPageTestBase {
 		);
 		$this->assertStringContainsString( 'Lorem the label', $html );
 
-		// Save the same label ID.
+		// Save the same label ID with a new name.
 		[ , $res ] = $this->executeSpecialPage(
 			'edit',
 			new FauxRequest( [ 'wll_name' => 'Lorem updated label', 'wll_id' => '1' ], true ),
@@ -147,6 +147,25 @@ class SpecialWatchlistLabelsTest extends SpecialPageTestBase {
 		);
 		$this->assertStringNotContainsString( 'Lorem the label', $html );
 		$this->assertStringContainsString( 'Lorem updated label', $html );
+
+		// Request to delete the label.
+		[ $html, ] = $this->executeSpecialPage(
+			'delete',
+			new FauxRequest( [ 'wll_ids' => [ '1' ] ] ),
+			null,
+			$this->getTestUser()->getUser()
+		);
+		$this->assertStringContainsString( 'Lorem updated label', $html );
+		$this->assertStringContainsString( '(watchlistlabels-delete-warning: 1, 1)', $html );
+
+		// Actually delete the label.
+		[ $html, ] = $this->executeSpecialPage(
+			'delete',
+			new FauxRequest( [ 'wll_ids' => [ '1' ] ], true ),
+			null,
+			$this->getTestUser()->getUser()
+		);
+		$this->assertStringNotContainsString( 'Lorem updated label', $html );
 	}
 
 	/**
@@ -171,8 +190,8 @@ class SpecialWatchlistLabelsTest extends SpecialPageTestBase {
 		// Run the test.
 		[ $html, ] = $this->executeSpecialPage( null, new FauxRequest( $request ), null, $user );
 		$cells = DOMCompat::querySelectorAll( DOMUtils::parseHTML( $html ), $selector );
-		$names = array_map( static fn ( $node ) => $node->textContent, $cells );
-		$this->assertArrayEquals( $expected, $names, true );
+		$values = array_map( static fn ( $node ) => $node->textContent, $cells );
+		$this->assertArrayEquals( $expected, $values, true );
 	}
 
 	private function provideSorting(): array {
@@ -180,7 +199,7 @@ class SpecialWatchlistLabelsTest extends SpecialPageTestBase {
 			[
 				// Default is by descending count:
 				'request' => [],
-				'selector' => 'tbody > tr > td:nth-child(2)',
+				'selector' => 'tbody > tr > td:nth-child(3)',
 				'expected' => [
 					'2',
 					'1',
@@ -192,7 +211,7 @@ class SpecialWatchlistLabelsTest extends SpecialPageTestBase {
 			[
 				// Ascending by name:
 				'request' => [ 'sort' => 'name', 'asc' => '1' ],
-				'selector' => 'tbody > tr > td:first-child',
+				'selector' => 'tbody > tr > td:nth-child(2)',
 				'expected' => [
 					'Test label 1',
 					'Test label 2',
@@ -204,7 +223,7 @@ class SpecialWatchlistLabelsTest extends SpecialPageTestBase {
 			[
 				// Descending by name:
 				'request' => [ 'sort' => 'name', 'desc' => '1' ],
-				'selector' => 'tbody > tr > td:first-child',
+				'selector' => 'tbody > tr > td:nth-child(2)',
 				'expected' => [
 					'Test label 5',
 					'Test label 4',
