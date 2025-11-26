@@ -3307,16 +3307,16 @@ class Language implements Bcp47Code {
 	 */
 	public function parseFormattedNumber( $number ) {
 		if ( $number === $this->msg( 'formatnum-nan' )->text() ) {
-			return (string)NAN;
+			return "NAN";
 		}
 		if ( $number === "∞" ) {
-			return (string)INF;
+			return "INF";
 		}
 		// Accept either ASCII hyphen-minus or the unicode minus emitted by
 		// ::formatNum()
 		$number = strtr( $number, [ "\u{2212}" => '-' ] );
 		if ( $number === "-∞" ) {
-			return (string)-INF;
+			return "-INF";
 		}
 		$s = $this->digitTransformTable();
 		if ( $s ) {
