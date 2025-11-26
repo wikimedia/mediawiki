@@ -510,10 +510,10 @@ class ApiUpload extends ApiBase {
 	 *   - When 'optional', only add a 'stashfailed' key to the data and return null.
 	 *     Use this when some error happened for a non-stash upload and we're stashing the file
 	 *     only to save the client the trouble of re-uploading it.
-	 * @param array|null &$data API result to which to add the information
+	 * @param array &$data API result to which to add the information
 	 * @return string|null File key
 	 */
-	private function performStash( $failureMode, &$data = null ) {
+	private function performStash( $failureMode, &$data = [] ) {
 		if ( $failureMode === 'optional' && $this->mUpload->getStashFile() !== null ) {
 			return null;
 		}
@@ -590,6 +590,7 @@ class ApiUpload extends ApiBase {
 	 * @return never
 	 */
 	private function dieRecoverableError( $errors, $parameter = null ): never {
+		$data = [];
 		$this->performStash( 'optional', $data );
 
 		if ( $parameter ) {
