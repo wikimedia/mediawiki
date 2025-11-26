@@ -45,6 +45,7 @@
 	"rest-invalid-transform": "Trasformazione non valida: da $1 a $2",
 	"rest-unknown-parsoid-transformation": "Trasformazione sconosciuta.",
 	"rest-module-content.v1-title": "Contenuto della pagina",
+	"rest-module-site.v1-title": "API del sito",
 	"rest-param-desc-revision-id": "Identificativo versione",
 	"rest-param-desc-compare-to": "Identificativo versione da confrontare con la base",
 	"rest-param-desc-search-limit": "Numero massimo di risultati di ricerca da restituire, tra 1 e 100. Predefinito: 50",

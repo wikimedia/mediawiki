@@ -97,6 +97,8 @@
 	"rest-module-specs.v0-desc": "Módulo de autodocumentación que proporciona descubrimento, especificacións e esquemas para todos os módulos dispoñibles.",
 	"rest-module-content.v1-title": "Contido da páxina",
 	"rest-module-content.v1-desc": "Ofrece acceso ao contido e metadatos das páxinas e revisións",
+	"rest-module-site.v1-title": "API do sitio",
+	"rest-module-site.v1-desc": "Información sobre o sitio no seu conxunto, como os mapas do sitio",
 	"rest-param-desc-mock-desc": "Descrición simulada.",
 	"rest-param-desc-revision-id": "Identificador da revisión",
 	"rest-param-desc-html-input-title": "Título da transformación da entrada HTML",

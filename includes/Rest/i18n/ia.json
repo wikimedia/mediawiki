@@ -95,6 +95,8 @@
 	"rest-module-specs.v0-desc": "Modulo de auto-documentation que forni discoperta, specificationes e schemas pro tote le modulos disponibile.",
 	"rest-module-content.v1-title": "Contento del pagina",
 	"rest-module-content.v1-desc": "Forni accesso al contento e metadatos de paginas e versiones",
+	"rest-module-site.v1-title": "API del sito",
+	"rest-module-site.v1-desc": "Informationes sur le sito in su totalitate, como mappas de sito",
 	"rest-param-desc-mock-desc": "Description fictive.",
 	"rest-param-desc-revision-id": "Identificator del version",
 	"rest-param-desc-html-input-title": "Entrata HTML: transforma titulo",

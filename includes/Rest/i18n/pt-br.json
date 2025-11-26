@@ -7,7 +7,8 @@
 			"Jhonnatanricardo",
 			"Mitternachtvega",
 			"Ninawauwau",
-			"Re demz"
+			"Re demz",
+			"Sixaxis"
 		]
 	},
 	"rest-prefix-mismatch": "O caminho pedido ($1) não estava no interior do caminho raiz da API REST ($2)",
@@ -56,5 +57,6 @@
 	"rest-badtoken-missing": "O parâmetro <var>token</var> é obrigatório, a não ser que um método de autentificação seguro contra ataques CSRF seja usado.",
 	"rest-badtoken-nosession": "Erro CSRF - nenhuma sessão.",
 	"rest-module": "Módulo",
-	"rest-module-content.v1-title": "Conteúdo da página"
+	"rest-module-content.v1-title": "Conteúdo da página",
+	"rest-module-site.v1-title": "API do site"
 }
