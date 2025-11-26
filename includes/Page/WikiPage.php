@@ -2121,7 +2121,7 @@ class WikiPage implements Stringable, Page, PageRecord {
 
 		$this->getHookRunner()->onArticleProtectComplete( $this, $legacyUser, $limit, $reason );
 
-		$services->getRestrictionStore()->flushRestrictions( $this->mTitle );
+		$restrictionStore->flushRestrictions( $this->mTitle );
 
 		InfoAction::invalidateCache( $this->mTitle );
 

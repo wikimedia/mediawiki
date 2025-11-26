@@ -36,6 +36,7 @@ class RestrictionStore {
 		MainConfigNames::RestrictionLevels,
 		MainConfigNames::RestrictionTypes,
 		MainConfigNames::SemiprotectedRestrictionLevels,
+		MainConfigNames::VirtualDomainsMapping,
 	];
 
 	private ServiceOptions $options;
@@ -263,7 +264,13 @@ class RestrictionStore {
 	public function isCascadeProtected( PageIdentity $page ): bool {
 		$page->assertWiki( PageIdentity::LOCAL );
 
-		return $this->getCascadeProtectionSourcesInternal( $page )[0] !== [];
+		$virtualDomains = $this->options->get( MainConfigNames::VirtualDomainsMapping );
+		$useVirtualDomains = isset( $virtualDomains[TemplateLinksTable::VIRTUAL_DOMAIN] ) ||
+			( $page->getNamespace() === NS_FILE && isset( $virtualDomains[ImageLinksTable::VIRTUAL_DOMAIN] ) );
+
+		return $useVirtualDomains
+			? $this->getCascadeProtectionSourcesInternal( $page )[0] !== []
+			: $this->getCascadeProtectionSourcesInternalJoined( $page )[0] !== [];
 	}
 
 	/**
@@ -528,7 +535,13 @@ class RestrictionStore {
 	public function getCascadeProtectionSources( PageIdentity $page ): array {
 		$page->assertWiki( PageIdentity::LOCAL );
 
-		return $this->getCascadeProtectionSourcesInternal( $page );
+		$virtualDomains = $this->options->get( MainConfigNames::VirtualDomainsMapping );
+		$useVirtualDomains = isset( $virtualDomains[TemplateLinksTable::VIRTUAL_DOMAIN] ) ||
+			( $page->getNamespace() === NS_FILE && isset( $virtualDomains[ImageLinksTable::VIRTUAL_DOMAIN] ) );
+
+		return $useVirtualDomains
+			? $this->getCascadeProtectionSourcesInternal( $page )
+			: $this->getCascadeProtectionSourcesInternalJoined( $page );
 	}
 
 	/**
@@ -647,6 +660,105 @@ class RestrictionStore {
 					if ( !in_array( $level, $pageRestrictions[$type] ) ) {
 						$pageRestrictions[$type][] = $level;
 					}
+				}
+			}
+		}
+
+		$sources = array_replace( $tlSources, $ilSources );
+
+		$cacheEntry['cascade_sources'] = [ $sources, $pageRestrictions, $tlSources, $ilSources ];
+
+		return $cacheEntry['cascade_sources'];
+	}
+
+	/**
+	 * Cascading protection: Get the source of any cascading restrictions on this page.
+	 *
+	 * @param PageIdentity $page Must be local
+	 * @return array[] Same as getCascadeProtectionSources().
+	 */
+	private function getCascadeProtectionSourcesInternalJoined( PageIdentity $page ): array {
+		if ( !$page->canExist() ) {
+			return [ [], [], [], [] ];
+		}
+
+		$cacheEntry = &$this->cache[CacheKeyHelper::getKeyForPage( $page )];
+
+		if ( isset( $cacheEntry['cascade_sources'] ) ) {
+			return $cacheEntry['cascade_sources'];
+		}
+
+		$dbr = $this->loadBalancerFactory->getReplicaDatabase();
+		$baseQuery = $dbr->newSelectQueryBuilder()
+			->select( [
+				'pr_expiry',
+				'pr_page',
+				'page_namespace',
+				'page_title',
+				'pr_type',
+				'pr_level'
+			] )
+			->from( 'page_restrictions' )
+			->join( 'page', null, 'page_id=pr_page' )
+			->where( [ 'pr_cascade' => 1 ] );
+
+		$templateQuery = clone $baseQuery;
+		$templateQuery->join( 'templatelinks', null, 'tl_from=pr_page' )
+			->fields( [
+				'type' => $dbr->addQuotes( 'tl' ),
+			] )
+			->andWhere(
+				$this->linksMigration->getLinksConditions( 'templatelinks', TitleValue::newFromPage( $page ) )
+			);
+
+		if ( $page->getNamespace() === NS_FILE ) {
+			$imageQuery = clone $baseQuery;
+			$imageQuery->join( 'imagelinks', null, 'il_from=pr_page' )
+				->fields( [
+					'type' => $dbr->addQuotes( 'il' ),
+				] )
+				->andWhere( [ 'il_to' => $page->getDBkey() ] );
+
+			$unionQuery = $dbr->newUnionQueryBuilder()
+				->add( $imageQuery )
+				->add( $templateQuery )
+				->all();
+			$res = $unionQuery->caller( __METHOD__ )->fetchResultSet();
+		} else {
+			$res = $templateQuery->caller( __METHOD__ )->fetchResultSet();
+		}
+
+		$tlSources = [];
+		$ilSources = [];
+		$pageRestrictions = [];
+		$now = wfTimestampNow();
+
+		foreach ( $res as $row ) {
+			$expiry = $dbr->decodeExpiry( $row->pr_expiry );
+			if ( $expiry > $now ) {
+				if ( $row->type === 'il' ) {
+					$ilSources[$row->pr_page] = PageIdentityValue::localIdentity(
+						(int)$row->pr_page,
+						(int)$row->page_namespace,
+						$row->page_title
+					);
+				} elseif ( $row->type === 'tl' ) {
+					$tlSources[$row->pr_page] = PageIdentityValue::localIdentity(
+						(int)$row->pr_page,
+						(int)$row->page_namespace,
+						$row->page_title
+					);
+				}
+
+				// Add groups needed for each restriction type if its not already there
+				// Make sure this restriction type still exists
+
+				if ( !isset( $pageRestrictions[$row->pr_type] ) ) {
+					$pageRestrictions[$row->pr_type] = [];
+				}
+
+				if ( !in_array( $row->pr_level, $pageRestrictions[$row->pr_type] ) ) {
+					$pageRestrictions[$row->pr_type][] = $row->pr_level;
 				}
 			}
 		}

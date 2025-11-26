@@ -6,7 +6,6 @@ use MediaWiki\MainConfigSchema;
 use MediaWiki\Message\Message;
 use MediaWiki\Page\Article;
 use MediaWiki\Page\ParserOutputAccess;
-use MediaWiki\Page\WikiPage;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Status\Status;
@@ -237,11 +236,11 @@ class ArticleTest extends \MediaWikiIntegrationTestCase {
 		$title = $this->getExistingTestPage()->getTitle();
 		$article = $this->newArticle( $title );
 
-		$wikiPage = new WikiPage( $title );
+		$wikiPageFactory = $this->getServiceContainer()->getWikiPageFactory();
+		$wikiPage = $wikiPageFactory->newFromTitle( $title );
 		$cascade = false;
-		$wikiPage->doUpdateRestrictions( [
-				'edit' => 'autoconfirmed',
-			],
+		$wikiPage->doUpdateRestrictions(
+			[ 'edit' => 'autoconfirmed' ],
 			[ 'edit' => 'infinity' ],
 			$cascade,
 			'Test reason',
@@ -256,16 +255,17 @@ class ArticleTest extends \MediaWikiIntegrationTestCase {
 		$this->editPage( $templateTitle, 'Some text here', 'Test', NS_TEMPLATE, $this->getTestSysop()->getUser() );
 		$articleTitle = $this->getExistingTestPage()->getTitle();
 		$this->editPage( $articleTitle, '{{CascadeProtectionTest}}', 'Test', NS_MAIN, $this->getTestSysop()->getUser() );
-		$wikiPage = new WikiPage( $articleTitle );
+		$wikiPage = $wikiPageFactory->newFromTitle( $articleTitle );
 		$cascade = true;
-		$wikiPage->doUpdateRestrictions( [
-				'edit' => 'sysop',
-			],
+		$wikiPage->doUpdateRestrictions(
+			[ 'edit' => 'sysop' ],
 			[ 'edit' => 'infinity' ],
 			$cascade,
 			'Test reason',
 			$this->getTestSysop()->getUser()
 		);
+
+		$this->getServiceContainer()->getRestrictionStore()->flushRestrictions( $templateTitle );
 
 		$template = $this->newArticle( $templateTitle );
 
