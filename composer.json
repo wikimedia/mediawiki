@@ -91,8 +91,8 @@
 	},
 	"require-dev": {
 		"composer/spdx-licenses": "1.5.9",
-		"doctrine/dbal": "3.10.0",
-		"doctrine/sql-formatter": "1.5.2",
+		"doctrine/dbal": "3.10.3",
+		"doctrine/sql-formatter": "1.5.3",
 		"ext-simplexml": "*",
 		"giorgiosironi/eris": "^0.14.0",
 		"hamcrest/hamcrest-php": "^2.0",
