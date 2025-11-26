@@ -129,28 +129,7 @@ class UserGroupAssignmentService {
 
 		$localUserGroupManager = $this->userGroupManagerFactory->getUserGroupManager();
 		$groups = $localUserGroupManager->getGroupsChangeableBy( $performer );
-
-		// Allow extensions to define groups that cannot be added, given the target user and
-		// the performer. This allows policy restrictions to be enforced via software. This
-		// could be done via configuration in the future, as discussed in T393615.
-		$restrictedGroups = [];
-		$this->hookRunner->onSpecialUserRightsChangeableGroups(
-			$performer,
-			$target,
-			$groups['add'],
-			$restrictedGroups
-		);
-
-		$unAddableRestrictedGroups = array_keys(
-			array_filter( $restrictedGroups, static fn ( $group ) =>
-				!$group['condition-met'] && !$group['ignore-condition'] )
-		);
-
-		$groups['add'] = array_diff( $groups['add'], $unAddableRestrictedGroups );
-		$groups['restricted'] = array_filter(
-			$restrictedGroups,
-			static fn ( $group ) => !$group['condition-met']
-		);
+		$groups['restricted'] = [];
 
 		$isSelf = $performer->getUser()->equals( $target );
 		if ( $isSelf ) {

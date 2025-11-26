@@ -391,7 +391,6 @@ class HookRunner implements
 	\MediaWiki\Hook\SpecialTrackingCategories__generateCatLinkHook,
 	\MediaWiki\Hook\SpecialTrackingCategories__preprocessHook,
 	\MediaWiki\Hook\SpecialUploadCompleteHook,
-	\MediaWiki\Hook\SpecialUserRightsChangeableGroupsHook,
 	\MediaWiki\Hook\SpecialVersionVersionUrlHook,
 	\MediaWiki\Hook\SpecialWatchlistGetNonRevisionTypesHook,
 	\MediaWiki\Hook\SpecialWhatLinksHereQueryHook,
@@ -4445,20 +4444,6 @@ class HookRunner implements
 		return $this->container->run(
 			'SpecialUploadComplete',
 			[ $form ]
-		);
-	}
-
-	/** @inheritDoc */
-	public function onSpecialUserRightsChangeableGroups(
-		Authority $authority,
-		UserIdentity $target,
-		array $addableGroups,
-		array &$restrictedGroups
-	): void {
-		$this->container->run(
-			'SpecialUserRightsChangeableGroups',
-			[ $authority, $target, $addableGroups, &$restrictedGroups ],
-			[ 'abortable' => false ]
 		);
 	}
 
