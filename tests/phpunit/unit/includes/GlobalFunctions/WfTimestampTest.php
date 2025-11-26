@@ -92,7 +92,7 @@ class WfTimestampTest extends MediaWikiUnitTestCase {
 	 */
 	public function testOldTimestamps( $input, $outputType, $output, $message ) {
 		$timestamp = wfTimestamp( $outputType, $input );
-		if ( substr( $output, 0, 1 ) === '/' ) {
+		if ( str_starts_with( $output, '/' ) ) {
 			// T66946: Day of the week calculations for very old
 			// timestamps varies from system to system.
 			$this->assertMatchesRegularExpression( $output, $timestamp, $message );

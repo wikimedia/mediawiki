@@ -81,7 +81,7 @@ class WordAccumulator {
 			}
 			// FIXME: Don't use assert()
 			// phpcs:ignore MediaWiki.Usage.ForbiddenFunctions.assert
-			assert( !strstr( $word, "\n" ) );
+			assert( !str_contains( $word, "\n" ) );
 			$this->group .= $word;
 		}
 	}
