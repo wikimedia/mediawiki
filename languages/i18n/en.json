@@ -3777,6 +3777,7 @@
 	"pagelang-unchanged-language": "The page $1 is already set to language $2.",
 	"pagelang-unchanged-language-default": "The page $1 is already set to the wiki's default content language.",
 	"pagelang-db-failed": "The database failed to change the page language.",
+	"pagelang-invalid-selection": "Invalid language selected",
 	"right-pagelang": "Change page language",
 	"action-pagelang": "change the page language",
 	"log-name-pagelang": "Language change log",

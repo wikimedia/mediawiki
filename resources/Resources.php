@@ -2286,6 +2286,7 @@ return [
 			'special.undelete.js',
 			'special.undelete.loadMoreRevisions.js',
 		],
+		'styles' => [ 'styles.less' ],
 		'dependencies' => [
 			'jquery.spinner',
 			'mediawiki.util',
@@ -2295,6 +2296,9 @@ return [
 			'mediawiki.widgets',
 			'oojs-ui-core',
 		],
+		'messages' => [
+			'pagelang-invalid-selection'
+		]
 	],
 	// This bundles various small (under 2 KB?) JavaScript files that:
 	// - .. are only used by logged-in users when a non-default preference was enabled.

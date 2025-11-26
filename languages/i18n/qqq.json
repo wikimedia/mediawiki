@@ -4055,6 +4055,7 @@
 	"pagelang-unchanged-language": "Error message shown when the language the user is trying to change the page to and the current language the page is in are the same.\n\nParameters:\n* $1 - the title of the target page\n* $2 - the current language of the page",
 	"pagelang-unchanged-language-default": "Error message shown when the language the user is trying to set a page to fall back to the wiki's default content language, but the page is already set to do so.\n\nParameters:\n* $1 - the title of the target page",
 	"pagelang-db-failed": "Error message shown when the database fails to update the language of the page",
+	"pagelang-invalid-selection": "Error message shown when the user selects or enters an invalid language code",
 	"right-pagelang": "{{Doc-right|pagelang}}\nRight to change page language on Special:PageLanguage",
 	"action-pagelang": "{{Doc-action|pagelang}}",
 	"log-name-pagelang": "Display entry for log name for changes in page language in Special:Log.",

@@ -147,7 +147,8 @@ class SpecialPageLanguage extends FormSpecialPage {
 
 	public function alterForm( HTMLForm $form ) {
 		$this->getHookRunner()->onLanguageSelector( $this->getOutput(), 'mw-languageselector' );
-		$form->setSubmitTextMsg( 'pagelang-submit' );
+		$form->setId( 'mw-pagelanguage-form' )
+			->setSubmitTextMsg( 'pagelang-submit' );
 	}
 
 	/**
