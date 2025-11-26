@@ -113,11 +113,13 @@ class ApiUpload extends ApiBase {
 		// Select an upload module
 		try {
 			if ( !$this->selectUploadModule() ) {
-				return; // not a true upload, but a status request or similar
+				// not a true upload, but a status request or similar
+				return;
 			} elseif ( !$this->mUpload ) {
-				$this->dieDebug( __METHOD__, 'No upload module set' );
+				self::dieDebug( __METHOD__, 'No upload module set' );
 			}
-		} catch ( UploadStashException $e ) { // XXX: don't spam exception log
+		} catch ( UploadStashException $e ) {
+			// XXX: don't spam exception log
 			$this->dieStatus( $this->handleStashException( $e ) );
 		}
 
@@ -160,7 +162,8 @@ class ApiUpload extends ApiBase {
 		// Get the result based on the current upload context:
 		try {
 			$result = $this->getContextResult();
-		} catch ( UploadStashException $e ) { // XXX: don't spam exception log
+		} catch ( UploadStashException $e ) {
+			// XXX: don't spam exception log
 			$this->dieStatus( $this->handleStashException( $e ) );
 		}
 		$this->getResult()->addValue( null, $this->getModuleName(), $result );
@@ -179,17 +182,15 @@ class ApiUpload extends ApiBase {
 
 	public static function getDummyInstance(): self {
 		$services = MediaWikiServices::getInstance();
-		$apiMain = new ApiMain(); // dummy object (XXX)
-		$apiUpload = new ApiUpload(
-			$apiMain,
+		return new ApiUpload(
+			// dummy object (XXX)
+			new ApiMain(),
 			'upload',
 			$services->getJobQueueGroup(),
 			$services->getWatchlistManager(),
 			$services->getWatchedItemStore(),
 			$services->getUserOptionsLookup()
 		);
-
-		return $apiUpload;
 	}
 
 	/**
@@ -260,8 +261,7 @@ class ApiUpload extends ApiBase {
 	 * @return array
 	 */
 	private function getStashResult( $warnings ) {
-		$result = [];
-		$result['result'] = 'Success';
+		$result = [ 'result' => 'Success' ];
 		if ( $warnings && count( $warnings ) > 0 ) {
 			$result['warnings'] = $warnings;
 		}
@@ -278,9 +278,11 @@ class ApiUpload extends ApiBase {
 	 * @return array
 	 */
 	private function getWarningsResult( $warnings ) {
-		$result = [];
-		$result['result'] = 'Warning';
-		$result['warnings'] = $warnings;
+		$result = [
+			'result' => 'Warning',
+			'warnings' => $warnings,
+		];
+
 		// in case the warnings can be fixed with some further user action, let's stash this upload
 		// and return a key they can use to restart it
 		$this->performStash( 'optional', $result );
@@ -667,7 +669,8 @@ class ApiUpload extends ApiBase {
 					$progress['warnings'] = $warnings;
 				}
 			}
-			unset( $progress['status'] ); // remove Status object
+			// remove Status object
+			unset( $progress['status'] );
 			$imageinfo = null;
 			if ( isset( $progress['imageinfo'] ) ) {
 				$imageinfo = $progress['imageinfo'];
@@ -1067,7 +1070,6 @@ class ApiUpload extends ApiBase {
 			$result['result'] = 'Poll';
 			$result['stage'] = 'queued';
 		} else {
-			/** @var Status $status */
 			$status = $this->mUpload->performUpload(
 				$this->mParams['comment'],
 				$this->mParams['text'],
