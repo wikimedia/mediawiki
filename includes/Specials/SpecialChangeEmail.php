@@ -18,7 +18,6 @@ use MediaWiki\SpecialPage\FormSpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
-use Wikimedia\Rdbms\IDBAccessObject;
 
 /**
  * Let users change their email address.
@@ -184,8 +183,7 @@ class SpecialChangeEmail extends FormSpecialPage {
 			}
 		}
 
-		$userLatest = $user->getInstanceFromPrimary( IDBAccessObject::READ_EXCLUSIVE )
-			?? throw new LogicException( 'No user' );
+		$userLatest = $user->getInstanceFromPrimary() ?? throw new LogicException( 'No user' );
 		$changeStatus = Status::newGood();
 		if (
 			!$this->getHookRunner()->onUserCanChangeEmail( $userLatest, $oldAddr, $newAddr, $changeStatus )
