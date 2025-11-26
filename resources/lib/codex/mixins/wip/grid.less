@@ -1,0 +1,163 @@
+// Grid Layout System
+//
+// This mixin provides a responsive CSS Grid layout system with different configurations
+// for mobile, tablet, desktop and desktop-wide screen sizes.
+//
+// The Grid consists of:
+// - Mobile: 4 columns, 16px gutters, 16px margins
+// - Tablet: 8 columns, 24px gutters, 24px margins
+// - Desktop: 24 columns, 24px gutters, 32px margins, max content width 1596px
+// - Desktop-wide: 24 columns, 24px gutters, responsive margins, max content width 1596px
+//
+// Example usage:
+//
+// .my-grid-container {
+//     .cdx-mixin-grid-container();
+// }
+//
+// .my-grid-item {
+//     // Span 6 columns on desktop, 4 on tablet, 2 on mobile.
+//     .cdx-mixin-grid-item( 6, 4, 2 );
+// }
+
+// Variables for different viewport sizes
+// @min-width-breakpoint-desktop-wide equals to 1680px.
+// @min-width-breakpoint-desktop equals to 1120px.
+// @min-width-breakpoint-tablet equals to 640px.
+// TODO: Define if this should be set in Codex and to what value as it seems to be skin specific.
+@max-width-grid-content: 99.75rem; // equals to 1596px.
+
+// Container mixin - creates the Grid container.
+// Only parametrize the row gap as column gap would mean that downstream consumers could
+// directly break out of Grid, leading too easily to unwanted inconsistencies.
+// @param {string} gap-row is the row gap.
+// @param {string} gap-multiplier is a multiplying the gaps on larger screens (tablet and up).
+.cdx-mixin-grid-container( @param-gap-row: @spacing-100; @param-gap-multiplier: 1.5 ) {
+	display: grid;
+	// Mobile layout (default).
+	// TODO: Turn into design token.
+	grid-template-columns: repeat( 4, 1fr );
+	// Grid `gap` for columns and rows.
+	gap: @param-gap-row @spacing-100;
+	box-sizing: @box-sizing-base;
+	width: @size-full;
+	// Mobile layout (default) continuation.
+	padding-right: @spacing-100;
+	padding-left: @spacing-100;
+
+	// Tablet layout.
+	@media ( min-width: @min-width-breakpoint-tablet ) {
+		grid-template-columns: repeat( 8, 1fr );
+		gap: calc( @param-gap-row * @param-gap-multiplier ) @spacing-150;
+		padding-right: @spacing-150;
+		padding-left: @spacing-150;
+	}
+
+	// Desktop layout.
+	@media ( min-width: @min-width-breakpoint-desktop ) {
+		grid-template-columns: repeat( 24, 1fr );
+		gap: calc( @param-gap-row * @param-gap-multiplier ) @spacing-150;
+		max-width: @max-width-grid-content;
+		margin: 0 auto;
+		padding-right: @spacing-200;
+		padding-left: @spacing-200;
+	}
+
+	// Desktop wide layout.
+	@media ( min-width: @min-width-breakpoint-desktop-wide ) {
+		padding-right: calc( ( @size-full - @max-width-grid-content ) / 2 );
+		padding-left: calc( ( @size-full - @max-width-grid-content ) / 2 );
+	}
+}
+
+// Grid item mixin - defines how many columns an item spans at different screen sizes.
+// @param {number} col-span-desktop - Number of columns to span on desktop (out of 24)
+// @param {number} col-span-tablet - Number of columns to span on tablet (out of 8)
+// @param {number} col-span-mobile - Number of columns to span on mobile (out of 4)
+.cdx-mixin-grid-item( @col-span-desktop: 24, @col-span-tablet: 8, @col-span-mobile: 4 ) {
+	// Mobile layout (default).
+	// TODO: See if we can workaround the not completely and fully supported `min()` function.
+	// The browsers not supporting it are falling out of basic support in coming months, nonetheless
+	// present rules.
+	/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
+	grid-column: span min( @col-span-mobile, 4 );
+
+	// Tablet layout.
+	@media ( min-width: @min-width-breakpoint-tablet ) {
+		/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
+		grid-column: span min( @col-span-tablet, 8 );
+	}
+
+	// Desktop layout.
+	@media ( min-width: @min-width-breakpoint-desktop ) {
+		/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
+		grid-column: span min( @col-span-desktop, 24 );
+	}
+}
+
+// Full-width Grid item mixin (spans all available columns)
+.cdx-mixin-grid-item-full() {
+	grid-column: 1 / -1;
+}
+
+// Start-end position mixin - allows precise column positioning.
+//
+// This mixin provides fine-grained control over Grid item placement across different screen sizes.
+// Unlike the `.cdx-mixin-grid-item()` which uses `<span>` element, this mixin gives explicit
+// control over both start and end positions of the Grid item.
+//
+// For each viewport size, specify:
+// - Where the item begins (start column number)
+// - Where the item ends (end column number)
+//
+// Important notes:
+// - Column counting begins at 1 (not 0)
+// - End position is exclusive (it's the position AFTER the last column you want to include)
+// - The total number of columns varies by viewport: Mobile (4), Tablet (8), Desktop (24)
+//
+// Example usage:
+//
+// .sidebar {
+//     // On desktop: columns 1-6 (spans first 6 columns)
+//     // On tablet: columns 1-3 (spans first 3 columns)
+//     // On mobile: columns 1-4 (full width)
+//     .cdx-mixin-grid-position( 1, 7, 1, 4, 1, 5 );
+// }
+//
+// .main-content {
+//     // On desktop: columns 7-24 (spans remaining 18 columns)
+//     // On tablet: columns 4-9 (spans remaining 5 columns)
+//     // On mobile: full width in a new row (handled by layout)
+//     .cdx-mixin-grid-position( 7, 25, 4, 9, 1, 5 );
+// }
+//
+// @param {number} col-desktop-start - Starting column for desktop viewports (1-24)
+// @param {number} col-desktop-end - Ending column for desktop viewports (2-25)
+// @param {number} col-tablet-start - Starting column for tablet viewports (1-8)
+// @param {number} col-tablet-end - Ending column for tablet viewports (2-9)
+// @param {number} col-mobile-start - Starting column for mobile viewports (1-4)
+// @param {number} col-mobile-end - Ending column for mobile viewports (2-5)
+/* stylelint-disable @stylistic/indentation */
+.cdx-mixin-grid-position(
+	@param-col-desktop-start: 1,
+	@param-col-desktop-end: 25,
+	@param-col-tablet-start: 1,
+	@param-col-tablet-end: 9,
+	@param-col-mobile-start: 1,
+	@param-col-mobile-end: 5
+) {
+	// Mobile layout (default).
+	// `~'/'` is used to concatenate the start and end column numbers for Less compiler.
+	grid-column: @param-col-mobile-start ~'/' @param-col-mobile-end;
+
+	// Tablet layout.
+	@media ( min-width: @min-width-breakpoint-tablet ) {
+		grid-column: @param-col-tablet-start ~'/' @param-col-tablet-end;
+	}
+
+	// Desktop layout.
+	@media ( min-width: @min-width-breakpoint-desktop ) {
+		grid-column: @param-col-desktop-start ~'/' @param-col-desktop-end;
+	}
+}
+/* stylelint-enable @stylistic/indentation */

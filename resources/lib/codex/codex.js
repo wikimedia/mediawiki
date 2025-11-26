@@ -30,26 +30,6 @@ var __objRest = (source, exclude) => {
   return target;
 };
 var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
-var __async = (__this, __arguments, generator) => {
-  return new Promise((resolve, reject) => {
-    var fulfilled = (value) => {
-      try {
-        step(generator.next(value));
-      } catch (e) {
-        reject(e);
-      }
-    };
-    var rejected = (value) => {
-      try {
-        step(generator.throw(value));
-      } catch (e) {
-        reject(e);
-      }
-    };
-    var step = (x) => x.done ? resolve(x.value) : Promise.resolve(x.value).then(fulfilled, rejected);
-    step((generator = generator.apply(__this, __arguments)).next());
-  });
-};
 import { ref, onMounted, defineComponent, computed, createElementBlock, openBlock, normalizeClass, createCommentVNode, toDisplayString, Comment, warn, watch, withKeys, withModifiers, renderSlot, toRef, resolveComponent, createElementVNode, createBlock, resolveDynamicComponent, withCtx, createVNode, Fragment, renderList, createTextVNode, Transition, normalizeStyle, inject, mergeProps, useId, withDirectives, vModelCheckbox, createSlots, unref, shallowRef, getCurrentScope, onScopeDispose, shallowReadonly, resolveDirective, nextTick, vModelDynamic, onUnmounted, Teleport, toHandlers, vShow, provide, toRefs, reactive, vModelRadio, vModelText, getCurrentInstance } from "vue";
 const g = '<path d="M11.53 2.3A1.85 1.85 0 0010 1.21 1.85 1.85 0 008.48 2.3L.36 16.36C-.48 17.81.21 19 1.88 19h16.24c1.67 0 2.36-1.19 1.52-2.64zM11 16H9v-2h2zm0-4H9V6h2z"/>', w = '<path d="M12.43 14.34A5 5 0 0110 15a5 5 0 113.95-2L17 16.09V3a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 001.45-.63z"/><circle cx="10" cy="10" r="3"/>', v1 = '<path d="M7 14.17 2.83 10l-1.41 1.41L7 17 19 5l-1.41-1.42z"/>', e1 = '<path d="M10 0a10 10 0 1010 10A10 10 0 0010 0m5.66 14.24-1.41 1.41L10 11.41l-4.24 4.25-1.42-1.42L8.59 10 4.34 5.76l1.42-1.42L10 8.59l4.24-4.24 1.41 1.41L11.41 10z"/>', z1 = '<path d="m4.34 2.93 12.73 12.73-1.41 1.41L2.93 4.35z"/><path d="M17.07 4.34 4.34 17.07l-1.41-1.41L15.66 2.93z"/>', L1 = '<path d="M10 15 2 5h16z"/>', S1 = '<path d="M13.728 1H6.272L1 6.272v7.456L6.272 19h7.456L19 13.728V6.272zM11 15H9v-2h2zm0-4H9V5h2z"/>', q1 = '<path d="m17.5 4.75-7.5 7.5-7.5-7.5L1 6.25l9 9 9-9z"/>', $1 = '<path d="M2 2a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V4a2 2 0 00-2-2zm-.17 13 4.09-5.25 2.92 3.51L12.92 8l5.25 7z"/>', l0 = '<path d="M19 3H1v14h18zM3 14l3.5-4.5 2.5 3L12.5 8l4.5 6z"/><path d="M19 5H1V3h18zm0 12H1v-2h18z"/>', i = '<path d="M8 19a1 1 0 001 1h2a1 1 0 001-1v-1H8zm9-12a7 7 0 10-12 4.9S7 14 7 15v1a1 1 0 001 1h4a1 1 0 001-1v-1c0-1 2-3.1 2-3.1A7 7 0 0017 7"/>', p0 = '<path d="M10 0C4.477 0 0 4.477 0 10s4.477 10 10 10 10-4.477 10-10S15.523 0 10 0M9 5h2v2H9zm0 4h2v6H9z"/>', H2 = '<path d="M3 1h2v18H3zm13.5 1.5L15 1l-9 9 9 9 1.5-1.5L9 10z"/>', x2 = '<path d="M15 1h2v18h-2zM3.5 2.5 11 10l-7.5 7.5L5 19l9-9-9-9z"/>', C2 = '<path d="M7 1 5.6 2.5 13 10l-7.4 7.5L7 19l9-9z"/>', W2 = '<path d="m4 10 9 9 1.4-1.5L7 10l7.4-7.5L13 1z"/>', t5 = '<path d="M12.2 13.6a7 7 0 111.4-1.4l5.4 5.4-1.4 1.4zM3 8a5 5 0 1010 0A5 5 0 003 8"/>', r5 = '<path d="M10 0 3 8h14zm0 18-7-8h14z"/>', I5 = '<path d="M10 20a10 10 0 010-20 10 10 0 110 20m-2-5 9-8.5L15.5 5 8 12 4.5 8.5 3 10z"/>', c3 = '<path d="m10 5 8 10H2z"/>', C3 = g, P3 = w, l4 = v1, v4 = e1, e4 = z1, V4 = L1, F4 = S1, f4 = q1, j4 = $1, t6 = l0, e6 = {
   langCodeMap: {
@@ -1771,7 +1751,7 @@ function computeCoordsFromPlacement(_ref, placement, rtl) {
   }
   return coords;
 }
-const computePosition$1 = (reference, floating, config) => __async(null, null, function* () {
+const computePosition$1 = async (reference, floating, config) => {
   const {
     placement = "bottom",
     strategy = "absolute",
@@ -1779,8 +1759,8 @@ const computePosition$1 = (reference, floating, config) => __async(null, null, f
     platform: platform2
   } = config;
   const validMiddleware = middleware.filter(Boolean);
-  const rtl = yield platform2.isRTL == null ? void 0 : platform2.isRTL(floating);
-  let rects = yield platform2.getElementRects({
+  const rtl = await (platform2.isRTL == null ? void 0 : platform2.isRTL(floating));
+  let rects = await platform2.getElementRects({
     reference,
     floating,
     strategy
@@ -1802,7 +1782,7 @@ const computePosition$1 = (reference, floating, config) => __async(null, null, f
       y: nextY,
       data,
       reset
-    } = yield fn({
+    } = await fn({
       x,
       y,
       initialPlacement: placement,
@@ -1828,7 +1808,7 @@ const computePosition$1 = (reference, floating, config) => __async(null, null, f
           statefulPlacement = reset.placement;
         }
         if (reset.rects) {
-          rects = reset.rects === true ? yield platform2.getElementRects({
+          rects = reset.rects === true ? await platform2.getElementRects({
             reference,
             floating,
             strategy
@@ -1849,126 +1829,122 @@ const computePosition$1 = (reference, floating, config) => __async(null, null, f
     strategy,
     middlewareData
   };
-});
-function detectOverflow(state, options) {
-  return __async(this, null, function* () {
-    var _await$platform$isEle;
-    if (options === void 0) {
-      options = {};
-    }
-    const {
-      x,
-      y,
-      platform: platform2,
-      rects,
-      elements,
-      strategy
-    } = state;
-    const {
-      boundary = "clippingAncestors",
-      rootBoundary = "viewport",
-      elementContext = "floating",
-      altBoundary = false,
-      padding = 0
-    } = evaluate(options, state);
-    const paddingObject = getPaddingObject(padding);
-    const altContext = elementContext === "floating" ? "reference" : "floating";
-    const element = elements[altBoundary ? altContext : elementContext];
-    const clippingClientRect = rectToClientRect(yield platform2.getClippingRect({
-      element: ((_await$platform$isEle = yield platform2.isElement == null ? void 0 : platform2.isElement(element)) != null ? _await$platform$isEle : true) ? element : element.contextElement || (yield platform2.getDocumentElement == null ? void 0 : platform2.getDocumentElement(elements.floating)),
-      boundary,
-      rootBoundary,
-      strategy
-    }));
-    const rect = elementContext === "floating" ? {
-      x,
-      y,
-      width: rects.floating.width,
-      height: rects.floating.height
-    } : rects.reference;
-    const offsetParent = yield platform2.getOffsetParent == null ? void 0 : platform2.getOffsetParent(elements.floating);
-    const offsetScale = (yield platform2.isElement == null ? void 0 : platform2.isElement(offsetParent)) ? (yield platform2.getScale == null ? void 0 : platform2.getScale(offsetParent)) || {
-      x: 1,
-      y: 1
-    } : {
-      x: 1,
-      y: 1
-    };
-    const elementClientRect = rectToClientRect(platform2.convertOffsetParentRelativeRectToViewportRelativeRect ? yield platform2.convertOffsetParentRelativeRectToViewportRelativeRect({
-      elements,
-      rect,
-      offsetParent,
-      strategy
-    }) : rect);
-    return {
-      top: (clippingClientRect.top - elementClientRect.top + paddingObject.top) / offsetScale.y,
-      bottom: (elementClientRect.bottom - clippingClientRect.bottom + paddingObject.bottom) / offsetScale.y,
-      left: (clippingClientRect.left - elementClientRect.left + paddingObject.left) / offsetScale.x,
-      right: (elementClientRect.right - clippingClientRect.right + paddingObject.right) / offsetScale.x
-    };
-  });
+};
+async function detectOverflow(state, options) {
+  var _await$platform$isEle;
+  if (options === void 0) {
+    options = {};
+  }
+  const {
+    x,
+    y,
+    platform: platform2,
+    rects,
+    elements,
+    strategy
+  } = state;
+  const {
+    boundary = "clippingAncestors",
+    rootBoundary = "viewport",
+    elementContext = "floating",
+    altBoundary = false,
+    padding = 0
+  } = evaluate(options, state);
+  const paddingObject = getPaddingObject(padding);
+  const altContext = elementContext === "floating" ? "reference" : "floating";
+  const element = elements[altBoundary ? altContext : elementContext];
+  const clippingClientRect = rectToClientRect(await platform2.getClippingRect({
+    element: ((_await$platform$isEle = await (platform2.isElement == null ? void 0 : platform2.isElement(element))) != null ? _await$platform$isEle : true) ? element : element.contextElement || await (platform2.getDocumentElement == null ? void 0 : platform2.getDocumentElement(elements.floating)),
+    boundary,
+    rootBoundary,
+    strategy
+  }));
+  const rect = elementContext === "floating" ? {
+    x,
+    y,
+    width: rects.floating.width,
+    height: rects.floating.height
+  } : rects.reference;
+  const offsetParent = await (platform2.getOffsetParent == null ? void 0 : platform2.getOffsetParent(elements.floating));
+  const offsetScale = await (platform2.isElement == null ? void 0 : platform2.isElement(offsetParent)) ? await (platform2.getScale == null ? void 0 : platform2.getScale(offsetParent)) || {
+    x: 1,
+    y: 1
+  } : {
+    x: 1,
+    y: 1
+  };
+  const elementClientRect = rectToClientRect(platform2.convertOffsetParentRelativeRectToViewportRelativeRect ? await platform2.convertOffsetParentRelativeRectToViewportRelativeRect({
+    elements,
+    rect,
+    offsetParent,
+    strategy
+  }) : rect);
+  return {
+    top: (clippingClientRect.top - elementClientRect.top + paddingObject.top) / offsetScale.y,
+    bottom: (elementClientRect.bottom - clippingClientRect.bottom + paddingObject.bottom) / offsetScale.y,
+    left: (clippingClientRect.left - elementClientRect.left + paddingObject.left) / offsetScale.x,
+    right: (elementClientRect.right - clippingClientRect.right + paddingObject.right) / offsetScale.x
+  };
 }
 const arrow$2 = (options) => ({
   name: "arrow",
   options,
-  fn(state) {
-    return __async(this, null, function* () {
-      const {
-        x,
-        y,
-        placement,
-        rects,
-        platform: platform2,
-        elements,
-        middlewareData
-      } = state;
-      const {
-        element,
-        padding = 0
-      } = evaluate(options, state) || {};
-      if (element == null) {
-        return {};
-      }
-      const paddingObject = getPaddingObject(padding);
-      const coords = {
-        x,
-        y
-      };
-      const axis = getAlignmentAxis(placement);
-      const length = getAxisLength(axis);
-      const arrowDimensions = yield platform2.getDimensions(element);
-      const isYAxis = axis === "y";
-      const minProp = isYAxis ? "top" : "left";
-      const maxProp = isYAxis ? "bottom" : "right";
-      const clientProp = isYAxis ? "clientHeight" : "clientWidth";
-      const endDiff = rects.reference[length] + rects.reference[axis] - coords[axis] - rects.floating[length];
-      const startDiff = coords[axis] - rects.reference[axis];
-      const arrowOffsetParent = yield platform2.getOffsetParent == null ? void 0 : platform2.getOffsetParent(element);
-      let clientSize = arrowOffsetParent ? arrowOffsetParent[clientProp] : 0;
-      if (!clientSize || !(yield platform2.isElement == null ? void 0 : platform2.isElement(arrowOffsetParent))) {
-        clientSize = elements.floating[clientProp] || rects.floating[length];
-      }
-      const centerToReference = endDiff / 2 - startDiff / 2;
-      const largestPossiblePadding = clientSize / 2 - arrowDimensions[length] / 2 - 1;
-      const minPadding = min(paddingObject[minProp], largestPossiblePadding);
-      const maxPadding = min(paddingObject[maxProp], largestPossiblePadding);
-      const min$1 = minPadding;
-      const max2 = clientSize - arrowDimensions[length] - maxPadding;
-      const center = clientSize / 2 - arrowDimensions[length] / 2 + centerToReference;
-      const offset2 = clamp(min$1, center, max2);
-      const shouldAddOffset = !middlewareData.arrow && getAlignment(placement) != null && center !== offset2 && rects.reference[length] / 2 - (center < min$1 ? minPadding : maxPadding) - arrowDimensions[length] / 2 < 0;
-      const alignmentOffset = shouldAddOffset ? center < min$1 ? center - min$1 : center - max2 : 0;
-      return {
-        [axis]: coords[axis] + alignmentOffset,
-        data: __spreadValues({
-          [axis]: offset2,
-          centerOffset: center - offset2 - alignmentOffset
-        }, shouldAddOffset && {
-          alignmentOffset
-        }),
-        reset: shouldAddOffset
-      };
-    });
+  async fn(state) {
+    const {
+      x,
+      y,
+      placement,
+      rects,
+      platform: platform2,
+      elements,
+      middlewareData
+    } = state;
+    const {
+      element,
+      padding = 0
+    } = evaluate(options, state) || {};
+    if (element == null) {
+      return {};
+    }
+    const paddingObject = getPaddingObject(padding);
+    const coords = {
+      x,
+      y
+    };
+    const axis = getAlignmentAxis(placement);
+    const length = getAxisLength(axis);
+    const arrowDimensions = await platform2.getDimensions(element);
+    const isYAxis = axis === "y";
+    const minProp = isYAxis ? "top" : "left";
+    const maxProp = isYAxis ? "bottom" : "right";
+    const clientProp = isYAxis ? "clientHeight" : "clientWidth";
+    const endDiff = rects.reference[length] + rects.reference[axis] - coords[axis] - rects.floating[length];
+    const startDiff = coords[axis] - rects.reference[axis];
+    const arrowOffsetParent = await (platform2.getOffsetParent == null ? void 0 : platform2.getOffsetParent(element));
+    let clientSize = arrowOffsetParent ? arrowOffsetParent[clientProp] : 0;
+    if (!clientSize || !await (platform2.isElement == null ? void 0 : platform2.isElement(arrowOffsetParent))) {
+      clientSize = elements.floating[clientProp] || rects.floating[length];
+    }
+    const centerToReference = endDiff / 2 - startDiff / 2;
+    const largestPossiblePadding = clientSize / 2 - arrowDimensions[length] / 2 - 1;
+    const minPadding = min(paddingObject[minProp], largestPossiblePadding);
+    const maxPadding = min(paddingObject[maxProp], largestPossiblePadding);
+    const min$1 = minPadding;
+    const max2 = clientSize - arrowDimensions[length] - maxPadding;
+    const center = clientSize / 2 - arrowDimensions[length] / 2 + centerToReference;
+    const offset2 = clamp(min$1, center, max2);
+    const shouldAddOffset = !middlewareData.arrow && getAlignment(placement) != null && center !== offset2 && rects.reference[length] / 2 - (center < min$1 ? minPadding : maxPadding) - arrowDimensions[length] / 2 < 0;
+    const alignmentOffset = shouldAddOffset ? center < min$1 ? center - min$1 : center - max2 : 0;
+    return {
+      [axis]: coords[axis] + alignmentOffset,
+      data: __spreadValues({
+        [axis]: offset2,
+        centerOffset: center - offset2 - alignmentOffset
+      }, shouldAddOffset && {
+        alignmentOffset
+      }),
+      reset: shouldAddOffset
+    };
   }
 });
 const flip$1 = function(options) {
@@ -1978,108 +1954,106 @@ const flip$1 = function(options) {
   return {
     name: "flip",
     options,
-    fn(state) {
-      return __async(this, null, function* () {
-        var _middlewareData$arrow, _middlewareData$flip;
-        const {
-          placement,
-          middlewareData,
-          rects,
-          initialPlacement,
-          platform: platform2,
-          elements
-        } = state;
-        const _a2 = evaluate(options, state), {
-          mainAxis: checkMainAxis = true,
-          crossAxis: checkCrossAxis = true,
-          fallbackPlacements: specifiedFallbackPlacements,
-          fallbackStrategy = "bestFit",
-          fallbackAxisSideDirection = "none",
-          flipAlignment = true
-        } = _a2, detectOverflowOptions = __objRest(_a2, [
-          "mainAxis",
-          "crossAxis",
-          "fallbackPlacements",
-          "fallbackStrategy",
-          "fallbackAxisSideDirection",
-          "flipAlignment"
-        ]);
-        if ((_middlewareData$arrow = middlewareData.arrow) != null && _middlewareData$arrow.alignmentOffset) {
-          return {};
-        }
-        const side = getSide(placement);
-        const initialSideAxis = getSideAxis(initialPlacement);
-        const isBasePlacement = getSide(initialPlacement) === initialPlacement;
-        const rtl = yield platform2.isRTL == null ? void 0 : platform2.isRTL(elements.floating);
-        const fallbackPlacements = specifiedFallbackPlacements || (isBasePlacement || !flipAlignment ? [getOppositePlacement(initialPlacement)] : getExpandedPlacements(initialPlacement));
-        const hasFallbackAxisSideDirection = fallbackAxisSideDirection !== "none";
-        if (!specifiedFallbackPlacements && hasFallbackAxisSideDirection) {
-          fallbackPlacements.push(...getOppositeAxisPlacements(initialPlacement, flipAlignment, fallbackAxisSideDirection, rtl));
-        }
-        const placements = [initialPlacement, ...fallbackPlacements];
-        const overflow = yield detectOverflow(state, detectOverflowOptions);
-        const overflows = [];
-        let overflowsData = ((_middlewareData$flip = middlewareData.flip) == null ? void 0 : _middlewareData$flip.overflows) || [];
-        if (checkMainAxis) {
-          overflows.push(overflow[side]);
-        }
-        if (checkCrossAxis) {
-          const sides2 = getAlignmentSides(placement, rects, rtl);
-          overflows.push(overflow[sides2[0]], overflow[sides2[1]]);
-        }
-        overflowsData = [...overflowsData, {
-          placement,
-          overflows
-        }];
-        if (!overflows.every((side2) => side2 <= 0)) {
-          var _middlewareData$flip2, _overflowsData$filter;
-          const nextIndex = (((_middlewareData$flip2 = middlewareData.flip) == null ? void 0 : _middlewareData$flip2.index) || 0) + 1;
-          const nextPlacement = placements[nextIndex];
-          if (nextPlacement) {
-            return {
-              data: {
-                index: nextIndex,
-                overflows: overflowsData
-              },
-              reset: {
-                placement: nextPlacement
-              }
-            };
-          }
-          let resetPlacement = (_overflowsData$filter = overflowsData.filter((d) => d.overflows[0] <= 0).sort((a, b) => a.overflows[1] - b.overflows[1])[0]) == null ? void 0 : _overflowsData$filter.placement;
-          if (!resetPlacement) {
-            switch (fallbackStrategy) {
-              case "bestFit": {
-                var _overflowsData$filter2;
-                const placement2 = (_overflowsData$filter2 = overflowsData.filter((d) => {
-                  if (hasFallbackAxisSideDirection) {
-                    const currentSideAxis = getSideAxis(d.placement);
-                    return currentSideAxis === initialSideAxis || // Create a bias to the `y` side axis due to horizontal
-                    // reading directions favoring greater width.
-                    currentSideAxis === "y";
-                  }
-                  return true;
-                }).map((d) => [d.placement, d.overflows.filter((overflow2) => overflow2 > 0).reduce((acc, overflow2) => acc + overflow2, 0)]).sort((a, b) => a[1] - b[1])[0]) == null ? void 0 : _overflowsData$filter2[0];
-                if (placement2) {
-                  resetPlacement = placement2;
-                }
-                break;
-              }
-              case "initialPlacement":
-                resetPlacement = initialPlacement;
-                break;
-            }
-          }
-          if (placement !== resetPlacement) {
-            return {
-              reset: {
-                placement: resetPlacement
-              }
-            };
-          }
-        }
+    async fn(state) {
+      var _middlewareData$arrow, _middlewareData$flip;
+      const {
+        placement,
+        middlewareData,
+        rects,
+        initialPlacement,
+        platform: platform2,
+        elements
+      } = state;
+      const _a = evaluate(options, state), {
+        mainAxis: checkMainAxis = true,
+        crossAxis: checkCrossAxis = true,
+        fallbackPlacements: specifiedFallbackPlacements,
+        fallbackStrategy = "bestFit",
+        fallbackAxisSideDirection = "none",
+        flipAlignment = true
+      } = _a, detectOverflowOptions = __objRest(_a, [
+        "mainAxis",
+        "crossAxis",
+        "fallbackPlacements",
+        "fallbackStrategy",
+        "fallbackAxisSideDirection",
+        "flipAlignment"
+      ]);
+      if ((_middlewareData$arrow = middlewareData.arrow) != null && _middlewareData$arrow.alignmentOffset) {
         return {};
-      });
+      }
+      const side = getSide(placement);
+      const initialSideAxis = getSideAxis(initialPlacement);
+      const isBasePlacement = getSide(initialPlacement) === initialPlacement;
+      const rtl = await (platform2.isRTL == null ? void 0 : platform2.isRTL(elements.floating));
+      const fallbackPlacements = specifiedFallbackPlacements || (isBasePlacement || !flipAlignment ? [getOppositePlacement(initialPlacement)] : getExpandedPlacements(initialPlacement));
+      const hasFallbackAxisSideDirection = fallbackAxisSideDirection !== "none";
+      if (!specifiedFallbackPlacements && hasFallbackAxisSideDirection) {
+        fallbackPlacements.push(...getOppositeAxisPlacements(initialPlacement, flipAlignment, fallbackAxisSideDirection, rtl));
+      }
+      const placements = [initialPlacement, ...fallbackPlacements];
+      const overflow = await detectOverflow(state, detectOverflowOptions);
+      const overflows = [];
+      let overflowsData = ((_middlewareData$flip = middlewareData.flip) == null ? void 0 : _middlewareData$flip.overflows) || [];
+      if (checkMainAxis) {
+        overflows.push(overflow[side]);
+      }
+      if (checkCrossAxis) {
+        const sides2 = getAlignmentSides(placement, rects, rtl);
+        overflows.push(overflow[sides2[0]], overflow[sides2[1]]);
+      }
+      overflowsData = [...overflowsData, {
+        placement,
+        overflows
+      }];
+      if (!overflows.every((side2) => side2 <= 0)) {
+        var _middlewareData$flip2, _overflowsData$filter;
+        const nextIndex = (((_middlewareData$flip2 = middlewareData.flip) == null ? void 0 : _middlewareData$flip2.index) || 0) + 1;
+        const nextPlacement = placements[nextIndex];
+        if (nextPlacement) {
+          return {
+            data: {
+              index: nextIndex,
+              overflows: overflowsData
+            },
+            reset: {
+              placement: nextPlacement
+            }
+          };
+        }
+        let resetPlacement = (_overflowsData$filter = overflowsData.filter((d) => d.overflows[0] <= 0).sort((a, b) => a.overflows[1] - b.overflows[1])[0]) == null ? void 0 : _overflowsData$filter.placement;
+        if (!resetPlacement) {
+          switch (fallbackStrategy) {
+            case "bestFit": {
+              var _overflowsData$filter2;
+              const placement2 = (_overflowsData$filter2 = overflowsData.filter((d) => {
+                if (hasFallbackAxisSideDirection) {
+                  const currentSideAxis = getSideAxis(d.placement);
+                  return currentSideAxis === initialSideAxis || // Create a bias to the `y` side axis due to horizontal
+                  // reading directions favoring greater width.
+                  currentSideAxis === "y";
+                }
+                return true;
+              }).map((d) => [d.placement, d.overflows.filter((overflow2) => overflow2 > 0).reduce((acc, overflow2) => acc + overflow2, 0)]).sort((a, b) => a[1] - b[1])[0]) == null ? void 0 : _overflowsData$filter2[0];
+              if (placement2) {
+                resetPlacement = placement2;
+              }
+              break;
+            }
+            case "initialPlacement":
+              resetPlacement = initialPlacement;
+              break;
+          }
+        }
+        if (placement !== resetPlacement) {
+          return {
+            reset: {
+              placement: resetPlacement
+            }
+          };
+        }
+      }
+      return {};
     }
   };
 };
@@ -2101,87 +2075,83 @@ const hide$1 = function(options) {
   return {
     name: "hide",
     options,
-    fn(state) {
-      return __async(this, null, function* () {
-        const {
-          rects
-        } = state;
-        const _a2 = evaluate(options, state), {
-          strategy = "referenceHidden"
-        } = _a2, detectOverflowOptions = __objRest(_a2, [
-          "strategy"
-        ]);
-        switch (strategy) {
-          case "referenceHidden": {
-            const overflow = yield detectOverflow(state, __spreadProps(__spreadValues({}, detectOverflowOptions), {
-              elementContext: "reference"
-            }));
-            const offsets = getSideOffsets(overflow, rects.reference);
-            return {
-              data: {
-                referenceHiddenOffsets: offsets,
-                referenceHidden: isAnySideFullyClipped(offsets)
-              }
-            };
-          }
-          case "escaped": {
-            const overflow = yield detectOverflow(state, __spreadProps(__spreadValues({}, detectOverflowOptions), {
-              altBoundary: true
-            }));
-            const offsets = getSideOffsets(overflow, rects.floating);
-            return {
-              data: {
-                escapedOffsets: offsets,
-                escaped: isAnySideFullyClipped(offsets)
-              }
-            };
-          }
-          default: {
-            return {};
-          }
+    async fn(state) {
+      const {
+        rects
+      } = state;
+      const _a = evaluate(options, state), {
+        strategy = "referenceHidden"
+      } = _a, detectOverflowOptions = __objRest(_a, [
+        "strategy"
+      ]);
+      switch (strategy) {
+        case "referenceHidden": {
+          const overflow = await detectOverflow(state, __spreadProps(__spreadValues({}, detectOverflowOptions), {
+            elementContext: "reference"
+          }));
+          const offsets = getSideOffsets(overflow, rects.reference);
+          return {
+            data: {
+              referenceHiddenOffsets: offsets,
+              referenceHidden: isAnySideFullyClipped(offsets)
+            }
+          };
         }
-      });
+        case "escaped": {
+          const overflow = await detectOverflow(state, __spreadProps(__spreadValues({}, detectOverflowOptions), {
+            altBoundary: true
+          }));
+          const offsets = getSideOffsets(overflow, rects.floating);
+          return {
+            data: {
+              escapedOffsets: offsets,
+              escaped: isAnySideFullyClipped(offsets)
+            }
+          };
+        }
+        default: {
+          return {};
+        }
+      }
     }
   };
 };
-function convertValueToCoords(state, options) {
-  return __async(this, null, function* () {
-    const {
-      placement,
-      platform: platform2,
-      elements
-    } = state;
-    const rtl = yield platform2.isRTL == null ? void 0 : platform2.isRTL(elements.floating);
-    const side = getSide(placement);
-    const alignment = getAlignment(placement);
-    const isVertical = getSideAxis(placement) === "y";
-    const mainAxisMulti = ["left", "top"].includes(side) ? -1 : 1;
-    const crossAxisMulti = rtl && isVertical ? -1 : 1;
-    const rawValue = evaluate(options, state);
-    let {
-      mainAxis,
-      crossAxis,
-      alignmentAxis
-    } = typeof rawValue === "number" ? {
-      mainAxis: rawValue,
-      crossAxis: 0,
-      alignmentAxis: null
-    } : {
-      mainAxis: rawValue.mainAxis || 0,
-      crossAxis: rawValue.crossAxis || 0,
-      alignmentAxis: rawValue.alignmentAxis
-    };
-    if (alignment && typeof alignmentAxis === "number") {
-      crossAxis = alignment === "end" ? alignmentAxis * -1 : alignmentAxis;
-    }
-    return isVertical ? {
-      x: crossAxis * crossAxisMulti,
-      y: mainAxis * mainAxisMulti
-    } : {
-      x: mainAxis * mainAxisMulti,
-      y: crossAxis * crossAxisMulti
-    };
-  });
+async function convertValueToCoords(state, options) {
+  const {
+    placement,
+    platform: platform2,
+    elements
+  } = state;
+  const rtl = await (platform2.isRTL == null ? void 0 : platform2.isRTL(elements.floating));
+  const side = getSide(placement);
+  const alignment = getAlignment(placement);
+  const isVertical = getSideAxis(placement) === "y";
+  const mainAxisMulti = ["left", "top"].includes(side) ? -1 : 1;
+  const crossAxisMulti = rtl && isVertical ? -1 : 1;
+  const rawValue = evaluate(options, state);
+  let {
+    mainAxis,
+    crossAxis,
+    alignmentAxis
+  } = typeof rawValue === "number" ? {
+    mainAxis: rawValue,
+    crossAxis: 0,
+    alignmentAxis: null
+  } : {
+    mainAxis: rawValue.mainAxis || 0,
+    crossAxis: rawValue.crossAxis || 0,
+    alignmentAxis: rawValue.alignmentAxis
+  };
+  if (alignment && typeof alignmentAxis === "number") {
+    crossAxis = alignment === "end" ? alignmentAxis * -1 : alignmentAxis;
+  }
+  return isVertical ? {
+    x: crossAxis * crossAxisMulti,
+    y: mainAxis * mainAxisMulti
+  } : {
+    x: mainAxis * mainAxisMulti,
+    y: crossAxis * crossAxisMulti
+  };
 }
 const offset$1 = function(options) {
   if (options === void 0) {
@@ -2190,27 +2160,25 @@ const offset$1 = function(options) {
   return {
     name: "offset",
     options,
-    fn(state) {
-      return __async(this, null, function* () {
-        var _middlewareData$offse, _middlewareData$arrow;
-        const {
-          x,
-          y,
-          placement,
-          middlewareData
-        } = state;
-        const diffCoords = yield convertValueToCoords(state, options);
-        if (placement === ((_middlewareData$offse = middlewareData.offset) == null ? void 0 : _middlewareData$offse.placement) && (_middlewareData$arrow = middlewareData.arrow) != null && _middlewareData$arrow.alignmentOffset) {
-          return {};
-        }
-        return {
-          x: x + diffCoords.x,
-          y: y + diffCoords.y,
-          data: __spreadProps(__spreadValues({}, diffCoords), {
-            placement
-          })
-        };
-      });
+    async fn(state) {
+      var _middlewareData$offse, _middlewareData$arrow;
+      const {
+        x,
+        y,
+        placement,
+        middlewareData
+      } = state;
+      const diffCoords = await convertValueToCoords(state, options);
+      if (placement === ((_middlewareData$offse = middlewareData.offset) == null ? void 0 : _middlewareData$offse.placement) && (_middlewareData$arrow = middlewareData.arrow) != null && _middlewareData$arrow.alignmentOffset) {
+        return {};
+      }
+      return {
+        x: x + diffCoords.x,
+        y: y + diffCoords.y,
+        data: __spreadProps(__spreadValues({}, diffCoords), {
+          placement
+        })
+      };
     }
   };
 };
@@ -2221,70 +2189,68 @@ const shift$1 = function(options) {
   return {
     name: "shift",
     options,
-    fn(state) {
-      return __async(this, null, function* () {
-        const {
-          x,
-          y,
-          placement
-        } = state;
-        const _a2 = evaluate(options, state), {
-          mainAxis: checkMainAxis = true,
-          crossAxis: checkCrossAxis = false,
-          limiter = {
-            fn: (_ref) => {
-              let {
-                x: x3,
-                y: y2
-              } = _ref;
-              return {
-                x: x3,
-                y: y2
-              };
-            }
+    async fn(state) {
+      const {
+        x,
+        y,
+        placement
+      } = state;
+      const _a = evaluate(options, state), {
+        mainAxis: checkMainAxis = true,
+        crossAxis: checkCrossAxis = false,
+        limiter = {
+          fn: (_ref) => {
+            let {
+              x: x3,
+              y: y2
+            } = _ref;
+            return {
+              x: x3,
+              y: y2
+            };
           }
-        } = _a2, detectOverflowOptions = __objRest(_a2, [
-          "mainAxis",
-          "crossAxis",
-          "limiter"
-        ]);
-        const coords = {
-          x,
-          y
-        };
-        const overflow = yield detectOverflow(state, detectOverflowOptions);
-        const crossAxis = getSideAxis(getSide(placement));
-        const mainAxis = getOppositeAxis(crossAxis);
-        let mainAxisCoord = coords[mainAxis];
-        let crossAxisCoord = coords[crossAxis];
-        if (checkMainAxis) {
-          const minSide = mainAxis === "y" ? "top" : "left";
-          const maxSide = mainAxis === "y" ? "bottom" : "right";
-          const min2 = mainAxisCoord + overflow[minSide];
-          const max2 = mainAxisCoord - overflow[maxSide];
-          mainAxisCoord = clamp(min2, mainAxisCoord, max2);
         }
-        if (checkCrossAxis) {
-          const minSide = crossAxis === "y" ? "top" : "left";
-          const maxSide = crossAxis === "y" ? "bottom" : "right";
-          const min2 = crossAxisCoord + overflow[minSide];
-          const max2 = crossAxisCoord - overflow[maxSide];
-          crossAxisCoord = clamp(min2, crossAxisCoord, max2);
-        }
-        const limitedCoords = limiter.fn(__spreadProps(__spreadValues({}, state), {
-          [mainAxis]: mainAxisCoord,
-          [crossAxis]: crossAxisCoord
-        }));
-        return __spreadProps(__spreadValues({}, limitedCoords), {
-          data: {
-            x: limitedCoords.x - x,
-            y: limitedCoords.y - y,
-            enabled: {
-              [mainAxis]: checkMainAxis,
-              [crossAxis]: checkCrossAxis
-            }
+      } = _a, detectOverflowOptions = __objRest(_a, [
+        "mainAxis",
+        "crossAxis",
+        "limiter"
+      ]);
+      const coords = {
+        x,
+        y
+      };
+      const overflow = await detectOverflow(state, detectOverflowOptions);
+      const crossAxis = getSideAxis(getSide(placement));
+      const mainAxis = getOppositeAxis(crossAxis);
+      let mainAxisCoord = coords[mainAxis];
+      let crossAxisCoord = coords[crossAxis];
+      if (checkMainAxis) {
+        const minSide = mainAxis === "y" ? "top" : "left";
+        const maxSide = mainAxis === "y" ? "bottom" : "right";
+        const min2 = mainAxisCoord + overflow[minSide];
+        const max2 = mainAxisCoord - overflow[maxSide];
+        mainAxisCoord = clamp(min2, mainAxisCoord, max2);
+      }
+      if (checkCrossAxis) {
+        const minSide = crossAxis === "y" ? "top" : "left";
+        const maxSide = crossAxis === "y" ? "bottom" : "right";
+        const min2 = crossAxisCoord + overflow[minSide];
+        const max2 = crossAxisCoord - overflow[maxSide];
+        crossAxisCoord = clamp(min2, crossAxisCoord, max2);
+      }
+      const limitedCoords = limiter.fn(__spreadProps(__spreadValues({}, state), {
+        [mainAxis]: mainAxisCoord,
+        [crossAxis]: crossAxisCoord
+      }));
+      return __spreadProps(__spreadValues({}, limitedCoords), {
+        data: {
+          x: limitedCoords.x - x,
+          y: limitedCoords.y - y,
+          enabled: {
+            [mainAxis]: checkMainAxis,
+            [crossAxis]: checkCrossAxis
           }
-        });
+        }
       });
     }
   };
@@ -2296,76 +2262,74 @@ const size$1 = function(options) {
   return {
     name: "size",
     options,
-    fn(state) {
-      return __async(this, null, function* () {
-        var _state$middlewareData, _state$middlewareData2;
-        const {
-          placement,
-          rects,
-          platform: platform2,
-          elements
-        } = state;
-        const _a2 = evaluate(options, state), {
-          apply = () => {
-          }
-        } = _a2, detectOverflowOptions = __objRest(_a2, [
-          "apply"
-        ]);
-        const overflow = yield detectOverflow(state, detectOverflowOptions);
-        const side = getSide(placement);
-        const alignment = getAlignment(placement);
-        const isYAxis = getSideAxis(placement) === "y";
-        const {
-          width,
-          height
-        } = rects.floating;
-        let heightSide;
-        let widthSide;
-        if (side === "top" || side === "bottom") {
-          heightSide = side;
-          widthSide = alignment === ((yield platform2.isRTL == null ? void 0 : platform2.isRTL(elements.floating)) ? "start" : "end") ? "left" : "right";
+    async fn(state) {
+      var _state$middlewareData, _state$middlewareData2;
+      const {
+        placement,
+        rects,
+        platform: platform2,
+        elements
+      } = state;
+      const _a = evaluate(options, state), {
+        apply = () => {
+        }
+      } = _a, detectOverflowOptions = __objRest(_a, [
+        "apply"
+      ]);
+      const overflow = await detectOverflow(state, detectOverflowOptions);
+      const side = getSide(placement);
+      const alignment = getAlignment(placement);
+      const isYAxis = getSideAxis(placement) === "y";
+      const {
+        width,
+        height
+      } = rects.floating;
+      let heightSide;
+      let widthSide;
+      if (side === "top" || side === "bottom") {
+        heightSide = side;
+        widthSide = alignment === (await (platform2.isRTL == null ? void 0 : platform2.isRTL(elements.floating)) ? "start" : "end") ? "left" : "right";
+      } else {
+        widthSide = side;
+        heightSide = alignment === "end" ? "top" : "bottom";
+      }
+      const maximumClippingHeight = height - overflow.top - overflow.bottom;
+      const maximumClippingWidth = width - overflow.left - overflow.right;
+      const overflowAvailableHeight = min(height - overflow[heightSide], maximumClippingHeight);
+      const overflowAvailableWidth = min(width - overflow[widthSide], maximumClippingWidth);
+      const noShift = !state.middlewareData.shift;
+      let availableHeight = overflowAvailableHeight;
+      let availableWidth = overflowAvailableWidth;
+      if ((_state$middlewareData = state.middlewareData.shift) != null && _state$middlewareData.enabled.x) {
+        availableWidth = maximumClippingWidth;
+      }
+      if ((_state$middlewareData2 = state.middlewareData.shift) != null && _state$middlewareData2.enabled.y) {
+        availableHeight = maximumClippingHeight;
+      }
+      if (noShift && !alignment) {
+        const xMin = max(overflow.left, 0);
+        const xMax = max(overflow.right, 0);
+        const yMin = max(overflow.top, 0);
+        const yMax = max(overflow.bottom, 0);
+        if (isYAxis) {
+          availableWidth = width - 2 * (xMin !== 0 || xMax !== 0 ? xMin + xMax : max(overflow.left, overflow.right));
         } else {
-          widthSide = side;
-          heightSide = alignment === "end" ? "top" : "bottom";
+          availableHeight = height - 2 * (yMin !== 0 || yMax !== 0 ? yMin + yMax : max(overflow.top, overflow.bottom));
         }
-        const maximumClippingHeight = height - overflow.top - overflow.bottom;
-        const maximumClippingWidth = width - overflow.left - overflow.right;
-        const overflowAvailableHeight = min(height - overflow[heightSide], maximumClippingHeight);
-        const overflowAvailableWidth = min(width - overflow[widthSide], maximumClippingWidth);
-        const noShift = !state.middlewareData.shift;
-        let availableHeight = overflowAvailableHeight;
-        let availableWidth = overflowAvailableWidth;
-        if ((_state$middlewareData = state.middlewareData.shift) != null && _state$middlewareData.enabled.x) {
-          availableWidth = maximumClippingWidth;
-        }
-        if ((_state$middlewareData2 = state.middlewareData.shift) != null && _state$middlewareData2.enabled.y) {
-          availableHeight = maximumClippingHeight;
-        }
-        if (noShift && !alignment) {
-          const xMin = max(overflow.left, 0);
-          const xMax = max(overflow.right, 0);
-          const yMin = max(overflow.top, 0);
-          const yMax = max(overflow.bottom, 0);
-          if (isYAxis) {
-            availableWidth = width - 2 * (xMin !== 0 || xMax !== 0 ? xMin + xMax : max(overflow.left, overflow.right));
-          } else {
-            availableHeight = height - 2 * (yMin !== 0 || yMax !== 0 ? yMin + yMax : max(overflow.top, overflow.bottom));
+      }
+      await apply(__spreadProps(__spreadValues({}, state), {
+        availableWidth,
+        availableHeight
+      }));
+      const nextDimensions = await platform2.getDimensions(elements.floating);
+      if (width !== nextDimensions.width || height !== nextDimensions.height) {
+        return {
+          reset: {
+            rects: true
           }
-        }
-        yield apply(__spreadProps(__spreadValues({}, state), {
-          availableWidth,
-          availableHeight
-        }));
-        const nextDimensions = yield platform2.getDimensions(elements.floating);
-        if (width !== nextDimensions.width || height !== nextDimensions.height) {
-          return {
-            reset: {
-              rects: true
-            }
-          };
-        }
-        return {};
-      });
+        };
+      }
+      return {};
     }
   };
 };
@@ -2911,21 +2875,19 @@ function getOffsetParent(element, polyfill) {
   }
   return offsetParent || getContainingBlock(element) || win;
 }
-const getElementRects = function(data) {
-  return __async(this, null, function* () {
-    const getOffsetParentFn = this.getOffsetParent || getOffsetParent;
-    const getDimensionsFn = this.getDimensions;
-    const floatingDimensions = yield getDimensionsFn(data.floating);
-    return {
-      reference: getRectRelativeToOffsetParent(data.reference, yield getOffsetParentFn(data.floating), data.strategy),
-      floating: {
-        x: 0,
-        y: 0,
-        width: floatingDimensions.width,
-        height: floatingDimensions.height
-      }
-    };
-  });
+const getElementRects = async function(data) {
+  const getOffsetParentFn = this.getOffsetParent || getOffsetParent;
+  const getDimensionsFn = this.getDimensions;
+  const floatingDimensions = await getDimensionsFn(data.floating);
+  return {
+    reference: getRectRelativeToOffsetParent(data.reference, await getOffsetParentFn(data.floating), data.strategy),
+    floating: {
+      x: 0,
+      y: 0,
+      width: floatingDimensions.width,
+      height: floatingDimensions.height
+    }
+  };
 };
 function isRTL(element) {
   return getComputedStyle(element).direction === "rtl";
@@ -3805,19 +3767,17 @@ const _sfc_main$s = defineComponent({
       }
       chipRefs[newIndex].focus();
     }
-    function handleChipClick(clickedChip) {
-      return __async(this, null, function* () {
-        var _a;
-        emit("chip-click", clickedChip);
-        if (props.readonly || computedDisabled.value || !allowArbitrary.value) {
-          return;
-        }
-        addChip();
-        yield nextTick();
-        removeChip(clickedChip);
-        computedInputValue.value = (_a = clickedChip.label) != null ? _a : clickedChip.value;
-        focusInput();
-      });
+    async function handleChipClick(clickedChip) {
+      var _a;
+      emit("chip-click", clickedChip);
+      if (props.readonly || computedDisabled.value || !allowArbitrary.value) {
+        return;
+      }
+      addChip();
+      await nextTick();
+      removeChip(clickedChip);
+      computedInputValue.value = (_a = clickedChip.label) != null ? _a : clickedChip.value;
+      focusInput();
     }
     function handleChipRemove(chipToRemove, index, method) {
       currentChipToRemove.value = chipToRemove;
@@ -5158,14 +5118,12 @@ const _sfc_main$o = defineComponent({
     }
     const maxMenuHeight = ref(null);
     const footerHeight = ref(null);
-    function resizeMenu() {
-      return __async(this, null, function* () {
-        yield nextTick();
-        updateFooterHeight();
-        updateMaxMenuHeight();
-        yield nextTick();
-        maybeScrollIntoView();
-      });
+    async function resizeMenu() {
+      await nextTick();
+      updateFooterHeight();
+      updateMaxMenuHeight();
+      await nextTick();
+      maybeScrollIntoView();
     }
     function updateFooterHeight() {
       if (props.footer) {
@@ -5224,25 +5182,25 @@ const _sfc_main$o = defineComponent({
     onUnmounted(() => {
       document.removeEventListener("mouseup", onMouseUp);
     });
-    watch(toRef(props, "expanded"), (newVal) => __async(null, null, function* () {
+    watch(toRef(props, "expanded"), async (newVal) => {
       if (newVal) {
         const selectedMenuItem = findFirstSelectedMenuItem();
         if (selectedMenuItem && !highlightedMenuItem.value) {
           handleMenuItemChange("highlighted", selectedMenuItem);
         }
-        yield resizeMenu();
+        await resizeMenu();
       } else {
         handleMenuItemChange("highlighted", null);
       }
-    }));
-    watch(toRef(props, "menuItems"), (newPropMenuItems) => __async(null, null, function* () {
+    });
+    watch(toRef(props, "menuItems"), async (newPropMenuItems) => {
       if (newPropMenuItems.length < menuItemElements.length) {
         menuItemElements.length = newPropMenuItems.length;
       }
       if (props.expanded) {
-        yield resizeMenu();
+        await resizeMenu();
       }
-    }), { deep: true });
+    }, { deep: true });
     const listBoxStyle = computed(() => ({
       "max-height": maxMenuHeight.value ? "".concat(maxMenuHeight.value, "px") : void 0,
       "margin-bottom": footerHeight.value ? "".concat(footerHeight.value, "px") : void 0
@@ -6344,6 +6302,9 @@ const _sfc_main$l = defineComponent({
     },
     /**
      * Add an icon-only close button to the dialog header.
+     *
+     * On narrow screens, the close button is always displayed. On wide screens, it's only
+     * displayed if this prop is set.
      */
     useCloseButton: {
       type: Boolean,
@@ -6450,7 +6411,6 @@ const _sfc_main$l = defineComponent({
       "cdx-dialog-close-button-label",
       "Close"
     );
-    const showHeader = computed(() => !props.hideTitle || useCloseButtonOrLabel.value);
     const showFooterActions = computed(() => !!props.primaryAction || !!props.defaultAction);
     const bodyDimensions = useResizeObserver(dialogBody);
     const currentBodyHeight = computed(() => {
@@ -6460,7 +6420,6 @@ const _sfc_main$l = defineComponent({
     const showDividers = ref(false);
     const rootClasses = computed(() => ({
       "cdx-dialog--vertical-actions": props.stackedActions,
-      "cdx-dialog--horizontal-actions": !props.stackedActions,
       "cdx-dialog--dividers": showDividers.value
     }));
     const providedTarget = inject("CdxTeleportTarget", void 0);
@@ -6534,19 +6493,17 @@ const _sfc_main$l = defineComponent({
       ariaHiddenElements = [];
       inertElements = [];
     }
-    function onDialogOpen() {
-      return __async(this, null, function* () {
-        var _a;
-        yield nextTick();
-        scrollWidth.value = window.innerWidth - document.documentElement.clientWidth;
-        document.documentElement.style.setProperty("margin-right", "".concat(scrollWidth.value, "px"));
-        document.body.classList.add("cdx-dialog-open");
-        setAriaHiddenAndInert();
-        previouslyFocused = document.activeElement;
-        if (!focusFirstFocusableElement(dialogBody.value)) {
-          (_a = focusHolder.value) == null ? void 0 : _a.focus();
-        }
-      });
+    async function onDialogOpen() {
+      var _a;
+      await nextTick();
+      scrollWidth.value = window.innerWidth - document.documentElement.clientWidth;
+      document.documentElement.style.setProperty("margin-right", "".concat(scrollWidth.value, "px"));
+      document.body.classList.add("cdx-dialog-open");
+      setAriaHiddenAndInert();
+      previouslyFocused = document.activeElement;
+      if (!focusFirstFocusableElement(dialogBody.value)) {
+        (_a = focusHolder.value) == null ? void 0 : _a.focus();
+      }
     }
     function onDialogClose() {
       document.body.classList.remove("cdx-dialog-open");
@@ -6557,23 +6514,23 @@ const _sfc_main$l = defineComponent({
         previouslyFocused = null;
       }
     }
-    onMounted(() => __async(null, null, function* () {
+    onMounted(async () => {
       if (props.open) {
-        yield onDialogOpen();
+        await onDialogOpen();
       }
-    }));
+    });
     onUnmounted(() => {
       if (props.open) {
         onDialogClose();
       }
     });
-    watch(toRef(props, "open"), (opened) => __async(null, null, function* () {
+    watch(toRef(props, "open"), async (opened) => {
       if (opened) {
-        yield onDialogOpen();
+        await onDialogOpen();
       } else {
         onDialogClose();
       }
-    }));
+    });
     watch(currentBodyHeight, () => {
       if (dialogBody.value) {
         showDividers.value = dialogBody.value.clientHeight < dialogBody.value.scrollHeight;
@@ -6595,7 +6552,6 @@ const _sfc_main$l = defineComponent({
       focusLast,
       dialogBody,
       focusHolder,
-      showHeader,
       showFooterActions,
       useCloseButtonOrLabel,
       translatedCloseButtonLabel,
@@ -6672,11 +6628,13 @@ function _sfc_render$l(_ctx, _cache, $props, $setup, $data, $options) {
               onClick: _cache[3] || (_cache[3] = withModifiers(() => {
               }, ["stop"]))
             }), [
-              _ctx.showHeader || _ctx.$slots.header ? (openBlock(), createElementBlock(
+              createElementVNode(
                 "header",
                 {
-                  key: 0,
-                  class: normalizeClass(["cdx-dialog__header", { "cdx-dialog__header--default": !_ctx.$slots.header }])
+                  class: normalizeClass(["cdx-dialog__header", {
+                    "cdx-dialog__header--default": !_ctx.$slots.header,
+                    "cdx-dialog__header--no-close-button": !_ctx.useCloseButtonOrLabel
+                  }])
                 },
                 [
                   renderSlot(_ctx.$slots, "header", {}, () => [
@@ -6693,8 +6651,7 @@ function _sfc_render$l(_ctx, _cache, $props, $setup, $data, $options) {
                         /* TEXT */
                       )) : createCommentVNode("v-if", true)
                     ])) : createCommentVNode("v-if", true),
-                    _ctx.useCloseButtonOrLabel ? (openBlock(), createBlock(_component_cdx_button, {
-                      key: 1,
+                    createVNode(_component_cdx_button, {
                       class: "cdx-dialog__header__close-button",
                       weight: "quiet",
                       type: "button",
@@ -6706,12 +6663,12 @@ function _sfc_render$l(_ctx, _cache, $props, $setup, $data, $options) {
                       ]),
                       _: 1
                       /* STABLE */
-                    }, 8, ["aria-label", "onClick"])) : createCommentVNode("v-if", true)
+                    }, 8, ["aria-label", "onClick"])
                   ])
                 ],
                 2
                 /* CLASS */
-              )) : createCommentVNode("v-if", true),
+              ),
               createElementVNode(
                 "div",
                 _hoisted_5$5,
@@ -6724,7 +6681,6 @@ function _sfc_render$l(_ctx, _cache, $props, $setup, $data, $options) {
                 {
                   ref: "dialogBody",
                   class: normalizeClass(["cdx-dialog__body cdx-scrollable-container", {
-                    "cdx-dialog__body--no-header": !(_ctx.showHeader || _ctx.$slots.header),
                     "cdx-dialog__body--no-footer": !(_ctx.showFooterActions || _ctx.$slots.footer || _ctx.$slots["footer-text"])
                   }])
                 },
@@ -6737,7 +6693,7 @@ function _sfc_render$l(_ctx, _cache, $props, $setup, $data, $options) {
               _ctx.showFooterActions || _ctx.$slots.footer || _ctx.$slots["footer-text"] ? (openBlock(), createElementBlock(
                 "footer",
                 {
-                  key: 1,
+                  key: 0,
                   class: normalizeClass(["cdx-dialog__footer", { "cdx-dialog__footer--default": !_ctx.$slots.footer }])
                 },
                 [
@@ -8256,12 +8212,10 @@ const _sfc_main$d = defineComponent({
       "update:input-value"
     );
     const showNoResults = computed(() => computedInputValue.value.toString().length > 0 && slots["no-results"]);
-    function onUpdateInputValue(newVal) {
-      return __async(this, null, function* () {
-        yield nextTick();
-        pending.value = newVal !== null && newVal !== "";
-        emit("input", newVal);
-      });
+    async function onUpdateInputValue(newVal) {
+      await nextTick();
+      pending.value = newVal !== null && newVal !== "";
+      emit("input", newVal);
     }
     function onInputFocus(event) {
       isActive.value = true;
@@ -8593,8 +8547,7 @@ const _sfc_main$c = defineComponent({
     const showHeader = computed(() => !!props.title || !!props.icon || props.useCloseButton);
     const showFooter = computed(() => !!props.primaryAction || !!props.defaultAction);
     const footerActionsClasses = computed(() => ({
-      "cdx-popover__footer__actions--vertical": props.stackedActions,
-      "cdx-popover__footer__actions--horizontal": !props.stackedActions
+      "cdx-popover__footer__actions--vertical": props.stackedActions
     }));
     function close() {
       emit("update:open", false);
@@ -8627,17 +8580,17 @@ const _sfc_main$c = defineComponent({
         document.removeEventListener("focusin", onFocusOut);
       }
     });
-    onMounted(() => __async(null, null, function* () {
+    onMounted(async () => {
       if (props.open) {
         document.addEventListener("keydown", onKeydown);
         document.addEventListener("mousedown", onFocusOut);
         document.addEventListener("focusin", onFocusOut);
       }
-      yield nextTick();
+      await nextTick();
       if (props.anchor === null) {
         console.warn('[CdxPopover]: The "anchor" prop must be provided to position the CdxPopover.');
       }
-    }));
+    });
     onUnmounted(() => {
       document.removeEventListener("keydown", onKeydown);
       document.removeEventListener("mousedown", onFocusOut);

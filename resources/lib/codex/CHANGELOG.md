@@ -1,3 +1,27 @@
+# 2.3.3 / 2025-11-25
+
+## Features
+- Dialog, Popover: Automatically apply stackedActions on small screens (angrezichatterbox)
+- Dialog: Make Dialog full screen on small screens (angrezichatterbox)
+- Dialog: Always show close button in full-screen mode (Roan Kattouw)
+
+## Styles
+- Dialog, Popover: Clean up responsiveness styles (Roan Kattouw)
+- Accordion: Unbreak markup in titles and descriptions (Roan Kattouw)
+
+## Tokens
+- tokens: update blue50 value (bmartinezcalvo)
+
+## Build
+- build: Export work-in-progress mixins to 'dist/mixins/wip' (Volker E.)
+- build, docs: Raise target to ES2017 and supporting browsers (Volker E.)
+
+## Documentation
+- docs: fix minor typo (Lauralyn Watson)
+- docs: Fix shadow page typo (Derek Torsani)
+- docs: Update Tabs and ToggleButtonGroup usage guidance (Derek Torsani)
+- Dialog, Popover, docs: Update stackedActions docs for new responsiveness behavior (Roan Kattouw)
+
 # 2.3.2 / 2025-09-25
 
 ## Styles
