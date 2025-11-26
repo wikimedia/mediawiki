@@ -1169,7 +1169,10 @@ abstract class File implements MediaHandlerState {
 		$newThumbSize = null;
 		foreach ( $thumbnailSteps as $widthStep ) {
 			if ( $widthStep > $this->getWidth() ) {
-				return $params;
+				// Round up to original width if there is no step between
+				// desired thumb width & original file width
+				$newThumbSize = $this->getWidth();
+				break;
 			}
 			if ( $widthStep == $params['physicalWidth'] ) {
 				return $params;

@@ -1101,15 +1101,16 @@ const util = {
 
 		for ( const widthStep of steps ) {
 			if ( widthStep > originalWidth ) {
-				return thumbWidth;
+				// Round up to original width if there is no step between
+				// desired thumb width & original file width
+				return originalWidth;
 			}
-			if ( widthStep === thumbWidth ) {
-				return thumbWidth;
-			}
-			if ( widthStep > thumbWidth ) {
+			if ( widthStep >= thumbWidth ) {
 				return widthStep;
 			}
 		}
+
+		// If no step matched, default to target thumb width
 		return thumbWidth;
 	},
 

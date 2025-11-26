@@ -509,11 +509,17 @@ class FileTest extends MediaWikiMediaTestCase {
 			'thumbWidth' => 52,
 			'expected' => 100
 		];
-		yield 'unchanged when first step beyond original width' => [
+		yield 'original width when first step beyond original width' => [
 			'enabled' => true,
 			'originalWidth' => 90,
 			'thumbWidth' => 52,
-			'expected' => 52
+			'expected' => 90
+		];
+		yield 'original width when no other step between requested & original width' => [
+			'enabled' => true,
+			'originalWidth' => 180,
+			'thumbWidth' => 130,
+			'expected' => 180
 		];
 		yield 'unchanged when beyond available steps' => [
 			'enabled' => true,

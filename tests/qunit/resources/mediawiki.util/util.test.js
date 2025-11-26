@@ -673,11 +673,17 @@ QUnit.module( 'mediawiki.util', QUnit.newMwEnvironment( {
 			thumbWidth: 52,
 			expected: 100
 		},
-		'unchanged when first step beyond original width': {
+		'original width when first step beyond original width': {
 			enabled: true,
 			originalWidth: 90,
 			thumbWidth: 52,
-			expected: 52
+			expected: 90
+		},
+		'original width when no other step between requested & original width': {
+			enabled: true,
+			originalWidth: 180,
+			thumbWidth: 130,
+			expected: 180
 		},
 		'unchanged when beyond available steps': {
 			enabled: true,
