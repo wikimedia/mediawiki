@@ -156,27 +156,6 @@ class UserGroupAssignmentService {
 		}
 		$groups['add'] = array_diff( $groups['add'], $cannotAdd );
 
-		// Legacy hook to allow extensions to define groups that cannot be added, given the
-		// target user and the performer. Instead, use the RestrictedGroups config.
-		$restrictedGroups = [];
-		$this->hookRunner->onSpecialUserRightsChangeableGroups(
-			$performer,
-			$target,
-			$groups['add'],
-			$restrictedGroups
-		);
-
-		$unAddableRestrictedGroups = array_keys(
-			array_filter( $restrictedGroups, static fn ( $group ) =>
-				!$group['condition-met'] && !$group['ignore-condition'] )
-		);
-
-		$groups['add'] = array_diff( $groups['add'], $unAddableRestrictedGroups );
-		$groups['restricted'] += array_filter(
-			$restrictedGroups,
-			static fn ( $group ) => !$group['condition-met']
-		);
-
 		$isSelf = $performer->getUser()->equals( $target );
 		if ( $isSelf ) {
 			// This block is placed after the hook, which means that handlers cannot restrict self-assignments.

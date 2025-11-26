@@ -5,7 +5,6 @@
  */
 
 use MediaWiki\MainConfigNames;
-use MediaWiki\Permissions\Authority;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\User\UserGroupAssignmentService;
@@ -177,68 +176,6 @@ class UserGroupAssignmentServiceTest extends MediaWikiIntegrationTestCase {
 			'Not self' => [ false ],
 			'Self' => [ true ],
 		];
-	}
-
-	public function testGetChangeableGroupsWithRestrictionsHook(): void {
-		$ugmMock = $this->createMock( UserGroupManager::class );
-		$ugmMock->method( 'getGroupsChangeableBy' )
-			->willReturn( [
-				'add' => [ 'group1', 'group2', 'group3' ],
-				'remove' => [ 'group1', 'group2', 'group3' ],
-				'add-self' => [],
-				'remove-self' => [],
-			] );
-
-		$ugmFactoryMock = $this->createMock( UserGroupManagerFactory::class );
-		$ugmFactoryMock->method( 'getUserGroupManager' )
-			->willReturn( $ugmMock );
-
-		$this->setTemporaryHook(
-			'SpecialUserRightsChangeableGroups',
-			static function (
-				Authority $performer, UserIdentity $target, array $addedGroups, array &$restrictedGroups
-			) {
-				$restrictedGroups['group1'] = [
-					'condition-met' => false,
-					'ignore-condition' => false,
-					'reason' => 'reason1'
-				];
-				$restrictedGroups['group2'] = [
-					'condition-met' => false,
-					'ignore-condition' => true,
-					'reason' => 'reason2'
-				];
-				$restrictedGroups['group3'] = [
-					'condition-met' => true,
-					'ignore-condition' => false,
-					'reason' => 'reason3'
-				];
-			}
-		);
-
-		$this->setService( 'UserGroupManagerFactory', $ugmFactoryMock );
-		$service = $this->getServiceContainer()->getUserGroupAssignmentService();
-
-		$performer = $this->mockAnonNullAuthority();
-		$target = $performer->getUser();
-
-		$groups = $service->getChangeableGroups( $performer, $target );
-		$this->assertSame( [
-			'add' => [ 'group2', 'group3' ],
-			'remove' => [ 'group1', 'group2', 'group3' ],
-			'restricted' => [
-				'group1' => [
-					'condition-met' => false,
-					'ignore-condition' => false,
-					'reason' => 'reason1'
-				],
-				'group2' => [
-					'condition-met' => false,
-					'ignore-condition' => true,
-					'reason' => 'reason2'
-				],
-			],
-		], $groups );
 	}
 
 	/** @dataProvider provideGetChangeableGroupsWithRestrictions */

@@ -111,7 +111,6 @@ For notes on 1.44.x and older releases, see HISTORY.
       /** @return StatusValue<Foo> */
       function doStuff(): StatusValue { ... }
       doStuff()->getValue()->bar();
-* The SpecialUserRightsChangeableGroupsHook hook was added.
 * The UserLinkRendererUserPostRenderLink hook was added.
 * The LocalUserOptionsStoreSave hook was added.
 * The User::getConfirmationToken(), User::getConfirmationTokenUrl() and

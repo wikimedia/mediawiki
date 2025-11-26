@@ -79,36 +79,6 @@ class SpecialUserRightsTest extends SpecialPageTestBase {
 			'No input fields should be present in the view mode, apart from the user select form' );
 	}
 
-	private function setUnaddableSysopGroup() {
-		$this->setTemporaryHook(
-			'SpecialUserRightsChangeableGroups',
-			static function ( $authority, $target, $addableGroups, &$restrictedGroups ) {
-				$restrictedGroups['sysop'] = [
-					'condition-met' => false,
-					'ignore-condition' => false,
-					'message' => 'sysop-unaddable-reason',
-				];
-			}
-		);
-	}
-
-	public function testShowFormWithUnaddableGroup() {
-		$this->setUnaddableSysopGroup();
-
-		$target = $this->getTestUser()->getUser();
-		$performer = $this->getTestSysop()->getUser();
-
-		[ $html ] = $this->executeSpecialPage(
-			$target->getName(),
-			null,
-			'qqx',
-			$performer
-		);
-
-		$this->performBasicFormAssertions( $html, $target );
-		$this->assertStringContainsString( '(sysop-unaddable-reason)', $html );
-	}
-
 	public function testShowFormWithRestrictedGroup() {
 		$this->overrideConfigValue(
 			MainConfigNames::RestrictedGroups,
@@ -164,36 +134,6 @@ class SpecialUserRightsTest extends SpecialPageTestBase {
 		$this->assertSame( 1, $request->getSession()->get( 'specialUserrightsSaveSuccess' ) );
 		$this->assertSame(
 			[ 'bot' ],
-			$this->getServiceContainer()->getUserGroupManager()->getUserGroups( $target )
-		);
-	}
-
-	public function testSaveUserGroupsWithUnaddableGroup() {
-		$this->setUnaddableSysopGroup();
-
-		$target = $this->getTestUser()->getUser();
-		$performer = $this->getTestSysop()->getUser();
-		$request = new FauxRequest(
-			[
-				'saveusergroups' => true,
-				'conflictcheck-originalgroups' => '',
-				'wpGroup-sysop' => true,
-				'wpExpiry-sysop' => 'existing',
-				'wpEditToken' => $performer->getEditToken( $target->getName() ),
-			],
-			true
-		);
-
-		$this->executeSpecialPage(
-			$target->getName(),
-			$request,
-			'qqx',
-			$performer
-		);
-
-		$this->assertSame( 1, $request->getSession()->get( 'specialUserrightsSaveSuccess' ) );
-		$this->assertSame(
-			[],
 			$this->getServiceContainer()->getUserGroupManager()->getUserGroups( $target )
 		);
 	}

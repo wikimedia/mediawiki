@@ -364,7 +364,6 @@ because of Phabricator reports.
     - SpecialTrackingCategories__generateCatLinkHook
     - SpecialTrackingCategories__preprocessHook
     - SpecialUploadCompleteHook
-    - SpecialUserRightsChangeableGroupsHook
     - SpecialVersionVersionUrlHook
     - SpecialWhatLinksHereQueryHook
     - UnblockUserCompleteHook
