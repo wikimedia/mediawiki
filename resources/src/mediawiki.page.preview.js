@@ -672,9 +672,11 @@
 	 *   - After finishing the preview, a reminder that it's only a preview, or an error message in
 	 *     case a request has failed, will be shown at the top of the preview.
 	 * @param {Node|Node[]|jQuery|string} [config.previewHeader=null] Content of `<h2>` element at
-	 *   the top of the preview notes. Required if `isLivePreview` is true.
+	 *   the top of the preview notes. If `isLivePreview` is true then this must be set, either at
+	 *   entry or by the responseHandler callback.
 	 * @param {Node|Node[]|jQuery|string} [config.previewNote=null] Main text of the first preview
-	 *   note. Required if `isLivePreview` is true.
+	 *   note. If `isLivePreview` is true then this must be set, either at entry or by the
+	 *   responseHandler callback.
 	 * @param {string} [config.title=mw.config.get( 'wgPageName' )] The title of the page being previewed.
 	 * @param {string} [config.titleParam='title'] Name of the parse API parameter to pass `title` to.
 	 * @param {string} [config.textParam='text'] Name of the parse API parameter to pass the content
