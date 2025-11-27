@@ -1,4 +1,6 @@
 import { mkdir } from 'fs/promises';
+import os from 'node:os';
+import process from 'node:process';
 
 /**
  * @since 1.1.0
@@ -99,9 +101,54 @@ function stopVideo( ffmpeg ) {
 	}
 }
 
+function logSystemInformation() {
+	const bytesPerMegabyte = 1_000_000;
+	const bytesPerGigabyte = 1_000_000_000;
+
+	const formatMegabytesAndGigabytes = ( bytes ) => {
+		const megabytes = bytes / bytesPerMegabyte;
+		const gigabytes = bytes / bytesPerGigabyte;
+
+		if ( gigabytes >= 1 ) {
+			return `${ megabytes.toFixed( 1 ) } MB (${ gigabytes.toFixed( 2 ) } GB)`;
+		}
+
+		return `${ megabytes.toFixed( 1 ) } MB`;
+	};
+
+	const cores =
+		// eslint-disable-next-line n/no-unsupported-features/node-builtins
+		typeof os.availableParallelism === 'function' ?
+			// eslint-disable-next-line n/no-unsupported-features/node-builtins
+			os.availableParallelism() :
+			os.cpus().length;
+
+	const freeBytes = os.freemem();
+	const { rss } = process.memoryUsage();
+
+	// eslint-disable-next-line n/no-unsupported-features/node-builtins
+	const limit = typeof process.constrainedMemory === 'function' ?
+		// eslint-disable-next-line n/no-unsupported-features/node-builtins
+		process.constrainedMemory() :
+		0;
+
+	// If there's no limit set in the container, we got
+	// 18446744073709.6 MB that seems wrong
+	if ( limit > 0 && limit < 9000000000000000000 ) {
+		console.log(
+			`[System information] Memory limit (container): ${ formatMegabytesAndGigabytes( limit ) }`
+		);
+	}
+
+	console.log( `[System information] Memory (host): ${ formatMegabytesAndGigabytes( freeBytes ) } free` );
+	console.log( `[System information] RAM used by NodeJS ${ formatMegabytesAndGigabytes( rss ) }` );
+	console.log( `[System information] CPU: ${ cores } cores` );
+}
+
 export {
 	makeFilenameDate,
 	saveScreenshot,
 	startVideo,
-	stopVideo
+	stopVideo,
+	logSystemInformation
 };

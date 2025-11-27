@@ -13,7 +13,7 @@ import fs from 'fs';
 import path from 'path';
 import { PrometheusFileReporter, writeAllProjectMetrics } from './PrometheusFileReporter.js';
 const logPath = process.env.LOG_DIR || path.join( process.cwd(), 'tests/selenium/log' );
-import { makeFilenameDate, saveScreenshot, startVideo, stopVideo } from 'wdio-mediawiki';
+import { makeFilenameDate, saveScreenshot, startVideo, stopVideo, logSystemInformation } from 'wdio-mediawiki';
 // T355556: remove when T324766 is resolved
 import dns from 'dns';
 
@@ -218,6 +218,7 @@ export const config = {
 	 */
 	onPrepare: function ( wdioConfig ) {
 		console.log( `Run test targeting ${ wdioConfig.baseUrl }` );
+		logSystemInformation();
 	},
 	/**
 	 * Gets executed just before initializing the webdriver session and test framework.
