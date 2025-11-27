@@ -1168,7 +1168,7 @@ abstract class File implements MediaHandlerState {
 
 		$newThumbSize = null;
 		foreach ( $thumbnailSteps as $widthStep ) {
-			if ( $widthStep > $this->getWidth() ) {
+			if ( ( $widthStep > $this->getWidth() ) && !$this->isVectorized() ) {
 				// Round up to original width if there is no step between
 				// desired thumb width & original file width
 				$newThumbSize = $this->getWidth();
