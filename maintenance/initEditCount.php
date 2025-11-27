@@ -70,7 +70,7 @@ class InitEditCount extends Maintenance {
 				$max = $min + $chunkSize;
 
 				$result = $dbr->newSelectQueryBuilder()
-					->select( [ 'user_id', 'user_editcount' => "COUNT(actor_rev_user.actor_user)" ] )
+					->select( [ 'user_id', 'user_editcount' => 'COUNT(rev_actor)' ] )
 					->from( 'user' )
 					->join( 'actor', 'actor_rev_user', 'user_id = actor_rev_user.actor_user' )
 					->leftJoin( 'revision', 'rev', 'actor_rev_user.actor_id = rev.rev_actor' )
