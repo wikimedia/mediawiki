@@ -1,0 +1,29 @@
+{
+	"@metadata": {
+		"authors": [
+			"पर्वत सुबेदी",
+			"बडा काजी"
+		]
+	},
+	"interwiki": "अन्तरविकी डेटा हेर्नुहोस् र सम्पादन गर्नुहोस्",
+	"interwiki-title-norights": "अन्तरविकि डेटा हेर्नुहोस्",
+	"interwiki_prefix": "उपसर्ग",
+	"interwiki-prefix-label": "उपसर्गः",
+	"interwiki_local": "अगाडि",
+	"interwiki-local-label": "अगाडि",
+	"interwiki_1": "हो",
+	"interwiki_0": "होइन",
+	"interwiki_edit": "सम्पादन",
+	"interwiki_reasonfield": "कारण :",
+	"interwiki-logtext": "अभिलेख हेर्नुहोस्",
+	"interwiki_addtext": "अन्तरविकि वा भाषा उपसर्ग थप्नुहोस्",
+	"interwiki-addtext-local": "स्थानीय अन्तरविकि वा भाषा उपसर्ग थप्नुहोस्",
+	"interwiki-addtext-nolang": "अन्तरविकि उपसर्ग थप्नुहोस्",
+	"interwiki-addtext-local-nolang": "स्थानीय अन्तरविकि उपसर्ग थप्नुहोस्",
+	"interwiki_addintro": "तपाईं नयाँ अन्तरविकि उपसर्ग थप्दै हुनुहुन्छ।\n याद राख्नुहोस् कि यसमा खाली ठाउँहरू (), कोलोनहरू (:), एम्परसेन्डहरू (&), वा बराबर चिन्हहरू (=) हुन सक्दैनन्।",
+	"interwiki_addbutton": "थप्नुहोस्",
+	"interwiki_edittext": "अन्तरविकि उपसर्ग सम्पादन गर्दै",
+	"interwiki-links": "अन्तरविकि उपसर्गहरू",
+	"interwiki-language-links": "अन्तरभाषा उपसर्गहरू",
+	"interwiki-global-language-links": "विश्वव्यापी अन्तरभाषा उपसर्गहरू"
+}

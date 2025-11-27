@@ -147,7 +147,7 @@
 	"redirectpagesub": "หน้าเปลี่ยนทาง",
 	"redirectto": "เปลี่ยนทางไป:",
 	"lastmodifiedat": "หน้านี้แก้ไขล่าสุดเมื่อวันที่ $1 เวลา $2",
-	"renderedwith-parsoid": "เพจได้รับการเรนเดอร์ด้วย [[mw:Special:MyLanguage/Parsoid|Parsoid]]",
+	"renderedwith-parsoid": "หน้านี้เรนเดอร์ด้วย [[mw:Special:MyLanguage/Parsoid|Parsoid]]",
 	"viewcount": "มีการเข้าถึงหน้านี้ $1 ครั้ง",
 	"protectedpage": "หน้าถูกป้องกัน",
 	"jumpto": "ข้ามไป:",
