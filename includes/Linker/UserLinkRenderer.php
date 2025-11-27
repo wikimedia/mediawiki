@@ -147,8 +147,11 @@ class UserLinkRenderer {
 		array $attributes = []
 	): string {
 		$userName = $targetUser->getName();
+		$targetPage = Title::makeTitle( NS_USER, $userName );
+
 		$linkText = $altUserName ?? $userName;
-		$params = $this->getUserLinkParameters( $targetUser, $messageLocalizer, $linkText );
+		$isDefaultCaption = $this->linkRenderer->isDefaultLinkCaption( $targetPage, $linkText );
+		$params = $this->getUserLinkParameters( $targetUser, $messageLocalizer, $isDefaultCaption );
 		$attributes += $params[ 'extraAttr' ];
 		$classes = $params[ 'classes' ];
 		$postfix = $params[ 'postfix' ];
@@ -161,7 +164,7 @@ class UserLinkRenderer {
 			new HtmlArmor(
 				Html::element( 'bdi', [], $linkText ) . $postfix
 			),
-			Title::makeTitle( NS_USER, $userName ),
+			$targetPage,
 			'',
 			$attributes + [ 'class' => $classes ]
 		);
@@ -210,7 +213,8 @@ class UserLinkRenderer {
 		}
 
 		$linkText = $altUserName ?? $userName;
-		$params = $this->getUserLinkParameters( $targetUser, $messageLocalizer, $linkText );
+		$isDefaultCaption = $this->linkRenderer->isDefaultLinkCaption( $page, $linkText );
+		$params = $this->getUserLinkParameters( $targetUser, $messageLocalizer, $isDefaultCaption );
 		$attributes += $params[ 'extraAttr' ];
 		$classes = array_merge( $params[ 'classes' ], $classes );
 		$postfix = $params[ 'postfix' ];
@@ -236,20 +240,20 @@ class UserLinkRenderer {
 	/**
 	 * @param UserIdentity $targetUser
 	 * @param MessageLocalizer $messageLocalizer
-	 * @param string $linkText
+	 * @param bool $isDefaultCaption see {@see LinkRenderer::isDefaultLinkCaption()} for definition
 	 * @return array{classes: string[], extraAttr: array, postfix: string}
 	 */
 	private function getUserLinkParameters(
 		UserIdentity $targetUser,
 		MessageLocalizer $messageLocalizer,
-		string $linkText,
+		bool $isDefaultCaption,
 	) {
 		$attributes = [];
 		$userName = $targetUser->getName();
 		$isExpired = false;
 		$postfix = '';
 
-		$classes = $this->getLinkClassesFromUserName( $userName, $linkText );
+		$classes = $this->getLinkClassesFromUserName( $userName, $isDefaultCaption );
 		$classes[] = 'mw-userlink';
 		if ( $this->tempUserConfig->isTempName( $userName ) ) {
 			$attributes['data-mw-target'] = $userName;
@@ -319,10 +323,6 @@ class UserLinkRenderer {
 		return !WikiMap::isCurrentWikiDbDomain( $wikiId );
 	}
 
-	// Otherwise, PHPCS would flag `string|HtmlArmor|null` as incorrect and needing update to
-	// `?string|HtmlArmor|null`, which is invalid in PHP.
-	//phpcs:disable MediaWiki.Usage.NullableType.ExplicitNullableTypes
-
 	/**
 	 * Returns CSS classes to add to a link to the given user.
 	 *
@@ -333,22 +333,16 @@ class UserLinkRenderer {
 	 * involved a DB lookup.
 	 *
 	 * @param string $userName The (canonical) user name to render a link for.
-	 * @param string|HtmlArmor|null $linkText The link text, or null if unknown.
+	 * @param bool $isDefaultCaption Whether the link caption is considered 'default'
+	 *   (as defined by {@see LinkRenderer::isDefaultLinkCaption()}).
 	 * @return string[] CSS classes.
 	 */
-	private function getLinkClassesFromUserName( string $userName, string|HtmlArmor|null $linkText = null ): array {
+	private function getLinkClassesFromUserName( string $userName, bool $isDefaultCaption ): array {
 		$classes = [];
 
 		// mw-tempuserlink should be added only in cases like [[User:~2025-1|~2025-1]] and
 		// not e.g. [[User:~2025-1|this user]]: T398952#10994965.
-		if ( $linkText instanceof HtmlArmor ) {
-			$linkText = HtmlArmor::getHtml( $linkText );
-		}
-		if ( $linkText === null ) {
-			return $classes;
-		}
-		$linkText = html_entity_decode( $linkText );
-		if ( $userName === $linkText && $this->tempUserConfig->isTempName( $userName ) ) {
+		if ( $isDefaultCaption && $this->tempUserConfig->isTempName( $userName ) ) {
 			$classes[] = 'mw-tempuserlink';
 		}
 		return $classes;
@@ -360,9 +354,11 @@ class UserLinkRenderer {
 	 *
 	 * @see ::getLinkClassesFromUserName() for details on the classes
 	 *   applied.
+	 * @see LinkRenderer::isDefaultLinkCaption() for the definition of
+	 *   a 'default' caption.
 	 * @internal For use by LinkRenderer::getLinkClasses()
 	 */
-	public function getLinkClasses( LinkTarget $target, string|HtmlArmor|null $linkText = null ): array {
+	public function getLinkClasses( LinkTarget $target, bool $isDefaultCaption = false ): array {
 		$ns = $target->getNamespace();
 		$userName = null;
 		if ( $ns === NS_USER ) {
@@ -378,11 +374,9 @@ class UserLinkRenderer {
 		if ( $userName !== null ) {
 			$userName = $this->userNameUtils->getCanonical( $userName );
 			if ( $userName !== false ) {
-				return $this->getLinkClassesFromUserName( $userName, $linkText );
+				return $this->getLinkClassesFromUserName( $userName, $isDefaultCaption );
 			}
 		}
 		return [];
 	}
-
-	//phpcs:enable MediaWiki.Usage.NullableType.ExplicitNullableTypes
 }

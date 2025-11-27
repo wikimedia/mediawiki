@@ -333,4 +333,71 @@ class LinkRendererTest extends MediaWikiLangTestCase {
 			$linkRenderer->getLinkClasses( $userTitle, '~2025-1' )
 		);
 	}
+
+	/** @dataProvider provideIsDefaultLinkCaption */
+	public function testIsDefaultLinkCaption( $target, $caption, $expected ) {
+		$linkRenderer = $this->factory->create();
+		$this->assertSame(
+			$expected,
+			$linkRenderer->isDefaultLinkCaption( $target, $caption )
+		);
+	}
+
+	public static function provideIsDefaultLinkCaption(): iterable {
+		yield 'Exact match with page title' => [
+			new TitleValue( NS_MAIN, 'Foobar' ),
+			'Foobar',
+			true
+		];
+		yield 'Exact match with page title, fragment present' => [
+			new TitleValue( NS_MAIN, 'Foobar', 'fragment' ),
+			'Foobar',
+			true
+		];
+		yield 'Exact match with page title (with space)' => [
+			new TitleValue( NS_MAIN, 'Foo bar' ),
+			'Foo bar',
+			true
+		];
+		yield 'Different caption' => [
+			new TitleValue( NS_MAIN, 'Foobar' ),
+			'Foo',
+			false
+		];
+		yield 'Full title match, non-main namespace' => [
+			new TitleValue( NS_USER, 'Foobar' ),
+			'User:Foobar',
+			true
+		];
+		yield 'Title match (without namespace), non-main namespace' => [
+			new TitleValue( NS_USER, 'Foobar' ),
+			'User:Foobar',
+			true
+		];
+		yield 'Subpage title match' => [
+			new TitleValue( NS_USER, 'Foobar/baz' ),
+			'baz',
+			true
+		];
+		yield 'Two subpage parts match' => [
+			new TitleValue( NS_USER, 'Foo/bar/baz' ),
+			'bar/baz',
+			true
+		];
+		yield 'No match - no slash nor colon' => [
+			new TitleValue( NS_USER, 'Foobar/baz' ),
+			'bar/baz',
+			false
+		];
+		yield 'Match when caption has HTML entity' => [
+			new TitleValue( NS_USER, '~2025-1' ),
+			'&#126;2025-1',
+			true
+		];
+		yield 'Match when caption has HTML tag' => [
+			new TitleValue( NS_USER, '~2025-1' ),
+			'<b>~2025-1</b>',
+			true
+		];
+	}
 }

@@ -67,6 +67,8 @@ class UserLinkRendererTest extends MediaWikiLangTestCase {
 
 		$this->outputPage = $this->createMock( OutputPage::class );
 		$this->context = $this->createMock( IContextSource::class );
+		$this->context->method( 'getUser' )
+			->willReturn( $this->getTestUser()->getUser() );
 		$this->context->method( 'getOutput' )
 			->willReturn( $this->outputPage );
 		$this->context->method( 'msg' )
@@ -482,61 +484,55 @@ class UserLinkRendererTest extends MediaWikiLangTestCase {
 	}
 
 	/** @dataProvider provideGetLinkClasses */
-	public function testGetLinkClasses( int $ns, string $title, ?string $linkText, array $expected ) {
+	public function testGetLinkClasses( int $ns, string $title, bool $isDefaultCaption, array $expected ) {
 		$linkTarget = new TitleValue( $ns, $title );
-		$classes = $this->userLinkRenderer->getLinkClasses( $linkTarget, $linkText );
+		$classes = $this->userLinkRenderer->getLinkClasses( $linkTarget, $isDefaultCaption );
 		sort( $classes );
 		sort( $expected );
 		$this->assertSame( $expected, $classes );
 	}
 
 	public function provideGetLinkClasses(): iterable {
-		yield 'Link to a permanent account page, unknown text' => [
+		yield 'Link to a permanent account page, non-default caption' => [
 			'ns' => NS_USER,
 			'title' => 'ExampleUser',
-			'linkText' => null,
+			'isDefaultCaption' => false,
 			'expected' => [],
 		];
-		yield 'Link to a permanent account page, text is the same as username' => [
+		yield 'Link to a permanent account page, default caption' => [
 			'ns' => NS_USER,
 			'title' => 'ExampleUser',
-			'linkText' => 'ExampleUser',
+			'isDefaultCaption' => true,
 			'expected' => [],
 		];
-		yield 'Link to a temporary account page, text is the same as username' => [
+		yield 'Link to a temporary account page, non-default caption' => [
 			'ns' => NS_USER,
 			'title' => '~2025-1',
-			'linkText' => '~2025-1',
-			'expected' => [ 'mw-tempuserlink' ],
-		];
-		yield 'Link to a temporary account page, text is the same as username, but HTML-encoded' => [
-			'ns' => NS_USER,
-			'title' => '~2025-1',
-			'linkText' => '&#126;2025-1',
-			'expected' => [ 'mw-tempuserlink' ],
-		];
-		yield 'Link to a temporary account page, different text' => [
-			'ns' => NS_USER,
-			'title' => '~2025-1',
-			'linkText' => 'Lorem ipsum',
+			'isDefaultCaption' => false,
 			'expected' => [],
 		];
-		yield 'Link to a permanent account contribs' => [
+		yield 'Link to a temporary account page, default caption' => [
+			'ns' => NS_USER,
+			'title' => '~2025-1',
+			'isDefaultCaption' => true,
+			'expected' => [ 'mw-tempuserlink' ],
+		];
+		yield 'Link to a permanent account contribs, default caption' => [
 			'ns' => NS_SPECIAL,
 			'title' => 'Contributions/ExampleUser',
-			'linkText' => null,
+			'isDefaultCaption' => true,
 			'expected' => [],
 		];
-		yield 'Link to a temporary account contribs, text is the same as username' => [
+		yield 'Link to a temporary account contribs, default caption' => [
 			'ns' => NS_SPECIAL,
 			'title' => 'Contributions/~2025-1',
-			'linkText' => '~2025-1',
+			'isDefaultCaption' => true,
 			'expected' => [ 'mw-tempuserlink' ],
 		];
-		yield 'Link to a temporary account contribs, different text' => [
+		yield 'Link to a temporary account contribs, non-default caption' => [
 			'ns' => NS_SPECIAL,
 			'title' => 'Contributions/~2025-1',
-			'linkText' => 'Lorem ipsum',
+			'isDefaultCaption' => false,
 			'expected' => [],
 		];
 	}

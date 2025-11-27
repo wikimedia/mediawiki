@@ -298,7 +298,7 @@ class LinkRenderer {
 		if ( $isExternal ) {
 			$classes[] = 'extiw';
 		}
-		$colour = $this->getLinkClasses( $target, $text );
+		$colour = $this->getLinkClasses( $target, $this->isDefaultLinkCaption( $target, $text ) );
 		if ( $colour !== '' ) {
 			$classes[] = $colour;
 		}
@@ -354,7 +354,7 @@ class LinkRenderer {
 		}
 
 		$url = $this->getLinkURL( $target, $query );
-		$classes = trim( 'new ' . $this->getLinkClasses( $target, $text ) );
+		$classes = rtrim( 'new ' . $this->getLinkClasses( $target, $this->isDefaultLinkCaption( $target, $text ) ) );
 		// Define empty attributes here for consistent order in the output
 		$attribs = [ 'href' => null, 'class' => $classes, 'title' => null ];
 
@@ -609,17 +609,17 @@ class LinkRenderer {
 	 * makeKnownLink() or in LinkHolderArray).
 	 *
 	 * @param LinkTarget|PageReference $target Page that will be visited when the user clicks on the link.
-	 * @param string|HtmlArmor|null $text The link text
+	 * @param bool $isDefaultCaption Whether the link text is the default caption for the target.
 	 * @return string CSS class
 	 */
-	public function getLinkClasses( $target, $text = null ) {
+	public function getLinkClasses( $target, bool $isDefaultCaption = false ) {
 		Assert::parameterType( [ LinkTarget::class, PageReference::class ], $target, '$target' );
 		$target = $this->castToLinkTarget( $target );
 		// Don't call LinkCache if the target is "non-proper"
 		if ( $target->isExternal() || $target->getText() === '' ) {
 			return '';
 		}
-		$classes = $this->userLinkRenderer->getLinkClasses( $target, $text );
+		$classes = $this->userLinkRenderer->getLinkClasses( $target, $isDefaultCaption );
 		if ( $target->getNamespace() < 0 ) {
 			return implode( ' ', $classes );
 		}
@@ -662,5 +662,64 @@ class LinkRenderer {
 			return $target;
 		}
 		return TitleValue::newFromLinkTarget( $target );
+	}
+
+	/**
+	 * Checks if the provided caption can be considered a default link caption
+	 * for the given target page.
+	 *
+	 * A caption is default if, after stripping HTML tags and decoding HTML entities in it:
+	 *   - it's a suffix of the target's prefixed title, and
+	 *   - the target's prefixed title, after stripping the caption from the end,
+	 *     ends with a colon, slash, or is empty.
+	 *
+	 * NOTE: For a given title, there may be multiple captions that are considered default.
+	 *   For example, for "User:Admin/Sandbox", the default captions will be: "Sandbox",
+	 *   "Admin/Sandbox", and "User:Admin/Sandbox".
+	 *
+	 * Examples:
+	 *  - Target: "Help:Contents", Caption: "Contents" => true
+	 *  - Target: "Help:Contents", Caption: "Help:Contents" => true
+	 *  - Target: "Help:Contents", Caption: "ents" => false
+	 *  - Target: "User:~2025-1", Caption: "&#126;2025-1" => true
+	 *
+	 * @return bool
+	 */
+	public function isDefaultLinkCaption(
+		LinkTarget|PageReference|null $targetPage,
+		string|HtmlArmor|null $caption
+	): bool {
+		// If the target page is invalid, it has no default caption
+		if ( $targetPage === null ) {
+			return false;
+		}
+		if ( $caption instanceof HtmlArmor ) {
+			$caption = HtmlArmor::getHtml( $caption );
+		}
+		$caption ??= $this->getLinkText( $targetPage );
+		$caption = html_entity_decode( strip_tags( $caption ) );
+		$captionLength = mb_strlen( $caption );
+
+		$prefixedTitle = $this->titleFormatter->getPrefixedText( $targetPage );
+		$titleLength = mb_strlen( $prefixedTitle );
+
+		if ( $captionLength > $titleLength ) {
+			return false;
+		}
+
+		$titleSuffix = mb_substr( $prefixedTitle, -$captionLength );
+		if ( $titleSuffix !== $caption ) {
+			return false;
+		}
+
+		if ( $titleLength === $captionLength ) {
+			return true;
+		}
+
+		$precedingChar = mb_substr( $prefixedTitle, -$captionLength - 1, 1 );
+		if ( $precedingChar === ':' || $precedingChar === '/' ) {
+			return true;
+		}
+		return false;
 	}
 }
