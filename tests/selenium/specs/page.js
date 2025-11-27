@@ -30,7 +30,7 @@ describe( 'Page', () => {
 		}
 	} );
 
-	it( 'should be previewable @daily', async () => {
+	it( 'should be previewable', async () => {
 		await LoginPage.loginAdmin();
 		await EditPage.preview( name, content );
 
@@ -67,7 +67,7 @@ describe( 'Page', () => {
 		await expect( EditPage.displayedContent ).toHaveText( content );
 	} );
 
-	it( 'should be editable @daily', async () => {
+	it( 'should be editable', async () => {
 		// create
 		await apiClient.edit( name, content, 'create for edit' );
 
@@ -80,7 +80,7 @@ describe( 'Page', () => {
 		await expect( EditPage.displayedContent ).toHaveText( expect.stringContaining( editContent ) );
 	} );
 
-	it( 'should have history @daily', async () => {
+	it( 'should have history', async () => {
 		// create
 		await apiClient.edit( name, content, `created with "${ content }"` );
 
@@ -139,7 +139,7 @@ describe( 'Page', () => {
 		await expect( EditPage.heading ).toHaveText( `View source for ${ name }` );
 	} );
 
-	it( 'should be undoable @daily', async () => {
+	it( 'should be undoable', async () => {
 
 		// create
 		await apiClient.edit( name, content, 'create to edit and undo' );

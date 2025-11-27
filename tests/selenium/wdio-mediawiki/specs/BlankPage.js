@@ -1,7 +1,7 @@
 import BlankPage from './../BlankPage.js';
 
 describe( 'BlankPage', () => {
-	it( 'should have its title @daily', async () => {
+	it( 'should have its title', async () => {
 		await BlankPage.open();
 
 		// check

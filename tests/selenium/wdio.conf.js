@@ -11,12 +11,6 @@ export const config = { ...wdioDefaults,
 		'specs/**/*.js',
 		'wdio-mediawiki/specs/*.js'
 	],
-	suites: {
-		daily: [
-			'specs/page.js',
-			'wdio-mediawiki/specs/BlankPage.js'
-		]
-	},
 	mochaOpts: {
 		...wdioDefaults.mochaOpts,
 		retries: 1

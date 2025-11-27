@@ -8,7 +8,6 @@
 		"minify:svg": "svgo --config=.svgo.config.js --quiet --recursive --folder resources/src --folder resources/assets",
 		"mocha": "mocha --timeout 0 --recursive",
 		"qunit": "grunt qunit",
-		"selenium-daily": "WDIO_TARGET=beta wdio ./tests/selenium/wdio.conf.js --suite daily --mochaOpts.grep @daily",
 		"selenium-test": "if [ \"$CI\" = true ]; then node tests/selenium/docs/Stack/webdriverio.js; fi && wdio ./tests/selenium/wdio.conf.js",
 		"test": "grunt lint && npm run doc && npm run jest",
 		"jest": "jest --config tests/jest/jest.config.js"
