@@ -697,7 +697,6 @@ $wgAutoloadLocalClasses = [
 	'LanguageMl' => __DIR__ . '/includes/Languages/LanguageMl.php',
 	'LanguageMy' => __DIR__ . '/includes/Languages/LanguageMy.php',
 	'LanguageNameIndexer' => __DIR__ . '/maintenance/languageNameIndexer.php',
-	'LanguageNameSearchData' => __DIR__ . '/includes/Language/LanguageNameSearchData.php',
 	'LanguageOs' => __DIR__ . '/includes/Languages/LanguageOs.php',
 	'LanguageQqx' => __DIR__ . '/includes/Languages/LanguageQqx.php',
 	'LanguageSh' => __DIR__ . '/includes/Languages/LanguageSh.php',

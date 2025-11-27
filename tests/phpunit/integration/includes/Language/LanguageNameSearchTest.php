@@ -6,7 +6,6 @@ use MediaWiki\Language\LanguageNameSearch;
 /**
  * @group Language
  * @covers \MediaWiki\Language\LanguageNameSearch
- * @covers \LanguageNameSearchData
  */
 class LanguageNameSearchTest extends MediaWikiIntegrationTestCase {
 	/**

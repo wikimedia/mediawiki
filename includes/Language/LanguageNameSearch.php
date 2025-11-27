@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Language;
 
-use LanguageNameSearchData;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -90,8 +89,16 @@ class LanguageNameSearch {
 			}
 		}
 
-		$index = $this->getIndex( $searchKey );
-		$bucketsForIndex = LanguageNameSearchData::$buckets[$index] ?? [];
+		$index = self::getIndex( $searchKey );
+		static $buckets = null;
+		if ( $buckets === null ) {
+			$data = json_decode(
+				file_get_contents( __DIR__ . '/../../languages/data/LanguageNameSearchData.json' ),
+				true
+			);
+			$buckets = $data['buckets'] ?? [];
+		}
+		$bucketsForIndex = $buckets[$index] ?? [];
 
 		// types are 'prefix', 'infix' (in this order!)
 		foreach ( $bucketsForIndex as $bucket ) {
