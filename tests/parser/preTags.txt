@@ -415,7 +415,7 @@ HTML-pre: 3: other wikitext
 !! article
 Template:Pre
 !! text
-<pre<includeonly></includeonly>>{{{1}}}</pre>
+<pre<includeonly></includeonly> format="wikitext">{{{1}}}</pre>
 !! endarticle
 
 !! test
@@ -429,7 +429,7 @@ Template pre: Simple
 <pre>123</pre>
 !! html/parsoid+integrated
 <pre typeof="mw:Extension/pre" data-mw='{"name":"pre","attrs":{},"body":{"extsrc":"123"}}'>123</pre>
-<pre typeof="mw:Extension/pre mw:Transclusion" data-mw='{"name":"pre","attrs":{},"body":{"extsrc":"123"},"parts":[{"template":{"target":{"wt":"pre","href":"./Template:Pre"},"params":{"1":{"wt":"123"}},"i":0}}]}'>123</pre>
+<pre typeof="mw:Extension/pre mw:Transclusion" data-mw='{"name":"pre","attrs":{"format":"wikitext"},"body":{"extsrc":"123"},"parts":[{"template":{"target":{"wt":"pre","href":"./Template:Pre"},"params":{"1":{"wt":"123"}},"i":0}}]}'>123</pre>
 !! end
 
 !! test
@@ -443,7 +443,7 @@ Template pre: Quotes
 <pre><b>123</b></pre>
 !! html/parsoid+integrated
 <pre typeof="mw:Extension/pre" data-mw='{"name":"pre","attrs":{},"body":{"extsrc":"&apos;&apos;&apos;123&apos;&apos;&apos;"}}'>'''123'''</pre>
-<pre typeof="mw:Extension/pre mw:Transclusion" data-mw='{"name":"pre","attrs":{},"body":{"extsrc":"&apos;&apos;&apos;123&apos;&apos;&apos;"},"parts":[{"template":{"target":{"wt":"pre","href":"./Template:Pre"},"params":{"1":{"wt":"&apos;&apos;&apos;123&apos;&apos;&apos;"}},"i":0}}]}'>'''123'''</pre>
+<pre typeof="mw:Extension/pre mw:Transclusion" data-mw='{"name":"pre","attrs":{"format":"wikitext"},"body":{"extsrc":"&apos;&apos;&apos;123&apos;&apos;&apos;"},"parts":[{"template":{"target":{"wt":"pre","href":"./Template:Pre"},"params":{"1":{"wt":"&apos;&apos;&apos;123&apos;&apos;&apos;"}},"i":0}}]}'><b>123</b></pre>
 !! end
 
 !! test
@@ -467,7 +467,7 @@ b</pre>
 <pre typeof="mw:Extension/pre" data-mw='{"name":"pre","attrs":{},"body":{"extsrc":"a\n test\nb"}}'>a
  test
 b</pre>
-<pre typeof="mw:Extension/pre mw:Transclusion" data-mw='{"name":"pre","attrs":{},"body":{"extsrc":"a\n test\nb"},"parts":[{"template":{"target":{"wt":"pre","href":"./Template:Pre"},"params":{"1":{"wt":"a\n test\nb"}},"i":0}}]}'>a
+<pre typeof="mw:Extension/pre mw:Transclusion" data-mw='{"name":"pre","attrs":{"format":"wikitext"},"body":{"extsrc":"a\n test\nb"},"parts":[{"template":{"target":{"wt":"pre","href":"./Template:Pre"},"params":{"1":{"wt":"a\n test\nb"}},"i":0}}]}'>a
  test
 b</pre>
 !! end
@@ -499,11 +499,14 @@ bar
 <pre typeof="mw:Extension/pre" data-mw='{"name":"pre","attrs":{},"body":{"extsrc":"\nfoo\n\nbar\n"}}'>foo
 
 bar</pre>
-<pre typeof="mw:Extension/pre mw:Transclusion" data-mw='{"name":"pre","attrs":{},"body":{"extsrc":"\nfoo\n\nbar\n"},"parts":[{"template":{"target":{"wt":"pre","href":"./Template:Pre"},"params":{"1":{"wt":"\nfoo\n\nbar\n"}},"i":0}}]}'>foo
+<pre typeof="mw:Extension/pre mw:Transclusion" data-mw='{"name":"pre","attrs":{"format":"wikitext"},"body":{"extsrc":"\nfoo\n\nbar\n"},"parts":[{"template":{"target":{"wt":"pre","href":"./Template:Pre"},"params":{"1":{"wt":"\nfoo\n\nbar\n"}},"i":0}}]}'>
+
+foo
 
 bar</pre>
 !! end
 
+## Known difference
 !! test
 Template pre: List
 !! wikitext
@@ -526,8 +529,10 @@ Template pre: List
 !! html/parsoid+integrated
 <pre typeof="mw:Extension/pre" data-mw='{"name":"pre","attrs":{},"body":{"extsrc":"\n*list\n*item\n"}}'>*list
 *item</pre>
-<pre typeof="mw:Extension/pre mw:Transclusion" data-mw='{"name":"pre","attrs":{},"body":{"extsrc":"\n*list\n*item\n"},"parts":[{"template":{"target":{"wt":"pre","href":"./Template:Pre"},"params":{"1":{"wt":"\n*list\n*item\n"}},"i":0}}]}'>*list
-*item</pre>
+<pre typeof="mw:Extension/pre mw:Transclusion" data-mw='{"name":"pre","attrs":{"format":"wikitext"},"body":{"extsrc":"\n*list\n*item\n"},"parts":[{"template":{"target":{"wt":"pre","href":"./Template:Pre"},"params":{"1":{"wt":"\n*list\n*item\n"}},"i":0}}]}'>
+
+<ul><li>list</li>
+<li>item</li></ul></pre>
 !! end
 
 !! test
@@ -558,9 +563,9 @@ Template pre: Table
 <pre typeof="mw:Extension/pre" data-mw='{"name":"pre","attrs":{},"body":{"extsrc":"\n{|\n|test\n|}\n"}}'>{|
 |test
 |}</pre>
-<pre typeof="mw:Extension/pre mw:Transclusion" data-mw='{"name":"pre","attrs":{},"body":{"extsrc":"\n{|\n|test\n|}\n"},"parts":[{"template":{"target":{"wt":"pre","href":"./Template:Pre"},"params":{"1":{"wt":"\n{{{!}}\n{{!}}test\n{{!}}}\n"}},"i":0}}]}'>{|
-|test
-|}</pre>
+<pre typeof="mw:Extension/pre mw:Transclusion" data-mw='{"name":"pre","attrs":{"format":"wikitext"},"body":{"extsrc":"\n{|\n|test\n|}\n"},"parts":[{"template":{"target":{"wt":"pre","href":"./Template:Pre"},"params":{"1":{"wt":"\n{{{!}}\n{{!}}test\n{{!}}}\n"}},"i":0}}]}'>
+
+<table><tbody><tr><td>test</td></tr></tbody></table></pre>
 !! end
 
 !! test
@@ -585,8 +590,10 @@ Template pre: Link
 !! html/parsoid+integrated
 <pre typeof="mw:Extension/pre" data-mw='{"name":"pre","attrs":{},"body":{"extsrc":"\n[[Test]]\n[https://google.com 123]\n"}}'>[[Test]]
 [https://google.com 123]</pre>
-<pre typeof="mw:Extension/pre mw:Transclusion" data-mw='{"name":"pre","attrs":{},"body":{"extsrc":"\n[[Test]]\n[https://google.com 123]\n"},"parts":[{"template":{"target":{"wt":"pre","href":"./Template:Pre"},"params":{"1":{"wt":"\n[[Test]]\n[https://google.com 123]\n"}},"i":0}}]}'>[[Test]]
-[https://google.com 123]</pre>
+<pre typeof="mw:Extension/pre mw:Transclusion" data-mw='{"name":"pre","attrs":{"format":"wikitext"},"body":{"extsrc":"\n[[Test]]\n[https://google.com 123]\n"},"parts":[{"template":{"target":{"wt":"pre","href":"./Template:Pre"},"params":{"1":{"wt":"\n[[Test]]\n[https://google.com 123]\n"}},"i":0}}]}'>
+
+<a rel="mw:WikiLink" href="./Test?action=edit&amp;redlink=1" title="Test" class="new" typeof="mw:LocalizedAttrs" data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["Test"]}}'>Test</a>
+<a rel="mw:ExtLink" href="https://google.com" class="external text">123</a></pre>
 !! end
 
 !! test
@@ -610,8 +617,8 @@ line</pre>
 <pre typeof="mw:Extension/pre" data-mw='{"name":"pre","attrs":{},"body":{"extsrc":"new\n=== test ===\nline"}}'>new
 === test ===
 line</pre>
-<pre typeof="mw:Extension/pre mw:Transclusion" data-mw='{"name":"pre","attrs":{},"body":{"extsrc":"new\n=== test ===\nline"},"parts":[{"template":{"target":{"wt":"pre","href":"./Template:Pre"},"params":{"1":{"wt":"new\n=== test ===\nline"}},"i":0}}]}'>new
-=== test ===
+<pre typeof="mw:Extension/pre mw:Transclusion" data-mw='{"name":"pre","attrs":{"format":"wikitext"},"body":{"extsrc":"new\n=== test ===\nline"},"parts":[{"template":{"target":{"wt":"pre","href":"./Template:Pre"},"params":{"1":{"wt":"new\n=== test ===\nline"}},"i":0}}]}'>new
+<h3 id="test">test</h3>
 line</pre>
 !! end
 
@@ -622,7 +629,7 @@ Template:Nested template in pre
 {{1x|hi}}
 </pre>
 
-<pre<includeonly></includeonly>>
+<pre<includeonly></includeonly> format="wikitext">
 {{1x|hi}}
 </pre>
 !! endarticle
@@ -637,10 +644,14 @@ Template pre: Nested template
 <pre>hi
 </pre>
 !! html/parsoid+integrated
-<pre about="#mwt1" typeof="mw:Extension/pre mw:Transclusion" data-mw='{"name":"pre","attrs":{},"body":{"extsrc":"\n{{1x|hi}}\n"},"parts":[{"template":{"target":{"wt":"nested template in pre","href":"./Template:Nested_template_in_pre"},"params":{},"i":0}}]}'>{{1x|hi}}</pre><span about="#mwt1">
-</span><pre about="#mwt1" typeof="mw:Extension/pre" data-mw='{"name":"pre","attrs":{},"body":{"extsrc":"\nhi\n"}}'>hi</pre>
+<pre typeof="mw:Extension/pre mw:Transclusion" about="#mwt1" data-mw='{"name":"pre","attrs":{},"body":{"extsrc":"\n{{1x|hi}}\n"},"parts":[{"template":{"target":{"wt":"nested template in pre","href":"./Template:Nested_template_in_pre"},"params":{},"i":0}}]}'>{{1x|hi}}</pre><span about="#mwt1">
+</span><pre typeof="mw:Extension/pre" about="#mwt1" data-mw='{"name":"pre","attrs":{"format":"wikitext"},"body":{"extsrc":"\nhi\n"}}'>
+
+hi</pre>
 !! end
 
+## The extsrc contains a fragment marker because the legacy parser
+## didn't consider the pre an extension during template expansion
 !! test
 Template pre: Nowiki
 !! wikitext
@@ -656,7 +667,9 @@ Template pre: Nowiki
 </pre>
 <pre>test
 </pre>
-!! html/parsoid+integrated+disabled
+!! html/parsoid+integrated
 <pre typeof="mw:Extension/pre" data-mw='{"name":"pre","attrs":{},"body":{"extsrc":"\n&lt;nowiki>test&lt;/nowiki>\n"}}'>test</pre>
-<pre typeof="mw:Extension/pre mw:Transclusion" data-mw='{"name":"pre","attrs":{},"body":{"extsrc":"\n{{#parsoid\u0000fragment:0}}\n"},"parts":[{"template":{"target":{"wt":"pre","href":"./Template:Pre"},"params":{"1":{"wt":"\n&lt;nowiki>test&lt;/nowiki>\n"}},"i":0}}]}'>{{#parsoid</pre>
+<pre typeof="mw:Extension/pre mw:Transclusion" data-mw='{"name":"pre","attrs":{"format":"wikitext"},"body":{"extsrc":"\n{{#parsoid\u0000fragment:0}}\n"},"parts":[{"template":{"target":{"wt":"pre","href":"./Template:Pre"},"params":{"1":{"wt":"\n&lt;nowiki>test&lt;/nowiki>\n"}},"i":0}}]}'>
+
+test</pre>
 !! end
