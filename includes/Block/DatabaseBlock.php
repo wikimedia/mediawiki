@@ -169,20 +169,6 @@ class DatabaseBlock extends AbstractBlock {
 	}
 
 	/**
-	 * Delete the row from the IP blocks table.
-	 *
-	 * @deprecated since 1.36 Use DatabaseBlockStore::deleteBlock instead.
-	 * @return bool
-	 */
-	public function delete() {
-		wfDeprecated( __METHOD__, '1.36' );
-		return MediaWikiServices::getInstance()
-			->getDatabaseBlockStoreFactory()
-			->getDatabaseBlockStore( $this->getWikiId() )
-			->deleteBlock( $this );
-	}
-
-	/**
 	 * Insert a block into the block table. Will fail if there is a conflicting
 	 * block (same name and options) already in the database.
 	 *
