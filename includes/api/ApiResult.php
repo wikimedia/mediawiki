@@ -797,10 +797,7 @@ class ApiResult implements ApiSerializable {
 	 * @return bool
 	 */
 	public static function isMetadataKey( $key ) {
-		// Optimization: This is a very hot and highly optimized code path. Note that ord() only
-		// considers the first character and also works with empty strings and integers.
-		// 95 corresponds to the '_' character.
-		return ord( $key ) === 95;
+		return str_starts_with( $key, '_' );
 	}
 
 	/**
