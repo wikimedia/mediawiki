@@ -66,6 +66,7 @@ class AutoLoaderTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * See T398513
 	 * This does not test if the namespace matched, as not all classes follow PSR-4
+	 * Remove this test when all classes are namespaced, it is covered by PSR-4 testing
 	 */
 	public function testCapitaliseFolder() {
 		global $wgAutoloadLocalClasses, $IP;
@@ -84,5 +85,54 @@ class AutoLoaderTest extends MediaWikiIntegrationTestCase {
 			}
 		}
 		$this->assertSame( [], $error, 'All folder with php classes must start with upper case' );
+	}
+
+	public function testPsr4Mapping() {
+		global $wgAutoloadLocalClasses, $IP;
+
+		$error = [];
+		$prefixLen = strlen( $IP ) + 1;
+		foreach ( $wgAutoloadLocalClasses as $className => $file ) {
+			// Classes in the global namespace are not relevant
+			if ( !str_contains( $className, '\\' ) ) {
+				continue;
+			}
+
+			$extDot = strrpos( $file, '.' );
+			$subPath = substr( $file, $prefixLen, $extDot - $prefixLen );
+
+			// Ignore maintenance scripts - T411218
+			if ( !str_starts_with( $subPath, 'includes/' ) ) {
+				continue;
+			}
+
+			// Ignore Message until re-namespaced - T411216
+			if ( str_starts_with( $className, 'MediaWiki\\Message\\' )
+				// Ignore Rdbms until folder structure reworked - T411217
+				|| str_starts_with( $className, 'Wikimedia\\Rdbms\\' )
+			) {
+				continue;
+			}
+
+			$reflectionClass = new ReflectionClass( $className );
+			// class-alias supported for backward compatibility on cross-namespace moves are not relevant
+			if ( $reflectionClass->getName() !== $className ) {
+				continue;
+			}
+
+			if ( str_starts_with( $subPath, 'includes/libs/' ) ) {
+				$subPath = substr( $subPath, 14 );
+				$highLevelNamespace = 'Wikimedia\\';
+			} else {
+				$subPath = substr( $subPath, 9 );
+				$highLevelNamespace = 'MediaWiki\\';
+			}
+
+			$expectedClassName = $highLevelNamespace . strtr( $subPath, [ '/' => '\\' ] );
+			if ( $expectedClassName !== $className ) {
+				$error[$className] = $expectedClassName;
+			}
+		}
+		$this->assertSame( [], $error, 'All namespaced classes should follow PSR-4' );
 	}
 }
