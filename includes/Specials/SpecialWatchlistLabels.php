@@ -7,6 +7,7 @@
 namespace MediaWiki\Specials;
 
 use InvalidArgumentException;
+use MediaWiki\Exception\UserNotLoggedIn;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\MainConfigNames;
@@ -46,6 +47,18 @@ class SpecialWatchlistLabels extends SpecialPage {
 
 	/** @inheritDoc */
 	public function execute( $subPage ) {
+		$user = $this->getUser();
+		$right = $subPage === self::SUBPAGE_EDIT ? 'editmywatchlist' : 'viewmywatchlist';
+		if ( !$user->isRegistered()
+			|| ( $user->isTemp() && !$user->isAllowed( $right ) )
+		) {
+			// The message used here will be one of:
+			// * watchlistlabels-not-logged-in
+			// * watchlistlabels-not-logged-in-for-temp-user
+			throw new UserNotLoggedIn( 'watchlistlabels-not-logged-in' );
+		}
+		$this->checkPermissions();
+
 		$output = $this->getOutput();
 		$output->setPageTitleMsg( $this->msg( 'watchlistlabels-title' ) );
 		$this->addHelpLink( 'Help:Watchlist labels' );

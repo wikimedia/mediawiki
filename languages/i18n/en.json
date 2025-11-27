@@ -2167,6 +2167,8 @@
 	"unwatching": "Unwatching...",
 	"watchlistlabels-title": "Manage watchlist labels",
 	"watchlistlabels-not-enabled": "The watchlist labels feature is not enabled on this wiki.",
+	"watchlistlabels-not-logged-in": "Please log in to manage your watchlist labels.",
+	"watchlistlabels-not-logged-in-for-temp-user": "Please create an account to manage your watchlist labels.",
 	"watchlistlabels-table-title": "Create and remove labels",
 	"watchlistlabels-table-description": "Your saved labels are shown below.",
 	"watchlistlabels-table-header": "Labels",

@@ -26,6 +26,8 @@ class LoginHelper extends ContextSource {
 		'exception-nologin-text-for-temp-user',
 		'watchlistanontext',
 		'watchlistanontext-for-temp-user',
+		'watchlistlabels-not-logged-in',
+		'watchlistlabels-not-logged-in-for-temp-user',
 		'changeemail-no-info',
 		'confirmemail_needlogin',
 		'prefsnologintext2',
