@@ -1092,6 +1092,17 @@ abstract class UploadBase {
 	}
 
 	/**
+	 * Check, if stash file attempt should be skipped,
+	 * for example when the file is already known to stash.
+	 *
+	 * @since 1.46
+	 * @stable to override
+	 */
+	public function skipStashFileAttempt(): bool {
+		return $this->getStashFile() !== null;
+	}
+
+	/**
 	 * @param User $user
 	 * @return array|null Error message and parameters, null if there's no error
 	 */

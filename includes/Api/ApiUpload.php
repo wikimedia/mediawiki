@@ -516,7 +516,7 @@ class ApiUpload extends ApiBase {
 	 * @return string|null File key
 	 */
 	private function performStash( $failureMode, &$data = [] ) {
-		if ( $failureMode === 'optional' && $this->mUpload->getStashFile() !== null ) {
+		if ( $failureMode === 'optional' && $this->mUpload->skipStashFileAttempt() ) {
 			return null;
 		}
 

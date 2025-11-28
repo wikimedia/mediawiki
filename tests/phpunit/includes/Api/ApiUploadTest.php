@@ -335,6 +335,37 @@ class ApiUploadTest extends ApiUploadTestCase {
 		$this->assertArrayNotHasKey( 'exists', $result['upload']['warnings'] );
 	}
 
+	public function testUploadSameContentReupload() {
+		$fileName = 'TestUploadSameContentReupload.jpg';
+		$mimeType = 'image/jpeg';
+		$filePath = $this->filePath( 'yuv420.jpg' );
+
+		// first upload .... should succeed
+		$this->fakeUploadFile( 'file', $fileName, $mimeType, $filePath );
+		[ $result ] = $this->doApiRequestWithToken( [
+			'action' => 'upload',
+			'filename' => $fileName,
+			'file' => 'dummy content',
+			'comment' => 'dummy comment',
+			'text' => "This is the page text for {$fileName}",
+		], null, $this->uploader );
+		$this->assertArrayHasKey( 'upload', $result );
+		$this->assertEquals( 'Success', $result['upload']['result'] );
+
+		// expect empty api data, no stasherrors key should be there
+		$this->expectApiErrorCode( 'fileexists-no-change', [] );
+		// second upload with the same content and same name (reupload)
+		$this->fakeUploadFile( 'file', $fileName, $mimeType, $filePath );
+		$this->doApiRequestWithToken( [
+			'action' => 'upload',
+			'filename' => $fileName,
+			'file' => 'dummy content',
+			'ignorewarnings' => 1,
+			'comment' => 'dummy comment',
+			'text' => "This is the page text for reupload $fileName",
+		], null, $this->uploader );
+	}
+
 	public function testUploadSizeWarning() {
 		$this->overrideConfigValues( [
 			MainConfigNames::MaxUploadSize => 500 * 1024,

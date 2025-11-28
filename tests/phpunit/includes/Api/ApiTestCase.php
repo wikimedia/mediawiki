@@ -185,13 +185,14 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 		try {
 			$module->execute();
 		} catch ( ApiUsageException $exception ) {
-			if ( !isset( $this->expectedApiErrorCode ) ) {
+			if ( $this->expectedApiErrorCodeAndData === null ) {
 				throw $exception;
 			}
 
-			$this->assertApiErrorCode( $this->expectedApiErrorCode, $exception );
+			[ $errorCode, $errorData ] = $this->expectedApiErrorCodeAndData;
+			$this->assertApiErrorCode( $errorCode, $exception, '', $errorData );
 			// Exception used, no failure in post assertion needed
-			$this->expectedApiErrorCode = null;
+			$this->expectedApiErrorCodeAndData = null;
 
 			// rethrow, no further code in the test class can be executed
 			$this->expectException( ApiUsageException::class );
@@ -275,14 +276,16 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 		$this->expectExceptionMessage( $expected->getMessage() );
 	}
 
-	private ?string $expectedApiErrorCode;
+	/** @var ?array{string,?array} */
+	private ?array $expectedApiErrorCodeAndData = null;
 
 	/** @postCondition */
 	public function expectedApiErrorThrownPostConditions(): void {
-		if ( isset( $this->expectedApiErrorCode ) ) {
+		if ( $this->expectedApiErrorCodeAndData !== null ) {
+			[ $expectedCode, ] = $this->expectedApiErrorCodeAndData;
 			self::fail( sprintf(
 				'Failed asserting that exception with API error code "%s" is thrown',
-				$this->expectedApiErrorCode
+				$expectedCode
 			) );
 		}
 	}
@@ -293,9 +296,10 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 	 *
 	 * @since 1.41
 	 * @param string $expectedCode
+	 * @param ?array $expectedData Optional api data of the exception, set via IApiMessage, since 1.46
 	 */
-	protected function expectApiErrorCode( string $expectedCode ) {
-		$this->expectedApiErrorCode = $expectedCode;
+	protected function expectApiErrorCode( string $expectedCode, ?array $expectedData = null ) {
+		$this->expectedApiErrorCodeAndData = [ $expectedCode, $expectedData ];
 	}
 
 	/**
@@ -315,9 +319,10 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 			$this->expectException( ApiUsageException::class );
 			throw $exception;
 		}
+		[ $expectedCode, ] = $this->expectedApiErrorCodeAndData;
 		self::fail( sprintf(
 			'Failed asserting that exception with API error code "%s" is thrown',
-			$this->expectedApiErrorCode
+			$expectedCode
 		) );
 	}
 
@@ -328,41 +333,70 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 	 * @param string $expectedCode
 	 * @param ApiUsageException $exception
 	 * @param string $message
+	 * @param ?array $expectedData since 1.46
 	 */
-	protected function assertApiErrorCode( string $expectedCode, ApiUsageException $exception, string $message = '' ) {
-		$constraint = new class( $expectedCode ) extends Constraint {
+	protected function assertApiErrorCode(
+		string $expectedCode, ApiUsageException $exception, string $message = '', ?array $expectedData = null
+	) {
+		$constraint = new class( $expectedCode, $expectedData ) extends Constraint {
 			private string $expectedApiErrorCode;
+			private ?array $expectedApiErrorData;
 
-			public function __construct( string $expected ) {
+			public function __construct( string $expected, ?array $expectedData ) {
 				$this->expectedApiErrorCode = $expected;
+				$this->expectedApiErrorData = $expectedData;
 			}
 
 			public function toString(): string {
 				return 'API error code is ';
 			}
 
-			private function getApiErrorCode( $other ) {
+			private function getApiErrorCodeAndData( $other ) {
 				if ( !$other instanceof ApiUsageException ) {
 					return null;
 				}
 				$errors = $other->getStatusValue()->getMessages();
 				if ( count( $errors ) === 0 ) {
-					return '(no error)';
+					return [
+						'(no error)',
+						null,
+					];
 				} elseif ( count( $errors ) > 1 ) {
-					return '(multiple errors)';
+					return [
+						'(multiple errors)',
+						null,
+					];
 				}
-				return ApiMessage::create( $errors[0] )->getApiCode();
+				$apiMessage = ApiMessage::create( $errors[0] );
+				return [
+					$apiMessage->getApiCode(),
+					$apiMessage->getApiData(),
+				];
 			}
 
 			protected function matches( $other ): bool {
-				return $this->getApiErrorCode( $other ) === $this->expectedApiErrorCode;
+				[ $errorCode, $errorData ] = $this->getApiErrorCodeAndData( $other );
+				return $this->expectedApiErrorCode === $errorCode
+					// ignore the data, when $this->expectedApiErrorData is not given
+					&& ( $this->expectedApiErrorData === null || $this->expectedApiErrorData === $errorData );
 			}
 
 			protected function failureDescription( $other ): string {
+				[ $errorCode, $errorData ] = $this->getApiErrorCodeAndData( $other );
+				$exporter = $this->exporter();
+				if ( $this->expectedApiErrorData === null ) {
+					return sprintf(
+						'%s is equal to expected API error code %s',
+						$exporter->export( $errorCode ),
+						$exporter->export( $this->expectedApiErrorCode )
+					);
+				}
 				return sprintf(
-					'%s is equal to expected API error code %s',
-					$this->exporter()->export( $this->getApiErrorCode( $other ) ),
-					$this->exporter()->export( $this->expectedApiErrorCode )
+					'%s with data %s is equal to expected API error code %s with data %s',
+					$exporter->export( $errorCode ),
+					$exporter->export( $errorData ),
+					$exporter->export( $this->expectedApiErrorCode ),
+					$exporter->export( $this->expectedApiErrorData )
 				);
 			}
 		};

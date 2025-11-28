@@ -64,6 +64,14 @@ class UploadFromFile extends UploadBase {
 		return 'file';
 	}
 
+	public function skipStashFileAttempt(): bool {
+		$tempName = $this->mUpload?->getTempName();
+		if ( $tempName !== null ) {
+			return !file_exists( $tempName );
+		}
+		return parent::skipStashFileAttempt();
+	}
+
 	/**
 	 * @return array
 	 */
