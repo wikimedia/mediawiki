@@ -4,7 +4,7 @@
  * @file
  */
 
-namespace MediaWiki\Tests;
+namespace MediaWiki\Tests\Common\Parser;
 
 /**
  * A colour-less terminal, drop-in replacement for {@link AnsiTermColorer}.
@@ -20,3 +20,5 @@ class DummyTermColorer {
 		return '';
 	}
 }
+/** @deprecated class alias since 1.46 */
+class_alias( DummyTermColorer::class, 'MediaWiki\\Tests\\DummyTermColorer' );

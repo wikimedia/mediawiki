@@ -1,5 +1,11 @@
 <?php
 
+namespace MediaWiki\Tests\Common\Parser;
+
+use DOMDocument;
+use DOMNode;
+use DOMXPath;
+
 /**
  * @ingroup Testing
  */
@@ -94,3 +100,5 @@ class ParserTestResultNormalizer {
 			[ '<body>' => '', '</body>' => '' ] );
 	}
 }
+/** @deprecated class alias since 1.46 */
+class_alias( ParserTestResultNormalizer::class, 'ParserTestResultNormalizer' );

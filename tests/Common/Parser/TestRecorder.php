@@ -4,6 +4,7 @@
  * @file
  * @ingroup Testing
  */
+namespace MediaWiki\Tests\Common\Parser;
 
 use Wikimedia\Parsoid\ParserTests\Test as ParserTest;
 use Wikimedia\Parsoid\ParserTests\TestMode as ParserTestMode;
@@ -83,3 +84,5 @@ class TestRecorder {
 	}
 
 }
+/** @deprecated class alias since 1.46 */
+class_alias( TestRecorder::class, 'TestRecorder' );

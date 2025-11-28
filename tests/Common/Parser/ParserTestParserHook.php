@@ -6,6 +6,7 @@
  * @license GPL-2.0-or-later
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  */
+namespace MediaWiki\Tests\Common\Parser;
 
 use MediaWiki\Html\Html;
 use MediaWiki\Parser\Parser;
@@ -146,3 +147,5 @@ class ParserTestParserHook {
 		return $result;
 	}
 }
+/** @deprecated class alias since 1.46 */
+class_alias( ParserTestParserHook::class, 'ParserTestParserHook' );

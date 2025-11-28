@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\Tests\Common\Parser;
+
 use Wikimedia\Parsoid\ParserTests\Test as ParserTest;
 use Wikimedia\Parsoid\ParserTests\TestMode as ParserTestMode;
 
@@ -57,3 +59,5 @@ class MultiTestRecorder extends TestRecorder {
 		$this->proxy( __FUNCTION__, func_get_args() );
 	}
 }
+/** @deprecated class alias since 1.46 */
+class_alias( MultiTestRecorder::class, 'MultiTestRecorder' );

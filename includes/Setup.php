@@ -261,7 +261,7 @@ $wgSettings->apply();
 require __DIR__ . '/SetupDynamicConfig.php';
 
 if ( defined( 'MW_AUTOLOAD_TEST_CLASSES' ) ) {
-	require_once __DIR__ . '/../tests/common/TestsAutoLoader.php';
+	require_once __DIR__ . '/../tests/Common/TestsAutoLoader.php';
 }
 
 // Start time limit

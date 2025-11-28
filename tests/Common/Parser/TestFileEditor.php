@@ -1,4 +1,8 @@
 <?php
+namespace MediaWiki\Tests\Common\Parser;
+
+use OutOfBoundsException;
+use UnexpectedValueException;
 
 class TestFileEditor {
 	/** @var string[] */
@@ -197,3 +201,5 @@ class TestFileEditor {
 		$this->result .= $contents;
 	}
 }
+/** @deprecated class alias since 1.46 */
+class_alias( TestFileEditor::class, 'TestFileEditor' );

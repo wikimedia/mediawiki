@@ -1,4 +1,5 @@
 <?php
+namespace MediaWiki\Tests\Common\Parser;
 
 use PHPUnit\Framework\TestCase;
 use Wikimedia\Parsoid\ParserTests\Test as ParserTest;
@@ -22,3 +23,5 @@ class PhpunitTestRecorder extends TestRecorder {
 		$this->testCase->markTestSkipped( "SKIPPED: $reason" );
 	}
 }
+/** @deprecated class alias since 1.46 */
+class_alias( PhpunitTestRecorder::class, 'PhpunitTestRecorder' );

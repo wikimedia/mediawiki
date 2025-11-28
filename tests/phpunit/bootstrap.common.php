@@ -20,7 +20,7 @@ if ( getenv( 'PHPUNIT_WIKI' ) ) {
 	define( 'MW_WIKI_NAME', $wikiName );
 }
 
-require_once __DIR__ . '/../common/TestSetup.php';
+require_once __DIR__ . '/../Common/TestSetup.php';
 require_once __DIR__ . "/../../includes/BootstrapHelperFunctions.php";
 
 // phpcs:ignore MediaWiki.NamingConventions.ValidGlobalName.allowedPrefix

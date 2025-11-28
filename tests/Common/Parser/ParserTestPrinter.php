@@ -4,6 +4,7 @@
  * @file
  * @ingroup Testing
  */
+namespace MediaWiki\Tests\Common\Parser;
 
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Shell\Shell;
@@ -334,3 +335,5 @@ class ParserTestPrinter extends TestRecorder {
 		return ( $success == $total );
 	}
 }
+/** @deprecated class alias since 1.46 */
+class_alias( ParserTestPrinter::class, 'ParserTestPrinter' );

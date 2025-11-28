@@ -13,7 +13,7 @@ class StructureTest extends \PHPUnit\Framework\TestCase {
 		'tests/phpunit/integration/includes',
 		'tests/phpunit/unit/includes',
 		'tests/phpunit/mocks',
-		'tests/common/',
+		'tests/Common/',
 	];
 
 	/**

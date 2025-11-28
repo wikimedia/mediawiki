@@ -24,7 +24,7 @@ class PHPUnitMaintClass {
 		}
 
 		$this->prepareEnvironment();
-		require_once __DIR__ . '/../common/TestSetup.php';
+		require_once __DIR__ . '/../Common/TestSetup.php';
 		TestSetup::snapshotGlobals();
 	}
 
@@ -73,7 +73,7 @@ class PHPUnitMaintClass {
 			}
 		}
 
-		require_once __DIR__ . '/../common/TestsAutoLoader.php';
+		require_once __DIR__ . '/../Common/TestsAutoLoader.php';
 
 		TestSetup::applyInitialConfig();
 

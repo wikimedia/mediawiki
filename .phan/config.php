@@ -59,7 +59,7 @@ $cfg['directory_list'] = [
 	'maintenance/',
 	'mw-config/',
 	'resources/',
-	'tests/common/',
+	'tests/Common/',
 	'tests/parser/',
 	'tests/phan',
 	'tests/phpunit/mocks/',

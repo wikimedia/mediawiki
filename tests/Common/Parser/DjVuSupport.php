@@ -5,6 +5,7 @@
  * @file
  * @ingroup Testing
  */
+namespace MediaWiki\Tests\Common\Parser;
 
 /**
  * Initialize and detect the DjVu files support
@@ -39,3 +40,5 @@ class DjVuSupport {
 			&& is_executable( $wgDjvuTxt );
 	}
 }
+/** @deprecated class alias since 1.46 */
+class_alias( DjVuSupport::class, 'DjVuSupport' );

@@ -4,7 +4,7 @@
  * @file
  */
 
-namespace MediaWiki\Tests;
+namespace MediaWiki\Tests\Common\Parser;
 
 /**
  * Terminal that supports ANSI escape sequences.
@@ -35,3 +35,5 @@ class AnsiTermColorer {
 		return "\x1b[0m";
 	}
 }
+/** @deprecated class alias since 1.46 */
+class_alias( AnsiTermColorer::class, 'MediaWiki\\Tests\\AnsiTermColorer' );

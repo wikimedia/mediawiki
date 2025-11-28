@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\Tests\Common\Parser;
+
 use MediaWiki\Page\PageReference;
 use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\ParserOptions;
@@ -35,3 +37,5 @@ class ParserTestMockParser extends Parser {
 		return new ParserOutput;
 	}
 }
+/** @deprecated class alias since 1.46 */
+class_alias( ParserTestMockParser::class, 'ParserTestMockParser' );

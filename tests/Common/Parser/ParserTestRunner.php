@@ -11,7 +11,10 @@
  * @file
  * @ingroup Testing
  */
+namespace MediaWiki\Tests\Common\Parser;
 
+use BadMethodCallException;
+use MediaHandlerFactory;
 use MediaWiki\Content\WikitextContent;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
@@ -42,7 +45,17 @@ use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\Utils\MWTimestamp;
 use MediaWiki\WikiMap\WikiMap;
+use MediaWikiIntegrationTestCase;
+use MockFileBackend;
+use MockLocalRepo;
+use NullLockManager;
+use OOUI;
 use Psr\Log\NullLogger;
+use RecursiveDirectoryIterator;
+use RecursiveIteratorIterator;
+use RuntimeException;
+use SvgHandler;
+use SVGReader;
 use Wikimedia\Assert\Assert;
 use Wikimedia\FileBackend\FileBackend;
 use Wikimedia\FileBackend\FSFileBackend;
@@ -646,7 +659,7 @@ class ParserTestRunner {
 	 * @see staticSetup
 	 *
 	 * @param array $setup
-	 * @return closure
+	 * @return callable():void
 	 */
 	protected function executeSetupSnippets( $setup ) {
 		$saved = [];
@@ -702,7 +715,7 @@ class ParserTestRunner {
 	 * the teardown closure. If the flag was already set, throw an exception.
 	 *
 	 * @param string $funcName The setup function name
-	 * @return closure
+	 * @return callable():void
 	 */
 	protected function markSetupDone( $funcName ) {
 		if ( $this->setupDone[$funcName] ) {
@@ -2594,7 +2607,7 @@ class ParserTestRunner {
 				'media_type' => MEDIATYPE_BITMAP,
 				'mime' => 'image/jpeg',
 				'metadata' => [],
-				'sha1' => Wikimedia\base_convert( '1', 16, 36, 31 ),
+				'sha1' => \Wikimedia\base_convert( '1', 16, 36, 31 ),
 				'fileExists' => true
 			],
 			$this->db->timestamp( '20010115123500' )
@@ -2617,7 +2630,7 @@ class ParserTestRunner {
 				'media_type' => MEDIATYPE_BITMAP,
 				'mime' => 'image/jpeg',
 				'metadata' => [],
-				'sha1' => Wikimedia\base_convert( '4', 16, 36, 31 ),
+				'sha1' => \Wikimedia\base_convert( '4', 16, 36, 31 ),
 				'fileExists' => true
 			],
 			$this->db->timestamp( '20010115123500' )
@@ -2638,7 +2651,7 @@ class ParserTestRunner {
 				'media_type' => MEDIATYPE_BITMAP,
 				'mime' => 'image/png',
 				'metadata' => [],
-				'sha1' => Wikimedia\base_convert( '2', 16, 36, 31 ),
+				'sha1' => \Wikimedia\base_convert( '2', 16, 36, 31 ),
 				'fileExists' => true
 			],
 			$this->db->timestamp( '20130225203040' )
@@ -2668,7 +2681,7 @@ class ParserTestRunner {
 						'ru' => SVGReader::LANG_FULL_MATCH,
 					],
 				],
-				'sha1'        => Wikimedia\base_convert( '', 16, 36, 31 ),
+				'sha1'        => \Wikimedia\base_convert( '', 16, 36, 31 ),
 				'fileExists'  => true
 			],
 			$this->db->timestamp( '20010115123500' )
@@ -2689,7 +2702,7 @@ class ParserTestRunner {
 				'media_type' => MEDIATYPE_BITMAP,
 				'mime' => 'image/jpeg',
 				'metadata' => [],
-				'sha1' => Wikimedia\base_convert( '3', 16, 36, 31 ),
+				'sha1' => \Wikimedia\base_convert( '3', 16, 36, 31 ),
 				'fileExists' => true
 			],
 			$this->db->timestamp( '20010115123500' )
@@ -2709,7 +2722,7 @@ class ParserTestRunner {
 				'media_type' => MEDIATYPE_BITMAP,
 				'mime' => 'image/jpeg',
 				'metadata' => [],
-				'sha1' => Wikimedia\base_convert( '1', 16, 36, 31 ),
+				'sha1' => \Wikimedia\base_convert( '1', 16, 36, 31 ),
 				'fileExists' => true
 			],
 			$this->db->timestamp( '20010115123500' )
@@ -2729,7 +2742,7 @@ class ParserTestRunner {
 				'media_type' => MEDIATYPE_BITMAP,
 				'mime' => 'image/jpeg',
 				'metadata' => [],
-				'sha1' => Wikimedia\base_convert( '5', 16, 36, 31 ),
+				'sha1' => \Wikimedia\base_convert( '5', 16, 36, 31 ),
 				'fileExists' => true
 			],
 			$this->db->timestamp( '20010115123500' )
@@ -2749,7 +2762,7 @@ class ParserTestRunner {
 				'media_type' => MEDIATYPE_VIDEO,
 				'mime' => 'application/ogg',
 				'metadata' => [],
-				'sha1' => Wikimedia\base_convert( '', 16, 36, 31 ),
+				'sha1' => \Wikimedia\base_convert( '', 16, 36, 31 ),
 				'fileExists' => true
 			],
 			$this->db->timestamp( '20010115123500' )
@@ -2769,7 +2782,7 @@ class ParserTestRunner {
 				'media_type' => MEDIATYPE_AUDIO,
 				'mime' => 'application/ogg',
 				'metadata' => [],
-				'sha1' => Wikimedia\base_convert( '', 16, 36, 31 ),
+				'sha1' => \Wikimedia\base_convert( '', 16, 36, 31 ),
 				'fileExists' => true
 			],
 			$this->db->timestamp( '20010115123500' )
@@ -2801,7 +2814,7 @@ class ParserTestRunner {
 				'media_type' => MEDIATYPE_OFFICE,
 				'mime' => 'image/vnd.djvu',
 				'metadata' => $djvuMetadata,
-				'sha1' => Wikimedia\base_convert( '', 16, 36, 31 ),
+				'sha1' => \Wikimedia\base_convert( '', 16, 36, 31 ),
 				'fileExists' => true
 			],
 			$this->db->timestamp( '20010115123600' )
@@ -3158,3 +3171,5 @@ class ParserTestRunner {
 		return 123;
 	}
 }
+/** @deprecated class alias since 1.46 */
+class_alias( ParserTestRunner::class, 'ParserTestRunner' );

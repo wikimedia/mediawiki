@@ -4,6 +4,7 @@
  * @file
  * @ingroup Testing
  */
+namespace MediaWiki\Tests\Common\Parser;
 
 use MediaWiki\Installer\DatabaseUpdater;
 use Wikimedia\Rdbms\IMaintainableDatabase;
@@ -73,3 +74,5 @@ class DbTestRecorder extends TestRecorder {
 		$this->db->commit( __METHOD__ );
 	}
 }
+/** @deprecated class alias since 1.46 */
+class_alias( DbTestRecorder::class, 'DbTestRecorder' );

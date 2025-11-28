@@ -4,6 +4,7 @@
  * @file
  * @ingroup Testing
  */
+namespace MediaWiki\Tests\Common\Parser;
 
 use Wikimedia\Rdbms\IMaintainableDatabase;
 
@@ -207,3 +208,5 @@ class DbTestPreviewer extends TestRecorder {
 			. " and $postDate";
 	}
 }
+/** @deprecated class alias since 1.46 */
+class_alias( DbTestPreviewer::class, 'DbTestPreviewer' );

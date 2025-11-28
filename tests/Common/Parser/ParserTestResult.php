@@ -5,6 +5,8 @@
  * @copyright Copyright © 2013, Antoine Musso
  * @copyright Copyright © 2013, Wikimedia Foundation Inc.
  */
+namespace MediaWiki\Tests\Common\Parser;
+
 use Wikimedia\Parsoid\ParserTests\Test as ParserTest;
 use Wikimedia\Parsoid\ParserTests\TestMode as ParserTestMode;
 
@@ -48,3 +50,5 @@ class ParserTestResult {
 		return "{$this->test->testName} [{$this->mode}]";
 	}
 }
+/** @deprecated class alias since 1.46 */
+class_alias( ParserTestResult::class, 'ParserTestResult' );

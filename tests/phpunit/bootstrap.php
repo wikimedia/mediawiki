@@ -76,7 +76,7 @@ if ( !$hasIntegrationTests ) {
 	$GLOBALS['wgAutoloadClasses'] = [];
 
 	TestSetup::requireOnceInGlobalScope( MW_INSTALL_PATH . "/includes/AutoLoader.php" );
-	TestSetup::requireOnceInGlobalScope( MW_INSTALL_PATH . "/tests/common/TestsAutoLoader.php" );
+	TestSetup::requireOnceInGlobalScope( MW_INSTALL_PATH . "/tests/Common/TestsAutoLoader.php" );
 	TestSetup::requireOnceInGlobalScope( MW_INSTALL_PATH . "/includes/Defines.php" );
 	TestSetup::requireOnceInGlobalScope( MW_INSTALL_PATH . "/includes/GlobalFunctions.php" );
 

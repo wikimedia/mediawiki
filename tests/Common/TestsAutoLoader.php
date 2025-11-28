@@ -13,28 +13,45 @@ $testDir = __DIR__ . "/..";
 
 $wgAutoloadClasses += [
 
-	# tests/common
-	'TestSetup' => "$testDir/common/TestSetup.php",
+	# tests/Common
+	'TestSetup' => "$testDir/Common/TestSetup.php",
 
 	# tests/exception
 	'TestThrowerDummy' => "$testDir/phpunit/data/exception/TestThrowerDummy.php",
 
-	# tests/common/Parser
-	'DbTestPreviewer' => "$testDir/common/Parser/DbTestPreviewer.php",
-	'DbTestRecorder' => "$testDir/common/Parser/DbTestRecorder.php",
-	'DjVuSupport' => "$testDir/common/Parser/DjVuSupport.php",
-	'MediaWiki\\Tests\\AnsiTermColorer' => "$testDir/common/Parser/AnsiTermColorer.php",
-	'MediaWiki\\Tests\\DummyTermColorer' => "$testDir/common/Parser/DummyTermColorer.php",
-	'MultiTestRecorder' => "$testDir/common/Parser/MultiTestRecorder.php",
-	'ParserTestMockParser' => "$testDir/common/Parser/ParserTestMockParser.php",
-	'ParserTestParserHook' => "$testDir/common/Parser/ParserTestParserHook.php",
-	'ParserTestPrinter' => "$testDir/common/Parser/ParserTestPrinter.php",
-	'ParserTestResult' => "$testDir/common/Parser/ParserTestResult.php",
-	'ParserTestResultNormalizer' => "$testDir/common/Parser/ParserTestResultNormalizer.php",
-	'ParserTestRunner' => "$testDir/common/Parser/ParserTestRunner.php",
-	'PhpunitTestRecorder' => "$testDir/common/Parser/PhpunitTestRecorder.php",
-	'TestFileEditor' => "$testDir/common/Parser/TestFileEditor.php",
-	'TestRecorder' => "$testDir/common/Parser/TestRecorder.php",
+	# tests/Common/Parser
+	'MediaWiki\\Tests\\Common\\Parser\\DbTestPreviewer' => "$testDir/Common/Parser/DbTestPreviewer.php",
+	'MediaWiki\\Tests\\Common\\Parser\\DbTestRecorder' => "$testDir/Common/Parser/DbTestRecorder.php",
+	'MediaWiki\\Tests\\Common\\Parser\\DjVuSupport' => "$testDir/Common/Parser/DjVuSupport.php",
+	'MediaWiki\\Tests\\Common\\Parser\\AnsiTermColorer' => "$testDir/Common/Parser/AnsiTermColorer.php",
+	'MediaWiki\\Tests\\Common\\Parser\\DummyTermColorer' => "$testDir/Common/Parser/DummyTermColorer.php",
+	'MediaWiki\\Tests\\Common\\Parser\\MultiTestRecorder' => "$testDir/Common/Parser/MultiTestRecorder.php",
+	'MediaWiki\\Tests\\Common\\Parser\\ParserTestMockParser' => "$testDir/Common/Parser/ParserTestMockParser.php",
+	'MediaWiki\\Tests\\Common\\Parser\\ParserTestParserHook' => "$testDir/Common/Parser/ParserTestParserHook.php",
+	'MediaWiki\\Tests\\Common\\Parser\\ParserTestPrinter' => "$testDir/Common/Parser/ParserTestPrinter.php",
+	'MediaWiki\\Tests\\Common\\Parser\\ParserTestResult' => "$testDir/Common/Parser/ParserTestResult.php",
+	'MediaWiki\\Tests\\Common\\Parser\\ParserTestResultNormalizer' => "$testDir/Common/Parser/ParserTestResultNormalizer.php",
+	'MediaWiki\\Tests\\Common\\Parser\\ParserTestRunner' => "$testDir/Common/Parser/ParserTestRunner.php",
+	'MediaWiki\\Tests\\Common\\Parser\\PhpunitTestRecorder' => "$testDir/Common/Parser/PhpunitTestRecorder.php",
+	'MediaWiki\\Tests\\Common\\Parser\\TestFileEditor' => "$testDir/Common/Parser/TestFileEditor.php",
+	'MediaWiki\\Tests\\Common\\Parser\\TestRecorder' => "$testDir/Common/Parser/TestRecorder.php",
+
+	# tests/Common/Parser (deprecated non-namespaced aliases)
+	'DbTestPreviewer' => "$testDir/Common/Parser/DbTestPreviewer.php",
+	'DbTestRecorder' => "$testDir/Common/Parser/DbTestRecorder.php",
+	'DjVuSupport' => "$testDir/Common/Parser/DjVuSupport.php",
+	'MediaWiki\\Tests\\AnsiTermColorer' => "$testDir/Common/Parser/AnsiTermColorer.php",
+	'MediaWiki\\Tests\\DummyTermColorer' => "$testDir/Common/Parser/DummyTermColorer.php",
+	'MultiTestRecorder' => "$testDir/Common/Parser/MultiTestRecorder.php",
+	'ParserTestMockParser' => "$testDir/Common/Parser/ParserTestMockParser.php",
+	'ParserTestParserHook' => "$testDir/Common/Parser/ParserTestParserHook.php",
+	'ParserTestPrinter' => "$testDir/Common/Parser/ParserTestPrinter.php",
+	'ParserTestResult' => "$testDir/Common/Parser/ParserTestResult.php",
+	'ParserTestResultNormalizer' => "$testDir/Common/Parser/ParserTestResultNormalizer.php",
+	'ParserTestRunner' => "$testDir/Common/Parser/ParserTestRunner.php",
+	'PhpunitTestRecorder' => "$testDir/Common/Parser/PhpunitTestRecorder.php",
+	'TestFileEditor' => "$testDir/Common/Parser/TestFileEditor.php",
+	'TestRecorder' => "$testDir/Common/Parser/TestRecorder.php",
 
 	# tests/phpunit
 	'EmptyResourceLoader' => "$testDir/phpunit/ResourceLoaderTestCase.php",
