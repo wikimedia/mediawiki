@@ -4171,6 +4171,7 @@
 	"renameuser-error-unexpected-name": "The target user does not have the expected name.",
 	"renameuser-error-global-detaching": "The user is globally attached. Use CentralAuth to rename this account.",
 	"renameuser-error-global-rights": "You don't have the right to rename global users.",
+	"renameuser-error-local-rights": "You don't have the right to rename users.",
 	"renameusersuccess": "The {{GENDER:$2|user}} \"<nowiki>$1</nowiki>\" has been renamed to \"<nowiki>$2</nowiki>\".",
 	"renameuser-page-exists": "The page $1 already exists and cannot be automatically overwritten.",
 	"renameuser-page-moved": "The page $1 has been moved to $2.",

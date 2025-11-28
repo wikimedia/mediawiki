@@ -4449,6 +4449,7 @@
 	"renameuser-error-unexpected-name": "Used as error message when renaming user in [[Special:Renameuser]].",
 	"renameuser-error-global-detaching": "Used as error message when renaming user in [[Special:Renameuser]].",
 	"renameuser-error-global-rights": "Used as error message when renaming user in [[Special:Renameuser]].",
+	"renameuser-error-local-rights": "Used as error message when renaming user in [[Special:Renameuser]].",
 	"renameusersuccess": "Used as success message when renaming user in [[Special:Renameuser]]. Parameters:\n* $1 - old username\n* $2 - new username, can be used for GENDER",
 	"renameuser-page-exists": "Used when renaming user in [[Special:Renameuser]]. Parameters:\n* $1 - new page title (with link)",
 	"renameuser-page-moved": "Used as success message when renaming user in [[Special:Renameuser]]. Parameters:\n* $1 - old page title (with link)\n* $2 - new page title (with link)\nSee also:\n* {{msg-mw|Renameuser-page-unmoved}}",

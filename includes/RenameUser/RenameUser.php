@@ -385,7 +385,7 @@ class RenameUser {
 	public function rename(): Status {
 		// renameuser is always required
 		if ( !$this->permissionManager->userHasRight( $this->performer, 'renameuser' ) ) {
-			return Status::newFatal( 'badaccess-groups', 'renameuser' );
+			return Status::newFatal( 'renameuser-error-local-rights' );
 		}
 
 		// for global renames, renameuser-global is also required
@@ -393,7 +393,7 @@ class RenameUser {
 		$userCentralAttached = $centralIdLookup && $centralIdLookup->isAttached( $this->target );
 		if ( ( $this->userFactory->isUserTableShared() || $userCentralAttached )
 			&& !$this->permissionManager->userHasRight( $this->performer, 'renameuser-global' ) ) {
-			return Status::newFatal( 'badaccess-groups', 'renameuser-global' );
+			return Status::newFatal( 'renameuser-error-global-rights' );
 		}
 
 		return $this->renameUnsafe();
