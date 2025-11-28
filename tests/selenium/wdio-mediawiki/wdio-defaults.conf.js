@@ -14,8 +14,6 @@ import path from 'path';
 import { PrometheusFileReporter, writeAllProjectMetrics } from './PrometheusFileReporter.js';
 const logPath = process.env.LOG_DIR || path.join( process.cwd(), 'tests/selenium/log' );
 import { makeFilenameDate, saveScreenshot, startVideo, stopVideo, logSystemInformation, logBrowserInformation } from 'wdio-mediawiki';
-// T355556: remove when T324766 is resolved
-import dns from 'dns';
 
 if ( !process.env.MW_SERVER || !process.env.MW_SCRIPT_PATH ) {
 	throw new Error( 'MW_SERVER or MW_SCRIPT_PATH not defined.\nSee https://www.mediawiki.org/wiki/Selenium/How-to/Set_environment_variables\n' );
@@ -228,10 +226,6 @@ export const config = {
 	 * @param {Array.<Object>} capabilities list of capabilities details
 	 */
 	beforeSession: function ( configuration, capabilities ) {
-		// T355556: remove when T324766 is resolved
-		// eslint-disable-next-line n/no-unsupported-features/node-builtins
-		dns.setDefaultResultOrder( 'ipv4first' );
-
 		const useBrowserHeadless = capabilities[ 'mw:useBrowserHeadless' ];
 		if ( useBrowserHeadless === true ) {
 			capabilities[ 'goog:chromeOptions' ].args.push( '--headless' );
