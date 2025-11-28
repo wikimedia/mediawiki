@@ -2460,6 +2460,7 @@
 	"watchlistlabels-form-field-name": "Form field label for the text field for editing watchlist labels' names.",
 	"watchlistlabels-form-name-too-long": "Error message shown when a watchlist label name is greater than 255 bytes.\n\nParameter:\n\n* $1 — Integer number of bytes of the entered value.",
 	"watchlistlabels-form-name-too-short": "Error message shown when a watchlist label name is empty (after having leading and trailing whitespace removed).",
+	"watchlistlabels-form-name-exists": "Error message shown when a watchlist label name is already used by the current user.\n\nParameter:\n* $1 — The name they provided (normalized).",
 	"watchlistlabels-form-submit-new": "Form submission button text shown when creating a new watchlist label.",
 	"watchlistlabels-form-submit-edit": "Form submission button text shown when editing an existing watchlist label.",
 	"watchlist-filters-labels-title": "Text for the Labels button in filters on [[Special:Watchlist]]",

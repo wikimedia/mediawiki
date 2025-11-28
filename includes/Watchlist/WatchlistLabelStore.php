@@ -3,7 +3,9 @@
 namespace MediaWiki\Watchlist;
 
 use InvalidArgumentException;
+use MediaWiki\Status\Status;
 use MediaWiki\User\UserIdentity;
+use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
@@ -16,14 +18,14 @@ class WatchlistLabelStore {
 	public const TABLE_WATCHLIST_LABEL = 'watchlist_label';
 	public const TABLE_WATCHLIST_LABEL_MEMBER = 'watchlist_label_member';
 
-	public function __construct( private IConnectionProvider $dbProvider ) {
+	public function __construct( private IConnectionProvider $dbProvider, private LoggerInterface $logger ) {
 	}
 
 	/**
 	 * Save a watchlist label to the database.
 	 * If this results in a new row, the label's ID will be set.
 	 */
-	public function save( WatchlistLabel $label ): void {
+	public function save( WatchlistLabel $label ): Status {
 		$dbw = $this->dbProvider->getPrimaryDatabase();
 		if ( $label->getId() ) {
 			$dbw->newUpdateQueryBuilder()
@@ -32,6 +34,13 @@ class WatchlistLabelStore {
 				->where( [ 'wll_id' => $label->getId() ] )
 				->caller( __METHOD__ )
 				->execute();
+			if ( $dbw->affectedRows() !== 1 ) {
+				$this->logger->notice(
+					__METHOD__ . " Watchlist label not saved. ID: {0}; Name: {1}",
+					[ $label->getId(), $label->getName() ]
+				);
+				return Status::newFatal( 'unknown-error' );
+			}
 		} else {
 			$userId = $label->getUser()->getId();
 			if ( !$userId ) {
@@ -47,6 +56,7 @@ class WatchlistLabelStore {
 				$label->setId( $dbw->insertId() );
 			}
 		}
+		return Status::newGood();
 	}
 
 	/**
@@ -107,6 +117,29 @@ class WatchlistLabelStore {
 		return $result
 			? new WatchlistLabel( $user, $result->wll_name, $result->wll_id )
 			: null;
+	}
+
+	/**
+	 * Load a single watchlist label by (normalized) name.
+	 *
+	 * @param UserIdentity $user
+	 * @param string $name The name to search for.
+	 *
+	 * @return ?WatchlistLabel The label, or null if not found.
+	 */
+	public function loadByName( UserIdentity $user, string $name ): ?WatchlistLabel {
+		$select = $this->dbProvider->getReplicaDatabase()->newSelectQueryBuilder();
+		$label = new WatchlistLabel( $user, $name );
+		$result = $select->table( self::TABLE_WATCHLIST_LABEL )
+			->fields( [ 'wll_id', 'wll_name' ] )
+			->where( [ 'wll_user' => $label->getUser()->getId(), 'wll_name' => $label->getName() ] )
+			->caller( __METHOD__ )
+			->fetchRow();
+		if ( $result ) {
+			$label->setId( $result->wll_id );
+			return $label;
+		}
+		return null;
 	}
 
 	/**

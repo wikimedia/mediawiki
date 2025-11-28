@@ -2889,7 +2889,10 @@ return [
 	},
 
 	'WatchlistLabelStore' => static function ( MediaWikiServices $services ): WatchlistLabelStore {
-		return new WatchlistLabelStore( $services->getConnectionProvider() );
+		return new WatchlistLabelStore(
+			$services->getConnectionProvider(),
+			LoggerFactory::getInstance( 'WatchlistLabels' )
+		);
 	},
 
 	'WatchlistManager' => static function ( MediaWikiServices $services ): WatchlistManager {

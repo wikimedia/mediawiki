@@ -90,6 +90,7 @@ class SpecialWatchlistLabels extends SpecialPage {
 				'name' => self::PARAM_NAME,
 				'label-message' => 'watchlistlabels-form-field-name',
 				'validation-callback' => [ $this, 'validateName' ],
+				'filter-callback' => [ $this, 'filterName' ],
 				'required' => true,
 			],
 		];
@@ -122,6 +123,20 @@ class SpecialWatchlistLabels extends SpecialPage {
 	}
 
 	/**
+	 * Filter the 'name' field value.
+	 *
+	 * @param ?mixed $value
+	 * @param ?array $alldata
+	 * @param ?HTMLForm $form
+	 *
+	 * @return (StatusValue|string|bool|Message)|null
+	 */
+	public function filterName( $value, ?array $alldata, ?HTMLForm $form ) {
+		$label = new WatchlistLabel( $this->getUser(), $value ?? '' );
+		return $label->getName();
+	}
+
+	/**
 	 * @param mixed $value
 	 * @param ?array $alldata
 	 * @param ?HTMLForm $form
@@ -135,6 +150,11 @@ class SpecialWatchlistLabels extends SpecialPage {
 		}
 		if ( $length > 255 ) {
 			return Status::newFatal( $this->msg( 'watchlistlabels-form-name-too-long', $length ) );
+		}
+		$existingLabel = $this->labelStore->loadByName( $this->getUser(), $value );
+		$thisId = $alldata[self::PARAM_ID] ?? null;
+		if ( $existingLabel && $thisId && $existingLabel->getId() !== (int)$thisId ) {
+			return Status::newFatal( $this->msg( 'watchlistlabels-form-name-exists', $existingLabel->getName() ) );
 		}
 		return Status::newGood();
 	}
@@ -154,9 +174,11 @@ class SpecialWatchlistLabels extends SpecialPage {
 		} else {
 			$this->watchlistLabel->setName( $data[self::PARAM_NAME] );
 		}
-		$this->labelStore->save( $this->watchlistLabel );
-		$this->getOutput()->redirect( $this->getPageTitle()->getLocalURL() );
-		return Status::newGood();
+		$saved = $this->labelStore->save( $this->watchlistLabel );
+		if ( $saved->isOK() ) {
+			$this->getOutput()->redirect( $this->getPageTitle()->getLocalURL() );
+		}
+		return $saved;
 	}
 
 	/**
