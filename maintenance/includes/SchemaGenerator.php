@@ -166,12 +166,9 @@ class SchemaGenerator {
 			$sql
 		);
 
-		$sql = str_replace( "; CREATE ", ";\n\nCREATE ", $sql );
 		$sql = str_replace( ";\n\nCREATE TABLE ", ";\n\n\nCREATE TABLE ", $sql );
 		$sql = preg_replace( '/^(CREATE|DROP|ALTER)\s+(TABLE|VIEW|INDEX)\s+/m', '$1 $2 ', $sql );
 		$sql = preg_replace( '/(?<!\s|;)\s+(ADD|DROP|ALTER|MODIFY|CHANGE|RENAME)\s+/', "\n  \$1 ", $sql );
-
-		$sql = str_replace( "; ", ";\n", $sql );
 
 		if ( !str_ends_with( $sql, "\n" ) ) {
 			$sql .= "\n";
