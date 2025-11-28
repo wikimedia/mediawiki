@@ -1257,6 +1257,7 @@ class SpecialPageFactory {
 				'UserFactory',
 				'UserNamePrefixSearch',
 				'RenameUserFactory',
+				'FormatterFactory',
 			]
 		],
 		'Revisiondelete' => [

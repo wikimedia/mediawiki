@@ -18,7 +18,8 @@ class SpecialRenameUserTest extends SpecialPageTestBase {
 			$services->getTitleFactory(),
 			$services->getUserFactory(),
 			$services->getUserNamePrefixSearch(),
-			$services->getRenameUserFactory()
+			$services->getRenameUserFactory(),
+			$services->getFormatterFactory(),
 		);
 	}
 

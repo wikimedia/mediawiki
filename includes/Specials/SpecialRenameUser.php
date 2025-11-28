@@ -6,11 +6,14 @@ use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Exception\UserBlockedError;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
+use MediaWiki\Language\FormatterFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Message\Message;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\RenameUser\RenameUserFactory;
 use MediaWiki\SpecialPage\SpecialPage;
+use MediaWiki\Status\Status;
+use MediaWiki\Status\StatusFormatter;
 use MediaWiki\Title\TitleFactory;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserNamePrefixSearch;
@@ -31,6 +34,7 @@ class SpecialRenameUser extends SpecialPage {
 	private UserFactory $userFactory;
 	private UserNamePrefixSearch $userNamePrefixSearch;
 	private RenameUserFactory $renameUserFactory;
+	private StatusFormatter $statusFormatter;
 
 	public function __construct(
 		IConnectionProvider $dbConns,
@@ -38,7 +42,8 @@ class SpecialRenameUser extends SpecialPage {
 		TitleFactory $titleFactory,
 		UserFactory $userFactory,
 		UserNamePrefixSearch $userNamePrefixSearch,
-		RenameUserFactory $renameUserFactory
+		RenameUserFactory $renameUserFactory,
+		FormatterFactory $formatterFactory,
 	) {
 		parent::__construct( 'Renameuser', $userFactory->isUserTableShared() ? 'renameuser-global' : 'renameuser' );
 
@@ -48,6 +53,7 @@ class SpecialRenameUser extends SpecialPage {
 		$this->userFactory = $userFactory;
 		$this->userNamePrefixSearch = $userNamePrefixSearch;
 		$this->renameUserFactory = $renameUserFactory;
+		$this->statusFormatter = $formatterFactory->getStatusFormatter( $this );
 	}
 
 	/** @inheritDoc */
@@ -100,8 +106,9 @@ class SpecialRenameUser extends SpecialPage {
 		$reason = $request->getText( 'reason' );
 		$moveChecked = $request->getBool( 'movepages', !$request->wasPosted() );
 		$suppressChecked = $request->getCheck( 'suppressredirect' );
+		$confirmAction = $request->getCheck( 'confirmaction' );
 
-		if ( $oldName !== '' && $newName !== '' && !$request->getCheck( 'confirmaction' ) ) {
+		if ( $oldName !== '' && $newName !== '' && !$confirmAction ) {
 			$warnings = $this->getWarnings( $oldName, $newName );
 		} else {
 			$warnings = [];
@@ -224,9 +231,12 @@ class SpecialRenameUser extends SpecialPage {
 			return;
 		}
 
+		$forceGlobalDetach = $confirmAction && $request->getBool( 'forceglobaldetach' );
+
 		$rename = $this->renameUserFactory->newRenameUser( $performer, $oldUser, $newName, $reason, [
 			'movePages' => $moveChecked,
 			'suppressRedirect' => $suppressChecked,
+			'forceGlobalDetach' => $forceGlobalDetach,
 		] );
 		$status = $rename->rename();
 
@@ -318,9 +328,10 @@ class SpecialRenameUser extends SpecialPage {
 		}
 
 		if ( $warnings ) {
-			$warningsHtml = [];
+			$status = Status::newGood();
+
 			foreach ( $warnings as $warning ) {
-				$warningsHtml[] = $this->msg( Message::newFromSpecifier( $warning ) )->parse();
+				$status->warning( $this->msg( Message::newFromSpecifier( $warning ) ) );
 			}
 
 			$formDescriptor['renameuserwarnings'] = [
@@ -331,21 +342,38 @@ class SpecialRenameUser extends SpecialPage {
 				'default' => new FieldLayout(
 					new MessageWidget( [
 						'label' => new HtmlSnippet(
-							'<ul><li>'
-							. implode( '</li><li>', $warningsHtml )
-							. '</li></ul>'
+							$this->statusFormatter->getMessage( $status )->parse()
 						),
 						'type' => 'warning',
 					] )
 				),
 			];
 
+			// Confirmation checkbox to ignore warnings.
+			// If this is checked, rename will proceed despite warnings,
+			// and the hook that allows adding warnings will not be run.
 			$formDescriptor['confirmaction'] = [
 				'type' => 'check',
 				'name' => 'confirmaction',
 				'id' => 'confirmaction',
 				'label-message' => 'renameuserconfirm',
 			];
+
+			// T407242: Hidden field for forcing global account detach.
+			// If the confirmation field above is checked, warnings will
+			// be suppressed, however the conditions that produce
+			// 'merged user warning' are checked again in RenameUser.
+			// This field provides the value needed to both override the
+			// check in RenameUser and complement the confirmation check
+			// field to truly allow suppressing the specific warning.
+			if ( $status->hasMessage( 'centralauth-renameuser-merged' ) ) {
+				$formDescriptor['forceglobaldetach'] = [
+					'type' => 'hidden',
+					'name' => 'forceglobaldetach',
+					'default' => '1',
+				];
+			}
+
 		}
 
 		$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() )
