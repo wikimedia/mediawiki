@@ -319,7 +319,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		}
 
 		if ( $this->fld_linkclasses ) {
-			$this->getLinkClasses( $this->params['linkcontext'] );
+			$this->getLinkClasses( $this->params['linkcontext'], $this->params['defaultlinkcaption'] );
 		}
 
 		/** @var PageIdentity $page */
@@ -820,8 +820,11 @@ class ApiQueryInfo extends ApiQueryBase {
 	 * given context page.
 	 * @param ?LinkTarget $context_title The page context in which link
 	 *   colors are determined.
+	 * @param bool $default_link_caption Whether to treat links as having
+	 *   default captions for the purpose of determining link colors.
+	 *   Default caption is defined as for {@see LinkRenderer::isDefaultLinkCaption()}.
 	 */
-	private function getLinkClasses( ?LinkTarget $context_title = null ) {
+	private function getLinkClasses( ?LinkTarget $context_title = null, bool $default_link_caption = false ) {
 		if ( $this->titles === [] ) {
 			return;
 		}
@@ -836,7 +839,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		foreach ( $this->titles as $pageId => $page ) {
 			$pdbk = $this->titleFormatter->getPrefixedDBkey( $page );
 			$pagemap[$pageId] = $pdbk;
-			$classes[$pdbk] = $this->linkRenderer->getLinkClasses( $page );
+			$classes[$pdbk] = $this->linkRenderer->getLinkClasses( $page, $default_link_caption );
 		}
 		// legacy hook requires a real Title, not a LinkTarget
 		$context_title = $this->titleFactory->newFromLinkTarget(
@@ -1076,6 +1079,10 @@ class ApiQueryInfo extends ApiQueryBase {
 				ParamValidator::PARAM_TYPE => 'title',
 				ParamValidator::PARAM_DEFAULT => $this->titleFactory->newMainPage()->getPrefixedText(),
 				TitleDef::PARAM_RETURN_OBJECT => true,
+			],
+			'defaultlinkcaption' => [
+				ParamValidator::PARAM_TYPE => 'boolean',
+				ParamValidator::PARAM_DEFAULT => false,
 			],
 			'testactions' => [
 				ParamValidator::PARAM_TYPE => 'string',

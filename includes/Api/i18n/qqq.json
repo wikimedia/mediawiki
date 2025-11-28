@@ -961,6 +961,7 @@
 	"apihelp-query+info-paramvalue-prop-varianttitles": "{{doc-apihelp-paramvalue|query+info|prop|varianttitles}}",
 	"apihelp-query+info-paramvalue-prop-linkclasses": "{{doc-apihelp-paramvalue|query+info|prop|linkclasses}}",
 	"apihelp-query+info-param-linkcontext": "{{doc-apihelp-param|query+info|linkcontext}}",
+	"apihelp-query+info-param-defaultlinkcaption": "{{doc-apihelp-param|query+info|defaultlinkcaption}}",
 	"apihelp-query+info-param-testactions": "{{doc-apihelp-param|query+info|testactions}}",
 	"apihelp-query+info-param-testactionsdetail": "{{doc-apihelp-param|query+info|testactionsdetail}}",
 	"apihelp-query+info-paramvalue-testactionsdetail-boolean": "{{doc-apihelp-paramvalue|query+info|testactionsdetail|boolean}}",

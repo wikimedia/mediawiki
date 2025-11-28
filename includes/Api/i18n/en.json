@@ -1009,6 +1009,7 @@
 	"apihelp-query+info-paramvalue-prop-varianttitles": "Gives the display title in all variants of the site content language.",
 	"apihelp-query+info-paramvalue-prop-linkclasses": "Gives the additional CSS classes (e.g. link colors) used for links to this page if they were to appear on the page named by <var>$1linkcontext</var>.",
 	"apihelp-query+info-param-linkcontext": "The context title to use when determining extra CSS classes (e.g. link colors) when <var>$1prop</var> contains <var>linkclasses</var>.",
+	"apihelp-query+info-param-defaultlinkcaption": "Whether to consider the links as having a default caption (caption is a suffix of link target and preceded by slash, colon or start-of-string). It can have impact on the returned link classes.",
 	"apihelp-query+info-param-testactions": "Test whether the current user can perform certain actions on the page.",
 	"apihelp-query+info-param-testactionsdetail": "Detail level for <var>$1testactions</var>. Use the [[Special:ApiHelp/main|main module]]'s <var>errorformat</var> and <var>errorlang</var> parameters to control the format of the messages returned.",
 	"apihelp-query+info-paramvalue-testactionsdetail-boolean": "Return a boolean value for each action.",
