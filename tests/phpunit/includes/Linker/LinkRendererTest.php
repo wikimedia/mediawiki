@@ -261,17 +261,17 @@ class LinkRendererTest extends MediaWikiLangTestCase {
 		yield [
 			new TitleValue( NS_MAIN, 'FooBar' ),
 			new TitleValue( NS_MAIN, 'Redirect' ),
-			new TitleValue( NS_USER, 'Someuser' )
+			new TitleValue( NS_USER, '~2025-1' )
 		];
 		yield [
 			PageReferenceValue::localReference( NS_MAIN, 'FooBar' ),
 			PageReferenceValue::localReference( NS_MAIN, 'Redirect' ),
-			PageReferenceValue::localReference( NS_USER, 'Someuser' )
+			PageReferenceValue::localReference( NS_USER, '~2025-1' )
 		];
 		yield [
 			new TitleValue( NS_MAIN, 'FooBar', 'ignore' ),
 			new TitleValue( NS_MAIN, 'Redirect', 'ignore' ),
-			new TitleValue( NS_SPECIAL, 'Contributions/Someuser', 'ignore' )
+			new TitleValue( NS_SPECIAL, 'Contributions/~2025-1', 'ignore' )
 		];
 	}
 
@@ -329,8 +329,8 @@ class LinkRendererTest extends MediaWikiLangTestCase {
 			$linkRenderer->getLinkClasses( $redirectTitle )
 		);
 		$this->assertEquals(
-			'mw-userlink',
-			$linkRenderer->getLinkClasses( $userTitle )
+			'mw-tempuserlink',
+			$linkRenderer->getLinkClasses( $userTitle, '~2025-1' )
 		);
 	}
 }

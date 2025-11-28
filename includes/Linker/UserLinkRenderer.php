@@ -250,6 +250,7 @@ class UserLinkRenderer {
 		$postfix = '';
 
 		$classes = $this->getLinkClassesFromUserName( $userName, $linkText );
+		$classes[] = 'mw-userlink';
 		if ( $this->tempUserConfig->isTempName( $userName ) ) {
 			$attributes['data-mw-target'] = $userName;
 
@@ -325,7 +326,7 @@ class UserLinkRenderer {
 	/**
 	 * Returns CSS classes to add to a link to the given user.
 	 *
-	 * This adds the `mw-userlink` and `mw-tempuserlink` classes, which
+	 * This adds the `mw-tempuserlink` class, which
 	 * don't require a database lookup to apply; since this method
 	 * is potentially called on a large number of page links, a batch
 	 * of some kind would have to be used if evaluating link classes
@@ -336,7 +337,7 @@ class UserLinkRenderer {
 	 * @return string[] CSS classes.
 	 */
 	private function getLinkClassesFromUserName( string $userName, string|HtmlArmor|null $linkText = null ): array {
-		$classes = [ 'mw-userlink' ];
+		$classes = [];
 
 		// mw-tempuserlink should be added only in cases like [[User:~2025-1|~2025-1]] and
 		// not e.g. [[User:~2025-1|this user]]: T398952#10994965.

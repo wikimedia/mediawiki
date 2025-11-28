@@ -273,7 +273,7 @@ class UserLinkRendererTest extends MediaWikiLangTestCase {
 			# Temporary accounts
 			'Temporary user' => [
 				'expected' => '<a href="/wiki/Special:Contributions/~2025-1" '
-				. 'class="mw-userlink mw-tempuserlink" '
+				. 'class="mw-tempuserlink mw-userlink" '
 				. 'title="Special:Contributions/~2025-1" '
 				. 'data-mw-target="~2025-1"><bdi>~2025-1</bdi></a>',
 				'userIdentity' => new UserIdentityValue( 2, '~2025-1' ),
@@ -281,7 +281,7 @@ class UserLinkRendererTest extends MediaWikiLangTestCase {
 			],
 			'Temporary user link with custom class' => [
 				'expected' => '<a href="/wiki/Special:Contributions/~2025-1" '
-				. 'class="mw-userlink mw-tempuserlink custom-class" '
+				. 'class="mw-tempuserlink mw-userlink custom-class" '
 				. 'title="Special:Contributions/~2025-1" '
 				. 'data-mw-target="~2025-1"><bdi>~2025-1</bdi></a>',
 				'userIdentity' => new UserIdentityValue( 2, '~2025-1' ),
@@ -291,7 +291,7 @@ class UserLinkRendererTest extends MediaWikiLangTestCase {
 			],
 			'Expired temporary user link' => [
 				'expected' => '<a href="/wiki/Special:Contributions/~2023-1" '
-				. 'class="mw-userlink mw-tempuserlink mw-tempuserlink-expired" '
+				. 'class="mw-tempuserlink mw-userlink mw-tempuserlink-expired" '
 				. 'data-mw-target="~2023-1" '
 				. 'aria-description="(tempuser-expired-link-tooltip)">'
 				. '<bdi>~2023-1</bdi>'
@@ -334,7 +334,7 @@ class UserLinkRendererTest extends MediaWikiLangTestCase {
 			'Temp user from an external wiki' => [
 				'expected' => '<a '
 				. 'data-mw-target="~2025-1" '
-				. 'class="mw-userlink mw-tempuserlink external" '
+				. 'class="mw-tempuserlink mw-userlink external" '
 				. 'rel="nofollow" href="//external.wiki.org/wiki/User:~2025-1">'
 				. '<bdi>~2025-1</bdi></a>',
 				'userIdentity' => new UserIdentityValue(
@@ -348,7 +348,7 @@ class UserLinkRendererTest extends MediaWikiLangTestCase {
 				'expected' => sprintf(
 					'<a data-mw-target="%1$s" '
 					. 'aria-description="(tempuser-expired-link-tooltip)" '
-					. 'class="mw-userlink mw-tempuserlink '
+					. 'class="mw-tempuserlink mw-userlink '
 					. 'mw-tempuserlink-expired external" rel="nofollow" '
 					. 'href="//external.wiki.org/wiki/User:%1$s">'
 					. '<bdi>%1$s</bdi>'
@@ -495,49 +495,49 @@ class UserLinkRendererTest extends MediaWikiLangTestCase {
 			'ns' => NS_USER,
 			'title' => 'ExampleUser',
 			'linkText' => null,
-			'expected' => [ 'mw-userlink' ],
+			'expected' => [],
 		];
 		yield 'Link to a permanent account page, text is the same as username' => [
 			'ns' => NS_USER,
 			'title' => 'ExampleUser',
 			'linkText' => 'ExampleUser',
-			'expected' => [ 'mw-userlink' ],
+			'expected' => [],
 		];
 		yield 'Link to a temporary account page, text is the same as username' => [
 			'ns' => NS_USER,
 			'title' => '~2025-1',
 			'linkText' => '~2025-1',
-			'expected' => [ 'mw-userlink', 'mw-tempuserlink' ],
+			'expected' => [ 'mw-tempuserlink' ],
 		];
 		yield 'Link to a temporary account page, text is the same as username, but HTML-encoded' => [
 			'ns' => NS_USER,
 			'title' => '~2025-1',
 			'linkText' => '&#126;2025-1',
-			'expected' => [ 'mw-userlink', 'mw-tempuserlink' ],
+			'expected' => [ 'mw-tempuserlink' ],
 		];
 		yield 'Link to a temporary account page, different text' => [
 			'ns' => NS_USER,
 			'title' => '~2025-1',
 			'linkText' => 'Lorem ipsum',
-			'expected' => [ 'mw-userlink' ],
+			'expected' => [],
 		];
 		yield 'Link to a permanent account contribs' => [
 			'ns' => NS_SPECIAL,
 			'title' => 'Contributions/ExampleUser',
 			'linkText' => null,
-			'expected' => [ 'mw-userlink' ],
+			'expected' => [],
 		];
 		yield 'Link to a temporary account contribs, text is the same as username' => [
 			'ns' => NS_SPECIAL,
 			'title' => 'Contributions/~2025-1',
 			'linkText' => '~2025-1',
-			'expected' => [ 'mw-userlink', 'mw-tempuserlink' ],
+			'expected' => [ 'mw-tempuserlink' ],
 		];
 		yield 'Link to a temporary account contribs, different text' => [
 			'ns' => NS_SPECIAL,
 			'title' => 'Contributions/~2025-1',
 			'linkText' => 'Lorem ipsum',
-			'expected' => [ 'mw-userlink' ],
+			'expected' => [],
 		];
 	}
 }
