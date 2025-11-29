@@ -300,8 +300,6 @@ class Parser {
 	public $mExtHashTables;
 	/** @deprecated since 1.42: T203563 */
 	public $mExtLoopsCounter;
-	/** @deprecated since 1.42: T362664 */
-	public $proofreadRenderingPages;
 
 	/**
 	 * Title context, used for self-link rendering and similar things
