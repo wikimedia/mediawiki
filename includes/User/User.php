@@ -2568,6 +2568,7 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 				return Status::newFatal( 'userexists' );
 			}
 			$this->mId = $dbw->insertId();
+			$this->queryFlagsUsed = IDBAccessObject::READ_LATEST;
 
 			// Don't pass $this, since calling ::getId, ::getName might force ::load
 			// and this user might not be ready for the yet.
