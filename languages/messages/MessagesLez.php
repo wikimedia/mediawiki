@@ -19,7 +19,7 @@
  * @author Умар
  */
 
-$fallback = 'ru, az';
+$fallback = 'ru';
 
 $namespaceNames = [
 	NS_MEDIA            => 'Медиа',
