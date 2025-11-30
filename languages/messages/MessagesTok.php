@@ -131,3 +131,8 @@ $specialPageAliases = [
 	'Whatlinkshere' => [ 'linja_tawa_lipu' ],
 	'Withoutinterwiki' => [ 'lipu_ni_la_linja_ala_li_tawa_lipu_pi_toki_ante', 'linja_ala_tawa_lipu_pi_toki_ante' ],
 ];
+
+/** @phpcs-require-sorted-array */
+$magicWords = [
+	'redirect' => [ '0', '#TAWA', '#REDIRECT' ],
+];
