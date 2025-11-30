@@ -8,7 +8,7 @@
  * @author Andrijko Z.
  */
 
-$fallback = 'mhr, ru';
+$fallback = 'ru';
 
 $namespaceNames = [
 	NS_MEDIA            => 'Медиа',
