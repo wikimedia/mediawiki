@@ -3189,13 +3189,18 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 	 *   this method is getInstanceFromPrimary() with the READ_EXCLUSIVE flag, but most callers
 	 *   didn't actually need an exclusive lock, and overusing it is harmful, so consider whether
 	 *   you really need locking.
+	 *   Note that getInstanceFromPrimary() is not guaranteed to return a new instance if the
+	 *   original User object was already from the primary DB.
 	 */
 	public function getInstanceForUpdate() {
 		return $this->getInstanceFromPrimary( IDBAccessObject::READ_EXCLUSIVE );
 	}
 
 	/**
-	 * Get a new instance of this user that was loaded from the primary DB
+	 * Get an instance of this user that was loaded from the primary DB.
+	 *
+	 * If the user object was already from the primary DB (and more generally matches $loadFlags),
+	 * it will be returned; otherwise a DB query will be performed and a new User instance returned.
 	 *
 	 * Use this instead of the main context User when updating that user or updating something else
 	 * based on the user's data, to avoid updating based on outdated information.
@@ -3209,8 +3214,10 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 	 * @since 1.45
 	 */
 	public function getInstanceFromPrimary( int $loadFlags = IDBAccessObject::READ_LATEST ): ?User {
-		if ( !$this->getId() ) {
-			return null; // anon
+		if ( $this->isAnon() ) {
+			return null;
+		} elseif ( ( $loadFlags & $this->queryFlagsUsed ) === $loadFlags ) {
+			return $this;
 		}
 
 		$user = self::newFromId( $this->getId() );
