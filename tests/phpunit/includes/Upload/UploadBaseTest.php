@@ -2,6 +2,7 @@
 
 use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Upload\UploadBase;
 
 /**
  * @group Upload
@@ -29,7 +30,7 @@ class UploadBaseTest extends MediaWikiIntegrationTestCase {
 	 * of UploadBase::getTitle() and then the actual returned title
 	 *
 	 * @dataProvider provideTestTitleValidation
-	 * @covers \UploadBase::getTitle
+	 * @covers \MediaWiki\Upload\UploadBase::getTitle
 	 */
 	public function testTitleValidation( $srcFilename, $dstFilename, $code, $msg ) {
 		/* Check the result code */
@@ -82,7 +83,7 @@ class UploadBaseTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * Test the upload verification functions
-	 * @covers \UploadBase::verifyUpload
+	 * @covers \MediaWiki\Upload\UploadBase::verifyUpload
 	 */
 	public function testVerifyUpload() {
 		/* Setup with zero file size */
@@ -105,7 +106,7 @@ class UploadBaseTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \UploadBase::verifyUpload
+	 * @covers \MediaWiki\Upload\UploadBase::verifyUpload
 	 *
 	 * test uploading a 100 bytes file with $wgMaxUploadSize = 100
 	 *

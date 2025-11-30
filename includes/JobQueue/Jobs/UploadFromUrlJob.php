@@ -9,8 +9,8 @@ namespace MediaWiki\JobQueue\Jobs;
 use MediaWiki\JobQueue\GenericParameterJob;
 use MediaWiki\JobQueue\Job;
 use MediaWiki\Status\Status;
-use UploadBase;
-use UploadFromUrl;
+use MediaWiki\Upload\UploadBase;
+use MediaWiki\Upload\UploadFromUrl;
 
 /**
  * Upload a file by URL, via the jobqueue.

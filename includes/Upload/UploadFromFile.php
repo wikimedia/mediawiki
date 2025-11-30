@@ -7,6 +7,8 @@
  * @ingroup Upload
  */
 
+namespace MediaWiki\Upload;
+
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Request\WebRequestUpload;
 
@@ -93,3 +95,6 @@ class UploadFromFile extends UploadBase {
 		return parent::verifyUpload();
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( UploadFromFile::class, 'UploadFromFile' );

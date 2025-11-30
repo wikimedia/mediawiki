@@ -7,6 +7,8 @@
  * @ingroup Upload
  */
 
+namespace MediaWiki\Upload;
+
 use MediaWiki\Context\RequestContext;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
@@ -14,6 +16,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Status\Status;
+use MWHttpRequest;
 
 /**
  * Implements uploading from a HTTP resource.
@@ -315,7 +318,7 @@ class UploadFromUrl extends UploadBase {
 			wfDebugLog(
 				'fileupload',
 				'Short write ' . $nbytes . '/' . strlen( $buffer ) .
-					' bytes, aborting with ' . $this->mFileSize . ' uploaded so far'
+				' bytes, aborting with ' . $this->mFileSize . ' uploaded so far'
 			);
 			fclose( $this->mTmpHandle );
 			$this->mTmpHandle = false;
@@ -358,7 +361,7 @@ class UploadFromUrl extends UploadBase {
 		wfDebugLog(
 			'fileupload',
 			'Starting download from "' . $this->mUrl . '" ' .
-				'<' . implode( ',', array_keys( array_filter( $options ) ) ) . '>'
+			'<' . implode( ',', array_keys( array_filter( $options ) ) ) . '>'
 		);
 
 		// Manually follow any redirects up to the limit and reset the output file before each new request to prevent
@@ -410,3 +413,6 @@ class UploadFromUrl extends UploadBase {
 		return $status;
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( UploadFromUrl::class, 'UploadFromUrl' );

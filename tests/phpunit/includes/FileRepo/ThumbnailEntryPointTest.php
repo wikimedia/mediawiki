@@ -9,6 +9,7 @@ use MediaWiki\Request\FauxRequest;
 use MediaWiki\Tests\FileRepo\TestRepoTrait;
 use MediaWiki\Tests\MockEnvironment;
 use MediaWiki\Title\Title;
+use MediaWiki\Upload\UploadStash;
 use MediaWiki\User\UserIdentityValue;
 
 /**

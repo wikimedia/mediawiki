@@ -17,6 +17,8 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Specials\SpecialUpload;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\NamespaceInfo;
+use MediaWiki\Upload\UploadBase;
+use MediaWiki\Upload\UploadFromUrl;
 use Wikimedia\RequestTimeout\TimeoutException;
 
 /**

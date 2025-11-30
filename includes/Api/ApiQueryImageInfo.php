@@ -20,7 +20,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\File\BadFileLookup;
 use MediaWiki\Specials\SpecialUpload;
 use MediaWiki\Title\Title;
-use UploadBase;
+use MediaWiki\Upload\UploadBase;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 

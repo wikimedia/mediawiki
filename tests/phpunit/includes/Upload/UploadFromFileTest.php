@@ -1,11 +1,12 @@
 <?php
 
 use MediaWiki\Request\FauxRequest;
+use MediaWiki\Upload\UploadFromFile;
 
 /**
  * @group Database
  *
- * @covers \UploadFromFile
+ * @covers \MediaWiki\Upload\UploadFromFile
  */
 class UploadFromFileTest extends MediaWikiIntegrationTestCase {
 

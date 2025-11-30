@@ -15,9 +15,9 @@ use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Pager\TablePager;
 use MediaWiki\SpecialPage\SpecialPage;
+use MediaWiki\Upload\UploadStash;
+use MediaWiki\Upload\UploadStashFile;
 use UnexpectedValueException;
-use UploadStash;
-use UploadStashFile;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**

@@ -15,7 +15,6 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Shell\Shell;
-use UploadBase;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Mime\MimeAnalyzer;
 use Wikimedia\Mime\XmlTypeCheck;

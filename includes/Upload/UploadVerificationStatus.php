@@ -4,8 +4,11 @@
  * @file
  */
 
+namespace MediaWiki\Upload;
+
 use MediaWiki\Api\ApiMessage;
 use MediaWiki\Api\IApiMessage;
+use StatusValue;
 
 /**
  * A StatusValue for upload verification errors.
@@ -56,3 +59,6 @@ class UploadVerificationStatus extends StatusValue {
 		return ApiMessage::create( $messages[0], $this->apiCode, $this->apiData );
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( UploadVerificationStatus::class, 'UploadVerificationStatus' );

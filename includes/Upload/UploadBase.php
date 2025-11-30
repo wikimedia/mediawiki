@@ -7,6 +7,10 @@
  * @ingroup Upload
  */
 
+namespace MediaWiki\Upload;
+
+use InvalidArgumentException;
+use LogicException;
 use MediaWiki\Api\ApiMessage;
 use MediaWiki\Api\ApiResult;
 use MediaWiki\Api\ApiUpload;
@@ -26,9 +30,10 @@ use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
-use MediaWiki\Upload\UploadVerification;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
+use MWFileProps;
+use UploadStashException;
 use Wikimedia\FileBackend\FileBackend;
 use Wikimedia\FileBackend\FSFile\FSFile;
 use Wikimedia\FileBackend\FSFile\TempFSFile;
@@ -156,7 +161,7 @@ abstract class UploadBase {
 	 * Returns true if the user has surpassed the upload rate limit, false otherwise.
 	 *
 	 * @deprecated since 1.41, use authorizeUpload() instead.
-	 * Rate limit checks are now implicit in permission checks.
+	 *  Rate limit checks are now implicit in permission checks.
 	 *
 	 * @param User $user
 	 * @return bool
@@ -1406,9 +1411,9 @@ abstract class UploadBase {
 		$partname = $n ? substr( $filename, 0, $n ) : $filename;
 
 		return (
-			substr( $partname, 3, 3 ) === 'px-' ||
-			substr( $partname, 2, 3 ) === 'px-'
-		) && preg_match( "/[0-9]{2}/", substr( $partname, 0, 2 ) );
+				substr( $partname, 3, 3 ) === 'px-' ||
+				substr( $partname, 2, 3 ) === 'px-'
+			) && preg_match( "/[0-9]{2}/", substr( $partname, 0, 2 ) );
 	}
 
 	/**
@@ -1506,15 +1511,15 @@ abstract class UploadBase {
 				}
 				'@phan-var string[] $bannedTypes';
 				return UploadVerificationStatus::newFatal(
-						'filetype-banned-type',
-						Message::listParam( $bannedTypes, ListType::COMMA ),
-						Message::listParam( $extensions, ListType::COMMA ),
-						count( $extensions ),
-						// Add PLURAL support for the first parameter. This results
-						// in a bit unlogical parameter sequence, but does not break
-						// old translations
-						count( $bannedTypes )
-					)
+					'filetype-banned-type',
+					Message::listParam( $bannedTypes, ListType::COMMA ),
+					Message::listParam( $extensions, ListType::COMMA ),
+					count( $extensions ),
+					// Add PLURAL support for the first parameter. This results
+					// in a bit unlogical parameter sequence, but does not break
+					// old translations
+					count( $bannedTypes )
+				)
 					->setApiCode( 'filetype-banned' )
 					->setApiData( $extradata );
 
@@ -1668,3 +1673,6 @@ abstract class UploadBase {
 		return MediaWikiServices::getInstance()->getMainObjectStash();
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( UploadBase::class, 'UploadBase' );

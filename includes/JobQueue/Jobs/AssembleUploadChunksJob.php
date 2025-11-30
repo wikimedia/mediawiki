@@ -15,9 +15,9 @@ use MediaWiki\JobQueue\Job;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Request\WebRequestUpload;
 use MediaWiki\Status\Status;
+use MediaWiki\Upload\UploadBase;
+use MediaWiki\Upload\UploadFromChunks;
 use UnexpectedValueException;
-use UploadBase;
-use UploadFromChunks;
 use UploadStashException;
 use Wikimedia\ScopedCallback;
 

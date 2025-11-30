@@ -13,7 +13,7 @@ use InvalidArgumentException;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
-use UploadBase;
+use MediaWiki\Upload\UploadBase;
 use Wikimedia\FileBackend\FileBackend;
 use Wikimedia\FileBackend\HTTPFileStreamer;
 

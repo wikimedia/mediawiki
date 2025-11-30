@@ -21,8 +21,8 @@ use MediaWiki\Request\WebRequest;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleArrayFromResult;
+use MediaWiki\Upload\UploadBase;
 use stdClass;
-use UploadBase;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**

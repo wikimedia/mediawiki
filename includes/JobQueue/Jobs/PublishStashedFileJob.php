@@ -10,8 +10,8 @@ namespace MediaWiki\JobQueue\Jobs;
 use MediaWiki\JobQueue\GenericParameterJob;
 use MediaWiki\JobQueue\Job;
 use MediaWiki\Status\Status;
-use UploadBase;
-use UploadFromStash;
+use MediaWiki\Upload\UploadBase;
+use MediaWiki\Upload\UploadFromStash;
 
 /**
  * Upload a file from the upload stash into the local file repo.

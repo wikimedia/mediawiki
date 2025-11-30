@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Upload\Hook;
 
+use MediaWiki\Upload\UploadBase;
 use MediaWiki\User\User;
-use UploadBase;
 use Wikimedia\Message\MessageSpecifier;
 
 /**

@@ -4,10 +4,14 @@
  * @file
  */
 
+namespace MediaWiki\Upload;
+
 use MediaWiki\FileRepo\File\UnregisteredLocalFile;
 use MediaWiki\FileRepo\FileRepo;
 use MediaWiki\FileRepo\LocalRepo;
 use MediaWiki\SpecialPage\SpecialPage;
+use UploadStashBadPathException;
+use UploadStashFileNotFoundException;
 
 /**
  * @ingroup Upload
@@ -222,3 +226,6 @@ class UploadStashFile extends UnregisteredLocalFile {
 		return $this->repo->fileExists( $this->path );
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( UploadStashFile::class, 'UploadStashFile' );

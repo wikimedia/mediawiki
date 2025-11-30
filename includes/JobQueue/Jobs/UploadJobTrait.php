@@ -13,8 +13,8 @@ use MediaWiki\Context\RequestContext;
 use MediaWiki\Exception\MWExceptionHandler;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Status\Status;
+use MediaWiki\Upload\UploadBase;
 use MediaWiki\User\User;
-use UploadBase;
 use UploadStashException;
 use Wikimedia\ScopedCallback;
 

@@ -7,10 +7,14 @@
  * @ingroup Upload
  */
 
+namespace MediaWiki\Upload;
+
+use LogicException;
 use MediaWiki\FileRepo\LocalRepo;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\User\UserIdentity;
+use UploadStashBadPathException;
 
 /**
  * Implements uploading from previously stored file.
@@ -163,3 +167,6 @@ class UploadFromStash extends UploadBase {
 		$this->unsaveUploadedFile();
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( UploadFromStash::class, 'UploadFromStash' );

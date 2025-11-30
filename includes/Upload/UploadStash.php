@@ -6,12 +6,22 @@
  * @file
  */
 
+namespace MediaWiki\Upload;
+
 use MediaWiki\Context\RequestContext;
 use MediaWiki\FileRepo\File\File;
 use MediaWiki\FileRepo\LocalRepo;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentity;
+use MWFileProps;
+use UploadStashBadPathException;
+use UploadStashFileException;
+use UploadStashFileNotFoundException;
+use UploadStashNoSuchKeyException;
+use UploadStashNotLoggedInException;
+use UploadStashWrongOwnerException;
+use UploadStashZeroLengthFileException;
 
 /**
  * UploadStash is intended to accomplish a few things:
@@ -92,10 +102,10 @@ class UploadStash {
 	 *
 	 * @param string $key Key under which file information is stored
 	 * @param bool $noAuth (optional) Don't check authentication. Used by maintenance scripts.
-	 * @throws UploadStashFileNotFoundException
 	 * @throws UploadStashNotLoggedInException
 	 * @throws UploadStashWrongOwnerException
 	 * @throws UploadStashBadPathException
+	 * @throws UploadStashFileNotFoundException
 	 * @return UploadStashFile
 	 */
 	public function getFile( $key, $noAuth = false ) {
@@ -188,9 +198,9 @@ class UploadStash {
 	 * @param string|null $sourceType The type of upload that generated this file
 	 *   (currently, I believe, 'file' or null)
 	 * @param array|null $fileProps File props or null to regenerate
-	 * @throws UploadStashBadPathException
 	 * @throws UploadStashFileException
 	 * @throws UploadStashNotLoggedInException
+	 * @throws UploadStashBadPathException
 	 * @return UploadStashFile|null File, or null on failure
 	 */
 	public function stashFile( $path, $sourceType = null, $fileProps = null ) {
@@ -224,8 +234,8 @@ class UploadStash {
 		// see: http://www.jwz.org/doc/mid.html
 		[ $usec, $sec ] = explode( ' ', microtime() );
 		$usec = substr( $usec, 2 );
-		$key = Wikimedia\base_convert( $sec . $usec, 10, 36 ) . '.' .
-			Wikimedia\base_convert( (string)mt_rand(), 10, 36 ) . '.' .
+		$key = \Wikimedia\base_convert( $sec . $usec, 10, 36 ) . '.' .
+			\Wikimedia\base_convert( (string)mt_rand(), 10, 36 ) . '.' .
 			$this->user->getId() . '.' .
 			$extension;
 
@@ -349,8 +359,8 @@ class UploadStash {
 	 * Remove a particular file from the stash.  Also removes it from the repo.
 	 *
 	 * @param string $key
-	 * @throws UploadStashNoSuchKeyException|UploadStashNotLoggedInException
 	 * @throws UploadStashWrongOwnerException
+	 * @throws UploadStashNoSuchKeyException|UploadStashNotLoggedInException
 	 * @return bool Success
 	 */
 	public function removeFile( $key ) {
@@ -547,3 +557,6 @@ class UploadStash {
 		return true;
 	}
 }
+
+/** @deprecated class alias since 1.46 */
+class_alias( UploadStash::class, 'UploadStash' );

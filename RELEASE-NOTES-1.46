@@ -460,6 +460,15 @@ because of Phabricator reports.
   - Title related hooks: MediaWiki\Hook => MediaWiki\Title\Hook
     - CanonicalNamespacesHook
     - NamespaceIsMovableHook
+  - MediaWiki\Upload:
+    - UploadVerificationStatus
+    - UploadFromStash
+    - UploadFromUrl
+    - UploadBase
+    - UploadStash
+    - UploadStashFile
+    - UploadFromFile
+    - UploadFromChunks
   - Upload related hooks: MediaWiki\Hook => MediaWiki\Upload\Hook
     - IsUploadAllowedFromUrlHook
     - UploadCompleteHook

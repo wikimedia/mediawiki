@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Upload\Hook;
 
-use UploadBase;
+use MediaWiki\Upload\UploadBase;
 use Wikimedia\Message\MessageSpecifier;
 
 /**

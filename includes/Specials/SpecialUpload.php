@@ -33,14 +33,14 @@ use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
+use MediaWiki\Upload\UploadBase;
+use MediaWiki\Upload\UploadFromStash;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\User;
 use MediaWiki\Watchlist\WatchlistManager;
 use Psr\Log\LoggerInterface;
 use UnexpectedValueException;
-use UploadBase;
 use UploadForm;
-use UploadFromStash;
 use UploadStashException;
 
 /**
@@ -188,7 +188,7 @@ class SpecialUpload extends SpecialPage {
 		// If this is an upload from Url and we're allowing async processing,
 		// check for the presence of the cache key parameter, or compute it. Else, it should be empty.
 		if ( $this->isAsyncUpload() ) {
-			$this->mCacheKey = \UploadFromUrl::getCacheKeyFromRequest( $request );
+			$this->mCacheKey = \MediaWiki\Upload\UploadFromUrl::getCacheKeyFromRequest( $request );
 		} else {
 			$this->mCacheKey = '';
 		}
@@ -867,7 +867,7 @@ class SpecialUpload extends SpecialPage {
 	 */
 	protected function processAsyncUpload() {
 		// Ensure the upload we're dealing with is an UploadFromUrl
-		if ( !$this->mUpload instanceof \UploadFromUrl ) {
+		if ( !$this->mUpload instanceof \MediaWiki\Upload\UploadFromUrl ) {
 			$this->showUploadError( $this->msg( 'uploaderror' )->escaped() );
 
 			return;

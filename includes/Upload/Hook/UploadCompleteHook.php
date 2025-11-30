@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Upload\Hook;
 
-use UploadBase;
+use MediaWiki\Upload\UploadBase;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.
