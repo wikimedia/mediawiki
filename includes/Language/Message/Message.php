@@ -1462,6 +1462,7 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 			}
 			$msg->isInterface = $this->isInterface;
 			$msg->language = $this->language;
+			$msg->userLangCallback = $this->userLangCallback;
 			$msg->useDatabase = $this->useDatabase;
 			$msg->contextPage = $this->contextPage;
 
