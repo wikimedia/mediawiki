@@ -5,5 +5,5 @@ $( () => {
 	// Replace successbox with notifications
 	require( 'mediawiki.notification.convertmessagebox' )();
 
-	$( '#wpReason' ).codePointLimit( mw.config.get( 'wgCommentCodePointLimit' ) );
+	$( '#wpReason > input' ).codePointLimit( mw.config.get( 'wgCommentCodePointLimit' ) );
 } );
