@@ -380,5 +380,12 @@
 	"exif-exposurelockused": "Valotuslukon käyttö",
 	"exif-exposurelockused-true": "Kyllä",
 	"exif-exposurelockused-false": "Ei",
+	"exif-sourcephotoscount": "Lähdekuvien määrä",
+	"exif-croppedareaimagewidthpixels": "Panoraaman rajattu leveys",
+	"exif-croppedareaimageheightpixels": "Panoraaman rajattu korkeus",
+	"exif-fullpanowidthpixels": "Panoraaman täysi leveys",
+	"exif-fullpanoheightpixels": "Panoraaman täysi korkeus",
+	"exif-croppedarealeftpixels": "Panoraaman vasen rajaus",
+	"exif-croppedareatoppixels": "Panoraaman ylärajaus",
 	"exif-stitchingsoftware": "Yhdistämisohjelma"
 }
