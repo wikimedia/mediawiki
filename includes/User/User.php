@@ -245,7 +245,7 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 	/**
 	 * @internal since 1.36, use the UserFactory service instead
 	 *
-	 * @see MediaWiki\User\UserFactory
+	 * @see \MediaWiki\User\UserFactory
 	 *
 	 * @see newFromName()
 	 * @see newFromId()
@@ -2571,7 +2571,7 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 			$this->queryFlagsUsed = IDBAccessObject::READ_LATEST;
 
 			// Don't pass $this, since calling ::getId, ::getName might force ::load
-			// and this user might not be ready for the yet.
+			// and this user might not be ready for that yet.
 			$this->mActorId = MediaWikiServices::getInstance()
 				->getActorNormalization()
 				->acquireActorId( new UserIdentityValue( $this->mId, $this->mName ), $dbw );
