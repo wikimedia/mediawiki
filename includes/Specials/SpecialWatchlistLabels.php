@@ -46,6 +46,11 @@ class SpecialWatchlistLabels extends SpecialPage {
 	}
 
 	/** @inheritDoc */
+	public function doesWrites() {
+		return true;
+	}
+
+	/** @inheritDoc */
 	public function execute( $subPage ) {
 		$user = $this->getUser();
 		$right = $subPage === self::SUBPAGE_EDIT ? 'editmywatchlist' : 'viewmywatchlist';
