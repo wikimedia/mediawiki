@@ -83,6 +83,7 @@ For notes on 1.45.x and older releases, see HISTORY.
 
 * Updated doctrine/dbal from 3.10.0 to 3.10.3.
 * Updated doctrine/sql-formatter from 1.5.2 to 1.5.3.
+* Updated eslint-config-wikimedia from 0.31.0 to 0.32.3.
 * …
 
 ==== Removed external libraries ====
