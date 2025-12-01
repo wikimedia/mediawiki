@@ -13,7 +13,7 @@ import fs from 'fs';
 import path from 'path';
 import { PrometheusFileReporter, writeAllProjectMetrics } from './PrometheusFileReporter.js';
 const logPath = process.env.LOG_DIR || path.join( process.cwd(), 'tests/selenium/log' );
-import { makeFilenameDate, saveScreenshot, startVideo, stopVideo, logSystemInformation } from 'wdio-mediawiki';
+import { makeFilenameDate, saveScreenshot, startVideo, stopVideo, logSystemInformation, logBrowserInformation } from 'wdio-mediawiki';
 // T355556: remove when T324766 is resolved
 import dns from 'dns';
 
@@ -242,8 +242,9 @@ export const config = {
 	 * @param {Array.<string>} specs        List of spec file paths that are to be run
 	 * @param {Object}         browser      instance of created browser/device session
 	 */
-	before: async function () {
+	before: async function ( capabilities, specs, browser ) {
 		await browser.setWindowSize( browser.options.capabilities[ 'mw:width' ], browser.options.capabilities[ 'mw:height' ] );
+		await logBrowserInformation( browser );
 	},
 
 	/**

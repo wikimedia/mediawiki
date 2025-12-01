@@ -101,6 +101,21 @@ function stopVideo( ffmpeg ) {
 	}
 }
 
+async function logBrowserInformation( browser ) {
+	// Make sure we only log this once, maybe we can this smarter in the future
+	if ( process.env.WDIO_WORKER_ID !== '0-0' ) {
+		return;
+	}
+	const { browserName, browserVersion } = browser.capabilities;
+	const viewport = await browser.execute( () => ( {
+		// eslint-disable-next-line no-undef
+		width: window.innerWidth,
+		// eslint-disable-next-line no-undef
+		height: window.innerHeight
+	} ) );
+	console.log( `[Browser information] ${ browserName } ${ browserVersion } viewPort ${ viewport.width }x${ viewport.height }` );
+}
+
 function logSystemInformation() {
 	const bytesPerMegabyte = 1_000_000;
 	const bytesPerGigabyte = 1_000_000_000;
@@ -150,5 +165,6 @@ export {
 	saveScreenshot,
 	startVideo,
 	stopVideo,
-	logSystemInformation
+	logSystemInformation,
+	logBrowserInformation
 };
