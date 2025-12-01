@@ -250,15 +250,15 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 
 			[
 				'Prev/next links are using the rewritten query',
-				'/search=rewritten\+query" rel="next" title="Next 20 results"/',
+				'/title="Next page" href="[^"]*search=rewritten\+query" rel="next"/',
 				'original query',
 				'rewritten query',
 				array_fill( 0, 100, Title::newMainPage() )
 			],
 
 			[
-				'Show x results per page link uses the rewritten query',
-				'/search=rewritten\+query" title="Show \d+ results/',
+				'Show x results per page dropdown uses the rewritten query',
+				'/input type="hidden" value="rewritten query" name="search"/',
 				'original query',
 				'rewritten query',
 				array_fill( 0, 100, Title::newMainPage() )
@@ -373,9 +373,9 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 
 		$html = $search->getContext()->getOutput()->getHTML();
 		if ( $expectedLimit === null ) {
-			$this->assertDoesNotMatchRegularExpression( "/ title=\"Next \\d+ results\"/", $html );
+			$this->assertDoesNotMatchRegularExpression( "/ title=\"Next page\"/", $html );
 		} else {
-			$this->assertMatchesRegularExpression( "/ title=\"Next $expectedLimit results\"/", $html );
+			$this->assertMatchesRegularExpression( "/ title=\"Next page\"/", $html );
 		}
 	}
 

@@ -18,6 +18,7 @@ use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Message\Message;
+use MediaWiki\Navigation\CodexPagerNavigationBuilder;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Search\SearchResultThumbnailProvider;
@@ -887,6 +888,47 @@ class SpecialSearch extends SpecialPage {
 					$this->limit + $this->offset >= $totalRes );
 			$out->addHTML( "<div class='{$class}'>{$prevNext}</div>\n" );
 		}
+	}
+
+	/**
+	 * Generate navigation for pagination
+	 *
+	 * @param int $offset
+	 * @param int $limit
+	 * @param array $query Optional URL query parameter string
+	 * @param bool $atEnd Optional param for specified if this is the last page
+	 * @param string|false $subpage Optional param for specifying subpage
+	 * @return string
+	 */
+	protected function buildPrevNextNavigation(
+		$offset,
+		$limit,
+		array $query = [],
+		$atEnd = false,
+		$subpage = false
+	) {
+		$navBuilder = new CodexPagerNavigationBuilder(
+			$this->getContext(), array_merge( $this->getRequest()->getQueryValues(), $query )
+		);
+		$navBuilder
+			->setPage( $this->getPageTitle( $subpage ) )
+			->setLinkQuery( [ 'limit' => $limit, 'offset' => $offset ] + $query )
+			->setLimitLinkQueryParam( 'limit' )
+			->setCurrentLimit( $limit )
+			->setPrevTooltipMsg( 'prevn-title' )
+			->setNextTooltipMsg( 'nextn-title' )
+			->setLimitTooltipMsg( 'shown-title' )
+			->setHideLast( true );
+
+		if ( $offset > 0 ) {
+			$navBuilder->setFirstLinkQuery( [ 'offset' => 0 ] );
+			$navBuilder->setPrevLinkQuery( [ 'offset' => (string)max( $offset - $limit, 0 ) ] );
+		}
+		if ( !$atEnd ) {
+			$navBuilder->setNextLinkQuery( [ 'offset' => (string)( $offset + $limit ) ] );
+		}
+
+		return $navBuilder->getHtml();
 	}
 
 	/** @inheritDoc */
