@@ -489,31 +489,5 @@
 				"since": 1759795200
 			}
 		}
-	},
-	{
-		"method": "GET",
-		"path": "/site/v1/sitemap/{indexId}",
-		"class": "MediaWiki\\Rest\\Handler\\SitemapIndexHandler",
-		"services": [
-			"MainConfig",
-			"LanguageConverterFactory",
-			"ContentLanguage",
-			"PermissionManager",
-			"ConnectionProvider"
-		]
-	},
-	{
-		"method": "GET",
-		"path": "/site/v1/sitemap/{indexId}/page/{fileId}",
-		"class": "MediaWiki\\Rest\\Handler\\SitemapFileHandler",
-		"services": [
-			"MainConfig",
-			"LanguageConverterFactory",
-			"ContentLanguage",
-			"PermissionManager",
-			"ConnectionProvider",
-			"GenderCache",
-			"MainWANObjectCache"
-		]
 	}
 ]
