@@ -213,7 +213,7 @@
 	"loginreqlink": "seŋo",
 	"newarticle": "(Kesi)",
 	"newarticletext": "A rewii e jokkol feewde e hello ngo woodaani tawo.\nNgam sosde hello ngoo, fuɗɗo tappude e gallol les ngol (Yah to [$1 help page] ngam ɓeydude humpito).",
-	"noarticletext": "Ngoo hello alaa tawo hay binndol.\nAɗa waawi [[Special:Search/{{PAGENAME}}|weddo njiilaw e tiitoonde mayre]] e kello goɗɗe,\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} yiylo logge toɗɗiiɗe ɗum],\nwalla [{{fullurl:{{FULLPAGENAME}}|action=edit}} sos hello ngoo]</span>.",
+	"noarticletext": "Ngoo hello alaa tawo hay binndol.\nAɗa waawi [[Special:Search/{{PAGENAME}}|weddo njiilaw e tiitoonde mayre]] e kello goɗɗe,\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} yiylo logge toɗɗiiɗe ɗum],\nwalla [{{fullurl:{{FULLPAGENAME}}|action=edit}} sos hello ngoo]</span>.",
 	"userpage-userdoesnotexist-view": "Konte kuutoro \"$1\" winnditaaki.",
 	"previewnote": "<strong>Siiftor, ɗum ko jiytol tan.</strong>\nBayle maa ndanndaaka tawo!",
 	"continue-editing": "Yah to nokko taƴtagol",

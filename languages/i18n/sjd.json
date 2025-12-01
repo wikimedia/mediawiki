@@ -210,7 +210,7 @@
 	"accmailtitle": "Пя̄ҋҋтса̄ннҍ вӯлкхувэ",
 	"newarticle": "(О̄дт)",
 	"newarticletext": "То̄нн мэ̄ннлэкь уж мӣлльтэ лысста, кӯ вя̄л элля.\nГо то̄нн та̄так со̄н лыһкэ, кырьеһтҍ текст эһкнэсьт вӯлленҍ (кӣч е̄намп [$1 Ве̄һкь лыстэсьт]).\nКоале то̄нн тэсьт ся̄гкнэмэнҍ оччтэдтэкь, те̄ннҍтэль то̄н браузэр '''моа̄ст''' пуал э̄л.",
-	"noarticletext": "Адтҍ тэнн лыстэсьт элля нимӣ кырьйха.\nТо̄нн вуаяк [[Special:Search/{{PAGENAME}}|тэнн лыст нэ̄м мудта лыстэнҍ о̄дзлассьтэ]],\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} пе̄ййвкыррьй тӣтэтҍ коа̄ввнэ] вай [{{fullurl:{{FULLPAGENAME}}|action=edit}} лыст мугка нэ̄мэнҍ лыһкэ]</span>.",
+	"noarticletext": "Адтҍ тэнн лыстэсьт элля нимӣ кырьйха.\nТо̄нн вуаяк [[Special:Search/{{PAGENAME}}|тэнн лыст нэ̄м мудта лыстэнҍ о̄дзлассьтэ]],\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} пе̄ййвкыррьй тӣтэтҍ коа̄ввнэ] вай [{{fullurl:{{FULLPAGENAME}}|action=edit}} лыст мугка нэ̄мэнҍ лыһкэ]</span>.",
 	"previewnote": "<strong>Мушт, тэдта лӣ лышэ э̄ввткӣһчмушш.</strong>\nТо̄н воа̄йхэз вя̄л евла э̄ллмсаһтма!",
 	"continue-editing": "Ю̄ттҍкэ воа̄йхэмуж",
 	"editing": "Воа̄йхэмушш: $1",

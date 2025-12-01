@@ -142,7 +142,7 @@
 	"summary-preview": "Apsavērt kūpsavylkumu",
 	"newarticle": "(Jauns roksts)",
 	"newarticletext": "Tu ite tyki caur saitis nu, pagaidam vēļ nauzraksteitys, lopys.\nKab radeitu lopu, suoc raksteit teksta lūgā apaškā (par teksta formatiešonu i seikuokai informaceja verīs [$1 paleigu]).\nKa Tu ite tyki deļ klaidys, vīnkuorši daspīd '''back''' pūgu puorlyukprogramā.",
-	"noarticletext": "Pošulaik itymā puslopā navā nikaida teksta.\nJius varat [[Special:Search/{{PAGENAME}}|atrast ituos pasaukys pīmini]] cytuos puslopuos,\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} atrast sasītūs īrokstus registrā]\nci '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} sataiseit puslopu ar taidu pasauku]'''</span>.",
+	"noarticletext": "Pošulaik itymā puslopā navā nikaida teksta.\nJius varat [[Special:Search/{{PAGENAME}}|atrast ituos pasaukys pīmini]] cytuos puslopuos,\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} atrast sasītūs īrokstus registrā]\nci '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} sataiseit puslopu ar taidu pasauku]'''</span>.",
 	"previewnote": "'''Itei ir tikai apsavieršona!'''\nJiusu izmanis vēļ nav saglobuotys!",
 	"editing": "Pataiseit $1",
 	"editingsection": "Pataiseit $1 (padaļa)",

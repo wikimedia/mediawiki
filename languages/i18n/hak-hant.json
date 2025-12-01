@@ -156,7 +156,7 @@
 	"loginreqtitle": "愛登入",
 	"loginreqpagetext": "汝必須$1正做得查看其他頁面。",
 	"accmailtitle": "密碼已經寄出",
-	"noarticletext-nopermission": "邇頁當前無內容。\n汝做得在其它頁[[Special:Search/{{PAGENAME}}|搜尋邇頁標題]]，或者<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 搜尋有關日誌]</span>，但汝無權限建立邇頁。",
+	"noarticletext-nopermission": "邇頁當前無內容。\n汝做得在其它頁[[Special:Search/{{PAGENAME}}|搜尋邇頁標題]]，或者<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} 搜尋有關日誌]</span>，但汝無權限建立邇頁。",
 	"userpage-userdoesnotexist": "用戶帳號“$1：還吂註冊。\n請在建立/編寫邇隻頁面前先檢查一下。",
 	"userjspreview": "'''記緊汝單單係在測試/預覽汝嘅用戶JavaScript。'''\n'''還吂保存！'''",
 	"userinvalidconfigtitle": "'''警告:''' 毋存在外皮“$1”。\n注意自定嘅.css撈.js頁愛使用小寫標題，例如，{{ns:user}}:Foo/vector.css撈 {{ns:user}}:Foo/Vector.css毋同。",

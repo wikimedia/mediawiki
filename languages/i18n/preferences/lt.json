@@ -202,6 +202,7 @@
 	"rcfilters-watchlist-preference-label": "Nenaudoti JavaScript sąsajos",
 	"rcfilters-watchlist-preference-help": "Įkelia [[{{#special:Watchlist}}|stebimųjų sąrašą]] be filtruotos paieškos ar paryškinimo funkcijos.",
 	"prefs-changeswatchlist": "Rodomi keitimai",
+	"tog-watch-expiry": "Numatytasis laikotarpis:",
 	"tog-watchlisthideminor": "Slėpti smulkius keitimus stebimųjų sąraše",
 	"tog-watchlisthidebots": "Slėpti botų keitimus stebimųjų sąraše",
 	"tog-watchlisthideown": "Slėpti mano keitimus stebimųjų sąraše",

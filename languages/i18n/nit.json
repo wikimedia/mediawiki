@@ -156,7 +156,7 @@
 	"showdiff": "పరాక్ ఒలిప్",
 	"anoneditwarning": "<strong>ఇడ్డేకాద్:</strong> నీర్ లాగిన్ ఎత్ తోతెర్.నీర్ తనేవేన బదిలిప్ తే ఇమ్మే ఐపి చిరునామా సాధరుంగ్ కాంకేరసాద్.నీర్ <strong>[$1 లాగిన్ ఎద్దే]</strong> తోదా <strong>[$2 ఖాతా తయ్యార్ ఇదరూత్]</strong> నీర్ బదిలిప్త ఇమ్మే పేరాడ్ అనేకది ఎరసేట ఇంకా పెన సౌలతూ అంశావ్.",
 	"loginreqlink": "లాగిన్ ఎర్",
-	"noarticletext": "పంగి ఈ పేజీత్ పాఠ్యమ్ తొతేద్.\nమరోకో పేజీలత్తి [[Special:Search/{{PAGENAME}}|ఈ పేజీ శీర్షిక సటి కిరావుర్]],\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}}  ఆదున్గ్ లాగ్ ఒలెంగ్ వంద్],\nతొద [{{fullurl:{{FULLPAGENAME}}|action=edit}} ఈ పేజీన్ బాద్లిపుర్]</span>.",
+	"noarticletext": "పంగి ఈ పేజీత్ పాఠ్యమ్ తొతేద్.\nమరోకో పేజీలత్తి [[Special:Search/{{PAGENAME}}|ఈ పేజీ శీర్షిక సటి కిరావుర్]],\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}}  ఆదున్గ్ లాగ్ ఒలెంగ్ వంద్],\nతొద [{{fullurl:{{FULLPAGENAME}}|action=edit}} ఈ పేజీన్ బాద్లిపుర్]</span>.",
 	"userpage-userdoesnotexist-view": "ఈ వికిత్ వాడేకరే అకౌంట్ \"$1\" నమోదు ఎత్ తోతెద్.",
 	"continue-editing": "బాద్లిపేక జాగంగ్ సెర్",
 	"editing": "$1 న్ బాద్లిప్సర్",

@@ -310,7 +310,7 @@
 	"newarticle": "(ሓዲስ)",
 	"newarticletext": "ቅርን-መዐደይ እትለ አስክ አዜ ሌትሸቄት ግጽ ነስኤከ.\nለ ግጽ ግል ትምሀዝ, እትሊ ተሐት ለተሌ ሰንዱቅ ክተብ( [$1 ግጽ ሰዳይት] ርኤ እግል ወሰክ ሐብሬ).\nእብ ስሕታ ሐቆ ገአ ምጽአከ, ናይ ብራውዘርከ <strong>አቅብል</strong> አከን-ዘር ጭቀጥ.",
 	"noarticletext": "እግል አዜ ዲብ እሊ ገጽ ክቱብ የሀላኒ።\nእግል እሊ ገጽ [[Special:Search/{{PAGENAME}}| እሊ አርእስ እግል ትሕዜ ትቀድር]] ዲብ አግጸት ብዕድ፡\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} እሉ ለመስል ተስጂላት ሕዜ]፡\nአው [{{fullurl:{{FULLPAGENAME}}|action=edit}} እሊ ገጽ ፍታሕ]</span>.",
-	"noarticletext-nopermission": "እግል አዜ ዲብ እሊ ገጽ ክቱብ የሀላኒ።\nእግል አርእስ እላ ገጽ [[Special:Search/{{PAGENAME}}| እግል ትብሐሶ ትቀድሮ።]] ዲብ ብዕድ ገጽ፡ አው<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} እሉ ለመስል ተስጂላት በሕሶ]</span>፡ ላኪን እሊ ገጽ እግል ትክሎቆ እጃዘት አለብኩምኒ።",
+	"noarticletext-nopermission": "እግል አዜ ዲብ እሊ ገጽ ክቱብ የሀላኒ።\nእግል አርእስ እላ ገጽ [[Special:Search/{{PAGENAME}}| እግል ትብሐሶ ትቀድሮ።]] ዲብ ብዕድ ገጽ፡ አው<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} እሉ ለመስል ተስጂላት በሕሶ]</span>፡ ላኪን እሊ ገጽ እግል ትክሎቆ እጃዘት አለብኩምኒ።",
 	"userpage-userdoesnotexist-view": "ሕሳብ መትነፍዓይ \"$1\" ስጁል ኢኮኒ ዲብ እሊ ዊኪ",
 	"updated": "(ተሐደሳ)",
 	"note": "<strong>እንትበህ:</strong>",

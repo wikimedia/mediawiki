@@ -150,7 +150,7 @@
 	"blockedtext": "'''Isem useqdac niɣ tansa IP inecc tewabluca  .'''\n\niblocat  $1.\nMaynzi ''$2''.\n\n* Abluki ibda di: $8\n* Ad ikemmel di: $6\n* Abluki ig itwaxsen d: $7\n\nTzemred ad temsawaded ag $1 niɣ [[{{MediaWiki:Grouppage-sysop}}|administrator]] nniḍn bac ad tsiwled x ubluki a.\nwar tzemred ca ad ad tesxedmed 'e-mail this user' ɣar mala ca n e-mail illa ɣark di [[Special:Preferences|Isemyifiyen n umiḍan]] u war twabluki ca usexdem ines.\nTansa IP inecc n ruxa d $3, u ID icecc iteblukan d #$5.\nmaṛṛa manaya deg ujenna eggit di tabrat i ɣ-ad tsekked.",
 	"newarticle": "(Amaynu)",
 	"newarticletext": "Tdefar-d tazdayt n Tasna εad war telli .\nbac ad tegged , arri di taflwit a swadday (xemm i [$1  Tasna n Tallalt] i ineɣmisen ifruryen).\nmala qacek da s ɣalaṭ waha, tecca di tbutunt n '''deffar''' di (browser) inec .",
-	"noarticletext": "Rxxu ur din llint ca tira di tasna ya.\nTzmmard [[Special:Search/{{PAGENAME}}|rzu xf yizwl n tasna ya]] di tasniwin nnḍni,\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} search the related logs],\nnigh [{{fullurl:{{FULLPAGENAME}}|action=edit}} edit this page]</span>.",
+	"noarticletext": "Rxxu ur din llint ca tira di tasna ya.\nTzmmard [[Special:Search/{{PAGENAME}}|rzu xf yizwl n tasna ya]] di tasniwin nnḍni,\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} search the related logs],\nnigh [{{fullurl:{{FULLPAGENAME}}|action=edit}} edit this page]</span>.",
 	"previewnote": "'''Wa d Azar-ascan waha;\ntiẓṛigin εad war twaḥḍent!'''",
 	"editing": "Abeddeř n $1",
 	"editingsection": "Abeddeř n $1 (tigezmi)",

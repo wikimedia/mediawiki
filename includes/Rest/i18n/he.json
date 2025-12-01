@@ -100,6 +100,8 @@
 	"rest-module-specs.v0-desc": "מודול תיעוד עצמי שמספק גילוי, מפרטים וסכֵמות לכל המודולים הזמינים.",
 	"rest-module-content.v1-title": "תוכן הדף",
 	"rest-module-content.v1-desc": "מספק גישה לתוכן ולמטא־נתונים של דפים וגרסאות",
+	"rest-module-site.v1-title": "ממשק API של האתר",
+	"rest-module-site.v1-desc": "מידע על האתר בכללותו, כגון מפות אתר",
 	"rest-param-desc-mock-desc": "תיאור־דמה.",
 	"rest-param-desc-revision-id": "מזהה גרסה",
 	"rest-param-desc-html-input-title": "פרמטר title של התמרת קלט HTML",

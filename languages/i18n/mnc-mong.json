@@ -178,7 +178,7 @@
 	"loginreqlink": "ᡩᠣᠰᡳᡵᡝ",
 	"newarticle": "(ᡳᠴᡝᠩᡤᡝ)",
 	"newarticletext": "ᠰᡳ ᠪᡳᠰᡳᡵᠠᡴᡡ ᡶᡳᠶᡝᠯᡝᠨ ᡳ ᡥᠣᠯᠪᠣᠪᡠᡵᡝᠩᡤᡝ ᠪᡝ ᠰᡳᡵᠠᡥᠠ᠈\nᡶᡳᠶᡝᠯᡝᠨ ᠪᡝ ᠠᡵᠠᡵᠠ ᠵᠠᠯᡳᠨ᠈ ᡶᡝᠵᡝᡵᡤᡳ ᡳ ᡴᡠᠸᠠᠩᠰᡝ ᡩᡝ ᠠᠨᠠᡵᠠ ᠪᡝ ᡩᡝᡵᡳᠪᡠ (ᡝᠨᠴᡠ ᠮᡝᡩᡝᡤᡝ ᠪᡝ ᡨᡠᠸᠠᡵᠠ ᠵᠠᠯᡳᠨ [$1 ᠠᡳᠰᡳᠯᠠᡵᠠ ᡶᡳᠶᡝᠯᡝᠨ] ᠪᡝ ᡨᡠᠸᠠ)᠈\nᠰᡳ ᡠᠪᠠ ᡩᡝ ᡠᡶᠠᡵᠠᠮᡝ ᠵᡳᠴᡳ᠈ ᠰᡳᠨᡳ ᠠᠰᡠ ᡳ <strong>ᠠᠮᠠᠯᠠ</strong> ᠪᡝ ᠠᠨᠠ᠈",
-	"noarticletext": "ᠮᡝ ᡝᡵᡝ ᡶᡳᠶᡝᠯᡝᠨ ᡩᡝ ᡤᡳᠰᡠᠨ ᠠᡴᡡ᠈\nᠰᡳ [[Special:Search/{{PAGENAME}}|ᡶᡳᠶᡝᠯᡝᠨ ᡳ ᠵᠣᡵᡳᠩᡤᠠ ᠪᡝ ᠪᠠᡳᠮᠪᡳ]] ᡩᡝ ᠮᡠᡨᡝᠮᡝ᠈\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ᡥᠣᠪᠣᠪᡠᡵᡝ ᡝᠵᡝᠪᡠᠨ ᠪᡝ ᠪᠠᡳᠮᠪᡳ]᠈\nᡝᡳᠴᡳ [{{fullurl:{{FULLPAGENAME}}|action=edit}} ᡝᡵᡝ ᡶᡳᠶᡝᠯᡝᠨ ᠪᡝ ᠠᡵᠠᠮᠪᡳ]</span>.",
+	"noarticletext": "ᠮᡝ ᡝᡵᡝ ᡶᡳᠶᡝᠯᡝᠨ ᡩᡝ ᡤᡳᠰᡠᠨ ᠠᡴᡡ᠈\nᠰᡳ [[Special:Search/{{PAGENAME}}|ᡶᡳᠶᡝᠯᡝᠨ ᡳ ᠵᠣᡵᡳᠩᡤᠠ ᠪᡝ ᠪᠠᡳᠮᠪᡳ]] ᡩᡝ ᠮᡠᡨᡝᠮᡝ᠈\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} ᡥᠣᠪᠣᠪᡠᡵᡝ ᡝᠵᡝᠪᡠᠨ ᠪᡝ ᠪᠠᡳᠮᠪᡳ]᠈\nᡝᡳᠴᡳ [{{fullurl:{{FULLPAGENAME}}|action=edit}} ᡝᡵᡝ ᡶᡳᠶᡝᠯᡝᠨ ᠪᡝ ᠠᡵᠠᠮᠪᡳ]</span>.",
 	"userpage-userdoesnotexist-view": "ᠪᠠᡳᡨᠠᠯᠠᠰᡳ ᠪᡝᠵᡝ \"$1\" ᠣᠴᡳ ᡩᠣᠰᡳᡵᠠᡴᡡᠩᡤᡝ᠈",
 	"clearyourcache": "<strong>Note:</strong> ᡴᠠᡵᠮᠠᡥᠠ ᠮᠠᠩᡤᡳ ᡴᡡᠪᡠᠯᡳᠨ ᠪᡝ ᡨᡠᠸᠠᡵᠠ ᠵᠠᠯᡳᠨ ᠠᠰᡠ ᡳ cache ᠪᡝ ᡳᠴᡝ ᠠᡵᠠᡵᠠ ᠣᠮᠪᡳ᠈\n* <strong>Firefox / Safari:</strong> <em>Shift</em> ᠪᡝ ᠠᠨᠠᠮᡝ ᡳᠴᡝ ᠠᡵᠠᡵᠠᠩᡤᡝ ᠪᡝ ᠠᠨᠠᠮᠪᡳ <em>Ctrl-F5</em> ᡝᡳᠴᡳ <em>Ctrl-R</em> ᠪᡝ ᠠᠨᠠᠮᠪᡳ (Mac ᠣᠴᡳ <em>⌘-R</em>)\n* <strong>Google Chrome:</strong> <em>Ctrl-Shift-R</em> ᠪᡝ ᠠᠨᠠᠮᠪᡳ (Mac ᠣᠴᡳ <em>⌘-Shift-R</em>)\n* <strong>Internet Explorer / Edge:</strong> <em>Ctrl</em> ᠪᡝ ᠠᠨᠠᠮ ᡳᠴᡝ ᠠᡵᠠᡵᠠᠩᡤᡝ ᠪᡝ ᠠᠨᠠᠮᠪᡳ ᡝᡳᠴᡳ᠈ <em>Ctrl-F5</em> ᠪᡝ ᠠᠨᠠᠮᠪᡳ\n* <strong>Opera:</strong> <em>Ctrl-F5</em> ᠪᡝ ᠠᠨᠠᠮᠪᡳ᠈",
 	"previewnote": "<strong>ᡝᡵᡝ ᡩᠣᡳᡤᠣᠮᡧᠣᠮᡝ ᡨᡠᠸᠠᡵᠠᠩᡤᡝ ᡨᡝᡳᠯᡝ᠈</strong>\nᠰᡳᠨᡳ ᡴᡡᠪᡠᠯᡳᠪᡠᡥᠠᠩᡤᡝ ᠪᡳᠪᡠᡵᡝ ᡠᠨᡩᡝ!",

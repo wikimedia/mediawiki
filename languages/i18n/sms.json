@@ -336,7 +336,7 @@
 	"rev-deleted-comment": "(õʹhtteǩeässmõš lij jaukkuum)",
 	"rev-deleted-user": "(õõʹnninõmm jaukkuum)",
 	"rev-deleted-text-permission": "Tän versio seeidast lij <strong>jaukkuum</strong>.\nLââʹssteâđid vuäǯǯ [{{fullurl:{{#Special:Log}}/delete|page=$1}} jaukkeemrekisteeʹrest].",
-	"rev-deleted-text-unhide": "Tän versio seeidast lij <strong>jaukkuum</strong>.\nLââʹssteâđid vuäǯǯ [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jaukkeemrekisteeʹrest]. Vuäitak kuuitâǥ [$1 vueiʹnned tän muttâz], jõs haaʹlääk juäʹtǩǩed.",
+	"rev-deleted-text-unhide": "Tän versio seeidast lij <strong>jaukkuum</strong>.\nLââʹssteâđid vuäǯǯ [{{fullurl:{{#Special:Log}}/delete|page={{urlencode:{{FULLPAGENAME}}}}}} jaukkeemrekisteeʹrest]. Vuäitak kuuitâǥ [$1 vueiʹnned tän muttâz], jõs haaʹlääk juäʹtǩǩed.",
 	"rev-deleted-text-view": "Tän versio seeidast lij <strong>jaukkuum</strong>. Vuäitak kuuitâǥ vueiʹnned tõn. Lââʹssteâđid vuäǯǯ [{{fullurl:{{#Special:Log}}/delete|page=$1}} jaukkeemrekisteeʹrest].",
 	"rev-showdeleted": "čuäʹjet",
 	"revisiondelete": "Jaukkâd leʹbe maaccât versioid",

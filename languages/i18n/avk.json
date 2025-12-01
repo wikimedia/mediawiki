@@ -344,7 +344,7 @@
 	"accmailtext": "Remravlem ke « $1 » al zo stakser pu $2.",
 	"newarticle": "(Warzaf)",
 	"newarticletext": "Va gluyaxa va metisu bu su vulegal.\nTa buredura, ko valevef bor toz geltsutel ( va [$1 pomarabu] ta loa giva wil ).\nEde batlize roklason tigil, va '''back''' uzadjo ke nedisiki vulegal.",
-	"noarticletext": "Moe batu bu mek krent dure tir.\nVanmiae yonaru bu [[Special:Search/{{PAGENAME}}|va man buvergumvelt rotaneyal]],\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} va gluyan log robetal],\noke [{{fullurl:{{FULLPAGENAME}}|action=edit}} va batu bu redul]</span>.",
+	"noarticletext": "Moe batu bu mek krent dure tir.\nVanmiae yonaru bu [[Special:Search/{{PAGENAME}}|va man buvergumvelt rotaneyal]],\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} va gluyan log robetal],\noke [{{fullurl:{{FULLPAGENAME}}|action=edit}} va batu bu redul]</span>.",
 	"noarticletext-nopermission": "Dure me krent koe batu bu.\nVanmia yonaru bu [[Special:Search/{{PAGENAME}}|va batu bu rotaneyal]],\noke <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|bu={{FULLPAGENAMEE}}}} va icdef logs rotaneyal]</span>, voxe va batu bu vol ronoredul.",
 	"userpage-userdoesnotexist": "\"<nowiki>$1</nowiki>\" favesikpata me tir vuesteyena. Vay stujel ede va batu bu roredul ike robetal.",
 	"userpage-userdoesnotexist-view": "$1 favesikpata me zo koverteyer.",

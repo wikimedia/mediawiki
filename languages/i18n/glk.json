@@ -243,7 +243,7 @@
 	"loginreqtitle": "خأ أول ديرين بأى",
 	"loginreqlink": "ديرين بئه",
 	"newarticle": "(تازه)",
-	"noarticletext": "اي ولگˇ مئن ألؤنى هيچ وؤتي دننئه. شۊمۊ تؤنين باخيˇ ولگؤنˇ مئن [[Special:Search/{{PAGENAME}}|اي ولگˇ تيتره وامجين]]،\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} مۊرتبط سياه'نه وامجين]،\nىا [{{fullurl:{{FULLPAGENAME}}|action=edit}} اي ولگه چاکۊنين]</span>.",
+	"noarticletext": "اي ولگˇ مئن ألؤنى هيچ وؤتي دننئه. شۊمۊ تؤنين باخيˇ ولگؤنˇ مئن [[Special:Search/{{PAGENAME}}|اي ولگˇ تيتره وامجين]]،\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} مۊرتبط سياه'نه وامجين]،\nىا [{{fullurl:{{FULLPAGENAME}}|action=edit}} اي ولگه چاکۊنين]</span>.",
 	"editing": "$1 دچينواچين گۊدن",
 	"creating": "$1ˇ چأگۊدن",
 	"editingsection": "دچيواچينˇ مئن $1 (وابين)",

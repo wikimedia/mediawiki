@@ -134,7 +134,7 @@
 	"newarticle": "(Ḥaṭo)",
 	"newarticletext": "You have followed a link to a page that does not exist yet.\nTo create the page, start typing in the box below (see the [$1 help page] for more info).\nIf you are here by mistake, click your browser's '''back''' button.",
 	"noarticletext": "There is currently no text in this page.\nYou can [[Special:Search/{{PAGENAME}}|search for this page title]] in other pages,\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} search the related logs],\nor [{{fullurl:{{FULLPAGENAME}}|action=edit}} edit this page]</span>.",
-	"noarticletext-nopermission": "There is currently no text in this page.\nYou can [[Special:Search/{{PAGENAME}}|search for this page title]] in other pages,\nor <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} search the related logs]</span>.",
+	"noarticletext-nopermission": "There is currently no text in this page.\nYou can [[Special:Search/{{PAGENAME}}|search for this page title]] in other pages,\nor <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} search the related logs]</span>.",
 	"previewnote": "'''Remember that this is only a preview.'''\nYour changes have not yet been saved!",
 	"editing": "Şuḥlofo d$1",
 	"editingsection": "Mşaḥlaf $1 (Fusoqo)",

@@ -272,7 +272,7 @@
 	"loginreqpagetext": ".i sarcu fa le nu do $1 kei le nu do viska pa papri poi na du",
 	"accmailtitle": ".i mo'u benji le lerpoijaspu",
 	"newarticle": "to'i cnino toi",
-	"noarticletext": "no da .uenzi va'o lo dei papri .i .e'u do [[Special:Search/{{PAGENAME}}|sisku tu'a lo cmene be lo dei papri]] lo drata papri ja <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} sisku fi lo srana citri vreji] ja [{{fullurl:{{FULLPAGENAME}}|action=edit}} finti lo dei papri]</span>.",
+	"noarticletext": "no da .uenzi va'o lo dei papri .i .e'u do [[Special:Search/{{PAGENAME}}|sisku tu'a lo cmene be lo dei papri]] lo drata papri ja <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} sisku fi lo srana citri vreji] ja [{{fullurl:{{FULLPAGENAME}}|action=edit}} finti lo dei papri]</span>.",
 	"userpage-userdoesnotexist-view": ".i no da jaspu la'o zoi. $1 .zoi poi pilno",
 	"previewnote": "'''do o'i morji lo du'u di'e ba'e pu'o se vreji'''",
 	"editing": ".i ca'o bixygau la'o zoi. $1 .zoi",

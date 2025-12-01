@@ -172,7 +172,7 @@
 	"newarticle": "(yintswa)",
 	"newarticletext": "Ulandzele xikhwekerisi lexi kombaka tluka leringasi tsariwaka.\nLeswaku u tumbuluxa tluka leri, tsala eka bokisi leringa e hansi (Nkambe unga ye eka [$1 tluka ra mpfuno] kukuma vuxokoxoko lebyi engetelekeke).\nLoko ufike eka tluka leri hixihoxo, thlava bhatheni leyinge '''thlelela'''.",
 	"noarticletext": "Kuhava matsalwa eka tluka leri.\nUnga [[Special:Search/{{PAGENAME}}|lavalava nhlokomhaka ya tluka leri]] eka matluka man'wana,\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} lavalava eka nghula leyiyelanaka],\nkumbe [{{fullurl:{{FULLPAGENAME}}|action=edit}} u hlakarhelisa tluka leri]</span>.",
-	"noarticletext-nopermission": "Kuhava matsalwa eka tluka leri.\nUnga [[Special:Search/{{PAGENAME}}|lavalava nhlokomhaka ya tluka leri]] endzeni ka matluka man'wana,\nkumbe u <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} lavalava eka nghula leyiyelanaka]</span>.",
+	"noarticletext-nopermission": "Kuhava matsalwa eka tluka leri.\nUnga [[Special:Search/{{PAGENAME}}|lavalava nhlokomhaka ya tluka leri]] endzeni ka matluka man'wana,\nkumbe u <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} lavalava eka nghula leyiyelanaka]</span>.",
 	"previewnote": "'''Lowu i ndzinganiso ntsena;\nkucinca a ku sihlayisiwa!'''",
 	"editing": "Ulekululamiseni ka $1",
 	"editingsection": "Ndzulamiso wa $1 (Xiyenge)",

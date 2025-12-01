@@ -262,7 +262,7 @@
 	"accmailtext": "Oquiyocox ce ichtacatlahtolli ipan [[User talk:$1|$1]] auh omoquititlan ihuic $2. Hueli ticpatlazquia ipan ''[[Special:ChangePassword|Ticpatlaz in ]]'' niman oticalaco achtopa.",
 	"newarticle": "(Yankwik)",
 	"newarticletext": "Otictocac ce tlatzonhuiliztli in tlen ahmo tlahcuilotoc. Intla tiquichihuaznequi, tipehuaz nican tlatzintla (no xiquitta [$1 tepalehuiliztli amatlahcuilolli] itech ocachi tlamachiliztli). Intlacamo oticnequizcatca nican, xicmatoca in can mihtoa \"icuitlapan\".",
-	"noarticletext": "Naman ayikanah onkah se tlahkwilolli pan ni amatl.\nTiwelis [[Special:Search/{{PAGENAME}}|tiktemos itokah]] ika sekinok tlahkwilolamatinih,\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} xiktemo itlatolol],\nso [{{fullurl:{{FULLPAGENAME}}|action=edit}} xikchiwa ni tlahkwilolamatl]</span>.",
+	"noarticletext": "Naman ayikanah onkah se tlahkwilolli pan ni amatl.\nTiwelis [[Special:Search/{{PAGENAME}}|tiktemos itokah]] ika sekinok tlahkwilolamatinih,\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} xiktemo itlatolol],\nso [{{fullurl:{{FULLPAGENAME}}|action=edit}} xikchiwa ni tlahkwilolamatl]</span>.",
 	"userpage-userdoesnotexist": "Ahmo ia cuentah \"<nowiki>$1</nowiki>\" ītōca. Timitztlātlauhtiah xitēchquinōtza intlā ticchīhuāz intlā nozo ticpatlāz inīn zāzanilli.",
 	"usercsspreview": "'''Ca inīn moachtochīhualiz ītechcopa moCSS.'''\n'''¡Ahmo ōmochīuh nozan!'''",
 	"userjspreview": "'''Ca inīn moachtochīhualiz ītechcopa moJavaScript.'''\n'''¡Ahmo ōmochīuh nozan!'''",

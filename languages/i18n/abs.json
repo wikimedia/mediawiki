@@ -153,7 +153,7 @@
 	"showpreview": "Lia tayang lama",
 	"showdiff": "Lia parobahan",
 	"loginreqlink": "maso dalang log",
-	"noarticletext": "Sakarang seng ada tulisan di akang kintal.\nAle dapa [[Special:Search/{{PAGENAME}}| cari ini kintal pung judul]] di kintal akang, <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} cari log taika], kal seng [{{fullurl:{{FULLPAGENAME}}|action=edit}} biking kintal akang]</span>.",
+	"noarticletext": "Sakarang seng ada tulisan di akang kintal.\nAle dapa [[Special:Search/{{PAGENAME}}| cari ini kintal pung judul]] di kintal akang, <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} cari log taika], kal seng [{{fullurl:{{FULLPAGENAME}}|action=edit}} biking kintal akang]</span>.",
 	"userpage-userdoesnotexist-view": "Pangguna \"$1\" akang seng tadaftar.",
 	"editing": "Marobah $1",
 	"creating": "Biking $1",
