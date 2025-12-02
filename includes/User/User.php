@@ -3193,6 +3193,7 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 	 *   original User object was already from the primary DB.
 	 */
 	public function getInstanceForUpdate() {
+		wfDeprecated( __METHOD__, '1.45' );
 		return $this->getInstanceFromPrimary( IDBAccessObject::READ_EXCLUSIVE );
 	}
 

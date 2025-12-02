@@ -537,6 +537,10 @@ because of Phabricator reports.
   deprecated and emits warnings.  All callers which passed `null` should
   have been removed with the deprecation (in MW 1.44) and removal (in this
   release) of ParserOutput::getText().
+* User::getInstanceForUpdate() has been deprecated and now emits deprecation
+  warnings. In most cases (such as for use with UserOptionsManager) calling
+  this method is no longer needed. In other cases use getInstanceFromPrimary()
+  instead.
 * …
 
 === Other changes in 1.45 ===
