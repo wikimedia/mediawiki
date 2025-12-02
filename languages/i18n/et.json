@@ -2033,6 +2033,7 @@
 	"apisandbox-request-php-label": "Päringu PHP massiiv:",
 	"apisandbox-request-time": "Päringuaeg: {{PLURAL:$1|$1 ms}}",
 	"apisandbox-request-post": "Päring tuleb saata meetodiga HTTP POST.",
+	"apisandbox-request-post2": "Lasti suuruse tõttu saadeti see päring kasutades HTTP POST-meetodit.",
 	"apisandbox-request-formdata": "See päring tuleb saata faili üleslaadimise teel (s.t kasutades sisutüüpi <code>multipart/form-data</code>).",
 	"apisandbox-results-fixtoken": "Paranda luba ja saada uuesti",
 	"apisandbox-results-fixtoken-fail": "$1-luba ei õnnestunud hankida.",

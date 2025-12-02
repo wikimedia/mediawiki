@@ -1842,6 +1842,7 @@
 	"tag-filter": "فيلتر [[Special:Tags|الطاگات]]:",
 	"tag-filter-submit": "فيلتر",
 	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|وسم|وسوم}}]]: $2",
+	"tag-mw-changed-redirect-target": "لهدف ديال التحويلة راه تبدّل",
 	"tag-mw-rollback": "ترجاع",
 	"tag-mw-server-side-upload-description": "لفيشيات لي تشارجاو ببرنامج د لكنتول",
 	"tags-title": "وسوم",

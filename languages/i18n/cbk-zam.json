@@ -478,7 +478,7 @@
 	"searchprofile-advanced": "Avanzao",
 	"searchprofile-articles-tooltip": "Busca na $1",
 	"search-result-size": "$1 ({{PLURAL:$2|1 palabra|$2 maga palabra}})",
-	"search-result-category-size": "{{PLURAL:$1|1 miembro|$1 maga miembros}} ({{PLURAL:$2|1 subcategoria|$2 maga subcategorias}}< {{PLURAL:$3|1 file|$3 maga files}})",
+	"search-result-category-size": "{{PLURAL:$1|1 miembro|$1 maga miembros}} ({{PLURAL:$2|1 subcategoria|$2 maga subcategorias}} {{PLURAL:$3|1 file|$3 maga files}})",
 	"search-redirect": "(redirect estaba na $1)",
 	"search-section": "(seccion $1)",
 	"search-category": "(categoria $1)",

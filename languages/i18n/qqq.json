@@ -276,7 +276,8 @@
 			"Nemoralis",
 			"Tamzin",
 			"E75ti",
-			"Ильгиз"
+			"Ильгиз",
+			"Albertoleoncio"
 		]
 	},
 	"sidebar": "{{notranslate}}",
@@ -1398,8 +1399,8 @@
 	"userrights-watchuser": "This is an option on [[Special:UserRights]] to watch the user page and talk page of the changed user.",
 	"userrights-no-interwiki": "Error message when editing user groups",
 	"userrights-nodatabase": "Error message when editing user groups.\n\n\"Local\" means databases/wikis of the same farm/cluster; that is, meta, enwiki, dewiki, commons, etc are all local databases of the Wikimedia Foundation.\n\nSee [{{canonicalurl:meta:Special:Log|type=rights}} meta:Special:Log?type=rights] for a usage of local databases: username@barwiki\n\nParameters:\n* $1 - database name",
-	"userrights-changeable-col": "Used when editing user groups in [[Special:Userrights]].\n\nThe message is the head of a column of group assignments.\n\nParameters:\n* $1 - The number of items in the column following the message.",
-	"userrights-unchangeable-col": "Used when editing user groups in [[Special:Userrights]]. The message is the head of a column of group assignments.\n\nParameters:\n* $1 - (Optional) for PLURAL use, the number of items in the column following the message. Avoid PLURAL, if your language allows that.",
+	"userrights-changeable-col": "Used when editing user groups in [[Special:Userrights]].\n\nThe message is the head of a column of group assignments.\n\nParameters:\n* $1 - (Optional) for PLURAL use, the number of items in the column following the message. Avoid PLURAL, if your language allows that.",
+	"userrights-unchangeable-col": "Used when editing user groups in [[Special:Userrights]].\n\nThe message is the head of a column of group assignments.\n\nParameters:\n* $1 - (Optional) for PLURAL use, the number of items in the column following the message. Avoid PLURAL, if your language allows that.",
 	"userrights-irreversible-marker": "{{optional}}\nParameters:\n* $1 - group member",
 	"userrights-no-shorten-expiry-marker": "{{optional}}\nParameters:\n* $1 - group member",
 	"userrights-expiry-current": "Indicates when a user's membership of a user group expires.\n\nParameters:\n* $1 - time and date of expiry\n* $2 - date of expiry\n* $3 - time of expiry\n{{Identical|Expire}}",

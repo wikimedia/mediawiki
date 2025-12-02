@@ -1,0 +1,27 @@
+{
+	"@metadata": {
+		"authors": [
+			"बडा काजी"
+		]
+	},
+	"cdx-dialog-close-button-label": "बन्द गर्नुहोस्",
+	"cdx-label-optional-flag": "(वैकल्पिक)",
+	"cdx-message-dismiss-button-label": "बन्द गर्नुहोस्",
+	"cdx-search-input-search-button-label": "खोज्नुहोस्",
+	"cdx-table-select-all-label": "सबै पङ्क्तिहरू चयन गर्नुहोस्",
+	"cdx-table-select-row-label": "$2 मध्ये पङ्क्ति $1 चयन गर्नुहोस्",
+	"cdx-table-sort-caption": "$1 (बटनहरू भएका स्तम्भ हेडरहरू क्रमबद्ध गर्न योग्य छन्।",
+	"cdx-typeahead-search-search-results-label": "खोज नतिजाहरू",
+	"cdx-table-pager-button-first-page": "पहिलो पृष्ठ",
+	"cdx-table-pager-button-last-page": "अन्तिम पृष्ठ",
+	"cdx-table-pager-button-next-page": "अर्को पृष्ठ",
+	"cdx-table-pager-button-prev-page": "अघिल्लो पृष्ठ",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 पङ्क्ति|$1 पङ्क्तिहरू}}",
+	"cdx-table-pager-items-per-page-default": "प्रति पृष्ठ परिणामहरू",
+	"cdx-table-pagination-status-message-determinate-long": "$3 को $1-$2 परिणामहरू देखाइरहेका छन्",
+	"cdx-table-pagination-status-message-determinate-short": "$3 मध्ये $1-$2",
+	"cdx-table-pagination-status-message-indeterminate-long": "धेरै मध्ये $1–$2 परिणामहरू देखाउँदै",
+	"cdx-table-pagination-status-message-indeterminate-short": "धेरै मध्ये $1-$2",
+	"cdx-table-pagination-status-message-indeterminate-final": "अन्तिम {{PLURAL:$1|$1 परिणाम|$1 परिणामहरू}} देखाउँदै।",
+	"cdx-table-pagination-status-message-pending": "परिणामहरू लोड गर्दै..."
+}

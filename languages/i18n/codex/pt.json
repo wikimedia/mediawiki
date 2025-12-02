@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Mbs262",
-			"Mansil alfalb"
+			"Mansil alfalb",
+			"GoEThe"
 		]
 	},
 	"cdx-chip-input-chip-added": "Chip $1 foi adicionado.",
@@ -14,6 +15,7 @@
 	"cdx-search-input-search-button-label": "Pesquisar",
 	"cdx-table-select-all-label": "Selecionar todas as linhas",
 	"cdx-table-select-row-label": "Selecionar linha $1 de $2",
+	"cdx-table-sort-caption": "$1 (cabeçalhos de colunas com botões podem ser ordenados).",
 	"cdx-typeahead-search-search-results-label": "Resultados da pesquisa",
 	"cdx-table-pager-button-first-page": "Primeira página",
 	"cdx-table-pager-button-last-page": "Última página",

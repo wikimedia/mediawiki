@@ -222,7 +222,8 @@
 			"Teetrition",
 			"Nvdtn19",
 			"Srapoj",
-			"TeaSummer"
+			"TeaSummer",
+			"ExoHyper2026"
 		]
 	},
 	"sunday": "星期日",
@@ -436,10 +437,10 @@
 	"restorelink": "$1个已删除的编辑",
 	"feed-invalid": "无效的订阅源类型。",
 	"feed-unavailable": "RSS/Atom订阅不可用",
-	"site-rss-feed": "$1的RSS feed",
-	"site-atom-feed": "$1的Atom feed",
-	"page-rss-feed": "“$1”的RSS feed",
-	"page-atom-feed": "“$1”的Atom feed",
+	"site-rss-feed": "$1的RSS订阅",
+	"site-atom-feed": "$1的Atom订阅",
+	"page-rss-feed": "“$1”的RSS订阅",
+	"page-atom-feed": "“$1”的Atom订阅",
 	"red-link-title": "$1（页面不存在）",
 	"sort-descending": "降序排列",
 	"sort-ascending": "升序排列",

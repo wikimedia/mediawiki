@@ -2156,6 +2156,7 @@
 	"apisandbox-request-php-label": "リクエストのPHP配列：",
 	"apisandbox-request-time": "リクエスト時間: {{PLURAL:$1|$1ミリ秒}}",
 	"apisandbox-request-post": "このリクエストは、HTTP POST メソッドで送信する必要があります。",
+	"apisandbox-request-post2": "ペイロードのサイズが大きいため、このリクエストは HTTP POST メソッドを使用して送信されました。",
 	"apisandbox-request-formdata": "このリクエストは、ファイルアップロードとして送信する必要があります（つまり、 <code>multipart/form-data</code> です）。",
 	"apisandbox-results-fixtoken": "トークンを訂正して再送信",
 	"apisandbox-results-fixtoken-fail": "\"$1\" トークンの取得に失敗しました。",

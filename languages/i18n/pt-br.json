@@ -161,7 +161,8 @@
 			"Jessicamss93",
 			"BraunOBruno",
 			"ACheJu",
-			"Rkieferbaum"
+			"Rkieferbaum",
+			"Sixaxis"
 		]
 	},
 	"sunday": "domingo",
@@ -263,7 +264,7 @@
 	"history_short": "Histórico",
 	"history_small": "histórico",
 	"updatedmarker": "atualizado desde sua última visita",
-	"printableversion": "Versão para impressão",
+	"printableversion": "Versão para imprimir",
 	"printableversion-deprecated-warning": "A versão imprimível não é mais suportada e pode ter erros de renderização. Atualize os favoritos do seu navegador e use a função de impressão padrão do navegador.",
 	"permalink": "Link permanente",
 	"print": "Imprimir",
@@ -2159,6 +2160,7 @@
 	"apisandbox-request-php-label": "Solicitar matriz PHP:",
 	"apisandbox-request-time": "Tempo do pedido: {{PLURAL:$1|$1 ms}}",
 	"apisandbox-request-post": "Esta solicitação deve ser eviada usando o método HTTP POST.",
+	"apisandbox-request-post2": "Devido ao tamanho, essa requisição foi enviada usando o método HTTP POST.",
 	"apisandbox-request-formdata": "Esta solicitação deve ser enviada como um upload de arquivo (isto é, utilizando <code>multipart/form-data</code>).",
 	"apisandbox-results-fixtoken": "Corrigir token e reenviar",
 	"apisandbox-results-fixtoken-fail": "Falha ao buscar token \"$1\".",

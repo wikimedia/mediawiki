@@ -100,7 +100,7 @@
 	"exif-gpslongituderef": "पूर्व वा पश्चिम देशान्तर",
 	"exif-gpslongitude": "देशान्तर",
 	"exif-gpsaltituderef": "ऊंचाई संदर्भ",
-	"exif-gpsaltitude": "उँचाई",
+	"exif-gpsaltitude": "उचाइ",
 	"exif-gpstimestamp": "GPS समय (स्वचालित घड़ी)",
 	"exif-gpssatellites": "नाप्नकोलागि प्रयोग गरिएका उपग्रहहरु",
 	"exif-gpsstatus": "रिसिभर अवस्था",
@@ -277,6 +277,8 @@
 	"exif-scenetype-1": "प्रत्यक्ष खिचिएको छवि",
 	"exif-customrendered-0": "सामान्य प्रक्रिया",
 	"exif-customrendered-1": "व्यक्तिगत प्रक्रिया...",
+	"exif-customrendered-6": "परिदृश्य",
+	"exif-customrendered-8": "पोर्ट्रेट",
 	"exif-exposuremode-0": "स्वत: एक्सपोजर",
 	"exif-exposuremode-1": "म्यानुअल एक्सपोजर",
 	"exif-exposuremode-2": "स्वत: कोष्ठ",
@@ -363,5 +365,14 @@
 	"exif-urgency-normal": "सामान्य ($1)",
 	"exif-urgency-low": "न्युन ($1)",
 	"exif-urgency-high": "उच्च ($1)",
-	"exif-urgency-other": "प्रयोगकर्ताले निर्धारण गरेको प्राथमिकता ($1)"
+	"exif-urgency-other": "प्रयोगकर्ताले निर्धारण गरेको प्राथमिकता ($1)",
+	"exif-firstphotodate": "पहिलो तस्बिर मिति",
+	"exif-lastphotodate": "अन्तिम फोटो मिति",
+	"exif-projectiontype": "प्रक्षेपण प्रकार",
+	"exif-projectiontype-equirectangular": "समभुज आयताकार",
+	"exif-usepanoramaviewer": "परिदृश्य दर्शक प्रयोग गर्नुहोस्",
+	"exif-usepanoramaviewer-true": "हो",
+	"exif-usepanoramaviewer-false": "होइन",
+	"exif-exposurelockused-true": "हो",
+	"exif-exposurelockused-false": "होइन"
 }
