@@ -6,6 +6,7 @@ use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Tests\Api\ApiTestCase;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
+use MediaWiki\User\TempUser\TempUserDetailsLookup;
 use MediaWiki\User\User;
 
 /**
@@ -342,6 +343,61 @@ class ApiQueryAllUsersTest extends ApiTestCase {
 		$this->assertArrayHasKey( 'allusers', $result[0]['query'] );
 		$this->assertApiResultsHasUser( self::$usersAdded[3]->getName(), $result );
 		$this->assertCount( 1, $result[0]['query']['allusers'] );
+	}
+
+	/** @dataProvider provideTempExpired */
+	public function testTempExpired( bool $queryNamed, bool $expired, ?bool $expected ) {
+		$namedUser = self::$usersAdded[0];
+		$tempUser = self::$usersAdded[3];
+
+		$tempDetailsLookup = $this->createMock( TempUserDetailsLookup::class );
+		$tempDetailsLookup
+			->expects( $queryNamed ? $this->never() : $this->once() )
+			->method( 'isExpired' )
+			->willReturnCallback( function ( $user ) use ( $tempUser, $expired ) {
+				$this->assertSame( $tempUser->getName(), $user->getName() );
+				return $expired;
+			} );
+		$this->setService( 'TempUserDetailsLookup', $tempDetailsLookup );
+
+		$result = $this->doApiRequest( [
+			'action' => 'query',
+			'list' => 'allusers',
+			'auprefix' => $queryNamed ? self::USER_PREFIX : self::TEMP_USER_PREFIX,
+			'auprop' => 'tempexpired',
+		] );
+
+		$returnedUser = $queryNamed ? $namedUser : $tempUser;
+
+		$this->assertArrayHasKey( 'query', $result[0] );
+		$this->assertArrayHasKey( 'allusers', $result[0]['query'] );
+		$this->assertArraySubmapSame(
+			[
+				'userid' => $returnedUser->getId(),
+				'name' => $returnedUser->getName(),
+				'tempexpired' => $expected,
+			],
+			$result[0]['query']['allusers'][0]
+		);
+	}
+
+	public static function provideTempExpired(): iterable {
+		yield 'Query named users' => [
+			'queryNamed' => true,
+			// Expired state doesn't matter here
+			'expired' => true,
+			'expected' => null,
+		];
+		yield 'Query temp users, unexpired' => [
+			'queryNamed' => false,
+			'expired' => false,
+			'expected' => false,
+		];
+		yield 'Query temp users, expired' => [
+			'queryNamed' => false,
+			'expired' => true,
+			'expected' => true,
+		];
 	}
 
 	private function assertApiResultsHasUser( $username, $results ) {

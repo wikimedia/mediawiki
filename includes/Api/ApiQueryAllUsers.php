@@ -13,8 +13,10 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\RecentChanges\RecentChangeLookup;
 use MediaWiki\User\TempUser\TempUserConfig;
+use MediaWiki\User\TempUser\TempUserDetailsLookup;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserGroupManager;
+use MediaWiki\User\UserIdentityValue;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 use Wikimedia\Rdbms\IExpression;
@@ -28,30 +30,18 @@ use Wikimedia\Rdbms\LikeValue;
 class ApiQueryAllUsers extends ApiQueryBase {
 	use ApiQueryBlockInfoTrait;
 
-	private UserFactory $userFactory;
-	private UserGroupManager $userGroupManager;
-	private GroupPermissionsLookup $groupPermissionsLookup;
-	private Language $contentLanguage;
-	private TempUserConfig $tempUserConfig;
-	private RecentChangeLookup $recentChangeLookup;
-
 	public function __construct(
 		ApiQuery $query,
 		string $moduleName,
-		UserFactory $userFactory,
-		UserGroupManager $userGroupManager,
-		GroupPermissionsLookup $groupPermissionsLookup,
-		Language $contentLanguage,
-		TempUserConfig $tempUserConfig,
-		RecentChangeLookup $recentChangeLookup
+		private readonly UserFactory $userFactory,
+		private readonly UserGroupManager $userGroupManager,
+		private readonly GroupPermissionsLookup $groupPermissionsLookup,
+		private readonly Language $contentLanguage,
+		private readonly TempUserConfig $tempUserConfig,
+		private readonly RecentChangeLookup $recentChangeLookup,
+		private readonly TempUserDetailsLookup $tempUserDetailsLookup
 	) {
 		parent::__construct( $query, $moduleName, 'au' );
-		$this->userFactory = $userFactory;
-		$this->userGroupManager = $userGroupManager;
-		$this->groupPermissionsLookup = $groupPermissionsLookup;
-		$this->contentLanguage = $contentLanguage;
-		$this->tempUserConfig = $tempUserConfig;
-		$this->recentChangeLookup = $recentChangeLookup;
 	}
 
 	/**
@@ -81,9 +71,10 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			$fld_registration = isset( $prop['registration'] );
 			$fld_implicitgroups = isset( $prop['implicitgroups'] );
 			$fld_centralids = isset( $prop['centralids'] );
+			$fld_tempexpired = isset( $prop['tempexpired'] );
 		} else {
 			$fld_blockinfo = $fld_editcount = $fld_groups = $fld_registration =
-				$fld_rights = $fld_implicitgroups = $fld_centralids = false;
+				$fld_rights = $fld_implicitgroups = $fld_centralids = $fld_tempexpired = false;
 		}
 
 		$limit = $params['limit'];
@@ -358,6 +349,15 @@ class ApiQueryAllUsers extends ApiQueryBase {
 				}
 			}
 
+			if ( $fld_tempexpired ) {
+				if ( $this->tempUserConfig->isTempName( $row->user_name ) ) {
+					$userIdentity = UserIdentityValue::newRegistered( $row->user_id, $row->user_name );
+					$data['tempexpired'] = $this->tempUserDetailsLookup->isExpired( $userIdentity );
+				} else {
+					$data['tempexpired'] = null;
+				}
+			}
+
 			$fit = $result->addValue( [ 'query', $this->getModuleName() ], null, $data );
 			if ( !$fit ) {
 				$this->setContinueEnumParameter( 'from', $data['name'] );
@@ -417,6 +417,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 					'editcount',
 					'registration',
 					'centralids',
+					'tempexpired',
 				],
 				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
 			],

@@ -314,6 +314,7 @@ class ApiQuery extends ApiBase {
 				'ContentLanguage',
 				'TempUserConfig',
 				'RecentChangeLookup',
+				'TempUserDetailsLookup',
 			]
 		],
 		'backlinks' => [
@@ -480,6 +481,8 @@ class ApiQuery extends ApiBase {
 				'UserGroupManager',
 				'GenderCache',
 				'AuthManager',
+				'TempUserConfig',
+				'TempUserDetailsLookup',
 			],
 		],
 		'watchlist' => [
