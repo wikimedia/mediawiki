@@ -278,6 +278,7 @@ $specialPageAliases = [
 	'Wantedpages'                => [ '需要的頁面', '待撰頁面' ],
 	'Wantedtemplates'            => [ '需要的模板' ],
 	'Watchlist'                  => [ '監視清單', '監視列表' ],
+	'WatchlistLabels'            => [ '監視清單標籤', '監視列表標籤' ],
 	'Whatlinkshere'              => [ '連入頁面', '鏈入頁面' ],
 	'Withoutinterwiki'           => [ '沒有跨語言連結的頁面', '無跨wiki連結頁面', '無跨維基連結頁面' ],
 ];

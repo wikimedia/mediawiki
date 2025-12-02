@@ -293,6 +293,7 @@ $specialPageAliases = [
 	'Wantedpages'                => [ '需要的页面', '待撰页面', '受损链接' ],
 	'Wantedtemplates'            => [ '需要的模板' ],
 	'Watchlist'                  => [ '监视列表' ],
+	'WatchlistLabels'            => [ '监视列表标签' ],
 	'Whatlinkshere'              => [ '链入页面' ],
 	'Withoutinterwiki'           => [ '无跨wiki', '无跨wiki链接页面' ],
 ];
