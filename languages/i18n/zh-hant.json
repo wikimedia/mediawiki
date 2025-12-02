@@ -3229,7 +3229,7 @@
 	"confirmemail_html_subject": "確認您的電子郵件",
 	"confirmemail_html_logo_alttext": "{{SITENAME}}標誌",
 	"confirmemail_html_par1": "歡迎，$1",
-	"confirmemail_html_par2": "'''即將完成您的{{SITENAME}}帳號。'''請在下方確認您的電子郵件來完成。",
+	"confirmemail_html_par2": "'''您的{{SITENAME}}帳號即將完成註冊。'''請在下方確認您的電子郵件來完成。",
 	"confirmemail_html_button_label": "確認{{GENDER:$1|您的}}電子郵件",
 	"confirmemail_plaintext_button_label": "確認{{GENDER:$1|您的}}電子郵件<$2>",
 	"confirmemail_html_footer": "如果這不是您本人，{{GENDER:$1|您}}可以忽略此訊息或是從帳號中[$2 移除此電子郵件地址]。",

@@ -424,7 +424,7 @@
 	"createacct-loggedin-continue-as": "Jatka tunnuksella {{GENDER:$1|$1}}",
 	"createacct-loggedin-heading": "Luo toinen tunnus",
 	"createacct-emailrequired": "Sähköpostiosoite",
-	"createacct-emailoptional": "Sähköpostiosoite (vapaaehtoinen)",
+	"createacct-emailoptional": "Sähköpostiosoite (valinnainen)",
 	"createacct-email-ph": "Kirjoita sähköpostiosoitteesi",
 	"createacct-another-email-ph": "Lisää sähköpostiosoite",
 	"createaccountmail": "Käytä satunnaista väliaikaissalasanaa ja lähetä se alla olevaan sähköpostiosoitteeseen",
