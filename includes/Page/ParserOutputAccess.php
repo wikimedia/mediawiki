@@ -698,15 +698,10 @@ class ParserOutputAccess implements LoggerAwareInterface {
 
 		$useCache = $this->shouldUseCache( $page, $revision );
 
-		$statCacheLabelLegacy = match ( $useCache ) {
-			self::CACHE_PRIMARY => 'Current',
-			self::CACHE_SECONDARY => 'Old',
-			default => 'Uncached',
-		};
-
 		$this->statsFactory->getCounter( 'parseroutputaccess_render_total' )
 			->setLabel( 'pool', 'articleview' )
 			->setLabel( 'cache', $useCache )
+			->setLabel( 'postproc', $parserOptions->getPostproc() ? 'true' : 'false' )
 			->increment();
 
 		switch ( $useCache ) {
