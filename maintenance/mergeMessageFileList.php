@@ -46,7 +46,8 @@ class MergeMessageFileList extends Maintenance {
 		$config = $this->getConfig();
 		$extensionEntryPointListFiles = $config->get( MainConfigNames::ExtensionEntryPointListFiles );
 
-		if ( !count( $extensionEntryPointListFiles )
+		if (
+			!count( $extensionEntryPointListFiles )
 			&& !$this->hasOption( 'list-file' )
 			&& !$this->hasOption( 'extensions-dir' )
 		) {
@@ -56,7 +57,7 @@ class MergeMessageFileList extends Maintenance {
 
 		$setupFiles = [];
 
-		# Add setup files contained in file passed to --list-file
+		# Add setup files contained in the file passed to --list-file
 		if ( $this->hasOption( 'list-file' ) ) {
 			$extensionPaths = $this->readFile( $this->getOption( 'list-file' ) );
 			$setupFiles = array_merge( $setupFiles, $extensionPaths );
@@ -64,30 +65,29 @@ class MergeMessageFileList extends Maintenance {
 
 		# Now find out files in a directory
 		if ( $this->hasOption( 'extensions-dir' ) ) {
-			$extdir = $this->getOption( 'extensions-dir' );
-			# Allow multiple directories to be passed with ":" as delimiter
-			$extdirs = explode( ':', $extdir );
-			foreach ( $extdirs as $extdir ) {
-				$entries = scandir( $extdir );
-				foreach ( $entries as $extname ) {
-					if ( $extname == '.' || $extname == '..' || !is_dir( "$extdir/$extname" ) ) {
+			# Allow multiple directories to be passed with ":" as a delimiter
+			$extDirs = explode( ':', $this->getOption( 'extensions-dir' ) );
+			foreach ( $extDirs as $extDir ) {
+				$entries = scandir( $extDir );
+				foreach ( $entries as $extName ) {
+					if ( $extName === '.' || $extName === '..' || !is_dir( "$extDir/$extName" ) ) {
 						continue;
 					}
 					$possibilities = [
-						"$extdir/$extname/extension.json",
-						"$extdir/$extname/skin.json",
+						"$extDir/$extName/extension.json",
+						"$extDir/$extName/skin.json",
 					];
 					$found = false;
-					foreach ( $possibilities as $extfile ) {
-						if ( file_exists( $extfile ) ) {
-							$setupFiles[] = $extfile;
+					foreach ( $possibilities as $extFile ) {
+						if ( file_exists( $extFile ) ) {
+							$setupFiles[] = $extFile;
 							$found = true;
 							break;
 						}
 					}
 
 					if ( !$found ) {
-						$this->error( "Extension {$extname} in {$extdir} lacks expected entry point: " .
+						$this->error( "Extension {$extName} in {$extDir} lacks expected entry point: " .
 							"extension.json or skin.json " .
 							"(PHP entry points are no longer supported by this script)." );
 					}
@@ -125,7 +125,7 @@ class MergeMessageFileList extends Maintenance {
 	 * @param string $fileName
 	 * @return array List of absolute extension paths
 	 */
-	private function readFile( $fileName ) {
+	private function readFile( string $fileName ): array {
 		$IP = MW_INSTALL_PATH;
 
 		$files = [];
@@ -156,7 +156,7 @@ class MergeMessageFileList extends Maintenance {
 		return $files;
 	}
 
-	private function generateMessageFileList( array $setupFiles ) {
+	private function generateMessageFileList( array $setupFiles ): void {
 		$IP = MW_INSTALL_PATH;
 
 		$outputFile = $this->getOption( 'output' );
@@ -165,7 +165,7 @@ class MergeMessageFileList extends Maintenance {
 		$queue = [];
 
 		foreach ( $setupFiles as $fileName ) {
-			if ( strval( $fileName ) === '' ) {
+			if ( (string)$fileName === '' ) {
 				continue;
 			}
 			if ( !$quiet ) {
