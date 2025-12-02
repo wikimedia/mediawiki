@@ -1,4 +1,8 @@
 <?php
+namespace Wikimedia\Tests\Integration\LockManager;
+
+use MediaWikiIntegrationTestCase;
+use Wikimedia\LockManager\LockManager;
 
 abstract class LockManagerIntegrationTestBase extends MediaWikiIntegrationTestCase {
 
@@ -98,3 +102,5 @@ abstract class LockManagerIntegrationTestBase extends MediaWikiIntegrationTestCa
 		$this->assertStatusGood( $status, "Unlock (SH) succeeded ({$this->class})." );
 	}
 }
+/** @deprecated class alias since 1.46 */
+class_alias( LockManagerIntegrationTestBase::class, 'LockManagerIntegrationTestBase' );

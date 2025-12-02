@@ -3,6 +3,9 @@
  * @license GPL-2.0-or-later
  * @file
  */
+namespace Wikimedia\LockManager;
+
+use StatusValue;
 
 /**
  * Simple lock management based on in-process reference counting.
@@ -44,3 +47,5 @@ class NullLockManager extends LockManager {
 		return $status;
 	}
 }
+/** @deprecated class alias since 1.46 */
+class_alias( NullLockManager::class, 'NullLockManager' );

@@ -3,7 +3,11 @@
  * @license GPL-2.0-or-later
  * @file
  */
+namespace Wikimedia\LockManager;
 
+use Exception;
+use RedisException;
+use StatusValue;
 use Wikimedia\ObjectCache\RedisConnectionPool;
 
 /**
@@ -265,3 +269,5 @@ LUA;
 		}
 	}
 }
+/** @deprecated class alias since 1.46 */
+class_alias( RedisLockManager::class, 'RedisLockManager' );

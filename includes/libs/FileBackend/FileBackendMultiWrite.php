@@ -10,10 +10,10 @@
 namespace Wikimedia\FileBackend;
 
 use InvalidArgumentException;
-use LockManager;
 use LogicException;
 use Shellbox\Command\BoxedCommand;
 use StatusValue;
+use Wikimedia\LockManager\LockManager;
 use Wikimedia\StringUtils\StringUtils;
 
 /**

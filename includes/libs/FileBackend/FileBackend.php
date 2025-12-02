@@ -18,17 +18,17 @@
 namespace Wikimedia\FileBackend;
 
 use InvalidArgumentException;
-use LockManager;
-use NullLockManager;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
-use ScopedLock;
 use Shellbox\Command\BoxedCommand;
 use StatusValue;
 use Wikimedia\FileBackend\FSFile\FSFile;
 use Wikimedia\FileBackend\FSFile\TempFSFile;
 use Wikimedia\FileBackend\FSFile\TempFSFileFactory;
+use Wikimedia\LockManager\LockManager;
+use Wikimedia\LockManager\NullLockManager;
+use Wikimedia\LockManager\ScopedLock;
 use Wikimedia\Message\MessageParam;
 use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\ScopedCallback;

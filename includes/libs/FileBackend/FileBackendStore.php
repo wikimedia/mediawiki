@@ -10,7 +10,6 @@
 namespace Wikimedia\FileBackend;
 
 use InvalidArgumentException;
-use LockManager;
 use Shellbox\Command\BoxedCommand;
 use StatusValue;
 use Traversable;
@@ -27,6 +26,7 @@ use Wikimedia\FileBackend\FileOps\MoveFileOp;
 use Wikimedia\FileBackend\FileOps\NullFileOp;
 use Wikimedia\FileBackend\FileOps\StoreFileOp;
 use Wikimedia\FileBackend\FSFile\FSFile;
+use Wikimedia\LockManager\LockManager;
 use Wikimedia\MapCacheLRU\MapCacheLRU;
 use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\ObjectCache\EmptyBagOStuff;

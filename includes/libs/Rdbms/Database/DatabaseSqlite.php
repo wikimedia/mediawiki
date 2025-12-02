@@ -5,13 +5,13 @@
  */
 namespace Wikimedia\Rdbms;
 
-use FSLockManager;
-use LockManager;
-use NullLockManager;
 use PDO;
 use PDOException;
 use PDOStatement;
 use RuntimeException;
+use Wikimedia\LockManager\FSLockManager;
+use Wikimedia\LockManager\LockManager;
+use Wikimedia\LockManager\NullLockManager;
 use Wikimedia\Rdbms\Platform\SqlitePlatform;
 use Wikimedia\Rdbms\Platform\SQLPlatform;
 use Wikimedia\Rdbms\Replication\ReplicationReporter;

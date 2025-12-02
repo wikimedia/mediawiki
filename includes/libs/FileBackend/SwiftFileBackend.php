@@ -11,7 +11,6 @@
 namespace Wikimedia\FileBackend;
 
 use Exception;
-use LockManager;
 use Psr\Log\LoggerInterface;
 use Shellbox\Command\BoxedCommand;
 use StatusValue;
@@ -22,6 +21,7 @@ use Wikimedia\FileBackend\FileIteration\SwiftFileBackendFileList;
 use Wikimedia\FileBackend\FileOpHandle\SwiftFileOpHandle;
 use Wikimedia\FileBackend\FSFile\TempFSFile;
 use Wikimedia\Http\MultiHttpClient;
+use Wikimedia\LockManager\LockManager;
 use Wikimedia\MapCacheLRU\MapCacheLRU;
 use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\ObjectCache\EmptyBagOStuff;

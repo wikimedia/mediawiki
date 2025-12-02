@@ -3,9 +3,12 @@
  * @license GPL-2.0-or-later
  * @file
  */
+namespace Wikimedia\LockManager;
 
+use InvalidArgumentException;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
+use StatusValue;
 use Wikimedia\RequestTimeout\RequestTimeout;
 use Wikimedia\WaitConditionLoop;
 
@@ -171,7 +174,7 @@ abstract class LockManager {
 	 * @return string
 	 */
 	final protected function sha1Base36Absolute( $path ) {
-		return Wikimedia\base_convert( sha1( "{$this->domain}:{$path}" ), 16, 36, 31 );
+		return \Wikimedia\base_convert( sha1( "{$this->domain}:{$path}" ), 16, 36, 31 );
 	}
 
 	/**
@@ -256,3 +259,5 @@ abstract class LockManager {
 	 */
 	abstract protected function doUnlock( array $paths, $type );
 }
+/** @deprecated class alias since 1.46 */
+class_alias( LockManager::class, 'LockManager' );

@@ -1,10 +1,12 @@
 <?php
+namespace Wikimedia\Tests\Integration\LockManager;
 
 use MediaWiki\MainConfigNames;
+use Wikimedia\LockManager\RedisLockManager;
 
 /**
  * @group LockManager
- * @covers \RedisLockManager
+ * @covers \Wikimedia\LockManager\RedisLockManager
  */
 class RedisLockManagerIntegrationTest extends LockManagerIntegrationTestBase {
 	/** @var LockManager[] */

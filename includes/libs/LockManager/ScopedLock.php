@@ -3,6 +3,9 @@
  * @license GPL-2.0-or-later
  * @file
  */
+namespace Wikimedia\LockManager;
+
+use StatusValue;
 
 /**
  * Self-releasing locks.
@@ -85,3 +88,5 @@ class ScopedLock {
 		}
 	}
 }
+/** @deprecated class alias since 1.46 */
+class_alias( ScopedLock::class, 'ScopedLock' );

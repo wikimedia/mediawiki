@@ -7,7 +7,6 @@
 namespace MediaWiki\FileRepo\File;
 
 use InvalidArgumentException;
-use LockManager;
 use MediaHandler;
 use MediaWiki\Content\ContentHandler;
 use MediaWiki\Context\RequestContext;
@@ -43,6 +42,7 @@ use UnexpectedValueException;
 use Wikimedia\FileBackend\FileBackend;
 use Wikimedia\FileBackend\FileBackendError;
 use Wikimedia\FileBackend\FSFile\FSFile;
+use Wikimedia\LockManager\LockManager;
 use Wikimedia\Rdbms\Blob;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDBAccessObject;

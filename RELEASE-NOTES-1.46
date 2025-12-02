@@ -479,6 +479,14 @@ because of Phabricator reports.
     - UploadVerifyUploadHook
   - Watchlist related hook: MediaWiki\Hook => MediaWiki\Watchlist\Hook
     - WatchedItemQueryServiceExtensionsHook
+  - The LockManager library: Wikimedia\LockManager
+    - FSLockManager
+    - LockManager
+    - MemcLockManager
+    - NullLockManager
+    - QuorumLockManager
+    - RedisLockManager
+    - ScopedLock
 * Using an int for the $mode parameter of LanguageFallback::getAll() is now
   deprecated.  Use the new LanguageFallbackMode enumeration instead.
 * LanguageFallback::MESSAGES and LanguageFallback::STRICT are deprecated; use

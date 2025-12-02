@@ -39,9 +39,9 @@ use Wikimedia\FileBackend\FSFileBackend;
  * @covers \Wikimedia\FileBackend\FileOps\StoreFileOp
  * @covers \Wikimedia\FileBackend\FSFile\TempFSFile
  *
- * @covers \FSLockManager
- * @covers \LockManager
- * @covers \NullLockManager
+ * @covers \Wikimedia\LockManager\FSLockManager
+ * @covers \Wikimedia\LockManager\LockManager
+ * @covers \Wikimedia\LockManager\NullLockManager
  */
 class FSFileBackendIntegrationTest extends FileBackendIntegrationTestBase {
 	protected function getBackend() {
