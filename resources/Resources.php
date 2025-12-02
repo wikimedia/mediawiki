@@ -2809,8 +2809,8 @@ return [
 			'labelmanager.less',
 		],
 		'codexStyleOnly' => true,
-		'dependencies' => [
-			'codex-styles',
+		'codexComponents' => [
+			'CdxTable',
 		],
 	],
 	'mediawiki.tempUserBanner.styles' => [

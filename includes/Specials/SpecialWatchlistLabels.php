@@ -164,7 +164,7 @@ class SpecialWatchlistLabels extends SpecialPage {
 	 */
 	private function showTable() {
 		$codex = new Codex();
-		$this->getOutput()->addModules( 'mediawiki.special.watchlistlabels' );
+		$this->getOutput()->addModuleStyles( 'mediawiki.special.watchlistlabels' );
 
 		// Page title and description.
 		$this->getOutput()->addHTML(
