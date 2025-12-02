@@ -207,6 +207,7 @@ class SpecialWatchlistLabels extends SpecialPage {
 		$data = [];
 		$labels = $this->labelStore->loadAllForUser( $this->getUser() );
 		$labelCounts = $this->labelStore->countItems( array_keys( $labels ) );
+		$editIcon = Html::element( 'span', [ 'class' => 'cdx-button__icon mw-specialwatchlistlabels-icon--edit' ] );
 		foreach ( $labels as $label ) {
 			$id = $label->getId();
 			if ( !$id ) {
@@ -215,13 +216,15 @@ class SpecialWatchlistLabels extends SpecialPage {
 			$url = $this->getPageTitle( self::SUBPAGE_EDIT )->getLocalURL( [ self::PARAM_ID => $id ] );
 			$params = [
 				'href' => $url,
-				'class' => 'mw-specialwatchlistlabels-icon--edit',
+				'role' => 'button',
+				'class' => 'cdx-button cdx-button--fake-button cdx-button--fake-button--enabled'
+					. ' cdx-button--weight-quiet cdx-button--icon-only cdx-button--size-small',
 				'title' => $this->msg( 'watchlistlabels-table-edit' )->text(),
 			];
 			$data[] = [
 				'name' => htmlspecialchars( $label->getName() ),
 				'count' => $this->getLanguage()->formatNum( $labelCounts[ $id ] ),
-				'edit' => Html::element( 'a', $params ),
+				'edit' => Html::rawElement( 'a', $params, $editIcon ),
 			];
 		}
 

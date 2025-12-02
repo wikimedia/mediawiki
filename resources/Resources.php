@@ -2811,6 +2811,7 @@ return [
 		'codexStyleOnly' => true,
 		'codexComponents' => [
 			'CdxTable',
+			'CdxButton',
 		],
 	],
 	'mediawiki.tempUserBanner.styles' => [
