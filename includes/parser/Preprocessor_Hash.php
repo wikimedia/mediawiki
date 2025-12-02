@@ -46,10 +46,12 @@ use Wikimedia\ObjectCache\WANObjectCache;
 // phpcs:ignore Squiz.Classes.ValidClassName.NotCamelCaps
 class Preprocessor_Hash extends Preprocessor {
 	/** Cache format version */
-	protected const CACHE_VERSION = 4;
+	protected const CACHE_VERSION = 5;
 
 	/** @var int|false Min wikitext size for which to cache DOM tree */
 	protected $cacheThreshold;
+
+	private ?string $configurationHash = null;
 
 	/**
 	 * @see Preprocessor::__construct()
@@ -110,6 +112,20 @@ class Preprocessor_Hash extends Preprocessor {
 		return new PPNode_Hash_Array( $list );
 	}
 
+	private function getConfigurationHash(): string {
+		if ( $this->configurationHash ) {
+			return $this->configurationHash;
+		}
+
+		$configs = [
+			'tags' => $this->parser->getTags(),
+		];
+		sort( $configs['tags'] );
+		$this->configurationHash = sha1( json_encode( $configs ) );
+
+		return $this->configurationHash;
+	}
+
 	public function preprocessToObj( $text, $flags = 0 ) {
 		if ( $this->disableLangConversion ) {
 			// Language conversions are globally disabled; implicitly set flag
@@ -123,7 +139,8 @@ class Preprocessor_Hash extends Preprocessor {
 			( $flags & self::DOM_UNCACHED ) != self::DOM_UNCACHED
 		) {
 			$domTreeJson = $this->wanCache->getWithSetCallback(
-				$this->wanCache->makeKey( 'preprocess-hash', sha1( $text ), $flags ),
+				$this->wanCache->makeKey(
+					'preprocess-hash', $this->getConfigurationHash(), sha1( $text ), $flags ),
 				$this->wanCache::TTL_DAY,
 				function () use ( $text, $flags, &$domTreeArray ) {
 					$domTreeArray = $this->buildDomTreeArrayFromText( $text, $flags );
