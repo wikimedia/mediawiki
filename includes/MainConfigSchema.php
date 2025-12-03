@@ -11178,16 +11178,6 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * Whether to enable pagination on Special:EditWatchlist (feature flag)
-	 *
-	 * @since 1.45
-	 */
-	public const EditWatchlistPaginate = [
-		'default' => false,
-		'type' => 'boolean',
-	];
-
-	/**
 	 * Allow Watchlist and RecentChangesLinked queries to be partitioned by
 	 * rc_timestamp. This may help with performance. (T403798)
 	 *

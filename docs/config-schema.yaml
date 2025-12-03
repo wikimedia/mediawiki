@@ -7002,12 +7002,6 @@ config-schema:
             Only has effect if $wgWatchlistExpiry is true.
             Set to null to allow expiries of any duration.
             @since 1.35
-    EditWatchlistPaginate:
-        default: false
-        type: boolean
-        description: |-
-            Whether to enable pagination on Special:EditWatchlist (feature flag)
-            @since 1.45
     EnableChangesListQueryPartitioning:
         default: false
         type: boolean

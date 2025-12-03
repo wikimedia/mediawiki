@@ -69,7 +69,6 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	private WikiPageFactory $wikiPageFactory;
 	private WatchlistManager $watchlistManager;
 	protected EditWatchlistPager $pager;
-	protected bool $paginationEnabled;
 
 	/** @var int|false where the value is one of the EDIT_ prefixed constants (e.g. EDIT_NORMAL) */
 	private $currentMode;
@@ -94,10 +93,6 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		$this->wikiPageFactory = $wikiPageFactory ?? $services->getWikiPageFactory();
 		$this->watchlistManager = $watchlistManager ?? $services->getWatchlistManager();
 		$this->pager = $this->getDefaultPager();
-		$this->paginationEnabled = $this->getRequest()->getBool(
-			'paginate',
-			$this->getConfig()->get( MainConfigNames::EditWatchlistPaginate )
-		);
 	}
 
 	private function getDefaultPager(): EditWatchlistPager {
@@ -200,27 +195,23 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		$watchlistInfo = $this->getWatchlistInfo();
 		$this->getHookRunner()->onWatchlistEditorBeforeFormRender( $watchlistInfo );
 
-		// @todo remove this condition when the EditWatchlistPaginate feature flag is removed
-		$namespaceSelectForm = null;
-		if ( $this->paginationEnabled ) {
-			$namespaceFormDescriptor = [
-				'namespace' => [
-					'type' => 'namespaceselect',
-					'name' => 'namespace',
-					'id' => 'namespace',
-					'label-message' => 'namespace',
-					'all' => '',
-					'default' => '',
-					'include' => array_merge( array_values( $this->nsInfo->getSubjectNamespaces() ) ),
-				],
-			];
-			$namespaceSelectForm = HTMLForm::factory( 'ooui', $namespaceFormDescriptor, $this->getContext() );
-			$namespaceSelectForm
-				->setMethod( 'get' )
-				->setTitle( $this->getPageTitle() ) // Remove subpage
-				->setSubmitTextMsg( 'allpagessubmit' )
-				->prepareForm();
-		}
+		$namespaceFormDescriptor = [
+			'namespace' => [
+				'type' => 'namespaceselect',
+				'name' => 'namespace',
+				'id' => 'namespace',
+				'label-message' => 'namespace',
+				'all' => '',
+				'default' => '',
+				'include' => array_merge( array_values( $this->nsInfo->getSubjectNamespaces() ) ),
+			],
+		];
+		$namespaceSelectForm = HTMLForm::factory( 'ooui', $namespaceFormDescriptor, $this->getContext() );
+		$namespaceSelectForm
+			->setMethod( 'get' )
+			->setTitle( $this->getPageTitle() ) // Remove subpage
+			->setSubmitTextMsg( 'allpagessubmit' )
+			->prepareForm();
 
 		if ( count( $watchlistInfo ) > 0 ) {
 			$form = $this->getNormalForm( $watchlistInfo );
@@ -233,18 +224,12 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 				return;
 			}
 
-			// @todo remove this condition when the EditWatchlistPaginate feature flag is removed
-			if ( $this->paginationEnabled ) {
-				$namespaceSelectForm?->displayForm( false );
-				$out->addHTML( $this->pager->getNavigationBar() );
-			}
+			$namespaceSelectForm?->displayForm( false );
+			$out->addHTML( $this->pager->getNavigationBar() );
 
 			$form->displayForm( $result );
 
-			// @todo remove this condition when the EditWatchlistPaginate feature flag is removed
-			if ( $this->paginationEnabled ) {
-				$out->addHTML( $this->pager->getNavigationBar() );
-			}
+			$out->addHTML( $this->pager->getNavigationBar() );
 		} else {
 			if ( $this->getContext()->getRequest()->getIntOrNull( 'namespace' ) ) {
 				$namespaceSelectForm?->displayForm( false );
@@ -496,28 +481,14 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	protected function getWatchlistInfo() {
 		$titles = [];
 		$lb = $this->linkBatchFactory->newLinkBatch();
-		// @todo remove this clause when the EditWatchlistPaginate feature flag is removed
-		if ( !$this->paginationEnabled ) {
-			$options = [ 'sort' => WatchedItemStoreInterface::SORT_ASC ];
-			$watchedItems = $this->watchedItemStore->getWatchedItemsForUser(
-				$this->getUser(), $options
-			);
-			foreach ( $watchedItems as $watchedItem ) {
-				$namespace = $watchedItem->getTarget()->getNamespace();
-				$dbKey = $watchedItem->getTarget()->getDBkey();
-				if ( !$this->nsInfo->isTalk( $namespace ) ) {
-					$titles[$namespace][$dbKey] = $watchedItem->getExpiryInDaysText( $this->getContext() );
-				}
-				$lb->add( $namespace, $dbKey );
-			}
-		} else {
-			$this->pager->doQuery();
-			$watchedItems = $this->pager->getOrderedResult();
-			foreach ( $watchedItems as $item ) {
-				$titles[$item->wl_namespace][$item->wl_title] = $item->expiryInDaysText;
-				$lb->add( $item->wl_namespace, $item->wl_title );
-			}
+
+		$this->pager->doQuery();
+		$watchedItems = $this->pager->getOrderedResult();
+		foreach ( $watchedItems as $item ) {
+			$titles[$item->wl_namespace][$item->wl_title] = $item->expiryInDaysText;
+			$lb->add( $item->wl_namespace, $item->wl_title );
 		}
+
 		$lb->execute();
 		return $titles;
 	}
