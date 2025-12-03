@@ -2274,6 +2274,7 @@
 	"block-target": "Suradničko ime, IP adresa ili raspon adresa",
 	"block-pages-placeholder": "Dodajte stranice",
 	"block-namespaces-placeholder": "Dodajte imenske prostore",
+	"block-update": "Promjena blokiranja",
 	"block-removal-title": "Potvrdite uklanjanje blokade",
 	"block-removal-reason-placeholder": "Upišite razlog",
 	"block-removal-confirm-yes": "Ukloni blokiranje",
