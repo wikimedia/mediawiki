@@ -3775,6 +3775,12 @@ $wgWatchlistExpiry = null;
 $wgEnableWatchlistLabels = null;
 
 /**
+ * Config variable stub for the WatchlistLabelsMaxPerUser setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::WatchlistLabelsMaxPerUser
+ */
+$wgWatchlistLabelsMaxPerUser = null;
+
+/**
  * Config variable stub for the WatchlistPurgeRate setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::WatchlistPurgeRate
  */

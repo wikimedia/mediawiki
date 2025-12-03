@@ -6980,6 +6980,12 @@ config-schema:
         description: |-
             Whether to enable the watchlist labels feature.
             @since 1.46
+    WatchlistLabelsMaxPerUser:
+        default: 100
+        type: integer
+        description: |-
+            Maximum number of labels a user can create for their watchlist.
+            @since 1.46
     WatchlistPurgeRate:
         default: 0.1
         type: number

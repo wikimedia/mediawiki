@@ -2129,6 +2129,7 @@ return [
 			],
 			'WatchlistExpiry' => false,
 			'EnableWatchlistLabels' => false,
+			'WatchlistLabelsMaxPerUser' => 100,
 			'WatchlistPurgeRate' => 0.1,
 			'WatchlistExpiryMaxDuration' => '1 year',
 			'EnableChangesListQueryPartitioning' => false,
@@ -3143,6 +3144,7 @@ return [
 			'RecentChangesFlags' => 'object',
 			'WatchlistExpiry' => 'boolean',
 			'EnableWatchlistLabels' => 'boolean',
+			'WatchlistLabelsMaxPerUser' => 'integer',
 			'WatchlistPurgeRate' => 'number',
 			'WatchlistExpiryMaxDuration' => [
 				'string',

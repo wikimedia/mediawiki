@@ -11144,6 +11144,16 @@ class MainConfigSchema {
 	];
 
 	/**
+	 * Maximum number of labels a user can create for their watchlist.
+	 *
+	 * @since 1.46
+	 */
+	public const WatchlistLabelsMaxPerUser = [
+		'default' => 100,
+		'type' => 'integer',
+	];
+
+	/**
 	 * Chance of expired watchlist items being purged on any page edit.
 	 *
 	 * Only has effect if $wgWatchlistExpiry is true.

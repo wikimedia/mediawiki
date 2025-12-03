@@ -3790,6 +3790,12 @@ class MainConfigNames {
 	public const EnableWatchlistLabels = 'EnableWatchlistLabels';
 
 	/**
+	 * Name constant for the WatchlistLabelsMaxPerUser setting, for use with Config::get()
+	 * @see MainConfigSchema::WatchlistLabelsMaxPerUser
+	 */
+	public const WatchlistLabelsMaxPerUser = 'WatchlistLabelsMaxPerUser';
+
+	/**
 	 * Name constant for the WatchlistPurgeRate setting, for use with Config::get()
 	 * @see MainConfigSchema::WatchlistPurgeRate
 	 */
