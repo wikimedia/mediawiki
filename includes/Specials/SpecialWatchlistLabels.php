@@ -18,6 +18,7 @@ use MediaWiki\Watchlist\WatchlistLabel;
 use MediaWiki\Watchlist\WatchlistLabelStore;
 use MediaWiki\Watchlist\WatchlistSpecialPage;
 use StatusValue;
+use Wikimedia\Codex\Builder\TableBuilder;
 use Wikimedia\Codex\Utility\Codex;
 
 /**
@@ -228,15 +229,40 @@ class SpecialWatchlistLabels extends SpecialPage {
 			];
 		}
 
+		// Sort by count by default, and others as requested.
+		// We sort here rather than in the DB because we're combining multiple queries' data,
+		// and there's only ever one page of results to show (up to 100).
+		$sortCol = $this->getRequest()->getText( 'sort', 'count' );
+		$sortDir = $this->getRequest()->getBool( 'asc' ) ? TableBuilder::SORT_ASCENDING : TableBuilder::SORT_DESCENDING;
+		uasort(
+			$data,
+			static fn ( $a, $b ) => $sortDir === TableBuilder::SORT_ASCENDING
+				? strcasecmp( $a[$sortCol], $b[$sortCol] )
+				: strcasecmp( $b[$sortCol], $a[$sortCol] )
+		);
+
 		// Put it all together in the table.
 		$table = $codex->table()
+			->setCurrentSortColumn( $sortCol )
+			->setCurrentSortDirection( $sortDir )
 			->setAttributes( [ 'class' => 'mw-specialwatchlistlabels-table' ] )
 			->setCaption( $this->msg( 'watchlistlabels-table-header' )->text() )
 			->setHeaderContent( $addNew )
 			->setColumns( [
-				[ 'id' => 'name', 'label' => $this->msg( 'watchlistlabels-table-col-name' )->escaped() ],
-				[ 'id' => 'count', 'label' => $this->msg( 'watchlistlabels-table-col-count' )->escaped() ],
-				[ 'id' => 'edit', 'label' => $this->msg( 'watchlistlabels-table-col-actions' )->escaped() ],
+				[
+					'id' => 'name',
+					'label' => $this->msg( 'watchlistlabels-table-col-name' )->escaped(),
+					'sortable' => true,
+				],
+				[
+					'id' => 'count',
+					'label' => $this->msg( 'watchlistlabels-table-col-count' )->escaped(),
+					'sortable' => true,
+				],
+				[
+					'id' => 'edit',
+					'label' => $this->msg( 'watchlistlabels-table-col-actions' )->escaped(),
+				],
 			] )
 			->setData( $data )
 			->setPaginate( false )

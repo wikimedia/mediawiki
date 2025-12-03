@@ -6,6 +6,10 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Specials\SpecialWatchlist;
 use MediaWiki\Specials\SpecialWatchlistLabels;
+use MediaWiki\Title\Title;
+use MediaWiki\Watchlist\WatchlistLabel;
+use Wikimedia\Parsoid\Utils\DOMCompat;
+use Wikimedia\Parsoid\Utils\DOMUtils;
 
 /**
  * @group Database
@@ -143,5 +147,72 @@ class SpecialWatchlistLabelsTest extends SpecialPageTestBase {
 		);
 		$this->assertStringNotContainsString( 'Lorem the label', $html );
 		$this->assertStringContainsString( 'Lorem updated label', $html );
+	}
+
+	/**
+	 * Labels can be sorted by name or count.
+	 * @dataProvider provideSorting
+	 */
+	public function testSorting( array $request, string $selector, array $expected ): void {
+		// Create some test labels.
+		$labelStore = $this->getServiceContainer()->getWatchlistLabelStore();
+		$user = $this->getTestUser()->getUser();
+		for ( $i = 1; $i <= 5; $i++ ) {
+			$labelStore->save( new WatchlistLabel( $user, "Test label $i" ) );
+		}
+		// Watch some pages.
+		$watchedItemStore = $this->getServiceContainer()->getWatchedItemStore();
+		$testPage1 = Title::newFromText( 'Test 1' );
+		$testPage2 = Title::newFromText( 'Test 2' );
+		$watchedItemStore->addWatchBatchForUser( $user, [ $testPage1, $testPage2 ] );
+		// Add label 2 to 2 pages, and label 3 to 1 page.
+		$watchedItemStore->addLabels( $user, [ $testPage1, $testPage2 ], [ 2 ] );
+		$watchedItemStore->addLabels( $user, [ $testPage2 ], [ 3 ] );
+		// Run the test.
+		[ $html, ] = $this->executeSpecialPage( null, new FauxRequest( $request ), null, $user );
+		$cells = DOMCompat::querySelectorAll( DOMUtils::parseHTML( $html ), $selector );
+		$names = array_map( static fn ( $node ) => $node->textContent, $cells );
+		$this->assertArrayEquals( $expected, $names, true );
+	}
+
+	private function provideSorting(): array {
+		return [
+			[
+				// Default is by descending count:
+				'request' => [],
+				'selector' => 'tbody > tr > td:nth-child(2)',
+				'expected' => [
+					'2',
+					'1',
+					'0',
+					'0',
+					'0',
+				],
+			],
+			[
+				// Ascending by name:
+				'request' => [ 'sort' => 'name', 'asc' => '1' ],
+				'selector' => 'tbody > tr > td:first-child',
+				'expected' => [
+					'Test label 1',
+					'Test label 2',
+					'Test label 3',
+					'Test label 4',
+					'Test label 5',
+				],
+			],
+			[
+				// Descending by name:
+				'request' => [ 'sort' => 'name', 'desc' => '1' ],
+				'selector' => 'tbody > tr > td:first-child',
+				'expected' => [
+					'Test label 5',
+					'Test label 4',
+					'Test label 3',
+					'Test label 2',
+					'Test label 1',
+				],
+			],
+		];
 	}
 }
