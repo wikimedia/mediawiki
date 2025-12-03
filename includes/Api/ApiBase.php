@@ -2185,7 +2185,7 @@ abstract class ApiBase extends ContextSource {
 	 * @param float $latency Optional value for process runtime, in microseconds, for metrics
 	 * @param array $detailLabels Additional or override labels for the metrics
 	 */
-	protected function recordUnifiedMetrics( $latency, $detailLabels = [] ) {
+	protected function recordUnifiedMetrics( $latency = 0, $detailLabels = [] ) {
 		// The concept of "module" is different in Action API and REST API
 		// in REST API, it represents the "collection" of endpoints
 		// in Action API, it represents the "module" of the API (or an endpoint)
@@ -2224,7 +2224,7 @@ abstract class ApiBase extends ContextSource {
 		$metricHitStats = $this->getMain()->getStatsFactory()->getCounter( 'action_api_modules_hit_total' )
 			->setLabel( 'api_type', 'ACTION_API' );
 		foreach ( $metricsLabels as $label => $value ) {
-			if ( $value ) {
+			if ( strlen( $value ) > 0 ) {
 				$metricHitStats->setLabel( $label, $value );
 			}
 		}
@@ -2234,7 +2234,7 @@ abstract class ApiBase extends ContextSource {
 		$metricLatencyStats = $this->getMain()->getStatsFactory()->getTiming( 'action_api_modules_latency' )
 			->setLabel( 'api_type', 'ACTION_API' );
 		foreach ( $metricsLabels as $label => $value ) {
-			if ( $value ) {
+			if ( strlen( $value ) > 0 ) {
 				$metricLatencyStats->setLabel( $label, $value );
 			}
 		}
