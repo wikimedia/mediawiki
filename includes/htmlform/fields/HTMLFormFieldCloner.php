@@ -334,7 +334,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 		// TODO: Throw an exception in future versions.
 		if ( $ret !== null && !is_array( $ret ) ) {
 			$type = gettype( $ret );
-			wfDeprecated( __CLASS__ . " with non-array default ($type given)", '1.46' );
+			wfDeprecated( __CLASS__ . " with non-array default ($type given)", '1.45' );
 		}
 
 		// The default is one entry with all subfields at their defaults.
