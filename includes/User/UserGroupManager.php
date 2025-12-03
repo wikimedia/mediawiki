@@ -106,13 +106,6 @@ class UserGroupManager {
 	private array $queryFlagsUsedForCaching = [];
 
 	/**
-	 * @internal For use preventing an infinite loop when checking APCOND_BLOCKED
-	 * @var array An associative array mapping the getCacheKey userKey to a bool indicating
-	 * an ongoing condition check.
-	 */
-	private array $recursionMap = [];
-
-	/**
 	 * @param ServiceOptions $options
 	 * @param ReadOnlyMode $readOnlyMode
 	 * @param IConnectionProvider $connectionProvider
