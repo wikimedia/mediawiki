@@ -68,6 +68,17 @@ class SelectWithInputWidget extends Widget {
 	}
 
 	/** @inheritDoc */
+	public function setLabelledBy( $id ) {
+		if ( $id ) {
+			$this->dropdowninput->setLabelledBy( $id );
+			$this->textinput->setLabelledBy( $id );
+		} else {
+			$this->dropdowninput->removeAttributes( [ 'aria-labelledby' ] );
+			$this->textinput->removeAttributes( [ 'aria-labelledby' ] );
+		}
+	}
+
+	/** @inheritDoc */
 	protected function getJavaScriptClassName() {
 		return 'mw.widgets.SelectWithInputWidget';
 	}

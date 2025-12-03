@@ -137,6 +137,19 @@
 	};
 
 	/**
+	 * @inheritdoc
+	 */
+	mw.widgets.SelectWithInputWidget.prototype.setLabelledBy = function ( id ) {
+		if ( id ) {
+			this.dropdowninput.setLabelledBy( id );
+			this.textinput.setLabelledBy( id );
+		} else {
+			this.dropdowninput.removeAttributes( [ 'aria-labelledby' ] );
+			this.textinput.removeAttributes( [ 'aria-labelledby' ] );
+		}
+	};
+
+	/**
 	 * Set the value from outside.
 	 *
 	 * @param {string|undefined} value
