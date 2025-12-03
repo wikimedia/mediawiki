@@ -2,6 +2,7 @@
  * Styles for Special:UserRights
  */
 @import 'mediawiki.skin.variables.less';
+@import 'mediawiki.mixins.less';
 
 .mw-special-UserGroupsSpecialPage {
 	#mw-userrights-form2 {
@@ -45,6 +46,10 @@
 		.mw-htmlform-field-HTMLSelectOrOtherField {
 			margin-top: @spacing-12;
 			padding-left: 26px;
+
+			.oo-ui-fieldLayout-header {
+				.mixin-screen-reader-text();
+			}
 		}
 
 		.mw-widget-selectWithInputWidget .oo-ui-textInputWidget {

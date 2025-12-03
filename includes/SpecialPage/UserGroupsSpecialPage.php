@@ -458,6 +458,7 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 		} else {
 			$expiryField = [
 				'type' => 'selectorother',
+				'label' => $this->msg( 'userrights-expiry-for', $member )->text(),
 				'name' => "wpExpiry-$group",
 				'id' => "mw-input-wpExpiry-$group",
 				'hide-if' => [ '!==', "wpGroup-$group", '1' ],
