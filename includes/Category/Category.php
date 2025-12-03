@@ -10,6 +10,7 @@
 namespace MediaWiki\Category;
 
 use MediaWiki\Deferred\DeferredUpdates;
+use MediaWiki\Deferred\LinksUpdate\CategoryLinksTable;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Title\Title;
@@ -322,7 +323,7 @@ class Category {
 	 * @return TitleArrayFromResult Title objects for category members.
 	 */
 	public function getMembers( $limit = false, $offset = '' ) {
-		$dbr = $this->dbProvider->getReplicaDatabase();
+		$dbr = $this->dbProvider->getReplicaDatabase( CategoryLinksTable::VIRTUAL_DOMAIN );
 		$queryBuilder = $dbr->newSelectQueryBuilder();
 		$queryBuilder->select( [ 'page_id', 'page_namespace', 'page_title', 'page_len',
 				'page_is_redirect', 'page_latest' ] )
@@ -374,6 +375,8 @@ class Category {
 		}
 
 		$dbw = $this->dbProvider->getPrimaryDatabase();
+		$categoryLinksDbw = $this->dbProvider->getPrimaryDatabase( CategoryLinksTable::VIRTUAL_DOMAIN );
+
 		# Avoid excess contention on the same category (T162121)
 		$name = __METHOD__ . ':' . md5( $this->mName );
 		$scopedLock = $dbw->getScopedLockAndFlush( $name, __METHOD__, 0 );
@@ -382,6 +385,7 @@ class Category {
 		}
 
 		$dbw->startAtomic( __METHOD__ );
+		$categoryLinksDbw->startAtomic( __METHOD__ );
 
 		// Lock the `category` row before potentially locking `categorylinks` rows to try
 		// to avoid deadlocks with LinksDeletionUpdate (T195397)
@@ -392,7 +396,7 @@ class Category {
 			->forUpdate()
 			->acquireRowLocks();
 
-		$rowCount = $dbw->newSelectQueryBuilder()
+		$rowCount = $categoryLinksDbw->newSelectQueryBuilder()
 			->select( '*' )
 			->from( 'categorylinks' )
 			->join( 'page', null, 'page_id = cl_from' )
@@ -406,7 +410,7 @@ class Category {
 		if ( $rowCount < 100 ) {
 			// Lock all the `categorylinks` records and gaps for this category;
 			// this is a separate query due to postgres limitations
-			$dbw->newSelectQueryBuilder()
+			$categoryLinksDbw->newSelectQueryBuilder()
 				->select( '*' )
 				->from( 'categorylinks' )
 				->join( 'linktarget', null, 'cl_target_id = lt_id' )
@@ -418,9 +422,9 @@ class Category {
 		}
 
 		// Get the aggregate `categorylinks` row counts for this category
-		$catCond = $dbw->conditional( [ 'page_namespace' => NS_CATEGORY ], 1, 'NULL' );
-		$fileCond = $dbw->conditional( [ 'page_namespace' => NS_FILE ], 1, 'NULL' );
-		$result = $dbw->newSelectQueryBuilder()
+		$catCond = $categoryLinksDbw->conditional( [ 'page_namespace' => NS_CATEGORY ], 1, 'NULL' );
+		$fileCond = $categoryLinksDbw->conditional( [ 'page_namespace' => NS_FILE ], 1, 'NULL' );
+		$result = $categoryLinksDbw->newSelectQueryBuilder()
 			->select( [
 				'pages' => 'COUNT(*)',
 				'subcats' => "COUNT($catCond)",
@@ -432,6 +436,8 @@ class Category {
 			->where( [ 'lt_title' => $this->mName, 'lt_namespace' => NS_CATEGORY ] )
 			->caller( __METHOD__ )
 			->fetchRow();
+
+		$categoryLinksDbw->endAtomic( __METHOD__ );
 
 		$shouldExist = $result->pages > 0 || $this->getPage()->exists();
 
@@ -519,10 +525,9 @@ class Category {
 	 * @since 1.34
 	 */
 	public function refreshCountsIfSmall( $maxSize = self::ROW_COUNT_SMALL ) {
-		$dbw = $this->dbProvider->getPrimaryDatabase();
-		$dbw->startAtomic( __METHOD__ );
+		$categoryLinksDbr = $this->dbProvider->getReplicaDatabase( CategoryLinksTable::VIRTUAL_DOMAIN );
 
-		$typeOccurances = $dbw->newSelectQueryBuilder()
+		$typeOccurances = $categoryLinksDbr->newSelectQueryBuilder()
 			->select( 'cl_type' )
 			->from( 'categorylinks' )
 			->join( 'linktarget', null, 'cl_target_id = lt_id' )
@@ -530,6 +535,9 @@ class Category {
 			->limit( $maxSize + 1 )
 			->caller( __METHOD__ )
 			->fetchFieldValues();
+
+		$dbw = $this->dbProvider->getPrimaryDatabase();
+		$dbw->startAtomic( __METHOD__ );
 
 		if ( !$typeOccurances ) {
 			$doRefresh = true; // delete any category table entry
