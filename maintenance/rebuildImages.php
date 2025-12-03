@@ -22,6 +22,7 @@ require_once __DIR__ . '/Maintenance.php';
 
 use MediaWiki\FileRepo\File\FileSelectQueryBuilder;
 use MediaWiki\FileRepo\LocalRepo;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Specials\SpecialUpload;
 use MediaWiki\User\User;
@@ -99,8 +100,16 @@ class ImageBuilder extends Maintenance {
 	}
 
 	private function build() {
-		$this->buildImage();
-		$this->buildOldImage();
+		$migrationStage = $this->getServiceContainer()->getMainConfig()->get(
+			MainConfigNames::FileSchemaMigrationStage
+		);
+
+		if ( $migrationStage & SCHEMA_COMPAT_READ_OLD ) {
+			$this->buildImage();
+			$this->buildOldImage();
+		} else {
+			$this->buildFile();
+		}
 	}
 
 	/**
@@ -200,15 +209,30 @@ class ImageBuilder extends Maintenance {
 		return $file->getUpgraded();
 	}
 
+	private function buildFile() {
+		$this->buildTable(
+			'file',
+			FileSelectQueryBuilder::newForFile( $this->getReplicaDB() ),
+			$this->fileCallback( ... )
+		);
+	}
+
+	private function fileCallback( \stdClass $row ): bool {
+		// Create a File object from the row
+		// This will also upgrade it
+		$file = $this->getRepo()->newFile( $row->file_name );
+
+		return $file->getUpgraded();
+	}
+
 	private function crawlMissing() {
 		$this->getRepo()->enumFiles( $this->checkMissingImage( ... ) );
 	}
 
 	private function checkMissingImage( string $fullpath ) {
 		$filename = wfBaseName( $fullpath );
-		$row = $this->dbw->newSelectQueryBuilder()
-			->select( [ 'img_name' ] )
-			->from( 'image' )
+
+		$row = FileSelectQueryBuilder::newForFile( $this->getReplicaDB() )
 			->where( [ 'img_name' => $filename ] )
 			->caller( __METHOD__ )->fetchRow();
 
