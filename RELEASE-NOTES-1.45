@@ -6,12 +6,38 @@ PHP 8.3 workboard: https://phabricator.wikimedia.org/tag/php_8.3_support/
 PHP 8.4 workboard: https://phabricator.wikimedia.org/tag/php_8.4_support/
 PHP 8.5 workboard: https://phabricator.wikimedia.org/tag/php_8.5_support/
 
-== MediaWiki 1.45.0-PRERELEASE ==
+== MediaWiki 1.45.0 ==
 
-THIS IS NOT A RELEASE YET
+=== Changes since MediaWiki 1.45.0-rc.0 ===
+* Localisation updates.
+* (T410913) SpecialVersion: Fix "Cannot use bool as array" warning.
+* (T410928) resourceloader: Fix null offset in ClientHtml module sorting.
+* (T401987, T401995) SECURITY: Disable xslt option by default.
+* (T410934) Remove noop xml_parser_free() calls.
+* (T405450) session: Use fresh MW services container in CLI mode.
+* (T410912) MessageCache: Fix PHP 8.5 warning from ord().
+* (T410912, T410920) Language: Fix PHP 8.5 warning from ord().
+* (T410963) Upgrade wikimedia/xmp-reader from 0.10.1 to 0.10.2.
+* (T411016) Upgrading wikimedia/cldr-plural-rule-parser (v2.0.0 => v3.0.0).
+* (T295568) mediawiki.jqueryMsg: Support self-closing HTML tags.
+* (T295568) RELEASE-NOTES-1.45: Add entry for jqueryMsg self-closing
+  tag support.
+* Api: Avoid re-stashing on publish with warnings via action=upload
+* (T411075) Api: Initialise reference variable.
+* (T409718) Remove SpecialUserRightsChangeableGroups hook.
+* (T411018) IndexPager: Set '' as default value for 'order'.
+* (T410914) Language: Fix PHP 8.5 warnings for NAN/INF string coercion
+  in formatNumInternal and parseFormattedNumber.
+* (T358666) Drop PHP 8.1 support.
+* (T338103, T411214) ApiResult: Fix PHP 8.5 warning from ord().
+* (T286291, T296188) MessagesZh*.php: Restore missing special page aliases.
+* (T391882) HTMLFormFieldCloner: Fix multiple bugs related to conditional
+  states.
+* (T406374) htmlform: Load ooui before infusing field cloner buttons.
+* (T411199) initEditCount: Fix count for users with no edits.
+* (T351953) findBadBlobs: Fix the --scan-to option.
 
-MediaWiki 1.45 is a pre-release testing branch, and is not recommended
-for use in production.
+== MediaWiki 1.45.0-rc.0 ==
 
 == Upgrading notes for 1.45 ==
 Don't forget to always back up your database before upgrading!
