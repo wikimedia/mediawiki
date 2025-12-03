@@ -32,7 +32,7 @@ abstract class SitemapHandlerBase extends Handler {
 		$this->enabled = $apiConf['enabled'] ?? false;
 		$this->indexSize = $apiConf['sitemapsPerIndex'] ?? 50_000;
 		$variants = SitemapGenerator::getVariants( $contLang, $languageConverterFactory );
-		$this->sitemapSize = ( $apiConf['pagesPerSitemap'] ?? 10_000 ) / ( count( $variants ) + 1 );
+		$this->sitemapSize = (int)( ( $apiConf['pagesPerSitemap'] ?? 10_000 ) / ( count( $variants ) + 1 ) );
 		$this->expiry = $apiConf['expiry'] ?? 3600;
 	}
 
