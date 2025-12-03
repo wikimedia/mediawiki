@@ -264,11 +264,7 @@ class RestrictionStore {
 	public function isCascadeProtected( PageIdentity $page ): bool {
 		$page->assertWiki( PageIdentity::LOCAL );
 
-		$virtualDomains = $this->options->get( MainConfigNames::VirtualDomainsMapping );
-		$useVirtualDomains = isset( $virtualDomains[TemplateLinksTable::VIRTUAL_DOMAIN] ) ||
-			( $page->getNamespace() === NS_FILE && isset( $virtualDomains[ImageLinksTable::VIRTUAL_DOMAIN] ) );
-
-		return $useVirtualDomains
+		return $this->shouldUseVirtualDomains( $page )
 			? $this->getCascadeProtectionSourcesInternal( $page )[0] !== []
 			: $this->getCascadeProtectionSourcesInternalJoined( $page )[0] !== [];
 	}
@@ -535,17 +531,18 @@ class RestrictionStore {
 	public function getCascadeProtectionSources( PageIdentity $page ): array {
 		$page->assertWiki( PageIdentity::LOCAL );
 
-		$virtualDomains = $this->options->get( MainConfigNames::VirtualDomainsMapping );
-		$useVirtualDomains = isset( $virtualDomains[TemplateLinksTable::VIRTUAL_DOMAIN] ) ||
-			( $page->getNamespace() === NS_FILE && isset( $virtualDomains[ImageLinksTable::VIRTUAL_DOMAIN] ) );
-
-		return $useVirtualDomains
+		return $this->shouldUseVirtualDomains( $page )
 			? $this->getCascadeProtectionSourcesInternal( $page )
 			: $this->getCascadeProtectionSourcesInternalJoined( $page );
 	}
 
 	/**
-	 * Cascading protection: Get the source of any cascading restrictions on this page.
+	 * Cascading protection: Get the source of any cascading restrictions on this page
+	 * using separate queries for page restrictions and link lookups.
+	 *
+	 * This is used when virtual domains are in use (shouldUseVirtualDomains() returns true).
+	 * When virtual domains are not in use, getCascadeProtectionSourcesInternalJoined()
+	 * uses a single query with joins instead.
 	 *
 	 * @param PageIdentity $page Must be local
 	 * @return array[] Same as getCascadeProtectionSources().
@@ -672,7 +669,12 @@ class RestrictionStore {
 	}
 
 	/**
-	 * Cascading protection: Get the source of any cascading restrictions on this page.
+	 * Cascading protection: Get the source of any cascading restrictions on this page
+	 * using a single query with joins between page_restrictions and the link tables.
+	 *
+	 * This is used when virtual domains are not in use (shouldUseVirtualDomains() returns false).
+	 * When virtual domains are in use, getCascadeProtectionSourcesInternal() is used instead,
+	 * which performs separate queries.
 	 *
 	 * @param PageIdentity $page Must be local
 	 * @return array[] Same as getCascadeProtectionSources().
@@ -768,6 +770,27 @@ class RestrictionStore {
 		$cacheEntry['cascade_sources'] = [ $sources, $pageRestrictions, $tlSources, $ilSources ];
 
 		return $cacheEntry['cascade_sources'];
+	}
+
+	/**
+	 * Determines if cascade protection checks should use virtual database domains.
+	 *
+	 * Virtual database domains allow separating templatelinks and imagelinks data
+	 * into different database clusters for scalability.
+	 *
+	 * When virtual domains are enabled, cascade protection queries will use
+	 * separate database connections for templatelinks and imagelinks lookups.
+	 * When disabled, a single query with joins is used instead.
+	 *
+	 * See T408801.
+	 *
+	 * @param PageIdentity $page The page to check virtual domain usage for.
+	 * @return bool True if virtual domains should be used
+	 */
+	private function shouldUseVirtualDomains( PageIdentity $page ): bool {
+		$virtualDomains = $this->options->get( MainConfigNames::VirtualDomainsMapping );
+		return isset( $virtualDomains[TemplateLinksTable::VIRTUAL_DOMAIN] ) ||
+			( $page->getNamespace() === NS_FILE && isset( $virtualDomains[ImageLinksTable::VIRTUAL_DOMAIN] ) );
 	}
 
 	/**
