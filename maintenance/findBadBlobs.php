@@ -156,11 +156,16 @@ class FindBadBlobs extends Maintenance {
 		$fromTimestamp = $this->getStartTimestamp();
 		if ( $this->getOption( 'scan-to' ) ) {
 			$toTimestamp = $this->getEndTimestamp();
+			$total = INF;
+			$msg = "Scanning revisions table, "
+				. "starting at rev_timestamp $fromTimestamp until $toTimestamp\n";
 		} else {
 			$toTimestamp = null;
+			$total = $this->getOption( 'limit', 1000 );
+			$msg = "Scanning revisions table, "
+				. "$total rows starting at rev_timestamp $fromTimestamp\n";
 		}
 
-		$total = $this->getOption( 'limit', 1000 );
 		$count = 0;
 		$lastRevId = 0;
 		$firstRevId = 0;
@@ -168,10 +173,9 @@ class FindBadBlobs extends Maintenance {
 		$revisionRowsScanned = 0;
 		$archiveRowsScanned = 0;
 
-		$this->output( "Scanning revisions table, "
-			. "$total rows starting at rev_timestamp $fromTimestamp\n" );
+		$this->output( $msg );
 
-		while ( $toTimestamp === null ? $revisionRowsScanned < $total : true ) {
+		while ( $revisionRowsScanned < $total ) {
 			$batchSize = min( $total - $revisionRowsScanned, $this->getBatchSize() );
 			$revisions = $this->loadRevisionsByTimestamp( $lastRevId, $lastTimestamp, $batchSize, $toTimestamp );
 			if ( !$revisions ) {
