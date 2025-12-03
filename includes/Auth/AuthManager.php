@@ -215,75 +215,35 @@ class AuthManager implements LoggerAwareInterface {
 	/** @var CreatedAccountAuthenticationRequest[] */
 	private $createdAccountAuthenticationRequests = [];
 
-	private WebRequest $request;
-	private Config $config;
-	private ChangeTagsStore $changeTagsStore;
-	private ObjectFactory $objectFactory;
-	private ObjectCacheFactory $objectCacheFactory;
 	private LoggerInterface $logger;
 	private LoggerInterface $authEventsLogger;
-	private UserNameUtils $userNameUtils;
-	private HookContainer $hookContainer;
 	private HookRunner $hookRunner;
-	private ReadOnlyMode $readOnlyMode;
-	private BlockManager $blockManager;
-	private WatchlistManager $watchlistManager;
-	private ILoadBalancer $loadBalancer;
-	private Language $contentLanguage;
-	private LanguageConverterFactory $languageConverterFactory;
-	private BotPasswordStore $botPasswordStore;
-	private UserFactory $userFactory;
-	private UserIdentityLookup $userIdentityLookup;
-	private UserIdentityUtils $identityUtils;
-	private UserOptionsManager $userOptionsManager;
-	private NotificationService $notificationService;
-	private SessionManagerInterface $sessionManager;
 
 	public function __construct(
-		WebRequest $request,
-		Config $config,
-		ChangeTagsStore $changeTagsStore,
-		ObjectFactory $objectFactory,
-		ObjectCacheFactory $objectCacheFactory,
-		HookContainer $hookContainer,
-		ReadOnlyMode $readOnlyMode,
-		UserNameUtils $userNameUtils,
-		BlockManager $blockManager,
-		WatchlistManager $watchlistManager,
-		ILoadBalancer $loadBalancer,
-		Language $contentLanguage,
-		LanguageConverterFactory $languageConverterFactory,
-		BotPasswordStore $botPasswordStore,
-		UserFactory $userFactory,
-		UserIdentityLookup $userIdentityLookup,
-		UserIdentityUtils $identityUtils,
-		UserOptionsManager $userOptionsManager,
-		NotificationService $notificationService,
-		SessionManagerInterface $sessionManager
+		private readonly WebRequest $request,
+		private readonly Config $config,
+		private readonly ChangeTagsStore $changeTagsStore,
+		private readonly ObjectFactory $objectFactory,
+		private readonly ObjectCacheFactory $objectCacheFactory,
+		private readonly HookContainer $hookContainer,
+		private readonly ReadOnlyMode $readOnlyMode,
+		private readonly UserNameUtils $userNameUtils,
+		private readonly BlockManager $blockManager,
+		private readonly WatchlistManager $watchlistManager,
+		private readonly ILoadBalancer $loadBalancer,
+		private readonly Language $contentLanguage,
+		private readonly LanguageConverterFactory $languageConverterFactory,
+		private readonly BotPasswordStore $botPasswordStore,
+		private readonly UserFactory $userFactory,
+		private readonly UserIdentityLookup $userIdentityLookup,
+		private readonly UserIdentityUtils $identityUtils,
+		private readonly UserOptionsManager $userOptionsManager,
+		private readonly NotificationService $notificationService,
+		private readonly SessionManagerInterface $sessionManager,
 	) {
-		$this->request = $request;
-		$this->config = $config;
-		$this->changeTagsStore = $changeTagsStore;
-		$this->objectFactory = $objectFactory;
-		$this->objectCacheFactory = $objectCacheFactory;
-		$this->hookContainer = $hookContainer;
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->setLogger( new NullLogger() );
 		$this->setAuthEventsLogger( new NullLogger() );
-		$this->readOnlyMode = $readOnlyMode;
-		$this->userNameUtils = $userNameUtils;
-		$this->blockManager = $blockManager;
-		$this->watchlistManager = $watchlistManager;
-		$this->loadBalancer = $loadBalancer;
-		$this->contentLanguage = $contentLanguage;
-		$this->languageConverterFactory = $languageConverterFactory;
-		$this->botPasswordStore = $botPasswordStore;
-		$this->userFactory = $userFactory;
-		$this->userIdentityLookup = $userIdentityLookup;
-		$this->identityUtils = $identityUtils;
-		$this->userOptionsManager = $userOptionsManager;
-		$this->notificationService = $notificationService;
-		$this->sessionManager = $sessionManager;
 	}
 
 	public function setLogger( LoggerInterface $logger ): void {
