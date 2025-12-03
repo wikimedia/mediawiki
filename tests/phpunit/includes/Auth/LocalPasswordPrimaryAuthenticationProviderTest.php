@@ -69,7 +69,9 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends MediaWikiIntegratio
 			$this->manager = new AuthManager(
 				new FauxRequest(),
 				$config,
+				$mwServices->getChangeTagsStore(),
 				$this->getDummyObjectFactory(),
+				$mwServices->getObjectCacheFactory(),
 				$hookContainer,
 				$mwServices->getReadOnlyMode(),
 				$userNameUtils,
@@ -81,6 +83,7 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends MediaWikiIntegratio
 				$mwServices->getBotPasswordStore(),
 				$mwServices->getUserFactory(),
 				$mwServices->getUserIdentityLookup(),
+				$mwServices->getUserIdentityUtils(),
 				$mwServices->getUserOptionsManager(),
 				$mwServices->getNotificationService(),
 				$mwServices->getSessionManager()

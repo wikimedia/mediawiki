@@ -104,7 +104,9 @@ class EmailNotificationSecondaryAuthenticationProviderTest extends MediaWikiInte
 		$authManager = new AuthManager(
 			new FauxRequest(),
 			new HashConfig(),
+			$mwServices->getChangeTagsStore(),
 			$this->getDummyObjectFactory(),
+			$mwServices->getObjectCacheFactory(),
 			$hookContainer,
 			$mwServices->getReadOnlyMode(),
 			$userNameUtils,
@@ -116,6 +118,7 @@ class EmailNotificationSecondaryAuthenticationProviderTest extends MediaWikiInte
 			$mwServices->getBotPasswordStore(),
 			$mwServices->getUserFactory(),
 			$mwServices->getUserIdentityLookup(),
+			$mwServices->getUserIdentityUtils(),
 			$mwServices->getUserOptionsManager(),
 			$mwServices->getNotificationService(),
 			$mwServices->getSessionManager(),

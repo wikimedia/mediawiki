@@ -33,6 +33,7 @@ use MediaWiki\Auth\UsernameAuthenticationRequest;
 use MediaWiki\Block\BlockManager;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\SystemBlock;
+use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\Config\Config;
 use MediaWiki\Config\HashConfig;
 use MediaWiki\Config\ServiceOptions;
@@ -58,6 +59,7 @@ use MediaWiki\User\Options\UserOptionsManager;
 use MediaWiki\User\User;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentityLookup;
+use MediaWiki\User\UserIdentityUtils;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\Watchlist\WatchlistManager;
 use MediaWikiIntegrationTestCase;
@@ -116,6 +118,8 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 	private BotPasswordStore $botPasswordStore;
 	private UserFactory $userFactory;
 	private UserIdentityLookup $userIdentityLookup;
+	private UserIdentityUtils $userIdentityUtils;
+	private ChangeTagsStore $changeTagsStore;
 	private UserOptionsManager $userOptionsManager;
 	private ObjectCacheFactory $objectCacheFactory;
 	private NotificationService $notificationService;
@@ -237,6 +241,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 			$this->request = new FauxRequest();
 		}
 
+		$this->changeTagsStore ??= $this->getServiceContainer()->getChangeTagsStore();
 		$this->objectFactory ??= new ObjectFactory( $this->createNoOpAbstractMock( ContainerInterface::class ) );
 		$this->readOnlyMode ??= $this->getServiceContainer()->getReadOnlyMode();
 		// Override BlockManager::checkHost. Formerly testAuthorizeCreateAccount_DNSBlacklist
@@ -270,6 +275,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		$this->botPasswordStore ??= $this->getServiceContainer()->getBotPasswordStore();
 		$this->userFactory ??= $this->getServiceContainer()->getUserFactory();
 		$this->userIdentityLookup ??= $this->getServiceContainer()->getUserIdentityLookup();
+		$this->userIdentityUtils ??= $this->getServiceContainer()->getUserIdentityUtils();
 		$this->userOptionsManager ??= $this->getServiceContainer()->getUserOptionsManager();
 		$this->objectCacheFactory ??= $this->getServiceContainer()->getObjectCacheFactory();
 		$this->logger ??= new TestLogger();
@@ -283,7 +289,9 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		$this->manager = new AuthManager(
 			$this->request,
 			$this->config,
+			$this->changeTagsStore,
 			$this->objectFactory,
+			$this->objectCacheFactory,
 			$this->hookContainer,
 			$this->readOnlyMode,
 			$this->userNameUtils,
@@ -295,6 +303,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 			$this->botPasswordStore,
 			$this->userFactory,
 			$this->userIdentityLookup,
+			$this->userIdentityUtils,
 			$this->userOptionsManager,
 			$this->notificationService,
 			$this->sessionManager
@@ -307,7 +316,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 	 * Setup SessionManager with a mock session provider
 	 * @param bool|null $canChangeUser If non-null, canChangeUser will be mocked to return this
 	 * @param array $methods Additional methods to mock
-	 * @return MediaWiki\Session\SessionProvider
+	 * @return \MediaWiki\Session\SessionProvider
 	 */
 	protected function getMockSessionProvider( $canChangeUser = null, array $methods = [] ) {
 		if ( !isset( $this->config ) ) {

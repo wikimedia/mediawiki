@@ -376,7 +376,9 @@ return [
 		$authManager = new AuthManager(
 			RequestContext::getMain()->getRequest(),
 			$services->getMainConfig(),
+			$services->getChangeTagsStore(),
 			$services->getObjectFactory(),
+			$services->getObjectCacheFactory(),
 			$services->getHookContainer(),
 			$services->getReadOnlyMode(),
 			$services->getUserNameUtils(),
@@ -388,11 +390,13 @@ return [
 			$services->getBotPasswordStore(),
 			$services->getUserFactory(),
 			$services->getUserIdentityLookup(),
+			$services->getUserIdentityUtils(),
 			$services->getUserOptionsManager(),
 			$services->getNotificationService(),
 			$services->getSessionManager()
 		);
 		$authManager->setLogger( LoggerFactory::getInstance( 'authentication' ) );
+		$authManager->setAuthEventsLogger( LoggerFactory::getInstance( 'authevents' ) );
 		return $authManager;
 	},
 

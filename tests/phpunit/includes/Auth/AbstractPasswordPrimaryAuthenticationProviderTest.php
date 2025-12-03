@@ -150,7 +150,9 @@ class AbstractPasswordPrimaryAuthenticationProviderTest extends MediaWikiIntegra
 		$manager = new AuthManager(
 			new FauxRequest(),
 			$services->getMainConfig(),
+			$services->getChangeTagsStore(),
 			$services->getObjectFactory(),
+			$services->getObjectCacheFactory(),
 			$services->getHookContainer(),
 			$services->getReadOnlyMode(),
 			$services->getUserNameUtils(),
@@ -162,6 +164,7 @@ class AbstractPasswordPrimaryAuthenticationProviderTest extends MediaWikiIntegra
 			$services->getBotPasswordStore(),
 			$services->getUserFactory(),
 			$services->getUserIdentityLookup(),
+			$services->getUserIdentityUtils(),
 			$services->getUserOptionsManager(),
 			$services->getNotificationService(),
 			$services->getSessionManager()
