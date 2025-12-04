@@ -52,6 +52,7 @@ use StatusValue;
 use stdClass;
 use Traversable;
 use Wikimedia\Assert\Assert;
+use Wikimedia\Assert\ParameterAssertionException;
 use Wikimedia\Assert\PreconditionException;
 use Wikimedia\IPUtils;
 use Wikimedia\ObjectCache\BagOStuff;
@@ -2048,7 +2049,7 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 							$queryFlags,
 							$titlesByPageKey[$row->_page_key]
 						);
-					} catch ( MWException $e ) {
+					} catch ( MWException | ParameterAssertionException $e ) {
 						$result->warning( 'internalerror_info', $e->getMessage() );
 						return null;
 					}
