@@ -1382,6 +1382,7 @@
 	"apihelp-query+userinfo-paramvalue-prop-centralids": "{{doc-apihelp-paramvalue|query+userinfo|prop|centralids}}",
 	"apihelp-query+userinfo-paramvalue-prop-latestcontrib": "{{doc-apihelp-paramvalue|query+userinfo|prop|latestcontrib}}",
 	"apihelp-query+userinfo-paramvalue-prop-cancreateaccount": "{{doc-apihelp-paramvalue|query+userinfo|prop|cancreateaccount}}",
+	"apihelp-query+userinfo-paramvalue-prop-watchlistlabels": "{{doc-apihelp-paramvalue|query+userinfo|prop|watchlistlabels}}",
 	"apihelp-query+userinfo-param-attachedwiki": "{{doc-apihelp-param|query+userinfo|attachedwiki}}",
 	"apihelp-query+userinfo-example-simple": "{{doc-apihelp-example|query+userinfo}}",
 	"apihelp-query+userinfo-example-data": "{{doc-apihelp-example|query+userinfo}}",

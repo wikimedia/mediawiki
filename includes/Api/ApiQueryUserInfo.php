@@ -20,6 +20,7 @@ use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\Utils\MWTimestamp;
 use MediaWiki\Watchlist\WatchedItemStore;
+use MediaWiki\Watchlist\WatchlistLabelStore;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\Timestamp\TimestampFormat as TS;
 
@@ -45,6 +46,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 	private UserEditTracker $userEditTracker;
 	private UserOptionsLookup $userOptionsLookup;
 	private UserGroupManager $userGroupManager;
+	private WatchlistLabelStore $watchlistLabelStore;
 
 	public function __construct(
 		ApiQuery $query,
@@ -53,7 +55,8 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		WatchedItemStore $watchedItemStore,
 		UserEditTracker $userEditTracker,
 		UserOptionsLookup $userOptionsLookup,
-		UserGroupManager $userGroupManager
+		UserGroupManager $userGroupManager,
+		WatchlistLabelStore $watchlistLabelStore
 	) {
 		parent::__construct( $query, $moduleName, 'ui' );
 		$this->talkPageNotificationManager = $talkPageNotificationManager;
@@ -61,6 +64,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		$this->userEditTracker = $userEditTracker;
 		$this->userOptionsLookup = $userOptionsLookup;
 		$this->userGroupManager = $userGroupManager;
+		$this->watchlistLabelStore = $watchlistLabelStore;
 	}
 
 	public function execute() {
@@ -250,6 +254,20 @@ class ApiQueryUserInfo extends ApiQueryBase {
 			}
 		}
 
+		// T409375
+		if ( isset( $this->prop['watchlistlabels'] ) &&
+			$this->getConfig()->get( MainConfigNames::EnableWatchlistLabels )
+		) {
+			$labels = $this->watchlistLabelStore->loadAllForUser( $user );
+			$wl = array_map( static fn ( $label ) => [
+				'id' => $label->getId(),
+				'name' => $label->getName(),
+			], $labels );
+			ApiResult::setArrayType( $wl, 'array' );
+			ApiResult::setIndexedTagName( $wl, 'label' );
+			$vals['watchlistlabels'] = $wl;
+		}
+
 		if ( isset( $this->prop['centralids'] ) ) {
 			$vals += self::getCentralUserInfo(
 				$this->getConfig(), $this->getUser(), $this->params['attachedwiki']
@@ -355,6 +373,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 					'acceptlang',
 					'registrationdate',
 					'unreadcount',
+					'watchlistlabels',
 					'centralids',
 					'latestcontrib',
 					'cancreateaccount',

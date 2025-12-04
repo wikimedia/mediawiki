@@ -1454,6 +1454,7 @@
 	"apihelp-query+userinfo-paramvalue-prop-centralids": "Adds the central IDs and attachment status for the user.",
 	"apihelp-query+userinfo-paramvalue-prop-latestcontrib": "Adds the date of user's latest contribution.",
 	"apihelp-query+userinfo-paramvalue-prop-cancreateaccount": "Indicates whether the user is allowed to create accounts. To check whether some specific account can be created, use [[Special:ApiHelp/query+users|<kbd>action=query&list=users&usprop=cancreate</kbd>]].",
+	"apihelp-query+userinfo-paramvalue-prop-watchlistlabels": "Adds watchlist labels the user has set up.",
 	"apihelp-query+userinfo-param-attachedwiki": "With <kbd>$1prop=centralids</kbd>, indicate whether the user is attached with the wiki identified by this ID.",
 	"apihelp-query+userinfo-example-simple": "Get information about the current user.",
 	"apihelp-query+userinfo-example-data": "Get additional information about the current user.",

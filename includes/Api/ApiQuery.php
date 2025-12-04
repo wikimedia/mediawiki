@@ -559,6 +559,7 @@ class ApiQuery extends ApiBase {
 				'UserEditTracker',
 				'UserOptionsLookup',
 				'UserGroupManager',
+				'WatchlistLabelStore',
 			]
 		],
 		'filerepoinfo' => [
