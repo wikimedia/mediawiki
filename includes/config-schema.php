@@ -852,6 +852,8 @@ return [
 				'mediawiki.org',
 			],
 			'RegisterInternalExternals' => false,
+			'ExternalLinksIgnoreDomains' => [
+			],
 			'AllowDisplayTitle' => true,
 			'RestrictDisplayTitle' => true,
 			'ExpensiveParserFunctionLimit' => 100,
@@ -2995,6 +2997,7 @@ return [
 			'ParsoidExperimentalParserFunctionOutput' => 'boolean',
 			'NoFollowNsExceptions' => 'array',
 			'NoFollowDomainExceptions' => 'array',
+			'ExternalLinksIgnoreDomains' => 'array',
 			'EnableMagicLinks' => 'object',
 			'ManualRevertSearchRadius' => 'integer',
 			'RevertedTagMaxDepth' => 'integer',
