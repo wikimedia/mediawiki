@@ -174,7 +174,8 @@ class SpecialConfirmEmail extends UnlistedSpecialPage {
 		// Enforce permissions, user blocks, and rate limits
 		$this->authorizeAction( 'confirmemail' )->throwErrorPageError();
 
-		$userLatest = $user->getInstanceFromPrimary() ?? throw new LogicException( 'No user' );
+		$userLatest = $user->getInstanceFromPrimary( IDBAccessObject::READ_EXCLUSIVE )
+			?? throw new LogicException( 'No user' );
 		$userLatest->confirmEmail();
 		$userLatest->saveSettings();
 		$message = $this->getUser()->isNamed() ? 'confirmemail_loggedin' : 'confirmemail_success';

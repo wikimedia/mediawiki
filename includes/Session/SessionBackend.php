@@ -757,10 +757,12 @@ final class SessionBackend {
 				] );
 			$this->user->setToken();
 			if ( !MediaWikiServices::getInstance()->getReadOnlyMode()->isReadOnly() ) {
-				// Promise that the token set here will be valid; save it at end of request
-				$user = $this->user;
-				DeferredUpdates::addCallableUpdate( static function () use ( $user ) {
-					$user->saveSettings();
+				// This ensures the user is coming from primary DB so that the
+				// DB write to save the token doesn't throw CAS error (T411804).
+				$userLatest = $this->user->getInstanceFromPrimary() ?? $this->user;
+				DeferredUpdates::addCallableUpdate( function () use ( $userLatest ) {
+					$userLatest->setToken( $this->user->getToken() );
+					$userLatest->saveSettings();
 				} );
 			}
 			$this->metaDirty = true;
