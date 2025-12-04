@@ -72,12 +72,8 @@ class HTMLConfirmEmailBuilderTest extends MediaWikiUnitTestCase {
 			],
 			'full logo' => [
 				[
-					'https://wiki.cz/icon.png',
-					'https://wiki.cz/wordmark.png',
-					'https://wiki.cz/tagline.png',
+					'https://wiki.cz/1x.png',
 					'confirmemail_html_logo_alttext',
-					// icon needs to have dimensions configured
-					'height="50" width="50"',
 				],
 				[
 					MainConfigNames::Logo => 'https://wiki.cz/false_logo.png',
@@ -100,8 +96,6 @@ class HTMLConfirmEmailBuilderTest extends MediaWikiUnitTestCase {
 			'no icon' => [
 				[
 					'https://wiki.cz/1x.png',
-					'https://wiki.cz/wordmark.png',
-					'https://wiki.cz/tagline.png',
 					'confirmemail_html_logo_alttext',
 				],
 				[

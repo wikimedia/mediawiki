@@ -1,5 +1,27 @@
+<html>
+<head>
 <style>
-	.mw-confirm-email-button {
+	#mw-confirm-email {
+		background-color: #F8F9FA;
+	}
+	#mw-confirm-email .mw-confirm-email__content {
+		max-width: 600px;
+		margin: auto;
+		padding: 32px;
+		background-color: #FFFFFF;
+	}
+
+	#mw-confirm-email .mw-confirm-email__logo {
+		width: 50px;
+		margin-bottom: 24px;
+	}
+
+	#mw-confirm-email .mw-confirm-email__button-wrapper {
+		margin-top: 24px;
+		margin-bottom: 48px;
+		text-align: center;
+	}
+	#mw-confirm-email .mw-confirm-email__button {
 		background: #36C;
 		color: white;
 		padding: 0.45em 0.6em;
@@ -7,17 +29,39 @@
 		text-align: center;
 		text-decoration: none;
 	}
+	#mw-confirm-email .mw-confirm-email__button:hover {
+		background: #3056a9;
+	}
+	#mw-confirm-email .mw-confirm-email__button:focus {
+		border-color: #36c;
+		box-shadow: inset 0 0 0 1px #36c,inset 0 0 0 2px #fff;
+	}
+	#mw-confirm-email .mw-confirm-email__button:active {
+		background-color: #233566;
+	}
+
+	#mw-confirm-email .mw-confirm-email__footer {
+		color: #54595D;
+	}
 </style>
+</head>
+<body id="mw-confirm-email">
+<div class="mw-confirm-email__content">
 {{#logo}}
-	{{>Logo}}
+	<img class="mw-confirm-email__logo" src="{{icon.src}}" alt="{{icon.alt}}" />
 {{/logo}}
 <section>
 	<p>{{{par1}}}</p>
 	<p>{{{par2}}}</p>
-	<a class="mw-confirm-email-button" href="{{confirmationUrl}}">
-		{{buttonLabel}}
-	</a>
-	<p>
+	<div class="mw-confirm-email__button-wrapper">
+		<a class="mw-confirm-email__button" href="{{confirmationUrl}}">
+			{{buttonLabel}}
+		</a>
+	</div>
+	<p class="mw-confirm-email__footer">
 		<small>{{{footer}}}</small>
 	</p>
 </section>
+</div>
+</body>
+</html>
