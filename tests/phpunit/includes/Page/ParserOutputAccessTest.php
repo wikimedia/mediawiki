@@ -1362,7 +1362,8 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 		$this->assertContainsHtml( '<meta property="mw:PageProp/toc"', $status0, '', false );
 		$this->assertArrayEquals(
 			[ 'postproc-parsoid-pcache', 'postproc-parsoid-pcache', 'parsoid-pcache',
-				'parsoid-pcache', 'parsoid-pcache', 'parsoid-pcache', 'postproc-parsoid-pcache' ],
+				'parsoid-pcache', 'parsoid-pcache', 'parsoid-pcache', 'postproc-parsoid-pcache',
+				'postproc-parsoid-pcache' ],
 			$calls, true
 		);
 
@@ -1377,7 +1378,8 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 
 		$calls = [];
 		$status1 = $access->getParserOutput( $page, $parserOptions1, $page->getRevisionRecord() );
-		$this->assertArrayEquals( [ 'postproc-parsoid-pcache', 'postproc-parsoid-pcache', 'parsoid-pcache', 'postproc-parsoid-pcache' ],
+		$this->assertArrayEquals( [ 'postproc-parsoid-pcache', 'postproc-parsoid-pcache', 'parsoid-pcache', 'postproc-parsoid-pcache',
+			'postproc-parsoid-pcache' ],
 			$calls, true );
 		$this->assertContainsHtml( '<div id="toc"', $status1, '', false );
 		$calls = [];
@@ -1422,7 +1424,7 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 		$access->getParserOutput( $page, $parserOptions0, $page->getRevisionRecord() );
 		$this->assertArrayEquals(
 			[ 'postproc-parsoid-pcache', 'postproc-parsoid-pcache', 'parsoid-pcache', 'parsoid-pcache',
-				'parsoid-pcache', 'parsoid-pcache', 'postproc-parsoid-pcache' ],
+				'parsoid-pcache', 'parsoid-pcache', 'postproc-parsoid-pcache', 'postproc-parsoid-pcache' ],
 			$calls, true
 		);
 
@@ -1430,7 +1432,7 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 		$access->getParserOutput( $page, $parserOptions0, $page->getRevisionRecord() );
 		$this->assertArrayEquals(
 			[ 'postproc-parsoid-pcache', 'postproc-parsoid-pcache',
-				'parsoid-pcache', 'postproc-parsoid-pcache' ], $calls, true );
+				'parsoid-pcache', 'postproc-parsoid-pcache', 'postproc-parsoid-pcache' ], $calls, true );
 
 		$parserOptions1 = $this->getParserOptions();
 		$parserOptions1->enablePostproc();
@@ -1440,7 +1442,8 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 		$calls = [];
 		$access->getParserOutput( $page, $parserOptions1, $page->getRevisionRecord() );
 		$this->assertArrayEquals(
-			[ 'postproc-parsoid-pcache', 'postproc-parsoid-pcache', 'parsoid-pcache', 'postproc-parsoid-pcache' ],
+			[ 'postproc-parsoid-pcache', 'postproc-parsoid-pcache', 'parsoid-pcache', 'postproc-parsoid-pcache',
+				'postproc-parsoid-pcache' ],
 			$calls, true
 		);
 

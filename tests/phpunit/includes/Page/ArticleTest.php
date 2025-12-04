@@ -389,6 +389,7 @@ class ArticleTest extends \MediaWikiIntegrationTestCase {
 			'postproc-pcache', // creates worker to render the page
 			'pcache', // first view, get pcache, hit
 			'postproc-pcache', // first view, store postproc
+			'postproc-pcache', // postprocess, compute cache key for report
 		], $calls, true );
 		$html = $article->getContext()->getOutput()->getHTML();
 		// check that we're running postprocessing (if the headers are wrapped then that's a good sign)

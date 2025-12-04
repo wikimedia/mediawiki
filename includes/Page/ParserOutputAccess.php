@@ -21,6 +21,7 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionRenderer;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\TitleFormatter;
+use MediaWiki\Utils\MWTimestamp;
 use MediaWiki\WikiMap\WikiMap;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
@@ -578,7 +579,7 @@ class ParserOutputAccess implements LoggerAwareInterface {
 			$preStatus = $this->getParserOutput( $page, $preParserOptions, $revision, $options );
 			$output = $preStatus->getValue();
 			if ( $output ) {
-				$output = $this->postprocess( $output, $parserOptions );
+				$output = $this->postprocess( $output, $parserOptions, $page );
 			}
 		} else {
 			$renderedRev = $this->revisionRenderer->getRenderedRevision( $revision, $parserOptions, null, [
@@ -822,7 +823,7 @@ class ParserOutputAccess implements LoggerAwareInterface {
 	/**
 	 * Postprocess the given ParserOutput.
 	 */
-	public function postprocess( ParserOutput $output, ParserOptions $parserOptions ): ParserOutput {
+	public function postprocess( ParserOutput $output, ParserOptions $parserOptions, PageRecord $page ): ParserOutput {
 		// Kludgey workaround: extract $textOptions from the $parserOptions
 		$textOptions = [];
 		// Don't add these to the used options set of $output because we
@@ -848,6 +849,26 @@ class ParserOutputAccess implements LoggerAwareInterface {
 		// (Since we can't detect accesses via $textOptions)
 		foreach ( ParserOptions::$postprocOptions as $key ) {
 			$parserOptions->getOption( $key );
+		}
+		// Add a cache message if debug info is requested (this used to
+		// be part of $textOptions)
+		if ( $parserOptions->getOption( 'includeDebugInfo' ) ) {
+			# Note that we can't make the key before postprocessing because
+			# the set of used options may vary during postprocessing; similarly
+			# we can't use ParserOutput::addCacheMsg() because the
+			# RenderDebugInfo stage has already run by the time we get here.
+			# So add the debug info "the hard way", but consistent with how
+			# RenderDebugInfo does it.
+			$parserOutputKey = $this->getPrimaryCache( $parserOptions )
+				->makeParserOutputKey( $page, $parserOptions, $output->getUsedOptions() );
+			$timestamp = MWTimestamp::now();
+			$msg = "Post-processing cache key $parserOutputKey, generated at $timestamp";
+			// Sanitize for comment. Note '‐' in the replacement is U+2010,
+			// which looks much like the problematic '-'.
+			$msg = str_replace( [ '-', '>' ], [ '‐', '&gt;' ], $msg );
+			$output->setContentHolderText(
+				$output->getContentHolderText() . "<!--\n$msg\n-->"
+			);
 		}
 		return $output;
 	}
