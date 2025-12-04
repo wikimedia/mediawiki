@@ -20,4 +20,9 @@
 	.oo-ui-textInputWidget {
 		max-width: 29.5em;
 	}
+
+	// Avoid FOUC when the text input will be hidden on the JavaScript side
+	.client-js &-hideTextInput .oo-ui-textInputWidget {
+		display: none;
+	}
 }

@@ -52,7 +52,9 @@
 			}
 		}
 
-		.mw-widget-selectWithInputWidget .oo-ui-textInputWidget {
+		.mw-widget-selectWithInputWidget:not( .mw-widget-selectWithInputWidget-hideTextInput ) .oo-ui-textInputWidget {
+			// Stack dropdown and text field vertically instead of showing side-by-side
+			display: block;
 			padding-top: @spacing-25;
 
 			/*
@@ -60,13 +62,6 @@
 			 * mw.widgets.SelectWithInputWidget.base.less
 			 */
 			max-width: 20em;
-
-			/*
-			 * Avoid FOUC on page load, since the default value will never be "Other".
-			 * When the user selects "Other", OOUI adds styles that will make this
-			 * visible again.
-			 */
-			display: none;
 		}
 	}
 }

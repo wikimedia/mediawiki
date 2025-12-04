@@ -187,7 +187,7 @@
 	mw.widgets.SelectWithInputWidget.prototype.onChange = function ( value ) {
 		if ( this.or ) {
 			value = value || this.dropdowninput.getValue();
-			this.textinput.$element.toggle( value === 'other' );
+			this.$element.toggleClass( 'mw-widget-selectWithInputWidget-hideTextInput', value !== 'other' );
 			// It is impossible to submit a form with hidden fields failing validation, e.g. one that
 			// is required. However, validity is not checked for disabled fields, as these are not
 			// submitted with the form. So we should also disable fields when hiding them.

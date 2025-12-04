@@ -61,6 +61,10 @@ class SelectWithInputWidget extends Widget {
 		$this
 			->addClasses( [ 'mw-widget-selectWithInputWidget' ] )
 			->appendContent( $this->dropdowninput, $this->textinput );
+
+		if ( $config['or'] && $this->dropdowninput->getValue() !== 'other' ) {
+			$this->addClasses( [ 'mw-widget-selectWithInputWidget-hideTextInput' ] );
+		}
 	}
 
 	/** @inheritDoc */
