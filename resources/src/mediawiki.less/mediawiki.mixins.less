@@ -200,3 +200,12 @@
 	padding: 0;
 	overflow: hidden;
 }
+
+.solidToOpacity( @property, @color, @opacity, @before: '', @after: '', @background: #fff ) {
+	@{property}: ~'@{before}' fade( ( ( @color - ( 1 - @opacity ) * ( @background ) ) / @opacity ), @opacity * 100 ) ~'@{after}';
+}
+
+.solidToMinimumOpacity( @property, @color, @before: '', @after: '', @background: #fff ) {
+	@opacity: 1 - ( min( red( @color ), green( @color ), blue( @color ) ) / 255 );
+	.solidToOpacity( @property, @color, @opacity, @before, @after, @background );
+}

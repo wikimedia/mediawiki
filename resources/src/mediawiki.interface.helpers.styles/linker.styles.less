@@ -33,10 +33,32 @@
 
 /** Class is added by UserLinkRenderer::userLink */
 .mw-tempuserlink {
-	background-color: @background-color-interactive;
-	outline: 2px solid @background-color-interactive;
+	// Color is calculated to match @background-color-interactive.
+	// Transparency is needed for T400577.
+	.solidToMinimumOpacity( background-color, #eaecf0 );
+	.solidToMinimumOpacity( outline, #eaecf0, '2px solid' );
 	border-radius: @border-radius-base;
 	white-space: nowrap;
+}
+
+.dark-mode-tempuserlink-styles() {
+	.mw-tempuserlink {
+		// Color is calculated to match @background-color-interactive in dark-mode.
+		// The passed-in background color is @background-color-inverted.
+		// Transparency is needed for T400577.
+		.solidToMinimumOpacity( background-color, #27292d, '', '', #000 );
+		.solidToMinimumOpacity( outline, #27292d, '2px solid', '', #000 );
+	}
+}
+
+html.skin-theme-clientpref-night {
+	.dark-mode-tempuserlink-styles();
+}
+
+@media ( prefers-color-scheme: dark ) {
+	html.skin-theme-clientpref-os {
+		.dark-mode-tempuserlink-styles();
+	}
 }
 
 /** Class is added by UserLinkRenderer::userLink */
