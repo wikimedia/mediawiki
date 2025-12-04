@@ -4333,6 +4333,13 @@ config-schema:
         description: |-
             By default MediaWiki does not register links pointing to same server in
             externallinks dataset, use this value to override:
+    ExternalLinksIgnoreDomains:
+        default: []
+        type: array
+        description: |-
+            List of domains that will be ignored in being tracked into externallinks table.
+            Subdomains will be also ignored. So 'wikipedia.org' means 'fa.wikipedia.org'
+            will be also ignored.
     AllowDisplayTitle:
         default: true
         description: 'Allow DISPLAYTITLE to change title display'

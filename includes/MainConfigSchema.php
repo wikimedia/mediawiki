@@ -6786,6 +6786,17 @@ class MainConfigSchema {
 	];
 
 	/**
+	 * List of domains that will be ignored in being tracked into externallinks table.
+	 *
+	 * Subdomains will be also ignored. So 'wikipedia.org' means 'fa.wikipedia.org'
+	 * will be also ignored.
+	 */
+	public const ExternalLinksIgnoreDomains = [
+		'default' => [],
+		'type' => 'array',
+	];
+
+	/**
 	 * Allow DISPLAYTITLE to change title display
 	 */
 	public const AllowDisplayTitle = [

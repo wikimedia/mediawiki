@@ -1391,6 +1391,8 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		$config = MediaWikiServices::getInstance()->getMainConfig();
 		$server = $config->get( MainConfigNames::Server );
 		$registerInternalExternals = $config->get( MainConfigNames::RegisterInternalExternals );
+		$ignoreDomains = $config->get( MainConfigNames::ExternalLinksIgnoreDomains );
+
 		# Replace unnecessary URL escape codes with the referenced character
 		# This prevents spammers from hiding links from the filters
 		$url = Parser::normalizeLinkUrl( $url );
@@ -1398,6 +1400,11 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		$registerExternalLink = true;
 		if ( !$registerInternalExternals ) {
 			$registerExternalLink = !self::isLinkInternal( $server, $url );
+		}
+		if (
+			MediaWikiServices::getInstance()->getUrlUtils()->matchesDomainList( $url, $ignoreDomains )
+		) {
+			$registerExternalLink = false;
 		}
 		if ( $registerExternalLink ) {
 			$this->mExternalLinks[$url] = 1;

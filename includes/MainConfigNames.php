@@ -2427,6 +2427,12 @@ class MainConfigNames {
 	public const RegisterInternalExternals = 'RegisterInternalExternals';
 
 	/**
+	 * Name constant for the ExternalLinksIgnoreDomains setting, for use with Config::get()
+	 * @see MainConfigSchema::ExternalLinksIgnoreDomains
+	 */
+	public const ExternalLinksIgnoreDomains = 'ExternalLinksIgnoreDomains';
+
+	/**
 	 * Name constant for the AllowDisplayTitle setting, for use with Config::get()
 	 * @see MainConfigSchema::AllowDisplayTitle
 	 */
