@@ -2220,23 +2220,41 @@ abstract class ApiBase extends ContextSource {
 			'status' => "200", // Success
 		], $detailLabels );
 
+		$approvedLabels = [
+			'api_module',
+			'api_endpoint',
+			'path',
+			'method',
+			'status',
+		];
+
 		// Hit metrics
 		$metricHitStats = $this->getMain()->getStatsFactory()->getCounter( 'action_api_modules_hit_total' )
 			->setLabel( 'api_type', 'ACTION_API' );
-		foreach ( $metricsLabels as $label => $value ) {
-			if ( strlen( $value ) > 0 ) {
-				$metricHitStats->setLabel( $label, $value );
-			}
+		foreach ( $approvedLabels as $label ) {
+			// Set a fallback value for empty strings
+			$value = (
+				array_key_exists( $label, $metricsLabels ) &&
+				is_string( $metricsLabels[$label] ) &&
+				trim( $metricsLabels[$label] ) !== ''
+			) ? $metricsLabels[$label] : 'EMPTY_VALUE';
+			$metricHitStats->setLabel( $label, $value );
 		}
 		$metricHitStats->increment();
 
 		// Latency metrics
 		$metricLatencyStats = $this->getMain()->getStatsFactory()->getTiming( 'action_api_modules_latency' )
 			->setLabel( 'api_type', 'ACTION_API' );
-		foreach ( $metricsLabels as $label => $value ) {
-			if ( strlen( $value ) > 0 ) {
-				$metricLatencyStats->setLabel( $label, $value );
-			}
+		// Iterate over the approved labels and set the labels for the metric
+		foreach ( $approvedLabels as $label ) {
+			// Set a fallback value for empty strings
+			$value = (
+				array_key_exists( $label, $metricsLabels ) &&
+				is_string( $metricsLabels[$label] ) &&
+				trim( $metricsLabels[$label] ) !== ''
+			) ? $metricsLabels[$label] : 'EMPTY_VALUE';
+
+			$metricLatencyStats->setLabel( $label, $value );
 		}
 		$metricLatencyStats->observeNanoseconds( $latency );
 	}

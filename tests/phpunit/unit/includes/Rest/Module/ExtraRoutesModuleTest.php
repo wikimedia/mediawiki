@@ -135,8 +135,8 @@ class ExtraRoutesModuleTest extends \MediaWikiUnitTestCase {
 		$this->assertSame(
 			[
 				'mediawiki.rest_api_latency_seconds:1|ms|#path:ModuleTest_hello_name,method:HEAD,status:200',
-				'mediawiki.rest_api_modules_hit_total:1|c|#api_type:REST_API,api_endpoint:MediaWiki_Tests_Rest_Handler_HelloHandler,path:ModuleTest_hello_name,method:HEAD,status:200',
-				'mediawiki.rest_api_modules_latency:1|ms|#api_type:REST_API,api_endpoint:MediaWiki_Tests_Rest_Handler_HelloHandler,path:ModuleTest_hello_name,method:HEAD,status:200'
+				'mediawiki.rest_api_modules_hit_total:1|c|#api_type:REST_API,api_module:EMPTY_VALUE,api_endpoint:MediaWiki_Tests_Rest_Handler_HelloHandler,path:ModuleTest_hello_name,method:HEAD,status:200',
+				'mediawiki.rest_api_modules_latency:1|ms|#api_type:REST_API,api_module:EMPTY_VALUE,api_endpoint:MediaWiki_Tests_Rest_Handler_HelloHandler,path:ModuleTest_hello_name,method:HEAD,status:200'
 			],
 			$statsHelper->consumeAllFormatted()
 		);
