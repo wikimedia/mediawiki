@@ -192,7 +192,7 @@ abstract class UploadBase {
 		$type = ucfirst( $type );
 
 		// Give hooks the chance to handle this request
-		/** @var self|null $className */
+		/** @var class-string<self>|null $className */
 		$className = null;
 		( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )
 			// @phan-suppress-next-line PhanTypeMismatchArgument Type mismatch on pass-by-ref args

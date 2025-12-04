@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Upload\Hook;
 
+use MediaWiki\Upload\UploadBase;
+
 /**
  * This is a hook handler interface, see docs/Hooks.md.
  * Use the hook name "UploadCreateFromRequest" to register handlers implementing this interface.
@@ -16,7 +18,7 @@ interface UploadCreateFromRequestHook {
 	 * @since 1.35
 	 *
 	 * @param string $type Requested upload type
-	 * @param string &$className Class name of the Upload instance to be created
+	 * @param class-string<UploadBase> &$className Class name of the Upload instance to be created
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onUploadCreateFromRequest( $type, &$className );
