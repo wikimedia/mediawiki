@@ -122,6 +122,7 @@
 	"redirectpagesub": "Pagina de redirezzion",
 	"redirectto": "Rimanda a:",
 	"lastmodifiedat": "'Sta pagina chì l'è stada modifegada l'ultima volta el $1, ai ore $2.",
+	"renderedwith-parsoid": "La pagina l'è stada renderizada con [[mw:Special:MyLanguage/Parsoid|Parsoid]].",
 	"viewcount": "Questa pagina chì a l'è stada lensgiuda {{PLURAL:$1|una volta|$1 volte}}.",
 	"protectedpage": "Pagina protesgiuda",
 	"jumpto": "Va a:",

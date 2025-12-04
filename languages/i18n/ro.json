@@ -3493,6 +3493,7 @@
 	"revdelete-restricted": "restricții aplicate administratorilor",
 	"revdelete-unrestricted": "restricții eliminate pentru administratori",
 	"logentry-block-block": "$1 {{GENDER:$2|a blocat}} utilizatorul {{GENDER:$4|$3}} cu termenul de expirare $5 $6",
+	"logentry-block-block-multi": "$1 a adăugat o blocare asupra {{GENDER:$4|utilizatorului $3|utilizatoarei $3|utilizatorului $3}}, cu un timp de expirare de  $5 $6",
 	"logentry-block-unblock": "$1 {{GENDER:$2|a deblocat}} utilizatorul {{GENDER:$4|$3}}",
 	"logentry-block-reblock": "$1 {{GENDER:$2|a schimbat}} parametrii blocării pentru utilizatorul {{GENDER:$4|$3}} cu termenul de expirare $5 $6",
 	"logentry-partialblock-block-page": "{{PLURAL:$1|pagina|paginile}} $2",

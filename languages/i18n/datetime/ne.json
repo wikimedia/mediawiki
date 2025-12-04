@@ -126,7 +126,7 @@
 	"minutes": "{{PLURAL:$1|$1 मिनेट|$1 मिनेटहरु}}",
 	"seconds": "{{PLURAL:$1|$1 सेकेन्ड|$1 सेकेन्डहरु}}",
 	"days-abbrev": "$1 दिन",
-	"hours-abbrev": "$1 घण्टा",
+	"hours-abbrev": "$1 घन्टा",
 	"minutes-abbrev": "$1 मिनेट",
 	"seconds-abbrev": "$1 सेकेन्ड",
 	"ago": "$1 पहिले",
