@@ -119,6 +119,12 @@ abstract class UploadBase {
 		self::FILENAME_TOO_LONG => 'filename-toolong',
 	];
 
+	private const CORE_UPLOAD_HANDLERS = [
+		'Stash' => UploadFromStash::class,
+		'File' => UploadFromFile::class,
+		'Url' => UploadFromUrl::class,
+	];
+
 	/**
 	 * @param int $error
 	 * @return string
@@ -171,9 +177,6 @@ abstract class UploadBase {
 		return $user->pingLimiter( 'upload' );
 	}
 
-	/** @var string[] Upload handlers. Should probably just be a configuration variable. */
-	private static $uploadHandlers = [ 'Stash', 'File', 'Url' ];
-
 	/**
 	 * Create a form of UploadBase depending on wpSourceType and initializes it.
 	 *
@@ -198,11 +201,12 @@ abstract class UploadBase {
 			// @phan-suppress-next-line PhanTypeMismatchArgument Type mismatch on pass-by-ref args
 			->onUploadCreateFromRequest( $type, $className );
 		if ( $className === null ) {
-			$className = 'UploadFrom' . $type;
-			wfDebug( __METHOD__ . ": class name: $className" );
-			if ( !in_array( $type, self::$uploadHandlers ) ) {
+			if ( !isset( self::CORE_UPLOAD_HANDLERS[$type] ) ) {
+				wfDebug( __METHOD__ . ": no class name for $type" );
 				return null;
 			}
+			$className = self::CORE_UPLOAD_HANDLERS[$type];
+			wfDebug( __METHOD__ . ": class name: $className" );
 		}
 
 		if ( !$className::isEnabled() || !$className::isValidRequest( $request ) ) {
