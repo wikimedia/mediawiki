@@ -579,7 +579,7 @@ class ApiQueryInfo extends ApiQueryBase {
 				}
 
 				if ( $detailLevel === 'boolean' ) {
-					$pageInfo['actions'][$action] = $authority->authorizeRead( $action, $page );
+					$pageInfo['actions'][$action] = $authority->definitelyCan( $action, $page );
 				} else {
 					$status = new PermissionStatus();
 					if ( $detailLevel === 'quick' ) {
