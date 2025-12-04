@@ -578,9 +578,7 @@ class ParserOutputAccess implements LoggerAwareInterface {
 			$preStatus = $this->getParserOutput( $page, $preParserOptions, $revision, $options );
 			$output = $preStatus->getValue();
 			if ( $output ) {
-				$prevCallback = $preParserOptions->registerWatcher( [ $output, 'recordOption' ] );
-				$output = $this->postprocess( $output, $preParserOptions );
-				$parserOptions->registerWatcher( $prevCallback );
+				$output = $this->postprocess( $output, $parserOptions );
 			}
 		} else {
 			$renderedRev = $this->revisionRenderer->getRenderedRevision( $revision, $parserOptions, null, [
@@ -826,16 +824,31 @@ class ParserOutputAccess implements LoggerAwareInterface {
 	 */
 	public function postprocess( ParserOutput $output, ParserOptions $parserOptions ): ParserOutput {
 		// Kludgey workaround: extract $textOptions from the $parserOptions
-		// (Note this will add them all to the 'usedOptions' set!)
 		$textOptions = [];
+		// Don't add these to the used options set of $output because we
+		// don't want to mutate that, and the actual return value ParserOutput
+		// doesn't yet exist.
+		$parserOptions->registerWatcher( null );
 		foreach ( ParserOptions::$postprocOptions as $key ) {
 			$textOptions[$key] = $parserOptions->getOption( $key );
 		}
 		$textOptions = [
 			'allowClone' => true,
 		] + $textOptions;
+
 		$pipeline = MediaWikiServices::getInstance()->getDefaultOutputPipeline();
 		$output = $pipeline->run( $output, $parserOptions, $textOptions );
+		// Ensure this ParserOptions is watching the resulting ParserOutput,
+		// now that it exists.
+		$parserOptions->registerWatcher( $output->recordOption( ... ) );
+		// Ensure "postproc" is in the set of used options
+		// (Probably not necessary, but it doesn't hurt to be safe.)
+		$parserOptions->getPostproc();
+		// Ensure all postprocOptions are in the set of used options
+		// (Since we can't detect accesses via $textOptions)
+		foreach ( ParserOptions::$postprocOptions as $key ) {
+			$parserOptions->getOption( $key );
+		}
 		return $output;
 	}
 

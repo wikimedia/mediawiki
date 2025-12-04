@@ -66,8 +66,10 @@ class OutputTransformPipeline {
 			'enableSectionEditLinks' => !$in->getOutputFlag( ParserOutputFlags::NO_SECTION_EDIT_LINKS ),
 			'wrapperDivClass' => $in->getWrapperDivClass(),
 		];
+		$oldWatcher = false;
 		if ( $options['allowClone'] ?? true ) {
 			$out = clone $in;
+			$oldWatcher = $popts->registerWatcher( $out->recordOption( ... ) );
 		} else {
 			// T353257: This should be a clone, but we've need to suppress it
 			// for some legacy codepaths.
@@ -78,6 +80,9 @@ class OutputTransformPipeline {
 				// Some stages may (for now) modify $options. See OutputTransformStage documentation for more info.
 				$out = $stage->transform( $out, $popts, $options );
 			}
+		}
+		if ( $oldWatcher !== false ) {
+			$popts->registerWatcher( $oldWatcher );
 		}
 		return $out;
 	}
