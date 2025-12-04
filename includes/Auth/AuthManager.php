@@ -2107,7 +2107,7 @@ class AuthManager implements LoggerAwareInterface {
 		$this->logger->info( __METHOD__ . ': creating new user ({username}) - from: {from}', [
 				'username' => $username,
 				'from' => $from
-			] + $this->request->getSecurityLogContext( $user )
+			] + $this->request->getSecurityLogContext( $performer->getUser() )
 		);
 
 		// Ignore warnings about primary connections/writes...hard to avoid here
