@@ -232,8 +232,6 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 
 	/** @var int IDBAccessObject::READ_* constant bitfield used to load data */
 	protected $queryFlagsUsed = IDBAccessObject::READ_NORMAL;
-	/** @var ?RuntimeException Exception created when loading data, to provide stack trace */
-	protected $queryFlagsUsedStacktrace = null;
 
 	/**
 	 * @var UserAuthority|null lazy-initialized Authority of this user
@@ -368,7 +366,6 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 		$oldLoadedItems = $this->mLoadedItems;
 		$this->mLoadedItems = true;
 		$this->queryFlagsUsed = $flags;
-		$this->queryFlagsUsedStacktrace = new RuntimeException( 'loaded by ' . __METHOD__ );
 
 		// If this is called too early, things are likely to break.
 		if ( !$wgFullyInitialised && $this->mFrom === 'session' ) {
@@ -405,8 +402,6 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 					if ( $lb->hasOrMadeRecentPrimaryChanges() ) {
 						$flags |= IDBAccessObject::READ_LATEST;
 						$this->queryFlagsUsed = $flags;
-						$this->queryFlagsUsedStacktrace =
-							new RuntimeException( 'loaded by ' . __METHOD__ . ' from id' );
 					}
 				}
 
@@ -419,8 +414,6 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 				if ( $lb->hasOrMadeRecentPrimaryChanges() ) {
 					$flags |= IDBAccessObject::READ_LATEST;
 					$this->queryFlagsUsed = $flags;
-					$this->queryFlagsUsedStacktrace =
-						new RuntimeException( 'loaded by ' . __METHOD__ . ' from actor/name' );
 				}
 
 				$dbr = DBAccessObjectUtils::getDBFromRecency(
@@ -488,7 +481,6 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 
 		$this->mLoadedItems = true;
 		$this->queryFlagsUsed = $flags;
-		$this->queryFlagsUsedStacktrace = new RuntimeException( 'loaded by ' . __METHOD__ );
 
 		return true;
 	}
@@ -1106,7 +1098,6 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 			->fetchRow();
 
 		$this->queryFlagsUsed = $flags;
-		$this->queryFlagsUsedStacktrace = new RuntimeException( 'loaded by ' . __METHOD__ );
 
 		if ( $row !== false ) {
 			// Initialise user table data
@@ -2366,7 +2357,7 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 				$from = ( $this->queryFlagsUsed & IDBAccessObject::READ_LATEST ) ? 'primary' : 'replica';
 				LoggerFactory::getInstance( 'preferences' )->warning(
 					"CAS update failed on user_touched for user ID '{user_id}' ({db_flag} read)",
-					[ 'user_id' => $this->mId, 'db_flag' => $from, 'exception' => $this->queryFlagsUsedStacktrace ]
+					[ 'user_id' => $this->mId, 'db_flag' => $from ]
 				);
 				throw new RuntimeException( "CAS update failed on user_touched. " .
 					"The version of the user to be saved is older than the current version."
@@ -2578,7 +2569,6 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 			}
 			$this->mId = $dbw->insertId();
 			$this->queryFlagsUsed = IDBAccessObject::READ_LATEST;
-			$this->queryFlagsUsedStacktrace = new RuntimeException( 'loaded by ' . $fname );
 
 			// Don't pass $this, since calling ::getId, ::getName might force ::load
 			// and this user might not be ready for the yet.
