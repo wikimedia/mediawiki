@@ -23,52 +23,25 @@ class HTMLConfirmEmailBuilder implements IConfirmEmailBuilder {
 	}
 
 	/**
-	 * If presented, convert the URL to absolute
+	 * Build config context for the logo used in EmailCreated.mustache
 	 *
-	 * @param string|null $url URL to expand (or null if none)
-	 * @return array|null Null if $url is null, otherwise array with information about the logo:
-	 * ('src' has expanded $url and 'alt' has a textual description suitable for site logo)
+	 * @return array|null Null if no logo is configured
 	 */
-	private function buildContextForLogoByUrlIfExists( ?string $url, array $extraConfig = [] ): ?array {
-		if ( !$url ) {
-			return null;
-		}
-
-		return [
-			'src' => $this->urlUtils->expand( $url, PROTO_CANONICAL ),
-			'alt' => $this->context->msg( 'confirmemail_html_logo_alttext' )->text(),
-		] + $extraConfig;
-	}
-
-	/**
-	 * Build config context that can be passed into Logos.mustache
-	 *
-	 * @return array|null Null if no logos are configured
-	 */
-	private function buildLogosContext(): ?array {
+	private function buildLogoContext(): ?array {
 		$config = SkinModule::getAvailableLogos(
 			$this->context->getConfig(),
 			$this->context->getLanguage()->getCode()
 		);
-
-		$usesMultipartLogo = isset( $config['icon'] );
-		$result = [
-			'wordmark' => $this->buildContextForLogoByUrlIfExists(
-				$config['wordmark']['src'] ?? null
-			),
-			'tagline' => $this->buildContextForLogoByUrlIfExists(
-				$config['tagline']['src'] ?? null
-			),
-			'icon' => $this->buildContextForLogoByUrlIfExists(
-				$config['icon'] ?? $config['1x'] ?? null,
-				[ 'multipart-logo' => $usesMultipartLogo ],
-			),
-		];
-		if ( $result['icon'] === null ) {
-			// No logo configured at all
+		if ( !isset( $config['1x'] ) ) {
 			return null;
 		}
-		return $result;
+
+		return [
+			'icon' => [
+				'src' => $this->urlUtils->expand( $config['1x'], PROTO_CANONICAL ),
+				'alt' => $this->context->msg( 'confirmemail_html_logo_alttext' )->text(),
+			],
+		];
 	}
 
 	public function buildEmailCreated( ConfirmEmailData $data ): ConfirmEmailContent {
@@ -94,7 +67,7 @@ class HTMLConfirmEmailBuilder implements IConfirmEmailBuilder {
 				)->text(),
 			] ),
 			$this->templateParser->processTemplate( 'EmailCreated', [
-				'logo' => $this->buildLogosContext(),
+				'logo' => $this->buildLogoContext(),
 				'confirmationUrl' => $data->getConfirmationUrl(),
 				'par1' => $this->context->msg(
 					'confirmemail_html_par1',
