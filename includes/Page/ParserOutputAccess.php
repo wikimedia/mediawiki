@@ -609,7 +609,7 @@ class ParserOutputAccess implements LoggerAwareInterface {
 			$this->statsFactory
 				->getCounter( 'ParserCache_selective_cpu_seconds' )
 				->setLabels( $labels )
-				->incrementBy( $output->getTimeProfile( 'cpu' ) );
+				->incrementBy( $output->getTimeProfile( 'cpu' ) ?? 0 );
 		}
 
 		$res = Status::newGood( $output );
