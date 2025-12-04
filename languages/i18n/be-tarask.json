@@ -358,7 +358,7 @@
 	"userlogin-createanother": "Стварыць іншы рахунак",
 	"createacct-loggedin": "Вы ўжо ўвайшлі ў сыстэму як {{GENDER:$1|$1}}.",
 	"createacct-loggedin-continue-as": "Працягнуць як {{GENDER:$1|$1}}",
-	"createacct-loggedin-heading": "Стварыць іншы ўліковы запіс",
+	"createacct-loggedin-heading": "Стварыць іншы рахунак",
 	"createacct-emailrequired": "Адрас электроннай пошты",
 	"createacct-emailoptional": "Адрас электроннай пошты (неабавязкова)",
 	"createacct-email-ph": "Увядзіце ваш адрас электроннай пошты",

@@ -2241,6 +2241,7 @@
 	"watchlistlabels-form-field-name": "Tunnisteen nimi",
 	"watchlistlabels-form-name-too-long": "Tunnisteen nimi on liian pitkä. Sen täytyy olla alle 256 tavua (annettu arvo on $1 {{PLURAL:$1|tavun pituinen|tavua pitkä}}).",
 	"watchlistlabels-form-name-too-short": "Tunnisteen nimi ei voi olla tyhjä.",
+	"watchlistlabels-form-name-exists": "Tunnisteen nimi ”$1” on jo käytössä.",
 	"watchlistlabels-form-submit-new": "Luo",
 	"watchlistlabels-form-submit-edit": "Tallenna",
 	"watchlist-filters-labels-title": "Tunnisteet",

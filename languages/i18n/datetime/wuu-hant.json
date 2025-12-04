@@ -60,7 +60,7 @@
 	"period-pm": "PM",
 	"days": "$1日天",
 	"hours": "$1個鐘頭",
-	"duration-millennia": "!!FUZZY!!$1千年",
+	"duration-millennia": "$1千年",
 	"duration-days": "$1日天",
 	"hours-ago": "$1個鐘頭前"
 }

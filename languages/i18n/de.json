@@ -2295,6 +2295,7 @@
 	"watchlistlabels-form-field-name": "Labelname",
 	"watchlistlabels-form-name-too-long": "Der Labelname ist zu lang. Bitte halte ihn unter 256 Bytes (der angegebene Wert ist $1 {{PLURAL:$1|Byte|Bytes}}).",
 	"watchlistlabels-form-name-too-short": "Der Labelname darf nicht leer sein.",
+	"watchlistlabels-form-name-exists": "Das Label „$1“ wird bereits verwendet.",
 	"watchlistlabels-form-submit-new": "Erstellen",
 	"watchlistlabels-form-submit-edit": "Speichern",
 	"watchlist-filters-labels-title": "Labels",

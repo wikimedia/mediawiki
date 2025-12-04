@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Farorud",
 			"FrancisTyers",
 			"Ibrahim",
 			"Soroush",
@@ -16,10 +17,10 @@
 	"may_long": "Май",
 	"june": "Июн",
 	"july": "Июл",
-	"august": "август",
-	"september": "сентябр",
+	"august": "Август",
+	"september": "Сентябр",
 	"october": "Октябр",
-	"november": "ноябр",
+	"november": "Ноябр",
 	"december": "Декабр",
 	"january-gen": "Январ",
 	"february-gen": "феврали",
