@@ -20,9 +20,6 @@ class HTMLTextField extends HTMLFormField {
 	/** @var string */
 	protected $mPlaceholder = '';
 
-	/** @var bool HTML autocomplete attribute */
-	protected $autocomplete;
-
 	/**
 	 * @stable to call
 	 *
