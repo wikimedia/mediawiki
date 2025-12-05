@@ -4,6 +4,9 @@ namespace MediaWiki\Watchlist;
 
 use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
+use MediaWiki\SpecialPage\SpecialPage;
+use MediaWiki\Specials\SpecialEditWatchlist;
 use MediaWiki\Specials\SpecialWatchlist;
 
 /**
@@ -14,6 +17,12 @@ trait WatchlistSpecialPage {
 
 	/** @inheritDoc */
 	abstract public function getConfig();
+
+	/** @inheritDoc */
+	abstract public function getLinkRenderer();
+
+	/** @inheritDoc */
+	abstract public function getOutput();
 
 	/** @inheritDoc */
 	abstract public function getUser();
@@ -64,6 +73,54 @@ trait WatchlistSpecialPage {
 			// Empty string parameter can be removed when all messages
 			// are updated to not use $2
 			$this->msg( 'watchlistfor2', $this->getUser()->getName(), '' )->text()
+		);
+	}
+
+	/**
+	 * Build the HTML for links for navigation between watchlist viewing and editing modes.
+	 * This is only used for skins that don't support the `associated-pages` menu.
+	 *
+	 * @param ?int $selectedMode The mode of the current page, to be shown as active.
+	 * @return string
+	 */
+	public function buildTools( ?int $selectedMode = null ): string {
+		$linkRenderer = $this->getLinkRenderer() ?? MediaWikiServices::getInstance()->getLinkRenderer();
+
+		$tools = [];
+		// These should be kept in sync with SpecialWatchlist::WATCHLIST_TAB_PATHS.
+		$modes = array_filter( [
+			'view' => [ 'Watchlist', false, false ],
+			'edit' => [ 'EditWatchlist', false, SpecialEditWatchlist::EDIT_NORMAL ],
+			'labels' => $this->getConfig()->get( MainConfigNames::EnableWatchlistLabels )
+				? [ 'WatchlistLabels', false, false ]
+				: null,
+			'raw' => [ 'EditWatchlist', 'raw', SpecialEditWatchlist::EDIT_RAW ],
+			'clear' => [ 'EditWatchlist', 'clear', SpecialEditWatchlist::EDIT_CLEAR ],
+		] );
+
+		foreach ( $modes as $mode => $arr ) {
+			// can use messages 'watchlisttools-view', 'watchlisttools-edit', 'watchlisttools-raw'
+			$link = $linkRenderer->makeKnownLink(
+				SpecialPage::getTitleFor( $arr[0], $arr[1] ),
+				wfMessage( "watchlisttools-{$mode}" )->text()
+			);
+			$isSelected = $selectedMode === $arr[2];
+			$classes = [
+				'mw-watchlist-toollink',
+				'mw-watchlist-toollink-' . $mode,
+				$isSelected ? 'mw-watchlist-toollink-active' :
+					'mw-watchlist-toollink-inactive'
+			];
+			$tools[] = Html::rawElement( 'span', [
+				'class' => $classes,
+			], $link );
+		}
+
+		$this->getOutput()->addModuleStyles( 'mediawiki.interface.helpers.styles' );
+		return Html::rawElement(
+			'span',
+			[ 'class' => [ 'mw-watchlist-toollinks', 'mw-changeslist-links' ] ],
+			implode( '', $tools )
 		);
 	}
 }

@@ -532,17 +532,13 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	public function doHeader( $opts, $numRows ) {
 		$user = $this->getUser();
 		$out = $this->getOutput();
-		$skin = $this->getSkin();
-		// For legacy skins render the tabs in the subtitle
-		$subpageSubtitle = $skin->supportsMenu( 'associated-pages' ) ? '' :
-			' ' .
-			SpecialEditWatchlist::buildTools(
-					null,
-					$this->getLinkRenderer(),
-					$this->currentMode
-				);
 
-		$out->addSubtitle( $this->getWatchlistOwnerHtml() . $subpageSubtitle );
+		$subtitle = $this->getWatchlistOwnerHtml();
+		if ( !$this->getSkin()->supportsMenu( 'associated-pages' ) ) {
+			// For legacy skins render the tabs in the subtitle
+			$subtitle .= ' ' . $this->buildTools( $this->currentMode );
+		}
+		$out->addSubtitle( $subtitle );
 
 		$this->setTopText( $opts );
 

@@ -16,7 +16,6 @@ use MediaWiki\Exception\UserNotLoggedIn;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\HTMLForm\OOUIHTMLForm;
-use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
@@ -172,17 +171,12 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 * Renders a subheader on the watchlist page.
 	 */
 	protected function outputSubtitle() {
-		$out = $this->getOutput();
-		$skin = $this->getSkin();
-		// For legacy skins render the tabs in the subtitle
-		$subpageSubtitle = $skin->supportsMenu( 'associated-pages' ) ? '' :
-			' ' .
-				self::buildTools(
-					null,
-					$this->getLinkRenderer(),
-					$this->currentMode
-				);
-		$out->addSubtitle( $this->getWatchlistOwnerHtml() . $subpageSubtitle );
+		$subtitle = $this->getWatchlistOwnerHtml();
+		if ( !$this->getSkin()->supportsMenu( 'associated-pages' ) ) {
+			// For legacy skins render the tabs in the subtitle
+			$subtitle .= ' ' . $this->buildTools( $this->currentMode );
+		}
+		$this->getOutput()->addSubtitle( $subtitle );
 	}
 
 	/**
@@ -860,53 +854,6 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			default:
 				return $defaultValue;
 		}
-	}
-
-	/**
-	 * Build a set of links for convenient navigation
-	 * between watchlist viewing and editing modes
-	 *
-	 * @param mixed $unused
-	 * @param LinkRenderer|null $linkRenderer
-	 * @param int|false $selectedMode result of self::getMode
-	 * @return string
-	 */
-	public static function buildTools( $unused, ?LinkRenderer $linkRenderer = null, $selectedMode = false ) {
-		if ( !$linkRenderer ) {
-			$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
-		}
-
-		$tools = [];
-		$modes = [
-			'view' => [ 'Watchlist', false, false ],
-			'edit' => [ 'EditWatchlist', false, self::EDIT_NORMAL ],
-			'raw' => [ 'EditWatchlist', 'raw', self::EDIT_RAW ],
-			'clear' => [ 'EditWatchlist', 'clear', self::EDIT_CLEAR ],
-		];
-
-		foreach ( $modes as $mode => $arr ) {
-			// can use messages 'watchlisttools-view', 'watchlisttools-edit', 'watchlisttools-raw'
-			$link = $linkRenderer->makeKnownLink(
-				SpecialPage::getTitleFor( $arr[0], $arr[1] ),
-				wfMessage( "watchlisttools-{$mode}" )->text()
-			);
-			$isSelected = $selectedMode === $arr[2];
-			$classes = [
-				'mw-watchlist-toollink',
-				'mw-watchlist-toollink-' . $mode,
-				$isSelected ? 'mw-watchlist-toollink-active' :
-					'mw-watchlist-toollink-inactive'
-			];
-			$tools[] = Html::rawElement( 'span', [
-				'class' => $classes,
-			], $link );
-		}
-
-		return Html::rawElement(
-			'span',
-			[ 'class' => [ 'mw-watchlist-toollinks', 'mw-changeslist-links' ] ],
-			implode( '', $tools )
-		);
 	}
 }
 

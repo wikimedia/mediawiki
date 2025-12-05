@@ -72,7 +72,14 @@ class SpecialWatchlistLabels extends SpecialPage {
 			$output->addHTML( Html::errorBox( $this->msg( 'watchlistlabels-not-enabled' )->escaped() ) );
 			return;
 		}
-		$output->addSubtitle( $this->getWatchlistOwnerHtml() );
+
+		$subtitle = $this->getWatchlistOwnerHtml();
+		if ( !$this->getSkin()->supportsMenu( 'associated-pages' ) ) {
+			// For legacy skins render the tabs in the subtitle
+			$subtitle .= ' ' . $this->buildTools( null );
+		}
+		$output->addSubtitle( $subtitle );
+
 		if ( $subPage === self::SUBPAGE_EDIT ) {
 			$this->showForm();
 		} else {
